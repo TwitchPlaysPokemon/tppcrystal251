@@ -1,0 +1,338 @@
+	const_def
+
+	const NO_ITEM
+	const MASTER_BALL
+	const ULTRA_BALL
+	const BRIGHTPOWDER
+	const GREAT_BALL
+	const POKE_BALL
+	const LAPTOP        ;NEW
+	const BICYCLE
+	const MOON_STONE
+	const ANTIDOTE
+	const BURN_HEAL
+	const ICE_HEAL
+	const AWAKENING
+	const PARLYZ_HEAL
+	const FULL_RESTORE
+	const MAX_POTION
+	const HYPER_POTION
+	const SUPER_POTION
+	const POTION
+	const ESCAPE_ROPE
+	const REPEL
+	const MAX_ELIXER
+	const FIRE_STONE
+	const THUNDERSTONE
+	const WATER_STONE
+	const POISON_GUARD   ;NEW
+	const HP_UP
+	const PROTEIN
+	const IRON
+	const CARBOS
+	const LUCKY_PUNCH
+	const CALCIUM
+	const RARE_CANDY
+	const X_ACCURACY
+	const LEAF_STONE
+	const METAL_POWDER
+	const NUGGET
+	const POKE_DOLL
+	const FULL_HEAL
+	const REVIVE
+	const MAX_REVIVE
+	const GUARD_SPEC
+	const SUPER_REPEL
+	const MAX_REPEL
+	const DIRE_HIT
+	const BURN_GUARD     ;NEW
+	const FRESH_WATER
+	const SODA_POP
+	const LEMONADE
+	const X_ATTACK
+	const FREEZE_GUARD   ;NEW
+	const X_DEFEND
+	const X_SPEED
+	const X_SPECIAL
+	const COIN_CASE
+	const ITEMFINDER
+	const POKE_FLUTE
+	const EXP_SHARE
+	const OLD_ROD
+	const GOOD_ROD
+	const SILVER_LEAF
+	const SUPER_ROD
+	const PP_UP
+	const ETHER
+	const MAX_ETHER
+	const ELIXER
+	const RED_SCALE
+	const SECRETPOTION
+	const S_S_TICKET
+	const MYSTERY_EGG
+	const CLEAR_BELL
+	const SILVER_WING
+	const MOOMOO_MILK
+	const QUICK_CLAW
+	const PSNCUREBERRY
+	const GOLD_LEAF
+	const SOFT_SAND
+	const SHARP_BEAK
+	const PRZCUREBERRY
+	const BURNT_BERRY
+	const ICE_BERRY
+	const POISON_BARB
+	const KINGS_ROCK
+	const BITTER_BERRY
+	const MINT_BERRY
+	const RED_APRICORN
+	const TINYMUSHROOM
+	const BIG_MUSHROOM
+	const SILVERPOWDER
+	const BLU_APRICORN
+	const SLEEP_GUARD    ;NEW
+	const AMULET_COIN
+	const YLW_APRICORN
+	const GRN_APRICORN
+	const CLEANSE_TAG
+	const MYSTIC_WATER
+	const TWISTEDSPOON
+	const WHT_APRICORN
+	const BLACKBELT
+	const BLK_APRICORN
+	const PARLYZ_GUARD   ;NEW
+	const PNK_APRICORN
+	const BLACKGLASSES
+	const SLOWPOKETAIL
+	const PINK_BOW
+	const STICK
+	const SMOKE_BALL
+	const NEVERMELTICE
+	const MAGNET
+	const MIRACLEBERRY
+	const PEARL
+	const BIG_PEARL
+	const EVERSTONE
+	const SPELL_TAG
+	const RAGECANDYBAR
+	const GS_BALL
+	const BLUE_CARD
+	const MIRACLE_SEED
+	const THICK_CLUB
+	const FOCUS_BAND
+	const CONFUSEGUARD   ;NEW
+	const ENERGYPOWDER
+	const ENERGY_ROOT
+	const HEAL_POWDER
+	const REVIVAL_HERB
+	const HARD_STONE
+	const LUCKY_EGG
+	const CARD_KEY
+	const MACHINE_PART
+	const EGG_TICKET
+	const LOST_ITEM
+	const STARDUST
+	const STAR_PIECE
+	const BASEMENT_KEY
+	const PASS
+	const HELIX_FOSSIL
+	const DOME_FOSSIL
+	const OLD_AMBER
+	const CHARCOAL
+	const BERRY_JUICE
+	const SCOPE_LENS
+	const ITEM_8D
+	const ITEM_8E
+	const METAL_COAT
+	const DRAGON_FANG
+	const ITEM_91
+	const LEFTOVERS
+	const ITEM_93
+	const ITEM_94
+	const ITEM_95
+	const MYSTERYBERRY
+	const DRAGON_SCALE
+	const BERSERK_GENE
+	const ITEM_99
+	const ITEM_9A
+	const ITEM_9B
+	const SACRED_ASH
+	const HEAVY_BALL
+	const FLOWER_MAIL
+	const LEVEL_BALL
+	const LURE_BALL
+	const FAST_BALL
+	const ITEM_A2
+	const LIGHT_BALL
+	const FRIEND_BALL
+	const MOON_BALL
+	const LOVE_BALL
+	const NORMAL_BOX
+	const GORGEOUS_BOX
+	const SUN_STONE
+	const POLKADOT_BOW
+	const ITEM_AB
+	const UP_GRADE
+	const BERRY
+	const GOLD_BERRY
+	const SQUIRTBOTTLE
+	const ITEM_B0
+	const PARK_BALL
+	const RAINBOW_WING
+	const ITEM_B3
+	const BRICK_PIECE
+	const SURF_MAIL
+	const LITEBLUEMAIL
+	const PORTRAITMAIL
+	const LOVELY_MAIL
+	const EON_MAIL
+	const MORPH_MAIL
+	const BLUESKY_MAIL
+	const MUSIC_MAIL
+	const MIRAGE_MAIL
+	const ITEM_BE
+
+	add_tm DYNAMICPUNCH
+	add_tm HEADBUTT
+	add_tm CURSE
+	add_tm ROLLOUT
+	const ITEM_C3
+	add_tm ROAR
+	add_tm TOXIC
+	add_tm ZAP_CANNON
+	add_tm ROCK_SMASH
+	add_tm PSYCH_UP
+	add_tm HIDDEN_POWER
+	add_tm SUNNY_DAY
+	add_tm SWEET_SCENT
+	add_tm SNORE
+	add_tm BLIZZARD
+	add_tm HYPER_BEAM
+	add_tm ICY_WIND
+	add_tm PROTECT
+	add_tm RAIN_DANCE
+	add_tm GIGA_DRAIN
+	add_tm ENDURE
+	add_tm FRUSTRATION
+	add_tm SOLARBEAM
+	add_tm IRON_TAIL
+	add_tm DRAGONBREATH
+	add_tm THUNDER
+	add_tm EARTHQUAKE
+	add_tm RETURN
+	add_tm DIG
+	const ITEM_DC
+	add_tm PSYCHIC
+	add_tm SHADOW_BALL
+	add_tm MUD_SLAP
+	add_tm DOUBLE_TEAM
+	add_tm ICE_PUNCH
+	add_tm SWAGGER
+	add_tm SLEEP_TALK
+	add_tm SLUDGE_BOMB
+	add_tm SANDSTORM
+	add_tm FIRE_BLAST
+	add_tm SWIFT
+	add_tm DEFENSE_CURL
+	add_tm THUNDERPUNCH
+	add_tm DREAM_EATER
+	add_tm DETECT
+	add_tm REST
+	add_tm ATTRACT
+	add_tm THIEF
+	add_tm STEEL_WING
+	add_tm FIRE_PUNCH
+	add_tm FURY_CUTTER
+	add_tm NIGHTMARE
+NUM_TMS = const_value - TM01 - 2
+
+	add_hm CUT
+	add_hm FLY
+	add_hm SURF
+	add_hm STRENGTH
+	add_hm FLASH
+	add_hm WHIRLPOOL
+	add_hm WATERFALL
+NUM_HMS = const_value - HM01
+	const HM_08
+
+	add_mt FLAMETHROWER
+	add_mt THUNDERBOLT
+	add_mt ICE_BEAM
+
+
+
+; leftovers from red
+SAFARI_BALL    EQU  8 ; MOON_STONE
+MOON_STONE_RED EQU 10 ; BURN_HEAL
+FULL_HEAL_RED  EQU 52 ; X_SPEED
+
+
+; pockets
+ITEM     EQU 1
+KEY_ITEM EQU 2
+BALL     EQU 3
+TM_HM    EQU 4
+
+; item actions
+CANT_SELECT EQU 1 << 6
+CANT_TOSS   EQU 1 << 7
+
+; held item effects
+HELD_BERRY          EQU $01
+HELD_LEFTOVERS      EQU $03
+HELD_RESTORE_PP     EQU $06
+HELD_CLEANSE_TAG    EQU $08
+
+HELD_HEAL_POISON    EQU $0a
+HELD_HEAL_FREEZE    EQU $0b
+HELD_HEAL_BURN      EQU $0c
+HELD_HEAL_SLEEP     EQU $0d
+HELD_HEAL_PARALYZE  EQU $0e
+HELD_HEAL_STATUS    EQU $0f
+HELD_HEAL_CONFUSION EQU $10
+
+HELD_PREVENT_POISON   EQU $14
+HELD_PREVENT_BURN     EQU $15
+HELD_PREVENT_FREEZE   EQU $16
+HELD_PREVENT_SLEEP    EQU $17
+HELD_PREVENT_PARALYZE EQU $18
+HELD_PREVENT_CONFUSE  EQU $19
+
+HELD_ATTACK_UP      EQU $1f
+HELD_DEFENSE_UP     EQU $20
+HELD_SPEED_UP       EQU $21
+HELD_SP_ATTACK_UP   EQU $22
+HELD_SP_DEFENSE_UP  EQU $23
+HELD_ACCURACY_UP    EQU $24
+HELD_EVASION_UP     EQU $25
+
+HELD_METAL_POWDER   EQU $2a
+
+HELD_NORMAL_BOOST   EQU $32
+HELD_FIGHTING_BOOST EQU $33
+HELD_FLYING_BOOST   EQU $34
+HELD_POISON_BOOST   EQU $35
+HELD_GROUND_BOOST   EQU $36
+HELD_ROCK_BOOST     EQU $37
+HELD_BUG_BOOST      EQU $38
+HELD_GHOST_BOOST    EQU $39
+HELD_FIRE_BOOST     EQU $3a
+HELD_WATER_BOOST    EQU $3b
+HELD_GRASS_BOOST    EQU $3c
+HELD_ELECTRIC_BOOST EQU $3d
+HELD_PSYCHIC_BOOST  EQU $3e
+HELD_ICE_BOOST      EQU $3f
+HELD_DRAGON_BOOST   EQU $40
+HELD_DARK_BOOST     EQU $41
+HELD_STEEL_BOOST    EQU $42
+
+HELD_CATCH_CHANCE   EQU $46
+
+HELD_ESCAPE         EQU $48
+HELD_CRITICAL_UP    EQU $49
+HELD_QUICK_CLAW     EQU $4a
+HELD_TRADE_EVOLVE   EQU $4b
+HELD_AMULET_COIN    EQU $4c
+HELD_BRIGHTPOWDER   EQU $4d
+HELD_FOCUS_BAND     EQU $4f
