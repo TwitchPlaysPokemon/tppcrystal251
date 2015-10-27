@@ -95474,6 +95474,82 @@ INCLUDE "engine/landmarks.asm"
 
 SECTION "bank75", ROMX, BANK[$75]
 
+SampleRandomRocket:
+.loop1
+	call Random
+	and 7
+	cp 6
+	jr nc, .loop1
+	inc a
+	ld c, a
+	ld hl, wd000
+	ld [hl], -1
+.loop2
+	call Random
+	and $f
+	ld b, a
+	push hl
+	ld hl, wd000
+.loop3
+	ld a, [hli]
+	cp -1
+	jr z, .done1
+	cp b
+	jr nz, .loop3
+
+	pop hl
+	jr .loop2
+
+.done1
+	pop hl
+	ld a, b
+	ld [hli], a
+	ld [hl], -1
+	dec c
+	jr nz, .loop2
+
+.loop4
+	ld de, .RocketTeams
+	ld hl, wd000
+	add hl, bc
+	ld a, [hli]
+	cp -1
+	ret z
+	push hl
+	ld l, a
+	ld h, 0
+	add hl, hl
+	add hl, de
+	ld a, [hli]
+	ld [CurPartySpecies], a
+	ld a, [hl]
+	ld [CurPartyLevel], a
+	ld a, OTPARTYMON
+	ld [MonType], a
+	predef Functiond88c
+	pop hl
+	inc c
+	jr .loop4
+
+.RocketTeams:
+	db ZUBAT, 18
+	db ZUBAT, 19
+	db ZUBAT, 20
+	db KOFFING, 18
+	db KOFFING, 19
+	db KOFFING, 20
+	db GRIMER, 18
+	db GRIMER, 19
+	db GRIMER, 20
+	db SANDSHREW, 18
+	db EKANS, 18
+	db RATTATA, 18
+	db MEOWTH, 18
+	db DROWZEE, 19
+	db RATICATE, 20
+	db HYPNO, 20
+	
+
 SECTION "bank76", ROMX, BANK[$76]
 
 SECTION "bank77", ROMX, BANK[$77]
