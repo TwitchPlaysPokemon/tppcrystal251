@@ -1319,6 +1319,11 @@ wcfd7:: ds 1
 
 SECTION "WRAM 1", WRAMX, BANK [1]
 
+wRocketParty::
+	ds PARTY_LENGTH
+	ds 1 ; terminator
+	ds wRocketParty - @
+
 wd000:: ds 1
 wd001:: ds 1
 wd002::
