@@ -212,16 +212,6 @@ ParkBall: ; e8a2
 	dec a
 	jp nz, Functionf7a0
 
-	ld b, 2
-	ld de, EVENT_SET_NUZLOCKE_MODE
-	call EventFlagAction
-	jr z, .nonuzlocke
-	ld b, 2
-	call NuzlockeEncounterAction
-	jp nz, Nuzlocke_AlreadyCaughtMon
-
-.nonuzlocke
-
 	ld a, [PartyCount]
 	cp PARTY_LENGTH
 	jr nz, .asm_e8c0
@@ -3000,10 +2990,6 @@ CyclingIsntAllowedMessage: ; f7fc
 
 CantGetOnYourBikeMessage: ; f801
 	ld hl, CantGetOnYourBikeText
-	jr CantUseItemMessage
-
-Nuzlocke_AlreadyCaughtMon:
-	ld hl, AlreadyCaughtNuzlockeText
 
 CantUseItemMessage: ; f804
 ; Item couldn't be used.
@@ -3065,10 +3051,6 @@ CantGetOnYourBikeText: ; 0xf833
 	text_jump UnknownText_0x1c5e1d
 	db "@"
 ; 0xf838
-
-AlreadyCaughtNuzlockeText:
-	text_jump _AlreadyCaughtNuzlockeText
-	db "@"
 
 Ball_BoxIsFullText: ; 0xf838
 	; The #MON BOX is full. That can't be used now.
