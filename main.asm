@@ -95467,46 +95467,49 @@ INCLUDE "battle/move_names.asm"
 
 INCLUDE "engine/landmarks.asm"
 
+
 SECTION "bank75", ROMX, BANK[$75]
 
+
+SECTION "Random Rockets", ROMX
+
+NUM_ROCKET_MONS EQUS "(.RocketMonsEnd - .RocketMons) / 2"
+
 SampleRandomRocket:
-.loop1
+	ld hl, wRocketParty
+	ld [hl], -1
+
+.num_mons
 	call Random
 	and 7
-	cp 6
-	jr nc, .loop1
+	cp PARTY_LENGTH
+	jr nc, .num_mons
 	inc a
 	ld c, a
-	ld hl, wd000
-	ld [hl], -1
-.loop2
+
+.new_mon
 	call Random
-	and $f
+	mod NUM_ROCKET_MONS
 	ld b, a
-	push hl
-	ld hl, wd000
-.loop3
+	ld hl, wRocketParty
+.next_mon
 	ld a, [hli]
 	cp -1
-	jr z, .done1
+	jr z, .add_mon
 	cp b
-	jr nz, .loop3
+	jr nz, .next_mon
+	jr .new_mon
 
-	pop hl
-	jr .loop2
-
-.done1
-	pop hl
+.add_mon
 	ld a, b
 	ld [hli], a
 	ld [hl], -1
 	dec c
-	jr nz, .loop2
+	jr nz, .new_mon
 
-.loop4
-	ld de, .RocketTeams
-	ld hl, wd000
-	add hl, bc
+.loop
+	ld de, .RocketMons
+	ld hl, wRocketParty
 	ld a, [hli]
 	cp -1
 	ret z
@@ -95524,9 +95527,9 @@ SampleRandomRocket:
 	predef Functiond88c
 	pop hl
 	inc c
-	jr .loop4
+	jr .loop
 
-.RocketTeams:
+.RocketMons:
 	db ZUBAT, 18
 	db ZUBAT, 19
 	db ZUBAT, 20
@@ -95543,7 +95546,8 @@ SampleRandomRocket:
 	db DROWZEE, 19
 	db RATICATE, 20
 	db HYPNO, 20
-	
+.RocketMonsEnd:
+
 
 SECTION "bank76", ROMX, BANK[$76]
 
