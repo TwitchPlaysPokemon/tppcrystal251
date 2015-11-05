@@ -17202,18 +17202,13 @@ Function143c8: ; 143c8
 ; 14406
 
 Function14406: ; 14406
-	and $7f
+	swap a
+	push af
+	and $f0
 	ld l, a
-	ld h, $0
-	add hl, hl
-	add hl, hl
-	add hl, hl
-	add hl, hl
-	ld a, l
-	add $0
-	ld l, a
-	ld a, h
-	adc $80
+	pop af
+	and $7
+	or $80
 	ld h, a
 	ret
 ; 14418
@@ -24521,7 +24516,7 @@ Function241d5: ; 241d5
 	call Function24329
 .asm_241d8
 	call Function2431a
-	call Function10402d ; BUG: This function is in another bank.
+	callba Function10402d ; BUG: This function is in another bank.
 	call Function241fa
 	jr nc, .asm_241f9
 	call Function24270
@@ -24545,7 +24540,7 @@ Function241fa: ; 241fa
 	ret c
 	ld c, $1
 	ld b, $3
-	call Function10062d ; BUG: This function is in another bank.
+	callba Function10062d ; BUG: This function is in another bank.
 	ret c
 	callba Function100337
 	ret c

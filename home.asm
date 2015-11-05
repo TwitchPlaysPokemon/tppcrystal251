@@ -1583,8 +1583,7 @@ Function36f5:: ; 36f5
 Function3718:: ; 3718
 	ld a, [BattleType]
 	cp BATTLETYPE_CANLOSE
-	jr .asm_3724
-
+	jr z, .asm_3724
 	ld hl, WalkingTile
 	jr .asm_3731
 
