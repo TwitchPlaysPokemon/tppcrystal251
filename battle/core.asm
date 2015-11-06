@@ -192,6 +192,9 @@ Function3c12f: ; 3c12f
 .asm_3c179
 	call BattleMenu
 	jr c, .quit
+IF DEF(BEESAFREE)
+	call AIWaitMove
+ENDC
 	ld a, [BattleEnded]
 	and a
 	jr nz, .quit

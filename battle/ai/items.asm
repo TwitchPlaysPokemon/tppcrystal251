@@ -218,28 +218,7 @@ AI_TryItem: ; 38105
 	jr c, .loop
 
 .used_item
-	xor a
-	ld [de], a
-	inc a
-	ld [wc70f], a
-
-	ld hl, EnemySubStatus3
-	res SUBSTATUS_BIDE, [hl]
-
-	xor a
-	ld [EnemyFuryCutterCount], a
-	ld [EnemyProtectCount], a
-	ld [wc72c], a
-
-	ld hl, EnemySubStatus4
-	res SUBSTATUS_RAGE, [hl]
-
-	xor a
-	ld [LastPlayerCounterMove], a
-
-	scf
-	ret
-
+	call AI_Used_Item
 
 .IsHighestLevel: ; 38170
 	ld a, [OTPartyCount]
@@ -272,7 +251,28 @@ AI_TryItem: ; 38105
 	scf
 	ret
 ; 38196
+AI_Used_Item:
+	xor a
+	ld [de], a
+	inc a
+	ld [wc70f], a
 
+	ld hl, EnemySubStatus3
+	res SUBSTATUS_BIDE, [hl]
+
+	xor a
+	ld [EnemyFuryCutterCount], a
+	ld [EnemyProtectCount], a
+	ld [wc72c], a
+
+	ld hl, EnemySubStatus4
+	res SUBSTATUS_RAGE, [hl]
+
+	xor a
+	ld [LastPlayerCounterMove], a
+
+	scf
+	ret
 
 AI_Items: ; 39196
 	dbw FULL_RESTORE, .FullRestore
