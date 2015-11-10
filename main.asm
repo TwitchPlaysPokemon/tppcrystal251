@@ -1836,18 +1836,18 @@ Function65d3: ; 65d3
 	ld a, [hl]
 	push af
 	push bc
-	call IsHMMove
+	call IsHMMove ;If A is a HM move, set carry flag
 	pop bc
 	pop de
 	ld a, d
-	jr c, .asm_6660
+	jr c, .asm_6660 
 	pop hl
 	add hl, bc
 	and a
 	ret
 
 .asm_6660
-	ld hl, UnknownText_0x669a
+	ld hl, UnknownText_0x669a ;If HM send message that they can't be forgotton
 	call PrintText
 	pop hl
 	jr .asm_65ee
@@ -33499,7 +33499,7 @@ Function2a01f: ; 2a01f
 	jr nz, .skip
 	ld de, TileMap
 	ld hl, WildMons1
-	call Function2a052
+	call Function2a052 ; a holds the location found, de hieght*width
 	ld hl, WildMons2
 	call Function2a06e
 	call Check_IsRoamMon1
@@ -33512,7 +33512,7 @@ Function2a01f: ; 2a01f
 	ld hl, WildMons3
 	call Function2a052
 	ld hl, WildMons4
-	jp Function2a06e
+	jp Function2a06e ;when done jumps 1 more function up
 ; 2a052
 
 Function2a052: ; 2a052
@@ -33524,11 +33524,11 @@ Function2a052: ; 2a052
 	ld a, [hli]
 	ld b, a
 	ld a, [hli]
-	ld c, a
+	ld c, a ;load map group into a, number into b
 	inc hl
 	inc hl
-	inc hl
-	ld a, $15
+	inc hl; skip to slot 1
+	ld a, $15 ; check 21 slots
 	call Function2a088
 	jr nc, .next
 	ld [de], a
@@ -33541,7 +33541,7 @@ Function2a052: ; 2a052
 	jr .loop
 ; 2a06e
 
-Function2a06e: ; 2a06e
+Function2a06e: ; 2a06e same as 2a052 but for water tiles
 .loop
 	ld a, [hl]
 	cp $ff
@@ -33552,7 +33552,7 @@ Function2a06e: ; 2a06e
 	ld a, [hli]
 	ld c, a
 	inc hl
-	ld a, $3
+	ld a, $3 ;check first 3 slots
 	call Function2a088
 	jr nc, .next
 	ld [de], a
@@ -33565,40 +33565,40 @@ Function2a06e: ; 2a06e
 	jr .loop
 ; 2a088
 
-Function2a088: ; 2a088
-	inc hl
+Function2a088: ; 2a088  fills the map screen with where the stored mon is found 
+	inc hl ;over first slot mon
 .next
-	push af
-	ld a, [wd265]
-	cp [hl]
+	push af ;store loop counter
+	ld a, [wd265] ;load the stored mon (no idea where this is coming from)
+	cp [hl] ;if it's the same as slot 1 mon, jump out
 	jr z, .done
 	inc hl
-	inc hl
+	inc hl ;move to next slot
 	pop af
 	dec a
-	jr nz, .next
+	jr nz, .next ; loop counter
 	and a
-	ret
+	ret ;if not found, return
 
 .done
 	pop af
-	jp Check_IsInRoamMonNest
+	jp Check_IsInRoamMonNest ;redundent?
 ; 2a09c
 
-Check_IsInRoamMonNest: ; 2a09c
-	push de
-	call GetWorldMapLocation
-	ld c, a
+Check_IsInRoamMonNest: ; 2a09c 
+	push de ;de is TileMap
+	call GetWorldMapLocation ; given a map group/id in bc, return its location on the Pokégear map.
+	ld c, a ;put it in c
 	hlcoord 0, 0
-	ld de, SCREEN_HEIGHT * SCREEN_WIDTH
+	ld de, SCREEN_HEIGHT * SCREEN_WIDTH ;loop counter?
 .loop
-	ld a, [hli]
-	cp c
-	jr z, .done
-	dec de
-	ld a, e
+	ld a, [hli] ; add previous coords +1?
+	cp c ; If coords = location on map, jump?
+	jr z, .done 
+	dec de ;down 1 
+	ld a, e ;load new hight*width into a?
 	or d
-	jr nz, .loop
+	jr nz, .loop ;loop unti d is zero? 
 	ld a, c
 	pop de
 	scf
@@ -33606,7 +33606,7 @@ Check_IsInRoamMonNest: ; 2a09c
 
 .done
 	pop de
-	and a
+	and a ; a holds the location found, de hieght*width
 	ret
 ; 2a0b7
 
@@ -33691,10 +33691,10 @@ Function2a103: ; 2a103
 ; 2a111
 
 Function2a111: ; 2a111
-	ld hl, wd25a
+	ld hl, wd25a ;The first location in the encounter rate table?
 	call Function1852
 	ld a, 3
-	jr z, .asm_2a11e
+	jr z, .asm_2a11e ;if water jump, otherwise add time of day
 	ld a, [TimeOfDay]
 .asm_2a11e
 	ld c, a
@@ -33742,51 +33742,51 @@ Function2a138:: ; 2a138
 	ret
 ; 2a14f
 
-Function2a14f: ; 2a14f
-	call Function2a200
-	jp nc, .asm_2a1c1
-	call Function2a2ce
-	jp c, .asm_2a1c9
+Function2a14f: ; 2a14f something to do with encounters
+	call Function2a200 ; put adress of wild mons tables in hl, bc holds skip numbers
+	jp nc, .asm_2a1c1 ; jump if checking fails
+	call Function2a2ce; check if roaming encounter
+	jp c, .asm_2a1c9; if roamer found(?) jump, otherwise fall through
 
 	inc hl
 	inc hl
+	inc hl; increment hl by 3
+	call Function1852; if water then a is 0, otherwise clear flags first then return 255
+	ld de, Unknown_2a1d9 ; load locaton of surf tables into de
+	jr z, .asm_2a174 ; if water then jump and don't set time of day or bc, otherwise fall through
 	inc hl
-	call Function1852
-	ld de, Unknown_2a1d9
-	jr z, .asm_2a174
-	inc hl
-	inc hl
-	ld a, [TimeOfDay]
-	ld bc, $e
-	call AddNTimes
-	ld de, Unknown_2a1cb
+	inc hl ;remove if variable encounter rates based on ToD are removed
+	ld a, [TimeOfDay];load ToD into a
+	ld bc, $e ;load 14 into bc
+	call AddNTimes ; HL + (bc *a), moves down 14 lines per ToD, moving onto right time
+	ld de, Unknown_2a1cb ; load land table into de
 
-.asm_2a174
-	push hl
+.asm_2a174 ; water encounters
+	push hl ; water encounter location
 .asm_2a175
 	call Random
 	cp 100
-	jr nc, .asm_2a175
-	inc a
-	ld b, a
-	ld h, d
+	jr nc, .asm_2a175 ; loop until you get <100 randomly
+	inc a; make rand 1 to 100
+	ld b, a ; put the random number in b
+	ld h, d ; load the encounter table into hl
 	ld l, e
 .asm_2a180
-	ld a, [hli]
-	cp b
-	jr nc, .asm_2a187
-	inc hl
-	jr .asm_2a180
+	ld a, [hli] ;load encouner slot chance into a and increment hl, making a contain the encounter chance and hl point to the offset needed to find the mon
+	cp b ; set flags for the random number - the encounter chance
+	jr nc, .asm_2a187 ; If this the correct encounter jump out, otherwise fall through 
+	inc hl; go down another line, putting hl onto the next encounter slot
+	jr .asm_2a180 ; loop until encounter found
 
 .asm_2a187
-	ld c, [hl]
+	ld c, [hl] ;load hl (likely the second number in the tables) into c
 	ld b, 0
-	pop hl
-	add hl, bc
-	ld a, [hli]
-	ld b, a
+	pop hl ; reload the wild mons location from the stack
+	add hl, bc ; add the wild mon offset to the location to find the location of the mon to spawn
+	ld a, [hli] ; pass mon level to a, increment hl into mon species
+	ld b, a ; load the level into b
 
-	call Random
+	call Random ; level vairance approx 35% listed level, 30% +1, 20% +2, 10% +3, 5% +4
 	cp 89
 	jr c, .asm_2a1aa
 	inc b
@@ -33801,16 +33801,16 @@ Function2a14f: ; 2a14f
 	inc b
 
 .asm_2a1aa
+	ld a, b ; load level back into b
+	ld [CurPartyLevel], a ;load level into a variable
+	ld b, [hl] ; load mon species into a
 	ld a, b
-	ld [CurPartyLevel], a
-	ld b, [hl]
-	ld a, b
-	call Function2a4a0
+	call Function2a4a0 ; check mon is valid (RIP missingno)
 	jr c, .asm_2a1c1
 
 	ld a, b
 	cp UNOWN
-	jr nz, .asm_2a1bf
+	jr nz, .asm_2a1bf ;check for unown, is unkown do special case for unlocked unowns, otherwise jump down
 
 	ld a, [UnlockedUnowns]
 	and a
@@ -33880,61 +33880,61 @@ Function2a1df:: ; 2a1df
 	ret
 ; 2a200
 
-Function2a200: ; 2a200
+Function2a200: ; 2a200 from 2a14f
 	call Function1852
-	jr z, Function2a21d
+	jr z, Function2a21d ; If water, jump otherwise fall through
 
 Function2a205: ; 2a205
-	ld hl, WildMons5
-	ld bc, $002f
-	call asm_2a23d
-	ret c
+	ld hl, WildMons5 ; address of the grass swarms table
+	ld bc, $002f ;47, set for size of areas when skipping, change to new size
+	call asm_2a23d; check for swarms
+	ret c ;return if a swarm
 	ld hl, WildMons1
 	ld de, WildMons3
-	call asm_2a235
+	call asm_2a235 ;if johto keep same, if kanto load de into hl
 	ld bc, $002f
 	jr asm_2a27a
 
-Function2a21d: ; 2a21d
+Function2a21d: ; 2a21d ; jump here if water
 	ld hl, WildMons6
-	ld bc, $0009
+	ld bc, $0009 ; 9  set for size of areas when skipping, change to new size
 	call asm_2a23d
 	ret c
 	ld hl, WildMons2
 	ld de, WildMons4
-	call asm_2a235
+	call asm_2a235 ;if johto keep same, if kanto load de into hl
 	ld bc, $0009
 	jr asm_2a27a
 
 asm_2a235
-	call IsInJohto
+	call IsInJohto ;a is 0 if johto, 1 if kanto
 	and a
-	ret z
+	ret z ;if johto keep same, if kanto load de into hl
 	ld h, d
 	ld l, e
 	ret
 
-asm_2a23d
-	call Function2a27f
+asm_2a23d ;from 2a205
+	call Function2a27f ;load current location into de
 	push hl
-	ld hl, DailyFlags + 2
-	bit 2, [hl]
+	ld hl, DailyFlags + 2; 
+	bit 2, [hl] ;z is 0 if dunsparce swarm, otherwise 1 (why not check location first?)
 	pop hl
-	jr z, .asm_2a25c
-	ld a, [wdfcc]
+	jr z, .asm_2a25c ;if not swarm, jump
+	ld a, [wdfcc] ;????
 	cp d
 	jr nz, .asm_2a25c
-	ld a, [wdfcd]
+	ld a, [wdfcd] ;????
 	cp e
 	jr nz, .asm_2a25c
 	call Function2a288
-	jr nc, asm_2a278
+	jr nc, asm_2a278 ;if finding map sucseeds, fall through, otherwise jump, clear flags and return
 	scf
 	ret
 
 .asm_2a25c
 	push hl
-	ld hl, DailyFlags + 2
+	ld hl, DailyFlags + 2;same as above but for yanma swarm
 	bit 3, [hl]
 	pop hl
 	jr z, asm_2a278
@@ -33950,31 +33950,31 @@ asm_2a23d
 	ret
 
 asm_2a278
-	and a
+	and a ; clear flags
 	ret
 
-asm_2a27a
-	call Function2a27f
+asm_2a27a ;from 2a205
+	call Function2a27f ; load current location into de
 	jr Function2a288
 ; 2a27f
 
-Function2a27f: ; 2a27f
-	ld a, [MapGroup]
+Function2a27f: ; 2a27f from 2a23d
+	ld a, [MapGroup]; load current location into de
 	ld d, a
 	ld a, [MapNumber]
 	ld e, a
 	ret
 ; 2a288
 
-Function2a288: ; 2a288
-	push hl
-	ld a, [hl]
+Function2a288: ; 2a288 from 2a205 load current maps place in land wild tables
+	push hl ;loc of wild tables
+	ld a, [hl]; 
 	inc a
-	jr z, .asm_2a29a
+	jr z, .asm_2a29a ; If map location (?) is 0, jump, pop, clear flags and ret
 	ld a, d
-	cp [hl]
-	jr nz, .asm_2a296
-	inc hl
+	cp [hl] ; If mapgroup doesn't match, move down to next group and try again
+	jr nz, .asm_2a296 ; increment hl by the size of the wild table if it doesnt match the location
+	inc hl ; If map number doesn't match, fall through and move down an area, otherwise jump out.
 	ld a, e
 	cp [hl]
 	jr z, .asm_2a29d
@@ -33991,7 +33991,7 @@ Function2a288: ; 2a288
 
 .asm_2a29d
 	pop hl
-	scf
+	scf ; set carry flag
 	ret
 ; 2a2a0
 
@@ -34086,18 +34086,18 @@ InitRoamMons:
 	ld [wRoamMon3HP], a
 	ret
 
-Function2a2ce: ; 2a2ce
+Function2a2ce: ; 2a2ce from 2a14f
 	push hl
 	call Function1852
-	jr z, .asm_2a30a
-	call Function2a27f
-	call Random
-	cp 100
-	jr nc, .asm_2a30a
+	jr z, .asm_2a30a ;if water jump, otherwise fall through
+	call Function2a27f ;load current location into de
+	call Random ;advance randomass and randomsub, a is random sub
+	cp 100 ;"subtract" 100 from randomSub to generate flags
+	jr nc, .asm_2a30a ;100 in 255 chance to jump?
 	and 7
-	jr z, .asm_2a30a
+	jr z, .asm_2a30a ; if any of the first 3 bits are 1, continue otherwise jump
 	cp ROAM_SUICUNE
-	jr nz, .notsuicune
+	jr nz, .notsuicune; here on seems to be roaming stuff
 	dec a
 .notsuicune
 	dec a
@@ -34131,7 +34131,7 @@ Function2a2ce: ; 2a2ce
 
 .asm_2a30a
 	pop hl
-	and a
+	and a; if not roaming, clear flags
 	ret
 ; 2a30d
 
@@ -34333,7 +34333,7 @@ RoamMaps: ; 2a40f
 	db $ff
 ; 2a4a0
 
-Function2a4a0: ; 2a4a0
+Function2a4a0: ; 2a4a0 from 2a1aa
 ; Check if the Pokemon ID is valid.
 	and a
 	jr z, .asm_2a4a9
@@ -34347,54 +34347,54 @@ Function2a4a0: ; 2a4a0
 	ret
 ; 2a4ab
 
-Function2a4ab: ; 2a4ab
+Function2a4ab: ; 2a4ab seems to be a function to get a local mon to use in call text
 	callba Function90439
 	ld d, b
 	ld e, c
 	ld hl, WildMons1
-	ld bc, $002f
-	call Function2a288
-	jr c, .asm_2a4c6
+	ld bc, $002f ; 47
+	call Function2a288 ;load current maps place in land wild tables into hl
+	jr c, .asm_2a4c6 ; if succsessful, jump. otherwise try kanto
 	ld hl, WildMons3
 	call Function2a288
-	jr nc, .asm_2a514
+	jr nc, .asm_2a514 ; if succsessful, fall through, otherwise ?
 
-.asm_2a4c6
+.asm_2a4c6 
 	push hl
-	ld bc, $000d
-	add hl, bc
+	ld bc, $000d ; 13
+	add hl, bc ;increment wild position by 13 
 	ld a, [TimeOfDay]
 	ld bc, $000e
-	call AddNTimes
+	call AddNTimes ;HL + (bc *a), moves down 14 lines per ToD, moving onto right time
 .asm_2a4d4
-	call Random
-	and $3
-	jr z, .asm_2a4d4
+	call Random 
+	and $3 ; reduce random number to 0-3
+	jr z, .asm_2a4d4 ;if 0, retry. a is 1-3
 	dec a
-	ld c, a
+	ld c, a ;decrement (0-2) and load into c
 	ld b, $0
-	add hl, bc
+	add hl, bc ;increment hl either 1, 3 or 5  these + the 13 added earlier seem to point to mons on the wilds table (last 3 slots)
 	add hl, bc
 	inc hl
-	ld c, [hl]
+	ld c, [hl] ; loads the mon in that slot
 	pop hl
 	ld de, $0005
-	add hl, de
-	inc hl
+	add hl, de ; 
+	inc hl ; is first slot mon?
 	ld b, $4
 .asm_2a4eb
-	ld a, [hli]
+	ld a, [hli] ;hl = slot level
 	cp c
-	jr z, .asm_2a514
-	inc hl
-	dec b
-	jr nz, .asm_2a4eb
-	push bc
-	dec c
-	ld a, c
-	call CheckSeenMon
+	jr z, .asm_2a514 ;if the selected mon is the same as the one in the chosen slot, jump out of the loop, otherwise fall through
+	inc hl ; slot mon
+	dec b ; loop counter
+	jr nz, .asm_2a4eb ; loop until b = 0 (4 times) or jump out
+	push bc ; b is loop counter, c is slot 1 mon
+	dec c 
+	ld a, c ; a = mon before selected mon
+	call CheckSeenMon ;set zero flag to whether mon is seen
 	pop bc
-	jr nz, .asm_2a514
+	jr nz, .asm_2a514 ;if yes, jump
 	ld de, StringBuffer1
 	call CopyName1
 	ld a, c
@@ -34419,38 +34419,38 @@ UnknownText_0x2a51a: ; 0x2a51a
 ; 0x2a51f
 
 Function2a51f: ; 2a51f
-	callba Function90439
+	callba Function90439 ;same as the one above (2a4ab)
 	ld d, b
 	ld e, c
 	ld hl, WildMons1
-	ld bc, $002f
+	ld bc, $002f ;47
 	call Function2a288
 	jr c, .asm_2a538
 	ld hl, WildMons3
 	call Function2a288
 
 .asm_2a538
-	ld bc, $0005
-	add hl, bc
+	ld bc, $0005 ;only goes up 5 instead of 13
+	add hl, bc ; current loc is slot 1 level
 	ld a, [TimeOfDay]
-	inc a
-	ld bc, $000e
+	inc a 
+	ld bc, $000e ;14
 .asm_2a543
 	dec a
-	jr z, .asm_2a549
+	jr z, .asm_2a549 ; find right table for time of day 
 	add hl, bc
 	jr .asm_2a543
 
 .asm_2a549
 	call Random
-	and $3
-	ld c, a
+	and $3 ;random from 0 to 3
+	ld c, a ;put random number in c
 	ld b, $0
 	add hl, bc
-	add hl, bc
+	add hl, bc ; Add it to the wild encounter list twice, taking it from slot 1 level to slot 1,2,3 or 4 level, then add 1 more to get to mon
 	inc hl
 	ld a, [hl]
-	ld [wd265], a
+	ld [wd265], a ; load mon into a and then a variable
 	call GetPokemonName
 	ld hl, StringBuffer1
 	ld de, StringBuffer4
@@ -35593,12 +35593,12 @@ Function2c867: ; 2c867
 
 	callba Function106049
 	ld a, [CurItem]
-	call IsHM
+	call IsHM ;return if a HM
 	ret c
 
-	ld c, $5
-	callab ChangeHappiness
-	call Function2cb0c
+	; ld c, $5
+	; callab ChangeHappiness ;+ new move happiness
+	; call Function2cb0c ; remove TM from TM pocket? (will skipping this enable infinite TMs?)
 	jr .asm_2c8bd
 
 .asm_2c8b6
@@ -35985,11 +35985,11 @@ Function2cb0c: ; 2cb0c (b:4b0c)
 	call Function2c7a7
 	ld a, [wd265]
 	dec a
-	ld hl, TMsHMs
+	ld hl, TMsHMs ;location of TM pocket?
 	ld b, 0
 	ld c, a
 	add hl, bc
-	ld a, [hl]
+	ld a, [hl] ;decrement item by 1?
 	and a
 	ret z
 	dec a
@@ -45519,7 +45519,7 @@ FlagPredef: ; 4d7c1
 ; Which bit we want from the byte
 	ld a, c
 	and 7
-	ld c, a
+	ld c, a ; c equals bit number
 
 ; Shift left until we can mask the bit
 	ld a, 1
@@ -45529,13 +45529,13 @@ FlagPredef: ; 4d7c1
 	dec c
 	jr nz, .shift
 .shifted
-	ld c, a
+	ld c, a ; a&c = only the target bit set
 
 ; What are we doing to this flag?
 	dec b
 	jr z, .set ; 1
 	dec b
-	jr z, .check ; 2
+	jr z, .check ; 2 
 
 .reset
 	ld a, c
@@ -45557,7 +45557,7 @@ FlagPredef: ; 4d7c1
 
 	ld a, [hl]
 	and c
-	jr .done
+	jr .done ;sets z flag bassed on wether the flag is on or not
 
 .farcheck
 	call GetFarByte
@@ -45566,7 +45566,7 @@ FlagPredef: ; 4d7c1
 .done
 	pop bc
 	pop hl
-	ld c, a
+	ld c, a ;puts the state of the flag in c
 	ret
 ; 4d7fd
 
@@ -69570,7 +69570,7 @@ Function9042e: ; 9042e (24:442e)
 	pop hl
 	ret
 
-Function90439: ; 90439
+Function90439: ; 90439 from 2a4ab
 	ld a, [wdbf9]
 	call Function9039a
 	ld d, c
@@ -76743,68 +76743,68 @@ Functionb875a: ; b875a (2e:475a)
 
 Functionb8762: ; b8762 (2e:4762)
 	call Random
-	and $1f
-	cp $f
-	jr nc, Functionb8762
-	ld hl, Unknown_b87f2
+	and $1f ;31, random is between 0 and 31
+	cp $f ;15
+	jr nc, Functionb8762 ;if rand is 0-14 (just under 50% chance) fall through, otherwise loop (wouldn't it make more sense to and $f to get 0-15?)
+	ld hl, Unknown_b87f2 ;load map constants
 	ld c, a
-	ld b, 0
+	ld b, 0 ; bc = rand
+	add hl, bc ; move down to random route in the table
 	add hl, bc
-	add hl, bc
-	ld b, [hl]
-	inc hl
-	ld c, [hl]
+	ld b, [hl] ; store mapgroup in b(?)
+	inc hl ;increment by 1 to move onto map number
+	ld c, [hl] ;put it in C
 	push bc
 
 	ld hl, WildMons1
 .loop
-	ld a, BANK(WildMons1)
-	call GetFarByte
+	ld a, BANK(WildMons1) ; get the bank wildmons is in,
+	call GetFarByte ; start of area location
 	cp $ff
-	jr z, .asm_b87ec
-	inc hl
+	jr z, .asm_b87ec ;if last then jump
+	inc hl ;if map number doesn't match then loop, otherwise fall through
 	cp b
 	jr nz, .next
 	ld a, BANK(WildMons1)
 	call GetFarByte
 	cp c
-	jr z, .asm_b8796
+	jr z, .asm_b8796 ;if map group matches, keep going, otherwise jump
 .next
 	dec hl
 	ld de, $2f
-	add hl, de
+	add hl, de ; move down 1 area and try again
 	jr .loop
 
-.asm_b8796
+.asm_b8796 ;found right area
 	inc hl
 	inc hl
-	inc hl
+	inc hl; move to first slot in wilds table
 	inc hl
 
 .not3
 	call Random
 	and 3
 	cp 3
-	jr z, .not3
+	jr z, .not3 ; random number 0-2
 
-	ld bc, $e
-	call AddNTimes
+	ld bc, $e ;14
+	call AddNTimes ; hl+ (bc*a). adds 0, 14 or 28 to choose time of day at random
 .asm_b87a9
 	call Random
-	and 7
+	and 7 ;random 0-7
 	cp 2
 	jr c, .asm_b87a9
 	cp 5
-	jr nc, .asm_b87a9
+	jr nc, .asm_b87a9 ;random 2-4
 	ld e, a
 	ld d, 0
-	add hl, de
+	add hl, de ;select a slot from 3-5, go over mon
 	add hl, de
 	inc hl
 	ld a, BANK(WildMons1)
-	call GetFarByte
-	ld [wd265], a
-	ld [CurPartySpecies], a
+	call GetFarByte ; get that mon
+	ld [wd265], a ;load into a variable
+	ld [CurPartySpecies], a ; add it into the party?
 	call GetPokemonName
 	ld hl, StringBuffer1
 	ld de, wd050

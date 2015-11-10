@@ -97,7 +97,7 @@ decoord equs "coord de,"
 hlcoord equs "coord hl,"
 
 coord: MACRO
-	if _NARG < 4
+	if _NARG < 4 ;narg = number of arguments
 	ld \1, TileMap + SCREEN_WIDTH * (\3) + (\2)
 	else
 	ld \1, \4 + SCREEN_WIDTH * (\3) + (\2)

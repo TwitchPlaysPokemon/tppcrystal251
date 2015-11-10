@@ -264,13 +264,13 @@ CopyName2:: ; 30d9
 ; 30e1
 
 IsInArray:: ; 30e1
-; Find value a for every de bytes in array hl.
-; Return index in b and carry if found.
+; Find value a for every de bytes in array hl. 
+; Return index in b and carry if found. hl is exact location in array
 
-	ld b, 0
-	ld c, a
+	ld b, 0 ;index of thing
+	ld c, a ;value to be found
 .loop
-	ld a, [hl]
+	ld a, [hl] 
 	cp $ff
 	jr z, .NotInArray
 	cp c
@@ -1082,7 +1082,7 @@ GetTMHMName:: ; 3487
 ; 34df
 
 
-IsHM:: ; 34df
+IsHM:: ; 34df If a HM (read, is HM 1 or after) set carry
 	cp HM01
 	jr c, .NotHM
 	scf
@@ -1093,7 +1093,7 @@ IsHM:: ; 34df
 ; 34e7
 
 
-IsHMMove:: ; 34e7
+IsHMMove:: ; 34e7 check if in array, if remove HM remove from here
 	ld hl, .HMMoves
 	ld de, 1
 	jp IsInArray

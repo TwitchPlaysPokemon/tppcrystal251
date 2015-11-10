@@ -257,9 +257,9 @@ CheckScript: ; 0x96e0b
 	ret
 ; 0x96e11
 
-StopScript: ; 0x96e11
-	ld hl, ScriptFlags
-	res SCRIPT_RUNNING, [hl]
+StopScript: ; 0x96e11 from scriptwarp
+	ld hl, ScriptFlags ; load the location of scriptflags into hl
+	res SCRIPT_RUNNING, [hl]; ???
 	ret
 ; 0x96e17
 
@@ -2811,7 +2811,7 @@ Script_warpfacing: ; 0x97a0e
 	ld [wd45b], a
 ; 0x97a1d
 
-Script_warp: ; 0x97a1d
+Script_warp: ; 0x97a1d from 2a27f
 ; script command 0x3c
 ; parameters:
 ;     map_group (MapGroupParam)
@@ -2819,12 +2819,12 @@ Script_warp: ; 0x97a1d
 ;     x (SingleByteParam)
 ;     y (SingleByteParam)
 
-	call GetScriptByte
+	call GetScriptByte;???
 	and a
-	jr z, .asm_97a4a ; 0x97a21 $27
+	jr z, .asm_97a4a ; 0x97a21 $27 if zero then jump past
 	ld [MapGroup], a
 	call GetScriptByte
-	ld [MapNumber], a
+	ld [MapNumber], a; set map stuff based on getscriptbyte
 	call GetScriptByte
 	ld [XCoord], a
 	call GetScriptByte
@@ -2834,7 +2834,7 @@ Script_warp: ; 0x97a1d
 	ld a, $f1
 	ld [$ff9f], a
 	ld a, $1
-	call Function261b
+	call Function261b; set map status to 1
 	call StopScript
 	ret
 .asm_97a4a
@@ -2847,7 +2847,7 @@ Script_warp: ; 0x97a1d
 	ld [$ff9f], a
 	ld a, $1
 	call Function261b
-	call StopScript
+	call StopScript ??
 	ret
 ; 0x97a65
 

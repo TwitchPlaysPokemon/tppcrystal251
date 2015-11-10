@@ -1097,7 +1097,7 @@ Function26c7:: ; 26c7
 
 
 GetScriptByte:: ; 0x26d4
-; Return byte at ScriptBank:ScriptPos in a.
+; Return byte at ScriptBank:ScriptPos in a. from script warp
 
 	push hl
 	push bc
@@ -1107,11 +1107,11 @@ GetScriptByte:: ; 0x26d4
 	rst Bankswitch
 
 	ld hl, ScriptPos
-	ld c, [hl]
+	ld c, [hl];ld scriptpos's location into c
 	inc hl
-	ld b, [hl]
+	ld b, [hl];ld scriptpos' loc+1 into b
 
-	ld a, [bc]
+	ld a, [bc]; ???
 
 	inc bc
 	ld [hl], b

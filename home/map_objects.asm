@@ -83,11 +83,11 @@ Function184a:: ; 184a
 	ret
 ; 1852
 
-Function1852:: ; 1852
-	ld a, [StandingTile]
-	call GetTileCollision
-	sub 1
-	ret z
+Function1852:: ; 1852 from 2a2ce
+	ld a, [StandingTile] ; load tile on
+	call GetTileCollision; a is 1 if water, 0 if land
+	sub 1 
+	ret z ; if water then return 0, otherwise clear flags first then return 255
 	and a
 	ret
 ; 185d
@@ -99,10 +99,10 @@ GetTileCollision:: ; 185d
 	push de
 	push hl
 
-	ld hl, TileCollisionTable
-	ld e, a
-	ld d, 0
-	add hl, de
+	ld hl, TileCollisionTable ;0 if land, 1 if water
+	ld e, a 
+	ld d, 0 ; 0 d
+	add hl, de ; add a and the tile
 
 	ld a, [hROMBank]
 	push af
