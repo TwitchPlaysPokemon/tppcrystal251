@@ -17202,18 +17202,13 @@ Function143c8: ; 143c8
 ; 14406
 
 Function14406: ; 14406
-	and $7f
+	swap a
+	push af
+	and $f0
 	ld l, a
-	ld h, $0
-	add hl, hl
-	add hl, hl
-	add hl, hl
-	add hl, hl
-	ld a, l
-	add $0
-	ld l, a
-	ld a, h
-	adc $80
+	pop af
+	and $7
+	or $80
 	ld h, a
 	ret
 ; 14418
@@ -24521,7 +24516,7 @@ Function241d5: ; 241d5
 	call Function24329
 .asm_241d8
 	call Function2431a
-	call Function10402d ; BUG: This function is in another bank.
+	callba Function10402d ; BUG: This function is in another bank.
 	call Function241fa
 	jr nc, .asm_241f9
 	call Function24270
@@ -24545,7 +24540,7 @@ Function241fa: ; 241fa
 	ret c
 	ld c, $1
 	ld b, $3
-	call Function10062d ; BUG: This function is in another bank.
+	callba Function10062d ; BUG: This function is in another bank.
 	ret c
 	callba Function100337
 	ret c
@@ -37658,9 +37653,12 @@ SECTION "bank11", ROMX, BANK[$11]
 
 INCLUDE "engine/fruit_trees.asm"
 
-AIChooseMove: ; 440ce
-; Score each move in EnemyMonMoves starting from Buffer1. Lower is better.
-; Pick the move with the lowest score.
+AIChooseMove:
+IF DEF(BEESAFREE)
+	xor a
+	ld [$ffee], a
+	ret
+ELSE
 
 ; Wildmons attack at random.
 	ld a, [IsInBattle]
@@ -37854,25 +37852,161 @@ AIChooseMove: ; 440ce
 	ld a, c
 	ld [CurEnemyMoveNum], a
 	ret
+ENDC
+; 441af
+
+AIWaitMove:
+	callba Function3e8d1
+	ret nz
+	callba EmptyBattleTextBox
+	ld hl, .waiting
+	call StdBattleTextBox
+
+.loop
+	ld a, [$ffee]
+	and a
+	jr nz, .selected
+	call DelayFrame
+	jr .loop
+.selected
+	bit 7, a
+	jr nz, .switch
+	bit 6, a
+	jr nz, .item
+	and $f
+	jr z, .invalid	
+	dec a
+	cp NUM_MOVES
+	jr nc, .invalid
+	ld c, a
+	ld b, 0
+	ld hl, EnemyMonMoves
+	add hl, bc
+	ld a, [hl]
+	and a
+	jr z, .invalid
+	ld hl, EnemyMonPP
+	add hl, bc
+	ld a, [hl]
+	and $3f
+	jr z, .invalid
+	ld a, [EnemyDisabledMove]
+	and a
+	jr z, .not_disabled
+	dec a
+	cp c
+	jr z, .invalid
+.not_disabled
+	ld hl, EnemyMonMoves
+	add hl, bc
+	ld a, [hl]
+	ld [CurEnemyMove], a
+	ld a, c
+	ld [CurEnemyMoveNum], a
+	ret
+
+.invalid
+	call AIChooseMove
+	jr .loop
+
+.switch
+	ld hl, PlayerSubStatus5
+	bit SUBSTATUS_CANT_RUN, [hl]
+	jr nz, .invalid
+	and $f
+	jr z, .invalid
+	dec a
+	cp PARTY_LENGTH
+	jr nc, .invalid
+	ld hl, CurOTMon
+	cp [hl]
+	jr z, .invalid
+	push af
+	ld bc, $30
+	ld hl, OTPartyMon1HP
+	call AddNTimes
+	ld a, [hli]
+	ld b, a
+	ld a, [hld]
+	or b
+	pop bc
+	jr z, .invalid
+	callba AI_Switch
+	ret
+
+.item
+	and $f
+	jr z, .invalid
+	push af
+	dec a
+	cp 2
+	jr nc, .invalid
+	ld hl, wc650
+	and a
+	jr z, .ok
+	inc hl
+.ok
+	ld a, [hl]
+	and a
+	pop bc
+	jr z, .invalid
+	push bc
+	ld a, [TrainerClass]
+	dec a
+	ld hl, TrainerClassAttributes
+	ld bc, 7
+	call AddNTimes
+	pop af
+	dec a
+	ld c, a
+	ld b, 0
+	add hl, bc
+	ld a, [hl]
+	and a
+	jr z, .invalid
+	ld c, a
+	ld hl, AI_Items
+.item_loop
+	ld a, BANK(AI_Items)
+	call GetFarByte
+	inc hl
+	cp c
+	jr z, .got_item
+	inc hl
+	inc hl
+	jr .item_loop
+.got_item
+	ld a, [hli]
+	ld h, [hl]
+	ld l, a
+	ld a, BANK(AI_Items)
+	rst FarCall
+	jr c, .invalid
+	callba AI_Used_Item
+	ret
+
+.waiting:
+	db "Waiting...@"
+
 ; 441af
 
 AIScoringPointers: ; 441af
-	dw AI_Basic
-	dw AI_Setup
-	dw AI_Types
-	dw AI_Offensive
-	dw AI_Smart
-	dw AI_Opportunist
-	dw AI_Aggressive
-	dw AI_Cautious
-	dw AI_Status
-	dw AI_Risky
-	dw AI_None
-	dw AI_None
-	dw AI_None
-	dw AI_None
-	dw AI_None
-	dw AI_None
+       dw AI_Basic
+       dw AI_Setup
+       dw AI_Types
+       dw AI_Offensive
+       dw AI_Smart
+       dw AI_Opportunist
+       dw AI_Aggressive
+       dw AI_Cautious
+       dw AI_Status
+       dw AI_Risky
+       dw AI_None
+       dw AI_None
+       dw AI_None
+       dw AI_None
+       dw AI_None
+       dw AI_None
 ; 441cf
 
 Function441cf: ; 441cf
@@ -95472,7 +95606,87 @@ INCLUDE "battle/move_names.asm"
 
 INCLUDE "engine/landmarks.asm"
 
+
 SECTION "bank75", ROMX, BANK[$75]
+
+
+SECTION "Random Rockets", ROMX
+
+NUM_ROCKET_MONS EQUS "(.RocketMonsEnd - .RocketMons) / 2"
+
+SampleRandomRocket:
+	ld hl, wRocketParty
+	ld [hl], -1
+
+.num_mons
+	call Random
+	and 7
+	cp PARTY_LENGTH
+	jr nc, .num_mons
+	inc a
+	ld c, a
+
+.new_mon
+	call Random
+	mod NUM_ROCKET_MONS
+	ld b, a
+	ld hl, wRocketParty
+.next_mon
+	ld a, [hli]
+	cp -1
+	jr z, .add_mon
+	cp b
+	jr nz, .next_mon
+	jr .new_mon
+
+.add_mon
+	ld a, b
+	ld [hli], a
+	ld [hl], -1
+	dec c
+	jr nz, .new_mon
+
+.loop
+	ld de, .RocketMons
+	ld hl, wRocketParty
+	ld a, [hli]
+	cp -1
+	ret z
+	push hl
+	ld l, a
+	ld h, 0
+	add hl, hl
+	add hl, de
+	ld a, [hli]
+	ld [CurPartySpecies], a
+	ld a, [hl]
+	ld [CurPartyLevel], a
+	ld a, OTPARTYMON
+	ld [MonType], a
+	predef Functiond88c
+	pop hl
+	inc c
+	jr .loop
+
+.RocketMons:
+	db ZUBAT, 18
+	db ZUBAT, 19
+	db ZUBAT, 20
+	db KOFFING, 18
+	db KOFFING, 19
+	db KOFFING, 20
+	db GRIMER, 18
+	db GRIMER, 19
+	db GRIMER, 20
+	db SANDSHREW, 18
+	db EKANS, 18
+	db RATTATA, 18
+	db MEOWTH, 18
+	db DROWZEE, 19
+	db RATICATE, 20
+	db HYPNO, 20
+.RocketMonsEnd:
+
 
 SECTION "bank76", ROMX, BANK[$76]
 
@@ -96357,6 +96571,7 @@ INCBIN "misc/stadium2_2.bin"
 ELSE
 INCBIN "misc/stadium2_1.bin"
 ENDC
+
 
 
 

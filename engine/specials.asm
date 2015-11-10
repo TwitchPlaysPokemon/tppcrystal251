@@ -188,6 +188,7 @@ SpecialsPointers:: ; c029
 	add_special SaveMusic
 	add_special RestoreMusic
 	add_special DeleteSavedMusic
+	add_special SampleRandomRocket
 	add_special SpecialNone
 ; c224
 
