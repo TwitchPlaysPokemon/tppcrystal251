@@ -2847,7 +2847,7 @@ Script_warp: ; 0x97a1d from 2a27f
 	ld [$ff9f], a
 	ld a, $1
 	call Function261b
-	call StopScript ??
+	call StopScript ;??
 	ret
 ; 0x97a65
 
