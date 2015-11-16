@@ -950,20 +950,20 @@ GetPokemonName:: ; 343b
 	ld e, a
 	ld h, 0
 	ld l, a
-	add hl, hl
+	add hl, hl ;hl*10
 	add hl, hl
 	add hl, de
 	add hl, hl
 	ld de, PokemonNames
-	add hl, de
+	add hl, de ;find correct name by moving down 10* number
 
 ; Terminator
 	ld de, StringBuffer1
 	push de
 	ld bc, PKMN_NAME_LENGTH - 1
-	call CopyBytes
+	call CopyBytes ;put name i string buffer
 	ld hl, StringBuffer1 + PKMN_NAME_LENGTH - 1
-	ld [hl], "@"
+	ld [hl], "@" ;add the stop command
 	pop de
 
 	pop hl

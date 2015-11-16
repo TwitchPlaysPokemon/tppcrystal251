@@ -10,7 +10,7 @@ GoldenrodGameCorner_MapScriptHeader: ; 0x56bf4
 	dbw 2, UnknownScript_0x56bf9
 ; 0x56bf9
 
-UnknownScript_0x56bf9: ; 0x56bf9
+UnknownScript_0x56bf9: ; 0x56bf9 looks like the move tutor appearance check
 	checkevent EVENT_FIRST_TIME_HALL_OF_FAME
 	iffalse UnknownScript_0x56c19
 	checkitem COIN_CASE

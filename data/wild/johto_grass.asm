@@ -1,31 +1,62 @@
 ; Johto Pokémon in grass
 
-	db GROUP_SPROUT_TOWER_2F, MAP_SPROUT_TOWER_2F
-	db $05,$05,$05 ; encounter rates: morn/day/nite
-	; morn
-	db 3,RATTATA
-	db 4,RATTATA
-	db 5,RATTATA
-	db 3,RATTATA
-	db 6,RATTATA
-	db 5,RATTATA
-	db 5,RATTATA
-	; day
-	db 3,RATTATA
-	db 4,RATTATA
-	db 5,RATTATA
-	db 3,RATTATA
-	db 6,RATTATA
-	db 5,RATTATA
-	db 5,RATTATA
-	; nite
-	db 3,GASTLY
-	db 4,GASTLY
-	db 5,GASTLY
-	db 3,RATTATA
-	db 6,GASTLY
-	db 5,RATTATA
-	db 5,RATTATA
+	db GROUP_SPROUT_TOWER_2F, MAP_SPROUT_TOWER_2F ;MAP tells you what map this encounter table is for, should be pretty obvious. don't touch it
+	db $05 ; encounter rates for all day Encounter rate out of 255, delete 2 of the 3 identical numbers and both commas
+	db 20 ;base level for the area before alteration. Use lower bound for random spread (for 2-6, use 2)
+	db $00 ;Tables to use. first is a $ for tech reasons Left number/letter is level alteration table. Right number is what %chance table to use. 0 = big 30, 1 = 2020, 2 = 2015, 3 = 1510
+	; The level alteration table hasn't been decided/coded yet, though 0 is for no alteration exept random variance
+;morning Mons go here, make sure no semi-colons are where they shouldn't be (before mons), and that morning/day/night are after semi-colons
+        db BELLSPROUT ;30
+        db ZUBAT ;10
+        db HOUNDOUR ;10
+        db BELLSPROUT 10
+        db SPINARAK;5
+        db MURKROW ;5
+        db SPINARAK  ;5
+        db BELLSPROUT ;5
+        db HOOTHOOT ;4
+        db WEEPINBELL ;4
+        db WEEPINBELL ;3
+        db BELLSPROUT ;3
+        db GOLBAT ;2
+        db BELLSPROUT ;2
+        db HOOTHOOT ;1
+        db ODDISH ;1
+;day
+        db BELLSPROUT ;30
+        db ZUBAT ;10
+        db SPINARAK ;10
+        db BELLSPROUT 10
+        db HOOTHOOT ;5
+        db BELLSPROUT ;5
+        db MURKROW ;5
+        db BELLSPROUT ;5
+        db HOUNDOUR ;4
+        db WEEPINBELL ;4
+        db GOLBAT ;3
+        db WEEPINBELL ;3
+        db ZUBAT ;2
+        db SPINARAK ;2
+        db HOUNDOUR ;1
+        db ODDISH ;1
+;night
+        db BELLSPROUT ;30
+        db MISDREAVUS ;10
+        db BELLSPROUT ;10
+        db MISDREAVUS  ;10
+        db ZUBAT ;5
+        db MISDREAVUS ;5
+        db SPINARAK ;5
+        db BELLSPROUT ;5
+        db WEEPINBELL ;4
+        db SPINARAK ;4
+        db WEEPINBELL ;3
+        db BELLSPROUT ;3
+        db HOUNDOUR ;2
+        db BELLSPROUT ;2
+        db GOLBAT ;1
+        db ODDISH ;1
+
 
 	db GROUP_SPROUT_TOWER_3F, MAP_SPROUT_TOWER_3F
 	db $05,$05,$05 ; encounter rates: morn/day/nite

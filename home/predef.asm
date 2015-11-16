@@ -8,7 +8,7 @@ Predef:: ; 2d83
 
 	ld a, BANK(GetPredefPointer)
 	rst Bankswitch
-	call GetPredefPointer ; stores hl in PredefTemp
+	call GetPredefPointer ; a is the bank of predefId and PredefAddress is the location
 
 ; Switch to the new function's bank
 	rst Bankswitch
@@ -31,7 +31,7 @@ Predef:: ; 2d83
 	ld h, a
 	ld a, [PredefTemp + 1]
 	ld l, a
-	ret
+	ret ;call predef address, with return as the return point
 
 .Return
 ; Clean up after the Predef call

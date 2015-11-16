@@ -22,18 +22,18 @@ CheckCaughtMon:: ; 3393
 	jr PokedexFlagAction
 ; 339b
 
-CheckSeenMon:: ; 339b   Return the status of the mon in C's flag in a, put 2 in b and the flag location in hl
+CheckSeenMon:: ; 339b   Return the status of the mon in A's flag in a, put 2 in b and the flag location in hl
 	ld c, a
 	ld hl, PokedexSeen
-	ld b, CHECK_FLAG 
+	ld b, CHECK_FLAG ; =2
 	; fallthrough
 ; 33a1
 
 PokedexFlagAction:: ; 33a1
 	ld d, 0
-	predef FlagPredef ; what's the difference between predef and call?
-	ld a, c ; redundent?
-	and a ;set zero flag besed on returned flag
+	predef FlagPredef ; what's the difference between predef and call? not much i think
+	ld a, c 
+	and a ;set zero flag besed on returned flag. off = z on = nz
 	ret
 ; 33ab
 
