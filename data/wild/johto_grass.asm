@@ -6,7 +6,7 @@
 	db $00 ;Tables to use. first is a $ for tech reasons Left number/letter is level alteration table. Right number is what %chance table to use. 0 = big 30, 1 = 2020, 2 = 2015, 3 = 1510
 	; The level alteration table hasn't been decided/coded yet, though 0 is for no alteration exept random variance
 ;morning Mons go here, make sure no semi-colons are where they shouldn't be (before mons), and that morning/day/night are after semi-colons
-        db BELLSPROUT ;30
+        db BELLSPROUT ;30 level is no longer stored next to mons
         db ZUBAT ;10
         db HOUNDOUR ;10
         db BELLSPROUT 10
