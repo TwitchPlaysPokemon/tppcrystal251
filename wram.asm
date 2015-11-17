@@ -1806,8 +1806,8 @@ CurDamage:: ; d256
 	ds 2
 
 	ds 2
-wd25a:: ds 3
-wd25d:: ds 1
+wd25a:: ds 3 ;land encounter rate
+wd25d:: ds 1 ;water encounter rate
 wd25e:: ds 4
 wd262:: ds 1
 wd263:: ds 1

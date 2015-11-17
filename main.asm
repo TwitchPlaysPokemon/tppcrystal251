@@ -76310,10 +76310,10 @@ TreeMonEncounter: ; b81ea
 	ld [CurPartyLevel], a
 
 	ld hl, TreeMonMaps
-	call GetTreeMonSet
-	jr nc, .no_battle
+	call GetTreeMonSet ;check current location against mon maps, return map in a
+	jr nc, .no_battle ; If not found, jump out
 
-	call GetTreeMons
+	call GetTreeMons ;hl = treemon table, nc if no table exist
 	jr nc, .no_battle
 
 	call GetTreeMon
@@ -76337,7 +76337,7 @@ RockMonEncounter: ; b8219
 	ld [wd22e], a
 	ld [CurPartyLevel], a
 
-	ld hl, RockMonMaps
+	ld hl, RockMonMaps ;check current location against mon maps, return map in a
 	call GetTreeMonSet
 	jr nc, .no_battle
 
@@ -76370,13 +76370,13 @@ GetTreeMonSet: ; b823f
 	ld d, a
 .loop
 	ld a, [hli]
-	cp -1
+	cp -1 ;if hl = -1, then jump out
 	jr z, .not_in_table
 
-	cp d
+	cp d ;if map group doesn't match jump
 	jr nz, .skip2
 
-	ld a, [hli]
+	ld a, [hli] ;load map number?, if it doesn't match jump
 	cp e
 	jr nz, .skip1
 
@@ -76385,7 +76385,7 @@ GetTreeMonSet: ; b823f
 .skip2
 	inc hl
 .skip1
-	inc hl
+	inc hl ;go to next area and loop
 	jr .loop
 
 .not_in_table
@@ -76393,7 +76393,7 @@ GetTreeMonSet: ; b823f
 	ret
 
 .in_table
-	ld a, [hl]
+	ld a, [hl] ;store table number
 	scf
 	ret
 ; b825e
@@ -76452,19 +76452,19 @@ GetTreeMons: ; b82d2
 ; Return the address of TreeMon table a in hl.
 ; Return nc if table a doesn't exist.
 
-	cp 8
+	cp 8 ; if >7, quit
 	jr nc, .quit
 
-	and a
+	and a ;if 0 quit
 	jr z, .quit
 
 	ld e, a
 	ld d, 0
-	ld hl, TreeMons
-	add hl, de
+	ld hl, TreeMons ;find correct table, locatons are 2 bytes
+	add hl, de 
 	add hl, de
 
-	ld a, [hli]
+	ld a, [hli] ;load into hl
 	ld h, [hl]
 	ld l, a
 
@@ -76600,8 +76600,8 @@ RockMons: ; b83de
 ; b83e5
 
 GetTreeMon: ; b83e5
-	push hl
-	call GetTreeScore
+	push hl ; hl = table location
+	call GetTreeScore ; a = 0 if bad, 1 if good and 2 if rare
 	pop hl
 	and a
 	jr z, .bad
@@ -76612,7 +76612,7 @@ GetTreeMon: ; b83e5
 	ret
 
 .bad
-	ld a, 10
+	ld a, 10 ; 1 n 10 by default
 	call RandomRange
 	and a
 	jr nz, NoTreeMon
@@ -76630,30 +76630,30 @@ GetTreeMon: ; b83e5
 	call RandomRange
 	cp 8
 	jr nc, NoTreeMon
-	jr .skip
+		;jr .skip ;really? it's the very next line, just fall through
 .skip
 	ld a, [hli]
 	cp -1
-	jr nz, .skip
-	call SelectTreeMon
-	ret
+	jr nz, .skip ;go to bottom of common table, probably a faster way to do ths
+	jr SelectTreeMon ;could just jr to it and let it's ret take you back like with the other branches
+
 ; b841f
 
 SelectTreeMon: ; b841f
 ; Read a TreeMons table and pick one monster at random.
 
-	ld a, 100
+	ld a, 100 ;a = 0-99
 	call RandomRange
 .loop
-	sub [hl]
-	jr c, .ok
+	sub [hl] ; hl = start of correct table, encounter chance
+	jr c, .ok ;if rnd < chance, then stop, otherwise go to next mon
 	inc hl
 	inc hl
 	inc hl
 	jr .loop
 
 .ok
-	ld a, [hli]
+	ld a, [hli] ; if past end of table, jump out, else load mon into variable and level into curpartylevel, set carry flag
 	cp $ff
 	jr z, NoTreeMon
 
