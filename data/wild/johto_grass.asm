@@ -1220,32 +1220,61 @@
 	db 23,GOLBAT
 
 	db GROUP_ROUTE_29, MAP_ROUTE_29
-	db $19,$19,$19 ; encounter rates: morn/day/nite
+	db $19 ; encounter rates: morn/day/nite
+	db 15
+	db 00
 	; morn
-	db 2,PIDGEY
-	db 2,SENTRET
-	db 2,SPEAROW
-	db 2,MAREEP
-	db 2,RATTATA
-	db 2,HOPPIP
-	db 2,VULPIX
+		db HOPPIP ;30
+		db SENTRET ;10
+		db ELEKID ;10
+		db SENTRET ;10
+		db SENTRET ;5
+		db SPINARAK ;5
+		db MAGBY ;5
+		db SMOOCHUM ;5
+		db SENTRET ;4
+		db HOPPIP ;4
+		db SKIPLOOM ;3
+		db FURRET ;3
+		db SKIPLOOM ;2
+		db FURRET ;2
+		db SENTRET ;1
+		db HOPPIP ;1
 	; day
-	db 2,PIDGEY
-	db 2,SENTRET
-	db 2,SPEAROW
-	db 2,MAREEP
-	db 2,RATTATA
-	db 2,HOPPIP
-	db 2,VULPIX
+		db SENTRET ;30
+		db MARILL ;10
+		db HOPPIP ;10
+		db MAGBY ;10
+		db MARILL ;5
+		db SPINARAK ;5
+		db ELEKID ;5
+		db SMOOCHUM ;5
+		db PHANPY ;4
+		db AZUMARILL ;4
+		db MARILL ;3
+		db MARILL ;3
+		db MARILL ;2
+		db MARILL ;2
+		db TEDDIURSA ;1
+		db SKIPLOOM ;1
 	; nite
-	db 2,PIDGEY
-	db 2,SENTRET
-	db 2,SPEAROW
-	db 2,MAREEP
-	db 2,RATTATA
-	db 2,HOOTHOOT
-	db 2,HOUNDOUR
-
+		db HOOTHOOT ;30
+		db SPINARAK ;10
+		db SENTRET ;10
+		db SMOOCHUM ;10
+		db HOOTHOOT ;5
+		db SPINARAK ;5
+		db ELEKID ;5
+		db MAGBY ;5
+		db ARIADOS ;4
+		db SPINARAK ;4
+		db NOCTOWL ;3
+		db SPINARAK ;3
+		db NOCTOWL ;2
+		db SPINARAK ;2
+		db ARIADOS ;1
+		db SPINARAK ;1
+		
 	db GROUP_ROUTE_30, MAP_ROUTE_30
 	db $19,$19,$19 ; encounter rates: morn/day/nite
 	; morn
