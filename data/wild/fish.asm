@@ -8,11 +8,11 @@ FishAction: ; 92402
 	push hl
 	
 ; Get the fishing group for this map.
-	ld b, e
-	call GetFishGroupHeader
+	ld b, e ;rod into b
+	call GetFishGroupHeader ;e = d-1, d = 0, a = d. if d = 11 or 12 then if flag is on then special case
 	
 	ld hl, FishGroupHeaders
-	; encounter chance
+	; go down to correct table. encounter chance
 	add hl, de
 	; pointer to old rod data
 	add hl, de
@@ -24,7 +24,7 @@ FishAction: ; 92402
 	add hl, de
 	add hl, de
 	
-	call Fish
+	call Fish ;load mon nto d and level into e. 0 in both if fail to fish
 	
 	pop hl
 	pop bc
@@ -42,19 +42,19 @@ Fish: ; 9241a
 	call Random
 
 ; Got a bite?
-	cp [hl]
+	cp [hl] ;is always 50, could optimise. also, make it higher for convieniance
 	jr nc, .NoBite
 
 ; Get encounter data by rod:
 ; 	0: Old
 ; 	1: Good
 ; 	2: Super
-	inc hl
-	ld e, b
+	inc hl 
+	ld e, b ;rod into e
 	ld d, 0
+	add hl, de ;onto correct rod
 	add hl, de
-	add hl, de
-	ld a, [hli]
+	ld a, [hli] ;load table location into hl
 	ld h, [hl]
 	ld l, a
 	
@@ -62,7 +62,7 @@ Fish: ; 9241a
 	call Random
 	
 .CheckEncounter
-	cp [hl]
+	cp [hl] ;if equal or less then % to encounter, jump ahead, otherwise go to next mon
 	jr z, .ReadMon
 	jr c, .ReadMon
 	
@@ -74,7 +74,7 @@ Fish: ; 9241a
 	
 .ReadMon
 ; We're done with the encounter chance
-	inc hl
+	inc hl ;onto mon
 	
 ; Species 0 triggers a read from a time-based encounter table.
 	ld a, [hli]
@@ -83,7 +83,9 @@ Fish: ; 9241a
 	call z, .TimeEncounter
 
 ; Level
-	ld e, [hl]
+	ld a, [hl]
+	call AddVariance ;add level variance
+	ld e, a
 	ret
 	
 .NoBite
@@ -123,7 +125,7 @@ GetFishGroupHeader: ; 9245b
 
 	push hl
 	ld hl, DailyFlags
-	bit 2, [hl]
+	bit 2, [hl] ; check bit 2 of dialybits skip check for groups 11 and 12 unless flag is on(possibly related to quilfish swarm?)
 	pop hl
 	jr z, .end
 	
@@ -141,14 +143,14 @@ GetFishGroupHeader: ; 9245b
 	ret
 	
 .group11
-	ld a, [wdfce]
+	ld a, [wdfce] ;if ? is 1 then use table 6 instead (something to do with quilfish swarm)
 	cp 1
 	jr nz, .end
 	ld d, 6
 	jr .end
 	
 .group12
-	ld a, [wdfce]
+	ld a, [wdfce] ; if ? is 2 then use table 7 instead
 	cp 2
 	jr nz, .end
 	ld d, 7

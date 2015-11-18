@@ -6347,17 +6347,17 @@ Functioncfaf: ; cfaf
 	ret
 
 .asm_cfc7
-	call Function2d19
-	and a
+	call Function2d19  ;put fish group into a
+	and a ;if encounter group is not zero, continue
 	jr nz, .asm_cfd0
 	ld a, $4
 	ret
 
 .asm_cfd0
-	ld d, a
+	ld d, a ;d = encounter group
 	ld a, [Buffer2]
-	ld e, a
-	callba FishAction
+	ld e, a ; e = rod type
+	callba FishAction ;load mon nto d and level into e. 0 in both if fail to fish
 	ld a, d
 	and a
 	jr z, .asm_cfee
