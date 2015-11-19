@@ -2,9 +2,6 @@
 
 ;	db GROUP_RUINS_OF_ALPH_OUTSIDE, MAP_RUINS_OF_ALPH_OUTSIDE
 ;	db $05 ; encounter rate
-;	db 15,WOOPER
-;	db 20,QUAGSIRE
-;	db 15,QUAGSIRE
 
 	db GROUP_UNION_CAVE_1F, MAP_UNION_CAVE_1F
 	db $05 ; encounter rate
