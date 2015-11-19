@@ -2066,9 +2066,9 @@ GetMapHeaderMember:: ; 0x2c04
 
 ; outputs:
 ; bc = data from the current map's header
-; (e.g., de = $0003 would return a pointer to the secondary map header)
+; (e.g., de = $0003 would return a pointer to the secondary map header) 08 is fish encounter group
 
-	ld a, [MapGroup]
+	ld a, [MapGroup] 
 	ld b, a
 	ld a, [MapNumber]
 	ld c, a
@@ -2077,18 +2077,18 @@ GetMapHeaderMember:: ; 0x2c04
 GetAnyMapHeaderMember:: ; 0x2c0c
 	; bankswitch
 	ld a, [hROMBank]
-	push af
+	push af ;puts current bank on the stack 
 	ld a, BANK(MapGroupPointers)
 	rst Bankswitch
 
-	call GetAnyMapHeaderPointer
-	add hl, de
-	ld c, [hl]
-	inc hl
+	call GetAnyMapHeaderPointer 
+	add hl, de ;go to the correct slot
+	ld c, [hl] ;load the something into bc
+	inc hl 
 	ld b, [hl]
 
 	; bankswitch back
-	pop af
+	pop af ;return to starting bank
 	rst Bankswitch
 	ret
 ; 0x2c1c
@@ -2317,12 +2317,12 @@ Function2d0d:: ; 2d0d
 	ret
 ; 2d19
 
-Function2d19:: ; 2d19
+Function2d19:: ; 2d19 ;put fish group into a
 	push de
 	push hl
 	push bc
 	ld de, $0008
-	call GetMapHeaderMember
+	call GetMapHeaderMember 
 	ld a, c
 	pop bc
 	pop hl

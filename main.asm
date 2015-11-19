@@ -6347,17 +6347,17 @@ Functioncfaf: ; cfaf
 	ret
 
 .asm_cfc7
-	call Function2d19
-	and a
+	call Function2d19  ;put fish group into a
+	and a ;if encounter group is not zero, continue
 	jr nz, .asm_cfd0
 	ld a, $4
 	ret
 
 .asm_cfd0
-	ld d, a
+	ld d, a ;d = encounter group
 	ld a, [Buffer2]
-	ld e, a
-	callba FishAction
+	ld e, a ; e = rod type
+	callba FishAction ;load mon nto d and level into e. 0 in both if fail to fish
 	ld a, d
 	and a
 	jr z, .asm_cfee
@@ -33808,35 +33808,10 @@ SkipBonLvl
 	pop hl ;get table byte (cur stack: first mon byte)
 	dec hl ;move onto base level byte
 	add a, [hl] ;add base level onto level bonus
-	ld b, a ;store level in b
 	pop hl ; get first mon byte (stack equal to start)
 	add hl, de ;move to correct mon
 
-
-	call Random ; level vairance approx 35% listed level, 30% +1, 20% +2, 10% +3, 5% +4
-	cp 89
-	jr c, .asm_2a1aa
-	inc b
-	cp 165
-	jr c, .asm_2a1aa
-	inc b
-	cp 216
-	jr c, .asm_2a1aa
-	inc b
-	cp 242
-	jr c, .asm_2a1aa
-	inc b
-
-.asm_2a1aa
-	ld a, b ; load level back into a
-	cp 2 ;If level is less then 2, set it to 2
-	jr nc, Pass1 
-	ld a, 2
-Pass1
-	cp 101 ;If over level 100, set to 100
-	jr c, Pass2
-	ld a, 100
-Pass2
+	call AddVariance ;add level variance and ensure it is between 2 and 100. accepts number to increase into a and returns the new number in a
 	ld [CurPartyLevel], a ;load level into a variable
 
 	ld b, [hl] 
@@ -33868,6 +33843,38 @@ Pass2
 	xor a
 	ret
 ; 2a1cb
+
+AddVariance: ;add level variance and ensure it is between 2 and 100. accepts number to increase into a and returns the new number in a
+	
+	push bc
+	ld b, a ;store level in b
+	call Random ; level vairance approx 35% listed level, 30% +1, 20% +2, 10% +3, 5% +4
+	cp 89
+	jr c, .asm_2a1aa
+	inc b
+	cp 165
+	jr c, .asm_2a1aa
+	inc b
+	cp 216
+	jr c, .asm_2a1aa
+	inc b
+	cp 242
+	jr c, .asm_2a1aa
+	inc b
+
+.asm_2a1aa
+	ld a, b ; load level back into a
+	cp 2 ;If level is less then 2, set it to 2
+	jr nc, Pass
+	ld a, 2
+	pop bc
+	ret
+Pass
+	cp 101 ;If over level 100, set to 100
+	pop bc ;return b
+	ret c
+	ld a, 100
+	ret
 
 ;Unknown_2a1cb: ; 2a1cb
 ;	;db 30,  $0
@@ -76660,6 +76667,7 @@ SelectTreeMon: ; b841f
 	ld a, [hli]
 	ld [wd22e], a
 	ld a, [hl]
+	call AddVariance
 	ld [CurPartyLevel], a
 	scf
 	ret
