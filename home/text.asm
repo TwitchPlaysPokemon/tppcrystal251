@@ -197,14 +197,14 @@ PlaceString:: ; 1078
 	push hl
 
 PlaceNextChar:: ; 1079
-	ld a, [de]
+	ld a, [de] ; load the char into a
 	cp "@"
-	jr nz, CheckDict
+	jr nz, CheckDict ;if not the end character, jump
 	ld b, h
-	ld c, l
+	ld c, l; put coords in bc
 	pop hl
 	ret
-	pop de
+	pop de ; how can this be reached?
 
 NextChar:: ; 1083
 	inc de
@@ -217,7 +217,7 @@ if \1 == 0
 else
 	cp \1
 endc
-	jp z, \2
+	jp z, \2 ;if augmant is a or 0/no augment
 endm
 	dict $15, Char15
 	dict $4f, Line

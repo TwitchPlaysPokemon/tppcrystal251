@@ -9988,26 +9988,26 @@ UnknownText_0xe533: ; 0xe533
 	db "@"
 ; 0xe538
 
-Functione538: ; e538
-	ld hl, PartyMon1HP
-	ld de, PartyMon2 - PartyMon1
+Functione538: ; check party mons, return carry if it finds a mon other then current with non-0 HP.
+	ld hl, PartyMon1HP ;load the location of the first mon in party's HP
+	ld de, PartyMon2 - PartyMon1 ;find size of pokemon
 	ld b, $0
 .asm_e540
-	ld a, [CurPartyMon]
+	ld a, [CurPartyMon] 
 	cp b
-	jr z, .asm_e54b
+	jr z, .asm_e54b ;if on current mon then jump, this avoid checking if current mon is not fnt
 	ld a, [hli]
 	or [hl]
-	jr nz, .asm_e557
-	dec hl
+	jr nz, .asm_e557 ;if current HP is not zero, ret
+	dec hl ;back to mon hp
 
 .asm_e54b
 	inc b
-	ld a, [PartyCount]
+	ld a, [PartyCount] 
 	cp b
-	jr z, .asm_e555
-	add hl, de
-	jr .asm_e540
+	jr z, .asm_e555 ;if party count = count, scf and jump out
+	add hl, de ;to next mon
+	jr .asm_e540 ;loop
 
 .asm_e555
 	scf
@@ -83956,7 +83956,7 @@ BillsPCWithdrawJumptable: ; e2699 (38:6699) #mark
 	dw BillsPCWithdrawFuncCancel ; Cancel
 
 BillsPCWithdrawFuncWithdraw: ; e26a1 (38:66a1)
-	call Functione2f18
+	call Functione2f18 ;return carry if not possible
 	jp c, BillsPCWithdrawFuncCancel
 	call Functione30fa
 	jr c, .asm_e26b9
@@ -84530,9 +84530,9 @@ Functione2a6c: ; e2a6c
 
 Functione2a6e: ; e2a6e (38:6a6e)
 	push de
-	hlcoord 0, 15
+	hlcoord 0, 15 ;put coords in hl got text box
 	ld bc, $112
-	call TextBox
+	call TextBox ;draw a text box
 	pop de
 	hlcoord 1, 16
 	call PlaceString
@@ -84575,7 +84575,7 @@ Functione2a8e: ; e2a8e (38:6a8e)
 	ld de, String_e2abd
 .print
 	hlcoord 10, 1
-	call PlaceString
+	call PlaceString ;???
 	ret
 ; e2abd (38:6abd)
 
@@ -85214,22 +85214,22 @@ Functione2ee5: ; e2ee5
 	ret
 ; e2f18
 
-Functione2f18: ; e2f18 (38:6f18)
-	ld a, [wcb2e]
+Functione2f18: ; e2f18 (38:6f18) seems to check if removing mon from party is good
+	ld a, [wcb2e] ; load ??? into a
 	and a
-	jr nz, .asm_e2f3d
-	ld a, [wcb2c]
+	jr nz, .asm_e2f3d ; if not zero, jump out with sucsess
+	ld a, [wcb2c] ;  load ?? into a
 	cp $3
-	jr c, .asm_e2f49
-	ld a, [wcb2b]
-	ld hl, wcb2a
-	add [hl]
-	ld [CurPartyMon], a
-	callba Functione538
-	jr c, .asm_e2f44
-	ld a, [wcb32]
+	jr c, .asm_e2f49 ;if < 3 , say it's your last ??? and jump out unsec
+	ld a, [wcb2b] ; load ?? into a
+	ld hl, wcb2a ;load the location of ?? into hl
+	add [hl] ;add ??? to ???, makes the slot of the mon being deposited (0-5)
+	ld [CurPartyMon], a ; a is the current mon
+	callba Functione538 ;b = number of mons until fnt mon or end of party.  check party mons, return carry if it doesn't find a mon other then current with non-0 HP.
+	jr c, .asm_e2f44 ;if no non-fnt mons, jump to no usable mon text
+	ld a, [wcb32] ; load mail?
 	and a
-	jr nz, .asm_e2f3f
+	jr nz, .asm_e2f3f ; if not zero, send mail error
 .asm_e2f3d
 	and a
 	ret
@@ -85241,7 +85241,7 @@ Functione2f18: ; e2f18 (38:6f18)
 	jr .asm_e2f4c
 .asm_e2f49
 	ld de, String_e350f
-.asm_e2f4c
+.asm_e2f4c ;if can't deposit, run from here. error string is in de
 	call Functione2a6e
 	ld de, SFX_WRONG
 	call WaitPlaySFX
