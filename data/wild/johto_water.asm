@@ -1,46 +1,296 @@
 ; Johto Pokémon in water
 
-	db GROUP_RUINS_OF_ALPH_OUTSIDE, MAP_RUINS_OF_ALPH_OUTSIDE
-	db $05 ; encounter rate
-	db 15,WOOPER
-	db 20,QUAGSIRE
-	db 15,QUAGSIRE
+;	db GROUP_RUINS_OF_ALPH_OUTSIDE, MAP_RUINS_OF_ALPH_OUTSIDE
+;	db $05 ; encounter rate
+;	db 15,WOOPER
+;	db 20,QUAGSIRE
+;	db 15,QUAGSIRE
 
 	db GROUP_UNION_CAVE_1F, MAP_UNION_CAVE_1F
 	db $05 ; encounter rate
-	db 15,WOOPER
-	db 20,QUAGSIRE
-	db 15,QUAGSIRE
-
+	db 35
+	db $01
+;morning
+		db STARYU ;20
+		db QUAGSIRE ;20
+		db STARYU ;10
+		db STARMIE ;10
+		db STARYU ;5
+		db PSYDUCK ;5
+		db PSYDUCK ;5
+		db GOLDUCK ;5
+		db GLIGAR ;4
+		db QUAGSIRE ;4
+		db WOOPER ;3
+		db WOOPER ;3
+		db WOOPER ;2
+		db WOOPER ;2
+		db GLIGAR ;1
+		db QUAGSIRE ;1
+;day
+		db WOOPER ;20
+		db WOOPER ;20
+		db QUAGSIRE ;10
+		db STARYU ;10
+		db STARYU ;5
+		db STARMIE ;5
+		db PSYDUCK ;5
+		db PSYDUCK ;5
+		db PSYDUCK ;4
+		db GOLDUCK ;4
+		db STARYU ;3
+		db GLIGAR ;3
+		db STARMIE ;2
+		db GLIGAR ;2
+		db GOLDUCK ;1
+		db PSYDUCK ;1
+;night
+		db PSYDUCK ;20
+		db WOOPER ;20
+		db PSYDUCK ;10
+		db GOLDUCK ;10
+		db WOOPER ;5
+		db STARYU ;5
+		db STARYU ;5
+		db STARMIE ;5
+		db QUAGSIRE ;4
+		db QUAGSIRE ;4
+		db QUAGSIRE ;3
+		db GLIGAR ;3
+		db QUAGSIRE ;2
+		db GLIGAR ;2
+		db QUAGSIRE ;1
+		db QUAGSIRE ;1
+	
 	db GROUP_UNION_CAVE_B1F, MAP_UNION_CAVE_B1F
 	db $05 ; encounter rate
-	db 15,WOOPER
-	db 20,QUAGSIRE
-	db 15,QUAGSIRE
+	db 35
+	db $01
+;morning
+		db STARYU ;20
+		db QUAGSIRE ;20
+		db STARYU ;10
+		db STARMIE ;10
+		db STARYU ;5
+		db PSYDUCK ;5
+		db PSYDUCK ;5
+		db GOLDUCK ;5
+		db GLIGAR ;4
+		db QUAGSIRE ;4
+		db WOOPER ;3
+		db WOOPER ;3
+		db WOOPER ;2
+		db WOOPER ;2
+		db GLIGAR ;1
+		db QUAGSIRE ;1
+;day
+		db WOOPER ;20
+		db WOOPER ;20
+		db QUAGSIRE ;10
+		db STARYU ;10
+		db STARYU ;5
+		db STARMIE ;5
+		db PSYDUCK ;5
+		db PSYDUCK ;5
+		db PSYDUCK ;4
+		db GOLDUCK ;4
+		db STARYU ;3
+		db GLIGAR ;3
+		db STARMIE ;2
+		db GLIGAR ;2
+		db GOLDUCK ;1
+		db PSYDUCK ;1
+;night
+		db PSYDUCK ;20
+		db WOOPER ;20
+		db PSYDUCK ;10
+		db GOLDUCK ;10
+		db WOOPER ;5
+		db STARYU ;5
+		db STARYU ;5
+		db STARMIE ;5
+		db QUAGSIRE ;4
+		db QUAGSIRE ;4
+		db QUAGSIRE ;3
+		db GLIGAR ;3
+		db QUAGSIRE ;2
+		db GLIGAR ;2
+		db QUAGSIRE ;1
+		db QUAGSIRE ;1
 
 	db GROUP_UNION_CAVE_B2F, MAP_UNION_CAVE_B2F
-	db $0a ; encounter rate
-	db 15,TENTACOOL
-	db 20,QUAGSIRE
-	db 20,TENTACRUEL
+	db $05 ; encounter rate
+	db 35
+	db $01
+;morning
+		db STARYU ;20
+		db QUAGSIRE ;20
+		db STARYU ;10
+		db STARMIE ;10
+		db STARYU ;5
+		db PSYDUCK ;5
+		db PSYDUCK ;5
+		db GOLDUCK ;5
+		db BLASTOISE ;4
+		db QUAGSIRE ;4
+		db WOOPER ;3
+		db WOOPER ;3
+		db WOOPER ;2
+		db WOOPER ;2
+		db LAPRAS ;1
+		db QUAGSIRE ;1
+;day
+		db WOOPER ;20
+		db WOOPER ;20
+		db QUAGSIRE ;10
+		db STARYU ;10
+		db STARYU ;5
+		db STARMIE ;5
+		db PSYDUCK ;5
+		db PSYDUCK ;5
+		db PSYDUCK ;4
+		db GOLDUCK ;4
+		db STARYU ;3
+		db BLASTOISE ;3
+		db STARMIE ;2
+		db LAPRAS ;2
+		db GOLDUCK ;1
+		db PSYDUCK ;1
+;night
+		db PSYDUCK ;20
+		db WOOPER ;20
+		db PSYDUCK ;10
+		db GOLDUCK ;10
+		db WOOPER ;5
+		db STARYU ;5
+		db STARYU ;5
+		db STARMIE ;5
+		db QUAGSIRE ;4
+		db QUAGSIRE ;4
+		db QUAGSIRE ;3
+		db LAPRAS ;3
+		db QUAGSIRE ;2
+		db BLASTOISE ;2
+		db QUAGSIRE ;1
+		db QUAGSIRE ;1
 
 	db GROUP_SLOWPOKE_WELL_B1F, MAP_SLOWPOKE_WELL_B1F
 	db $05 ; encounter rate
-	db 15,SLOWPOKE
-	db 20,SLOWPOKE
-	db 10,SLOWPOKE
+	db 50
+	db $00
+;morning
+		db SLOWPOKE ;30
+		db SLOWBRO ;10
+		db SLOWPOKE ;10
+		db SLOWPOKE ;10
+		db SLOWKING ;5
+		db SLOWPOKE ;5
+		db SLOWPOKE ;5
+		db SLOWPOKE ;5
+		db SLOWPOKE ;4
+		db SLOWPOKE ;4
+		db SLOWPOKE ;3
+		db SLOWPOKE ;3
+		db SLOWPOKE ;2
+		db SLOWPOKE ;2
+		db SLOWPOKE ;1
+		db SLOWPOKE ;1
+;day
+		db SLOWPOKE ;30
+		db SLOWKING ;10
+		db SLOWPOKE ;10
+		db SLOWPOKE ;10
+		db SLOWBRO ;5
+		db SLOWPOKE ;5
+		db SLOWPOKE ;5
+		db SLOWPOKE ;5
+		db SLOWPOKE ;4
+		db SLOWPOKE ;4
+		db SLOWPOKE ;3
+		db SLOWPOKE ;3
+		db SLOWPOKE ;2
+		db SLOWPOKE ;2
+		db SLOWPOKE ;1
+		db SLOWPOKE ;1
+;night
+		db SLOWPOKE ;30
+		db SLOWPOKE ;10
+		db SLOWPOKE ;10
+		db SLOWPOKE ;10
+		db SLOWBRO ;5
+		db SLOWKING ;5
+		db SLOWPOKE ;5
+		db SLOWPOKE ;5
+		db SLOWPOKE ;4
+		db SLOWPOKE ;4
+		db SLOWBRO ;3
+		db SLOWPOKE ;3
+		db SLOWKING ;2
+		db SLOWPOKE ;2
+		db SLOWPOKE ;1
+		db SLOWPOKE ;1
 
 	db GROUP_SLOWPOKE_WELL_B2F, MAP_SLOWPOKE_WELL_B2F
 	db $05 ; encounter rate
-	db 15,SLOWPOKE
-	db 20,SLOWPOKE
-	db 20,SLOWBRO
+	db 50
+	db $00
+;morning
+		db SLOWPOKE ;30
+		db SLOWPOKE ;10
+		db SLOWPOKE ;10
+		db SLOWPOKE ;10
+		db SLOWBRO ;5
+		db SLOWKING ;5
+		db SLOWPOKE ;5
+		db SLOWPOKE ;5
+		db SLOWPOKE ;4
+		db SLOWPOKE ;4
+		db SLOWBRO ;3
+		db SLOWPOKE ;3
+		db SLOWKING ;2
+		db SLOWPOKE ;2
+		db SLOWPOKE ;1
+		db SLOWPOKE ;1
+;day
+		db SLOWPOKE ;30
+		db SLOWBRO ;10
+		db SLOWPOKE ;10
+		db SLOWPOKE ;10
+		db SLOWKING ;5
+		db SLOWPOKE ;5
+		db SLOWPOKE ;5
+		db SLOWPOKE ;5
+		db SLOWPOKE ;4
+		db SLOWPOKE ;4
+		db SLOWPOKE ;3
+		db SLOWPOKE ;3
+		db SLOWPOKE ;2
+		db SLOWPOKE ;2
+		db SLOWPOKE ;1
+		db SLOWPOKE ;1
+;night
+		db SLOWPOKE ;30
+		db SLOWKING ;10
+		db SLOWPOKE ;10
+		db SLOWPOKE ;10
+		db SLOWBRO ;5
+		db SLOWPOKE ;5
+		db SLOWPOKE ;5
+		db SLOWPOKE ;5
+		db SLOWPOKE ;4
+		db SLOWPOKE ;4
+		db SLOWPOKE ;3
+		db SLOWPOKE ;3
+		db SLOWPOKE ;2
+		db SLOWPOKE ;2
+		db SLOWPOKE ;1
+		db SLOWPOKE ;1
 
-	db GROUP_ILEX_FOREST, MAP_ILEX_FOREST
-	db $05 ; encounter rate
-	db 15,PSYDUCK
-	db 10,PSYDUCK
-	db 15,GOLDUCK
+;	db GROUP_ILEX_FOREST, MAP_ILEX_FOREST
+;	db $05 ; encounter rate
+;	db 15,PSYDUCK
+;	db 10,PSYDUCK
+;	db 15,GOLDUCK
 
 	db GROUP_MOUNT_MORTAR_1F_OUTSIDE, MAP_MOUNT_MORTAR_1F_OUTSIDE
 	db $0a ; encounter rate
@@ -386,15 +636,115 @@
 
 	db GROUP_DARK_CAVE_VIOLET_ENTRANCE, MAP_DARK_CAVE_VIOLET_ENTRANCE
 	db $05 ; encounter rate
-	db 15,MAGIKARP
-	db 10,MAGIKARP
-	db 5,MAGIKARP
+	db 50
+	db $00
+;morning
+		db MAGIKARP ;30
+		db WOOPER ;10
+		db QUAGSIRE ;10
+		db SEEL ;10
+		db MAGIKARP ;5
+		db QUAGSIRE ;5
+		db SEEL ;5
+		db SHELLDER ;5
+		db GYARADOS ;4
+		db CORSOLA ;4
+		db DEWGONG ;3
+		db CORSOLA ;3
+		db GYARADOS ;2
+		db CORSOLA ;2
+		db CLOYSTER ;1
+		db CORSOLA ;1
+;day
+		db MAGIKARP ;30
+		db WOOPER ;10
+		db QUAGSIRE ;10
+		db SEEL ;10
+		db WOOPER ;5
+		db SHELLDER ;5
+		db SHELLDER ;5
+		db SHELLDER ;5
+		db GYARADOS ;4
+		db CORSOLA ;4
+		db CORSOLA ;3
+		db CLOYSTER ;3
+		db CORSOLA ;2
+		db DEWGONG ;2
+		db CORSOLA ;1
+		db GYARADOS ;1
+;night
+		db MAGIKARP ;30
+		db MAGIKARP ;10
+		db WOOPER ;10
+		db QUAGSIRE ;10
+		db MAGIKARP ;5
+		db GYARADOS ;5
+		db CORSOLA ;5
+		db CORSOLA ;5
+		db SHELLDER ;4
+		db SHELLDER ;4
+		db SEEL ;3
+		db GYARADOS ;3
+		db SHELLDER ;2
+		db CLOYSTER ;2
+		db SEEL ;1
+		db DEWGONG ;1
 
 	db GROUP_DARK_CAVE_BLACKTHORN_ENTRANCE, MAP_DARK_CAVE_BLACKTHORN_ENTRANCE
 	db $05 ; encounter rate
-	db 15,MAGIKARP
-	db 10,MAGIKARP
-	db 5,MAGIKARP
+	db 50
+	db $00
+;morning
+		db MAGIKARP ;30
+		db WOOPER ;10
+		db QUAGSIRE ;10
+		db SEEL ;10
+		db MAGIKARP ;5
+		db QUAGSIRE ;5
+		db SEEL ;5
+		db SHELLDER ;5
+		db GYARADOS ;4
+		db CORSOLA ;4
+		db DEWGONG ;3
+		db CORSOLA ;3
+		db GYARADOS ;2
+		db CORSOLA ;2
+		db CLOYSTER ;1
+		db CORSOLA ;1
+;day
+		db MAGIKARP ;30
+		db WOOPER ;10
+		db QUAGSIRE ;10
+		db SEEL ;10
+		db WOOPER ;5
+		db SHELLDER ;5
+		db SHELLDER ;5
+		db SHELLDER ;5
+		db GYARADOS ;4
+		db CORSOLA ;4
+		db CORSOLA ;3
+		db CLOYSTER ;3
+		db CORSOLA ;2
+		db DEWGONG ;2
+		db CORSOLA ;1
+		db GYARADOS ;1
+;night
+		db MAGIKARP ;30
+		db MAGIKARP ;10
+		db WOOPER ;10
+		db QUAGSIRE ;10
+		db MAGIKARP ;5
+		db GYARADOS ;5
+		db CORSOLA ;5
+		db CORSOLA ;5
+		db SHELLDER ;4
+		db SHELLDER ;4
+		db SEEL ;3
+		db GYARADOS ;3
+		db SHELLDER ;2
+		db CLOYSTER ;2
+		db SEEL ;1
+		db DEWGONG ;1
 
 	db GROUP_DRAGONS_DEN_B1F, MAP_DRAGONS_DEN_B1F
 	db $0a ; encounter rate
@@ -510,33 +860,283 @@
 	
 	db GROUP_ROUTE_30, MAP_ROUTE_30
 	db $05 ; encounter rate
-	db 20,POLIWAG
-	db 15,POLIWAG
-	db 20,POLIWHIRL
-
+	db 40
+	db $03
+;morning
+		db HOOTHOOT ;15
+		db HOOTHOOT ;10
+		db HOOTHOOT ;10
+		db NOCTOWL ;10
+		db NOCTOWL ;10
+		db NOCTOWL ;5
+		db OCTILLERY ;5
+		db OCTILLERY ;5
+		db OCTILLERY ;5
+		db MARILL ;5
+		db MARILL ;5
+		db AZUMARILL ;5
+		db SQUIRTLE ;4
+		db LEDIAN ;3
+		db LEDIAN ;2
+		db SQUIRTLE ;1
+;day
+		db LEDYBA ;15
+		db LEDIAN ;10
+		db MARILL ;10
+		db HOOTHOOT ;10
+		db OCTILLERY ;10
+		db LEDYBA ;5
+		db LEDIAN ;5
+		db MARILL ;5
+		db AZUMARILL ;5
+		db AZUMARILL ;5
+		db NOCTOWL ;5
+		db NOCTOWL ;5
+		db SKIPLOOM ;4
+		db SQUIRTLE ;3
+		db HOOTHOOT ;2
+		db SKIPLOOM ;1
+;night
+		db MARILL ;15
+		db SKIPLOOM ;10
+		db SKIPLOOM ;10
+		db AZUMARILL ;10
+		db LEDYBA ;10
+		db AZUMARILL ;5
+		db AZUMARILL ;5
+		db LEDYBA ;5
+		db LEDIAN ;5
+		db LEDIAN ;5
+		db HOOTHOOT ;5
+		db NOCTOWL ;5
+		db OCTILLERY ;4
+		db SQUIRTLE ;3
+		db HOOTHOOT ;2
+		db OCTILLERY ;1
+		
 	db GROUP_ROUTE_31, MAP_ROUTE_31
 	db $05 ; encounter rate
-	db 20,POLIWAG
-	db 15,POLIWAG
-	db 20,POLIWHIRL
-
+	db 40
+	db $03
+;morning
+		db HOOTHOOT ;15
+		db WOOPER ;10
+		db QUAGSIRE ;10
+		db OCTILLERY ;10
+		db NOCTOWL ;10
+		db HOOTHOOT ;5
+		db WOOPER ;5
+		db QUAGSIRE ;5
+		db OCTILLERY ;5
+		db NATU	;5
+		db XATU ;5
+		db NOCTOWL ;5
+		db LEDYBA ;4
+		db GOLDEEN ;3
+		db LEDIAN ;2
+		db SEAKING ;1
+;day
+		db WOOPER ;15
+		db LEDYBA ;10
+		db LEDYBA ;10
+		db LEDIAN ;10
+		db QUAGSIRE ;10
+		db WOOPER ;5
+		db LEDIAN ;5
+		db HOOTHOOT ;5
+		db NATU ;5
+		db XATU ;5
+		db OCTILLERY ;5
+		db OCTILLERY ;5
+		db GOLDEEN ;4
+		db HOOTHOOT ;3
+		db NOCTOWL ;2
+		db SEAKING ;1
+;night
+		db GOLDEEN ;15
+		db SEAKING ;10
+		db NATU ;10
+		db LEDYBA ;10
+		db LEDIAN ;10
+		db LEDYBA ;5
+		db GOLDEEN ;5
+		db NATU ;5
+		db QUAGSIRE ;5
+		db XATU ;5
+		db HOOTHOOT ;5
+		db OCTILLERY ;5
+		db WOOPER ;4
+		db NOCTOWL ;3
+		db HOOTHOOT ;2
+		db WOOPER ;1
+		
 	db GROUP_ROUTE_32, MAP_ROUTE_32
 	db $0f ; encounter rate
-	db 15,TENTACOOL
-	db 20,QUAGSIRE
-	db 20,TENTACRUEL
-
+	db 40
+	db $02
+;morning
+		db QUAGSIRE ;20
+		db WOOPER ;15
+		db MARILL ;10
+		db OCTILLERY ;10
+		db TOGETIC ;10
+		db MARILL ;5
+		db OCTILLERY ;5
+		db GOLDEEN ;5
+		db TOTODILE ;6
+		db AZUMARILL ;4
+		db GOLDEEN ;3
+		db SEAKING ;2
+		db WARTORTLE ;2
+		db WARTORTLE ;1
+		db AZUMARILL ;1
+		db CROCONAW ;1
+;day
+		db WOOPER ;20
+		db QUAGSIRE ;15
+		db GOLDEEN ;10
+		db TOGETIC ;10
+		db AZUMARILL ;10
+		db WOOPER ;5
+		db MARILL ;5
+		db TOTODILE ;5
+		db SEAKING ;6
+		db WARTORTLE ;4
+		db CROCONAW ;3
+		db GOLDEEN ;2
+		db TOGETIC ;2
+		db TOTODILE ;1
+		db TOTODILE ;1
+		db WARTORTLE ;1
+;night
+		db MARILL ;20
+		db AZUMARILL ;15
+		db GOLDEEN ;10
+		db SEAKING ;10
+		db TOGETIC ;10
+		db GOLDEEN ;5
+		db WOOPER ;5
+		db TOTODILE ;5
+		db TOGETIC ;6
+		db OCTILLERY ;4
+		db QUAGSIRE ;3
+		db CROCONAW ;2
+		db WARTORTLE ;2
+		db QUAGSIRE ;1
+		db QUAGSIRE ;1
+		db OCTILLERY ;1
+		
 	db GROUP_ROUTE_34, MAP_ROUTE_34
 	db $0f ; encounter rate
-	db 20,TENTACOOL
-	db 15,TENTACOOL
-	db 20,TENTACRUEL
+	db 40
+	db $02
+;morning
+		db MANTINE ;20
+		db QUAGSIRE ;15
+		db CHINCHOU ;10
+		db QWILFISH ;10
+		db OCTILLERY ;10
+		db QUAGSIRE ;5
+		db OCTILLERY ;5
+		db DODRIO ;5
+		db FEAROW ;6
+		db FEAROW ;4
+		db LANTURN ;3
+		db LANTURN ;2
+		db TOGETIC ;2
+		db TOGETIC ;1
+		db TOGETIC ;1
+		db TOGETIC ;1
+;day
+		db MANTINE ;20
+		db QWILFISH ;15
+		db CHINCHOU ;10
+		db QUAGSIRE ;10
+		db OCTILLERY ;10
+		db MANTINE ;5
+		db TOGETIC ;5
+		db LANTURN ;5
+		db CHINCHOU ;6
+		db FEAROW ;4
+		db LANTURN ;3
+		db DODRIO ;2
+		db DODRIO ;2
+		db DODRIO ;1
+		db FEAROW ;1
+		db CHINCHOU ;1
+;night
+		db CHINCHOU ;20
+		db CHINCHOU ;15
+		db LANTURN ;10
+		db MANTINE ;10
+		db QUAGSIRE ;10
+		db LANTURN ;5
+		db OCTILLERY ;5
+		db QWILFISH ;5
+		db TOGETIC ;6
+		db TOGETIC ;4
+		db TOGETIC ;3
+		db TOGETIC ;2
+		db DODRIO ;2
+		db DODRIO ;1
+		db DODRIO ;1
+		db DODRIO ;1
 
 	db GROUP_ROUTE_35, MAP_ROUTE_35
 	db $0a ; encounter rate
-	db 20,PSYDUCK
-	db 15,PSYDUCK
-	db 20,GOLDUCK
+	db 40
+	db $02
+;morning
+		db POLIWAG ;20
+		db YANMA ;15
+		db POLIWHIRL ;10
+		db SCYTHER ;10
+		db NOCTOWL ;10
+		db YANMA ;5
+		db AZUMARILL ;5
+		db LEDIAN ;5
+		db MARILL ;6
+		db MARILL ;4
+		db POLITOED ;3
+		db POLIWHIRL ;2
+		db SKIPLOOM ;2
+		db SKIPLOOM ;1
+		db SKIPLOOM ;1
+		db JUMPLUFF ;1
+;day
+		db LEDIAN ;20
+		db YANMA ;15
+		db SKIPLOOM ;10
+		db POLIWHIRL ;10
+		db AZUMARILL ;10
+		db LEDIAN ;5
+		db POLIWAG ;5
+		db NOCTOWL ;5
+		db JUMPLUFF ;6
+		db POLIWAG ;4
+		db MARILL ;3
+		db SKIPLOOM ;2
+		db SCYTHER ;2
+		db MARILL ;1
+		db MARILL ;1
+		db POLITOED ;1
+;night
+		db MARILL ;20
+		db AZUMARILL ;15
+		db SCYTHER ;10
+		db SCYTHER ;10
+		db YANMA ;10
+		db SKIPLOOM ;5
+		db SKIPLOOM ;5
+		db LEDIAN ;5
+		db JUMPLUFF ;6
+		db SKIPLOOM ;4
+		db LEDIAN ;3
+		db JUMPLUFF ;2
+		db POLIWHIRL ;2
+		db POLIWHIRL ;1
+		db POLIWHIRL ;1
+		db POLITOED;1
 
 	db GROUP_ROUTE_40, MAP_ROUTE_40
 	db $0f ; encounter rate
@@ -874,23 +1474,73 @@
 		db DEWGONG ;1
 		db CLOYSTER ;1
 
-	db GROUP_NEW_BARK_TOWN, MAP_NEW_BARK_TOWN
-	db $0f ; encounter rate
-	db 20,TENTACOOL
-	db 15,TENTACOOL
-	db 20,TENTACRUEL
+;	db GROUP_NEW_BARK_TOWN, MAP_NEW_BARK_TOWN
+;	db $0f ; encounter rate
+;	db 20,TENTACOOL
+;	db 15,TENTACOOL
+;	db 20,TENTACRUEL
 
 	db GROUP_CHERRYGROVE_CITY, MAP_CHERRYGROVE_CITY
 	db $0f ; encounter rate
-	db 20,TENTACOOL
-	db 15,TENTACOOL
-	db 20,TENTACRUEL
+	db 40
+	db $02
+;morning
+		db KRABBY ;20
+		db KRABBY ;15
+		db OCTILLERY ;10
+		db MANTINE ;10
+		db CORSOLA ;10
+		db OCTILLERY ;5
+		db MANTINE ;5
+		db KINGLER ;5
+		db CHINCHOU ;6
+		db QWILFISH ;4
+		db QWILFISH ;3
+		db QWILFISH ;2
+		db LANTURN ;2
+		db CHINCHOU ;1
+		db VAPOREON ;1
+		db QWILFISH ;1
+;day
+		db MANTINE ;20
+		db QWILFISH ;15
+		db KRABBY ;10
+		db KRABBY ;10
+		db OCTILLERY ;10
+		db CORSOLA ;5
+		db CORSOLA ;5
+		db LANTURN ;5
+		db CHINCHOU ;6
+		db CHINCHOU ;4
+		db KINGLER ;3
+		db KINGLER ;2
+		db KINGLER ;2
+		db VAPOREON ;1
+		db VAPOREON ;1
+		db VAPOREON ;1
+;night
+		db CHINCHOU ;20
+		db KRABBY ;15
+		db CHINCHOU ;10
+		db MANTINE ;10
+		db LANTURN ;10
+		db VAPOREON ;5
+		db OCTILLERY ;5
+		db QWILFISH ;5
+		db KINGLER ;6
+		db CORSOLA ;4
+		db KRABBY ;3
+		db CORSOLA ;2
+		db CORSOLA ;2
+		db KINGLER ;1
+		db CORSOLA ;1
+		db CORSOLA ;1
 
-	db GROUP_VIOLET_CITY, MAP_VIOLET_CITY
-	db $05 ; encounter rate
-	db 20,POLIWAG
-	db 15,POLIWAG
-	db 20,POLIWHIRL
+;	db GROUP_VIOLET_CITY, MAP_VIOLET_CITY
+;	db $05 ; encounter rate
+;	db 20,POLIWAG
+;	db 15,POLIWAG
+;	db 20,POLIWHIRL
 
 	db GROUP_CIANWOOD_CITY, MAP_CIANWOOD_CITY
 	db $0f ; encounter rate
@@ -949,11 +1599,61 @@
 		db SEADRA ;1
 
 	db GROUP_OLIVINE_CITY, MAP_OLIVINE_CITY
-	db $0f ; encounter rate
-	db 20,TENTACOOL
-	db 15,TENTACOOL
-	db 20,TENTACRUEL
-
+	db $05 ; encounter rate
+	db 35
+	db $02
+;morning
+		db OCTILLERY ;20
+		db MARILL ;15
+		db MANTINE ;10
+		db AZUMARILL ;10
+		db HORSEA ;10
+		db MANTINE ;5
+		db CORSOLA ;5
+		db SEADRA ;5
+		db CHINCHOU ;6
+		db QWILFISH ;4
+		db LANTURN ;3
+		db HORSEA ;2
+		db SEADRA ;2
+		db CHINCHOU ;1
+		db QWILFISH ;1
+		db HORSEA ;1
+;day
+		db MANTINE ;20
+		db OCTILLERY ;15
+		db AZUMARILL ;10
+		db MARILL ;10
+		db AZUMARILL ;10
+		db HORSEA ;5
+		db CORSOLA ;5
+		db CHINCHOU ;5
+		db QWILFISH ;6
+		db QWILFISH ;4
+		db HORSEA ;3
+		db LANTURN ;2
+		db QWILFISH ;2
+		db SEADRA ;1
+		db SEADRA ;1
+		db SEADRA ;1
+;night
+		db AZUMARILL ;20
+		db MARILL ;15
+		db CHINCHOU ;10
+		db MANTINE ;10
+		db MARILL ;10
+		db CHINCHOU ;5
+		db LANTURN ;5
+		db QWILFISH ;5
+		db OCTILLERY ;6
+		db OCTILLERY ;4
+		db HORSEA ;3
+		db SEADRA ;2
+		db CORSOLA ;2
+		db CORSOLA ;1
+		db CORSOLA ;1
+		db CORSOLA ;1
+	
 	db GROUP_ECRUTEAK_CITY, MAP_ECRUTEAK_CITY
 	db $05 ; encounter rate
 	db 35
@@ -1124,8 +1824,8 @@
 
 	db GROUP_SILVER_CAVE_OUTSIDE, MAP_SILVER_CAVE_OUTSIDE
 	db $05 ; encounter rate
-	db 35,POLIWHIRL
-	db 40,POLIWHIRL
-	db 35,POLIWAG
+	db 35
+	db $02
+
 
 	db $ff ; end

@@ -114,221 +114,71 @@
         db GOLBAT ;1
         db ODDISH ;1
 
-	db GROUP_TIN_TOWER_2F, MAP_TIN_TOWER_2F
-	db $05,$05,$05 ; encounter rates: morn/day/nite
+;	db GROUP_TIN_TOWER_2F, MAP_TIN_TOWER_2F
+;	db $05,$05,$05 ; encounter rates: morn/day/nite
 	; morn
-	db 20,RATTATA
-	db 21,RATTATA
-	db 22,RATTATA
-	db 22,RATTATA
-	db 23,RATTATA
-	db 24,RATTATA
-	db 24,RATTATA
-	; day
-	db 20,RATTATA
-	db 21,RATTATA
-	db 22,RATTATA
-	db 22,RATTATA
-	db 23,RATTATA
-	db 24,RATTATA
-	db 24,RATTATA
-	; nite
-	db 20,GASTLY
-	db 21,GASTLY
-	db 22,GASTLY
-	db 22,RATTATA
-	db 23,RATTATA
-	db 24,RATTATA
-	db 24,RATTATA
 
-	db GROUP_TIN_TOWER_3F, MAP_TIN_TOWER_3F
-	db $05,$05,$05 ; encounter rates: morn/day/nite
-	; morn
-	db 20,RATTATA
-	db 21,RATTATA
-	db 22,RATTATA
-	db 22,RATTATA
-	db 23,RATTATA
-	db 24,RATTATA
-	db 24,RATTATA
 	; day
-	db 20,RATTATA
-	db 21,RATTATA
-	db 22,RATTATA
-	db 22,RATTATA
-	db 23,RATTATA
-	db 24,RATTATA
-	db 24,RATTATA
-	; nite
-	db 20,GASTLY
-	db 21,GASTLY
-	db 22,GASTLY
-	db 22,RATTATA
-	db 23,RATTATA
-	db 24,RATTATA
-	db 24,RATTATA
 
-	db GROUP_TIN_TOWER_4F, MAP_TIN_TOWER_4F
-	db $05,$05,$05 ; encounter rates: morn/day/nite
-	; morn
-	db 20,RATTATA
-	db 21,RATTATA
-	db 22,RATTATA
-	db 22,RATTATA
-	db 23,RATTATA
-	db 24,RATTATA
-	db 24,RATTATA
-	; day
-	db 20,RATTATA
-	db 21,RATTATA
-	db 22,RATTATA
-	db 22,RATTATA
-	db 23,RATTATA
-	db 24,RATTATA
-	db 24,RATTATA
 	; nite
-	db 20,GASTLY
-	db 21,GASTLY
-	db 22,GASTLY
-	db 22,RATTATA
-	db 23,RATTATA
-	db 24,RATTATA
-	db 24,RATTATA
 
-	db GROUP_TIN_TOWER_5F, MAP_TIN_TOWER_5F
-	db $05,$05,$05 ; encounter rates: morn/day/nite
+;	db GROUP_TIN_TOWER_3F, MAP_TIN_TOWER_3F
+;	db $05,$05,$05 ; encounter rates: morn/day/nite
 	; morn
-	db 20,RATTATA
-	db 21,RATTATA
-	db 22,RATTATA
-	db 22,RATTATA
-	db 23,RATTATA
-	db 24,RATTATA
-	db 24,RATTATA
-	; day
-	db 20,RATTATA
-	db 21,RATTATA
-	db 22,RATTATA
-	db 22,RATTATA
-	db 23,RATTATA
-	db 24,RATTATA
-	db 24,RATTATA
-	; nite
-	db 20,GASTLY
-	db 21,GASTLY
-	db 22,GASTLY
-	db 22,RATTATA
-	db 23,RATTATA
-	db 24,RATTATA
-	db 24,RATTATA
 
-	db GROUP_TIN_TOWER_6F, MAP_TIN_TOWER_6F
-	db $05,$05,$05 ; encounter rates: morn/day/nite
-	; morn
-	db 20,RATTATA
-	db 21,RATTATA
-	db 22,RATTATA
-	db 22,RATTATA
-	db 23,RATTATA
-	db 24,RATTATA
-	db 24,RATTATA
 	; day
-	db 20,RATTATA
-	db 21,RATTATA
-	db 22,RATTATA
-	db 22,RATTATA
-	db 23,RATTATA
-	db 24,RATTATA
-	db 24,RATTATA
-	; nite
-	db 20,GASTLY
-	db 21,GASTLY
-	db 22,GASTLY
-	db 22,RATTATA
-	db 23,RATTATA
-	db 24,RATTATA
-	db 24,RATTATA
 
-	db GROUP_TIN_TOWER_7F, MAP_TIN_TOWER_7F
-	db $05,$05,$05 ; encounter rates: morn/day/nite
-	; morn
-	db 20,RATTATA
-	db 21,RATTATA
-	db 22,RATTATA
-	db 22,RATTATA
-	db 23,RATTATA
-	db 24,RATTATA
-	db 24,RATTATA
-	; day
-	db 20,RATTATA
-	db 21,RATTATA
-	db 22,RATTATA
-	db 22,RATTATA
-	db 23,RATTATA
-	db 24,RATTATA
-	db 24,RATTATA
 	; nite
-	db 20,GASTLY
-	db 21,GASTLY
-	db 22,GASTLY
-	db 22,RATTATA
-	db 23,RATTATA
-	db 24,RATTATA
-	db 24,RATTATA
 
-	db GROUP_TIN_TOWER_8F, MAP_TIN_TOWER_8F
-	db $05,$05,$05 ; encounter rates: morn/day/nite
+;	db GROUP_TIN_TOWER_4F, MAP_TIN_TOWER_4F
+;	db $05,$05,$05 ; encounter rates: morn/day/nite
 	; morn
-	db 20,RATTATA
-	db 21,RATTATA
-	db 22,RATTATA
-	db 22,RATTATA
-	db 23,RATTATA
-	db 24,RATTATA
-	db 24,RATTATA
-	; day
-	db 20,RATTATA
-	db 21,RATTATA
-	db 22,RATTATA
-	db 22,RATTATA
-	db 23,RATTATA
-	db 24,RATTATA
-	db 24,RATTATA
-	; nite
-	db 20,GASTLY
-	db 21,GASTLY
-	db 22,GASTLY
-	db 22,RATTATA
-	db 23,RATTATA
-	db 24,RATTATA
-	db 24,RATTATA
 
-	db GROUP_TIN_TOWER_9F, MAP_TIN_TOWER_9F
-	db $05,$05,$05 ; encounter rates: morn/day/nite
-	; morn
-	db 20,RATTATA
-	db 21,RATTATA
-	db 22,RATTATA
-	db 22,RATTATA
-	db 23,RATTATA
-	db 24,RATTATA
-	db 24,RATTATA
 	; day
-	db 20,RATTATA
-	db 21,RATTATA
-	db 22,RATTATA
-	db 22,RATTATA
-	db 23,RATTATA
-	db 24,RATTATA
-	db 24,RATTATA
+
 	; nite
-	db 20,GASTLY
-	db 21,GASTLY
-	db 22,GASTLY
-	db 22,RATTATA
-	db 23,RATTATA
-	db 24,RATTATA
-	db 24,RATTATA
+
+;	db GROUP_TIN_TOWER_5F, MAP_TIN_TOWER_5F
+;	db $05,$05,$05 ; encounter rates: morn/day/nite
+
+	; morn
+
+	; day
+
+	; nite
+
+;	db GROUP_TIN_TOWER_6F, MAP_TIN_TOWER_6F
+;	db $05,$05,$05 ; encounter rates: morn/day/nite
+
+	; morn
+
+	; day
+
+	; nite
+
+;	db GROUP_TIN_TOWER_7F, MAP_TIN_TOWER_7F
+;	db $05,$05,$05 ; encounter rates: morn/day/nite
+	; morn
+
+	; day
+
+	; nite
+
+;	db GROUP_TIN_TOWER_8F, MAP_TIN_TOWER_8F
+;	db $05,$05,$05 ; encounter rates: morn/day/nite
+	; morn
+
+	; day
+
+	; nite
+
+;	db GROUP_TIN_TOWER_9F, MAP_TIN_TOWER_9F
+;	db $05,$05,$05 ; encounter rates: morn/day/nite
+	; morn
+
+	; day
+
+	; nite
 
 	db GROUP_BURNED_TOWER_1F, MAP_BURNED_TOWER_1F
 	db $0a ; encounter rates: morn/day/nite
@@ -665,31 +515,60 @@
 		db SWINUB ;1
 
 	db GROUP_UNION_CAVE_B2F, MAP_UNION_CAVE_B2F
-	db $0a,$0a,$0a ; encounter rates: morn/day/nite
+	db $0a ; encounter rates: morn/day/nite
+	db 50
+	db $03
 	; morn
-	db 22,ZUBAT
-	db 22,GOLBAT
-	db 22,ZUBAT
-	db 21,RATICATE
-	db 20,GEODUDE
-	db 23,ONIX
-	db 23,ONIX
+		db SLUGMA ;15
+		db WOOPER ;10
+		db WOOPER ;10
+		db QUAGSIRE ;10
+		db TYROGUE ;10
+		db HITMONCHAN ;5
+		db MAGCARGO ;5
+		db LARVITAR ;5
+		db LARVITAR ;5
+		db LARVITAR ;5
+		db PUPITAR ;5
+		db PUPITAR ;5
+		db PUPITAR ;4
+		db PUPITAR ;3
+		db PUPITAR ;2
+		db PUPITAR ;1
 	; day
-	db 22,ZUBAT
-	db 22,GOLBAT
-	db 22,ZUBAT
-	db 21,RATICATE
-	db 20,GEODUDE
-	db 23,ONIX
-	db 23,ONIX
+		db SLUGMA ;15
+		db WOOPER ;10
+		db QUAGSIRE ;10
+		db LARVITAR ;10
+		db HITMONCHAN ;10
+		db HITMONCHAN ;5
+		db TYROGUE ;5
+		db MAGCARGO ;5
+		db PSYDUCK ;5
+		db PUPITAR ;5
+		db QUAGSIRE ;5
+		db PUPITAR ;5
+		db PUPITAR ;4
+		db GOLDUCK ;3
+		db PSYDUCK ;2
+		db PUPITAR ;1
 	; nite
-	db 22,ZUBAT
-	db 22,GOLBAT
-	db 22,QUAGSIRE
-	db 21,RATICATE
-	db 20,GEODUDE
-	db 23,ONIX
-	db 23,ONIX
+		db SLUGMA ;15
+		db LARVITAR ;10
+		db LARVITAR ;10
+		db QUAGSIRE ;10
+		db PSYDUCK ;10
+		db GOLDUCK ;5
+		db MAGCARGO ;5
+		db PUPITAR ;5
+		db PUPITAR ;5
+		db PUPITAR ;5
+		db HITMONCHAN ;5
+		db WOOPER ;5
+		db OCTILLERY ;4
+		db OCTILLERY ;3
+		db OCTILLERY ;2
+		db OCTILLERY ;1
 
 	db GROUP_SLOWPOKE_WELL_B1F, MAP_SLOWPOKE_WELL_B1F
 	db $05 ; encounter rates: morn/day/nite
@@ -871,12 +750,12 @@
 		db ONIX ;10
 		db WOBBUFFET ;5
 		db CORSOLA ;5
-		db SWINUB ;5
+		db TYROGUE ;5
 		db ONIX ;6
 		db STEELIX ;4
 		db STEELIX ;3
 		db GOLEM ;2
-		db ONIX ;2
+		db SWINUB ;2
 		db CROBAT ;1
 		db CROBAT ;1
 		db CROBAT ;1
@@ -972,31 +851,60 @@
 		db GOLEM ;1
 
 	db GROUP_MOUNT_MORTAR_2F_INSIDE, MAP_MOUNT_MORTAR_2F_INSIDE
-	db $0f,$0f,$0f ; encounter rates: morn/day/nite
+	db $0f ; encounter rates: morn/day/nite
+	db 45
+	db $01
 	; morn
-	db 31,GRAVELER
-	db 32,MACHOKE
-	db 31,GEODUDE
-	db 30,RATICATE
-	db 28,MACHOP
-	db 30,GOLBAT
-	db 30,GOLBAT
+		db PUPITAR ;20
+		db LARVITAR ;20
+		db POLIWHIRL ;10
+		db WOOPER ;10
+		db WOBBUFFET ;5
+		db CORSOLA ;5
+		db TYROGUE ;5
+		db HITMONLEE ;5
+		db ONIX ;4
+		db POLITOED ;4
+		db ONIX ;3
+		db POLITOED ;3
+		db STEELIX ;2
+		db QUAGSIRE ;2
+		db POLIWRATH ;1
+		db ONIX ;1
 	; day
-	db 31,GRAVELER
-	db 32,MACHOKE
-	db 31,GEODUDE
-	db 30,RATICATE
-	db 28,MACHOP
-	db 30,GOLBAT
-	db 30,GOLBAT
+		db PUPITAR ;20
+		db POLIWHIRL ;20
+		db LARVITAR ;10
+		db CORSOLA ;10
+		db QUAGSIRE ;5
+		db HITMONTOP ;5
+		db WOBBUFFET ;5
+		db WOOPER ;5
+		db POLIWRATH ;4
+		db ONIX ;4
+		db HITMONLEE ;3
+		db POLITOED ;3
+		db QUAGSIRE ;2
+		db HITMONLEE ;2
+		db QUAGSIRE ;1
+		db STEELIX ;1
 	; nite
-	db 31,GRAVELER
-	db 31,GEODUDE
-	db 30,RATICATE
-	db 30,GOLBAT
-	db 28,MARILL
-	db 32,GOLBAT
-	db 32,GOLBAT
+		db LARITAR ;20
+		db PUPITAR ;20
+		db LARVITAR ;10
+		db HITMONLEE ;10
+		db CORSOLA ;5
+		db WOBBUFFET ;5
+		db QUAGSIRE ;5
+		db HITMONLEE ;5
+		db POLIWHIRL ;4
+		db ONIX ;4
+		db ONIX ;3
+		db POLIWHIRL ;3
+		db STEELIX ;2
+		db POLIWHIRL ;2
+		db ONIX ;1
+		db POLITOED ;1
 
 	db GROUP_MOUNT_MORTAR_B1F, MAP_MOUNT_MORTAR_B1F
 	db $0f ; encounter rates: morn/day/nite
@@ -1110,113 +1018,17 @@
 		db SMOOCHUM ;1
 		db CROBAT ;1
 
-	db GROUP_ICE_PATH_B1F, MAP_ICE_PATH_B1F
-	db $05,$05,$05 ; encounter rates: morn/day/nite
-	; morn
-	db 22,SWINUB
-	db 23,ZUBAT
-	db 23,GOLBAT
-	db 24,SWINUB
-	db 25,GOLBAT
-	db 23,GOLBAT
-	db 22,JYNX
-	; day
-	db 22,SWINUB
-	db 23,ZUBAT
-	db 23,GOLBAT
-	db 24,SWINUB
-	db 25,GOLBAT
-	db 23,GOLBAT
-	db 22,JYNX
-	; nite
-	db 22,DELIBIRD
-	db 23,ZUBAT
-	db 23,GOLBAT
-	db 24,DELIBIRD
-	db 25,GOLBAT
-	db 23,GOLBAT
-	db 22,SNEASEL
+;	db GROUP_ICE_PATH_B1F, MAP_ICE_PATH_B1F
+;	db $05,$05,$05 ; encounter rates: morn/day/nite
 
-	db GROUP_ICE_PATH_B2F_MAHOGANY_SIDE, MAP_ICE_PATH_B2F_MAHOGANY_SIDE
-	db $05,$05,$05 ; encounter rates: morn/day/nite
-	; morn
-	db 23,SWINUB
-	db 24,ZUBAT
-	db 24,GOLBAT
-	db 25,SWINUB
-	db 26,GOLBAT
-	db 22,JYNX
-	db 24,JYNX
-	; day
-	db 23,SWINUB
-	db 24,ZUBAT
-	db 24,GOLBAT
-	db 25,SWINUB
-	db 26,GOLBAT
-	db 22,JYNX
-	db 24,JYNX
-	; nite
-	db 23,DELIBIRD
-	db 24,ZUBAT
-	db 24,GOLBAT
-	db 25,DELIBIRD
-	db 26,GOLBAT
-	db 22,SNEASEL
-	db 24,SNEASEL
+;	db GROUP_ICE_PATH_B2F_MAHOGANY_SIDE, MAP_ICE_PATH_B2F_MAHOGANY_SIDE
+;	db $05,$05,$05 ; encounter rates: morn/day/nite
 
-	db GROUP_ICE_PATH_B2F_BLACKTHORN_SIDE, MAP_ICE_PATH_B2F_BLACKTHORN_SIDE
-	db $05,$05,$05 ; encounter rates: morn/day/nite
-	; morn
-	db 23,SWINUB
-	db 24,ZUBAT
-	db 24,GOLBAT
-	db 25,SWINUB
-	db 26,GOLBAT
-	db 22,JYNX
-	db 24,JYNX
-	; day
-	db 23,SWINUB
-	db 24,ZUBAT
-	db 24,GOLBAT
-	db 25,SWINUB
-	db 26,GOLBAT
-	db 22,JYNX
-	db 24,JYNX
-	; nite
-	db 23,DELIBIRD
-	db 24,ZUBAT
-	db 24,GOLBAT
-	db 25,DELIBIRD
-	db 26,GOLBAT
-	db 22,SNEASEL
-	db 24,SNEASEL
+;	db GROUP_ICE_PATH_B2F_BLACKTHORN_SIDE, MAP_ICE_PATH_B2F_BLACKTHORN_SIDE
+;	db $05,$05,$05 ; encounter rates: morn/day/nite
 
-	db GROUP_ICE_PATH_B3F, MAP_ICE_PATH_B3F
-	db $05,$05,$05 ; encounter rates: morn/day/nite
-	; morn
-	db 24,SWINUB
-	db 25,ZUBAT
-	db 25,GOLBAT
-	db 26,SWINUB
-	db 22,JYNX
-	db 24,JYNX
-	db 26,JYNX
-	; day
-	db 24,SWINUB
-	db 25,ZUBAT
-	db 25,GOLBAT
-	db 26,SWINUB
-	db 22,JYNX
-	db 24,JYNX
-	db 26,JYNX
-	; nite
-	db 24,DELIBIRD
-	db 25,ZUBAT
-	db 25,GOLBAT
-	db 26,DELIBIRD
-	db 22,SNEASEL
-	db 24,SNEASEL
-	db 26,SNEASEL
+;	db GROUP_ICE_PATH_B3F, MAP_ICE_PATH_B3F
+;	db $05,$05,$05 ; encounter rates: morn/day/nite
 
 	db GROUP_WHIRL_ISLAND_NW, MAP_WHIRL_ISLAND_NW
 	db $0f ; encounter rates: morn/day/nite
@@ -1610,32 +1422,8 @@
 		db CORSOLA ;2
 		db CORSOLA ;1
 
-	db GROUP_WHIRL_ISLAND_LUGIA_CHAMBER, MAP_WHIRL_ISLAND_LUGIA_CHAMBER
-	db $0f,$0f,$0f ; encounter rates: morn/day/nite
-	; morn
-	db 25,KRABBY
-	db 26,ZUBAT
-	db 25,SEEL
-	db 27,KRABBY
-	db 28,GOLBAT
-	db 27,SEEL
-	db 27,SEEL
-	; day
-	db 25,KRABBY
-	db 26,ZUBAT
-	db 25,SEEL
-	db 27,KRABBY
-	db 28,GOLBAT
-	db 27,SEEL
-	db 27,SEEL
-	; nite
-	db 25,KRABBY
-	db 26,ZUBAT
-	db 25,KRABBY
-	db 27,KRABBY
-	db 28,GOLBAT
-	db 27,GOLBAT
-	db 27,GOLBAT
+;	db GROUP_WHIRL_ISLAND_LUGIA_CHAMBER, MAP_WHIRL_ISLAND_LUGIA_CHAMBER
+;	db $0f,$0f,$0f ; encounter rates: morn/day/nite
 
 	db GROUP_SILVER_CAVE_ROOM_1, MAP_SILVER_CAVE_ROOM_1
 	db $0f,$0f,$0f ; encounter rates: morn/day/nite
@@ -1860,7 +1648,7 @@
 	db GROUP_ROUTE_29, MAP_ROUTE_29
 	db $19 ; encounter rates: morn/day/nite
 	db 15
-	db 00
+	db $00
 	; morn
 		db HOPPIP ;30
 		db SENTRET ;10
@@ -1926,28 +1714,28 @@
 		db SPINARAK ;5
 		db SMOOCHUM ;5
 		db ELEKID ;5
-		db LEDIAN ;4
+		db MARILL ;4
 		db LEDIAN ;4
 		db SKIPLOOM ;3
 		db FURRET ;3
 		db SKIPLOOM ;2
-		db FURRET ;2
-		db ARIADOS ;1
+		db LEDIAN ;2
+		db AZUMARILL ;1
 		db ARIADOS ;1
 	; day
 		db PINECO ;20
 		db NATU ;20
 		db LEDYBA ;10
 		db SMOOCHUM ;10
-		db PINECO ;5
+		db MARILL ;5
 		db MAGBY ;5
 		db ELEKID ;5
-		db PINECO ;5
+		db MARILL ;5
 		db FURRET ;4
 		db LEDIAN ;4
-		db PINECO ;3
+		db MARILL ;3
 		db HOPPIP ;3
-		db PINECO ;2
+		db AZUMARILL ;2
 		db HOPPIP ;2
 		db FURRET ;1
 		db LEDIAN ;1
@@ -1958,18 +1746,18 @@
 		db ELEKID ;10
 		db MAGBY ;5
 		db SMOOCHUM ;5
-		db SPINARAK ;5
+		db MARILL ;5
 		db ARIADOS ;5
 		db LEDIAN ;4
 		db NOCTOWL ;4
-		db SPINARAK ;3
+		db MARILL ;3
 		db HOOTHOOT ;3
 		db ARIADOS ;2
 		db LEDIAN ;2
 		db LEDIAN ;1
-		db NOCTOWL ;1
+		db AZUMARILL ;1
 
-	db GROUP_ROUTE_31, MAP_ROUTE_31
+	db GROUP_, MAP_ROUTE_31
 	db $19 ; encounter rates: morn/day/nite
 	db 20
 	db $02
@@ -2032,20 +1820,20 @@
 	; morn
 		db SUNKERN ;20
 		db TOGEPI ;20
-		db TOTODILE;10
+		db TOTODILE ;10
 		db AIPOM ;10
 		db TOGETIC ;5
-		db SMEARGLE ;5
+		db WOOPER ;5
 		db MARILL ;5
 		db YANMA ;5
 		db AZUMARILL ;4
 		db CROCONAW ;4
-		db TOGETIC ;3
+		db QUAGSIRE ;3
 		db SUNFLORA ;3
 		db SUNFLORA ;2
-		db SUNFLORA  ;2
-		db YANMA ;1
-		db YANMA ;1
+		db SUNFLORA ;2
+		db WOOPER ;1
+		db WOOPER ;1
 	; day
 		db MARILL ;20
 		db TOGETIC ;20
@@ -2056,13 +1844,13 @@
 		db AZUMARILL ;5
 		db AIPOM ;5
 		db AZUMARILL ;4
-		db MARILL ;4
+		db WOOPER ;4
 		db YANMA ;3
-		db MARILL ;3
+		db WOOPER ;3
 		db YANMA ;2
-		db MARILL ;2
+		db WOOPER ;2
 		db CROCONAW ;1
-		db MARILL ;1
+		db QUAGSIRE ;1
 	; nite
 		db YANMA ;20
 		db MURKROW ;20
@@ -2070,7 +1858,7 @@
 		db NOCTOWL ;10
 		db HOUNDOUR ;5
 		db SMEARGLE ;5
-		db YANMA ;5
+		db WOOPER ;5
 		db HOOTHOOT ;5
 		db HOUNDOUR ;4
 		db NOCTOWL ;4
@@ -2078,7 +1866,7 @@
 		db HOUNDOOM ;3
 		db HOOTHOOT ;2
 		db TOTODILE ;2
-		db HOUNDOUR ;1
+		db QUAGSIRE ;1
 		db TOTODILE ;1
 
 	db GROUP_ROUTE_33, MAP_ROUTE_33
