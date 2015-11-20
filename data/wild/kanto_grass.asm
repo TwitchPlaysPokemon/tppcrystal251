@@ -108,32 +108,8 @@
 	db 40,GRAVELER
 	db 40,GRAVELER
 
-	db GROUP_TOHJO_FALLS, MAP_TOHJO_FALLS
-	db $0f,$0f,$0f ; encounter rates: morn/day/nite
-	; morn
-	db 22,ZUBAT
-	db 22,RATICATE
-	db 24,GOLBAT
-	db 21,SLOWPOKE
-	db 20,RATTATA
-	db 23,SLOWPOKE
-	db 23,SLOWPOKE
-	; day
-	db 22,ZUBAT
-	db 22,RATICATE
-	db 24,GOLBAT
-	db 21,SLOWPOKE
-	db 20,RATTATA
-	db 23,SLOWPOKE
-	db 23,SLOWPOKE
-	; nite
-	db 22,ZUBAT
-	db 22,RATICATE
-	db 24,GOLBAT
-	db 21,SLOWPOKE
-	db 20,RATTATA
-	db 23,SLOWPOKE
-	db 23,SLOWPOKE
+;	db GROUP_TOHJO_FALLS, MAP_TOHJO_FALLS
+;	db $0f,$0f,$0f ; encounter rates: morn/day/nite
 
 	db GROUP_ROUTE_1, MAP_ROUTE_1
 	db $19,$19,$19 ; encounter rates: morn/day/nite
@@ -703,58 +679,116 @@
 	db 14,NOCTOWL
 
 	db GROUP_ROUTE_26, MAP_ROUTE_26
-	db $19,$19,$19 ; encounter rates: morn/day/nite
+	db $19 ; encounter rates: morn/day/nite
+	db 60
+	db $02
 	; morn
-	db 28,DODUO
-	db 28,SANDSLASH
-	db 32,PONYTA
-	db 30,RATICATE
-	db 30,DODUO
-	db 30,ARBOK
-	db 30,ARBOK
+		db CHANSEY ;20
+		db ELECTRODE ;15
+		db BLISSEY ;10
+		db SKIPLOOM ;10
+		db SANDSLASH ;10
+		db CHANSEY ;5
+		db MEGANIUM ;5
+		db JUMPLUFF ;5
+		db DODUO ;6
+		db DODRIO ;4
+		db DODUO ;3
+		db MEGANIUM ;2
+		db SKIPLOOM ;2
+		db SKIPLOOM ;1
+		db SKIPLOOM ;1
+		db SKIPLOOM ;1
 	; day
-	db 28,DODUO
-	db 28,SANDSLASH
-	db 32,PONYTA
-	db 30,RATICATE
-	db 30,DODUO
-	db 30,ARBOK
-	db 30,ARBOK
+		db CHANSEY ;20
+		db ELECTRODE ;15
+		db DODUO ;10
+		db DODRIO ;10
+		db SANDSLASH ;10
+		db CHANSEY ;5
+		db DODUO ;5
+		db BLISSEY ;5
+		db MEGANIUM ;6
+		db MEGANIUM ;4
+		db BLISSEY ;3
+		db BLISSEY ;2
+		db BLISSEY ;2
+		db BLISSEY ;1
+		db BLISSEY ;1
+		db BLISSEY ;1
 	; nite
-	db 28,NOCTOWL
-	db 28,RATICATE
-	db 32,NOCTOWL
-	db 30,RATICATE
-	db 30,QUAGSIRE
-	db 30,QUAGSIRE
-	db 30,QUAGSIRE
-
+		db QUAGSIRE ;20
+		db CHANSEY ;15
+		db GOLBAT ;10
+		db SANDSLASH ;10
+		db POLIWHIRL ;10
+		db POLIWRATH ;5
+		db BLISSEY ;5
+		db ELECTRODE ;5
+		db GOLBAT ;6
+		db CROBAT ;4
+		db CROBAT ;3
+		db MEGANIUM ;2
+		db MEGANIUM ;2
+		db MEGANIUM ;1
+		db CROBAT ;1
+		db GOLBAT ;1
+	
 	db GROUP_ROUTE_27, MAP_ROUTE_27
-	db $19,$19,$19 ; encounter rates: morn/day/nite
+	db $19 ; encounter rates: morn/day/nite
+	db 60
+	db $02
 	; morn
-	db 28,DODUO
-	db 28,ARBOK
-	db 30,RATICATE
-	db 30,DODUO
-	db 32,PONYTA
-	db 30,DODRIO
-	db 30,DODRIO
+		db CHANSEY ;20
+		db ELECTRODE ;15
+		db BLISSEY ;10
+		db SKIPLOOM ;10
+		db SANDSLASH ;10
+		db CHANSEY ;5
+		db MEGANIUM ;5
+		db JUMPLUFF ;5
+		db DODUO ;6
+		db DODRIO ;4
+		db DODUO ;3
+		db MEGANIUM ;2
+		db SKIPLOOM ;2
+		db SKIPLOOM ;1
+		db SKIPLOOM ;1
+		db SKIPLOOM ;1
 	; day
-	db 28,DODUO
-	db 28,ARBOK
-	db 30,RATICATE
-	db 30,DODUO
-	db 32,PONYTA
-	db 30,DODRIO
-	db 30,DODRIO
+		db CHANSEY ;20
+		db ELECTRODE ;15
+		db DODUO ;10
+		db DODRIO ;10
+		db SANDSLASH ;10
+		db CHANSEY ;5
+		db DODUO ;5
+		db BLISSEY ;5
+		db MEGANIUM ;6
+		db MEGANIUM ;4
+		db BLISSEY ;3
+		db BLISSEY ;2
+		db BLISSEY ;2
+		db BLISSEY ;1
+		db BLISSEY ;1
+		db BLISSEY ;1
 	; nite
-	db 28,QUAGSIRE
-	db 28,NOCTOWL
-	db 30,RATICATE
-	db 30,QUAGSIRE
-	db 32,NOCTOWL
-	db 32,NOCTOWL
-	db 32,NOCTOWL
+		db QUAGSIRE ;20
+		db CHANSEY ;15
+		db GOLBAT ;10
+		db SANDSLASH ;10
+		db POLIWHIRL ;10
+		db POLIWRATH ;5
+		db BLISSEY ;5
+		db ELECTRODE ;5
+		db GOLBAT ;6
+		db CROBAT ;4
+		db CROBAT ;3
+		db MEGANIUM ;2
+		db MEGANIUM ;2
+		db MEGANIUM ;1
+		db CROBAT ;1
+		db GOLBAT ;1
 
 	db GROUP_ROUTE_28, MAP_ROUTE_28
 	db $19,$19,$19 ; encounter rates: morn/day/nite

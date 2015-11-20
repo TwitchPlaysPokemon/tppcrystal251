@@ -76410,40 +76410,41 @@ treemon_map: macro
 	map \1
 	db  \2 ; treemon set
 endm
-	treemon_map ROUTE_26, 4 ;set the number table for each area to use here, zero is no mons at all
-	treemon_map ROUTE_27, 4 ; mons that go in each table are set below in the tables
+	treemon_map ROUTE_26, 16 
+	treemon_map ROUTE_27, 16
 	treemon_map ROUTE_28, 0
-	treemon_map ROUTE_29, 3
-	treemon_map ROUTE_30, 3
-	treemon_map ROUTE_31, 3
+	treemon_map ROUTE_29, 1
+	treemon_map ROUTE_30, 2
+	treemon_map ROUTE_31, 2
 	treemon_map ROUTE_32, 4
-	treemon_map ROUTE_33, 2
-	treemon_map ROUTE_34, 3
-	treemon_map ROUTE_35, 3
-	treemon_map ROUTE_36, 3
-	treemon_map ROUTE_37, 3
-	treemon_map ROUTE_38, 3
-	treemon_map ROUTE_39, 3
+	treemon_map ROUTE_33, 4
+	treemon_map ROUTE_34, 9
+	treemon_map ROUTE_35, 9
+	treemon_map ROUTE_36, 9
+	treemon_map ROUTE_37, 9
+	treemon_map ROUTE_38, 11
+	treemon_map ROUTE_39, 11
 	treemon_map ROUTE_40, 0
 	treemon_map ROUTE_41, 0
-	treemon_map ROUTE_42, 2
-	treemon_map ROUTE_43, 5
-	treemon_map ROUTE_44, 1
-	treemon_map ROUTE_45, 1
-	treemon_map ROUTE_46, 1
+	treemon_map ROUTE_42, 13
+	treemon_map ROUTE_43, 14
+	treemon_map ROUTE_44, 15 
+	treemon_map ROUTE_45, 0
+	treemon_map ROUTE_46, 0
 	treemon_map NEW_BARK_TOWN, 0
 	treemon_map CHERRYGROVE_CITY, 0
-	treemon_map VIOLET_CITY, 0
-	treemon_map AZALEA_TOWN, 2
+	treemon_map VIOLET_CITY, 3
+	treemon_map AZALEA_TOWN, 5
 	treemon_map CIANWOOD_CITY, 0
 	treemon_map GOLDENROD_CITY, 0
 	treemon_map OLIVINE_CITY, 0
-	treemon_map ECRUTEAK_CITY, 0
-	treemon_map MAHOGANY_TOWN, 0
-	treemon_map LAKE_OF_RAGE, 5
+	treemon_map ECRUTEAK_CITY, 10
+	treemon_map MAHOGANY_TOWN, 14
+	treemon_map LAKE_OF_RAGE, 6
 	treemon_map BLACKTHORN_CITY, 0
 	treemon_map SILVER_CAVE_OUTSIDE, 0
-	treemon_map ILEX_FOREST, 6
+	treemon_map ILEX_FOREST, 8
+;	treemon_map BATTLE_TOWER, 12 DOES THIS EXIST
 	db -1
 ; b82c5
 
@@ -76493,111 +76494,74 @@ TreeMons: ; b82e8 ;what tables are assosiate with wwhat numbers
 	dw TreeMons6 ;6
 	dw RockMons ;7
 	dw TreeMons7 ;8
-
+	dw TreeMons8 ;9
+	dw TreeMons9 ;10
+	dw TreeMons10 ;11
+	dw TreeMons11 ;12
+	dw TreeMons12 ;13
+	dw TreeMons13 ;14
+	dw TreeMons14 ;15
+	dw TreeMons15 ;16
+	
 ; Two tables each (normal, rare).
 ; Structure:
 ;	db  %, species, level
 
-TreeMons1: ; 1
-	db 50, SPEAROW,    10 ;encounter table. can be any legnth. first number is encounter rate out of 100(not including chance of no encounter), then mon, then level.
-	db 15, SPEAROW,    10 ;first table is the common table
-	db 15, SPEAROW,    10
-	db 10, AIPOM,      10
-	db  5, AIPOM,      10
-	db  5, AIPOM,      10
-	db -1 ;always end tables with a -1
-
-	db 50, SPEAROW,    10 ;the second table in each area is the "rare" table
-	db 15, HERACROSS,  10
-	db 15, HERACROSS,  10
-	db 10, AIPOM,      10
-	db  5, AIPOM,      10
-	db  5, AIPOM,      10
+TreeMons1: ; 1 - Route 29, New Bark Town
+	db 50, PINECO,		25
+	db 30, SENTRET		25
+	db 20, SPINARAK		25
 	db -1
 
-TreeMons2: ; 2
-	db 50, SPEAROW,    10
-	db 15, EKANS,      10
-	db 15, SPEAROW,    10
-	db 10, AIPOM,      10
-	db  5, AIPOM,      10
-	db  5, AIPOM,      10
+	db 55, PIDGEY,		35
+	db 30, PIDGEOTTO,	40
+	db 15, PIDGEOT,		50
+	db -1
+	
+TreeMons2: ; 2 - Route 30-31
+	db 40, PINECO,		25
+	db 20, LEDYBA,		25
+	db 20, HOPPIP,		25
+	db 20, SUNKERN,		25
 	db -1
 
-	db 50, SPEAROW,    10
-	db 15, HERACROSS,  10
-	db 15, HERACROSS,  10
-	db 10, AIPOM,      10
-	db  5, AIPOM,      10
-	db  5, AIPOM,      10
+	db 65, SPEAROW, 	35
+	db 35, FEAROW,		50
 	db -1
 
-TreeMons3: ; 3
-	db 50, HOOTHOOT,   10
-	db 15, SPINARAK,   10
-	db 15, LEDYBA,     10
-	db 10, EXEGGCUTE,  10
-	db  5, EXEGGCUTE,  10
-	db  5, EXEGGCUTE,  10
+TreeMons3: ; 3 - Violet City
+	db 100, PINECO,		25
 	db -1
 
-	db 50, HOOTHOOT,   10
-	db 15, PINECO,     10
-	db 15, PINECO,     10
-	db 10, EXEGGCUTE,  10
-	db  5, EXEGGCUTE,  10
-	db  5, EXEGGCUTE,  10
+	db 50, WEEPINBELL,	35
+	db 25, NIDORINO,	25
+	db 25, NIDORINA,	25
 	db -1
 
-TreeMons4: ; 4
-	db 50, HOOTHOOT,   10
-	db 15, EKANS,      10
-	db 15, HOOTHOOT,   10
-	db 10, EXEGGCUTE,  10
-	db  5, EXEGGCUTE,  10
-	db  5, EXEGGCUTE,  10
+TreeMons4: ; 4 - Route 32-33
+	db 50, PINECO,		30
+	db 20, SUNKERN,		30
+	db 20, AIPOM,		30
+	db 10, SMEARGLE,	30
 	db -1
 
-	db 50, HOOTHOOT,   10
-	db 15, PINECO,     10
-	db 15, PINECO,     10
-	db 10, EXEGGCUTE,  10
-	db  5, EXEGGCUTE,  10
-	db  5, EXEGGCUTE,  10
+	db 80, RATICATE,	50
+	db 20, RATTATA,		35
 	db -1
 
-TreeMons5: ; 5
-	db 50, HOOTHOOT,   10
-	db 15, VENONAT,    10
-	db 15, HOOTHOOT,   10
-	db 10, EXEGGCUTE,  10
-	db  5, EXEGGCUTE,  10
-	db  5, EXEGGCUTE,  10
+TreeMons5: ; 5 - Azalea Town
+	db 100, PINECO,		30
 	db -1
 
-	db 50, HOOTHOOT,   10
-	db 15, PINECO,     10
-	db 15, PINECO,     10
-	db 10, EXEGGCUTE,  10
-	db  5, EXEGGCUTE,  10
-	db  5, EXEGGCUTE,  10
+	db 80, EKANS,		35
+	db 20, ARBOK,		50
 	db -1
 
-TreeMons6: ; 6
-	db 50, HOOTHOOT,   10
-	db 15, PINECO,     10
-	db 15, PINECO,     10
-	db 10, NOCTOWL,    10
-	db  5, BUTTERFREE, 10
-	db  5, BEEDRILL,   10
+TreeMons6: ; 6 - Dragons Den
+	db 100, PINECO,		30
 	db -1
 
-	db 50, HOOTHOOT,   10
-	db 15, CATERPIE,   10
-	db 15, WEEDLE,     10
-	db 10, HOOTHOOT,   10
-	db  5, METAPOD,    10
-	db  5, KAKUNA,     10
+	db 100, FORRETRESS, 40
 	db -1
 
 RockMons: ; 7
@@ -76605,7 +76569,91 @@ RockMons: ; 7
 	db 10, SHUCKLE,    15
 	db -1
 
-TreeMons6: ;8, use if needed
+TreeMons7: ;8 - Ilex Forest
+	db 60, PINECO,		35
+	db 20, AIPOM,		35
+	db 10, BUTTERFREE,	45
+	db 10, BEEDRILL,	45
+	db -1
+	
+	db 50, METAPOD,		35
+	db 50, KAKUNA,		35
+	db -1
+
+TreeMons8: ;9 - Route 34-37
+	db 75, PINECO,		35
+	db 25, TEDDIURSA,	35
+	db -1
+	
+	db 80, PIKACHU,		35
+	db 80, RAICHU,		50
+	db -1
+	
+TreeMons9: ;10 - Ecruteak City
+	db 100, PINECO,		35
+	db -1
+	
+	db 65, GASTLY,		35
+	db 30, HAUNTER,		45
+	db 5, GENGAR,		5
+	db -1
+	
+TreeMons10: ;11 - Route 38-39
+	db 75, PINECO, 		40
+	db 25, LEDIAN,		45
+	db -1
+	
+	db 80, MEOWTH,		40
+	db 20, PERSIAN,		55
+	db -1
+	
+TreeMons11: ;12 - Battle Tower
+	db 75, PINECO,		40
+	db 25, ARIADOS,		45
+	db -1
+	
+	db 80, DROWZEE,		40
+	db 20, HYPNO,		55
+	
+TreeMons12: ;13 - Route 42
+	db 50, PINECO,		40
+	db 30, TOGETIC,		55
+	db 20, TOGEPI,		40
+	db -1
+
+	db 80, MANKEY,		40
+	db 20, PRIMEAPE,	55
+	db -1
+
+TreeMons13: ;14 - Mahogany Town, Route 43
+	db 50, PINECO,		40
+	db 30, YANMA,		45
+	db 20, FURRET,		50
+	db -1
+
+	db 80, VENONAT,		40
+	db 20, VENOMOTH,	55
+	db -1
+
+TreeMons14: ;15 - Route 44
+	db 50, PINECO,		45
+	db 30, SNEASEL,		50
+	db 20, DELIBIRD,	45
+	db -1
+
+	db 65, ZUBAT,		45
+	db 25, GOLBAT,		55
+	db 10, CROBAT,		60
+	db -1
+	
+TreeMons15: ;16 - Route 26-27
+	db 100, PINECO, 	45
+	db -1
+
+	db 80, DODUO, 		45
+	db 20, DODRIO,		60
+	db -1
+	
 ; b83e5
 
 GetTreeMon: ; b83e5
