@@ -76410,8 +76410,8 @@ treemon_map: macro
 	map \1
 	db  \2 ; treemon set
 endm
-	treemon_map ROUTE_26, 4
-	treemon_map ROUTE_27, 4
+	treemon_map ROUTE_26, 4 ;set the number table for each area to use here, zero is no mons at all
+	treemon_map ROUTE_27, 4 ; mons that go in each table are set below in the tables
 	treemon_map ROUTE_28, 0
 	treemon_map ROUTE_29, 3
 	treemon_map ROUTE_30, 3
@@ -76447,7 +76447,7 @@ endm
 	db -1
 ; b82c5
 
-RockMonMaps: ; b82c5
+RockMonMaps: ; b82c5 the table used by rock smash mons is 7. don't use this for trees
 	treemon_map CIANWOOD_CITY, 7
 	treemon_map ROUTE_40, 7
 	treemon_map DARK_CAVE_VIOLET_ENTRANCE, 7
@@ -76459,7 +76459,7 @@ GetTreeMons: ; b82d2
 ; Return the address of TreeMon table a in hl.
 ; Return nc if table a doesn't exist.
 
-	cp 8 ; if >7, quit
+	cp 8 ; if >7, quit needs changing if more tables are added
 	jr nc, .quit
 
 	and a ;if 0 quit
@@ -76483,31 +76483,31 @@ GetTreeMons: ; b82d2
 	ret
 ; b82e8
 
-TreeMons: ; b82e8
-	dw TreeMons1
-	dw TreeMons1
-	dw TreeMons2
-	dw TreeMons3
-	dw TreeMons4
-	dw TreeMons5
-	dw TreeMons6
-	dw RockMons
-	dw TreeMons1
+TreeMons: ; b82e8 ;what tables are assosiate with wwhat numbers
+	dw TreeMons1 ;0 -- doesn't matter, fails anyway
+	dw TreeMons1 ;1
+	dw TreeMons2 ;2
+	dw TreeMons3 ;3
+	dw TreeMons4 ;4
+	dw TreeMons5 ;5
+	dw TreeMons6 ;6
+	dw RockMons ;7
+	dw TreeMons7 ;8
 
 ; Two tables each (normal, rare).
 ; Structure:
 ;	db  %, species, level
 
-TreeMons1: ; b82fa
-	db 50, SPEAROW,    10
-	db 15, SPEAROW,    10
+TreeMons1: ; 1
+	db 50, SPEAROW,    10 ;encounter table. can be any legnth. first number is encounter rate out of 100(not including chance of no encounter), then mon, then level.
+	db 15, SPEAROW,    10 ;first table is the common table
 	db 15, SPEAROW,    10
 	db 10, AIPOM,      10
 	db  5, AIPOM,      10
 	db  5, AIPOM,      10
-	db -1
+	db -1 ;always end tables with a -1
 
-	db 50, SPEAROW,    10
+	db 50, SPEAROW,    10 ;the second table in each area is the "rare" table
 	db 15, HERACROSS,  10
 	db 15, HERACROSS,  10
 	db 10, AIPOM,      10
@@ -76515,7 +76515,7 @@ TreeMons1: ; b82fa
 	db  5, AIPOM,      10
 	db -1
 
-TreeMons2: ; b8320
+TreeMons2: ; 2
 	db 50, SPEAROW,    10
 	db 15, EKANS,      10
 	db 15, SPEAROW,    10
@@ -76532,7 +76532,7 @@ TreeMons2: ; b8320
 	db  5, AIPOM,      10
 	db -1
 
-TreeMons3: ; b8346
+TreeMons3: ; 3
 	db 50, HOOTHOOT,   10
 	db 15, SPINARAK,   10
 	db 15, LEDYBA,     10
@@ -76549,7 +76549,7 @@ TreeMons3: ; b8346
 	db  5, EXEGGCUTE,  10
 	db -1
 
-TreeMons4: ; b836c
+TreeMons4: ; 4
 	db 50, HOOTHOOT,   10
 	db 15, EKANS,      10
 	db 15, HOOTHOOT,   10
@@ -76566,7 +76566,7 @@ TreeMons4: ; b836c
 	db  5, EXEGGCUTE,  10
 	db -1
 
-TreeMons5: ; b8392
+TreeMons5: ; 5
 	db 50, HOOTHOOT,   10
 	db 15, VENONAT,    10
 	db 15, HOOTHOOT,   10
@@ -76583,7 +76583,7 @@ TreeMons5: ; b8392
 	db  5, EXEGGCUTE,  10
 	db -1
 
-TreeMons6: ; b83b8
+TreeMons6: ; 6
 	db 50, HOOTHOOT,   10
 	db 15, PINECO,     10
 	db 15, PINECO,     10
@@ -76600,49 +76600,56 @@ TreeMons6: ; b83b8
 	db  5, KAKUNA,     10
 	db -1
 
-RockMons: ; b83de
+RockMons: ; 7
 	db 90, KRABBY,     15
 	db 10, SHUCKLE,    15
 	db -1
+
+TreeMons6: ;8, use if needed
 ; b83e5
 
 GetTreeMon: ; b83e5
 	push hl ; hl = table location
-	call GetTreeScore ; a = 0 if bad, 1 if good and 2 if rare
-	pop hl
-	and a
-	jr z, .bad
-	cp 1
-	jr z, .good
-	cp 2
-	jr z, .rare
-	ret
-
-.bad
-	ld a, 10 ; 1 n 10 by default
-	call RandomRange
-	and a
-	jr nz, NoTreeMon
-	jr SelectTreeMon
-
-.good
-	ld a, 10
-	call RandomRange
-	cp 5
-	jr nc, NoTreeMon
-	jr SelectTreeMon
-
-.rare
-	ld a, 10
+	ld a, 10 ;set all tees to have a 80% encounter chance, with some optimisation
 	call RandomRange
 	cp 8
 	jr nc, NoTreeMon
+	call GetTreeScore ; a = 0 if bad(50% chance), 1 if good (40% chance) and 2 if rare (10% chance)
+	pop hl
+		;and a
+		;jr z, .bad
+		;cp 1
+		;jr z, .good
+	cp 2 ;if rare, go down to other table, else jump to tree mon
+	jr z, .rare
+	jr SelectTreeMon
+	ret
+
+	;.bad
+		;ld a, 10 ; 1 in 10 by default
+		;call RandomRange
+		;and a
+		;jr nz, NoTreeMon
+		;jr SelectTreeMon
+
+	;.good
+		;ld a, 10
+		;call RandomRange
+		;cp 5
+		;jr nc, NoTreeMon
+		;jr SelectTreeMon
+
+.rare
+		;ld a, 10
+		;call RandomRange
+		;cp 8
+		;jr nc, NoTreeMon
 		;jr .skip ;really? it's the very next line, just fall through
-.skip
+		;.skip
 	ld a, [hli]
 	cp -1
-	jr nz, .skip ;go to bottom of common table, probably a faster way to do ths
-	jr SelectTreeMon ;could just jr to it and let it's ret take you back like with the other branches
+	jr nz, .rare ;go to bottom of common table
+	; jr SelectTreeMon ;could just fall through to it and let it's ret take you back like with the other branches
 
 ; b841f
 
@@ -76687,12 +76694,12 @@ GetTreeScore: ; b8443
 	ld c, a
 	ld a, [Buffer1]
 	sub c
-	jr z, .rare
-	jr nc, .ok
+	jr z, .rare ;if exact match, then rare tree
+	jr nc, .ok ; if now negative, up by 10
 	add 10
 .ok
 	cp 5
-	jr c, .good
+	jr c, .good ;if 1-4 (0 is rare), else bad
 
 .bad
 	xor a
@@ -84021,7 +84028,7 @@ BillsPCWithdrawFuncRelease: ; e26d8 (38:66d8)
 
 BillsPCWithdrawFuncCancel: ; e272b (38:672b)
 	ld a, $0
-	ld [wcf63], a
+	ld [wcf63], a ;put 0 in ????
 	ret
 ; e2731 (38:6731)
 
@@ -85432,14 +85439,14 @@ Functione307c: ; e307c (38:707c)
 	ret
 
 Functione30fa: ; e30fa (38:70fa)
-	ld a, [wcb2b]
+	ld a, [wcb2b] 
 	ld hl, wcb2a
-	add [hl]
-	ld [CurPartyMon], a
+	add [hl] ; add ??? and ???, make slot of mon being deposited
+	ld [CurPartyMon], a ;put it in curr party mon
 	ld a, $1
-	call GetSRAMBank
-	ld a, [CurPartyMon]
-	ld hl, $b082
+	call GetSRAMBank ;set sram bank to 1 and open it for editing
+	ld a, [CurPartyMon] ;a = slot working with
+	ld hl, $b082 ;location of box mon nicknames
 	call GetNick
 	call CloseSRAM
 	xor a

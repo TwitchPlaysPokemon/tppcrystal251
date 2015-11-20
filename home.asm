@@ -292,11 +292,11 @@ SkipNames:: ; 0x30f4
 ; Skip a names.
 	ld bc, NAME_LENGTH
 	and a
-	ret z
+	ret z ;ret if name to get is zero
 .loop
 	add hl, bc
 	dec a
-	jr nz, .loop
+	jr nz, .loop ;bc = name to get
 	ret
 ; 0x30fe
 
@@ -1832,7 +1832,7 @@ GetNick:: ; 38a2
 	push hl
 	push bc
 
-	call SkipNames
+	call SkipNames ;bc = loc of the name to get
 	ld de, StringBuffer1
 
 	push de
