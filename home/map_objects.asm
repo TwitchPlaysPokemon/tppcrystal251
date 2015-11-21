@@ -147,7 +147,7 @@ Function1875:: ; 1875
 ; 188e
 
 Function188e:: ; 188e
-	cp $14
+	cp $14 ;if standing tile is $14 then ret zero, otherwise cp $1c
 	ret z
 	cp $1c
 	ret

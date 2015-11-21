@@ -420,7 +420,7 @@ CheckTileEvent: ; 96874
 
 
 Function968c7:: ; 968c7
-	ld hl, wd452
+	ld hl, wd452 ;load ???
 	ld a, [hl]
 	and a
 	ret z

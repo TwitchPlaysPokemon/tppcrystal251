@@ -33668,7 +33668,7 @@ Function2a0e7:: ; 2a0e7
 	xor a
 	ret
 
-.asm_2a0f8 ;start battle, makes more sense for it to not start a battle as this is where "don't start" jumps to
+.asm_2a0f8 ;no battle
 	xor a ; BATTLETYPE_NORMAL
 	ld [wd22e], a
 	ld [BattleType], a
@@ -33971,10 +33971,10 @@ Function2a1df:: ; 2a1df
 	ld hl, PartyMon1HP ;load HP location into hl
 	ld bc, PartyMon2 - PartyMon1 - 1 ; find the size of the struct -1?
 .asm_2a1eb
-	ld a, [hli] ;after HP is maxHP
+	ld a, [hli] 
 	or [hl]
-	jr nz, .asm_2a1f2 ;jump if hp =/= maxhp
-	add hl, bc ;move down to next mon and try again
+	jr nz, .asm_2a1f2 ;jump if hp is no 0
+	add hl, bc ; if current mon is FNT, move down to next mon and try again
 	jr .asm_2a1eb
 
 .asm_2a1f2
@@ -52527,11 +52527,11 @@ Function80404:: ; 80404
 	cp $f0
 	jr z, .asm_80420
 	ld a, [StandingTile]
-	call CheckIceTile
+	call CheckIceTile ;if $23 or $2b, scf and ret
 	jr nc, .asm_8041e
 	ld a, [PlayerState]
 	cp PLAYER_SLIP
-	jr nz, .asm_80420
+	jr nz, .asm_80420 ;If player is slipping scf and ret, otherwise just ret
 
 .asm_8041e
 	scf
