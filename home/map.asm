@@ -1107,21 +1107,21 @@ GetScriptByte:: ; 0x26d4
 	rst Bankswitch
 
 	ld hl, ScriptPos
-	ld c, [hl];ld scriptpos's location into c
+	ld c, [hl];ld scriptpos's location into bc
 	inc hl
-	ld b, [hl];ld scriptpos' loc+1 into b
+	ld b, [hl]
 
-	ld a, [bc]; ???
+	ld a, [bc]; put the script into a?
 
 	inc bc
-	ld [hl], b
+	ld [hl], b ;ld old scriptpos + 1 back into scriptpos
 	dec hl
 	ld [hl], c
 
-	ld b, a
+	ld b, a ;put script? into b for bank switch
 	pop af
 	rst Bankswitch
-	ld a, b
+	ld a, b ;back into a
 	pop bc
 	pop hl
 	ret

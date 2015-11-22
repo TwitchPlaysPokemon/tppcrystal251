@@ -166,7 +166,7 @@ Function97cfd:: ; 97cfd if encounters are on(?) , is on encounter enabled tile (
 	ret
 ; 97d23
 
-Function97d23: ; 97d23
+Function97d23: ; 97d23 ;choose bug catching mons
 	call Function97d64 ;return with a = 1 if no encounter, otherwise set encounter
 	ret nc
 	call Function97d31 ; choose mon and level to spawn
@@ -232,7 +232,7 @@ Function97d64: ; 97d64
 	ld a, [StandingTile] 
 	call Function188e ;if standing tile is $14 then ret zero, otherwise cp $1c
 	ld b, $66 
-	jr z, .asm_97d70 ;if exactly $14 or $1c then b = 66, otherwise b = 33. b = encounter rate
+	jr z, .asm_97d70 ;if exactly $14 or $1c then b = %66, otherwise b = %33. b = encounter rate
 	ld b, $33
 
 .asm_97d70

@@ -49578,24 +49578,24 @@ UnknownScript_0x506e9: ; 0x506e9
 	end
 ; 0x506ef
 
-Function506ef: ; 506ef
-	callba Function97cfd
+Function506ef: ; 506ef probably sweet scent
+	callba Function97cfd 
 	jr nc, .asm_5071e
-	ld hl, StatusFlags2
+	ld hl, StatusFlags2 ;check bug catching timer
 	bit 2, [hl]
-	jr nz, .asm_50712
-	callba Function2a111
+	jr nz, .asm_50712 ; if on, check bug contest encounter
+	callba Function2a111 ;b = encounter chance
 	ld a, b
 	and a
-	jr z, .asm_5071e
-	callba Function2a14f
+	jr z, .asm_5071e ;if zero jump ahead
+	callba Function2a14f ; check for normal encounters
 	jr nz, .asm_5071e
 	jr .asm_50718
 
 .asm_50712
 	callba Function97d31
 
-.asm_50718
+.asm_50718 
 	ld a, $1
 	ld [ScriptVar], a
 	ret
@@ -76412,7 +76412,7 @@ treemon_map: macro
 endm
 	treemon_map ROUTE_26, 16 
 	treemon_map ROUTE_27, 16
-	treemon_map ROUTE_28, 0
+;	treemon_map ROUTE_28, 0
 	treemon_map ROUTE_29, 1
 	treemon_map ROUTE_30, 2
 	treemon_map ROUTE_31, 2
@@ -76424,27 +76424,27 @@ endm
 	treemon_map ROUTE_37, 9
 	treemon_map ROUTE_38, 11
 	treemon_map ROUTE_39, 11
-	treemon_map ROUTE_40, 0
-	treemon_map ROUTE_41, 0
+	;treemon_map ROUTE_40, 0
+	;treemon_map ROUTE_41, 0
 	treemon_map ROUTE_42, 13
 	treemon_map ROUTE_43, 14
 	treemon_map ROUTE_44, 15 
-	treemon_map ROUTE_45, 0
-	treemon_map ROUTE_46, 0
+	;treemon_map ROUTE_45, 0
+	;treemon_map ROUTE_46, 0
 	treemon_map NEW_BARK_TOWN, 0
-	treemon_map CHERRYGROVE_CITY, 0
+	;treemon_map CHERRYGROVE_CITY, 0
 	treemon_map VIOLET_CITY, 3
 	treemon_map AZALEA_TOWN, 5
-	treemon_map CIANWOOD_CITY, 0
-	treemon_map GOLDENROD_CITY, 0
-	treemon_map OLIVINE_CITY, 0
+	;treemon_map CIANWOOD_CITY, 0
+	;treemon_map GOLDENROD_CITY, 0
+	;treemon_map OLIVINE_CITY, 0
 	treemon_map ECRUTEAK_CITY, 10
 	treemon_map MAHOGANY_TOWN, 14
 	treemon_map LAKE_OF_RAGE, 6
-	treemon_map BLACKTHORN_CITY, 0
-	treemon_map SILVER_CAVE_OUTSIDE, 0
+	;treemon_map BLACKTHORN_CITY, 0
+	;treemon_map SILVER_CAVE_OUTSIDE, 0
 	treemon_map ILEX_FOREST, 8
-;	treemon_map BATTLE_TOWER, 12 DOES THIS EXIST
+	treemon_map BATTLE_TOWER_OUTSIDE, 12 ;yes but the area with trees is the outside bit
 	db -1
 ; b82c5
 
@@ -76460,7 +76460,7 @@ GetTreeMons: ; b82d2
 ; Return the address of TreeMon table a in hl.
 ; Return nc if table a doesn't exist.
 
-	cp 8 ; if >7, quit needs changing if more tables are added
+	cp 17 ; if >17, quit needs changing if more tables are added
 	jr nc, .quit
 
 	and a ;if 0 quit
@@ -76595,7 +76595,7 @@ TreeMons9: ;10 - Ecruteak City
 	
 	db 65, GASTLY,		35
 	db 30, HAUNTER,		45
-	db 5, GENGAR,		5
+	db 5, GENGAR,		55
 	db -1
 	
 TreeMons10: ;11 - Route 38-39

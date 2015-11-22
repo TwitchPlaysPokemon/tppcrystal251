@@ -31,7 +31,7 @@ UnknownScript_0x6ab13: ; 0x6ab13
 ; 0x6ab17
 
 UnknownScript_0x6ab17: ; 0x6ab17
-	checkflag ENGINE_BUG_CONTEST_TIMER
+	checkflag ENGINE_BUG_CONTEST_TIMER ;if bug catching is still on
 	iftrue UnknownScript_0x6ab20
 	dotrigger $0
 	return
@@ -42,7 +42,7 @@ UnknownScript_0x6ab20: ; 0x6ab20
 	return
 ; 0x6ab23
 
-UnknownScript_0x6ab23: ; 0x6ab23
+UnknownScript_0x6ab23: ; 0x6ab23 seems to be bug catching contest triggers
 	checkevent EVENT_JUMPSTD_0016_2D2
 	iftrue UnknownScript_0x6ab46
 	checkcode VAR_WEEKDAY
@@ -63,7 +63,7 @@ UnknownScript_0x6ab46: ; 0x6ab46
 	return
 ; 0x6ab47
 
-UnknownScript_0x6ab47: ; 0x6ab47
+UnknownScript_0x6ab47: ; 0x6ab47 run if enterng while contest is still on
 	spriteface $0, $1
 	loadfont
 	checkcode VAR_CONTESTTIME
@@ -257,7 +257,7 @@ UnknownScript_0x6ac91: ; 0x6ac91
 	end
 ; 0x6acaf
 
-UnknownScript_0x6acaf: ; 0x6acaf
+UnknownScript_0x6acaf: ; 0x6acaf bug catching contest prizes
 	writetext UnknownText_0x6b97f
 	keeptextopen
 	verbosegiveitem SUN_STONE, 1
