@@ -117,6 +117,7 @@ ReadCaughtData: ; 4f134
 
 	inc hl
 	ld a, [PlayerID + 1]
+	cp [hl]
 	jr nz, .asm_4f15f
 
 	ld a, 0
