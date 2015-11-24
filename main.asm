@@ -1984,194 +1984,140 @@ CheckNickErrors:: ; 669f
 _Multiply:: ; 66de
 
 ; hMultiplier is one byte.
-	ld a, 8
-	ld b, a
-
+	ld a, [hMultiplier]
+	cp 1
+	ret z
+	and a
+	jr z, .fill
+	ld c, a
+	ld a, [hMultiplicand]
+	ld e, a
+	ld a, [hMultiplicand + 1]
+	ld h, a
+	ld a, [hMultiplicand + 2]
+	ld l, a
 	xor a
-	ld [hMultiplicand - 1], a
-	ld [hMathBuffer + 1], a
-	ld [hMathBuffer + 2], a
-	ld [hMathBuffer + 3], a
-	ld [hMathBuffer + 4], a
+	ld d, a
+	call .fill
+	ld b, 8
 
 .loop
-	ld a, [hMultiplier]
-	srl a
-	ld [hMultiplier], a
+	srl c
 	jr nc, .next
 
-	ld a, [hMathBuffer + 4]
-	ld c, a
-	ld a, [hMultiplicand + 2]
-	add c
-	ld [hMathBuffer + 4], a
-
-	ld a, [hMathBuffer + 3]
-	ld c, a
-	ld a, [hMultiplicand + 1]
-	adc c
-	ld [hMathBuffer + 3], a
-
-	ld a, [hMathBuffer + 2]
-	ld c, a
-	ld a, [hMultiplicand + 0]
-	adc c
-	ld [hMathBuffer + 2], a
-
-	ld a, [hMathBuffer + 1]
-	ld c, a
-	ld a, [hMultiplicand - 1]
-	adc c
-	ld [hMathBuffer + 1], a
+	ld a, [hProduct + 3]
+	add l
+	ld [hProduct + 3], a
+	ld a, [hProduct + 2]
+	adc h
+	ld [hProduct + 2], a
+	ld a, [hProduct + 1]
+	adc e
+	ld [hProduct + 1], a
+	ld a, [hProduct]
+	adc d
+	ld [hProduct], a
 
 .next
+	sla l
+	rl h
+	rl e
+	rl d
 	dec b
-	jr z, .done
+	jr nz, .loop
+	ret
 
-; hMultiplicand <<= 1
-
-	ld a, [hMultiplicand + 2]
-	add a
-	ld [hMultiplicand + 2], a
-
-	ld a, [hMultiplicand + 1]
-	rla
-	ld [hMultiplicand + 1], a
-
-	ld a, [hMultiplicand + 0]
-	rla
-	ld [hMultiplicand + 0], a
-
-	ld a, [hMultiplicand - 1]
-	rla
-	ld [hMultiplicand - 1], a
-
-	jr .loop
-
-.done
-	ld a, [hMathBuffer + 4]
-	ld [hProduct + 3], a
-
-	ld a, [hMathBuffer + 3]
-	ld [hProduct + 2], a
-
-	ld a, [hMathBuffer + 2]
+.fill
+	ld [hProduct], a
 	ld [hProduct + 1], a
-
-	ld a, [hMathBuffer + 1]
-	ld [hProduct + 0], a
-
+	ld [hProduct + 2], a
+	ld [hProduct + 3], a
 	ret
 ; 673e
 
 _Divide:: ; 673e
-	xor a
-	ld [hMathBuffer + 0], a
-	ld [hMathBuffer + 1], a
-	ld [hMathBuffer + 2], a
-	ld [hMathBuffer + 3], a
-	ld [hMathBuffer + 4], a
-
-	ld a, 9
-	ld e, a
-
-.loop
-	ld a, [hMathBuffer + 0]
-	ld c, a
-	ld a, [hDividend + 1]
-	sub c
-	ld d, a
-
 	ld a, [hDivisor]
-	ld c, a
-	ld a, [hDividend + 0]
-	sbc c
-	jr c, .asm_6767
-
-	ld [hDividend + 0], a
-
-	ld a, d
-	ld [hDividend + 1], a
-
-	ld a, [hMathBuffer + 4]
-	inc a
-	ld [hMathBuffer + 4], a
-
-	jr .loop
-
-.asm_6767
+	and a
+	jp z, .div0
+	ld d, a
+	ld c, hDividend % $100
+	ld e, 0
+	ld l, e
+	
+.loop
+	push bc
+	ld b, 8
+	ld a, [$ff00+c]
+	ld h, a
+.loop2
+	sla h
+	rl e
+	ld a, e
+	jr c, .carry
+	cp d
+	jr c, .skip
+.carry
+	sub d
+	ld e, a
+	inc l
+.skip
 	ld a, b
 	cp 1
 	jr z, .done
-
-	ld a, [hMathBuffer + 4]
-	add a
-	ld [hMathBuffer + 4], a
-
-	ld a, [hMathBuffer + 3]
-	rla
-	ld [hMathBuffer + 3], a
-
-	ld a, [hMathBuffer + 2]
-	rla
-	ld [hMathBuffer + 2], a
-
-	ld a, [hMathBuffer + 1]
-	rla
-	ld [hMathBuffer + 1], a
-
-	dec e
-	jr nz, .asm_6798
-
-	ld e, 8
-	ld a, [hMathBuffer + 0]
-	ld [hDivisor], a
-	xor a
-	ld [hMathBuffer + 0], a
-
-	ld a, [hDividend + 1]
-	ld [hDividend + 0], a
-
-	ld a, [hDividend + 2]
-	ld [hDividend + 1], a
-
-	ld a, [hDividend + 3]
-	ld [hDividend + 2], a
-
-.asm_6798
-	ld a, e
-	cp 1
-	jr nz, .asm_679e
+	sla l
 	dec b
-
-.asm_679e
-	ld a, [hDivisor]
-	srl a
-	ld [hDivisor], a
-
-	ld a, [hMathBuffer + 0]
-	rr a
-	ld [hMathBuffer + 0], a
-
-	jr .loop
-
+	jr .loop2
 .done
-	ld a, [hDividend + 1]
-	ld [hDivisor], a
-
-	ld a, [hMathBuffer + 4]
-	ld [hDividend + 3], a
-
-	ld a, [hMathBuffer + 3]
-	ld [hDividend + 2], a
-
-	ld a, [hMathBuffer + 2]
+	ld a, c
+	add hMathBuffer - hDividend
+	ld c, a
+	ld a, l
+	ld [$ff00+c], a
+	pop bc
+	inc c
+	dec b
+	jr nz, .loop
+	
+	xor a
+	ld [hDividend], a
 	ld [hDividend + 1], a
-
-	ld a, [hMathBuffer + 1]
-	ld [hDividend + 0], a
-
+	ld [hDividend + 2], a
+	ld [hDividend + 3], a
+	ld a, h
+	ld [hDivisor], a ; I believe the remainder is stored here…
+	ld a, c
+	sub hDividend % $100
+	ld b, a
+	ld a, c
+	add hMathBuffer - hDividend - 1
+	ld c, a
+	ld a, [$ff00+c]
+	ld [hDividend + 3], a
+	dec b
+	ret z
+	dec c
+	ld a, [$ff00+c]
+	ld [hDividend + 2], a
+	dec b
+	ret z
+	dec c
+	ld a, [$ff00+c]
+	ld [hDividend + 1], a
+	dec b
+	ret z
+	dec c
+	ld a, [$ff00+c]
+	ld [hDividend], a
 	ret
+	
+.div0 ; OH SHI-
+	ld a, $ff
+	ld [hDividend], a
+	ld [hDividend + 1], a
+	ld [hDividend + 2], a
+	ld [hDividend + 3], a
+	ret
+	
 ; 67c1
 
 ItemAttributes: ; 67c1

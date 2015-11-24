@@ -44,9 +44,11 @@ Multiply:: ; 3119
 ; All values are big endian.
 	push hl
 	push bc
+	push de
 
 	callab _Multiply
 
+	pop de
 	pop bc
 	pop hl
 	ret
