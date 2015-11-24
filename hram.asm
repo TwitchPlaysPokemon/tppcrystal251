@@ -72,3 +72,6 @@ hCGB               EQU $ffe6
 hSGB               EQU $ffe7
 hDMATransfer       EQU $ffe8
 
+; LUA serial transfer
+hLSB               EQU $fff1
+hLSC               EQU $fff2

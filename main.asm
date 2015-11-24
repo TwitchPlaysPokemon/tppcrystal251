@@ -37601,8 +37601,11 @@ INCLUDE "engine/fruit_trees.asm"
 
 AIChooseMove:
 IF DEF(BEESAFREE)
-	xor a
-	ld [$ffee], a
+	call ResetLUASerial
+	ld a, BEESAFREE_ASKMOVE
+	rst LUASerial
+	; tbd. battle information can be sent via LUASerial.
+	; I need someone to layout what I need to send. 
 	ret
 ELSE
 
