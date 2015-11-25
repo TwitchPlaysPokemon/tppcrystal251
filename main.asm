@@ -37601,11 +37601,27 @@ INCLUDE "engine/fruit_trees.asm"
 
 AIChooseMove:
 IF DEF(BEESAFREE)
+; In link battle, the player chooses moves, not the AI.
+	ld a, [InLinkBattle]
+	and a
+	ret nz
+
+; No use picking a move if there's no choice.
+	callba Function3e8d1
+	ret nz
+	
 	call ResetLUASerial
 	ld a, BEESAFREE_ASKMOVE
 	rst LUASerial
-	; tbd. battle information can be sent via LUASerial.
-	; I need someone to layout what I need to send. 
+	ld hl, EnemyMonMoves
+	ld c, a
+	ld b, 0
+	add hl, bc
+	ld a, [hl]
+	ld [CurEnemyMove], a
+	ld a, c
+	ld [CurEnemyMoveNum], a
+	ret
 	ret
 ELSE
 
