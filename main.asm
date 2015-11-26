@@ -56750,10 +56750,10 @@ MenuData2_0x882be: ; 882be
 	db 5 ; items
 	db "NEW NAME@"
 Unknown_882c9: ; 882c9
-	db "CHRIS@"
-	db "MAT@"
-	db "ALLAN@"
-	db "JON@"
+	db "RUST@"
+	db "CARMINE@"
+	db "DUSTIN@"
+	db "EVAN@"
 	db 2 ; displacement
 	db " NAME @" ; title
 ; 882e5
@@ -56772,10 +56772,10 @@ MenuData2_0x882ee: ; 882ee
 	db 5 ; items
 	db "NEW NAME@"
 Unknown_882f9: ; 882f9
-	db "KRIS@"
-	db "AMANDA@"
-	db "JUANA@"
-	db "JODI@"
+	db "AZURE@"
+	db "CELESTE@"
+	db "DAPHNE@"
+	db "AURORA@"
 	db 2 ; displacement
 	db " NAME @" ; title
 ; 88318
