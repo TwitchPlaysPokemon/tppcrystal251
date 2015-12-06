@@ -11,9 +11,13 @@ SECTION "rst10",ROM0[Bankswitch]
 	ld [hROMBank], a
 	ld [MBC3RomBank], a
 	ret
-
+IF DEF(BEESAFREE)
+SECTION "luaserial",ROM0[LUASerial]
+	jp _LUASerial
+ELSE
 SECTION "rst18",ROM0[$18]
 	rst $38
+ENDC
 
 SECTION "rst20",ROM0[$20]
 	rst $38

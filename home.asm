@@ -6,6 +6,7 @@ NULL::
 
 INCLUDE "rst.asm"
 INCLUDE "interrupts.asm"
+INCLUDE "home/highhome.asm"
 
 
 SECTION "Header", ROM0[$100]

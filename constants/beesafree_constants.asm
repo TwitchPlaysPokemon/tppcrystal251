@@ -1,0 +1,12 @@
+; External AI commands
+
+; hLSC controls
+BEESAFREE_LSC_TRANSFERRING  EQU $ff
+BEESAFREE_LSC_COMPLETED     EQU 0
+
+; Sends
+BEESAFREE_SND_RESET         EQU 0
+BEESAFREE_SND_ASKMOVE       EQU 1
+
+; Responses
+BEESAFREE_RES_RESET         EQU 0
