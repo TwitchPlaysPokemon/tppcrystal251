@@ -49,13 +49,13 @@ GetMapTrigger:: ; 2147
 	ld a, BANK(MapTriggers)
 	rst Bankswitch
 
-	ld hl, MapTriggers
+	ld hl, MapTriggers ;load location of the map trigger list
 .asm_2151
 	push hl
 	ld a, [hli]
-	cp $ff
+	cp $ff ;if not found, ret
 	jr z, .asm_2167
-	cp b
+	cp b ;if incorrect map, loop
 	jr nz, .asm_2160
 	ld a, [hli]
 	cp c
@@ -64,7 +64,7 @@ GetMapTrigger:: ; 2147
 
 .asm_2160
 	pop hl
-	ld de, $0004
+	ld de, $0004 ; 4 = size of a maptrigger
 	add hl, de
 	jr .asm_2151
 
@@ -73,7 +73,7 @@ GetMapTrigger:: ; 2147
 	jr .asm_216d
 
 .asm_216a
-	ld e, [hl]
+	ld e, [hl] ;load it into de
 	inc hl
 	ld d, [hl]
 

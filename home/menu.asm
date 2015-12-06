@@ -3,15 +3,15 @@
 
 LoadMenuDataHeader:: ; 0x1d35
 	call Function1d3c
-	call Function1c00
+	call Function1c00 ;draw square?
 	ret
 
 Function1d3c:: ; 0x1d3c
 	ld de, wcf81
 	ld bc, $0010
-	call CopyBytes
+	call CopyBytes ;copy from hl to ??
 	ld a, [hROMBank]
-	ld [wcf8a], a
+	ld [wcf8a], a ;load bank into ??
 	ret
 ; 0x1d4b
 

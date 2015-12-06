@@ -2769,7 +2769,7 @@ Function71ac: ; 71ac
 	xor a
 
 .asm_71b9
-	ld [ScriptVar], a
+	ld [ScriptVar], a ;scriptvar = 1 if an egg
 	call GetPokemonName
 	jp Function746e
 ; 71c2
@@ -3903,23 +3903,23 @@ Function839e:: ; 839e
 ; 8417
 
 Function8417:: ; 8417
-	ld a, d
-	call GetMapObject
+	ld a, d ;put d in a
+	call GetMapObject ;get map object a
 	ld hl, $0000
-	add hl, bc
-	ld a, [hl]
+	add hl, bc ;put that object into bc
+	ld a, [hl] ;load what's there into a
 	cp $d
-	jr nc, .asm_8437
+	jr nc, .asm_8437 ;if >= 13 return, otherwise continue
 	ld d, a
 	ld a, e
-	call GetMapObject
+	call GetMapObject 
 	ld hl, $0000
 	add hl, bc
 	ld a, [hl]
 	cp $d
 	jr nc, .asm_8437
-	ld e, a
-	call Function8439
+	ld e, a ;same as the first augment
+	call Function8439 ; = direction to face(?)
 	ret
 
 .asm_8437
@@ -3929,15 +3929,15 @@ Function8417:: ; 8417
 
 Function8439: ; 8439
 	ld a, d
-	call Function1ae5
-	ld hl, OBJECT_MAP_X
+	call Function1ae5 ;go down object structs d times, return the found location into bc
+	ld hl, OBJECT_MAP_X 
 	add hl, bc
-	ld a, [hl]
+	ld a, [hl] ;load x coordinate into b
 	ld hl, OBJECT_MAP_Y
 	add hl, bc
-	ld c, [hl]
+	ld c, [hl] ;load y coordinate into c
 	ld b, a
-	push bc
+	push bc ; 
 	ld a, e
 	call Function1ae5
 	ld hl, OBJECT_MAP_X
@@ -3945,48 +3945,48 @@ Function8439: ; 8439
 	ld d, [hl]
 	ld hl, OBJECT_MAP_Y
 	add hl, bc
-	ld e, [hl]
+	ld e, [hl]; same as above for the second augment, but with de
 	pop bc
-	ld a, b
+	ld a, b; NOTE logic comments are incomplete
 	sub d
-	jr z, .asm_846c
-	jr nc, .asm_8460
-	cpl
-	inc a
+	jr z, .asm_846c ;if both are on the same x axis, jump
+	jr nc, .asm_8460 ;if 1.x > 2.x, jump ahead
+	cpl ;invert and increment 1.x-2.x
+	inc a ;increase it by 1
 
 .asm_8460
-	ld h, a
+	ld h, a ;store  1.x - 2.x in h
 	ld a, c
 	sub e
 	jr z, .asm_847a
-	jr nc, .asm_8469
+	jr nc, .asm_8469 ;same as above with y
 	cpl
 	inc a
 
 .asm_8469
-	sub h
-	jr c, .asm_847a
+	sub h ;x difference - y difference
+	jr c, .asm_847a ;If x difference > y difference, jump, else fall through
 
-.asm_846c
+.asm_846c ; if y difference > x difference or x difference = 0. c can be y1 or y1 - y2
 	ld a, c
 	cp e
-	jr z, .asm_8488
-	jr c, .asm_8476
-	ld d, $0
+	jr z, .asm_8488 ;if y1 = y2
+	jr c, .asm_8476 ;if y is difference OR y1 > y2
+	ld d, $0 ;else d = 0
 	and a
 	ret
 
-.asm_8476
-	ld d, $1
+.asm_8476 ;if x is same OR y1 > y2
+	ld d, $1 ;d = 1
 	and a
 	ret
 
-.asm_847a
+.asm_847a ;if y1 = y2 OR x difference > y difference. b is x1 - x2
 	ld a, b
 	cp d
-	jr z, .asm_8488
-	jr c, .asm_8484
-	ld d, $3
+	jr z, .asm_8488 ; if b is twice d and d > y difference, d = 0 and scf
+	jr c, .asm_8484 ; id 2*d > b, d = 2
+	ld d, $3 ;else d = 3
 	and a
 	ret
 
@@ -4256,35 +4256,35 @@ _PrintNum:: ; c4c7
 ; Print c digits of the b-byte value at hl.
 ; Allows 2 to 7 digits. For 1-digit numbers, add
 ; the value to char "0" instead of calling PrintNum.
-; Some extra flags can be given in bits 5-7 of b.
+; Some extra flags can be given in bits 5-7 of b. 
 
 	push bc
 
 	bit 5, b
-	jr z, .main
+	jr z, .main ;if bit 5 of b is off, go to main
 	bit 7, b
-	jr nz, .bit_7
+	jr nz, .bit_7 ;if bit z is on, jump
 	bit 6, b
 	jr z, .main
 
-.bit_7
+.bit_7 ;if bit 5 of b is off AND (7 is on OR 6 is off)
 	ld a, $f0
-	ld [hli], a
-	res 5, b
+	ld [hli], a ;input 240 first
+	res 5, b ;reset bit 5
 
 .main
-	xor a
-	ld [$ffb3], a
+	xor a ;a = 0
+	ld [$ffb3], a ;0 out these variables
 	ld [$ffb4], a
 	ld [$ffb5], a
 	ld a, b
-	and $f
+	and $f ;check first 4 bits only
 	cp 1
-	jr z, .byte
+	jr z, .byte ;if bit 1 only then byte, if bit 2 only then word, else long. deterines legnth of lord to fill with
 	cp 2
 	jr z, .word
 
-.long
+.long ;put a in a variable based on the legnth of the fill
 	ld a, [de]
 	ld [$ffb4], a
 	inc de
@@ -4297,16 +4297,16 @@ _PrintNum:: ; c4c7
 	ld [$ffb6], a
 	push de
 
-	ld d, b
+	ld d, b ;d holds the length/options byte b
 	ld a, c
 	swap a
 	and $f
-	ld e, a
+	ld e, a ;back nyble of a is in front nyble of e
 	ld a, c
 	and $f
-	ld b, a
+	ld b, a ;b = front nyble of a
 	ld c, 0
-	cp 2
+	cp 2 ;jump to correct number of bytes
 	jr z, .two
 	cp 3
 	jr z, .three
@@ -4318,11 +4318,11 @@ _PrintNum:: ; c4c7
 	jr z, .six
 
 .seven
-	ld a, 1000000 / $10000 % $100
+	ld a, 1000000 / $10000 % $100 ; = 15
 	ld [$ffb7], a
-	ld a, 1000000 / $100 % $100
+	ld a, 1000000 / $100 % $100 ; = 66
 	ld [$ffb8], a
-	ld a, 1000000 % $100
+	ld a, 1000000 % $100 ; = 0
 	ld [$ffb9], a
 	call .PrintDigit
 	call .AdvancePointer
@@ -4434,16 +4434,16 @@ _PrintNum:: ; c4c7
 ; c5cb
 
 .PrintDigit: ; c5cb (3:45cb)
-	dec e
+	dec e 
 	jr nz, .ok
 	ld a, "0"
-	ld [$ffb3], a
+	ld [$ffb3], a ;if no remaining flags, 0 this out
 .ok
-	ld c, 0
+	ld c, 0 
 .asm_c5d4
-	ld a, [$ffb7]
+	ld a, [$ffb7] ; b =first didgit of number to fill out
 	ld b, a
-	ld a, [$ffb4]
+	ld a, [$ffb4] ;0 unless long, otherwise contents of de
 	ld [$ffba], a
 	cp b
 	jr c, .asm_c624
@@ -6745,15 +6745,15 @@ UnknownText_0xd1d0: ; 0xd1d0
 ; 0xd1d5
 
 _ReceiveItem:: ; d1d5
-	call Functiond27b
-	jp nz, Functiond29c
+	call Functiond27b ;if hl = numitems, run additem function for main bag
+	jp nz, Functiond29c ;insert item into main bag, ret c if succsessful
 	push hl
-	call CheckItemPocket
+	call CheckItemPocket ;poket to place in = wd142
 	pop de
 	ld a, [wd142]
 	dec a
 	ld hl, Tabled1e9
-	rst JumpTable
+	rst JumpTable ;run function for appropriote pocket
 	ret
 ; d1e9
 
@@ -6842,12 +6842,12 @@ _CheckItem:: ; d244
 	call Functiond27b
 	jr nz, .asm_d278
 	push hl
-	call CheckItemPocket
+	call CheckItemPocket ;poket to place in = wd142
 	pop de
 	ld a, [wd142]
 	dec a
 	ld hl, .data_d257
-	rst JumpTable
+	rst JumpTable 
 	ret
 
 .data_d257
@@ -6888,14 +6888,14 @@ _CheckItem:: ; d244
 
 Functiond27b: ; d27b
 	ld a, l
-	cp NumItems % $100
+	cp NumItems % $100 ;if not equal to numitems / 256
 	ret nz
 	ld a, h
-	cp NumItems / $100
+	cp NumItems / $100 ;num items / 256 instead
 	ret
 ; d283
 
-GetPocketCapacity: ; d283
+GetPocketCapacity: ; d283 c = max items in main bag if de = numItems, max item slots in PC if equal to PCItems, max item slots in ball bag otherwise
 	ld c, MAX_ITEMS
 	ld a, e
 	cp NumItems % $100
@@ -6918,42 +6918,42 @@ GetPocketCapacity: ; d283
 	ret
 ; d29c
 
-Functiond29c: ; d29c
+Functiond29c: ; d29c insert item curitem of quantity wd10c into bag hl, return c if succsessful
 	ld d, h
 	ld e, l
-	inc hl
-	ld a, [CurItem]
+	inc hl ;hl = first item slot?
+	ld a, [CurItem] ;c = item
 	ld c, a
 	ld b, 0
 .asm_d2a5
-	ld a, [hli]
+	ld a, [hli] ;load item in that slot into a
 	cp $ff
-	jr z, .asm_d2bd
-	cp c
+	jr z, .asm_d2bd ;if ff end of list, jump to check number of slots left in bag
+	cp c ;if not same as item to place, next slot and try again
 	jr nz, .asm_d2ba
 	ld a, 99
-	sub [hl]
-	add b
-	ld b, a
-	ld a, [wd10c]
-	cp b
-	jr z, .asm_d2c6
+	sub [hl] ;sub current quantity from 99 to make space left
+	add b ; add previous space of this item type
+	ld b, a ;load total space into b
+	ld a, [wd10c] ;load in quantity to add
+	cp b ;if quantity to add is less then or equal to space left, end loop
+	jr z, .asm_d2c6 ;if space without taking up slots, skip slot checking
 	jr c, .asm_d2c6
 
 .asm_d2ba
-	inc hl
+	inc hl ;to next item and loop
 	jr .asm_d2a5
 
 .asm_d2bd
-	call GetPocketCapacity
-	ld a, [de]
+	call GetPocketCapacity ;get max item slots, put in c
+	ld a, [de] ;load current item slots used into a
 	cp c
-	jr c, .asm_d2c6
+	jr c, .asm_d2c6 ; proceed if bag not full, else ret nc
 	and a
 	ret
 
 .asm_d2c6
-	ld h, d
+	ld h, d ;put top of bag in hl, item to place in a, quantity in another variable
 	ld l, e
 	ld a, [CurItem]
 	ld c, a
@@ -6963,25 +6963,25 @@ Functiond29c: ; d29c
 	inc hl
 	ld a, [hli]
 	cp $ff
-	jr z, .asm_d2ef
+	jr z, .asm_d2ef ;if end of bag, place in new bag slot
 	cp c
-	jr nz, .asm_d2d2
+	jr nz, .asm_d2d2 ;if not same item, jump
 	ld a, [wd10d]
-	add [hl]
+	add [hl] ;add hl to remaining(?) items to place
 	cp $64
-	jr nc, .asm_d2e6
-	ld [hl], a
+	jr nc, .asm_d2e6 ;if total amount is >= 100, jump
+	ld [hl], a ;else load into bag and ret c
 	jr .asm_d2fd
 
 .asm_d2e6
-	ld [hl], $63
+	ld [hl], $63 ;load 99 into bag, then reduce the ammount to add by the amount added to the bag this way
 	sub $63
 	ld [wd10d], a
-	jr .asm_d2d2
+	jr .asm_d2d2 ;loop
 
 .asm_d2ef
 	dec hl
-	ld a, [CurItem]
+	ld a, [CurItem] ;load item into new bag slot
 	ld [hli], a
 	ld a, [wd10d]
 	ld [hli], a
@@ -8706,62 +8706,62 @@ Functiondcb1: ; dcb1
 	ret
 ; dcb6
 
-Functiondcb6: ; dcb6
+Functiondcb6: ; dcb6 store box mon moves and PP
 
 	ld a, b
 	ld hl, sBoxMons
-	ld bc, sBoxMon1End - sBoxMon1
-	call AddNTimes
-	ld b, h
+	ld bc, sBoxMon1End - sBoxMon1 ;size of a box mon
+	call AddNTimes ;go down to slot a
+	ld b, h ;store new location in bc
 	ld c, l
-	ld hl, sBoxMon1PP - sBoxMon1
-	add hl, bc
-	push hl
-	push bc
+	ld hl, sBoxMon1PP - sBoxMon1 ;space between PP and head of block
+	add hl, bc ; go to correct slot's pp
+	push hl ;store PP location
+	push bc ;store start of correct block
 	ld de, TempMonPP
 	ld bc, NUM_MOVES
-	call CopyBytes
-	pop bc
-	ld hl, sBoxMon1Moves - sBoxMon1
+	call CopyBytes ;copy PP into mon
+	pop bc ; = start of correct block
+	ld hl, sBoxMon1Moves - sBoxMon1 ;find moves
 	add hl, bc
-	push hl
+	push hl ;store moves location
 	ld de, TempMonMoves
 	ld bc, NUM_MOVES
-	call CopyBytes
-	pop hl
-	pop de
+	call CopyBytes ;copy moves into correct slot
+	pop hl ;moves loc
+	pop de ;pp loc
 
-	ld a, [wcfa9]
+	ld a, [wcfa9] ;preserve variables
 	push af
 	ld a, [MonType]
 	push af
 	ld b, 0
 .asm_dcec
-	ld a, [hli]
+	ld a, [hli]; a = top move
 	and a
-	jr z, .asm_dd18
-	ld [TempMonMoves+0], a
-	ld a, BOXMON
+	jr z, .asm_dd18 ;jump if 0
+	ld [TempMonMoves+0], a ;load the move into temp moves
+	ld a, BOXMON ;put 2 in montype
 	ld [MonType], a
 	ld a, b
-	ld [wcfa9], a
+	ld [wcfa9], a ;put move slot in variable
 	push bc
 	push hl
 	push de
-	callba Functionf8ec
+	callba Functionf8ec ;get max pp of moveslot wcfa9 in move list hl, put result in wd265
 	pop de
 	pop hl
 	ld a, [wd265]
-	ld b, a
+	ld b, a ;put max PP in b
 	ld a, [de]
-	and $c0
-	add b
-	ld [de], a
+	and $c0 ;a = pp ups used on move
+	add b ;a = full pp data
+	ld [de], a ;load into PP
 	pop bc
-	inc de
+	inc de ;move to next slot
 	inc b
 	ld a, b
-	cp NUM_MOVES
+	cp NUM_MOVES ;loop until all slots done, or move = 0(no move)
 	jr c, .asm_dcec
 
 .asm_dd18
@@ -9745,7 +9745,7 @@ GivePoke:: ; e277
 
 .asm_e3a6
 	pop de
-	call Functione3de
+	call Functione3de ;InitNickname
 
 .asm_e3b2
 	pop bc
@@ -9779,14 +9779,14 @@ UnknownText_0xe3d9: ; 0xe3d9
 	db "@"
 ; 0xe3de
 
-Functione3de: ; e3de
+Functione3de: ; e3de InitNickname
 	push de
-	call Function1d6e
-	call Function2ed3
+	call Function1d6e ; LoadStandardMenuDataHeader
+	call Function2ed3 ; DisableSpriteUpdates
 	pop de
 	push de
 	ld b, $0
-	callba Function116c1
+	callba Function116c1 ;NamingScreen
 	pop hl
 	ld de, StringBuffer1
 	call InitName
@@ -10555,7 +10555,7 @@ Function11490: ; 11490
 	ld [wd46d], a
 	call UpdateTime
 	ld hl, wdc35
-	call Function11613
+	call Function11613 ;store the time in a variable
 	ret
 ; 114a4
 
@@ -10767,7 +10767,7 @@ Function115cc: ; 115cc
 ; 115cf
 
 Function115cf: ; 115cf
-	xor a
+	xor a ;why, the very next line puts something in a
 	jr Function11605
 ; 115d2
 
@@ -10822,7 +10822,7 @@ Function115f8: ; 115f8
 
 Function11605
 	ld a, [CurDay]
-	ld c, a
+	ld c, a ;load current day?
 	sbc [hl]
 	jr nc, .asm_1160e
 	add 140 ; 20 weeks
@@ -15491,29 +15491,29 @@ UnknownScript_0x1369a: ; 0x1369a
 ; 0x1369d
 
 Function1369d: ; 1369d
-	call ContestScore
-	callba Function105f79
-	call Function13819
-	ld a, [wd00a]
+	call ContestScore ;calculate score and put it in hMultiplicand and hProduct
+	callba Function105f79 ;save high score if new high score(?)
+	call Function13819 ;input NPC and player scores and sort by who wins in d002 through d011
+	ld a, [wd00a] ;third place trainer number (1 is player, 2 and up is NPC)
 	call Function13730
-	ld a, [wd00b]
-	ld [wd265], a
+	ld a, [wd00b] ;third place trainer mon
+	ld [wd265], a 
 	call GetPokemonName
-	ld hl, UnknownText_0x13719
+	ld hl, UnknownText_0x13719 ;show third place text
 	call PrintText
 	ld a, [EndFlypoint]
 	call Function13730
 	ld a, [MovementBuffer]
 	ld [wd265], a
 	call GetPokemonName
-	ld hl, UnknownText_0x13702
+	ld hl, UnknownText_0x13702 ;same for second
 	call PrintText
 	ld a, [DefaultFlypoint]
 	call Function13730
 	ld a, [wd003]
 	ld [wd265], a
 	call GetPokemonName
-	ld hl, UnknownText_0x136eb
+	ld hl, UnknownText_0x136eb ; and first
 	call PrintText
 	jp Function13807
 ; 136eb
@@ -15579,54 +15579,54 @@ UnknownText_0x1372b: ; 0x1372b
 
 Function13730: ; 13730
 	dec a
-	jr z, .asm_13777
-	ld c, a
+	jr z, .asm_13777 ;if player, jump
+	ld c, a ;bc = contestent num -1
 	ld b, 0
 	ld hl, Unknown_13783
 	add hl, bc
-	add hl, bc
+	add hl, bc ;jump to contestent address, put in hl
 	ld a, [hli]
 	ld h, [hl]
 	ld l, a
-	ld a, [hli]
+	ld a, [hli] ;put triner class in c
 	ld c, a
-	push hl
+	push hl ;name address
 	push bc
-	callab Function3952d
+	callab Function3952d ;stringbuffer 1 holds trainer class text
 	ld hl, StringBuffer1
-	ld de, wd016
+	ld de, wd016 ;inset into a variable
 	ld bc, $000d
 	call CopyBytes
 	ld hl, wd016
 .asm_13757
-	ld a, [hli]
+	ld a, [hli] ;load first letter into a
 	cp $50
-	jr nz, .asm_13757
-	dec hl
-	ld [hl], $7f
-	inc hl
-	ld d, h
+	jr nz, .asm_13757 ;if not end of string check next letter
+	dec hl ;go back 1 to end of string
+	ld [hl], $7f ;load text box border into string in place of end of string
+	inc hl ;go back up
+	ld d, h ;load location into de
 	ld e, l
-	pop bc
-	pop hl
-	push de
-	ld a, [hl]
+	pop bc ;c is trainer class
+	pop hl ;is now name address
+	push de ;de is location of last char before end of string
+	ld a, [hl] ;load name address into b
 	ld b, a
-	callab Function3994c
+	callab Function3994c ;put trainer name in stringbuffer1
 	ld hl, StringBuffer1
 	pop de
 	ld bc, $000a
-	jp CopyBytes
+	jp CopyBytes ; put name after trainer class, then ret
 
 .asm_13777
-	ld hl, PlayerName
+	ld hl, PlayerName ;load playername into string instead, then ret
 	ld de, wd016
 	ld bc, $000b
 	jp CopyBytes
 ; 13783
 
 Unknown_13783: ; 13783
-	dw Unknown_13799
+	dw Unknown_13799 ;repeated as never chosen?
 	dw Unknown_13799
 	dw Unknown_137a4
 	dw Unknown_137af
@@ -15701,101 +15701,101 @@ Unknown_137fc:
 ; 13807
 
 Function13807: ; 13807
-	ld hl, wd00a
+	ld hl, wd00a ;third place trainer number
 	ld de, $fffc
 	ld b, $3
 .asm_1380f
 	ld a, [hl]
 	cp $1
-	jr z, .asm_13818
-	add hl, de
-	dec b
-	jr nz, .asm_1380f
+	jr z, .asm_13818 ;if player, ret with b = place
+	add hl, de ; add -4 to try next place
+	dec b ; dec 1
+	jr nz, .asm_1380f ;loop until 0 (which shows player is not in top 3)
 
 .asm_13818
-	ret
+	ret ;b = players place
 ; 13819
 
 Function13819: ; 13819
-	call Function13833
-	call Function138b0
-	ld hl, wd00e
+	call Function13833 ;clear flypoint and what's after it
+	call Function138b0 ;put top 3 NPC contestents, mons and scores into variables wd002 through wd200d
+	ld hl, wd00e ;slot to compare with other contestents
 	ld a, $1
-	ld [hli], a
-	ld a, [wdf9c]
+	ld [hli], a ;load player data into d00e through d011
+	ld a, [wdf9c] ;caught mon species
 	ld [hli], a
 	ld a, [hProduct]
 	ld [hli], a
 	ld a, [hMultiplicand]
 	ld [hl], a
-	call Function1383e
+	call Function1383e ;sort player score amongst AI to find players place
 	ret
 ; 13833
 
 Function13833: ; 13833
 	ld hl, DefaultFlypoint
-	ld b, $c
+	ld b, $c ;loop 12 times
 	xor a
 .asm_13839
-	ld [hli], a
+	ld [hli], a ;0 out default flypoint and 11 places after
 	dec b
 	jr nz, .asm_13839
 	ret
 ; 1383e
 
 Function1383e: ; 1383e
-	ld de, wd010
-	ld hl, wd004
-	ld c, $2
-	call StringCmp
-	jr c, .asm_1386b
-	ld hl, EndFlypoint
-	ld de, wd00a
+	ld de, wd010 ; score for to sort
+	ld hl, wd004 ; current high score
+	ld c, $2 ;legnth 2
+	call StringCmp ;compare scores
+	jr c, .asm_1386b ;if current high score > score to sort, jump
+	ld hl, EndFlypoint ;d006 > d009 else moves others up the line and insert in the front
+	ld de, wd00a ;d00a > d00d
 	ld bc, $0004
 	call CopyBytes
-	ld hl, DefaultFlypoint
+	ld hl, DefaultFlypoint ;d002 > d005
 	ld de, EndFlypoint
 	ld bc, $0004
 	call CopyBytes
 	ld hl, DefaultFlypoint
-	call Function138a0
+	call Function138a0 ;place [d00e] through [d011] in hl(02) through hl+3(05)
 	jr .asm_1389f
 
 .asm_1386b
-	ld de, wd010
-	ld hl, wd008
+	ld de, wd010 
+	ld hl, wd008 ;second place score
 	ld c, $2
 	call StringCmp
-	jr c, .asm_1388c
-	ld hl, EndFlypoint
+	jr c, .asm_1388c ;if current second score > score to test, jump
+	ld hl, EndFlypoint ;else move others up and put it second
 	ld de, wd00a
 	ld bc, $0004
 	call CopyBytes
 	ld hl, EndFlypoint
-	call Function138a0
+	call Function138a0 ;place [d00e] through [d011] in hl(06) through hl+3(09)
 	jr .asm_1389f
 
 .asm_1388c
 	ld de, wd010
 	ld hl, wd00c
 	ld c, $2
-	call StringCmp
+	call StringCmp ;if better then third, replace third
 	jr c, .asm_1389f
 	ld hl, wd00a
-	call Function138a0
+	call Function138a0 ;place [d00e] through [d011] in hl(0a) through hl+3(0d)
 
-.asm_1389f
+.asm_1389f ;? could just ret insteal of jumping here
 	ret
 ; 138a0
 
 Function138a0: ; 138a0
 	ld de, wd00e
 	ld a, [de]
-	inc de
-	ld [hli], a
+	inc de 
+	ld [hli], a ;place [de] through [de+a] in hl through hl+3
 	ld a, [de]
 	inc de
-	ld [hli], a
+	ld [hli], a 
 	ld a, [de]
 	inc de
 	ld [hli], a
@@ -15809,56 +15809,56 @@ Function138b0: ; 138b0
 	ld e, $0
 .asm_138b2
 	push de
-	call Function139ed
+	call Function139ed ;check flag 0 in contestent flag, a = 0 is flag not set, else flag is set
 	pop de
-	jr nz, .asm_138f9
+	jr nz, .asm_138f9 ;if set, jump
 	ld a, e
 	inc a
 	inc a
-	ld [wd00e], a
+	ld [wd00e], a ;put e+2 in variable
 	dec a
-	ld c, a
+	ld c, a ;put e+1 in bc
 	ld b, 0
-	ld hl, Unknown_13783
+	ld hl, Unknown_13783 ;load jump table towards bug catching AI scores and mons
 	add hl, bc
-	add hl, bc
+	add hl, bc ;hl = correct table
 	ld a, [hli]
 	ld h, [hl]
-	ld l, a
+	ld l, a ;put table to use in hl and move to position for mon search
 	inc hl
 	inc hl
 .asm_138cd
 	call Random
 	and $3
 	cp $3
-	jr z, .asm_138cd
+	jr z, .asm_138cd ;load random  1-3
 	ld c, a
 	ld b, $0
-	add hl, bc
+	add hl, bc ;jump to correct slot
 	add hl, bc
 	add hl, bc
 	ld a, [hli]
-	ld [wd00f], a
-	ld a, [hli]
+	ld [wd00f], a ;store mon in ram
+	ld a, [hli]; store score in HL
 	ld h, [hl]
 	ld l, a
 	call Random
-	and $7
+	and $7 ;rand 0-7
 	ld c, a
 	ld b, $0
-	add hl, bc
+	add hl, bc ;add score variace of up to +7
 	ld a, h
-	ld [wd010], a
+	ld [wd010], a ;save it in variables
 	ld a, l
 	ld [wd011], a
 	push de
-	call Function1383e
+	call Function1383e ;place new score amongsed other NPC scores
 	pop de
 
 .asm_138f9
-	inc e
+	inc e ;next contestent?
 	ld a, e
-	cp $a
+	cp $a ;if contestents left, loop. else ret
 	jr nz, .asm_138b2
 	ret
 ; 13900
@@ -15868,11 +15868,11 @@ ContestScore: ; 13900
 
 	xor a
 	ld [hProduct], a
-	ld [hMultiplicand], a
+	ld [hMultiplicand], a ;holds score
 
 	ld a, [wContestMonSpecies] ; Species
 	and a
-	jr z, .done
+	jr z, .done ;if none, return zero
 
 	; Tally the following:
 
@@ -15994,46 +15994,46 @@ Function139a8: ; 139a8
 .asm_139ad
 	push bc
 	push hl
-	ld e, [hl]
-	inc hl
+	ld e, [hli] ;load current contestent flag into de and a small optimisation by me
+	;inc hl
 	ld d, [hl]
-	ld b, $0
+	ld b, $0 ;clear that flag
 	call EventFlagAction
 	pop hl
 	inc hl
-	inc hl
+	inc hl ;go to next slot
 	pop bc
-	dec c
-	jr nz, .asm_139ad
-	ld c, $5
+	dec c 
+	jr nz, .asm_139ad ;loop through whole table, clearing all flags
+	ld c, $5 
 .asm_139c0
 	push bc
 .asm_139c1
 	call Random
 	cp $fa
-	jr nc, .asm_139c1
+	jr nc, .asm_139c1 ;rand 0-249
 	ld c, $19
-	call SimpleDivide
+	call SimpleDivide ;rand / 25, answer in e
 	ld e, b
 	ld d, 0
-	ld hl, Unknown_139fe
+	ld hl, Unknown_139fe ;go to contestent table
 	add hl, de
-	add hl, de
-	ld e, [hl]
+	add hl, de ;go down that many slots
+	ld e, [hl] ;load into de
 	inc hl
 	ld d, [hl]
 	push de
 	ld b, $2
-	call EventFlagAction
+	call EventFlagAction ;check that flag
 	pop de
 	ld a, c
 	and a
-	jr nz, .asm_139c1
+	jr nz, .asm_139c1 ;jump if flag already set
 	ld b, $1
-	call EventFlagAction
+	call EventFlagAction ;set flag
 	pop bc
 	dec c
-	jr nz, .asm_139c0
+	jr nz, .asm_139c0 ;loop 5 times
 	ret
 ; 139ed
 
@@ -16042,16 +16042,16 @@ Function139ed: ; 139ed
 	ld e, a
 	ld d, 0
 	add hl, de
-	add hl, de
-	ld e, [hl]
+	add hl, de ;go to slot e in contestent table
+	ld e, [hl] ;put address into de
 	inc hl
 	ld d, [hl]
 	ld b, $2
-	call EventFlagAction
+	call EventFlagAction ;check that flag, a = 0 is flag not set, else flag is set
 	ret
 ; 139fe
 
-Unknown_139fe: ; 139fe
+Unknown_139fe: ; 139fe refernces to contestent flags
 	dw $0716
 	dw $0717
 	dw $0718
@@ -16068,15 +16068,15 @@ Function13a12: ; 13a12
 	ld hl, PartyMon1HP
 	ld a, [hli]
 	or [hl]
-	jr z, .asm_13a2b
+	jr z, .asm_13a2b ;if lead mon is fainted
 	ld hl, PartyCount
 	ld a, 1
-	ld [hli], a
+	ld [hli], a ;set party to 1
 	inc hl
-	ld a, [hl]
-	ld [wdf9b], a
-	ld [hl], $ff
-	xor a
+	ld a, [hl] ;get name of second mon in party
+	ld [wdf9b], a ;load into var
+	ld [hl], $ff ;load fake end name in it's place'
+	xor a ;return 0
 	ld [ScriptVar], a
 	ret
 
@@ -16088,10 +16088,10 @@ Function13a12: ; 13a12
 
 Function13a31: ; 13a31
 	ld hl, PartySpecies + 1
-	ld a, [wdf9b]
-	ld [hl], a
+	ld a, [wdf9b] ;reload second mon name from variable
+	ld [hl], a ;put back over fake end char
 	ld b, $1
-.asm_13a3a
+.asm_13a3a ;find size of party and set partyCount
 	ld a, [hli]
 	cp $ff
 	jr z, .asm_13a42
@@ -16403,7 +16403,7 @@ GetTimeOfDay:: ; 14032
 .check
 ; if we're within the given time period,
 ; get the corresponding time of day
-	cp [hl]
+	cp [hl] 
 	jr c, .match
 ; else, get the next entry
 	inc hl
@@ -24804,52 +24804,52 @@ Function24329: ; 24329
 ; 24374
 
 Function24374:: ; 24374
-	ld a, [rSVBK]
+	ld a, [rSVBK] ;load bank into a
 	push af
 	ld a, $7
-	ld [rSVBK], a
-	ld hl, wcf71
-	ld e, [hl]
-	inc hl
+	ld [rSVBK], a ;switch to bank 7
+	ld hl, wcf71 ;load 2 bytes from pointer? into de
+	ld e, [hli] ;added i to optimise
+	;inc hl little optimisation
 	ld d, [hl]
-	push de
+	push de ;holds ??
 	ld b, $10
-	ld hl, wcf81
+	ld hl, wcf81 ;same place menu headers were loaded in?
 .asm_24387
 	ld a, [hli]
-	ld [de], a
-	dec de
+	ld [de], a ;load into de 
+	dec de ;go back 1, 16 bytes go from menu headers into de
 	dec b
-	jr nz, .asm_24387
-	ld a, [wcf81]
+	jr nz, .asm_24387 ;loop
+	ld a, [wcf81] ;load first menu header? into a
 	bit 6, a
-	jr nz, .asm_24398
-	bit 7, a
-	jr z, .asm_243ae
+	jr nz, .asm_24398 ;if bit 6 is on or bit 7 is, small jump
+	bit 7, a 
+	jr z, .asm_243ae ;if bit 6 is off and bit 7 is off, large jump
 
 .asm_24398
-	ld hl, wcf71
-	ld a, [hli]
+	ld hl, wcf71 ;load??
+	ld a, [hli] ; put the location there into hl
 	ld h, [hl]
 	ld l, a
-	set 0, [hl]
-	call Function1cfd
-	call Function243cd
-	call Function1d19
+	set 0, [hl] ;set that bit 0 to 0
+	call Function1cfd ;hl = correct tile map?, bc = base tilemap
+	call Function243cd ;load de into hl depending on the menu coords subbed from each other (possibly drawing a box?)
+	call Function1d19 ;same as 1cfd but for AttrMap
 	call Function243cd
 	jr .asm_243b5
 
 .asm_243ae
 	pop hl
-	push hl
+	push hl ;holds wcf71 and 2's contents
 	ld a, [hld]
 	ld l, [hl]
-	ld h, a
-	res 0, [hl]
+	ld h, a ;the contents into hl
+	res 0, [hl] ;reset it's bit 0
 
 .asm_243b5
-	pop hl
-	call Function243e7
+	pop hl ;holds wcf71 and 2's contents
+	; call Function243e7 immediatly rets
 	ld a, h
 	ld [de], a
 	dec de
@@ -24868,23 +24868,23 @@ Function24374:: ; 24374
 ; 243cd
 
 Function243cd: ; 243cd
-	call Function1c53
+	call Function1c53 ;sub 1 set of menu coords from another, leave result in bc
 	inc b
-	inc c
-	call Function243e7
+	inc c 
+	;call Function243e7 immediatly rets
 .asm_243d5
 	push bc
 	push hl
 .asm_243d7
-	ld a, [hli]
+	ld a, [hli] ;move something from HL to DE, legnth is dependednt on coords above
 	ld [de], a
 	dec de
 	dec c
 	jr nz, .asm_243d7
 	pop hl
-	ld bc, $0014
+	ld bc, $0014 ;go to new line?
 	add hl, bc
-	pop bc
+	pop bc ;b, the other coord, is loop counter
 	dec b
 	jr nz, .asm_243d5
 	ret
@@ -33823,7 +33823,7 @@ SkipBonLvl
 	cp UNOWN
 	jr nz, .asm_2a1bf ;check for unown, is unkown do special case for unlocked unowns, otherwise jump down
 
-	ld a, [UnlockedUnowns]
+	ld a, [UnlockedUnowns] ;if no unown unlocked, no encounter
 	and a
 	jr z, .asm_2a1c1
 
@@ -36597,14 +36597,14 @@ INCLUDE "battle/effect_commands.asm"
 
 Function3952d: ; 3952d
 	ld hl, RivalName
-	ld a, c
+	ld a, c ;trainer class
 	cp RIVAL1
-	jr z, .rival
+	jr z, .rival ;if equal to rival 1, jump
 
 	ld [CurSpecies], a
 	ld a, TRAINER_NAME
-	ld [wcf61], a
-	call GetName
+	ld [wcf61], a ;ld 7 into var
+	call GetName ;put trainer class name in string buffer and make de a pointer to it
 	ld de, StringBuffer1
 	ret
 
@@ -36923,31 +36923,31 @@ Function39939:: ; 39939
 Function3994c:: ; 3994c
 	ld a, c
 	cp CAL
-	jr nz, .asm_3996d
+	jr nz, .asm_3996d ;if trainer class is not cal, jump
 
 	ld a, $0
 	call GetSRAMBank
 	ld a, [$abfd]
-	and a
+	and a ;load something?
 	call CloseSRAM
-	jr z, .asm_3996d
+	jr z, .asm_3996d ;if zero jump
 
 	ld a, $0
 	call GetSRAMBank
 	ld hl, $abfe
-	call Function39984
-	jp CloseSRAM
+	call Function39984 ;copy string from ???? to stringbuffer
+	jp CloseSRAM ;ret from there
 
 .asm_3996d
 	dec c
-	push bc
+	push bc ;holds trainer class -1 in c
 	ld b, 0
 	ld hl, TrainerGroups
 	add hl, bc
 	add hl, bc
-	add hl, bc
+	add hl, bc ;find correct group
 	ld a, [hli]
-	ld [wdff5],a
+	ld [wdff5],a ;load bank(?) into variable and address into hl
 	ld a, [hli]
 	ld e, a
 	ld a, [hl]
@@ -36956,23 +36956,23 @@ Function3994c:: ; 3994c
 	pop bc
 
 .asm_3997a
-	dec b
-	jr z, Function39984
+	dec b ; loop until correct name
+	jr z, Function39984 ;store name in string buffer
 
 .asm_3997d
 	; ld a, [hli]
-	ld a, [wdff5]
-	call GetFarByte2
-	cp $ff
-	jr nz, .asm_3997d
-	jr .asm_3997a
+	ld a, [wdff5] ; load bank into a
+	call GetFarByte2 ;get the first letter of that classes first trainers name and move onto next letter
+	cp $ff ;if not end of trainer
+	jr nz, .asm_3997d ; check next byte
+	jr .asm_3997a ;else check if this trainer
 
 Function39984: ; 39984
 	ld de, StringBuffer1
 	push de
 	ld bc, $000b
-	ld a, [wdff5]
-	call FarCopyBytes
+	ld a, [wdff5] ;bank to look in
+	call FarCopyBytes ;copy into stringbuffer
 	pop de
 	ret
 ; 39990
@@ -46127,154 +46127,155 @@ Function4d9d3: ; 4d9d3
 	ret
 ; 4d9e5
 
-Function4d9e5: ; 4d9e5
-	ld a, [wdf9c]
+Function4d9e5: ; 4d9e5 ;insert mon into party if space, otherwise into PC box in top slot. mon is in wdf9c (Contest mon). 
+	;return 0 in scriptvar if mon went to party, 1 if they went to box and 2 if no mon was caught
+	ld a, [wdf9c] ;mon species
 	and a
-	jp z, Function4db35
-	ld [CurPartySpecies], a
+	jp z, Function4db35 ;if not 0, continue, else return no mon
+	ld [CurPartySpecies], a ;load into cur species variables
 	ld [CurSpecies], a
-	call GetBaseData
+	call GetBaseData ;load the species base data into ram
 	ld hl, PartyCount
-	ld a, [hl]
+	ld a, [hl] ;place partycount into a
 	cp $6
-	jp nc, Function4daa3
+	jp nc, Function4daa3 ;if party is full, jump
 	inc a
-	ld [hl], a
+	ld [hl], a ;increment by 1 and put it back
 	ld c, a
 	ld b, $0
-	add hl, bc
-	ld a, [wdf9c]
-	ld [hli], a
+	add hl, bc ;advance partycount by new number of mons to get correct partyspecies slot
+	ld a, [wdf9c] load species again
+	ld [hli], a ;place in party species
 	ld [CurSpecies], a
 	ld a, $ff
-	ld [hl], a
+	ld [hl], a ;and end of paty space after it
 	ld hl, PartyMon1Species
 	ld a, [PartyCount]
 	dec a
 	ld bc, PartyMon2 - PartyMon1
-	call AddNTimes
+	call AddNTimes ;go down to correct party storage location (over species)
 	ld d, h
 	ld e, l
 	ld hl, wdf9c
 	ld bc, PartyMon2 - PartyMon1
-	call CopyBytes
+	call CopyBytes ;copy mon details into the party data
 	ld a, [PartyCount]
 	dec a
 	ld hl, PartyMonOT
-	call SkipNames
+	call SkipNames; go to correct space for OT
 	ld d, h
 	ld e, l
-	ld hl, PlayerName
+	ld hl, PlayerName ;load in player name
 	call CopyBytes
 	ld a, [CurPartySpecies]
-	ld [wd265], a
-	call GetPokemonName
+	ld [wd265], a ;load name into another variable
+	call GetPokemonName ;put that pokemons name in string buffer 1
 	ld hl, StringBuffer1
 	ld de, wd050
 	ld bc, $000b
-	call CopyBytes
+	call CopyBytes ;copy into wd050
 	ld a, [PartyCount]
 	dec a
-	ld [CurPartyMon], a
+	ld [CurPartyMon], a ;load this slot into curpartymon
 	xor a
-	ld [MonType], a
+	ld [MonType], a ;load zero into montype
 	ld de, wd050
-	callab Functione3de
+	callab Functione3de ;InitNickname
 
 .asm_4da66
 	ld a, [PartyCount]
 	dec a
 	ld hl, PartyMonNicknames
-	call SkipNames
+	call SkipNames ;skip to next nickname space
 	ld d, h
 	ld e, l
 	ld hl, wd050
-	call CopyBytes
+	call CopyBytes ;copy nickname into data structure
 	ld a, [PartyCount]
 	dec a
 	ld hl, PartyMon1Level
-	call GetPartyLocation
+	call GetPartyLocation ;move down to correct mon slot
 	ld a, [hl]
-	ld [CurPartyLevel], a
-	call Function4db49
+	ld [CurPartyLevel], a 
+	call Function4db49 ;store utility data
 	ld a, [PartyCount]
 	dec a
 	ld hl, PartyMon1CaughtLocation
 	call GetPartyLocation
 	ld a, [hl]
-	and $80
-	ld b, $13
+	and $80 ;use last bit only
+	ld b, $13 ; 00001101
 	or b
-	ld [hl], a
+	ld [hl], a ;set caught location especially
 	xor a
 	ld [wdf9c], a
 	and a
-	ld [ScriptVar], a
+	ld [ScriptVar], a ; load zero into script var
 	ret
 ; 4daa3
 
 Function4daa3: ; 4daa3
 	ld a, $1
-	call GetSRAMBank
+	call GetSRAMBank ;set sram bank
 	ld hl, sBoxCount
-	ld a, [hl]
-	cp MONS_PER_BOX
+	ld a, [hl] ;store boxcount in a
+	cp MONS_PER_BOX ;compare to monsperbox
 	call CloseSRAM
-	jr nc, .asm_4db08
+	jr nc, .asm_4db08 ;if count => mons per box. jump
 	xor a
-	ld [CurPartyMon], a
-	ld hl, wdf9c
+	ld [CurPartyMon], a ;use the top slot of the box
+	ld hl, wdf9c ;contest mon
 	ld de, wd018
-	ld bc, sBoxMon2 - sBoxMon1
-	call CopyBytes
+	ld bc, sBoxMon2 - sBoxMon1 
+	call CopyBytes ;copy mon from contestmon to place to enter box mon from
 	ld hl, PlayerName
 	ld de, wd00d
 	ld bc, NAME_LENGTH
-	call CopyBytes
-	callab Function51322
+	call CopyBytes ;copy player name for OT
+	callab Function51322 ;copy full boxmon from CurPartySpecies(species), wd002(nickname),wd00d(OT),moves (wd01a), PP(wd02f) and the rest of boxstruct(wd018) into place [curpartymon] in the current box
 	ld a, [CurPartySpecies]
-	ld [wd265], a
+	ld [wd265], a ;insert species name into stringbuffer
 	call GetPokemonName
 	ld hl, StringBuffer1
 	ld a, BOXMON
 	ld [MonType], a
 	ld de, wd050
-	callab Functione3de
+	callab Functione3de ;InitNickname
 	ld hl, wd050
 
 .asm_4daf7
 	ld a, $1
 	call GetSRAMBank
-	ld de, sBoxMonNicknames
+	ld de, sBoxMonNicknames ;enter nickname into box at top position
 	ld bc, PKMN_NAME_LENGTH
 	call CopyBytes
 	call CloseSRAM
 
 .asm_4db08
 	ld a, $1
-	call GetSRAMBank
-	ld a, [sBoxMon1Level]
+	call GetSRAMBank ;set to boxbank
+	ld a, [sBoxMon1Level] ;get mon level
 	ld [CurPartyLevel], a
 	call CloseSRAM
-	call Function4db83
+	call Function4db83 ;store data on caught mon in first slot of box 
 	ld a, $1
 	call GetSRAMBank
 	ld hl, sBoxMon1CaughtLocation
 	ld a, [hl]
-	and $80
+	and $80 ;bit 7 of caught loc only
 	ld b, $13
-	or b
+	or b ; bit 7 and 00001101 (inseting special bug catching data? that would make bit 7 ToD)
 	ld [hl], a
 	call CloseSRAM
 	xor a
-	ld [wdf9c], a
+	ld [wdf9c], a ;load zero into species var
 	ld a, $1
-	ld [ScriptVar], a
+	ld [ScriptVar], a ;load 1 into scriptvar
 	ret
 ; 4db35
 
 Function4db35: ; 4db35
-	ld a, $2
+	ld a, $2 ;if no mon, ret 2 in scriptvar
 	ld [ScriptVar], a
 	ret
 ; 4db3b
@@ -46290,37 +46291,37 @@ Function4db49: ; 4db49
 	dec a
 	ld hl, PartyMon1CaughtLevel
 	call GetPartyLocation
-Function4db53: ; 4db53
+Function4db53: ; 4db53 store data on caught mon at HL and HL+1
 	ld a, [TimeOfDay]
 	inc a
 	rrca
 	rrca
-	ld b, a
-	ld a, [CurPartyLevel]
+	ld b, a ;put time into b
+	ld a, [CurPartyLevel] ;put level into b
 	or b
-	ld [hli], a
-	ld a, [MapGroup]
+	ld [hli], a ;store time and caught level at HL
+	ld a, [MapGroup] ;load current map
 	ld b, a
 	ld a, [MapNumber]
 	ld c, a
-	cp MAP_POKECENTER_2F
+	cp MAP_POKECENTER_2F ;If trade area
 	jr nz, .asm_4db78
 	ld a, b
 	cp GROUP_POKECENTER_2F
 	jr nz, .asm_4db78
 
-	ld a, [BackupMapGroup]
+	ld a, [BackupMapGroup] ;load backup map?
 	ld b, a
 	ld a, [BackupMapNumber]
 	ld c, a
 
 .asm_4db78
-	call GetWorldMapLocation
+	call GetWorldMapLocation ; c = something to do with location
 	ld b, a
 	ld a, [PlayerGender]
 	rrca
 	or b
-	ld [hl], a
+	ld [hl], a ;store them both in the mon 
 	ret
 ; 4db83
 
@@ -51439,56 +51440,56 @@ Function512f2: ; 512f2
 	ret
 ; 51322
 
-Function51322: ; 51322
+Function51322: ; 51322 copy full boxmon from CurPartySpecies, wd002(nickname),wd00d(OT),moves (wd01a), PP(wd02f) and the rest of boxstruct(wd018) into place [curpartymon] in the current box
 	ld a, $1
-	call GetSRAMBank
+	call GetSRAMBank ;switch to box sram bank
 	ld hl, sBoxCount
-	call Function513cb
+	call Function513cb ;place [CurPartySpecies] into slot [CurPartyMon] in list hl
 	ld a, [sBoxCount]
 	dec a
-	ld [wd265], a
+	ld [wd265], a 
 	ld hl, sBoxMonNicknames
-	ld bc, PKMN_NAME_LENGTH
+	ld bc, PKMN_NAME_LENGTH ;load nicknames location to copy new name into
 	ld de, wd002
-	call Function513e0
+	call Function513e0 ;copy block of data bc long from hl into list wd265 long de at place [CurPartyMon]
 	ld a, [sBoxCount]
 	dec a
 	ld [wd265], a
 	ld hl, sBoxMonOT
 	ld bc, NAME_LENGTH
 	ld de, wd00d
-	call Function513e0
+	call Function513e0 ;copy OT into box data
 	ld a, [sBoxCount]
 	dec a
 	ld [wd265], a
 	ld hl, sBoxMons
 	ld bc, sBoxMon1End - sBoxMon1
 	ld de, wd018
-	call Function513e0
+	call Function513e0 ;copy full box_struct
 	ld hl, wd01a
 	ld de, TempMonMoves
 	ld bc, NUM_MOVES
-	call CopyBytes
+	call CopyBytes ;copy moves and PP into temp zone?
 	ld hl, wd02f
 	ld de, TempMonPP
 	ld bc, NUM_MOVES
 	call CopyBytes
 	ld a, [CurPartyMon]
-	ld b, a
-	callba Functiondcb6
+	ld b, a ;store slot to add into into b 
+	callba Functiondcb6 ;store box mon moves and PP
 	jp CloseSRAM
 ; 5138b
 
 Function5138b: ; 5138b
 	ld hl, PartyCount
-	call Function513cb
+	call Function513cb ;place [CurPartySpecies] into slot [CurPartyMon] in list hl
 	ld a, [PartyCount]
 	dec a
 	ld [wd265], a
 	ld hl, PartyMonNicknames
 	ld bc, PKMN_NAME_LENGTH
 	ld de, wd002
-	call Function513e0
+	call Function513e0 ;copy block of data bc long from hl into list wd265 long de at place [CurPartyMon]
 	ld a, [PartyCount]
 	dec a
 	ld [wd265], a
@@ -51506,74 +51507,74 @@ Function5138b: ; 5138b
 	ret
 ; 513cb
 
-Function513cb: ; 513cb
-	inc [hl]
-	inc hl
+Function513cb: ; 513cb ;place [CurPartySpecies] into slot [CurPartyMon] in list hl
+	inc [hl] ;inc location count
+	inc hl ;move up 1
 	ld a, [CurPartyMon]
 	ld c, a
 	ld b, 0
-	add hl, bc
+	add hl, bc ;move down to species slot to insert into
 	ld a, [CurPartySpecies]
 	ld c, a
 .asm_513d8
-	ld a, [hl]
-	ld [hl], c
-	inc hl
-	inc c
-	ld c, a
+	ld a, [hl] ;place current mon in slot in register
+	ld [hl], c ;load new mon in
+	inc hl ;go to next slot
+	inc c ;check if done, loop until ff
+	ld c, a 
 	jr nz, .asm_513d8
 	ret
 ; 513e0
 
-Function513e0: ; 513e0
+Function513e0: ; 513e0 ;copy block of data bc long from hl into list wd265 long de at place [CurPartyMon]
 	push de
 	push hl
 	push bc
 	ld a, [wd265]
-	dec a
-	call AddNTimes
-	push hl
-	add hl, bc
+	dec a ;a = slots to move down
+	call AddNTimes ; go down that many slots to "highlight" what will be the last slot in the list
+	push hl 
+	add hl, bc ;go back 1
 	ld d, h
-	ld e, l
-	pop hl
+	ld e, l ;put 1 above into de (the current last slot)
+	pop hl ;back to bottom
 .asm_513ef
 	push bc
-	ld a, [wd265]
+	ld a, [wd265] ;current slot in list, start from bottom and work up
 	ld b, a
-	ld a, [CurPartyMon]
+	ld a, [CurPartyMon] ;slot to insert in
 	cp b
 	pop bc
-	jr z, .asm_51415
+	jr z, .asm_51415 ;if inserting into target slot, jump
 	push hl
 	push de
 	push bc
-	call CopyBytes
+	call CopyBytes ;copy current slot down 1
 	pop bc
 	pop de
 	pop hl
 	push hl
-	ld a, l
+	ld a, l ;hl - bc ; go up 1 slot
 	sub c
 	ld l, a
 	ld a, h
 	sbc b
 	ld h, a
-	pop de
+	pop de ;new de is current hl, going up 1 slot
 	ld a, [wd265]
 	dec a
-	ld [wd265], a
+	ld [wd265], a ;loop counter -1
 	jr .asm_513ef
 
 .asm_51415
 	pop bc
 	pop hl
-	ld a, [CurPartyMon]
+	ld a, [CurPartyMon] ;go to target slot
 	call AddNTimes
 	ld d, h
 	ld e, l
 	pop hl
-	call CopyBytes
+	call CopyBytes ;insert new data into slot
 	ret
 ; 51424
 
@@ -52643,30 +52644,30 @@ INCLUDE "engine/engine_flags.asm"
 Function80648:: ; 80648 (20:4648)
 	ld a, c
 	cp NUM_VARS
-	jr c, .asm_8064e
+	jr c, .asm_8064e ; if out of bounds, make 0
 	xor a
 .asm_8064e
 	ld c, a
 	ld b, 0
-	ld hl, Unknown_80671
+	ld hl, Unknown_80671 ;jump to correct part of list
 	add hl, bc
 	add hl, bc
 	add hl, bc
 	ld e, [hl]
 	inc hl
-	ld d, [hl]
+	ld d, [hl] ; de = location of variable
 	inc hl
-	ld b, [hl]
+	ld b, [hl] ;oppcode
 	ld a, b
 	and $80
-	jr nz, .asm_80668
-	ld a, b
-	and $40
-	ret nz
+	jr nz, .asm_80668 ;if $80, call de 
+	ld a, b 
+	and $40 ;if $40 , return stringbuffer with what's at location in it?
+	ret nz ;if 0 just return de
 	ld a, [de]
 	jr Function8066c
 .asm_80668
-	call _de_
+	call _de_ ;just a call de
 	ret
 
 Function8066c: ; 8066c (20:466c)
@@ -52696,7 +52697,7 @@ Unknown_80671: ; 80671
 	dwb Function806ff, $80 ; $e Unown count
 	dwb wd19a,         $00 ; $f Roof palette (?)
 	dwb Function80715, $80 ; $10 Empty Box Slots
-	dwb wd46c,         $00 ; $11 Time-related (?)
+	dwb wd46c,         $00 ; $11 time left on bug catching?
 	dwb XCoord,        $00 ; $12
 	dwb YCoord,        $00 ; $13
 	dwb wdc31,         $00 ; $14 Pokerus
@@ -63786,7 +63787,7 @@ Function8c092: ; 8c092
 
 Function8c0ab: ; 8c0ab
 	ld c, $0
-	call GetTimePalFade
+	call GetTimePalFade ;set HL to location of ???
 	ld b, $4
 	call Function8c15e
 	ret
@@ -63917,7 +63918,7 @@ DmgToCgbTimePals: ; 8c14e
 	push hl
 	push de
 	ld a, [hli]
-	call DmgToCgbBGPals
+	call DmgToCgbBGPals ;a is put into rBGP, alot of pallet stuff if not gbc
 	ld a, [hli]
 	ld e, a
 	ld a, [hli]
@@ -63964,7 +63965,7 @@ GetTimePalFade: ; 8c17c
 
 ; index
 	ld a, [TimeOfDayPal]
-	and %11
+	and %11 ; first 2 bits only, 0-3
 	
 ; get fade table
 	push bc
@@ -63973,7 +63974,7 @@ GetTimePalFade: ; 8c17c
 	ld hl, .dmgfades
 	add hl, bc
 	add hl, bc
-	ld a, [hli]
+	ld a, [hli] ;load correct ToD table location into hl
 	ld h, [hl]
 	ld l, a
 	pop bc
@@ -85751,7 +85752,7 @@ Functione32fa: ; e32fa
 	ld hl, wcb2a
 	add [hl]
 	ld [CurPartyMon], a
-	callba Function51322
+	callba Function51322 ;copy full boxmon from CurPartySpecies, wd002(nickname),wd00d(OT),moves (wd01a), PP(wd02f) and the rest of boxstruct(wd018) into place [curpartymon] in the current box
 	ret
 ; e3316
 
@@ -94726,38 +94727,38 @@ Function105f33: mobile ; 105f33
 Function105f79: mobile ; 105f79
 	ld a, $5
 	call GetSRAMBank
-	ld a, [hProduct]
-	ld hl, $a07f
+	ld a, [hProduct] ;should be 0?
+	ld hl, $a07f ; bug catching high score?
 	cp [hl]
 	jr z, .asm_105f8b
 	jr nc, .asm_105f92
 	jr .asm_105f98
 
-.asm_105f8b
-	inc hl
+.asm_105f8b ;If 07f = hProduct
+	inc hl ;next location
 	ld a, [hMultiplicand]
-	cp [hl]
-	jr c, .asm_105f98
+	cp [hl] 
+	jr c, .asm_105f98 ;if a080 is higher then the score, jump, else return to a07f and continue
 	dec hl
 
-.asm_105f92
+.asm_105f92 ;if o7f < product
 	ld a, [hProduct]
-	ld [hli], a
+	ld [hli], a ;store product and multiplicand in 07f and 080
 	ld a, [hMultiplicand]
 	ld [hl], a
 
 .asm_105f98
-	call Function106162
+	call Function106162 ;checksum related? recalcs something based on data
 	call CloseSRAM
 	ret
 ; 105f9f
 
 Function105f9f: mobile ; 105f9f
 	ld a, $5
-	call GetSRAMBank
-	ld hl, $a070
+	call GetSRAMBank ;set sram bank to 5
+	ld hl, $a070 ;???
 	inc [hl]
-	jr nz, .asm_105fae
+	jr nz, .asm_105fae ;carry if needed
 	dec hl
 	inc [hl]
 	inc hl
@@ -94765,8 +94766,8 @@ Function105f9f: mobile ; 105f9f
 .asm_105fae
 	dec hl
 	ld a, [$a071]
-	cp [hl]
-	jr z, .asm_105fb9
+	cp [hl] 
+	jr z, .asm_105fb9 ;if 71 > 6f
 	jr c, .asm_105fc1
 	jr .asm_105fc9
 
@@ -95072,7 +95073,7 @@ Function106155: mobile ; 106155
 
 Function106162: ; 106162
 	push de
-	call Function10616e
+	call Function10616e ;de = sum of a001 through a080, store it in a081
 	ld hl, $a081
 	ld [hl], d
 	inc hl
@@ -95083,15 +95084,15 @@ Function106162: ; 106162
 
 Function10616e: ; 10616e
 	push bc
-	ld hl, $a001
+	ld hl, $a001 ;???
 	ld bc, $0080
 	xor a
 	ld de, $0000
 .asm_106179
-	ld a, e
+	ld a, e ;e = contents of hl
 	add [hl]
 	ld e, a
-	jr nc, .asm_10617f
+	jr nc, .asm_10617f ;apply carry if needed
 	inc d
 
 .asm_10617f
@@ -95099,7 +95100,7 @@ Function10616e: ; 10616e
 	dec bc
 	ld a, b
 	or c
-	jr nz, .asm_106179
+	jr nz, .asm_106179 ;loop using bc as counter
 	pop bc
 	ret
 ; 106187

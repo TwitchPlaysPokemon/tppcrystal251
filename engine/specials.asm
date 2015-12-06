@@ -364,7 +364,7 @@ UnknownText_0xc345: ; 0xc345
 ; 0xc34a
 
 Functionc34a: ; c34a
-	callba Function1369d
+	callba Function1369d ;find the players place and put it in scriptvar
 	ld a, b
 	ld [ScriptVar], a
 	ret

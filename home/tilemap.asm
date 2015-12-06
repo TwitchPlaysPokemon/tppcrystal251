@@ -31,7 +31,7 @@ Function1c47:: ; 0x1c47
 	ret
 
 Function1c53:: ; 0x1c53
-	ld a, [wcf82]
+	ld a, [wcf82] ;sub 1 set of menu coords from another, leave result in bc
 	ld b, a
 	ld a, [wcf84]
 	sub b
@@ -174,22 +174,22 @@ GetTileCoord:: ; 1d05
 	ld l, b
 	ld a, c
 	ld b, h
-	ld c, l
+	ld c, l ;c and l = b, b and h = 0, a = c
 	add hl, hl
 	add hl, hl
 	add hl, bc
 	add hl, hl
-	add hl, hl
-	ld c, a
+	add hl, hl ;oridinal b * 20
+	ld c, a ;load original c back in
 	xor a
 	ld b, a
-	add hl, bc
+	add hl, bc ; add original c
 	ld bc, TileMap
-	add hl, bc
+	add hl, bc ;add on tilemap's base location
 	ret
 ; 1d19
 
-Function1d19:: ; 1d19
+Function1d19:: ; 1d19 ;load a set of coords into bc
 	ld a, [wcf83]
 	ld c, a
 	ld a, [wcf82]

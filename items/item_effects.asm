@@ -3115,9 +3115,9 @@ Functionf84c: ; f84c
 
 
 
-Functionf881: ; f881
+Functionf881: ; f881 ;apply PP ups after fully restoring PP
 	push bc
-	ld a, [de]
+	ld a, [de] ;de = base max PP of move
 	ld [hDividend + 3], a
 	xor a
 	ld [hDividend], a
@@ -3126,33 +3126,33 @@ Functionf881: ; f881
 	ld a, 5
 	ld [hDivisor], a
 	ld b, 4
-	call Divide
-	ld a, [hl]
+	call Divide ;divide divedend by divisor (base max PP/5, probably amount PP up increases by), put result in hQuotient
+	ld a, [hl] ;hl = mon PP
 	ld b, a
 	swap a
-	and $f
+	and $f 
 	srl a
-	srl a
+	srl a ;bit 6 and 7 of [hl] in bits 0 and 1 of c
 	ld c, a
 	and a
-	jr z, .asm_f8b6
+	jr z, .asm_f8b6 ;if zero, skip ahead
 .asm_f8a3
-	ld a, [$ffb6]
+	ld a, [$ffb6] ;load ?(what the divided result is?), cap it at 7
 	cp $8
 	jr c, .asm_f8ab
 	ld a, $7
 
 .asm_f8ab
-	add b
-	ld b, a
-	ld a, [wd265]
+	add b ; b = [hl]
+	ld b, a ;add ?? to mon PP
+	ld a, [wd265] ;load var and dec it
 	dec a
-	jr z, .asm_f8b6
+	jr z, .asm_f8b6 ;jump if makes it zero
 	dec c
-	jr nz, .asm_f8a3
+	jr nz, .asm_f8a3 ;repeat until c is 0
 
 .asm_f8b6
-	ld [hl], b
+	ld [hl], b ;load result into hl
 	pop bc
 	ret
 ; f8b9
@@ -3194,7 +3194,7 @@ Functionf8b9: ; f8b9
 ; f8ec
 
 
-Functionf8ec: ; f8ec
+Functionf8ec: ; f8ec ;get max pp of moveslot wcfa9 in move list hl, put result in wd265
 	ld a, [StringBuffer1 + 0]
 	push af
 	ld a, [StringBuffer1 + 1]
@@ -3222,49 +3222,49 @@ Functionf8ec: ; f8ec
 	ld hl, BattleMonMoves
 
 .asm_f915
-	call Functionf969
+	call Functionf969 ;bc and a = move, hl += move
 	jr .asm_f91d
 
 .asm_f91a
 	call Functionf963
 
 .asm_f91d
-	ld a, [hl]
+	ld a, [hl] ;put the move slot in a
 	dec a
 
 	push hl
-	ld hl, Moves + MOVE_PP
+	ld hl, Moves + MOVE_PP ;(move pp)
 	ld bc, MOVE_LENGTH
-	call AddNTimes
+	call AddNTimes ;go down to move in database, over PP
 	ld a, BANK(Moves)
-	call GetFarByte
+	call GetFarByte ;get total PP
 	ld b, a
 	ld de, StringBuffer1
-	ld [de], a
-	pop hl
+	ld [de], a ;put in stringbuffer?
+	pop hl ;hl = moves loc + move slot
 
-	push bc
-	ld bc, PartyMon1PP - PartyMon1Moves
+	push bc ; b = move base PP
+	ld bc, PartyMon1PP - PartyMon1Moves ;bc = space between moves and PP
 	ld a, [MonType]
-	cp WILDMON
+	cp WILDMON ;if wildmon, use enemy PP instead
 	jr nz, .asm_f942
 	ld bc, EnemyMonPP - EnemyMonMoves
 .asm_f942
-	add hl, bc
-	ld a, [hl]
-	and $c0
+	add hl, bc ;move down to PP
+	ld a, [hl] ;load pp into a
+	and $c0 ; bit 6 and 7 only
 	pop bc
 
-	or b
+	or b ; "add" base move max PP, saving the max PP and PP up bits
 	ld hl, StringBuffer1 + 1
-	ld [hl], a
+	ld [hl], a ;plce it in string buffer slot 2
 	xor a
-	ld [wd265], a
+	ld [wd265], a; place 0 in var
 	ld a, b
-	call Functionf881
+	call Functionf881 ;apply PP ups, put full PP in hl
 	ld a, [hl]
-	and $3f
-	ld [wd265], a
+	and $3f ;remove pp-up bits
+	ld [wd265], a ;store in variable
 
 	pop af
 	ld [StringBuffer1 + 1], a

@@ -73,7 +73,7 @@ GetFarByte:: ; 0x304d
 	ret
 
 GetFarByte2:: ; 0x304d
-; retrieve a single byte from a:hl, and return it in a.
+; retrieve a single byte from a:hl, and return it in a and increment hl
 	; bankswitch to new bank
 	ld [hBuffer], a
 	ld a, [hROMBank]

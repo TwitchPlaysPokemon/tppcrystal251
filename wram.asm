@@ -1201,15 +1201,15 @@ wcf75:: ds 1
 wcf76:: ds 1
 wcf77:: ds 1
 wcf78:: ds 9
-wcf81:: ds 1
-wcf82:: ds 1
+wcf81:: ds 1 ;menu header:  tile backup
+wcf82:: ds 1 ;a set of coords from menu header
 wcf83:: ds 1
-wcf84:: ds 1
-wcf85:: ds 1
-wcf86:: ds 1
+wcf84:: ds 1 ;another set of coords
+wcf85:: ds 1 
+wcf86:: ds 1 ;Vtiles(should be 4 lonf)
 wcf87:: ds 1
 wcf88:: ds 2
-wcf8a:: ds 7
+wcf8a:: ds 7 ;defaut option?
 wcf91:: ds 1
 wcf92:: ds 1
 wcf93:: ds 1
@@ -1354,7 +1354,7 @@ wd011:: ds 1
 wd012:: ds 1
 wd013:: ds 1
 wd014:: ds 2
-wd016:: ds 1
+wd016:: ds 1 ;bug catching results string saves here
 wd017:: ds 1
 wd018:: ds 1
 wd019:: ds 1

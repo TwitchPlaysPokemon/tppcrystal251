@@ -1043,7 +1043,7 @@ Script_cry: ; 0x971d1
 	ret
 ; 0x971e3
 
-Function971e3: ; 0x971e3
+Function971e3: ; 0x971e3 if not zero or 254, dec a
 	and a
 	ret z
 	cp $fe
@@ -1137,30 +1137,30 @@ Script_faceperson: ; 0x97248
 ;     person1 (SingleByteParam)
 ;     person2 (SingleByteParam)
 
+	call GetScriptByte 
+	call Function971e3 ; if not zero or 254, dec a
+	cp $fe 
+	jr c, .asm_97254 ; 0x97250 $2 skip line if not 254
+	ld a, [$ffe0] ;if 254, load ???
+.asm_97254 
+	ld e, a 
 	call GetScriptByte
-	call Function971e3
+	call Function971e3 ;if not zero or 254, dec a, else return z
 	cp $fe
-	jr c, .asm_97254 ; 0x97250 $2
-	ld a, [$ffe0]
-.asm_97254
-	ld e, a
-	call GetScriptByte
-	call Function971e3
-	cp $fe
-	jr nz, .asm_97261 ; 0x9725d $2
+	jr nz, .asm_97261 ; If not 254, skip line
 	ld a, [$ffe0]
 .asm_97261
 	ld d, a
-	push de
-	callba Function8417
+	push de ;e = fist augment, d = second augment
+	callba Function8417 ; d = direction to face
 	pop bc
-	ret c
+	ret c ;return if facing not found
 	ld a, d
 	add a
 	add a
-	ld e, a
-	ld d, c
-	call Function9728b
+	ld e, a ;3* facing is put into e
+	ld d, c; ; second argment into d(first augment is still in b)
+	call Function9728b ;bc = location of second argment's map object?
 	ret
 ; 0x97274
 
@@ -1170,11 +1170,11 @@ Script_spriteface: ; 0x97274
 ;     person (SingleByteParam)
 ;     facing (SingleByteParam)
 
-	call GetScriptByte
-	call Function971e3
-	cp $fe
+	call GetScriptByte ;get first number, put it in a
+	call Function971e3 ;if not zero or 254, dec a
+	cp $fe ;254
 	jr nz, .asm_97280 ; 0x9727c $2
-	ld a, [$ffe0]
+	ld a, [$ffe0] ;If 254 load ???
 .asm_97280
 	ld d, a
 	call GetScriptByte
@@ -1252,8 +1252,8 @@ Script_appear: ; 0x972dd
 ; parameters:
 ;     person (SingleByteParam)
 
-	call GetScriptByte
-	call Function971e3
+	call GetScriptByte ;load augment
+	call Function971e3 ; if not zero or 254, dec a
 	call Function1956
 	ld a, [$ffaf]
 	ld b, $0
@@ -1841,18 +1841,18 @@ ScriptJump: ; 0x9759d
 ; 0x975aa
 
 Script_priorityjump: ; 0x975aa
-; script command 0x8d
+; script command 0x8d set a script to be called later (at a sooner point then normal?)
 ; parameters:
 ;     pointer (ScriptPointerLabelParam)
 
 	ld a, [ScriptBank]
-	ld [wd44e], a
+	ld [wd44e], a ;store current script bank and bytes in variables
 	call GetScriptByte
 	ld [wd44f], a
 	call GetScriptByte
 	ld [wd450], a
 	ld hl, ScriptFlags
-	set 3, [hl]
+	set 3, [hl] ;set bit 3 of scriptflags
 	ret
 ; 0x975c2
 
@@ -1897,7 +1897,7 @@ Script_dotrigger: ; 0x975eb
 ; parameters:
 ;     trigger_id (SingleByteParam)
 
-	ld a, [MapGroup]
+	ld a, [MapGroup] ;put current map in bc
 	ld b, a
 	ld a, [MapNumber]
 	ld c, a
@@ -1918,11 +1918,11 @@ Script_domaptrigger: ; 0x975f5
 	; fallthrough
 
 Unknown_975fd: ; 0x975fd
-	call GetMapTrigger
+	call GetMapTrigger ;put the location of the maps trigger into de
 	ld a, d
 	or e
-	jr z, .asm_97608 ; 0x97602 $4
-	call GetScriptByte
+	jr z, .asm_97608 ; 0x97602 $4 ;if zero, ret
+	call GetScriptByte ; put the thing at scriptpos(augment?) into the trigger
 	ld [de], a
 .asm_97608
 	ret
@@ -2051,10 +2051,10 @@ Script_checkcode: ; 0x9767d
 ; parameters:
 ;     variable_id (SingleByteParam)
 
-	call GetScriptByte
+	call GetScriptByte ;put augment into a
 	call Function9769e
 	ld a, [de]
-	ld [ScriptVar], a
+	ld [ScriptVar], a ;put it in scriptvar
 	ret
 ; 0x97688
 
@@ -2084,8 +2084,8 @@ Script_writecode: ; 0x97693
 ; 0x9769e
 
 Function9769e: ; 0x9769e
-	ld c, a
-	callba Function80648
+	ld c, a ;put augment into c
+	callba Function80648 ;either call some code, or return the location of a variable
 	ret
 ; 0x976a6
 
@@ -2119,15 +2119,15 @@ Script_pokenamemem: ; 0x976ae
 Unknown_976c0: ; 0x976c0
 	call GetScriptByte
 	cp 3
-	jr c, .ok
+	jr c, .ok ;if more then 2, make a zero
 	xor a
 .ok
 
 Function976c8: ; 976c8
 	ld hl, StringBuffer3
 	ld bc, 19
-	call AddNTimes
-	call CopyName2
+	call AddNTimes ;go down a stringbuffers
+	call CopyName2 ;copy string de to stringbuffer
 	ret
 ; 0x976d5
 
@@ -2254,20 +2254,20 @@ Script_RAM2MEM: ; 0x9775c
 ; parameters:
 ;     memory (SingleByteParam)
 
-	call Function97771
+	call Function97771 ;fill stringbuffer1 with @
 	ld de, ScriptVar
 	ld hl, StringBuffer1
-	ld bc, $4103
-	call PrintNum
+	ld bc, $4103 ;c = 11, b = 1 with bit 6 flag set
+	call PrintNum ;copy scriptvar at stringbuffer1 11 times?
 	ld de, StringBuffer1
-	jp Unknown_976c0
+	jp Unknown_976c0 ;copy stringbuffer 1 to string buffer 3+augment
 ; 0x97771
 
 Function97771: ; 0x97771
 	ld hl, StringBuffer1
 	ld bc, $000b
 	ld a, "@"
-	call ByteFill
+	call ByteFill ;fill stringbuffer1 with @
 	ret
 ; 0x9777d
 
@@ -2334,20 +2334,20 @@ Script_giveitem: ; 0x977ca
 
 	call GetScriptByte
 	cp $ff
-	jr nz, .asm_977d4 ; 0x977cf $3
+	jr nz, .asm_977d4 ; 0x977cf $3 ;if not ff, load into scriptvar
 	ld a, [ScriptVar]
 .asm_977d4
-	ld [CurItem], a
+	ld [CurItem], a ;store item to work with
 	call GetScriptByte
-	ld [wd10c], a
+	ld [wd10c], a ;store number to add
 	ld hl, NumItems
-	call ReceiveItem
+	call ReceiveItem ;add item to bag , return c if succsessful
 	jr nc, .asm_977eb ; 0x977e3 $6
-	ld a, $1
+	ld a, $1 ;if succsessful return 1
 	ld [ScriptVar], a
 	ret
 .asm_977eb
-	xor a
+	xor a ;else return 0
 	ld [ScriptVar], a
 	ret
 ; 0x977f0
@@ -2394,7 +2394,7 @@ Script_checkitem: ; 0x97812
 Script_givemoney: ; 0x97829
 ; script command 0x22
 ; parameters:
-;     account (SingleByteParam)
+;     account (SingleByteParam) (1 if moms, 0 if own)
 ;     money (MoneyByteParam)
 
 	call Function97861
@@ -2697,16 +2697,16 @@ Script_checkevent: ; 0x979a4
 ; parameters:
 ;     bit_number (MultiByteParam)
 
-	call GetScriptByte
+	call GetScriptByte ;de = augment 
 	ld e, a
 	call GetScriptByte
 	ld d, a
 	ld b, $2
-	call EventFlagAction
-	ld a, c
-	and a
-	jr z, .asm_979b7 ; 0x979b3 $2
-	ld a, $1
+	call EventFlagAction ;a and c are 0 if bit is off, otherwise bit is on
+	ld a, c ;probably unneded
+	and a ;probably unneded
+	jr z, .asm_979b7 ; 0x979b3 $2 if bit is on, a = 1, else a is 0
+	ld a, $1 
 .asm_979b7
 	ld [ScriptVar], a
 	ret
@@ -2819,7 +2819,7 @@ Script_warp: ; 0x97a1d from 2a27f
 ;     x (SingleByteParam)
 ;     y (SingleByteParam)
 
-	call GetScriptByte;???
+	call GetScriptByte
 	and a
 	jr z, .asm_97a4a ; 0x97a21 $27 if zero then jump past
 	ld [MapGroup], a

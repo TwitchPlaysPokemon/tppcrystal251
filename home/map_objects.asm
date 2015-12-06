@@ -233,12 +233,12 @@ GetMapObject:: ; 18d2
 
 Function18de:: ; 18de
 	ld [hConnectionStripLength], a
-	call GetMapObject
+	call GetMapObject ;get object location and put it in bc
 	ld hl, $0000
 	add hl, bc
-	ld a, [hl]
-	cp $ff
-	jr z, .asm_18f3
+	ld a, [hl] ;place first byte in a 
+	cp $ff ;if 255, cancel
+	jr z, .asm_18f3 
 	ld [hConnectedMapWidth], a
 	call Function1ae5
 	and a
@@ -631,7 +631,7 @@ Function1acc:: ; 1acc
 
 Function1ad2:: ; 1ad2
 	ld a, [VramState]
-	bit 0, a
+	bit 0, a ;if updating overworld is off, ret, otherwise contnue
 	ret z
 	callba Function55e0
 	callba Function5920
@@ -640,9 +640,9 @@ Function1ad2:: ; 1ad2
 
 
 Function1ae5:: ; 1ae5
-	ld bc, $0028
+	ld bc, $0028 ;40
 	ld hl, ObjectStructs
-	call AddNTimes
+	call AddNTimes ;go down to correct object struct
 	ld b, h
 	ld c, l
 	ret
