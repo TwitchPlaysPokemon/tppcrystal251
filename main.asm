@@ -8008,65 +8008,66 @@ Functiond839: ; d839
 	ret
 ; d88c
 
-Functiond88c: ; d88c
+Functiond88c: ; d88c if montype is non-zero, load mon into enemy trainer. else laod mon into party if space. ret c if succsessful.
+;species = curpartyspecies, $ffae = placed in slot
 	ld de, PartyCount
 	ld a, [MonType]
 	and $f
-	jr z, .asm_d899
+	jr z, .asm_d899 ;if montype first bits are all zero, jump. else load into opposing trainer mons
 	ld de, OTPartyCount
 
 .asm_d899
-	ld a, [de]
+	ld a, [de] ;if mons in party 6 or more, ret
 	inc a
 	cp PARTY_LENGTH + 1
 	ret nc
-	ld [de], a
-	ld a, [de]
-	ld [$ffae], a
-	add e
+	ld [de], a ;inc party count
+	;ld a, [de] ;??? seems very useless
+	ld [$ffae], a ;load into ??
+	add e ;go to appropriote species slot
 	ld e, a
 	jr nc, .asm_d8a7
 	inc d
 
 .asm_d8a7
 	ld a, [CurPartySpecies]
-	ld [de], a
+	ld [de], a ;load species into party
 	inc de
 	ld a, $ff
-	ld [de], a
-	ld hl, PartyMonOT
+	ld [de], a ;put an empty slot after it
+	ld hl, PartyMonOT ;hl = OT location
 	ld a, [MonType]
 	and $f
 	jr z, .asm_d8bc
 	ld hl, OTPartyMonOT
 
 .asm_d8bc
-	ld a, [$ffae]
+	ld a, [$ffae] ;reload target party slot
 	dec a
 	call SkipNames
 	ld d, h
 	ld e, l
 	ld hl, PlayerName
 	ld bc, NAME_LENGTH
-	call CopyBytes
+	call CopyBytes ;go down to that slot and enter it
 	ld a, [MonType]
 	and a
-	jr nz, .asm_d8f0
-	ld a, [CurPartySpecies]
+	jr nz, .asm_d8f0 ;if montype = 0, fall through
+	ld a, [CurPartySpecies] ;load species into var to get mon name
 	ld [wd265], a
-	call GetPokemonName
+	call GetPokemonName ;put name in nicknames
 	ld hl, PartyMonNicknames
-	ld a, [$ffae]
+	ld a, [$ffae] ;reload slot to go down in list
 	dec a
 	call SkipNames
 	ld d, h
 	ld e, l
 	ld hl, StringBuffer1
-	ld bc, PKMN_NAME_LENGTH
+	ld bc, PKMN_NAME_LENGTH ;enter mon name into nickname list
 	call CopyBytes
 
 .asm_d8f0
-	ld hl, PartyMon1Species
+	ld hl, PartyMon1Species ;load party location
 	ld a, [MonType]
 	and $f
 	jr z, .asm_d8fd
@@ -8075,74 +8076,74 @@ Functiond88c: ; d88c
 .asm_d8fd
 	ld a, [$ffae]
 	dec a
-	ld bc, PartyMon2 - PartyMon1
+	ld bc, PartyMon2 - PartyMon1 ;go to correct party slot
 	call AddNTimes
 Functiond906: ; d906
 	ld e, l
 	ld d, h
-	push hl
+	push hl ;load loc into de and the stack
 	ld a, [CurPartySpecies]
-	ld [CurSpecies], a
-	call GetBaseData
+	ld [CurSpecies], a ;put species into curspecies
+	call GetBaseData ;curbasedata holds mon base stats
 	ld a, [BaseDexNo]
-	ld [de], a
+	ld [de], a ;load in dex number
 	inc de
 	ld a, [IsInBattle]
 	and a
-	ld a, $0
+	ld a, $0 ;if in battle, load enemy mon item, else 0
 	jr z, .asm_d922
 	ld a, [EnemyMonItem]
 
 .asm_d922
-	ld [de], a
+	ld [de], a ;load item in
 	inc de
-	push de
+	push de ;remember start of moves
 	ld h, d
 	ld l, e
 	ld a, [IsInBattle]
 	and a
-	jr z, .asm_d943
+	jr z, .asm_d943 ;if not in battle, jump
 	ld a, [MonType]
 	and a
-	jr nz, .asm_d943
+	jr nz, .asm_d943 ;jump if not opposing mon
 	ld de, EnemyMonMoves
-	rept NUM_MOVES + -1
-	ld a, [de]
+	rept NUM_MOVES + -1 ;repeat 3 times
+	ld a, [de] ;copy enemymonmoves into mon moves
 	inc de
 	ld [hli], a
 	endr
 	ld a, [de]
 	ld [hl], a
-	jr .asm_d950
+	jr .asm_d950 ;jump ahead
 
 .asm_d943
 	xor a
 	rept NUM_MOVES + -1
-	ld [hli], a
+	ld [hli], a ;load zero into all moves and a buffer
 	endr
 	ld [hl], a
 	ld [Buffer1], a
-	predef FillMoves
+	predef FillMoves ;fill moves from movepool
 
 .asm_d950
-	pop de
+	pop de ;start of moves
 	inc de
 	inc de
 	inc de
-	inc de
+	inc de ;move past moves
 	ld a, [PlayerID]
-	ld [de], a
+	ld [de], a ;load in ID no
 	inc de
 	ld a, [PlayerID + 1]
 	ld [de], a
 	inc de
-	push de
+	push de ;save mon xp location
 	ld a, [CurPartyLevel]
-	ld d, a
-	callab Function50e47
-	pop de
+	ld d, a ;load level into d
+	callab Function50e47 ;get xp for level and growth rate
+	pop de 
 	ld a, [hMultiplicand]
-	ld [de], a
+	ld [de], a ;load current XP into mon (takes 3 bytes)
 	inc de
 	ld a, [$ffb5]
 	ld [de], a
@@ -8153,13 +8154,13 @@ Functiond906: ; d906
 	xor a
 	ld b, $a
 .asm_d97a
-	ld [de], a
+	ld [de], a ;load 0 into stat xp
 	inc de
 	dec b
-	jr nz, .asm_d97a
-	pop hl
+	jr nz, .asm_d97a ;repeat 10 times (2 bytes a stat)
+	pop hl ;start of mon data
 	push hl
-	ld a, [MonType]
+	ld a, [MonType] ;if montype = z, jump and random dvs, else call trainer dvs and put in bc
 	and $f
 	jr z, .asm_d992
 	push hl
@@ -8169,19 +8170,19 @@ Functiond906: ; d906
 
 .asm_d992
 	ld a, [CurPartySpecies]
-	ld [wd265], a
+	ld [wd265], a ;load species
 	dec a
-	push de
-	call CheckCaughtMon
+	push de ;start of dvs
+	call CheckCaughtMon ;what does this do here, code clears a and the flags and a nigh immediatly and SetSeenAndCaughtMon loads over c
 	ld a, [wd265]
 	dec a
-	call SetSeenAndCaughtMon
-	pop de
-	pop hl
+	call SetSeenAndCaughtMon ;set dex flags
+	pop de ;start of dvs
+	pop hl ;start of mon data
 	push hl
 	ld a, [IsInBattle]
 	and a
-	jr nz, .asm_d9f3
+	jr nz, .asm_d9f3 ;if in battle, jump, else random bc
 	call Random
 	ld b, a
 	call Random
@@ -8192,44 +8193,44 @@ Functiond906: ; d906
 	ld [de], a
 	inc de
 	ld a, c
-	ld [de], a
+	ld [de], a ;put random DVs into the mon
 	inc de
-	push hl
-	push de
+	push hl;start of mon data
+	push de; before PP 
 	inc hl
-	inc hl
-	call FillPP
-	pop de
-	pop hl
+	inc hl ;move over mon moves
+	call FillPP ;fill pp slots
+	pop de 
+	pop hl ;start of mon data
 	inc de
 	inc de
 	inc de
-	inc de
+	inc de ;de = happiness
 	ld a, $46
-	ld [de], a
+	ld [de], a ;load base happiness
 	inc de
 	xor a
-	ld [de], a
+	ld [de], a ;load 0 into pokerus and caught data
 	inc de
 	ld [de], a
 	inc de
 	ld [de], a
 	inc de
 	ld a, [CurPartyLevel]
-	ld [de], a
+	ld [de], a ;load level
 	inc de
 	xor a
-	ld [de], a
+	ld [de], a ;load 0 into status and unused
 	inc de
 	ld [de], a
 	inc de
 	ld bc, $000a
-	add hl, bc
+	add hl, bc ;move hl down 10 to start of stat xp
 	ld a, $1
-	ld c, a
-	ld b, $0
-	call Functione17b
-	ld a, [$ffb5]
+	ld c, a ;get hp
+	ld b, $0 ;no stat xp
+	call Functione17b ; put HP into in $ffb5 and $ffb6. 
+	ld a, [$ffb5] ;load hp
 	ld [de], a
 	inc de
 	ld a, [$ffb6]
@@ -8237,8 +8238,8 @@ Functiond906: ; d906
 	inc de
 	jr .asm_da29
 
-.asm_d9f3
-	ld a, [EnemyMonDVs]
+.asm_d9f3 ;if in battle
+	ld a, [EnemyMonDVs] ;load dvs from enemy
 	ld [de], a
 	inc de
 	ld a, [EnemyMonDVs + 1]
@@ -8246,7 +8247,7 @@ Functiond906: ; d906
 	inc de
 
 	push hl
-	ld hl, EnemyMonPP
+	ld hl, EnemyMonPP ;load pp from enemy mon
 	ld b, NUM_MOVES
 .asm_da03
 	ld a, [hli]
@@ -8257,57 +8258,57 @@ Functiond906: ; d906
 	pop hl
 
 	ld a, BASE_HAPPINESS
-	ld [de], a
+	ld [de], a ;load in happiness
 	inc de
 	xor a
 	ld [de], a
 	inc de
 	ld [de], a
 	inc de
-	ld [de], a
+	ld [de], a;load 0 into mon pokerus and catching stats
 	inc de
 	ld a, [CurPartyLevel]
-	ld [de], a
+	ld [de], a; load level
 	inc de
 	ld hl, EnemyMonStatus
-	ld a, [hli]
+	ld a, [hli] ;load status
 	ld [de], a
 	inc de
-	ld a, [hli]
+	ld a, [hli] ;load ???
 	ld [de], a
 	inc de
-	ld a, [hli]
+	ld a, [hli] ;load HP
 	ld [de], a
 	inc de
 	ld a, [hl]
 	ld [de], a
 	inc de
 
-.asm_da29
+.asm_da29 ;
 	ld a, [IsInBattle]
 	dec a
-	jr nz, .asm_da3b
+	jr nz, .asm_da3b ;if battle, get mon stats from battle mon
 	ld hl, EnemyMonMaxHP
 	ld bc, $000c
 	call CopyBytes
-	pop hl
+	pop hl ;start of mon data
 	jr .asm_da45
 
 .asm_da3b
-	pop hl
+	pop hl ;start of mon data
 	ld bc, $000a
-	add hl, bc
+	add hl, bc ;stat xp location
 	ld b, $0
-	call Functione167
+	call Functione167 ;fill rest of stats
 
 .asm_da45
 	ld a, [MonType]
 	and $f
-	jr nz, .asm_da6b
+	jr nz, .asm_da6b ;if mon type not z
 	ld a, [CurPartySpecies]
 	cp UNOWN
-	jr nz, .asm_da6b
-	ld hl, PartyMon1DVs
+	jr nz, .asm_da6b ;if unkown
+	ld hl, PartyMon1DVs ;load unown letter
 	ld a, [PartyCount]
 	dec a
 	ld bc, PartyMon2 - PartyMon1
@@ -8316,37 +8317,37 @@ Functiond906: ; d906
 	callab Functionfba18
 
 .asm_da6b
-	scf
+	scf ;ret c when done
 	ret
 ; da6d
 
-FillPP: ; da6d
+FillPP: ; da6d hl = start of moves, de = start of place to put pp
 	push bc
 	ld b, NUM_MOVES
 .asm_da70
-	ld a, [hli]
+	ld a, [hli] ;load move
 	and a
-	jr z, .asm_da8f
+	jr z, .asm_da8f;if no move, are done
 	dec a
 	push hl
 	push de
 	push bc
 	ld hl, Moves
 	ld bc, MOVE_LENGTH
-	call AddNTimes
-	ld de, StringBuffer1
+	call AddNTimes ;go down to correct move
+	ld de, StringBuffer1 ;load into stringbuffer(roundabout way to do that compared to just moving hl)
 	ld a, BANK(Moves)
 	call FarCopyBytes
 	pop bc
 	pop de
 	pop hl
-	ld a, [StringBuffer1 + MOVE_PP]
+	ld a, [StringBuffer1 + MOVE_PP] ;a = slot in string buffer that holds PP
 
 .asm_da8f
-	ld [de], a
-	inc de
+	ld [de], a ;load pp into slot
+	inc de ;move to next slot
 	dec b
-	jr nz, .asm_da70
+	jr nz, .asm_da70 ; loop until out of moves
 	pop bc
 	ret
 ; da96
@@ -8893,26 +8894,26 @@ Functionde44: ; de44
 
 Functionde6e: ; de6e
 	ld a, 1 ; BANK(sBoxCount)
-	call GetSRAMBank
+	call GetSRAMBank ;open box
 	ld de, sBoxCount
 	ld a, [de]
 	cp MONS_PER_BOX
-	jp nc, Functiondf42
+	jp nc, Functiondf42 ;if box full, jump
 	inc a
-	ld [de], a
+	ld [de], a ;increment box mons by 1
 	ld a, [CurPartySpecies]
 	ld [CurSpecies], a
-	ld c, a
-.asm_de85
+	ld c, a ;c = species
+.asm_de85 ;insert species into top slot, move others down
 	inc de
-	ld a, [de]
+	ld a, [de] ;load first mon species into c
 	ld b, a
 	ld a, c
 	ld c, b
-	ld [de], a
+	ld [de], a ;put current mon into old slot
 	inc a
-	jr nz, .asm_de85
-	call GetBaseData
+	jr nz, .asm_de85 ;loop until end of box
+	call GetBaseData ;load base stats for newly added species
 	call ShiftBoxMon
 	ld hl, PlayerName
 	ld de, sBoxMonOT
@@ -9329,11 +9330,11 @@ Functione134: ; e134
 	ret
 ; e167
 
-Functione167: ; e167
+Functione167: ; e167 fill stat block de for currently loaded base stats, with statxp hl (or skip with b = 0)
 	ld c, $0
 .asm_e169
 	inc c
-	call Functione17b
+	call Functione17b 
 	ld a, [$ffb5]
 	ld [de], a
 	inc de
@@ -9346,50 +9347,50 @@ Functione167: ; e167
 	ret
 ; e17b
 
-Functione17b: ; e17b
+Functione17b: ; e17b return stat c for mon species whose base stats are loaded of level curpartylevel, whose statxp starts at hl,  in $ffb5 and $ffb6. if b = 0, skip stat xp
 	push hl
 	push de
 	push bc
 	ld a, b
-	ld d, a
-	push hl
-	ld hl, BaseHP
-	dec hl
+	ld d, a ;load b into d
+	push hl ;start of stat xp?
+	ld hl, BaseHP ;base hp stored
+	dec hl ;go up 1
 	ld b, $0
-	add hl, bc
-	ld a, [hl]
-	ld e, a
-	pop hl
+	add hl, bc ;go down to base stat c. 1 = hp, 2 = attack, 3 = defence, 4 = speed, 5 = special attack, 6 = special defence
+	ld a, [hl] ;load base stat
+	ld e, a ;put it in e
+	pop hl ;start of stat xp
 	push hl
-	ld a, c
+	ld a, c ;if special defence, go down 2 to line up with special statxp
 	cp $6
 	jr nz, .asm_e193
 	dec hl
 	dec hl
 
 .asm_e193
-	sla c
+	sla c ;c*2
 	ld a, d
 	and a
-	jr z, .asm_e1a5
-	add hl, bc
-	push de
-	ld a, [hld]
+	jr z, .asm_e1a5 ;if d = zero, skip and b = 0
+	add hl, bc ;move down to correct stat xp slot
+	push de ;d = original b, e = base stat
+	ld a, [hld] ;load stat xp and root it
 	ld e, a
 	ld d, [hl]
-	callba GetSquareRoot
+	callba GetSquareRoot ;b = result
 	pop de
 
 .asm_e1a5
-	srl c
-	pop hl
-	push bc
-	ld bc, $000b
-	add hl, bc
+	srl c ; c is normal again
+	pop hl ;hl = start of stat xp
+	push bc ; c is chosen stat, b is stat xp added
+	ld bc, $000b ;b = 11
+	add hl, bc ;over DVs
 	pop bc
 	ld a, c
 	cp $2
-	jr z, .asm_e1e3
+	jr z, .asm_e1e3 ;branch code based on stat
 	cp $3
 	jr z, .asm_e1ea
 	cp $4
@@ -9398,80 +9399,80 @@ Functione17b: ; e17b
 	jr z, .asm_e1f7
 	cp $6
 	jr z, .asm_e1f7
-	push bc
-	ld a, [hl]
+	push bc; c is chosen stat, b = stat xp
+	ld a, [hl] ;load first dv byte to start calcing HP dv
 	swap a
+	and $1 ;bit 4 only(bit 1 of second dv), if 1, add 8. else add 0
+	add a
+	add a
+	add a 
+	ld b, a ;load into b
+	ld a, [hli] ;load in again, move onto other dv byte
+	and $1 ;bit 0, if on add 4 tob
+	add a
+	add a
+	add b 
+	ld b, a 
+	ld a, [hl] ;add bit 1
+	swap a ;if on, add 2
 	and $1
-	add a
-	add a
-	add a
-	ld b, a
-	ld a, [hli]
-	and $1
-	add a
 	add a
 	add b
 	ld b, a
 	ld a, [hl]
-	swap a
-	and $1
-	add a
+	and $1 ;if on, add 1, regardless, add b to a
 	add b
-	ld b, a
-	ld a, [hl]
-	and $1
-	add b
-	pop bc
+	pop bc ;c = stat, b = base stat
 	jr .asm_e1fb
 
 .asm_e1e3
-	ld a, [hl]
+	ld a, [hl] ;get attack dv
 	swap a
 	and $f
 	jr .asm_e1fb
 
 .asm_e1ea
-	ld a, [hl]
+	ld a, [hl] ;get defence dv
 	and $f
 	jr .asm_e1fb
 
 .asm_e1ef
-	inc hl
+	inc hl ;get speed dv
 	ld a, [hl]
 	swap a
 	and $f
 	jr .asm_e1fb
 
 .asm_e1f7
-	inc hl
+	inc hl ;get special dv
 	ld a, [hl]
 	and $f
 
 .asm_e1fb
 	ld d, $0
 	add e
-	ld e, a
-	jr nc, .asm_e202
+	ld e, a ;add dv to base stat
+	jr nc, .asm_e202 ;carry if needed
 	inc d
 
 .asm_e202
 	sla e
-	rl d
+	rl d ;dv + base stat * 2
 	srl b
-	srl b
+	srl b ;stat xp / 4
 	ld a, b
-	add e
+	add e ;add them together, put total in da
 	jr nc, .asm_e20f
 	inc d
 
 .asm_e20f
-	ld [$ffb6], a
+	ld [$ffb6], a ;load stat into ffb5
 	ld a, d
 	ld [$ffb5], a
 	xor a
 	ld [hMultiplicand], a
 	ld a, [CurPartyLevel]
-	ld [hMultiplier], a
+	ld [hMultiplier], a ;multiply by level?
 	call Multiply
 	ld a, [hMultiplicand]
 	ld [hProduct], a
@@ -9479,50 +9480,50 @@ Functione17b: ; e17b
 	ld [hMultiplicand], a
 	ld a, [$ffb6]
 	ld [$ffb5], a
-	ld a, $64
+	ld a, $64 ;100
 	ld [hMultiplier], a
 	ld a, $3
 	ld b, a
-	call Divide
+	call Divide ;/100
 	ld a, c
 	cp $1
 	ld a, $5
-	jr nz, .asm_e24e
-	ld a, [CurPartyLevel]
+	jr nz, .asm_e24e ;jump if not hp?
+	ld a, [CurPartyLevel] ;add level ?
 	ld b, a
 	ld a, [$ffb6]
 	add b
 	ld [$ffb6], a
-	jr nc, .asm_e24c
+	jr nc, .asm_e24c ;check if carry
 	ld a, [$ffb5]
 	inc a
 	ld [$ffb5], a
 
 .asm_e24c
-	ld a, $a
+	ld a, $a ;load 10 to add
 
 .asm_e24e
 	ld b, a
 	ld a, [$ffb6]
-	add b
+	add b ;add constant
 	ld [$ffb6], a
-	jr nc, .asm_e25b
+	jr nc, .asm_e25b ;check if carry
 	ld a, [$ffb5]
 	inc a
 	ld [$ffb5], a
 
 .asm_e25b
-	ld a, [$ffb5]
+	ld a, [$ffb5] ;if stat is >1004. jump
 	cp $4
 	jr nc, .asm_e26b
 	cp $3
-	jr c, .asm_e273
+	jr c, .asm_e273 ;if stat is less then 753, done
 	ld a, [$ffb6]
 	cp $e8
-	jr c, .asm_e273
+	jr c, .asm_e273 ;if < 1000, jump
 
 .asm_e26b
-	ld a, $3
+	ld a, $3 ;cap at 999
 	ld [$ffb5], a
 	ld a, $e7
 	ld [$ffb6], a
@@ -9538,27 +9539,27 @@ GivePoke:: ; e277
 	push de
 	push bc
 	xor a
-	ld [MonType], a
-	call Functiond88c
-	jr nc, .asm_e2b0
+	ld [MonType], a ;montype = 0(puts mon in party)
+	call Functiond88c ;create mon in party
+	jr nc, .asm_e2b0 ;if failed, add to PC instead
 	ld hl, PartyMonNicknames
 	ld a, [PartyCount]
 	dec a
 	ld [CurPartyMon], a
 	call SkipNames
 	ld d, h
-	ld e, l
+	ld e, l ;put nickname slot in de
 	pop bc
 	ld a, b
 	ld b, $0
 	push bc
-	push de
-	push af
+	push de ; nicknme slot
+	push af ; a = b
 	ld a, [CurItem]
 	and a
-	jr z, .asm_e2e1
+	jr z, .asm_e2e1 ;if item = 0, skip ahead
 	ld a, [CurPartyMon]
-	ld hl, PartyMon1Item
+	ld hl, PartyMon1Item ;else add item
 	ld bc, PartyMon2 - PartyMon1
 	call AddNTimes
 	ld a, [CurItem]
@@ -9567,10 +9568,10 @@ GivePoke:: ; e277
 
 .asm_e2b0
 	ld a, [CurPartySpecies]
-	ld [TempEnemyMonSpecies], a
-	callab LoadEnemyMon
+	ld [TempEnemyMonSpecies], a ;put species in enemy species
+	callab LoadEnemyMon ;place mon in enemy mon
 	call Functionde6e
-	jp nc, Functione3d4
+	jp nc, Functione3d4 ;if failed, ret b = 2
 	ld a, $2
 	ld [MonType], a
 	xor a
@@ -9596,9 +9597,9 @@ GivePoke:: ; e277
 	ld hl, StringBuffer1
 	ld de, wd050
 	ld bc, PKMN_NAME_LENGTH
-	call CopyBytes
+	call CopyBytes ;d050 = mon name
 	pop af
-	and a
+	and a ;jump if
 	jp z, .asm_e390
 	pop de
 	pop bc
@@ -37547,17 +37548,17 @@ FillMoves: ; 424e1
 	ld b, 0
 	ld a, [CurPartySpecies]
 	dec a
-	add a
-	rl b
-	ld c, a
-	add hl, bc
+	add a ;(species -1)*2
+	rl b ;carry in b (if any)
+	ld c, a 
+	add hl, bc ;load that mon location into hl
 	ld a, [hli]
 	ld h, [hl]
 	ld l, a
 .GoToAttacks
 	ld a, [hli]
 	and a
-	jr nz, .GoToAttacks
+	jr nz, .GoToAttacks ;if an evo there, loop until no evo
 	jr .GetLevel
 
 .NextMove
@@ -37565,79 +37566,79 @@ FillMoves: ; 424e1
 .GetMove
 	inc hl
 .GetLevel
-	ld a, [hli]
+	ld a, [hli] ;load move level, move over move
 	and a
-	jp z, .done
+	jp z, .done ;if zero, no more moves
 	ld b, a
 	ld a, [CurPartyLevel]
 	cp b
-	jp c, .done
+	jp c, .done ;if move level is higher then current level, done
 	ld a, [Buffer1]
 	and a
-	jr z, .CheckMove
-	ld a, [DefaultFlypoint]
+	jr z, .CheckMove ;jump if buffer = zero
+	ld a, [DefaultFlypoint] ;if ?? is > move level, get next move
 	cp b
 	jr nc, .GetMove
 
 .CheckMove
-	push de
+	push de ;loc to enter move
 	ld c, NUM_MOVES
 .CheckRepeat
-	ld a, [de]
+	ld a, [de] ;if current move same as loaded move, return and try the next move
 	inc de
 	cp [hl]
-	jr z, .NextMove
-	dec c
+	jr z, .NextMove 
+	dec c ;else check next slot until all slots are checked
 	jr nz, .CheckRepeat
-	pop de
+	pop de ;reload move entry slot
 	push de
 	ld c, NUM_MOVES
 .CheckSlot
-	ld a, [de]
+	ld a, [de] ;if current slot 1 is empty
 	and a
-	jr z, .LearnMove
-	inc de
+	jr z, .LearnMove ;skip move shifting
+	inc de ;else move to next slot
 	dec c
-	jr nz, .CheckSlot
-	pop de
+	jr nz, .CheckSlot ;see if any slot is empty, if no shot is empty fall through
+	pop de ;reset to slot 1
 	push de
-	push hl
+	push hl ;stack location in moves table to be recovered later
 	ld h, d
 	ld l, e
-	call ShiftMoves
+	call ShiftMoves ;move moves from de to the slot above in hl, overwriting the top move
 	ld a, [Buffer1]
 	and a
-	jr z, .ShiftedMove
+	jr z, .ShiftedMove ;if buffer is z, skip ahead
 	push de
-	ld bc, PartyMon1PP - (PartyMon1Moves + NUM_MOVES - 1)
-	add hl, bc
+	ld bc, PartyMon1PP - (PartyMon1Moves + NUM_MOVES - 1) ; difference between pp loc and last moveloc?
+	add hl, bc ;move to top of pp
 	ld d, h
 	ld e, l
-	call ShiftMoves
+	call ShiftMoves ;shift pp amounts
 	pop de
 
 .ShiftedMove
-	pop hl
+	pop hl ;if moves were shifted, reset hl
 
 .LearnMove
 	ld a, [hl]
-	ld [de], a
+	ld [de], a ;put the move into the move slot
 	ld a, [Buffer1]
 	and a
-	jr z, .NextMove
-	push hl
-	ld a, [hl]
-	ld hl, PartyMon1PP - PartyMon1Moves
-	add hl, de
-	push hl
+	jr z, .NextMove ;if buffer is 0, check next move
+	push hl ;stack move loc
+	ld a, [hl] ;put move in a
+	ld hl, PartyMon1PP - PartyMon1Moves 
+	add hl, de ;move down to appropriate PP
+	push hl ;stack pp loc
 	dec a
 	ld hl, Moves + MOVE_PP
 	ld bc, MOVE_LENGTH
-	call AddNTimes
+	call AddNTimes ;move down to moves base PP in database
 	ld a, BANK(Moves)
-	call GetFarByte
+	call GetFarByte ;put it in a
 	pop hl
-	ld [hl], a
+	ld [hl], a;load it into pp, and reset hl before moving onto next move
 	pop hl
 	jr .NextMove
 
@@ -50606,14 +50607,14 @@ Function50e1b: ; 50e1b
 ; 50e47
 
 Function50e47: ; 50e47
-
-	ld a, [BaseGrowthRate]
+;d = level
+	ld a, [BaseGrowthRate] ;pull growth rate from base data?
 	add a
-	add a
+	add a ;multiply by 4
 	ld c, a
 	ld b, 0
 	ld hl, GrowthRates
-	add hl, bc
+	add hl, bc ;add to growth rates, hl = start of correct formula
 	call Function50eed
 	ld a, d
 	ld [hMultiplier], a

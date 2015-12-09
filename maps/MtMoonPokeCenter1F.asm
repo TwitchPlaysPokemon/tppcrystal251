@@ -39,11 +39,22 @@ FisherScript3_MtMoon:
 	loadmovesprites
 	end
 
-FisherScript4_MtMoon
+FisherScript4_MtMoon:
 	writetext FisherText5_MtMoon
 	closetext
 	loadmovesprites
 	end
+
+FisherScript5_MtMoon: :send to pc check
+	checkcode VAR_BOXSPACE 
+	if_equal $0, FisherScript4_MtMoon
+	writetext FisherText6_MtMoon
+	playsound SFX_CAUGHT_MON
+	waitbutton
+	givepoke MAGIKARP, 5, 0, 0
+	takemoney $0, 500
+	setevent EVENT_BOUGHT_MAGIKARP_FROM_SALESMAN
+	jump FisherScript2_MtMoon
 
 FisherText1_MtMoon:
 	text "Hey, you!"
@@ -84,7 +95,17 @@ FisherText5_MtMoon:
 	text "WHAT?!"
 	
 	para "You have no room"
-	line "in your party!"
+	line "in your party"
+	cont "or PC box!"
+	done
+
+FisherText6_MtMoon:
+	text "Your party is"
+	line "full, so I sent"
+	cont "it to the PC!"
+	
+	para "<PLAY_G> received"
+	line "a MAGIKARP!"
 	done
 
 MtMoonPokeCenter1F_MapEventHeader: ; 0x69935

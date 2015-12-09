@@ -18,7 +18,7 @@ BillScript_0x54be4: ; 0x54be4
 	keeptextopen
 	waitbutton
 	checkcode VAR_PARTYCOUNT
-	if_equal $6, UnknownScript_0x54c13
+	if_equal $6, BillEeveePC:
 	writetext UnknownText_0x54dae
 	playsound SFX_CAUGHT_MON
 	waitbutton
@@ -29,6 +29,19 @@ BillScript_0x54be4: ; 0x54be4
 	loadmovesprites
 	end
 ; 0x54c13
+
+BillEeveePC:
+	checkcode VAR_BOXSPACE
+	if_equal $0, UnknownScript_0x54c13
+	writetext BillsEeveePCText
+	playsound SFX_CAUGHT_MON
+	waitbutton
+	givepoke EEVEE, 20, 0, 0
+	setevent EVENT_GOT_EEVEE
+	writetext UnknownText_0x54dc1
+	closetext
+	loadmovesprites
+	end
 
 UnknownScript_0x54c13: ; 0x54c13
 	writetext UnknownText_0x54e02
@@ -157,6 +170,12 @@ UnknownText_0x54dae: ; 0x54dae
 	line "EEVEE!"
 	done
 ; 0x54dc1
+
+BillsEeveePCText: ; 0x54dae
+	text "Full party? I'll"
+	line "put it in the"
+	cont "PC then."
+	done
 
 UnknownText_0x54dc1: ; 0x54dc1
 	text "BILL: PROF.ELM"

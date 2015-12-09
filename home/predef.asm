@@ -2,13 +2,13 @@ Predef:: ; 2d83
 ; Call predefined function a.
 ; Preserves bc, de, hl and f.
 
-	ld [PredefID], a
+	ld [PredefID], a ;load predef bank into var
 	ld a, [hROMBank]
-	push af
+	push af ;save current bank on the stack
 
 	ld a, BANK(GetPredefPointer)
 	rst Bankswitch
-	call GetPredefPointer ; a is the bank of predefId and PredefAddress is the location
+	call GetPredefPointer ; a is the bank of predefId and PredefAddress is the location. current hl is in predeftemp
 
 ; Switch to the new function's bank
 	rst Bankswitch
@@ -16,7 +16,7 @@ Predef:: ; 2d83
 ; Instead of directly calling stuff,
 ; push it to the stack in reverse.
 
-	ld hl, .Return
+	ld hl, .Return ;push return onto the stack
 	push hl
 	
 ; Call the Predef function

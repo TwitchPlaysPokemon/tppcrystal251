@@ -1111,14 +1111,14 @@ GetScriptByte:: ; 0x26d4
 	inc hl
 	ld b, [hl]
 
-	ld a, [bc]; put the script into a?
+	ld a, [bc]; put the script data into a
 
 	inc bc
 	ld [hl], b ;ld old scriptpos + 1 back into scriptpos
 	dec hl
 	ld [hl], c
 
-	ld b, a ;put script? into b for bank switch
+	ld b, a ;put script data into b for bank switch
 	pop af
 	rst Bankswitch
 	ld a, b ;back into a

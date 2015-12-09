@@ -6246,9 +6246,9 @@ LoadEnemyMon: ; 3e8eb
 	
 	ld a, [OtherTrainerClass]
 	cp TPPPC
-	jr nz, .continueloading
+	jr nz, .continueloading ;if not the PC, skip 
 	ld a, [OtherTrainerID]
-	cp MIRROR
+	cp MIRROR ;if mirror (?) go to ?
 	jp z, Function3dabd
 	
 .continueloading
@@ -6276,8 +6276,8 @@ LoadEnemyMon: ; 3e8eb
 ; If we're in a trainer battle, the item is in the party struct
 	ld a, [CurPartyMon]
 	ld hl, OTPartyMon1Item
-	call GetPartyLocation ; bc = PartyMon[CurPartyMon] - PartyMons
-	ld a, [hl]
+	call GetPartyLocation ; go to opposing mon party slot item
+	ld a, [hl] ;load it into a
 	jr .UpdateItem
 	
 	
@@ -6318,7 +6318,7 @@ LoadEnemyMon: ; 3e8eb
 	
 	
 .UpdateItem
-	ld [EnemyMonItem], a
+	ld [EnemyMonItem], a ;put item on mon
 	
 	
 ; Initialize DVs
@@ -6333,9 +6333,9 @@ LoadEnemyMon: ; 3e8eb
 	jr z, .InitDVs
 	
 ; Unknown
-	ld hl, wc6f2
+	ld hl, wc6f2 ;set by transform?
 	ld de, EnemyMonDVs
-	ld a, [hli]
+	ld a, [hli] ;load dvs from ?? into enemymondvs
 	ld [de], a
 	inc de
 	ld a, [hl]
@@ -6419,7 +6419,7 @@ LoadEnemyMon: ; 3e8eb
 	ld c, a
 	
 .UpdateDVs
-; Input DVs in register bc
+; Input DVs from register bc into enemymons
 	ld hl, EnemyMonDVs
 	ld a, b
 	ld [hli], a
@@ -6519,7 +6519,7 @@ LoadEnemyMon: ; 3e8eb
 ; Set level
 	ld a, [CurPartyLevel]
 	ld [EnemyMonLevel], a
-; ; Adjust the wild Pokemon's level if it's not fixed
+; ; Adjust the wild Pokemon's level if it's not fixed (redundent?)
 	; ld a, [IsInBattle]
 	; cp a, TRAINER_BATTLE
 	; jr z, .Stats
@@ -6559,7 +6559,7 @@ LoadEnemyMon: ; 3e8eb
 	ld de, EnemyMonMaxHP
 	ld b, $00
 	ld hl, LinkBattleRNs + 7 ; ?
-	predef Functione167
+	predef Functione167 ;load in stats, hl is start of stat xp
 	
 ; If we're in a trainer battle,
 ; get the rest of the parameters from the party struct
@@ -6577,7 +6577,7 @@ LoadEnemyMon: ; 3e8eb
 	
 .TreeMon
 ; If we're headbutting trees, some monsters enter battle asleep
-	call CheckSleepingTreeMon
+	call CheckSleepingTreeMon ;ret c if mon asleep
 	ld a, SLP ; Asleep for 7 turns
 	jr c, .UpdateStatus
 ; Otherwise, no status
@@ -6659,7 +6659,7 @@ LoadEnemyMon: ; 3e8eb
 ; Then copy moves from the party struct
 	ld hl, OTPartyMon1Moves
 	ld a, [CurPartyMon]
-	call GetPartyLocation
+	call GetPartyLocation ;go to opposing party moves
 	ld bc, NUM_MOVES
 	call CopyBytes
 	jr .PP

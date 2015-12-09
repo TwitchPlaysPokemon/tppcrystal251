@@ -27,18 +27,27 @@ UnknownScript_0x7e217: ; 0x7e217
 	keeptextopen
 	waitbutton
 	checkcode VAR_PARTYCOUNT
-	if_equal $6, UnknownScript_0x7e237
+	if_equal $6, MortarGiftPC
 	writetext UnknownText_0x7e355
 	playsound SFX_CAUGHT_MON
 	waitbutton
-	givepoke TYROGUE, 10, 0, 0
+	givepoke HITMONTOP, 70, 0, 0
 	setevent EVENT_GOT_TYROGUE_FROM_KIYO
 UnknownScript_0x7e231: ; 0x7e231
 	writetext UnknownText_0x7e36a
 	closetext
 	loadmovesprites
 	end
-; 0x7e237
+
+MortarGiftPC
+	checkcode VAR_BOXSPACE
+	if equal $0, UnknownScript_0x7e237
+	writetext MortarGiftPCText
+	playsound SFX_CAUGHT_MON
+	waitbutton
+	givepoke HITMONTOP, 70, 0, 0
+	setevent EVENT_GOT_TYROGUE_FROM_KIYO
+	jump UnknownScript_0x7e231
 
 UnknownScript_0x7e237: ; 0x7e237
 	writetext UnknownText_0x7e3df
@@ -118,16 +127,19 @@ UnknownText_0x7e2c0: ; 0x7e2c0
 
 UnknownText_0x7e355: ; 0x7e355
 	text "<PLAYER> received"
-	line "TYROGUE."
+	line "HITMONTOP."
 	done
-; 0x7e36a
+
+MortarGiftPCText
+	text "HITMONTOP was sent"
+	line "to Bill's PC."
 
 UnknownText_0x7e36a: ; 0x7e36a
-	text "TYROGUE is a"
+	text "HITMONTOP is a"
 	line "fighting-type."
 
-	para "It evolves into a"
-	line "tougher #MON."
+	para "Few TYROGUE evolve"
+	line "into this #MON"
 
 	para "Keep up the hard"
 	line "work. I'll keep"
@@ -139,7 +151,8 @@ UnknownText_0x7e36a: ; 0x7e36a
 
 UnknownText_0x7e3df: ; 0x7e3df
 	text "You have no room"
-	line "in your party!"
+	line "in your party"
+	cont "or PC box!"
 	done
 ; 0x7e400
 

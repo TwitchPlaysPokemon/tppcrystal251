@@ -2620,23 +2620,23 @@ Script_givepoke: ; 0x97932
 ;     pkmn_nickname (MultiByteParam)
 
 	call GetScriptByte
-	ld [CurPartySpecies], a
+	ld [CurPartySpecies], a ;store mon species
 	call GetScriptByte
-	ld [CurPartyLevel], a
+	ld [CurPartyLevel], a ;store mon level
 	call GetScriptByte
-	ld [CurItem], a
+	ld [CurItem], a ;store mon item
 	call GetScriptByte
 	and a
 	ld b, a
-	jr z, .ok
-	ld hl, ScriptPos
+	jr z, .ok ;if trainer = 0, skip
+	ld hl, ScriptPos ;load data into de
 	ld e, [hl]
 	inc hl
 	ld d, [hl]
 	call GetScriptByte
 	call GetScriptByte
 	call GetScriptByte
-	call GetScriptByte
+	call GetScriptByte ;jump forward 4 bytes
 .ok
 	callba GivePoke
 	ld a, b
