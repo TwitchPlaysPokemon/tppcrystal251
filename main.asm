@@ -33604,16 +33604,7 @@ Check_IsRoamMon3: ; 2a0cf
 	ret
 ; 2a0e7
 
-Function2a0e7:: ; 2a0e7 
-; Try to trigger a wild encounter.
-	call Function2a103 ;check if encounter, return c if there is not and encounter rate in b
-	jr nc, .asm_2a0f8
-	call Function2a14f ;find what encounter to run
-	jr nz, .asm_2a0f8
-	call Function2a1df ;if repel if off then carry, jump if it is on
-	jr nc, .asm_2a0f8
-	xor a
-	ret
+
 
 .asm_2a0f8 ;no battle
 	xor a ; BATTLETYPE_NORMAL
@@ -33624,204 +33615,17 @@ Function2a0e7:: ; 2a0e7
 	ret
 ; 2a103
 
-Function2a103: ; 2a103
-	call Function2a111 ; b = encounter chance
-	call Function2a124 ;adjust for music
-	call Function2a138 ;halve again if clense tag
-	call Random ;call random in a then cp b to check for encounters
-	cp b
-	ret
 ; 2a111
 
-Function2a111: ; 2a111
-	ld hl, wd25a ;The land encounter chance
-	call Function1852
-	ld a, 3
-	jr z, .asm_2a11e ;if water jump and line up with water encounter chance, otherwise add 0
-	ld a, 0
-.asm_2a11e
-	ld c, a
-	ld b, 0
-	add hl, bc
-	ld b, [hl] ;put encounter rate in b
-	ret
+
 ; 2a124
 
-Function2a124:: ; 2a124
-; Pokemon March and Ruins of Alph signal double encounter rate.
-; Pokemon Lullaby halves encounter rate.
-	ld a, [wMapMusic]
-	cp MUSIC_POKEMON_MARCH
-	jr z, .asm_2a135
-	cp MUSIC_RUINS_OF_ALPH_RADIO
-	jr z, .asm_2a135
-	cp MUSIC_POKEMON_LULLABY
-	ret nz
-	srl b
-	ret
 
-.asm_2a135
-	sla b
-	ret
-; 2a138
 
-Function2a138:: ; 2a138
-; Cleanse Tag halves encounter rate.
-	ld hl, PartyMon1Item
-	ld de, PartyMon2 - PartyMon1
-	ld a, [PartyCount]
-	ld c, a
-.next
-	ld a, [hl]
-	cp CLEANSE_TAG
-	jr z, .asm_2a14c
-	add hl, de
-	dec c
-	jr nz, .next
-	ret
 
-.asm_2a14c
-	srl b
-	ret
-; 2a14f
-
-Function2a14f: ; 2a14f something to do with encounters
-	call Function2a200 ; put adress of wild mons tables in hl, bc holds skip numbers
-	jp nc, .asm_2a1c1 ; jump if checking fails
-	call Function2a2ce; check if roaming encounter
-	jp c, .asm_2a1c9; if roamer found(?) jump, otherwise fall through
-
-	inc hl
-	inc hl 
-	inc hl ;place it over tables bit to store the loc (is add 4 faster?)
-	inc hl
-	ld d, h 
-	ld e, l;put table bit into de to get it back once first mon bit is on the stack
-	inc hl ; move onto first mon bit
-	ld a, [TimeOfDay];load ToD into a
-	ld bc, $10 ;load 16 into bc for ToD mmovement
-	call AddNTimes ; HL + (bc *a), moves down 16 lines per ToD, moving onto first mon of right time
-
-	push hl ; place first mon location on stack (cur stack: first mon byte)
-	ld a, [de]
-	and $f ;use first nyble
-	push de  ;(cur stack: table byte, first mon byte)
-	ld hl, PctTables ;load first table location into hl
-	ld c, a ;put the table number in bc
-	ld b, 0
-	ld a, $10 ;put the size of a table(16) into a
-	call AddNTimes ; HL + (bc *a), find the start of the correct table
-	ld d, h 
-	ld e, l;put it in de
-	
-	
-
-.asm_2a174 ;redundent 
-.asm_2a175
-	call Random
-	cp 200
-	jr nc, .asm_2a175 ; loop until you get <200 randomly
-	inc a; make rand 1 to 200
-	ld b, a ; put the random number in b
-	ld h, d ; load the encounter% table location into hl
-	ld l, e
-	ld e, 0 ;e holds loops needed and amount of slots to go down
-.asm_2a180
-	ld a, [hli] ;load encouner slot chance into a and increment hl, making a contain the encounter chance and hl point to the offset needed to find the mon
-	cp b ; set flags for the random number - the encounter chance
-	jr nc, .asm_2a187 ; If this the correct encounter jump out, otherwise fall through 
-		;inc hl ; go down another line, putting hl onto the next encounter slot
-	inc e
-	jr .asm_2a180 ; loop until encounter found
-
-.asm_2a187
-		;ld c, [hl] ; e already holds correct decrement thanks to the rebuilds
-	; (cur stack: table byte, first mon byte)
-	ld d, 0
-	pop hl ; pull tables byte from stack (cur stack: first mon byte)
-	push hl ; put it back on (cur stack: table byte, first mon byte)
-	ld a, [hl] 
-	swap a
-	and $f ; only use second nyble
-	jr z, SkipBonLvl ;skip is "table" 0 and thus no bonus. convienantly a is also 0
-	ld b, 0 ; for addNtimes
-	dec a ;go 1 down as no table 0 exists for lvl tables
-	ld hl, LvlTables ;load lvl table loc
-	ld c, $10 ;put 16 into c to move down the right number of tables
-	call AddNTimes
-	add hl, de ; find slot
-	ld a, [hl] ;put the level bonus in a for addition
-SkipBonLvl
-	pop hl ;get table byte (cur stack: first mon byte)
-	dec hl ;move onto base level byte
-	add a, [hl] ;add base level onto level bonus
-	pop hl ; get first mon byte (stack equal to start)
-	add hl, de ;move to correct mon
-
-	call AddVariance ;add level variance and ensure it is between 2 and 100. accepts number to increase into a and returns the new number in a
-	ld [CurPartyLevel], a ;load level into a variable
-
-	ld b, [hl] 
-	ld a, b ; load mon species into a
-	call Function2a4a0 ; check mon is valid, jump is not (RIP missingno)
-	jr c, .asm_2a1c1
-
-	ld a, b
-	cp UNOWN
-	jr nz, .asm_2a1bf ;check for unown, is unkown do special case for unlocked unowns, otherwise jump down
-
-	ld a, [UnlockedUnowns] ;if no unown unlocked, no encounter
-	and a
-	jr z, .asm_2a1c1
-
-.asm_2a1bf
-	jr .asm_2a1c5
-
-.asm_2a1c1
-	ld a, 1
-	and a
-	ret
-
-.asm_2a1c5
-	ld a, b
-	ld [wd22e], a
-
-.asm_2a1c9
-	xor a
-	ret
 ; 2a1cb
 
-AddVariance: ;add level variance and ensure it is between 2 and 100. accepts number to increase into a and returns the new number in a
-	
-	push bc
-	ld b, a ;store level in b
-	call Random ; level vairance approx 35% listed level, 30% +1, 20% +2, 10% +3, 5% +4
-	cp 89
-	jr c, .asm_2a1aa
-	inc b
-	cp 165
-	jr c, .asm_2a1aa
-	inc b
-	cp 216
-	jr c, .asm_2a1aa
-	inc b
-	cp 242
-	jr c, .asm_2a1aa
-	inc b
 
-.asm_2a1aa
-	ld a, b ; load level back into a
-	cp 2 ;If level is less then 2, set it to 2
-	jr nc, .Pass
-	ld a, 2
-	pop bc
-	ret
-.Pass
-	cp 101 ;If over level 100, set to 100
-	pop bc ;return b
-	ret c
-	ld a, 100
-	ret
 
 ;Unknown_2a1cb: ; 2a1cb
 ;	;db 30,  $0
@@ -33838,227 +33642,14 @@ AddVariance: ;add level variance and ensure it is between 2 and 100. accepts num
 ;	db 90,  $2
 ;	db 100, $4
 
-PctTables: ;0 = big 30
-	db 60
-	db 80
-	db 100
-	db 120
-	db 130
-	db 140
-	db 150
-	db 160
-	db 168
-	db 176
-	db 182
-	db 188
-	db 192
-	db 196
-	db 198
-	db 200
-; 1 = 2020
-	db 40
-	db 80
-	db 100
-	db 120
-	db 130
-	db 140
-	db 150
-	db 160
-	db 168
-	db 176
-	db 182
-	db 188
-	db 192
-	db 196
-	db 198
-	db 200
-;2 = 2015
-	db 40 ;20
-	db 70 ;15
-	db 90 ;10
-	db 110 ;10
-	db 130 ;10
-	db 142 ;6
-	db 152 ;5
-	db 162 ;5
-	db 172 ;5
-	db 180 ;4
-	db 186 ;3
-	db 190 ;2
-	db 194 ;2
-	db 196 ;1
-	db 198 ;1
-	db 200 ;1
-;3 = 1510
-	db 30
-	db 50
-	db 70
-	db 90
-	db 110
-	db 120
-	db 130
-	db 140
-	db 150
-	db 160
-	db 170
-	db 180
-	db 188
-	db 194
-	db 198
-	db 200
 
-LvlTables: ; 0 = all base
 
  ; 2a1df
 
-Function2a1df:: ; 2a1df
-	ld a, [wdca1] ;if ?(repels steps?) is not 0
-	and a
-	jr z, .asm_2a1fe
-	ld hl, PartyMon1HP ;load HP location into hl
-	ld bc, PartyMon2 - PartyMon1 - 1 ; find the size of the struct -1?
-.asm_2a1eb
-	ld a, [hli] 
-	or [hl]
-	jr nz, .asm_2a1f2 ;jump if hp is no 0
-	add hl, bc ; if current mon is FNT, move down to next mon and try again
-	jr .asm_2a1eb
 
-.asm_2a1f2
-; to PartyMonLevel
-	dec hl
-	dec hl
-	dec hl
-	dec hl
-
-	ld a, [CurPartyLevel]
-	cp [hl] ;if encounter mon level < front mon level then jump
-	jr nc, .asm_2a1fe
-	and a
-	ret
-
-.asm_2a1fe
-	scf
-	ret
 ; 2a200
 
-Function2a200: ; 2a200 from 2a14f
-	call Function1852
-	jr z, Function2a21d ; If water, jump otherwise fall through
 
-Function2a205: ; 2a205
-	ld hl, WildMons5 ; address of the grass swarms table
-		;ld bc, $002f ;47, 
-	ld bc, $0035 ; 53, set for size of areas when skipping, change to new size
-	call asm_2a23d; check for swarms
-	ret c ;return if a swarm
-	ld hl, WildMons1
-	ld de, WildMons3
-	call asm_2a235 ;if johto keep same, if kanto load de into hl
-		;ld bc, $002f
-	ld bc, $0035 ; 53
-	jr asm_2a27a
-
-Function2a21d: ; 2a21d ; jump here if water
-	ld hl, WildMons6
-		;ld bc, $0009 ; 9  set for size of areas when skipping, change to new size
-	ld bc, $0035 ; 53
-	call asm_2a23d
-	ret c
-	ld hl, WildMons2
-	ld de, WildMons4
-	call asm_2a235 ;if johto keep same, if kanto load de into hl
-		;ld bc, $0009
-	ld bc, $0035 ; 53
-	jr asm_2a27a
-
-asm_2a235
-	call IsInJohto ;a is 0 if johto, 1 if kanto
-	and a
-	ret z ;if johto keep same, if kanto load de into hl
-	ld h, d
-	ld l, e
-	ret
-
-asm_2a23d ;from 2a205
-	call Function2a27f ;load current location into de
-	push hl
-	ld hl, DailyFlags + 2; 
-	bit 2, [hl] ;z is 0 if dunsparce swarm, otherwise 1 (why not check location first?)
-	pop hl
-	jr z, .asm_2a25c ;if not swarm, jump
-	ld a, [wdfcc] ;????
-	cp d
-	jr nz, .asm_2a25c
-	ld a, [wdfcd] ;????
-	cp e
-	jr nz, .asm_2a25c
-	call Function2a288
-	jr nc, asm_2a278 ;if finding map sucseeds, fall through, otherwise jump, clear flags and return
-	scf
-	ret
-
-.asm_2a25c
-	push hl
-	ld hl, DailyFlags + 2;same as above but for yanma swarm
-	bit 3, [hl]
-	pop hl
-	jr z, asm_2a278
-	ld a, [wdc5a]
-	cp d
-	jr nz, asm_2a278
-	ld a, [wdc5b]
-	cp e
-	jr nz, asm_2a278
-	call Function2a288
-	jr nc, asm_2a278
-	scf
-	ret
-
-asm_2a278
-	and a ; clear flags
-	ret
-
-asm_2a27a ;from 2a205
-	call Function2a27f ; load current location into de
-	jr Function2a288
-; 2a27f
-
-Function2a27f: ; 2a27f from 2a23d
-	ld a, [MapGroup]; load current location into de
-	ld d, a
-	ld a, [MapNumber]
-	ld e, a
-	ret
-; 2a288
-
-Function2a288: ; 2a288 from 2a205 load current maps place in land wild tables
-	push hl ;loc of wild tables
-	ld a, [hl]; 
-	inc a
-	jr z, .asm_2a29a ; If map location is max jump, pop, clear flags and ret
-	ld a, d
-	cp [hl] ; If mapgroup doesn't match, move down to next group and try again
-	jr nz, .asm_2a296 ; increment hl by the size of the wild table if it doesnt match the location
-	inc hl ; If map number doesn't match, fall through and move down an area, otherwise jump out.
-	ld a, e
-	cp [hl]
-	jr z, .asm_2a29d
-
-.asm_2a296
-	pop hl
-	add hl, bc
-	jr Function2a288
-
-.asm_2a29a
-	pop hl
-	and a
-	ret
-
-.asm_2a29d
-	pop hl
-	scf ; set carry flag
-	ret
 ; 2a2a0
 
 CheckPartyLevels:
@@ -34152,53 +33743,7 @@ InitRoamMons:
 	ld [wRoamMon3HP], a
 	ret
 
-Function2a2ce: ; 2a2ce from 2a14f
-	push hl
-	call Function1852
-	jr z, .asm_2a30a ;if water jump and ret, otherwise fall through
-	call Function2a27f ;load current location into de
-	call Random ;advance randomass and randomsub, a is random sub
-	cp 100 
-	jr nc, .asm_2a30a ;100 in 255 chance to jump (0-99)
-	and 7 ; cap at 7
-	jr z, .asm_2a30a ; if not 0 or a multiple of 8 continue otherwise jump
-	cp ROAM_SUICUNE
-	jr nz, .notsuicune; here on seems to be roaming stuff
-	dec a
-.notsuicune
-	dec a
-	ld hl, wRoamMon1MapGroup
-	ld c, a
-	ld b, 0
-	ld a, 7
-	call AddNTimes
-	ld a, d
-	cp [hl]
-	jr nz, .asm_2a30a
-	inc hl
-	ld a, e
-	cp [hl]
-	jr nz, .asm_2a30a
-	dec hl
-	dec hl
-	dec hl
-	ld a, [hli]
-	and a
-	jr z, .asm_2a30a
-	ld [wd22e], a
-	ld a, [hl]
-	ld [CurPartyLevel], a
-	ld a, BATTLETYPE_ROAMING
-	ld [BattleType], a
 
-	pop hl
-	scf
-	ret
-
-.asm_2a30a
-	pop hl
-	and a; if not roaming, clear flags
-	ret
 ; 2a30d
 
 Function2a30d: ; 2a30d
@@ -34399,18 +33944,7 @@ RoamMaps: ; 2a40f
 	db $ff
 ; 2a4a0
 
-Function2a4a0: ; 2a4a0 from 2a1aa
-; Check if the Pokemon ID is valid.
-	and a
-	jr z, .asm_2a4a9
-	cp NUM_POKEMON + 1
-	jr nc, .asm_2a4a9
-	and a
-	ret
 
-.asm_2a4a9
-	scf
-	ret
 ; 2a4ab
 
 Function2a4ab: ; 2a4ab seems to be a function to get a local mon to use in call text
@@ -34602,24 +34136,6 @@ RandomPhoneMon: ; 2a567
 	jp CopyBytes
 ; 2a5e9
 
-WildMons1: ; 0x2a5e9
-INCLUDE "data/wild/johto_grass.asm"
-
-WildMons2: ; 0x2b11d
-INCLUDE "data/wild/johto_water.asm"
-
-WildMons3: ; 0x2b274
-INCLUDE "data/wild/kanto_grass.asm"
-
-WildMons4: ; 0x2b7f7
-INCLUDE "data/wild/kanto_water.asm"
-
-WildMons5: ; 0x2b8d0
-INCLUDE "data/wild/swarm_grass.asm"
-
-WildMons6: ; 0x2b92f
-INCLUDE "data/wild/swarm_water.asm"
-
 Function2b930: ; 2b930
 	callba UpdateEnemyMonInParty
 	ld hl, PartyMon1HP
@@ -34795,6 +34311,511 @@ INCBIN "gfx/misc/player.6x6.2bpp.lz"
 DudeBackpic: ; 2bbaa
 INCBIN "gfx/misc/dude.6x6.2bpp.lz"
 ; 2bcea
+
+SECTION "WildHandling", ROMX 
+
+Function2a0e7:: ; 2a0e7 
+; Try to trigger a wild encounter.
+	call Function2a103 ;check if encounter, return c if there is not and encounter rate in b
+	jr nc, .asm_2a0f8
+	call Function2a14f ;find what encounter to run
+	jr nz, .asm_2a0f8
+	call Function2a1df ;if repel if off then carry, jump if it is on
+	jr nc, .asm_2a0f8
+	xor a
+	ret
+
+Function2a103: ; 2a103
+	call Function2a111 ; b = encounter chance
+	call Function2a124 ;adjust for music
+	call Function2a138 ;halve again if clense tag
+	call Random ;call random in a then cp b to check for encounters
+	cp b
+	ret
+
+Function2a111: ; 2a111
+	ld hl, wd25a ;The land encounter chance
+	call Function1852
+	ld a, 3
+	jr z, .asm_2a11e ;if water jump and line up with water encounter chance, otherwise add 0
+	ld a, 0
+.asm_2a11e
+	ld c, a
+	ld b, 0
+	add hl, bc
+	ld b, [hl] ;put encounter rate in b
+	ret
+
+Function2a124:: ; 2a124
+; Pokemon March and Ruins of Alph signal double encounter rate.
+; Pokemon Lullaby halves encounter rate.
+	ld a, [wMapMusic]
+	cp MUSIC_POKEMON_MARCH
+	jr z, .asm_2a135
+	cp MUSIC_RUINS_OF_ALPH_RADIO
+	jr z, .asm_2a135
+	cp MUSIC_POKEMON_LULLABY
+	ret nz
+	srl b
+	ret
+
+.asm_2a135
+	sla b
+	ret
+; 2a138
+
+Function2a138:: ; 2a138
+; Cleanse Tag halves encounter rate.
+	ld hl, PartyMon1Item
+	ld de, PartyMon2 - PartyMon1
+	ld a, [PartyCount]
+	ld c, a
+.next
+	ld a, [hl]
+	cp CLEANSE_TAG
+	jr z, .asm_2a14c
+	add hl, de
+	dec c
+	jr nz, .next
+	ret
+
+.asm_2a14c
+	srl b
+	ret
+; 2a14f
+
+Function2a14f: ; 2a14f choose an encounter
+	call Function2a200 ; put adress of wild mons tables in hl, bc holds skip numbers
+	jp nc, .asm_2a1c1 ; jump if checking fails
+	call Function2a2ce; check if roaming encounter
+	jp c, .asm_2a1c9; if roamer found(?) jump, otherwise fall through
+
+	inc hl
+	inc hl 
+	inc hl ;place it over tables bit to store the loc (is add 4 faster?)
+	inc hl
+	ld d, h 
+	ld e, l;put table bit into de to get it back once first mon bit is on the stack
+	inc hl ; move onto first mon bit
+	ld a, [TimeOfDay];load ToD into a
+	ld bc, $10 ;load 16 into bc for ToD mmovement
+	call AddNTimes ; HL + (bc *a), moves down 16 lines per ToD, moving onto first mon of right time
+
+	push hl ; place first mon location on stack (cur stack: first mon byte)
+	ld a, [de]
+	and $f ;use first nyble
+	push de  ;(cur stack: table byte, first mon byte)
+	ld hl, PctTables ;load first table location into hl
+	ld c, a ;put the table number in bc
+	ld b, 0
+	ld a, $10 ;put the size of a table(16) into a
+	call AddNTimes ; HL + (bc *a), find the start of the correct table
+	ld d, h 
+	ld e, l;put it in de
+	
+.asm_2a174 ;redundent 
+.asm_2a175
+	call Random
+	cp 200
+	jr nc, .asm_2a175 ; loop until you get <200 randomly
+	inc a; make rand 1 to 200
+	ld b, a ; put the random number in b
+	ld h, d ; load the encounter% table location into hl
+	ld l, e
+	ld e, 0 ;e holds loops needed and amount of slots to go down
+.asm_2a180
+	ld a, [hli] ;load encouner slot chance into a and increment hl, making a contain the encounter chance and hl point to the offset needed to find the mon
+	cp b ; set flags for the random number - the encounter chance
+	jr nc, .asm_2a187 ; If this the correct encounter jump out, otherwise fall through 
+		;inc hl ; go down another line, putting hl onto the next encounter slot
+	inc e
+	jr .asm_2a180 ; loop until encounter found
+
+.asm_2a187
+		;ld c, [hl] ; e already holds correct decrement thanks to the rebuilds
+	; (cur stack: table byte, first mon byte)
+	ld d, 0
+	pop hl ; pull tables byte from stack (cur stack: first mon byte)
+	push hl ; put it back on (cur stack: table byte, first mon byte)
+	ld a, [hl] 
+	swap a
+	and $f ; only use second nyble
+	jr z, SkipBonLvl ;skip is "table" 0 and thus no bonus. convienantly a is also 0
+	ld b, 0 ; for addNtimes
+	dec a ;go 1 down as no table 0 exists for lvl tables
+	ld hl, LvlTables ;load lvl table loc
+	ld c, $10 ;put 16 into c to move down the right number of tables
+	call AddNTimes
+	add hl, de ; find slot
+	ld a, [hl] ;put the level bonus in a for addition
+SkipBonLvl
+	pop hl ;get table byte (cur stack: first mon byte)
+	dec hl ;move onto base level byte
+	add a, [hl] ;add base level onto level bonus
+	pop hl ; get first mon byte (stack equal to start)
+	add hl, de ;move to correct mon
+	ld b, a
+	call AddVariance ;add level variance and ensure it is between 2 and 100. accepts number to increase into a and returns the new number in a
+	ld [CurPartyLevel], b ;load level into a variable
+
+	ld b, [hl] 
+	ld a, b ; load mon species into a
+	call Function2a4a0 ; check mon is valid, jump if not (RIP missingno)
+	jr c, .asm_2a1c1
+
+	ld a, b
+	cp UNOWN
+	jr nz, .asm_2a1bf ;check for unown, is unkown do special case for unlocked unowns, otherwise jump down
+
+	ld a, [UnlockedUnowns] ;if no unown unlocked, no encounter
+	and a
+	jr z, .asm_2a1c1
+
+.asm_2a1bf
+	jr .asm_2a1c5
+
+.asm_2a1c1
+	ld a, 1
+	and a
+	ret
+
+.asm_2a1c5
+	ld a, b
+	ld [wd22e], a
+
+.asm_2a1c9
+	xor a
+	ret
+
+PctTables: ;0 = big 30
+	db 60
+	db 80
+	db 100
+	db 120
+	db 130
+	db 140
+	db 150
+	db 160
+	db 168
+	db 176
+	db 182
+	db 188
+	db 192
+	db 196
+	db 198
+	db 200
+; 1 = 2020
+	db 40
+	db 80
+	db 100
+	db 120
+	db 130
+	db 140
+	db 150
+	db 160
+	db 168
+	db 176
+	db 182
+	db 188
+	db 192
+	db 196
+	db 198
+	db 200
+;2 = 2015
+	db 40 ;20
+	db 70 ;15
+	db 90 ;10
+	db 110 ;10
+	db 130 ;10
+	db 142 ;6
+	db 152 ;5
+	db 162 ;5
+	db 172 ;5
+	db 180 ;4
+	db 186 ;3
+	db 190 ;2
+	db 194 ;2
+	db 196 ;1
+	db 198 ;1
+	db 200 ;1
+;3 = 1510
+	db 30
+	db 50
+	db 70
+	db 90
+	db 110
+	db 120
+	db 130
+	db 140
+	db 150
+	db 160
+	db 170
+	db 180
+	db 188
+	db 194
+	db 198
+	db 200
+
+LvlTables: ; 0 = all base
+
+Function2a200: ; 2a200 from 2a14f
+	call Function1852
+	jr z, Function2a21d ; If water, jump otherwise fall through
+
+Function2a205: ; 2a205
+	ld hl, WildMons5 ; address of the grass swarms table
+		;ld bc, $002f ;47, 
+	ld bc, $0035 ; 53, set for size of areas when skipping, change to new size
+	call asm_2a23d; check for swarms
+	ret c ;return if a swarm
+	ld hl, WildMons1
+	ld de, WildMons3
+	call asm_2a235 ;if johto keep same, if kanto load de into hl
+		;ld bc, $002f
+	ld bc, $0035 ; 53
+	jr asm_2a27a
+
+Function2a21d: ; 2a21d ; jump here if water
+	ld hl, WildMons6
+		;ld bc, $0009 ; 9  set for size of areas when skipping, change to new size
+	ld bc, $0035 ; 53
+	call asm_2a23d
+	ret c
+	ld hl, WildMons2
+	ld de, WildMons4
+	call asm_2a235 ;if johto keep same, if kanto load de into hl
+		;ld bc, $0009
+	ld bc, $0035 ; 53
+	jr asm_2a27a
+
+asm_2a235
+	call IsInJohto ;a is 0 if johto, 1 if kanto
+	and a
+	ret z ;if johto keep same, if kanto load de into hl
+	ld h, d
+	ld l, e
+	ret
+
+asm_2a23d ;from 2a205
+	call Function2a27f ;load current location into de
+	push hl
+	ld hl, DailyFlags + 2; 
+	bit 2, [hl] ;z is 0 if dunsparce swarm, otherwise 1 (why not check location first?)
+	pop hl
+	jr z, .asm_2a25c ;if not swarm, jump
+	ld a, [wdfcc] ;????
+	cp d
+	jr nz, .asm_2a25c
+	ld a, [wdfcd] ;????
+	cp e
+	jr nz, .asm_2a25c
+	call Function2a288
+	jr nc, asm_2a278 ;if finding map sucseeds, fall through, otherwise jump, clear flags and return
+	scf
+	ret
+
+.asm_2a25c
+	push hl
+	ld hl, DailyFlags + 2;same as above but for yanma swarm
+	bit 3, [hl]
+	pop hl
+	jr z, asm_2a278
+	ld a, [wdc5a]
+	cp d
+	jr nz, asm_2a278
+	ld a, [wdc5b]
+	cp e
+	jr nz, asm_2a278
+	call Function2a288
+	jr nc, asm_2a278
+	scf
+	ret
+
+asm_2a278
+	and a ; clear flags
+	ret
+
+asm_2a27a ;from 2a205
+	call Function2a27f ; load current location into de
+	jr Function2a288
+; 2a27f
+
+Function2a27f: ; 2a27f from 2a23d
+	ld a, [MapGroup]; load current location into de
+	ld d, a
+	ld a, [MapNumber]
+	ld e, a
+	ret
+; 2a288
+
+Function2a288: ; 2a288 from 2a205 load current maps place in land wild tables
+	push hl ;loc of wild tables
+	ld a, [hl]; 
+	inc a
+	jr z, .asm_2a29a ; If map location is max jump, pop, clear flags and ret
+	ld a, d
+	cp [hl] ; If mapgroup doesn't match, move down to next group and try again
+	jr nz, .asm_2a296 ; increment hl by the size of the wild table if it doesnt match the location
+	inc hl ; If map number doesn't match, fall through and move down an area, otherwise jump out.
+	ld a, e
+	cp [hl]
+	jr z, .asm_2a29d
+
+.asm_2a296
+	pop hl
+	add hl, bc
+	jr Function2a288
+
+.asm_2a29a
+	pop hl
+	and a
+	ret
+
+.asm_2a29d
+	pop hl
+	scf ; set carry flag
+	ret
+
+Function2a2ce: ; 2a2ce 
+	push hl
+	call Function1852
+	jr z, .asm_2a30a ;if water jump and ret, otherwise fall through
+	call Function2a27f ;load current location into de
+	call Random 
+	cp 100 
+	jr nc, .asm_2a30a ;100 in 255 chance to jump (0-99)
+	and 7 ; cap at 7
+	jr z, .asm_2a30a ; if not 0 or a multiple of 8 continue otherwise jump
+	cp ROAM_SUICUNE
+	jr nz, .notsuicune; here on seems to be roaming stuff
+	dec a
+.notsuicune
+	dec a
+	ld hl, wRoamMon1MapGroup
+	ld c, a
+	ld b, 0
+	ld a, 7
+	call AddNTimes
+	ld a, d
+	cp [hl]
+	jr nz, .asm_2a30a
+	inc hl
+	ld a, e
+	cp [hl]
+	jr nz, .asm_2a30a
+	dec hl
+	dec hl
+	dec hl
+	ld a, [hli]
+	and a
+	jr z, .asm_2a30a
+	ld [wd22e], a
+	ld a, [hl]
+	ld [CurPartyLevel], a
+	ld a, BATTLETYPE_ROAMING
+	ld [BattleType], a
+
+	pop hl
+	scf
+	ret
+
+.asm_2a30a
+	pop hl
+	and a; if not roaming, clear flags
+	ret
+
+AddVariance: ;add level variance and ensure it is between 2 and 100. accepts number to increase into b and returns the new number in b
+	
+	;push bc
+	;ld b, a ;store level in b
+	call Random ; level vairance approx 35% listed level, 30% +1, 20% +2, 10% +3, 5% +4
+	cp 89
+	jr c, .asm_2a1aa
+	inc b
+	cp 165
+	jr c, .asm_2a1aa
+	inc b
+	cp 216
+	jr c, .asm_2a1aa
+	inc b
+	cp 242
+	jr c, .asm_2a1aa
+	inc b
+
+.asm_2a1aa
+	ld a, b ; load level back into a
+	cp 2 ;If level is less then 2, set it to 2
+	jr nc, .Pass
+	ld b, 2
+	;pop bc
+	ret
+.Pass
+	cp 101 ;If over level 100, set to 100
+	;pop bc ;return b
+	ret c
+	ld b, 100
+	ret
+
+Function2a4a0: ; 2a4a0 from 2a1aa
+; Check if the Pokemon ID is valid.
+	and a
+	jr z, .asm_2a4a9
+	cp NUM_POKEMON + 1
+	jr nc, .asm_2a4a9
+	and a
+	ret
+
+.asm_2a4a9
+	scf
+	ret
+
+Function2a1df:: ; 2a1df
+	ld a, [wdca1] ;if repel steps is not 0
+	and a
+	jr z, .asm_2a1fe
+	ld hl, PartyMon1HP ;load HP location into hl
+	ld bc, PartyMon2 - PartyMon1 - 1 ; find the size of the struct -1?
+.asm_2a1eb
+	ld a, [hli] 
+	or [hl]
+	jr nz, .asm_2a1f2 ;jump if hp is not 0
+	add hl, bc ; if current mon is FNT, move down to next mon and try again
+	jr .asm_2a1eb
+
+.asm_2a1f2
+; to PartyMonLevel
+	dec hl
+	dec hl
+	dec hl
+	dec hl
+
+	ld a, [CurPartyLevel]
+	cp [hl] ;if encounter mon level < front mon level then jump
+	jr nc, .asm_2a1fe
+	and a
+	ret
+
+.asm_2a1fe
+	scf
+	ret
+
+WildMons1: ; 0x2a5e9
+INCLUDE "data/wild/johto_grass.asm"
+
+WildMons2: ; 0x2b11d
+INCLUDE "data/wild/johto_water.asm"
+
+WildMons3: ; 0x2b274
+INCLUDE "data/wild/kanto_grass.asm"
+
+WildMons4: ; 0x2b7f7
+INCLUDE "data/wild/kanto_water.asm"
+
+WildMons5: ; 0x2b8d0
+INCLUDE "data/wild/swarm_grass.asm"
+
+WildMons6: ; 0x2b92f
+INCLUDE "data/wild/swarm_water.asm"
 
 SECTION "bankB", ROMX, BANK[$B]
 
@@ -76688,9 +76709,14 @@ SelectTreeMon: ; b841f
 
 	ld a, [hli]
 	ld [wd22e], a
-	ld a, [hl]
-	call AddVariance
-	ld [CurPartyLevel], a
+	push bc
+	ld b, [hl]
+	push hl
+	callba AddVariance
+	pop hl
+	ld [CurPartyLevel], b
+	ld a, b
+	pop bc
 	scf
 	ret
 
@@ -94629,346 +94655,347 @@ Mobile_HallOfFame2:: mobile ; 0x105ef6
 ; 105f33
 
 Function105f33: mobile ; 105f33
-	ld a, $5
-	call GetSRAMBank
-	ld de, Buffer1
-	ld hl, $a07b
-	ld a, [de]
-	cp [hl]
-	jr z, .asm_105f47
-	jr nc, .asm_105f4f
-	jr .asm_105f55
+	;ld a, $5
+	;call GetSRAMBank
+	;ld de, Buffer1
+	;ld hl, $a07b
+	;ld a, [de]
+	;cp [hl]
+	;jr z, .asm_105f47
+	;jr nc, .asm_105f4f
+	;jr .asm_105f55
 
 .asm_105f47
-	inc hl
-	inc de
-	ld a, [de]
-	cp [hl]
-	dec hl
-	dec de
-	jr c, .asm_105f55
+	;inc hl
+	;inc de
+	;ld a, [de]
+	;cp [hl]
+	;dec hl
+	;dec de
+	;jr c, .asm_105f55
 
 .asm_105f4f
-	ld a, [de]
-	inc de
-	ld [hli], a
-	ld a, [de]
-	dec de
-	ld [hl], a
+	;ld a, [de]
+	;inc de
+	;ld [hli], a
+	;ld a, [de]
+	;dec de
+	;ld [hl], a
 
 .asm_105f55
-	ld hl, $a07d
-	ld a, [hli]
-	or [hl]
-	dec hl
-	jr z, .asm_105f6d
-	ld a, [de]
-	cp [hl]
-	jr z, .asm_105f65
-	jr c, .asm_105f6d
-	jr .asm_105f72
+	;ld hl, $a07d
+	;ld a, [hli]
+	;or [hl]
+	;dec hl
+	;jr z, .asm_105f6d
+	;ld a, [de]
+	;cp [hl]
+	;jr z, .asm_105f65
+	;jr c, .asm_105f6d
+	;jr .asm_105f72
 
 .asm_105f65
-	inc hl
-	inc de
-	ld a, [de]
-	cp [hl]
-	jr nc, .asm_105f72
-	dec hl
-	dec de
+	;inc hl
+	;inc de
+	;ld a, [de]
+	;cp [hl]
+	;jr nc, .asm_105f72
+	;dec hl
+	;dec de
 
 .asm_105f6d
-	ld a, [de]
-	inc de
-	ld [hli], a
-	ld a, [de]
-	ld [hl], a
+	;ld a, [de]
+	;inc de
+	;ld [hli], a
+	;ld a, [de]
+	;ld [hl], a
 
 .asm_105f72
-	call Function106162
-	call CloseSRAM
-	ret
+	;call Function106162
+	;call CloseSRAM
+	;ret
 ; 105f79
 
 Function105f79: mobile ; 105f79
-	ld a, $5
-	call GetSRAMBank
-	ld a, [hProduct] ;should be 0?
-	ld hl, $a07f ; bug catching high score?
-	cp [hl]
-	jr z, .asm_105f8b
-	jr nc, .asm_105f92
-	jr .asm_105f98
+	;ld a, $5
+	;call GetSRAMBank
+	;ld a, [hProduct] ;should be 0?
+	;ld hl, $a07f ; bug catching high score?
+	;cp [hl]
+	;jr z, .asm_105f8b
+	;jr nc, .asm_105f92
+	;jr .asm_105f98
 
 .asm_105f8b ;If 07f = hProduct
-	inc hl ;next location
-	ld a, [hMultiplicand]
-	cp [hl] 
-	jr c, .asm_105f98 ;if a080 is higher then the score, jump, else return to a07f and continue
-	dec hl
+	;inc hl ;next location
+	;ld a, [hMultiplicand]
+	;cp [hl] 
+	;jr c, .asm_105f98 ;if a080 is higher then the score, jump, else return to a07f and continue
+	;dec hl
 
 .asm_105f92 ;if o7f < product
-	ld a, [hProduct]
-	ld [hli], a ;store product and multiplicand in 07f and 080
-	ld a, [hMultiplicand]
-	ld [hl], a
+	;ld a, [hProduct]
+	;ld [hli], a ;store product and multiplicand in 07f and 080
+	;ld a, [hMultiplicand]
+	;ld [hl], a
 
 .asm_105f98
-	call Function106162 ;checksum related? recalcs something based on data
-	call CloseSRAM
-	ret
+	;call Function106162 ;checksum related? recalcs something based on data
+	;call CloseSRAM
+	;ret
 ; 105f9f
 
 Function105f9f: mobile ; 105f9f
-	ld a, $5
-	call GetSRAMBank ;set sram bank to 5
-	ld hl, $a070 ;???
-	inc [hl]
-	jr nz, .asm_105fae ;carry if needed
-	dec hl
-	inc [hl]
-	inc hl
+	;ld a, $5
+	;call GetSRAMBank ;set sram bank to 5
+	;ld hl, $a070 ;???
+	;inc [hl]
+	;jr nz, .asm_105fae ;carry if needed
+	;dec hl
+	;inc [hl]
+	;inc hl
 
 .asm_105fae
-	dec hl
-	ld a, [$a071]
-	cp [hl] 
-	jr z, .asm_105fb9 ;if 71 > 6f
-	jr c, .asm_105fc1
-	jr .asm_105fc9
+	;dec hl
+	;ld a, [$a071]
+	;cp [hl] 
+	;jr z, .asm_105fb9 ;if 71 > 6f
+	;jr c, .asm_105fc1
+	;jr .asm_105fc9
 
 .asm_105fb9
-	inc hl
-	ld a, [$a072]
-	cp [hl]
-	jr nc, .asm_105fc9
-	dec hl
+	;inc hl
+	;ld a, [$a072]
+	;cp [hl]
+	;jr nc, .asm_105fc9
+	;dec hl
 
 .asm_105fc1
-	ld a, [hli]
-	ld [$a071], a
-	ld a, [hl]
-	ld [$a072], a
+	;ld a, [hli]
+	;ld [$a071], a
+	;ld a, [hl]
+	;ld [$a072], a
 
 .asm_105fc9
-	call Function106162
-	call CloseSRAM
-	ret
+	;call Function106162
+	;call CloseSRAM
+	;ret
 ; 105fd0
 
 Function105fd0: mobile ; 105fd0
-	ld a, $5
-	call GetSRAMBank
-	ld hl, $a06f
-	xor a
-	ld [hli], a
-	ld [hl], a
-	call Function106162
-	call CloseSRAM
-	ret
+	;ld a, $5
+	;call GetSRAMBank
+	;ld hl, $a06f
+	;xor a
+	;ld [hli], a
+	;ld [hl], a
+	;call Function106162
+	;call CloseSRAM
+	;ret
 ; 105fe3
 
 Function105fe3: mobile ; 105fe3
-	ld a, $5
-	call GetSRAMBank
-	ld hl, $a076
-	ld a, e
-	add [hl]
-	ld [hld], a
-	ld a, d
-	adc [hl]
-	ld [hld], a
-	jr nc, .asm_106001
-	inc [hl]
-	jr nz, .asm_106001
-	dec hl
-	inc [hl]
-	jr nz, .asm_106001
-	ld a, $ff
-	ld [hli], a
-	ld [hli], a
-	ld [hli], a
-	ld [hl], a
+	;ld a, $5
+	;call GetSRAMBank
+	;ld hl, $a076
+	;ld a, e
+	;add [hl]
+	;ld [hld], a
+	;ld a, d
+	;adc [hl]
+	;ld [hld], a
+	;jr nc, .asm_106001
+	;inc [hl]
+	;jr nz, .asm_106001
+	;dec hl
+	;inc [hl]
+	;jr nz, .asm_106001
+	;ld a, $ff
+	;ld [hli], a
+	;ld [hli], a
+	;ld [hli], a
+	;ld [hl], a
 
 .asm_106001
-	call Function106162
-	call CloseSRAM
-	ret
+	;call Function106162
+	;call CloseSRAM
+	;ret
 ; 106008
 
 Function106008: mobile ; 106008
-	ld a, $5
-	call GetSRAMBank
-	ld hl, $a07a
-	ld a, [bc]
-	dec bc
-	add [hl]
-	ld [hld], a
-	ld a, [bc]
-	dec bc
-	adc [hl]
-	ld [hld], a
-	ld a, [bc]
-	adc [hl]
-	ld [hld], a
-	jr nc, .asm_106027
-	inc [hl]
-	jr nz, .asm_106027
-	ld a, $ff
-	ld [hli], a
-	ld [hli], a
-	ld [hli], a
-	ld [hl], a
+	;ld a, $5
+	;call GetSRAMBank
+	;ld hl, $a07a
+	;ld a, [bc]
+	;dec bc
+	;add [hl]
+	;ld [hld], a
+	;ld a, [bc]
+	;dec bc
+	;adc [hl]
+	;ld [hld], a
+	;ld a, [bc]
+	;adc [hl]
+	;ld [hld], a
+	;jr nc, .asm_106027
+	;inc [hl]
+	;jr nz, .asm_106027
+	;ld a, $ff
+	;ld [hli], a
+	;ld [hli], a
+	;ld [hli], a
+	;ld [hl], a
 
 .asm_106027
-	call Function106162
-	call CloseSRAM
+	;call Function106162
+	;call CloseSRAM
 	ret
 ; 10602e
 
 Function10602e: mobile ; 10602e (41:602e)
-	ld hl, $a010
-	jp Function106117
+	;ld hl, $a010
+	;jp Function106117
 
 Function106035: mobile ; 106035
-	ld a, $5
-	call GetSRAMBank
-	ld a, [$aa8d]
-	and a
-	call CloseSRAM
-	ret nz
-	ld hl, $a014
-	jp Function106123
+	;ld a, $5
+	;call GetSRAMBank
+	;ld a, [$aa8d]
+	;and a
+	;call CloseSRAM
+;	;ret nz
+	;ld hl, $a014
+	;jp Function106123
 
 Function106049: mobile ; 106049
-	ld hl, $a018
-	jp Function10611d
+	;ld hl, $a018
+	;jp Function10611d
 
 Function106050: mobile ; 106050
-	ld a, [BattleType]
-	cp BATTLETYPE_TUTORIAL
-	ret z
-	ld hl, $a01b
-	jp Function10611d
+	;ld a, [BattleType]
+	;cp BATTLETYPE_TUTORIAL
+	;ret z
+	;ld hl, $a01b
+	;jp Function10611d
 
 Function10605d: mobile ; 10605d
-	ld a, [BattleType]
-	cp BATTLETYPE_TUTORIAL
-	ret z
-	ld hl, $a01e
-	jp Function10611d
+	;ld a, [BattleType]
+	;cp BATTLETYPE_TUTORIAL
+	;ret z
+	;ld hl, $a01e
+	;jp Function10611d
 
 Function10606a: mobile ; 10606a
-	ld hl, $a021
-	jp Function10611d
+	;ld hl, $a021
+	;jp Function10611d
 
 Function106071: mobile ; 106071
-	ld hl, $a024
-	jp Function10611d
+	;ld hl, $a024
+	;jp Function10611d
 
 Mobile_HallOfFame:: mobile ; 0x106078
-	ld hl, $a027
-	jp Function10611d
+	;ld hl, $a027
+	;jp Function10611d
 
 Function10607f: mobile ; 10607f (41:607f)
-	ld hl, $a02a
-	jp Function10611d
+	;ld hl, $a02a
+	;jp Function10611d
 
 Function106086: mobile ; 106086
-	ld hl, $a02d
-	jp Function10611d
+	;ld hl, $a02d
+	;jp Function10611d
 
 Function10608d: mobile ; 10608d (41:608d)
-	ld hl, $a030
-	jp Function10611d
+	;ld hl, $a030
+	;jp Function10611d
 
 Function106094: mobile ; 106094
-	ld hl, $a033
-	jp Function10611d
+	;ld hl, $a033
+	;jp Function10611d
 
 Function10609b: mobile ; 10609b
-	ld hl, $a036
-	jp Function10611d
+	;ld hl, $a036
+	;jp Function10611d
 
 Function1060a2: mobile ; 1060a2
-	ld hl, $a039
-	jp Function10611d
+	;ld hl, $a039
+	;jp Function10611d
 
 Function1060a9: mobile ; 1060a9 (41:60a9)
-	ld hl, $a03c
-	jr Function10611d
+	;ld hl, $a03c
+	;jr Function10611d
 
 Function1060af: mobile ; 1060af
-	ld hl, $a03f
-	jr Function10611d
+	;ld hl, $a03f
+	;jr Function10611d
 
 Function1060b5: mobile ; 1060b5
-	ld hl, $a042
-	jr Function10611d
+	;ld hl, $a042
+	;jr Function10611d
 
 Function1060bb: mobile ; 1060bb
-	ld hl, $a045
-	jr Function10611d
+	;ld hl, $a045
+	;jr Function10611d
 
 Function1060c1: mobile ; 1060c1
-	ld hl, $a048
-	jr Function10611d
+	;ld hl, $a048
+	;jr Function10611d
 
 Function1060c7: mobile ; 1060c7
-	ld hl, $a04b
-	jr Function10611d
+	;ld hl, $a04b
+	;jr Function10611d
 
 Function1060cd: mobile ; 1060cd
-	ld hl, $a04e
-	jr Function106123
+	;ld hl, $a04e
+	;jr Function106123
 
 Function1060d3: mobile ; 1060d3
-	ld hl, $a051
-	jr Function10611d
+	;ld hl, $a051
+	;jr Function10611d
 
 Function1060d9: mobile ; 1060df
-	ld hl, $a054
-	jr Function10611d
+	;ld hl, $a054
+	;jr Function10611d
 
 Function1060df: mobile ; 1060df
-	ld hl, $a057
-	jr Function10611d
+	;ld hl, $a057
+	;jr Function10611d
 
 Function1060e5: mobile ; 1060e5
-	ld a, [hBattleTurn]
-	and a
-	ret nz
-	ld hl, $a05a
-	jr Function10611d
+	;ld a, [hBattleTurn]
+	;and a
+	;ret nz
+	;ld hl, $a05a
+	;jr Function10611d
 
 Function1060ef: mobile ; 1060ef
-	ld hl, $a05d
-	jr Function10611d
+	;ld hl, $a05d
+	;jr Function10611d
 
 Function1060f5: mobile ; 1060f5
-	ld hl, $a060
-	jr Function10611d
+	;ld hl, $a060
+	;jr Function10611d
 
 Function1060fb: mobile ; 1060fb
-	ld hl, $a063
-	jr Function10611d
+	;ld hl, $a063
+	;jr Function10611d
 
 Function106101: mobile ; 106101
-	ld hl, $a066
-	jr Function10611d
+	;ld hl, $a066
+	;jr Function10611d
 ; 106107
 
 Function106107: mobile ; 106107
-	ld hl, $a069
-	jr Function10611d
+	;ld hl, $a069
+	;jr Function10611d
 ; 10610d
 
 Function10610d: mobile ; 10610d
-	ld a, [hBattleTurn]
-	and a
-	ret nz
-	ld hl, $a06c
-	jr Function10611d
+	;ld a, [hBattleTurn]
+	;and a
+	;ret nz
+	;ld hl, $a06c
+	;jr Function10611d
+	ret
 ; 106117
 
 Function106117: ; 106117
@@ -95030,10 +95057,10 @@ Function10612d: ; 10612d
 ; 106155
 
 Function106155: mobile ; 106155
-	ld a, $5
-	call GetSRAMBank
-	call Function106162
-	call CloseSRAM
+	;ld a, $5
+	;call GetSRAMBank
+	;call Function106162
+	;call CloseSRAM
 	ret
 ; 106162
 
@@ -95341,17 +95368,17 @@ Function10630f: ; 10630f
 ; 106314
 
 Function106314: mobile ; 106314
-	ld a, $4
-	call GetSRAMBank
-	ld a, c
-	cpl
-	ld [$b000], a
-	call CloseSRAM
-	ld a, $7
-	call GetSRAMBank
-	ld a, c
-	ld [$a800], a
-	call CloseSRAM
+	;ld a, $4
+	;call GetSRAMBank
+	;ld a, c
+	;cpl
+	;ld [$b000], a
+	;call CloseSRAM
+	;ld a, $7
+	;call GetSRAMBank
+	;ld a, c
+	;ld [$a800], a
+	;call CloseSRAM
 	ret
 ; 10632f
 
