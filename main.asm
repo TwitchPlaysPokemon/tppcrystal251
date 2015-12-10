@@ -13432,7 +13432,7 @@ StartMenu_Pokemon: ; 12976
 	callba PartyMenuSelect
 	jr c, .return ; if cancelled or pressed B
 
-	call PokemonActionSubmenu
+	call PokemonActionSubmenu ;handle pokemon menu and run selected action
 	cp 3
 	jr z, .menu
 	cp 0
@@ -13577,8 +13577,8 @@ CancelPokemonAction: ; 12a79
 PokemonActionSubmenu: ; 12a88
 	hlcoord 1, 15
 	ld bc, $0212 ; box size
-	call ClearBox
-	callba Function24d19
+	call ClearBox ;fill with whitespace?
+	callba Function24d19 ;load monsubmenu, ret menu selection
 	call GetCurNick
 	ld a, [MenuSelection]
 	ld hl, .Actions
@@ -13587,7 +13587,7 @@ PokemonActionSubmenu: ; 12a88
 	jr nc, .nothing
 
 	inc hl
-	ld a, [hli]
+	ld a, [hli] ;if something found, load location into hl and jump to run
 	ld h, [hl]
 	ld l, a
 	jp [hl]
@@ -13626,7 +13626,7 @@ SwitchPartyMons: ; 12aec
 	cp 2
 	jr c, .DontSwitch
 
-	ld a, [CurPartyMon]
+	ld a, [CurPartyMon] ;load current mon into a?
 	inc a
 	ld [wd0e3], a
 
@@ -15941,8 +15941,8 @@ Function139a8: ; 139a8
 .asm_139ad
 	push bc
 	push hl
-	ld e, [hli] ;load current contestent flag into de and a small optimisation by me
-	;inc hl
+	ld e, [hl] ;load current contestent flag into de
+	inc hl
 	ld d, [hl]
 	ld b, $0 ;clear that flag
 	call EventFlagAction
@@ -24756,8 +24756,8 @@ Function24374:: ; 24374
 	ld a, $7
 	ld [rSVBK], a ;switch to bank 7
 	ld hl, wcf71 ;load 2 bytes from pointer? into de
-	ld e, [hli] ;added i to optimise
-	;inc hl little optimisation
+	ld e, [hl] ;added i to optimise
+	inc hl
 	ld d, [hl]
 	push de ;holds ??
 	ld b, $10
@@ -26258,9 +26258,9 @@ MonMenuOptions: ; 24cd9
 	db $ff
 ; 24d19
 
-Function24d19: ; 24d19
+Function24d19: ; 24d19 MonSubMenu
 	xor a
-	ld [hBGMapMode], a
+	ld [hBGMapMode], a 
 	call Function24dd4
 	callba Function8ea4a
 	ld hl, MenuDataHeader_0x24d3f
@@ -33705,7 +33705,7 @@ Function2a14f: ; 2a14f something to do with encounters
 	push hl ; place first mon location on stack (cur stack: first mon byte)
 	ld a, [de]
 	and $f ;use first nyble
-	push de  (cur stack: table byte, first mon byte)
+	push de  ;(cur stack: table byte, first mon byte)
 	ld hl, PctTables ;load first table location into hl
 	ld c, a ;put the table number in bc
 	ld b, 0
@@ -33716,8 +33716,8 @@ Function2a14f: ; 2a14f something to do with encounters
 	
 	
 
-	.asm_2a174 ;redundent 
-	.asm_2a175
+.asm_2a174 ;redundent 
+.asm_2a175
 	call Random
 	cp 200
 	jr nc, .asm_2a175 ; loop until you get <200 randomly
@@ -33812,11 +33812,11 @@ AddVariance: ;add level variance and ensure it is between 2 and 100. accepts num
 .asm_2a1aa
 	ld a, b ; load level back into a
 	cp 2 ;If level is less then 2, set it to 2
-	jr nc, Pass
+	jr nc, .Pass
 	ld a, 2
 	pop bc
 	ret
-Pass
+.Pass
 	cp 101 ;If over level 100, set to 100
 	pop bc ;return b
 	ret c
@@ -34419,7 +34419,7 @@ Function2a4ab: ; 2a4ab seems to be a function to get a local mon to use in call 
 	ld e, c
 	ld hl, WildMons1
 		;ld bc, $002f ; 47
-	ld bc $35; 
+	ld bc, $35 ; 
 	call Function2a288 ;load current maps place in land wild tables into hl
 	jr c, .asm_2a4c6 ; if succsessful, jump. otherwise try kanto
 	ld hl, WildMons3
