@@ -377,7 +377,7 @@ BugContestResultsScript: ; bc274
 	farwritetext UnknownText_0x1b0681
 	keeptextopen
 	waitbutton
-	givemoney, 0 , 1000
+	givemoney 0 , 1000
 	;verbosegiveitem BERRY, 1
 	;iffalse UnknownScript_0xbc375
 
@@ -478,13 +478,13 @@ ContestFirstChoseBalls:
 
 ContestChooseBall: ;choose ball based on day of week
 	checkcode VAR_WEEKDAY
-	is_equal SUNDAY, ContestFriend
-	is_equal MONDAY, ContestMoon
-	is_equal TUESDAY, ContestLevel
-	is_equal WEDNSDAY, ContestLure
-	is_equal THURSDAY, ContestFast
-	is_equal FRIDAY, ContestLove
-	is_equal SATURDAY, ContestHeavy
+	if_equal SUNDAY, ContestFriend
+	if_equal MONDAY, ContestMoon
+	if_equal TUESDAY, ContestLevel
+	if_equal WEDNESDAY, ContestLure
+	if_equal THURSDAY, ContestFast
+	if_equal FRIDAY, ContestLove
+	if_equal SATURDAY, ContestHeavy
 
 ContestFriend:
 	checkevent EVENT_NATIONAL_PARK_ROUTE_36_GATE_316
@@ -582,7 +582,7 @@ ContestFullBag:
 	keeptextopen
 	writetext BagFullPrizeText
 	closetext
-	givemoney, 0 , 8000 
+	givemoney 0 , 8000 
 	jump UnknownScript_0xbc2b1
 
 ContestBallFlagClear:
@@ -592,7 +592,7 @@ ContestBallFlagClear:
 ContestResults_ThirdPlaceScript: ; 0xbc343
 	writetext ContestThirdPlaceText
 	closetext
-	givemoney, 0 , 4000 
+	givemoney 0 , 4000 
 	jump UnknownScript_0xbc2b1
 ; 0xbc354
 

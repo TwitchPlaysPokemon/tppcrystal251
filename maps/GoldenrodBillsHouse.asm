@@ -18,7 +18,7 @@ BillScript_0x54be4: ; 0x54be4
 	keeptextopen
 	waitbutton
 	checkcode VAR_PARTYCOUNT
-	if_equal $6, BillEeveePC:
+	if_equal $6, BillEeveePC
 	writetext UnknownText_0x54dae
 	playsound SFX_CAUGHT_MON
 	waitbutton

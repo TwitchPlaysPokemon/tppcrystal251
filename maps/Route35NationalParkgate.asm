@@ -122,13 +122,13 @@ SkipSun35:
 	writetext UnknownText_0x6b97f
 	keeptextopen
 	checkcode VAR_WEEKDAY
-	is_equal SUNDAY, RegiveFriend35
-	is_equal MONDAY, RegiveMoon35
-	is_equal TUESDAY, RegiveLevel35
-	is_equal WEDNSDAY, RegiveLure35
-	is_equal THURSDAY, RegiveFast35
-	is_equal FRIDAY, RegiveLove35
-	is_equal SATURDAY, RegiveHeavy35
+	if_equal SUNDAY, RegiveFriend35
+	if_equal MONDAY, RegiveMoon35
+	if_equal TUESDAY, RegiveLevel35
+	if_equal WEDNESDAY, RegiveLure35
+	if_equal THURSDAY, RegiveFast35
+	if_equal FRIDAY, RegiveLove35
+	if_equal SATURDAY, RegiveHeavy35
 SkipBalls35:
 		;scall UnknownScript_0x6a2de ;daytotext
 	writetext UnknownText_0x6a2eb
@@ -167,7 +167,7 @@ SunFailText35:
 	writetext BagIsFullText
 	jump SkipSun
 
-BallFailText35:
+BallsFailText35:
 	writetext BagIsFullText
 	jump SkipBalls
 

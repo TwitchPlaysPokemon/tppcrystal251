@@ -41,7 +41,7 @@ UnknownScript_0x7e231: ; 0x7e231
 
 MortarGiftPC
 	checkcode VAR_BOXSPACE
-	if equal $0, UnknownScript_0x7e237
+	if_equal $0, UnknownScript_0x7e237
 	writetext MortarGiftPCText
 	playsound SFX_CAUGHT_MON
 	waitbutton

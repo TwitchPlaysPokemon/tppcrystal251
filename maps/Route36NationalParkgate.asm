@@ -175,13 +175,13 @@ SkipSun:
 	writetext UnknownText_0x6b97f
 	keeptextopen
 	checkcode VAR_WEEKDAY
-	is_equal SUNDAY, RegiveFriend
-	is_equal MONDAY, RegiveMoon
-	is_equal TUESDAY, RegiveLevel
-	is_equal WEDNSDAY, RegiveLure
-	is_equal THURSDAY, RegiveFast
-	is_equal FRIDAY, RegiveLove
-	is_equal SATURDAY, RegiveHeavy
+	if_equal SUNDAY, RegiveFriend
+	if_equal MONDAY, RegiveMoon
+	if_equal TUESDAY, RegiveLevel
+	if_equal WEDNESDAY, RegiveLure
+	if_equal THURSDAY, RegiveFast
+	if_equal FRIDAY, RegiveLove
+	if_equal SATURDAY, RegiveHeavy
 SkipBalls:
 		;scall UnknownScript_0x6ac91 ;give held item OR give "we are done" text
 		;scall UnknownScript_0x6ad02 ;load current day
@@ -288,7 +288,7 @@ SunFailText:
 	writetext UnknownText_0x6b910
 	jump SkipSun
 
-BallFailText:
+BallsFailText:
 	writetext UnknownText_0x6b910
 	jump SkipBalls
 

@@ -888,7 +888,7 @@
 		db QUAGSIRE ;1
 		db STEELIX ;1
 	; nite
-		db LARITAR ;20
+		db LARVITAR ;20
 		db PUPITAR ;20
 		db LARVITAR ;10
 		db HITMONLEE ;10
@@ -944,7 +944,7 @@
 		db QUAGSIRE ;1
 		db ONIX ;1
 	; nite
-		db LARITAR ;20
+		db LARVITAR ;20
 		db PUPITAR ;20
 		db LARVITAR ;10
 		db WOOPER ;10
@@ -1756,7 +1756,7 @@
 		db LEDIAN ;1
 		db AZUMARILL ;1
 
-	db GROUP_, MAP_ROUTE_31
+	db GROUP_ROUTE_31, MAP_ROUTE_31
 	db $19 ; encounter rates: morn/day/nite
 	db 20
 	db $02

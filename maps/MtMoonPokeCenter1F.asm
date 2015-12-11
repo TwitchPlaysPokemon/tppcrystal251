@@ -45,7 +45,7 @@ FisherScript4_MtMoon:
 	loadmovesprites
 	end
 
-FisherScript5_MtMoon: :send to pc check
+FisherScript5_MtMoon: ;send to pc check
 	checkcode VAR_BOXSPACE 
 	if_equal $0, FisherScript4_MtMoon
 	writetext FisherText6_MtMoon

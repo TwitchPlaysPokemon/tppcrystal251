@@ -33410,16 +33410,18 @@ Function29ff8: ; 29ff8
 	jr c, .asm_2a006
 	ld hl, wd25a ;fill wd25a with 0 if it is not an encounter map
 	xor a
-	ld [hli], a
-	ld [hli], a
+	;ld [hli], a ;now only 1 slot 
+	;ld [hli], a
 	ld [hl], a
 	jr .asm_2a011
 .asm_2a006 ; if you have the encounter map, copy ecounter rates into wd25a  
 	inc hl
 	inc hl
 	ld de, wd25a
-	ld bc, $1 ;only first needs carryng over now
-	call CopyBytes
+	ld a, [hl]
+	ld [de], a
+	;ld bc, $1 ;only first needs carryng over now
+	;call CopyBytes
 .asm_2a011
 	call Function2a21d ;a = current mapnumber, hl = top of encounter area and carry is set if it has a water encounter, otherwise a is 0 and carry flag is not set
 	ld a, $0
@@ -33605,14 +33607,6 @@ Check_IsRoamMon3: ; 2a0cf
 ; 2a0e7
 
 
-
-.asm_2a0f8 ;no battle
-	xor a ; BATTLETYPE_NORMAL
-	ld [wd22e], a
-	ld [BattleType], a
-	ld a, 1
-	and a
-	ret
 ; 2a103
 
 ; 2a111
@@ -34325,6 +34319,14 @@ Function2a0e7:: ; 2a0e7
 	xor a
 	ret
 
+.asm_2a0f8 ;no battle
+	xor a ; BATTLETYPE_NORMAL
+	ld [wd22e], a
+	ld [BattleType], a
+	ld a, 1
+	and a
+	ret
+
 Function2a103: ; 2a103
 	call Function2a111 ; b = encounter chance
 	call Function2a124 ;adjust for music
@@ -34336,7 +34338,7 @@ Function2a103: ; 2a103
 Function2a111: ; 2a111
 	ld hl, wd25a ;The land encounter chance
 	call Function1852
-	ld a, 3
+	ld a, 1
 	jr z, .asm_2a11e ;if water jump and line up with water encounter chance, otherwise add 0
 	ld a, 0
 .asm_2a11e
@@ -34386,9 +34388,9 @@ Function2a138:: ; 2a138
 
 Function2a14f: ; 2a14f choose an encounter
 	call Function2a200 ; put adress of wild mons tables in hl, bc holds skip numbers
-	jp nc, .asm_2a1c1 ; jump if checking fails
+	jp nc, QuitWithA1 ; jump if checking fails
 	call Function2a2ce; check if roaming encounter
-	jp c, .asm_2a1c9; if roamer found(?) jump, otherwise fall through
+	jp c, QuitWithA0; if roamer found(?) jump, otherwise fall through
 
 	inc hl
 	inc hl 
@@ -34456,12 +34458,13 @@ SkipBonLvl
 	add hl, de ;move to correct mon
 	ld b, a
 	call AddVariance ;add level variance and ensure it is between 2 and 100. accepts number to increase into a and returns the new number in a
-	ld [CurPartyLevel], b ;load level into a variable
+	ld a, b
+	ld [CurPartyLevel], a ;load level into a variable
 
 	ld b, [hl] 
 	ld a, b ; load mon species into a
 	call Function2a4a0 ; check mon is valid, jump if not (RIP missingno)
-	jr c, .asm_2a1c1
+	jr c, QuitWithA1
 
 	ld a, b
 	cp UNOWN
@@ -34469,21 +34472,21 @@ SkipBonLvl
 
 	ld a, [UnlockedUnowns] ;if no unown unlocked, no encounter
 	and a
-	jr z, .asm_2a1c1
+	jr z, QuitWithA1
 
 .asm_2a1bf
-	jr .asm_2a1c5
+	jr WildsDone
 
-.asm_2a1c1
+QuitWithA1
 	ld a, 1
 	and a
 	ret
 
-.asm_2a1c5
+WildsDone
 	ld a, b
 	ld [wd22e], a
 
-.asm_2a1c9
+QuitWithA0
 	xor a
 	ret
 
@@ -46131,7 +46134,7 @@ Function4d9e5: ; 4d9e5 ;insert mon into party if space, otherwise into PC box in
 	ld c, a
 	ld b, $0
 	add hl, bc ;advance partycount by new number of mons to get correct partyspecies slot
-	ld a, [wdf9c] load species again
+	ld a, [wdf9c]; load species again
 	ld [hli], a ;place in party species
 	ld [CurSpecies], a
 	ld a, $ff
@@ -76497,8 +76500,8 @@ TreeMons: ; b82e8 ;what tables are assosiate with wwhat numbers
 
 TreeMons1: ; 1 - Route 29, New Bark Town
 	db 50, PINECO,		25
-	db 30, SENTRET		25
-	db 20, SPINARAK		25
+	db 30, SENTRET,		25
+	db 20, SPINARAK,	25
 	db -1
 
 	db 55, PIDGEY,		35
@@ -76714,8 +76717,8 @@ SelectTreeMon: ; b841f
 	push hl
 	callba AddVariance
 	pop hl
-	ld [CurPartyLevel], b
 	ld a, b
+	ld [CurPartyLevel], a
 	pop bc
 	scf
 	ret
