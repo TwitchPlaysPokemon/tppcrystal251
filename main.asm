@@ -34169,20 +34169,20 @@ INCBIN "gfx/misc/dude.6x6.2bpp.lz"
 
 SECTION "WildHandling", ROMX 
 
-Function2a01f: ; 2a01f
-	hlcoord 0, 0
+Function2a01f: ; 2a01f ;fill tilemap with tiles from the locations of mon wd625
+	hlcoord 0, 0 ;hl = tilemap
 	ld bc, SCREEN_WIDTH * SCREEN_HEIGHT
 	xor a
-	call ByteFill
+	call ByteFill ;fill screen with 0
 	ld a, e
 	and a
-	jr nz, .skip
+	jr nz, .skip ;if e = 0, kanto, else johto
 	ld de, TileMap
 	ld hl, WildMons1
-	call Function2a052 ; a holds the location found, de hieght*width
+	call Function2a052 ;fill tilemap with the tiles from the locations of mon [wd625] in this table
 	ld hl, WildMons2
 	call Function2a052
-	call Check_IsRoamMon1
+	call Check_IsRoamMon1 ;add tiles for roaming mons if applicible
 	call Check_IsRoamMon2
 	call Check_IsRoamMon3
 	ret
@@ -34192,14 +34192,14 @@ Function2a01f: ; 2a01f
 	ld hl, WildMons3
 	call Function2a052
 	ld hl, WildMons4
-	jp Function2a052 ;when done jumps 1 more function up with ret
+	jp Function2a052 
 
-Function2a052: ; 2a052
+Function2a052: ; 2a052 fill de with the tiles from the locations of mon [wd625] in this area
 .loop
 	ld a, [hl] ; ld map group
 	cp $ff
-	ret z ;return if max
-	push hl ;push map group
+	ret z 
+	push hl ;push map group loc
 	ld a, [hli] ;redundent? inc hl would probably do the same thing as a is loaded in a few lines up
 	ld b, a
 	ld a, [hli]
@@ -34208,25 +34208,25 @@ Function2a052: ; 2a052
 	inc hl
 	inc hl; skip to slot 1
 	ld a, $30 ; check all 48 slots
-	call Function2a088
-	jr nc, .next
-	ld [de], a
+	call Function2a088 ;if mon d265 is in location hl within a slots, ret nc with that locations tile in a and place in tilemap hl 
+	jr nc, .next ;if found, skip, else 
+	ld [de], a ;load the current location's tile into de
 	inc de
 
 .next
 	pop hl
 		;ld bc, $002f
-	ld bc, $0035
+	ld bc, $0035 ;to next table
 	add hl, bc
 	jr .loop
 
 
-Function2a088: ; 2a088  fills the map screen with where the stored mon is found 
+Function2a088: ; 2a088  ;if mon d265 is in mon table hl, ret nc with that locations tile in a and place in tilemap hl
 		;inc hl ;over first slot mon unneded due to removal of level
 .next
 	push af ;store loop counter
-	ld a, [wd265] ;load the stored mon (no idea where this is coming from)
-	cp [hl] ;if it's the same as slot 1 mon, jump out
+	ld a, [wd265] ;load the stored mon
+	cp [hl] ;if it's the same as mon in table, get that tile
 	jr z, .done
 		;inc hl unneded due to change to tables
 	inc hl ;move to next slot
@@ -34237,25 +34237,25 @@ Function2a088: ; 2a088  fills the map screen with where the stored mon is found
 	ret ;if not found, return
 
 .done
-	pop af
+	pop af ; a = loop number
 	;jp Check_IsInRoamMonNest ;redundent
 ; 2a09c
 
-Check_IsInRoamMonNest: ; 2a09c 
-	push de ;de is TileMap
+Check_IsInRoamMonNest: ; 2a09c if tile from place map bc exists in tilemap, ret nc
+	push de 
 	call GetWorldMapLocation ; given a map group/id in bc, return its location on the Pokégear map.
 	ld c, a ;put it in c
-	hlcoord 0, 0
-	ld de, SCREEN_HEIGHT * SCREEN_WIDTH ;loop counter?
+	hlcoord 0, 0 ;hl = top of tilemap
+	ld de, SCREEN_HEIGHT * SCREEN_WIDTH ;for each tile
 .loop
-	ld a, [hli] ; add previous coords +1?
-	cp c ; If coords = location on map, jump?
+	ld a, [hli] ; load coords location
+	cp c ; If coords = contents of tile
 	jr z, .done 
-	dec de ;down 1 
-	ld a, e ;load new hight*width into a?
+	dec de 
+	ld a, e 
 	or d
-	jr nz, .loop ;loop unti d is zero? 
-	ld a, c
+	jr nz, .loop ;loop until 0
+	ld a, c ;if not found, ret c
 	pop de
 	scf
 	ret
@@ -34271,7 +34271,7 @@ Check_IsRoamMon1: ; 2a0b7
 	ld b, a
 	ld a, [wd265]
 	cp b
-	ret nz
+	ret nz ;if not is not roammonspecies, quit
 	ld a, [wRoamMon1MapGroup]
 	ld b, a
 	ld a, [wRoamMon1MapNumber]
@@ -73377,8 +73377,8 @@ String_91e16:
 
 Function91e1e: ; 91e1e
 	ld [wd003], a ;store a in ???
-	ld e, a
-	callba Function2a01f
+	ld e, a 
+	callba Function2a01f ;fill tilemap with tiles from the locations of mon wd625
 	ld de, TileMap
 	ld hl, Sprites
 .asm_91e2e
