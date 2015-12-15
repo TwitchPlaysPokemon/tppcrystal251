@@ -144,7 +144,7 @@ GetJoypad:: ; 984
 	
 ; Released this frame:
 	xor b
-	ld d, a
+	ld d, a 
 	and e
 	ld [hJoyReleased], a
 	
@@ -325,25 +325,25 @@ Functiona46:: ; a46
 ; a57
 
 Functiona57:: ; a57
-	call GetJoypad
-	ld a, [$ffaa]
+	call GetJoypad ;update joypad data
+	ld a, [$ffaa] ;if "InMenu" use pressed, else use down
 	and a
 	ld a, [hJoyPressed]
-	jr z, .asm_a63
+	jr z, .asm_a63 
 	ld a, [hJoyDown]
 .asm_a63
-	ld [$ffa9], a
+	ld [$ffa9], a ;place in joyLast
 	ld a, [hJoyPressed]
 	and a
-	jr z, .asm_a70
+	jr z, .asm_a70 ;if nothing pressed, branch
 	ld a, 15
-	ld [TextDelayFrames], a
+	ld [TextDelayFrames], a ;else set text delay frames to 15
 	ret
 
 .asm_a70
 	ld a, [TextDelayFrames]
 	and a
-	jr z, .asm_a7a
+	jr z, .asm_a7a ;if delay frames = 0, they now equal 5, else joylast = 0
 	xor a
 	ld [$ffa9], a
 	ret

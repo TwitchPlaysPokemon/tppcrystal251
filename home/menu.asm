@@ -2,16 +2,16 @@
 
 
 LoadMenuDataHeader:: ; 0x1d35
-	call Function1d3c
-	call Function1c00 ;draw square?
+	call Function1d3c ;load menu header into ram
+	call Function1c00 ;load tiles to be covered onto backup stack
 	ret
 
-Function1d3c:: ; 0x1d3c
+Function1d3c:: ; 0x1d3c ; load menuheader into curmenudata
 	ld de, wcf81
 	ld bc, $0010
-	call CopyBytes ;copy from hl to ??
+	call CopyBytes ;copy from hl to curmenudata
 	ld a, [hROMBank]
-	ld [wcf8a], a ;load bank into ??
+	ld [wcf8a], a ;load bank into bank storage?
 	ret
 ; 0x1d4b
 
@@ -23,9 +23,9 @@ Function1d4b:: ; 1d4b
 
 Function1d4f:: ; 1d4f
 	push hl
-	call Function1d58
+	call Function1d58 ;load empty menu
 	pop hl
-	jp PrintText
+	jp PrintText ;perform a text command using text in hl?
 ; 1d57
 
 Function1d57:: ; 1d57

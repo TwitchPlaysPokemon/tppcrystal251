@@ -1191,7 +1191,8 @@ Requested1bppSource:: ; cf6d
 Requested1bppDest:: ; cf6f
 	ds 2
 
-wcf71:: ds 1
+wcf71:: ds 1 ;holds pointer to top of stack of menu tile data,stored in reverse.
+;structure is, from the "top", a byte holding whether here is tile data,the location of the top of the previous stack, then the tiles of attrimap, then tile replaced in tilemap, then the menu header used to replace it
 wcf72:: ds 1
 wcf73:: ds 1
 MenuSelection:: ; cf74
@@ -1206,10 +1207,10 @@ wcf82:: ds 1 ;a set of coords from menu header
 wcf83:: ds 1
 wcf84:: ds 1 ;another set of coords
 wcf85:: ds 1 
-wcf86:: ds 1 ;Vtiles(should be 4 lonf)
+wcf86:: ds 1 ;Vtiles location
 wcf87:: ds 1
-wcf88:: ds 2
-wcf8a:: ds 7 ;defaut option?
+wcf88:: ds 2 ;default option (first byte)
+wcf8a:: ds 7 ;bank storage(at some point after vtiles)
 wcf91:: ds 1
 wcf92:: ds 1
 wcf93:: ds 1
@@ -1220,18 +1221,18 @@ wcf97:: ds 1
 wcf98:: ds 3
 wcf9b:: ds 3
 wcf9e:: ds 3
-wcfa1:: ds 1
-wcfa2:: ds 1
+wcfa1:: ds 1 ;holds start x coord +1, or +2 if wcf91 bit 6 is off
+wcfa2:: ds 1 ;holds start y coord +1
 wcfa3:: ds 1
 wcfa4:: ds 1
 wcfa5:: ds 1
 wcfa6:: ds 1
-wcfa7:: ds 1
+wcfa7:: ds 1 ;back nyble = space between rows of cursor, front nyble is space between columns?
 wcfa8:: ds 1
-wcfa9:: ds 1
-wcfaa:: ds 1
-wcfab:: ds 1
-wcfac:: ds 1
+wcfa9:: ds 1 ;current menu selection? vertical cursor position
+wcfaa:: ds 1 ;horizontal cursor position?
+wcfab:: ds 1 ;what the cursor covers up
+wcfac:: ds 1 ;cursor location
 wcfad:: ds 4
 
 OverworldDelay:: ; cfb1

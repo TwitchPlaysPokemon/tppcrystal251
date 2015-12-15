@@ -189,33 +189,33 @@ Function1bf7:: ; 1bf7
 ; 1c00
 
 Function1c00:: ; 1c00
-	callab Function24374
+	callab Function24374 ;load current tile backup onto backup stack
 	ret
 ; 1c07
 
 Function1c07:: ; 0x1c07
 	push af
-	callab Function243e8
+	callab Function243e8  ;unload top menu on the stack, replacing the menu with what's behind it
 	pop af
 	ret
 
 Function1c10:: ; 0x1c10
-	callab Function2446d
+	callab Function2446d fill rest of menu data?
 	ret
 
 Function1c17:: ; 0x1c17
 	push af
-	call Function1c07
+	call Function1c07 ;unload top menu on menu stack
 	call Function321c
 	call Function1ad2
 	pop af
 	ret
 
-Function1c23:: ; 0x1c23
-	call Function1cfd
-	call Function1c30
-	call Function1d19
-	call Function1c30
+Function1c23:: ; 0x1c23 fill tilemap and attrimap with menu data from de using loaded menu data's coords 
+	call Function1cfd ;hl = curmenu start location in tilemap
+	call Function1c30 ;fill attrimap with (de in reverse order) equal to the size of menu coords
+	call Function1d19 ;hl = menu start location in attrimap
+	call Function1c30 ;fill attrimap with (de in reverse order, continueing from end of previous) equal to the size of menu coords
 	ret
 ; 0x1c30
 

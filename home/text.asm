@@ -65,16 +65,16 @@ TextBox:: ; fe8
 ; Dimensions do not include the border.
 	push bc
 	push hl
-	call TextBoxBorder
+	call TextBoxBorder ;make an empty text box
 	pop hl
 	pop bc
-	jr TextBoxPalette
+	jr TextBoxPalette ;set pallette 
 ; ff1
 
 
 TextBoxBorder:: ; ff1
 
-	; Top
+	; Top border
 	push hl
 	ld a, "┌"
 	ld [hli], a
@@ -86,8 +86,8 @@ TextBoxBorder:: ; ff1
 
 	; Middle
 	ld de, SCREEN_WIDTH
-	add hl, de
-.row
+	add hl, de ;down to next line
+.row ;b rows of nothing between 2 walls
 	push hl
 	ld a, "│"
 	ld [hli], a
@@ -125,8 +125,8 @@ TextBoxBorder:: ; ff1
 TextBoxPalette:: ; 1024
 ; Fill text box width c height b at hl with pal 7
 	ld de, AttrMap - TileMap
-	add hl, de
-	inc b
+	add hl, de ;jump from tilemap to attrmap
+	inc b ;include borders
 	inc b
 	inc c
 	inc c
@@ -135,7 +135,7 @@ TextBoxPalette:: ; 1024
 	push bc
 	push hl
 .row
-	ld [hli], a
+	ld [hli], a ;set the selected areas to the textbox pallet
 	dec c
 	jr nz, .row
 	pop hl
@@ -153,11 +153,11 @@ SpeechTextBox:: ; 103e
 	hlcoord TEXTBOX_X, TEXTBOX_Y
 	ld b, TEXTBOX_INNERH
 	ld c, TEXTBOX_INNERW
-	jp TextBox
+	jp TextBox ;draw an empty text box
 ; 1048
 
-TestText:: ; 1048
-	text "ゲームフりーク!"
+TestText:: ; 1048 nothing calls this?
+	text "a"
 	done
 ; 1052
 
@@ -169,55 +169,55 @@ Function1052:: ; 1052
 
 
 PrintText:: ; 1057
-	call Function106c
+	call Function106c ;draw an empty text box
 Function105a:: ; 105a
 	push hl
 	hlcoord TEXTBOX_INNERX, TEXTBOX_INNERY
 	lb bc, TEXTBOX_INNERH - 1, TEXTBOX_INNERW
-	call ClearBox
+	call ClearBox ;fill the text box with nothing
 	pop hl
 
 PrintTextBoxText:: ; 1065
 	bccoord TEXTBOX_INNERX, TEXTBOX_INNERY
-	call Function13e5
+	call Function13e5 ;perform command based on TextBoxFrame+1
 	ret
 ; 106c
 
 Function106c:: ; 106c
 	push hl
-	call SpeechTextBox
-	call Function1ad2
-	call Function321c
+	call SpeechTextBox ;draw an empty text box
+	call Function1ad2 ;updateSprites
+	call Function321c ;apply tilemap
 	pop hl
 	ret
 ; 1078
 
 
-PlaceString:: ; 1078
+PlaceString:: ; 1078 ;fill hl with string in de
 	push hl
 
-PlaceNextChar:: ; 1079
+PlaceNextChar:: ; 1079 de = char to place, hl = place to put it
 	ld a, [de] ; load the char into a
 	cp "@"
-	jr nz, CheckDict ;if not the end character, jump
+	jr nz, CheckDict ;if not the end character, check if special char
 	ld b, h
 	ld c, l; put coords in bc
-	pop hl
+	pop hl ;if single char, go back 1 more?
 	ret
-	pop de ; how can this be reached?
+	pop de 
 
 NextChar:: ; 1083
 	inc de
 	jp PlaceNextChar
 
 CheckDict:: ; 1087
-dict: macro
+dict: macro ;if 0, and a, else check 
 if \1 == 0
 	and a
 else
 	cp \1
 endc
-	jp z, \2 ;if augmant is a or 0/no augment
+	jp z, \2 ;if augmant is 0 or same as a, jump to address
 endm
 	dict $15, Char15
 	dict $4f, Line
@@ -249,7 +249,7 @@ endm
 	dict $4a, Char4A
 	dict $24, Char24
 	dict $25, NextChar
-	cp $1f
+	cp $1f ;1f = 7f
 	jr nz, .ok
 	ld a, $7f
 .ok
@@ -259,25 +259,25 @@ endm
 	dict $3f, Char3F
 	dict $14, Char14
 	cp $e4 ; handakuten
-	jr z, .place
+	jr z, .place 
 	cp $e5 ; dakuten
 	jr z, .place
 
-	jr .nope
+	jr .nope 
 	ld b, a
 	call Diacritic
 	jp NextChar
 .nope
 
 	cp $60
-	jr nc, .place
+	jr nc, .place ;if 60 or more, go to place
 
-	cp $40
+	cp $40 ;if 40 or more, handa
 	jr nc, .handakuten
 
 .dakuten
 
-	cp $20
+	cp $20 ;else, daku
 	jr nc, .daku1
 	add $80
 	jr .daku2
@@ -300,9 +300,9 @@ endm
 	call Diacritic
 
 .place
-	ld [hli], a
-	call PrintLetterDelay
-	jp NextChar
+	ld [hli], a ;load letter into hl
+	call PrintLetterDelay;add letter delay
+	jp NextChar ;next char
 ; 0x117b
 
 
@@ -699,14 +699,14 @@ Function13e5:: ; 13e5
 	set 1, a
 	ld [TextBoxFrame + 1], a
 
-	call Function13f6
+	call Function13f6 ;perform text command based on var
 
 	pop af
 	ld [TextBoxFrame + 1], a
 	ret
 ; 13f6
 
-Function13f6:: ; 13f6
+Function13f6:: ; 13f6 perform text command a, text in hl destination in bc
 	ld a, [hli]
 	cp "@"
 	ret z
@@ -716,19 +716,19 @@ Function13f6:: ; 13f6
 .TextCommand:
 	push hl
 	push bc
-	ld c, a
+	ld c, a ;load command number into c
 	ld b, 0
 	ld hl, TextCommands
 	add hl, bc
 	add hl, bc
-	ld e, [hl]
+	ld e, [hl] ;load that command into de
 	inc hl
 	ld d, [hl]
 	pop bc
 	pop hl
 
 	; jp de
-	push de
+	push de ;call de
 	ret
 ; 1410
 
@@ -763,11 +763,11 @@ Text_00:: ; 143e
 ; write text until "@"
 ; [$00]["...@"]
 
-	ld d, h
+	ld d, h ;enter string in hl
 	ld e, l
-	ld h, b
+	ld h, b ;into bc
 	ld l, c
-	call PlaceString
+	call PlaceString 
 	ld h, d
 	ld l, e
 	inc hl

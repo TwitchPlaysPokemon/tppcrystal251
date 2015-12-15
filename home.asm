@@ -1111,7 +1111,7 @@ IsHMMove:: ; 34e7 check if in array, if remove HM remove from here
 ; 34f8
 
 
-GetMoveName:: ; 34f8
+GetMoveName:: ; 34f8 ;put name of the move in stringbuffer 1
 	push hl
 
 	ld a, MOVE_NAME

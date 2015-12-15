@@ -642,7 +642,7 @@ MenuData2_0x5f03: ; 5f03
 ; 5f1c
 
 Function5f1c: ; 5f1c
-	call Function1cfd
+	call Function1cfd ;hl = curmenu start location in tilemap
 	push hl
 	ld de, $005d
 	add hl, de
@@ -19380,8 +19380,8 @@ UnknownText_0x15663: ; 0x15663
 ; 0x15668
 
 Function15668: ; 15668
-	call Function156c2
-	ld hl, UnknownText_0x15a31
+	call Function156c2 ;play PC sfx
+	ld hl, UnknownText_0x15a31 ;bills PC accsessed
 	call Function15a20
 	callba Functione3fd
 	and a
@@ -19433,7 +19433,7 @@ Function156b8: ; 156b8
 	call WaitSFX
 	ret
 
-Function156c2: ; 156c2
+Function156c2: ; 156c2 play PC sfx
 	ld de, SFX_CHOOSE_PC_OPTION
 	jr Function156d0
 
@@ -19924,7 +19924,7 @@ MenuData15a08: ; 0x15a08
 	dbw BANK(Function244c3), Function244c3
 
 Function15a20: ; 15a20
-	call Function1d4f
+	call Function1d4f ;create a menu and perform a text command
 	call Function1c07
 	ret
 ; 15a27
@@ -23956,7 +23956,7 @@ Function20021: ; 20021 (8:4021)
 	ld hl, UnknownText_0x2004c
 	call PrintText
 	call Function20051
-	call Function1c07
+	call Function1c07 ;unload top menu on menu stack
 	pop bc
 	ld hl, Options
 	ld [hl], b
@@ -24230,7 +24230,7 @@ Function2403c:: ; 2403c
 Function24085: ; 24085
 	xor a
 	ld [hBGMapMode], a
-	call Function1cbb
+	call Function1cbb ;put a textbox in menu area
 	call Function240db
 	ret
 ; 2408f
@@ -24429,11 +24429,11 @@ Function24193: ; 24193
 ; 241a8
 
 Function241a8:: ; 241a8
-	call Function24329
+	call Function24329 ;Place cursor in tilemap 
 Function241ab:: ; 241ab
-	ld hl, wcfa6
+	ld hl, wcfa6 ;reset bit 7 of ???
 	res 7, [hl]
-	ld a, [hBGMapMode]
+	ld a, [hBGMapMode] 
 	push af
 	call Function24216
 	pop af
@@ -24460,7 +24460,7 @@ Function241ba: ; 241ba
 ; 241d5
 
 Function241d5: ; 241d5
-	call Function24329
+	call Function24329 ;Place cursor in tilemap 
 .asm_241d8
 	call Function2431a
 	callba Function10402d ; BUG: This function is in another bank.
@@ -24498,10 +24498,10 @@ Function241fa: ; 241fa
 	ret
 ; 24216
 
-Function24216: ; 24216
+Function24216: ; 24216 a = bgmapmode
 .asm_24216
-	call Function2431a
-	call Function24238
+	call Function2431a ;refresh cursor location
+	call Function24238 ;??? (refresh screen?)
 	call Function24249
 	jr nc, .asm_24237
 	call Function24270
@@ -24520,10 +24520,10 @@ Function24216: ; 24216
 ; 24238
 
 Function24238: ; 24238
-	ld a, [hOAMUpdate]
+	ld a, [hOAMUpdate] ;load ??
 	push af
 	ld a, $1
-	ld [hOAMUpdate], a
+	ld [hOAMUpdate], a ;place 1 in ???
 	call WaitBGMap
 	pop af
 	ld [hOAMUpdate], a
@@ -24534,7 +24534,7 @@ Function24238: ; 24238
 
 Function24249: ; 24249
 .asm_24249
-	call RTC
+	call RTC ;update time
 	call Function24259
 	ret c
 	ld a, [wcfa5]
@@ -24545,10 +24545,10 @@ Function24249: ; 24249
 ; 24259
 
 Function24259: ; 24259
-	ld a, [wcfa5]
-	bit 6, a
-	jr z, .asm_24266
-	callab Function8cf62
+	ld a, [wcfa5] ;a = ?? 
+	bit 6, a ;if bit 4 of tile backup was on?
+	jr z, .asm_24266 ;skip
+	callab Function8cf62 ;something sprite related
 
 .asm_24266
 	call Functiona57
@@ -24686,61 +24686,61 @@ Function24318: ; 24318
 	ret
 ; 2431a
 
-Function2431a: ; 2431a
-	ld hl, wcfac
+Function2431a: ; 2431a refresh cursor location
+	ld hl, wcfac ;load cursor location
 	ld a, [hli]
 	ld h, [hl]
 	ld l, a
-	ld a, [hl]
-	cp $ed
+	ld a, [hl] ;load contents into a
+	cp $ed ;if cursor, load what it covered up in it's place. regardless, place new cursor
 	jr nz, Function24329
 	ld a, [wcfab]
 	ld [hl], a
 
-Function24329: ; 24329
-	ld a, [wcfa1]
+Function24329: ; 24329 Place cursor in tilemap 
+	ld a, [wcfa1] ;load start coords +1/2
 	ld b, a
 	ld a, [wcfa2]
 	ld c, a
-	call GetTileCoord
-	ld a, [wcfa7]
+	call GetTileCoord ;get that location in tilemap
+	ld a, [wcfa7] ;
 	swap a
-	and $f
+	and $f ;load space between rows
 	ld c, a
-	ld a, [wcfa9]
+	ld a, [wcfa9] ;load cursor location
 	ld b, a
 	xor a
 	dec b
-	jr z, .asm_24348
+	jr z, .asm_24348 ;a = c*(cursor -1)
 .asm_24344
-	add c
+	add c 
 	dec b
 	jr nz, .asm_24344
 
 .asm_24348
 	ld c, $14
-	call AddNTimes
+	call AddNTimes ;add number of rows to go down
 	ld a, [wcfa7]
-	and $f
-	ld c, a
-	ld a, [wcfaa]
+	and $f ;load colomns difference into c
+	ld c, a 
+	ld a, [wcfaa] ;horizontal cursor position?
 	ld b, a
 	xor a
 	dec b
-	jr z, .asm_2435f
+	jr z, .asm_2435f ; c = colomns difference * (cursor selection -1)
 .asm_2435b
 	add c
 	dec b
 	jr nz, .asm_2435b
 
 .asm_2435f
-	ld c, a
-	add hl, bc
-	ld a, [hl]
-	cp $ed
+	ld c, a 
+	add hl, bc ;add horizontal distance
+	ld a, [hl] ;load contents
+	cp $ed ;if already the cursor, skip
 	jr z, .asm_2436b
-	ld [wcfab], a
-	ld [hl], $ed
+	ld [wcfab], a ;load what's behind the cursor spot into a var
+	ld [hl], $ed ;load in the cursor
 
 .asm_2436b
 	ld a, l
@@ -24750,60 +24750,60 @@ Function24329: ; 24329
 	ret
 ; 24374
 
-Function24374:: ; 24374
-	ld a, [rSVBK] ;load bank into a
+Function24374:: ; 24374 ;load current tile backup onto backup stack
+	ld a, [rSVBK] 
 	push af
 	ld a, $7
-	ld [rSVBK], a ;switch to bank 7
-	ld hl, wcf71 ;load 2 bytes from pointer? into de
-	ld e, [hl] ;added i to optimise
+	ld [rSVBK], a 
+	ld hl, wcf71 ;load previous menu in stack into de
+	ld e, [hl] 
 	inc hl
 	ld d, [hl]
-	push de ;holds ??
+	push de ;holds previous menu in stack
 	ld b, $10
-	ld hl, wcf81 ;same place menu headers were loaded in?
+	ld hl, wcf81 ;curmenudata
 .asm_24387
-	ld a, [hli]
-	ld [de], a ;load into de 
-	dec de ;go back 1, 16 bytes go from menu headers into de
+	ld a, [hli] 
+	ld [de], a 
+	dec de ;load menu header into de backwards
 	dec b
-	jr nz, .asm_24387 ;loop
-	ld a, [wcf81] ;load first menu header? into a
+	jr nz, .asm_24387 
+	ld a, [wcf81] ;load first menu header tile backup into a
 	bit 6, a
-	jr nz, .asm_24398 ;if bit 6 is on or bit 7 is, small jump
+	jr nz, .asm_24398 ;if bit 6 is on or bit 7 is, load current tile data onto previous menu stack. set top of previous stack bit 0(?)
 	bit 7, a 
-	jr z, .asm_243ae ;if bit 6 is off and bit 7 is off, large jump
+	jr z, .asm_243ae ;if bit 6 is off and bit 7 is off, skip. reset top of previous stack bit 0(?)
 
 .asm_24398
-	ld hl, wcf71 ;load??
+	ld hl, wcf71 ;load the pointer
 	ld a, [hli] ; put the location there into hl
 	ld h, [hl]
 	ld l, a
-	set 0, [hl] ;set that bit 0 to 0
-	call Function1cfd ;hl = correct tile map?, bc = base tilemap
-	call Function243cd ;load de into hl depending on the menu coords subbed from each other (possibly drawing a box?)
+	set 0, [hl] ;set that bit 0 to 1 
+	call Function1cfd ;hl = curmenu start location in tilemap
+	call Function243cd ;put tilemap to be taken up by menu into de (backwards)
 	call Function1d19 ;same as 1cfd but for AttrMap
-	call Function243cd
+	call Function243cd 
 	jr .asm_243b5
 
 .asm_243ae
 	pop hl
-	push hl ;holds wcf71 and 2's contents
+	push hl ;holds previous entry top byte
 	ld a, [hld]
 	ld l, [hl]
-	ld h, a ;the contents into hl
+	ld h, a ;put it in hl
 	res 0, [hl] ;reset it's bit 0
 
 .asm_243b5
-	pop hl ;holds wcf71 and 2's contents
+	pop hl ;holds previous entry top byte
 	; call Function243e7 immediatly rets
 	ld a, h
-	ld [de], a
+	ld [de], a ;load that pointer in de
 	dec de
 	ld a, l
 	ld [de], a
 	dec de
-	ld hl, wcf71
+	ld hl, wcf71 ;load the "top" of the new entry tile data into wcf71, 
 	ld [hl], e
 	inc hl
 	ld [hl], d
@@ -24814,7 +24814,7 @@ Function24374:: ; 24374
 	ret
 ; 243cd
 
-Function243cd: ; 243cd
+Function243cd: ; 243cd ;move the current data in the area covered by the curmenu from grid hl into de backwards
 	call Function1c53 ;sub 1 set of menu coords from another, leave result in bc
 	inc b
 	inc c 
@@ -24823,13 +24823,13 @@ Function243cd: ; 243cd
 	push bc
 	push hl
 .asm_243d7
-	ld a, [hli] ;move something from HL to DE, legnth is dependednt on coords above
+	ld a, [hli] ;move something from HL to grid DE, filling a space in
 	ld [de], a
 	dec de
 	dec c
 	jr nz, .asm_243d7
 	pop hl
-	ld bc, $0014 ;go to new line?
+	ld bc, $0014 ;go to new line
 	add hl, bc
 	pop bc ;b, the other coord, is loop counter
 	dec b
@@ -24841,35 +24841,35 @@ Function243e7: ; 243e7
 	ret
 ; 243e8
 
-Function243e8:: ; 243e8
+Function243e8:: ; 243e8 unload top menu on the stack
 	xor a
-	ld [hBGMapMode], a
-	ld a, [rSVBK]
+	ld [hBGMapMode], a ;reset BG map mode
+	ld a, [rSVBK] 
 	push af
 	ld a, $7
-	ld [rSVBK], a
-	call Function1c7e
+	ld [rSVBK], a ;switch to wram bank 7
+	call Function1c7e ;load top bit of the second highest menu in menu stack
 	ld a, l
 	or h
-	jp z, Function2445d
+	jp z, Function2445d ;if zero, error message
 	ld a, l
-	ld [wcf71], a
+	ld [wcf71], a ;load hl into wcf71
 	ld a, h
 	ld [wcf72], a
-	call Function1c47
+	call Function1c47 ;load the menu data of the highest thing in menu stack into curmenu
 	ld a, [wcf81]
-	bit 0, a
+	bit 0, a ;if tiles were loaded in, unload them
 	jr z, .asm_24411
-	ld d, h
+	ld d, h 
 	ld e, l
-	call Function1c23
+	call Function1c23 ;fill tilemap and attrimap with menu data from hl using loaded menu data's coords 
 
 .asm_24411
-	call Function1c7e
+	call Function1c7e ;load contents of ((the contents of wcf71) +1) into hl
 	ld a, h
 	or l
-	jr z, .asm_2441b
-	call Function1c47
+	jr z, .asm_2441b ;skip if zero
+	call Function1c47 ;load the menu stored above hl(in reverse) into RAM
 
 .asm_2441b
 	pop af
@@ -24914,11 +24914,11 @@ Function24423: ; 24423
 ; 2445d
 
 Function2445d: ; 2445d
-	ld hl, UnknownText_0x24468
+	ld hl, UnknownText_0x24468 ;error message
 	call PrintText
 	call WaitBGMap
 .asm_24466
-	jr .asm_24466
+	jr .asm_24466 ;busywait?
 ; 24468
 
 UnknownText_0x24468: ; 24468
@@ -24926,53 +24926,53 @@ UnknownText_0x24468: ; 24468
 	db "@"
 ; 2446d
 
-Function2446d:: ; 2446d
-	ld a, [wcf91]
+Function2446d:: ; 2446d fill rest of menu data?
+	ld a, [wcf91] ;load ?? into b
 	ld b, a
 	ld hl, wcfa1
-	ld a, [wcf82]
+	ld a, [wcf82] ;load cur menu start x coord
 	inc a
-	bit 6, b
+	bit 6, b ;if bit 6 of b = is off, inc a by 2, else by 1
 	jr nz, .asm_2447d
 	inc a
 
 .asm_2447d
-	ld [hli], a
+	ld [hli], a ;put curmenu start corrds +1/2 into wcfa1 and wcfa2
 	ld a, [wcf83]
 	inc a
 	ld [hli], a
-	ld a, [wcf92]
+	ld a, [wcf92] ;load ?? into wcfa3
 	ld [hli], a
 	ld a, $1
-	ld [hli], a
+	ld [hli], a ;load 1 into wcfa4 and 0 into wcfa5
 	ld [hl], $0
-	bit 5, b
+	bit 5, b ;if bit 5 of b is on, set bit 5 of wcfa5
 	jr z, .asm_24492
 	set 5, [hl]
 
 .asm_24492
 	ld a, [wcf81]
-	bit 4, a
+	bit 4, a ;if bit 4 of cur menu tile backup is on, set bit 6 of wcfa5
 	jr z, .asm_2449b
 	set 6, [hl]
 
 .asm_2449b
 	inc hl
 	xor a
-	ld [hli], a
+	ld [hli], a ;wcfa6 = 0
 	ld a, $20
-	ld [hli], a
+	ld [hli], a ;wcfa7 = 32
 	ld a, $1
 	bit 0, b
-	jr nz, .asm_244a9
+	jr nz, .asm_244a9 ;if bit 0 of b is on, a = 1 else a = 2. load it into wcfa8
 	add $2
 
 .asm_244a9
 	ld [hli], a
 	ld a, [wcf88]
 	and a
-	jr z, .asm_244b7
-	ld c, a
+	jr z, .asm_244b7 ;if default option is 0 or is more then wcf92, then c = default option, else c = 1
+	ld c, a 
 	ld a, [wcf92]
 	cp c
 	jr nc, .asm_244b9
@@ -24981,10 +24981,10 @@ Function2446d:: ; 2446d
 	ld c, $1
 
 .asm_244b9
-	ld [hl], c
+	ld [hl], c ;load c into wcfa9 (cur menu selection?/vertical cursor)
 	inc hl
 	ld a, $1
-	ld [hli], a
+	ld [hli], a ;load 1 into horizontal cursor position?, 0 into "whats behind cursor" and cursor location
 	xor a
 	ld [hli], a
 	ld [hli], a
@@ -25010,7 +25010,7 @@ Function244c3: ; 0x244c3
 Function244e3:: ; 244e3
 	ld hl, MenuDataHeader_0x24547
 	call Function1d3c
-	call Function1cbb
+	call Function1cbb ;put a textbox in menu area
 	call Function1ad2
 	call Function321c
 	ld b, $12
@@ -25343,7 +25343,7 @@ Function246fc: ; 246fc
 ; 24706
 
 Function24706: ; 24706 (9:4706)
-	call Function1cfd
+	call Function1cfd ;hl = curmenu start location in tilemap
 	ld de, $14
 	add hl, de
 	ld de, $28
@@ -25510,7 +25510,7 @@ Function247f0: ; 247f0
 	ld [hl], $61
 
 .asm_2480d
-	call Function1cfd
+	call Function1cfd ;hl = curmenu start location in tilemap
 	ld bc, $0015
 	add hl, bc
 	ld a, [wcf92]
@@ -25987,9 +25987,9 @@ Function24af8: ; 24af8
 	ld de, $000b
 	call Function1e2e
 
-Function24b01: ; 24b01
-	call Function1cbb
-	call Function1cfd
+Function24b01: ; 24b01 
+	call Function1cbb ;put a textbox in menu area
+	call Function1cfd ;hl = curmenu start location in tilemap
 	ld de, $0015
 	add hl, de
 	ld de, Money
@@ -26261,19 +26261,19 @@ MonMenuOptions: ; 24cd9
 Function24d19: ; 24d19 MonSubMenu
 	xor a
 	ld [hBGMapMode], a 
-	call Function24dd4
-	callba Function8ea4a
+	call Function24dd4 ;populate buffer 2 with curpartymon's menu options
+	callba Function8ea4a ;hl = wc314 + 96. load 2 into the third byte of each 16 byte blockif the first byte is equal to wcfa9, otherwise 0 if the first byte is not 0
 	ld hl, MenuDataHeader_0x24d3f
-	call LoadMenuDataHeader
-	call Function24d47
-	call Function24d91
+	call LoadMenuDataHeader ;new menu, store tiles it covers on stack
+	call Function24d47 ;draw a text box to hold mon options menu
+	call Function24d91 ;load menu options text into tilemap
 
 	ld a, 1
-	ld [hBGMapMode], a
+	ld [hBGMapMode], a ;BGmapmode = 1
 	call Function24d59
 	ld [MenuSelection], a
 
-	call Function1c07
+	call Function1c07 ;unload top menu on menu stack
 	ret
 ; 24d3f
 
@@ -26285,28 +26285,28 @@ MenuDataHeader_0x24d3f: ; 24d3f
 	db 1 ; default option
 ; 24d47
 
-Function24d47: ; 24d47
+Function24d47: ; 24d47 draw a text box to hold mon options menu
 	ld a, [Buffer1]
 	inc a
-	add a
+	add a 
 	ld b, a
-	ld a, [wcf84]
+	ld a, [wcf84] ;sub items in menu +1*2 and add 1 to end y coord, put result in start y coord
 	sub b
 	inc a
 	ld [wcf82], a
-	call Function1cbb
+	call Function1cbb ;put a textbox in menu area
 	ret
 ; 24d59
 
 Function24d59: ; 24d59
 .asm_24d59
 	ld a, $a0
-	ld [wcf91], a
-	ld a, [Buffer1]
+	ld [wcf91], a ;load 160 into ??
+	ld a, [Buffer1] ;load mon list legnth into  ??
 	ld [wcf92], a
-	call Function1c10
+	call Function1c10 ;fill rest of menu data?
 	ld hl, wcfa5
-	set 6, [hl]
+	set 6, [hl] ;set flag 6 of wcfa5
 	call Function1bc9
 	ld de, SFX_READ_TEXT_2
 	call PlaySFX
@@ -26332,39 +26332,39 @@ Function24d59: ; 24d59
 	ret
 ; 24d91
 
-Function24d91: ; 24d91
-	call Function1cfd
-	ld bc, $002a
+Function24d91: ; 24d91 ;load menu options text into tilemap
+	call Function1cfd ;hl = curmenu start location in tilemap
+	ld bc, $002a ;go down 42 (2 rows and 2 colomns)
 	add hl, bc
-	ld de, Buffer2
+	ld de, Buffer2 ;load menu options
 .asm_24d9b
-	ld a, [de]
+	ld a, [de] ;load menu option
 	inc de
 	cp $ff
-	ret z
+	ret z ;if $ff, ret
 	push de
 	push hl
-	call Function24db0
+	call Function24db0 ;put string for move whose listing is in a in de (stringbuffer 1)
 	pop hl
-	call PlaceString
+	call PlaceString ;fill menu with the string
 	ld bc, $0028
-	add hl, bc
+	add hl, bc ;go down 2 rows
 	pop de
-	jr .asm_24d9b
+	jr .asm_24d9b ;loop
 ; 24db0
 
-Function24db0: ; 24db0
-	ld hl, MonMenuOptions + 1
-	ld de, $0003
-	call IsInArray
-	dec hl
+Function24db0: ; 24db0 ;put string for move whose listing is in a in stringbuffer 1
+	ld hl, MonMenuOptions + 1 ;move over listings
+	ld de, $0003 
+	call IsInArray ;put that move loc in hl
+	dec hl ;check if it's a move
 	ld a, [hli]
 	cp $1
-	jr z, .asm_24dc8
+	jr z, .asm_24dc8 ;if it isn't, skip
 	inc hl
 	ld a, [hl]
 	ld [wd265], a
-	call GetMoveName
+	call GetMoveName ;put name of the move in stringbuffer 1
 	ret
 
 .asm_24dc8
@@ -26378,17 +26378,17 @@ Function24db0: ; 24db0
 	ret
 ; 24dd4
 
-Function24dd4: ; 24dd4
-	call Function24e68
+Function24dd4: ; 24dd4 ;populate buffer 2 with curpartymon's menu options
+	call Function24e68 ;clear buffer1 and 9 bytes of buffer2
 	ld a, [CurPartySpecies]
 	cp EGG
-	jr z, .asm_24e3f
+	jr z, .asm_24e3f ;if egg, branch off
 	ld a, [InLinkBattle]
 	and a
-	jr nz, .asm_24e03
-	ld a, PartyMon1Moves - PartyMon1
-	call GetPartyParamLocation
-	ld d, h
+	jr nz, .asm_24e03 ;if in link battle, skip adding moves to list
+	ld a, PartyMon1Moves - PartyMon1 ;a = space till moves in party data
+	call GetPartyParamLocation 
+	ld d, h ;de = curpartymon's moves
 	ld e, l
 	ld c, NUM_MOVES
 .asm_24ded
@@ -26396,12 +26396,12 @@ Function24dd4: ; 24dd4
 	push de
 	ld a, [de]
 	and a
-	jr z, .asm_24dfd
-	push hl
-	call Function24e52
+	jr z, .asm_24dfd ;if slot is empty, next move and loop or continue
+	push hl ;else
+	call Function24e52 ;get menu isting for out of battle move, put it in a. else ret nc
 	pop hl
-	jr nc, .asm_24dfd
-	call Function24e83
+	jr nc, .asm_24dfd ;loop until succsessful
+	call Function24e83 ; load a into slot buffer1 in buffer 2, then inc buffer 1 
 
 .asm_24dfd
 	pop de
@@ -26412,22 +26412,22 @@ Function24dd4: ; 24dd4
 
 .asm_24e03
 	ld a, $f
-	call Function24e83
+	call Function24e83 ;add 15,16 and 19 to buffer2
 	ld a, $10
 	call Function24e83
 	ld a, $13
 	call Function24e83
 	ld a, [InLinkBattle]
 	and a
-	jr nz, .asm_24e2f
+	jr nz, .asm_24e2f ;if in link battle branch
 	push hl
 	ld a, PartyMon1Item - PartyMon1
-	call GetPartyParamLocation
-	ld d, [hl]
-	callba ItemIsMail
+	call GetPartyParamLocation 
+	ld d, [hl] ;put mon item in d
+	callba ItemIsMail ;check if it is mail, ret c if it is
 	pop hl
 	ld a, $14
-	jr c, .asm_24e2c
+	jr c, .asm_24e2c ; if is mail, add 20 to buffer 2, else add 17
 	ld a, $11
 
 .asm_24e2c
@@ -26436,15 +26436,15 @@ Function24dd4: ; 24dd4
 .asm_24e2f
 	ld a, [Buffer1]
 	cp $8
-	jr z, .asm_24e3b
+	jr z, .asm_24e3b ;if not 8 items have been added, add 18 to buffer 2
 	ld a, $12
 	call Function24e83
 
 .asm_24e3b
-	call Function24e76
+	call Function24e76 ;load $FF into buffer2 in last slot
 	ret
 
-.asm_24e3f
+.asm_24e3f ;if egg, only add 15, 16, 18 and ff
 	ld a, $f
 	call Function24e83
 	ld a, $10
@@ -26455,30 +26455,30 @@ Function24dd4: ; 24dd4
 	ret
 ; 24e52
 
-Function24e52: ; 24e52
+Function24e52: ; 24e52 get menu isting for out of battle move, else ret nc
 	ld b, a
 	ld hl, MonMenuOptions
 .asm_24e56
 	ld a, [hli]
-	cp $ff
-	jr z, .asm_24e67
+	cp $ff ;if end of table or non-move options, ret nc
+	ret z;, .asm_24e67
 	cp $1
-	jr z, .asm_24e67
-	ld d, [hl]
+	ret z;, .asm_24e67
+	ld d, [hl] ;put listing number in d
 	inc hl
 	ld a, [hli]
-	cp b
+	cp b ;if move doesn't match, loop
 	jr nz, .asm_24e56
-	ld a, d
+	ld a, d ;else put move listing in a
 	scf
 
 .asm_24e67
 	ret
 ; 24e68
 
-Function24e68: ; 24e68
+Function24e68: ; 24e68 ;clear buffer1 and 9 bytes of buffer2
 	xor a
-	ld [Buffer1], a
+	ld [Buffer1], a 
 	ld hl, Buffer2
 	ld bc, $0009
 	call ByteFill
@@ -26499,7 +26499,7 @@ Function24e83: ; 24e83
 	push hl
 	push de
 	push af
-	ld a, [Buffer1]
+	ld a, [Buffer1] ; load a into slot buffer1 in buffer 2, then inc buffer 1 
 	ld e, a
 	inc a
 	ld [Buffer1], a
@@ -26507,7 +26507,7 @@ Function24e83: ; 24e83
 	ld hl, Buffer2
 	add hl, de
 	pop af
-	ld [hl], a
+	ld [hl], a 
 	pop de
 	pop hl
 	ret
@@ -26571,7 +26571,7 @@ LoadBattleMenu: ; 24ef2
 	call Function2039
 	ld a, [wcf88]
 	ld [wd0d2], a
-	call Function1c07
+	call Function1c07 
 	ret
 ; 24f0b
 
@@ -26593,7 +26593,7 @@ Function24f19: ; 24f19
 	call Function202a
 	ld a, [wcf88]
 	ld [wd0d2], a
-	call Function1c07
+	call Function1c07 ;unload top menu on menu stack
 	ret
 ; 24f2c
 
@@ -26814,7 +26814,7 @@ Function2500e: ; 2500e
 
 Function25072: ; 25072
 	call Function1cbb
-	call Function1cfd
+	call Function1cfd ;hl = curmenu start location in tilemap
 	ld de, $0015
 	add hl, de
 	ld [hl], $f1
@@ -27534,7 +27534,7 @@ ProfOaksPC: ; 0x265d3
 	ld hl, OakPCText4
 	call PrintText
 	call Functiona36
-	call Function1c07
+	call Function1c07 ;unload top menu on menu stack
 	ret
 ; 0x265ee
 
@@ -27835,7 +27835,7 @@ _KrisDecorationMenu: ; 0x2675c
 	jr nc, .asm_2676f
 
 .asm_2678e
-	call Function1c07
+	call Function1c07 ;unload top menu on menu stack
 	pop af
 	ld [wcf76], a
 	ld a, [wd1ee]
@@ -28145,7 +28145,7 @@ Function2695b: ; 2695b
 	call Function26a02
 
 .asm_26977
-	call Function1c07
+	call Function1c07 ;unload top menu on menu stack
 	ret
 
 .asm_2697b
@@ -28753,7 +28753,7 @@ Function26e70: ; 26e70
 	call Function1d4f
 	ld hl, MenuDataHeader_0x26eab
 	call Function1dab
-	call Function1c07
+	call Function1c07 ;unload top menu on menu stack
 	call Function1c66
 	jr c, .asm_26e98
 	ld a, [wcfa9]
@@ -33433,57 +33433,10 @@ Function29ff8: ; 29ff8
 	ld [wd25d], a ; load zero if no water encounters, otherwise load water encounter chance
 	ret
 
-Function2a01f: ; 2a01f
-	hlcoord 0, 0
-	ld bc, SCREEN_WIDTH * SCREEN_HEIGHT
-	xor a
-	call ByteFill
-	ld a, e
-	and a
-	jr nz, .skip
-	ld de, TileMap
-	ld hl, WildMons1
-	call Function2a052 ; a holds the location found, de hieght*width
-	ld hl, WildMons2
-	call Function2a052
-	call Check_IsRoamMon1
-	call Check_IsRoamMon2
-	call Check_IsRoamMon3
-	ret
 
-.skip
-	ld de, TileMap
-	ld hl, WildMons3
-	call Function2a052
-	ld hl, WildMons4
-	jp Function2a052 ;when done jumps 1 more function up with ret
 ; 2a052
 
-Function2a052: ; 2a052
-.loop
-	ld a, [hl] ; ld map group
-	cp $ff
-	ret z ;return if max
-	push hl ;push map group
-	ld a, [hli] ;redundent? inc hl would probably do the same thing as a is loaded in a few lines up
-	ld b, a
-	ld a, [hli]
-	ld c, a ;load map group into b, number into c
-	inc hl
-	inc hl
-	inc hl; skip to slot 1
-	ld a, $30 ; check all 48 slots
-	call Function2a088
-	jr nc, .next
-	ld [de], a
-	inc de
 
-.next
-	pop hl
-		;ld bc, $002f
-	ld bc, $0035
-	add hl, bc
-	jr .loop
 ; 2a06e
 
 ;Function2a06e: ; 2a06e same as 2a052 but for water tiles. redundent with unification of table structure
@@ -33510,100 +33463,8 @@ Function2a052: ; 2a052
 ;	jr .loop
 ; 2a088
 
-Function2a088: ; 2a088  fills the map screen with where the stored mon is found 
-		;inc hl ;over first slot mon unneded due to removal of level
-.next
-	push af ;store loop counter
-	ld a, [wd265] ;load the stored mon (no idea where this is coming from)
-	cp [hl] ;if it's the same as slot 1 mon, jump out
-	jr z, .done
-		;inc hl unneded due to change to tables
-	inc hl ;move to next slot
-	pop af
-	dec a
-	jr nz, .next ; loop counter
-	and a
-	ret ;if not found, return
-
-.done
-	pop af
-	jp Check_IsInRoamMonNest ;redundent?
-; 2a09c
-
-Check_IsInRoamMonNest: ; 2a09c 
-	push de ;de is TileMap
-	call GetWorldMapLocation ; given a map group/id in bc, return its location on the Pokégear map.
-	ld c, a ;put it in c
-	hlcoord 0, 0
-	ld de, SCREEN_HEIGHT * SCREEN_WIDTH ;loop counter?
-.loop
-	ld a, [hli] ; add previous coords +1?
-	cp c ; If coords = location on map, jump?
-	jr z, .done 
-	dec de ;down 1 
-	ld a, e ;load new hight*width into a?
-	or d
-	jr nz, .loop ;loop unti d is zero? 
-	ld a, c
-	pop de
-	scf
-	ret
-
-.done
-	pop de
-	and a ; a holds the location found, de hieght*width
-	ret
 ; 2a0b7
 
-Check_IsRoamMon1: ; 2a0b7
-	ld a, [wRoamMon1Species]
-	ld b, a
-	ld a, [wd265]
-	cp b
-	ret nz
-	ld a, [wRoamMon1MapGroup]
-	ld b, a
-	ld a, [wRoamMon1MapNumber]
-	ld c, a
-	call Check_IsInRoamMonNest
-	ret nc
-	ld [de], a
-	inc de
-	ret
-; 2a0cf
-
-Check_IsRoamMon2: ; 2a0cf
-	ld a, [wRoamMon2Species]
-	ld b, a
-	ld a, [wd265]
-	cp b
-	ret nz
-	ld a, [wRoamMon2MapGroup]
-	ld b, a
-	ld a, [wRoamMon2MapNumber]
-	ld c, a
-	call Check_IsInRoamMonNest
-	ret nc
-	ld [de], a
-	inc de
-	ret
-; 2a0e7
-
-Check_IsRoamMon3: ; 2a0cf
-	ld a, [wRoamMon3Species]
-	ld b, a
-	ld a, [wd265]
-	cp b
-	ret nz
-	ld a, [wRoamMon3MapGroup]
-	ld b, a
-	ld a, [wRoamMon3MapNumber]
-	ld c, a
-	call Check_IsInRoamMonNest
-	ret nc
-	ld [de], a
-	inc de
-	ret
 ; 2a0e7
 
 
@@ -34307,6 +34168,153 @@ INCBIN "gfx/misc/dude.6x6.2bpp.lz"
 ; 2bcea
 
 SECTION "WildHandling", ROMX 
+
+Function2a01f: ; 2a01f
+	hlcoord 0, 0
+	ld bc, SCREEN_WIDTH * SCREEN_HEIGHT
+	xor a
+	call ByteFill
+	ld a, e
+	and a
+	jr nz, .skip
+	ld de, TileMap
+	ld hl, WildMons1
+	call Function2a052 ; a holds the location found, de hieght*width
+	ld hl, WildMons2
+	call Function2a052
+	call Check_IsRoamMon1
+	call Check_IsRoamMon2
+	call Check_IsRoamMon3
+	ret
+
+.skip
+	ld de, TileMap
+	ld hl, WildMons3
+	call Function2a052
+	ld hl, WildMons4
+	jp Function2a052 ;when done jumps 1 more function up with ret
+
+Function2a052: ; 2a052
+.loop
+	ld a, [hl] ; ld map group
+	cp $ff
+	ret z ;return if max
+	push hl ;push map group
+	ld a, [hli] ;redundent? inc hl would probably do the same thing as a is loaded in a few lines up
+	ld b, a
+	ld a, [hli]
+	ld c, a ;load map group into b, number into c
+	inc hl
+	inc hl
+	inc hl; skip to slot 1
+	ld a, $30 ; check all 48 slots
+	call Function2a088
+	jr nc, .next
+	ld [de], a
+	inc de
+
+.next
+	pop hl
+		;ld bc, $002f
+	ld bc, $0035
+	add hl, bc
+	jr .loop
+
+
+Function2a088: ; 2a088  fills the map screen with where the stored mon is found 
+		;inc hl ;over first slot mon unneded due to removal of level
+.next
+	push af ;store loop counter
+	ld a, [wd265] ;load the stored mon (no idea where this is coming from)
+	cp [hl] ;if it's the same as slot 1 mon, jump out
+	jr z, .done
+		;inc hl unneded due to change to tables
+	inc hl ;move to next slot
+	pop af
+	dec a
+	jr nz, .next ; loop counter
+	and a
+	ret ;if not found, return
+
+.done
+	pop af
+	;jp Check_IsInRoamMonNest ;redundent
+; 2a09c
+
+Check_IsInRoamMonNest: ; 2a09c 
+	push de ;de is TileMap
+	call GetWorldMapLocation ; given a map group/id in bc, return its location on the Pokégear map.
+	ld c, a ;put it in c
+	hlcoord 0, 0
+	ld de, SCREEN_HEIGHT * SCREEN_WIDTH ;loop counter?
+.loop
+	ld a, [hli] ; add previous coords +1?
+	cp c ; If coords = location on map, jump?
+	jr z, .done 
+	dec de ;down 1 
+	ld a, e ;load new hight*width into a?
+	or d
+	jr nz, .loop ;loop unti d is zero? 
+	ld a, c
+	pop de
+	scf
+	ret
+
+.done
+	pop de
+	and a ; a holds the location found, de hieght*width
+	ret
+
+
+Check_IsRoamMon1: ; 2a0b7
+	ld a, [wRoamMon1Species]
+	ld b, a
+	ld a, [wd265]
+	cp b
+	ret nz
+	ld a, [wRoamMon1MapGroup]
+	ld b, a
+	ld a, [wRoamMon1MapNumber]
+	ld c, a
+	call Check_IsInRoamMonNest
+	ret nc
+	ld [de], a
+	inc de
+	ret
+; 2a0cf
+
+Check_IsRoamMon2: ; 2a0cf
+	ld a, [wRoamMon2Species]
+	ld b, a
+	ld a, [wd265]
+	cp b
+	ret nz
+	ld a, [wRoamMon2MapGroup]
+	ld b, a
+	ld a, [wRoamMon2MapNumber]
+	ld c, a
+	call Check_IsInRoamMonNest
+	ret nc
+	ld [de], a
+	inc de
+	ret
+; 2a0e7
+
+Check_IsRoamMon3: ; 2a0cf
+	ld a, [wRoamMon3Species]
+	ld b, a
+	ld a, [wd265]
+	cp b
+	ret nz
+	ld a, [wRoamMon3MapGroup]
+	ld b, a
+	ld a, [wRoamMon3MapNumber]
+	ld c, a
+	call Check_IsInRoamMonNest
+	ret nc
+	ld [de], a
+	inc de
+	ret
 
 Function2a0e7:: ; 2a0e7 
 ; Try to trigger a wild encounter.
@@ -38817,7 +38825,7 @@ Function4484a: ; 0x4484a
 	ld hl, MenuData44964
 	call LoadMenuDataHeader
 	call Function1d81
-	call Function1c07
+	call Function1c07 ;unload top menu on menu stack
 	jr c, .asm_44860
 	ld a, [wcfa9]
 	dec a
@@ -38847,7 +38855,7 @@ Function4484a: ; 0x4484a
 	ld hl, .MessageLostText
 	call Function1d4f
 	call YesNoBox
-	call Function1c07
+	call Function1c07 ;unload top menu on menu stack
 	ret c
 	ld a, [MenuSelection]
 	dec a
@@ -39383,8 +39391,8 @@ Function48304: ; 48304 (12:4304)
 	ld [wd0e4], a
 	ld a, d
 	push af
-	call Function1c07
-	call Function1c07
+	call Function1c07 ;unload top menu on menu stack
+	call Function1c07 ;unload top menu on menu stack
 	pop af
 	ld a, [hJoyPressed] ; $ff00+$a7
 	bit 0, a
@@ -39868,7 +39876,7 @@ Function4876f: ; 4876f (12:476f)
 	ld [wd473], a
 .asm_487da
 	ld a, [wd473]
-	call Function1c07
+	call Function1c07 ;unload top menu on menu stack
 	hlcoord 11, 6
 	call Function487ec
 	pop af
@@ -40168,7 +40176,7 @@ asm_48972: ; 48972 (12:4972)
 	pop de
 	pop bc
 	pop af
-	call Function1c07
+	call Function1c07 ;unload top menu on menu stack
 	hlcoord 11, 10
 	call Function489ea
 	hlcoord 11, 9
@@ -40241,7 +40249,7 @@ Function48a3a: ; 48a3a (12:4a3a)
 	call Function1bc9
 	push af
 	call PlayClickSFX
-	call Function1c07
+	call Function1c07 ;unload top menu on menu stack
 	pop af
 	bit 1, a
 	jp nz, Function48a9a
@@ -40959,7 +40967,7 @@ Function4925b: ; 4925b
 	call GetSGBLayout
 	xor a
 	ld [wd142], a
-	call Function492a5
+	call Function492a5 ;load a move into a (is it that easy?)
 	ld [wd265], a
 	ld [wd262], a
 	call GetMoveName
@@ -41044,12 +41052,12 @@ Function492b9: ; 492b9
 	jr .learned
 
 .didnt_learn
-	call Function1c07
+	call Function1c07 ;unload top menu on menu stack
 	and a
 	ret
 
 .learned
-	call Function1c07
+	call Function1c07 ;unload top menu on menu stack
 	scf
 	ret
 ; 4930a
@@ -43027,7 +43035,7 @@ Function4a28a: ; 4a28a (12:628a)
 	call PrintText
 	call Functiona36
 .asm_4a338
-	call Function1c07
+	call Function1c07 ;unload top menu on menu stack
 .asm_4a33b
 	call Function1d7d
 	callba Function104148
@@ -44438,7 +44446,7 @@ Function4ac58: ; 4ac58
 	ld a, $1
 	ld [hBGMapMode], a
 	call Function4acaa
-	call Function1c07
+	call Function1c07 ;unload top menu on menu stack
 	and a
 	ret
 ; 4aca2
@@ -44713,8 +44721,8 @@ Function4ae1f: ; 4ae1f
 Function4ae5e: ; 4ae5e
 	ld a, [hOAMUpdate]
 	push af
-	call Function1c07
-	call Function1ad2
+	call Function1c07 ;unload top menu on menu stack
+	call Function1ad2 
 	xor a
 	ld [hOAMUpdate], a
 	call DelayFrame
@@ -56545,8 +56553,8 @@ MenuDataHeader_0x8810d: ; 0x8810d
 	db 0, 0, -1, 0 ; XXX
 
 Function88116: ; 88116
-	call Function1cfd
-	ld de, $0015
+	call Function1cfd ;hl = curmenu start location in tilemap
+	ld de, $0015 
 	add hl, de
 	ld d, h
 	ld e, l
@@ -56555,7 +56563,7 @@ Function88116: ; 88116
 ; 88126
 
 Function88126: ; 88126
-	call Function1cfd
+	call Function1cfd ;hl = curmenu start location in tilemap
 	ld de, $0032
 	add hl, de
 	ld [hl], $f1
@@ -59865,7 +59873,7 @@ Function8a116: ; 8a116 (22:6116)
 	ld c, $10
 	call DelayFrames
 .asm_8a15a
-	call Function1c07
+	call Function1c07 ;unload top menu on menu stack
 	call Function891de
 	call Function893e2
 	call Function89245
@@ -60044,7 +60052,7 @@ Function8a2aa: ; 8a2aa (22:62aa)
 	call Function8a20d
 	jr .asm_8a2ea
 .asm_8a2cf
-	call Function1c07
+	call Function1c07 ;unload top menu on menu stack
 	call Function8a241
 	jr c, .asm_8a2ed
 	ld a, $1
@@ -61614,7 +61622,7 @@ Function8ae68: ; 8ae68
 	call Function1cbb
 	call Function1ad2
 	call Function321c
-	call Function1cfd
+	call Function1cfd ;hl = curmenu start location in tilemap
 	inc hl
 	ld d, $0
 	ld e, $14
@@ -61994,7 +62002,7 @@ Function8b09e: ; 8b09e
 	call Function1d3c
 	call Function1cbb
 	call Function1ad2
-	call Function1cfd
+	call Function1cfd ;hl = curmenu start location in tilemap
 	ld bc, $0015
 	add hl, bc
 	ld de, String_8b0ca
@@ -63514,7 +63522,7 @@ Function8b960: ; 8b960 (22:7960)
 	call Function89d5e
 	ld hl, Function8b9ab
 	call Function89d85
-	call Function1c07
+	call Function1c07 ;unload top menu on menu stack
 	jr c, .asm_8b99c
 	call Function8b99f
 	jr nz, .asm_8b99d
@@ -65832,7 +65840,7 @@ Function8cf69: ; 8cf69
 	push bc
 	push af
 	ld a, $0
-	ld [wc3b5], a
+	ld [wc3b5], a ;load 0 into ???
 	call Function8cf7a
 	pop af
 	pop bc
@@ -65842,14 +65850,14 @@ Function8cf69: ; 8cf69
 ; 8cf7a
 
 Function8cf7a: ; 8cf7a
-	ld hl, wc314
+	ld hl, wc314 ; load ???
 	ld e, $a
 .asm_8cf7f
 	ld a, [hl]
 	and a
-	jr z, .asm_8cf91
+	jr z, .asm_8cf91 ;if ?? = 0, skip
 	ld c, l
-	ld b, h
+	ld b, h ;put wc314 into bc
 	push hl
 	push de
 	call Function8d24b
@@ -66354,10 +66362,10 @@ Unknown_8d1c4: ; 8d1c4
 	db $40, $00, $00
 ; 8d24b
 
-Function8d24b: ; 8d24b
+Function8d24b: ; 8d24b ;jump to program set in wc316
 	ld hl, $0002
-	add hl, bc
-	ld e, [hl]
+	add hl, bc ;hl = wc316
+	ld e, [hl] ;load ?? into e
 	ld d, 0
 	ld hl, Jumptable_8d25b
 	add hl, de
@@ -69014,13 +69022,13 @@ GetGFXUnlessMobile: ; 8ea3f
 	jp Functiondc9
 ; 8ea4a
 
-Function8ea4a: ; 8ea4a
-	ld hl, wc314
+Function8ea4a: ; 8ea4a ;hl = wc314 + 96. load 2 into the third byte of each 16 byte blockif the first byte is equal to wcfa9, otherwise 0 if the first byte is not 0
+	ld hl, wc314 ;load ??
 	ld e, $6
-	ld a, [wcfa9]
+	ld a, [wcfa9] ;place ?? in d
 	ld d, a
 .asm_8ea53
-	ld a, [hl]
+	ld a, [hl] ;if ?? is 0, skip, if equal to other ?? continue with a = 2, else a = 0
 	and a
 	jr z, .asm_8ea69
 	cp d
@@ -69036,15 +69044,15 @@ Function8ea4a: ; 8ea4a
 	ld c, l
 	ld b, h
 	ld hl, $0002
-	add hl, bc
+	add hl, bc ;load a into hl+2
 	ld [hl], a
 	pop hl
 
 .asm_8ea69
-	ld bc, $0010
+	ld bc, $0010 ;add 16 to hl
 	add hl, bc
 	dec e
-	jr nz, .asm_8ea53
+	jr nz, .asm_8ea53 ;loop 6 times
 	ret
 ; 8ea71
 
@@ -70399,7 +70407,7 @@ Function90913: ; 90913
 	call Functiona57
 	call Function90993
 	jr nc, .asm_9096a
-	call Function1c07
+	call Function1c07 ;unload top menu on menu stack
 	call Function1ad2
 	ld hl, UnknownText_0x90a44
 	call PrintText
@@ -71959,8 +71967,8 @@ Function913f9: ; 913f9
 	ld hl, UnknownText_0x914d8
 	call Function1d4f
 	call YesNoBox
-	call Function1c07
-	jr c, .asm_91419
+	call Function1c07 ;unload top menu on menu stack
+	jr c, .asm_91419 
 	call Function9131e
 	xor a
 	ld [hBGMapMode], a
@@ -72836,7 +72844,7 @@ Function91af3: ; 91af3
 	call GetSGBLayout
 	call Function32f9
 .asm_91b29
-	call Functiona57
+	call Functiona57 
 	ld hl, hJoyPressed
 	ld a, [hl]
 	and $2
@@ -73259,14 +73267,14 @@ Function91d11: ; 91d11
 	xor a
 	call Function91e1e
 .asm_91d6e
-	call Functiona57
+	call Functiona57 ;update joypad
 	ld hl, hJoyPressed
 	ld a, [hl]
 	and $3
-	jr nz, .asm_91d8f
+	jr nz, .asm_91d8f ;if a and b are pressed, branch
 	ld a, [hJoypadDown]
-	and $4
-	jr nz, .asm_91d87
+	and $4 ;if select is down
+	jr nz, .asm_91d87 ;branch
 	call Function91d9b
 	call Function91dcd
 	jr .asm_91d8a
@@ -73288,21 +73296,21 @@ Function91d11: ; 91d11
 ; 91d9b
 
 Function91d9b: ; 91d9b
-	ld a, [hl]
+	ld a, [hl] ;if joypad = left
 	and $20
-	jr nz, .asm_91da6
-	ld a, [hl]
+	jr nz, .asm_91da6 ;branch
+	ld a, [hl] ;if joypad = right, branch
 	and $10
 	jr nz, .asm_91db7
 	ret
 
 .asm_91da6
-	ld a, [hWY]
-	cp $90
+	ld a, [hWY] ;load ???
+	cp $90 ; if equal to $90, do nothing
 	ret z
-	call ClearSprites
+	call ClearSprites ; Erase OAM data
 	ld a, $90
-	ld [hWY], a
+	ld [hWY], a ;put 90 in ???
 	xor a
 	call Function91e1e
 	ret
@@ -73368,7 +73376,7 @@ String_91e16:
 ; 91e1e
 
 Function91e1e: ; 91e1e
-	ld [wd003], a
+	ld [wd003], a ;store a in ???
 	ld e, a
 	callba Function2a01f
 	ld de, TileMap
@@ -80026,7 +80034,7 @@ INCBIN "gfx/unknown/0b9e26.1bpp"
 Unknown_b9e4e: ; b9e4e
 INCBIN "gfx/unknown/0b9e4e.1bpp"
 
-ItemIsMail: ; b9e76
+ItemIsMail: ; b9e76 ret c if item is mail
 	ld a, d
 	ld hl, .items
 	ld de, 1
@@ -83763,7 +83771,7 @@ BillsPCDepositFuncDeposit: ; e24a9 (38:64a9)
 BillsPCDepositFuncStats: ; e24c8 (38:64c8)
 	call Function1d6e
 	call Functione2f7e
-	call Function1c07
+	call Function1c07 ;unload top menu on menu stack
 	call PCMonInfo
 	call Functione2def
 	ld [CurPartySpecies], a
@@ -83785,7 +83793,7 @@ BillsPCDepositFuncRelease: ; e24e0 (38:64e0)
 	call PlaceYesNoBox
 	ld a, [wcfa9]
 	dec a
-	call Function1c07
+	call Function1c07 ;unload top menu on menu stack
 	and a
 	jr nz, .asm_e252c
 	ld a, [wcb2b]
@@ -84025,7 +84033,7 @@ BillsPCWithdrawFuncWithdraw: ; e26a1 (38:66a1)
 BillsPCWithdrawFuncStats: ; e26c0 (38:66c0)
 	call Function1d6e
 	call Functione2f7e
-	call Function1c07
+	call Function1c07 ;unload top menu on menu stack
 	call PCMonInfo
 	call Functione2def
 	ld [CurPartySpecies], a
@@ -84045,7 +84053,7 @@ BillsPCWithdrawFuncRelease: ; e26d8 (38:66d8)
 	call PlaceYesNoBox
 	ld a, [wcfa9]
 	dec a
-	call Function1c07
+	call Function1c07 ;unload top menu on menu stack
 	and a
 	jr nz, .asm_e2720
 	ld a, [wcb2b]
@@ -84284,7 +84292,7 @@ Functione2887: ; e2887
 Functione28a5: ; e28a5
 	call Function1d6e
 	call Functione2f7e
-	call Function1c07
+	call Function1c07 ;unload top menu on menu stack
 	call PCMonInfo
 	call Functione2def
 	ld [CurPartySpecies], a
@@ -86103,7 +86111,7 @@ Functione36f9: ; e36f9 (38:76f9)
 	ld hl, MenuDataHeader_0xe377b
 	call LoadMenuDataHeader
 	call Function1d81
-	call Function1c07
+	call Function1c07 ;unload top menu on menu stack
 	ret c
 	ld a, [wcfa9]
 	cp $1

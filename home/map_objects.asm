@@ -83,7 +83,7 @@ Function184a:: ; 184a
 	ret
 ; 1852
 
-Function1852:: ; 1852 from 2a2ce
+Function1852:: ; 1852 
 	ld a, [StandingTile] ; load tile on
 	call GetTileCollision; a is 1 if water, 0 if land
 	sub 1 
