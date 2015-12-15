@@ -308,7 +308,7 @@
 		db CHANSEY ;5
 		db SUNFLORA ;5
 		db BAYLEEF ;5
-		db KANGASKHAN ;4
+		db SUNFLORA ;4
 		db SUNFLORA ;3
 		db SCIZOR ;2
 		db CHANSEY ;1
@@ -318,17 +318,17 @@
 		db SUNFLORA ;10
 		db BAYLEEF ;10
 		db CHANSEY;10
-		db SKARMORY ;5
-		db SKARMORY ;5
+		db AZUMARILL ;5
+		db LEDIAN ;5
 		db PINSIR ;5
 		db SCYTHER ;5
 		db SUNFLORA ;5
-		db KANGASKHAN ;5
+		db SCIZOR ;5
 		db CHANSEY ;5
 		db HERACROSS ;4
 		db SCIZOR ;3
-		db SUNFLORA ;2
-		db KANGASKHAN ;1
+		db HERACROSS ;2
+		db HERACROSS ;1
 	; nite
 		db ARIADOS;15
 		db GLOOM ;10
@@ -343,9 +343,9 @@
 		db HOUNDOOM ;5
 		db GLOOM ;5
 		db SCYTHER ;4
-		db KANGASKHAN ;3
-		db SNEASEL ;2
-		db ARIADOS ;1
+		db SCIZOR ;3
+		db SCIZOR ;2
+		db SCYTHER ;1
 
 	db GROUP_RUINS_OF_ALPH_OUTSIDE, MAP_RUINS_OF_ALPH_OUTSIDE
 	db $0a,$0a,$0a ; encounter rates: morn/day/nite
@@ -547,10 +547,10 @@
 		db PUPITAR ;5
 		db QUAGSIRE ;5
 		db PUPITAR ;5
-		db PUPITAR ;4
+		db OCTILLERY ;4
 		db GOLDUCK ;3
 		db PSYDUCK ;2
-		db PUPITAR ;1
+		db OCTILLERY ;1
 	; nite
 		db SLUGMA ;15
 		db LARVITAR ;10
@@ -1597,14 +1597,14 @@
 		db SHUCKLE ;15
 		db LARVITAR ;10
 		db SLUGMA ;10
-		db DUNSPARCE ;10
+		db TEDDIURSA ;10
 		db WOBBUFFET ;5
 		db QUAGSIRE ;5
-		db LARVITAR ;5
-		db TEDDIURSA ;6
+		db DUNSPARCE ;5
+		db TYRANITAR ;6
 		db SPINARAK ;4
 		db MAGCARGO ;3
-		db TEDDIURSA ;2
+		db LARVITAR ;2
 		db URSARING ;2
 		db MAGCARGO ;1
 		db MAGCARGO ;1
@@ -1621,11 +1621,11 @@
 		db LARVITAR  ;6
 		db MAGCARGO ;4
 		db LARVITAR ;3
-		db PUPITAR ;2
+		db TYRANITAR ;2
 		db URSARING ;2
 		db LARVITAR ;1
 		db MAGCARGO ;1
-		db LARVITAR ;1
+		db TYRANITAR ;1
 	; nite
 		db LARVITAR ;20
 		db PUPITAR ;15

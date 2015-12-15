@@ -752,7 +752,7 @@
 		db MAGIKARP ;10
 		db MAGIKARP ;10
 		db DRAGONAIR ;10
-		db DRAGONAIR ;5
+		db MAGIKARP ;5
 		db DRAGONAIR ;5
 		db SEADRA ;5
 		db SEADRA ;5

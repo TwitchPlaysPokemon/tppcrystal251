@@ -1,10 +1,7 @@
 ; Kanto Pokémon in water
 
-	db GROUP_TOHJO_FALLS, MAP_TOHJO_FALLS
-	db $0a ; encounter rate
-	db 20,GOLDEEN
-	db 20,SLOWPOKE
-	db 20,SEAKING
+;	db GROUP_TOHJO_FALLS, MAP_TOHJO_FALLS
+;	db $0a ; encounter rate
 
 	db GROUP_VERMILION_PORT, MAP_VERMILION_PORT
 	db $05 ; encounter rate
@@ -86,10 +83,59 @@
 
 	db GROUP_ROUTE_26, MAP_ROUTE_26
 	db $0f ; encounter rate
-	db 30,TENTACOOL
-	db 25,TENTACOOL
-	db 30,TENTACRUEL
-
+	db 55
+	db $01
+;morning
+		db GOLDEEN ;20
+		db QUAGSIRE ;20
+		db SEAKING ;10
+		db WOOPER ;10
+		db GOLDEEN ;5
+		db MARILL ;5
+		db MARILL ;5
+		db MARILL ;5
+		db AZUMARILL ;4
+		db PSYDUCK ;4
+		db PSYDUCK ;3
+		db GOLDUCK ;3
+		db WARTORTLE ;2
+		db WARTORTLE ;2
+		db AZUMARILL ;1
+		db WARTORTLE ;1
+;day
+		db PSYDUCK ;20
+		db WOOPER ;20
+		db GOLDUCK ;10
+		db GOLDEEN ;10
+		db GOLDEEN ;5
+		db MARILL ;5
+		db AZUMARILL ;5
+		db AZUMARILL ;5
+		db SEAKING ;4
+		db QUAGSIRE ;4
+		db WARTORTLE ;3
+		db PSYDUCK ;3
+		db WARTORTLE ;2
+		db PSYDUCK ;2
+		db SEAKING ;1
+		db QUAGSIRE ;1
+;night
+		db ;20
+		db ;20
+		db ;10
+		db ;10
+		db ;5
+		db ;5
+		db ;5
+		db ;5
+		db ;4
+		db ;4
+		db ;3
+		db ;3
+		db ;2
+		db ;2
+		db ;1
+		db ;1
 	db GROUP_ROUTE_27, MAP_ROUTE_27
 	db $0f ; encounter rate
 	db 20,TENTACOOL

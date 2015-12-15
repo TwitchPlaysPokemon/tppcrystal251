@@ -82,31 +82,60 @@
 	db 15,GOLBAT
 
 	db GROUP_VICTORY_ROAD, MAP_VICTORY_ROAD
-	db $0f,$0f,$0f ; encounter rates: morn/day/nite
-	; morn
-	db 34,GRAVELER
-	db 32,RHYHORN
-	db 33,ONIX
-	db 34,GOLBAT
-	db 35,SANDSLASH
-	db 35,RHYDON
-	db 35,RHYDON
-	; day
-	db 34,GRAVELER
-	db 32,RHYHORN
-	db 33,ONIX
-	db 34,GOLBAT
-	db 35,SANDSLASH
-	db 35,RHYDON
-	db 35,RHYDON
-	; nite
-	db 34,GOLBAT
-	db 34,GRAVELER
-	db 32,ONIX
-	db 36,GRAVELER
-	db 38,GRAVELER
-	db 40,GRAVELER
-	db 40,GRAVELER
+	db $0f ; encounter rates: morn/day/nite
+	db 65
+	db $03
+;morning
+		db GRAVELER ;15
+		db GOLEM ;10
+		db RHYHORN ;10
+		db ONIX ;10
+		db SANDSLASH ;10
+		db GRAVELER ;5
+		db MACHOKE ;5
+		db MACHOKE ;5
+		db TYPHLOSION ;5
+		db TYPHLOSION ;5
+		db STEELIX ;5
+		db RHYDON ;5
+		db MAROWAK ;4
+		db MAROWAK ;3
+		db QUILAVA ;2
+		db QUILAVA ;1
+;day
+		db RHYHORN ;15
+		db RHYDON ;10
+		db GRAVELER ;10
+		db ONIX ;10
+		db SANDSLASH ;10
+		db RHYHORN ;5
+		db MACHOKE ;5
+		db MACHOKE ;5
+		db MACHOKE ;5
+		db MACHOKE ;5
+		db GOLEM ;5
+		db QUILAVA ;5
+		db TYPHLOSION ;4
+		db STEELIX ;3
+		db MAROWAK ;2
+		db TYPHLOSION ;1
+;night
+		db ONIX ;15
+		db ONIX ;10
+		db GRAVELER ;10
+		db RHYHORN ;10
+		db SANDSLASH ;10
+		db SANDSLASH ;5
+		db SANDSLASH ;5
+		db MACHOKE ;5
+		db MACHOKE ;5
+		db STEELIX ;5
+		db RHYDON ;5
+		db GOLEM ;5
+		db QUILAVA ;4
+		db MAROWAK ;3
+		db STEELIX ;2
+		db TYPHLOSION ;1
 
 ;	db GROUP_TOHJO_FALLS, MAP_TOHJO_FALLS
 ;	db $0f,$0f,$0f ; encounter rates: morn/day/nite
@@ -220,58 +249,70 @@
 	db 6,CLEFAIRY
 
 	db GROUP_ROUTE_5, MAP_ROUTE_5
-	db $19,$19,$19 ; encounter rates: morn/day/nite
-	; morn
-	db 13,PIDGEY
-	db 13,SNUBBULL
-	db 15,PIDGEOTTO
-	db 12,ABRA
-	db 14,JIGGLYPUFF
-	db 14,ABRA
-	db 14,ABRA
-	; day
-	db 13,PIDGEY
-	db 13,SNUBBULL
-	db 15,PIDGEOTTO
-	db 12,ABRA
-	db 14,JIGGLYPUFF
-	db 14,ABRA
-	db 14,ABRA
-	; nite
-	db 13,HOOTHOOT
-	db 13,MEOWTH
-	db 15,NOCTOWL
-	db 12,ABRA
-	db 14,JIGGLYPUFF
-	db 14,ABRA
-	db 14,ABRA
+	db $19 ; encounter rates: morn/day/nite
+	db 60
+	db $0
+;morning
+
+;day
+
+;night
 
 	db GROUP_ROUTE_6, MAP_ROUTE_6
-	db $19,$19,$19 ; encounter rates: morn/day/nite
-	; morn
-	db 13,RATTATA
-	db 13,SNUBBULL
-	db 14,MAGNEMITE
-	db 15,RATICATE
-	db 12,JIGGLYPUFF
-	db 15,GRANBULL
-	db 15,GRANBULL
-	; day
-	db 13,RATTATA
-	db 13,SNUBBULL
-	db 14,MAGNEMITE
-	db 15,RATICATE
-	db 12,JIGGLYPUFF
-	db 15,GRANBULL
-	db 15,GRANBULL
-	; nite
-	db 13,MEOWTH
-	db 13,DROWZEE
-	db 14,MAGNEMITE
-	db 15,PSYDUCK
-	db 12,JIGGLYPUFF
-	db 15,RATICATE
-	db 15,RATICATE
+	db $19 ; encounter rates: morn/day/nite
+	db 60
+	db $03
+;morning
+		db PONYTA ;15
+		db VICTREEBEL ;10
+		db VICTREEBEL ;10
+		db RAPIDASH ;10
+		db BELLSPROUT ;10
+		db PONYTA ;5
+		db PIDGEOTTO ;5
+		db PIDGEOTTO ;5
+		db PIDGEOT ;5
+		db PIDGEOT ;5
+		db PIDGEOT ;5
+		db FARFETCHD ;5
+		db POLIWHIRL ;4
+		db POLIWHIRL ;3
+		db POLIWRATH ;2
+		db POLIWHIRL ;1
+;day
+		db PONYTA ;15
+		db PONYTA ;10
+		db POLIWHIRL ;10
+		db RAPIDASH ;10
+		db PIDGEOTTO ;10
+		db PONYTA ;5
+		db POLIWHIRL ;5
+		db RAPIDASH ;5
+		db PIDGEOTTO ;5
+		db BELLSPROUT ;5
+		db BELLSPROUT ;5
+		db VICTREEBEL ;5
+		db POLIWRATH ;4
+		db FARFETCHD ;3
+		db FARFETCHD ;2
+		db POLIWRATH ;1
+;night
+		db POLIWHIRL ;15
+		db POLIWHIRL ;10
+		db POLIWRATH ;10
+		db PONYTA ;10
+		db RAPIDASH ;10
+		db POLIWRATH ;5
+		db PONYTA ;5
+		db PIDGEOT ;5
+		db PIDGEOT ;5
+		db FARFETCHD ;5
+		db FARFETCHD ;5
+		db PIDGEOTTO ;5
+		db BELLSPROUT ;4
+		db BELLSPROUT ;3
+		db VICTREEBEL ;2
+		db VICTREEBEL ;1
 
 	db GROUP_ROUTE_7, MAP_ROUTE_7
 	db $19,$19,$19 ; encounter rates: morn/day/nite
@@ -717,22 +758,22 @@
 		db BLISSEY ;1
 		db BLISSEY ;1
 	; nite
-		db QUAGSIRE ;20
+		db GOLBAT ;20
 		db CHANSEY ;15
-		db GOLBAT ;10
+		db HOUNDOOM ;10
 		db SANDSLASH ;10
 		db POLIWHIRL ;10
-		db POLIWRATH ;5
+		db QUAGSIRE ;5
+		db QUAGSIRE ;5
 		db BLISSEY ;5
-		db ELECTRODE ;5
-		db GOLBAT ;6
-		db CROBAT ;4
-		db CROBAT ;3
-		db MEGANIUM ;2
-		db MEGANIUM ;2
-		db MEGANIUM ;1
-		db CROBAT ;1
-		db GOLBAT ;1
+		db CROBAT ;6
+		db ELECTRODE ;4
+		db MEGANIUM ;3
+		db POLIWRATH ;2
+		db CROBAT ;2
+		db POLIWRATH ;1
+		db POLIWRATH ;1
+		db ELECTRODE ;1
 	
 	db GROUP_ROUTE_27, MAP_ROUTE_27
 	db $19 ; encounter rates: morn/day/nite
@@ -773,22 +814,22 @@
 		db BLISSEY ;1
 		db BLISSEY ;1
 	; nite
-		db QUAGSIRE ;20
+		db GOLBAT ;20
 		db CHANSEY ;15
-		db GOLBAT ;10
+		db HOUNDOOM ;10
 		db SANDSLASH ;10
 		db POLIWHIRL ;10
-		db POLIWRATH ;5
+		db QUAGSIRE ;5
+		db QUAGSIRE ;5
 		db BLISSEY ;5
-		db ELECTRODE ;5
-		db GOLBAT ;6
-		db CROBAT ;4
-		db CROBAT ;3
-		db MEGANIUM ;2
-		db MEGANIUM ;2
-		db MEGANIUM ;1
-		db CROBAT ;1
-		db GOLBAT ;1
+		db CROBAT ;6
+		db ELECTRODE ;4
+		db MEGANIUM ;3
+		db POLIWRATH ;2
+		db CROBAT ;2
+		db POLIWRATH ;1
+		db POLIWRATH ;1
+		db ELECTRODE ;1
 
 	db GROUP_ROUTE_28, MAP_ROUTE_28
 	db $19,$19,$19 ; encounter rates: morn/day/nite
