@@ -46,19 +46,19 @@ UnknownScript_0x198908: ; 0x198908
 PokefanMScript_0x198909: ; 0x198909
 	faceplayer
 	loadfont
-	writetext UnknownText_0x199042
+	writetext UnknownText_0x199042 ;shall I teach
 	yesorno
-	iffalse UnknownScript_0x19899a
-	special Function24b25
-	writetext UnknownText_0x199090
+	iffalse UnknownScript_0x19899a ;no
+	special Function24b25 ;comething to do with coins and text
+	writetext UnknownText_0x199090 ;will cost coins
 	yesorno
 	iffalse UnknownScript_0x1989a0
 	checkcoins 4000
-	if_equal $2, UnknownScript_0x1989dd
+	if_equal $2, UnknownScript_0x1989dd ;check for coins
 	writetext UnknownText_0x1990ce
 	loadmenudata MenuDataHeader_0x198967
 	interpretmenu2
-	writebackup
+	writebackup ;load menu
 	if_equal $1, UnknownScript_0x19893a
 	if_equal $2, UnknownScript_0x198949
 	if_equal $3, UnknownScript_0x198958
@@ -66,8 +66,8 @@ PokefanMScript_0x198909: ; 0x198909
 ; 0x19893a
 
 UnknownScript_0x19893a: ; 0x19893a
-	writebyte $1
-	writetext UnknownText_0x1991cf
+	writebyte $1 ;put 1 in scriptvar
+	writetext UnknownText_0x1991cf ;end dialoge?
 	special Function4925b
 	if_equal $0, UnknownScript_0x1989a6
 	jump UnknownScript_0x1989d7

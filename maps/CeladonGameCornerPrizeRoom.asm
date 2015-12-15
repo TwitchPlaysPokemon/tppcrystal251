@@ -153,7 +153,7 @@ UnknownScript_0x727ed: ; 0x727ed
 	checkcoins 2222
 	if_equal $2, UnknownScript_0x72778
 	checkcode VAR_PARTYCOUNT
-	if_equal $6, UnknownScript_0x7277e
+	if_equal $6, CGCSlot1PC
 	pokenamemem PIKACHU, $0
 	scall UnknownScript_0x72768
 	iffalse UnknownScript_0x72784
@@ -168,11 +168,27 @@ UnknownScript_0x727ed: ; 0x727ed
 	jump UnknownScript_0x727d3
 ; 0x7281b
 
+CGCSlot1PC:
+	checkcode VAR_BOXSPACE
+	if_equal $0, UnknownScript_0x7277e
+	pokenamemem PIKACHU, $0
+	scall UnknownScript_0x72768
+	iffalse UnknownScript_0x72784
+	waitbutton
+	playsound SFX_TRANSACTION
+	writetext UnknownText_0x729ad
+	closetext
+	writebyte PIKACHU
+	special Functionc230
+	givepoke PIKACHU, 25, 0, 0
+	takecoins 2222
+	jump UnknownScript_0x727d3
+
 UnknownScript_0x7281b: ; 0x7281b
 	checkcoins 5555
 	if_equal $2, UnknownScript_0x72778
 	checkcode VAR_PARTYCOUNT
-	if_equal $6, UnknownScript_0x7277e
+	if_equal $6, CGCSlot2PC
 	pokenamemem PORYGON, $0
 	scall UnknownScript_0x72768
 	iffalse UnknownScript_0x72784
@@ -185,13 +201,29 @@ UnknownScript_0x7281b: ; 0x7281b
 	givepoke PORYGON, 15, 0, 0
 	takecoins 5555
 	jump UnknownScript_0x727d3
-; 0x72849
+
+
+CGCSlot2PC:
+	checkcode VAR_BOXSPACE
+	if_equal $0, UnknownScript_0x7277e
+	pokenamemem PORYGON, $0
+	scall UnknownScript_0x72768
+	iffalse UnknownScript_0x72784
+	waitbutton
+	playsound SFX_TRANSACTION
+	writetext UnknownText_0x729ad
+	closetext
+	writebyte PORYGON
+	special Functionc230
+	givepoke PORYGON, 15, 0, 0
+	takecoins 5555
+	jump UnknownScript_0x727d3
 
 UnknownScript_0x72849: ; 0x72849
 	checkcoins 8888
 	if_equal $2, UnknownScript_0x72778
 	checkcode VAR_PARTYCOUNT
-	if_equal $6, UnknownScript_0x7277e
+	if_equal $6, CGCSlot3PC
 	pokenamemem LARVITAR, $0
 	scall UnknownScript_0x72768
 	iffalse UnknownScript_0x72784
@@ -204,7 +236,22 @@ UnknownScript_0x72849: ; 0x72849
 	givepoke LARVITAR, 40, 0, 0
 	takecoins 8888
 	jump UnknownScript_0x727d3
-; 0x72877
+
+CGCSlot3PC:
+	checkcode VAR_BOXSPACE
+	if_equal $0, UnknownScript_0x7277e
+	pokenamemem LARVITAR, $0
+	scall UnknownScript_0x72768
+	iffalse UnknownScript_0x72784
+	waitbutton
+	playsound SFX_TRANSACTION
+	writetext UnknownText_0x729ad
+	closetext
+	writebyte LARVITAR
+	special Functionc230
+	givepoke LARVITAR, 40, 0, 0
+	takecoins 8888
+	jump UnknownScript_0x727d3
 
 
 MenuDataHeader_0x72877: ; 0x72877

@@ -31,7 +31,7 @@ CheckSeenMon:: ; 339b   Return the status of the mon in A's flag in a, put 2 in 
 
 PokedexFlagAction:: ; 33a1
 	ld d, 0
-	predef FlagPredef ; what's the difference between predef and call? not much i think
+	predef FlagPredef 
 	ld a, c 
 	and a ;set zero flag besed on returned flag. off = z on = nz
 	ret

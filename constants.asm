@@ -26,3 +26,7 @@ INCLUDE "constants/pokemon_data_constants.asm"
 INCLUDE "constants/misc_constants.asm"
 INCLUDE "constants/std_constants.asm"
 
+IF DEF(BEESAFREE)
+INCLUDE "constants/beesafree_constants.asm"
+ENDC
+

@@ -420,7 +420,7 @@ CheckTileEvent: ; 96874
 
 
 Function968c7:: ; 968c7
-	ld hl, wd452
+	ld hl, wd452 ;load ???
 	ld a, [hl]
 	and a
 	ret z
@@ -490,13 +490,13 @@ Function968ec: ; 968ec
 
 	ld hl, ScriptFlags
 	bit 3, [hl]
-	jr z, .asm_96938
+	jr z, .asm_96938 ; if bit 3 is off, jump ahead
 
-	ld hl, ScriptDelay + 2
-	ld a, [hli]
+	ld hl, ScriptDelay + 2 ; wd44f?
+	ld a, [hli] ;load the place to jump to into hl
 	ld h, [hl]
 	ld l, a
-	ld a, [ScriptDelay + 1]
+	ld a, [ScriptDelay + 1] ;load the bank it's in into a
 	call CallScript
 	scf
 	ret
@@ -821,8 +821,8 @@ CheckSignFlag: ; 96ad8
 	ld e, l
 	ld d, h
 	ld b, $2
-	call EventFlagAction
-	ld a, c
+	call EventFlagAction ;a and c are 0 if bit is off, otherwise bit is on
+	ld a, c ;probably not needed
 	and a
 	pop hl
 	ret

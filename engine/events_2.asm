@@ -96,28 +96,28 @@ Function97c5f:: ; 97c5f
 
 
 Function97cc0:: ; 97cc0
-; Rock Smash encounter
+; handles alot of encounters
 
-	call Function968c7
+	call Function968c7 ;if wd452 = 1 or 0, ret
 	jr c, .asm_97ce2
-	call Function97cfd
+	call Function97cfd ; if encounters are on(?) , is on encounter enabled tile (or wd19a is 4 or 7) and is not on ice tile: continue, else jump out
 	jr nc, .asm_97ce2
 	ld hl, StatusFlags2
-	bit 2, [hl]
+	bit 2, [hl] ;if bug catching contest is on(?) branch out
 	jr nz, .asm_97cdb
-	callba Function2a0e7
+	callba Function2a0e7 ;check for standard encounter, if not jump out
 	jr nz, .asm_97ce2
 	jr .asm_97ce6
 
 .asm_97cdb
-	call Function97d23
-	jr nc, .asm_97ce2
+	call Function97d23 ; if encounter then carry, otherwise nc
+	jr nc, .asm_97ce2 ;if no encounter,a = 1 and return
 	jr .asm_97ced
 
 .asm_97ce2
 	ld a, 1
 	and a
-	ret
+	ret 
 
 .asm_97ce6
 	ld a, BANK(RockSmashBattleScript)
@@ -142,21 +142,21 @@ RockSmashBattleScript: ; 97cf9
 	end
 ; 97cfd
 
-Function97cfd:: ; 97cfd
+Function97cfd:: ; 97cfd if encounters are on(?) , is on encounter enabled tile (or wd19a is 4 or 7) and is not on ice tile: scf. else and a
 	ld hl, StatusFlags
-	bit 5, [hl]
+	bit 5, [hl] ; if bit 5 is on, ret
 	jr nz, .asm_97d21
-	ld a, [wd19a]
-	cp $4
+	ld a, [wd19a] ;load ???
+	cp $4 
 	jr z, .asm_97d17
 	cp $7
-	jr z, .asm_97d17
-	callba Function149dd
+	jr z, .asm_97d17 ;if 4 or 7 skip ahead
+	callba Function149dd ;if tile is in encounter enabaled tile(?) keep going, else jump out
 	jr nc, .asm_97d21
 
 .asm_97d17
 	ld a, [StandingTile]
-	call CheckIceTile
+	call CheckIceTile ;if $23 or $2b, ret, otherwise scf and ret
 	jr z, .asm_97d21
 	scf
 	ret
@@ -166,11 +166,11 @@ Function97cfd:: ; 97cfd
 	ret
 ; 97d23
 
-Function97d23: ; 97d23
-	call Function97d64
+Function97d23: ; 97d23 ;choose bug catching mons
+	call Function97d64 ;return with a = 1 if no encounter, otherwise set encounter
 	ret nc
-	call Function97d31
-	callba Function2a1df
+	call Function97d31 ; choose mon and level to spawn
+	callba Function2a1df ;if repel if off then set carry
 	ret
 ; 97d31
 
@@ -179,12 +179,12 @@ Function97d31:: ; 97d31
 
 .asm_97d31
 	call Random
-	cp 100 << 1
-	jr nc, .asm_97d31
-	srl a
+	cp 100 << 1 ;???? unknown syntax
+	jr nc, .asm_97d31 ;loop until < 100 (optimise)
+	srl a ; divide by 2
 
 	ld hl, ContestMons
-	ld de, 4
+	ld de, 4 ;size of mons
 .CheckMon
 	sub [hl]
 	jr c, .GotMon
@@ -196,17 +196,17 @@ Function97d31:: ; 97d31
 
 ; Species
 	ld a, [hli]
-	ld [wd22e], a
+	ld [wd22e], a  ;load species into a var, max variance into a
 
 ; Min level
-	ld a, [hli]
+	ld a, [hli] 
 	ld d, a
 
 ; Max level
 	ld a, [hl]
 
 	sub d
-	jr nz, .RandomLevel
+	jr nz, .RandomLevel ;if variance is not zero, choose level at random, otherwise just put it in curparty level
 
 ; If min and max are the same.
 	ld a, d
@@ -229,21 +229,21 @@ Function97d31:: ; 97d31
 ; 97d64
 
 Function97d64: ; 97d64
-	ld a, [StandingTile]
-	call Function188e
-	ld b, $66
-	jr z, .asm_97d70
+	ld a, [StandingTile] 
+	call Function188e ;if standing tile is $14 then ret zero, otherwise cp $1c
+	ld b, $66 
+	jr z, .asm_97d70 ;if exactly $14 or $1c then b = %66, otherwise b = %33. b = encounter rate
 	ld b, $33
 
 .asm_97d70
-	callba Function2a124
+	callba Function2a124 ;adjust for music and clense tag
 	callba Function2a138
 	call Random
-	ld a, [hRandomAdd]
+	ld a, [hRandomAdd] ;why add instead of default sub?
 	cp b
-	ret c
+	ret c ;return random if encounter >= random
 	ld a, 1
-	and a
+	and a ;otherwise return 1
 	ret
 ; 97d87
 
@@ -252,9 +252,9 @@ ContestMons: ; 97d87
 	db 20, CATERPIE,    7, 18
 	db 20, WEEDLE,      7, 18
 	db 10, METAPOD,     9, 18
-	db 10, KAKUNA,      9, 18
+	db 10, KAKUNA,      9, 18 
 	db  5, BUTTERFREE, 12, 15
-	db  5, BEEDRILL,   12, 15
+	db  5, BEEDRILL,   12, 15 
 	db 10, VENONAT,    10, 16
 	db 10, PARAS,      10, 17
 	db  5, SCYTHER,    13, 14

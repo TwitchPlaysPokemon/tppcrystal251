@@ -133,7 +133,7 @@ VBGMap1::
 
 SECTION "Stack", WRAM0
 wc000::
-	ds $ff
+	ds $ff 
 Stack::
 	ds 1
 
@@ -1191,7 +1191,8 @@ Requested1bppSource:: ; cf6d
 Requested1bppDest:: ; cf6f
 	ds 2
 
-wcf71:: ds 1
+wcf71:: ds 1 ;holds pointer to top of stack of menu tile data,stored in reverse.
+;structure is, from the "top", a byte holding whether here is tile data,the location of the top of the previous stack, then the tiles of attrimap, then tile replaced in tilemap, then the menu header used to replace it
 wcf72:: ds 1
 wcf73:: ds 1
 MenuSelection:: ; cf74
@@ -1201,15 +1202,15 @@ wcf75:: ds 1
 wcf76:: ds 1
 wcf77:: ds 1
 wcf78:: ds 9
-wcf81:: ds 1
-wcf82:: ds 1
+wcf81:: ds 1 ;menu header:  tile backup
+wcf82:: ds 1 ;a set of coords from menu header
 wcf83:: ds 1
-wcf84:: ds 1
-wcf85:: ds 1
-wcf86:: ds 1
+wcf84:: ds 1 ;another set of coords
+wcf85:: ds 1 
+wcf86:: ds 1 ;Vtiles location
 wcf87:: ds 1
-wcf88:: ds 2
-wcf8a:: ds 7
+wcf88:: ds 2 ;default option (first byte)
+wcf8a:: ds 7 ;bank storage(at some point after vtiles)
 wcf91:: ds 1
 wcf92:: ds 1
 wcf93:: ds 1
@@ -1220,18 +1221,18 @@ wcf97:: ds 1
 wcf98:: ds 3
 wcf9b:: ds 3
 wcf9e:: ds 3
-wcfa1:: ds 1
-wcfa2:: ds 1
+wcfa1:: ds 1 ;holds start x coord +1, or +2 if wcf91 bit 6 is off
+wcfa2:: ds 1 ;holds start y coord +1
 wcfa3:: ds 1
 wcfa4:: ds 1
 wcfa5:: ds 1
 wcfa6:: ds 1
-wcfa7:: ds 1
+wcfa7:: ds 1 ;back nyble = space between rows of cursor, front nyble is space between columns?
 wcfa8:: ds 1
-wcfa9:: ds 1
-wcfaa:: ds 1
-wcfab:: ds 1
-wcfac:: ds 1
+wcfa9:: ds 1 ;current menu selection? vertical cursor position
+wcfaa:: ds 1 ;horizontal cursor position?
+wcfab:: ds 1 ;what the cursor covers up
+wcfac:: ds 1 ;cursor location
 wcfad:: ds 4
 
 OverworldDelay:: ; cfb1
@@ -1354,7 +1355,7 @@ wd011:: ds 1
 wd012:: ds 1
 wd013:: ds 1
 wd014:: ds 2
-wd016:: ds 1
+wd016:: ds 1 ;bug catching results string saves here
 wd017:: ds 1
 wd018:: ds 1
 wd019:: ds 1
@@ -1806,7 +1807,7 @@ CurDamage:: ; d256
 	ds 2
 
 	ds 2
-wd25a:: ds 3 ;land encounter rate
+wd25a:: ds 1 ;land encounter rate reduced in attempt to get this to compile, but failed, SIDE EFFECTS UNKOWN
 wd25d:: ds 1 ;water encounter rate
 wd25e:: ds 4
 wd262:: ds 1

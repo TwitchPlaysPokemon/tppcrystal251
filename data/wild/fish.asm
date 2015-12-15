@@ -9,11 +9,11 @@ FishAction: ; 92402
 	
 ; Get the fishing group for this map.
 	ld b, e ;rod into b
-	call GetFishGroupHeader ;e = d-1, d = 0, a = d. if d = 11 or 12 then if flag is on then special case
+	call GetFishGroupHeader ;e = d-1, d = 0, a = d. if d = 11 or 12 then if swarm flag is on then special case
 	
 	ld hl, FishGroupHeaders
-	; go down to correct table. encounter chance
-	add hl, de
+	; go down to correct table. encounter chance no longer needed
+	;add hl, de
 	; pointer to old rod data
 	add hl, de
 	add hl, de
@@ -24,7 +24,7 @@ FishAction: ; 92402
 	add hl, de
 	add hl, de
 	
-	call Fish ;load mon nto d and level into e. 0 in both if fail to fish
+	call Fish ;load mon into d and level into e. 0 in both if fail to fish
 	
 	pop hl
 	pop bc
@@ -42,14 +42,14 @@ Fish: ; 9241a
 	call Random
 
 ; Got a bite?
-	cp [hl] ;is always 50, could optimise. also, make it higher for convieniance
+	cp 230 ;230/256 of bite
 	jr nc, .NoBite
 
 ; Get encounter data by rod:
 ; 	0: Old
 ; 	1: Good
 ; 	2: Super
-	inc hl 
+	;inc hl ;removed as it now starts on old rod slot
 	ld e, b ;rod into e
 	ld d, 0
 	add hl, de ;onto correct rod
@@ -84,8 +84,9 @@ Fish: ; 9241a
 
 ; Level
 	ld a, [hl]
-	call AddVariance ;add level variance
-	ld e, a
+	ld b, a
+	callab AddVariance ;add level variance
+	ld e, b
 	ret
 	
 .NoBite
@@ -158,87 +159,97 @@ GetFishGroupHeader: ; 9245b
 ; 92488
 
 
-FishGroupHeaders:
+FishGroupHeaders: ;fish sucsess chance removed, made constant
 
 FishGroup1Header: ; 92488
-	db $80 ; 50%
+	;db $80 ; 50%
 	dw FishGroup1_Old
 	dw FishGroup1_Good
 	dw FishGroup1_Super
 
 FishGroup2Header: ; 9248f
-	db $80 ; 50%
+	;db $80 ; 50%
 	dw FishGroup2_Old
 	dw FishGroup2_Good
 	dw FishGroup2_Super
 
 FishGroup3Header: ; 92496
-	db $80 ; 50%
+	;db $80 ; 50%
 	dw FishGroup3_Old
 	dw FishGroup3_Good
 	dw FishGroup3_Super
 
 FishGroup4Header: ; 9249d
-	db $80 ; 50%
+	;db $80 ; 50%
 	dw FishGroup4_Old
 	dw FishGroup4_Good
 	dw FishGroup4_Super
 
 FishGroup5Header: ; 924a4
-	db $80 ; 50%
+	;db $80 ; 50%
 	dw FishGroup5_Old
 	dw FishGroup5_Good
 	dw FishGroup5_Super
 
 FishGroup6Header: ; 924ab
-	db $80 ; 50%
+	;db $80 ; 50%
 	dw FishGroup6_Old
 	dw FishGroup6_Good
 	dw FishGroup6_Super
 
 FishGroup7Header: ; 924b2
-	db $80 ; 50%
+	;db $80 ; 50%
 	dw FishGroup7_Old
 	dw FishGroup7_Good
 	dw FishGroup7_Super
 
 FishGroup8Header: ; 924b9
-	db $80 ; 50%
+	;db $80 ; 50%
 	dw FishGroup8_Old
 	dw FishGroup8_Good
 	dw FishGroup8_Super
 
 FishGroup9Header: ; 924c0
-	db $80 ; 50%
+	;db $80 ; 50%
 	dw FishGroup9_Old
 	dw FishGroup9_Good
 	dw FishGroup9_Super
 
 FishGroup10Header: ; 924c7
-	db $80 ; 50%
+	;db $80 ; 50%
 	dw FishGroup10_Old
 	dw FishGroup10_Good
 	dw FishGroup10_Super
 
 FishGroup11Header: ; 924ce
-	db $80 ; 50%
+	;db $80 ; 50%
 	dw FishGroup11_Old
 	dw FishGroup11_Good
 	dw FishGroup11_Super
 
 FishGroup12Header: ; 924d5
-	db $80 ; 50%
+	;db $80 ; 50%
 	dw FishGroup12_Old
 	dw FishGroup12_Good
 	dw FishGroup12_Super
 
 FishGroup13Header: ; 924dc
-	db $80 ; 50%
+	;db $80 ; 50%
 	dw FishGroup11_Old
 	dw FishGroup11_Good
 	dw FishGroup11_Super
 
-FishGroup1:
+;to set fishing mons, first you have to make/edit a group, then assign that group to an area in maps/map_headers.asm (last number). group 0 is used to represent no fishing mons
+;each group is split into rods, but each table can be any legnth
+;first number is chance out of 255, currently in hex (noted by the $) but a decimal number can be entered too. This number is not individual chance, but culumulative chance of getting that far
+; if the first slot is 10, and the second slot 20, you put 30 in slot 2's chance. The last chance in the table must be 255 (or $ff)
+; next is the mon, and last is level
+;entering 0 as a mon causes the game to check the time of day slot in level for the mon instead, more about that below (ctrl-f TimeFishGroups)
+;If you add a table here, you have to add an appropriote header table above, make sure the names match
+;groups 6,7 11 and 12 are special. 11 becomes 6 if a quilfish swarm is on, and 12 becomes 7 if a remoraid(dummied out?) swarm is on. I don't 100% know about these, especially the second one, but keep it in mind and reserve 11 and 12 for areas with swarms
+;any number of groups can be added
+
+FishGroup1: 
 FishGroup1_Old: ; 924e3
 	db $b3, MAGIKARP,   10
 	db $d9, MAGIKARP,   10
@@ -432,6 +443,9 @@ FishGroup12_Super: ; 92663
 
 ; 9266f
 
+;if 0 is the mon in fish groups, then check these tables to get what mon to fish up based on ToD. day covers mourning too.
+;the level bit in the above table determines which if these tables to use
+;you can add any number of tables here
 TimeFishGroups: ; 9266f
 ; 0
 	db CORSOLA,    20 ; nite

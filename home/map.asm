@@ -49,13 +49,13 @@ GetMapTrigger:: ; 2147
 	ld a, BANK(MapTriggers)
 	rst Bankswitch
 
-	ld hl, MapTriggers
+	ld hl, MapTriggers ;load location of the map trigger list
 .asm_2151
 	push hl
 	ld a, [hli]
-	cp $ff
+	cp $ff ;if not found, ret
 	jr z, .asm_2167
-	cp b
+	cp b ;if incorrect map, loop
 	jr nz, .asm_2160
 	ld a, [hli]
 	cp c
@@ -64,7 +64,7 @@ GetMapTrigger:: ; 2147
 
 .asm_2160
 	pop hl
-	ld de, $0004
+	ld de, $0004 ; 4 = size of a maptrigger
 	add hl, de
 	jr .asm_2151
 
@@ -73,7 +73,7 @@ GetMapTrigger:: ; 2147
 	jr .asm_216d
 
 .asm_216a
-	ld e, [hl]
+	ld e, [hl] ;load it into de
 	inc hl
 	ld d, [hl]
 
@@ -1107,21 +1107,21 @@ GetScriptByte:: ; 0x26d4
 	rst Bankswitch
 
 	ld hl, ScriptPos
-	ld c, [hl];ld scriptpos's location into c
+	ld c, [hl];ld scriptpos's location into bc
 	inc hl
-	ld b, [hl];ld scriptpos' loc+1 into b
+	ld b, [hl]
 
-	ld a, [bc]; ???
+	ld a, [bc]; put the script data into a
 
 	inc bc
-	ld [hl], b
+	ld [hl], b ;ld old scriptpos + 1 back into scriptpos
 	dec hl
 	ld [hl], c
 
-	ld b, a
+	ld b, a ;put script data into b for bank switch
 	pop af
 	rst Bankswitch
-	ld a, b
+	ld a, b ;back into a
 	pop bc
 	pop hl
 	ret

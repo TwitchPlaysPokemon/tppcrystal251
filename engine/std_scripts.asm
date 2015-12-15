@@ -352,24 +352,24 @@ RadioTowerRocketsScript: ; 0xbc242
 
 BugContestResultsWarpScript: ; 0xbc25c
 	special WhiteBGMap
-	scall UnknownScript_0xbc380
+	scall UnknownScript_0xbc380 ;clear contestent flags that are not active?
 	setevent EVENT_NATIONALPARK_ROUTE36_GATE_OFFICER
 	clearevent EVENT_NATIONALPARK_ROUTE36_GATE_OFFICER_2
-	setevent EVENT_JUMPSTD_0016_2D2
+	setevent EVENT_JUMPSTD_0016_2D2 ;skip NPC check on entry
 	warp GROUP_ROUTE_36_NATIONAL_PARK_GATE, MAP_ROUTE_36_NATIONAL_PARK_GATE, $0, $4
 	applymovement $0, MovementData_0xbcea1
 
 BugContestResultsScript: ; bc274
-	clearflag ENGINE_BUG_CONTEST_TIMER
-	clearevent EVENT_JUMPSTD_0016_2D2
-	clearevent EVENT_NATIONAL_PARK_ROUTE_36_GATE_313
-	clearevent EVENT_NATIONAL_PARK_ROUTE_36_GATE_314
-	clearevent EVENT_NATIONAL_PARK_ROUTE_36_GATE_315
-	clearevent EVENT_NATIONAL_PARK_ROUTE_36_GATE_316
+	clearflag ENGINE_BUG_CONTEST_TIMER ; end the timer
+	clearevent EVENT_JUMPSTD_0016_2D2 ; clear skip NPC check on entry flag
+		;clearevent EVENT_NATIONAL_PARK_ROUTE_36_GATE_313 ;clear "Item is held" flag
+		;clearevent EVENT_NATIONAL_PARK_ROUTE_36_GATE_314
+		;clearevent EVENT_NATIONAL_PARK_ROUTE_36_GATE_315
+		;clearevent EVENT_NATIONAL_PARK_ROUTE_36_GATE_316
 	loadfont
-	farwritetext UnknownText_0x1b05bf
+	farwritetext UnknownText_0x1b05bf ;announce start of judging
 	closetext
-	special Functionc34a
+	special Functionc34a ;put players position into scriptvar (0 is non-place)
 	RAM2MEM $0
 	if_equal 1, ContestResults_FirstPlaceScript
 	if_equal 2, ContestResults_SecondPlaceScript
@@ -377,8 +377,9 @@ BugContestResultsScript: ; bc274
 	farwritetext UnknownText_0x1b0681
 	keeptextopen
 	waitbutton
-	verbosegiveitem BERRY, 1
-	iffalse UnknownScript_0xbc375
+	givemoney 0 , 1000
+	;verbosegiveitem BERRY, 1
+	;iffalse UnknownScript_0xbc375
 
 UnknownScript_0xbc2a9:
 	farwritetext UnknownText_0x1b06b7
@@ -386,27 +387,29 @@ UnknownScript_0xbc2a9:
 	jump UnknownScript_0xbc2b6
 ; 0xbc2b1
 
+ClearSunHold:
+	clearevent EVENT_NATIONAL_PARK_ROUTE_36_GATE_315
 UnknownScript_0xbc2b1: ; 0xbc2b1
-	farwritetext UnknownText_0x1b065b
+	farwritetext UnknownText_0x1b065b ;please join next contest
 	keeptextopen
 
 UnknownScript_0xbc2b6:
-	checkevent EVENT_NATIONAL_PARK_GATE_308
+	checkevent EVENT_NATIONAL_PARK_GATE_308 ;if start with more then 1 mon, fall through to put back to normal, else jump
 	iffalse UnknownScript_0xbc2c4
-	farwritetext UnknownText_0x1b06d9
+	farwritetext UnknownText_0x1b06d9 ;say they return kept mon
 	closetext
-	special Function13a31
+	special Function13a31 ;reset party to normal
 UnknownScript_0xbc2c4:
-	special Function4d9e5
-	if_equal $0, UnknownScript_0xbc2d4
-	if_equal $2, UnknownScript_0xbc2d4
-	farwritetext UnknownText_0x1b070d
+	special Function4d9e5 ;insert mon into party or into PC box in top slot. return 0 in scriptvar if mon went to party, 1 if they went to box and 2 if no mon was caught
+	if_equal $0, UnknownScript_0xbc2d4 ;if sent to party or no mon, skip box text
+	if_equal $2, UnknownScript_0xbc2d4 
+	farwritetext UnknownText_0x1b070d ;sent to box text
 	closetext
 UnknownScript_0xbc2d4:
 	loadmovesprites
 	dotrigger $0
-	domaptrigger GROUP_ROUTE_35_NATIONAL_PARK_GATE, MAP_ROUTE_35_NATIONAL_PARK_GATE, $0
-	setevent EVENT_NATIONALPARK_CONTESTANT_1
+	domaptrigger GROUP_ROUTE_35_NATIONAL_PARK_GATE, MAP_ROUTE_35_NATIONAL_PARK_GATE, $0 ;reset map triggers
+	setevent EVENT_NATIONALPARK_CONTESTANT_1 ;set all contestent eventvflags
 	setevent EVENT_NATIONALPARK_CONTESTANT_2
 	setevent EVENT_NATIONALPARK_CONTESTANT_3
 	setevent EVENT_NATIONALPARK_CONTESTANT_4
@@ -426,44 +429,190 @@ UnknownScript_0xbc2d4:
 	setevent EVENT_NATIONALPARK_ROUTE36GATE_CONTESTANT_8
 	setevent EVENT_NATIONALPARK_ROUTE36GATE_CONTESTANT_9
 	setevent EVENT_NATIONALPARK_ROUTE36GATE_CONTESTANT_10
-	setflag ENGINE_51
+	;setflag ENGINE_51
 	special PlayMapMusic
 	end
 ; 0xbc31e
 
 ContestResults_FirstPlaceScript: ; 0xbc31e
-	setevent EVENT_000_STD
-	itemtotext SUN_STONE, $1
-	farwritetext UnknownText_0x1b0621
+	setevent EVENT_000_STD ;set "player won" flag
+	checkevent EVENT_NATIONAL_PARK_ROUTE_36_GATE_313
+	iftrue ContestResultsFirstRepeat ;if already won amber, win something else
+	itemtotext OLD_AMBER, $1
+	farwritetext UnknownText_0x1b0621 ; say what the player won
 	closetext
-	verbosegiveitem SUN_STONE, 1
-	iffalse UnknownScript_0xbc354
+	verbosegiveitem OLD_AMBER, 1
+	iffalse UnknownScript_0xbc35f
 	jump UnknownScript_0xbc2b1
 ; 0xbc332
 
-ContestResults_SecondPlaceScript: ; 0xbc332
-	itemtotext EVERSTONE, $1
-	farwritetext UnknownText_0x1b0621
+ContestResultsFirstRepeat:
+	writetext FirstPlaceQuestion
+	yesorno
+	iffalse ContestFirstChoseBalls
+	checkevent EVENT_NATIONAL_PARK_ROUTE_36_GATE_315
+	iftrue ContestAlreadyHoldingSun
+	writetext SunStoneChosenText
 	closetext
-	verbosegiveitem EVERSTONE, 1
-	iffalse UnknownScript_0xbc35f
+	verbosegiveitem SUN_STONE, 1
+	iffalse UnknownScript_0xbc36a
 	jump UnknownScript_0xbc2b1
-; 0xbc343
+
+ContestAlreadyHoldingSun:
+	verbosegiveitem SUN_STONE, 2
+	iftrue ClearSunHold
+	itemtotext SUN_STONE, $1
+	writetext ContestAlreadyHolding
+	closetext
+	jump ContestChooseBall
+	
+ContestResults_SecondPlaceScript: ; 0xbc332 prize script for balls
+		;itemtotext EVERSTONE, $1
+	writetext ContestSecondPrizeText
+	closetext
+	jump ContestChooseBall
+
+ContestFirstChoseBalls:
+	writetext BallsChosenText
+	scall ContestChooseBall
+
+ContestChooseBall: ;choose ball based on day of week
+	checkcode VAR_WEEKDAY
+	if_equal SUNDAY, ContestFriend
+	if_equal MONDAY, ContestMoon
+	if_equal TUESDAY, ContestLevel
+	if_equal WEDNESDAY, ContestLure
+	if_equal THURSDAY, ContestFast
+	if_equal FRIDAY, ContestLove
+	if_equal SATURDAY, ContestHeavy
+
+ContestFriend:
+	checkevent EVENT_NATIONAL_PARK_ROUTE_36_GATE_316
+	iftrue ContestHoldingFriend
+	verbosegiveitem FRIEND_BALL, 8
+	iffalse UnknownScript_0xbc375
+	jump UnknownScript_0xbc2b1
+
+ContestHoldingFriend:
+	itemtotext FRIEND_BALL, $1
+	verbosegiveitem FRIEND_BALL, 16
+	iffalse ContestFullBag
+	jump ContestBallFlagClear
+
+ContestMoon:
+	checkevent EVENT_NATIONAL_PARK_ROUTE_36_GATE_316
+	iftrue ContestHoldingMoon
+	verbosegiveitem MOON_BALL, 8
+	iffalse UnknownScript_0xbc375
+	jump UnknownScript_0xbc2b1
+
+ContestHoldingMoon:
+	itemtotext MOON_BALL, $1
+	verbosegiveitem MOON_BALL, 16
+	iffalse ContestFullBag
+	jump ContestBallFlagClear
+
+ContestLevel:
+	checkevent EVENT_NATIONAL_PARK_ROUTE_36_GATE_316
+	iftrue ContestHoldingLevel
+	verbosegiveitem LEVEL_BALL, 8
+	iffalse UnknownScript_0xbc375
+	jump UnknownScript_0xbc2b1
+
+ContestHoldingLevel:
+	itemtotext LEVEL_BALL, $1
+	verbosegiveitem LEVEL_BALL, 16
+	iffalse ContestFullBag
+	jump ContestBallFlagClear
+
+ContestLure:
+	checkevent EVENT_NATIONAL_PARK_ROUTE_36_GATE_316
+	iftrue ContestHoldingLure
+	verbosegiveitem LURE_BALL, 8
+	iffalse UnknownScript_0xbc375
+	jump UnknownScript_0xbc2b1
+
+ContestHoldingLure:
+	itemtotext LURE_BALL, $1
+	verbosegiveitem LURE_BALL, 16
+	iffalse ContestFullBag
+	jump ContestBallFlagClear
+
+ContestFast:
+	checkevent EVENT_NATIONAL_PARK_ROUTE_36_GATE_316
+	iftrue ContestHoldingFast
+	verbosegiveitem FAST_BALL, 8
+	iffalse UnknownScript_0xbc375
+	jump UnknownScript_0xbc2b1
+
+ContestHoldingFast:
+	itemtotext FAST_BALL, $1
+	verbosegiveitem FAST_BALL, 16
+	iffalse ContestFullBag
+	jump ContestBallFlagClear
+
+ContestLove:
+	checkevent EVENT_NATIONAL_PARK_ROUTE_36_GATE_316
+	iftrue ContestHoldingLove
+	verbosegiveitem LOVE_BALL, 8
+	iffalse UnknownScript_0xbc375
+	jump UnknownScript_0xbc2b1
+
+ContestHoldingLove:
+	itemtotext LOVE_BALL, $1
+	verbosegiveitem LOVE_BALL, 16
+	iffalse ContestFullBag
+	jump ContestBallFlagClear
+
+ContestHeavy:
+	checkevent EVENT_NATIONAL_PARK_ROUTE_36_GATE_316
+	iftrue ContestHoldingHeavy
+	verbosegiveitem HEAVY_BALL, 8
+	iffalse UnknownScript_0xbc375
+	jump UnknownScript_0xbc2b1
+
+ContestHoldingHeavy:
+	itemtotext HEAVY_BALL, $1
+	verbosegiveitem HEAVY_BALL, 16
+	iffalse ContestFullBag
+	jump ContestBallFlagClear
+
+ContestFullBag:
+	writetext ContestAlreadyHolding
+	keeptextopen
+	writetext BagFullPrizeText
+	closetext
+	givemoney 0 , 8000 
+	jump UnknownScript_0xbc2b1
+
+ContestBallFlagClear:
+	clearevent EVENT_NATIONAL_PARK_ROUTE_36_GATE_316
+	jump UnknownScript_0xbc2b1
 
 ContestResults_ThirdPlaceScript: ; 0xbc343
-	itemtotext GOLD_BERRY, $1
-	farwritetext UnknownText_0x1b0621
+	writetext ContestThirdPlaceText
 	closetext
-	verbosegiveitem GOLD_BERRY, 1
-	iffalse UnknownScript_0xbc36a
+	givemoney 0 , 4000 
 	jump UnknownScript_0xbc2b1
 ; 0xbc354
 
+ContestThirdPlaceText
+	text $52, ", the No.3"
+	line "finisher, wins"
+	cont $f0, "4000!"
+	done
+
+BagFullPrizeText:
+	text "As we can't give"
+	line "you anything else,"
+	cont "take ", $f0, "8000."
+	done
+
 UnknownScript_0xbc354: ; 0xbc354
-	farwritetext UnknownText_0x1b08cc
-	keeptextopen
-	setevent EVENT_NATIONAL_PARK_ROUTE_36_GATE_313
-	jump UnknownScript_0xbc2b1
+;	farwritetext UnknownText_0x1b08cc
+;	keeptextopen
+;	setevent EVENT_NATIONAL_PARK_ROUTE_36_GATE_313
+;	jump UnknownScript_0xbc2b1
 ; 0xbc35f
 
 UnknownScript_0xbc35f: ; 0xbc35f
@@ -474,10 +623,12 @@ UnknownScript_0xbc35f: ; 0xbc35f
 ; 0xbc36a
 
 UnknownScript_0xbc36a: ; 0xbc36a
-	farwritetext UnknownText_0x1b08cc
+	farwritetext UnknownText_0x1b08cc ;pack is full text for sun stone
 	keeptextopen
 	setevent EVENT_NATIONAL_PARK_ROUTE_36_GATE_315
 	jump UnknownScript_0xbc2b1
+
+
 ; 0xbc375
 
 UnknownScript_0xbc375: ; 0xbc375
@@ -487,7 +638,7 @@ UnknownScript_0xbc375: ; 0xbc375
 	jump UnknownScript_0xbc2a9
 ; 0xbc380
 
-UnknownScript_0xbc380: ; 0xbc380
+UnknownScript_0xbc380: ; 0xbc380 ;clear contestent flags that are not active?
 	checkevent EVENT_NATIONALPARK_CONTESTANT_1
 	iftrue .skip1
 	clearevent EVENT_NATIONALPARK_ROUTE36GATE_CONTESTANT_1
@@ -529,6 +680,47 @@ UnknownScript_0xbc380: ; 0xbc380
 	clearevent EVENT_NATIONALPARK_ROUTE36GATE_CONTESTANT_10
 .skip10
 	end
+
+FirstPlaceQuestion:
+	text $52, ", the No.1"
+	line "finisher, has"
+	cont "wins a SUN STONE!"
+
+	para "however, you may"
+	line "choose to take a"
+	cont "different prize"
+
+	para "Do you want the"
+	line "SUN STONE?"
+	done
+
+SunStoneChosenText:
+	text "Please accept"
+	line "your prize"
+	done
+
+ContestAlreadyHolding
+	text "We are already"
+	line "holding a @"
+	text_from_ram StringBuffer4
+	text "for you."
+
+	para "you'll have to take"
+	line "another prize"
+	done
+
+BallsChosenText:
+	text "In that case"
+	line "please accept"
+	para "these Apricorn"
+	line "Balls."
+	done
+
+ContestSecondPrizeText:
+	text $52, ", the No.2"
+	line "finisher, wins"
+	cont "8 Apricorn Balls"
+	done
 ; 0xbc3db
 
 InitializeEventsScript: ; 0xbc3db

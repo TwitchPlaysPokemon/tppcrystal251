@@ -694,9 +694,9 @@
 		db FORRETRESS ;5
 		db BUTTERFREE ;5
 		db PINECO ;5
-		db FARFETCH’D ;4
+		db FARFETCH_D ;4
 		db PIDGEOTTO ;4
-		db FARFETCH’D ;3
+		db FARFETCH_D ;3
 		db STANTLER ;3
 		db PIDGEOTTO ;2
 		db PIDGEOTTO ;2
@@ -888,7 +888,7 @@
 		db QUAGSIRE ;1
 		db STEELIX ;1
 	; nite
-		db LARITAR ;20
+		db LARVITAR ;20
 		db PUPITAR ;20
 		db LARVITAR ;10
 		db HITMONLEE ;10
@@ -944,7 +944,7 @@
 		db QUAGSIRE ;1
 		db ONIX ;1
 	; nite
-		db LARITAR ;20
+		db LARVITAR ;20
 		db PUPITAR ;20
 		db LARVITAR ;10
 		db WOOPER ;10
@@ -1756,7 +1756,7 @@
 		db LEDIAN ;1
 		db AZUMARILL ;1
 
-	db GROUP_, MAP_ROUTE_31
+	db GROUP_ROUTE_31, MAP_ROUTE_31
 	db $19 ; encounter rates: morn/day/nite
 	db 20
 	db $02
@@ -2277,7 +2277,7 @@
 		db GIRAFARIG ;5
 		db QUAGSIRE ;5
 		db MANKEY ;5
-		db MR. MIME ;4
+		db MR__MIME ;4
 		db FEAROW ;3
 		db SPEAROW ;2
 		db QUILAVA ;1

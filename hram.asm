@@ -18,13 +18,22 @@ hSeconds           EQU $ff98
 hROMBank           EQU $ff9d
 hVBlank            EQU $ff9e
 
-hJoypadReleased    EQU $ffa2
-hJoypadPressed     EQU $ffa3
-hJoypadDown        EQU $ffa4
+;joypad key
+; bit 0 A
+;     1 B
+;     2 SELECT
+;     3 START
+;     4 RIGHT
+;     5 LEFT
+;     6 UP
+;     7 DOWN
+hJoypadReleased    EQU $ffa2 ;buttons on last frame, off this frame
+hJoypadPressed     EQU $ffa3 ;buttons off last frame, on this one
+hJoypadDown        EQU $ffa4 ;buttons on this frame
 hJoypadSum         EQU $ffa5
 hJoyReleased       EQU $ffa6
 hJoyPressed        EQU $ffa7
-hJoyDown           EQU $ffa8
+hJoyDown           EQU $ffa8 ;buttons on last frame
 
 hConnectionStripLength EQU $ffaf
 hConnectedMapWidth EQU $ffb0
@@ -51,7 +60,7 @@ hSCY               EQU $ffd0
 hWX                EQU $ffd1
 hWY                EQU $ffd2
 
-hBGMapMode         EQU $ffd4
+hBGMapMode         EQU $ffd4 ;1 = in mon sub menu?
 hBGMapThird        EQU $ffd5
 hBGMapAddress      EQU $ffd6
 
@@ -72,3 +81,6 @@ hCGB               EQU $ffe6
 hSGB               EQU $ffe7
 hDMATransfer       EQU $ffe8
 
+; LUA serial transfer
+hLSB               EQU $fff1
+hLSC               EQU $fff2

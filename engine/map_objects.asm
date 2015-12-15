@@ -2738,13 +2738,13 @@ Function55e0:: ; 55e0
 	ld bc, ObjectStructs
 	xor a
 .asm_55ea
-	ld [$ffaf], a
-	call Function1af1
+	ld [$ffaf], a ;loop from 0 to 13 (13 runs total)
+	call Function1af1 ;hl = bc, a = [hl], and a
 	jr z, .asm_55f4
 	call Function565c
 
 .asm_55f4
-	ld hl, ObjectStruct2 - ObjectStruct1
+	ld hl, ObjectStruct2 - ObjectStruct1 ;go to next slot
 	add hl, bc
 	ld b, h
 	ld c, l

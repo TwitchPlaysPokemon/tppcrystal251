@@ -2,6 +2,10 @@ FarCall    EQU $08
 Bankswitch EQU $10
 JumpTable  EQU $28
 
+IF DEF(BEESAFREE)
+LUASerial  EQU $18
+ENDC
+
 farcall: MACRO ; bank, address
 	ld a, BANK(\1)
 	ld hl, \1

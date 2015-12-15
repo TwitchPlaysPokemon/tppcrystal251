@@ -6,6 +6,7 @@ NULL::
 
 INCLUDE "rst.asm"
 INCLUDE "interrupts.asm"
+INCLUDE "home/highhome.asm"
 
 
 SECTION "Header", ROM0[$100]
@@ -830,13 +831,13 @@ NamesPointers:: ; 33ab
 GetName:: ; 33c3
 ; Return name CurSpecies from name list wcf61 in StringBuffer1.
 
-	ld a, [hROMBank]
+	ld a, [hROMBank] ;store current bank
 	push af
 	push hl
 	push bc
 	push de
 
-	ld a, [wcf61]
+	ld a, [wcf61] ;type of name to get
 	cp PKMN_NAME
 	jr nz, .NotPokeName
 
@@ -852,16 +853,16 @@ GetName:: ; 33c3
 .NotPokeName
 	ld a, [wcf61]
 	dec a
-	ld e, a
+	ld e, a ;de = type of name -1
 	ld d, 0
 	ld hl, NamesPointers
 	add hl, de
 	add hl, de
-	add hl, de
-	ld a, [hli]
+	add hl, de ;jump to correct location for type of name
+	ld a, [hli] ;switch to correct bank
 	rst Bankswitch
 	ld a, [hli]
-	ld h, [hl]
+	ld h, [hl] ;put location in hl
 	ld l, a
 
 	ld a, [CurSpecies]
@@ -869,12 +870,12 @@ GetName:: ; 33c3
 	call GetNthString
 
 	ld de, StringBuffer1
-	ld bc, $000d
+	ld bc, $000d ;put string in stringbuffer1
 	call CopyBytes
 
 .done
 	ld a, e
-	ld [wd102], a
+	ld [wd102], a ;load string location into ??
 	ld a, d
 	ld [wd103], a
 
@@ -961,7 +962,7 @@ GetPokemonName:: ; 343b
 	ld de, StringBuffer1
 	push de
 	ld bc, PKMN_NAME_LENGTH - 1
-	call CopyBytes ;put name i string buffer
+	call CopyBytes ;put name in string buffer
 	ld hl, StringBuffer1 + PKMN_NAME_LENGTH - 1
 	ld [hl], "@" ;add the stop command
 	pop de
@@ -1110,7 +1111,7 @@ IsHMMove:: ; 34e7 check if in array, if remove HM remove from here
 ; 34f8
 
 
-GetMoveName:: ; 34f8
+GetMoveName:: ; 34f8 ;put name of the move in stringbuffer 1
 	push hl
 
 	ld a, MOVE_NAME
@@ -1770,20 +1771,20 @@ GetBaseData:: ; 3856
 	push hl
 	ld a, [hROMBank]
 	push af
-	ld a, BANK(BaseData)
+	ld a, BANK(BaseData) ;switch to correct bank
 	rst Bankswitch
 	
 ; Egg doesn't have BaseData
-	ld a, [CurSpecies]
+	ld a, [CurSpecies] ;if egg, jump
 	cp EGG
 	jr z, .egg
 
 ; Get BaseData
 	dec a
-	ld bc, BaseData1 - BaseData0
+	ld bc, BaseData1 - BaseData0 ;bc = size of basedata
 	ld hl, BaseData
-	call AddNTimes
-	ld de, CurBaseData
+	call AddNTimes; go down to correct basedata
+	ld de, CurBaseData ;load into RAM
 	ld bc, BaseData1 - BaseData0
 	call CopyBytes
 	jr .end
