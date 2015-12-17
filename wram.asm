@@ -10,14 +10,14 @@ box_struct: MACRO
 \1Item::           db
 \1Moves::          ds NUM_MOVES
 \1ID::             dw
-\1Exp::            ds 3
+\1Exp::            ds 3 ;11
 \1StatExp::
 \1HPExp::          dw
 \1AtkExp::         dw
 \1DefExp::         dw
 \1SpdExp::         dw
-\1SpcExp::         dw
-\1DVs::            ds 2
+\1SpcExp::         dw 
+\1DVs::            ds 2 ;23
 \1PP::             ds NUM_MOVES
 \1Happiness::      db
 \1PokerusStatus::  db
@@ -1199,13 +1199,13 @@ MenuSelection:: ; cf74
 	ds 1
 
 wcf75:: ds 1
-wcf76:: ds 1
+wcf76:: ds 1 ;hold dexcheck results?
 wcf77:: ds 1
 wcf78:: ds 9
 wcf81:: ds 1 ;menu header:  tile backup
-wcf82:: ds 1 ;a set of coords from menu header
+wcf82:: ds 1 ;start coords
 wcf83:: ds 1
-wcf84:: ds 1 ;another set of coords
+wcf84:: ds 1 ;end coords
 wcf85:: ds 1 
 wcf86:: ds 1 ;Vtiles location
 wcf87:: ds 1

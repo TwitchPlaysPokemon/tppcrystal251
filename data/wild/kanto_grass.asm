@@ -1,7 +1,7 @@
 ; Kanto Pokémon in grass
 
 	db GROUP_DIGLETTS_CAVE, MAP_DIGLETTS_CAVE
-	db $0a,$05,$14 ; encounter rates: morn/day/nite
+	db $0a ; encounter rates: morn/day/nite
 	db 60
 	db $00
 ;morning
@@ -57,7 +57,7 @@
 		db DIGLETT ;1
 
 	db GROUP_ROCK_TUNNEL_1F, MAP_ROCK_TUNNEL_1F
-	db $0f,$0f,$0f ; encounter rates: morn/day/nite
+	db $0f ; encounter rates: morn/day/nite
 	db 70
 	db $01
 ;morning
@@ -113,7 +113,7 @@
 		db CROBAT ;1
 
 	db GROUP_ROCK_TUNNEL_B1F, MAP_ROCK_TUNNEL_B1F
-	db $0f,$0f,$0f ; encounter rates: morn/day/nite
+	db $0f ; encounter rates: morn/day/nite
 	db 70
 	db $01
 ;morning
@@ -225,10 +225,10 @@
 		db TYPHLOSION ;1
 
 ;	db GROUP_TOHJO_FALLS, MAP_TOHJO_FALLS
-;	db $0f,$0f,$0f ; encounter rates: morn/day/nite
+;	db $0f ; encounter rates: morn/day/nite
 
 	db GROUP_ROUTE_1, MAP_ROUTE_1
-	db $19,$19,$19 ; encounter rates: morn/day/nite
+	db $19 ; encounter rates: morn/day/nite
 	db 60
 	db $00
 ;morning
@@ -284,7 +284,7 @@
 		db PERSIAN ;1
 	
 	db GROUP_ROUTE_2, MAP_ROUTE_2
-	db $19,$19,$19 ; encounter rates: morn/day/nite
+	db $19 ; encounter rates: morn/day/nite
 	db 60
 	db $02
 ;morning
@@ -340,7 +340,7 @@
 		db WEEDLE ;1
 		
 	db GROUP_ROUTE_3, MAP_ROUTE_3
-	db $19,$19,$19 ; encounter rates: morn/day/nite
+	db $19 ; encounter rates: morn/day/nite
 	db 60
 	db $02
 ;morning
@@ -396,7 +396,7 @@
 		db GOLBAT ;1
 
 	db GROUP_ROUTE_4, MAP_ROUTE_4
-	db $19,$19,$19 ; encounter rates: morn/day/nite
+	db $19 ; encounter rates: morn/day/nite
 	db 60
 	db $01
 ;morning
@@ -564,7 +564,7 @@
 		db VICTREEBEL ;1
 
 	db GROUP_ROUTE_7, MAP_ROUTE_7
-	db $19,$19,$19 ; encounter rates: morn/day/nite
+	db $19 ; encounter rates: morn/day/nite
 	db 70
 	db $01
 ;morning
@@ -620,7 +620,7 @@
 		db RATICATE ;1
 
 	db GROUP_ROUTE_8, MAP_ROUTE_8
-	db $19,$19,$19 ; encounter rates: morn/day/nite
+	db $19 ; encounter rates: morn/day/nite
 	db 70
 	db $02
 ;morning
@@ -676,7 +676,7 @@
 		db ALAKAZAM ;1
 
 	db GROUP_ROUTE_9, MAP_ROUTE_9
-	db $19,$19,$19 ; encounter rates: morn/day/nite
+	db $19 ; encounter rates: morn/day/nite
 	db 70
 	db $01
 ;morning
@@ -732,7 +732,7 @@
 		db MAROWAK ;1
 
 	db GROUP_ROUTE_10_NORTH, MAP_ROUTE_10_NORTH
-	db $19,$19,$19 ; encounter rates: morn/day/nite
+	db $19 ; encounter rates: morn/day/nite
 	db 75
 	db $01
 ;morning
@@ -788,7 +788,7 @@
 		db MAGNETON ;1
 
 	db GROUP_ROUTE_11, MAP_ROUTE_11
-	db $19,$19,$19 ; encounter rates: morn/day/nite
+	db $19 ; encounter rates: morn/day/nite
 	db 80
 	db $02
 ;morning
@@ -844,7 +844,7 @@
 		db LICKITUNG ;1
 
 	db GROUP_ROUTE_13, MAP_ROUTE_13
-	db $19,$19,$19 ; encounter rates: morn/day/nite
+	db $19 ; encounter rates: morn/day/nite
 	db 80
 	db $01
 ;morning
@@ -900,7 +900,7 @@
 		db VICTREEBEL ;1
 
 	db GROUP_ROUTE_14, MAP_ROUTE_14
-	db $19,$19,$19 ; encounter rates: morn/day/nite
+	db $19 ; encounter rates: morn/day/nite
 	db 80
 	db $02
 ;morning
@@ -956,7 +956,7 @@
 		db PSYDUCK ;1
 
 	db GROUP_ROUTE_15, MAP_ROUTE_15
-	db $19,$19,$19 ; encounter rates: morn/day/nite
+	db $19 ; encounter rates: morn/day/nite
 	db 80
 	db $02
 ;morning
@@ -1012,7 +1012,7 @@
 		db JYNX ;1
 
 	db GROUP_ROUTE_16, MAP_ROUTE_16
-	db $19,$19,$19 ; encounter rates: morn/day/nite
+	db $19; encounter rates: morn/day/nite
 	db 75
 	db $02
 ;morning
@@ -1068,7 +1068,7 @@
 		db PIDGEOTTO ;1
 
 	db GROUP_ROUTE_17, MAP_ROUTE_17
-	db $19,$19,$19 ; encounter rates: morn/day/nite
+	db $19 ; encounter rates: morn/day/nite
 	db 70
 	db $00
 ;morning
@@ -1126,7 +1126,7 @@
 		db BEEDRILL ;1
 
 	db GROUP_ROUTE_18, MAP_ROUTE_18
-	db $19,$19,$19 ; encounter rates: morn/day/nite
+	db $19 ; encounter rates: morn/day/nite
 	db 75
 	db $02
 ;morning
@@ -1182,7 +1182,7 @@
 		db PIDGEOT ;1
 
 	db GROUP_ROUTE_21, MAP_ROUTE_21
-	db $0f,$0f,$0f ; encounter rates: morn/day/nite
+	db $0f ; encounter rates: morn/day/nite
 	db 70
 	db $02
 ;morning
@@ -1238,7 +1238,7 @@
 		db KRABBY ;1
 
 	db GROUP_ROUTE_22, MAP_ROUTE_22
-	db $19,$19,$19 ; encounter rates: morn/day/nite
+	db $19 ; encounter rates: morn/day/nite
 	db 60
 	db $02
 ;morning
@@ -1294,7 +1294,7 @@
 		db POLIWHIRL ;1
 	
 	db GROUP_ROUTE_24, MAP_ROUTE_24
-	db $19,$19,$19 ; encounter rates: morn/day/nite
+	db $19 ; encounter rates: morn/day/nite
 	db 60
 	db $02
 ;morning
@@ -1350,7 +1350,7 @@
 		db GOLDUCK ;1
 
 	db GROUP_ROUTE_25, MAP_ROUTE_25
-	db $19,$19,$19 ; encounter rates: morn/day/nite
+	db $19 ; encounter rates: morn/day/nite
 	db 60
 	db $01
 ;morning
@@ -1518,7 +1518,7 @@
 		db POLIWRATH ;1
 
 	db GROUP_ROUTE_28, MAP_ROUTE_28
-	db $19,$19,$19 ; encounter rates: morn/day/nite
+	db $19; encounter rates: morn/day/nite
 	db 100
 	db $03
 ;morning
@@ -1574,7 +1574,7 @@
 		db MEGANIUM ;1
 	
 	db GROUP_VIRIDIAN_FOREST, MAP_VIRIDIAN_FOREST
-	db $0a,$0a,$0a ; encounter rates: morn/day/nite
+	db $0a ; encounter rates: morn/day/nite
 	db 60
 	db $02
 ;morning
@@ -1630,7 +1630,7 @@
 		db PIKACHU ;1
 	
 	db GROUP_MTMOON1, MAP_MTMOON1
-	db $0a,$0a,$0a ; encounter rates: morn/day/nite
+	db $0a ; encounter rates: morn/day/nite
 	db 60
 	db $01
 ;morning
@@ -1686,7 +1686,7 @@
 		db CLEFAIRY ;1
 
 	db GROUP_MTMOON2, MAP_MTMOON2
-	db $0a,$0a,$0a ; encounter rates: morn/day/nite
+	db $0a; encounter rates: morn/day/nite
 	db 65
 	db $02
 ;morning
@@ -1742,7 +1742,7 @@
 		db CLEFABLE ;1
 
 	db GROUP_MTMOON3, MAP_MTMOON3
-	db $0a,$0a,$0a ; encounter rates: morn/day/nite
+	db $0a ; encounter rates: morn/day/nite
 	db 70
 	db $03
 ;morning
@@ -1798,7 +1798,7 @@
 		db CLEFFA ;1
 	
 	db GROUP_CERULEANCAVE1, MAP_CERULEANCAVE1
-	db $0a,$0a,$0a ; encounter rates: morn/day/nite
+	db $0a ; encounter rates: morn/day/nite
 	db 90
 	db $02
 ;morning
@@ -1854,7 +1854,7 @@
 		db HYPNO ;1
 
 	db GROUP_CERULEANCAVE2, MAP_CERULEANCAVE2
-	db $0a,$0a,$0a ; encounter rates: morn/day/nite
+	db $0a ; encounter rates: morn/day/nite
 	db 90
 	db $02
 ;morning
@@ -1910,7 +1910,7 @@
 		db MACHAMP ;1
 
 	db GROUP_CERULEANCAVE3, MAP_CERULEANCAVE3
-	db $0a,$0a,$0a ; encounter rates: morn/day/nite
+	db $0a; encounter rates: morn/day/nite
 	db 95
 	db $03
 ;morning
@@ -1966,7 +1966,7 @@
 		db POLIWRATH ;1
 
 	db GROUP_MEWISLANDENTRANCE, MAP_MEWISLANDENTRANCE
-	db $19,$19,$19 ; encounter rates: morn/day/nite
+	db $19 ; encounter rates: morn/day/nite
 	db 80
 	db $03
 ;morning
@@ -2022,7 +2022,7 @@
 		db SUDOWOODO ;1
 	
 	db GROUP_MEWISLANDB1, MAP_MEWISLANDB1
-	db $19,$19,$19 ; encounter rates: morn/day/nite
+	db $19 ; encounter rates: morn/day/nite
 	db 85
 	db $01
 ;morning
@@ -2078,7 +2078,7 @@
 		db WIGGLYTUFF ;1
 		
 	db GROUP_MEWISLANDF1, MAP_MEWISLANDF1
-	db $19,$19,$19 ; encounter rates: morn/day/nite
+	db $19 ; encounter rates: morn/day/nite
 	db 85
 	db $01
 ;morning
@@ -2134,7 +2134,7 @@
 		db GRANBULL ;1
 
 	db GROUP_MEWISLANDF2, MAP_MEWISLANDF2
-	db $19,$19,$19 ; encounter rates: morn/day/nite
+	db $19 ; encounter rates: morn/day/nite
 	db 85
 	db $03
 ;morning
@@ -2190,7 +2190,7 @@
 		db NIDOQUEEN ;1
 
 	db GROUP_CINNABAR_VOLCANO_B1F, MAP_CINNABAR_VOLCANO_B1F
-	db $19,$19,$19
+	db $19
 	db 80
 	db $02
 ;morning
@@ -2246,7 +2246,7 @@
 		db RHYHORN ;1
 	
 	db GROUP_CINNABAR_VOLCANO_B2F, MAP_CINNABAR_VOLCANO_B2F
-	db $19,$19,$19
+	db $19
 	db 85
 	db $02
 ;morning
@@ -2302,7 +2302,7 @@
 		db HOUNDOUR ;1
 	
 	db GROUP_CINNABAR_VOLCANO_B3F, MAP_CINNABAR_VOLCANO_B3F
-	db $19,$19,$19
+	db $19
 	db 90
 	db $03
 ;morning
@@ -2358,7 +2358,7 @@
 		db RHYDON ;1
 
 	db GROUP_SEAFOAMISLANDSENTRANCE, MAP_SEAFOAMISLANDSENTRANCE
-	db $19,$19,$19
+	db $19
 	db 75
 	db $02
 ;morning
@@ -2414,7 +2414,7 @@
 		db STEELIX ;1
 	
 	db GROUP_SEAFOAMISLANDSB1F, MAP_SEAFOAMISLANDSB1F
-	db $19,$19,$19
+	db $19
 	db 80
 	db $02
 ;morning
@@ -2470,7 +2470,7 @@
 		db GOLDUCK ;1
 	
 	db GROUP_SEAFOAMISLANDSB2F, MAP_SEAFOAMISLANDSB2F
-	db $19,$19,$19
+	db $19
 	db 85
 	db $03
 ;morning
@@ -2526,7 +2526,7 @@
 		db SLOWBRO ;1
 
 	db GROUP_SEAFOAMISLANDSB3F, MAP_SEAFOAMISLANDSB3F
-	db $19,$19,$19
+	db $19
 	db 90
 	db $03
 ;morning
@@ -2582,7 +2582,7 @@
 		db DEWGONG ;1
 		
 	db GROUP_POWERPLANT, MAP_POWERPLANT
-	db $19,$19,$19
+	db $19
 	db 80
 	db $01
 ;morning

@@ -348,7 +348,7 @@
 		db SCYTHER ;1
 
 	db GROUP_RUINS_OF_ALPH_OUTSIDE, MAP_RUINS_OF_ALPH_OUTSIDE
-	db $0a,$0a,$0a ; encounter rates: morn/day/nite
+	db $0a ; encounter rates: morn/day/nite
 	db 40
 	db $03
 ;morning
@@ -404,7 +404,7 @@
 		db URSARING ;1
 
 	db GROUP_RUINS_OF_ALPH_INNER_CHAMBER, MAP_RUINS_OF_ALPH_INNER_CHAMBER
-	db $0f,$0f,$0f ; encounter rates: morn/day/nite
+	db $0f ; encounter rates: morn/day/nite
 	db 50
 	db $00
 ;morning
@@ -1483,7 +1483,7 @@
 ;	db $0f,$0f,$0f ; encounter rates: morn/day/nite
 
 	db GROUP_SILVER_CAVE_ROOM_1, MAP_SILVER_CAVE_ROOM_1
-	db $0f,$0f,$0f ; encounter rates: morn/day/nite
+	db $0f ; encounter rates: morn/day/nite
 	db 100
 	db $03
 ;morning
@@ -1539,7 +1539,7 @@
 		db LARVITAR ;1
 
 	db GROUP_SILVER_CAVE_ROOM_2, MAP_SILVER_CAVE_ROOM_2
-	db $0f,$0f,$0f ; encounter rates: morn/day/nite
+	db $0f ; encounter rates: morn/day/nite
 	db 100
 	db $03
 ;morning
@@ -1595,7 +1595,7 @@
 		db PUPITAR ;1
 
 	db GROUP_SILVER_CAVE_ROOM_3, MAP_SILVER_CAVE_ROOM_3
-	db $0f,$0f,$0f ; encounter rates: morn/day/nite
+	db $0f ; encounter rates: morn/day/nite
 	db 100
 	db $03
 ;morning
@@ -1651,7 +1651,7 @@
 		db TYRANITAR ;1
 
 	db GROUP_SILVER_CAVE_ITEM_ROOMS, MAP_SILVER_CAVE_ITEM_ROOMS
-	db $0f,$0f,$0f ; encounter rates: morn/day/nite
+	db $0f ; encounter rates: morn/day/nite
 	db 100
 	db $03
 ;morning
@@ -2715,7 +2715,7 @@
 		db SKARMORY ;1
 
 	db GROUP_SILVER_CAVE_OUTSIDE, MAP_SILVER_CAVE_OUTSIDE
-	db $19,$19,$19 ; encounter rates: morn/day/nite
+	db $19 ; encounter rates: morn/day/nite
 	db 100
 	db $03
 ;morning

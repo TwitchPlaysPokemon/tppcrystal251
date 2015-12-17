@@ -13431,7 +13431,7 @@ StartMenu_Pokemon: ; 12976
 	call DelayFrame
 	callba PartyMenuSelect ;make menu selection and set curpartymon and curspecies 
 	jr c, .return ; if cancelled or pressed B, back out
-	; ld b, [$ffa9]
+	; ld b, [$ffa9] ;handle select button to switch
 	; bit 0, b
 	; jr z, SelectSwitch
 	call PokemonActionSubmenu ;handle pokemon menu and run selected action
@@ -19283,21 +19283,21 @@ INCLUDE "engine/spawn_points.asm"
 
 INCLUDE "engine/map_setup.asm"
 
-Function1559a: ; 1559a
-	call Function15650
+Function1559a: ; 1559a PC?
+	call Function15650 ;if party is zero, cannot use
 	ret c
-	call Function156b3
-	ld hl, UnknownText_0x15a27
-	call Function15a20
-	ld hl, UnknownText_0x15a2c
-	call Function157bb
+	call Function156b3 ;play soundFX
+	ld hl, UnknownText_0x15a27 ;turned on the PC
+	call Function15a20 ;draw a text box with text from HL
+	ld hl, UnknownText_0x15a2c ;whose PC?
+	call Function157bb ;load a menu, draw a text box and fill it with text at hl with instatext
 	ld hl, MenuDataHeader_0x155d6
-	call LoadMenuDataHeader
+	call LoadMenuDataHeader ;load a menu
 .asm_155b3
 	xor a
-	ld [hBGMapMode], a
-	call Function1563e
-	ld [wcf76], a
+	ld [hBGMapMode], a ;mapmode = 0
+	call Function1563e ;dex check. ret a=0 if no dex, 1 if wd95e = 0 and dex and 2 otherwise
+	ld [wcf76], a ;load into ??
 	call Function1e5d
 	jr c, .asm_155cc
 	ld a, [MenuSelection]
@@ -19352,15 +19352,15 @@ Unknown_1562c: ; 1562c
 	db 1, 0, 2, 3, 4, $ff
 ; 1563e
 
-Function1563e: ; 1563e
-	call Function2ead
-	jr nz, .asm_15646
+Function1563e: ; 1563e ;dex check. ret a=0 if no dex, 1 if wd95e = 0 and dex and 2 otherwise
+	call Function2ead ;check if dex, return in a
+	jr nz, .asm_15646 ;if dex, jump, else retern zero in a
 	ld a, $0
 	ret
 
 .asm_15646
 	ld a, [wd95e]
-	and a
+	and a ;if ?? = 0, a = 1. else a = 2
 	ld a, $1
 	ret z
 	ld a, $2
@@ -19370,7 +19370,7 @@ Function1563e: ; 1563e
 Function15650: ; 15650
 	ld a, [PartyCount]
 	and a
-	ret nz
+	ret nz ;if party is zero, cannot use
 	ld de, SFX_CHOOSE_PC_OPTION
 	call PlaySFX
 	ld hl, UnknownText_0x15663
@@ -19388,7 +19388,7 @@ UnknownText_0x15663: ; 0x15663
 Function15668: ; 15668
 	call Function156c2 ;play PC sfx
 	ld hl, UnknownText_0x15a31 ;bills PC accsessed
-	call Function15a20
+	call Function15a20 ; draw a text box with text from HL
 	callba Functione3fd
 	and a
 	ret
@@ -19573,14 +19573,14 @@ LOG_OFF       EQU 6
 	db LOG_OFF
 	db $ff
 
-Function157bb: ; 157bb
-	ld a, [Options]
+Function157bb: ; 157bb ;load a menu, draw a text box and fill it with text at hl with instatext
+	ld a, [Options] ;set instatext
 	push af
 	set 4, a
 	ld [Options], a
-	call Function1d4f
+	call Function1d4f ;load a menu, draw a text box and fill it with text at hl
 	pop af
-	ld [Options], a
+	ld [Options], a ;reset instatext
 	ret
 ; 157cc
 
@@ -19929,9 +19929,9 @@ MenuData15a08: ; 0x15a08
 	dbw BANK(Function24ac3), Function24ac3
 	dbw BANK(Function244c3), Function244c3
 
-Function15a20: ; 15a20
-	call Function1d4f ;create a menu and perform a text command
-	call Function1c07
+Function15a20: ; 15a20 draw a text box with text from HL
+	call Function1d4f ;create a menu and draw text box
+	call Function1c07 ;unload top menu added by 1d4f
 	ret
 ; 15a27
 

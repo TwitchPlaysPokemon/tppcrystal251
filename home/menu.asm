@@ -21,11 +21,11 @@ Function1d4b:: ; 1d4b
 ; 1d4f
 
 
-Function1d4f:: ; 1d4f
+Function1d4f:: ; 1d4f load a menu, draw a text box and fill it with text at hl
 	push hl
 	call Function1d58 ;load empty menu
 	pop hl
-	jp PrintText ;perform a text command using text in hl?
+	jp PrintText ;Draw a text box and fill it
 ; 1d57
 
 Function1d57:: ; 1d57
@@ -225,7 +225,7 @@ Function1e35:: ; 1e35
 ; 1e5d
 
 Function1e5d:: ; 1e5d
-	call MenuFunc_1e7f
+	call MenuFunc_1e7f ;set up PC menu data
 	call MenuWriteText
 	call Function1eff
 	call Function1f23
@@ -235,18 +235,18 @@ Function1e5d:: ; 1e5d
 ; 1e70
 
 SetUpMenu:: ; 1e70
-	call MenuFunc_1e7f ; ???
+	call MenuFunc_1e7f ; set up PC menu data
 	call MenuWriteText
 	call Function1eff ; set up selection pointer
 	ld hl, wcfa5
 	set 7, [hl]
 	ret
 
-MenuFunc_1e7f:: ; 0x1e7f
-	call Function1c66
-	call Function1ebd
-	call Function1ea6
-	call Function1cbb
+MenuFunc_1e7f:: ; 0x1e7f set up PC menu data
+	call Function1c66 ;copy auxillery data from vtiles to curmenu
+	call Function1ebd ;set number of options based on dex and wd95e
+	call Function1ea6 ;c = menu y dimension, x end coord = start x coord + (number of options *2) + 1
+	call Function1cbb ;put a textbox in curmenu area
 	ret
 
 MenuWriteText:: ; 0x1e8c
@@ -265,44 +265,44 @@ MenuWriteText:: ; 0x1e8c
 	ret
 ; 0x1ea6
 
-Function1ea6:: ; 1ea6
+Function1ea6:: ; 1ea6 c = menu y dimension, x end coord = start x coord + (number of options *2) + 1
 	ld a, [wcf83]
 	ld c, a
 	ld a, [wcf85]
-	sub c
-	ld c, a
-	ld a, [wcf92]
+	sub c 
+	ld c, a ;c = menu y dimension
+	ld a, [wcf92] 
 	add a
 	inc a
 	ld b, a
-	ld a, [wcf82]
+	ld a, [wcf82] ;add x start coord
 	add b
-	ld [wcf84], a
+	ld [wcf84], a ;x end coord = start x coord + (number of options *2) + 1
 	ret
 ; 1ebd
 
-Function1ebd:: ; 1ebd
-	ld hl, wcf93
+Function1ebd:: ; 1ebd set number of options based on dex and wd95e
+	ld hl, wcf93 ;load ??? into hl
 	ld a, [hli]
 	ld h, [hl]
 	ld l, a
-	ld a, [wcf76]
+	ld a, [wcf76] ;if don't own dex, skip, else loop legnth depends on wd95e
 	and a
 	jr z, .asm_1ed3
 	ld b, a
 	ld c, $ff
 .asm_1ecc
-	ld a, [hli]
+	ld a, [hli] ;if thing pointed at by ?? is $FF
 	cp c
-	jr nz, .asm_1ecc
+	jr nz, .asm_1ecc ;loop without lowering loop , else lower loop counter
 	dec b
 	jr nz, .asm_1ecc
 
 .asm_1ed3
-	ld d, h
+	ld d, h ;load final location into de and byte after final into number of vertical options
 	ld e, l
 	ld a, [hl]
-	ld [wcf92], a
+	ld [wcf92], a 
 	ret
 ; 1eda
 

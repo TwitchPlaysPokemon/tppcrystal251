@@ -179,7 +179,7 @@ Function105a:: ; 105a
 
 PrintTextBoxText:: ; 1065
 	bccoord TEXTBOX_INNERX, TEXTBOX_INNERY
-	call Function13e5 ;perform command based on TextBoxFrame+1
+	call Function13e5 ;perform command based on TextBoxFrame+1 (if 0 or 1, write text in HL)
 	ret
 ; 106c
 
@@ -728,7 +728,7 @@ Function13f6:: ; 13f6 perform text command a, text in hl destination in bc
 	pop hl
 
 	; jp de
-	push de ;call de
+	push de 
 	ret
 ; 1410
 

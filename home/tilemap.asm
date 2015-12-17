@@ -44,16 +44,16 @@ Function1c53:: ; 0x1c53  get size of loaded menu, put in bc
 	ret
 ; 0x1c66
 
-Function1c66:: ; 1c66
+Function1c66:: ; 1c66 ;copy auxillery data from vtiles to curmenu
 	push hl
 	push de
 	push bc
 	push af
-	ld hl, wcf86
+	ld hl, wcf86 ;hl = vtiles location for curmenu
 	ld a, [hli]
 	ld h, [hl]
 	ld l, a
-	ld de, wcf91
+	ld de, wcf91 ;copy auxillery data from vtiles to curmenu
 	ld bc, $0010
 	call CopyBytes
 	pop af
@@ -76,7 +76,7 @@ Function1c7e:: ; 1c7e
 ; 1c89
 
 Function1c89:: ; 1c89
-	call Function1c66
+	call Function1c66 ;copy auxillery data from vtiles to curmenu
 	ld hl, wcf86
 	ld e, [hl]
 	inc hl
