@@ -356,9 +356,9 @@ wc310:: ds 1
 wc311:: ds 1
 wc312:: ds 1
 wc313:: ds 1
-wc314:: ds 1
+wc314:: ds 1 ;holds 0 if first mon slot is empty/unswitchable?
 wc315:: ds 1
-wc316:: ds 1
+wc316:: ds 1 ;wc316,wc326,wc336,wc346,wc356 and wc366 hold 2 if the mon of that slot is switching, 3 if not
 wc317:: ds 1
 wc318:: ds 1
 wc319:: ds 1
@@ -1212,10 +1212,10 @@ wcf87:: ds 1
 wcf88:: ds 2 ;default option (first byte)
 wcf8a:: ds 7 ;bank storage(at some point after vtiles)
 wcf91:: ds 1
-wcf92:: ds 1
+wcf92:: ds 1 ;number of vertical options?
 wcf93:: ds 1
 wcf94:: ds 1
-wcf95:: ds 1
+wcf95:: ds 1 ;bit 7 set = skip btton check on loop?
 wcf96:: ds 1
 wcf97:: ds 1
 wcf98:: ds 3
@@ -1223,14 +1223,14 @@ wcf9b:: ds 3
 wcf9e:: ds 3
 wcfa1:: ds 1 ;holds start x coord +1, or +2 if wcf91 bit 6 is off
 wcfa2:: ds 1 ;holds start y coord +1
-wcfa3:: ds 1
-wcfa4:: ds 1
-wcfa5:: ds 1
+wcfa3:: ds 1 ;max vertical pos
+wcfa4:: ds 1 ;max horizontal pos
+wcfa5:: ds 1 ; bit 6: animate sprites  bit 5: wrap around
 wcfa6:: ds 1
 wcfa7:: ds 1 ;back nyble = space between rows of cursor, front nyble is space between columns?
-wcfa8:: ds 1
-wcfa9:: ds 1 ;current menu selection? vertical cursor position
-wcfaa:: ds 1 ;horizontal cursor position?
+wcfa8:: ds 1 ;which buttons exit loop 
+wcfa9:: ds 1 ;vertical cursor position
+wcfaa:: ds 1 ;horizontal cursor position
 wcfab:: ds 1 ;what the cursor covers up
 wcfac:: ds 1 ;cursor location
 wcfad:: ds 4
@@ -1440,7 +1440,7 @@ CurMoveNum:: ; d0d5
 
 wd0d6:: ds 1
 wd0d7:: ds 1
-wd0d8:: ds 1
+wd0d8:: ds 1 ;cursor memory for party?
 wd0d9:: ds 1
 wd0da:: ds 1
 wd0db:: ds 1

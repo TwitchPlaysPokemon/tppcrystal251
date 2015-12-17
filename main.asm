@@ -13429,10 +13429,16 @@ StartMenu_Pokemon: ; 12976
 	call WaitBGMap
 	call Function32f9 ; load regular palettes?
 	call DelayFrame
-	callba PartyMenuSelect
-	jr c, .return ; if cancelled or pressed B
-
+	callba PartyMenuSelect ;make menu selection and set curpartymon and curspecies 
+	jr c, .return ; if cancelled or pressed B, back out
+	; ld b, [$ffa9]
+	; bit 0, b
+	; jr z, SelectSwitch
 	call PokemonActionSubmenu ;handle pokemon menu and run selected action
+	; jr SkipSelect
+;SelectSwitch
+	;call SwitchPartyMons
+;SkipSelect
 	cp 3
 	jr z, .menu
 	cp 0
@@ -13578,7 +13584,7 @@ PokemonActionSubmenu: ; 12a88
 	hlcoord 1, 15
 	ld bc, $0212 ; box size
 	call ClearBox ;fill with whitespace?
-	callba Function24d19 ;load monsubmenu, ret menu selection
+	callba Function24d19 ;load monsubmenu, ret thing to run in menu selection
 	call GetCurNick
 	ld a, [MenuSelection]
 	ld hl, .Actions
@@ -13626,29 +13632,29 @@ SwitchPartyMons: ; 12aec
 	cp 2
 	jr c, .DontSwitch
 
-	ld a, [CurPartyMon] ;load current mon into a?
+	ld a, [CurPartyMon] ;load selected mon
 	inc a
-	ld [wd0e3], a
+	ld [wd0e3], a ;load into ???
 
-	callba Function8ea8c
-	callba Function5042d
+	callba Function8ea8c ;load 2 into wc316,wc326,wc336,wc346,wc356 and wc366 if corrisponding slot matches current, else load 3
+	callba Function5042d ;load menu data for party switch and set cursor up
 
 	ld a, 4
-	ld [PartyMenuActionText], a
+	ld [PartyMenuActionText], a ;actiontext = 4
 	callba WritePartyMenuTilemap
 	callba PrintPartyMenuText
 
 	hlcoord 0, 1
 	ld bc, 20 * 2
-	ld a, [wd0e3]
+	ld a, [wd0e3] ;party mon+1
 	dec a
-	call AddNTimes
+	call AddNTimes ;Put white cursor into  place
 	ld [hl], "▷"
 	call WaitBGMap
 	call Function32f9
 	call DelayFrame
 
-	callba PartyMenuSelect
+	callba PartyMenuSelect ;make menu selection, ret c if cancelling, set curpartymon and curspecies if not
 	bit 1, b
 	jr c, .DontSwitch
 
@@ -24428,14 +24434,14 @@ Function24193: ; 24193
 	ret
 ; 241a8
 
-Function241a8:: ; 241a8
+Function241a8:: ; 241a8 ;place and update cursor, loop valid input is pressed
 	call Function24329 ;Place cursor in tilemap 
 Function241ab:: ; 241ab
 	ld hl, wcfa6 ;reset bit 7 of ???
 	res 7, [hl]
 	ld a, [hBGMapMode] 
 	push af
-	call Function24216
+	call Function24216 ;update cursor, loop until valid input (depending on wcfa8)
 	pop af
 	ld [hBGMapMode], a
 	ret
@@ -24498,22 +24504,22 @@ Function241fa: ; 241fa
 	ret
 ; 24216
 
-Function24216: ; 24216 a = bgmapmode
+Function24216: ; 24216 update cursor, loop until valid input (depending on wcfa8) and return those buttons in a
 .asm_24216
 	call Function2431a ;refresh cursor location
 	call Function24238 ;??? (refresh screen?)
-	call Function24249
-	jr nc, .asm_24237
-	call Function24270
-	jr c, .asm_24237
-	ld a, [wcfa5]
+	call Function24249 ;update joypad, possibly busyloop to wait. ret c if anything pressed in a, ret nc otherwise
+	ret nc; jr nc, .asm_24237 saves a jump, ret if nothing pressed
+	call Function24270 ;process direction buttons, a = 0
+	jr c, .asm_24237 ;impossible? (no possibility returns carry)
+	ld a, [wcfa5] ;if bit 7 of ?? is on, quit without looping
 	bit 7, a
-	jr nz, .asm_24237
-	call Function1bdd
+	ret nz	;jr nz, .asm_24237
+	call Function1bdd ;upate joypad
 	ld b, a
-	ld a, [wcfa8]
+	ld a, [wcfa8] ;load allowed buttons
 	and b
-	jr z, .asm_24216
+	jr z, .asm_24216 ;loop until either allowed button is pressed
 
 .asm_24237
 	ret
@@ -24532,37 +24538,37 @@ Function24238: ; 24238
 	ret
 ; 24249
 
-Function24249: ; 24249
+Function24249: ; 24249 ;update joypad, possibly busyloop to wait. ret c if anything pressed in a, ret nc otherwise
 .asm_24249
 	call RTC ;update time
-	call Function24259
-	ret c
+	call Function24259 ; update joypad,ret c if anything pressed in joylast
+	ret c ;ret if buttons pressed
 	ld a, [wcfa5]
 	bit 7, a
-	jr z, .asm_24249
+	jr z, .asm_24249 ;try again is bit 7 is on and nothing is pressed
 	and a
 	ret
 ; 24259
 
-Function24259: ; 24259
+Function24259: ; 24259 update joypad,ret c if anything pressed in joylast
 	ld a, [wcfa5] ;a = ?? 
 	bit 6, a ;if bit 4 of tile backup was on?
 	jr z, .asm_24266 ;skip
 	callab Function8cf62 ;something sprite related
 
 .asm_24266
-	call Functiona57
-	call Function1bdd
+	call Functiona57 ;update joypad
+	call Function1bdd ;1bdd a = back nyble of JoyLast and front nyble of joy pressed
 	and a
-	ret z
+	ret z ;if anything pressed,  ret c
 	scf
 	ret
 ; 24270
 
-Function24270: ; 24270
-	call Function1bdd
+Function24270: ; 24270 process direction buttons, a = 0
+	call Function1bdd ;a = back nyble of JoyLast and front nyble of joy pressed
 	bit 0, a
-	jp nz, Function24318
+	jp nz, Function24318 ;ret a = 0
 	bit 1, a
 	jp nz, Function24318
 	bit 2, a
@@ -24570,14 +24576,14 @@ Function24270: ; 24270
 	bit 3, a
 	jp nz, Function24318
 	bit 4, a
-	jr nz, .asm_242fa
+	jr nz, .asm_242fa ;if right, increment horizotal cursor positon if possible
 	bit 5, a
-	jr nz, .asm_242dc
+	jr nz, .asm_242dc ; if left, dec horizontal position of cursor
 	bit 6, a
-	jr nz, .asm_242be
+	jr nz, .asm_242be ;if up, dec vertical cursor position
 	bit 7, a
 	jr nz, .asm_242a0
-	and a
+	and a ;if nothing pressed, a = 0 and ret
 	ret
 
 .asm_24299: ; 24299
@@ -24609,7 +24615,7 @@ Function24270: ; 24270
 	xor a
 	ret
 
-.asm_242be
+.asm_242be ;dec vertical cursor position
 	ld hl, wcfa9
 	ld a, [hl]
 	dec a
@@ -24633,7 +24639,7 @@ Function24270: ; 24270
 	xor a
 	ret
 
-.asm_242dc
+.asm_242dc ;dec horizontal position of cursor
 	ld hl, wcfaa
 	ld a, [hl]
 	dec a
@@ -24657,12 +24663,12 @@ Function24270: ; 24270
 	xor a
 	ret
 
-.asm_242fa
-	ld hl, wcfaa
-	ld a, [wcfa4]
-	cp [hl]
+.asm_242fa ;if right is pressed
+	ld hl, wcfaa 
+	ld a, [wcfa4] ;(1)??
+	cp [hl] ;if horizontal cursor position is not equal to ??(max horizontal position?) inc it
 	jr z, .asm_24306
-	inc [hl]
+	inc [hl] 
 	xor a
 	ret
 
@@ -24941,7 +24947,7 @@ Function2446d:: ; 2446d fill rest of menu data?
 	ld a, [wcf83]
 	inc a
 	ld [hli], a
-	ld a, [wcf92] ;load ?? into wcfa3
+	ld a, [wcf92] ;load ?? into max cursor position 
 	ld [hli], a
 	ld a, $1
 	ld [hli], a ;load 1 into wcfa4 and 0 into wcfa5
@@ -24964,7 +24970,7 @@ Function2446d:: ; 2446d fill rest of menu data?
 	ld [hli], a ;wcfa7 = 32
 	ld a, $1
 	bit 0, b
-	jr nz, .asm_244a9 ;if bit 0 of b is on, a = 1 else a = 2. load it into wcfa8
+	jr nz, .asm_244a9 ;if bit 0 of b is on,exit on a only, else  exit on a or b. load it into wcfa8 
 	add $2
 
 .asm_244a9
@@ -26258,7 +26264,7 @@ MonMenuOptions: ; 24cd9
 	db $ff
 ; 24d19
 
-Function24d19: ; 24d19 MonSubMenu
+Function24d19: ; 24d19 MonSubMenu load, process, then unload the mon sub menu. put selection in MenuSelection
 	xor a
 	ld [hBGMapMode], a 
 	call Function24dd4 ;populate buffer 2 with curpartymon's menu options
@@ -26270,10 +26276,10 @@ Function24d19: ; 24d19 MonSubMenu
 
 	ld a, 1
 	ld [hBGMapMode], a ;BGmapmode = 1
-	call Function24d59
+	call Function24d59 ;process monsubmenu, put the command to execute in a
 	ld [MenuSelection], a
 
-	call Function1c07 ;unload top menu on menu stack
+	call Function1c07 ;unload monsubmenu
 	ret
 ; 24d3f
 
@@ -26298,23 +26304,23 @@ Function24d47: ; 24d47 draw a text box to hold mon options menu
 	ret
 ; 24d59
 
-Function24d59: ; 24d59
+Function24d59: ; 24d59 ;process monsubmenu, retern the cmmand to execute in a
 .asm_24d59
 	ld a, $a0
 	ld [wcf91], a ;load 160 into ??
-	ld a, [Buffer1] ;load mon list legnth into  ??
+	ld a, [Buffer1] ;load mon list legnth into number of vertical options
 	ld [wcf92], a
-	call Function1c10 ;fill rest of menu data?
+	call Function1c10 ;fill rest of menu data
 	ld hl, wcfa5
 	set 6, [hl] ;set flag 6 of wcfa5
-	call Function1bc9
+	call Function1bc9 ;place and update cursor, loop until a (or b if allowed) is pressed, update joylast
 	ld de, SFX_READ_TEXT_2
 	call PlaySFX
-	ld a, [hJoyPressed]
+	ld a, [hJoyPressed] ;branch based on button press, loop if niether
 	bit 0, a ; A
-	jr nz, .asm_24d84
+	jr nz, .asm_24d84 ;return a = correct menu option
 	bit 1, a ; B
-	jr nz, .asm_24d81
+	jr nz, .asm_24d81 ;ret a = 18
 	jr .asm_24d59
 
 .asm_24d81
@@ -26322,13 +26328,13 @@ Function24d59: ; 24d59
 	ret
 
 .asm_24d84
-	ld a, [wcfa9]
+	ld a, [wcfa9] 
 	dec a
 	ld c, a
 	ld b, 0
 	ld hl, Buffer2
 	add hl, bc
-	ld a, [hl]
+	ld a, [hl] 
 	ret
 ; 24d91
 
@@ -49126,55 +49132,55 @@ Function50405: ; 50405
 	xor a
 	ld [wd0e3], a
 	ld de, Unknown_5044f
-	call Function1bb1
+	call Function1bb1 ;load some menu data from de into current and reset cursor data
 	ld a, [PartyCount]
 	inc a
-	ld [wcfa3], a
+	ld [wcfa3], a ;load partycount into max vertical pos
 	dec a
 	ld b, a
 	ld a, [wd0d8]
 	and a
-	jr z, .asm_50422
+	jr z, .asm_50422  ;if cursor memory = 0, a = 1
 	inc b
 	cp b
-	jr c, .asm_50424
+	jr c, .asm_50424 ;if cursor memory > partycount, a = 1, else a = cursor memory
 
 .asm_50422
 	ld a, $1
 
 .asm_50424
-	ld [wcfa9], a
-	ld a, $3
-	ld [wcfa8], a
+	ld [wcfa9], a ;load it into  cursor positon
+	ld a, $3 ;$7 SELECTADD If I want it to recognise select, change this
+	ld [wcfa8], a ;load 3 into loop exit (a and b)
 	ret
 ; 5042d
 
-Function5042d: ; 0x5042d
+Function5042d: ; 0x5042d ;load menu data for party switch and set cursor up
 	ld de, Unknown_5044f
-	call Function1bb1
+	call Function1bb1 ;load some menu data from de into current and reset cursor data
 	ld a, [PartyCount]
-	ld [wcfa3], a
+	ld [wcfa3], a ;load partycount into max vertical pos
 	ld b, a
-	ld a, [wd0d8]
+	ld a, [wd0d8] ;cursor memory
 	and a
-	jr z, .asm_50444
-	inc b
+	jr z, .asm_50444 ;if cursor memory = 0, a = 1
+	inc b ;if cursor memory > partycount +1 , a = 1, else a = cursor memory
 	cp b
 	jr c, .asm_50446
 .asm_50444
 	ld a, $1
 .asm_50446
-	ld [wcfa9], a
+	ld [wcfa9], a ;load it into  cursor positon
 	ld a, $3
-	ld [wcfa8], a
+	ld [wcfa8], a ;load 3 into loop exit (a and b)
 	ret
 ; 5044f (14:444f)
 
 Unknown_5044f: ; 5044f
 ; cursor y
 ; cursor x
-; list length
-; ?
+; vertical list length
+; horizontal list legnth
 ; bit 6: animate sprites  bit 5: wrap around
 ; ?
 ; distance between items (hi: y, lo: x)
@@ -49182,30 +49188,30 @@ Unknown_5044f: ; 5044f
 	db $01, $00, $00, $01, $60, $00, $20, $00
 ; 50457
 
-PartyMenuSelect: ; 0x50457
+PartyMenuSelect: ; 0x50457 make menu selection, ret c if cancelling, set curpartymon and curspecies if not
 ; sets carry if exitted menu.
-	call Function1bc9
-	call Function1bee
-	ld a, [PartyCount]
+	call Function1bc9 ;place and update cursor, loop until allowed input is pressed, update joylsast
+	call Function1bee ;load white cursor into cursor location
+	ld a, [PartyCount] 
 	inc a
 	ld b, a
-	ld a, [wcfa9] ; menu selection?
+	ld a, [wcfa9] 
 	cp b
-	jr z, .exitmenu ; CANCEL
-	ld [wd0d8], a
-	ld a, [$ffa9]
+	jr z, .exitmenu ; CANCEL If vert menu selection = partycount+1, cancel
+	ld [wd0d8], a ;load selection into ??
+	ld a, [$ffa9] 
 	ld b, a
-	bit 1, b
-	jr nz, .exitmenu ; B button?
+	bit 1, b 
+	jr nz, .exitmenu ; If b button pressed, exit
 	ld a, [wcfa9]
 	dec a
-	ld [CurPartyMon], a
+	ld [CurPartyMon], a ;curpartymon = selection
 	ld c, a
 	ld b, $0
 	ld hl, PartySpecies
 	add hl, bc
 	ld a, [hl]
-	ld [CurPartySpecies], a
+	ld [CurPartySpecies], a ;cur species = selectonmon species
 
 	ld de, SFX_READ_TEXT_2
 	call PlaySFX
@@ -69078,34 +69084,34 @@ Function8ea71: ; 8ea71
 	ret
 ; 8ea8c (23:6a8c)
 
-Function8ea8c: ; 8ea8c
+Function8ea8c: ; 8ea8c load 2 into wc316,wc326,wc336,wc346,wc356 and wc366 if corrisponding slot matches current, else load 3
 	ld hl, wc314
-	ld e, $6
-	ld a, [wd0e3]
+	ld e, $6 ;loop 6 times
+	ld a, [wd0e3] ;mon selected
 	ld d, a
 .asm_8ea95
 	ld a, [hl]
 	and a
-	jr z, .asm_8eaab
+	jr z, .asm_8eaab ;if slot = zero,skip
 	cp d
-	jr z, .asm_8eaa0
+	jr z, .asm_8eaa0 ;if equal to selected mon, load 2, else load 3
 	ld a, $3
 	jr .asm_8eaa2
 .asm_8eaa0
 	ld a, $2
 .asm_8eaa2
-	push hl
+	push hl ;holds current slot
 	ld c, l
 	ld b, h
 	ld hl, $2
-	add hl, bc
-	ld [hl], a
+	add hl, bc ;go down 2
+	ld [hl], a ;load 2 or 3 into slot
 	pop hl
 .asm_8eaab
-	ld bc, $10
+	ld bc, $10 ;go down 16
 	add hl, bc
 	dec e
-	jr nz, .asm_8ea95
+	jr nz, .asm_8ea95 ;loop 6 times
 	ret
 
 INCLUDE "menu/mon_icons.asm"

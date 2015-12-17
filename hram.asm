@@ -34,7 +34,7 @@ hJoypadSum         EQU $ffa5
 hJoyReleased       EQU $ffa6
 hJoyPressed        EQU $ffa7
 hJoyDown           EQU $ffa8 ;buttons on last frame
-
+;ffa9 = joylast, which is set to either hJoyPressed if in menu, else hJoyDown
 hConnectionStripLength EQU $ffaf
 hConnectedMapWidth EQU $ffb0
 
