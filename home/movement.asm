@@ -200,7 +200,7 @@ Function1c07:: ; 0x1c07
 	ret
 
 Function1c10:: ; 0x1c10
-	callab Function2446d fill rest of menu data?
+	callab Function2446d ;fill rest of menu data?
 	ret
 
 Function1c17:: ; 0x1c17
