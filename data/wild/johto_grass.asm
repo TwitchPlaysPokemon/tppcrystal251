@@ -349,57 +349,115 @@
 
 	db GROUP_RUINS_OF_ALPH_OUTSIDE, MAP_RUINS_OF_ALPH_OUTSIDE
 	db $0a,$0a,$0a ; encounter rates: morn/day/nite
-	; morn
-	db 20,NATU
-	db 22,NATU
-	db 18,NATU
-	db 24,NATU
-	db 20,SMEARGLE
-	db 22,SMEARGLE
-	db 22,SMEARGLE
-	; day
-	db 20,NATU
-	db 22,NATU
-	db 18,NATU
-	db 24,NATU
-	db 20,SMEARGLE
-	db 22,SMEARGLE
-	db 22,SMEARGLE
-	; nite
-	db 20,NATU
-	db 22,NATU
-	db 18,NATU
-	db 24,NATU
-	db 22,WOOPER
-	db 22,QUAGSIRE
-	db 22,QUAGSIRE
+	db 40
+	db $03
+;morning
+		db PICHU ;15
+		db CLEFFA ;10
+		db SKARMORY ;10
+		db BELLOSSOM ;10
+		db TYROGUE ;10
+		db TYROGUE ;5
+		db SMEARGLE ;5
+		db SMEARGLE ;5
+		db SMEARGLE ;5
+		db TEDDIURSA ;5
+		db TEDDIURSA ;5
+		db TEDDIURSA ;5
+		db URSARING ;4
+		db TEDDIURSA ;3
+		db URSARING ;2
+		db URSARING ;1
+;day
+		db IGGLYBUFF ;15
+		db PICHU ;10
+		db TYROGUE ;10
+		db TYROGUE ;10
+		db SMEARGLE ;10
+		db TEDDIURSA ;5
+		db TEDDIURSA ;5
+		db TEDDIURSA ;5
+		db CLEFFA ;5
+		db BELLOSSOM ;5
+		db SKARMORY ;5
+		db SKARMORY ;5
+		db URSARING ;4
+		db URSARING ;3
+		db TEDDIURSA ;2
+		db URSARING ;1
+;night
+		db CLEFFA ;15
+		db IGGLYBUFF ;10
+		db TYROGUE ;10
+		db SKARMORY ;10
+		db MISDREAVUS ;10
+		db MISDREAVUS ;5
+		db MISDREAVUS ;5
+		db MISDREAVUS ;5
+		db MISDREAVUS ;5
+		db PICHU ;5
+		db SMEARGLE ;5
+		db TEDDIURSA ;5
+		db URSARING ;4
+		db TEDDIURSA ;3
+		db URSARING ;2
+		db URSARING ;1
 
 	db GROUP_RUINS_OF_ALPH_INNER_CHAMBER, MAP_RUINS_OF_ALPH_INNER_CHAMBER
 	db $0f,$0f,$0f ; encounter rates: morn/day/nite
-	; morn
-	db 5,UNOWN
-	db 5,UNOWN
-	db 5,UNOWN
-	db 5,UNOWN
-	db 5,UNOWN
-	db 5,UNOWN
-	db 5,UNOWN
-	; day
-	db 5,UNOWN
-	db 5,UNOWN
-	db 5,UNOWN
-	db 5,UNOWN
-	db 5,UNOWN
-	db 5,UNOWN
-	db 5,UNOWN
-	; nite
-	db 5,UNOWN
-	db 5,UNOWN
-	db 5,UNOWN
-	db 5,UNOWN
-	db 5,UNOWN
-	db 5,UNOWN
-	db 5,UNOWN
+	db 50
+	db $00
+;morning
+		db UNOWN ;30
+		db UNOWN ;10
+		db UNOWN ;10
+		db UNOWN ;10
+		db UNOWN ;5
+		db UNOWN ;5
+		db UNOWN ;5
+		db UNOWN ;5
+		db UNOWN ;4
+		db UNOWN ;4
+		db UNOWN ;3
+		db UNOWN ;3
+		db UNOWN ;2
+		db UNOWN ;2
+		db UNOWN ;1
+		db UNOWN ;1
+;day
+		db UNOWN ;30
+		db UNOWN ;10
+		db UNOWN ;10
+		db UNOWN ;10
+		db UNOWN ;5
+		db UNOWN ;5
+		db UNOWN ;5
+		db UNOWN ;5
+		db UNOWN ;4
+		db UNOWN ;4
+		db UNOWN ;3
+		db UNOWN ;3
+		db UNOWN ;2
+		db UNOWN ;2
+		db UNOWN ;1
+		db UNOWN ;1
+;night
+		db UNOWN ;30
+		db UNOWN ;10
+		db UNOWN ;10
+		db UNOWN ;10
+		db UNOWN ;5
+		db UNOWN ;5
+		db UNOWN ;5
+		db UNOWN ;5
+		db UNOWN ;4
+		db UNOWN ;4
+		db UNOWN ;3
+		db UNOWN ;3
+		db UNOWN ;2
+		db UNOWN ;2
+		db UNOWN ;1
+		db UNOWN ;1
 
 	db GROUP_UNION_CAVE_1F, MAP_UNION_CAVE_1F
 	db $0f ; encounter rates: morn/day/nite
@@ -1426,112 +1484,228 @@
 
 	db GROUP_SILVER_CAVE_ROOM_1, MAP_SILVER_CAVE_ROOM_1
 	db $0f,$0f,$0f ; encounter rates: morn/day/nite
-	; morn
-	db 43,GRAVELER
-	db 44,URSARING
-	db 42,ONIX
-	db 45,MAGMAR
-	db 45,GOLBAT
-	db 20,LARVITAR
-	db 15,LARVITAR
-	; day
-	db 43,GRAVELER
-	db 44,URSARING
-	db 42,ONIX
-	db 45,MAGMAR
-	db 45,GOLBAT
-	db 20,LARVITAR
-	db 15,LARVITAR
-	; nite
-	db 43,GRAVELER
-	db 44,GOLBAT
-	db 42,ONIX
-	db 42,GOLBAT
-	db 45,GOLDUCK
-	db 46,GOLBAT
-	db 46,GOLBAT
+	db 100
+	db $03
+;morning
+		db STEELIX ;15
+		db FLAREON ;10
+		db MAGMAR ;10
+		db CROBAT ;10
+		db DONPHAN ;10
+		db GOLEM ;5
+		db GOLEM ;5
+		db DUGTRIO ;5
+		db BLASTOISE ;5
+		db BLASTOISE ;5
+		db HITMONLEE ;5
+		db HITMONLEE ;5
+		db LARVITAR ;4
+		db LARVITAR ;3
+		db LARVITAR ;2
+		db LARVITAR ;1
+;day
+		db CROBAT ;15
+		db FLAREON ;10
+		db MAGMAR ;10
+		db STEELIX ;10
+		db BLASTOISE ;10
+		db BLASTOISE ;5
+		db DUGTRIO ;5
+		db DONPHAN ;5
+		db DUGTRIO ;5
+		db DUGTRIO ;5
+		db HITMONLEE ;5
+		db HITMONLEE ;5
+		db LARVITAR ;4
+		db LARVITAR ;3
+		db LARVITAR ;2
+		db LARVITAR ;1
+;night
+		db DONPHAN ;15
+		db FLAREON ;10
+		db MAGMAR ;10
+		db GOLEM ;10
+		db DUGTRIO ;10
+		db GOLEM ;5
+		db CROBAT ;5
+		db BLASTOISE ;5
+		db STEELIX ;5
+		db GOLEM ;5
+		db HITMONLEE ;5
+		db HITMONLEE ;5
+		db LARVITAR ;4
+		db LARVITAR ;3
+		db LARVITAR ;2
+		db LARVITAR ;1
 
 	db GROUP_SILVER_CAVE_ROOM_2, MAP_SILVER_CAVE_ROOM_2
 	db $0f,$0f,$0f ; encounter rates: morn/day/nite
-	; morn
-	db 48,GOLBAT
-	db 48,MACHOKE
-	db 47,URSARING
-	db 46,PARASECT
-	db 48,PARASECT
-	db 15,LARVITAR
-	db 20,LARVITAR
-	; day
-	db 48,GOLBAT
-	db 48,MACHOKE
-	db 47,URSARING
-	db 46,PARASECT
-	db 48,PARASECT
-	db 15,LARVITAR
-	db 20,LARVITAR
-	; nite
-	db 48,GOLBAT
-	db 48,GOLDUCK
-	db 46,GOLBAT
-	db 46,PARASECT
-	db 48,PARASECT
-	db 45,MISDREAVUS
-	db 45,MISDREAVUS
+	db 100
+	db $03
+;morning
+		db FERALIGATR ;15
+		db VAPOREON ;10
+		db UMBREON ;10
+		db URSARING ;10
+		db JYNX;10
+		db JYNX ;5
+		db DRAGONITE ;5
+		db RHYDON ;5
+		db KANGASKHAN ;5
+		db KANGASKHAN ;5
+		db HITMONCHAN ;5
+		db HITMONCHAN ;5
+		db PUPITAR ;4
+		db PUPITAR ;3
+		db PUPITAR ;2
+		db PUPITAR ;1
+;day
+		db DRAGONITE ;15
+		db VAPOREON ;10
+		db UMBREON ;10
+		db JYNX ;10
+		db RHYDON ;10
+		db RHYDON ;5
+		db FERALIGATR ;5
+		db URSARING ;5
+		db KANGASKHAN ;5
+		db KANGASKHAN ;5
+		db HITMONCHAN ;5
+		db HITMONCHAN ;5
+		db PUPITAR ;4
+		db PUPITAR ;3
+		db PUPITAR ;2
+		db PUPITAR ;1
+;night
+		db URSARING ;15
+		db VAPOREON ;10
+		db UMBREON ;10
+		db FERALIGATR ;10
+		db DRAGONITE ;10
+		db RHYDON ;5
+		db RHYDON ;5
+		db JYNX ;5
+		db KANGASKHAN ;5
+		db KANGASKHAN ;5
+		db HITMONCHAN ;5
+		db HITMONCHAN ;5
+		db PUPITAR ;4
+		db PUPITAR ;3
+		db PUPITAR ;2
+		db PUPITAR ;1
 
 	db GROUP_SILVER_CAVE_ROOM_3, MAP_SILVER_CAVE_ROOM_3
 	db $0f,$0f,$0f ; encounter rates: morn/day/nite
-	; morn
-	db 51,GOLBAT
-	db 48,ONIX
-	db 48,GRAVELER
-	db 50,URSARING
-	db 20,LARVITAR
-	db 15,LARVITAR
-	db 20,PUPITAR
-	; day
-	db 51,GOLBAT
-	db 48,ONIX
-	db 48,GRAVELER
-	db 50,URSARING
-	db 20,LARVITAR
-	db 15,LARVITAR
-	db 20,PUPITAR
-	; nite
-	db 51,GOLBAT
-	db 48,ONIX
-	db 48,GRAVELER
-	db 49,GOLBAT
-	db 45,GOLDUCK
-	db 53,GOLBAT
-	db 53,GOLBAT
+	db 100
+	db $03
+;morning
+		db TYPHLOSION ;15
+		db CHARIZARD ;10
+		db ELECTABUZZ ;10
+		db HITMONTOP ;10
+		db ALAKAZAM ;10
+		db GENGAR ;5
+		db ESPEON ;5
+		db ESPEON ;5
+		db JOLTEON ;5
+		db JOLTEON ;5
+		db SNORLAX ;5
+		db SNORLAX ;5
+		db TYRANITAR ;4
+		db TYRANITAR ;3
+		db TYRANITAR ;2
+		db TYRANITAR ;1
+;day
+		db CHARIZARD ;15
+		db GENGAR ;10
+		db ELECTABUZZ ;10
+		db HITMONTOP ;10
+		db ALAKAZAM ;10
+		db TYPHLOSION ;5
+		db ESPEON ;5
+		db ESPEON ;5
+		db JOLTEON ;5
+		db JOLTEON ;5
+		db SNORLAX ;5
+		db SNORLAX ;5
+		db TYRANITAR ;4
+		db TYRANITAR ;3
+		db TYRANITAR ;2
+		db TYRANITAR ;1
+;night
+		db GENGAR ;15
+		db TYPHLOSION ;10
+		db ELECTABUZZ ;10
+		db HITMONTOP ;10
+		db ALAKAZAM ;10
+		db CHARIZARD ;5
+		db ESPEON ;5
+		db ESPEON ;5
+		db JOLTEON ;5
+		db JOLTEON ;5
+		db SNORLAX ;5
+		db SNORLAX ;5
+		db TYRANITAR ;4
+		db TYRANITAR ;3
+		db TYRANITAR ;2
+		db TYRANITAR ;1
 
 	db GROUP_SILVER_CAVE_ITEM_ROOMS, MAP_SILVER_CAVE_ITEM_ROOMS
 	db $0f,$0f,$0f ; encounter rates: morn/day/nite
-	; morn
-	db 48,GOLBAT
-	db 46,GOLBAT
-	db 50,GOLBAT
-	db 46,PARASECT
-	db 48,PARASECT
-	db 50,PARASECT
-	db 52,PARASECT
-	; day
-	db 48,GOLBAT
-	db 46,GOLBAT
-	db 50,GOLBAT
-	db 46,PARASECT
-	db 48,PARASECT
-	db 50,PARASECT
-	db 52,PARASECT
-	; nite
-	db 45,MISDREAVUS
-	db 48,GOLBAT
-	db 50,GOLBAT
-	db 46,PARASECT
-	db 48,PARASECT
-	db 50,PARASECT
-	db 52,PARASECT
-
+	db 100
+	db $03
+;morning
+		db TYPHLOSION ;15
+		db CHARIZARD ;10
+		db ELECTABUZZ ;10
+		db HITMONTOP ;10
+		db ALAKAZAM ;10
+		db GENGAR ;5
+		db ESPEON ;5
+		db ESPEON ;5
+		db JOLTEON ;5
+		db JOLTEON ;5
+		db SNORLAX ;5
+		db SNORLAX ;5
+		db TYRANITAR ;4
+		db TYRANITAR ;3
+		db TYRANITAR ;2
+		db TYRANITAR ;1
+;day
+		db CHARIZARD ;15
+		db GENGAR ;10
+		db ELECTABUZZ ;10
+		db HITMONTOP ;10
+		db ALAKAZAM ;10
+		db TYPHLOSION ;5
+		db ESPEON ;5
+		db ESPEON ;5
+		db JOLTEON ;5
+		db JOLTEON ;5
+		db SNORLAX ;5
+		db SNORLAX ;5
+		db TYRANITAR ;4
+		db TYRANITAR ;3
+		db TYRANITAR ;2
+		db TYRANITAR ;1
+;night
+		db GENGAR ;15
+		db TYPHLOSION ;10
+		db ELECTABUZZ ;10
+		db HITMONTOP ;10
+		db ALAKAZAM ;10
+		db CHARIZARD ;5
+		db ESPEON ;5
+		db ESPEON ;5
+		db JOLTEON ;5
+		db JOLTEON ;5
+		db SNORLAX ;5
+		db SNORLAX ;5
+		db TYRANITAR ;4
+		db TYRANITAR ;3
+		db TYRANITAR ;2
+		db TYRANITAR ;1
+	
 	db GROUP_DARK_CAVE_VIOLET_ENTRANCE, MAP_DARK_CAVE_VIOLET_ENTRANCE
 	db $0a ; encounter rates: morn/day/nite
 	db 20
@@ -2542,29 +2716,58 @@
 
 	db GROUP_SILVER_CAVE_OUTSIDE, MAP_SILVER_CAVE_OUTSIDE
 	db $19,$19,$19 ; encounter rates: morn/day/nite
-	; morn
-	db 41,TANGELA
-	db 42,PONYTA
-	db 42,ARBOK
-	db 44,RAPIDASH
-	db 41,DODUO
-	db 43,DODRIO
-	db 43,DODRIO
-	; day
-	db 41,TANGELA
-	db 42,PONYTA
-	db 42,ARBOK
-	db 44,RAPIDASH
-	db 41,DODUO
-	db 43,DODRIO
-	db 43,DODRIO
-	; nite
-	db 41,TANGELA
-	db 42,POLIWHIRL
-	db 42,GOLBAT
-	db 44,POLIWHIRL
-	db 40,GOLBAT
-	db 44,GOLBAT
-	db 44,GOLBAT
+	db 100
+	db $03
+;morning
+		db VILEPLUME ;15
+		db FERALIGATR ;10
+		db AZUMARILL ;10
+		db ARBOK ;10
+		db URSARING ;10
+		db DONPHAN ;5
+		db DONPHAN ;5
+		db VENUSAUR ;5
+		db VENUSAUR ;5
+		db VENUSAUR ;5
+		db MEGANIUM ;5
+		db MEGANIUM ;5
+		db POLIWRATH ;4
+		db MEGANIUM ;3
+		db MEGANIUM ;2
+		db POLIWRATH ;1
+;day
+		db MEGANIUM ;15
+		db VENUSAUR ;10
+		db POLIWRATH ;10
+		db AZUMARILL ;10
+		db ARBOK ;10
+		db AZUMARILL ;5
+		db ARBOK ;5
+		db FERALIGATR ;5
+		db URSARING ;5
+		db URSARING ;5
+		db URSARING ;5
+		db DONPHAN ;5
+		db DONPHAN ;4
+		db DONPHAN ;3
+		db DONPHAN ;2
+		db DONPHAN ;1
+;night
+		db CROBAT ;15
+		db VILEPLUME ;10
+		db FERALIGATR ;10
+		db POLIWRATH ;10
+		db SNEASEL ;10
+		db FERALIGATR ;5
+		db POLIWRATH ;5
+		db SNEASEL ;5
+		db MISDREAVUS ;5
+		db MISDREAVUS ;5
+		db MISDREAVUS ;5
+		db ARBOK ;5
+		db MEGANIUM ;4
+		db VENUSAUR ;3
+		db VENUSAUR ;2
+		db MEGANIUM ;1
 
 	db $ff ; end

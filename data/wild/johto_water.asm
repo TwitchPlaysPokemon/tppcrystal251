@@ -627,9 +627,59 @@
 
 	db GROUP_SILVER_CAVE_ROOM_2, MAP_SILVER_CAVE_ROOM_2
 	db $05 ; encounter rate
-	db 35,SEAKING
-	db 35,GOLDUCK
-	db 35,GOLDEEN
+	db 100
+	db $03
+;morning
+		db VAPOREON ;15
+		db OCTILLERY ;10
+		db KINGDRA ;10
+		db LAPRAS ;10
+		db DRAGONITE ;10
+		db FERALIGATR ;5
+		db CORSOLA ;5
+		db CORSOLA ;5
+		db GYARADOS ;5
+		db GYARADOS ;5
+		db SEAKING ;5
+		db SEAKING ;5
+		db STARMIE ;4
+		db STARMIE ;3
+		db STARMIE ;2
+		db STARMIE ;1
+;day
+		db FERALIGATR ;15
+		db OCTILLERY ;10
+		db KINGDRA ;10
+		db LAPRAS ;10
+		db VAPOREON ;10
+		db DRAGONITE ;5
+		db CORSOLA ;5
+		db CORSOLA ;5
+		db GYARADOS ;5
+		db GYARADOS ;5
+		db SEAKING ;5
+		db SEAKING ;5
+		db STARMIE ;4
+		db STARMIE ;3
+		db STARMIE ;2
+		db STARMIE ;1
+;night
+		db DRAGONITE ;15
+		db OCTILLERY ;10
+		db KINGDRA ;10
+		db LAPRAS ;10
+		db FERALIGATR ;10
+		db VAPOREON ;5
+		db CORSOLA ;5
+		db CORSOLA ;5
+		db GYARADOS ;5
+		db GYARADOS ;5
+		db SEAKING ;5
+		db SEAKING ;5
+		db STARMIE ;4
+		db STARMIE ;3
+		db STARMIE ;2
+		db STARMIE ;1
 
 	db GROUP_DARK_CAVE_VIOLET_ENTRANCE, MAP_DARK_CAVE_VIOLET_ENTRANCE
 	db $05 ; encounter rate
@@ -1821,8 +1871,58 @@
 
 	db GROUP_SILVER_CAVE_OUTSIDE, MAP_SILVER_CAVE_OUTSIDE
 	db $05 ; encounter rate
-	db 35
-	db $02
-
+	db 100
+	db $03
+;morning
+		db POLIWRATH ;15
+		db BLASTOISE ;10
+		db FERALIGATR ;10
+		db CORSOLA ;10
+		db STARMIE ;10
+		db POLITOED ;5
+		db POLITOED ;5
+		db POLITOED ;5
+		db SEAKING ;5
+		db AZUMARILL ;5
+		db KINGDRA ;5
+		db OCTILLERY ;5
+		db OCTILLERY ;4
+		db OCTILLERY ;3
+		db OCTILLERY ;2
+		db OCTILLERY ;1
+;day
+		db FERALIGATR ;15
+		db POLIWRATH ;10
+		db AZUMARILL ;10
+		db CORSOLA ;10
+		db STARMIE ;10
+		db BLASTOISE ;5
+		db POLITOED ;5
+		db SEAKING ;5
+		db SEAKING ;5
+		db SEAKING ;5
+		db KINGDRA ;5
+		db KINGDRA ;5
+		db KINGDRA ;4
+		db OCTILLERY ;3
+		db OCTILLERY ;2
+		db KINGDRA ;1
+;night
+		db BLASTOISE ;15
+		db POLITOED ;10
+		db SEAKING ;10
+		db CORSOLA ;10
+		db STARMIE ;10
+		db KINGDRA ;5
+		db KINGDRA ;5
+		db POLIWRATH ;5
+		db CORSOLA ;5
+		db AZUMARILL ;5
+		db AZUMARILL ;5
+		db AZUMARILL ;5
+		db AZUMARILL ;4
+		db FERALIGATR ;3
+		db FERALIGATR ;2
+		db AZUMARILL ;1
 
 	db $ff ; end
