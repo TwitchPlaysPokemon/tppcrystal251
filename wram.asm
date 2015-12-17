@@ -2554,7 +2554,8 @@ wdfec:: ds 1
 	ds 5
 wdff5:: ds 2
 wdff7:: ds 1
-wdff8::
+wdff8:: ds 1 ; AI Control byte
+wdff9:: ds 1 ; AI Control (player item usage)
 
 
 SECTION "Pic Animations", WRAMX, BANK [2]
