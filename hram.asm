@@ -75,3 +75,6 @@ hDMATransfer       EQU $ffe8
 ; LUA serial transfer
 hLSB               EQU $fff1
 hLSC               EQU $fff2
+
+hMPTmp             EQU $fff5
+hMPTmp3		       EQU $fff6

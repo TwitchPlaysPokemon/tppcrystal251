@@ -1,7 +1,7 @@
 ; A little space between Joypad intterupt and ROM header that could
 
 IF DEF(BEESAFREE)
-ResetLUASerial:
+ResetLUASerial::
 	; Send 0 until 0 is received
 	ld a, BEESAFREE_SND_RESET
 	rst LUASerial
