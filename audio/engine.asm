@@ -410,6 +410,10 @@ UpdateChannels: ; e8125
 	push hl
 	ld a, [wc293]
 	and a, $0f ; only 0-9 are valid
+	; don't do anything if the intensity is $xf
+	; this is useful for custom wave samples
+	cp $f
+	jr z, .skipwavecopy 
 	ld l, a
 	ld h, $00
 	; hl << 4
@@ -454,6 +458,7 @@ UpdateChannels: ; e8125
 	ld [$ff3e], a
 	ld a, [hli]
 	ld [$ff3f], a
+.skipwavecopy
 	pop hl
 	ld a, [wc293]
 	and a, $f0
@@ -1383,7 +1388,7 @@ MusicCommands: ; e8720
 	dw MusicEE ;
 	dw MusicEF ; stereo panning
 	dw MusicF0 ; sfx noise sampling
-	dw MusicF1 ; nothing
+	dw MusicF1 ; custom wave sample
 	dw MusicF2 ; nothing
 	dw MusicF3 ; nothing
 	dw MusicF4 ; nothing
@@ -1401,6 +1406,17 @@ MusicCommands: ; e8720
 ; e8780
 
 MusicF1: ; e8780
+; loads a custom wave sample
+; params: 16
+	ld e, 16
+	ld hl, $ff30
+.loop
+	call GetMusicByte
+	ld [hli], a
+	dec e
+	jr nz, .loop
+	ret
+
 MusicF2: ; e8780
 MusicF3: ; e8780
 MusicF4: ; e8780

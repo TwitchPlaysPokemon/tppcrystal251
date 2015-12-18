@@ -1327,7 +1327,7 @@ TitleScreenTimer: ; 62f6
 
 ; Start a timer
 	ld hl, wcf65
-	ld de, $1140 ; 73.6 seconds
+	ld de, 75*60 ; 75 seconds, according to my tracker
 	ld [hl], e
 	inc hl
 	ld [hl], d
