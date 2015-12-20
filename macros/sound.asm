@@ -228,4 +228,16 @@ callchannel: macro
 endchannel: macro
 	db $ff
 	endm
+	
+customwave: macro
+	db $f1
+	dw \1
+	dw \2
+	dw \3
+	dw \4
+	dw \5
+	dw \6
+	dw \7
+	dw \8
+	endm
 
