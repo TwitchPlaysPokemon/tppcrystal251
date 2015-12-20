@@ -283,7 +283,7 @@ wc2cc:: ds 1
 wc2cd:: ds 1
 wc2ce:: ds 1
 wc2cf:: ds 1
-wc2d0:: ds 4
+wc2d0:: ds 4 ;first nyble of ToD map data
 wc2d4:: ds 1
 wc2d5:: ds 1
 wc2d6:: ds 1
@@ -1387,10 +1387,10 @@ CurFruit:: ; d03f
 	ds 1
 
 wd040::
-MartPointer:: ; d040
+MartPointer:: ; d040 and direction trainer is facing
 	ds 1
 
-wd041:: ds 1
+wd041:: ds 1 ;holds trainer map object data(12 bytes), 0 if player moves
 MovementAnimation:: ; d042
 	ds 1
 
@@ -1407,10 +1407,10 @@ WalkingY:: ; d046
 WalkingTile:: ; d047
 	ds 1
 
-wd048:: ds 3
+wd048:: ds 3 
 wd04b:: ds 2
-wd04d:: ds 1
-wd04e:: ds 2
+wd04d:: ds 1 ;zero if facing a trainer
+wd04e:: ds 2 ;0 or f0 skips ice check? walk in place anim
 wd050:: ds 10
 wd05a:: ds 12
 wd066:: ds 10
@@ -1528,7 +1528,7 @@ wd14d:: ds 1
 wd14e:: ds 1
 wd14f:: ds 1
 wd150:: ds 1
-wd151:: ds 1
+wd151:: ds 1 
 wd152:: ds 1
 wd153:: ds 1
 
@@ -1547,7 +1547,7 @@ wd193:: ds 1
 wd194:: ds 1
 wd195:: ds 1
 wd196:: ds 1
-wd197:: ds 2
+wd197:: ds 2 ;d198 is location of map header data(5 bytes)
 wTileset::
 wd199:: ds 1
 wd19a:: ds 3
@@ -1808,7 +1808,7 @@ CurDamage:: ; d256
 
 	ds 2
 wd25a:: ds 1 ;land encounter rate reduced in attempt to get this to compile, but failed, SIDE EFFECTS UNKOWN
-wd25d:: ds 1 ;water encounter rate
+wd25d:: ds 3 ;water encounter rate
 wd25e:: ds 4
 wd262:: ds 1
 wd263:: ds 1
@@ -1892,7 +1892,7 @@ wd454:: ds 1
 wd459:: ds 2
 wd45b:: ds 1
 wd45c:: ds 8
-wd464:: ds 1
+wd464:: ds 1 ;time since last update
 wd465:: ds 1
 wd466:: ds 6
 wd46c:: ds 1
@@ -1964,14 +1964,14 @@ wd4d1:: ds 5
 
 ObjectStructs::
 
-PlayerStruct:: ; d4d6
+PlayerStruct:: ; d4d6 byte 1 is sprite, byte 2 is index
 	ds 2
 PlayerSprite:: ; d4d8
 	ds 1
 	ds 3
 PlayerPalette:: ; d4dc
 	ds 1
-	ds 1
+	ds 1 ;walking
 PlayerDirection:: ; d4de
 ; uses bits 2 and 3 / $0c / %00001100
 ; %00 down
@@ -1979,7 +1979,7 @@ PlayerDirection:: ; d4de
 ; %10 left
 ; $11 right
 	ds 1
-	ds 2
+	ds 2 
 PlayerAction:: ; d4e1
 ; 1 standing
 ; 2 walking
@@ -2303,25 +2303,25 @@ BikeFlags:: ; dbf5
 ; bit 2: downhill
 	ds 1
 
-	ds 3
+	ds 3 
 
 wdbf9:: ds 2
-wdbfb:: ds 1
-wdbfc:: ds 1
+wdbfb:: ds 1 ;map warp count
+wdbfc:: ds 1 ;warp header pointer
 wdbfd:: ds 1
-wdbfe:: ds 1
-wdbff:: ds 1
+wdbfe:: ds 1 ;xytrigger number
+wdbff:: ds 1 ;xytrigger pointer
 wdc00:: ds 1
-wdc01:: ds 1
-wdc02:: ds 1
+wdc01:: ds 1 ;sign number
+wdc02:: ds 1 ;sign pointer
 wdc03:: ds 1
-wdc04:: ds 1
-wdc05:: ds 1
+wdc04:: ds 1 ;number of objects?
+wdc05:: ds 1 ;pointer to top object
 wdc06:: ds 1
-wdc07:: ds 2
+wdc07:: ds 2;number of triggers in the map. wdc08 and 9: pointer to first trigger
 wdc09:: ds 1
-wdc0a:: ds 1
-wdc0b:: ds 2
+wdc0a:: ds 1 ; number of callbacks
+wdc0b:: ds 2 ;first callback location
 wdc0d:: ds 1
 wdc0e:: ds 1
 

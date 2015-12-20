@@ -20,14 +20,14 @@ Function1b35:: ; 1b35
 	ret
 ; 1b3f
 
-Function1b3f:: ; 1b3f
+Function1b3f:: ; 1b3f load a into movementbuffer + default flypoint+1
 	push hl
 	push de
-	ld hl, DefaultFlypoint
+	ld hl, DefaultFlypoint 
 	ld e, [hl]
 	inc [hl]
 	ld d, 0
-	ld hl, MovementBuffer
+	ld hl, MovementBuffer 
 	add hl, de
 	ld [hl], a
 	pop de

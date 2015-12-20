@@ -38,6 +38,8 @@ hJoyDown           EQU $ffa8 ;buttons on last frame
 hConnectionStripLength EQU $ffaf
 hConnectedMapWidth EQU $ffb0
 
+;$ffe0 = trainer object
+
 hPastLeadingZeroes EQU $ffb3
 
 hDividend          EQU $ffb3

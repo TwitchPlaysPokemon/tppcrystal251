@@ -1,4 +1,59 @@
 ; Kanto Pokémon in grass
+	db GROUP_REDS_HOUSE_2F, MAP_REDS_HOUSE_2F
+	db $bc ; encounter rates: morn/day/nite
+	db 60
+	db $00
+;morning
+		db DIGLETT ;30
+		db DUGTRIO ;10
+		db DIGLETT ;10
+		db DIGLETT ;10
+		db DUGTRIO ;5
+		db DIGLETT ;5
+		db DIGLETT ;5
+		db DIGLETT ;5
+		db DIGLETT ;4
+		db DIGLETT ;4
+		db DIGLETT ;3
+		db DIGLETT ;3
+		db DIGLETT ;2
+		db DIGLETT ;2
+		db DIGLETT ;1
+		db DIGLETT ;1
+;day
+		db DIGLETT ;30
+		db DUGTRIO ;10
+		db DIGLETT ;10
+		db DIGLETT ;10
+		db DUGTRIO ;5
+		db DIGLETT ;5
+		db DIGLETT ;5
+		db DIGLETT ;5
+		db DIGLETT ;4
+		db DIGLETT ;4
+		db DIGLETT ;3
+		db DIGLETT ;3
+		db DIGLETT ;2
+		db DIGLETT ;2
+		db DIGLETT ;1
+		db DIGLETT ;1
+;night
+		db DIGLETT ;30
+		db DUGTRIO ;10
+		db DIGLETT ;10
+		db DIGLETT ;10
+		db DUGTRIO ;5
+		db DUGTRIO ;5
+		db DIGLETT ;5
+		db DIGLETT ;5
+		db DIGLETT ;4
+		db DIGLETT ;4
+		db DIGLETT ;3
+		db DIGLETT ;3
+		db DIGLETT ;2
+		db DIGLETT ;2
+		db DIGLETT ;1
+		db DIGLETT ;1
 
 	db GROUP_DIGLETTS_CAVE, MAP_DIGLETTS_CAVE
 	db $0a ; encounter rates: morn/day/nite

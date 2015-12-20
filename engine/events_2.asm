@@ -156,7 +156,7 @@ Function97cfd:: ; 97cfd if encounters are on(?) , is on encounter enabled tile (
 
 .asm_97d17
 	ld a, [StandingTile]
-	call CheckIceTile ;if $23 or $2b, ret, otherwise scf and ret
+	call CheckIceTile ;if not $23 or $2b, scf 
 	jr z, .asm_97d21
 	scf
 	ret
@@ -180,7 +180,7 @@ Function97d31:: ; 97d31
 .asm_97d31
 	call Random
 	cp 100 << 1 ;???? unknown syntax
-	jr nc, .asm_97d31 ;loop until < 100 (optimise)
+	jr nc, .asm_97d31 ;loop until < 200
 	srl a ; divide by 2
 
 	ld hl, ContestMons
@@ -315,7 +315,7 @@ Function97db5: ; 97db5
 	ret
 ; 97df9
 
-Function97df9:: ; 97df9
+Function97df9:: ; 97df9 clear top 4 of command queue 
 	ld hl, wd6de
 	ld de, $0006
 	ld c, $4
@@ -328,26 +328,26 @@ Function97df9:: ; 97df9
 	ret
 ; 97e08
 
-Function97e08:: ; 97e08
+Function97e08:: ; 97e08 ;run pitfall check or set wd173 or do stuff with SCY based on bc based on command queue
 	ld hl, wd6de
 	xor a
 .asm_97e0c
-	ld [hConnectionStripLength], a
-	ld a, [hl]
+	ld [hConnectionStripLength], a ;load loop counter
+	ld a, [hl] ;if command queue = 0, skip
 	and a
 	jr z, .asm_97e19
 	push hl
 	ld b, h
 	ld c, l
-	call Function97e79
+	call Function97e79 ;run pitfall check or set wd173 or do stuff with SCY based on bc
 	pop hl
 
 .asm_97e19
-	ld de, $0006
+	ld de, $0006 ;go to next command
 	add hl, de
 	ld a, [hConnectionStripLength]
 	inc a
-	cp $4
+	cp $4 ;loop 4 times
 	jr nz, .asm_97e0c
 	ret
 ; 97e25
@@ -427,18 +427,18 @@ Function97e72: ; 97e72
 	ret
 ; 97e79
 
-Function97e79: ; 97e79
+Function97e79: ; 97e79 run pitfall check or set wd173 or do stuff with SCY based on bc
 	ld hl, $0000
-	add hl, bc
-	ld a, [hl]
+	add hl, bc ;bc = wd6de
+	ld a, [hl] ;load byte bc
 	cp 5
-	jr c, .asm_97e83
+	jr c, .asm_97e83 ;if >= 5, a = 0
 	xor a
 
 .asm_97e83
 	ld e, a
 	ld d, 0
-	ld hl, Table97e94
+	ld hl, Table97e94 ;go down to function and call it
 	add hl, de
 	add hl, de
 	add hl, de
@@ -453,14 +453,14 @@ Function97e79: ; 97e79
 ; 97e94
 
 Table97e94: ; 97e94
-	dbw BANK(Function97eb7), Function97eb7
-	dbw BANK(Function97eb8), Function97eb8
-	dbw BANK(Function97f42), Function97f42
-	dbw BANK(Function97ef9), Function97ef9
-	dbw BANK(Function97ebc), Function97ebc
+	dbw BANK(Function97eb7), Function97eb7 ;ret
+	dbw BANK(Function97eb8), Function97eb8 ;ret
+	dbw BANK(Function97f42), Function97f42 ;check if any object_struct is on a pitfall, and if they are run script?
+	dbw BANK(Function97ef9), Function97ef9 ;set wd173 based on spitedirection and bc+5
+	dbw BANK(Function97ebc), Function97ebc ;if bc+5 = 1, load scy into bc+4, inc bc+5 and set SCY depending on [bc+1]-1 and [bc+2], and dec [bc+1],else just set SCY depending on [bc+1]-1 and [bc+2]
 ; 97ea3
 
-Function97ea3: ; 97ea3
+Function97ea3: ; 97ea3 ;run a function [bc+5] lines below this one
 	ld hl, $0005
 	add hl, bc
 	ld a, [hl]
@@ -476,7 +476,7 @@ Function97eab: ; 97eab
 	ret
 ; 97eb1
 
-Function97eb1: ; 97eb1
+Function97eb1: ; 97eb1 ;dec bc+5
 	ld hl, $0005
 	add hl, bc
 	dec [hl]
@@ -488,35 +488,35 @@ Function97eb7: ; 97eb7
 ; 97eb8
 
 Function97eb8: ; 97eb8
-	call Function2f3e
+	call Function2f3e ;ret
 	ret
 ; 97ebc
 
 Function97ebc: ; 97ebc
-	call Function97ea3
-	dw Function97ec3
-	dw Function97ecd
+	call Function97ea3 ;run a function [bc+5] lines below this one
+	dw Function97ec3 ;load scy into bc+4, inc bc+5 and run Function97ecd
+	dw Function97ecd ;set SCY depending on [bc+1]-1 and [bc+2], and dec [bc+1]
 ; 97ec3
 
 Function97ec3: ; 97ec3
-	ld a, [hSCY]
+	ld a, [hSCY] ;load scy into bc+4
 	ld hl, $0004
 	add hl, bc
 	ld [hl], a
-	call Function97eab
+	call Function97eab ;inc bc+5
 ; 97ecd
 
-Function97ecd: ; 97ecd
+Function97ecd: ; 97ecd set SCY depending on [bc+1]-1 and [bc+2], and dec [bc+1]
 	ld hl, $0001
 	add hl, bc
-	ld a, [hl]
+	ld a, [hl] ;dec bc+1
 	dec a
 	ld [hl], a
-	jr z, .asm_97eee
+	jr z, .asm_97eee ;if now 0, ;load bc+4 into SCY and bc = 0
 	and $1
-	jr z, .asm_97ee4
+	jr z, .asm_97ee4 ; if bit 1 set, continue, else SCY += [bc+3]
 	ld hl, $0002
-	add hl, bc
+	add hl, bc ; SCY -= [bc+2]
 	ld a, [hSCY]
 	sub [hl]
 	ld [hSCY], a
@@ -525,51 +525,51 @@ Function97ecd: ; 97ecd
 .asm_97ee4
 	ld hl, $0002
 	add hl, bc
-	ld a, [hSCY]
+	ld a, [hSCY] ;SCY += [bc+2]
 	add [hl]
 	ld [hSCY], a
 	ret
 
-.asm_97eee
+.asm_97eee 
 	ld hl, $0004
 	add hl, bc
 	ld a, [hl]
 	ld [hSCY], a
-	call Function97e72
+	call Function97e72 ;bc = 0
 	ret
 ; 97ef9
 
-Function97ef9: ; 97ef9
-	call Function97ea3
-	dw Function97f02
-	dw Function97f0a
-	dw Function97f1b
+Function97ef9: ; 97ef9 set wd173 based on spitedirection and bc+5
+	call Function97ea3 ;run a function [bc+5] lines below this one
+	dw Function97f02 ;if spritedirection is 0 load 127 into wd173 and 0 into bc+5 else, inc bc+5 and run Function97f0a
+	dw Function97f0a ;if spritedirection is 0 load 127 into wd173 and 0 into bc+5 else, inc bc+5 and load bc+2 into wd173
+	dw Function97f1b ;if spritedirection is 0 load 127 into wd173 and 0 into bc+5 else, dec bc+5 and wd173 = bc +3
 ; 97f02
 
 Function97f02: ; 97f02
-	call Function97f38
-	jr z, Function97f2c
-	call Function97eab
-; 97f0a
+	call Function97f38 ;a = spritedirection
+	jr z, Function97f2c ;if 0, load 127 into wd173 and 0 into bc+5
+	call Function97eab  ;else, inc bc+5
+; 97f0a fall through
 
 Function97f0a: ; 97f0a
-	call Function97f38
-	jr z, Function97f2c
-	call Function97eab
+	call Function97f38 ;a = spritedirection
+	jr z, Function97f2c ;if 0, load 127 into wd173 and 0 into bc+5
+	call Function97eab ;else, inc bc+5
 
 	ld hl, $0002
 	add hl, bc
 	ld a, [hl]
-	ld [wd173], a
+	ld [wd173], a ;load bc +2 into ??
 	ret
 ; 97f1b
 
 Function97f1b: ; 97f1b
-	call Function97f38
-	jr z, Function97f2c
-	call Function97eb1
+	call Function97f38 ;a = spritedirection
+	jr z, Function97f2c ;if 0, load 127 into wd173 and 0 into bc+5
+	call Function97eb1 ;else dec bc+5 and wd173 = bc +3
 
-	ld hl, $0003
+	ld hl, $0003 
 	add hl, bc
 	ld a, [hl]
 	ld [wd173], a
@@ -578,56 +578,56 @@ Function97f1b: ; 97f1b
 
 Function97f2c: ; 97f2c
 	ld a, $7f
-	ld [wd173], a
-	ld hl, $0005
+	ld [wd173], a ;load 127 into ??
+	ld hl, $0005 ;load 0 into a flag
 	add hl, bc
 	ld [hl], 0
 	ret
 ; 97f38
 
-Function97f38: ; 97f38
+Function97f38: ; 97f38 ;a = spritedirection
 	push bc
 	ld bc, PlayerStruct
-	call GetSpriteDirection
+	call GetSpriteDirection 
 	and a
 	pop bc
 	ret
 ; 97f42
 
-Function97f42: ; 97f42
+Function97f42: ; 97f42 check if any object_struct is on a pitfall, and if they are run script?
 	ld de, PlayerStruct
-	ld a, $d
+	ld a, $d ;loop 13 times
 .asm_97f47
 	push af
 
 	ld hl, $0000
 	add hl, de
-	ld a, [hl]
+	ld a, [hl] ;if = 0, skip
 	and a
 	jr z, .asm_97f71
 
 	ld hl, $0003
 	add hl, de
-	ld a, [hl]
+	ld a, [hl] ;if movement type != 25, skip
 	cp $19
 	jr nz, .asm_97f71
 
 	ld hl, $000e
 	add hl, de
-	ld a, [hl]
+	ld a, [hl] ;if current tile is not $60 or $67, skip
 	call CheckPitTile
 	jr nz, .asm_97f71
 
 	ld hl, $0007
 	add hl, de
-	ld a, [hl]
+	ld a, [hl] ;if walking = ff, skip
 	cp $ff
 	jr nz, .asm_97f71
-	call Function3567
-	jr c, .asm_97f7c
+	call Function3567 ;if a matching warp is found, run that warps script from command queue?
+	jr c, .asm_97f7c ;if sucsess, ret
 
 .asm_97f71
-	ld hl, $0028
+	ld hl, $0028 ;if faild, try next struct
 	add hl, de
 	ld d, h
 	ld e, l

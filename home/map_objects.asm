@@ -325,7 +325,7 @@ Function18f5:: ; 18f5
 
 Function194d:: ; 194d
 	ld [hConnectionStripLength], a
-	call GetMapObject
+	call GetMapObject ;map object a in bc
 	call Function80e7
 	ret
 ; 1956
@@ -336,14 +336,14 @@ Function1956:: ; 1956
 	ld [hConnectionStripLength], a
 	call Function271e
 	ld a, [hConnectionStripLength]
-	call GetMapObject
+	call GetMapObject ;map object a in bc
 	callba Function80e7
 	ret
 ; 1967
 
 Function1967:: ; 1967
 	ld [hConnectionStripLength], a
-	call GetMapObject
+	call GetMapObject ;map object a in bc
 	ld hl, $0000
 	add hl, bc
 	ld a, [hl]
@@ -382,7 +382,7 @@ Function199f:: ; 199f
 
 Function19a6:: ; 19a6
 	push hl
-	call GetMapObject
+	call GetMapObject ;map object a in bc
 	ld d, b
 	ld e, c
 	ld a, $ff
@@ -395,7 +395,7 @@ Function19a6:: ; 19a6
 ; 19b8
 
 Function19b8:: ; 19b8
-	call GetMapObject
+	call GetMapObject ;map object a in bc
 	ld hl, $0000
 	add hl, bc
 	ld a, [hl]

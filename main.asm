@@ -2434,46 +2434,46 @@ Function7021: ; 7021
 	ret
 ; 7041
 
-Function7041: ; 7041
+Function7041: ; 7041 ;if any object is in contact with de, ret c
 	ld bc, ObjectStructs
 	xor a
 .asm_7045
-	ld [$ffb0], a
-	call Function1af1
-	jr z, .asm_7093
+	ld [$ffb0], a ;load loop count into connected map width
+	call Function1af1 ;a = [bc]
+	jr z, .asm_7093 ;if zero, loop
 	ld hl, OBJECT_04
-	add hl, bc
-	bit 7, [hl]
+	add hl, bc ; if [bc+4] bit 7 = 1, loop
+	bit 7, [hl] 
 	jr nz, .asm_7093
-	ld hl, OBJECT_PALETTE
+	ld hl, OBJECT_PALETTE ;if bit 7 of bc + 6 = 0, check 1 spot?
 	add hl, bc
 	bit 7, [hl]
 	jr z, .asm_7063
-	call Function7171
-	jr nc, .asm_707b
+	call Function7171 ;ret c if d - objectx is 0 or 1 and e - yobject is 0 or 1 (check 4 spots? snorlax?)
+	jr nc, .asm_707b ;else branch
 	jr .asm_7073
 
 .asm_7063
 	ld hl, OBJECT_MAP_X
-	add hl, bc
+	add hl, bc 
 	ld a, [hl]
 	cp d
-	jr nz, .asm_707b
+	jr nz, .asm_707b 
 	ld hl, OBJECT_MAP_Y
 	add hl, bc
 	ld a, [hl]
 	cp e
-	jr nz, .asm_707b
+	jr nz, .asm_707b ;if objectxy != de, branch else fall
 
 .asm_7073
 	ld a, [$ffaf]
 	ld l, a
 	ld a, [$ffb0]
 	cp l
-	jr nz, .asm_70a2
+	jr nz, .asm_70a2 ;ret c if strip legnth = map width, else fall through
 
 .asm_707b
-	ld hl, OBJECT_NEXT_MAP_X
+	ld hl, OBJECT_NEXT_MAP_X ;ret c if strip legnth = map width and object nextxy = de, else fall through
 	add hl, bc
 	ld a, [hl]
 	cp d
@@ -2490,15 +2490,15 @@ Function7041: ; 7041
 	jr nz, .asm_70a2
 
 .asm_7093
-	ld hl, ObjectStruct2 - ObjectStruct1
+	ld hl, ObjectStruct2 - ObjectStruct1 ;check next object
 	add hl, bc
 	ld b, h
 	ld c, l
-	ld a, [$ffb0]
+	ld a, [$ffb0] ;loop up to 12 times
 	inc a
 	cp $d
 	jr nz, .asm_7045
-	and a
+	and a ;ret nc if fail
 	ret
 
 .asm_70a2
@@ -2663,15 +2663,15 @@ Function7113: ; 7113
 	ret
 ; 7171
 
-Function7171: ; 7171
-	ld hl, OBJECT_MAP_X
+Function7171: ; 7171 ret c if d - objectx is 0 or 1 and e - yobject is 0 or 1
+	ld hl, OBJECT_MAP_X ;(bc+16)
 	add hl, bc
 	ld a, d
-	sub [hl]
-	jr c, .asm_718b
+	sub [hl] ;d - object x corrd
+	jr c, .asm_718b ;if d < x coord, ret nc
 	cp $2
-	jr nc, .asm_718b
-	ld hl, OBJECT_MAP_Y
+	jr nc, .asm_718b ;if result >2, ret nc
+	ld hl, OBJECT_MAP_Y ;same for y and e
 	add hl, bc
 	ld a, e
 	sub [hl]
@@ -10363,23 +10363,23 @@ Function113da: ; 113da
 	ret
 ; 113e5
 
-Function113e5:: ; 113e5
+Function113e5:: ; 113e5 ;set time until next phone call to 20 minutes
 	xor a
-	ld [wd464], a
+	ld [wd464], a ;time since last call = 0
 
 Function113e9: ; 113e9
 	ld a, [wd464]
 	cp 3
-	jr c, .asm_113f2
+	jr c, .asm_113f2 ;if time since last call > 3, a equals 3, else a = time since last call
 	ld a, 3
 
 .asm_113f2
 	ld e, a
 	ld d, 0
 	ld hl, .data_113fd
-	add hl, de
+	add hl, de ;set 
 	ld a, [hl]
-	jp Function1142e
+	jp Function1142e  ;load a into time until next call, and set last call to now
 ; 113fd
 
 .data_113fd
@@ -10425,12 +10425,12 @@ Function11420: ; 11420
 	ret
 ; 1142e
 
-Function1142e: ; 1142e
+Function1142e: ; 1142e load a into time until next call, and set last call to now
 	ld hl, wd465
-	ld [hl], a
+	ld [hl], a ;time until next call
 	call UpdateTime
-	ld hl, wd466
-	call Function1162e
+	ld hl, wd466 ;hl = call delay start time
+	call Function1162e ;load current time into it
 	ret
 ; 1143c
 
@@ -33411,13 +33411,13 @@ Function29fe4: ; 29fe4
 	ret
 ; 29ff8
 
-Function29ff8: ; 29ff8
+Function29ff8: ; 29ff8 
 	call Function2a205 ;a = current mapnumber, hl = top of encounter area and carry is set if it has a land encounter, otherwise a is 0 and carry flag is not set
 	jr c, .asm_2a006
 	ld hl, wd25a ;fill wd25a with 0 if it is not an encounter map
 	xor a
-	;ld [hli], a ;now only 1 slot 
-	;ld [hli], a
+		;ld [hli], a ;now only 1 slot 
+		;ld [hli], a
 	ld [hl], a
 	jr .asm_2a011
 .asm_2a006 ; if you have the encounter map, copy ecounter rates into wd25a  
@@ -33808,112 +33808,10 @@ RoamMaps: ; 2a40f
 
 ; 2a4ab
 
-Function2a4ab: ; 2a4ab seems to be a function to get a local mon to use in call text
-	callba Function90439
-	ld d, b
-	ld e, c
-	ld hl, WildMons1
-		;ld bc, $002f ; 47
-	ld bc, $35 ; 
-	call Function2a288 ;load current maps place in land wild tables into hl
-	jr c, .asm_2a4c6 ; if succsessful, jump. otherwise try kanto
-	ld hl, WildMons3
-	call Function2a288
-	jr nc, .asm_2a514 ; if succsessful, fall through, otherwise ?
 
-.asm_2a4c6 
-	push hl
-	ld bc, $0011 ; 17
-	add hl, bc ;increment wild position by 17, putting it on slot 13
-	ld a, [TimeOfDay]
-	ld bc, $0010
-	call AddNTimes ;HL + (bc *a), moves down 16 lines per ToD, moving onto right time
-.asm_2a4d4
-	call Random 
-	and $3 ; reduce random number to 0-3
-	ld c, a ; load into c
-	ld b, $0
-	add hl, bc ;increment hl either 0,1,2 or 3 these + the 17 added earlier point to the last 4 slots on the wild table
-	ld c, [hl] ; loads the mon in that slot
-	pop hl
-	ld de, $0005
-	add hl, de ; is first slot mon?
-	ld b, $6
-.asm_2a4eb
-	ld a, [hli] ;hl = slot level
-	cp c
-	jr z, .asm_2a514 ;if the selected mon is the same as the one in the chosen slot, jump out of the loop, otherwise fall through
-		;inc hl ; slot mon
-	dec b ; loop counter
-	jr nz, .asm_2a4eb ; loop until b = 0 (6 times) then fall through
-	push bc ; b is loop counter, c is slot 1 mon
-	dec c 
-	ld a, c ; a = mon before selected mon
-	call CheckSeenMon ;set zero flag to whether mon is seen
-	pop bc
-	jr nz, .asm_2a514 ;if seen, jump
-	ld de, StringBuffer1
-	call CopyName1
-	ld a, c
-	ld [wd265], a
-	call GetPokemonName
-	ld hl, UnknownText_0x2a51a
-	call PrintText
-	xor a
-	ld [ScriptVar], a
-	ret
-
-.asm_2a514
-	ld a, $1
-	ld [ScriptVar], a
-	ret
-; 2a51a
-
-UnknownText_0x2a51a: ; 0x2a51a
-	; I just saw some rare @  in @ . I'll call you if I see another rare #MON, OK?
-	text_jump UnknownText_0x1bd34b
-	db "@"
 ; 0x2a51f
 
-Function2a51f: ; 2a51f
-	callba Function90439 ;same as the one above (2a4ab) but calls a common mon
-	ld d, b
-	ld e, c
-	ld hl, WildMons1
-		; ld bc, $002f ;47
-		ld bc, $35 
-	call Function2a288
-	jr c, .asm_2a538
-	ld hl, WildMons3
-	call Function2a288
 
-.asm_2a538
-	ld bc, $0005 ;only goes up 5 instead of 13
-	add hl, bc ; current loc is slot 1 level
-	ld a, [TimeOfDay]
-	inc a 
-	ld bc, $0010 ;16
-.asm_2a543
-	dec a
-	jr z, .asm_2a549 ; find right table for time of day 
-	add hl, bc
-	jr .asm_2a543
-
-.asm_2a549
-	call Random
-	and $3 ;random from 0 to 3
-	ld c, a ;put random number in c
-	ld b, $0
-	add hl, bc
-		;add hl, bc ; Add it to the wild encounter list twice, taking it from slot 1 level to slot 1,2,3 or 4 level, then add 1 more to get to mon
-		;inc hl
-	ld a, [hl]
-	ld [wd265], a ; load mon into a and then a variable
-	call GetPokemonName
-	ld hl, StringBuffer1
-	ld de, StringBuffer4
-	ld bc, $000b
-	jp CopyBytes
 ; 2a567
 
 RandomPhoneMon: ; 2a567
@@ -34175,6 +34073,112 @@ INCBIN "gfx/misc/dude.6x6.2bpp.lz"
 
 SECTION "WildHandling", ROMX 
 
+Function2a4ab: ; 2a4ab seems to be a function to get a local mon to use in call text
+	callba Function90439
+	ld d, b
+	ld e, c
+	ld hl, WildMons1
+		;ld bc, $002f ; 47
+	ld bc, $35 ; 53
+	call Function2a288 ;load current maps place in land wild tables into hl
+	jr c, .asm_2a4c6 ; if succsessful, jump. otherwise try kanto
+	ld hl, WildMons3
+	call Function2a288
+	jr nc, .asm_2a514 ; if succsessful, fall through, otherwise ret scriptvar = 1
+
+.asm_2a4c6 
+	push hl
+	ld bc, $0011 ; 17
+	add hl, bc ;increment wild position by 17, putting it on slot 13
+	ld a, [TimeOfDay]
+	ld bc, $0010
+	call AddNTimes ;HL + (bc *a), moves down 16 lines per ToD, moving onto right time
+.asm_2a4d4
+	call Random 
+	and $3 ; reduce random number to 0-3
+	ld c, a ; load into c
+	ld b, $0
+	add hl, bc ;increment hl either 0,1,2 or 3 these + the 17 added earlier point to the last 4 slots on the wild table
+	ld c, [hl] ; loads the mon in that slot
+	pop hl
+	ld de, $0005
+	add hl, de ; is first slot mon?
+	ld b, $6
+.asm_2a4eb
+	ld a, [hli] ;hl = slot level
+	cp c
+	jr z, .asm_2a514 ;if the selected mon is the same as the one in the chosen slot, jump out of the loop, otherwise fall through
+		;inc hl ; slot mon
+	dec b ; loop counter
+	jr nz, .asm_2a4eb ; loop until b = 0 (6 times) then fall through
+	push bc ; b is loop counter, c is slot 1 mon
+	dec c 
+	ld a, c ; a = mon before selected mon
+	call CheckSeenMon ;set zero flag to whether mon is seen
+	pop bc
+	jr nz, .asm_2a514 ;if seen, jump
+	ld de, StringBuffer1
+	call CopyName1
+	ld a, c
+	ld [wd265], a
+	call GetPokemonName
+	ld hl, UnknownText_0x2a51a
+	call PrintText
+	xor a
+	ld [ScriptVar], a
+	ret
+
+.asm_2a514
+	ld a, $1
+	ld [ScriptVar], a
+	ret
+; 2a51a
+
+UnknownText_0x2a51a: ; 0x2a51a
+	; I just saw some rare @  in @ . I'll call you if I see another rare #MON, OK?
+	text_jump UnknownText_0x1bd34b
+	db "@"
+
+Function2a51f: ; 2a51f
+	callba Function90439 ;same as the one above (2a4ab) but calls a common mon
+	ld d, b
+	ld e, c
+	ld hl, WildMons1
+		; ld bc, $002f ;47
+		ld bc, $35 
+	call Function2a288
+	jr c, .asm_2a538
+	ld hl, WildMons3
+	call Function2a288
+
+.asm_2a538
+	ld bc, $0005 ;only goes up 5 instead of 13
+	add hl, bc ; current loc is slot 1 level
+	ld a, [TimeOfDay]
+	inc a 
+	ld bc, $0010 ;16
+.asm_2a543
+	dec a
+	jr z, .asm_2a549 ; find right table for time of day 
+	add hl, bc
+	jr .asm_2a543
+
+.asm_2a549
+	call Random
+	and $3 ;random from 0 to 3
+	ld c, a ;put random number in c
+	ld b, $0
+	add hl, bc
+		;add hl, bc ; Add it to the wild encounter list twice, taking it from slot 1 level to slot 1,2,3 or 4 level, then add 1 more to get to mon
+		;inc hl
+	ld a, [hl]
+	ld [wd265], a ; load mon into a and then a variable
+	call GetPokemonName
+	ld hl, StringBuffer1
+	ld de, StringBuffer4
+	ld bc, $000b
+	jp CopyBytes
+
 Function2a01f: ; 2a01f ;fill tilemap with tiles from the locations of mon wd625
 	hlcoord 0, 0 ;hl = tilemap
 	ld bc, SCREEN_WIDTH * SCREEN_HEIGHT
@@ -34244,7 +34248,7 @@ Function2a088: ; 2a088  ;if mon d265 is in mon table hl, ret nc with that locati
 
 .done
 	pop af ; a = loop number
-	;jp Check_IsInRoamMonNest ;redundent
+	jp Check_IsInRoamMonNest ;redundent
 ; 2a09c
 
 Check_IsInRoamMonNest: ; 2a09c if tile from place map bc exists in tilemap, ret nc
@@ -34328,7 +34332,7 @@ Function2a0e7:: ; 2a0e7
 	jr nc, .asm_2a0f8
 	call Function2a14f ;find what encounter to run
 	jr nz, .asm_2a0f8
-	call Function2a1df ;if repel if off then carry, jump if it is on
+	call Function2a1df ;if repel is off then carry, jump if it is on
 	jr nc, .asm_2a0f8
 	xor a
 	ret
@@ -34582,8 +34586,8 @@ Function2a200: ; 2a200 from 2a14f
 Function2a205: ; 2a205
 	ld hl, WildMons5 ; address of the grass swarms table
 		;ld bc, $002f ;47, 
-	ld bc, $0035 ; 53, set for size of areas when skipping, change to new size
-	call asm_2a23d; check for swarms
+	ld bc, $0035 ; 53, set for size of areas when skipping, changed to new size
+	call asm_2a23d ; check for swarms
 	ret c ;return if a swarm
 	ld hl, WildMons1
 	ld de, WildMons3
@@ -34596,8 +34600,8 @@ Function2a21d: ; 2a21d ; jump here if water
 	ld hl, WildMons6
 		;ld bc, $0009 ; 9  set for size of areas when skipping, change to new size
 	ld bc, $0035 ; 53
-	call asm_2a23d
-	ret c
+	;call asm_2a23d
+	;ret c
 	ld hl, WildMons2
 	ld de, WildMons4
 	call asm_2a235 ;if johto keep same, if kanto load de into hl
@@ -34616,8 +34620,8 @@ asm_2a235
 asm_2a23d ;from 2a205
 	call Function2a27f ;load current location into de
 	push hl
-	ld hl, DailyFlags + 2; 
-	bit 2, [hl] ;z is 0 if dunsparce swarm, otherwise 1 (why not check location first?)
+	ld hl, DailyFlags + 2 
+	bit 2, [hl] ;nz if dunsparce swarm, otherwise 1 
 	pop hl
 	jr z, .asm_2a25c ;if not swarm, jump
 	ld a, [wdfcc] ;????
@@ -34665,9 +34669,9 @@ Function2a27f: ; 2a27f from 2a23d
 	ret
 ; 2a288
 
-Function2a288: ; 2a288 from 2a205 load current maps place in land wild tables
+Function2a288: ; 2a288 from 2a205 load map de's place in wild tables, bc = table size
 	push hl ;loc of wild tables
-	ld a, [hl]; 
+	ld a, [hl]
 	inc a
 	jr z, .asm_2a29a ; If map location is max jump, pop, clear flags and ret
 	ld a, d
@@ -51614,21 +51618,21 @@ INCLUDE "text/phone/extra.asm"
 
 SECTION "bank20", ROMX, BANK[$20]
 
-DoPlayerMovement:: ; 80000
+DoPlayerMovement:: ; 80000 load input, set movement data and animation. c = what type of movement
 
-	call GetMovementInput
+	call GetMovementInput ;ret joydown in curinput, apply downhill
 	ld a, $3e ; standing
-	ld [MovementAnimation], a
+	ld [MovementAnimation], a ;set movement anim
 	xor a
-	ld [wd041], a
-	call GetPlayerMovement
-	ld c, a
-	ld a, [MovementAnimation]
+	ld [wd041], a ;load 0 into ??
+	call GetPlayerMovement ;set movement data, ret 3 is in whirlpool, ret 5 is forced movement, ret 4 if moving. 
+	ld c, a 
+	ld a, [MovementAnimation] ;put animation into ??
 	ld [wc2de], a
 	ret
 ; 80017
 
-GetMovementInput: ; 80017
+GetMovementInput: ; 80017 ret joydown in curinput, apply downhill
 
 	ld a, [hJoyDown]
 	ld [CurInput], a
@@ -51639,17 +51643,17 @@ GetMovementInput: ; 80017
 	bit 2, [hl] ; downhill
 	ret z
 
-	ld c, a
+	ld c, a ;ignore if any direction pressed, else press down
 	and $f0
 	ret nz
 
 	ld a, c
 	or D_DOWN
-	ld [CurInput], a
+	ld [CurInput], a 
 	ret
 ; 8002d
 
-GetPlayerMovement: ; 8002d
+GetPlayerMovement: ; 8002d set movement data, ret 3 is in whirlpool, ret 5 is forced movement, ret 4 if moving
 
 	ld a, [PlayerState]
 	cp PLAYER_NORMAL
@@ -51664,15 +51668,15 @@ GetPlayerMovement: ; 8002d
 	jr z, .Board
 
 .Normal
-	call CheckForcedMovementInput
-	call GetMovementAction
-	call CheckTileMovement
+	call CheckForcedMovementInput ;if forved to move, replace movement
+	call GetMovementAction ;set movement data
+	call CheckTileMovement;if whirlpool, a = 3 and carry, if stand still or no force movement ret and nc, else ret a = 5 and carry. also sets animations
 	ret c
-	call CheckTurning
+	call CheckTurning ;do turn frame if needed, ret c if turned. if turn, a = 2
 	ret c
-	call TryStep
+	call TryStep ;move if possible. a = 4 if moving, a = 0 if standing
 	ret c
-	call TryJumpLedge
+	call TryJumpLedge ;if jump ledge, ret a = 7 and carry
 	ret c
 	call CheckEdgeWarp
 	ret c
@@ -51788,17 +51792,19 @@ IsStopTile:
 CheckTileMovement: ; 800b7
 ; Tiles such as waterfalls and warps move the player
 ; in a given direction, overriding input.
+;if whirlpool, a = 3 and carry, if stand still ret a = 0 and nc, else ret a = 5 and carry
+;also sets animations
 
 	ld a, [StandingTile]
 	ld c, a
-	call CheckWhirlpoolTile
+	call CheckWhirlpoolTile ;if a whirlpool, a = 3 and ret c
 	jr c, .asm_800c4
 	ld a, 3
 	scf
 	ret
 
 .asm_800c4
-	and $f0
+	and $f0 ;check if on moving tiles or warps
 	cp $30 ; moving water
 	jr z, .water
 	cp $40 ; moving land 1
@@ -51812,12 +51818,12 @@ CheckTileMovement: ; 800b7
 .water
 	ld a, c
 	and 3
-	ld c, a
+	ld c, a ;first 2 bits of tile show direction
 	ld b, 0
 	ld hl, .water_table
 	add hl, bc
 	ld a, [hl]
-	ld [WalkingDirection], a
+	ld [WalkingDirection], a ;set walking direction based on that
 	jr .asm_8013e
 
 .water_table
@@ -51835,7 +51841,7 @@ CheckTileMovement: ; 800b7
 	add hl, bc
 	ld a, [hl]
 	cp STANDING
-	jr z, .asm_8013c
+	jr z, .asm_8013c ;if forced to stand, branch, else set direction
 	ld [WalkingDirection], a
 	jr .asm_8013e
 
@@ -51858,7 +51864,7 @@ CheckTileMovement: ; 800b7
 	add hl, bc
 	ld a, [hl]
 	cp STANDING
-	jr z, .asm_8013c
+	jr z, .asm_8013c ;if forced to stand, branch, else set direction
 	ld [WalkingDirection], a
 	jr .asm_8013e
 
@@ -51874,7 +51880,7 @@ CheckTileMovement: ; 800b7
 
 .warps
 	ld a, c
-	cp $71 ; door
+	cp $71 ; door ;set direction to down for warps if needed
 	jr z, .down
 	cp $79
 	jr z, .down
@@ -51888,13 +51894,13 @@ CheckTileMovement: ; 800b7
 	ld [WalkingDirection], a
 	jr .asm_8013e
 
-.asm_8013c
+.asm_8013c ;ret a = 0
 	xor a
 	ret
 
 .asm_8013e
 	ld a, STEP_WALK
-	call DoStep
+	call DoStep ;load appropriote animations for the type of step, walk in place into d04e. ret a = 4 if moving, a = 0 if standing
 	ld a, 5
 	scf
 	ret
@@ -51906,18 +51912,18 @@ CheckTurning: ; 80147
 
 	ld a, [wd04e]
 	cp 0
-	jr nz, .asm_80169
+	jr nz, .asm_80169 ;if no walk in place anim, ret nc
 	ld a, [WalkingDirection]
 	cp STANDING
-	jr z, .asm_80169
+	jr z, .asm_80169 ;if standing still, ret nc
 
-	ld e, a
+	ld e, a ;store direction
 	ld a, [PlayerDirection]
 	rrca
 	rrca
-	and 3
+	and 3 ;ise bits 2-3 only
 	cp e
-	jr z, .asm_80169
+	jr z, .asm_80169 ;if same as direction moving in, ret nc
 
 	ld a, STEP_TURN
 	call DoStep
@@ -51939,30 +51945,30 @@ TryStep: ; 8016b
 	cp PLAYER_SURF_PIKA
 	jr z, TrySurfStep
 
-	call CheckLandPermissions
+	call CheckLandPermissions ; Return nc if walking onto land and tile permissions allow it.
 	jr c, .asm_801be
 
-	call IsNPCInFront
+	call IsNPCInFront  ;ret a = 1 if something in way, do some bike checks and possibly a = 2
 	and a
-	jr z, .asm_801be
+	jr z, .asm_801be ;if colliding, continue, else ret
 	cp 2
 	jr z, .asm_801be
 
 	ld a, [wSpinning]
 	and a
-	jr nz, .spin
+	jr nz, .spin ;if spinning, jump
 
 	ld a, [StandingTile]
 	call CheckIceTile
-	jr nc, .ice
+	jr nc, .ice ;if on ice, jump
 
 ; Downhill riding is slower when not moving down.
-	call CheckRiding
+	call CheckRiding ;if on bike or slipping, continue, else jump
 	jr nz, .asm_801ae
 
 	ld hl, BikeFlags
 	bit 2, [hl] ; downhill
-	jr z, .fast
+	jr z, .fast ;if not downhill or pressing down, go fast
 
 	ld a, [WalkingDirection]
 	cp DOWN
@@ -52146,10 +52152,10 @@ CheckEdgeWarp: ; 80226
 	db $70, $78, $76, $7e
 ; 8025f
 
-DoStep: ; 8025f
+DoStep: ; 8025f ;load appropriote animations for the type of step, walk in place into d04e. ret a = 4 if moving, a = 0 if standing
 	ld e, a
 	ld d, 0
-	ld hl, .Steps
+	ld hl, .Steps ;a = step type, load appropriote branch into hl
 	add hl, de
 	add hl, de
 	ld a, [hli]
@@ -52159,18 +52165,18 @@ DoStep: ; 8025f
 	ld a, [WalkingDirection]
 	ld e, a
 	cp STANDING
-	jp z, StandInPlace
+	jp z, StandInPlace ;if standing, stand in place
 
-	add hl, de
+	add hl, de ;go down to direction
 	ld a, [hl]
-	ld [MovementAnimation], a
+	ld [MovementAnimation], a ;place animation
 
 	ld hl, .WalkInPlace
 	add hl, de
 	ld a, [hl]
-	ld [wd04e], a
+	ld [wd04e], a ;load in walk in place anim
 
-	ld a, 4
+	ld a, 4 ;load 4 into a
 	ret
 
 .Steps
@@ -52239,7 +52245,7 @@ DoStep: ; 8025f
 
 StandInPlace: ; 802b3
 	ld a, 0
-	ld [wd04e], a
+	ld [wd04e], a ;load 0 into walk in place anim
 	ld a, $3e ; standing
 	ld [MovementAnimation], a
 	xor a
@@ -52258,22 +52264,22 @@ WalkInPlace: ; 802bf
 CheckForcedMovementInput: ; 802cb
 ; When sliding on ice, input is forced to remain in the same direction.
 
-	call CheckSpinning
+	call CheckSpinning ; a = spinning. if on spin tile spin = c
 	jr z, .not_spinning
 	dec a
-	jr .force
+	jr .force ;filter incorrect directions
 .not_spinning
 
-	call Function80404
+	call Function80404 ;ret c if sliding
 	ret nc
 
-	ld a, [wd04e]
+	ld a, [wd04e] ;if walkinplace = 0, can't slide
 	cp 0
 	ret z
 
 .force
 	and 3
-	ld e, a
+	ld e, a ;put spin direction in e?
 	ld d, 0
 	ld hl, .data_802e8
 	add hl, de
@@ -52292,7 +52298,7 @@ GetMovementAction: ; 802ec
 
 	ld hl, .table
 	ld de, .table2 - .table1
-	ld a, [CurInput]
+	ld a, [CurInput] ;go to correct direction
 	bit 7, a
 	jr nz, .down
 	bit 6, a
@@ -52304,7 +52310,7 @@ GetMovementAction: ; 802ec
 ; Standing
 	jr .update
 
-.down 	add hl, de
+.down 	add hl, de 
 .up   	add hl, de
 .left 	add hl, de
 .right	add hl, de
@@ -52346,10 +52352,10 @@ GetMovementAction: ; 802ec
 	dw TileDown
 ; 80341
 
-IsNPCInFront: ; 80341
+IsNPCInFront: ; 80341 ret a = 1 if something in way, do some bike checks and possibly a = 2
 
 	ld a, 0
-	ld [$ffaf], a
+	ld [$ffaf], a ;0 out strip legnth
 	ld a, [MapX]
 	ld d, a
 	ld a, [WalkingX]
@@ -52359,12 +52365,12 @@ IsNPCInFront: ; 80341
 	ld e, a
 	ld a, [WalkingY]
 	add e
-	ld e, a
-	ld bc, ObjectStructs ; redundant
-	callba Function7041
+	ld e, a ;de = place walking to
+	;ld bc, ObjectStructs ; redundant
+	callba Function7041 ;if no object is in contact with place walking to, ret a = 1
 	jr nc, .asm_80369
-	call Function8036f
-	jr c, .asm_8036c
+	call Function8036f ;if bikeflag 0 is 1, bc+7 is not ff and bc+6 bit 6 = 1, set bc+5 bit 2, replace first 2 bits of bc + 32 with direction and ret a = 2
+	jr c, .asm_8036c ;else ret a = 0
 
 	xor a
 	ret
@@ -52378,13 +52384,13 @@ IsNPCInFront: ; 80341
 	ret
 ; 8036f
 
-Function8036f: ; 8036f
+Function8036f: ; 8036f if bikeflag 0 is 1, bc+7 is not ff and bc+6 bit 6 = 1, set bc+5 bit 2 and replace first 2 bits of bc + 32 with direction
 
 	ld hl, BikeFlags
 	bit 0, [hl]
-	jr z, .asm_8039c
+	jr z, .asm_8039c ;if bike flag 0 = 0, ret a = 0
 
-	ld hl, $0007
+	ld hl, $0007 ;if bc + 7 = FF, ret a = 0
 	add hl, bc
 	ld a, [hl]
 	cp $ff
@@ -52393,16 +52399,16 @@ Function8036f: ; 8036f
 	ld hl, $0006
 	add hl, bc
 	bit 6, [hl]
-	jr z, .asm_8039c
+	jr z, .asm_8039c ;if bc + 6  bit 6 = 0, ret a = 0
 
 	ld hl, $0005
 	add hl, bc
-	set 2, [hl]
+	set 2, [hl] ;set bc+5 bit 2
 
 	ld a, [WalkingDirection]
 	ld d, a
 	ld hl, $0020
-	add hl, bc
+	add hl, bc ;replace first 2 bits of bc + 32 with direction
 	ld a, [hl]
 	and $fc
 	or d
@@ -52525,15 +52531,15 @@ WaterToLandSprite: ; 803f9
 	ret
 ; 80404
 
-Function80404:: ; 80404
+Function80404:: ; 80404 if player is on ice or sliding and has no-0 walking anim, ret c, else ret nc
 	ld a, [wd04e]
 	cp 0
-	jr z, .asm_80420
+	jr z, .asm_80420 ;if walkinplace = 0 or f0, ret nc
 	cp $f0
-	jr z, .asm_80420
+	jr z, .asm_80420 
 	ld a, [StandingTile]
-	call CheckIceTile ;if $23 or $2b, scf and ret
-	jr nc, .asm_8041e
+	call CheckIceTile ;if not $23 or $2b, scf
+	jr nc, .asm_8041e ;ret c if ice
 	ld a, [PlayerState]
 	cp PLAYER_SLIP
 	jr nz, .asm_80420 ;If player is slipping scf and ret, otherwise just ret
@@ -92168,20 +92174,20 @@ SleepEmote:    INCBIN "gfx/emotes/sleep.2bpp"
 FishEmote:     INCBIN "gfx/emotes/fish.2bpp"
 FishingRodGFX: INCBIN "gfx/misc/fishing.2bpp"
 
-Function1045b0: ; 1045b0
-	call Function210f
-	call Function2e50
-	call Function2e5d
-	call GetCurrentMapTrigger
-	call Function2e56
+Function1045b0: ; 1045b0 reset top 8 event flags, do callbacks 3 and 5, load ToD map data, clear some of command queue
+	call Function210f ; fill 24 bytes at wc7e8 with 0
+	call Function2e50 ;reset top 8 event flags
+	call Function2e5d ;if wd19a = 1 or 2, reset bit 2 of statusflags
+	call GetCurrentMapTrigger ;de = map trigger, if none found ret c
+	call Function2e56 ;load 0 into bikeflags and bikelflags +1
 	ld a, $5
-	call Function263b
+	call Function263b ;search for callback 5, if any match run it
 
 Function1045c4: ; 1045c4
-	callba Function97df9
+	callba Function97df9 ;clear top 4 of command queue 
 	ld a, $3
-	call Function263b
-	call Function2cff
+	call Function263b ;search for callback 3, if any match run it
+	call Function2cff ;put first nyble of ToD data into ram
 	ld [wc2d0], a
 	ret
 
@@ -92499,17 +92505,17 @@ Function1047f0: ; 1047f0
 	ret
 
 Function104820:: ; 104820 (41:4820)
-	ld a, [wd151]
+	ld a, [wd151] ;if ?? = ff, ret
 	cp $ff
 	ret z
 	and a
-	jr z, .asm_104837
+	jr z, .asm_104837 ;if 0
 	cp $1
-	jr z, .asm_104846
+	jr z, .asm_104846 ;if 1
 	cp $2
-	jr z, .asm_104851
+	jr z, .asm_104851 ;if 2
 	cp $3
-	jr z, .asm_10485c
+	jr z, .asm_10485c ;if 3
 	and a
 	ret
 .asm_104837

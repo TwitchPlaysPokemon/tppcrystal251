@@ -1,11 +1,11 @@
 
 RunMapSetupScript:: ; 15363
-	ld a, [$ff9f]
+	ld a, [$ff9f] ;= f1 at game start
 	and $f
-	dec a
+	dec a ;get first nyble of ?? and dec it
 	ld c, a
 	ld b, 0
-	ld hl, MapSetupScripts
+	ld hl, MapSetupScripts ;load appropriate script into hl
 	add hl, bc
 	add hl, bc
 	ld a, [hli]
@@ -109,7 +109,7 @@ MapSetupScript1: ; 15392
 	db map_bike_music
 	db map_max_volume
 	db map_fade_in_palettes
-	db map_animations_on
+	db map_animations_on ;fine until here
 	db map_wildmons
 	db -1
 
@@ -250,15 +250,15 @@ MapSetupScript10: ; 1541a
 
 ReadMapSetupScript: ; 1541d
 .loop
-	ld a, [hli]
+	ld a, [hli] ;if done, ret
 	cp -1
 	ret z
 
-	push hl
+	push hl ;next script to run
 
 	ld c, a
 	ld b, 0
-	ld hl, MapSetupCommands
+	ld hl, MapSetupCommands ;go down to appropriote script in list
 	add hl, bc
 	add hl, bc
 	add hl, bc
@@ -286,15 +286,15 @@ ReadMapSetupScript: ; 1541d
 .go
 	ld a, b
 	and $7f
-	rst FarCall
+	rst FarCall ;run script
 
 	pop hl
 	jr .loop
 ; 15440
 
 MapSetupCommands: ; 15440
-	dbw BANK(EnableLCD), EnableLCD
-	dbw BANK(DisableLCD), DisableLCD
+	dbw BANK(EnableLCD), EnableLCD ;map_lcd_on
+	dbw BANK(DisableLCD), DisableLCD ;map_lcd_off
 	dbw BANK(SoundRestart), SoundRestart
 	dbw BANK(PlayMapMusic), PlayMapMusic
 	dbw BANK(RestartMapMusic), RestartMapMusic
@@ -308,19 +308,19 @@ MapSetupCommands: ; 15440
 	dbw BANK(Function289d), Function289d
 	dbw BANK(Function2879), Function2879
 	dbw BANK(Function1047cf), Function1047cf
-	dbw BANK(LoadTilesetHeader), LoadTilesetHeader
-	dbw BANK(Function104750), Function104750
+	dbw BANK(LoadTilesetHeader), LoadTilesetHeader 
+	dbw BANK(Function104750), Function104750 ;16
 	dbw BANK(Function1047eb), Function1047eb
 	dbw BANK(Function29ff8), Function29ff8
 	dbw BANK(Function1047f0), Function1047f0
-	dbw BANK(Function1045b0), Function1045b0
+	dbw BANK(Function1045b0), Function1045b0 ;map_change_callback reset top 8 event flags, do callbacks 3 and 5, load ToD map data, clear some of command queue
 	dbw BANK(Function1045c4), Function1045c4
 	dbw BANK(Function154d7), Function154d7
-	dbw BANK(LoadSpawnPoint), LoadSpawnPoint
+	dbw BANK(LoadSpawnPoint), LoadSpawnPoint  ;map_load_spawn
 	dbw BANK(EnterMapConnection), EnterMapConnection
 	dbw BANK(Function1046c6), Function1046c6
-	dbw BANK(Function2309), Function2309
-	dbw BANK(Function2317), Function2317
+	dbw BANK(Function2309), Function2309 ;map_attributes
+	dbw BANK(Function2317), Function2317 ;set up current map data and scripts map_attributes2
 	dbw BANK(WhiteBGMap), WhiteBGMap
 	dbw BANK(Function8c084), Function8c084
 	dbw BANK(Function8c079), Function8c079

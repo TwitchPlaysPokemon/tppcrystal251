@@ -5,11 +5,11 @@ SECTION "Events", ROMX, BANK[EVENTS]
 
 OverworldLoop:: ; 966b0
 	xor a
-	ld [MapStatus], a
+	ld [MapStatus], a ;0 map status
 .loop
 	ld a, [MapStatus]
 	ld hl, .jumps
-	rst JumpTable
+	rst JumpTable ;run command a in jumps
 	ld a, [MapStatus]
 	cp 3 ; done
 	jr nz, .loop
@@ -120,10 +120,10 @@ StartMap: ; 96724
 	ld [ScriptVar], a
 	xor a
 	ld [ScriptRunning], a
-	ld hl, MapStatus
-	ld bc, $3e
+	ld hl, MapStatus ; 0 out 62 after mapstatus
+	ld bc, $3e 
 	call ByteFill
-	callba Function113e5
+	callba Function113e5 ;set time until next phone call to 20 minutes
 	call ClearJoypad
 	; fallthrough
 ; 9673e
@@ -131,27 +131,27 @@ StartMap: ; 96724
 
 EnterMap: ; 9673e
 	xor a
-	ld [wd453], a
+	ld [wd453], a ;load 0 into ???
 	ld [wd454], a
-	call Function968d1
-	callba RunMapSetupScript
-	call Function966cb
+	call Function968d1 ;load 0 into wild cooldown (?)
+	callba RunMapSetupScript ;run on map entry scripts
+	call Function966cb ;set scriptflags 3 to 0
 
 	ld a, [$ff9f]
 	cp $f7
-	jr nz, .asm_9675a
+	jr nz, .asm_9675a ;run only if ??? is $F7
 	call Function966d0
 .asm_9675a
 
 	ld a, [$ff9f]
 	cp $f3
-	jr nz, .asm_96764
+	jr nz, .asm_96764 ;set poison step to 0 if ??? = F3
 	xor a
 	ld [PoisonStepCount], a
 .asm_96764
 
 	xor a
-	ld [$ff9f], a
+	ld [$ff9f], a ;load 0 into ??? and 2 into map status
 	ld a, 2 ; HandleMap
 	ld [MapStatus], a
 	ret
@@ -167,8 +167,8 @@ Function9676d: ; 9676d
 
 HandleMap: ; 96773
 	call ResetOverworldDelay
-	call Function967c1
-	callba Function97e08
+	call Function967c1 ;update time and joypad, ret c if pallet changed
+	callba Function97e08 ;run pitfall check or set wd173 or do stuff with SCY based on bc based on command queue
 	call MapEvents
 
 ; Not immediately entering a connected map will cause problems.
@@ -185,7 +185,7 @@ HandleMap: ; 96773
 
 
 MapEvents: ; 96795
-	ld a, [MapEventStatus]
+	ld a, [MapEventStatus] ;if eventstats = 0, run events
 	ld hl, .jumps
 	rst JumpTable
 	ret
@@ -226,7 +226,7 @@ NextOverworldFrame: ; 967b7
 	ret
 ; 967c1
 
-Function967c1: ; 967c1
+Function967c1: ; 967c1 update time and joypad, ret c if pallet changed
 	ld a, [MapEventStatus]
 	cp 1 ; no events
 	ret z
@@ -288,11 +288,11 @@ PlayerEvents: ; 9681f
 
 	ld a, [ScriptRunning]
 	and a
-	ret nz
+	ret nz ;not while script running
 
-	call Function968e4
+	call Function968e4 ;check bit 5 of scriptflags3
 
-	call CheckTrainerBattle3
+	call CheckTrainerBattle3 ;Check if a trainer sees the player and wants to battle, ret c and a = 1 if yes, otherwise ret a = 0
 	jr c, .asm_96848
 
 	call CheckTileEvent
@@ -307,7 +307,7 @@ PlayerEvents: ; 9681f
 	call Function9693a
 	jr c, .asm_96848
 
-	call OWPlayerInput
+	call OWPlayerInput ;handle movements and inputs (bug either causes a c return erronusly, or prevents code from getting here)
 	jr c, .asm_96848
 
 	xor a
@@ -336,10 +336,10 @@ PlayerEvents: ; 9681f
 ; 96867
 
 
-CheckTrainerBattle3: ; 96867
+CheckTrainerBattle3: ; 96867 Check if a trainer sees the player and wants to battle, ret c and a = 1 if yes, otherwise ret a = 0
 	nop
 	nop
-	call CheckTrainerBattle2
+	call CheckTrainerBattle2 ;Check if any trainer on the map sees the player and wants to battle., ret c if yes
 	jr nc, .asm_96872
 
 	ld a, 1
@@ -355,10 +355,10 @@ CheckTrainerBattle3: ; 96867
 CheckTileEvent: ; 96874
 ; Check for warps, tile triggers or wild battles.
 
-	call Function9670c
+	call Function9670c ;check bit 2 of scriptflags 3
 	jr z, .asm_96886
 
-	callba Function104820
+	callba Function104820 ;do map stuff based on wd151
 	jr c, .asm_968a6
 
 	call Function2238
@@ -450,9 +450,9 @@ Function968d8: ; 968d8
 ; 968e4
 
 Function968e4: ; 968e4
-	call Function966d6
-	ret z
-	call Function2f3e
+	call Function966d6 ;check bit 5 of scriptflags3
+	ret z 
+	call Function2f3e ;do nothing
 	ret
 ; 968ec
 
@@ -547,19 +547,19 @@ Function96970: ; 96970
 
 OWPlayerInput: ; 96974
 
-	call PlayerMovement
-	ret c
+	call PlayerMovement ;do movement, ret c = 0 if move normally, c = -1 if forced to move. carry if something happens to override menus
+	ret c ;if speial, ret c
 	and a
-	jr nz, .NoAction
+	jr nz, .NoAction ;if not normal move, ret nc
 
 ; Can't perform button actions while sliding on ice.
-	callba Function80404
+	callba Function80404 ;if player is on ice or sliding and has no-0 walking anim, ret c, else ret nc
 	jr c, .NoAction
 
-	call CheckAPressOW
+	call CheckAPressOW ;process a 
 	jr c, .Action
 
-	call CheckMenuOW
+	call CheckMenuOW ;process start and select
 	jr c, .Action
 
 .NoAction
@@ -583,7 +583,7 @@ CheckAPressOW: ; 96999
 	ret c
 	call TryReadSign
 	ret c
-	call Function97c5f
+	call Function97c5f ;check HMs
 	ret c
 	xor a
 	ret
@@ -829,10 +829,10 @@ CheckSignFlag: ; 96ad8
 ; 96af0
 
 
-PlayerMovement: ; 96af0
-	callba DoPlayerMovement
+PlayerMovement: ; 96af0 ;do movement, ret c = 0 if move normally, c = -1 if forced to move. carry if something strange happens
+	callba DoPlayerMovement ;load input, set movement data and animation. c = what type of movement
 	ld a, c
-	ld hl, .pointers
+	ld hl, .pointers ;reun appropriote code for movement type
 	rst JumpTable
 	ld a, c
 	ret
@@ -848,14 +848,14 @@ PlayerMovement: ; 96af0
 	dw .six
 	dw .seven
 
-.zero
+.zero ;no movement and normal movement
 .four ; 96b0d
 	xor a
 	ld c, a
 	ret
 ; 96b10
 
-.seven ; 96b10
+.seven ; 96b10 ;jump ledge
 	call Function968d7 ; empty
 	xor a
 	ld c, a
@@ -877,7 +877,7 @@ PlayerMovement: ; 96af0
 ; 96b20
 
 .three ; 96b20
-; force the player to move in some direction
+; force the player to move in some direction (called if in whirlpool)
 	ld a, BANK(UnknownScript_0x1253d)
 	ld hl, UnknownScript_0x1253d
 	call CallScript
@@ -887,7 +887,7 @@ PlayerMovement: ; 96af0
 	ret
 ; 96b2b
 
-.five
+.five ;called if forced to move
 .six ; 96b2b
 	ld a, -1
 	ld c, a
@@ -964,7 +964,7 @@ CountStep: ; 96b79
 	callba Function90136
 	jr c, .asm_96bcb
 
-	call Function96bd7
+	call Function96bd7 ;repel check
 	jr c, .asm_96bcb
 
 	ld hl, PoisonStepCount

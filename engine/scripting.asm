@@ -1661,7 +1661,7 @@ ScriptCall: ; 0x974cb
 Function974f3:: ; 0x974f3
 	ld a, [ScriptBank]
 	or $80
-	ld [ScriptBank], a
+	ld [ScriptBank], a ;bank only accepts bit 7?
 	jp ScriptCall
 ; 0x974fe
 
