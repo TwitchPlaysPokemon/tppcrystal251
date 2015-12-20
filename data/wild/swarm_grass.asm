@@ -3,116 +3,115 @@
 ; Dunsparce swarm
 	db GROUP_DARK_CAVE_VIOLET_ENTRANCE, MAP_DARK_CAVE_VIOLET_ENTRANCE ;obviosly wrong, need to come back to this
 	db $19
-	db 80
-	db $01
+	db 25
+	db $00
 ;morning
-		db VOLTORB ;20
-		db ELECTRODE ;20
-		db MAGNETON ;10
-		db MAGNETON ;10
-		db ELEKID ;5
-		db ELEKID ;5
-		db RAICHU ;5
-		db RAICHU ;5
-		db RAICHU ;4
-		db FLAAFFY ;4
-		db FLAAFFY ;3
-		db ELECTABUZZ ;3
-		db ELECTABUZZ ;2
-		db AMPHAROS ;2
-		db FLAAFFY ;1
-		db RAICHU ;1
+		db DUNSPARCE ;30
+		db DUNSPARCE ;10
+		db DUNSPARCE ;10
+		db LARVITAR ;10
+		db LARVITAR ;5
+		db LARVITAR ;5
+		db SWINUB ;5
+		db SHUCKLE ;5
+		db QUAGSIRE ;4
+		db SHUCKLE ;4
+		db SHUCKLE ;3
+		db SHUCKLE ;3
+		db WOBBUFFET ;2
+		db WOBBUFFET ;2
+		db WOBBUFFET ;1
+		db WOBBUFFET ;1
 ;day
-		db VOLTORB ;20
-		db ELECTRODE ;20
-		db MAGNETON ;10
-		db MAGNETON ;10
-		db ELEKID ;5
-		db ELEKID ;5
-		db RAICHU ;5
-		db RAICHU ;5
-		db FLAAFFY ;4
-		db ELECTABUZZ ;4
-		db ELECTABUZZ ;3
-		db ELECTABUZZ ;3
-		db ELECTABUZZ ;2
-		db ELECTABUZZ ;2
-		db ELECTABUZZ ;1
-		db AMPHAROS ;1
-
+		db DUNSPARCE ;30
+		db DUNSPARCE ;10
+		db DUNSPARCE ;10
+		db LARVITAR ;10
+		db LARVITAR ;5
+		db SWINUB ;5
+		db SWINUB ;5
+		db SWINUB ;5
+		db SHUCKLE ;4
+		db QUAGSIRE ;4
+		db QUAGSIRE ;3
+		db WOBBUFFET ;3
+		db WOBBUFFET  ;2
+		db WOBBUFFET  ;2
+		db WOBBUFFET  ;1
+		db SHUCKLE ;1
 ;night
-		db VOLTORB ;20
-		db ELECTRODE ;20
-		db MAGNETON ;10
-		db MAGNETON ;10
-		db ELEKID ;5
-		db ELEKID ;5
-		db RAICHU ;5
-		db ELECTABUZZ ;5
-		db AMPHAROS ;4
-		db FLAAFFY ;4
-		db FLAAFFY ;3
-		db FLAAFFY ;3
-		db FLAAFFY ;2
-		db FLAAFFY ;2
-		db FLAAFFY ;1
-		db AMPHAROS ;1
+		db DUNSPARCE ;30
+		db DUNSPARCE ;10
+		db DUNSPARCE ;10
+		db LARVITAR ;10
+		db LARVITAR ;5
+		db LARVITAR ;5
+		db LARVITAR ;5
+		db WOBBUFFET ;5
+		db WOBBUFFET ;4
+		db QUAGSIRE ;4
+		db SWINUB ;3
+		db SHUCKLE ;3
+		db SHUCKLE ;2
+		db SWINUB ;2
+		db QUAGSIRE ;1
+		db WOBBUFFET ;1
 
 ; Yanma swarm
 	db GROUP_ROUTE_35, MAP_ROUTE_35
 	db $19 ; encounter rates: morn/day/nite
-	db 85
-	db $01
+	db 35
+	db $00
 ;morning
-		db VENOMOTH ;20
-		db WIGGLYTUFF ;20
-		db SANDSLASH ;10
-		db RAICHU ;10
-		db VENOMOTH ;5
-		db NIDOKING ;5
-		db GRANBULL ;5
-		db GENGAR ;5
-		db GENGAR ;4
-		db PILOSWINE ;4
-		db PILOSWINE ;3
-		db PILOSWINE ;3
-		db PILOSWINE ;2
-		db PILOSWINE ;2
-		db PILOSWINE ;1
-		db GENGAR ;1
+		db YANMA ;30
+		db YANMA ;10
+		db SKIPLOOM ;10
+		db SKIPLOOM ;10
+		db YANMA ;5
+		db JUMPLUFF ;5
+		db JUMPLUFF ;5
+		db YANMA ;5
+		db SKIPLOOM ;4
+		db BAYLEEF ;4
+		db SUNFLORA ;3
+		db SUNFLORA ;3
+		db SUNFLORA ;2
+		db SUNFLORA ;2
+		db BAYLEEF ;1
+		db SKIPLOOM ;1
 ;day
-		db RAICHU ;20
-		db NIDOKING ;20
-		db PILOSWINE ;10
-		db GRANBULL ;10
-		db SANDSLASH ;5
-		db SANDSLASH ;5
-		db SANDSLASH ;5
-		db VENOMOTH ;5
-		db VENOMOTH ;4
-		db VENOMOTH ;4
-		db WIGGLYTUFF ;3
-		db WIGGLYTUFF ;3
-		db VENOMOTH ;2
-		db WIGGLYTUFF ;2
-		db WIGGLYTUFF ;1
-		db WIGGLYTUFF ;1
+		db YANMA ;30
+		db YANMA ;10
+		db YANMA ;10
+		db BAYLEEF ;10
+		db YANMA ;5
+		db YANMA ;5
+		db BAYLEEF ;5
+		db SUNFLORA ;5
+		db SUNFLORA ;4
+		db SUNFLORA ;4
+		db SKIPLOOM ;3
+		db JUMPLUFF ;3
+		db SKIPLOOM ;2
+		db SKIPLOOM ;2
+		db SUNFLORA ;1
+		db SUNFLORA ;1
 ;night
-		db GENGAR ;20
-		db SANDSLASH ;20
-		db NIDOKING ;10
-		db RAICHU ;10
-		db GENGAR ;5
-		db RAICHU ;5
-		db WIGGLYTUFF ;5
-		db VENOMOTH ;5
-		db PILOSWINE ;4
-		db GRANBULL ;4
-		db GRANBULL ;3
-		db GRANBULL ;3
-		db GRANBULL ;2
-		db GRANBULL ;2
-		db PILOSWINE ;1
-		db GRANBULL ;1
+		db YANMA ;30
+		db YANMA ;10
+		db HOUNDOOM ;10
+		db HOUNDOOM ;10
+		db YANMA ;5
+		db HOUNDOOM ;5
+		db YANMA ;5
+		db YANMA ;5
+		db YANMA ;4
+		db YANMA ;4
+		db YANMA ;3
+		db YANMA ;3
+		db YANMA ;2
+		db YANMA ;2
+		db YANMA ;1
+		db YANMA ;1
 
 	db $ff ; end
