@@ -11,6 +11,16 @@ Trainers:
 		; Up to six monsters following the data type
 	; $ff
 
+;List is sorted by trainer class
+;fist string is the name, ending in an @ symbol
+; then it's how many features the trainer uses, 0 means none, (1 << TRAINERTYPE_MOVES) = custom sets, (1 << TRAINERTYPE_ITEM) = hold items and (1 << TRAINERTYPE_NICKNAME) = nickname
+; multiple can be used by sepperating them by | , but those you use must be fully specified on the whole trainer
+; specifying moves requires specifying all 4 as the game assumes the trainer is so long based on that. items and nicknames are inserted after the species name behind commas with nicknames in quotes ("AIIIIIIRRR@")
+; Mon syntax: level, specicies, item/nickname, 4 moves. remove features that you have not turned on. up to 6 mons can be entered
+; then, lastly an $ff to show that the trainer is complete
+
+; what trainer is where is not recorded here, the game instead records where they are on here in the map files. The easiest way to find which trainer is pointed to from where is to use bulba as refernce
+
 
 FalknerGroup:
 ; ================================
