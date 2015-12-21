@@ -262,7 +262,7 @@ FishGroup1_Old: ; 924e3
 FishGroup1_Good: ; 924ec
 	db 75, REMORAID,	25
 	db 120, OCTILLERY,	30
-	db 113, AZUMARILL	30
+	db 113, AZUMARILL,	30
 	db 125, CROCONAW,	30
 	db 138, WOOPER,		25
 	db 150, MARILL,		25
@@ -543,7 +543,7 @@ TimeFishGroups: ; 9266f
 	db WOOPER,     25 ; nite
 	db CROCONAW,   25 ; day
 ; 8 - Johto Freshwater Super Rod 5% 
-	db POLIWHIRL   65 ; nite
+	db POLIWHIRL,   65 ; nite
 	db TOTODILE,   50 ; day
 ; 9 - Johto Freshwater Super Rod 10%
 	db WOOPER,     50 ; nite
@@ -660,8 +660,8 @@ TimeFishGroups: ; 9266f
 	db SEAKING,    75 ; nite
 	db POLIWRATH,  80 ; day
 ; 47
-	db POLITOED    80 ; nite
-	db POLIWHIRL   75 ; day
+	db POLITOED,    80 ; nite
+	db POLIWHIRL,   75 ; day
 	
 
 	

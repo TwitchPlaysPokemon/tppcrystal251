@@ -232,7 +232,7 @@ Function78a:: ; 78a
 
 Function82b:: ; 82b
 	push hl
-	ld hl, wcf5b
+	ld hl, wcf5b ;check if wcf5b pointer is zero
 	ld a, [hli]
 	or [hl]
 	pop hl
@@ -291,18 +291,18 @@ Function871:: ; 871
 Function87d:: ; 87d
 	ld a, $ff
 	ld [wcf52], a
-.asm_882
+.asm_882 ;INFINITE LOOP
 	call Function8c1
 	call DelayFrame
 	call Function82b
-	jr z, .asm_89e
+	jr z, .asm_89e ;if wcf5b pointer is zero, jump (INFINITE)
 	push hl
 	ld hl, wcf5c
 	dec [hl]
-	jr nz, .asm_89d
+	jr nz, .asm_89d ;if wcf5c > 1, jump
 	dec hl
 	dec [hl]
-	jr nz, .asm_89d
+	jr nz, .asm_89d ;if wcf5d > 1, jump
 	pop hl
 	xor a
 	jp Function833
@@ -311,9 +311,9 @@ Function87d:: ; 87d
 	pop hl
 
 .asm_89e
-	ld a, [wcf52]
+	ld a, [wcf52] ;inc ??? (INFINITE)
 	inc a
-	jr z, .asm_882
+	jr z, .asm_882 ;if zero, loop (INFINITE)
 	ld b, $a
 .asm_8a6
 	call DelayFrame
@@ -336,12 +336,12 @@ Function8c1:: ; 8c1
 	ld b, $60
 	ld a, [InLinkBattle]
 	cp $1
-	jr z, .asm_8d7
+	jr z, .asm_8d7 ;if in link battle
 	ld b, $60
-	jr c, .asm_8d7
+	jr c, .asm_8d7 ;if linkbattle = 0
 	cp $2
 	ld b, $70
-	jr z, .asm_8d7
+	jr z, .asm_8d7 ;if equal 2
 	ld b, $80
 
 .asm_8d7

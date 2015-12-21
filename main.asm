@@ -31304,7 +31304,7 @@ String28ece: ; 28ece
 Function28eef: ; 28eef
 	ld d, h
 	ld e, l
-	callba Function16d6ca
+	;callba Function16d6ca
 	ret
 ; 28ef8
 
@@ -33113,42 +33113,42 @@ Function29d11: ; 29d11
 	ret
 ; 29d92
 
-Function29d92: ; 29d92
-	ld a, $1
-	ld [wcf56], a
+Function29d92: ; 29d92 (5D8F)
+	ld a, $1 
+	ld [wcf56], a ;(91)
 	ld hl, wcf5b
 	ld a, $3
-	ld [hli], a
+	ld [hli], a ;(9b)
 	xor a
 	ld [hl], a
 	call WaitBGMap
 	ld a, $2
-	ld [hVBlank], a
+	ld [hVBlank], a ;(a1)
 	call DelayFrame
 	call DelayFrame
-	call Function29e0c
+	call Function29e0c 
 	xor a
 	ld [hVBlank], a
 	ld a, [ScriptVar]
-	and a
+	and a ;(b2)
 	ret nz
 	jp Function29f04
 ; 29dba
 
 Function29dba: ; 29dba
-	ld a, $5
+	ld a, $5; (b7)
 	ld [wcf56], a
 	ld hl, wcf5b
 	ld a, $3
-	ld [hli], a
+	ld [hli], a ;(c1)
 	xor a
 	ld [hl], a
-	call WaitBGMap
+	call WaitBGMap ;(c4)
 	ld a, $2
 	ld [hVBlank], a
+	call DelayFrame ;(cb)
 	call DelayFrame
-	call DelayFrame
-	call Function29e0c
+	call Function29e0c  ;trace 4
 	ld a, [ScriptVar]
 	and a
 	jr z, .asm_29e08
@@ -33190,13 +33190,13 @@ Function29e0c: ; 29e0c
 	ld h, a
 	ld a, [wcf5c]
 	ld l, a
-	push hl
-	call Function29e3b
+	push hl ;trace 3
+	call Function29e3b ;trace 2
 	pop hl
 	jr nz, .asm_29e2f
 	call Function29e47
 	call Function29e53
-	call Function29e3b
+	call Function29e3b 
 	jr nz, .asm_29e2f
 	call Function29e47
 	xor a
@@ -33215,7 +33215,7 @@ Function29e0c: ; 29e0c
 ; 29e3b
 
 Function29e3b: ; 29e3b
-	call Function87d
+	call Function87d ;trace 1
 	ld hl, wcf5b
 	ld a, [hli]
 	inc a
@@ -33411,33 +33411,7 @@ Function29fe4: ; 29fe4
 	ret
 ; 29ff8
 
-Function29ff8: ; 29ff8 
-	call Function2a205 ;a = current mapnumber, hl = top of encounter area and carry is set if it has a land encounter, otherwise a is 0 and carry flag is not set
-	jr c, .asm_2a006
-	ld hl, wd25a ;fill wd25a with 0 if it is not an encounter map
-	xor a
-		;ld [hli], a ;now only 1 slot 
-		;ld [hli], a
-	ld [hl], a
-	jr .asm_2a011
-.asm_2a006 ; if you have the encounter map, copy ecounter rates into wd25a  
-	inc hl
-	inc hl
-	ld de, wd25a
-	ld a, [hl]
-	ld [de], a
-	;ld bc, $1 ;only first needs carryng over now
-	;call CopyBytes
-.asm_2a011
-	call Function2a21d ;a = current mapnumber, hl = top of encounter area and carry is set if it has a water encounter, otherwise a is 0 and carry flag is not set
-	ld a, $0
-	jr nc, .asm_2a01b
-	inc hl
-	inc hl
-	ld a, [hl]
-.asm_2a01b
-	ld [wd25d], a ; load zero if no water encounters, otherwise load water encounter chance
-	ret
+
 
 
 ; 2a052
@@ -34072,6 +34046,34 @@ INCBIN "gfx/misc/dude.6x6.2bpp.lz"
 ; 2bcea
 
 SECTION "WildHandling", ROMX 
+
+Function29ff8: ; 29ff8 
+	call Function2a205 ;a = current mapnumber, hl = top of encounter area and carry is set if it has a land encounter, otherwise a is 0 and carry flag is not set
+	jr c, .asm_2a006
+	ld hl, wd25a ;fill wd25a with 0 if it is not an encounter map
+	xor a
+		;ld [hli], a ;now only 1 slot 
+		;ld [hli], a
+	ld [hl], a
+	jr .asm_2a011
+.asm_2a006 ; if you have the encounter map, copy ecounter rates into wd25a  
+	inc hl
+	inc hl
+	ld de, wd25a
+	ld a, [hl]
+	ld [de], a
+	;ld bc, $1 ;only first needs carryng over now
+	;call CopyBytes
+.asm_2a011
+	call Function2a21d ;a = current mapnumber, hl = top of encounter area and carry is set if it has a water encounter, otherwise a is 0 and carry flag is not set
+	ld a, $0
+	jr nc, .asm_2a01b
+	inc hl
+	inc hl
+	ld a, [hl]
+.asm_2a01b
+	ld [wd25d], a ; load zero if no water encounters, otherwise load water encounter chance
+	ret
 
 Function2a4ab: ; 2a4ab seems to be a function to get a local mon to use in call text
 	callba Function90439
