@@ -290,15 +290,17 @@ UnknownText_0x68735: ; 0x68735
 ; 0x687cd
 
 Bird_keeperRodSeenText: ; 0x687cd
-	text "The keyword is"
-	line "guts!"
+	text "I was born and"
+	line "raised in the"
+	cont "KANTO region!"
 
-	para "Those here are"
-	line "training night and"
+	para "I flew to JOHTO"
+	line "by riding on my"
+	cont "bird #MON!"
 
-	para "day to become bird"
-	line "#MON masters."
-
+	para "You are no"
+	line "match to me!"
+	
 	para "Come on!"
 	done
 ; 0x6882f
@@ -309,19 +311,18 @@ Bird_keeperRodBeatenText: ; 0x6882f
 ; 0x68837
 
 UnknownText_0x68837: ; 0x68837
-	text "FALKNER's skills"
-	line "are for real!"
-
-	para "Don't get cocky"
-	line "just because you"
-	cont "beat me!"
+	text "I fly on the"
+	line "wings of my"
+	cont "FEAROW!"
 	done
 ; 0x6887f
 
 Bird_keeperAbeSeenText: ; 0x6887f
-	text "Let me see if you"
-	line "are good enough to"
-	cont "face FALKNER!"
+	text "All VIOLET GYM"
+	line "trainers use BIRD"
+
+	para "#MON from the"
+	line "KANTO region!"
 	done
 ; 0x688b3
 
@@ -332,9 +333,13 @@ Bird_keeperAbeBeatenText: ; 0x688b3
 ; 0x688c7
 
 UnknownText_0x688c7: ; 0x688c7
-	text "This is pathetic,"
-	line "losing to some"
-	cont "rookie trainer…"
+	text "Bird #MON are more"
+	line "common in the"
+	cont "KANTO region!"
+	
+	para "You usually only"
+	line "see HOOTHOOT"
+	cont "around here..."
 	done
 ; 0x688f9
 

@@ -506,9 +506,9 @@ MapGroup25:
 
 
 MapGroup26:
-	map_header Route30, $1, 2, ROUTE_30, MUSIC_ROUTE_30, 0, 0, 4
-	map_header Route31, $1, 2, ROUTE_31, MUSIC_ROUTE_30, 0, 0, 4
-	map_header CherrygroveCity, $1, 1, CHERRYGROVE_CITY, MUSIC_CHERRYGROVE_CITY, 0, 0, 1
+	map_header Route30, $1, 2, ROUTE_30, MUSIC_ROUTE_30, 0, 0, 1
+	map_header Route31, $1, 2, ROUTE_31, MUSIC_ROUTE_30, 0, 0, 1
+	map_header CherrygroveCity, $1, 1, CHERRYGROVE_CITY, MUSIC_CHERRYGROVE_CITY, 0, 0, 2
 	map_header CherrygroveMart, $c, 3, CHERRYGROVE_CITY, MUSIC_MART, 0, 1, 1
 	map_header CherrygrovePokeCenter1F, $7, 3, CHERRYGROVE_CITY, MUSIC_POKEMON_CENTER, 0, 1, 1
 	map_header CherrygroveGymSpeechHouse, $5, 3, CHERRYGROVE_CITY, MUSIC_CHERRYGROVE_CITY, 0, 1, 1
