@@ -78,3 +78,5 @@ hLSC               EQU $fff2
 
 hMPTmp             EQU $fff5
 hMPTmp3		       EQU $fff6
+hTmpd              EQU $fff7
+hTmpe              EQU $fff8

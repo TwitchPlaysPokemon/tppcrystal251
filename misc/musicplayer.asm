@@ -1660,6 +1660,161 @@ MPLPlaceString:
     call PlaceString
     pop de
     ret
+	
+RenderNarrowText:
+; render 1bpp graphics of a narrow text of hl to de
+; only work with character $7f-$ff
+	ld b, 0 ; left/right indicator
+	ld a, d
+	ld [hTmpd], a
+	ld a, e
+	ld [hTmpe], a
+.getcharloop
+	ld a, [hli]
+	cp "@"
+	jp z, .end
+	cp $7f
+	jr c, .getcharloop
+	jr nz, .notspace
+	ld a, $bf
+.notspace
+	bit 0, b
+	jr nz, .right
+	ld d, a
+	set 0, b
+	jr .getcharloop
+.right
+	call .process
+	jr .getcharloop
+.process
+	res 0, b
+	srl a
+	ld e, a
+	ld a, 1
+	jr c, .rodd
+	xor a
+.rodd
+	srl d
+	rla
+	push hl
+	push bc
+	ld h, 0
+	ld l, d
+	add hl, hl
+	add hl, hl
+	add hl, hl
+	ld bc, NarrowFontGFX
+	add hl, bc
+	push hl
+	ld h, 0
+	ld l, e
+	add hl, hl
+	add hl, hl
+	add hl, hl
+	add hl, bc
+	pop bc
+	push hl
+	push af
+	ld a, [hTmpd]
+	ld d, a
+	ld a, [hTmpe]
+	ld e, a
+	pop af
+	ld hl, RenderNarrowTextTable
+	rst JumpTable
+	ld a, d
+	ld [hTmpd], a
+	ld a, e
+	ld [hTmpe], a
+	pop bc
+	pop hl
+	ret
+.end
+	bit 0, b
+	ret z
+	ld a, $bf
+	jp .process
+	
+RenderNarrowTextTable:
+	dw NT_Right0Left0
+	dw NT_Right0Left1
+	dw NT_Right1Left0
+	dw NT_Right1Left1
+	
+; hl = right
+; bc = left
+	
+NT_Right0Left0:
+	pop hl
+	rept 8
+	push de
+	ld a, [bc]
+	inc bc
+	and $f0
+	ld d, a
+	ld a, [hli]
+	swap a
+	and $f
+	add d
+	pop de
+	ld [de], a
+	inc de
+	endr
+	ret
+	
+NT_Right0Left1:
+	pop hl
+	rept 8
+	push de
+	ld a, [bc]
+	inc bc
+	swap a
+	and $f0
+	ld d, a
+	ld a, [hli]
+	swap a
+	and $f
+	add d
+	pop de
+	ld [de], a
+	inc de
+	endr
+	ret
+	
+NT_Right1Left0:
+	pop hl
+	rept 8
+	push de
+	ld a, [bc]
+	inc bc
+	and $f0
+	ld d, a
+	ld a, [hli]
+	and $f
+	add d
+	pop de
+	ld [de], a
+	inc de
+	endr
+	ret
+	
+NT_Right1Left1:
+	pop hl
+	rept 8
+	push de
+	ld a, [bc]
+	inc bc
+	swap a
+	and $f0
+	ld d, a
+	ld a, [hli]
+	and $f
+	add d
+	pop de
+	ld [de], a
+	inc de
+	endr
+	ret
 
 LoadingText:
     db "LOADING…@"
