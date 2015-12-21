@@ -235,10 +235,34 @@ FishGroup12Header: ; 924d5
 
 FishGroup13Header: ; 924dc
 	;db $80 ; 50%
-	dw FishGroup11_Old
-	dw FishGroup11_Good
-	dw FishGroup11_Super
+	dw FishGroup13_Old
+	dw FishGroup13_Good
+	dw FishGroup13_Super
+	
+FishGroup14Header:
+	;db $80 ; 50%
+	dw FishGroup14_Old
+	dw FishGroup14_Good
+	dw FishGroup14_Super
 
+FishGroup15Header:
+	;db $80 ; 50%
+	dw FishGroup15_Old
+	dw FishGroup15_Good
+	dw FishGroup15_Super
+
+FishGroup16Header:
+	;db $80 ; 50%
+	dw FishGroup16_Old
+	dw FishGroup16_Good
+	dw FishGroup16_Super
+
+FishGroup17Header:
+	;db $80 ; 50%
+	dw FishGroup17_Old
+	dw FishGroup17_Good
+	dw FishGroup17_Super
+	
 ;to set fishing mons, first you have to make/edit a group, then assign that group to an area in maps/map_headers.asm (last number). group 0 is used to represent no fishing mons
 ;each group is split into rods, but each table can be any legnth
 ;first number is chance out of 255, currently in hex (noted by the $) but a decimal number can be entered too. This number is not individual chance, but culumulative chance of getting that far
@@ -511,6 +535,105 @@ FishGroup12_Super: ; 92663
 	db $b2, $0,         7
 	db $e6, MAGIKARP,   40
 	db $ff, REMORAID,   40
+	
+FishGroup13: ; Kanto freshwater
+FishGroup13_Old:
+	db 125, MAGIKARP,	10
+	db 163, GOLDEEN,	10
+	db 189, POLIWAG,	10
+	db 203, PSYDUCK,	10
+	db 228, GRIMER,		10
+	db $ff, $0,			48
+FishGroup13_Good:
+	db 75, MAGIKARP,	25
+	db 100, GOLDEEN,	25
+	db 125, SEAKING,	30
+	db 150, POLIWHIRL,	30
+	db 189, GOLDUCK,	30
+	db 215, GRIMER,		25
+	db 241, $0,			49
+	db $ff, $0,         50
+FishGroup13_Super: 
+	db 75, GYARADOS,	80
+	db 101, SEAKING,	75
+	db 139, POLIWRATH,	80
+	db 190, GOLDUCK,	75
+	db 216, MUK,		80
+	db $ff, $0,			51
+
+FishGroup14: ; Kanto seawater
+FishGroup14_Old: 
+	db 75, MAGIKARP,	10
+	db 139, TENTACOOL,	10
+	db 165, SHELLDER,	10
+	db 191, SEEL,		10
+	db 204, $0,			52
+	db $ff, $0,			53
+FishGroup14_Good: 
+	db 88, TENTACOOL,	25
+	db 126, TENTACRUEL,	30
+	db 152, SHELLDER,	25
+	db 178, SEEL,		25
+	db 192, $0,			54
+	db $ff, $0,         55
+FishGroup14_Super:
+	db 102, TENTACRUEL,	75
+	db 128, DEWGONG,	80
+	db 154, CLOYSTER,	80
+	db 179, $0,			56
+	db $ff, $0,			57
+
+FishGroup15: ; Seafoam
+FishGroup15_Old: 
+	db 51, SHELLDER,	10
+	db 77, $0,			58
+	db 141, $0,			59
+	db 179, $0,			60
+	db $ff, $0,			61
+FishGroup15_Good: 
+	db 51, SHELLDER,	25
+	db 77, $0,			62
+	db 166, $0,			63
+	db 192, $0,			64
+	db $ff, $0,         65
+FishGroup15_Super:
+	db 26, CLOYSTER,	80
+	db 100, $0,			66
+	db 216, $0,			67
+	db 229, $0,			68
+	db $ff, $0,			69
+
+FishGroup16: ; Celadon Pond
+FishGroup16_Old: 
+	db $ff, GRIMER,		10
+FishGroup16_Good: 
+	db 200, GRIMER,		25
+	db $ff, MUK,        40
+FishGroup16_Super:
+	db 164, GRIMER,		70
+	db $ff, MUK,		80
+	
+FishGroup17: ; Cerulean Gym
+FishGroup17_Old: 
+	db 125, STARYU,		10
+	db 188, GOLDEEN,	10
+	db 248, TENTACOOL,	10
+	db $ff, TOGEPI,		10
+FishGroup17_Good: 
+	db 75, STARYU,		25
+	db 125, STARMIE,	30
+	db 150, SEAKING,	30
+	db 175, SHELLDER,	25
+	db 200, HORSEA,		25
+	db 248, TENTACRUEL,	30
+	db $ff, TOGEPI,     25
+FishGroup17_Super:
+	db 88, STARMIE,		80
+	db 125, HORSEA,		65
+	db 163, SEADRA,		75
+	db 200, CLOYSTER,	80
+	db 248, TENTACRUEL,	75
+	db $ff, TOGEPI,		60
 
 ; 9266f
 
@@ -660,10 +783,74 @@ TimeFishGroups: ; 9266f
 	db SEAKING,    75 ; nite
 	db POLIWRATH,  80 ; day
 ; 47
-	db POLITOED,    80 ; nite
-	db POLIWHIRL,   75 ; day
-	
-
+	db POLITOED,   80 ; nite
+	db POLIWHIRL,  75 ; day
+; 48
+	db GRIMER,     10 ; nite
+	db GOLDEEN,    10 ; day
+; 49
+	db GRIMER,     25 ; nite
+	db SEAKING,    30 ; day
+; 50
+	db GRIMER,     25 ; nite
+	db GOLDEEN,    25 ; day
+; 51
+	db MUK,        80 ; nite
+	db SEAKING,    75 ; day
+; 52
+	db HORSEA,     10 ; nite
+	db KRABBY,     10 ; day
+; 53
+	db KRABBY,     10 ; nite
+	db HORSEA,     10 ; day
+; 54
+	db SEADRA,     30 ; nite
+	db KINGLER     30 ; day
+; 55
+	db KINGLER,    30 ; nite
+	db SEADRA,     30 ; day
+; 56
+	db SEADRA,     75 ; nite
+	db KINGLER,    75 ; day
+; 57
+	db KINGLER,    75 ; nite
+	db SEADRA,     75 ; day
+; 58
+	db KABUTO,     10 ; nite
+	db OMANYTE,    10 ; day
+; 59
+	db OMANYTE,    10 ; nite
+	db KABUTO,     10 ; day
+; 60
+	db SEEL,       10 ; nite
+	db PSYDUCK,    10 ; day
+; 61
+	db PSYDUCK,    10 ; nite
+	db SEEL,       10 ; day
+; 62
+	db KABUTO,     25 ; nite
+	db OMANYTE,    25 ; day
+; 63
+	db OMANYTE,    25 ; nite
+	db KABUTO,     25 ; day
+; 64
+	db SEEL,       25 ; nite
+	db GOLDUCK,    30 ; day
+; 65
+	db GOLDUCK,    30 ; nite
+	db SEEL,       25 ; day
+; 66
+	db KABUTO,     75 ; nite
+	db OMANYTE,    75 ; day
+; 67
+	db OMANYTE,    75 ; nite
+	db KABUTO,     75 ; day
+; 68
+	db DEWGONG,    80 ; nite
+	db GOLDUCK,    75 ; day
+; 69
+	db GOLDUCK,    75 ; nite
+	db DEWGONG,    80 ; day
 	
 ; 926c7
 

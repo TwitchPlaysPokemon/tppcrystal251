@@ -89,8 +89,7 @@ hLSC               EQU $fff2
 
 hMPTmp             EQU $fff5
 hMPTmp3		       EQU $fff6
-<<<<<<< HEAD
-=======
+
 hTmpd              EQU $fff7
 hTmpe              EQU $fff8
->>>>>>> upstream/master
+

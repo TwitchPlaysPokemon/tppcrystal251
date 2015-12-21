@@ -32,19 +32,19 @@ FalknerGroup:
 
 	; party
 
-	db 12, SPEAROW
+	db 22, SPEAROW
 		db PECK
 		db MUD_SLAP
 		db LEER
 		db NONE
 
-	db 15, PIDGEOTTO
+	db 25, PIDGEOTTO
 		db WING_ATTACK
 		db MUD_SLAP
 		db QUICK_ATTACK
 		db SAND_ATTACK
 
-	db 17, NOCTOWL
+	db 27, NOCTOWL
 		db NIGHT_SHADE
 		db HYPNOSIS
 		db WING_ATTACK
@@ -2089,7 +2089,8 @@ YoungsterGroup:
 	db 0 ; normal
 
 	; party
-	db 4, RATTATA
+	db 20, SENTRET
+	db 22, RATTATA
 
 	db $ff ; end
 
@@ -2100,8 +2101,9 @@ YoungsterGroup:
 	db 0 ; normal
 
 	; party
-	db 2, PIDGEY
-	db 4, RATTATA
+	db 20, TEDDIURSA
+	db 20, HOOTHOOT
+	db 22, FURRET
 
 	db $ff ; end
 
@@ -2619,11 +2621,20 @@ BirdKeeperGroup:
 
 	; BIRD_KEEPER (1)
 	db "ROD@"
-	db 0 ; normal
+	db (1 << TRAINERTYPE_MOVES)
 
 	; party
-	db 7, PIDGEY
-	db 7, PIDGEY
+	db 21, SPEAROW
+		db FLY
+		db STEEL_WING
+		db TOXIC
+		db DETECT
+
+	db 23, FEAROW
+		db TRI_ATTACK
+		db MUD_SLAP
+		db SLEEP_TALK
+		db REST
 
 	db $ff ; end
 
@@ -2634,7 +2645,9 @@ BirdKeeperGroup:
 	db 0 ; normal
 
 	; party
-	db 9, SPEAROW
+	db 21, SPEAROW
+	db 21, DODUO
+	db 23, FARFETCH_D
 
 	db $ff ; end
 
@@ -4897,11 +4910,12 @@ BugCatcherGroup:
 
 	; BUG_CATCHER (1)
 	db "DON@"
-	db 0 ; normal
+	db 0
 
 	; party
-	db 3, CATERPIE
-	db 3, CATERPIE
+	db 20, SPINARAK
+	db 22, LEDYBA
+	db 23, LEDIAN
 
 	db $ff ; end
 
@@ -4937,10 +4951,10 @@ BugCatcherGroup:
 	db 0 ; normal
 
 	; party
-	db 2, CATERPIE
-	db 2, CATERPIE
-	db 3, WEEDLE
-	db 2, CATERPIE
+	db 20, PINECO
+	db 20, HOPPIP
+	db 22, PINECO
+	db 23, ARIADOS
 
 	db $ff ; end
 
@@ -8810,9 +8824,9 @@ SageGroup:
 	db 0 ; normal
 
 	; party
-	db 3, BELLSPROUT
-	db 3, BELLSPROUT
-	db 3, BELLSPROUT
+	db 20, BELLSPROUT
+	db 20, HOUNDOUR
+	db 22, BELLSPROUT
 
 	db $ff ; end
 
@@ -8823,9 +8837,9 @@ SageGroup:
 	db 0 ; normal
 
 	; party
-	db 3, BELLSPROUT
-	db 3, BELLSPROUT
-	db 3, BELLSPROUT
+	db 20, BELLSPROUT
+	db 20, ZUBAT
+	db 22, BELLSPROUT
 
 	db $ff ; end
 
@@ -8833,11 +8847,15 @@ SageGroup:
 
 	; SAGE (3)
 	db "JIN@"
-	db 0 ; normal
+	db (1 << TRAINERTYPE_MOVES)
 
 	; party
-	db 6, BELLSPROUT
-
+	db 22, BELLSPROUT
+		db SLUDGE_BOMB
+		db SLEEP_POWDER
+		db GROWTH
+		db SWAGGER
+	
 	db $ff ; end
 
 ; ================
@@ -8847,8 +8865,10 @@ SageGroup:
 	db 0 ; normal
 
 	; party
-	db 7, BELLSPROUT
-	db 7, HOOTHOOT
+	db 20, BELLSPROUT
+	db 20, HOOTHOOT
+	db 20, MISDREAVUS
+	db 20, ODDISH
 
 	db $ff ; end
 
@@ -8885,9 +8905,9 @@ SageGroup:
 	db 0 ; normal
 
 	; party
-	db 3, BELLSPROUT
-	db 3, BELLSPROUT
-	db 3, BELLSPROUT
+	db 20, BELLSPROUT
+	db 20, HOOTHOOT
+	db 22, BELLSPROUT
 
 	db $ff ; end
 
@@ -8898,7 +8918,7 @@ SageGroup:
 	db 0 ; normal
 
 	; party
-	db 6, BELLSPROUT
+	db 22, WEEPINBELL
 
 	db $ff ; end
 
@@ -8906,12 +8926,24 @@ SageGroup:
 
 	; SAGE (9)
 	db "LI@"
-	db 0 ; normal
+	db (1 << TRAINERTYPE_MOVES)
 
 	; party
-	db 7, BELLSPROUT
-	db 7, BELLSPROUT
-	db 10, HOOTHOOT
+	db 22, BELLSPROUT
+		db SUNNY_DAY
+		db SYNTHESIS
+		db SOLARBEAM
+		db SLEEP_POWDER
+	db 23, NOCTOWL
+		db HYPNOSIS
+		db NIGHTMARE
+		db WING_ATTACK
+		db SUPERSONIC
+	db 24, WEEPINBELL
+		db SWORDS_DANCE
+		db LEECH_LIFE
+		db VINE_WHIP
+		db SLEEP_POWDER
 
 	db $ff ; end
 

@@ -364,13 +364,18 @@ SageTroySeenText: ; 0x184e60
 
 SageTroyBeatenText: ; 0x184e8a
 	text "Yes, your trust is"
-	line "real!"
+	line "indeed real!"
 	done
 ; 0x184ea4
 
 UnknownText_0x184ea4: ; 0x184ea4
-	text "It is not far to"
-	line "the ELDER."
+	text "Legend has it that"
+	line "a VICTREEBEL lives"
+	cont "in this tower."
+	
+	para "It is waiting for"
+	line "somebody worthy to"
+	cont "appear before it."
 	done
 ; 0x184ec1
 
