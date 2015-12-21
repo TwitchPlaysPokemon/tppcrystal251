@@ -25,10 +25,10 @@ LatchClock:: ; 59c
 
 
 UpdateTime:: ; 5a7
-	call GetClock
+	call GetClock ;set correct time
 	call FixDays
 	call FixTime
-	callba GetTimeOfDay
+	callba GetTimeOfDay ;update ToD
 	ret
 ; 5b7
 

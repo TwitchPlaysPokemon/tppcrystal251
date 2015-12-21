@@ -45,7 +45,7 @@ MapGroup1:
 	map_header Route39Farmhouse, $5, 3, ROUTE_39, MUSIC_ECRUTEAK_CITY, 0, 1, 1
 	map_header Route38, $1, 2, ROUTE_38, MUSIC_ROUTE_37, 0, 0, 1
 	map_header Route39, $1, 2, ROUTE_39, MUSIC_ROUTE_37, 0, 0, 1
-	map_header OlivineCity, $1, 1, OLIVINE_CITY, MUSIC_VIOLET_CITY, 0, 0, 1
+	map_header OlivineCity, $1, 1, OLIVINE_CITY, MUSIC_VIOLET_CITY, 0, 0, 2
 
 
 MapGroup2:
@@ -53,8 +53,8 @@ MapGroup2:
 	map_header MahoganyGym, $f, 3, MAHOGANY_TOWN, MUSIC_GYM, 1, 1, 1
 	map_header MahoganyPokeCenter1F, $7, 3, MAHOGANY_TOWN, MUSIC_POKEMON_CENTER, 0, 1, 1
 	map_header Route42EcruteakGate, $8, 6, ROUTE_42, MUSIC_LAKE_OF_RAGE, 0, 1, 1
-	map_header Route42, $1, 2, ROUTE_42, MUSIC_LAKE_OF_RAGE, 0, 0, 3
-	map_header Route44, $1, 2, ROUTE_44, MUSIC_LAKE_OF_RAGE, 0, 0, 4
+	map_header Route42, $1, 2, ROUTE_42, MUSIC_LAKE_OF_RAGE, 0, 0, 1
+	map_header Route44, $1, 2, ROUTE_44, MUSIC_LAKE_OF_RAGE, 0, 0, 1
 	map_header MahoganyTown, $1, 1, MAHOGANY_TOWN, MUSIC_CHERRYGROVE_CITY, 0, 0, 1
 
 
@@ -80,7 +80,7 @@ MapGroup3:
 	map_header RadioTower3F, $1b, 3, RADIO_TOWER, 1<<7 | MUSIC_GOLDENROD_CITY, 1, 1, 1
 	map_header RadioTower4F, $1b, 3, RADIO_TOWER, 1<<7 | MUSIC_GOLDENROD_CITY, 1, 1, 1
 	map_header RadioTower5F, $1b, 3, RADIO_TOWER, 1<<7 | MUSIC_GOLDENROD_CITY, 1, 1, 1
-	map_header RuinsofAlphOutside, $1, 2, RUINS_OF_ALPH, MUSIC_UNION_CAVE, 0, 0, 4
+	map_header RuinsofAlphOutside, $1, 2, RUINS_OF_ALPH, MUSIC_UNION_CAVE, 0, 0, 1
 	map_header RuinsofAlphHoOhChamber, $1a, 7, RUINS_OF_ALPH, MUSIC_UNION_CAVE, 1, 1, 1
 	map_header RuinsofAlphKabutoChamber, $1a, 7, RUINS_OF_ALPH, MUSIC_UNION_CAVE, 1, 1, 1
 	map_header RuinsofAlphOmanyteChamber, $1a, 7, RUINS_OF_ALPH, MUSIC_UNION_CAVE, 1, 1, 1
@@ -95,11 +95,11 @@ MapGroup3:
 	map_header RuinsofAlphKabutoWordRoom, $22, 7, RUINS_OF_ALPH, MUSIC_UNION_CAVE, 1, 1, 1
 	map_header RuinsofAlphOmanyteWordRoom, $23, 7, RUINS_OF_ALPH, MUSIC_UNION_CAVE, 1, 1, 1
 	map_header RuinsofAlphAerodactylWordRoom, $24, 7, RUINS_OF_ALPH, MUSIC_UNION_CAVE, 1, 1, 1
-	map_header UnionCave1F, $18, 4, UNION_CAVE, MUSIC_UNION_CAVE, 1, 2, 3
-	map_header UnionCaveB1F, $18, 4, UNION_CAVE, MUSIC_UNION_CAVE, 1, 2, 3
-	map_header UnionCaveB2F, $18, 4, UNION_CAVE, MUSIC_UNION_CAVE, 1, 2, 1
-	map_header SlowpokeWellB1F, $18, 4, SLOWPOKE_WELL, MUSIC_DARK_CAVE, 1, 2, 3
-	map_header SlowpokeWellB2F, $18, 4, SLOWPOKE_WELL, MUSIC_DARK_CAVE, 1, 2, 3
+	map_header UnionCave1F, $18, 4, UNION_CAVE, MUSIC_UNION_CAVE, 1, 2, 2
+	map_header UnionCaveB1F, $18, 4, UNION_CAVE, MUSIC_UNION_CAVE, 1, 2, 2
+	map_header UnionCaveB2F, $18, 4, UNION_CAVE, MUSIC_UNION_CAVE, 1, 2, 2
+	map_header SlowpokeWellB1F, $18, 4, SLOWPOKE_WELL, MUSIC_DARK_CAVE, 1, 2, 8
+	map_header SlowpokeWellB2F, $18, 4, SLOWPOKE_WELL, MUSIC_DARK_CAVE, 1, 2, 8
 	map_header OlivineLighthouse1F, $13, 7, LIGHTHOUSE, MUSIC_LIGHTHOUSE, 0, 1, 1
 	map_header OlivineLighthouse2F, $13, 7, LIGHTHOUSE, MUSIC_LIGHTHOUSE, 0, 1, 1
 	map_header OlivineLighthouse3F, $13, 7, LIGHTHOUSE, MUSIC_LIGHTHOUSE, 0, 1, 1
@@ -110,38 +110,38 @@ MapGroup3:
 	map_header TeamRocketBaseB1F, $1c, 7, MAHOGANY_TOWN, MUSIC_ROCKET_HIDEOUT, 1, 1, 1
 	map_header TeamRocketBaseB2F, $b, 7, MAHOGANY_TOWN, MUSIC_ROCKET_HIDEOUT, 1, 1, 1
 	map_header TeamRocketBaseB3F, $b, 7, MAHOGANY_TOWN, MUSIC_ROCKET_HIDEOUT, 1, 1, 1
-	map_header IlexForest, $1f, 4, ILEX_FOREST, MUSIC_UNION_CAVE, 0, 2, 4
+	map_header IlexForest, $1f, 4, ILEX_FOREST, MUSIC_UNION_CAVE, 0, 2, 1
 	map_header WarehouseEntrance, $8, 7, GOLDENROD_CITY, MUSIC_UNION_CAVE, 1, 1, 1
 	map_header UndergroundPathSwitchRoomEntrances, $f, 7, GOLDENROD_CITY, MUSIC_UNION_CAVE, 1, 1, 1
 	map_header GoldenrodDeptStoreB1F, $1c, 7, MUSIC_MART, MUSIC_GOLDENROD_CITY, 1, 1, 1
 	map_header UndergroundWarehouse, $1c, 7, GOLDENROD_CITY, MUSIC_UNION_CAVE, 1, 1, 1
-	map_header MountMortar1FOutside, $1e, 4, MT_MORTAR, MUSIC_UNION_CAVE, 1, 2, 3
-	map_header MountMortar1FInside, $1e, 4, MT_MORTAR, MUSIC_UNION_CAVE, 1, 2, 3
-	map_header MountMortar2FInside, $1e, 4, MT_MORTAR, MUSIC_UNION_CAVE, 1, 2, 3
-	map_header MountMortarB1F, $1e, 4, MT_MORTAR, MUSIC_UNION_CAVE, 1, 2, 3
+	map_header MountMortar1FOutside, $1e, 4, MT_MORTAR, MUSIC_UNION_CAVE, 1, 2, 9
+	map_header MountMortar1FInside, $1e, 4, MT_MORTAR, MUSIC_UNION_CAVE, 1, 2, 9
+	map_header MountMortar2FInside, $1e, 4, MT_MORTAR, MUSIC_UNION_CAVE, 1, 2, 9
+	map_header MountMortarB1F, $1e, 4, MT_MORTAR, MUSIC_UNION_CAVE, 1, 2, 9
 	map_header IcePath1F, $1d, 4, ICE_PATH, MUSIC_DARK_CAVE, 1, 2, 5
 	map_header IcePathB1F, $1d, 4, ICE_PATH, MUSIC_DARK_CAVE, 1, 2, 5
 	map_header IcePathB2FMahoganySide, $1d, 4, ICE_PATH, MUSIC_DARK_CAVE, 1, 2, 5
 	map_header IcePathB2FBlackthornSide, $1d, 4, ICE_PATH, MUSIC_DARK_CAVE, 1, 2, 5
 	map_header IcePathB3F, $1d, 4, ICE_PATH, MUSIC_DARK_CAVE, 1, 2, 5
-	map_header WhirlIslandNW, $1e, 4, WHIRL_ISLANDS, MUSIC_UNION_CAVE, 1, 4, 10
-	map_header WhirlIslandNE, $1e, 4, WHIRL_ISLANDS, MUSIC_UNION_CAVE, 1, 4, 10
-	map_header WhirlIslandSW, $1e, 4, WHIRL_ISLANDS, MUSIC_UNION_CAVE, 1, 4, 10
-	map_header WhirlIslandCave, $1e, 4, WHIRL_ISLANDS, MUSIC_UNION_CAVE, 1, 4, 10
-	map_header WhirlIslandSE, $1e, 4, WHIRL_ISLANDS, MUSIC_UNION_CAVE, 1, 4, 10
-	map_header WhirlIslandB1F, $1e, 4, WHIRL_ISLANDS, MUSIC_UNION_CAVE, 1, 4, 10
-	map_header WhirlIslandB2F, $1e, 4, WHIRL_ISLANDS, MUSIC_UNION_CAVE, 1, 4, 10
-	map_header WhirlIslandLugiaChamber, $1e, 4, WHIRL_ISLANDS, MUSIC_UNION_CAVE, 1, 4, 10
-	map_header SilverCaveRoom1, $1e, 4, SILVER_CAVE, MUSIC_LIGHTHOUSE, 1, 4, 3
-	map_header SilverCaveRoom2, $18, 4, SILVER_CAVE, MUSIC_LIGHTHOUSE, 1, 2, 3
-	map_header SilverCaveRoom3, $18, 4, SILVER_CAVE, MUSIC_LIGHTHOUSE, 1, 1, 3
-	map_header SilverCaveItemRooms, $18, 4, SILVER_CAVE, MUSIC_LIGHTHOUSE, 1, 2, 3
-	map_header DarkCaveVioletEntrance, $1e, 4, DARK_CAVE, MUSIC_DARK_CAVE, 1, 4, 3
-	map_header DarkCaveBlackthornEntrance, $1e, 4, DARK_CAVE, MUSIC_DARK_CAVE, 1, 4, 3
-	map_header DragonsDen1F, $18, 4, DRAGONS_DEN, MUSIC_DRAGONS_DEN, 1, 2, 5
-	map_header DragonsDenB1F, $1, 4, DRAGONS_DEN, MUSIC_DRAGONS_DEN, 1, 2, 5
-	map_header DragonShrine, $a, 3, DRAGONS_DEN, MUSIC_DRAGONS_DEN, 1, 2, 1
-	map_header TohjoFalls, $18, 4, TOHJO_FALLS, MUSIC_UNION_CAVE, 1, 2, 3
+	map_header WhirlIslandNW, $1e, 4, WHIRL_ISLANDS, MUSIC_UNION_CAVE, 1, 4, 2
+	map_header WhirlIslandNE, $1e, 4, WHIRL_ISLANDS, MUSIC_UNION_CAVE, 1, 4, 2
+	map_header WhirlIslandSW, $1e, 4, WHIRL_ISLANDS, MUSIC_UNION_CAVE, 1, 4, 2
+	map_header WhirlIslandCave, $1e, 4, WHIRL_ISLANDS, MUSIC_UNION_CAVE, 1, 4, 2
+	map_header WhirlIslandSE, $1e, 4, WHIRL_ISLANDS, MUSIC_UNION_CAVE, 1, 4, 2
+	map_header WhirlIslandB1F, $1e, 4, WHIRL_ISLANDS, MUSIC_UNION_CAVE, 1, 4, 2
+	map_header WhirlIslandB2F, $1e, 4, WHIRL_ISLANDS, MUSIC_UNION_CAVE, 1, 4, 2
+	map_header WhirlIslandLugiaChamber, $1e, 4, WHIRL_ISLANDS, MUSIC_UNION_CAVE, 1, 4, 2
+	map_header SilverCaveRoom1, $1e, 4, SILVER_CAVE, MUSIC_LIGHTHOUSE, 1, 4, 10
+	map_header SilverCaveRoom2, $18, 4, SILVER_CAVE, MUSIC_LIGHTHOUSE, 1, 2, 10
+	map_header SilverCaveRoom3, $18, 4, SILVER_CAVE, MUSIC_LIGHTHOUSE, 1, 1, 10
+	map_header SilverCaveItemRooms, $18, 4, SILVER_CAVE, MUSIC_LIGHTHOUSE, 1, 2, 10
+	map_header DarkCaveVioletEntrance, $1e, 4, DARK_CAVE, MUSIC_DARK_CAVE, 1, 4, 8
+	map_header DarkCaveBlackthornEntrance, $1e, 4, DARK_CAVE, MUSIC_DARK_CAVE, 1, 4, 8
+	map_header DragonsDen1F, $18, 4, DRAGONS_DEN, MUSIC_DRAGONS_DEN, 1, 2, 4
+	map_header DragonsDenB1F, $1, 4, DRAGONS_DEN, MUSIC_DRAGONS_DEN, 1, 2, 4
+	map_header DragonShrine, $a, 3, DRAGONS_DEN, MUSIC_DRAGONS_DEN, 1, 2, 4
+	map_header TohjoFalls, $18, 4, TOHJO_FALLS, MUSIC_UNION_CAVE, 1, 2, 2
 	map_header DiglettsCave, $18, 4, DIGLETTS_CAVE, MUSIC_MT_MOON, 1, 2, 1
 	map_header MountMoon, $18, 4, MT_MOON, MUSIC_MT_MOON, 1, 2, 1
 	map_header Underground, $1c, 6, UNDERGROUND, MUSIC_MT_MOON, 0, 2, 1
@@ -161,7 +161,7 @@ MapGroup4:
 	map_header EcruteakMart, $c, 3, ECRUTEAK_CITY, MUSIC_MART, 0, 1, 1
 	map_header EcruteakGym, $17, 3, ECRUTEAK_CITY, MUSIC_GYM, 1, 1, 1
 	map_header EcruteakItemfinderHouse, $10, 3, ECRUTEAK_CITY, MUSIC_ECRUTEAK_CITY, 0, 1, 1
-	map_header EcruteakCity, $1, 1, ECRUTEAK_CITY, MUSIC_ECRUTEAK_CITY, 0, 0, 4
+	map_header EcruteakCity, $1, 1, ECRUTEAK_CITY, MUSIC_ECRUTEAK_CITY, 0, 0, 1
 
 
 MapGroup5:
@@ -172,9 +172,9 @@ MapGroup5:
 	map_header BlackthornMart, $c, 3, BLACKTHORN_CITY, MUSIC_MART, 0, 1, 1
 	map_header BlackthornPokeCenter1F, $7, 3, BLACKTHORN_CITY, MUSIC_POKEMON_CENTER, 0, 1, 1
 	map_header MoveDeletersHouse, $5, 3, BLACKTHORN_CITY, MUSIC_AZALEA_TOWN, 0, 1, 1
-	map_header Route45, $1, 2, ROUTE_45, MUSIC_ROUTE_36, 0, 0, 9
-	map_header Route46, $1, 2, ROUTE_46, MUSIC_ROUTE_36, 0, 0, 1
-	map_header BlackthornCity, $1, 1, BLACKTHORN_CITY, MUSIC_AZALEA_TOWN, 0, 0, 4
+	map_header Route45, $1, 2, ROUTE_45, MUSIC_ROUTE_36, 0, 0, 2
+	map_header Route46, $1, 2, ROUTE_46, MUSIC_ROUTE_36, 0, 0, 2
+	map_header BlackthornCity, $1, 1, BLACKTHORN_CITY, MUSIC_AZALEA_TOWN, 0, 0, 5
 
 
 MapGroup6:
@@ -182,10 +182,10 @@ MapGroup6:
 	map_header CinnabarPokeCenter2FBeta, $7, 3, CINNABAR_ISLAND, MUSIC_POKEMON_CENTER, 0, 1, 1
 	map_header Route19FuchsiaGate, $8, 6, ROUTE_19, MUSIC_ROUTE_3, 0, 1, 1
 	map_header SeafoamGym, $18, 3, SEAFOAM_ISLANDS, MUSIC_GYM, 1, 1, 1
-	map_header Route19, $3, 2, ROUTE_19, MUSIC_ROUTE_3, 0, 0, 1
-	map_header Route20, $3, 2, ROUTE_20, MUSIC_ROUTE_3, 0, 0, 2
-	map_header Route21, $3, 2, ROUTE_21, MUSIC_ROUTE_3, 0, 0, 2
-	map_header CinnabarIsland, $3, 1, CINNABAR_ISLAND, MUSIC_CINNIBAR_ISLAND, 0, 0, 2
+	map_header Route19, $3, 2, ROUTE_19, MUSIC_ROUTE_3, 0, 0, 14
+	map_header Route20, $3, 2, ROUTE_20, MUSIC_ROUTE_3, 0, 0, 14
+	map_header Route21, $3, 2, ROUTE_21, MUSIC_ROUTE_3, 0, 0, 14
+	map_header CinnabarIsland, $3, 1, CINNABAR_ISLAND, MUSIC_CINNIBAR_ISLAND, 0, 0, 14
 
 
 MapGroup7:
@@ -201,10 +201,10 @@ MapGroup7:
 	map_header PowerPlant, $b, 3, POWER_PLANT, MUSIC_CERULEAN_CITY, 0, 1, 1
 	map_header BillsHouse, $5, 3, ROUTE_25, MUSIC_CERULEAN_CITY, 0, 1, 1
 	map_header Route4, $3, 2, ROUTE_4, MUSIC_ROUTE_3, 0, 0, 0
-	map_header Route9, $3, 2, ROUTE_9, MUSIC_ROUTE_3, 0, 0, 3
-	map_header Route10North, $3, 2, ROUTE_10, MUSIC_ROUTE_3, 0, 0, 3
-	map_header Route24, $3, 2, ROUTE_24, MUSIC_ROUTE_24, 0, 0, 3
-	map_header Route25, $3, 2, ROUTE_25, MUSIC_ROUTE_24, 0, 0, 3
+	map_header Route9, $3, 2, ROUTE_9, MUSIC_ROUTE_3, 0, 0, 14
+	map_header Route10North, $3, 2, ROUTE_10, MUSIC_ROUTE_3, 0, 0, 14
+	map_header Route24, $3, 2, ROUTE_24, MUSIC_ROUTE_24, 0, 0, 14
+	map_header Route25, $3, 2, ROUTE_25, MUSIC_ROUTE_24, 0, 0, 14
 	map_header CeruleanCity, $3, 1, CERULEAN_CITY, MUSIC_CERULEAN_CITY, 0, 0, 0
 ; RB
 	; map_header CeruleanGymBadgeSpeechHouseRB, $5, 3, CERULEAN_CITY, MUSIC_CERULEAN_CITY, 0, 1, 1
@@ -506,9 +506,9 @@ MapGroup25:
 
 
 MapGroup26:
-	map_header Route30, $1, 2, ROUTE_30, MUSIC_ROUTE_30, 0, 0, 4
-	map_header Route31, $1, 2, ROUTE_31, MUSIC_ROUTE_30, 0, 0, 4
-	map_header CherrygroveCity, $1, 1, CHERRYGROVE_CITY, MUSIC_CHERRYGROVE_CITY, 0, 0, 1
+	map_header Route30, $1, 2, ROUTE_30, MUSIC_ROUTE_30, 0, 0, 1
+	map_header Route31, $1, 2, ROUTE_31, MUSIC_ROUTE_30, 0, 0, 1
+	map_header CherrygroveCity, $1, 1, CHERRYGROVE_CITY, MUSIC_CHERRYGROVE_CITY, 0, 0, 2
 	map_header CherrygroveMart, $c, 3, CHERRYGROVE_CITY, MUSIC_MART, 0, 1, 1
 	map_header CherrygrovePokeCenter1F, $7, 3, CHERRYGROVE_CITY, MUSIC_POKEMON_CENTER, 0, 1, 1
 	map_header CherrygroveGymSpeechHouse, $5, 3, CHERRYGROVE_CITY, MUSIC_CHERRYGROVE_CITY, 0, 1, 1

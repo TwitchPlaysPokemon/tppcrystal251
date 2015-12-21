@@ -18,7 +18,7 @@ FarCall_de:: ; 2d54
 
 FarCall_hl:: ; 2d63
 ; Call a:hl.
-; Preserves other registers.
+; Preserves other registers. stacktrace left: place this is called from, rombank, 2d65(returnfarcall)
 
 	ld [hBuffer], a
 	ld a, [hROMBank]

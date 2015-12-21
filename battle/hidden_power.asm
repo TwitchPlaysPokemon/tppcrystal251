@@ -6,7 +6,7 @@ HiddenPowerDamage: ; fbced
 	and a
 	jr z, .got_dvs
 	ld hl, EnemyMonDVs
-.got_dvs
+.got_dvs ;dvs location is stored in HL
 
 
 ; Power:
@@ -14,53 +14,53 @@ HiddenPowerDamage: ; fbced
 ; Take the top bit from each stat
 
 	; Attack
-	ld a, [hl]
-	swap a
-	and 8
+;	ld a, [hl]
+;	swap a ;attack to little
+;	and 8 ;keep only the 4th bit (bit 4 of attack)
 
 	; Defense
-	ld b, a
-	ld a, [hli]
-	and 8
-	srl a
-	or b
+;	ld b, a ;attack into b
+;	ld a, [hli]
+;	and 8; keep only bit 4 of defence
+;	srl a; put it in 3
+;	or b ; merge with a's bit
 
 	; Speed
-	ld b, a
-	ld a, [hl]
-	swap a
-	and 8
-	srl a
-	srl a
-	or b
-
-	; Special
-	ld b, a
-	ld a, [hl]
-	and 8
-	srl a
-	srl a
-	srl a
-	or b
-
+;	ld b, a
+;	ld a, [hl]
+;	swap a
+;	and 8
+;	srl a
+;	srl a
+;	or b
+;
+;	; Special
+;	ld b, a
+;	ld a, [hl]
+;	and 8
+;	srl a
+;	srl a
+;	srl a
+;	or b 
+;
 ; Multiply by 5
-	ld b, a
-	add a
-	add a
-	add b
-
-; Add Special & 3
-	ld b, a
-	ld a, [hld]
-	and 3
-	add b
-
-; Divide by 2 and add 31
-	srl a
-	add 31
-
-	ld d, a
-
+;;	ld b, a ; b has the HP number
+;	add a
+;	add a
+;	add b
+;
+;; Add Special & 3
+;	ld b, a
+;	ld a, [hld]
+;	and 3
+;	add b
+;
+;; Divide by 2 and add 31
+;	srl a
+;	add 31
+;
+;	ld d, a ;power is stored in D, to lock to 70
+	
 
 ; Type:
 
@@ -101,7 +101,8 @@ HiddenPowerDamage: ; fbced
 
 ; Get the rest of the damage formula variables
 ; based on the new type, but keep base power.
-	ld a, d
+	;ld a, d
+	ld a, 70 ;sets power to 70, makes HP usable ingame
 	push af
 	callba BattleCommand06 ; damagestats
 	pop af

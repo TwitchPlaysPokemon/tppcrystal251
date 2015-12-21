@@ -48,7 +48,7 @@ FlagAction:: ; 0x2e76
 	ld a, e
 	and 7
 
-	; shift de right by three bits (get the index within memory)
+	; shift de right by three bits (get the correct byte index within memory)
 	srl d
 	rr e
 	srl d
@@ -57,18 +57,18 @@ FlagAction:: ; 0x2e76
 	rr e
 	add hl, de
 
-	; implement a decoder
+	; implement a decoder (and c will leave the correct byte with only the correct flag set (if it is set))
 	ld c, 1
-	rrca
-	jr nc, .one
-	rlc c
+	rrca 
+	jr nc, .one 
+	rlc c 
 .one
 	rrca
-	jr nc, .two
-	rlc c
+	jr nc, .two 
+	rlc c 
 	rlc c
 .two
-	rrca
+	rrca 
 	jr nc, .three
 	swap c
 .three

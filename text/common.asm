@@ -286,7 +286,7 @@ UnknownText_0x1b065b: ; 0x1b065b
 
 UnknownText_0x1b0681: ; 0x1b0681
 	text "Everyone else gets"
-	line "a BERRY as a con-"
+	line $f0, "1000 as a con-"
 	cont "solation prize!"
 	done
 ; 0x1b06b7
@@ -391,7 +391,10 @@ UnknownText_0x1b08cc: ; 0x1b08cc
 	line "full."
 
 	para "We'll keep this"
-	line "for you today, so"
+	line "for you,"
+
+	para "but can only hold"
+	line "one of each prize."
 
 	para "come back when you"
 	line "make room for it."

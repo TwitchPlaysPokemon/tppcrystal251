@@ -10,7 +10,7 @@ GoldenrodGameCorner_MapScriptHeader: ; 0x56bf4
 	dbw 2, UnknownScript_0x56bf9
 ; 0x56bf9
 
-UnknownScript_0x56bf9: ; 0x56bf9
+UnknownScript_0x56bf9: ; 0x56bf9 looks like the move tutor appearance check
 	checkevent EVENT_FIRST_TIME_HALL_OF_FAME
 	iffalse UnknownScript_0x56c19
 	checkitem COIN_CASE
@@ -161,7 +161,7 @@ MenuData2_0x56cd1: ; 0x56cd1
 ; 0x56d01
 
 
-ReceptionistScript_0x56d01: ; 0x56d01
+ReceptionistScript_0x56d01: ; 0x56d01 
 	faceplayer
 	loadfont
 	writetext UnknownText_0x56e50
@@ -180,11 +180,11 @@ UnknownScript_0x56d0c: ; 0x56d0c
 	jump UnknownScript_0x56cbd
 ; 0x56d26
 
-UnknownScript_0x56d26: ; 0x56d26
+UnknownScript_0x56d26: ; 0x56d26 NEEDS NEW MONS
 	checkcoins 100
 	if_equal $2, UnknownScript_0x56cb1
 	checkcode VAR_PARTYCOUNT
-	if_equal $6, UnknownScript_0x56cb7
+	if_equal $6, GCSlot1PC  ;if party is ful, can't carry more
 	pokenamemem ABRA, $0
 	scall UnknownScript_0x56ca1
 	iffalse UnknownScript_0x56cbd
@@ -197,13 +197,29 @@ UnknownScript_0x56d26: ; 0x56d26
 	givepoke ABRA, 5, 0, 0
 	takecoins 100
 	jump UnknownScript_0x56d0c
+
+GCSlot1PC:
+	checkcode VAR_BOXSPACE ;else  check to make sure there is space in the box
+	if_equal $0, UnknownScript_0x56cb7
+	pokenamemem ABRA, $0
+	scall UnknownScript_0x56ca1
+	iffalse UnknownScript_0x56cbd
+	waitbutton
+	playsound SFX_TRANSACTION
+	writetext GCSentToPCText
+	closetext
+	writebyte ABRA
+	special Functionc230
+	givepoke ABRA, 5, 0, 0
+	takecoins 100
+	jump UnknownScript_0x56d0c
 ; 0x56d54
 
 UnknownScript_0x56d54: ; 0x56d54
 	checkcoins 800
 	if_equal $2, UnknownScript_0x56cb1
 	checkcode VAR_PARTYCOUNT
-	if_equal $6, UnknownScript_0x56cb7
+	if_equal $6, GCSlot2PC
 	pokenamemem CUBONE, $0
 	scall UnknownScript_0x56ca1
 	iffalse UnknownScript_0x56cbd
@@ -218,11 +234,27 @@ UnknownScript_0x56d54: ; 0x56d54
 	jump UnknownScript_0x56d0c
 ; 0x56d82
 
+GCSlot2PC:
+	checkcode VAR_BOXSPACE ;else  check to make sure there is space in the box
+	if_equal $0, UnknownScript_0x56cb7
+	pokenamemem ABRA, $0
+	scall UnknownScript_0x56ca1
+	iffalse UnknownScript_0x56cbd
+	waitbutton
+	playsound SFX_TRANSACTION
+	writetext GCSentToPCText
+	closetext
+	writebyte ABRA
+	special Functionc230
+	givepoke ABRA, 5, 0, 0
+	takecoins 100
+	jump UnknownScript_0x56d0c
+
 UnknownScript_0x56d82: ; 0x56d82
 	checkcoins 1500
 	if_equal $2, UnknownScript_0x56cb1
 	checkcode VAR_PARTYCOUNT
-	if_equal $6, UnknownScript_0x56cb7
+	if_equal $6, GCSlot3PC
 	pokenamemem WOBBUFFET, $0
 	scall UnknownScript_0x56ca1
 	iffalse UnknownScript_0x56cbd
@@ -237,6 +269,21 @@ UnknownScript_0x56d82: ; 0x56d82
 	jump UnknownScript_0x56d0c
 ; 0x56db0
 
+GCSlot3PC:
+	checkcode VAR_BOXSPACE ;else  check to make sure there is space in the box
+	if_equal $0, UnknownScript_0x56cb7
+	pokenamemem ABRA, $0
+	scall UnknownScript_0x56ca1
+	iffalse UnknownScript_0x56cbd
+	waitbutton
+	playsound SFX_TRANSACTION
+	writetext GCSentToPCText
+	closetext
+	writebyte ABRA
+	special Functionc230
+	givepoke ABRA, 5, 0, 0
+	takecoins 100
+	jump UnknownScript_0x56d0c
 
 MenuDataHeader_0x56db0: ; 0x56db0
 	db $40 ; flags
@@ -370,6 +417,12 @@ UnknownText_0x56ebd: ; 0x56ebd
 	text "Here you go!"
 	done
 ; 0x56ecb
+
+GCSentToPCText:
+	text "We have sent the"
+	line "#MON to Bills PC."
+	cont "for you"
+	done
 
 UnknownText_0x56ecb: ; 0x56ecb
 	text "Sorry! You need"

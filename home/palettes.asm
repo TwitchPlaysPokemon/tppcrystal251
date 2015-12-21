@@ -81,16 +81,16 @@ DmgToCgbBGPals:: ; c9f
 
 	ld a, [hCGB]
 	and a
-	jr z, .end
+	jr z, .end ;if not GBC, skip?
 
 	push hl
 	push de
 	push bc
-	ld a, [rSVBK]
+	ld a, [rSVBK] ;bank number?
 	push af
 
 	ld a, 5
-	ld [rSVBK], a
+	ld [rSVBK], a ;switch to bank 5?
 
 ; copy & reorder bg pal buffer
 	ld hl, BGPals ; to
@@ -106,7 +106,7 @@ DmgToCgbBGPals:: ; c9f
 	ld [hCGBPalUpdate], a
 
 	pop af
-	ld [rSVBK], a
+	ld [rSVBK], a ;switch bank(?) back
 	pop bc
 	pop de
 	pop hl

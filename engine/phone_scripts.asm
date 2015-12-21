@@ -801,14 +801,14 @@ UnknownScript_0xbd53a:
 	setflag ENGINE_RALPH
 	farjump UnknownScript_0xa0376
 
-UnknownScript_0xbd544:
+UnknownScript_0xbd544: ;quilfish swarm?
 	checkflag ENGINE_SPECIAL_WILDDATA
 	iftrue UnknownScript_0xbd55c
 	setflag ENGINE_SPECIAL_WILDDATA
 	pokenamemem QWILFISH, $1
 	displaylocation ROUTE_32, $2
 	writebyte $1
-	special Functionc3fc
+	special Functionc3fc ;add script var into a and wdfce
 	farjump UnknownScript_0xa05d6
 
 UnknownScript_0xbd55c:

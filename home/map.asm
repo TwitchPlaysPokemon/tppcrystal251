@@ -27,7 +27,7 @@ Function211b:: ; 211b
 GetCurrentMapTrigger:: ; 212a
 	ld a, [MapGroup]
 	ld b, a
-	ld a, [MapNumber]
+	ld a, [MapNumber] ;bc = current map
 	ld c, a
 	xor a
 	ld [BikeFlags + 2], a
@@ -49,13 +49,13 @@ GetMapTrigger:: ; 2147
 	ld a, BANK(MapTriggers)
 	rst Bankswitch
 
-	ld hl, MapTriggers
+	ld hl, MapTriggers ;load location of the map trigger list
 .asm_2151
 	push hl
 	ld a, [hli]
-	cp $ff
+	cp $ff ;if not found, ret
 	jr z, .asm_2167
-	cp b
+	cp b ;if incorrect map, loop
 	jr nz, .asm_2160
 	ld a, [hli]
 	cp c
@@ -64,7 +64,7 @@ GetMapTrigger:: ; 2147
 
 .asm_2160
 	pop hl
-	ld de, $0004
+	ld de, $0004 ; 4 = size of a maptrigger
 	add hl, de
 	jr .asm_2151
 
@@ -73,7 +73,7 @@ GetMapTrigger:: ; 2147
 	jr .asm_216d
 
 .asm_216a
-	ld e, [hl]
+	ld e, [hl] ;load it into de
 	inc hl
 	ld d, [hl]
 
@@ -208,7 +208,7 @@ Function222a:: ; 222a
 ; 2238
 
 Function2238:: ; 2238
-	call Function2252
+	call Function2252 ;if on specific tiles, ret c = warp count + 1 - loops left and hl = loc of warp header found + 2
 	ret nc
 	push bc
 	callba Function149af
@@ -228,15 +228,15 @@ Function224a:: ; 224a
 	ret
 ; 2252
 
-Function2252:: ; 2252
-	callba Function1499a
+Function2252:: ; 2252 ;if on specific tiles, ret c = warp count + 1 - loops left and hl = loc of warp header found + 2
+	callba Function1499a ;if tile is 60, 68 or anything from $70 though $7f, continue
 	ret nc
 
 	ld a, [hROMBank]
 	push af
 
-	call Function2c52
-	call Function2266
+	call Function2c52 ;switch to map script bank
+	call Function2266 ;if warp location found, ret c with c = warp count + 1 - loops left and hl = loc of warp header found + 2
 
 	pop de
 	ld a, d
@@ -244,18 +244,18 @@ Function2252:: ; 2252
 	ret
 ; 2266
 
-Function2266:: ; 2266
+Function2266:: ; 2266  if warp location found, ret c with c = warp count + 1 - loops left and hl = loc of warp header found + 2
 	ld a, [MapY]
 	sub $4
 	ld e, a
-	ld a, [MapX]
+	ld a, [MapX] ;de  = map -4/4
 	sub $4
 	ld d, a
-	ld a, [wdbfb]
+	ld a, [wdbfb] ;if map warp count = 0, ret
 	and a
 	ret z
 	ld c, a
-	ld hl, wdbfc
+	ld hl, wdbfc ;load warp header pointer into hl
 	ld a, [hli]
 	ld h, [hl]
 	ld l, a
@@ -263,34 +263,34 @@ Function2266:: ; 2266
 	push hl
 	ld a, [hli]
 	cp e
-	jr nz, .asm_2289
+	jr nz, .asm_2289 ;if either axis -4 matches, continue
 	ld a, [hli]
 	cp d
 	jr nz, .asm_2289
-	jr .asm_2296
+	jr .asm_2296 ;else, done
 
 .asm_2289
-	pop hl
-	ld a, $5
+	pop hl 
+	ld a, $5 ; hl+5
 	add l
 	ld l, a
-	jr nc, .asm_2291
+	jr nc, .asm_2291 
 	inc h
 
 .asm_2291
 	dec c
-	jr nz, .asm_227e
+	jr nz, .asm_227e ;loop warpcount times
 	xor a
 	ret
 
 .asm_2296
 	pop hl
-	call Function22a3
-	ret nc
+	call Function22a3 ;inc hl by 2 and scf
+	;	ret nc ; what? how is it possible to be nc here?
 	ld a, [wdbfb]
 	inc a
 	sub c
-	ld c, a
+	ld c, a ;c = warp count + 1 - loops left
 	scf
 	ret
 ; 22a3
@@ -298,7 +298,7 @@ Function2266:: ; 2266
 Function22a3:: ; 22a3
 	inc hl
 	inc hl
-	scf
+	;scf
 	ret
 ; 22a7
 
@@ -306,7 +306,7 @@ Function22a7:: ; 22a7
 	ld a, [hROMBank]
 	push af
 
-	call Function2c52
+	call Function2c52 ;switch to map script bank
 	call Function22b4
 
 	pop af
@@ -381,33 +381,33 @@ Function2300:: ; 2300
 
 
 Function2309:: ; 2309
-	call Function2326
-	call Function2c52
-	call Function234f
+	call Function2326 ;set up map headers and connected maps
+	call Function2c52 ;switch to map script bank
+	call Function234f ;load triggers and callbacks into ram
 	xor a
-	call Function2336
+	call Function2336 ;load map warp, triggers, signs and object data into ram
 	ret
 ; 2317
 
-Function2317:: ; 2317
-	call Function2326
-	call Function2c52
-	call Function234f
+Function2317:: ; 2317 set up current map data and scripts
+	call Function2326 ;set up map headers and connected maps
+	call Function2c52 ;switch to map script bank
+	call Function234f ;load triggers and callbacks into ram
 	ld a, $1
-	call Function2336
+	call Function2336 ;load map warp, triggers and signs into ram
 	ret
 ; 2326
 
-Function2326:: ; 2326
-	call Function2c3d
-	call SwitchToMapBank
-	call GetSecondaryMapHeaderPointer
-	call Function235c
-	call Function2368
+Function2326:: ; 2326 set up map headers and connected maps
+	call Function2c3d ;load map header into wd198
+	call SwitchToMapBank ;switch to map bank
+	call GetSecondaryMapHeaderPointer ;hl = secondary header location
+	call Function235c ;load 12 bytes from hl to map header
+	call Function2368 ;load in connected maps
 	ret
 ; 2336
 
-Function2336:: ; 2336
+Function2336:: ; 2336 load map warp, triggers, signs and object data into ram
 	push af
 	ld hl, MapEventHeaderPointer
 	ld a, [hli]
@@ -415,27 +415,27 @@ Function2336:: ; 2336
 	ld l, a
 	inc hl
 	inc hl
-	call Function23da
-	call Function23f1
-	call Function2408
+	call Function23da ;add warps to ram
+	call Function23f1 ;add xy triggers to ram
+	call Function2408 ;add sign data to ram
 	pop af
-	and a
+	and a ;if a is not zero, ret, else refresh object data 
 	ret nz
-	call Function241f
+	call Function241f ;refresh object data
 	ret
 ; 234f
 
-Function234f:: ; 234f
+Function234f:: ; 234f load triggers and callbacks into ram
 	ld hl, MapScriptHeaderPointer
 	ld a, [hli]
 	ld h, [hl]
-	ld l, a
-	call Function23ac
-	call Function23c3
+	ld l, a ;hl = map script header(top of map script)
+	call Function23ac ;load number of triggers into wdc07 and the location after into wdc08. then put hl after triggers
+	call Function23c3 ;load callback number into wdc0a, then first callback location into wdc0b, then move hl past callbacks
 	ret
 ; 235c
 
-Function235c:: ; 235c
+Function235c:: ; 235c ;load 12 bytes from hl to map header
 	ld de, MapHeader
 	ld c, $c
 .asm_2361
@@ -447,17 +447,17 @@ Function235c:: ; 235c
 	ret
 ; 2368
 
-Function2368:: ; 2368
+Function2368:: ; 2368 ;load in connected maps
 	ld a, $ff
 	ld [NorthConnectedMapGroup], a
 	ld [SouthConnectedMapGroup], a
 	ld [WestConnectedMapGroup], a
-	ld [EastConnectedMapGroup], a
+	ld [EastConnectedMapGroup], a ;commected map groups = ff
 
 	ld a, [MapConnections]
 	ld b, a
 
-	bit 3, b
+	bit 3, b ;if bit 3 of mapconnections = 0, skip
 	jr z, .asm_2384
 	ld de, NorthMapConnection
 	call GetMapConnection
@@ -498,7 +498,7 @@ GetMapConnection:: ; 23a3
 ; 23ac
 
 
-Function23ac:: ; 23ac
+Function23ac:: ; 23ac ;load number of triggers into wdc07 and the location after into wdc08. then put hl after triggers
 	ld a, [hli]
 	ld c, a
 	ld [wdc07], a
@@ -514,7 +514,7 @@ Function23ac:: ; 23ac
 	ret
 ; 23c3
 
-Function23c3:: ; 23c3
+Function23c3:: ; 23c3 load callback number into wdc0a, then first callback location into wdc0b, then move hl past callbacks
 	ld a, [hli]
 	ld c, a
 	ld [wdc0a], a
@@ -530,7 +530,7 @@ Function23c3:: ; 23c3
 	ret
 ; 23da
 
-Function23da:: ; 23da
+Function23da:: ; 23da add warps and warp loc to RAM
 	ld a, [hli]
 	ld c, a
 	ld [wdbfb], a
@@ -546,7 +546,7 @@ Function23da:: ; 23da
 	ret
 ; 23f1
 
-Function23f1:: ; 23f1
+Function23f1:: ; 23f1 add xy triggers to ram
 	ld a, [hli]
 	ld c, a
 	ld [wdbfe], a
@@ -562,7 +562,7 @@ Function23f1:: ; 23f1
 	ret
 ; 2408
 
-Function2408:: ; 2408
+Function2408:: ; 2408 add signpost data to RAM
 	ld a, [hli]
 	ld c, a
 	ld [wdc01], a
@@ -578,30 +578,30 @@ Function2408:: ; 2408
 	ret
 ; 241f
 
-Function241f:: ; 241f
+Function241f:: ; 241f refresh object data
 	push hl
-	call Function2471
+	call Function2471 ;empty object structs
 	pop de
 	ld hl, MapObjects + OBJECT_LENGTH
 	ld a, [de]
 	inc de
-	ld [wdc04], a
+	ld [wdc04], a ;load [de] into wdc04 number of objects
 	ld a, e
-	ld [wdc05], a
+	ld [wdc05], a ;load the pointer into wdc05
 	ld a, d
 	ld [wdc06], a
 	ld a, [wdc04]
-	call Function2457
+	call Function2457 ;fill 13 bytes of object data from de, do for each object
 	ld a, [wdc04]
 	ld c, a
 	ld a, $10
 	sub c
-	jr z, .asm_2454
-	ld bc, $0001
+	jr z, .asm_2454 ;if all objects used, skip.
+	ld bc, $0001 ;move down 1
 	add hl, bc
 	ld bc, $0010
 .asm_244a
-	ld [hl], $0
+	ld [hl], $0 ;load 0, then ff, then go down to next object. loop 16 - num of objects times to mark others as empty
 	inc hl
 	ld [hl], $ff
 	dec hl
@@ -615,7 +615,7 @@ Function241f:: ; 241f
 	ret
 ; 2457
 
-Function2457:: ; 2457
+Function2457:: ; 2457 fill 13 bytes object data from de, do for each object
 	and a
 	ret z
 	ld c, a
@@ -623,28 +623,28 @@ Function2457:: ; 2457
 	push bc
 	push hl
 	ld a, $ff
-	ld [hli], a
+	ld [hli], a ;load ff into hl
 	ld b, $d
 .asm_2461
 	ld a, [de]
 	inc de
-	ld [hli], a
+	ld [hli], a ;load 13 [de]+1 into hl
 	dec b
 	jr nz, .asm_2461
-	pop hl
+	pop hl ;then skip 16 bytes
 	ld bc, $0010
 	add hl, bc
 	pop bc
-	dec c
+	dec c ;repeat a times
 	jr nz, .asm_245a
 	ret
 ; 2471
 
-Function2471:: ; 2471
+Function2471:: ; 2471 ;empty object structs
 	ld hl, ObjectStruct1
 	ld bc, 40 * 12
 	xor a
-	call ByteFill
+	call ByteFill 
 	ld hl, ObjectStruct1
 	ld de, 40
 	ld c, $c
@@ -964,24 +964,24 @@ CallScript:: ; 261f
 Function2631:: ; 2631
 	ld a, [ScriptRunning]
 	and a
-	ret nz
+	ret nz ;if script not running, callscript
 	call GetMapScriptHeaderBank
-	jr CallScript
+	jr CallScript ;call script hl
 ; 263b
 
-Function263b:: ; 263b
+Function263b:: ; 263b search for callback a, if any match run it
 	ld b, a
 	ld a, [hROMBank]
 	push af
-	call Function2c52
-	call Function2653
+	call Function2c52 ;switch to map script bank
+	call Function2653 ;search for callbacks, if any match b then hl = script and scf
 	jr nc, .done
 
 	call GetMapScriptHeaderBank
-	ld b, a
+	ld b, a ;store bank in b, script to call in de
 	ld d, h
 	ld e, l
-	call Function2674
+	call Function2674 ;run callback script
 
 .done
 	pop af
@@ -989,30 +989,30 @@ Function263b:: ; 263b
 	ret
 ; 2653
 
-Function2653:: ; 2653
-	ld a, [wdc0a]
+Function2653:: ; 2653 ;search for callbacks, if any match b then hl = script and scf
+	ld a, [wdc0a] ;load number of callbacks
 	ld c, a
 	and a
-	ret z
+	ret z ;if 0 ret
 	ld hl, wdc0b
 	ld a, [hli]
 	ld h, [hl]
 	ld l, a
 	or h
-	ret z
+	ret z ;load callback pointer, if none, ret
 	ld de, $0003
 .asm_2664
-	ld a, [hl]
+	ld a, [hl] ;load first callback
 	cp b
-	jr z, .asm_266e
-	add hl, de
-	dec c
+	jr z, .asm_266e ;if equal to b, done
+	add hl, de ;move to next callback
+	dec c ;check all callbacks
 	jr nz, .asm_2664
 	xor a
 	ret
 
 .asm_266e
-	inc hl
+	inc hl ;if found, hl = callback cscript
 	ld a, [hli]
 	ld h, [hl]
 	ld l, a
@@ -1020,16 +1020,16 @@ Function2653:: ; 2653
 	ret
 ; 2674
 
-Function2674:: ; 2674
-	callba Function974f3
+Function2674:: ; 2674 run script
+	callba Function974f3 ;set up script for calling
 	ld a, [ScriptMode]
 	push af
 	ld hl, ScriptFlags
 	ld a, [hl]
 	push af
-	set 1, [hl]
-	callba Function96c56
-	callba ScriptEvents
+	set 1, [hl] ;set scriptflag 1
+	callba Function96c56 ;scriptmode = 1
+	callba ScriptEvents 
 	pop af
 	ld [ScriptFlags], a
 	pop af
@@ -1097,7 +1097,7 @@ Function26c7:: ; 26c7
 
 
 GetScriptByte:: ; 0x26d4
-; Return byte at ScriptBank:ScriptPos in a.
+; Return byte at ScriptBank:ScriptPos in a. from script warp
 
 	push hl
 	push bc
@@ -1107,21 +1107,21 @@ GetScriptByte:: ; 0x26d4
 	rst Bankswitch
 
 	ld hl, ScriptPos
-	ld c, [hl]
+	ld c, [hl];ld scriptpos's location into bc
 	inc hl
 	ld b, [hl]
 
-	ld a, [bc]
+	ld a, [bc]; put the script data into a
 
 	inc bc
-	ld [hl], b
+	ld [hl], b ;ld old scriptpos + 1 back into scriptpos
 	dec hl
 	ld [hl], c
 
-	ld b, a
+	ld b, a ;put script data into b for bank switch
 	pop af
 	rst Bankswitch
-	ld a, b
+	ld a, b ;back into a
 	pop bc
 	pop hl
 	ret
@@ -1813,7 +1813,7 @@ CheckFacingSign:: ; 2a8b
 	ld c, a
 	ld a, [hROMBank]
 	push af
-	call Function2c52
+	call Function2c52 ;switch to map script bank
 	call Function2aaa
 	pop hl
 	ld a, h
@@ -1866,7 +1866,7 @@ Function2ad4:: ; 2ad4
 	ld c, a
 	ld a, [hROMBank]
 	push af
-	call Function2c52
+	call Function2c52 ;switch to map script bank
 	call Function2ae7
 	pop hl
 	ld a, h
@@ -2066,9 +2066,9 @@ GetMapHeaderMember:: ; 0x2c04
 
 ; outputs:
 ; bc = data from the current map's header
-; (e.g., de = $0003 would return a pointer to the secondary map header)
+; (e.g., de = $0003 would return a pointer to the secondary map header) 08 is fish encounter group
 
-	ld a, [MapGroup]
+	ld a, [MapGroup] 
 	ld b, a
 	ld a, [MapNumber]
 	ld c, a
@@ -2077,18 +2077,18 @@ GetMapHeaderMember:: ; 0x2c04
 GetAnyMapHeaderMember:: ; 0x2c0c
 	; bankswitch
 	ld a, [hROMBank]
-	push af
+	push af ;puts current bank on the stack 
 	ld a, BANK(MapGroupPointers)
 	rst Bankswitch
 
-	call GetAnyMapHeaderPointer
-	add hl, de
-	ld c, [hl]
-	inc hl
+	call GetAnyMapHeaderPointer 
+	add hl, de ;go to the correct slot
+	ld c, [hl] ;load the something into bc
+	inc hl 
 	ld b, [hl]
 
 	; bankswitch back
-	pop af
+	pop af ;return to starting bank
 	rst Bankswitch
 	ret
 ; 0x2c1c
@@ -2126,12 +2126,12 @@ GetAnyMapBank:: ; 2c31
 	ret
 ; 2c3d
 
-Function2c3d:: ; 2c3d
+Function2c3d:: ; 2c3d load map header into wd198
 	ld a, [hROMBank]
 	push af
 	ld a, BANK(MapGroupPointers)
 	rst Bankswitch
-	call GetMapHeaderPointer
+	call GetMapHeaderPointer ;hl = map header
 	ld de, wd197 + 1
 	ld bc, $0005
 	call CopyBytes
@@ -2187,7 +2187,7 @@ GetSecondaryMapHeaderPointer:: ; 0x2c7d
 	push bc
 	push de
 	ld de, $0003 ; secondary map header pointer (offset within header)
-	call GetMapHeaderMember
+	call GetMapHeaderMember ;hl = secondary header location
 	ld l, c
 	ld h, b
 	pop de
@@ -2294,7 +2294,7 @@ RADIO_TOWER_MUSIC EQU 7
 ; 2cff
 
 Function2cff:: ; 2cff
-	call Function2d0d
+	call Function2d0d ;put first nyble of ToD data into a
 	and $f
 	ret
 ; 2d05
@@ -2306,23 +2306,23 @@ Function2d05:: ; 2d05
 	ret
 ; 2d0d
 
-Function2d0d:: ; 2d0d
+Function2d0d:: ; 2d0d 
 	push hl
 	push bc
 	ld de, $0007
-	call GetMapHeaderMember
+	call GetMapHeaderMember ;put ToD data into a
 	ld a, c
 	pop bc
 	pop hl
 	ret
 ; 2d19
 
-Function2d19:: ; 2d19
+Function2d19:: ; 2d19 ;put fish group into a
 	push de
 	push hl
 	push bc
 	ld de, $0008
-	call GetMapHeaderMember
+	call GetMapHeaderMember 
 	ld a, c
 	pop bc
 	pop hl

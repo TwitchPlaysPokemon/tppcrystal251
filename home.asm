@@ -265,13 +265,13 @@ CopyName2:: ; 30d9
 ; 30e1
 
 IsInArray:: ; 30e1
-; Find value a for every de bytes in array hl.
-; Return index in b and carry if found.
+; Find value a for every de bytes in array hl. 
+; Return index in b and carry if found. hl is exact location in array
 
-	ld b, 0
-	ld c, a
+	ld b, 0 ;index of thing
+	ld c, a ;value to be found
 .loop
-	ld a, [hl]
+	ld a, [hl] 
 	cp $ff
 	jr z, .NotInArray
 	cp c
@@ -293,11 +293,11 @@ SkipNames:: ; 0x30f4
 ; Skip a names.
 	ld bc, NAME_LENGTH
 	and a
-	ret z
+	ret z ;ret if name to get is zero
 .loop
 	add hl, bc
 	dec a
-	jr nz, .loop
+	jr nz, .loop ;bc = name to get
 	ret
 ; 0x30fe
 
@@ -831,13 +831,13 @@ NamesPointers:: ; 33ab
 GetName:: ; 33c3
 ; Return name CurSpecies from name list wcf61 in StringBuffer1.
 
-	ld a, [hROMBank]
+	ld a, [hROMBank] ;store current bank
 	push af
 	push hl
 	push bc
 	push de
 
-	ld a, [wcf61]
+	ld a, [wcf61] ;type of name to get
 	cp PKMN_NAME
 	jr nz, .NotPokeName
 
@@ -853,16 +853,16 @@ GetName:: ; 33c3
 .NotPokeName
 	ld a, [wcf61]
 	dec a
-	ld e, a
+	ld e, a ;de = type of name -1
 	ld d, 0
 	ld hl, NamesPointers
 	add hl, de
 	add hl, de
-	add hl, de
-	ld a, [hli]
+	add hl, de ;jump to correct location for type of name
+	ld a, [hli] ;switch to correct bank
 	rst Bankswitch
 	ld a, [hli]
-	ld h, [hl]
+	ld h, [hl] ;put location in hl
 	ld l, a
 
 	ld a, [CurSpecies]
@@ -870,12 +870,12 @@ GetName:: ; 33c3
 	call GetNthString
 
 	ld de, StringBuffer1
-	ld bc, $000d
+	ld bc, $000d ;put string in stringbuffer1
 	call CopyBytes
 
 .done
 	ld a, e
-	ld [wd102], a
+	ld [wd102], a ;load string location into ??
 	ld a, d
 	ld [wd103], a
 
@@ -951,20 +951,20 @@ GetPokemonName:: ; 343b
 	ld e, a
 	ld h, 0
 	ld l, a
-	add hl, hl
+	add hl, hl ;hl*10
 	add hl, hl
 	add hl, de
 	add hl, hl
 	ld de, PokemonNames
-	add hl, de
+	add hl, de ;find correct name by moving down 10* number
 
 ; Terminator
 	ld de, StringBuffer1
 	push de
 	ld bc, PKMN_NAME_LENGTH - 1
-	call CopyBytes
+	call CopyBytes ;put name in string buffer
 	ld hl, StringBuffer1 + PKMN_NAME_LENGTH - 1
-	ld [hl], "@"
+	ld [hl], "@" ;add the stop command
 	pop de
 
 	pop hl
@@ -1083,7 +1083,7 @@ GetTMHMName:: ; 3487
 ; 34df
 
 
-IsHM:: ; 34df
+IsHM:: ; 34df If a HM (read, is HM 1 or after) set carry
 	cp HM01
 	jr c, .NotHM
 	scf
@@ -1094,7 +1094,7 @@ IsHM:: ; 34df
 ; 34e7
 
 
-IsHMMove:: ; 34e7
+IsHMMove:: ; 34e7 check if in array, if remove HM remove from here
 	ld hl, .HMMoves
 	ld de, 1
 	jp IsInArray
@@ -1111,7 +1111,7 @@ IsHMMove:: ; 34e7
 ; 34f8
 
 
-GetMoveName:: ; 34f8
+GetMoveName:: ; 34f8 ;put name of the move in stringbuffer 1
 	push hl
 
 	ld a, MOVE_NAME
@@ -1195,12 +1195,12 @@ Function354b:: ; 354b
 ; 3567
 
 
-Function3567:: ; 3567
+Function3567:: ; 3567 
 	ld a, [hROMBank]
 	push af
 
-	call Function2c52
-	call Function3574
+	call Function2c52 ;get script header bank
+	call Function3574 ;if a matching warp is found, run that warps script from command queue?
 
 	pop bc
 	ld a, b
@@ -1208,24 +1208,24 @@ Function3567:: ; 3567
 	ret
 ; 3574
 
-Function3574:: ; 3574
+Function3574:: ; 3574 de = playerstruct. if a matching warp is found, run that warps script from command queue? if sucsess ret c
 	ld hl, $0001
 	add hl, de
 	ld a, [hl]
 	cp $ff
-	jr z, .asm_3597
+	jr z, .asm_3597 ;if map object = max, quit
 
 	ld l, a
 	push hl
-	call Function3599
+	call Function3599 ;find warp location that matches nextmap -4/4. ret c if succsessful 
 	pop hl
-	jr nc, .asm_3597
-	ld d, a
-	ld e, l
-	call Function35de
-	jr nc, .asm_3597
-	call Function2631
-	callba Function96c56
+	jr nc, .asm_3597 ;skip if warp not found
+	ld d, a ;d = remaining loops - map warp count +1
+	ld e, l ; e = map object
+	call Function35de ;search command queue bc for a command that matches de. if it matches return the contents? in hl and c, else return nc
+	jr nc, .asm_3597 ; if not found, ret
+	call Function2631 ;if script not running, run script hl
+	callba Function96c56 ;scriptmode = 1
 	scf
 	ret
 
@@ -1234,49 +1234,49 @@ Function3574:: ; 3574
 	ret
 ; 3599
 
-Function3599:: ; 3599
+Function3599:: ; 3599 ;find warp location that matches nextmap -4/4. ret c if succsessful with result in hl
 	push de
 
 	ld hl, $0010
-	add hl, de
+	add hl, de ;NextMapX
 	ld a, [hl]
 	ld hl, $0011
 	add hl, de
-	ld e, [hl]
+	ld e, [hl] ;nextmapy
 
 	sub 4
 	ld d, a
 	ld a, e
 	sub 4
-	ld e, a
+	ld e, a ;sub next map by 4/4
 	call Function35b0
 
 	pop de
 	ret
 ; 35b0
 
-Function35b0:: ; 35b0
-	ld hl, wdbf9 + 3
+Function35b0:: ; 35b0 ;find warp location that matches nextmap -4/4. ret c if succsessful with result in hl
+	ld hl, wdbf9 + 3 ;warp header pointer
 	ld a, [hli]
 	ld h, [hl]
 	ld l, a
-	ld a, [wdbf9 + 2]
+	ld a, [wdbf9 + 2] ;if map warp count = 0, skip
 	and a
 	jr z, .asm_35d3
 
 .loop
 	push af
-	ld a, [hl]
+	ld a, [hl] 
 	cp e
 	jr nz, .asm_35c8
 	inc hl
 	ld a, [hld]
 	cp d
-	jr nz, .asm_35c8
+	jr nz, .asm_35c8 ;if warp header? == de, branch, else continue
 	jr .asm_35d5
 
 .asm_35c8
-	ld a, $5
+	ld a, $5 ;check place 5 bytes down
 	add l
 	ld l, a
 	jr nc, .asm_35cf
@@ -1285,14 +1285,14 @@ Function35b0:: ; 35b0
 
 	pop af
 	dec a
-	jr nz, .loop
+	jr nz, .loop ;loop warpcount times, ret nc if not found
 
 .asm_35d3
 	and a
 	ret
 
 .asm_35d5
-	pop af
+	pop af ;if found, ret c with a = remaining loops - map warp count +1
 	ld d, a
 	ld a, [wdbf9 + 2]
 	sub d
@@ -1301,23 +1301,23 @@ Function35b0:: ; 35b0
 	ret
 ; 35de
 
-Function35de:: ; 35de
-	inc e
+Function35de:: ; 35de search command queue bc for a command that matches de. if it matches return the contents? in hl and c, else return nc
+	inc e ; e = mapobject
 	ld hl, $0001
-	add hl, bc
+	add hl, bc ; bc = wd6de command queue
 	ld a, [hli]
 	ld h, [hl]
 	ld l, a
 .asm_35e6
 	ld a, [hli]
 	cp $ff
-	jr z, .asm_35fc
-	cp d
+	jr z, .asm_35fc ;if command pointed to = ff, ret(end of queue?)
+	cp d ;if doesn't match remaining loops - map warp count +1, loop
 	jr nz, .asm_35f7
-	ld a, [hli]
+	ld a, [hli] ; if doesn't match next num = mapobject +1, loop
 	cp e
 	jr nz, .asm_35f8
-	ld a, [hli]
+	ld a, [hli] ;if passes, load next 2 bits into hl
 	ld h, [hl]
 	ld l, a
 	jr .asm_35fe
@@ -1328,7 +1328,7 @@ Function35de:: ; 35de
 .asm_35f8
 	inc hl
 	inc hl
-	jr .asm_35e6
+	jr .asm_35e6 ;loop
 
 .asm_35fc
 	and a
@@ -1340,12 +1340,12 @@ Function35de:: ; 35de
 ; 3600
 
 
-CheckTrainerBattle2:: ; 3600
+CheckTrainerBattle2:: ; 3600 Check if any trainer on the map sees the player and wants to battle., ret c if yes
 
 	ld a, [hROMBank]
 	push af
 
-	call Function2c52
+	call Function2c52 ;switch to map script bank
 	call CheckTrainerBattle
 
 	pop bc
@@ -1356,7 +1356,7 @@ CheckTrainerBattle2:: ; 3600
 
 
 CheckTrainerBattle:: ; 360d
-; Check if any trainer on the map sees the player and wants to battle.
+; Check if any trainer on the map sees the player and wants to battle., ret c if yes
 
 ; Skip the player object.
 	ld a, 1
@@ -1422,7 +1422,7 @@ CheckTrainerBattle:: ; 360d
 	and a
 	jr z, .asm_3666
 
-.next
+.next ;if not, loop or ret a = 0 if nothing
 	pop de
 	ld hl, OBJECT_LENGTH
 	add hl, de
@@ -1439,11 +1439,11 @@ CheckTrainerBattle:: ; 360d
 .asm_3666
 	pop de
 	pop af
-	ld [$ffe0], a
+	ld [$ffe0], a ;load object number into ffe0
 	ld a, b
-	ld [CurFruit], a
+	ld [CurFruit], a ;load distance into curfruit
 	ld a, c
-	ld [wd040], a
+	ld [wd040], a ;load directon into mappointer
 	jr Function367e
 ; 3674
 
@@ -1455,19 +1455,19 @@ Function3674:: ; 3674
 
 Function367e:: ; 367e
 	call GetMapScriptHeaderBank
-	ld [EngineBuffer1], a
-	ld a, [$ffe0]
-	call GetMapObject
+	ld [EngineBuffer1], a ;load map bank into enginebuffer
+	ld a, [$ffe0] ;load object trainer is
+	call GetMapObject ;map object trainer is in bc
 	ld hl, $000a
-	add hl, bc
-	ld a, [EngineBuffer1]
-	call GetFarHalfword
+	add hl, bc ;go down to mapx
+	ld a, [EngineBuffer1] ;load bank
+	call GetFarHalfword ;hl = map xy
 	ld de, wd041
 	ld bc, $000d
 	ld a, [EngineBuffer1]
-	call FarCopyBytes
+	call FarCopyBytes ;copy 12 bytes from map object to wd401
 	xor a
-	ld [wd04d], a
+	ld [wd04d], a ;load 0 into
 	scf
 	ret
 ; 36a5
@@ -1560,7 +1560,7 @@ Function36f5:: ; 36f5
 	ld hl, $0001
 	add hl, bc
 	ld a, [hl]
-	call GetMapObject
+	call GetMapObject ;map object a in bc
 	ld hl, $000a
 	add hl, bc
 	ld a, [hli]
@@ -1771,20 +1771,20 @@ GetBaseData:: ; 3856
 	push hl
 	ld a, [hROMBank]
 	push af
-	ld a, BANK(BaseData)
+	ld a, BANK(BaseData) ;switch to correct bank
 	rst Bankswitch
 	
 ; Egg doesn't have BaseData
-	ld a, [CurSpecies]
+	ld a, [CurSpecies] ;if egg, jump
 	cp EGG
 	jr z, .egg
 
 ; Get BaseData
 	dec a
-	ld bc, BaseData1 - BaseData0
+	ld bc, BaseData1 - BaseData0 ;bc = size of basedata
 	ld hl, BaseData
-	call AddNTimes
-	ld de, CurBaseData
+	call AddNTimes; go down to correct basedata
+	ld de, CurBaseData ;load into RAM
 	ld bc, BaseData1 - BaseData0
 	call CopyBytes
 	jr .end
@@ -1833,7 +1833,7 @@ GetNick:: ; 38a2
 	push hl
 	push bc
 
-	call SkipNames
+	call SkipNames ;bc = loc of the name to get
 	ld de, StringBuffer1
 
 	push de

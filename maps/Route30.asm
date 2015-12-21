@@ -340,7 +340,7 @@ MovementData_0x1a1802: ; 0x1a1802
 UnknownText_0x1a1806: ; 0x1a1806
 	text "Go, RATTATA!"
 
-	para "TACKLE!"
+	para "HYPER FANG!"
 	done
 ; 0x1a181c
 
@@ -352,19 +352,21 @@ UnknownText_0x1a181c: ; 0x1a181c
 ; 0x1a1849
 
 YoungsterJoey1SeenText: ; 0x1a1849
-	text "I just lost, so"
-	line "I'm trying to find"
-	cont "more #MON."
+	text "I recently moved"
+	line "to here from the"
+	cont "KANTO region!"
 
-	para "Wait! You look"
-	line "weak! Come on,"
-	cont "let's battle!"
+	para "I brought a #MON I"
+	line "caught back home."
+
+	para "My RATTATA is a"
+	cont "very special one!"
 	done
 ; 0x1a18a2
 
 YoungsterJoey1BeatenText: ; 0x1a18a2
-	text "Ack! I lost again!"
-	line "Doggone it!"
+	text "Ack! How could my!"
+	line "RATTATA lose?!"
 	done
 ; 0x1a18c2
 
@@ -385,14 +387,15 @@ YoungsterMikeySeenText: ; 0x1a1928
 	text "You're a #MON"
 	line "trainer, right?"
 
-	para "Then you have to"
-	line "battle!"
+	para "Great! I just cau-"
+	line "-ght some new #MON"
+	cont "in the mountains!"
 	done
 ; 0x1a195f
 
 YoungsterMikeyBeatenText: ; 0x1a195f
-	text "That's strange."
-	line "I won before."
+	text "I guess they need"
+	line "more training."
 	done
 ; 0x1a197d
 
@@ -416,17 +419,19 @@ Bug_catcherDonSeenText: ; 0x1a19d8
 
 Bug_catcherDonBeatenText: ; 0x1a1a03
 	text "Argh! You're too"
-	line "strong!"
+	line "strong for my bug"
+	cont "#MON ..."
 	done
 ; 0x1a1a1c
 
 UnknownText_0x1a1a1c: ; 0x1a1a1c
-	text "I ran out of #"
-	line "BALLS while I was"
-	cont "catching #MON."
+	text "This area is"
+	line "great for finding"
+	cont "bug #MON!"
 
-	para "I should've bought"
-	line "some more…"
+	para "They vary depen-"
+	line "-ding on the time"
+	cont "of the day!"
 	done
 ; 0x1a1a6a
 
@@ -447,9 +452,9 @@ UnknownText_0x1a1a94: ; 0x1a1a94
 UnknownText_0x1a1ac4: ; 0x1a1ac4
 	text "I'm not a trainer."
 
-	para "But if you look"
-	line "one in the eyes,"
-	cont "prepare to battle."
+	para "Me and my AZU-"
+	line "-MARILL prefer to"
+	cont "travel the seas."
 	done
 ; 0x1a1b0b
 

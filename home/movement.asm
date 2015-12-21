@@ -20,14 +20,14 @@ Function1b35:: ; 1b35
 	ret
 ; 1b3f
 
-Function1b3f:: ; 1b3f
+Function1b3f:: ; 1b3f load a into movementbuffer + default flypoint+1
 	push hl
 	push de
-	ld hl, DefaultFlypoint
+	ld hl, DefaultFlypoint 
 	ld e, [hl]
 	inc [hl]
 	ld d, 0
-	ld hl, MovementBuffer
+	ld hl, MovementBuffer 
 	add hl, de
 	ld [hl], a
 	pop de
@@ -119,18 +119,18 @@ Function1b92:: ; 1b92
 	db 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19
 ; 1bb1
 
-Function1bb1:: ; 1bb1
+Function1bb1:: ; 1bb1 load some menu data from de into current and reset cursor data
 	push hl
 	push bc
-	ld hl, wcfa1
+	ld hl, wcfa1 ;start of x coord +1
 	ld b, $8
 .asm_1bb8
 	ld a, [de]
 	inc de
-	ld [hli], a
+	ld [hli], a ;load de data into start coords, max cursor positions, ???, ???, space between options and acceptable buttons
 	dec b
-	jr nz, .asm_1bb8
-	ld a, $1
+	jr nz, .asm_1bb8 ;loop 8 times
+	ld a, $1 ;load 1 into each cursor position, then 0 into cursor data
 	ld [hli], a
 	ld [hli], a
 	xor a
@@ -143,8 +143,8 @@ Function1bb1:: ; 1bb1
 ; 1bc9
 
 Function1bc9:: ; 1bc9
-	callab Function241a8
-	call Function1bdd
+	callab Function241a8 ;place and update cursor, loop until allowed input is pressed
+	call Function1bdd ;update joylast
 	ret
 ; 1bd3
 
@@ -154,14 +154,14 @@ Function1bd3:: ; 1bd3
 	ret
 ; 1bdd
 
-Function1bdd:: ; 1bdd
+Function1bdd:: ; 1bdd a = back nyble of JoyLast and front nyble of joy pressed
 	push bc
 	push af
 	ld a, [$ffa9]
-	and $f0
+	and $f0 ;use back nyble of JoyLast
 	ld b, a
 	ld a, [hJoyPressed]
-	and $f
+	and $f ;and front nyble of joy pressed
 	or b
 	ld b, a
 	pop af
@@ -170,8 +170,8 @@ Function1bdd:: ; 1bdd
 	ret
 ; 1bee
 
-Function1bee:: ; 1bee
-	ld hl, wcfac
+Function1bee:: ; 1bee load white cursor into cursor location
+	ld hl, wcfac 
 	ld a, [hli]
 	ld h, [hl]
 	ld l, a
@@ -189,33 +189,33 @@ Function1bf7:: ; 1bf7
 ; 1c00
 
 Function1c00:: ; 1c00
-	callab Function24374
+	callab Function24374 ;load current tile backup onto backup stack
 	ret
 ; 1c07
 
 Function1c07:: ; 0x1c07
 	push af
-	callab Function243e8
+	callab Function243e8  ;unload top menu on the stack, replacing the menu with what's behind it
 	pop af
 	ret
 
 Function1c10:: ; 0x1c10
-	callab Function2446d
+	callab Function2446d ;fill rest of menu data?
 	ret
 
 Function1c17:: ; 0x1c17
 	push af
-	call Function1c07
+	call Function1c07 ;unload top menu on menu stack
 	call Function321c
 	call Function1ad2
 	pop af
 	ret
 
-Function1c23:: ; 0x1c23
-	call Function1cfd
-	call Function1c30
-	call Function1d19
-	call Function1c30
+Function1c23:: ; 0x1c23 fill tilemap and attrimap with menu data from de using loaded menu data's coords 
+	call Function1cfd ;hl = curmenu start location in tilemap
+	call Function1c30 ;fill attrimap with (de in reverse order) equal to the size of menu coords
+	call Function1d19 ;hl = menu start location in attrimap
+	call Function1c30 ;fill attrimap with (de in reverse order, continueing from end of previous) equal to the size of menu coords
 	ret
 ; 0x1c30
 

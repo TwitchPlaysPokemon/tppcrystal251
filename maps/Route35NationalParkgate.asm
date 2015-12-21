@@ -14,7 +14,7 @@ Route35NationalParkgate_MapScriptHeader: ; 0x6a189
 
 	dbw 5, UnknownScript_0x6a1a3
 
-	dbw 2, UnknownScript_0x6a1af
+	dbw 2, UnknownScript_0x6a1ca ;UnknownScript_0x6a1af
 ; 0x6a19d
 
 UnknownScript_0x6a19d: ; 0x6a19d
@@ -43,16 +43,17 @@ UnknownScript_0x6a1ac: ; 0x6a1ac
 ; 0x6a1af
 
 UnknownScript_0x6a1af: ; 0x6a1af
-	checkcode VAR_WEEKDAY
-	if_equal TUESDAY, UnknownScript_0x6a1ca
-	if_equal THURSDAY, UnknownScript_0x6a1ca
-	if_equal SATURDAY, UnknownScript_0x6a1ca
-	checkflag ENGINE_BUG_CONTEST_TIMER
-	iftrue UnknownScript_0x6a1ac
-	disappear $2
-	appear $3
-	appear $4
-	return
+	jump UnknownScript_0x6a1ca ;redundent as bug catching always on
+	;checkcode VAR_WEEKDAY
+	;if_equal TUESDAY, UnknownScript_0x6a1ca
+	;if_equal THURSDAY, UnknownScript_0x6a1ca
+	;if_equal SATURDAY, UnknownScript_0x6a1ca
+	;checkflag ENGINE_BUG_CONTEST_TIMER
+	;iftrue UnknownScript_0x6a1ac
+	;disappear $2
+	;appear $3
+	;appear $4
+	;return
 ; 0x6a1ca
 
 UnknownScript_0x6a1ca: ; 0x6a1ca
@@ -62,7 +63,7 @@ UnknownScript_0x6a1ca: ; 0x6a1ca
 	return
 ; 0x6a1d1
 
-UnknownScript_0x6a1d1: ; 0x6a1d1
+UnknownScript_0x6a1d1: ; 0x6a1d1 run if enterng while contest is on
 	applymovement $0, MovementData_0x6a2e2
 	spriteface $2, $3
 	loadfont
@@ -91,16 +92,45 @@ UnknownScript_0x6a1ee: ; 0x6a1ee
 ; 0x6a204
 
 OfficerScript_0x6a204: ; 0x6a204
-	checkcode VAR_WEEKDAY
-	if_equal SUNDAY, UnknownScript_0x6a2c7
-	if_equal MONDAY, UnknownScript_0x6a2c7
-	if_equal WEDNESDAY, UnknownScript_0x6a2c7
-	if_equal FRIDAY, UnknownScript_0x6a2c7
+		;checkcode VAR_WEEKDAY
+		;if_equal SUNDAY, UnknownScript_0x6a2c7
+		;if_equal MONDAY, UnknownScript_0x6a2c7
+		;if_equal WEDNESDAY, UnknownScript_0x6a2c7
+		;if_equal FRIDAY, UnknownScript_0x6a2c7
 	faceplayer
 	loadfont
-	checkflag ENGINE_51
-	iftrue UnknownScript_0x6a2c1
-	scall UnknownScript_0x6a2de
+		;checkflag ENGINE_51
+		;iftrue UnknownScript_0x6a2c1
+	checkevent EVENT_NATIONAL_PARK_ROUTE_36_GATE_314 ;If holding amber, give amber
+	iffalse SkipAmber
+	writetext UnknownText_0x6b97f
+	keeptextopen
+	verbosegiveitem OLD_AMBER, 1
+	iffalse AmberFailText35
+	clearevent EVENT_NATIONAL_PARK_ROUTE_36_GATE_314
+SkipAmber35:
+	checkevent EVENT_NATIONAL_PARK_ROUTE_36_GATE_315
+	iffalse SkipSun
+	writetext UnknownText_0x6b97f
+	keeptextopen
+	verbosegiveitem SUN_STONE, 1
+	iffalse SunFailText35
+	clearevent EVENT_NATIONAL_PARK_ROUTE_36_GATE_315
+SkipSun35:
+	checkevent EVENT_NATIONAL_PARK_ROUTE_36_GATE_316
+	iffalse SkipBalls
+	writetext UnknownText_0x6b97f
+	keeptextopen
+	checkcode VAR_WEEKDAY
+	if_equal SUNDAY, RegiveFriend35
+	if_equal MONDAY, RegiveMoon35
+	if_equal TUESDAY, RegiveLevel35
+	if_equal WEDNESDAY, RegiveLure35
+	if_equal THURSDAY, RegiveFast35
+	if_equal FRIDAY, RegiveLove35
+	if_equal SATURDAY, RegiveHeavy35
+SkipBalls35:
+		;scall UnknownScript_0x6a2de ;daytotext
 	writetext UnknownText_0x6a2eb
 	yesorno
 	iffalse UnknownScript_0x6a2a3
@@ -120,7 +150,7 @@ UnknownScript_0x6a234: ; 0x6a234
 	closetext
 	loadmovesprites
 	special Function135db
-	scall UnknownScript_0x6a261
+	scall UnknownScript_0x6a261 ;key differnce, this movement script
 	playsound SFX_ENTER_DOOR
 	special Function8c084
 	waitbutton
@@ -128,6 +158,60 @@ UnknownScript_0x6a234: ; 0x6a234
 	warpfacing $1, GROUP_NATIONAL_PARK_BUG_CONTEST, MAP_NATIONAL_PARK_BUG_CONTEST, $a, $2f
 	end
 ; 0x6a261
+
+AmberFailText35:
+	writetext BagIsFullText
+	jump SkipAmber
+
+SunFailText35:
+	writetext BagIsFullText
+	jump SkipSun
+
+BallsFailText35:
+	writetext BagIsFullText
+	jump SkipBalls
+
+RegiveFriend35:
+	verbosegiveitem FRIEND_BALL, 8
+	iffalse BallsFailText35
+	clearevent EVENT_NATIONAL_PARK_ROUTE_36_GATE_316
+	jump SkipBalls
+
+RegiveMoon35:
+	verbosegiveitem MOON_BALL, 8
+	iffalse BallsFailText35
+	clearevent EVENT_NATIONAL_PARK_ROUTE_36_GATE_316
+	jump SkipBalls
+
+RegiveLevel35:
+	verbosegiveitem LEVEL_BALL, 8
+	iffalse BallsFailText35
+	clearevent EVENT_NATIONAL_PARK_ROUTE_36_GATE_316
+	jump SkipBalls
+
+RegiveLure35:
+	verbosegiveitem LURE_BALL, 8
+	iffalse BallsFailText35
+	clearevent EVENT_NATIONAL_PARK_ROUTE_36_GATE_316
+	jump SkipBalls
+
+RegiveFast35:
+	verbosegiveitem FAST_BALL, 8
+	iffalse BallsFailText35
+	clearevent EVENT_NATIONAL_PARK_ROUTE_36_GATE_316
+	jump SkipBalls
+
+RegiveLove35:
+	verbosegiveitem LOVE_BALL, 8
+	iffalse BallsFailText35
+	clearevent EVENT_NATIONAL_PARK_ROUTE_36_GATE_316
+	jump SkipBalls
+
+RegiveHeavy35:
+	verbosegiveitem HEAVY_BALL, 8
+	iffalse BallsFailText35
+	clearevent EVENT_NATIONAL_PARK_ROUTE_36_GATE_316
+	jump SkipBalls
 
 UnknownScript_0x6a261: ; 0x6a261
 	checkcode VAR_FACING
@@ -201,9 +285,9 @@ UnknownScript_0x6a2bb: ; 0x6a2bb
 ; 0x6a2c1
 
 UnknownScript_0x6a2c1: ; 0x6a2c1
-	writetext UnknownText_0x6a84f
-	closetext
-	loadmovesprites
+	;writetext UnknownText_0x6a84f
+	;closetext
+	;loadmovesprites
 	end
 ; 0x6a2c7
 
@@ -214,8 +298,8 @@ UnknownScript_0x6a2c7: ; 0x6a2c7
 OfficerScript_0x6a2ca: ; 0x6a2ca
 	faceplayer
 	loadfont
-	checkflag ENGINE_51
-	iftrue UnknownScript_0x6a2c1
+	;checkflag ENGINE_51
+	;iftrue UnknownScript_0x6a2c1
 	writetext UnknownText_0x6a894
 	closetext
 	loadmovesprites
@@ -253,14 +337,26 @@ MovementData_0x6a2e9: ; 0x6a2e9
 	step_end
 ; 0x6a2eb
 
-UnknownText_0x6a2eb: ; 0x6a2eb
-	text "Today's @"
-	text_from_ram StringBuffer3
-	text "."
-	line "That means the"
+BagIsFullText:
+	text "Uh-oh… Your BAG"
+	line "is full."
 
-	para "Bug-Catching Con-"
-	line "test is on today."
+	para "We'll hold on to"
+	line "your prize"
+
+	para "Please make room,"
+	line "then come see me."
+	done
+
+UnknownText_0x6a2eb: ; 0x6a2eb
+	;text "Today's @"
+	;text_from_ram StringBuffer3
+	;text "."
+	;line "That means the"
+
+	text "The Bug-Catching"
+	line "Contest is on"
+	cont "today."
 
 	para "The rules are sim-"
 	line "ple."
@@ -440,12 +536,12 @@ UnknownText_0x6a823: ; 0x6a823
 ; 0x6a84f
 
 UnknownText_0x6a84f: ; 0x6a84f
-	text "Today's Contest is"
-	line "over. We hope you"
+	;text "Today's Contest is"
+	;line "over. We hope you"
 
-	para "will participate"
-	line "in the future."
-	done
+	;para "will participate"
+	;line "in the future."
+	;done
 ; 0x6a894
 
 UnknownText_0x6a894: ; 0x6a894
@@ -466,10 +562,11 @@ UnknownText_0x6a8d8: ; 0x6a8d8
 
 UnknownText_0x6a90e: ; 0x6a90e
 	text "The Bug-Catching"
-	line "Contest is held on"
+	line "Contest is held"
+	cont "here every day."
 
-	para "Tuesday, Thursday"
-	line "and Saturday."
+	;para "Tuesday, Thursday"
+	;line "and Saturday."
 
 	para "Not only do you"
 	line "earn a prize just"
@@ -507,6 +604,6 @@ Route35NationalParkgate_MapEventHeader: ; 0x6a9d2
 	db 3
 	person_event SPRITE_OFFICER, 5, 6, $6, 0, 0, -1, -1, 8 + PAL_OW_GREEN, 0, 0, OfficerScript_0x6a204, EVENT_NATIONALPARK_ROUTE35_GATE_OFFICER
 	person_event SPRITE_YOUNGSTER, 9, 10, $2, 1, 1, -1, -1, 8 + PAL_OW_RED, 0, 0, YoungsterScript_0x6a2d8, EVENT_ROUTE35_NATIONALPARK_GATE_YOUNGSTER
-	person_event SPRITE_OFFICER, 7, 4, $9, 0, 0, -1, -1, 8 + PAL_OW_GREEN, 0, 0, OfficerScript_0x6a2ca, EVENT_NATIONALPARK_ROUTE35_GATE_OFFICER_2
+	person_event SPRITE_OFFICER, 7, 4, $9, 0, 0, -1, -1, 8 + PAL_OW_GREEN, 0, 0, OfficerScript_0x6a204, EVENT_NATIONALPARK_ROUTE35_GATE_OFFICER_2
 ; 0x6aa18
 

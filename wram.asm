@@ -10,14 +10,14 @@ box_struct: MACRO
 \1Item::           db
 \1Moves::          ds NUM_MOVES
 \1ID::             dw
-\1Exp::            ds 3
+\1Exp::            ds 3 ;11
 \1StatExp::
 \1HPExp::          dw
 \1AtkExp::         dw
 \1DefExp::         dw
 \1SpdExp::         dw
-\1SpcExp::         dw
-\1DVs::            ds 2
+\1SpcExp::         dw 
+\1DVs::            ds 2 ;23
 \1PP::             ds NUM_MOVES
 \1Happiness::      db
 \1PokerusStatus::  db
@@ -133,7 +133,7 @@ VBGMap1::
 
 SECTION "Stack", WRAM0
 wc000::
-	ds $ff
+	ds $ff 
 Stack::
 	ds 1
 
@@ -283,7 +283,7 @@ wc2cc:: ds 1
 wc2cd:: ds 1
 wc2ce:: ds 1
 wc2cf:: ds 1
-wc2d0:: ds 4
+wc2d0:: ds 4 ;first nyble of ToD map data
 wc2d4:: ds 1
 wc2d5:: ds 1
 wc2d6:: ds 1
@@ -356,9 +356,9 @@ wc310:: ds 1
 wc311:: ds 1
 wc312:: ds 1
 wc313:: ds 1
-wc314:: ds 1
+wc314:: ds 1 ;holds 0 if first mon slot is empty/unswitchable?
 wc315:: ds 1
-wc316:: ds 1
+wc316:: ds 1 ;wc316,wc326,wc336,wc346,wc356 and wc366 hold 2 if the mon of that slot is switching, 3 if not
 wc317:: ds 1
 wc318:: ds 1
 wc319:: ds 1
@@ -1191,47 +1191,48 @@ Requested1bppSource:: ; cf6d
 Requested1bppDest:: ; cf6f
 	ds 2
 
-wcf71:: ds 1
+wcf71:: ds 1 ;holds pointer to top of stack of menu tile data,stored in reverse.
+;structure is, from the "top", a byte holding whether here is tile data,the location of the top of the previous stack, then the tiles of attrimap, then tile replaced in tilemap, then the menu header used to replace it
 wcf72:: ds 1
 wcf73:: ds 1
 MenuSelection:: ; cf74
 	ds 1
 
 wcf75:: ds 1
-wcf76:: ds 1
+wcf76:: ds 1 ;hold dexcheck results?
 wcf77:: ds 1
 wcf78:: ds 9
-wcf81:: ds 1
-wcf82:: ds 1
+wcf81:: ds 1 ;menu header:  tile backup
+wcf82:: ds 1 ;start coords
 wcf83:: ds 1
-wcf84:: ds 1
-wcf85:: ds 1
-wcf86:: ds 1
+wcf84:: ds 1 ;end coords
+wcf85:: ds 1 
+wcf86:: ds 1 ;Vtiles location
 wcf87:: ds 1
-wcf88:: ds 2
-wcf8a:: ds 7
+wcf88:: ds 2 ;default option (first byte)
+wcf8a:: ds 7 ;bank storage(at some point after vtiles)
 wcf91:: ds 1
-wcf92:: ds 1
+wcf92:: ds 1 ;number of vertical options?
 wcf93:: ds 1
 wcf94:: ds 1
-wcf95:: ds 1
+wcf95:: ds 1 ;bit 7 set = skip btton check on loop?
 wcf96:: ds 1
 wcf97:: ds 1
 wcf98:: ds 3
 wcf9b:: ds 3
 wcf9e:: ds 3
-wcfa1:: ds 1
-wcfa2:: ds 1
-wcfa3:: ds 1
-wcfa4:: ds 1
-wcfa5:: ds 1
+wcfa1:: ds 1 ;holds start x coord +1, or +2 if wcf91 bit 6 is off
+wcfa2:: ds 1 ;holds start y coord +1
+wcfa3:: ds 1 ;max vertical pos
+wcfa4:: ds 1 ;max horizontal pos
+wcfa5:: ds 1 ; bit 6: animate sprites  bit 5: wrap around
 wcfa6:: ds 1
-wcfa7:: ds 1
-wcfa8:: ds 1
-wcfa9:: ds 1
-wcfaa:: ds 1
-wcfab:: ds 1
-wcfac:: ds 1
+wcfa7:: ds 1 ;back nyble = space between rows of cursor, front nyble is space between columns?
+wcfa8:: ds 1 ;which buttons exit loop 
+wcfa9:: ds 1 ;vertical cursor position
+wcfaa:: ds 1 ;horizontal cursor position
+wcfab:: ds 1 ;what the cursor covers up
+wcfac:: ds 1 ;cursor location
 wcfad:: ds 4
 
 OverworldDelay:: ; cfb1
@@ -1354,7 +1355,7 @@ wd011:: ds 1
 wd012:: ds 1
 wd013:: ds 1
 wd014:: ds 2
-wd016:: ds 1
+wd016:: ds 1 ;bug catching results string saves here
 wd017:: ds 1
 wd018:: ds 1
 wd019:: ds 1
@@ -1386,10 +1387,10 @@ CurFruit:: ; d03f
 	ds 1
 
 wd040::
-MartPointer:: ; d040
+MartPointer:: ; d040 and direction trainer is facing
 	ds 1
 
-wd041:: ds 1
+wd041:: ds 1 ;holds trainer map object data(12 bytes), 0 if player moves
 MovementAnimation:: ; d042
 	ds 1
 
@@ -1406,10 +1407,10 @@ WalkingY:: ; d046
 WalkingTile:: ; d047
 	ds 1
 
-wd048:: ds 3
+wd048:: ds 3 
 wd04b:: ds 2
-wd04d:: ds 1
-wd04e:: ds 2
+wd04d:: ds 1 ;zero if facing a trainer
+wd04e:: ds 2 ;0 or f0 skips ice check? walk in place anim
 wd050:: ds 10
 wd05a:: ds 12
 wd066:: ds 10
@@ -1439,7 +1440,7 @@ CurMoveNum:: ; d0d5
 
 wd0d6:: ds 1
 wd0d7:: ds 1
-wd0d8:: ds 1
+wd0d8:: ds 1 ;cursor memory for party?
 wd0d9:: ds 1
 wd0da:: ds 1
 wd0db:: ds 1
@@ -1527,7 +1528,7 @@ wd14d:: ds 1
 wd14e:: ds 1
 wd14f:: ds 1
 wd150:: ds 1
-wd151:: ds 1
+wd151:: ds 1 
 wd152:: ds 1
 wd153:: ds 1
 
@@ -1546,7 +1547,7 @@ wd193:: ds 1
 wd194:: ds 1
 wd195:: ds 1
 wd196:: ds 1
-wd197:: ds 2
+wd197:: ds 2 ;d198 is location of map header data(5 bytes)
 wTileset::
 wd199:: ds 1
 wd19a:: ds 3
@@ -1806,8 +1807,8 @@ CurDamage:: ; d256
 	ds 2
 
 	ds 2
-wd25a:: ds 3
-wd25d:: ds 1
+wd25a:: ds 1 ;land encounter rate reduced in attempt to get this to compile, but failed, SIDE EFFECTS UNKOWN
+wd25d:: ds 3 ;water encounter rate
 wd25e:: ds 4
 wd262:: ds 1
 wd263:: ds 1
@@ -1891,7 +1892,7 @@ wd454:: ds 1
 wd459:: ds 2
 wd45b:: ds 1
 wd45c:: ds 8
-wd464:: ds 1
+wd464:: ds 1 ;time since last update
 wd465:: ds 1
 wd466:: ds 6
 wd46c:: ds 1
@@ -1963,14 +1964,14 @@ wd4d1:: ds 5
 
 ObjectStructs::
 
-PlayerStruct:: ; d4d6
+PlayerStruct:: ; d4d6 byte 1 is sprite, byte 2 is index
 	ds 2
 PlayerSprite:: ; d4d8
 	ds 1
 	ds 3
 PlayerPalette:: ; d4dc
 	ds 1
-	ds 1
+	ds 1 ;walking
 PlayerDirection:: ; d4de
 ; uses bits 2 and 3 / $0c / %00001100
 ; %00 down
@@ -1978,7 +1979,7 @@ PlayerDirection:: ; d4de
 ; %10 left
 ; $11 right
 	ds 1
-	ds 2
+	ds 2 
 PlayerAction:: ; d4e1
 ; 1 standing
 ; 2 walking
@@ -2302,25 +2303,25 @@ BikeFlags:: ; dbf5
 ; bit 2: downhill
 	ds 1
 
-	ds 3
+	ds 3 
 
 wdbf9:: ds 2
-wdbfb:: ds 1
-wdbfc:: ds 1
+wdbfb:: ds 1 ;map warp count
+wdbfc:: ds 1 ;warp header pointer
 wdbfd:: ds 1
-wdbfe:: ds 1
-wdbff:: ds 1
+wdbfe:: ds 1 ;xytrigger number
+wdbff:: ds 1 ;xytrigger pointer
 wdc00:: ds 1
-wdc01:: ds 1
-wdc02:: ds 1
+wdc01:: ds 1 ;sign number
+wdc02:: ds 1 ;sign pointer
 wdc03:: ds 1
-wdc04:: ds 1
-wdc05:: ds 1
+wdc04:: ds 1 ;number of objects?
+wdc05:: ds 1 ;pointer to top object
 wdc06:: ds 1
-wdc07:: ds 2
+wdc07:: ds 2;number of triggers in the map. wdc08 and 9: pointer to first trigger
 wdc09:: ds 1
-wdc0a:: ds 1
-wdc0b:: ds 2
+wdc0a:: ds 1 ; number of callbacks
+wdc0b:: ds 2 ;first callback location
 wdc0d:: ds 1
 wdc0e:: ds 1
 
