@@ -9,7 +9,3 @@
 *.1bpp diff=hex
 *.bin  diff=hex
 *.blk  diff=hex
-
-# Denote all files that are truly binary and should not be modified.
-*.png binary
-*.jpg binary
