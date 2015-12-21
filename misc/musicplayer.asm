@@ -1678,6 +1678,7 @@ RenderNarrowText:
 	jr nz, .notspace
 	ld a, $bf
 .notspace
+	sub $80
 	bit 0, b
 	jr nz, .right
 	ld d, a
@@ -1732,7 +1733,7 @@ RenderNarrowText:
 .end
 	bit 0, b
 	ret z
-	ld a, $bf
+	ld a, $bf-$80
 	jp .process
 	
 RenderNarrowTextTable:
