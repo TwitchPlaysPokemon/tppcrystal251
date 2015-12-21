@@ -2556,6 +2556,7 @@ wdff5:: ds 2
 wdff7:: ds 1
 wdff8:: ds 1 ; AI Control byte
 wdff9:: ds 1 ; AI Control (player item usage)
+wdffa:: ds 1 ; military mode on/off switch (FF is on, 00 is off)
 
 
 SECTION "Pic Animations", WRAMX, BANK [2]
