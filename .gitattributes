@@ -9,3 +9,4 @@
 *.1bpp diff=hex
 *.bin  diff=hex
 *.blk  diff=hex
+
