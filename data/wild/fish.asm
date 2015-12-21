@@ -805,7 +805,7 @@ TimeFishGroups: ; 9266f
 	db HORSEA,     10 ; day
 ; 54
 	db SEADRA,     30 ; nite
-	db KINGLER     30 ; day
+	db KINGLER,   30 ; day
 ; 55
 	db KINGLER,    30 ; nite
 	db SEADRA,     30 ; day
