@@ -1285,6 +1285,12 @@ TitleScreenEntrance: ; 62bc
 	ld hl, LYOverrides
 	ld bc, 8 * 10 ; logo height
 	call ByteFill
+	
+; The rest is the offset from title timer
+	ld a, [DefaultFlypoint]
+	ld hl, LYOverrides + 80
+	ld bc, 64
+	call ByteFill
 
 ; Reversed signage for every other line's position.
 ; This is responsible for the interlaced effect.
@@ -1301,7 +1307,13 @@ TitleScreenEntrance: ; 62bc
 	jr nz, .loop
 
 	callba AnimateTitleCrystal
-	ret
+	
+	; wait until line 73 so it won't interfere with the title
+.loop2
+	ld a, [rLY]
+	cp 72
+	jr nz, .loop2
+	jp TitleScreenTrick
 
 .done
 ; Next scene
@@ -1316,7 +1328,7 @@ TitleScreenEntrance: ; 62bc
 
 	ld a, $88
 	ld [hWY], a
-	ret
+	jp TitleScreenTrick
 ; 62f6
 
 TitleScreenTimer: ; 62f6
@@ -1331,7 +1343,7 @@ TitleScreenTimer: ; 62f6
 	ld [hl], e
 	inc hl
 	ld [hl], d
-	ret
+	jp TitleScreenTrick
 ; 6304
 
 TitleScreenMain: ; 6304
@@ -1393,7 +1405,7 @@ TitleScreenMain: ; 6304
 	ld a, [hl]
 	and START | A_BUTTON
 	jr nz, .continue
-	ret
+	jp TitleScreenTrick
 
 .continue
 	ld a, 0
@@ -1435,6 +1447,60 @@ TitleScreenMain: ; 6304
 	set 7, [hl]
 	ret
 ; 6375
+
+TitleScreenTrick:
+; Since Twitch logo and player silhouette combined are
+; more than 40 sprites limit and the ground can't be scrolled
+; without scrolling Pokemon logo along so some of the
+; LCD scanline tricks needs to be applied here ;)
+	; don't do anything if we're too late
+	ld a, [rLY]
+	cp 73
+	ret nc
+	; let's see if we can do OAM DMA on the fly
+	ld a, [rSVBK]
+	push af
+	ld a, 5
+	ld [rSVBK], a
+	ld a, [hLCDStatCustom]
+	push af
+	xor a ; disable this in order to save more cycles in HBlank
+	ld [hLCDStatCustom], a
+	ld a, 2 ; only LCD
+	ld [rIE], a
+	ld a, 73 ; according to the mockup, hosts silhouette starts at line 76
+	ld [rLYC], a
+	ld a, $40 ; use LYC interrupt
+	ld [rSTAT], a
+	ld a, $d8 ; hijack PushOAM to transfer from $d800 instead
+	ld [$ff81], a
+	halt
+	call $ff80
+	ld a, Sprites >> 8
+	ld [$ff81], a
+	ld a, [DefaultFlypoint]
+	ld [LYOverrides+78], a
+	ld a, rSCX - rJOYP
+	ld [hLCDStatCustom], a
+	ld a, 78
+	ld [rLYC], a
+	halt
+	ld a, [hMPTmp]
+	ld [LYOverrides+79], a
+	ld a, rSCY - rJOYP
+	ld [hLCDStatCustom], a
+	ld a, 79
+	ld [rLYC], a
+	halt
+	pop af
+	ld [hLCDStatCustom], a
+	pop af
+	ld [rSVBK], a
+	ld a, $8
+	ld [rSTAT], a
+	ld a, $f
+	ld [rIE], a
+	ret
 
 TitleScreenEnd: ; 6375
 
@@ -1513,12 +1579,21 @@ Copyright: ; 63e2
 	ld hl, VTiles2 + $600 ; tile $60
 	lb bc, BANK(CopyrightGFX), $1d
 	call Request2bpp
-	hlcoord 2, 7
+	ld de, CopyrightTPPGFX
+	ld hl, VTiles1 ; tile $80
+	lb bc, BANK(CopyrightTPPGFX), $5
+	call Request2bpp
+	hlcoord 2, 6
 	ld de, CopyrightString
 	jp PlaceString
 ; 63fd
 
 CopyrightString: ; 63fd
+	; 2016 TPP
+	db $7f, $80, $81, $82, $7f, $7f, $7f, $83, $84
+	
+	db $4e
+
 	; ©1995-2001 Nintendo
 	db $60, $61, $62, $63, $64, $65, $66
 	db $67, $68, $69, $6a, $6b, $6c
@@ -96775,6 +96850,10 @@ INCLUDE "text/battle_tower.asm"
 
 GBCOnlyGFX2:
 INCBIN "gfx/misc/gbc_only_2.w112.2bpp"
+
+CopyrightTPPGFX:
+INCBIN "gfx/misc/copyright_tpp.2bpp"
+CopyrightTPPGFXEnd
 
 SECTION "bank7C", ROMX, BANK[$7C]
 
