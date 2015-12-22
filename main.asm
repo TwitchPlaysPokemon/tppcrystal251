@@ -23944,10 +23944,10 @@ Unknown_20015: ; 20015
 	db $07, $04
 
 	dw wd1ee
-	db $18, $0c
+	db $18, $0f
 
 	dw wd1ef
-	db $3c, $0f
+	db $3c, $12
 ; 20021
 
 Function20021: ; 20021 (8:4021)
@@ -24117,7 +24117,7 @@ Function2011f: ; 2011f (8:411f)
 	ld b, a
 	ld a, [wd1ef]
 	ld c, a
-	decoord 11, 8
+	decoord 14, 8
 	callba Function1dd6bb
 	ld a, [Buffer2] ; wd1eb (aliases: MovementType)
 	lb de, $7f, $7f
@@ -42555,8 +42555,8 @@ Function49e27: ; 49e27
 	call Function6e3
 	and $80
 	jr nz, .asm_49e39
-	hlcoord 0, 14
-	ld b, $2
+	hlcoord 0, 15
+	ld b, $1
 	ld c, $12
 	call TextBox
 	ret
@@ -42576,15 +42576,20 @@ Function49e3d: ; 49e3d
 	call UpdateTime
 	call GetWeekday
 	ld b, a
-	decoord 1, 15
+	decoord 1, 16
 	call Function49e91
-	decoord 4, 16
-	ld a, [hHours]
-	ld c, a
-	callba Function90b3e
+	hlcoord 11, 16
+	ld de, hHours
+	ld bc, $102
+	call PrintNum
 	ld [hl], ":"
 	inc hl
 	ld de, hMinutes
+	ld bc, $8102
+	call PrintNum
+	ld [hl], ":"
+	inc hl
+	ld de, hSeconds
 	ld bc, $8102
 	call PrintNum
 	ret
@@ -70780,7 +70785,7 @@ Function90b3e: ; 90b3e (24:4b3e)
 	ld h, b
 	inc hl
 	pop bc
-	call Function90b7f
+	ld a, c
 	ld [wd265], a
 	ld de, wd265
 	call Function90867
@@ -71349,6 +71354,12 @@ Function90f86: ; 90f86 (24:4f86)
 	ld c, a
 	decoord 6, 8
 	callba Function1dd6bb
+	hlcoord 11, 8
+	ld [hl], ":"
+	inc hl
+	ld de, hSeconds
+	ld bc, $8102
+	call PrintNum
 	ld hl, UnknownText_0x90faf
 	bccoord 6, 6
 	call Function13e5
@@ -96360,19 +96371,7 @@ Function1dd6a9: ; 1dd6a9
 ; 1dd6bb
 
 Function1dd6bb: ; 1dd6bb (77:56bb)
-	ld a, b
-	cp $c
-	push af
-	jr c, .asm_1dd6c7
-	jr z, .asm_1dd6cc
-	sub $c
-	jr .asm_1dd6cc
-.asm_1dd6c7
-	or a
-	jr nz, .asm_1dd6cc
-	ld a, $c
-.asm_1dd6cc
-	ld b, a
+; print b:0c
 	push bc
 	ld hl, [sp+$1]
 	push de
@@ -96394,13 +96393,6 @@ Function1dd6bb: ; 1dd6bb (77:56bb)
 	ld bc, $8102
 	call PrintNum
 	pop bc
-	ld de, String_1dd6fc
-	pop af
-	jr c, .asm_1dd6f7
-	ld de, String_1dd6ff
-.asm_1dd6f7
-	inc hl
-	call PlaceString
 	ret
 ; 1dd6fc (77:56fc)
 
