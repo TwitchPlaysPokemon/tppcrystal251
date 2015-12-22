@@ -23,6 +23,11 @@ GBCOnlyScreen: ; 4ea82
 	ld hl, VTiles2
 	lb bc, BANK(GBCOnlyGFX), $54
 	call Get2bpp
+	
+	ld de, GBCOnlyGFX2
+	ld hl, VTiles0
+	lb bc, BANK(GBCOnlyGFX2), $54
+	call Get2bpp
 
 	ld de, Font
 	ld hl, VTiles1
@@ -33,8 +38,12 @@ GBCOnlyScreen: ; 4ea82
 
 	call WaitBGMap
 
+	ld hl, rLCDC ; flicker interlace
 ; better luck next time
 .loop
+	set 4, [hl]
+	call DelayFrame
+	res 4, [hl]
 	call DelayFrame
 	jr .loop
 ; 4eac5
@@ -44,18 +53,18 @@ DrawGBCOnlyScreen: ; 4eac5
 
 	call DrawGBCOnlyBorder
 
-	; Pokemon
+	; WutFace
 	hlcoord 3, 2
-	ld b, 14
-	ld c, 4
+	ld b, 5
+	ld c, 6
 	ld a, $8
 	call DrawGBCOnlyGraphic
 
-	; Crystal
-	hlcoord 5, 6
-	ld b, 10
-	ld c, 2
-	ld a, $40
+	; NotLikeThis
+	hlcoord 11, 2
+	ld b, 6
+	ld c, 6
+	ld a, $26
 	call DrawGBCOnlyGraphic
 
 	ld de, GBCOnlyString
@@ -147,4 +156,3 @@ GBCOnlyString: ; 4eb38
 GBCOnlyGFX: ; 4eb76
 INCBIN "gfx/misc/gbc_only.w112.2bpp.lz"
 ; 4f0bc
-

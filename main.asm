@@ -96781,6 +96781,9 @@ SECTION "bank7B", ROMX, BANK[$7B]
 
 INCLUDE "text/battle_tower.asm"
 
+GBCOnlyGFX2:
+INCBIN "gfx/misc/gbc_only_2.w112.2bpp"
+
 SECTION "bank7C", ROMX, BANK[$7C]
 
 INCBIN "unknown/1f0000.bin"
