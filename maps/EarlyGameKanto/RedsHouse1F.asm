@@ -119,6 +119,7 @@ MomScript1:
 	setevent EVENT_001_STD
 	checktriggers
 	iffalse MomScript2
+	loadfont
 	writetext UnknownText_0x19af81
 	closetext
 	loadmovesprites
@@ -252,8 +253,8 @@ RedsHouse1FRB_MapEventHeader: ; 0x19b017
 
 	; xy triggers
 	db 2
-	xy_trigger 0, $7, $2, 0, MomsScript_Start1, $0, $0
-	xy_trigger 0, $7, $3, 0, MomsScript_Start2, $0, $0
+	xy_trigger 0, $4, $6, 0, MomsScript_Start1, $0, $0
+	xy_trigger 0, $4, $7, 0, MomsScript_Start2, $0, $0
 
 	; signposts
 	db 3
