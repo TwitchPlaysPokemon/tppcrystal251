@@ -9743,8 +9743,8 @@ Functione3de: ; e3de InitNickname
 	ret
 ; e3fd
 
-Functione3fd: ; e3fd
-	call Functione40a
+Functione3fd: ; e3fd bill's pc
+	call Functione40a ;ret c if no mon in party
 	ret c
 	call Functione41c
 	call Functione443
@@ -9769,14 +9769,14 @@ UnknownText_0xe417: ; 0xe417
 Functione41c: ; e41c (3:641c)
 	xor a
 	ld [hBGMapMode], a ; $ff00+$d4
-	call Function1d6e
+	call Function1d6e ;load a menu
 	call ClearPCItemScreen
 	ld hl, Options
 	ld a, [hl]
 	push af
-	set 4, [hl]
+	set 4, [hl] ;set instatext
 	ld hl, UnknownText_0xe43a
-	call PrintText
+	call PrintText 
 	pop af
 	ld [Options], a
 	call Functione58
@@ -9793,7 +9793,7 @@ Functione43f: ; e43f (3:643f)
 	call Function2b3c
 	ret
 
-Functione443: ; e443 (3:6443)
+Functione443: ; e443 (3:6443) bills pc related
 	ld hl, MenuDataHeader_0xe46f
 	call LoadMenuDataHeader
 	ld a, $1
@@ -9803,13 +9803,13 @@ Functione443: ; e443 (3:6443)
 	xor a
 	ld [wcf76], a
 	ld [hBGMapMode], a ; $ff00+$d4
-	call Function1e5d
+	call Function1e5d ;set up and process PC menu, ret c if going back
 	jr c, .asm_e46b
 	ld a, [wcf88]
 	push af
 	ld a, [MenuSelection]
 	ld hl, Jumptable_e4ba
-	rst JumpTable
+	rst JumpTable ;run appropriote function
 	pop bc
 	ld a, b
 	jr nc, .asm_e44b
@@ -10001,13 +10001,13 @@ Functione583: ; e583 (3:6583)
 	ret
 
 ClearPCItemScreen: ; e58b
-	call Function2ed3
+	call Function2ed3 ;disables overworld sprite updating?
 	xor a
 	ld [hBGMapMode], a
 	call WhiteBGMap
 	call ClearSprites
 	hlcoord 0, 0
-	ld bc, 18 * 20
+	ld bc, 18 * 20 ;clear the screen exept for bottom 2 rows
 	ld a, " "
 	call ByteFill
 	hlcoord 0,0
@@ -19283,7 +19283,7 @@ INCLUDE "engine/spawn_points.asm"
 
 INCLUDE "engine/map_setup.asm"
 
-Function1559a: ; 1559a PC?
+Function1559a: ; 1559a PC
 	call Function15650 ;if party is zero, cannot use
 	ret c
 	call Function156b3 ;play soundFX
@@ -19296,18 +19296,18 @@ Function1559a: ; 1559a PC?
 .asm_155b3
 	xor a
 	ld [hBGMapMode], a ;mapmode = 0
-	call Function1563e ;dex check. ret a=0 if no dex, 1 if wd95e = 0 and dex and 2 otherwise
+	call Function1563e ;dex check. ret a=0 if no dex, 1 if hall of fame count = 0 and dex and 2 otherwise
 	ld [wcf76], a ;load into ??
-	call Function1e5d
-	jr c, .asm_155cc
-	ld a, [MenuSelection]
-	ld hl, Unknown_155e6
-	call Function1fa7
+	call Function1e5d ;set up and process PC menu, ret c if going back
+	jr c, .asm_155cc ;if going back a menu, jump
+	ld a, [MenuSelection] ;redundent
+	ld hl, Unknown_155e6 ;also redundent?
+	call Function1fa7 ;starting at Unknown_155e6, go down to menu selection row and run the function pointed to by that
 	jr nc, .asm_155b3
 
 .asm_155cc
-	call Function156b8
-	call Function1c07
+	call Function156b8 ;play sound fx
+	call Function1c07 ;unload top menu on the stack, replacing the menu with what's behind it
 	call Function1c17
 	ret
 ; 155d6
@@ -19325,7 +19325,7 @@ MenuData2_0x155de: ; 0x155de
 	db 0 ; items
 	dw Unknown_1562c
 	dw Function1f8d
-	dw Unknown_155e6
+	dw Unknown_155e6 ;wcf97
 ; 0x155e6
 
 Unknown_155e6: ; 155e6
@@ -19435,7 +19435,7 @@ Function156b3: ; 156b3
 
 Function156b8: ; 156b8
 	ld de, SFX_SHUT_DOWN_PC
-	call Function156d0
+	call Function156d0 ;play sound fx
 	call WaitSFX
 	ret
 
@@ -19467,7 +19467,7 @@ Function156d9: ; 156d9
 	call Function2173
 	call Function321c
 	call Function1ad2
-	call Function156b8
+	call Function156b8 ;play sound fx
 	ld c, $0
 	ret
 
@@ -24244,7 +24244,7 @@ Function24085: ; 24085
 Function2408f: ; 2408f
 	call Function2411a
 	call Function1bc9
-	call Function1ff8
+	call Function1ff8 ;if a or b pressed and start diabled, play sound
 
 Function24098: ; 24098
 	ld a, [wcf91]
@@ -28147,7 +28147,7 @@ Function2695b: ; 2695b
 	ld hl, MenuDataHeader_0x269b5
 	call LoadMenuDataHeader
 	call Function1e5d
-	jr c, .asm_26977
+	jr c, .asm_26977 
 	call Function26a02
 
 .asm_26977
@@ -48000,19 +48000,19 @@ Function4e711: ; 4e711
 
 Function4e726: ; 4e726
 	call ClearJoypad
-	ld bc, $010e
+	ld bc, $010e ;b = legnth of uncancelable flahes(starts at 1, 8 frames each), c = legnth of cancellable flashes(starts at 14, c frames each)
 .asm_4e72c
 	push bc
-	call Function4e779
+	call Function4e779 ;cancellable section
 	pop bc
-	jr c, .asm_4e73f
+	jr c, .asm_4e73f ;if skipped
 	push bc
-	call Function4e741
+	call Function4e741 ;uncancellable section
 	pop bc
-	inc b
+	inc b ;b+1, c -2
 	dec c
 	dec c
-	jr nz, .asm_4e72c
+	jr nz, .asm_4e72c ;repeat 7 times
 	and a
 	ret
 
@@ -48024,61 +48024,61 @@ Function4e726: ; 4e726
 Function4e741: ; 4e741
 .asm_4e741
 	ld a, $cf
-	ld [wd1ec], a
+	ld [wd1ec], a ;load 207 into ??
 	call Function4e755
 	ld a, $31
 	ld [wd1ec], a
 	call Function4e755
 	dec b
-	jr nz, .asm_4e741
+	jr nz, .asm_4e741 ;loop b times
 	ret
 ; 4e755
 
 Function4e755: ; 4e755
 	push bc
 	xor a
-	ld [hBGMapMode], a
+	ld [hBGMapMode], a ;load 0 into map mode
 	hlcoord 7, 2
-	ld bc, $0707
+	ld bc, $0707 ;loop 7*7 times
 	ld de, $000d
 .asm_4e762
 	push bc
 .asm_4e763
 	ld a, [wd1ec]
-	add [hl]
+	add [hl] ; tile += wd1ec in a 7*7 square
 	ld [hli], a
 	dec c
-	jr nz, .asm_4e763
+	jr nz, .asm_4e763 ;loop 7 columns
 	pop bc
-	add hl, de
+	add hl, de ;skip forward to start of next row
 	dec b
-	jr nz, .asm_4e762
+	jr nz, .asm_4e762 ;loop 7 rows
 	ld a, $1
-	ld [hBGMapMode], a
-	call WaitBGMap
+	ld [hBGMapMode], a ;reset bgmapmode
+	call WaitBGMap ;delays 4 frames
 	pop bc
 	ret
 ; 4e779
 
-Function4e779: ; 4e779
+Function4e779: ; 4e779 evo cancelling
 .asm_4e779
 	call DelayFrame
 	push bc
-	call Functiona57
+	call Functiona57 ;update joypad data
 	ld a, [hJoyDown]
 	pop bc
-	and $2
+	and $2 ;if b, jump
 	jr nz, .asm_4e78c
 .asm_4e787
 	dec c
-	jr nz, .asm_4e779
+	jr nz, .asm_4e779 ;loop c times
 	and a
 	ret
 
 .asm_4e78c
 	ld a, [wd1e9]
 	and a
-	jr nz, .asm_4e787
+	jr nz, .asm_4e787 ;if evo count = >1, loop, else ret C
 	scf
 	ret
 ; 4e794

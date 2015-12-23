@@ -71,10 +71,10 @@ Function1d7d:: ; 1d7d
 	ret
 ; 1d81
 
-Function1d81:: ; 0x1d81
+Function1d81:: ; 0x1d81 initmenu2
 	xor a
 	ld [hBGMapMode], a
-	call Function1cbb
+	call Function1cbb ;put a textbox in curmenu area
 	call Function1ad2
 	call Function1c89
 	call Function321c
@@ -84,7 +84,7 @@ Function1d81:: ; 0x1d81
 	jr z, .asm_1da7 ; 0x1d98 $d
 	call Function1c10
 	call Function1bc9
-	call Function1ff8
+	call Function1ff8 ;if a or b pressed and start diabled, play sound
 	bit 1, a
 	jr z, .asm_1da9 ; 0x1da5 $2
 .asm_1da7
@@ -224,13 +224,13 @@ Function1e35:: ; 1e35
 	ret
 ; 1e5d
 
-Function1e5d:: ; 1e5d
+Function1e5d:: ; 1e5d ;set up and process PC menu, ret c if going back
 	call MenuFunc_1e7f ;set up PC menu data
 	call MenuWriteText
-	call Function1eff
-	call Function1f23
-	call Function1bdd
-	call Function1ff8
+	call Function1eff ; set up selection pointer
+	call Function1f23 ;process inputs, leaving option to run (from table hl) in menu selection, ret c if going back
+	call Function1bdd ;a = back nyble of JoyLast and front nyble of joy pressed
+	call Function1ff8 ;if a or b pressed and start diabled, play sound
 	ret
 ; 1e70
 
@@ -252,8 +252,8 @@ MenuFunc_1e7f:: ; 0x1e7f set up PC menu data
 MenuWriteText:: ; 0x1e8c
 	xor a
 	ld [hBGMapMode], a
-	call Function1ebd ; sort out the text 
-	call Function1eda ; actually write it
+	call Function1ebd ; set number of options based on dex and wd95e
+	call Function1eda ; until [de] is $ff, load [de] into menu selection and run what's pointed to by wcf95 with hl = menu start + 2/2 + (2 rows down each time)
 	call Function2e31
 	ld a, [hOAMUpdate]
 	push af
@@ -306,31 +306,31 @@ Function1ebd:: ; 1ebd set number of options based on dex and wd95e
 	ret
 ; 1eda
 
-Function1eda:: ; 1eda
-	call Function1cfd
-	ld bc, $002a
+Function1eda:: ; 1eda until [de] is $ff, load [de] into menu selection and run what's pointed to by wcf95 with hl = menu start + 2/2 + (2 rows down each time)
+	call Function1cfd ;hl = curmenu start location in tilemap
+	ld bc, $002a ;go down 2 rows and 2 colomns
 	add hl, bc
 .asm_1ee1
 	inc de
 	ld a, [de]
 	cp $ff
-	ret z
-	ld [MenuSelection], a
-	push de
-	push hl
+	ret z ;if de = ff, ret
+	ld [MenuSelection], a ;load a into menu selection
+	push de ; = ??
+	push hl ; = current tile
 	ld d, h
 	ld e, l
 	ld hl, wcf95
-	call Function1efb
+	call Function1efb ;run the function pointed to by wcf95
 	pop hl
-	ld de, $0028
+	ld de, $0028 ;move down 2 rows
 	add hl, de
 	pop de
 	jr .asm_1ee1
 ; 1efb
 
-Function1efb:: ; 1efb
-	ld a, [hli]
+Function1efb:: ; 1efb ;run the function pointed to by the pointer at hl
+	ld a, [hli] 
 	ld h, [hl]
 	ld l, a
 	jp [hl]
@@ -363,25 +363,25 @@ Function1f1a:: ; 1f1a
 	jr Function1f2a
 ; 1f23
 
-Function1f23:: ; 1f23
+Function1f23:: ; 1f23 process inputs, leaving option to run in menu selection
 	xor a
-	ld [wcf73], a
-	call Function1bc9
-; 1f2a
+	ld [wcf73], a ;load 0 into menu joypad
+	call Function1bc9 ;update cursor and ret after allowed input is pressed
+; 1f2a fall through
 
 Function1f2a:: ; 1f2a
 	bit 0, a
-	jr nz, .asm_1f52
+	jr nz, .asm_1f52 ;if a, load bit 0 into menu joypad
 	bit 1, a
-	jr nz, .asm_1f6d
+	jr nz, .asm_1f6d ;if b or start, load bit 2 anf ff into menuselection. then ret c
 	bit 3, a
-	jr nz, .asm_1f6d
+	jr nz, .asm_1f6d 
 	bit 4, a
-	jr nz, .asm_1f44
+	jr nz, .asm_1f44 ;if right, load bit 4
 	bit 5, a
-	jr nz, .asm_1f4b
+	jr nz, .asm_1f4b ;if left, load bit 5
 	xor a
-	ld [wcf73], a
+	ld [wcf73], a ;else skip
 	jr .asm_1f57
 
 .asm_1f44
@@ -399,15 +399,15 @@ Function1f2a:: ; 1f2a
 	ld [wcf73], a
 
 .asm_1f57
-	call Function1ebd
+	call Function1ebd ;1ebd set number of options based on dex and wd95e
 	ld a, [wcfa9]
 	ld l, a
 	ld h, $0
-	add hl, de
+	add hl, de ;go down hl the number of the selection
 	ld a, [hl]
-	ld [MenuSelection], a
+	ld [MenuSelection], a ;load the contents into menu selection
 	ld a, [wcfa9]
-	ld [wcf88], a
+	ld [wcf88], a ;place cursor position in default option 
 	and a
 	ret
 
@@ -459,10 +459,10 @@ Function1f9e:: ; 1f9e
 	ret
 ; 1fa7
 
-Function1fa7:: ; 1fa7
+Function1fa7:: ; 1fa7 ;starting at pointer stored at wcf97, go down 4 * menu selection and run the function pointed to by that
 	ld a, [MenuSelection]
-	call Function1fb1
-	ld a, [hli]
+	call Function1fb1 ;load pointer at wcf97, then go down 4*menu selection
+	ld a, [hli] ;run function pointed to by that location
 	ld h, [hl]
 	ld l, a
 	jp [hl]
@@ -471,7 +471,7 @@ Function1fa7:: ; 1fa7
 Function1fb1:: ; 1fb1
 	ld e, a
 	ld d, $0
-	ld hl, wcf97
+	ld hl, wcf97 ;load pointer at wcf97, then go down 4*a
 	ld a, [hli]
 	ld h, [hl]
 	ld l, a
@@ -515,14 +515,14 @@ Function1ff0:: ; 1ff0
 	ret
 ; 1ff8
 
-Function1ff8:: ; 1ff8
+Function1ff8:: ; 1ff8 
 	push af
 	and $3
-	jr z, .asm_2007
+	jr z, .asm_2007 
 	ld hl, wcf81
-	bit 3, [hl]
+	bit 3, [hl] 
 	jr nz, .asm_2007
-	call PlayClickSFX
+	call PlayClickSFX ;else play sound
 
 .asm_2007
 	pop af

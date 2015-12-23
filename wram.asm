@@ -1194,7 +1194,7 @@ Requested1bppDest:: ; cf6f
 wcf71:: ds 1 ;holds pointer to top of stack of menu tile data,stored in reverse.
 ;structure is, from the "top", a byte holding whether here is tile data,the location of the top of the previous stack, then the tiles of attrimap, then tile replaced in tilemap, then the menu header used to replace it
 wcf72:: ds 1
-wcf73:: ds 1
+wcf73:: ds 1 ;menu joypad
 MenuSelection:: ; cf74
 	ds 1
 
@@ -1215,7 +1215,7 @@ wcf91:: ds 1
 wcf92:: ds 1 ;number of vertical options?
 wcf93:: ds 1
 wcf94:: ds 1
-wcf95:: ds 1 ;bit 7 set = skip btton check on loop?
+wcf95:: ds 1 ;bit 7 set = skip btton check on loop? points at something to run?
 wcf96:: ds 1
 wcf97:: ds 1
 wcf98:: ds 3
