@@ -29,7 +29,6 @@ _TitleScreen: ; 10ed67
 	ld de, VTiles1
 	call Decompress
 	
-	
 ; Clear screen palettes
 	ld hl, VBGMap0
 	ld bc, $0280
@@ -91,7 +90,10 @@ _TitleScreen: ; 10ed67
 	call ByteFill
 	
 ; Ground tiles
-	
+	ld hl, $9a80
+	ld bc, $80
+	xor a
+	call ByteFill
 	
 ; Back to VRAM bank 0
 	ld a, $0
@@ -158,6 +160,11 @@ AZURE_POS_Y equ 89
 	call PlaceHost
 	ld de, (AZURE_POS_Y << 8) + AZURE_POS_X
 	call PlaceHost
+; clear the rest of sprites
+	ld hl, $d880
+	ld bc, $20
+	xor a
+	call ByteFill
 	pop af
 	ld [rSVBK], a
 	
@@ -174,7 +181,7 @@ AZURE_POS_Y equ 89
 	call DrawTitleGraphic
 	
 ; Draw ground
-	ld hl, $9b00
+	ld hl, $9a80
 	ld d, $30
 	ld b, $4
 .gloop
@@ -195,7 +202,7 @@ AZURE_POS_Y equ 89
 	ld d, a
 	dec b
 	jr nz, .gloop
-	ld a, $58 - 36
+	ld a, $38 - 36
 	ld [hMPTmp], a
 	
 ; Draw copyright text
@@ -314,7 +321,6 @@ Function10eea7: ; 10eea7
 ; updates the title screen timer, moves ground, and blinks
 	ld hl, DefaultFlypoint
 	ld a, [hl]
-	ld c, a
 	inc [hl]
 	cp 19
 	jr z, .rustblink1
@@ -340,7 +346,7 @@ Function10eea7: ; 10eea7
 .azureblink2
 	ld a, $c6
 .updateazure
-	ld [$d80a], a
+	ld [$d84a], a
 	ret
 .rustblink0
 	ld a, $84
@@ -351,14 +357,13 @@ Function10eea7: ; 10eea7
 .rustblink2
 	ld a, $c2
 .updaterust
-	ld [$d84a], a
+	ld [$d80a], a
 	ret
 ; 10eece
 
 Unknown_10eece: ; 10eece
 	db $80, $88, $00, $08
 ; 10eed2
-
 
 Function10eed2: ; 10eed2
 	hlcoord 6, 12

@@ -1436,7 +1436,7 @@ TitleScreenMain: ; 6304
 
 	ld hl, wcf65
 	inc [hl]
-	ret
+	jp TitleScreenTrick
 
 .clock_reset
 	ld a, 4
@@ -1511,7 +1511,7 @@ TitleScreenEnd: ; 6375
 
 	ld a, [MusicFade]
 	and a
-	ret nz
+	jp nz, TitleScreenTrick
 
 	ld a, 2
 	ld [wcf64], a
