@@ -25730,7 +25730,9 @@ Function2490c: ; 2490c (9:490c)
 	call Function24a5c
 	dec hl
 	push hl
-	call Function24a80
+	ld a, [wcf94]
+	ld c, a
+	ld b, 0
 	add hl, bc
 	ld d, h
 	ld e, l
@@ -25755,7 +25757,9 @@ Function2490c: ; 2490c (9:490c)
 	call Function24a5c
 	ld d, h
 	ld e, l
-	call Function24a80
+	ld a, [wcf94]
+	ld c, a
+	ld b, 0
 	add hl, bc
 	pop bc
 	call CopyBytes
@@ -25840,7 +25844,9 @@ Function249d1: ; 249d1 (9:49d1)
 	ret
 .asm_24a25
 	dec [hl]
-	call Function24a80
+	ld a, [wcf94]
+	ld c, a
+	ld b, 0
 	push bc
 	ld a, [wd0e3]
 	call Function24a5c
@@ -25861,7 +25867,9 @@ Function249d1: ; 249d1 (9:49d1)
 Function24a40: ; 24a40 (9:4a40)
 	call Function24a5c
 	ld de, DefaultFlypoint
-	call Function24a80
+	ld a, [wcf94]
+	ld c, a
+	ld b, 0
 	call CopyBytes
 	ret
 
@@ -25870,13 +25878,17 @@ Function24a4d: ; 24a4d (9:4a4d)
 	ld d, h
 	ld e, l
 	ld hl, DefaultFlypoint
-	call Function24a80
+	ld a, [wcf94]
+	ld c, a
+	ld b, 0
 	call CopyBytes
 	ret
 
 Function24a5c: ; 24a5c (9:4a5c)
 	push af
-	call Function24a80
+	ld a, [wcf94]
+	ld c, a
+	ld b, 0
 	ld hl, wcf96
 	ld a, [hli]
 	ld h, [hl]
@@ -25888,7 +25900,9 @@ Function24a5c: ; 24a5c (9:4a5c)
 
 Function24a6c: ; 24a6c (9:4a6c)
 	push hl
-	call Function24a80
+	ld a, [wcf94]
+	ld c, a
+	ld b, 0
 	ld a, d
 	sub e
 	jr nc, .asm_24a76
@@ -25902,28 +25916,11 @@ Function24a6c: ; 24a6c (9:4a6c)
 	pop hl
 	ret
 
-Function24a80: ; 24a80 (9:4a80)
-	push hl
+Function24a97: ; 24a97 (9:4a97)
+	push af
 	ld a, [wcf94]
 	ld c, a
 	ld b, 0
-	ld hl, Unknown_24a91
-	add hl, bc
-	add hl, bc
-	ld c, [hl]
-	inc hl
-	ld b, [hl]
-	pop hl
-	ret
-; 24a91 (9:4a91)
-
-Unknown_24a91: ; 24a91
-	dw 0, 1, 2
-; 24a97
-
-Function24a97: ; 24a97 (9:4a97)
-	push af
-	call Function24a80
 	ld a, c
 	cp $2
 	jr nz, .asm_24aa7
