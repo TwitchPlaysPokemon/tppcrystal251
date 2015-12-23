@@ -1285,6 +1285,12 @@ TitleScreenEntrance: ; 62bc
 	ld hl, LYOverrides
 	ld bc, 8 * 10 ; logo height
 	call ByteFill
+	
+; The rest is the offset from title timer
+	ld a, [DefaultFlypoint]
+	ld hl, LYOverrides + 80
+	ld bc, 64
+	call ByteFill
 
 ; Reversed signage for every other line's position.
 ; This is responsible for the interlaced effect.
@@ -1301,7 +1307,13 @@ TitleScreenEntrance: ; 62bc
 	jr nz, .loop
 
 	callba AnimateTitleCrystal
-	ret
+	
+	; wait until line 73 so it won't interfere with the title
+.loop2
+	ld a, [rLY]
+	cp 72
+	jr nz, .loop2
+	jp TitleScreenTrick
 
 .done
 ; Next scene
@@ -1316,7 +1328,7 @@ TitleScreenEntrance: ; 62bc
 
 	ld a, $88
 	ld [hWY], a
-	ret
+	jp TitleScreenTrick
 ; 62f6
 
 TitleScreenTimer: ; 62f6
@@ -1331,7 +1343,7 @@ TitleScreenTimer: ; 62f6
 	ld [hl], e
 	inc hl
 	ld [hl], d
-	ret
+	jp TitleScreenTrick
 ; 6304
 
 TitleScreenMain: ; 6304
@@ -1393,7 +1405,7 @@ TitleScreenMain: ; 6304
 	ld a, [hl]
 	and START | A_BUTTON
 	jr nz, .continue
-	ret
+	jp TitleScreenTrick
 
 .continue
 	ld a, 0
@@ -1424,7 +1436,7 @@ TitleScreenMain: ; 6304
 
 	ld hl, wcf65
 	inc [hl]
-	ret
+	jp TitleScreenTrick
 
 .clock_reset
 	ld a, 4
@@ -1436,6 +1448,60 @@ TitleScreenMain: ; 6304
 	ret
 ; 6375
 
+TitleScreenTrick:
+; Since Twitch logo and player silhouette combined are
+; more than 40 sprites limit and the ground can't be scrolled
+; without scrolling Pokemon logo along so some of the
+; LCD scanline tricks needs to be applied here ;)
+	; don't do anything if we're too late
+	ld a, [rLY]
+	cp 73
+	ret nc
+	; let's see if we can do OAM DMA on the fly
+	ld a, [rSVBK]
+	push af
+	ld a, 5
+	ld [rSVBK], a
+	ld a, [hLCDStatCustom]
+	push af
+	xor a ; disable this in order to save more cycles in HBlank
+	ld [hLCDStatCustom], a
+	ld a, 2 ; only LCD
+	ld [rIE], a
+	ld a, 73 ; according to the mockup, hosts silhouette starts at line 76
+	ld [rLYC], a
+	ld a, $40 ; use LYC interrupt
+	ld [rSTAT], a
+	ld a, $d8 ; hijack PushOAM to transfer from $d800 instead
+	ld [$ff81], a
+	halt
+	call $ff80
+	ld a, Sprites >> 8
+	ld [$ff81], a
+	ld a, [DefaultFlypoint]
+	ld [LYOverrides+78], a
+	ld a, rSCX - rJOYP
+	ld [hLCDStatCustom], a
+	ld a, 78
+	ld [rLYC], a
+	halt
+	ld a, [hMPTmp]
+	ld [LYOverrides+79], a
+	ld a, rSCY - rJOYP
+	ld [hLCDStatCustom], a
+	ld a, 79
+	ld [rLYC], a
+	halt
+	pop af
+	ld [hLCDStatCustom], a
+	pop af
+	ld [rSVBK], a
+	ld a, $8
+	ld [rSTAT], a
+	ld a, $f
+	ld [rIE], a
+	ret
+
 TitleScreenEnd: ; 6375
 
 ; Wait until the music is done fading.
@@ -1445,7 +1511,7 @@ TitleScreenEnd: ; 6375
 
 	ld a, [MusicFade]
 	and a
-	ret nz
+	jp nz, TitleScreenTrick
 
 	ld a, 2
 	ld [wcf64], a
@@ -1513,12 +1579,21 @@ Copyright: ; 63e2
 	ld hl, VTiles2 + $600 ; tile $60
 	lb bc, BANK(CopyrightGFX), $1d
 	call Request2bpp
-	hlcoord 2, 7
+	ld de, CopyrightTPPGFX
+	ld hl, VTiles1 ; tile $80
+	lb bc, BANK(CopyrightTPPGFX), $5
+	call Request2bpp
+	hlcoord 2, 6
 	ld de, CopyrightString
 	jp PlaceString
 ; 63fd
 
 CopyrightString: ; 63fd
+	; 2016 TPP
+	db $7f, $80, $81, $82, $7f, $7f, $7f, $83, $84
+	
+	db $4e
+
 	; ©1995-2001 Nintendo
 	db $60, $61, $62, $63, $64, $65, $66
 	db $67, $68, $69, $6a, $6b, $6c
@@ -23944,10 +24019,10 @@ Unknown_20015: ; 20015
 	db $07, $04
 
 	dw wd1ee
-	db $18, $0c
+	db $18, $0f
 
 	dw wd1ef
-	db $3c, $0f
+	db $3c, $12
 ; 20021
 
 Function20021: ; 20021 (8:4021)
@@ -24117,7 +24192,7 @@ Function2011f: ; 2011f (8:411f)
 	ld b, a
 	ld a, [wd1ef]
 	ld c, a
-	decoord 11, 8
+	decoord 14, 8
 	callba Function1dd6bb
 	ld a, [Buffer2] ; wd1eb (aliases: MovementType)
 	lb de, $7f, $7f
@@ -42552,8 +42627,8 @@ Function49e27: ; 49e27
 	call Function6e3
 	and $80
 	jr nz, .asm_49e39
-	hlcoord 0, 14
-	ld b, $2
+	hlcoord 0, 15
+	ld b, $1
 	ld c, $12
 	call TextBox
 	ret
@@ -42573,15 +42648,20 @@ Function49e3d: ; 49e3d
 	call UpdateTime
 	call GetWeekday
 	ld b, a
-	decoord 1, 15
+	decoord 1, 16
 	call Function49e91
-	decoord 4, 16
-	ld a, [hHours]
-	ld c, a
-	callba Function90b3e
+	hlcoord 11, 16
+	ld de, hHours
+	ld bc, $102
+	call PrintNum
 	ld [hl], ":"
 	inc hl
 	ld de, hMinutes
+	ld bc, $8102
+	call PrintNum
+	ld [hl], ":"
+	inc hl
+	ld de, hSeconds
 	ld bc, $8102
 	call PrintNum
 	ret
@@ -70777,7 +70857,7 @@ Function90b3e: ; 90b3e (24:4b3e)
 	ld h, b
 	inc hl
 	pop bc
-	call Function90b7f
+	ld a, c
 	ld [wd265], a
 	ld de, wd265
 	call Function90867
@@ -71346,6 +71426,12 @@ Function90f86: ; 90f86 (24:4f86)
 	ld c, a
 	decoord 6, 8
 	callba Function1dd6bb
+	hlcoord 11, 8
+	ld [hl], ":"
+	inc hl
+	ld de, hSeconds
+	ld bc, $8102
+	call PrintNum
 	ld hl, UnknownText_0x90faf
 	bccoord 6, 6
 	call Function13e5
@@ -96357,19 +96443,7 @@ Function1dd6a9: ; 1dd6a9
 ; 1dd6bb
 
 Function1dd6bb: ; 1dd6bb (77:56bb)
-	ld a, b
-	cp $c
-	push af
-	jr c, .asm_1dd6c7
-	jr z, .asm_1dd6cc
-	sub $c
-	jr .asm_1dd6cc
-.asm_1dd6c7
-	or a
-	jr nz, .asm_1dd6cc
-	ld a, $c
-.asm_1dd6cc
-	ld b, a
+; print b:0c
 	push bc
 	ld hl, [sp+$1]
 	push de
@@ -96391,13 +96465,6 @@ Function1dd6bb: ; 1dd6bb (77:56bb)
 	ld bc, $8102
 	call PrintNum
 	pop bc
-	ld de, String_1dd6fc
-	pop af
-	jr c, .asm_1dd6f7
-	ld de, String_1dd6ff
-.asm_1dd6f7
-	inc hl
-	call PlaceString
 	ret
 ; 1dd6fc (77:56fc)
 
@@ -96777,6 +96844,13 @@ INCLUDE "TPP.asm"
 SECTION "bank7B", ROMX, BANK[$7B]
 
 INCLUDE "text/battle_tower.asm"
+
+GBCOnlyGFX2:
+INCBIN "gfx/misc/gbc_only_2.w112.2bpp"
+
+CopyrightTPPGFX:
+INCBIN "gfx/misc/copyright_tpp.2bpp"
+CopyrightTPPGFXEnd
 
 SECTION "bank7C", ROMX, BANK[$7C]
 
