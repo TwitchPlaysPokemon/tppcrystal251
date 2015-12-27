@@ -4897,7 +4897,7 @@ UnknownScript_0xc802: ; 0xc802 CUT
 	copybytetovar wd1ef
 	pokepic $0000
 	cry $0000
-	reloadmappart
+	pokepicyesorno
 	callasm Functionc810
 	loadmovesprites
 	end
@@ -5389,7 +5389,7 @@ UnknownScript_0xcaa3: ; 0xcaa3 FLY
 	copybytetovar wd1ef
 	pokepic $0000
 	cry $0000
-	reloadmappart
+	pokepicyesorno
 	callasm Function8caed
 	farscall UnknownScript_0x122c1
 	special Function97c28
@@ -6038,7 +6038,7 @@ UnknownScript_0xce0f: ; 0xce0f WHIRLPOOL
 	copybytetovar wd1ef
 	pokepic $0000
 	cry $0000
-	reloadmappart
+	pokepicyesorno
 	callasm Functionce1d
 	loadmovesprites
 	end
@@ -27322,10 +27322,9 @@ Function2536c: ; 2536c (9:536c)
 .asm_2538d
 	call Function253f4
 	inc hl
-	inc hl
-	inc hl
-	inc hl
-	dec c
+	inc hl5b
+
+Fuction4d35b: ; 4d35b
 	jr nz, .asm_2538d
 	xor a
 	ld [wcf64], a
@@ -96920,7 +96919,6 @@ INCBIN "misc/stadium2_2.bin"
 ELSE
 INCBIN "misc/stadium2_1.bin"
 ENDC
-
 
 
 
