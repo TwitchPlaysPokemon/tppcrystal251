@@ -273,21 +273,21 @@ MenuData2_0x7287f: ; 0x7287f
 
 
 UnknownText_0x728b8: ; 0x728b8
-	text "I wanted PORYGON,"
+	text "I wanted PORYGON2,"
 	line "but I was short by"
 	cont "100 coins…"
 	done
 ; 0x728e9
 
 UnknownText_0x728e9: ; 0x728e9
-	text "Whew…"
+	text "Wow…"
 
-	para "I've got to stay"
-	line "calm and cool…"
+	para "PORYGON2 is a"
+	line "prize here."
 
-	para "I can't lose my"
-	line "cool, or I'll lose"
-	cont "all my money…"
+	para "That #MON is sup-"
+	line "-posed to be very"
+	cont "hard to find."
 	done
 ; 0x7293e
 

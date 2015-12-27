@@ -469,9 +469,14 @@ UnknownText_0x56f9e: ; 0x56f9e
 ; 0x56ff4
 
 UnknownText_0x56ff4: ; 0x56ff4
-	text "Life is a gamble."
-	line "I'm going to flip"
-	cont "cards till I drop!"
+	text "I just got 777"
+	line "on the slots!"
+	
+	para "I'm going to"
+	line "share the payout"
+	
+	para "with all my"
+	line "friends!"
 	done
 ; 0x5702b
 
@@ -523,8 +528,11 @@ UnknownText_0x5710d: ; 0x5710d
 ; 0x5718a
 
 UnknownText_0x5718a: ; 0x5718a
-	text "Wahahah! The coins"
-	line "keep rolling in!"
+	text "The floor is alw-"
+	line "-ays covered in"
+	
+	para "salt for some"
+	line "reason..."
 	done
 ; 0x571af
 

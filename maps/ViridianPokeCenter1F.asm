@@ -59,13 +59,13 @@ UnknownText_0x9b6f5: ; 0x9b6f5
 ; 0x9b76b
 
 UnknownText_0x9b76b: ; 0x9b76b
-	text "I heard that the"
-	line "GYM in CINNABAR is"
-	cont "gone."
+	text "I work as a"
+	line "paparazzi."
 
-	para "I wonder what be-"
-	line "came of BLAINE,"
-	cont "the GYM LEADER."
+	para "I am here to get"
+	line "some good shots of"
+	cont "the celebrities."
+
 	done
 ; 0x9b7c8
 

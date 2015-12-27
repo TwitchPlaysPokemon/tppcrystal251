@@ -387,25 +387,29 @@ UnknownText_0x5e9d0: ; 0x5e9d0
 ; 0x5ea14
 
 ScientistMarcSeenText: ; 0x5ea14
-	text "An unknown child"
-	line "wandering here?"
+	text "#MON isn't"
+	line "all about levels!"
 
-	para "Who are you?"
+	para "I will show you"
+	line "how important"
+	cont "strategies are!"
 	done
 ; 0x5ea43
 
 ScientistMarcBeatenText: ; 0x5ea43
-	text "Tch! I took you"
-	line "too lightly!"
+	text "How is this"
+	line "possible!?"
 	done
 ; 0x5ea61
 
 UnknownText_0x5ea61: ; 0x5ea61
-	text "Bwahahaha…"
+	text "Tactics is a big"
+	line "part of #MON."
 
-	para "I can transmit as"
-	line "strong a signal as"
-	cont "I need from here."
+	para "For me it all st-"
+	line "-arted with using"
+	cont "Smog on a grass"
+	cont "-type #MON."
 	done
 ; 0x5eaa4
 

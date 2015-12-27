@@ -430,23 +430,23 @@ FruitTreeScript_0x19ca7e: ; 0x19ca7e
 ; 0x19ca80
 
 CamperIvanSeenText: ; 0x19ca80
-	text "I've been getting"
-	line "#MON data off"
+	text "The right"
+	line "#MON make"
 
-	para "my radio. I think"
-	line "I'm good."
+	para "camping all that"
+	line "much easier!"
 	done
 ; 0x19cabb
 
 CamperIvanBeatenText: ; 0x19cabb
-	text "I give!"
+	text "Dug my own grave!"
 	done
 ; 0x19cac4
 
 UnknownText_0x19cac4: ; 0x19cac4
-	text "Music on the radio"
-	line "changes the moods"
-	cont "of wild #MON."
+	text "My #MON and me"
+	line "all work hard to"
+	cont "set up the tent!"
 	done
 ; 0x19caf8
 
@@ -539,24 +539,24 @@ UnknownText_0x19cc87: ; 0x19cc87
 ; 0x19cd1e
 
 JugglerIrwin1SeenText: ; 0x19cd1e
-	text "Behold my graceful"
-	line "BALL dexterity!"
+	text "I feel like going"
+	line "all in today!"
 	done
 ; 0x19cd42
 
 JugglerIrwin1BeatenText: ; 0x19cd42
-	text "Whew! That was a"
-	line "jolt!"
+	text "Down to my"
+	line "last 100..."
 	done
 ; 0x19cd5a
 
 UnknownText_0x19cd5a: ; 0x19cd5a
-	text "I was going to"
-	line "dazzle you with my"
-	cont "prize #MON."
+	text "There is a certain"
+	line "honor involved in"
 
-	para "But your prowess"
-	line "electrified me!"
+	para "betting it all"
+	line "on the roll"
+	cont "of a dice."
 	done
 ; 0x19cdaa
 

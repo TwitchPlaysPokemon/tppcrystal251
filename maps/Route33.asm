@@ -176,24 +176,20 @@ FruitTreeScript_0x1ac0ea: ; 0x1ac0ea
 ; 0x1ac0ec
 
 HikerAnthony2SeenText: ; 0x1ac0ec
-	text "I came through the"
-	line "tunnel, but I"
-
-	para "still have plenty"
-	line "of energy left."
+	text "My #MON"
+	line "are the best!"
 	done
 ; 0x1ac130
 
 HikerAnthony2BeatenText: ; 0x1ac130
-	text "Whoa! You've got"
-	line "more zip than me!"
+	text "Now I feel like"
+	line "a MAGIKARP..."
 	done
 ; 0x1ac153
 
 UnknownText_0x1ac153: ; 0x1ac153
-	text "We HIKERS are at"
-	line "our best in the"
-	cont "mountains."
+	text "I will be even"
+	line "better next time!"
 	done
 ; 0x1ac180
 
@@ -201,11 +197,11 @@ UnknownText_0x1ac180: ; 0x1ac180
 	text "Hey, did you get a"
 	line "DUNSPARCE?"
 
-	para "I caught one too."
+	para "In DARK CAVE?"
 
-	para "Take a look at it"
-	line "in the light. It's"
-	cont "got a funny face!"
+	para "It is apparently"
+	line "really common"
+	cont "during swarms!"
 	done
 ; 0x1ac1e7
 

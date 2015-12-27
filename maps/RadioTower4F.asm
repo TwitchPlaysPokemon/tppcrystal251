@@ -265,40 +265,39 @@ Executivem2BeatenText: ; 0x5ee50
 ; 0x5ee69
 
 UnknownText_0x5ee69: ; 0x5ee69
-	text "You've earned my"
-	line "respect, so here's"
-	cont "some advice."
-
-	para "It's not too late."
-	line "You can still turn"
-	cont "back."
+	text "Maybe I relied"
+	line "too much on"
+	cont "the power of the"
+	cont "BERSERK GENE..."
 	done
 ; 0x5eec4
 
 GruntF4SeenText: ; 0x5eec4
-	text "Don't I think"
-	line "#MON are cute?"
+	text "Did you meet our"
+	line "scientist right"
+	cont "next to here?"
 
-	para "I'll think my"
-	line "#MON are cute--"
+	para "RICH created the"
+	line "BERSERK GENE!"
 
-	para "after they beat"
-	line "yours!"
+	para "But I have"
+	line "mastered it!"
 	done
 ; 0x5ef15
 
 GruntF4BeatenText: ; 0x5ef15
-	text "Oh, no! They're so"
-	line "useless!"
+	text "Not even the"
+	line "BERSERK GENE"
+	cont "was enough?"
 	done
 ; 0x5ef31
 
 UnknownText_0x5ef31: ; 0x5ef31
-	text "I love my"
-	line "beautiful self!"
+	text "Stupid RICH..."
 
-	para "Who cares about"
-	line "#MON?"
+	para "The BERSERK GENE"
+	line "has horrible"
+	cont "side effects..."
 	done
 ; 0x5ef62
 
@@ -320,9 +319,14 @@ ScientistRichBeatenText: ; 0x5efa3
 ; 0x5efcb
 
 UnknownText_0x5efcb: ; 0x5efcb
-	text "Do you honestly"
-	line "believe you can"
-	cont "stop TEAM ROCKET?"
+	text "I helped create"
+	line "the BERSERK GENE."
+	
+	para "I regret it to"
+	line "this day..."
+	
+	para "We did horrible"
+	line "things..."
 	done
 ; 0x5effe
 

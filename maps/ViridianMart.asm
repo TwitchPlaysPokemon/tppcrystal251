@@ -22,9 +22,11 @@ CooltrainerMScript_0x9b5f1: ; 0x9b5f1
 ; 0x9b5f4
 
 UnknownText_0x9b5f4: ; 0x9b5f4
-	text "The GYM LEADER"
-	line "here is totally"
-	cont "cool."
+	text "Have you heard of"
+	line "the celebrities?"
+
+	para "It is the talk"
+	line "of the town!"
 	done
 ; 0x9b61a
 

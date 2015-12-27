@@ -401,11 +401,12 @@ UnknownText_0x54360: ; 0x54360
 ; 0x5439b
 
 LassCarrieSeenText: ; 0x5439b
-	text "Don't let my"
-	line "#MON's cute"
+	text "Only one #MON"
+	line "learns every move."
 
-	para "looks fool you."
-	line "They can whip you!"
+	para "With it I will"
+	line "one day beat"
+	cont "Whitney!"
 	done
 ; 0x543d6
 
@@ -422,12 +423,12 @@ LassCarrieOWText: ; 0x543f6
 ; 0x54411
 
 LassBridgetSeenText: ; 0x54411
-	text "I like cute #-"
-	line "MON better than"
-	cont "strong #MON."
+	text "This gym focuses"
+	line "on both normal"
+	cont "and fairy types."
 
-	para "But I have strong"
-	line "and cute #MON!"
+	para "I prefer FAIRY"
+	line "types personally!"
 	done
 ; 0x5445f
 
@@ -491,15 +492,18 @@ BeautySamanthaSeenText: ; 0x545be
 ; 0x545ed
 
 BeautySamanthaBeatenText: ; 0x545ed
-	text "No! Oh, MEOWTH,"
-	line "I'm so sorry!"
+	text "Graceful in"
+	line "defeat..."
 	done
 ; 0x5460b
 
 BeautySamanthaOWText: ; 0x5460b
-	text "I taught MEOWTH"
-	line "moves for taking"
-	cont "on any type…"
+	text "Whitney focuses on"
+	line "normal and fairy"
+	cont "type #MON."
+	
+	para "That is what makes"
+	line "her so scary."
 	done
 ; 0x5463a
 
@@ -509,11 +513,13 @@ GoldenrodGymGuyText: ; 0x5463a
 
 	para "This GYM is home"
 	line "to normal-type"
-	cont "#MON trainers."
-
-	para "I recommend you"
-	line "use fighting-type"
-	cont "#MON."
+	cont "#MON trainers!"
+	
+	para "Also... Uhm..."
+	
+	para "It feels like I"
+	line "forgot something"
+	cont "important..."
 	done
 ; 0x546a7
 

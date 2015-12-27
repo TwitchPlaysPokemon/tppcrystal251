@@ -935,22 +935,30 @@ UnknownText_0x190d92: ; 0x190d92
 ; --- end a segment of possibly unused texts
 
 FisherHenrySeenText: ; 0x190dcf
-	text "My #MON?"
-	line "Freshly caught!"
+	text "I was surfing"
+	line "around in the"
+	
+	para "lake just now"
+	line "when I found"
+	cont "this rare #MON!"
 	done
 ; 0x190de9
 
 FisherHenryBeatenText: ; 0x190de9
-	text "SPLASH?"
+	text "Splashed ashore!"
 	done
 ; 0x190df2
 
 UnknownText_0x190df2: ; 0x190df2
-	text "Freshly caught"
-	line "#MON are no"
+	text "You can find all"
+	line "sort of rare"
+	cont "#MON in lakes!"
 
-	para "match for properly"
-	line "raised ones."
+	para "If you want to"
+	line "catch them all,"
+	
+	para "fish and surf in"
+	line "various places!"
 	done
 ; 0x190e2e
 
@@ -973,9 +981,9 @@ UnknownText_0x190e82: ; 0x190e82
 	line "to be the best"
 	cont "with my favorites."
 
-	para "I'm not using the"
-	line "same tough #MON"
-	cont "as everyone else."
+	para "It is important"
+	line "as trainer to do"
+	cont "your own thing."
 	done
 ; 0x190ee8
 
@@ -1014,9 +1022,12 @@ CamperRolandBeatenText: ; 0x190f8c
 ; 0x190faa
 
 UnknownText_0x190faa: ; 0x190faa
-	text "If you don't want"
-	line "to battle, just"
-	cont "avoid eye contact."
+	text "This area has a"
+	line "lot of unique"
+	cont "#MON around!"
+
+	para "The lake attracts"
+	line "lots of #MON."
 	done
 ; 0x190fdf
 
