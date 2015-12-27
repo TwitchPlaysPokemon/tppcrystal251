@@ -1,6 +1,6 @@
 # No monkey business with line endings
 * -text
-*.asm text eol=crlf
+*.asm text eol=lf
 
 # hexdump binary files
 *.png  diff=hex
