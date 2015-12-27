@@ -425,8 +425,8 @@ Function17d1f1: ; 17d1f1
 	ret
 ; 17d224
 
-Function17d224: ; 17d224
-	ld a, [ScriptVar]
+Function17d224: ; 17d224 BATTLE TOWER, DO NOT DELETE process initial menu
+	ld a, [ScriptVar] ;choose menu based on scriptvar and set it to 4
 	and a
 	jr nz, .asm_17d234
 	ld a, $4
@@ -441,21 +441,21 @@ Function17d224: ; 17d224
 
 .asm_17d23c
 	call LoadMenuDataHeader
-	call Function17d246
-	call Function1c17
+	call Function17d246 ;if exit then ret scriptvar = 4, else scriptvar = cursor pos -1
+	call Function1c17 ;unload menu
 	ret
 ; 17d246
 
-Function17d246: ; 17d246
-	call Function1d81
-	jr c, .asm_17d264
+Function17d246: ; 17d246 ;init menu, if scriptvar = 5 then scriptvar = cursor positon, if exit then ret scriptvar = 4, else scriptvar = cursor pos -1
+	call Function1d81 ;initmenu2 if b pressed, ret c, else ret nc?
+	jr c, .asm_17d264 ;if pressed b? load 4 into scriptvar
 	ld a, [ScriptVar]
 	cp $5
-	jr nz, .asm_17d25d
+	jr nz, .asm_17d25d ;if scriptvar is 5, load cursor position into scriptvar
 	ld a, [wcfa9]
 	cp $3
-	ret z
-	jr c, .asm_17d25d
+	ret z ;if cursor is over exit?, ret scriptvar = 4
+	jr c, .asm_17d25d ;else dec a and load into scriptvar
 	dec a
 	jr .asm_17d260
 

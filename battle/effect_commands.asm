@@ -7976,7 +7976,7 @@ BattleCommand29: ; 36c98
 BattleCommand27: ; 36cb2
 ; recoil
 
-	ld hl, BattleMonMaxHP
+	ld hl, BattleMonMaxHP ;load correct side
 	ld a, [hBattleTurn]
 	and a
 	ld a, [LastPlayerMove]
@@ -7984,7 +7984,7 @@ BattleCommand27: ; 36cb2
 	ld hl, EnemyMonMaxHP
 	ld a, [LastEnemyMove]
 .asm_36cbd
-	cp STRUGGLE
+	cp STRUGGLE ;handle struggle seperatly
 	jr z, .Struggle
 	ld a, BATTLE_VARS_MOVE_ANIM
 	call GetBattleVar

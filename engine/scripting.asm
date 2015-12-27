@@ -2334,7 +2334,7 @@ Script_giveitem: ; 0x977ca
 
 	call GetScriptByte
 	cp $ff
-	jr nz, .asm_977d4 ; 0x977cf $3 ;if not ff, load into scriptvar
+	jr nz, .asm_977d4 ; 0x977cf $3 ;if ff, load from scriptvar
 	ld a, [ScriptVar]
 .asm_977d4
 	ld [CurItem], a ;store item to work with

@@ -18270,9 +18270,9 @@ Function14a83: ; 14a83 (5:4a83)
 	pop de
 	ret
 
-Function14ab2: ; 14ab2
-	call Function14b89
-	jr c, .asm_14ac1
+Function14ab2: ; 14ab2  ask if save, if yes save and ret nc
+	call Function14b89 ask if save, if yes erase save and ret nc
+	jr c, .asm_14ac1 ;ret c if refused
 	call Function14b54
 	call Function14be3
 	call Function14b5a
@@ -18385,25 +18385,25 @@ Function14b85: ; 14b85
 	ret
 ; 14b89
 
-Function14b89: ; 14b89
+Function14b89: ; 14b89 ask if save, if yes erase save and ret nc
 	ld a, [wcfcd]
 	and a
-	jr z, .asm_14ba8
-	call Function14bcb
+	jr z, .asm_14ba8 ;if not talked to receptionist, skip to erase?
+	call Function14bcb ;if current playerid is the same as saved id, jump
 	jr z, .asm_14b9e
-	ld hl, UnknownText_0x15297
-	call Function14baf
-	jr nz, .asm_14bad
-	jr .asm_14ba8
+	ld hl, UnknownText_0x15297 ;ask if can overwrite
+	call Function14baf ;ask if want to save
+	jr nz, .asm_14bad ;if no skip
+	jr .asm_14ba8 ;else erase save
 
 .asm_14b9e
-	ld hl, UnknownText_0x15292
-	call Function14baf
+	ld hl, UnknownText_0x15292 ;ask if can overwrite
+	call Function14baf ;ask if want to save
 	jr nz, .asm_14bad
-	jr .asm_14bab
+	jr .asm_14bab ;ret nc
 
 .asm_14ba8
-	call Function14cbb
+	call Function14cbb ;erase save
 
 .asm_14bab
 	and a
@@ -18414,33 +18414,33 @@ Function14b89: ; 14b89
 	ret
 ; 14baf
 
-Function14baf: ; 14baf
-	ld b, BANK(UnknownText_0x15283)
-	call Function269a
-	call Function1d58
+Function14baf: ; 14baf ask if want to save
+	ld b, BANK(UnknownText_0x15283);would you like to save
+	call Function269a ;print text box
+	call Function1d58 ;load menu MenuDataHeader_0x1d5f
 	lb bc, 0, 7
-	call PlaceYesNoBox
-	ld a, [wcfa9]
+	call PlaceYesNoBox ; Return nc (yes) or c (no).
+	ld a, [wcfa9] ;load cursor position
 	dec a
-	call Function1c17
+	call Function1c17 ;unload menu
 	push af
-	call Functiond90
+	;call Functiond90 does nothing
 	pop af
 	and a
 	ret
 ; 14bcb
 
-Function14bcb: ; 14bcb
+Function14bcb: ; 14bcb check if current playerid is the same as saved id
 	ld a, $1
 	call GetSRAMBank
-	ld hl, $a009
+	ld hl, $a009 ;load saved player id into bc
 	ld a, [hli]
 	ld c, [hl]
 	ld b, a
 	call CloseSRAM
 	ld a, [PlayerID]
 	cp b
-	ret nz
+	ret nz 
 	ld a, [PlayerID + 1]
 	cp c
 	ret
@@ -19358,7 +19358,7 @@ INCLUDE "engine/spawn_points.asm"
 
 INCLUDE "engine/map_setup.asm"
 
-Function1559a: ; 1559a PC
+Function1559a: ; 1559a PC here
 	call Function15650 ;if party is zero, cannot use
 	ret c
 	call Function156b3 ;play soundFX
@@ -19398,7 +19398,7 @@ MenuDataHeader_0x155d6: ; 0x155d6
 MenuData2_0x155de: ; 0x155de
 	db $a0 ; flags
 	db 0 ; items
-	dw Unknown_1562c
+	dw Unknown_1562c ;location of menu options
 	dw Function1f8d
 	dw Unknown_155e6 ;wcf97
 ; 0x155e6
@@ -25008,7 +25008,7 @@ UnknownText_0x24468: ; 24468
 ; 2446d
 
 Function2446d:: ; 2446d fill rest of menu data?
-	ld a, [wcf91] ;load ?? into b
+	ld a, [wcf91] ;load vtiles byte 1 into b
 	ld b, a
 	ld hl, wcfa1
 	ld a, [wcf82] ;load cur menu start x coord
@@ -33321,12 +33321,12 @@ Function29e53: ; 29e53
 	ret
 ; 29e66
 
-Function29e66: ; 29e66
-	ld a, [wd265]
+Function29e66: ; 29e66 ;ask if save, if yes save and ret scriptvar = 1
+	ld a, [wd265] ;a = ??
 	push af
-	callba Function14ab2
+	callba Function14ab2 ;ask if save, if yes save and ret nc
 	ld a, $1
-	jr nc, .asm_29e75
+	jr nc, .asm_29e75 ;if saved, scriptvar = 1, else it = 0
 	xor a
 
 .asm_29e75
@@ -33334,7 +33334,7 @@ Function29e66: ; 29e66
 	ld c, $1e
 	call DelayFrames
 	pop af
-	ld [wd265], a
+	ld [wd265], a ;load into ??
 	ret
 ; 29e82
 
@@ -62339,15 +62339,15 @@ UnknownText_0x8b1fc: ; 0x8b1fc
 	db "@"
 ; 0x8b201
 
-Function8b201: ; 8b201
+Function8b201: ; 8b201 ;check if possible to enter, display fail text and ret c otherwise
 	ld hl, StringBuffer2
 	ld [hl], "3"
 	inc hl
 	ld [hl], "@"
-	ld de, Unknown_8b215
+	ld de, Unknown_8b215 ;load 3 into string buffer2 and checks table into de
 	call Function8b25b
-	ret z
-	call Function8b231
+	ret z ;ret if still ok to go in
+	call Function8b231 ;please return when you're ready
 	scf
 	ret
 ; 8b215
@@ -62357,14 +62357,14 @@ Unknown_8b215: ; 8b215
 	dw Unknown_8b21a
 	dw Unknown_8b222
 
-Unknown_8b21a: ; 8b21a
-	dw Function8b2da
-	dw Function8b2e2
-	dw Function8b32a
-	dw Function8b331
+Unknown_8b21a: ; 8b21a ;fail checks
+	dw Function8b2da ;if party not 3 members
+	dw Function8b2e2 ;check for species
+	dw Function8b32a ;check for items
+	dw Function8b331 ;check for eggs
 ; 8b222
 
-Unknown_8b222: ; 8b222
+Unknown_8b222: ; 8b222 ;fail messages
 	dw UnknownText_0x8b22c
 	dw UnknownText_0x8b247
 	dw UnknownText_0x8b24c
@@ -62429,10 +62429,10 @@ UnknownText_0x8b256: ; 0x8b256
 Function8b25b: ; 8b25b
 	ld bc, $0000
 .asm_8b25e
-	call Function8b26c
-	call c, Function8b28e
-	call Function8b276
-	jr nz, .asm_8b25e
+	call Function8b26c ;if can't enter, ret c
+	call c, Function8b28e ;print why can't enter, b = 1 to fail
+	call Function8b276 ;inc c, load de into a, loop [de] times
+	jr nz, .asm_8b25e ;loop [de] times
 	ld a, b
 	and a
 	ret
@@ -62441,8 +62441,8 @@ Function8b25b: ; 8b25b
 Function8b26c: ; 8b26c
 	push de
 	push bc
-	call Function8b27a
-	ld a, c
+	call Function8b27a ;hl = contents of de+1
+	ld a, c ;run place c of that table
 	rst JumpTable
 	pop bc
 	pop de
@@ -62456,7 +62456,7 @@ Function8b276: ; 8b276
 	ret
 ; 8b27a
 
-Function8b27a: ; 8b27a
+Function8b27a: ; 8b27a hl = contents of de+1
 	inc de
 	ld a, [de]
 	ld l, a
@@ -62485,37 +62485,37 @@ Function8b28a: ; 8b28a
 	ret
 ; 8b28e
 
-Function8b28e: ; 8b28e
+Function8b28e: ; 8b28e print fail to enter text
 	push de
 	push bc
 	ld a, b
 	and a
-	call z, Function8b29d
+	call z, Function8b29d ;if b = 0, print not ready text
 	pop bc
-	call Function8b2a9
+	call Function8b2a9 ;print text c+1
 	ld b, $1
 	pop de
 	ret
 ; 8b29d
 
-Function8b29d: ; 8b29d
+Function8b29d: ; 8b29d print not ready text
 	push de
-	call Function8b281
-	call Function8b28a
-	call PrintText
+	call Function8b281 ;hl = second row of de (text list)
+	call Function8b28a ;hl = contents of hl
+	call PrintText ;
 	pop de
 	ret
 ; 8b2a9
 
-Function8b2a9: ; 8b2a9
+Function8b2a9: ; 8b2a9 print text c+1
 	push bc
-	call Function8b281
+	call Function8b281 ;hl = second row of de (text list)
 	inc hl
 	inc hl
-	ld b, $0
+	ld b, $0 ;text c + 1
 	add hl, bc
 	add hl, bc
-	call Function8b28a
+	call Function8b28a ;hl = contents of hl
 	call PrintText
 	pop bc
 	ret
@@ -62559,43 +62559,43 @@ Function8b2da: ; 8b2da
 
 Function8b2e2: ; 8b2e2
 	ld hl, PartyMon1Species
-	call Function8b2e9
+	call Function8b2e9 ;check if party has all different species, if they don't ret c
 	ret
 ; 8b2e9
 
-Function8b2e9: ; 8b2e9
+Function8b2e9: ; 8b2e9 ;check if party has all different versions of what's pointed to by hl, if they don't ret c
 	ld de, PartyCount
 	ld a, [de]
 	inc de
 	dec a
-	jr z, .asm_8b314
+	jr z, .asm_8b314 ;if party size = 1, all clear
 	ld b, a
 .asm_8b2f2
 	push hl
 	push de
-	ld c, b
-	call Function8b322
+	ld c, b ;c = mons below
+	call Function8b322 ;if [de] = egg, skip
 	jr z, .asm_8b30c
 	ld a, [hl]
 	and a
-	jr z, .asm_8b30c
+	jr z, .asm_8b30c ;if hl = 0, skip
 .asm_8b2fe
-	call Function8b31a
-	call Function8b322
+	call Function8b31a ;go down 1 mon in hl, inc de
+	call Function8b322 ;if [de] = egg, skip
 	jr z, .asm_8b309
 	cp [hl]
-	jr z, .asm_8b316
+	jr z, .asm_8b316 ;if they match, ret c
 
 .asm_8b309
-	dec c
+	dec c ;loop for each mon after
 	jr nz, .asm_8b2fe
 
 .asm_8b30c
 	pop de
 	pop hl
 	call Function8b31a
-	dec b
-	jr nz, .asm_8b2f2
+	dec b ;b becomes c for inner loop
+	jr nz, .asm_8b2f2 ;loop for each mon
 
 .asm_8b314
 	and a
@@ -62611,7 +62611,7 @@ Function8b2e9: ; 8b2e9
 Function8b31a: ; 8b31a
 	push bc
 	ld bc, PartyMon2 - PartyMon1
-	add hl, bc
+	add hl, bc ;go down 1 mon in hl, inc de
 	inc de
 	pop bc
 	ret
@@ -62629,7 +62629,7 @@ Function8b322: ; 8b322
 
 Function8b32a: ; 8b32a
 	ld hl, PartyMon1Item
-	call Function8b2e9
+	call Function8b2e9 ;check if party has all different items, if they don't ret c
 	ret
 ; 8b331
 
@@ -62640,7 +62640,7 @@ Function8b331: ; 8b331
 .asm_8b336
 	ld a, [hli]
 	cp EGG
-	jr z, .asm_8b340
+	jr z, .asm_8b340 ;if egg, ret c
 	dec c
 	jr nz, .asm_8b336
 	and a
@@ -89653,7 +89653,7 @@ Functionfb4cc: ; fb4cc
 	ld d, h
 	ld e, l
 	ld hl, $9790
-	lb bc, BANK(Frames), 6
+	lb bc, BANK(Frames), 6 ;de = correct frame, bc = bank with frame
 	call Functionddc
 	ld hl, $97f0
 	ld de, GFX_f9204
@@ -95796,7 +95796,7 @@ Function106464:: ; 106464
 	ld hl, $96b0
 	ld b, $f ; XXX no graphics at 0f:40b0
 	call Get2bpp
-	callba Functionfb4cc
+	callba Functionfb4cc ;text box frames?
 	ret
 ; 10649b
 

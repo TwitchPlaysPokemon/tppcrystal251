@@ -363,9 +363,9 @@ wc317:: ds 1
 wc318:: ds 1
 wc319:: ds 1
 wc31a:: ds 1
-wc31b:: ds 1
+wc31b:: ds 1 ;text pointer to battle tower text?
 wc31c:: ds 1
-wc31d:: ds 1
+wc31d:: ds 1 ;bank of above text?
 wc31e:: ds 1
 wc31f:: ds 1
 wc320:: ds 4
@@ -1066,13 +1066,13 @@ BGMapPalBuffer:: ; cd48
 	ds 1 ; 40
 
 wcd49:: ds 1
-wcd4a:: ds 1
+wcd4a:: ds 1 ;holds string tables for battle tower menu and max position?
 wcd4b:: ds 1
-wcd4c:: ds 1
+wcd4c:: ds 1 ;holds bank?
 wcd4d:: ds 1
 wcd4e:: ds 1
-wcd4f:: ds 1
-wcd50:: ds 1
+wcd4f:: ds 1 ;position in battle tower level menu
+wcd50:: ds 1 ;max level of tower
 wcd51:: ds 1
 wcd52:: ds 1
 wcd53:: ds 1
@@ -1174,8 +1174,8 @@ wcf64:: ds 1
 IF !DEF(CRYSTAL11)
 wPokedexStatus::
 ENDC
-wcf65:: ds 1
-wcf66:: ds 1
+wcf65:: ds 1 ;selection in tower level menu divided by 2
+wcf66:: ds 1 ;4 if level check fails, 10 if species check fails
 
 Requested2bpp:: ; cf67
 	ds 1
@@ -1288,7 +1288,7 @@ Options:: ; cfcc
 ; bit 7: battle scene off/on
 	ds 1
 
-wcfcd:: ds 1
+wcfcd:: ds 1 ;have talked to batt;e tower receptionist once?
 
 TextBoxFrame:: ; cfce
 ; bits 0-2: textbox frame 0-7

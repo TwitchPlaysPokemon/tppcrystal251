@@ -5258,7 +5258,7 @@ Function115d80: ; 115d80
 	ret
 ; 115d99
 
-Function115d99: ; 115d99
+Function115d99: ; 115d99 load a 2bpp, set some more variables
 	ld de, GFX_11601a
 	ld hl, $8600
 	lb bc, BANK(GFX_11601a), $14
@@ -8603,7 +8603,7 @@ Function118121: ; 118121
 	ld [wcd38], a
 
 Function118125: ; 118125
-	call Function1183cb
+	call Function1183cb ;draw a text box(?) and clear alot of vairables
 	ld a, $3
 	ld [wcd33], a
 	ld a, $d
@@ -8615,11 +8615,11 @@ Function118125: ; 118125
 	ld a, $3
 	ld [rSVBK], a
 .asm_11813e
-	call Functiona57
-	call Function118473
+	call Functiona57 ;update joypad data
+	call Function118473 ;update game time??
 	ld a, [wcf66]
 	cp $f
-	jr c, .asm_118151
+	jr c, .asm_118151 ;if second slot of ?? >= 15, replace with ???
 	ld a, [wcd34]
 	ld [wcf66], a
 
@@ -8911,13 +8911,13 @@ Function11837a: ; 11837a
 	ret
 ; 1183cb
 
-Function1183cb: ; 1183cb
+Function1183cb: ; 1183cb ;draw a text box(?) and clear alot of vairables
 	di
 	ld a, [rIE]
 	ld [wcd32], a
-	call DoubleSpeed
+	call DoubleSpeed ;accelerate the CPU
 	xor a
-	ld [rIF], a
+	ld [rIF], a ;clear alot of variables
 	ld [wc300], a
 	ld [wc301], a
 	ld [wc302], a
@@ -8937,17 +8937,17 @@ Function1183cb: ; 1183cb
 	ld hl, VramState
 	ld a, [hl]
 	ld [wcd7f], a
-	set 1, [hl]
-	ld a, $f
+	set 1, [hl] ;set bit 1 of ???
+	ld a, $f ;set others to f
 	ld [rIE], a
 	ld a, $1
 	ld [$ffc9], a
 	ld [$ffe9], a
 	ei
-	callba Function106462
-	callba Function106464
-	callba Function115d99
-	callba Function11615a
+	;callba Function106462 ;does nothing
+	callba Function106464 ;draw text box?
+	callba Function115d99 ;load a 2bpp, set some more variables
+	callba Function11615a ;clear more variables
 	ld a, $5
 	call GetSRAMBank
 	xor a
@@ -8987,29 +8987,29 @@ Function118452: ; 118452
 	ret
 ; 118473
 
-Function118473: ; 118473
+Function118473: ; 118473 update game time??
 	ld a, [wcd65]
 	and a
-	ret z
+	ret z ;if ??? = 0, ret
 	ld a, [wcd66]
 	inc a
 	ld [wcd66], a
 	cp $3c
-	ret nz
+	ret nz ;inc ??, ret if not 60
 	xor a
-	ld [wcd66], a
+	ld [wcd66], a ;0 out ???
 	ld a, [wcd67]
 	inc a
-	ld [wcd67], a
+	ld [wcd67], a ;inc ???
 	cp $3c
-	ret nz
+	ret nz ;ret if not 60
 	ld a, [wcd68]
 	inc a
-	ld [wcd68], a
+	ld [wcd68], a ;inc ???, rec if 99
 	cp $63
 	jr z, .asm_1184a0
 	xor a
-	ld [wcd67], a
+	ld [wcd67], a ;else ?? = 0
 	ret
 
 .asm_1184a0
@@ -9119,7 +9119,7 @@ Jumptable_1184fb: ; 1184fb
 	dw Function118e76
 ; 11854d
 
-Function11854d: ; 11854d
+Function11854d: ; 11854d;run code based on wcf66
 	ld a, [wcf66]
 	ld e, a
 	ld d, 0
@@ -9489,7 +9489,7 @@ Function11878d: ; 11878d (46:478d)
 	ld a, $3
 	ld [rSVBK], a ; $ff00+$70
 .asm_1187a7
-	jp Function119e2e
+	jp Function119e2e ; inc wcf66
 .asm_1187aa
 	call Function118821
 	ret c
@@ -9612,7 +9612,7 @@ asm_11886f
 	ld [BGMapPalBuffer], a
 	ld a, $0
 	ld [wcd3c], a
-	call Function119e2e
+	call Function119e2e ; inc wcf66
 	ld a, [wcd33]
 	ld [wcd45], a
 
@@ -9642,8 +9642,8 @@ Function118896: ; 118896
 	jp Function119e2b
 
 .asm_1188aa
-	call Function119e2e
-	jp Function119e2e
+	call Function119e2e ; inc wcf66
+	jp Function119e2e ; inc wcf66
 ; 1188b0
 
 Function1188b0: ; 1188b0 (46:48b0)
@@ -9705,36 +9705,36 @@ Function118903: ; 118903 (46:4903)
 	ld a, $8
 	ld [wcd3c], a
 	call Function119ed8
-	jp Function119e2e
+	jp Function119e2e ; inc wcf66
 ; 11891c (46:491c)
 
 Function11891c: ; 11891c
 	call Function118b42
-	jp Function119e2e
+	jp Function119e2e ; inc wcf66
 ; 118922
 
 Function118922: ; 118922
-	ld a, [wcd38]
+	ld a, [wcd38] ;if ?? = 0
 	and a
 	jr nz, .asm_11892d
-	ld hl, UnknownText_0x11aba5
+	ld hl, UnknownText_0x11aba5 ;what level do you want to challenge
 	jr .asm_118930
 
 .asm_11892d
-	ld hl, UnknownText_0x11abcb
+	ld hl, UnknownText_0x11abcb ;check battle room list (mobile?)
 
 .asm_118930
-	call Function11a9c0
-	call Function119e2e
+	call Function11a9c0 ;load hl and 1 into wc31b and on
+	call Function119e2e ; inc wcf66
 
 Function118936:
 	ld a, [wc31a]
 	and a
-	ret nz
+	ret nz ; if ??? = 0, continue
 	ld hl, MenuDataHeader_119cf7
-	call LoadMenuDataHeader
-	call Function1cbb
-	call Function1cfd
+	call LoadMenuDataHeader ;load a menu
+	call Function1cbb ;put a textbox in curmenu area
+	call Function1cfd ;hl = menu's start location in tilemap
 	call Function321c
 	hlcoord 16, 8, AttrMap
 	ld a, $40
@@ -9747,16 +9747,16 @@ Function118936:
 	ld [rSVBK], a
 	ld a, [StatusFlags]
 	bit 6, a
-	jr nz, .asm_11896b
-	ld hl, Strings_119d64
+	jr nz, .asm_11896b ;load approtiote strings tables
+	ld hl, Strings_119d64 ;if not beat HoF
 	ld a, $5
 	jr .asm_118970
 
 .asm_11896b
-	ld hl, Strings_119d0c
+	ld hl, Strings_119d0c ;If beat HoF
 	ld a, $b
 
-.asm_118970
+.asm_118970 
 	ld [wcd4a], a
 	ld a, l
 	ld [wcd4b], a
@@ -9764,16 +9764,16 @@ Function118936:
 	ld [wcd4c], a
 	ld a, $3
 	ld [rSVBK], a
-	call Function119e2e
+	call Function119e2e ; inc wcf66
 
 Function118982:
 	hlcoord 13, 8
-	ld de, String_119d07
-	call PlaceString
+	ld de, String_119d07 ;down arrow
+	call PlaceString ;place down arrows
 	hlcoord 13, 10
 	ld de, String_119d07
 	call PlaceString
-	ld a, [wcd4b]
+	ld a, [wcd4b] ;load back in menu strings location
 	ld l, a
 	ld a, [wcd4c]
 	ld h, a
@@ -9782,11 +9782,11 @@ Function118982:
 	dec a
 	rlca
 	rlca
-	rlca
+	rlca ;c *8
 	ld e, a
-	add hl, de
+	add hl, de ;go down hl that far
 	ld a, l
-	ld e, a
+	ld e, a ;load into de
 	ld a, h
 	ld d, a
 	ld a, [rSVBK]
@@ -9795,12 +9795,12 @@ Function118982:
 	ld [rSVBK], a
 	ld bc, StringBuffer3
 .asm_1189b5
-	ld a, [hli]
+	ld a, [hli] ;load string into stringbuffer 3
 	cp $50
-	jr z, .asm_1189c4
+	jr z, .asm_1189c4 ;if end of string, end loop
 	cp $7f
-	jr z, .asm_1189c2
-	ld [bc], a
+	jr z, .asm_1189c2 ;if text border, end loop and load in end of string
+	ld [bc], a 
 	inc bc
 	jr .asm_1189b5
 
@@ -9808,36 +9808,36 @@ Function118982:
 	ld a, $50
 
 .asm_1189c4
-	ld [bc], a
+	ld [bc], a ;load end of string
 	pop af
 	ld [rSVBK], a
-	hlcoord 13, 9
-	call PlaceString
+	hlcoord 13, 9 
+	call PlaceString ;place string in menu
 	ld hl, hJoyPressed
 	ld a, [hl]
-	and $2
+	and $2 ;if b pressed
 	jr nz, .asm_118a39
-	ld a, [hl]
+	ld a, [hl] ;if a pressed
 	and $1
 	jr nz, .asm_118a01
-	ld a, [hl]
+	ld a, [hl] ;if down pressed
 	and $80
 	jr nz, .asm_1189e6
-	ld a, [hl]
+	ld a, [hl] ;if up pressed
 	and $40
 	jr nz, .asm_1189f2
-.asm_1189e5
+.asm_1189e5 ;else ret
 	ret
 
-.asm_1189e6
-	ld hl, wcd4f
+.asm_1189e6 ;if down
+	ld hl, wcd4f ;dec position
 	dec [hl]
-	jr nz, .asm_1189e5
-	ld a, [wcd4a]
+	jr nz, .asm_1189e5 ;unless zero done
+	ld a, [wcd4a] ;load position from max position
 	ld [hl], a
 	jr .asm_1189e5
 
-.asm_1189f2
+.asm_1189f2 ;if up, inc position. if max return to 1
 	ld a, [wcd4a]
 	ld hl, wcd4f
 	inc [hl]
@@ -9847,35 +9847,35 @@ Function118982:
 	ld [hl], a
 	jr .asm_1189e5
 
-.asm_118a01
+.asm_118a01 ;if a pressed
 	call PlayClickSFX
-	ld a, [wcd4f]
+	ld a, [wcd4f] ;position
 	ld hl, wcd4a
 	cp [hl]
-	jr z, .asm_118a3c
+	jr z, .asm_118a3c ;if over same as max, cancel
 	dec a
-	and $fe
-	srl a
-	ld [wcf65], a
+	and $fe ;eliminate the 1 bit
+	srl a ;divide by 2
+	ld [wcf65], a ;load into ??
 	ld a, [rSVBK]
 	push af
 	ld a, $1
 	ld [rSVBK], a
-	call Function1c17
+	call Function1c17 ;unload menu
 	pop af
 	ld [rSVBK], a
 	ld a, [wcd38]
 	and a
-	jr nz, .asm_118a30
-	call Function119d93
+	jr nz, .asm_118a30 ;if ? != 0, branch
+	call Function119d93 ;load max level into ram, check party levels against it, ret c if fail
 	ret c
-	call Function119dd1
+	call Function119dd1 ;check species reqs, if failed ret c and 10 in wcf66
 	ret c
 
 .asm_118a30
-	ld a, [wcd4f]
+	ld a, [wcd4f] ;load position in menu into map objects?
 	ld [wd000 + $800], a
-	jp Function119e2e
+	jp Function119e2e ; inc wcf66 and ret
 
 .asm_118a39
 	call PlayClickSFX
@@ -9885,7 +9885,7 @@ Function118982:
 	push af
 	ld a, $1
 	ld [rSVBK], a
-	call Function1c17
+	call Function1c17 ;unload menu
 	pop af
 	ld [rSVBK], a
 	ld a, $7
@@ -11764,7 +11764,7 @@ Function1197c9: ; 1197c9
 	ld [wcd3c], a
 	ld a, $12
 	ld [wcd45], a
-	call Function119e2e
+	call Function119e2e ; inc wcf66
 
 Function1197dc:
 	call Function119ed8
@@ -11815,7 +11815,7 @@ Function119800: ; 119800
 	pop af
 	ld [wcf63], a
 	callba Function115dc3
-	jp Function119e2e
+	jp Function119e2e ; inc wcf66
 ; 11984e
 
 Function11984e: ; 11984e
@@ -11851,12 +11851,12 @@ Function11984e: ; 11984e
 	pop af
 	ld [wcf63], a
 	callba Function115dc3
-	jp Function119e2e
+	jp Function119e2e ; inc wcf66
 
 .asm_1198a0
 	ld a, $a
 	ld [wc300], a
-	jp Function119e2e
+	jp Function119e2e ; inc wcf66
 
 .asm_1198a8
 	callba Function17005a
@@ -11885,13 +11885,13 @@ Function11984e: ; 11984e
 	pop af
 	ld [wcf63], a
 	callba Function115dc3
-	jp Function119e2e
+	jp Function119e2e ; inc wcf66
 ; 1198ee
 
 Function1198ee: ; 1198ee
 	ld hl, UnknownText_0x11aab2
 	call Function11a9c0
-	call Function119e2e
+	call Function119e2e ; inc wcf66
 
 Function1198f7:
 	ld a, [wc31a]
@@ -11929,7 +11929,7 @@ Function1198f7:
 
 Function119937: ; 119937
 	callba Function1707f4
-	jp Function119e2e
+	jp Function119e2e ; inc wcf66
 ; 119940
 
 Function119940: ; 119940
@@ -12016,7 +12016,7 @@ Function1199b4: ; 1199b4
 	ld a, [wd000 + 129]
 	cp $7
 	jr nc, .asm_1199c7
-	call Function119e2e
+	call Function119e2e ; inc wcf66
 	jp Function1199ca
 
 .asm_1199c7
@@ -12234,7 +12234,7 @@ Function119b6b: ; 119b6b
 	ld a, [StringBuffer2 + 10]
 	cp $1
 	jr z, .asm_119b75
-	jp Function119e2e
+	jp Function119e2e ; inc wcf66
 
 .asm_119b75
 	ld a, [LYOverrides]
@@ -12357,7 +12357,7 @@ Function119b6b: ; 119b6b
 	ld de, $c608
 	ld bc, $0069
 	call CopyBytes
-	jp Function119e2e
+	jp Function119e2e ; inc wcf66
 ; 119c3e
 
 Function119c3e: ; 119c3e
@@ -12430,13 +12430,13 @@ Function119c3e: ; 119c3e
 Function119c97: ; 119c97
 	ld hl, UnknownText_0x11ab0f
 	call Function11a9c0
-	call Function119e2e
+	call Function119e2e ; inc wcf66
 	jr Function119cab
 
 Function119ca2:
 	ld hl, UnknownText_0x11aaf0
 	call Function11a9c0
-	call Function119e2e
+	call Function119e2e ; inc wcf66
 
 Function119cab:
 	ld a, [wc31a]
@@ -12444,7 +12444,7 @@ Function119cab:
 	ret nz
 	ld a, $80
 	ld [wcd50], a
-	call Function119e2e
+	call Function119e2e ; inc wcf66
 
 Function119cb8:
 	ld hl, wcd50
@@ -12473,7 +12473,7 @@ Function119cc3: ; 119cc3
 
 .asm_119cd9
 	call Function11a9c0
-	call Function119e2e
+	call Function119e2e ; inc wcf66
 
 Function119cdf:
 	ld a, [wc31a]
@@ -12481,7 +12481,7 @@ Function119cdf:
 	ret nz
 	ld a, $f
 	ld [wcd3c], a
-	call Function119e2e
+	call Function119e2e ; inc wcf66
 
 Function119cec:
 	call Function119ed8
@@ -12534,15 +12534,15 @@ String_119d8c:
 	db "CANCEL@"
 ; 119d93
 
-Function119d93: ; 119d93 (46:5d93)
+Function119d93: ; 119d93 (46:5d93) ;load max level into ram, check party levels against it, ret c if fail
 	ld a, [rSVBK] ; $ff00+$70
 	push af
 	ld a, $1
 	ld [rSVBK], a ; $ff00+$70
 	ld a, [wcd4f]
 	ld c, 10
-	call SimpleMultiply
-	ld hl, wcd50
+	call SimpleMultiply ;multiply position by 10 to get max level
+	ld hl, wcd50 ;load max level into ram
 	ld [hl], a
 	ld bc, PartyMon2 - PartyMon1
 	ld de, PartyMon1Level
@@ -12551,21 +12551,21 @@ Function119d93: ; 119d93 (46:5d93)
 	push af
 	ld a, [de]
 	push hl
-	push de
+	push de ;hl = de
 	pop hl
-	add hl, bc
+	add hl, bc ;go down 1 slot
 	push hl
-	pop de
+	pop de ;swap back
 	pop hl
-	cp [hl]
-	jr z, .asm_119dbd
-	jr nc, .asm_119dc6
+	cp [hl] ;compare max level to previous mons level
+	jr z, .asm_119dbd ;if mon level equal to max level or
+	jr nc, .asm_119dc6 ; if mon level is higher, load 4 into ?? and ret c
 .asm_119dbd
 	pop af
-	dec a
+	dec a ;loop partycount times
 	jr nz, .asm_119daf
 	pop af
-	ld [rSVBK], a ; $ff00+$70
+	ld [rSVBK], a ; $ff00+$70 ;if fine, ret nc
 	and a
 	ret
 .asm_119dc6
@@ -12577,12 +12577,12 @@ Function119d93: ; 119d93 (46:5d93)
 	scf
 	ret
 
-Function119dd1: ; 119dd1 (46:5dd1)
+Function119dd1: ; 119dd1 (46:5dd1) check species reqs, if failed ret c and 10 in wcf66
 	ld a, [rSVBK] ; $ff00+$70
 	push af
 	ld a, [wcd4f]
 	cp 70 / 10
-	jr nc, .asm_119e08
+	jr nc, .asm_119e08 ;if > = 70, skip
 	ld a, $1
 	ld [rSVBK], a ; $ff00+$70
 	ld hl, PartyMon1Level
@@ -12595,35 +12595,35 @@ Function119dd1: ; 119dd1 (46:5dd1)
 	cp MEWTWO
 	jr z, .asm_119dfd
 	cp MEW
-	jr z, .asm_119dfd
+	jr z, .asm_119dfd ;if species is mew, mewtwo or after lugia, reject
 	cp LUGIA
-	jr c, .asm_119e02
+	jr c, .asm_119e02 ;else if between lugia and end of dex, reject
 	cp NUM_POKEMON + 1
-	jr nc, .asm_119e02
+	jr nc, .asm_119e02 
 .asm_119dfd
 	ld a, [hl]
 	cp 70
-	jr c, .asm_119e0d
+	jr c, .asm_119e0d ;jump out if level < 70, else continue (redundent?)
 .asm_119e02
-	add hl, bc
+	add hl, bc ;go down 1 mon
 	inc de
 	pop af
 	dec a
-	jr nz, .asm_119deb
+	jr nz, .asm_119deb ;loop for whole party
 .asm_119e08
 	pop af
 	ld [rSVBK], a ; $ff00+$70
 	and a
 	ret
-.asm_119e0d
+.asm_119e0d ;if reject
 	pop af
 	ld a, [de]
 	ld [wd265], a
-	call GetPokemonName
+	call GetPokemonName ;get species name
 	ld hl, StringBuffer1
 	ld de, wcd49
 	ld bc, PKMN_NAME_LENGTH
-	call CopyBytes
+	call CopyBytes ;copy name of mon into text
 	ld a, $a
 	ld [wcf66], a
 	pop af
@@ -16139,7 +16139,7 @@ Function11b7e5: ; 11b7e5
 ; 11b879
 
 Function11b879: ; 11b879
-	callba Function17089a
+	callba Function17089a ;if saved id = playerid, sciptvar = 1, else scriptvar = 0
 	ld a, [ScriptVar]
 	and a
 	ret z
@@ -22541,7 +22541,7 @@ Function17005a: ; 17005a
 ; 1700b0
 
 Function1700b0: ; 1700b0
-	call Function17021e
+	call Function17021e ;wcf63 through wcf66 = 0
 	callba Function118121
 	ret
 ; 1700ba
@@ -23416,7 +23416,7 @@ String_17067a: ; 17067a
 	db "れきだいりーダーいちらん@"
 ; 170687
 
-Function170687: ; 170687
+Function170687: ; 170687 ; DO NOT DELETE NEEDED FOR BATTLE TOWER
 	ld a, [ScriptVar]
 	ld e, a
 	ld d, 0
@@ -23431,23 +23431,23 @@ Function170687: ; 170687
 
 
 Jumptable_170696: ; 170696 (5c:4696)
-	dw Function17075f
-	dw Function170788
-	dw Function170778
+	dw Function17075f ;if saved id = playerid, load bit 1 of $be4f into scriptvar, else ret
+	dw Function170788 ;set bit 1 of $be4f
+	dw Function170778 ;load be45 into scriptvar
 	dw Function170799
 	dw Function17079d
 	dw Function1707ac
 	dw Function1707f4
 	dw Function170868
-	dw Function170881
-	dw Function17089a
+	dw Function170881 ;8
+	dw Function17089a ;if saved id = playerid, sciptvar = 1, else scriptvar = 0
 	dw Function1708b1
 	dw Function1708b9
 	dw Function1708c8
 	dw Function1708f0
 	dw Function17093c
 	dw Function1709aa
-	dw Function1709bb
+	dw Function1709bb ;$10
 	dw Function170a9c
 	dw Function170aa0
 	dw Function170aaf
@@ -23455,13 +23455,13 @@ Jumptable_170696: ; 170696 (5c:4696)
 	dw Function170ad7
 	dw Function170807
 	dw Function17081d
-	dw Function170ae8
+	dw Function170ae8 ;$18
 	dw Function170b16
-	dw Function1706d6
-	dw Function1706ee
-	dw Function17071b
-	dw Function170729
-	dw Function17073e
+	dw Function1706d6 ;fill $be48 through $be4e with ff and load 0 into $be46 (clear battle tower data?)
+	dw Function1706ee ;$1b if bag full or item givable, scriptvar = item to give, else scriptvar = 18
+	dw Function17071b ;$1c load 3 into be45
+	dw Function170729 ;save 4 into $be45
+	dw Function17073e ;load rand (26,27,28,29,31,26,27) into be50
 	dw Function170737
 
 
@@ -23471,36 +23471,36 @@ Function1706d6: ; 1706d6 (5c:46d6)
 	ld a, $ff
 	ld hl, $be48
 	ld bc, $7
-	call ByteFill
+	call ByteFill ;fill $be48 through $be4e with ff
 	xor a
-	ld [$be46], a
+	ld [$be46], a ;load 0 into $be46
 	call CloseSRAM
 	ret
 
-Function1706ee: ; 1706ee (5c:46ee)
+Function1706ee: ; 1706ee (5c:46ee) if bag full or item givable, scriptvar = item to give, else scriptvar = 18
 	ld a, $1
 	call GetSRAMBank
 	ld a, [$be50]
 	call CloseSRAM
-	ld [ScriptVar], a
+	ld [ScriptVar], a ;scriptvar = be50
 	ld hl, NumItems
 	ld a, [hli]
-	cp $14
+	cp $14 ;if bag full, ret
 	ret c
-	ld b, $14
-	ld a, [ScriptVar]
+	ld b, $14 ;loop for each space in bag
+	ld a, [ScriptVar]  ;item to give
 	ld c, a
 .asm_170709
 	ld a, [hli]
 	cp c
-	jr nz, .asm_170711
+	jr nz, .asm_170711 ;if different item, skip
 	ld a, [hl]
 	cp $5f
-	ret c
-.asm_170711
+	ret c ;if the item exists and < 95 in slot, ret
+.asm_170711 ;if no space, try next slot
 	inc hl
 	dec b
-	jr nz, .asm_170709
+	jr nz, .asm_170709 ;loop until bag has space
 	ld a, $12
 	ld [ScriptVar], a
 	ret
@@ -23525,17 +23525,17 @@ Function170737: ; 170737 (5c:4737)
 	callba Function14dbb
 	ret
 
-Function17073e: ; 17073e (5c:473e)
+Function17073e: ; 17073e (5c:473e) load rand (26,27,28,29,31,26,27) into be50
 	call Random
 	ld a, [hRandomAdd] ; $ff00+$e1
 	and $7
 	cp $6
-	jr c, .asm_17074b
+	jr c, .asm_17074b ;rand 0,1,2,3,4,5,0,1
 	sub $6
 .asm_17074b
-	add $1a
+	add $1a ;+ 26 (26-31)
 	cp $1e
-	jr z, Function17073e
+	jr z, Function17073e ;if 30, retry (26,27,28,29,31,26,27)
 	push af
 	ld a, $1
 	call GetSRAMBank
@@ -23545,7 +23545,7 @@ Function17073e: ; 17073e (5c:473e)
 	ret
 
 Function17075f: ; 17075f (5c:475f)
-	call Function17089a
+	call Function17089a ;if saved id = playerid, load bit 1 of $be4f into scriptvar, else ret
 	ld a, [ScriptVar]
 	and a
 	ret z
@@ -23562,7 +23562,7 @@ Function170778: ; 170778 (5c:4778)
 	ld a, $1
 	call GetSRAMBank
 	ld a, [hl]
-	ld [ScriptVar], a
+	ld [ScriptVar], a ;load a variable out of sram
 	call CloseSRAM
 	ret
 
@@ -23722,10 +23722,10 @@ Function170881: ; 170881 (5c:4881)
 	ret
 
 Function17089a: ; 17089a
-	ld a, [wcfcd]
+	ld a, [wcfcd] ;if ?? = 0, load 0 into scriptvar
 	and a
 	jr z, .asm_1708ad
-	callba Function14bcb
+	callba Function14bcb ;if saved id = playerid, sciptvar = 1, else scriptvar = 0
 	jr z, .asm_1708ab
 	xor a
 	jr .asm_1708ad
@@ -24079,7 +24079,7 @@ Function170ae8: ; 170ae8 (5c:4ae8)
 	ld [wcd4f], a
 	xor a
 	ld [ScriptVar], a
-	callba Function119d93
+	callba Function119d93 ;load max level into ram, check party levels against it, ret c if fail
 	ret nc
 	ld a, $5
 	call GetSRAMBank
@@ -24099,7 +24099,7 @@ Function170b16: ; 170b16 (5c:4b16)
 	ld [wcd4f], a
 	xor a
 	ld [ScriptVar], a
-	callba Function119dd1
+	callba Function119dd1 ;check species reqs, if failed ret c and 10 in wcf66
 	ret nc
 	ld a, $5
 	call GetSRAMBank
@@ -24167,8 +24167,8 @@ Function170bd2: ; 170bd2
 	ret
 ; 170bd3
 
-Function170bd3: ; 170bd3
-	callba Function8b201
+Function170bd3: ; 170bd3 BATTLE TOWER if can enter, scriptvar = 0, else scriptvar = 1
+	callba Function8b201 ;check if possible to enter, display fail text and ret c otherwise
 	jr c, .asm_170bde
 	xor a
 	jr .asm_170be0

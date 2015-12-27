@@ -78,15 +78,15 @@ Function1d81:: ; 0x1d81 initmenu2
 	call Function1ad2
 	call Function1c89
 	call Function321c
-	call Function1c66
+	call Function1c66 ;copy auxillery data from vtiles to curmenu
 	ld a, [wcf91]
 	bit 7, a
-	jr z, .asm_1da7 ; 0x1d98 $d
-	call Function1c10
-	call Function1bc9
+	jr z, .asm_1da7 ; 0x1d98 $d if bit 7 of vtiles byte 1 is off, ret c
+	call Function1c10 ;fill rest of menu data?
+	call Function1bc9 ;process inputs
 	call Function1ff8 ;if a or b pressed and start diabled, play sound
 	bit 1, a
-	jr z, .asm_1da9 ; 0x1da5 $2
+	jr z, .asm_1da9 ; 0x1da5 $2 if b pressed, ret c, else ret nc
 .asm_1da7
 	scf
 	ret
@@ -289,7 +289,7 @@ Function1ebd:: ; 1ebd set number of options based on dex and wd95e
 	ld a, [wcf76] ;if don't own dex, skip, else loop legnth depends on wd95e
 	and a
 	jr z, .asm_1ed3
-	ld b, a
+	ld b, a 
 	ld c, $ff
 .asm_1ecc
 	ld a, [hli] ;if thing pointed at by ?? is $FF
@@ -299,7 +299,7 @@ Function1ebd:: ; 1ebd set number of options based on dex and wd95e
 	jr nz, .asm_1ecc
 
 .asm_1ed3
-	ld d, h ;load final location into de and byte after final into number of vertical options
+	ld d, h ;load final location into de and final number into number of vertical options
 	ld e, l
 	ld a, [hl]
 	ld [wcf92], a 
@@ -399,11 +399,11 @@ Function1f2a:: ; 1f2a
 	ld [wcf73], a
 
 .asm_1f57
-	call Function1ebd ;1ebd set number of options based on dex and wd95e
+	call Function1ebd ;1ebd set de to menuselection place in options table
 	ld a, [wcfa9]
 	ld l, a
 	ld h, $0
-	add hl, de ;go down hl the number of the selection
+	add hl, de ;go down de the number of the selection
 	ld a, [hl]
 	ld [MenuSelection], a ;load the contents into menu selection
 	ld a, [wcfa9]

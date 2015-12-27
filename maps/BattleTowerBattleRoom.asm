@@ -113,8 +113,8 @@ UnknownScript_0x9f4d9: ; 0x9f4d9
 	warpfacing $1, GROUP_BATTLE_TOWER_1F, MAP_BATTLE_TOWER_1F, $7, $7
 BattleTowerBattleRoomScript_0x9f4e4: ; 0x9f4e4
 	loadfont
-	writetext UnknownText_0x9eaef
-	jump UnknownScript_0x9e47a
+	writetext UnknownText_0x9eaef ;you get a prize for winning
+	jump UnknownScript_0x9e47a ;give 5 of the saved items
 ; 0x9f4eb
 
 UnknownScript_0x9f4eb: ; 0x9f4eb

@@ -12,8 +12,8 @@ BattleTower1F_MapScriptHeader: ; 0x9e393
 
 UnknownScript_0x9e39d: ; 0x9e39d
 	writebyte $9
-	special Function170687
-	iffalse UnknownScript_0x9e3d1
+	special Function170687 ;mobile
+	iffalse UnknownScript_0x9e3d1 ;exit script
 	writebyte $2
 	special Function170687
 	if_equal $0, UnknownScript_0x9e3d1
@@ -55,52 +55,52 @@ UnknownScript_0x9e3e0: ; 0x9e3e0
 	end
 ; 0x9e3e2
 
-ReceptionistScript_0x9e3e2: ; 0x9e3e2
+ReceptionistScript_0x9e3e2: ; 0x9e3e2 talk to receptionist
 	writebyte $2
-	special Function170687
-	if_equal $3, BattleTowerBattleRoomScript_0x9f4e4
+	special Function170687 ;load be45 into scriptvar
+	if_equal $3, BattleTowerBattleRoomScript_0x9f4e4 ;give items held
 	loadfont
-	writetext UnknownText_0x9e5ab
+	writetext UnknownText_0x9e5ab ;intro text
 	keeptextopen
 	writebyte $0
-	special Function170687
-	if_not_equal $0, UnknownScript_0x9e3fc
+	special Function170687 ;if saved id = playerid, load bit 1 of $be4f into scriptvar, else scriptvar = 0
+	if_not_equal $0, UnknownScript_0x9e3fc ;as if player wants in
 	jump UnknownScript_0x9e49e
 ; 0x9e3fc
 
 UnknownScript_0x9e3fc: ; 0x9e3fc
-	writetext UnknownText_0x9e5ea
+	writetext UnknownText_0x9e5ea ;do you want a battle room
 	writebyte $1
-	special Function17d224
-	if_equal $1, UnknownScript_0x9e40f
-	if_equal $2, UnknownScript_0x9e4a5
-	jump UnknownScript_0x9e4b0
+	special Function17d224  ; if exit then ret scriptvar = 4, else scriptvar = cursor pos -1
+	if_equal $1, UnknownScript_0x9e40f 
+	if_equal $2, UnknownScript_0x9e4a5 ;play help text
+	jump UnknownScript_0x9e4b0 ;else exit menu
 ; 0x9e40f
 
-UnknownScript_0x9e40f: ; 0x9e40f
+UnknownScript_0x9e40f: ; 0x9e40f 
 	writebyte $1a
-	special Function170687
-	special Function170bd3
-	if_not_equal $0, UnknownScript_0x9e4bb
-	writetext UnknownText_0x9ef1f
+	special Function170687 ;clear battle tower data?
+	special Function170bd3 ;if can enter, scriptvar = 0, else scriptvar = 1
+	if_not_equal $0, UnknownScript_0x9e4bb ;if fail, exit
+	writetext UnknownText_0x9ef1f ;ask if save
 	yesorno
+	iffalse UnknownScript_0x9e3fc ;return to top menu if no
+	dotrigger $0 ;set trigger
+	special Function29e66 ;ask if save, if yes save and continue
 	iffalse UnknownScript_0x9e3fc
-	dotrigger $0
-	special Function29e66
-	iffalse UnknownScript_0x9e3fc
-	dotrigger $1
+	dotrigger $1 ;set trigger
 	writebyte $1
-	special Function170687
-	special Function1700b0
-	if_equal $a, UnknownScript_0x9e3fc
-	if_not_equal $0, UnknownScript_0x9e550
+	special Function170687 ;set bit 1 of $be4f
+	special Function1700b0 ;??? (please don't tell me this is the menu) [it's the menu]
+	if_equal $a, UnknownScript_0x9e3fc ;if ??? exit
+	if_not_equal $0, UnknownScript_0x9e550 ;???
 	writebyte $11
-	special Function170687
-	writetext UnknownText_0x9e60a
+	special Function170687 ;load 0 into aa8d
+	writetext UnknownText_0x9e60a ;to your battle room
 	closetext
 	loadmovesprites
 	writebyte $1e
-	special Function170687
+	special Function170687 ;load rand (26,27,28,29,31,26,27) into be50
 	jump UnknownScript_0x9e454
 ; 0x9e44e
 
@@ -110,32 +110,32 @@ UnknownScript_0x9e44e: ; 0x9e44e
 	special Function170687
 UnknownScript_0x9e454: ; 0x9e454
 	musicfadeout $0000, $8
-	domaptrigger GROUP_BATTLE_TOWER_BATTLE_ROOM, MAP_BATTLE_TOWER_BATTLE_ROOM, $0
+	domaptrigger GROUP_BATTLE_TOWER_BATTLE_ROOM, MAP_BATTLE_TOWER_BATTLE_ROOM, $0 ;set triggers
 	domaptrigger GROUP_BATTLE_TOWER_ELEVATOR, MAP_BATTLE_TOWER_ELEVATOR, $0
 	domaptrigger GROUP_BATTLE_TOWER_HALLWAY, MAP_BATTLE_TOWER_HALLWAY, $0
 	follow $2, $0
 	applymovement $2, MovementData_0x9e571
 	writebyte $a
-	special Function170687
+	special Function170687 ;end music fade?
 	warpsound
 	disappear $2
 	stopfollow
 	applymovement $0, MovementData_0x9e576
-	warpcheck
+	warpcheck ;warp elsewhere
 	end
 ; 0x9e47a
 
 UnknownScript_0x9e47a: ; 0x9e47a
 	writebyte $1c
-	special Function170687
+	special Function170687 ;load 3 into be45
 	writebyte $1b
-	special Function170687
-	if_equal $12, UnknownScript_0x9e498
+	special Function170687 ;if bag full or item givable, scriptvar = item to give, else run bag is full
+	if_equal $12, UnknownScript_0x9e498 ;bag is full
 	itemtotext $0, $1
-	giveitem $ff, $5
-	writetext UnknownText_0x9eb7e
+	giveitem $ff, $5 ;give 5 of the saved items
+	writetext UnknownText_0x9eb7e ;give item text
 	writebyte $1d
-	special Function170687
+	special Function170687 ;save 4 into $be45
 	loadmovesprites
 	end
 ; 0x9e498
@@ -148,18 +148,18 @@ UnknownScript_0x9e498: ; 0x9e498
 ; 0x9e49e
 
 UnknownScript_0x9e49e: ; 0x9e49e
-	writetext UnknownText_0x9ec3d
+	writetext UnknownText_0x9ec3d ;do you want to hear about it
 	yesorno
-	iffalse UnknownScript_0x9e4a8
+	iffalse UnknownScript_0x9e4a8 ;skip help text
 UnknownScript_0x9e4a5: ; 0x9e4a5
-	writetext UnknownText_0x9e886
+	writetext UnknownText_0x9e886 ;help text
 UnknownScript_0x9e4a8: ; 0x9e4a8
 	writebyte $1
-	special Function170687
+	special Function170687 ;set bit 1 of $be4f
 	jump UnknownScript_0x9e3fc
 ; 0x9e4b0
 
-UnknownScript_0x9e4b0: ; 0x9e4b0
+UnknownScript_0x9e4b0: ; 0x9e4b0 exit menu
 	writetext UnknownText_0x9ec09
 	closetext
 	loadmovesprites
