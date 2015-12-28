@@ -685,41 +685,93 @@ Function925e: ; 925e
 ; 9289
 
 Function9289: ; 9289
-	ld de, Unkn1Pals
+	; template the palette so only 16 is needed for the trick instead of 32
+	ld hl, Unkn1Pals
+	ld c, 8
+.loop
+	ld a, $ff
+	ld [hli], a
+	ld a, $7f
+	ld [hli], a
+	rept 4
+	inc hl
+	endr
 	xor a
+	ld [hli], a
+	ld [hli], a
+	dec c
+	jr nz, .loop
+	
+	ld de, Unkn1Pals
+	xor a ; Rust
 	call Function976b
 	call Function9643
-	ld a, $1
+	ld a, $1 ; Azure (same as Falkner)
 	call Function976b
 	call Function9643
-	ld a, $3
-	call Function976b
+	ld hl, TrainerCardPal
 	call Function9643
-	ld a, $2
-	call Function976b
 	call Function9643
-	ld a, $4
-	call Function976b
-	call Function9643
-	ld a, $7
-	call Function976b
-	call Function9643
-	ld a, $6
-	call Function976b
-	call Function9643
-	ld a, $5
-	call Function976b
-	call Function9643
+	ld de, Unkn2Pals
 	ld a, $24
 	call Function9625
 	call Function9630
+	ld de, $d700
+	ld a, FALKNER
+	call Function976b
+	call Function9643_2
+	ld a, BUGSY
+	call Function976b
+	call Function9643_2
+	ld a, WHITNEY
+	call Function976b
+	call Function9643_2
+	ld a, MORTY
+	call Function976b
+	call Function9643_2
+	ld a, CHUCK
+	call Function976b
+	call Function9643_2
+	ld a, JASMINE
+	call Function976b
+	call Function9643_2
+	ld a, PRYCE
+	call Function976b
+	call Function9643_2
+	ld a, CLAIR
+	call Function976b
+	call Function9643_2
+	ld a, BROCK
+	call Function976b
+	call Function9643_2
+	ld a, MISTY
+	call Function976b
+	call Function9643_2
+	ld a, LT_SURGE
+	call Function976b
+	call Function9643_2
+	ld a, ERIKA
+	call Function976b
+	call Function9643_2
+	ld a, JANINE
+	call Function976b
+	call Function9643_2
+	ld a, SABRINA
+	call Function976b
+	call Function9643_2
+	ld a, BLAINE
+	call Function976b
+	call Function9643_2
+	ld a, BLUE
+	call Function976b
+	call Function9643_2
 	ld hl, AttrMap
 	ld bc, $0168
 	ld a, [PlayerGender]
 	and a
-	ld a, $1
+	ld a, $2
 	jr z, .asm_92e3
-	ld a, $0
+	ld a, $3
 
 .asm_92e3
 	call ByteFill
@@ -727,55 +779,34 @@ Function9289: ; 9289
 	ld bc, $0705
 	ld a, [PlayerGender]
 	and a
-	ld a, $0
+	ld a, 0
 	jr z, .asm_92f6
-	ld a, $1
+	ld a, 1
 
 .asm_92f6
 	call Function9663
 	hlcoord 18, 1, AttrMap
 	ld [hl], $1
-	hlcoord 2, 11, AttrMap
-	ld bc, $0204
-	ld a, $1
-	call Function9663
-	hlcoord 6, 11, AttrMap
-	ld bc, $0204
-	ld a, $2
-	call Function9663
-	hlcoord 10, 11, AttrMap
-	ld bc, $0204
-	ld a, $3
-	call Function9663
-	hlcoord 14, 11, AttrMap
-	ld bc, $0204
+	hlcoord 3, 11, AttrMap
+	ld bc, $0503
 	ld a, $4
 	call Function9663
-	hlcoord 2, 14, AttrMap
-	ld bc, $0204
+	hlcoord 7, 11, AttrMap
+	ld bc, $0503
 	ld a, $5
 	call Function9663
-	hlcoord 6, 14, AttrMap
-	ld bc, $0204
+	hlcoord 11, 11, AttrMap
+	ld bc, $0503
 	ld a, $6
 	call Function9663
-	hlcoord 10, 14, AttrMap
-	ld bc, $0204
+	hlcoord 15, 11, AttrMap
+	ld bc, $0503
 	ld a, $7
 	call Function9663
 	ld a, [PlayerGender]
 	and a
-	push af
-	jr z, .asm_935d
-	hlcoord 14, 14, AttrMap
-	ld bc, $0204
-	ld a, $1
-	call Function9663
-
-.asm_935d
-	pop af
-	ld c, $0
-	jr nz, .asm_9363
+	ld c, $2
+	jr z, .asm_9363
 	inc c
 
 .asm_9363
@@ -788,6 +819,14 @@ Function9289: ; 9289
 	ld [hCGBPalUpdate], a
 	ret
 ; 9373
+
+TrainerCardPal:
+	; Boy
+	RGB 14, 16, 31
+	RGB 07, 05, 29
+	; Girl
+	RGB 25, 17, 20
+	RGB 26, 02, 19
 
 Function9373: ; 9373
 	ld de, Unkn1Pals
