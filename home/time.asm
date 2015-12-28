@@ -25,8 +25,10 @@ LatchClock:: ; 59c
 
 
 UpdateTime:: ; 5a7
+IF !DEF(BEESAFREE)
 	call GetClock ;set correct time
 	call FixDays
+ENDC
 	call FixTime
 	callba GetTimeOfDay ;update ToD
 	ret
