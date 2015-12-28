@@ -27518,8 +27518,10 @@ Function2536c: ; 2536c (9:536c)
 .asm_2538d
 	call Function253f4
 	inc hl
-	inc hl5b
-Fuction4d35b: ; 4d35b
+	inc hl
+	inc hl
+	inc hl
+	dec c
 	jr nz, .asm_2538d
 	xor a
 	ld [wcf64], a
