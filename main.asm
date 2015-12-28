@@ -27356,9 +27356,8 @@ TrainerCardPage1_WaitJoypad: ; 251d7 (9:51d7)
 	ret
 
 .asm_251e3
-	ld de, EVENT_EARLY_GAME_KANTO
-	ld b, $2
-	call EventFlagAction
+	ld hl, StatusFlags
+	bit 5, [hl]
 	jr z, .kanto
 	ld a, $2
 	ld [wcf63], a
@@ -27408,21 +27407,21 @@ TrainerCardPage2_WaitJoypad: ; 25221 (9:5221)
 	ld a, [hl]
 	and $10
 	jr nz, .right
-	ret
+	jr .dotrick
 
 .asm_25235
 	ld a, $0
 	ld [wcf63], a
-	ret
+	jr .dotrick
 
 .right
 	ld a, [KantoBadges]
 	and a
-	ret z
+	jr z, .dotrick
 .kanto
 	ld a, $4
 	ld [wcf63], a
-	ret
+	jr .dotrick
 
 .cancel
 	ld a, [KantoBadges]
@@ -27430,7 +27429,9 @@ TrainerCardPage2_WaitJoypad: ; 25221 (9:5221)
 	jr nz, .kanto
 	ld a, $6
 	ld [wcf63], a
-	ret
+.dotrick
+	ld hl, $d700
+	jp TrainerCardTrick
 
 TrainerCardPage3_LoadGFX: ; 2524c (9:524c)
 	call ClearSprites
@@ -27463,25 +27464,84 @@ TrainerCardPage3_WaitJoypad: ; 25279 (9:5279)
 	ld a, [hl]
 	and $1
 	jr nz, .quit
-	ret
+	jr .dotrick
 
 .asm_2528d
-	ld de, EVENT_EARLY_GAME_KANTO
-	ld b, $2
-	call EventFlagAction
+	ld hl, StatusFlags
+	bit 5, [hl]
 	jr nz, .asm_25293
 	ld a, $2
 	ld [wcf63], a
-	ret
+	jr .dotrick
 
 .asm_25293
 	ld a, $0
 	ld [wcf63], a
-	ret
+	jr .dotrick
 
 .quit
 	ld a, $6
 	ld [wcf63], a
+.dotrick
+	ld hl, $d720
+
+TrainerCardTrick:
+; Since there were 8 gym leaders displayed in the card and
+; all of them have their unique palettes, it's not possible
+; to have all of them at once normally due to palette memory limit
+; so some of the LCD scanline tricks needs to be applied here ;)
+
+cardtrick: MACRO
+; wait until line transfer state
+.wait\@
+	ld a, [rSTAT]
+	and 3
+	cp 3
+	jr nz, .wait\@
+	; wait until HBlank of the next line
+	rept 4
+	push af
+	pop af
+	endr
+	and a
+	; time to copy the palettes
+	ld a, (\1 * 8) + $82
+	ld [rBGPI], a
+	rept 4
+	ld a, [hli]
+	ld [$ff00+c], a
+	endr
+ENDM
+
+	ld a, 1 ; VBlank only
+	ld [rIE], a
+	ld a, [rSVBK]
+	push af
+	ld a, 5
+	ld [rSVBK], a
+	ld c, rBGPD - rJOYP
+; wait until line 80
+.wait80
+	ld a, [rLY]
+	cp 80
+	jr nz, .wait80
+	cardtrick 4
+	cardtrick 5
+	cardtrick 6
+	cardtrick 7
+; wait until line 104
+.wait104
+	ld a, [rLY]
+	cp 104
+	jr nz, .wait104
+	cardtrick 4
+	cardtrick 5
+	cardtrick 6
+	cardtrick 7
+	pop af
+	ld [rSVBK], a
+	ld a, $f
+	ld [rIE], a
 	ret
 
 Function25299: ; 25299 (9:5299)
@@ -27879,9 +27939,10 @@ KantoBadgesOAM:
 	db $0c, $20, $24, $20 | $80
 	db $0c, $20, $24, $20 | $80
 	; Soulbadge
+	; X-flips on alternate cycles.
 	db $80, $38, $00
 	db $10, $20, $24, $20 | $80
-	db $10, $20, $24, $20 | $80
+	db $10 | $80, $20, $24, $20 | $80
 	; Marshbadge
 	db $80, $18, $00
 	db $14, $20, $24, $20 | $80
@@ -27899,7 +27960,7 @@ KantoBadgesOAM:
 
 
 CardStatusGFX: INCBIN "gfx/misc/card_status.2bpp"
-LeaderGFX:  INCBIN "gfx/misc/leaders.w24.2bpp"
+LeaderGFX:  INCLUDE "gfx/misc/johto_leaders.asm"
 LeaderGFX2: INCBIN "gfx/misc/kantoleaders.w24.2bpp"
 BadgeGFX:   INCBIN "gfx/misc/badges.w16.2bpp"
 BadgeGFX2:  INCBIN "gfx/misc/kantobadges.w16.2bpp"
