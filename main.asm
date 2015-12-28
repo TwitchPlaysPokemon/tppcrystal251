@@ -27015,6 +27015,24 @@ Function25105: ; 25105
 .asm_25117
 	call UpdateTime
 	call Functiona57
+	ld a, [hJoyPressed]
+	cp $80
+	jr z, .down
+	cp $40
+	jr nz, .skip
+	ld a, [wcf63]
+	cp 5
+	jr nz, .skip
+	ld a, 2
+	ld [wcf63], a
+	jr .skip
+.down
+	ld a, [wcf63]
+	cp 3
+	jr nz, .skip
+	ld a, 4
+	ld [wcf63], a
+.skip
 	ld a, [wcf63]
 	bit 7, a
 	jr nz, .asm_25132
@@ -27078,13 +27096,13 @@ Function2518e: ; 2518e (9:518e)
 	jp [hl]
 
 Jumptable_2519d: ; 2519d (9:519d)
-	dw Function251b6
-	dw Function251d7
-	dw Function251f4
-	dw Function25221
-	dw Function2524c
-	dw Function25279
-	dw Function251b0
+	dw Function251b6 ; draw status
+	dw Function251d7 ; status screen loop
+	dw Function251f4 ; draw johto badges
+	dw Function25221 ; johto badges loop
+	dw Function2524c ; draw kanto badges
+	dw Function25279 ; kanto badges loop
+	dw Function251b0 ; exit trainer card
 
 Function251ab: ; 251ab (9:51ab)
 	ld hl, wcf63
@@ -27200,22 +27218,22 @@ Function2524c: ; 2524c (9:524c)
 	ret
 
 Function25279: ; 25279 (9:5279)
-	ld hl, Unknown_254c9
+	ld hl, Unknown_254c9kanto
 	call Function25438
 	ld hl, $ffa9
 	ld a, [hl]
 	and $20
 	jr nz, .asm_2528d
 	ld a, [hl]
-	and $10
+	and $1
 	jr nz, .asm_25293
 	ret
 .asm_2528d
-	ld a, $2
+	ld a, $0
 	ld [wcf63], a
 	ret
 .asm_25293
-	ld a, $0
+	ld a, $6
 	ld [wcf63], a
 	ret
 
@@ -27596,12 +27614,56 @@ Unknown_254c9: ; 254c9
 	db $1c | $80, $20, $24, $20 | $80
 ; 25523
 
+Unknown_254c9kanto:
+
+	dw KantoBadges
+
+	; Bolderbadge
+	db $68, $18, $00
+	db $00, $20, $24, $20 | $80
+	db $00, $20, $24, $20 | $80
+
+	; Cascadebadge
+	db $68, $38, $00
+	db $04, $20, $24, $20 | $80
+	db $04, $20, $24, $20 | $80
+
+	; Thunderbadge
+	db $68, $58, $00
+	db $08, $20, $24, $20 | $80
+	db $08, $20, $24, $20 | $80
+
+	; Rainbowbadge
+	db $68, $78, $00
+	db $0c, $20, $24, $20 | $80
+	db $0c, $20, $24, $20 | $80
+
+	; Soulbadge
+	db $80, $38, $00
+	db $10, $20, $24, $20 | $80
+	db $10, $20, $24, $20 | $80
+
+	; Marshbadge
+	db $80, $18, $00
+	db $14, $20, $24, $20 | $80
+	db $14, $20, $24, $20 | $80
+
+	; Volcanobadge
+	db $80, $58, $00
+	db $18, $20, $24, $20 | $80
+	db $18, $20, $24, $20 | $80
+
+	; Earthbadge
+	db $80, $78, $00
+	db $1c, $20, $24, $20 | $80
+	db $1c, $20, $24, $20 | $80
+
 CardStatusGFX: INCBIN "gfx/misc/card_status.2bpp"
 
 LeaderGFX:  INCBIN "gfx/misc/leaders.w24.2bpp"
-LeaderGFX2: INCBIN "gfx/misc/leaders.w24.2bpp"
+LeaderGFX2: INCBIN "gfx/misc/kantoleaders.w24.2bpp"
 BadgeGFX:   INCBIN "gfx/misc/badges.w16.2bpp"
-BadgeGFX2:  INCBIN "gfx/misc/badges.w16.2bpp"
+BadgeGFX2:  INCBIN "gfx/misc/kantobadges.w16.2bpp"
 
 CardRightCornerGFX: INCBIN "gfx/misc/card_right_corner.2bpp"
 
