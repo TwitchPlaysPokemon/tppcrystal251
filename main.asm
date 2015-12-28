@@ -1150,6 +1150,7 @@ Function6219: ; 6219
 	dw Function620b
 	dw Function620b
 	dw Function6392
+
 ; 6274
 
 TitleScreen: ; 6274
@@ -1205,6 +1206,7 @@ TitleScreenScene: ; 62a3
 	dw TitleScreenTimer
 	dw TitleScreenMain
 	dw TitleScreenEnd
+
 ; 62b7
 
 Function62b7: ; 62b7
@@ -3497,6 +3499,7 @@ Table81d6: ; 81d6
 	dw Function81de
 	dw Function8232
 	dw Function8239
+
 ; 81de
 
 Function81de: ; 81de
@@ -4782,6 +4785,7 @@ Jumptable_c796: ; c796 (3:4796)
 	dw Functionc79c
 	dw Functionc7b2
 	dw Functionc7bb
+
 Functionc79c: ; c79c (3:479c)
 	ld de, ENGINE_HIVEBADGE
 	call CheckBadge
@@ -5068,6 +5072,7 @@ Jumptable_c91a: ; c91a (3:491a)
 	dw Functionc95f
 	dw Functionc971
 	dw Functionc97a
+
 Functionc922: ; c922 (3:4922)
 	ld de, ENGINE_FOGBADGE
 	call CheckBadge
@@ -5300,6 +5305,7 @@ Functionca3b: ; ca3b
  	dw Functionca52
  	dw Functionca94
  	dw Functionca9d
+
 ; ca52
 
 Functionca52: ; ca52
@@ -5550,6 +5556,7 @@ Tablecbb2: ; cbb2
 	dw Functioncbb8
 	dw Functioncbd8
 	dw Functioncc06
+
 ; cbb8
 
 Functioncbb8: ; cbb8
@@ -5693,6 +5700,7 @@ Tablecc72: ; cc72
 	dw Functioncc78
 	dw Functioncc9c
 	dw Functioncca8
+
 ; cc78
 
 Functioncc78: ; cc78
@@ -5953,6 +5961,7 @@ Jumptable_cdae: ; cdae
 	dw Functioncdb4
 	dw Functioncdca
 	dw Functioncdd3
+
 ; cdb4
 
 Functioncdb4: ; cdb4
@@ -6347,6 +6356,7 @@ Jumptable_cfa5: ; cfa5
 	dw Functioncff4
 	dw Functioncff1
 	dw Functiond010
+
 ; cfaf
 
 Functioncfaf: ; cfaf
@@ -6787,6 +6797,7 @@ Tabled1e9: ; d1e9
 	dw Functiond1f6
 	dw Functiond1fb
 	dw Functiond201
+
 ; d1f1
 
 Functiond1f1: ; d1f1
@@ -6836,6 +6847,7 @@ _TossItem:: ; d20d
 	dw .KeyItem
 	dw .Ball
 	dw .TMHM
+
 ; d228
 
 .Ball ; d228
@@ -6888,6 +6900,7 @@ _CheckItem:: ; d244
 	dw .KeyItem
 	dw .Ball
 	dw .TMHM
+
 ; d25f
 
 .Ball ; d25f
@@ -7491,6 +7504,7 @@ Jumptable_d4f2: ; d4f2 (3:54f2)
 	dw Functiond508
 	dw Functiond508
 	dw Functiond508
+
 Functiond508: ; d508 (3:5508)
 	ret
 
@@ -9904,6 +9918,7 @@ MenuData2_0xe477: ; 0xe477
 	dw MenuItems_e4c4
 	dw Function1f79
 	dw Strings_e47f
+
 ; 0xe47f
 
 Strings_e47f: ; e47f
@@ -9918,6 +9933,7 @@ Jumptable_e4ba: ; e4ba (3:64ba)
 	dw Functione583
 	dw Functione4cd
 	dw Functione4cb
+
 ; e4c4
 
 MenuItems_e4c4: ; e4c4
@@ -11113,6 +11129,7 @@ Jumptable_1172e: ; 1172e (4:572e)
 	dw Function1173e
 	dw Function1173e
 	dw RivalNamingScreenRB
+
 Function1173e: ; 1173e (4:573e)
 	ld a, [CurPartySpecies]
 	ld [wd265], a
@@ -11440,6 +11457,7 @@ Function11968: ; 11968
 Jumptable_11977: ; 11977 (4:5977)
 	dw Function1197b
 	dw Function119a1
+
 Function1197b: ; 1197b (4:597b)
 	lb de, $50, $18
 	call Function1189c
@@ -12168,6 +12186,7 @@ Function12008: ; 12008 (4:6008)
 Jumptable_12017: ; 12017 (4:6017)
 	dw Function1201b
 	dw Function1203a
+
 Function1201b: ; 1201b (4:601b)
 	lb de, $48, $10
 	ld a, $9
@@ -12621,6 +12640,7 @@ Unknown_12365: ; 12365
 	dw Unknown_1236b
 	dw Unknown_1236f
 	dw Unknown_12373
+
 ; 1236b
 
 Unknown_1236b: ; 1236b
@@ -12638,6 +12658,7 @@ Jumptable_12377: ; 12377
 	dw Function123bf
 	dw Function123c8
 	dw Function123db
+
 ; 12383
 
 Function12383: ; 12383
@@ -13116,6 +13137,7 @@ StartMenu:: ; 125cd
 	dw .ReturnFour
 	dw .ReturnEnd
 	dw .ReturnRedraw
+
 .Exit
 	ld a, [hOAMUpdate]
 	push af
@@ -13227,6 +13249,7 @@ StartMenu:: ; 125cd
 	dw MenuItemsList
 	dw .MenuString
 	dw .Items
+
 .Items
 	dw StartMenu_Pokedex,  .PokedexString,  .PokedexDesc
 	dw StartMenu_Pokemon,  .PartyString,    .PartyDesc
@@ -15021,6 +15044,7 @@ CheckRegisteredItem: ; 13345
 	dw .CheckBall
 	dw .CheckKeyItem
 	dw .CheckTMHM
+
 .CheckItem
 	ld hl, NumItems
 	call .CheckRegisteredNo
@@ -15116,6 +15140,7 @@ UseRegisteredItem: ; 133c3
 	dw .Current
 	dw .Party
 	dw .Overworld
+
 ; 133df
 
 .NoFunction ; 133df
@@ -15428,6 +15453,7 @@ Function13575: ; 13575
 	dw ._10f
 	dw ._11f
 	dw .roof
+
 .b4f
 	db "B4F@"
 .b3f
@@ -15763,6 +15789,7 @@ Unknown_13783: ; 13783
 	dw Unknown_137e6
 	dw Unknown_137f1
 	dw Unknown_137fc
+
 ; 13799
 
 Unknown_13799:
@@ -16172,6 +16199,7 @@ Unknown_139fe: ; 139fe refernces to contestent flags
 	dw $071d
 	dw $071e
 	dw $071f
+
 ; 13a12
 
 Function13a12: ; 13a12
@@ -16461,6 +16489,7 @@ Squares: ; 13b98
 root	set 1
 	rept $ff
 	dw root*root
+
 root	set root+1
 	endr
 ; 13d96
@@ -17406,6 +17435,7 @@ EmotesPointers: ; 144d
 	dw FishingRodGFX + $50
 	db $10, BANK(FishingRodGFX)
 	dw $8fe0
+
 ; 14495
 
 SpriteMons: ; 14495
@@ -17479,6 +17509,7 @@ OutdoorSprites: ; 144b8
 	dw Group26Sprites
 	dw Group27Sprites
 	dw Group28Sprites
+
 ; 144ec
 
 Group1Sprites: ; 146a1
@@ -19522,6 +19553,7 @@ MenuData2_0x155de: ; 0x155de
 	dw Unknown_1562c
 	dw Function1f8d
 	dw Unknown_155e6
+
 ; 0x155e6
 
 Unknown_155e6: ; 155e6
@@ -19732,6 +19764,7 @@ KrissPCMenuData: ; 0x15736
 	dw .KrissPCMenuList1
 	dw Function1f8d
 	dw .KrissPCMenuPointers
+
 .KrissPCMenuPointers ; 0x15746
 	dw KrisWithdrawItemMenu, .WithdrawItem
 	dw KrisDepositItemMenu,  .DepositItem
@@ -19960,6 +19993,7 @@ Jumptable_158e7: ; 0x158e7
 	dw .jump2
 	dw .jump2
 	dw .jump2
+
 .jump1:
 	ret
 
@@ -20187,6 +20221,7 @@ OpenMartDialog:: ; 15a45
 	dw BargainShop
 	dw Pharmacist
 	dw VendingMachine
+
 ; 15a61
 
 MartDialog: ; 15a61
@@ -20328,6 +20363,7 @@ Function15b47: ; 15b47
 	dw Function15b9a
 	dw Function15ba3
 	dw Function15baf
+
 ; 15b62
 
 Function15b62: ; 15b62
@@ -20593,6 +20629,7 @@ Unknown_15cbf: ; 15cbf
 	dw UnknownText_0x15faa
 	dw UnknownText_0x15fa0
 	dw Function15cef
+
 Unknown_15ccb: ; 15ccb
 	dw UnknownText_0x15e4f
 	dw UnknownText_0x15e54
@@ -20600,6 +20637,7 @@ Unknown_15ccb: ; 15ccb
 	dw UnknownText_0x15e5e
 	dw UnknownText_0x15e59
 	dw Function15cef
+
 Unknown_15cd7: ; 15cd7
 	dw Function15cef
 	dw UnknownText_0x15e72
@@ -20607,6 +20645,7 @@ Unknown_15cd7: ; 15cd7
 	dw UnknownText_0x15e7c
 	dw UnknownText_0x15e77
 	dw UnknownText_0x15e81
+
 Unknown_15ce3: ; 15ce3
 	dw UnknownText_0x15e95
 	dw UnknownText_0x15e9a
@@ -20614,6 +20653,7 @@ Unknown_15ce3: ; 15ce3
 	dw UnknownText_0x15ea4
 	dw UnknownText_0x15e9f
 	dw Function15cef
+
 ; 15cef
 
 Function15cef: ; 15cef
@@ -21008,6 +21048,7 @@ Jumptable_15eee: ; 15eee
 	dw Function15efd
 	dw Function15efd
 	dw Function15efd
+
 ; 15efc
 
 Function15efc: ; 15efc
@@ -21340,6 +21381,7 @@ Function1606f:: ; 1606f
 
 Unknown_1608d: ; 1608d
 	bigdw 9999
+
 ; 1608f
 
 Function1608f:: ; 1608f
@@ -21413,6 +21455,7 @@ Jumptable_16242: ; 16242
 	dw Function16406
 	dw Function1642d
 	dw Function16433
+
 ; 16254
 
 Function16254: ; 16254
@@ -22413,6 +22456,7 @@ TextTable_168aa: ; 168aa
 	dw UnknownText_0x16927
 	dw UnknownText_0x1692c
 	dw UnknownText_0x16931
+
 ; 168d2
 
 UnknownText_0x168d2: ; 0x168d2
@@ -24398,6 +24442,7 @@ Unknown_24000:: ; 24000
 	dw StringBuffer1
 	dw EnemyMonNick
 	dw BattleMonNick
+
 ; 2400e
 
 Function2400e:: ; 2400e
@@ -27203,24 +27248,6 @@ Function25105: ; 25105
 .asm_25117
 	call UpdateTime
 	call Functiona57
-	ld a, [hJoyPressed]
-	cp $80
-	jr z, .down
-	cp $40
-	jr nz, .skip
-	ld a, [wcf63]
-	cp 5
-	jr nz, .skip
-	ld a, 2
-	ld [wcf63], a
-	jr .skip
-.down
-	ld a, [wcf63]
-	cp 3
-	jr nz, .skip
-	ld a, 4
-	ld [wcf63], a
-.skip
 	ld a, [wcf63]
 	bit 7, a
 	jr nz, .asm_25132
@@ -27285,24 +27312,25 @@ Function2518e: ; 2518e (9:518e)
 	jp [hl]
 
 Jumptable_2519d: ; 2519d (9:519d)
-	dw Function251b6
-	dw Function251d7
-	dw Function251f4
-	dw Function25221
-	dw Function2524c
-	dw Function25279
-	dw Function251b0
-Function251ab: ; 251ab (9:51ab)
+	dw TrainerCardPage1_LoadGFX
+	dw TrainerCardPage1_WaitJoypad
+	dw TrainerCardPage2_LoadGFX
+	dw TrainerCardPage2_WaitJoypad
+	dw TrainerCardPage3_LoadGFX
+	dw TrainerCardPage3_WaitJoypad
+	dw TrainerCardExit
+
+TrainerCardNext: ; 251ab (9:51ab)
 	ld hl, wcf63
 	inc [hl]
 	ret
 
-Function251b0: ; 251b0 (9:51b0)
+TrainerCardExit: ; 251b0 (9:51b0)
 	ld hl, wcf63
 	set 7, [hl]
 	ret
 
-Function251b6: ; 251b6 (9:51b6)
+TrainerCardPage1_LoadGFX: ; 251b6 (9:51b6)
 	call ClearSprites
 	hlcoord 0, 8
 	ld d, $6
@@ -27313,35 +27341,43 @@ Function251b6: ; 251b6 (9:51b6)
 	lb bc, BANK(CardStatusGFX), $6 + $50
 	call Request2bpp
 	call Function2530a
-	call Function251ab
+	call TrainerCardNext
 	ret
 
-Function251d7: ; 251d7 (9:51d7)
+TrainerCardPage1_WaitJoypad: ; 251d7 (9:51d7)
 	call Function25415
 	ld hl, $ffa9
 	ld a, [hl]
 	and $11
 	jr nz, .asm_251e3
+	ld a, [hl]
+	and $20
+	jr nz, .left
 	ret
 
 .asm_251e3
+	ld de, EVENT_EARLY_GAME_KANTO
+	ld b, $2
+	call EventFlagAction
+	jr z, .kanto
 	ld a, $2
 	ld [wcf63], a
 	ret
 
 ; 251e9 (9:51e9)
 
-Function251e9: ; 251e9
+.left: ; 251e9
 	ld a, [KantoBadges]
 	and a
 	ret z
+.kanto
 	ld a, $4
 	ld [wcf63], a
 	ret
 
 ; 251f4
 
-Function251f4: ; 251f4 (9:51f4)
+TrainerCardPage2_LoadGFX: ; 251f4 (9:51f4)
 	call ClearSprites
 	hlcoord 0, 8
 	ld d, $6
@@ -27356,19 +27392,22 @@ Function251f4: ; 251f4 (9:51f4)
 	lb bc, BANK(BadgeGFX), $2c
 	call Request2bpp
 	call Function2536c
-	call Function251ab
+	call TrainerCardNext
 	ret
 
-Function25221: ; 25221 (9:5221)
+TrainerCardPage2_WaitJoypad: ; 25221 (9:5221)
 	ld hl, Unknown_254c9
 	call Function25438
 	ld hl, $ffa9
 	ld a, [hl]
 	and $1
-	jr nz, Function25246
+	jr nz, .cancel
 	ld a, [hl]
 	and $20
 	jr nz, .asm_25235
+	ld a, [hl]
+	and $10
+	jr nz, .right
 	ret
 
 .asm_25235
@@ -27376,24 +27415,24 @@ Function25221: ; 25221 (9:5221)
 	ld [wcf63], a
 	ret
 
-; 2523b (9:523b)
-
-Function2523b: ; 2523b
+.right
 	ld a, [KantoBadges]
 	and a
 	ret z
+.kanto
 	ld a, $4
 	ld [wcf63], a
 	ret
 
-; 25246
-
-Function25246: ; 25246
+.cancel
+	ld a, [KantoBadges]
+	and a
+	jr nz, .kanto
 	ld a, $6
 	ld [wcf63], a
 	ret
 
-Function2524c: ; 2524c (9:524c)
+TrainerCardPage3_LoadGFX: ; 2524c (9:524c)
 	call ClearSprites
 	hlcoord 0, 8
 	ld d, $6
@@ -27408,27 +27447,39 @@ Function2524c: ; 2524c (9:524c)
 	lb bc, BANK(BadgeGFX2), $2c
 	call Request2bpp
 	call Function2536c
-	call Function251ab
+	call TrainerCardNext
 	ret
 
-Function25279: ; 25279 (9:5279)
-	ld hl, Unknown_254c9kanto
+TrainerCardPage3_WaitJoypad: ; 25279 (9:5279)
+	ld hl, KantoBadgesOAM
 	call Function25438
 	ld hl, $ffa9
 	ld a, [hl]
 	and $20
 	jr nz, .asm_2528d
 	ld a, [hl]
-	and $1
+	and $10
 	jr nz, .asm_25293
+	ld a, [hl]
+	and $1
+	jr nz, .quit
 	ret
 
 .asm_2528d
-	ld a, $0
+	ld de, EVENT_EARLY_GAME_KANTO
+	ld b, $2
+	call EventFlagAction
+	jr nz, .asm_25293
+	ld a, $2
 	ld [wcf63], a
 	ret
 
 .asm_25293
+	ld a, $0
+	ld [wcf63], a
+	ret
+
+.quit
 	ld a, $6
 	ld [wcf63], a
 	ret
@@ -27543,7 +27594,15 @@ Function2536c: ; 2536c (9:536c)
 	jr nz, .asm_2538d
 	xor a
 	ld [wcf64], a
+	ld a, [wcf63]
+	cp $5
+	jr c, .Kanto
 	ld hl, Unknown_254c9
+	jr .okay
+
+.Kanto
+	ld hl, KantoBadgesOAM
+.okay
 	call Function25448
 	ret
 
@@ -27801,49 +27860,43 @@ Unknown_254c9: ; 254c9
 	db $1c | $80, $20, $24, $20 | $80
 ; 25523
 
-Unknown_254c9kanto:
-
+KantoBadgesOAM:
 	dw KantoBadges
-
-	; Bolderbadge
+	; Boulderbadge
 	db $68, $18, $00
 	db $00, $20, $24, $20 | $80
 	db $00, $20, $24, $20 | $80
-
 	; Cascadebadge
 	db $68, $38, $00
 	db $04, $20, $24, $20 | $80
 	db $04, $20, $24, $20 | $80
-
 	; Thunderbadge
 	db $68, $58, $00
 	db $08, $20, $24, $20 | $80
 	db $08, $20, $24, $20 | $80
-
 	; Rainbowbadge
 	db $68, $78, $00
 	db $0c, $20, $24, $20 | $80
 	db $0c, $20, $24, $20 | $80
-
 	; Soulbadge
 	db $80, $38, $00
 	db $10, $20, $24, $20 | $80
 	db $10, $20, $24, $20 | $80
-
 	; Marshbadge
 	db $80, $18, $00
 	db $14, $20, $24, $20 | $80
 	db $14, $20, $24, $20 | $80
-
 	; Volcanobadge
 	db $80, $58, $00
 	db $18, $20, $24, $20 | $80
 	db $18, $20, $24, $20 | $80
-
 	; Earthbadge
+	; X-flips on alternate cycles.
 	db $80, $78, $00
 	db $1c, $20, $24, $20 | $80
-	db $1c, $20, $24, $20 | $80
+	db $1c | $80, $20, $24, $20 | $80
+; 25523
+
 
 CardStatusGFX: INCBIN "gfx/misc/card_status.2bpp"
 LeaderGFX:  INCBIN "gfx/misc/leaders.w24.2bpp"
@@ -28034,6 +28087,7 @@ OakRatings: ; 0x2667f
 	db 255
 	dw SFX_DEX_FANFARE_230_PLUS
 	dw OakRating19
+
 OakPCText1: ; 0x266de
 	TX_FAR _OakPCText1
 	db "@"
@@ -28155,6 +28209,7 @@ MenuData2_0x267a2: ; 0x267a2
 	dw wd002
 	dw Function1f8d
 	dw Unknown_267aa
+
 ; 0x267aa
 
 Unknown_267aa: ; 267aa
@@ -28516,6 +28571,7 @@ MenuData2_0x269bd: ; 0x269bd
 	dw wd002
 	dw Function269f3
 	dw DecorationAttributes
+
 ; 0x269c5
 
 MenuDataHeader_0x269c5: ; 0x269c5
@@ -28593,6 +28649,7 @@ Jumptable_26a12: ; 26a12
 	dw Function26d27
 	dw Function26db3
 	dw Function26dc9
+
 ; 26a30
 
 Function26a30: ; 26a30
@@ -28731,6 +28788,7 @@ Table26c7e: ; 26c7e
 	dw Function26c9e
 	dw Function26ca6
 	dw Function26cae
+
 ; 26c8c
 
 Function26c8c: ; 26c8c
@@ -29271,6 +29329,7 @@ Table26f5f: ; 26f5f
 	dw Function26fbe
 	dw Function26fdd
 	dw Function26fc3
+
 ; 26f69
 
 Function26f69: ; 26f69
@@ -31965,6 +32024,7 @@ JumpTable290af: ; 290af
 	dw Function294f9
 	dw Function29502
 	dw Function2950c
+
 ; 2910f
 
 Function2910f: ; 2910f
@@ -32225,6 +32285,7 @@ Jumptable_2928f: ; 2928f
 	dw Function292af
 	dw Function292be
 	dw Function29297
+
 ; 29297
 
 Function29297: ; 29297
@@ -32849,6 +32910,7 @@ Jumptable_29686: ; 29686 (a:5686)
 	dw Function296cf
 	dw Function296dd
 	dw Function296f2
+
 ; 2969a
 
 Function29694: ; 29694 (a:5694)
@@ -38425,6 +38487,7 @@ AIScoringPointers: ; 441af
        dw AI_None
        dw AI_None
        dw AI_None
+
 ; 441cf
 
 Function441cf: ; 441cf
@@ -39146,6 +39209,7 @@ Function4484a: ; 0x4484a
 	dw .PutInPack
 	dw .AttachMail
 	dw .Cancel
+
 .ReadMail ; 0x44869
 	call FadeToMenu
 	ld a, [MenuSelection]
@@ -41435,6 +41499,7 @@ Jumptable_49330: ; 49330
 	dw Function4936e
 	dw Function4942f
 	dw Function49706
+
 ; 49336
 
 Function49336: ; 49336
@@ -42590,6 +42655,7 @@ MenuData2_0x49d1c: ; 49d1c
 	dw MainMenuItems
 	dw Function1f79
 	dw MainMenuText
+
 ; 49d20
 
 MainMenuText: ; 49d24
@@ -42609,8 +42675,10 @@ Jumptable_49d60: ; 0x49d60
 	dw MainMenu_MysteryGift
 	dw MainMenu_Mobile
 	dw MainMenu_MobileStudium
+
 IF DEF(MUSICPLYR)
 	dw MainMenu_MusicPlayer
+
 ENDC
 ; 0x49d6c
 
@@ -47017,6 +47085,7 @@ StatsScreenPointerTable: ; 4dd2a
 	dw Function4dde6
 	dw Function4ddd6
 	dw Function4dd6c
+
 ; 4dd3a
 
 Function4dd3a: ; 4dd3a (13:5d3a)
@@ -47354,6 +47423,7 @@ Unknown_4df77: ; 4df77
 	dw OTPartyMonNicknames
 	dw $b082
 	dw wd002
+
 ; 4df7f
 
 Function4df7f: ; 4df7f
@@ -47446,6 +47516,7 @@ Jumptable_4e00d: ; 4e00d (13:600d)
 	dw Function4e013
 	dw Function4e147
 	dw Function4e1ae
+
 Function4e013: ; 4e013 (13:6013)
 	hlcoord 0, 9
 	ld b, $0
@@ -47703,6 +47774,7 @@ Unknown_4e216: ; 4e216
 	dw OTPartyMonOT
 	dw sBoxMonOT
 	dw wd00d
+
 ; 4e21e
 
 IDNoString: ; 4e21e
@@ -47796,6 +47868,7 @@ Jumptable_4e2b5: ; 4e2b5 (13:62b5)
 	dw Function4e2d1
 	dw Function4e2ed
 	dw Function4e301
+
 Function4e2bf: ; 4e2bf (13:62bf)
 	ld a, [CurPartyMon]
 	ld hl, PartyMons ; wdcdf (aliases: PartyMon1, PartyMon1Species)
@@ -48092,6 +48165,7 @@ Jumptable_4e564: ; 4e564 (13:6564)
 	dw Function4e56a
 	dw Function4e56a
 	dw Function4e56a
+
 Function4e56a: ; 4e56a (13:656a)
 	ld hl, PlayerName
 	ld de, MomsName
@@ -48960,6 +49034,7 @@ Jumptable_50089: ; 50089
 	dw Function5022f
 	dw Function502b1
 	dw Function50307
+
 ; 5009b
 
 Function5009b: ; 5009b
@@ -49510,6 +49585,7 @@ Unknown_503b2: ; 503b2
 	dw Unknown_503d6
 	dw Unknown_503c6
 	dw Unknown_503db
+
 ; 503c6
 
 Unknown_503c6: db 0, 1, 2, 3, 4, $ff
@@ -49698,6 +49774,7 @@ PartyMenuStrings: ; 0x504d2
 	dw ChooseAMonString ; Probably used to be ChooseAFemalePKMNString
 	dw ChooseAMonString ; Probably used to be ChooseAMalePKMNString
 	dw ToWhichPKMNString
+
 ChooseAMonString: ; 0x504e4
 	db "Choose a #MON.@"
 UseOnWhichPKMNString: ; 0x504f3
@@ -49739,6 +49816,7 @@ Unknown_5057b: ; 5057b
 	dw UnknownText_0x505b2
 	dw UnknownText_0x505b7
 	dw UnknownText_0x505bc
+
 ; 5058f
 
 UnknownText_0x5058f: ; 0x5058f
@@ -50441,6 +50519,7 @@ Strings50a42: ; 50a42
 	dw OTName
 	dw OTName
 	dw OTName
+
 .Youngster    db "たんパン@"
 .BugCatcher   db "むしとり@"
 .Lass         db "ミニスカ@"
@@ -52589,6 +52668,7 @@ DoStep: ; 8025f ;load appropriote animations for the type of step, walk in place
 	dw .WalkInPlace
 	dw .Spin
 	dw .Run
+
 .Slow
 	slow_step_down
 	slow_step_up
@@ -52739,6 +52819,7 @@ GetMovementAction: ; 802ec
 .table1
 	db STANDING, FACE_CURRENT, 0, 0
 	dw StandingTile
+
 .table2
 	db RIGHT, FACE_RIGHT,  1,  0
 	dw TileRight
@@ -52748,6 +52829,7 @@ GetMovementAction: ; 802ec
 	dw TileUp
 	db DOWN,  FACE_DOWN,   0,  1
 	dw TileDown
+
 ; 80341
 
 IsNPCInFront: ; 80341 ret a = 1 if something in way, do some bike checks and possibly a = 2
@@ -53584,6 +53666,7 @@ Jumptable_81acf: ; 81acf
 	dw Function81cc2
 	dw Function81d8e
 	dw Function81daf
+
 ; 81adb
 
 Function81adb: ; 81adb
@@ -53872,6 +53955,7 @@ Jumptable_81d02: ; 81d02
 	dw Function81d34
 	dw Function81d46
 	dw Function81d58
+
 ; 81d0a
 
 Function81d0a: ; 81d0a
@@ -54585,6 +54669,7 @@ Jumptable_82301: ; 82301
 	dw Function82339
 	dw Function8234b
 	dw Function8235d
+
 ; 82309
 
 Function82309: ; 82309
@@ -54784,6 +54869,7 @@ Jumptable_84031: ; 84031 (21:4031)
 	dw Function84071
 	dw Function841b0
 	dw Function841b3
+
 Function84059: ; 84059 (21:4059)
 	ld hl, wcf63
 	inc [hl]
@@ -55206,6 +55292,7 @@ Jumptable_842ea: ; 842ea (21:42ea)
 	dw Function8439f
 	dw Function843a8
 	dw Function843b6
+
 Function8432a: ; 8432a (21:432a)
 	ld hl, wc2d5
 	inc [hl]
@@ -55935,6 +56022,7 @@ Unknown_84807: ; 84807
 	dw String_1dc2e2
 	dw String_1dc317
 	dw String_1dc34c
+
 ; 84817
 
 Function84817: ; 84817 (21:4817)
@@ -58272,6 +58360,7 @@ Unknown_89509: ; 89509
 	dw Palette_8950f
 	dw Palette_89527
 	dw Palette_8953f
+
 ; 8950f
 
 Palette_8950f: ; 8950f
@@ -59557,6 +59646,7 @@ Unknown_89bd8: ; 89bd8
 	dw Unknown_89bf5
 	dw Unknown_89c0a
 	dw Unknown_89c1f
+
 ; 89be0
 
 Unknown_89be0: ; 89be0
@@ -59895,6 +59985,7 @@ Jumptable_89e04: ; 89e04 (22:5e04)
 	dw Function8a62c
 	dw Function8a999
 	dw Function8ab93
+
 Function89e0a: ; 89e0a (22:5e0a)
 	call Function89160
 	call Function8b3b0
@@ -59907,6 +59998,7 @@ Jumptable_89e18: ; 89e18 (22:5e18)
 	dw Function89e1e
 	dw Function8a116
 	dw Function8a2aa
+
 Function89e1e: ; 89e1e (22:5e1e)
 	call Function89160
 	ld bc, $a037
@@ -59940,6 +60032,7 @@ Jumptable_89e3c: ; 89e3c (22:5e3c)
 	dw Function8a0f5
 	dw Function89e58
 	dw Function89e68
+
 Function89e58: ; 89e58 (22:5e58)
 	ld a, $1
 	call Function8a2fe
@@ -61110,6 +61203,7 @@ Jumptable_8a671: ; 8a671 (22:6671)
 	dw Function8a6cd
 	dw Function8a8c3
 	dw Function8a930
+
 Function8a679: ; 8a679 (22:6679)
 	call Function891de
 	call WhiteBGMap
@@ -61142,6 +61236,7 @@ Function8a679: ; 8a679 (22:6679)
 Jumptable_8a6bc: ; 8a6bc (22:66bc)
 	dw Function8a6c0
 	dw Function8a6c5
+
 Function8a6c0: ; 8a6c0 (22:66c0)
 	call PlayClickSFX
 	and a
@@ -61215,6 +61310,7 @@ Jumptable_8a74f: ; 8a74f (22:674f)
 	dw Function8a7cb
 	dw Function8a818
 	dw Function8a8a1
+
 Function8a757: ; 8a757 (22:6757)
 	call Function8939a
 	xor a
@@ -61519,6 +61615,7 @@ Function8a999: ; 8a999 (22:6999)
 Jumptable_8a9c5: ; 8a9c5 (22:69c5)
 	dw Function8aa0a
 	dw Function8ab3b
+
 ; 8a9c9 (22:69c9)
 
 MenuDataHeader_0x8a9c9: ; 0x8a9c9
@@ -61624,6 +61721,7 @@ Jumptable_8aa6d: ; 8aa6d (22:6a6d)
 	dw Function8aa73
 	dw Function8aab6
 	dw Function8ab11
+
 Function8aa73: ; 8aa73 (22:6a73)
 	ld a, [MenuSelection]
 	ld e, a
@@ -62394,6 +62492,7 @@ MenuData2_0x8afb2: ; 0x8afb2
 	db 0 ; items
 	dw Unknown_8afb8
 	dw Function8afbd
+
 ; 0x8afb4
 
 Unknown_8afb8: ; 8afb8
@@ -62707,15 +62806,18 @@ Unknown_8b1ed: ; 8b1ed
 	db 2
 	dw Unknown_8b1f2
 	dw Unknown_8b1f6
+
 Unknown_8b1f2: ; 8b1f2
 	dw Function8b2bb
 	dw Function8b2c1
+
 ; 8b1f6
 
 Unknown_8b1f6: ; 8b1f6
 	dw UnknownText_0x8b1fc
 	dw UnknownText_0x8b23d
 	dw UnknownText_0x8b242
+
 ; 8b1fc
 
 UnknownText_0x8b1fc: ; 0x8b1fc
@@ -62742,11 +62844,13 @@ Unknown_8b215: ; 8b215
 	db 4
 	dw Unknown_8b21a
 	dw Unknown_8b222
+
 Unknown_8b21a: ; 8b21a
 	dw Function8b2da
 	dw Function8b2e2
 	dw Function8b32a
 	dw Function8b331
+
 ; 8b222
 
 Unknown_8b222: ; 8b222
@@ -62755,6 +62859,7 @@ Unknown_8b222: ; 8b222
 	dw UnknownText_0x8b24c
 	dw UnknownText_0x8b251
 	dw UnknownText_0x8b256
+
 ; 8b22c
 
 UnknownText_0x8b22c: ; 0x8b22c
@@ -63072,6 +63177,7 @@ Jumptable_8b354: ; 8b354
 	dw Function8b35a
 	dw Function8b35b
 	dw Function8b35c
+
 ; 8b35a
 
 Function8b35a: ; 8b35a
@@ -63334,6 +63440,7 @@ Function8b493: ; 8b493 (22:7493)
 Jumptable_8b4a0: ; 8b4a0 (22:74a0)
 	dw Function8b4a4
 	dw Function8b4b8
+
 Function8b4a4: ; 8b4a4 (22:74a4)
 	push bc
 	push de
@@ -64079,6 +64186,7 @@ Unknown_8b903: ; 8b903
 	dw String_8b919
 	dw String_8b92a
 	dw String_8b938
+
 String_8b90b: db "めいしを えらんでください@"        ; Please select a noun.
 String_8b919: db "どの めいしと いれかえますか?@"    ; OK to swap with any noun?
 String_8b92a: db "あいてを えらんでください@"        ; Please select an opponent.
@@ -64520,6 +64628,7 @@ GetTimePalette: ; 8c117
 	dw .DayPalette
 	dw .NitePalette
 	dw .DarknessPalette
+
 .MorningPalette
 	ld a, [wd847]
 	and %00000011 ; 0
@@ -64635,6 +64744,7 @@ GetTimePalFade: ; 8c17c
 	dw .day
 	dw .nite
 	dw .darkness
+
 .morn
 	db %11111111, %11111111, %11111111
 	db %11111110, %11111110, %11111110
@@ -64861,6 +64971,7 @@ Jumptable_8c323: ; 8c323 (23:4323)
 	dw Function8c578
 	dw Function8c58f
 	dw Function8c393
+
 Function8c365: ; 8c365 (23:4365)
 	ld de, 0
 	ld a, [BattleMonLevel]
@@ -65733,6 +65844,7 @@ Jumptable_8ca1b: ; 8ca1b (23:4a1b)
 	dw Function8ca3c
 	dw Function8ca5c
 	dw Function8ca64
+
 Function8ca23: ; 8ca23 (23:4a23)
 	call Function8cad3
 	ld a, $17
@@ -66334,6 +66446,7 @@ Jumptable_8ce06: ; 8ce06
 	dw Function8ce7a
 	dw Function8ce6d
 	dw Function8cea2
+
 ; 8ce14
 
 Function8ce14: ; 8ce14
@@ -67108,6 +67221,7 @@ Jumptable_8d25b: ; 8d25b (23:525b)
 	dw Function8d680
 	dw Function8d6a2
 	dw Function8d6ae
+
 Function8d2a1: ; 8d2a1 (23:52a1)
 	ret
 
@@ -67191,6 +67305,7 @@ Function8d302: ; 8d302 (23:5302)
 
 	dw Function8d30a
 	dw Function8d321
+
 ; 8d30a
 
 Function8d30a: ; 8d30a
@@ -67454,6 +67569,7 @@ Function8d483: ; 8d483 (23:5483)
 	dw Function8d4b8
 	dw Function8d4e8
 	dw Function8d526
+
 ; 8d493
 
 Function8d493: ; 8d493
@@ -67951,6 +68067,7 @@ Unknown_8d6e6: ; 8d6e6
 	dw Unknown_8d940
 	dw Unknown_8d943
 	dw Unknown_8d948
+
 ; 8d76a
 
 Unknown_8d76a: 	db $00,$20, $ff
@@ -69433,6 +69550,7 @@ Jumptable_8e854: ; 8e854 (23:6854)
 	dw Function8e898
 	dw Function8e8b1
 	dw Function8e862
+
 Function8e862: ; 8e862 (23:6862)
 	call Function8e908
 	call Function8e86c
@@ -70548,6 +70666,7 @@ Unknown_903d6: ; 903d6
 	dw String_903f2
 	dw String_903f8
 	dw String_9040d
+
 String_903e2: db "----------@"
 String_903ed: db "MOM:@"
 String_903f2: db "BILL:@"
@@ -71257,6 +71376,7 @@ Unknown_909f2: ; 909f2
 	dw Friday
 	dw Saturday
 	dw Sunday
+
 Sunday:    db " SUNDAY@"
 Monday:    db " MONDAY@"
 Tuesday:   db " TUESDAY@"
@@ -71771,6 +71891,7 @@ Jumptable_90e12: ; 90e12
 	dw Function90e3f
 	dw Function90e82
 	dw Function90e72
+
 ; 90e1a
 
 Function90e1a: ; 90e1a
@@ -71932,6 +72053,7 @@ Jumptable_90f13: ; 90f13 (24:4f13)
 	dw Function91256
 	dw Function910f9
 	dw Function91112
+
 Function90f2d: ; 90f2d (24:4f2d)
 	call Function90da8
 	ld hl, UnknownText_0x914d3
@@ -72780,6 +72902,7 @@ Jumptable_91455: ; 91455
 	dw Function9141b
 	dw Function913f9
 	dw Function913f1
+
 ; 9145b
 
 Unknown_9145b: ; 9145b
@@ -72793,6 +72916,7 @@ Unknown_9145b: ; 9145b
 Jumptable_9146a: ; 9146a
 	dw Function9141b
 	dw Function913f1
+
 ; 9146e
 
 Function9146e: ; 9146e
@@ -73550,6 +73674,7 @@ Jumptable_91ab9: ; 91ab9
 	dw Function917ea
 	dw Function917ff
 	dw Function91814
+
 ; 91acb
 
 Function91acb: ; 91acb
@@ -74921,6 +75046,7 @@ Jumptable_92853: ; 92853 (24:6853)
 	dw Function929a4
 	dw Function929d9
 	dw Function929f0
+
 Function92879: ; 92879 (24:6879)
 	ld hl, wcf63
 	inc [hl]
@@ -75509,6 +75635,7 @@ Jumptable_92be4: ; 92be4
 	dw Function92da4
 	dw Function92db3
 	dw Function92dca
+
 ; 92c16
 
 Function92c16: ; 92c16
@@ -76009,6 +76136,7 @@ Jumptable_92ebd: ; 92ebd
 	dw Function92ed1
 	dw Function92ecb
 	dw Function92ec5
+
 ; 92ec5
 
 Function92ec5: ; 92ec5
@@ -76119,6 +76247,7 @@ Jumptable_92f48: ; 92f48
 	dw Function92f5c
 	dw Function92f56
 	dw Function92f50
+
 ; 92f50
 
 Function92f50: ; 92f50
@@ -76546,6 +76675,7 @@ Unknown_93195: ; 93195
 	dw Function93214
 	db "15@@"
 	dw Function93214
+
 ; 931b9
 
 UnknownText_0x931b9: ; 0x931b9
@@ -76642,6 +76772,7 @@ Jumptable_9322d: ; 9322d (24:722d)
 	dw Function93233
 	dw Function93259
 	dw Function93289
+
 Function93233: ; 93233 (24:7233)
 	ld hl, $e
 	add hl, bc
@@ -76739,6 +76870,7 @@ Jumptable_932bc: ; 932bc (24:72bc)
 	dw Function932c2
 	dw Function932e0
 	dw Function932fc
+
 Function932c2: ; 932c2 (24:72c2)
 	ld hl, $4
 	add hl, bc
@@ -77810,6 +77942,7 @@ Jumptable_b863a: ; b863a (2e:463a)
 	dw Functionb8abc
 	dw Functionb8ac4
 	dw Functionb8acc
+
 Functionb86ea: ; b86ea (2e:46ea)
 	ld [wd003], a
 	ld hl, wd00c
@@ -78086,6 +78219,7 @@ Unknown_b8869: ; b8869
 	dw UnknownText_0xb88ca
 	dw UnknownText_0xb88cf
 	dw UnknownText_0xb88d4
+
 ; b8889
 
 UnknownText_0xb8889: ; 0xb8889
@@ -78225,6 +78359,7 @@ Unknown_b88fe: ; b88fe
 	dw UnknownText_0xb895f
 	dw UnknownText_0xb8964
 	dw UnknownText_0xb8969
+
 ; b891e
 
 UnknownText_0xb891e: ; 0xb891e
@@ -79045,6 +79180,7 @@ Unknown_b8d7d: ; b8d7d
 	dw UnknownText_0xb8dde
 	dw UnknownText_0xb8de3
 	dw UnknownText_0xb8de8
+
 ; b8d9d
 
 UnknownText_0xb8d9d: ; 0xb8d9d
@@ -79225,6 +79361,7 @@ Unknown_b8e52: ; b8e52
 	dw UnknownText_0xb8dde
 	dw UnknownText_0xb8de3
 	dw UnknownText_0xb8de8
+
 ; b8e72
 
 Functionb8e72: ; b8e72 (2e:4e72)
@@ -79463,6 +79600,7 @@ Jumptable_b8fb8: ; b8fb8 (2e:4fb8)
 	dw Functionb8fc7
 	dw Functionb8fce
 	dw Functionb8fde
+
 Functionb8fc0: ; b8fc0 (2e:4fc0)
 	call Functionb8fd5
 	call GetPokemonName
@@ -79522,6 +79660,7 @@ Unknown_b8ff9: ; b8ff9
 	dw Unknown_b906d
 	dw Unknown_b9072
 	dw Unknown_b9077
+
 ; b900f
 
 Unknown_b900f: db 0, 10, CYNDAQUIL, TOTODILE, CHIKORITA
@@ -79812,6 +79951,7 @@ Unknown_b920b: ; b920b
 	dw MUSIC_POKE_FLUTE_CHANNEL
 	dw MUSIC_RUINS_OF_ALPH_RADIO
 	dw MUSIC_LAKE_OF_RAGE_ROCKET_RADIO
+
 ; b9221
 
 Functionb9221: ; b9221 (2e:5221)
@@ -81317,6 +81457,7 @@ Jumptable_e01a0: ; e01a0
 	dw Functione0314
 	dw Functione031e
 	dw Functione0360
+
 ; e01b0
 
 Functione01b0: ; e01b0
@@ -81892,6 +82033,7 @@ Jumptable_e0553: ; e0553
 	dw Functione05cb
 	dw Functione05ef
 	dw Functione0613
+
 ; e055f
 
 Functione055f: ; e055f
@@ -82117,6 +82259,7 @@ Jumptable_e0643: ; e0643
 	dw Functione07c4
 	dw Functione07c8
 	dw Functione07cc
+
 ; e06a3
 
 Functione06a3: ; e06a3
@@ -83110,6 +83253,7 @@ Functione12ca: ; e12ca
 
 Jumptable_e12d9: ; e12d9
 	dw Functione12db
+
 ; e12db
 
 Functione12db: ; e12db
@@ -83774,6 +83918,7 @@ Unknown_e17bd: ; e17bd
 	dw LZ_Zapdos
 	dw LZ_Moltres
 	dw LZ_Phancero
+
 ; e17c5
 
 GFX_e17c5: ; e17c5
@@ -83878,6 +84023,7 @@ Jumptable_e1ee1: ; e1ee1
 	dw Functione1fba
 	dw Functione1fcc
 	dw Functione2000
+
 ; e1ef3
 
 Functione1ef3: ; e1ef3
@@ -84472,6 +84618,7 @@ Jumptable_e23df: ; e23df (38:63df)
 	dw Functione245d
 	dw Functione247d
 	dw Functione2992
+
 Functione23e9: ; e23e9 (38:63e9)
 	xor a
 	ld [hBGMapMode], a ; $ff00+$d4
@@ -84736,6 +84883,7 @@ Jumptable_e25d2: ; e25d2 (38:65d2)
 	dw Functione2655
 	dw Functione2675
 	dw Functione2992
+
 Functione25dc: ; e25dc (38:65dc)
 	ld a, $f
 	ld [wcb2e], a
@@ -84993,6 +85141,7 @@ Jumptable_e27ac: ; e27ac
 	dw Functione28df
 	dw Functione2903
 	dw Functione2992
+
 ; e27ba
 
 Functione27ba: ; e27ba
@@ -85112,6 +85261,7 @@ Jumptable_e2881: ; e2881
 	dw Functione2887
 	dw Functione28a5
 	dw Functione28bd
+
 ; e2887
 
 Functione2887: ; e2887
@@ -86514,6 +86664,7 @@ Jumptable_e3245: ; e3245
 	dw Functione3267
 	dw Functione327d
 	dw Functione3284
+
 ; e324d
 
 Functione324d: ; e324d
@@ -87231,6 +87382,7 @@ GetOptionPointer: ; e42d6
 	dw Options_MenuAccount
 	dw Options_Frame
 	dw Options_Cancel
+
 ; e42f5
 
 Options_TextSpeed: ; e42f5
@@ -87282,6 +87434,7 @@ Options_TextSpeed: ; e42f5
 	dw .Fast
 	dw .Mid
 	dw .Slow
+
 .Fast
 	db "FAST@"
 .Mid
@@ -87492,6 +87645,7 @@ Options_Print: ; e4424
 	dw .Normal
 	dw .Darker
 	dw .Darkest
+
 .Lightest
 	db "LIGHTEST@"
 .Lighter
@@ -87826,6 +87980,7 @@ Jumptable_e467f: ; e467f
 	dw Functione468d
 	dw Functione46ba
 	dw Functione46dd
+
 ; e4687
 
 Functione4687: ; e4687
@@ -87927,6 +88082,7 @@ Jumptable_e46fd: ; e46fd (39:46fd)
 	dw Functione4759
 	dw Functione4776
 	dw Functione47ab
+
 Functione4707: ; e4707 (39:4707)
 	ld hl, $b
 	add hl, bc
@@ -88168,6 +88324,7 @@ IntroScenes: ; e491e (39:491e)
 	dw IntroScene26
 	dw IntroScene27
 	dw IntroScene28
+
 NextIntroScene: ; e4956 (39:4956)
 	ld hl, wcf63
 	inc [hl]
@@ -89682,6 +89839,7 @@ Unknown_e5496: ; e5496
 	dw GFX_e79dd
 	dw GFX_e7a1d
 	dw GFX_e79dd
+
 ; e549e
 
 Functione549e: ; e549e (39:549e)
@@ -91228,6 +91386,7 @@ UnownWords: ; fba5a
 	dw UnownWord24
 	dw UnownWord25
 	dw UnownWord26
+
 ; fba90
 
 UnownWord1:	db $40, $4d, $46, $51, $58, $ff                ; ANGRY
@@ -92032,30 +92191,35 @@ TradeTexts: ; fcf53
 	dw TradeIntroText2
 	dw TradeIntroText3
 	dw TradeIntroText4
+
 ; cancel
 
 	dw TradeCancelText1
 	dw TradeCancelText2
 	dw TradeCancelText3
 	dw TradeCancelText4
+
 ; wrong mon
 
 	dw TradeWrongText1
 	dw TradeWrongText2
 	dw TradeWrongText3
 	dw TradeWrongText4
+
 ; completed
 
 	dw TradeCompleteText1
 	dw TradeCompleteText2
 	dw TradeCompleteText3
 	dw TradeCompleteText4
+
 ; after
 
 	dw TradeAfterText1
 	dw TradeAfterText2
 	dw TradeAfterText3
 	dw TradeAfterText4
+
 ; fcf7b
 
 ConnectLinkCableText: ; 0xfcf7b
@@ -95339,6 +95503,7 @@ GetUsedMoveTextEnder: ; 105e28
 	dw EndUsedMove3Text
 	dw EndUsedMove4Text
 	dw EndUsedMove5Text
+
 ; 105e43
 
 EndUsedMove1Text: ; 105e43
@@ -96405,6 +96570,7 @@ Jumptable_10636a: ; 10636a
 	dw Function106403
 	dw Function106442
 	dw Function106453
+
 ; 10637c
 
 Function10637c: ; 10637c
