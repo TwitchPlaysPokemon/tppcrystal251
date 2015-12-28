@@ -27849,8 +27849,9 @@ CardStatusGFX: INCBIN "gfx/misc/card_status.2bpp"
 LeaderGFX:  INCBIN "gfx/misc/leaders.w24.2bpp"
 LeaderGFX2: INCBIN "gfx/misc/kantoleaders.w24.2bpp"
 BadgeGFX:   INCBIN "gfx/misc/badges.w16.2bpp"
-BadgeGFX2:  INCBIN "gfx/misc/badges.w16.2bpp"
+BadgeGFX2:  INCBIN "gfx/misc/kantobadges.w16.2bpp"
 CardRightCornerGFX: INCBIN "gfx/misc/card_right_corner.2bpp"
+
 ProfOaksPC: ; 0x265d3
 	ld hl, OakPCText1
 	call Function1d4f
