@@ -27897,7 +27897,7 @@ KantoBadgesOAM:
 
 
 CardStatusGFX: INCBIN "gfx/misc/card_status.2bpp"
-LeaderGFX:  INCBIN "gfx/misc/leaders.w24.2bpp"
+LeaderGFX:  INCLUDE "gfx/misc/johto_leaders.asm"
 LeaderGFX2: INCBIN "gfx/misc/kantoleaders.w24.2bpp"
 BadgeGFX:   INCBIN "gfx/misc/badges.w16.2bpp"
 BadgeGFX2:  INCBIN "gfx/misc/kantobadges.w16.2bpp"
