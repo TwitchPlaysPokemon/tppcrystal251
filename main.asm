@@ -27356,9 +27356,8 @@ TrainerCardPage1_WaitJoypad: ; 251d7 (9:51d7)
 	ret
 
 .asm_251e3
-	ld de, EVENT_EARLY_GAME_KANTO
-	ld b, $2
-	call EventFlagAction
+	ld hl, StatusFlags
+	bit 5, [hl]
 	jr z, .kanto
 	ld a, $2
 	ld [wcf63], a
@@ -27466,9 +27465,8 @@ TrainerCardPage3_WaitJoypad: ; 25279 (9:5279)
 	ret
 
 .asm_2528d
-	ld de, EVENT_EARLY_GAME_KANTO
-	ld b, $2
-	call EventFlagAction
+	ld hl, StatusFlags
+	bit 5, [hl]
 	jr nz, .asm_25293
 	ld a, $2
 	ld [wcf63], a
