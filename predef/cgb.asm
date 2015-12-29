@@ -729,13 +729,13 @@ Function9289: ; 9289
 	ld a, MORTY
 	call Function976b
 	call Function9643_2
+	ld a, PRYCE
+	call Function976b
+	call Function9643_2
 	ld a, CHUCK
 	call Function976b
 	call Function9643_2
 	ld a, JASMINE
-	call Function976b
-	call Function9643_2
-	ld a, PRYCE
 	call Function976b
 	call Function9643_2
 	ld a, CLAIR
@@ -766,7 +766,7 @@ Function9289: ; 9289
 	call Function976b
 	call Function9643_2
 	ld hl, AttrMap
-	ld bc, $0168
+	ld bc, 18 * 20
 	ld a, [PlayerGender]
 	and a
 	ld a, $2
