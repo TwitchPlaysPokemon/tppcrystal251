@@ -203,15 +203,18 @@ UnknownScript_0x5b076: ; 0x5b076
 ; 0x5b07a
 
 SailorHuey1SeenText: ; 0x5b07a
-	text "Men of the sea are"
-	line "always spoiling"
-	cont "for a good fight!"
+	text "I have come to"
+	line "recharge our"
+	cont "ship's batteries"
+	
+	para "ahead of our"
+	line "next journey!"
 	done
 ; 0x5b0b0
 
 SailorHuey1BeatenText: ; 0x5b0b0
-	text "Urf!"
-	line "I lose!"
+	text "At least I have"
+	line "my honor..."
 	done
 ; 0x5b0be
 

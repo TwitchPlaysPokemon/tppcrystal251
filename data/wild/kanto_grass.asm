@@ -512,8 +512,8 @@
 	db $03
 ;morning
 		db PONYTA ;15
-		db VICTREEBEL ;10
-		db VICTREEBEL ;10
+		db WEEPINBELL ;10
+		db WEEPINBELL ;10
 		db RAPIDASH ;10
 		db BELLSPROUT ;10
 		db PONYTA ;5
@@ -539,7 +539,7 @@
 		db PIDGEOTTO ;5
 		db BELLSPROUT ;5
 		db BELLSPROUT ;5
-		db VICTREEBEL ;5
+		db WEEPINBELL ;5
 		db POLIWRATH ;4
 		db FARFETCH_D ;3
 		db FARFETCH_D ;2
@@ -559,8 +559,8 @@
 		db PIDGEOTTO ;5
 		db BELLSPROUT ;4
 		db BELLSPROUT ;3
-		db VICTREEBEL ;2
-		db VICTREEBEL ;1
+		db WEEPINBELL ;2
+		db WEEPINBELL ;1
 
 	db GROUP_ROUTE_7, MAP_ROUTE_7
 	db $19 ; encounter rates: morn/day/nite
@@ -1615,7 +1615,7 @@
 		db BULBASAUR ;15
 		db CATERPIE ;10
 		db WEEDLE ;10
-		db VICTREEBEL ;10
+		db WEEPINBELL ;10
 		db METAPOD ;5
 		db KAKUNA ;5
 		db GLOOM ;5

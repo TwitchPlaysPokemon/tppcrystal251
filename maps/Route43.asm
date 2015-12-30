@@ -514,7 +514,7 @@ PokemaniacRonSeenText: ; 0x19d386
 
 	para "Some <RIVAL> guy"
 	line "made fun of my"
-	cont "#MON!"
+	cont "cute bug #MON!"
 
 	para "Darn it! My #-"
 	line "MON's great!"
@@ -522,7 +522,7 @@ PokemaniacRonSeenText: ; 0x19d386
 ; 0x19d3d6
 
 PokemaniacRonBeatenText: ; 0x19d3d6
-	text "My NIDOKING did"
+	text "My VENOMOTH did"
 	line "pretty right on!"
 	done
 ; 0x19d3f8
@@ -541,19 +541,21 @@ UnknownText_0x19d3f8: ; 0x19d3f8
 ; 0x19d461
 
 FisherMarvinSeenText: ; 0x19d461
-	text "I'm in a slump."
+	text "This forest is"
+	cont "full of bugs!"
 
-	para "Maybe it's the"
-	line "gear I'm using."
+	para "I keep riling them"
+	line "in while they are"
+	cont "eating fishes!"
 
-	para "Let's battle for a"
-	line "change of pace!"
+	para "I've only got one"
+	line "big haul today..."
 	done
 ; 0x19d4b0
 
 FisherMarvinBeatenText: ; 0x19d4b0
-	text "I lost, but I feel"
-	line "better anyway."
+	text "At least POLITOED"
+	line "was a nice catch."
 	done
 ; 0x19d4d3
 

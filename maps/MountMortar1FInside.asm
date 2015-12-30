@@ -96,7 +96,7 @@ ItemFragment_0x7de88: ; 0x7de88
 	db ULTRA_BALL, 1
 ; 0x7de8a
 
-MapMountMortar1FInsideSignpostItem0: ; 0x7de8a
+MapMount1FInsideSignpostItem0: ; 0x7de8a
 	dw $0091
 	db MAX_REPEL
 	
@@ -153,8 +153,8 @@ UnknownText_0x7df97: ; 0x7df97
 	para "Did you run into a"
 	line "trainer who uses a"
 
-	para "SEADRA that knows"
-	line "WATERFALL?"
+	para "MAGCARGO that"
+	line "knows STRENGTH?"
 	done
 ; 0x7e01d
 

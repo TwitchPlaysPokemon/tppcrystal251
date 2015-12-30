@@ -484,16 +484,16 @@ PokefanmColinSeenText: ; 0x76329
 ; 0x7634c
 
 PokefanmColinBeatenText: ; 0x7634c
-	text "You're strong!"
+	text "SON: Dad, what"
+	line "will I get for"
+	cont "christmas?"
 	done
 ; 0x7635b
 
 UnknownText_0x7635b: ; 0x7635b
-	text "You're traveling"
-	line "all alone?"
-
-	para "Isn't your mom"
-	line "worried?"
+	text "We'll see what"
+	line "DELIBIRD brings"
+	cont "later, son!"
 	done
 ; 0x7638e
 

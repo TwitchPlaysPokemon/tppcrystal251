@@ -366,9 +366,8 @@ BlackbeltYoshiBeatenText: ; 0x9d9e9
 ; 0x9d9fa
 
 UnknownText_0x9d9fa: ; 0x9d9fa
-	text "You seem to have a"
-	line "strong bond with"
-	cont "your #MON too!"
+	text "I'll go and sulk"
+	line "in the corner..."
 	done
 ; 0x9da2e
 
@@ -403,8 +402,17 @@ BlackbeltNobBeatenText: ; 0x9dabd
 ; 0x9dac0
 
 UnknownText_0x9dac0: ; 0x9dac0
-	text "I lost! "
-	line "I'm speechless!"
+	text "All trainers here"
+	line "use BLACKBELT"
+	cont "to increase our"
+	cont "#MON power!"
+	
+	para "CHUCK, our gym"
+	line "leader, is an"
+	cont "exception."
+	
+	para "He is strong"
+	line "enough as is!"
 	done
 ; 0x9dad9
 

@@ -434,11 +434,11 @@ CooltrainerfLolaSeenText: ; 0x19549d
 	para "They are full of"
 	line "life energy."
 
-	para "If you're not"
-	line "serious, you won't"
-
-	para "be able to beat"
-	line "them."
+	para "My #MON might not"
+	line "be dragon-type,"
+	
+	para "but don't"
+	line "underestimate it!"
 	done
 ; 0x19550a
 
@@ -451,6 +451,10 @@ UnknownText_0x195516: ; 0x195516
 	text "Dragons are weak"
 	line "against dragon-"
 	cont "type moves."
+	
+	para "If you want to"
+	line "beat CLAIR,"
+	cont "remember that!"
 	done
 ; 0x195544
 

@@ -153,12 +153,12 @@ UnknownText_0x1957d5: ; 0x1957d5
 ; 0x19582b
 
 CooltrainerfFranSeenText: ; 0x19582b
-	text "I can't allow a"
-	line "nameless trainer"
-	cont "past me!"
+	text "Dragon-type"
+	line "#MON are rare."
 
-	para "CLAIR would be"
-	line "livid if I did!"
+	para "Being a dragon"
+	line "isn't all about"
+	cont "typing, though!"
 	done
 ; 0x195874
 
@@ -168,8 +168,9 @@ CooltrainerfFranBeatenText: ; 0x195874
 ; 0x195883
 
 UnknownText_0x195883: ; 0x195883
-	text "Uh-oh… CLAIR is"
-	line "going to be mad…"
+	text "GYARADOS is as"
+	line "strong as any"
+	cont "dragon-type!"
 	done
 ; 0x1958a5
 

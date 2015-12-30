@@ -478,54 +478,52 @@ UnknownText_0x1a1f86: ; 0x1a1f86
 ; 0x1a1fc5
 
 SchoolboyChad1SeenText: ; 0x1a1fc5
-	text "Let me try some-"
-	line "thing I learned"
-	cont "today."
+	text "EEVEE is common"
+	line "in this area!"
+
+	para "I have heard"
+	line "you can find"
+	cont "some rare"
+	
+	para "EEVEE evolutions"
+	line "here as well!"
 	done
 ; 0x1a1fee
 
 SchoolboyChad1BeatenText: ; 0x1a1fee
-	text "I didn't study"
-	line "enough, I guess."
+	text "I wonder if my"
+	line "EEVEE will evolve?"
 	done
 ; 0x1a200e
 
 UnknownText_0x1a200e: ; 0x1a200e
-	text "I have to take so"
-	line "many tests, I"
+	text "I have tests"
+	line "coming up."
 
-	para "don't have much"
+	para "I don't have much"
 	line "time for #MON."
-
-	para "So when I do get"
-	line "to play, I really"
-	cont "concentrate."
 	done
 ; 0x1a207d
 
 LassDana1SeenText: ; 0x1a207d
-	text "You seem to be"
-	line "good at #MON."
-
-	para "If you are, how"
-	line "about giving me"
-	cont "some advice?"
+	text "I feel like going"
+	line "all in today!"
 	done
 ; 0x1a20c8
 
 LassDana1BeatenText: ; 0x1a20c8
-	text "I see. So you can"
-	line "battle that way."
+	text "Down to my"
+	line "last 100..."
 	done
 ; 0x1a20ec
 
 UnknownText_0x1a20ec: ; 0x1a20ec
-	text "I know something"
-	line "good!"
+	text "There is a certain"
+	line "honor involved in"
 
-	para "MOOMOO FARM's milk"
-	line "is famous for its"
-	cont "flavor."
+	para "betting it all"
+	line "on the roll"
+	cont "of a dice."
 	done
 ; 0x1a2130
 
@@ -552,26 +550,25 @@ UnknownText_0x1a2185: ; 0x1a2185
 ; 0x1a21b7
 
 SailorHarrySeenText: ; 0x1a21b7
-	text "I've been over-"
-	line "seas, so I know"
+	text "My dream is to"
+	line "become admiral!"
 
-	para "about all sorts of"
-	line "#MON!"
+	para "My #MON will"
+	line "help me achieve"
+	cont "that goal!"
 	done
 ; 0x1a21f0
 
 SailorHarryBeatenText: ; 0x1a21f0
-	text "Your skill is"
-	line "world class!"
+	text "A cut below"
+	line "the rest..."
 	done
 ; 0x1a220c
 
 UnknownText_0x1a220c: ; 0x1a220c
-	text "All kinds of peo-"
-	line "ple around the"
-
-	para "world live happily"
-	line "with #MON."
+	text "I wonder how"
+	line "useful CUT"
+	cont "will be at sea..."
 	done
 ; 0x1a224c
 
@@ -597,6 +594,9 @@ UnknownText_0x1a229a: ; 0x1a229a
 
 	para "they only sell a"
 	line "bottle at a time."
+	
+	para "Thankfully I have"
+	line "my own MILTANK!"
 	done
 ; 0x1a22fd
 

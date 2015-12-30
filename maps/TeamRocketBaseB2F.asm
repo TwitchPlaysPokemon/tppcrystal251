@@ -916,59 +916,63 @@ UnknownText_0x6daf7: ; 0x6daf7
 ; 0x6db22
 
 GruntM17SeenText: ; 0x6db22
-	text "The door won't"
-	line "open?"
+	text "Have you ever"
+	line "heard about"
+	cont "'night bat'?"
 
-	para "Well, duh."
-	line "It has to have a"
-
-	para "password that only"
-	line "TEAM ROCKET knows."
+	para "ZUBAT family is"
+	line "common at night!"
 	done
 ; 0x6db79
 
 GruntM17BeatenText: ; 0x6db79
-	text "What? I lost?"
+	text "Bringing bats"
+	line "inside wasn't"
+	cont "a good idea..."
 	done
 ; 0x6db88
 
 UnknownText_0x6db88: ; 0x6db88
-	text "Heh, I'm just a"
-	line "GRUNT."
+	text "ZUBAT family cons-"
+	line "ists of poison-"
+	cont "type #MON."
 
-	para "I don't know the"
-	line "password. Too bad"
-	cont "for you."
+	para "They are weak to"
+	line "psychic-type"
+	cont "#MON like"
+	cont "STARMIE."
 	done
 ; 0x6dbca
 
 GruntM18SeenText: ; 0x6dbca
-	text "Oh, a kid? I don't"
-	line "really like this,"
+	text "I'll teach you"
+	line "a thing or two"
 
-	para "but eliminate you"
-	line "I must."
+	para "about #MON"
+	line "evolution!"
 	done
 ; 0x6dc09
 
 GruntM18BeatenText: ; 0x6dc09
-	text "I knew I'd lose…"
+	text "Not even close..."
 	done
 ; 0x6dc1a
 
 UnknownText_0x6dc1a: ; 0x6dc1a
-	text "I got wiped out on"
-	line "the last mission"
-	cont "by a kid too."
+	text "If you try to"
+	line "evolve by grinding"
+	cont "your #MON,"
 
-	para "When we were ab-"
-	line "ducting #MON,"
+	para "it can be easy"
+	line "to cancel it."
 
-	para "this kid with long"
-	line "red hair and mean-"
+	para "This isn't the"
+	line "case if you use"
+	cont "a RARE CANDY."
 
-	para "looking eyes just"
-	line "creamed me…"
+	para "ONIX doesn't evol-"
+	line "-ve by levelling"
+	cont "up, though."
 	done
 ; 0x6dcb0
 

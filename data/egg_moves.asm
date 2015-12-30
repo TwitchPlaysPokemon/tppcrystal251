@@ -204,12 +204,8 @@ DoduoEggMoves:
 	db $ff
 
 SeelEggMoves:
-	db LICK
 	db PERISH_SONG
-	db DISABLE
-	db PECK
 	db SLAM
-	db ENCORE
 	db $ff
 
 GrimerEggMoves:
@@ -230,11 +226,12 @@ GastlyEggMoves:
 	db PSYWAVE
 	db PERISH_SONG
 	db HAZE
+	db METRONOME
 	db $ff
 
 OnixEggMoves:
-	db ROCK_SLIDE
 	db FLAIL
+	db EXPLOSION
 	db $ff
 
 DrowzeeEggMoves:
@@ -379,10 +376,8 @@ endc
 	db $ff
 
 SnorlaxEggMoves:
-	db LICK
-if !_CRYSTAL
+	db METRONOME
 	db CHARM
-endc
 	db $ff
 
 DratiniEggMoves:
@@ -494,10 +489,8 @@ HoppipEggMoves:
 	db CONFUSION
 	db GROWL
 	db ENCORE
-	db DOUBLE_EDGE
 	db REFLECT
 	db AMNESIA
-	db PAY_DAY
 	db $ff
 
 AipomEggMoves:
@@ -566,9 +559,6 @@ SnubbullEggMoves:
 
 QwilfishEggMoves:
 	db FLAIL
-	db HAZE
-	db BUBBLEBEAM
-	db SUPERSONIC
 	db $ff
 
 ShuckleEggMoves:
@@ -599,7 +589,7 @@ SlugmaEggMoves:
 
 SwinubEggMoves:
 	db BODY_SLAM
-	db HAZE
+	db FISSURE
 	db $ff
 
 CorsolaEggMoves:

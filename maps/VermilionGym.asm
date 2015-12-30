@@ -523,24 +523,20 @@ UnknownText_0x19244b: ; 0x19244b
 ; 0x192487
 
 JugglerHortonSeenText: ; 0x192487
-	text "I'm going to take"
-	line "you down! Prepare"
-	cont "to be shocked!"
+	text "I'm the best"
+	line "juggler in KANTO!"
 	done
 ; 0x1924ba
 
 JugglerHortonBeatenText: ; 0x1924ba
-	text "Gwaaah!"
-	line "I was overpowered…"
+	text "Dropped my balls!"
 	done
 ; 0x1924d6
 
 UnknownText_0x1924d6: ; 0x1924d6
-	text "Don't get too com-"
-	line "fortable about"
-
-	para "beating me…"
-	line "LT.SURGE is tough."
+	text "I can only juggle"
+	line "three balls"
+	cont "at once..."
 	done
 ; 0x192517
 

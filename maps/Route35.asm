@@ -539,24 +539,20 @@ UnknownText_0x19cc87: ; 0x19cc87
 ; 0x19cd1e
 
 JugglerIrwin1SeenText: ; 0x19cd1e
-	text "I feel like going"
-	line "all in today!"
+	text "I can juggle five"
+	line "balls at once!"
 	done
 ; 0x19cd42
 
 JugglerIrwin1BeatenText: ; 0x19cd42
-	text "Down to my"
-	line "last 100..."
+	text "Dropped them!"
 	done
 ; 0x19cd5a
 
 UnknownText_0x19cd5a: ; 0x19cd5a
-	text "There is a certain"
-	line "honor involved in"
-
-	para "betting it all"
-	line "on the roll"
-	cont "of a dice."
+	text "Someday I will"
+	line "be able to juggle"
+	cont "six at once..."
 	done
 ; 0x19cdaa
 
