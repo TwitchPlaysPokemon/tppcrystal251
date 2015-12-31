@@ -60,29 +60,29 @@ JugglerIrwin1Script: ; 0x19c8cf
 	talkaftercancel
 	loadfont
 	checkcellnum $16
-	iftrue UnknownScript_0x19c90f
+	iftrue UnknownScript_0x19c90f ;call number given taxt
 	checkevent EVENT_ROUTE_35_281
 	iftrue UnknownScript_0x19c8ec
-	writetext UnknownText_0x19cd5a
+	writetext UnknownText_0x19cd5a ;have defeted text
 	keeptextopen
 	setevent EVENT_ROUTE_35_281
-	scall UnknownScript_0x19c903
+	scall UnknownScript_0x19c903 ;ask for number
 	jump UnknownScript_0x19c8ef
 ; 0x19c8ec
 
 UnknownScript_0x19c8ec: ; 0x19c8ec
-	scall UnknownScript_0x19c907
+	scall UnknownScript_0x19c907 ;ask for number text
 UnknownScript_0x19c8ef: ; 0x19c8ef
 	askforphonenumber $16
-	if_equal $1, UnknownScript_0x19c917
-	if_equal $2, UnknownScript_0x19c913
+	if_equal $1, UnknownScript_0x19c917 ;phone full
+	if_equal $2, UnknownScript_0x19c913 ;declined
 	trainertotext JUGGLER, IRWIN1, $0
-	scall UnknownScript_0x19c90b
+	scall UnknownScript_0x19c90b ;registered number text
 	jump UnknownScript_0x19c90f
 ; 0x19c903
 
 UnknownScript_0x19c903: ; 0x19c903
-	jumpstd asknumber1m
+	jumpstd asknumber1m 
 	end
 ; 0x19c907
 

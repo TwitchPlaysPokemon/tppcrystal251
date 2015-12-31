@@ -343,12 +343,12 @@ wc302:: ds 1
 wc303:: ds 2
 wc305:: ds 1
 wc306:: ds 1
-wc307:: ds 1
-wc308:: ds 1
-wc309:: ds 1
-wc30a:: ds 1
-wc30b:: ds 1
-wc30c:: ds 1
+wc307:: ds 1 ;10
+wc308:: ds 1 ;18
+wc309:: ds 1 ;filled by Function115e2b
+wc30a:: ds 1 ;decide table used by Function115e2b
+wc30b:: ds 1 ;decide entry used by Function115e2b
+wc30c:: ds 1 ;filled by Function115e2b
 wc30d:: ds 1
 wc30e:: ds 1
 wc30f:: ds 1
@@ -363,11 +363,11 @@ wc317:: ds 1
 wc318:: ds 1
 wc319:: ds 1
 wc31a:: ds 1
-wc31b:: ds 1 ;text pointer to battle tower text?
+wc31b:: ds 1 ;text pointer to battle tower text?  something loaded in load $20 and $c3
 wc31c:: ds 1
-wc31d:: ds 1 ;bank of above text?
+wc31d:: ds 1 ;bank of above text? also used to hold coords in tilemap
 wc31e:: ds 1
-wc31f:: ds 1
+wc31f:: ds 1 ;checked as an input?
 wc320:: ds 4
 wc324:: ds 34
 wc346:: ds 94
@@ -1059,7 +1059,7 @@ wcd42:: ds 1
 wcd43:: ds 1
 wcd44:: ds 1
 wcd45:: ds 1
-wcd46:: ds 1
+wcd46:: ds 1 ;0 if b is pressed in bt level menu
 wcd47:: ds 1
 
 BGMapPalBuffer:: ; cd48
@@ -1072,7 +1072,7 @@ wcd4c:: ds 1 ;holds bank?
 wcd4d:: ds 1
 wcd4e:: ds 1
 wcd4f:: ds 1 ;position in battle tower level menu
-wcd50:: ds 1 ;max level of tower
+wcd50:: ds 1 ;max level of tower, before that needs to be at 1 for level menu to run?
 wcd51:: ds 1
 wcd52:: ds 1
 wcd53:: ds 1
@@ -1093,7 +1093,7 @@ wcd62:: ds 1
 wcd63:: ds 1
 wcd64:: ds 1
 wcd65:: ds 1
-wcd66:: ds 1
+wcd66:: ds 1 ;7 if exiting bt level menu
 wcd67:: ds 1
 wcd68:: ds 1
 wcd69:: ds 1

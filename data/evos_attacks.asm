@@ -33,8 +33,8 @@ IvysaurEvosAttacks:
 	db EVOLVE_LEVEL,32,VENUSAUR
 	db 0 ; no more evolutions
 	db 1,GROWL
-	db 1,LEECH SEED
-	db 1,VINE WHIP
+	db 1,LEECH_SEED
+	db 1,VINE_WHIP
 	db 1,POISONPOWDER
 	db 18,MEGA_DRAIN
 	db 22,SLEEP_POWDER
@@ -92,7 +92,7 @@ CharmeleonEvosAttacks:
 	db EVOLVE_LEVEL,36,CHARIZARD
 	db 0 ; no more evolutions
 	db 1,GROWL
-	db 1,METAL CLAW
+	db 1,METAL_CLAW
 	db 1,SMOKESCREEN
 	db 1,EMBER
 	db 21,SCARY_FACE
@@ -114,7 +114,7 @@ CharizardEvosAttacks:
 	db 1,DRAGON_RAGE
 	db 1,BITE
 	db 1,EMBER ; tm move
-	db 36 WING_ATTACK ; *
+	db 36, WING_ATTACK ; *
 	db 40,ANCIENTPOWER ; egg move
 	db 44,FIRE_PUNCH ; tm move
 	db 47,SLASH
@@ -124,7 +124,7 @@ CharizardEvosAttacks:
 	db 65,ROCK_SLIDE ; egg move
 	db 70,OUTRAGE ; egg move
 	db 75,SWORDS_DANCE ; gen 1 move
-	db 80,FIRE BLAST ; * tm
+	db 80,FIRE_BLAST ; * tm
 	db 0 ; no more level-up moves
 
 SquirtleEvosAttacks:
@@ -415,7 +415,7 @@ ArbokEvosAttacks:
 	db 56,GLARE
 	db 61,ROCK_SLIDE ; * gen 1 move
 	db 65,FISSURE ; * later gen move
-	db 70,GUNK SHOT ; later gen move **********
+	db 70,GUNK_SHOT ; later gen move **********
 	db 0 ; no more level-up moves
 
 PikachuEvosAttacks:

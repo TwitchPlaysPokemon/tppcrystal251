@@ -8883,7 +8883,7 @@ SageGroup:
 		db 0
 		db 0
 	db 36, HOUNDOOM
-		db BODY SLAM
+		db BODY_SLAM
 		db BITE
 		db SPITE
 		db PROTECT

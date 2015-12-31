@@ -18271,7 +18271,7 @@ Function14a83: ; 14a83 (5:4a83)
 	ret
 
 Function14ab2: ; 14ab2  ask if save, if yes save and ret nc
-	call Function14b89 ask if save, if yes erase save and ret nc
+	call Function14b89 ; ask if save, if yes erase save and ret nc
 	jr c, .asm_14ac1 ;ret c if refused
 	call Function14b54
 	call Function14be3
@@ -27319,13 +27319,13 @@ Function2536c: ; 2536c (9:536c)
 	hlcoord 2, 13
 	ld a, $51
 	ld c, $4
-.asm_2538d
+NotRecogLoop:
 	call Function253f4
 	inc hl
-	inc hl5b
+	inc hl ;5b 
 
 Fuction4d35b: ; 4d35b
-	jr nz, .asm_2538d
+	jr nz, NotRecogLoop
 	xor a
 	ld [wcf64], a
 	ld hl, Unknown_254c9
@@ -91777,10 +91777,10 @@ Function104000:: ; 104000
 Function104006: ; 104006
 	ld de, AttrMap
 	ld hl, w6_d000 + $400
-	call Function104263
+	call Function104263 ;load hl with a mix of the contents of de and 0
 	ld de, TileMap
 	ld hl, w6_d000
-	call Function10425f
+	call Function10425f ; load hl with a mix of the contents of de and $7f
 	ld a, $0
 	ld [rVBK], a
 	ld hl, w6_d000
@@ -91826,7 +91826,7 @@ Function10404d: ; 10404d
 
 Function104061:: ; 104061
 	ld hl, Function104067
-	jp Function104177
+	jp Function104177 ;run HL with wram bank set to 6
 ; 104067
 
 Function104067: ; 104067
@@ -91985,14 +91985,14 @@ Function104177: ; 104177
 	push af
 	xor a
 	ld [hBGMapMode], a
-	ld [$ffde], a
+	ld [$ffde], a ;load 0 into map mode and ???
 	ld a, [rSVBK]
 	push af
 	ld a, $6
 	ld [rSVBK], a
 	ld a, [rVBK]
 	push af
-	call Function10419c
+	call Function10419c ;run hl
 	pop af
 	ld [rVBK], a
 	pop af
@@ -92157,31 +92157,31 @@ Function10425f: ; 10425f (41:425f)
 	ld c, $7f
 	jr Function104265
 
-Function104263: ; 104263 (41:4263)
+Function104263: ; 104263 (41:4263) ;load hl with a mix of the contents of de and 0
 	ld c, $0
 
 Function104265: ; 104265 (41:4265)
 	ld a, [$ffaf]
 	push af
 	ld a, c
-	ld [$ffaf], a
+	ld [$ffaf], a ;set $ffaf to c
 	ld c, $12
 .asm_10426d
 	ld b, $14
 .asm_10426f
 	ld a, [de]
 	inc de
-	ld [hli], a
+	ld [hli], a ;load de into hl 20 times
 	dec b
 	jr nz, .asm_10426f
 	ld a, [$ffaf]
-	ld b, $c
+	ld b, $c ;12
 .asm_104279
-	ld [hli], a
+	ld [hli], a ;load $ffaf into hl 12 times
 	dec b
 	jr nz, .asm_104279
 	dec c
-	jr nz, .asm_10426d
+	jr nz, .asm_10426d ;loop 18 times
 	pop af
 	ld [$ffaf], a
 	ret
