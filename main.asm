@@ -27469,7 +27469,7 @@ TrainerCardPage3_WaitJoypad: ; 25279 (9:5279)
 .asm_2528d
 	ld hl, StatusFlags
 	bit 5, [hl]
-	jr nz, .asm_25293
+	jr z, .asm_25293
 	ld a, $2
 	ld [wcf63], a
 	jr .dotrick
@@ -36722,8 +36722,9 @@ Function2ed44: ; 2ed44
 	ld a, b
 	and $7
 	inc a
-.asm_2ed91
 	ld b, a
+.asm_2ed91
+	ld a, b
 	swap b
 	and $3
 	inc a
@@ -67229,6 +67230,7 @@ Unknown_8d1c4: ; 8d1c4
 	db $3f, $21, $00
 	db $3e, $22, $00
 	db $40, $00, $00
+	db $42, $23, $00
 ; 8d24b
 
 Function8d24b: ; 8d24b ;jump to program set in wc316
@@ -67282,6 +67284,7 @@ Jumptable_8d25b: ; 8d25b (23:525b)
 	dw Function8d680
 	dw Function8d6a2
 	dw Function8d6ae
+	dw SpriteAnimSeq_VoltorbFlip
 
 Function8d2a1: ; 8d2a1 (23:52a1)
 	ret
@@ -68016,6 +68019,10 @@ Function8d6ae: ; 8d6ae (23:56ae)
 	ld [hl], a
 	ret
 
+SpriteAnimSeq_VoltorbFlip:
+	callba UpdateVoltorbFlipCursor
+	ret
+
 Function8d6b7: ; 8d6b7 (23:56b7)
 	callba Function11d0b6
 	ret
@@ -68128,6 +68135,7 @@ Unknown_8d6e6: ; 8d6e6
 	dw Unknown_8d940
 	dw Unknown_8d943
 	dw Unknown_8d948
+	dw VoltorbFlipCursorFrameset
 
 ; 8d76a
 
@@ -68206,6 +68214,7 @@ Unknown_8d93d: 	db $7e,$03, $ff
 Unknown_8d940: 	db $fd,$00, $ff
 Unknown_8d943: 	db $7f,$08, $80,$08, $ff
 Unknown_8d948: 	db $7f,$48, $80,$48, $ff
+VoltorbFlipCursorFrameset: db $8c,$08, $ff
 ; 8d94d
 
 Unknown_8d94d: ; 8d94d
@@ -68349,6 +68358,7 @@ Unknown_8d94d: ; 8d94d
 	dbw $08, Unknown_8e6a5
 	dbw $04, Unknown_8e6a5
 	dbw $00, Unknown_8e6a5
+	dbw $00, VoltorbFlipCursorOAMData
 ; 8daf1
 
 Unknown_8daf1: ; 8daf1
@@ -69415,6 +69425,13 @@ Unknown_8e6a5: ; 8e6a5
 	db $00, $0c, $53, $01
 ; 8e706
 
+VoltorbFlipCursorOAMData:
+	db 4
+	db $fe, $fe, $00, $00
+	db $fe, $0a, $00, $20
+	db $0a, $fe, $00, $40
+	db $0a, $0a, $00, $60
+
 Unknown_8e706: ; 8e706
 	dbbw $80, $01, Unknown_8e72a
 	dbbw $80, $01, Unknown_8e72a
@@ -70019,6 +70036,9 @@ Function8ea8c: ; 8ea8c load 2 into wc316,wc326,wc336,wc346,wc356 and wc366 if co
 	ret
 
 INCLUDE "menu/mon_icons.asm"
+
+INCLUDE "engine/voltorb_flip.asm"
+
 SECTION "bank24", ROMX, BANK[$24]
 Function90000:: ; 90000
 	call Function9001c

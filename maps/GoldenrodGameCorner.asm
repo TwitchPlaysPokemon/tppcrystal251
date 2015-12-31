@@ -313,6 +313,15 @@ PharmacistScript_0x56df1: ; 0x56df1
 	end
 ; 0x56dfc
 
+GoldenrodVoltorbFlipGuyScript:
+	faceplayer
+	loadfont
+	writetext GoldenrodVoltorbFlipGuyText
+	closetext
+	loadmovesprites
+	spriteface $e, $3
+	end
+
 PokefanMScript_0x56dfc: ; 0x56dfc
 	faceplayer
 	loadfont
@@ -362,7 +371,14 @@ PokefanMScript_0x56e2b: ; 0x56e2b
 ; 0x56e2e
 
 MapGoldenrodGameCornerSignpost30Script: ; 0x56e2e
-	jumptext UnknownText_0x571af
+	loadfont
+	writetext GoldenrodVoltorbFlipText
+	closetext
+	loadmovesprites
+	refreshscreen $0
+	special Special_VoltorbFlip
+	loadmovesprites
+	end
 ; 0x56e31
 
 MapGoldenrodGameCornerSignpost17Script: ; 0x56e31
@@ -536,6 +552,19 @@ UnknownText_0x571af: ; 0x571af
 	done
 ; 0x571db
 
+GoldenrodVoltorbFlipGuyText:
+	text "I'm trying out a"
+	line "fun new game here."
+
+	para "Sit across from me"
+	line "to play!"
+	done
+
+GoldenrodVoltorbFlipText:
+	text "Let's play some"
+	line "VOLTORB FLIP!"
+	done
+
 GoldenrodGameCorner_MapEventHeader: ; 0x571db
 	; filler
 	db 0, 0
@@ -583,7 +612,7 @@ GoldenrodGameCorner_MapEventHeader: ; 0x571db
 	signpost 1, 12, $4, MapGoldenrodGameCornerSignpost30Script
 
 	; people-events
-	db 12
+	db 13
 	person_event SPRITE_CLERK, 6, 7, $6, 0, 0, -1, -1, 8 + PAL_OW_RED, 0, 0, ClerkScript_0x56c25, -1
 	person_event SPRITE_RECEPTIONIST, 6, 20, $6, 0, 0, -1, -1, 8 + PAL_OW_RED, 0, 0, ReceptionistScript_0x56c28, -1
 	person_event SPRITE_RECEPTIONIST, 6, 22, $6, 0, 0, -1, -1, 8 + PAL_OW_RED, 0, 0, ReceptionistScript_0x56d01, -1
@@ -596,6 +625,7 @@ GoldenrodGameCorner_MapEventHeader: ; 0x571db
 	person_event SPRITE_GENTLEMAN, 14, 9, $9, 0, 0, -1, -1, 8 + PAL_OW_BLUE, 0, 0, GentlemanScript_0x56e20, -1
 	person_event SPRITE_POKEFAN_M, 13, 6, $2, 1, 1, -1, -1, 8 + PAL_OW_BROWN, 0, 0, PokefanMScript_0x56e2b, -1
 	person_event SPRITE_POKEFAN_M, 14, 21, $9, 0, 0, -1, -1, 8 + PAL_OW_RED, 0, 0, PokefanMScript_0x56c1a, EVENT_POKEFAN_M_IN_GOLDENROD_GAME_CORNER
+	person_event SPRITE_GENTLEMAN, 5, 14, $9, 0, 0, -1, -1, 8 + PAL_OW_GREEN, 0, 0, GoldenrodVoltorbFlipGuyScript, -1
 ; 0x57322
 
 
