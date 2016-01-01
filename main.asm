@@ -27646,7 +27646,7 @@ Function2536c: ; 2536c (9:536c)
 	jr nz, .asm_2537c
 	hlcoord 2, 13
 	ld a, $51
-	ld c, $4 
+	ld c, $4
 .asm_2538d
 	call Function253f4
 	inc hl
@@ -95751,7 +95751,8 @@ MoveGrammar: ; 105e7a
 	db METRONOME
 	db LICK
 	db CLAMP
-	db CONSTRICT
+	;db CONSTRICT
+	db FLASH_CANNON ;comment out all record of old constant and replace with new
 	db POISON_GAS
 	db BUBBLE
 	db SLASH

@@ -131,7 +131,8 @@ BattleAnimations:: ; c906f
 	dw BattleAnim_Swift
 	dw BattleAnim_SkullBash
 	dw BattleAnim_SpikeCannon
-	dw BattleAnim_Constrict
+	;dw BattleAnim_Constrict
+	dw BattleAnim_FlashCannon ;replace the animation pointer with one bearing the new name
 	dw BattleAnim_Amnesia
 	dw BattleAnim_Kinesis
 	dw BattleAnim_Softboiled
@@ -1929,7 +1930,7 @@ BattleAnim_Confusion: ; ca058
 	anim_ret
 ; ca06c
 
-BattleAnim_Constrict: ; ca06c
+;BattleAnim_Constrict: ; ca06c Find the old label and comment it out
 	anim_1gfx ANIM_GFX_ROPE
 	anim_sound $1, SFX_BIND
 	anim_obj $49, 132, 64, $0
@@ -3759,6 +3760,7 @@ BattleAnim_MudSlap: ; cb067
 ; cb06f
 
 BattleAnim_Octazooka: ; cb06f
+BattleAnim_FlashCannon: ; place a new label next to the label of the animation you are cloning from
 	anim_3gfx ANIM_GFX_HAZE, ANIM_GFX_EGG, ANIM_GFX_SMOKE
 	anim_sound $1a, SFX_SLUDGE_BOMB
 	anim_obj $8c, 64, 92, $4

@@ -132,7 +132,8 @@
 	const SWIFT        ; $81
 	const SKULL_BASH   ; $82
 	const SPIKE_CANNON ; $83
-	const CONSTRICT    ; $84
+	;const CONSTRICT    ; $84
+	const FLASH_CANNON ;comment out old constant, replace with new one
 	const AMNESIA      ; $85
 	const KINESIS      ; $86
 	const SOFTBOILED   ; $87
