@@ -1239,7 +1239,7 @@ BattleCommand05: ; 34631
 
 ; +2 critical level
 	ld c, 2
-	jr .Tally
+	jr .FocusEnergy ;.Tally fixed a non-stacking bug
 
 .Farfetchd
 	cp FARFETCH_D
@@ -1250,7 +1250,7 @@ BattleCommand05: ; 34631
 
 ; +2 critical level
 	ld c, 2
-	jr .Tally
+	jr .FocusEnergy ;.Tally fixed a non-stacking bug
 
 .FocusEnergy
 	ld a, BATTLE_VARS_SUBSTATUS4
@@ -1258,7 +1258,8 @@ BattleCommand05: ; 34631
 	bit SUBSTATUS_FOCUS_ENERGY, a
 	jr z, .CheckCritical
 
-; +1 critical level
+; +2 critical level
+	inc c
 	inc c
 
 .CheckCritical
@@ -1298,10 +1299,10 @@ BattleCommand05: ; 34631
 	ret
 
 .Criticals
-	db KARATE_CHOP, RAZOR_WIND, RAZOR_LEAF, CRABHAMMER, SLASH, AEROBLAST, CROSS_CHOP, $ff
+	db KARATE_CHOP, RAZOR_WIND, RAZOR_LEAF, CRABHAMMER, SLASH, AEROBLAST, CROSS_CHOP, SKY_ATTACK, SHADOW_CLAW, $ff ;crit+ moves
 .Chances
-	; 6.25% 12.1% 24.6% 33.2% 49.6% 49.6% 49.6%
-	db $11,  $20,  $40,  $55,  $80,  $80,  $80
+	; 6.25% 12.1% 24.6% 33.2% 49.6% 66.015% 75.3%
+	db $11,  $20,  $40,  $55,  $80,  $A8,   $c0
 	;   0     1     2     3     4     5     6
 ; 346b2
 

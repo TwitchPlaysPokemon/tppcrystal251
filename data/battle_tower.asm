@@ -34,24 +34,24 @@ ENDC
 	ld hl, $be48
 .asm_1f803a
 	ld a, [hli]
-	cp b
+	cp b ;if b = be48, try again
 	jr z, .asm_1f8022
 	dec c
-	jr nz, .asm_1f803a
+	jr nz, .asm_1f803a ;check 7 slots
 	ld hl, $be48
 	ld a, [$be46]
 	ld c, a
 	ld a, b
 	ld b, 0
-	add hl, bc
+	add hl, bc ;fill slot $be46 with the random number
 	ld [hl], a
 	call CloseSRAM
 	push af
-	ld hl, BattleTowerTrainers
+	ld hl, BattleTowerTrainers ;list of trainer names and classes
 	ld bc, 11
-	call AddNTimes
+	call AddNTimes ;go down random number times
 	ld bc, 11
-	call CopyBytes
+	call CopyBytes ;copy the data into wd100
 	call Function1f8081
 	pop af
 	ld hl, Function1f8000
@@ -74,7 +74,7 @@ ENDC
 ; 1f8081
 
 Function1f8081: ; 1f8081
-	ld c, $3
+	ld c, $3 ;num of mons to generate?
 .loop
 	push bc
 	ld a, $1
@@ -83,23 +83,23 @@ Function1f8081: ; 1f8081
 .asm_1f8089
 	ld a, [$d800]
 	dec a
-	ld hl, BattleTowerMons
+	ld hl, BattleTowerMons 
 	ld bc, BattleTowerMons2 - BattleTowerMons1
-	call AddNTimes
+	call AddNTimes ;go down to level group $d800
 
 	ld a, [hRandomAdd]
 	ld b, a
 .asm_1f8099
 	call Random
-	ld a, [hRandomAdd]
+	ld a, [hRandomAdd] 
 	add b
-	ld b, a
-	and $1f
-	cp (BattleTowerMons2 - BattleTowerMons1) / ($3b)
+	ld b, a; redundent?
+	and $1f; first 5 bytes (0-31)
+	cp (BattleTowerMons2 - BattleTowerMons1) / ($3b) ;if > number of mons, try again
 	jr nc, .asm_1f8099
 
 	ld bc, $3b
-	call AddNTimes
+	call AddNTimes ;go down the number of mons equal to the random number
 	ld a, [hli]
 	ld b, a
 	ld a, [hld]
