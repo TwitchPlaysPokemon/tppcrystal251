@@ -1476,7 +1476,7 @@ UnknownText_0x1c5c5e: ; 0x1c5c5e
 UnknownText_0x1c5c7b: ; 0x1c5c7b
 	text "Coins:"
 	line "@"
-	deciram Coins, $24
+	deciram Coins, $25
 	db "@"
 ; 0x1c5c89
 

@@ -372,14 +372,34 @@ PokefanMScript_0x56e2b: ; 0x56e2b
 
 MapGoldenrodGameCornerSignpost30Script: ; 0x56e2e
 	loadfont
+	checkcoins 3
+	if_equal $2, .NotEnoughCoins
 	writetext GoldenrodVoltorbFlipText
 	closetext
 	loadmovesprites
 	refreshscreen $0
 	special Special_VoltorbFlip
 	loadmovesprites
+	if_equal $a, .ReachedLevel10
 	end
 ; 0x56e31
+.NotEnoughCoins
+	writetext GoldenrodVoltorbFlipNotEnoughCoinsText
+	closetext
+	loadmovesprites
+	end
+
+.ReachedLevel10
+	loadfont
+	writetext GoldenrodVoltorbFlipReachedHighestLevel
+	closetext
+	verbosegiveitem MASTER_BALL, 1
+	iffalse .nope
+	writetext GoldenrodVoltorbFlipReceivedMasterBallText
+.nope
+	closetext
+	loadmovesprites
+	end
 
 MapGoldenrodGameCornerSignpost17Script: ; 0x56e31
 	random $6
@@ -544,14 +564,6 @@ UnknownText_0x5718a: ; 0x5718a
 	done
 ; 0x571af
 
-UnknownText_0x571af: ; 0x571af
-	text "Someone left their"
-	line "drink."
-
-	para "It smells sweet."
-	done
-; 0x571db
-
 GoldenrodVoltorbFlipGuyText:
 	text "I'm trying out a"
 	line "fun new game here."
@@ -563,6 +575,32 @@ GoldenrodVoltorbFlipGuyText:
 GoldenrodVoltorbFlipText:
 	text "Let's play some"
 	line "VOLTORB FLIP!"
+	done
+
+GoldenrodVoltorbFlipNotEnoughCoinsText:
+	text "You need 3 coins"
+	line "to play this game."
+	done
+
+GoldenrodVoltorbFlipReachedHighestLevel:
+	text "Splendid! Marve-"
+	line "lous!"
+
+	para "You've reached the"
+	line "highest possible"
+
+	para "level in VOLTORB"
+	line "FLIP!"
+
+	para "This deserves a"
+	line "special reward."
+
+	para "Here, take this."
+	done
+
+GoldenrodVoltorbFlipReceivedMasterBallText:
+	text "Come back and play"
+	line "again any time!"
 	done
 
 GoldenrodGameCorner_MapEventHeader: ; 0x571db

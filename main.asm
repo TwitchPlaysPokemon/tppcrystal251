@@ -21380,7 +21380,7 @@ Function1606f:: ; 1606f
 ; 1608d
 
 Unknown_1608d: ; 1608d
-	bigdw 9999
+	bigdw 50000
 
 ; 1608f
 
@@ -26321,8 +26321,8 @@ Function24b25: ; 24b25
 	ld de, String24b8e
 	call PlaceString
 	ld de, Coins
-	ld bc, $0204
-	hlcoord 13, 1
+	ld bc, $0205
+	hlcoord 12, 1
 	call PrintNum
 	ret
 
@@ -26343,9 +26343,9 @@ Function24b4e: ; 24b4e
 	hlcoord 6, 3
 	ld de, CoinString
 	call PlaceString
-	hlcoord 15, 3
+	hlcoord 14, 3
 	ld de, Coins
-	ld bc, $0204
+	ld bc, $0205
 	call PrintNum
 	ret
 
@@ -49052,7 +49052,7 @@ Function5003f: ; 5003f
 
 Function5004f: ; 5004f
 	call Functione58
-	callab Function8ad1
+	callab InitPartyMenuPalettes
 	callab Function8e814
 	ret
 
@@ -75041,9 +75041,9 @@ Function927d4: ; 927d4
 ; 927f8
 
 Function927f8: ; 927f8 (24:67f8)
-	hlcoord 5, 1
+	hlcoord 4, 1
 	ld de, Coins
-	ld bc, $8204
+	ld bc, $8205
 	call PrintNum
 	hlcoord 11, 1
 	ld de, wc711
@@ -81978,9 +81978,9 @@ Functione049c: ; e049c
 	hlcoord 10, 16
 	ld de, String_e04bc
 	call PlaceString
-	hlcoord 15, 16
+	hlcoord 14, 16
 	ld de, Coins
-	ld bc, $8204
+	ld bc, $8205
 	call PrintNum
 	ret
 

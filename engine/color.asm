@@ -103,7 +103,7 @@ Function8aa4: ; 8aa4
 ; 8ad1
 
 
-Function8ad1: ; 8ad1
+InitPartyMenuPalettes: ; 8ad1
 	ld hl, PalPacket_9c56 + 1
 	call Function9610
 	call Function971a

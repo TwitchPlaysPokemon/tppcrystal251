@@ -14,6 +14,8 @@ VoltorbFlip:
 	callba Function8cf62
 	call VFlipLoop
 	jr nc, .loop
+	ld a, [wVoltorbFlipHighestLevel]
+	ld [ScriptVar], a
 	call WaitSFX
 	ld de, SFX_QUIT_SLOTS
 	call PlaySFX
@@ -212,23 +214,36 @@ VoltorbFlip_PrintLevel:
 	ld a, [wVoltorbFlipLevel]
 	ld b, a
 	cp 10
-	ld a, $18
-	jr c, .load_level
-	inc a
-.load_level
+	jr nc, .load_10
+	ld a, $23
+.finish
 	ld [hli], a
 	ld a, b
 	add $18
 	ld [hl], a
 	ret
 
+.load_10
+	ld a, b
+	ld c, 0
+.loop
+	inc c
+	sub 10
+	jr nc, .loop
+	add 10
+	dec c
+	ld b, a
+	ld a, c
+	add $18
+	jr .finish
+
 VoltorbFlip_PrintPayout:
-	hlcoord 3, 4
+	hlcoord 2, 4
 	ld de, wVoltorbFlipPayout
 	jr continue_printing_amount
 
 VoltorbFlip_PrintCoins:
-	hlcoord 3, 1
+	hlcoord 2, 1
 	ld de, Coins
 continue_printing_amount
 	push de
@@ -238,7 +253,7 @@ continue_printing_amount
 	call ByteFill
 	pop hl
 	pop de
-	lb bc, $c0 | 2, 4
+	lb bc, $c0 | 2, 5
 	jp PrintNum
 
 VFlipLoop:
@@ -564,7 +579,12 @@ VoltorbFlip_HandleOutcome:
 .RevealTiles
 	call VoltorbFlip_RevealBoard
 	ld hl, wVoltorbFlipLevel
-	ld a, [hl]
+	ld a, [hli]
+	cp [hl]
+	jr c, .dont_load_max
+	ld [hl], a
+.dont_load_max
+	dec hl
 	cp 10
 	jr nc, .okay
 	inc a
@@ -774,7 +794,19 @@ VoltorbFlip_ClearBoard:
 
 VoltorbFlip_SampleBoard:
 	ld a, [wVoltorbFlipLevel]
-	add 5
+	dec a
+	ld e, a
+	ld d, 0
+	ld hl, .MinMax
+	add hl, de
+	add hl, de
+	ld de, wVoltorbFlipMinPayout
+	ld bc, 4
+	call CopyBytes
+.TryAgain
+	ld a, [wVoltorbFlipLevel]
+	srl a
+	add 6
 	ld b, a
 .loop
 	call Random
@@ -830,22 +862,38 @@ VoltorbFlip_SampleBoard:
 	inc de
 	dec b
 	jr nz, .loop2
+	call VoltorbFlip_CountTotalNumberOfCoins
+	jr c, .resample
 	call VoltorbFlip_Count2sAnd3s
 	ret nz
+.resample
 	call VoltorbFlip_ClearBoard
-	jp VoltorbFlip_SampleBoard
+	jp .TryAgain
 
 .Odds
 	db  80 percent, 100 percent
-	db  75 percent, 100 percent
-	db  60 percent, 100 percent
-	db  50 percent,  90 percent
-	db  40 percent,  80 percent
-	db  40 percent,  75 percent
-	db  35 percent,  70 percent
-	db  30 percent,  70 percent
-	db  25 percent,  65 percent
-	db  20 percent,  60 percent
+	db  75 percent,  96 percent
+	db  70 percent,  92 percent
+	db  65 percent,  88 percent
+	db  60 percent,  84 percent
+	db  55 percent,  80 percent
+	db  50 percent,  76 percent
+	db  45 percent,  72 percent
+	db  40 percent,  68 percent
+	db  35 percent,  64 percent
+
+.MinMax
+	bigdw    20
+	bigdw    50
+	bigdw   100
+	bigdw   200
+	bigdw   500
+	bigdw  1000
+	bigdw  2000
+	bigdw  3000
+	bigdw  5000
+	bigdw  7000
+	bigdw 10000
 
 VoltorbFlip_CountVoltorbInRow:
 	ld hl, wVoltorbFlipBoard
@@ -958,7 +1006,80 @@ UpdateVoltorbFlipCursor:
 	call ClearSprites
 	ret
 
+VoltorbFlip_CountTotalNumberOfCoins:
+	ld de, wVoltorbFlipBoard
+	ld c, 25
+	ld hl, 1
+.loop
+	ld a, [de]
+	inc de
+	and $3
+	jr z, .next
+	dec a
+	jr z, .next
+	push de
+	ld d, h
+	ld e, l
+.loop2
+	add hl, de
+	jr c, .pop_fail
+	dec a
+	jr nz, .loop2
+	pop de
+.next
+	ld a, 50000 / $100
+	cp h
+	jr c, .fail
+	jr nz, .okay
+	ld a, 50000 % $100
+	cp l
+	jr c, .fail
+.okay
+	dec c
+	jr nz, .loop
+	ld d, h
+	ld e, l
+	ld hl, wVoltorbFlipPotentialPayout
+	ld [hl], d
+	inc hl
+	ld [hl], e
+	dec hl
+	ld de, wVoltorbFlipMinPayout
+	push hl
+	ld c, 2
+	call StringCmp
+	pop hl
+	jr z, .check_max
+	jr nc, .fail
+.check_max
+	ld de, wVoltorbFlipMaxPayout
+	ld c, 2
+	call StringCmp
+	ret c
+	and a
+	ret
+
+.pop_fail
+	pop de
+.fail
+	scf
+	ret
+
 VoltorbFlip_CheckSquare:
+	ld a, [wVoltorbFlipNum2s3s]
+	cp 1
+	jr nz, .skip_sfx
+	call Random
+	ld a, [hRandomAdd]
+	and a
+	jr nz, .skip_sfx
+	ld a, [hRandomSub]
+	cp $20
+	jr nz, .skip_sfx
+	ld de, SFX_CHOOSE_A_CARD
+	call PlaySFX
+	call WaitSFX
+.skip_sfx
 	ld hl, wVoltorbFlipBoard
 	ld a, [wVoltorbFlipCursor]
 	and $f
@@ -1011,17 +1132,17 @@ VoltorbFlip_CheckSquare:
 	call WaitSFX
 	ld hl, wVoltorbFlipPayout
 	ld a, [hli]
-	cp 9999 / $100
+	cp 50000 / $100
 	jr nc, .max_out
 	jr c, .okay
 	ld a, [hl]
-	cp 9999 % $100
+	cp 50000 % $100
 	jr c, .okay
 	jr z, .okay
 .max_out
-	ld a, 9999 % $100
+	ld a, 50000 % $100
 	ld [hld], a
-	ld a, 9999 / $100
+	ld a, 50000 / $100
 	ld [hl], a
 .okay
 	call VoltorbFlip_PrintPayout

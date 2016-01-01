@@ -632,10 +632,14 @@ PlayerSAtkLevel:: ; c6cf
 wVoltorbFlip::
 wVoltorbFlipBoard:: ds 5 * 5 ; c6d0
 wVoltorbFlipLevel:: ds 1 ; c6e9
+wVoltorbFlipHighestLevel:: ds 1
 wVoltorbFlipPayout:: ds 2 ; c6ea
 wVoltorbFlipCursor:: ds 1 ; c6ec lo: y | hi: x
 wVoltorbFlipMultiplier:: ds 1 ; c6ed
 wVoltorbFlipNum2s3s:: ds 1 ; c6ee
+wVoltorbFlipMinPayout:: ds 2
+wVoltorbFlipMaxPayout:: ds 2
+wVoltorbFlipPotentialPayout:: ds 2
 wVoltorbFlipEnd::
 	ds wVoltorbFlip - @
 
