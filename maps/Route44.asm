@@ -592,14 +592,12 @@ PokemaniacZachBeatenText: ; 0x19dd5b
 ; 0x19dd7e
 
 UnknownText_0x19dd7e: ; 0x19dd7e
-	text "If a #MON has"
-	line "different colors"
+	text "Never seen a"
+	line "SLOWKING before?"
 
-	para "from usual, it's"
-	line "more valuable."
-
-	para "What? You mean"
-	line "that's not true?"
+	para "I found this one"
+	line "one deep into"
+	cont "SLOWPOKE WELL."
 	done
 ; 0x19dddc
 

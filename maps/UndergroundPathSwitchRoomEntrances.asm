@@ -1037,15 +1037,16 @@ UnknownText_0x7d554: ; 0x7d554
 ; 0x7d56b
 
 GruntF3SeenText: ; 0x7d56b
-	text "Are you lost? No,"
-	line "you can't be."
+	text "An intruder!?"
 
-	para "You don't have"
-	line "that scared look."
+	para "I can't let"
+	line "you enter the"
+	cont "the warehouse."
 
-	para "I'll give you"
-	line "something to be"
-	cont "scared about!"
+	para "I got no choice."
+
+	para "I need to use the"
+	line "BERSERK GENE!"
 	done
 ; 0x7d5d6
 

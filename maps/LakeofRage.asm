@@ -482,23 +482,27 @@ UnknownText_0x7058f: ; 0x7058f
 ; 0x705c0
 
 FisherRaymondSeenText: ; 0x705c0
-	text "No matter what I"
-	line "do, all I catch"
+	text "After only"
+	line "catching MAGIKARP"
+	cont "for a few days,"
 
-	para "are the same #-"
-	line "MON…"
+	para "I finally found"
+	line "a big one"
+	cont "last night!"
 	done
 ; 0x705f7
 
 FisherRaymondBeatenText: ; 0x705f7
-	text "My line's all"
-	line "tangled up…"
+	text "Things will"
+	line "get better!"
 	done
 ; 0x70611
 
 UnknownText_0x70611: ; 0x70611
-	text "Why can't I catch"
-	line "any good #MON?"
+	text "With this FERA-"
+	line "-LIGATR, I can"
+	cont "head to the"
+	cont "Battle Tower!"
 	done
 ; 0x70632
 
@@ -551,7 +555,15 @@ CooltrainerfLoisBeatenText: ; 0x70745
 UnknownText_0x70752: ; 0x70752
 	text "Come to think of"
 	line "it, I've seen a"
-	cont "pink BUTTERFREE."
+	cont "pink BUTTERFREE..."
+	
+	para "Also, I caught"
+	line "my FORRETRESS"
+	cont "right here"
+	
+	para "Try headbutting"
+	line "trees if you"
+	cont "want one!"
 	done
 ; 0x70784
 

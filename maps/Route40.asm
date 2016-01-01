@@ -236,11 +236,10 @@ MovementData_0x1a622a: ; 0x1a622a
 ; 0x1a622f
 
 SwimmermSimonSeenText: ; 0x1a622f
-	text "You have to warm"
-	line "up before going"
-	cont "into the water."
+	text "A famous burglar"
+	line "shares my name!"
 
-	para "That's basic."
+	para "I'm sweet, though."
 	done
 ; 0x1a626e
 
@@ -250,18 +249,19 @@ SwimmermSimonBeatenText: ; 0x1a626e
 ; 0x1a6282
 
 UnknownText_0x1a6282: ; 0x1a6282
-	text "CIANWOOD CITY is"
-	line "a good distance"
-	cont "away from here."
+	text "Burglar SIMON in"
+	line "famous in JOHTO"
+	cont "and KANTO."
 	done
 ; 0x1a62b4
 
 SwimmermRandallSeenText: ; 0x1a62b4
-	text "Hey, you're young"
-	line "and fit!"
+	text "I work as a mover!"
 
-	para "Don't ride your"
-	line "#MON! Swim!"
+	para "I need a break."
+	
+	para "Want a battle"
+	line "by this cliff?"
 	done
 ; 0x1a62ea
 
@@ -271,9 +271,10 @@ SwimmermRandallBeatenText: ; 0x1a62ea
 ; 0x1a62fa
 
 UnknownText_0x1a62fa: ; 0x1a62fa
-	text "Swimming exercises"
-	line "your entire body."
-	cont "It's healthy."
+	text "I put furniture"
+	line "on my LAPRAS"
+	cont "and my #MON"
+	cont "holds on to them!"
 	done
 ; 0x1a632d
 

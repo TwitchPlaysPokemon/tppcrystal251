@@ -272,11 +272,13 @@ UnknownText_0x1a5bf9: ; 0x1a5bf9
 ; 0x1a5c09
 
 SailorEugeneSeenText: ; 0x1a5c09
-	text "I just got back to"
-	line "OLIVINE."
+	text "I am gathering"
+	line "groceries for"
+	cont "our next journey!"
 
-	para "So how about a"
-	line "#MON battle?"
+	para "Some #MON"
+	line "happened to get"
+	cont "mixed into it..."
 	done
 ; 0x1a5c42
 
@@ -286,63 +288,74 @@ SailorEugeneBeatenText: ; 0x1a5c42
 ; 0x1a5c4d
 
 UnknownText_0x1a5c4d: ; 0x1a5c4d
-	text "My #MON were"
-	line "caught and raised"
-	cont "overseas."
+	text "I guess this"
+	line "shows how"
+	cont "important it is"
 
-	para "They're my compan-"
-	line "ions on those long"
-	cont "voyages."
+	para "to develop bonds"
+	line "with #MON"
+	cont "before battling!"
 	done
 ; 0x1a5ca5
 
 PokefanmDerek1SeenText: ; 0x1a5ca5
-	text "This is a good"
-	line "time to brag about"
-	cont "my PIKACHU!"
+	text "I work at the"
+	line "local farm here!"
+	
+	para "My son likes to"
+	line "come around and"
+	cont "watch me work."
+	
+	para "I know!"
+	
+	para "I'll impress him"
+	line "a bit by battling!"
 	done
 ; 0x1a5cd4
 
 PokefanmDerek1BeatenText: ; 0x1a5cd4
-	text "I had no time to"
-	line "show off PIKACHU…"
+	text "SON: Dad, how"
+	line "could you lose!?"
+	
+	para "DAD: ..."
 	done
 ; 0x1a5cf8
 
 UnknownText_0x1a5cf8: ; 0x1a5cf8
-	text "I'm not listening"
-	line "to your bragging!"
+	text "You can train"
+	line "#MON by other"
+	cont "means than battle."
 
-	para "We # FANS have"
-	line "a policy of not"
-
-	para "listening to other"
-	line "people brag!"
+	para "Mine train by"
+	line "mowing the grass"
+	cont "at ROUTE 38!"
 	done
 ; 0x1a5d5b
 
 PokefanfRuthSeenText: ; 0x1a5d5b
-	text "Such darling"
-	line "#MON."
+	text "I am a big fan"
+	line "of OLIVINE gym"
+	cont "leader JASMINE."
 
-	para "Let's show our"
-	line "#MON together"
-	cont "at the same time."
+	para "I named my"
+	line "#MON, just"
+	cont "like she does!"
 	done
 ; 0x1a5d9d
 
 PokefanfRuthBeatenText: ; 0x1a5d9d
-	text "I don't mind"
-	line "losing."
+	text "ZAPPY, no!"
 	done
 ; 0x1a5db2
 
 UnknownText_0x1a5db2: ; 0x1a5db2
-	text "Do you know about"
-	line "baby #MON?"
+	text "Nicknames really"
+	line "give #MON"
+	cont "a personal touch."
 
-	para "I bet they're just"
-	line "adorable!"
+	para "I visit the NAME"
+	line "RATER sometimes in"
+	cont "GOLDENROD CITY."
 	done
 ; 0x1a5dec
 
@@ -368,7 +381,7 @@ PsychicNormanBeatenText: ; 0x1a5e37
 UnknownText_0x1a5e57: ; 0x1a5e57
 	text "You know how #-"
 	line "MON have different"
-	cont "abilities?"
+	cont "level of strength?"
 
 	para "People are like"
 	line "that too. Every-"
