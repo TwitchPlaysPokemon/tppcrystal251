@@ -455,7 +455,7 @@ DefenseDown:
 	statdownfailtext
 	endmove
 
-StringShot:
+
 SpeedDown:
 	checkobedience
 	usedmovetext
@@ -556,6 +556,7 @@ DefenseDown2:
 
 CottonSpore:
 ScaryFace:
+StringShot:
 SpeedDown2:
 	checkobedience
 	usedmovetext
@@ -648,6 +649,7 @@ AttackDownHit:
 Acid:
 IronTail:
 RockSmash:
+Crunch:
 DefenseDownHit:
 	checkobedience
 	usedmovetext
@@ -672,7 +674,7 @@ DefenseDownHit:
 	endmove
 
 Bubblebeam:
-Constrict:
+;Constrict: comment out old effect pointer
 Bubble:
 IcyWind:
 SpeedDownHit:
@@ -721,7 +723,7 @@ SpecialAttackDownHit:
 	endmove
 
 PsychicM:
-Crunch:
+FlashCannon: ; place new label near similar moves
 ShadowBall:
 SpecialDefenseDownHit:
 	checkobedience

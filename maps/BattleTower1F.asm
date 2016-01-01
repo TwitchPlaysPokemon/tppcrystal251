@@ -64,7 +64,7 @@ ReceptionistScript_0x9e3e2: ; 0x9e3e2 talk to receptionist
 	keeptextopen
 	writebyte $0
 	special Function170687 ;if saved id = playerid, load bit 1 of $be4f into scriptvar, else scriptvar = 0
-	if_not_equal $0, UnknownScript_0x9e3fc ;as if player wants in
+	if_not_equal $0, UnknownScript_0x9e3fc ;ask if player wants in
 	jump UnknownScript_0x9e49e
 ; 0x9e3fc
 
@@ -91,9 +91,9 @@ UnknownScript_0x9e40f: ; 0x9e40f
 	dotrigger $1 ;set trigger
 	writebyte $1
 	special Function170687 ;set bit 1 of $be4f
-	special Function1700b0 ;??? (please don't tell me this is the menu) [it's the menu]
-	if_equal $a, UnknownScript_0x9e3fc ;if ??? exit
-	if_not_equal $0, UnknownScript_0x9e550 ;???
+	special Function1700b0 ;level selection menu and checks
+	if_equal $a, UnknownScript_0x9e3fc ;if b is pressed and cofirmed to want out, exit
+	if_not_equal $0, UnknownScript_0x9e550 ;should be impossible (mobile stuff?)
 	writebyte $11
 	special Function170687 ;load 0 into aa8d
 	writetext UnknownText_0x9e60a ;to your battle room

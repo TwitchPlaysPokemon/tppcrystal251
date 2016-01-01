@@ -6,27 +6,27 @@ Function1f8000: ; 1f8000
 	xor a
 	ld hl, wd100
 	ld bc, $00e0
-	call ByteFill
+	call ByteFill ;fill 340 bytes with 0 from d100
 	ld a, $ff
-	ld [wd10c], a
+	ld [wd10c], a ;set 3 variables to ff
 	ld [wd147], a
 	ld [wd182], a
 	ld de, wd100
-	ld a, [hRandomAdd]
+	ld a, [hRandomAdd] 
 	ld b, a
 .asm_1f8022
 	call Random
-	ld a, [hRandomAdd]
+	ld a, [hRandomAdd] ;load 2 random numbers and add them
 	add b
 	ld b, a
 IF DEF(CRYSTAL11)
-	and $7f
+	and $7f ;if 1.1 use numbers 0-69, else use numbers 0-20
 	cp $46
 ELSE
 	and $1f
 	cp $15
 ENDC
-	jr nc, .asm_1f8022
+	jr nc, .asm_1f8022 ;loop until good random number
 	ld b, a
 	ld a, $1
 	call GetSRAMBank

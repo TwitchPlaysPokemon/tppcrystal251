@@ -21,7 +21,7 @@ UnknownScript_0x9f5c0: ; 0x9f5c0
 
 UnknownScript_0x9f5c1: ; 0x9f5c1
 	follow $2, $0
-	callasm Function_0x9f5cb
+	callasm Function_0x9f5cb ;scriptvar = d800?
 	jump UnknownScript_0x9f5dc
 ; 0x9f5cb
 
@@ -32,7 +32,7 @@ Function_0x9f5cb: ; 0x9f5cb
 
 	ld a, 3
 	ld [rSVBK], a
-	ld a, [w3_d800]
+	ld a, [w3_d800] ;never set?
 	ld [ScriptVar], a
 
 	pop af
@@ -77,7 +77,7 @@ UnknownScript_0x9f618: ; 0x9f618
 UnknownScript_0x9f61f: ; 0x9f61f
 	faceperson $0, $2
 	loadfont
-	writetext UnknownText_0x9ec26
+	writetext UnknownText_0x9ec26 ;please step this way
 	closetext
 	loadmovesprites
 	stopfollow

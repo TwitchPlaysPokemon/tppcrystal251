@@ -609,6 +609,22 @@ Function9643: ; 9643
 	ret
 ; 9663
 
+Function9643_2:
+	ld a, [rSVBK]
+	push af
+	ld a, $5
+	ld [rSVBK], a
+	ld c, $4
+.asm_9654
+	ld a, [hli]
+	ld [de], a
+	inc de
+	dec c
+	jr nz, .asm_9654
+	pop af
+	ld [rSVBK], a
+	ret
+
 Function9663: ; 9663
 .asm_9663
 	push bc

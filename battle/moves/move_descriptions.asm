@@ -130,7 +130,8 @@
 	dw SwiftDescription
 	dw SkullBashDescription
 	dw SpikeCannonDescription
-	dw ConstrictDescription
+	;dw ConstrictDescription rename the description pointer
+	dw FlashCannonDescription
 	dw AmnesiaDescription
 	dw KinesisDescription
 	dw SoftboiledDescription
@@ -638,6 +639,7 @@ ConfusionDescription:
 	next "cause confusion.@"
 
 PsychicMDescription:
+FlashCannonDescription: ;cloning description should be possible by putting the label next to the label of the description to clone. this saves some space
 	db   "An attack that may"
 	next "lower SPCL.DEF.@"
 
@@ -789,9 +791,10 @@ SpikeCannonDescription:
 	db   "Fires spikes to"
 	next "hit 2-5 times.@"
 
-ConstrictDescription:
-	db   "An attack that may"
-	next "lower SPEED.@"
+;ConstrictDescription: comment out the old description, and declare a new one
+;	db   "An attack that may"
+;	next "lower SPEED.@"
+
 
 AmnesiaDescription:
 	db   "Sharply raises the"

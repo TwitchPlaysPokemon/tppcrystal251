@@ -129,7 +129,8 @@
 	db "SWIFT@"
 	db "SKULL BASH@"
 	db "SPIKE CANNON@"
-	db "CONSTRICT@"
+	;db "CONSTRICT@"
+	db "FLASH CANNON" ;comment out old name, replace with new name
 	db "AMNESIA@"
 	db "KINESIS@"
 	db "SOFTBOILED@"
