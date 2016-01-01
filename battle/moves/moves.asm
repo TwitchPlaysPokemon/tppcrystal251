@@ -15,7 +15,7 @@ ENDM
 	move KARATE_CHOP,  EFFECT_NORMAL_HIT,         50, PHYSICAL, FIGHTING, 100, 25,   0
 	move DOUBLESLAP,   EFFECT_MULTI_HIT,          15, PHYSICAL, FAIRY_T,   85, 10,   0 ; EFFECT_MULTI_HIT can be made to continue attacking after breaking Substitute
 	move GUNK_SHOT,    EFFECT_POISON_HIT,        120, PHYSICAL, POISON,    80,  5,  30 ; replacing Comet Punch
-	move MEGA_PUNCH,   EFFECT_NORMAL_HIT,         80, PHYSICAL, NORMAL,    85, 20,   0
+	move ZEN_HEADBUTT, EFFECT_FLINCH_HIT,         80, PHYSICAL, PSYCHIC,   90, 15,  20 ; replaced Mega Punch
 	move PAY_DAY,      EFFECT_PAY_DAY,            40, PHYSICAL, NORMAL,   100, 20,   0
 	move FIRE_PUNCH,   EFFECT_BURN_HIT,           75, PHYSICAL, FIRE,     100, 15,  10
 	move ICE_PUNCH,    EFFECT_FREEZE_HIT,         75, PHYSICAL, ICE,      100, 15,  10
@@ -31,7 +31,7 @@ ENDM
 	move WHIRLWIND,    EFFECT_WHIRLWIND,           0, STATUS,   NORMAL,   100, 20,   0
 	move FLY,          EFFECT_FLY,                90, PHYSICAL, FLYING,    95, 15,   0
 	move BUG_BUZZ,     EFFECT_SP_DEF_DOWN_HIT,    90, SPECIAL,  BUG,      100, 10,  10 ; replaced Bind
-	move ZEN_HEADBUTT, EFFECT_FLINCH_HIT,         80, PHYSICAL, PSYCHIC,   90, 15,  20 ; replaced Zen Headbutt
+	move SLAM,         EFFECT_NORMAL_HIT,         80, PHYSICAL, NORMAL,    75, 20,   0
 	move VINE_WHIP,    EFFECT_NORMAL_HIT,         45, PHYSICAL, GRASS,    100, 25,   0
 	move STOMP,        EFFECT_STOMP,              65, PHYSICAL, NORMAL,   100, 20,  30
 	move DOUBLE_KICK,  EFFECT_DOUBLE_HIT,         30, PHYSICAL, FIGHTING, 100, 30,   0 ; EFFECT_DOUBLE_HIT could be changed to continue after breaking sub

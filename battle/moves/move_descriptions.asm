@@ -4,7 +4,8 @@
 	dw DoubleslapDescription
 ;	dw CometPunchDescription
 	dw GunkShotDescription
-	dw MegaPunchDescription
+;	dw MegaPunchDescription
+	dw ZenHeadbuttDescription
 	dw PayDayDescription
 	dw FirePunchDescription
 	dw IcePunchDescription
@@ -24,8 +25,7 @@
 	dw FlyDescription
 ;	dw BindDescription
 	dw BugBuzzDescription
-;	dw SlamDescription
-	dw ZenHeadbuttDescription
+	dw SlamDescription
 	dw VineWhipDescription
 	dw StompDescription
 	dw DoubleKickDescription
@@ -305,9 +305,9 @@ DoubleslapDescription:
 ;	db   "Repeatedly punches"
 ;	next "2-5 times.@"
 
-MegaPunchDescription:
-	db   "A powerful punch"
-	next "thrown very hard.@"
+;MegaPunchDescription:
+;	db   "A powerful punch"
+;	next "thrown very hard.@"
 
 PayDayDescription:
 	db   "Throws coins. Gets"
@@ -369,9 +369,9 @@ FlyDescription:
 ;	db   "Binds the target"
 ;	next "for 2-5 turns.@"
 
-;SlamDescription:
-;	db   "Slams the foe with"
-;	next "a tail, vine, etc.@"
+SlamDescription:
+	db   "Slams the foe with"
+	next "a tail, vine, etc.@"
 
 VineWhipDescription:
 	db   "Whips the foe with"

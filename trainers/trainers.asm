@@ -73,7 +73,7 @@ FalknerGroup:
 	db 100, DODRIO
 		db TRI_ATTACK
 		db ICE_BEAM
-		db SNORE
+		db SLEEP_TALK
 		db REST
 
 	db 100, CROBAT
@@ -162,7 +162,7 @@ WhitneyGroup:
 
 	db 100, SNORLAX
 		db HYPNOSIS
-		db SNORE
+		db BODY_SLAM
 		db REST
 		db CURSE
 
@@ -237,7 +237,7 @@ BugsyGroup:
 		db ROCK_SLIDE
 		db DYNAMICPUNCH
 		db MEGAHORN
-		db LOCK_ON
+		db MIND_READER
 
 	db 100, SHUCKLE
 		db EARTHQUAKE
@@ -535,7 +535,7 @@ ChuckGroup:
 		db LEER
 		db RAGE
 		db KARATE_CHOP
-		db FURY_SWIPES
+		db FURY_ATTACK
 
 	db 52, POLIWRATH
 		db HYPNOSIS
@@ -1146,7 +1146,7 @@ PokemonProfGroup:
 		db SOLARBEAM
 		db SUNNY_DAY
 		db HYPNOSIS
-		db BARRAGE
+		db SEED_BOMB
 
 	db 100, ARCANINE
 		db EXTREMESPEED
@@ -1155,7 +1155,7 @@ PokemonProfGroup:
 		db AGILITY
 
 	db 100, BLASTOISE
-		db SKULL_BASH
+		db ICE_BEAM
 		db HYDRO_PUMP
 		db RAPID_SPIN
 		db CRUNCH
@@ -1191,7 +1191,7 @@ PokemonProfGroup:
 		db SOLARBEAM
 		db SUNNY_DAY
 		db HYPNOSIS
-		db BARRAGE
+		db SEED_BOMB
 
 	db 100, ARCANINE
 		db EXTREMESPEED
@@ -1236,7 +1236,7 @@ PokemonProfGroup:
 		db SOLARBEAM
 		db SUNNY_DAY
 		db HYPNOSIS
-		db BARRAGE
+		db SEED_BOMB
 
 	db 100, ARCANINE
 		db EXTREMESPEED
@@ -1293,7 +1293,7 @@ WillGroup:
 	db 66, EXEGGUTOR
 		db REFLECT
 		db LEECH_SEED
-		db EGG_BOMB
+		db SEED_BOMB
 		db PSYCHIC_M
 
 	db 66, SLOWBRO
@@ -1456,7 +1456,7 @@ BrunoGroup:
 		db PURSUIT
 		db QUICK_ATTACK
 		db DIG
-		db DETECT
+		db PROTECT
 
 	db 70, HITMONLEE
 		db SWAGGER
@@ -1471,7 +1471,7 @@ BrunoGroup:
 		db MACH_PUNCH
 
 	db 68, ONIX
-		db BIND
+		db WRAP
 		db EARTHQUAKE
 		db SANDSTORM
 		db ROCK_SLIDE
@@ -1500,7 +1500,7 @@ BrunoGroup:
 		db PURSUIT
 		db ROLLING_KICK
 		db EARTHQUAKE
-		db DETECT
+		db PROTECT
 
 	db 100, HITMONLEE
 		db SWAGGER
@@ -1524,7 +1524,7 @@ BrunoGroup:
 		db CROSS_CHOP
 		db KARATE_CHOP
 		db RAGE
-		db FURY_SWIPES
+		db FURY_ATTACK
 
 	db $ff
 
@@ -1633,7 +1633,7 @@ KogaGroup:
 
 	db 65, ARIADOS
 		db DOUBLE_TEAM
-		db SPIDER_WEB
+		db MEAN_LOOK
 		db BATON_PASS
 		db GIGA_DRAIN
 
@@ -1836,7 +1836,7 @@ BrockGroup:
 		db SPIKE_CANNON
 
 	db 80, ONIX
-		db BIND
+		db WRAP
 		db ROCK_SLIDE
 		db BIDE
 		db SANDSTORM
@@ -1872,7 +1872,7 @@ MistyGroup:
 	db 70, GOLDUCK
 		db SURF
 		db DISABLE
-		db PSYCH_UP
+		db NONE
 		db PSYCHIC_M
 
 	db 70, QUAGSIRE
@@ -1934,7 +1934,7 @@ LtSurgeGroup:
 		db EXPLOSION
 
 	db 76, MAGNETON
-		db LOCK_ON
+		db MIND_READER
 		db DOUBLE_TEAM
 		db SWIFT
 		db ZAP_CANNON
@@ -2078,7 +2078,7 @@ ErikaGroup:
 
 	db 62, TANGELA
 		db VINE_WHIP
-		db BIND
+		db WRAP
 		db GIGA_DRAIN
 		db SLEEP_POWDER
 
@@ -2311,8 +2311,8 @@ SchoolboyGroup:
 		db BITE
 		
 	db 30, PINSIR
-		db GUILLOTINE
-		db VICEGRIP
+		db FISSURE
+		db NONE
 		db HARDEN
 		db PIN_MISSILE
 
@@ -2596,7 +2596,7 @@ SchoolboyGroup:
 	db 32, TANGELA
 		db POISONPOWDER
 		db VINE_WHIP
-		db BIND
+		db WRAP
 		db MEGA_DRAIN
 
 	db 32, YANMA
@@ -2607,7 +2607,7 @@ SchoolboyGroup:
 
 	db 35, QUAGSIRE
 		db TAIL_WHIP
-		db SLAM
+		db NONE
 		db AMNESIA
 		db EARTHQUAKE
 
@@ -2858,7 +2858,7 @@ BirdKeeperGroup:
 
 	db 40, FARFETCH_D
 		db FURY_ATTACK
-		db DETECT
+		db PROTECT
 		db FLY
 		db SLASH
 
@@ -3256,7 +3256,7 @@ JanineGroup:
 		db WING_ATTACK
 
 	db 66, WEEZING
-		db SMOG
+		db FIRE_BLAST
 		db SLUDGE_BOMB
 		db TOXIC
 		db EXPLOSION
@@ -4251,7 +4251,7 @@ PokemaniacGroup:
 	db 41, CHANSEY
 		db ROLLOUT
 		db ATTRACT
-		db EGG_BOMB
+		db NONE
 		db SOFTBOILED
 
 	db $ff ; end
@@ -4833,7 +4833,7 @@ SabrinaGroup:
 		db RECOVER
 
 	db 68, EXEGGUTOR
-		db BARRAGE
+		db SEED_BOMB
 		db PSYCHIC_M
 		db LEECH_SEED
 		db SYNTHESIS
@@ -4936,7 +4936,7 @@ BugCatcherGroup:
 		db DYNAMICPUNCH
 		db ICE_PUNCH
 		db THUNDERPUNCH
-		db COMET_PUNCH
+		db NONE
 
 	db 27, ARIADOS
 		db SLUDGE_BOMB
@@ -5996,7 +5996,7 @@ SailorGroup:
 	
 	db 20, KRABBY
 		db CRABHAMMER
-		db GUILLOTINE
+		db FISSURE
 		db ROCK_SMASH
 		db ATTRACT
 
@@ -7067,7 +7067,7 @@ BlaineGroup:
 
 	db 85, MAGCARGO
 		db CURSE
-		db SMOG
+		db TOXIC
 		db FLAMETHROWER
 		db ROCK_SLIDE
 
@@ -8510,7 +8510,7 @@ SageGroup:
 		db 0
 		db 0
 	db 36, HOUNDOOM
-		db BODY_SLAM
+		db BODY SLAM
 		db BITE
 		db SPITE
 		db PROTECT
@@ -9315,7 +9315,7 @@ BlueGroup:
 	db 100, EXEGGUTOR
 		db SUNNY_DAY
 		db LEECH_SEED
-		db EGG_BOMB
+		db SEED_BOMB
 		db SOLARBEAM
 
 	db 100, NINETALES
@@ -9327,7 +9327,7 @@ BlueGroup:
 	db 100, MAGNETON
 		db THUNDER
 		db THUNDERBOLT
-		db LOCK_ON
+		db MIND_READER
 		db THUNDER_WAVE
 
 	db 100, VAPOREON
@@ -9359,7 +9359,7 @@ BlueGroup:
 	db 100, EXEGGUTOR
 		db SUNNY_DAY
 		db LEECH_SEED
-		db EGG_BOMB
+		db SEED_BOMB
 		db SOLARBEAM
 
 	db 100, CLOYSTER
@@ -9371,7 +9371,7 @@ BlueGroup:
 	db 100, MAGNETON
 		db THUNDER
 		db THUNDERBOLT
-		db LOCK_ON
+		db MIND_READER
 		db THUNDER_WAVE
 
 	db 100, FLAREON
@@ -9403,7 +9403,7 @@ BlueGroup:
 	db 100, EXEGGUTOR
 		db SUNNY_DAY
 		db LEECH_SEED
-		db EGG_BOMB
+		db SEED_BOMB
 		db SOLARBEAM
 
 	db 100, CLOYSTER

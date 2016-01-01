@@ -6,7 +6,8 @@
 	const DOUBLESLAP   ; $03
 ;	const COMET_PUNCH  ; $04
 	const GUNK_SHOT
-	const MEGA_PUNCH   ; $05
+;	const MEGA_PUNCH   ; $05
+	const ZEN_HEADBUTT
 	const PAY_DAY      ; $06
 	const FIRE_PUNCH   ; $07
 	const ICE_PUNCH    ; $08
@@ -27,7 +28,6 @@
 ;	const BIND         ; $14
 	const BUG_BUZZ
 	const SLAM         ; $15
-	const ZEN_HEADBUTT
 	const VINE_WHIP    ; $16
 	const STOMP        ; $17
 	const DOUBLE_KICK  ; $18

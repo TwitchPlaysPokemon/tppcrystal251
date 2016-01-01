@@ -19,13 +19,12 @@ BulbasaurEggMoves:
 	db LIGHT_SCREEN
 	db TAKE_DOWN
 	db CHARM
-	db RAZOR_WIND
+;	db RAZOR_WIND
 	db $ff
 
 CharmanderEggMoves:
 	db OUTRAGE
-	db BEAT_UP
-	db MEGA_PUNCH
+;	db MEGA_PUNCH
 	db $ff
 
 SquirtleEggMoves:
@@ -53,7 +52,6 @@ SpearowEggMoves:
 EkansEggMoves:
 	db SLAM
 	db SPITE
-	db BEAT_UP
 	db CRUNCH
 	db $ff
 
@@ -103,7 +101,7 @@ ParasEggMoves:
 	db SCREECH
 	db COUNTER
 	db FLAIL
-	db SWEET_SCENT
+;	db SWEET_SCENT
 	db LIGHT_SCREEN
 	db PURSUIT
 	db $ff
@@ -113,7 +111,6 @@ VenonatEggMoves:
 	db $ff
 
 DiglettEggMoves:
-	db BEAT_UP
 	db TRI_ATTACK
 	db TAKE_DOWN
 	db $ff
@@ -139,7 +136,6 @@ MankeyEggMoves:
 	db MEDITATE
 	db COUNTER
 	db REVERSAL
-	db BEAT_UP
 	db $ff
 
 GrowlitheEggMoves:
@@ -178,7 +174,7 @@ TentacoolEggMoves:
 	db $ff
 
 GeodudeEggMoves:
-	db MEGA_PUNCH
+;	db MEGA_PUNCH
 	db ROCK_SLIDE
 	db $ff
 
@@ -255,7 +251,7 @@ CuboneEggMoves:
 	db ANCIENTPOWER
 	db BELLY_DRUM
 	db SCREECH
-	db SKULL_BASH
+;	db SKULL_BASH
 	db PERISH_SONG
 if _CRYSTAL
 	db SWORDS_DANCE
@@ -328,7 +324,7 @@ MrMimeEggMoves:
 ScytherEggMoves:
 	db COUNTER
 	db SAFEGUARD
-	db RAZOR_WIND
+;	db RAZOR_WIND
 	db REVERSAL
 	db LIGHT_SCREEN
 	db $ff
@@ -337,7 +333,7 @@ PinsirEggMoves:
 	db FALSE_SWIPE
 	db QUICK_ATTACK
 	db FLAIL
-	db GUILLOTINE
+	db FISSURE
 	db $ff
 
 LaprasEggMoves:
@@ -395,7 +391,7 @@ ChikoritaEggMoves:
 	db $ff
 
 CyndaquilEggMoves:
-	db FURY_SWIPES
+	db FURY_ATTACK
 	db QUICK_ATTACK
 	db FORESIGHT
 	db $ff
@@ -405,7 +401,7 @@ TotodileEggMoves:
 	db THRASH
 	db HYDRO_PUMP
 	db ANCIENTPOWER
-	db RAZOR_WIND
+;	db RAZOR_WIND
 	db ROCK_SLIDE
 	db $ff
 
@@ -497,7 +493,6 @@ AipomEggMoves:
 	db COUNTER
 	db PURSUIT
 	db SPITE
-	db BEAT_UP
 	db $ff
 
 YanmaEggMoves:
@@ -528,7 +523,6 @@ GirafarigEggMoves:
 	db AMNESIA
 	db FORESIGHT
 	db FUTURE_SIGHT
-	db BEAT_UP
 	db $ff
 
 PinecoEggMoves:
@@ -546,7 +540,7 @@ DunsparceEggMoves:
 	db $ff
 
 GligarEggMoves:
-	db RAZOR_WIND
+;	db RAZOR_WIND
 	db COUNTER
 	db BATON_PASS
 	db $ff
@@ -562,7 +556,7 @@ QwilfishEggMoves:
 	db $ff
 
 ShuckleEggMoves:
-	db SWEET_SCENT
+;	db SWEET_SCENT
 	db $ff
 
 HeracrossEggMoves:
@@ -631,7 +625,6 @@ endc
 HoundourEggMoves:
 	db RAGE
 	db REVERSAL
-	db BEAT_UP
 	db FAINT_ATTACK
 	db $ff
 

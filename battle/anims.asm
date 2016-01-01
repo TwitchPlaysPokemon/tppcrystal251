@@ -5,7 +5,8 @@ BattleAnimations:: ; c906f
 	dw BattleAnim_Doubleslap
 ;	dw BattleAnim_CometPunch
 	db BattleAnim_GunkShot
-	dw BattleAnim_MegaPunch
+;	dw BattleAnim_MegaPunch
+	db BattleAnim_ZenHeadbutt
 	dw BattleAnim_PayDay
 	dw BattleAnim_FirePunch
 	dw BattleAnim_IcePunch
@@ -25,8 +26,7 @@ BattleAnimations:: ; c906f
 	dw BattleAnim_Fly
 ;	dw BattleAnim_Bind
 	db BattleAnim_BugBuzz
-;	dw BattleAnim_Slam
-	db BattleAnim_ZenHeadbutt
+	dw BattleAnim_Slam
 	dw BattleAnim_VineWhip
 	dw BattleAnim_Stomp
 	dw BattleAnim_DoubleKick
@@ -776,7 +776,7 @@ BattleAnim_CometPunch_branch_c9641: ; c9641
 ; c9651
 
 BattleAnim_Bide_branch_c9651: ; c9651
-BattleAnim_MegaPunch: ; c9651
+;BattleAnim_MegaPunch: ; c9651
 BattleAnim_PlayRough:
 	anim_1gfx ANIM_GFX_HIT
 	anim_bgeffect $1f, $40, $2, $0
@@ -2569,7 +2569,7 @@ BattleAnim_PetalDance_branch_ca56a: ; ca56a
 ; ca580
 
 ;BattleAnim_Barrage: ; ca580
-BattleAnim_SeedBomb
+BattleAnim_SeedBomb:
 	anim_2gfx ANIM_GFX_EGG, ANIM_GFX_EXPLOSION
 	anim_sound $1a, SFX_THROW_BALL
 	anim_obj $62, 64, 92, $10
@@ -3304,7 +3304,7 @@ BattleAnim_Counter_branch_cab6b: ; cab6b
 ; cabe6
 
 BattleAnim_WingAttack: ; cabe6
-BattleAnim_XScissor
+BattleAnim_XScissor:
 	anim_1gfx ANIM_GFX_HIT
 	anim_sound $1, SFX_WING_ATTACK
 	anim_obj $1, 148, 56, $0
@@ -3321,7 +3321,7 @@ BattleAnim_XScissor
 	anim_ret
 ; cac13
 
-;BattleAnim_Slam: ; cac13
+BattleAnim_Slam: ; cac13
 	anim_1gfx ANIM_GFX_HIT
 	anim_sound $1, SFX_WING_ATTACK
 	anim_bgeffect ANIM_BG_FLASH_INVERTED, $0, $8, $2
