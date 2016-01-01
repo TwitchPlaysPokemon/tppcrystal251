@@ -17,36 +17,44 @@ EggMoves::
 
 BulbasaurEggMoves:
 	db LIGHT_SCREEN
-	db TAKE_DOWN
 	db CHARM
-;	db RAZOR_WIND
+	db SAFEGUARD
+	db AMNESIA
+	db OUTRAGE
 	db $ff
 
 CharmanderEggMoves:
+	db RAGE
+	db LEER
+	db COUNTER
 	db OUTRAGE
-;	db MEGA_PUNCH
 	db $ff
 
 SquirtleEggMoves:
 	db MIST
 	db FORESIGHT
 	db FLAIL
+	db HAZE
+	db OUTRAGE
 	db $ff
 
 PidgeyEggMoves:
 	db FORESIGHT
+	db MUD_SLAP
+	db PECK
 	db $ff
 
 RattataEggMoves:
 	db TAKE_DOWN
-	db BUBBLEBEAM
+	db DEFENSE_CURL
+	db BODY_SLAM
 	db $ff
 
 SpearowEggMoves:
 	db SCARY_FACE
 	db QUICK_ATTACK
 	db WING_ATTACK
-	db SKY_ATTACK
+	db HEAT_WAVE
 	db $ff
 
 EkansEggMoves:

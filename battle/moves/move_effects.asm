@@ -6,12 +6,12 @@ SeedBomb:
 FairyWind:
 DragonPulse:
 KarateChop:
-MegaPunch:
+;MegaPunch:
 Scratch:
 ;Vicegrip:
 Cut:
 WingAttack:
-;Slam:
+Slam:
 VineWhip:
 MegaKick:
 HornAttack:
