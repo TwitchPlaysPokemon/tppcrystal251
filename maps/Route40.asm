@@ -249,7 +249,7 @@ SwimmermSimonBeatenText: ; 0x1a626e
 ; 0x1a6282
 
 UnknownText_0x1a6282: ; 0x1a6282
-	text "Burglar SIMON in"
+	text "Burglar SIMON is"
 	line "famous in JOHTO"
 	cont "and KANTO."
 	done

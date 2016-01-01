@@ -434,8 +434,8 @@ CooltrainerfLolaSeenText: ; 0x19549d
 	para "They are full of"
 	line "life energy."
 
-	para "My #MON might not"
-	line "be dragon-type,"
+	para "My #MON might"
+	line "not be dragon-type"
 	
 	para "but don't"
 	line "underestimate it!"

@@ -31,8 +31,8 @@ MapRoute16Signpost0Script: ; 0x1ad32c
 UnknownText_0x1ad32f: ; 0x1ad32f
 	text "CYCLING ROAD"
 
-	para "DOWNHILL COASTING"
-	line "ALL THE WAY!"
+	para "BEE WARNING!"
+	line "STAY OUT OF GRASS."
 	done
 ; 0x1ad35c
 

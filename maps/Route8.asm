@@ -165,100 +165,107 @@ FruitTreeScript_0x6c06c: ; 0x6c06c
 
 BikerDwayneSeenText: ; 0x6c06e
 	text "We're the KANTO"
-	line "#MON FEDERATION"
+	line "HELIX CHOIR"
 	cont "trainer group."
 
-	para "We'll drive you"
-	line "under our wheels!"
+	para "No JOHTO brat"
+	line "is taking us down!"
 	done
 ; 0x6c0be
 
 BikerDwayneBeatenText: ; 0x6c0be
-	text "S-sorry!"
+	text "Wait, you said you"
+	line "are from KANTO?"
 	done
 ; 0x6c0c8
 
 UnknownText_0x6c0c8: ; 0x6c0c8
-	text "The KANTO #MON"
-	line "FEDERATION will"
-	cont "never fall!"
+	text "Many comrades"
+	line "have fallen over"
+	cont "the years."
 	done
 ; 0x6c0f4
 
 BikerHarrisSeenText: ; 0x6c0f4
 	text "The cops shut down"
 	line "our UNDERGROUND"
+	cont "PATH!"
 
-	para "PATH! That really"
-	line "fries me!"
+	para "We demand it back!"
 	done
 ; 0x6c134
 
 BikerHarrisBeatenText: ; 0x6c134
-	text "F-forgive me!"
+	text "Was I forsaken?"
 	done
 ; 0x6c143
 
 UnknownText_0x6c143: ; 0x6c143
-	text "Wiped out by some"
-	line "punk from JOHTO…"
+	text "We lost our home"
+	line "UNDERGROUND..."
+
+	para "All I have left is"
+	line "the HELIX CHOIR."
 	done
 ; 0x6c167
 
 BikerZekeSeenText: ; 0x6c167
 	text "We're the KANTO"
-	line "#MON FEDERA-"
-	cont "TION!"
-	cont "Right on!"
+	line "HELIX CHOIR!"
+	
+	para "We praise it!"
 	done
 ; 0x6c194
 
 BikerZekeBeatenText: ; 0x6c194
-	text "Yikes! Sorry!"
+	text "OMANYTE, no!"
 	done
 ; 0x6c1a3
 
 UnknownText_0x6c1a3: ; 0x6c1a3
-	text "We'll try not to"
-	line "disturb anyone"
-	cont "from now on…"
+	text "We do this for"
+	line "freedom!"
+	
+	para "This isn't a riot."
 	done
 ; 0x6c1d0
 
 SupernerdSamSeenText: ; 0x6c1d0
-	text "How does the MAG-"
-	line "NET TRAIN work?"
+	text "I'm on my way"
+	line "home from CELADON!"
 	done
 ; 0x6c1f3
 
 SupernerdSamBeatenText: ; 0x6c1f3
-	text "I just want to see"
-	line "the MAGNET TRAIN…"
+	text "Not slimy enough!"
 	done
 ; 0x6c219
 
 UnknownText_0x6c219: ; 0x6c219
-	text "The power of mag-"
-	line "nets is awesome!"
+	text "CELADON has a pond"
+	line "full of GRIMER!"
+
+	para "I fell down..."
 	done
 ; 0x6c23d
 
 SupernerdTomSeenText: ; 0x6c23d
-	text "Hm… You've got"
-	line "many GYM BADGES."
+	text "Ghosts are common"
+	line "here since the"
+	cont "#MON TOWER"
+	cont "closed."
 	done
 ; 0x6c25d
 
 SupernerdTomBeatenText: ; 0x6c25d
-	text "Just as I thought…"
-	line "You're tough!"
+	text "Scary, right?"
 	done
 ; 0x6c27e
 
 UnknownText_0x6c27e: ; 0x6c27e
-	text "GYM BADGES give"
-	line "you advantages in"
-	cont "battles."
+	text "Rumours say ghosts"
+	line "still live in the"
+	cont "RADIO TOWER..."
 	done
 ; 0x6c2aa
 

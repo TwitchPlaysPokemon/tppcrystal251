@@ -17,15 +17,15 @@ MapRoute7Signpost1Script: ; 0x1ad385
 UnknownText_0x1ad388: ; 0x1ad388
 	text "What's this flyer?"
 
-	para "… Uncouth trainers"
-	line "have been holding"
+	para "… Uncouth members"
+	line "of the HELIX CHOIR"
+	cont "have been holding"
 
 	para "battles in the"
 	line "UNDERGROUND PATH."
 
 	para "Because of rising"
-	line "complaints by lo-"
-	cont "cal residents, the"
+	line "complaints, the"
 	cont "UNDERGROUND PATH"
 	cont "has been sealed"
 	cont "indefinitely."

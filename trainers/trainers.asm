@@ -6192,8 +6192,8 @@ SuperNerdGroup:
 	db 0 ; normal
 
 	; party
-	db 34, GRIMER
-	db 34, MUK
+	db 70, GRIMER
+	db 73, MUK
 
 	db $ff ; end
 
@@ -6201,12 +6201,13 @@ SuperNerdGroup:
 
 	; SUPER_NERD (7)
 	db "TOM@"
-	db 0 ; normal
+	db (1 << TRAINERTYPE_ITEM)
 
 	; party
-	db 32, MAGNEMITE
-	db 32, MAGNEMITE
-	db 32, MAGNEMITE
+	db 70, GASTLY, BRIGHTPOWDER
+	db 71, WIGGLYTUFF, PINK_BOW
+	db 72, KADABRA, FOCUS_BAND
+	db 73, HAUNTER, BRIGHTPOWDER
 
 	db $ff ; end
 
@@ -6971,10 +6972,10 @@ BikerGroup:
 	db 0 ; normal
 
 	; party
-	db 27, KOFFING
-	db 28, KOFFING
-	db 29, KOFFING
-	db 30, KOFFING
+	db 70, FARFETCH_D
+	db 70, GLOOM
+	db 70, RATICATE
+	db 70, CHARMELEON
 
 	db $ff ; end
 
@@ -6985,7 +6986,8 @@ BikerGroup:
 	db 0 ; normal
 
 	; party
-	db 34, FLAREON
+	db 71, FLAREON
+	db 73, KABUTO
 
 	db $ff ; end
 
@@ -6996,8 +6998,7 @@ BikerGroup:
 	db 0 ; normal
 
 	; party
-	db 32, KOFFING
-	db 32, KOFFING
+	db 76, OMANYTE
 
 	db $ff ; end
 
@@ -8890,10 +8891,10 @@ PokefanMGroup:
 
 	; POKEFANM (13)
 	db "REX@"
-	db (1 << TRAINERTYPE_ITEM)
+	db 0 ; normal
 
 	; party
-	db 35, PHANPY, BERRY
+	db 70, PONYTA
 
 	db $ff ; end
 
@@ -8901,10 +8902,10 @@ PokefanMGroup:
 
 	; POKEFANM (14)
 	db "ALLAN@"
-	db (1 << TRAINERTYPE_ITEM)
+	db 0 ; normal
 
 	; party
-	db 35, TEDDIURSA, BERRY
+	db 70, BELLSPROUT
 
 	db $ff ; end
 
@@ -9134,7 +9135,7 @@ PokefanFGroup:
 	db (1 << TRAINERTYPE_NICKNAME)
 
 	; party
-	db 35, AMPHAROS, "ZAPPY@"
+	db 35, AMPHAROS, "ZAPPY@@@@@@"
 
 	db $ff ; end
 

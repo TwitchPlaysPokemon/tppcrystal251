@@ -48,11 +48,11 @@ UnknownText_0x73408: ; 0x73408
 	line "so it's totally"
 	cont "exhilarating."
 
-	para "It's a great sort"
-	line "of feeling that"
+	para "Oh, and before"
+	line "I forget."
 
-	para "you can't get from"
-	line "a ship or train."
+	para "Beeware of the"
+	line "bees. Heh."
 	done
 ; 0x73496
 

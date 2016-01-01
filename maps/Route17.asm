@@ -145,79 +145,91 @@ MapRoute17SignpostItem1: ; 0x1ad105
 ; 0x1ad108
 
 BikerRileySeenText: ; 0x1ad108
-	text "Hey, you! You're"
-	line "from JOHTO, huh?"
+	text "You're from JOHTO?"
+	line "Buzz off!"
 	done
 ; 0x1ad12a
 
 BikerRileyBeatenText: ; 0x1ad12a
-	text "Whoa, you kick!"
+	text "Ouch, that stings!"
 	done
 ; 0x1ad13b
 
 UnknownText_0x1ad13b: ; 0x1ad13b
-	text "Don't get cocky,"
-	line "you JOHTO punk!"
+	text "Oh, you are from"
+	line "KANTO? Sorry!"
 	done
 ; 0x1ad15c
 
 BikerJoelSeenText: ; 0x1ad15c
-	text "Wow. That's a cool"
-	line "BICYCLE!"
+	text "You know what my"
+	line "blood type is?"
+	
+	para "BEE positive!"
+	
+	para "...heh."
 	done
 ; 0x1ad178
 
 BikerJoelBeatenText: ; 0x1ad178
-	text "But you don't just"
-	line "look cool…"
+	text "You sting"
+	line "like a bee..."
 	done
 ; 0x1ad196
 
 UnknownText_0x1ad196: ; 0x1ad196
-	text "I look cool, but"
-	line "I'm weak, so I'm"
-	cont "not really cool."
-
-	para "I have to train"
-	line "harder…"
+	text "This grass is"
+	line "swarming of"
+	cont "BEEDRILL!"
+	
+	para "The water is a"
+	line "safe spot, though."
 	done
 ; 0x1ad1e0
 
 BikerGlennSeenText: ; 0x1ad1e0
-	text "Hey! Want to have"
-	line "a speed battle?"
+	text "Beauty is in"
+	line "the eyes of the"
+	cont "beeholder!"
+	
+	para "...heh."
 	done
 ; 0x1ad203
 
 BikerGlennBeatenText: ; 0x1ad203
-	text "Yikes! You've got"
-	line "awesome torque!"
+	text "Such a buzz kill!"
 	done
 ; 0x1ad225
 
 UnknownText_0x1ad225: ; 0x1ad225
-	text "Hands-free riding"
-	line "is considered cool"
-	cont "on CYCLING ROAD."
+	text "I'm covered in"
+	line "BEEDRILL stings!"
 	done
 ; 0x1ad25c
 
 BikerCharlesSeenText: ; 0x1ad25c
-	text "We're fearless"
-	line "highway stars!"
+	text "I made it! I can't"
+	line "beelieve it!"
+	
+	para "..."
+	
+	para "Ok, that bee pun"
+	line "didn't wing it."
 	done
 ; 0x1ad27a
 
 BikerCharlesBeatenText: ; 0x1ad27a
-	text "Arrrgh! Crash and"
-	line "burn!"
+	text "Quit pollen"
+	line "my leg!"
 	done
 ; 0x1ad293
 
 UnknownText_0x1ad293: ; 0x1ad293
-	text "Reckless driving"
-	line "causes accidents!"
-	cont "Take it easy!"
+	text "This time of year"
+	line "is horrible."
+	
+	para "The puns helps"
+	line "us cope with it."
 	done
 ; 0x1ad2c5
 

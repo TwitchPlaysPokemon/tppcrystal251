@@ -559,7 +559,7 @@ UnknownText_0x70752: ; 0x70752
 	
 	para "Also, I caught"
 	line "my FORRETRESS"
-	cont "right here"
+	cont "right here."
 	
 	para "Try headbutting"
 	line "trees if you"

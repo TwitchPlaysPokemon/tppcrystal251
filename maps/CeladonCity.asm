@@ -131,18 +131,16 @@ UnknownText_0x1a9fde: ; 0x1a9fde
 ; 0x1aa043
 
 UnknownText_0x1aa043: ; 0x1aa043
-	text "GRIMER have been"
-	line "appearing lately."
+	text "I raise GRIMER"
+	line "here to sell to"
+	cont "the GAME CORNER"
+	cont "in GOLDENROD."
 
-	para "See that pond out"
-	line "in front of the"
-
-	para "house? GRIMER live"
-	line "there now."
-
-	para "Where did they"
-	line "come from? This is"
-	cont "a serious problem…"
+	para "Looks like I've"
+	line "overdone it..."
+	
+	para "I can't get out"
+	line "of my house now!"
 	done
 ; 0x1aa0dc
 

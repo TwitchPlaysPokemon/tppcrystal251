@@ -36,14 +36,14 @@ UnknownText_0x7352c: ; 0x7352c
 ; 0x73592
 
 UnknownText_0x73592: ; 0x73592
-	text "I take my GUARD"
-	line "job seriously."
+	text "The UNDERGROUND"
+	line "PATH has been"
+	cont "closed down."
 
-	para "Hey! You have a"
-	line "#DEX."
+	para "It's the HELIX"
+	line "CHOIR extremists"
+	cont "at it again!"
 
-	para "OK. You can go"
-	line "through."
 	done
 ; 0x735e0
 
