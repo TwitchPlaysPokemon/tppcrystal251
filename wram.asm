@@ -628,6 +628,17 @@ PlayerSpdLevel:: ; c6ce
 	ds 1
 PlayerSAtkLevel:: ; c6cf
 	ds 1
+
+wVoltorbFlip::
+wVoltorbFlipBoard:: ds 5 * 5 ; c6d0
+wVoltorbFlipLevel:: ds 1 ; c6e9
+wVoltorbFlipPayout:: ds 2 ; c6ea
+wVoltorbFlipCursor:: ds 1 ; c6ec lo: y | hi: x
+wVoltorbFlipMultiplier:: ds 1 ; c6ed
+wVoltorbFlipNum2s3s:: ds 1 ; c6ee
+wVoltorbFlipEnd::
+	ds wVoltorbFlip - @
+
 wc6d0::
 PlayerSDefLevel:: ; c6d0
 	ds 1

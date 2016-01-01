@@ -59,6 +59,7 @@ SpecialsPointers:: ; c029
 	add_special Functionc355
 	add_special Functionc360
 	add_special Functionc373
+	add_special Special_VoltorbFlip
 	add_special Functionc380
 	add_special Functionc38d
 	add_special Functionc3db
@@ -394,6 +395,14 @@ Functionc373: ; c373
 	call Functionc39a
 	ret
 ; c380
+
+Special_VoltorbFlip:
+	call Functionc3ae
+	ret c
+	ld a, BANK(VoltorbFlip)
+	ld hl, VoltorbFlip
+	call Functionc39a
+	ret
 
 Functionc380: ; c380
 	call Functionc3ae
