@@ -516,9 +516,12 @@ ParkBall: ; e8a2
 	ld hl, UnknownText_0xedc9
 	call PrintText
 
-	call ClearSprites
+	ld a, [CurPartySpecies]
+	push af
+	callba Function3ee3b
+	pop af
+	ld [CurPartySpecies], a
 
-	ld a, [wd265]
 	dec a
 	call CheckCaughtMon
 

@@ -1,12 +1,5 @@
 map: MACRO
-; This is a silly hack to get around an rgbds bug.
-
-; Ideally:
-;	db GROUP_\1, MAP_\1
-
-\1\@  EQUS "GROUP_\1"
-\1\@2 EQUS "MAP_\1"
-	db \1\@, \1\@2
+	db GROUP_\1, MAP_\1
 ENDM
 
 roam_map: MACRO
@@ -83,9 +76,7 @@ map_header_2: MACRO
 ; label, map, border block, connections
 \1_SecondMapHeader::
 	db \3
-\2\@HEIGHT EQUS "\2_HEIGHT"
-\2\@WIDTH  EQUS "\2_WIDTH"
-	db \2\@HEIGHT, \2\@WIDTH
+	db \2_HEIGHT, \2_WIDTH
 	db BANK(\1_BlockData)
 	dw \1_BlockData
 	db BANK(\1_MapScriptHeader)
@@ -166,10 +157,8 @@ endc
 ENDM
 
 mapgroup: MACRO
-\1\@  EQUS "GROUP_\1"
-\1\@2 EQUS "MAP_\1"
-\1\@ EQU const_value
-	enum \1\@2
+GROUP_\1 EQU const_value
+	enum MAP_\1
 \1_HEIGHT EQU \2
 \1_WIDTH EQU \3
 ENDM
