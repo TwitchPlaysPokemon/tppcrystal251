@@ -5,13 +5,12 @@ SpawnPoints: ; 0x152ab
 
 spawn: MACRO
 ; name, map, y, x
-\1\@ EQUS "SPAWN_\1"
-	const \1\@
+	const SPAWN_\1
 	map \2
 	db \3, \4
 ENDM
 
-	spawn HOME,        REDS_HOUSE_2F_RB,            3,  3
+	spawn HOME,        REDS_HOUSE_2F_RB,            6,  3
 	spawn DEBUG,       VERMILION_PORT,             10, 10
 
 	spawn PALLET,      PALLET_TOWN,                 5,  6

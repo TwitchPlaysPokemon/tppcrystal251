@@ -871,16 +871,16 @@ VoltorbFlip_SampleBoard:
 	jp .TryAgain
 
 .Odds
-	db  80 percent, 100 percent
-	db  75 percent,  96 percent
-	db  70 percent,  92 percent
-	db  65 percent,  88 percent
-	db  60 percent,  84 percent
-	db  55 percent,  80 percent
-	db  50 percent,  76 percent
-	db  45 percent,  72 percent
-	db  40 percent,  68 percent
-	db  35 percent,  64 percent
+	db  80 percent,  96 percent
+	db  75 percent,  92 percent
+	db  70 percent,  88 percent
+	db  65 percent,  84 percent
+	db  60 percent,  80 percent
+	db  55 percent,  76 percent
+	db  50 percent,  72 percent
+	db  45 percent,  68 percent
+	db  40 percent,  64 percent
+	db  35 percent,  60 percent
 
 .MinMax
 	bigdw    20
