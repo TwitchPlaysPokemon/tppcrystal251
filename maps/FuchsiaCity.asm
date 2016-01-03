@@ -174,7 +174,7 @@ FuchsiaCity_MapEventHeader: ; 0x194d67
 	db 0
 
 	; signposts
-	db 8
+	db 9
 	signpost 15, 21, $0, MapFuchsiaCitySignpost0Script
 	signpost 29, 5, $0, MapFuchsiaCitySignpost1Script
 	signpost 15, 25, $0, MapFuchsiaCitySignpost2Script
