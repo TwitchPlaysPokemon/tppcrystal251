@@ -149,7 +149,8 @@
 	dw HiJumpKickDescription
 	dw GlareDescription
 	dw DreamEaterDescription
-	dw PoisonGasDescription
+;	dw PoisonGasDescription
+	dw RockPolishDescription
 ;	dw BarrageDescription
 	dw SeedBombDescription
 	dw LeechLifeDescription
@@ -687,6 +688,7 @@ MeditateDescription:
 	next "ATTACK.@"
 
 AgilityDescription:
+RockPolishDescription:
 	db   "Sharply increases"
 	next "the user's SPEED.@"
 

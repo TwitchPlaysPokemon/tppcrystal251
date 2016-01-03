@@ -151,7 +151,8 @@ BattleAnimations:: ; c906f
 	dw BattleAnim_HiJumpKick
 	dw BattleAnim_Glare
 	dw BattleAnim_DreamEater
-	dw BattleAnim_PoisonGas
+;	dw BattleAnim_PoisonGas
+	dw BattleAnim_RockPolish
 ;	dw BattleAnim_Barrage
 	db BattleAnim_SeedBomb
 	dw BattleAnim_LeechLife
@@ -2411,7 +2412,7 @@ BattleAnim_Smog_branch_ca41c: ; ca41c
 	anim_ret
 ; ca428
 
-BattleAnim_PoisonGas: ; ca428
+;BattleAnim_PoisonGas: ; ca428
 	anim_1gfx ANIM_GFX_HAZE
 	anim_sound $42, SFX_BUBBLEBEAM
 BattleAnim_PoisonGas_branch_ca42d: ; ca42d
@@ -3085,6 +3086,7 @@ BattleAnim_Meditate: ; ca9d8
 ; ca9ed
 
 BattleAnim_Sharpen: ; ca9ed
+BattleAnim_RockPolish:
 	anim_1gfx ANIM_GFX_SHAPES
 	anim_obp0 $e4
 	anim_call BattleAnim_Sharpen_branch_cbca7
