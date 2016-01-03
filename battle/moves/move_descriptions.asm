@@ -858,9 +858,9 @@ DreamEaterDescription:
 	db   "Steals HP from a"
 	next "sleeping victim.@"
 
-PoisonGasDescription:
-	db   "A move that may"
-	next "poison the foe.@"
+;PoisonGasDescription:
+;	db   "A move that may"
+;	next "poison the foe.@"
 
 ;BarrageDescription:
 ;	db   "Throws orbs to hit"
