@@ -22,7 +22,7 @@ OaksLabRB_MapScriptHeader: ; 0x19b3c5
 .SetSprites:
 	checkevent EVENT_GOT_POKEMON_FROM_OAK
 	iftrue .skip
-	moveperson $2, $8 $e
+	moveperson $2, $8, $e
 .skip
 	return
 
@@ -430,6 +430,13 @@ OakText_StartDexRating:
 
 	para "Let's see…"
 	done
+
+BlueText_FedUpWithWaiting:
+	text "<GREEN>: Gramps!"
+	line "I'm fed up with"
+	cont "waiting!"
+	done
+
 OaksLabRB_MapEventHeader: ; 0x19ba33
 	; filler
 	db 0, 0
