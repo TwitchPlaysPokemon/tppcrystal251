@@ -18,8 +18,8 @@ RhydonScript_0x7e8d0: ; 0x7e8d0
 	loadfont
 	writetext UnknownText_0x7e9b6
 	cry PSYDUCK
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 ; 0x7e8da
 
@@ -27,8 +27,8 @@ GrowlitheScript_0x7e8da: ; 0x7e8da
 	loadfont
 	writetext UnknownText_0x7e9c9
 	cry NIDORINO
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 ; 0x7e8e4
 
@@ -36,8 +36,8 @@ MoltresScript_0x7e8e4: ; 0x7e8e4
 	loadfont
 	writetext UnknownText_0x7e9da
 	cry PIDGEY
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 ; 0x7e8ee
 

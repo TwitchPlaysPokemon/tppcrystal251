@@ -16,8 +16,8 @@ FalknerScript_0x683c2: ; 0x683c2
 	checkevent EVENT_BEAT_FALKNER
 	iftrue UnknownScript_0x683ec
 	writetext UnknownText_0x68473
+	waitbutton
 	closetext
-	loadmovesprites
 	winlosstext UnknownText_0x6854a, $0000
 	loadtrainer FALKNER, 1
 	startbattle
@@ -26,7 +26,7 @@ FalknerScript_0x683c2: ; 0x683c2
 	loadfont
 	writetext UnknownText_0x685af
 	playsound SFX_GET_BADGE
-	waitbutton
+	waitsfx
 	setflag ENGINE_ZEPHYRBADGE
 	checkcode VAR_BADGES
 	scall UnknownScript_0x68418
@@ -38,20 +38,20 @@ UnknownScript_0x683ec: ; 0x683ec
 	domaptrigger GROUP_ELMS_LAB, MAP_ELMS_LAB, $2
 	specialphonecall $3
 	writetext UnknownText_0x685c8
-	keeptextopen
+	buttonsound
 	verbosegiveitem TM_MUD_SLAP, 1
 	iffalse UnknownScript_0x68416
 	setevent EVENT_GOT_TM31_MUD_SLAP
 	writetext UnknownText_0x68648
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 ; 0x68412
 
 FalknerRematchScript:
 	writetext FalknerRematchTextBefore
+	waitbutton
 	closetext
-	loadmovesprites
 	winlosstext FalknerRematchBeatenText, $0000
 	loadtrainer FALKNER, 2
 	startbattle
@@ -63,9 +63,9 @@ FalknerRematchScript:
 
 UnknownScript_0x68412: ; 0x68412
 	writetext UnknownText_0x68735
-	closetext
+	waitbutton
 UnknownScript_0x68416: ; 0x68416
-	loadmovesprites
+	closetext
 	end
 ; 0x68418
 
@@ -107,8 +107,8 @@ Bird_keeperRodScript: ; 0x68433
 	talkaftercancel
 	loadfont
 	writetext UnknownText_0x68837
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 ; 0x6843b
 
@@ -136,8 +136,8 @@ Bird_keeperAbeScript: ; 0x68447
 	talkaftercancel
 	loadfont
 	writetext UnknownText_0x688c7
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 ; 0x6844f
 
@@ -147,14 +147,14 @@ VioletGymGuyScript: ; 0x6844f
 	checkevent EVENT_BEAT_FALKNER
 	iftrue .VioletGymGuyWinScript
 	writetext VioletGymGuyText
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 .VioletGymGuyWinScript
 	writetext VioletGymGuyWinText
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 ; 0x68463
 

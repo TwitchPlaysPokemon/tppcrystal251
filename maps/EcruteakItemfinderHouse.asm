@@ -15,20 +15,20 @@ CooltrainerMScript_0x9a5fb: ; 0x9a5fb
 	yesorno
 	iffalse UnknownScript_0x9a61a
 	writetext UnknownText_0x9a6b5
-	keeptextopen
+	buttonsound
 	verbosegiveitem ITEMFINDER, 1
 	setevent EVENT_GOT_ITEMFINDER
 UnknownScript_0x9a614: ; 0x9a614
 	writetext UnknownText_0x9a70e
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 ; 0x9a61a
 
 UnknownScript_0x9a61a: ; 0x9a61a
 	writetext UnknownText_0x9a805
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 ; 0x9a620
 
@@ -37,7 +37,7 @@ PokedexScript_0x9a620: ; 0x9a620
 	writetext UnknownText_0x9a826
 	yesorno
 	iftrue UnknownScript_0x9a62a
-	loadmovesprites
+	closetext
 	end
 ; 0x9a62a
 
@@ -45,14 +45,14 @@ UnknownScript_0x9a62a: ; 0x9a62a
 	writetext UnknownText_0x9a84c
 	yesorno
 	iftrue UnknownScript_0x9a633
-	loadmovesprites
+	closetext
 	end
 ; 0x9a633
 
 UnknownScript_0x9a633: ; 0x9a633
 	writetext UnknownText_0x9a902
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 ; 0x9a639
 

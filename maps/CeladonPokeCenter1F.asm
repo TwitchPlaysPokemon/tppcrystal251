@@ -26,23 +26,23 @@ SuperNerdScript_0x71e2e: ; 0x71e2e
 	faceplayer
 	loadfont
 	writetext UnknownText_0x71f22
-	keeptextopen
+	buttonsound
 	writebyte SUICUNE
 	special SpecialMonCheck
 	iffalse UnknownScript_0x71e46
 	special SpecialBeastsCheck
 	iftrue UnknownScript_0x71e48
 	writetext UnknownText_0x7201a
-	closetext
+	waitbutton
 UnknownScript_0x71e46: ; 0x71e46
-	loadmovesprites
+	closetext
 	end
 ; 0x71e48
 
 UnknownScript_0x71e48: ; 0x71e48
 	writetext UnknownText_0x71f65
+	waitbutton
 	closetext
-	loadmovesprites
 	checkcode VAR_FACING
 	if_equal $1, UnknownScript_0x71e5a
 	applymovement $6, MovementData_0x71e6b
@@ -54,7 +54,7 @@ UnknownScript_0x71e5a: ; 0x71e5a
 UnknownScript_0x71e5e: ; 0x71e5e
 	disappear $6
 	playsound SFX_EXIT_BUILDING
-	waitbutton
+	waitsfx
 	end
 ; 0x71e65
 

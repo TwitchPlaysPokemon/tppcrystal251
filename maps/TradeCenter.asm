@@ -52,8 +52,8 @@ MapTradeCenterSignpost1Script: ; 0x193405
 UnknownScript_0x19340b: ; 0x19340b
 	loadfont
 	writetext UnknownText_0x193412
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 ; 0x193412
 

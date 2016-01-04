@@ -36,7 +36,7 @@ BlackbeltKenji3Script: ; 0x19e0ad
 	iftrue UnknownScript_0x19e0cd
 	special Function11485
 	writetext UnknownText_0x19e5e2
-	closetext
+	waitbutton
 	setevent EVENT_ROUTE_45_299
 	scall UnknownScript_0x19e11b
 	jump UnknownScript_0x19e0d0
@@ -72,15 +72,15 @@ UnknownScript_0x19e0e4: ; 0x19e0e4
 
 UnknownScript_0x19e10c: ; 0x19e10c
 	writetext UnknownText_0x19e634
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 ; 0x19e112
 
 UnknownScript_0x19e112: ; 0x19e112
 	writetext UnknownText_0x19e66c
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 ; 0x19e118
 
@@ -168,8 +168,8 @@ HikerErikScript: ; 0x19e156
 	talkaftercancel
 	loadfont
 	writetext UnknownText_0x19e301
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 ; 0x19e15e
 
@@ -197,8 +197,8 @@ HikerMichaelScript: ; 0x19e16a
 	talkaftercancel
 	loadfont
 	writetext UnknownText_0x19e3b1
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 ; 0x19e172
 
@@ -233,7 +233,7 @@ HikerParry3Script: ; 0x19e17e
 	checkevent EVENT_ROUTE_45_29B
 	iftrue UnknownScript_0x19e1a1
 	writetext UnknownText_0x19e434
-	keeptextopen
+	buttonsound
 	setevent EVENT_ROUTE_45_29B
 	scall UnknownScript_0x19e11b
 	jump UnknownScript_0x19e1a4
@@ -304,7 +304,7 @@ UnknownScript_0x19e218: ; 0x19e218
 UnknownScript_0x19e219: ; 0x19e219
 	loadfont
 	writetext UnknownText_0x19e52c
-	closetext
+	waitbutton
 	verbosegiveitem IRON, 1
 	iffalse UnknownScript_0x19e13f
 	clearevent EVENT_PARRY_IRON
@@ -336,8 +336,8 @@ HikerTimothyScript: ; 0x19e239
 	talkaftercancel
 	loadfont
 	writetext UnknownText_0x19e4f1
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 ; 0x19e241
 
@@ -365,8 +365,8 @@ CooltrainermRyanScript: ; 0x19e24d
 	talkaftercancel
 	loadfont
 	writetext UnknownText_0x19e70d
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 ; 0x19e255
 
@@ -394,8 +394,8 @@ CooltrainerfKellyScript: ; 0x19e261
 	talkaftercancel
 	loadfont
 	writetext UnknownText_0x19e7d1
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 ; 0x19e269
 
@@ -405,28 +405,28 @@ YoungsterScript_0x19e269: ; 0x19e269
 	checkevent EVENT_BEAT_CAMPER_QUENTIN
 	iftrue UnknownScript_0x19e285
 	writetext UnknownText_0x19e87f
+	waitbutton
 	closetext
-	loadmovesprites
 	winlosstext UnknownText_0x19e899, $0000
 	loadtrainer CAMPER, QUENTIN
 	startbattle
 	returnafterbattle
 	setevent EVENT_BEAT_CAMPER_QUENTIN
-	loadmovesprites
+	closetext
 	end
 ; 0x19e285
 
 UnknownScript_0x19e285: ; 0x19e285
 	writetext UnknownText_0x19e8bb
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 ; 0x19e28b
 
 UnknownScript_0x19e28b: ; 0x19e28b
 	writetext UnknownText_0x19e830
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 ; 0x19e291
 

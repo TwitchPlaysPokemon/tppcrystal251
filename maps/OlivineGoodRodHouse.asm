@@ -15,26 +15,26 @@ FishingGuruScript_0x9c71b: ; 0x9c71b
 	yesorno
 	iffalse UnknownScript_0x9c73a
 	writetext UnknownText_0x9c7db
-	keeptextopen
+	buttonsound
 	verbosegiveitem GOOD_ROD, 1
 	writetext UnknownText_0x9c807
+	waitbutton
 	closetext
-	loadmovesprites
 	setevent EVENT_GOT_GOOD_ROD
 	end
 ; 0x9c73a
 
 UnknownScript_0x9c73a: ; 0x9c73a
 	writetext UnknownText_0x9c84c
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 ; 0x9c740
 
 UnknownScript_0x9c740: ; 0x9c740
 	writetext UnknownText_0x9c87f
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 ; 0x9c746
 

@@ -30,8 +30,8 @@ YoungsterOwenScript: ; 0x6800e
 	talkaftercancel
 	loadfont
 	writetext UnknownText_0x680b2
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 ; 0x68016
 
@@ -59,8 +59,8 @@ YoungsterJasonScript: ; 0x68022
 	talkaftercancel
 	loadfont
 	writetext UnknownText_0x6814a
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 ; 0x6802a
 
@@ -88,8 +88,8 @@ PsychicHermanScript: ; 0x68036
 	talkaftercancel
 	loadfont
 	writetext UnknownText_0x6817b
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 ; 0x6803e
 
@@ -117,8 +117,8 @@ PsychicFidelScript: ; 0x6804a
 	talkaftercancel
 	loadfont
 	writetext UnknownText_0x681ec
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 ; 0x68052
 

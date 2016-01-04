@@ -35,7 +35,7 @@ RedsHouse1FRB_Movement2: ; 0x7a4f2
 RedsHouse1FRB_SkipMovement: ; 0x7a4f6
 	loadfont
 	writetext MomText1
-	keeptextopen
+	buttonsound
 	stringtotext RedsHouse1FRB_GearName, $1
 	scall RedsHouse1FRB_GetItem
 	setflag ENGINE_POKEGEAR
@@ -45,7 +45,7 @@ RedsHouse1FRB_SkipMovement: ; 0x7a4f6
 	setevent EVENT_MOM_POSITION_1
 	clearevent EVENT_MOM_POSITION_2
 	writetext MomText2
-	keeptextopen
+	buttonsound
 	special Function90913
 RedsHouse1FRB_DSTLoop: ; 0x7a519
 	writetext MomText3
@@ -66,19 +66,19 @@ RedsHouse1FRB_TimeIsSet: ; 0x7a531
 	yesorno
 	iffalse RedsHouse1FRB_DontNeedPhoneExplanation
 	writetext MomText5
-	keeptextopen
+	buttonsound
 	jump RedsHouse1FRB_AfterPhoneExplanation
 ; 0x7a542
 
 RedsHouse1FRB_DontNeedPhoneExplanation: ; 0x7a542
 	writetext MomText6
-	keeptextopen
+	buttonsound
 ; 0x7a549
 
 RedsHouse1FRB_AfterPhoneExplanation: ; 0x7a549
 	writetext MomText7
+	waitbutton
 	closetext
-	loadmovesprites
 	checkevent EVENT_000_STD
 	iftrue RedsHouse1FRB_MoveBack1
 	checkevent EVENT_001_STD
@@ -121,8 +121,8 @@ MomScript1:
 	iffalse MomScript2
 	loadfont
 	writetext UnknownText_0x19af81
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 ; 0x19aeba
 

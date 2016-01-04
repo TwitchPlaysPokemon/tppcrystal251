@@ -15,7 +15,7 @@ MewtwoScript:
 	writetext MewtwoText
 	cry MEWTWO
 	pause 15
-	loadmovesprites
+	closetext
 	writecode VAR_BATTLETYPE, BATTLETYPE_KANTOLEGEND
 	loadpokedata MEWTWO, 100
 	startbattle

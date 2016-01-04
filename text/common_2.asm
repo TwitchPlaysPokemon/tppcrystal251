@@ -109,7 +109,7 @@ UnknownText_0x1bc14f: ; 0x1bc14f
 	deciram CurPartyLevel, $13
 	text "!@"
 	sound0
-	text_waitbutton
+	text_waitsfx
 	db "@"
 ; 0x1bc16d
 
@@ -1573,7 +1573,7 @@ UnknownText_0x1bd3be: ; 0x1bd3be
 	text_from_ram StringBuffer1
 	text "!@"
 	sound0x0F
-	text_waitbutton
+	text_waitsfx
 	db "@"
 ; 0x1bd3d6
 

@@ -18,8 +18,8 @@ PokefanMScript_0x72123: ; 0x72123
 	faceplayer
 	loadfont
 	writetext UnknownText_0x72215
+	waitbutton
 	closetext
-	loadmovesprites
 	spriteface $4, $2
 	end
 ; 0x7212e
@@ -28,8 +28,8 @@ TeacherScript_0x7212e: ; 0x7212e
 	faceplayer
 	loadfont
 	writetext UnknownText_0x72242
+	waitbutton
 	closetext
-	loadmovesprites
 	spriteface $5, $3
 	end
 ; 0x72139
@@ -38,8 +38,8 @@ FishingGuruScript_0x72139: ; 0x72139
 	faceplayer
 	loadfont
 	writetext UnknownText_0x72295
+	waitbutton
 	closetext
-	loadmovesprites
 	spriteface $6, $3
 	end
 ; 0x72144
@@ -50,7 +50,7 @@ FisherScript_0x72144: ; 0x72144
 	checkevent EVENT_GOT_COINS_FROM_GAMBLER_AT_CELADON
 	iftrue .UnknownScript_0x72169
 	writetext UnknownText_0x722dc
-	keeptextopen
+	buttonsound
 	checkitem COIN_CASE
 	iffalse UnknownScript_0x7217b
 	checkcoins 9998
@@ -61,8 +61,8 @@ FisherScript_0x72144: ; 0x72144
 	setevent EVENT_GOT_COINS_FROM_GAMBLER_AT_CELADON
 .UnknownScript_0x72169 ; 0x72169
 	writetext UnknownText_0x72345
+	waitbutton
 	closetext
-	loadmovesprites
 	spriteface $fe, $2
 	end
 ; 0x72172
@@ -78,16 +78,16 @@ FisherScript_0x72144: ; 0x72144
 
 UnknownScript_0x7217b: ; 0x7217b
 	writetext UnknownText_0x7238a
+	waitbutton
 	closetext
-	loadmovesprites
 	spriteface $fe, $2
 	end
 ; 0x72184
 
 UnknownScript_0x72184: ; 0x72184
 	writetext UnknownText_0x723d9
+	waitbutton
 	closetext
-	loadmovesprites
 	spriteface $fe, $2
 	end
 ; 0x7218d
@@ -100,8 +100,8 @@ GrampsScript_0x72190: ; 0x72190
 	faceplayer
 	loadfont
 	writetext UnknownText_0x724ad
+	waitbutton
 	closetext
-	loadmovesprites
 	spriteface $a, $2
 	end
 ; 0x7219b
@@ -120,7 +120,7 @@ MapCeladonGameCornerSignpost35Script: ; 0x721a1
 	refreshscreen $0
 	writebyte $0
 	special Functionc373
-	loadmovesprites
+	closetext
 	end
 ; 0x721b0
 
@@ -128,14 +128,14 @@ MapCeladonGameCornerSignpost16Script: ; 0x721b0
 	refreshscreen $0
 	writebyte $1
 	special Functionc373
-	loadmovesprites
+	closetext
 	end
 ; 0x721b9
 
 MapCeladonGameCornerSignpost11Script: ; 0x721b9
 	refreshscreen $0
 	special Functionc380
-	loadmovesprites
+	closetext
 	end
 ; 0x721c0
 
@@ -146,9 +146,9 @@ MapCeladonGameCornerSignpost32Script: ; 0x721c0
 MapCeladonGameCornerSignpost9Script: ; 0x721c3
 	loadfont
 	writetext UnknownText_0x72567
-	closetext
+	waitbutton
 	special Functionc380
-	loadmovesprites
+	closetext
 	end
 ; 0x721cd
 

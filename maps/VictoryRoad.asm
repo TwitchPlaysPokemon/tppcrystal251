@@ -54,8 +54,8 @@ UnknownScript_0x744d4: ; 0x744d4
 	playmusic MUSIC_RIVAL_ENCOUNTER
 	loadfont
 	writetext UnknownText_0x7455f
+	waitbutton
 	closetext
-	loadmovesprites
 	setevent EVENT_SILVER_IN_VICTORY_ROAD
 	checkevent EVENT_GOT_TOTODILE_FROM_ELM
 	iftrue UnknownScript_0x744ff
@@ -95,8 +95,8 @@ UnknownScript_0x7451f: ; 0x7451f
 	playmusic MUSIC_RIVAL_AFTER
 	loadfont
 	writetext UnknownText_0x746ce
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 ; 0x74529
 

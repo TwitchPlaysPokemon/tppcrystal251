@@ -18,7 +18,7 @@ OakScript_0x19b3c8: ; 0x19b3c8
 	checkevent EVENT_TALKED_TO_OAK_IN_HIS_LAB
 	iftrue UnknownScript_0x19b3dd
 	writetext UnknownText_0x19b427
-	keeptextopen
+	buttonsound
 	setevent EVENT_TALKED_TO_OAK_IN_HIS_LAB
 UnknownScript_0x19b3dd: ; 0x19b3dd
 	checkcode VAR_BADGES
@@ -29,30 +29,30 @@ UnknownScript_0x19b3dd: ; 0x19b3dd
 
 UnknownScript_0x19b3ea: ; 0x19b3ea
 	writetext UnknownText_0x19b4a2
-	closetext
+	waitbutton
 	special ProfOaksPCBoot
 	writetext UnknownText_0x19b4c8
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 ; 0x19b3f7
 
 UnknownScript_0x19b3f7: ; 0x19b3f7
 	writetext UnknownText_0x19b4fc
-	keeptextopen
+	buttonsound
 	setevent EVENT_SET_BY_OAK_AFTER_16_BADGES
 	jump UnknownScript_0x19b3ea
 ; 0x19b401
 
 UnknownScript_0x19b401: ; 0x19b401
 	writetext UnknownText_0x19b6a2
-	keeptextopen
+	buttonsound
 	jump UnknownScript_0x19b3ea
 ; 0x19b408
 
 UnknownScript_0x19b408: ; 0x19b408
 	writetext UnknownText_0x19b73c
-	keeptextopen
+	buttonsound
 	jump UnknownScript_0x19b3ea
 ; 0x19b40f
 

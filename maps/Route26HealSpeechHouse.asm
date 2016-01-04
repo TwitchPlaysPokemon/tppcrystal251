@@ -10,8 +10,8 @@ TeacherScript_0x7b125: ; 0x7b125
 	faceplayer
 	loadfont
 	writetext UnknownText_0x7b14d
+	waitbutton
 	closetext
-	loadmovesprites
 	special Special_FadeToBlack
 	special Functiond91
 	special Function1060a2
@@ -22,8 +22,8 @@ TeacherScript_0x7b125: ; 0x7b125
 	special RestartMapMusic
 	loadfont
 	writetext UnknownText_0x7b18b
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 ; 0x7b14a
 

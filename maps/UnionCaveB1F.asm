@@ -30,8 +30,8 @@ PokemaniacAndrewScript: ; 0x59fd2
 	talkaftercancel
 	loadfont
 	writetext UnknownText_0x5a181
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 ; 0x59fda
 
@@ -59,8 +59,8 @@ PokemaniacCalvinScript: ; 0x59fe6
 	talkaftercancel
 	loadfont
 	writetext UnknownText_0x5a230
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 ; 0x59fee
 
@@ -88,8 +88,8 @@ HikerPhillipScript: ; 0x59ffa
 	talkaftercancel
 	loadfont
 	writetext UnknownText_0x5a073
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 ; 0x5a002
 
@@ -117,8 +117,8 @@ HikerLeonardScript: ; 0x5a00e
 	talkaftercancel
 	loadfont
 	writetext UnknownText_0x5a0fb
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 ; 0x5a016
 

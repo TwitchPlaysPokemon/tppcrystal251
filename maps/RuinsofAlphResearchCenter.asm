@@ -48,17 +48,17 @@ UnknownScript_0x59192: ; 0x59192
 	spriteface $4, $0
 	loadfont
 	writetext UnknownText_0x59278
+	waitbutton
 	closetext
-	loadmovesprites
 	applymovement $4, MovementData_0x59274
 	loadfont
 	writetext UnknownText_0x592fa
 	playsound SFX_ITEM
-	waitbutton
+	waitsfx
 	setflag ENGINE_UNOWN_DEX
 	writetext UnknownText_0x59311
+	waitbutton
 	closetext
-	loadmovesprites
 	applymovement $4, MovementData_0x59276
 	dotrigger $0
 	special RestartMapMusic
@@ -71,15 +71,15 @@ ScientistScript_0x591d1: ; 0x591d1
 	checkcode VAR_UNOWNCOUNT
 	if_equal 26, UnknownScript_0x591df
 	writetext UnknownText_0x59311
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 ; 0x591df
 
 UnknownScript_0x591df: ; 0x591df
 	writetext UnknownText_0x5935f
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 ; 0x591e5
 
@@ -93,29 +93,29 @@ ScientistScript_0x591e5: ; 0x591e5
 	checkevent EVENT_MADE_UNOWN_APPEAR_IN_RUINS
 	iftrue UnknownScript_0x591ff
 	writetext UnknownText_0x593ed
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 ; 0x591ff
 
 UnknownScript_0x591ff: ; 0x591ff
 	writetext UnknownText_0x59478
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 ; 0x59205
 
 UnknownScript_0x59205: ; 0x59205
 	writetext UnknownText_0x59445
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 ; 0x5920b
 
 UnknownScript_0x5920b: ; 0x5920b
 	writetext UnknownText_0x594cb
+	waitbutton
 	closetext
-	loadmovesprites
 	clearevent EVENT_YOUNGSTERS_IN_RUINS_OF_ALPH_OUTSIDE
 	end
 ; 0x59214
@@ -128,22 +128,22 @@ ScientistScript_0x59214: ; 0x59214
 	checkevent EVENT_MADE_UNOWN_APPEAR_IN_RUINS
 	iftrue UnknownScript_0x59228
 	writetext UnknownText_0x5954f
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 ; 0x59228
 
 UnknownScript_0x59228: ; 0x59228
 	writetext UnknownText_0x595cb
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 ; 0x5922e
 
 UnknownScript_0x5922e: ; 0x5922e
 	writetext UnknownText_0x59769
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 ; 0x59234
 
@@ -155,15 +155,15 @@ MapRuinsofAlphResearchCenterSignpost1Script: ; 0x59234
 	if_equal 26, UnknownScript_0x59247
 UnknownScript_0x59241: ; 0x59241
 	writetext UnknownText_0x597b6
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 ; 0x59247
 
 UnknownScript_0x59247: ; 0x59247
 	writetext UnknownText_0x597d9
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 ; 0x5924d
 
@@ -175,16 +175,16 @@ MapRuinsofAlphResearchCenterSignpost2Script: ; 0x5924d
 	if_equal 26, UnknownScript_0x59260
 UnknownScript_0x5925a: ; 0x5925a
 	writetext UnknownText_0x5980e
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 ; 0x59260
 
 UnknownScript_0x59260: ; 0x59260
 	writetext UnknownText_0x5982d
-	closetext
+	waitbutton
 	special Functionc2cd
-	loadmovesprites
+	closetext
 	end
 ; 0x59269
 

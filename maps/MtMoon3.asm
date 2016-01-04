@@ -29,7 +29,7 @@ SuperNerdMiguelScript:
 	checkevent EVENT_ACTIVATED_MIGUEL_FOSSILS
 	iftrue SuperNerdMiguelScript2
 	writetext SuperNerdMiguelFirstFossilText
-	keeptextopen
+	buttonsound
 	verbosegiveitem HELIX_FOSSIL, 1
 	setflag ENGINE_DAILY_FOSSIL
 	setevent EVENT_ACTIVATED_MIGUEL_FOSSILS
@@ -47,20 +47,20 @@ SuperNerdMiguelScript2:
 	random 10
 	if_equal 1, SuperNerdMiguelFoundNothing
 	writetext SuperNerdMiguelFoundSomethingText
-	keeptextopen
+	buttonsound
 	random 2
 	if_equal 1, SuperNerdMiguelFoundDome
 
 SuperNerdMiguelFoundNothing:
 	setevent EVENT_DAILY_MIGUEL_FOUND_NOTHING
 	writetext SuperNerdMiguelFoundNothingText
-	keeptextopen
+	buttonsound
 	setflag ENGINE_DAILY_FOSSIL
 	jump SuperNerdMiguelScriptFinally
 
 SuperNerdMiguelFoundHelix:
 	writetext SuperNerdMiguelFoundHelixText
-	keeptextopen
+	buttonsound
 	checkitem HELIX_FOSSIL
 	iftrue SuperNerdMiguelScriptAlreadyHaveIt
 	setevent EVENT_DAILY_MIGUEL_FOUND_HELIX
@@ -70,7 +70,7 @@ SuperNerdMiguelFoundHelix:
 
 SuperNerdMiguelFoundDome:
 	writetext SuperNerdMiguelFoundDomeText
-	keeptextopen
+	buttonsound
 	checkitem DOME_FOSSIL
 	iftrue SuperNerdMiguelScriptAlreadyHaveIt
 	setevent EVENT_DAILY_MIGUEL_FOUND_DOME
@@ -82,14 +82,14 @@ SuperNerdMiguelScriptFinally:
 	clearevent EVENT_DAILY_MIGUEL_FOUND_DOME
 	clearevent EVENT_DAILY_MIGUEL_FOUND_NOTHING
 	writetext SuperNerdMiguelText
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 SuperNerdMiguelScriptAlreadyHaveIt:
 	writetext SuperNerdMiguelAlreadyHaveItText
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 SuperNerdMiguelSeenText:

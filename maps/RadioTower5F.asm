@@ -28,14 +28,14 @@ UnknownScript_0x60011: ; 0x60011
 	showemote $0, $2, 15
 	loadfont
 	writetext UnknownText_0x60128
+	waitbutton
 	closetext
-	loadmovesprites
 	applymovement $2, MovementData_0x60109
 	playmusic MUSIC_ROCKET_ENCOUNTER
 	loadfont
 	writetext UnknownText_0x60147
+	waitbutton
 	closetext
-	loadmovesprites
 	winlosstext UnknownText_0x60223, $0000
 	setlasttalked $2
 	loadtrainer EXECUTIVEM, 3
@@ -43,9 +43,9 @@ UnknownScript_0x60011: ; 0x60011
 	returnafterbattle
 	loadfont
 	writetext UnknownText_0x60246
-	keeptextopen
+	buttonsound
 	verbosegiveitem BASEMENT_KEY, 1
-	loadmovesprites
+	closetext
 	dotrigger $1
 	setevent EVENT_BEAT_ROCKET_EXECUTIVEM_573
 	end
@@ -57,15 +57,15 @@ GentlemanScript_0x60046: ; 0x60046
 	checkevent EVENT_CLEARED_RADIO_TOWER
 	iftrue UnknownScript_0x60054
 	writetext UnknownText_0x60246
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 ; 0x60054
 
 UnknownScript_0x60054: ; 0x60054
 	writetext UnknownText_0x60824
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 ; 0x6005a
 
@@ -93,8 +93,8 @@ Executivef1Script: ; 0x60066
 	talkaftercancel
 	loadfont
 	writetext UnknownText_0x60358
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 ; 0x6006e
 
@@ -104,8 +104,8 @@ UnknownScript_0x6006e: ; 0x6006e
 	spriteface $3, $3
 	loadfont
 	writetext UnknownText_0x603d1
+	waitbutton
 	closetext
-	loadmovesprites
 	winlosstext UnknownText_0x604f3, $0000
 	setlasttalked $3
 	loadtrainer EXECUTIVEM, 1
@@ -113,8 +113,8 @@ UnknownScript_0x6006e: ; 0x6006e
 	returnafterbattle
 	loadfont
 	writetext UnknownText_0x6050e
+	waitbutton
 	closetext
-	loadmovesprites
 	special Special_FadeToBlack
 	special Functiond91
 	disappear $3
@@ -141,11 +141,11 @@ UnknownScript_0x6006e: ; 0x6006e
 	spriteface $0, $3
 	loadfont
 	writetext UnknownText_0x605b2
-	keeptextopen
+	buttonsound
 	verbosegiveitem CLEAR_BELL, 1
 	writetext UnknownText_0x6062c
+	waitbutton
 	closetext
-	loadmovesprites
 	dotrigger $2
 	domaptrigger GROUP_ECRUTEAK_HOUSE, MAP_ECRUTEAK_HOUSE, $0
 	setevent EVENT_GOT_CLEAR_BELL

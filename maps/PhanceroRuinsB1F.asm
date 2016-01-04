@@ -34,7 +34,7 @@ Script_ArticunoPuzzle:
 	refreshscreen $0
 	writebyte $4
 	special Functionc360
-	loadmovesprites
+	closetext
 	iftrue DisappearArticunoPhanceroB1F
 	end
 	
@@ -63,7 +63,7 @@ Script_ZapdosPuzzle:
 	refreshscreen $0
 	writebyte $5
 	special Functionc360
-	loadmovesprites
+	closetext
 	iftrue DisappearZapdosPhanceroB1F
 	end
 	
@@ -93,7 +93,7 @@ Script_MoltresPuzzle:
 	refreshscreen $0
 	writebyte $6
 	special Functionc360
-	loadmovesprites
+	closetext
 	iftrue DisappearMoltresPhanceroB1F
 	end
 	
@@ -117,14 +117,14 @@ DisappearMoltresPhanceroB1F:
 CheckAllPuzzles_PhanceroRuinsB1F:
 	copybytetovar UnlockedUnowns
 	if_not_equal $7f, B2FUnlockEnd_PhanceroRuinsB1F
-	keeptextopen
+	buttonsound
 	writetext Text_NextLevelUnlocked
 	changeblock 7, 9, $2f
 	playsound SFX_ENTER_DOOR
 	pause 10
 B2FUnlockEnd_PhanceroRuinsB1F:
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 	
 Script_ThereWasSomethingHere_PhanceroB1F:

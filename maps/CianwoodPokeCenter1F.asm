@@ -20,15 +20,15 @@ CianwoodGymGuyScript: ; 0x9dbd5
 	iftrue .CianwoodGymGuyWinScript
 	loadfont
 	writetext CianwoodGymGuyText
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 .CianwoodGymGuyWinScript
 	loadfont
 	writetext CianwoodGymGuyWinText
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 ; 0x9dbea
 

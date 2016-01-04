@@ -30,8 +30,8 @@ Bird_keeperHankScript: ; 0x1ae1dc
 	talkaftercancel
 	loadfont
 	writetext UnknownText_0x1ae258
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 ; 0x1ae1e4
 
@@ -59,8 +59,8 @@ PicnickerHopeScript: ; 0x1ae1f0
 	talkaftercancel
 	loadfont
 	writetext UnknownText_0x1ae320
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 ; 0x1ae1f8
 
@@ -88,8 +88,8 @@ PicnickerSharonScript: ; 0x1ae204
 	talkaftercancel
 	loadfont
 	writetext UnknownText_0x1ae369
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 ; 0x1ae20c
 

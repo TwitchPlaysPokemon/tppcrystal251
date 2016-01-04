@@ -18,7 +18,7 @@ Script_PhanceroPuzzle:
 	refreshscreen $0
 	writebyte $7
 	special Functionc360
-	loadmovesprites
+	closetext
 	iftrue OpenHolePhanceroB2F
 	end
 	
@@ -34,7 +34,7 @@ OpenHolePhanceroB2F:
 	earthquake 80
 	applymovement $0, MovementData_RunInPlaceB2F
 	playsound SFX_KINESIS
-	waitbutton
+	waitsfx
 	pause 20
 	warpcheck
 	end

@@ -29,22 +29,22 @@ MomScript_0x7a582: ; 0x7a582
 	checkevent EVENT_GOT_A_POKEMON_FROM_ELM
 	iftrue UnknownScript_0x7a5a9
 	writetext UnknownText_0x7a8b5
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 ; 0x7a5a9
 
 UnknownScript_0x7a5a9: ; 0x7a5a9
 	writetext UnknownText_0x7a8e5
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 ; 0x7a5af
 
 UnknownScript_0x7a5af: ; 0x7a5af
 	writetext UnknownText_0x7a957
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 ; 0x7a5b5
 
@@ -53,8 +53,8 @@ UnknownScript_0x7a5b5: ; 0x7a5b5
 UnknownScript_0x7a5b8: ; 0x7a5b8
 	setevent EVENT_TALKED_TO_MOM_AFTER_MYSTERY_EGG_QUEST
 	special Function16218
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 ; 0x7a5c1
 
@@ -69,26 +69,26 @@ PokefanFScript_0x7a5c1: ; 0x7a5c1
 	iftrue UnknownScript_0x7a5e0
 UnknownScript_0x7a5d2: ; 0x7a5d2
 	writetext UnknownText_0x7a97d
-	keeptextopen
+	buttonsound
 	jump UnknownScript_0x7a5e7
 ; 0x7a5d9
 
 UnknownScript_0x7a5d9: ; 0x7a5d9
 	writetext UnknownText_0x7a99c
-	keeptextopen
+	buttonsound
 	jump UnknownScript_0x7a5e7
 ; 0x7a5e0
 
 UnknownScript_0x7a5e0: ; 0x7a5e0
 	writetext UnknownText_0x7a9b4
-	keeptextopen
+	buttonsound
 	jump UnknownScript_0x7a5e7
 ; 0x7a5e7
 
 UnknownScript_0x7a5e7: ; 0x7a5e7
 	writetext UnknownText_0x7a9d3
+	waitbutton
 	closetext
-	loadmovesprites
 	spriteface $6, $3
 	end
 ; 0x7a5f0

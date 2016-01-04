@@ -6,8 +6,8 @@ PhanceroRuinsB3F_PhanceroScript1:
 	loadfont
 	writetext PhanceroText1
 	cry PHANCERO
+	waitbutton
 	closetext
-	loadmovesprites
 	loadpokedata PHANCERO, 100
 	writecode VAR_BATTLETYPE, BATTLETYPE_FORCEITEM
 	startbattle

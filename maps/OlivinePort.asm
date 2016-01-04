@@ -34,17 +34,17 @@ SailorScript_0x748c0: ; 0x748c0
 	checkevent EVENT_000_STD
 	iftrue UnknownScript_0x74919
 	writetext UnknownText_0x74a55
+	waitbutton
 	closetext
-	loadmovesprites
 	spriteface $2, $0
 	pause 10
 	playsound SFX_EXIT_BUILDING
 	disappear $2
-	waitbutton
+	waitsfx
 	applymovement $0, MovementData_0x74a30
 	playsound SFX_EXIT_BUILDING
 	special Function8c084
-	waitbutton
+	waitsfx
 	checkevent EVENT_FAST_SHIP_030
 	iffalse UnknownScript_0x7490a
 	clearevent EVENT_FAST_SHIP_POPULATION_2
@@ -68,8 +68,8 @@ UnknownScript_0x7490a: ; 0x7490a
 
 UnknownScript_0x74919: ; 0x74919
 	writetext UnknownText_0x74a80
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 ; 0x7491f
 
@@ -94,12 +94,12 @@ UnknownScript_0x7494e: ; 0x7494e
 	yesorno
 	iffalse UnknownScript_0x74992
 	writetext UnknownText_0x74ada
-	keeptextopen
+	buttonsound
 	checkitem S_S_TICKET
 	iffalse UnknownScript_0x7496d
 	writetext UnknownText_0x74b11
+	waitbutton
 	closetext
-	loadmovesprites
 	setevent EVENT_001_STD
 	applymovement $0, MovementData_0x74a37
 	jump SailorScript_0x748c0
@@ -107,24 +107,24 @@ UnknownScript_0x7494e: ; 0x7494e
 
 UnknownScript_0x7496d: ; 0x7496d
 	writetext UnknownText_0x74b41
+	waitbutton
 	closetext
-	loadmovesprites
 	applymovement $0, MovementData_0x74a34
 	end
 ; 0x74977
 
 UnknownScript_0x74977: ; 0x74977
 	writetext UnknownText_0x74ba8
+	waitbutton
 	closetext
-	loadmovesprites
 	applymovement $0, MovementData_0x74a34
 	end
 ; 0x74981
 
 UnknownScript_0x74981: ; 0x74981
 	writetext UnknownText_0x74bce
+	waitbutton
 	closetext
-	loadmovesprites
 	applymovement $0, MovementData_0x74a34
 	end
 ; 0x7498b
@@ -135,15 +135,15 @@ UnknownScript_0x7498b: ; 0x7498b
 
 UnknownScript_0x7498c: ; 0x7498c
 	writetext UnknownText_0x74af6
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 ; 0x74992
 
 UnknownScript_0x74992: ; 0x74992
 	writetext UnknownText_0x74af6
+	waitbutton
 	closetext
-	loadmovesprites
 	applymovement $0, MovementData_0x74a34
 	end
 ; 0x7499c
@@ -166,12 +166,12 @@ UnknownScript_0x749c0: ; 0x749c0
 	yesorno
 	iffalse UnknownScript_0x7498c
 	writetext UnknownText_0x74ada
-	keeptextopen
+	buttonsound
 	checkitem S_S_TICKET
 	iffalse UnknownScript_0x749ec
 	writetext UnknownText_0x74b11
+	waitbutton
 	closetext
-	loadmovesprites
 	setevent EVENT_001_STD
 	checkcode VAR_FACING
 	if_equal $3, UnknownScript_0x749e5
@@ -186,22 +186,22 @@ UnknownScript_0x749e5: ; 0x749e5
 
 UnknownScript_0x749ec: ; 0x749ec
 	writetext UnknownText_0x74b41
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 ; 0x749f2
 
 UnknownScript_0x749f2: ; 0x749f2
 	writetext UnknownText_0x74ba8
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 ; 0x749f8
 
 UnknownScript_0x749f8: ; 0x749f8
 	writetext UnknownText_0x74bce
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 ; 0x749fe
 
@@ -213,8 +213,8 @@ FishingGuruScript_0x74a01: ; 0x74a01
 	faceplayer
 	loadfont
 	writetext UnknownText_0x74bf4
+	waitbutton
 	closetext
-	loadmovesprites
 	spriteface $5, $1
 	end
 ; 0x74a0c
@@ -223,8 +223,8 @@ FishingGuruScript_0x74a0c: ; 0x74a0c
 	faceplayer
 	loadfont
 	writetext UnknownText_0x74c35
+	waitbutton
 	closetext
-	loadmovesprites
 	spriteface $6, $1
 	end
 ; 0x74a17
@@ -233,8 +233,8 @@ YoungsterScript_0x74a17: ; 0x74a17
 	faceplayer
 	loadfont
 	writetext UnknownText_0x74c76
+	waitbutton
 	closetext
-	loadmovesprites
 	spriteface $7, $0
 	end
 ; 0x74a22
@@ -243,8 +243,8 @@ CooltrainerFScript_0x74a22: ; 0x74a22
 	faceplayer
 	loadfont
 	writetext UnknownText_0x74ca2
+	waitbutton
 	closetext
-	loadmovesprites
 	spriteface $8, $0
 	end
 ; 0x74a2d

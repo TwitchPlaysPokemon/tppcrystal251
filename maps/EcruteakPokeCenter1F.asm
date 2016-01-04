@@ -23,7 +23,7 @@ UnknownScript_0x98e64: ; 0x98e64
 	pause 30
 	playsound SFX_EXIT_BUILDING
 	appear $6
-	waitbutton
+	waitsfx
 	applymovement $6, MovementData_0x98ec5
 	applymovement $0, MovementData_0x98ed4
 	spriteface $2, $1
@@ -38,14 +38,14 @@ UnknownScript_0x98e64: ; 0x98e64
 	pause 10
 	loadfont
 	writetext UnknownText_0x98ed8
-	keeptextopen
+	buttonsound
 	jump UnknownScript_0x98e95
 ; 0x98e95
 
 UnknownScript_0x98e95: ; 0x98e95
 	writetext UnknownText_0x98f22
+	waitbutton
 	closetext
-	loadmovesprites
 	spriteface $0, $0
 	applymovement $6, MovementData_0x98ece
 	playsound SFX_EXIT_BUILDING
@@ -53,7 +53,7 @@ UnknownScript_0x98e95: ; 0x98e95
 	clearevent EVENT_BILL_IN_GOLDENROD_BILLS_HOUSE
 	setflag ENGINE_TIME_CAPSULE
 	dotrigger $1
-	waitbutton
+	waitsfx
 	end
 ; 0x98eb0
 

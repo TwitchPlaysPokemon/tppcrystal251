@@ -10,8 +10,8 @@ TeacherScript_0x1ad47f: ; 0x1ad47f
 	faceplayer
 	loadfont
 	trade $5
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 ; 0x1ad486
 
@@ -39,8 +39,8 @@ PokefanmCarterScript: ; 0x1ad492
 	talkaftercancel
 	loadfont
 	writetext UnknownText_0x1ad508
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 ; 0x1ad49a
 
@@ -68,8 +68,8 @@ Bird_keeperRoyScript: ; 0x1ad4a6
 	talkaftercancel
 	loadfont
 	writetext UnknownText_0x1ad5a4
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 ; 0x1ad4ae
 
@@ -97,8 +97,8 @@ PokefanmTrevorScript: ; 0x1ad4ba
 	talkaftercancel
 	loadfont
 	writetext UnknownText_0x1ad660
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 ; 0x1ad4c2
 

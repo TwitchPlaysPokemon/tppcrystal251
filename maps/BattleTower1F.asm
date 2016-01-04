@@ -22,8 +22,8 @@ UnknownScript_0x9e39d: ; 0x9e39d
 	if_equal $4, UnknownScript_0x9e3d1
 	loadfont
 	writetext UnknownText_0x9f037
+	waitbutton
 	closetext
-	loadmovesprites
 	priorityjump UnknownScript_0x9e44e
 	end
 ; 0x9e3c4
@@ -49,9 +49,9 @@ MapBattleTower1FSignpost0Script: ; 0x9e3d4
 	yesorno
 	iffalse UnknownScript_0x9e3e0
 	writetext UnknownText_0x9ed72
-	closetext
+	waitbutton
 UnknownScript_0x9e3e0: ; 0x9e3e0
-	loadmovesprites
+	closetext
 	end
 ; 0x9e3e2
 
@@ -61,7 +61,7 @@ ReceptionistScript_0x9e3e2: ; 0x9e3e2
 	if_equal $3, BattleTowerBattleRoomScript_0x9f4e4
 	loadfont
 	writetext UnknownText_0x9e5ab
-	keeptextopen
+	buttonsound
 	writebyte $0
 	special Function170687
 	if_not_equal $0, UnknownScript_0x9e3fc
@@ -97,15 +97,15 @@ UnknownScript_0x9e40f: ; 0x9e40f
 	writebyte $11
 	special Function170687
 	writetext UnknownText_0x9e60a
+	waitbutton
 	closetext
-	loadmovesprites
 	writebyte $1e
 	special Function170687
 	jump UnknownScript_0x9e454
 ; 0x9e44e
 
 UnknownScript_0x9e44e: ; 0x9e44e
-	loadmovesprites
+	closetext
 	writebyte $8
 	special Function170687
 UnknownScript_0x9e454: ; 0x9e454
@@ -136,14 +136,14 @@ UnknownScript_0x9e47a: ; 0x9e47a
 	writetext UnknownText_0x9eb7e
 	writebyte $1d
 	special Function170687
-	loadmovesprites
+	closetext
 	end
 ; 0x9e498
 
 UnknownScript_0x9e498: ; 0x9e498
 	writetext UnknownText_0x9eb94
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 ; 0x9e49e
 
@@ -161,20 +161,20 @@ UnknownScript_0x9e4a8: ; 0x9e4a8
 
 UnknownScript_0x9e4b0: ; 0x9e4b0
 	writetext UnknownText_0x9ec09
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 ; 0x9e4b6
 
 UnknownScript_0x9e4b6: ; 0x9e4b6
 	special Function17f53d
-	loadmovesprites
+	closetext
 	end
 ; 0x9e4bb
 
 UnknownScript_0x9e4bb: ; 0x9e4bb
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 ; 0x9e4be
 
@@ -193,9 +193,9 @@ UnknownScript_0x9e4be: ; 0x9e4be
 	writetext UnknownText_0x9e9eb
 	spriteface $2, $2
 	writetext UnknownText_0x9ea1b
-	closetext
+	waitbutton
 	spriteface $2, $0
-	loadmovesprites
+	closetext
 	end
 ; 0x9e4ea
 
@@ -232,38 +232,38 @@ UnknownScript_0x9e515: ; 0x9e515
 	writebyte $12
 	special Function170687
 	writetext UnknownText_0x9e60a
-	closetext
+	waitbutton
 	jump UnknownScript_0x9e44e
 ; 0x9e53b
 
 UnknownScript_0x9e53b: ; 0x9e53b
 	writetext UnknownText_0x9f076
-	closetext
+	waitbutton
 	jump UnknownScript_0x9e4b0
 ; 0x9e542
 
 UnknownScript_0x9e542: ; 0x9e542
 	writetext UnknownText_0x9f1e5
-	closetext
+	waitbutton
 	jump UnknownScript_0x9e3fc
 ; 0x9e549
 
 UnknownScript_0x9e549: ; 0x9e549
 	writetext UnknownText_0x9f217
-	closetext
+	waitbutton
 	jump UnknownScript_0x9e3fc
 ; 0x9e550
 
 UnknownScript_0x9e550: ; 0x9e550
 	special Function17f53d
-	loadmovesprites
+	closetext
 	end
 ; 0x9e555
 
 UnknownScript_0x9e555: ; 0x9e555
 	loadfont
 	writetext UnknownText_0x9ee18
-	closetext
+	waitbutton
 	jump UnknownScript_0x9e4b0
 ; 0x9e55d
 
@@ -271,8 +271,8 @@ YoungsterScript_0x9e55d: ; 0x9e55d
 	faceplayer
 	loadfont
 	writetext UnknownText_0x9f264
+	waitbutton
 	closetext
-	loadmovesprites
 	spriteface $3, $3
 	end
 ; 0x9e568
@@ -534,7 +534,7 @@ UnknownText_0x9eb7e: ; 0x9eb7e
 	text_from_ram StringBuffer4
 	db $0, "!@"
 	sound0x0F
-	text_waitbutton
+	text_waitsfx
 	db $50
 ; 0x9eb94
 

@@ -13,44 +13,44 @@ CooltrainerMScript_0x71670: ; 0x71670
 	checkcode VAR_DEXCAUGHT
 	if_equal $fb, CeladonMansion3FNearlyThereScript
 	if_greater_than $fb, UnknownScript_0x7167e
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 ; 0x7167e
 
 CeladonMansion3FNearlyThereScript:
-	keeptextopen
+	buttonsound
 	writetext CeladonMansion3FNearlyThereText1
 	playsound SFX_DEX_FANFARE_230_PLUS
-	waitbutton
+	waitsfx
 	writetext CeladonMansion3FNearlyThereText2
+	waitbutton
 	closetext
-	loadmovesprites
 	setevent EVENT_PHANCERO_AVAILABLE
 	end
 
 UnknownScript_0x7167e: ; 0x7167e
-	keeptextopen
+	buttonsound
 	writetext UnknownText_0x71725
 	playsound SFX_DEX_FANFARE_230_PLUS
-	waitbutton
+	waitsfx
 	writetext UnknownText_0x71760
-	keeptextopen
+	buttonsound
 	special Functionc49f
 	writetext UnknownText_0x71763
 	checkevent EVENT_ENABLE_DIPLOMA_PRINTING
 	iftrue Script_0x7167e_end
-	keeptextopen
+	buttonsound
 	writetext Text_GiveMoneyMansion3F
+	waitbutton
 	closetext
-	loadmovesprites
 	setevent EVENT_ENABLE_DIPLOMA_PRINTING
 	givemoney 0, 300000
 	end
 	
 Script_0x7167e_end:
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 ; 0x71696
 
@@ -60,8 +60,8 @@ GymGuyScript_0x71696: ; 0x71696
 	checkevent EVENT_ENABLE_DIPLOMA_PRINTING
 	iftrue UnknownScript_0x716a4
 	writetext UnknownText_0x717b4
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 ; 0x716a4
 
@@ -70,21 +70,21 @@ UnknownScript_0x716a4: ; 0x716a4
 	yesorno
 	iffalse UnknownScript_0x716b0
 	special Functionc4ac
-	loadmovesprites
+	closetext
 	end
 ; 0x716b0
 
 UnknownScript_0x716b0: ; 0x716b0
 	writetext UnknownText_0x71830
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 ; 0x716b6
 
 UnknownScript_0x716b6: ; 0x716b6
 	writetext UnknownText_0x71863
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 ; 0x716bc
 

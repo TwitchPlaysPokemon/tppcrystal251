@@ -52,8 +52,8 @@ OlivineLighthouse1F_BurglarSimonScript1b:
 OlivineLighthouse1F_BurglarSimonScript2:
 	loadfont
 	writetext OlivineLighthouse1F_BurglarSimonText1
+	waitbutton
 	closetext
-	loadmovesprites
 	applymovement $4, OlivineLighthouse1F_BurglarSimonMovement2
 	winlosstext OlivineLighthouse1F_BurglarSimonTextLoss, $0000
 	loadtrainer BURGLAR, SIMON_2
@@ -63,7 +63,7 @@ OlivineLighthouse1F_BurglarSimonScript2:
 	playmusic MUSIC_POKEMANIAC_ENCOUNTER
 	loadfont
 	writetext OlivineLighthouse1F_BurglarSimonText2
-	keeptextopen
+	buttonsound
 	random 2
 	if_equal 1, OlivineLighthouse1F_BurglarSimonScript_GiveSilverLeaf
 	verbosegiveitem GOLD_LEAF, 1
@@ -72,8 +72,8 @@ OlivineLighthouse1F_BurglarSimonScript_GiveSilverLeaf:
 	verbosegiveitem SILVER_LEAF, 1
 OlivineLighthouse1F_BurglarSimonScript_Terminate:
 	writetext OlivineLighthouse1F_BurglarSimonText3
+	waitbutton
 	closetext
-	loadmovesprites
 	applymovement $4, OlivineLighthouse1F_BurglarSimonMovement3
 	playsound SFX_EXIT_BUILDING
 	disappear $4

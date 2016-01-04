@@ -17,7 +17,7 @@ MomPhoneScript: ; 0xbceaa
 	checkevent EVENT_007_STD
 	iftrue MomPhoneHangUpScript
 	farwritetext MomPhoneGreetingText
-	keeptextopen
+	buttonsound
 	mapnametotext $0
 	checkcode VAR_ROOFPALETTE
 	if_equal $1, UnknownScript_0xbcee7
@@ -26,7 +26,7 @@ MomPhoneScript: ; 0xbceaa
 
 UnknownScript_0xbcedf: ; 0xbcedf
 	farwritetext UnknownText_0x1b4021
-	keeptextopen
+	buttonsound
 	jump UnknownScript_0xbcf37
 
 UnknownScript_0xbcee7: ; 0xbcee7
@@ -37,17 +37,17 @@ UnknownScript_0xbcee7: ; 0xbcee7
 	if_equal GROUP_AZALEA_TOWN, .azalea
 	if_equal GROUP_GOLDENROD_CITY, .goldenrod
 	farwritetext MomPhoneGenericAreaText
-	keeptextopen
+	buttonsound
 	jump UnknownScript_0xbcf37
 
 .newbark ; 0xbcf05
 	farwritetext MomPhoneNewBarkText
-	keeptextopen
+	buttonsound
 	jump UnknownScript_0xbcf37
 
 .cherrygrove ; 0xbcf0d
 	farwritetext MomPhoneCherrygroveText
-	keeptextopen
+	buttonsound
 	jump UnknownScript_0xbcf37
 
 .violet ; 0xbcf15
@@ -62,12 +62,12 @@ UnknownScript_0xbcee7: ; 0xbcee7
 
 UnknownScript_0xbcf27: ; 0xbcf27
 	farwritetext UnknownText_0x1b411c
-	keeptextopen
+	buttonsound
 	jump UnknownScript_0xbcf37
 
 UnknownScript_0xbcf2f: ; 0xbcf2f
 	farwritetext UnknownText_0x1b4150
-	keeptextopen
+	buttonsound
 	jump UnknownScript_0xbcf37
 
 UnknownScript_0xbcf37: ; 0xbcf37
@@ -111,13 +111,13 @@ UnknownScript_0xbcf79: ; 0xbcf79
 MomPhoneSaveMoneyScript: ; 0xbcf87
 	setflag ENGINE_MOM_SAVING_MONEY
 	farwritetext UnknownText_0x1b4289
-	keeptextopen
+	buttonsound
 	jump MomPhoneHangUpScript
 
 MomPhoneWontSaveMoneyScript: ; 0xbcf92
 	clearflag ENGINE_MOM_SAVING_MONEY
 	farwritetext MomPhoneWontSaveMoneyText
-	keeptextopen
+	buttonsound
 	jump MomPhoneHangUpScript
 
 MomPhoneHangUpScript: ; 0xbcf9d
@@ -151,22 +151,22 @@ BillPhoneScript1: ; 0xbcfc5
 	checktime $4
 	iftrue .nitegreet
 	farwritetext BillPhoneMornGreetingText
-	keeptextopen
+	buttonsound
 	jump .main
 
 .daygreet ; 0xbcfd7
 	farwritetext BillPhoneDayGreetingText
-	keeptextopen
+	buttonsound
 	jump .main
 
 .nitegreet ; 0xbcfdf
 	farwritetext BillPhoneNiteGreetingText
-	keeptextopen
+	buttonsound
 	jump .main
 
 .main ; 0xbcfe7
 	farwritetext BillPhoneGeneriText
-	keeptextopen
+	buttonsound
 	checkcode VAR_BOXSPACE
 	RAM2MEM $0
 	if_equal $0, .full
@@ -184,7 +184,7 @@ BillPhoneScript1: ; 0xbcfc5
 
 BillPhoneScript2: ; 0xbd007
 	farwritetext BillPhoneNewlyFullText
-	closetext
+	waitbutton
 	end
 
 ElmPhoneScript1: ; 0xbd00d
@@ -1886,102 +1886,102 @@ UnknownScript_0xbde4e:
 
 UnknownScript_0xbdeaa:
 	farwritetext UnknownText_0x1b4dc5
-	keeptextopen
+	buttonsound
 	end
 
 UnknownScript_0xbdeb0:
 	farwritetext UnknownText_0x1b5073
-	keeptextopen
+	buttonsound
 	end
 
 UnknownScript_0xbdeb6:
 	farwritetext UnknownText_0x1b5270
-	keeptextopen
+	buttonsound
 	end
 
 UnknownScript_0xbdebc:
 	farwritetext UnknownText_0x1b55ae
-	keeptextopen
+	buttonsound
 	end
 
 UnknownScript_0xbdec2:
 	farwritetext UnknownText_0x1b589a
-	keeptextopen
+	buttonsound
 	end
 
 UnknownScript_0xbdec8:
 	farwritetext UnknownText_0x1b5a3b
-	keeptextopen
+	buttonsound
 	end
 
 UnknownScript_0xbdece:
 	farwritetext UnknownText_0x1b5c10
-	keeptextopen
+	buttonsound
 	end
 
 UnknownScript_0xbded4:
 	farwritetext UnknownText_0x1b5f7a
-	keeptextopen
+	buttonsound
 	end
 
 UnknownScript_0xbdeda:
 	farwritetext UnknownText_0x1b60f5
-	keeptextopen
+	buttonsound
 	end
 
 UnknownScript_0xbdee0:
 	farwritetext UnknownText_0x1b638c
-	keeptextopen
+	buttonsound
 	end
 
 UnknownScript_0xbdee6:
 	farwritetext UnknownText_0x1b6454
-	keeptextopen
+	buttonsound
 	end
 
 UnknownScript_0xbdeec:
 	farwritetext UnknownText_0x1b659d
-	keeptextopen
+	buttonsound
 	end
 
 UnknownScript_0xbdef2:
 	farwritetext UnknownText_0x1b67e2
-	keeptextopen
+	buttonsound
 	end
 
 UnknownScript_0xbdef8:
 	farwritetext UnknownText_0x1b69a8
-	keeptextopen
+	buttonsound
 	end
 
 UnknownScript_0xbdefe:
 	farwritetext UnknownText_0x1b6b39
-	keeptextopen
+	buttonsound
 	end
 
 UnknownScript_0xbdf04:
 	farwritetext UnknownText_0x1b6c96
-	keeptextopen
+	buttonsound
 	end
 
 UnknownScript_0xbdf0a:
 	farwritetext UnknownText_0x1b7019
-	keeptextopen
+	buttonsound
 	end
 
 UnknownScript_0xbdf10:
 	farwritetext UnknownText_0x1b71d5
-	keeptextopen
+	buttonsound
 	end
 
 UnknownScript_0xbdf16:
 	farwritetext UnknownText_0x1b730b
-	keeptextopen
+	buttonsound
 	end
 
 UnknownScript_0xbdf1c:
 	farwritetext UnknownText_0x1b73c7
-	keeptextopen
+	buttonsound
 	end
 
 UnknownScript_0xbdf22:
@@ -2009,102 +2009,102 @@ UnknownScript_0xbdf22:
 
 UnknownScript_0xbdf74:
 	farwritetext UnknownText_0x1b4ded
-	keeptextopen
+	buttonsound
 	end
 
 UnknownScript_0xbdf7a:
 	farwritetext UnknownText_0x1b509b
-	keeptextopen
+	buttonsound
 	end
 
 UnknownScript_0xbdf80:
 	farwritetext UnknownText_0x1b52a5
-	keeptextopen
+	buttonsound
 	end
 
 UnknownScript_0xbdf86:
 	farwritetext UnknownText_0x1b55da
-	keeptextopen
+	buttonsound
 	end
 
 UnknownScript_0xbdf8c:
 	farwritetext UnknownText_0x1b58c2
-	keeptextopen
+	buttonsound
 	end
 
 UnknownScript_0xbdf92:
 	farwritetext UnknownText_0x1b5a74
-	keeptextopen
+	buttonsound
 	end
 
 UnknownScript_0xbdf98:
 	farwritetext UnknownText_0x1b5c63
-	keeptextopen
+	buttonsound
 	end
 
 UnknownScript_0xbdf9e:
 	farwritetext UnknownText_0x1b5f9e
-	keeptextopen
+	buttonsound
 	end
 
 UnknownScript_0xbdfa4:
 	farwritetext UnknownText_0x1b611b
-	keeptextopen
+	buttonsound
 	end
 
 UnknownScript_0xbdfaa:
 	farwritetext UnknownText_0x1b63a8
-	keeptextopen
+	buttonsound
 	end
 
 UnknownScript_0xbdfb0:
 	farwritetext UnknownText_0x1b647e
-	keeptextopen
+	buttonsound
 	end
 
 UnknownScript_0xbdfb6:
 	farwritetext UnknownText_0x1b65c7
-	keeptextopen
+	buttonsound
 	end
 
 UnknownScript_0xbdfbc:
 	farwritetext UnknownText_0x1b680e
-	keeptextopen
+	buttonsound
 	end
 
 UnknownScript_0xbdfc2:
 	farwritetext UnknownText_0x1b69d2
-	keeptextopen
+	buttonsound
 	end
 
 UnknownScript_0xbdfc8:
 	farwritetext UnknownText_0x1b6b65
-	keeptextopen
+	buttonsound
 	end
 
 UnknownScript_0xbdfce:
 	farwritetext UnknownText_0x1b6cc6
-	keeptextopen
+	buttonsound
 	end
 
 UnknownScript_0xbdfd4:
 	farwritetext UnknownText_0x1b7057
-	keeptextopen
+	buttonsound
 	end
 
 UnknownScript_0xbdfda:
 	farwritetext UnknownText_0x1b71fc
-	keeptextopen
+	buttonsound
 	end
 
 UnknownScript_0xbdfe0:
 	farwritetext UnknownText_0x1b7331
-	keeptextopen
+	buttonsound
 	end
 
 UnknownScript_0xbdfe6:
 	farwritetext UnknownText_0x1b73ef
-	keeptextopen
+	buttonsound
 	end
 
 UnknownScript_0xbdfec:
@@ -2132,102 +2132,102 @@ UnknownScript_0xbdfec:
 
 UnknownScript_0xbe03e:
 	farwritetext UnknownText_0x1b4e16
-	keeptextopen
+	buttonsound
 	end
 
 UnknownScript_0xbe044:
 	farwritetext UnknownText_0x1b50c2
-	keeptextopen
+	buttonsound
 	end
 
 UnknownScript_0xbe04a:
 	farwritetext UnknownText_0x1b52cc
-	keeptextopen
+	buttonsound
 	end
 
 UnknownScript_0xbe050:
 	farwritetext UnknownText_0x1b55fc
-	keeptextopen
+	buttonsound
 	end
 
 UnknownScript_0xbe056:
 	farwritetext UnknownText_0x1b58ea
-	keeptextopen
+	buttonsound
 	end
 
 UnknownScript_0xbe05c:
 	farwritetext UnknownText_0x1b5a9f
-	keeptextopen
+	buttonsound
 	end
 
 UnknownScript_0xbe062:
 	farwritetext UnknownText_0x1b5cb6
-	keeptextopen
+	buttonsound
 	end
 
 UnknownScript_0xbe068:
 	farwritetext UnknownText_0x1b5fc9
-	keeptextopen
+	buttonsound
 	end
 
 UnknownScript_0xbe06e:
 	farwritetext UnknownText_0x1b6149
-	keeptextopen
+	buttonsound
 	end
 
 UnknownScript_0xbe074:
 	farwritetext UnknownText_0x1b63c4
-	keeptextopen
+	buttonsound
 	end
 
 UnknownScript_0xbe07a:
 	farwritetext UnknownText_0x1b64a8
-	keeptextopen
+	buttonsound
 	end
 
 UnknownScript_0xbe080:
 	farwritetext UnknownText_0x1b65e3
-	keeptextopen
+	buttonsound
 	end
 
 UnknownScript_0xbe086:
 	farwritetext UnknownText_0x1b6836
-	keeptextopen
+	buttonsound
 	end
 
 UnknownScript_0xbe08c:
 	farwritetext UnknownText_0x1b69f8
-	keeptextopen
+	buttonsound
 	end
 
 UnknownScript_0xbe092:
 	farwritetext UnknownText_0x1b6b92
-	keeptextopen
+	buttonsound
 	end
 
 UnknownScript_0xbe098:
 	farwritetext UnknownText_0x1b6cf6
-	keeptextopen
+	buttonsound
 	end
 
 UnknownScript_0xbe09e:
 	farwritetext UnknownText_0x1b7092
-	keeptextopen
+	buttonsound
 	end
 
 UnknownScript_0xbe0a4:
 	farwritetext UnknownText_0x1b722a
-	keeptextopen
+	buttonsound
 	end
 
 UnknownScript_0xbe0aa:
 	farwritetext UnknownText_0x1b7357
-	keeptextopen
+	buttonsound
 	end
 
 UnknownScript_0xbe0b0:
 	farwritetext UnknownText_0x1b7417
-	keeptextopen
+	buttonsound
 	end
 
 UnknownScript_0xbe0b6:
@@ -2247,42 +2247,42 @@ UnknownScript_0xbe0b6:
 
 UnknownScript_0xbe0e2:
 	farwritetext UnknownText_0x1b4f21
-	keeptextopen
+	buttonsound
 	end
 
 UnknownScript_0xbe0e8:
 	farwritetext UnknownText_0x1b53f7
-	keeptextopen
+	buttonsound
 	end
 
 UnknownScript_0xbe0ee:
 	farwritetext UnknownText_0x1b5702
-	keeptextopen
+	buttonsound
 	end
 
 UnknownScript_0xbe0f4:
 	farwritetext UnknownText_0x1b5d9f
-	keeptextopen
+	buttonsound
 	end
 
 UnknownScript_0xbe0fa:
 	farwritetext UnknownText_0x1b626a
-	keeptextopen
+	buttonsound
 	end
 
 UnknownScript_0xbe100:
 	farwritetext UnknownText_0x1b66c8
-	keeptextopen
+	buttonsound
 	end
 
 UnknownScript_0xbe106:
 	farwritetext UnknownText_0x1b6e7c
-	keeptextopen
+	buttonsound
 	end
 
 UnknownScript_0xbe10c:
 	farwritetext UnknownText_0x1b751a
-	keeptextopen
+	buttonsound
 	end
 
 UnknownScript_0xbe112:
@@ -2298,42 +2298,42 @@ UnknownScript_0xbe112:
 
 UnknownScript_0xbe134:
 	farwritetext UnknownText_0x1b4f4d
-	keeptextopen
+	buttonsound
 	end
 
 UnknownScript_0xbe13a:
 	farwritetext UnknownText_0x1b5424
-	keeptextopen
+	buttonsound
 	end
 
 UnknownScript_0xbe140:
 	farwritetext UnknownText_0x1b572e
-	keeptextopen
+	buttonsound
 	end
 
 UnknownScript_0xbe146:
 	farwritetext UnknownText_0x1b5dcc
-	keeptextopen
+	buttonsound
 	end
 
 UnknownScript_0xbe14c:
 	farwritetext UnknownText_0x1b6296
-	keeptextopen
+	buttonsound
 	end
 
 UnknownScript_0xbe152:
 	farwritetext UnknownText_0x1b66ec
-	keeptextopen
+	buttonsound
 	end
 
 UnknownScript_0xbe158:
 	farwritetext UnknownText_0x1b6ea6
-	keeptextopen
+	buttonsound
 	end
 
 UnknownScript_0xbe15e:
 	farwritetext UnknownText_0x1b7548
-	keeptextopen
+	buttonsound
 	end
 
 UnknownScript_0xbe164:
@@ -2349,42 +2349,42 @@ UnknownScript_0xbe164:
 
 UnknownScript_0xbe186:
 	farwritetext UnknownText_0x1b4f75
-	keeptextopen
+	buttonsound
 	end
 
 UnknownScript_0xbe18c:
 	farwritetext UnknownText_0x1b5446
-	keeptextopen
+	buttonsound
 	end
 
 UnknownScript_0xbe192:
 	farwritetext UnknownText_0x1b575a
-	keeptextopen
+	buttonsound
 	end
 
 UnknownScript_0xbe198:
 	farwritetext UnknownText_0x1b5df8
-	keeptextopen
+	buttonsound
 	end
 
 UnknownScript_0xbe19e:
 	farwritetext UnknownText_0x1b62c5
-	keeptextopen
+	buttonsound
 	end
 
 UnknownScript_0xbe1a4:
 	farwritetext UnknownText_0x1b6713
-	keeptextopen
+	buttonsound
 	end
 
 UnknownScript_0xbe1aa:
 	farwritetext UnknownText_0x1b6ec9
-	keeptextopen
+	buttonsound
 	end
 
 UnknownScript_0xbe1b0:
 	farwritetext UnknownText_0x1b756f
-	keeptextopen
+	buttonsound
 	end
 
 UnknownScript_0xbe1b6:
@@ -2416,102 +2416,102 @@ UnknownScript_0xbe1b6:
 
 UnknownScript_0xbe212:
 	farwritetext UnknownText_0x1b4e3e
-	keeptextopen
+	buttonsound
 	end
 
 UnknownScript_0xbe218:
 	farwritetext UnknownText_0x1b50e9
-	keeptextopen
+	buttonsound
 	end
 
 UnknownScript_0xbe21e:
 	farwritetext UnknownText_0x1b5301
-	keeptextopen
+	buttonsound
 	end
 
 UnknownScript_0xbe224:
 	farwritetext UnknownText_0x1b5628
-	keeptextopen
+	buttonsound
 	end
 
 UnknownScript_0xbe22a:
 	farwritetext UnknownText_0x1b5912
-	keeptextopen
+	buttonsound
 	end
 
 UnknownScript_0xbe230:
 	farwritetext UnknownText_0x1b5ad8
-	keeptextopen
+	buttonsound
 	end
 
 UnknownScript_0xbe236:
 	farwritetext UnknownText_0x1b5d09
-	keeptextopen
+	buttonsound
 	end
 
 UnknownScript_0xbe23c:
 	farwritetext UnknownText_0x1b5ff6
-	keeptextopen
+	buttonsound
 	end
 
 UnknownScript_0xbe242:
 	farwritetext UnknownText_0x1b616e
-	keeptextopen
+	buttonsound
 	end
 
 UnknownScript_0xbe248:
 	farwritetext UnknownText_0x1b63e3
-	keeptextopen
+	buttonsound
 	end
 
 UnknownScript_0xbe24e:
 	farwritetext UnknownText_0x1b64d2
-	keeptextopen
+	buttonsound
 	end
 
 UnknownScript_0xbe254:
 	farwritetext UnknownText_0x1b660d
-	keeptextopen
+	buttonsound
 	end
 
 UnknownScript_0xbe25a:
 	farwritetext UnknownText_0x1b6862
-	keeptextopen
+	buttonsound
 	end
 
 UnknownScript_0xbe260:
 	farwritetext UnknownText_0x1b6a22
-	keeptextopen
+	buttonsound
 	end
 
 UnknownScript_0xbe266:
 	farwritetext UnknownText_0x1b6bb9
-	keeptextopen
+	buttonsound
 	end
 
 UnknownScript_0xbe26c:
 	farwritetext UnknownText_0x1b6d26
-	keeptextopen
+	buttonsound
 	end
 
 UnknownScript_0xbe272:
 	farwritetext UnknownText_0x1b70e7
-	keeptextopen
+	buttonsound
 	end
 
 UnknownScript_0xbe278:
 	farwritetext UnknownText_0x1b725c
-	keeptextopen
+	buttonsound
 	end
 
 UnknownScript_0xbe27e:
 	farwritetext UnknownText_0x1b737f
-	keeptextopen
+	buttonsound
 	end
 
 UnknownScript_0xbe284:
 	farwritetext UnknownText_0x1b743f
-	keeptextopen
+	buttonsound
 	end
 
 UnknownScript_0xbe28a:
@@ -2539,102 +2539,102 @@ UnknownScript_0xbe28a:
 
 UnknownScript_0xbe2dc:
 	farwritetext UnknownText_0x1b4e72
-	keeptextopen
+	buttonsound
 	end
 
 UnknownScript_0xbe2e2:
 	farwritetext UnknownText_0x1b511a
-	keeptextopen
+	buttonsound
 	end
 
 UnknownScript_0xbe2e8:
 	farwritetext UnknownText_0x1b5335
-	keeptextopen
+	buttonsound
 	end
 
 UnknownScript_0xbe2ee:
 	farwritetext UnknownText_0x1b564c
-	keeptextopen
+	buttonsound
 	end
 
 UnknownScript_0xbe2f4:
 	farwritetext UnknownText_0x1b5948
-	keeptextopen
+	buttonsound
 	end
 
 UnknownScript_0xbe2fa:
 	farwritetext UnknownText_0x1b5b0b
-	keeptextopen
+	buttonsound
 	end
 
 UnknownScript_0xbe300:
 	farwritetext UnknownText_0x1b5d21
-	keeptextopen
+	buttonsound
 	end
 
 UnknownScript_0xbe306:
 	farwritetext UnknownText_0x1b6017
-	keeptextopen
+	buttonsound
 	end
 
 UnknownScript_0xbe30c:
 	farwritetext UnknownText_0x1b618f
-	keeptextopen
+	buttonsound
 	end
 
 UnknownScript_0xbe312:
 	farwritetext UnknownText_0x1b6407
-	keeptextopen
+	buttonsound
 	end
 
 UnknownScript_0xbe318:
 	farwritetext UnknownText_0x1b6506
-	keeptextopen
+	buttonsound
 	end
 
 UnknownScript_0xbe31e:
 	farwritetext UnknownText_0x1b6624
-	keeptextopen
+	buttonsound
 	end
 
 UnknownScript_0xbe324:
 	farwritetext UnknownText_0x1b6890
-	keeptextopen
+	buttonsound
 	end
 
 UnknownScript_0xbe32a:
 	farwritetext UnknownText_0x1b6a56
-	keeptextopen
+	buttonsound
 	end
 
 UnknownScript_0xbe330:
 	farwritetext UnknownText_0x1b6bef
-	keeptextopen
+	buttonsound
 	end
 
 UnknownScript_0xbe336:
 	farwritetext UnknownText_0x1b6d57
-	keeptextopen
+	buttonsound
 	end
 
 UnknownScript_0xbe33c:
 	farwritetext UnknownText_0x1b7112
-	keeptextopen
+	buttonsound
 	end
 
 UnknownScript_0xbe342:
 	farwritetext UnknownText_0x1b7283
-	keeptextopen
+	buttonsound
 	end
 
 UnknownScript_0xbe348:
 	farwritetext UnknownText_0x1b7397
-	keeptextopen
+	buttonsound
 	end
 
 UnknownScript_0xbe34e:
 	farwritetext UnknownText_0x1b746f
-	keeptextopen
+	buttonsound
 	end
 
 UnknownScript_0xbe354:
@@ -2662,102 +2662,102 @@ UnknownScript_0xbe354:
 
 UnknownScript_0xbe3a6:
 	farwritetext UnknownText_0x1b4e9e
-	keeptextopen
+	buttonsound
 	end
 
 UnknownScript_0xbe3ac:
 	farwritetext UnknownText_0x1b5154
-	keeptextopen
+	buttonsound
 	end
 
 UnknownScript_0xbe3b2:
 	farwritetext UnknownText_0x1b535f
-	keeptextopen
+	buttonsound
 	end
 
 UnknownScript_0xbe3b8:
 	farwritetext UnknownText_0x1b5670
-	keeptextopen
+	buttonsound
 	end
 
 UnknownScript_0xbe3be:
 	farwritetext UnknownText_0x1b597c
-	keeptextopen
+	buttonsound
 	end
 
 UnknownScript_0xbe3c4:
 	farwritetext UnknownText_0x1b5b37
-	keeptextopen
+	buttonsound
 	end
 
 UnknownScript_0xbe3ca:
 	farwritetext UnknownText_0x1b5d39
-	keeptextopen
+	buttonsound
 	end
 
 UnknownScript_0xbe3d0:
 	farwritetext UnknownText_0x1b6041
-	keeptextopen
+	buttonsound
 	end
 
 UnknownScript_0xbe3d6:
 	farwritetext UnknownText_0x1b61bd
-	keeptextopen
+	buttonsound
 	end
 
 UnknownScript_0xbe3dc:
 	farwritetext UnknownText_0x1b642c
-	keeptextopen
+	buttonsound
 	end
 
 UnknownScript_0xbe3e2:
 	farwritetext UnknownText_0x1b6539
-	keeptextopen
+	buttonsound
 	end
 
 UnknownScript_0xbe3e8:
 	farwritetext UnknownText_0x1b663b
-	keeptextopen
+	buttonsound
 	end
 
 UnknownScript_0xbe3ee:
 	farwritetext UnknownText_0x1b68ba
-	keeptextopen
+	buttonsound
 	end
 
 UnknownScript_0xbe3f4:
 	farwritetext UnknownText_0x1b6a8b
-	keeptextopen
+	buttonsound
 	end
 
 UnknownScript_0xbe3fa:
 	farwritetext UnknownText_0x1b6c23
-	keeptextopen
+	buttonsound
 	end
 
 UnknownScript_0xbe400:
 	farwritetext UnknownText_0x1b6d88
-	keeptextopen
+	buttonsound
 	end
 
 UnknownScript_0xbe406:
 	farwritetext UnknownText_0x1b7132
-	keeptextopen
+	buttonsound
 	end
 
 UnknownScript_0xbe40c:
 	farwritetext UnknownText_0x1b72a5
-	keeptextopen
+	buttonsound
 	end
 
 UnknownScript_0xbe412:
 	farwritetext UnknownText_0x1b73af
-	keeptextopen
+	buttonsound
 	end
 
 UnknownScript_0xbe418:
 	farwritetext UnknownText_0x1b749b
-	keeptextopen
+	buttonsound
 	end
 
 UnknownScript_0xbe41e:
@@ -2777,42 +2777,42 @@ UnknownScript_0xbe41e:
 
 UnknownScript_0xbe44a:
 	farwritetext UnknownText_0x1b4fa1
-	keeptextopen
+	buttonsound
 	end
 
 UnknownScript_0xbe450:
 	farwritetext UnknownText_0x1b5472
-	keeptextopen
+	buttonsound
 	end
 
 UnknownScript_0xbe456:
 	farwritetext UnknownText_0x1b5786
-	keeptextopen
+	buttonsound
 	end
 
 UnknownScript_0xbe45c:
 	farwritetext UnknownText_0x1b5e25
-	keeptextopen
+	buttonsound
 	end
 
 UnknownScript_0xbe462:
 	farwritetext UnknownText_0x1b62f1
-	keeptextopen
+	buttonsound
 	end
 
 UnknownScript_0xbe468:
 	farwritetext UnknownText_0x1b6738
-	keeptextopen
+	buttonsound
 	end
 
 UnknownScript_0xbe46e:
 	farwritetext UnknownText_0x1b6ef3
-	keeptextopen
+	buttonsound
 	end
 
 UnknownScript_0xbe474:
 	farwritetext UnknownText_0x1b758f
-	keeptextopen
+	buttonsound
 	end
 
 UnknownScript_0xbe47a:
@@ -2828,42 +2828,42 @@ UnknownScript_0xbe47a:
 
 UnknownScript_0xbe49c:
 	farwritetext UnknownText_0x1b4fda
-	keeptextopen
+	buttonsound
 	end
 
 UnknownScript_0xbe4a2:
 	farwritetext UnknownText_0x1b54a6
-	keeptextopen
+	buttonsound
 	end
 
 UnknownScript_0xbe4a8:
 	farwritetext UnknownText_0x1b57b7
-	keeptextopen
+	buttonsound
 	end
 
 UnknownScript_0xbe4ae:
 	farwritetext UnknownText_0x1b5e59
-	keeptextopen
+	buttonsound
 	end
 
 UnknownScript_0xbe4b4:
 	farwritetext UnknownText_0x1b630e
-	keeptextopen
+	buttonsound
 	end
 
 UnknownScript_0xbe4ba:
 	farwritetext UnknownText_0x1b6757
-	keeptextopen
+	buttonsound
 	end
 
 UnknownScript_0xbe4c0:
 	farwritetext UnknownText_0x1b6f1c
-	keeptextopen
+	buttonsound
 	end
 
 UnknownScript_0xbe4c6:
 	farwritetext UnknownText_0x1b75ac
-	keeptextopen
+	buttonsound
 	end
 
 UnknownScript_0xbe4cc:
@@ -2879,42 +2879,42 @@ UnknownScript_0xbe4cc:
 
 UnknownScript_0xbe4ee:
 	farwritetext UnknownText_0x1b5004
-	keeptextopen
+	buttonsound
 	end
 
 UnknownScript_0xbe4f4:
 	farwritetext UnknownText_0x1b54d4
-	keeptextopen
+	buttonsound
 	end
 
 UnknownScript_0xbe4fa:
 	farwritetext UnknownText_0x1b57e8
-	keeptextopen
+	buttonsound
 	end
 
 UnknownScript_0xbe500:
 	farwritetext UnknownText_0x1b5e8e
-	keeptextopen
+	buttonsound
 	end
 
 UnknownScript_0xbe506:
 	farwritetext UnknownText_0x1b6331
-	keeptextopen
+	buttonsound
 	end
 
 UnknownScript_0xbe50c:
 	farwritetext UnknownText_0x1b6776
-	keeptextopen
+	buttonsound
 	end
 
 UnknownScript_0xbe512:
 	farwritetext UnknownText_0x1b6f37
-	keeptextopen
+	buttonsound
 	end
 
 UnknownScript_0xbe518:
 	farwritetext UnknownText_0x1b75c9
-	keeptextopen
+	buttonsound
 	end
 
 UnknownScript_0xbe51e:
@@ -2939,92 +2939,92 @@ UnknownScript_0xbe51e:
 
 UnknownScript_0xbe564:
 	farwritetext UnknownText_0x1b4ecd
-	keeptextopen
+	buttonsound
 	end
 
 UnknownScript_0xbe56a:
 	farwritetext UnknownText_0x1b518b
-	keeptextopen
+	buttonsound
 	end
 
 UnknownScript_0xbe570:
 	farwritetext UnknownText_0x1b5393
-	keeptextopen
+	buttonsound
 	end
 
 UnknownScript_0xbe576:
 	farwritetext UnknownText_0x1b5694
-	keeptextopen
+	buttonsound
 	end
 
 UnknownScript_0xbe57c:
 	farwritetext UnknownText_0x1b59b2
-	keeptextopen
+	buttonsound
 	end
 
 UnknownScript_0xbe582:
 	farwritetext UnknownText_0x1b5b68
-	keeptextopen
+	buttonsound
 	end
 
 UnknownScript_0xbe588:
 	farwritetext UnknownText_0x1b5d51
-	keeptextopen
+	buttonsound
 	end
 
 UnknownScript_0xbe58e:
 	farwritetext UnknownText_0x1b606f
-	keeptextopen
+	buttonsound
 	end
 
 UnknownScript_0xbe594:
 	farwritetext UnknownText_0x1b61f2
-	keeptextopen
+	buttonsound
 	end
 
 UnknownScript_0xbe59a:
 	farwritetext UnknownText_0x1b656c
-	keeptextopen
+	buttonsound
 	end
 
 UnknownScript_0xbe5a0:
 	farwritetext UnknownText_0x1b6652
-	keeptextopen
+	buttonsound
 	end
 
 UnknownScript_0xbe5a6:
 	farwritetext UnknownText_0x1b68e8
-	keeptextopen
+	buttonsound
 	end
 
 UnknownScript_0xbe5ac:
 	farwritetext UnknownText_0x1b6ac2
-	keeptextopen
+	buttonsound
 	end
 
 UnknownScript_0xbe5b2:
 	farwritetext UnknownText_0x1b6c56
-	keeptextopen
+	buttonsound
 	end
 
 UnknownScript_0xbe5b8:
 	farwritetext UnknownText_0x1b6db9
-	keeptextopen
+	buttonsound
 	end
 
 UnknownScript_0xbe5be:
 	farwritetext UnknownText_0x1b7161
-	keeptextopen
+	buttonsound
 	end
 
 UnknownScript_0xbe5c4:
 	farwritetext UnknownText_0x1b72d0
-	keeptextopen
+	buttonsound
 	end
 
 UnknownScript_0xbe5ca:
 	farwritetext UnknownText_0x1b74c8
-	keeptextopen
+	buttonsound
 	end
 
 UnknownScript_0xbe5d0:
@@ -3040,42 +3040,42 @@ UnknownScript_0xbe5d0:
 
 UnknownScript_0xbe5f2:
 	farwritetext UnknownText_0x1b502b
-	keeptextopen
+	buttonsound
 	end
 
 UnknownScript_0xbe5f8:
 	farwritetext UnknownText_0x1b5510
-	keeptextopen
+	buttonsound
 	end
 
 UnknownScript_0xbe5fe:
 	farwritetext UnknownText_0x1b5819
-	keeptextopen
+	buttonsound
 	end
 
 UnknownScript_0xbe604:
 	farwritetext UnknownText_0x1b5ebe
-	keeptextopen
+	buttonsound
 	end
 
 UnknownScript_0xbe60a:
 	farwritetext UnknownText_0x1b6352
-	keeptextopen
+	buttonsound
 	end
 
 UnknownScript_0xbe610:
 	farwritetext UnknownText_0x1b6795
-	keeptextopen
+	buttonsound
 	end
 
 UnknownScript_0xbe616:
 	farwritetext UnknownText_0x1b6f60
-	keeptextopen
+	buttonsound
 	end
 
 UnknownScript_0xbe61c:
 	farwritetext UnknownText_0x1b75e5
-	keeptextopen
+	buttonsound
 	end
 
 UnknownScript_0xbe622:
@@ -3083,7 +3083,7 @@ UnknownScript_0xbe622:
 	farscall UnknownScript_0xbde3f
 	if_equal $0, UnknownScript_0xbe636
 	farwritetext UnknownText_0x1b518b
-	keeptextopen
+	buttonsound
 	farjump UnknownScript_0xa0484
 
 UnknownScript_0xbe636:
@@ -3091,7 +3091,7 @@ UnknownScript_0xbe636:
 
 UnknownScript_0xbe63a:
 	farwritetext UnknownText_0x1b522b
-	keeptextopen
+	buttonsound
 	farjump UnknownScript_0xa0484
 ; be643
 
@@ -3127,8 +3127,8 @@ UnknownScript_0xbe675:: ; 0xbe675
 UnknownScript_0xbe68a: ; 0xbe68a
 	loadfont
 	trainertext $0
+	waitbutton
 	closetext
-	loadmovesprites
 	loadtrainerdata
 	startbattle
 	returnafterbattle

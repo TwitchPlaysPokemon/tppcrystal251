@@ -12,15 +12,15 @@ OfficerScript_0x1ab3f6: ; 0x1ab3f6
 	checkevent EVENT_ROAD_WORK_ON_ROUTE_19_FINISHED
 	iftrue UnknownScript_0x1ab404
 	writetext UnknownText_0x1ab40a
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 ; 0x1ab404
 
 UnknownScript_0x1ab404: ; 0x1ab404
 	writetext UnknownText_0x1ab48a
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 ; 0x1ab40a
 

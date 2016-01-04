@@ -11,8 +11,8 @@ RocketScript_0x1adbfa: ; 0x1adbfa
 	playmusic MUSIC_ROCKET_ENCOUNTER
 	loadfont
 	writetext UnknownText_0x1adc2e
+	waitbutton
 	closetext
-	loadmovesprites
 	winlosstext UnknownText_0x1add67, $ffff
 	loadtrainer GRUNTM, 31
 	startbattle
@@ -21,11 +21,11 @@ RocketScript_0x1adbfa: ; 0x1adbfa
 	playmusic MUSIC_ROCKET_ENCOUNTER
 	loadfont
 	writetext UnknownText_0x1addc0
-	keeptextopen
+	buttonsound
 	special Functionc48f
 	writetext UnknownText_0x1adee1
+	waitbutton
 	closetext
-	loadmovesprites
 	special Special_FadeToBlack
 	special Functiond91
 	disappear $2

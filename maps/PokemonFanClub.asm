@@ -17,31 +17,31 @@ GentlemanScript_0x1917e9: ; 0x1917e9
 	yesorno
 	iffalse UnknownScript_0x19181b
 	writetext UnknownText_0x191911
-	keeptextopen
+	buttonsound
 UnknownScript_0x191802: ; 0x191802
 	writetext UnknownText_0x191a3d
-	keeptextopen
+	buttonsound
 	verbosegiveitem RARE_CANDY, 1
 	iffalse UnknownScript_0x19181f
 	setevent EVENT_LISTENED_TO_FAN_CLUB_PRESIDENT
 	writetext UnknownText_0x191a72
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 ; 0x191815
 
 UnknownScript_0x191815: ; 0x191815
 	writetext UnknownText_0x191ae0
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 ; 0x19181b
 
 UnknownScript_0x19181b: ; 0x19181b
 	writetext UnknownText_0x191b38
-	closetext
+	waitbutton
 UnknownScript_0x19181f: ; 0x19181f
-	loadmovesprites
+	closetext
 	end
 ; 0x191821
 
@@ -57,8 +57,8 @@ FisherScript_0x191824: ; 0x191824
 	checkevent EVENT_RETURNED_MACHINE_PART
 	iftrue UnknownScript_0x191838
 	writetext UnknownText_0x191ba0
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 ; 0x191838
 
@@ -66,39 +66,39 @@ UnknownScript_0x191838: ; 0x191838
 	writetext UnknownText_0x191bff
 	checkevent EVENT_MET_COPYCAT_FOUND_OUT_ABOUT_LOST_ITEM
 	iftrue UnknownScript_0x191844
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 ; 0x191844
 
 UnknownScript_0x191844: ; 0x191844
-	keeptextopen
+	buttonsound
 	writetext UnknownText_0x191c5a
-	keeptextopen
-	waitbutton
+	buttonsound
+	waitsfx
 	giveitem LOST_ITEM, $1
 	iffalse UnknownScript_0x191865
 	disappear $6
 	writetext UnknownText_0x191d0a
 	playsound SFX_KEY_ITEM
-	waitbutton
+	waitsfx
 	itemnotify
 	setevent EVENT_GOT_LOST_ITEM_FROM_FAN_CLUB
-	loadmovesprites
+	closetext
 	end
 ; 0x19185f
 
 UnknownScript_0x19185f: ; 0x19185f
 	writetext UnknownText_0x191d1e
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 ; 0x191865
 
 UnknownScript_0x191865: ; 0x191865
 	writetext UnknownText_0x191d58
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 ; 0x19186b
 
@@ -114,8 +114,8 @@ OddishScript_0x191871: ; 0x191871
 	loadfont
 	writetext UnknownText_0x191de9
 	cry BAYLEEF
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 ; 0x19187b
 

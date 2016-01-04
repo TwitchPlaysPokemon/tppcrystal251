@@ -28,8 +28,8 @@ DummyHidePlayer:
 DummyMap_WarpCheck1:
 	loadfont
 	writetext RedsHouse2FDreaming1Text
+	waitbutton
 	closetext
-	loadmovesprites
 	playsound SFX_EXIT_BUILDING
 	pause 15
 	dotrigger $1
@@ -47,8 +47,8 @@ DummyMap_WarpCheck2:
 DummyMap_BeatRed:
 	writetext WasItADreamText
 DummyMap_Continue
+	waitbutton
 	closetext
-	loadmovesprites
 	playsound SFX_EXIT_BUILDING
 	pause 15
 	warp GROUP_REDS_HOUSE_2F, MAP_REDS_HOUSE_2F, $1, $6

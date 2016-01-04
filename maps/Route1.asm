@@ -30,8 +30,8 @@ SchoolboyDannyScript: ; 0x1ac562
 	talkaftercancel
 	loadfont
 	writetext UnknownText_0x1ac5d7
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 ; 0x1ac56a
 
@@ -59,8 +59,8 @@ CooltrainerfQuinnScript: ; 0x1ac576
 	talkaftercancel
 	loadfont
 	writetext UnknownText_0x1ac640
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 ; 0x1ac57e
 

@@ -38,8 +38,8 @@ ClairScript_0x194e24: ; 0x194e24
 	checkevent EVENT_BEAT_CLAIR
 	iftrue UnknownScript_0x194e63
 	writetext UnknownText_0x194efa
+	waitbutton
 	closetext
-	loadmovesprites
 	winlosstext UnknownText_0x194fd6, $0000
 	loadtrainer CLAIR, 1
 	startbattle
@@ -47,8 +47,8 @@ ClairScript_0x194e24: ; 0x194e24
 	setevent EVENT_BEAT_CLAIR
 	loadfont
 	writetext UnknownText_0x19500e
+	waitbutton
 	closetext
-	loadmovesprites
 	setevent EVENT_BEAT_COOLTRAINERM_PAUL
 	setevent EVENT_BEAT_COOLTRAINERM_CODY
 	setevent EVENT_BEAT_COOLTRAINERM_MIKE
@@ -62,15 +62,15 @@ ClairScript_0x194e24: ; 0x194e24
 
 ClairMeetMeInDragonsDenScript:
 	writetext ClairMeetMeInDragonsDenText
+	waitbutton
 	closetext
-	loadmovesprites
 	domaptrigger GROUP_DRAGONS_DEN_B1F, MAP_DRAGONS_DEN_B1F, $1
 	end
 
 UnknownScript_0x194e63: ; 0x194e63
 	writetext UnknownText_0x195162
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 ; 0x194e69
 
@@ -78,31 +78,31 @@ UnknownScript_0x194e69: ; 0x194e69
 	checkevent EVENT_GOT_TM24_DRAGONBREATH
 	iftrue UnknownScript_0x194e94
 	writetext UnknownText_0x195196
-	keeptextopen
+	buttonsound
 	giveitem TM_DRAGONBREATH, $1
 	iffalse UnknownScript_0x194e8e
 	itemtotext TM_DRAGONBREATH, $0
 	writetext UnknownText_0x1951bf
 	playsound SFX_ITEM
-	waitbutton
+	waitsfx
 	itemnotify
 	setevent EVENT_GOT_TM24_DRAGONBREATH
 	writetext UnknownText_0x1951d1
-	keeptextopen
+	buttonsound
 	jump UnknownScript_0x194e94
 ; 0x194e8e
 
 UnknownScript_0x194e8e: ; 0x194e8e
 	writetext UnknownText_0x19524f
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 ; 0x194e94
 
 UnknownScript_0x194e94: ; 0x194e94
 	writetext UnknownText_0x195272
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 ; 0x194e9a
 
@@ -130,8 +130,8 @@ CooltrainermPaulScript: ; 0x194ea6
 	talkaftercancel
 	loadfont
 	writetext UnknownText_0x1953f1
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 ; 0x194eae
 
@@ -159,8 +159,8 @@ CooltrainermMikeScript: ; 0x194eba
 	talkaftercancel
 	loadfont
 	writetext UnknownText_0x195467
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 ; 0x194ec2
 
@@ -188,8 +188,8 @@ CooltrainerfLolaScript: ; 0x194ece
 	talkaftercancel
 	loadfont
 	writetext UnknownText_0x195516
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 ; 0x194ed6
 
@@ -199,14 +199,14 @@ BlackthornGymGuyScript: ; 0x194ed6
 	checkevent EVENT_BEAT_CLAIR
 	iftrue .BlackthornGymGuyWinScript
 	writetext BlackthornGymGuyText
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 .BlackthornGymGuyWinScript
 	writetext BlackthornGymGuyWinText
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 ; 0x194eea
 

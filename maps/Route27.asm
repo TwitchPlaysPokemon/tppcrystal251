@@ -33,10 +33,10 @@ UnknownScript_0x1a088c: ; 0x1a088c
 	spriteface $0, $3
 	loadfont
 	writetext UnknownText_0x1a0a6b
-	keeptextopen
+	buttonsound
 	writetext UnknownText_0x1a0a71
+	waitbutton
 	closetext
-	loadmovesprites
 	dotrigger $1
 	end
 ; 0x1a089c
@@ -69,8 +69,8 @@ PsychicGilbertScript: ; 0x1a08ab
 	talkaftercancel
 	loadfont
 	writetext UnknownText_0x1a0dd2
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 ; 0x1a08b3
 
@@ -107,7 +107,7 @@ Bird_keeperJose2Script: ; 0x1a08bf
 	checkevent EVENT_ROUTE_27_26F
 	iftrue UnknownScript_0x1a08e8
 	writetext UnknownText_0x1a0e42
-	keeptextopen
+	buttonsound
 	setevent EVENT_ROUTE_27_26F
 	scall UnknownScript_0x1a0957
 	jump UnknownScript_0x1a08eb
@@ -244,8 +244,8 @@ CooltrainermBlakeScript: ; 0x1a0987
 	talkaftercancel
 	loadfont
 	writetext UnknownText_0x1a0b0b
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 ; 0x1a098f
 
@@ -273,8 +273,8 @@ CooltrainermBrianScript: ; 0x1a099b
 	talkaftercancel
 	loadfont
 	writetext UnknownText_0x1a0bac
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 ; 0x1a09a3
 
@@ -309,7 +309,7 @@ CooltrainerfReena1Script: ; 0x1a09af
 	checkevent EVENT_ROUTE_27_271
 	iftrue UnknownScript_0x1a09d2
 	writetext UnknownText_0x1a0c35
-	keeptextopen
+	buttonsound
 	setevent EVENT_ROUTE_27_271
 	scall UnknownScript_0x1a0a2f
 	jump UnknownScript_0x1a09d5
@@ -424,8 +424,8 @@ CooltrainerfMeganScript: ; 0x1a0a57
 	talkaftercancel
 	loadfont
 	writetext UnknownText_0x1a0cce
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 ; 0x1a0a5f
 

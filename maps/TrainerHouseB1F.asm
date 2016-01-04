@@ -19,7 +19,7 @@ UnknownScript_0x9b38b: ; 0x9b38b
 	checkflag ENGINE_FOUGHT_IN_TRAINER_HALL_TODAY
 	iftrue UnknownScript_0x9b3f7
 	writetext UnknownText_0x9b420
-	keeptextopen
+	buttonsound
 	special SpecialTrainerHouse
 	iffalse UnknownScript_0x9b3a6
 	trainertotext CAL, CAL2, $0
@@ -30,21 +30,21 @@ UnknownScript_0x9b3a6: ; 0x9b3a6
 	trainertotext CAL, 4, $0
 UnknownScript_0x9b3aa: ; 0x9b3aa
 	writetext UnknownText_0x9b46a
-	keeptextopen
+	buttonsound
 	writetext UnknownText_0x9b487
 	yesorno
 	iffalse UnknownScript_0x9b3ed
 	setflag ENGINE_FOUGHT_IN_TRAINER_HALL_TODAY
 	writetext UnknownText_0x9b4a2
+	waitbutton
 	closetext
-	loadmovesprites
 	applymovement $0, MovementData_0x9b401
 	loadfont
 	special SpecialTrainerHouse
 	iffalse UnknownScript_0x9b3dc
 	writetext UnknownText_0x9b587
+	waitbutton
 	closetext
-	loadmovesprites
 	winlosstext UnknownText_0x9b578, $0000
 	setlasttalked $3
 	loadtrainer CAL, CAL2
@@ -53,8 +53,8 @@ UnknownScript_0x9b3aa: ; 0x9b3aa
 	iffalse UnknownScript_0x9b3e8
 UnknownScript_0x9b3dc: ; 0x9b3dc
 	writetext ADJNNW_Text_1
+	waitbutton
 	closetext
-	loadmovesprites
 	winlosstext ADJNNW_Text_2, $0000
 	setlasttalked $3
 	loadtrainer CAL, 4 ; AJDNNW
@@ -67,16 +67,16 @@ UnknownScript_0x9b3e8: ; 0x9b3e8
 
 UnknownScript_0x9b3ed: ; 0x9b3ed
 	writetext UnknownText_0x9b4d6
+	waitbutton
 	closetext
-	loadmovesprites
 	applymovement $0, MovementData_0x9b41d
 	end
 ; 0x9b3f7
 
 UnknownScript_0x9b3f7: ; 0x9b3f7
 	writetext UnknownText_0x9b51d
+	waitbutton
 	closetext
-	loadmovesprites
 	applymovement $0, MovementData_0x9b41d
 	end
 ; 0x9b401

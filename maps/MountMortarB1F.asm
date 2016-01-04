@@ -14,8 +14,8 @@ BlackBeltScript_0x7e1f6: ; 0x7e1f6
 	checkevent EVENT_BEAT_BLACKBELT_KIYO
 	iftrue UnknownScript_0x7e217
 	writetext UnknownText_0x7e24d
+	waitbutton
 	closetext
-	loadmovesprites
 	winlosstext UnknownText_0x7e2a9, $0000
 	loadtrainer BLACKBELT_T, KIYO
 	startbattle
@@ -24,19 +24,19 @@ BlackBeltScript_0x7e1f6: ; 0x7e1f6
 	loadfont
 UnknownScript_0x7e217: ; 0x7e217
 	writetext UnknownText_0x7e2c0
-	keeptextopen
-	waitbutton
+	buttonsound
+	waitsfx
 	checkcode VAR_PARTYCOUNT
 	if_equal $6, MortarGiftPC
 	writetext UnknownText_0x7e355
 	playsound SFX_CAUGHT_MON
-	waitbutton
+	waitsfx
 	givepoke HITMONTOP, 70, 0, 0
 	setevent EVENT_GOT_TYROGUE_FROM_KIYO
 UnknownScript_0x7e231: ; 0x7e231
 	writetext UnknownText_0x7e36a
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 MortarGiftPC
@@ -44,15 +44,15 @@ MortarGiftPC
 	if_equal $0, UnknownScript_0x7e237
 	writetext MortarGiftPCText
 	playsound SFX_CAUGHT_MON
-	waitbutton
+	waitsfx
 	givepoke HITMONTOP, 70, 0, 0
 	setevent EVENT_GOT_TYROGUE_FROM_KIYO
 	jump UnknownScript_0x7e231
 
 UnknownScript_0x7e237: ; 0x7e237
 	writetext UnknownText_0x7e3df
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 ; 0x7e23d
 

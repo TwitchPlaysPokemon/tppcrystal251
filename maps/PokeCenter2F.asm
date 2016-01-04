@@ -62,8 +62,8 @@ UnknownScript_0x19288d: ; 0x19288d
 	faceplayer
 	loadfont
 	writetext UnknownText_0x19312f
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 ; 0x192895
 
@@ -71,8 +71,8 @@ UnknownScript_0x192895: ; 0x192895
 	faceplayer
 	loadfont
 	writetext UnknownText_0x19315f
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 ; 0x19289d
 
@@ -107,8 +107,8 @@ UnknownScript_0x1928be: ; 0x1928be
 	special Function29e82
 	iffalse UnknownScript_0x192909
 	writetext UnknownText_0x19306b
+	waitbutton
 	closetext
-	loadmovesprites
 	scall UnknownScript_0x192b04
 	warpcheck
 	end
@@ -117,7 +117,7 @@ UnknownScript_0x1928be: ; 0x1928be
 UnknownScript_0x1928f6: ; 0x1928f6
 	special Function29c92
 	writetext UnknownText_0x192f19
-	loadmovesprites
+	closetext
 	end
 ; 0x1928fe
 
@@ -125,14 +125,14 @@ UnknownScript_0x1928fe: ; 0x1928fe
 	special Function29efa
 	writetext UnknownText_0x193029
 	special Function29eee
-	loadmovesprites
+	closetext
 	end
 ; 0x192909
 
 UnknownScript_0x192909: ; 0x192909
 	writetext UnknownText_0x19304a
 	special Function29eee
-	loadmovesprites
+	closetext
 	end
 ; 0x192911
 
@@ -146,7 +146,7 @@ UnknownScript_0x192917: ; 0x192917
 UnknownScript_0x19291a: ; 0x19291a
 	special Function29c92
 UnknownScript_0x19291d: ; 0x19291d
-	loadmovesprites
+	closetext
 	end
 ; 0x19291f
 
@@ -170,15 +170,15 @@ UnknownScript_0x19292b: ; 0x19292b
 	iffalse UnknownScript_0x192943
 	special Function1011f1
 	writetext UnknownText_0x19306b
+	waitbutton
 	closetext
-	loadmovesprites
 	writebyte $0
 	end
 ; 0x192943
 
 UnknownScript_0x192943: ; 0x192943
 	writetext UnknownText_0x192fd1
-	loadmovesprites
+	closetext
 	writebyte $1
 	end
 ; 0x19294a
@@ -220,8 +220,8 @@ UnknownScript_0x192973: ; 0x192973
 	special Function29e82
 	iffalse UnknownScript_0x1929be
 	writetext UnknownText_0x19306b
+	waitbutton
 	closetext
-	loadmovesprites
 	scall UnknownScript_0x192b04
 	warpcheck
 	end
@@ -230,7 +230,7 @@ UnknownScript_0x192973: ; 0x192973
 UnknownScript_0x1929ab: ; 0x1929ab
 	special Function29c92
 	writetext UnknownText_0x192f19
-	loadmovesprites
+	closetext
 	end
 ; 0x1929b3
 
@@ -238,14 +238,14 @@ UnknownScript_0x1929b3: ; 0x1929b3
 	special Function29efa
 	writetext UnknownText_0x193029
 	special Function29eee
-	loadmovesprites
+	closetext
 	end
 ; 0x1929be
 
 UnknownScript_0x1929be: ; 0x1929be
 	writetext UnknownText_0x19304a
 	special Function29eee
-	loadmovesprites
+	closetext
 	end
 ; 0x1929c6
 
@@ -259,7 +259,7 @@ UnknownScript_0x1929cc: ; 0x1929cc
 UnknownScript_0x1929cf: ; 0x1929cf
 	special Function29c92
 UnknownScript_0x1929d2: ; 0x1929d2
-	loadmovesprites
+	closetext
 	end
 ; 0x1929d4
 
@@ -285,15 +285,15 @@ UnknownScript_0x1929e6: ; 0x1929e6
 	iffalse UnknownScript_0x1929fe
 	special Function1011f1
 	writetext UnknownText_0x19306b
+	waitbutton
 	closetext
-	loadmovesprites
 	writebyte $0
 	end
 ; 0x1929fe
 
 UnknownScript_0x1929fe: ; 0x1929fe
 	writetext UnknownText_0x192fd1
-	loadmovesprites
+	closetext
 	writebyte $1
 	end
 ; 0x192a05
@@ -309,9 +309,9 @@ UnknownScript_0x192a05: ; 0x192a05
 
 UnknownScript_0x192a1a: ; 0x192a1a
 	writetext UnknownText_0x1932bc
-	closetext
+	waitbutton
 UnknownScript_0x192a1e: ; 0x192a1e
-	loadmovesprites
+	closetext
 	writebyte $0
 	end
 ; 0x192a22
@@ -325,8 +325,8 @@ UnknownScript_0x192a25: ; 0x192a25
 	faceplayer
 	loadfont
 	writetext UnknownText_0x193100
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 ; 0x192a2d
 
@@ -361,15 +361,15 @@ LinkReceptionistScript_0x192a2d: ; 0x192a2d
 	special Function29e82
 	writetext UnknownText_0x19304a
 	special Function29eee
-	loadmovesprites
+	closetext
 	end
 ; 0x192a84
 
 UnknownScript_0x192a84: ; 0x192a84
 	special Function29c7b
 	writetext UnknownText_0x19306b
+	waitbutton
 	closetext
-	loadmovesprites
 	scall UnknownScript_0x192bc4
 	warpcheck
 	end
@@ -378,7 +378,7 @@ UnknownScript_0x192a84: ; 0x192a84
 UnknownScript_0x192a91: ; 0x192a91
 	special Function29c92
 	writetext UnknownText_0x192f19
-	loadmovesprites
+	closetext
 	end
 ; 0x192a99
 
@@ -391,25 +391,25 @@ UnknownScript_0x192a9f: ; 0x192a9f
 	writetext UnknownText_0x192fd1
 UnknownScript_0x192aa2: ; 0x192aa2
 	special Function29c92
-	loadmovesprites
+	closetext
 	end
 ; 0x192aa7
 
 UnknownScript_0x192aa7: ; 0x192aa7
 	writetext UnknownText_0x19308b
-	loadmovesprites
+	closetext
 	end
 ; 0x192aac
 
 UnknownScript_0x192aac: ; 0x192aac
 	writetext UnknownText_0x1930a8
-	loadmovesprites
+	closetext
 	end
 ; 0x192ab1
 
 UnknownScript_0x192ab1: ; 0x192ab1
 	writetext UnknownText_0x1930cf
-	loadmovesprites
+	closetext
 	end
 ; 0x192ab6
 
@@ -472,14 +472,14 @@ UnknownScript_0x192b12: ; 0x192b12
 	applymovement $0, MovementData_0x192ce2
 	loadfont
 	writetext UnknownText_0x193266
+	waitbutton
 	closetext
-	loadmovesprites
 	applymovement2 MovementData_0x192cdc
 	spriteface $0, $2
 	loadfont
 	writetext UnknownText_0x193278
+	waitbutton
 	closetext
-	loadmovesprites
 	playsound SFX_TINGLE
 	applymovement $0, MovementData_0x192d17
 	writebyte $80
@@ -489,8 +489,8 @@ UnknownScript_0x192b12: ; 0x192b12
 	special Functione4a
 	loadfont
 	writetext UnknownText_0x19329a
+	waitbutton
 	closetext
-	loadmovesprites
 	showemote $0, $0, 15
 	applymovement $0, MovementData_0x192ce5
 	end
@@ -588,16 +588,16 @@ UnknownScript_0x192c0a: ; 0x192c0a
 UnknownScript_0x192c11: ; 0x192c11
 	loadfont
 	writetext UnknownText_0x193266
+	waitbutton
 	closetext
-	loadmovesprites
 	checkcode VAR_FACING
 	if_not_equal $1, UnknownScript_0x192c20
 	spriteface $0, $2
 UnknownScript_0x192c20: ; 0x192c20
 	loadfont
 	writetext UnknownText_0x193278
+	waitbutton
 	closetext
-	loadmovesprites
 	playsound SFX_TINGLE
 	applymovement $0, MovementData_0x192d17
 	writebyte $80
@@ -608,8 +608,8 @@ UnknownScript_0x192c20: ; 0x192c20
 	special Functione4a
 	loadfont
 	writetext UnknownText_0x19329a
+	waitbutton
 	closetext
-	loadmovesprites
 	showemote $0, $0, 15
 	applymovement $0, MovementData_0x192d2d
 	end
@@ -646,7 +646,7 @@ UnknownScript_0x192c8c: ; 0x192c8c
 MapPokeCenter2FSignpost0Script: ; 0x192c93
 	refreshscreen $0
 	special Functionc2da
-	loadmovesprites
+	closetext
 	end
 ; 0x192c9a
 
@@ -659,30 +659,30 @@ OfficerScript_0x192c9a: ; 0x192c9a
 	yesorno
 	iffalse UnknownScript_0x192cc4
 	writetext UnknownText_0x1931c4
-	keeptextopen
-	waitbutton
+	buttonsound
+	waitsfx
 	special Functionc309
 	iffalse UnknownScript_0x192cbe
 	itemnotify
 	setevent EVENT_MYSTERY_GIFT_DELIVERY_MAN
 UnknownScript_0x192cb8: ; 0x192cb8
 	writetext UnknownText_0x1931d2
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 ; 0x192cbe
 
 UnknownScript_0x192cbe: ; 0x192cbe
 	writetext UnknownText_0x1931ef
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 ; 0x192cc4
 
 UnknownScript_0x192cc4: ; 0x192cc4
 	writetext UnknownText_0x19324d
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 ; 0x192cca
 

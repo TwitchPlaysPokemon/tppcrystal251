@@ -30,8 +30,8 @@ SwimmerfKayleeScript: ; 0x1a684d
 	talkaftercancel
 	loadfont
 	writetext UnknownText_0x1a6c7f
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 ; 0x1a6855
 
@@ -59,8 +59,8 @@ SwimmerfSusieScript: ; 0x1a6861
 	talkaftercancel
 	loadfont
 	writetext UnknownText_0x1a6d11
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 ; 0x1a6869
 
@@ -88,8 +88,8 @@ SwimmerfDeniseScript: ; 0x1a6875
 	talkaftercancel
 	loadfont
 	writetext UnknownText_0x1a6d79
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 ; 0x1a687d
 
@@ -117,8 +117,8 @@ SwimmerfKaraScript: ; 0x1a6889
 	talkaftercancel
 	loadfont
 	writetext UnknownText_0x1a6e58
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 ; 0x1a6891
 
@@ -146,8 +146,8 @@ SwimmerfWendyScript: ; 0x1a689d
 	talkaftercancel
 	loadfont
 	writetext UnknownText_0x1a6ec2
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 ; 0x1a68a5
 
@@ -175,8 +175,8 @@ SwimmermCharlieScript: ; 0x1a68b1
 	talkaftercancel
 	loadfont
 	writetext UnknownText_0x1a696e
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 ; 0x1a68b9
 
@@ -204,8 +204,8 @@ SwimmermGeorgeScript: ; 0x1a68c5
 	talkaftercancel
 	loadfont
 	writetext UnknownText_0x1a69d4
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 ; 0x1a68cd
 
@@ -233,8 +233,8 @@ SwimmermBerkeScript: ; 0x1a68d9
 	talkaftercancel
 	loadfont
 	writetext UnknownText_0x1a6aa4
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 ; 0x1a68e1
 
@@ -262,8 +262,8 @@ SwimmermKirkScript: ; 0x1a68ed
 	talkaftercancel
 	loadfont
 	writetext UnknownText_0x1a6b6c
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 ; 0x1a68f5
 
@@ -291,8 +291,8 @@ SwimmermMathewScript: ; 0x1a6901
 	talkaftercancel
 	loadfont
 	writetext UnknownText_0x1a6bed
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 ; 0x1a6909
 

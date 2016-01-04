@@ -30,8 +30,8 @@ Bug_catcherRobScript: ; 0x1ac2c8
 	talkaftercancel
 	loadfont
 	writetext UnknownText_0x1ac34d
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 ; 0x1ac2d0
 
@@ -59,8 +59,8 @@ Bug_catcherEdScript: ; 0x1ac2dc
 	talkaftercancel
 	loadfont
 	writetext UnknownText_0x1ac3cf
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 ; 0x1ac2e4
 
@@ -88,8 +88,8 @@ Bug_catcherDougScript: ; 0x1ac2f0
 	talkaftercancel
 	loadfont
 	writetext UnknownText_0x1ac423
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 ; 0x1ac2f8
 

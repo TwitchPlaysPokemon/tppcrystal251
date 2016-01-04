@@ -34,7 +34,7 @@ MapKrissNeighborsHouseSignpost2Script: ; 0x7acf7
 	musicfadeout $003c, $10
 	writetext UnknownText_0x7ae9b
 	pause 45
-	loadmovesprites
+	closetext
 	setevent EVENT_LISTENED_TO_RADIO_IN_NEIGHBORS_HOUSE
 	end
 ; 0x7ad24
@@ -47,7 +47,7 @@ UnknownScript_0x7ad27: ; 0x7ad27
 	loadfont
 	writetext UnknownText_0x7ae9b
 	pause 45
-	loadmovesprites
+	closetext
 	end
 ; 0x7ad2f
 

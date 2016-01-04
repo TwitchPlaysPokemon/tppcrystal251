@@ -1068,7 +1068,7 @@ UnknownText_0x1c5660: ; 0x1c5660
 	text_from_ram StringBuffer2
 	text "!@"
 	sound0
-	text_waitbutton
+	text_waitsfx
 	db "@"
 ; 0x1c5677
 
@@ -1380,7 +1380,7 @@ UnknownText_0x1c5b34: ; 0x1c5b34
 ; 0x1c5b35
 
 UnknownText_0x1c5b35: ; 0x1c5b35
-	text_waitbutton
+	text_waitsfx
 	db "@"
 ; 0x1c5b37
 
@@ -1401,7 +1401,7 @@ UnknownText_0x1c5b53: ; 0x1c5b53
 	line "was newly added to", $55
 	db "the #DEX.@"
 	sound0x2C
-	text_waitbutton
+	text_waitsfx
 	db "@"
 ; 0x1c5b7e
 
@@ -1457,7 +1457,7 @@ UnknownText_0x1c5c28: ; 0x1c5c28
 UnknownText_0x1c5c44: ; 0x1c5c44
 	text $52, " played the"
 	line "# FLUTE.@"
-	text_waitbutton
+	text_waitsfx
 	db "@"
 ; 0x1c5c5d
 

@@ -18,13 +18,13 @@ PalletTownRB_OakStopsPlayerLeftTile:
 	spriteface $0, DOWN
 	showemote $0, $0, 15
 	pause 15
-	loadmovesprites
+	closetext
 	appear $2 ; Oak
 	applymovement $2, PalletTownRB_OakWalksUpToPlayer
 	loadfont
 	writetext PalletTownRB_OakText2
+	waitbutton
 	closetext
-	loadmovesprites
 	follow $0, $2
 	applymovement $2, PalletTownRB_OakWalksToLabLeftTile
 	jump PalletTownRB_WalkIntoLab
@@ -36,13 +36,13 @@ PalletTownRB_OakStopsPlayerRightTile:
 	spriteface $0, DOWN
 	showemote $0, $0, 15
 	pause 15
-	loadmovesprites
+	closetext
 	appear $2 ; Oak
 	applymovement $2, PalletTownRB_OakWalksUpToPlayer
 	loadfont
 	writetext PalletTownRB_OakText2
+	waitbutton
 	closetext
-	loadmovesprites
 	follow $0, $2
 	applymovement $2, PalletTownRB_OakWalksToLabRightTile
 

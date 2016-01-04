@@ -100,7 +100,7 @@ UnknownScript_0x18508f: ; 0x18508f
 	applymovement $3, MovementData_0x1851d4
 	disappear $3
 	playsound SFX_EXIT_BUILDING
-	waitbutton
+	waitsfx
 UnknownScript_0x1850b6: ; 0x1850b6
 	writebyte ENTEI
 	special SpecialMonCheck
@@ -113,7 +113,7 @@ UnknownScript_0x1850b6: ; 0x1850b6
 	applymovement $4, MovementData_0x1851de
 	disappear $4
 	playsound SFX_EXIT_BUILDING
-	waitbutton
+	waitsfx
 UnknownScript_0x1850d7: ; 0x1850d7
 	spriteface $0, $1
 	pause 10
@@ -174,12 +174,12 @@ UnknownScript_0x1850d7: ; 0x1850d7
 	spriteface $0, $3
 	loadfont
 	writetext UnknownText_0x185203
+	waitbutton
 	closetext
-	loadmovesprites
 	applymovement $5, MovementData_0x1851f1
 	playsound SFX_EXIT_BUILDING
 	disappear $5
-	waitbutton
+	waitsfx
 	special Functionc48f
 	pause 20
 	playmapmusic
@@ -216,29 +216,29 @@ SageScript_0x185188: ; 0x185188
 	checkevent EVENT_GOT_RAINBOW_WING
 	iftrue UnknownScript_0x1851b0
 	writetext UnknownText_0x185629
-	keeptextopen
+	buttonsound
 	verbosegiveitem RAINBOW_WING, 1
-	loadmovesprites
+	closetext
 	refreshscreen $0
 	earthquake 72
-	waitbutton
+	waitsfx
 	playsound SFX_STRENGTH
 	changeblock $a, $2, $20
 	reloadmappart
 	setevent EVENT_GOT_RAINBOW_WING
-	loadmovesprites
+	closetext
 	loadfont
 UnknownScript_0x1851b0: ; 0x1851b0
 	writetext UnknownText_0x18564a
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 ; 0x1851b6
 
 UnknownScript_0x1851b6: ; 0x1851b6
 	writetext UnknownText_0x185803
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 ; 0x1851bc
 

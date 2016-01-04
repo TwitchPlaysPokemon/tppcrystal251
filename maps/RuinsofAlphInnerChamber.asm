@@ -33,8 +33,8 @@ DontCreateUnownWords:
 UnknownScript_0x58f6e: ; 0x58f6e
 	loadfont
 	writetext UnknownText_0x58f89
+	waitbutton
 	closetext
-	loadmovesprites
 	dotrigger $0
 	setevent EVENT_MADE_UNOWN_APPEAR_IN_RUINS
 	clearevent EVENT_FISHER_IN_RUINS_OF_ALPH_OUTSIDE
@@ -63,17 +63,17 @@ MapRuinsofAlphInnerChamberSignpost25Script:; 0x58f86
 	checkevent EVENT_PHANCERO_AVAILABLE
 	iftrue PhanceroConditionScript
 MapRuinsofAlphInnerChamberSignpost25Scriptb:
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 ; 0x58f89
 
 PhanceroConditionScript:
-	keeptextopen
+	buttonsound
 	writetext DiscoveredPhanceroMessage
 	writebyte $4
 	special Function8ae68
-	loadmovesprites
+	closetext
 	earthquake 60
 	showemote $0, $0, 15
 	pause 15
@@ -83,8 +83,8 @@ PhanceroConditionScript:
 	changeblock 12, 12, $2f
 	loadfont
 	writetext PhanceroHoleOpenedText
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 UnknownText_0x58f89: ; 0x58f89
