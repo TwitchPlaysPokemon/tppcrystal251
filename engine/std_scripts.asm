@@ -1,56 +1,56 @@
 StdScripts:: ; bc000
-	dbw BANK(PokeCenterNurseScript), PokeCenterNurseScript ; $00
-	dbw BANK(DifficultBookshelfScript), DifficultBookshelfScript ; $01
-	dbw BANK(PictureBookshelfScript), PictureBookshelfScript ; $02
-	dbw BANK(MagazineBookshelfScript), MagazineBookshelfScript ; $03
-	dbw BANK(TeamRocketOathScript), TeamRocketOathScript ; $04
-	dbw BANK(IncenseBurnerScript), IncenseBurnerScript ; $05
-	dbw BANK(MerchandiseShelfScript), MerchandiseShelfScript ; $06
-	dbw BANK(TownMapScript), TownMapScript ; $07
-	dbw BANK(WindowScript), WindowScript ; $08
-	dbw BANK(TVScript), TVScript ; $09
-	dbw BANK(HomepageScript), HomepageScript ; $0a
-	dbw BANK(Radio1Script), Radio1Script ; $0b
-	dbw BANK(Radio2Script), Radio2Script ; $0c
-	dbw BANK(TrashCanScript), TrashCanScript ; $0d
-	dbw BANK(StrengthBoulderScript), StrengthBoulderScript ; $0e
-	dbw BANK(SmashRockScript), SmashRockScript ; $0f
-	dbw BANK(PokeCenterSignScript), PokeCenterSignScript ; $10
-	dbw BANK(MartSignScript), MartSignScript ; $11
-	dbw BANK(GoldenrodRocketsScript), GoldenrodRocketsScript ; $12
-	dbw BANK(RadioTowerRocketsScript), RadioTowerRocketsScript ; $13
-	dbw BANK(ElevatorButtonScript), ElevatorButtonScript ; $14
-	dbw BANK(DayToTextScript), DayToTextScript ; $15
-	dbw BANK(BugContestResultsWarpScript), BugContestResultsWarpScript ; $16
-	dbw BANK(BugContestResultsScript), BugContestResultsScript ; $17
-	dbw BANK(InitializeEventsScript), InitializeEventsScript ; $18
-	dbw BANK(AskNumber1MScript), AskNumber1MScript ; $19
-	dbw BANK(AskNumber2MScript), AskNumber2MScript ; $1a
-	dbw BANK(RegisteredNumberMScript), RegisteredNumberMScript ; $1b
-	dbw BANK(NumberAcceptedMScript), NumberAcceptedMScript ; $1c
-	dbw BANK(NumberDeclinedMScript), NumberDeclinedMScript ; $1d
-	dbw BANK(PhoneFullMScript), PhoneFullMScript ; $1e
-	dbw BANK(RematchMScript), RematchMScript ; $1f
-	dbw BANK(GiftMScript), GiftMScript ; $20
-	dbw BANK(PackFullMScript), PackFullMScript ; $21
-	dbw BANK(RematchGiftMScript), RematchGiftMScript ; $22
-	dbw BANK(AskNumber1FScript), AskNumber1FScript ; $23
-	dbw BANK(AskNumber2FScript), AskNumber2FScript ; $24
-	dbw BANK(RegisteredNumberFScript), RegisteredNumberFScript ; $25
-	dbw BANK(NumberAcceptedFScript), NumberAcceptedFScript ; $26
-	dbw BANK(NumberDeclinedFScript), NumberDeclinedFScript ; $27
-	dbw BANK(PhoneFullFScript), PhoneFullFScript ; $28
-	dbw BANK(RematchFScript), RematchFScript ; $29
-	dbw BANK(GiftFScript), GiftFScript ; $2a
-	dbw BANK(PackFullFScript), PackFullFScript ; $2b
-	dbw BANK(RematchGiftFScript), RematchGiftFScript ; $2c
-	dbw BANK(GymStatue1Script), GymStatue1Script ; $2d
-	dbw BANK(GymStatue2Script), GymStatue2Script ; $2e
-	dbw BANK(ReceiveItemScript), ReceiveItemScript ; $2f
-	dbw BANK(ReceiveTogepiEggScript), ReceiveTogepiEggScript ; $30
-	dbw BANK(PCScript), PCScript ; $31
-	dbw BANK(GameCornerCoinVendorScript), GameCornerCoinVendorScript ; $32
-	dbw BANK(HappinessCheckScript), HappinessCheckScript ; $33
+	dba PokeCenterNurseScript ; $00
+	dba DifficultBookshelfScript ; $01
+	dba PictureBookshelfScript ; $02
+	dba MagazineBookshelfScript ; $03
+	dba TeamRocketOathScript ; $04
+	dba IncenseBurnerScript ; $05
+	dba MerchandiseShelfScript ; $06
+	dba TownMapScript ; $07
+	dba WindowScript ; $08
+	dba TVScript ; $09
+	dba HomepageScript ; $0a
+	dba Radio1Script ; $0b
+	dba Radio2Script ; $0c
+	dba TrashCanScript ; $0d
+	dba StrengthBoulderScript ; $0e
+	dba SmashRockScript ; $0f
+	dba PokeCenterSignScript ; $10
+	dba MartSignScript ; $11
+	dba GoldenrodRocketsScript ; $12
+	dba RadioTowerRocketsScript ; $13
+	dba ElevatorButtonScript ; $14
+	dba DayToTextScript ; $15
+	dba BugContestResultsWarpScript ; $16
+	dba BugContestResultsScript ; $17
+	dba InitializeEventsScript ; $18
+	dba AskNumber1MScript ; $19
+	dba AskNumber2MScript ; $1a
+	dba RegisteredNumberMScript ; $1b
+	dba NumberAcceptedMScript ; $1c
+	dba NumberDeclinedMScript ; $1d
+	dba PhoneFullMScript ; $1e
+	dba RematchMScript ; $1f
+	dba GiftMScript ; $20
+	dba PackFullMScript ; $21
+	dba RematchGiftMScript ; $22
+	dba AskNumber1FScript ; $23
+	dba AskNumber2FScript ; $24
+	dba RegisteredNumberFScript ; $25
+	dba NumberAcceptedFScript ; $26
+	dba NumberDeclinedFScript ; $27
+	dba PhoneFullFScript ; $28
+	dba RematchFScript ; $29
+	dba GiftFScript ; $2a
+	dba PackFullFScript ; $2b
+	dba RematchGiftFScript ; $2c
+	dba GymStatue1Script ; $2d
+	dba GymStatue2Script ; $2e
+	dba ReceiveItemScript ; $2f
+	dba ReceiveTogepiEggScript ; $30
+	dba PCScript ; $31
+	dba GameCornerCoinVendorScript ; $32
+	dba HappinessCheckScript ; $33
 ; bc09c
 
 PokeCenterNurseScript:

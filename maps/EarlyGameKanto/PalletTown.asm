@@ -10,7 +10,8 @@ PalletTownRB_MapScriptHeader:
 .Trigger1:
 	end
 
-.Trigger2:	end
+.Trigger2:
+	end
 
 PalletTownRB_OakStopsPlayerLeftTile:
 	loadfont
@@ -151,7 +152,7 @@ PalletTownRB_FisherText:
 	para "You can now store"
 	line "and retrieve #-"
 	cont "MON while they are"
-	line "holding items!"
+	cont "holding items!"
 	done
 
 PalletTownRB_MapEventHeader:
