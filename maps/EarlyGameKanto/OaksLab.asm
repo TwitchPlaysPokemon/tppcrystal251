@@ -26,12 +26,12 @@ OaksLabRB_MapScriptHeader: ; 0x19b3c5
 .SetSprites:
 	checkevent EVENT_GOT_POKEMON_FROM_OAK
 	iftrue .skip
-	moveperson $2, $8, $e
+	moveperson $2, $4, $a
 .skip
 	return
 
 WalkUpWithOak:
-	follow $0, $2
+	follow $2, $0
 	applymovement $2, MovementData_OakWalksUp
 	stopfollow
 	faceperson $2, $0
@@ -58,6 +58,7 @@ WalkUpWithOak:
 CharmanderPokeballScript:
 	checkevent EVENT_GOT_POKEMON_FROM_OAK
 	iftrue OaksLab_LookAtPokeballScript
+	spriteface $2, RIGHT
 	refreshscreen $0
 	pokepic CHARMANDER
 	cry CHARMANDER
@@ -98,6 +99,7 @@ CharmanderPokeballScript:
 BulbasaurPokeballScript:
 	checkevent EVENT_GOT_POKEMON_FROM_OAK
 	iftrue OaksLab_LookAtPokeballScript
+	spriteface $2, RIGHT
 	refreshscreen $0
 	pokepic BULBASAUR
 	cry BULBASAUR
@@ -138,6 +140,7 @@ BulbasaurPokeballScript:
 SquirtlePokeballScript:
 	checkevent EVENT_GOT_POKEMON_FROM_OAK
 	iftrue OaksLab_LookAtPokeballScript
+	spriteface $2, RIGHT
 	refreshscreen $0
 	pokepic SQUIRTLE
 	cry SQUIRTLE
@@ -188,15 +191,15 @@ OaksLab_RivalBattleTriggerLeft:
 	iftrue .charmander
 	checkevent EVENT_GOT_SQUIRTLE_FROM_OAK
 	iftrue .squirtle
-	applymovement $6, Movement_RivalTakesFourStepsLeftOneStepDown
+	applymovement $6, Movement_RivalTakesTwoStepsLeftOneStepDown
 	loadtrainer BLUE_RB, BLUE_RB_1C
 	jump .startbattle
 .squirtle
-	applymovement $6, Movement_RivalTakesThreeStepsLeftOneStepDown
+	applymovement $6, Movement_RivalTakesFourStepsLeftOneStepDown
 	loadtrainer BLUE_RB, BLUE_RB_1B
 	jump .startbattle
 .charmander
-	applymovement $6, Movement_RivalTakesTwoStepsLeftOneStepDown
+	applymovement $6, Movement_RivalTakesThreeStepsLeftOneStepDown
 	loadtrainer BLUE_RB, BLUE_RB_1A
 .startbattle
 	scall OaksLab_DoRivalBattle
@@ -210,20 +213,20 @@ OaksLab_RivalBattleTriggerRight:
 	iftrue .charmander
 	checkevent EVENT_GOT_SQUIRTLE_FROM_OAK
 	iftrue .squirtle
-	applymovement $6, Movement_RivalTakesThreeStepsLeftOneStepDown
+	applymovement $6, Movement_RivalTakesOneStepLeftOneStepDown
 	loadtrainer BLUE_RB, BLUE_RB_1C
 	jump .startbattle
 .squirtle
-	applymovement $6, Movement_RivalTakesTwoStepsLeftOneStepDown
+	applymovement $6, Movement_RivalTakesThreeStepsLeftOneStepDown
 	loadtrainer BLUE_RB, BLUE_RB_1B
 	jump .startbattle
 .charmander
-	applymovement $6, Movement_RivalTakesOneStepLeftOneStepDown
+	applymovement $6, Movement_RivalTakesTwoStepsLeftOneStepDown
 	loadtrainer BLUE_RB, BLUE_RB_1A
 .startbattle
 	scall OaksLab_DoRivalBattle
 	applymovement $6, Movement_RivalTakesOneStepLeft
-	spriteface $0, RIGHT
+	spriteface $0, LEFT
 	jump OaksLab_RivalFinishesLeaving
 	
 OaksLab_RivalBattleIntroScript:
@@ -240,14 +243,15 @@ OaksLab_DoRivalBattle:
 	writecode VAR_BATTLETYPE, BATTLETYPE_CANLOSE
 	winlosstext _OaksLabText_1d3be, _OaksLabText_1d3c3
 	startbattle
+	special DeleteSavedMusic
 	reloadmapmusic
 	reloadmap
-	special DeleteSavedMusic
-	special RestartMapMusic
+	playmapmusic
 	loadfont
 	writetext _OaksLabRivalToughenUpText
 	waitbutton
 	closetext
+	playmusic MUSIC_RIVAL_AFTER_RB
 	end
 
 OaksLab_RivalFinishesLeaving:
@@ -439,7 +443,7 @@ Movement_RivalTakesFourStepsLeftOneStepDown:
 	step_left
 Movement_RivalTakesThreeStepsLeftOneStepDown:
 	step_left
-Movement_RivalTakesTwoStepsLeftOneStepDown
+Movement_RivalTakesTwoStepsLeftOneStepDown:
 	step_left
 Movement_RivalTakesOneStepLeftOneStepDown:
 	step_left
@@ -523,7 +527,7 @@ _OaksLabMonEnergeticText:
 _OaksLabReceivedMonText:
 	text "<PLAYER> received"
 	line "a @"
-	text_from_ram StringBuffer1
+	text_from_ram StringBuffer3
 	text "!"
 	done
 
@@ -713,7 +717,7 @@ _OaksLabRivalPickingMonText:
 _OaksLabRivalReceivedMonText:
 	text "<GREEN> received"
 	line "a @"
-	text_from_ram StringBuffer2
+	text_from_ram StringBuffer4
 	text "!"
 	done
 
@@ -882,10 +886,10 @@ OaksLabRB_MapEventHeader: ; 0x19ba33
 
 	; xy triggers
 	db 4
-	xy_trigger 1, 9, 4, 0, OaksLabRB_WaitComeBack, 0, 0
-	xy_trigger 1, 9, 5, 0, OaksLabRB_WaitComeBack, 0, 0
-	xy_trigger 2, 9, 4, 0, OaksLab_RivalBattleTriggerLeft, 0, 0
-	xy_trigger 2, 9, 5, 0, OaksLab_RivalBattleTriggerRight, 0, 0
+	xy_trigger 1, 6, 4, 0, OaksLabRB_WaitComeBack, 0, 0
+	xy_trigger 1, 6, 5, 0, OaksLabRB_WaitComeBack, 0, 0
+	xy_trigger 2, 6, 4, 0, OaksLab_RivalBattleTriggerLeft, 0, 0
+	xy_trigger 2, 6, 5, 0, OaksLab_RivalBattleTriggerRight, 0, 0
 
 	; signposts
 	db 17
@@ -910,16 +914,13 @@ OaksLabRB_MapEventHeader: ; 0x19ba33
 	; people-events
 	db 10
 	person_event SPRITE_OAK, 6, 8, $6, 0, 0, -1, -1, 0, 0, 0, OakScript_OaksLabRB, -1
-	person_event SPRITE_SCIENTIST, 12, 5, $5, 0, 1, -1, -1, 8 + PAL_OW_BLUE, 0, 0, Scientist1Script_OaksLabRB, -1
+	person_event SPRITE_SCIENTIST, 12, 6, $5, 0, 1, -1, -1, 8 + PAL_OW_BLUE, 0, 0, Scientist1Script_OaksLabRB, -1
 	person_event SPRITE_SCIENTIST, 13, 12, $4, 1, 0, -1, -1, 8 + PAL_OW_BLUE, 0, 0, Scientist2Script_OaksLabRB, -1
-	person_event SPRITE_LASS, 8, 5, $2, 1, 1, -1, -1, 8 + PAL_OW_BLUE, 0, 0, LassScript_OaksLabRB, -1
+	person_event SPRITE_TEACHER, 15, 5, $2, 1, 1, -1, -1, 8 + PAL_OW_BLUE, 0, 0, LassScript_OaksLabRB, -1
 	person_event SPRITE_BLUE, 7, 7, $5, 0, 0, -1, -1, 0, 0, 0, BlueScript_OaksLabRB, EVENT_RB_RIVAL_IN_LAB
 	person_event SPRITE_POKE_BALL, 7, 10, $0, 0, 0, -1, -1, 0, 0, 0, CharmanderPokeballScript, EVENT_SOMEONE_GOT_CHARMANDER_FROM_OAK
 	person_event SPRITE_POKE_BALL, 7, 11, $0, 0, 0, -1, -1, 0, 0, 0, SquirtlePokeballScript, EVENT_SOMEONE_GOT_SQUIRTLE_FROM_OAK
 	person_event SPRITE_POKE_BALL, 7, 12, $0, 0, 0, -1, -1, 0, 0, 0, BulbasaurPokeballScript, EVENT_SOMEONE_GOT_BULBASAUR_FROM_OAK
-	person_event SPRITE_POKEDEX, 7, 12, $0, 0, 0, -1, -1, 0, 0, 0, BlankEncyclopoediaScript, EVENT_RB_DELIVERED_OAKS_PARCEL
-	person_event SPRITE_POKEDEX, 7, 12, $0, 0, 0, -1, -1, 0, 0, 0, BlankEncyclopoediaScript, EVENT_RB_DELIVERED_OAKS_PARCEL
+	person_event SPRITE_POKEDEX, 5, 6, $0, 0, 0, -1, -1, 0, 0, 0, BlankEncyclopoediaScript, EVENT_RB_DELIVERED_OAKS_PARCEL
+	person_event SPRITE_POKEDEX, 5, 7, $0, 0, 0, -1, -1, 0, 0, 0, BlankEncyclopoediaScript, EVENT_RB_DELIVERED_OAKS_PARCEL
 ; 0x19bac7
-
-
-

@@ -14,6 +14,7 @@ PalletTownRB_MapScriptHeader:
 	end
 
 PalletTownRB_OakStopsPlayerLeftTile:
+	playmusic MUSIC_PROF_OAK
 	loadfont
 	writetext PalletTownRB_OakText1
 	spriteface $0, DOWN
@@ -26,12 +27,13 @@ PalletTownRB_OakStopsPlayerLeftTile:
 	writetext PalletTownRB_OakText2
 	waitbutton
 	closetext
-	follow $0, $2
+	follow $2, $0
 	applymovement $2, PalletTownRB_OakWalksToLabLeftTile
 	jump PalletTownRB_WalkIntoLab
 
 PalletTownRB_OakStopsPlayerRightTile:
-	moveperson $2, 12, 11
+	playmusic MUSIC_PROF_OAK
+	moveperson $2, 9, 6
 	loadfont
 	writetext PalletTownRB_OakText1
 	spriteface $0, DOWN
@@ -44,7 +46,7 @@ PalletTownRB_OakStopsPlayerRightTile:
 	writetext PalletTownRB_OakText2
 	waitbutton
 	closetext
-	follow $0, $2
+	follow $2, $0
 	applymovement $2, PalletTownRB_OakWalksToLabRightTile
 
 PalletTownRB_WalkIntoLab
@@ -55,6 +57,18 @@ PalletTownRB_WalkIntoLab
 	dotrigger $1
 	warpcheck
 	end
+
+MapPalletTownRBSignpost0Script:
+	jumptext PalletTownRB_TownSignText
+
+MapPalletTownRBSignpost1Script:
+	jumptext PalletTownRB_PlayerHouseSignText
+
+MapPalletTownRBSignpost2Script:
+	jumptext PalletTownRB_OakLabSignText
+
+MapPalletTownRBSignpost3Script:
+	jumptext PalletTownRB_GreenHouseSignText
 
 PalletTownRB_OakWalksUpToPlayer:
 	step_up
@@ -155,7 +169,32 @@ PalletTownRB_FisherText:
 	cont "holding items!"
 	done
 
+PalletTownRB_TownSignText: ; 0x1ac76b
+	text "PALLET TOWN"
+
+	para "A Tranquil Setting"
+	line "of Peace & Purity"
+	done
+; 0x1ac79d
+
+PalletTownRB_PlayerHouseSignText: ; 0x1ac79d
+	text "<PLAYER>'S HOUSE"
+	done
+; 0x1ac7aa
+
+PalletTownRB_OakLabSignText: ; 0x1ac7aa
+	text "OAK #MON"
+	line "RESEARCH LAB"
+	done
+; 0x1ac7c1
+
+PalletTownRB_GreenHouseSignText: ; 0x1ac7c1
+	text "<GREEN>'S HOUSE"
+	done
+; 0x1ac7cf
+
 PalletTownRB_MapEventHeader:
+	db 0, 0 ; filler
 .Warps:
 	db 3
 	warp_def $5, $5, 1, GROUP_REDS_HOUSE_1F_RB, MAP_REDS_HOUSE_1F_RB
@@ -164,15 +203,15 @@ PalletTownRB_MapEventHeader:
 
 .XYTriggers:
 	db 2
-	xy_trigger 1, 1, 8, $0, PalletTownRB_OakStopsPlayerLeftTile, $0, $0
-	xy_trigger 1, 1, 9, $0, PalletTownRB_OakStopsPlayerRightTile, $0, $0
+	xy_trigger 0, 1, 8, $0, PalletTownRB_OakStopsPlayerLeftTile, $0, $0
+	xy_trigger 0, 1, 9, $0, PalletTownRB_OakStopsPlayerRightTile, $0, $0
 
 .Signposts:
 	db 4
-	signpost 9, 7, $0, MapPalletTownSignpost0Script
-	signpost 5, 3, $0, MapPalletTownSignpost1Script
-	signpost 13, 13, $0, MapPalletTownSignpost2Script
-	signpost 5, 11, $0, MapPalletTownSignpost3Script
+	signpost 9, 7, $0, MapPalletTownRBSignpost0Script
+	signpost 5, 3, $0, MapPalletTownRBSignpost1Script
+	signpost 13, 13, $0, MapPalletTownRBSignpost2Script
+	signpost 5, 11, $0, MapPalletTownRBSignpost3Script
 
 .PersonEvents:
 	db 3

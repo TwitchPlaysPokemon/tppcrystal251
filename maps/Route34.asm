@@ -756,6 +756,7 @@ GotEgg:
 	writetext FoundEgg_Text
 	playsound SFX_KEY_ITEM
 	waitsfx
+	setflag ENGINE_DAILY_EGG
 RandomEggScriptNo:
 	closetext
 	end

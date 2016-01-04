@@ -17844,7 +17844,7 @@ Group13Sprites: ; 144ec
 	db SPRITE_TEACHER
 	db SPRITE_FISHER
 	db SPRITE_YOUNGSTER
-	db SPRITE_BLUE
+	db SPRITE_OAK
 	db SPRITE_GRAMPS
 	db SPRITE_BUG_CATCHER
 	db SPRITE_COOLTRAINER_F
@@ -18200,7 +18200,7 @@ Group28Sprites:
 	db SPRITE_BOULDER
 	db SPRITE_BIRD
 	db SPRITE_PHARMACIST
-	db SPRITE_SUPER_NERD ; 9
+	db SPRITE_SUPER_NERD
 SpriteHeaders: ; 14736
 INCLUDE "gfx/overworld/sprite_headers.asm"
 ; 1499a
@@ -35707,6 +35707,7 @@ TrainerClassNames:: ; 2c1ef
 	db $4a, " LEAGUE@"
 	db "BOSS@"
 	db "COOLSIBS@"
+	db "RIVAL@"
 AI_Redundant: ; 2c41a
 ; Check if move effect c will fail because it's already been used.
 
