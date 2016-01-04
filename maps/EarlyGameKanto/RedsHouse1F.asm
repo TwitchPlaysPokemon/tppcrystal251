@@ -120,7 +120,13 @@ MomScript1:
 	checktriggers
 	iffalse MomScript2
 	loadfont
-	writetext UnknownText_0x19af81
+	checkflag ENGINE_PLAYER_IS_FEMALE
+	iftrue .female
+	writetext MomText_AllBoysLeaveHomeSomeday
+	jump .finish
+.female
+	writetext MomText_AllGirlsLeaveHomeSomeday
+.finish
 	waitbutton
 	closetext
 	end
@@ -239,7 +245,29 @@ MomText7: ; 0x7a850
 	para "Gee, isn't that"
 	line "convenient?"
 	done
-; 0x7a8b5
+; 
+
+MomText_AllBoysLeaveHomeSomeday:
+	text "Right. All boys"
+	line "leave home some-"
+	cont "day."
+	line "It said so on TV."
+
+	para "PROF.OAK, next"
+	line "door, was looking"
+	cont "for you."
+	done
+
+MomText_AllGirlsLeaveHomeSomeday:
+	text "Right. All girls"
+	line "leave home some-"
+	cont "day."
+	line "It said so on TV."
+
+	para "PROF.OAK, next"
+	line "door, was looking"
+	cont "for you."
+	done
 
 RedsHouse1FRB_MapEventHeader: ; 0x19b017
 	; filler
