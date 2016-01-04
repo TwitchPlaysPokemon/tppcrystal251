@@ -11,13 +11,13 @@ ClerkScript_0x19680a: ; 0x19680a
 	checkevent EVENT_GAVE_MYSTERY_EGG_TO_ELM
 	iftrue UnknownScript_0x196817
 	pokemart $0, $0000
-	loadmovesprites
+	closetext
 	end
 ; 0x196817
 
 UnknownScript_0x196817: ; 0x196817
 	pokemart $0, $0001
-	loadmovesprites
+	closetext
 	end
 ; 0x19681d
 
@@ -27,15 +27,15 @@ CooltrainerMScript_0x19681d: ; 0x19681d
 	checkevent EVENT_GAVE_MYSTERY_EGG_TO_ELM
 	iftrue UnknownScript_0x19682b
 	writetext UnknownText_0x196834
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 ; 0x19682b
 
 UnknownScript_0x19682b: ; 0x19682b
 	writetext UnknownText_0x196873
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 ; 0x196831
 

@@ -4868,9 +4868,9 @@ UnknownScript_0xc802: ; 0xc802 CUT
 	copybytetovar wd1ef
 	pokepic $0000
 	cry $0000
-	pokepicyesorno
+	closepokepic
 	callasm Functionc810
-	loadmovesprites
+	closetext
 	end
 ; 0xc810
 
@@ -5032,7 +5032,7 @@ UnknownScript_0xc8e6: ; 0xc8e6 FLASH
 	loadfont
 	writetext UnknownText_0xc8f3
 	callasm Function8c7e1
-	loadmovesprites
+	closetext
 	end
 ; 0xc8f3
 
@@ -5136,12 +5136,12 @@ UnknownScript_0xc983: ; c983
 UsedSurfScript: ; c986 SURF
 	callasm Functioncd12
 	writetext UsedSurfText ; "used SURF!"
-	closetext
+	waitbutton
 	reloadmappart
 	copybytetovar wd1ef
 	pokepic $0000
 	cry $0000
-	loadmovesprites
+	closetext
 	callasm Functionc9a2 ; empty function
 	copybytetovar Buffer2
 	writevarcode VAR_MOVEMENT
@@ -5280,7 +5280,7 @@ AskSurfScript: ; ca2c
 	writetext AskSurfText
 	yesorno
 	iftrue UsedSurfScript
-	loadmovesprites
+	closetext
 	end
 ; ca36
 
@@ -5374,7 +5374,7 @@ UnknownScript_0xcaa3: ; 0xcaa3 FLY
 	copybytetovar wd1ef
 	pokepic $0000
 	cry $0000
-	pokepicyesorno
+	closepokepic
 	callasm Function8caed
 	farscall UnknownScript_0x122c1
 	special Function97c28
@@ -5448,12 +5448,12 @@ UnknownScript_0xcb1c: ; 0xcb1c
 UnknownScript_0xcb20: ; 0xcb20 WATERFALL
 	callasm Functioncd12
 	writetext UnknownText_0xcb51
-	closetext
+	waitbutton
 	reloadmappart
 	copybytetovar wd1ef
 	pokepic $0000
 	cry $0000
-	loadmovesprites
+	closetext
 	playsound SFX_BUBBLEBEAM
 .loop
 	applymovement $0, WaterfallStep
@@ -5523,7 +5523,7 @@ UnknownScript_0xcb86: ; 0xcb86
 	writetext UnknownText_0xcb90
 	yesorno
 	iftrue UnknownScript_0xcb20
-	loadmovesprites
+	closetext
 	end
 ; 0xcb90
 
@@ -5644,7 +5644,7 @@ UnknownScript_0xcc2b: ; 0xcc2b
 	reloadmappart
 	special UpdateTimePals
 	writetext UnknownText_0xcc21
-	closetext
+	waitbutton
 	jump UnknownScript_0xcc3c
 ; 0xcc35
 
@@ -5653,13 +5653,13 @@ UnknownScript_0xcc35: ; 0xcc35 DIG
 	special UpdateTimePals
 	callasm Functioncd12
 	writetext UnknownText_0xcc1c
-	closetext
+	waitbutton
 	reloadmappart
 	copybytetovar wd1ef
 	pokepic $0000
 	cry $0000
 UnknownScript_0xcc3c: ; 0xcc3c
-	loadmovesprites
+	closetext
 	playsound SFX_WARP_TO
 	applymovement $0, MovementData_0xcc59
 	farscall UnknownScript_0x122c1
@@ -5762,7 +5762,7 @@ UnknownScript_0xccbb: ; 0xccbb
 	writetext UnknownText_0xccb1
 	pause 60
 	reloadmappart
-	loadmovesprites
+	closetext
 	playsound SFX_WARP_TO
 	applymovement $0, MovementData_0xcce1
 	farscall UnknownScript_0x122c1
@@ -5854,15 +5854,15 @@ UnknownScript_0xcd29: ; 0xcd29
 UnknownScript_0xcd2d: ; 0xcd2d STRENGTH
 	callasm Functioncd12
 	writetext UnknownText_0xcd41
-	closetext
+	waitbutton
 	reloadmappart
 	copybytetovar wd1ef
 	pokepic $0000
 	cry $0000
-	loadmovesprites
+	closetext
 	loadfont
 	writetext UnknownText_0xcd46
-	loadmovesprites
+	closetext
 	end
 ; 0xcd41
 
@@ -5896,7 +5896,7 @@ UnknownScript_0xcd5f: ; 0xcd5f
 	writetext UnknownText_0xcd69
 	yesorno
 	iftrue UnknownScript_0xcd2d
-	loadmovesprites
+	closetext
 	end
 ; 0xcd69
 
@@ -6045,9 +6045,9 @@ UnknownScript_0xce0f: ; 0xce0f WHIRLPOOL
 	copybytetovar wd1ef
 	pokepic $0000
 	cry $0000
-	pokepicyesorno
+	closepokepic
 	callasm Functionce1d
-	loadmovesprites
+	closetext
 	end
 ; 0xce1d
 
@@ -6108,7 +6108,7 @@ UnknownScript_0xce6e: ; 0xce6e
 	writetext UnknownText_0xce78
 	yesorno
 	iftrue UnknownScript_0xce0f
-	loadmovesprites
+	closetext
 	end
 ; 0xce78
 
@@ -6163,7 +6163,7 @@ HeadbuttScript: ; 0xceab HEADBUTT
 	copybytetovar wd1ef
 	pokepic $0000
 	cry $0000
-	loadmovesprites
+	closetext
 	callasm ShakeHeadbuttTree
 	callasm TreeMonEncounter
 	iffalse .no_battle
@@ -6174,8 +6174,8 @@ HeadbuttScript: ; 0xceab HEADBUTT
 .no_battle
 	loadfont
 	writetext UnknownText_0xcea2
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 ; 0xcec9
 
@@ -6200,7 +6200,7 @@ AskHeadbuttScript: ; 0xcedc
 	writetext UnknownText_0xcee6
 	yesorno
 	iftrue HeadbuttScript
-	loadmovesprites
+	closetext
 	end
 ; 0xcee6
 
@@ -6269,7 +6269,7 @@ RockSmashScript: ; cf32 ROCK SMASH
 	copybytetovar wd1ef
 	pokepic $0000
 	cry $0000
-	loadmovesprites
+	closetext
 	special WaitSFX
 	playsound SFX_STRENGTH
 	earthquake 84
@@ -6300,7 +6300,7 @@ AskRockSmashScript: ; 0xcf5d
 	writetext UnknownText_0xcf77
 	yesorno
 	iftrue RockSmashScript
-	loadmovesprites
+	closetext
 	end
 .no
 	jumptext UnknownText_0xcf72
@@ -6450,7 +6450,7 @@ UnknownScript_0xd027: ; 0xd027
 UnknownScript_0xd02d: ; 0xd02d
 	loademote $8
 	callasm Functiond095
-	loadmovesprites
+	closetext
 	end
 ; 0xd035
 
@@ -6469,7 +6469,7 @@ UnknownScript_0xd04a: ; 0xd04a
 	applymovement $0, MovementData_0xd069
 	writetext UnknownText_0xd0a4
 	callasm Functiond095
-	loadmovesprites
+	closetext
 	battlecheck
 	startbattle
 	returnafterbattle
@@ -6659,15 +6659,15 @@ UnknownScript_0xd13e: ; 0xd13e
 	special UpdateTimePals
 	writecode VAR_MOVEMENT, $1
 	writetext UnknownText_0xd17c
+	waitbutton
 	closetext
-	loadmovesprites
 	special Functione4a
 	end
 ; 0xd14e
 
 UnknownScript_0xd14e: ; 0xd14e
 	writecode VAR_MOVEMENT, $1
-	loadmovesprites
+	closetext
 	special Functione4a
 	end
 ; 0xd156
@@ -6681,9 +6681,9 @@ UnknownScript_0xd158: ; 0xd158
 	special UpdateTimePals
 	writecode VAR_MOVEMENT, $0
 	writetext UnknownText_0xd181
-	closetext
+	waitbutton
 UnknownScript_0xd163:
-	loadmovesprites
+	closetext
 	special Functione4a
 	special PlayMapMusic
 	end
@@ -6696,8 +6696,8 @@ UnknownScript_0xd16b: ; 0xd16b
 
 UnknownScript_0xd171: ; 0xd171
 	writetext UnknownText_0xd177
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 ; 0xd177
 
@@ -6749,7 +6749,7 @@ AskCutScript: ; 0xd1a9
 	callasm Functiond1ba
 	iftrue UnknownScript_0xc802
 .script_d1b8
-	loadmovesprites
+	closetext
 	end
 ; 0xd1ba
 
@@ -12544,17 +12544,17 @@ UnknownScript_0x122ce:: ; 0x122ce
 	playsound SFX_ITEM
 	pause 60
 	itemnotify
-	loadmovesprites
+	closetext
 	end
 ; 0x122e3
 
 UnknownScript_0x122e3: ; 0x122e3
 	loadfont
 	writetext UnknownText_0x122ee
-	closetext
+	waitbutton
 	writetext UnknownText_0x122f3
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 ; 0x122ee
 
@@ -12871,7 +12871,7 @@ UnknownScript_0x124c8:: ; 0x124c8
 	callasm Function124fa
 UnknownScript_0x124ce: ; 0x124ce
 	writetext UnknownText_0x124f5
-	closetext
+	waitbutton
 	special Function8c084
 	pause 40
 	special HealParty
@@ -13051,7 +13051,7 @@ UnknownScript_0x125ad: ; 0x125ad
 	special UpdateTimePals
 	callasm Function12599
 	writetext UnknownText_0x125c3
-	loadmovesprites
+	closetext
 	end
 ; 0x125ba
 
@@ -13059,7 +13059,7 @@ UnknownScript_0x125ba: ; 0x125ba
 	reloadmappart
 	special UpdateTimePals
 	writetext UnknownText_0x125c8
-	loadmovesprites
+	closetext
 	end
 ; 0x125c3
 
@@ -15512,7 +15512,7 @@ UnknownScript_0x135f8:: ; 0x135f8
 	playsound SFX_ELEVATOR_END
 	loadfont
 	writetext UnknownText_0x1360f
-	closetext
+	waitbutton
 	jump UnknownScript_0x1360b
 ; 0x13603
 
@@ -15520,9 +15520,9 @@ UnknownScript_0x13603: ; 0x13603
 	playsound SFX_ELEVATOR_END
 	loadfont
 	writetext UnknownText_0x13614
-	closetext
+	waitbutton
 UnknownScript_0x1360b: ; 0x1360b
-	loadmovesprites
+	closetext
 	jumpstd bugcontestresultswarp
 ; 0x1360f
 
@@ -15541,8 +15541,8 @@ UnknownText_0x13614: ; 0x13614
 UnknownScript_0x13619:: ; 0x13619
 	loadfont
 	writetext UnknownText_0x13620
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 ; 0x13620
 
@@ -15566,11 +15566,11 @@ UnknownScript_0x13625:: ; 0x13625
 ; 0x1363e
 
 UnknownScript_0x1363e: ; 0x1363e
-	keeptextopen
+	buttonsound
 	writetext UnknownText_0x1364a
-	closetext
+	waitbutton
 UnknownScript_0x13643: ; 13643
-	loadmovesprites
+	closetext
 	end
 ; 0x13645
 
@@ -29424,9 +29424,9 @@ Unknown_26f84: ; 26f84
 UnknownScript_0x26f91: ; 0x26f91
 	loadfont
 	writetext UnknownText_0x26f9b
-	closetext
+	waitbutton
 	special Functionc2c0
-	loadmovesprites
+	closetext
 	end
 ; 0x26f9b
 
@@ -50063,7 +50063,7 @@ UnknownScript_0x50669: ; 50669
 	loadfont
 	callasm Function5067b
 	iffalse UnknownScript_0x50677
-	loadmovesprites
+	closetext
 	end
 ; 50677
 
@@ -50144,8 +50144,8 @@ UnknownScript_0x506e5: ; 0x506e5
 
 UnknownScript_0x506e9: ; 0x506e9
 	writetext UnknownText_0x5072b
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 ; 0x506ef
 
@@ -50272,7 +50272,7 @@ _CardKey: ; 50779
 ; 507af
 
 UnknownScript_0x507af: ; 0x507af
-	loadmovesprites
+	closetext
 	farjump MapRadioTower3FSignpost2Script
 ; 0x507b4
 
@@ -50304,7 +50304,7 @@ _BasementKey: ; 507b4
 ; 507e1
 
 UnknownScript_0x507e1: ; 0x507e1
-	loadmovesprites
+	closetext
 	farjump MapWarehouseEntranceSignpost0Script
 ; 0x507e6
 
@@ -50365,12 +50365,12 @@ UnknownScript_0x50821: ; 0x50821
 	special Function8c079
 	special Function8c084
 	special Function8c079
-	waitbutton
+	waitsfx
 	writetext UnknownText_0x50845
 	playsound SFX_CAUGHT_MON
+	waitsfx
 	waitbutton
 	closetext
-	loadmovesprites
 	end
 ; 0x50845
 
@@ -70467,9 +70467,9 @@ UnknownScript_0x90241: ; 0x90241
 	refreshscreen $0
 	callasm Function9026f
 	ptcall wd048
-	closetext
+	waitbutton
 	callasm Function902eb
-	loadmovesprites
+	closetext
 	callasm Function113e5
 	end
 ; 0x90255

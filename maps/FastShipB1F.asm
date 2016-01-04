@@ -54,8 +54,8 @@ SailorScript_0x76767: ; 0x76767
 	checkevent EVENT_FAST_SHIP_034
 	iftrue UnknownScript_0x76787
 	writetext UnknownText_0x7687b
+	waitbutton
 	closetext
-	loadmovesprites
 	setevent EVENT_FAST_SHIP_034
 	clearevent EVENT_FAST_SHIP_GOOD_FOR_NOTHING_SAILOR
 	end
@@ -63,8 +63,8 @@ SailorScript_0x76767: ; 0x76767
 
 UnknownScript_0x76787: ; 0x76787
 	writetext UnknownText_0x76907
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 ; 0x7678d
 
@@ -72,23 +72,23 @@ UnknownScript_0x7678d: ; 0x7678d
 	writetext UnknownText_0x7692e
 	checkevent EVENT_FAST_SHIP_032
 	iffalse UnknownScript_0x76799
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 ; 0x76799
 
 UnknownScript_0x76799: ; 0x76799
-	keeptextopen
+	buttonsound
 	writetext UnknownText_0x7696d
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 ; 0x767a0
 
 UnknownScript_0x767a0: ; 0x767a0
 	writetext UnknownText_0x7699d
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 ; 0x767a6
 
@@ -116,8 +116,8 @@ SailorJeffScript: ; 0x767b2
 	talkaftercancel
 	loadfont
 	writetext UnknownText_0x76a38
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 ; 0x767ba
 
@@ -145,8 +145,8 @@ PicnickerDebraScript: ; 0x767c6
 	talkaftercancel
 	loadfont
 	writetext UnknownText_0x76a99
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 ; 0x767ce
 
@@ -174,8 +174,8 @@ JugglerFritzScript: ; 0x767da
 	talkaftercancel
 	loadfont
 	writetext UnknownText_0x76b02
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 ; 0x767e2
 
@@ -203,8 +203,8 @@ SailorGarrettScript: ; 0x767ee
 	talkaftercancel
 	loadfont
 	writetext UnknownText_0x76b7a
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 ; 0x767f6
 
@@ -232,8 +232,8 @@ FisherJonahScript: ; 0x76802
 	talkaftercancel
 	loadfont
 	writetext UnknownText_0x76c22
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 ; 0x7680a
 
@@ -261,8 +261,8 @@ BlackbeltWaiScript: ; 0x76816
 	talkaftercancel
 	loadfont
 	writetext UnknownText_0x76c9e
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 ; 0x7681e
 
@@ -290,8 +290,8 @@ SailorKennethScript: ; 0x7682a
 	talkaftercancel
 	loadfont
 	writetext UnknownText_0x76d5f
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 ; 0x76832
 
@@ -319,8 +319,8 @@ TeacherShirleyScript: ; 0x7683e
 	talkaftercancel
 	loadfont
 	writetext UnknownText_0x76de1
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 ; 0x76846
 
@@ -348,8 +348,8 @@ SchoolboyNateScript: ; 0x76852
 	talkaftercancel
 	loadfont
 	writetext UnknownText_0x76e3d
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 ; 0x7685a
 
@@ -377,8 +377,8 @@ SchoolboyRickyScript: ; 0x76866
 	talkaftercancel
 	loadfont
 	writetext UnknownText_0x76eb6
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 ; 0x7686e
 

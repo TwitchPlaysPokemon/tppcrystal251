@@ -75,8 +75,8 @@ UnknownScript_0x6ab47: ; 0x6ab47 run if enterng while contest is still on
 	yesorno
 	iffalse UnknownScript_0x6ab76 ;if no then go back out else..
 	writetext UnknownText_0x6b2c5 ;set up end of contest
+	waitbutton
 	closetext
-	loadmovesprites
 	special Special_FadeToBlack
 	special Functiond91 ;something in palletes
 	scall UnknownScript_0x6ab8c ;check what contestents appear
@@ -90,12 +90,12 @@ UnknownScript_0x6ab47: ; 0x6ab47 run if enterng while contest is still on
 
 UnknownScript_0x6ab76: ; 0x6ab76
 	writetext UnknownText_0x6b300
+	waitbutton
 	closetext
-	loadmovesprites
 	spriteface $0, $2
 	playsound SFX_EXIT_BUILDING
 	special Function8c084
-	waitbutton
+	waitsfx
 	warpfacing $2, GROUP_NATIONAL_PARK_BUG_CONTEST, MAP_NATIONAL_PARK_BUG_CONTEST, $21, $12
 	end
 ; 0x6ab8c
@@ -157,7 +157,7 @@ OfficerScript_0x6abe0: ; 0x6abe0
 	checkevent EVENT_NATIONAL_PARK_ROUTE_36_GATE_314 ;If holding amber, give amber
 	iffalse SkipAmber
 	writetext UnknownText_0x6b97f
-	keeptextopen
+	buttonsound
 	verbosegiveitem OLD_AMBER, 1
 	iffalse AmberFailText
 	clearevent EVENT_NATIONAL_PARK_ROUTE_36_GATE_314
@@ -165,7 +165,7 @@ SkipAmber:
 	checkevent EVENT_NATIONAL_PARK_ROUTE_36_GATE_315
 	iffalse SkipSun
 	writetext UnknownText_0x6b97f
-	keeptextopen
+	buttonsound
 	verbosegiveitem SUN_STONE, 1
 	iffalse SunFailText
 	clearevent EVENT_NATIONAL_PARK_ROUTE_36_GATE_315
@@ -173,7 +173,7 @@ SkipSun:
 	checkevent EVENT_NATIONAL_PARK_ROUTE_36_GATE_316
 	iffalse SkipBalls
 	writetext UnknownText_0x6b97f
-	keeptextopen
+	buttonsound
 	checkcode VAR_WEEKDAY
 	if_equal SUNDAY, RegiveFriend
 	if_equal MONDAY, RegiveMoon
@@ -196,20 +196,20 @@ UnknownScript_0x6ac10: ; 0x6ac10
 	setflag ENGINE_BUG_CONTEST_TIMER ;set the bug catching timer
 	special PlayMapMusic
 	writetext UnknownText_0x6ae87
-	keeptextopen
-	waitbutton
+	buttonsound
+	waitsfx
 	writetext UnknownText_0x6aeb1
 	playsound SFX_ITEM
-	waitbutton
+	waitsfx
 	writetext UnknownText_0x6aecc
+	waitbutton
 	closetext
-	loadmovesprites
 	setflag ENGINE_BUG_CONTEST_TIMER 
 	special Function135db ;put 20 in some variables and store current time in wdc35
 	spriteface $0, $2
 	playsound SFX_EXIT_BUILDING
 	special Function8c084
-	waitbutton
+	waitsfx
 	special Function139a8 ;choose 5 contestents and select thier flags
 	warpfacing $2, GROUP_NATIONAL_PARK_BUG_CONTEST, MAP_NATIONAL_PARK_BUG_CONTEST, $21, $12
 	end
@@ -230,11 +230,11 @@ UnknownScript_0x6ac4d: ; 0x6ac4d
 	iftrue UnknownScript_0x6ac7f
 	setevent EVENT_NATIONAL_PARK_GATE_308 ;set has more then 1 mon in party flag
 	writetext UnknownText_0x6b021
-	keeptextopen
+	buttonsound
 	writetext UnknownText_0x6b055
 	playsound SFX_GOT_SAFARI_BALLS
-	waitbutton
-	keeptextopen
+	waitsfx
+	buttonsound
 	jump UnknownScript_0x6ac10
 ; 0x6ac73
 
@@ -294,43 +294,43 @@ BallsFailText:
 
 UnknownScript_0x6ac73: ; 0x6ac73
 	writetext UnknownText_0x6b0c6
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 ; 0x6ac79
 
 UnknownScript_0x6ac79: ; 0x6ac79
 	writetext UnknownText_0x6b081
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 ; 0x6ac7f
 
 UnknownScript_0x6ac7f: ; 0x6ac7f
 	writetext UnknownText_0x6b0f2
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 ; 0x6ac85
 
 UnknownScript_0x6ac85: ; 0x6ac85
 	writetext UnknownText_0x6b166
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 ; 0x6ac8b
 
 UnknownScript_0x6ac8b: ; 0x6ac8b
 	writetext UnknownText_0x6b209
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 ; 0x6ac91
 
 UnknownScript_0x6aceb: ; 0x6aceb
 	;writetext UnknownText_0x6b910 ; redundent
+		;waitbutton
 		;closetext
-		;loadmovesprites
 	end
 ; 0x6acf1
 
@@ -350,15 +350,15 @@ YoungsterScript_0x6ad06: ; 0x6ad06
 	checkevent EVENT_000_STD
 	iffalse UnknownScript_0x6ad14
 	writetext UnknownText_0x6b399
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 ; 0x6ad14
 
 UnknownScript_0x6ad14: ; 0x6ad14
 	writetext UnknownText_0x6b3c4
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 ; 0x6ad1a
 
@@ -368,15 +368,15 @@ YoungsterScript_0x6ad1a: ; 0x6ad1a
 	checkevent EVENT_000_STD
 	iffalse UnknownScript_0x6ad28
 	writetext UnknownText_0x6b40f
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 ; 0x6ad28
 
 UnknownScript_0x6ad28: ; 0x6ad28
 	writetext UnknownText_0x6b440
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 ; 0x6ad2e
 
@@ -386,15 +386,15 @@ RockerScript_0x6ad2e: ; 0x6ad2e
 	checkevent EVENT_000_STD
 	iffalse UnknownScript_0x6ad3c
 	writetext UnknownText_0x6b462
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 ; 0x6ad3c
 
 UnknownScript_0x6ad3c: ; 0x6ad3c
 	writetext UnknownText_0x6b496
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 ; 0x6ad42
 
@@ -404,15 +404,15 @@ PokefanMScript_0x6ad42: ; 0x6ad42
 	checkevent EVENT_000_STD
 	iffalse UnknownScript_0x6ad50
 	writetext UnknownText_0x6b4da
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 ; 0x6ad50
 
 UnknownScript_0x6ad50: ; 0x6ad50
 	writetext UnknownText_0x6b50a
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 ; 0x6ad56
 
@@ -422,15 +422,15 @@ YoungsterScript_0x6ad56: ; 0x6ad56
 	checkevent EVENT_000_STD
 	iffalse UnknownScript_0x6ad64
 	writetext UnknownText_0x6b54e
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 ; 0x6ad64
 
 UnknownScript_0x6ad64: ; 0x6ad64
 	writetext UnknownText_0x6b57c
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 ; 0x6ad6a
 
@@ -440,15 +440,15 @@ YoungsterScript_0x6ad6a: ; 0x6ad6a
 	checkevent EVENT_000_STD
 	iffalse UnknownScript_0x6ad78
 	writetext UnknownText_0x6b5b0
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 ; 0x6ad78
 
 UnknownScript_0x6ad78: ; 0x6ad78
 	writetext UnknownText_0x6b5dd
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 ; 0x6ad7e
 
@@ -458,15 +458,15 @@ LassScript_0x6ad7e: ; 0x6ad7e
 	checkevent EVENT_000_STD
 	iffalse UnknownScript_0x6ad8c
 	writetext UnknownText_0x6b64b
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 ; 0x6ad8c
 
 UnknownScript_0x6ad8c: ; 0x6ad8c
 	writetext UnknownText_0x6b698
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 ; 0x6ad92
 
@@ -476,15 +476,15 @@ YoungsterScript_0x6ad92: ; 0x6ad92
 	checkevent EVENT_000_STD
 	iffalse UnknownScript_0x6ada0
 	writetext UnknownText_0x6b6b8
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 ; 0x6ada0
 
 UnknownScript_0x6ada0: ; 0x6ada0
 	writetext UnknownText_0x6b6e9
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 ; 0x6ada6
 
@@ -494,15 +494,15 @@ YoungsterScript_0x6ada6: ; 0x6ada6
 	checkevent EVENT_000_STD
 	iffalse UnknownScript_0x6adb4
 	writetext UnknownText_0x6b71b
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 ; 0x6adb4
 
 UnknownScript_0x6adb4: ; 0x6adb4
 	writetext UnknownText_0x6b740
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 ; 0x6adba
 
@@ -512,15 +512,15 @@ YoungsterScript_0x6adba: ; 0x6adba
 	checkevent EVENT_000_STD
 	iffalse UnknownScript_0x6adc8
 	writetext UnknownText_0x6b76f
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 ; 0x6adc8
 
 UnknownScript_0x6adc8: ; 0x6adc8
 	writetext UnknownText_0x6b7af
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 ; 0x6adce
 
@@ -962,50 +962,50 @@ UnknownScript_0x6ac91: ; 0x6ac91 redundent scripts in case they are needed later
 		;checkevent EVENT_NATIONAL_PARK_ROUTE_36_GATE_316
 		;iftrue UnknownScript_0x6acdc
 		;writetext UnknownText_0x6b32b
+		;waitbutton
 		;closetext
-		;loadmovesprites
 	;return ;continue conversation
 		;end
 ; 0x6acaf
 
 UnknownScript_0x6acaf: ; 0x6acaf bug catching contest prizes
 ;	writetext UnknownText_0x6b97f
-;	keeptextopen
+;	buttonsound
 ;	verbosegiveitem SUN_STONE, 1
 ;	iffalse UnknownScript_0x6aceb
 ;	clearevent EVENT_NATIONAL_PARK_ROUTE_36_GATE_313
-;	loadmovesprites
+;	closetext
 ;	end
 ; 0x6acbe
 
 UnknownScript_0x6acbe: ; 0x6acbe
 ;	writetext UnknownText_0x6b97f
-;	keeptextopen
+;	buttonsound
 ;	verbosegiveitem OLD_AMBER, 1
 ;	iffalse UnknownScript_0x6aceb
 ;	clearevent EVENT_NATIONAL_PARK_ROUTE_36_GATE_314
-		;loadmovesprites
+		;closetext
 		;end
 ;	return
 ; 0x6accd
 
 UnknownScript_0x6accd: ; 0x6accd
 ;	writetext UnknownText_0x6b97f
-;	keeptextopen
+;	buttonsound
 ;	verbosegiveitem GOLD_BERRY, 1
 ;	iffalse UnknownScript_0x6aceb
 ;	clearevent EVENT_NATIONAL_PARK_ROUTE_36_GATE_315
-;	loadmovesprites
+;	closetext
 ;	end
 ; 0x6acdc
 
 UnknownScript_0x6acdc: ; 0x6acdc
 ;	writetext UnknownText_0x6b97f
-;	keeptextopen
+;	buttonsound
 ;	verbosegiveitem BERRY, 1
 ;	iffalse UnknownScript_0x6aceb
 ;	clearevent EVENT_NATIONAL_PARK_ROUTE_36_GATE_316
-	loadmovesprites
+	closetext
 	end
 ; 0x6aceb
 
@@ -1051,6 +1051,6 @@ OfficerScript_0x6acf4: ; 0x6acf4 redundent, both officers use same script now
 		;checkflag ENGINE_51 ;if event complete
 	;iftrue UnknownScript_0x6ac91 ;give held item or give "we are done" text
 	;writetext UnknownText_0x6b370 ;generic text
+	;waitbutton
 	;closetext
-	;loadmovesprites
 	end

@@ -34,20 +34,20 @@ WalkUpWithOak:
 	faceperson $6, $2
 	loadfont
 	writetext BlueText_FedUpWithWaiting
+	waitbutton
 	closetext
-	loadmovesprites
 	loadfont
 	writetext OakText_MissionStatement
+	waitbutton
 	closetext
-	loadmovesprites
 	loadfont
 	writetext BlueText_WhatAboutMe
+	waitbutton
 	closetext
-	loadmovesprites
 	loadfont
 	writetext OakText_BePatient
+	waitbutton
 	closetext
-	loadmovesprites
 	dotrigger $1
 	end
 
@@ -57,8 +57,8 @@ CharmanderPokeballScript:
 	refreshscreen $0
 	pokepic CHARMANDER
 	cry CHARMANDER
-	closetext
-	pokepicyesorno
+	waitbutton
+	closepokepic
 	loadfont
 	writetext TakeCharmanderText
 	yesorno
@@ -67,25 +67,25 @@ CharmanderPokeballScript:
 	setevent EVENT_GOT_CHARMANDER_FROM_OAK
 	setevent EVENT_GOT_POKEMON_FROM_OAK
 	writetext ChoseStarterText
-	keeptextopen
-	waitbutton
+	buttonsound
+	waitsfx
 	pokenamemem CHARMANDER, $0
 	writetext ReceivedStarterText
 	playsound SFX_CAUGHT_MON
-	waitbutton
-	keeptextopen
+	waitsfx
+	buttonsound
 	givepoke CHARMANDER, 5, BERRY
-	loadmovesprites
+	closetext
 	applymovement $6, Movement_RivalTakesTwoStepsDown
 	applymovement $6, Movement_RivalTakesFourStepsRight
 	applymovement $6, Movement_RivalTakesOneStepUp
 	loadfont
 	writetext BlueText_ThisOneIsMine
 	playsound SFX_CAUGHT_MON
-	waitbutton
-	keeptextopen
+	waitsfx
+	buttonsound
 	disappear $8
-	loadmovesprites
+	closetext
 	end
 
 BulbasaurPokeballScript:
@@ -94,8 +94,8 @@ BulbasaurPokeballScript:
 	refreshscreen $0
 	pokepic BULBASAUR
 	cry BULBASAUR
-	closetext
-	pokepicyesorno
+	waitbutton
+	closepokepic
 	loadfont
 	writetext TakeBulbasaurText
 	yesorno
@@ -104,25 +104,25 @@ BulbasaurPokeballScript:
 	setevent EVENT_GOT_BULBASAUR_FROM_OAK
 	setevent EVENT_GOT_POKEMON_FROM_OAK
 	writetext ChoseStarterText
-	keeptextopen
-	waitbutton
+	buttonsound
+	waitsfx
 	pokenamemem BULBASAUR, $0
 	writetext ReceivedStarterText
 	playsound SFX_CAUGHT_MON
-	waitbutton
-	keeptextopen
+	waitsfx
+	buttonsound
 	givepoke BULBASAUR, 5, BERRY
-	loadmovesprites
+	closetext
 	applymovement $6, Movement_RivalTakesTwoStepsDown
 	applymovement $6, Movement_RivalTakesThreeStepsRight
 	applymovement $6, Movement_RivalTakesOneStepUp
 	loadfont
 	writetext BlueText_ThisOneIsMine
 	playsound SFX_CAUGHT_MON
-	waitbutton
-	keeptextopen
+	waitsfx
+	buttonsound
 	disappear $7
-	loadmovesprites
+	closetext
 	end
 
 SquirtlePokeballScript:
@@ -131,8 +131,8 @@ SquirtlePokeballScript:
 	refreshscreen $0
 	pokepic SQUIRTLE
 	cry SQUIRTLE
-	closetext
-	pokepicyesorno
+	waitbutton
+	closepokepic
 	loadfont
 	writetext TakeSquirtleText
 	yesorno
@@ -141,31 +141,31 @@ SquirtlePokeballScript:
 	setevent EVENT_GOT_SQUIRTLE_FROM_OAK
 	setevent EVENT_GOT_POKEMON_FROM_OAK
 	writetext ChoseStarterText
-	keeptextopen
-	waitbutton
+	buttonsound
+	waitsfx
 	pokenamemem SQUIRTLE, $0
 	writetext ReceivedStarterText
 	playsound SFX_CAUGHT_MON
-	waitbutton
-	keeptextopen
+	waitsfx
+	buttonsound
 	givepoke SQUIRTLE, 5, BERRY
-	loadmovesprites
+	closetext
 	applymovement $6, Movement_RivalTakesTwoStepsDown
 	applymovement $6, Movement_RivalTakesFiveStepsRight
 	applymovement $6, Movement_RivalTakesOneStepUp
 	loadfont
 	writetext BlueText_ThisOneIsMine
 	playsound SFX_CAUGHT_MON
-	waitbutton
-	keeptextopen
+	waitsfx
+	buttonsound
 	disappear $9
-	loadmovesprites
+	closetext
 	end
 
 DidntChooseStarterScript:
 	writetext OakText_ThinkCarefully
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 OaksLab_LookAtPokeballScript:
@@ -178,8 +178,8 @@ OaksLab_CallPlayerBackUp:
 	spriteface $0, UP
 	loadfont
 	writetext OakText_WhereAreYouGoing
+	waitbutton
 	closetext
-	loadmovesprites
 	applymovement $0, MovementData_RivalTakesOneStepUp
 	end
 
@@ -235,8 +235,8 @@ OaksLab_RivalBattleIntroScript:
 	spriteface $0, UP
 	loadfont
 	writetext BlueText_IllTakeYouOn
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 OaksLab_DoRivalBattle:
@@ -249,8 +249,8 @@ OaksLab_DoRivalBattle:
 	special RestartMapMusic
 	loadfont
 	writetext BlueText_BattleToToughen
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 OaksLab_RivalFinishesLeaving:
@@ -281,28 +281,28 @@ OakScript_OaksLabRB:
 	faceplayer
 	loadfont
 	writetext OakText_StartDexRating
-	closetext
+	waitbutton
 	special ProfOaksPCBoot
-	loadmovesprites
+	closetext
 	end
 
 .GivePokedex
 	faceplayer
 	loadfont
 	writetext OakText_IsThatForMe
-	keeptextopen
+	buttonsound
 	writetext GaveParcelToOakText
 	playsound SFX_KEY_ITEM
-	waitbutton
-	keeptextopen
+	waitsfx
+	buttonsound
 	writetext OakText_CustomPokeball
+	waitbutton
 	closetext
-	loadmovesprites
 	playmusic MUSIC_RIVAL_RB
 	loadfont
 	writetext BlueText_YouRang
+	waitbutton
 	closetext
-	loadmovesprites
 	appear $6
 	checkcode VAR_FACING
 	if_equal UP, .rivalwalksfivesteps
@@ -318,24 +318,24 @@ OakScript_OaksLabRB:
 	special RestartMapMusic
 	loadfont
 	writetext OakText_HereHaveThisPokedex
-	keeptextopen
+	buttonsound
 	disappear $a
 	disappear $b
 	setflag ENGINE_POKEDEX
 	writetext OakText_GotPokedex
 	playsound SFX_KEY_ITEM
-	waitbutton
+	waitsfx
 	writetext OakText_MyDream
+	waitbutton
 	closetext
-	loadmovesprites
 	loadfont
 	checkcode VAR_FACING
 	if_equal DOWN, .finishaboveoak
 	spriteface $6, RIGHT
 	if_equal UP, .finishbelowoak
 	writetext BlueText_GetTownMap
+	waitbutton
 	closetext
-	loadmovesprites
 	playmusic MUSIC_RIVAL_AFTER_RB
 	applymovement $6, Movement_RivalTakesFourStepsDown
 	disappear $6
@@ -344,8 +344,8 @@ OakScript_OaksLabRB:
 
 .finishaboveoak
 	writetext BlueText_GetTownMap
+	waitbutton
 	closetext
-	loadmovesprites
 	playmusic MUSIC_RIVAL_AFTER_RB
 	applymovement $6, Movement_RivalTakesThreeStepsDown
 	disappear $6
@@ -354,8 +354,8 @@ OakScript_OaksLabRB:
 
 .finishbelowoak
 	writetext BlueText_GetTownMap
+	waitbutton
 	closetext
-	loadmovesprites
 	playmusic MUSIC_RIVAL_AFTER_RB
 	applymovement $6, Movement_RivalTakesFiveStepsDown
 	disappear $6

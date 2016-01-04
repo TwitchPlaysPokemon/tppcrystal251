@@ -28,8 +28,8 @@ WhitneyScript_0x5400c: ; 0x5400c
 	iftrue UnknownScript_0x54037
 	loadfont
 	writetext UnknownText_0x54122
+	waitbutton
 	closetext
-	loadmovesprites
 	winlosstext UnknownText_0x541a5, $0000
 	loadtrainer WHITNEY, 1
 	startbattle
@@ -46,15 +46,15 @@ UnknownScript_0x54037: ; 0x54037
 	checkevent EVENT_MADE_WHITNEY_CRY
 	iffalse UnknownScript_0x54044
 	writetext UnknownText_0x541f4
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 ; 0x54044
 WhitneyRematchScript:
 	loadfont
 	writetext WhitneyRematchTextBefore
+	waitbutton
 	closetext
-	loadmovesprites
 	winlosstext WhitneyRematchBeatenText, $0000
 	loadtrainer WHITNEY, 2
 	startbattle
@@ -69,31 +69,31 @@ UnknownScript_0x54044: ; 0x54044
 	checkflag ENGINE_PLAINBADGE
 	iftrue UnknownScript_0x54064
 	writetext UnknownText_0x54222
-	keeptextopen
-	waitbutton
+	buttonsound
+	waitsfx
 	writetext UnknownText_0x54273
 	playsound SFX_GET_BADGE
-	waitbutton
+	waitsfx
 	setflag ENGINE_PLAINBADGE
 	checkcode VAR_BADGES
 	scall UnknownScript_0x5407d
 UnknownScript_0x54064: ; 0x54064
 	writetext UnknownText_0x5428b
-	keeptextopen
+	buttonsound
 	verbosegiveitem TM_ATTRACT, 1
 	iffalse UnknownScript_0x5407b
 	setevent EVENT_GOT_TM45_ATTRACT
 	writetext UnknownText_0x54302
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 ; 0x54077
 
 UnknownScript_0x54077: ; 0x54077
 	writetext UnknownText_0x54360
-	closetext
+	waitbutton
 UnknownScript_0x5407b: ; 0x5407b
-	loadmovesprites
+	closetext
 	end
 ; 0x5407d
 
@@ -135,8 +135,8 @@ LassCarrieScript: ; 0x54098
 	talkaftercancel
 	loadfont
 	writetext LassCarrieOWText
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 ; 0x540a0
 
@@ -146,8 +146,8 @@ WhitneyCriesScript: ; 0x540a0
 	spriteface $0, $0
 	loadfont
 	writetext BridgetWhitneyCriesText
+	waitbutton
 	closetext
-	loadmovesprites
 	applymovement $4, BridgetWalksAwayMovement
 	dotrigger $0
 	clearevent EVENT_MADE_WHITNEY_CRY
@@ -178,8 +178,8 @@ LassBridgetScript: ; 0x540c7
 	talkaftercancel
 	loadfont
 	writetext LassBridgetOWText
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 ; 0x540cf
 
@@ -207,8 +207,8 @@ BeautyVictoriaScript: ; 0x540db
 	talkaftercancel
 	loadfont
 	writetext BeautyVictoriaOWText
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 ; 0x540e3
 
@@ -236,8 +236,8 @@ BeautySamanthaScript: ; 0x540ef
 	talkaftercancel
 	loadfont
 	writetext BeautySamanthaOWText
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 ; 0x540f7
 
@@ -247,15 +247,15 @@ GoldenrodGymGuyScript: ; 0x540f7
 	iftrue .GoldenrodGymGuyWinScript
 	loadfont
 	writetext GoldenrodGymGuyText
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 .GoldenrodGymGuyWinScript
 	loadfont
 	writetext GoldenrodGymGuyWinText
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 ; 0x5410c
 

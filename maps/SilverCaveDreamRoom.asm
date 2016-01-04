@@ -14,8 +14,8 @@ DreamRedScript: ; 0x18c603
 	faceplayer
 	loadfont
 	writetext RedTextBefore
+	waitbutton
 	closetext
-	loadmovesprites
 	winlosstext RedTextWinLoss, RedTextWinLoss
 	setlasttalked $2
 	loadtrainer RED, 2
@@ -29,8 +29,8 @@ DreamRedLost
 	special Functionc48f
 	loadfont
 	writetext RedTextAfter
+	waitbutton
 	closetext
-	loadmovesprites
 	special Special_FadeToBlack
 	special Functiond91
 	disappear $2

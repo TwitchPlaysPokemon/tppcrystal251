@@ -27,8 +27,8 @@ UnknownScript_0x181454: ; 0x181454
 	spriteface $0, $3
 	loadfont
 	writetext UnknownText_0x1814a6
+	waitbutton
 	closetext
-	loadmovesprites
 	checkevent EVENT_BEAT_OAK
 	iftrue ElmBattleScript
 ReturnAfterElmBattle:
@@ -63,8 +63,8 @@ ElmBattleScript:
 	applymovement $3, MovementData_ElmWalksUp
 	loadfont
 	writetext ElmText1
+	waitbutton
 	closetext
-	loadmovesprites
 	winlosstext ElmText2, $0000
 	checkevent EVENT_GOT_CHIKORITA_FROM_ELM
 	iftrue ElmFightsWithFeraligatr

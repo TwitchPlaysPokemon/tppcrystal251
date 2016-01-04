@@ -28,8 +28,8 @@ UnknownScript_0x7408e: ; 0x7408e
 	playmusic MUSIC_RIVAL_ENCOUNTER
 	loadfont
 	writetext UnknownText_0x74105
+	waitbutton
 	closetext
-	loadmovesprites
 	checkevent EVENT_GOT_TOTODILE_FROM_ELM
 	iftrue UnknownScript_0x740c3
 	checkevent EVENT_GOT_CHIKORITA_FROM_ELM
@@ -68,8 +68,8 @@ UnknownScript_0x740e3: ; 0x740e3
 	playmusic MUSIC_RIVAL_AFTER
 	loadfont
 	writetext UnknownText_0x741fa
+	waitbutton
 	closetext
-	loadmovesprites
 	applymovement $2, MovementData_0x740fd
 	disappear $2
 	dotrigger $1

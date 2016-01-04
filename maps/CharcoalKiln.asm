@@ -14,22 +14,22 @@ BlackBeltScript_0x18dd1a: ; 0x18dd1a
 	checkevent EVENT_CLEARED_SLOWPOKE_WELL
 	iftrue UnknownScript_0x18dd2e
 	writetext UnknownText_0x18dd74
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 ; 0x18dd2e
 
 UnknownScript_0x18dd2e: ; 0x18dd2e
 	writetext UnknownText_0x18ddfd
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 ; 0x18dd34
 
 UnknownScript_0x18dd34: ; 0x18dd34
 	writetext UnknownText_0x18de73
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 ; 0x18dd3a
 
@@ -41,26 +41,26 @@ YoungsterScript_0x18dd3a: ; 0x18dd3a
 	checkevent EVENT_GOT_HM01_CUT
 	iftrue UnknownScript_0x18dd4e
 	writetext UnknownText_0x18dee0
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 ; 0x18dd4e
 
 UnknownScript_0x18dd4e: ; 0x18dd4e
 	writetext UnknownText_0x18df25
-	keeptextopen
+	buttonsound
 	verbosegiveitem CHARCOAL, 1
 	iffalse UnknownScript_0x18dd61
 	setevent EVENT_GOT_CHARCOAL_IN_CHARCOAL_KILN
-	loadmovesprites
+	closetext
 	end
 ; 0x18dd5d
 
 UnknownScript_0x18dd5d: ; 0x18dd5d
 	writetext UnknownText_0x18df93
-	closetext
+	waitbutton
 UnknownScript_0x18dd61: ; 0x18dd61
-	loadmovesprites
+	closetext
 	end
 ; 0x18dd63
 
@@ -69,8 +69,8 @@ MoltresScript_0x18dd63: ; 0x18dd63
 	loadfont
 	writetext UnknownText_0x18dfe5
 	cry FARFETCH_D
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 ; 0x18dd6e
 

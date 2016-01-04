@@ -10,8 +10,8 @@ LassScript_0x195a2a: ; 0x195a2a
 	faceplayer
 	loadfont
 	trade $3
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 ; 0x195a31
 

@@ -88,8 +88,8 @@ UnknownScript_0x180094: ; 0x180094
 UnknownScript_0x1800ce: ; 0x1800ce
 	loadfont
 	writetext UnknownText_0x1801f5
+	waitbutton
 	closetext
-	loadmovesprites
 	setevent EVENT_SILVER_IN_INDIGO_PLATEAU_POKECENTER
 	checkevent EVENT_GOT_TOTODILE_FROM_ELM
 	iftrue UnknownScript_0x1800f3
@@ -129,8 +129,8 @@ UnknownScript_0x180113: ; 0x180113
 	playmusic MUSIC_RIVAL_AFTER
 	loadfont
 	writetext UnknownText_0x1802a4
+	waitbutton
 	closetext
-	loadmovesprites
 	spriteface $0, $0
 	applymovement $5, MovementData_0x180172
 	disappear $5
@@ -148,7 +148,7 @@ NurseScript_0x18012c: ; 0x18012c
 ClerkScript_0x18012f: ; 0x18012f
 	loadfont
 	pokemart $0, $0020
-	loadmovesprites
+	closetext
 	end
 ; 0x180136
 
@@ -163,19 +163,19 @@ GrampsScript_0x180139: ; 0x180139
 	yesorno
 	iffalse UnknownScript_0x180154
 	writetext UnknownText_0x1803e7
+	waitbutton
 	closetext
-	loadmovesprites
 	playsound SFX_WARP_TO
 	special Function8c084
-	waitbutton
+	waitsfx
 	warp GROUP_NEW_BARK_TOWN, MAP_NEW_BARK_TOWN, $d, $6
 	end
 ; 0x180154
 
 UnknownScript_0x180154: ; 0x180154
 	writetext UnknownText_0x180411
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 ; 0x18015a
 
@@ -183,8 +183,8 @@ JynxScript_0x18015a: ; 0x18015a
 	loadfont
 	writetext UnknownText_0x180433
 	cry ABRA
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 ; 0x180164
 

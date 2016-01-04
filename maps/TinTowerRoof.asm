@@ -34,7 +34,7 @@ HoOhScript_0x77244: ; 0x77244
 	writetext UnknownText_0x77260
 	cry HO_OH
 	pause 15
-	loadmovesprites
+	closetext
 	writecode VAR_BATTLETYPE, BATTLETYPE_FORCEITEM
 	loadpokedata HO_OH, 60
 	startbattle

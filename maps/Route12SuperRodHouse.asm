@@ -15,22 +15,22 @@ FishingGuruScript_0x7f484: ; 0x7f484
 	yesorno
 	iffalse UnknownScript_0x7f4a6
 	writetext UnknownText_0x7f52f
-	keeptextopen
+	buttonsound
 	verbosegiveitem SUPER_ROD, 1
 	iffalse UnknownScript_0x7f4aa
 	setevent EVENT_GOT_SUPER_ROD
 UnknownScript_0x7f4a0: ; 0x7f4a0
 	writetext UnknownText_0x7f57c
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 ; 0x7f4a6
 
 UnknownScript_0x7f4a6: ; 0x7f4a6
 	writetext UnknownText_0x7f5ec
-	closetext
+	waitbutton
 UnknownScript_0x7f4aa: ; 0x7f4aa
-	loadmovesprites
+	closetext
 	end
 ; 0x7f4ac
 

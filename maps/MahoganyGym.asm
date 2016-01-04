@@ -16,8 +16,8 @@ PryceScript_0x199a9e: ; 0x199a9e
 	checkevent EVENT_BEAT_PRYCE
 	iftrue UnknownScript_0x199ac8
 	writetext UnknownText_0x199b8d
+	waitbutton
 	closetext
-	loadmovesprites
 	winlosstext UnknownText_0x199cb3, $0000
 	loadtrainer PRYCE, 1
 	startbattle
@@ -26,7 +26,7 @@ PryceScript_0x199a9e: ; 0x199a9e
 	loadfont
 	writetext UnknownText_0x199d3b
 	playsound SFX_GET_BADGE
-	waitbutton
+	waitsfx
 	setflag ENGINE_GLACIERBADGE
 	checkcode VAR_BADGES
 	scall UnknownScript_0x199af6
@@ -39,20 +39,20 @@ UnknownScript_0x199ac8: ; 0x199ac8
 	setevent EVENT_BEAT_BOARDER_BRAD
 	setevent EVENT_BEAT_BOARDER_DOUGLAS
 	writetext UnknownText_0x199d55
-	keeptextopen
+	buttonsound
 	verbosegiveitem TM_ICY_WIND, 1
 	iffalse UnknownScript_0x199af4
 	setevent EVENT_GOT_TM16_ICY_WIND
 	writetext UnknownText_0x199def
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 ; 0x199af0
 
 PryceRematchScript:
 	writetext PryceRematchTextBefore
+	waitbutton
 	closetext
-	loadmovesprites
 	winlosstext PryceRematchBeatenText, $0000
 	loadtrainer PRYCE, 2
 	startbattle
@@ -63,9 +63,9 @@ PryceRematchScript:
 
 UnknownScript_0x199af0: ; 0x199af0
 	writetext UnknownText_0x199e59
-	closetext
+	waitbutton
 UnknownScript_0x199af4: ; 0x199af4
-	loadmovesprites
+	closetext
 	end
 ; 0x199af6
 
@@ -107,8 +107,8 @@ SkierRoxanneScript: ; 0x199b11
 	talkaftercancel
 	loadfont
 	writetext UnknownText_0x19a116
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 ; 0x199b19
 
@@ -136,8 +136,8 @@ SkierClarissaScript: ; 0x199b25
 	talkaftercancel
 	loadfont
 	writetext UnknownText_0x19a18f
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 ; 0x199b2d
 
@@ -165,8 +165,8 @@ BoarderRonaldScript: ; 0x199b39
 	talkaftercancel
 	loadfont
 	writetext UnknownText_0x199f2d
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 ; 0x199b41
 
@@ -194,8 +194,8 @@ BoarderBradScript: ; 0x199b4d
 	talkaftercancel
 	loadfont
 	writetext UnknownText_0x199fdd
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 ; 0x199b55
 
@@ -223,8 +223,8 @@ BoarderDouglasScript: ; 0x199b61
 	talkaftercancel
 	loadfont
 	writetext UnknownText_0x19a047
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 ; 0x199b69
 
@@ -234,14 +234,14 @@ MahoganyGymGuyScript: ; 0x199b69
 	checkevent EVENT_BEAT_PRYCE
 	iftrue .MahoganyGymGuyWinScript
 	writetext MahoganyGymGuyText
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 .MahoganyGymGuyWinScript
 	writetext MahoganyGymGuyWinText
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 ; 0x199b7d
 

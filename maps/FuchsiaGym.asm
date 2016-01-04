@@ -13,8 +13,8 @@ JanineScript_0x195db9: ; 0x195db9
 	faceplayer
 	loadfont
 	writetext UnknownText_0x195f35
+	waitbutton
 	closetext
-	loadmovesprites
 	winlosstext UnknownText_0x195fa1, $0000
 	loadtrainer JANINE, 1
 	startbattle
@@ -32,7 +32,7 @@ JanineScript_0x195db9: ; 0x195db9
 	loadfont
 	writetext UnknownText_0x195feb
 	playsound SFX_GET_BADGE
-	waitbutton
+	waitsfx
 	setflag ENGINE_SOULBADGE
 	jump UnknownScript_0x195e02
 ; 0x195e00
@@ -44,14 +44,14 @@ UnknownScript_0x195e02: ; 0x195e02
 	checkevent EVENT_GOT_TM06_TOXIC
 	iftrue UnknownScript_0x195e15
 	writetext UnknownText_0x196002
-	keeptextopen
+	buttonsound
 	verbosegiveitem TM_TOXIC, 1
 	iffalse UnknownScript_0x195e15
 	setevent EVENT_GOT_TM06_TOXIC
 UnknownScript_0x195e15: ; 0x195e15
 	writetext UnknownText_0x196074
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 ; 0x195e1b
 
@@ -68,8 +68,8 @@ UnknownScript_0x195e2c: ; 0x195e2c
 	checkevent EVENT_BAT_LASS_ALICE
 	iftrue UnknownScript_0x195e4f
 	writetext UnknownText_0x1960e6
+	waitbutton
 	closetext
-	loadmovesprites
 	winlosstext UnknownText_0x196126, $0000
 	loadtrainer LASS, ALICE
 	startbattle
@@ -87,8 +87,8 @@ UnknownScript_0x195e4a: ; 0x195e4a
 
 UnknownScript_0x195e4f: ; 0x195e4f
 	writetext UnknownText_0x196139
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 ; 0x195e55
 
@@ -105,8 +105,8 @@ UnknownScript_0x195e66: ; 0x195e66
 	checkevent EVENT_BEAT_LASS_LINDA
 	iftrue UnknownScript_0x195e89
 	writetext UnknownText_0x196166
+	waitbutton
 	closetext
-	loadmovesprites
 	winlosstext UnknownText_0x19617b, $0000
 	loadtrainer LASS, LINDA
 	startbattle
@@ -124,8 +124,8 @@ UnknownScript_0x195e84: ; 0x195e84
 
 UnknownScript_0x195e89: ; 0x195e89
 	writetext UnknownText_0x196199
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 ; 0x195e8f
 
@@ -142,8 +142,8 @@ UnknownScript_0x195ea0: ; 0x195ea0
 	checkevent EVENT_BEAT_PICNICKER_CINDY
 	iftrue UnknownScript_0x195ec3
 	writetext UnknownText_0x1961bb
+	waitbutton
 	closetext
-	loadmovesprites
 	winlosstext UnknownText_0x1961f1, $0000
 	loadtrainer PICNICKER, CINDY
 	startbattle
@@ -161,8 +161,8 @@ UnknownScript_0x195ebe: ; 0x195ebe
 
 UnknownScript_0x195ec3: ; 0x195ec3
 	writetext UnknownText_0x19620c
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 ; 0x195ec9
 
@@ -179,8 +179,8 @@ UnknownScript_0x195eda: ; 0x195eda
 	checkevent EVENT_BEAT_CAMPER_BARRY
 	iftrue UnknownScript_0x195efd
 	writetext UnknownText_0x196228
+	waitbutton
 	closetext
-	loadmovesprites
 	winlosstext UnknownText_0x19624a, $0000
 	loadtrainer CAMPER, BARRY
 	startbattle
@@ -198,8 +198,8 @@ UnknownScript_0x195ef8: ; 0x195ef8
 
 UnknownScript_0x195efd: ; 0x195efd
 	writetext UnknownText_0x19626b
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 ; 0x195f03
 
@@ -209,14 +209,14 @@ FuchsiaGymGuyScript: ; 0x195f03
 	checkevent EVENT_BEAT_JANINE
 	iftrue .FuchsiaGymGuyWinScript
 	writetext FuchsiaGymGuyText
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 .FuchsiaGymGuyWinScript
 	writetext FuchsiaGymGuyWinText
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 ; 0x195f17
 

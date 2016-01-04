@@ -23,26 +23,26 @@ FisherScript1_MtMoon:
 	playsound SFX_TRANSACTION
 	writetext FisherText2_MtMoon
 	playsound SFX_CAUGHT_MON
-	waitbutton
+	waitsfx
 	givepoke MAGIKARP, 5, 0, 0
 	takemoney $0, 500
 	setevent EVENT_BOUGHT_MAGIKARP_FROM_SALESMAN
 FisherScript2_MtMoon:
 	writetext FisherText3_MtMoon
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 FisherScript3_MtMoon:
 	writetext FisherText4_MtMoon
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 FisherScript4_MtMoon:
 	writetext FisherText5_MtMoon
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 FisherScript5_MtMoon: ;send to pc check
@@ -50,7 +50,7 @@ FisherScript5_MtMoon: ;send to pc check
 	if_equal $0, FisherScript4_MtMoon
 	writetext FisherText6_MtMoon
 	playsound SFX_CAUGHT_MON
-	waitbutton
+	waitsfx
 	givepoke MAGIKARP, 5, 0, 0
 	takemoney $0, 500
 	setevent EVENT_BOUGHT_MAGIKARP_FROM_SALESMAN

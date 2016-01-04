@@ -29,15 +29,15 @@ UnknownScript_0x694d7: ; 0x694d7
 	clearevent EVENT_TOGEPI_HATCHED
 	domaptrigger GROUP_ROUTE_32, MAP_ROUTE_32, $1
 	writetext UnknownText_0x695c5
+	waitbutton
 	closetext
-	loadmovesprites
 	checkcode VAR_FACING
 	if_equal $1, .UnknownScript_0x69511
 	spriteface $0, $0
 	applymovement $6, MovementData_0x69549
 	playsound SFX_EXIT_BUILDING
 	disappear $6
-	waitbutton
+	waitsfx
 	end
 
 .UnknownScript_0x69511 ; 0x69511
@@ -46,7 +46,7 @@ UnknownScript_0x694d7: ; 0x694d7
 	applymovement $6, MovementData_0x69551
 	playsound SFX_EXIT_BUILDING
 	disappear $6
-	waitbutton
+	waitsfx
 	end
 ; 0x69523
 
@@ -61,15 +61,15 @@ UnknownScript_0x69527: ; 0x69527
 
 UnknownScript_0x6952b: ; 0x6952b
 	writetext UnknownText_0x69693
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 ; 0x69531
 
 UnknownScript_0x69531: ; 0x69531
 	writetext UnknownText_0x696f2
+	waitbutton
 	closetext
-	loadmovesprites
 	setevent EVENT_REFUSED_TO_TAKE_EGG_FROM_ELMS_AIDE
 	end
 ; 0x6953a

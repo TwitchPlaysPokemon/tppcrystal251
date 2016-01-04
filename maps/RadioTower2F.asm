@@ -20,15 +20,15 @@ TeacherScript_0x5d701: ; 0x5d701
 	checkflag ENGINE_BIKE_SHOP_CALL_ENABLED
 	iftrue UnknownScript_0x5d70f
 	writetext UnknownText_0x5d956
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 ; 0x5d70f
 
 UnknownScript_0x5d70f: ; 0x5d70f
 	writetext UnknownText_0x5d983
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 ; 0x5d715
 
@@ -36,8 +36,8 @@ JigglypuffScript_0x5d715: ; 0x5d715
 	loadfont
 	writetext UnknownText_0x5d9b6
 	cry JIGGLYPUFF
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 ; 0x5d71f
 
@@ -73,8 +73,8 @@ GruntM4Script: ; 0x5d731
 	talkaftercancel
 	loadfont
 	writetext UnknownText_0x5db07
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 ; 0x5d739
 
@@ -102,8 +102,8 @@ GruntM5Script: ; 0x5d745
 	talkaftercancel
 	loadfont
 	writetext UnknownText_0x5db99
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 ; 0x5d74d
 
@@ -131,8 +131,8 @@ GruntM6Script: ; 0x5d759
 	talkaftercancel
 	loadfont
 	writetext UnknownText_0x5dc00
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 ; 0x5d761
 
@@ -160,8 +160,8 @@ GruntF2Script: ; 0x5d76d
 	talkaftercancel
 	loadfont
 	writetext UnknownText_0x5dcd0
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 ; 0x5d775
 
@@ -187,8 +187,8 @@ BuenaScript_0x5d775: ; 0x5d775
 	special Function4ae12
 	iffalse UnknownScript_0x5d81e
 	writetext UnknownText_0x5de84
+	waitbutton
 	closetext
-	loadmovesprites
 	spriteface $b, $3
 	checkcode VAR_FACING
 	if_not_equal $3, UnknownScript_0x5d7be
@@ -197,29 +197,29 @@ UnknownScript_0x5d7be: ; 0x5d7be
 	spriteface $0, $3
 	loadfont
 	writetext UnknownText_0x5dedd
+	waitbutton
 	closetext
-	loadmovesprites
 	spriteface $b, $0
 	refreshscreen $0
 	special SpecialBuenasPassword
-	loadmovesprites
+	closetext
 	iffalse UnknownScript_0x5d845
 	loadfont
 	writetext UnknownText_0x5dfc1
+	waitbutton
 	closetext
-	loadmovesprites
 	checkcode VAR_BLUECARDBALANCE
 	addvar $1
 	writevarcode VAR_BLUECARDBALANCE
-	waitbutton
+	waitsfx
 	playsound SFX_TRANSACTION
 	setflag ENGINE_60
 	pause 20
 	spriteface $b, $3
 	loadfont
 	writetext UnknownText_0x5e054
+	waitbutton
 	closetext
-	loadmovesprites
 	special Functionc48f
 	pause 20
 	special RestartMapMusic
@@ -230,13 +230,13 @@ UnknownScript_0x5d7be: ; 0x5d7be
 
 UnknownScript_0x5d800: ; 0x5d800
 	writetext UnknownText_0x5dcf4
-	keeptextopen
+	buttonsound
 	setevent EVENT_MET_BUENA
 	verbosegiveitem BLUE_CARD, 1
 UnknownScript_0x5d80a: ; 0x5d80a
 	writetext UnknownText_0x5de10
+	waitbutton
 	closetext
-	loadmovesprites
 	checkcellnum $25
 	iftrue UnknownScript_0x5d81a
 	checkevent EVENT_BUENA_OFFERED_HER_PHONE_NUMBER
@@ -248,8 +248,8 @@ UnknownScript_0x5d81a: ; 0x5d81a
 
 UnknownScript_0x5d81e: ; 0x5d81e
 	writetext UnknownText_0x5df29
+	waitbutton
 	closetext
-	loadmovesprites
 	spriteface $b, $3
 	special Functionc48f
 	pause 20
@@ -259,8 +259,8 @@ UnknownScript_0x5d81e: ; 0x5d81e
 
 UnknownScript_0x5d82f: ; 0x5d82f
 	writetext UnknownText_0x5df6c
+	waitbutton
 	closetext
-	loadmovesprites
 	checkcellnum $25
 	iftrue UnknownScript_0x5d83f
 	checkevent EVENT_BUENA_OFFERED_HER_PHONE_NUMBER
@@ -275,14 +275,14 @@ UnknownScript_0x5d845: ; 0x5d845
 	setflag ENGINE_60
 	loadfont
 	writetext UnknownText_0x5e01c
+	waitbutton
 	closetext
-	loadmovesprites
 	spriteface $b, $3
 	pause 20
 	loadfont
 	writetext UnknownText_0x5e054
+	waitbutton
 	closetext
-	loadmovesprites
 	spriteface $b, $3
 	special Functionc48f
 	pause 20
@@ -292,15 +292,15 @@ UnknownScript_0x5d845: ; 0x5d845
 
 UnknownScript_0x5d865: ; 0x5d865
 	writetext UnknownText_0x5e0c2
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 ; 0x5d86b
 
 UnknownScript_0x5d86b: ; 0x5d86b
 	writetext UnknownText_0x5e192
+	waitbutton
 	closetext
-	loadmovesprites
 	checkcellnum $25
 	iftrue UnknownScript_0x5d87b
 	checkevent EVENT_BUENA_OFFERED_HER_PHONE_NUMBER_NO_BLUE_CARD
@@ -312,8 +312,8 @@ UnknownScript_0x5d87b: ; 0x5d87b
 
 UnknownScript_0x5d87f: ; 0x5d87f
 	writetext UnknownText_0x5e0f1
+	waitbutton
 	closetext
-	loadmovesprites
 	checkcellnum $25
 	iftrue UnknownScript_0x5d88f
 	checkevent EVENT_BUENA_OFFERED_HER_PHONE_NUMBER_NO_BLUE_CARD
@@ -325,8 +325,8 @@ UnknownScript_0x5d88f: ; 0x5d88f
 
 UnknownScript_0x5d893: ; 0x5d893
 	writetext UnknownText_0x5e131
+	waitbutton
 	closetext
-	loadmovesprites
 	checkcellnum $25
 	iftrue UnknownScript_0x5d8a3
 	checkevent EVENT_BUENA_OFFERED_HER_PHONE_NUMBER
@@ -362,11 +362,11 @@ UnknownScript_0x5d8d0: ; 0x5d8d0
 	if_equal $2, UnknownScript_0x5d8ed
 	writetext UnknownText_0x5e2f3
 	playsound SFX_REGISTER_PHONE_NUMBER
-	waitbutton
-	keeptextopen
+	waitsfx
+	buttonsound
 	writetext UnknownText_0x5e310
+	waitbutton
 	closetext
-	loadmovesprites
 	spriteface $b, $3
 	addcellnum $25
 	end
@@ -374,16 +374,16 @@ UnknownScript_0x5d8d0: ; 0x5d8d0
 
 UnknownScript_0x5d8ed: ; 0x5d8ed
 	writetext UnknownText_0x5e33c
+	waitbutton
 	closetext
-	loadmovesprites
 	spriteface $b, $3
 	end
 ; 0x5d8f6
 
 UnknownScript_0x5d8f6: ; 0x5d8f6
 	writetext UnknownText_0x5e35e
+	waitbutton
 	closetext
-	loadmovesprites
 	spriteface $b, $3
 UnknownScript_0x5d8fe: ; 0x5d8fe
 	end
@@ -395,16 +395,16 @@ ReceptionistScript_0x5d8ff: ; 0x5d8ff
 	checkitem BLUE_CARD
 	iffalse UnknownScript_0x5d90f
 	writetext UnknownText_0x5e392
-	keeptextopen
+	buttonsound
 	special SpecialBuenaPrize
-	loadmovesprites
+	closetext
 	end
 ; 0x5d90f
 
 UnknownScript_0x5d90f: ; 0x5d90f
 	writetext UnknownText_0x5e3d8
-	keeptextopen
-	loadmovesprites
+	buttonsound
+	closetext
 	end
 ; 0x5d915
 

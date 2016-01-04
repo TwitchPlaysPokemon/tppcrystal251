@@ -9,7 +9,7 @@ LavenderMart_MapScriptHeader: ; 0x7eb1a
 ClerkScript_0x7eb1c: ; 0x7eb1c
 	loadfont
 	pokemart $0, $0015
-	loadmovesprites
+	closetext
 	end
 ; 0x7eb23
 

@@ -18,23 +18,23 @@ FishingGuruScript_0x19a6ae: ; 0x19a6ae
 	checkevent EVENT_TALKED_TO_LAKE_OF_RAGE_FISHERMAN_ABOUT_GYARADOS
 	iftrue UnknownScript_0x19a6d1
 	writetext UnknownText_0x19a72e
+	waitbutton
 	closetext
-	loadmovesprites
 	setevent EVENT_TALKED_TO_LAKE_OF_RAGE_FISHERMAN_ABOUT_GYARADOS
 	end
 ; 0x19a6d1
 
 UnknownScript_0x19a6d1: ; 0x19a6d1
 	writetext UnknownText_0x19a84d
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 ; 0x19a6d7
 
 UnknownScript_0x19a6d7: ; 0x19a6d7
 	writetext UnknownText_0x19a890
+	waitbutton
 	closetext
-	loadmovesprites
 	setevent EVENT_INITIATED_SHOWING_OF_THE_MAGIKARP
 	end
 ; 0x19a6e0
@@ -44,7 +44,7 @@ UnknownScript_0x19a6e0: ; 0x19a6e0
 	special Functionc276
 	iffalse UnknownScript_0x19a6d7
 	writetext UnknownText_0x19a93e
-	closetext
+	waitbutton
 	special Functionfbb32
 	if_equal $0, UnknownScript_0x19a71c
 	if_equal $1, UnknownScript_0x19a722
@@ -54,40 +54,40 @@ UnknownScript_0x19a6e0: ; 0x19a6e0
 
 UnknownScript_0x19a6fe: ; 0x19a6fe
 	writetext UnknownText_0x19a977
-	keeptextopen
+	buttonsound
 	verbosegiveitem ELIXER, 1
 	iffalse UnknownScript_0x19a711
 	writetext UnknownText_0x19a9c3
+	waitbutton
 	closetext
-	loadmovesprites
 	clearevent EVENT_SHOWED_A_BIG_MAGIKARP_BUT_NO_ROOM
 	end
 ; 0x19a711
 
 UnknownScript_0x19a711: ; 0x19a711
-	loadmovesprites
+	closetext
 	setevent EVENT_SHOWED_A_BIG_MAGIKARP_BUT_NO_ROOM
 	end
 ; 0x19a716
 
 UnknownScript_0x19a716: ; 0x19a716
 	writetext UnknownText_0x19aa01
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 ; 0x19a71c
 
 UnknownScript_0x19a71c: ; 0x19a71c
 	writetext UnknownText_0x19aa5c
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 ; 0x19a722
 
 UnknownScript_0x19a722: ; 0x19a722
 	writetext UnknownText_0x19aa79
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 ; 0x19a728
 

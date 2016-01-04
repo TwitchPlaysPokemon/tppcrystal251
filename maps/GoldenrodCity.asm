@@ -110,28 +110,28 @@ MenuData2_0x19896f: ; 0x19896f
 
 UnknownScript_0x19899a: ; 0x19899a
 	writetext UnknownText_0x1990b4
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 ; 0x1989a0
 
 UnknownScript_0x1989a0: ; 0x1989a0
 	writetext UnknownText_0x199107
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 ; 0x1989a6
 
 UnknownScript_0x1989a6: ; 0x1989a6
 	writetext UnknownText_0x19913a
-	keeptextopen
+	buttonsound
 	takecoins 4000
-	waitbutton
+	waitsfx
 	playsound SFX_TRANSACTION
 	special Function24b25
 	writetext UnknownText_0x19918b
+	waitbutton
 	closetext
-	loadmovesprites
 	checkcode VAR_FACING
 	if_equal $2, UnknownScript_0x1989c6
 	applymovement $10, MovementData_0x198a5f
@@ -145,21 +145,21 @@ UnknownScript_0x1989ca: ; 0x1989ca
 	disappear $10
 	clearevent EVENT_POKEFAN_M_IN_GOLDENROD_GAME_CORNER
 	setflag ENGINE_5E
-	waitbutton
+	waitsfx
 	end
 ; 0x1989d7
 
 UnknownScript_0x1989d7: ; 0x1989d7
 	writetext UnknownText_0x1991a4
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 ; 0x1989dd
 
 UnknownScript_0x1989dd: ; 0x1989dd
 	writetext UnknownText_0x1991ac
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 ; 0x1989e3
 
@@ -177,15 +177,15 @@ CooltrainerFScript_0x1989e9: ; 0x1989e9
 	checkevent EVENT_CLEARED_RADIO_TOWER
 	iftrue UnknownScript_0x1989f7
 	writetext UnknownText_0x198ae6
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 ; 0x1989f7
 
 UnknownScript_0x1989f7: ; 0x1989f7
 	writetext UnknownText_0x198b2d
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 ; 0x1989fd
 
@@ -195,15 +195,15 @@ CooltrainerFScript_0x1989fd: ; 0x1989fd
 	checkflag ENGINE_RADIO_CARD
 	iftrue UnknownScript_0x198a0b
 	writetext UnknownText_0x198b73
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 ; 0x198a0b
 
 UnknownScript_0x198a0b: ; 0x198a0b
 	writetext UnknownText_0x198c14
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 ; 0x198a11
 
@@ -222,11 +222,11 @@ GrampsScript_0x198a17: ; 0x198a17
 RocketScript_0x198a1a: ; 0x198a1a
 	loadfont
 	writetext UnknownText_0x198d0d
-	keeptextopen
+	buttonsound
 	faceplayer
 	writetext UnknownText_0x198d2a
+	waitbutton
 	closetext
-	loadmovesprites
 	spriteface $9, $1
 	end
 ; 0x198a29

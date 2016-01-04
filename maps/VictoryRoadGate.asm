@@ -28,20 +28,20 @@ OfficerScript_0x9ba03: ; 0x9ba03
 UnknownScript_0x9ba04: ; 0x9ba04
 	loadfont
 	writetext UnknownText_0x9ba29
-	keeptextopen
+	buttonsound
 	checkcode VAR_BADGES
 	if_greater_than $7, UnknownScript_0x9ba19
 	writetext UnknownText_0x9ba5f
+	waitbutton
 	closetext
-	loadmovesprites
 	applymovement $0, MovementData_0x9ba27
 	end
 ; 0x9ba19
 
 UnknownScript_0x9ba19: ; 0x9ba19
 	writetext UnknownText_0x9bab4
+	waitbutton
 	closetext
-	loadmovesprites
 	dotrigger $1
 	end
 ; 0x9ba21

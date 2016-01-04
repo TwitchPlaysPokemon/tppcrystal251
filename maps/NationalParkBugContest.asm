@@ -10,8 +10,8 @@ YoungsterScript_0x5c8ec: ; 0x5c8ec
 	faceplayer
 	loadfont
 	writetext UnknownText_0x5c94c
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 ; 0x5c8f4
 
@@ -19,8 +19,8 @@ YoungsterScript_0x5c8f4: ; 0x5c8f4
 	faceplayer
 	loadfont
 	writetext UnknownText_0x5c973
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 ; 0x5c8fc
 
@@ -28,8 +28,8 @@ RockerScript_0x5c8fc: ; 0x5c8fc
 	faceplayer
 	loadfont
 	writetext UnknownText_0x5c9a3
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 ; 0x5c904
 
@@ -37,8 +37,8 @@ PokefanMScript_0x5c904: ; 0x5c904
 	faceplayer
 	loadfont
 	writetext UnknownText_0x5c9cc
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 ; 0x5c90c
 
@@ -46,8 +46,8 @@ YoungsterScript_0x5c90c: ; 0x5c90c
 	faceplayer
 	loadfont
 	writetext UnknownText_0x5ca15
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 ; 0x5c914
 
@@ -55,8 +55,8 @@ YoungsterScript_0x5c914: ; 0x5c914
 	faceplayer
 	loadfont
 	writetext UnknownText_0x5ca52
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 ; 0x5c91c
 
@@ -64,8 +64,8 @@ LassScript_0x5c91c: ; 0x5c91c
 	faceplayer
 	loadfont
 	writetext UnknownText_0x5ca8f
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 ; 0x5c924
 
@@ -73,8 +73,8 @@ YoungsterScript_0x5c924: ; 0x5c924
 	faceplayer
 	loadfont
 	writetext UnknownText_0x5cac8
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 ; 0x5c92c
 
@@ -82,8 +82,8 @@ YoungsterScript_0x5c92c: ; 0x5c92c
 	faceplayer
 	loadfont
 	writetext UnknownText_0x5cb25
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 ; 0x5c934
 
@@ -91,8 +91,8 @@ YoungsterScript_0x5c934: ; 0x5c934
 	faceplayer
 	loadfont
 	writetext UnknownText_0x5cb64
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 ; 0x5c93c
 

@@ -19,8 +19,8 @@ BlueScript_0x1ac9b0: ; 0x1ac9b0
 	faceplayer
 	loadfont
 	writetext UnknownText_0x1ac9d2
+	waitbutton
 	closetext
-	loadmovesprites
 	playsound SFX_WARP_TO
 	applymovement $2, MovementData_0x1ac9d0
 	disappear $2

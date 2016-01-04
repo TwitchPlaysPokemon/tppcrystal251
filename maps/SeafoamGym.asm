@@ -19,8 +19,8 @@ BlaineScript_0x1ab4fb: ; 0x1ab4fb
 	checkflag ENGINE_VOLCANOBADGE
 	iftrue UnknownScript_0x1ab52b
 	writetext UnknownText_0x1ab548
+	waitbutton
 	closetext
-	loadmovesprites
 	winlosstext UnknownText_0x1ab646, $0000
 	loadtrainer BLAINE, 1
 	startbattle
@@ -32,18 +32,18 @@ UnknownScript_0x1ab516: ; 0x1ab516
 	loadfont
 	writetext UnknownText_0x1ab683
 	playsound SFX_GET_BADGE
-	waitbutton
+	waitsfx
 	setflag ENGINE_VOLCANOBADGE
 	writetext UnknownText_0x1ab69d
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 ; 0x1ab52b
 
 UnknownScript_0x1ab52b: ; 0x1ab52b
 	writetext UnknownText_0x1ab71c
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 ; 0x1ab531
 
@@ -53,15 +53,15 @@ SeafoamGymGuyScript: ; 0x1ab531
 	checkevent EVENT_TALKED_TO_SEAFOAM_GYM_GUY_ONCE
 	iftrue .TalkedToSeafoamGymGuyScript
 	writetext SeafoamGymGuyWinText
+	waitbutton
 	closetext
-	loadmovesprites
 	setevent EVENT_TALKED_TO_SEAFOAM_GYM_GUY_ONCE
 	end
 
 .TalkedToSeafoamGymGuyScript
 	writetext SeafoamGymGuyWinText2
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 ; 0x1ab548
 

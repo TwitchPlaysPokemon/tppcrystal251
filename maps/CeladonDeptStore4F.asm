@@ -10,7 +10,7 @@ ClerkScript_0x70f0d: ; 0x70f0d
 	faceplayer
 	loadfont
 	pokemart $0, $001a
-	loadmovesprites
+	closetext
 	end
 ; 0x70f15
 

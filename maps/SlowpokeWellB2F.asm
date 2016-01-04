@@ -12,19 +12,19 @@ GymGuyScript_0x5ad0b: ; 0x5ad0b
 	checkevent EVENT_GOT_KINGS_ROCK_IN_SLOWPOKE_WELL
 	iftrue UnknownScript_0x5ad22
 	writetext UnknownText_0x5ad2a
-	keeptextopen
+	buttonsound
 	verbosegiveitem KINGS_ROCK, 1
 	iffalse UnknownScript_0x5ad20
 	setevent EVENT_GOT_KINGS_ROCK_IN_SLOWPOKE_WELL
 UnknownScript_0x5ad20: ; 0x5ad20
-	loadmovesprites
+	closetext
 	end
 ; 0x5ad22
 
 UnknownScript_0x5ad22: ; 0x5ad22
 	writetext UnknownText_0x5adf2
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 ; 0x5ad28
 

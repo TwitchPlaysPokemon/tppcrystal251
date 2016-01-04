@@ -30,7 +30,7 @@ text_dunno1: macro
 	db 5
 	endm
 
-text_waitbutton: macro
+text_waitsfx: macro
 	db 6
 	endm
 

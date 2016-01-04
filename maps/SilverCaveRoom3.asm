@@ -11,8 +11,8 @@ RedScript_0x18c603: ; 0x18c603
 	faceplayer
 	loadfont
 	writetext UnknownText_0x18c637
+	waitbutton
 	closetext
-	loadmovesprites
 	winlosstext UnknownText_0x18c63c, UnknownText_0x18c63c
 	loadtrainer RED, 1
 	startbattle
@@ -22,8 +22,8 @@ RedScript_0x18c603: ; 0x18c603
 	special Functionc48f
 	loadfont
 	writetext UnknownText_0x18c63f
+	waitbutton
 	closetext
-	loadmovesprites
 	special Special_FadeToBlack
 	special Functiond91
 	disappear $2

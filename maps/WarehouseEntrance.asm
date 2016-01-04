@@ -137,8 +137,8 @@ SupernerdEricScript: ; 0x7c0ee
 	talkaftercancel
 	loadfont
 	writetext UnknownText_0x7c36c
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 ; 0x7c0f6
 
@@ -166,8 +166,8 @@ SupernerdTeruScript: ; 0x7c102
 	talkaftercancel
 	loadfont
 	writetext UnknownText_0x7c410
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 ; 0x7c10a
 
@@ -195,8 +195,8 @@ PokemaniacIssacScript: ; 0x7c116
 	talkaftercancel
 	loadfont
 	writetext UnknownText_0x7c498
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 ; 0x7c11e
 
@@ -224,8 +224,8 @@ PokemaniacDonaldScript: ; 0x7c12a
 	talkaftercancel
 	loadfont
 	writetext UnknownText_0x7c52f
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 ; 0x7c132
 
@@ -239,7 +239,7 @@ GrannyScript_0x7c132: ; 0x7c132
 
 UnknownScript_0x7c140: ; 0x7c140
 	pokemart $1, $0021
-	loadmovesprites
+	closetext
 	end
 ; 0x7c146
 
@@ -256,7 +256,7 @@ UnknownScript_0x7c156: ; 0x7c156
 	checktime $1
 	iffalse UnknownScript_0x7c300
 	pokemart $2, $0000
-	loadmovesprites
+	closetext
 	end
 ; 0x7c161
 
@@ -279,7 +279,7 @@ UnknownScript_0x7c173: ; 0x7c173
 	checkmoney $0, 500
 	if_equal $2, UnknownScript_0x7c202
 	writetext UnknownText_0x7c69a
-	keeptextopen
+	buttonsound
 	special Function7413
 	if_equal $0, UnknownScript_0x7c1fc
 	if_equal $1, UnknownScript_0x7c1fc
@@ -314,8 +314,8 @@ UnknownScript_0x7c1cd: ; 0x7c1cd
 	takemoney $0, 500
 	special Function24ae8
 	writetext UnknownText_0x7c6b8
+	waitbutton
 	closetext
-	loadmovesprites
 	special Function8c084
 	playmusic MUSIC_HEAL
 	pause 60
@@ -323,7 +323,7 @@ UnknownScript_0x7c1cd: ; 0x7c1cd
 	special RestartMapMusic
 	loadfont
 	writetext UnknownText_0x7c6d8
-	closetext
+	waitbutton
 	checkevent EVENT_000_STD
 	iftrue UnknownScript_0x7c2bb
 	checkevent EVENT_001_STD
@@ -333,22 +333,22 @@ UnknownScript_0x7c1cd: ; 0x7c1cd
 
 UnknownScript_0x7c1fc: ; 0x7c1fc
 	writetext UnknownText_0x7c6ea
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 ; 0x7c202
 
 UnknownScript_0x7c202: ; 0x7c202
 	writetext UnknownText_0x7c709
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 ; 0x7c208
 
 UnknownScript_0x7c208: ; 0x7c208
 	writetext UnknownText_0x7c72b
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 ; 0x7c20e
 
@@ -371,7 +371,7 @@ UnknownScript_0x7c220: ; 0x7c220
 	checkmoney $0, 300
 	if_equal $2, UnknownScript_0x7c2af
 	writetext UnknownText_0x7c7f1
-	keeptextopen
+	buttonsound
 	special Function7418
 	if_equal $0, UnknownScript_0x7c2a9
 	if_equal $1, UnknownScript_0x7c2a9
@@ -406,8 +406,8 @@ UnknownScript_0x7c27a: ; 0x7c27a
 	takemoney $0, 300
 	special Function24ae8
 	writetext UnknownText_0x7c80e
+	waitbutton
 	closetext
-	loadmovesprites
 	special Function8c084
 	playmusic MUSIC_HEAL
 	pause 60
@@ -415,7 +415,7 @@ UnknownScript_0x7c27a: ; 0x7c27a
 	special RestartMapMusic
 	loadfont
 	writetext UnknownText_0x7c82a
-	closetext
+	waitbutton
 	checkevent EVENT_000_STD
 	iftrue UnknownScript_0x7c2bb
 	checkevent EVENT_001_STD
@@ -425,46 +425,46 @@ UnknownScript_0x7c27a: ; 0x7c27a
 
 UnknownScript_0x7c2a9: ; 0x7c2a9
 	writetext UnknownText_0x7c842
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 ; 0x7c2af
 
 UnknownScript_0x7c2af: ; 0x7c2af
 	writetext UnknownText_0x7c85b
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 ; 0x7c2b5
 
 UnknownScript_0x7c2b5: ; 0x7c2b5
 	writetext UnknownText_0x7c87b
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 ; 0x7c2bb
 
 UnknownScript_0x7c2bb: ; 0x7c2bb
 	writetext UnknownText_0x7c8bf
 	special Functionc472
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 ; 0x7c2c4
 
 UnknownScript_0x7c2c4: ; 0x7c2c4
 	writetext UnknownText_0x7c8dc
 	special Functionc472
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 ; 0x7c2cd
 
 UnknownScript_0x7c2cd: ; 0x7c2cd
 	writetext UnknownText_0x7c8ee
 	special Functionc472
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 ; 0x7c2d6
 
@@ -475,34 +475,34 @@ MapWarehouseEntranceSignpost0Script:: ; 0x7c2d6
 	checkitem BASEMENT_KEY
 	iftrue UnknownScript_0x7c2e8
 	writetext UnknownText_0x7c5b0
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 ; 0x7c2e8
 
 UnknownScript_0x7c2e8: ; 0x7c2e8
 	playsound SFX_TRANSACTION
 	writetext UnknownText_0x7c5d6
+	waitbutton
 	closetext
-	loadmovesprites
 	changeblock $12, $6, $2e
 	reloadmappart
-	loadmovesprites
+	closetext
 	setevent EVENT_USED_BASEMENT_KEY
 	end
 ; 0x7c2fa
 
 UnknownScript_0x7c2fa: ; 0x7c2fa
 	writetext UnknownText_0x7c5c3
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 ; 0x7c300
 
 UnknownScript_0x7c300: ; 0x7c300
 	writetext UnknownText_0x7c904
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 ; 0x7c306
 

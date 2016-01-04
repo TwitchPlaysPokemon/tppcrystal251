@@ -55,7 +55,7 @@ UnknownScript_0x58dd3: ; 0x58dd3
 	reloadmappart
 	earthquake 50
 	dotrigger $1
-	loadmovesprites
+	closetext
 	end
 ; 0x58deb
 
@@ -63,7 +63,7 @@ MapRuinsofAlphAerodactylChamberSignpost2Script: ; 0x58deb
 	refreshscreen $0
 	writebyte $2
 	special Functionc360
-	loadmovesprites
+	closetext
 	iftrue UnknownScript_0x58df7
 	end
 ; 0x58df7
@@ -82,7 +82,7 @@ UnknownScript_0x58df7: ; 0x58df7
 	earthquake 80
 	applymovement $0, MovementData_0x58e4d
 	playsound SFX_KINESIS
-	waitbutton
+	waitsfx
 	pause 20
 	warpcheck
 	end
@@ -101,7 +101,7 @@ MapRuinsofAlphAerodactylChamberSignpost4Script: ; 0x58e2a
 	writetext UnknownText_0x58e4f
 	writebyte $1
 	special Function8ae68
-	loadmovesprites
+	closetext
 	end
 ; 0x58e35
 
@@ -112,15 +112,15 @@ MapRuinsofAlphAerodactylChamberSignpost5Script: ; 0x58e35
 	writetext UnknownText_0x58e81
 	writebyte $1
 	special Function8ae68
-	loadmovesprites
+	closetext
 	end
 ; 0x58e46
 
 UnknownScript_0x58e46: ; 0x58e46
 	loadfont
 	writetext UnknownText_0x58ea2
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 ; 0x58e4d
 

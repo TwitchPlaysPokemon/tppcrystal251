@@ -59,8 +59,8 @@ UnknownScript_0x18aedc: ; 0x18aedc
 UnknownScript_0x18aef2: ; 0x18aef2
 	writetext UnknownText_0x18b316
 UnknownScript_0x18aef5: ; 0x18aef5
+	waitbutton
 	closetext
-	loadmovesprites
 	checkflag ENGINE_PLAYER_IS_FEMALE
 	iftrue UnknownScript_0x18af04
 	applymovement $2, MovementData_0x18afd0
@@ -75,8 +75,8 @@ UnknownScript_0x18af08: ; 0x18af08
 	special Function14209
 	loadfont
 	writetext UnknownText_0x18b028
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 ; 0x18af16
 
@@ -91,8 +91,8 @@ UnknownScript_0x18af16: ; 0x18af16
 UnknownScript_0x18af23: ; 0x18af23
 	writetext UnknownText_0x18b366
 UnknownScript_0x18af26: ; 0x18af26
+	waitbutton
 	closetext
-	loadmovesprites
 	checkflag ENGINE_PLAYER_IS_FEMALE
 	iftrue UnknownScript_0x18af35
 	applymovement $2, MovementData_0x18afd0
@@ -107,8 +107,8 @@ UnknownScript_0x18af39: ; 0x18af39
 	special Function14209
 	loadfont
 	writetext UnknownText_0x18b116
+	waitbutton
 	closetext
-	loadmovesprites
 	setevent EVENT_MET_COPYCAT_FOUND_OUT_ABOUT_LOST_ITEM
 	end
 ; 0x18af4a
@@ -116,7 +116,7 @@ UnknownScript_0x18af39: ; 0x18af39
 UnknownScript_0x18af4a: ; 0x18af4a
 	loadfont
 	writetext UnknownText_0x18b17f
-	keeptextopen
+	buttonsound
 	takeitem LOST_ITEM, 1
 	setevent EVENT_RETURNED_LOST_ITEM_TO_COPYCAT
 	clearevent EVENT_COPYCATS_DOLL_IN_HER_ROOM
@@ -127,13 +127,13 @@ UnknownScript_0x18af5b: ; 0x18af5b
 	loadfont
 UnknownScript_0x18af5c: ; 0x18af5c
 	writetext UnknownText_0x18b1e2
-	keeptextopen
+	buttonsound
 	verbosegiveitem PASS, 1
 	iffalse UnknownScript_0x18afba
 	setevent EVENT_GOT_PASS_FROM_COPYCAT
 	writetext UnknownText_0x18b214
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 ; 0x18af6f
 
@@ -162,8 +162,8 @@ UnknownScript_0x18af88: ; 0x18af88
 UnknownScript_0x18af98: ; 0x18af98
 	writetext UnknownText_0x18b415
 UnknownScript_0x18af9b: ; 0x18af9b
+	waitbutton
 	closetext
-	loadmovesprites
 	checkflag ENGINE_PLAYER_IS_FEMALE
 	iftrue UnknownScript_0x18afaa
 	applymovement $2, MovementData_0x18afd0
@@ -178,9 +178,9 @@ UnknownScript_0x18afae: ; 0x18afae
 	special Function14209
 	loadfont
 	writetext UnknownText_0x18b2f5
-	closetext
+	waitbutton
 UnknownScript_0x18afba: ; 0x18afba
-	loadmovesprites
+	closetext
 	end
 ; 0x18afbc
 
@@ -188,10 +188,10 @@ MoltresScript_0x18afbc: ; 0x18afbc
 	loadfont
 	writetext UnknownText_0x18b476
 	cry DODRIO
-	keeptextopen
+	buttonsound
 	writetext UnknownText_0x18b489
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 ; 0x18afca
 

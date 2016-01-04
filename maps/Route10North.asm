@@ -32,8 +32,8 @@ ZapdosScript1: ; Debug
 	loadfont
 	writetext ZapdosText1
 	cry ZAPDOS
+	waitbutton
 	closetext
-	loadmovesprites
 	loadpokedata ZAPDOS, 70
 	writecode VAR_BATTLETYPE, BATTLETYPE_KANTOLEGEND
 	startbattle

@@ -27,15 +27,15 @@ FisherScript_0x1a83bb: ; 0x1a83bb
 
 UnknownScript_0x1a83cb: ; 0x1a83cb
 	writetext UnknownText_0x1a84ac
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 ; 0x1a83d1
 
 UnknownScript_0x1a83d1: ; 0x1a83d1
 	writetext UnknownText_0x1a84cb
+	waitbutton
 	closetext
-	loadmovesprites
 	playmusic MUSIC_SHOW_ME_AROUND
 	follow $2, $0
 	applymovement $2, MovementData_0x1a842a
@@ -45,14 +45,14 @@ UnknownScript_0x1a83d1: ; 0x1a83d1
 	special RestartMapMusic
 	loadfont
 	writetext UnknownText_0x1a84f9
+	waitbutton
 	closetext
-	loadmovesprites
 	applymovement $2, MovementData_0x1a8465
 	applymovement $2, MovementData_0x1a8463
 	playsound SFX_ENTER_DOOR
 	disappear $2
 	clearevent EVENT_EARL_INSIDE
-	waitbutton
+	waitsfx
 	end
 ; 0x1a8403
 

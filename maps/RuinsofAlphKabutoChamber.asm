@@ -58,7 +58,7 @@ UnknownScript_0x58751: ; 0x58751
 	reloadmappart
 	earthquake 50
 	dotrigger $1
-	loadmovesprites
+	closetext
 	end
 ; 0x58769
 
@@ -70,7 +70,7 @@ MapRuinsofAlphKabutoChamberSignpost2Script: ; 0x5876c
 	refreshscreen $0
 	writebyte $0
 	special Functionc360
-	loadmovesprites
+	closetext
 	iftrue UnknownScript_0x58778
 	end
 ; 0x58778
@@ -90,7 +90,7 @@ UnknownScript_0x58778: ; 0x58778
 	earthquake 80
 	applymovement $0, MovementData_0x587fe
 	playsound SFX_KINESIS
-	waitbutton
+	waitsfx
 	pause 20
 	warpcheck
 	end
@@ -106,26 +106,26 @@ ScientistScript_0x587a8: ; 0x587a8
 	checkevent EVENT_RUINS_OF_ALPH_KABUTO_CHAMBER_2A1 ; LORD DOME
 	iffalse UnknownScript_0x587c0
 	writetext UnknownText_0x589b8
-	keeptextopen
+	buttonsound
 UnknownScript_0x587c0: ; 0x587c0
 	writetext UnknownText_0x588f5
+	waitbutton
 	closetext
-	loadmovesprites
 	spriteface $3, $1
 	end
 ; 0x587c9
 
 UnknownScript_0x587c9: ; 0x587c9
 	writetext UnknownText_0x5897c
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 ; 0x587cf
 
 UnknownScript_0x587cf: ; 0x587cf
 	writetext UnknownText_0x594cb
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 ; 0x587d5
 
@@ -142,7 +142,7 @@ MapRuinsofAlphKabutoChamberSignpost4Script: ; 0x587db
 	writetext UnknownText_0x58aa7
 	writebyte $0
 	special Function8ae68
-	loadmovesprites
+	closetext
 	end
 ; 0x587e6
 
@@ -153,15 +153,15 @@ MapRuinsofAlphKabutoChamberSignpost5Script: ; 0x587e6
 	writetext UnknownText_0x58ad9
 	writebyte $0
 	special Function8ae68
-	loadmovesprites
+	closetext
 	end
 ; 0x587f7
 
 UnknownScript_0x587f7: ; 0x587f7
 	loadfont
 	writetext UnknownText_0x58afa
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 ; 0x587fe
 

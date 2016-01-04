@@ -19,26 +19,26 @@ FishingGuruScript_0x69b55: ; 0x69b55
 	yesorno
 	iffalse UnknownScript_0x69b74
 	writetext UnknownText_0x69be8
-	keeptextopen
+	buttonsound
 	verbosegiveitem OLD_ROD, 1
 	writetext UnknownText_0x69c1b
+	waitbutton
 	closetext
-	loadmovesprites
 	setevent EVENT_GOT_OLD_ROD
 	end
 ; 0x69b74
 
 UnknownScript_0x69b74: ; 0x69b74
 	writetext UnknownText_0x69c6c
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 ; 0x69b7a
 
 UnknownScript_0x69b7a: ; 0x69b7a
 	writetext UnknownText_0x69c8d
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 ; 0x69b80
 

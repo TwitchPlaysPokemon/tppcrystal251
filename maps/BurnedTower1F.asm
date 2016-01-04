@@ -46,8 +46,8 @@ UnknownScript_0x185c0d: ; 0x185c0d
 	applymovement $3, MovementData_0x185cd3
 	loadfont
 	writetext UnknownText_0x185ecc
+	waitbutton
 	closetext
-	loadmovesprites
 	moveperson $3, $9, $e
 	dotrigger $1
 	end
@@ -64,8 +64,8 @@ UnknownScript_0x185c25: ; 0x185c25
 	playmusic MUSIC_RIVAL_ENCOUNTER
 	loadfont
 	writetext UnknownText_0x185cd9
+	waitbutton
 	closetext
-	loadmovesprites
 	checkevent EVENT_GOT_TOTODILE_FROM_ELM
 	iftrue UnknownScript_0x185c60
 	checkevent EVENT_GOT_CHIKORITA_FROM_ELM
@@ -104,8 +104,8 @@ UnknownScript_0x185c80: ; 0x185c80
 	playmusic MUSIC_RIVAL_AFTER
 	loadfont
 	writetext UnknownText_0x185de2
+	waitbutton
 	closetext
-	loadmovesprites
 	dotrigger $2
 	setevent EVENT_SILVER_IN_BURNED_TOWER
 	special Functionc48f
@@ -113,7 +113,7 @@ UnknownScript_0x185c80: ; 0x185c80
 	earthquake 50
 	showemote $0, $0, 15
 	playsound SFX_ENTER_DOOR
-	waitbutton
+	waitsfx
 	changeblock $a, $8, $25
 	reloadmappart
 	pause 15
@@ -122,8 +122,8 @@ UnknownScript_0x185c80: ; 0x185c80
 	showemote $0, $4, 20
 	loadfont
 	writetext UnknownText_0x185e75
+	waitbutton
 	closetext
-	loadmovesprites
 	setevent EVENT_OPENED_HOLE_IN_BURNED_TOWER_1F
 	pause 15
 	warpcheck

@@ -18,8 +18,8 @@ RhydonScript_0x188139: ; 0x188139
 	loadfont
 	writetext UnknownText_0x18819c
 	cry KANGASKHAN
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 ; 0x188143
 
@@ -27,8 +27,8 @@ ZubatScript_0x188143: ; 0x188143
 	loadfont
 	writetext UnknownText_0x1881b5
 	cry ZUBAT
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 ; 0x18814d
 

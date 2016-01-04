@@ -10,8 +10,8 @@ SuperNerdScript_0x195cb4: ; 0x195cb4
 	faceplayer
 	loadfont
 	special Function2c547
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 ; 0x195cbc
 

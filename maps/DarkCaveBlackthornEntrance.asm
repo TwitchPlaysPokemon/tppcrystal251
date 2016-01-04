@@ -12,15 +12,15 @@ PharmacistScript_0x18c720: ; 0x18c720
 	checkevent EVENT_GOT_BLACKGLASSES_IN_DARK_CAVE
 	iftrue UnknownScript_0x18c735
 	writetext UnknownText_0x18c73f
-	keeptextopen
+	buttonsound
 	verbosegiveitem BLACKGLASSES, 1
 	iffalse UnknownScript_0x18c739
 	setevent EVENT_GOT_BLACKGLASSES_IN_DARK_CAVE
 UnknownScript_0x18c735: ; 0x18c735
 	writetext UnknownText_0x18c80c
-	closetext
+	waitbutton
 UnknownScript_0x18c739: ; 0x18c739
-	loadmovesprites
+	closetext
 	end
 ; 0x18c73b
 

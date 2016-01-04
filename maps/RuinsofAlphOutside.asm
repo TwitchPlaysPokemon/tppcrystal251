@@ -65,8 +65,8 @@ ScientistScript_0x58043: ; 0x58043
 UnknownScript_0x58044: ; 0x58044
 	loadfont
 	writetext UnknownText_0x580c7
+	waitbutton
 	closetext
-	loadmovesprites
 	playmusic MUSIC_SHOW_ME_AROUND
 	follow $3, $0
 	applymovement $3, MovementData_0x580ba
@@ -85,11 +85,11 @@ FisherScript_0x58061: ; 0x58061
 	iftrue UnknownScript_0x58070
 	setevent EVENT_TALKED_TO_FISHERMAN_AFTER_UNLOCKING_UNOWN
 	writetext UnknownText_0x583a4
-	keeptextopen
+	buttonsound
 UnknownScript_0x58070: ;0x58070
 	writetext UnknownText_0x58420
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 ; 0x58076
 
@@ -97,8 +97,8 @@ YoungsterScript_0x58076: ; 0x58076
 	faceplayer
 	loadfont
 	writetext UnknownText_0x58449
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 ; 0x5807e
 
@@ -106,8 +106,8 @@ YoungsterScript_0x5807e: ; 0x5807e
 	faceplayer
 	loadfont
 	writetext UnknownText_0x5848e
+	waitbutton
 	closetext
-	loadmovesprites
 	spriteface $6, $1
 	end
 ; 0x58089
@@ -136,8 +136,8 @@ PsychicNathanScript: ; 0x58095
 	talkaftercancel
 	loadfont
 	writetext UnknownText_0x5830e
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 ; 0x5809d
 
@@ -166,8 +166,8 @@ UnknownScript_0x580a9: ; 0x580a9
 	talkaftercancel
 	loadfont
 	writetext UnknownText_0x58250
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 ; 0x580b1
 

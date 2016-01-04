@@ -12,13 +12,13 @@ SailorScript_0x9c8c1: ; 0x9c8c1
 	checkevent EVENT_GOT_HM04_STRENGTH
 	iftrue UnknownScript_0x9c8d3
 	writetext UnknownText_0x9c8df
-	keeptextopen
+	buttonsound
 	verbosegiveitem HM_STRENGTH, 1
 	setevent EVENT_GOT_HM04_STRENGTH
 UnknownScript_0x9c8d3: ; 0x9c8d3
 	writetext UnknownText_0x9c965
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 ; 0x9c8d9
 

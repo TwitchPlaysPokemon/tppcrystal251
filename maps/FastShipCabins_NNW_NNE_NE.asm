@@ -30,8 +30,8 @@ CooltrainermSeanScript: ; 0x75585
 	talkaftercancel
 	loadfont
 	writetext UnknownText_0x7567b
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 ; 0x7558d
 
@@ -59,8 +59,8 @@ CooltrainerfCarolScript: ; 0x75599
 	talkaftercancel
 	loadfont
 	writetext UnknownText_0x756f7
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 ; 0x755a1
 
@@ -88,8 +88,8 @@ PokemaniacEthanScript: ; 0x755ad
 	talkaftercancel
 	loadfont
 	writetext UnknownText_0x7574b
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 ; 0x755b5
 
@@ -117,8 +117,8 @@ HikerNolandScript: ; 0x755c1
 	talkaftercancel
 	loadfont
 	writetext UnknownText_0x757d4
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 ; 0x755c9
 
@@ -146,8 +146,8 @@ GentlemanEdwardScript: ; 0x755d5
 	talkaftercancel
 	loadfont
 	writetext UnknownText_0x75937
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 ; 0x755dd
 
@@ -175,8 +175,8 @@ BurglarCoreyScript: ; 0x755e9
 	talkaftercancel
 	loadfont
 	writetext UnknownText_0x75996
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 ; 0x755f1
 
@@ -185,8 +185,8 @@ SailorScript_0x755f1: ; 0x755f1
 	faceplayer
 	loadfont
 	writetext UnknownText_0x75812
+	waitbutton
 	closetext
-	loadmovesprites
 	winlosstext UnknownText_0x75897, $0000
 	loadtrainer SAILOR, STANLY
 	startbattle
@@ -195,8 +195,8 @@ SailorScript_0x755f1: ; 0x755f1
 	setevent EVENT_BEAT_SAILOR_STANLY
 	loadfont
 	writetext UnknownText_0x758b1
+	waitbutton
 	closetext
-	loadmovesprites
 	setevent EVENT_FAST_SHIP_033
 	domaptrigger GROUP_FAST_SHIP_B1F, MAP_FAST_SHIP_B1F, $1
 	checkcode VAR_FACING
@@ -204,7 +204,7 @@ SailorScript_0x755f1: ; 0x755f1
 	applymovement $6, MovementData_0x75637
 	playsound SFX_EXIT_BUILDING
 	disappear $6
-	waitbutton
+	waitsfx
 	end
 ; 0x75629
 
@@ -212,7 +212,7 @@ UnknownScript_0x75629: ; 0x75629
 	applymovement $6, MovementData_0x7563c
 	playsound SFX_EXIT_BUILDING
 	disappear $6
-	waitbutton
+	waitsfx
 	end
 ; 0x75634
 

@@ -29,17 +29,17 @@ GrampsScript_0x18c00f: ; 0x18c00f
 	checkevent EVENT_GOT_SILVER_WING
 	iftrue UnknownScript_0x18c023
 	writetext UnknownText_0x18c0c6
-	keeptextopen
+	buttonsound
 	verbosegiveitem SILVER_WING, 1
 	setevent EVENT_GOT_SILVER_WING
-	loadmovesprites
+	closetext
 	end
 ; 0x18c023
 
 UnknownScript_0x18c023: ; 0x18c023
 	writetext UnknownText_0x18c1aa
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 ; 0x18c029
 
@@ -60,8 +60,8 @@ MapPewterCitySignpostDoor2Script:
 MapPewterCitySignpostDoor1Script: ; 0x18c02f
 	loadfont
 	writetext MuseumDoorText
+	waitbutton
 	closetext
-	loadmovesprites
 	checkevent EVENT_BEAT_SIMON_6
 	iftrue MapPewterCitySignpost2EndScript
 	disappear $7
@@ -78,8 +78,8 @@ MapPewterCitySignpostDoor1Script: ; 0x18c02f
 	playmusic MUSIC_POKEMANIAC_ENCOUNTER
 	loadfont
 	writetext MapPewterCitySimonText1
+	waitbutton
 	closetext
-	loadmovesprites
 	applymovement $7, MapPewterCityMovementData2
 	winlosstext MapPewterCitySimonLostText, $0000
 	loadtrainer BURGLAR, SIMON_6
@@ -89,11 +89,11 @@ MapPewterCitySignpostDoor1Script: ; 0x18c02f
 	playmusic MUSIC_POKEMANIAC_ENCOUNTER
 	loadfont
 	writetext MapPewterCitySimonText2
-	keeptextopen
+	buttonsound
 	verbosegiveitem OLD_AMBER, 1
 	writetext MapPewterCitySimonText3
+	waitbutton
 	closetext
-	loadmovesprites
 	applymovement $7, MapPewterCityMovementData3
 	spriteface $0, $0
 	applymovement $7, MapPewterCityMovementData4

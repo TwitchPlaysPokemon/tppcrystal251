@@ -33,21 +33,21 @@ UnknownScript_0x1a8016: ; 0x1a8016
 	spriteface $2, $2
 	loadfont
 	writetext UnknownText_0x1a8134
+	waitbutton
 	closetext
-	loadmovesprites
 	spriteface $0, $3
 	applymovement $2, MovementData_0x1a80d4
 	loadfont
 	writetext UnknownText_0x1a813e
+	waitbutton
 	closetext
-	loadmovesprites
 	follow $2, $0
 	applymovement $2, MovementData_0x1a80e0
 	stopfollow
 	loadfont
 	writetext UnknownText_0x1a815e
+	waitbutton
 	closetext
-	loadmovesprites
 	special RestartMapMusic
 	end
 ; 0x1a8041
@@ -57,22 +57,22 @@ UnknownScript_0x1a8041: ; 0x1a8041
 	spriteface $2, $2
 	loadfont
 	writetext UnknownText_0x1a8134
+	waitbutton
 	closetext
-	loadmovesprites
 	spriteface $0, $3
 	applymovement $2, MovementData_0x1a80d9
 	spriteface $0, $1
 	loadfont
 	writetext UnknownText_0x1a813e
+	waitbutton
 	closetext
-	loadmovesprites
 	follow $2, $0
 	applymovement $2, MovementData_0x1a80e6
 	stopfollow
 	loadfont
 	writetext UnknownText_0x1a815e
+	waitbutton
 	closetext
-	loadmovesprites
 	special RestartMapMusic
 	end
 ; 0x1a806f
@@ -87,29 +87,29 @@ TeacherScript_0x1a806f: ; 0x1a806f
 	checkevent EVENT_GOT_A_POKEMON_FROM_ELM
 	iftrue UnknownScript_0x1a8089
 	writetext UnknownText_0x1a80f7
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 ; 0x1a8089
 
 UnknownScript_0x1a8089: ; 0x1a8089
 	writetext UnknownText_0x1a81c4
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 ; 0x1a808f
 
 UnknownScript_0x1a808f: ; 0x1a808f
 	writetext UnknownText_0x1a81f2
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 ; 0x1a8095
 
 UnknownScript_0x1a8095: ; 0x1a8095
 	writetext UnknownText_0x1a8236
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 ; 0x1a809b
 
@@ -120,13 +120,13 @@ FisherScript_0x1a809b: ; 0x1a809b
 SilverScript_0x1a809e: ; 0x1a809e
 	loadfont
 	writetext UnknownText_0x1a82a6
+	waitbutton
 	closetext
-	loadmovesprites
 	spriteface $4, $2
 	loadfont
 	writetext UnknownText_0x1a82cd
+	waitbutton
 	closetext
-	loadmovesprites
 	follow $0, $4
 	applymovement $0, MovementData_0x1a80ed
 	stopfollow

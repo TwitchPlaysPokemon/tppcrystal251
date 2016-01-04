@@ -128,8 +128,8 @@ MoltresScript1:
 	loadfont
 	writetext MoltresText1
 	cry MOLTRES
+	waitbutton
 	closetext
-	loadmovesprites
 	loadpokedata MOLTRES, 70
 	writecode VAR_BATTLETYPE, BATTLETYPE_KANTOLEGEND
 	startbattle

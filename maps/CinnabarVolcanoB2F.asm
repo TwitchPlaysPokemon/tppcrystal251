@@ -61,8 +61,8 @@ PushedDownHoleScript_CinnabarVolcanoB2F
 	scall PushedDownHoleSoundScript_CinnabarVolcanoB2F
 	loadfont
 	writetext PushedDownHoleText_CinnabarVolcanoB2F
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 PushedDownHoleSoundScript_CinnabarVolcanoB2F:

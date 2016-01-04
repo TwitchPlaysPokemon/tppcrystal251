@@ -19,16 +19,16 @@ RedsMomScript_0x19aea3: ; 0x19aea3
 	checkevent EVENT_MET_REDS_MOM
 	iftrue UnknownScript_0x19aeb4
 	writetext UnknownText_0x19aec0
+	waitbutton
 	closetext
-	loadmovesprites
 	setevent EVENT_MET_REDS_MOM
 	end
 ; 0x19aeb4
 
 UnknownScript_0x19aeb4: ; 0x19aeb4
 	writetext UnknownText_0x19af81
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 ; 0x19aeba
 

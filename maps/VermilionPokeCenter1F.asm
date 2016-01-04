@@ -16,15 +16,15 @@ FishingGuruScript_0x191606: ; 0x191606
 	checkevent EVENT_FOUGHT_SNORLAX
 	iftrue UnknownScript_0x191614
 	writetext UnknownText_0x191620
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 ; 0x191614
 
 UnknownScript_0x191614: ; 0x191614
 	writetext UnknownText_0x191698
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 ; 0x19161a
 

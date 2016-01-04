@@ -26,19 +26,19 @@ UnknownScript_0x1883de: ; 0x1883de
 	playmusic MUSIC_ROCKET_ENCOUNTER
 	loadfont
 	writetext UnknownText_0x1884fb
+	waitbutton
 	closetext
-	loadmovesprites
 	showemote $0, $2, 15
 	applymovement $2, MovementData_0x1884f7
 	loadfont
 	writetext UnknownText_0x188574
+	waitbutton
 	closetext
-	loadmovesprites
 	applymovement $2, MovementData_0x1884f5
 	loadfont
 	writetext UnknownText_0x1885a5
+	waitbutton
 	closetext
-	loadmovesprites
 	applymovement $2, MovementData_0x1884e8
 	playsound SFX_EXIT_BUILDING
 	disappear $2
@@ -48,7 +48,7 @@ UnknownScript_0x1883de: ; 0x1883de
 	dotrigger $0
 	domaptrigger GROUP_ROUTE_25, MAP_ROUTE_25, $1
 	domaptrigger GROUP_POWER_PLANT, MAP_POWER_PLANT, $0
-	waitbutton
+	waitsfx
 	special RestartMapMusic
 	pause 15
 	spriteface $0, $0
@@ -62,8 +62,8 @@ MistyScript_0x188432: ; 0x188432
 	checkflag ENGINE_CASCADEBADGE
 	iftrue UnknownScript_0x188460
 	writetext UnknownText_0x188674
+	waitbutton
 	closetext
-	loadmovesprites
 	winlosstext UnknownText_0x18870c, $0000
 	loadtrainer MISTY, 1
 	startbattle
@@ -75,12 +75,12 @@ MistyScript_0x188432: ; 0x188432
 	loadfont
 	writetext UnknownText_0x188768
 	playsound SFX_GET_BADGE
-	waitbutton
+	waitsfx
 	setflag ENGINE_CASCADEBADGE
 UnknownScript_0x188460: ; 0x188460
 	writetext UnknownText_0x188782
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 ; 0x188466
 
@@ -108,8 +108,8 @@ SwimmerfDianaScript: ; 0x188472
 	talkaftercancel
 	loadfont
 	writetext UnknownText_0x188856
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 ; 0x18847a
 
@@ -137,8 +137,8 @@ SwimmerfBrianaScript: ; 0x188486
 	talkaftercancel
 	loadfont
 	writetext UnknownText_0x1888c0
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 ; 0x18848e
 
@@ -166,8 +166,8 @@ SwimmermParkerScript: ; 0x18849a
 	talkaftercancel
 	loadfont
 	writetext UnknownText_0x188943
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 ; 0x1884a2
 
@@ -177,14 +177,14 @@ CeruleanGymGuyScript: ; 0x1884a2
 	checkevent EVENT_BEAT_MISTY
 	iftrue .CeruleanGymGuyWinScript
 	writetext CeruleanGymGuyText
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 .CeruleanGymGuyWinScript
 	writetext CeruleanGymGuyWinText
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 ; 0x1884b6
 
@@ -199,8 +199,8 @@ MapCeruleanGymSignpost1Script: ; 0x1884b9
 	iffalse UnknownScript_0x1884d3
 	loadfont
 	writetext UnknownText_0x188610
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 ; 0x1884c6
 
@@ -209,8 +209,8 @@ MapCeruleanGymSignpost2Script: ; 0x1884c6
 	iffalse UnknownScript_0x1884d3
 	loadfont
 	writetext UnknownText_0x188642
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 ; 0x1884d3
 

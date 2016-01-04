@@ -12,15 +12,15 @@ FishingGuruScript_0x18a77a: ; 0x18a77a
 	checkevent EVENT_GOT_TM29_PSYCHIC
 	iftrue UnknownScript_0x18a78f
 	writetext UnknownText_0x18a798
-	keeptextopen
+	buttonsound
 	verbosegiveitem TM_PSYCHIC, 1
 	iffalse UnknownScript_0x18a793
 	setevent EVENT_GOT_TM29_PSYCHIC
 UnknownScript_0x18a78f: ; 0x18a78f
 	writetext UnknownText_0x18a7bb
-	closetext
+	waitbutton
 UnknownScript_0x18a793: ; 0x18a793
-	loadmovesprites
+	closetext
 	end
 ; 0x18a795
 

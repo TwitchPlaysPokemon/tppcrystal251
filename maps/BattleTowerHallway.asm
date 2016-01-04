@@ -78,8 +78,8 @@ UnknownScript_0x9f61f: ; 0x9f61f
 	faceperson $0, $2
 	loadfont
 	writetext UnknownText_0x9ec26
+	waitbutton
 	closetext
-	loadmovesprites
 	stopfollow
 	applymovement $0, MovementData_0x9e576
 	warpcheck

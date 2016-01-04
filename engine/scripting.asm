@@ -143,7 +143,7 @@ ScriptCommandTable: ; 0x96cb1
 	dw Script_pocketisfull
 	dw Script_loadfont
 	dw Script_refreshscreen
-	dw Script_loadmovesprites
+	dw Script_closetext
 	dw Script_loadbytec1ce
 	dw Script_3writetext
 	dw Script_2writetext
@@ -156,10 +156,10 @@ IF _CRYSTAL
 	dw Script_3jumptext
 ENDC
 	dw Script_jumptext
-	dw Script_closetext
-	dw Script_keeptextopen
+	dw Script_waitbutton
+	dw Script_buttonsound
 	dw Script_pokepic
-	dw Script_pokepicyesorno
+	dw Script_closepokepic
 	dw Script_interpretmenu
 	dw Script_interpretmenu2
 	dw Script_loadpikachudata
@@ -206,7 +206,7 @@ ENDC
 	dw Script_reloadmapmusic
 	dw Script_cry
 	dw Script_playsound
-	dw Script_waitbutton
+	dw Script_waitsfx
 	dw Script_warpsound
 	dw Script_specialsound
 	dw Script_passtoengine
@@ -348,8 +348,8 @@ JumpTextFacePlayerScript: ; 0x96e79
 JumpTextScript: ; 0x96e7a
 	loadfont
 	repeattext $ff, $ff
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 ; 0x96e81
 
@@ -432,13 +432,13 @@ Script_repeattext: ; 0x96ebb
 	ret
 ; 0x96ed9
 
-Script_closetext: ; 0x96ed9
+Script_waitbutton: ; 0x96ed9
 ; script command 0x54
 
 	jp Functiona46
 ; 0x96edc
 
-Script_keeptextopen: ; 0x96edc
+Script_buttonsound: ; 0x96edc
 ; script command 0x55
 
 	ld a, [$ffd8]
@@ -503,7 +503,7 @@ Script_pokepic: ; 0x96f16
 	ret
 ; 0x96f29
 
-Script_pokepicyesorno: ; 0x96f29
+Script_closepokepic: ; 0x96f29
 ; script command 0x57
 
 	callba Function24528
@@ -576,14 +576,14 @@ GiveItemScript: ; 96f77
 	callasm Function96f76
 	writetext ReceivedItemText
 	iffalse .Full
-	waitbutton
+	waitsfx
 	specialsound
-	closetext
+	waitbutton
 	itemnotify
 	end
 
 .Full
-	keeptextopen
+	buttonsound
 	pocketisfull
 	end
 ; 96f89
@@ -1011,7 +1011,7 @@ Script_playsound: ; 0x971b7
 	ret
 ; 0x971c3
 
-Script_waitbutton: ; 0x971c3
+Script_waitsfx: ; 0x971c3
 ; script command 0x86
 
 	call WaitSFX
@@ -3029,11 +3029,11 @@ Script_loadbytec1ce: ; 0x97b27
 ; 0x97b2e
 
 
-LoadMoveSpritesScript: ; 97b2e
-	loadmovesprites
+CloseTextScript: ; 97b2e
+	closetext
 ; 97b2f
 
-Script_loadmovesprites: ; 0x97b2f
+Script_closetext: ; 0x97b2f
 ; script command 0x49
 
 	call Function2e20

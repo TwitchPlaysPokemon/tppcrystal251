@@ -10,7 +10,7 @@ ClerkScript_0x70d29: ; 0x70d29
 	faceplayer
 	loadfont
 	pokemart $0, $0019
-	loadmovesprites
+	closetext
 	end
 ; 0x70d31
 
@@ -22,8 +22,8 @@ GameboyKidScript_0x70d34: ; 0x70d34
 	faceplayer
 	loadfont
 	writetext UnknownText_0x70d86
+	waitbutton
 	closetext
-	loadmovesprites
 	spriteface $4, $0
 	end
 ; 0x70d3f
@@ -32,8 +32,8 @@ GameboyKidScript_0x70d3f: ; 0x70d3f
 	faceplayer
 	loadfont
 	writetext UnknownText_0x70dc7
+	waitbutton
 	closetext
-	loadmovesprites
 	spriteface $5, $0
 	end
 ; 0x70d4a

@@ -48,17 +48,17 @@ SailorScript_0x74dc4: ; 0x74dc4
 	checkevent EVENT_000_STD
 	iftrue UnknownScript_0x74e1a
 	writetext UnknownText_0x74f06
+	waitbutton
 	closetext
-	loadmovesprites
 	spriteface $2, $0
 	pause 10
 	playsound SFX_EXIT_BUILDING
 	disappear $2
-	waitbutton
+	waitsfx
 	applymovement $0, MovementData_0x74ef1
 	playsound SFX_EXIT_BUILDING
 	special Function8c084
-	waitbutton
+	waitsfx
 	setevent EVENT_FAST_SHIP_POPULATION_2
 	clearevent EVENT_FAST_SHIP_POPULATION_3
 	clearevent EVENT_BEAT_POKEMANIAC_ETHAN
@@ -80,8 +80,8 @@ SailorScript_0x74dc4: ; 0x74dc4
 
 UnknownScript_0x74e1a: ; 0x74e1a
 	writetext UnknownText_0x74f31
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 ; 0x74e20
 
@@ -103,12 +103,12 @@ UnknownScript_0x74e20: ; 0x74e20
 	yesorno
 	iffalse UnknownScript_0x74e8d
 	writetext UnknownText_0x74f8b
-	keeptextopen
+	buttonsound
 	checkitem S_S_TICKET
 	iffalse UnknownScript_0x74e68
 	writetext UnknownText_0x74fc2
+	waitbutton
 	closetext
-	loadmovesprites
 	setevent EVENT_001_STD
 	applymovement $0, MovementData_0x74ef8
 	jump SailorScript_0x74dc4
@@ -116,24 +116,24 @@ UnknownScript_0x74e20: ; 0x74e20
 
 UnknownScript_0x74e68: ; 0x74e68
 	writetext UnknownText_0x74ff2
+	waitbutton
 	closetext
-	loadmovesprites
 	applymovement $0, MovementData_0x74ef5
 	end
 ; 0x74e72
 
 UnknownScript_0x74e72: ; 0x74e72
 	writetext UnknownText_0x75059
+	waitbutton
 	closetext
-	loadmovesprites
 	applymovement $0, MovementData_0x74ef5
 	end
 ; 0x74e7c
 
 UnknownScript_0x74e7c: ; 0x74e7c
 	writetext UnknownText_0x75080
+	waitbutton
 	closetext
-	loadmovesprites
 	applymovement $0, MovementData_0x74ef5
 	end
 ; 0x74e86
@@ -144,15 +144,15 @@ UnknownScript_0x74e86: ; 0x74e86
 
 UnknownScript_0x74e87: ; 0x74e87
 	writetext UnknownText_0x74fa7
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 ; 0x74e8d
 
 UnknownScript_0x74e8d: ; 0x74e8d
 	writetext UnknownText_0x74fa7
+	waitbutton
 	closetext
-	loadmovesprites
 	applymovement $0, MovementData_0x74ef5
 	end
 ; 0x74e97
@@ -172,12 +172,12 @@ SailorScript_0x74e97: ; 0x74e97
 	yesorno
 	iffalse UnknownScript_0x74e87
 	writetext UnknownText_0x74f8b
-	keeptextopen
+	buttonsound
 	checkitem S_S_TICKET
 	iffalse UnknownScript_0x74ed4
 	writetext UnknownText_0x74fc2
+	waitbutton
 	closetext
-	loadmovesprites
 	setevent EVENT_001_STD
 	applymovement $0, MovementData_0x74efe
 	jump SailorScript_0x74dc4
@@ -185,22 +185,22 @@ SailorScript_0x74e97: ; 0x74e97
 
 UnknownScript_0x74ed4: ; 0x74ed4
 	writetext UnknownText_0x74ff2
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 ; 0x74eda
 
 UnknownScript_0x74eda: ; 0x74eda
 	writetext UnknownText_0x75059
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 ; 0x74ee0
 
 UnknownScript_0x74ee0: ; 0x74ee0
 	writetext UnknownText_0x75080
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 ; 0x74ee6
 
@@ -208,8 +208,8 @@ SuperNerdScript_0x74ee6: ; 0x74ee6
 	faceplayer
 	loadfont
 	writetext UnknownText_0x750a6
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 ; 0x74eee
 
@@ -362,8 +362,8 @@ SailorScript_MewIslandMain:
 	iffalse SailorScript_ChoseNo
 SailorScript_MewIslandAskSkip:
 	writetext MewSailorYesText
+	waitbutton
 	closetext
-	loadmovesprites
 	follow $5, $0
 	applymovement $5, MewIslandSailorWalk
 	playsound SFX_EXIT_BUILDING
@@ -374,8 +374,8 @@ SailorScript_MewIslandAskSkip:
 	
 SailorScript_ChoseNo:
 	writetext MewSailorNoText 
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 	
 MewSailorYesText:	

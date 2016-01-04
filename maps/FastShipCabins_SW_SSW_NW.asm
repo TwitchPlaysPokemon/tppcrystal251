@@ -30,8 +30,8 @@ FirebreatherLyleScript: ; 0x75a5b
 	talkaftercancel
 	loadfont
 	writetext UnknownText_0x75b52
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 ; 0x75a63
 
@@ -59,8 +59,8 @@ Bug_catcherKenScript: ; 0x75a6f
 	talkaftercancel
 	loadfont
 	writetext UnknownText_0x75bd5
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 ; 0x75a77
 
@@ -88,8 +88,8 @@ BeautyCassieScript: ; 0x75a83
 	talkaftercancel
 	loadfont
 	writetext UnknownText_0x75c43
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 ; 0x75a8b
 
@@ -119,24 +119,24 @@ GuitaristClydeScript: ; 0x75a97
 	iftrue UnknownScript_0x75aa5
 	loadfont
 	writetext UnknownText_0x75d65
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 ; 0x75aa5
 
 UnknownScript_0x75aa5: ; 0x75aa5
 	loadfont
 	writetext UnknownText_0x75cfe
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 ; 0x75aac
 
 MapFastShipCabins_SW_SSW_NWSignpost1Script: ; 0x75aac
 	loadfont
 	writetext UnknownText_0x75da4
+	waitbutton
 	closetext
-	loadmovesprites
 	special Special_FadeToBlack
 	special Functiond91
 	special Function1060a2
@@ -147,8 +147,8 @@ MapFastShipCabins_SW_SSW_NWSignpost1Script: ; 0x75aac
 	special Function8c0ab
 	loadfont
 	writetext UnknownText_0x75dc1
+	waitbutton
 	closetext
-	loadmovesprites
 	checkevent EVENT_FAST_SHIP_031
 	iftrue UnknownScript_0x75ae1
 	checkevent EVENT_FAST_SHIP_032
@@ -166,8 +166,8 @@ UnknownScript_0x75ae2: ; 0x75ae2
 	iftrue UnknownScript_0x75af7
 	loadfont
 	writetext UnknownText_0x75e0f
+	waitbutton
 	closetext
-	loadmovesprites
 	setevent EVENT_FAST_SHIP_031
 	end
 ; 0x75af7
@@ -175,8 +175,8 @@ UnknownScript_0x75ae2: ; 0x75ae2
 UnknownScript_0x75af7: ; 0x75af7
 	loadfont
 	writetext UnknownText_0x75dde
+	waitbutton
 	closetext
-	loadmovesprites
 	setevent EVENT_FAST_SHIP_031
 	end
 ; 0x75b01

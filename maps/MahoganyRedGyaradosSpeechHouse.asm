@@ -16,15 +16,15 @@ TeacherScript_0x199982: ; 0x199982
 	checkflag ENGINE_BIKE_SHOP_CALL_ENABLED
 	iftrue UnknownScript_0x199990
 	writetext UnknownText_0x199a0e
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 ; 0x199990
 
 UnknownScript_0x199990: ; 0x199990
 	writetext UnknownText_0x199a3d
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 ; 0x199996
 

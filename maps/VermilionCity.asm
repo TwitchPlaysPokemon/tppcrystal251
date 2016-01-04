@@ -33,8 +33,8 @@ VermilionCitySimonScript1:
 	playmusic MUSIC_POKEMANIAC_ENCOUNTER
 	loadfont
 	writetext VermilionCitySimonText1
+	waitbutton
 	closetext
-	loadmovesprites
 	applymovement $8, VermilionCitySimonMovement1
 	winlosstext VermilionCitySimonLossText, $0000
 	loadtrainer BURGLAR, SIMON_4
@@ -44,11 +44,11 @@ VermilionCitySimonScript1:
 	playmusic MUSIC_POKEMANIAC_ENCOUNTER
 	loadfont
 	writetext VermilionCitySimonText2
-	keeptextopen
+	buttonsound
 	verbosegiveitem TM_THIEF, 1
 	writetext VermilionCitySimonText3
+	waitbutton
 	closetext
-	loadmovesprites
 	applymovement $8, VermilionCitySimonMovement2
 	pause 10
 	playsound SFX_RAIN_DANCE
@@ -91,13 +91,13 @@ MachopScript_0x1aa989: ; 0x1aa989
 	loadfont
 	writetext UnknownText_0x1aaaca
 	cry MACHOP
+	waitbutton
 	closetext
-	loadmovesprites
 	earthquake 30
 	loadfont
 	writetext UnknownText_0x1aaae2
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 ; 0x1aa99b
 
@@ -110,8 +110,8 @@ BigSnorlaxScript_0x1aa99e: ; 0x1aa99e
 	special SpecialSnorlaxAwake
 	iftrue UnknownScript_0x1aa9ab
 	writetext UnknownText_0x1aab64
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 ; 0x1aa9ab
 
@@ -119,7 +119,7 @@ UnknownScript_0x1aa9ab: ; 0x1aa9ab
 	writetext UnknownText_0x1aab84
 	pause 15
 	cry SNORLAX
-	loadmovesprites
+	closetext
 	writecode VAR_BATTLETYPE, BATTLETYPE_FORCEITEM
 	loadpokedata SNORLAX, 50
 	startbattle
@@ -143,36 +143,36 @@ PokefanMScript_0x1aa9c2: ; 0x1aa9c2
 	if_greater_than $d, UnknownScript_0x1aa9e4
 	if_greater_than $9, UnknownScript_0x1aa9de
 	writetext UnknownText_0x1aabc8
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 ; 0x1aa9de
 
 UnknownScript_0x1aa9de: ; 0x1aa9de
 	writetext UnknownText_0x1aac2b
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 ; 0x1aa9e4
 
 UnknownScript_0x1aa9e4: ; 0x1aa9e4
 	writetext UnknownText_0x1aac88
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 ; 0x1aa9ea
 
 UnknownScript_0x1aa9ea: ; 0x1aa9ea
 	writetext UnknownText_0x1aacf3
-	keeptextopen
+	buttonsound
 	verbosegiveitem HP_UP, 1
 	iffalse UnknownScript_0x1aa9fb
 	setevent EVENT_GOT_HP_UP_FROM_VERMILION_POKEFAN_M
 UnknownScript_0x1aa9f7: ; 0x1aa9f7
 	writetext UnknownText_0x1aad4a
-	closetext
+	waitbutton
 UnknownScript_0x1aa9fb: ; 0x1aa9fb
-	loadmovesprites
+	closetext
 	end
 ; 0x1aa9fd
 

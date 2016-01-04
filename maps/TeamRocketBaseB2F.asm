@@ -58,8 +58,8 @@ UnknownScript_0x6cfac: ; 0x6cfac
 	appear $2
 	loadfont
 	writetext UnknownText_0x6d2ad
+	waitbutton
 	closetext
-	loadmovesprites
 	spriteface $0, $0
 	showemote $0, $0, 15
 	applymovement $0, MovementData_0x6d21f
@@ -69,8 +69,8 @@ UnknownScript_0x6cfac: ; 0x6cfac
 	applymovement $2, MovementData_0x6d22f
 	loadfont
 	writetext UnknownText_0x6d2c3
+	waitbutton
 	closetext
-	loadmovesprites
 	cry DRAGONITE
 	spriteface $3, $2
 	spriteface $0, $2
@@ -82,14 +82,14 @@ UnknownScript_0x6cfac: ; 0x6cfac
 	applymovement $4, MovementData_0x6d244
 	loadfont
 	writetext UnknownText_0x6d38c
+	waitbutton
 	closetext
-	loadmovesprites
 	spriteface $0, $3
 	applymovement $3, MovementData_0x6d241
 	loadfont
 	writetext UnknownText_0x6d3bd
+	waitbutton
 	closetext
-	loadmovesprites
 	applymovement $2, MovementData_0x6d24a
 	applymovement $3, MovementData_0x6d248
 	winlosstext UnknownText_0x6d45c, $0000
@@ -104,8 +104,8 @@ UnknownScript_0x6cfac: ; 0x6cfac
 	setevent EVENT_BEAT_ROCKET_EXECUTIVEF_570
 	loadfont
 	writetext UnknownText_0x6d4c6
+	waitbutton
 	closetext
-	loadmovesprites
 	special Special_FadeToBlack
 	special Functiond91
 	disappear $2
@@ -120,22 +120,22 @@ UnknownScript_0x6cfac: ; 0x6cfac
 	spriteface $4, $0
 	loadfont
 	writetext UnknownText_0x6d5d8
+	waitbutton
 	closetext
-	loadmovesprites
 	applymovement $4, MovementData_0x6d250
 	spriteface $0, $1
 	loadfont
 	writetext UnknownText_0x6d64e
+	waitbutton
 	closetext
-	loadmovesprites
 	follow $4, $0
 	applymovement $4, MovementData_0x6d254
 	stopfollow
 	applymovement $4, MovementData_0x6d258
 	loadfont
 	writetext UnknownText_0x6d6cf
+	waitbutton
 	closetext
-	loadmovesprites
 	applymovement $4, MovementData_0x6d267
 	disappear $4
 ; 0x6d075
@@ -148,8 +148,8 @@ UnknownScript_0x6d075: ; 0x6d075
 UnknownScript_0x6d07a: ; 0x6d07a
 	loadfont
 	writetext UnknownText_0x6d7ea
+	waitbutton
 	closetext
-	loadmovesprites
 	applymovement $0, MovementData_0x6d278
 	end
 ; 0x6d085
@@ -165,8 +165,8 @@ UnknownScript_0x6d08b: ; 0x6d08b
 UnknownScript_0x6d091: ; 0x6d091
 	loadfont
 	writetext UnknownText_0x6da97
+	waitbutton
 	closetext
-	loadmovesprites
 	special Function8c084
 	special Function1060a2
 	playsound SFX_FULL_HEAL
@@ -174,8 +174,8 @@ UnknownScript_0x6d091: ; 0x6d091
 	special Function8c079
 	loadfont
 	writetext UnknownText_0x6daf7
+	waitbutton
 	closetext
-	loadmovesprites
 	dotrigger $1
 	setevent EVENT_HEALED_BY_LANCE_ROCKET_BASE
 	checkcode VAR_FACING
@@ -215,8 +215,8 @@ GruntM17Script: ; 0x6d0d1
 	talkaftercancel
 	loadfont
 	writetext UnknownText_0x6db88
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 ; 0x6d0d9
 
@@ -244,8 +244,8 @@ GruntM18Script: ; 0x6d0e5
 	talkaftercancel
 	loadfont
 	writetext UnknownText_0x6dc1a
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 ; 0x6d0ed
 
@@ -273,8 +273,8 @@ GruntM19Script: ; 0x6d0f9
 	talkaftercancel
 	loadfont
 	writetext UnknownText_0x6dcd1
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 ; 0x6d101
 
@@ -347,17 +347,17 @@ UnknownScript_0x6d184: ; 0x6d184
 	spriteface $0, $3
 	loadfont
 	writetext UnknownText_0x6d809
-	keeptextopen
+	buttonsound
 	verbosegiveitem HM_WHIRLPOOL, 1
 	setevent EVENT_GOT_HM06_WHIRLPOOL
 	writetext UnknownText_0x6d8f8
+	waitbutton
 	closetext
-	loadmovesprites
 	spriteface $4, $0
 	loadfont
 	writetext UnknownText_0x6d994
+	waitbutton
 	closetext
-	loadmovesprites
 	spriteface $0, $0
 	applymovement $4, MovementData_0x6d283
 	disappear $4
@@ -387,20 +387,20 @@ MapTeamRocketBaseB2FSignpost1Script: ; 0x6d1db
 	checkevent EVENT_LEARNED_HAIL_GIOVANNI
 	iftrue UnknownScript_0x6d1e8
 	writetext UnknownText_0x6dd39
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 ; 0x6d1e8
 
 UnknownScript_0x6d1e8: ; 0x6d1e8
 	writetext UnknownText_0x6dd6b
-	closetext
+	waitbutton
 	playsound SFX_ENTER_DOOR
 	changeblock $e, $c, $7
 	reloadmappart
-	loadmovesprites
+	closetext
 	setevent EVENT_OPENED_DOOR_TO_ROCKET_HIDEOUT_TRANSMITTER
-	waitbutton
+	waitsfx
 	end
 ; 0x6d1fa
 
@@ -409,15 +409,15 @@ MapTeamRocketBaseB2FSignpost21Script: ; 0x6d1fa
 	checkevent EVENT_CLEARED_ROCKET_HIDEOUT
 	iftrue UnknownScript_0x6d207
 	writetext UnknownText_0x6dda7
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 ; 0x6d207
 
 UnknownScript_0x6d207: ; 0x6d207
 	writetext UnknownText_0x6de03
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 ; 0x6d20d
 
