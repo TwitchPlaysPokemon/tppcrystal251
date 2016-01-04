@@ -253,8 +253,8 @@ RedsHouse1FRB_MapEventHeader: ; 0x19b017
 
 	; xy triggers
 	db 2
-	xy_trigger 0, $4, $6, 0, MomsScript_Start1, $0, $0
-	xy_trigger 0, $4, $7, 0, MomsScript_Start2, $0, $0
+	xy_trigger 0, $3, $6, 0, MomsScript_Start1, $0, $0
+	xy_trigger 0, $3, $7, 0, MomsScript_Start2, $0, $0
 
 	; signposts
 	db 3

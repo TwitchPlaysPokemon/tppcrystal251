@@ -30,7 +30,7 @@ ENDM
 	trigger_def ROUTE_27,                               wRoute27Trigger
 	trigger_def NEW_BARK_TOWN,                          wNewBarkTownTrigger
 	trigger_def ELMS_LAB,                               wElmsLabTrigger
-	trigger_def KRISS_HOUSE_1F,                         wKrissHouse1FTrigger
+	trigger_def REDS_HOUSE_1F_RB,                         wKrissHouse1FTrigger
 	trigger_def ROUTE_29,                               wRoute29Trigger
 	trigger_def CHERRYGROVE_CITY,                       wCherrygroveCityTrigger
 	trigger_def MR_POKEMONS_HOUSE,                      wMrPokemonsHouseTrigger

@@ -1,22 +1,10 @@
 KrissHouse1F_MapScriptHeader: ; 0x7a4cc
 	; trigger count
-	db 2
-
-	; triggers
-	dw UnknownScript_0x7a4d6, $0000
-	dw UnknownScript_0x7a4d7, $0000
+	db 0
 
 	; callback count
 	db 0
 ; 0x7a4d6
-
-UnknownScript_0x7a4d6: ; 0x7a4d6
-	end
-; 0x7a4d7
-
-UnknownScript_0x7a4d7: ; 0x7a4d7
-	end
-; 0x7a4d8
 
 MomScript_0x7a582: ; 0x7a582
 	loadfont
