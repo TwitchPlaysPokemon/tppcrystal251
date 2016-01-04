@@ -85,8 +85,8 @@ BluesHouseRB_MapEventHeader: ; 0x19b3a8
 
 	; warps
 	db 2
-	warp_def $7, $2, 2, GROUP_PALLET_TOWN, MAP_PALLET_TOWN
-	warp_def $7, $3, 2, GROUP_PALLET_TOWN, MAP_PALLET_TOWN
+	warp_def $7, $2, 2, GROUP_PALLET_TOWN_RB, MAP_PALLET_TOWN_RB
+	warp_def $7, $3, 2, GROUP_PALLET_TOWN_RB, MAP_PALLET_TOWN_RB
 
 	; xy triggers
 	db 0
