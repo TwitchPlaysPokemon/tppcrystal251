@@ -140,6 +140,15 @@ NewGame: ; 5b6b
 	ld [wd001], a
 	ld a, $f1
 	ld [$ff9f], a
+	ld hl, PCItems
+	ld a, 1
+	ld [hli], a
+	ld a, POTION
+	ld [hli], a
+	ld a, 1
+	ld [hli], a
+	ld a, -1
+	ld [hl], a
 	jp Function5e5d
 
 ; 5b8f
@@ -19696,6 +19705,11 @@ Function156d9: ; 156d9
 	ld hl, UnknownText_0x156ff
 	call Function15a20
 	ld b, $1
+	ld a, [StatusFlags]
+	bit 5, a
+	jr nz, .okay
+	dec b
+.okay
 	call Function15704
 	and a
 	jr nz, .asm_156f9

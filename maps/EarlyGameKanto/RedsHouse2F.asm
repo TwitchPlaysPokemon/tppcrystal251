@@ -28,6 +28,12 @@ MapRedsHouse2FRBBedScript:
 	jumptext RedsHouse2FRBComfyBedText
 	end
 
+MapRedsHouse2FRBPCScript:
+	loadfont
+	special Functionc2e7
+	closetext
+	end
+
 RedsHouse2FRB_N64Text: ; 0x19b050
 	text "<PLAYER> played the"
 	line "N64."
@@ -54,10 +60,11 @@ RedsHouse2FRB_MapEventHeader: ; 0x19b0b9
 	db 0
 
 	; signposts
-	db 3
+	db 4
 	signpost 5, 3, $0, MapRedsHouse2FRBSignpost0Script
 	signpost 6, 0, $0, MapRedsHouse2FRBBedScript
 	signpost 7, 0, $0, MapRedsHouse2FRBBedScript
+	signpost 1, 0, $1, MapRedsHouse2FRBPCScript
 
 	; people-events
 	db 0
