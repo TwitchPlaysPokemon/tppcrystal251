@@ -407,8 +407,7 @@ FuchsiaGymGuyText: ; 0x196299
 
 FuchsiaGymGuyWinText: ; 0x196325
 	text "That was a great"
-	line "battle, trainer"
-	cont "from JOHTO!"
+	line "battle, trainer!"
 	done
 ; 0x196353
 

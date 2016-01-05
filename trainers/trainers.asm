@@ -1921,37 +1921,37 @@ LtSurgeGroup:
 
 	; party
 
-	db 77, RAICHU
+	db 75, RAICHU
 		db THUNDER_WAVE
 		db QUICK_ATTACK
 		db THUNDERBOLT
 		db THUNDER
 
-	db 74, ELECTRODE
+	db 73, ELECTRODE
 		db SCREECH
 		db DOUBLE_TEAM
 		db SWIFT
 		db EXPLOSION
 
-	db 76, MAGNETON
+	db 74, MAGNETON
 		db MIND_READER
 		db DOUBLE_TEAM
 		db SWIFT
 		db ZAP_CANNON
 
-	db 74, ELECTRODE
+	db 73, ELECTRODE
 		db SCREECH
 		db DOUBLE_TEAM
 		db SWIFT
 		db EXPLOSION
 
-	db 80, ELECTABUZZ
+	db 77, ELECTABUZZ
 		db QUICK_ATTACK
 		db THUNDERPUNCH
 		db LIGHT_SCREEN
 		db THUNDER
 
-	db 78, JOLTEON
+	db 76, JOLTEON
 		db SAND_ATTACK
 		db THUNDERBOLT
 		db BITE
@@ -2076,31 +2076,31 @@ ErikaGroup:
 
 	; party
 
-	db 62, TANGELA
+	db 79, TANGELA
 		db VINE_WHIP
 		db WRAP
 		db GIGA_DRAIN
 		db SLEEP_POWDER
 
-	db 61, JUMPLUFF
+	db 80, JUMPLUFF
 		db MEGA_DRAIN
 		db LEECH_SEED
 		db COTTON_SPORE
 		db GIGA_DRAIN
 
-	db 66, VICTREEBEL
+	db 81, VICTREEBEL
 		db SUNNY_DAY
 		db SYNTHESIS
 		db ACID
 		db RAZOR_LEAF
 
-	db 66, BELLOSSOM
+	db 82, BELLOSSOM
 		db SUNNY_DAY
 		db SYNTHESIS
 		db PETAL_DANCE
 		db SOLARBEAM
 
-	db 66, VILEPLUME
+	db 83, VILEPLUME
 		db PETAL_DANCE
 		db ACID
 		db SLUDGE
@@ -2247,7 +2247,7 @@ YoungsterGroup:
 	db 0 ; normal
 
 	; party
-	db 35, GROWLITHE
+	db 81, IVYSAUR
 
 	db $ff ; end
 
@@ -2258,8 +2258,9 @@ YoungsterGroup:
 	db 0 ; normal
 
 	; party
-	db 33, SANDSLASH
-	db 33, CROBAT
+	db 79, RHYHORN
+	db 80, TANGELA
+	db 81, LICKITUNG
 
 	db $ff ; end
 
@@ -2325,10 +2326,8 @@ SchoolboyGroup:
 	db 0 ; normal
 
 	; party
-	db 27, VOLTORB
-	db 27, MAGNEMITE
-	db 31, VOLTORB
-	db 31, MAGNETON
+	db 76, GROWLITHE
+	db 76, KADABRA
 
 	db $ff ; end
 
@@ -2350,9 +2349,8 @@ SchoolboyGroup:
 	db 0 ; normal
 
 	; party
-	db 29, BELLSPROUT
-	db 31, WEEPINBELL
-	db 33, VICTREEBEL
+	db 76, YANMA
+	db 77, PARASECT
 
 	db $ff ; end
 
@@ -2376,8 +2374,8 @@ SchoolboyGroup:
 	db 0 ; normal
 
 	; party
-	db 32, XATU
-	db 34, ALAKAZAM
+	db 80, DITTO
+	db 77, ALAKAZAM
 
 	db $ff ; end
 
@@ -2411,10 +2409,9 @@ SchoolboyGroup:
 	db 0 ; normal
 
 	; party
-	db 27, PARAS
-	db 27, PARAS
-	db 27, POLIWHIRL
-	db 35, DITTO
+	db 75, MACHOP
+	db 76, HITMONTOP
+	db 77, MACHOKE
 
 	db $ff ; end
 
@@ -2756,11 +2753,26 @@ BirdKeeperGroup:
 
 	; BIRD_KEEPER (9)
 	db "ROY@"
-	db 0 ; normal
+	db (1 << TRAINERTYPE_MOVES)
 
 	; party
-	db 29, FEAROW
-	db 35, FEAROW
+	db 77, MURKROW
+		db FLY
+		db PURSUIT
+		db PERISH_SONG
+		db PROTECT
+
+	db 78, XATU
+		db PSYCHIC_M
+		db DRILL_PECK
+		db SOLARBEAM
+		db ATTRACT
+
+	db 79, FEAROW
+		db FLY
+		db TOXIC
+		db REST
+		db SLEEP_TALK
 
 	db $ff ; end
 
@@ -2771,9 +2783,8 @@ BirdKeeperGroup:
 	db 0 ; normal
 
 	; party
-	db 30, DODUO
-	db 28, DODUO
-	db 32, DODRIO
+	db 74, DODUO
+	db 75, DODRIO
 
 	db $ff ; end
 
@@ -2784,7 +2795,8 @@ BirdKeeperGroup:
 	db 0 ; normal
 
 	; party
-	db 34, NOCTOWL
+	db 74, SPEAROW
+	db 75, FEAROW
 
 	db $ff ; end
 
@@ -2832,7 +2844,7 @@ BirdKeeperGroup:
 	db 0 ; normal
 
 	; party
-	db 34, FARFETCH_D
+	db 79, FARFETCH_D
 
 	db $ff ; end
 
@@ -2843,8 +2855,8 @@ BirdKeeperGroup:
 	db 0 ; normal
 
 	; party
-	db 32, PIDGEOTTO
-	db 32, FEAROW
+	db 78, SCYTHER
+	db 79, VENOMOTH
 
 	db $ff ; end
 
@@ -2932,9 +2944,9 @@ LassGroup:
 	db 0 ; normal
 
 	; party
-	db 30, GLOOM
-	db 34, ARBOK
-	db 30, GLOOM
+	db 82, GLOOM
+	db 82, VENONAT
+	db 82, HAUNTER
 
 	db $ff ; end
 
@@ -2968,9 +2980,9 @@ LassGroup:
 	db 0 ; normal
 
 	; party
-	db 30, BULBASAUR
-	db 32, IVYSAUR
-	db 34, VENUSAUR
+	db 80, BULBASAUR
+	db 81, IVYSAUR
+	db 82, VENUSAUR
 
 	db $ff ; end
 
@@ -3007,10 +3019,10 @@ LassGroup:
 	db 0 ; normal
 
 	; party
-	db 32, SKIPLOOM
-	db 33, HOPPIP
-	db 34, JUMPLUFF
-
+	db 76, SKIPLOOM
+	db 77, WEEPINBELL
+	db 78, BAYLEEF
+	
 	db $ff ; end
 
 ; ================
@@ -3249,41 +3261,41 @@ JanineGroup:
 
 	; party
 
-	db 66, CROBAT
+	db 83, CROBAT
 		db SCREECH
 		db SUPERSONIC
 		db CONFUSE_RAY
 		db WING_ATTACK
 
-	db 66, WEEZING
+	db 84, WEEZING
 		db FIRE_BLAST
 		db SLUDGE_BOMB
 		db TOXIC
 		db EXPLOSION
 
-	db 66, MUK
+	db 84, ARBOK
+		db GLARE
+		db TOXIC
+		db CRUNCH
+		db WRAP
+		
+	db 85, MUK
 		db SLUDGE
 		db MINIMIZE
 		db TOXIC
 		db ACID_ARMOR
 
-	db 63, ARIADOS
+	db 82, ARIADOS
 		db SCARY_FACE
 		db GIGA_DRAIN
 		db STRING_SHOT
 		db NIGHT_SHADE
 
-	db 69, VENOMOTH
+	db 86, VENOMOTH
 		db FORESIGHT
 		db DOUBLE_TEAM
 		db GUST
 		db PSYCHIC_M
-
-	db 68, ARBOK
-		db GLARE
-		db TOXIC
-		db CRUNCH
-		db WRAP
 
 	db $ff ; end
 
@@ -4024,9 +4036,9 @@ BeautyGroup:
 	db 0 ; normal
 
 	; party
-	db 32, PARAS
-	db 32, EXEGGCUTE
-	db 35, PARASECT
+	db 76, PARAS
+	db 77, SUNKERN
+	db 78, PARASECT
 
 	db $ff ; end
 
@@ -4651,7 +4663,10 @@ GruntMGroup:
 	db 0 ; normal
 
 	; party
-	db 30, GOLBAT
+	db 82, MISDREAVUS
+	db 83, PORYGON2
+	db 84, SKARMORY
+	db 85, CROBAT
 
 	db $ff ; end
 
@@ -4690,7 +4705,7 @@ GentlemanGroup:
 	db (1 << TRAINERTYPE_ITEM)
 
 	; party
-	db 73, AMPHAROS, KINGS_ROCK
+	db 72, AMPHAROS, KINGS_ROCK
 
 	db $ff ; end
 
@@ -4761,7 +4776,7 @@ TeacherGroup:
 	db 0 ; normal
 
 	; party
-	db 36, CLEFAIRY
+	db 77, JYNX
 
 	db $ff ; end
 
@@ -4772,8 +4787,7 @@ TeacherGroup:
 	db 0 ; normal
 
 	; party
-	db 32, AIPOM
-	db 36, CUBONE
+	db 77, MACHAMP
 
 	db $ff ; end
 
@@ -4802,37 +4816,37 @@ SabrinaGroup:
 
 	; party
 
-	db 66, ESPEON
+	db 76, ESPEON
 		db SAND_ATTACK
 		db QUICK_ATTACK
 		db SWIFT
 		db PSYCHIC_M
 
-	db 66, MR__MIME
+	db 76, MR__MIME
 		db BARRIER
 		db REFLECT
 		db BATON_PASS
 		db PSYCHIC_M
 
-	db 68, ALAKAZAM
+	db 79, ALAKAZAM
 		db RECOVER
 		db FUTURE_SIGHT
 		db PSYCHIC_M
 		db REFLECT
 
-	db 67, JYNX
+	db 77, JYNX
 		db PSYCHIC_M
 		db ICE_BEAM
 		db LIGHT_SCREEN
 		db SING
 
-	db 67, XATU
+	db 78, XATU
 		db FUTURE_SIGHT
 		db WING_ATTACK
 		db PSYCHIC_M
 		db RECOVER
 
-	db 68, EXEGGUTOR
+	db 80, EXEGGUTOR
 		db SEED_BOMB
 		db PSYCHIC_M
 		db LEECH_SEED
@@ -5156,9 +5170,9 @@ FisherGroup:
 	db 0 ; normal
 
 	; party
-	db 28, SEAKING
-	db 31, POLIWHIRL
-	db 31, SEAKING
+	db 78, HORSEA
+	db 79, KRABBY
+	db 80, SEADRA
 
 	db $ff ; end
 
@@ -5271,8 +5285,7 @@ FisherGroup:
 	db 0 ; normal
 
 	; party
-	db 32, REMORAID
-	db 32, REMORAID
+	db 80, KINGLER
 
 	db $ff ; end
 
@@ -5283,10 +5296,8 @@ FisherGroup:
 	db 0 ; normal
 
 	; party
-	db 25, MAGIKARP
-	db 25, MAGIKARP
-	db 31, QWILFISH
-	db 31, TENTACRUEL
+	db 79, GASTLY
+	db 80, HAUNTER
 
 	db $ff ; end
 
@@ -5297,9 +5308,9 @@ FisherGroup:
 	db 0 ; normal
 
 	; party
-	db 30, GYARADOS
-	db 30, GYARADOS
-	db 30, GYARADOS
+	db 60, GYARADOS
+	db 70, GYARADOS
+	db 80, GYARADOS
 
 	db $ff ; end
 
@@ -6641,9 +6652,9 @@ GuitaristGroup:
 	db (1 << TRAINERTYPE_ITEM)
 
 	; party
-	db 71, MAGNEMITE, BRIGHTPOWDER
-	db 72, PIKACHU, LIGHT_BALL
-	db 73, FLAAFFY, KINGS_ROCK
+	db 70, MAGNEMITE, BRIGHTPOWDER
+	db 71, PIKACHU, LIGHT_BALL
+	db 72, FLAAFFY, KINGS_ROCK
 
 	db $ff ; end
 
@@ -6810,12 +6821,11 @@ HikerGroup:
 
 	; HIKER (13)
 	db "TIM@"
-	db 0 ; normal
+	db (1 << TRAINERTYPE_ITEM)
 
 	; party
-	db 31, GRAVELER
-	db 31, GRAVELER
-	db 31, GRAVELER
+	db 82, SANDSHREW, QUICK_CLAW
+	db 83, MAROWAK, THICK_CLUB
 
 	db $ff ; end
 
@@ -6838,8 +6848,8 @@ HikerGroup:
 	db 0 ; normal
 
 	; party
-	db 34, DUGTRIO
-	db 32, ONIX
+	db 82, DIGLETT
+	db 83, RHYDON
 
 	db $ff ; end
 
@@ -6850,10 +6860,8 @@ HikerGroup:
 	db 0 ; normal
 
 	; party
-	db 27, SANDSLASH
-	db 29, GRAVELER
-	db 31, GOLEM
-	db 29, GRAVELER
+	db 78, MUK
+	db 79, SANDSLASH
 
 	db $ff ; end
 
@@ -6864,7 +6872,8 @@ HikerGroup:
 	db 0 ; normal
 
 	; party
-	db 35, MACHAMP
+	db 81, ONIX
+	db 82, GOLBAT
 
 	db $ff ; end
 
@@ -6998,7 +7007,7 @@ BikerGroup:
 	db 0 ; normal
 
 	; party
-	db 76, OMANYTE
+	db 75, OMANYTE
 
 	db $ff ; end
 
@@ -7009,9 +7018,8 @@ BikerGroup:
 	db 0 ; normal
 
 	; party
-	db 30, KOFFING
-	db 30, CHARMELEON
-	db 30, WEEZING
+	db 74, MAGMAR
+	db 74, SNORLAX
 
 	db $ff ; end
 
@@ -7022,7 +7030,7 @@ BikerGroup:
 	db 0 ; normal
 
 	; party
-	db 34, WEEZING
+	db 75, BEEDRILL
 
 	db $ff ; end
 
@@ -7033,8 +7041,8 @@ BikerGroup:
 	db 0 ; normal
 
 	; party
-	db 32, MAGMAR
-	db 32, MAGMAR
+	db 74, SNUBBULL
+	db 75, TAUROS
 
 	db $ff ; end
 
@@ -7045,9 +7053,8 @@ BikerGroup:
 	db 0 ; normal
 
 	; party
-	db 28, KOFFING
-	db 30, MAGMAR
-	db 32, WEEZING
+	db 74, EKANS
+	db 75, RATICATE
 
 	db $ff ; end
 
@@ -7194,11 +7201,11 @@ BurglarGroup:
 	db 0 ; normal
 
 	; party
-	db 71, HOUNDOOM
-	db 72, WEEZING
-	db 73, MUK
-	db 74, ARCANINE
-	db 75, NINETALES
+	db 70, HOUNDOOM
+	db 71, WEEZING
+	db 72, MUK
+	db 73, ARCANINE
+	db 74, NINETALES
 
 	db $ff ; end
 
@@ -7209,11 +7216,11 @@ BurglarGroup:
 	db 0 ; normal
 
 	; party
-	db 80, HOUNDOOM
-	db 81, WEEZING
-	db 81, MUK
-	db 81, ARCANINE
-	db 83, NINETALES
+	db 81, HOUNDOOM
+	db 82, WEEZING
+	db 83, MUK
+	db 84, ARCANINE
+	db 85, NINETALES
 
 	db $ff ; end
 
@@ -7382,9 +7389,9 @@ JugglerGroup:
 	db (1 << TRAINERTYPE_ITEM)
 
 	; party
-	db 73, VOLTORB, FOCUS_BAND
-	db 73, VOLTORB, FOCUS_BAND
-	db 73, VOLTORB, FOCUS_BAND
+	db 72, VOLTORB, FOCUS_BAND
+	db 72, VOLTORB, FOCUS_BAND
+	db 72, VOLTORB, FOCUS_BAND
 
 	db $ff ; end
 
@@ -7644,7 +7651,10 @@ PsychicGroup:
 	db 0 ; normal
 
 	; party
-	db 37, KADABRA
+	db 73, EXEGGUTOR
+	db 73, WOBBUFFET
+	db 74, KADABRA
+	db 75, GIRAFARIG
 
 	db $ff ; end
 
@@ -7655,9 +7665,7 @@ PsychicGroup:
 	db 0 ; normal
 
 	; party
-	db 30, EXEGGCUTE
-	db 30, EXEGGCUTE
-	db 30, EXEGGUTOR
+	db 81, HYPNO
 
 	db $ff ; end
 
@@ -7668,7 +7676,8 @@ PsychicGroup:
 	db 0 ; normal
 
 	; party
-	db 34, XATU
+	db 80, DROWZEE
+	db 81, XATU
 
 	db $ff ; end
 
@@ -7755,9 +7764,12 @@ PsychicGroup:
 	db 0 ; normal
 
 	; party
-	db 32, MR__MIME
-	db 32, EXEGGCUTE
-	db 35, EXEGGCUTE
+	db 74, UNOWN
+	db 74, UNOWN
+	db 74, UNOWN
+	db 74, UNOWN
+	db 74, UNOWN
+	db 74, UNOWN
 
 	db $ff ; end
 
@@ -7835,7 +7847,7 @@ PicnickerGroup:
 	db 0 ; normal
 
 	; party
-	db 36, NIDOQUEEN
+	db 82, NIDOQUEEN
 
 	db $ff ; end
 
@@ -7929,11 +7941,12 @@ PicnickerGroup:
 
 	; PICNICKER (13)
 	db "HEIDI@"
-	db 0 ; normal
+	db (1 << TRAINERTYPE_ITEM)
 
 	; party
-	db 32, SKIPLOOM
-	db 32, SKIPLOOM
+	db 81, MAGNEMITE, LEFTOVERS
+	db 82, PIKACHU, LIGHT_BALL
+	db 83, JOLTEON, BRIGHTPOWDER
 
 	db $ff ; end
 
@@ -7944,8 +7957,8 @@ PicnickerGroup:
 	db 0 ; normal
 
 	; party
-	db 30, NIDORINA
-	db 34, RAICHU
+	db 82, PORYGON
+	db 83, KOFFING
 
 	db $ff ; end
 
@@ -8006,7 +8019,7 @@ PicnickerGroup:
 	db 0 ; normal
 
 	; party
-	db 37, EXEGGUTOR
+	db 78, EXEGGUTOR
 
 	db $ff ; end
 
@@ -8166,7 +8179,7 @@ CamperGroup:
 	db 0 ; normal
 
 	; party
-	db 36, NIDOKING
+	db 82, NIDOKING
 
 	db $ff ; end
 
@@ -8188,8 +8201,8 @@ CamperGroup:
 	db 0 ; normal
 
 	; party
-	db 33, GOLDUCK
-	db 31, SANDSLASH
+	db 82, MEOWTH
+	db 83, RAICHU
 
 	db $ff ; end
 
@@ -8200,9 +8213,9 @@ CamperGroup:
 	db 0 ; normal
 
 	; party
-	db 32, DUGTRIO
-	db 29, PRIMEAPE
-	db 29, POLIWRATH
+	db 82, NIDORINA
+	db 82, NIDORINO
+	db 83, DUGTRIO
 
 	db $ff ; end
 
@@ -8671,8 +8684,8 @@ MediumGroup:
 	db 0 ; normal
 
 	; party
-	db 35, DROWZEE
-	db 35, HYPNO
+	db 73, DROWZEE
+	db 75, HYPNO
 
 	db $ff ; end
 
@@ -8683,8 +8696,9 @@ MediumGroup:
 	db 0 ; normal
 
 	; party
-	db 34, SLOWPOKE
-	db 36, SLOWBRO
+	db 73, SLOWPOKE
+	db 74, SLOWBRO
+	db 75, SLOWKING
 
 	db $ff ; end
 
@@ -8768,7 +8782,7 @@ PokefanMGroup:
 	db (1 << TRAINERTYPE_ITEM)
 
 	; party
-	db 33, QUAGSIRE, BERRY
+	db 82, CUBONE, THICK_CLUB
 
 	db $ff ; end
 
@@ -8776,15 +8790,32 @@ PokefanMGroup:
 
 	; POKEFANM (4)
 	db "JOSHUA@"
-	db (1 << TRAINERTYPE_ITEM)
+	db (1 << TRAINERTYPE_MOVES)
 
 	; party
-	db 23, PIKACHU, BERRY
-	db 23, PIKACHU, BERRY
-	db 23, PIKACHU, BERRY
-	db 23, PIKACHU, BERRY
-	db 23, PIKACHU, BERRY
-	db 23, PIKACHU, BERRY
+	db 79, TENTACRUEL
+		db WATERFALL
+		db SURF
+		db HIDDEN_POWER
+		db 0
+
+	db 78, GRAVELER
+		db STRENGTH
+		db DOUBLE_EDGE
+		db ROCK_THROW
+		db 0
+
+	db 77, VILEPLUME
+		db PETAL_DANCE
+		db SLUDGE_BOMB
+		db SLEEP_POWDER
+		db GIGA_DRAIN
+
+	db 80, AZUMARILL
+		db ROLLOUT
+		db STRENGTH
+		db SURF
+		db ROCK_SMASH
 
 	db $ff ; end
 
@@ -8792,12 +8823,12 @@ PokefanMGroup:
 
 	; POKEFANM (5)
 	db "CARTER@"
-	db (1 << TRAINERTYPE_ITEM)
+	db 0 ; normal
 
 	; party
-	db 29, BULBASAUR, BERRY
-	db 29, CHARMANDER, BERRY
-	db 29, SQUIRTLE, BERRY
+	db 78, PSYDUCK
+	db 78, PIDGEOTTO
+	db 78, PERSIAN
 
 	db $ff ; end
 
@@ -8808,7 +8839,7 @@ PokefanMGroup:
 	db (1 << TRAINERTYPE_ITEM)
 
 	; party
-	db 33, PSYDUCK, BERRY
+	db 78, BUTTERFREE, LEFTOVERS
 
 	db $ff ; end
 
@@ -8881,9 +8912,7 @@ PokefanMGroup:
 	db (1 << TRAINERTYPE_ITEM)
 
 	; party
-	db 29, NIDOKING, BERRY
-	db 29, SLOWKING, BERRY
-	db 29, SEAKING, BERRY
+	db 100, MAGIKARP, FOCUS_BAND
 
 	db $ff ; end
 
@@ -9044,8 +9073,8 @@ TwinsGroup:
 	db 0 ; normal
 
 	; party
-	db 35, VICTREEBEL
-	db 35, VILEPLUME
+	db 77, MEGANIUM
+	db 77, SUNFLORA
 
 	db $ff ; end
 
@@ -9056,8 +9085,8 @@ TwinsGroup:
 	db 0 ; normal
 
 	; party
-	db 35, VILEPLUME
-	db 35, VICTREEBEL
+	db 77, SUNFLORA
+	db 77, MEGANIUM
 
 	db $ff ; end
 

@@ -215,11 +215,11 @@ UnknownText_0x1aafd9: ; 0x1aafd9
 ; 0x1ab03f
 
 PicnickerHeidiSeenText: ; 0x1ab03f
-	text "Have you ever been"
-	line "to a picnic?"
+	text "I had a picnic in"
+	line "the POWER PLANT!"
 
-	para "They're so much"
-	line "fun!"
+	para "It was electri-"
+	line "-fying! Heh."
 	done
 ; 0x1ab074
 
@@ -229,11 +229,12 @@ PicnickerHeidiBeatenText: ; 0x1ab074
 ; 0x1ab07c
 
 UnknownText_0x1ab07c: ; 0x1ab07c
-	text "We bake lots of"
-	line "goodies and share"
+	text "The POWER PLANT"
+	line "is pretty big."
 
-	para "them all around."
-	line "They're delicious!"
+	para "Apparently a very"
+	line "rare #MON is"
+	cont "sometimes sighted."
 	done
 ; 0x1ab0c2
 
@@ -264,7 +265,11 @@ PicnickerEdnaSeenText: ; 0x1ab127
 ; 0x1ab151
 
 PicnickerEdnaBeatenText: ; 0x1ab151
-	text "Ohh… I lost…"
+	text "KOFFING helps with"
+	line "keeping it clean."
+	
+	para "It sucks all"
+	line "the litter up!"
 	done
 ; 0x1ab15f
 

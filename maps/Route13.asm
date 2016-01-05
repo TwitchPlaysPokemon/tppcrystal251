@@ -176,8 +176,11 @@ PokefanmAlexSeenText: ; 0x1a24a2
 ; 0x1a24c2
 
 PokefanmAlexBeatenText: ; 0x1a24c2
-	text "How… How dare you"
-	line "mock royalty!"
+	text "DAD: How… How dare"
+	line "you mock royalty!"
+	
+	para "SON: Dad, please!"
+	line "Stop..."
 	done
 ; 0x1a24e3
 
@@ -189,36 +192,38 @@ UnknownText_0x1a24e3: ; 0x1a24e3
 ; 0x1a250f
 
 PokefanmJoshuaSeenText: ; 0x1a250f
-	text "Nihihi! Would you"
-	line "like to battle my"
-	cont "PIKACHU gang?"
+	text "Me and my son"
+	line "recently moved"
+	cont "here from a far"
+	cont "away region."
 	done
 ; 0x1a2542
 
 PokefanmJoshuaBeatenText: ; 0x1a2542
-	text "PI-PIKACHU!"
+	text "DAD: Five feet"
+	line "under..."
+	
+	para "SON: Good job..."
 	done
 ; 0x1a254f
 
 UnknownText_0x1a254f: ; 0x1a254f
-	text "You look like you"
-	line "have many #MON,"
-
-	para "but PIKACHU is"
-	line "still the best."
+	text "We're buying some"
+	line "cabbage on the"
+	cont "way home."
 	done
 ; 0x1a2591
 
 Bird_keeperPerrySeenText: ; 0x1a2591
-	text "Agility is the key"
+	text "Agility is a key"
 	line "attribute of bird"
 	cont "#MON."
 	done
 ; 0x1a25bd
 
 Bird_keeperPerryBeatenText: ; 0x1a25bd
-	text "You beat me with"
-	line "your speed…"
+	text "FARFETCH'd isn't"
+	line "fast though..."
 	done
 ; 0x1a25db
 
@@ -232,21 +237,20 @@ UnknownText_0x1a25db: ; 0x1a25db
 Bird_keeperBretSeenText: ; 0x1a2604
 	text "Check out my #-"
 	line "MON. Just look at"
-
-	para "their coloring and"
-	line "their plumage."
+	cont "its coloring!"
 	done
 ; 0x1a2649
 
 Bird_keeperBretBeatenText: ; 0x1a2649
-	text "Shoot!"
-	line "Not good enough!"
+	text "My bugs, no!"
 	done
 ; 0x1a2662
 
 UnknownText_0x1a2662: ; 0x1a2662
-	text "If you groom them,"
-	line "#MON get happy."
+	text "Bugs aren't birds."
+
+	para "Tons more fun"
+	cont "to groom though!"
 	done
 ; 0x1a2686
 

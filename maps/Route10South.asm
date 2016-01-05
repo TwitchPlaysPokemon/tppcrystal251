@@ -86,25 +86,26 @@ UnknownText_0x1ae43b: ; 0x1ae43b
 ; 0x1ae468
 
 PokefanmRobertSeenText: ; 0x1ae468
-	text "You like #MON,"
-	line "don't you?"
-
-	para "Me too!"
+	text "I picked this"
+	line "#MON up when"
+	cont "the #MON"
+	cont "TOWER closed."
 	done
 ; 0x1ae48a
 
 PokefanmRobertBeatenText: ; 0x1ae48a
-	text "I'd have to say"
-	line "that's my loss."
+	text "SON: Dad, why is"
+	line "Cubone so sad?"
 	done
 ; 0x1ae4a9
 
 UnknownText_0x1ae4a9: ; 0x1ae4a9
-	text "Look what you did"
-	line "to my #MON…"
+	text "This CUBONE has"
+	line "had it rough."
 
-	para "I won't forget"
-	line "this…"
+	para "We are giving it"
+	line "as much love"
+	cont "as we can."
 	done
 ; 0x1ae4dc
 

@@ -83,16 +83,21 @@ Bird_keeperBorisBeatenText: ; 0x1acf9c
 ; 0x1acfa5
 
 UnknownText_0x1acfa5: ; 0x1acfa5
-	text "Since you're so"
-	line "strong, it must be"
-	cont "fun to battle."
+	text "We had a zoo in"
+	line "FUSCHIA before."
+
+	para "Some of its famous"
+	line "#MON can be"
+	cont "found wild here."
 	done
 ; 0x1acfd7
 
 Bird_keeperBobSeenText: ; 0x1acfd7
-	text "CYCLING ROAD is a"
-	line "quick shortcut to"
-	cont "CELADON."
+	text "If I was a bird..."
+
+	para "I would fly around"
+	line "all the happy"
+	cont "clouds and trees!"
 	done
 ; 0x1ad005
 
@@ -102,11 +107,10 @@ Bird_keeperBobBeatenText: ; 0x1ad005
 ; 0x1ad00d
 
 UnknownText_0x1ad00d: ; 0x1ad00d
-	text "If you don't have"
-	line "a BICYCLE, you're"
-
-	para "not allowed to use"
-	line "the shortcut."
+	text "You can do any-"
+	line "thing you want"
+	cont "to do. This is"
+	cont "your world."
 	done
 ; 0x1ad051
 

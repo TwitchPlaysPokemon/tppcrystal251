@@ -163,25 +163,26 @@ UnknownText_0x1a704c: ; 0x1a704c
 ; 0x1a706b
 
 FisherStephenSeenText: ; 0x1a706b
-	text "I feel so content,"
-	line "fishing while lis-"
-	cont "tening to some"
-	cont "tunes on my radio."
+	text "Since #MON"
+	line "TOWER closed,"
+
+	para "ghosts are"
+	cont "common at night."
 	done
 ; 0x1a70b4
 
 FisherStephenBeatenText: ; 0x1a70b4
-	text "My stupid radio"
-	line "distracted me!"
+	text "It scares"
+	line "away the fishes!"
 	done
 ; 0x1a70d4
 
 UnknownText_0x1a70d4: ; 0x1a70d4
-	text "Have you checked"
-	line "out KANTO's radio"
+	text "#MON TOWER"
+	line "is no more."
 
-	para "programs? We get a"
-	line "good variety here."
+	para "But I heard ghosts"
+	line "are still around."
 	done
 ; 0x1a711d
 
