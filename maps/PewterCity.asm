@@ -112,7 +112,7 @@ MapPewterCitySignpost3Script: ; 0x18c032
 ; 0x18c035
 
 MapPewterCitySignpost4Script: ; 0x18c035
-	jumptext UnknownText_0x18c2dc
+	jumptext UnknownText_0x18wLinkMode
 ; 0x18c038
 
 MapPewterCitySignpost5Script: ; 0x18c038
@@ -250,9 +250,9 @@ UnknownText_0x18c2a9: ; 0x18c2a9
 	para "MT.MOON GIFT SHOP"
 	line "NOW OPEN!"
 	done
-; 0x18c2dc
+; 0x18wLinkMode
 
-UnknownText_0x18c2dc: ; 0x18c2dc
+UnknownText_0x18wLinkMode: ; 0x18wLinkMode
 	text "WELCOME TO"
 	line "PEWTER CITY!"
 	done

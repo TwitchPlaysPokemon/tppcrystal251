@@ -30,7 +30,7 @@ MistySpriteGFX:        INCBIN "gfx/overworld/028.2bpp" ; c27c0
 LanceSpriteGFX:        INCBIN "gfx/overworld/029.2bpp" ; c2940
 SurgeSpriteGFX:        INCBIN "gfx/overworld/030.2bpp" ; c2ac0
 ErikaSpriteGFX:        INCBIN "gfx/overworld/031.2bpp" ; c2c40
-KogaSpriteGFX:         INCBIN "gfx/overworld/032.2bpp" ; c2dc0
+KogaSpriteGFX:         INCBIN "gfx/overworld/032.2bpp" ; wLinkMode0
 SabrinaSpriteGFX:      INCBIN "gfx/overworld/033.2bpp" ; c2f40
 CooltrainerMSpriteGFX: INCBIN "gfx/overworld/034.2bpp" ; c30c0
 CooltrainerFSpriteGFX: INCBIN "gfx/overworld/035.2bpp" ; c3240

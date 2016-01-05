@@ -698,6 +698,10 @@ curl: macro
 	db $af
 	endm
 
+burn: macro
+	db $b0
+	endm
+
 endturn: macro
 	db $fe
 	endm

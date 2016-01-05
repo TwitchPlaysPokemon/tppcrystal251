@@ -291,7 +291,7 @@ CELL_PHONE_TOP    EQU $5e
 CELL_PHONE_BOTTOM EQU $5f
 
 	; For mobile link battles only.
-	ld a, [InLinkBattle]
+	ld a, [wLinkMode]
 	cp 4
 	ret c
 

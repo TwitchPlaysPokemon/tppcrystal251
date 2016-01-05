@@ -517,7 +517,7 @@ Function5e5d: ; 5e5d
 .asm_5e5d
 	xor a
 	ld [wc2c1], a
-	ld [InLinkBattle], a
+	ld [wLinkMode], a
 	ld hl, GameTimerPause
 	set 0, [hl]
 	res 7, [hl]
@@ -9353,7 +9353,7 @@ Functione039: ; e039
 	ld a, [wd10b]
 	and a
 	jp nz, CloseSRAM
-	ld a, [InLinkBattle]
+	ld a, [wLinkMode]
 	and a
 	ret nz
 	ld a, $0
@@ -13359,7 +13359,7 @@ StartMenu:: ; 125cd
 	ld a, 1 ; pokemon
 	call .AppendMenuList
 .no_pokemon
-	ld a, [InLinkBattle]
+	ld a, [wLinkMode]
 	and a
 	jr nz, .no_pack
 	ld hl, StatusFlags2
@@ -13376,7 +13376,7 @@ StartMenu:: ; 125cd
 .no_pokegear
 	ld a, 3 ; status
 	call .AppendMenuList
-	ld a, [InLinkBattle]
+	ld a, [wLinkMode]
 	and a
 	jr nz, .no_save
 	ld hl, StatusFlags2
@@ -14127,7 +14127,7 @@ Function12cfe: ; 12cfe (4:6cfe)
 	ret
 
 Function12d45: ; 12d45
-	ld a, [InLinkBattle]
+	ld a, [wLinkMode]
 	cp $1
 	jr z, .asm_12d6d
 	cp $2
@@ -26683,7 +26683,7 @@ Function24dd4: ; 24dd4 ;populate buffer 2 with curpartymon's menu options
 	ld a, [CurPartySpecies]
 	cp EGG
 	jr z, .asm_24e3f ;if egg, branch off
-	ld a, [InLinkBattle]
+	ld a, [wLinkMode]
 	and a
 	jr nz, .asm_24e03 ;if in link battle, skip adding moves to list
 	ld a, PartyMon1Moves - PartyMon1 ;a = space till moves in party data
@@ -26715,7 +26715,7 @@ Function24dd4: ; 24dd4 ;populate buffer 2 with curpartymon's menu options
 	call Function24e83
 	ld a, $13
 	call Function24e83
-	ld a, [InLinkBattle]
+	ld a, [wLinkMode]
 	and a
 	jr nz, .asm_24e2f ;if in link battle branch
 	push hl
@@ -29806,7 +29806,7 @@ Function28000: ; 28000
 	xor a
 	ld [hli], a
 	ld [hl], $50
-	ld a, [InLinkBattle]
+	ld a, [wLinkMode]
 	cp $1
 	jp nz, Function28177
 Function2805d: ; 2805d
@@ -30002,7 +30002,7 @@ Function28177: ; 28177
 	ld de, wc6d0
 	ld bc, $00c8
 	call Function75f
-	ld a, [InLinkBattle]
+	ld a, [wLinkMode]
 	cp $2
 	jr nz, .asm_281fd
 	ld hl, wc9f4
@@ -30052,7 +30052,7 @@ Function28177: ; 28177
 	ld hl, wc90f
 	dec c
 	jr nz, .asm_28224
-	ld a, [InLinkBattle]
+	ld a, [wLinkMode]
 	cp $2
 	jp nz, .asm_282fe
 	ld hl, wcb84
@@ -30183,7 +30183,7 @@ Function28177: ; 28177
 	cp $2
 	ld c, 66
 	call z, DelayFrames
-	ld a, [InLinkBattle]
+	ld a, [wLinkMode]
 	cp $3
 	jr nz, .asm_283a9
 	ld a, CAL
@@ -30370,7 +30370,7 @@ Function28434: ; 28434
 	dec a
 	jr nz, .asm_2847f
 	push bc
-	ld a, [InLinkBattle]
+	ld a, [wLinkMode]
 	cp $1
 	ld b, $d
 	jr z, .asm_2847a
@@ -30593,7 +30593,7 @@ Function28595: ; 28595
 	ld hl, PartyMonNicknames
 	ld bc, $0042
 	call CopyBytes
-	ld a, [InLinkBattle]
+	ld a, [wLinkMode]
 	cp $2
 	ret nz
 	ld de, wc9f4
@@ -31715,7 +31715,7 @@ Function28b87: ; 28b87
 	push bc
 	call Function862
 	pop bc
-	ld a, [InLinkBattle]
+	ld a, [wLinkMode]
 	cp $1
 	jr z, .asm_28e63
 	ld a, b
@@ -31740,7 +31740,7 @@ Function28b87: ; 28b87
 	callba Function4d354
 	ld c, $32
 	call DelayFrames
-	ld a, [InLinkBattle]
+	ld a, [wLinkMode]
 	cp $1
 	jp z, Function2805d
 	jp Function28177
@@ -33063,7 +33063,7 @@ Function296f2: ; 296f2 (a:56f2)
 ; 29701 (a:5701)
 
 Function29701: ; 29701
-	ld a, [InLinkBattle]
+	ld a, [wLinkMode]
 	cp $1
 	jr z, .asm_29725
 	ld hl, UnknownText_0x29737
@@ -33504,7 +33504,7 @@ Function29c7b: ; 29c7b
 	xor a
 	ld [hVBlank], a
 	inc a
-	ld [InLinkBattle], a
+	ld [wLinkMode], a
 	ret
 
 ; 29c92
@@ -33553,7 +33553,7 @@ Function29c92: ; 29c92
 	ld [hli], a
 	ld [hl], a
 	ld [hVBlank], a
-	ld [InLinkBattle], a
+	ld [wLinkMode], a
 	ret
 
 ; 29ce8
@@ -33832,7 +33832,7 @@ Function29e82: ; 29e82
 	jr nz, .asm_29eaa
 	ld a, [wd265]
 	inc a
-	ld [InLinkBattle], a
+	ld [wLinkMode], a
 	xor a
 	ld [hVBlank], a
 	ld a, $1
@@ -33848,7 +33848,7 @@ Function29e82: ; 29e82
 
 Function29eaf: ; 29eaf
 	ld a, $1
-	ld [InLinkBattle], a
+	ld [wLinkMode], a
 	call Function2ed3
 	callab Function28000
 	call Function2ee4
@@ -33860,7 +33860,7 @@ Function29eaf: ; 29eaf
 
 Function29ec4: ; 29ec4
 	ld a, $2
-	ld [InLinkBattle], a
+	ld [wLinkMode], a
 	call Function2ed3
 	callab Function28000
 	call Function2ee4
@@ -33872,7 +33872,7 @@ Function29ec4: ; 29ec4
 
 Function29ed9: ; 29ed9
 	ld a, $3
-	ld [InLinkBattle], a
+	ld [wLinkMode], a
 	call Function2ed3
 	callab Function28000
 	call Function2ee4
@@ -33884,7 +33884,7 @@ Function29ed9: ; 29ed9
 
 Function29eee: ; 29eee
 	xor a
-	ld [InLinkBattle], a
+	ld [wLinkMode], a
 	ld c, $3
 	call DelayFrames
 	jp Function29f04
@@ -36835,7 +36835,7 @@ ConvertBerriesToBerryJuice: ; 2ede6
 ; 2ee18
 
 Function2ee18: ; 2ee18
-	ld a, [InLinkBattle]
+	ld a, [wLinkMode]
 	and a
 	ret z
 	callba Function2c1b2
@@ -36967,7 +36967,7 @@ PlayBattleMusic: ; 2ee6c
 	jr .done
 
 .othertrainer
-	ld a, [InLinkBattle]
+	ld a, [wLinkMode]
 	and a
 	jr nz, .johtotrainer
 	callba RegionCheck
@@ -37120,7 +37120,7 @@ INCLUDE "battle/ai/scoring.asm"
 
 Function39550: ; 39550
 	ld hl, wd26b
-	ld a, [InLinkBattle]
+	ld a, [wLinkMode]
 	and a
 	jr nz, .ok
 	ld hl, RivalName
@@ -37165,10 +37165,10 @@ Function3957b: ; 3957b
 
 INCLUDE "trainers/attributes.asm"
 ReadTrainerParty: ; 39771
-	ld a, [wcfc0]
+	ld a, [InBattleTowerBattle]
 	bit 0, a
 	ret nz
-	ld a, [InLinkBattle]
+	ld a, [wLinkMode]
 	and a
 	ret nz
 	callba ClearOTMons
@@ -37386,7 +37386,7 @@ Function3991b: ; 3991b (e:591b)
 	ret
 
 Function39939:: ; 39939
-	ld a, [wcfc0]
+	ld a, [InBattleTowerBattle]
 	bit 0, a
 	ld hl, wd26b
 	jp nz, Function39984
@@ -37606,7 +37606,7 @@ Function421f5: ; 421f5
 	ld b, a
 	cp EVOLVE_TRADE
 	jr z, .trade
-	ld a, [InLinkBattle]
+	ld a, [wLinkMode]
 	and a
 	jp nz, .DontEvolve2
 	ld a, b
@@ -37673,7 +37673,7 @@ Function421f5: ; 421f5
 	jr .GoAheadAndEvolve
 
 .trade
-	ld a, [InLinkBattle]
+	ld a, [wLinkMode]
 	and a
 	jp z, .DontEvolve2
 	call Function42461
@@ -37682,7 +37682,7 @@ Function421f5: ; 421f5
 	ld b, a
 	inc a
 	jr z, .GoAheadAndEvolve
-	ld a, [InLinkBattle]
+	ld a, [wLinkMode]
 	cp $1
 	jp z, .DontEvolve
 	ld a, [TempMonItem]
@@ -37701,7 +37701,7 @@ Function421f5: ; 421f5
 	ld a, [wd1e9]
 	and a
 	jp z, .DontEvolve
-	ld a, [InLinkBattle]
+	ld a, [wLinkMode]
 	and a
 	jp nz, .DontEvolve
 	jr .GoAheadAndEvolve
@@ -37850,7 +37850,7 @@ Function423ff: ; 423ff
 	pop de
 	pop bc
 	pop hl
-	ld a, [InLinkBattle]
+	ld a, [wLinkMode]
 	and a
 	ret nz
 	ld a, [IsInBattle]
@@ -38188,7 +38188,7 @@ AIChooseMove:
 IF DEF(BEESAFREE)
 ; In link battle, the player chooses moves, not the AI.
 
-	ld a, [InLinkBattle]
+	ld a, [wLinkMode]
 	and a
 	ret nz
 ; No use picking a move if there's no choice.
@@ -38216,7 +38216,7 @@ ELSE
 	ld a, [IsInBattle]
 	dec a
 	ret z
-	ld a, [InLinkBattle]
+	ld a, [wLinkMode]
 	and a
 	ret nz
 ; No use picking a move if there's no choice.
@@ -38273,7 +38273,7 @@ ELSE
 
 .ApplyLayers
 	ld hl, TrainerClassAttributes + 3
-	ld a, [wcfc0]
+	ld a, [InBattleTowerBattle]
 	bit 0, a
 	jr nz, .asm_4412f
 	ld a, [TrainerClass]
@@ -47048,7 +47048,7 @@ Function4dc67: ; 4dc67
 ; 4dc7b
 
 Function4dc7b: ; 4dc7b (13:5c7b)
-	ld a, [InLinkBattle]
+	ld a, [wLinkMode]
 	cp $4
 	jr nz, StatsScreenInit
 	ld a, [IsInBattle] ; wd22d (aliases: EnemyMonEnd)
@@ -48966,7 +48966,7 @@ CheckBattleScene: ; 4ea44
 ; Return carry if battle scene is turned off.
 
 	ld a, 0
-	ld hl, InLinkBattle
+	ld hl, wLinkMode
 	call GetFarWRAMByte
 	cp 4
 	jr z, .mobile
@@ -64901,7 +64901,7 @@ Function8c20f: ; 8c20f
 ; 8c26d
 
 Function8c26d: ; 8c26d
-	ld a, [InLinkBattle]
+	ld a, [wLinkMode]
 	cp $4
 	jr z, .asm_8c288
 	callba Function6454
@@ -69942,7 +69942,7 @@ GetIcon: ; 8ea1e
 ; 8ea3f
 
 GetGFXUnlessMobile: ; 8ea3f
-	ld a, [InLinkBattle]
+	ld a, [wLinkMode]
 	cp 4 ; Mobile Link Battle
 	jp nz, Request2bpp
 	jp Functiondc9
@@ -70355,7 +70355,7 @@ Function90197: ; 90197
 	ret
 
 Function90199: ; 90199 (24:4199)
-	ld a, [InLinkBattle]
+	ld a, [wLinkMode]
 	and a
 	jr nz, .asm_901e7
 	call Function2d05
@@ -90734,7 +90734,7 @@ Functionfb57e: ; fb57e
 	ld a, [hl]
 	cp 101
 	jr nc, .asm_fb5db
-	ld a, [InLinkBattle]
+	ld a, [wLinkMode]
 	cp $1
 	jr nz, .asm_fb5d9
 	ld hl, OTPartySpecies
@@ -91759,10 +91759,10 @@ DoWeatherModifiers: ; fbda4
 ; fbe24
 
 DoBadgeTypeBoosts: ; fbe24
-	ld a, [InLinkBattle]
+	ld a, [wLinkMode]
 	and a
 	ret nz
-	ld a, [wcfc0]
+	ld a, [InBattleTowerBattle]
 	and a
 	ret nz
 	ld a, [hBattleTurn]

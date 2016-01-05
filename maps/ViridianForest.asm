@@ -53,9 +53,9 @@ TrainerBug_catcherEd: ; 0x1ac2d0
 
 	; script when talk again
 	dw Bug_catcherEdScript
-; 0x1ac2dc
+; 0x1awLinkMode
 
-Bug_catcherEdScript: ; 0x1ac2dc
+Bug_catcherEdScript: ; 0x1awLinkMode
 	talkaftercancel
 	loadfont
 	writetext UnknownText_0x1ac3cf
