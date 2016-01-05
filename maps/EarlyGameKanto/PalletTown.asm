@@ -55,6 +55,8 @@ PalletTownRB_WalkIntoLab
 	disappear $2
 	applymovement $0, PalletTownRB_PlayerEntersLab
 	dotrigger $1
+	domaptrigger GROUP_OAKS_LAB_RB, MAP_OAKS_LAB_RB, $1
+	clearevent EVENT_OAKS_LAB_OAK
 	warpcheck
 	end
 

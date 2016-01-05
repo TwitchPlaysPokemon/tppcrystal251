@@ -1,6 +1,7 @@
 OaksLabRB_MapScriptHeader: ; 0x19b3c5
 	; trigger count
-	db 4
+	db 5
+	dw .Trigger0, $0000
 	dw .Trigger1, $0000
 	dw .Trigger2, $0000
 	dw .Trigger3, $0000
@@ -10,6 +11,9 @@ OaksLabRB_MapScriptHeader: ; 0x19b3c5
 	db 1
 	dbw 1, .SetSprites
 ; 0x19b3c7
+.Trigger0:
+	end
+
 .Trigger1:
 	priorityjump WalkUpWithOak
 	end
@@ -27,6 +31,7 @@ OaksLabRB_MapScriptHeader: ; 0x19b3c5
 	checkevent EVENT_GOT_POKEMON_FROM_OAK
 	iftrue .skip
 	moveperson $2, $4, $a
+	spriteface $2, UP
 .skip
 	return
 
@@ -52,11 +57,13 @@ WalkUpWithOak:
 	writetext _OaksLabBePatientText
 	waitbutton
 	closetext
-	dotrigger $1
+	dotrigger $2
 	end
 
 CharmanderPokeballScript:
 	checkevent EVENT_GOT_POKEMON_FROM_OAK
+	iftrue OaksLab_LastMonScript
+	checkevent EVENT_OAKS_LAB_OAK
 	iftrue OaksLab_LookAtPokeballScript
 	spriteface $2, RIGHT
 	refreshscreen $0
@@ -93,11 +100,13 @@ CharmanderPokeballScript:
 	playsound SFX_CAUGHT_MON
 	waitsfx
 	closetext
-	dotrigger $2
+	dotrigger $3
 	end
 
 BulbasaurPokeballScript:
 	checkevent EVENT_GOT_POKEMON_FROM_OAK
+	iftrue OaksLab_LastMonScript
+	checkevent EVENT_OAKS_LAB_OAK
 	iftrue OaksLab_LookAtPokeballScript
 	spriteface $2, RIGHT
 	refreshscreen $0
@@ -134,11 +143,13 @@ BulbasaurPokeballScript:
 	playsound SFX_CAUGHT_MON
 	waitsfx
 	closetext
-	dotrigger $2
+	dotrigger $3
 	end
 
 SquirtlePokeballScript:
 	checkevent EVENT_GOT_POKEMON_FROM_OAK
+	iftrue OaksLab_LastMonScript
+	checkevent EVENT_OAKS_LAB_OAK
 	iftrue OaksLab_LookAtPokeballScript
 	spriteface $2, RIGHT
 	refreshscreen $0
@@ -175,15 +186,18 @@ SquirtlePokeballScript:
 	playsound SFX_CAUGHT_MON
 	waitsfx
 	closetext
-	dotrigger $2
+	dotrigger $3
 	end
 
 OaksLabRB_DidntChooseStarterScript:
 	closetext
 	end
 
-OaksLab_LookAtPokeballScript:
+OaksLab_LastMonScript:
 	jumptext _OaksLabLastMonText
+
+OaksLab_LookAtPokeballScript:
+	jumptext _OaksLabText39
 
 OaksLab_RivalBattleTriggerLeft:
 	scall OaksLab_RivalBattleIntroScript
@@ -260,7 +274,7 @@ OaksLab_RivalFinishesLeaving:
 	applymovement $6, Movement_RivalTakesThreeStepsDown
 	disappear $6
 	special RestartMapMusic
-	dotrigger $3
+	dotrigger $4
 	end
 
 OakScript_OaksLabRB:
@@ -369,8 +383,8 @@ OakScript_OaksLabRB:
 BlueScript_OaksLabRB:
 	checkevent EVENT_GOT_POKEMON_FROM_OAK
 	iftrue .MyMonIsTheBest
-	checkevent EVENT_PALLET_TOWN_RB_OAK
-	iftrue .HurryUpAndChoose
+	checkevent EVENT_OAKS_LAB_OAK
+	iffalse .HurryUpAndChoose
 	jumptextfaceplayer _OaksLabGaryText1
 
 .HurryUpAndChoose
@@ -886,10 +900,10 @@ OaksLabRB_MapEventHeader: ; 0x19ba33
 
 	; xy triggers
 	db 4
-	xy_trigger 1, 6, 4, 0, OaksLabRB_WaitComeBack, 0, 0
-	xy_trigger 1, 6, 5, 0, OaksLabRB_WaitComeBack, 0, 0
-	xy_trigger 2, 6, 4, 0, OaksLab_RivalBattleTriggerLeft, 0, 0
-	xy_trigger 2, 6, 5, 0, OaksLab_RivalBattleTriggerRight, 0, 0
+	xy_trigger 2, 6, 4, 0, OaksLabRB_WaitComeBack, 0, 0
+	xy_trigger 2, 6, 5, 0, OaksLabRB_WaitComeBack, 0, 0
+	xy_trigger 3, 6, 4, 0, OaksLab_RivalBattleTriggerLeft, 0, 0
+	xy_trigger 3, 6, 5, 0, OaksLab_RivalBattleTriggerRight, 0, 0
 
 	; signposts
 	db 17
@@ -913,7 +927,7 @@ OaksLabRB_MapEventHeader: ; 0x19ba33
 
 	; people-events
 	db 10
-	person_event SPRITE_OAK, 6, 8, $6, 0, 0, -1, -1, 0, 0, 0, OakScript_OaksLabRB, -1
+	person_event SPRITE_OAK, 6, 8, $6, 0, 0, -1, -1, 0, 0, 0, OakScript_OaksLabRB, EVENT_OAKS_LAB_OAK
 	person_event SPRITE_SCIENTIST, 12, 6, $5, 0, 1, -1, -1, 8 + PAL_OW_BLUE, 0, 0, Scientist1Script_OaksLabRB, -1
 	person_event SPRITE_SCIENTIST, 13, 12, $4, 1, 0, -1, -1, 8 + PAL_OW_BLUE, 0, 0, Scientist2Script_OaksLabRB, -1
 	person_event SPRITE_TEACHER, 15, 5, $2, 1, 1, -1, -1, 8 + PAL_OW_BLUE, 0, 0, LassScript_OaksLabRB, -1

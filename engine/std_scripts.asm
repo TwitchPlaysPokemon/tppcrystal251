@@ -874,6 +874,7 @@ InitializeEventsScript: ; 0xbc3db
 	setevent EVENT_STATIC_ENTEI
 	setevent EVENT_STATIC_SUICUNE
 	setevent EVENT_PALLET_TOWN_RB_OAK
+	setevent EVENT_OAKS_LAB_OAK
 	return
 ; 0xbc574
 

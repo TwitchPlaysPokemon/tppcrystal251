@@ -20,16 +20,17 @@ MapBattleTentRuinsTurnOnLights
 	checkevent EVENT_TURNED_ON_BATTLE_TENT_GENERATOR
 	iffalse MapBattleTentRuinsDontChangeBackDoorTile
 	changeblock $5, $0, $4
+	return
+
 MapBattleTentRuinsDontChangeBackDoorTile:
+	changeblock $a, $7, $1
 	return
 
 MapBattleTentRuinsDoorScript:
-	checkevent EVENT_TURNED_ON_BATTLE_TENT_GENERATOR
-	iftrue MapBattleTentRuinsDoorScript2
+	dw EVENT_TURNED_ON_BATTLE_TENT_GENERATOR
+	dw .script
+.script
 	jumptext MapBattleTentRuinsDoorText
-	
-MapBattleTentRuinsDoorScript2:
-	jumptext MapBattleTentRuinsDoorText2
 	
 MapBattleTentRuinsMonitorScript:
 	checkevent EVENT_TURNED_ON_BATTLE_TENT_GENERATOR
@@ -44,11 +45,6 @@ MapBattleTentRuinsMonitorScript2:
 MapBattleTentRuinsDoorText:
 	text "It's locked..."
 	done
-	
-MapBattleTentRuinsDoorText2:
-	text "It's open."
-	done
-	
 
 MapBattleTentRuinsMonitorText1:
 	text "The monitor is"
@@ -73,8 +69,8 @@ BattleTentRuins_MapEventHeader: ; -- Required
 
 	; bg events
 	db 2
-	signpost $4, $4, $0, MapBattleTentRuinsMonitorScript
 	signpost $0, $5, $0, MapBattleTentRuinsDoorScript
+	signpost $4, $4, $0, MapBattleTentRuinsMonitorScript
 
 	; object events
 	db 0
