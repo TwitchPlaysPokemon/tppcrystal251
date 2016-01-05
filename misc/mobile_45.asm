@@ -22718,10 +22718,10 @@ Function17020c: ; 17020c
 	ret
 ; 170215
 
-Function170215: ; 170215
+Function170215: ; 170215 ;run battle, loop until done
 	xor a
 	ld [wcf63], a
-	call Function17022c
+	call Function17022c 
 	ret
 ; 17021d
 
@@ -22738,9 +22738,9 @@ Function17021e: ; 17021e
 	ret
 ; 17022c
 
-Function17022c: ; 17022c
+Function17022c: ; 17022c ;run battle, loop until done
 .asm_17022c
-	call Function17023a
+	call Function17023a 
 	call DelayFrame
 	ld a, [wcf63]
 	cp $1
@@ -22748,7 +22748,7 @@ Function17022c: ; 17022c
 	ret
 ; 17023a
 
-Function17023a: ; 17023a
+Function17023a: ; 17023a if wcf63 = 0 , generate and run battle tower fight
 	ld a, [wcf63]
 	ld e, a
 	ld d, 0
@@ -22762,158 +22762,158 @@ Function17023a: ; 17023a
 ; 170249
 
 Jumptable_170249: ; 170249
-	dw Function17024d
-	dw Function1704c9
+	dw Function17024d ;generate trainer and run fight
+	dw Function1704c9 ;ret
 ; 17024d
 
-Function17024d: ; 17024d
+Function17024d: ; 17024d ;generate trainer and run fight
 	ld a, [Options]
-	push af
+	push af ;store old options on stack
 	ld hl, Options
-	set 6, [hl]
-	ld a, [wcfc0]
+	set 6, [hl] ;force set mode
+	ld a, [wcfc0] ;toggle "is in battle tower"
 	push af
 	or $1
-	ld [wcfc0], a
+	ld [wcfc0], a ;set but 1 of ???
 	xor a
-	ld [InLinkBattle], a
-	callba Function1060a2
+	ld [InLinkBattle], a ;load 0 to inlinkbattle
+	callba Function1060a2 ;mobile?
 	callba HealParty
-	call Function1702b7
-	call Function170bf7
+	call Function1702b7 ;copy trainer data into proper place in ram and inc win streak, now just set $be45 to 2, inc win streak and copy unknown data
+	call Function170bf7 ;a89a/b = 0
 	predef StartBattle
-	callba Function1500c
+	callba Function1500c ;copy 798 bytes from a865 to partycount
 	callba HealParty
 	ld a, [wd0ee]
 	ld [ScriptVar], a
 	and a
-	jr nz, .asm_1702a9
+	jr nz, .asm_1702a9 ;if wd0ee = nz, skip
 	ld a, $1
 	call GetSRAMBank
 	ld a, [$be46]
-	ld [wcf64], a
+	ld [wcf64], a ;load $be46 into win streak
 	call CloseSRAM
 	ld hl, StringBuffer3
 	ld a, [wcf64]
-	add $f7
+	add $f7 ;load be46 + $f7 into stringbuffer 3, follow with a string end
 	ld [hli], a
 	ld a, $50
 	ld [hl], a
 
 .asm_1702a9
 	pop af
-	ld [wcfc0], a
+	ld [wcfc0], a ;reload options and other data set for battle tower fight
 	pop af
 	ld [Options], a
 	ld a, $1
-	ld [wcf63], a
+	ld [wcf63], a ;run other branch
 	ret
 ; 1702b7
 
-Function1702b7: ; 1702b7
-	call Function1704a2
-	ld de, $c643
-	ld c, $b
-	callba Function17d073
-	jr nc, .asm_1702db
-	ld a, [$c608 + 11]
-	ld [wd265], a
-	call GetPokemonName
-	ld l, e
-	ld h, d
-	ld de, $c643
-	ld bc, $000b
-	call CopyBytes
+Function1702b7: ; 1702b7 copy trainer data into proper place in ram and inc win streak
+	call Function1704a2 ;set $be45 to 2, inc win streak and copy unknown data
+	;ld de, $c643 ;begining of nickname
+	;ld c, $b
+	;callba Function17d073 ;dec c by legnth of text de, stopping when a special character or end of line is hit. special chars ret c
+	;jr nc, .asm_1702db ;if ended normally, skip
+	;ld a, [$c608 + 11] ;the first mon species
+	;ld [wd265], a
+	;call GetPokemonName
+	;ld l, e
+	;ld h, d
+	;ld de, $c643
+	;ld bc, $000b
+	;call CopyBytes ;copy species name in place of the nickname
 
 .asm_1702db
-	ld de, $c67e
-	ld c, $b
-	callba Function17d073
-	jr nc, .asm_1702fc
-	ld a, [$c64e]
-	ld [wd265], a
-	call GetPokemonName
-	ld l, e
-	ld h, d
-	ld de, $c67e
-	ld bc, $000b
-	call CopyBytes
+	;ld de, $c67e ;repeat for mon 2
+	;ld c, $b
+	;callba Function17d073
+	;jr nc, .asm_1702fc
+	;ld a, [$c64e]
+	;ld [wd265], a
+	;call GetPokemonName
+	;ld l, e
+	;ld h, d
+	;ld de, $c67e
+	;ld bc, $000b
+	;call CopyBytes
 
-.asm_1702fc
-	ld de, $c686 + 51
-	ld c, $b
-	callba Function17d073
-	jr nc, .asm_17031d
-	ld a, [$c689]
-	ld [wd265], a
-	call GetPokemonName
-	ld l, e
-	ld h, d
-	ld de, $c686 + 51
-	ld bc, $000b
-	call CopyBytes
+.asm_1702fc ;repeat for mon 3
+	;ld de, $c686 + 51 ;c6b9
+	;ld c, $b
+	;callba Function17d073
+	;jr nc, .asm_17031d
+	;ld a, [$c689]
+	;ld [wd265], a
+	;call GetPokemonName
+	;ld l, e
+	;ld h, d
+	;ld de, $c686 + 51
+	;ld bc, $000b
+	;call CopyBytes
 
 .asm_17031d
-	ld a, $50
-	ld [$c64d], a
-	ld [$c688], a
-	ld [$c68a + 57], a
-	call Function170c98
-	ld de, $c608
-	ld c, $a
-	callba Function17d073
-	jr nc, .asm_17033d
-	ld hl, String_170426
-	jr .asm_170340
+	;ld a, $50
+	;ld [$c64d], a ;load end of string into last slot of names
+	;ld [$c688], a
+	;ld [$c68a + 57], a
+	;call Function170c98 ;check if moves are valid and remove others BUGGED will see additional moves as invalid
+	;ld de, $c608
+	;ld c, $a
+	;callba Function17d073 ;dec c by legnth of text de, stopping hen a special character or end of line is hit. special chars ret c
+	;jr nc, .asm_17033d ;if end of string was hit, skip
+	;ld hl, String_170426
+	;jr .asm_170340 ;else set HL to default name
 
 .asm_17033d
-	ld hl, $c608
+	;ld hl, $c608
 
 .asm_170340
-	ld de, wd26b
-	ld bc, $000a
-	call CopyBytes
-	ld a, $50
-	ld [de], a
-	ld hl, $c608 + 10
-	ld a, [hli]
-	ld [OtherTrainerClass], a
+	;ld de, wd26b
+	;ld bc, $000a
+	;call CopyBytes ;copy trainer name into ??, end with a end char
+	;ld a, $50
+	;ld [de], a
+	;ld hl, $c608 + 10
+	;ld a, [hli]
+	;ld [OtherTrainerClass], a ;load trainer class
 	ld a, $ea
-	ld [BGMapBuffer], a
-	ld a, $d3
-	ld [wcd21], a
-	ld de, OTPartyMon1Species
-	ld bc, OTPartyCount
-	ld a, $3
-	ld [bc], a
-	inc bc
+	;ld [BGMapBuffer], a ;holds nickname data
+	;ld a, $d3
+	;ld [wcd21], a
+	;ld de, OTPartyMon1Species
+	;ld bc, OTPartyCount
+	;ld a, $3
+	;ld [bc], a ;load in party count
+	;inc bc ;start of OTspecies
 .asm_170367
-	push af
-	ld a, [hl]
-	ld [bc], a
-	inc bc
-	push bc
-	ld bc, $0030
-	call CopyBytes
-	push de
-	ld a, [BGMapBuffer]
-	ld e, a
-	ld a, [wcd21]
-	ld d, a
-	ld bc, $000b
-	call CopyBytes
-	ld a, e
-	ld [BGMapBuffer], a
-	ld a, d
-	ld [wcd21], a
-	pop de
-	pop bc
-	pop af
-	dec a
-	and a
-	jr nz, .asm_170367
-	ld a, $ff
-	ld [bc], a
+	;push af ;loop counter
+	;ld a, [hl] ;load species into data
+	;ld [bc], a
+	;inc bc
+	;push bc ;next species slot
+	;ld bc, $0030
+	;call CopyBytes ;copy mon data into OTparty
+	;push de ;start of next party member
+	;ld a, [BGMapBuffer]
+	;ld e, a
+	;ld a, [wcd21]
+	;ld d, a
+	;ld bc, $000b
+	;call CopyBytes ;copy mon nickname into data
+	;ld a, e
+	;ld [BGMapBuffer], a
+	;ld a, d
+	;ld [wcd21], a
+	;pop de
+	;pop bc
+	;pop af
+	;dec a
+	;and a
+	;jr nz, .asm_170367 ;loop needed times
+	;ld a, $ff
+	;ld [bc], a ;load ff into last species slot
 	ret
 ; 170394
 
@@ -23026,7 +23026,7 @@ Function170394: ; 170394
 ; 170426
 
 String_170426: ; 170426
-	db "CHRIS@"
+;	db "CHRIS@" redundent, names should not glitch
 ; 17042c
 
 Function17042c: ; 17042c
@@ -23099,22 +23099,25 @@ Unknown_17047e:
 	db $0c, $06, $06, $04
 ; 1704a2
 
-Function1704a2: ; 1704a2
+Function1704a2: ; 1704a2 ;set $be45 to 2, inc win streak and copy unknown data
 	ld a, [rSVBK]
 	push af
 	ld a, $3
 	ld [rSVBK], a
-	ld hl, LYOverrides
-	ld de, $c608
-	ld bc, $00e0
-	call CopyBytes
-	pop af
+	;ld hl, LYOverrides ;d100
+	ld hl, $d10bc
+	;ld de, $c608
+	ld de $c6C4
+	;ld bc, $00e0
+	ld bc, $0024
+	call CopyBytes ;copy unknow data
+	pop af ;revert wram bank
 	ld [rSVBK], a
 	ld a, $1
 	call GetSRAMBank
 	ld a, $2
-	ld [$be45], a
-	ld hl, $be46
+	ld [$be45], a ;set current part of battle process to 2
+	ld hl, $be46 ;inc win streak
 	inc [hl]
 	call CloseSRAM
 Function1704c9:
@@ -23434,12 +23437,12 @@ Jumptable_170696: ; 170696 (5c:4696)
 	dw Function17075f ;if saved id = playerid, load bit 1 of $be4f into scriptvar, else ret
 	dw Function170788 ;set bit 1 of $be4f
 	dw Function170778 ;load be45 into scriptvar
-	dw Function170799
-	dw Function17079d
-	dw Function1707ac
+	dw Function170799 ; set $be45 to 1
+	dw Function17079d ;run after losing battle tower, load 0 into $be45
+	dw Function1707ac ;if $be46 = 0, scriptvar = 0, else if if $aa8c >= 2,scriptvar = 8 and $be46 $aa8b and $aa8c = 0, else do stuff
 	dw Function1707f4
-	dw Function170868
-	dw Function170881 ;8
+	dw Function170868 ;load d800 into $be47
+	dw Function170881 ;8 ;wd800 = be47
 	dw Function17089a ;if saved id = playerid, sciptvar = 1, else scriptvar = 0
 	dw Function1708b1
 	dw Function1708b9
@@ -23457,12 +23460,12 @@ Jumptable_170696: ; 170696 (5c:4696)
 	dw Function17081d
 	dw Function170ae8 ;$18
 	dw Function170b16
-	dw Function1706d6 ;fill $be48 through $be4e with ff and load 0 into $be46 (clear battle tower data?)
+	dw Function1706d6 ;fill $be48 through $be4e with ff and load 0 into $be46(winstreak?) (clear battle tower data?)
 	dw Function1706ee ;$1b if bag full or item givable, scriptvar = item to give, else scriptvar = 18
 	dw Function17071b ;$1c load 3 into be45
 	dw Function170729 ;save 4 into $be45
 	dw Function17073e ;load rand (26,27,28,29,31,26,27) into be50
-	dw Function170737
+	dw Function170737 ;copy 8 bytes from options to $a000, resetting no text delay
 
 
 Function1706d6: ; 1706d6 (5c:46d6)
@@ -23522,7 +23525,7 @@ Function170729: ; 170729 (5c:4729)
 	ret
 
 Function170737: ; 170737 (5c:4737)
-	callba Function14dbb
+	callba Function14dbb ;copy 8 bytes from options to $a000, resetting no text delay
 	ret
 
 Function17073e: ; 17073e (5c:473e) load rand (26,27,28,29,31,26,27) into be50
@@ -23589,19 +23592,19 @@ asm_17079f: ; 17079f (5c:479f)
 	call CloseSRAM
 	ret
 
-Function1707ac: ; 1707ac (5c:47ac)
+Function1707ac: ; 1707ac (5c:47ac) ;if $be46 = 0, scriptvar = 0, else if if $aa8c >= 2,scriptvar = 8 and $be46 $aa8b and $aa8c = 0, else do stuff
 	ld a, $5
 	call GetSRAMBank
 	ld a, [$aa8c]
 	ld b, a
 	ld a, [$be46]
-	ld [ScriptVar], a
+	ld [ScriptVar], a ;load $be46 (winstreak?) into scriptvar
 	call CloseSRAM
 	and a
-	ret z
+	ret z ;if zero done
 	ld a, b
 	cp $2
-	jr nc, .asm_1707ef
+	jr nc, .asm_1707ef ;if $aa8c >= 2, skip
 	push bc
 	call UpdateTime
 	pop bc
@@ -23610,31 +23613,31 @@ Function1707ac: ; 1707ac (5c:47ac)
 	ld a, [$aa8b]
 	call CloseSRAM
 	ld c, a
-	ld a, [CurDay]
+	ld a, [CurDay] ;if curday - $aa8b carries, branch
 	sub c
 	jr c, .asm_1707e5
 	cp $8
-	jr nc, .asm_1707ef
+	jr nc, .asm_1707ef ;if result 8 or more, jump
 	ld a, b
 	and a
-	jr nz, .asm_1707ef
+	jr nz, .asm_1707ef ;else if $aa8c nz, jump, else ret
 	ret
 .asm_1707e5
 	ld hl, CurDay
 	ld a, $8c
-	sub c
+	sub c ;add 140 - $aa8b to curday
 	add [hl]
 	cp $8
-	ret c
+	ret c ;if result less then 8, ret c
 .asm_1707ef
 	ld a, $8
-	ld [ScriptVar], a
+	ld [ScriptVar], a ;scriptvar = 8, fallthrough
 
 Function1707f4: ; 1707f4 (5c:47f4)
 	ld a, $5
 	call GetSRAMBank
 	xor a
-	ld [$be46], a
+	ld [$be46], a ;reset win streak?
 	ld [$aa8b], a
 	ld [$aa8c], a
 	call CloseSRAM
@@ -23715,7 +23718,7 @@ Function170881: ; 170881 (5c:4881)
 	ld a, $3
 	ld [rSVBK], a ; $ff00+$70
 	ld a, [$be47]
-	ld [wd000 + $800], a
+	ld [wd000 + $800], a ;wd800 = be47
 	pop af
 	ld [rSVBK], a ; $ff00+$70
 	call CloseSRAM
@@ -24108,24 +24111,24 @@ Function170b16: ; 170b16 (5c:4b16)
 	ld [ScriptVar], a
 	ret
 
-Function170b44: ; 170b44 currently scriptvar = 2
-	callba Function1f8000
-	ld a, [rSVBK]
-	push af
+Function170b44: ; 170b44 generate trainer and load thier sprite into mapobject scriptvar
+	callba Function1f8000 ;generatres mon and trainer and stores them in wram. full structure is, from wd100, 11 bytes of trainer data (name and class), 177 bytes for 3 mons and 40 bytes of ????
+	ld a, [rSVBK] ;mons now loaded into OTPartymon instead
+	push af 
 	ld a, $3
 	ld [rSVBK], a
-	ld hl, wd10a
+	ld hl, wd10a ;trainer class
 	ld a, [hl]
 	dec a
 	ld c, a
 	ld b, $0
-	pop af
+	pop af ;swap wram bank back
 	ld [rSVBK], a
 	ld hl, Unknown_170b90
-	add hl, bc
-	ld a, [hl]
+	add hl, bc ;go down trainer class spaces
+	ld a, [hl] ;load into wcd49
 	ld [wcd49], a
-	ld a, [ScriptVar]
+	ld a, [ScriptVar] ;c = (scriptwar -1) *16 e = (scriptwar -1) *2
 	dec a
 	sla a
 	ld e, a
@@ -24135,18 +24138,18 @@ Function170b44: ; 170b44 currently scriptvar = 2
 	ld c, a
 	ld b, $0
 	ld d, $0
-	ld hl, MapObjects
+	ld hl, MapObjects ;go down to mapobject[scriptvar]
 	add hl, bc
-	inc hl
-	ld a, [wcd49]
+	inc hl ;go up one
+	ld a, [wcd49] ;load ?? into that spot (sprite?)
 	ld [hl], a
 	ld hl, UsedSprites
-	add hl, de
-	ld [hli], a
-	ld [$ffbd], a
-	ld a, [hl]
+	add hl, de ;go down to sprite e?
+	ld [hli], a ;load a in
+	ld [$ffbd], a ;load a into ??
+	ld a, [hl] ;load byte after into ??
 	ld [$ffbe], a
-	callba Function143c8
+	callba Function143c8 ;GetUsedSprite
 	ret
 ; 170b90
 
@@ -24168,17 +24171,17 @@ Function170bd2: ; 170bd2
 ; 170bd3
 
 Function170bd3: ; 170bd3 BATTLE TOWER if can enter, scriptvar = 0, else scriptvar = 1
-	callba Function8b201 ;check if possible to enter, display fail text and ret c otherwise
-	jr c, .asm_170bde
-	xor a
-	jr .asm_170be0
+	;callba Function8b201 ;check if possible to enter, display fail text and ret c otherwise redundent
+	;jr c, .asm_170bde
+;	xor a
+;	jr .asm_170be0
 
 .asm_170bde
-	ld a, $1
+;	ld a, $1
 
 .asm_170be0
-	ld [ScriptVar], a
-	ret
+;	ld [ScriptVar], a
+;	ret
 ; 170be4
 
 Function170be4: ; 170be4
@@ -24318,24 +24321,24 @@ Function170c8b: ; 170c8b
 	ret
 ; 170c98
 
-Function170c98: ; 170c98
+Function170c98: ; 170c98 check if moves are valid and remove others
 	ld c, $3
-	ld hl, $c608 + 13
+	ld hl, $c608 + 13 ;first move of first mon 
 .asm_170c9d
 	push hl
 	ld a, [hl]
-	cp $fc
-	jr c, .asm_170ca6
+	cp $fc 
+	jr c, .asm_170ca6 ;if move >= 252, replace with pound
 	ld a, $1
 	ld [hl], a
 
 .asm_170ca6
-	inc hl
+	inc hl ;first move
 	ld b, $3
 .asm_170ca9
 	ld a, [hl]
 	and a
-	jr z, .asm_170cb1
+	jr z, .asm_170cb1 ;if zero or more then 252, set to zero
 	cp $fc
 	jr c, .asm_170cb9
 
@@ -24350,11 +24353,11 @@ Function170c98: ; 170c98
 .asm_170cb9
 	inc hl
 	dec b
-	jr nz, .asm_170ca9
+	jr nz, .asm_170ca9 ;loop 3 times (for each move after the first)
 
 .asm_170cbd
 	pop hl
-	ld de, $003b
+	ld de, $003b ;check all 3 mons
 	add hl, de
 	dec c
 	jr nz, .asm_170c9d

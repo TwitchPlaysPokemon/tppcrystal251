@@ -180,7 +180,7 @@ EFFECT_TOXIC               EQU $21
 EFFECT_PAY_DAY             EQU $22
 EFFECT_LIGHT_SCREEN        EQU $23
 EFFECT_TRI_ATTACK          EQU $24
-EFFECT_UNUSED_25           EQU $25 ; unused
+EFFECT_BURN				   EQU $25 ; now used
 EFFECT_OHKO                EQU $26
 EFFECT_RAZOR_WIND          EQU $27
 EFFECT_SUPER_FANG          EQU $28

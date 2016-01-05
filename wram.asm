@@ -1076,7 +1076,7 @@ wcd47:: ds 1
 BGMapPalBuffer:: ; cd48
 	ds 1 ; 40
 
-wcd49:: ds 1
+wcd49:: ds 1 ;holds something based on trainer class
 wcd4a:: ds 1 ;holds string tables for battle tower menu and max position?
 wcd4b:: ds 1
 wcd4c:: ds 1 ;holds bank?
@@ -1181,7 +1181,7 @@ CurSpecies:: ; cf60
 
 wcf61:: ds 2
 wcf63:: ds 1
-wcf64:: ds 1
+wcf64:: ds 1 ;battle tower current wins?
 IF !DEF(CRYSTAL11)
 wPokedexStatus::
 ENDC
@@ -1833,7 +1833,7 @@ TimeOfDay:: ; d269
 	ds 1
 
 	ds 1
-wd26b:: ds 1
+wd26b:: ds 1 ;trainer name?
 wd26c:: ds 1
 wd26d:: ds 4
 wd271:: ds 5

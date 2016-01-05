@@ -8153,7 +8153,7 @@ Functiond88c: ; d88c if montype is non-zero, load mon into enemy trainer. else l
 	ret nc
 	ld [de], a ;inc party count
 	;ld a, [de] ;??? seems very useless
-	ld [$ffae], a ;load into ??
+	ld [$ffae], a ;store for later
 	add e ;go to appropriote species slot
 	ld e, a
 	jr nc, .asm_d8a7
@@ -8164,7 +8164,7 @@ Functiond88c: ; d88c if montype is non-zero, load mon into enemy trainer. else l
 	inc de
 	ld a, $ff
 	ld [de], a ;put an empty slot after it
-	ld hl, PartyMonOT ;hl = OT location
+	ld hl, PartyMonOT ;hl = original trainer location
 	ld a, [MonType]
 	and $f
 	jr z, .asm_d8bc
@@ -8177,10 +8177,10 @@ Functiond88c: ; d88c if montype is non-zero, load mon into enemy trainer. else l
 	ld e, l
 	ld hl, PlayerName
 	ld bc, NAME_LENGTH
-	call CopyBytes ;go down to that slot and enter it
+	call CopyBytes ;load playername into structure as original trainer
 	ld a, [MonType]
 	and a
-	jr nz, .asm_d8f0 ;if montype = 0, fall through
+	jr nz, .asm_d8f0 ;if montype nz, skip nickname
 	ld a, [CurPartySpecies] ;load species into var to get mon name
 	ld [wd265], a
 	call GetPokemonName ;put name in nicknames
@@ -8194,7 +8194,7 @@ Functiond88c: ; d88c if montype is non-zero, load mon into enemy trainer. else l
 	ld bc, PKMN_NAME_LENGTH ;enter mon name into nickname list
 	call CopyBytes
 .asm_d8f0
-	ld hl, PartyMon1Species ;load party location
+	ld hl, PartyMon1Species ;load species location
 	ld a, [MonType]
 	and $f
 	jr z, .asm_d8fd
@@ -8212,11 +8212,11 @@ Functiond906: ; d906
 	ld [CurSpecies], a ;put species into curspecies
 	call GetBaseData ;curbasedata holds mon base stats
 	ld a, [BaseDexNo]
-	ld [de], a ;load in dex number
+	ld [de], a ;load in dex number as species
 	inc de
 	ld a, [IsInBattle]
 	and a
-	ld a, $0 ;if in battle, load enemy mon item, else 0
+	ld a, $0 ;if in battle, load enemy mon item, else load no item
 	jr z, .asm_d922
 	ld a, [EnemyMonItem]
 .asm_d922
@@ -8315,7 +8315,7 @@ Functiond906: ; d906
 	ld [de], a
 	inc de
 	ld a, c
-	ld [de], a ;put random DVs into the mon
+	ld [de], a ;put DVs into the mon
 	inc de
 	push hl;start of mon data
 	push de; before PP 
@@ -8422,7 +8422,7 @@ Functiond906: ; d906
 .asm_da45
 	ld a, [MonType]
 	and $f
-	jr nz, .asm_da6b ;if mon type not z
+	jr nz, .asm_da6b ;if mon type not z, skip unown check
 	ld a, [CurPartySpecies]
 	cp UNOWN
 	jr nz, .asm_da6b ;if unkown
@@ -9419,7 +9419,14 @@ Functione134: ; e134
 	ld [hl], a
 	ret
 
-; e167
+OtherBankStatFill: ; run Functione167 with bc in place of hl
+	push bc
+	pop hl
+	ld b, a
+	call Functione167
+	push hl
+	pop bc
+	ret
 
 Functione167: ; e167 fill stat block de for currently loaded base stats, with statxp hl (or skip with b = 0)
 	ld c, $0
@@ -18835,7 +18842,7 @@ Function14dbb: ; 14dbb
 	ld hl, Options
 	ld de, $a000
 	ld bc, $0008
-	call CopyBytes
+	call CopyBytes ;copy 8 bytes from options to $a000, resetting no text delay
 	ld a, [Options]
 	and $ef
 	ld [$a000], a
@@ -19130,7 +19137,7 @@ Function14fd7: ; 14fd7 (5:4fd7)
 	call CloseSRAM
 	ret
 
-Function1500c: ; 1500c
+Function1500c: ; 1500c copy 798 bytes from a865 to partycount
 	ld a, $1
 	call GetSRAMBank
 	ld hl, $a865
@@ -37208,7 +37215,7 @@ ReadTrainerParty: ; 39771
 	add hl, bc
 	add hl, bc
 	ld a, [hli]
-	ld [wdff5], a
+	ld [wdff5], a ;load start of trainer
 	ld a, [hli]
 	ld e, a
 	ld a, [hl]
@@ -37218,11 +37225,11 @@ ReadTrainerParty: ; 39771
 	ld b, a
 .skip_trainer
 	dec b
-	jr z, .got_trainer
+	jr z, .got_trainer ;loop down the correct number of trainers
 .next
 	ld a, [wdff5]
 	call GetFarByte2
-	cp $ff
+	cp $ff 
 	jr nz, .next
 	jr .skip_trainer
 
@@ -37231,10 +37238,10 @@ ReadTrainerParty: ; 39771
 	ld a, [wdff5]
 	call GetFarByte2
 	cp "@"
-	jr nz, .skip_name
+	jr nz, .skip_name ;advance pointer until end of name
 	ld a, [wdff5]
 	call GetFarByte2
-	ld [wdff5 + 1], a
+	ld [wdff5 + 1], a ;load in trainertype
 	ld bc, Function3991b
 	push bc
 TrainerType:
@@ -37242,13 +37249,13 @@ TrainerType:
 	ld a, [wdff5]
 	call GetFarByte2
 	cp $ff
-	ret z
-	ld [CurPartyLevel], a
+	ret z ;ret if done
+	ld [CurPartyLevel], a ;else load in as level
 	ld a, [wdff5]
 	call GetFarByte2
-	ld [CurPartySpecies], a
-	ld a, OTPARTYMON
-	ld [MonType], a
+	ld [CurPartySpecies], a ;load species in
+	ld a, OTPARTYMON ;load montype
+	ld [MonType], a 
 	push hl
 	predef Functiond88c
 	pop hl
@@ -51223,7 +51230,7 @@ Function50e1b: ; 50e1b
 
 Function50e47: ; 50e47
 ;d = level
-	ld a, [BaseGrowthRate] ;pull growth rate from base data?
+	ld a, [BaseGrowthRate] ;pull growth rate from base data
 	add a
 	add a ;multiply by 4
 	ld c, a
@@ -62891,46 +62898,46 @@ UnknownText_0x8b1fc: ; 0x8b1fc
 	db "@"
 ; 0x8b201
 
-Function8b201: ; 8b201 ;check if possible to enter, display fail text and ret c otherwise
-	ld hl, StringBuffer2
-	ld [hl], "3"
-	inc hl
-	ld [hl], "@"
-	ld de, Unknown_8b215 ;load 3 into string buffer2 and checks table into de
-	call Function8b25b
-	ret z ;ret if still ok to go in
-	call Function8b231 ;please return when you're ready
-	scf
+Function8b201: ; 8b201 ;check if possible to enter, display fail text and ret c otherwise. made redundent
+	;ld hl, StringBuffer2
+	;ld [hl], "3"
+	;inc hl
+	;ld [hl], "@"
+	;ld de, Unknown_8b215 ;load 3 into string buffer2 and checks table into de
+	;call Function8b25b
+	;ret z ;ret if still ok to go in
+	;call Function8b231 ;please return when you're ready
+	;scf
 	ret
 
 ; 8b215
 
 Unknown_8b215: ; 8b215
-	db 4
-	dw Unknown_8b21a
-	dw Unknown_8b222
+	;db 4
+	;dw Unknown_8b21a
+	;dw Unknown_8b222
 
 Unknown_8b21a: ; 8b21a ;fail checks
-	dw Function8b2da ;if party not 3 members
-	dw Function8b2e2 ;check for species
-	dw Function8b32a ;check for items
-	dw Function8b331 ;check for eggs
+	;dw Function8b2da ;if party not 3 members REMOVED
+	;dw Function8b2e2 ;check for species REMOVED
+	;dw Function8b32a ;check for items REMOVED
+	;dw Function8b331 ;check for eggs REMOVED
 
 ; 8b222
 
 Unknown_8b222: ; 8b222 ;fail messages
-	dw UnknownText_0x8b22c
-	dw UnknownText_0x8b247
-	dw UnknownText_0x8b24c
-	dw UnknownText_0x8b251
-	dw UnknownText_0x8b256
+	;dw UnknownText_0x8b22c
+	;dw UnknownText_0x8b247
+	;dw UnknownText_0x8b24c
+	;dw UnknownText_0x8b251
+	;dw UnknownText_0x8b256
 
 ; 8b22c
 
 UnknownText_0x8b22c: ; 0x8b22c
 	; Excuse me. You're not ready.
-	text_jump UnknownText_0x1c5944
-	db "@"
+	;text_jump UnknownText_0x1c5944
+	;db "@"
 ; 0x8b231
 
 Function8b231: ; 8b231
@@ -62960,26 +62967,26 @@ UnknownText_0x8b242: ; 0x8b242
 
 UnknownText_0x8b247: ; 0x8b247
 	; Only three #MON may be entered.
-	text_jump UnknownText_0x1c59c3
-	db "@"
+	;text_jump UnknownText_0x1c59c3
+	;db "@"
 ; 0x8b24c
 
 UnknownText_0x8b24c: ; 0x8b24c
 	; The @  #MON must all be different kinds.
-	text_jump UnknownText_0x1c59e5
-	db "@"
+	;text_jump UnknownText_0x1c59e5
+	;db "@"
 ; 0x8b251
 
 UnknownText_0x8b251: ; 0x8b251
 	; The @  #MON must not hold the same items.
-	text_jump UnknownText_0x1c5a13
-	db "@"
+	;text_jump UnknownText_0x1c5a13
+;	db "@"
 ; 0x8b256
 
 UnknownText_0x8b256: ; 0x8b256
 	; You can't take an EGG!
-	text_jump UnknownText_0x1c5a42
-	db "@"
+;	text_jump UnknownText_0x1c5a42
+;	db "@"
 ; 0x8b25b
 
 Function8b25b: ; 8b25b
@@ -63116,72 +63123,72 @@ Function8b2c1: ; 8b2c1
 ; 8b2da
 
 Function8b2da: ; 8b2da
-	ld a, [PartyCount]
-	cp 3
-	ret z
-	scf
+	;ld a, [PartyCount]
+	;cp 3 removed as now scales to partycount
+	;ret z
+	;scf
 	ret
 
 ; 8b2e2
 
 Function8b2e2: ; 8b2e2
-	ld hl, PartyMon1Species
-	call Function8b2e9 ;check if party has all different species, if they don't ret c
+	;ld hl, PartyMon1Species unneded
+	;call Function8b2e9 ;check if party has all different species, if they don't ret c
 	ret
 
 ; 8b2e9
 
-Function8b2e9: ; 8b2e9 ;check if party has all different versions of what's pointed to by hl, if they don't ret c
-	ld de, PartyCount
-	ld a, [de]
-	inc de
-	dec a
-	jr z, .asm_8b314 ;if party size = 1, all clear
-	ld b, a
+Function8b2e9: ; 8b2e9 ;check if party has all different versions of what's pointed to by hl, if they don't ret c. made redundent 
+;	ld de, PartyCount
+;	ld a, [de]
+;	inc de
+;	dec a
+;	jr z, .asm_8b314 ;if party size = 1, all clear
+;	ld b, a
 .asm_8b2f2
-	push hl
-	push de
-	ld c, b ;c = mons below
-	call Function8b322 ;if [de] = egg, skip
-	jr z, .asm_8b30c
-	ld a, [hl]
-	and a
-	jr z, .asm_8b30c ;if hl = 0, skip
+;	push hl
+;	push de
+;	ld c, b ;c = mons below
+;	call Function8b322 ;if [de] = egg, skip
+;	jr z, .asm_8b30c
+;	ld a, [hl]
+;	and a
+;	jr z, .asm_8b30c ;if hl = 0, skip
 .asm_8b2fe
-	call Function8b31a ;go down 1 mon in hl, inc de
-	call Function8b322 ;if [de] = egg, skip
-	jr z, .asm_8b309
-	cp [hl]
-	jr z, .asm_8b316 ;if they match, ret c
+;	call Function8b31a ;go down 1 mon in hl, inc de
+;	call Function8b322 ;if [de] = egg, skip
+;	jr z, .asm_8b309
+;	cp [hl]
+;	jr z, .asm_8b316 ;if they match, ret c
 
 .asm_8b309
-	dec c ;loop for each mon after
-	jr nz, .asm_8b2fe
+;	dec c ;loop for each mon after
+;	jr nz, .asm_8b2fe
 .asm_8b30c
-	pop de
-	pop hl
-	call Function8b31a
-	dec b ;b becomes c for inner loop
-	jr nz, .asm_8b2f2 ;loop for each mon
+;	pop de
+;	pop hl
+;	call Function8b31a
+;	dec b ;b becomes c for inner loop
+;	jr nz, .asm_8b2f2 ;loop for each mon
 
 .asm_8b314
-	and a
-	ret
+;	and a
+;	ret
 
 .asm_8b316
-	pop de
-	pop hl
-	scf
-	ret
+;	pop de
+;	pop hl
+;	scf
+;	ret
 
 ; 8b31a
 
-Function8b31a: ; 8b31a
-	push bc
-	ld bc, PartyMon2 - PartyMon1
-	add hl, bc ;go down 1 mon in hl, inc de
-	inc de
-	pop bc
+Function8b31a: ; 8b31a redundent due to other changes
+;	push bc
+;	ld bc, PartyMon2 - PartyMon1
+;	add hl, bc ;go down 1 mon in hl, inc de
+;	inc de
+;	pop bc
 	ret
 
 ; 8b322
@@ -63198,27 +63205,27 @@ Function8b322: ; 8b322
 ; 8b32a
 
 Function8b32a: ; 8b32a
-	ld hl, PartyMon1Item
-	call Function8b2e9 ;check if party has all different items, if they don't ret c
+	;ld hl, PartyMon1Item ;removed 
+	;call Function8b2e9 ;check if party has all different items, if they don't ret c
 	ret
 
 ; 8b331
 
 Function8b331: ; 8b331
-	ld hl, PartyCount
-	ld a, [hli]
-	ld c, a
+;	ld hl, PartyCount
+;	ld a, [hli]
+;	ld c, a
 .asm_8b336
-	ld a, [hli]
-	cp EGG
-	jr z, .asm_8b340 ;if egg, ret c
-	dec c
-	jr nz, .asm_8b336
-	and a
-	ret
+;	ld a, [hli]
+;	cp EGG
+;	jr z, .asm_8b340 ;if egg, ret c
+;	dec c
+;	jr nz, .asm_8b336
+;	and a
+;	ret
 
 .asm_8b340
-	scf
+;	scf
 	ret
 
 ; 8b342
@@ -96242,30 +96249,30 @@ Function10612d: ; 10612d
 	push hl
 	push de
 	ld e, c
-	inc e
+	inc e ;e = c+1
 .asm_106136
 	ld a, [hli]
 	inc a
-	jr nz, .asm_10613d
+	jr nz, .asm_10613d ;load a into hl until e is zero or a = not ff
 	dec e
 	jr nz, .asm_106136
 .asm_10613d
 	pop de
 	pop hl
-	jr z, .asm_10614d
+	jr z, .asm_10614d ;if e = nz, add bc to hl, else done
 	add hl, bc
 .asm_106142
 	inc [hl]
-	jr nz, .asm_10614d
+	jr nz, .asm_10614d ;if the contents are ff, they now 0 and done
 	ld a, c
-	and a
+	and a ;if c is equal to a, done
 	jr z, .asm_10614d
-	dec hl
+	dec hl ;else dec hl and c and loop
 	dec c
 	jr .asm_106142
 
 .asm_10614d
-	call Function106162
+	call Function106162 ;a081/2 = sum of a001 through a080
 	call CloseSRAM
 	pop bc
 	ret
@@ -96281,7 +96288,7 @@ Function106155: mobile ; 106155
 
 ; 106162
 
-Function106162: ; 106162
+Function106162: ; 106162 a081/2 = sum of a001 through a080
 	push de
 	call Function10616e ;de = sum of a001 through a080, store it in a081
 	ld hl, $a081

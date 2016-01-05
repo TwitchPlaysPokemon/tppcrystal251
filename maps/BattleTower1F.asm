@@ -10,18 +10,18 @@ BattleTower1F_MapScriptHeader: ; 0x9e393
 	db 0
 ; 0x9e39d
 
-UnknownScript_0x9e39d: ; 0x9e39d
+UnknownScript_0x9e39d: ; 0x9e39d ;if reload?
 	writebyte $9
-	special Function170687 ;mobile
+	special Function170687 ;if saved id = playerid, sciptvar = 1, else scriptvar = 0
 	iffalse UnknownScript_0x9e3d1 ;exit script
 	writebyte $2
-	special Function170687
-	if_equal $0, UnknownScript_0x9e3d1
-	if_equal $2, UnknownScript_0x9e3c4
-	if_equal $3, UnknownScript_0x9e3d1
-	if_equal $4, UnknownScript_0x9e3d1
+	special Function170687 ;load be45 into scriptvar
+	if_equal $0, UnknownScript_0x9e3d1 ;set trigger 1 (do nothing)
+	if_equal $2, UnknownScript_0x9e3c4 ;didn't save text'
+	if_equal $3, UnknownScript_0x9e3d1 ;set trigger 1
+	if_equal $4, UnknownScript_0x9e3d1 ;set trigger 1
 	loadfont
-	writetext UnknownText_0x9f037
+	writetext UnknownText_0x9f037 ;we've been waiting
 	closetext
 	loadmovesprites
 	priorityjump UnknownScript_0x9e44e
@@ -56,16 +56,16 @@ UnknownScript_0x9e3e0: ; 0x9e3e0
 ; 0x9e3e2
 
 ReceptionistScript_0x9e3e2: ; 0x9e3e2 talk to receptionist
-	writebyte $2
-	special Function170687 ;load be45 into scriptvar
-	if_equal $3, BattleTowerBattleRoomScript_0x9f4e4 ;give items held
+	;writebyte $2
+	;special Function170687 ;load be45 into scriptvar ;items cannot be won anymore
+	;if_equal $3, BattleTowerBattleRoomScript_0x9f4e4 ;give items held
 	loadfont
 	writetext UnknownText_0x9e5ab ;intro text
 	keeptextopen
 	writebyte $0
 	special Function170687 ;if saved id = playerid, load bit 1 of $be4f into scriptvar, else scriptvar = 0
 	if_not_equal $0, UnknownScript_0x9e3fc ;ask if player wants in
-	jump UnknownScript_0x9e49e
+	jump UnknownScript_0x9e49e ;else help text
 ; 0x9e3fc
 
 UnknownScript_0x9e3fc: ; 0x9e3fc
@@ -80,20 +80,20 @@ UnknownScript_0x9e3fc: ; 0x9e3fc
 UnknownScript_0x9e40f: ; 0x9e40f 
 	writebyte $1a
 	special Function170687 ;clear battle tower data?
-	special Function170bd3 ;if can enter, scriptvar = 0, else scriptvar = 1
-	if_not_equal $0, UnknownScript_0x9e4bb ;if fail, exit
+	;special Function170bd3 ;if can enter, scriptvar = 0, else scriptvar = 1
+	;if_not_equal $0, UnknownScript_0x9e4bb ;if fail, exit
 	writetext UnknownText_0x9ef1f ;ask if save
 	yesorno
 	iffalse UnknownScript_0x9e3fc ;return to top menu if no
 	dotrigger $0 ;set trigger
 	special Function29e66 ;ask if save, if yes save and continue
 	iffalse UnknownScript_0x9e3fc
-	dotrigger $1 ;set trigger
+	dotrigger $1 ;set trigger to do nothing if quit
 	writebyte $1
 	special Function170687 ;set bit 1 of $be4f
-	special Function1700b0 ;level selection menu and checks
-	if_equal $a, UnknownScript_0x9e3fc ;if b is pressed and cofirmed to want out, exit
-	if_not_equal $0, UnknownScript_0x9e550 ;should be impossible (mobile stuff?)
+	;special Function1700b0 ;level selection menu and checks  should be fine to remove this
+	;if_equal $a, UnknownScript_0x9e3fc ;if b is pressed and cofirmed to want out, exit
+	;if_not_equal $0, UnknownScript_0x9e550 ;should be impossible (mobile stuff?)
 	writebyte $11
 	special Function170687 ;load 0 into aa8d
 	writetext UnknownText_0x9e60a ;to your battle room
@@ -107,7 +107,7 @@ UnknownScript_0x9e40f: ; 0x9e40f
 UnknownScript_0x9e44e: ; 0x9e44e
 	loadmovesprites
 	writebyte $8
-	special Function170687
+	special Function170687 ;wd800 = be47
 UnknownScript_0x9e454: ; 0x9e454
 	musicfadeout $0000, $8
 	domaptrigger GROUP_BATTLE_TOWER_BATTLE_ROOM, MAP_BATTLE_TOWER_BATTLE_ROOM, $0 ;set triggers
@@ -126,16 +126,17 @@ UnknownScript_0x9e454: ; 0x9e454
 ; 0x9e47a
 
 UnknownScript_0x9e47a: ; 0x9e47a
-	writebyte $1c
-	special Function170687 ;load 3 into be45
-	writebyte $1b
-	special Function170687 ;if bag full or item givable, scriptvar = item to give, else run bag is full
-	if_equal $12, UnknownScript_0x9e498 ;bag is full
-	itemtotext $0, $1
-	giveitem $ff, $5 ;give 5 of the saved items
-	writetext UnknownText_0x9eb7e ;give item text
-	writebyte $1d
-	special Function170687 ;save 4 into $be45
+	givemoney 0, 80000
+		;writebyte $1c
+		;special Function170687 ;load 3 into be45
+		;writebyte $1b
+		;special Function170687 ;if bag full or item givable, scriptvar = item to give, else run bag is full
+		;if_equal $12, UnknownScript_0x9e498 ;bag is full
+		;itemtotext $0, $1
+		;giveitem $ff, $5 ;give 5 of the saved items
+		;writetext UnknownText_0x9eb7e ;give item text
+		;writebyte $1d
+		;special Function170687 ;save 4 into $be45
 	loadmovesprites
 	end
 ; 0x9e498
@@ -199,7 +200,7 @@ UnknownScript_0x9e4be: ; 0x9e4be
 	end
 ; 0x9e4ea
 
-UnknownScript_0x9e4ea: ; 0x9e4ea
+UnknownScript_0x9e4ea: ; 0x9e4ea unrunnable?
 	writebyte $18
 	special Function170687
 	if_not_equal $0, UnknownScript_0x9e542
@@ -262,7 +263,7 @@ UnknownScript_0x9e550: ; 0x9e550
 
 UnknownScript_0x9e555: ; 0x9e555
 	loadfont
-	writetext UnknownText_0x9ee18
+	writetext UnknownText_0x9ee18 ;you didn't save
 	closetext
 	jump UnknownScript_0x9e4b0
 ; 0x9e55d
@@ -511,12 +512,19 @@ UnknownText_0x9ea5f: ; 0x9ea5f
 ; 0x9eaef
 
 UnknownText_0x9eaef: ; 0x9eaef
-	db $0, "Congratulations!", $51
-	db "You've beaten all", $4f
-	db "the trainers!", $51
-	db "For that, you get", $4f
-	db "this great prize!", $51
-	db $57
+	text "Congratulations!"
+	line "You've beaten 7"
+	cont "trainers!"
+
+	para "You win ", $f0 ,"80000"
+	done
+
+	;db $0, "Congratulations!", $51
+	;db "You've beaten all", $4f
+	;db "the trainers!", $51
+	;db "For that, you get", $4f
+	;db "this great prize!", $51
+	;db $57
 ; 0x9eb45
 
 UnknownText_0x9eb45: ; 0x9eb45

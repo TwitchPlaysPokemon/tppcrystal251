@@ -1,4 +1,4 @@
-	dw NormalHit
+	dw NormalHit ;assosiate with moveeffect 
 	dw DoSleep
 	dw PoisonHit
 	dw LeechHit

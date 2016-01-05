@@ -1232,9 +1232,6 @@ DoParalyze:
 	paralyze
 	endmove
 
-;WillOWisp:
-;DoBurn:
-
 SkyAttack:
 	checkcharge
 	checkobedience
@@ -1484,7 +1481,7 @@ PainSplit:
 	painsplit
 	endmove
 
-;Snore:
+Snore:
 ;	checkobedience
 ;	usedmovetext
 ;	doturn
@@ -1588,7 +1585,7 @@ HealBell:
 	healbell
 	endmove
 
-;TripleKick:
+TripleKick:
 ;	checkobedience
 ;	usedmovetext
 ;	doturn
@@ -1837,7 +1834,7 @@ Present:
 	kingsrock
 	endmove
 
-;Frustration:
+Frustration:
 ;	checkobedience
 ;	usedmovetext
 ;	doturn
@@ -2030,7 +2027,7 @@ BellyDrum:
 	bellydrum
 	endmove
 
-;PsychUp:
+PsychUp:
 ;	checkobedience
 ;	usedmovetext
 ;	doturn
@@ -2050,7 +2047,7 @@ MirrorCoat:
 	kingsrock
 	endmove
 
-;SkullBash:
+SkullBash:
 ;	checkcharge
 ;	checkobedience
 ;	doturn
@@ -2229,7 +2226,7 @@ Teleport:
 	teleport
 	endmove
 
-;BeatUp:
+BeatUp:
 ;	checkobedience
 ;	usedmovetext
 ;	movedelay

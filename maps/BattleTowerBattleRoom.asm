@@ -24,7 +24,7 @@ UnknownScript_0x9f421: ; 0x9f421
 	applymovement $0, MovementData_0x9e58c
 UnknownScript_0x9f425: ; 0x9f425
 	writebyte $2
-	special Function170b44
+	special Function170b44 ;generate trainer and load thier sprite into mapobject 2
 	appear $2
 	warpsound
 	waitbutton
@@ -33,31 +33,31 @@ UnknownScript_0x9f425: ; 0x9f425
 	storetext 1
 	keeptextopen
 	loadmovesprites
-	special Function170215
-	special Function8c084
+	special Function170215 ;run battle, loop until done
+	special Function8c084 ;pallette stuff
 	reloadmap
-	if_not_equal $0, UnknownScript_0x9f4c2
+	if_not_equal $0, UnknownScript_0x9f4c2 ;if lose fight, run lose text
 	copybytetovar wcf64
-	if_equal $7, UnknownScript_0x9f4d9
+	if_equal $7, UnknownScript_0x9f4d9 ;if won all, run win script, else ready next fight
 	applymovement $2, MovementData_0x9e597
 	warpsound
 	disappear $2
 	applymovement $3, MovementData_0x9e59c
 	applymovement $0, MovementData_0x9e5a7
 	loadfont
-	writetext UnknownText_0x9ee92
+	writetext UnknownText_0x9ee92 ;your mon will be healed
 	closetext
 	loadmovesprites
 	playmusic MUSIC_HEAL
-	special Function8c084
-	special Function1047eb
+	special Function8c084 ;pallette stuff
+	special Function1047eb ;???
 	pause 60
-	special Function8c079
+	special Function8c079 ;pallette stuff
 	special RestartMapMusic
 	loadfont
-	writetext UnknownText_0x9eebc
+	writetext UnknownText_0x9eebc ;next opponent text
 	yesorno
-	iffalse UnknownScript_0x9f483
+	iffalse UnknownScript_0x9f483 ;if not ready, else loop
 UnknownScript_0x9f477: ; 0x9f477
 	loadmovesprites
 	applymovement $0, MovementData_0x9e5a9
@@ -66,46 +66,126 @@ UnknownScript_0x9f477: ; 0x9f477
 ; 0x9f483
 
 UnknownScript_0x9f483: ; 0x9f483
-	writetext UnknownText_0x9ef5e
+	writetext UnknownText_0x9ef5e ;save and end the session
 	yesorno
-	iffalse UnknownScript_0x9f4a3
+	iffalse UnknownScript_0x9f4a3 ;if yes prepare to reset
 	writebyte $7
-	special Function170687
+	special Function170687 ;load d800 into $be47
 	writebyte $1f
-	special Function170687
+	special Function170687 ;copy 8 bytes from options to $a000, resetting no text delay
 	writebyte $3
-	special Function170687
+	special Function170687 ;set $be45 to 1
 	playsound SFX_SAVE
 	waitbutton
-	special Function8c084
-	special Reset
+	special Function8c084 ;pallets
+	special Reset ;reset the console
 UnknownScript_0x9f4a3: ; 0x9f4a3
-	writetext UnknownText_0x9efbf
+	writetext UnknownText_0x9efbf ;cancel your challenge?
 	yesorno
-	iffalse UnknownScript_0x9f477
+	iffalse UnknownScript_0x9f477 ;if no back to loop, else quit out
 	writebyte $4
-	special Function170687
+	special Function170687 ;load 0 into $be45
 	writebyte $6
-	special Function170687
+	special Function170687 ;if $be46 = 0, scriptvar = 0, else if if $aa8c >= 2,scriptvar = 8 and $be46 $aa8b and $aa8c = 0, else do stuff
 	loadmovesprites
-	special Function8c084
+	special Function8c084 ;pallette stuff
 	warpfacing $1, GROUP_BATTLE_TOWER_1F, MAP_BATTLE_TOWER_1F, $7, $7
 	loadfont
-	jump UnknownScript_0x9e4b0
+	jump UnknownScript_0x9e4b0 ;exit
 ; 0x9f4c2
 
 UnknownScript_0x9f4c2: ; 0x9f4c2
 	pause 60
-	special Function8c092
-	warpfacing $1, GROUP_BATTLE_TOWER_1F, MAP_BATTLE_TOWER_1F, $7, $7
+	special Function8c092 ;pallete stuff
+	warpfacing $1, GROUP_BATTLE_TOWER_1F, MAP_BATTLE_TOWER_1F, $7, $7 ;warp downstairs
 	writebyte $4
-	special Function170687
+	special Function170687 ;load 0 into $be45
+	copybytetovar wcf64
 	loadfont
-	writetext UnknownText_0x9ea49
+	if_equal $2, Win1Match
+	if_equal $3, Win2Match
+	if_equal $4, Win3Match
+	if_equal $5, Win4Match
+	if_equal $6, Win5Match
+	if_equal $7, Win6Match
+BTPrizeGiven:
+	writetext UnknownText_0x9ea49 ;thanks for visiting
 	closetext
 	loadmovesprites
 	end
 ; 0x9f4d9
+
+Win1Match:
+	writetext Won1Text
+	givemoney 0, 3000
+	keeptextopen
+	jump BTPrizeGiven
+
+Won1Text:
+	text "For winning once,"
+	line "your prize is"
+	cont $f0, "3000"
+	done
+
+Win2Match:
+	writetext Won1Text
+	givemoney 0, 8000
+	keeptextopen
+	jump BTPrizeGiven
+
+Won2Text:
+	text "For winning once,"
+	line "your prize is"
+	cont $f0, "8000"
+	done
+
+Win3Match:
+	writetext Won1Text
+	givemoney 0, 15000
+	keeptextopen
+	jump BTPrizeGiven
+
+Won3Text:
+	text "For winning once,"
+	line "your prize is"
+	cont $f0, "15000"
+	done
+
+Win4Match:
+	writetext Won1Text
+	givemoney 0, 24000
+	keeptextopen
+	jump BTPrizeGiven
+
+Won4Text:
+	text "For winning once,"
+	line "your prize is"
+	cont $f0, "24000"
+	done
+
+Win5Match:
+	writetext Won1Text
+	givemoney 0, 35000
+	keeptextopen
+	jump BTPrizeGiven
+
+Won5Text:
+	text "For winning once,"
+	line "your prize is"
+	cont $f0, "35000"
+	done
+
+Win6Match:
+	writetext Won1Text
+	givemoney 0, 50000
+	keeptextopen
+	jump BTPrizeGiven
+
+Won6Text:
+	text "For winning once,"
+	line "your prize is"
+	cont $f0, "50000"
+	done
 
 UnknownScript_0x9f4d9: ; 0x9f4d9
 	pause 60

@@ -1,10 +1,10 @@
-Function1f8000: ; 1f8000
-	ld a, [rSVBK]
+Function1f8000: ; 1f8000 generatres mon and trainer and stores them in wram. full structure is, from wd100, 11 bytes of trainer data (name and class), 177 bytes for 3 mons and 36 bytes of ????
+	ld a, [rSVBK] ;changes have removed the mons in "battle" and inputted directly into OTPartyMons instead
 	push af
 	ld a, $3
 	ld [rSVBK], a
 	xor a
-	ld hl, wd100
+	ld hl, wd100 
 	ld bc, $00e0
 	call ByteFill ;fill 340 bytes with 0 from d100
 	ld a, $ff
@@ -46,140 +46,284 @@ ENDC
 	add hl, bc ;fill slot $be46 with the random number
 	ld [hl], a
 	call CloseSRAM
-	push af
+	push af ;store the random number
 	ld hl, BattleTowerTrainers ;list of trainer names and classes
 	ld bc, 11
 	call AddNTimes ;go down random number times
-	ld bc, 11
-	call CopyBytes ;copy the data into wd100
-	call Function1f8081
-	pop af
+	;ld bc, 11 no the copy is part of the next function
+	;call CopyBytes ;copy the data into wd100
+	call Function1f8081 ;set-up trainer with random mons
+	ld de, $d288
+	pop af ;random number used for trainer
 	ld hl, Function1f8000
 	ld bc, $0024
-	call AddNTimes
+	call AddNTimes ;?????
 	ld bc, $0024
 .asm_1f8070
-	ld a, $7c
+	ld a, $7c ;
 	call GetFarByte
-	ld [de], a
+	ld [de], a ;load ??? into de
 	inc hl
 	inc de
 	dec bc
 	ld a, b
 	or c
-	jr nz, .asm_1f8070
+	jr nz, .asm_1f8070 ;loop 24 times
 	pop af
 	ld [rSVBK], a
 	ret
 ; 1f8081
 
-Function1f8081: ; 1f8081
-	ld c, $3 ;num of mons to generate?
-.loop
-	push bc
+Function1f8081: ; 1f8081 set-up trainer hl with random mons
+	ld a, [rSVBK] ;changes have removed the mons in "battle" and inputted directly into OTPartyMons instead
+	push af
 	ld a, $1
-	call GetSRAMBank
+	ld [rSVBK], a
+	ld de, wd26b
+	ld bc, $000a
+	call CopyBytes ;copy trainer name into ??, end with a end char
+	ld a, $50
+	ld [de], a
+	ld a , [hli]
+	ld [OtherTrainerClass], a ;load in trainer class
+	ld [OTPartyCount], 1
+	jr StartBTLoop
+BTLoop:
+	ld de, OTPartyCount
+	ld a, [de] 
+	ld c, [PartyCount] ;num of mons to generate
+	cp c
+	jp z, EndBTLoop
+StartBTLoop:
+	inc a ;inc party count
+	ld [de], a
+	add e ;go to appropriote species slot
+	ld e, a
+	jr nc, DontIncD
+	inc d
+DontIncD:
+	push de ;= correct slot in OTPartySpecies
+	ld hl, OTPartyMonOT
+	ld a, [OTPartyCount]
+	dec a
+	call SkipNames
+	ld d, h
+	ld e, l
+	ld hl, PlayerName
+	ld bc, NAME_LENGTH
+	call CopyBytes ;load playername into structure as original trainer. bc = name legnth, de = name after current in OTPartyMonOT, hl = whatev
+	ld hl, 0
+	add hl, bc
+	add hl, hl; hl = current nickname location
+	add hl, hl
+	add hl, bc
+	add hl, de
+	pop de ;= correct slot in OTPartySpecies
+	push hl ;holds nickname loc
+	call Random
+	ld b, 0
+	ld c, a
+	ld a, 6
+	ld hl, BattleTowerMons ;go down to random battle tower mons
+	call AddNTimes ;hl = start of chosen mon
+	ld a, [hl] ;load species into a and then into function variables
+	ld [wd265], a
+	ld [CurSpecies], a
+	call GetBaseData ;load base data into curbsedata
+	ld [de], a ;load into species
+	inc de
+	ld a, $ff
+	ld [de], a ;put an empty slot after it
+	push hl; store current mon location on the stack
+	ld hl, OTPartyMon1Species
+	ld a, [OTPartyCount]
+	dec a
+	ld bc, PartyMon2 - PartyMon1 ;go to correct party slot
+	call AddNTimes
+	pop bc ;current slot in mon database, over species
+	ld a, [bc]
+	inc bc
+	ld [hli], a ;load in species
+	ld a, [bc]
+	inc bc
+	ld [hli], a ;load in item
+	ld a, [bc]
+	inc bc
+	push hl ;store move 1 location
+	ld [hli], a ;load in move1
+	ld a, [bc]
+	inc bc
+	ld [hli], a ;load in move2
+	ld a, [bc]
+	inc bc
+	ld [hli], a ;load in move3
+	ld a, [bc]
+	inc bc
+	ld [hli], a ;load in move4
+	xor a
+	ld [hli], a ;load 0 into id
+	ld [hli], a
+	call FindHighestLevel ;a = highest level in party
+	push af ;store highest level for later
+	ld d, a
+	push hl
+	callab Function50e47 ;put xp in multiplicand
+	pop hl
+	ld a, [hMultiplicand]
+	ld [hli], a ;load XP into mon (takes 3 bytes)
+	ld a, [$ffb5]
+	ld [hli], a
+	ld a, [$ffb6]
+	ld [hli], a
+	ld a, $ff
+	ld b, $c
+.asm_d97a
+	ld [hli], a ;load max statxp
+	dec b
+	jr nz, .asm_d97a ;repeat 12 times (2 bytes a stat for stat xp, then 2 bytes for dvs)
+	pop bc ;b = level
+	pop de ;de = move location
+	call BattleTowerFillPP ;fill move pp data
+	ld [hli], a ;load ff into happiness
+	xor a
+	ld [hli], a ;pokerus and caught data
+	ld [hli], a
+	ld [hli], a
+	ld [hli], d ;load level into mon
+	ld [hli], a
+	ld [hli], a ;load 0 into status
+	ld d, h
+	ld e, l
+	ld b, h
+	ld a, l
+	sub a, 23 ;go to stat xp start
+	jr c, SkipDecD
+	dec b
+SkipDecD:
+	ld c, a
+	callab OtherBankStatFill ;fill in remaining stats
+	call GetPokemonName ;de = string buffer with default name
+	pop hl ;call nickname location off the stack
+	ld bc, $000a
+.CopyByte ;place nickname into nickname data
+	ld a, [de]
+	ld [hli], a
+	inc de
+.HandleLoop
+	dec c
+	jr nz, .CopyByte ;end with a end char
+	ld [hl], $50
+	jp BTLoop
+EndBTLoop:
+	pop af
+	ld [rSVBK], a
+	ret
+	
+
+
+;	ld a, $1
+;	call GetSRAMBank
 
 .asm_1f8089
-	ld a, [$d800]
-	dec a
-	ld hl, BattleTowerMons 
-	ld bc, BattleTowerMons2 - BattleTowerMons1
-	call AddNTimes ;go down to level group $d800
+;	ld a, [$d800]
+;	dec a
+;	ld hl, BattleTowerMons 
+;	ld bc, BattleTowerMons2 - BattleTowerMons1
+;	call AddNTimes ;go down to level group $d800
+;
+;	ld a, [hRandomAdd]
+;	ld b, a
+;.asm_1f8099
+;	call Random
+;	ld a, [hRandomAdd] 
+;	add b
+;	ld b, a; redundent?
+;	and $1f; first 5 bytes (0-31)
+;	cp (BattleTowerMons2 - BattleTowerMons1) / ($3b) ;if > number of mons, try again
+;	jr nc, .asm_1f8099
 
-	ld a, [hRandomAdd]
-	ld b, a
-.asm_1f8099
-	call Random
-	ld a, [hRandomAdd] 
-	add b
-	ld b, a; redundent?
-	and $1f; first 5 bytes (0-31)
-	cp (BattleTowerMons2 - BattleTowerMons1) / ($3b) ;if > number of mons, try again
-	jr nc, .asm_1f8099
+;	ld bc, $3b
+;	call AddNTimes ;go down the number of mons equal to the random number
+;	ld a, [hli]
+;	ld b, a ;load species into b
+;	ld a, [hld]
+;	ld c, a ;load item into c
+;	ld a, [wd10b] ;compare to item and species of stored mons, reject if same
+;	cp b
+;	jr z, .asm_1f8089
+;	ld a, [wd10c]
+;	cp c
+;	jr z, .asm_1f8089
+;	ld a, [wd146]
+;	cp b
+;	jr z, .asm_1f8089
+;	ld a, [wd147]
+;	cp c
+;	jr z, .asm_1f8089
+;	ld a, [wd181]
+;	cp b
+;	jr z, .asm_1f8089
+;	ld a, [wd182]
+;	cp c
+;	jr z, .asm_1f8089 
+;	ld a, [$be51] ;also reject if same as last 2 fights
+;	cp b
+;	jr z, .asm_1f8089
+;	ld a, [$be52]
+;	cp b
+;	jr z, .asm_1f8089
+;	ld a, [$be53]
+;	cp b
+;	jr z, .asm_1f8089
+;	ld a, [$be54]
+;	cp b
+;	jr z, .asm_1f8089
+;	ld a, [$be55]
+;	cp b
+;	jr z, .asm_1f8089
+;	ld a, [$be56]
+;	cp b
+;	jr z, .asm_1f8089
 
-	ld bc, $3b
-	call AddNTimes ;go down the number of mons equal to the random number
-	ld a, [hli]
-	ld b, a
-	ld a, [hld]
-	ld c, a
-	ld a, [wd10b]
-	cp b
-	jr z, .asm_1f8089
-	ld a, [wd10c]
-	cp c
-	jr z, .asm_1f8089
-	ld a, [wd146]
-	cp b
-	jr z, .asm_1f8089
-	ld a, [wd147]
-	cp c
-	jr z, .asm_1f8089
-	ld a, [wd181]
-	cp b
-	jr z, .asm_1f8089
-	ld a, [wd182]
-	cp c
-	jr z, .asm_1f8089
-	ld a, [$be51]
-	cp b
-	jr z, .asm_1f8089
-	ld a, [$be52]
-	cp b
-	jr z, .asm_1f8089
-	ld a, [$be53]
-	cp b
-	jr z, .asm_1f8089
-	ld a, [$be54]
-	cp b
-	jr z, .asm_1f8089
-	ld a, [$be55]
-	cp b
-	jr z, .asm_1f8089
-	ld a, [$be56]
-	cp b
-	jr z, .asm_1f8089
+;	ld bc, $3b
+;	call CopyBytes ;if done, copy mon into memory
+;	ld a, [wd265] ;store current species
+;	push af ;contents of wd265
+;	push de ;current location in memory
+;	ld hl, -$3b 
+;	add hl, de ;go down to start of mon
+;	ld a, [hl]
+;	ld [wd265], a ;store species
+;	ld bc, $0030
+;	add hl, bc
+;	push hl ;location in memory
+;	call GetPokemonName
+;	ld h, d
+;	ld l, e
+;	pop de ;location in memory
+;	ld bc, PKMN_NAME_LENGTH
+;	call CopyBytes ;copy mon name into memory
+;	pop de ;end of mon position in memory
+;	pop af ;restroe contents of d265
+;	ld [wd265], a
+;	pop bc
+;	dec c
+;	jp nz, .loop ;loop c times
 
-	ld bc, $3b
-	call CopyBytes
-	ld a, [wd265]
-	push af
-	push de
-	ld hl, -$3b
-	add hl, de
-	ld a, [hl]
-	ld [wd265], a
-	ld bc, $0030
-	add hl, bc
-	push hl
-	call GetPokemonName
-	ld h, d
-	ld l, e
-	pop de
-	ld bc, PKMN_NAME_LENGTH
-	call CopyBytes
-	pop de
-	pop af
-	ld [wd265], a
-	pop bc
-	dec c
-	jp nz, .loop
-
-	ld a, [$be51]
-	ld [$be54], a
-	ld a, [$be52]
-	ld [$be55], a
-	ld a, [$be53]
-	ld [$be56], a
-	ld a, [wd10b]
-	ld [$be51], a
-	ld a, [wd146]
-	ld [$be52], a
-	ld a, [wd181]
-	ld [$be53], a
-	call CloseSRAM
-	ret
+;	ld a, [$be51] ;store last 2 battles worth of mons?
+;	ld [$be54], a
+;	ld a, [$be52]
+;	ld [$be55], a
+;	ld a, [$be53]
+;	ld [$be56], a
+;	ld a, [wd10b]
+;	ld [$be51], a
+;	ld a, [wd146]
+;	ld [$be52], a
+;	ld a, [wd181]
+;	ld [$be53], a
+;	call CloseSRAM
+;	ret
 ; 1f814e
 
 BattleTowerTrainers: ; 1f814e
@@ -254,6 +398,60 @@ BattleTowerTrainers: ; 1f814e
 	db "EATON@@@@@", BIKER
 	db "WONG@@@@@@", FIREBREATHER
 ; 1f8450
+
+FindHighestLevel: return highet level mon in party's level in a
+	push hl
+	push bc
+	push de
+	ld hl, PartyMon1Level
+	ld bc, PartyMon2 - PartyMon1
+	ld a, [PartyCount]
+	dec a
+	ld e, a ;load mons - 1 as loop counter
+	ld a, [hl] ;load first mon level
+LevelLoop:
+	add hl, bc
+	ld d, [hl]
+	cp d
+	jp nc, NotHigher ;collect highest level in a
+	ld a, d
+NotHigher:
+	dec e
+	jr nz, LevelLoop
+	pop de
+	pop bc
+	pop hl
+	ret
+
+BattleTowerFillPP: ; da6d de = start of moves, hl = start of place to put pp
+	push bc
+	ld b, NUM_MOVES
+PPLoop:
+	ld a, [de] ;load move
+	inc de
+	and a
+	jr z, NoMove ;if no move, skip
+	dec a
+	push hl
+	push de
+	push bc
+	ld hl, Moves
+	ld bc, MOVE_LENGTH
+	call AddNTimes ;go down to correct move
+	ld de, StringBuffer1 ;load into stringbuffer
+	ld a, BANK(Moves)
+	call FarCopyBytes
+	pop bc
+	pop de
+	pop hl
+	ld a, [StringBuffer1 + MOVE_PP] ;a = slot in string buffer that holds PP
+NoMove:
+	ld [hli], a ;load pp into slot and move to next slot
+	dec b
+	jr nz, PPLoop ; loop until out of moves
+	pop bc
+	ret
+	
 
 
 BattleTowerMons: ; 1f8450

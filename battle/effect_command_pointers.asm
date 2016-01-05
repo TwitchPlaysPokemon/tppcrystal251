@@ -177,4 +177,5 @@ BattleCommandPointers: ; 3fd28
 	dw BattleCommandad ; 351a5
 	dw BattleCommandae ; 35197
 	dw BattleCommandaf ; 365a7
+	dw BattleCommandb0 ;burn
 ; 3fe86

@@ -178,22 +178,22 @@ HaveWantPals: ; 17cff3
 	RGB  0,  0,  0
 
 
-Function17d073: ; 17d073
+Function17d073: ; 17d073 ;dec c by legnth of text de, stopping hen a special character or end of line is hit. special chars ret c
 .asm_17d073
 	ld a, [de]
 	inc de
 	and a
 	jr z, .asm_17d0ae
 	cp $60
-	jr nc, .asm_17d0ae
+	jr nc, .asm_17d0ae 
 	cp $4e
-	jr z, .asm_17d0ae
+	jr z, .asm_17d0ae;if ?, $5-13, $19-1c, $26-34 ,$3a-3e,$40-48, more then $60(normal chars) or line break, dec c and loop
 	cp $50
-	jr z, .asm_17d0b1
+	jr z, .asm_17d0b1 ;if string end, ret nc
 	cp $5
-	jr c, .asm_17d0ac
+	jr c, .asm_17d0ac ;if < 5 , $14-18,$1d-25 ,$35-39,$3f,$49-59(special chars)  ret c
 	cp $14
-	jr c, .asm_17d0ae
+	jr c, .asm_17d0ae 
 	cp $19
 	jr c, .asm_17d0ac
 	cp $1d
