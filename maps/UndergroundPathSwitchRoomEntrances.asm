@@ -90,7 +90,7 @@ UnknownScript_0x7ca80: ; 0x7ca80
 	pause 15
 	playsound SFX_EXIT_BUILDING
 	appear $c
-	waitbutton
+	waitsfx
 	applymovement $c, MovementData_0x7ce87
 	spriteface $0, $3
 	scall UnknownScript_0x7cad4
@@ -98,7 +98,7 @@ UnknownScript_0x7ca80: ; 0x7ca80
 	playsound SFX_EXIT_BUILDING
 	disappear $c
 	dotrigger $1
-	waitbutton
+	waitsfx
 	playmapmusic
 	end
 ; 0x7caaa
@@ -110,7 +110,7 @@ UnknownScript_0x7caaa: ; 0x7caaa
 	pause 15
 	playsound SFX_EXIT_BUILDING
 	appear $c
-	waitbutton
+	waitsfx
 	applymovement $c, MovementData_0x7ce8c
 	spriteface $0, $3
 	scall UnknownScript_0x7cad4
@@ -118,7 +118,7 @@ UnknownScript_0x7caaa: ; 0x7caaa
 	playsound SFX_EXIT_BUILDING
 	disappear $c
 	dotrigger $1
-	waitbutton
+	waitsfx
 	playmapmusic
 	end
 ; 0x7cad4
@@ -132,8 +132,8 @@ UnknownScript_0x7cae1: ; 0x7cae1
 	playmusic MUSIC_RIVAL_ENCOUNTER
 	loadfont
 	writetext UnknownText_0x7ce9d
+	waitbutton
 	closetext
-	loadmovesprites
 	setevent EVENT_SILVER_IN_GOLDENROD_UNDERGROUND
 	checkevent EVENT_GOT_TOTODILE_FROM_ELM
 	iftrue UnknownScript_0x7cb09
@@ -173,8 +173,8 @@ UnknownScript_0x7cb29: ; 0x7cb29
 	playmusic MUSIC_RIVAL_AFTER
 	loadfont
 	writetext UnknownText_0x7cfc2
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 ; 0x7cb33
 
@@ -202,8 +202,8 @@ GruntM11Script: ; 0x7cb3f
 	talkaftercancel
 	loadfont
 	writetext UnknownText_0x7d290
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 ; 0x7cb47
 
@@ -231,8 +231,8 @@ GruntM25Script: ; 0x7cb53
 	talkaftercancel
 	loadfont
 	writetext UnknownText_0x7d347
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 ; 0x7cb5b
 
@@ -260,8 +260,8 @@ BurglarDuncanScript: ; 0x7cb67
 	talkaftercancel
 	loadfont
 	writetext UnknownText_0x7d3cf
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 ; 0x7cb6f
 
@@ -289,8 +289,8 @@ BurglarEddieScript: ; 0x7cb7b
 	talkaftercancel
 	loadfont
 	writetext UnknownText_0x7d45b
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 ; 0x7cb83
 
@@ -318,8 +318,8 @@ GruntM13Script: ; 0x7cb8f
 	talkaftercancel
 	loadfont
 	writetext UnknownText_0x7d51f
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 ; 0x7cb97
 
@@ -347,15 +347,15 @@ GruntF3Script: ; 0x7cba3
 	talkaftercancel
 	loadfont
 	writetext UnknownText_0x7d5e6
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 ; 0x7cbab
 
 MapUndergroundPathSwitchRoomEntrancesSignpost0Script: ; 0x7cbab
 	loadfont
 	writetext UnknownText_0x7d554
-	keeptextopen
+	buttonsound
 	checkevent EVENT_SWITCH_1
 	iftrue UnknownScript_0x7cbcb
 	writetext UnknownText_0x7d617
@@ -382,7 +382,7 @@ UnknownScript_0x7cbcb: ; 0x7cbcb
 MapUndergroundPathSwitchRoomEntrancesSignpost1Script: ; 0x7cbe0
 	loadfont
 	writetext UnknownText_0x7d643
-	keeptextopen
+	buttonsound
 	checkevent EVENT_SWITCH_2
 	iftrue UnknownScript_0x7cc00
 	writetext UnknownText_0x7d617
@@ -409,7 +409,7 @@ UnknownScript_0x7cc00: ; 0x7cc00
 MapUndergroundPathSwitchRoomEntrancesSignpost2Script: ; 0x7cc15
 	loadfont
 	writetext UnknownText_0x7d65a
-	keeptextopen
+	buttonsound
 	checkevent EVENT_SWITCH_3
 	iftrue UnknownScript_0x7cc35
 	writetext UnknownText_0x7d617
@@ -436,7 +436,7 @@ UnknownScript_0x7cc35: ; 0x7cc35
 MapUndergroundPathSwitchRoomEntrancesSignpost3Script: ; 0x7cc4a
 	loadfont
 	writetext UnknownText_0x7d671
-	keeptextopen
+	buttonsound
 	checkevent EVENT_EMERGENCY_SWITCH
 	iftrue UnknownScript_0x7cc70
 	writetext UnknownText_0x7d617
@@ -465,7 +465,7 @@ UnknownScript_0x7cc70: ; 0x7cc70
 ; 0x7cc8b
 
 UnknownScript_0x7cc8b: ; 0x7cc8b
-	loadmovesprites
+	closetext
 	end
 ; 0x7cc8d
 
@@ -493,7 +493,7 @@ UnknownScript_0x7ccb0: ; 0x7ccb0
 	scall UnknownScript_0x7ce65
 	scall UnknownScript_0x7ce71
 	reloadmappart
-	loadmovesprites
+	closetext
 	end
 ; 0x7ccd7
 
@@ -507,7 +507,7 @@ UnknownScript_0x7ccd7: ; 0x7ccd7
 	scall UnknownScript_0x7ce59
 	scall UnknownScript_0x7ce71
 	reloadmappart
-	loadmovesprites
+	closetext
 	end
 ; 0x7ccf2
 
@@ -521,7 +521,7 @@ UnknownScript_0x7ccf2: ; 0x7ccf2
 	scall UnknownScript_0x7ce65
 	scall UnknownScript_0x7ce71
 	reloadmappart
-	loadmovesprites
+	closetext
 	end
 ; 0x7cd0d
 
@@ -535,7 +535,7 @@ UnknownScript_0x7cd0d: ; 0x7cd0d
 	scall UnknownScript_0x7ce59
 	scall UnknownScript_0x7ce71
 	reloadmappart
-	loadmovesprites
+	closetext
 	end
 ; 0x7cd28
 
@@ -549,7 +549,7 @@ UnknownScript_0x7cd28: ; 0x7cd28
 	scall UnknownScript_0x7ce65
 	scall UnknownScript_0x7ce71
 	reloadmappart
-	loadmovesprites
+	closetext
 	end
 ; 0x7cd43
 
@@ -563,7 +563,7 @@ UnknownScript_0x7cd43: ; 0x7cd43
 	scall UnknownScript_0x7ce59
 	scall UnknownScript_0x7ce71
 	reloadmappart
-	loadmovesprites
+	closetext
 	end
 ; 0x7cd5e
 
@@ -577,7 +577,7 @@ UnknownScript_0x7cd5e: ; 0x7cd5e
 	scall UnknownScript_0x7ce41
 	scall UnknownScript_0x7ce65
 	reloadmappart
-	loadmovesprites
+	closetext
 	end
 ; 0x7cd79
 
@@ -595,7 +595,7 @@ UnknownScript_0x7cd79: ; 0x7cd79
 	scall UnknownScript_0x7ce65
 	scall UnknownScript_0x7ce05
 	reloadmappart
-	loadmovesprites
+	closetext
 	writebyte $6
 	copyvartobyte UndergroundSwitchPositions
 	end

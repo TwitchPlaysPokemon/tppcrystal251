@@ -64,7 +64,7 @@ FisherTully1Script: ; 0x1a923f
 	checkevent EVENT_ROUTE_42_28F
 	iftrue UnknownScript_0x1a9268
 	writetext UnknownText_0x1a93ab
-	keeptextopen
+	buttonsound
 	setevent EVENT_ROUTE_42_28F
 	scall UnknownScript_0x1a92f1
 	jump UnknownScript_0x1a926b
@@ -215,8 +215,8 @@ PokemaniacShaneScript: ; 0x1a9321
 	talkaftercancel
 	loadfont
 	writetext UnknownText_0x1a94d6
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 ; 0x1a9329
 
@@ -244,8 +244,8 @@ HikerBenjaminScript: ; 0x1a9335
 	talkaftercancel
 	loadfont
 	writetext UnknownText_0x1a943f
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 ; 0x1a933d
 

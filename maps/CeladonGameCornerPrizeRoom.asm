@@ -18,7 +18,7 @@ MapCeladonGameCornerPrizeRoomSignpost0Script: ; 0x726ef
 	faceplayer
 	loadfont
 	writetext UnknownText_0x7293e
-	closetext
+	waitbutton
 	checkitem COIN_CASE
 	iffalse UnknownScript_0x7278a
 	writetext UnknownText_0x72974
@@ -76,38 +76,38 @@ UnknownScript_0x72768: ; 0x72768
 ; 0x7276d
 
 UnknownScript_0x7276d: ; 0x7276d
-	waitbutton
+	waitsfx
 	playsound SFX_TRANSACTION
 	writetext UnknownText_0x729ad
-	closetext
+	waitbutton
 	jump UnknownScript_0x726fd
 ; 0x72778
 
 UnknownScript_0x72778: ; 0x72778
 	writetext UnknownText_0x729bb
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 ; 0x7277e
 
 UnknownScript_0x7277e: ; 0x7277e
 	writetext UnknownText_0x729d8
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 ; 0x72784
 
 UnknownScript_0x72784: ; 0x72784
 	writetext UnknownText_0x729f2
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 ; 0x7278a
 
 UnknownScript_0x7278a: ; 0x7278a
 	writetext UnknownText_0x72a14
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 ; 0x72790
 
@@ -134,7 +134,7 @@ MapCeladonGameCornerPrizeRoomSignpost1Script: ; 0x727c8
 	faceplayer
 	loadfont
 	writetext UnknownText_0x7293e
-	closetext
+	waitbutton
 	checkitem COIN_CASE
 	iffalse UnknownScript_0x7278a
 UnknownScript_0x727d3: ; 0x727d3
@@ -157,10 +157,10 @@ UnknownScript_0x727ed: ; 0x727ed
 	pokenamemem PIKACHU, $0
 	scall UnknownScript_0x72768
 	iffalse UnknownScript_0x72784
-	waitbutton
+	waitsfx
 	playsound SFX_TRANSACTION
 	writetext UnknownText_0x729ad
-	closetext
+	waitbutton
 	writebyte PIKACHU
 	special Functionc230
 	givepoke PIKACHU, 25, 0, 0
@@ -174,10 +174,10 @@ CGCSlot1PC:
 	pokenamemem PIKACHU, $0
 	scall UnknownScript_0x72768
 	iffalse UnknownScript_0x72784
-	waitbutton
+	waitsfx
 	playsound SFX_TRANSACTION
 	writetext UnknownText_0x729ad
-	closetext
+	waitbutton
 	writebyte PIKACHU
 	special Functionc230
 	givepoke PIKACHU, 25, 0, 0
@@ -192,10 +192,10 @@ UnknownScript_0x7281b: ; 0x7281b
 	pokenamemem PORYGON, $0
 	scall UnknownScript_0x72768
 	iffalse UnknownScript_0x72784
-	waitbutton
+	waitsfx
 	playsound SFX_TRANSACTION
 	writetext UnknownText_0x729ad
-	closetext
+	waitbutton
 	writebyte PORYGON
 	special Functionc230
 	givepoke PORYGON, 15, 0, 0
@@ -209,10 +209,10 @@ CGCSlot2PC:
 	pokenamemem PORYGON, $0
 	scall UnknownScript_0x72768
 	iffalse UnknownScript_0x72784
-	waitbutton
+	waitsfx
 	playsound SFX_TRANSACTION
 	writetext UnknownText_0x729ad
-	closetext
+	waitbutton
 	writebyte PORYGON
 	special Functionc230
 	givepoke PORYGON, 15, 0, 0
@@ -227,10 +227,10 @@ UnknownScript_0x72849: ; 0x72849
 	pokenamemem LARVITAR, $0
 	scall UnknownScript_0x72768
 	iffalse UnknownScript_0x72784
-	waitbutton
+	waitsfx
 	playsound SFX_TRANSACTION
 	writetext UnknownText_0x729ad
-	closetext
+	waitbutton
 	writebyte LARVITAR
 	special Functionc230
 	givepoke LARVITAR, 40, 0, 0
@@ -243,10 +243,10 @@ CGCSlot3PC:
 	pokenamemem LARVITAR, $0
 	scall UnknownScript_0x72768
 	iffalse UnknownScript_0x72784
-	waitbutton
+	waitsfx
 	playsound SFX_TRANSACTION
 	writetext UnknownText_0x729ad
-	closetext
+	waitbutton
 	writebyte LARVITAR
 	special Functionc230
 	givepoke LARVITAR, 40, 0, 0

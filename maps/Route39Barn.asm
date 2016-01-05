@@ -12,16 +12,16 @@ TwinScript_0x9cc76: ; 0x9cc76
 	checkevent EVENT_HEALED_MOOMOO
 	iftrue UnknownScript_0x9cc87
 	writetext UnknownText_0x9cd2e
+	waitbutton
 	closetext
-	loadmovesprites
 	spriteface $2, $3
 	end
 ; 0x9cc87
 
 UnknownScript_0x9cc87: ; 0x9cc87
 	writetext UnknownText_0x9cd5a
+	waitbutton
 	closetext
-	loadmovesprites
 	spriteface $2, $3
 	end
 ; 0x9cc90
@@ -32,16 +32,16 @@ TwinScript_0x9cc90: ; 0x9cc90
 	checkevent EVENT_HEALED_MOOMOO
 	iftrue UnknownScript_0x9cca1
 	writetext UnknownText_0x9cd2e
+	waitbutton
 	closetext
-	loadmovesprites
 	spriteface $3, $2
 	end
 ; 0x9cca1
 
 UnknownScript_0x9cca1: ; 0x9cca1
 	writetext UnknownText_0x9cd5a
+	waitbutton
 	closetext
-	loadmovesprites
 	spriteface $3, $2
 	end
 ; 0x9ccaa
@@ -53,17 +53,17 @@ TaurosScript_0x9ccaa: ; 0x9ccaa
 	writetext UnknownText_0x9cd70
 	writebyte MILTANK
 	special Functionfb841
-	keeptextopen
+	buttonsound
 	writetext UnknownText_0x9cd80
 	checkevent EVENT_TALKED_TO_FARMER_ABOUT_MOOMOO
 	iftrue UnknownScript_0x9ccc6
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 ; 0x9ccc6
 
 UnknownScript_0x9ccc6: ; 0x9ccc6
-	keeptextopen
+	buttonsound
 	writetext UnknownText_0x9cda2
 	yesorno
 	iffalse UnknownScript_0x9cd1f
@@ -77,26 +77,26 @@ UnknownScript_0x9ccc6: ; 0x9ccc6
 	if_equal $5, UnknownScript_0x9ccfa
 	if_equal $7, UnknownScript_0x9cd04
 	writetext UnknownText_0x9cdbc
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 ; 0x9ccf0
 
 UnknownScript_0x9ccf0: ; 0x9ccf0
 	writetext UnknownText_0x9cdbc
-	keeptextopen
+	buttonsound
 	writetext UnknownText_0x9cdd8
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 ; 0x9ccfa
 
 UnknownScript_0x9ccfa: ; 0x9ccfa
 	writetext UnknownText_0x9cdbc
-	keeptextopen
+	buttonsound
 	writetext UnknownText_0x9cdfc
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 ; 0x9cd04
 
@@ -104,34 +104,34 @@ UnknownScript_0x9cd04: ; 0x9cd04
 	playmusic MUSIC_HEAL
 	writetext UnknownText_0x9cdbc
 	pause 60
-	keeptextopen
+	buttonsound
 	special RestartMapMusic
 	writetext UnknownText_0x9ce1b
+	waitbutton
 	closetext
-	loadmovesprites
 	setevent EVENT_HEALED_MOOMOO
 	end
 ; 0x9cd19
 
 UnknownScript_0x9cd19: ; 0x9cd19
 	writetext UnknownText_0x9ce3c
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 ; 0x9cd1f
 
 UnknownScript_0x9cd1f: ; 0x9cd1f
 	writetext UnknownText_0x9ce4f
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 ; 0x9cd25
 
 UnknownScript_0x9cd25: ; 0x9cd25
 	writetext UnknownText_0x9cd92
 	cry MILTANK
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 ; 0x9cd2e
 

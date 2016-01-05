@@ -9,7 +9,7 @@ VermilionMart_MapScriptHeader: ; 0x191f7c
 ClerkScript_0x191f7e: ; 0x191f7e
 	loadfont
 	pokemart $0, $0016
-	loadmovesprites
+	closetext
 	end
 ; 0x191f85
 

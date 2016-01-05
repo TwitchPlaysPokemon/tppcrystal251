@@ -30,8 +30,8 @@ PokemaniacMillerScript: ; 0x7de5d
 	talkaftercancel
 	loadfont
 	writetext UnknownText_0x7debd
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 ; 0x7de65
 
@@ -59,8 +59,8 @@ SupernerdMarkusScript: ; 0x7de71
 	talkaftercancel
 	loadfont
 	writetext UnknownText_0x7df97
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 ; 0x7de79
 

@@ -656,3 +656,6 @@
 
 	map_header_2 RedsHouse1FRB, REDS_HOUSE_1F_RB, $0, NONE ; 0x96098
 	map_header_2 RedsHouse2FRB, REDS_HOUSE_2F_RB, $0, NONE ; 0x960a4
+
+	map_header_2 OaksLabRB, OAKS_LAB_RB, $0, NONE
+	map_header_2 BluesHouseRB, BLUES_HOUSE_RB, $0, NONE

@@ -23,8 +23,8 @@ PoliwagScript_0x1a9f46: ; 0x1a9f46
 	loadfont
 	writetext UnknownText_0x1a9fcb
 	cry POLIWRATH
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 ; 0x1a9f50
 
@@ -79,15 +79,15 @@ MapCeladonCitySignpost4Script: ; 0x1a9f71
 MapCeladonCitySignpost5Script: ; 0x1a9f74
 	loadfont
 	writetext UnknownText_0x1aa418
+	waitbutton
 	closetext
-	loadmovesprites
 	checkevent EVENT_BEAT_BILL_IN_BATTLE_TENT
 	iftrue MapCeladonCitySignpost5Script2
 	spriteface $0, $1
 	loadfont
 	writetext MapCeladonCityDoorAjarText
+	waitbutton
 	closetext
-	loadmovesprites
 	; farjump UnknownScript_0x1253d
 MapCeladonCitySignpost5Script2:
 	end

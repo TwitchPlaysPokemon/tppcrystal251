@@ -43,7 +43,7 @@ HikerAnthony2Script: ; 0x1ac011
 	checkevent EVENT_ROUTE_33_27B
 	iftrue UnknownScript_0x1ac03a
 	writetext UnknownText_0x1ac153
-	keeptextopen
+	buttonsound
 	setevent EVENT_ROUTE_33_27B
 	scall UnknownScript_0x1ac0cb
 	jump UnknownScript_0x1ac03d
@@ -127,8 +127,8 @@ UnknownScript_0x1ac0bc: ; 0x1ac0bc
 
 UnknownScript_0x1ac0c5: ; 0x1ac0c5
 	writetext UnknownText_0x1ac180
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 ; 0x1ac0cb
 

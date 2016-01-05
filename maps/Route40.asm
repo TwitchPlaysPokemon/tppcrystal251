@@ -44,8 +44,8 @@ SwimmerfElaineScript: ; 0x1a6180
 	talkaftercancel
 	loadfont
 	writetext UnknownText_0x1a637b
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 ; 0x1a6188
 
@@ -73,8 +73,8 @@ SwimmerfPaulaScript: ; 0x1a6194
 	talkaftercancel
 	loadfont
 	writetext UnknownText_0x1a63f5
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 ; 0x1a619c
 
@@ -102,8 +102,8 @@ SwimmermSimonScript: ; 0x1a61a8
 	talkaftercancel
 	loadfont
 	writetext UnknownText_0x1a6282
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 ; 0x1a61b0
 
@@ -131,8 +131,8 @@ SwimmermRandallScript: ; 0x1a61bc
 	talkaftercancel
 	loadfont
 	writetext UnknownText_0x1a62fa
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 ; 0x1a61c4
 
@@ -168,30 +168,30 @@ MonicaScript:
 	checkevent EVENT_MET_MONICA_OF_MONDAY
 	iftrue .MetMonica
 	writetext MeetMonicaText
-	keeptextopen
+	buttonsound
 	setevent EVENT_MET_MONICA_OF_MONDAY
 .MetMonica
 	writetext MonicaGivesGiftText
-	keeptextopen
+	buttonsound
 	verbosegiveitem SHARP_BEAK, 1
 	iffalse MonicaDoneScript
 	setevent EVENT_GOT_SHARP_BEAK_FROM_MONICA
 	writetext MonicaGaveGiftText
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 MonicaMondayScript:
 	writetext MonicaMondayText
-	closetext
+	waitbutton
 MonicaDoneScript:
-	loadmovesprites
+	closetext
 	end
 
 MonicaNotMondayScript:
 	writetext MonicaNotMondayText
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 MapRoute40Signpost0Script: ; 0x1a6213

@@ -22,8 +22,8 @@ GrampsScript_0x1a9a4c: ; 0x1a9a4c
 	yesorno
 	iffalse UnknownScript_0x1a9a5b
 	writetext UnknownText_0x1a9b6f
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 ; 0x1a9a5b
 
@@ -31,23 +31,23 @@ UnknownScript_0x1a9a5b: ; 0x1a9a5b
 	checkevent EVENT_PHANCERO_AVAILABLE
 	iftrue GrampsScript_ShowCatchingVideo
 	writetext UnknownText_0x1a9bb7
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 ; 0x1a9a61
 
 GrampsScript_ShowCatchingVideo:
 	writetext GrampsText_IntroCatchingVideo
+	waitbutton
 	closetext
-	loadmovesprites
 	loadpokedata WEEDLE, 5
 	catchtutorial BATTLETYPE_TUTORIAL
 	; catchtutorial BATTLETYPE_TUTORIAL
 	loadfont
 	writetext GrampsText_AfterCatchingVideo
 	setevent EVENT_CAN_GET_PHANCERO
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 GrampsScript_0x1a9a61: ; 0x1a9a61
@@ -56,15 +56,15 @@ GrampsScript_0x1a9a61: ; 0x1a9a61
 	checkevent EVENT_BLUE_IN_CINNABAR
 	iftrue UnknownScript_0x1a9a6f
 	writetext UnknownText_0x1a9c11
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 ; 0x1a9a6f
 
 UnknownScript_0x1a9a6f: ; 0x1a9a6f
 	writetext UnknownText_0x1a9c7e
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 ; 0x1a9a75
 
@@ -74,15 +74,15 @@ FisherScript_0x1a9a75: ; 0x1a9a75
 	checkevent EVENT_GOT_TM42_DREAM_EATER
 	iftrue UnknownScript_0x1a9a8a
 	writetext UnknownText_0x1a9cc4
-	keeptextopen
+	buttonsound
 	verbosegiveitem TM_DREAM_EATER, 1
 	iffalse UnknownScript_0x1a9a8e
 	setevent EVENT_GOT_TM42_DREAM_EATER
 UnknownScript_0x1a9a8a: ; 0x1a9a8a
 	writetext UnknownText_0x1a9d86
-	closetext
+	waitbutton
 UnknownScript_0x1a9a8e: ; 0x1a9a8e
-	loadmovesprites
+	closetext
 	end
 ; 0x1a9a90
 

@@ -843,6 +843,11 @@ WasBurnedText: ; 0x8123c
 	prompt
 ; 0x8124b
 
+AlreadyBurnedText:
+	text $59, "'s"
+	line "already burned!"
+	prompt
+
 DefrostedOpponentText: ; 0x8124b
 	text $59
 	line "was defrosted!"

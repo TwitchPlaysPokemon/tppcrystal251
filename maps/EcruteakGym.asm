@@ -29,8 +29,8 @@ MortyScript_0x99d58: ; 0x99d58
 	checkevent EVENT_BEAT_MORTY
 	iftrue UnknownScript_0x99d8c
 	writetext UnknownText_0x99e65
+	waitbutton
 	closetext
-	loadmovesprites
 	winlosstext UnknownText_0x9a00a, $0000
 	loadtrainer MORTY, 1
 	startbattle
@@ -39,7 +39,7 @@ MortyScript_0x99d58: ; 0x99d58
 	loadfont
 	writetext UnknownText_0x9a043
 	playsound SFX_GET_BADGE
-	waitbutton
+	waitsfx
 	setflag ENGINE_FOGBADGE
 	checkcode VAR_BADGES
 	scall UnknownScript_0x99db7
@@ -54,20 +54,20 @@ UnknownScript_0x99d8c: ; 0x99d8c
 	setevent EVENT_BEAT_MEDIUM_MARTHA
 	setevent EVENT_BEAT_MEDIUM_GRACE
 	writetext UnknownText_0x9a059
-	keeptextopen
+	buttonsound
 	verbosegiveitem TM_SHADOW_BALL, 1
 	iffalse UnknownScript_0x99db5
 	setevent EVENT_GOT_TM30_SHADOW_BALL
 	writetext UnknownText_0x9a0ec
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 ; 0x99db1
 
 MortyRematchScript:
 	writetext MortyRematchTextBefore
+	waitbutton
 	closetext
-	loadmovesprites
 	winlosstext MortyRematchBeatenText, $0000
 	loadtrainer MORTY, 2
 	startbattle
@@ -78,9 +78,9 @@ MortyRematchScript:
 
 UnknownScript_0x99db1: ; 0x99db1
 	writetext UnknownText_0x9a145
-	closetext
+	waitbutton
 UnknownScript_0x99db5: ; 0x99db5
-	loadmovesprites
+	closetext
 	end
 ; 0x99db7
 
@@ -103,14 +103,14 @@ UnknownScript_0x99dc6: ; 0x99dc6
 	applymovement $8, MovementData_0x99e63
 	loadfont
 	writetext UnknownText_0x9a49c
+	waitbutton
 	closetext
-	loadmovesprites
 	follow $0, $8
 	applymovement $0, MovementData_0x99e5f
 	stopfollow
 	special Function8c084
 	playsound SFX_ENTER_DOOR
-	waitbutton
+	waitsfx
 	warp GROUP_ECRUTEAK_CITY, MAP_ECRUTEAK_CITY, $6, $1b
 	end
 ; 0x99de9
@@ -139,8 +139,8 @@ SageJeffreyScript: ; 0x99df5
 	talkaftercancel
 	loadfont
 	writetext UnknownText_0x9a263
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 ; 0x99dfd
 
@@ -168,8 +168,8 @@ SagePingScript: ; 0x99e09
 	talkaftercancel
 	loadfont
 	writetext UnknownText_0x9a2b7
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 ; 0x99e11
 
@@ -197,8 +197,8 @@ MediumMarthaScript: ; 0x99e1d
 	talkaftercancel
 	loadfont
 	writetext UnknownText_0x9a318
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 ; 0x99e25
 
@@ -226,8 +226,8 @@ MediumGraceScript: ; 0x99e31
 	talkaftercancel
 	loadfont
 	writetext UnknownText_0x9a38a
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 ; 0x99e39
 
@@ -237,14 +237,14 @@ EcruteakGymGuyScript: ; 0x99e39
 	checkevent EVENT_BEAT_MORTY
 	iftrue .EcruteakGymGuyWinScript
 	writetext EcruteakGymGuyText
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 .EcruteakGymGuyWinScript
 	writetext EcruteakGymGuyWinText
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 ; 0x99e4d
 

@@ -37,33 +37,33 @@ GrampsScript_0x19c013: ; 0x19c013
 
 UnknownScript_0x19c01f: ; 0x19c01f
 	writetext UnknownText_0x19c26f
+	waitbutton
 	closetext
-	loadmovesprites
 	playmusic MUSIC_SHOW_ME_AROUND
 	follow $2, $0
 	applymovement $2, MovementData_0x19c195
 	loadfont
 	writetext UnknownText_0x19c285
+	waitbutton
 	closetext
-	loadmovesprites
 	applymovement $2, MovementData_0x19c19b
 	spriteface $0, $1
 	loadfont
 	writetext UnknownText_0x19c304
+	waitbutton
 	closetext
-	loadmovesprites
 	applymovement $2, MovementData_0x19c1a3
 	spriteface $0, $1
 	loadfont
 	writetext UnknownText_0x19c359
+	waitbutton
 	closetext
-	loadmovesprites
 	applymovement $2, MovementData_0x19c1ac
 	spriteface $0, $2
 	loadfont
 	writetext UnknownText_0x19c3a7
+	waitbutton
 	closetext
-	loadmovesprites
 	applymovement $2, MovementData_0x19c1b6
 	spriteface $0, $1
 	pause 60
@@ -71,33 +71,33 @@ UnknownScript_0x19c01f: ; 0x19c01f
 	spriteface $0, $3
 	loadfont
 	writetext UnknownText_0x19c3ec
-	keeptextopen
+	buttonsound
 	stringtotext .mapcardname, $1
 	scall .UnknownScript_0x19c097
 	setflag ENGINE_MAP_CARD
 	writetext UnknownText_0x19c438
-	keeptextopen
+	buttonsound
 	writetext UnknownText_0x19c451
+	waitbutton
 	closetext
-	loadmovesprites
 	stopfollow
 	showemote $0, $2, 15
 	pause 15
 	loadfont
 	writetext Text_GuideGentHasRunningShoes2
-	keeptextopen
+	buttonsound
 	stringtotext .runningshoesname, $1
 	scall .UnknownScript_0x19c097
 	writetext Text_GuideGentHasRunningShoes3
+	waitbutton
 	closetext
-	loadmovesprites
 	special RestartMapMusic
 	spriteface $0, $1
 	applymovement $2, MovementData_0x19c1cb
 	playsound SFX_ENTER_DOOR
 	disappear $2
 	clearevent EVENT_GUIDE_GENT_VISIBLE_IN_CHERRYGROVE
-	waitbutton
+	waitsfx
 	end
 
 .UnknownScript_0x19c097 ; 0x19c097
@@ -113,8 +113,8 @@ UnknownScript_0x19c01f: ; 0x19c01f
 
 UnknownScript_0x19c0a4: ; 0x19c0a4
 	writetext UnknownText_0x19c49f
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 ; 0x19c0aa
 
@@ -133,8 +133,8 @@ UnknownScript_0x19c0ae: ; 0x19c0ae
 	playmusic MUSIC_RIVAL_ENCOUNTER
 	loadfont
 	writetext UnknownText_0x19c4e2
+	waitbutton
 	closetext
-	loadmovesprites
 	checkevent EVENT_GOT_TOTODILE_FROM_ELM
 	iftrue UnknownScript_0x19c0ee
 	checkevent EVENT_GOT_CHIKORITA_FROM_ELM
@@ -179,8 +179,8 @@ UnknownScript_0x19c11a: ; 0x19c11a
 	playmusic MUSIC_RIVAL_AFTER
 	loadfont
 	writetext UnknownText_0x19c608
+	waitbutton
 	closetext
-	loadmovesprites
 	jump UnknownScript_0x19c12f
 ; 0x19c126
 
@@ -189,8 +189,8 @@ UnknownScript_0x19c126: ; 0x19c126
 	playmusic MUSIC_RIVAL_AFTER
 	loadfont
 	writetext UnknownText_0x19c59e
+	waitbutton
 	closetext
-	loadmovesprites
 UnknownScript_0x19c12f: ; 0x19c12f
 	playsound SFX_TACKLE
 	applymovement $0, MovementData_0x19c1d4
@@ -209,15 +209,15 @@ TeacherScript_0x19c146: ; 0x19c146
 	checkflag ENGINE_MAP_CARD
 	iftrue UnknownScript_0x19c154
 	writetext UnknownText_0x19c650
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 ; 0x19c154
 
 UnknownScript_0x19c154: ; 0x19c154
 	writetext UnknownText_0x19c6a8
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 ; 0x19c15a
 
@@ -227,15 +227,15 @@ YoungsterScript_0x19c15a: ; 0x19c15a
 	checkflag ENGINE_POKEDEX
 	iftrue UnknownScript_0x19c168
 	writetext UnknownText_0x19c6d6
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 ; 0x19c168
 
 UnknownScript_0x19c168: ; 0x19c168
 	writetext UnknownText_0x19c701
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 ; 0x19c16e
 
@@ -245,15 +245,15 @@ FisherScript_0x19c16e: ; 0x19c16e
 	checkevent EVENT_GOT_MYSTIC_WATER_IN_CHERRYGROVE
 	iftrue UnknownScript_0x19c183
 	writetext UnknownText_0x19c766
-	keeptextopen
+	buttonsound
 	verbosegiveitem MYSTIC_WATER, 1
 	iffalse UnknownScript_0x19c187
 	setevent EVENT_GOT_MYSTIC_WATER_IN_CHERRYGROVE
 UnknownScript_0x19c183: ; 0x19c183
 	writetext UnknownText_0x19c7c1
-	closetext
+	waitbutton
 UnknownScript_0x19c187: ; 0x19c187
-	loadmovesprites
+	closetext
 	end
 ; 0x19c189
 

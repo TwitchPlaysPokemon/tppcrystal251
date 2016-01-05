@@ -368,7 +368,7 @@ Char59_5A: ; 1205
 Char3F:: ; 121b
 	push de
 
-	ld a, [InLinkBattle]
+	ld a, [wLinkMode]
 	and a
 	jr nz, .linkbattle
 
@@ -508,7 +508,7 @@ Line:: ; 12ea
 Paragraph:: ; 12f2
 	push de
 
-	ld a, [InLinkBattle]
+	ld a, [wLinkMode]
 	cp $3
 	jr z, .asm_1301
 	cp $4
@@ -531,7 +531,7 @@ Paragraph:: ; 12f2
 
 
 Char4B:: ; 131f
-	ld a, [InLinkBattle]
+	ld a, [wLinkMode]
 	or a
 	jr nz, .asm_1328
 	call Function13c7
@@ -543,7 +543,7 @@ Char4B:: ; 131f
 	call Functionaaf
 	pop de
 
-	ld a, [InLinkBattle]
+	ld a, [wLinkMode]
 	or a
 	call z, Function13cd
 
@@ -581,7 +581,7 @@ Char5F:: ; 1356
 ; 135a
 
 PromptText:: ; 135a
-	ld a, [InLinkBattle]
+	ld a, [wLinkMode]
 	cp $3
 	jr z, .ok
 	cp $4
@@ -591,7 +591,7 @@ PromptText:: ; 135a
 
 	call Function13b6
 	call Functionaaf
-	ld a, [InLinkBattle]
+	ld a, [wLinkMode]
 	cp $3
 	jr z, DoneText
 	cp $4
@@ -895,7 +895,7 @@ Text_06:: ; 149f
 ; show arrow
 ; [06]
 
-	ld a, [InLinkBattle]
+	ld a, [wLinkMode]
 	cp $3
 	jp z, Text_0D
 	cp $4

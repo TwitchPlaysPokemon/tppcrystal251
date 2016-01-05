@@ -20,10 +20,10 @@ TeacherScript_0x5535d: ; 0x5535d
 	faceplayer
 	loadfont
 	writetext UnknownText_0x554c2
-	keeptextopen
+	buttonsound
 	verbosegiveitem SQUIRTBOTTLE, 1
 	setevent EVENT_GOT_SQUIRTBOTTLE
-	loadmovesprites
+	closetext
 	setevent EVENT_FLOWER_SHOP_LASS_ON_ROUTE_36
 	clearevent EVENT_FLOWER_SHOP_LASS_IN_GOLDENROD_FLOWER_SHOP
 	end
@@ -33,8 +33,8 @@ UnknownScript_0x5538f: ; 0x5538f
 	spriteface $2, $2
 	loadfont
 	writetext UnknownText_0x5552e
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 ; 0x55399
 
@@ -58,8 +58,8 @@ LassScript_0x553a2: ; 0x553a2
 	checkevent EVENT_GOT_SQUIRTBOTTLE
 	iftrue UnknownScript_0x553bf
 	writetext UnknownText_0x55561
+	waitbutton
 	closetext
-	loadmovesprites
 	setevent EVENT_SPOKE_TO_FLOWER_SHOP_GIRL_IN_FLOWER_SHOP
 	setevent EVENT_FLOWER_SHOP_LASS_IN_GOLDENROD_FLOWER_SHOP
 	clearevent EVENT_FLOWER_SHOP_LASS_ON_ROUTE_36
@@ -68,15 +68,15 @@ LassScript_0x553a2: ; 0x553a2
 
 UnknownScript_0x553bf: ; 0x553bf
 	writetext UnknownText_0x555e6
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 ; 0x553c5
 
 UnknownScript_0x553c5: ; 0x553c5
 	writetext UnknownText_0x55604
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 ; 0x553cb
 

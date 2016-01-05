@@ -30,8 +30,8 @@ Bird_keeperBryanScript: ; 0x19c8bb
 	talkaftercancel
 	loadfont
 	writetext UnknownText_0x19cc87
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 ; 0x19c8c3
 
@@ -65,6 +65,7 @@ JugglerIrwin1Script: ; 0x19c8cf
 	iftrue UnknownScript_0x19c8ec
 	writetext UnknownText_0x19cd5a ;have defeted text
 	keeptextopen
+	buttonsound
 	setevent EVENT_ROUTE_35_281
 	scall UnknownScript_0x19c903 ;ask for number
 	jump UnknownScript_0x19c8ef
@@ -140,8 +141,8 @@ CamperIvanScript: ; 0x19c92b
 	talkaftercancel
 	loadfont
 	writetext UnknownText_0x19cac4
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 ; 0x19c933
 
@@ -169,8 +170,8 @@ CamperElliotScript: ; 0x19c93f
 	talkaftercancel
 	loadfont
 	writetext UnknownText_0x19cb47
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 ; 0x19c947
 
@@ -198,8 +199,8 @@ PicnickerBrookeScript: ; 0x19c953
 	talkaftercancel
 	loadfont
 	writetext UnknownText_0x19cbba
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 ; 0x19c95b
 
@@ -227,8 +228,8 @@ PicnickerKimScript: ; 0x19c967
 	talkaftercancel
 	loadfont
 	writetext UnknownText_0x19cc21
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 ; 0x19c96f
 
@@ -265,7 +266,7 @@ Bug_catcherArnie1Script: ; 0x19c97b
 	checkevent EVENT_ROUTE_35_283
 	iftrue UnknownScript_0x19c9a4
 	writetext UnknownText_0x19cdf6
-	keeptextopen
+	buttonsound
 	setevent EVENT_ROUTE_35_283
 	scall UnknownScript_0x19c903
 	jump UnknownScript_0x19c9a7
@@ -349,8 +350,8 @@ UnknownScript_0x19ca26: ; 0x19ca26
 
 UnknownScript_0x19ca2f: ; 0x19ca2f
 	writetext UnknownText_0x19ce38
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 ; 0x19ca35
 
@@ -378,8 +379,8 @@ FirebreatherWaltScript: ; 0x19ca41
 	talkaftercancel
 	loadfont
 	writetext UnknownText_0x19cebc
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 ; 0x19ca49
 
@@ -392,28 +393,28 @@ OfficerScript_0x19ca49: ; 0x19ca49
 	iftrue UnknownScript_0x19ca6d
 	playmusic MUSIC_OFFICER_ENCOUNTER
 	writetext UnknownText_0x19ceea
+	waitbutton
 	closetext
-	loadmovesprites
 	winlosstext UnknownText_0x19cf06, $0000
 	loadtrainer OFFICER, DIRK
 	startbattle
 	returnafterbattle
 	setevent EVENT_BEAT_OFFICER_ON_ROUTE_35
-	loadmovesprites
+	closetext
 	end
 ; 0x19ca6d
 
 UnknownScript_0x19ca6d: ; 0x19ca6d
 	writetext UnknownText_0x19cf0f
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 ; 0x19ca73
 
 UnknownScript_0x19ca73: ; 0x19ca73
 	writetext UnknownText_0x19cf56
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 ; 0x19ca79
 

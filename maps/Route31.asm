@@ -54,7 +54,7 @@ Bug_catcherWade1Script: ; 0x1a5453
 	checkevent EVENT_ROUTE_31_275
 	iftrue UnknownScript_0x1a547c
 	writetext UnknownText_0x1a5671
-	closetext
+	waitbutton
 	setevent EVENT_ROUTE_31_275
 	scall UnknownScript_0x1a554c
 	jump UnknownScript_0x1a547f
@@ -229,60 +229,60 @@ FisherScript_0x1a5570: ; 0x1a5570
 	checkevent EVENT_GOT_KENYA
 	iftrue UnknownScript_0x1a5584
 	writetext UnknownText_0x1a56d9
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 ; 0x1a5584
 
 UnknownScript_0x1a5584: ; 0x1a5584
 	writetext UnknownText_0x1a5761
-	keeptextopen
+	buttonsound
 	checkpokeitem ReceivedSpearowMailText
 	if_equal $0, UnknownScript_0x1a55b5
 	if_equal $2, UnknownScript_0x1a55c1
 	if_equal $3, UnknownScript_0x1a55bb
 	if_equal $4, UnknownScript_0x1a55c7
 	writetext UnknownText_0x1a5790
-	keeptextopen
+	buttonsound
 	writetext UnknownText_0x1a57ba
-	keeptextopen
+	buttonsound
 	setevent EVENT_GAVE_KENYA
 	verbosegiveitem TM_NIGHTMARE, 1
 	iffalse UnknownScript_0x1a55b3
 	setevent EVENT_GOT_TM50_NIGHTMARE
 UnknownScript_0x1a55af: ; 0x1a55af
 	writetext UnknownText_0x1a5896
-	closetext
+	waitbutton
 UnknownScript_0x1a55b3: ; 0x1a55b3
-	loadmovesprites
+	closetext
 	end
 ; 0x1a55b5
 
 UnknownScript_0x1a55b5: ; 0x1a55b5
 	writetext UnknownText_0x1a5921
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 ; 0x1a55bb
 
 UnknownScript_0x1a55bb: ; 0x1a55bb
 	writetext UnknownText_0x1a5939
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 ; 0x1a55c1
 
 UnknownScript_0x1a55c1: ; 0x1a55c1
 	writetext UnknownText_0x1a5972
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 ; 0x1a55c7
 
 UnknownScript_0x1a55c7: ; 0x1a55c7
 	writetext UnknownText_0x1a5991
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 ReceivedSpearowMailText: ; 0x1a55cd

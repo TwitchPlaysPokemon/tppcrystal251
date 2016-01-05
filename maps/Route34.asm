@@ -47,8 +47,8 @@ GrampsScript_0x7803d: ; 0x7803d
 	faceplayer
 	loadfont
 	special Function16936
+	waitbutton
 	closetext
-	loadmovesprites
 	if_equal $1, UnknownScript_0x7805a
 	clearflag ENGINE_DAYCARE_MONS_ARE_COMPATIBLE
 	checkcode VAR_FACING
@@ -70,14 +70,14 @@ UnknownScript_0x7805b: ; 0x7805b
 DaycareMon1Script_0x78065: ; 0x78065
 	loadfont
 	special Function17421
-	loadmovesprites
+	closetext
 	end
 ; 0x7806b
 
 DaycareMon2Script_0x7806b: ; 0x7806b
 	loadfont
 	special Function17440
-	loadmovesprites
+	closetext
 	end
 ; 0x78071
 
@@ -114,7 +114,7 @@ CamperTodd1Script: ; 0x7807d
 	checkevent EVENT_ROUTE_34_27D
 	iftrue UnknownScript_0x780a6
 	writetext UnknownText_0x784f0
-	keeptextopen
+	buttonsound
 	setevent EVENT_ROUTE_34_27D
 	scall UnknownScript_0x78137
 	jump UnknownScript_0x780a9
@@ -198,8 +198,8 @@ UnknownScript_0x78128: ; 0x78128
 
 UnknownScript_0x78131: ; 0x78131
 	writetext UnknownText_0x78532
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 ; 0x78137
 
@@ -271,7 +271,7 @@ PicnickerGina1Script: ; 0x7815f
 	checkevent EVENT_ROUTE_34_27F
 	iftrue UnknownScript_0x78188
 	writetext UnknownText_0x785b8
-	keeptextopen
+	buttonsound
 	setevent EVENT_ROUTE_34_27F
 	scall UnknownScript_0x78228
 	jump UnknownScript_0x7818b
@@ -420,28 +420,28 @@ OfficerScript_0x7824c: ; 0x7824c
 	iftrue UnknownScript_0x78270
 	playmusic MUSIC_OFFICER_ENCOUNTER
 	writetext UnknownText_0x785e4
+	waitbutton
 	closetext
-	loadmovesprites
 	winlosstext UnknownText_0x78609, $0000
 	loadtrainer OFFICER, KEITH
 	startbattle
 	returnafterbattle
 	setevent EVENT_BEAT_OFFICER_ON_ROUTE_34
-	loadmovesprites
+	closetext
 	end
 ; 0x78270
 
 UnknownScript_0x78270: ; 0x78270
 	writetext UnknownText_0x78624
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 ; 0x78276
 
 UnknownScript_0x78276: ; 0x78276
 	writetext UnknownText_0x7866a
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 ; 0x7827c
 
@@ -469,8 +469,8 @@ YoungsterSamuelScript: ; 0x78288
 	talkaftercancel
 	loadfont
 	writetext UnknownText_0x783d8
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 ; 0x78290
 
@@ -498,8 +498,8 @@ YoungsterIanScript: ; 0x7829c
 	talkaftercancel
 	loadfont
 	writetext UnknownText_0x78469
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 ; 0x782a4
 
@@ -527,8 +527,8 @@ PokefanmBrandonScript: ; 0x782b0
 	talkaftercancel
 	loadfont
 	writetext UnknownText_0x786fc
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 ; 0x782b8
 
@@ -558,15 +558,15 @@ CooltrainerfIreneScript: ; 0x782c4
 	checkevent EVENT_GOT_SOFT_SAND_FROM_KATE
 	iftrue UnknownScript_0x782d2
 	writetext UnknownText_0x7877f
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 ; 0x782d2
 
 UnknownScript_0x782d2: ; 0x782d2
 	writetext UnknownText_0x787ad
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 ; 0x782d8
 
@@ -596,15 +596,15 @@ CooltrainerfJennScript: ; 0x782e4
 	checkevent EVENT_GOT_SOFT_SAND_FROM_KATE
 	iftrue UnknownScript_0x782f2
 	writetext UnknownText_0x78836
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 ; 0x782f2
 
 UnknownScript_0x782f2: ; 0x782f2
 	writetext UnknownText_0x78866
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 ; 0x782f8
 
@@ -634,15 +634,15 @@ CooltrainerfKateScript: ; 0x78304
 	checkevent EVENT_GOT_SOFT_SAND_FROM_KATE
 	iftrue UnknownScript_0x78319
 	writetext UnknownText_0x788e2
-	keeptextopen
+	buttonsound
 	verbosegiveitem SOFT_SAND, 1
 	iffalse UnknownScript_0x7831d
 	setevent EVENT_GOT_SOFT_SAND_FROM_KATE
 UnknownScript_0x78319: ; 0x78319
 	writetext UnknownText_0x7892b
-	closetext
+	waitbutton
 UnknownScript_0x7831d: ; 0x7831d
-	loadmovesprites
+	closetext
 	end
 ; 0x7831f
 
@@ -676,6 +676,97 @@ MapRoute34SignpostItem4: ; 0x78330
 	dw $00a8
 	db SUPER_POTION
 	
+RandomEggScript:
+	checkevent EVENT_BULBASAUR_EGG
+	iffalse RandomEggScriptMain
+	checkevent EVENT_CHARMANDER_EGG
+	iffalse RandomEggScriptMain
+	checkevent EVENT_SQUIRTLE_EGG
+	iffalse RandomEggScriptMain
+	checkevent EVENT_CHIKORITA_EGG
+	iffalse RandomEggScriptMain
+	checkevent EVENT_CYNDAQUIL_EGG
+	iffalse RandomEggScriptMain
+	checkevent EVENT_TOTODILE_EGG
+	iffalse RandomEggScriptMain
+	clearevent EVENT_BULBASAUR_EGG
+	clearevent EVENT_CHARMANDER_EGG
+	clearevent EVENT_SQUIRTLE_EGG
+	clearevent EVENT_CHIKORITA_EGG
+	clearevent EVENT_CYNDAQUIL_EGG
+	clearevent EVENT_TOTODILE_EGG
+RandomEggScriptMain:
+	loadfont
+	writetext EggApproach_Text
+	yesorno
+	iffalse RandomEggScriptNo
+	checkcode VAR_PARTYCOUNT
+	if_equal $6, RandomEggFreeSpace
+RandomEggRandomizer:
+	random $6
+	if_equal $0, GiveBulbasaurEgg
+	if_equal $1, GiveCharmanderEgg
+	if_equal $2, GiveSquirtleEgg
+	if_equal $3, GiveChikoritaEgg
+	if_equal $4, GiveCyndaquilEgg
+	jump GiveTotodileEgg
+	
+GiveBulbasaurEgg:
+	checkevent EVENT_BULBASAUR_EGG
+	iftrue RandomEggRandomizer
+	setevent EVENT_BULBASAUR_EGG
+	giveegg BULBASAUR, 5
+	jump GotEgg
+	
+GiveCharmanderEgg:
+	checkevent EVENT_CHARMANDER_EGG
+	iftrue RandomEggRandomizer
+	setevent EVENT_CHARMANDER_EGG
+	giveegg CHARMANDER, 5
+	jump GotEgg
+	
+GiveSquirtleEgg:
+	checkevent EVENT_SQUIRTLE_EGG
+	iftrue RandomEggRandomizer
+	setevent EVENT_SQUIRTLE_EGG
+	giveegg SQUIRTLE, 5
+	jump GotEgg
+	
+GiveChikoritaEgg:
+	checkevent EVENT_CHIKORITA_EGG
+	iftrue RandomEggRandomizer
+	setevent EVENT_CHIKORITA_EGG
+	giveegg CHIKORITA, 5
+	jump GotEgg
+	
+GiveCyndaquilEgg:
+	checkevent EVENT_CYNDAQUIL_EGG
+	iftrue RandomEggRandomizer
+	setevent EVENT_CYNDAQUIL_EGG
+	giveegg CYNDAQUIL, 5
+	jump GotEgg
+
+GiveTotodileEgg:
+	checkevent EVENT_TOTODILE_EGG
+	iftrue RandomEggRandomizer
+	setevent EVENT_TOTODILE_EGG
+	giveegg TOTODILE, 5
+GotEgg:
+	disappear $f
+	writetext FoundEgg_Text
+	playsound SFX_KEY_ITEM
+	waitsfx
+	setflag ENGINE_DAILY_EGG
+RandomEggScriptNo:
+	closetext
+	end
+
+RandomEggFreeSpace:
+	writetext FreeSpace_Text
+	waitbutton
+	closetext
+	end
+
 ; 0x78333
 
 MovementData_0x78333: ; 0x78333
@@ -1019,7 +1110,7 @@ UnknownText_0x78a52: ; 0x78a52
 
 EggApproach_Text: ; 0x78a52
 	text "What a unique"
-	line "looking egg!"
+	line "looking EGG!"
 
 	para "Want to take it?"
 	done
@@ -1031,106 +1122,8 @@ FreeSpace_Text: ; 0x78a52
 	
 FoundEgg_Text: ; 0x631ae
 	text "<PLAYER> found"
-	line "an egg!"
+	line "an EGG!"
 	done
-
-RandomEggScript:
-	checkevent EVENT_BULBASAUR_EGG
-	iffalse RandomEggScriptMain
-	checkevent EVENT_CHARMANDER_EGG
-	iffalse RandomEggScriptMain
-	checkevent EVENT_SQUIRTLE_EGG
-	iffalse RandomEggScriptMain
-	checkevent EVENT_CHIKORITA_EGG
-	iffalse RandomEggScriptMain
-	checkevent EVENT_CYNDAQUIL_EGG
-	iffalse RandomEggScriptMain
-	checkevent EVENT_TOTODILE_EGG
-	iffalse RandomEggScriptMain
-	clearevent EVENT_BULBASAUR_EGG
-	clearevent EVENT_CHARMANDER_EGG
-	clearevent EVENT_SQUIRTLE_EGG
-	clearevent EVENT_CHIKORITA_EGG
-	clearevent EVENT_CYNDAQUIL_EGG
-	clearevent EVENT_TOTODILE_EGG
-RandomEggScriptMain:
-	loadfont
-	writetext EggApproach_Text
-	yesorno
-	iffalse RandomEggScriptNo
-	checkcode VAR_PARTYCOUNT
-	if_equal $6, RandomEggFreeSpace
-RandomEggRandomizer:
-	random $6
-	if_equal $0, GiveBulbasaurEgg
-	if_equal $1, GiveCharmanderEgg
-	if_equal $2, GiveSquirtleEgg
-	if_equal $3, GiveChikoritaEgg
-	if_equal $4, GiveCyndaquilEgg
-	jump GiveTotodileEgg
-	
-GotEgg:
-	setevent EVENT_RANDOM_EGG
-	writetext FoundEgg_Text
-	playsound SFX_KEY_ITEM
-	waitbutton
-	closetext
-	loadmovesprites
-	disappear $f
-	end
-	
-GiveBulbasaurEgg:
-	checkevent EVENT_BULBASAUR_EGG
-	iftrue RandomEggRandomizer
-	setevent EVENT_BULBASAUR_EGG
-	giveegg BULBASAUR, 5
-	jump GotEgg
-	
-GiveCharmanderEgg:
-	checkevent EVENT_CHARMANDER_EGG
-	iftrue RandomEggRandomizer
-	setevent EVENT_CHARMANDER_EGG
-	giveegg CHARMANDER, 5
-	jump GotEgg
-	
-GiveSquirtleEgg:
-	checkevent EVENT_SQUIRTLE_EGG
-	iftrue RandomEggRandomizer
-	setevent EVENT_SQUIRTLE_EGG
-	giveegg SQUIRTLE, 5
-	jump GotEgg
-	
-GiveChikoritaEgg:
-	checkevent EVENT_CHIKORITA_EGG
-	iftrue RandomEggRandomizer
-	setevent EVENT_CHIKORITA_EGG
-	giveegg CHIKORITA, 5
-	jump GotEgg
-	
-GiveCyndaquilEgg:
-	checkevent EVENT_CYNDAQUIL_EGG
-	iftrue RandomEggRandomizer
-	setevent EVENT_CYNDAQUIL_EGG
-	giveegg CYNDAQUIL, 5
-	jump GotEgg
-
-GiveTotodileEgg:
-	checkevent EVENT_TOTODILE_EGG
-	iftrue RandomEggRandomizer
-	setevent EVENT_TOTODILE_EGG
-	giveegg TOTODILE, 5
-	jump GotEgg
-	
-RandomEggScriptNo:
-	loadmovesprites
-	end
-	
-RandomEggFreeSpace:
-	writetext FreeSpace_Text
-	closetext
-	loadmovesprites
-	end
-	
 
 Route34_MapEventHeader: ; 0x78a7c
 	; filler

@@ -13,29 +13,29 @@ GrannyScript_0x7b394: ; 0x7b394
 	iftrue UnknownScript_0x7b3b7
 	special Function718d
 	writetext UnknownText_0x7b3c6
-	keeptextopen
+	buttonsound
 	if_greater_than $95, UnknownScript_0x7b3aa
 	jump UnknownScript_0x7b3bd
 ; 0x7b3aa
 
 UnknownScript_0x7b3aa: ; 0x7b3aa
 	writetext UnknownText_0x7b42b
-	keeptextopen
+	buttonsound
 	verbosegiveitem TM_SANDSTORM, 1
 	iffalse UnknownScript_0x7b3bb
 	setevent EVENT_GOT_TM37_SANDSTORM
 UnknownScript_0x7b3b7: ; 0x7b3b7
 	writetext UnknownText_0x7b48f
-	closetext
+	waitbutton
 UnknownScript_0x7b3bb: ; 0x7b3bb
-	loadmovesprites
+	closetext
 	end
 ; 0x7b3bd
 
 UnknownScript_0x7b3bd: ; 0x7b3bd
 	writetext UnknownText_0x7b51f
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 ; 0x7b3c3
 

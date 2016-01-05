@@ -42,10 +42,10 @@ UnknownScript_0x1804e0: ; 0x1804e0
 	earthquake 80
 	changeblock $4, $e, $2a
 	reloadmappart
-	loadmovesprites
+	closetext
 	dotrigger $1
 	setevent EVENT_INDIGO_PLATEAU_ENTRANCE_CLOSED
-	waitbutton
+	waitsfx
 	end
 ; 0x1804f8
 
@@ -55,8 +55,8 @@ WillScript_0x1804f8: ; 0x1804f8
 	checkevent EVENT_BEAT_ELITE_4_WILL
 	iftrue UnknownScript_0x180526
 	writetext UnknownText_0x180531
+	waitbutton
 	closetext
-	loadmovesprites
 	winlosstext UnknownText_0x18062c, $0000
 	checkevent EVENT_ENABLE_DIPLOMA_PRINTING
 	iftrue WillRematch
@@ -70,21 +70,21 @@ StartBattleWill:
 	setevent EVENT_BEAT_ELITE_4_WILL
 	loadfont
 	writetext UnknownText_0x180644
+	waitbutton
 	closetext
-	loadmovesprites
 	playsound SFX_ENTER_DOOR
 	changeblock $4, $2, $16
 	reloadmappart
-	loadmovesprites
+	closetext
 	setevent EVENT_WILLS_ROOM_EXIT_OPEN
-	waitbutton
+	waitsfx
 	end
 ; 0x180526
 
 UnknownScript_0x180526: ; 0x180526
 	writetext UnknownText_0x180644
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 ; 0x18052c
 

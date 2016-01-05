@@ -17,8 +17,8 @@ GentlemanScript_0x7eaf2: ; 0x7eaf2
 	faceplayer
 	loadfont
 	special SpecialNameRater
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 ; 0x7eafa
 

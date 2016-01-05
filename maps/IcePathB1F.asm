@@ -65,8 +65,8 @@ UnknownScript_0x7e4f8: ; 0x7e4f8
 	scall UnknownScript_0x7e504
 	loadfont
 	writetext UnknownText_0x7e512
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 ; 0x7e504
 

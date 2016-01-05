@@ -20,8 +20,8 @@ GiovanniScript1:
 	playmusic MUSIC_ROCKET_ENCOUNTER
 	loadfont
 	writetext GiovanniText1
+	waitbutton
 	closetext
-	loadmovesprites
 	applymovement $2, MovementData_Giovanni1
 	loadtrainer ROCKETBOSS, GIOVANNI_RB
 	winlosstext GiovanniText2, GiovanniText3
@@ -31,8 +31,8 @@ GiovanniScript1:
 	playmusic MUSIC_ROCKET_ENCOUNTER
 	loadfont
 	writetext GiovanniText4
+	waitbutton
 	closetext
-	loadmovesprites
 	applymovement $0, MovementData_PlayerTFBR
 	applymovement $2, MovementData_Giovanni2
 	playsound SFX_EXIT_BUILDING

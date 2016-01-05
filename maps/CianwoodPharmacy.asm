@@ -21,22 +21,22 @@ PharmacistScript_0x9df9e: ; 0x9df9e
 	checkevent EVENT_TALKED_TO_JASMINE_ABOUT_AMPHY
 	iffalse UnknownScript_0x9dfc4
 	writetext UnknownText_0x9dfcd
-	keeptextopen
+	buttonsound
 	giveitem SECRETPOTION, $1
 	writetext UnknownText_0x9e056
 	playsound SFX_KEY_ITEM
-	waitbutton
+	waitsfx
 	itemnotify
 	setevent EVENT_GOT_SECRETPOTION_FROM_PHARMACY
 	writetext UnknownText_0x9e070
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 ; 0x9dfc4
 
 UnknownScript_0x9dfc4: ; 0x9dfc4
 	pokemart $3, $0004
-	loadmovesprites
+	closetext
 	end
 ; 0x9dfca
 

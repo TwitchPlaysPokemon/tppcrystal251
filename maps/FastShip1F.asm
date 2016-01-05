@@ -52,15 +52,15 @@ SailorScript_0x75160: ; 0x75160
 	checkevent EVENT_FAST_SHIP_02F
 	iftrue UnknownScript_0x75174
 	writetext UnknownText_0x7523b
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 ; 0x75174
 
 UnknownScript_0x75174: ; 0x75174
 	writetext UnknownText_0x7529b
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 ; 0x7517a
 
@@ -68,12 +68,12 @@ UnknownScript_0x7517a: ; 0x7517a
 	checkevent EVENT_FAST_SHIP_02F
 	iftrue UnknownScript_0x7519c
 	writetext UnknownText_0x754be
+	waitbutton
 	closetext
-	loadmovesprites
 	scall UnknownScript_0x751b8
 	playsound SFX_EXIT_BUILDING
 	special Function8c084
-	waitbutton
+	waitsfx
 	setevent EVENT_SAILOR_IN_VERMILION_PORT
 	domaptrigger GROUP_VERMILION_PORT, MAP_VERMILION_PORT, $1
 	warp GROUP_VERMILION_PORT, MAP_VERMILION_PORT, $7, $11
@@ -82,12 +82,12 @@ UnknownScript_0x7517a: ; 0x7517a
 
 UnknownScript_0x7519c: ; 0x7519c
 	writetext UnknownText_0x7548d
+	waitbutton
 	closetext
-	loadmovesprites
 	scall UnknownScript_0x751b8
 	playsound SFX_EXIT_BUILDING
 	special Function8c084
-	waitbutton
+	waitsfx
 	setevent EVENT_SAILOR_IN_OLIVINE_PORT
 	domaptrigger GROUP_OLIVINE_PORT, MAP_OLIVINE_PORT, $1
 	warp GROUP_OLIVINE_PORT, MAP_OLIVINE_PORT, $7, $17
@@ -114,15 +114,15 @@ SailorScript_0x751d0: ; 0x751d0
 	checkevent EVENT_FAST_SHIP_030
 	iftrue UnknownScript_0x751de
 	writetext UnknownText_0x752f9
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 ; 0x751de
 
 UnknownScript_0x751de: ; 0x751de
 	writetext UnknownText_0x7534f
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 ; 0x751e4
 
@@ -142,8 +142,8 @@ UnknownScript_0x751eb: ; 0x751eb
 	applymovement $5, MovementData_0x75220
 	loadfont
 	writetext UnknownText_0x75412
+	waitbutton
 	closetext
-	loadmovesprites
 	spriteface $0, $3
 	applymovement $5, MovementData_0x75222
 	disappear $5

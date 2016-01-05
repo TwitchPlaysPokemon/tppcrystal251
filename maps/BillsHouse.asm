@@ -16,7 +16,7 @@ GrampsScript_0x189538: ; 0x189538
 	checkevent EVENT_MET_BILLS_GRANDPA
 	iftrue UnknownScript_0x189553
 	writetext UnknownText_0x1896ce
-	keeptextopen
+	buttonsound
 	setevent EVENT_MET_BILLS_GRANDPA
 UnknownScript_0x189553: ; 0x189553
 	checkevent EVENT_SHOWED_PICHU_TO_BILLS_GRANDPA
@@ -30,7 +30,7 @@ UnknownScript_0x189553: ; 0x189553
 	checkevent EVENT_SHOWED_LICKITUNG_TO_BILLS_GRANDPA
 	iftrue UnknownScript_0x18963b
 	writetext UnknownText_0x1898c0
-	keeptextopen
+	buttonsound
 	writetext UnknownText_0x189732
 	yesorno
 	iffalse UnknownScript_0x1896aa
@@ -45,7 +45,7 @@ UnknownScript_0x189553: ; 0x189553
 
 UnknownScript_0x189592: ; 0x189592
 	writetext UnknownText_0x1898ff
-	keeptextopen
+	buttonsound
 	writetext UnknownText_0x189732
 	yesorno
 	iffalse UnknownScript_0x1896aa
@@ -60,7 +60,7 @@ UnknownScript_0x189592: ; 0x189592
 
 UnknownScript_0x1895b3: ; 0x1895b3
 	writetext UnknownText_0x189953
-	keeptextopen
+	buttonsound
 	writetext UnknownText_0x189732
 	yesorno
 	iffalse UnknownScript_0x1896aa
@@ -77,7 +77,7 @@ UnknownScript_0x1895d4: ; 0x1895d4
 	checkver
 	iftrue UnknownScript_0x1895f9
 	writetext UnknownText_0x1899fe
-	keeptextopen
+	buttonsound
 	writetext UnknownText_0x189732
 	yesorno
 	iffalse UnknownScript_0x1896aa
@@ -92,7 +92,7 @@ UnknownScript_0x1895d4: ; 0x1895d4
 
 UnknownScript_0x1895f9: ; 0x1895f9
 	writetext UnknownText_0x189a57
-	keeptextopen
+	buttonsound
 	writetext UnknownText_0x189732
 	yesorno
 	iffalse UnknownScript_0x1896aa
@@ -107,7 +107,7 @@ UnknownScript_0x1895f9: ; 0x1895f9
 
 UnknownScript_0x18961a: ; 0x18961a
 	writetext UnknownText_0x189ab1
-	keeptextopen
+	buttonsound
 	writetext UnknownText_0x189732
 	yesorno
 	iffalse UnknownScript_0x1896aa
@@ -128,7 +128,7 @@ UnknownScript_0x18963b: ; 0x18963b
 	iffalse UnknownScript_0x1896cc
 	setevent EVENT_GOT_EVERSTONE_FROM_BILLS_GRANDPA
 	setevent EVENT_000_STD
-	loadmovesprites
+	closetext
 	end
 ; 0x189652
 
@@ -140,7 +140,7 @@ UnknownScript_0x189652: ; 0x189652
 	iffalse UnknownScript_0x1896cc
 	setevent EVENT_GOT_LEAF_STONE_FROM_BILLS_GRANDPA
 	setevent EVENT_000_STD
-	loadmovesprites
+	closetext
 	end
 ; 0x189669
 
@@ -152,7 +152,7 @@ UnknownScript_0x189669: ; 0x189669
 	iffalse UnknownScript_0x1896cc
 	setevent EVENT_GOT_WATER_STONE_FROM_BILLS_GRANDPA
 	setevent EVENT_000_STD
-	loadmovesprites
+	closetext
 	end
 ; 0x189680
 
@@ -164,7 +164,7 @@ UnknownScript_0x189680: ; 0x189680
 	iffalse UnknownScript_0x1896cc
 	setevent EVENT_GOT_FIRE_STONE_FROM_BILLS_GRANDPA
 	setevent EVENT_000_STD
-	loadmovesprites
+	closetext
 	end
 ; 0x189697
 
@@ -173,58 +173,58 @@ UnknownScript_0x189697: ; 0x189697
 	verbosegiveitem THUNDERSTONE, 1
 	iffalse UnknownScript_0x1896cc
 	setevent EVENT_GOT_THUNDERSTONE_FROM_BILLS_GRANDPA
-	loadmovesprites
+	closetext
 	end
 ; 0x1896a5
 
 UnknownScript_0x1896a5: ; 0x1896a5
 	writetext UnknownText_0x189760
-	keeptextopen
+	buttonsound
 	end
 ; 0x1896aa
 
 UnknownScript_0x1896aa: ; 0x1896aa
 	writetext UnknownText_0x189784
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 ; 0x1896b0
 
 UnknownScript_0x1896b0: ; 0x1896b0
 	writetext UnknownText_0x1897a6
-	keeptextopen
+	buttonsound
 	end
 ; 0x1896b5
 
 UnknownScript_0x1896b5: ; 0x1896b5
 	writetext UnknownText_0x1897e1
-	keeptextopen
+	buttonsound
 	end
 ; 0x1896ba
 
 UnknownScript_0x1896ba: ; 0x1896ba
 	writetext UnknownText_0x18980e
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 ; 0x1896c0
 
 UnknownScript_0x1896c0: ; 0x1896c0
 	writetext UnknownText_0x18982a
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 ; 0x1896c6
 
 UnknownScript_0x1896c6: ; 0x1896c6
 	writetext UnknownText_0x189891
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 ; 0x1896cc
 
 UnknownScript_0x1896cc: ; 0x1896cc
-	loadmovesprites
+	closetext
 	end
 ; 0x1896ce
 

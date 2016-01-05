@@ -7,42 +7,42 @@ ClerkScript_Depot1:
 	faceplayer
 	loadfont
 	pokemart $0, $0022
-	loadmovesprites
+	closetext
 	end
 
 ClerkScript_Depot2:
 	faceplayer
 	loadfont
 	pokemart $0, $0023
-	loadmovesprites
+	closetext
 	end
 
 ClerkScript_Depot3:
 	faceplayer
 	loadfont
 	pokemart $0, $0024
-	loadmovesprites
+	closetext
 	end
 
 ClerkScript_Depot4:
 	faceplayer
 	loadfont
 	pokemart $0, $0025
-	loadmovesprites
+	closetext
 	end
 
 ClerkScript_Depot5:
 	faceplayer
 	loadfont
 	pokemart $0, $0026
-	loadmovesprites
+	closetext
 	end
 
 ClerkScript_Depot6:
 	faceplayer
 	loadfont
 	pokemart $0, $0027
-	loadmovesprites
+	closetext
 	end
 
 MapCeladonDeptStoreB1FSignpost0Script:

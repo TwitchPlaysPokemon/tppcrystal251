@@ -28,8 +28,8 @@ SurgeScript_0x1920a5: ; 0x1920a5
 	checkflag ENGINE_THUNDERBADGE
 	iftrue UnknownScript_0x1920d9
 	writetext UnknownText_0x192142
+	waitbutton
 	closetext
-	loadmovesprites
 	winlosstext UnknownText_0x192238, $0000
 	loadtrainer LT_SURGE, 1
 	startbattle
@@ -41,18 +41,18 @@ SurgeScript_0x1920a5: ; 0x1920a5
 	loadfont
 	writetext UnknownText_0x192277
 	playsound SFX_GET_BADGE
-	waitbutton
+	waitsfx
 	setflag ENGINE_THUNDERBADGE
 	writetext UnknownText_0x192291
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 ; 0x1920d9
 
 UnknownScript_0x1920d9: ; 0x1920d9
 	writetext UnknownText_0x192303
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 ; 0x1920df
 
@@ -80,8 +80,8 @@ GentlemanGregoryScript: ; 0x1920eb
 	talkaftercancel
 	loadfont
 	writetext UnknownText_0x1923b0
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 ; 0x1920f3
 
@@ -109,8 +109,8 @@ GuitaristVincentScript: ; 0x1920ff
 	talkaftercancel
 	loadfont
 	writetext UnknownText_0x19244b
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 ; 0x192107
 
@@ -138,8 +138,8 @@ JugglerHortonScript: ; 0x192113
 	talkaftercancel
 	loadfont
 	writetext UnknownText_0x1924d6
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 ; 0x19211b
 
@@ -149,14 +149,14 @@ VermilionGymGuyScript: ; 0x19211b
 	checkevent EVENT_BEAT_LTSURGE
 	iftrue .VermilionGymGuyWinScript
 	writetext VermilionGymGuyText
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 .VermilionGymGuyWinScript
 	writetext VermilionGymGuyWinText
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 ; 0x19212f
 
@@ -345,13 +345,13 @@ VermilionGym_FoundSwitch:
 	loadfont
 	writetext Text_FoundSwitch
 	playsound SFX_PUSH_BUTTON
-	keeptextopen
+	buttonsound
 	checkevent EVENT_VERMILION_DOOR_1
 	iftrue UnlockSecondSwitch
 	setevent EVENT_VERMILION_DOOR_1
 	writetext Text_FoundFirstSwitch
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 	
 UnlockSecondSwitch:
@@ -359,18 +359,18 @@ UnlockSecondSwitch:
 	writetext Text_FoundSecondSwitch
 	playsound SFX_ENTER_DOOR
 	changeblock 4, 4, 1
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 	
 VermilionGym_ResetSwitches:
 	loadfont
 	writetext UnknownText_0x19261e
-	keeptextopen
+	buttonsound
 	writetext Text_ResetSwitches
 	playsound SFX_WRONG
+	waitbutton
 	closetext
-	loadmovesprites
 	random 38
 	copyvartobyte wdff7
 	clearevent EVENT_VERMILION_DOOR_1

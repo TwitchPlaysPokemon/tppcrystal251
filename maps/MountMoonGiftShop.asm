@@ -10,7 +10,7 @@ GrampsScript_0x771a8: ; 0x771a8
 	faceplayer
 	loadfont
 	pokemart $0, $001f
-	loadmovesprites
+	closetext
 	end
 ; 0x771b0
 

@@ -19,8 +19,8 @@ OfficerScript_0x18a81e: ; 0x18a81e
 	checkevent EVENT_RESTORED_POWER_TO_KANTO
 	iftrue UnknownScript_0x18a82c
 	writetext UnknownText_0x18a8a9
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 ; 0x18a82c
 
@@ -31,8 +31,8 @@ UnknownScript_0x18a82c: ; 0x18a82c
 	checkitem PASS
 	iffalse UnknownScript_0x18a856
 	writetext UnknownText_0x18a917
+	waitbutton
 	closetext
-	loadmovesprites
 	applymovement $2, MovementData_0x18a88f
 	applymovement $0, MovementData_0x18a898
 	writebyte $1
@@ -51,15 +51,15 @@ MovementData_0x18a854: ; 0x18a854
 
 UnknownScript_0x18a856: ; 0x18a856
 	writetext UnknownText_0x18a956
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 ; 0x18a85c
 
 UnknownScript_0x18a85c: ; 0x18a85c
 	writetext UnknownText_0x18a978
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 ; 0x18a862
 
@@ -69,8 +69,8 @@ UnknownScript_0x18a862: ; 0x18a862
 	applymovement $2, MovementData_0x18a894
 	loadfont
 	writetext UnknownText_0x18a993
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 ; 0x18a875
 
@@ -80,15 +80,15 @@ GymGuyScript_0x18a875: ; 0x18a875
 	checkevent EVENT_RETURNED_MACHINE_PART
 	iftrue UnknownScript_0x18a883
 	writetext UnknownText_0x18a9ca
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 ; 0x18a883
 
 UnknownScript_0x18a883: ; 0x18a883
 	writetext UnknownText_0x18aa61
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 ; 0x18a889
 

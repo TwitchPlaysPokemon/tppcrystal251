@@ -568,6 +568,8 @@ INCLUDE "maps/EarlyGameKanto/PalletTown.asm"
 INCLUDE "maps/EarlyGameKanto/Route1.asm"
 INCLUDE "maps/EarlyGameKanto/RedsHouse1F.asm"
 INCLUDE "maps/EarlyGameKanto/RedsHouse2F.asm"
+INCLUDE "maps/EarlyGameKanto/BluesHouse.asm"
+INCLUDE "maps/EarlyGameKanto/OaksLab.asm"
 
 SECTION "ViridianCityRB", ROMX
 INCLUDE "maps/ViridianCityRB.asm"SECTION "ViridianCityRB Blockdata", ROMX

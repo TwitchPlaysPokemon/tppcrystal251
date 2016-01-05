@@ -16,15 +16,15 @@ CaptainScript_0x75ea7: ; 0x75ea7
 	checkevent EVENT_FAST_SHIP_030
 	iftrue UnknownScript_0x75eb5
 	writetext UnknownText_0x76012
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 ; 0x75eb5
 
 UnknownScript_0x75eb5: ; 0x75eb5
 	writetext UnknownText_0x76064
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 ; 0x75ebb
 
@@ -32,13 +32,13 @@ TwinScript_0x75ebb: ; 0x75ebb
 	spriteface $5, $3
 	loadfont
 	writetext UnknownText_0x761e0
+	waitbutton
 	closetext
-	loadmovesprites
 	faceplayer
 	loadfont
 	writetext UnknownText_0x7621f
+	waitbutton
 	closetext
-	loadmovesprites
 	special Special_FadeToBlack
 	special Functiond91
 	disappear $5
@@ -56,22 +56,22 @@ TwinScript_0x75ebb: ; 0x75ebb
 	iftrue UnknownScript_0x75f03
 	loadfont
 	writetext UnknownText_0x76284
+	waitbutton
 	closetext
-	loadmovesprites
 	jump UnknownScript_0x75f09
 ; 0x75f03
 
 UnknownScript_0x75f03: ; 0x75f03
 	loadfont
 	writetext UnknownText_0x762c6
+	waitbutton
 	closetext
-	loadmovesprites
 UnknownScript_0x75f09: ; 0x75f09
 	spriteface $5, $0
 	applymovement $3, MovementData_0x76010
 	loadfont
 	writetext UnknownText_0x76143
-	keeptextopen
+	buttonsound
 	setevent EVENT_SAILOR_IN_VERMILION_PORT
 	domaptrigger GROUP_FAST_SHIP_1F, MAP_FAST_SHIP_1F, $0
 	jump UnknownScript_0x75f37
@@ -85,47 +85,47 @@ GentlemanScript_0x75f1f: ; 0x75f1f
 	checkevent EVENT_FAST_SHIP_GRANDDAUGHTER_IN_HER_CABIN
 	iftrue UnknownScript_0x75f58
 	writetext UnknownText_0x760ae
+	waitbutton
 	closetext
-	loadmovesprites
 	domaptrigger GROUP_FAST_SHIP_1F, MAP_FAST_SHIP_1F, $0
 	end
 ; 0x75f37
 
 UnknownScript_0x75f37: ; 0x75f37
 	writetext UnknownText_0x7619b
-	keeptextopen
+	buttonsound
 	verbosegiveitem METAL_COAT, 1
 	iffalse UnknownScript_0x75f44
 	setevent EVENT_GOT_METAL_COAT_FROM_GRANDPA_ON_SS_AQUA
 UnknownScript_0x75f44: ; 0x75f44
-	loadmovesprites
-	waitbutton
+	closetext
+	waitsfx
 	playsound SFX_ELEVATOR_END
 	pause 30
 	loadfont
 	writetext UnknownText_0x76645
-	closetext
+	waitbutton
 	setevent EVENT_FAST_SHIP_031
 	setevent EVENT_FAST_SHIP_032
-	loadmovesprites
+	closetext
 	end
 ; 0x75f58
 
 UnknownScript_0x75f58: ; 0x75f58
 	writetext UnknownText_0x7619b
-	keeptextopen
+	buttonsound
 	verbosegiveitem METAL_COAT, 1
 	iffalse UnknownScript_0x75f65
 	setevent EVENT_GOT_METAL_COAT_FROM_GRANDPA_ON_SS_AQUA
 UnknownScript_0x75f65: ; 0x75f65
-	loadmovesprites
+	closetext
 	end
 ; 0x75f67
 
 UnknownScript_0x75f67: ; 0x75f67
 	writetext UnknownText_0x761be
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 ; 0x75f6d
 
@@ -133,8 +133,8 @@ TwinScript_0x75f6d: ; 0x75f6d
 	faceplayer
 	loadfont
 	writetext UnknownText_0x7630d
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 ; 0x75f75
 
@@ -162,8 +162,8 @@ PokefanmColinScript: ; 0x75f81
 	talkaftercancel
 	loadfont
 	writetext UnknownText_0x7635b
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 ; 0x75f89
 
@@ -191,8 +191,8 @@ TwinsMegandpeg1Script: ; 0x75f95
 	talkaftercancel
 	loadfont
 	writetext UnknownText_0x763c2
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 ; 0x75f9d
 
@@ -220,8 +220,8 @@ TwinsMegandpeg2Script: ; 0x75fa9
 	talkaftercancel
 	loadfont
 	writetext UnknownText_0x76428
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 ; 0x75fb1
 
@@ -249,8 +249,8 @@ PsychicRodneyScript: ; 0x75fbd
 	talkaftercancel
 	loadfont
 	writetext UnknownText_0x76497
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 ; 0x75fc5
 
@@ -278,8 +278,8 @@ PokefanmJeremyScript: ; 0x75fd1
 	talkaftercancel
 	loadfont
 	writetext UnknownText_0x7651c
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 ; 0x75fd9
 
@@ -307,8 +307,8 @@ PokefanfGeorgiaScript: ; 0x75fe5
 	talkaftercancel
 	loadfont
 	writetext UnknownText_0x76596
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 ; 0x75fed
 
@@ -336,8 +336,8 @@ SupernerdShawnScript: ; 0x75ff9
 	talkaftercancel
 	loadfont
 	writetext UnknownText_0x7660f
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 ; 0x76001
 

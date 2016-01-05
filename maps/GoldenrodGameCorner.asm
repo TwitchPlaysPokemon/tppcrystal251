@@ -35,8 +35,8 @@ PokefanMScript_0x56c1a: ; 0x56c1a
 	faceplayer
 	loadfont
 	writetext UnknownText_0x5718a
+	waitbutton
 	closetext
-	loadmovesprites
 	spriteface $d, $3
 	end
 ; 0x56c25
@@ -49,7 +49,7 @@ ReceptionistScript_0x56c28: ; 0x56c28
 	faceplayer
 	loadfont
 	writetext UnknownText_0x56e50
-	closetext
+	waitbutton
 	checkitem COIN_CASE
 	iffalse UnknownScript_0x56cc3
 	writetext UnknownText_0x56e8b
@@ -107,38 +107,38 @@ UnknownScript_0x56ca1: ; 0x56ca1
 ; 0x56ca6
 
 UnknownScript_0x56ca6: ; 0x56ca6
-	waitbutton
+	waitsfx
 	playsound SFX_TRANSACTION
 	writetext UnknownText_0x56ebd
-	closetext
+	waitbutton
 	jump UnknownScript_0x56c36
 ; 0x56cb1
 
 UnknownScript_0x56cb1: ; 0x56cb1
 	writetext UnknownText_0x56ecb
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 ; 0x56cb7
 
 UnknownScript_0x56cb7: ; 0x56cb7
 	writetext UnknownText_0x56ee8
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 ; 0x56cbd
 
 UnknownScript_0x56cbd: ; 0x56cbd
 	writetext UnknownText_0x56f09
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 ; 0x56cc3
 
 UnknownScript_0x56cc3: ; 0x56cc3
 	writetext UnknownText_0x56f35
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 ; 0x56cc9
 
@@ -165,7 +165,7 @@ ReceptionistScript_0x56d01: ; 0x56d01
 	faceplayer
 	loadfont
 	writetext UnknownText_0x56e50
-	closetext
+	waitbutton
 	checkitem COIN_CASE
 	iffalse UnknownScript_0x56cc3
 UnknownScript_0x56d0c: ; 0x56d0c
@@ -188,10 +188,10 @@ UnknownScript_0x56d26: ; 0x56d26 NEEDS NEW MONS
 	pokenamemem ABRA, $0
 	scall UnknownScript_0x56ca1
 	iffalse UnknownScript_0x56cbd
-	waitbutton
+	waitsfx
 	playsound SFX_TRANSACTION
 	writetext UnknownText_0x56ebd
-	closetext
+	waitbutton
 	writebyte ABRA
 	special Functionc230
 	givepoke ABRA, 5, 0, 0
@@ -204,10 +204,10 @@ GCSlot1PC:
 	pokenamemem ABRA, $0
 	scall UnknownScript_0x56ca1
 	iffalse UnknownScript_0x56cbd
-	waitbutton
+	waitsfx
 	playsound SFX_TRANSACTION
 	writetext GCSentToPCText
-	closetext
+	waitbutton
 	writebyte ABRA
 	special Functionc230
 	givepoke ABRA, 5, 0, 0
@@ -223,10 +223,10 @@ UnknownScript_0x56d54: ; 0x56d54
 	pokenamemem CUBONE, $0
 	scall UnknownScript_0x56ca1
 	iffalse UnknownScript_0x56cbd
-	waitbutton
+	waitsfx
 	playsound SFX_TRANSACTION
 	writetext UnknownText_0x56ebd
-	closetext
+	waitbutton
 	writebyte CUBONE
 	special Functionc230
 	givepoke CUBONE, 15, 0, 0
@@ -240,10 +240,10 @@ GCSlot2PC:
 	pokenamemem ABRA, $0
 	scall UnknownScript_0x56ca1
 	iffalse UnknownScript_0x56cbd
-	waitbutton
+	waitsfx
 	playsound SFX_TRANSACTION
 	writetext GCSentToPCText
-	closetext
+	waitbutton
 	writebyte ABRA
 	special Functionc230
 	givepoke ABRA, 5, 0, 0
@@ -258,10 +258,10 @@ UnknownScript_0x56d82: ; 0x56d82
 	pokenamemem WOBBUFFET, $0
 	scall UnknownScript_0x56ca1
 	iffalse UnknownScript_0x56cbd
-	waitbutton
+	waitsfx
 	playsound SFX_TRANSACTION
 	writetext UnknownText_0x56ebd
-	closetext
+	waitbutton
 	writebyte WOBBUFFET
 	special Functionc230
 	givepoke WOBBUFFET, 15, 0, 0
@@ -275,10 +275,10 @@ GCSlot3PC:
 	pokenamemem ABRA, $0
 	scall UnknownScript_0x56ca1
 	iffalse UnknownScript_0x56cbd
-	waitbutton
+	waitsfx
 	playsound SFX_TRANSACTION
 	writetext GCSentToPCText
-	closetext
+	waitbutton
 	writebyte ABRA
 	special Functionc230
 	givepoke ABRA, 5, 0, 0
@@ -307,8 +307,8 @@ PharmacistScript_0x56df1: ; 0x56df1
 	faceplayer
 	loadfont
 	writetext UnknownText_0x56f55
+	waitbutton
 	closetext
-	loadmovesprites
 	spriteface $fe, $2
 	end
 ; 0x56dfc
@@ -317,8 +317,8 @@ GoldenrodVoltorbFlipGuyScript:
 	faceplayer
 	loadfont
 	writetext GoldenrodVoltorbFlipGuyText
+	waitbutton
 	closetext
-	loadmovesprites
 	spriteface $e, $3
 	end
 
@@ -326,8 +326,8 @@ PokefanMScript_0x56dfc: ; 0x56dfc
 	faceplayer
 	loadfont
 	writetext UnknownText_0x56f9e
+	waitbutton
 	closetext
-	loadmovesprites
 	spriteface $7, $3
 	end
 ; 0x56e07
@@ -336,8 +336,8 @@ CooltrainerMScript_0x56e07: ; 0x56e07
 	faceplayer
 	loadfont
 	writetext UnknownText_0x56ff4
+	waitbutton
 	closetext
-	loadmovesprites
 	spriteface $8, $2
 	end
 ; 0x56e12
@@ -346,8 +346,8 @@ PokefanFScript_0x56e12: ; 0x56e12
 	faceplayer
 	loadfont
 	writetext UnknownText_0x5702b
+	waitbutton
 	closetext
-	loadmovesprites
 	spriteface $9, $3
 	end
 ; 0x56e1d
@@ -360,8 +360,8 @@ GentlemanScript_0x56e20: ; 0x56e20
 	faceplayer
 	loadfont
 	writetext UnknownText_0x570b1
+	waitbutton
 	closetext
-	loadmovesprites
 	spriteface $b, $3
 	end
 ; 0x56e2b
@@ -372,14 +372,34 @@ PokefanMScript_0x56e2b: ; 0x56e2b
 
 MapGoldenrodGameCornerSignpost30Script: ; 0x56e2e
 	loadfont
+	checkcoins 3
+	if_equal $2, .NotEnoughCoins
 	writetext GoldenrodVoltorbFlipText
+	waitbutton
 	closetext
-	loadmovesprites
 	refreshscreen $0
 	special Special_VoltorbFlip
-	loadmovesprites
+	closetext
+	if_equal $a, .ReachedLevel10
 	end
 ; 0x56e31
+.NotEnoughCoins
+	writetext GoldenrodVoltorbFlipNotEnoughCoinsText
+	waitbutton
+	closetext
+	end
+
+.ReachedLevel10
+	loadfont
+	writetext GoldenrodVoltorbFlipReachedHighestLevel
+	waitbutton
+	verbosegiveitem MASTER_BALL, 1
+	iffalse .nope
+	writetext GoldenrodVoltorbFlipReceivedMasterBallText
+.nope
+	waitbutton
+	closetext
+	end
 
 MapGoldenrodGameCornerSignpost17Script: ; 0x56e31
 	random $6
@@ -387,7 +407,7 @@ MapGoldenrodGameCornerSignpost17Script: ; 0x56e31
 	refreshscreen $0
 	writebyte $0
 	special Functionc373
-	loadmovesprites
+	closetext
 	end
 ; 0x56e40
 
@@ -396,14 +416,14 @@ MapGoldenrodGameCornerSignpost7Script: ; 0x56e40
 	refreshscreen $0
 	writebyte $1
 	special Functionc373
-	loadmovesprites
+	closetext
 	end
 ; 0x56e49
 
 MapGoldenrodGameCornerSignpost29Script: ; 0x56e49
 	refreshscreen $0
 	special Functionc380
-	loadmovesprites
+	closetext
 	end
 ; 0x56e50
 
@@ -552,14 +572,6 @@ UnknownText_0x5718a: ; 0x5718a
 	done
 ; 0x571af
 
-UnknownText_0x571af: ; 0x571af
-	text "Someone left their"
-	line "drink."
-
-	para "It smells sweet."
-	done
-; 0x571db
-
 GoldenrodVoltorbFlipGuyText:
 	text "I'm trying out a"
 	line "fun new game here."
@@ -571,6 +583,32 @@ GoldenrodVoltorbFlipGuyText:
 GoldenrodVoltorbFlipText:
 	text "Let's play some"
 	line "VOLTORB FLIP!"
+	done
+
+GoldenrodVoltorbFlipNotEnoughCoinsText:
+	text "You need 3 coins"
+	line "to play this game."
+	done
+
+GoldenrodVoltorbFlipReachedHighestLevel:
+	text "Splendid! Marve-"
+	line "lous!"
+
+	para "You've reached the"
+	line "highest possible"
+
+	para "level in VOLTORB"
+	line "FLIP!"
+
+	para "This deserves a"
+	line "special reward."
+
+	para "Here, take this."
+	done
+
+GoldenrodVoltorbFlipReceivedMasterBallText:
+	text "Come back and play"
+	line "again any time!"
 	done
 
 GoldenrodGameCorner_MapEventHeader: ; 0x571db

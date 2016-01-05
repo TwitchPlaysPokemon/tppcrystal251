@@ -20,15 +20,15 @@ TeacherScript_0x5c008: ; 0x5c008
 	checkevent EVENT_GOT_QUICK_CLAW
 	iftrue UnknownScript_0x5c01d
 	writetext UnknownText_0x5c265
-	keeptextopen
+	buttonsound
 	verbosegiveitem QUICK_CLAW, 1
 	iffalse UnknownScript_0x5c021
 	setevent EVENT_GOT_QUICK_CLAW
 UnknownScript_0x5c01d: ; 0x5c01d
 	writetext UnknownText_0x5c30d
-	closetext
+	waitbutton
 UnknownScript_0x5c021: ; 0x5c021
-	loadmovesprites
+	closetext
 	end
 ; 0x5c023
 
@@ -49,8 +49,8 @@ GrowlitheScript_0x5c02c: ; 0x5c02c
 	loadfont
 	writetext UnknownText_0x5c416
 	cry PERSIAN
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 ; 0x5c037
 
@@ -58,8 +58,8 @@ GameboyKidScript_0x5c037: ; 0x5c037
 	faceplayer
 	loadfont
 	writetext UnknownText_0x5c42a
+	waitbutton
 	closetext
-	loadmovesprites
 	spriteface $e, $0
 	end
 ; 0x5c042
@@ -95,7 +95,7 @@ SchoolboyJack1Script: ; 0x5c04e
 	checkevent EVENT_TALKED_TO_SCHOOLBOY_JACK_AFTER_BATTLE
 	iftrue UnknownScript_0x5c071
 	writetext UnknownText_0x5c4f3
-	keeptextopen
+	buttonsound
 	setevent EVENT_TALKED_TO_SCHOOLBOY_JACK_AFTER_BATTLE
 	scall UnknownScript_0x5c0fc
 	jump UnknownScript_0x5c074
@@ -236,8 +236,8 @@ PokefanmWilliamScript: ; 0x5c124
 	talkaftercancel
 	loadfont
 	writetext UnknownText_0x5c645
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 ; 0x5c12c
 
@@ -274,7 +274,7 @@ PokefanfBeverly1Script: ; 0x5c138
 	checkevent EVENT_SHOWED_BEVERLY_MARILL
 	iftrue UnknownScript_0x5c160
 	writetext UnknownText_0x5c5bd
-	keeptextopen
+	buttonsound
 	setevent EVENT_SHOWED_BEVERLY_MARILL
 	scall UnknownScript_0x5c18f
 	jump UnknownScript_0x5c163
@@ -305,8 +305,8 @@ UnknownScript_0x5c186: ; 0x5c186
 
 UnknownScript_0x5c189: ; 0x5c189
 	writetext UnknownText_0x5c68a
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 ; 0x5c18f
 
@@ -374,8 +374,8 @@ LassKriseScript: ; 0x5c1bb
 	talkaftercancel
 	loadfont
 	writetext UnknownText_0x5c71d
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 ; 0x5c1c3
 

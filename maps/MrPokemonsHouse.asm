@@ -24,30 +24,30 @@ UnknownScript_0x196e56: ; 0x196e56
 	spriteface $2, $0
 	loadfont
 	writetext UnknownText_0x196f66
+	waitbutton
 	closetext
-	loadmovesprites
 	applymovement $0, MovementData_0x196f5a
 	loadfont
 	writetext UnknownText_0x196fa8
-	keeptextopen
-	waitbutton
+	buttonsound
+	waitsfx
 	giveitem MYSTERY_EGG, $1
 	writetext UnknownText_0x196fd2
 	playsound SFX_KEY_ITEM
-	waitbutton
+	waitsfx
 	itemnotify
 	setevent EVENT_GOT_MYSTERY_EGG_FROM_MR_POKEMON
 	blackoutmod GROUP_CHERRYGROVE_CITY, MAP_CHERRYGROVE_CITY
 	writetext UnknownText_0x196feb
-	keeptextopen
+	buttonsound
 	spriteface $2, $3
 	writetext UnknownText_0x197092
-	keeptextopen
+	buttonsound
 	spriteface $2, $0
 	spriteface $3, $2
 	writetext UnknownText_0x1970b7
+	waitbutton
 	closetext
-	loadmovesprites
 	jump UnknownScript_0x196ec9
 ; 0x196e97
 
@@ -59,15 +59,15 @@ GentlemanScript_0x196e97: ; 0x196e97
 	checkevent EVENT_GAVE_MYSTERY_EGG_TO_ELM
 	iftrue UnknownScript_0x196eaa
 	writetext UnknownText_0x197134
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 ; 0x196eaa
 
 UnknownScript_0x196eaa: ; 0x196eaa
 	writetext UnknownText_0x19714a
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 ; 0x196eb0
 
@@ -83,9 +83,9 @@ UnknownScript_0x196eb0: ; 0x196eb0
 
 UnknownScript_0x196ec3: ; 0x196ec3
 	writetext UnknownText_0x19750d
-	closetext
+	waitbutton
 UnknownScript_0x196ec7: ; 0x196ec7
-	loadmovesprites
+	closetext
 	end
 ; 0x196ec9
 
@@ -95,27 +95,27 @@ UnknownScript_0x196ec9: ; 0x196ec9
 	spriteface $0, $3
 	loadfont
 	writetext UnknownText_0x197185
-	keeptextopen
-	waitbutton
+	buttonsound
+	waitsfx
 	writetext UnknownText_0x1973cc
 	playsound SFX_ITEM
-	waitbutton
+	waitsfx
 	setflag ENGINE_POKEDEX
 	writetext UnknownText_0x1973de
+	waitbutton
 	closetext
-	loadmovesprites
 	spriteface $0, $0
 	applymovement $3, MovementData_0x196f61
 	playsound SFX_EXIT_BUILDING
 	disappear $3
-	waitbutton
+	waitsfx
 	special RestartMapMusic
 	pause 15
 	spriteface $0, $1
 	loadfont
 	writetext UnknownText_0x1970ed
+	waitbutton
 	closetext
-	loadmovesprites
 	special Special_FadeToBlack
 	special Functiond91
 	playmusic MUSIC_HEAL
@@ -126,8 +126,8 @@ UnknownScript_0x196ec9: ; 0x196ec9
 	special RestartMapMusic
 	loadfont
 	writetext UnknownText_0x197134
+	waitbutton
 	closetext
-	loadmovesprites
 	setevent EVENT_SILVER_IN_NEW_BARK_TOWN
 	setevent EVENT_NEIGHBOR_IN_YOUR_HOUSE_1F
 	clearevent EVENT_NEIGHBOR_IN_HER_HOUSE

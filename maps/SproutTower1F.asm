@@ -46,8 +46,8 @@ SageChowScript: ; 0x184516
 	talkaftercancel
 	loadfont
 	writetext UnknownText_0x184583
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 ; 0x18451e
 

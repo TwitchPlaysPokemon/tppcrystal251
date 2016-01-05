@@ -27,12 +27,12 @@ UnknownScript_0x9f425: ; 0x9f425
 	special Function170b44 ;generate trainer and load thier sprite into mapobject 2
 	appear $2
 	warpsound
-	waitbutton
+	waitsfx
 	applymovement $2, MovementData_0x9e592
 	loadfont
 	storetext 1
-	keeptextopen
-	loadmovesprites
+	buttonsound
+	closetext
 	special Function170215 ;run battle, loop until done
 	special Function8c084 ;pallette stuff
 	reloadmap
@@ -46,8 +46,8 @@ UnknownScript_0x9f425: ; 0x9f425
 	applymovement $0, MovementData_0x9e5a7
 	loadfont
 	writetext UnknownText_0x9ee92 ;your mon will be healed
+	waitbutton
 	closetext
-	loadmovesprites
 	playmusic MUSIC_HEAL
 	special Function8c084 ;pallette stuff
 	special Function1047eb ;???
@@ -59,7 +59,7 @@ UnknownScript_0x9f425: ; 0x9f425
 	yesorno
 	iffalse UnknownScript_0x9f483 ;if not ready, else loop
 UnknownScript_0x9f477: ; 0x9f477
-	loadmovesprites
+	closetext
 	applymovement $0, MovementData_0x9e5a9
 	applymovement $3, MovementData_0x9e5a1
 	jump UnknownScript_0x9f425
@@ -76,9 +76,9 @@ UnknownScript_0x9f483: ; 0x9f483
 	writebyte $3
 	special Function170687 ;set $be45 to 1
 	playsound SFX_SAVE
-	waitbutton
-	special Function8c084 ;pallets
-	special Reset ;reset the console
+	waitsfx
+	special Function8c084
+	special Reset
 UnknownScript_0x9f4a3: ; 0x9f4a3
 	writetext UnknownText_0x9efbf ;cancel your challenge?
 	yesorno
@@ -87,7 +87,7 @@ UnknownScript_0x9f4a3: ; 0x9f4a3
 	special Function170687 ;load 0 into $be45
 	writebyte $6
 	special Function170687 ;if $be46 = 0, scriptvar = 0, else if if $aa8c >= 2,scriptvar = 8 and $be46 $aa8b and $aa8c = 0, else do stuff
-	loadmovesprites
+	closetext
 	special Function8c084 ;pallette stuff
 	warpfacing $1, GROUP_BATTLE_TOWER_1F, MAP_BATTLE_TOWER_1F, $7, $7
 	loadfont
@@ -110,8 +110,8 @@ UnknownScript_0x9f4c2: ; 0x9f4c2
 	if_equal $7, Win6Match
 BTPrizeGiven:
 	writetext UnknownText_0x9ea49 ;thanks for visiting
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 ; 0x9f4d9
 
@@ -202,8 +202,8 @@ UnknownScript_0x9f4eb: ; 0x9f4eb
 	special Function170687
 	loadfont
 	writetext UnknownText_0x9f0c1
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 ; 0x9f4f7
 
@@ -215,8 +215,8 @@ UnknownScript_0x9f4f7: ; 0x9f4f7
 	loadfont
 	writetext UnknownText_0x9ea49
 	writetext UnknownText_0x9ec09
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 ; 0x9f50b
 

@@ -43,15 +43,15 @@ LanceScript_0x70022: ; 0x70022
 	iftrue UnknownScript_0x70057
 	loadfont
 	writetext UnknownText_0x70157
-	keeptextopen
+	buttonsound
 	faceplayer
 	writetext UnknownText_0x701b4
 	yesorno
 	iffalse UnknownScript_0x7004e
 UnknownScript_0x70035: ; 0x70035
 	writetext UnknownText_0x702c6
+	waitbutton
 	closetext
-	loadmovesprites
 	playsound SFX_WARP_TO
 	applymovement $2, MovementData_0x70155
 	disappear $2
@@ -63,8 +63,8 @@ UnknownScript_0x70035: ; 0x70035
 
 UnknownScript_0x7004e: ; 0x7004e
 	writetext UnknownText_0x70371
+	waitbutton
 	closetext
-	loadmovesprites
 	setevent EVENT_REFUSED_TO_HELP_LANCE_AT_LAKE_OF_RAGE
 	end
 ; 0x70057
@@ -83,7 +83,7 @@ GyaradosScript_0x70063: ; 0x70063
 	writetext UnknownText_0x703cb
 	pause 15
 	cry GYARADOS
-	loadmovesprites
+	closetext
 	loadpokedata GYARADOS, 30
 	writecode VAR_BATTLETYPE, BATTLETYPE_SHINY
 	startbattle
@@ -93,12 +93,12 @@ UnknownScript_0x7007a: ; 0x7007a
 	returnafterbattle
 	loadfont
 	giveitem RED_SCALE, $1
-	waitbutton
+	waitsfx
 	writetext UnknownText_0x703df
 	playsound SFX_ITEM
-	waitbutton
+	waitsfx
 	itemnotify
-	loadmovesprites
+	closetext
 	dotrigger $0
 	appear $2
 	end
@@ -110,15 +110,15 @@ GrampsScript_0x7008e: ; 0x7008e
 	checkevent EVENT_CLEARED_ROCKET_HIDEOUT
 	iftrue UnknownScript_0x7009c
 	writetext UnknownText_0x703f8
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 ; 0x7009c
 
 UnknownScript_0x7009c: ; 0x7009c
 	writetext UnknownText_0x70421
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 ; 0x700a2
 
@@ -139,15 +139,15 @@ MapLakeofRageSignpost1Script: ; 0x700ab
 	writetext UnknownText_0x70903
 	checkevent EVENT_CLEARED_ROCKET_HIDEOUT
 	iftrue UnknownScript_0x700b8
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 ; 0x700b8
 
 UnknownScript_0x700b8: ; 0x700b8
-	keeptextopen
+	buttonsound
 	special MagikarpHouseRecordSign
-	loadmovesprites
+	closetext
 	end
 ; 0x700be
 
@@ -175,8 +175,8 @@ FisherAndreScript: ; 0x700ca
 	talkaftercancel
 	loadfont
 	writetext UnknownText_0x7058f
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 ; 0x700d2
 
@@ -204,8 +204,8 @@ FisherRaymondScript: ; 0x700de
 	talkaftercancel
 	loadfont
 	writetext UnknownText_0x70611
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 ; 0x700e6
 
@@ -233,8 +233,8 @@ CooltrainermAaronScript: ; 0x700f2
 	talkaftercancel
 	loadfont
 	writetext UnknownText_0x7069c
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 ; 0x700fa
 
@@ -262,8 +262,8 @@ CooltrainerfLoisScript: ; 0x70106
 	talkaftercancel
 	loadfont
 	writetext UnknownText_0x70752
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 ; 0x7010e
 
@@ -277,30 +277,30 @@ WesleyScript:
 	checkevent EVENT_MET_WESLEY_OF_WEDNESDAY
 	iftrue .MetWesley
 	writetext MeetWesleyText
-	keeptextopen
+	buttonsound
 	setevent EVENT_MET_WESLEY_OF_WEDNESDAY
 .MetWesley
 	writetext WesleyGivesGiftText
-	keeptextopen
+	buttonsound
 	verbosegiveitem BLACKBELT, 1
 	iffalse WesleyDoneScript
 	setevent EVENT_GOT_BLACKBELT_FROM_WESLEY
 	writetext WesleyGaveGiftText
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 WesleyWednesdayScript:
 	writetext WesleyWednesdayText
-	closetext
+	waitbutton
 WesleyDoneScript:
-	loadmovesprites
+	closetext
 	end
 
 WesleyNotWednesdayScript:
 	writetext WesleyNotWednesdayText
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 ItemFragment_0x70148: ; 0x70148

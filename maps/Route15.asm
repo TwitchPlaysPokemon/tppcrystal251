@@ -30,8 +30,8 @@ TeacherColetteScript: ; 0x1aa575
 	talkaftercancel
 	loadfont
 	writetext UnknownText_0x1aa60d
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 ; 0x1aa57d
 
@@ -59,8 +59,8 @@ TeacherHillaryScript: ; 0x1aa589
 	talkaftercancel
 	loadfont
 	writetext UnknownText_0x1aa6ca
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 ; 0x1aa591
 
@@ -88,8 +88,8 @@ SchoolboyKippScript: ; 0x1aa59d
 	talkaftercancel
 	loadfont
 	writetext UnknownText_0x1aa740
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 ; 0x1aa5a5
 
@@ -117,8 +117,8 @@ SchoolboyTommyScript: ; 0x1aa5b1
 	talkaftercancel
 	loadfont
 	writetext UnknownText_0x1aa7bc
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 ; 0x1aa5b9
 
@@ -146,8 +146,8 @@ SchoolboyJohnnyScript: ; 0x1aa5c5
 	talkaftercancel
 	loadfont
 	writetext UnknownText_0x1aa84a
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 ; 0x1aa5cd
 
@@ -175,8 +175,8 @@ SchoolboyBillyScript: ; 0x1aa5d9
 	talkaftercancel
 	loadfont
 	writetext UnknownText_0x1aa8b0
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 ; 0x1aa5e1
 

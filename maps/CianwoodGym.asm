@@ -16,13 +16,13 @@ ChuckScript_0x9d60f: ; 0x9d60f
 	checkevent EVENT_BEAT_CHUCK
 	iftrue UnknownScript_0x9d656
 	writetext UnknownText_0x9d6f9
+	waitbutton
 	closetext
-	loadmovesprites
 	spriteface $2, $3
 	loadfont
 	writetext UnknownText_0x9d76f
+	waitbutton
 	closetext
-	loadmovesprites
 	applymovement $7, MovementData_0x9d6f3
 	playsound SFX_STRENGTH
 	earthquake 80
@@ -31,8 +31,8 @@ ChuckScript_0x9d60f: ; 0x9d60f
 	faceplayer
 	loadfont
 	writetext UnknownText_0x9d78a
+	waitbutton
 	closetext
-	loadmovesprites
 	winlosstext UnknownText_0x9d7f6, $0000
 	loadtrainer CHUCK, 1
 	startbattle
@@ -41,7 +41,7 @@ ChuckScript_0x9d60f: ; 0x9d60f
 	loadfont
 	writetext UnknownText_0x9d835
 	playsound SFX_GET_BADGE
-	waitbutton
+	waitsfx
 	setflag ENGINE_STORMBADGE
 	checkcode VAR_BADGES
 	scall UnknownScript_0x9d681
@@ -53,20 +53,20 @@ UnknownScript_0x9d656: ; 0x9d656
 	setevent EVENT_BEAT_BLACKBELT_NOB
 	setevent EVENT_BEAT_BLACKBELT_LUNG
 	writetext UnknownText_0x9d84d
-	keeptextopen
+	buttonsound
 	verbosegiveitem TM_DYNAMICPUNCH, 1
 	iffalse UnknownScript_0x9d67f
 	setevent EVENT_GOT_TM01_DYNAMICPUNCH
 	writetext UnknownText_0x9d8da
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 ; 0x9d67b
 
 ChuckRematchScript:
 	writetext ChuckRematchTextBefore
+	waitbutton
 	closetext
-	loadmovesprites
 	winlosstext ChuckRematchBeatenText, $0000
 	loadtrainer CHUCK, 2
 	startbattle
@@ -77,9 +77,9 @@ ChuckRematchScript:
 
 UnknownScript_0x9d67b: ; 0x9d67b
 	writetext UnknownText_0x9d930
-	closetext
+	waitbutton
 UnknownScript_0x9d67f: ; 0x9d67f
-	loadmovesprites
+	closetext
 	end
 ; 0x9d681
 
@@ -121,8 +121,8 @@ BlackbeltYoshiScript: ; 0x9d69c
 	talkaftercancel
 	loadfont
 	writetext UnknownText_0x9d9fa
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 ; 0x9d6a4
 
@@ -150,8 +150,8 @@ BlackbeltLaoScript: ; 0x9d6b0
 	talkaftercancel
 	loadfont
 	writetext UnknownText_0x9da61
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 ; 0x9d6b8
 
@@ -179,8 +179,8 @@ BlackbeltNobScript: ; 0x9d6c4
 	talkaftercancel
 	loadfont
 	writetext UnknownText_0x9dac0
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 ; 0x9d6cc
 
@@ -208,8 +208,8 @@ BlackbeltLungScript: ; 0x9d6d8
 	talkaftercancel
 	loadfont
 	writetext UnknownText_0x9db14
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 ; 0x9d6e0
 

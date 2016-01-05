@@ -42,7 +42,7 @@ UnknownScript_0x180e53: ; 0x180e53
 	earthquake 80
 	changeblock $4, $16, $34
 	reloadmappart
-	loadmovesprites
+	closetext
 	dotrigger $1
 	setevent EVENT_LANCES_ROOM_ENTRANCE_CLOSED
 	end
@@ -61,8 +61,8 @@ LanceScript_0x180e7b: ; 0x180e7b
 	spriteface $2, $2
 	loadfont
 	writetext UnknownText_0x180f67
+	waitbutton
 	closetext
-	loadmovesprites
 	winlosstext UnknownText_0x1810a4, $0000
 	setlasttalked $2
 	checkevent EVENT_ENABLE_DIPLOMA_PRINTING
@@ -78,12 +78,12 @@ StartBattleLance:
 	setevent EVENT_BEAT_CHAMPION_LANCE
 	loadfont
 	writetext UnknownText_0x181132
+	waitbutton
 	closetext
-	loadmovesprites
 	playsound SFX_ENTER_DOOR
 	changeblock $4, $0, $b
 	reloadmappart
-	loadmovesprites
+	closetext
 	setevent EVENT_LANCES_ROOM_ENTRANCE_CLOSED
 	musicfadeout MUSIC_BEAUTY_ENCOUNTER, $10
 	pause 30
@@ -95,8 +95,8 @@ StartBattleLance:
 	applymovement $3, MovementData_0x180f41
 	loadfont
 	writetext UnknownText_0x1811dd
+	waitbutton
 	closetext
-	loadmovesprites
 	appear $4
 	applymovement $4, MovementData_0x180f46
 	follow $3, $4
@@ -109,8 +109,8 @@ StartBattleLance:
 	loadfont
 	special HealParty
 	writetext Text_OakBeforeBattle
+	waitbutton
 	closetext
-	loadmovesprites
 	winlosstext OakBeatenText, $0000
 	checkevent EVENT_GOT_CHIKORITA_FROM_ELM
 	iftrue Script_OakHasBlastoise
@@ -133,21 +133,21 @@ Script_StartOakBattle:
 Script_NoOakBattle:
 	loadfont
 	writetext UnknownText_0x18121b
+	waitbutton
 	closetext
-	loadmovesprites
 Script_returnafteroakbattle:
 	applymovement $3, MovementData_0x180f4c
 	spriteface $0, $2
 	loadfont
 	writetext UnknownText_0x18134b
+	waitbutton
 	closetext
-	loadmovesprites
 	applymovement $2, MovementData_0x180f4f
 	spriteface $0, $1
 	loadfont
 	writetext UnknownText_0x18137b
+	waitbutton
 	closetext
-	loadmovesprites
 	follow $2, $0
 	spriteface $3, $1
 	spriteface $4, $1
@@ -163,7 +163,7 @@ Script_returnafteroakbattle:
 	loadfont
 	writetext UnknownText_0x1813c5
 	pause 30
-	loadmovesprites
+	closetext
 	applymovement $3, MovementData_0x180f5b
 	special Function8c084
 	pause 15

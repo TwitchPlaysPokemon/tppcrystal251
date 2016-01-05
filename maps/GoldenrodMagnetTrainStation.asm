@@ -19,8 +19,8 @@ OfficerScript_0x550ec: ; 0x550ec
 	checkevent EVENT_RESTORED_POWER_TO_KANTO
 	iftrue UnknownScript_0x550fa
 	writetext UnknownText_0x55160
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 ; 0x550fa
 
@@ -31,8 +31,8 @@ UnknownScript_0x550fa: ; 0x550fa
 	checkitem PASS
 	iffalse UnknownScript_0x55124
 	writetext UnknownText_0x551ed
+	waitbutton
 	closetext
-	loadmovesprites
 	applymovement $2, MovementData_0x55146
 	applymovement $0, MovementData_0x5514f
 	writebyte $0
@@ -51,15 +51,15 @@ MovementData_0x55122: ; 0x55122
 
 UnknownScript_0x55124: ; 0x55124
 	writetext UnknownText_0x5522c
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 ; 0x5512a
 
 UnknownScript_0x5512a: ; 0x5512a
 	writetext UnknownText_0x5524f
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 ; 0x55130
 
@@ -69,8 +69,8 @@ UnknownScript_0x55130: ; 0x55130
 	applymovement $2, MovementData_0x5514b
 	loadfont
 	writetext UnknownText_0x5526a
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 ; 0x55143
 

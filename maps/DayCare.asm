@@ -30,18 +30,18 @@ GrampsScript_0x62f8f: ; 0x62f8f
 	checkevent EVENT_GOT_ODD_EGG
 	iftrue UnknownScript_0x62fbd
 	writetext UnknownText_0x630ce
-	keeptextopen
-	loadmovesprites
+	buttonsound
+	closetext
 	checkcode VAR_PARTYCOUNT
 	if_equal $6, UnknownScript_0x62fb6
 	special Function117656
 	loadfont
 	writetext UnknownText_0x631ae
 	playsound SFX_KEY_ITEM
-	waitbutton
+	waitsfx
 	writetext UnknownText_0x631c3
+	waitbutton
 	closetext
-	loadmovesprites
 	setevent EVENT_GOT_ODD_EGG
 	end
 ; 0x62fb6
@@ -49,15 +49,15 @@ GrampsScript_0x62f8f: ; 0x62f8f
 UnknownScript_0x62fb6: ; 0x62fb6
 	loadfont
 	writetext UnknownText_0x63237
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 ; 0x62fbd
 
 UnknownScript_0x62fbd: ; 0x62fbd
 	special Function166d6
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 ; 0x62fc3
 
@@ -67,15 +67,15 @@ GrannyScript_0x62fc3: ; 0x62fc3
 	checkflag ENGINE_DAYCARE_MONS_ARE_COMPATIBLE
 	iftrue UnknownScript_0x62fd1
 	special Function1672a
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 ; 0x62fd1
 
 UnknownScript_0x62fd1: ; 0x62fd1
 	writetext UnknownText_0x62fda
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 ; 0x62fd7
 

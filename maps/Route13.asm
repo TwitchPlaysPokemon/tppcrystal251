@@ -30,8 +30,8 @@ PokefanmAlexScript: ; 0x1a243e
 	talkaftercancel
 	loadfont
 	writetext UnknownText_0x1a24e3
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 ; 0x1a2446
 
@@ -59,8 +59,8 @@ PokefanmJoshuaScript: ; 0x1a2452
 	talkaftercancel
 	loadfont
 	writetext UnknownText_0x1a254f
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 ; 0x1a245a
 
@@ -88,8 +88,8 @@ Bird_keeperPerryScript: ; 0x1a2466
 	talkaftercancel
 	loadfont
 	writetext UnknownText_0x1a25db
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 ; 0x1a246e
 
@@ -117,8 +117,8 @@ Bird_keeperBretScript: ; 0x1a247a
 	talkaftercancel
 	loadfont
 	writetext UnknownText_0x1a2662
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 ; 0x1a2482
 
@@ -146,8 +146,8 @@ HikerKennyScript: ; 0x1a248e
 	talkaftercancel
 	loadfont
 	writetext UnknownText_0x1a26c2
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 ; 0x1a2496
 

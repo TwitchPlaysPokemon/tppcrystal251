@@ -32,15 +32,15 @@ GymGuyScript_0x5e556: ; 0x5e556
 	checkevent EVENT_CLEARED_RADIO_TOWER
 	iftrue UnknownScript_0x5e564
 	writetext UnknownText_0x5e682
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 ; 0x5e564
 
 UnknownScript_0x5e564: ; 0x5e564
 	writetext UnknownText_0x5e6eb
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 ; 0x5e56a
 
@@ -54,35 +54,35 @@ CooltrainerFScript_0x5e56a: ; 0x5e56a
 	checkevent EVENT_USED_THE_CARD_KEY_IN_THE_RADIO_TOWER
 	iftrue UnknownScript_0x5e584
 	writetext UnknownText_0x5e754
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 ; 0x5e584
 
 UnknownScript_0x5e584: ; 0x5e584
 	writetext UnknownText_0x5e7cb
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 ; 0x5e58a
 
 UnknownScript_0x5e58a: ; 0x5e58a
 	writetext UnknownText_0x5e7e2
-	keeptextopen
+	buttonsound
 	verbosegiveitem TM_SUNNY_DAY, 1
 	iffalse UnknownScript_0x5e5a1
 	writetext UnknownText_0x5e821
+	waitbutton
 	closetext
-	loadmovesprites
 	setevent EVENT_GOT_SUNNY_DAY_FROM_RADIO_TOWER
 	end
 ; 0x5e59d
 
 UnknownScript_0x5e59d: ; 0x5e59d
 	writetext UnknownText_0x5e85c
-	closetext
+	waitbutton
 UnknownScript_0x5e5a1: ; 0x5e5a1
-	loadmovesprites
+	closetext
 	end
 ; 0x5e5a3
 
@@ -110,8 +110,8 @@ GruntM7Script: ; 0x5e5af
 	talkaftercancel
 	loadfont
 	writetext UnknownText_0x5e8d0
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 ; 0x5e5b7
 
@@ -139,8 +139,8 @@ GruntM8Script: ; 0x5e5c3
 	talkaftercancel
 	loadfont
 	writetext UnknownText_0x5e944
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 ; 0x5e5cb
 
@@ -168,8 +168,8 @@ GruntM9Script: ; 0x5e5d7
 	talkaftercancel
 	loadfont
 	writetext UnknownText_0x5e9d0
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 ; 0x5e5df
 
@@ -197,34 +197,34 @@ ScientistMarcScript: ; 0x5e5eb
 	talkaftercancel
 	loadfont
 	writetext UnknownText_0x5ea61
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 ; 0x5e5f3
 
 MapRadioTower3FSignpost2Script:: ; 0x5e5f3
 	loadfont
 	writetext UnknownText_0x5eaa4
-	closetext
+	waitbutton
 	checkevent EVENT_USED_THE_CARD_KEY_IN_THE_RADIO_TOWER
 	iftrue UnknownScript_0x5e603
 	checkitem CARD_KEY
 	iftrue UnknownScript_0x5e605
 UnknownScript_0x5e603: ; 0x5e603
-	loadmovesprites
+	closetext
 	end
 ; 0x5e605
 
 UnknownScript_0x5e605: ; 0x5e605
 	writetext UnknownText_0x5eabc
-	closetext
+	waitbutton
 	setevent EVENT_USED_THE_CARD_KEY_IN_THE_RADIO_TOWER
 	playsound SFX_ENTER_DOOR
 	changeblock $e, $2, $2a
 	changeblock $e, $4, $1
 	reloadmappart
-	loadmovesprites
-	waitbutton
+	closetext
+	waitsfx
 	end
 ; 0x5e61b
 

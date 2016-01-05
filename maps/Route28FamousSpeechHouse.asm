@@ -19,19 +19,19 @@ CooltrainerFScript_0x1ae658: ; 0x1ae658
 	checkevent EVENT_GOT_TM47_STEEL_WING
 	iftrue UnknownScript_0x1ae66f
 	writetext UnknownText_0x1ae682
-	keeptextopen
+	buttonsound
 	verbosegiveitem TM_STEEL_WING, 1
 	iffalse UnknownScript_0x1ae66d
 	setevent EVENT_GOT_TM47_STEEL_WING
 UnknownScript_0x1ae66d: ; 0x1ae66d
-	loadmovesprites
+	closetext
 	end
 ; 0x1ae66f
 
 UnknownScript_0x1ae66f: ; 0x1ae66f
 	writetext UnknownText_0x1ae6f0
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 ; 0x1ae675
 
@@ -39,8 +39,8 @@ MoltresScript_0x1ae675: ; 0x1ae675
 	loadfont
 	writetext UnknownText_0x1ae752
 	cry FEAROW
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 ; 0x1ae67f
 

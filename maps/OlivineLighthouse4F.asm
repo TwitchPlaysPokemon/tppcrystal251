@@ -30,8 +30,8 @@ LassConnie1Script: ; 0x5b4f6
 	talkaftercancel
 	loadfont
 	writetext UnknownText_0x5b63c
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 ; 0x5b4fe
 
@@ -59,8 +59,8 @@ SailorKentScript: ; 0x5b50a
 	talkaftercancel
 	loadfont
 	writetext UnknownText_0x5b584
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 ; 0x5b512
 

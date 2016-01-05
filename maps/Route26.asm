@@ -30,8 +30,8 @@ CooltrainermJakeScript: ; 0x1a4d2b
 	talkaftercancel
 	loadfont
 	writetext UnknownText_0x1a4f08
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 ; 0x1a4d33
 
@@ -66,7 +66,7 @@ CooltrainermGaven3Script: ; 0x1a4d3f
 	checkevent EVENT_ROUTE_26_26B
 	iftrue UnknownScript_0x1a4d62
 	writetext UnknownText_0x1a4fe4
-	keeptextopen
+	buttonsound
 	setevent EVENT_ROUTE_26_26B
 	scall UnknownScript_0x1a4dbf
 	jump UnknownScript_0x1a4d65
@@ -181,8 +181,8 @@ CooltrainerfJoyceScript: ; 0x1a4de7
 	talkaftercancel
 	loadfont
 	writetext UnknownText_0x1a50d7
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 ; 0x1a4def
 
@@ -217,7 +217,7 @@ CooltrainerfBeth1Script: ; 0x1a4dfb
 	checkevent EVENT_ROUTE_26_26D
 	iftrue UnknownScript_0x1a4e1e
 	writetext UnknownText_0x1a51d9
-	keeptextopen
+	buttonsound
 	setevent EVENT_ROUTE_26_26D
 	scall UnknownScript_0x1a4e7b
 	jump UnknownScript_0x1a4e21
@@ -332,8 +332,8 @@ PsychicRichardScript: ; 0x1a4ea3
 	talkaftercancel
 	loadfont
 	writetext UnknownText_0x1a5278
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 ; 0x1a4eab
 
@@ -361,8 +361,8 @@ FisherScottScript: ; 0x1a4eb7
 	talkaftercancel
 	loadfont
 	writetext UnknownText_0x1a5326
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 ; 0x1a4ebf
 

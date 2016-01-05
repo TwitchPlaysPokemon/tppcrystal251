@@ -30,8 +30,8 @@ GentlemanAlfredScript: ; 0x5af7d
 	talkaftercancel
 	loadfont
 	writetext UnknownText_0x5b13e
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 ; 0x5af85
 
@@ -148,7 +148,7 @@ UnknownScript_0x5b03e: ; 0x5b03e
 UnknownScript_0x5b03f: ; 0x5b03f
 	loadfont
 	writetext UnknownText_0x5b1b6
-	closetext
+	waitbutton
 	verbosegiveitem PROTEIN, 1
 	iffalse UnknownScript_0x5b06f
 	clearevent EVENT_HUEY_PROTEIN

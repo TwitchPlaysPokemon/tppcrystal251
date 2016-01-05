@@ -30,8 +30,8 @@ BikerDwayneScript: ; 0x6c00e
 	talkaftercancel
 	loadfont
 	writetext UnknownText_0x6c0c8
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 ; 0x6c016
 
@@ -59,8 +59,8 @@ BikerHarrisScript: ; 0x6c022
 	talkaftercancel
 	loadfont
 	writetext UnknownText_0x6c143
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 ; 0x6c02a
 
@@ -88,8 +88,8 @@ BikerZekeScript: ; 0x6c036
 	talkaftercancel
 	loadfont
 	writetext UnknownText_0x6c1a3
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 ; 0x6c03e
 
@@ -117,8 +117,8 @@ SupernerdSamScript: ; 0x6c04a
 	talkaftercancel
 	loadfont
 	writetext UnknownText_0x6c219
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 ; 0x6c052
 
@@ -146,8 +146,8 @@ SupernerdTomScript: ; 0x6c05e
 	talkaftercancel
 	loadfont
 	writetext UnknownText_0x6c27e
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 ; 0x6c066
 

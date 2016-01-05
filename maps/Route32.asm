@@ -47,21 +47,21 @@ UnknownScript_0x190470: ; 0x190470
 	checkevent EVENT_GOT_TOGEPI_EGG_FROM_ELMS_AIDE
 	iftrue UnknownScript_0x19048f
 	writetext UnknownText_0x1907ab
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 ; 0x190489
 
 UnknownScript_0x190489: ; 0x190489
 	writetext UnknownText_0x190820
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 ; 0x19048f
 
 UnknownScript_0x19048f: ; 0x19048f
 	writetext UnknownText_0x190925
-	keeptextopen
+	buttonsound
 	verbosegiveitem MIRACLE_SEED, 1
 	iffalse UnknownScript_0x1904a9
 	setevent EVENT_GOT_MIRACLE_SEED_IN_ROUTE_32
@@ -70,16 +70,16 @@ UnknownScript_0x19048f: ; 0x19048f
 
 UnknownScript_0x19049f: ; 0x19049f
 	writetext UnknownText_0x1908b0
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 ; 0x1904a5
 
 UnknownScript_0x1904a5: ; 0x1904a5
 	writetext UnknownText_0x190a15
-	closetext
+	waitbutton
 UnknownScript_0x1904a9: ; 0x1904a9
-	loadmovesprites
+	closetext
 	end
 ; 0x1904ab
 
@@ -88,8 +88,8 @@ UnknownScript_0x1904ab: ; 0x1904ab
 	spriteface $0, $3
 	loadfont
 	writetext UnknownText_0x190790
+	waitbutton
 	closetext
-	loadmovesprites
 	follow $0, $9
 	applymovement $0, MovementData_0x190789
 	stopfollow
@@ -106,15 +106,15 @@ FisherScript_0x1904ce: ; 0x1904ce
 	checkevent EVENT_GOT_TM05_ROAR
 	iftrue UnknownScript_0x1904e3
 	writetext UnknownText_0x191133
-	keeptextopen
+	buttonsound
 	verbosegiveitem TM_ROAR, 1
 	iffalse UnknownScript_0x1904e7
 	setevent EVENT_GOT_TM05_ROAR
 UnknownScript_0x1904e3: ; 0x1904e3
 	writetext UnknownText_0x19118c
-	closetext
+	waitbutton
 UnknownScript_0x1904e7: ; 0x1904e7
-	loadmovesprites
+	closetext
 	end
 ; 0x1904e9
 
@@ -133,15 +133,15 @@ UnknownScript_0x1904f3: ; 0x1904f3
 	yesorno
 	iffalse UnknownScript_0x190503
 	writetext UnknownText_0x190acf
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 ; 0x190503
 
 UnknownScript_0x190503: ; 0x190503
 	writetext UnknownText_0x190afc
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 ; 0x190509
 
@@ -169,8 +169,8 @@ CamperRolandScript: ; 0x190515
 	talkaftercancel
 	loadfont
 	writetext UnknownText_0x190faa
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 ; 0x19051d
 
@@ -198,8 +198,8 @@ FisherJustinScript: ; 0x190529
 	talkaftercancel
 	loadfont
 	writetext UnknownText_0x190b4e
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 ; 0x190531
 
@@ -236,7 +236,7 @@ FisherRalph1Script: ; 0x19053d
 	checkevent EVENT_ROUTE_32_277
 	iftrue UnknownScript_0x190566
 	writetext UnknownText_0x190bf8
-	keeptextopen
+	buttonsound
 	setevent EVENT_ROUTE_32_277
 	scall UnknownScript_0x1905f7
 	jump UnknownScript_0x190569
@@ -320,8 +320,8 @@ UnknownScript_0x1905e8: ; 0x1905e8
 
 UnknownScript_0x1905f1: ; 0x1905f1
 	writetext UnknownText_0x190c37
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 ; 0x1905f7
 
@@ -384,8 +384,8 @@ FisherHenryScript: ; 0x19061f
 	talkaftercancel
 	loadfont
 	writetext UnknownText_0x190df2
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 ; 0x190627
 
@@ -420,7 +420,7 @@ PicnickerLiz1Script: ; 0x190633
 	checkevent EVENT_ROUTE_32_279
 	iftrue UnknownScript_0x190656
 	writetext UnknownText_0x191060
-	keeptextopen
+	buttonsound
 	setevent EVENT_ROUTE_32_279
 	scall UnknownScript_0x1906e1
 	jump UnknownScript_0x190659
@@ -561,8 +561,8 @@ YoungsterAlbertScript: ; 0x190709
 	talkaftercancel
 	loadfont
 	writetext UnknownText_0x190e82
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 ; 0x190711
 
@@ -590,8 +590,8 @@ YoungsterGordonScript: ; 0x19071d
 	talkaftercancel
 	loadfont
 	writetext UnknownText_0x190f49
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 ; 0x190725
 
@@ -619,8 +619,8 @@ Bird_keeperPeterScript: ; 0x190731
 	talkaftercancel
 	loadfont
 	writetext UnknownText_0x1910d4
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 ; 0x190739
 
@@ -634,30 +634,30 @@ FriedaScript:
 	checkevent EVENT_MET_FRIEDA_OF_FRIDAY
 	iftrue .MetFrieda
 	writetext MeetFriedaText
-	keeptextopen
+	buttonsound
 	setevent EVENT_MET_FRIEDA_OF_FRIDAY
 .MetFrieda
 	writetext FriedaGivesGiftText
-	keeptextopen
+	buttonsound
 	verbosegiveitem POISON_BARB, 1
 	iffalse FriedaDoneScript
 	setevent EVENT_GOT_POISON_BARB_FROM_FRIEDA
 	writetext FriedaGaveGiftText
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 FriedaFridayScript:
 	writetext FriedaFridayText
-	closetext
+	waitbutton
 FriedaDoneScript:
-	loadmovesprites
+	closetext
 	end
 
 FriedaNotFridayScript:
 	writetext FriedaNotFridayText
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 ItemFragment_0x190773: ; 0x190773

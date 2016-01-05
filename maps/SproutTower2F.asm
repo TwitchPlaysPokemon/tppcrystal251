@@ -30,8 +30,8 @@ SageNicoScript: ; 0x184788
 	talkaftercancel
 	loadfont
 	writetext UnknownText_0x1847ff
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 ; 0x184790
 
@@ -59,8 +59,8 @@ SageEdmondScript: ; 0x18479c
 	talkaftercancel
 	loadfont
 	writetext UnknownText_0x18486f
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 ; 0x1847a4
 

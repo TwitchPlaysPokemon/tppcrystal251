@@ -21,15 +21,15 @@ UnknownScript_0x68a70: ; 0x68a70
 	yesorno
 	iffalse UnknownScript_0x68a7d
 	writetext UnknownText_0x68c7b
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 ; 0x68a7d
 
 UnknownScript_0x68a7d: ; 0x68a7d
 	writetext UnknownText_0x68d31
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 ; 0x68a83
 
@@ -41,8 +41,8 @@ GameboyKidScript_0x68a86: ; 0x68a86
 	faceplayer
 	loadfont
 	writetext UnknownText_0x68dda
+	waitbutton
 	closetext
-	loadmovesprites
 	spriteface $4, $0
 	end
 ; 0x68a91
@@ -51,8 +51,8 @@ GameboyKidScript_0x68a91: ; 0x68a91
 	faceplayer
 	loadfont
 	writetext UnknownText_0x68e07
+	waitbutton
 	closetext
-	loadmovesprites
 	spriteface $5, $0
 	end
 ; 0x68a9c
@@ -73,37 +73,37 @@ UnknownScript_0x68aa3: ; 0x68aa3
 	if_equal $3, UnknownScript_0x68acc
 	if_equal $4, UnknownScript_0x68ad3
 	if_equal $5, UnknownScript_0x68ada
-	loadmovesprites
+	closetext
 	end
 ; 0x68abe
 
 UnknownScript_0x68abe: ; 0x68abe
 	writetext UnknownText_0x68efe
-	closetext
+	waitbutton
 	jump UnknownScript_0x68aa3
 ; 0x68ac5
 
 UnknownScript_0x68ac5: ; 0x68ac5
 	writetext UnknownText_0x68f80
-	closetext
+	waitbutton
 	jump UnknownScript_0x68aa3
 ; 0x68acc
 
 UnknownScript_0x68acc: ; 0x68acc
 	writetext UnknownText_0x68fe2
-	closetext
+	waitbutton
 	jump UnknownScript_0x68aa3
 ; 0x68ad3
 
 UnknownScript_0x68ad3: ; 0x68ad3
 	writetext UnknownText_0x69055
-	closetext
+	waitbutton
 	jump UnknownScript_0x68aa3
 ; 0x68ada
 
 UnknownScript_0x68ada: ; 0x68ada
 	writetext UnknownText_0x690cb
-	closetext
+	waitbutton
 	jump UnknownScript_0x68aa3
 ; 0x68ae1
 
@@ -146,9 +146,9 @@ PokedexScript_0x68b0b: ; 0x68b0b
 	yesorno
 	iffalse UnknownScript_0x68b25
 	writetext UnknownText_0x69287
-	closetext
+	waitbutton
 UnknownScript_0x68b25: ; 0x68b25
-	loadmovesprites
+	closetext
 	end
 ; 0x68b27
 

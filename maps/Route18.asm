@@ -30,8 +30,8 @@ Bird_keeperBorisScript: ; 0x1acf3d
 	talkaftercancel
 	loadfont
 	writetext UnknownText_0x1acfa5
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 ; 0x1acf45
 
@@ -59,8 +59,8 @@ Bird_keeperBobScript: ; 0x1acf51
 	talkaftercancel
 	loadfont
 	writetext UnknownText_0x1ad00d
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 ; 0x1acf59
 

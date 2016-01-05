@@ -49,7 +49,7 @@ UnknownScript_0x19401b: ; 0x19401b
 WeirdTreeScript_0x19403c: ; 0x19403c
 	checkitem SQUIRTBOTTLE
 	iftrue UnknownScript_0x19404a
-	waitbutton
+	waitsfx
 	playsound SFX_SANDSTORM
 	applymovement $4, MovementData_0x194249
 	end
@@ -60,22 +60,22 @@ UnknownScript_0x19404a: ; 0x19404a
 	writetext UnknownText_0x19426b
 	yesorno
 	iffalse UnknownScript_0x194079
-	loadmovesprites
+	closetext
 	; fallthrough
 ; 0x194053
 
 WateredWeirdTreeScript:: ; 0x194053
 	loadfont
 	writetext UnknownText_0x194290
-	closetext
-	loadmovesprites
 	waitbutton
+	closetext
+	waitsfx
 	playsound SFX_SANDSTORM
 	applymovement $4, MovementData_0x194249
 	loadfont
 	writetext UnknownText_0x1942aa
+	waitbutton
 	closetext
-	loadmovesprites
 	loadpokedata SUDOWOODO, 20
 	startbattle
 	setevent EVENT_FOUGHT_SUDOWOODO
@@ -87,7 +87,7 @@ WateredWeirdTreeScript:: ; 0x194053
 ; 0x194079
 
 UnknownScript_0x194079: ; 0x194079
-	loadmovesprites
+	closetext
 	end
 ; 0x19407b
 
@@ -108,8 +108,8 @@ LassScript_0x19408c: ; 0x19408c
 	iftrue UnknownScript_0x1940b3
 	setevent EVENT_SPOKE_TO_FLOWER_SHOP_GIRL_AT_SUDOWOODO
 	writetext UnknownText_0x1942f1
+	waitbutton
 	closetext
-	loadmovesprites
 	clearevent EVENT_FLOWER_SHOP_LASS_IN_GOLDENROD_FLOWER_SHOP
 	checkcode VAR_FACING
 	if_equal $1, UnknownScript_0x1940ac
@@ -126,8 +126,8 @@ UnknownScript_0x1940ac: ; 0x1940ac
 
 UnknownScript_0x1940b3: ; 0x1940b3
 	writetext UnknownText_0x1943ed
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 ; 0x1940b9
 
@@ -139,22 +139,22 @@ FisherScript_0x1940b9: ; 0x1940b9
 	checkevent EVENT_FOUGHT_SUDOWOODO
 	iftrue UnknownScript_0x1940cd
 	writetext UnknownText_0x19446f
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 ; 0x1940cd
 
 UnknownScript_0x1940cd: ; 0x1940cd
 	writetext UnknownText_0x1944d0
-	keeptextopen
+	buttonsound
 	verbosegiveitem TM_ROCK_SMASH, 1
 	iffalse UnknownScript_0x1940de
 	setevent EVENT_GOT_TM08_ROCK_SMASH
 UnknownScript_0x1940da: ; 0x1940da
 	writetext UnknownText_0x19452c
-	closetext
+	waitbutton
 UnknownScript_0x1940de: ; 0x1940de
-	loadmovesprites
+	closetext
 	end
 ; 0x1940e0
 
@@ -164,15 +164,15 @@ LassScript_0x1940e0: ; 0x1940e0
 	checkevent EVENT_FOUGHT_SUDOWOODO
 	iftrue UnknownScript_0x1940ee
 	writetext UnknownText_0x194626
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 ; 0x1940ee
 
 UnknownScript_0x1940ee: ; 0x1940ee
 	writetext UnknownText_0x19469e
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 ; 0x1940f4
 
@@ -209,7 +209,7 @@ SchoolboyAlan1Script: ; 0x194100
 	checkevent EVENT_ROUTE_36_285
 	iftrue UnknownScript_0x194129
 	writetext UnknownText_0x1947aa
-	keeptextopen
+	buttonsound
 	setevent EVENT_ROUTE_36_285
 	scall UnknownScript_0x1941c9
 	jump UnknownScript_0x19412c
@@ -373,8 +373,8 @@ PsychicMarkScript: ; 0x1941f9
 	talkaftercancel
 	loadfont
 	writetext UnknownText_0x19471e
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 ; 0x194201
 
@@ -388,30 +388,30 @@ ArthurScript:
 	checkevent EVENT_MET_ARTHUR_OF_THURSDAY
 	iftrue .MetArthur
 	writetext MeetArthurText
-	keeptextopen
+	buttonsound
 	setevent EVENT_MET_ARTHUR_OF_THURSDAY
 .MetArthur
 	writetext ArthurGivesGiftText
-	keeptextopen
+	buttonsound
 	verbosegiveitem HARD_STONE, 1
 	iffalse ArthurDoneScript
 	setevent EVENT_GOT_HARD_STONE_FROM_ARTHUR
 	writetext ArthurGaveGiftText
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 ArthurThursdayScript:
 	writetext ArthurThursdayText
-	closetext
+	waitbutton
 ArthurDoneScript:
-	loadmovesprites
+	closetext
 	end
 
 ArthurNotThursdayScript:
 	writetext ArthurNotThursdayText
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 MapRoute36Signpost2Script: ; 0x19423b

@@ -53,8 +53,8 @@ UnknownScript_0x19574c: ; 0x19574c
 	scall UnknownScript_0x195758
 	loadfont
 	writetext UnknownText_0x1958a5
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 ; 0x195758
 
@@ -93,8 +93,8 @@ CooltrainermCodyScript: ; 0x19576d
 	talkaftercancel
 	loadfont
 	writetext UnknownText_0x1957d5
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 ; 0x195775
 
@@ -122,8 +122,8 @@ CooltrainerfFranScript: ; 0x195781
 	talkaftercancel
 	loadfont
 	writetext UnknownText_0x195883
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 ; 0x195789
 

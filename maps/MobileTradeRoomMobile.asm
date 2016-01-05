@@ -29,10 +29,10 @@ MapMobileTradeRoomMobileSignpost0Script: ; 0x193582
 	refreshscreen $0
 	special Function1037c2
 	writetext UnknownText_0x193591
-	closetext
+	waitbutton
 	reloadmappart
 	special Function101231
-	loadmovesprites
+	closetext
 	end
 ; 0x193591
 

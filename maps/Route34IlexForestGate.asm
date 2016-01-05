@@ -36,8 +36,8 @@ UnknownScript_0x62d3d: ; 0x62d3d
 	spriteface $0, $0
 	loadfont
 	writetext UnknownText_0x62e41
+	waitbutton
 	closetext
-	loadmovesprites
 	applymovement $5, MovementData_0x62d9a
 UnknownScript_0x62d62: ; 0x62d62
 	end
@@ -51,22 +51,22 @@ TeacherScript_0x62d63: ; 0x62d63
 	checkevent EVENT_GOT_TM12_SWEET_SCENT
 	iftrue UnknownScript_0x62d7e
 	writetext UnknownText_0x62d9d
-	keeptextopen
+	buttonsound
 	verbosegiveitem TM_SWEET_SCENT, 1
 	iffalse UnknownScript_0x62d82
 	setevent EVENT_GOT_TM12_SWEET_SCENT
 UnknownScript_0x62d7e: ; 0x62d7e
 	writetext UnknownText_0x62df6
-	closetext
+	waitbutton
 UnknownScript_0x62d82: ; 0x62d82
-	loadmovesprites
+	closetext
 	end
 ; 0x62d84
 
 UnknownScript_0x62d84: ; 0x62d84
 	writetext UnknownText_0x62e41
-	keeptextopen
-	loadmovesprites
+	buttonsound
+	closetext
 	end
 ; 0x62d8a
 
@@ -74,8 +74,8 @@ ButterfreeScript_0x62d8a: ; 0x62d8a
 	loadfont
 	writetext UnknownText_0x62e83
 	cry BUTTERFREE
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 ; 0x62d94
 

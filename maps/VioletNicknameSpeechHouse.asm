@@ -19,8 +19,8 @@ BirdScript_0x693ef: ; 0x693ef
 	loadfont
 	writetext UnknownText_0x6947c
 	cry PIDGEY
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 ; 0x693fa
 

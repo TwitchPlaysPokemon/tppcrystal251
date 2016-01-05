@@ -5967,7 +5967,7 @@ Function1163c0: ; 1163c0
 	pop af
 	ld [rSVBK], a
 	callba Function104061
-	ld a, [InLinkBattle]
+	ld a, [wLinkMode]
 	cp $4
 	jr z, .asm_11642a
 	ld a, $8
@@ -16111,10 +16111,10 @@ Function11b7e5: ; 11b7e5
 	ld a, $1
 	ld [wd1e9], a
 	ld a, $2
-	ld [InLinkBattle], a
+	ld [wLinkMode], a
 	callba Function421d8
 	xor a
-	ld [InLinkBattle], a
+	ld [wLinkMode], a
 	callba Function14a58
 	ld a, $5
 	call GetSRAMBank
@@ -22770,6 +22770,7 @@ Function17024d: ; 17024d ;generate trainer and run fight
 	ld a, [Options]
 	push af ;store old options on stack
 	ld hl, Options
+<<<<<<< HEAD
 	set 6, [hl] ;force set mode
 	ld a, [wcfc0] ;toggle "is in battle tower"
 	push af
@@ -22778,6 +22779,16 @@ Function17024d: ; 17024d ;generate trainer and run fight
 	xor a
 	ld [InLinkBattle], a ;load 0 to inlinkbattle
 	callba Function1060a2 ;mobile?
+=======
+	set 6, [hl]
+	ld a, [InBattleTowerBattle]
+	push af
+	or $1
+	ld [InBattleTowerBattle], a
+	xor a
+	ld [wLinkMode], a
+	callba Function1060a2
+>>>>>>> upstream/master
 	callba HealParty
 	call Function1702b7 ;copy trainer data into proper place in ram and inc win streak, now just set $be45 to 2, inc win streak and copy unknown data
 	call Function170bf7 ;a89a/b = 0
@@ -22802,7 +22813,11 @@ Function17024d: ; 17024d ;generate trainer and run fight
 
 .asm_1702a9
 	pop af
+<<<<<<< HEAD
 	ld [wcfc0], a ;reload options and other data set for battle tower fight
+=======
+	ld [InBattleTowerBattle], a
+>>>>>>> upstream/master
 	pop af
 	ld [Options], a
 	ld a, $1

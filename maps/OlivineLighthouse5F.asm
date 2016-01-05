@@ -30,8 +30,8 @@ Bird_keeperDenisScript: ; 0x6098e
 	talkaftercancel
 	loadfont
 	writetext UnknownText_0x60ac3
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 ; 0x60996
 
@@ -59,8 +59,8 @@ SailorErnestScript: ; 0x609a2
 	talkaftercancel
 	loadfont
 	writetext UnknownText_0x60a1f
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 ; 0x609aa
 

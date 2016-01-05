@@ -9,7 +9,7 @@ CeruleanMart_MapScriptHeader: ; 0x188abe
 ClerkScript_0x188ac0: ; 0x188ac0
 	loadfont
 	pokemart $0, $0014
-	loadmovesprites
+	closetext
 	end
 ; 0x188ac7
 

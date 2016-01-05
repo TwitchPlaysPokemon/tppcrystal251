@@ -2802,4 +2802,55 @@ db GROUP_ROUTE_2_RB, MAP_ROUTE_2_RB
 		db FLAAFFY ;1
 		db AMPHAROS ;1
 
+	db GROUP_ROUTE_1_RB, MAP_ROUTE_1_RB
+	db $19
+	db 3
+	dn 0, 0
+
+		db PIDGEY
+		db RATTATA
+		db PIDGEY
+		db RATTATA
+		db PIDGEY
+		db RATTATA
+		db PIDGEY
+		db RATTATA
+		db PIDGEY
+		db RATTATA
+		db PIDGEY
+		db RATTATA
+		db PIDGEY
+		db RATTATA
+
+		db PIDGEY
+		db RATTATA
+		db PIDGEY
+		db RATTATA
+		db PIDGEY
+		db RATTATA
+		db PIDGEY
+		db RATTATA
+		db PIDGEY
+		db RATTATA
+		db PIDGEY
+		db RATTATA
+		db PIDGEY
+		db RATTATA
+
+		db PIDGEY
+		db RATTATA
+		db PIDGEY
+		db RATTATA
+		db PIDGEY
+		db RATTATA
+		db PIDGEY
+		db RATTATA
+		db PIDGEY
+		db RATTATA
+		db PIDGEY
+		db RATTATA
+		db PIDGEY
+		db RATTATA
+	
+
 	db $ff ; end

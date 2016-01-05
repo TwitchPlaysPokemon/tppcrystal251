@@ -388,7 +388,7 @@ Functionaa5:: ; aa5
 ; aaf
 
 Functionaaf:: ; aaf
-	ld a, [InLinkBattle]
+	ld a, [wLinkMode]
 	and a
 	jr nz, .asm_ac1
 	call Functionac6

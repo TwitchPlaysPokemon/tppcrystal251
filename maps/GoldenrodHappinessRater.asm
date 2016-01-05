@@ -11,7 +11,7 @@ TeacherScript_0x54953: ; 0x54953
 	loadfont
 	special Function718d
 	writetext UnknownText_0x549a3
-	keeptextopen
+	buttonsound
 	if_greater_than $f9, UnknownScript_0x54973
 	if_greater_than $c7, UnknownScript_0x54979
 	if_greater_than $95, UnknownScript_0x5497f
@@ -22,43 +22,43 @@ TeacherScript_0x54953: ; 0x54953
 
 UnknownScript_0x54973: ; 0x54973
 	writetext UnknownText_0x549fc
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 ; 0x54979
 
 UnknownScript_0x54979: ; 0x54979
 	writetext UnknownText_0x54a2c
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 ; 0x5497f
 
 UnknownScript_0x5497f: ; 0x5497f
 	writetext UnknownText_0x54a5a
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 ; 0x54985
 
 UnknownScript_0x54985: ; 0x54985
 	writetext UnknownText_0x54a8e
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 ; 0x5498b
 
 UnknownScript_0x5498b: ; 0x5498b
 	writetext UnknownText_0x54a9f
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 ; 0x54991
 
 UnknownScript_0x54991: ; 0x54991
 	writetext UnknownText_0x54ad1
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 ; 0x54997
 

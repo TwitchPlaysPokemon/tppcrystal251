@@ -26,21 +26,21 @@ GentlemanScript_0x7ee6c: ; 0x7ee6c
 	checkevent EVENT_RETURNED_MACHINE_PART
 	iftrue .UnknownScript_0x7ee80
 	writetext UnknownText_0x7effb
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 ; 0x7ee80
 
 .UnknownScript_0x7ee80: ; 0x7ee80
 	writetext UnknownText_0x7f0a1
-	keeptextopen
+	buttonsound
 	stringtotext .expncardname, $1
 	scall .UnknownScript_0x7ee94
 	setflag ENGINE_EXPN_CARD
 .UnknownScript_0x7ee8e ; 0x7ee8e
 	writetext UnknownText_0x7f141
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 ; 0x7ee94
 
@@ -59,15 +59,15 @@ SuperNerdScript_0x7eea2: ; 0x7eea2
 	checkflag ENGINE_EXPN_CARD
 	iftrue UnknownScript_0x7eeb0
 	writetext UnknownText_0x7f193
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 ; 0x7eeb0
 
 UnknownScript_0x7eeb0: ; 0x7eeb0
 	writetext UnknownText_0x7f248
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 ; 0x7eeb6
 

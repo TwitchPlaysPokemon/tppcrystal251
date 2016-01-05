@@ -12,8 +12,8 @@ BrockScript_0x1a2864: ; 0x1a2864
 	checkflag ENGINE_BOULDERBADGE
 	iftrue UnknownScript_0x1a2892
 	writetext UnknownText_0x1a28d0
+	waitbutton
 	closetext
-	loadmovesprites
 	winlosstext UnknownText_0x1a29bb, $0000
 	loadtrainer BROCK, 1
 	startbattle
@@ -23,18 +23,18 @@ BrockScript_0x1a2864: ; 0x1a2864
 	loadfont
 	writetext UnknownText_0x1a2a3d
 	playsound SFX_GET_BADGE
-	waitbutton
+	waitsfx
 	setflag ENGINE_BOULDERBADGE
 	writetext UnknownText_0x1a2a57
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 ; 0x1a2892
 
 UnknownScript_0x1a2892: ; 0x1a2892
 	writetext UnknownText_0x1a2ada
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 ; 0x1a2898
 
@@ -62,8 +62,8 @@ CamperJerryScript: ; 0x1a28a4
 	talkaftercancel
 	loadfont
 	writetext UnknownText_0x1a2c0f
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 ; 0x1a28ac
 
@@ -73,14 +73,14 @@ PewterGymGuyScript: ; 0x1a28ac
 	checkevent EVENT_BEAT_BROCK
 	iftrue .PewterGymGuyWinScript
 	writetext PewterGymGuyText
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 .PewterGymGuyWinScript
 	writetext PewterGymGuyWinText
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 ; 0x1a28c0
 

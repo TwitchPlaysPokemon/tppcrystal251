@@ -30,8 +30,8 @@ Bird_keeperTobyScript: ; 0x1a1d1a
 	talkaftercancel
 	loadfont
 	writetext UnknownText_0x1a1f86
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 ; 0x1a1d22
 
@@ -59,8 +59,8 @@ SailorHarryScript: ; 0x1a1d2e
 	talkaftercancel
 	loadfont
 	writetext UnknownText_0x1a220c
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 ; 0x1a1d36
 
@@ -97,7 +97,7 @@ LassDana1Script: ; 0x1a1d42
 	checkevent EVENT_ROUTE_38_289
 	iftrue UnknownScript_0x1a1d6b
 	writetext UnknownText_0x1a20ec
-	keeptextopen
+	buttonsound
 	setevent EVENT_ROUTE_38_289
 	scall UnknownScript_0x1a1e0b
 	jump UnknownScript_0x1a1d6e
@@ -268,7 +268,7 @@ SchoolboyChad1Script: ; 0x1a1e3b
 	checkevent EVENT_ROUTE_38_28B
 	iftrue UnknownScript_0x1a1e5e
 	writetext UnknownText_0x1a200e
-	keeptextopen
+	buttonsound
 	setevent EVENT_ROUTE_38_28B
 	scall UnknownScript_0x1a1ee9
 	jump UnknownScript_0x1a1e61
@@ -409,8 +409,8 @@ BeautyValerieScript: ; 0x1a1f11
 	talkaftercancel
 	loadfont
 	writetext UnknownText_0x1a2185
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 ; 0x1a1f19
 
@@ -438,8 +438,8 @@ BeautyOliviaScript: ; 0x1a1f25
 	talkaftercancel
 	loadfont
 	writetext UnknownText_0x1a229a
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 ; 0x1a1f2d
 

@@ -30,8 +30,8 @@ FisherKyleScript: ; 0x1a6fc1
 	talkaftercancel
 	loadfont
 	writetext UnknownText_0x1a7238
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 ; 0x1a6fc9
 
@@ -59,8 +59,8 @@ FisherMartinScript: ; 0x1a6fd5
 	talkaftercancel
 	loadfont
 	writetext UnknownText_0x1a704c
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 ; 0x1a6fdd
 
@@ -88,8 +88,8 @@ FisherStephenScript: ; 0x1a6fe9
 	talkaftercancel
 	loadfont
 	writetext UnknownText_0x1a70d4
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 ; 0x1a6ff1
 
@@ -117,8 +117,8 @@ FisherBarneyScript: ; 0x1a6ffd
 	talkaftercancel
 	loadfont
 	writetext UnknownText_0x1a716d
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 ; 0x1a7005
 

@@ -10,8 +10,8 @@ SeerScript: ; 0x9e36e
 	faceplayer
 	loadfont
 	special SpecialPokeSeer
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 ; 0x9e376
 

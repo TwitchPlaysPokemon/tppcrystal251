@@ -39,7 +39,7 @@ MapMobileBattleRoomSignpost0Script: ; 0x1935da
 UnknownScript_0x1935f4: ; 0x1935f4
 	writetext UnknownText_0x193644
 	pause 20
-	loadmovesprites
+	closetext
 	special Function8c084
 	playmusic MUSIC_HEAL
 	special Function1047eb
@@ -55,11 +55,11 @@ UnknownScript_0x19360d: ; 0x19360d
 UnknownScript_0x193619: ; 0x193619
 	special Function10387b
 	writetext UnknownText_0x193626
-	closetext
+	waitbutton
 	reloadmappart
 	special Function101225
 UnknownScript_0x193624: ; 0x193624
-	loadmovesprites
+	closetext
 	end
 ; 0x193626
 

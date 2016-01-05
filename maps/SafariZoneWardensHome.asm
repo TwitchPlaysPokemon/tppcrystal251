@@ -12,16 +12,16 @@ LassScript_0x1965c6: ; 0x1965c6
 	checkevent EVENT_TALKED_TO_WARDENS_GRANDDAUGHTER
 	iftrue UnknownScript_0x1965d7
 	writetext UnknownText_0x1965e6
+	waitbutton
 	closetext
-	loadmovesprites
 	setevent EVENT_TALKED_TO_WARDENS_GRANDDAUGHTER
 	end
 ; 0x1965d7
 
 UnknownScript_0x1965d7: ; 0x1965d7
 	writetext UnknownText_0x196691
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 ; 0x1965dd
 

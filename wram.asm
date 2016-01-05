@@ -291,7 +291,7 @@ wc2d7:: ds 1
 wc2d8:: ds 1
 wc2d9:: ds 1
 wc2da:: ds 2
-InLinkBattle:: ; c2dc
+wLinkMode:: ; wLinkMode
 ; 0 not in link battle
 ; 1 link battle
 ; 4 mobile battle
@@ -632,10 +632,14 @@ PlayerSAtkLevel:: ; c6cf
 wVoltorbFlip::
 wVoltorbFlipBoard:: ds 5 * 5 ; c6d0
 wVoltorbFlipLevel:: ds 1 ; c6e9
+wVoltorbFlipHighestLevel:: ds 1
 wVoltorbFlipPayout:: ds 2 ; c6ea
 wVoltorbFlipCursor:: ds 1 ; c6ec lo: y | hi: x
 wVoltorbFlipMultiplier:: ds 1 ; c6ed
 wVoltorbFlipNum2s3s:: ds 1 ; c6ee
+wVoltorbFlipMinPayout:: ds 2
+wVoltorbFlipMaxPayout:: ds 2
+wVoltorbFlipPotentialPayout:: ds 2
 wVoltorbFlipEnd::
 	ds wVoltorbFlip - @
 
@@ -1270,7 +1274,7 @@ GameTimerPause:: ; cfbc
 	ds 1
 
 wcfbe:: ds 2
-wcfc0:: ds 2
+InBattleTowerBattle:: ds 2
 
 FXAnimID::
 FXAnimIDLo:: ; cfc2

@@ -173,6 +173,7 @@ VermilionHouseFishingSpeechHouse_BlockData:
 VermilionMagnetTrainSpeechHouse_BlockData:
 VermilionHouseDiglettsCaveSpeechHouse_BlockData:
 BluesHouse_BlockData:
+BluesHouseRB_BlockData:
 PewterNidoranSpeechHouse_BlockData:
 PewterSnoozeSpeechHouse_BlockData:
 FuchsiaBillSpeechHouse_BlockData:

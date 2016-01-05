@@ -14,8 +14,8 @@ GrowlitheScript_0x713f2: ; 0x713f2
 	loadfont
 	writetext UnknownText_0x71470
 	cry MEOWTH
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 ; 0x713fc
 
@@ -23,8 +23,8 @@ ClefairyScript_0x713fc: ; 0x713fc
 	loadfont
 	writetext UnknownText_0x7147f
 	cry CLEFAIRY
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 ; 0x71406
 
@@ -32,8 +32,8 @@ GrowlitheScript_0x71406: ; 0x71406
 	loadfont
 	writetext UnknownText_0x71496
 	cry NIDORAN_F
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 ; 0x71410
 

@@ -30,8 +30,8 @@ PokefanmRexScript: ; 0x1ad935
 	talkaftercancel
 	loadfont
 	writetext UnknownText_0x1ad9ff
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 ; 0x1ad93d
 
@@ -59,8 +59,8 @@ PokefanmAllanScript: ; 0x1ad949
 	talkaftercancel
 	loadfont
 	writetext UnknownText_0x1ada88
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 ; 0x1ad951
 

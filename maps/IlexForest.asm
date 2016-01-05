@@ -94,15 +94,15 @@ YoungsterScript_0x6eb7b: ; 0x6eb7b
 	checkevent EVENT_RETURNED_FARFETCHD_TO_CHARCOAL_MAN
 	iftrue UnknownScript_0x6eb89
 	writetext UnknownText_0x6ef5c
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 ; 0x6eb89
 
 UnknownScript_0x6eb89: ; 0x6eb89
 	writetext UnknownText_0x6f019
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 ; 0x6eb8f
 
@@ -122,11 +122,11 @@ UnknownScript_0x6ebba: ; 0x6ebba
 	faceplayer
 	loadfont
 	writetext UnknownText_0x6f06f
-	keeptextopen
+	buttonsound
 	writetext UnknownText_0x6f086
 	cry FARFETCH_D
+	waitbutton
 	closetext
-	loadmovesprites
 	applymovement $2, MovementData_0x6ee8f
 	moveperson $2, $f, $19
 	disappear $2
@@ -354,8 +354,8 @@ UnknownScript_0x6ed96: ; 0x6ed96
 	loadfont
 	writetext UnknownText_0x6f086
 	cry FARFETCH_D
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 ; 0x6eda1
 
@@ -364,8 +364,8 @@ UnknownScript_0x6eda1: ; 0x6eda1
 	loadfont
 	writetext UnknownText_0x6f086
 	cry FARFETCH_D
+	waitbutton
 	closetext
-	loadmovesprites
 	checkcode VAR_FACING
 	end
 ; 0x6edae
@@ -376,12 +376,12 @@ BlackBeltScript_0x6edae: ; 0x6edae
 	checkevent EVENT_GOT_HM01_CUT
 	iftrue UnknownScript_0x6edd8
 	writetext UnknownText_0x6f099
-	keeptextopen
+	buttonsound
 	verbosegiveitem HM_CUT, 1
 	setevent EVENT_GOT_HM01_CUT
 	writetext UnknownText_0x6f141
+	waitbutton
 	closetext
-	loadmovesprites
 	setevent EVENT_ILEX_FOREST_FARFETCHD
 	setevent EVENT_APPRENTICE_IN_ILEX_FOREST
 	setevent EVENT_CHARCOAL_MASTER_IN_ILEX_FOREST
@@ -393,8 +393,8 @@ BlackBeltScript_0x6edae: ; 0x6edae
 
 UnknownScript_0x6edd8: ; 0x6edd8
 	writetext UnknownText_0x6f1c0
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 ; 0x6edde
 
@@ -404,15 +404,15 @@ RockerScript_0x6edde: ; 0x6edde
 	checkevent EVENT_GOT_TM02_HEADBUTT
 	iftrue UnknownScript_0x6edf3
 	writetext UnknownText_0x6f21b
-	keeptextopen
+	buttonsound
 	verbosegiveitem TM_HEADBUTT, 1
 	iffalse UnknownScript_0x6edf7
 	setevent EVENT_GOT_TM02_HEADBUTT
 UnknownScript_0x6edf3: ; 0x6edf3
 	writetext UnknownText_0x6f26d
-	closetext
+	waitbutton
 UnknownScript_0x6edf7: ; 0x6edf7
-	loadmovesprites
+	closetext
 	end
 ; 0x6edf9
 
@@ -440,8 +440,8 @@ Bug_catcherWayneScript: ; 0x6ee05
 	talkaftercancel
 	loadfont
 	writetext UnknownText_0x6f571
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 ; 0x6ee0d
 
@@ -508,7 +508,7 @@ UnknownScript_0x6ee38: ; 0x6ee38
 	writetext UnknownText_0x6f394
 	yesorno
 	iftrue UnknownScript_0x6ee42
-	loadmovesprites
+	closetext
 	end
 ; 0x6ee42
 
@@ -519,8 +519,8 @@ UnknownScript_0x6ee42: ; 0x6ee42
 	disappear $8
 	clearevent EVENT_LASS_IN_ILEX_FOREST_ROUTE_34_GATE
 	writetext UnknownText_0x6f43b
+	waitbutton
 	closetext
-	loadmovesprites
 	pause 20
 	showemote $0, $0, 20
 	special Functionc48f
@@ -543,8 +543,8 @@ UnknownScript_0x6ee42: ; 0x6ee42
 	applymovement $7, MovementData_0x6ef4e
 	loadfont
 	writetext UnknownText_0x6f452
+	waitbutton
 	closetext
-	loadmovesprites
 	applymovement $7, MovementData_0x6ef53
 	disappear $7
 UnknownScript_0x6ee8e: ; 0x6ee8e
@@ -560,8 +560,8 @@ Script_ReturnCelebiRelatedItems:
 	returnafterbattle
 	loadfont
 	writetext Text_ReturnCelebiRelatedItems
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 MovementData_0x6ee8f: ; 0x6ee8f

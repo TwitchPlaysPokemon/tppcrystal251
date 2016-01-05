@@ -14,8 +14,8 @@ YoungsterScript_0x69990: ; 0x69990
 	faceplayer
 	loadfont
 	trade $1
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 ; 0x69997
 

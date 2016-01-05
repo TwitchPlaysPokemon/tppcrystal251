@@ -12,15 +12,15 @@ ReceptionistScript_0x5cd29: ; 0x5cd29
 	checkflag ENGINE_BIKE_SHOP_CALL_ENABLED
 	iftrue UnknownScript_0x5cd37
 	writetext UnknownText_0x5ce77
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 ; 0x5cd37
 
 UnknownScript_0x5cd37: ; 0x5cd37
 	writetext UnknownText_0x5ce81
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 ; 0x5cd3d
 
@@ -28,7 +28,7 @@ GentlemanScript_0x5cd3d: ; 0x5cd3d
 	faceplayer
 	loadfont
 	writetext UnknownText_0x5ceba
-	keeptextopen
+	buttonsound
 	special Functionc434
 	iffalse UnknownScript_0x5cd4c
 	special Functionc422
@@ -37,19 +37,19 @@ UnknownScript_0x5cd4c: ; 0x5cd4c
 	checkflag ENGINE_LUCKY_NUMBER_SHOW
 	iftrue UnknownScript_0x5cd84
 	writetext UnknownText_0x5cf3a
-	keeptextopen
-	loadmovesprites
+	buttonsound
+	closetext
 	applymovement $6, MovementData_0x5ce71
 	loadfont
 	writetext UnknownText_0x5cf5a
-	keeptextopen
-	waitbutton
+	buttonsound
+	waitsfx
 	writetext UnknownText_0x5cf79
 	playsound SFX_DEX_FANFARE_20_49
-	waitbutton
-	keeptextopen
+	waitsfx
+	buttonsound
 	special Function4d87a
-	loadmovesprites
+	closetext
 	applymovement $6, MovementData_0x5ce74
 	loadfont
 	if_equal $1, UnknownScript_0x5cd8a
@@ -60,16 +60,16 @@ UnknownScript_0x5cd4c: ; 0x5cd4c
 
 UnknownScript_0x5cd84: ; 0x5cd84
 	writetext UnknownText_0x5cf7e
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 ; 0x5cd8a
 
 UnknownScript_0x5cd8a: ; 0x5cd8a
 	writetext UnknownText_0x5cfb5
 	playsound SFX_1ST_PLACE
-	waitbutton
-	keeptextopen
+	waitsfx
+	buttonsound
 	giveitem MASTER_BALL, $1
 	iffalse UnknownScript_0x5cdcf
 	itemnotify
@@ -80,8 +80,8 @@ UnknownScript_0x5cd8a: ; 0x5cd8a
 UnknownScript_0x5cd9f: ; 0x5cd9f
 	writetext UnknownText_0x5d023
 	playsound SFX_2ND_PLACE
-	waitbutton
-	keeptextopen
+	waitsfx
+	buttonsound
 	giveitem EXP_SHARE, $1
 	iffalse UnknownScript_0x5cdcf
 	itemnotify
@@ -92,8 +92,8 @@ UnknownScript_0x5cd9f: ; 0x5cd9f
 UnknownScript_0x5cdb4: ; 0x5cdb4
 	writetext UnknownText_0x5d076
 	playsound SFX_3RD_PLACE
-	waitbutton
-	keeptextopen
+	waitsfx
+	buttonsound
 	giveitem PP_UP, $1
 	iffalse UnknownScript_0x5cdcf
 	itemnotify
@@ -103,15 +103,15 @@ UnknownScript_0x5cdb4: ; 0x5cdb4
 
 UnknownScript_0x5cdc9: ; 0x5cdc9
 	writetext UnknownText_0x5d0c0
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 ; 0x5cdcf
 
 UnknownScript_0x5cdcf: ; 0x5cdcf
 	writetext UnknownText_0x5d0e6
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 ; 0x5cdd5
 
@@ -127,38 +127,38 @@ CooltrainerFScript_0x5cdd5: ; 0x5cdd5
 	yesorno
 	iffalse UnknownScript_0x5ce42
 	playsound SFX_ELEVATOR_END
-	waitbutton
+	waitsfx
 	writetext UnknownText_0x5d231
 	yesorno
 	iffalse UnknownScript_0x5ce42
 	playsound SFX_ELEVATOR_END
-	waitbutton
+	waitsfx
 	writetext UnknownText_0x5d282
 	yesorno
 	iftrue UnknownScript_0x5ce42
 	playsound SFX_ELEVATOR_END
-	waitbutton
+	waitsfx
 	writetext UnknownText_0x5d2bc
 	yesorno
 	iffalse UnknownScript_0x5ce42
 	playsound SFX_ELEVATOR_END
-	waitbutton
+	waitsfx
 	writetext UnknownText_0x5d30e
 	yesorno
 	iftrue UnknownScript_0x5ce42
 	playsound SFX_ELEVATOR_END
-	waitbutton
+	waitsfx
 	writetext UnknownText_0x5d37b
-	keeptextopen
+	buttonsound
 	stringtotext RadioCardText, $1
 	scall UnknownScript_0x5ce3e
 	writetext UnknownText_0x5d3c0
-	keeptextopen
+	buttonsound
 	setflag ENGINE_RADIO_CARD
 UnknownScript_0x5ce2d: ; 0x5ce2d
 	writetext UnknownText_0x5d3e5
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 ; 0x5ce33
 
@@ -174,15 +174,15 @@ UnknownScript_0x5ce3e: ; 0x5ce3e
 UnknownScript_0x5ce42: ; 0x5ce42
 	playsound SFX_WRONG
 	writetext UnknownText_0x5d409
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 ; 0x5ce4b
 
 UnknownScript_0x5ce4b: ; 0x5ce4b
 	writetext UnknownText_0x5d443
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 ; 0x5ce51
 
@@ -218,8 +218,8 @@ GruntM3Script: ; 0x5ce63
 	talkaftercancel
 	loadfont
 	writetext UnknownText_0x5d5a2
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 ; 0x5ce6b
 

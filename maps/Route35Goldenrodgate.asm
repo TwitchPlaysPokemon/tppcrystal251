@@ -19,48 +19,48 @@ OfficerScript_0x69d37: ; 0x69d37
 	yesorno
 	iffalse UnknownScript_0x69d7f
 	writetext UnknownText_0x69e48
-	keeptextopen
-	waitbutton
+	buttonsound
+	waitsfx
 	checkcode VAR_PARTYCOUNT
 	if_equal $6, UnknownScript_0x69d79
 	writetext UnknownText_0x69eb8
 	playsound SFX_KEY_ITEM
-	waitbutton
+	waitsfx
 	givepoke SPEAROW, 10, 0, 1, GiftSpearowName, GiftSpearowOTName
 	givepokeitem GiftSpearowMail
 	setevent EVENT_GOT_KENYA
 UnknownScript_0x69d73: ; 0x69d73
 	writetext UnknownText_0x69ed6
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 ; 0x69d79
 
 UnknownScript_0x69d79: ; 0x69d79
 	writetext UnknownText_0x69f56
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 ; 0x69d7f
 
 UnknownScript_0x69d7f: ; 0x69d7f
 	writetext UnknownText_0x69f74
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 ; 0x69d85
 
 UnknownScript_0x69d85: ; 0x69d85
 	writetext UnknownText_0x69f8b
-	keeptextopen
+	buttonsound
 	verbosegiveitem HP_UP, 1
 	iffalse UnknownScript_0x69d96
 	setevent EVENT_GOT_HP_UP_FROM_RANDY
 UnknownScript_0x69d92: ; 0x69d92
 	writetext UnknownText_0x69fd9
-	closetext
+	waitbutton
 UnknownScript_0x69d96: ; 0x69d96
-	loadmovesprites
+	closetext
 	end
 
 GiftSpearowMail: ; 0x69d98
@@ -80,15 +80,15 @@ PokefanFScript_0x69dc6: ; 0x69dc6
 	checkevent EVENT_FOUGHT_SUDOWOODO
 	iftrue UnknownScript_0x69dd4
 	writetext UnknownText_0x6a00a
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 ; 0x69dd4
 
 UnknownScript_0x69dd4: ; 0x69dd4
 	writetext UnknownText_0x6a09a
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 ; 0x69dda
 

@@ -18,8 +18,8 @@ MoltresScript_0x9ae40: ; 0x9ae40
 	loadfont
 	writetext UnknownText_0x9aefe
 	cry SPEAROW
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 ; 0x9ae4a
 
@@ -27,8 +27,8 @@ GrowlitheScript_0x9ae4a: ; 0x9ae4a
 	loadfont
 	writetext UnknownText_0x9af10
 	cry RATTATA
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 ; 0x9ae54
 

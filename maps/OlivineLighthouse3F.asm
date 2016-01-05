@@ -30,8 +30,8 @@ Bird_keeperTheoScript: ; 0x5b249
 	talkaftercancel
 	loadfont
 	writetext UnknownText_0x5b2df
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 ; 0x5b251
 
@@ -59,8 +59,8 @@ GentlemanPrestonScript: ; 0x5b25d
 	talkaftercancel
 	loadfont
 	writetext UnknownText_0x5b457
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 ; 0x5b265
 
@@ -88,8 +88,8 @@ SailorTerrellScript: ; 0x5b271
 	talkaftercancel
 	loadfont
 	writetext UnknownText_0x5b384
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 ; 0x5b279
 

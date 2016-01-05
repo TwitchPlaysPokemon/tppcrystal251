@@ -23,13 +23,13 @@ JasmineScript_0x60b91: ; 0x60b91
 	checkevent EVENT_TALKED_TO_JASMINE_ABOUT_AMPHY
 	iftrue UnknownScript_0x60ba5
 	writetext UnknownText_0x60c81
-	keeptextopen
+	buttonsound
 	setevent EVENT_TALKED_TO_JASMINE_ABOUT_AMPHY
 	changeblock 10, 1, $16
 UnknownScript_0x60ba5: ; 0x60ba5
 	writetext UnknownText_0x60d64
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 ; 0x60bab
 
@@ -38,11 +38,11 @@ UnknownScript_0x60bab: ; 0x60bab
 	yesorno
 	iffalse UnknownScript_0x60c25
 	writetext UnknownText_0x60dc3
-	keeptextopen
+	buttonsound
 	takeitem SECRETPOTION, 1
 	writetext UnknownText_0x60dea
+	waitbutton
 	closetext
-	loadmovesprites
 	spriteface $2, $3
 	pause 15
 	spriteface $3, $2
@@ -50,8 +50,8 @@ UnknownScript_0x60bab: ; 0x60bab
 	playmusic MUSIC_HEAL
 	writetext UnknownText_0x60e44
 	pause 60
-	keeptextopen
-	loadmovesprites
+	buttonsound
+	closetext
 	special RestartMapMusic
 	cry AMPHAROS
 	special Function8c084
@@ -59,8 +59,8 @@ UnknownScript_0x60bab: ; 0x60bab
 	special Function8c079
 	loadfont
 	writetext UnknownText_0x60f3d
+	waitbutton
 	closetext
-	loadmovesprites
 	spriteface $3, $3
 	pause 10
 	spriteface $3, $2
@@ -72,8 +72,8 @@ UnknownScript_0x60bab: ; 0x60bab
 	faceplayer
 	loadfont
 	writetext UnknownText_0x60e6c
+	waitbutton
 	closetext
-	loadmovesprites
 	setevent EVENT_JASMINE_RETURNED_TO_GYM
 	clearevent EVENT_JASMINE_IN_OLIVINE_GYM
 	checkcode VAR_FACING
@@ -98,15 +98,15 @@ UnknownScript_0x60c1e: ; 0x60c1e
 
 UnknownScript_0x60c25: ; 0x60c25
 	writetext UnknownText_0x60edf
+	waitbutton
 	closetext
-	loadmovesprites
 	spriteface $2, $3
 	pause 15
 	spriteface $3, $2
 	loadfont
 	writetext UnknownText_0x60ef1
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 ; 0x60c39
 
@@ -122,18 +122,18 @@ MonsterScript_0x60c3a: ; 0x60c3a
 	writetext UnknownText_0x60f03
 	writebyte AMPHAROS
 	special Functionfb841
-	keeptextopen
+	buttonsound
 	writetext UnknownText_0x60f19
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 ; 0x60c51
 
 UnknownScript_0x60c51: ; 0x60c51
 	writetext UnknownText_0x60f3d
 	cry AMPHAROS
+	waitbutton
 	closetext
-	loadmovesprites
 	special Function8c084
 	special Function8c079
 	special Function8c084

@@ -21,7 +21,7 @@ ScientistScript_0x625d7: ; 0x625d7
 MapGoldenrodPokeComCenter2FMobileSignpost0Script: ; 0x625da
 	loadfont
 	writetext UnknownText_0x627ee
-	closetext
+	waitbutton
 UnknownScript_0x625df: ; 0x625df
 	reloadmappart
 	loadmenudata MenuDataHeader_0x62602
@@ -35,19 +35,19 @@ UnknownScript_0x625df: ; 0x625df
 UnknownScript_0x625f0: ; 0x625f0
 	loadfont
 	writetext UnknownText_0x62828
-	closetext
+	waitbutton
 	jump UnknownScript_0x625df
 ; 0x625f8
 
 UnknownScript_0x625f8: ; 0x625f8
 	loadfont
 	writetext UnknownText_0x628f4
-	closetext
+	waitbutton
 	jump UnknownScript_0x625df
 ; 0x62600
 
 UnknownScript_0x62600: ; 0x62600
-	loadmovesprites
+	closetext
 	end
 ; 0x62602
 
@@ -72,7 +72,7 @@ MenuData2_0x6260a: ; 0x6260a
 MapGoldenrodPokeComCenter2FMobileSignpost1Script: ; 0x62624
 	loadfont
 	writetext UnknownText_0x62989
-	closetext
+	waitbutton
 UnknownScript_0x62629: ; 0x62629
 	reloadmappart
 	loadmenudata MenuDataHeader_0x6264c
@@ -86,19 +86,19 @@ UnknownScript_0x62629: ; 0x62629
 UnknownScript_0x6263a: ; 0x6263a
 	loadfont
 	writetext UnknownText_0x629ae
-	closetext
+	waitbutton
 	jump UnknownScript_0x62629
 ; 0x62642
 
 UnknownScript_0x62642: ; 0x62642
 	loadfont
 	writetext UnknownText_0x62a5a
-	closetext
+	waitbutton
 	jump UnknownScript_0x62629
 ; 0x6264a
 
 UnknownScript_0x6264a: ; 0x6264a
-	loadmovesprites
+	closetext
 	end
 ; 0x6264c
 

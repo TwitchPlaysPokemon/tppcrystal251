@@ -12,15 +12,15 @@ Route1RB_Youngster1Script:
 	checkevent EVENT_ROUTE_1_RB_POTION
 	iftrue .GotPotion
 	writetext Route1RBGivePotionText
-	keeptextopen
+	buttonsound
 	verbosegiveitem POTION, 1
 	iffalse .NoRoomForItem
 	setevent EVENT_ROUTE_1_RB_POTION
 .GotPotion
 	writetext Route1RBGavePotionText
 .NoRoomForItem
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 Route1RB_Youngster2Script:

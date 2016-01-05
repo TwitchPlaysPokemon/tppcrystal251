@@ -46,8 +46,8 @@ CamperSpencerScript: ; 0x19d06d
 	talkaftercancel
 	loadfont
 	writetext UnknownText_0x19d57e
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 ; 0x19d075
 
@@ -75,8 +75,8 @@ PokemaniacBenScript: ; 0x19d081
 	talkaftercancel
 	loadfont
 	writetext UnknownText_0x19d2d2
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 ; 0x19d089
 
@@ -111,7 +111,7 @@ PokemaniacBrent1Script: ; 0x19d095
 	checkevent EVENT_ROUTE_43
 	iftrue UnknownScript_0x19d0b8
 	writetext UnknownText_0x19d359
-	keeptextopen
+	buttonsound
 	setevent EVENT_ROUTE_43
 	scall UnknownScript_0x19d12c
 	jump UnknownScript_0x19d0bb
@@ -239,8 +239,8 @@ PokemaniacRonScript: ; 0x19d154
 	talkaftercancel
 	loadfont
 	writetext UnknownText_0x19d3f8
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 ; 0x19d15c
 
@@ -268,8 +268,8 @@ FisherMarvinScript: ; 0x19d168
 	talkaftercancel
 	loadfont
 	writetext UnknownText_0x19d4d3
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 ; 0x19d170
 
@@ -308,7 +308,7 @@ PicnickerTiffany3Script: ; 0x19d17c
 	checkevent EVENT_SHOWED_TIFFANY_CLEFAIRY
 	iftrue UnknownScript_0x19d1aa
 	writetext UnknownText_0x19d618
-	keeptextopen
+	buttonsound
 	setevent EVENT_SHOWED_TIFFANY_CLEFAIRY
 	scall UnknownScript_0x19d239
 	jump UnknownScript_0x19d1ad
@@ -392,8 +392,8 @@ UnknownScript_0x19d230: ; 0x19d230
 
 UnknownScript_0x19d233: ; 0x19d233
 	writetext UnknownText_0x19d64b
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 ; 0x19d239
 

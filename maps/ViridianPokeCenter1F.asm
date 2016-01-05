@@ -16,15 +16,15 @@ CooltrainerMScript_0x9b693: ; 0x9b693
 	checkevent EVENT_BLUE_IN_CINNABAR
 	iftrue UnknownScript_0x9b6a1
 	writetext UnknownText_0x9b6ad
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 ; 0x9b6a1
 
 UnknownScript_0x9b6a1: ; 0x9b6a1
 	writetext UnknownText_0x9b6f5
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 ; 0x9b6a7
 

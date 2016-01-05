@@ -7,20 +7,20 @@ Route30_MapScriptHeader: ; 0x1a1671
 ; 0x1a1673
 
 YoungsterScript_0x1a1673: ; 0x1a1673
-	waitbutton
+	waitsfx
 	playmusic MUSIC_JOHTO_TRAINER_BATTLE
 	loadfont
 	writetext UnknownText_0x1a1806
 	pause 30
-	loadmovesprites
+	closetext
 	playsound SFX_TACKLE
 	applymovement $8, MovementData_0x1a17fe
 	loadfont
 	faceplayer
 	writetext UnknownText_0x1a181c
-	closetext
+	waitbutton
 	spriteface $2, $1
-	loadmovesprites
+	closetext
 	playsound SFX_TACKLE
 	applymovement $7, MovementData_0x1a1802
 	special RestartMapMusic
@@ -58,7 +58,7 @@ YoungsterJoey1Script: ; 0x1a16a6
 	checkevent EVENT_ROUTE_30_273
 	iftrue UnknownScript_0x1a16c9
 	writetext UnknownText_0x1a18c2
-	keeptextopen
+	buttonsound
 	setevent EVENT_ROUTE_30_273
 	scall UnknownScript_0x1a1783
 	jump UnknownScript_0x1a16cc
@@ -155,7 +155,7 @@ UnknownScript_0x1a176e: ; 0x1a176e
 UnknownScript_0x1a176f: ; 0x1a176f
 	loadfont
 	writetext UnknownText_0x1a1bc0
-	closetext
+	waitbutton
 	verbosegiveitem HP_UP, 1
 	iffalse UnknownScript_0x1a179f
 	clearevent EVENT_JOEY_HP_UP
@@ -233,8 +233,8 @@ YoungsterMikeyScript: ; 0x1a17b6
 	talkaftercancel
 	loadfont
 	writetext UnknownText_0x1a197d
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 ; 0x1a17be
 
@@ -262,8 +262,8 @@ Bug_catcherDonScript: ; 0x1a17ca
 	talkaftercancel
 	loadfont
 	writetext UnknownText_0x1a1a1c
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 ; 0x1a17d2
 
@@ -273,15 +273,15 @@ YoungsterScript_0x1a17d2: ; 0x1a17d2
 	checkevent EVENT_GAVE_MYSTERY_EGG_TO_ELM
 	iftrue UnknownScript_0x1a17e0
 	writetext UnknownText_0x1a1a6a
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 ; 0x1a17e0
 
 UnknownScript_0x1a17e0: ; 0x1a17e0
 	writetext UnknownText_0x1a1a94
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 ; 0x1a17e6
 

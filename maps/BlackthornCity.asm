@@ -34,22 +34,22 @@ SuperNerdScript_0x1a46e8: ; 0x1a46e8
 	checkevent EVENT_CLEARED_RADIO_TOWER
 	iftrue UnknownScript_0x1a46fc
 	writetext UnknownText_0x1a477a
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 ; 0x1a46fc
 
 UnknownScript_0x1a46fc: ; 0x1a46fc
 	writetext UnknownText_0x1a47f3
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 ; 0x1a4702
 
 UnknownScript_0x1a4702: ; 0x1a4702
 	writetext UnknownText_0x1a4865
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 ; 0x1a4708
 
@@ -67,15 +67,15 @@ BlackBeltScript_0x1a470e: ; 0x1a470e
 	checkevent EVENT_CLEARED_RADIO_TOWER
 	iftrue UnknownScript_0x1a471c
 	writetext UnknownText_0x1a494a
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 ; 0x1a471c
 
 UnknownScript_0x1a471c: ; 0x1a471c
 	writetext UnknownText_0x1a4983
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 ; 0x1a4722
 
@@ -101,30 +101,30 @@ SantosScript:
 	checkevent EVENT_MET_SANTOS_OF_SATURDAY
 	iftrue .MetSantos
 	writetext MeetSantosText
-	keeptextopen
+	buttonsound
 	setevent EVENT_MET_SANTOS_OF_SATURDAY
 .MetSantos
 	writetext SantosGivesGiftText
-	keeptextopen
+	buttonsound
 	verbosegiveitem SPELL_TAG, 1
 	iffalse SantosDoneScript
 	setevent EVENT_GOT_SPELL_TAG_FROM_SANTOS
 	writetext SantosGaveGiftText
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 SantosSaturdayScript:
 	writetext SantosSaturdayText
-	closetext
+	waitbutton
 SantosDoneScript:
-	loadmovesprites
+	closetext
 	end
 
 SantosNotSaturdayScript:
 	writetext SantosNotSaturdayText
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 MapBlackthornCitySignpost0Script: ; 0x1a4765

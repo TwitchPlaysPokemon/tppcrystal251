@@ -30,8 +30,8 @@ SupernerdHughScript: ; 0x7e0d6
 	talkaftercancel
 	loadfont
 	writetext UnknownText_0x7e10e
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 ; 0x7e0de
 

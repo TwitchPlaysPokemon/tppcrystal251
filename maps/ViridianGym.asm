@@ -12,8 +12,8 @@ BlueScript_0x9aa26: ; 0x9aa26
 	checkflag ENGINE_EARTHBADGE
 	iftrue UnknownScript_0x9aa51
 	writetext UnknownText_0x9aa7b
+	waitbutton
 	closetext
-	loadmovesprites
 	winlosstext UnknownText_0x9abae, $0000
 	checkevent EVENT_GOT_CYNDAQUIL_FROM_ELM
 	iftrue BlueScript_TeamVaporeon
@@ -37,11 +37,11 @@ BlueScript_StartBattle:
 	loadfont
 	writetext UnknownText_0x9ac0f
 	playsound SFX_GET_BADGE
-	waitbutton
+	waitsfx
 	setflag ENGINE_EARTHBADGE
 	writetext UnknownText_0x9ac27
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 ; 0x9aa51
 
@@ -57,8 +57,8 @@ CoolSibsAraBella1Script:
 	talkaftercancel
 	loadfont
 	writetext CoolSibsAraBella1Text
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 Trainer_CoolSibsAraBella2:
@@ -73,8 +73,8 @@ CoolSibsAraBella2Script:
 	talkaftercancel
 	loadfont
 	writetext CoolSibsAraBella2Text
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 Trainer_CoolSibsElanIda1:
@@ -89,8 +89,8 @@ CoolSibsElanIda1Script:
 	talkaftercancel
 	loadfont
 	writetext CoolSibsElanIda1Text
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 Trainer_CoolSibsElanIda2:
@@ -105,8 +105,8 @@ CoolSibsElanIda2Script:
 	talkaftercancel
 	loadfont
 	writetext CoolSibsElanIda2Text
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 Trainer_CooltrainerMBonita:
@@ -121,8 +121,8 @@ CooltrainerMBonitaScript:
 	talkaftercancel
 	loadfont
 	writetext CooltrainerMBonitaText
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 Trainer_CooltrainerFSalma:
@@ -137,14 +137,14 @@ CooltrainerFSalmaScript:
 	talkaftercancel
 	loadfont
 	writetext CooltrainerFSalmaText
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 UnknownScript_0x9aa51: ; 0x9aa51
 	writetext UnknownText_0x9acab
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 ; 0x9aa57
 
@@ -154,14 +154,14 @@ ViridianGymGuyScript: ; 0x9aa57
 	checkevent EVENT_BEAT_BLUE
 	iftrue .ViridianGymGuyWinScript
 	writetext ViridianGymGuyText
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 .ViridianGymGuyWinScript
 	writetext ViridianGymGuyWinText
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 ; 0x9aa6b
 

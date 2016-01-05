@@ -28,8 +28,8 @@ UnknownScript_0x733f3: ; 0x733f3
 	spriteface $0, $1
 	loadfont
 	writetext UnknownText_0x73496
+	waitbutton
 	closetext
-	loadmovesprites
 	applymovement $0, MovementData_0x73405
 	end
 ; 0x73405

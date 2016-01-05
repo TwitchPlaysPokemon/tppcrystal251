@@ -167,17 +167,17 @@ Function1000fa: ; 1000fa
 	ld [$ffc9], a
 	ld [$ffe9], a
 	ei
-	ld a, [InLinkBattle]
+	ld a, [wLinkMode]
 	push af
 	xor a
-	ld [InLinkBattle], a
+	ld [wLinkMode], a
 	ld a, $4
 	ld [wc319], a
 	callba Function11619d
 	ld hl, wcd29
 	set 6, [hl]
 	pop af
-	ld [InLinkBattle], a
+	ld [wLinkMode], a
 	ret
 ; 100144
 
@@ -1611,7 +1611,7 @@ Function100a09: ; 100a09
 	call Function100a2e
 	ld [wd431], a
 	callba Function4000
-	ld a, [InLinkBattle]
+	ld a, [wLinkMode]
 	cp $4
 	jr nz, .asm_100a2a
 	call Function100a87
@@ -2132,7 +2132,7 @@ Function100db0: ; 100db0
 
 
 Function100dc0: ; 100dc0
-	ld a, [InLinkBattle]
+	ld a, [wLinkMode]
 	cp $4
 	jr nz, .asm_100dd0
 	ld hl, wcd2a
@@ -2767,13 +2767,13 @@ Function1011f1: ; 1011f1
 	ld [wdc5f], a
 	ld [wdc60], a
 	ld a, $4
-	ld [InLinkBattle], a
+	ld [wLinkMode], a
 	ret
 ; 101220
 
 Function101220: ; 101220
 	xor a
-	ld [InLinkBattle], a
+	ld [wLinkMode], a
 	ret
 ; 101225
 

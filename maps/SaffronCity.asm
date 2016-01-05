@@ -21,15 +21,15 @@ LassScript_0x19932a: ; 0x19932a
 	checkevent EVENT_RETURNED_MACHINE_PART
 	iftrue UnknownScript_0x199338
 	writetext UnknownText_0x19938d
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 ; 0x199338
 
 UnknownScript_0x199338: ; 0x199338
 	writetext UnknownText_0x19940d
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 ; 0x19933e
 
@@ -39,15 +39,15 @@ PokefanMScript_0x19933e: ; 0x19933e
 	checkevent EVENT_RETURNED_MACHINE_PART
 	iftrue UnknownScript_0x19934c
 	writetext UnknownText_0x199460
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 ; 0x19934c
 
 UnknownScript_0x19934c: ; 0x19934c
 	writetext UnknownText_0x1994ae
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 ; 0x199352
 
@@ -65,15 +65,15 @@ FisherScript_0x199358: ; 0x199358
 	checkevent EVENT_RETURNED_MACHINE_PART
 	iftrue UnknownScript_0x199366
 	writetext UnknownText_0x1995fc
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 ; 0x199366
 
 UnknownScript_0x199366: ; 0x199366
 	writetext UnknownText_0x19964b
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 ; 0x19936c
 

@@ -37,7 +37,7 @@ Bird_keeperVance1Script: ; 0x19d830
 	checkevent EVENT_ROUTE_44_295
 	iftrue UnknownScript_0x19d853
 	writetext UnknownText_0x19dbf3
-	keeptextopen
+	buttonsound
 	setevent EVENT_ROUTE_44_295
 	scall UnknownScript_0x19d8df
 	jump UnknownScript_0x19d856
@@ -108,7 +108,7 @@ UnknownScript_0x19d8ca: ; 0x19d8ca
 UnknownScript_0x19d8cb: ; 0x19d8cb
 	loadfont
 	writetext UnknownText_0x19dc67
-	closetext
+	waitbutton
 	verbosegiveitem CARBOS, 1
 	iffalse UnknownScript_0x19d903
 	clearevent EVENT_VANCE_CARBOS
@@ -196,8 +196,8 @@ PsychicPhilScript: ; 0x19d91a
 	talkaftercancel
 	loadfont
 	writetext UnknownText_0x19dcfc
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 ; 0x19d922
 
@@ -234,7 +234,7 @@ FisherWilton1Script: ; 0x19d92e
 	checkevent EVENT_ROUTE_44_297
 	iftrue UnknownScript_0x19d957
 	writetext UnknownText_0x19daa8
-	keeptextopen
+	buttonsound
 	setevent EVENT_ROUTE_44_297
 	scall UnknownScript_0x19d8df
 	jump UnknownScript_0x19d95a
@@ -346,8 +346,8 @@ FisherEdgarScript: ; 0x19d9f6
 	talkaftercancel
 	loadfont
 	writetext UnknownText_0x19db6f
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 ; 0x19d9fe
 
@@ -375,8 +375,8 @@ CooltrainerfCybilScript: ; 0x19da0a
 	talkaftercancel
 	loadfont
 	writetext UnknownText_0x19df4d
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 ; 0x19da12
 
@@ -404,8 +404,8 @@ PokemaniacZachScript: ; 0x19da1e
 	talkaftercancel
 	loadfont
 	writetext UnknownText_0x19dd7e
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 ; 0x19da26
 
@@ -433,8 +433,8 @@ CooltrainermAllenScript: ; 0x19da32
 	talkaftercancel
 	loadfont
 	writetext UnknownText_0x19de66
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 ; 0x19da3a
 

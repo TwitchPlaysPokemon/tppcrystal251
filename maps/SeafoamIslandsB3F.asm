@@ -8,8 +8,8 @@ ArticunoScript1:
 	loadfont
 	writetext ArticunoText1
 	cry ARTICUNO
+	waitbutton
 	closetext
-	loadmovesprites
 	loadpokedata ARTICUNO, 70
 	writecode VAR_BATTLETYPE, BATTLETYPE_KANTOLEGEND
 	startbattle
