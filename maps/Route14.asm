@@ -1,4 +1,4 @@
-Route14_MapScriptHeader: ; 0x1ad47d
+	Route14_MapScriptHeader: ; 0x1ad47d
 	; trigger count
 	db 0
 
@@ -103,47 +103,52 @@ PokefanmTrevorScript: ; 0x1ad4ba
 ; 0x1ad4c2
 
 PokefanmCarterSeenText: ; 0x1ad4c2
-	text "Let me tell you,"
-	line "I had a hard time"
+	text "My son wanted to"
+	line "get some new pets."
 
-	para "catching my prized"
-	line "#MON."
+	para "We caught some"
+	line "at the route here."
 	done
 ; 0x1ad4ff
 
 PokefanmCarterBeatenText: ; 0x1ad4ff
-	text "Awaaah!"
+	text "SON: Dad, can we"
+	line "keep them, please?"
 	done
 ; 0x1ad508
 
 UnknownText_0x1ad508: ; 0x1ad508
-	text "SQUIRTLE, CHARMAN-"
-	line "DER and BULBASAUR…"
+	text "Cat, duck, bird..."
 
-	para "I think that's a"
-	line "well-balanced mix."
+	para "I wonder how they"
+	line "will get along."
 	done
 ; 0x1ad552
 
 Bird_keeperRoySeenText: ; 0x1ad552
-	text "My dream is to fly"
-	line "with my beloved"
-	cont "bird #MON."
+	text "I'm going to"
+	line "become the king"
+	cont "of the birds!"
 	done
 ; 0x1ad581
 
 Bird_keeperRoyBeatenText: ; 0x1ad581
-	text "I can dream, but I"
-	line "can't ever fly…"
+	text "I only lost"
+	line "because of"
+	cont "horrible luck!"
+	
+	para "I'm actually"
+	line "better than you!"
 	done
 ; 0x1ad5a4
 
 UnknownText_0x1ad5a4: ; 0x1ad5a4
-	text "You have #MON"
-	line "that know the HM"
+	text "SLEEP TALK"
+	line "never picks"
+	cont "moves like FLY."
 
-	para "move FLY, don't"
-	line "you? I envy you."
+	para "It's something all"
+	line "top trainers know."
 	done
 ; 0x1ad5e4
 
@@ -161,7 +166,7 @@ PokefanmTrevorSeenText: ; 0x1ad5e4
 
 PokefanmTrevorBeatenText: ; 0x1ad640
 	text "Where did I meet"
-	line "this PSYDUCK?"
+	line "this BUTTERFREE?"
 	done
 ; 0x1ad660
 

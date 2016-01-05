@@ -150,7 +150,8 @@ ENDM
 	move HI_JUMP_KICK, EFFECT_JUMP_KICK,         130, PHYSICAL, FIGHTING,  90, 10,   0 ; EFFECT_JUMP_KICK crash damage 50%
 	move GLARE,        EFFECT_PARALYZE,            0, STATUS,   NORMAL,   100, 30,   0
 	move DREAM_EATER,  EFFECT_DREAM_EATER,       100, SPECIAL,  PSYCHIC,  100, 15,   0
-	move POISON_GAS,   EFFECT_POISON,              0, STATUS,   POISON,    90, 40,   0
+;	move POISON_GAS,   EFFECT_POISON,              0, STATUS,   POISON,    90, 40,   0
+	move ROCK_POLISH,  EFFECT_SPEED_UP_2,          0, STATUS,   ROCK,     100, 20,   0 ; replacing Poison Gas
 	move SEED_BOMB,    EFFECT_NORMAL_HIT,         80, PHYSICAL, GRASS,    100, 15,   0 ; replacing Barrage
 	move LEECH_LIFE,   EFFECT_LEECH_HIT,          35, PHYSICAL, BUG,      100, 15,   0 ; small buff to make useful early game
 	move LOVELY_KISS,  EFFECT_SLEEP,               0, STATUS,   NORMAL,    75, 10,   0

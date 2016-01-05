@@ -6,12 +6,12 @@ SeedBomb:
 FairyWind:
 DragonPulse:
 KarateChop:
-MegaPunch:
+;MegaPunch:
 Scratch:
 ;Vicegrip:
 Cut:
 WingAttack:
-;Slam:
+Slam:
 VineWhip:
 MegaKick:
 HornAttack:
@@ -376,6 +376,7 @@ DefenseUp2:
 	endmove
 
 Agility:
+RockPolish:
 SpeedUp2:
 	checkobedience
 	usedmovetext
@@ -1208,7 +1209,7 @@ TriAttack:
 
 Toxic:
 Poisonpowder:
-PoisonGas:
+;PoisonGas:
 DoPoison:
 	checkobedience
 	usedmovetext
