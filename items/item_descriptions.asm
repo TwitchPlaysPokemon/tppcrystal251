@@ -172,7 +172,7 @@ ItemDescriptions:
 	dw CharcoalDesc
 	dw BerryJuiceDesc
 	dw ScopeLensDesc
-	dw TeruSama12Desc
+	dw OaksParcelDesc
 	dw TeruSama13Desc
 	dw MetalCoatDesc
 	dw DragonFangDesc
@@ -831,8 +831,9 @@ ScopeLensDesc:
 	db   "Raises critical"
 	next "hit ratio. (HOLD)@"
 
-TeruSama12Desc:
-	db   "?@"
+OaksParcelDesc:
+	db   "A package for"
+	next "PROF.OAK.@"
 
 TeruSama13Desc:
 	db   "?@"

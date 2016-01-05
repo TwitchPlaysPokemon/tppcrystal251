@@ -66,7 +66,7 @@ MapKrissHouse2FSignpost2Script: ; 0x7abda
 	pause 45
 	writetext UnknownText_0x7ac64
 	pause 45
-	musicfadeout $003c, $10
+	musicfadeout MUSIC_NEW_BARK_TOWN, $10
 	writetext UnknownText_0x7ac84
 	pause 45
 	closetext

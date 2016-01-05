@@ -101,6 +101,9 @@ ENDM
 	trigger_def PALLET_TOWN_RB,                         wPalletTownRBMapTrigger
 	trigger_def OAKS_LAB_RB,                            wOaksLabRBMapTrigger
 	trigger_def VIRIDIAN_CITY_RB,                       wViridianCityRBMapTrigger
+	trigger_def VIRIDIAN_MART_RB,                       wViridianMartRBMapTrigger
+	trigger_def ROUTE_22_RB,                            wRoute22RBMapTrigger
+	trigger_def VICTORY_ROAD_GATE_RB,                   wVictoryRoadGateRBMapTrigger
 	trigger_def PEWTER_CITY_RB,                         wPewterCityRBMapTrigger
 	trigger_def CERULEAN_CITY_RB,                       wCeruleanCityRBMapTrigger
 	trigger_def ROUTE_24_RB,                            wRoute24RBMapTrigger

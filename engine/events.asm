@@ -154,6 +154,7 @@ EnterMap: ; 9673e
 	ld [$ff9f], a ;load 0 into ??? and 2 into map status
 	ld a, 2 ; HandleMap
 	ld [MapStatus], a
+	callba DeleteSavedMusic
 	ret
 ; 9676d
 

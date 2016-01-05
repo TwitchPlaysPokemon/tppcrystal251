@@ -309,12 +309,14 @@ OakScript_OaksLabRB:
 	end
 
 .GivePokedex
+	setevent EVENT_001_STD
 	faceplayer
 	loadfont
 	writetext _OaksLabDeliverParcelText1
 	playsound SFX_KEY_ITEM
 	waitsfx
 	buttonsound
+	takeitem OAKS_PARCEL, 1
 	writetext _OaksLabDeliverParcelText2
 	waitbutton
 	closetext
@@ -323,16 +325,22 @@ OakScript_OaksLabRB:
 	writetext _OaksLabText21
 	waitbutton
 	closetext
-	appear $6
+	spriteface $2, DOWN
 	checkcode VAR_FACING
 	if_equal UP, .rivalwalksfivesteps
 	if_equal DOWN, .rivalwalksthreesteps
+	moveperson $6, 5, 7
+	appear $6
 	applymovement $6, Movement_RivalTakesFourStepsUp
 	jump .continuewithdex
 .rivalwalksthreesteps
+	moveperson $6, 5, 6
+	appear $6
 	applymovement $6, Movement_RivalTakesThreeStepsUp
 	jump .continuewithdex
 .rivalwalksfivesteps
+	moveperson $6, 5, 8
+	appear $6
 	applymovement $6, Movement_RivalTakesFiveStepsUp
 .continuewithdex
 	special RestartMapMusic
@@ -349,15 +357,22 @@ OakScript_OaksLabRB:
 	disappear $a
 	disappear $b
 	setflag ENGINE_POKEDEX
+	setevent EVENT_VIRIDIAN_CITY_RB_OLD_MAN_LYING_DOWN
+	clearevent EVENT_VIRIDIAN_CITY_RB_OLD_MAN_WALKING_ABOUT
+	domaptrigger GROUP_ROUTE_22_RB, MAP_ROUTE_22_RB, $1
+	domaptrigger GROUP_VIRIDIAN_CITY_RB, MAP_VIRIDIAN_CITY_RB, $1
 	playsound SFX_KEY_ITEM
 	waitsfx
 	writetext _OaksLabText26
 	waitbutton
 	closetext
+	faceperson $0, $6
+	faceperson $6, $0
 	loadfont
 	writetext _OaksLabText27
 	waitbutton
 	closetext
+	spriteface $0, DOWN
 	playmusic MUSIC_RIVAL_AFTER_RB
 	checkcode VAR_FACING
 	if_equal DOWN, .finishaboveoak

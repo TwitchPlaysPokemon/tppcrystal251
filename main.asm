@@ -40,7 +40,7 @@ LoadPushOAM:: ; 4031
 ; 403f
 
 PushOAM: ; 403f
-	ld a, Sprites >> 8
+	ld a, Sprites / $100
 	ld [rDMA], a
 	ld a, $28
 .loop
@@ -879,9 +879,9 @@ NamePlayer: ; 0x6074
 	ret
 
 .Chris
-	db "CHRIS@@@@@@"
+	db "RUST@@@@@@@"
 .Kris
-	db "KRIS@@@@@@@"
+	db "AZURE@@@@@@"
 ; 60e9
 
 NameRivalRB: ; 0x6074
@@ -17845,7 +17845,7 @@ Group13Sprites: ; 144ec
 	db SPRITE_WILL
 	db SPRITE_KAREN
 	db SPRITE_NURSE
-	db SPRITE_OLD_LINK_RECEPTIONIST
+	db SPRITE_SIDEWAYS_GRAMPS
 	db SPRITE_BIG_LAPRAS
 	db SPRITE_BIG_ONIX
 	db SPRITE_SUDOWOODO
@@ -18094,7 +18094,7 @@ Group23Sprites: ; 14503
 	db SPRITE_WILL
 	db SPRITE_KAREN
 	db SPRITE_NURSE
-	db SPRITE_OLD_LINK_RECEPTIONIST
+	db SPRITE_SIDEWAYS_GRAMPS
 	db SPRITE_BIG_LAPRAS
 	db SPRITE_BIG_ONIX
 	db SPRITE_SUDOWOODO
@@ -27457,6 +27457,9 @@ TrainerCardPage3_LoadGFX: ; 2524c (9:524c)
 	ld hl, $9290
 	lb bc, BANK(LeaderGFX2), $56
 	call Request2bpp
+	ld a, [StatusFlags]
+	bit 5, a
+	call z, LoadBadgeNumberIcons_EarlyGameKanto
 	ld de, BadgeGFX2
 	ld hl, $8000
 	lb bc, BANK(BadgeGFX2), $2c
@@ -27972,6 +27975,35 @@ KantoBadgesOAM:
 	db $1c | $80, $20, $24, $20 | $80
 ; 25523
 
+LoadBadgeNumberIcons_EarlyGameKanto:
+	ld a, 8
+	ld de, LeaderGFX
+	ld hl, $9290
+.loop
+	push af
+	push hl
+	push de
+	push af
+	lb bc, BANK(LeaderGFX), 1
+	call Request2bpp
+	pop af
+	sub 8
+	cpl
+	ld bc, $a0
+	ld hl, 0
+	call AddNTimes
+	pop de
+	push hl
+	add hl, de
+	ld d, h
+	ld e, l
+	pop bc
+	pop hl
+	add hl, bc
+	pop af
+	dec a
+	jr nz, .loop
+	ret
 
 CardStatusGFX: INCBIN "gfx/misc/card_status.2bpp"
 LeaderGFX:  INCLUDE "gfx/misc/johto_leaders.asm"

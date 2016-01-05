@@ -27,6 +27,7 @@ SaffronCity_BlockData: ; 0xa86ba
 ; 0xa8822
 
 Route2_BlockData: ; 0xa8822
+Route2RB_BlockData: ; 0xa8822
 	INCBIN "maps/Route2.blk"
 ; 0xa8930
 
@@ -189,6 +190,7 @@ CianwoodCityPhotoStudio_BlockData:
 CianwoodLugiaSpeechHouse_BlockData:
 PokeSeersHouse_BlockData:
 ViridianNicknameSpeechHouse_BlockData:
+ViridianNicknameSpeechHouseRB_BlockData:
 Route2NuggetSpeechHouse_BlockData:
 KrissNeighborsHouse_BlockData:
 Route26HealSpeechHouse_BlockData:
@@ -309,6 +311,7 @@ Route9_BlockData: ; 0xabde9
 ; 0xabef7
 
 Route22_BlockData: ; 0xabef7
+Route22RB_BlockData: ; 0xabef7
 	INCBIN "maps/Route22.blk"
 ; 0xabfab
 

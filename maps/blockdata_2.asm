@@ -14,6 +14,7 @@ PewterMart_BlockData:
 FuchsiaMart_BlockData:
 LavenderMart_BlockData:
 ViridianMart_BlockData:
+ViridianMartRB_BlockData:
 SaffronMart_BlockData:
 CherrygroveMart_BlockData:
 	INCBIN "maps/OlivineMart.blk"
@@ -43,6 +44,7 @@ SilverCavePokeCenter1F_BlockData:
 CeladonPokeCenter1F_BlockData:
 CianwoodPokeCenter1F_BlockData:
 ViridianPokeCenter1F_BlockData:
+ViridianPokeCenter1FRB_BlockData:
 SaffronPokeCenter1F_BlockData:
 CherrygrovePokeCenter1F_BlockData:
 MtMoonPokeCenter1F_BlockData:

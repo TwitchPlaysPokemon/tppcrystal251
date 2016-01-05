@@ -2248,6 +2248,9 @@ wDummyBlankMapTrigger::                      ds 1
 wPalletTownRBMapTrigger::                    ds 1
 wOaksLabRBMapTrigger::                       ds 1
 wViridianCityRBMapTrigger::                  ds 1
+wViridianMartRBMapTrigger::                  ds 1
+wRoute22RBMapTrigger::                       ds 1
+wVictoryRoadGateRBMapTrigger::               ds 1
 wPewterCityRBMapTrigger::                    ds 1
 wCeruleanCityRBMapTrigger::                  ds 1
 wRoute24RBMapTrigger::                       ds 1
@@ -2255,7 +2258,7 @@ wRoute5SaffronGateRBMapTrigger::             ds 1
 wRoute6SaffronGateRBMapTrigger::             ds 1
 wVermilionCityRBMapTrigger::                 ds 1
 
-	ds 29
+	ds 26
 
 
 SECTION "Events", WRAMX, BANK [1]
@@ -2417,7 +2420,7 @@ wdca1:: ds 3 ; Repel step count
 wdca4:: ds 1
 
 VisitedSpawns:: ; dca5
-	flag_array 27
+	flag_array 35
 
 wdca9:: ds 1
 wdcaa:: ds 1
@@ -2431,7 +2434,7 @@ BackupMapGroup:: ; dcad
 BackupMapNumber:: ; dcae
 	ds 1
 
-	ds 3
+	ds 2
 
 wdcb2:: ds 1
 wdcb3:: ds 1

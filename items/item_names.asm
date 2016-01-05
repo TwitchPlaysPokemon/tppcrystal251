@@ -138,7 +138,7 @@
 	db "CHARCOAL@"
 	db "BERRY JUICE@"
 	db "SCOPE LENS@"
-	db "TERU-SAMA@"
+	db "OAK'S PARCEL@"
 	db "TERU-SAMA@"
 	db "METAL COAT@"
 	db "DRAGON FANG@"

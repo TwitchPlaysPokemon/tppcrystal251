@@ -875,6 +875,7 @@ InitializeEventsScript: ; 0xbc3db
 	setevent EVENT_STATIC_SUICUNE
 	setevent EVENT_PALLET_TOWN_RB_OAK
 	setevent EVENT_OAKS_LAB_OAK
+	setevent EVENT_VIRIDIAN_CITY_RB_OLD_MAN_WALKING_ABOUT
 	return
 ; 0xbc574
 
