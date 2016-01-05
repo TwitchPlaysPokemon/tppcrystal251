@@ -34621,6 +34621,9 @@ ChrisBackpic: ; 2ba1a
 INCBIN "gfx/misc/player.6x6.2bpp.lz"
 ; 2bbaa
 
+OldManBackpic:
+; INCBIN "gfx/misc/oldman.6x6.2bpp.lz"
+
 DudeBackpic: ; 2bbaa
 INCBIN "gfx/misc/dude.6x6.2bpp.lz"
 ; 2bcea
@@ -72363,7 +72366,25 @@ Function9102f: ; 9102f (24:502f)
 	ld hl, wc6d7
 	ld a, [hl]
 	cp d
+	jr nc, .wrap_around
+	cp KANTO_LANDMARK
 	jr c, .asm_91047
+	push hl
+	ld hl, StatusFlags
+	bit 5, [hl]
+	pop hl
+	jr nz, .asm_91047
+	cp CELADON_CITY
+	jr z, .inc_extra
+	cp CINNABAR_ISLAND
+	jr z, .inc_extra
+	cp ROUTE_22
+	jr nz, .asm_91047
+.inc_extra
+	inc [hl]
+	jr .asm_91047
+	
+.wrap_around
 	ld a, e
 	dec a
 	ld [hl], a
@@ -72375,7 +72396,25 @@ Function9102f: ; 9102f (24:502f)
 	ld hl, wc6d7
 	ld a, [hl]
 	cp e
+	jr z, .wrap_back
+	cp KANTO_LANDMARK
+	jr c, .asm_91054
+	push hl
+	ld hl, StatusFlags
+	bit 5, [hl]
+	pop hl
 	jr nz, .asm_91054
+	cp SAFFRON_CITY
+	jr z, .dec_extra
+	cp ROUTE_21
+	jr z, .dec_extra
+	cp VICTORY_ROAD
+	jr nz, .asm_91054
+.dec_extra
+	dec [hl]
+	jr .asm_91054
+
+.wrap_back
 	ld a, d
 	inc a
 	ld [hl], a
