@@ -631,7 +631,7 @@ LakeofRage_MapEventHeader: ; 0x70919
 	; people-events
 	db 12
 	person_event SPRITE_LANCE, 32, 25, $7, 0, 0, -1, -1, 0, 0, 0, LanceScript_0x70022, EVENT_LANCE_IN_LAKE_OF_RAGE
-	person_event SPRITE_GRAMPS, 30, 24, $8, 0, 0, -1, -1, 0, 0, 0, GrampsScript_0x7008e, -1
+	person_event SPRITE_GRAMPS, 30, 24, $7, 0, 0, -1, -1, 0, 0, 0, GrampsScript_0x7008e, -1
 	person_event SPRITE_SUPER_NERD, 17, 40, $8, 0, 0, -1, -1, 0, 0, 0, SuperNerdScript_0x700a2, -1
 	person_event SPRITE_COOLTRAINER_F, 33, 29, $5, 0, 1, -1, -1, 0, 0, 0, CooltrainerFScript_0x700a5, -1
 	person_event SPRITE_FISHER, 27, 34, $8, 0, 0, -1, -1, 8 + PAL_OW_BLUE, 2, 1, TrainerFisherAndre, EVENT_LAKE_OF_RAGE_TRAINERS
