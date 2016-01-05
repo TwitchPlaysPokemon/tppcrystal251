@@ -2245,20 +2245,21 @@ wRocketHideout2Trigger::                     ds 1
 wRocketHideout3Trigger::                     ds 1
 wTohjoFallsBackRoomTrigger::                 ds 1
 wDummyBlankMapTrigger::                      ds 1
-wPalletTownRBMapTrigger::                    ds 1
-wOaksLabRBMapTrigger::                       ds 1
-wViridianCityRBMapTrigger::                  ds 1
-wViridianMartRBMapTrigger::                  ds 1
-wRoute22RBMapTrigger::                       ds 1
-wVictoryRoadGateRBMapTrigger::               ds 1
-wPewterCityRBMapTrigger::                    ds 1
-wCeruleanCityRBMapTrigger::                  ds 1
-wRoute24RBMapTrigger::                       ds 1
-wRoute5SaffronGateRBMapTrigger::             ds 1
-wRoute6SaffronGateRBMapTrigger::             ds 1
-wVermilionCityRBMapTrigger::                 ds 1
+wPalletTownRBTrigger::                    ds 1
+wOaksLabRBTrigger::                       ds 1
+wViridianCityRBTrigger::                  ds 1
+wViridianMartRBTrigger::                  ds 1
+wRoute22RBTrigger::                       ds 1
+wVictoryRoadGateRBTrigger::               ds 1
+wRoute23RBTrigger::                       ds 1
+wPewterCityRBTrigger::                    ds 1
+wCeruleanCityRBTrigger::                  ds 1
+wRoute24RBTrigger::                       ds 1
+wRoute5SaffronGateRBTrigger::             ds 1
+wRoute6SaffronGateRBTrigger::             ds 1
+wVermilionCityRBTrigger::                 ds 1
 
-	ds 26
+	ds 25
 
 
 SECTION "Events", WRAMX, BANK [1]

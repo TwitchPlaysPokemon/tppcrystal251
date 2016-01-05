@@ -24,7 +24,6 @@ VictoryRoadGateRB_OfficerScript:
 
 VictoryRoadGateRB_BoulderBadgeCheckTrigger:
 	spriteface $0, RIGHT
-	spriteface $2, LEFT
 VictoryRoadGateRB_OfficerScriptAndTriggerContinue:
 	loadfont
 	checkflag ENGINE_BOULDERBADGE
@@ -78,9 +77,11 @@ VictoryRoadGateRB_MapEventHeader: ; 0x9bb9b
 	db 0, 0
 
 	; warps
-	db 2
+	db 4
 	warp_def $7, $4, 1, GROUP_ROUTE_22_RB, MAP_ROUTE_22_RB
 	warp_def $7, $5, 1, GROUP_ROUTE_22_RB, MAP_ROUTE_22_RB
+	warp_def $0, $4, 1, GROUP_ROUTE_23_RB, MAP_ROUTE_23_RB
+	warp_def $0, $5, 2, GROUP_ROUTE_23_RB, MAP_ROUTE_23_RB
 
 	; xy triggers
 	db 2

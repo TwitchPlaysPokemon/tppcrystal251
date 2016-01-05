@@ -98,17 +98,18 @@ ENDM
 	trigger_def ROCKET_HIDEOUT_3,                       wRocketHideout3Trigger
 	trigger_def TOHJO_FALLS_BACK_ROOM,                  wTohjoFallsBackRoomTrigger
 	trigger_def DUMMY_BLANK_MAP,                        wDummyBlankMapTrigger
-	trigger_def PALLET_TOWN_RB,                         wPalletTownRBMapTrigger
-	trigger_def OAKS_LAB_RB,                            wOaksLabRBMapTrigger
-	trigger_def VIRIDIAN_CITY_RB,                       wViridianCityRBMapTrigger
-	trigger_def VIRIDIAN_MART_RB,                       wViridianMartRBMapTrigger
-	trigger_def ROUTE_22_RB,                            wRoute22RBMapTrigger
-	trigger_def VICTORY_ROAD_GATE_RB,                   wVictoryRoadGateRBMapTrigger
-	trigger_def PEWTER_CITY_RB,                         wPewterCityRBMapTrigger
-	trigger_def CERULEAN_CITY_RB,                       wCeruleanCityRBMapTrigger
-	trigger_def ROUTE_24_RB,                            wRoute24RBMapTrigger
-	trigger_def ROUTE_5_SAFFRON_CITY_GATE_RB,           wRoute5SaffronGateRBMapTrigger
-	trigger_def ROUTE_6_SAFFRON_GATE_RB,                wRoute6SaffronGateRBMapTrigger
-	trigger_def VERMILION_CITY_RB,                      wVermilionCityRBMapTrigger
+	trigger_def PALLET_TOWN_RB,                         wPalletTownRBTrigger
+	trigger_def OAKS_LAB_RB,                            wOaksLabRBTrigger
+	trigger_def VIRIDIAN_CITY_RB,                       wViridianCityRBTrigger
+	trigger_def VIRIDIAN_MART_RB,                       wViridianMartRBTrigger
+	trigger_def ROUTE_22_RB,                            wRoute22RBTrigger
+	trigger_def VICTORY_ROAD_GATE_RB,                   wVictoryRoadGateRBTrigger
+	trigger_def ROUTE_23_RB,                            wRoute23RBTrigger
+	trigger_def PEWTER_CITY_RB,                         wPewterCityRBTrigger
+	trigger_def CERULEAN_CITY_RB,                       wCeruleanCityRBTrigger
+	trigger_def ROUTE_24_RB,                            wRoute24RBTrigger
+	trigger_def ROUTE_5_SAFFRON_CITY_GATE_RB,           wRoute5SaffronGateRBTrigger
+	trigger_def ROUTE_6_SAFFRON_GATE_RB,                wRoute6SaffronGateRBTrigger
+	trigger_def VERMILION_CITY_RB,                      wVermilionCityRBTrigger
 	db $ff
 ; 4d15b
