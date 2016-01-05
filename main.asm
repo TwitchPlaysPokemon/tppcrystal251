@@ -73629,7 +73629,25 @@ Function919b0: ; 919b0
 	ld hl, wd003
 	ld a, [hl]
 	cp d
+	jr nc, .wrap_around
+	cp KANTO_LANDMARK
 	jr c, .asm_919de
+	push hl
+	ld hl, StatusFlags
+	bit 5, [hl]
+	pop hl
+	jr nz, .asm_919de
+	cp CELADON_CITY
+	jr z, .inc_extra
+	cp CINNABAR_ISLAND
+	jr z, .inc_extra
+	cp ROUTE_22
+	jr nz, .asm_919de
+.inc_extra
+	inc [hl]
+	jr .asm_919de
+
+.wrap_around
 	ld a, e
 	dec a
 	ld [hl], a
@@ -73641,7 +73659,25 @@ Function919b0: ; 919b0
 	ld hl, wd003
 	ld a, [hl]
 	cp e
+	jr z, .wrap_back
+	cp KANTO_LANDMARK
+	jr c, .asm_919eb
+	push hl
+	ld hl, StatusFlags
+	bit 5, [hl]
+	pop hl
 	jr nz, .asm_919eb
+	cp SAFFRON_CITY
+	jr z, .dec_extra
+	cp ROUTE_21
+	jr z, .dec_extra
+	cp VICTORY_ROAD
+	jr nz, .asm_919eb
+.dec_extra
+	dec [hl]
+	jr .asm_919eb
+
+.wrap_back
 	ld a, d
 	inc a
 	ld [hl], a
