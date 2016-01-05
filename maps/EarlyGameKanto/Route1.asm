@@ -88,8 +88,8 @@ Route1RB_MapEventHeader: ; 0x1ac69a
 
 	; people-events
 	db 3
-	person_event SPRITE_YOUNGSTER, 16, 8, $9, 0, 0, -1, -1, 8 + PAL_OW_BLUE, 0, 0, Route1RB_Youngster1Script, -1
-	person_event SPRITE_YOUNGSTER, 33, 13, $a, 0, 0, -1, -1, 8 + PAL_OW_BLUE, 0, 0, Route1RB_Youngster2Script, -1
+	person_event SPRITE_YOUNGSTER, 33,  8, $4, 1, 0, -1, -1, 8 + PAL_OW_BLUE, 0, 0, Route1RB_Youngster1Script, -1
+	person_event SPRITE_YOUNGSTER, 17, 17, $5, 0, 1, -1, -1, 8 + PAL_OW_BLUE, 0, 0, Route1RB_Youngster2Script, -1
 	person_event SPRITE_FRUIT_TREE, 11, 7, $1, 0, 0, -1, -1, 0, 0, 0, FruitTreeScript_Route1RB, -1
 ; 0x1ac6cc
 
