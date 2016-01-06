@@ -27486,12 +27486,16 @@ TrainerCardPage3_WaitJoypad: ; 25279 (9:5279)
 .asm_2528d
 	ld hl, StatusFlags
 	bit 5, [hl]
-	jr z, .asm_25293
+	jr z, .page_1
 	ld a, $2
 	ld [wcf63], a
 	jr .dotrick
 
 .asm_25293
+	ld hl, StatusFlags
+	bit 5, [hl]
+	jr z, .dotrick
+.page_1
 	ld a, $0
 	ld [wcf63], a
 	jr .dotrick
@@ -27983,21 +27987,13 @@ LoadBadgeNumberIcons_EarlyGameKanto:
 	push af
 	push hl
 	push de
-	push af
 	lb bc, BANK(LeaderGFX), 1
 	call Request2bpp
-	pop af
-	sub 8
-	cpl
 	ld bc, $a0
-	ld hl, 0
-	call AddNTimes
-	pop de
-	push hl
-	add hl, de
+	pop hl
+	add hl, bc
 	ld d, h
 	ld e, l
-	pop bc
 	pop hl
 	add hl, bc
 	pop af
