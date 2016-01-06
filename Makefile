@@ -75,7 +75,7 @@ pokecrystal.gbc: $(crystal_obj)
 
 %.2bpp: %.png ; $(gfx) 2bpp $<
 %.1bpp: %.png ; $(gfx) 1bpp $<
-%.lz:   %     ; $(gfx) lz $<
+#%.lz:   %     ; $(gfx) lz $<
 
 
 %.pal: %.2bpp ;
