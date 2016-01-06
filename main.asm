@@ -2022,141 +2022,202 @@ CheckNickErrors:: ; 669f
 ; 66de
 
 _Multiply:: ; 66de
+
 ; hMultiplier is one byte.
+	ld a, 8
+	ld b, a
 
-	ld a, [hMultiplier]
-	cp 1
-	ret z
-	and a
-	jr z, .fill
-	ld c, a
-	ld a, [hMultiplicand]
-	ld e, a
-	ld a, [hMultiplicand + 1]
-	ld h, a
-	ld a, [hMultiplicand + 2]
-	ld l, a
 	xor a
-	ld d, a
-	call .fill
-	ld b, 8
-.loop
-	srl c
-	jr nc, .next
-	ld a, [hProduct + 3]
-	add l
-	ld [hProduct + 3], a
-	ld a, [hProduct + 2]
-	adc h
-	ld [hProduct + 2], a
-	ld a, [hProduct + 1]
-	adc e
-	ld [hProduct + 1], a
-	ld a, [hProduct]
-	adc d
 	ld [hProduct], a
-.next
-	sla l
-	rl h
-	rl e
-	rl d
-	dec b
-	jr nz, .loop
-	ret
+	ld [hMathBuffer + 1], a
+	ld [hMathBuffer + 2], a
+	ld [hMathBuffer + 3], a
+	ld [hMathBuffer + 4], a
 
-.fill
+
+.loop
+	ld a, [hMultiplier]
+	srl a
+	ld [hMultiplier], a
+	jr nc, .next
+
+	ld a, [hMathBuffer + 4]
+	ld c, a
+	ld a, [hMultiplicand + 2]
+	add c
+	ld [hMathBuffer + 4], a
+
+	ld a, [hMathBuffer + 3]
+	ld c, a
+	ld a, [hMultiplicand + 1]
+	adc c
+	ld [hMathBuffer + 3], a
+
+	ld a, [hMathBuffer + 2]
+	ld c, a
+	ld a, [hMultiplicand + 0]
+	adc c
+	ld [hMathBuffer + 2], a
+
+	ld a, [hMathBuffer + 1]
+	ld c, a
+	ld a, [hProduct]
+	adc c
+	ld [hMathBuffer + 1], a
+
+.next
+	dec b
+	jr z, .done
+
+
+; hMultiplicand <<= 1
+
+	ld a, [hMultiplicand + 2]
+	add a
+	ld [hMultiplicand + 2], a
+
+	ld a, [hMultiplicand + 1]
+	rla
+	ld [hMultiplicand + 1], a
+
+	ld a, [hMultiplicand + 0]
+	rla
+	ld [hMultiplicand + 0], a
+
+	ld a, [hProduct]
+	rla
 	ld [hProduct], a
-	ld [hProduct + 1], a
-	ld [hProduct + 2], a
+
+	jr .loop
+
+
+.done
+	ld a, [hMathBuffer + 4]
 	ld [hProduct + 3], a
+
+	ld a, [hMathBuffer + 3]
+	ld [hProduct + 2], a
+
+	ld a, [hMathBuffer + 2]
+	ld [hProduct + 1], a
+
+	ld a, [hMathBuffer + 1]
+	ld [hProduct + 0], a
+
 	ret
 
 ; 673e
 
 _Divide:: ; 673e
-	ld a, [hDivisor]
-	and a
-	jp z, .div0
-	ld d, a
-	ld c, hDividend % $100
-	ld e, 0
-	ld l, e
-	
-.loop
-	push bc
-	ld b, 8
-	ld a, [$ff00+c]
-	ld h, a
-.loop2
-	sla h
-	rl e
-	ld a, e
-	jr c, .carry
-	cp d
-	jr c, .skip
-.carry
-	sub d
+	xor a
+	ld [hMathBuffer + 0], a
+	ld [hMathBuffer + 1], a
+	ld [hMathBuffer + 2], a
+	ld [hMathBuffer + 3], a
+	ld [hMathBuffer + 4], a
+
+	ld a, 9
 	ld e, a
-	inc l
-.skip
+
+.loop
+	ld a, [hMathBuffer + 0]
+	ld c, a
+	ld a, [hDividend + 1]
+	sub c
+	ld d, a
+
+	ld a, [hDivisor]
+	ld c, a
+	ld a, [hDividend + 0]
+	sbc c
+	jr c, .next
+
+	ld [hDividend + 0], a
+
+	ld a, d
+	ld [hDividend + 1], a
+
+	ld a, [hMathBuffer + 4]
+	inc a
+	ld [hMathBuffer + 4], a
+
+	jr .loop
+
+.next
 	ld a, b
 	cp 1
 	jr z, .done
-	sla l
+
+	ld a, [hMathBuffer + 4]
+	add a
+	ld [hMathBuffer + 4], a
+
+	ld a, [hMathBuffer + 3]
+	rla
+	ld [hMathBuffer + 3], a
+
+	ld a, [hMathBuffer + 2]
+	rla
+	ld [hMathBuffer + 2], a
+
+	ld a, [hMathBuffer + 1]
+	rla
+	ld [hMathBuffer + 1], a
+
+	dec e
+	jr nz, .next2
+
+	ld e, 8
+	ld a, [hMathBuffer + 0]
+	ld [hDivisor], a
+	xor a
+	ld [hMathBuffer + 0], a
+
+	ld a, [hDividend + 1]
+	ld [hDividend + 0], a
+
+	ld a, [hDividend + 2]
+	ld [hDividend + 1], a
+
+	ld a, [hDividend + 3]
+	ld [hDividend + 2], a
+
+.next2
+	ld a, e
+	cp 1
+	jr nz, .okay
 	dec b
-	jr .loop2
+
+.okay
+	ld a, [hDivisor]
+	srl a
+	ld [hDivisor], a
+
+	ld a, [hMathBuffer + 0]
+	rr a
+	ld [hMathBuffer + 0], a
+
+	jr .loop
 
 .done
-	ld a, c
-	add hMathBuffer - hDividend
-	ld c, a
-	ld a, l
-	ld [$ff00+c], a
-	pop bc
-	inc c
-	dec b
-	jr nz, .loop
-	
-	xor a
-	ld [hDividend], a
-	ld [hDividend + 1], a
-	ld [hDividend + 2], a
+	ld a, [hDividend + 1]
+	ld [hDivisor], a
+
+	ld a, [hMathBuffer + 4]
 	ld [hDividend + 3], a
-	ld a, h
-	ld [hDivisor], a ; I believe the remainder is stored here…
-	ld a, c
-	sub hDividend % $100
-	ld b, a
-	ld a, c
-	add hMathBuffer - hDividend - 1
-	ld c, a
-	ld a, [$ff00+c]
-	ld [hDividend + 3], a
-	dec b
-	ret z
-	dec c
-	ld a, [$ff00+c]
+
+	ld a, [hMathBuffer + 3]
 	ld [hDividend + 2], a
-	dec b
-	ret z
-	dec c
-	ld a, [$ff00+c]
+
+	ld a, [hMathBuffer + 2]
 	ld [hDividend + 1], a
-	dec b
-	ret z
-	dec c
-	ld a, [$ff00+c]
-	ld [hDividend], a
+
+	ld a, [hMathBuffer + 1]
+	ld [hDividend + 0], a
+
 	ret
-	
-.div0 ; OH SHI-
-	ld a, $ff
-	ld [hDividend], a
-	ld [hDividend + 1], a
-	ld [hDividend + 2], a
-	ld [hDividend + 3], a
-	ret
-	
+; 67c1
+
 ; 67c1
 
 ItemAttributes: ; 67c1
@@ -19062,12 +19123,12 @@ Function14f1c: ; 14f1c
 ; 14f7c
 
 DefaultOptions: ; 14f7c
-	db $03 ; mid text speed
+	db $21 ; fast text speed, stereo
 	db $00
 	db $00 ; frame 0
 	db $01
 	db $40 ; gb printer: normal brightness
-	db $01 ; menu account on
+	db $00 ; menu account off
 	db $00
 	db $00
 ; 14f84
@@ -47728,7 +47789,6 @@ Function4e0e7: ; 4e0e7 (13:60e7)
 	ld d, a
 	callba Function50e47
 	ld hl, TempMonExp + 2
-	ld hl, TempMonExp + 2
 	ld a, [$ffb6]
 	sub [hl]
 	dec hl
@@ -51275,122 +51335,134 @@ Function50e1b: ; 50e1b
 ; 50e47
 
 Function50e47: ; 50e47
-;d = level
-	ld a, [BaseGrowthRate] ;pull growth rate from base data?
+; (a/b)*n**3 + c*n**2 + d*n - e
+	ld a, [BaseGrowthRate]
 	add a
-	add a ;multiply by 4
+	add a
 	ld c, a
 	ld b, 0
 	ld hl, GrowthRates
-	add hl, bc ;add to growth rates, hl = start of correct formula
-	call Function50eed
+	add hl, bc
+; Cube the level
+	call .LevelSquared
 	ld a, d
 	ld [hMultiplier], a
 	call Multiply
+
+; Multiply by a
 	ld a, [hl]
 	and $f0
 	swap a
 	ld [hMultiplier], a
 	call Multiply
+; Divide by b
 	ld a, [hli]
 	and $f
-	ld [hMultiplier], a
-	ld b, $4
+	ld [hDivisor], a
+	ld b, 4
 	call Divide
-	ld a, [hMultiplicand]
+; Push the cubic term to the stack
+	ld a, [hQuotient + 0]
 	push af
-	ld a, [$ffb5]
+	ld a, [hQuotient + 1]
 	push af
-	ld a, [$ffb6]
+	ld a, [hQuotient + 2]
 	push af
-	call Function50eed
+; Square the level and multiply by the lower 7 bits of c
+	call .LevelSquared
 	ld a, [hl]
 	and $7f
 	ld [hMultiplier], a
 	call Multiply
-	ld a, [hMultiplicand]
+; Push the absolute value of the quadratic term to the stack
+	ld a, [hProduct + 1]
 	push af
-	ld a, [$ffb5]
+	ld a, [hProduct + 2]
 	push af
-	ld a, [$ffb6]
+	ld a, [hProduct + 3]
 	push af
 	ld a, [hli]
 	push af
+; Multiply the level by d
 	xor a
-	ld [hMultiplicand], a
-	ld [$ffb5], a
+	ld [hMultiplicand + 0], a
+	ld [hMultiplicand + 1], a
 	ld a, d
-	ld [$ffb6], a
+	ld [hMultiplicand + 2], a
 	ld a, [hli]
 	ld [hMultiplier], a
 	call Multiply
+; Subtract e
 	ld b, [hl]
-	ld a, [$ffb6]
+	ld a, [hProduct + 3]
 	sub b
-	ld [$ffb6], a
+	ld [hMultiplicand + 2], a
 	ld b, $0
-	ld a, [$ffb5]
+	ld a, [hProduct + 2]
 	sbc b
-	ld [$ffb5], a
-	ld a, [hMultiplicand]
+	ld [hMultiplicand + 1], a
+	ld a, [hProduct + 1]
 	sbc b
 	ld [hMultiplicand], a
+; If bit 7 of c is set, c is negative; otherwise, it's positive
 	pop af
 	and $80
-	jr nz, .asm_50ec8
+	jr nz, .subtract
+; Add c*n**2 to (d*n - e)
 	pop bc
-	ld a, [$ffb6]
+	ld a, [hProduct + 3]
 	add b
-	ld [$ffb6], a
+	ld [hMultiplicand + 2], a
 	pop bc
-	ld a, [$ffb5]
+	ld a, [hProduct + 2]
 	adc b
-	ld [$ffb5], a
+	ld [hMultiplicand + 1], a
 	pop bc
-	ld a, [hMultiplicand]
+	ld a, [hProduct + 1]
 	adc b
 	ld [hMultiplicand], a
-	jr .asm_50eda
+	jr .done_quadratic
 
-.asm_50ec8
+.subtract
+; Subtract c*n**2 from (d*n - e)
 	pop bc
-	ld a, [$ffb6]
+	ld a, [hProduct + 3]
 	sub b
-	ld [$ffb6], a
+	ld [hMultiplicand + 2], a
 	pop bc
-	ld a, [$ffb5]
+	ld a, [hProduct + 2]
 	sbc b
-	ld [$ffb5], a
+	ld [hMultiplicand + 1], a
 	pop bc
-	ld a, [hMultiplicand]
+	ld a, [hProduct + 1]
 	sbc b
 	ld [hMultiplicand], a
-.asm_50eda
+
+.done_quadratic
+; Add (a/b)*n**3 to (d*n - e +/- c*n**2)
 	pop bc
-	ld a, [$ffb6]
+	ld a, [hProduct + 3]
 	add b
-	ld [$ffb6], a
+	ld [hMultiplicand + 2], a
 	pop bc
-	ld a, [$ffb5]
+	ld a, [hProduct + 2]
 	adc b
-	ld [$ffb5], a
+	ld [hMultiplicand + 1], a
 	pop bc
-	ld a, [hMultiplicand]
+	ld a, [hProduct + 1]
 	adc b
 	ld [hMultiplicand], a
 	ret
-
 ; 50eed
 
-Function50eed: ; 50eed
+.LevelSquared: ; 50eed
 	xor a
-	ld [hMultiplicand], a
-	ld [$ffb5], a
+	ld [hMultiplicand + 0], a
+	ld [hMultiplicand + 1], a
 	ld a, d
-	ld [$ffb6], a
+	ld [hMultiplicand + 2], a
 	ld [hMultiplier], a
 	jp Multiply
-
 ; 50efa
 
 GrowthRates: ; 50efa

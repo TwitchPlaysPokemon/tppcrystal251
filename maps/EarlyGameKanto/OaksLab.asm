@@ -30,7 +30,7 @@ OaksLabRB_MapScriptHeader: ; 0x19b3c5
 .SetSprites:
 	checkevent EVENT_GOT_POKEMON_FROM_OAK
 	iftrue .skip
-	moveperson $2, $4, $a
+	moveperson $2, $5, $a
 	spriteface $2, UP
 .skip
 	return
@@ -89,7 +89,7 @@ CharmanderPokeballScript:
 	givepoke CHARMANDER, 5, BERRY
 	closetext
 	applymovement $6, Movement_RivalTakesTwoStepsDown
-	applymovement $6, Movement_RivalTakesFourStepsRight
+	applymovement $6, Movement_RivalTakesThreeStepsRight
 	applymovement $6, Movement_RivalTakesOneStepUp
 	loadfont
 	writetext _OaksLabRivalPickingMonText
@@ -132,7 +132,7 @@ BulbasaurPokeballScript:
 	givepoke BULBASAUR, 5, BERRY
 	closetext
 	applymovement $6, Movement_RivalTakesTwoStepsDown
-	applymovement $6, Movement_RivalTakesThreeStepsRight
+	applymovement $6, Movement_RivalTakesTwoStepsRight
 	applymovement $6, Movement_RivalTakesOneStepUp
 	loadfont
 	writetext _OaksLabRivalPickingMonText
@@ -175,7 +175,7 @@ SquirtlePokeballScript:
 	givepoke SQUIRTLE, 5, BERRY
 	closetext
 	applymovement $6, Movement_RivalTakesTwoStepsDown
-	applymovement $6, Movement_RivalTakesFiveStepsRight
+	applymovement $6, Movement_RivalTakesFourStepsRight
 	applymovement $6, Movement_RivalTakesOneStepUp
 	loadfont
 	writetext _OaksLabRivalPickingMonText
@@ -329,17 +329,17 @@ OakScript_OaksLabRB:
 	checkcode VAR_FACING
 	if_equal UP, .rivalwalksfivesteps
 	if_equal DOWN, .rivalwalksthreesteps
-	moveperson $6, 5, 7
+	moveperson $6, 6, 7
 	appear $6
 	applymovement $6, Movement_RivalTakesFourStepsUp
 	jump .continuewithdex
 .rivalwalksthreesteps
-	moveperson $6, 5, 6
+	moveperson $6, 6, 6
 	appear $6
 	applymovement $6, Movement_RivalTakesThreeStepsUp
 	jump .continuewithdex
 .rivalwalksfivesteps
-	moveperson $6, 5, 8
+	moveperson $6, 6, 8
 	appear $6
 	applymovement $6, Movement_RivalTakesFiveStepsUp
 .continuewithdex
@@ -491,15 +491,13 @@ Movement_RivalTakesOneStepDown:
 	step_down
 	step_end
 	
-Movement_RivalTakesFiveStepsRight:
-	step_right
 Movement_RivalTakesFourStepsRight:
 	step_right
 Movement_RivalTakesThreeStepsRight:
 	step_right
+Movement_RivalTakesTwoStepsRight:
 	step_right
 Movement_RivalTakesOneStepRight:
-Movement_RivalStepsRightToLeave:
 	step_right
 	step_end
 
@@ -942,11 +940,11 @@ OaksLabRB_MapEventHeader: ; 0x19ba33
 
 	; people-events
 	db 10
-	person_event SPRITE_OAK, 6, 8, $6, 0, 0, -1, -1, 0, 0, 0, OakScript_OaksLabRB, EVENT_OAKS_LAB_OAK
+	person_event SPRITE_OAK, 6, 9, $6, 0, 0, -1, -1, 0, 0, 0, OakScript_OaksLabRB, EVENT_OAKS_LAB_OAK
 	person_event SPRITE_SCIENTIST, 12, 6, $5, 0, 1, -1, -1, 8 + PAL_OW_BLUE, 0, 0, Scientist1Script_OaksLabRB, -1
 	person_event SPRITE_SCIENTIST, 13, 12, $4, 1, 0, -1, -1, 8 + PAL_OW_BLUE, 0, 0, Scientist2Script_OaksLabRB, -1
 	person_event SPRITE_TEACHER, 15, 5, $2, 1, 1, -1, -1, 8 + PAL_OW_BLUE, 0, 0, LassScript_OaksLabRB, -1
-	person_event SPRITE_BLUE, 7, 7, $5, 0, 0, -1, -1, 0, 0, 0, BlueScript_OaksLabRB, EVENT_RB_RIVAL_IN_LAB
+	person_event SPRITE_BLUE, 7, 8, $5, 0, 0, -1, -1, 0, 0, 0, BlueScript_OaksLabRB, EVENT_RB_RIVAL_IN_LAB
 	person_event SPRITE_POKE_BALL, 7, 10, $0, 0, 0, -1, -1, 0, 0, 0, CharmanderPokeballScript, EVENT_SOMEONE_GOT_CHARMANDER_FROM_OAK
 	person_event SPRITE_POKE_BALL, 7, 11, $0, 0, 0, -1, -1, 0, 0, 0, SquirtlePokeballScript, EVENT_SOMEONE_GOT_SQUIRTLE_FROM_OAK
 	person_event SPRITE_POKE_BALL, 7, 12, $0, 0, 0, -1, -1, 0, 0, 0, BulbasaurPokeballScript, EVENT_SOMEONE_GOT_BULBASAUR_FROM_OAK

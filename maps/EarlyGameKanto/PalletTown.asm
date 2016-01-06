@@ -201,7 +201,7 @@ PalletTownRB_MapEventHeader:
 	db 3
 	warp_def $5, $5, 1, GROUP_REDS_HOUSE_1F_RB, MAP_REDS_HOUSE_1F_RB
 	warp_def $5, $d, 1, GROUP_BLUES_HOUSE_RB, MAP_BLUES_HOUSE_RB
-	warp_def $b, $c, 1, GROUP_OAKS_LAB_RB, MAP_OAKS_LAB_RB
+	warp_def $b, $c, 2, GROUP_OAKS_LAB_RB, MAP_OAKS_LAB_RB
 
 .XYTriggers:
 	db 2
