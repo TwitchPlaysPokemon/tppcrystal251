@@ -6191,7 +6191,11 @@ HeadbuttScript: ; 0xceab HEADBUTT
 TryHeadbuttOW:: ; cec9
 	ld d, HEADBUTT
 	call CheckPartyMove
+	jr c, .yes
+	ld d, ZEN_HEADBUTT
+	call CheckPartyMove
 	jr c, .no
+.yes
 	ld a, BANK(AskHeadbuttScript)
 	ld hl, AskHeadbuttScript
 	call CallScript
@@ -10998,11 +11002,11 @@ TMHMMoves: ; 1167a
 	db TOXIC
 	db ZAP_CANNON
 	db ROCK_SMASH
-	db PSYCH_UP
+	db SWORDS_DANCE
 	db HIDDEN_POWER
 	db SUNNY_DAY
-	db SWEET_SCENT
-	db SNORE
+	db DOUBLE_EDGE
+	db POISON_JAB
 	db BLIZZARD
 	db HYPER_BEAM
 	db ICY_WIND
@@ -11010,7 +11014,7 @@ TMHMMoves: ; 1167a
 	db RAIN_DANCE
 	db GIGA_DRAIN
 	db ENDURE
-	db FRUSTRATION
+	db ROCK_POLISH
 	db SOLARBEAM
 	db IRON_TAIL
 	db DRAGONBREATH
@@ -11032,7 +11036,7 @@ TMHMMoves: ; 1167a
 	db DEFENSE_CURL
 	db THUNDERPUNCH
 	db DREAM_EATER
-	db DETECT
+	db DAZZLINGLEAM
 	db REST
 	db ATTRACT
 	db THIEF
@@ -13806,7 +13810,7 @@ PokemonActionSubmenu: ; 12a88
 	dbw 11, Function12f26 ; Headbutt
 	dbw  5, Function12e94 ; Waterfall
 	dbw 12, Function12f3b ; RockSmash
-	dbw 14, Function12f50 ; SweetScent
+	dbw 14, Function12f26 ; SweetScent, replaced by zen headbutt which copies headbutt
 	dbw 15, OpenPartyStats
 	dbw 16, SwitchPartyMons
 	dbw 17, GiveTakePartyMonItem
@@ -26567,7 +26571,7 @@ MonMenuOptions: ; 24cd9
 	db 0, 11, HEADBUTT
 	db 0, 12, ROCK_SMASH
 	db 0, 13, MILK_DRINK
-	db 0, 14, SWEET_SCENT
+	db 0, 14, ZEN_HEADBUTT
 ; Options
 
 	db 1, 15, 1 ; STATS
@@ -37505,7 +37509,7 @@ Function39990: ; 39990
 
 ; 39999
 
-SECTION "bank10", ROMX, BANK[$10]
+SECTION "bank10", ROMX ;, BANK[$10]
 INCLUDE "engine/pokedex.asm"
 Function41a7f: ; 41a7f
 	xor a
@@ -95730,100 +95734,100 @@ MoveGrammar: ; 105e7a
 
 ; 0
 
-	db SWORDS_DANCE
-	db GROWTH
-	db STRENGTH
-	db HARDEN
-	db MINIMIZE
-	db SMOKESCREEN
-	db WITHDRAW
-	db DEFENSE_CURL
-	db EGG_BOMB
-	db SMOG
-	db BONE_CLUB
-	db FLASH
-	db SPLASH
-	db ACID_ARMOR
-	db BONEMERANG
-	db REST
-	db SHARPEN
-	db SUBSTITUTE
-	db MIND_READER
-	db SNORE
-	db PROTECT
-	db SPIKES
-	db ENDURE
-	db ROLLOUT
-	db SWAGGER
-	db SLEEP_TALK
-	db HIDDEN_POWER
-	db PSYCH_UP
-	db EXTREMESPEED
+	;db SWORDS_DANCE ;mass comment out to save space and to save me a job when moves change
+	;db GROWTH
+	;db STRENGTH
+	;db HARDEN
+	;db MINIMIZE
+	;db SMOKESCREEN
+	;db WITHDRAW
+	;db DEFENSE_CURL
+	;db EGG_BOMB
+	;db SMOG
+	;db BONE_CLUB
+	;db FLASH
+	;db SPLASH
+	;db ACID_ARMOR
+	;db BONEMERANG
+	;db REST
+	;db SHARPEN
+	;db SUBSTITUTE
+	;db MIND_READER
+	;db POISON_JAB
+	;db PROTECT
+	;db SPIKES
+	;db ENDURE
+;	db ROLLOUT
+;	;db SWAGGER
+;	db SLEEP_TALK
+;	db HIDDEN_POWER
+	;db GUNK_SHOT
+;	db EXTREMESPEED
 	db 0 ; end set
 	
 ; 1
 
-	db RECOVER
-	db TELEPORT
-	db BIDE
-	db SELFDESTRUCT
-	db AMNESIA
-	db FLAIL
+;	db RECOVER
+;	db TELEPORT
+;	db BIDE
+;	db SELFDESTRUCT
+;	db AMNESIA
+;	db FLAIL
 	db 0 ; end set
 	
 ; 2
 
-	db MEDITATE
-	db AGILITY
-	db MIMIC
-	db DOUBLE_TEAM
-	db BARRAGE
-	db TRANSFORM
-	db STRUGGLE
-	db SCARY_FACE
+;	db MEDITATE
+;	db AGILITY
+;	db MIMIC
+;	db DOUBLE_TEAM
+	;db BARRAGE
+;	db TRANSFORM
+;	db STRUGGLE
+;	db SCARY_FACE
 	db 0 ; end set
 	
 ; 3
 
-	db POUND
-	db SCRATCH
-	db VICEGRIP
-	db WING_ATTACK
-	db FLY
-	db BIND
-	db SLAM
-	db HORN_ATTACK
-	db WRAP
-	db THRASH
-	db TAIL_WHIP
-	db LEER
-	db BITE
-	db GROWL
-	db ROAR
-	db SING
-	db PECK
-	db ABSORB
-	db STRING_SHOT
-	db EARTHQUAKE
-	db FISSURE
-	db DIG
-	db TOXIC
-	db SCREECH
-	db METRONOME
-	db LICK
-	db CLAMP
+;	db POUND
+;	db SCRATCH
+;	db VICEGRIP
+;	db WING_ATTACK
+;	db FLY
+;	db BIND
+;	db SLAM
+;	db HORN_ATTACK
+;	db WRAP
+;	db THRASH
+;	db TAIL_WHIP
+;	db LEER
+;	db BITE
+;	db GROWL
+;	db ROAR
+;	db SING
+;	db PECK
+;	db ABSORB
+;	db STRING_SHOT
+;	db EARTHQUAKE
+;	db FISSURE
+;	db DIG
+;	db TOXIC
+;	db SCREECH
+;	db METRONOME
+;	db LICK
+;	db CLAMP
 	;db CONSTRICT
-	db FLASH_CANNON ;comment out all record of old constant and replace with new
-	db POISON_GAS
-	db BUBBLE
-	db SLASH
-	db SPIDER_WEB
-	db NIGHTMARE
-	db CURSE
-	db FORESIGHT
-	db CHARM
-	db ATTRACT
-	db ROCK_SMASH
+;	db FLASH_CANNON ;comment out all record of old constant and replace with new
+;	db POISON_GAS
+;	db BUBBLE
+;	db SLASH
+;	db SPIDER_WEB
+;	db NIGHTMARE
+;	db CURSE
+;	db FORESIGHT
+;	db CHARM
+;	db ATTRACT
+;	db ROCK_SMASH
 	db 0 ; end set
 	
 ; all other moves = 4

@@ -35,7 +35,7 @@
 	dw PayDay
 	dw LightScreen
 	dw TriAttack
-	dw NormalHit
+	dw DoBurn
 	dw OHKOHit
 	dw RazorWind
 	dw SuperFang

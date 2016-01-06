@@ -146,8 +146,8 @@
 	;const CONSTRICT    ; $84
 	const FLASH_CANNON ;comment out old constant, replace with new one
 	const AMNESIA      ; $85
-	const KINESIS      ; $86
-;	const WILLOWISP
+;	const KINESIS      ; $86
+	const WILLOWISP
 	const SOFTBOILED   ; $87
 	const HI_JUMP_KICK ; $88
 	const GLARE        ; $89

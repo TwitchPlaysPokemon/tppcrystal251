@@ -213,7 +213,7 @@
 	add_tm RAIN_DANCE
 	add_tm GIGA_DRAIN
 	add_tm ENDURE
-	add_tm FRUSTRATION
+	add_tm ROCK_POLISH ;filler
 	add_tm SOLARBEAM
 	add_tm IRON_TAIL
 	add_tm DRAGONBREATH

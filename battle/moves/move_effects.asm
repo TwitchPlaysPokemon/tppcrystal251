@@ -6,9 +6,9 @@ SeedBomb:
 FairyWind:
 DragonPulse:
 KarateChop:
-;MegaPunch:
+MegaPunch:
 Scratch:
-;Vicegrip:
+Vicegrip:
 Cut:
 WingAttack:
 Slam:
@@ -24,7 +24,7 @@ DrillPeck:
 Strength:
 RazorLeaf:
 RockThrow:
-;EggBomb:
+EggBomb:
 Waterfall:
 Crabhammer:
 Slash:
@@ -35,7 +35,7 @@ CrossChop:
 Swift:
 FaintAttack:
 VitalThrow:
-;JumpKick:
+JumpKick:
 HiJumpKick:
 QuickAttack:
 AquaJet:
@@ -526,7 +526,7 @@ AccuracyDown:
 	statdownfailtext
 	endmove
 
-;SweetScent:
+SweetScent:
 EvasionDown:
 	checkobedience
 	usedmovetext
@@ -661,7 +661,7 @@ AttackDownHit:
 	statmessagetarget
 	endmove
 
-Acid:
+
 IronTail:
 RockSmash:
 Crunch:
@@ -689,7 +689,7 @@ DefenseDownHit:
 	endmove
 
 Bubblebeam:
-;Constrict: comment out old effect pointer
+Constrict: 
 Bubble:
 IcyWind:
 SpeedDownHit:
@@ -738,6 +738,7 @@ SpecialAttackDownHit:
 	endmove
 
 PsychicM:
+Acid:
 FlashCannon: ; place new label near similar moves
 BugBuzz:
 EarthPower:
@@ -966,13 +967,13 @@ Roar:
 	endmove
 
 Doubleslap:
-;CometPunch:
+CometPunch:
 FuryAttack:
 PinMissile:
 SpikeCannon:
-;Barrage:
-;FurySwipes:
-;BoneRush:
+Barrage:
+FurySwipes:
+BoneRush:
 DoubleKick:
 Bonemerang:
 MultiHit:
@@ -1037,7 +1038,7 @@ DarkPulse:
 IronHead:
 Headbutt:
 Bite:
-;LowKick:
+LowKick:
 BoneClub:
 RockSlide:
 HyperFang:
@@ -1062,7 +1063,7 @@ FlinchHit:
 	flinchtarget
 	endmove
 
-;Guillotine:
+Guillotine:
 HornDrill:
 Fissure:
 SheerCold:
@@ -1209,7 +1210,7 @@ TriAttack:
 
 Toxic:
 Poisonpowder:
-;PoisonGas:
+PoisonGas:
 DoPoison:
 	checkobedience
 	usedmovetext
@@ -1224,6 +1225,16 @@ StunSpore:
 ThunderWave:
 Glare:
 DoParalyze:
+	checkobedience
+	usedmovetext
+	doturn
+	stab
+	checkhit
+	checksafeguard
+	paralyze
+	endmove
+
+DoBurn:
 	checkobedience
 	usedmovetext
 	doturn
@@ -1344,7 +1355,7 @@ Disable:
 	disable
 	endmove
 
-;RazorWind:
+RazorWind:
 ;	checkcharge
 ;	checkobedience
 ;	doturn
@@ -1390,7 +1401,7 @@ Dig:
 	kingsrock
 	endmove
 
-;Bind:
+Bind:
 Wrap:
 FireSpin:
 Clamp:
@@ -1514,7 +1525,7 @@ Conversion2:
 	endmove
 
 MindReader:
-;LockOn:
+LockOn:
 	checkobedience
 	usedmovetext
 	doturn
@@ -1636,7 +1647,7 @@ Thief:
 	kingsrock
 	endmove
 
-;SpiderWeb:
+SpiderWeb:
 MeanLook:
 	checkobedience
 	usedmovetext
@@ -1681,7 +1692,7 @@ Curse:
 	endmove
 
 Protect:
-;Detect:
+Detect:
 	checkobedience
 	usedmovetext
 	doturn

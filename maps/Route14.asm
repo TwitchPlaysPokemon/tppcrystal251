@@ -1,4 +1,4 @@
-	Route14_MapScriptHeader: ; 0x1ad47d
+Route14_MapScriptHeader: ; 0x1ad47d
 	; trigger count
 	db 0
 

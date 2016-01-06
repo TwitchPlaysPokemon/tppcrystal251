@@ -4,20 +4,20 @@ BattleAnimations:: ; c906f
 	dw BattleAnim_KarateChop
 	dw BattleAnim_Doubleslap
 ;	dw BattleAnim_CometPunch
-	db BattleAnim_GunkShot
+	dw BattleAnim_GunkShot
 ;	dw BattleAnim_MegaPunch
-	db BattleAnim_ZenHeadbutt
+	dw BattleAnim_ZenHeadbutt
 	dw BattleAnim_PayDay
 	dw BattleAnim_FirePunch
 	dw BattleAnim_IcePunch
 	dw BattleAnim_Thunderpunch
 	dw BattleAnim_Scratch
 ;	dw BattleAnim_Vicegrip
-	db BattleAnim_FairyWind
+	dw BattleAnim_FairyWind
 ;	dw BattleAnim_Guillotine
-	db BattleAnim_FocusBlast
+	dw BattleAnim_FocusBlast
 ;	dw BattleAnim_RazorWind
-	db BattleAnim_IronDefense
+	dw BattleAnim_IronDefense
 	dw BattleAnim_SwordsDance
 	dw BattleAnim_Cut
 	dw BattleAnim_Gust
@@ -25,14 +25,14 @@ BattleAnimations:: ; c906f
 	dw BattleAnim_Whirlwind
 	dw BattleAnim_Fly
 ;	dw BattleAnim_Bind
-	db BattleAnim_BugBuzz
+	dw BattleAnim_BugBuzz
 	dw BattleAnim_Slam
 	dw BattleAnim_VineWhip
 	dw BattleAnim_Stomp
 	dw BattleAnim_DoubleKick
 	dw BattleAnim_MegaKick
 ;	dw BattleAnim_JumpKick
-	db BattleAnim_FlareBlitz
+	dw BattleAnim_FlareBlitz
 	dw BattleAnim_RollingKick
 	dw BattleAnim_SandAttack
 	dw BattleAnim_Headbutt
@@ -74,7 +74,7 @@ BattleAnimations:: ; c906f
 	dw BattleAnim_DrillPeck
 	dw BattleAnim_Submission
 ;	dw BattleAnim_LowKick
-	db BattleAnim_HeatWave
+	dw BattleAnim_HeatWave
 	dw BattleAnim_Counter
 	dw BattleAnim_SeismicToss
 	dw BattleAnim_Strength
@@ -129,10 +129,10 @@ BattleAnimations:: ; c906f
 	dw BattleAnim_MirrorMove
 	dw BattleAnim_Selfdestruct
 ;	dw BattleAnim_EggBomb
-	db BattleAnim_MetalSound
+	dw BattleAnim_MetalSound
 	dw BattleAnim_Lick
 ;	dw BattleAnim_Smog
-	db BattleAnim_DragonPulse
+	dw BattleAnim_DragonPulse
 	dw BattleAnim_Sludge
 	dw BattleAnim_BoneClub
 	dw BattleAnim_FireBlast
@@ -140,13 +140,13 @@ BattleAnimations:: ; c906f
 	dw BattleAnim_Clamp
 	dw BattleAnim_Swift
 ;	dw BattleAnim_SkullBash
-	db BattleAnim_AquaJet
+	dw BattleAnim_AquaJet
 	dw BattleAnim_SpikeCannon
 	;dw BattleAnim_Constrict
 	dw BattleAnim_FlashCannon ;replace the animation pointer with one bearing the new name
 	dw BattleAnim_Amnesia
-	dw BattleAnim_Kinesis
-;	db BattleAnim_WillOWisp
+;	dw BattleAnim_Kinesis
+	dw BattleAnim_WillOWisp
 	dw BattleAnim_Softboiled
 	dw BattleAnim_HiJumpKick
 	dw BattleAnim_Glare
@@ -154,7 +154,7 @@ BattleAnimations:: ; c906f
 ;	dw BattleAnim_PoisonGas
 	dw BattleAnim_RockPolish
 ;	dw BattleAnim_Barrage
-	db BattleAnim_SeedBomb
+	dw BattleAnim_SeedBomb
 	dw BattleAnim_LeechLife
 	dw BattleAnim_LovelyKiss
 	dw BattleAnim_SkyAttack
@@ -169,7 +169,7 @@ BattleAnimations:: ; c906f
 	dw BattleAnim_Crabhammer
 	dw BattleAnim_Explosion
 ;	dw BattleAnim_FurySwipes
-	db BattleAnim_PoisonJab
+	dw BattleAnim_PoisonJab
 	dw BattleAnim_Bonemerang
 	dw BattleAnim_Rest
 	dw BattleAnim_RockSlide
@@ -183,15 +183,15 @@ BattleAnimations:: ; c906f
 	dw BattleAnim_Struggle
 	dw BattleAnim_Sketch
 ;	dw BattleAnim_TripleKick
-	db BattleAnim_WildCharge
+	dw BattleAnim_WildCharge
 	dw BattleAnim_Thief
 ;	dw BattleAnim_SpiderWeb
-	db BattleAnim_XScissor
+	dw BattleAnim_XScissor
 	dw BattleAnim_MindReader
 	dw BattleAnim_Nightmare
 	dw BattleAnim_FlameWheel
 ;	dw BattleAnim_Snore
-	db BattleAnim_IronHead
+	dw BattleAnim_IronHead
 	dw BattleAnim_Curse
 	dw BattleAnim_Flail
 	dw BattleAnim_Conversion2
@@ -216,11 +216,11 @@ BattleAnimations:: ; c906f
 	dw BattleAnim_PerishSong
 	dw BattleAnim_IcyWind
 ;	dw BattleAnim_Detect
-	db BattleAnim_AirSlash
+	dw BattleAnim_AirSlash
 ;	dw BattleAnim_BoneRush
-	db BattleAnim_DarkPulse
+	dw BattleAnim_DarkPulse
 ;	dw BattleAnim_LockOn
-	db BattleAnim_EarthPower
+	dw BattleAnim_EarthPower
 	dw BattleAnim_Outrage
 	dw BattleAnim_Sandstorm
 	dw BattleAnim_GigaDrain
@@ -240,7 +240,7 @@ BattleAnimations:: ; c906f
 	dw BattleAnim_Return
 	dw BattleAnim_Present
 ;	dw BattleAnim_Frustration
-	db BattleAnim_DazzlinGleam
+	dw BattleAnim_DazzlinGleam
 	dw BattleAnim_Safeguard
 	dw BattleAnim_PainSplit
 	dw BattleAnim_SacredFire
@@ -253,7 +253,7 @@ BattleAnimations:: ; c906f
 	dw BattleAnim_Pursuit
 	dw BattleAnim_RapidSpin
 ;	dw BattleAnim_SweetScent
-	db BattleAnim_NastyPlot
+	dw BattleAnim_NastyPlot
 	dw BattleAnim_IronTail
 	dw BattleAnim_MetalClaw
 	dw BattleAnim_VitalThrow
@@ -268,7 +268,7 @@ BattleAnimations:: ; c906f
 	dw BattleAnim_Crunch
 	dw BattleAnim_MirrorCoat
 ;	dw BattleAnim_PsychUp
-	db BattleAnim_ShadowClaw
+	dw BattleAnim_ShadowClaw
 	dw BattleAnim_Extremespeed
 	dw BattleAnim_Ancientpower
 	dw BattleAnim_ShadowBall
@@ -276,7 +276,7 @@ BattleAnimations:: ; c906f
 	dw BattleAnim_RockSmash
 	dw BattleAnim_Whirlpool
 ;	dw BattleAnim_BeatUp
-	db BattleAnim_DrillRun
+	dw BattleAnim_DrillRun
 	dw BattleAnim_Moonblast
 	dw BattleAnim_PlayRough
 	dw BattleAnim_SheerCold
@@ -936,7 +936,7 @@ BattleAnim_SuperFang_branch_c9788: ; c9788
 ; c97a1
 
 BattleAnim_Ember: ; c97a1
-;BattleAnim_WillOWisp:
+BattleAnim_WillOWisp:
 	anim_1gfx ANIM_GFX_FIRE
 	anim_sound $1a, SFX_EMBER
 	anim_obj $b, 64, 96, $12
@@ -2674,7 +2674,7 @@ BattleAnim_SkullBash_branch_ca659: ; ca659
 	anim_ret
 ; ca66a
 
-BattleAnim_Kinesis: ; ca66a
+;BattleAnim_Kinesis: ; ca66a
 	anim_2gfx ANIM_GFX_MISC, ANIM_GFX_NOISE
 	anim_bgeffect $6, $0, $2, $0
 	anim_obj $6b, 80, 76, $0

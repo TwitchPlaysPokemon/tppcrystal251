@@ -63,28 +63,28 @@
         db KOFFING;10
         db IGGLYBUFF;10
         db SPEAROW ;10
-        db NIDORANM ;6
+        db NIDORAN_M ;6
         db MANKEY ;5
         db SANDSHREW;5
-        db NIDORANF;5
+        db NIDORAN_F;5
         db ODDISH;4
         db DODUO;3
         db EKANS;2
         db EKANS;2
         db EKANS;1
         db ODDISH;1
-        db NIDORANF;1
+        db NIDORAN_F;1
 ;day
         db EKANS;20
-        db NIDORANM;15
+        db NIDORAN_M;15
         db MANKEY;10
         db SANDSHREW;10
         db SPEAROW ;10
-        db NIDORANF ;6
+        db NIDORAN_F ;6
         db JIGGLYPUFF;5
         db KOFFING;5
-        db NIDORANF;5
-        db NIDORANF;4
+        db NIDORAN_F;5
+        db NIDORAN_F;4
         db DODUO;3
         db JIGGLYPUFF;2
         db IGGLYBUFF;2
@@ -97,17 +97,17 @@
         db KOFFING;10
         db JIGGLYPUFF;10
         db GRIMER;10
-        db NIDORANM ;6
+        db NIDORAN_M ;6
         db MANKEY ;5
         db SANDSHREW;5
-        db NIDORANF;5
+        db NIDORAN_F;5
         db IGGLYBUFF;4
         db SPEAROW;3
         db ODDISH;2
         db ODDISH;2
         db ODDISH;1
         db IGGLYBUFF;1
-        db NIDORANF;1	
+        db NIDORAN_F;1	
 
 db GROUP_ROUTE_2_RB, MAP_ROUTE_2_RB
 	db $19 ; encounter rates: morn/day/nite
@@ -120,8 +120,8 @@ db GROUP_ROUTE_2_RB, MAP_ROUTE_2_RB
         db CATERPIE;10
         db RATTATA;6
         db EKANS;5
-        db NIDORANM;5
-        db NIDORANF;5
+        db NIDORAN_M;5
+        db NIDORAN_F;5
         db DIGLETT;4
         db PIKACHU;3
         db VULPIX;2
@@ -133,8 +133,8 @@ db GROUP_ROUTE_2_RB, MAP_ROUTE_2_RB
 		db VULPIX ;20
         db EKANS;15
         db PIKACHU;10
-        db NIDORANM;10
-        db NIDORANF;10
+        db NIDORAN_M;10
+        db NIDORAN_F;10
         db WEEDLE;6
         db CATERPIE;5
         db PICHU;5
@@ -156,13 +156,13 @@ db GROUP_ROUTE_2_RB, MAP_ROUTE_2_RB
         db CATERPIE;5
         db VULPIX;5
         db POLIWAG;5
-        db NIDORANM;4
+        db NIDORAN_M;4
         db WEEDLE;3
         db WEEDLE;2
-        db NIDORANF;2
-        db NIDORANF;1
+        db NIDORAN_F;2
+        db NIDORAN_F;1
         db PICHU;1
-        db NIDORANF;1
+        db NIDORAN_F;1
 
 	db GROUP_DIGLETTS_CAVE, MAP_DIGLETTS_CAVE
 	db $0a ; encounter rates: morn/day/nite

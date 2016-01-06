@@ -840,7 +840,7 @@ wc72c:: ds 1
 wc72d:: ds 1
 wc72e:: ds 1
 wc72f:: ds 1
-wc730:: ds 1
+wc730:: ds 1 ;trapping turns
 wc731:: ds 1
 wc732:: ds 1
 wc733:: ds 1

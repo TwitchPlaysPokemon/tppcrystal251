@@ -34,8 +34,8 @@ IvysaurEvosAttacks:
 	db EVOLVE_LEVEL,32,VENUSAUR
 	db 0 ; no more evolutions
 	db 1,GROWL
-	db 1,LEECH SEED
-	db 1,VINE WHIP
+	db 1,LEECH_SEED
+	db 1,VINE_WHIP
 	db 1,POISONPOWDER
 	db 20,RAZOR_LEAF
 	db 23,TAKE_DOWN ; later gen move
@@ -115,7 +115,7 @@ CharizardEvosAttacks:
 	db 1,DRAGON_RAGE
 	db 1,BITE
 	db 1,EMBER ; tm move
-	db 36 WING_ATTACK ; *
+	db 36, WING_ATTACK ; *
 	db 40,ANCIENTPOWER ; egg move
 	db 44,FIRE_PUNCH ; tm move
 	db 47,SLASH
@@ -704,7 +704,7 @@ JigglypuffEvosAttacks:
 	db EVOLVE_ITEM,MOON_STONE,WIGGLYTUFF
 	db 0 ; no more evolutions
 	db 1,DOUBLESLAP
-	db 3,DEFENSE CURL
+	db 3,DEFENSE_CURL
 	db 7,POUND
 	db 11,DISABLE
 	db 15,FAIRY_WIND
@@ -836,7 +836,7 @@ ParasEvosAttacks:
 	db 1,SCRATCH
 	db 3,STUN_SPORE
 	db 5,METAL_CLAW ; egg move
-	db 8,LEECH LIFE
+	db 8,LEECH_LIFE
 	db 11,PSYBEAM ; egg move
 	db 14,POISONPOWDER
 	db 17,GROWTH
@@ -1059,7 +1059,7 @@ PrimeapeEvosAttacks:
 	db 49,POISON_JAB ; * later gen move
 	db 52,FOCUS_ENERGY ; *
 	db 56,MEGA_KICK
-	db 60,DYNAMIC_PUNCH ; * tm move
+	db 60,DYNAMICPUNCH ; * tm move
 	db 65,SEED_BOMB ; * later gen move
 	db 70,MEDITATE ; egg move
 	db 0 ; no more level-up moves
@@ -1153,7 +1153,7 @@ PoliwrathEvosAttacks:
 	db 60,BELLY_DRUM
 	db 70,HYDRO_PUMP
 	db 75,MIND_READER ; *
-	db 80,DYNAMIC_PUNCH ; * tm move
+	db 80,DYNAMICPUNCH ; * tm move
 	db 0 ; no more level-up moves
 
 AbraEvosAttacks:
@@ -1250,7 +1250,7 @@ MachampEvosAttacks:
 	db 66,SCARY_FACE
 	db 70,ROCK_SLIDE
 	db 75,FISSURE ; * gen 1 move
-	db 80,DYNAMIC_PUNCH ; *
+	db 80,DYNAMICPUNCH ; *
 	db 0 ; no more level-up moves
 
 BellsproutEvosAttacks:
@@ -2100,7 +2100,7 @@ ChanseyEvosAttacks:
 TangelaEvosAttacks:
 	db 0 ; no more evolutions
 	db 1,ABSORB
-	db 4,STUN SPORE
+	db 4,STUN_SPORE
 	db 8,ENDURE
 	db 11,FLAIL ; egg move
 	db 15,VINE_WHIP
@@ -2318,7 +2318,7 @@ ElectabuzzEvosAttacks:
 	db 51,THUNDERBOLT
 	db 55,BARRIER ; * egg move
 	db 60,PSYCHIC_M ; * tm move
-	db 65,DYNAMIC_PUNCH ; * tm move
+	db 65,DYNAMICPUNCH ; * tm move
 	db 70,THUNDER
 	db 0 ; no more level-up moves
 
@@ -3056,7 +3056,7 @@ LedybaEvosAttacks:
 	db 33,DIZZY_PUNCH
 	db 36,BUG_BUZZ ; later gen move
 	db 39,AGILITY
-	db 42,BATON PASS
+	db 42,BATON_PASS
 	db 45,AIR_SLASH ; later gen move
 	db 0 ; no more level-up moves
 
@@ -4224,7 +4224,7 @@ MantineEvosAttacks:
 	db 55,CONFUSE_RAY
 	db 60,AIR_SLASH ; later gen move
 	db 65,MIRROR_COAT ; later gen move
-	db 70,HYDRO PUMP ; egg move
+	db 70,HYDRO_PUMP ; egg move
 	db 0 ; no more level-up moves
 
 SkarmoryEvosAttacks:

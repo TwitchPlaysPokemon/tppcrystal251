@@ -407,45 +407,45 @@ UnknownText_0x9e60a: ; 0x9e60a
 ; 0x9e62f
 
 UnknownText_0x9e62f: ; 0x9e62f
-	db $0, "BATTLE TOWER is a", $4f
-	db "facility made for", $55
-	db "#MON battles.", $51
-	db "Countless #MON", $4f
-	db "trainers gather", $51
-	db "from all over to", $4f
-	db "hold battles in", $51
-	db "specially designed", $4f
-	db "BATTLE ROOMS.", $51
-	db "There are many", $4f
-	db "BATTLE ROOMS in", $55
-	db "the BATTLE TOWER.", $51
-	db "Each ROOM holds", $4f
-	db "seven trainers.", $51
-	db "If you defeat the", $4f
-	db "seven in a ROOM,", $51
-	db "and you have a", $4f
-	db "good record, you", $51
-	db "could become the", $4f
-	db "ROOM's LEADER.", $51
-	db "All LEADERS will", $4f
-	db "be recorded in the", $51
-	db "HONOR ROLL for", $4f
-	db "posterity.", $51
-	db "You may challenge", $4f
-	db "in up to five", $51
-	db "BATTLE ROOMS each", $4f
-	db "day.", $51
-	db "However, you may", $4f
-	db "battle only once a", $51
-	db "day in any given", $4f
-	db "ROOM.", $51
-	db "To interrupt a", $4f
-	db "session, you must", $51
-	db "SAVE. If not, you", $4f
-	db "won't be able to", $51
-	db "resume your ROOM", $4f
-	db "challenge.", $51
-	db $57
+;	db $0, "BATTLE TOWER is a", $4f
+;	db "facility made for", $55
+;	db "#MON battles.", $51
+;	db "Countless #MON", $4f
+;	db "trainers gather", $51
+;	db "from all over to", $4f
+;	db "hold battles in", $51
+;	db "specially designed", $4f
+;	db "BATTLE ROOMS.", $51
+;	db "There are many", $4f
+;	db "BATTLE ROOMS in", $55
+;	db "the BATTLE TOWER.", $51
+;	db "Each ROOM holds", $4f
+;	db "seven trainers.", $51
+;	db "If you defeat the", $4f
+;	db "seven in a ROOM,", $51
+;	db "and you have a", $4f
+;	db "good record, you", $51
+;	db "could become the", $4f
+;	db "ROOM's LEADER.", $51
+;	db "All LEADERS will", $4f
+;	db "be recorded in the", $51
+;	db "HONOR ROLL for", $4f
+;	db "posterity.", $51
+;	db "You may challenge", $4f
+;	db "in up to five", $51
+;	db "BATTLE ROOMS each", $4f
+;	db "day.", $51
+;	db "However, you may", $4f
+;	db "battle only once a", $51
+;	db "day in any given", $4f
+;	db "ROOM.", $51
+;	db "To interrupt a", $4f
+;	db "session, you must", $51
+;	db "SAVE. If not, you", $4f
+;	db "won't be able to", $51
+;	db "resume your ROOM", $4f
+;	db "challenge.", $51
+;	db $57
 ; 0x9e886
 
 UnknownText_0x9e886: ; 0x9e886
@@ -499,16 +499,16 @@ UnknownText_0x9ea49: ; 0x9ea49
 ; 0x9ea5f
 
 UnknownText_0x9ea5f: ; 0x9ea5f
-	db $0, "Congratulations!", $51
-	db "You've beaten all", $4f
-	db "the trainers!", $51
-	db "Your feat may be", $4f
-	db "worth registering,", $51
-	db "<PLAYER>. With your", $4f
-	db "results, you may", $51
-	db "be chosen as a", $4f
-	db "ROOM LEADER.", $51
-	db $57
+	;db $0, "Congratulations!", $51
+	;db "You've beaten all", $4f
+	;db "the trainers!", $51
+	;db "Your feat may be", $4f
+	;db "worth registering,", $51
+	;db "<PLAYER>. With your", $4f
+	;db "results, you may", $51
+	;db "be chosen as a", $4f
+	;db "ROOM LEADER.", $51
+	;db $57
 ; 0x9eaef
 
 UnknownText_0x9eaef: ; 0x9eaef

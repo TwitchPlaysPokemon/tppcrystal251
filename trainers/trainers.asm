@@ -1969,7 +1969,7 @@ ScientistGroup:
 
 	; SCIENTIST (1)
 	db "ROSS@"
-	(1 << TRAINERTYPE_ITEM)
+	db (1 << TRAINERTYPE_ITEM)
 
 	; party
 	db 41, DITTO, METAL_POWDER
@@ -5400,7 +5400,7 @@ FisherGroup:
 	db 94, POLIWAG
 	db 95, POLIWHIRL
 	db 96, POLITOED
-	db 97, POLIWHRATH
+	db 97, POLIWRATH
 
 	db $ff ; end
 
@@ -7330,7 +7330,7 @@ FirebreatherGroup:
 	db 26, SLUGMA
 		db FIRE_BLAST
 		db SUNNY_DAY
-		db YAWN
+		db 0 ;YAWN
 		db PROTECT
 
 	db $ff ; end
@@ -8523,7 +8523,7 @@ SageGroup:
 		db 0
 		db 0
 	db 36, HOUNDOOM
-		db BODY SLAM
+		db BODY_SLAM
 		db BITE
 		db SPITE
 		db PROTECT
