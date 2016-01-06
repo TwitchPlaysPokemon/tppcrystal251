@@ -1,8 +1,8 @@
 ; Rise of the Leech King
 ; Original composition by Mark Roebbelen
-; from the album Helix Symphony
+; from the album Dream Red
 ; released in 2015/03/01
-; demake by pigdevil2010 in 2015/03/08
+; remixed by pigdevil2010 in 2015/03/08
 ; Thanks for the MIDI!
 
 Music_Leech:
