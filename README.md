@@ -17,5 +17,3 @@ To set up the repository, see [**INSTALL.md**](INSTALL.md).
 
 [pokered]: https://github.com/iimarckus/pokered
 [irc]: https://kiwiirc.com/client/irc.freenode.net/?#pret
-
-walle.. TRIHARD TRIHARD TRIHARD TRIHARD TRIHARD TRIHARD TRIHARD
