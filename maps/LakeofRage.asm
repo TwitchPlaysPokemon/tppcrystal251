@@ -643,14 +643,14 @@ LakeofRage_MapEventHeader: ; 0x70919
 	; people-events
 	db 12
 	person_event SPRITE_LANCE, 32, 25, $7, 0, 0, -1, -1, 0, 0, 0, LanceScript_0x70022, EVENT_LANCE_IN_LAKE_OF_RAGE
-	person_event SPRITE_GRAMPS, 30, 24, $7, 0, 0, -1, -1, 0, 0, 0, GrampsScript_0x7008e, -1
+	person_event SPRITE_GRAMPS, 25, 34, $8, 0, 0, -1, -1, 0, 0, 0, GrampsScript_0x7008e, -1
 	person_event SPRITE_SUPER_NERD, 17, 40, $8, 0, 0, -1, -1, 0, 0, 0, SuperNerdScript_0x700a2, -1
 	person_event SPRITE_COOLTRAINER_F, 33, 29, $5, 0, 1, -1, -1, 0, 0, 0, CooltrainerFScript_0x700a5, -1
 	person_event SPRITE_FISHER, 27, 34, $8, 0, 0, -1, -1, 8 + PAL_OW_BLUE, 2, 1, TrainerFisherAndre, EVENT_LAKE_OF_RAGE_TRAINERS
 	person_event SPRITE_FISHER, 30, 28, $7, 0, 0, -1, -1, 8 + PAL_OW_BLUE, 2, 1, TrainerFisherRaymond, EVENT_LAKE_OF_RAGE_TRAINERS
 	person_event SPRITE_COOLTRAINER_M, 19, 8, $9, 0, 0, -1, -1, 8 + PAL_OW_RED, 2, 1, TrainerCooltrainermAaron, EVENT_LAKE_OF_RAGE_TRAINERS
 	person_event SPRITE_COOLTRAINER_F, 11, 40, $8, 0, 0, -1, -1, 8 + PAL_OW_RED, 2, 0, TrainerCooltrainerfLois, EVENT_LAKE_OF_RAGE_TRAINERS
-	person_event SPRITE_GYARADOS, 26, 22, $16, 0, 0, -1, -1, 8 + PAL_OW_RED, 0, 0, GyaradosScript_0x70063, EVENT_RED_GYARADOS
+	person_event SPRITE_GYARADOS, 25, 26, $16, 0, 0, -1, -1, 8 + PAL_OW_RED, 0, 0, GyaradosScript_0x70063, EVENT_RED_GYARADOS
 	person_event SPRITE_SUPER_NERD, 8, 8, $6, 0, 0, -1, -1, 0, 0, 0, WesleyScript, EVENT_WESLEY_OF_WEDNESDAY
 	person_event SPRITE_POKE_BALL, 14, 11, $1, 0, 0, -1, -1, 0, 1, 0, ItemFragment_0x70148, EVENT_ITEM_LAKE_OF_RAGE_ELIXIR
 	person_event SPRITE_POKE_BALL, 6, 39, $1, 0, 0, -1, -1, 0, 1, 0, ItemFragment_0x7014a, EVENT_ITEM_LAKE_OF_RAGE_TM_DETECT

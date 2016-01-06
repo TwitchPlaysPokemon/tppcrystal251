@@ -649,13 +649,30 @@
 	connection north, ROUTE_1_RB, Route1RB, 0, 0, 10, PALLET_TOWN_RB
 	connection south, ROUTE_21, Route21, 0, 0, 10, PALLET_TOWN_RB
 
-	map_header_2 Route1RB, ROUTE_1, $f, NORTH | SOUTH ; 0x9530c
-	connection north, VIRIDIAN_CITY, ViridianCity, -3, 7, 13, ROUTE_1_RB
+	map_header_2 Route1RB, ROUTE_1_RB, $f, NORTH | SOUTH ; 0x9530c
+	connection north, VIRIDIAN_CITY_RB, ViridianCityRB, -1, 5, 13, ROUTE_1_RB
 	connection south, PALLET_TOWN_RB, PalletTownRB, 0, 0, 10, ROUTE_1_RB
-	map_header_2 ViridianCityRB, VIRIDIAN_CITY_RB, 0, NONE
 
 	map_header_2 RedsHouse1FRB, REDS_HOUSE_1F_RB, $0, NONE ; 0x96098
 	map_header_2 RedsHouse2FRB, REDS_HOUSE_2F_RB, $0, NONE ; 0x960a4
 
 	map_header_2 OaksLabRB, OAKS_LAB_RB, $0, NONE
 	map_header_2 BluesHouseRB, BLUES_HOUSE_RB, $0, NONE
+
+	map_header_2 Route2RB, ROUTE_2_RB, $f, NORTH | SOUTH ; 0x952a0
+	connection north, PEWTER_CITY, PewterCity, -3, 2, 16, ROUTE_2_RB
+	connection south, VIRIDIAN_CITY_RB, ViridianCityRB, -3, 2, 16, ROUTE_2_RB
+
+	map_header_2 ViridianCityRB, VIRIDIAN_CITY_RB, $f, NORTH | SOUTH | WEST ; 0x952c4
+	connection north, ROUTE_2_RB, Route2RB, 5, 0, 10, VIRIDIAN_CITY_RB
+	connection south, ROUTE_1_RB, Route1RB, 6, 0, 10, VIRIDIAN_CITY_RB
+	connection west, ROUTE_22_RB, Route22RB, 4, 0, 9, VIRIDIAN_CITY_RB
+
+	map_header_2 Route22RB, ROUTE_22_RB, $2c, EAST ; 0x952f4
+	connection east, VIRIDIAN_CITY_RB, ViridianCityRB, -3, 1, 15, ROUTE_22_RB
+
+	map_header_2 ViridianPokeCenter1FRB, VIRIDIAN_POKECENTER_1F_RB, $0, NONE
+	map_header_2 ViridianMartRB, VIRIDIAN_MART_RB, $0, NONE
+	map_header_2 ViridianNicknameSpeechHouseRB, VIRIDIAN_NICKNAME_SPEECH_HOUSE_RB, $0, NONE
+	map_header_2 ViridianTrainerSchoolRB, VIRIDIAN_TRAINER_SCHOOL_RB, $0, NONE
+	map_header_2 VictoryRoadGateRB, VICTORY_ROAD_GATE_RB, $0, NONE

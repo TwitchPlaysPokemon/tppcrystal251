@@ -17,7 +17,6 @@ Music_Leech_Ch1:
 	dutycycle $1
 	notetype $c, $b6
 	vibrato $a, $33
-	stereopanning $f0
 	octave 4
 	note G#, 12
 	note G#, 4
@@ -61,7 +60,6 @@ Music_Leech_Ch1:
 	note C_, 1
 	callchannel Music_Leech_Ch1_C2
 ; Pat 3 Row 0
-Music_Leech_Ch1_InfLoopPoint:
 	notetype $c, $a7
 	callchannel Music_Leech_Ch1_C3
 ; Pat 4 Row 0
@@ -207,10 +205,51 @@ Music_Leech_Ch1_L8:
 	notetype $8, $83
 	callchannel Music_Leech_Ch2_C13
 ; Pat 15 Row 0
-	dutycycle $1
-	notetype $c, $b6
+	dutycycle $2
+	notetype $c, $bb
 	note __, 16
-	loopchannel 0, Music_Leech_Ch1_InfLoopPoint
+	octave 3
+	note F#, 1
+	note E_, 1
+	note C#, 1
+	note F#, 1
+	note G#, 1
+	note F#, 1
+	note G#, 1
+	note B_, 1
+	octave 4
+	note C#, 1
+	octave 3
+	note B_, 1
+	octave 4
+	note C#, 1
+	note D#, 1
+	note E_, 1
+	note C#, 1
+	note E_, 1
+	note F#, 1
+	note G#, 1
+	note F#, 1
+	note E_, 1
+	note C#, 1
+	octave 3
+	note B_, 1
+	octave 4
+	note C#, 1
+	octave 3
+	note B_, 1
+	note G#, 1
+	note F#, 1
+	note G#, 1
+	note F#, 1
+	note E_, 1
+	notetype $8, $bb
+	note C#, 2
+	octave 2
+	note B_, 2
+	octave 3
+	note C#, 4
+	endchannel
 
 Music_Leech_Ch1_C1:
 	note E_, 1
@@ -510,7 +549,6 @@ Music_Leech_Ch2:
 	dutycycle $1
 	notetype $c, $b6
 	vibrato $a, $33
-	stereopanning $f
 	octave 4
 	note C#, 12
 	note C#, 4
@@ -531,7 +569,6 @@ Music_Leech_Ch2:
 ; Pat 2 Row 0
 	note C_, 16
 	note __, 16
-Music_Leech_Ch2_InfLoopPoint:
 	callchannel Music_Leech_Ch2_C2
 ; Pat 6 Row 0
 	callchannel Music_Leech_Ch2_C3
@@ -718,9 +755,47 @@ Music_Leech_Ch2_L4:
 	callchannel Music_Leech_Ch2_C13
 	callchannel Music_Leech_Ch2_C14
 ; Pat 15 Row 0
-	notetype $c, $a7
-	dutycycle $1
-	loopchannel 0, Music_Leech_Ch2_InfLoopPoint
+	note F#, 1
+	note E_, 1
+	note C#, 1
+	note F#, 1
+	note G#, 1
+	note F#, 1
+	note G#, 1
+	note B_, 1
+	octave 5
+	note C#, 1
+	octave 4
+	note B_, 1
+	octave 5
+	note C#, 1
+	note D#, 1
+	note E_, 1
+	note C#, 1
+	note E_, 1
+	note F#, 1
+	note G#, 1
+	note F#, 1
+	note E_, 1
+	note C#, 1
+	octave 4
+	note B_, 1
+	octave 5
+	note C#, 1
+	octave 4
+	note B_, 1
+	note G#, 1
+	note F#, 1
+	note G#, 1
+	note F#, 1
+	note E_, 1
+	notetype $8, $bb
+	note C#, 2
+	octave 3
+	note B_, 2
+	octave 4
+	note C#, 4
+	endchannel
 
 Music_Leech_Ch2_C11:
 	octave 3
@@ -1464,7 +1539,6 @@ Music_Leech_Ch3_L4:
 	strum C_D#, 1
 	strum C_C#, 8
 ; Pat 15 Row 0
-	loopchannel 0, Music_Leech_Ch3_L2
 	octave 2
 	note F#, 1
 	note E_, 1
@@ -1644,16 +1718,16 @@ Music_Leech_Ch3_C_G#: def_strumC G#
 Music_Leech_Ch4:
 ; Pat 3 Row 0
 	notetype $c
-	togglenoise 2
+	togglenoise 1
 	callchannel Music_Leech_BeginRest
 Music_Leech_Ch4_L1:
 	note C_, 4
 	loopchannel 94, Music_Leech_Ch4_L1
 	note C_, 2
-	note D_, 2
+	note A#, 2
 	note C_, 2
-	note D_, 1
-	note D#, 1
+	note A#, 1
+	note B_, 1
 ; Pat 9 Row 0
 	callchannel Music_Leech_Ch4_C1
 ; Pat 11 Row 0
@@ -1676,35 +1750,33 @@ Music_Leech_Ch4_L2:
 ; Pat 18 Row 0
 	callchannel Music_Leech_Ch4_C1
 ; Pat 20 Row 0
-	note A_, 1
-	note D#, 1
+	note F#, 1
 	note B_, 1
-	note B_, 1
+	note F_, 1
+	note F_, 1
 	note C_, 1
-	note D#, 1
 	note B_, 1
-	note B_, 1
+	note F_, 1
+	note F_, 1
 Music_Leech_Ch4_L3:
+	note D_, 1
+	note B_, 1
+	note F_, 1
+	note F_, 1
 	note C_, 1
-	note D#, 1
 	note B_, 1
-	note B_, 1
-	note C_, 1
-	note D#, 1
-	note B_, 1
-	note B_, 1
+	note F_, 1
+	note F_, 1
 	loopchannel 14, Music_Leech_Ch4_L3
 ; Pat 22 Row 56
+	note D_, 1
+	note B_, 1
+	note F_, 1
+	note F_, 1
 	note C_, 1
-	note D#, 1
 	note B_, 1
-	note B_, 1
-	note C_, 1
-	note D#, 1
-	note B_, 1
-	note B_, 1
-	loopchannel 0, Music_Leech_Ch4_L1
-Music_Leech_Ch4_L4: ; ending phrase
+	note F_, 1
+Music_Leech_Ch4_L4:
 	note C_, 1
 	loopchannel 29, Music_Leech_Ch4_L4
 	notetype $8
@@ -1719,22 +1791,22 @@ Music_Leech_BeginRest:
 	endchannel
 
 Music_Leech_Ch4_C1:
-	note A_, 1
-	note D#, 1
+	note F#, 1
 	note B_, 1
-	note B_, 1
+	note F_, 1
+	note F_, 1
 	note C_, 1
-	note D#, 1
 	note B_, 1
-	note B_, 1
+	note F_, 1
+	note F_, 1
 Music_Leech_Ch4_C1L:
+	note D_, 1
+	note B_, 1
+	note F_, 1
+	note F_, 1
 	note C_, 1
-	note D#, 1
 	note B_, 1
-	note B_, 1
-	note C_, 1
-	note D#, 1
-	note B_, 1
-	note B_, 1
+	note F_, 1
+	note F_, 1
 	loopchannel 15, Music_Leech_Ch4_C1L
 	endchannel

@@ -124,7 +124,8 @@ RedsHouse1FRB_MoveBack4:
 
 RedsHouse1FRB_DontMoveBack: ; 0x7a56b
 	special RestartMapMusic
-	spriteface $2, $2
+	spriteface $2, LEFT
+	blackoutmod GROUP_PALLET_TOWN_RB, MAP_PALLET_TOWN_RB
 	end
 ; 0x7a572
 
@@ -172,6 +173,7 @@ MomScript1:
 	special Function1060a2
 	playmusic MUSIC_HEAL
 	special HealParty
+	blackoutmod GROUP_PALLET_TOWN_RB, MAP_PALLET_TOWN_RB
 	pause 60
 	special Function8c0ab
 	special RestartMapMusic

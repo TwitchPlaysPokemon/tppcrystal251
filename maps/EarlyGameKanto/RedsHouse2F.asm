@@ -26,7 +26,6 @@ MapRedsHouse2FRBSignpost0Script: ; 0x19b04a
 
 MapRedsHouse2FRBBedScript:
 	jumptext RedsHouse2FRBComfyBedText
-	end
 
 MapRedsHouse2FRBPCScript:
 	loadfont
@@ -64,7 +63,7 @@ RedsHouse2FRB_MapEventHeader: ; 0x19b0b9
 	signpost 5, 3, $0, MapRedsHouse2FRBSignpost0Script
 	signpost 6, 0, $0, MapRedsHouse2FRBBedScript
 	signpost 7, 0, $0, MapRedsHouse2FRBBedScript
-	signpost 1, 0, $1, MapRedsHouse2FRBPCScript
+	signpost 1, 0, $0, MapRedsHouse2FRBPCScript
 
 	; people-events
 	db 0

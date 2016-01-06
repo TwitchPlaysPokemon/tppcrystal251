@@ -9477,9 +9477,16 @@ GetBattleBackpic: ; 3fbff
 	ld hl, DudeBackpic
 	ld a, [BattleType]
 	cp BATTLETYPE_TUTORIAL
-	jr z, .Decompress
+	jr nz, .GetPlayerPic
+	ld a, [MapGroup]
+	cp GROUP_VIRIDIAN_CITY_RB
+	jr nz, .Decompress
+	ld b, BANK(OldManBackpic)
+	ld hl, OldManBackpic
+	jr .Decompress
 
 ; What gender are we?
+.GetPlayerPic
 	ld a, [wd45b]
 	bit 2, a
 	jr nz, .Chris

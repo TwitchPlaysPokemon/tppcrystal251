@@ -141,7 +141,7 @@
 	const CHARCOAL
 	const BERRY_JUICE
 	const SCOPE_LENS
-	const ITEM_8D
+	const OAKS_PARCEL
 	const ITEM_8E
 	const METAL_COAT
 	const DRAGON_FANG

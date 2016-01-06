@@ -1,44 +1,45 @@
 Marts: ; 160a9
-	dw Mart0
-	dw Mart1
-	dw Mart2
-	dw Mart3
-	dw Mart4
-	dw Mart5
-	dw Mart6
-	dw Mart7
-	dw Mart8
-	dw Mart9
-	dw Mart10
-	dw Mart11
-	dw Mart12
-	dw Mart13
-	dw Mart14
-	dw Mart15
-	dw Mart16
-	dw Mart17
-	dw Mart18
-	dw Mart19
-	dw Mart20
-	dw Mart21
-	dw Mart22
-	dw Mart23
-	dw Mart24
-	dw Mart25
-	dw Mart26
-	dw Mart27
-	dw Mart28
-	dw Mart29
-	dw Mart30
-	dw Mart31
-	dw Mart32
-	dw Mart33
-	dw TmDepot1
-	dw TmDepot2
-	dw TmDepot3
-	dw TmDepot4
-	dw TmDepot5
-	dw TmDepot6
+	dw Mart0          ; 00
+	dw Mart1          ; 01
+	dw Mart2          ; 02
+	dw Mart3          ; 03
+	dw Mart4          ; 04
+	dw Mart5          ; 05
+	dw Mart6          ; 06
+	dw Mart7          ; 07
+	dw Mart8          ; 08
+	dw Mart9          ; 09
+	dw Mart10         ; 0a
+	dw Mart11         ; 0b
+	dw Mart12         ; 0c
+	dw Mart13         ; 0d
+	dw Mart14         ; 0e
+	dw Mart15         ; 0f
+	dw Mart16         ; 10
+	dw Mart17         ; 11
+	dw Mart18         ; 12
+	dw Mart19         ; 13
+	dw Mart20         ; 14
+	dw Mart21         ; 15
+	dw Mart22         ; 16
+	dw Mart23         ; 17
+	dw Mart24         ; 18
+	dw Mart25         ; 19
+	dw Mart26         ; 1a
+	dw Mart27         ; 1b
+	dw Mart28         ; 1c
+	dw Mart29         ; 1d
+	dw Mart30         ; 1e
+	dw Mart31         ; 1f
+	dw Mart32         ; 20
+	dw Mart33         ; 21
+	dw TmDepot1       ; 22
+	dw TmDepot2       ; 23
+	dw TmDepot3       ; 24
+	dw TmDepot4       ; 25
+	dw TmDepot5       ; 26
+	dw TmDepot6       ; 27
+	dw ViridianMartRB ; 28
 MartsEnd
 ; 160ed
 
@@ -519,3 +520,10 @@ DefaultMart: ; 16214
 	db $ff
 ; 16218
 
+ViridianMartRB:
+	db 4
+	db POKE_BALL
+	db ANTIDOTE
+	db PARLYZ_HEAL
+	db BURN_HEAL
+	db $ff
