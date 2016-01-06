@@ -9478,8 +9478,8 @@ GetBattleBackpic: ; 3fbff
 	ld a, [BattleType]
 	cp BATTLETYPE_TUTORIAL
 	jr nz, .GetPlayerPic
-	ld a, [StatusFlags]
-	bit 5, a
+	ld a, [MapGroup]
+	cp GROUP_VIRIDIAN_CITY_RB
 	jr nz, .Decompress
 	ld b, BANK(OldManBackpic)
 	ld hl, OldManBackpic

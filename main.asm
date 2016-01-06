@@ -34622,7 +34622,7 @@ INCBIN "gfx/misc/player.6x6.2bpp.lz"
 ; 2bbaa
 
 OldManBackpic:
-; INCBIN "gfx/misc/oldman.6x6.2bpp.lz"
+INCBIN "gfx/misc/oldman.6x6.2bpp.lz"
 
 DudeBackpic: ; 2bbaa
 INCBIN "gfx/misc/dude.6x6.2bpp.lz"
@@ -48283,7 +48283,15 @@ Function4e56a: ; 4e56a (13:656a)
 	ld de, MomsName
 	ld bc, NAME_LENGTH
 	call CopyBytes
+	ld a, [MapGroup]
+	cp GROUP_VIRIDIAN_CITY_RB
+	jr z, .OldMan
 	ld hl, DudeString
+	jr .GotString
+
+.OldMan
+	ld hl, OldManString
+.GotString
 	ld de, PlayerName
 	ld bc, NAME_LENGTH
 	call CopyBytes
@@ -48336,6 +48344,8 @@ Function4e5b7: ; 4e5b7 (13:65b7)
 DudeString: ; 4e5da
 	db "DUDE@"
 ; 4e5df
+OldManString:
+	db "OLD MAN@"
 
 AutoInput_4e5df: ; 4e5df
 	db NO_INPUT, $ff ; end
