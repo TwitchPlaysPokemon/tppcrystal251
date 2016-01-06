@@ -24,11 +24,11 @@ UnknownScript_0x18d023: ; 0x18d023
 	applymovement $2, MovementData_0x18d2c7
 	loadfont
 	writetext UnknownText_0x18d2ea
-	keeptextopen
+	buttonsound
 UnknownScript_0x18d030: ; 0x18d030
 	setevent EVENT_001_STD
 	writetext UnknownText_0x18d3bc
-	keeptextopen
+	buttonsound
 	loadmenudata MenuDataHeader_0x18d215
 	interpretmenu2
 	writebackup
@@ -41,7 +41,7 @@ UnknownScript_0x18d030: ; 0x18d030
 UnknownScript_0x18d049: ; 0x18d049
 	setevent EVENT_002_STD
 	writetext UnknownText_0x18d3d3
-	keeptextopen
+	buttonsound
 	loadmenudata MenuDataHeader_0x18d234
 	interpretmenu2
 	writebackup
@@ -51,7 +51,7 @@ UnknownScript_0x18d049: ; 0x18d049
 UnknownScript_0x18d061: ; 0x18d061
 	setevent EVENT_003_STD
 	writetext UnknownText_0x18d3f3
-	keeptextopen
+	buttonsound
 	loadmenudata MenuDataHeader_0x18d258
 	interpretmenu2
 	writebackup
@@ -61,7 +61,7 @@ UnknownScript_0x18d061: ; 0x18d061
 UnknownScript_0x18d079: ; 0x18d079
 	setevent EVENT_004_STD
 	writetext UnknownText_0x18d420
-	keeptextopen
+	buttonsound
 	loadmenudata MenuDataHeader_0x18d283
 	interpretmenu2
 	writebackup
@@ -71,7 +71,7 @@ UnknownScript_0x18d079: ; 0x18d079
 UnknownScript_0x18d091: ; 0x18d091
 	setevent EVENT_005_STD
 	writetext UnknownText_0x18d44a
-	keeptextopen
+	buttonsound
 	loadmenudata MenuDataHeader_0x18d2a5
 	interpretmenu2
 	writebackup
@@ -82,7 +82,7 @@ UnknownScript_0x18d0a9: ; 0x18d0a9
 	checkevent EVENT_005_STD
 	iftrue UnknownScript_0x18d100
 	writetext UnknownText_0x18d82d
-	keeptextopen
+	buttonsound
 	checkevent EVENT_004_STD
 	iftrue UnknownScript_0x18d091
 	checkevent EVENT_003_STD
@@ -92,17 +92,17 @@ UnknownScript_0x18d0a9: ; 0x18d0a9
 	checkevent EVENT_001_STD
 	iftrue UnknownScript_0x18d049
 UnknownScript_0x18d0cb: ; 0x18d0cb
-	loadmovesprites
+	closetext
 	spriteface $2, $2
 	loadfont
 	writetext UnknownText_0x18d7f6
+	waitbutton
 	closetext
-	loadmovesprites
 	spriteface $2, $0
 	loadfont
 	writetext UnknownText_0x18d816
+	waitbutton
 	closetext
-	loadmovesprites
 	setevent EVENT_WRONG_ANSWER_IN_DRAGON_SHRINE_QUIZ
 	loadfont
 	checkevent EVENT_005_STD
@@ -117,13 +117,13 @@ UnknownScript_0x18d0cb: ; 0x18d0cb
 	iftrue UnknownScript_0x18d030
 UnknownScript_0x18d100: ; 0x18d100
 	writetext UnknownText_0x18d47c
+	waitbutton
 	closetext
-	loadmovesprites
 	playsound SFX_ENTER_DOOR
 	showemote $0, $0, 15
 	playmusic MUSIC_CLAIR
 	appear $5
-	waitbutton
+	waitsfx
 	spriteface $0, $0
 	pause 30
 	applymovement $5, MovementData_0x18d2d4
@@ -132,62 +132,62 @@ UnknownScript_0x18d100: ; 0x18d100
 	spriteface $2, $2
 	loadfont
 	writetext UnknownText_0x18d916
+	waitbutton
 	closetext
-	loadmovesprites
 	special Functionc48f
 	applymovement $5, MovementData_0x18d2da
 	loadfont
 	writetext UnknownText_0x18d974
+	waitbutton
 	closetext
-	loadmovesprites
 	applymovement $5, MovementData_0x18d2dd
 	loadfont
 	writetext UnknownText_0x18d983
+	waitbutton
 	closetext
-	loadmovesprites
 	applymovement $2, MovementData_0x18d2c9
 	spriteface $5, $1
 	loadfont
 	writetext UnknownText_0x18d520
+	waitbutton
 	closetext
-	loadmovesprites
 	showemote $0, $5, 15
 	loadfont
 	writetext UnknownText_0x18d9ae
+	waitbutton
 	closetext
-	loadmovesprites
 	applymovement $5, MovementData_0x18d2e0
 	loadfont
 	writetext UnknownText_0x18d9bf
-	closetext
+	waitbutton
 	setflag ENGINE_RISINGBADGE
 	playsound SFX_GET_BADGE
-	waitbutton
+	waitsfx
 	special RestartMapMusic
 	specialphonecall $8
 	dotrigger $1
 	domaptrigger GROUP_DRAGONS_DEN_B1F, MAP_DRAGONS_DEN_B1F, $1
 	writetext UnknownText_0x18d9f2
-	keeptextopen
+	buttonsound
 	writetext UnknownText_0x18da0b
+	waitbutton
 	closetext
-	loadmovesprites
 	applymovement $2, MovementData_0x18d2ce
 	spriteface $5, $1
 	applymovement $2, MovementData_0x18d2d1
 	spriteface $0, $1
 	loadfont
 	writetext UnknownText_0x18d5a3
+	waitbutton
 	closetext
-	loadmovesprites
 	loadfont
 	writetext UnknownText_0x18dab4
+	waitbutton
 	closetext
-	loadmovesprites
 	applymovement $5, MovementData_0x18d2e3
 	playsound SFX_ENTER_DOOR
 	disappear $5
-	waitbutton
+	waitsfx
 	setevent EVENT_000_STD
 	end
 ; 0x18d1a5
@@ -204,55 +204,55 @@ ElderScript_0x18d1a5: ; 0x18d1a5
 	checkevent EVENT_BEAT_RIVAL_IN_MT_MOON
 	iftrue UnknownScript_0x18d1f3
 	writetext UnknownText_0x18d724
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 ; 0x18d1c5
 
 UnknownScript_0x18d1c5: ; 0x18d1c5
 	writetext UnknownText_0x18d604
-	closetext
+	waitbutton
 	checkcode VAR_PARTYCOUNT
 	if_equal $6, UnknownScript_0x18d1ed
 	writetext UnknownText_0x18d697
 	playsound SFX_CAUGHT_MON
-	waitbutton
+	waitsfx
 	givepoke DRATINI, 15, 0, 0
 	checkevent EVENT_WRONG_ANSWER_IN_DRAGON_SHRINE_QUIZ
 	special SpecialDratini
 	setevent EVENT_RECEIVED_DRATINI_FROM_DRAGON_SHRINE
 	setevent EVENT_006_STD
 	writetext UnknownText_0x18d6ca
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 ; 0x18d1ed
 
 UnknownScript_0x18d1ed: ; 0x18d1ed
 	writetext UnknownText_0x18d6ac
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 ; 0x18d1f3
 
 UnknownScript_0x18d1f3: ; 0x18d1f3
 	writetext UnknownText_0x18d782
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 ; 0x18d1f9
 
 UnknownScript_0x18d1f9: ; 0x18d1f9
 	writetext UnknownText_0x18d5e5
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 ; 0x18d1ff
 
 UnknownScript_0x18d1ff: ; 0x18d1ff
 	writetext UnknownText_0x18d6ca
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 ; 0x18d205
 
@@ -260,8 +260,8 @@ ElderScript_0x18d205: ; 0x18d205
 	faceplayer
 	loadfont
 	writetext UnknownText_0x18d840
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 ; 0x18d20d
 
@@ -269,8 +269,8 @@ ElderScript_0x18d20d: ; 0x18d20d
 	faceplayer
 	loadfont
 	writetext UnknownText_0x18d8b1
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 ; 0x18d215
 

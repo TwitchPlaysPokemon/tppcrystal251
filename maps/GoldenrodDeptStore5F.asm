@@ -40,25 +40,25 @@ UnknownScript_0x560ad: ; 0x560ad
 
 UnknownScript_0x560b6: ; 0x560b6
 	pokemart $0, $0009
-	loadmovesprites
+	closetext
 	end
 ; 0x560bc
 
 UnknownScript_0x560bc: ; 0x560bc
 	pokemart $0, $000a
-	loadmovesprites
+	closetext
 	end
 ; 0x560c2
 
 UnknownScript_0x560c2: ; 0x560c2
 	pokemart $0, $000b
-	loadmovesprites
+	closetext
 	end
 ; 0x560c8
 
 UnknownScript_0x560c8: ; 0x560c8
 	pokemart $0, $000c
-	loadmovesprites
+	closetext
 	end
 ; 0x560ce
 
@@ -71,7 +71,7 @@ ReceptionistScript_0x560ce: ; 0x560ce
 	iftrue UnknownScript_0x56112
 	special Function718d
 	writetext UnknownText_0x56143
-	keeptextopen
+	buttonsound
 	if_greater_than $95, UnknownScript_0x560ee
 	if_greater_than $31, UnknownScript_0x560fd
 	jump UnknownScript_0x56103
@@ -79,36 +79,36 @@ ReceptionistScript_0x560ce: ; 0x560ce
 
 UnknownScript_0x560ee: ; 0x560ee
 	writetext UnknownText_0x5615a
-	keeptextopen
+	buttonsound
 	verbosegiveitem TM_RETURN, 1
 	iffalse UnknownScript_0x56116
 	setflag ENGINE_GOLDENROD_MALL_5F_HAPPINESS_EVENT
-	loadmovesprites
+	closetext
 	end
 ; 0x560fd
 
 UnknownScript_0x560fd: ; 0x560fd
 	writetext UnknownText_0x561a6
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 ; 0x56103
 
 UnknownScript_0x56103: ; 0x56103
 	writetext UnknownText_0x561d8
-	keeptextopen
+	buttonsound
 	verbosegiveitem TM_FRUSTRATION, 1
 	iffalse UnknownScript_0x56116
 	setflag ENGINE_GOLDENROD_MALL_5F_HAPPINESS_EVENT
-	loadmovesprites
+	closetext
 	end
 ; 0x56112
 
 UnknownScript_0x56112: ; 0x56112
 	writetext UnknownText_0x56202
-	closetext
+	waitbutton
 UnknownScript_0x56116: ; 0x56116
-	loadmovesprites
+	closetext
 	end
 ; 0x56118
 
@@ -118,16 +118,16 @@ TwinScript_0x56118: ; 0x56118
 	special SpecialGameboyCheck
 	if_not_equal $2, UnknownScript_0x5612a
 	writetext UnknownText_0x56241
+	waitbutton
 	closetext
-	loadmovesprites
 	special Function1050b9
 	end
 ; 0x5612a
 
 UnknownScript_0x5612a: ; 0x5612a
 	writetext UnknownText_0x56279
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 ; 0x56130
 
@@ -139,8 +139,8 @@ CooltrainerMScript_0x56133: ; 0x56133
 	faceplayer
 	loadfont
 	trade $0
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 ; 0x5613a
 

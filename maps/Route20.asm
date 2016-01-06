@@ -39,8 +39,8 @@ SwimmerfNicoleScript: ; 0x1acd35
 	talkaftercancel
 	loadfont
 	writetext UnknownText_0x1acd93
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 ; 0x1acd3d
 
@@ -68,8 +68,8 @@ SwimmerfLoriScript: ; 0x1acd49
 	talkaftercancel
 	loadfont
 	writetext UnknownText_0x1ace15
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 ; 0x1acd51
 
@@ -97,8 +97,8 @@ SwimmermCameronScript: ; 0x1acd5d
 	talkaftercancel
 	loadfont
 	writetext UnknownText_0x1ace8b
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 ; 0x1acd65
 

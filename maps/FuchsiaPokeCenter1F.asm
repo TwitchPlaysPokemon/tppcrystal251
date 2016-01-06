@@ -29,16 +29,16 @@ JanineImpersonatorScript_0x196462: ; 0x196462
 	faceplayer
 	loadfont
 	writetext UnknownText_0x19652e
+	waitbutton
 	closetext
-	loadmovesprites
 	applymovement $5, MovementData_0x196486
 	faceplayer
 	variablesprite $c, $a
 	special Function14209
 	loadfont
 	writetext UnknownText_0x19654e
+	waitbutton
 	closetext
-	loadmovesprites
 	applymovement $5, MovementData_0x196486
 	faceplayer
 	variablesprite $c, $28

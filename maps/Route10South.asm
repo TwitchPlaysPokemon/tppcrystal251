@@ -30,8 +30,8 @@ HikerJimScript: ; 0x1ae402
 	talkaftercancel
 	loadfont
 	writetext UnknownText_0x1ae43b
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 ; 0x1ae40a
 
@@ -59,8 +59,8 @@ PokefanmRobertScript: ; 0x1ae416
 	talkaftercancel
 	loadfont
 	writetext UnknownText_0x1ae4a9
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 ; 0x1ae41e
 

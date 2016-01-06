@@ -27,8 +27,8 @@ UndergroundWarehouse_BurglarSimonScript1:
 	playmusic MUSIC_POKEMANIAC_ENCOUNTER
 	loadfont
 	writetext UndergroundWarehouse_BurglarSimonText1
+	waitbutton
 	closetext
-	loadmovesprites
 	checkcode VAR_XCOORD
 	if_equal $3, UndergroundWarehouse_BurglarSimonScript1a
 	applymovement $9, UndergroundWarehouse_BurglarSimonMovement1
@@ -44,7 +44,7 @@ UndergroundWarehouse_BurglarSimonScript1b:
 	playmusic MUSIC_POKEMANIAC_ENCOUNTER
 	loadfont
 	writetext UndergroundWarehouse_BurglarSimonText2
-	keeptextopen
+	buttonsound
 	random 3
 	if_equal 1, UndergroundWarehouse_BurglarSimonScript_GiveFireStone
 	if_equal 2, UndergroundWarehouse_BurglarSimonScript_GiveWaterStone
@@ -57,8 +57,8 @@ UndergroundWarehouse_BurglarSimonScript_GiveWaterStone:
 	verbosegiveitem WATER_STONE, 1
 UndergroundWarehouse_BurglarSimonScript2:
 	writetext UndergroundWarehouse_BurglarSimonText3
+	waitbutton
 	closetext
-	loadmovesprites
 	checkcode VAR_XCOORD
 	if_equal $3, UndergroundWarehouse_BurglarSimonScript2a
 	applymovement $9, UndergroundWarehouse_BurglarSimonMovement1a
@@ -130,8 +130,8 @@ GruntM24Script: ; 0x7d98f
 	talkaftercancel
 	loadfont
 	writetext UnknownText_0x7da48
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 ; 0x7d997
 
@@ -159,8 +159,8 @@ GruntM14Script: ; 0x7d9a3
 	talkaftercancel
 	loadfont
 	writetext UnknownText_0x7db01
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 ; 0x7d9ab
 
@@ -188,8 +188,8 @@ GruntM15Script: ; 0x7d9b7
 	talkaftercancel
 	loadfont
 	writetext UnknownText_0x7db8e
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 ; 0x7d9bf
 
@@ -199,18 +199,18 @@ GentlemanScript_0x7d9bf: ; 0x7d9bf
 	checkevent EVENT_GOT_CARD_KEY
 	iftrue UnknownScript_0x7d9de
 	writetext UnknownText_0x7dbc6
-	keeptextopen
+	buttonsound
 	verbosegiveitem CARD_KEY, 1
 	setevent EVENT_GOT_CARD_KEY
 	setevent EVENT_GOLDENROD_DEPT_STORE_BASEMENT_LAYOUT_1
 	clearevent EVENT_GOLDENROD_DEPT_STORE_BASEMENT_LAYOUT_2
 	clearevent EVENT_GOLDENROD_DEPT_STORE_BASEMENT_LAYOUT_3
 	writetext UnknownText_0x7dc5b
-	keeptextopen
+	buttonsound
 UnknownScript_0x7d9de: ; 0x7d9de
 	writetext UnknownText_0x7dc8d
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 ; 0x7d9e4
 

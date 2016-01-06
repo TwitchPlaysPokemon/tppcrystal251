@@ -12,7 +12,7 @@ DoPlayerTurn: ; 34000
 DoEnemyTurn: ; 3400a
 	call SetEnemyTurn
 
-	ld a, [InLinkBattle]
+	ld a, [wLinkMode]
 	and a
 	jr z, DoTurn
 
@@ -694,11 +694,11 @@ BattleCommand02: ; 343db
 
 	; No obedience in link battles
 	; (since no handling exists for enemy)
-	ld a, [InLinkBattle]
+	ld a, [wLinkMode]
 	and a
 	ret nz
 
-	ld a, [wcfc0]
+	ld a, [InBattleTowerBattle]
 	and a
 	ret nz
 
@@ -3529,7 +3529,7 @@ Function3534d: ; 3534d
 	inc l
 
 .asm_3536b
-	ld a, [InLinkBattle]
+	ld a, [wLinkMode]
 	cp 3
 	jr z, .done
 
@@ -3848,11 +3848,11 @@ BattleCommanda1: ; 35461
 	dec a
 	jr z, .asm_3556b
 
-	ld a, [InLinkBattle]
+	ld a, [wLinkMode]
 	and a
 	jr nz, .asm_35532
 
-	ld a, [wcfc0]
+	ld a, [InBattleTowerBattle]
 	and a
 	jr nz, .asm_35532
 
@@ -4836,7 +4836,7 @@ BattleCommand46: ; 35a74
 
 	call Function372d8
 
-	ld a, [InLinkBattle]
+	ld a, [wLinkMode]
 	and a
 	jr z, .asm_35a83
 	call AnimateFailedMove
@@ -5556,7 +5556,7 @@ BattleCommand14: ; 35e5c
 
 	call AnimateCurrentMove
 	ld b, $7
-	ld a, [wcfc0]
+	ld a, [InBattleTowerBattle]
 	and a
 	jr z, .asm_35ea4
 	ld b, $3
@@ -5595,11 +5595,11 @@ Function35ece: ; 35ece
 	jr z, .asm_35eec
 
 	; Not in link battle
-	ld a, [InLinkBattle]
+	ld a, [wLinkMode]
 	and a
 	jr nz, .asm_35eec
 
-	ld a, [wcfc0]
+	ld a, [InBattleTowerBattle]
 	and a
 	jr nz, .asm_35eec
 
@@ -5691,10 +5691,10 @@ BattleCommand2f: ; 35f2c
 	ld a, [hBattleTurn]
 	and a
 	jr z, .asm_35f89
-	ld a, [InLinkBattle]
+	ld a, [wLinkMode]
 	and a
 	jr nz, .asm_35f89
-	ld a, [wcfc0]
+	ld a, [InBattleTowerBattle]
 	and a
 	jr nz, .asm_35f89
 	ld a, [PlayerSubStatus5]
@@ -5784,6 +5784,119 @@ Function35ff5: ; 35ff5
 	call GetBattleVarAddr
 	set PSN, [hl]
 	jp UpdateOpponentInParty
+; 35fff
+
+BattleCommand_Burn: ; 35f2c
+; burn
+
+	ld hl, DoesntAffectText
+	ld a, [TypeModifier]
+	and $7f
+	jp z, .failed
+
+	call .CheckTargetIsFireType
+	jp z, .failed
+
+	ld a, BATTLE_VARS_STATUS_OPP
+	call GetBattleVar
+	ld b, a
+	ld hl, AlreadyBurnedText
+	and 1 << BRN
+	jp nz, .failed
+
+	call GetOpponentItem
+	ld a, b
+	cp HELD_PREVENT_BURN
+	jr nz, .do_burn
+	ld a, [hl]
+	ld [wd265], a
+	call GetItemName
+	ld hl, ProtectedByText
+	jr .failed
+
+.do_burn
+	ld hl, DidntAffect1Text
+	ld a, BATTLE_VARS_STATUS_OPP
+	call GetBattleVar
+	and a
+	jr nz, .failed
+
+	ld a, [hBattleTurn]
+	and a
+	jr z, .mimic_random
+
+	ld a, [wLinkMode]
+	and a
+	jr nz, .mimic_random
+
+	ld a, [InBattleTowerBattle]
+	and a
+	jr nz, .mimic_random
+
+	ld a, [PlayerSubStatus5]
+	bit SUBSTATUS_LOCK_ON, a
+	jr nz, .mimic_random
+
+	call BattleRandom
+	cp $40 ; 25% chance AI fails
+	jr c, .failed
+
+.mimic_random
+	call CheckSubstituteOpp
+	jr nz, .failed
+	ld a, [AttackMissed]
+	and a
+	jr nz, .failed
+	call .apply_burn
+	ld hl, WasBurnedText
+	call StdBattleTextBox
+	jr .finished
+
+.finished
+	callba Function3dde9
+	ret
+
+.failed
+	push hl
+	call AnimateFailedMove
+	pop hl
+	jp StdBattleTextBox
+
+; 35fc0
+
+
+.apply_burn: ; 35fc0
+	call AnimateCurrentMove
+	call .BurnOpponent
+	jp RefreshBattleHuds
+
+; 35fc9
+
+
+.CheckTargetIsFireType: ; 35fe1
+	ld de, EnemyMonType1
+	ld a, [hBattleTurn]
+	and a
+	jr z, .ok_fire
+	ld de, BattleMonType1
+.ok_fire
+	ld a, [de]
+	inc de
+	cp FIRE
+	ret z
+	ld a, [de]
+	cp FIRE
+	ret
+
+; 35ff5
+
+
+.BurnOpponent: ; 35ff5
+	ld a, BATTLE_VARS_STATUS_OPP
+	call GetBattleVarAddr
+	set BRN, [hl]
+	jp UpdateOpponentInParty
+
 ; 35fff
 
 
@@ -6335,11 +6448,11 @@ BattleCommand1d: ; 362e3
 	ld a, [hBattleTurn]
 	and a
 	jr z, .DidntMiss
-	ld a, [InLinkBattle]
+	ld a, [wLinkMode]
 	and a
 	jr nz, .DidntMiss
 
-	ld a, [wcfc0]
+	ld a, [InBattleTowerBattle]
 	and a
 	jr nz, .DidntMiss
 
@@ -8185,10 +8298,10 @@ BattleCommand30: ; 36dc7
 	ld a, [hBattleTurn]
 	and a
 	jr z, .asm_36e0e
-	ld a, [InLinkBattle]
+	ld a, [wLinkMode]
 	and a
 	jr nz, .asm_36e0e
-	ld a, [wcfc0]
+	ld a, [InBattleTowerBattle]
 	and a
 	jr nz, .asm_36e0e
 	ld a, [PlayerSubStatus5]
@@ -9497,7 +9610,7 @@ BattleCommand60: ; 3784b
 BattleCommand61: ; 37874
 ; present
 
-	ld a, [InLinkBattle]
+	ld a, [wLinkMode]
 	cp $3
 	jr z, .asm_3787d
 	push bc
@@ -9506,7 +9619,7 @@ BattleCommand61: ; 37874
 
 	call BattleCommand07
 
-	ld a, [InLinkBattle]
+	ld a, [wLinkMode]
 	cp $3
 	jr z, .asm_37889
 	pop de
@@ -9803,7 +9916,7 @@ BattleCommand67: ; 379c9
 
 
 BatonPass_LinkPlayerSwitch: ; 37a67
-	ld a, [InLinkBattle]
+	ld a, [wLinkMode]
 	and a
 	ret z
 
@@ -9822,7 +9935,7 @@ BatonPass_LinkPlayerSwitch: ; 37a67
 
 
 BatonPass_LinkEnemySwitch: ; 37a82
-	ld a, [InLinkBattle]
+	ld a, [wLinkMode]
 	and a
 	ret z
 
@@ -10060,7 +10173,7 @@ BattleCommand6a6c: ; 37b7e
 	jr z, .Full
 
 ; Don't factor in time of day in link battles.
-	ld a, [InLinkBattle]
+	ld a, [wLinkMode]
 	and a
 	jr nz, .Weather
 

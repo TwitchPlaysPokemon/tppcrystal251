@@ -12,15 +12,15 @@ Route1RB_Youngster1Script:
 	checkevent EVENT_ROUTE_1_RB_POTION
 	iftrue .GotPotion
 	writetext Route1RBGivePotionText
-	keeptextopen
+	buttonsound
 	verbosegiveitem POTION, 1
 	iffalse .NoRoomForItem
 	setevent EVENT_ROUTE_1_RB_POTION
 .GotPotion
 	writetext Route1RBGavePotionText
 .NoRoomForItem
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 Route1RB_Youngster2Script:
@@ -60,11 +60,16 @@ Route1RBGavePotionText:
 	done
 
 Route1RB_CoolTrainerFText:
-	text "See these ledges?"
+	text "See those ledges"
+	line "along the road?"
 
-	para "You can hop down"
-	line "them as a short-"
-	cont "cut to PALLET."
+	para "It's a bit scary,"
+	line "but you can jump"
+	cont "from them."
+
+	para "You can get back"
+	line "to PALLET TOWN"
+	cont "quicker that way."
 	done
 
 Route1RB_MapEventHeader: ; 0x1ac69a
@@ -83,8 +88,8 @@ Route1RB_MapEventHeader: ; 0x1ac69a
 
 	; people-events
 	db 3
-	person_event SPRITE_YOUNGSTER, 16, 8, $9, 0, 0, -1, -1, 8 + PAL_OW_BLUE, 0, 0, Route1RB_Youngster1Script, -1
-	person_event SPRITE_YOUNGSTER, 29, 13, $a, 0, 0, -1, -1, 8 + PAL_OW_RED, 0, 0, Route1RB_Youngster2Script, -1
+	person_event SPRITE_YOUNGSTER, 33,  8, $4, 1, 0, -1, -1, 8 + PAL_OW_BLUE, 0, 0, Route1RB_Youngster1Script, -1
+	person_event SPRITE_YOUNGSTER, 17, 17, $5, 0, 1, -1, -1, 8 + PAL_OW_BLUE, 0, 0, Route1RB_Youngster2Script, -1
 	person_event SPRITE_FRUIT_TREE, 11, 7, $1, 0, 0, -1, -1, 0, 0, 0, FruitTreeScript_Route1RB, -1
 ; 0x1ac6cc
 

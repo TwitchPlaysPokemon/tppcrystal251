@@ -60,8 +60,8 @@ CooltrainermNickScript: ; 0x5a33a
 	talkaftercancel
 	loadfont
 	writetext UnknownText_0x5a3f0
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 ; 0x5a342
 
@@ -89,8 +89,8 @@ CooltrainerfGwenScript: ; 0x5a34e
 	talkaftercancel
 	loadfont
 	writetext UnknownText_0x5a488
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 ; 0x5a356
 
@@ -118,8 +118,8 @@ CooltrainerfEmmaScript: ; 0x5a362
 	talkaftercancel
 	loadfont
 	writetext UnknownText_0x5a52b
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 ; 0x5a36a
 

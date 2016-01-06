@@ -9,7 +9,7 @@ OlivineMart_MapScriptHeader: ; 0x9cac5
 ClerkScript_0x9cac7: ; 0x9cac7
 	loadfont
 	pokemart $0, $000d
-	loadmovesprites
+	closetext
 	end
 ; 0x9cace
 

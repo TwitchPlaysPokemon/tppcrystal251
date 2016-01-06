@@ -12,15 +12,15 @@ GrannyScript_0x18b634: ; 0x18b634
 	checkevent EVENT_GOT_CLEANSE_TAG
 	iftrue UnknownScript_0x18b649
 	writetext UnknownText_0x18b655
-	keeptextopen
+	buttonsound
 	verbosegiveitem CLEANSE_TAG, 1
 	iffalse UnknownScript_0x18b64d
 	setevent EVENT_GOT_CLEANSE_TAG
 UnknownScript_0x18b649: ; 0x18b649
 	writetext UnknownText_0x18b6a7
-	closetext
+	waitbutton
 UnknownScript_0x18b64d: ; 0x18b64d
-	loadmovesprites
+	closetext
 	end
 ; 0x18b64f
 

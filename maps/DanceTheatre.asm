@@ -30,8 +30,8 @@ Kimono_girlNaoko2Script: ; 0x9946e
 	talkaftercancel
 	loadfont
 	writetext UnknownText_0x99579
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 ; 0x99476
 
@@ -59,8 +59,8 @@ Kimono_girlSayoScript: ; 0x99482
 	talkaftercancel
 	loadfont
 	writetext UnknownText_0x9960b
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 ; 0x9948a
 
@@ -88,8 +88,8 @@ Kimono_girlZukiScript: ; 0x99496
 	talkaftercancel
 	loadfont
 	writetext UnknownText_0x99688
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 ; 0x9949e
 
@@ -117,8 +117,8 @@ Kimono_girlKuniScript: ; 0x994aa
 	talkaftercancel
 	loadfont
 	writetext UnknownText_0x99714
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 ; 0x994b2
 
@@ -146,8 +146,8 @@ Kimono_girlMikiScript: ; 0x994be
 	talkaftercancel
 	loadfont
 	writetext UnknownText_0x997a8
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 ; 0x994c6
 
@@ -155,7 +155,7 @@ GentlemanScript_0x994c6: ; 0x994c6
 	faceplayer
 	loadfont
 	writetext UnknownText_0x9980a
-	keeptextopen
+	buttonsound
 	checkevent EVENT_GOT_HM03_SURF
 	iftrue UnknownScript_0x99515
 	checkevent EVENT_BEAT_KIMONO_GIRL_NAOKO
@@ -175,33 +175,33 @@ UnknownScript_0x994f3: ; 0x994f3
 	checkflag ENGINE_PLAYER_IS_FEMALE
 	iftrue UnknownScript_0x994ff
 	writetext UnknownText_0x99891
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 ; 0x994ff
 
 UnknownScript_0x994ff: ; 0x994ff
 	writetext UnknownText_0x998d4
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 ; 0x99505
 
 UnknownScript_0x99505: ; 0x99505
 	writetext UnknownText_0x9991a
-	keeptextopen
+	buttonsound
 	verbosegiveitem HM_SURF, 1
 	setevent EVENT_GOT_HM03_SURF
 	writetext UnknownText_0x9999b
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 ; 0x99515
 
 UnknownScript_0x99515: ; 0x99515
 	writetext UnknownText_0x999d5
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 ; 0x9951b
 
@@ -209,8 +209,8 @@ RhydonScript_0x9951b: ; 0x9951b
 	loadfont
 	writetext UnknownText_0x99a0a
 	cry RHYDON
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 ; 0x99525
 

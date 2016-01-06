@@ -568,7 +568,14 @@ INCLUDE "maps/EarlyGameKanto/PalletTown.asm"
 INCLUDE "maps/EarlyGameKanto/Route1.asm"
 INCLUDE "maps/EarlyGameKanto/RedsHouse1F.asm"
 INCLUDE "maps/EarlyGameKanto/RedsHouse2F.asm"
-
-SECTION "ViridianCityRB", ROMX
-INCLUDE "maps/ViridianCityRB.asm"SECTION "ViridianCityRB Blockdata", ROMX
-ViridianCityRB_BlockData: INCBIN "maps/ViridianCityRB.blk"
+INCLUDE "maps/EarlyGameKanto/BluesHouse.asm"
+INCLUDE "maps/EarlyGameKanto/OaksLab.asm"
+INCLUDE "maps/EarlyGameKanto/ViridianCity.asm"
+INCLUDE "maps/EarlyGameKanto/ViridianPokeCenter1F.asm"
+INCLUDE "maps/EarlyGameKanto/ViridianMart.asm"
+INCLUDE "maps/EarlyGameKanto/ViridianNicknameSpeechHouse.asm"
+INCLUDE "maps/EarlyGameKanto/ViridianTrainerSchool.asm"
+INCLUDE "maps/EarlyGameKanto/Route2.asm"
+INCLUDE "maps/EarlyGameKanto/Route22.asm"
+INCLUDE "maps/EarlyGameKanto/VictoryRoadGate.asm"
+INCLUDE "maps/EarlyGameKanto/Route23.asm"

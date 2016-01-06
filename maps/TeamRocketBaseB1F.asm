@@ -243,8 +243,8 @@ NoSecurityCamera: ; 0x6c8b8
 TrainerCameraGrunt1: ; 0x6c8b9
 	loadfont
 	writetext CameraGrunt1SeenText
+	waitbutton
 	closetext
-	loadmovesprites
 	winlosstext CameraGrunt1BeatenText, $0000
 	setlasttalked $2
 	loadtrainer GRUNTM, 20
@@ -257,8 +257,8 @@ TrainerCameraGrunt1: ; 0x6c8b9
 TrainerCameraGrunt2: ; 0x6c8ce
 	loadfont
 	writetext CameraGrunt2SeenText
+	waitbutton
 	closetext
-	loadmovesprites
 	winlosstext CameraGrunt2BeatenText, $0000
 	setlasttalked $2
 	loadtrainer GRUNTM, 21
@@ -517,8 +517,8 @@ ScientistJedScript: ; 0x6ca7a
 	talkaftercancel
 	loadfont
 	writetext UnknownText_0x6cc16
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 ; 0x6ca82
 
@@ -546,8 +546,8 @@ GruntM16Script: ; 0x6ca8e
 	talkaftercancel
 	loadfont
 	writetext UnknownText_0x6cd1b
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 ; 0x6ca96
 
@@ -567,8 +567,8 @@ MapTeamRocketBaseB1FSignpost0Script: ; 0x6ca9c
 	iftrue UnknownScript_0x6cabe
 	writetext UnknownText_0x6cdad
 	playsound SFX_TALLY
+	waitbutton
 	closetext
-	loadmovesprites
 	setevent EVENT_TURNED_OFF_SECURITY_CAMERAS
 	setevent EVENT_SECURITY_CAMERA_1
 	setevent EVENT_SECURITY_CAMERA_2
@@ -581,8 +581,8 @@ MapTeamRocketBaseB1FSignpost0Script: ; 0x6ca9c
 UnknownScript_0x6cabe: ; 0x6cabe
 	writetext UnknownText_0x6cdd0
 	playsound SFX_TALLY
+	waitbutton
 	closetext
-	loadmovesprites
 	clearevent EVENT_TURNED_OFF_SECURITY_CAMERAS
 	clearevent EVENT_SECURITY_CAMERA_1
 	clearevent EVENT_SECURITY_CAMERA_2
@@ -594,8 +594,8 @@ UnknownScript_0x6cabe: ; 0x6cabe
 
 MapTeamRocketBaseB1F_DontTurnCamerasBackOn:
 	writetext MapTeamRocketBaseB1F_DontTurnCamerasBackOnText
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 ItemFragment_0x6cac4: ; 0x6cac4

@@ -27,12 +27,12 @@ UnknownScript_0x9f425: ; 0x9f425
 	special Function170b44
 	appear $2
 	warpsound
-	waitbutton
+	waitsfx
 	applymovement $2, MovementData_0x9e592
 	loadfont
 	storetext 1
-	keeptextopen
-	loadmovesprites
+	buttonsound
+	closetext
 	special Function170215
 	special Function8c084
 	reloadmap
@@ -46,8 +46,8 @@ UnknownScript_0x9f425: ; 0x9f425
 	applymovement $0, MovementData_0x9e5a7
 	loadfont
 	writetext UnknownText_0x9ee92
+	waitbutton
 	closetext
-	loadmovesprites
 	playmusic MUSIC_HEAL
 	special Function8c084
 	special Function1047eb
@@ -59,7 +59,7 @@ UnknownScript_0x9f425: ; 0x9f425
 	yesorno
 	iffalse UnknownScript_0x9f483
 UnknownScript_0x9f477: ; 0x9f477
-	loadmovesprites
+	closetext
 	applymovement $0, MovementData_0x9e5a9
 	applymovement $3, MovementData_0x9e5a1
 	jump UnknownScript_0x9f425
@@ -76,7 +76,7 @@ UnknownScript_0x9f483: ; 0x9f483
 	writebyte $3
 	special Function170687
 	playsound SFX_SAVE
-	waitbutton
+	waitsfx
 	special Function8c084
 	special Reset
 UnknownScript_0x9f4a3: ; 0x9f4a3
@@ -87,7 +87,7 @@ UnknownScript_0x9f4a3: ; 0x9f4a3
 	special Function170687
 	writebyte $6
 	special Function170687
-	loadmovesprites
+	closetext
 	special Function8c084
 	warpfacing $1, GROUP_BATTLE_TOWER_1F, MAP_BATTLE_TOWER_1F, $7, $7
 	loadfont
@@ -102,8 +102,8 @@ UnknownScript_0x9f4c2: ; 0x9f4c2
 	special Function170687
 	loadfont
 	writetext UnknownText_0x9ea49
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 ; 0x9f4d9
 
@@ -122,8 +122,8 @@ UnknownScript_0x9f4eb: ; 0x9f4eb
 	special Function170687
 	loadfont
 	writetext UnknownText_0x9f0c1
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 ; 0x9f4f7
 
@@ -135,8 +135,8 @@ UnknownScript_0x9f4f7: ; 0x9f4f7
 	loadfont
 	writetext UnknownText_0x9ea49
 	writetext UnknownText_0x9ec09
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 ; 0x9f50b
 

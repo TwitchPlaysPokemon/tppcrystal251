@@ -41,9 +41,9 @@ MapBattleTentGeneratorSwitchScript1:
 	setevent EVENT_TURNED_ON_BATTLE_TENT_GENERATOR
 	writetext MapBattleTentGeneratorSwitchText2
 MapBattleTentGeneratorSwitchScript2:
-	closetext
+	waitbutton
 MapBattleTentGeneratorSwitchScript7:
-	loadmovesprites
+	closetext
 	end
 
 MapBattleTentGeneratorSwitchScript3:

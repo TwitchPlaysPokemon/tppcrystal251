@@ -25,7 +25,7 @@ Function3c000: ; 3c000
 .asm_3c021
 	ld a, d
 	ld [wBattleAction], a
-	ld a, [InLinkBattle]
+	ld a, [wLinkMode]
 	and a
 	jr z, .asm_3c031
 
@@ -97,7 +97,7 @@ Function3c000: ; 3c000
 	call Function309d
 	call SetPlayerTurn
 	call SpikesDamage
-	ld a, [InLinkBattle]
+	ld a, [wLinkMode]
 	and a
 	jr z, .asm_3c0df
 	ld a, [$ffcb]
@@ -127,7 +127,7 @@ Function3c0e5: ; 3c0e5
 	and $c0
 	add $2
 	ld [wd0ee], a
-	ld a, [InLinkBattle]
+	ld a, [wLinkMode]
 	and a
 	ld hl, BattleText_0x807bd
 	jr z, .asm_3c115
@@ -437,7 +437,7 @@ Function3c27c: ; 3c27c
 ; 3c300
 
 Function3c300: ; 3c300
-	ld a, [InLinkBattle]
+	ld a, [wLinkMode]
 	and a
 	jr z, .asm_3c30d
 	ld a, [wBattleAction]
@@ -455,7 +455,7 @@ Function3c300: ; 3c300
 ; 3c314
 
 Function3c314: ; 3c314
-	ld a, [InLinkBattle]
+	ld a, [wLinkMode]
 	and a
 	jr z, .asm_3c35b
 	ld a, [wBattleAction]
@@ -2410,7 +2410,7 @@ Function3cf4a: ; 3cf4a
 	call Function3e12e
 	call WaitBGMap
 	callba Function2c012
-	ld a, [InLinkBattle]
+	ld a, [wLinkMode]
 	and a
 	jr z, .asm_3cf6d
 	call Function3e8e4
@@ -2461,7 +2461,7 @@ Function3cfa4: ; 3cfa4
 	ld a, $1
 	ld [wc6fd], a
 	ld [BattleEnded], a
-	ld a, [InLinkBattle]
+	ld a, [wLinkMode]
 	and a
 	ld a, b
 	call z, Function3d0ea
@@ -2470,10 +2470,10 @@ Function3cfa4: ; 3cfa4
 	call StdBattleTextBox
 	call IsMobileBattle
 	jr z, .asm_3cff5
-	ld a, [InLinkBattle]
+	ld a, [wLinkMode]
 	and a
 	ret nz
-	ld a, [wcfc0]
+	ld a, [InBattleTowerBattle]
 	bit 0, a
 	jr nz, .asm_3d006
 	call Function3ebd8
@@ -2878,7 +2878,7 @@ Function3d227: ; 3d227
 	call Function1d6e
 	call Function3d2f7
 	call ForcePickPartyMonInBattle
-	ld a, [InLinkBattle]
+	ld a, [wLinkMode]
 	and a
 	jr z, .asm_3d241
 	ld a, $1
@@ -2957,7 +2957,7 @@ Function3d2b3: ; 3d2b3
 
 
 Function3d2e0: ; 3d2e0
-	ld a, [InLinkBattle]
+	ld a, [wLinkMode]
 	cp $4
 	jr nz, .asm_3d2ef
 	ld a, [wcd2b]
@@ -2972,7 +2972,7 @@ Function3d2e0: ; 3d2e0
 ; 3d2f1
 
 IsMobileBattle: ; 3d2f1
-	ld a, [InLinkBattle]
+	ld a, [wLinkMode]
 	cp $4
 	ret
 ; 3d2f7
@@ -3081,7 +3081,7 @@ LostBattle: ; 3d38e
 	ld a, 1
 	ld [BattleEnded], a
 
-	ld a, [wcfc0]
+	ld a, [InBattleTowerBattle]
 	bit 0, a
 	jr nz, .asm_3d3bd
 
@@ -3124,7 +3124,7 @@ LostBattle: ; 3d38e
 	ret
 
 .asm_3d3e3
-	ld a, [InLinkBattle]
+	ld a, [wLinkMode]
 	and a
 	jr nz, .LostLinkBattle
 
@@ -3342,7 +3342,7 @@ Function3d517: ; 3d517
 ; 3d533
 
 Function3d533: ; 3d533
-	ld a, [InLinkBattle]
+	ld a, [wLinkMode]
 	and a
 	jr z, .asm_3d541
 
@@ -3635,7 +3635,7 @@ Function3d714: ; 3d714
 	ld a, [PartyCount]
 	dec a
 	jp z, .asm_3d749
-	ld a, [InLinkBattle]
+	ld a, [wLinkMode]
 	and a
 	jp nz, .asm_3d749
 	ld a, [Options]
@@ -3866,7 +3866,7 @@ Function3d8b3: ; 3d8b3
 	cp BATTLETYPE_SUICUNE
 	jp z, .asm_3d98d
 
-	ld a, [InLinkBattle]
+	ld a, [wLinkMode]
 	and a
 	jp nz, .asm_3d9a2
 
@@ -3982,7 +3982,7 @@ Function3d8b3: ; 3d8b3
 	ret
 
 .asm_3d9a2
-	ld a, [InLinkBattle]
+	ld a, [wLinkMode]
 	and a
 	ld a, $2
 	jr z, .asm_3d9cf
@@ -5203,11 +5203,11 @@ LoadBattleMenu2: ; 3e19b
 ; 3e1c7
 
 BattleMenu_Pack: ; 3e1c7
-	ld a, [InLinkBattle]
+	ld a, [wLinkMode]
 	and a
 	jp nz, ItemsCantBeUsed
 
-	ld a, [wcfc0]
+	ld a, [InBattleTowerBattle]
 	and a
 	jp nz, ItemsCantBeUsed
 
@@ -5442,7 +5442,7 @@ Function3e358: ; 3e358
 Function3e3ad: ; 3e3ad
 	ld a, 1
 	ld [wPlayerIsSwitching], a
-	ld a, [InLinkBattle]
+	ld a, [wLinkMode]
 	and a
 	jr z, .asm_3e3c1
 	call Function1d6e
@@ -5451,7 +5451,7 @@ Function3e3ad: ; 3e3ad
 
 .asm_3e3c1
 	call Function3e7c1
-	ld a, [InLinkBattle]
+	ld a, [wLinkMode]
 	and a
 	jr nz, .asm_3e3cf
 
@@ -5670,7 +5670,7 @@ Function3e4bc: ; 3e4bc
 	dec a
 	ld b, $c3
 	jr z, .asm_3e569
-	ld a, [InLinkBattle]
+	ld a, [wLinkMode]
 	and a
 	jr nz, .asm_3e569
 	ld b, $c7
@@ -5979,7 +5979,7 @@ MoveInfoBox: ; 3e6c8
 
 Function3e75f: ; 3e75f
 	hlcoord 5, 11
-	ld a, [InLinkBattle]
+	ld a, [wLinkMode]
 	cp $4
 	jr c, .ok
 	hlcoord 5, 11
@@ -6052,7 +6052,7 @@ Function3e7c1: ; 3e7c1
 	ld a, [wEnemyIsSwitching]
 	and a
 	ret nz
-	ld a, [InLinkBattle]
+	ld a, [wLinkMode]
 	and a
 	jr z, .asm_3e817
 	call EmptyBattleTextBox
@@ -6240,7 +6240,7 @@ LoadEnemyMon: ; 3e8eb
 	call ByteFill
 	
 ; We don't need to be here if we're in a link battle
-	ld a, [InLinkBattle]
+	ld a, [wLinkMode]
 	and a
 	jp nz, Function3dabd
 	
@@ -6252,7 +6252,7 @@ LoadEnemyMon: ; 3e8eb
 	jp z, Function3dabd
 	
 .continueloading
-	ld a, [wcfc0] ; ????
+	ld a, [InBattleTowerBattle] ; ????
 	bit 0, a
 	jp nz, Function3dabd
 
@@ -7194,11 +7194,11 @@ BadgeStatBoosts: ; 3ed45
 
 ; The boosted stats are in order, except PlainBadge and MineralBadge's boosts are swapped.
 
-	ld a, [InLinkBattle]
+	ld a, [wLinkMode]
 	and a
 	ret nz
 
-	ld a, [wcfc0]
+	ld a, [InBattleTowerBattle]
 	and a
 	ret nz
 
@@ -7313,7 +7313,7 @@ _BattleRandom:: ; 3edd8
 ; To circumvent this a shared PRNG is used instead.
 
 ; But if we're in a non-link battle we're safe to use it
-	ld a, [InLinkBattle]
+	ld a, [wLinkMode]
 	and a
 	jp z, Random
 
@@ -7413,7 +7413,7 @@ Function3ee27: ; 3ee27
 
 Function3ee3b: ; 3ee3b
 ; Give experience.
-	ld a, [InLinkBattle]
+	ld a, [wLinkMode]
 	and a
 	ret nz
 	ld a, [OtherTrainerClass]
@@ -7423,7 +7423,7 @@ Function3ee3b: ; 3ee3b
 	cp MIRROR
 	ret z
 .not_tpppc
-	ld a, [wcfc0]
+	ld a, [InBattleTowerBattle]
 	bit 0, a
 	ret nz
 	call Function3f0d4
@@ -8057,7 +8057,7 @@ Function3f22c: ; 3f22c
 Function3f26d: ; 3f26d
 ; SendOutMonText?
 
-	ld a, [InLinkBattle]
+	ld a, [wLinkMode]
 	and a
 	jr z, .asm_3f27c
 	ld hl, UnknownText_0x3f2d1
@@ -8724,7 +8724,7 @@ Function3f69e: ; 3f69e
 ; 3f6a5
 
 Function3f6a5: ; 3f6a5
-	ld a, [InLinkBattle]
+	ld a, [wLinkMode]
 	and a
 	jr z, .asm_3f6b7
 	call Function3f759
@@ -8806,7 +8806,7 @@ Function3f71d: ; 3f71d
 	call Function3d0be
 	ld hl, BattleText_0x80730
 	call StdBattleTextBox
-	ld a, [wcfc0]
+	ld a, [InBattleTowerBattle]
 	bit 0, a
 	ret z
 	call ClearTileMap
@@ -8906,7 +8906,7 @@ Function3f80f: ; 3f80f
 
 
 Function3f830: ; 3f830
-	ld a, [InLinkBattle]
+	ld a, [wLinkMode]
 	cp $4
 	ret
 ; 3f836
@@ -9477,9 +9477,16 @@ GetBattleBackpic: ; 3fbff
 	ld hl, DudeBackpic
 	ld a, [BattleType]
 	cp BATTLETYPE_TUTORIAL
-	jr z, .Decompress
+	jr nz, .GetPlayerPic
+	ld a, [MapGroup]
+	cp GROUP_VIRIDIAN_CITY_RB
+	jr nz, .Decompress
+	ld b, BANK(OldManBackpic)
+	ld hl, OldManBackpic
+	jr .Decompress
 
 ; What gender are we?
+.GetPlayerPic
 	ld a, [wd45b]
 	bit 2, a
 	jr nz, .Chris

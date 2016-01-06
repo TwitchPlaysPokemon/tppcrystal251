@@ -9,7 +9,7 @@ PewterMart_MapScriptHeader: ; 0x1a2dc9
 ClerkScript_0x1a2dcb: ; 0x1a2dcb
 	loadfont
 	pokemart $0, $0013
-	loadmovesprites
+	closetext
 	end
 ; 0x1a2dd2
 

@@ -43,8 +43,8 @@ TwinsAnnandanne1Script: ; 0x1a8d8f
 	talkaftercancel
 	loadfont
 	writetext UnknownText_0x1a8e62
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 ; 0x1a8d97
 
@@ -72,8 +72,8 @@ TwinsAnnandanne2Script: ; 0x1a8da3
 	talkaftercancel
 	loadfont
 	writetext UnknownText_0x1a8eec
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 ; 0x1a8dab
 
@@ -101,8 +101,8 @@ PsychicGregScript: ; 0x1a8db7
 	talkaftercancel
 	loadfont
 	writetext UnknownText_0x1a8f80
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 ; 0x1a8dbf
 
@@ -116,37 +116,37 @@ SunnyScript:
 	checkevent EVENT_MET_SUNNY_OF_SUNDAY
 	iftrue .MetSunny
 	writetext MeetSunnyText
-	keeptextopen
+	buttonsound
 	setevent EVENT_MET_SUNNY_OF_SUNDAY
 .MetSunny
 	checkflag ENGINE_PLAYER_IS_FEMALE
 	iftrue .Kris
 	writetext SunnyGivesGiftText1
-	keeptextopen
+	buttonsound
 	jump .next
 .Kris
 	writetext SunnyGivesGiftText2
-	keeptextopen
+	buttonsound
 .next
 	verbosegiveitem MAGNET, 1
 	iffalse SunnyDoneScript
 	setevent EVENT_GOT_MAGNET_FROM_SUNNY
 	writetext SunnyGaveGiftText
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 SunnySundayScript:
 	writetext SunnySundayText
-	closetext
+	waitbutton
 SunnyDoneScript:
-	loadmovesprites
+	closetext
 	end
 
 SunnyNotSundayScript:
 	writetext SunnyNotSundayText
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 MapRoute37Signpost0Script: ; 0x1a8e06

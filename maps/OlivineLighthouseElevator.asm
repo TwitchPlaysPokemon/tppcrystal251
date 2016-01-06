@@ -9,12 +9,12 @@ OlivineLighthouseElevator_MapScriptHeader: ; OlivineLighthouse_0x56697
 MapOlivineLighthouseElevatorSignpost0Script: ; OlivineLighthouse_0x56699
 	loadfont
 	elevator Elevator_OlivineLighthouse_0x566e0
-	loadmovesprites
+	closetext
 	iffalse UnknownScript_OlivineLighthouse_0x566df
 	pause 5
 	playsound SFX_ELEVATOR
 	earthquake 60
-	waitbutton
+	waitsfx
 UnknownScript_OlivineLighthouse_0x566df:
 	end
 ; OlivineLighthouse_0x566e0

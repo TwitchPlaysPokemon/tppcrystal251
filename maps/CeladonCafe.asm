@@ -10,21 +10,21 @@ SuperNerdScript_0x73049: ; 0x73049
 	faceplayer
 	loadfont
 	writetext UnknownText_0x730de
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 ; 0x73051
 
 FisherScript_0x73051: ; 0x73051
 	loadfont
 	writetext UnknownText_0x73129
+	waitbutton
 	closetext
-	loadmovesprites
 	faceplayer
 	loadfont
 	writetext UnknownText_0x7313a
+	waitbutton
 	closetext
-	loadmovesprites
 	spriteface $3, $2
 	end
 ; 0x73062
@@ -32,13 +32,13 @@ FisherScript_0x73051: ; 0x73051
 FisherScript_0x73062: ; 0x73062
 	loadfont
 	writetext UnknownText_0x7316a
+	waitbutton
 	closetext
-	loadmovesprites
 	faceplayer
 	loadfont
 	writetext UnknownText_0x73178
+	waitbutton
 	closetext
-	loadmovesprites
 	spriteface $4, $3
 	end
 ; 0x73073
@@ -46,13 +46,13 @@ FisherScript_0x73062: ; 0x73062
 FisherScript_0x73073: ; 0x73073
 	loadfont
 	writetext UnknownText_0x731ae
+	waitbutton
 	closetext
-	loadmovesprites
 	faceplayer
 	loadfont
 	writetext UnknownText_0x731bd
+	waitbutton
 	closetext
-	loadmovesprites
 	spriteface $5, $3
 	end
 ; 0x73084
@@ -62,13 +62,13 @@ TeacherScript_0x73084: ; 0x73084
 	iftrue UnknownScript_0x7309a
 	loadfont
 	writetext UnknownText_0x73201
+	waitbutton
 	closetext
-	loadmovesprites
 	faceplayer
 	loadfont
 	writetext UnknownText_0x73212
+	waitbutton
 	closetext
-	loadmovesprites
 	spriteface $6, $2
 	end
 ; 0x7309a
@@ -76,13 +76,13 @@ TeacherScript_0x73084: ; 0x73084
 UnknownScript_0x7309a: ; 0x7309a
 	loadfont
 	writetext UnknownText_0x73254
+	waitbutton
 	closetext
-	loadmovesprites
 	spriteface $6, $3
 	loadfont
 	writetext UnknownText_0x73278
+	waitbutton
 	closetext
-	loadmovesprites
 	spriteface $6, $2
 	end
 ; 0x730ad
@@ -100,9 +100,9 @@ MapCeladonCafeSignpost1Script: ; 0x730b0
 	itemtotext LEFTOVERS, $0
 	writetext UnknownText_0x732e7
 	playsound SFX_ITEM
-	waitbutton
+	waitsfx
 	itemnotify
-	loadmovesprites
+	closetext
 	setevent EVENT_FOUND_LEFTOVERS_IN_CELADON_CAFE
 	end
 ; 0x730cd
@@ -111,10 +111,10 @@ UnknownScript_0x730cd: ; 0x730cd
 	loadfont
 	itemtotext LEFTOVERS, $0
 	writetext UnknownText_0x732e7
-	keeptextopen
+	buttonsound
 	writetext UnknownText_0x732f7
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 ; 0x730db
 

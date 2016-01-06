@@ -12,8 +12,8 @@ DaisyScript_0x19b0d0: ; 0x19b0d0
 	checkcode VAR_HOUR
 	if_equal $f, UnknownScript_0x19b0de
 	writetext UnknownText_0x19b130
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 ; 0x19b0de
 
@@ -24,14 +24,14 @@ UnknownScript_0x19b0de: ; 0x19b0de
 	yesorno
 	iffalse UnknownScript_0x19b124
 	writetext UnknownText_0x19b244
-	closetext
+	waitbutton
 	special Function741d
 	if_equal $0, UnknownScript_0x19b124
 	if_equal $1, UnknownScript_0x19b12a
 	setflag ENGINE_TEA_IN_BLUES_HOUSE
 	writetext UnknownText_0x19b266
+	waitbutton
 	closetext
-	loadmovesprites
 	special Function8c084
 	playmusic MUSIC_HEAL
 	pause 60
@@ -40,31 +40,31 @@ UnknownScript_0x19b0de: ; 0x19b0de
 	loadfont
 	writetext UnknownText_0x19b296
 	special Functionc472
-	keeptextopen
+	buttonsound
 	writetext UnknownText_0x19b2aa
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 ; 0x19b11e
 
 UnknownScript_0x19b11e: ; 0x19b11e
 	writetext UnknownText_0x19b2fa
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 ; 0x19b124
 
 UnknownScript_0x19b124: ; 0x19b124
 	writetext UnknownText_0x19b334
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 ; 0x19b12a
 
 UnknownScript_0x19b12a: ; 0x19b12a
 	writetext UnknownText_0x19b377
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 ; 0x19b130
 

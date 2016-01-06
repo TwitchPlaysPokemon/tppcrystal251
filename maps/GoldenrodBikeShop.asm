@@ -19,26 +19,26 @@ ClerkScript_0x54750: ; 0x54750
 	yesorno
 	iffalse UnknownScript_0x5477b
 	writetext UnknownText_0x547f8
-	keeptextopen
-	waitbutton
+	buttonsound
+	waitsfx
 	giveitem BICYCLE, $1
 	writetext UnknownText_0x54848
 	playsound SFX_KEY_ITEM
-	waitbutton
+	waitsfx
 	itemnotify
 	setflag ENGINE_14
 	setevent EVENT_GOT_BICYCLE
 UnknownScript_0x54775: ; 0x54775
 	writetext UnknownText_0x5485f
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 ; 0x5477b
 
 UnknownScript_0x5477b: ; 0x5477b
 	writetext UnknownText_0x54898
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 ; 0x54781
 

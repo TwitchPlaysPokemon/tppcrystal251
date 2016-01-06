@@ -34,7 +34,7 @@ LugiaScript_0x18c518: ; 0x18c518
 	writetext UnknownText_0x18c531
 	cry LUGIA
 	pause 15
-	loadmovesprites
+	closetext
 	writecode VAR_BATTLETYPE, BATTLETYPE_FORCEITEM
 	loadpokedata LUGIA, 60
 	startbattle

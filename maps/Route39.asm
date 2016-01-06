@@ -10,8 +10,8 @@ TaurosScript_0x1a5af5: ; 0x1a5af5
 	loadfont
 	writetext UnknownText_0x1a5bf9
 	cry MILTANK
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 ; 0x1a5aff
 
@@ -48,7 +48,7 @@ PokefanmDerek1Script: ; 0x1a5b0b
 	checkevent EVENT_SHOWED_DEREK_PIKACHU
 	iftrue UnknownScript_0x1a5b33
 	writetext UnknownText_0x1a5cf8
-	keeptextopen
+	buttonsound
 	setevent EVENT_SHOWED_DEREK_PIKACHU
 	scall UnknownScript_0x1a5b62
 	jump UnknownScript_0x1a5b36
@@ -79,8 +79,8 @@ UnknownScript_0x1a5b59: ; 0x1a5b59
 
 UnknownScript_0x1a5b5c: ; 0x1a5b5c
 	writetext UnknownText_0x1a5dec
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 ; 0x1a5b62
 
@@ -148,8 +148,8 @@ PokefanfRuthScript: ; 0x1a5b8e
 	talkaftercancel
 	loadfont
 	writetext UnknownText_0x1a5db2
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 ; 0x1a5b96
 
@@ -177,8 +177,8 @@ SailorEugeneScript: ; 0x1a5ba2
 	talkaftercancel
 	loadfont
 	writetext UnknownText_0x1a5c4d
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 ; 0x1a5baa
 
@@ -206,8 +206,8 @@ PsychicNormanScript: ; 0x1a5bb6
 	talkaftercancel
 	loadfont
 	writetext UnknownText_0x1a5e57
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 ; 0x1a5bbe
 
@@ -219,28 +219,28 @@ PokefanFScript_0x1a5bbe: ; 0x1a5bbe
 	checkevent EVENT_BEAT_POKEFANF_JAIME
 	iftrue UnknownScript_0x1a5bdf
 	writetext UnknownText_0x1a5ee8
+	waitbutton
 	closetext
-	loadmovesprites
 	winlosstext UnknownText_0x1a5f17, $0000
 	loadtrainer POKEFANF, JAIME
 	startbattle
 	returnafterbattle
 	setevent EVENT_BEAT_POKEFANF_JAIME
-	loadmovesprites
+	closetext
 	end
 ; 0x1a5bdf
 
 UnknownScript_0x1a5bdf: ; 0x1a5bdf
 	writetext UnknownText_0x1a5f31
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 ; 0x1a5be5
 
 UnknownScript_0x1a5be5: ; 0x1a5be5
 	writetext UnknownText_0x1a5ec4
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 ; 0x1a5beb
 

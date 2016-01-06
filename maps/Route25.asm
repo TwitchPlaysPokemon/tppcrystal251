@@ -32,8 +32,8 @@ UnknownScript_0x19eea0: ; 0x19eea0
 	applymovement $2, MovementData_0x19efed
 	loadfont
 	writetext UnknownText_0x19f006
+	waitbutton
 	closetext
-	loadmovesprites
 	spriteface $0, $0
 	applymovement $2, MovementData_0x19effa
 	spriteface $0, $2
@@ -59,8 +59,8 @@ UnknownScript_0x19eee0: ; 0x19eee0
 	applymovement $2, MovementData_0x19eff4
 	loadfont
 	writetext UnknownText_0x19f006
+	waitbutton
 	closetext
-	loadmovesprites
 	spriteface $0, $1
 	applymovement $2, MovementData_0x19effd
 	spriteface $0, $2
@@ -96,8 +96,8 @@ SchoolboyDudleyScript: ; 0x19ef2c
 	talkaftercancel
 	loadfont
 	writetext UnknownText_0x19f1b5
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 ; 0x19ef34
 
@@ -125,8 +125,8 @@ LassEllenScript: ; 0x19ef40
 	talkaftercancel
 	loadfont
 	writetext UnknownText_0x19f208
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 ; 0x19ef48
 
@@ -154,8 +154,8 @@ SchoolboyJoeScript: ; 0x19ef54
 	talkaftercancel
 	loadfont
 	writetext UnknownText_0x19f25c
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 ; 0x19ef5c
 
@@ -183,8 +183,8 @@ LassLauraScript: ; 0x19ef68
 	talkaftercancel
 	loadfont
 	writetext UnknownText_0x19f2a6
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 ; 0x19ef70
 
@@ -212,8 +212,8 @@ CamperLloydScript: ; 0x19ef7c
 	talkaftercancel
 	loadfont
 	writetext UnknownText_0x19f2f8
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 ; 0x19ef84
 
@@ -241,8 +241,8 @@ LassShannonScript: ; 0x19ef90
 	talkaftercancel
 	loadfont
 	writetext UnknownText_0x19f35b
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 ; 0x19ef98
 
@@ -270,8 +270,8 @@ SupernerdPatScript: ; 0x19efa4
 	talkaftercancel
 	loadfont
 	writetext UnknownText_0x19f41a
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 ; 0x19efac
 
@@ -283,14 +283,14 @@ CooltrainerMScript_0x19efac: ; 0x19efac
 	checkevent EVENT_CLEARED_NUGGET_BRIDGE
 	iftrue UnknownScript_0x19efc7
 	writetext UnknownText_0x19f43b
-	keeptextopen
+	buttonsound
 	verbosegiveitem NUGGET, 1
 	iffalse UnknownScript_0x19efde
 	setevent EVENT_CLEARED_NUGGET_BRIDGE
 UnknownScript_0x19efc7: ; 0x19efc7
 	writetext UnknownText_0x19f49d
+	waitbutton
 	closetext
-	loadmovesprites
 	winlosstext UnknownText_0x19f4fd, $0000
 	loadtrainer COOLTRAINERM, KEVIN
 	startbattle
@@ -299,9 +299,9 @@ UnknownScript_0x19efc7: ; 0x19efc7
 	loadfont
 UnknownScript_0x19efda: ; 0x19efda
 	writetext UnknownText_0x19f520
-	closetext
+	waitbutton
 UnknownScript_0x19efde: ; 0x19efde
-	loadmovesprites
+	closetext
 	end
 ; 0x19efe0
 

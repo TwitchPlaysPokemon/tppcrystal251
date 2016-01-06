@@ -10,8 +10,8 @@ FishingGuruScript_0x9c55c: ; 0x9c55c
 	faceplayer
 	loadfont
 	trade $2
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 ; 0x9c563
 

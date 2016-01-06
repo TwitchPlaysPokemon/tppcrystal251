@@ -30,8 +30,8 @@ FirebreatherOtisScript: ; 0x1adf71
 	talkaftercancel
 	loadfont
 	writetext UnknownText_0x1adff7
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 ; 0x1adf79
 
@@ -59,8 +59,8 @@ YoungsterWarrenScript: ; 0x1adf85
 	talkaftercancel
 	loadfont
 	writetext UnknownText_0x1ae051
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 ; 0x1adf8d
 
@@ -88,8 +88,8 @@ YoungsterJimmyScript: ; 0x1adf99
 	talkaftercancel
 	loadfont
 	writetext UnknownText_0x1ae0a9
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 ; 0x1adfa1
 
@@ -117,8 +117,8 @@ FirebreatherBurtScript: ; 0x1adfad
 	talkaftercancel
 	loadfont
 	writetext UnknownText_0x1ae118
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 ; 0x1adfb5
 

@@ -225,7 +225,7 @@ Request2bpp:: ; eba
 
 	ld a, $8
 	ld [$ffd3], a
-	ld a, [InLinkBattle]
+	ld a, [wLinkMode]
 	cp $4
 	jr nz, .asm_edc
 	ld a, [$ffe9]
@@ -299,7 +299,7 @@ Request1bpp:: ; f1e
 
 	ld a, $8
 	ld [$ffd3], a
-	ld a, [InLinkBattle]
+	ld a, [wLinkMode]
 	cp $4
 	jr nz, .asm_f40
 	ld a, [$ffe9]

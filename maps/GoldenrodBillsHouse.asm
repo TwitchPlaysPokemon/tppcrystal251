@@ -15,18 +15,18 @@ BillScript_0x54be4: ; 0x54be4
 	yesorno
 	iffalse UnknownScript_0x54c19
 	writetext UnknownText_0x54d3f
-	keeptextopen
-	waitbutton
+	buttonsound
+	waitsfx
 	checkcode VAR_PARTYCOUNT
 	if_equal $6, BillEeveePC
 	writetext UnknownText_0x54dae
 	playsound SFX_CAUGHT_MON
-	waitbutton
+	waitsfx
 	givepoke EEVEE, 20, 0, 0
 	setevent EVENT_GOT_EEVEE
 	writetext UnknownText_0x54dc1
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 ; 0x54c13
 
@@ -35,32 +35,32 @@ BillEeveePC:
 	if_equal $0, UnknownScript_0x54c13
 	writetext BillsEeveePCText
 	playsound SFX_CAUGHT_MON
-	waitbutton
+	waitsfx
 	givepoke EEVEE, 20, 0, 0
 	setevent EVENT_GOT_EEVEE
 	writetext UnknownText_0x54dc1
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 UnknownScript_0x54c13: ; 0x54c13
 	writetext UnknownText_0x54e02
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 ; 0x54c19
 
 UnknownScript_0x54c19: ; 0x54c19
 	writetext UnknownText_0x54e2d
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 ; 0x54c1f
 
 UnknownScript_0x54c1f: ; 0x54c1f
 	writetext UnknownText_0x54e42
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 ; 0x54c25
 
@@ -70,15 +70,15 @@ PokefanFScript_0x54c25: ; 0x54c25
 	checkevent EVENT_BILL_IN_GOLDENROD_BILLS_HOUSE
 	iffalse UnknownScript_0x54c33
 	writetext UnknownText_0x54ea8
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 ; 0x54c33
 
 UnknownScript_0x54c33: ; 0x54c33
 	writetext UnknownText_0x54f4e
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 ; 0x54c39
 
@@ -91,29 +91,29 @@ TwinScript_0x54c39: ; 0x54c39
 	askforphonenumber $3
 	if_equal $1, UnknownScript_0x54c64
 	if_equal $2, UnknownScript_0x54c5e
-	waitbutton
+	waitsfx
 	addcellnum $3
 	writetext UnknownText_0x54fd9
 	playsound SFX_REGISTER_PHONE_NUMBER
-	waitbutton
-	keeptextopen
+	waitsfx
+	buttonsound
 UnknownScript_0x54c58: ;0x54c58
 	writetext UnknownText_0x55069
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 ; 0x54c5e
 
 UnknownScript_0x54c5e: ; 0x54c5e
 	writetext UnknownText_0x54ff3
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 ; 0x54c64
 
 UnknownScript_0x54c64: ; 0x54c64
 	writetext UnknownText_0x55046
-	keeptextopen
+	buttonsound
 	jump UnknownScript_0x54c5e
 ; 0x54c6b
 

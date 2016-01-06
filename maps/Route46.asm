@@ -30,8 +30,8 @@ CamperTedScript: ; 0x1a968c
 	talkaftercancel
 	loadfont
 	writetext UnknownText_0x1a9851
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 ; 0x1a9694
 
@@ -66,7 +66,7 @@ PicnickerErin1Script: ; 0x1a96a0
 	checkevent EVENT_ROUTE_46_29D
 	iftrue UnknownScript_0x1a96c3
 	writetext UnknownText_0x1a98c6
-	keeptextopen
+	buttonsound
 	setevent EVENT_ROUTE_46_29D
 	scall UnknownScript_0x1a974f
 	jump UnknownScript_0x1a96c6
@@ -137,7 +137,7 @@ UnknownScript_0x1a973a: ; 0x1a973a
 UnknownScript_0x1a973b: ; 0x1a973b
 	loadfont
 	writetext UnknownText_0x1a9927
-	closetext
+	waitbutton
 	verbosegiveitem CALCIUM, 1
 	iffalse UnknownScript_0x1a976b
 	clearevent EVENT_ERIN_CALCIUM
@@ -215,8 +215,8 @@ HikerBaileyScript: ; 0x1a9782
 	talkaftercancel
 	loadfont
 	writetext UnknownText_0x1a97e8
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 ; 0x1a978a
 

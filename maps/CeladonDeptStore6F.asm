@@ -34,7 +34,7 @@ UnknownScript_0x71184: ; 0x71184
 	if_equal $1, UnknownScript_0x7119a
 	if_equal $2, UnknownScript_0x711b4
 	if_equal $3, UnknownScript_0x711ce
-	loadmovesprites
+	closetext
 	end
 ; 0x7119a
 
@@ -72,20 +72,20 @@ UnknownScript_0x711e8: ; 0x711e8
 	pause 10
 	playsound SFX_ENTER_DOOR
 	writetext UnknownText_0x71274
-	keeptextopen
+	buttonsound
 	itemnotify
 	jump UnknownScript_0x71184
 ; 0x711f5
 
 UnknownScript_0x711f5: ; 0x711f5
 	writetext UnknownText_0x7128e
-	closetext
+	waitbutton
 	jump UnknownScript_0x71184
 ; 0x711fc
 
 UnknownScript_0x711fc: ; 0x711fc
 	writetext UnknownText_0x712a7
-	closetext
+	waitbutton
 	jump UnknownScript_0x71184
 ; 0x71203
 

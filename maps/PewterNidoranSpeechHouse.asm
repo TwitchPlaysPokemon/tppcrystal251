@@ -14,8 +14,8 @@ GrowlitheScript_0x1a280a: ; 0x1a280a
 	loadfont
 	writetext UnknownText_0x1a2825
 	cry NIDORAN_M
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 ; 0x1a2814
 

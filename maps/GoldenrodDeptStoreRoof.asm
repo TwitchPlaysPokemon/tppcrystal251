@@ -41,7 +41,7 @@ UnknownScript_0x56738: ; 0x56738
 ClerkScript_0x5673f: ; 0x5673f
 	loadfont
 	pokemart $4, $0000
-	loadmovesprites
+	closetext
 	end
 ; 0x56746
 
@@ -53,8 +53,8 @@ FisherScript_0x56749: ; 0x56749
 	faceplayer
 	loadfont
 	writetext UnknownText_0x567d2
+	waitbutton
 	closetext
-	loadmovesprites
 	spriteface $4, $1
 	end
 ; 0x56754
@@ -66,13 +66,13 @@ TwinScript_0x56754: ; 0x56754
 SuperNerdScript_0x56757: ; 0x56757
 	loadfont
 	writetext UnknownText_0x56867
+	waitbutton
 	closetext
-	loadmovesprites
 	spriteface $6, $1
 	loadfont
 	writetext UnknownText_0x56871
+	waitbutton
 	closetext
-	loadmovesprites
 	spriteface $6, $3
 	end
 ; 0x5676a

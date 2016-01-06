@@ -34,8 +34,8 @@ GruntM29Script: ; 0x5a5e4
 	talkaftercancel
 	loadfont
 	writetext TrainerGruntM29SlowpokeProfitText
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 ; 0x5a5ec
 
@@ -62,8 +62,8 @@ TrainerGruntM1: ; 0x5a5ec
 GruntM1Script: ; 0x5a5f8
 	loadfont
 	writetext TrainerGruntM1WhenTalkText
+	waitbutton
 	closetext
-	loadmovesprites
 	special Special_FadeToBlack
 	special Functiond91
 	disappear $2
@@ -79,8 +79,8 @@ GruntM1Script: ; 0x5a5f8
 	spriteface $0, $3
 	loadfont
 	writetext KurtLeaveSlowpokeWellText
+	waitbutton
 	closetext
-	loadmovesprites
 	setevent EVENT_CLEARED_SLOWPOKE_WELL
 	variablesprite $6, $4
 	domaptrigger GROUP_AZALEA_TOWN, MAP_AZALEA_TOWN, $1
@@ -124,8 +124,8 @@ GruntM2Script: ; 0x5a665
 	talkaftercancel
 	loadfont
 	writetext UnknownText_0x5aaf2
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 ; 0x5a66d
 
@@ -153,8 +153,8 @@ GruntF1Script: ; 0x5a679
 	talkaftercancel
 	loadfont
 	writetext UnknownText_0x5ab8d
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 ; 0x5a681
 
@@ -165,14 +165,14 @@ SlowpokeScript_0x5a681: ; 0x5a681
 	writetext UnknownText_0x5abcb
 	yesorno
 	iftrue UnknownScript_0x5a68f
-	loadmovesprites
+	closetext
 	end
 ; 0x5a68f
 
 UnknownScript_0x5a68f: ; 0x5a68f
 	writetext UnknownText_0x5ac09
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 ; 0x5a695
 
@@ -181,8 +181,8 @@ SlowpokeScript_0x5a695: ; 0x5a695
 	loadfont
 	writetext UnknownText_0x5ac61
 	cry SLOWPOKE
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 ; 0x5a6a0
 

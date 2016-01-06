@@ -1,5 +1,5 @@
 ; In link battle, the player chooses moves, not the AI.
-	ld a, [InLinkBattle]
+	ld a, [wLinkMode]
 	and a
 	ret nz
 

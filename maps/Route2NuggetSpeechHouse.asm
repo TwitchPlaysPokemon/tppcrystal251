@@ -12,15 +12,15 @@ FisherScript_0x9b847: ; 0x9b847
 	checkevent EVENT_GOT_NUGGET_ON_ROUTE_2
 	iftrue UnknownScript_0x9b85c
 	writetext UnknownText_0x9b865
-	keeptextopen
+	buttonsound
 	verbosegiveitem NUGGET, 1
 	iffalse UnknownScript_0x9b860
 	setevent EVENT_GOT_NUGGET_ON_ROUTE_2
 UnknownScript_0x9b85c: ; 0x9b85c
 	writetext UnknownText_0x9b8e5
-	closetext
+	waitbutton
 UnknownScript_0x9b860: ; 0x9b860
-	loadmovesprites
+	closetext
 	end
 ; 0x9b862
 

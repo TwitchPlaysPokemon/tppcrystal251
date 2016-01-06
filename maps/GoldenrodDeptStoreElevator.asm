@@ -9,12 +9,12 @@ GoldenrodDeptStoreElevator_MapScriptHeader: ; 0x56697
 MapGoldenrodDeptStoreElevatorSignpost0Script: ; 0x56699
 	loadfont
 	elevator Elevator_0x566e0
-	loadmovesprites
+	closetext
 	iffalse UnknownScript_0x566df
 	pause 5
 	playsound SFX_ELEVATOR
 	earthquake 60
-	waitbutton
+	waitsfx
 	checkevent EVENT_GOLDENROD_DEPT_STORE_BASEMENT_LAYOUT_4
 	iftrue UnknownScript_0x566df
 	checkevent EVENT_GOLDENROD_DEPT_STORE_BASEMENT_LAYOUT_1

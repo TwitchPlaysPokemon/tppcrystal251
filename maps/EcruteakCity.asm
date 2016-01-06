@@ -37,15 +37,15 @@ LassScript_0x1a4015: ; 0x1a4015
 	checkevent EVENT_RELEASED_THE_BEASTS
 	iftrue UnknownScript_0x1a4023
 	writetext UnknownText_0x1a421a
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 ; 0x1a4023
 
 UnknownScript_0x1a4023: ; 0x1a4023
 	writetext UnknownText_0x1a4269
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 ; 0x1a4029
 
@@ -55,15 +55,15 @@ FisherScript_0x1a4029: ; 0x1a4029
 	checkevent EVENT_JASMINE_RETURNED_TO_GYM
 	iftrue UnknownScript_0x1a4037
 	writetext UnknownText_0x1a42ac
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 ; 0x1a4037
 
 UnknownScript_0x1a4037: ; 0x1a4037
 	writetext UnknownText_0x1a4325
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 ; 0x1a403d
 

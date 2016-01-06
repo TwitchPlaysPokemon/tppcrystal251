@@ -29,8 +29,8 @@ AzaleaGym_BurglarSimonScript1:
 	playmusic MUSIC_POKEMANIAC_ENCOUNTER
 	loadfont
 	writetext AzaleaGym_BurglarSimonText1
+	waitbutton
 	closetext
-	loadmovesprites
 	winlosstext AzaleaGym_BurglarSimonTextLoss, $0000
 	loadtrainer BURGLAR, SIMON_1
 	startbattle
@@ -39,11 +39,11 @@ AzaleaGym_BurglarSimonScript1:
 	playmusic MUSIC_POKEMANIAC_ENCOUNTER
 	loadfont
 	writetext AzaleaGym_BurglarSimonText2
-	keeptextopen
+	buttonsound
 	verbosegiveitem GREAT_BALL, 1
 	writetext AzaleaGym_BurglarSimonText3
+	waitbutton
 	closetext
-	loadmovesprites
 	spriteface $9, $0
 	pause 5
 	playsound SFX_EXIT_BUILDING
@@ -77,8 +77,8 @@ BugsyScript_0x18ec1e: ; 0x18ec1e
 	checkevent EVENT_BEAT_BUGSY
 	iftrue UnknownScript_0x18ec48
 	writetext UnknownText_0x18ed0b
+	waitbutton
 	closetext
-	loadmovesprites
 	winlosstext UnknownText_0x18edae, $0000
 	loadtrainer BUGSY, 1
 	startbattle
@@ -87,7 +87,7 @@ BugsyScript_0x18ec1e: ; 0x18ec1e
 	loadfont
 	writetext UnknownText_0x18ee14
 	playsound SFX_GET_BADGE
-	waitbutton
+	waitsfx
 	setflag ENGINE_HIVEBADGE
 	checkcode VAR_BADGES
 	scall UnknownScript_0x18ec73
@@ -99,20 +99,20 @@ UnknownScript_0x18ec48: ; 0x18ec48
 	setevent EVENT_BEAT_BUG_CATCHER_AL
 	setevent EVENT_BEAT_BUG_CATCHER_JOSH
 	writetext UnknownText_0x18ee2b
-	keeptextopen
+	buttonsound
 	verbosegiveitem TM_FURY_CUTTER, 1
 	iffalse UnknownScript_0x18ec71
 	setevent EVENT_GOT_TM49_FURY_CUTTER
 	writetext UnknownText_0x18eefa
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 ; 0x18ec6d
 
 BugsyRematchScript:
 	writetext BugsyRematchTextBefore
+	waitbutton
 	closetext
-	loadmovesprites
 	winlosstext BugsyRematchBeatenText, $0000
 	loadtrainer BUGSY, 2
 	startbattle
@@ -123,9 +123,9 @@ BugsyRematchScript:
 
 UnknownScript_0x18ec6d: ; 0x18ec6d
 	writetext UnknownText_0x18ef98
-	closetext
+	waitbutton
 UnknownScript_0x18ec71: ; 0x18ec71
-	loadmovesprites
+	closetext
 	end
 ; 0x18ec73
 
@@ -167,8 +167,8 @@ TwinsAmyandmay1Script: ; 0x18ec8e
 	talkaftercancel
 	loadfont
 	writetext UnknownText_0x18f1fc
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 ; 0x18ec96
 
@@ -196,8 +196,8 @@ TwinsAmyandmay2Script: ; 0x18eca2
 	talkaftercancel
 	loadfont
 	writetext UnknownText_0x18f269
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 ; 0x18ecaa
 
@@ -225,8 +225,8 @@ Bug_catcherBug_catcher_bennyScript: ; 0x18ecb6
 	talkaftercancel
 	loadfont
 	writetext UnknownText_0x18f053
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 ; 0x18ecbe
 
@@ -254,8 +254,8 @@ Bug_catcherAlScript: ; 0x18ecca
 	talkaftercancel
 	loadfont
 	writetext UnknownText_0x18f0d3
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 ; 0x18ecd2
 
@@ -283,8 +283,8 @@ Bug_catcherJoshScript: ; 0x18ecde
 	talkaftercancel
 	loadfont
 	writetext UnknownText_0x18f17e
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 ; 0x18ece6
 
@@ -294,15 +294,15 @@ AzaleaGymGuyScript: ; 0x18ece6
 	iftrue .AzaleaGymGuyWinScript
 	loadfont
 	writetext AzaleaGymGuyText
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 .AzaleaGymGuyWinScript
 	loadfont
 	writetext AzaleaGymGuyWinText
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 ; 0x18ecfb
 

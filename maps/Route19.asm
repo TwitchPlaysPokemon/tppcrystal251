@@ -47,8 +47,8 @@ SwimmerfDawnScript: ; 0x19ea09
 	talkaftercancel
 	loadfont
 	writetext UnknownText_0x19ebad
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 ; 0x19ea11
 
@@ -76,8 +76,8 @@ SwimmermHaroldScript: ; 0x19ea1d
 	talkaftercancel
 	loadfont
 	writetext UnknownText_0x19eab4
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 ; 0x19ea25
 
@@ -105,8 +105,8 @@ SwimmermJeromeScript: ; 0x19ea31
 	talkaftercancel
 	loadfont
 	writetext UnknownText_0x19ec7e
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 ; 0x19ea39
 
@@ -134,8 +134,8 @@ SwimmermTuckerScript: ; 0x19ea45
 	talkaftercancel
 	loadfont
 	writetext UnknownText_0x19eb3b
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 ; 0x19ea4d
 
@@ -145,15 +145,15 @@ FisherScript_0x19ea4d: ; 0x19ea4d
 	checkevent EVENT_ROAD_WORK_ON_ROUTE_19_FINISHED
 	iftrue UnknownScript_0x19ea5b
 	writetext UnknownText_0x19ecaf
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 ; 0x19ea5b
 
 UnknownScript_0x19ea5b: ; 0x19ea5b
 	writetext UnknownText_0x19ed24
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 ; 0x19ea61
 
@@ -163,15 +163,15 @@ FisherScript_0x19ea61: ; 0x19ea61
 	checkevent EVENT_ROAD_WORK_ON_ROUTE_19_FINISHED
 	iftrue UnknownScript_0x19ea6f
 	writetext UnknownText_0x19ed45
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 ; 0x19ea6f
 
 UnknownScript_0x19ea6f: ; 0x19ea6f
 	writetext UnknownText_0x19ed7d
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 ; 0x19ea75
 

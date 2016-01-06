@@ -15,9 +15,9 @@ PokedexScript_0x7b1e4: ; 0x7b1e4
 	yesorno
 	iffalse UnknownText_0x7b1f7
 	writetext UnknownText_0x7b2b9
-	closetext
+	waitbutton
 UnknownText_0x7b1f7: ; 0x7b1f7
-	loadmovesprites
+	closetext
 	end
 ; 0x7b1f9
 

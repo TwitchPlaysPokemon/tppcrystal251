@@ -5,7 +5,7 @@ Function38000: ; 38000
 	dec a
 	ret z
 
-	ld a, [InLinkBattle]
+	ld a, [wLinkMode]
 	and a
 	ret nz
 
@@ -21,7 +21,7 @@ Function38000: ; 38000
 	jr nz, DontSwitch
 
 	ld hl, TrainerClassAttributes + 5
-	ld a, [wcfc0]
+	ld a, [InBattleTowerBattle]
 	and a
 	jr nz, .ok
 	ld a, [TrainerClass]
@@ -156,7 +156,7 @@ Function380ff: ; 380ff
 
 
 AI_TryItem: ; 38105
-	ld a, [wcfc0]
+	ld a, [InBattleTowerBattle]
 	and a
 	ret nz
 
@@ -727,7 +727,7 @@ AI_Switch: ; 3846c
 	callba Function3d57a
 	xor a
 	ld [wd264], a
-	ld a, [InLinkBattle]
+	ld a, [wLinkMode]
 	and a
 	ret nz
 	scf

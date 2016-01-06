@@ -74,19 +74,19 @@ UnknownScript_0x6a1d1: ; 0x6a1d1 run if enterng while contest is on
 	yesorno
 	iffalse UnknownScript_0x6a1ee
 	writetext UnknownText_0x6a7db
+	waitbutton
 	closetext
-	loadmovesprites
 	jumpstd bugcontestresultswarp
 ; 0x6a1ee
 
 UnknownScript_0x6a1ee: ; 0x6a1ee
 	writetext UnknownText_0x6a823
+	waitbutton
 	closetext
-	loadmovesprites
 	scall UnknownScript_0x6a261
 	playsound SFX_ENTER_DOOR
 	special Function8c084
-	waitbutton
+	waitsfx
 	warpfacing $1, GROUP_NATIONAL_PARK_BUG_CONTEST, MAP_NATIONAL_PARK_BUG_CONTEST, $a, $2f
 	end
 ; 0x6a204
@@ -104,7 +104,7 @@ OfficerScript_0x6a204: ; 0x6a204
 	checkevent EVENT_NATIONAL_PARK_ROUTE_36_GATE_314 ;If holding amber, give amber
 	iffalse SkipAmber
 	writetext UnknownText_0x6b97f
-	keeptextopen
+	buttonsound
 	verbosegiveitem OLD_AMBER, 1
 	iffalse AmberFailText35
 	clearevent EVENT_NATIONAL_PARK_ROUTE_36_GATE_314
@@ -112,7 +112,7 @@ SkipAmber35:
 	checkevent EVENT_NATIONAL_PARK_ROUTE_36_GATE_315
 	iffalse SkipSun
 	writetext UnknownText_0x6b97f
-	keeptextopen
+	buttonsound
 	verbosegiveitem SUN_STONE, 1
 	iffalse SunFailText35
 	clearevent EVENT_NATIONAL_PARK_ROUTE_36_GATE_315
@@ -120,7 +120,7 @@ SkipSun35:
 	checkevent EVENT_NATIONAL_PARK_ROUTE_36_GATE_316
 	iffalse SkipBalls
 	writetext UnknownText_0x6b97f
-	keeptextopen
+	buttonsound
 	checkcode VAR_WEEKDAY
 	if_equal SUNDAY, RegiveFriend35
 	if_equal MONDAY, RegiveMoon35
@@ -142,18 +142,18 @@ UnknownScript_0x6a234: ; 0x6a234
 	setflag ENGINE_BUG_CONTEST_TIMER
 	special PlayMapMusic
 	writetext UnknownText_0x6a39d
-	keeptextopen
+	buttonsound
 	writetext UnknownText_0x6a3c7
 	playsound SFX_ITEM
-	waitbutton
+	waitsfx
 	writetext UnknownText_0x6a3e2
+	waitbutton
 	closetext
-	loadmovesprites
 	special Function135db
 	scall UnknownScript_0x6a261 ;key differnce, this movement script
 	playsound SFX_ENTER_DOOR
 	special Function8c084
-	waitbutton
+	waitsfx
 	special Function139a8
 	warpfacing $1, GROUP_NATIONAL_PARK_BUG_CONTEST, MAP_NATIONAL_PARK_BUG_CONTEST, $a, $2f
 	end
@@ -241,53 +241,53 @@ UnknownScript_0x6a27d: ; 6a27d
 	iftrue UnknownScript_0x6a2af
 	setevent EVENT_NATIONAL_PARK_GATE_308
 	writetext UnknownText_0x6a537
-	keeptextopen
+	buttonsound
 	writetext UnknownText_0x6a56b
 	playsound SFX_GOT_SAFARI_BALLS
-	waitbutton
-	keeptextopen
+	waitsfx
+	buttonsound
 	jump UnknownScript_0x6a234
 ; 0x6a2a3
 
 UnknownScript_0x6a2a3: ; 0x6a2a3
 	writetext UnknownText_0x6a5dc
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 ; 0x6a2a9
 
 UnknownScript_0x6a2a9: ; 0x6a2a9
 	writetext UnknownText_0x6a597
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 ; 0x6a2af
 
 UnknownScript_0x6a2af: ; 0x6a2af
 	writetext UnknownText_0x6a608
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 ; 0x6a2b5
 
 UnknownScript_0x6a2b5: ; 0x6a2b5
 	writetext UnknownText_0x6a67c
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 ; 0x6a2bb
 
 UnknownScript_0x6a2bb: ; 0x6a2bb
 	writetext UnknownText_0x6a71f
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 ; 0x6a2c1
 
 UnknownScript_0x6a2c1: ; 0x6a2c1
 	;writetext UnknownText_0x6a84f
+	;waitbutton
 	;closetext
-	;loadmovesprites
 	end
 ; 0x6a2c7
 
@@ -301,8 +301,8 @@ OfficerScript_0x6a2ca: ; 0x6a2ca
 	;checkflag ENGINE_51
 	;iftrue UnknownScript_0x6a2c1
 	writetext UnknownText_0x6a894
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 ; 0x6a2d8
 

@@ -30,8 +30,8 @@ SwimmermSethScript: ; 0x1ac820
 	talkaftercancel
 	loadfont
 	writetext UnknownText_0x1ac873
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 ; 0x1ac828
 
@@ -59,8 +59,8 @@ SwimmerfNikkiScript: ; 0x1ac834
 	talkaftercancel
 	loadfont
 	writetext UnknownText_0x1ac8f1
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 ; 0x1ac83c
 
@@ -88,8 +88,8 @@ FisherArnoldScript: ; 0x1ac848
 	talkaftercancel
 	loadfont
 	writetext UnknownText_0x1ac95c
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 ; 0x1ac850
 

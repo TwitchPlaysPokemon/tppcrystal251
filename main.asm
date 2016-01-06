@@ -40,7 +40,7 @@ LoadPushOAM:: ; 4031
 ; 403f
 
 PushOAM: ; 403f
-	ld a, Sprites >> 8
+	ld a, Sprites / $100
 	ld [rDMA], a
 	ld a, $28
 .loop
@@ -140,6 +140,15 @@ NewGame: ; 5b6b
 	ld [wd001], a
 	ld a, $f1
 	ld [$ff9f], a
+	ld hl, PCItems
+	ld a, 1
+	ld [hli], a
+	ld a, POTION
+	ld [hli], a
+	ld a, 1
+	ld [hli], a
+	ld a, -1
+	ld [hl], a
 	jp Function5e5d
 
 ; 5b8f
@@ -517,7 +526,7 @@ Function5e5d: ; 5e5d
 .asm_5e5d
 	xor a
 	ld [wc2c1], a
-	ld [InLinkBattle], a
+	ld [wLinkMode], a
 	ld hl, GameTimerPause
 	set 0, [hl]
 	res 7, [hl]
@@ -870,9 +879,9 @@ NamePlayer: ; 0x6074
 	ret
 
 .Chris
-	db "CHRIS@@@@@@"
+	db "RUST@@@@@@@"
 .Kris
-	db "KRIS@@@@@@@"
+	db "AZURE@@@@@@"
 ; 60e9
 
 NameRivalRB: ; 0x6074
@@ -4868,9 +4877,9 @@ UnknownScript_0xc802: ; 0xc802 CUT
 	copybytetovar wd1ef
 	pokepic $0000
 	cry $0000
-	pokepicyesorno
+	closepokepic
 	callasm Functionc810
-	loadmovesprites
+	closetext
 	end
 ; 0xc810
 
@@ -5032,7 +5041,7 @@ UnknownScript_0xc8e6: ; 0xc8e6 FLASH
 	loadfont
 	writetext UnknownText_0xc8f3
 	callasm Function8c7e1
-	loadmovesprites
+	closetext
 	end
 ; 0xc8f3
 
@@ -5136,12 +5145,12 @@ UnknownScript_0xc983: ; c983
 UsedSurfScript: ; c986 SURF
 	callasm Functioncd12
 	writetext UsedSurfText ; "used SURF!"
-	closetext
+	waitbutton
 	reloadmappart
 	copybytetovar wd1ef
 	pokepic $0000
 	cry $0000
-	loadmovesprites
+	closetext
 	callasm Functionc9a2 ; empty function
 	copybytetovar Buffer2
 	writevarcode VAR_MOVEMENT
@@ -5280,7 +5289,7 @@ AskSurfScript: ; ca2c
 	writetext AskSurfText
 	yesorno
 	iftrue UsedSurfScript
-	loadmovesprites
+	closetext
 	end
 ; ca36
 
@@ -5374,7 +5383,7 @@ UnknownScript_0xcaa3: ; 0xcaa3 FLY
 	copybytetovar wd1ef
 	pokepic $0000
 	cry $0000
-	pokepicyesorno
+	closepokepic
 	callasm Function8caed
 	farscall UnknownScript_0x122c1
 	special Function97c28
@@ -5448,12 +5457,12 @@ UnknownScript_0xcb1c: ; 0xcb1c
 UnknownScript_0xcb20: ; 0xcb20 WATERFALL
 	callasm Functioncd12
 	writetext UnknownText_0xcb51
-	closetext
+	waitbutton
 	reloadmappart
 	copybytetovar wd1ef
 	pokepic $0000
 	cry $0000
-	loadmovesprites
+	closetext
 	playsound SFX_BUBBLEBEAM
 .loop
 	applymovement $0, WaterfallStep
@@ -5523,7 +5532,7 @@ UnknownScript_0xcb86: ; 0xcb86
 	writetext UnknownText_0xcb90
 	yesorno
 	iftrue UnknownScript_0xcb20
-	loadmovesprites
+	closetext
 	end
 ; 0xcb90
 
@@ -5644,7 +5653,7 @@ UnknownScript_0xcc2b: ; 0xcc2b
 	reloadmappart
 	special UpdateTimePals
 	writetext UnknownText_0xcc21
-	closetext
+	waitbutton
 	jump UnknownScript_0xcc3c
 ; 0xcc35
 
@@ -5653,13 +5662,13 @@ UnknownScript_0xcc35: ; 0xcc35 DIG
 	special UpdateTimePals
 	callasm Functioncd12
 	writetext UnknownText_0xcc1c
-	closetext
+	waitbutton
 	reloadmappart
 	copybytetovar wd1ef
 	pokepic $0000
 	cry $0000
 UnknownScript_0xcc3c: ; 0xcc3c
-	loadmovesprites
+	closetext
 	playsound SFX_WARP_TO
 	applymovement $0, MovementData_0xcc59
 	farscall UnknownScript_0x122c1
@@ -5762,7 +5771,7 @@ UnknownScript_0xccbb: ; 0xccbb
 	writetext UnknownText_0xccb1
 	pause 60
 	reloadmappart
-	loadmovesprites
+	closetext
 	playsound SFX_WARP_TO
 	applymovement $0, MovementData_0xcce1
 	farscall UnknownScript_0x122c1
@@ -5854,15 +5863,15 @@ UnknownScript_0xcd29: ; 0xcd29
 UnknownScript_0xcd2d: ; 0xcd2d STRENGTH
 	callasm Functioncd12
 	writetext UnknownText_0xcd41
-	closetext
+	waitbutton
 	reloadmappart
 	copybytetovar wd1ef
 	pokepic $0000
 	cry $0000
-	loadmovesprites
+	closetext
 	loadfont
 	writetext UnknownText_0xcd46
-	loadmovesprites
+	closetext
 	end
 ; 0xcd41
 
@@ -5896,7 +5905,7 @@ UnknownScript_0xcd5f: ; 0xcd5f
 	writetext UnknownText_0xcd69
 	yesorno
 	iftrue UnknownScript_0xcd2d
-	loadmovesprites
+	closetext
 	end
 ; 0xcd69
 
@@ -6045,9 +6054,9 @@ UnknownScript_0xce0f: ; 0xce0f WHIRLPOOL
 	copybytetovar wd1ef
 	pokepic $0000
 	cry $0000
-	pokepicyesorno
+	closepokepic
 	callasm Functionce1d
-	loadmovesprites
+	closetext
 	end
 ; 0xce1d
 
@@ -6108,7 +6117,7 @@ UnknownScript_0xce6e: ; 0xce6e
 	writetext UnknownText_0xce78
 	yesorno
 	iftrue UnknownScript_0xce0f
-	loadmovesprites
+	closetext
 	end
 ; 0xce78
 
@@ -6163,7 +6172,7 @@ HeadbuttScript: ; 0xceab HEADBUTT
 	copybytetovar wd1ef
 	pokepic $0000
 	cry $0000
-	loadmovesprites
+	closetext
 	callasm ShakeHeadbuttTree
 	callasm TreeMonEncounter
 	iffalse .no_battle
@@ -6174,8 +6183,8 @@ HeadbuttScript: ; 0xceab HEADBUTT
 .no_battle
 	loadfont
 	writetext UnknownText_0xcea2
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 ; 0xcec9
 
@@ -6200,7 +6209,7 @@ AskHeadbuttScript: ; 0xcedc
 	writetext UnknownText_0xcee6
 	yesorno
 	iftrue HeadbuttScript
-	loadmovesprites
+	closetext
 	end
 ; 0xcee6
 
@@ -6269,7 +6278,7 @@ RockSmashScript: ; cf32 ROCK SMASH
 	copybytetovar wd1ef
 	pokepic $0000
 	cry $0000
-	loadmovesprites
+	closetext
 	special WaitSFX
 	playsound SFX_STRENGTH
 	earthquake 84
@@ -6300,7 +6309,7 @@ AskRockSmashScript: ; 0xcf5d
 	writetext UnknownText_0xcf77
 	yesorno
 	iftrue RockSmashScript
-	loadmovesprites
+	closetext
 	end
 .no
 	jumptext UnknownText_0xcf72
@@ -6450,7 +6459,7 @@ UnknownScript_0xd027: ; 0xd027
 UnknownScript_0xd02d: ; 0xd02d
 	loademote $8
 	callasm Functiond095
-	loadmovesprites
+	closetext
 	end
 ; 0xd035
 
@@ -6469,7 +6478,7 @@ UnknownScript_0xd04a: ; 0xd04a
 	applymovement $0, MovementData_0xd069
 	writetext UnknownText_0xd0a4
 	callasm Functiond095
-	loadmovesprites
+	closetext
 	battlecheck
 	startbattle
 	returnafterbattle
@@ -6659,15 +6668,15 @@ UnknownScript_0xd13e: ; 0xd13e
 	special UpdateTimePals
 	writecode VAR_MOVEMENT, $1
 	writetext UnknownText_0xd17c
+	waitbutton
 	closetext
-	loadmovesprites
 	special Functione4a
 	end
 ; 0xd14e
 
 UnknownScript_0xd14e: ; 0xd14e
 	writecode VAR_MOVEMENT, $1
-	loadmovesprites
+	closetext
 	special Functione4a
 	end
 ; 0xd156
@@ -6681,9 +6690,9 @@ UnknownScript_0xd158: ; 0xd158
 	special UpdateTimePals
 	writecode VAR_MOVEMENT, $0
 	writetext UnknownText_0xd181
-	closetext
+	waitbutton
 UnknownScript_0xd163:
-	loadmovesprites
+	closetext
 	special Functione4a
 	special PlayMapMusic
 	end
@@ -6696,8 +6705,8 @@ UnknownScript_0xd16b: ; 0xd16b
 
 UnknownScript_0xd171: ; 0xd171
 	writetext UnknownText_0xd177
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 ; 0xd177
 
@@ -6749,7 +6758,7 @@ AskCutScript: ; 0xd1a9
 	callasm Functiond1ba
 	iftrue UnknownScript_0xc802
 .script_d1b8
-	loadmovesprites
+	closetext
 	end
 ; 0xd1ba
 
@@ -9353,7 +9362,7 @@ Functione039: ; e039
 	ld a, [wd10b]
 	and a
 	jp nz, CloseSRAM
-	ld a, [InLinkBattle]
+	ld a, [wLinkMode]
 	and a
 	ret nz
 	ld a, $0
@@ -12544,17 +12553,17 @@ UnknownScript_0x122ce:: ; 0x122ce
 	playsound SFX_ITEM
 	pause 60
 	itemnotify
-	loadmovesprites
+	closetext
 	end
 ; 0x122e3
 
 UnknownScript_0x122e3: ; 0x122e3
 	loadfont
 	writetext UnknownText_0x122ee
-	closetext
+	waitbutton
 	writetext UnknownText_0x122f3
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 ; 0x122ee
 
@@ -12871,7 +12880,7 @@ UnknownScript_0x124c8:: ; 0x124c8
 	callasm Function124fa
 UnknownScript_0x124ce: ; 0x124ce
 	writetext UnknownText_0x124f5
-	closetext
+	waitbutton
 	special Function8c084
 	pause 40
 	special HealParty
@@ -13051,7 +13060,7 @@ UnknownScript_0x125ad: ; 0x125ad
 	special UpdateTimePals
 	callasm Function12599
 	writetext UnknownText_0x125c3
-	loadmovesprites
+	closetext
 	end
 ; 0x125ba
 
@@ -13059,7 +13068,7 @@ UnknownScript_0x125ba: ; 0x125ba
 	reloadmappart
 	special UpdateTimePals
 	writetext UnknownText_0x125c8
-	loadmovesprites
+	closetext
 	end
 ; 0x125c3
 
@@ -13359,7 +13368,7 @@ StartMenu:: ; 125cd
 	ld a, 1 ; pokemon
 	call .AppendMenuList
 .no_pokemon
-	ld a, [InLinkBattle]
+	ld a, [wLinkMode]
 	and a
 	jr nz, .no_pack
 	ld hl, StatusFlags2
@@ -13376,7 +13385,7 @@ StartMenu:: ; 125cd
 .no_pokegear
 	ld a, 3 ; status
 	call .AppendMenuList
-	ld a, [InLinkBattle]
+	ld a, [wLinkMode]
 	and a
 	jr nz, .no_save
 	ld hl, StatusFlags2
@@ -14127,7 +14136,7 @@ Function12cfe: ; 12cfe (4:6cfe)
 	ret
 
 Function12d45: ; 12d45
-	ld a, [InLinkBattle]
+	ld a, [wLinkMode]
 	cp $1
 	jr z, .asm_12d6d
 	cp $2
@@ -15512,7 +15521,7 @@ UnknownScript_0x135f8:: ; 0x135f8
 	playsound SFX_ELEVATOR_END
 	loadfont
 	writetext UnknownText_0x1360f
-	closetext
+	waitbutton
 	jump UnknownScript_0x1360b
 ; 0x13603
 
@@ -15520,9 +15529,9 @@ UnknownScript_0x13603: ; 0x13603
 	playsound SFX_ELEVATOR_END
 	loadfont
 	writetext UnknownText_0x13614
-	closetext
+	waitbutton
 UnknownScript_0x1360b: ; 0x1360b
-	loadmovesprites
+	closetext
 	jumpstd bugcontestresultswarp
 ; 0x1360f
 
@@ -15541,8 +15550,8 @@ UnknownText_0x13614: ; 0x13614
 UnknownScript_0x13619:: ; 0x13619
 	loadfont
 	writetext UnknownText_0x13620
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 ; 0x13620
 
@@ -15566,11 +15575,11 @@ UnknownScript_0x13625:: ; 0x13625
 ; 0x1363e
 
 UnknownScript_0x1363e: ; 0x1363e
-	keeptextopen
+	buttonsound
 	writetext UnknownText_0x1364a
-	closetext
+	waitbutton
 UnknownScript_0x13643: ; 13643
-	loadmovesprites
+	closetext
 	end
 ; 0x13645
 
@@ -17836,7 +17845,7 @@ Group13Sprites: ; 144ec
 	db SPRITE_WILL
 	db SPRITE_KAREN
 	db SPRITE_NURSE
-	db SPRITE_OLD_LINK_RECEPTIONIST
+	db SPRITE_SIDEWAYS_GRAMPS
 	db SPRITE_BIG_LAPRAS
 	db SPRITE_BIG_ONIX
 	db SPRITE_SUDOWOODO
@@ -17844,7 +17853,7 @@ Group13Sprites: ; 144ec
 	db SPRITE_TEACHER
 	db SPRITE_FISHER
 	db SPRITE_YOUNGSTER
-	db SPRITE_BLUE
+	db SPRITE_OAK
 	db SPRITE_GRAMPS
 	db SPRITE_BUG_CATCHER
 	db SPRITE_COOLTRAINER_F
@@ -18085,7 +18094,7 @@ Group23Sprites: ; 14503
 	db SPRITE_WILL
 	db SPRITE_KAREN
 	db SPRITE_NURSE
-	db SPRITE_OLD_LINK_RECEPTIONIST
+	db SPRITE_SIDEWAYS_GRAMPS
 	db SPRITE_BIG_LAPRAS
 	db SPRITE_BIG_ONIX
 	db SPRITE_SUDOWOODO
@@ -18200,7 +18209,7 @@ Group28Sprites:
 	db SPRITE_BOULDER
 	db SPRITE_BIRD
 	db SPRITE_PHARMACIST
-	db SPRITE_SUPER_NERD ; 9
+	db SPRITE_SUPER_NERD
 SpriteHeaders: ; 14736
 INCLUDE "gfx/overworld/sprite_headers.asm"
 ; 1499a
@@ -19696,6 +19705,11 @@ Function156d9: ; 156d9
 	ld hl, UnknownText_0x156ff
 	call Function15a20
 	ld b, $1
+	ld a, [StatusFlags]
+	bit 5, a
+	jr nz, .okay
+	dec b
+.okay
 	call Function15704
 	and a
 	jr nz, .asm_156f9
@@ -21380,7 +21394,7 @@ Function1606f:: ; 1606f
 ; 1608d
 
 Unknown_1608d: ; 1608d
-	bigdw 9999
+	bigdw 50000
 
 ; 1608f
 
@@ -26321,8 +26335,8 @@ Function24b25: ; 24b25
 	ld de, String24b8e
 	call PlaceString
 	ld de, Coins
-	ld bc, $0204
-	hlcoord 13, 1
+	ld bc, $0205
+	hlcoord 12, 1
 	call PrintNum
 	ret
 
@@ -26343,9 +26357,9 @@ Function24b4e: ; 24b4e
 	hlcoord 6, 3
 	ld de, CoinString
 	call PlaceString
-	hlcoord 15, 3
+	hlcoord 14, 3
 	ld de, Coins
-	ld bc, $0204
+	ld bc, $0205
 	call PrintNum
 	ret
 
@@ -26683,7 +26697,7 @@ Function24dd4: ; 24dd4 ;populate buffer 2 with curpartymon's menu options
 	ld a, [CurPartySpecies]
 	cp EGG
 	jr z, .asm_24e3f ;if egg, branch off
-	ld a, [InLinkBattle]
+	ld a, [wLinkMode]
 	and a
 	jr nz, .asm_24e03 ;if in link battle, skip adding moves to list
 	ld a, PartyMon1Moves - PartyMon1 ;a = space till moves in party data
@@ -26715,7 +26729,7 @@ Function24dd4: ; 24dd4 ;populate buffer 2 with curpartymon's menu options
 	call Function24e83
 	ld a, $13
 	call Function24e83
-	ld a, [InLinkBattle]
+	ld a, [wLinkMode]
 	and a
 	jr nz, .asm_24e2f ;if in link battle branch
 	push hl
@@ -27443,6 +27457,9 @@ TrainerCardPage3_LoadGFX: ; 2524c (9:524c)
 	ld hl, $9290
 	lb bc, BANK(LeaderGFX2), $56
 	call Request2bpp
+	ld a, [StatusFlags]
+	bit 5, a
+	call z, LoadBadgeNumberIcons_EarlyGameKanto
 	ld de, BadgeGFX2
 	ld hl, $8000
 	lb bc, BANK(BadgeGFX2), $2c
@@ -27469,12 +27486,16 @@ TrainerCardPage3_WaitJoypad: ; 25279 (9:5279)
 .asm_2528d
 	ld hl, StatusFlags
 	bit 5, [hl]
-	jr nz, .asm_25293
+	jr z, .page_1
 	ld a, $2
 	ld [wcf63], a
 	jr .dotrick
 
 .asm_25293
+	ld hl, StatusFlags
+	bit 5, [hl]
+	jr z, .dotrick
+.page_1
 	ld a, $0
 	ld [wcf63], a
 	jr .dotrick
@@ -27958,9 +27979,30 @@ KantoBadgesOAM:
 	db $1c | $80, $20, $24, $20 | $80
 ; 25523
 
+LoadBadgeNumberIcons_EarlyGameKanto:
+	ld a, 8
+	ld de, LeaderGFX
+	ld hl, $9290
+.loop
+	push af
+	push hl
+	push de
+	lb bc, BANK(LeaderGFX), 1
+	call Request2bpp
+	ld bc, $a0
+	pop hl
+	add hl, bc
+	ld d, h
+	ld e, l
+	pop hl
+	add hl, bc
+	pop af
+	dec a
+	jr nz, .loop
+	ret
 
 CardStatusGFX: INCBIN "gfx/misc/card_status.2bpp"
-LeaderGFX:  INCBIN "gfx/misc/leaders.w24.2bpp"
+LeaderGFX:  INCLUDE "gfx/misc/johto_leaders.asm"
 LeaderGFX2: INCBIN "gfx/misc/kantoleaders.w24.2bpp"
 BadgeGFX:   INCBIN "gfx/misc/badges.w16.2bpp"
 BadgeGFX2:  INCBIN "gfx/misc/kantobadges.w16.2bpp"
@@ -29424,9 +29466,9 @@ Unknown_26f84: ; 26f84
 UnknownScript_0x26f91: ; 0x26f91
 	loadfont
 	writetext UnknownText_0x26f9b
-	closetext
+	waitbutton
 	special Functionc2c0
-	loadmovesprites
+	closetext
 	end
 ; 0x26f9b
 
@@ -29806,7 +29848,7 @@ Function28000: ; 28000
 	xor a
 	ld [hli], a
 	ld [hl], $50
-	ld a, [InLinkBattle]
+	ld a, [wLinkMode]
 	cp $1
 	jp nz, Function28177
 Function2805d: ; 2805d
@@ -30002,7 +30044,7 @@ Function28177: ; 28177
 	ld de, wc6d0
 	ld bc, $00c8
 	call Function75f
-	ld a, [InLinkBattle]
+	ld a, [wLinkMode]
 	cp $2
 	jr nz, .asm_281fd
 	ld hl, wc9f4
@@ -30052,7 +30094,7 @@ Function28177: ; 28177
 	ld hl, wc90f
 	dec c
 	jr nz, .asm_28224
-	ld a, [InLinkBattle]
+	ld a, [wLinkMode]
 	cp $2
 	jp nz, .asm_282fe
 	ld hl, wcb84
@@ -30183,7 +30225,7 @@ Function28177: ; 28177
 	cp $2
 	ld c, 66
 	call z, DelayFrames
-	ld a, [InLinkBattle]
+	ld a, [wLinkMode]
 	cp $3
 	jr nz, .asm_283a9
 	ld a, CAL
@@ -30370,7 +30412,7 @@ Function28434: ; 28434
 	dec a
 	jr nz, .asm_2847f
 	push bc
-	ld a, [InLinkBattle]
+	ld a, [wLinkMode]
 	cp $1
 	ld b, $d
 	jr z, .asm_2847a
@@ -30593,7 +30635,7 @@ Function28595: ; 28595
 	ld hl, PartyMonNicknames
 	ld bc, $0042
 	call CopyBytes
-	ld a, [InLinkBattle]
+	ld a, [wLinkMode]
 	cp $2
 	ret nz
 	ld de, wc9f4
@@ -31715,7 +31757,7 @@ Function28b87: ; 28b87
 	push bc
 	call Function862
 	pop bc
-	ld a, [InLinkBattle]
+	ld a, [wLinkMode]
 	cp $1
 	jr z, .asm_28e63
 	ld a, b
@@ -31740,7 +31782,7 @@ Function28b87: ; 28b87
 	callba Function4d354
 	ld c, $32
 	call DelayFrames
-	ld a, [InLinkBattle]
+	ld a, [wLinkMode]
 	cp $1
 	jp z, Function2805d
 	jp Function28177
@@ -33063,7 +33105,7 @@ Function296f2: ; 296f2 (a:56f2)
 ; 29701 (a:5701)
 
 Function29701: ; 29701
-	ld a, [InLinkBattle]
+	ld a, [wLinkMode]
 	cp $1
 	jr z, .asm_29725
 	ld hl, UnknownText_0x29737
@@ -33504,7 +33546,7 @@ Function29c7b: ; 29c7b
 	xor a
 	ld [hVBlank], a
 	inc a
-	ld [InLinkBattle], a
+	ld [wLinkMode], a
 	ret
 
 ; 29c92
@@ -33553,7 +33595,7 @@ Function29c92: ; 29c92
 	ld [hli], a
 	ld [hl], a
 	ld [hVBlank], a
-	ld [InLinkBattle], a
+	ld [wLinkMode], a
 	ret
 
 ; 29ce8
@@ -33832,7 +33874,7 @@ Function29e82: ; 29e82
 	jr nz, .asm_29eaa
 	ld a, [wd265]
 	inc a
-	ld [InLinkBattle], a
+	ld [wLinkMode], a
 	xor a
 	ld [hVBlank], a
 	ld a, $1
@@ -33848,7 +33890,7 @@ Function29e82: ; 29e82
 
 Function29eaf: ; 29eaf
 	ld a, $1
-	ld [InLinkBattle], a
+	ld [wLinkMode], a
 	call Function2ed3
 	callab Function28000
 	call Function2ee4
@@ -33860,7 +33902,7 @@ Function29eaf: ; 29eaf
 
 Function29ec4: ; 29ec4
 	ld a, $2
-	ld [InLinkBattle], a
+	ld [wLinkMode], a
 	call Function2ed3
 	callab Function28000
 	call Function2ee4
@@ -33872,7 +33914,7 @@ Function29ec4: ; 29ec4
 
 Function29ed9: ; 29ed9
 	ld a, $3
-	ld [InLinkBattle], a
+	ld [wLinkMode], a
 	call Function2ed3
 	callab Function28000
 	call Function2ee4
@@ -33884,7 +33926,7 @@ Function29ed9: ; 29ed9
 
 Function29eee: ; 29eee
 	xor a
-	ld [InLinkBattle], a
+	ld [wLinkMode], a
 	ld c, $3
 	call DelayFrames
 	jp Function29f04
@@ -34574,6 +34616,9 @@ Function2ba01: ; 2ba01
 ChrisBackpic: ; 2ba1a
 INCBIN "gfx/misc/player.6x6.2bpp.lz"
 ; 2bbaa
+
+OldManBackpic:
+INCBIN "gfx/misc/oldman.6x6.2bpp.lz"
 
 DudeBackpic: ; 2bbaa
 INCBIN "gfx/misc/dude.6x6.2bpp.lz"
@@ -35707,6 +35752,7 @@ TrainerClassNames:: ; 2c1ef
 	db $4a, " LEAGUE@"
 	db "BOSS@"
 	db "COOLSIBS@"
+	db "RIVAL@"
 AI_Redundant: ; 2c41a
 ; Check if move effect c will fail because it's already been used.
 
@@ -36722,8 +36768,9 @@ Function2ed44: ; 2ed44
 	ld a, b
 	and $7
 	inc a
-.asm_2ed91
 	ld b, a
+.asm_2ed91
+	ld a, b
 	swap b
 	and $3
 	inc a
@@ -36833,7 +36880,7 @@ ConvertBerriesToBerryJuice: ; 2ede6
 ; 2ee18
 
 Function2ee18: ; 2ee18
-	ld a, [InLinkBattle]
+	ld a, [wLinkMode]
 	and a
 	ret z
 	callba Function2c1b2
@@ -36965,7 +37012,7 @@ PlayBattleMusic: ; 2ee6c
 	jr .done
 
 .othertrainer
-	ld a, [InLinkBattle]
+	ld a, [wLinkMode]
 	and a
 	jr nz, .johtotrainer
 	callba RegionCheck
@@ -37118,7 +37165,7 @@ INCLUDE "battle/ai/scoring.asm"
 
 Function39550: ; 39550
 	ld hl, wd26b
-	ld a, [InLinkBattle]
+	ld a, [wLinkMode]
 	and a
 	jr nz, .ok
 	ld hl, RivalName
@@ -37163,10 +37210,10 @@ Function3957b: ; 3957b
 
 INCLUDE "trainers/attributes.asm"
 ReadTrainerParty: ; 39771
-	ld a, [wcfc0]
+	ld a, [InBattleTowerBattle]
 	bit 0, a
 	ret nz
-	ld a, [InLinkBattle]
+	ld a, [wLinkMode]
 	and a
 	ret nz
 	callba ClearOTMons
@@ -37384,7 +37431,7 @@ Function3991b: ; 3991b (e:591b)
 	ret
 
 Function39939:: ; 39939
-	ld a, [wcfc0]
+	ld a, [InBattleTowerBattle]
 	bit 0, a
 	ld hl, wd26b
 	jp nz, Function39984
@@ -37604,7 +37651,7 @@ Function421f5: ; 421f5
 	ld b, a
 	cp EVOLVE_TRADE
 	jr z, .trade
-	ld a, [InLinkBattle]
+	ld a, [wLinkMode]
 	and a
 	jp nz, .DontEvolve2
 	ld a, b
@@ -37671,7 +37718,7 @@ Function421f5: ; 421f5
 	jr .GoAheadAndEvolve
 
 .trade
-	ld a, [InLinkBattle]
+	ld a, [wLinkMode]
 	and a
 	jp z, .DontEvolve2
 	call Function42461
@@ -37680,7 +37727,7 @@ Function421f5: ; 421f5
 	ld b, a
 	inc a
 	jr z, .GoAheadAndEvolve
-	ld a, [InLinkBattle]
+	ld a, [wLinkMode]
 	cp $1
 	jp z, .DontEvolve
 	ld a, [TempMonItem]
@@ -37699,7 +37746,7 @@ Function421f5: ; 421f5
 	ld a, [wd1e9]
 	and a
 	jp z, .DontEvolve
-	ld a, [InLinkBattle]
+	ld a, [wLinkMode]
 	and a
 	jp nz, .DontEvolve
 	jr .GoAheadAndEvolve
@@ -37848,7 +37895,7 @@ Function423ff: ; 423ff
 	pop de
 	pop bc
 	pop hl
-	ld a, [InLinkBattle]
+	ld a, [wLinkMode]
 	and a
 	ret nz
 	ld a, [IsInBattle]
@@ -38186,7 +38233,7 @@ AIChooseMove:
 IF DEF(BEESAFREE)
 ; In link battle, the player chooses moves, not the AI.
 
-	ld a, [InLinkBattle]
+	ld a, [wLinkMode]
 	and a
 	ret nz
 ; No use picking a move if there's no choice.
@@ -38214,7 +38261,7 @@ ELSE
 	ld a, [IsInBattle]
 	dec a
 	ret z
-	ld a, [InLinkBattle]
+	ld a, [wLinkMode]
 	and a
 	ret nz
 ; No use picking a move if there's no choice.
@@ -38271,7 +38318,7 @@ ELSE
 
 .ApplyLayers
 	ld hl, TrainerClassAttributes + 3
-	ld a, [wcfc0]
+	ld a, [InBattleTowerBattle]
 	bit 0, a
 	jr nz, .asm_4412f
 	ld a, [TrainerClass]
@@ -47046,7 +47093,7 @@ Function4dc67: ; 4dc67
 ; 4dc7b
 
 Function4dc7b: ; 4dc7b (13:5c7b)
-	ld a, [InLinkBattle]
+	ld a, [wLinkMode]
 	cp $4
 	jr nz, StatsScreenInit
 	ld a, [IsInBattle] ; wd22d (aliases: EnemyMonEnd)
@@ -48232,7 +48279,15 @@ Function4e56a: ; 4e56a (13:656a)
 	ld de, MomsName
 	ld bc, NAME_LENGTH
 	call CopyBytes
+	ld a, [MapGroup]
+	cp GROUP_VIRIDIAN_CITY_RB
+	jr z, .OldMan
 	ld hl, DudeString
+	jr .GotString
+
+.OldMan
+	ld hl, OldManString
+.GotString
 	ld de, PlayerName
 	ld bc, NAME_LENGTH
 	call CopyBytes
@@ -48285,6 +48340,8 @@ Function4e5b7: ; 4e5b7 (13:65b7)
 DudeString: ; 4e5da
 	db "DUDE@"
 ; 4e5df
+OldManString:
+	db "OLD MAN@"
 
 AutoInput_4e5df: ; 4e5df
 	db NO_INPUT, $ff ; end
@@ -48964,7 +49021,7 @@ CheckBattleScene: ; 4ea44
 ; Return carry if battle scene is turned off.
 
 	ld a, 0
-	ld hl, InLinkBattle
+	ld hl, wLinkMode
 	call GetFarWRAMByte
 	cp 4
 	jr z, .mobile
@@ -49051,7 +49108,7 @@ Function5003f: ; 5003f
 
 Function5004f: ; 5004f
 	call Functione58
-	callab Function8ad1
+	callab InitPartyMenuPalettes
 	callab Function8e814
 	ret
 
@@ -50062,7 +50119,7 @@ UnknownScript_0x50669: ; 50669
 	loadfont
 	callasm Function5067b
 	iffalse UnknownScript_0x50677
-	loadmovesprites
+	closetext
 	end
 ; 50677
 
@@ -50143,8 +50200,8 @@ UnknownScript_0x506e5: ; 0x506e5
 
 UnknownScript_0x506e9: ; 0x506e9
 	writetext UnknownText_0x5072b
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 ; 0x506ef
 
@@ -50271,7 +50328,7 @@ _CardKey: ; 50779
 ; 507af
 
 UnknownScript_0x507af: ; 0x507af
-	loadmovesprites
+	closetext
 	farjump MapRadioTower3FSignpost2Script
 ; 0x507b4
 
@@ -50303,7 +50360,7 @@ _BasementKey: ; 507b4
 ; 507e1
 
 UnknownScript_0x507e1: ; 0x507e1
-	loadmovesprites
+	closetext
 	farjump MapWarehouseEntranceSignpost0Script
 ; 0x507e6
 
@@ -50364,12 +50421,12 @@ UnknownScript_0x50821: ; 0x50821
 	special Function8c079
 	special Function8c084
 	special Function8c079
-	waitbutton
+	waitsfx
 	writetext UnknownText_0x50845
 	playsound SFX_CAUGHT_MON
+	waitsfx
 	waitbutton
 	closetext
-	loadmovesprites
 	end
 ; 0x50845
 
@@ -64899,7 +64956,7 @@ Function8c20f: ; 8c20f
 ; 8c26d
 
 Function8c26d: ; 8c26d
-	ld a, [InLinkBattle]
+	ld a, [wLinkMode]
 	cp $4
 	jr z, .asm_8c288
 	callba Function6454
@@ -67229,6 +67286,7 @@ Unknown_8d1c4: ; 8d1c4
 	db $3f, $21, $00
 	db $3e, $22, $00
 	db $40, $00, $00
+	db $42, $23, $00
 ; 8d24b
 
 Function8d24b: ; 8d24b ;jump to program set in wc316
@@ -67282,6 +67340,7 @@ Jumptable_8d25b: ; 8d25b (23:525b)
 	dw Function8d680
 	dw Function8d6a2
 	dw Function8d6ae
+	dw SpriteAnimSeq_VoltorbFlip
 
 Function8d2a1: ; 8d2a1 (23:52a1)
 	ret
@@ -68016,6 +68075,10 @@ Function8d6ae: ; 8d6ae (23:56ae)
 	ld [hl], a
 	ret
 
+SpriteAnimSeq_VoltorbFlip:
+	callba UpdateVoltorbFlipCursor
+	ret
+
 Function8d6b7: ; 8d6b7 (23:56b7)
 	callba Function11d0b6
 	ret
@@ -68128,6 +68191,7 @@ Unknown_8d6e6: ; 8d6e6
 	dw Unknown_8d940
 	dw Unknown_8d943
 	dw Unknown_8d948
+	dw VoltorbFlipCursorFrameset
 
 ; 8d76a
 
@@ -68206,6 +68270,7 @@ Unknown_8d93d: 	db $7e,$03, $ff
 Unknown_8d940: 	db $fd,$00, $ff
 Unknown_8d943: 	db $7f,$08, $80,$08, $ff
 Unknown_8d948: 	db $7f,$48, $80,$48, $ff
+VoltorbFlipCursorFrameset: db $8c,$08, $ff
 ; 8d94d
 
 Unknown_8d94d: ; 8d94d
@@ -68349,6 +68414,7 @@ Unknown_8d94d: ; 8d94d
 	dbw $08, Unknown_8e6a5
 	dbw $04, Unknown_8e6a5
 	dbw $00, Unknown_8e6a5
+	dbw $00, VoltorbFlipCursorOAMData
 ; 8daf1
 
 Unknown_8daf1: ; 8daf1
@@ -69415,6 +69481,13 @@ Unknown_8e6a5: ; 8e6a5
 	db $00, $0c, $53, $01
 ; 8e706
 
+VoltorbFlipCursorOAMData:
+	db 4
+	db $fe, $fe, $00, $00
+	db $fe, $0a, $00, $20
+	db $0a, $fe, $00, $40
+	db $0a, $0a, $00, $60
+
 Unknown_8e706: ; 8e706
 	dbbw $80, $01, Unknown_8e72a
 	dbbw $80, $01, Unknown_8e72a
@@ -69924,7 +69997,7 @@ GetIcon: ; 8ea1e
 ; 8ea3f
 
 GetGFXUnlessMobile: ; 8ea3f
-	ld a, [InLinkBattle]
+	ld a, [wLinkMode]
 	cp 4 ; Mobile Link Battle
 	jp nz, Request2bpp
 	jp Functiondc9
@@ -70019,6 +70092,9 @@ Function8ea8c: ; 8ea8c load 2 into wc316,wc326,wc336,wc346,wc356 and wc366 if co
 	ret
 
 INCLUDE "menu/mon_icons.asm"
+
+INCLUDE "engine/voltorb_flip.asm"
+
 SECTION "bank24", ROMX, BANK[$24]
 Function90000:: ; 90000
 	call Function9001c
@@ -70334,7 +70410,7 @@ Function90197: ; 90197
 	ret
 
 Function90199: ; 90199 (24:4199)
-	ld a, [InLinkBattle]
+	ld a, [wLinkMode]
 	and a
 	jr nz, .asm_901e7
 	call Function2d05
@@ -70447,9 +70523,9 @@ UnknownScript_0x90241: ; 0x90241
 	refreshscreen $0
 	callasm Function9026f
 	ptcall wd048
-	closetext
+	waitbutton
 	callasm Function902eb
-	loadmovesprites
+	closetext
 	callasm Function113e5
 	end
 ; 0x90255
@@ -72296,7 +72372,25 @@ Function9102f: ; 9102f (24:502f)
 	ld hl, wc6d7
 	ld a, [hl]
 	cp d
+	jr nc, .wrap_around
+	cp KANTO_LANDMARK
 	jr c, .asm_91047
+	push hl
+	ld hl, StatusFlags
+	bit 5, [hl]
+	pop hl
+	jr nz, .asm_91047
+	cp CELADON_CITY
+	jr z, .inc_extra
+	cp CINNABAR_ISLAND
+	jr z, .inc_extra
+	cp ROUTE_22
+	jr nz, .asm_91047
+.inc_extra
+	inc [hl]
+	jr .asm_91047
+	
+.wrap_around
 	ld a, e
 	dec a
 	ld [hl], a
@@ -72308,7 +72402,25 @@ Function9102f: ; 9102f (24:502f)
 	ld hl, wc6d7
 	ld a, [hl]
 	cp e
+	jr z, .wrap_back
+	cp KANTO_LANDMARK
+	jr c, .asm_91054
+	push hl
+	ld hl, StatusFlags
+	bit 5, [hl]
+	pop hl
 	jr nz, .asm_91054
+	cp SAFFRON_CITY
+	jr z, .dec_extra
+	cp ROUTE_21
+	jr z, .dec_extra
+	cp VICTORY_ROAD
+	jr nz, .asm_91054
+.dec_extra
+	dec [hl]
+	jr .asm_91054
+
+.wrap_back
 	ld a, d
 	inc a
 	ld [hl], a
@@ -72407,10 +72519,13 @@ Function910d4: ; 910d4
 
 Function910e8: ; Kanto Landmarks that can be viewed after beating the Elite Four
 	ld a, [StatusFlags]
+	bit 5, a
+	jr z, .okay
 	bit 6, a
 	jr z, .asm_910f4
+.okay
 	ld d, ROUTE_28
-	ld e, KANTO_LANDMARK
+	ld e, PALLET_TOWN
 	ret
 
 .asm_910f4 ; Kanto Landmarks that can be viewed without beating the Elite Four
@@ -73591,7 +73706,25 @@ Function919b0: ; 919b0
 	ld hl, wd003
 	ld a, [hl]
 	cp d
+	jr nc, .wrap_around
+	cp KANTO_LANDMARK
 	jr c, .asm_919de
+	push hl
+	ld hl, StatusFlags
+	bit 5, [hl]
+	pop hl
+	jr nz, .asm_919de
+	cp CELADON_CITY
+	jr z, .inc_extra
+	cp CINNABAR_ISLAND
+	jr z, .inc_extra
+	cp ROUTE_22
+	jr nz, .asm_919de
+.inc_extra
+	inc [hl]
+	jr .asm_919de
+
+.wrap_around
 	ld a, e
 	dec a
 	ld [hl], a
@@ -73603,7 +73736,25 @@ Function919b0: ; 919b0
 	ld hl, wd003
 	ld a, [hl]
 	cp e
+	jr z, .wrap_back
+	cp KANTO_LANDMARK
+	jr c, .asm_919eb
+	push hl
+	ld hl, StatusFlags
+	bit 5, [hl]
+	pop hl
 	jr nz, .asm_919eb
+	cp SAFFRON_CITY
+	jr z, .dec_extra
+	cp ROUTE_21
+	jr z, .dec_extra
+	cp VICTORY_ROAD
+	jr nz, .asm_919eb
+.dec_extra
+	dec [hl]
+	jr .asm_919eb
+
+.wrap_back
 	ld a, d
 	inc a
 	ld [hl], a
@@ -75021,9 +75172,9 @@ Function927d4: ; 927d4
 ; 927f8
 
 Function927f8: ; 927f8 (24:67f8)
-	hlcoord 5, 1
+	hlcoord 4, 1
 	ld de, Coins
-	ld bc, $8204
+	ld bc, $8205
 	call PrintNum
 	hlcoord 11, 1
 	ld de, wc711
@@ -81958,9 +82109,9 @@ Functione049c: ; e049c
 	hlcoord 10, 16
 	ld de, String_e04bc
 	call PlaceString
-	hlcoord 15, 16
+	hlcoord 14, 16
 	ld de, Coins
-	ld bc, $8204
+	ld bc, $8205
 	call PrintNum
 	ret
 
@@ -90713,7 +90864,7 @@ Functionfb57e: ; fb57e
 	ld a, [hl]
 	cp 101
 	jr nc, .asm_fb5db
-	ld a, [InLinkBattle]
+	ld a, [wLinkMode]
 	cp $1
 	jr nz, .asm_fb5d9
 	ld hl, OTPartySpecies
@@ -91738,10 +91889,10 @@ DoWeatherModifiers: ; fbda4
 ; fbe24
 
 DoBadgeTypeBoosts: ; fbe24
-	ld a, [InLinkBattle]
+	ld a, [wLinkMode]
 	and a
 	ret nz
-	ld a, [wcfc0]
+	ld a, [InBattleTowerBattle]
 	and a
 	ret nz
 	ld a, [hBattleTurn]

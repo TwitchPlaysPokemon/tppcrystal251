@@ -82,15 +82,15 @@ SageScript_0x98062: ; 0x98062
 	checkflag ENGINE_FOGBADGE
 	iftrue UnknownScript_0x98076
 	writetext UnknownText_0x980d1
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 ; 0x98076
 
 UnknownScript_0x98076: ; 0x98076
 	writetext UnknownText_0x98131
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 ; 0x9807c
 
@@ -102,15 +102,15 @@ UnknownScript_0x9807c: ; 0x9807c
 	checkitem CLEAR_BELL
 	iftrue UnknownScript_0x98093
 	writetext UnknownText_0x981a4
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 ; 0x98093
 
 UnknownScript_0x98093: ; 0x98093
 	writetext UnknownText_0x98250
+	waitbutton
 	closetext
-	loadmovesprites
 	dotrigger $1
 	setevent EVENT_SAGE_IN_ECRUTEAK_HOUSE_2
 	clearevent EVENT_SAGE_IN_ECRUTEAK_HOUSE
@@ -120,15 +120,15 @@ UnknownScript_0x98093: ; 0x98093
 
 UnknownScript_0x980a4: ; 0x980a4
 	writetext UnknownText_0x9837e
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 ; 0x980aa
 
 UnknownScript_0x980aa: ; 0x980aa
 	writetext UnknownText_0x98391
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 ; 0x980b0
 
@@ -138,15 +138,15 @@ SageScript_0x980b0: ; 0x980b0
 	checkevent EVENT_GOT_CLEAR_BELL
 	iftrue UnknownScript_0x980be
 	writetext UnknownText_0x9840b
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 ; 0x980be
 
 UnknownScript_0x980be: ; 0x980be
 	writetext UnknownText_0x9846f
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 ; 0x980c4
 

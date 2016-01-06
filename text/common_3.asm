@@ -362,7 +362,7 @@ UnknownText_0x1c05ec: ; 1c05ec
 UnknownText_0x1c0609: ; 1c0609
 	text "A blinding FLASH"
 	line "lights the area!@"
-	text_waitbutton
+	text_waitsfx
 	db "@"
 ; 1c062e
 
@@ -931,7 +931,7 @@ UnknownText_0x1c0dba: ; 1c0dba
 	text " came"
 	line "out of its EGG!@"
 	sound0x02
-	text_waitbutton
+	text_waitsfx
 	db "@"
 ; 1c0dd7
 
@@ -1222,7 +1222,7 @@ UnknownText_0x1c123a: ; 1c123a
 	text " caught by"
 	line "@"
 	text_from_ram wdfe9 + 1
-	text_waitbutton
+	text_waitsfx
 	db "@"
 ; 1c1260
 
@@ -1788,7 +1788,7 @@ _OakText2: ; 1c1da4
 ; 1c1de2
 
 _OakText3: ; 1c1de2
-	text_waitbutton
+	text_waitsfx
 	db "@"
 ; 1c1de4
 

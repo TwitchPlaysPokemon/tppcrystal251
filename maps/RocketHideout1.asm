@@ -39,8 +39,8 @@ RocketHideout1_SimonScript1:
 	playmusic MUSIC_POKEMANIAC_ENCOUNTER
 	loadfont
 	writetext Text_RocketHideout_Simon1
+	waitbutton
 	closetext
-	loadmovesprites
 	applymovement $2, MovementData_RocketHideout_Simon3
 	winlosstext Text_RocketHideout_SimonLoss, $0000
 	loadtrainer BURGLAR, SIMON_5
@@ -50,11 +50,11 @@ RocketHideout1_SimonScript1:
 	playmusic MUSIC_POKEMANIAC_ENCOUNTER
 	loadfont
 	writetext Text_RocketHideout_Simon2
-	keeptextopen
+	buttonsound
 	verbosegiveitem GS_BALL, 1
 	writetext Text_RocketHideout_Simon3
+	waitbutton
 	closetext
-	loadmovesprites
 	applymovement $0, MovementData_RocketHideout_Player1
 	applymovement $2, MovementData_RocketHideout_Simon4
 	playsound SFX_EXIT_BUILDING

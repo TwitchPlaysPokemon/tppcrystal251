@@ -21,21 +21,21 @@ UnknownScript_0x188dc4: ; 0x188dc4
 UnknownScript_0x188dc5: ; 0x188dc5
 	playsound SFX_CALL
 	showemote $0, $2, 15
-	waitbutton
+	waitsfx
 	pause 30
 	applymovement $2, MovementData_0x188ed5
 	spriteface $3, $0
 	spriteface $4, $0
 	loadfont
 	writetext UnknownText_0x188f22
+	waitbutton
 	closetext
-	loadmovesprites
 	spriteface $2, $2
 	spriteface $0, $3
 	loadfont
 	writetext UnknownText_0x188f7f
+	waitbutton
 	closetext
-	loadmovesprites
 	spriteface $0, $0
 	applymovement $2, MovementData_0x188eda
 	dotrigger $0
@@ -50,22 +50,22 @@ OfficerScript_0x188df5: ; 0x188df5
 	checkevent EVENT_MET_MANAGER_AT_POWER_PLANT
 	iftrue UnknownScript_0x188e09
 	writetext UnknownText_0x188ee0
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 ; 0x188e09
 
 UnknownScript_0x188e09: ; 0x188e09
 	writetext UnknownText_0x188f7f
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 ; 0x188e0f
 
 UnknownScript_0x188e0f: ; 0x188e0f
 	writetext UnknownText_0x188fa2
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 ; 0x188e15
 
@@ -75,15 +75,15 @@ GymGuyScript_0x188e15: ; 0x188e15
 	checkevent EVENT_RETURNED_MACHINE_PART
 	iftrue UnknownScript_0x188e23
 	writetext UnknownText_0x188fcf
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 ; 0x188e23
 
 UnknownScript_0x188e23: ; 0x188e23
 	writetext UnknownText_0x189038
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 ; 0x188e29
 
@@ -93,15 +93,15 @@ GymGuyScript_0x188e29: ; 0x188e29
 	checkevent EVENT_RETURNED_MACHINE_PART
 	iftrue UnknownScript_0x188e37
 	writetext UnknownText_0x189079
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 ; 0x188e37
 
 UnknownScript_0x188e37: ; 0x188e37
 	writetext UnknownText_0x1890ef
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 ; 0x188e3d
 
@@ -111,15 +111,15 @@ OfficerScript_0x188e3d: ; 0x188e3d
 	checkevent EVENT_RETURNED_MACHINE_PART
 	iftrue UnknownScript_0x188e4b
 	writetext UnknownText_0x18910e
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 ; 0x188e4b
 
 UnknownScript_0x188e4b: ; 0x188e4b
 	writetext UnknownText_0x18917f
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 ; 0x188e51
 
@@ -129,15 +129,15 @@ GymGuyScript_0x188e51: ; 0x188e51
 	checkevent EVENT_RETURNED_MACHINE_PART
 	iftrue UnknownScript_0x188e5f
 	writetext UnknownText_0x1891c2
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 ; 0x188e5f
 
 UnknownScript_0x188e5f: ; 0x188e5f
 	writetext UnknownText_0x189225
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 ; 0x188e65
 
@@ -151,8 +151,8 @@ FisherScript_0x188e65: ; 0x188e65
 	checkevent EVENT_MET_MANAGER_AT_POWER_PLANT
 	iftrue UnknownScript_0x188e8d
 	writetext UnknownText_0x189264
+	waitbutton
 	closetext
-	loadmovesprites
 	setevent EVENT_MET_MANAGER_AT_POWER_PLANT
 	clearevent EVENT_ROCKET_IN_CERULEAN_GYM
 	clearevent EVENT_FOUND_MACHINE_PART_IN_CERULEAN_GYM
@@ -163,14 +163,14 @@ FisherScript_0x188e65: ; 0x188e65
 
 UnknownScript_0x188e8d: ; 0x188e8d
 	writetext UnknownText_0x189308
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 ; 0x188e93
 
 UnknownScript_0x188e93: ; 0x188e93
 	writetext UnknownText_0x18936e
-	keeptextopen
+	buttonsound
 	takeitem MACHINE_PART, 1
 	setevent EVENT_RETURNED_MACHINE_PART
 	clearevent EVENT_LADIES_IN_SAFFRON_STATION
@@ -182,21 +182,21 @@ UnknownScript_0x188eac: ; 0x188eac
 	checkevent EVENT_GOT_TM07_ZAP_CANNON
 	iftrue UnknownScript_0x188ec5
 	writetext UnknownText_0x1893c4
-	keeptextopen
+	buttonsound
 	verbosegiveitem TM_ZAP_CANNON, 1
 	iffalse UnknownScript_0x188ec3
 	setevent EVENT_GOT_TM07_ZAP_CANNON
 	writetext UnknownText_0x1893f4
-	closetext
+	waitbutton
 UnknownScript_0x188ec3: ; 0x188ec3
-	loadmovesprites
+	closetext
 	end
 ; 0x188ec5
 
 UnknownScript_0x188ec5: ; 0x188ec5
 	writetext UnknownText_0x189475
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 ; 0x188ecb
 
@@ -204,8 +204,8 @@ GymGuyScript_0x188ecb: ; 0x188ecb
 	faceplayer
 	loadfont
 	trade $6
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 ; 0x188ed2
 

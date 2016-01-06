@@ -41,8 +41,8 @@ KurtScript_0x18e178: ; 0x18e178
 	checkevent EVENT_CLEARED_SLOWPOKE_WELL
 	iftrue UnknownScript_0x18e1bf
 	writetext UnknownText_0x18e473
+	waitbutton
 	closetext
-	loadmovesprites
 	special Functionc48f
 	setevent EVENT_GOOD_SAMARITAN_ROCKET_IN_AZALEA_TOWN
 	checkcode VAR_FACING
@@ -52,7 +52,7 @@ KurtScript_0x18e178: ; 0x18e178
 	applymovement $2, MovementData_0x18e466
 	playsound SFX_EXIT_BUILDING
 	disappear $2
-	waitbutton
+	waitsfx
 	special RestartMapMusic
 	end
 ; 0x18e1ab
@@ -63,14 +63,14 @@ UnknownScript_0x18e1ab: ; 0x18e1ab
 	applymovement $2, MovementData_0x18e46c
 	playsound SFX_EXIT_BUILDING
 	disappear $2
-	waitbutton
+	waitsfx
 	special RestartMapMusic
 	end
 ; 0x18e1bf
 
 UnknownScript_0x18e1bf: ; 0x18e1bf
 	writetext UnknownText_0x18e615
-	keeptextopen
+	buttonsound
 	verbosegiveitem LURE_BALL, 1
 	iffalse UnknownScript_0x18e2b2
 	setevent EVENT_KURT_GAVE_YOU_LURE_BALL
@@ -99,7 +99,7 @@ UnknownScript_0x18e202: ; 0x18e202
 	checkevent EVENT_002_STD
 	iftrue UnknownScript_0x18e212
 	writetext UnknownText_0x18e6c9
-	closetext
+	waitbutton
 UnknownScript_0x18e212: ; 0x18e212
 	checkitem RED_APRICORN
 	iftrue UnknownScript_0x18e249
@@ -119,20 +119,20 @@ UnknownScript_0x18e212: ; 0x18e212
 	iftrue UnknownScript_0x18e2ae
 	checkevent EVENT_002_STD
 	iftrue UnknownScript_0x18e243
-	loadmovesprites
+	closetext
 	end
 ; 0x18e243
 
 UnknownScript_0x18e243: ; 0x18e243
 	writetext UnknownText_0x18e6c9
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 ; 0x18e249
 
 UnknownScript_0x18e249: ; 0x18e249
 	writetext UnknownText_0x18e736
-	keeptextopen
+	buttonsound
 	setevent EVENT_002_STD
 	special Function88018
 	if_equal $0, UnknownScript_0x18e2a5
@@ -181,15 +181,15 @@ UnknownScript_0x18e299: ; 0x18e299
 	setflag ENGINE_KURT_MAKING_BALLS
 UnknownScript_0x18e29f: ; 0x18e29f
 	writetext UnknownText_0x18e779
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 ; 0x18e2a5
 
 UnknownScript_0x18e2a5: ; 0x18e2a5
 	writetext UnknownText_0x18e7bc
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 ; 0x18e2ab
 
@@ -197,9 +197,9 @@ UnknownScript_0x18e2ab: ; 0x18e2ab
 	setevent EVENT_001_STD
 UnknownScript_0x18e2ae: ; 0x18e2ae
 	writetext UnknownText_0x18e82a
-	closetext
+	waitbutton
 UnknownScript_0x18e2b2: ; 0x18e2b2
-	loadmovesprites
+	closetext
 	end
 ; 0x18e2b4
 
@@ -207,7 +207,7 @@ UnknownScript_0x18e2b4: ; 0x18e2b4
 	checkflag ENGINE_KURT_MAKING_BALLS
 	iftrue UnknownScript_0x18e3c5
 	writetext UnknownText_0x18e7fb
-	keeptextopen
+	buttonsound
 	verbosegiveitem2 LEVEL_BALL, $16
 	iffalse UnknownScript_0x18e2b2
 UnknownScript_0x18e2c4: ; 0x18e2c4
@@ -219,7 +219,7 @@ UnknownScript_0x18e2ca: ; 0x18e2ca
 	checkflag ENGINE_KURT_MAKING_BALLS
 	iftrue UnknownScript_0x18e3c5
 	writetext UnknownText_0x18e7fb
-	keeptextopen
+	buttonsound
 	verbosegiveitem2 LURE_BALL, $16
 	iffalse UnknownScript_0x18e2b2
 UnknownScript_0x18e2da: ; 0x18e2da
@@ -231,7 +231,7 @@ UnknownScript_0x18e2e0: ; 0x18e2e0
 	checkflag ENGINE_KURT_MAKING_BALLS
 	iftrue UnknownScript_0x18e3c5
 	writetext UnknownText_0x18e7fb
-	keeptextopen
+	buttonsound
 	verbosegiveitem2 MOON_BALL, $16
 	iffalse UnknownScript_0x18e2b2
 UnknownScript_0x18e2f0: ; 0x18e2f0
@@ -243,7 +243,7 @@ UnknownScript_0x18e2f6: ; 0x18e2f6
 	checkflag ENGINE_KURT_MAKING_BALLS
 	iftrue UnknownScript_0x18e3c5
 	writetext UnknownText_0x18e7fb
-	keeptextopen
+	buttonsound
 	verbosegiveitem2 FRIEND_BALL, $16
 	iffalse UnknownScript_0x18e2b2
 UnknownScript_0x18e306: ; 0x18e306
@@ -255,7 +255,7 @@ UnknownScript_0x18e30c: ; 0x18e30c
 	checkflag ENGINE_KURT_MAKING_BALLS
 	iftrue UnknownScript_0x18e3c5
 	writetext UnknownText_0x18e7fb
-	keeptextopen
+	buttonsound
 	verbosegiveitem2 FAST_BALL, $16
 	iffalse UnknownScript_0x18e2b2
 UnknownScript_0x18e31c: ; 0x18e31c
@@ -267,7 +267,7 @@ UnknownScript_0x18e322: ; 0x18e322
 	checkflag ENGINE_KURT_MAKING_BALLS
 	iftrue UnknownScript_0x18e3c5
 	writetext UnknownText_0x18e7fb
-	keeptextopen
+	buttonsound
 	verbosegiveitem2 HEAVY_BALL, $16
 	iffalse UnknownScript_0x18e2b2
 UnknownScript_0x18e332: ; 0x18e332
@@ -279,7 +279,7 @@ UnknownScript_0x18e338: ; 0x18e338
 	checkflag ENGINE_KURT_MAKING_BALLS
 	iftrue UnknownScript_0x18e3c5
 	writetext UnknownText_0x18e7fb
-	keeptextopen
+	buttonsound
 	verbosegiveitem2 LOVE_BALL, $16
 	iffalse UnknownScript_0x18e2b2
 UnknownScript_0x18e348: ; 0x18e348
@@ -293,8 +293,8 @@ UnknownScript_0x18e34e: ; 0x18e34e
 	checkitem GS_BALL
 	iffalse UnknownScript_0x18e202
 	writetext UnknownText_0x18e8ab
+	waitbutton
 	closetext
-	loadmovesprites
 	setevent EVENT_GAVE_GS_BALL_TO_KURT
 	takeitem GS_BALL, 1
 	setflag ENGINE_KURT_MAKING_BALLS
@@ -305,17 +305,17 @@ UnknownScript_0x18e368: ; 0x18e368
 	checkflag ENGINE_KURT_MAKING_BALLS
 	iffalse UnknownScript_0x18e378
 	writetext UnknownText_0x18e934
-	closetext
+	waitbutton
 	writetext UnknownText_0x18e949
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 ; 0x18e378
 
 UnknownScript_0x18e378: ; 0x18e378
 	writetext UnknownText_0x18e95c
+	waitbutton
 	closetext
-	loadmovesprites
 	setevent EVENT_GOT_GS_BALL_BACK_FROM_KURT
 	clearevent EVENT_CAN_GIVE_GS_BALL_TO_KURT
 	clearevent EVENT_GAVE_GS_BALL_TO_KURT
@@ -338,7 +338,7 @@ UnknownScript_0x18e3ac: ; 0x18e3ac
 	playsound SFX_EXIT_BUILDING
 	disappear $2
 	clearevent EVENT_KURT_OUTSIDE_IN_AZALEA_TOWN
-	waitbutton
+	waitsfx
 	special RestartMapMusic
 	domaptrigger GROUP_AZALEA_TOWN, MAP_AZALEA_TOWN, $2
 	end
@@ -353,16 +353,16 @@ UnknownScript_0x18e3c5: ; 0x18e3c5
 	checkevent EVENT_KURT_TOLD_YOU_ABOUT_HIS_DAUGHTER_HELPING_HIM
 	iffalse UnknownScript_0x18e3d4
 	writetext UnknownText_0x18e7d8
+	waitbutton
 	closetext
-	loadmovesprites
 	spriteface $5, $1
 	end
 ; 0x18e3d4
 
 UnknownScript_0x18e3d4: ; 0x18e3d4
 	writetext UnknownText_0x18e863
+	waitbutton
 	closetext
-	loadmovesprites
 	spriteface $5, $1
 	setevent EVENT_KURT_TOLD_YOU_ABOUT_HIS_DAUGHTER_HELPING_HIM
 	end
@@ -370,11 +370,11 @@ UnknownScript_0x18e3d4: ; 0x18e3d4
 
 UnknownScript_0x18e3e0: ; 0x18e3e0
 	writetext UnknownText_0x18e934
-	closetext
+	waitbutton
 	spriteface $5, $1
 	writetext UnknownText_0x18e949
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 ; 0x18e3ed
 
@@ -394,32 +394,32 @@ TwinScript_0x18e3ed: ; 0x18e3ed
 	iftrue UnknownScript_0x18e420
 	loadfont
 	writetext UnknownText_0x18e9b5
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 ; 0x18e419
 
 UnknownScript_0x18e419: ; 0x18e419
 	loadfont
 	writetext UnknownText_0x18ea0f
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 ; 0x18e420
 
 UnknownScript_0x18e420: ; 0x18e420
 	loadfont
 	writetext UnknownText_0x18e9f1
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 ; 0x18e427
 
 UnknownScript_0x18e427: ; 0x18e427
 	loadfont
 	writetext UnknownText_0x18ea55
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 ; 0x18e42e
 
@@ -430,16 +430,16 @@ UnknownScript_0x18e42f: ; 0x18e42f
 	checkevent EVENT_GAVE_GS_BALL_TO_KURT
 	iftrue UnknownScript_0x18e43f
 	writetext UnknownText_0x18eab2
+	waitbutton
 	closetext
-	loadmovesprites
 	spriteface $6, $3
 	end
 ; 0x18e43f
 
 UnknownScript_0x18e43f: ; 0x18e43f
 	writetext UnknownText_0x18eb14
+	waitbutton
 	closetext
-	loadmovesprites
 	spriteface $6, $3
 	end
 ; 0x18e448
@@ -447,8 +447,8 @@ UnknownScript_0x18e43f: ; 0x18e43f
 UnknownScript_0x18e448: ; 0x18e448
 	loadfont
 	writetext UnknownText_0x18eafc
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 ; 0x18e44f
 
@@ -457,8 +457,8 @@ SlowpokeScript_0x18e44f: ; 0x18e44f
 	loadfont
 	writetext UnknownText_0x18eb56
 	cry SLOWPOKE
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 ; 0x18e45a
 

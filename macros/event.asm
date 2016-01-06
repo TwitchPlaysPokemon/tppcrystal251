@@ -9,8 +9,7 @@ scall: macro
 	enum farscall_command
 farscall: macro
 	db farscall_command
-	db BANK(\1)
-	dw \1
+	dba \1
 	endm
 
 	enum ptcall_command
@@ -28,8 +27,7 @@ jump: macro
 	enum farjump_command
 farjump: macro
 	db farjump_command
-	db BANK(\1)
-	dw \1
+	dba \1
 	endm
 
 	enum ptjump_command
@@ -93,10 +91,8 @@ callstd: macro
 	enum callasm_command
 callasm: macro
 	db callasm_command
-	db BANK(\1)
-	dw \1
+	dba \1
 	endm
-
 
 	enum special_command
 special: macro
@@ -106,10 +102,8 @@ special: macro
 
 add_special: MACRO
 \1Special::
-	db BANK(\1)
-	dw \1
+	dba \1
 ENDM
-
 
 	enum ptcallasm_command
 ptcallasm: macro
@@ -287,9 +281,9 @@ checktime: macro
 	db \1 ; time
 	endm
 
-checkmorn EQUS "checktime 1"
-checkday  EQUS "checktime 2"
-checknite EQUS "checktime 4"
+checkmorn EQUS "checktime 1 << MORN"
+checkday  EQUS "checktime 1 << DAY"
+checknite EQUS "checktime 1 << NITE"
 
 	enum checkpoke_command
 checkpoke: macro
@@ -488,9 +482,9 @@ refreshscreen: macro
 	db \1 ; dummy
 	endm
 
-	enum loadmovesprites_command
-loadmovesprites: macro
-	db loadmovesprites_command
+	enum closetext_command
+closetext: macro
+	db closetext_command
 	endm
 
 	enum loadbytec1ce_command
@@ -502,8 +496,7 @@ loadbytec1ce: macro
 	enum farwritetext_command
 farwritetext: macro
 	db farwritetext_command
-	db BANK(\1)
-	dw \1
+	dba \1
 	endm
 
 	enum writetext_command
@@ -544,8 +537,7 @@ jumptextfaceplayer: macro
 	enum farjumptext_command
 farjumptext: macro
 	db farjumptext_command
-	db BANK(\1)
-	dw \1
+	dba \1
 	endm
 
 	enum jumptext_command
@@ -554,14 +546,14 @@ jumptext: macro
 	dw \1 ; text_pointer
 	endm
 
-	enum closetext_command
-closetext: macro
-	db closetext_command
+	enum waitbutton_command
+waitbutton: macro
+	db waitbutton_command
 	endm
 
-	enum keeptextopen_command
-keeptextopen: macro
-	db keeptextopen_command
+	enum buttonsound_command
+buttonsound: macro
+	db buttonsound_command
 	endm
 
 	enum pokepic_command
@@ -570,9 +562,9 @@ pokepic: macro
 	db \1 ; pokemon
 	endm
 
-	enum pokepicyesorno_command
-pokepicyesorno: macro
-	db pokepicyesorno_command
+	enum closepokepic_command
+closepokepic: macro
+	db closepokepic_command
 	endm
 
 	enum interpretmenu_command
@@ -855,9 +847,9 @@ playsound: macro
 	dw \1 ; sound_pointer
 	endm
 
-	enum waitbutton_command
-waitbutton: macro
-	db waitbutton_command
+	enum waitsfx_command
+waitsfx: macro
+	db waitsfx_command
 	endm
 
 	enum warpsound_command

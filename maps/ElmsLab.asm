@@ -66,32 +66,32 @@ UnknownScript_0x78b9b: ; 0x78b9b
 
 UnknownScript_0x78ba5: ; 0x78ba5
 	writetext UnknownText_0x790fa
-	keeptextopen
+	buttonsound
 	writetext UnknownText_0x7913a
+	waitbutton
 	closetext
-	loadmovesprites
 	playsound SFX_GLASS_TING
 	pause 30
 	showemote $0, $2, 10
 	spriteface $2, $0
 	loadfont
 	writetext UnknownText_0x791ae
+	waitbutton
 	closetext
-	loadmovesprites
 	loadfont
 	spriteface $2, $3
 	writetext UnknownText_0x791df
+	waitbutton
 	closetext
-	loadmovesprites
 	applymovement $2, MovementData_0x78fa0
 	spriteface $0, $1
 	applymovement $2, MovementData_0x78fa2
 	spriteface $0, $3
 	loadfont
 	writetext UnknownText_0x792ff
-	closetext
+	waitbutton
 	dotrigger $1
-	loadmovesprites
+	closetext
 	end
 ; 0x78be0
 
@@ -121,8 +121,8 @@ UnknownScript_0x78bfa: ; 0x78bfa
 	special Functionc284
 	iftrue ShowElmTogepiScript
 	writetext UnknownText_0x79a40
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 ; 0x78c22
 
@@ -153,8 +153,8 @@ UnknownScript_0x78c41: ; 0x78c41
 	checkevent EVENT_GOT_A_POKEMON_FROM_ELM
 	iftrue ElmDescribesMrPokemonScript
 	writetext UnknownText_0x79375
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 ; 0x78c65
 
@@ -162,8 +162,8 @@ LabTryToLeaveScript: ; 0x78c65
 	spriteface $2, $0
 	loadfont
 	writetext LabWhereGoingText
+	waitbutton
 	closetext
-	loadmovesprites
 	applymovement $0, MovementData_0x78f70
 	end
 ; 0x78c73
@@ -175,8 +175,8 @@ CyndaquilPokeBallScript: ; 0x78c73
 	refreshscreen $0
 	pokepic CYNDAQUIL
 	cry CYNDAQUIL
-	closetext
-	pokepicyesorno
+	waitbutton
+	closepokepic
 	loadfont
 	writetext TakeCyndaquilText
 	yesorno
@@ -184,15 +184,15 @@ CyndaquilPokeBallScript: ; 0x78c73
 	disappear $4
 	setevent EVENT_GOT_CYNDAQUIL_FROM_ELM
 	writetext ChoseStarterText
-	keeptextopen
-	waitbutton
+	buttonsound
+	waitsfx
 	pokenamemem CYNDAQUIL, $0
 	writetext ReceivedStarterText
 	playsound SFX_CAUGHT_MON
-	waitbutton
-	keeptextopen
+	waitsfx
+	buttonsound
 	givepoke CYNDAQUIL, 5, BERRY, 0
-	loadmovesprites
+	closetext
 	checkcode VAR_FACING
 	if_equal $3, ElmDirectionsScript
 	applymovement $0, AfterCyndaquilMovement
@@ -206,8 +206,8 @@ TotodilePokeBallScript: ; 0x78cb5
 	refreshscreen $0
 	pokepic TOTODILE
 	cry TOTODILE
-	closetext
-	pokepicyesorno
+	waitbutton
+	closepokepic
 	loadfont
 	writetext TakeTotodileText
 	yesorno
@@ -215,15 +215,15 @@ TotodilePokeBallScript: ; 0x78cb5
 	disappear $5
 	setevent EVENT_GOT_TOTODILE_FROM_ELM
 	writetext ChoseStarterText
-	keeptextopen
-	waitbutton
+	buttonsound
+	waitsfx
 	pokenamemem TOTODILE, $0
 	writetext ReceivedStarterText
 	playsound SFX_CAUGHT_MON
-	waitbutton
-	keeptextopen
+	waitsfx
+	buttonsound
 	givepoke TOTODILE, 5, BERRY, 0
-	loadmovesprites
+	closetext
 	applymovement $0, AfterTotodileMovement
 	jump ElmDirectionsScript
 ; 0x78cf1
@@ -235,8 +235,8 @@ ChikoritaPokeBallScript: ; 0x78cf1
 	refreshscreen $0
 	pokepic CHIKORITA
 	cry CHIKORITA
-	closetext
-	pokepicyesorno
+	waitbutton
+	closepokepic
 	loadfont
 	writetext TakeChikoritaText
 	yesorno
@@ -244,23 +244,23 @@ ChikoritaPokeBallScript: ; 0x78cf1
 	disappear $6
 	setevent EVENT_GOT_CHIKORITA_FROM_ELM
 	writetext ChoseStarterText
-	keeptextopen
-	waitbutton
+	buttonsound
+	waitsfx
 	pokenamemem CHIKORITA, $0
 	writetext ReceivedStarterText
 	playsound SFX_CAUGHT_MON
-	waitbutton
-	keeptextopen
+	waitsfx
+	buttonsound
 	givepoke CHIKORITA, 5, BERRY, 0
-	loadmovesprites
+	closetext
 	applymovement $0, AfterChikoritaMovement
 	jump ElmDirectionsScript
 ; 0x78d2d
 
 DidntChooseStarterScript: ; 0x78d2d
 	writetext DidntChooseStarterText
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 ; 0x78d33
 
@@ -268,25 +268,25 @@ ElmDirectionsScript: ; 0x78d33
 	spriteface $0, $1
 	loadfont
 	writetext ElmDirectionsText1
+	waitbutton
 	closetext
-	loadmovesprites
 	addcellnum $4
 	loadfont
 	writetext GotElmsNumberText
 	playsound SFX_REGISTER_PHONE_NUMBER
+	waitsfx
 	waitbutton
 	closetext
-	loadmovesprites
 	spriteface $2, $2
 	loadfont
 	writetext ElmDirectionsText2
+	waitbutton
 	closetext
-	loadmovesprites
 	spriteface $2, $0
 	loadfont
 	writetext ElmDirectionsText3
+	waitbutton
 	closetext
-	loadmovesprites
 	setevent EVENT_GOT_A_POKEMON_FROM_ELM
 	setevent EVENT_SILVER_IN_CHERRYGROVE_CITY
 	dotrigger $5
@@ -296,16 +296,16 @@ ElmDirectionsScript: ; 0x78d33
 
 ElmDescribesMrPokemonScript: ; 0x78d67
 	writetext ElmDescribesMrPokemonText
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 ; 0x78d6d
 
 LookAtElmPokeBallScript: ; 0x78d6d
 	loadfont
 	writetext ElmPokeBallText
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 ; 0x78d74
 
@@ -314,8 +314,8 @@ MapElmsLabSignpost0Script: ; 0x78d74
 	checkevent EVENT_GOT_A_POKEMON_FROM_ELM
 	iftrue UnknownScript_0x78d81
 	writetext UnknownText_0x79690
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 ; 0x78d81
 
@@ -323,7 +323,7 @@ UnknownScript_0x78d81: ; 0x78d81
 	writetext UnknownText_0x796aa
 	yesorno
 	iftrue UnknownScript_0x78d8a
-	loadmovesprites
+	closetext
 	end
 ; 0x78d8a
 
@@ -336,13 +336,13 @@ UnknownScript_0x78d8a: ; 0x78d8a
 	special HealMachineAnim
 	pause 30
 	special RestoreMusic
-	loadmovesprites
+	closetext
 	end
 ; 0x78d9f
 
 ElmAfterTheftDoneScript: ; 0x78d9f
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 ; 0x78da2
 
@@ -350,108 +350,108 @@ ElmAfterTheftScript: ; 0x78da2
 	writetext ElmAfterTheftText1
 	checkitem MYSTERY_EGG
 	iffalse ElmAfterTheftDoneScript
-	keeptextopen
+	buttonsound
 	writetext ElmAfterTheftText2
-	closetext
+	waitbutton
 	takeitem MYSTERY_EGG, 1
 	scall ElmJumpBackScript1
 	writetext ElmAfterTheftText3
-	closetext
+	waitbutton
 	scall ElmJumpBackScript2
 	writetext ElmAfterTheftText4
-	keeptextopen
+	buttonsound
 	writetext ElmAfterTheftText5
-	keeptextopen
+	buttonsound
 	setevent EVENT_GAVE_MYSTERY_EGG_TO_ELM
 	setflag ENGINE_BUG_CONTEST_ON
 	domaptrigger GROUP_ROUTE_29, MAP_ROUTE_29, $1
 	clearevent EVENT_YOUNGSTER_JOEY_ON_ROUTE_30
 	setevent EVENT_YOUNGSTERS_BATTLE_ON_ROUTE_30
 	writetext ElmAfterTheftText6
+	waitbutton
 	closetext
-	loadmovesprites
 	dotrigger $6
 	end
 ; 0x78ddc
 
 ElmStudyingEggScript: ; 0x78ddc
 	writetext ElmStudyingEggText
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 ; 0x78de2
 
 ElmAideHasEggScript: ; 0x78de2
 	writetext ElmAideHasEggText
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 ; 0x78de8
 
 ElmWaitingEggHatchScript: ; 0x78de8
 	writetext ElmWaitingEggHatchText
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 ; 0x78dee
 
 ShowElmTogepiScript: ; 0x78dee
 	writetext ShowElmTogepiText1
+	waitbutton
 	closetext
-	loadmovesprites
 	showemote $0, $2, 15
 	setevent EVENT_SHOWED_TOGEPI_TO_ELM
 	loadfont
 	writetext ShowElmTogepiText2
-	keeptextopen
+	buttonsound
 	writetext ShowElmTogepiText3
-	keeptextopen
+	buttonsound
 UnknownScript_0x78e03: ; 0x78e03
 	writetext ElmGiveEverstoneText1
-	keeptextopen
+	buttonsound
 	verbosegiveitem EVERSTONE, 1
 	iffalse UnknownScript_0x78e1a
 	writetext ElmGiveEverstoneText2
+	waitbutton
 	closetext
-	loadmovesprites
 	setevent EVENT_GOT_EVERSTONE_FROM_ELM
 	end
 ; 0x78e16
 
 UnknownScript_0x78e16: ; 0x78e16
 	writetext UnknownText_0x79c37
-	closetext
+	waitbutton
 UnknownScript_0x78e1a: ; 0x78e1a
-	loadmovesprites
+	closetext
 	end
 ; 0x78e1c
 
 ElmGiveMasterBallScript: ; 0x78e1c
 	writetext ElmGiveMasterBallText1
-	keeptextopen
+	buttonsound
 	verbosegiveitem MASTER_BALL, 1
 	iffalse .notdone
 	setevent EVENT_GOT_MASTER_BALL_FROM_ELM
 	writetext ElmGiveMasterBallText2
-	closetext
+	waitbutton
 .notdone
-	loadmovesprites
+	closetext
 	end
 ; 0x78e2f
 
 ElmGiveTicketScript: ; 0x78e2f
 	writetext ElmGiveTicketText1
-	keeptextopen
+	buttonsound
 	verbosegiveitem S_S_TICKET, 1
 	setevent EVENT_GOT_SS_TICKET_FROM_ELM
 	writetext ElmGiveTicketText2
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 ; 0x78e3f
 
 ElmJumpBackScript1: ; 0x78e3f
-	loadmovesprites
+	closetext
 	checkcode VAR_FACING
 	if_equal $0, UnknownScript_0x78e6d
 	if_equal $1, UnknownScript_0x78e67
@@ -461,7 +461,7 @@ ElmJumpBackScript1: ; 0x78e3f
 ; 0x78e53
 
 ElmJumpBackScript2: ; 0x78e53
-	loadmovesprites
+	closetext
 	checkcode VAR_FACING
 	if_equal $0, UnknownScript_0x78e67
 	if_equal $1, UnknownScript_0x78e6d
@@ -513,11 +513,11 @@ UnknownScript_0x78e8e: ; 0x78e8e
 UnknownScript_0x78e9d: ; 0x78e9d
 	loadfont
 	writetext UnknownText_0x79f38
-	keeptextopen
+	buttonsound
 	verbosegiveitem POTION, 1
 	writetext UnknownText_0x79f65
+	waitbutton
 	closetext
-	loadmovesprites
 	dotrigger $2
 	end
 ; 0x78ead
@@ -541,14 +541,14 @@ UnknownScript_0x78ebc: ; 0x78ebc
 UnknownScript_0x78ecb: ; 0x78ecb
 	loadfont
 	writetext UnknownText_0x7a078
-	keeptextopen
+	buttonsound
 	itemtotext POKE_BALL, $1
 	scall UnknownScript_0x78ee2
 	giveitem POKE_BALL, $5
 	writetext UnknownText_0x7a09a
-	keeptextopen
+	buttonsound
 	itemnotify
-	loadmovesprites
+	closetext
 	dotrigger $2
 	end
 ; 0x78ee2
@@ -568,29 +568,29 @@ ElmsAideScript: ; 0x78ee6
 	checkevent EVENT_GOT_MYSTERY_EGG_FROM_MR_POKEMON
 	iftrue UnknownScript_0x78f00
 	writetext UnknownText_0x79f65
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 ; 0x78f00
 
 UnknownScript_0x78f00: ; 0x78f00
 	writetext UnknownText_0x79f95
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 ; 0x78f06
 
 UnknownScript_0x78f06: ; 0x78f06
 	writetext UnknownText_0x7a09a
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 ; 0x78f0c
 
 UnknownScript_0x78f0c: ; 0x78f0c
 	writetext UnknownText_0x79c65
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 ; 0x78f12
 
@@ -604,11 +604,11 @@ CopScript: ; 0x78f1a
 	spriteface $7, $2
 	loadfont
 	writetext UnknownText_0x7a0f0
-	keeptextopen
+	buttonsound
 	special SpecialNameRival
 	writetext UnknownText_0x7a1c0
+	waitbutton
 	closetext
-	loadmovesprites
 	applymovement $7, MovementData_0x78f78
 	disappear $7
 	dotrigger $2
@@ -626,15 +626,15 @@ MapElmsLabSignpost14Script: ; 0x78f33
 
 UnknownScript_0x78f43: ; 0x78f43
 	writetext UnknownText_0x7a231
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 ; 0x78f49
 
 UnknownScript_0x78f49: ; 0x78f49
 	writetext UnknownText_0x7a1fd
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 ; 0x78f4f
 

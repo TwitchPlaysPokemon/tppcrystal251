@@ -16,7 +16,7 @@ tppPcEndBattle:
 	writetext tppPcLogOffText
 	playsound SFX_SHUT_DOWN_PC
 	pause 15
-	loadmovesprites
+	closetext
 	end
 	
 tppPcUltimateTeamBattle:
@@ -26,8 +26,8 @@ tppPcUltimateTeamBattle:
 	pause 60
 	special RestartMapMusic
 	writetext tppPcBeginUltimateBattleText
+	waitbutton
 	closetext
-	loadmovesprites
 	loadtrainer TPPPC, ULTIMATE
 	jump tppPcStartBattle
 	
@@ -38,8 +38,8 @@ tppPcMirrorBattle:
 	pause 60
 	special RestartMapMusic
 	writetext tppPcBeginMirrorBattleText
+	waitbutton
 	closetext
-	loadmovesprites
 	loadtrainer TPPPC, MIRROR
 tppPcStartBattle:
 	winlosstext tppPcWonText, tppPcLostText

@@ -337,6 +337,7 @@ MAP_N_A   EQU -1
 	mapgroup KARENS_ROOM, 9, 5
 	mapgroup LANCES_ROOM, 12, 5
 	mapgroup HALL_OF_FAME, 7, 5
+	mapgroup ROUTE_23_RB, 6, 10
 
 	newgroup ; Fuchsia City Roofs
 	mapgroup ROUTE_13, 9, 30
@@ -448,16 +449,11 @@ MAP_N_A   EQU -1
 	mapgroup ROUTE_2_RB, 36, 10
 	mapgroup ROUTE_22_RB, 9, 20
 	mapgroup VIRIDIAN_CITY_RB, 18, 20
-	mapgroup VIRIDIAN_GYM_RB, 23, 7
-	mapgroup VIRIDIAN_NICKNAME_SPEECH_HOUSE_RB, 4, 4
-	mapgroup TRAINER_HOUSE_1F_RB, 7, 5
-	mapgroup TRAINER_HOUSE_B1F_RB, 8, 5
 	mapgroup VIRIDIAN_MART_RB, 4, 6
 	mapgroup VIRIDIAN_POKECENTER_1F_RB, 4, 5
-	mapgroup VIRIDIAN_POKECENTER_2F_BETA_RB, 4, 8
-	mapgroup ROUTE_2_NUGGET_SPEECH_HOUSE_RB, 4, 4
-	mapgroup ROUTE_2_GATE_RB, 4, 5
-	mapgroup VICTORY_ROAD_GATE_RB, 9, 10
+	mapgroup VIRIDIAN_NICKNAME_SPEECH_HOUSE_RB, 4, 4
+	mapgroup VIRIDIAN_TRAINER_SCHOOL_RB, 4, 4
+	mapgroup VICTORY_ROAD_GATE_RB, 4, 5
 
 	newgroup ; New Bark Town
 	mapgroup ROUTE_26, 54, 10
@@ -541,8 +537,8 @@ MAP_N_A   EQU -1
 	mapgroup ROCKET_HIDEOUT_2, 14, 15
 	mapgroup ROCKET_HIDEOUT_3, 14, 15
 	mapgroup ROCKET_HIDEOUT_4, 12, 15
-	mapgroup OLIVINE_LIGHTHOUSE_ELEVATOR, 3, 3
 	mapgroup BATTLE_TENT_PC_ROOM, 4, 4
+	mapgroup OLIVINE_LIGHTHOUSE_ELEVATOR, 3, 3
 
 	newgroup
 	mapgroup CINNABAR_VOLCANO_ENTRANCE, 4, 5
@@ -692,6 +688,7 @@ NORTH EQU 8
 	const SPRITE_RAIKOU
 	const SPRITE_STANDING_YOUNGSTER
 	const SPRITE_GIOVANNI
+	const SPRITE_SIDEWAYS_GRAMPS
 
 const_value = $80
 SPRITE_POKEMON EQU const_value

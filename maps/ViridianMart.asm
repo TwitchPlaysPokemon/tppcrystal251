@@ -9,7 +9,7 @@ ViridianMart_MapScriptHeader: ; 0x9b5e5
 ClerkScript_0x9b5e7: ; 0x9b5e7
 	loadfont
 	pokemart $0, $0012
-	loadmovesprites
+	closetext
 	end
 ; 0x9b5ee
 

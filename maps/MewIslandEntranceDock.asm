@@ -22,7 +22,7 @@ SailorScript_MewIslandPort:
 	writetext MewSailorReturnText
 	yesorno
 	iffalse SailorScript_MewIslandChoseNo
-	loadmovesprites
+	closetext
 	follow $2, $0
 	applymovement $2, MewIslandDockSailorWalk
 	playsound SFX_EXIT_BUILDING
@@ -33,8 +33,8 @@ SailorScript_MewIslandPort:
 	
 SailorScript_MewIslandChoseNo:
 	writetext MewSailorReturnNoText
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 	
 MewSailorReturnNoText:

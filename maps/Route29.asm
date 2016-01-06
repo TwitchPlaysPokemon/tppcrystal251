@@ -45,7 +45,7 @@ UnknownScript_0x1a0f6d: ; 0x1a0f6d
 	writetext UnknownText_0x1a10df
 	yesorno
 	iffalse UnknownScript_0x1a0fd9
-	loadmovesprites
+	closetext
 	follow $2, $0
 	applymovement $2, MovementData_0x1a109a
 	stopfollow
@@ -54,8 +54,8 @@ UnknownScript_0x1a0f6d: ; 0x1a0f6d
 	spriteface $2, $1
 	loadfont
 	writetext UnknownText_0x1a114d
+	waitbutton
 	closetext
-	loadmovesprites
 	dotrigger $0
 	setevent EVENT_LEARNED_TO_CATCH_POKEMON
 	end
@@ -71,7 +71,7 @@ UnknownScript_0x1a0fa3: ; 0x1a0fa3
 	writetext UnknownText_0x1a10df
 	yesorno
 	iffalse UnknownScript_0x1a0fe5
-	loadmovesprites
+	closetext
 	follow $2, $0
 	applymovement $2, MovementData_0x1a10a1
 	stopfollow
@@ -80,8 +80,8 @@ UnknownScript_0x1a0fa3: ; 0x1a0fa3
 	spriteface $2, $1
 	loadfont
 	writetext UnknownText_0x1a114d
+	waitbutton
 	closetext
-	loadmovesprites
 	dotrigger $0
 	setevent EVENT_LEARNED_TO_CATCH_POKEMON
 	end
@@ -89,8 +89,8 @@ UnknownScript_0x1a0fa3: ; 0x1a0fa3
 
 UnknownScript_0x1a0fd9: ; 0x1a0fd9
 	writetext UnknownText_0x1a1197
+	waitbutton
 	closetext
-	loadmovesprites
 	applymovement $2, MovementData_0x1a109a
 	dotrigger $0
 	end
@@ -98,8 +98,8 @@ UnknownScript_0x1a0fd9: ; 0x1a0fd9
 
 UnknownScript_0x1a0fe5: ; 0x1a0fe5
 	writetext UnknownText_0x1a1197
+	waitbutton
 	closetext
-	loadmovesprites
 	applymovement $2, MovementData_0x1a10a1
 	dotrigger $0
 	end
@@ -117,28 +117,28 @@ CooltrainerMScript_0x1a0ff1: ; 0x1a0ff1
 	writetext UnknownText_0x1a11e3
 	yesorno
 	iffalse UnknownScript_0x1a1022
-	loadmovesprites
+	closetext
 	loadpokedata RATTATA, 5
 	catchtutorial BATTLETYPE_TUTORIAL
 	loadfont
 	writetext UnknownText_0x1a114d
+	waitbutton
 	closetext
-	loadmovesprites
 	setevent EVENT_LEARNED_TO_CATCH_POKEMON
 	end
 ; 0x1a101c
 
 UnknownScript_0x1a101c: ; 0x1a101c
 	writetext UnknownText_0x1a10a7
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 ; 0x1a1022
 
 UnknownScript_0x1a1022: ; 0x1a1022
 	writetext UnknownText_0x1a1197
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 ; 0x1a1028
 
@@ -163,15 +163,15 @@ CooltrainerMScript_0x1a1031: ; 0x1a1031
 	iftrue UnknownScript_0x1a1043
 UnknownScript_0x1a103d: ; 0x1a103d
 	writetext UnknownText_0x1a134c
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 ; 0x1a1043
 
 UnknownScript_0x1a1043: ; 0x1a1043
 	writetext UnknownText_0x1a137c
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 ; 0x1a1049
 
@@ -185,30 +185,30 @@ TuscanyScript:
 	checkevent EVENT_MET_TUSCANY_OF_TUESDAY
 	iftrue .MetTuscany
 	writetext MeetTuscanyText
-	keeptextopen
+	buttonsound
 	setevent EVENT_MET_TUSCANY_OF_TUESDAY
 .MetTuscany
 	writetext TuscanyGivesGiftText
-	keeptextopen
+	buttonsound
 	verbosegiveitem PINK_BOW, 1
 	iffalse TuscanyDoneScript
 	setevent EVENT_GOT_PINK_BOW_FROM_TUSCANY
 	writetext TuscanyGaveGiftText
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 TuscanyTuesdayScript:
 	writetext TuscanyTuesdayText
-	closetext
+	waitbutton
 TuscanyDoneScript:
-	loadmovesprites
+	closetext
 	end
 
 TuscanyNotTuesdayScript:
 	writetext TuscanyNotTuesdayText
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 MapRoute29Signpost0Script: ; 0x1a1083

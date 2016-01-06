@@ -319,6 +319,8 @@ MapGroup13:
 	map_header PalletTownRB, $3, 1, PALLET_TOWN, MUSIC_PALLET_TOWN, 0, 0, 2
 	map_header RedsHouse1FRB, $6, 3, PALLET_TOWN, MUSIC_PALLET_TOWN, 0, 1, 1
 	map_header RedsHouse2FRB, $6, 3, PALLET_TOWN, MUSIC_PALLET_TOWN, 0, 1, 1
+	map_header BluesHouseRB, $5, 3, PALLET_TOWN, MUSIC_PALLET_TOWN, 0, 1, 1
+	map_header OaksLabRB, $a, 3, PALLET_TOWN, MUSIC_POKEMON_TALK, 0, 1, 1
 
 
 MapGroup14:
@@ -470,6 +472,15 @@ MapGroup23:
 	map_header Route2Gate, $8, 6, ROUTE_2, MUSIC_ROUTE_1, 0, 1, 1
 	map_header VictoryRoadGate, $8, 6, ROUTE_26, MUSIC_INDIGO_PLATEAU, 0, 1, 1
 
+; Uncomment these once the map scripts have been written.
+	map_header Route2RB, $3, 2, ROUTE_2, MUSIC_ROUTE_1, 0, 0, 1
+	map_header Route22RB, $3, 2, ROUTE_22, MUSIC_ROUTE_3, 0, 0, 4
+	map_header ViridianCityRB, $3, 1, VIRIDIAN_CITY, MUSIC_VIRIDIAN_CITY, 0, 0, 4
+	map_header ViridianMartRB, $c, 3, VIRIDIAN_CITY, MUSIC_MART, 0, 1, 1
+	map_header ViridianPokeCenter1FRB, $7, 3, VIRIDIAN_CITY, MUSIC_POKEMON_CENTER, 0, 1, 1
+	map_header ViridianNicknameSpeechHouseRB, $5, 3, VIRIDIAN_CITY, MUSIC_VIRIDIAN_CITY, 0, 1, 1
+	map_header ViridianTrainerSchoolRB, $5, 3, VIRIDIAN_CITY, MUSIC_VIRIDIAN_CITY, 0, 1, 1
+	map_header VictoryRoadGateRB, $8, 6, ROUTE_22, MUSIC_ROUTE_2, 0, 1, 1
 
 MapGroup24:
 	map_header Route26, $1, 2, ROUTE_26, MUSIC_ROUTE_26, 0, 0, 2
@@ -540,15 +551,15 @@ MapGroup27:
 	map_header MewIslandF2, $27, 4, MEW_ISLAND, MUSIC_SILPH_CO, 1, 2, 1
 	map_header MewIslandPeak, $2, 4, MEW_ISLAND, MUSIC_INDIGO_PLATEAU, 0, 0, 1
 
-	map_header BattleTentRuins, $16, 3, BATTLE_TENT_RUINS, MUSIC_SILPH_CO, 1, 1, 1
-	map_header BattleTentBattleRoom, $16, 3, BATTLE_TENT_RUINS, MUSIC_SILPH_CO, 1, 1, 1
-	map_header BattleTentGenerator, $b, 3, BATTLE_TENT_RUINS, MUSIC_SILPH_CO, 1, 1, 1
-	map_header RocketHideout1, 40, 3, BATTLE_TENT_RUINS, MUSIC_POWER_PLANT, 1, 1, 1
-	map_header RocketHideout2, 40, 3, BATTLE_TENT_RUINS, MUSIC_POWER_PLANT, 1, 1, 1
-	map_header RocketHideout3, 40, 3, BATTLE_TENT_RUINS, MUSIC_POWER_PLANT, 1, 1, 1
-	map_header RocketHideout4, 40, 3, BATTLE_TENT_RUINS, MUSIC_POWER_PLANT, 1, 1, 1
+	map_header BattleTentRuins, $16, 7, BATTLE_TENT_RUINS, MUSIC_SILPH_CO, 1, 1, 1
+	map_header BattleTentBattleRoom, $16, 7, BATTLE_TENT_RUINS, MUSIC_SILPH_CO, 1, 1, 1
+	map_header BattleTentGenerator, $b, 7, BATTLE_TENT_RUINS, MUSIC_SILPH_CO, 1, 1, 1
+	map_header RocketHideout1, 40, 7, BATTLE_TENT_RUINS, MUSIC_POWER_PLANT, 1, 1, 1
+	map_header RocketHideout2, 40, 7, BATTLE_TENT_RUINS, MUSIC_POWER_PLANT, 1, 1, 1
+	map_header RocketHideout3, 40, 7, BATTLE_TENT_RUINS, MUSIC_POWER_PLANT, 1, 1, 1
+	map_header RocketHideout4, 40, 7, BATTLE_TENT_RUINS, MUSIC_POWER_PLANT, 1, 1, 1
+	map_header BattleTentPCRoom, $16, 7, BATTLE_TENT_RUINS, MUSIC_SILPH_CO, 1, 2, 1
 	map_header OlivineLighthouseElevator, $13, 3, OLIVINE_CITY, MUSIC_LIGHTHOUSE, 0, 1, 1
-	map_header BattleTentPCRoom, $16, 3, BATTLE_TENT_RUINS, MUSIC_SILPH_CO, 1, 2, 1
 
 MapGroup28:
 	map_header CinnabarVolcanoEntrance, 41, 4, CINNABAR_VOLCANO, MUSIC_MT_MOON, 1, 2, 1

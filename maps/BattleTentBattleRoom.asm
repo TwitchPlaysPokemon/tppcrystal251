@@ -39,19 +39,19 @@ MapBattleTentBattleRoomBillScript1:
 	spriteface $2, DOWN
 	loadfont
 	writetext MapBattleTentBattleRoomBillText1
+	waitbutton
 	closetext
-	loadmovesprites
 	applymovement $2, MapBattleTentBattleRoomMovementData5
 	loadfont
 	writetext MapBattleTentBattleRoomBillText2
-	closetext
+	waitbutton
 	pause 15
 	showemote $0, 2, 15
 	pause 15
 	loadfont
 	writetext MapBattleTentBattleRoomBillText3
+	waitbutton
 	closetext
-	loadmovesprites
 	follow $2, $0
 	applymovement $2, MapBattleTentBattleRoomMovementData3
 	stopfollow
@@ -65,14 +65,14 @@ MapBattleTentBattleRoomBillScript1:
 	setevent EVENT_BEAT_BILL_IN_BATTLE_TENT
 	loadfont
 	writetext MapBattleTentBattleRoomBillText4
+	waitbutton
 	closetext
-	loadmovesprites
 	applymovement $2, MapBattleTentBattleRoomMovementData9
 	verbosegiveitem NUGGET, 1
 	iffalse BillStandingBy
 	writetext MapBattleTentBattleRoomBillText5
+	waitbutton
 	closetext
-	loadmovesprites
 	spriteface $0, DOWN
 	applymovement $2, MapBattleTentBattleRoomMovementData2
 	playsound SFX_EXIT_BUILDING
@@ -81,20 +81,20 @@ MapBattleTentBattleRoomBillScript1:
 	end
 BillStandingBy:
 	writetext MapBattleTentBattleRoomBillText6
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 MapBattleTentBattleRoomBillScript2:
 	faceplayer
 	loadfont
 	writetext MapBattleTentBattleRoomBillText7
-	keeptextopen
+	buttonsound
 	verbosegiveitem NUGGET, 1
 	iffalse BillStandingBy
 	writetext MapBattleTentBattleRoomBillText5
+	waitbutton
 	closetext
-	loadmovesprites
 	copybytetovar PlayerFacing
 	if_equal OW_UP, .walkaround
 	spriteface $0, DOWN

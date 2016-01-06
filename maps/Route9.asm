@@ -30,8 +30,8 @@ CamperDeanScript: ; 0x1aaf33
 	talkaftercancel
 	loadfont
 	writetext UnknownText_0x1aafd9
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 ; 0x1aaf3b
 
@@ -59,8 +59,8 @@ PicnickerHeidiScript: ; 0x1aaf47
 	talkaftercancel
 	loadfont
 	writetext UnknownText_0x1ab07c
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 ; 0x1aaf4f
 
@@ -88,8 +88,8 @@ CamperSidScript: ; 0x1aaf5b
 	talkaftercancel
 	loadfont
 	writetext UnknownText_0x1ab0f6
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 ; 0x1aaf63
 
@@ -117,8 +117,8 @@ PicnickerEdnaScript: ; 0x1aaf6f
 	talkaftercancel
 	loadfont
 	writetext UnknownText_0x1ab15f
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 ; 0x1aaf77
 
@@ -146,8 +146,8 @@ HikerTimScript: ; 0x1aaf83
 	talkaftercancel
 	loadfont
 	writetext UnknownText_0x1ab210
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 ; 0x1aaf8b
 
@@ -175,8 +175,8 @@ HikerSidneyScript: ; 0x1aaf97
 	talkaftercancel
 	loadfont
 	writetext UnknownText_0x1ab278
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 ; 0x1aaf9f
 

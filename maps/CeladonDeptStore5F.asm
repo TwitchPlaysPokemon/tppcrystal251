@@ -10,7 +10,7 @@ ClerkScript_0x71004: ; 0x71004
 	faceplayer
 	loadfont
 	pokemart $0, $001b
-	loadmovesprites
+	closetext
 	end
 ; 0x7100c
 
@@ -18,7 +18,7 @@ ClerkScript_0x7100c: ; 0x7100c
 	faceplayer
 	loadfont
 	pokemart $0, $001c
-	loadmovesprites
+	closetext
 	end
 ; 0x71014
 

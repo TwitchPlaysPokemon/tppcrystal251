@@ -53,7 +53,7 @@ UnknownScript_0x19abea: ; 0x19abea
 	applymovement $3, MovementData_0x19aca4
 	loadfont
 	writetext UnknownText_0x19acd2
-	keeptextopen
+	buttonsound
 	checkmoney $0, 999
 	if_equal $0, UnknownScript_0x19ac12
 	jump UnknownScript_0x19ac1d
@@ -72,8 +72,8 @@ UnknownScript_0x19ac1d: ; 0x19ac1d
 ; 0x19ac28
 
 UnknownScript_0x19ac28: ; 0x19ac28
-	keeptextopen
-	loadmovesprites
+	buttonsound
+	closetext
 	applymovement $3, MovementData_0x19acaa
 	applymovement $4, MovementData_0x19acc1
 	dotrigger $1
@@ -89,7 +89,7 @@ UnknownScript_0x19ac38: ; 0x19ac38
 	applymovement $4, MovementData_0x19acc7
 	loadfont
 	writetext UnknownText_0x19acd2
-	keeptextopen
+	buttonsound
 	checkmoney $0, 999
 	if_equal $0, UnknownScript_0x19ac5c
 	jump UnknownScript_0x19ac67
@@ -108,8 +108,8 @@ UnknownScript_0x19ac67: ; 0x19ac67
 ; 0x19ac72
 
 UnknownScript_0x19ac72: ; 0x19ac72
-	keeptextopen
-	loadmovesprites
+	buttonsound
+	closetext
 	applymovement $4, MovementData_0x19accd
 	applymovement $3, MovementData_0x19acb5
 	dotrigger $1
@@ -127,19 +127,19 @@ OfficerScript_0x19ac85: ; 0x19ac85
 	checkevent EVENT_GOT_TM36_SLUDGE_BOMB
 	iftrue UnknownScript_0x19ac9c
 	writetext UnknownText_0x19ad9b
-	keeptextopen
+	buttonsound
 	verbosegiveitem TM_SLUDGE_BOMB, 1
 	iffalse UnknownScript_0x19aca0
 	setevent EVENT_GOT_TM36_SLUDGE_BOMB
-	loadmovesprites
+	closetext
 	end
 ; 0x19ac9c
 
 UnknownScript_0x19ac9c: ; 0x19ac9c
 	writetext UnknownText_0x19ae2d
-	closetext
+	waitbutton
 UnknownScript_0x19aca0: ; 0x19aca0
-	loadmovesprites
+	closetext
 	end
 ; 0x19aca2
 

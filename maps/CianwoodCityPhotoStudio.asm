@@ -13,17 +13,17 @@ FishingGuruScript_0x9e0e0: ; 0x9e0e0
 	yesorno
 	iffalse UnknownScript_0x9e0f3
 	writetext UnknownText_0x9e142
-	closetext
+	waitbutton
 	special Function16dc7
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 ; 0x9e0f3
 
 UnknownScript_0x9e0f3: ; 0x9e0f3
 	writetext UnknownText_0x9e156
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 ; 0x9e0f9
 

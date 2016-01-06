@@ -154,6 +154,7 @@ EnterMap: ; 9673e
 	ld [$ff9f], a ;load 0 into ??? and 2 into map status
 	ld a, 2 ; HandleMap
 	ld [MapStatus], a
+	callba DeleteSavedMusic
 	ret
 ; 9676d
 
@@ -507,7 +508,7 @@ Function968ec: ; 968ec
 ; 9693a
 
 Function9693a: ; 9693a
-	ld a, [InLinkBattle]
+	ld a, [wLinkMode]
 	and a
 	jr nz, .nothing
 
@@ -957,7 +958,7 @@ SelectMenuCallback: ; 96b66
 
 
 CountStep: ; 96b79
-	ld a, [InLinkBattle]
+	ld a, [wLinkMode]
 	and a
 	jr nz, .asm_96bc9
 

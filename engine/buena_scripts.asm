@@ -18,17 +18,17 @@ UnknownScript_0xa0b32:
 	checktime $2
 	iftrue UnknownScript_0xa0b46
 	writetext UnknownText_0xa0d42
-	keeptextopen
+	buttonsound
 	end
 
 UnknownScript_0xa0b41:
 	writetext UnknownText_0xa0c28
-	keeptextopen
+	buttonsound
 	end
 
 UnknownScript_0xa0b46:
 	writetext UnknownText_0xa0c72
-	keeptextopen
+	buttonsound
 	end
 
 UnknownScript_0xa0b4b:
@@ -43,22 +43,22 @@ UnknownScript_0xa0b4f:
 	checktime $2
 	iftrue UnknownScript_0xa0b69
 	writetext UnknownText_0xa0e29
-	keeptextopen
+	buttonsound
 	end
 
 UnknownScript_0xa0b64:
 	writetext UnknownText_0xa0d96
-	keeptextopen
+	buttonsound
 	end
 
 UnknownScript_0xa0b69:
 	writetext UnknownText_0xa0dcf
-	keeptextopen
+	buttonsound
 	end
 
 UnknownScript_0xa0b6e:
 	writetext UnknownText_0xa0e01
-	keeptextopen
+	buttonsound
 	end
 
 UnknownScript_0xa0b73:

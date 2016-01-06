@@ -291,7 +291,7 @@ wc2d7:: ds 1
 wc2d8:: ds 1
 wc2d9:: ds 1
 wc2da:: ds 2
-InLinkBattle:: ; c2dc
+wLinkMode:: ; wLinkMode
 ; 0 not in link battle
 ; 1 link battle
 ; 4 mobile battle
@@ -628,6 +628,21 @@ PlayerSpdLevel:: ; c6ce
 	ds 1
 PlayerSAtkLevel:: ; c6cf
 	ds 1
+
+wVoltorbFlip::
+wVoltorbFlipBoard:: ds 5 * 5 ; c6d0
+wVoltorbFlipLevel:: ds 1 ; c6e9
+wVoltorbFlipHighestLevel:: ds 1
+wVoltorbFlipPayout:: ds 2 ; c6ea
+wVoltorbFlipCursor:: ds 1 ; c6ec lo: y | hi: x
+wVoltorbFlipMultiplier:: ds 1 ; c6ed
+wVoltorbFlipNum2s3s:: ds 1 ; c6ee
+wVoltorbFlipMinPayout:: ds 2
+wVoltorbFlipMaxPayout:: ds 2
+wVoltorbFlipPotentialPayout:: ds 2
+wVoltorbFlipEnd::
+	ds wVoltorbFlip - @
+
 wc6d0::
 PlayerSDefLevel:: ; c6d0
 	ds 1
@@ -1259,7 +1274,7 @@ GameTimerPause:: ; cfbc
 	ds 1
 
 wcfbe:: ds 2
-wcfc0:: ds 2
+InBattleTowerBattle:: ds 2
 
 FXAnimID::
 FXAnimIDLo:: ; cfc2
@@ -2230,17 +2245,21 @@ wRocketHideout2Trigger::                     ds 1
 wRocketHideout3Trigger::                     ds 1
 wTohjoFallsBackRoomTrigger::                 ds 1
 wDummyBlankMapTrigger::                      ds 1
-wPalletTownRBMapTrigger::                    ds 1
-wOaksLabRBMapTrigger::                       ds 1
-wViridianCityRBMapTrigger::                  ds 1
-wPewterCityRBMapTrigger::                    ds 1
-wCeruleanCityRBMapTrigger::                  ds 1
-wRoute24RBMapTrigger::                       ds 1
-wRoute5SaffronGateRBMapTrigger::             ds 1
-wRoute6SaffronGateRBMapTrigger::             ds 1
-wVermilionCityRBMapTrigger::                 ds 1
+wPalletTownRBTrigger::                    ds 1
+wOaksLabRBTrigger::                       ds 1
+wViridianCityRBTrigger::                  ds 1
+wViridianMartRBTrigger::                  ds 1
+wRoute22RBTrigger::                       ds 1
+wVictoryRoadGateRBTrigger::               ds 1
+wRoute23RBTrigger::                       ds 1
+wPewterCityRBTrigger::                    ds 1
+wCeruleanCityRBTrigger::                  ds 1
+wRoute24RBTrigger::                       ds 1
+wRoute5SaffronGateRBTrigger::             ds 1
+wRoute6SaffronGateRBTrigger::             ds 1
+wVermilionCityRBTrigger::                 ds 1
 
-	ds 29
+	ds 25
 
 
 SECTION "Events", WRAMX, BANK [1]
@@ -2402,7 +2421,7 @@ wdca1:: ds 3 ; Repel step count
 wdca4:: ds 1
 
 VisitedSpawns:: ; dca5
-	flag_array 27
+	flag_array 35
 
 wdca9:: ds 1
 wdcaa:: ds 1
@@ -2416,7 +2435,7 @@ BackupMapGroup:: ; dcad
 BackupMapNumber:: ; dcae
 	ds 1
 
-	ds 3
+	ds 2
 
 wdcb2:: ds 1
 wdcb3:: ds 1

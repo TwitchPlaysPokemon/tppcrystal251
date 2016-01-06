@@ -16,6 +16,22 @@ RedsHouse1FRB_Trigger1: ; 0x19aea2
 RedsHouse1FRB_Trigger2:
 	end
 
+MomsScript_Start4:
+	setevent EVENT_000_STD
+MomsScript_Start3:
+	setevent EVENT_003_STD
+	playmusic MUSIC_MOM
+	showemote $0, $2, 15
+	spriteface $0, $0
+	checkevent EVENT_000_STD
+	iffalse RedsHouse1FRB_Movement3
+	applymovement $2, MovementData_MomWalkUp
+	jump RedsHouse1FRB_SkipMovement
+
+RedsHouse1FRB_Movement3:
+	applymovement $2, MovementData_MomLookUp
+	jump RedsHouse1FRB_SkipMovement
+
 MomsScript_Start1: ; 0x7a4d8
 	setevent EVENT_000_STD
 ; 0x7a4db
@@ -35,7 +51,7 @@ RedsHouse1FRB_Movement2: ; 0x7a4f2
 RedsHouse1FRB_SkipMovement: ; 0x7a4f6
 	loadfont
 	writetext MomText1
-	keeptextopen
+	buttonsound
 	stringtotext RedsHouse1FRB_GearName, $1
 	scall RedsHouse1FRB_GetItem
 	setflag ENGINE_POKEGEAR
@@ -45,7 +61,7 @@ RedsHouse1FRB_SkipMovement: ; 0x7a4f6
 	setevent EVENT_MOM_POSITION_1
 	clearevent EVENT_MOM_POSITION_2
 	writetext MomText2
-	keeptextopen
+	buttonsound
 	special Function90913
 RedsHouse1FRB_DSTLoop: ; 0x7a519
 	writetext MomText3
@@ -66,19 +82,21 @@ RedsHouse1FRB_TimeIsSet: ; 0x7a531
 	yesorno
 	iffalse RedsHouse1FRB_DontNeedPhoneExplanation
 	writetext MomText5
-	keeptextopen
+	buttonsound
 	jump RedsHouse1FRB_AfterPhoneExplanation
 ; 0x7a542
 
 RedsHouse1FRB_DontNeedPhoneExplanation: ; 0x7a542
 	writetext MomText6
-	keeptextopen
+	buttonsound
 ; 0x7a549
 
 RedsHouse1FRB_AfterPhoneExplanation: ; 0x7a549
 	writetext MomText7
+	waitbutton
 	closetext
-	loadmovesprites
+	checkevent EVENT_003_STD
+	iftrue RedsHouse1FRB_MoveBack3
 	checkevent EVENT_000_STD
 	iftrue RedsHouse1FRB_MoveBack1
 	checkevent EVENT_001_STD
@@ -93,10 +111,21 @@ RedsHouse1FRB_MoveBack1: ; 0x7a55d
 
 RedsHouse1FRB_MoveBack2: ; 0x7a564
 	applymovement $2, MovementData_0x7a602
+	jump RedsHouse1FRB_DontMoveBack
+
+RedsHouse1FRB_MoveBack3:
+	checkevent EVENT_000_STD
+	iftrue RedsHouse1FRB_MoveBack4
+	applymovement $2, MovementData_0x7a600
+	jump RedsHouse1FRB_DontMoveBack
+
+RedsHouse1FRB_MoveBack4:
+	applymovement $2, MovementData_MomWalksDownLooksLeft
 
 RedsHouse1FRB_DontMoveBack: ; 0x7a56b
 	special RestartMapMusic
-	spriteface $2, $2
+	spriteface $2, LEFT
+	blackoutmod GROUP_PALLET_TOWN_RB, MAP_PALLET_TOWN_RB
 	end
 ; 0x7a572
 
@@ -106,7 +135,7 @@ MomScript2: ; 0x7a572
 ; 0x7a578
 
 RedsHouse1FRB_GearName: ; 0x7a578
-	db $54, "GEAR@"
+	db "#GEAR@"
 ; 0x7a57e
 
 RedsHouse1FRB_GetItem: ; 0x7a57e
@@ -120,14 +149,45 @@ MomScript1:
 	checktriggers
 	iffalse MomScript2
 	loadfont
-	writetext UnknownText_0x19af81
+	checkevent EVENT_GOT_POKEMON_FROM_OAK
+	iftrue .heal
+	checkflag ENGINE_PLAYER_IS_FEMALE
+	iftrue .female
+	writetext MomText_AllBoysLeaveHomeSomeday
+	jump .finish
+.female
+	writetext MomText_AllGirlsLeaveHomeSomeday
+.finish
+	waitbutton
 	closetext
-	loadmovesprites
+	end
+
+.heal
+	checkevent EVENT_002_STD
+	iftrue .skip_heal
+	writetext MomHealsYouText
+	waitbutton
+	closetext
+	special Special_FadeToBlack
+	special Functiond91
+	special Function1060a2
+	playmusic MUSIC_HEAL
+	special HealParty
+	blackoutmod GROUP_PALLET_TOWN_RB, MAP_PALLET_TOWN_RB
+	pause 60
+	special Function8c0ab
+	special RestartMapMusic
+	loadfont
+	setevent EVENT_002_STD
+.skip_heal
+	writetext MomAfterHealText
+	waitbutton
+	closetext
 	end
 ; 0x19aeba
 
 MapRedsHouse1FRBSignpost2Script: ; 0x19aeba
-	jumptext UnknownText_0x19afe8
+	jumptext MovieOnTVText_RedsHouse1FRB
 ; 0x19aebd
 
 MapRedsHouse1FRBSignpost1Script: ; 0x19aebd
@@ -143,7 +203,8 @@ MovementData_0x7a5fe: ; 0x7a5fe
 	slow_step_right
 	step_end
 ; 0x7a600
-
+MovementData_MomWalksDownLooksLeft:
+	slow_step_down
 MovementData_0x7a600: ; 0x7a600
 	turn_head_left
 	step_end
@@ -153,6 +214,14 @@ MovementData_0x7a602: ; 0x7a602
 	slow_step_left
 	step_end
 ; 0x7a604
+
+MovementData_MomWalkUp:
+	slow_step_up
+	step_end
+
+MovementData_MomLookUp:
+	turn_head_up
+	step_end
 
 MomText1: ; 0x7a604
 	text "Oh, <PLAYER>…! Our"
@@ -239,7 +308,54 @@ MomText7: ; 0x7a850
 	para "Gee, isn't that"
 	line "convenient?"
 	done
-; 0x7a8b5
+; 
+
+MomText_AllBoysLeaveHomeSomeday:
+	text "Right. All boys"
+	line "leave home some-"
+	cont "day."
+	cont "It said so on TV."
+
+	para "PROF.OAK, next"
+	line "door, was looking"
+	cont "for you."
+	done
+
+MomText_AllGirlsLeaveHomeSomeday:
+	text "Right. All girls"
+	line "leave home some-"
+	cont "day."
+	cont "It said so on TV."
+
+	para "PROF.OAK, next"
+	line "door, was looking"
+	cont "for you."
+	done
+
+MomHealsYouText:
+	text "MOM: <PLAYER>!"
+	line "You should take a"
+	cont "quick rest."
+	done
+
+MomAfterHealText:
+	text "MOM: Oh good!"
+	line "You and your"
+	para "#MON are"
+	line "looking great!"
+	para "Take care now!"
+	done
+
+MovieOnTVText_RedsHouse1FRB:
+	text "There's a movie"
+	line "on TV."
+
+	para "Four boys are"
+	line "walking on rail-"
+	cont "road tracks."
+
+	para "I better go too."
+	done
 
 RedsHouse1FRB_MapEventHeader: ; 0x19b017
 	; filler
@@ -252,9 +368,11 @@ RedsHouse1FRB_MapEventHeader: ; 0x19b017
 	warp_def $0, $7, 1, GROUP_REDS_HOUSE_2F_RB, MAP_REDS_HOUSE_2F_RB
 
 	; xy triggers
-	db 2
-	xy_trigger 0, $4, $6, 0, MomsScript_Start1, $0, $0
-	xy_trigger 0, $4, $7, 0, MomsScript_Start2, $0, $0
+	db 4
+	xy_trigger 0, $3, $6, 0, MomsScript_Start1, $0, $0
+	xy_trigger 0, $3, $7, 0, MomsScript_Start2, $0, $0
+	xy_trigger 0, $2, $5, 0, MomsScript_Start3, $0, $0
+	xy_trigger 0, $1, $5, 0, MomsScript_Start4, $0, $0
 
 	; signposts
 	db 3

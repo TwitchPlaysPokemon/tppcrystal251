@@ -47,7 +47,7 @@ UnknownScript_0x18c8b8: ; 0x18c8b8
 	loadfont
 	writetext UnknownText_0x18c9b8
 	pause 30
-	loadmovesprites
+	closetext
 	showemote $0, $0, 15
 	spriteface $0, $2
 	playmusic MUSIC_CLAIR
@@ -56,27 +56,27 @@ UnknownScript_0x18c8b8: ; 0x18c8b8
 	checkevent EVENT_BEAT_AIIIAAB
 	iftrue ClairRematchScript
 	writetext UnknownText_0x18c9bf
-	keeptextopen
+	buttonsound
 	giveitem TM_DRAGONBREATH, $1
 	iffalse UnknownScript_0x18c8f4
 	itemtotext TM_DRAGONBREATH, $0
 	writetext UnknownText_0x18c9fb
 	playsound SFX_ITEM
-	waitbutton
+	waitsfx
 	itemnotify
 	setevent EVENT_GOT_TM24_DRAGONBREATH
 	writetext UnknownText_0x18ca0d
-	keeptextopen
+	buttonsound
 	writetext UnknownText_0x18caf1
+	waitbutton
 	closetext
-	loadmovesprites
 	jump UnknownScript_0x18c8f9
 ; 0x18c8f4
 
 UnknownScript_0x18c8f4: ; 0x18c8f4
 	writetext UnknownText_0x18ca8b
+	waitbutton
 	closetext
-	loadmovesprites
 UnknownScript_0x18c8f9: ; 0x18c8f9
 	applymovement $3, MovementData_0x18c9b3
 	special Functionc48f
@@ -89,8 +89,8 @@ UnknownScript_0x18c8f9: ; 0x18c8f9
 
 ClairRematchScript:
 	writetext ClairRematchTextBefore
+	waitbutton
 	closetext
-	loadmovesprites
 	winlosstext ClairRematchBeatenText, $0000
 	loadtrainer CLAIR, 2
 	startbattle
@@ -100,8 +100,8 @@ ClairRematchScript:
 	playmusic MUSIC_CLAIR
 	loadfont
 	writetext ClairRematchTextAfter
+	waitbutton
 	closetext
-	loadmovesprites
 	jump UnknownScript_0x18c8f9
 
 TrainerCooltrainermDarin: ; 0x18c90a
@@ -128,8 +128,8 @@ CooltrainermDarinScript: ; 0x18c916
 	talkaftercancel
 	loadfont
 	writetext UnknownText_0x18cd82
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 ; 0x18c91e
 
@@ -157,8 +157,8 @@ CooltrainerfCaraScript: ; 0x18c92a
 	talkaftercancel
 	loadfont
 	writetext UnknownText_0x18ce11
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 ; 0x18c932
 
@@ -186,8 +186,8 @@ TwinsLeaandpia1Script: ; 0x18c93e
 	talkaftercancel
 	loadfont
 	writetext UnknownText_0x18ced3
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 ; 0x18c946
 
@@ -215,8 +215,8 @@ TwinsLeaandpia2Script: ; 0x18c952
 	talkaftercancel
 	loadfont
 	writetext UnknownText_0x18cf0f
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 ; 0x18c95a
 
@@ -228,9 +228,9 @@ PokeBallScript_0x18c95a: ; 0x18c95a
 	itemtotext DRAGON_FANG, $0
 	writetext UnknownText_0x18cf41
 	playsound SFX_ITEM
-	waitbutton
+	waitsfx
 	itemnotify
-	loadmovesprites
+	closetext
 	end
 ; 0x18c970
 
@@ -238,10 +238,10 @@ UnknownScript_0x18c970: ; 0x18c970
 	loadfont
 	itemtotext DRAGON_FANG, $0
 	writetext UnknownText_0x18cf41
-	keeptextopen
+	buttonsound
 	writetext UnknownText_0x18cf51
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 ; 0x18c97e
 
@@ -252,8 +252,8 @@ SilverScript_0x18c97e: ; 0x18c97e
 	checkevent EVENT_000_STD
 	iftrue UnknownScript_0x18c995
 	writetext UnknownText_0x18cc83
+	waitbutton
 	closetext
-	loadmovesprites
 	setevent EVENT_000_STD
 	special RestartMapMusic
 	end
@@ -261,8 +261,8 @@ SilverScript_0x18c97e: ; 0x18c97e
 
 UnknownScript_0x18c995: ; 0x18c995
 	writetext UnknownText_0x18cd2d
+	waitbutton
 	closetext
-	loadmovesprites
 	special RestartMapMusic
 	end
 ; 0x18c99e

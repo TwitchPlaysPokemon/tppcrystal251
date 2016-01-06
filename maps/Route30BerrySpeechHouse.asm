@@ -12,15 +12,15 @@ PokefanMScript_0x196d64: ; 0x196d64
 	checkevent EVENT_GOT_BERRY_FROM_ROUTE_30_HOUSE
 	iftrue UnknownScript_0x196d79
 	writetext UnknownText_0x196d82
-	keeptextopen
+	buttonsound
 	verbosegiveitem BERRY, 1
 	iffalse UnknownScript_0x196d7d
 	setevent EVENT_GOT_BERRY_FROM_ROUTE_30_HOUSE
 UnknownScript_0x196d79: ; 0x196d79
 	writetext UnknownText_0x196dec
-	closetext
+	waitbutton
 UnknownScript_0x196d7d: ; 0x196d7d
-	loadmovesprites
+	closetext
 	end
 ; 0x196d7f
 

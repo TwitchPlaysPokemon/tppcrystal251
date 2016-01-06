@@ -30,7 +30,7 @@ BattleCommand50: ; 37492
 	and a
 	ret nz
 
-	ld a, [InLinkBattle]
+	ld a, [wLinkMode]
 	and a
 	jr z, .stealenemyitem
 

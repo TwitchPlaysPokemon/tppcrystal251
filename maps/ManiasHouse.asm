@@ -19,12 +19,12 @@ RockerScript_0x9d278: ; 0x9d278
 	special SpecialGiveShuckle
 	iffalse UnknownScript_0x9d2b0
 	writetext UnknownText_0x9d3ed
-	keeptextopen
-	waitbutton
+	buttonsound
+	waitsfx
 	writetext UnknownText_0x9d41b
 	playsound SFX_KEY_ITEM
-	waitbutton
-	loadmovesprites
+	waitsfx
+	closetext
 	setevent EVENT_GOT_SHUCKIE
 	end
 ; 0x9d2a4
@@ -33,22 +33,22 @@ UnknownScript_0x9d2a4: ; 0x9d2a4
 	checkflag ENGINE_SHUCKLE_GIVEN
 	iffalse UnknownScript_0x9d2bc
 	writetext UnknownText_0x9d3ed
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 ; 0x9d2b0
 
 UnknownScript_0x9d2b0: ; 0x9d2b0
 	writetext UnknownText_0x9d42f
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 ; 0x9d2b6
 
 UnknownScript_0x9d2b6: ; 0x9d2b6
 	writetext UnknownText_0x9d449
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 ; 0x9d2bc
 
@@ -62,45 +62,45 @@ UnknownScript_0x9d2bc: ; 0x9d2bc
 	if_equal $3, UnknownScript_0x9d2e5
 	if_equal $4, UnknownScript_0x9d2fa
 	writetext UnknownText_0x9d4b1
+	waitbutton
 	closetext
-	loadmovesprites
 	setevent EVENT_MANIA_TOOK_SHUCKIE_OR_LET_YOU_KEEP_HIM
 	end
 ; 0x9d2df
 
 UnknownScript_0x9d2df: ; 0x9d2df
 	writetext UnknownText_0x9d4bd
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 ; 0x9d2e5
 
 UnknownScript_0x9d2e5: ; 0x9d2e5
 	writetext UnknownText_0x9d4e3
+	waitbutton
 	closetext
-	loadmovesprites
 	setevent EVENT_MANIA_TOOK_SHUCKIE_OR_LET_YOU_KEEP_HIM
 	end
 ; 0x9d2ee
 
 UnknownScript_0x9d2ee: ; 0x9d2ee
 	writetext UnknownText_0x9d53f
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 ; 0x9d2f4
 
 UnknownScript_0x9d2f4: ; 0x9d2f4
 	writetext UnknownText_0x9d5b0
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 ; 0x9d2fa
 
 UnknownScript_0x9d2fa: ; 0x9d2fa
 	writetext UnknownText_0x9d56c
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 ; 0x9d300
 

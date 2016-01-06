@@ -12,21 +12,21 @@ FisherScript_0x19a527: ; 0x19a527
 	checkevent EVENT_GOT_TM10_HIDDEN_POWER
 	iftrue UnknownScript_0x19a542
 	writetext UnknownText_0x19a54b
-	keeptextopen
+	buttonsound
 	verbosegiveitem TM_HIDDEN_POWER, 1
 	iffalse UnknownScript_0x19a546
 	setevent EVENT_GOT_TM10_HIDDEN_POWER
 	writetext UnknownText_0x19a5de
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 ; 0x19a542
 
 UnknownScript_0x19a542: ; 0x19a542
 	writetext UnknownText_0x19a673
-	closetext
+	waitbutton
 UnknownScript_0x19a546: ; 0x19a546
-	loadmovesprites
+	closetext
 	end
 ; 0x19a548
 

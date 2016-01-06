@@ -17,8 +17,8 @@ MapRedsHouse2FSignpost1Script: ; 0x19b04d
 MapRedsHouse2FBedScript:
 	loadfont
 	writetext RedsHouse2FComfyBedText
+	waitbutton
 	closetext
-	loadmovesprites
 	special Special_FadeToBlack
 	special Functiond91
 	special Function1060a2
@@ -33,14 +33,14 @@ MapRedsHouse2FBedScript:
 	copybytetovar PlayerGender
 	if_equal $1, RedsHouse2BedHealedFScript
 	writetext RedsHouse2FBedHealedMText
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 RedsHouse2BedHealedFScript:
 	writetext RedsHouse2FBedHealedFText
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 MapRedsHouseBedWarpScript:

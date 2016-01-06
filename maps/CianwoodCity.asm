@@ -55,8 +55,8 @@ UnknownScript_0x1a001e: ; 0x1a001e
 	applymovement $c, MovementData_0x1a00e7
 	loadfont
 	writetext UnknownText_0x1a0433
+	waitbutton
 	closetext
-	loadmovesprites
 	winlosstext UnknownText_0x1a05a1, $0000
 	setlasttalked $c
 	loadtrainer MYSTICALMAN, EUSINE
@@ -66,8 +66,8 @@ UnknownScript_0x1a001e: ; 0x1a001e
 	playmusic MUSIC_MYSTICALMAN_ENCOUNTER
 	loadfont
 	writetext UnknownText_0x1a05c3
+	waitbutton
 	closetext
-	loadmovesprites
 	applymovement $c, MovementData_0x1a00ec
 	disappear $c
 	pause 20
@@ -85,28 +85,28 @@ PokefanFScript_0x1a0084: ; 0x1a0084
 	checkevent EVENT_GOT_HM02_FLY
 	iftrue UnknownScript_0x1a00ad
 	writetext UnknownText_0x1a00f1
-	keeptextopen
+	buttonsound
 	checkevent EVENT_BEAT_CHUCK
 	iftrue UnknownScript_0x1a009c
 	writetext UnknownText_0x1a0163
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 ; 0x1a009c
 
 UnknownScript_0x1a009c: ; 0x1a009c
 	writetext UnknownText_0x1a01e3
-	keeptextopen
+	buttonsound
 	verbosegiveitem HM_FLY, 1
 	iffalse UnknownScript_0x1a00b1
 	setevent EVENT_GOT_HM02_FLY
 	writetext UnknownText_0x1a021d
-	keeptextopen
+	buttonsound
 UnknownScript_0x1a00ad: ; 0x1a00ad
 	writetext UnknownText_0x1a0277
-	closetext
+	waitbutton
 UnknownScript_0x1a00b1: ; 0x1a00b1
-	loadmovesprites
+	closetext
 	end
 ; 0x1a00b3
 

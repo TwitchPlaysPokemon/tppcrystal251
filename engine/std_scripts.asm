@@ -1,56 +1,56 @@
 StdScripts:: ; bc000
-	dbw BANK(PokeCenterNurseScript), PokeCenterNurseScript ; $00
-	dbw BANK(DifficultBookshelfScript), DifficultBookshelfScript ; $01
-	dbw BANK(PictureBookshelfScript), PictureBookshelfScript ; $02
-	dbw BANK(MagazineBookshelfScript), MagazineBookshelfScript ; $03
-	dbw BANK(TeamRocketOathScript), TeamRocketOathScript ; $04
-	dbw BANK(IncenseBurnerScript), IncenseBurnerScript ; $05
-	dbw BANK(MerchandiseShelfScript), MerchandiseShelfScript ; $06
-	dbw BANK(TownMapScript), TownMapScript ; $07
-	dbw BANK(WindowScript), WindowScript ; $08
-	dbw BANK(TVScript), TVScript ; $09
-	dbw BANK(HomepageScript), HomepageScript ; $0a
-	dbw BANK(Radio1Script), Radio1Script ; $0b
-	dbw BANK(Radio2Script), Radio2Script ; $0c
-	dbw BANK(TrashCanScript), TrashCanScript ; $0d
-	dbw BANK(StrengthBoulderScript), StrengthBoulderScript ; $0e
-	dbw BANK(SmashRockScript), SmashRockScript ; $0f
-	dbw BANK(PokeCenterSignScript), PokeCenterSignScript ; $10
-	dbw BANK(MartSignScript), MartSignScript ; $11
-	dbw BANK(GoldenrodRocketsScript), GoldenrodRocketsScript ; $12
-	dbw BANK(RadioTowerRocketsScript), RadioTowerRocketsScript ; $13
-	dbw BANK(ElevatorButtonScript), ElevatorButtonScript ; $14
-	dbw BANK(DayToTextScript), DayToTextScript ; $15
-	dbw BANK(BugContestResultsWarpScript), BugContestResultsWarpScript ; $16
-	dbw BANK(BugContestResultsScript), BugContestResultsScript ; $17
-	dbw BANK(InitializeEventsScript), InitializeEventsScript ; $18
-	dbw BANK(AskNumber1MScript), AskNumber1MScript ; $19
-	dbw BANK(AskNumber2MScript), AskNumber2MScript ; $1a
-	dbw BANK(RegisteredNumberMScript), RegisteredNumberMScript ; $1b
-	dbw BANK(NumberAcceptedMScript), NumberAcceptedMScript ; $1c
-	dbw BANK(NumberDeclinedMScript), NumberDeclinedMScript ; $1d
-	dbw BANK(PhoneFullMScript), PhoneFullMScript ; $1e
-	dbw BANK(RematchMScript), RematchMScript ; $1f
-	dbw BANK(GiftMScript), GiftMScript ; $20
-	dbw BANK(PackFullMScript), PackFullMScript ; $21
-	dbw BANK(RematchGiftMScript), RematchGiftMScript ; $22
-	dbw BANK(AskNumber1FScript), AskNumber1FScript ; $23
-	dbw BANK(AskNumber2FScript), AskNumber2FScript ; $24
-	dbw BANK(RegisteredNumberFScript), RegisteredNumberFScript ; $25
-	dbw BANK(NumberAcceptedFScript), NumberAcceptedFScript ; $26
-	dbw BANK(NumberDeclinedFScript), NumberDeclinedFScript ; $27
-	dbw BANK(PhoneFullFScript), PhoneFullFScript ; $28
-	dbw BANK(RematchFScript), RematchFScript ; $29
-	dbw BANK(GiftFScript), GiftFScript ; $2a
-	dbw BANK(PackFullFScript), PackFullFScript ; $2b
-	dbw BANK(RematchGiftFScript), RematchGiftFScript ; $2c
-	dbw BANK(GymStatue1Script), GymStatue1Script ; $2d
-	dbw BANK(GymStatue2Script), GymStatue2Script ; $2e
-	dbw BANK(ReceiveItemScript), ReceiveItemScript ; $2f
-	dbw BANK(ReceiveTogepiEggScript), ReceiveTogepiEggScript ; $30
-	dbw BANK(PCScript), PCScript ; $31
-	dbw BANK(GameCornerCoinVendorScript), GameCornerCoinVendorScript ; $32
-	dbw BANK(HappinessCheckScript), HappinessCheckScript ; $33
+	dba PokeCenterNurseScript ; $00
+	dba DifficultBookshelfScript ; $01
+	dba PictureBookshelfScript ; $02
+	dba MagazineBookshelfScript ; $03
+	dba TeamRocketOathScript ; $04
+	dba IncenseBurnerScript ; $05
+	dba MerchandiseShelfScript ; $06
+	dba TownMapScript ; $07
+	dba WindowScript ; $08
+	dba TVScript ; $09
+	dba HomepageScript ; $0a
+	dba Radio1Script ; $0b
+	dba Radio2Script ; $0c
+	dba TrashCanScript ; $0d
+	dba StrengthBoulderScript ; $0e
+	dba SmashRockScript ; $0f
+	dba PokeCenterSignScript ; $10
+	dba MartSignScript ; $11
+	dba GoldenrodRocketsScript ; $12
+	dba RadioTowerRocketsScript ; $13
+	dba ElevatorButtonScript ; $14
+	dba DayToTextScript ; $15
+	dba BugContestResultsWarpScript ; $16
+	dba BugContestResultsScript ; $17
+	dba InitializeEventsScript ; $18
+	dba AskNumber1MScript ; $19
+	dba AskNumber2MScript ; $1a
+	dba RegisteredNumberMScript ; $1b
+	dba NumberAcceptedMScript ; $1c
+	dba NumberDeclinedMScript ; $1d
+	dba PhoneFullMScript ; $1e
+	dba RematchMScript ; $1f
+	dba GiftMScript ; $20
+	dba PackFullMScript ; $21
+	dba RematchGiftMScript ; $22
+	dba AskNumber1FScript ; $23
+	dba AskNumber2FScript ; $24
+	dba RegisteredNumberFScript ; $25
+	dba NumberAcceptedFScript ; $26
+	dba NumberDeclinedFScript ; $27
+	dba PhoneFullFScript ; $28
+	dba RematchFScript ; $29
+	dba GiftFScript ; $2a
+	dba PackFullFScript ; $2b
+	dba RematchGiftFScript ; $2c
+	dba GymStatue1Script ; $2d
+	dba GymStatue2Script ; $2e
+	dba ReceiveItemScript ; $2f
+	dba ReceiveTogepiEggScript ; $30
+	dba PCScript ; $31
+	dba GameCornerCoinVendorScript ; $32
+	dba HappinessCheckScript ; $33
 ; bc09c
 
 PokeCenterNurseScript:
@@ -69,33 +69,33 @@ PokeCenterNurseScript:
 	checkevent EVENT_WELCOMED_TO_POKECOM_CENTER
 	iftrue .morn_comcenter
 	farwritetext UnknownText_0x1b0000
-	keeptextopen
+	buttonsound
 	jump .ok
 .morn_comcenter
 	farwritetext UnknownText_0x1b008a
-	keeptextopen
+	buttonsound
 	jump .ok
 
 .day
 	checkevent EVENT_WELCOMED_TO_POKECOM_CENTER
 	iftrue .day_comcenter
 	farwritetext UnknownText_0x1b002b
-	keeptextopen
+	buttonsound
 	jump .ok
 .day_comcenter
 	farwritetext UnknownText_0x1b00d6
-	keeptextopen
+	buttonsound
 	jump .ok
 
 .nite
 	checkevent EVENT_WELCOMED_TO_POKECOM_CENTER
 	iftrue .nite_comcenter
 	farwritetext UnknownText_0x1b004f
-	keeptextopen
+	buttonsound
 	jump .ok
 .nite_comcenter
 	farwritetext UnknownText_0x1b011b
-	keeptextopen
+	buttonsound
 	jump .ok
 
 .ok
@@ -140,8 +140,8 @@ PokeCenterNurseScript:
 	spriteface $fe, DOWN
 	pause 10
 
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 .pokerus
@@ -150,14 +150,14 @@ PokeCenterNurseScript:
 	iftrue .pokerus_comcenter
 
 	farwritetext UnknownText_0x1b0241
+	waitbutton
 	closetext
-	loadmovesprites
 	jump .pokerus_done
 
 .pokerus_comcenter
 	farwritetext UnknownText_0x1b02d6
+	waitbutton
 	closetext
-	loadmovesprites
 
 .pokerus_done
 	setflag ENGINE_POKERUS
@@ -191,9 +191,9 @@ MerchandiseShelfScript: ; 0xbc176
 TownMapScript: ; 0xbc17a
 	loadfont
 	farwritetext UnknownText_0x1b048d
-	closetext
+	waitbutton
 	special Functionc2c0
-	loadmovesprites
+	closetext
 	end
 ; 0xbc185
 
@@ -204,8 +204,8 @@ WindowScript: ; 0xbc185
 TVScript: ; 0xbc189
 	loadfont
 	farwritetext UnknownText_0x1b04be
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 ; 0xbc191
 
@@ -217,7 +217,7 @@ Radio1Script: ; 0xbc195
 	loadfont
 	writebyte $0
 	special Functionc355
-	loadmovesprites
+	closetext
 	end
 ; 0xbc19d
 
@@ -225,7 +225,7 @@ Radio2Script: ; 0xbc19d
 	loadfont
 	writebyte $4
 	special Functionc355
-	loadmovesprites
+	closetext
 	end
 ; 0xbc1a5
 
@@ -236,7 +236,7 @@ TrashCanScript: ; 0xbc1a5
 PCScript: ; 0xbc1a9
 	loadfont
 	special Function1559a
-	loadmovesprites
+	closetext
 	end
 ; 0xbc1af
 
@@ -368,22 +368,22 @@ BugContestResultsScript: ; bc274
 		;clearevent EVENT_NATIONAL_PARK_ROUTE_36_GATE_316
 	loadfont
 	farwritetext UnknownText_0x1b05bf ;announce start of judging
-	closetext
+	waitbutton
 	special Functionc34a ;put players position into scriptvar (0 is non-place)
 	RAM2MEM $0
 	if_equal 1, ContestResults_FirstPlaceScript
 	if_equal 2, ContestResults_SecondPlaceScript
 	if_equal 3, ContestResults_ThirdPlaceScript
 	farwritetext UnknownText_0x1b0681
-	keeptextopen
-	waitbutton
+	buttonsound
+	waitsfx
 	givemoney 0 , 1000
 	;verbosegiveitem BERRY, 1
 	;iffalse UnknownScript_0xbc375
 
 UnknownScript_0xbc2a9:
 	farwritetext UnknownText_0x1b06b7
-	keeptextopen
+	buttonsound
 	jump UnknownScript_0xbc2b6
 ; 0xbc2b1
 
@@ -391,22 +391,22 @@ ClearSunHold:
 	clearevent EVENT_NATIONAL_PARK_ROUTE_36_GATE_315
 UnknownScript_0xbc2b1: ; 0xbc2b1
 	farwritetext UnknownText_0x1b065b ;please join next contest
-	keeptextopen
+	buttonsound
 
 UnknownScript_0xbc2b6:
 	checkevent EVENT_NATIONAL_PARK_GATE_308 ;if start with more then 1 mon, fall through to put back to normal, else jump
 	iffalse UnknownScript_0xbc2c4
 	farwritetext UnknownText_0x1b06d9 ;say they return kept mon
-	closetext
+	waitbutton
 	special Function13a31 ;reset party to normal
 UnknownScript_0xbc2c4:
 	special Function4d9e5 ;insert mon into party or into PC box in top slot. return 0 in scriptvar if mon went to party, 1 if they went to box and 2 if no mon was caught
 	if_equal $0, UnknownScript_0xbc2d4 ;if sent to party or no mon, skip box text
 	if_equal $2, UnknownScript_0xbc2d4 
 	farwritetext UnknownText_0x1b070d ;sent to box text
-	closetext
+	waitbutton
 UnknownScript_0xbc2d4:
-	loadmovesprites
+	closetext
 	dotrigger $0
 	domaptrigger GROUP_ROUTE_35_NATIONAL_PARK_GATE, MAP_ROUTE_35_NATIONAL_PARK_GATE, $0 ;reset map triggers
 	setevent EVENT_NATIONALPARK_CONTESTANT_1 ;set all contestent eventvflags
@@ -440,7 +440,7 @@ ContestResults_FirstPlaceScript: ; 0xbc31e
 	iftrue ContestResultsFirstRepeat ;if already won amber, win something else
 	itemtotext OLD_AMBER, $1
 	farwritetext UnknownText_0x1b0621 ; say what the player won
-	closetext
+	waitbutton
 	verbosegiveitem OLD_AMBER, 1
 	iffalse UnknownScript_0xbc35f
 	jump UnknownScript_0xbc2b1
@@ -453,7 +453,7 @@ ContestResultsFirstRepeat:
 	checkevent EVENT_NATIONAL_PARK_ROUTE_36_GATE_315
 	iftrue ContestAlreadyHoldingSun
 	writetext SunStoneChosenText
-	closetext
+	waitbutton
 	verbosegiveitem SUN_STONE, 1
 	iffalse UnknownScript_0xbc36a
 	jump UnknownScript_0xbc2b1
@@ -463,13 +463,13 @@ ContestAlreadyHoldingSun:
 	iftrue ClearSunHold
 	itemtotext SUN_STONE, $1
 	writetext ContestAlreadyHolding
-	closetext
+	waitbutton
 	jump ContestChooseBall
 	
 ContestResults_SecondPlaceScript: ; 0xbc332 prize script for balls
 		;itemtotext EVERSTONE, $1
 	writetext ContestSecondPrizeText
-	closetext
+	waitbutton
 	jump ContestChooseBall
 
 ContestFirstChoseBalls:
@@ -579,9 +579,9 @@ ContestHoldingHeavy:
 
 ContestFullBag:
 	writetext ContestAlreadyHolding
-	keeptextopen
+	buttonsound
 	writetext BagFullPrizeText
-	closetext
+	waitbutton
 	givemoney 0 , 8000 
 	jump UnknownScript_0xbc2b1
 
@@ -591,7 +591,7 @@ ContestBallFlagClear:
 
 ContestResults_ThirdPlaceScript: ; 0xbc343
 	writetext ContestThirdPlaceText
-	closetext
+	waitbutton
 	givemoney 0 , 4000 
 	jump UnknownScript_0xbc2b1
 ; 0xbc354
@@ -610,21 +610,21 @@ BagFullPrizeText:
 
 UnknownScript_0xbc354: ; 0xbc354
 ;	farwritetext UnknownText_0x1b08cc
-;	keeptextopen
+;	buttonsound
 ;	setevent EVENT_NATIONAL_PARK_ROUTE_36_GATE_313
 ;	jump UnknownScript_0xbc2b1
 ; 0xbc35f
 
 UnknownScript_0xbc35f: ; 0xbc35f
 	farwritetext UnknownText_0x1b08cc
-	keeptextopen
+	buttonsound
 	setevent EVENT_NATIONAL_PARK_ROUTE_36_GATE_314
 	jump UnknownScript_0xbc2b1
 ; 0xbc36a
 
 UnknownScript_0xbc36a: ; 0xbc36a
 	farwritetext UnknownText_0x1b08cc ;pack is full text for sun stone
-	keeptextopen
+	buttonsound
 	setevent EVENT_NATIONAL_PARK_ROUTE_36_GATE_315
 	jump UnknownScript_0xbc2b1
 
@@ -633,7 +633,7 @@ UnknownScript_0xbc36a: ; 0xbc36a
 
 UnknownScript_0xbc375: ; 0xbc375
 	farwritetext UnknownText_0x1b08cc
-	keeptextopen
+	buttonsound
 	setevent EVENT_NATIONAL_PARK_ROUTE_36_GATE_316
 	jump UnknownScript_0xbc2a9
 ; 0xbc380
@@ -874,6 +874,8 @@ InitializeEventsScript: ; 0xbc3db
 	setevent EVENT_STATIC_ENTEI
 	setevent EVENT_STATIC_SUICUNE
 	setevent EVENT_PALLET_TOWN_RB_OAK
+	setevent EVENT_OAKS_LAB_OAK
+	setevent EVENT_VIRIDIAN_CITY_RB_OLD_MAN_WALKING_ABOUT
 	return
 ; 0xbc574
 
@@ -1128,8 +1130,8 @@ AskNumber2MScript: ; 0xbc62d
 RegisteredNumberMScript: ; 0xbc6e6
 	farwritetext UnknownText_0x1b09c4
 	playsound SFX_REGISTER_PHONE_NUMBER
-	waitbutton
-	keeptextopen
+	waitsfx
+	buttonsound
 	end
 ; 0xbc6f0
 
@@ -1158,141 +1160,141 @@ NumberAcceptedMScript: ; 0xbc6f0
 
 UnknownScript_0xbc742:
 	farwritetext UnknownText_0x1b0adb
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 ; 0xbc749
 
 UnknownScript_0xbc749: ; 0xbc749
 	farwritetext UnknownText_0x1b0e89
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 ; 0xbc750
 
 UnknownScript_0xbc750: ; 0xbc750
 	farwritetext UnknownText_0x1b1136
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 ; 0xbc757
 
 UnknownScript_0xbc757: ; 0xbc757
 	farwritetext UnknownText_0x1b1553
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 ; 0xbc75e
 
 UnknownScript_0xbc75e: ; 0xbc75e
 	farwritetext UnknownText_0x1b18d7
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 ; 0xbc765
 
 UnknownScript_0xbc765: ; 0xbc765
 	farwritetext UnknownText_0x1b1b8e
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 ; 0xbc76c
 
 UnknownScript_0xbc76c: ; 0xbc76c
 	farwritetext UnknownText_0x1b1db9
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 ; 0xbc773
 
 UnknownScript_0xbc773: ; 0xbc773
 	farwritetext UnknownText_0xa40f8
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 ; 0xbc77a
 
 UnknownScript_0xbc77a: ; 0xbc77a
 	farwritetext UnknownText_0xa42ab
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 ; 0xbc781
 
 UnknownScript_0xbc781: ; 0xbc781
 	farwritetext UnknownText_0xa4730
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 ; 0xbc788
 
 UnknownScript_0xbc788: ; 0xbc788
 	farwritetext UnknownText_0xa494d
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 ; 0xbc78f
 
 UnknownScript_0xbc78f: ; 0xbc78f
 	farwritetext UnknownText_0xa4b47
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 ; 0xbc796
 
 UnknownScript_0xbc796: ; 0xbc796
 	farwritetext UnknownText_0xa502e
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 ; 0xbc79d
 
 UnknownScript_0xbc79d: ; 0xbc79d
 	farwritetext UnknownText_0xa51ac
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 ; 0xbc7a4
 
 UnknownScript_0xbc7a4: ; 0xbc7a4
 	farwritetext UnknownText_0xa53de
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 ; 0xbc7ab
 
 UnknownScript_0xbc7ab: ; 0xbc7ab
 	farwritetext UnknownText_0xa5666
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 ; 0xbc7b2
 
 UnknownScript_0xbc7b2: ; 0xbc7b2
 	farwritetext UnknownText_0xa5a28
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 ; 0xbc7b9
 
 UnknownScript_0xbc7b9: ; 0xbc7b9
 	farwritetext UnknownText_0xa5c8e
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 ; 0xbc7c0
 
 UnknownScript_0xbc7c0: ; 0xbc7c0
 	farwritetext UnknownText_0xa5ea8
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 ; 0xbc7c7
 
 UnknownScript_0xbc7c7: ; 0xbc7c7
 	farwritetext UnknownText_0xa60b5
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 ; 0xbc7ce
 
@@ -1321,141 +1323,141 @@ NumberDeclinedMScript: ; 0xbc7ce
 
 UnknownScript_0xbc820:
 	farwritetext UnknownText_0x1b0afd
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 ; 0xbc827
 
 UnknownScript_0xbc827: ; 0xbc827
 	farwritetext UnknownText_0x1b0ea2
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 ; 0xbc82e
 
 UnknownScript_0xbc82e: ; 0xbc82e
 	farwritetext UnknownText_0x1b117b
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 ; 0xbc835
 
 UnknownScript_0xbc835: ; 0xbc835
 	farwritetext UnknownText_0x1b1584
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 ; 0xbc83c
 
 UnknownScript_0xbc83c: ; 0xbc83c
 	farwritetext UnknownText_0x1b1908
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 ; 0xbc843
 
 UnknownScript_0xbc843: ; 0xbc843
 	farwritetext UnknownText_0x1b1bd2
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 ; 0xbc84a
 
 UnknownScript_0xbc84a: ; 0xbc84a
 	farwritetext UnknownText_0x1b1df4
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 ; 0xbc851
 
 UnknownScript_0xbc851: ; 0xbc851
 	farwritetext UnknownText_0xa4126
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 ; 0xbc858
 
 UnknownScript_0xbc858: ; 0xbc858
 	farwritetext UnknownText_0xa42f2
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 ; 0xbc85f
 
 UnknownScript_0xbc85f: ; 0xbc85f
 	farwritetext UnknownText_0xa4794
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 ; 0xbc866
 
 UnknownScript_0xbc866: ; 0xbc866
 	farwritetext UnknownText_0xa498a
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 ; 0xbc86d
 
 UnknownScript_0xbc86d: ; 0xbc86d
 	farwritetext UnknownText_0xa4b87
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 ; 0xbc874
 
 UnknownScript_0xbc874: ; 0xbc874
 	farwritetext UnknownText_0xa505f
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 ; 0xbc87b
 
 UnknownScript_0xbc87b: ; 0xbc87b
 	farwritetext UnknownText_0xa51ee
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 ; 0xbc882
 
 UnknownScript_0xbc882: ; 0xbc882
 	farwritetext UnknownText_0xa5412
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 ; 0xbc889
 
 UnknownScript_0xbc889: ; 0xbc889
 	farwritetext UnknownText_0xa56b6
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 ; 0xbc890
 
 UnknownScript_0xbc890: ; 0xbc890
 	farwritetext UnknownText_0xa5a5a
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 ; 0xbc897
 
 UnknownScript_0xbc897: ; 0xbc897
 	farwritetext UnknownText_0xa5cc5
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 ; 0xbc89e
 
 UnknownScript_0xbc89e: ; 0xbc89e
 	farwritetext UnknownText_0xa5ed6
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 ; 0xbc8a5
 
 UnknownScript_0xbc8a5: ; 0xbc8a5
 	farwritetext UnknownText_0xa60e2
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 ; 0xbc8ac
 
@@ -1484,141 +1486,141 @@ PhoneFullMScript: ; 0xbc8ac
 
 UnknownScript_0xbc8fe:
 	farwritetext UnknownText_0x1b0b42
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 ; 0xbc905
 
 UnknownScript_0xbc905: ; 0xbc905
 	farwritetext UnknownText_0x1b0ebc
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 ; 0xbc90c
 
 UnknownScript_0xbc90c: ; 0xbc90c
 	farwritetext UnknownText_0x1b11c4
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 ; 0xbc913
 
 UnknownScript_0xbc913: ; 0xbc913
 	farwritetext UnknownText_0x1b15b6
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 ; 0xbc91a
 
 UnknownScript_0xbc91a: ; 0xbc91a
 	farwritetext UnknownText_0x1b1936
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 ; 0xbc921
 
 UnknownScript_0xbc921: ; 0xbc921
 	farwritetext UnknownText_0x1b1c06
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 ; 0xbc928
 
 UnknownScript_0xbc928: ; 0xbc928
 	farwritetext UnknownText_0x1b1e50
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 ; 0xbc92f
 
 UnknownScript_0xbc92f: ; 0xbc92f
 	farwritetext UnknownText_0xa4158
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 ; 0xbc936
 
 UnknownScript_0xbc936: ; 0xbc936
 	farwritetext UnknownText_0xa434a
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 ; 0xbc93d
 
 UnknownScript_0xbc93d: ; 0xbc93d
 	farwritetext UnknownText_0xa47eb
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 ; 0xbc944
 
 UnknownScript_0xbc944: ; 0xbc944
 	farwritetext UnknownText_0xa49bd
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 ; 0xbc94b
 
 UnknownScript_0xbc94b: ; 0xbc94b
 	farwritetext UnknownText_0xa4bcd
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 ; 0xbc952
 
 UnknownScript_0xbc952: ; 0xbc952
 	farwritetext UnknownText_0xa508c
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 ; 0xbc959
 
 UnknownScript_0xbc959: ; 0xbc959
 	farwritetext UnknownText_0xa5216
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 ; 0xbc960
 
 UnknownScript_0xbc960: ; 0xbc960
 	farwritetext UnknownText_0xa5446
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 ; 0xbc967
 
 UnknownScript_0xbc967: ; 0xbc967
 	farwritetext UnknownText_0xa56e2
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 ; 0xbc96e
 
 UnknownScript_0xbc96e: ; 0xbc96e
 	farwritetext UnknownText_0xa5aa6
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 ; 0xbc975
 
 UnknownScript_0xbc975: ; 0xbc975
 	farwritetext UnknownText_0xa5cfa
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 ; 0xbc97c
 
 UnknownScript_0xbc97c: ; 0xbc97c
 	farwritetext UnknownText_0xa5f06
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 ; 0xbc983
 
 UnknownScript_0xbc983: ; 0xbc983
 	farwritetext UnknownText_0xa6144
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 ; 0xbc98a
 
@@ -1644,120 +1646,120 @@ RematchMScript: ; 0xbc98a
 
 UnknownScript_0xbc9d0:
 	farwritetext UnknownText_0x1b0b75
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 ; 0xbc9d7
 
 UnknownScript_0xbc9d7: ; 0xbc9d7
 	farwritetext UnknownText_0x1b0edc
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 ; 0xbc9de
 
 UnknownScript_0xbc9de: ; 0xbc9de
 	farwritetext UnknownText_0x1b11fe
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 ; 0xbc9e5
 
 UnknownScript_0xbc9e5: ; 0xbc9e5
 	farwritetext UnknownText_0x1b15d5
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 ; 0xbc9ec
 
 UnknownScript_0xbc9ec: ; 0xbc9ec
 	farwritetext UnknownText_0x1b1954
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 ; 0xbc9f3
 
 UnknownScript_0xbc9f3: ; 0xbc9f3
 	farwritetext UnknownText_0x1b1c32
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 ; 0xbc9fa
 
 UnknownScript_0xbc9fa: ; 0xbc9fa
 	farwritetext UnknownText_0x1b1e98
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 ; 0xbca01
 
 UnknownScript_0xbca01: ; 0xbca01
 	farwritetext UnknownText_0xa418d
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 ; 0xbca08
 
 UnknownScript_0xbca08: ; 0xbca08
 	farwritetext UnknownText_0xa4382
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 ; 0xbca0f
 
 UnknownScript_0xbca0f: ; 0xbca0f
 	farwritetext UnknownText_0xa49fc
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 ; 0xbca16
 
 UnknownScript_0xbca16: ; 0xbca16
 	farwritetext UnknownText_0xa4bec
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 ; 0xbca1d
 
 UnknownScript_0xbca1d: ; 0xbca1d
 	farwritetext UnknownText_0xa50b1
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 ; 0xbca24
 
 UnknownScript_0xbca24: ; 0xbca24
 	farwritetext UnknownText_0xa548c
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 ; 0xbca2b
 
 UnknownScript_0xbca2b: ; 0xbca2b
 	farwritetext UnknownText_0xa571e
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 ; 0xbca32
 
 UnknownScript_0xbca32: ; 0xbca32
 	farwritetext UnknownText_0xa5ada
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 ; 0xbca39
 
 UnknownScript_0xbca39: ; 0xbca39
 	farwritetext UnknownText_0xa5d1d
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 ; 0xbca40
 
 UnknownScript_0xbca40: ; 0xbca40
 	farwritetext UnknownText_0xa6175
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 ; 0xbca47
 
@@ -1773,43 +1775,43 @@ GiftMScript: ; 0xbca47
 
 UnknownScript_0xbca65:
 	farwritetext UnknownText_0x1b1607
-	keeptextopen
+	buttonsound
 	end
 ; 0xbca6b
 
 UnknownScript_0xbca6b: ; 0xbca6b
 	farwritetext UnknownText_0x1b1c57
-	keeptextopen
+	buttonsound
 	end
 ; 0xbca71
 
 UnknownScript_0xbca71: ; 0xbca71
 	farwritetext UnknownText_0xa4c24
-	keeptextopen
+	buttonsound
 	end
 ; 0xbca77
 
 UnknownScript_0xbca77: ; 0xbca77
 	farwritetext UnknownText_0xa523a
-	keeptextopen
+	buttonsound
 	end
 ; 0xbca7d
 
 UnknownScript_0xbca7d: ; 0xbca7d
 	farwritetext UnknownText_0xa54e3
-	keeptextopen
+	buttonsound
 	end
 ; 0xbca83
 
 UnknownScript_0xbca83: ; 0xbca83
 	farwritetext UnknownText_0xa5d4d
-	keeptextopen
+	buttonsound
 	end
 ; 0xbca89
 
 UnknownScript_0xbca89: ; 0xbca89
 	farwritetext UnknownText_0xa5f37
-	keeptextopen
+	buttonsound
 	end
 ; 0xbca8f
 
@@ -1829,78 +1831,78 @@ PackFullMScript: ; 0xbca8f
 
 UnknownScript_0xbcabd:
 	farwritetext UnknownText_0x1b0eff
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 ; 0xbcac4
 
 UnknownScript_0xbcac4: ; 0xbcac4
 	farwritetext UnknownText_0x1b164d
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 ; 0xbcacb
 
 UnknownScript_0xbcacb: ; 0xbcacb
 	farwritetext UnknownText_0x1b1978
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 ; 0xbcad2
 
 UnknownScript_0xbcad2: ; 0xbcad2
 	farwritetext UnknownText_0x1b1c91
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 ; 0xbcad9
 
 UnknownScript_0xbcad9: ; 0xbcad9
 	farwritetext UnknownText_0xa4c47
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 ; 0xbcae0
 
 UnknownScript_0xbcae0: ; 0xbcae0
 	farwritetext UnknownText_0xa52a0
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 ; 0xbcae7
 
 UnknownScript_0xbcae7: ; 0xbcae7
 	farwritetext UnknownText_0xa5513
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 ; 0xbcaee
 
 UnknownScript_0xbcaee: ; 0xbcaee
 	farwritetext UnknownText_0xa5aff
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 ; 0xbcaf5
 
 UnknownScript_0xbcaf5: ; 0xbcaf5
 	farwritetext UnknownText_0xa5d9a
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 ; 0xbcafc
 
 UnknownScript_0xbcafc: ; 0xbcafc
 	farwritetext UnknownText_0xa5faa
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 ; 0xbcb03
 
 UnknownScript_0xbcb03: ; 0xbcb03
 	farwritetext UnknownText_0xa61c9
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 ; 0xbcb0a
 
@@ -1914,25 +1916,25 @@ RematchGiftMScript: ; 0xbcb0a
 
 UnknownScript_0xbcb1d:
 	farwritetext UnknownText_0x1b0f2f
-	keeptextopen
+	buttonsound
 	end
 ; 0xbcb23
 
 UnknownScript_0xbcb23: ; 0xbcb23
 	farwritetext UnknownText_0x1b19be
-	keeptextopen
+	buttonsound
 	end
 ; 0xbcb29
 
 UnknownScript_0xbcb29: ; 0xbcb29
 	farwritetext UnknownText_0xa5b3f
-	keeptextopen
+	buttonsound
 	end
 ; 0xbcb2f
 
 UnknownScript_0xbcb2f: ; 0xbcb2f
 	farwritetext UnknownText_0xa6200
-	keeptextopen
+	buttonsound
 	end
 ; 0xbcb35
 
@@ -2041,8 +2043,8 @@ UnknownScript_0xbcbc4: ; 0xbcbc4
 RegisteredNumberFScript: ; 0xbcbc9
 	farwritetext UnknownText_0x1b09e1
 	playsound SFX_REGISTER_PHONE_NUMBER
-	waitbutton
-	keeptextopen
+	waitsfx
+	buttonsound
 	end
 ; 0xbcbd3
 
@@ -2059,57 +2061,57 @@ NumberAcceptedFScript: ; 0xbcbd3
 
 UnknownScript_0xbcbf5:
 	farwritetext UnknownText_0x1b0c9b
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 ; 0xbcbfc
 
 UnknownScript_0xbcbfc: ; 0xbcbfc
 	farwritetext UnknownText_0x1b1392
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 ; 0xbcc03
 
 UnknownScript_0xbcc03: ; 0xbcc03
 	farwritetext UnknownText_0x1b1755
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 ; 0xbcc0a
 
 UnknownScript_0xbcc0a: ; 0xbcc0a
 	farwritetext UnknownText_0x1b1faa
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 ; 0xbcc11
 
 UnknownScript_0xbcc11: ; 0xbcc11
 	farwritetext UnknownText_0xa451d
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 ; 0xbcc18
 
 UnknownScript_0xbcc18: ; 0xbcc18
 	farwritetext UnknownText_0xa4d72
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 ; 0xbcc1f
 
 UnknownScript_0xbcc1f: ; 0xbcc1f
 	farwritetext UnknownText_0xa5820
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 ; 0xbcc26
 
 UnknownScript_0xbcc26: ; 0xbcc26
 	farwritetext UnknownText_0xa6359
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 ; 0xbcc2d
 
@@ -2126,57 +2128,57 @@ NumberDeclinedFScript: ; 0xbcc2d
 
 UnknownScript_0xbcc4f:
 	farwritetext UnknownText_0x1b0ce0
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 ; 0xbcc56
 
 UnknownScript_0xbcc56: ; 0xbcc56
 	farwritetext UnknownText_0x1b13af
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 ; 0xbcc5d
 
 UnknownScript_0xbcc5d: ; 0xbcc5d
 	farwritetext UnknownText_0x1b178a
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 ; 0xbcc64
 
 UnknownScript_0xbcc64: ; 0xbcc64
 	farwritetext UnknownText_0x1b1fdd
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 ; 0xbcc6b
 
 UnknownScript_0xbcc6b: ; 0xbcc6b
 	farwritetext UnknownText_0xa4542
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 ; 0xbcc72
 
 UnknownScript_0xbcc72: ; 0xbcc72
 	farwritetext UnknownText_0xa4dcd
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 ; 0xbcc79
 
 UnknownScript_0xbcc79: ; 0xbcc79
 	farwritetext UnknownText_0xa5842
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 ; 0xbcc80
 
 UnknownScript_0xbcc80: ; 0xbcc80
 	farwritetext UnknownText_0xa638c
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 ; 0xbcc87
 
@@ -2193,57 +2195,57 @@ PhoneFullFScript: ; 0xbcc87
 
 UnknownScript_0xbcca9:
 	farwritetext UnknownText_0x1b0d0b
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 ; 0xbccb0
 
 UnknownScript_0xbccb0: ; 0xbccb0
 	farwritetext UnknownText_0x1b13e4
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 ; 0xbccb7
 
 UnknownScript_0xbccb7: ; 0xbccb7
 	farwritetext UnknownText_0x1b17ba
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 ; 0xbccbe
 
 UnknownScript_0xbccbe: ; 0xbccbe
 	farwritetext UnknownText_0x1b1ffa
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 ; 0xbccc5
 
 UnknownScript_0xbccc5: ; 0xbccc5
 	farwritetext UnknownText_0xa4573
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 ; 0xbcccc
 
 UnknownScript_0xbcccc: ; 0xbcccc
 	farwritetext UnknownText_0xa4e01
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 ; 0xbccd3
 
 UnknownScript_0xbccd3: ; 0xbccd3
 	farwritetext UnknownText_0xa5881
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 ; 0xbccda
 
 UnknownScript_0xbccda: ; 0xbccda
 	farwritetext UnknownText_0xa63cc
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 ; 0xbcce1
 
@@ -2259,50 +2261,50 @@ RematchFScript: ; 0xbcce1
 
 UnknownScript_0xbccff:
 	farwritetext UnknownText_0x1b1409
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 ; 0xbcd06
 
 UnknownScript_0xbcd06: ; 0xbcd06
 	farwritetext UnknownText_0x1b17de
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 ; 0xbcd0d
 
 UnknownScript_0xbcd0d: ; 0xbcd0d
 	farwritetext UnknownText_0x1b201f
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 ; 0xbcd14
 
 UnknownScript_0xbcd14: ; 0xbcd14
 	farwritetext UnknownText_0xa4595
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 ; 0xbcd1b
 
 UnknownScript_0xbcd1b: ; 0xbcd1b
 	farwritetext UnknownText_0xa4e21
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 ; 0xbcd22
 
 UnknownScript_0xbcd22: ; 0xbcd22
 	farwritetext UnknownText_0xa58a3
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 ; 0xbcd29
 
 UnknownScript_0xbcd29: ; 0xbcd29
 	farwritetext UnknownText_0xa63f1
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 ; 0xbcd30
 
@@ -2315,25 +2317,25 @@ GiftFScript: ; 0xbcd30
 
 UnknownScript_0xbcd42:
 	farwritetext UnknownText_0x1b0d2c
-	keeptextopen
+	buttonsound
 	end
 ; 0xbcd48
 
 UnknownScript_0xbcd48: ; 0xbcd48
 	farwritetext UnknownText_0xa45c9
-	keeptextopen
+	buttonsound
 	end
 ; 0xbcd4e
 
 UnknownScript_0xbcd4e: ; 0xbcd4e
 	farwritetext UnknownText_0xa4e4c
-	keeptextopen
+	buttonsound
 	end
 ; 0xbcd54
 
 UnknownScript_0xbcd54: ; 0xbcd54
 	farwritetext UnknownText_0xa58d5
-	keeptextopen
+	buttonsound
 	end
 ; 0xbcd5a
 
@@ -2347,36 +2349,36 @@ PackFullFScript: ; 0xbcd5a
 
 UnknownScript_0xbcd70:
 	farwritetext UnknownText_0x1b0d69
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 ; 0xbcd77
 
 UnknownScript_0xbcd77: ; 0xbcd77
 	farwritetext UnknownText_0xa4603
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 ; 0xbcd7e
 
 UnknownScript_0xbcd7e: ; 0xbcd7e
 	farwritetext UnknownText_0xa4e8f
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 ; 0xbcd85
 
 UnknownScript_0xbcd85: ; 0xbcd85
 	farwritetext UnknownText_0xa5914
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 ; 0xbcd8c
 
 UnknownScript_0xbcd8c: ; 0xbcd8c
 	farwritetext UnknownText_0xa6411
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 ; 0xbcd93
 
@@ -2387,7 +2389,7 @@ RematchGiftFScript: ; 0xbcd93
 .ok
 	loadfont
 	farwritetext UnknownText_0xa6454
-	keeptextopen
+	buttonsound
 	end
 ; 0xbcda0
 
@@ -2395,8 +2397,8 @@ GymStatue1Script: ; 0xbcda0
 	mapnametotext $0
 	loadfont
 	farwritetext UnknownText_0x1b074e
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 ; 0xbcdaa
 
@@ -2404,26 +2406,26 @@ GymStatue2Script: ; 0xbcdaa
 	mapnametotext $0
 	loadfont
 	farwritetext UnknownText_0x1b074e
-	keeptextopen
+	buttonsound
 	farwritetext UnknownText_0x1b075c
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 ; 0xbcdb9
 
 ReceiveItemScript: ; 0xbcdb9
-	waitbutton
+	waitsfx
 	farwritetext UnknownText_0x1b0648
 	playsound SFX_ITEM
-	waitbutton
+	waitsfx
 	end
 ; 0xbcdc3
 
 ReceiveTogepiEggScript: ; 0xbcdc3
-	waitbutton
+	waitsfx
 	farwritetext UnknownText_0x1b0648
 	playsound SFX_GET_EGG_FROM_DAYCARE_LADY
-	waitbutton
+	waitsfx
 	end
 ; 0xbcdcd
 
@@ -2431,12 +2433,12 @@ GameCornerCoinVendorScript: ; 0xbcdcd
 	faceplayer
 	loadfont
 	farwritetext UnknownText_0x1b077f
-	keeptextopen
+	buttonsound
 	checkitem COIN_CASE
 	iftrue UnknownScript_0xbcde0
 	farwritetext UnknownText_0x1b079c
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 ; 0xbcde0
 
@@ -2460,10 +2462,10 @@ UnknownScript_0xbcdf7: ; 0xbcdf7
 	if_equal $2, UnknownScript_0xbce3f
 	givecoins 50
 	takemoney $0, 1000
-	waitbutton
+	waitsfx
 	playsound SFX_TRANSACTION
 	farwritetext UnknownText_0x1b0830
-	closetext
+	waitbutton
 	jump UnknownScript_0xbcde4
 ; 0xbce1b
 
@@ -2474,31 +2476,31 @@ UnknownScript_0xbce1b: ; 0xbce1b
 	if_equal $2, UnknownScript_0xbce3f
 	givecoins 500
 	takemoney $0, 10000
-	waitbutton
+	waitsfx
 	playsound SFX_TRANSACTION
 	farwritetext UnknownText_0x1b084f
-	closetext
+	waitbutton
 	jump UnknownScript_0xbcde4
 ; 0xbce3f
 
 UnknownScript_0xbce3f: ; 0xbce3f
 	farwritetext UnknownText_0x1b086f
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 ; 0xbce46
 
 UnknownScript_0xbce46: ; 0xbce46
 	farwritetext UnknownText_0x1b088c
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 ; 0xbce4d
 
 UnknownScript_0xbce4d: ; 0xbce4d
 	farwritetext UnknownText_0x1b08ad
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 ; 0xbce54
 
@@ -2527,22 +2529,22 @@ HappinessCheckScript: ; 0xbce7f
 	if_less_than 50, UnknownScript_0xbce9a
 	if_less_than 150, UnknownScript_0xbce93
 	farwritetext UnknownText_0x1b092a
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 ; 0xbce93
 
 UnknownScript_0xbce93: ; 0xbce93
 	farwritetext UnknownText_0x1b0954
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 ; 0xbce9a
 
 UnknownScript_0xbce9a: ; 0xbce9a
 	farwritetext UnknownText_0x1b0989
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 ; 0xbcea1
 
