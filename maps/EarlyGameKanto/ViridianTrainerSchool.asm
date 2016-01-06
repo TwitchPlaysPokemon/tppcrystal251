@@ -70,14 +70,46 @@ ViridianTrainerSchoolRBBlackboardScript:
 ; 0x68af2
 
 .Strings
-	db "PSN@"
-	db "PAR@"
-	db "SLP@"
-	db "BRN@"
-	db "FRZ@"
-	db "QUIT@"
+	db "PSN"
+	done
+	db "PAR"
+	done
+	db "SLP"
+	done
+	db "BRN"
+	done
+	db "FRZ"
+	done
+	db "QUIT"
+	done
 ; 0x68b0b
 
+ViridianTrainerSchoolRB_NotebookScript
+	loadfont
+	writetext _ViridianSchoolNotebookText1
+	buttonsound
+	writetext _TurnPageText
+	yesorno
+	iffalse .quit
+	writetext _ViridianSchoolNotebookText2
+	buttonsound
+	writetext _TurnPageText
+	yesorno
+	iffalse .quit
+	writetext _ViridianSchoolNotebookText3
+	buttonsound
+	writetext _TurnPageText
+	yesorno
+	iffalse .quit
+	writetext _ViridianSchoolNotebookText4
+	buttonsound
+	waitsfx
+	spriteface $2, UP
+	writetext _ViridianSchoolNotebookText5
+	waitbutton
+.quit
+	closetext
+	end
 
 _SchoolText1:
 	text "Whew! I'm trying"
@@ -168,6 +200,76 @@ _ViridianBlackboardFrozenText:
 	line "thaw out #MON!"
 	done
 
+_TurnPageText:
+	text "Turn the page?"
+	done
+
+_ViridianSchoolNotebookText5:
+	text "GIRL: Hey! Don't"
+	line "look at my notes!"
+	done
+
+_ViridianSchoolNotebookText1:
+	text "Looked at the"
+	line "notebook!"
+
+	para "First page..."
+
+	para "# BALLs are"
+	line "used to catch"
+	cont "#MON."
+
+	para "Up to 6 #MON"
+	line "can be carried."
+
+	para "People who raise"
+	line "and make #MON"
+	cont "fight are called"
+	cont "#MON trainers."
+	done
+
+_ViridianSchoolNotebookText2:
+	text "Second page..."
+
+	para "A healthy #MON"
+	line "may be hard to"
+	cont "catch, so weaken"
+	cont "it first!"
+
+	para "Poison, burns and"
+	line "other damage are"
+	cont "effective!"
+	done
+
+_ViridianSchoolNotebookText3:
+	text "Third page..."
+
+	para "#MON trainers"
+	line "seek others to"
+	cont "engage in #MON"
+	cont "fights."
+
+	para "Battles are"
+	line "constantly fought"
+	cont "at #MON GYMs."
+	done
+
+_ViridianSchoolNotebookText4:
+	text "Fourth page..."
+
+	para "The goal for"
+	line "#MON trainers"
+	cont "is to beat the "
+	cont "top 8 #MON"
+	cont "GYM LEADERs."
+
+	para "Do so to earn the"
+	line "right to face..."
+
+	para "The ELITE FOUR of"
+	line "#MON LEAGUE!"
+	done
+
 
 ViridianTrainerSchoolRB_MapEventHeader:
 	db 0, 0
@@ -180,8 +282,9 @@ ViridianTrainerSchoolRB_MapEventHeader:
 	db 0
 
 	; signposts
-	db 1
+	db 2
 	signpost 0, 3, $0, ViridianTrainerSchoolRBBlackboardScript
+	signpost 4, 3, $0, ViridianTrainerSchoolRB_NotebookScript
 
 	; people-events
 	db 2
