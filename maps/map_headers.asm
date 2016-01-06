@@ -29,6 +29,8 @@ MapGroupPointers:: ; 0x94000
 	dw MapGroup26
 	dw MapGroup27
 	dw MapGroup28
+	dw MapGroup29
+	dw MapGroup30
 
 
 MapGroup1:
@@ -315,13 +317,6 @@ MapGroup13:
 	map_header RedsHouse2F, $6, 3, PALLET_TOWN, MUSIC_PALLET_TOWN, 0, 1, 1
 	map_header BluesHouse, $5, 3, PALLET_TOWN, MUSIC_PALLET_TOWN, 0, 1, 1
 	map_header OaksLab, $a, 3, PALLET_TOWN, MUSIC_POKEMON_TALK, 0, 1, 1
-	map_header Route1RB, $3, 2, ROUTE_1, MUSIC_ROUTE_1, 0, 0, 1
-	map_header PalletTownRB, $3, 1, PALLET_TOWN, MUSIC_PALLET_TOWN, 0, 0, 2
-	map_header RedsHouse1FRB, $6, 3, PALLET_TOWN, MUSIC_PALLET_TOWN, 0, 1, 1
-	map_header RedsHouse2FRB, $6, 3, PALLET_TOWN, MUSIC_PALLET_TOWN, 0, 1, 1
-	map_header BluesHouseRB, $5, 3, PALLET_TOWN, MUSIC_PALLET_TOWN, 0, 1, 1
-	map_header OaksLabRB, $a, 3, PALLET_TOWN, MUSIC_POKEMON_TALK, 0, 1, 1
-
 
 MapGroup14:
 	map_header Route3, $3, 2, ROUTE_3, MUSIC_ROUTE_3, 0, 0, 1
@@ -472,16 +467,6 @@ MapGroup23:
 	map_header Route2Gate, $8, 6, ROUTE_2, MUSIC_ROUTE_1, 0, 1, 1
 	map_header VictoryRoadGate, $8, 6, ROUTE_26, MUSIC_INDIGO_PLATEAU, 0, 1, 1
 
-; Uncomment these once the map scripts have been written.
-	map_header Route2RB, $3, 2, ROUTE_2, MUSIC_ROUTE_1, 0, 0, 1
-	map_header Route22RB, $3, 2, ROUTE_22, MUSIC_ROUTE_3, 0, 0, 4
-	map_header ViridianCityRB, $3, 1, VIRIDIAN_CITY, MUSIC_VIRIDIAN_CITY, 0, 0, 4
-	map_header ViridianMartRB, $c, 3, VIRIDIAN_CITY, MUSIC_MART, 0, 1, 1
-	map_header ViridianPokeCenter1FRB, $7, 3, VIRIDIAN_CITY, MUSIC_POKEMON_CENTER, 0, 1, 1
-	map_header ViridianNicknameSpeechHouseRB, $5, 3, VIRIDIAN_CITY, MUSIC_VIRIDIAN_CITY, 0, 1, 1
-	map_header ViridianTrainerSchoolRB, $5, 3, VIRIDIAN_CITY, MUSIC_VIRIDIAN_CITY, 0, 1, 1
-	map_header VictoryRoadGateRB, $8, 6, ROUTE_22, MUSIC_ROUTE_2, 0, 1, 1
-
 MapGroup24:
 	map_header Route26, $1, 2, ROUTE_26, MUSIC_ROUTE_26, 0, 0, 2
 	map_header Route27, $1, 2, ROUTE_27, MUSIC_ROUTE_26, 0, 0, 2
@@ -577,3 +562,22 @@ MapGroup28:
 	map_header CeladonDeptStoreB1F, $c, 3, CELADON_CITY, MUSIC_MART, 0, 1, 1
 	map_header SilverCaveDreamRoom, $18, 3, SILVER_CAVE, MUSIC_NONE, 1, 1, 3
 	map_header DummyBlankMap, $c, 0, 0, MUSIC_NONE, 1, 4, 0
+
+MapGroup29:
+	map_header Route1RB, $3, 2, ROUTE_1, MUSIC_ROUTE_1, 0, 0, 1
+	map_header PalletTownRB, $3, 1, PALLET_TOWN, MUSIC_PALLET_TOWN, 0, 0, 2
+	map_header RedsHouse1FRB, $6, 3, PALLET_TOWN, MUSIC_PALLET_TOWN, 0, 1, 1
+	map_header RedsHouse2FRB, $6, 3, PALLET_TOWN, MUSIC_PALLET_TOWN, 0, 1, 1
+	map_header BluesHouseRB, $5, 3, PALLET_TOWN, MUSIC_PALLET_TOWN, 0, 1, 1
+	map_header OaksLabRB, $a, 3, PALLET_TOWN, MUSIC_POKEMON_TALK, 0, 1, 1
+
+MapGroup30:
+	map_header Route2RB, $3, 2, ROUTE_2, MUSIC_ROUTE_1, 0, 0, 1
+	map_header Route22RB, $3, 2, ROUTE_22, MUSIC_ROUTE_3, 0, 0, 4
+	map_header ViridianCityRB, $3, 1, VIRIDIAN_CITY, MUSIC_VIRIDIAN_CITY, 0, 0, 4
+	map_header ViridianMartRB, $c, 3, VIRIDIAN_CITY, MUSIC_MART, 0, 1, 1
+	map_header ViridianPokeCenter1FRB, $7, 3, VIRIDIAN_CITY, MUSIC_POKEMON_CENTER, 0, 1, 1
+	map_header ViridianNicknameSpeechHouseRB, $5, 3, VIRIDIAN_CITY, MUSIC_VIRIDIAN_CITY, 0, 1, 1
+	map_header ViridianTrainerSchoolRB, $5, 3, VIRIDIAN_CITY, MUSIC_VIRIDIAN_CITY, 0, 1, 1
+	map_header VictoryRoadGateRB, $8, 6, ROUTE_22, MUSIC_ROUTE_2, 0, 1, 1
+

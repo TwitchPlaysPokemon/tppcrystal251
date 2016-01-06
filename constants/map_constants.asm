@@ -287,13 +287,6 @@ MAP_N_A   EQU -1
 	mapgroup REDS_HOUSE_2F, 4, 4
 	mapgroup BLUES_HOUSE, 4, 4
 	mapgroup OAKS_LAB, 6, 5
-; RB
-	mapgroup ROUTE_1_RB, 18, 10
-	mapgroup PALLET_TOWN_RB, 9, 10
-	mapgroup REDS_HOUSE_1F_RB, 4, 4
-	mapgroup REDS_HOUSE_2F_RB, 4, 4
-	mapgroup BLUES_HOUSE_RB, 4, 4
-	mapgroup OAKS_LAB_RB, 6, 5
 
 	newgroup ; Pewter City Roofs
 	mapgroup ROUTE_3, 9, 30
@@ -445,15 +438,6 @@ MAP_N_A   EQU -1
 	mapgroup ROUTE_2_NUGGET_SPEECH_HOUSE, 4, 4
 	mapgroup ROUTE_2_GATE, 4, 5
 	mapgroup VICTORY_ROAD_GATE, 9, 10
-; RB
-	mapgroup ROUTE_2_RB, 36, 10
-	mapgroup ROUTE_22_RB, 9, 20
-	mapgroup VIRIDIAN_CITY_RB, 18, 20
-	mapgroup VIRIDIAN_MART_RB, 4, 6
-	mapgroup VIRIDIAN_POKECENTER_1F_RB, 4, 5
-	mapgroup VIRIDIAN_NICKNAME_SPEECH_HOUSE_RB, 4, 4
-	mapgroup VIRIDIAN_TRAINER_SCHOOL_RB, 4, 4
-	mapgroup VICTORY_ROAD_GATE_RB, 4, 5
 
 	newgroup ; New Bark Town
 	mapgroup ROUTE_26, 54, 10
@@ -556,6 +540,24 @@ MAP_N_A   EQU -1
 	mapgroup CELADON_DEPT_STORE_B1F, 4, 8
 	mapgroup SILVER_CAVE_DREAM_ROOM, 18, 10
 	mapgroup DUMMY_BLANK_MAP, 1, 1
+
+	newgroup
+	mapgroup ROUTE_1_RB, 18, 10
+	mapgroup PALLET_TOWN_RB, 9, 10
+	mapgroup REDS_HOUSE_1F_RB, 4, 4
+	mapgroup REDS_HOUSE_2F_RB, 4, 4
+	mapgroup BLUES_HOUSE_RB, 4, 4
+	mapgroup OAKS_LAB_RB, 6, 5
+
+	newgroup
+	mapgroup ROUTE_2_RB, 36, 10
+	mapgroup ROUTE_22_RB, 9, 20
+	mapgroup VIRIDIAN_CITY_RB, 18, 20
+	mapgroup VIRIDIAN_MART_RB, 4, 6
+	mapgroup VIRIDIAN_POKECENTER_1F_RB, 4, 5
+	mapgroup VIRIDIAN_NICKNAME_SPEECH_HOUSE_RB, 4, 4
+	mapgroup VIRIDIAN_TRAINER_SCHOOL_RB, 4, 4
+	mapgroup VICTORY_ROAD_GATE_RB, 4, 5
 
 ; elevator floors
 	const_def

@@ -289,6 +289,9 @@ Function401ae: ; 401ae (10:41ae)
 	ret
 
 .select
+	ld a, [StatusFlags]
+	bit 5, a
+	ret z
 	call Function41401
 	ld a, $7
 	ld [wcf63], a
@@ -1101,9 +1104,13 @@ Function4074c: ; 4074c (10:474c)
 	hlcoord 5, 15
 	ld bc, $103
 	call PrintNum
+	ld a, [StatusFlags]
+	bit 5, a
+	jr z, .skip
 	hlcoord 1, 17
 	ld de, Unknown_407ea
 	call Function40acd
+.skip
 	hlcoord 8, 1
 	ld b, $7
 	ld a, $5a
