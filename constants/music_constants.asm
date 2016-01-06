@@ -117,6 +117,5 @@
 	const MUSIC_RIVAL_RB                     ; 70
 	const MUSIC_RIVAL_AFTER_RB               ; 71
 	const MUSIC_RIVAL_BATTLE_RB              ; 72
-	const MUSIC_TPP_TITLE                    ; 74
 	const MUSIC_VS_WCS                       ; 73
 MUSIC_MAHOGANY_MART EQU $64

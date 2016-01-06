@@ -130,3 +130,4 @@
 	dba Music_RivalRB
 	dba Music_RivalAfterRB
 	dba Music_RivalBattle ; placeholder
+	dba Music_KantoGymBattle ; placeholder
