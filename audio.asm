@@ -169,7 +169,7 @@ CryHeaders:: INCLUDE "audio/cry_headers.asm"
 
 INCLUDE "audio/cries.asm"
 
-SECTION "TPP Songs", ROMX, BANK[TPP_SONGS]
+SECTION "TPP Songs", ROMX
 INCLUDE "audio/music/custom/ceruleanGSC.asm" 
 INCLUDE "audio/music/custom/cinnabarGSC.asm"
 INCLUDE "audio/music/custom/nuggetbridge.asm"
@@ -180,5 +180,7 @@ INCLUDE "audio/music/custom/kantolegend.asm"
 INCLUDE "audio/music/custom/dppt_gamecorner.asm"
 INCLUDE "audio/music/custom/leech.asm"
 INCLUDE "audio/music/custom/meetrival.asm"
-; INCLUDE "audio/music/custom/hoennwild.asm"
 INCLUDE "audio/music/titlescreen.asm"
+
+SECTION "TPP Songs 2", ROMX
+INCLUDE "audio/music/custom/trainerbattle.asm"

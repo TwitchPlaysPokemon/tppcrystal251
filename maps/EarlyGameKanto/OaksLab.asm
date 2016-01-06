@@ -329,17 +329,17 @@ OakScript_OaksLabRB:
 	checkcode VAR_FACING
 	if_equal UP, .rivalwalksfivesteps
 	if_equal DOWN, .rivalwalksthreesteps
-	moveperson $6, 6, 7
+	moveperson $6, 4, 7
 	appear $6
 	applymovement $6, Movement_RivalTakesFourStepsUp
 	jump .continuewithdex
 .rivalwalksthreesteps
-	moveperson $6, 6, 6
+	moveperson $6, 4, 6
 	appear $6
 	applymovement $6, Movement_RivalTakesThreeStepsUp
 	jump .continuewithdex
 .rivalwalksfivesteps
-	moveperson $6, 6, 8
+	moveperson $6, 4, 8
 	appear $6
 	applymovement $6, Movement_RivalTakesFiveStepsUp
 .continuewithdex
