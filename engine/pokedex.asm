@@ -1136,9 +1136,9 @@ Unknown_407e1: ; 407e1
 Unknown_407e6: ; 407e6
 	db "OWN", $ff
 Unknown_407ea: ; 407ea
-	db $3b, $48, $49, $4a, $44, $45, $46, $47 ; SELECT > OPTION
+	db $3b, $48, $49, $4a, $44, $45, $46, $47, $3c ; SELECT > OPTION
 Unknown_407f2: ; 407f2
-	db $3c, $3b, $41, $42, $43, $4b, $4c, $4d, $4e, $3c, $ff ; START > SEARCH
+	db $3b, $41, $42, $43, $4b, $4c, $4d, $4e, $3c, $ff ; START > SEARCH
 ; 407fd
 
 Function407fd: ; 407fd

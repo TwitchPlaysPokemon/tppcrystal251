@@ -5,23 +5,13 @@ Route22RB_MapScriptHeader:
 	dw .Trigger1, 0
 
 	; callback count
-	db 1
-	dbw 1, .CheckRival
+	db 0
 
 .Trigger0
 	end
 
 .Trigger1
 	end
-
-.CheckRival
-	checktriggers
-	iffalse .disappear
-	appear $2
-	return
-.disappear
-	disappear $2
-	return
 
 Route22RBRivalBattleTriggerBottom:
 	playmusic MUSIC_RIVAL_RB
@@ -64,8 +54,11 @@ Route22RBRivalBattle:
 	loadtrainer BLUE_RB, BLUE_RB_2B
 .StartBattle
 	winlosstext _Route22RivalDefeatedText1, _Route22RivalLossText
+	writecode VAR_BATTLETYPE, BATTLETYPE_CANLOSE
 	startbattle
+	reloadmapmusic
 	returnafterbattle
+	playmapmusic
 	loadfont
 	writetext _Route22RivalAfterBattleText1
 	waitbutton
