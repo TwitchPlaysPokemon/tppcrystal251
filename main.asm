@@ -75981,7 +75981,7 @@ GetTreeMon: ; b83e5
 	ld a, 10 ;set all tees to have a 80% encounter chance, with some optimisation
 	call RandomRange
 	cp 8
-	jr nc, NoTreeMon
+	jr nc, NoTreeMon_PopHL
 	call GetTreeScore ; a = 0 if bad(50% chance), 1 if good (40% chance) and 2 if rare (10% chance)
 	pop hl
 		;and a
@@ -76048,6 +76048,8 @@ SelectTreeMon: ; b841f
 	scf
 	ret
 
+NoTreeMon_PopHL:
+	pop hl
 NoTreeMon: ; b843b
 	xor a
 	ld [wd22e], a
