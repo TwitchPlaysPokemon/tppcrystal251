@@ -51,9 +51,9 @@ VermilionCitySimonScript1:
 	closetext
 	applymovement $8, VermilionCitySimonMovement2
 	pause 10
-	playsound SFX_RAIN_DANCE
 	disappear $8
-	pause 20
+	playsound SFX_RAIN_DANCE
+	waitsfx
 	special DeleteSavedMusic
 	playmapmusic
 	dotrigger $1

@@ -100,7 +100,7 @@ UnknownScript_0x196ec9: ; 0x196ec9
 	writetext UnknownText_0x1973cc
 	playsound SFX_ITEM
 	waitsfx
-	setflag ENGINE_POKEDEX
+	setflag ENGINE_DEX_UPGRADED
 	writetext UnknownText_0x1973de
 	waitbutton
 	closetext

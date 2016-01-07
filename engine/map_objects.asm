@@ -238,42 +238,24 @@ Function444d: ; 444d
 ; 445f
 
 Pointers445f: ; 445f
-	dw Function44a3
-	dw Function44a3
-	dw Function44b5
-	dw Function44aa
-	dw Function44c1
-	dw Function44aa
-	dw Function4508
-	dw Function44aa
-	dw Function4529
-	dw Function44aa
-	dw Function4539
-	dw Function44a3
-	dw Function456e
-	dw Function456e
-	dw Function457b
-	dw Function44a3
-	dw Function4582
-	dw Function4582
-	dw Function4589
-	dw Function4589
-	dw Function4590
-	dw Function45a4
-	dw Function45ab
-	dw Function44aa
-	dw Function45be
-	dw Function45be
-	dw Function45c5
-	dw Function45c5
-	dw Function45da
-	dw Function44a3
-	dw Function45ed
-	dw Function44a3
-	dw Function44e4
-	dw Function44aa
-	dw Function4590_2
-	dw Function45a4_2
+	dw Function44a3, Function44a3
+	dw Function44b5, Function44aa
+	dw Function44c1, Function44aa
+	dw Function4508, Function44aa
+	dw Function4529, Function44aa
+	dw Function4539, Function44a3
+	dw Function456e, Function456e
+	dw Function457b, Function44a3
+	dw Function4582, Function4582
+	dw Function4589, Function4589
+	dw Function4590, Function45a4
+	dw Function45ab, Function44aa
+	dw Function45be, Function45be
+	dw Function45c5, Function45c5
+	dw Function45da, Function44a3
+	dw Function45ed, Function44a3
+	dw Function44e4, Function44aa
+	dw Function4590_2, Function45a4_2
 ; 44a3
 
 Function44a3: ; 44a3

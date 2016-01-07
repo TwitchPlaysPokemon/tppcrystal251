@@ -33664,6 +33664,14 @@ Function29ff8: ; 29ff8
 	ld [wd25d], a ; load zero if no water encounters, otherwise load water encounter chance
 	ret
 
+GetKantoWildMonsPointer:
+	ld hl, StatusFlags
+	bit 5, [hl]
+	ld hl, WildMons3
+	ret nz
+	ld hl, WildMonsEGK
+	ret
+
 Function2a4ab: ; 2a4ab seems to be a function to get a local mon to use in call text
 	callba Function90439
 	ld d, b
@@ -33673,7 +33681,7 @@ Function2a4ab: ; 2a4ab seems to be a function to get a local mon to use in call 
 	ld bc, $35 ; 53
 	call Function2a288 ;load current maps place in land wild tables into hl
 	jr c, .asm_2a4c6 ; if succsessful, jump. otherwise try kanto
-	ld hl, WildMons3
+	call GetKantoWildMonsPointer
 	call Function2a288
 	jr nc, .asm_2a514 ; if succsessful, fall through, otherwise ret scriptvar = 1
 .asm_2a4c6 
@@ -33737,7 +33745,7 @@ Function2a51f: ; 2a51f
 		ld bc, $35 
 	call Function2a288
 	jr c, .asm_2a538
-	ld hl, WildMons3
+	call GetKantoWildMonsPointer
 	call Function2a288
 .asm_2a538
 	ld bc, $0005 ;only goes up 5 instead of 13
@@ -33787,7 +33795,7 @@ Function2a01f: ; 2a01f ;fill tilemap with tiles from the locations of mon wd625
 
 .skip
 	ld de, TileMap
-	ld hl, WildMons3
+	call GetKantoWildMonsPointer
 	call Function2a052
 	ld hl, WildMons4
 	jp Function2a052 
@@ -34165,8 +34173,10 @@ Function2a205: ; 2a205
 	ld bc, $0035 ; 53, set for size of areas when skipping, changed to new size
 	call asm_2a23d ; check for swarms
 	ret c ;return if a swarm
+	call GetKantoWildMonsPointer
+	ld d, h
+	ld e, l
 	ld hl, WildMons1
-	ld de, WildMons3
 	call asm_2a235 ;if johto keep same, if kanto load de into hl
 		;ld bc, $002f
 	ld bc, $0035 ; 53
@@ -34412,6 +34422,9 @@ INCLUDE "data/wild/swarm_grass.asm"
 
 WildMons6: ; 0x2b92f
 INCLUDE "data/wild/swarm_water.asm"
+
+WildMonsEGK:
+INCLUDE "data/wild/egk_grass.asm"
 
 SECTION "bankB", ROMX, BANK[$B]
 

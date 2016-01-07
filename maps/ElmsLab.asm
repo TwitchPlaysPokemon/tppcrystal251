@@ -363,7 +363,6 @@ ElmAfterTheftScript: ; 0x78da2
 	writetext ElmAfterTheftText5
 	buttonsound
 	setevent EVENT_GAVE_MYSTERY_EGG_TO_ELM
-	setflag ENGINE_BUG_CONTEST_ON
 	domaptrigger GROUP_ROUTE_29, MAP_ROUTE_29, $1
 	clearevent EVENT_YOUNGSTER_JOEY_ON_ROUTE_30
 	setevent EVENT_YOUNGSTERS_BATTLE_ON_ROUTE_30
