@@ -484,7 +484,7 @@ Function1a2f:: ; 1a2f
 	ld hl, $0003
 	add hl, bc
 	ld a, [hl]
-	cp $25
+	cp $26
 	jr c, .asm_1a39
 	xor a
 

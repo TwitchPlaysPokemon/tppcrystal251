@@ -40,6 +40,7 @@ Data4273:: ; 4273
 	db $1b, $00, $0f, $8e, $02, $00
 	db $03, $00, $01, $00, $00, $20
 	db $00, $00, $01, $00, $00, $00
+	db $16, $00, $11, $2e, $00, $00
 ; 4357
 
 
@@ -271,6 +272,8 @@ Pointers445f: ; 445f
 	dw Function44a3
 	dw Function44e4
 	dw Function44aa
+	dw Function4590_2
+	dw Function45a4_2
 ; 44a3
 
 Function44a3: ; 44a3
@@ -481,6 +484,26 @@ Function45a4: ; 45a4
 	ld [hl], $0
 	ret
 ; 45ab
+
+Function4590_2:
+	ld hl, OBJECT_12
+	add hl, bc
+	ld a, [hl]
+	inc a
+	and $f
+	ld [hl], a
+	and $8
+	jr z, Function45a4_2
+	ld hl, OBJECT_FACING
+	add hl, bc
+	ld [hl], 27
+	ret
+
+Function45a4_2:
+	ld hl, OBJECT_FACING
+	add hl, bc
+	ld [hl], 32
+	ret
 
 Function45ab: ; 45ab
 	ld hl, OBJECT_12

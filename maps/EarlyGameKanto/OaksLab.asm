@@ -361,6 +361,7 @@ OakScript_OaksLabRB:
 	clearevent EVENT_VIRIDIAN_CITY_RB_OLD_MAN_WALKING_ABOUT
 	domaptrigger GROUP_ROUTE_22_RB, MAP_ROUTE_22_RB, $1
 	domaptrigger GROUP_VIRIDIAN_CITY_RB, MAP_VIRIDIAN_CITY_RB, $1
+	clearevent EVENT_RIVAL_ROUTE_22_RB
 	playsound SFX_KEY_ITEM
 	waitsfx
 	writetext _OaksLabText26

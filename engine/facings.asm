@@ -31,6 +31,7 @@ Facings: ; 4049
 	dw Facing29
 	dw Facing30
 	dw Facing31
+	dw Facing32
 FacingsEnd: dw 0
 
 NUM_FACINGS EQU (FacingsEnd - Facings) / 2
@@ -267,3 +268,11 @@ Facing31: ; 426a
 	db  9,  9, 4 | X_FLIP, $fe
 ; 4273
 
+Facing32:
+	db 4 ; #
+	db  0,  8, X_FLIP, $00
+	db  0,  0, X_FLIP, $01
+	db  8,  8, X_FLIP, $02
+	db  8,  0, X_FLIP, $03
+
+	

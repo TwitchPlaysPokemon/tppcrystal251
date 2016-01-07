@@ -2413,7 +2413,8 @@ PoisonStepCount:: ; dc74
 wdc77:: ds 2
 wdc79:: ds 1
 wdc7a:: ds 2
-wdc7c:: ds 33
+wPhoneList:: ds 10
+	ds 23
 wdc9d:: ds 2
 wdc9f:: ds 1
 wdca0:: ds 1

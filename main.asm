@@ -258,6 +258,8 @@ ENDC
 	ld [hl], 2300 / $100 % $100
 	inc hl
 	ld [hl], 2300 % $100
+	ld a, 1
+	ld [wd959], a
 	call Function5ce9
 	callba Function26751
 	callba Function44765
@@ -17013,6 +17015,8 @@ OutdoorSprites: ; 144b8
 	dw Group26Sprites
 	dw Group27Sprites
 	dw Group28Sprites
+	dw Group29Sprites
+	dw Group30Sprites
 ; 144ec
 
 Group1Sprites: ; 146a1
@@ -17347,7 +17351,7 @@ Group13Sprites: ; 144ec
 	db SPRITE_TEACHER
 	db SPRITE_FISHER
 	db SPRITE_YOUNGSTER
-	db SPRITE_OAK
+	db SPRITE_BLUE
 	db SPRITE_GRAMPS
 	db SPRITE_BUG_CATCHER
 	db SPRITE_COOLTRAINER_F
@@ -17704,6 +17708,58 @@ Group28Sprites:
 	db SPRITE_BIRD
 	db SPRITE_PHARMACIST
 	db SPRITE_SUPER_NERD
+
+Group29Sprites: ; 144ec
+	db SPRITE_SUICUNE
+	db SPRITE_SILVER_TROPHY
+	db SPRITE_FAMICOM
+	db SPRITE_POKEDEX
+	db SPRITE_WILL
+	db SPRITE_KAREN
+	db SPRITE_NURSE
+	db SPRITE_SIDEWAYS_GRAMPS
+	db SPRITE_BIG_LAPRAS
+	db SPRITE_BIG_ONIX
+	db SPRITE_SUDOWOODO
+	db SPRITE_BIG_SNORLAX
+	db SPRITE_TEACHER
+	db SPRITE_FISHER
+	db SPRITE_YOUNGSTER
+	db SPRITE_BLUE
+	db SPRITE_GRAMPS
+	db SPRITE_BUG_CATCHER
+	db SPRITE_COOLTRAINER_F
+	db SPRITE_OAK
+	db SPRITE_SWIMMER_GUY
+	db SPRITE_POKE_BALL
+	db SPRITE_FRUIT_TREE ; 23
+
+Group30Sprites: ; 144ec
+	db SPRITE_SUICUNE
+	db SPRITE_SILVER_TROPHY
+	db SPRITE_FAMICOM
+	db SPRITE_POKEDEX
+	db SPRITE_WILL
+	db SPRITE_KAREN
+	db SPRITE_NURSE
+	db SPRITE_SIDEWAYS_GRAMPS
+	db SPRITE_BIG_LAPRAS
+	db SPRITE_BIG_ONIX
+	db SPRITE_SUDOWOODO
+	db SPRITE_BIG_SNORLAX
+	db SPRITE_TEACHER
+	db SPRITE_FISHER
+	db SPRITE_YOUNGSTER
+	db SPRITE_BLUE
+	db SPRITE_GRAMPS
+	db SPRITE_BUG_CATCHER
+	db SPRITE_COOLTRAINER_F
+	db SPRITE_OAK
+	db SPRITE_SWIMMER_GUY
+	db SPRITE_POKE_BALL
+	db SPRITE_FRUIT_TREE ; 23
+; 14503
+
 SpriteHeaders: ; 14736
 INCLUDE "gfx/overworld/sprite_headers.asm"
 ; 1499a
@@ -68060,7 +68116,7 @@ Function90019:: ; 90019
 ; 9001c
 
 Function9001c: ; 9001c
-	ld hl, wdc7c
+	ld hl, wPhoneList
 	ld b, $a
 .asm_90021
 	ld a, [hli]
@@ -68080,7 +68136,7 @@ Function9001c: ; 9001c
 Function9002d: ; 9002d
 	call Function90040
 	ld b, a
-	ld hl, wdc7c
+	ld hl, wPhoneList
 .asm_90034
 	ld a, [hli]
 	and a
@@ -68220,7 +68276,7 @@ Function900de: ; 900de (24:40de)
 	ld bc, $b
 	xor a
 	call ByteFill
-	ld de, wdc7c
+	ld de, wPhoneList
 	ld a, $a
 .asm_900f7
 	ld [wd03f], a
@@ -70529,7 +70585,7 @@ Function91171: ; 91171 (24:5171)
 	ret
 
 .a
-	ld hl, wdc7c
+	ld hl, wPhoneList
 	ld a, [wc6d2]
 	ld e, a
 	ld d, 0
@@ -70714,7 +70770,7 @@ Function912d8: ; 912d8 (24:52d8)
 	ld a, [wc6d2] 
 	ld e, a
 	ld d, $0
-	ld hl, wdc7c
+	ld hl, wPhoneList
 	add hl, de
 	xor a
 	ld [wc6d0], a 
@@ -70742,7 +70798,7 @@ Function912d8: ; 912d8 (24:52d8)
 ; 9131e (24:531e)
 
 Function9131e: ; 9131e
-	ld hl, wdc7c
+	ld hl, wPhoneList
 	ld a, [wc6d2]
 	ld e, a
 	ld d, 0
@@ -70752,7 +70808,7 @@ Function9131e: ; 9131e
 	ld d, 0
 	add hl, de
 	ld [hl], 0
-	ld hl, wdc7c
+	ld hl, wPhoneList
 	ld c, $a
 .asm_91336
 	ld a, [hli]
@@ -70768,7 +70824,7 @@ Function9131e: ; 9131e
 ; 91342
 
 Function91342: ; 91342 (24:5342)
-	ld hl, wdc7c
+	ld hl, wPhoneList
 	ld a, [wc6d2] 
 	ld e, a
 	ld d, 0
