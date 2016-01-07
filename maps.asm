@@ -158,7 +158,6 @@ INCLUDE "maps/Route1718Gate.asm"
 SECTION "Map Scripts 8", ROMX
 
 INCLUDE "maps/DiglettsCave.asm"
-INCLUDE "maps/MountMoon.asm"
 INCLUDE "maps/Underground.asm"
 INCLUDE "maps/RockTunnel1F.asm"
 INCLUDE "maps/RockTunnelB1F.asm"

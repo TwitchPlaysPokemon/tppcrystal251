@@ -364,6 +364,9 @@ OakScript_OaksLabRB:
 	clearevent EVENT_RIVAL_ROUTE_22_RB
 	playsound SFX_KEY_ITEM
 	waitsfx
+	writetext OaksLabRBText_GivePokeballs
+	waitbutton
+	verbosegiveitem POKE_BALL, 5
 	writetext _OaksLabText26
 	waitbutton
 	closetext
@@ -375,22 +378,6 @@ OakScript_OaksLabRB:
 	closetext
 	spriteface $0, DOWN
 	playmusic MUSIC_RIVAL_AFTER_RB
-	checkcode VAR_FACING
-	if_equal DOWN, .finishaboveoak
-	spriteface $6, RIGHT
-	if_equal UP, .finishbelowoak
-	applymovement $6, Movement_RivalTakesFourStepsDown
-	disappear $6
-	special RestartMapMusic
-	end
-
-.finishaboveoak
-	applymovement $6, Movement_RivalTakesThreeStepsDown
-	disappear $6
-	special RestartMapMusic
-	end
-
-.finishbelowoak
 	applymovement $6, Movement_RivalTakesFiveStepsDown
 	disappear $6
 	special RestartMapMusic
@@ -901,6 +888,15 @@ _SaveOptionText:
 	text "The SAVE option is"
 	line "on the MENU"
 	cont "screen."
+	done
+
+OaksLabRBText_GivePokeballs:
+	text "Hmm... I'll give"
+	line "you these as well."
+
+	para "Use them to catch"
+	line "#MON to fill"
+	cont "your new #DEX."
 	done
 
 OaksLabRB_MapEventHeader: ; 0x19ba33

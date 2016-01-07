@@ -27,7 +27,7 @@
 	dwb StatusFlags, %00001000 ; pokerus
 	dwb StatusFlags, %00010000 ; rocket signal on ch20
 	dwb StatusFlags, %01000000 ; credits skip
-	dwb StatusFlags, %10000000 ; bug contest on   ; $10
+	dwb StatusFlags, %10000000 ; dex upgraded   ; $10
 	dwb StatusFlags2, %00000100 ; bug contest timer
 	dwb StatusFlags2, %00000010 ; rockets in radio tower
 	dwb StatusFlags2, %00000001 ; bike shop call enabled (1024 bike steps reqd)

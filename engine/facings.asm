@@ -274,5 +274,3 @@ Facing32:
 	db  0,  0, X_FLIP, $01
 	db  8,  8, X_FLIP, $02
 	db  8,  0, X_FLIP, $03
-
-	

@@ -185,10 +185,6 @@ DiglettsCave_BlockData: ; 0xb0f42
 	INCBIN "maps/DiglettsCave.blk"
 ; 0xb0ff6
 
-MountMoon_BlockData: ; 0xb0ff6
-	INCBIN "maps/MountMoon.blk"
-; 0xb107d
-
 SeafoamGym_BlockData: ; 0xb107d
 	INCBIN "maps/SeafoamGym.blk"
 ; 0xb1091
