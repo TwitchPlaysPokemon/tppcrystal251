@@ -4773,7 +4773,8 @@ UnknownScript_0xc7fe: ; c7fe
 UnknownScript_0xc802: ; 0xc802 CUT
 	callasm Functioncd12
 	writetext UnknownText_0xc7c4
-	reloadmappart
+	waitbutton
+	closetext
 	copybytetovar wd1ef
 	pokepic $0000
 	cry $0000
@@ -5038,11 +5039,11 @@ UsedSurfScript: ; c986 SURF
 	callasm Functioncd12
 	writetext UsedSurfText ; "used SURF!"
 	waitbutton
-	reloadmappart
+	closetext
 	copybytetovar wd1ef
 	pokepic $0000
 	cry $0000
-	closetext
+	closepokepic
 	callasm Functionc9a2 ; empty function
 	copybytetovar Buffer2
 	writevarcode VAR_MOVEMENT
@@ -5333,11 +5334,11 @@ UnknownScript_0xcb20: ; 0xcb20 WATERFALL
 	callasm Functioncd12
 	writetext UnknownText_0xcb51
 	waitbutton
-	reloadmappart
+	closetext
 	copybytetovar wd1ef
 	pokepic $0000
 	cry $0000
-	closetext
+	closepokepic
 	playsound SFX_BUBBLEBEAM
 .loop
 	applymovement $0, WaterfallStep
@@ -5522,6 +5523,7 @@ UnknownScript_0xcc2b: ; 0xcc2b
 	special UpdateTimePals
 	writetext UnknownText_0xcc21
 	waitbutton
+	closetext
 	jump UnknownScript_0xcc3c
 ; 0xcc35
 
@@ -5531,12 +5533,12 @@ UnknownScript_0xcc35: ; 0xcc35 DIG
 	callasm Functioncd12
 	writetext UnknownText_0xcc1c
 	waitbutton
-	reloadmappart
+	closetext
 	copybytetovar wd1ef
 	pokepic $0000
 	cry $0000
+	closepokepic
 UnknownScript_0xcc3c: ; 0xcc3c
-	closetext
 	playsound SFX_WARP_TO
 	applymovement $0, MovementData_0xcc59
 	farscall UnknownScript_0x122c1
@@ -5721,11 +5723,11 @@ UnknownScript_0xcd2d: ; 0xcd2d STRENGTH
 	callasm Functioncd12
 	writetext UnknownText_0xcd41
 	waitbutton
-	reloadmappart
+	closetext
 	copybytetovar wd1ef
 	pokepic $0000
 	cry $0000
-	closetext
+	closepokepic
 	loadfont
 	writetext UnknownText_0xcd46
 	closetext
@@ -5900,7 +5902,8 @@ UnknownScript_0xce0b: ; 0xce0b
 UnknownScript_0xce0f: ; 0xce0f WHIRLPOOL
 	callasm Functioncd12
 	writetext UnknownText_0xcdd9
-	reloadmappart
+	waitbutton
+	closetext
 	copybytetovar wd1ef
 	pokepic $0000
 	cry $0000
@@ -6014,11 +6017,12 @@ HeadbuttFromMenuScript: ; 0xcea7
 HeadbuttScript: ; 0xceab HEADBUTT
 	callasm Functioncd12
 	writetext UnknownText_0xce9d
-	reloadmappart
+	waitbutton
+	closetext
 	copybytetovar wd1ef
 	pokepic $0000
 	cry $0000
-	closetext
+	closepokepic
 	callasm ShakeHeadbuttTree
 	callasm TreeMonEncounter
 	iffalse .no_battle
@@ -6116,11 +6120,12 @@ RockSmashFromMenuScript: ; 0xcf2e
 RockSmashScript: ; cf32 ROCK SMASH
 	callasm Functioncd12
 	writetext UnknownText_0xcf58
-	reloadmappart
+	waitbutton
+	closetext
 	copybytetovar wd1ef
 	pokepic $0000
 	cry $0000
-	closetext
+	closepokepic
 	special WaitSFX
 	playsound SFX_STRENGTH
 	earthquake 84
@@ -49003,10 +49008,13 @@ UnknownScript_0x506c8: ; 0x506c8 SWEET SCENT
 	special UpdateTimePals
 	callasm Functioncd12
 	writetext UnknownText_0x50726
-	reloadmappart
+	waitbutton
+	closetext
 	copybytetovar wd1ef
 	pokepic $0000
 	cry $0000
+	closepokepic
+	loadfont
 	callasm Function506ef
 	iffalse UnknownScript_0x506e9
 	checkflag ENGINE_BUG_CONTEST_TIMER
