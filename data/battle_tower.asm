@@ -147,27 +147,34 @@ BTRandTooHigh
 	call AddNTimes
 	pop bc ;current slot in mon database, over species STACK: original wram bank, nickname loc
 	ld a, [bc]
-	inc bc
 	ld [hli], a ;load in species
-	ld a, [bc]
 	inc bc
+	
+	ld a, [bc]
 	ld [hli], a ;load in item
-	ld a, [bc]
 	inc bc
-	push hl ;store move 1 location STACK: original wram bank, nickname loc, move 1 location
+	
+	ld a, [bc]
 	ld [hli], a ;load in move1
-	ld a, [bc]
+	push hl ;store move 1 location STACK: original wram bank, nickname loc, move 1 location
 	inc bc
+	
+	
+	ld a, [bc]
 	ld [hli], a ;load in move2
-	ld a, [bc]
 	inc bc
+	
+	ld a, [bc]
 	ld [hli], a ;load in move3
-	ld a, [bc]
 	inc bc
+	
+	ld a, [bc]
 	ld [hli], a ;load in move4
+	
 	xor a
 	ld [hli], a ;load 0 into id
 	ld [hli], a
+
 	call FindHighestLevel ;a = highest level in party
 	push af ;store highest level for later STACK: original wram bank, nickname loc, move 1 location, highest level
 	ld d, a
@@ -183,9 +190,10 @@ BTRandTooHigh
 	ld a, $ff
 	ld b, $c
 .asm_d97a
-	ld [hli], a ;load max statxp
+	ld [hli], a ;load max statxp and dvs
 	dec b
 	jr nz, .asm_d97a ;repeat 12 times (2 bytes a stat for stat xp, then 2 bytes for dvs)
+
 	pop bc ;b = level 
 	pop de ;de = move location STACK: original wram bank, nickname loc
 	call BattleTowerFillPP ;fill move pp data
@@ -194,7 +202,7 @@ BTRandTooHigh
 	ld [hli], a ;pokerus and caught data
 	ld [hli], a
 	ld [hli], a
-	ld b, a
+	ld a, b
 	ld [hli], a ;load level into mon
 	xor a
 	ld [hli], a
