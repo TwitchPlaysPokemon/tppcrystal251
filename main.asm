@@ -6037,7 +6037,7 @@ HeadbuttScript: ; 0xceab HEADBUTT
 TryHeadbuttOW:: ; cec9
 	ld d, HEADBUTT
 	call CheckPartyMove
-	jr c, .yes
+	jr nc, .yes
 	ld d, ZEN_HEADBUTT
 	call CheckPartyMove
 	jr c, .no
