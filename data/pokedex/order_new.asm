@@ -251,5 +251,4 @@
 	db MEWTWO
 	db MEW
 	db CELEBI
-	db PHANCERO
 	

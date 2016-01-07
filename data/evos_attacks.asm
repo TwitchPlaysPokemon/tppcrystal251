@@ -4574,17 +4574,10 @@ SuicuneEvosAttacks:
 	db 0 ; no more evolutions
 	db 1,BITE
 	db 1,LEER
-if _CRYSTAL
 	db 11,BUBBLEBEAM
 	db 21,RAIN_DANCE
 	db 31,GUST
 	db 41,AURORA_BEAM
-else
-	db 11,WATER_GUN
-	db 21,ROAR
-	db 31,GUST
-	db 41,BUBBLEBEAM
-endc
 	db 51,MIST
 	db 61,MIRROR_COAT
 	db 71,HYDRO_PUMP
@@ -4682,15 +4675,3 @@ CelebiEvosAttacks:
 	db 40,BATON_PASS
 	db 50,PERISH_SONG
 	db 0 ; no more level-up moves
-
-PhanceroEvosAttacks:
-	db 0 ; no more evolutions
-	db 1,GUST
-	db 1,WATER_GUN
-	db 13,MIST
-	db 25,AGILITY
-	db 37,MIND_READER
-	db 49,SKY_ATTACK
-	db 61,REFLECT
-	db 73,SHADOW_BALL
-	db 0 ; no more level-up moves	
