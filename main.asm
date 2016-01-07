@@ -75764,7 +75764,7 @@ GetTreeMon: ; b83e5
 	push hl ; hl = table location
 	ld a, 10 ;set all trees to have a 80% encounter chance, with some optimisation
 	call RandomRange
-	cp 2
+	cp 8
 	jr nc, NoTreeMon_PopHL
 	call GetTreeScore ; a = 0 if bad(50% chance), 1 if good (40% chance) and 2 if rare (10% chance)
 	pop hl
