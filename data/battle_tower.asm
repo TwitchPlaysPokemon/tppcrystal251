@@ -76,7 +76,7 @@ ENDC
 
 Function1f8081: ; 1f8081 set-up trainer hl with random mons
 	ld a, [rSVBK] ;changes have removed the mons in "battle" and inputted directly into OTPartyMons instead
-	push af
+	push af ;STACK: original wram bank
 	ld a, $1
 	ld [rSVBK], a
 	ld de, wd26b
@@ -90,8 +90,8 @@ Function1f8081: ; 1f8081 set-up trainer hl with random mons
 	ld a, 0
 	jr StartBTLoop
 BTLoop:
-	ld a, [PartyCount] ;num of mons to generate
-	ld a, c
+	ld a, [PartyCount] ;num of mons to generate STACK: original wram bank
+	ld c, a 
 	ld de, OTPartyCount
 	ld a, [de] 
 	cp c
@@ -104,7 +104,7 @@ StartBTLoop:
 	jr nc, DontIncD
 	inc d
 DontIncD:
-	push de ;= correct slot in OTPartySpecies
+	push de ;= correct slot in OTPartySpecies ;STACK: original wram bank, OTPartySpecies
 	ld hl, OTPartyMonOT
 	ld a, [OTPartyCount]
 	dec a
@@ -121,7 +121,7 @@ DontIncD:
 	add hl, bc
 	add hl, de
 	pop de ;= correct slot in OTPartySpecies
-	push hl ;holds nickname loc
+	push hl ;holds nickname loc STACK: original wram bank, nickname loc
 BTRandTooHigh
 	call Random
 	cp 167
@@ -139,13 +139,13 @@ BTRandTooHigh
 	inc de
 	ld a, $ff
 	ld [de], a ;put an empty slot after it
-	push hl; store current mon location on the stack
+	push hl; store current mon location on the stack STACK: original wram bank, nickname loc, mon location
 	ld hl, OTPartyMon1Species
 	ld a, [OTPartyCount]
 	dec a
 	ld bc, PartyMon2 - PartyMon1 ;go to correct party slot
 	call AddNTimes
-	pop bc ;current slot in mon database, over species
+	pop bc ;current slot in mon database, over species STACK: original wram bank, nickname loc
 	ld a, [bc]
 	inc bc
 	ld [hli], a ;load in species
@@ -154,7 +154,7 @@ BTRandTooHigh
 	ld [hli], a ;load in item
 	ld a, [bc]
 	inc bc
-	push hl ;store move 1 location
+	push hl ;store move 1 location STACK: original wram bank, nickname loc, move 1 location
 	ld [hli], a ;load in move1
 	ld a, [bc]
 	inc bc
@@ -169,7 +169,7 @@ BTRandTooHigh
 	ld [hli], a ;load 0 into id
 	ld [hli], a
 	call FindHighestLevel ;a = highest level in party
-	push af ;store highest level for later
+	push af ;store highest level for later STACK: original wram bank, nickname loc, move 1 location, highest level
 	ld d, a
 	push hl
 	callab Function50e47 ;put xp in multiplicand
@@ -186,8 +186,8 @@ BTRandTooHigh
 	ld [hli], a ;load max statxp
 	dec b
 	jr nz, .asm_d97a ;repeat 12 times (2 bytes a stat for stat xp, then 2 bytes for dvs)
-	pop bc ;b = level
-	pop de ;de = move location
+	pop bc ;b = level 
+	pop de ;de = move location STACK: original wram bank, nickname loc
 	call BattleTowerFillPP ;fill move pp data
 	ld [hli], a ;load ff into happiness
 	xor a
@@ -210,19 +210,19 @@ SkipDecD:
 	ld c, a
 	callab OtherBankStatFill ;fill in remaining stats
 	call GetPokemonName ;de = string buffer with default name
-	pop hl ;call nickname location off the stack
+	pop hl ;call nickname location off the stack STACK: original wram bank
 	ld bc, $000a
 .CopyByte ;place nickname into nickname data
 	ld a, [de]
 	ld [hli], a
 	inc de
 .HandleLoop
-	dec c
+	dec c 
 	jr nz, .CopyByte ;end with a end char
 	ld [hl], $50
 	jp BTLoop
 EndBTLoop:
-	pop af
+	pop af ;STACK: empty ;crashes before here
 	ld [rSVBK], a
 	ret
 	
