@@ -24115,9 +24115,9 @@ Function170b44: ; 170b44 generate trainer and load thier sprite into mapobject s
 	callba Function1f8000 ;generatres mon and trainer and stores them in wram. full structure is, from wd100, 11 bytes of trainer data (name and class), 177 bytes for 3 mons and 40 bytes of ????
 	ld a, [rSVBK] ;mons now loaded into OTPartymon instead
 	push af 
-	ld a, $3
+	ld a, $1
 	ld [rSVBK], a
-	ld hl, wd10a ;trainer class
+	ld hl, OtherTrainerClass ;trainer class
 	ld a, [hl]
 	dec a
 	ld c, a

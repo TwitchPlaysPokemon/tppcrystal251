@@ -196,7 +196,7 @@ BTRandTooHigh
 
 	pop bc ;b = level 
 	pop de ;de = move location STACK: original wram bank, nickname loc
-	call BattleTowerFillPP ;fill move pp data
+	predef FillPP ;fill move pp data
 	ld [hli], a ;load ff into happiness
 	xor a
 	ld [hli], a ;pokerus and caught data
@@ -438,34 +438,34 @@ NotHigher:
 	pop hl
 	ret
 
-BattleTowerFillPP: ; da6d de = start of moves, hl = start of place to put pp
-	push bc
-	ld b, NUM_MOVES
-PPLoop:
-	ld a, [de] ;load move
-	inc de
-	and a
-	jr z, NoMove ;if no move, skip
-	dec a
-	push hl
-	push de
-	push bc
-	ld hl, Moves
-	ld bc, MOVE_LENGTH
-	call AddNTimes ;go down to correct move
-	ld de, StringBuffer1 ;load into stringbuffer
-	ld a, BANK(Moves)
-	call FarCopyBytes
-	pop bc
-	pop de
-	pop hl
-	ld a, [StringBuffer1 + MOVE_PP] ;a = slot in string buffer that holds PP
-NoMove:
-	ld [hli], a ;load pp into slot and move to next slot
-	dec b
-	jr nz, PPLoop ; loop until out of moves
-	pop bc
-	ret
+;BattleTowerFillPP: ; da6d de = start of moves, hl = start of place to put pp
+;	push bc
+;	ld b, NUM_MOVES
+;PPLoop:
+;	ld a, [de] ;load move
+;	inc de
+;	and a
+;	jr z, NoMove ;if no move, skip
+;	dec a
+;	push hl
+;	push de
+;	push bc
+;	ld hl, Moves
+;	ld bc, MOVE_LENGTH
+;	call AddNTimes ;go down to correct move
+;	ld de, StringBuffer1 ;load into stringbuffer
+;	ld a, BANK(Moves)
+;	call FarCopyBytes
+;	pop bc
+;	pop de
+;	pop hl
+;	ld a, [StringBuffer1 + MOVE_PP] ;a = slot in string buffer that holds PP
+;NoMove:
+;	ld [hli], a ;load pp into slot and move to next slot
+;	dec b
+;	jr nz, PPLoop ; loop until out of moves
+;	pop bc
+;	ret
 	
 
 
