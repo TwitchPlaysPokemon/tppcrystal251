@@ -6014,11 +6014,12 @@ HeadbuttFromMenuScript: ; 0xcea7
 HeadbuttScript: ; 0xceab HEADBUTT
 	callasm Functioncd12
 	writetext UnknownText_0xce9d
-	reloadmappart
+	waitbutton
+	closetext
 	copybytetovar wd1ef
 	pokepic $0000
 	cry $0000
-	closetext
+	closepokepic
 	callasm ShakeHeadbuttTree
 	callasm TreeMonEncounter
 	iffalse .no_battle
