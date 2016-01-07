@@ -1721,6 +1721,9 @@ TimeOfDay:: ; d269
 	ds 1
 
 	ds 1
+SECTION "Enemy Party", WRAMX, BANK [1]
+OTPartyData::
+OTPlayerName::
 wd26b:: ds 1 ;trainer name?
 wd26c:: ds 1
 wd26d:: ds 4
@@ -1728,7 +1731,6 @@ wd271:: ds 5
 wd276:: ds 10
 
 
-SECTION "Enemy Party", WRAMX, BANK [1]
 
 OTPartyCount::   ds 1 ; d280
 OTPartySpecies:: ds PARTY_LENGTH ; d281
@@ -1745,7 +1747,7 @@ OTPartyMonsEnd::
 
 OTPartyMonOT:: ds NAME_LENGTH * PARTY_LENGTH ; d3a8
 OTPartyMonNicknames:: ds PKMN_NAME_LENGTH * PARTY_LENGTH ; d3ea
-
+OTPartyDataEnd::
 	ds 4
 
 wd430::
