@@ -383,11 +383,12 @@ UnknownText_0x1a6aa4: ; 0x1a6aa4
 ; 0x1a6b26
 
 SwimmermKirkSeenText: ; 0x1a6b26
-	text "The waves are wild"
-	line "here."
+	text "I live in"
+	line "BLACKTHORN CITY!"
 
-	para "They tire you out"
-	line "while you swim."
+	para "I flew to here"
+	line "with my flying-"
+	cont "type #MON."
 	done
 ; 0x1a6b62
 
@@ -435,8 +436,8 @@ SwimmerfKayleeSeenText: ; 0x1a6c24
 ; 0x1a6c67
 
 SwimmerfKayleeBeatenText: ; 0x1a6c67
-	text "Is that how you do"
-	line "it?"
+	text "CHINCHOU lights"
+	line "my road ahead..."
 	done
 ; 0x1a6c7f
 
@@ -471,9 +472,9 @@ UnknownText_0x1a6d11: ; 0x1a6d11
 ; 0x1a6d46
 
 SwimmerfDeniseSeenText: ; 0x1a6d46
-	text "The weather is so"
-	line "beautiful, I'm in"
-	cont "a daze!"
+	text "There's way"
+	line "too much water"
+	cont "around here..."
 	done
 ; 0x1a6d72
 
@@ -499,17 +500,14 @@ SwimmerfKaraSeenText: ; 0x1a6dd0
 	line "rest, just tread"
 	cont "water."
 
-	para "You'll get your"
-	line "wind back, so you"
-
-	para "can keep on going"
-	line "strong."
+	para "Or sit on your"
+	line "water #MON!"
 	done
 ; 0x1a6e33
 
 SwimmerfKaraBeatenText: ; 0x1a6e33
-	text "Oh! You have more"
-	line "energy than I do."
+	text "At least CORSOLA"
+	line "is comfortable."
 	done
 ; 0x1a6e58
 
@@ -521,9 +519,9 @@ UnknownText_0x1a6e58: ; 0x1a6e58
 ; 0x1a6e85
 
 SwimmerfWendySeenText: ; 0x1a6e85
-	text "At night, STARYU"
-	line "gather near the"
-	cont "water's surface."
+	text "I am diving below"
+	line "water with my"
+	cont "#MON!"
 	done
 ; 0x1a6eb7
 
@@ -533,12 +531,13 @@ SwimmerfWendyBeatenText: ; 0x1a6eb7
 ; 0x1a6ec2
 
 UnknownText_0x1a6ec2: ; 0x1a6ec2
-	text "The clusters of"
-	line "STARYU light up"
-	cont "at the same time."
+	text "STARYU are very"
+	line "useful when you"
+	cont "dive underwater."
 
-	para "It's so beautiful,"
-	line "it's scary."
+	para "You can't find"
+	line "them in JOHTO,"
+	cont "though."
 	done
 ; 0x1a6f12
 

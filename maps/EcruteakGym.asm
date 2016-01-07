@@ -402,17 +402,17 @@ UnknownText_0x9a145: ; 0x9a145
 ; 0x9a1bd
 
 SageJeffreySeenText: ; 0x9a1bd
-	text "I spent the spring"
-	line "with my #MON."
+	text "Unlike most"
+	line "trainers here,"
 
-	para "Then summer, fall"
-	line "and winter…"
+	para "the bond I have"
+	line "with my #MON"
 
-	para "Then spring came"
-	line "again. We have"
+	para "has been built"
+	line "over a long time."
 
-	para "lived together"
-	line "for a long time."
+	para "That is the key"
+	line "getting stronger!"
 	done
 ; 0x9a23d
 
@@ -423,15 +423,18 @@ SageJeffreyBeatenText: ; 0x9a23d
 ; 0x9a263
 
 UnknownText_0x9a263: ; 0x9a263
-	text "Where did #MON"
-	line "come from?"
+	text "Our bond isn't"
+	line "strong enough..."
 	done
 ; 0x9a27e
 
 SagePingSeenText: ; 0x9a27e
-	text "Can you inflict"
-	line "any damage on our"
-	cont "#MON?"
+	text "Have you prepared"
+	line "to face ghost-"
+	cont "type #MON?"
+
+	para "Then you are in"
+	line "for a surprise!"
 	done
 ; 0x9a2a7
 
@@ -441,37 +444,43 @@ SagePingBeatenText: ; 0x9a2a7
 ; 0x9a2b7
 
 UnknownText_0x9a2b7: ; 0x9a2b7
-	text "We use only ghost-"
-	line "type #MON."
+	text "Only leader MORTY"
+	line "uses ghost #MON."
 
-	para "No normal-type"
-	line "attack can harm"
-	cont "them!"
+	para "Still, none of"
+	line "us can stand up"
+	cont "against him!"
 	done
 ; 0x9a2fb
 
 MediumMarthaSeenText: ; 0x9a2fb
-	text "I shall win!"
+	text "Defense is the"
+	line "best offense!"
 	done
 ; 0x9a309
 
 MediumMarthaBeatenText: ; 0x9a309
-	text "I, I, I lost!"
+	text "Or not..."
 	done
 ; 0x9a318
 
 UnknownText_0x9a318: ; 0x9a318
-	text "The one who wants"
-	line "to win most--will!"
+	text "MORTY is powerful."
+	
+	para "He adapts what"
+	line "#MON he uses"
+	cont "depending on the"
+	cont "opponents skill."
 	done
 ; 0x9a33e
 
 MediumGraceSeenText: ; 0x9a33e
-	text "Stumped by our in-"
-	line "visible floor?"
+	text "Dark #MON has an"
+	line "advantage against"
+	cont "ghost #MON."
 
-	para "Defeat me if you"
-	line "want a hint!"
+	para "Someday, MORTY"
+	line "will be defeated!"
 	done
 ; 0x9a37f
 
@@ -481,27 +490,25 @@ MediumGraceBeatenText: ; 0x9a37f
 ; 0x9a38a
 
 UnknownText_0x9a38a: ; 0x9a38a
-	text "Fine. I shall tell"
-	line "you the secret of"
+	text "If I can't"
+	line "defeat you..."
 
-	para "the invisible"
-	line "floor."
-
-	para "The path is right"
-	line "before our eyes!"
+	para "How will I ever"
+	line "defeat Morty?"
 	done
 ; 0x9a3e8
 
 EcruteakGymGuyText: ; 0x9a3e8
-	text "The trainers here"
-	line "have secret mo-"
-	cont "tives."
+	text "This gym used to"
+	line "be a ghost-type"
+	cont "only gym."
 
-	para "If you win, they"
-	line "may tell you some"
+	para "Lately though,"
+	line "it has attracted"
 
-	para "deep secrets about"
-	line "ECRUTEAK."
+	para "a lot of dark-"
+	line "type trainers."
+	
 	done
 ; 0x9a452
 

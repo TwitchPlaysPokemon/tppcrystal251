@@ -43,19 +43,17 @@ YoungsterScript_0x18a4a0: ; 0x18a4a0
 ; 0x18a4a3
 
 UnknownText_0x18a4a3: ; 0x18a4a3
-	text "What are JOHTO's"
-	line "#MON CENTERS"
-	cont "like?"
+	text "Have you heard"
+	line "about the KANTO"
+	cont "HELIX CHOIR?"
 
-	para "…Oh, I see. So"
-	line "they're not much"
+	para "They formed in"
+	line "inspiration to a"
+	cont "famous trainer"
+	cont "and his journey."
 
-	para "different from the"
-	line "ones in KANTO."
-
-	para "I can go to JOHTO"
-	line "without worrying,"
-	cont "then!"
+	para "Nobody know where"
+	line "he is now, though."
 	done
 ; 0x18a532
 

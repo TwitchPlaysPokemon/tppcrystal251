@@ -258,8 +258,6 @@ ENDC
 	ld [hl], 2300 / $100 % $100
 	inc hl
 	ld [hl], 2300 % $100
-	ld a, 1
-	ld [wd959], a
 	call Function5ce9
 	callba Function26751
 	callba Function44765
@@ -2038,7 +2036,7 @@ _Divide:: ; 673e
 	ld [hMathBuffer + 2], a
 	ld [hMathBuffer + 3], a
 	ld [hMathBuffer + 4], a
-
+	
 	ld a, 9
 	ld e, a
 
@@ -2074,7 +2072,7 @@ _Divide:: ; 673e
 	ld a, [hMathBuffer + 4]
 	add a
 	ld [hMathBuffer + 4], a
-
+	
 	ld a, [hMathBuffer + 3]
 	rla
 	ld [hMathBuffer + 3], a
@@ -2131,10 +2129,10 @@ _Divide:: ; 673e
 
 	ld a, [hMathBuffer + 3]
 	ld [hDividend + 2], a
-
+	
 	ld a, [hMathBuffer + 2]
 	ld [hDividend + 1], a
-
+	
 	ld a, [hMathBuffer + 1]
 	ld [hDividend + 0], a
 
@@ -4773,8 +4771,7 @@ UnknownScript_0xc7fe: ; c7fe
 UnknownScript_0xc802: ; 0xc802 CUT
 	callasm Functioncd12
 	writetext UnknownText_0xc7c4
-	waitbutton
-	closetext
+	reloadmappart
 	copybytetovar wd1ef
 	pokepic $0000
 	cry $0000
@@ -5039,11 +5036,11 @@ UsedSurfScript: ; c986 SURF
 	callasm Functioncd12
 	writetext UsedSurfText ; "used SURF!"
 	waitbutton
-	closetext
+	reloadmappart
 	copybytetovar wd1ef
 	pokepic $0000
 	cry $0000
-	closepokepic
+	closetext
 	callasm Functionc9a2 ; empty function
 	copybytetovar Buffer2
 	writevarcode VAR_MOVEMENT
@@ -5334,11 +5331,11 @@ UnknownScript_0xcb20: ; 0xcb20 WATERFALL
 	callasm Functioncd12
 	writetext UnknownText_0xcb51
 	waitbutton
-	closetext
+	reloadmappart
 	copybytetovar wd1ef
 	pokepic $0000
 	cry $0000
-	closepokepic
+	closetext
 	playsound SFX_BUBBLEBEAM
 .loop
 	applymovement $0, WaterfallStep
@@ -5523,7 +5520,6 @@ UnknownScript_0xcc2b: ; 0xcc2b
 	special UpdateTimePals
 	writetext UnknownText_0xcc21
 	waitbutton
-	closetext
 	jump UnknownScript_0xcc3c
 ; 0xcc35
 
@@ -5533,12 +5529,12 @@ UnknownScript_0xcc35: ; 0xcc35 DIG
 	callasm Functioncd12
 	writetext UnknownText_0xcc1c
 	waitbutton
-	closetext
+	reloadmappart
 	copybytetovar wd1ef
 	pokepic $0000
 	cry $0000
-	closepokepic
 UnknownScript_0xcc3c: ; 0xcc3c
+	closetext
 	playsound SFX_WARP_TO
 	applymovement $0, MovementData_0xcc59
 	farscall UnknownScript_0x122c1
@@ -5723,11 +5719,11 @@ UnknownScript_0xcd2d: ; 0xcd2d STRENGTH
 	callasm Functioncd12
 	writetext UnknownText_0xcd41
 	waitbutton
-	closetext
+	reloadmappart
 	copybytetovar wd1ef
 	pokepic $0000
 	cry $0000
-	closepokepic
+	closetext
 	loadfont
 	writetext UnknownText_0xcd46
 	closetext
@@ -5902,8 +5898,7 @@ UnknownScript_0xce0b: ; 0xce0b
 UnknownScript_0xce0f: ; 0xce0f WHIRLPOOL
 	callasm Functioncd12
 	writetext UnknownText_0xcdd9
-	waitbutton
-	closetext
+	reloadmappart
 	copybytetovar wd1ef
 	pokepic $0000
 	cry $0000
@@ -6017,12 +6012,11 @@ HeadbuttFromMenuScript: ; 0xcea7
 HeadbuttScript: ; 0xceab HEADBUTT
 	callasm Functioncd12
 	writetext UnknownText_0xce9d
-	waitbutton
-	closetext
+	reloadmappart
 	copybytetovar wd1ef
 	pokepic $0000
 	cry $0000
-	closepokepic
+	closetext
 	callasm ShakeHeadbuttTree
 	callasm TreeMonEncounter
 	iffalse .no_battle
@@ -6041,7 +6035,11 @@ HeadbuttScript: ; 0xceab HEADBUTT
 TryHeadbuttOW:: ; cec9
 	ld d, HEADBUTT
 	call CheckPartyMove
+	jr c, .yes
+	ld d, ZEN_HEADBUTT
+	call CheckPartyMove
 	jr c, .no
+.yes
 	ld a, BANK(AskHeadbuttScript)
 	ld hl, AskHeadbuttScript
 	call CallScript
@@ -6120,12 +6118,11 @@ RockSmashFromMenuScript: ; 0xcf2e
 RockSmashScript: ; cf32 ROCK SMASH
 	callasm Functioncd12
 	writetext UnknownText_0xcf58
-	waitbutton
-	closetext
+	reloadmappart
 	copybytetovar wd1ef
 	pokepic $0000
 	cry $0000
-	closepokepic
+	closetext
 	special WaitSFX
 	playsound SFX_STRENGTH
 	earthquake 84
@@ -7944,7 +7941,7 @@ Functiond88c: ; d88c if montype is non-zero, load mon into enemy trainer. else l
 	ret nc
 	ld [de], a ;inc party count
 	;ld a, [de] ;??? seems very useless
-	ld [$ffae], a ;load into ??
+	ld [$ffae], a ;store for later
 	add e ;go to appropriote species slot
 	ld e, a
 	jr nc, .asm_d8a7
@@ -7955,7 +7952,7 @@ Functiond88c: ; d88c if montype is non-zero, load mon into enemy trainer. else l
 	inc de
 	ld a, $ff
 	ld [de], a ;put an empty slot after it
-	ld hl, PartyMonOT ;hl = OT location
+	ld hl, PartyMonOT ;hl = original trainer location
 	ld a, [MonType]
 	and $f
 	jr z, .asm_d8bc
@@ -7968,10 +7965,10 @@ Functiond88c: ; d88c if montype is non-zero, load mon into enemy trainer. else l
 	ld e, l
 	ld hl, PlayerName
 	ld bc, NAME_LENGTH
-	call CopyBytes ;go down to that slot and enter it
+	call CopyBytes ;load playername into structure as original trainer
 	ld a, [MonType]
 	and a
-	jr nz, .asm_d8f0 ;if montype = 0, fall through
+	jr nz, .asm_d8f0 ;if montype nz, skip nickname
 	ld a, [CurPartySpecies] ;load species into var to get mon name
 	ld [wd265], a
 	call GetPokemonName ;put name in nicknames
@@ -7985,7 +7982,7 @@ Functiond88c: ; d88c if montype is non-zero, load mon into enemy trainer. else l
 	ld bc, PKMN_NAME_LENGTH ;enter mon name into nickname list
 	call CopyBytes
 .asm_d8f0
-	ld hl, PartyMon1Species ;load party location
+	ld hl, PartyMon1Species ;load species location
 	ld a, [MonType]
 	and $f
 	jr z, .asm_d8fd
@@ -8003,11 +8000,11 @@ Functiond906: ; d906
 	ld [CurSpecies], a ;put species into curspecies
 	call GetBaseData ;curbasedata holds mon base stats
 	ld a, [BaseDexNo]
-	ld [de], a ;load in dex number
+	ld [de], a ;load in dex number as species
 	inc de
 	ld a, [IsInBattle]
 	and a
-	ld a, $0 ;if in battle, load enemy mon item, else 0
+	ld a, $0 ;if in battle, load enemy mon item, else load no item
 	jr z, .asm_d922
 	ld a, [EnemyMonItem]
 .asm_d922
@@ -8106,7 +8103,7 @@ Functiond906: ; d906
 	ld [de], a
 	inc de
 	ld a, c
-	ld [de], a ;put random DVs into the mon
+	ld [de], a ;put DVs into the mon
 	inc de
 	push hl;start of mon data
 	push de; before PP 
@@ -8213,7 +8210,7 @@ Functiond906: ; d906
 .asm_da45
 	ld a, [MonType]
 	and $f
-	jr nz, .asm_da6b ;if mon type not z
+	jr nz, .asm_da6b ;if mon type not z, skip unown check
 	ld a, [CurPartySpecies]
 	cp UNOWN
 	jr nz, .asm_da6b ;if unkown
@@ -9191,7 +9188,15 @@ Functione134: ; e134
 	ld a, [de]
 	ld [hl], a
 	ret
-; e167
+
+OtherBankStatFill: ; run Functione167 with bc in place of hl
+	push bc
+	pop hl
+	ld b, a
+	call Functione167
+	push hl
+	pop bc
+	ret
 
 Functione167: ; e167 fill stat block de for currently loaded base stats, with statxp hl (or skip with b = 0)
 	ld c, $0
@@ -9593,8 +9598,8 @@ Functione3de: ; e3de InitNickname
 	ret
 ; e3fd
 
-Functione3fd: ; e3fd
-	call Functione40a
+Functione3fd: ; e3fd bill's pc
+	call Functione40a ;ret c if no mon in party
 	ret c
 	call Functione41c
 	call Functione443
@@ -9619,14 +9624,14 @@ UnknownText_0xe417: ; 0xe417
 Functione41c: ; e41c (3:641c)
 	xor a
 	ld [hBGMapMode], a ; $ff00+$d4
-	call Function1d6e
+	call Function1d6e ;load a menu
 	call ClearPCItemScreen
 	ld hl, Options
 	ld a, [hl]
 	push af
-	set 4, [hl]
+	set 4, [hl] ;set instatext
 	ld hl, UnknownText_0xe43a
-	call PrintText
+	call PrintText 
 	pop af
 	ld [Options], a
 	call Functione58
@@ -9643,7 +9648,7 @@ Functione43f: ; e43f (3:643f)
 	call Function2b3c
 	ret
 
-Functione443: ; e443 (3:6443)
+Functione443: ; e443 (3:6443) bills pc related
 	ld hl, MenuDataHeader_0xe46f
 	call LoadMenuDataHeader
 	ld a, $1
@@ -9653,13 +9658,13 @@ Functione443: ; e443 (3:6443)
 	xor a
 	ld [wcf76], a
 	ld [hBGMapMode], a ; $ff00+$d4
-	call Function1e5d
+	call Function1e5d ;set up and process PC menu, ret c if going back
 	jr c, .asm_e46b
 	ld a, [wcf88]
 	push af
 	ld a, [MenuSelection]
 	ld hl, Jumptable_e4ba
-	rst JumpTable
+	rst JumpTable ;run appropriote function
 	pop bc
 	ld a, b
 	jr nc, .asm_e44b
@@ -9847,13 +9852,13 @@ Functione583: ; e583 (3:6583)
 	ret
 
 ClearPCItemScreen: ; e58b
-	call Function2ed3
+	call Function2ed3 ;disables overworld sprite updating?
 	xor a
 	ld [hBGMapMode], a
 	call WhiteBGMap
 	call ClearSprites
 	hlcoord 0, 0
-	ld bc, 18 * 20
+	ld bc, 18 * 20 ;clear the screen exept for bottom 2 rows
 	ld a, " "
 	call ByteFill
 	hlcoord 0,0
@@ -10693,11 +10698,11 @@ TMHMMoves: ; 1167a
 	db TOXIC
 	db ZAP_CANNON
 	db ROCK_SMASH
-	db PSYCH_UP
+	db SWORDS_DANCE
 	db HIDDEN_POWER
 	db SUNNY_DAY
-	db SWEET_SCENT
-	db SNORE
+	db DOUBLE_EDGE
+	db POISON_JAB
 	db BLIZZARD
 	db HYPER_BEAM
 	db ICY_WIND
@@ -10705,7 +10710,7 @@ TMHMMoves: ; 1167a
 	db RAIN_DANCE
 	db GIGA_DRAIN
 	db ENDURE
-	db FRUSTRATION
+	db ROCK_POLISH
 	db SOLARBEAM
 	db IRON_TAIL
 	db DRAGONBREATH
@@ -10727,7 +10732,7 @@ TMHMMoves: ; 1167a
 	db DEFENSE_CURL
 	db THUNDERPUNCH
 	db DREAM_EATER
-	db DETECT
+	db DAZZLINGLEAM
 	db REST
 	db ATTRACT
 	db THIEF
@@ -13421,7 +13426,7 @@ PokemonActionSubmenu: ; 12a88
 	dbw 11, Function12f26 ; Headbutt
 	dbw  5, Function12e94 ; Waterfall
 	dbw 12, Function12f3b ; RockSmash
-	dbw 14, Function12f50 ; SweetScent
+	dbw 14, Function12f26 ; SweetScent, replaced by zen headbutt which copies headbutt
 	dbw 15, OpenPartyStats
 	dbw 16, SwitchPartyMons
 	dbw 17, GiveTakePartyMonItem
@@ -17008,12 +17013,6 @@ OutdoorSprites: ; 144b8
 	dw Group26Sprites
 	dw Group27Sprites
 	dw Group28Sprites
-	dw Group29Sprites
-	dw Group30Sprites
-	dw Group31Sprites
-	dw Group32Sprites
-	dw Group33Sprites
-	dw Group34Sprites
 ; 144ec
 
 Group1Sprites: ; 146a1
@@ -17348,7 +17347,7 @@ Group13Sprites: ; 144ec
 	db SPRITE_TEACHER
 	db SPRITE_FISHER
 	db SPRITE_YOUNGSTER
-	db SPRITE_BLUE
+	db SPRITE_OAK
 	db SPRITE_GRAMPS
 	db SPRITE_BUG_CATCHER
 	db SPRITE_COOLTRAINER_F
@@ -17705,158 +17704,6 @@ Group28Sprites:
 	db SPRITE_BIRD
 	db SPRITE_PHARMACIST
 	db SPRITE_SUPER_NERD
-
-Group29Sprites: ; 144ec
-	db SPRITE_SUICUNE
-	db SPRITE_SILVER_TROPHY
-	db SPRITE_FAMICOM
-	db SPRITE_POKEDEX
-	db SPRITE_WILL
-	db SPRITE_KAREN
-	db SPRITE_NURSE
-	db SPRITE_SIDEWAYS_GRAMPS
-	db SPRITE_BIG_LAPRAS
-	db SPRITE_BIG_ONIX
-	db SPRITE_SUDOWOODO
-	db SPRITE_BIG_SNORLAX
-	db SPRITE_TEACHER
-	db SPRITE_FISHER
-	db SPRITE_YOUNGSTER
-	db SPRITE_BLUE
-	db SPRITE_GRAMPS
-	db SPRITE_BUG_CATCHER
-	db SPRITE_COOLTRAINER_F
-	db SPRITE_OAK
-	db SPRITE_SWIMMER_GUY
-	db SPRITE_POKE_BALL
-	db SPRITE_FRUIT_TREE ; 23
-
-Group30Sprites: ; 144ec
-	db SPRITE_SUICUNE
-	db SPRITE_SILVER_TROPHY
-	db SPRITE_FAMICOM
-	db SPRITE_POKEDEX
-	db SPRITE_WILL
-	db SPRITE_KAREN
-	db SPRITE_NURSE
-	db SPRITE_SIDEWAYS_GRAMPS
-	db SPRITE_BIG_LAPRAS
-	db SPRITE_BIG_ONIX
-	db SPRITE_SUDOWOODO
-	db SPRITE_BIG_SNORLAX
-	db SPRITE_TEACHER
-	db SPRITE_FISHER
-	db SPRITE_YOUNGSTER
-	db SPRITE_BLUE
-	db SPRITE_GRAMPS
-	db SPRITE_BUG_CATCHER
-	db SPRITE_COOLTRAINER_F
-	db SPRITE_OAK
-	db SPRITE_SWIMMER_GUY
-	db SPRITE_POKE_BALL
-	db SPRITE_FRUIT_TREE ; 23
-
-Group31Sprites: ; 144ec
-	db SPRITE_SUICUNE
-	db SPRITE_SILVER_TROPHY
-	db SPRITE_FAMICOM
-	db SPRITE_POKEDEX
-	db SPRITE_WILL
-	db SPRITE_KAREN
-	db SPRITE_NURSE
-	db SPRITE_SIDEWAYS_GRAMPS
-	db SPRITE_BIG_LAPRAS
-	db SPRITE_BIG_ONIX
-	db SPRITE_SUDOWOODO
-	db SPRITE_BIG_SNORLAX
-	db SPRITE_TEACHER
-	db SPRITE_FISHER
-	db SPRITE_YOUNGSTER
-	db SPRITE_BLUE
-	db SPRITE_GRAMPS
-	db SPRITE_BUG_CATCHER
-	db SPRITE_COOLTRAINER_F
-	db SPRITE_OAK
-	db SPRITE_SWIMMER_GUY
-	db SPRITE_POKE_BALL
-	db SPRITE_FRUIT_TREE ; 23
-
-Group32Sprites: ; 144ec
-	db SPRITE_SUICUNE
-	db SPRITE_SILVER_TROPHY
-	db SPRITE_FAMICOM
-	db SPRITE_POKEDEX
-	db SPRITE_WILL
-	db SPRITE_KAREN
-	db SPRITE_NURSE
-	db SPRITE_SIDEWAYS_GRAMPS
-	db SPRITE_BIG_LAPRAS
-	db SPRITE_BIG_ONIX
-	db SPRITE_SUDOWOODO
-	db SPRITE_BIG_SNORLAX
-	db SPRITE_TEACHER
-	db SPRITE_FISHER
-	db SPRITE_YOUNGSTER
-	db SPRITE_BLUE
-	db SPRITE_GRAMPS
-	db SPRITE_BUG_CATCHER
-	db SPRITE_COOLTRAINER_F
-	db SPRITE_OAK
-	db SPRITE_SWIMMER_GUY
-	db SPRITE_POKE_BALL
-	db SPRITE_FRUIT_TREE ; 23
-
-Group33Sprites: ; 144ec
-	db SPRITE_SUICUNE
-	db SPRITE_SILVER_TROPHY
-	db SPRITE_FAMICOM
-	db SPRITE_POKEDEX
-	db SPRITE_WILL
-	db SPRITE_KAREN
-	db SPRITE_NURSE
-	db SPRITE_SIDEWAYS_GRAMPS
-	db SPRITE_BIG_LAPRAS
-	db SPRITE_BIG_ONIX
-	db SPRITE_SUDOWOODO
-	db SPRITE_BIG_SNORLAX
-	db SPRITE_TEACHER
-	db SPRITE_FISHER
-	db SPRITE_YOUNGSTER
-	db SPRITE_BLUE
-	db SPRITE_GRAMPS
-	db SPRITE_BUG_CATCHER
-	db SPRITE_COOLTRAINER_F
-	db SPRITE_OAK
-	db SPRITE_SWIMMER_GUY
-	db SPRITE_POKE_BALL
-	db SPRITE_FRUIT_TREE ; 23
-
-Group34Sprites: ; 144ec
-	db SPRITE_SUICUNE
-	db SPRITE_SILVER_TROPHY
-	db SPRITE_FAMICOM
-	db SPRITE_POKEDEX
-	db SPRITE_WILL
-	db SPRITE_KAREN
-	db SPRITE_NURSE
-	db SPRITE_SIDEWAYS_GRAMPS
-	db SPRITE_BIG_LAPRAS
-	db SPRITE_BIG_ONIX
-	db SPRITE_SUDOWOODO
-	db SPRITE_BIG_SNORLAX
-	db SPRITE_TEACHER
-	db SPRITE_FISHER
-	db SPRITE_YOUNGSTER
-	db SPRITE_BLUE
-	db SPRITE_GRAMPS
-	db SPRITE_BUG_CATCHER
-	db SPRITE_COOLTRAINER_F
-	db SPRITE_OAK
-	db SPRITE_SWIMMER_GUY
-	db SPRITE_POKE_BALL
-	db SPRITE_FRUIT_TREE ; 23
-; 14503
-
 SpriteHeaders: ; 14736
 INCLUDE "gfx/overworld/sprite_headers.asm"
 ; 1499a
@@ -18033,9 +17880,9 @@ Function14a83: ; 14a83 (5:4a83)
 	pop de
 	ret
 
-Function14ab2: ; 14ab2
-	call Function14b89
-	jr c, .asm_14ac1
+Function14ab2: ; 14ab2  ask if save, if yes save and ret nc
+	call Function14b89 ; ask if save, if yes erase save and ret nc
+	jr c, .asm_14ac1 ;ret c if refused
 	call Function14b54
 	call Function14be3
 	call Function14b5a
@@ -18147,25 +17994,26 @@ Function14b85: ; 14b85
 	ret
 ; 14b89
 
-Function14b89: ; 14b89
+Function14b89: ; 14b89 ask if save, if yes erase save and ret nc
 	ld a, [wcfcd]
 	and a
-	jr z, .asm_14ba8
-	call Function14bcb
+	jr z, .asm_14ba8 ;if not talked to receptionist, skip to erase?
+	call Function14bcb ;if current playerid is the same as saved id, jump
 	jr z, .asm_14b9e
-	ld hl, UnknownText_0x15297
-	call Function14baf
-	jr nz, .asm_14bad
-	jr .asm_14ba8
+	ld hl, UnknownText_0x15297 ;ask if can overwrite
+	call Function14baf ;ask if want to save
+	jr nz, .asm_14bad ;if no skip
+	jr .asm_14ba8 ;else erase save
 
 .asm_14b9e
-	ld hl, UnknownText_0x15292
-	call Function14baf
+	ld hl, UnknownText_0x15292 ;ask if can overwrite
+	call Function14baf ;ask if want to save
 	jr nz, .asm_14bad
-	jr .asm_14bab
+	jr .asm_14bab ;ret nc
 
 .asm_14ba8
-	call Function14cbb
+	call Function14cbb ;erase save
+
 .asm_14bab
 	and a
 	ret
@@ -18175,33 +18023,33 @@ Function14b89: ; 14b89
 	ret
 ; 14baf
 
-Function14baf: ; 14baf
-	ld b, BANK(UnknownText_0x15283)
-	call Function269a
-	call Function1d58
+Function14baf: ; 14baf ask if want to save
+	ld b, BANK(UnknownText_0x15283);would you like to save
+	call Function269a ;print text box
+	call Function1d58 ;load menu MenuDataHeader_0x1d5f
 	lb bc, 0, 7
-	call PlaceYesNoBox
-	ld a, [wcfa9]
+	call PlaceYesNoBox ; Return nc (yes) or c (no).
+	ld a, [wcfa9] ;load cursor position
 	dec a
-	call Function1c17
+	call Function1c17 ;unload menu
 	push af
-	call Functiond90
+	;call Functiond90 does nothing
 	pop af
 	and a
 	ret
 ; 14bcb
 
-Function14bcb: ; 14bcb
+Function14bcb: ; 14bcb check if current playerid is the same as saved id
 	ld a, $1
 	call GetSRAMBank
-	ld hl, $a009
+	ld hl, $a009 ;load saved player id into bc
 	ld a, [hli]
 	ld c, [hl]
 	ld b, a
 	call CloseSRAM
 	ld a, [PlayerID]
 	cp b
-	ret nz
+	ret nz 
 	ld a, [PlayerID + 1]
 	cp c
 	ret
@@ -18455,7 +18303,7 @@ Function14dbb: ; 14dbb
 	ld hl, Options
 	ld de, $a000
 	ld bc, $0008
-	call CopyBytes
+	call CopyBytes ;copy 8 bytes from options to $a000, resetting no text delay
 	ld a, [Options]
 	and $ef
 	ld [$a000], a
@@ -18737,7 +18585,7 @@ Function14fd7: ; 14fd7 (5:4fd7)
 	call CloseSRAM
 	ret
 
-Function1500c: ; 1500c
+Function1500c: ; 1500c copy 798 bytes from a865 to partycount
 	ld a, $1
 	call GetSRAMBank
 	ld hl, $a865
@@ -19113,7 +18961,8 @@ UnknownText_0x152a6: ; 0x152a6
 INCLUDE "engine/spawn_points.asm"
 
 INCLUDE "engine/map_setup.asm"
-Function1559a: ; 1559a PC?
+
+Function1559a: ; 1559a PC here
 	call Function15650 ;if party is zero, cannot use
 	ret c
 	call Function156b3 ;play soundFX
@@ -19126,17 +18975,17 @@ Function1559a: ; 1559a PC?
 .asm_155b3
 	xor a
 	ld [hBGMapMode], a ;mapmode = 0
-	call Function1563e ;dex check. ret a=0 if no dex, 1 if wd95e = 0 and dex and 2 otherwise
+	call Function1563e ;dex check. ret a=0 if no dex, 1 if hall of fame count = 0 and dex and 2 otherwise
 	ld [wcf76], a ;load into ??
-	call Function1e5d
-	jr c, .asm_155cc
-	ld a, [MenuSelection]
-	ld hl, Unknown_155e6
-	call Function1fa7
+	call Function1e5d ;set up and process PC menu, ret c if going back
+	jr c, .asm_155cc ;if going back a menu, jump
+	ld a, [MenuSelection] ;redundent
+	ld hl, Unknown_155e6 ;also redundent?
+	call Function1fa7 ;starting at Unknown_155e6, go down to menu selection row and run the function pointed to by that
 	jr nc, .asm_155b3
 .asm_155cc
-	call Function156b8
-	call Function1c07
+	call Function156b8 ;play sound fx
+	call Function1c07 ;unload top menu on the stack, replacing the menu with what's behind it
 	call Function1c17
 	ret
 ; 155d6
@@ -19152,7 +19001,7 @@ MenuDataHeader_0x155d6: ; 0x155d6
 MenuData2_0x155de: ; 0x155de
 	db $a0 ; flags
 	db 0 ; items
-	dw Unknown_1562c
+	dw Unknown_1562c ;location of menu options
 	dw Function1f8d
 	dw Unknown_155e6
 ; 0x155e6
@@ -19264,7 +19113,7 @@ Function156b3: ; 156b3
 
 Function156b8: ; 156b8
 	ld de, SFX_SHUT_DOWN_PC
-	call Function156d0
+	call Function156d0 ;play sound fx
 	call WaitSFX
 	ret
 
@@ -19300,7 +19149,7 @@ Function156d9: ; 156d9
 	call Function2173
 	call Function321c
 	call Function1ad2
-	call Function156b8
+	call Function156b8 ;play sound fx
 	ld c, $0
 	ret
 
@@ -23989,7 +23838,8 @@ Function24085: ; 24085
 Function2408f: ; 2408f
 	call Function2411a
 	call Function1bc9
-	call Function1ff8
+	call Function1ff8 ;if a or b pressed and start diabled, play sound
+
 Function24098: ; 24098
 	ld a, [wcf91]
 	bit 1, a
@@ -24660,7 +24510,7 @@ UnknownText_0x24468: ; 24468
 ; 2446d
 
 Function2446d:: ; 2446d fill rest of menu data?
-	ld a, [wcf91] ;load ?? into b
+	ld a, [wcf91] ;load vtiles byte 1 into b
 	ld b, a
 	ld hl, wcfa1
 	ld a, [wcf82] ;load cur menu start x coord
@@ -25953,7 +25803,7 @@ MonMenuOptions: ; 24cd9
 	db 0, 11, HEADBUTT
 	db 0, 12, ROCK_SMASH
 	db 0, 13, MILK_DRINK
-	db 0, 14, SWEET_SCENT
+	db 0, 14, ZEN_HEADBUTT
 ; Options
 
 	db 1, 15, 1 ; STATS
@@ -27952,7 +27802,7 @@ Function2695b: ; 2695b
 	ld hl, MenuDataHeader_0x269b5
 	call LoadMenuDataHeader
 	call Function1e5d
-	jr c, .asm_26977
+	jr c, .asm_26977 
 	call Function26a02
 .asm_26977
 	call Function1c07 ;unload top menu on menu stack
@@ -33001,19 +32851,19 @@ Function29e53: ; 29e53
 	ret
 ; 29e66
 
-Function29e66: ; 29e66
-	ld a, [wd265]
+Function29e66: ; 29e66 ;ask if save, if yes save and ret scriptvar = 1
+	ld a, [wd265] ;a = ??
 	push af
-	callba Function14ab2
+	callba Function14ab2 ;ask if save, if yes save and ret nc
 	ld a, $1
-	jr nc, .asm_29e75
+	jr nc, .asm_29e75 ;if saved, scriptvar = 1, else it = 0
 	xor a
 .asm_29e75
 	ld [ScriptVar], a
 	ld c, $1e
 	call DelayFrames
 	pop af
-	ld [wd265], a
+	ld [wd265], a ;load into ??
 	ret
 ; 29e82
 
@@ -33773,14 +33623,6 @@ Function29ff8: ; 29ff8
 	ld [wd25d], a ; load zero if no water encounters, otherwise load water encounter chance
 	ret
 
-GetKantoWildMonsPointer:
-	ld hl, StatusFlags
-	bit 5, [hl]
-	ld hl, WildMons3
-	ret nz
-	ld hl, WildMonsEGK
-	ret
-
 Function2a4ab: ; 2a4ab seems to be a function to get a local mon to use in call text
 	callba Function90439
 	ld d, b
@@ -33790,7 +33632,7 @@ Function2a4ab: ; 2a4ab seems to be a function to get a local mon to use in call 
 	ld bc, $35 ; 53
 	call Function2a288 ;load current maps place in land wild tables into hl
 	jr c, .asm_2a4c6 ; if succsessful, jump. otherwise try kanto
-	call GetKantoWildMonsPointer
+	ld hl, WildMons3
 	call Function2a288
 	jr nc, .asm_2a514 ; if succsessful, fall through, otherwise ret scriptvar = 1
 .asm_2a4c6 
@@ -33854,7 +33696,7 @@ Function2a51f: ; 2a51f
 		ld bc, $35 
 	call Function2a288
 	jr c, .asm_2a538
-	call GetKantoWildMonsPointer
+	ld hl, WildMons3
 	call Function2a288
 .asm_2a538
 	ld bc, $0005 ;only goes up 5 instead of 13
@@ -33904,7 +33746,7 @@ Function2a01f: ; 2a01f ;fill tilemap with tiles from the locations of mon wd625
 
 .skip
 	ld de, TileMap
-	call GetKantoWildMonsPointer
+	ld hl, WildMons3
 	call Function2a052
 	ld hl, WildMons4
 	jp Function2a052 
@@ -34282,10 +34124,8 @@ Function2a205: ; 2a205
 	ld bc, $0035 ; 53, set for size of areas when skipping, changed to new size
 	call asm_2a23d ; check for swarms
 	ret c ;return if a swarm
-	call GetKantoWildMonsPointer
-	ld d, h
-	ld e, l
 	ld hl, WildMons1
+	ld de, WildMons3
 	call asm_2a235 ;if johto keep same, if kanto load de into hl
 		;ld bc, $002f
 	ld bc, $0035 ; 53
@@ -34531,9 +34371,6 @@ INCLUDE "data/wild/swarm_grass.asm"
 
 WildMons6: ; 0x2b92f
 INCLUDE "data/wild/swarm_water.asm"
-
-WildMonsEGK:
-INCLUDE "data/wild/egk_grass.asm"
 
 SECTION "bankB", ROMX, BANK[$B]
 
@@ -36359,7 +36196,7 @@ ReadTrainerParty: ; 39771
 	add hl, bc
 	add hl, bc
 	ld a, [hli]
-	ld [wdff5], a
+	ld [wdff5], a ;load start of trainer
 	ld a, [hli]
 	ld e, a
 	ld a, [hl]
@@ -36369,11 +36206,11 @@ ReadTrainerParty: ; 39771
 	ld b, a
 .skip_trainer
 	dec b
-	jr z, .got_trainer
+	jr z, .got_trainer ;loop down the correct number of trainers
 .next
 	ld a, [wdff5]
 	call GetFarByte2
-	cp $ff
+	cp $ff 
 	jr nz, .next
 	jr .skip_trainer
 
@@ -36382,10 +36219,10 @@ ReadTrainerParty: ; 39771
 	ld a, [wdff5]
 	call GetFarByte2
 	cp "@"
-	jr nz, .skip_name
+	jr nz, .skip_name ;advance pointer until end of name
 	ld a, [wdff5]
 	call GetFarByte2
-	ld [wdff5 + 1], a
+	ld [wdff5 + 1], a ;load in trainertype
 	ld bc, Function3991b
 	push bc
 TrainerType:
@@ -36393,13 +36230,13 @@ TrainerType:
 	ld a, [wdff5]
 	call GetFarByte2
 	cp $ff
-	ret z
-	ld [CurPartyLevel], a
+	ret z ;ret if done
+	ld [CurPartyLevel], a ;else load in as level
 	ld a, [wdff5]
 	call GetFarByte2
-	ld [CurPartySpecies], a
-	ld a, OTPARTYMON
-	ld [MonType], a
+	ld [CurPartySpecies], a ;load species in
+	ld a, OTPARTYMON ;load montype
+	ld [MonType], a 
 	push hl
 	predef Functiond88c
 	pop hl
@@ -36637,7 +36474,8 @@ Function39990: ; 39990
 	ret
 ; 39999
 
-SECTION "bank10", ROMX, BANK[$10]
+
+SECTION "bank10", ROMX ;, BANK[$10]
 
 INCLUDE "engine/pokedex.asm"
 
@@ -47393,19 +47231,19 @@ Function4e711: ; 4e711
 
 Function4e726: ; 4e726
 	call ClearJoypad
-	ld bc, $010e
+	ld bc, $010e ;b = legnth of uncancelable flahes(starts at 1, 8 frames each), c = legnth of cancellable flashes(starts at 14, c frames each)
 .asm_4e72c
 	push bc
-	call Function4e779
+	call Function4e779 ;cancellable section
 	pop bc
-	jr c, .asm_4e73f
+	jr c, .asm_4e73f ;if skipped
 	push bc
-	call Function4e741
+	call Function4e741 ;uncancellable section
 	pop bc
-	inc b
+	inc b ;b+1, c -2
 	dec c
 	dec c
-	jr nz, .asm_4e72c
+	jr nz, .asm_4e72c ;repeat 7 times
 	and a
 	ret
 
@@ -47417,61 +47255,61 @@ Function4e726: ; 4e726
 Function4e741: ; 4e741
 .asm_4e741
 	ld a, $cf
-	ld [wd1ec], a
+	ld [wd1ec], a ;load 207 into ??
 	call Function4e755
 	ld a, $31
 	ld [wd1ec], a
 	call Function4e755
 	dec b
-	jr nz, .asm_4e741
+	jr nz, .asm_4e741 ;loop b times
 	ret
 ; 4e755
 
 Function4e755: ; 4e755
 	push bc
 	xor a
-	ld [hBGMapMode], a
+	ld [hBGMapMode], a ;load 0 into map mode
 	hlcoord 7, 2
-	ld bc, $0707
+	ld bc, $0707 ;loop 7*7 times
 	ld de, $000d
 .asm_4e762
 	push bc
 .asm_4e763
 	ld a, [wd1ec]
-	add [hl]
+	add [hl] ; tile += wd1ec in a 7*7 square
 	ld [hli], a
 	dec c
-	jr nz, .asm_4e763
+	jr nz, .asm_4e763 ;loop 7 columns
 	pop bc
-	add hl, de
+	add hl, de ;skip forward to start of next row
 	dec b
-	jr nz, .asm_4e762
+	jr nz, .asm_4e762 ;loop 7 rows
 	ld a, $1
-	ld [hBGMapMode], a
-	call WaitBGMap
+	ld [hBGMapMode], a ;reset bgmapmode
+	call WaitBGMap ;delays 4 frames
 	pop bc
 	ret
 ; 4e779
 
-Function4e779: ; 4e779
+Function4e779: ; 4e779 evo cancelling
 .asm_4e779
 	call DelayFrame
 	push bc
-	call Functiona57
+	call Functiona57 ;update joypad data
 	ld a, [hJoyDown]
 	pop bc
-	and $2
+	and $2 ;if b, jump
 	jr nz, .asm_4e78c
 .asm_4e787
 	dec c
-	jr nz, .asm_4e779
+	jr nz, .asm_4e779 ;loop c times
 	and a
 	ret
 
 .asm_4e78c
 	ld a, [wd1e9]
 	and a
-	jr nz, .asm_4e787
+	jr nz, .asm_4e787 ;if evo count = >1, loop, else ret C
 	scf
 	ret
 ; 4e794
@@ -49008,13 +48846,10 @@ UnknownScript_0x506c8: ; 0x506c8 SWEET SCENT
 	special UpdateTimePals
 	callasm Functioncd12
 	writetext UnknownText_0x50726
-	waitbutton
-	closetext
+	reloadmappart
 	copybytetovar wd1ef
 	pokepic $0000
 	cry $0000
-	closepokepic
-	loadfont
 	callasm Function506ef
 	iffalse UnknownScript_0x506e9
 	checkflag ENGINE_BUG_CONTEST_TIMER
@@ -50072,6 +49907,7 @@ Function50e1b: ; 50e1b
 ; 50e47
 
 Function50e47: ; 50e47
+;d = level
 ; (a/b)*n**3 + c*n**2 + d*n - e
 	ld a, [BaseGrowthRate]
 	add a
@@ -61443,43 +61279,46 @@ UnknownText_0x8b1fc: ; 0x8b1fc
 	db "@"
 ; 0x8b201
 
-Function8b201: ; 8b201
-	ld hl, StringBuffer2
-	ld [hl], "3"
-	inc hl
-	ld [hl], "@"
-	ld de, Unknown_8b215
-	call Function8b25b
-	ret z
-	call Function8b231
-	scf
+Function8b201: ; 8b201 ;check if possible to enter, display fail text and ret c otherwise. made redundent
+	;ld hl, StringBuffer2
+	;ld [hl], "3"
+	;inc hl
+	;ld [hl], "@"
+	;ld de, Unknown_8b215 ;load 3 into string buffer2 and checks table into de
+	;call Function8b25b
+	;ret z ;ret if still ok to go in
+	;call Function8b231 ;please return when you're ready
+	;scf
 	ret
 ; 8b215
 
 Unknown_8b215: ; 8b215
-	db 4
-	dw Unknown_8b21a
-	dw Unknown_8b222
+	;db 4
+	;dw Unknown_8b21a
+	;dw Unknown_8b222
 
-Unknown_8b21a: ; 8b21a
-	dw Function8b2da
-	dw Function8b2e2
-	dw Function8b32a
-	dw Function8b331
+
+Unknown_8b21a: ; 8b21a ;fail checks
+	;dw Function8b2da ;if party not 3 members REMOVED
+	;dw Function8b2e2 ;check for species REMOVED
+	;dw Function8b32a ;check for items REMOVED
+	;dw Function8b331 ;check for eggs REMOVED
+
 ; 8b222
 
-Unknown_8b222: ; 8b222
-	dw UnknownText_0x8b22c
-	dw UnknownText_0x8b247
-	dw UnknownText_0x8b24c
-	dw UnknownText_0x8b251
-	dw UnknownText_0x8b256
+Unknown_8b222: ; 8b222 ;fail messages
+	;dw UnknownText_0x8b22c
+	;dw UnknownText_0x8b247
+	;dw UnknownText_0x8b24c
+	;dw UnknownText_0x8b251
+	;dw UnknownText_0x8b256
+
 ; 8b22c
 
 UnknownText_0x8b22c: ; 0x8b22c
 	; Excuse me. You're not ready.
-	text_jump UnknownText_0x1c5944
-	db "@"
+	;text_jump UnknownText_0x1c5944
+	;db "@"
 ; 0x8b231
 
 Function8b231: ; 8b231
@@ -61508,35 +61347,35 @@ UnknownText_0x8b242: ; 0x8b242
 
 UnknownText_0x8b247: ; 0x8b247
 	; Only three #MON may be entered.
-	text_jump UnknownText_0x1c59c3
-	db "@"
+	;text_jump UnknownText_0x1c59c3
+	;db "@"
 ; 0x8b24c
 
 UnknownText_0x8b24c: ; 0x8b24c
 	; The @  #MON must all be different kinds.
-	text_jump UnknownText_0x1c59e5
-	db "@"
+	;text_jump UnknownText_0x1c59e5
+	;db "@"
 ; 0x8b251
 
 UnknownText_0x8b251: ; 0x8b251
 	; The @  #MON must not hold the same items.
-	text_jump UnknownText_0x1c5a13
-	db "@"
+	;text_jump UnknownText_0x1c5a13
+;	db "@"
 ; 0x8b256
 
 UnknownText_0x8b256: ; 0x8b256
 	; You can't take an EGG!
-	text_jump UnknownText_0x1c5a42
-	db "@"
+;	text_jump UnknownText_0x1c5a42
+;	db "@"
 ; 0x8b25b
 
 Function8b25b: ; 8b25b
 	ld bc, $0000
 .asm_8b25e
-	call Function8b26c
-	call c, Function8b28e
-	call Function8b276
-	jr nz, .asm_8b25e
+	call Function8b26c ;if can't enter, ret c
+	call c, Function8b28e ;print why can't enter, b = 1 to fail
+	call Function8b276 ;inc c, load de into a, loop [de] times
+	jr nz, .asm_8b25e ;loop [de] times
 	ld a, b
 	and a
 	ret
@@ -61545,8 +61384,8 @@ Function8b25b: ; 8b25b
 Function8b26c: ; 8b26c
 	push de
 	push bc
-	call Function8b27a
-	ld a, c
+	call Function8b27a ;hl = contents of de+1
+	ld a, c ;run place c of that table
 	rst JumpTable
 	pop bc
 	pop de
@@ -61560,7 +61399,7 @@ Function8b276: ; 8b276
 	ret
 ; 8b27a
 
-Function8b27a: ; 8b27a
+Function8b27a: ; 8b27a hl = contents of de+1
 	inc de
 	ld a, [de]
 	ld l, a
@@ -61589,37 +61428,37 @@ Function8b28a: ; 8b28a
 	ret
 ; 8b28e
 
-Function8b28e: ; 8b28e
+Function8b28e: ; 8b28e print fail to enter text
 	push de
 	push bc
 	ld a, b
 	and a
-	call z, Function8b29d
+	call z, Function8b29d ;if b = 0, print not ready text
 	pop bc
-	call Function8b2a9
+	call Function8b2a9 ;print text c+1
 	ld b, $1
 	pop de
 	ret
 ; 8b29d
 
-Function8b29d: ; 8b29d
+Function8b29d: ; 8b29d print not ready text
 	push de
-	call Function8b281
-	call Function8b28a
-	call PrintText
+	call Function8b281 ;hl = second row of de (text list)
+	call Function8b28a ;hl = contents of hl
+	call PrintText ;
 	pop de
 	ret
 ; 8b2a9
 
-Function8b2a9: ; 8b2a9
+Function8b2a9: ; 8b2a9 print text c+1
 	push bc
-	call Function8b281
+	call Function8b281 ;hl = second row of de (text list)
 	inc hl
 	inc hl
-	ld b, $0
+	ld b, $0 ;text c + 1
 	add hl, bc
 	add hl, bc
-	call Function8b28a
+	call Function8b28a ;hl = contents of hl
 	call PrintText
 	pop bc
 	ret
@@ -61653,67 +61492,71 @@ Function8b2c1: ; 8b2c1
 ; 8b2da
 
 Function8b2da: ; 8b2da
-	ld a, [PartyCount]
-	cp 3
-	ret z
-	scf
+	;ld a, [PartyCount]
+	;cp 3 removed as now scales to partycount
+	;ret z
+	;scf
 	ret
 ; 8b2e2
 
 Function8b2e2: ; 8b2e2
-	ld hl, PartyMon1Species
-	call Function8b2e9
+	;ld hl, PartyMon1Species unneded
+	;call Function8b2e9 ;check if party has all different species, if they don't ret c
 	ret
 ; 8b2e9
 
-Function8b2e9: ; 8b2e9
-	ld de, PartyCount
-	ld a, [de]
-	inc de
-	dec a
-	jr z, .asm_8b314
-	ld b, a
+Function8b2e9: ; 8b2e9 ;check if party has all different versions of what's pointed to by hl, if they don't ret c. made redundent 
+;	ld de, PartyCount
+;	ld a, [de]
+;	inc de
+;	dec a
+;	jr z, .asm_8b314 ;if party size = 1, all clear
+;	ld b, a
 .asm_8b2f2
-	push hl
-	push de
-	ld c, b
-	call Function8b322
-	jr z, .asm_8b30c
-	ld a, [hl]
-	and a
-	jr z, .asm_8b30c
+;	push hl
+;	push de
+;	ld c, b ;c = mons below
+;	call Function8b322 ;if [de] = egg, skip
+;	jr z, .asm_8b30c
+;	ld a, [hl]
+;	and a
+;	jr z, .asm_8b30c ;if hl = 0, skip
 .asm_8b2fe
-	call Function8b31a
-	call Function8b322
-	jr z, .asm_8b309
-	cp [hl]
-	jr z, .asm_8b316
+;	call Function8b31a ;go down 1 mon in hl, inc de
+;	call Function8b322 ;if [de] = egg, skip
+;	jr z, .asm_8b309
+;	cp [hl]
+;	jr z, .asm_8b316 ;if they match, ret c
+
 .asm_8b309
-	dec c
-	jr nz, .asm_8b2fe
+;	dec c ;loop for each mon after
+;	jr nz, .asm_8b2fe
 .asm_8b30c
-	pop de
-	pop hl
-	call Function8b31a
-	dec b
-	jr nz, .asm_8b2f2
+;	pop de
+;	pop hl
+;	call Function8b31a
+;	dec b ;b becomes c for inner loop
+;	jr nz, .asm_8b2f2 ;loop for each mon
+
 .asm_8b314
-	and a
-	ret
+;	and a
+;	ret
 
 .asm_8b316
-	pop de
-	pop hl
-	scf
-	ret
+
+;	pop de
+;	pop hl
+;	scf
+;	ret
+
 ; 8b31a
 
-Function8b31a: ; 8b31a
-	push bc
-	ld bc, PartyMon2 - PartyMon1
-	add hl, bc
-	inc de
-	pop bc
+Function8b31a: ; 8b31a redundent due to other changes
+;	push bc
+;	ld bc, PartyMon2 - PartyMon1
+;	add hl, bc ;go down 1 mon in hl, inc de
+;	inc de
+;	pop bc
 	ret
 ; 8b322
 
@@ -61728,26 +61571,26 @@ Function8b322: ; 8b322
 ; 8b32a
 
 Function8b32a: ; 8b32a
-	ld hl, PartyMon1Item
-	call Function8b2e9
+	;ld hl, PartyMon1Item ;removed 
+	;call Function8b2e9 ;check if party has all different items, if they don't ret c
 	ret
 ; 8b331
 
 Function8b331: ; 8b331
-	ld hl, PartyCount
-	ld a, [hli]
-	ld c, a
+;	ld hl, PartyCount
+;	ld a, [hli]
+;	ld c, a
 .asm_8b336
-	ld a, [hli]
-	cp EGG
-	jr z, .asm_8b340
-	dec c
-	jr nz, .asm_8b336
-	and a
-	ret
+;	ld a, [hli]
+;	cp EGG
+;	jr z, .asm_8b340 ;if egg, ret c
+;	dec c
+;	jr nz, .asm_8b336
+;	and a
+;	ret
 
 .asm_8b340
-	scf
+;	scf
 	ret
 ; 8b342
 
@@ -68457,7 +68300,7 @@ Function90019:: ; 90019
 ; 9001c
 
 Function9001c: ; 9001c
-	ld hl, wPhoneList
+	ld hl, wdc7c
 	ld b, $a
 .asm_90021
 	ld a, [hli]
@@ -68477,7 +68320,7 @@ Function9001c: ; 9001c
 Function9002d: ; 9002d
 	call Function90040
 	ld b, a
-	ld hl, wPhoneList
+	ld hl, wdc7c
 .asm_90034
 	ld a, [hli]
 	and a
@@ -68617,7 +68460,7 @@ Function900de: ; 900de (24:40de)
 	ld bc, $b
 	xor a
 	call ByteFill
-	ld de, wPhoneList
+	ld de, wdc7c
 	ld a, $a
 .asm_900f7
 	ld [wd03f], a
@@ -70926,7 +70769,7 @@ Function91171: ; 91171 (24:5171)
 	ret
 
 .a
-	ld hl, wPhoneList
+	ld hl, wdc7c
 	ld a, [wc6d2]
 	ld e, a
 	ld d, 0
@@ -71111,7 +70954,7 @@ Function912d8: ; 912d8 (24:52d8)
 	ld a, [wc6d2] 
 	ld e, a
 	ld d, $0
-	ld hl, wPhoneList
+	ld hl, wdc7c
 	add hl, de
 	xor a
 	ld [wc6d0], a 
@@ -71139,7 +70982,7 @@ Function912d8: ; 912d8 (24:52d8)
 ; 9131e (24:531e)
 
 Function9131e: ; 9131e
-	ld hl, wPhoneList
+	ld hl, wdc7c
 	ld a, [wc6d2]
 	ld e, a
 	ld d, 0
@@ -71149,7 +70992,7 @@ Function9131e: ; 9131e
 	ld d, 0
 	add hl, de
 	ld [hl], 0
-	ld hl, wPhoneList
+	ld hl, wdc7c
 	ld c, $a
 .asm_91336
 	ld a, [hli]
@@ -71165,7 +71008,7 @@ Function9131e: ; 9131e
 ; 91342
 
 Function91342: ; 91342 (24:5342)
-	ld hl, wPhoneList
+	ld hl, wdc7c
 	ld a, [wc6d2] 
 	ld e, a
 	ld d, 0
@@ -75981,7 +75824,7 @@ GetTreeMon: ; b83e5
 	ld a, 10 ;set all tees to have a 80% encounter chance, with some optimisation
 	call RandomRange
 	cp 8
-	jr nc, NoTreeMon_PopHL
+	jr nc, NoTreeMon
 	call GetTreeScore ; a = 0 if bad(50% chance), 1 if good (40% chance) and 2 if rare (10% chance)
 	pop hl
 		;and a
@@ -76048,8 +75891,6 @@ SelectTreeMon: ; b841f
 	scf
 	ret
 
-NoTreeMon_PopHL:
-	pop hl
 NoTreeMon: ; b843b
 	xor a
 	ld [wd22e], a
@@ -88739,7 +88580,7 @@ Functionfb4cc: ; fb4cc
 	ld d, h
 	ld e, l
 	ld hl, $9790
-	lb bc, BANK(Frames), 6
+	lb bc, BANK(Frames), 6 ;de = correct frame, bc = bank with frame
 	call Functionddc
 	ld hl, $97f0
 	ld de, GFX_f9204
@@ -90773,10 +90614,10 @@ Function104000:: ; 104000
 Function104006: ; 104006
 	ld de, AttrMap
 	ld hl, w6_d000 + $400
-	call Function104263
+	call Function104263 ;load hl with a mix of the contents of de and 0
 	ld de, TileMap
 	ld hl, w6_d000
-	call Function10425f
+	call Function10425f ; load hl with a mix of the contents of de and $7f
 	ld a, $0
 	ld [rVBK], a
 	ld hl, w6_d000
@@ -90822,7 +90663,8 @@ Function10404d: ; 10404d
 
 Function104061:: ; 104061
 	ld hl, Function104067
-	jp Function104177
+	jp Function104177 ;run HL with wram bank set to 6
+
 ; 104067
 
 Function104067: ; 104067
@@ -90981,14 +90823,14 @@ Function104177: ; 104177
 	push af
 	xor a
 	ld [hBGMapMode], a
-	ld [$ffde], a
+	ld [$ffde], a ;load 0 into map mode and ???
 	ld a, [rSVBK]
 	push af
 	ld a, $6
 	ld [rSVBK], a
 	ld a, [rVBK]
 	push af
-	call Function10419c
+	call Function10419c ;run hl
 	pop af
 	ld [rVBK], a
 	pop af
@@ -91152,30 +90994,30 @@ Function10425f: ; 10425f (41:425f)
 	ld c, $7f
 	jr Function104265
 
-Function104263: ; 104263 (41:4263)
+Function104263: ; 104263 (41:4263) ;load hl with a mix of the contents of de and 0
 	ld c, $0
 Function104265: ; 104265 (41:4265)
 	ld a, [$ffaf]
 	push af
 	ld a, c
-	ld [$ffaf], a
+	ld [$ffaf], a ;set $ffaf to c
 	ld c, $12
 .asm_10426d
 	ld b, $14
 .asm_10426f
 	ld a, [de]
 	inc de
-	ld [hli], a
+	ld [hli], a ;load de into hl 20 times
 	dec b
 	jr nz, .asm_10426f
 	ld a, [$ffaf]
-	ld b, $c
+	ld b, $c ;12
 .asm_104279
-	ld [hli], a
+	ld [hli], a ;load $ffaf into hl 12 times
 	dec b
 	jr nz, .asm_104279
 	dec c
-	jr nz, .asm_10426d
+	jr nz, .asm_10426d ;loop 18 times
 	pop af
 	ld [$ffaf], a
 	ret
@@ -93679,99 +93521,100 @@ MoveGrammar: ; 105e7a
 ; each move is given an identifier for what usedmovetext to use (0-4):
 ; 0
 
-	db SWORDS_DANCE
-	db GROWTH
-	db STRENGTH
-	db HARDEN
-	db MINIMIZE
-	db SMOKESCREEN
-	db WITHDRAW
-	db DEFENSE_CURL
-	db EGG_BOMB
-	db SMOG
-	db BONE_CLUB
-	db FLASH
-	db SPLASH
-	db ACID_ARMOR
-	db BONEMERANG
-	db REST
-	db SHARPEN
-	db SUBSTITUTE
-	db MIND_READER
-	db SNORE
-	db PROTECT
-	db SPIKES
-	db ENDURE
-	db ROLLOUT
-	db SWAGGER
-	db SLEEP_TALK
-	db HIDDEN_POWER
-	db PSYCH_UP
-	db EXTREMESPEED
+	;db SWORDS_DANCE ;mass comment out to save space and to save me a job when moves change
+	;db GROWTH
+	;db STRENGTH
+	;db HARDEN
+	;db MINIMIZE
+	;db SMOKESCREEN
+	;db WITHDRAW
+	;db DEFENSE_CURL
+	;db EGG_BOMB
+	;db SMOG
+	;db BONE_CLUB
+	;db FLASH
+	;db SPLASH
+	;db ACID_ARMOR
+	;db BONEMERANG
+	;db REST
+	;db SHARPEN
+	;db SUBSTITUTE
+	;db MIND_READER
+	;db POISON_JAB
+	;db PROTECT
+	;db SPIKES
+	;db ENDURE
+;	db ROLLOUT
+;	;db SWAGGER
+;	db SLEEP_TALK
+;	db HIDDEN_POWER
+	;db GUNK_SHOT
+;	db EXTREMESPEED
 	db 0 ; end set
 	
 ; 1
 
-	db RECOVER
-	db TELEPORT
-	db BIDE
-	db SELFDESTRUCT
-	db AMNESIA
-	db FLAIL
+;	db RECOVER
+;	db TELEPORT
+;	db BIDE
+;	db SELFDESTRUCT
+;	db AMNESIA
+;	db FLAIL
 	db 0 ; end set
 	
 ; 2
 
-	db MEDITATE
-	db AGILITY
-	db MIMIC
-	db DOUBLE_TEAM
-	db BARRAGE
-	db TRANSFORM
-	db STRUGGLE
-	db SCARY_FACE
+;	db MEDITATE
+;	db AGILITY
+;	db MIMIC
+;	db DOUBLE_TEAM
+	;db BARRAGE
+;	db TRANSFORM
+;	db STRUGGLE
+;	db SCARY_FACE
 	db 0 ; end set
 	
 ; 3
 
-	db POUND
-	db SCRATCH
-	db VICEGRIP
-	db WING_ATTACK
-	db FLY
-	db BIND
-	db SLAM
-	db HORN_ATTACK
-	db WRAP
-	db THRASH
-	db TAIL_WHIP
-	db LEER
-	db BITE
-	db GROWL
-	db ROAR
-	db SING
-	db PECK
-	db ABSORB
-	db STRING_SHOT
-	db EARTHQUAKE
-	db FISSURE
-	db DIG
-	db TOXIC
-	db SCREECH
-	db METRONOME
-	db LICK
-	db CLAMP
-	db CONSTRICT
-	db POISON_GAS
-	db BUBBLE
-	db SLASH
-	db SPIDER_WEB
-	db NIGHTMARE
-	db CURSE
-	db FORESIGHT
-	db CHARM
-	db ATTRACT
-	db ROCK_SMASH
+;	db POUND
+;	db SCRATCH
+;	db VICEGRIP
+;	db WING_ATTACK
+;	db FLY
+;	db BIND
+;	db SLAM
+;	db HORN_ATTACK
+;	db WRAP
+;	db THRASH
+;	db TAIL_WHIP
+;	db LEER
+;	db BITE
+;	db GROWL
+;	db ROAR
+;	db SING
+;	db PECK
+;	db ABSORB
+;	db STRING_SHOT
+;	db EARTHQUAKE
+;	db FISSURE
+;	db DIG
+;	db TOXIC
+;	db SCREECH
+;	db METRONOME
+;	db LICK
+;	db CLAMP
+	;db CONSTRICT
+;	db FLASH_CANNON ;comment out all record of old constant and replace with new
+;	db POISON_GAS
+;	db BUBBLE
+;	db SLASH
+;	db SPIDER_WEB
+;	db NIGHTMARE
+;	db CURSE
+;	db FORESIGHT
+;	db CHARM
+;	db ATTRACT
+;	db ROCK_SMASH
 	db 0 ; end set
 	
 ; all other moves = 4
@@ -94236,30 +94079,30 @@ Function10612d: ; 10612d
 	push hl
 	push de
 	ld e, c
-	inc e
+	inc e ;e = c+1
 .asm_106136
 	ld a, [hli]
 	inc a
-	jr nz, .asm_10613d
+	jr nz, .asm_10613d ;load a into hl until e is zero or a = not ff
 	dec e
 	jr nz, .asm_106136
 .asm_10613d
 	pop de
 	pop hl
-	jr z, .asm_10614d
+	jr z, .asm_10614d ;if e = nz, add bc to hl, else done
 	add hl, bc
 .asm_106142
 	inc [hl]
-	jr nz, .asm_10614d
+	jr nz, .asm_10614d ;if the contents are ff, they now 0 and done
 	ld a, c
-	and a
+	and a ;if c is equal to a, done
 	jr z, .asm_10614d
-	dec hl
+	dec hl ;else dec hl and c and loop
 	dec c
 	jr .asm_106142
 
 .asm_10614d
-	call Function106162
+	call Function106162 ;a081/2 = sum of a001 through a080
 	call CloseSRAM
 	pop bc
 	ret
@@ -94273,7 +94116,7 @@ Function106155: mobile ; 106155
 	ret
 ; 106162
 
-Function106162: ; 106162
+Function106162: ; 106162 a081/2 = sum of a001 through a080
 	push de
 	call Function10616e ;de = sum of a001 through a080, store it in a081
 	ld hl, $a081
@@ -94808,7 +94651,7 @@ Function106464:: ; 106464
 	ld hl, $96b0
 	ld b, $f ; XXX no graphics at 0f:40b0
 	call Get2bpp
-	callba Functionfb4cc
+	callba Functionfb4cc ;text box frames?
 	ret
 ; 10649b
 

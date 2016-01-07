@@ -268,8 +268,12 @@ UnknownText_0x58250: ; 0x58250
 ; 0x582eb
 
 PsychicNathanSeenText: ; 0x582eb
-	text "Hmmm… This is a"
-	line "strange place."
+	text "...strange place."
+	
+	para "...strange"
+	line "#MON."
+	
+	para "...caught one."
 	done
 ; 0x5830b
 
@@ -279,8 +283,8 @@ PsychicNathanBeatenText: ; 0x5830b
 ; 0x5830e
 
 UnknownText_0x5830e: ; 0x5830e
-	text "I like thinking"
-	line "here."
+	text "...it came"
+	line "from the ruins."
 	done
 ; 0x58325
 

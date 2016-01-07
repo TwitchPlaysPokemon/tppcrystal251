@@ -206,7 +206,7 @@ Function1c10:: ; 0x1c10
 Function1c17:: ; 0x1c17
 	push af
 	call Function1c07 ;unload top menu on menu stack
-	call Function321c
+	call Function321c ;something to do with backgrounds
 	call Function1ad2
 	pop af
 	ret

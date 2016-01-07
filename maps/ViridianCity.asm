@@ -232,11 +232,16 @@ UnknownText_0x1a9d86: ; 0x1a9d86
 ; 0x1a9daa
 
 UnknownText_0x1a9daa: ; 0x1a9daa
-	text "I heard that there"
-	line "are many items on"
+	text "Wow!"
 
-	para "the ground in"
-	line "VIRIDIAN FOREST."
+	para "I have heard that"
+	line "there are celeb-"
+	cont "-rities here!"
+	
+	para "You can see them"
+	line "hanging out by"
+	cont "the pond!"
+
 	done
 ; 0x1a9def
 

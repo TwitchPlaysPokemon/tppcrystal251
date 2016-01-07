@@ -608,11 +608,12 @@ Bird_keeperJose2BeatenText: ; 0x1a0e3a
 ; 0x1a0e42
 
 UnknownText_0x1a0e42: ; 0x1a0e42
-	text "BIRD KEEPERS like"
-	line "me mimic bird"
+	text "What are you"
+	line "looking at?"
 
-	para "whistles to com-"
-	line "mand #MON."
+	para "Social media"
+	line "isn't easy"
+	cont "for everyone..."
 	done
 ; 0x1a0e7f
 

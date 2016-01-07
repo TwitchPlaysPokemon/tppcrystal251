@@ -1318,11 +1318,11 @@ Function3c874: ; 3c874
 	ld [FXAnimIDLo], a
 	call GetMoveName
 	dec [hl]
-	jr z, .asm_3c8de
+	jr z, .asm_3c8de; release
 	ld a, BATTLE_VARS_SUBSTATUS3
 	call GetBattleVar
 	and 1 << SUBSTATUS_FLYING | 1 << SUBSTATUS_UNDERGROUND
-	jr nz, .asm_3c8d3
+	jr nz, .asm_3c8d3 ;if fly or dig, release?
 	call SwitchTurnCore
 	xor a
 	ld [wcfca], a
@@ -1331,7 +1331,7 @@ Function3c874: ; 3c874
 	call SwitchTurnCore
 
 .asm_3c8d3
-	call GetSixteenthMaxHP
+	call GetEighthMaxHP
 	call Function3cc3f
 	ld hl, BattleText_0x80de2
 	jr .asm_3c8e1

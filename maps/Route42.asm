@@ -341,11 +341,14 @@ HikerBenjaminBeatenText: ; 0x1a9435
 ; 0x1a943f
 
 UnknownText_0x1a943f: ; 0x1a943f
-	text "Losing feels in-"
-	line "significant if you"
+	text "I caught my GOLBAT"
+	line "while surfing"
+	cont "in the morning!"
 
-	para "look up at the big"
-	line "sky!"
+	para "The ZUBAT line"
+	line "changes location"
+	cont "depending on"
+	cont "time of the day."
 	done
 ; 0x1a947c
 

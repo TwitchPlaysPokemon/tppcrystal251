@@ -146,17 +146,14 @@ YoungsterOwenSeenText: ; 0x6805a
 ; 0x68097
 
 YoungsterOwenBeatenText: ; 0x68097
-	text "Huh? How did this"
-	line "happen?"
+	text "I fought fair and"
+	line "square with honor."
 	done
 ; 0x680b2
 
 UnknownText_0x680b2: ; 0x680b2
-	text "I fought fair and"
-	line "square with honor."
-
-	para "I don't regret"
-	line "this at all."
+	text "In this grass I"
+	line "caught my IVYSAUR!"
 	done
 ; 0x680f3
 

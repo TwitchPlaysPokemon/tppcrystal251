@@ -83,8 +83,8 @@ UnknownText_0x7e10e: ; 0x7e10e
 	para "Have you seen a"
 	line "trainer who has a"
 
-	para "SLOWPOKE that can"
-	line "use STRENGTH?"
+	para "STARMIE that can"
+	line "use SURF?"
 	done
 ; 0x7e184
 

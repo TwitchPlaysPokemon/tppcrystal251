@@ -215,19 +215,16 @@ PokemaniacCalvinSeenText: ; 0x5a1b0
 ; 0x5a217
 
 PokemaniacCalvinBeatenText: ; 0x5a217
-	text "You demonstrated"
-	line "on me!"
+	text "Got predicted!"
 	done
 ; 0x5a230
 
 UnknownText_0x5a230: ; 0x5a230
-	text "I should compile"
-	line "and announce my"
-	cont "study findings."
+	text "I caught my HITMO-"
+	line "-NCHAN downstairs."
 
-	para "I might even be-"
-	line "come famous like"
-	cont "PROF.ELM."
+	para "They are common"
+	line "during the day!"
 	done
 ; 0x5a28e
 

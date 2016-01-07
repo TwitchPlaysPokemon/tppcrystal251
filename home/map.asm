@@ -1042,7 +1042,7 @@ Function269a:: ; 269a
 	push af
 
 	ld a, b
-	rst Bankswitch
+	rst Bankswitch ;switch to text bank
 
 	push hl
 	call SpeechTextBox

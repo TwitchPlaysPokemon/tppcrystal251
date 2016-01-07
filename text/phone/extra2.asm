@@ -13,7 +13,7 @@ UnknownText_0xa4000: ; 0xa4000
 	line "the next time I"
 	cont "see one."
 
-	para "Feel like swapping"
+	para "Best to swap"
 	line "phone numbers?"
 	done
 ; 0xa40a9
@@ -23,22 +23,22 @@ UnknownText_0xa40a9: ; 0xa40a9
 	line "when I see some"
 	cont "rare #MON."
 
-	para "Feel like swapping"
+	para "Best to swap"
 	line "phone numbers?"
 	done
 ; 0xa40f8
 
 UnknownText_0xa40f8: ; 0xa40f8
-	text "Be patient. I'll"
+	text "Best friend! I'll"
 	line "find some rare"
 	cont "#MON for you!"
 	done
 ; 0xa4126
 
 UnknownText_0xa4126: ; 0xa4126
-	text "You're cold. I may"
-	line "as well head to"
-	cont "the mountains…"
+	text "This isn't the"
+	line "best, rather"
+	cont "the worst..."
 	done
 ; 0xa4158
 
@@ -53,8 +53,8 @@ UnknownText_0xa4158: ; 0xa4158
 UnknownText_0xa418d: ; 0xa418d
 	text "All righty, then!"
 
-	para "My #MON and I"
-	line "are raring to go!"
+	para "My #MON and I will"
+	line "do our very best!"
 	done
 ; 0xa41c0
 
@@ -414,19 +414,19 @@ UnknownText_0xa4c47: ; 0xa4c47
 ; 0xa4c8c
 
 UnknownText_0xa4c8c: ; 0xa4c8c
-	text "You're really good"
-	line "at #MON!"
+	text "I know! Let's keep"
+	line "in touch."
 
-	para "Boys give me items"
-	line "after battles, but"
+	para "I will get better"
+	line "luck next time!"
 
-	para "sometimes they"
-	line "give me too much."
+	para "Boys gives me"
+	line "items often,"
 
-	para "Next time, I can"
-	line "share some if you"
+	para "so I would be fine"
+	line "sharing them too!"
 
-	para "want. Let me get"
+	para "Okay, let me get"
 	line "your phone number."
 	done
 ; 0xa4d36
@@ -441,23 +441,23 @@ UnknownText_0xa4d36: ; 0xa4d36
 ; 0xa4d72
 
 UnknownText_0xa4d72: ; 0xa4d72
-	text "Next time a boy"
-	line "gives me something"
+	text "Great! I'll keep"
+	line "in touch if I get"
 
-	para "after a battle,"
-	line "I'll share some!"
+	para "get anything good."
+	line "I can share a bit."
 
-	para "Does that make me"
-	line "bad?"
+	para "I need the boys"
+	line "contribution to"
+	
+	para "keep up my current"
+	line "gambling lifestyle."
 	done
 ; 0xa4dcd
 
 UnknownText_0xa4dcd: ; 0xa4dcd
-	text "Aww, you don't"
-	line "want anything?"
-
-	para "But it's all for"
-	line "free…"
+	text "Really, turning"
+	line "me down?"
 	done
 ; 0xa4e01
 

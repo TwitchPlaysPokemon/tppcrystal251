@@ -10,18 +10,18 @@ BattleTower1F_MapScriptHeader: ; 0x9e393
 	db 0
 ; 0x9e39d
 
-UnknownScript_0x9e39d: ; 0x9e39d
+UnknownScript_0x9e39d: ; 0x9e39d ;if reload?
 	writebyte $9
-	special Function170687
-	iffalse UnknownScript_0x9e3d1
+	special Function170687 ;if saved id = playerid, sciptvar = 1, else scriptvar = 0
+	iffalse UnknownScript_0x9e3d1 ;exit script
 	writebyte $2
-	special Function170687
-	if_equal $0, UnknownScript_0x9e3d1
-	if_equal $2, UnknownScript_0x9e3c4
-	if_equal $3, UnknownScript_0x9e3d1
-	if_equal $4, UnknownScript_0x9e3d1
+	special Function170687 ;load be45 into scriptvar
+	if_equal $0, UnknownScript_0x9e3d1 ;set trigger 1 (do nothing)
+	if_equal $2, UnknownScript_0x9e3c4 ;didn't save text'
+	if_equal $3, UnknownScript_0x9e3d1 ;set trigger 1
+	if_equal $4, UnknownScript_0x9e3d1 ;set trigger 1
 	loadfont
-	writetext UnknownText_0x9f037
+	writetext UnknownText_0x9f037 ;we've been waiting
 	waitbutton
 	closetext
 	priorityjump UnknownScript_0x9e44e
@@ -55,87 +55,88 @@ UnknownScript_0x9e3e0: ; 0x9e3e0
 	end
 ; 0x9e3e2
 
-ReceptionistScript_0x9e3e2: ; 0x9e3e2
-	writebyte $2
-	special Function170687
-	if_equal $3, BattleTowerBattleRoomScript_0x9f4e4
+ReceptionistScript_0x9e3e2: ; 0x9e3e2 talk to receptionist
+	;writebyte $2
+	;special Function170687 ;load be45 into scriptvar ;items cannot be won anymore
+	;if_equal $3, BattleTowerBattleRoomScript_0x9f4e4 ;give items held
 	loadfont
-	writetext UnknownText_0x9e5ab
+	writetext UnknownText_0x9e5ab ;intro text
 	buttonsound
 	writebyte $0
-	special Function170687
-	if_not_equal $0, UnknownScript_0x9e3fc
-	jump UnknownScript_0x9e49e
+	special Function170687 ;if saved id = playerid, load bit 1 of $be4f into scriptvar, else scriptvar = 0
+	if_not_equal $0, UnknownScript_0x9e3fc ;ask if player wants in
+	jump UnknownScript_0x9e49e ;else help text
 ; 0x9e3fc
 
 UnknownScript_0x9e3fc: ; 0x9e3fc
-	writetext UnknownText_0x9e5ea
+	writetext UnknownText_0x9e5ea ;do you want a battle room
 	writebyte $1
-	special Function17d224
-	if_equal $1, UnknownScript_0x9e40f
-	if_equal $2, UnknownScript_0x9e4a5
-	jump UnknownScript_0x9e4b0
+	special Function17d224  ; if exit then ret scriptvar = 4, else scriptvar = cursor pos -1
+	if_equal $1, UnknownScript_0x9e40f 
+	if_equal $2, UnknownScript_0x9e4a5 ;play help text
+	jump UnknownScript_0x9e4b0 ;else exit menu
 ; 0x9e40f
 
-UnknownScript_0x9e40f: ; 0x9e40f
+UnknownScript_0x9e40f: ; 0x9e40f 
 	writebyte $1a
-	special Function170687
-	special Function170bd3
-	if_not_equal $0, UnknownScript_0x9e4bb
-	writetext UnknownText_0x9ef1f
+	special Function170687 ;clear battle tower data?
+	;special Function170bd3 ;if can enter, scriptvar = 0, else scriptvar = 1
+	;if_not_equal $0, UnknownScript_0x9e4bb ;if fail, exit
+	writetext UnknownText_0x9ef1f ;ask if save
 	yesorno
+	iffalse UnknownScript_0x9e3fc ;return to top menu if no
+	dotrigger $0 ;set trigger
+	special Function29e66 ;ask if save, if yes save and continue
 	iffalse UnknownScript_0x9e3fc
-	dotrigger $0
-	special Function29e66
-	iffalse UnknownScript_0x9e3fc
-	dotrigger $1
+	dotrigger $1 ;set trigger to do nothing if quit
 	writebyte $1
-	special Function170687
-	special Function1700b0
-	if_equal $a, UnknownScript_0x9e3fc
-	if_not_equal $0, UnknownScript_0x9e550
+	special Function170687 ;set bit 1 of $be4f
+	;special Function1700b0 ;level selection menu and checks  should be fine to remove this
+	;if_equal $a, UnknownScript_0x9e3fc ;if b is pressed and cofirmed to want out, exit
+	;if_not_equal $0, UnknownScript_0x9e550 ;should be impossible (mobile stuff?)
 	writebyte $11
-	special Function170687
-	writetext UnknownText_0x9e60a
+	special Function170687 ;load 0 into aa8d
+	writetext UnknownText_0x9e60a ;to your battle room
 	waitbutton
 	closetext
 	writebyte $1e
-	special Function170687
+	special Function170687 ;load rand (26,27,28,29,31,26,27) into be50
 	jump UnknownScript_0x9e454
 ; 0x9e44e
 
 UnknownScript_0x9e44e: ; 0x9e44e
 	closetext
 	writebyte $8
-	special Function170687
+	special Function170687 ;wd800 = be47
 UnknownScript_0x9e454: ; 0x9e454
 	musicfadeout $0000, $8
-	domaptrigger GROUP_BATTLE_TOWER_BATTLE_ROOM, MAP_BATTLE_TOWER_BATTLE_ROOM, $0
+	domaptrigger GROUP_BATTLE_TOWER_BATTLE_ROOM, MAP_BATTLE_TOWER_BATTLE_ROOM, $0 ;set triggers
 	domaptrigger GROUP_BATTLE_TOWER_ELEVATOR, MAP_BATTLE_TOWER_ELEVATOR, $0
 	domaptrigger GROUP_BATTLE_TOWER_HALLWAY, MAP_BATTLE_TOWER_HALLWAY, $0
 	follow $2, $0
 	applymovement $2, MovementData_0x9e571
 	writebyte $a
-	special Function170687
+	special Function170687 ;end music fade?
 	warpsound
 	disappear $2
 	stopfollow
 	applymovement $0, MovementData_0x9e576
-	warpcheck
+	warpcheck ;warp elsewhere
 	end
 ; 0x9e47a
 
 UnknownScript_0x9e47a: ; 0x9e47a
-	writebyte $1c
-	special Function170687
-	writebyte $1b
-	special Function170687
-	if_equal $12, UnknownScript_0x9e498
-	itemtotext $0, $1
-	giveitem $ff, $5
-	writetext UnknownText_0x9eb7e
-	writebyte $1d
-	special Function170687
+	givemoney 0, 80000
+		;writebyte $1c
+		;special Function170687 ;load 3 into be45
+		;writebyte $1b
+		;special Function170687 ;if bag full or item givable, scriptvar = item to give, else run bag is full
+		;if_equal $12, UnknownScript_0x9e498 ;bag is full
+		;itemtotext $0, $1
+		;giveitem $ff, $5 ;give 5 of the saved items
+		;writetext UnknownText_0x9eb7e ;give item text
+		;writebyte $1d
+		;special Function170687 ;save 4 into $be45
 	closetext
 	end
 ; 0x9e498
@@ -148,18 +149,18 @@ UnknownScript_0x9e498: ; 0x9e498
 ; 0x9e49e
 
 UnknownScript_0x9e49e: ; 0x9e49e
-	writetext UnknownText_0x9ec3d
+	writetext UnknownText_0x9ec3d ;do you want to hear about it
 	yesorno
-	iffalse UnknownScript_0x9e4a8
+	iffalse UnknownScript_0x9e4a8 ;skip help text
 UnknownScript_0x9e4a5: ; 0x9e4a5
-	writetext UnknownText_0x9e886
+	writetext UnknownText_0x9e886 ;help text
 UnknownScript_0x9e4a8: ; 0x9e4a8
 	writebyte $1
-	special Function170687
+	special Function170687 ;set bit 1 of $be4f
 	jump UnknownScript_0x9e3fc
 ; 0x9e4b0
 
-UnknownScript_0x9e4b0: ; 0x9e4b0
+UnknownScript_0x9e4b0: ; 0x9e4b0 exit menu
 	writetext UnknownText_0x9ec09
 	waitbutton
 	closetext
@@ -199,7 +200,7 @@ UnknownScript_0x9e4be: ; 0x9e4be
 	end
 ; 0x9e4ea
 
-UnknownScript_0x9e4ea: ; 0x9e4ea
+UnknownScript_0x9e4ea: ; 0x9e4ea unrunnable?
 	writebyte $18
 	special Function170687
 	if_not_equal $0, UnknownScript_0x9e542
@@ -262,7 +263,7 @@ UnknownScript_0x9e550: ; 0x9e550
 
 UnknownScript_0x9e555: ; 0x9e555
 	loadfont
-	writetext UnknownText_0x9ee18
+	writetext UnknownText_0x9ee18 ;you didn't save
 	waitbutton
 	jump UnknownScript_0x9e4b0
 ; 0x9e55d
@@ -406,45 +407,45 @@ UnknownText_0x9e60a: ; 0x9e60a
 ; 0x9e62f
 
 UnknownText_0x9e62f: ; 0x9e62f
-	db $0, "BATTLE TOWER is a", $4f
-	db "facility made for", $55
-	db "#MON battles.", $51
-	db "Countless #MON", $4f
-	db "trainers gather", $51
-	db "from all over to", $4f
-	db "hold battles in", $51
-	db "specially designed", $4f
-	db "BATTLE ROOMS.", $51
-	db "There are many", $4f
-	db "BATTLE ROOMS in", $55
-	db "the BATTLE TOWER.", $51
-	db "Each ROOM holds", $4f
-	db "seven trainers.", $51
-	db "If you defeat the", $4f
-	db "seven in a ROOM,", $51
-	db "and you have a", $4f
-	db "good record, you", $51
-	db "could become the", $4f
-	db "ROOM's LEADER.", $51
-	db "All LEADERS will", $4f
-	db "be recorded in the", $51
-	db "HONOR ROLL for", $4f
-	db "posterity.", $51
-	db "You may challenge", $4f
-	db "in up to five", $51
-	db "BATTLE ROOMS each", $4f
-	db "day.", $51
-	db "However, you may", $4f
-	db "battle only once a", $51
-	db "day in any given", $4f
-	db "ROOM.", $51
-	db "To interrupt a", $4f
-	db "session, you must", $51
-	db "SAVE. If not, you", $4f
-	db "won't be able to", $51
-	db "resume your ROOM", $4f
-	db "challenge.", $51
-	db $57
+;	db $0, "BATTLE TOWER is a", $4f
+;	db "facility made for", $55
+;	db "#MON battles.", $51
+;	db "Countless #MON", $4f
+;	db "trainers gather", $51
+;	db "from all over to", $4f
+;	db "hold battles in", $51
+;	db "specially designed", $4f
+;	db "BATTLE ROOMS.", $51
+;	db "There are many", $4f
+;	db "BATTLE ROOMS in", $55
+;	db "the BATTLE TOWER.", $51
+;	db "Each ROOM holds", $4f
+;	db "seven trainers.", $51
+;	db "If you defeat the", $4f
+;	db "seven in a ROOM,", $51
+;	db "and you have a", $4f
+;	db "good record, you", $51
+;	db "could become the", $4f
+;	db "ROOM's LEADER.", $51
+;	db "All LEADERS will", $4f
+;	db "be recorded in the", $51
+;	db "HONOR ROLL for", $4f
+;	db "posterity.", $51
+;	db "You may challenge", $4f
+;	db "in up to five", $51
+;	db "BATTLE ROOMS each", $4f
+;	db "day.", $51
+;	db "However, you may", $4f
+;	db "battle only once a", $51
+;	db "day in any given", $4f
+;	db "ROOM.", $51
+;	db "To interrupt a", $4f
+;	db "session, you must", $51
+;	db "SAVE. If not, you", $4f
+;	db "won't be able to", $51
+;	db "resume your ROOM", $4f
+;	db "challenge.", $51
+;	db $57
 ; 0x9e886
 
 UnknownText_0x9e886: ; 0x9e886
@@ -498,25 +499,32 @@ UnknownText_0x9ea49: ; 0x9ea49
 ; 0x9ea5f
 
 UnknownText_0x9ea5f: ; 0x9ea5f
-	db $0, "Congratulations!", $51
-	db "You've beaten all", $4f
-	db "the trainers!", $51
-	db "Your feat may be", $4f
-	db "worth registering,", $51
-	db "<PLAYER>. With your", $4f
-	db "results, you may", $51
-	db "be chosen as a", $4f
-	db "ROOM LEADER.", $51
-	db $57
+	;db $0, "Congratulations!", $51
+	;db "You've beaten all", $4f
+	;db "the trainers!", $51
+	;db "Your feat may be", $4f
+	;db "worth registering,", $51
+	;db "<PLAYER>. With your", $4f
+	;db "results, you may", $51
+	;db "be chosen as a", $4f
+	;db "ROOM LEADER.", $51
+	;db $57
 ; 0x9eaef
 
 UnknownText_0x9eaef: ; 0x9eaef
-	db $0, "Congratulations!", $51
-	db "You've beaten all", $4f
-	db "the trainers!", $51
-	db "For that, you get", $4f
-	db "this great prize!", $51
-	db $57
+	text "Congratulations!"
+	line "You've beaten 7"
+	cont "trainers!"
+
+	para "You win ", $f0 ,"80000"
+	done
+
+	;db $0, "Congratulations!", $51
+	;db "You've beaten all", $4f
+	;db "the trainers!", $51
+	;db "For that, you get", $4f
+	;db "this great prize!", $51
+	;db $57
 ; 0x9eb45
 
 UnknownText_0x9eb45: ; 0x9eb45

@@ -517,16 +517,18 @@ SchoolboyJack1BeatenText: ; 0x5c4e4
 ; 0x5c4f3
 
 UnknownText_0x5c4f3: ; 0x5c4f3
-	text "There is a lot"
-	line "to learn."
+	text "Optimizing moves"
+	line "on #MON require"
+	cont "hard work."
 
 	para "For example…"
 
-	para "There are 50 kinds"
-	line "of TMs."
+	para "You can use TM's,"
+	line "breed for egg"
+	cont "moves..."
 
-	para "Traded #MON"
-	line "level up faster."
+	para "There are also"
+	line "move tutors."
 	done
 ; 0x5c552
 

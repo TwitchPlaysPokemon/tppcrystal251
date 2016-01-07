@@ -52,7 +52,7 @@ TeacherScript_0x62d63: ; 0x62d63
 	iftrue UnknownScript_0x62d7e
 	writetext UnknownText_0x62d9d
 	buttonsound
-	verbosegiveitem TM_SWEET_SCENT, 1
+	verbosegiveitem TM_POISON_JAB, 1
 	iffalse UnknownScript_0x62d82
 	setevent EVENT_GOT_TM12_SWEET_SCENT
 UnknownScript_0x62d7e: ; 0x62d7e

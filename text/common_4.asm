@@ -1274,9 +1274,9 @@ UnknownText_0x1c5937: ; 0x1c5937
 ; 0x1c5944
 
 UnknownText_0x1c5944: ; 0x1c5944
-	text "Excuse me."
-	line "You're not ready.", $51
-	db $57
+	;text "Excuse me." redundent
+	;line "You're not ready.", $51
+	;db $57
 ; 0x1c5962
 
 UnknownText_0x1c5962: ; 0x1c5962
@@ -1298,33 +1298,33 @@ UnknownText_0x1c59a3: ; 0x1c59a3
 ; 0x1c59c3
 
 UnknownText_0x1c59c3: ; 0x1c59c3
-	text "Only three #MON"
-	line "may be entered.", $51
-	db $57
+;	text "Only three #MON"
+;	line "may be entered.", $51
+;	db $57
 ; 0x1c59e5
 
 UnknownText_0x1c59e5: ; 0x1c59e5
-	text "The @"
-	text_from_ram StringBuffer2
-	text " #MON"
-	line "must all be", $55
-	db "different kinds.", $51
-	db $57
+;	text "The @"
+;	text_from_ram StringBuffer2
+;	text " #MON"
+;	line "must all be", $55
+;	db "different kinds.", $51
+;	db $57
 ; 0x1c5a13
 
 UnknownText_0x1c5a13: ; 0x1c5a13
-	text "The @"
-	text_from_ram StringBuffer2
-	text " #MON"
-	line "must not hold the", $55
-	db "same items.", $51
-	db $57
+;	text "The @"
+;	text_from_ram StringBuffer2
+;	text " #MON"
+;	line "must not hold the", $55
+;	db "same items.", $51
+;	db $57
 ; 0x1c5a42
 
 UnknownText_0x1c5a42: ; 0x1c5a42
-	text "You can't take an"
-	line "EGG!", $51
-	db $57
+;	text "You can't take an"
+;	line "EGG!", $51
+;	db $57
 ; 0x1c5a5a
 
 UnknownText_0x1c5a5a: ; 0x1c5a5a

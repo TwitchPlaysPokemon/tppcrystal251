@@ -15,11 +15,12 @@ MapRoute16FuchsiaSpeechHouseSignpost1Script: ; 0x73376
 ; 0x73379
 
 UnknownText_0x73379: ; 0x73379
-	text "If you cruise down"
-	line "CYCLING ROAD, you"
+	text "The CYCLING ROAD"
+	line "is swarmed with"
+	cont "bees this season."
 
-	para "will end up in"
-	line "FUCHSIA CITY."
+	para "I can't even go"
+	line "outside..."
 	done
 ; 0x733bc
 
