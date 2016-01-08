@@ -204,7 +204,7 @@ Function1f8081:
 	ld hl, TempMonStatExp - 1
 	ld de, TempMonMaxHP
 	ld b, 1
-	predef CalcPkmnStats
+	predef Functione167
 	ld de, TempMonHP
 	ld hl, TempMonMaxHP
 	ld a, [hli]

@@ -2443,7 +2443,7 @@ Function17ded9: ; 17ded9
 	ld e, l
 	push hl
 	ld b, $0
-	callba CalcPkmnStats
+	callba Functione167
 	ld a, [PartyCount]
 	dec a
 	ld hl, PartyMon1HP
