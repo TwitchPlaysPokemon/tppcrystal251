@@ -205,7 +205,7 @@ Function5bae: ; 5bae
 	ld hl, sBoxCount
 	call Function5ca1
 	call CloseSRAM
-	
+
 	ld hl, NumItems
 	call Function5ca1
 	ld hl, NumKeyItems
@@ -1196,7 +1196,7 @@ TitleScreenEntrance: ; 62bc
 	ld hl, LYOverrides
 	ld bc, 8 * 10 ; logo height
 	call ByteFill
-	
+
 ; The rest is the offset from title timer
 
 	ld a, [DefaultFlypoint]
@@ -1217,7 +1217,7 @@ TitleScreenEntrance: ; 62bc
 	dec b
 	jr nz, .loop
 	callba AnimateTitleCrystal
-	
+
 	; wait until line 73 so it won't interfere with the title
 .loop2
 	ld a, [rLY]
@@ -1232,7 +1232,7 @@ TitleScreenEntrance: ; 62bc
 	inc [hl]
 	xor a
 	ld [hLCDStatCustom], a
-	
+
 ; Play the title screen music.
 
 	ld de, MUSIC_TITLE
@@ -1493,7 +1493,7 @@ Copyright: ; 63e2
 CopyrightString: ; 63fd
 	; 2016 TPP
 	db $7f, $80, $81, $82, $7f, $7f, $7f, $83, $84
-	
+
 	db $4e
 	; ©1995-2001 Nintendo
 	db $60, $61, $62, $63, $64, $65, $66
@@ -2036,7 +2036,7 @@ _Divide:: ; 673e
 	ld [hMathBuffer + 2], a
 	ld [hMathBuffer + 3], a
 	ld [hMathBuffer + 4], a
-	
+
 	ld a, 9
 	ld e, a
 
@@ -2072,7 +2072,7 @@ _Divide:: ; 673e
 	ld a, [hMathBuffer + 4]
 	add a
 	ld [hMathBuffer + 4], a
-	
+
 	ld a, [hMathBuffer + 3]
 	rla
 	ld [hMathBuffer + 3], a
@@ -2129,10 +2129,10 @@ _Divide:: ; 673e
 
 	ld a, [hMathBuffer + 3]
 	ld [hDividend + 2], a
-	
+
 	ld a, [hMathBuffer + 2]
 	ld [hDividend + 1], a
-	
+
 	ld a, [hMathBuffer + 1]
 	ld [hDividend + 0], a
 
@@ -12821,7 +12821,7 @@ StartMenu:: ; 125cd
 	ld h, [hl]
 	ld l, a
 	jp [hl]
-	
+
 .MenuReturns
 	dw .Reopen
 	dw .Exit
@@ -16100,7 +16100,7 @@ GetTimeOfDay:: ; 14032
 
 	ld a, [hHours] ; hour
 	ld hl, TimesOfDay
-	
+
 .check
 ; if we're within the given time period,
 ; get the corresponding time of day
@@ -16114,7 +16114,7 @@ GetTimeOfDay:: ; 14032
 ; try again
 
 	jr .check
-	
+
 .match
 ; get time of day
 
@@ -17005,7 +17005,7 @@ SpriteMons: ; 14495
 	db EGG
 ; 144b8
 
-	
+
 OutdoorSprites: ; 144b8
 ; Valid sprite IDs for each map group.
 
@@ -33097,7 +33097,7 @@ CheckPartyLevels:
 .next
 	add hl, de
 	jr .loop
-	
+
 .done
 	ld c, 10
 	call SimpleDivide
@@ -33999,7 +33999,7 @@ Function2a14f: ; 2a14f choose an encounter
 	call AddNTimes ; HL + (bc *a), find the start of the correct table
 	ld d, h 
 	ld e, l;put it in de
-	
+
 .asm_2a174 ;redundent 
 .asm_2a175
 	call Random
@@ -34303,7 +34303,7 @@ Function2a2ce: ; 2a2ce
 	ret
 
 AddVariance: ;add level variance and ensure it is between 2 and 100. accepts number to increase into b and returns the new number in b
-	
+
 	;push bc
 	;ld b, a ;store level in b
 	call Random ; level vairance approx 35% listed level, 30% +1, 20% +2, 10% +3, 5% +4
@@ -35913,7 +35913,7 @@ PlayBattleMusic: ; 2ee6c
 	jp z, .done
 	cp BATTLETYPE_ROAMING
 	jp z, .done
-	
+
 	cp BATTLETYPE_KANTOLEGEND
 	ld de, MUSIC_KANTO_LEGEND
 	jp z, .done
@@ -36283,7 +36283,7 @@ TrainerType:
 	ld a, [wdff5 + 1]
 	bit TRAINERTYPE_NICKNAME, a
 	jr z, .no_nick
-	
+
 	push hl
 	ld a, [OTPartyCount]
 	dec a
@@ -36323,7 +36323,7 @@ TrainerType:
 	ld a, [wdff5 + 1]
 	bit TRAINERTYPE_MOVES, a
 	jp z, ._loop
-	
+
 	push hl
 	ld a, [OTPartyCount]
 	dec a
@@ -36477,7 +36477,7 @@ CopyMirrorBattle:
 	ld bc, PARTY_STRUCT_LENGTH
 	call CopyBytes
 	ret
-	
+
 ClearOTMons:
 	ld hl, OTPartyCount
 	xor a
@@ -36639,7 +36639,7 @@ Function421f5: ; 421f5
 	jp z, .level
 	cp EVOLVE_HAPPINESS
 	jr z, .happiness
-	
+
 	cp EVOLVE_LEVEL_ITEM
 	jp z, .levelitem
 ; EVOLVE_STAT
@@ -37203,7 +37203,7 @@ IF DEF(BEESAFREE)
 
 	callba Function3e8d1
 	ret nz
-	
+
 	call ResetLUASerial
 	ld a, BEESAFREE_SND_ASKMOVE
 	rst LUASerial
@@ -37325,7 +37325,7 @@ ELSE
 	ld hl, Buffer1
 	ld de, EnemyMonMoves
 	ld c, EnemyMonMovesEnd - EnemyMonMoves
-	
+
 .DecrementNextScore
 	; If the enemy has no moves, this will infinite.
 	ld a, [de]
@@ -37346,7 +37346,7 @@ ELSE
 
 .PickLowestScoreMoves
 	ld a, c
-	
+
 .asm_44175
 	inc [hl]
 	dec hl
@@ -37356,7 +37356,7 @@ ELSE
 	ld hl, Buffer1
 	ld de, EnemyMonMoves
 	ld c, NUM_MOVES
-	
+
 ; Give a score of 0 to a blank move	
 
 .asm_44184
@@ -37373,7 +37373,7 @@ ELSE
 	xor a
 	ld [hli], a
 	jr .asm_44193
-	
+
 .asm_44191
 	ld a, [de]
 	ld [hli], a
@@ -37801,7 +37801,7 @@ GLOBAL PokedexEntries4
 	db BANK(PokedexEntries4)
 ; 44355
 
-	
+
 Function44355: ; 44355
 	call Function44333
 	push hl
@@ -49477,50 +49477,50 @@ GetGender: ; 50bdd
 	ld a, [MonType]
 	and a
 	jr z, .PartyMon
-	
+
 ; 1: OTPartyMon
 
 	ld hl, OTPartyMon1DVs
 	dec a
 	jr z, .PartyMon
-	
+
 ; 2: sBoxMon
 
 	ld hl, sBoxMon1DVs
 	ld bc, sBoxMon2 - sBoxMon1
 	dec a
 	jr z, .sBoxMon
-	
+
 ; 3: Unknown
 
 	ld hl, TempMonDVs
 	dec a
 	jr z, .DVs
-	
+
 ; else: WildMon
 
 	ld hl, EnemyMonDVs
 	jr .DVs
-	
-	
+
+
 ; Get our place in the party/box.
 
-	
+
 .PartyMon
 .sBoxMon
 	ld a, [CurPartyMon]
 	call AddNTimes
-	
-	
+
+
 .DVs
-	
+
 ; sBoxMon data is read directly from SRAM.
 
 	ld a, [MonType]
 	cp BOXMON
 	ld a, 1
 	call z, GetSRAMBank
-	
+
 ; Attack DV
 
 	ld a, [hli]
@@ -49531,7 +49531,7 @@ GetGender: ; 50bdd
 	ld a, [hl]
 	and $f0
 	swap a
-	
+
 ; Put our DVs together.
 
 	or b
@@ -49541,8 +49541,8 @@ GetGender: ; 50bdd
 	ld a, [MonType]
 	cp BOXMON
 	call z, CloseSRAM
-	
-	
+
+
 ; We need the gender ratio to do anything with this.
 
 	push bc
@@ -49552,37 +49552,37 @@ GetGender: ; 50bdd
 	ld bc, BaseData1 - BaseData
 	call AddNTimes
 	pop bc
-	
+
 	ld a, BANK(BaseData)
 	call GetFarByte
-	
-	
+
+
 ; The higher the ratio, the more likely the monster is to be female.
 
-	
+
 	cp $ff
 	jr z, .Genderless
-	
+
 	and a
 	jr z, .Male
-	
+
 	cp $fe
 	jr z, .Female
-	
+
 ; Values below the ratio are male, and vice versa.
 
 	cp b
 	jr c, .Male
-	
+
 .Female
 	xor a
 	ret
-	
+
 .Male
 	ld a, 1
 	and a
 	ret
-	
+
 .Genderless
 	scf
 	ret
@@ -50243,7 +50243,7 @@ GetUnownLetter: ; 51040
 	srl a
 	or b
 	ld b, a
-	
+
 	; spd
 	ld a, [hl]
 	and %01100000
@@ -51252,7 +51252,7 @@ TryStep: ; 8016b
 	call DoStep
 	scf
 	ret
-	
+
 .run
 	ld a, STEP_RUN
 	call DoStep
@@ -51797,27 +51797,27 @@ EngineFlagAction:: ; 80430
 	jr z, .ceiling
 	jr c, .read ; cp 0 can't set carry!
 	jr .invalid
-	
+
 ; There are only $a2 engine flags, so
 ; anything beyond that is invalid too.
 
-	
+
 .ceiling
 	ld a, e
 	cp NUM_ENGINE_FLAGS
 	jr c, .read
-	
+
 ; Invalid flags are treated as flag 00.
 
-	
+
 .invalid
 	xor a
 	ld e, a
 	ld d, a
-	
+
 ; Get this flag's location.
 
-	
+
 .read
 	ld hl, EngineFlags
 ; location
@@ -51827,7 +51827,7 @@ EngineFlagAction:: ; 80430
 ; bit
 
 	add hl, de
-	
+
 ; location
 
 	ld e, [hl]
@@ -51837,15 +51837,15 @@ EngineFlagAction:: ; 80430
 ; bit
 
 	ld c, [hl]
-	
+
 ; What are we doing with this flag?
 
-	
+
 	ld a, b
 	cp 1
 	jr c, .reset ; b = 0
 	jr z, .set   ; b = 1
-	
+
 ; Return the given flag in c.
 
 .check
@@ -51853,7 +51853,7 @@ EngineFlagAction:: ; 80430
 	and c
 	ld c, a
 	ret
-	
+
 ; Set the given flag.
 
 .set
@@ -51861,7 +51861,7 @@ EngineFlagAction:: ; 80430
 	or c
 	ld [de], a
 	ret
-	
+
 ; Reset the given flag.
 
 .reset
@@ -56135,16 +56135,16 @@ GetPlayerIcon: ; 8832c
 
 	ld de, ChrisSpriteGFX
 	ld b, BANK(ChrisSpriteGFX)
-	
+
 	ld a, [PlayerGender]
 	bit 0, a
 	jr z, .done
-	
+
 ; Female
 
 	ld de, KrisSpriteGFX
 	ld b, BANK(KrisSpriteGFX)
-	
+
 .done
 	ret
 ; 8833e
@@ -60821,7 +60821,7 @@ MenuDataHeader_0x8aee4: ; 0x8aee4
 	db $40 ; flags
 	db 04, 04 ; start coords
 	db 09, 15 ; end coords
-	
+
 MenuDataHeader_0x8aee9: ; 0x8aee4
 	db $40 ; flags
 	db 04, 04 ; start coords
@@ -62788,38 +62788,38 @@ _TimeOfDayPals:: ; 8c011
 	ld hl, wd846
 	bit 7, [hl]
 	jr nz, .dontchange
-	
+
 ; do we need to bother updating?
 
 	ld a, [TimeOfDay]
 	ld hl, CurTimeOfDay
 	cp [hl]
 	jr z, .dontchange
-	
+
 ; if so, the time of day has changed
 
 	ld a, [TimeOfDay]
 	ld [CurTimeOfDay], a
-	
+
 ; get palette id
 
 	call GetTimePalette
-	
+
 ; same palette as before?
 
 	ld hl, TimeOfDayPal
 	cp [hl]
 	jr z, .dontchange
-	
+
 ; update palette id
 
 	ld [TimeOfDayPal], a
-	
-	
+
+
 ; save bg palette 8
 
 	ld hl, Unkn1Pals + 8 * 7 ; Unkn1Pals + 7 pals
-	
+
 ; save wram bank
 
 	ld a, [rSVBK]
@@ -62828,7 +62828,7 @@ _TimeOfDayPals:: ; 8c011
 
 	ld a, 5
 	ld [rSVBK], a
-	
+
 ; push palette
 
 	ld c, 4 ; NUM_PAL_COLORS
@@ -62840,23 +62840,23 @@ _TimeOfDayPals:: ; 8c011
 	push de
 	dec c
 	jr nz, .push
-	
+
 ; restore wram bank
 
 	ld a, b
 	ld [rSVBK], a
-	
-	
+
+
 ; update sgb pals
 
 	ld b, $9
 	call GetSGBLayout
-	
-	
+
+
 ; restore bg palette 8
 
 	ld hl, wd03f ; last byte in Unkn1Pals
-	
+
 ; save wram bank
 
 	ld a, [rSVBK]
@@ -62865,7 +62865,7 @@ _TimeOfDayPals:: ; 8c011
 
 	ld a, 5
 	ld [rSVBK], a
-	
+
 ; pop palette
 
 	ld e, 4 ; NUM_PAL_COLORS
@@ -62877,22 +62877,22 @@ _TimeOfDayPals:: ; 8c011
 	dec hl
 	dec e
 	jr nz, .pop
-	
+
 ; restore wram bank
 
 	ld a, d
 	ld [rSVBK], a
-	
+
 ; update palettes
 
 	call _UpdateTimePals
 	call DelayFrame
-	
+
 ; successful change
 
 	scf
 	ret
-	
+
 .dontchange
 ; no change occurred
 
@@ -63119,13 +63119,13 @@ GetTimePalFade: ; 8c17c
 	ld a, [hCGB]
 	and a
 	jr nz, .cgb
-	
+
 ; else: dmg
 ; index
 
 	ld a, [TimeOfDayPal]
 	and %11 ; first 2 bits only, 0-3
-	
+
 ; get fade table
 
 	push bc
@@ -63138,13 +63138,13 @@ GetTimePalFade: ; 8c17c
 	ld h, [hl]
 	ld l, a
 	pop bc
-	
+
 ; get place in fade table
 
 	ld b, $0
 	add hl, bc
 	ret
-	
+
 .cgb
 	ld hl, .cgbfade
 	ld b, $0
@@ -68142,7 +68142,7 @@ GetIconGFX: ; 8e9de
 	add 10
 	ld [wc3b7], a
 	ret
-	
+
 HeldItemIcons:
 INCBIN "gfx/icon/mail.2bpp"
 
@@ -68155,13 +68155,13 @@ GetIcon_de: ; 8ea17
 	ld l, e
 	ld h, d
 	jr GetIcon
-	
+
 GetIcon_a: ; 8ea1b
 ; Load icon graphics into VRAM starting from tile a.
 
 	ld l, a
 	ld h, 0
-	
+
 GetIcon: ; 8ea1e
 ; Load icon graphics into VRAM starting from tile hl.
 ; One tile is 16 bytes long.
@@ -68170,7 +68170,7 @@ GetIcon: ; 8ea1e
 	add hl, hl
 	add hl, hl
 	add hl, hl
-	
+
 	ld de, VTiles0
 	add hl, de
 	push hl
@@ -68188,7 +68188,7 @@ GetIcon: ; 8ea1e
 	ld e, a
 	ld d, [hl]
 	pop hl
-	
+
 	lb bc, BANK(Icons), 8
 	call GetGFXUnlessMobile
 	pop hl
@@ -70533,7 +70533,7 @@ Function9102f: ; 9102f (24:502f)
 .inc_extra
 	inc [hl]
 	jr .asm_91047
-	
+
 .wrap_around
 	ld a, e
 	dec a
@@ -72147,67 +72147,67 @@ Function91b73: ; 91b73
 TownMapBubble: ; 91bb5
 ; Draw the bubble containing the location text in the town map HUD
 
-	
+
 ; Top-left corner
 
 	hlcoord 1, 0
 	ld a, $30
 	ld [hli], a
-	
+
 ; Top row
 
 	ld bc, 16
 	ld a, " "
 	call ByteFill
-	
+
 ; Top-right corner
 
 	ld a, $31
 	ld [hl], a
 	hlcoord 1, 1
-	
-	
+
+
 ; Middle row
 
 	ld bc, 18
 	ld a, " "
 	call ByteFill
-	
-	
+
+
 ; Bottom-left corner
 
 	hlcoord 1, 2
 	ld a, $32
 	ld [hli], a
-	
+
 ; Bottom row
 
 	ld bc, 16
 	ld a, " "
 	call ByteFill
-	
+
 ; Bottom-right corner
 
 	ld a, $33
 	ld [hl], a
-	
-	
+
+
 ; Print "Where?"
 
 	hlcoord 2, 0
 	ld de, .Where
 	call PlaceString
-	
+
 ; Print the name of the default flypoint
 
 	call .Name
-	
+
 ; Up/down arrows
 
 	hlcoord 18, 1
 	ld [hl], $34	
 	ret
-	
+
 .Where
 	db "Where?@"
 .Name
@@ -72220,9 +72220,9 @@ TownMapBubble: ; 91bb5
 	ld de, Flypoints
 	add hl, de
 	ld e, [hl]
-	
+
 	callba GetLandmarkName
-	
+
 	ld hl, TileMap + 2 + 20 ; (2,1)
 	ld de, StringBuffer1
 	call PlaceString
@@ -72327,43 +72327,43 @@ Function91c8f: ; 91c8f
 ; 91c90
 
 FlyMap: ; 91c90
-	
+
 	ld a, [MapGroup]
 	ld b, a
 	ld a, [MapNumber]
 	ld c, a
 	call GetWorldMapLocation
-	
+
 ; If we're not in a valid location, i.e. Pokecenter floor 2F,
 ; the backup map information is used
 
-	
+
 	cp SPECIAL_MAP
 	jr nz, .CheckRegion
-	
+
 	ld a, [BackupMapGroup]
 	ld b, a
 	ld a, [BackupMapNumber]
 	ld c, a
 	call GetWorldMapLocation
-	
+
 .CheckRegion
 ; The first 46 locations are part of Johto. The rest are in Kanto
 
 	cp KANTO_LANDMARK
 	jr nc, .KantoFlyMap
-	
+
 .JohtoFlyMap
 ; Note that .NoKanto should be modified in tandem with this branch
 
-	
+
 	push af
-	
+
 ; Start from New Bark Town
 
 	ld a, FLY_NEW_BARK
 	ld [DefaultFlypoint], a
-	
+
 ; Flypoints begin at New Bark Town...
 
 	ld [StartFlypoint], a
@@ -72371,7 +72371,7 @@ FlyMap: ; 91c90
 
 	ld a, FLY_MT_SILVER
 	ld [EndFlypoint], a
-	
+
 ; Fill out the map
 
 	call FillJohtoMap
@@ -72379,30 +72379,30 @@ FlyMap: ; 91c90
 	pop af
 	call TownMapPlayerIcon
 	ret
-	
+
 .KantoFlyMap
-	
+
 ; The event that there are no flypoints enabled in a map is not
 ; accounted for. As a result, if you attempt to select a flypoint
 ; when there are none enabled, the game will crash. Additionally,
 ; the flypoint selection has a default starting point that
 ; can be flown to even if none are enabled
 
-	
+
 ; To prevent both of these things from happening when the player
 ; enters Kanto, fly access is restricted until Indigo Plateau is
 ; visited and its flypoint enabled
 
-	
+
 	push af
 	ld c, SPAWN_INDIGO
 	call HasVisitedSpawn
 	and a
 	jr z, .NoKanto
-	
+
 ; Kanto's map is only loaded if we've visited Indigo Plateau
 
-	
+
 ; Flypoints begin at Pallet Town...
 
 	ld a, FLY_PALLET
@@ -72411,12 +72411,12 @@ FlyMap: ; 91c90
 
 	ld a, FLY_INDIGO
 	ld [EndFlypoint], a
-	
+
 ; Because Indigo Plateau is the first flypoint the player
 ; visits, it's made the default flypoint
 
 	ld [DefaultFlypoint], a
-	
+
 ; Fill out the map
 
 	call FillKantoMap
@@ -72424,16 +72424,16 @@ FlyMap: ; 91c90
 	pop af
 	call TownMapPlayerIcon
 	ret
-	
+
 .NoKanto
 ; If Indigo Plateau hasn't been visited, we use Johto's map instead
 
-	
+
 ; Start from New Bark Town
 
 	ld a, FLY_NEW_BARK
 	ld [DefaultFlypoint], a
-	
+
 ; Flypoints begin at New Bark Town...
 
 	ld [StartFlypoint], a
@@ -72441,18 +72441,18 @@ FlyMap: ; 91c90
 
 	ld a, FLY_MT_SILVER
 	ld [EndFlypoint], a
-	
+
 	call FillJohtoMap
-	
+
 	pop af
-	
+
 .MapHud
 	call TownMapBubble
 	call TownMapPals
-	
+
 	ld hl, VBGMap0 ; BG Map 0
 	call TownMapBGUpdate
-	
+
 	call TownMapMon
 	ld a, c
 	ld [wd003], a
@@ -72747,29 +72747,29 @@ TownMapBGUpdate: ; 91ee4
 	ld [hBGMapAddress], a
 	ld a, h
 	ld [$ffd7], a
-	
+
 ; Only update palettes on CGB
 
 	ld a, [hCGB]
 	and a
 	jr z, .tiles
-	
+
 ; BG Map mode 2 (palettes)
 
 	ld a, 2
 	ld [hBGMapMode], a
-	
+
 ; The BG Map is updated in thirds, so we wait
 ; 3 frames to update the whole screen's palettes.
 
 	ld c, 3
 	call DelayFrames
-	
+
 .tiles
 ; Update BG Map tiles
 
 	call WaitBGMap
-	
+
 ; Turn off BG Map update
 
 	xor a
@@ -72780,10 +72780,10 @@ TownMapBGUpdate: ; 91ee4
 FillJohtoMap: ; 91eff
 	ld de, JohtoMap
 	jr FillTownMap
-	
+
 FillKantoMap: ; 91f04
 	ld de, KantoMap
-	
+
 FillTownMap: ; 91f07
 	hlcoord 0, 0
 .loop
@@ -72807,19 +72807,19 @@ TownMapPals: ; 91f13
 
 	ld a, [hli]
 	push hl
-	
+
 ; HP/borders use palette 0
 
 	cp $60
 	jr nc, .pal0
-	
+
 ; The palette data is condensed to nybbles,
 ; least-significant first.
 
 	ld hl, TownMapPalMap
 	srl a
 	jr c, .odd
-	
+
 ; Even-numbered tile ids take the bottom nybble...
 
 	add l
@@ -72830,7 +72830,7 @@ TownMapPals: ; 91f13
 	ld a, [hl]
 	and %111
 	jr .update
-	
+
 .odd
 ; ...and odd ids take the top.
 
@@ -72843,10 +72843,10 @@ TownMapPals: ; 91f13
 	swap a
 	and %111
 	jr .update
-	
+
 .pal0
 	xor a
-	
+
 .update
 	pop hl
 	ld [de], a
@@ -72875,18 +72875,18 @@ TownMapMon: ; 91f7b
 	add hl, de
 	ld a, [hl]
 	ld [wd265], a
-	
+
 ; Get FlyMon icon
 
 	ld e, 8 ; starting tile in VRAM
 	callba GetSpeciesIcon
-	
+
 ; Animation/palette
 
 	ld de, $0000
 	ld a, $0
 	call Function3b2a
-	
+
 	ld hl, 3
 	add hl, bc
 	ld [hl], 8
@@ -72900,15 +72900,15 @@ TownMapPlayerIcon: ; 91fa6
 ; Draw the player icon at town map location in a
 
 	push af
-	
+
 	callba GetPlayerIcon
-	
+
 ; Standing icon
 
 	ld hl, $8100
 	ld c, 4 ; # tiles
 	call Request2bpp
-	
+
 ; Walking icon
 
 	ld hl, $00c0
@@ -72919,7 +72919,7 @@ TownMapPlayerIcon: ; 91fa6
 	ld c, 4 ; # tiles
 	ld a, BANK(ChrisSpriteGFX) ; does nothing
 	call Request2bpp
-	
+
 ; Animation/palette
 
 	ld de, $0000
@@ -72931,17 +72931,17 @@ TownMapPlayerIcon: ; 91fa6
 .asm_91fd3
 	ld a, b
 	call Function3b2a
-	
+
 	ld hl, $0003
 	add hl, bc
 	ld [hl], $10
-	
+
 	pop af
 	ld e, a
 	push bc
 	callba GetLandmarkCoords
 	pop bc
-	
+
 	ld hl, 4
 	add hl, bc
 	ld [hl], e
@@ -75709,7 +75709,7 @@ TreeMons: ; b82e8 ;what tables are assosiate with wwhat numbers
 	dw TreeMons13 ;14
 	dw TreeMons14 ;15
 	dw TreeMons15 ;16
-	
+
 ; Two tables each (normal, rare).
 ; Structure:
 ;	db  %, species, level
@@ -75722,7 +75722,7 @@ TreeMons1: ; 1 - Route 29, New Bark Town
 	db 30, PIDGEOTTO,	40
 	db 15, PIDGEOT,		50
 	db -1
-	
+
 TreeMons2: ; 2 - Route 30-31
 	db 40, PINECO,		25
 	db 20, LEDYBA,		25
@@ -75769,7 +75769,7 @@ TreeMons7: ;8 - Ilex Forest
 	db 10, BUTTERFREE,	45
 	db 10, BEEDRILL,	45
 	db -1
-	
+
 	db 50, METAPOD,		35
 	db 50, KAKUNA,		35
 	db -1
@@ -75777,37 +75777,37 @@ TreeMons8: ;9 - Route 34-37
 	db 75, PINECO,		35
 	db 25, TEDDIURSA,	35
 	db -1
-	
+
 	db 80, PIKACHU,		35
 	db 80, RAICHU,		50
 	db -1
-	
+
 TreeMons9: ;10 - Ecruteak City
 	db 100, PINECO,		35
 	db -1
-	
+
 	db 65, GASTLY,		35
 	db 30, HAUNTER,		45
 	db 5, GENGAR,		55
 	db -1
-	
+
 TreeMons10: ;11 - Route 38-39
 	db 75, PINECO, 		40
 	db 25, LEDIAN,		45
 	db -1
-	
+
 	db 80, MEOWTH,		40
 	db 20, PERSIAN,		55
 	db -1
-	
+
 TreeMons11: ;12 - Battle Tower
 	db 75, PINECO,		40
 	db 25, ARIADOS,		45
 	db -1
-	
+
 	db 80, DROWZEE,		40
 	db 20, HYPNO,		55
-	
+
 TreeMons12: ;13 - Route 42
 	db 50, PINECO,		40
 	db 30, TOGETIC,		55
@@ -75833,14 +75833,14 @@ TreeMons14: ;15 - Route 44
 	db 25, GOLBAT,		55
 	db 10, CROBAT,		60
 	db -1
-	
+
 TreeMons15: ;16 - Route 26-27
 	db 100, PINECO, 	45
 	db -1
 	db 80, DODUO, 		45
 	db 20, DODRIO,		60
 	db -1
-	
+
 ; b83e5
 
 GetTreeMon: ; b83e5
@@ -75848,7 +75848,7 @@ GetTreeMon: ; b83e5
 	ld a, 10 ;set all tees to have a 80% encounter chance, with some optimisation
 	call RandomRange
 	cp 8
-	jr nc, NoTreeMon
+	jr nc, Pop_Quit_TreeMon
 	call GetTreeScore ; a = 0 if bad(50% chance), 1 if good (40% chance) and 2 if rare (10% chance)
 	pop hl
 		;and a
@@ -75915,6 +75915,8 @@ SelectTreeMon: ; b841f
 	scf
 	ret
 
+Pop_Quit_TreeMon:
+	pop hl
 NoTreeMon: ; b843b
 	xor a
 	ld [wd22e], a
@@ -76270,7 +76272,7 @@ Functionb8762: ; b8762 (2e:4762)
 	inc hl
 	inc hl; move to first slot in wilds table
 	inc hl
-	
+
 .not3
 	call Random
 	and 3
@@ -93346,39 +93348,39 @@ UsedMoveText: ; 105db9
 	ld a, [hBattleTurn]
 	and a
 	jr nz, .start
-	
+
 	ld a, [wPlayerMoveStruct + MOVE_ANIM]
 	call UpdateUsedMoves
-	
+
 .start
 	ld a, BATTLE_VARS_LAST_MOVE
 	call GetBattleVarAddr
 	ld d, h
 	ld e, l
-	
+
 	ld a, BATTLE_VARS_LAST_COUNTER_MOVE
 	call GetBattleVarAddr
-	
+
 	ld a, BATTLE_VARS_MOVE_ANIM
 	call GetBattleVar
 	ld [wd265], a
-	
+
 	push hl
 	callba Function34548
 	pop hl
 	jr nz, .grammar
-	
+
 	; update last move
 	ld a, [wd265]
 	ld [hl], a
 	ld [de], a
-	
+
 .grammar
 	call GetMoveGrammar
 ; wd265 now contains MoveGrammar
 
-	
-	
+
+
 ; everything except 'instead' made redundant in localization
 
 	; check obedience
@@ -93386,7 +93388,7 @@ UsedMoveText: ; 105db9
 	and a
 	ld hl, UsedMove2Text
 	ret nz
-	
+
 	; check move grammar
 	ld a, [wd265]
 	cp $3
@@ -93438,15 +93440,15 @@ GetUsedMoveTextEnder: ; 105e28
 ; get start address
 
 	ld hl, .endusedmovetexts
-	
+
 ; get move id
 
 	ld a, [wd265]
-	
+
 ; 2-byte pointer
 
 	add a
-	
+
 ; seek
 
 	push bc
@@ -93454,7 +93456,7 @@ GetUsedMoveTextEnder: ; 105e28
 	ld c, a
 	add hl, bc
 	pop bc
-	
+
 ; get pointer to usedmovetext ender
 
 	ld a, [hli]
@@ -93505,7 +93507,7 @@ GetMoveGrammar: ; 105e5c
 	ld a, [wd265]
 	ld c, a
 	ld b, $0
-	
+
 ; read grammar table
 
 	ld hl, MoveGrammar
@@ -93527,13 +93529,13 @@ GetMoveGrammar: ; 105e5c
 
 	inc b
 	jr .loop
-	
+
 .end
 ; wd265 now contains move grammar
 
 	ld a, b
 	ld [wd265], a
-	
+
 ; we're done
 
 	pop bc
@@ -93575,7 +93577,7 @@ MoveGrammar: ; 105e7a
 	;db GUNK_SHOT
 ;	db EXTREMESPEED
 	db 0 ; end set
-	
+
 ; 1
 
 ;	db RECOVER
@@ -93585,7 +93587,7 @@ MoveGrammar: ; 105e7a
 ;	db AMNESIA
 ;	db FLAIL
 	db 0 ; end set
-	
+
 ; 2
 
 ;	db MEDITATE
@@ -93597,7 +93599,7 @@ MoveGrammar: ; 105e7a
 ;	db STRUGGLE
 ;	db SCARY_FACE
 	db 0 ; end set
-	
+
 ; 3
 
 ;	db POUND
@@ -93640,7 +93642,7 @@ MoveGrammar: ; 105e7a
 ;	db ATTRACT
 ;	db ROCK_SMASH
 	db 0 ; end set
-	
+
 ; all other moves = 4
 
 	db $ff ; end
@@ -93659,7 +93661,7 @@ UpdateUsedMoves: ; 105ed0
 ; loop count
 
 	ld c, NUM_MOVES
-	
+
 .loop
 ; get move from the list
 
@@ -93676,7 +93678,7 @@ UpdateUsedMoves: ; 105ed0
 
 	dec c
 	jr nz, .loop
-	
+
 ; if the list is full and the move hasn't already been used
 ; shift the list back one byte, deleting the first move used
 ; this can occur with struggle or a new learned move
@@ -93701,7 +93703,7 @@ UpdateUsedMoves: ; 105ed0
 	ld a, b
 	ld [PlayerUsedMoves + 3], a
 	jr .quit
-	
+
 .add
 ; go back to the byte we just inced from
 
@@ -93709,7 +93711,7 @@ UpdateUsedMoves: ; 105ed0
 ; add the new move
 
 	ld [hl], b
-	
+
 .quit
 ; list updated
 
@@ -95531,7 +95533,7 @@ DudeAutoInput_A: ; 1de29f
 	db NO_INPUT, $ff ; end
 ; 1de2a5
 
-	
+
 DudeAutoInput_RightA: ; 1de2a5
 	db NO_INPUT, $08
 	db D_RIGHT,  $00
@@ -95540,7 +95542,7 @@ DudeAutoInput_RightA: ; 1de2a5
 	db NO_INPUT, $ff ; end
 ; 1de2af
 
-	
+
 DudeAutoInput_DownA: ; 1de2af
 	db NO_INPUT, $fe
 	db NO_INPUT, $fe

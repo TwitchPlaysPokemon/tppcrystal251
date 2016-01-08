@@ -91,7 +91,7 @@
 	db "DIG@"
 	db "TOXIC@"
 	db "CONFUSION@"
-	db "PSYCHIC M@"
+	db "PSYCHIC@"
 	db "HYPNOSIS@"
 	db "MEDITATE@"
 	db "AGILITY@"
