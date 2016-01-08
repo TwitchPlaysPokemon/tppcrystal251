@@ -41,44 +41,46 @@ CooltrainerMScript_0x19046f: ; 0x19046f
 UnknownScript_0x190470: ; 0x190470
 	loadfont
 	checkevent EVENT_GOT_MIRACLE_SEED_IN_ROUTE_32
-	iftrue UnknownScript_0x1904a5
+	iftrue .GotSeed
 	checkflag ENGINE_ZEPHYRBADGE
-	iffalse UnknownScript_0x19049f
+	iffalse .GetBadge
+	checkevent EVENT_GOT_HM05_FLASH
+	iffalse .GetFlash
 	checkevent EVENT_GOT_TOGEPI_EGG_FROM_ELMS_AIDE
-	iftrue UnknownScript_0x19048f
+	iftrue .GotEgg
 	writetext UnknownText_0x1907ab
 	waitbutton
 	closetext
 	end
 ; 0x190489
 
-UnknownScript_0x190489: ; 0x190489
+.GetFlash: ; 0x190489
 	writetext UnknownText_0x190820
 	waitbutton
 	closetext
 	end
 ; 0x19048f
 
-UnknownScript_0x19048f: ; 0x19048f
+.GotEgg: ; 0x19048f
 	writetext UnknownText_0x190925
 	buttonsound
 	verbosegiveitem MIRACLE_SEED, 1
-	iffalse UnknownScript_0x1904a9
+	iffalse .BagFull
 	setevent EVENT_GOT_MIRACLE_SEED_IN_ROUTE_32
-	jump UnknownScript_0x1904a5
+	jump .GotSeed
 ; 0x19049f
 
-UnknownScript_0x19049f: ; 0x19049f
+.GetBadge: ; 0x19049f
 	writetext UnknownText_0x1908b0
 	waitbutton
 	closetext
 	end
 ; 0x1904a5
 
-UnknownScript_0x1904a5: ; 0x1904a5
+.GotSeed: ; 0x1904a5
 	writetext UnknownText_0x190a15
 	waitbutton
-UnknownScript_0x1904a9: ; 0x1904a9
+.BagFull: ; 0x1904a9
 	closetext
 	end
 ; 0x1904ab
@@ -131,14 +133,14 @@ UnknownScript_0x1904f3: ; 0x1904f3
 	loadfont
 	writetext UnknownText_0x190a59
 	yesorno
-	iffalse UnknownScript_0x190503
+	iffalse .refused
 	writetext UnknownText_0x190acf
 	waitbutton
 	closetext
 	end
 ; 0x190503
 
-UnknownScript_0x190503: ; 0x190503
+.refused: ; 0x190503
 	writetext UnknownText_0x190afc
 	waitbutton
 	closetext

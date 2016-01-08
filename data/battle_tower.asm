@@ -123,7 +123,8 @@ Function1f8081:
 	ld hl, TempMon
 	ld bc, $30
 	xor a
-	call ByteFill ;empty tempmon
+	call ByteFill
+	pop hl
 .loop3
 	call Random
 	cp NUM_BATTLE_TOWER_MONS ;loop until less then battle tower mons, put number into c
@@ -160,8 +161,9 @@ Function1f8081:
 	call CopyBytes ;copy into tempmon
 	ld hl, TempMonLevel
 	call .FindHighestPartyLevel
-	ld [hl], d ;enter tempmon level
-	callba Function50e47 ;calculate and enter xp
+	ld [hl], a
+	ld [CurPartyLevel], a
+	callba Function50e47
 	ld hl, TempMonExp
 	ld a, [hMultiplicand]
 	ld [hli], a
@@ -179,7 +181,8 @@ Function1f8081:
 	ld a, [hli]
 	ld d, [hl]
 	ld e, a
-	ld c, 6 ;enter into stat xp and dvs (probably a bug as i counted 6 instead of 7)
+	ld c, 5
+	ld hl, TempMonStatExp
 .loop5
 	ld a, d
 	ld [hli], a
@@ -187,14 +190,28 @@ Function1f8081:
 	ld [hli], a
 	dec c
 	jr nz, .loop5
-	ld hl, TempMonStatExp - 1 ;last slot of regular xp?
-	ld de, TempMonStats
+	call Random
+	and $33
+	add $cc
+	ld [hli], a
+	call Random
+	and $33
+	add $cc
+	ld [hl], a
+	ld a, [TempMonSpecies]
+	ld [CurSpecies], a
+	call GetBaseData
+	ld hl, TempMonStatExp - 1
+	ld de, TempMonMaxHP
 	ld b, 1
-	predef Functione167 ;fill stats
+	predef CalcPkmnStats
 	ld de, TempMonHP
 	ld hl, TempMonMaxHP
-	ld bc, 2
-	call CopyBytes ;copy temp hp into max
+	ld a, [hli]
+	ld [de], a
+	inc de
+	ld a, [hl]
+	ld [de], a
 	ld hl, TempMonMoves
 	ld de, TempMonPP
 	predef FillPP ;enter mon PP
@@ -202,6 +219,7 @@ Function1f8081:
 	ld a, [hl]
 	push af ;push partycount
 	inc [hl]
+	inc hl
 	ld c, a
 	ld b, 0
 	add hl, bc ;load species into OTSpecies
@@ -251,8 +269,7 @@ Function1f8081:
 	ld a, [PartyCount]
 	ld d, a
 	ld hl, PartyMon1Level
-	xor a
-	ld e, a
+	ld e, 0
 	ld bc, $30
 .level_loop
 	ld a, [hl]
