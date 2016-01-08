@@ -246,6 +246,7 @@ OaksLab_RivalBattleTriggerRight:
 OaksLab_RivalBattleIntroScript:
 	playmusic MUSIC_RIVAL_RB
 	spriteface $6, DOWN
+	spriteface $2, DOWN
 	spriteface $0, UP
 	loadfont
 	writetext _OaksLabRivalChallengeText
@@ -265,6 +266,7 @@ OaksLab_DoRivalBattle:
 	reloadmapmusic
 	reloadmap
 	playmapmusic
+	special HealParty
 	loadfont
 	writetext _OaksLabRivalToughenUpText
 	waitbutton

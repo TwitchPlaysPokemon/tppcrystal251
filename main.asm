@@ -36107,7 +36107,7 @@ PlayBattleMusic: ; 2ee6c
 
 .kantowild
 	ld de, MUSIC_KANTO_WILD_BATTLE
-	jr .done
+	jp .done
 
 .trainermusic
 	ld de, MUSIC_CHAMPION_BATTLE
@@ -36131,6 +36131,8 @@ PlayBattleMusic: ; 2ee6c
 	jr z, .done
 	ld de, MUSIC_RIVAL_BATTLE_RB
 	cp BLUE_RB
+	jr z, .done
+	cp BLUE_RB_F
 	jr z, .done
 	ld de, MUSIC_VS_WCS
 	cp BLUE
