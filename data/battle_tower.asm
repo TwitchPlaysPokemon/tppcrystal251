@@ -124,6 +124,7 @@ Function1f8081:
 	ld bc, $30
 	xor a
 	call ByteFill
+	pop hl
 .loop3
 	call Random
 	cp NUM_BATTLE_TOWER_MONS
@@ -160,7 +161,8 @@ Function1f8081:
 	call CopyBytes
 	ld hl, TempMonLevel
 	call .FindHighestPartyLevel
-	ld [hl], d
+	ld [hl], a
+	ld [CurPartyLevel], a
 	callba Function50e47
 	ld hl, TempMonExp
 	ld a, [hMultiplicand]
@@ -179,7 +181,8 @@ Function1f8081:
 	ld a, [hli]
 	ld d, [hl]
 	ld e, a
-	ld c, 6
+	ld c, 5
+	ld hl, TempMonStatExp
 .loop5
 	ld a, d
 	ld [hli], a
@@ -187,14 +190,35 @@ Function1f8081:
 	ld [hli], a
 	dec c
 	jr nz, .loop5
+	ld c, 2
+.loop6
+	call Random
+	ld b, a
+	and $f0
+	cp $c0
+	jr c, .loop6
+	ld a, b
+	and $f
+	cp $c
+	jr c, .loop6
+	ld [hl], b
+	inc hl
+	dec c
+	jr nz, .loop6
+	ld a, [TempMonSpecies]
+	ld [CurSpecies], a
+	call GetBaseData
 	ld hl, TempMonStatExp - 1
-	ld de, TempMonStats
+	ld de, TempMonMaxHP
 	ld b, 1
-	predef Functione167
+	predef CalcPkmnStats
 	ld de, TempMonHP
 	ld hl, TempMonMaxHP
-	ld bc, 2
-	call CopyBytes
+	ld a, [hli]
+	ld [de], a
+	inc de
+	ld a, [hl]
+	ld [de], a
 	ld hl, TempMonMoves
 	ld de, TempMonPP
 	predef FillPP
@@ -202,6 +226,7 @@ Function1f8081:
 	ld a, [hl]
 	push af
 	inc [hl]
+	inc hl
 	ld c, a
 	ld b, 0
 	add hl, bc
@@ -251,8 +276,7 @@ Function1f8081:
 	ld a, [PartyCount]
 	ld d, a
 	ld hl, PartyMon1Level
-	xor a
-	ld e, a
+	ld e, 0
 	ld bc, $30
 .level_loop
 	ld a, [hl]

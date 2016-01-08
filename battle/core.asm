@@ -6559,7 +6559,7 @@ LoadEnemyMon: ; 3e8eb
 	ld de, EnemyMonMaxHP
 	ld b, $00
 	ld hl, LinkBattleRNs + 7 ; ?
-	predef Functione167 ;load in stats, hl is start of stat xp
+	predef CalcPkmnStats ;load in stats, hl is start of stat xp
 	
 ; If we're in a trainer battle,
 ; get the rest of the parameters from the party struct
@@ -7652,7 +7652,7 @@ Function3ee3b: ; 3ee3b
 	add hl, bc
 	push bc
 	ld b, $1
-	predef Functione167
+	predef CalcPkmnStats
 	pop bc
 	pop de
 	ld hl, $0025

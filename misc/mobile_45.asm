@@ -15653,7 +15653,7 @@ Function11b483: ; 11b483
 	pop de
 	push de
 	ld b, $1
-	predef Functione167
+	predef CalcPkmnStats
 	pop de
 	ld h, d
 	ld l, e
@@ -16067,7 +16067,7 @@ Function11b6b4: ; 11b6b4
 	ld hl, $c616 + 1
 	ld de, $c62c + 5
 	ld b, $1
-	predef Functione167
+	predef CalcPkmnStats
 	ld de, $c62c + 5
 	ld hl, $c62c + 3
 	ld a, [de]
@@ -16470,18 +16470,13 @@ Unknown_11bb7d:
 SECTION "bank47", ROMX, BANK[$47]
 
 Function11c000:: ; 11c000
+	ld hl, OtherTrainerClass
+	ld e, [hl]
 	ld a, [rSVBK]
 	push af
 	ld a, $3
 	ld [rSVBK], a
-IF DEF(CRYSTAL11)
-	ld hl, wd10a
-ELSE
-	ld hl, wd105
-ENDC
-	ld a, [hl]
-	dec a
-	ld e, a
+	dec e
 	ld d, 0
 	ld hl, Unknown_11f2f0
 	add hl, de
@@ -23006,7 +23001,7 @@ Function170394: ; 170394
 	ld hl, $000a
 	add hl, bc
 	ld b, $1
-	predef Functione167
+	predef CalcPkmnStats
 	pop de
 	pop hl
 	dec de
@@ -24113,17 +24108,12 @@ Function170b16: ; 170b16 (5c:4b16)
 
 Function170b44: ; 170b44 generate trainer and load thier sprite into mapobject scriptvar
 	callba Function1f8000 ;generatres mon and trainer and stores them in wram. full structure is, from wd100, 11 bytes of trainer data (name and class), 177 bytes for 3 mons and 40 bytes of ????
-	ld a, [rSVBK] ;mons now loaded into OTPartymon instead
-	push af 
-	ld a, $3
-	ld [rSVBK], a
-	ld hl, wd10a ;trainer class
+
+	ld hl, OtherTrainerClass ;trainer class
 	ld a, [hl]
 	dec a
 	ld c, a
 	ld b, $0
-	pop af ;swap wram bank back
-	ld [rSVBK], a
 	ld hl, Unknown_170b90
 	add hl, bc ;go down trainer class spaces
 	ld a, [hl] ;load into wcd49
@@ -24154,17 +24144,72 @@ Function170b44: ; 170b44 generate trainer and load thier sprite into mapobject s
 ; 170b90
 
 Unknown_170b90:
-	db $12, $13, $14, $15, $18, $17
-	db $16, $19, $04, $05, $11, $01
-	db $1c, $1b, $21, $1e, $1a, $1d
-	db $1f, $3c, $20, $27, $27, $27
-	db $28, $0a, $23, $24, $2a, $2b
-	db $35, $40, $2a, $29, $22, $25
-	db $3a, $2b, $24, $49, $2b, $07
-	db $2c, $2d, $4a, $0d, $4b, $3a
-	db $2b, $41, $35, $27, $28, $27
-	db $36, $3e, $30, $2c, $2d, $3d
-	db $26, $2e, $06, $07, $43, $36
+	db SPRITE_FALKNER
+	db SPRITE_WHITNEY
+	db SPRITE_BUGSY
+	db SPRITE_MORTY
+	db SPRITE_PRYCE
+	db SPRITE_JASMINE
+	db SPRITE_CHUCK
+	db SPRITE_CLAIR
+	db SPRITE_SILVER
+	db SPRITE_OAK
+	db SPRITE_WILL
+	db SPRITE_CHRIS
+	db SPRITE_BRUNO
+	db SPRITE_KAREN
+	db SPRITE_KOGA
+	db SPRITE_LANCE
+	db SPRITE_BROCK
+	db SPRITE_MISTY
+	db SPRITE_SURGE
+	db SPRITE_SCIENTIST
+	db SPRITE_ERIKA
+	db SPRITE_YOUNGSTER
+	db SPRITE_YOUNGSTER
+	db SPRITE_YOUNGSTER
+	db SPRITE_LASS
+	db SPRITE_JANINE
+	db SPRITE_COOLTRAINER_M
+	db SPRITE_COOLTRAINER_F
+	db SPRITE_BUENA
+	db SPRITE_SUPER_NERD
+	db SPRITE_ROCKET
+	db SPRITE_GENTLEMAN
+	db SPRITE_BUENA
+	db SPRITE_TEACHER
+	db SPRITE_SABRINA
+	db SPRITE_BUG_CATCHER
+	db SPRITE_FISHER
+	db SPRITE_SUPER_NERD
+	db SPRITE_COOLTRAINER_F
+	db SPRITE_SAILOR
+	db SPRITE_SUPER_NERD
+	db SPRITE_BLUE
+	db SPRITE_ROCKER
+	db SPRITE_POKEFAN_M
+	db SPRITE_BIKER
+	db SPRITE_BLAINE
+	db SPRITE_PHARMACIST
+	db SPRITE_FISHER
+	db SPRITE_SUPER_NERD
+	db SPRITE_BLACK_BELT
+	db SPRITE_ROCKET
+	db SPRITE_YOUNGSTER
+	db SPRITE_LASS
+	db SPRITE_YOUNGSTER
+	db SPRITE_ROCKET_GIRL
+	db SPRITE_SAGE
+	db SPRITE_GRANNY
+	db SPRITE_ROCKER
+	db SPRITE_POKEFAN_M
+	db SPRITE_KIMONO_GIRL
+	db SPRITE_TWIN
+	db SPRITE_POKEFAN_F
+	db SPRITE_RED
+	db SPRITE_BLUE
+	db SPRITE_OFFICER
+	db SPRITE_ROCKET_GIRL
 
 Function170bd2: ; 170bd2
 	ret
