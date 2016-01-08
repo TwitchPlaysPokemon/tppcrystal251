@@ -190,21 +190,14 @@ Function1f8081:
 	ld [hli], a
 	dec c
 	jr nz, .loop5
-	ld c, 2
-.loop6
 	call Random
-	ld b, a
-	and $f0
-	cp $c0
-	jr c, .loop6
-	ld a, b
-	and $f
-	cp $c
-	jr c, .loop6
-	ld [hl], b
-	inc hl
-	dec c
-	jr nz, .loop6
+	and $33
+	add $cc
+	ld [hli], a
+	call Random
+	and $33
+	add $cc
+	ld [hl], a
 	ld a, [TempMonSpecies]
 	ld [CurSpecies], a
 	call GetBaseData
