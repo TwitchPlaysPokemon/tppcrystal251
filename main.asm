@@ -95627,7 +95627,7 @@ INCBIN "gfx/misc/copyright_tpp.2bpp"
 CopyrightTPPGFXEnd
 SECTION "bank7C", ROMX, BANK[$7C]
 
-INCBIN "unknown/1f0000.bin"
+INCLUDE "data/battle_tower_2.asm"
 ; 3991b
 
 SECTION "bank7D", ROMX, BANK[$7D]
