@@ -224,10 +224,10 @@ Request2bpp:: ; eba
 	push af
 
 	ld a, $8
-	ld [$ffd3], a
+	ld [$ffd3], a 
 	ld a, [wLinkMode]
 	cp $4
-	jr nz, .asm_edc
+	jr nz, .asm_edc ;if link battle4 and ??? = 0, ?? = 6. else ?? = 8
 	ld a, [$ffe9]
 	and a
 	jr nz, .asm_edc
@@ -240,7 +240,7 @@ Request2bpp:: ; eba
 	ld a, d
 	ld [Requested2bppSource + 1], a
 	ld a, l
-	ld [Requested2bppDest], a
+	ld [Requested2bppDest], a ;place requested address in ram
 	ld a, h
 	ld [Requested2bppDest + 1], a
 
@@ -248,17 +248,17 @@ Request2bpp:: ; eba
 	ld a, c
 	ld hl, $ffd3
 	cp [hl]
-	jr nc, .asm_f08
+	jr nc, .asm_f08 ;if c = ???, branch
 
 	ld [Requested2bpp], a
 .wait
 	call DelayFrame
 	ld a, [Requested2bpp]
 	and a
-	jr nz, .wait
+	jr nz, .wait ;loop until requested = 0
 
 	pop af
-	ld [$ffd3], a
+	ld [$ffd3], a ;reload original ???
 
 	pop af
 	rst Bankswitch
@@ -274,12 +274,12 @@ Request2bpp:: ; eba
 	call DelayFrame
 	ld a, [Requested2bpp]
 	and a
-	jr nz, .asm_f0d
+	jr nz, .asm_f0d ;wait until requested  = 0
 	ld a, c
 	ld hl, $ffd3
-	sub [hl]
+	sub [hl] ;c - ???
 	ld c, a
-	jr .asm_eec
+	jr .asm_eec ;loop
 ; f1e
 
 

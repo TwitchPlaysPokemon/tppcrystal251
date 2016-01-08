@@ -1,4 +1,4 @@
-	dw NormalHit
+	dw NormalHit ;assosiate with moveeffect 
 	dw DoSleep
 	dw PoisonHit
 	dw LeechHit
@@ -35,7 +35,7 @@
 	dw PayDay
 	dw LightScreen
 	dw TriAttack
-	dw NormalHit
+	dw DoBurn
 	dw OHKOHit
 	dw RazorWind
 	dw SuperFang

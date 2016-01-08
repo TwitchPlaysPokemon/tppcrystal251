@@ -97,7 +97,7 @@ UnknownScript_0x560fd: ; 0x560fd
 UnknownScript_0x56103: ; 0x56103
 	writetext UnknownText_0x561d8
 	buttonsound
-	verbosegiveitem TM_FRUSTRATION, 1
+	verbosegiveitem TM_ROCK_POLISH, 1
 	iffalse UnknownScript_0x56116
 	setflag ENGINE_GOLDENROD_MALL_5F_HAPPINESS_EVENT
 	closetext

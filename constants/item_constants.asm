@@ -201,11 +201,11 @@
 	add_tm TOXIC
 	add_tm ZAP_CANNON
 	add_tm ROCK_SMASH
-	add_tm PSYCH_UP
+	add_tm SWORDS_DANCE ;filler
 	add_tm HIDDEN_POWER
 	add_tm SUNNY_DAY
-	add_tm SWEET_SCENT
-	add_tm SNORE
+	add_tm DOUBLE_EDGE ;filler
+	add_tm POISON_JAB ;filler
 	add_tm BLIZZARD
 	add_tm HYPER_BEAM
 	add_tm ICY_WIND
@@ -213,7 +213,7 @@
 	add_tm RAIN_DANCE
 	add_tm GIGA_DRAIN
 	add_tm ENDURE
-	add_tm FRUSTRATION
+	add_tm ROCK_POLISH ;filler
 	add_tm SOLARBEAM
 	add_tm IRON_TAIL
 	add_tm DRAGONBREATH
@@ -236,7 +236,7 @@
 	add_tm DEFENSE_CURL
 	add_tm THUNDERPUNCH
 	add_tm DREAM_EATER
-	add_tm DETECT
+	add_tm DAZZLINGLEAM ; filler
 	add_tm REST
 	add_tm ATTRACT
 	add_tm THIEF

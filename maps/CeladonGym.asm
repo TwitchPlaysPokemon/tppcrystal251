@@ -213,8 +213,8 @@ UnknownText_0x72b28: ; 0x72b28
 	line "I am the LEADER of"
 	cont "CELADON GYM."
 
-	para "…Oh? All the way"
-	line "from JOHTO, you"
+	para "…Oh? A native"
+	line "of KANTO, you"
 	cont "say? How nice…"
 
 	para "Oh. I'm sorry, I"
@@ -300,23 +300,22 @@ UnknownText_0x72e30: ; 0x72e30
 ; 0x72e53
 
 PicnickerTanyaSeenText: ; 0x72e53
-	text "Oh, a battle?"
-	line "That's kind of"
-	cont "scary, but OK!"
+	text "SAFFRON GYM leader"
+	cont "SABRINA apparently"
+	cont "uses the very same"
+	cont "#MON as me!"
 	done
 ; 0x72e7f
 
 PicnickerTanyaBeatenText: ; 0x72e7f
-	text "Oh, that's it?"
+	text "EXEGGUTOR, no..."
 	done
 ; 0x72e8e
 
 UnknownText_0x72e8e: ; 0x72e8e
-	text "Oh, look at all"
-	line "your BADGES. No"
-
-	para "wonder I couldn't"
-	line "win!"
+	text "ERIKA, the leader"
+	line "of this gym,"
+	cont "doesn't use it."
 	done
 ; 0x72ec5
 

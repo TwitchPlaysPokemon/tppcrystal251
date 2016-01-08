@@ -90,46 +90,50 @@ UnknownText_0x1ad99b: ; 0x1ad99b
 ; 0x1ad9cc
 
 PokefanmRexSeenText: ; 0x1ad9cc
-	text "My PHANPY is the"
+	text "My PONYTA is the"
 	line "cutest in the"
 	cont "world."
 	done
 ; 0x1ad9f3
 
 PokefanmRexBeatenText: ; 0x1ad9f3
-	text "My PHANPY!"
+	text "Dad: My PONYTA!"
+	
+	para "Son: Please dad..."
 	done
 ; 0x1ad9ff
 
 UnknownText_0x1ad9ff: ; 0x1ad9ff
 	text "Look how adorable"
-	line "my PHANPY acts!"
+	line "my PONYTA acts!"
 
-	para "Isn't it cute"
-	line "enough to make"
-	cont "your heart melt?"
+	para "Much cuter than"
+	line "any BELLSPROUT."
 	done
 ; 0x1ada4f
 
 PokefanmAllanSeenText: ; 0x1ada4f
-	text "My TEDDIURSA is"
+	text "My BELLSPROUT is"
 	line "the cutest in the"
 	cont "world."
 	done
 ; 0x1ada79
 
 PokefanmAllanBeatenText: ; 0x1ada79
-	text "My TEDDIURSA!"
+	text "Dad: BELLSPROUT,"
+	line "no..."
+	
+	para "Son: It's embar-"
+	line "-rassing, dad..."
 	done
 ; 0x1ada88
 
 UnknownText_0x1ada88: ; 0x1ada88
 	text "Look how adorable"
-	line "my TEDDIURSA acts!"
+	line "my BELLSPROUT is!"
 
-	para "Isn't it cute"
-	line "enough to make"
-	cont "your heart melt?"
+	para "Much cuter than"
+	line "any PONYTA."
 	done
 ; 0x1adadb
 

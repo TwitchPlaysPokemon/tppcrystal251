@@ -153,8 +153,8 @@ UnknownText_0x7df97: ; 0x7df97
 	para "Did you run into a"
 	line "trainer who uses a"
 
-	para "SEADRA that knows"
-	line "WATERFALL?"
+	para "MAGCARGO that"
+	line "knows STRENGTH?"
 	done
 ; 0x7e01d
 

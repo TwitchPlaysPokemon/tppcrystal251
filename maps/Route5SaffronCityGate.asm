@@ -15,8 +15,10 @@ UnknownText_0x18b5bc: ; 0x18b5bc
 	line "aren't you?"
 
 	para "How do you like"
-	line "KANTO? It's nice,"
-	cont "don't you agree?"
+	line "KANTO?"
+
+	para "...wait, you are"
+	line "from here?"
 	done
 ; 0x18b60b
 

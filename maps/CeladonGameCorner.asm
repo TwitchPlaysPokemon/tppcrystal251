@@ -178,14 +178,14 @@ UnknownText_0x72215: ; 0x72215
 ; 0x72242
 
 UnknownText_0x72242: ; 0x72242
-	text "It's this machine"
-	line "I want."
+	text "Apparently there"
+	line "is a very rare"
 
-	para "It cleaned me out"
-	line "yesterday, so it"
-
-	para "should pay out"
-	line "today."
+	para "#MON available"
+	line "as a prize in"
+	
+	para "the CELADON"
+	line "GAME CORNER..."
 	done
 ; 0x72295
 

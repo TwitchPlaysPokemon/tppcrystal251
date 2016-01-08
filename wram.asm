@@ -343,12 +343,12 @@ wc302:: ds 1
 wc303:: ds 2
 wc305:: ds 1
 wc306:: ds 1
-wc307:: ds 1
-wc308:: ds 1
-wc309:: ds 1
-wc30a:: ds 1
-wc30b:: ds 1
-wc30c:: ds 1
+wc307:: ds 1 ;10
+wc308:: ds 1 ;18
+wc309:: ds 1 ;filled by Function115e2b
+wc30a:: ds 1 ;decide table used by Function115e2b
+wc30b:: ds 1 ;decide entry used by Function115e2b
+wc30c:: ds 1 ;filled by Function115e2b
 wc30d:: ds 1
 wc30e:: ds 1
 wc30f:: ds 1
@@ -363,11 +363,11 @@ wc317:: ds 1
 wc318:: ds 1
 wc319:: ds 1
 wc31a:: ds 1
-wc31b:: ds 1
+wc31b:: ds 1 ;text pointer to battle tower text?  something loaded in load $20 and $c3
 wc31c:: ds 1
-wc31d:: ds 1
+wc31d:: ds 1 ;bank of above text? also used to hold coords in tilemap
 wc31e:: ds 1
-wc31f:: ds 1
+wc31f:: ds 1 ;checked as an input?
 wc320:: ds 4
 wc324:: ds 34
 wc346:: ds 94
@@ -840,7 +840,7 @@ wc72c:: ds 1
 wc72d:: ds 1
 wc72e:: ds 1
 wc72f:: ds 1
-wc730:: ds 1
+wc730:: ds 1 ;trapping turns
 wc731:: ds 1
 wc732:: ds 1
 wc733:: ds 1
@@ -1074,20 +1074,20 @@ wcd42:: ds 1
 wcd43:: ds 1
 wcd44:: ds 1
 wcd45:: ds 1
-wcd46:: ds 1
+wcd46:: ds 1 ;0 if b is pressed in bt level menu
 wcd47:: ds 1
 
 BGMapPalBuffer:: ; cd48
 	ds 1 ; 40
 
-wcd49:: ds 1
-wcd4a:: ds 1
+wcd49:: ds 1 ;holds something based on trainer class
+wcd4a:: ds 1 ;holds string tables for battle tower menu and max position?
 wcd4b:: ds 1
-wcd4c:: ds 1
+wcd4c:: ds 1 ;holds bank?
 wcd4d:: ds 1
 wcd4e:: ds 1
-wcd4f:: ds 1
-wcd50:: ds 1
+wcd4f:: ds 1 ;position in battle tower level menu
+wcd50:: ds 1 ;max level of tower, before that needs to be at 1 for level menu to run?
 wcd51:: ds 1
 wcd52:: ds 1
 wcd53:: ds 1
@@ -1108,7 +1108,7 @@ wcd62:: ds 1
 wcd63:: ds 1
 wcd64:: ds 1
 wcd65:: ds 1
-wcd66:: ds 1
+wcd66:: ds 1 ;7 if exiting bt level menu
 wcd67:: ds 1
 wcd68:: ds 1
 wcd69:: ds 1
@@ -1185,12 +1185,12 @@ CurSpecies:: ; cf60
 
 wcf61:: ds 2
 wcf63:: ds 1
-wcf64:: ds 1
+wcf64:: ds 1 ;battle tower current wins?
 IF !DEF(CRYSTAL11)
 wPokedexStatus::
 ENDC
-wcf65:: ds 1
-wcf66:: ds 1
+wcf65:: ds 1 ;selection in tower level menu divided by 2
+wcf66:: ds 1 ;4 if level check fails, 10 if species check fails
 
 Requested2bpp:: ; cf67
 	ds 1
@@ -1209,7 +1209,7 @@ Requested1bppDest:: ; cf6f
 wcf71:: ds 1 ;holds pointer to top of stack of menu tile data,stored in reverse.
 ;structure is, from the "top", a byte holding whether here is tile data,the location of the top of the previous stack, then the tiles of attrimap, then tile replaced in tilemap, then the menu header used to replace it
 wcf72:: ds 1
-wcf73:: ds 1
+wcf73:: ds 1 ;menu joypad
 MenuSelection:: ; cf74
 	ds 1
 
@@ -1230,7 +1230,7 @@ wcf91:: ds 1
 wcf92:: ds 1 ;number of vertical options?
 wcf93:: ds 1
 wcf94:: ds 1
-wcf95:: ds 1 ;bit 7 set = skip btton check on loop?
+wcf95:: ds 1 ;bit 7 set = skip btton check on loop? points at something to run?
 wcf96:: ds 1
 wcf97:: ds 1
 wcf98:: ds 3
@@ -1303,7 +1303,7 @@ Options:: ; cfcc
 ; bit 7: battle scene off/on
 	ds 1
 
-wcfcd:: ds 1
+wcfcd:: ds 1 ;have talked to batt;e tower receptionist once?
 
 TextBoxFrame:: ; cfce
 ; bits 0-2: textbox frame 0-7
@@ -1837,7 +1837,7 @@ TimeOfDay:: ; d269
 	ds 1
 
 	ds 1
-wd26b:: ds 1
+wd26b:: ds 1 ;trainer name?
 wd26c:: ds 1
 wd26d:: ds 4
 wd271:: ds 5

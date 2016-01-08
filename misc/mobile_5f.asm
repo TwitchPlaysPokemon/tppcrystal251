@@ -178,22 +178,22 @@ HaveWantPals: ; 17cff3
 	RGB  0,  0,  0
 
 
-Function17d073: ; 17d073
+Function17d073: ; 17d073 ;dec c by legnth of text de, stopping hen a special character or end of line is hit. special chars ret c
 .asm_17d073
 	ld a, [de]
 	inc de
 	and a
 	jr z, .asm_17d0ae
 	cp $60
-	jr nc, .asm_17d0ae
+	jr nc, .asm_17d0ae 
 	cp $4e
-	jr z, .asm_17d0ae
+	jr z, .asm_17d0ae;if ?, $5-13, $19-1c, $26-34 ,$3a-3e,$40-48, more then $60(normal chars) or line break, dec c and loop
 	cp $50
-	jr z, .asm_17d0b1
+	jr z, .asm_17d0b1 ;if string end, ret nc
 	cp $5
-	jr c, .asm_17d0ac
+	jr c, .asm_17d0ac ;if < 5 , $14-18,$1d-25 ,$35-39,$3f,$49-59(special chars)  ret c
 	cp $14
-	jr c, .asm_17d0ae
+	jr c, .asm_17d0ae 
 	cp $19
 	jr c, .asm_17d0ac
 	cp $1d
@@ -425,8 +425,8 @@ Function17d1f1: ; 17d1f1
 	ret
 ; 17d224
 
-Function17d224: ; 17d224
-	ld a, [ScriptVar]
+Function17d224: ; 17d224 BATTLE TOWER, DO NOT DELETE process initial menu
+	ld a, [ScriptVar] ;choose menu based on scriptvar and set it to 4
 	and a
 	jr nz, .asm_17d234
 	ld a, $4
@@ -441,21 +441,21 @@ Function17d224: ; 17d224
 
 .asm_17d23c
 	call LoadMenuDataHeader
-	call Function17d246
-	call Function1c17
+	call Function17d246 ;if exit then ret scriptvar = 4, else scriptvar = cursor pos -1
+	call Function1c17 ;unload menu
 	ret
 ; 17d246
 
-Function17d246: ; 17d246
-	call Function1d81
-	jr c, .asm_17d264
+Function17d246: ; 17d246 ;init menu, if scriptvar = 5 then scriptvar = cursor positon, if exit then ret scriptvar = 4, else scriptvar = cursor pos -1
+	call Function1d81 ;initmenu2 if b pressed, ret c, else ret nc?
+	jr c, .asm_17d264 ;if pressed b? load 4 into scriptvar
 	ld a, [ScriptVar]
 	cp $5
-	jr nz, .asm_17d25d
+	jr nz, .asm_17d25d ;if scriptvar is 5, load cursor position into scriptvar
 	ld a, [wcfa9]
 	cp $3
-	ret z
-	jr c, .asm_17d25d
+	ret z ;if cursor is over exit?, ret scriptvar = 4
+	jr c, .asm_17d25d ;else dec a and load into scriptvar
 	dec a
 	jr .asm_17d260
 

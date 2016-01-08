@@ -400,11 +400,11 @@ UnknownText_0x1a4f08: ; 0x1a4f08
 	para "I need to do some"
 	line "more training."
 
-	para "I hear that the"
-	line "LEAGUE's ELITE"
+	para "ROUTE 26 is said"
+	line "to be the best"
 
-	para "FOUR are tougher"
-	line "than GYM LEADERS."
+	para "grinding route in"
+	line "all of JOHTO."
 	done
 ; 0x1a4f97
 
@@ -466,31 +466,30 @@ UnknownText_0x1a50d7: ; 0x1a50d7
 ; 0x1a5136
 
 CooltrainerfBeth1SeenText: ; 0x1a5136
-	text "I lost to a train-"
-	line "er named <RIVAL>."
+	text "I loved watching"
+	line "TV as a kid!"
 
-	para "He was really"
-	line "strong, but…"
+	para "It inspired me to"
+	line "become a trainer!"
 
-	para "It was as if he"
-	line "absolutely had to"
-	cont "win at any cost."
+	para "My team isn't"
+	line "really done yet,"
 
-	para "I felt sorry for"
-	line "his #MON."
+	para "but I'll do"
+	line "my best!"
 	done
 ; 0x1a51bf
 
 CooltrainerfBeth1BeatenText: ; 0x1a51bf
-	text "#MON aren't"
-	line "tools of war."
+	text "No worries, I"
+	line "will get stronger!"
 	done
 ; 0x1a51d9
 
 UnknownText_0x1a51d9: ; 0x1a51d9
-	text "#MON are in-"
-	line "valuable, lifelong"
-	cont "partners."
+	text "I will keep"
+	line "catching #MON"
+	cont "from the past."
 	done
 ; 0x1a5204
 
@@ -523,27 +522,27 @@ UnknownText_0x1a5278: ; 0x1a5278
 ; 0x1a52c4
 
 FisherScottSeenText: ; 0x1a52c4
-	text "I'm feeling great"
-	line "today!"
+	text "I live close"
+	line "to this ocean."
 
-	para "I feel like I"
-	line "could boot even"
-	cont "the LEAGUE CHAMP!"
+	para "I caught and"
+	line "raised all my"
+	cont "#MON here!"
 	done
 ; 0x1a530d
 
 FisherScottBeatenText: ; 0x1a530d
-	text "No! Not in this"
-	line "battle!"
+	text "I still have"
+	line "my memories..."
 	done
 ; 0x1a5326
 
 UnknownText_0x1a5326: ; 0x1a5326
-	text "Just like in fish-"
-	line "ing, it's all over"
+	text "It feels so"
+	line "long ago..."
 
-	para "in #MON if you"
-	line "give up."
+	para "When my BLASTOISE"
+	line "was a WARTORTLE."
 	done
 ; 0x1a5364
 

@@ -60,29 +60,30 @@ JugglerIrwin1Script: ; 0x19c8cf
 	talkaftercancel
 	loadfont
 	checkcellnum $16
-	iftrue UnknownScript_0x19c90f
+	iftrue UnknownScript_0x19c90f ;call number given taxt
 	checkevent EVENT_ROUTE_35_281
 	iftrue UnknownScript_0x19c8ec
-	writetext UnknownText_0x19cd5a
+	writetext UnknownText_0x19cd5a ;have defeted text
+	buttonsound
 	buttonsound
 	setevent EVENT_ROUTE_35_281
-	scall UnknownScript_0x19c903
+	scall UnknownScript_0x19c903 ;ask for number
 	jump UnknownScript_0x19c8ef
 ; 0x19c8ec
 
 UnknownScript_0x19c8ec: ; 0x19c8ec
-	scall UnknownScript_0x19c907
+	scall UnknownScript_0x19c907 ;ask for number text
 UnknownScript_0x19c8ef: ; 0x19c8ef
 	askforphonenumber $16
-	if_equal $1, UnknownScript_0x19c917
-	if_equal $2, UnknownScript_0x19c913
+	if_equal $1, UnknownScript_0x19c917 ;phone full
+	if_equal $2, UnknownScript_0x19c913 ;declined
 	trainertotext JUGGLER, IRWIN1, $0
-	scall UnknownScript_0x19c90b
+	scall UnknownScript_0x19c90b ;registered number text
 	jump UnknownScript_0x19c90f
 ; 0x19c903
 
 UnknownScript_0x19c903: ; 0x19c903
-	jumpstd asknumber1m
+	jumpstd asknumber1m 
 	end
 ; 0x19c907
 
@@ -430,23 +431,23 @@ FruitTreeScript_0x19ca7e: ; 0x19ca7e
 ; 0x19ca80
 
 CamperIvanSeenText: ; 0x19ca80
-	text "I've been getting"
-	line "#MON data off"
+	text "The right"
+	line "#MON make"
 
-	para "my radio. I think"
-	line "I'm good."
+	para "camping all that"
+	line "much easier!"
 	done
 ; 0x19cabb
 
 CamperIvanBeatenText: ; 0x19cabb
-	text "I give!"
+	text "Dug my own grave!"
 	done
 ; 0x19cac4
 
 UnknownText_0x19cac4: ; 0x19cac4
-	text "Music on the radio"
-	line "changes the moods"
-	cont "of wild #MON."
+	text "My #MON and me"
+	line "all work hard to"
+	cont "set up the tent!"
 	done
 ; 0x19caf8
 
@@ -539,24 +540,20 @@ UnknownText_0x19cc87: ; 0x19cc87
 ; 0x19cd1e
 
 JugglerIrwin1SeenText: ; 0x19cd1e
-	text "Behold my graceful"
-	line "BALL dexterity!"
+	text "I can juggle five"
+	line "balls at once!"
 	done
 ; 0x19cd42
 
 JugglerIrwin1BeatenText: ; 0x19cd42
-	text "Whew! That was a"
-	line "jolt!"
+	text "Dropped them!"
 	done
 ; 0x19cd5a
 
 UnknownText_0x19cd5a: ; 0x19cd5a
-	text "I was going to"
-	line "dazzle you with my"
-	cont "prize #MON."
-
-	para "But your prowess"
-	line "electrified me!"
+	text "Someday I will"
+	line "be able to juggle"
+	cont "six at once..."
 	done
 ; 0x19cdaa
 
