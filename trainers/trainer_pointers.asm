@@ -74,3 +74,4 @@ TrainerGroups: ; 0x39999
 	dba GiovanniGroup
 	dba CoolSiblingsGroup
 	dba RivalRBGroup
+	dba RivalRBGroup

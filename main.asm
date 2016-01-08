@@ -756,16 +756,24 @@ OakSpeech: ; 0x5f99
 	call ClearTileMap
 	xor a
 	ld [CurPartySpecies], a
-	ld a, BLUE_RB
-	ld [TrainerClass], a
-	call Function619c
+	callba DrawIntroRivalPic
 	ld b, $1c
 	call GetSGBLayout
 	call Function616a
 	ld hl, OakText9
+	ld a, [PlayerGender]
+	bit 0, a
+	jr nz, .got_text_9
+	ld hl, OakText9F
+.got_text_9
 	call PrintText
 	call NameRivalRB
 	ld hl, OakText10
+	ld a, [PlayerGender]
+	bit 0, a
+	jr nz, .got_text_10
+	ld hl, OakText10F
+.got_text_10
 	call PrintText
 	call Function4b6
 	call ClearTileMap
@@ -816,6 +824,12 @@ OakText9:
 	db "@"
 OakText10:
 	TX_FAR _OakText10
+	db "@"
+OakText9F:
+	TX_FAR _OakText9F
+	db "@"
+OakText10F:
+	TX_FAR _OakText10F
 	db "@"
 NamePlayer: ; 0x6074
 	callba MovePlayerPicRight
@@ -879,19 +893,24 @@ NameRivalRB: ; 0x6074
 	call WaitBGMap
 	xor a
 	ld [CurPartySpecies], a
-	ld a, BLUE_RB
-	ld [TrainerClass], a
-	call Function619c
+	callba DrawIntroRivalPic
 	ld b, $1c
 	call GetSGBLayout
 	call Function4f0
 	ld hl, GreensName
-	ld de, .Blue
+	ld de, .Kris
+	ld a, [PlayerGender]
+	bit 0, a
+	jr z, .asm_60cf
+	ld de, .Chris
+.asm_60cf
 	call InitName
 	ret
 
-.Blue
-	db "BLUE@@@@@@@"
+.Chris
+	db "RUST@@@@@@@"
+.Kris
+	db "AZURE@@@@@@"
 ; 60e9
 
 Function60e9: ; 60e9
@@ -10912,8 +10931,7 @@ Function117ae: ; 117ae (4:57ae)
 ; 117c3 (4:57c3)
 
 RivalNamingScreenRB: ; 117ae (4:57ae)
-	ld de, BlueSpriteGFX
-	ld b, BANK(BlueSpriteGFX)
+	callba GetRivalRBIcon
 	call Function11847
 	hlcoord 5, 2
 	ld de, String_117c3
@@ -17759,7 +17777,7 @@ Group30Sprites: ; 144ec
 	db SPRITE_TEACHER
 	db SPRITE_FISHER
 	db SPRITE_YOUNGSTER
-	db SPRITE_BLUE
+	db SPRITE_EGK_RIVAL
 	db SPRITE_GRAMPS
 	db SPRITE_BUG_CATCHER
 	db SPRITE_COOLTRAINER_F
@@ -17784,7 +17802,7 @@ Group31Sprites: ; 144ec
 	db SPRITE_TEACHER
 	db SPRITE_FISHER
 	db SPRITE_YOUNGSTER
-	db SPRITE_BLUE
+	db SPRITE_EGK_RIVAL
 	db SPRITE_GRAMPS
 	db SPRITE_BUG_CATCHER
 	db SPRITE_COOLTRAINER_F
@@ -17809,7 +17827,7 @@ Group32Sprites: ; 144ec
 	db SPRITE_TEACHER
 	db SPRITE_FISHER
 	db SPRITE_YOUNGSTER
-	db SPRITE_BLUE
+	db SPRITE_EGK_RIVAL
 	db SPRITE_GRAMPS
 	db SPRITE_BUG_CATCHER
 	db SPRITE_COOLTRAINER_F
@@ -17834,7 +17852,7 @@ Group33Sprites: ; 144ec
 	db SPRITE_TEACHER
 	db SPRITE_FISHER
 	db SPRITE_YOUNGSTER
-	db SPRITE_BLUE
+	db SPRITE_EGK_RIVAL
 	db SPRITE_GRAMPS
 	db SPRITE_BUG_CATCHER
 	db SPRITE_COOLTRAINER_F
@@ -17859,7 +17877,7 @@ Group34Sprites: ; 144ec
 	db SPRITE_TEACHER
 	db SPRITE_FISHER
 	db SPRITE_YOUNGSTER
-	db SPRITE_BLUE
+	db SPRITE_EGK_RIVAL
 	db SPRITE_GRAMPS
 	db SPRITE_BUG_CATCHER
 	db SPRITE_COOLTRAINER_F
@@ -34887,6 +34905,7 @@ TrainerClassNames:: ; 2c1ef
 	db $4a, " LEAGUE@"
 	db "BOSS@"
 	db "COOLSIBS@"
+	db "RIVAL@"
 	db "RIVAL@"
 AI_Redundant: ; 2c41a
 ; Check if move effect c will fail because it's already been used.
@@ -55947,7 +55966,12 @@ MovePlayerPic: ; 88266
 ; 88297
 
 ShowRivalRBNamingChoices:
-	ld hl, BlueNameMenuHeader
+	ld hl, KrisNameMenuHeader
+	ld a, [PlayerGender]
+	bit 0, a
+	jr z, .GotGender
+	ld hl, ChrisNameMenuHeader
+.GotGender
 	call LoadMenuDataHeader
 	call Function1d81
 	ld a, [wcfa9]
@@ -55956,24 +55980,6 @@ ShowRivalRBNamingChoices:
 	call Function1c17
 	ret
 
-BlueNameMenuHeader:
-	db $40 ; flags
-	db 00, 00 ; start coords
-	db 11, 10 ; end coords
-	dw BlueNameMenuData2
-	db 1 ; ????
-	db 0 ; default option
-BlueNameMenuData2:
-	db $91
-	db 5
-	db "NEW NAME@"
-BlueNameOptions:
-	db "BLUE@"
-	db "GARY@"
-	db "JOHN@"
-	db "MARK@"
-	db 2
-	db " NAME @"
 ShowPlayerNamingChoices: ; 88297
 	ld hl, ChrisNameMenuHeader
 	ld a, [PlayerGender]
@@ -56046,6 +56052,17 @@ Function88318: ; 88318
 	ret
 ; 8832c
 
+GetRivalRBIcon:
+	ld de, ChrisSpriteGFX
+	ld b, BANK(ChrisSpriteGFX)
+
+	ld a, [PlayerGender]
+	bit 0, a
+	ret nz
+	ld de, KrisSpriteGFX
+	ld b, BANK(KrisSpriteGFX)
+	ret
+
 GetPlayerIcon: ; 8832c
 ; Get the player icon corresponding to gender
 ; Male
@@ -56055,14 +56072,12 @@ GetPlayerIcon: ; 8832c
 	
 	ld a, [PlayerGender]
 	bit 0, a
-	jr z, .done
+	ret z
 	
 ; Female
 
 	ld de, KrisSpriteGFX
 	ld b, BANK(KrisSpriteGFX)
-	
-.done
 	ret
 ; 8833e
 
@@ -56140,6 +56155,21 @@ Function88840: ; 88840
 	ld [hBGMapMode], a
 	ret
 ; 88874
+DrawIntroRivalPic:
+	ld e, 0
+	ld a, [PlayerGender]
+	bit 0, a
+	jr nz, .GotClass
+	ld e, 1
+.GotClass
+	ld a, e
+	ld [TrainerClass], a
+	ld de, ChrisPic
+	ld a, [PlayerGender]
+	bit 0, a
+	jr nz, IntroPic_GotPic
+	ld de, KrisPic
+	jr IntroPic_GotPic
 
 DrawIntroPlayerPic: ; 88874
 ; Draw the player pic at (6,4).
@@ -56158,9 +56188,9 @@ DrawIntroPlayerPic: ; 88874
 	ld de, ChrisPic
 	ld a, [PlayerGender]
 	bit 0, a
-	jr z, .GotPic
+	jr z, IntroPic_GotPic
 	ld de, KrisPic
-.GotPic
+IntroPic_GotPic
 	ld hl, VTiles2
 	ld b, BANK(ChrisPic) ; BANK(KrisPic)
 	ld c, 7 * 7 ; dimensions

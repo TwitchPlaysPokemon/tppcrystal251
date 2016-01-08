@@ -83,5 +83,8 @@ ProfElmPalette:      INCLUDE "gfx/trainers/068.pal"
 tppPcPalette:        INCLUDE "gfx/trainers/069.pal"
 GiovanniPalette:     INCLUDE "gfx/trainers/070.pal"
 CoolSiblingsPalette: INCLUDE "gfx/trainers/071.pal"
+ChrisRBPalette:      INCLUDE "gfx/trainers/072.pal"
+KrisRBPalette:       INCLUDE "gfx/trainers/073.pal"
+
 ; b1de
 

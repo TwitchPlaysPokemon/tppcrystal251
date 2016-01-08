@@ -730,6 +730,8 @@ ProfElmPic:          INCBIN "gfx/trainers/profelm.7x7.2bpp.lz"
 tppPcPic:            INCBIN "gfx/trainers/tppPc.7x7.2bpp.lz"
 GiovanniPic:         INCBIN "gfx/trainers/giovanni.7x7.2bpp.lz"
 CoolSiblingsPic:     INCBIN "gfx/trainers/coolsiblings.7x7.2bpp.lz"
+ChrisPicLZ:          INCBIN "gfx/misc/chris.7x7.2bpp.lz"
+KrisPicLZ:           INCBIN "gfx/misc/kris.7x7.2bpp.lz"
 ; 1669d3
 
 

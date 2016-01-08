@@ -59,7 +59,7 @@ UnknownText_0x1ac9d2: ; 0x1ac9d2
 	line "to see that you're"
 	cont "a trainer…"
 
-	para "My name's <GREEN>."
+	para "My name's BLUE."
 
 	para "I was once the"
 	line "CHAMPION, although"

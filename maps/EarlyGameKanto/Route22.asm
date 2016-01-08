@@ -53,6 +53,10 @@ Route22RBRivalBattle:
 .squirtle
 	loadtrainer BLUE_RB, BLUE_RB_2B
 .StartBattle
+	checkflag ENGINE_PLAYER_IS_FEMALE
+	iftrue .got_rival_gender
+	loadvar OtherTrainerClass, BLUE_RB_F
+.got_rival_gender
 	winlosstext _Route22RivalDefeatedText1, _Route22RivalLossText
 	writecode VAR_BATTLETYPE, BATTLETYPE_CANLOSE
 	startbattle
@@ -175,6 +179,6 @@ Route22RB_MapEventHeader:
 
 	; people-events
 	db 1
-	person_event SPRITE_BLUE, 9, 28, $0, 0, 0, -1, -1, 0, 0, 0, ObjectEvent, EVENT_RIVAL_ROUTE_22_RB
+	person_event SPRITE_EGK_RIVAL, 9, 28, $0, 0, 0, -1, -1, 0, 0, 0, ObjectEvent, EVENT_RIVAL_ROUTE_22_RB
 ; 0x7c038
 

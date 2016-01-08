@@ -33,8 +33,8 @@ _OakText8:
 	prompt
 
 _OakText9:
-	text "This is my grand-"
-	line "son."
+	text "This is your best"
+	line "friend."
 
 	para "He's been your"
 	line "rival since the"
@@ -48,6 +48,25 @@ _OakText9:
 _OakText10:
 	text "That's absolutely"
 	line "correct! His name"
+	cont "is <GREEN>!"
+	prompt
+
+_OakText9F:
+	text "This is your best"
+	line "friend."
+
+	para "She's been your"
+	line "rival since the"
+	cont "two of you were"
+	cont "babies."
+
+	para "You remember her"
+	line "name, don't you?"
+	done
+
+_OakText10F:
+	text "That's absolutely"
+	line "correct! Her name"
 	cont "is <GREEN>!"
 	prompt
 
