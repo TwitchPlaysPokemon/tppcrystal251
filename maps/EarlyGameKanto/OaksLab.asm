@@ -368,7 +368,14 @@ OakScript_OaksLabRB:
 	closetext
 	playmusic MUSIC_RIVAL_RB
 	loadfont
+	checkflag ENGINE_PLAYER_IS_FEMALE
+	iftrue .male_rival_1
+	writetext _OaksLabText21F
+	jump .done_text_1
+
+.male_rival_1
 	writetext _OaksLabText21
+.done_text_1
 	waitbutton
 	closetext
 	spriteface $2, DOWN
@@ -391,7 +398,14 @@ OakScript_OaksLabRB:
 .continuewithdex
 	special RestartMapMusic
 	loadfont
+	checkflag ENGINE_PLAYER_IS_FEMALE
+	iftrue .male_rival_2
+	writetext _OaksLabText22F
+	jump .done_text_2
+
+.male_rival_2
 	writetext _OaksLabText22
+.done_text_2
 	waitbutton
 	closetext
 	loadfont
@@ -410,16 +424,25 @@ OakScript_OaksLabRB:
 	clearevent EVENT_RIVAL_ROUTE_22_RB
 	playsound SFX_KEY_ITEM
 	waitsfx
-	writetext OaksLabRBText_GivePokeballs
+	writetext _OaksLabGivePokeballsText1
 	waitbutton
 	verbosegiveitem POKE_BALL, 5
+	writetext _OaksLabGivePokeballsText2
+	buttonsound
 	writetext _OaksLabText26
 	waitbutton
 	closetext
 	faceperson $0, $6
 	faceperson $6, $0
 	loadfont
+	checkflag ENGINE_PLAYER_IS_FEMALE
+	iftrue .male_rival_3
+	writetext _OaksLabText27F
+	jump .done_text_3
+
+.male_rival_3
 	writetext _OaksLabText27
+.done_text_3
 	waitbutton
 	closetext
 	spriteface $0, DOWN
@@ -741,10 +764,6 @@ _OaksLabText_1d32c:
 	cont "pages are blank!"
 	done
 
-_OaksLabText8:
-	text "?"
-	done
-
 _OaksLabText_1d340:
 	text "PROF.OAK is the"
 	line "authority on"
@@ -798,8 +817,8 @@ _OaksLabChooseMonText:
 
 _OaksLabRivalInterjectionText:
 	text "<GREEN>: Hey!"
-	line "Pop! What"
-	cont "about me?"
+	line "Pop! What about"
+	cont "me?"
 	done
     
 _OaksLabRivalInterjectionTextF:
@@ -839,35 +858,34 @@ _OaksLabRivalReceivedMonText:
 	done
 
 _OaksLabRivalChallengeText:
-	text "<GREEN>: Wait"
+	text "<GREEN>: Hey!"
 	line "<PLAYER>!"
-	cont "Let's check out"
-	cont "our #MON!"
+	para "Let's duke it"
+	line "out with our"
+	cont "#MON!"
 
-	para "Come on, I'll take"
-	line "you on!"
+	para "Bring it on!"
 	done
 
 _OaksLabText_1d3be:
-	text "WHAT?"
-	line "Unbelievable!"
-	cont "I picked the"
-	cont "wrong #MON!"
+	text "HUH!?"
+	line "How'd I lose?"
 	done
 
 _OaksLabText_1d3c3:
-	text "<GREEN>: Yeah! Am"
-	line "I great or what?"
+	text "<GREEN>: Aw yeah!"
+	line "Am I good or what?"
 	done
 
 _OaksLabRivalToughenUpText:
-	text "<GREEN>: Okay!"
-	line "I'll make my"
-	cont "#MON fight to"
-	cont "toughen it up!"
+	text "<GREEN>: Well,"
+	line "I'm gonna make"
+	cont "my #MON"
+	cont "tougher from"
+    cont "now on!"
 
-	para "<PLAYER>! Gramps!"
-	line "Smell you later!"
+	para "<PLAYER>! Pops!"
+	line "See ya later!"
 	done
 
 _OaksLabRivalChallengeTextF:
@@ -884,14 +902,14 @@ _OaksLabRivalChallengeTextF:
 	done
 
 _OaksLabText_1d3beF:
-	text "Oh my.."
+	text "Oh my..."
 	line "It looks like"
 	cont "I have more to"
 	cont "learn about this."
 	done
 
 _OaksLabText_1d3c3F:
-	text "<GREEN>: Oh, um..!"
+	text "<GREEN>: Oh, um..."
 	line "Should I have gone"
     cont "easier on you?"
 	done
@@ -903,8 +921,9 @@ _OaksLabRivalToughenUpTextF:
 	cont "#MON with love"
     cont "and care!"
 
-	para "<PLAYER>! Grandpa!"
-	line "See you later!"
+	para "<PLAYER>! Profes-"
+	line "sor!"
+	cont "See you later!"
 	done
     
 _OaksLabText21:
@@ -1014,7 +1033,8 @@ _OaksLabText27F:
 	line "sister to lend you"
 	cont "a MAP CARD."
 	
-	para "See you later!"
+	para "I'll be seeing"
+    cont "you!"
 	done
 
 _OaksLabText_1d405:
@@ -1058,15 +1078,6 @@ _SaveOptionText:
 	text "The SAVE option is"
 	line "on the MENU"
 	cont "screen."
-	done
-
-OaksLabRBText_GivePokeballs:
-	text "Hmm... I'll give"
-	line "you these as well."
-
-	para "Use them to catch"
-	line "#MON to fill"
-	cont "your new #DEX."
 	done
 
 OaksLabRB_MapEventHeader: ; 0x19ba33
