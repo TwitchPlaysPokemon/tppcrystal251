@@ -845,7 +845,7 @@ NamePlayer: ; 0x6074
 .NewName
 	ld b, 1
 	ld de, PlayerName
-	callba Function116c1
+	callba NamingScreen
 	call Function4b6
 	call ClearTileMap
 	call Functione5f
@@ -886,7 +886,7 @@ NameRivalRB: ; 0x6074
 .NewName
 	ld b, 8
 	ld de, GreensName
-	callba Function116c1
+	callba NamingScreen
 	call Function4b6
 	call ClearTileMap
 	call Functione5f
@@ -9614,7 +9614,7 @@ Functione3de: ; e3de InitNickname
 	pop de
 	push de
 	ld b, $0
-	callba Function116c1 ;NamingScreen
+	callba NamingScreen ;NamingScreen
 	pop hl
 	ld de, StringBuffer1
 	call InitName
@@ -10783,12 +10783,12 @@ TMHMMoves: ; 1167a
 
 Function116b7: ; 0x116b7
 	call Function2ed3
-	call Function116c1
+	call NamingScreen
 	call Function2b74
 	ret
 ; 0x116c1
 
-Function116c1: ; 116c1
+NamingScreen: ; 116c1
 	ld hl, wc6d0
 	ld [hl], e
 	inc hl
@@ -11016,10 +11016,10 @@ Function11847: ; 11847 (4:5847)
 	pop de
 	ld b, $a
 	ld a, d
-	cp $7a
+	cp KrisSpriteGFX / $100
 	jr nz, .asm_11873
 	ld a, e
-	cp $40
+	cp KrisSpriteGFX % $100
 	jr nz, .asm_11873
 	ld b, $1e
 .asm_11873
@@ -23046,7 +23046,7 @@ Function16f7a: ; 16f7a (5:6f7a)
 	ld [MonType], a
 	push de
 	ld b, $0
-	callba Function116c1
+	callba NamingScreen
 	pop hl
 	ld de, StringBuffer1
 	call InitName
@@ -59812,7 +59812,7 @@ Function8a78c: ; 8a78c (22:678c)
 	call Function891fe
 	ld de, DefaultFlypoint
 	ld b, $5
-	callba Function116c1
+	callba NamingScreen
 	call Function89160
 	call Function8931b
 	push bc
@@ -85223,7 +85223,7 @@ Functione36f9: ; e36f9 (38:76f9)
 .asm_e3745
 	ld b, $4
 	ld de, DefaultFlypoint
-	callba Function116c1
+	callba NamingScreen
 	call ClearTileMap
 	call Functione51
 	call Functione58
