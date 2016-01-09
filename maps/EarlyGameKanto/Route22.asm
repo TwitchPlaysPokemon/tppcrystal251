@@ -116,7 +116,7 @@ _Route22RivalBeforeBattleText1::
 	line "<PLAYER>!"
 
 	para "Seems like you're"
-    line "going to the"
+	line "going to the"
 	cont "#MON LEAGUE."
 
 	para "Well, forget it!"
@@ -126,98 +126,94 @@ _Route22RivalBeforeBattleText1::
 	para "The guard won't"
 	line "let you through!"
     
-    para "That guard won't"
-    line "let anybody"
-    cont "through without"
-    cont "BADGEs!"
+	para "That guard won't"
+	line "let anybody"
+    	cont "through without"
+	cont "BADGEs!"
 
 	para "By the way, did"
 	line "you make your"
-    cont "#MON any"
+   	cont "#MON any"
 	cont "stronger?"
 	done
 
 _Route22RivalAfterBattleText1::
 	text "I've been hearin'"
-    line "that the #MON"
-    cont "LEAGUE has a lot"
-    cont "of elite trainers!"
+	line "that the #MON"
+	cont "LEAGUE has a lot"
+	cont "of elite trainers!"
     
-    para "I just gotta"
-    line "figure out how to"
-    cont "beat 'em!"
+    	para "I just gotta"
+    	line "figure out how to"
+    	cont "beat 'em!"
     
-    para "You should stop"
-    line "standing around"
-    cont "and get going!"
-    done
+    	para "You should stop"
+    	line "standing around"
+    	cont "and get going!"
+    	done
 
 _Route22RivalDefeatedText1::
 	text "<GREEN>: Ugh!"
-    line "You just got"
-    cont "lucky is all..."
-    done
+    	line "You just got"
+    	cont "lucky is all..."
+    	done
 
 _Route22RivalLossText:
 	text "<GREEN>: Aw yeah!"
-    line "I'm good at this!"
-    done
+    	line "I'm good at this!"
+    	done
     
 _Route22RivalBeforeBattleText1F::
 	text "<GREEN>: Oh, hi"
-    line "there <PLAYER>!"
+    	line "there <PLAYER>!"
     
-    para "Are you going"
-    line "towards the"
-    cont "#MON LEAGUE?"
+    	para "Are you going"
+    	line "towards the"
+    	cont "#MON LEAGUE?"
     
-    para "I'd hate to"
-    line "dissapoint you"
-    cont "but… don't"
-    cont "bother."
+    	para "I'd hate to"
+    	line "dissapoint you"
+    	cont "but… don't"
+    	cont "bother."
     
-    para "They won't let you"
-    line "in without any"
-    cont "badges…"
+    	para "They won't let you"
+    	line "in without any"
+    	cont "badges…"
     
-    para "By the way, have"
-    line "you taken good"
-    cont "care of your"
-    cont "#MON?"
-    done
+    	para "By the way, have"
+    	line "you taken good"
+    	cont "care of your"
+    	cont "#MON?"
+    	done
 
 _Route22RivalAfterBattleText1F::
 	text "I've heard a lot"
-    line "of things about"
-    cont "the #MON"
-    cont "LEAGUE…"
+    	line "of things about"
+    	cont "the #MON"
+    	cont "LEAGUE…"
     
-    para "There are a lot of"
-    line "powerful trainers"
-    cont "up there."
+    	para "There are a lot of"
+    	line "powerful trainers"
+    	cont "up there."
     
-    para "I'd really like to "
-    line "see their battling"
-    cont "techniques…"
+    	para "I'd really like to "
+    	line "see their battling"
+    	cont "techniques…"
     
-    para "Oh, excuse me."
-    line "I'll be on my way."
-    done
+    	para "Oh, excuse me."
+    	line "I'll be on my way."
+    	done
 
 _Route22RivalDefeatedText1F::
 	text "<GREEN>: Oh…"
-    line "not bad at all."
-    done
+    	line "not bad at all."
+    	done
 
 _Route22RivalLossTextF:
-	text "<GREEN>: Yeah! Am"
-	line "I great or what?"
-	done
-    
-    text "<GREEN>: Oh… I'm"
-    line "sorry. I should've"
-    cont "went easier…"
-    done
+    	text "<GREEN>: Oh… I'm"
+    	line "sorry. I should've"
+    	cont "went easier…"
+    	done
 
 _Route22FrontGateText::
 	text "#MON LEAGUE"
