@@ -3,7 +3,7 @@ MD5 := md5sum -c --quiet
 
 .SUFFIXES:
 .SUFFIXES: .asm .o .gbc .png .2bpp .1bpp .lz .pal .bin .blk .tilemap
-.PHONY: all clean crystal pngs
+.PHONY: all clean crystal pngs crystal11 both
 .SECONDEXPANSION:
 
 poketools := extras/pokemontools
@@ -53,12 +53,12 @@ roms := pokecrystal.gbc
 
 all: $(roms)
 crystal: pokecrystal.gbc
+crystal11: pokecrystal11.gbc
 
 clean:
 	rm -f $(roms) $(all_obj) $(roms:.gbc=.map) $(roms:.gbc=.sym)
 
-compare: pokecrystal.gbc pokecrystal11.gbc
-	@$(MD5) roms.md5
+both: pokecrystal.gbc pokecrystal11.gbc
 
 %.asm: ;
 $(all_obj): $$*.asm $$($$*_dep)
