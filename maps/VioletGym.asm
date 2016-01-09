@@ -333,8 +333,8 @@ Bird_keeperAbeBeatenText: ; 0x688b3
 ; 0x688c7
 
 UnknownText_0x688c7: ; 0x688c7
-	text "Bird #MON are more"
-	line "common in the"
+	text "Bird #MON are"
+	line "more common in the"
 	cont "KANTO region!"
 	
 	para "You usually only"

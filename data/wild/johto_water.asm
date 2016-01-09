@@ -173,7 +173,7 @@
 
 	db GROUP_SLOWPOKE_WELL_B1F, MAP_SLOWPOKE_WELL_B1F
 	db $05 ; encounter rate
-	db 50
+	db 37
 	db $00
 ;morning
 		db SLOWPOKE ;30
@@ -229,7 +229,7 @@
 
 	db GROUP_SLOWPOKE_WELL_B2F, MAP_SLOWPOKE_WELL_B2F
 	db $05 ; encounter rate
-	db 50
+	db 39
 	db $00
 ;morning
 		db SLOWPOKE ;30
@@ -291,7 +291,7 @@
 
 	db GROUP_MOUNT_MORTAR_1F_OUTSIDE, MAP_MOUNT_MORTAR_1F_OUTSIDE
 	db $0a ; encounter rate
-	db 50
+	db 33
 	db $02
 ;morning
 		db MARILL ;20
@@ -347,7 +347,7 @@
 
 	db GROUP_MOUNT_MORTAR_2F_INSIDE, MAP_MOUNT_MORTAR_2F_INSIDE
 	db $0a ; encounter rate
-	db 50
+	db 33
 	db $02
 ;morning
 		db MARILL ;20
@@ -403,7 +403,7 @@
 
 	db GROUP_MOUNT_MORTAR_B1F, MAP_MOUNT_MORTAR_B1F
 	db $0a ; encounter rate
-	db 50
+	db 33
 	db $02
 ;morning
 		db MARILL ;20
@@ -1299,7 +1299,7 @@
 
 	db GROUP_ROUTE_42, MAP_ROUTE_42
 	db $0a ; encounter rate
-	db 45
+	db 33
 	db $03
 ;morning
 		db QUAGSIRE ;15
@@ -1355,7 +1355,7 @@
 
 	db GROUP_ROUTE_43, MAP_ROUTE_43
 	db $05 ; encounter rate
-	db 50
+	db 33
 	db $02
 ;morning
 		db POLIWAG ;20
@@ -1759,7 +1759,7 @@
 
 	db GROUP_LAKE_OF_RAGE, MAP_LAKE_OF_RAGE
 	db $0f ; encounter rate
-	db 55
+	db 35
 	db $00
 ;morning
 		db MAGIKARP ;30

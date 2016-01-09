@@ -2945,7 +2945,7 @@ FeraligatrEvosAttacks:
 	db 1,SCREECH
 	db 1,SLASH
 	db 34,SCARY_FACE
-	db 38,WATERFALL
+	db 39,WATERFALL
 	db 44,IRON_TAIL
 	db 48,THRASH
 	db 52,AGILITY ; *
