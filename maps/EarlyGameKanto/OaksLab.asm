@@ -267,7 +267,6 @@ OaksLab_RivalBattleTriggerRight:
 	applymovement $6, Movement_RivalTakesOneStepLeft
 	spriteface $0, LEFT
 	jump OaksLab_RivalFinishesLeaving
-	
 OaksLab_RivalBattleIntroScript:
 	playmusic MUSIC_RIVAL_RB
 	spriteface $6, DOWN
@@ -559,7 +558,6 @@ Movement_RivalTakesTwoStepsDown:
 Movement_RivalTakesOneStepDown:
 	step_down
 	step_end
-	
 Movement_RivalTakesFourStepsRight:
 	step_right
 Movement_RivalTakesThreeStepsRight:
@@ -580,7 +578,7 @@ _OaksLabText40:
 	text "<GREEN>: Meh, I"
 	line "don't need to be"
 	cont "in a rush like"
-    cont "you!"
+	cont "you!"
 
 	para "Go right ahead,"
 	line "and pick, <PLAYER>!"
@@ -588,16 +586,16 @@ _OaksLabText40:
 
 _OaksLabText41:
 	text "<GREEN>: This"
-    	line "#MON I picked"
-    	cont "looks a lot"
-    	cont "stronger."
-    	done
-    
+	line "#MON I picked"
+	cont "looks a lot"
+	cont "stronger."
+	done
+
 _OaksLabGaryText1F:
 	text "<GREEN>: Oh, hello"
 	line "<PLAYER>."
-    
-    	para "The professor's"
+
+	para "The professor's"
 	line "not around."
 	done
 
@@ -612,7 +610,7 @@ _OaksLabText40F:
 _OaksLabText41F:
 	text "<GREEN>: I wanted"
 	line "this #MON"
-	cont "anyway.."
+	cont "anyway..."
 	done
 
 _OaksLabText39:
@@ -779,11 +777,11 @@ _OaksLabRivalWaitingText:
 	line "on Pappy! I'm"
 	cont "tired of waiting!"
 	done
-    
+
 _OaksLabRivalWaitingTextF:
 	text "<GREEN>: Oh,"
 	line "there you are!" 
-    cont "Are we getting"
+	cont "Are we getting"
 	cont "#MON now?"
 	done
 
@@ -820,7 +818,7 @@ _OaksLabRivalInterjectionText:
 	line "Pop! What about"
 	cont "me?"
 	done
-    
+
 _OaksLabRivalInterjectionTextF:
 	text "<GREEN>: Will"
 	line "I get my turn"
@@ -841,13 +839,13 @@ _OaksLabLeavingText:
 _OaksLabRivalPickingMonText:
 	text "<GREEN>: I'll be"
 	line "taking this one,"
-    cont "then!"
+	cont "then!"
 	done
-    
+
 _OaksLabRivalPickingMonTextF:
 	text "<GREEN>: Then"
 	line "I will just take"
-    cont "this one.."
+	cont "this one.."
 	done
 
 _OaksLabRivalReceivedMonText:
@@ -882,7 +880,7 @@ _OaksLabRivalToughenUpText:
 	line "I'm gonna make"
 	cont "my #MON"
 	cont "tougher from"
-    cont "now on!"
+	cont "now on!"
 
 	para "<PLAYER>! Pops!"
 	line "See ya later!"
@@ -894,8 +892,8 @@ _OaksLabRivalChallengeTextF:
 	cont "<PLAYER>!"
 	para "Let's try battling"
 	line "our #MON"
-    	para "like we always"
-	 line "wanted!"
+	para "like we always"
+	line "wanted!"
 
 	para "Alright! Here I"
 	line "come!"
@@ -911,7 +909,7 @@ _OaksLabText_1d3beF:
 _OaksLabText_1d3c3F:
 	text "<GREEN>: Oh, um..."
 	line "Should I have gone"
-    cont "easier on you?"
+	cont "easier on you?"
 	done
 
 _OaksLabRivalToughenUpTextF:
@@ -919,13 +917,13 @@ _OaksLabRivalToughenUpTextF:
 	line "I'll work hard"
 	cont "to raise my"
 	cont "#MON with love"
-    cont "and care!"
+	cont "and care!"
 
 	para "<PLAYER>! Profes-"
 	line "sor!"
 	cont "See you later!"
 	done
-    
+
 _OaksLabText21:
 	text "<GREEN>: Pops!"
 	done
@@ -934,7 +932,7 @@ _OaksLabText22:
 	text "<GREEN>: What did"
 	line "you call me for?"
 	done
-    
+
 _OaksLabText21F:
 	text "<GREEN>: Hey..!"
 	done
@@ -943,7 +941,7 @@ _OaksLabText22F:
 	text "<GREEN>: You"
 	line "called for me?"
 	done
-    
+
 _OaksLabText23:
 	text "OAK: Oh right! I"
 	line "have a request"
@@ -1014,27 +1012,23 @@ _OaksLabText27:
 	line "to give you one,"
 	cont "<PLAYER>! Haha!"
 	done
-    
+
 _OaksLabText27F:
 	text "<GREEN>: Okay,"
 	line "this sounds like"
 	cont "fun."
-	
 	para "Oh, I know!"
 	line "<PLAYER>, I'll"
 	line "race you to"
 	cont "completing one!"
-	
 	para "I don't want"
 	line "things to be"
 	cont "unfair for you.."
-	
 	para "..so I'll ask my"
 	line "sister to lend you"
 	cont "a MAP CARD."
-	
 	para "I'll be seeing"
-    cont "you!"
+	cont "you!"
 	done
 
 _OaksLabText_1d405:
