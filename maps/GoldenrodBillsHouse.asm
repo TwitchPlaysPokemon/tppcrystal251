@@ -22,7 +22,7 @@ BillScript_0x54be4: ; 0x54be4
 	writetext UnknownText_0x54dae
 	playsound SFX_CAUGHT_MON
 	waitsfx
-	givepoke EEVEE, 20, 0, 0
+	givepoke EEVEE, 30, 0, 0
 	setevent EVENT_GOT_EEVEE
 	writetext UnknownText_0x54dc1
 	waitbutton
@@ -36,7 +36,7 @@ BillEeveePC:
 	writetext BillsEeveePCText
 	playsound SFX_CAUGHT_MON
 	waitsfx
-	givepoke EEVEE, 20, 0, 0
+	givepoke EEVEE, 30, 0, 0
 	setevent EVENT_GOT_EEVEE
 	writetext UnknownText_0x54dc1
 	waitbutton
