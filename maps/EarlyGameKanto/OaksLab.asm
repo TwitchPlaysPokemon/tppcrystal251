@@ -42,7 +42,14 @@ WalkUpWithOak:
 	faceperson $2, $0
 	faceperson $6, $2
 	loadfont
+	checkflag ENGINE_PLAYER_IS_FEMALE
+	iftrue .male_rival_1
+	writetext _OaksLabRivalWaitingTextF
+	jump .done_text_1
+
+.male_rival_1
 	writetext _OaksLabRivalWaitingText
+.done_text_1
 	waitbutton
 	closetext
 	loadfont
@@ -50,7 +57,14 @@ WalkUpWithOak:
 	waitbutton
 	closetext
 	loadfont
+	checkflag ENGINE_PLAYER_IS_FEMALE
+	iftrue .male_rival_2
+	writetext _OaksLabRivalInterjectionTextF
+	jump .done_text_2
+
+.male_rival_2
 	writetext _OaksLabRivalInterjectionText
+.done_text_2
 	waitbutton
 	closetext
 	loadfont
@@ -91,9 +105,7 @@ CharmanderPokeballScript:
 	applymovement $6, Movement_RivalTakesTwoStepsDown
 	applymovement $6, Movement_RivalTakesThreeStepsRight
 	applymovement $6, Movement_RivalTakesOneStepUp
-	loadfont
-	writetext _OaksLabRivalPickingMonText
-	buttonsound
+	scall OaksLab_PrintRivalPickingMonText
 	pokenamemem SQUIRTLE, $1
 	disappear $8
 	writetext _OaksLabRivalReceivedMonText
@@ -189,6 +201,19 @@ SquirtlePokeballScript:
 	dotrigger $3
 	end
 
+OaksLab_PrintRivalPickingMonText:
+	loadfont
+	checkflag ENGINE_PLAYER_IS_FEMALE
+	iftrue .male_rival
+	writetext _OaksLabRivalPickingMonTextF
+	buttonsound
+	end
+
+.male_rival
+	writetext _OaksLabRivalPickingMonText
+	buttonsound
+	end
+
 OaksLabRB_DidntChooseStarterScript:
 	closetext
 	end
@@ -249,18 +274,26 @@ OaksLab_RivalBattleIntroScript:
 	spriteface $2, DOWN
 	spriteface $0, UP
 	loadfont
+	checkflag ENGINE_PLAYER_IS_FEMALE
+	iftrue .male_rival
+	writetext _OaksLabRivalChallengeTextF
+	jump .done_text
+
+.male_rival
 	writetext _OaksLabRivalChallengeText
+.done_text
 	waitbutton
 	closetext
 	end
 
 OaksLab_DoRivalBattle:
+	winlosstext _OaksLabText_1d3be, _OaksLabText_1d3c3
 	checkflag ENGINE_PLAYER_IS_FEMALE
 	iftrue .got_rival_gender
 	loadvar OtherTrainerClass, BLUE_RB_F
+	winlosstext _OaksLabText_1d3beF, _OaksLabText_1d3c3F
 .got_rival_gender
 	writecode VAR_BATTLETYPE, BATTLETYPE_CANLOSE
-	winlosstext _OaksLabText_1d3be, _OaksLabText_1d3c3
 	startbattle
 	special DeleteSavedMusic
 	reloadmapmusic
@@ -268,7 +301,14 @@ OaksLab_DoRivalBattle:
 	playmapmusic
 	special HealParty
 	loadfont
+	checkflag ENGINE_PLAYER_IS_FEMALE
+	iftrue .male_rival
+	writetext _OaksLabRivalToughenUpTextF
+	jump .done_text
+
+.male_rival
 	writetext _OaksLabRivalToughenUpText
+.done_text
 	waitbutton
 	closetext
 	playmusic MUSIC_RIVAL_AFTER_RB
@@ -394,12 +434,24 @@ BlueScript_OaksLabRB:
 	iftrue .MyMonIsTheBest
 	checkevent EVENT_OAKS_LAB_OAK
 	iffalse .HurryUpAndChoose
+	checkflag ENGINE_PLAYER_IS_FEMALE
+	iftrue .male1
+	jumptextfaceplayer _OaksLabGaryText1F
+.male1
 	jumptextfaceplayer _OaksLabGaryText1
 
 .HurryUpAndChoose
+	checkflag ENGINE_PLAYER_IS_FEMALE
+	iftrue .male2
+	jumptextfaceplayer _OaksLabText40F
+.male2
 	jumptextfaceplayer _OaksLabText40
 
 .MyMonIsTheBest
+	checkflag ENGINE_PLAYER_IS_FEMALE
+	iftrue .male3
+	jumptextfaceplayer _OaksLabText41F
+.male3
 	jumptextfaceplayer _OaksLabText41
 
 OaksLabRB_WaitComeBack:
@@ -752,8 +804,8 @@ _OaksLabRivalInterjectionText:
     
 _OaksLabRivalInterjectionTextF:
 	text "<GREEN>: Will"
-	line "I get my turn after"
-	cont "him?"
+	line "I get my turn"
+	cont "after him?"
 	done
 
 _OaksLabBePatientText:
@@ -822,10 +874,10 @@ _OaksLabRivalChallengeTextF:
 	text "<GREEN>: Wait"
     line "a minute,"
 	cont "<PLAYER>!"
-	cont "Let's try battling"
-	cont "our #MON"
-    cont "like we always"
-    cont "wanted!"
+	para "Let's try battling"
+	line "our #MON"
+    para "like we always"
+    line "wanted!"
 
 	para "Alright! Here I"
 	line "come!"
@@ -833,7 +885,7 @@ _OaksLabRivalChallengeTextF:
 
 _OaksLabText_1d3beF:
 	text "Oh my.."
-	line "it looks like"
+	line "It looks like"
 	cont "I have more to"
 	cont "learn about this."
 	done

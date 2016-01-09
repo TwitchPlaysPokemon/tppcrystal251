@@ -67867,6 +67867,8 @@ Function8e86c: ; 8e86c (23:686c)
 
 .asm_8e88e
 	ld a, $5
+	jr .asm_8e892
+
 .asm_8e890
 	ld a, $4
 .asm_8e892
