@@ -729,7 +729,7 @@ _OaksLabGivePokeballsText2:
 
 	para "Just throw a #"
 	line "BALL at it and try"
-	line "to catch it!"
+	cont "to catch it!"
 
 	para "This won't always"
 	line "work, though."
@@ -1019,7 +1019,7 @@ _OaksLabText27F:
 	cont "fun."
 	para "Oh, I know!"
 	line "<PLAYER>, I'll"
-	line "race you to"
+	cont "race you to"
 	cont "completing one!"
 	para "I don't want"
 	line "things to be"
