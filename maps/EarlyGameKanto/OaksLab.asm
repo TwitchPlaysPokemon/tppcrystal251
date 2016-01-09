@@ -1027,9 +1027,8 @@ _OaksLabText27F:
 
 	para "Oh, I know!"
 	line "<PLAYER>, I'll"
-
-	para "race you to"
-	line "completing one!"
+	cont "race you to"
+	cont "completing one!"
 
 	para "I don't want"
 	line "things to be"
