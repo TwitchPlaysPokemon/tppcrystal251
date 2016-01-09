@@ -496,24 +496,48 @@ Movement_RivalTakesOneStepRight:
 	step_end
 
 _OaksLabGaryText1:
-	text "<GREEN>: Yo"
-	line "<PLAYER>! Gramps"
-	cont "isn't around!"
+	text "<GREEN>: Hey-ya,"
+	line "<PLAYER>! Ol' Pappy"
+	cont "ain't around!"
 	done
 
 _OaksLabText40:
-	text "<GREEN>: Heh, I"
+	text "<GREEN>: Meh, I"
 	line "don't need to be"
-	cont "greedy like you!"
+	cont "in a rush like"
+    cont "you!"
 
-	para "Go ahead and"
-	line "choose, <PLAYER>!"
+	para "Go right ahead,"
+	line "and pick, <PLAYER>!"
 	done
 
 _OaksLabText41:
-	text "<GREEN>: My"
-	line "#MON looks a"
-	cont "lot stronger."
+	text "<GREEN>: This"
+    line "#MON I picked"
+    cont "looks a lot"
+    cont "stronger."
+    done
+    
+_OaksLabGaryText1F:
+	text "<GREEN>: Oh,"
+	line "hello <PLAYER>."
+    
+    para "Grandpa is not"
+	line "around."
+	done
+
+_OaksLabText40F:
+	text "<GREEN>: Oh, me?"
+	line "I'm not in a rush."
+
+	para "Go right ahead,"
+	line "<PLAYER>."
+	done
+
+_OaksLabText41F:
+	text "<GREEN>: I"
+	line "wanted this"
+    cont "#MON anyway.."
 	done
 
 _OaksLabText39:
@@ -680,9 +704,16 @@ _OaksLabText_1d340:
 	done
 
 _OaksLabRivalWaitingText:
-	text "<GREEN>: Gramps!"
-	line "I'm fed up with"
-	cont "waiting!"
+	text "<GREEN>: Come"
+	line "on Pappy! I'm"
+	cont "tired of waiting!"
+	done
+    
+_OaksLabRivalWaitingTextF:
+	text "<GREEN>: Oh,"
+	line "there you are!" 
+    cont "Are we getting"
+	cont "#MON now?"
 	done
 
 _OaksLabChooseMonText:
@@ -708,15 +739,21 @@ _OaksLabChooseMonText:
 	cont "#MON trainer!"
 
 	para "In my old age, I"
-	line "have only 3 left,"
-	cont "but you can have"
-	cont "one! Choose!"
+	line "have only a few"
+	cont "left, but you can"
+	cont "have one! Choose!"
 	done
 
 _OaksLabRivalInterjectionText:
 	text "<GREEN>: Hey!"
-	line "Gramps! What"
+	line "Pop! What"
 	cont "about me?"
+	done
+    
+_OaksLabRivalInterjectionTextF:
+	text "<GREEN>: Will"
+	line "I get my turn after"
+	cont "him?"
 	done
 
 _OaksLabBePatientText:
@@ -731,8 +768,15 @@ _OaksLabLeavingText:
 	done
 
 _OaksLabRivalPickingMonText:
-	text "<GREEN>: I'll take"
-	line "this one, then!"
+	text "<GREEN>: I'll be"
+	line "taking this one,"
+    cont "then!"
+	done
+    
+_OaksLabRivalPickingMonTextF:
+	text "<GREEN>: Then"
+	line "I will just take"
+    cont "this one.."
 	done
 
 _OaksLabRivalReceivedMonText:
@@ -774,15 +818,61 @@ _OaksLabRivalToughenUpText:
 	line "Smell you later!"
 	done
 
+_OaksLabRivalChallengeTextF:
+	text "<GREEN>: Wait"
+    line "a minute,"
+	cont "<PLAYER>!"
+	cont "Let's try battling"
+	cont "our #MON"
+    cont "like we always"
+    cont "wanted!"
+
+	para "Alright! Here I"
+	line "come!"
+	done
+
+_OaksLabText_1d3beF:
+	text "Oh my.."
+	line "it looks like"
+	cont "I have more to"
+	cont "learn about this."
+	done
+
+_OaksLabText_1d3c3F:
+	text "<GREEN>: Oh, um..!"
+	line "Should I have gone"
+    cont "easier on you?"
+	done
+
+_OaksLabRivalToughenUpTextF:
+	text "<GREEN>: Okay!"
+	line "I'll work hard"
+	cont "to raise my"
+	cont "#MON with love"
+    cont "and care!"
+
+	para "<PLAYER>! Grandpa!"
+	line "See you later!"
+	done
+    
 _OaksLabText21:
-	text "<GREEN>: Gramps!"
+	text "<GREEN>: Pops!"
 	done
 
 _OaksLabText22:
 	text "<GREEN>: What did"
 	line "you call me for?"
 	done
+    
+_OaksLabText21F:
+	text "<GREEN>: Hey..!"
+	done
 
+_OaksLabText22F:
+	text "<GREEN>: You"
+	line "called for me?"
+	done
+    
 _OaksLabText23:
 	text "OAK: Oh right! I"
 	line "have a request"
@@ -837,20 +927,42 @@ _OaksLabText26:
 
 _OaksLabText27:
 	text "<GREEN>: Alright"
-	line "Gramps! Leave it"
-	cont "all to me!"
+	line "Pappy! Leave the"
+	cont "catching to me!"
 
-	para "<PLAYER>, I hate to"
-	line "say it, but I"
-	cont "don't need you!"
+	para "<PLAYER>, I hate"
+	line "saying this, but I"
+	line "don't need your"
+	cont "help here!"
 
-	para "I know! I'll"
-	line "borrow a TOWN MAP"
+	para "Heh, I know! I'll"
+	line "borrow a MAP CARD"
 	cont "from my sis!"
 
-	para "I'll tell her not"
-	line "to lend you one,"
-	cont "<PLAYER>! Hahaha!"
+	para "I'll ask her not"
+	line "to give you one,"
+	cont "<PLAYER>! Haha!"
+	done
+    
+_OaksLabText27F:
+	text "<GREEN>: Okay,"
+	line "this sounds like"
+	cont "fun."
+	
+	para "Oh, I know!"
+	line "<PLAYER>, I'll"
+	line "race you to"
+	cont "completing one!"
+	
+	para "I don't want"
+	line "things to be"
+	cont "unfair for you.."
+	
+	para "..so I'll ask my"
+	line "sister to lend you"
+	cont "a MAP CARD."
+	
+	para "See you later!"
 	done
 
 _OaksLabText_1d405:
