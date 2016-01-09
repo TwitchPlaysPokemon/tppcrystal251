@@ -36,7 +36,14 @@ Route22RBRivalBattleTriggerTop:
 
 Route22RBRivalBattle:
 	loadfont
+	checkflag ENGINE_PLAYER_IS_FEMALE
+	iftrue .male_rival_1
+	writetext _Route22RivalBeforeBattleText1F
+	jump .done_intro_text
+
+.male_rival_1
 	writetext _Route22RivalBeforeBattleText1
+.done_intro_text
 	waitbutton
 	closetext
 	checkevent EVENT_GOT_CHARMANDER_FROM_OAK
@@ -53,18 +60,26 @@ Route22RBRivalBattle:
 .squirtle
 	loadtrainer BLUE_RB, BLUE_RB_2B
 .StartBattle
+	winlosstext _Route22RivalDefeatedText1, _Route22RivalLossText
 	checkflag ENGINE_PLAYER_IS_FEMALE
 	iftrue .got_rival_gender
 	loadvar OtherTrainerClass, BLUE_RB_F
+	winlosstext _Route22RivalDefeatedText1F, _Route22RivalLossTextF
 .got_rival_gender
-	winlosstext _Route22RivalDefeatedText1, _Route22RivalLossText
 	writecode VAR_BATTLETYPE, BATTLETYPE_CANLOSE
 	startbattle
 	reloadmapmusic
 	returnafterbattle
 	playmapmusic
 	loadfont
+	checkflag ENGINE_PLAYER_IS_FEMALE
+	iftrue .male_rival_2
 	writetext _Route22RivalAfterBattleText1
+	jump .done_outro_text
+
+.male_rival_2
+	writetext _Route22RivalAfterBattleText1
+.done_outro_text
 	waitbutton
 	closetext
 	playmusic MUSIC_RIVAL_AFTER_RB
@@ -125,15 +140,15 @@ _Route22RivalBeforeBattleText1::
 
 	para "The guard won't"
 	line "let you through!"
-    
+
 	para "That guard won't"
 	line "let anybody"
-    	cont "through without"
+	cont "through without"
 	cont "BADGEs!"
 
 	para "By the way, did"
 	line "you make your"
-   	cont "#MON any"
+	cont "#MON any"
 	cont "stronger?"
 	done
 
@@ -142,78 +157,78 @@ _Route22RivalAfterBattleText1::
 	line "that the #MON"
 	cont "LEAGUE has a lot"
 	cont "of elite trainers!"
-    
-    	para "I just gotta"
-    	line "figure out how to"
-    	cont "beat 'em!"
-    
-    	para "You should stop"
-    	line "standing around"
-    	cont "and get going!"
-    	done
+
+	para "I just gotta"
+	line "figure out how to"
+	cont "beat 'em!"
+
+	para "You should stop"
+	line "standing around"
+	cont "and get going!"
+	done
 
 _Route22RivalDefeatedText1::
 	text "<GREEN>: Ugh!"
-    	line "You just got"
-    	cont "lucky is all..."
-    	done
+	line "You just got"
+	cont "lucky is all..."
+	done
 
 _Route22RivalLossText:
 	text "<GREEN>: Aw yeah!"
-    	line "I'm good at this!"
-    	done
-    
+	line "I'm good at this!"
+	done
+
 _Route22RivalBeforeBattleText1F::
 	text "<GREEN>: Oh, hi"
-    	line "there <PLAYER>!"
-    
-    	para "Are you going"
-    	line "towards the"
-    	cont "#MON LEAGUE?"
-    
-    	para "I'd hate to"
-    	line "dissapoint you"
-    	cont "but… don't"
-    	cont "bother."
-    
-    	para "They won't let you"
-    	line "in without any"
-    	cont "badges…"
-    
-    	para "By the way, have"
-    	line "you taken good"
-    	cont "care of your"
-    	cont "#MON?"
-    	done
+	line "there <PLAYER>!"
+
+	para "Are you going"
+	line "towards the"
+	cont "#MON LEAGUE?"
+
+	para "I'd hate to"
+	line "dissapoint you"
+	cont "but… don't"
+	cont "bother."
+
+	para "They won't let you"
+	line "in without any"
+	cont "badges…"
+
+	para "By the way, have"
+	line "you taken good"
+	cont "care of your"
+	cont "#MON?"
+	done
 
 _Route22RivalAfterBattleText1F::
 	text "I've heard a lot"
-    	line "of things about"
-    	cont "the #MON"
-    	cont "LEAGUE…"
-    
-    	para "There are a lot of"
-    	line "powerful trainers"
-    	cont "up there."
-    
-    	para "I'd really like to "
-    	line "see their battling"
-    	cont "techniques…"
-    
-    	para "Oh, excuse me."
-    	line "I'll be on my way."
-    	done
+	line "of things about"
+	cont "the #MON"
+	cont "LEAGUE…"
+
+	para "There are a lot of"
+	line "powerful trainers"
+	cont "up there."
+
+	para "I'd really like to "
+	line "see their battling"
+	cont "techniques…"
+
+	para "Oh, excuse me."
+	line "I'll be on my way."
+	done
 
 _Route22RivalDefeatedText1F::
 	text "<GREEN>: Oh…"
-    	line "not bad at all."
-    	done
+	line "not bad at all."
+	done
 
 _Route22RivalLossTextF:
-    	text "<GREEN>: Oh… I'm"
-    	line "sorry. I should've"
-    	cont "went easier…"
-    	done
+	text "<GREEN>: Oh… I'm"
+	line "sorry. I should've"
+	cont "went easier…"
+	done
 
 _Route22FrontGateText::
 	text "#MON LEAGUE"
