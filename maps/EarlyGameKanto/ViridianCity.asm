@@ -214,7 +214,7 @@ _ViridianCityText_1920f:
 	done
 
 _ViridianCityText_19214:
-	text "Time is money..."
+	text "Time is money…"
 	line "Go along then."
 	done
 
@@ -263,7 +263,7 @@ _ViridianCityText13:
 
 _ViridianCityText14:
 	text "The GYM's doors"
-	line "are locked..."
+	line "are locked…"
 	done
 
 ViridianCityRB_MapEventHeader: ; 0x1a9ec9
