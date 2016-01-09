@@ -511,7 +511,6 @@ SpecialDefenseDown:
 
 SandAttack:
 Smokescreen:
-Kinesis:
 Flash:
 AccuracyDown:
 	checkobedience
@@ -1241,7 +1240,7 @@ DoBurn:
 	stab
 	checkhit
 	checksafeguard
-	paralyze
+	burn
 	endmove
 
 SkyAttack:

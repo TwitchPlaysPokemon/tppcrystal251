@@ -177,7 +177,7 @@ UnknownScript_0x9aa74: ; 0x9aa74
 ; 0x9aa7b
 
 UnknownText_0x9aa7b: ; 0x9aa7b
-	text "<GREEN>: Yo! Finally"
+	text "BLUE: Yo! Finally"
 	line "got here, huh?"
 
 	para "I wasn't in the"
@@ -211,7 +211,7 @@ UnknownText_0x9aa7b: ; 0x9aa7b
 ; 0x9abae
 
 UnknownText_0x9abae: ; 0x9abae
-	text "<GREEN>: What?"
+	text "BLUE: What?"
 
 	para "How the heck did I"
 	line "lose to you?"
@@ -231,7 +231,7 @@ UnknownText_0x9ac0f: ; 0x9ac0f
 ; 0x9ac27
 
 UnknownText_0x9ac27: ; 0x9ac27
-	text "<GREEN>: …"
+	text "BLUE: …"
 
 	para "All right, I was"
 	line "wrong. You're the"
@@ -248,7 +248,7 @@ UnknownText_0x9ac27: ; 0x9ac27
 ; 0x9acab
 
 UnknownText_0x9acab: ; 0x9acab
-	text "<GREEN>: Listen, you."
+	text "BLUE: Listen, you."
 
 	para "You'd better not"
 	line "lose until I beat"

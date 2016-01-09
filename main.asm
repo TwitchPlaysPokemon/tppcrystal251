@@ -756,16 +756,24 @@ OakSpeech: ; 0x5f99
 	call ClearTileMap
 	xor a
 	ld [CurPartySpecies], a
-	ld a, BLUE_RB
-	ld [TrainerClass], a
-	call Function619c
+	callba DrawIntroRivalPic
 	ld b, $1c
 	call GetSGBLayout
 	call Function616a
 	ld hl, OakText9
+	ld a, [PlayerGender]
+	bit 0, a
+	jr nz, .got_text_9
+	ld hl, OakText9F
+.got_text_9
 	call PrintText
 	call NameRivalRB
 	ld hl, OakText10
+	ld a, [PlayerGender]
+	bit 0, a
+	jr nz, .got_text_10
+	ld hl, OakText10F
+.got_text_10
 	call PrintText
 	call Function4b6
 	call ClearTileMap
@@ -817,6 +825,12 @@ OakText9:
 OakText10:
 	TX_FAR _OakText10
 	db "@"
+OakText9F:
+	TX_FAR _OakText9F
+	db "@"
+OakText10F:
+	TX_FAR _OakText10F
+	db "@"
 NamePlayer: ; 0x6074
 	callba MovePlayerPicRight
 	callba ShowPlayerNamingChoices
@@ -831,7 +845,7 @@ NamePlayer: ; 0x6074
 .NewName
 	ld b, 1
 	ld de, PlayerName
-	callba Function116c1
+	callba NamingScreen
 	call Function4b6
 	call ClearTileMap
 	call Functione5f
@@ -872,26 +886,31 @@ NameRivalRB: ; 0x6074
 .NewName
 	ld b, 8
 	ld de, GreensName
-	callba Function116c1
+	callba NamingScreen
 	call Function4b6
 	call ClearTileMap
 	call Functione5f
 	call WaitBGMap
 	xor a
 	ld [CurPartySpecies], a
-	ld a, BLUE_RB
-	ld [TrainerClass], a
-	call Function619c
+	callba DrawIntroRivalPic
 	ld b, $1c
 	call GetSGBLayout
 	call Function4f0
 	ld hl, GreensName
-	ld de, .Blue
+	ld de, .Kris
+	ld a, [PlayerGender]
+	bit 0, a
+	jr z, .asm_60cf
+	ld de, .Chris
+.asm_60cf
 	call InitName
 	ret
 
-.Blue
-	db "BLUE@@@@@@@"
+.Chris
+	db "RUST@@@@@@@"
+.Kris
+	db "AZURE@@@@@@"
 ; 60e9
 
 Function60e9: ; 60e9
@@ -9586,7 +9605,7 @@ Functione3de: ; e3de InitNickname
 	pop de
 	push de
 	ld b, $0
-	callba Function116c1 ;NamingScreen
+	callba NamingScreen ;NamingScreen
 	pop hl
 	ld de, StringBuffer1
 	call InitName
@@ -10755,12 +10774,12 @@ TMHMMoves: ; 1167a
 
 Function116b7: ; 0x116b7
 	call Function2ed3
-	call Function116c1
+	call NamingScreen
 	call Function2b74
 	ret
 ; 0x116c1
 
-Function116c1: ; 116c1
+NamingScreen: ; 116c1
 	ld hl, wc6d0
 	ld [hl], e
 	inc hl
@@ -10903,8 +10922,7 @@ Function117ae: ; 117ae (4:57ae)
 ; 117c3 (4:57c3)
 
 RivalNamingScreenRB: ; 117ae (4:57ae)
-	ld de, BlueSpriteGFX
-	ld b, BANK(BlueSpriteGFX)
+	callba GetRivalRBIcon
 	call Function11847
 	hlcoord 5, 2
 	ld de, String_117c3
@@ -10989,10 +11007,10 @@ Function11847: ; 11847 (4:5847)
 	pop de
 	ld b, $a
 	ld a, d
-	cp $7a
+	cp KrisSpriteGFX / $100
 	jr nz, .asm_11873
 	ld a, e
-	cp $40
+	cp KrisSpriteGFX % $100
 	jr nz, .asm_11873
 	ld b, $1e
 .asm_11873
@@ -17725,7 +17743,7 @@ Group29Sprites: ; 144ec
 	db SPRITE_TEACHER
 	db SPRITE_FISHER
 	db SPRITE_YOUNGSTER
-	db SPRITE_BLUE
+	db SPRITE_EGK_RIVAL
 	db SPRITE_GRAMPS
 	db SPRITE_BUG_CATCHER
 	db SPRITE_COOLTRAINER_F
@@ -17750,7 +17768,7 @@ Group30Sprites: ; 144ec
 	db SPRITE_TEACHER
 	db SPRITE_FISHER
 	db SPRITE_YOUNGSTER
-	db SPRITE_BLUE
+	db SPRITE_EGK_RIVAL
 	db SPRITE_GRAMPS
 	db SPRITE_BUG_CATCHER
 	db SPRITE_COOLTRAINER_F
@@ -17775,7 +17793,7 @@ Group31Sprites: ; 144ec
 	db SPRITE_TEACHER
 	db SPRITE_FISHER
 	db SPRITE_YOUNGSTER
-	db SPRITE_BLUE
+	db SPRITE_EGK_RIVAL
 	db SPRITE_GRAMPS
 	db SPRITE_BUG_CATCHER
 	db SPRITE_COOLTRAINER_F
@@ -17800,7 +17818,7 @@ Group32Sprites: ; 144ec
 	db SPRITE_TEACHER
 	db SPRITE_FISHER
 	db SPRITE_YOUNGSTER
-	db SPRITE_BLUE
+	db SPRITE_EGK_RIVAL
 	db SPRITE_GRAMPS
 	db SPRITE_BUG_CATCHER
 	db SPRITE_COOLTRAINER_F
@@ -17825,7 +17843,7 @@ Group33Sprites: ; 144ec
 	db SPRITE_TEACHER
 	db SPRITE_FISHER
 	db SPRITE_YOUNGSTER
-	db SPRITE_BLUE
+	db SPRITE_EGK_RIVAL
 	db SPRITE_GRAMPS
 	db SPRITE_BUG_CATCHER
 	db SPRITE_COOLTRAINER_F
@@ -17850,7 +17868,7 @@ Group34Sprites: ; 144ec
 	db SPRITE_TEACHER
 	db SPRITE_FISHER
 	db SPRITE_YOUNGSTER
-	db SPRITE_BLUE
+	db SPRITE_EGK_RIVAL
 	db SPRITE_GRAMPS
 	db SPRITE_BUG_CATCHER
 	db SPRITE_COOLTRAINER_F
@@ -23019,7 +23037,7 @@ Function16f7a: ; 16f7a (5:6f7a)
 	ld [MonType], a
 	push de
 	ld b, $0
-	callba Function116c1
+	callba NamingScreen
 	pop hl
 	ld de, StringBuffer1
 	call InitName
@@ -34879,6 +34897,7 @@ TrainerClassNames:: ; 2c1ef
 	db "BOSS@"
 	db "COOLSIBS@"
 	db "RIVAL@"
+	db "RIVAL@"
 AI_Redundant: ; 2c41a
 ; Check if move effect c will fail because it's already been used.
 ; Return z if the move is a good choice.
@@ -36079,7 +36098,7 @@ PlayBattleMusic: ; 2ee6c
 
 .kantowild
 	ld de, MUSIC_KANTO_WILD_BATTLE
-	jr .done
+	jp .done
 
 .trainermusic
 	ld de, MUSIC_CHAMPION_BATTLE
@@ -36103,6 +36122,8 @@ PlayBattleMusic: ; 2ee6c
 	jr z, .done
 	ld de, MUSIC_RIVAL_BATTLE_RB
 	cp BLUE_RB
+	jr z, .done
+	cp BLUE_RB_F
 	jr z, .done
 	ld de, MUSIC_VS_WCS
 	cp BLUE
@@ -55938,7 +55959,12 @@ MovePlayerPic: ; 88266
 ; 88297
 
 ShowRivalRBNamingChoices:
-	ld hl, BlueNameMenuHeader
+	ld hl, KrisNameMenuHeader
+	ld a, [PlayerGender]
+	bit 0, a
+	jr z, .GotGender
+	ld hl, ChrisNameMenuHeader
+.GotGender
 	call LoadMenuDataHeader
 	call Function1d81
 	ld a, [wcfa9]
@@ -55947,24 +55973,6 @@ ShowRivalRBNamingChoices:
 	call Function1c17
 	ret
 
-BlueNameMenuHeader:
-	db $40 ; flags
-	db 00, 00 ; start coords
-	db 11, 10 ; end coords
-	dw BlueNameMenuData2
-	db 1 ; ????
-	db 0 ; default option
-BlueNameMenuData2:
-	db $91
-	db 5
-	db "NEW NAME@"
-BlueNameOptions:
-	db "BLUE@"
-	db "GARY@"
-	db "JOHN@"
-	db "MARK@"
-	db 2
-	db " NAME @"
 ShowPlayerNamingChoices: ; 88297
 	ld hl, ChrisNameMenuHeader
 	ld a, [PlayerGender]
@@ -56037,6 +56045,17 @@ Function88318: ; 88318
 	ret
 ; 8832c
 
+GetRivalRBIcon:
+	ld de, ChrisSpriteGFX
+	ld b, BANK(ChrisSpriteGFX)
+
+	ld a, [PlayerGender]
+	bit 0, a
+	ret nz
+	ld de, KrisSpriteGFX
+	ld b, BANK(KrisSpriteGFX)
+	ret
+
 GetPlayerIcon: ; 8832c
 ; Get the player icon corresponding to gender
 ; Male
@@ -56046,14 +56065,12 @@ GetPlayerIcon: ; 8832c
 	
 	ld a, [PlayerGender]
 	bit 0, a
-	jr z, .done
+	ret z
 	
 ; Female
 
 	ld de, KrisSpriteGFX
 	ld b, BANK(KrisSpriteGFX)
-	
-.done
 	ret
 ; 8833e
 
@@ -56131,6 +56148,21 @@ Function88840: ; 88840
 	ld [hBGMapMode], a
 	ret
 ; 88874
+DrawIntroRivalPic:
+	ld e, 0
+	ld a, [PlayerGender]
+	bit 0, a
+	jr nz, .GotClass
+	ld e, 1
+.GotClass
+	ld a, e
+	ld [TrainerClass], a
+	ld de, ChrisPic
+	ld a, [PlayerGender]
+	bit 0, a
+	jr nz, IntroPic_GotPic
+	ld de, KrisPic
+	jr IntroPic_GotPic
 
 DrawIntroPlayerPic: ; 88874
 ; Draw the player pic at (6,4).
@@ -56149,9 +56181,9 @@ DrawIntroPlayerPic: ; 88874
 	ld de, ChrisPic
 	ld a, [PlayerGender]
 	bit 0, a
-	jr z, .GotPic
+	jr z, IntroPic_GotPic
 	ld de, KrisPic
-.GotPic
+IntroPic_GotPic
 	ld hl, VTiles2
 	ld b, BANK(ChrisPic) ; BANK(KrisPic)
 	ld c, 7 * 7 ; dimensions
@@ -59771,7 +59803,7 @@ Function8a78c: ; 8a78c (22:678c)
 	call Function891fe
 	ld de, DefaultFlypoint
 	ld b, $5
-	callba Function116c1
+	callba NamingScreen
 	call Function89160
 	call Function8931b
 	push bc
@@ -67826,6 +67858,8 @@ Function8e86c: ; 8e86c (23:686c)
 
 .asm_8e88e
 	ld a, $5
+	jr .asm_8e892
+
 .asm_8e890
 	ld a, $4
 .asm_8e892
@@ -85180,7 +85214,7 @@ Functione36f9: ; e36f9 (38:76f9)
 .asm_e3745
 	ld b, $4
 	ld de, DefaultFlypoint
-	callba Function116c1
+	callba NamingScreen
 	call ClearTileMap
 	call Functione51
 	call Functione58
@@ -95618,6 +95652,7 @@ INCBIN "gfx/misc/copyright_tpp.2bpp"
 CopyrightTPPGFXEnd
 SECTION "bank7C", ROMX, BANK[$7C]
 
+; INCBIN "unknown/1f0000.bin"
 INCLUDE "data/battle_tower_2.asm"
 ; 3991b
 

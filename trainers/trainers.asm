@@ -9324,7 +9324,7 @@ BlueGroup:
 ; ================
 
 	; BLUE (1)
-	db "<GREEN>@"
+	db "BLUE@"
 	db (1 << TRAINERTYPE_MOVES)
 
 	; party
@@ -9368,7 +9368,7 @@ BlueGroup:
 	db $ff ; end
 
 	; BLUE (2)
-	db "<GREEN>@"
+	db "BLUE@"
 	db (1 << TRAINERTYPE_MOVES)
 
 	; party
@@ -9412,7 +9412,7 @@ BlueGroup:
 	db $ff ; end
 
 	; BLUE (3)
-	db "<GREEN>@"
+	db "BLUE@"
 	db (1 << TRAINERTYPE_MOVES)
 
 	; party

@@ -159,6 +159,7 @@ Function1f8081:
 	ld de, TempMon
 	ld bc, 6
 	call CopyBytes ;copy into tempmon
+
 	ld hl, TempMonLevel
 	call .FindHighestPartyLevel
 	ld [hl], a
@@ -226,6 +227,7 @@ Function1f8081:
 	ld a, [TempMonSpecies]
 	ld [wd265], a
 	ld [hli], a
+
 	ld [hl], -1
 	ld hl, OTPartyMon1
 	ld a, c
@@ -252,6 +254,7 @@ Function1f8081:
 	pop af
 	ld [rSVBK], a
 	ret
+
 
 .CopyName ; load name from hl into de, and end with a @, then reset hl
 	push hl

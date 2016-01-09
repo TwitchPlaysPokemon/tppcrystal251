@@ -71,4 +71,5 @@
 	dbw BANK(tppPcPic)            - $36, tppPcPic
 	dbw BANK(GiovanniPic)         - $36, GiovanniPic
 	dbw BANK(CoolSiblingsPic)     - $36, CoolSiblingsPic
-	dbw BANK(BlueRBPic)           - $36, BlueRBPic
+	dbw BANK(ChrisPicLZ)          - $36, ChrisPicLZ
+	dbw BANK(KrisPicLZ)           - $36, KrisPicLZ

@@ -1735,7 +1735,6 @@ wd276:: ds 10
 OTPartyCount::   ds 1 ; d280
 OTPartySpecies:: ds PARTY_LENGTH ; d281
 OTPartyEnd::     ds 1
-
 OTPartyMons::
 OTPartyMon1:: party_struct OTPartyMon1 ; d288
 OTPartyMon2:: party_struct OTPartyMon2 ; d2b8
@@ -1811,7 +1810,9 @@ wd475:: ds 1
 wd476:: ds 1
 wd477:: ds 1
 wd478:: ds 1
+wCrystalDataEnd::
 wd479:: ds 2
+
 wCrystalDataEnd::
 wGameData::
 wPlayerData::
@@ -2311,7 +2312,12 @@ wdca1:: ds 3 ; Repel step count
 wdca4:: ds 1
 wPlayerDataEnd::
 
+
+wPlayerDataEnd::
+
+
 wMapData::
+
 VisitedSpawns:: ; dca5
 	flag_array 35
 
@@ -2344,11 +2350,15 @@ XCoord:: ; dcb8
 	ds 1 ; current x coordinate relative to top-left corner of current map
 
 	ds 6
-wdcbf:: ds 24
-wMapDataEnd::
 
+wdcbf:: ds 1
+	ds 23
+
+wMapDataEnd::
 SECTION "Party", WRAMX, BANK [1]
+
 wPokemonData::
+
 PartyCount:: ; dcd7
 	ds 1 ; number of Pokémon in party
 PartySpecies:: ; dcd8
@@ -2463,7 +2473,10 @@ wdfec:: ds 1
 	ds 3
 
 	ds 5
+
 wPokemonDataEnd::
+wGameDataEnd::
+
 wdff5:: ds 2
 wdff7:: ds 1
 wdff8:: ds 1 ; AI Control byte
@@ -2511,6 +2524,7 @@ w2_d188:: ds 1
 
 
 SECTION "WRAM 3", WRAMX, BANK [3]
+
 w3_d000:: ds 1 ; d000
 w3_d001:: ds 1
 w3_d002::
@@ -2537,7 +2551,10 @@ w3_d742:: battle_tower_struct w3_d742
 	ds -$22
 
 wBTChoiceOfLvlGroup::
-w3_d800:: ds 1
+
+w3_d800:: ; ds BG_MAP_WIDTH * SCREEN_HEIGHT ($240)
+	ds 1
+
 
 SECTION "WRAM 4", WRAMX[$d800], BANK[$4] ; seems like this bank is unused
 

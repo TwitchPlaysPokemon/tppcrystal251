@@ -84,9 +84,9 @@ sBackupOptions:: ds OptionsEnd - Options
 s0_b208:: ds 1
 
 sBackupGameData::
-sBackupPlayerData::  ds wPlayerDataEnd - wPlayerData
-sBackupMapData::     ds wMapDataEnd - wMapData
-sBackupPokemonData:: ds wPokemonDataEnd - wPokemonData
+sBackupPlayerData::  ds $82a
+sBackupMapData::     ds $32
+sBackupPokemonData:: ds $31e
 sBackupGameDataEnd::
 
 ; bd83
@@ -105,9 +105,9 @@ sOptions:: ds OptionsEnd - Options
 s1_a008:: ds 1 ; loaded with 99, used to check save corruption
 
 sGameData::
-sPlayerData::  ds wPlayerDataEnd - wPlayerData
-sMapData::     ds wMapDataEnd - wMapData
-sPokemonData:: ds wPokemonDataEnd - wPokemonData
+sPlayerData::  ds $82a
+sMapData::     ds $32
+sPokemonData:: ds $31e
 sGameDataEnd::
 
 ; ab83

@@ -53,6 +53,10 @@ Route22RBRivalBattle:
 .squirtle
 	loadtrainer BLUE_RB, BLUE_RB_2B
 .StartBattle
+	checkflag ENGINE_PLAYER_IS_FEMALE
+	iftrue .got_rival_gender
+	loadvar OtherTrainerClass, BLUE_RB_F
+.got_rival_gender
 	winlosstext _Route22RivalDefeatedText1, _Route22RivalLossText
 	writecode VAR_BATTLETYPE, BATTLETYPE_CANLOSE
 	startbattle
@@ -108,48 +112,108 @@ MapRoute22RBSignpost0Script:
 	jumptext _Route22FrontGateText
 
 _Route22RivalBeforeBattleText1::
-	text "<GREEN>: Hey!"
+	text "<GREEN>: Hey-ya!"
 	line "<PLAYER>!"
 
-	para "You're going to"
-	line "#MON LEAGUE?"
+	para "Seems like you're"
+	line "going to the"
+	cont "#MON LEAGUE."
 
-	para "Forget it! You"
-	line "probably don't"
-	cont "have any BADGEs!"
+	para "Well, forget it!"
+	line "You don't have"
+	cont "any BADGEs!"
 
 	para "The guard won't"
 	line "let you through!"
+    
+	para "That guard won't"
+	line "let anybody"
+    	cont "through without"
+	cont "BADGEs!"
 
 	para "By the way, did"
-	line "your #MON"
-	cont "get any stronger?"
+	line "you make your"
+   	cont "#MON any"
+	cont "stronger?"
 	done
 
 _Route22RivalAfterBattleText1::
-	text "I heard #MON"
-	line "LEAGUE has many"
-	cont "tough trainers!"
-
-	para "I have to figure"
-	line "out how to get"
-	cont "past them!"
-
-	para "You should quit"
-	line "dawdling and get"
-	cont "a move on!"
-	done
+	text "I've been hearin'"
+	line "that the #MON"
+	cont "LEAGUE has a lot"
+	cont "of elite trainers!"
+    
+    	para "I just gotta"
+    	line "figure out how to"
+    	cont "beat 'em!"
+    
+    	para "You should stop"
+    	line "standing around"
+    	cont "and get going!"
+    	done
 
 _Route22RivalDefeatedText1::
-	text "Awww!"
-	line "You just lucked"
-	cont "out!"
-	done
+	text "<GREEN>: Ugh!"
+    	line "You just got"
+    	cont "lucky is all..."
+    	done
 
 _Route22RivalLossText:
-	text "<GREEN>: Yeah! Am"
-	line "I great or what?"
-	done
+	text "<GREEN>: Aw yeah!"
+    	line "I'm good at this!"
+    	done
+    
+_Route22RivalBeforeBattleText1F::
+	text "<GREEN>: Oh, hi"
+    	line "there <PLAYER>!"
+    
+    	para "Are you going"
+    	line "towards the"
+    	cont "#MON LEAGUE?"
+    
+    	para "I'd hate to"
+    	line "dissapoint you"
+    	cont "but… don't"
+    	cont "bother."
+    
+    	para "They won't let you"
+    	line "in without any"
+    	cont "badges…"
+    
+    	para "By the way, have"
+    	line "you taken good"
+    	cont "care of your"
+    	cont "#MON?"
+    	done
+
+_Route22RivalAfterBattleText1F::
+	text "I've heard a lot"
+    	line "of things about"
+    	cont "the #MON"
+    	cont "LEAGUE…"
+    
+    	para "There are a lot of"
+    	line "powerful trainers"
+    	cont "up there."
+    
+    	para "I'd really like to "
+    	line "see their battling"
+    	cont "techniques…"
+    
+    	para "Oh, excuse me."
+    	line "I'll be on my way."
+    	done
+
+_Route22RivalDefeatedText1F::
+	text "<GREEN>: Oh…"
+    	line "not bad at all."
+    	done
+
+_Route22RivalLossTextF:
+    	text "<GREEN>: Oh… I'm"
+    	line "sorry. I should've"
+    	cont "went easier…"
+    	done
 
 _Route22FrontGateText::
 	text "#MON LEAGUE"
@@ -175,6 +239,6 @@ Route22RB_MapEventHeader:
 
 	; people-events
 	db 1
-	person_event SPRITE_BLUE, 9, 28, $0, 0, 0, -1, -1, 0, 0, 0, ObjectEvent, EVENT_RIVAL_ROUTE_22_RB
+	person_event SPRITE_EGK_RIVAL, 9, 28, $0, 0, 0, -1, -1, 0, 0, 0, ObjectEvent, EVENT_RIVAL_ROUTE_22_RB
 ; 0x7c038
 
