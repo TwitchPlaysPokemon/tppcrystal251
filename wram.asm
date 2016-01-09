@@ -1209,7 +1209,6 @@ Options2:: ; cfd1
 
 	ds 2
 OptionsEnd::
-
 wcfd4:: ds 1
 wcfd5:: ds 1
 wcfd6:: ds 1
@@ -2312,8 +2311,6 @@ wdca1:: ds 3 ; Repel step count
 wdca4:: ds 1
 
 wPlayerDataEnd::
-
-
 wMapData::
 
 VisitedSpawns:: ; dca5
@@ -2348,6 +2345,7 @@ XCoord:: ; dcb8
 	ds 1 ; current x coordinate relative to top-left corner of current map
 
 	ds 6
+
 wdcbf:: ds 1
 	ds 23
 
@@ -2548,8 +2546,10 @@ w3_d742:: battle_tower_struct w3_d742
 	ds -$22
 
 wBTChoiceOfLvlGroup::
+
 w3_d800:: ; ds BG_MAP_WIDTH * SCREEN_HEIGHT ($240)
 	ds 1
+
 
 SECTION "WRAM 4", WRAMX[$d800], BANK[$4] ; seems like this bank is unused
 

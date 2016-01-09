@@ -39,7 +39,7 @@ Predef:: ; 2d83
 	ld a, h
 	ld [PredefTemp], a
 	ld a, l
-	ld [PredefTemp+1], a
+	ld [PredefTemp + 1], a
 
 	pop hl
 	ld a, h

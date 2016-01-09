@@ -86,40 +86,40 @@ Function1f8081:
 	ld hl, OTPartyData
 	ld bc, OTPartyDataEnd - OTPartyData
 	xor a
-	call ByteFill
+	call ByteFill ;fill OTparty with 0
 	pop hl
 
 	ld de, OTPlayerName
-	call .CopyName
+	call .CopyName ; load name from trainer data into OTPlayerName, and end with a @, doesn't move hl
 	ld de, OTPartyMonOT
 	ld a, [PartyCount]
 .loop1
 	push af
-	call .CopyName
+	call .CopyName ;fill OT data
 	pop af
 	dec a
 	jr nz, .loop1
 
-	ld bc, 10
+	ld bc, 10 ;go down to trainer class and enter it
 	add hl, bc
 	ld a, [hl]
 	ld [OtherTrainerClass], a
 
 	ld hl, wd002
 	ld a, [PartyCount]
-	ld [hli], a
+	ld [hli], a ;load part count into buffer
 	inc a
-	push hl
+	push hl ;store wd003 on the stack
 	ld c, a
 	ld b, 0
 	ld a, -1
-	call ByteFill
+	call ByteFill ;fill wd003 with partycount+1
 	pop hl
 	ld a, [wd002]
 	ld c, a
 .loop2
-	push bc
-	push hl
+	push bc ;c = partycount
+	push hl ; = wd003
 	ld hl, TempMon
 	ld bc, $30
 	xor a
@@ -127,38 +127,39 @@ Function1f8081:
 	pop hl
 .loop3
 	call Random
-	cp NUM_BATTLE_TOWER_MONS
+	cp NUM_BATTLE_TOWER_MONS ;loop until less then battle tower mons, put number into c
 	jr nc, .loop3
 	ld c, a
-	push hl
+	push hl ;end of tempmon
 	ld hl, wd002
-	ld b, [hl]
+	ld b, [hl] ;b = partycount
 	inc hl
 .loop4
 	ld a, [hli]
 	cp -1
-	jr z, .pop_continue
+	jr z, .pop_continue ;check if the same as previous selected mons
 	cp c
-	jr z, .pop_resample
+	jr z, .pop_resample 
 	dec b
 	jr nz, .loop4
 	jr .pop_continue
 
-.pop_resample
+.pop_resample ;call another if same mon picked twice
 	pop hl
 	jr .loop3
 
 .pop_continue
-	pop hl
+	pop hl ;hl = wd003
 	ld a, c
-	ld [hli], a
-	push hl
+	ld [hli], a ;enter random selection
+	push hl ;hl = slot after current in random selection memory
 	ld bc, 6
 	ld hl, BattleTowerMons
-	call AddNTimes
+	call AddNTimes ;go to correct slot in mondata
 	ld de, TempMon
 	ld bc, 6
-	call CopyBytes
+	call CopyBytes ;copy into tempmon
+
 	ld hl, TempMonLevel
 	call .FindHighestPartyLevel
 	ld [hl], a
@@ -172,10 +173,10 @@ Function1f8081:
 	ld a, [hMultiplicand + 2]
 	ld [hli], a
 	call Random
-	and $7
+	and $7 ;rand 0-7
 	ld e, a
 	ld d, 0
-	ld hl, .StatExps
+	ld hl, .StatExps ;load in random statxp into de (note to self, revert to always max, battle tower does not need the nerf)
 	add hl, de
 	add hl, de
 	ld a, [hli]
@@ -214,32 +215,33 @@ Function1f8081:
 	ld [de], a
 	ld hl, TempMonMoves
 	ld de, TempMonPP
-	predef FillPP
+	predef FillPP ;enter mon PP
 	ld hl, OTPartyCount
 	ld a, [hl]
-	push af
+	push af ;push partycount
 	inc [hl]
 	inc hl
 	ld c, a
 	ld b, 0
-	add hl, bc
+	add hl, bc ;load species into OTSpecies
 	ld a, [TempMonSpecies]
 	ld [wd265], a
 	ld [hli], a
+
 	ld [hl], -1
 	ld hl, OTPartyMon1
 	ld a, c
 	ld c, $30
-	call AddNTimes
+	call AddNTimes ;go down to correct party mon
 	ld d, h
 	ld e, l
 	ld hl, TempMon
 	ld bc, $30
-	call CopyBytes
+	call CopyBytes ;enter tempmon into OTParty
 	call GetPokemonName
 	pop af
 	ld hl, OTPartyMonNicknames
-	ld bc, NAME_LENGTH
+	ld bc, NAME_LENGTH ;load mon name into nickname
 	call AddNTimes
 	ld d, h
 	ld e, l
@@ -253,7 +255,8 @@ Function1f8081:
 	ld [rSVBK], a
 	ret
 
-.CopyName
+
+.CopyName ; load name from hl into de, and end with a @, then reset hl
 	push hl
 	ld bc, NAME_LENGTH - 1
 	call CopyBytes
