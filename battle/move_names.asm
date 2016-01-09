@@ -1,29 +1,15 @@
 	db "POUND@"
 	db "KARATE CHOP@"
 	db "DOUBLESLAP@"
-<<<<<<< HEAD
 	db "GUNK SHOT@"
-=======
-; 	db "COMET PUNCH@"
-	db "GUNK SHOT@"
-; 	db "MEGA PUNCH@"
->>>>>>> upstream/master
 	db "ZEN HEADBUTT@"
 	db "PAY DAY@"
 	db "FIRE PUNCH@"
 	db "ICE PUNCH@"
 	db "THUNDERPUNCH@"
 	db "SCRATCH@"
-<<<<<<< HEAD
 	db "FAIRY WIND@"
 	db "FOCUS BLAST@"
-=======
-; 	db "VICEGRIP@"
-	db "FAIRY WIND@"
-; 	db "GUILLOTINE@"
-	db "FOCUS BLAST@"
-; 	db "RAZOR WIND@"
->>>>>>> upstream/master
 	db "IRON DEFENSE@"
 	db "SWORDS DANCE@"
 	db "CUT@"
@@ -31,20 +17,12 @@
 	db "WING ATTACK@"
 	db "WHIRLWIND@"
 	db "FLY@"
-<<<<<<< HEAD
-=======
-; 	db "BIND@"
->>>>>>> upstream/master
 	db "BUG BUZZ@"
 	db "SLAM@"
 	db "VINE WHIP@"
 	db "STOMP@"
 	db "DOUBLE KICK@"
 	db "MEGA KICK@"
-<<<<<<< HEAD
-=======
-; 	db "JUMP KICK@"
->>>>>>> upstream/master
 	db "FLARE BLITZ@"
 	db "ROLLING KICK@"
 	db "SAND ATTACK@"
@@ -86,10 +64,6 @@
 	db "PECK@"
 	db "DRILL PECK@"
 	db "SUBMISSION@"
-<<<<<<< HEAD
-=======
-; 	db "LOW KICK@"
->>>>>>> upstream/master
 	db "HEAT WAVE@"
 	db "COUNTER@"
 	db "SEISMIC TOSS@"
@@ -153,7 +127,6 @@
 	db "WATERFALL@"
 	db "CLAMP@"
 	db "SWIFT@"
-
 	db "AQUA JET@"
 	db "SPIKE CANNON@"
 	db "FLASH CANNON@"
