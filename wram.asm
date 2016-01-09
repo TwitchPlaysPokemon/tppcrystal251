@@ -1813,7 +1813,6 @@ wd478:: ds 1
 wCrystalDataEnd::
 wd479:: ds 2
 
-wCrystalDataEnd::
 wGameData::
 wPlayerData::
 PlayerID:: ; d47b
@@ -2310,12 +2309,8 @@ wdc9f:: ds 1
 wdca0:: ds 1
 wdca1:: ds 3 ; Repel step count
 wdca4:: ds 1
-wPlayerDataEnd::
-
 
 wPlayerDataEnd::
-
-
 wMapData::
 
 VisitedSpawns:: ; dca5
@@ -2482,7 +2477,7 @@ wdff7:: ds 1
 wdff8:: ds 1 ; AI Control byte
 wdff9:: ds 1 ; AI Control (player item usage)
 wdffa:: ds 1 ; military mode on/off switch (FF is on, 00 is off)
-wGameDataEnd::
+
 
 SECTION "Pic Animations", WRAMX, BANK [2]
 
@@ -2551,7 +2546,7 @@ w3_d742:: battle_tower_struct w3_d742
 	ds -$22
 
 wBTChoiceOfLvlGroup::
-
+y
 w3_d800:: ; ds BG_MAP_WIDTH * SCREEN_HEIGHT ($240)
 	ds 1
 
