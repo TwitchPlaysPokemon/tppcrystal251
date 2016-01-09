@@ -2546,7 +2546,7 @@ w3_d742:: battle_tower_struct w3_d742
 	ds -$22
 
 wBTChoiceOfLvlGroup::
-y
+
 w3_d800:: ; ds BG_MAP_WIDTH * SCREEN_HEIGHT ($240)
 	ds 1
 
