@@ -424,10 +424,13 @@ OakScript_OaksLabRB:
 	playsound SFX_KEY_ITEM
 	waitsfx
 	writetext _OaksLabGivePokeballsText1
+	giveitem POKE_BALL, 5
+	playsound SFX_ITEM
+	waitsfx
 	waitbutton
-	verbosegiveitem POKE_BALL, 5
 	writetext _OaksLabGivePokeballsText2
 	buttonsound
+	itemnotify
 	writetext _OaksLabText26
 	waitbutton
 	closetext
@@ -718,8 +721,8 @@ _OaksLabGivePokeballsText1:
 	cont "to capture wild"
 	cont "#MON."
 
-	para "<PLAYER> got 5"
-	line "# BALLs!"
+	para "<PLAYER> received"
+	line "# BALL!"
 	done
 
 _OaksLabGivePokeballsText2:
@@ -729,7 +732,7 @@ _OaksLabGivePokeballsText2:
 
 	para "Just throw a #"
 	line "BALL at it and try"
-	line "to catch it!"
+	cont "to catch it!"
 
 	para "This won't always"
 	line "work, though."
@@ -858,6 +861,7 @@ _OaksLabRivalReceivedMonText:
 _OaksLabRivalChallengeText:
 	text "<GREEN>: Hey!"
 	line "<PLAYER>!"
+
 	para "Let's duke it"
 	line "out with our"
 	cont "#MON!"
@@ -890,8 +894,10 @@ _OaksLabRivalChallengeTextF:
 	text "<GREEN>: Wait"
 	line "a minute,"
 	cont "<PLAYER>!"
+
 	para "Let's try battling"
 	line "our #MON"
+
 	para "like we always"
 	line "wanted!"
 
@@ -1001,8 +1007,9 @@ _OaksLabText27:
 
 	para "<PLAYER>, I hate"
 	line "saying this, but I"
-	line "don't need your"
-	cont "help here!"
+
+	para "don't need your"
+	line "help here!"
 
 	para "Heh, I know! I'll"
 	line "borrow a MAP CARD"
@@ -1017,18 +1024,23 @@ _OaksLabText27F:
 	text "<GREEN>: Okay,"
 	line "this sounds like"
 	cont "fun."
+
 	para "Oh, I know!"
 	line "<PLAYER>, I'll"
-	line "race you to"
-	cont "completing one!"
+
+	para "race you to"
+	line "completing one!"
+
 	para "I don't want"
 	line "things to be"
 	cont "unfair for you…"
-	para "..so I'll ask my"
+
+	para "…so I'll ask my"
 	line "sister to lend you"
 	cont "a MAP CARD."
+
 	para "I'll be seeing"
-	cont "you!"
+	line "you!"
 	done
 
 _OaksLabText_1d405:
@@ -1040,7 +1052,7 @@ _OakLabEmailText:
 	text "There's an e-mail"
 	line "message here!"
 
-	para "..."
+	para "…"
 
 	para "Calling all"
 	line "#MON trainers!"
@@ -1060,7 +1072,7 @@ _OakLabEmailText:
 
 	para "PS: PROF.OAK,"
 	line "please visit us!"
-	cont "..."
+	cont "…"
 	done
 
 _PushStartText:
