@@ -588,17 +588,17 @@ _OaksLabText40:
 
 _OaksLabText41:
 	text "<GREEN>: This"
-    line "#MON I picked"
-    cont "looks a lot"
-    cont "stronger."
-    done
+    	line "#MON I picked"
+    	cont "looks a lot"
+    	cont "stronger."
+    	done
     
 _OaksLabGaryText1F:
-	text "<GREEN>: Oh,"
-	line "hello <PLAYER>."
+	text "<GREEN>: Oh, hello"
+	line "<PLAYER>."
     
-    para "Grandpa is not"
-	line "around."
+    	para "The professor's"
+	line "not around."
 	done
 
 _OaksLabText40F:
@@ -610,9 +610,9 @@ _OaksLabText40F:
 	done
 
 _OaksLabText41F:
-	text "<GREEN>: I"
-	line "wanted this"
-    cont "#MON anyway.."
+	text "<GREEN>: I wanted"
+	line "this #MON"
+	cont "anyway.."
 	done
 
 _OaksLabText39:
@@ -890,12 +890,12 @@ _OaksLabRivalToughenUpText:
 
 _OaksLabRivalChallengeTextF:
 	text "<GREEN>: Wait"
-    line "a minute,"
+	line "a minute,"
 	cont "<PLAYER>!"
 	para "Let's try battling"
 	line "our #MON"
-    para "like we always"
-    line "wanted!"
+    	para "like we always"
+	 line "wanted!"
 
 	para "Alright! Here I"
 	line "come!"
