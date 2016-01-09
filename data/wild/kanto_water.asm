@@ -911,7 +911,7 @@
 		db HORSEA ;1
 
 	db GROUP_CELADON_CITY, MAP_CELADON_CITY
-	db $ff ; encounter rate
+	db $fe ; encounter rate
 	db 60
 	db $00
 ;morning

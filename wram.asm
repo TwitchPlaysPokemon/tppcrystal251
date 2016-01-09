@@ -1706,7 +1706,7 @@ CurDamage:: ; d256
 	ds 2
 
 	ds 2
-wd25a:: ds 1 ;land encounter rate reduced in attempt to get this to compile, but failed, SIDE EFFECTS UNKOWN
+wd25a:: ds 1 ;land encounter rate
 wd25d:: ds 3 ;water encounter rate
 wd25e:: ds 4
 wd262:: ds 1

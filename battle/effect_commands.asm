@@ -144,7 +144,7 @@ BattleCommand01: ; 34084
 	jp nz, CheckEnemyTurn
 
 
-CheckPlayerTurn:
+CheckPlayerTurn: ;checks if player can act
 
 	ld hl, PlayerSubStatus4
 	bit SUBSTATUS_RECHARGE, [hl]
@@ -1299,7 +1299,7 @@ BattleCommand05: ; 34631
 	ret
 
 .Criticals
-	db KARATE_CHOP, RAZOR_LEAF, CRABHAMMER, SLASH, AEROBLAST, CROSS_CHOP, SKY_ATTACK, SHADOW_CLAW, $ff ;crit+ moves
+	db KARATE_CHOP, RAZOR_LEAF, CRABHAMMER, SLASH, AEROBLAST, CROSS_CHOP, SKY_ATTACK, SHADOW_CLAW, DRILL_RUN $ff ;crit+ moves
 .Chances
 	; 6.25% 12.1% 24.6% 33.2% 49.6% 66.015% 75.3%
 	db $11,  $20,  $40,  $55,  $80,  $A8,   $c0
@@ -4062,7 +4062,7 @@ BattleCommand62: ; 35612
 .asm_35631
 
 	xor a
-	ld hl, hDividend
+	ld hl, hDividend ;$ffb3
 	ld [hli], a
 	ld [hli], a
 	ld [hl], a
@@ -4071,26 +4071,26 @@ BattleCommand62: ; 35612
 	ld a, e
 	add a
 	jr nc, .asm_3563e
-	ld [hl], $1
+	ld [hl], $1 ;if carry, add 1 to $ffb5
 .asm_3563e
 	inc hl
-	ld [hli], a
+	ld [hli], a ;add result to $ffb6
 
 ; / 5
 	ld a, 5
-	ld [hld], a
+	ld [hld], a ;5 into $ffb7
 	push bc
 	ld b, $4
-	call Divide
+	call Divide ;result in $ffb4
 	pop bc
 
 ; + 2
-	inc [hl]
+	inc [hl] ;$ffb6
 	inc [hl]
 
 ; * bp
 	inc hl
-	ld [hl], d
+	ld [hl], d ;$ffb7
 	call Multiply
 
 ; * Attack
