@@ -327,9 +327,9 @@ SECTION "Battle", WRAM0
 wBattle::
 
 wc608::
-wEnemyMoveStruct::  ds MOVE_LENGTH ; c608
+wEnemyMoveStruct::  move_struct wEnemyMoveStruct
 wc60f::
-wPlayerMoveStruct:: ds MOVE_LENGTH ; c60f
+wPlayerMoveStruct:: move_struct wPlayerMoveStruct
 wc616::
 EnemyMonNick::  ds PKMN_NAME_LENGTH ; c616
 BattleMonNick:: ds PKMN_NAME_LENGTH ; c621
