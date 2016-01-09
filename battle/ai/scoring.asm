@@ -400,6 +400,7 @@ AI_Smart: ; 386be
 	dbw EFFECT_SOLARBEAM,        AI_Smart_Solarbeam
 	dbw EFFECT_THUNDER,          AI_Smart_Thunder
 	dbw EFFECT_FLY,              AI_Smart_Fly
+	dbw EFFECT_EXTREMESPEED,     AI_Smart_Extremespeed
 	db $ff
 ; 387e3
 
@@ -1747,7 +1748,7 @@ AI_Smart_HealBell: ; 38d1f
 
 ; 38d5a
 
-
+AI_Smart_Extremespeed:
 AI_Smart_PriorityHit: ; 38d5a
 	call AICompareSpeed
 	ret c

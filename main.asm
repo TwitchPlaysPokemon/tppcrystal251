@@ -7041,7 +7041,7 @@ Functiond3c4: ; d3c4
 	add hl, bc
 	ld a, [wd10c]
 	add [hl]
-	cp $64
+	cp 2
 	jr nc, .asm_d3d6
 	ld [hl], a
 	scf
@@ -34844,27 +34844,7 @@ Function2c9e2: ; 2c9e2 (b:49e2)
 	pop hl
 	ld bc, $3
 	add hl, bc
-	push hl
 	call PlaceString
-	pop hl
-	pop bc
-	ld a, c
-	push bc
-	cp $33
-	jr nc, .asm_2ca6f
-	ld bc, $1d
-	add hl, bc
-	ld [hl], $f1
-	inc hl
-	ld a, $f6
-	pop bc
-	push bc
-	ld a, b
-	ld [wd265], a
-	ld de, wd265
-	ld bc, $102
-	call PrintNum
-.asm_2ca6f
 	pop bc
 	pop de
 	pop hl

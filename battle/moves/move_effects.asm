@@ -637,7 +637,6 @@ EvasionDown2:
 	endmove
 
 AuroraBeam:
-PlayRough:
 AttackDownHit:
 	checkobedience
 	usedmovetext
@@ -713,7 +712,6 @@ SpeedDownHit:
 	statmessagetarget
 	endmove
 
-Moonblast:
 SpecialAttackDownHit:
 	checkobedience
 	usedmovetext
@@ -1065,7 +1063,6 @@ FlinchHit:
 Guillotine:
 HornDrill:
 Fissure:
-SheerCold:
 OHKOHit:
 	checkobedience
 	usedmovetext

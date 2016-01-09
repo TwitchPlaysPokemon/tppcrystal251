@@ -155,6 +155,3 @@
 	dw BeatUp
 	dw Fly
 	dw DefenseCurl
-	dw Moonblast
-	dw PlayRough
-	dw SheerCold

@@ -300,3 +300,4 @@ EFFECT_TELEPORT            EQU $99
 EFFECT_BEAT_UP             EQU $9a
 EFFECT_FLY                 EQU $9b
 EFFECT_DEFENSE_CURL        EQU $9c
+EFFECT_EXTREMESPEED        EQU $9d
