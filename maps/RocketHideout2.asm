@@ -64,6 +64,7 @@ RocketHideout2_MapEventHeader:
 
 
 	; coord events
+	db 0
 	; db 43
 	; xy_trigger 0,  $5,  $4, $0, Script_RocketHideoutB2F_SpinTile1, $0, $0
 	; xy_trigger 0,  $7,  $4, $0, Script_RocketHideoutB2F_SpinTile2, $0, $0
