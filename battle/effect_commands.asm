@@ -3428,7 +3428,7 @@ PlayerAttackDamage: ; 352e2
 
 	call ResetDamage
 
-	ld hl, wPlayerMoveStruct + MOVE_POWER
+	ld hl, wPlayerMoveStructPower
 	ld a, [hli]
 	and a
 	ld d, a
@@ -3572,7 +3572,7 @@ GetDamageStats: ; 3537e
 	ld a, [hBattleTurn]
 	and a
 	jr nz, .enemy
-	ld a, [wPlayerMoveStruct + MOVE_TYPE]
+	ld a, [wPlayerMoveStructType]
 	bit 6, a
 ; special
 	ld a, [PlayerSAtkLevel]
@@ -3586,7 +3586,7 @@ GetDamageStats: ; 3537e
 	jr .end
 
 .enemy
-	ld a, [wEnemyMoveStruct + MOVE_TYPE]
+	ld a, [wEnemyMoveStructType]
 	bit 6, a
 ; special
 	ld a, [EnemySAtkLevel]
@@ -3685,9 +3685,8 @@ EnemyAttackDamage: ; 353f6
 	call ResetDamage
 
 ; No damage dealt with 0 power.
-	ld hl, wEnemyMoveStruct + MOVE_POWER
-	ld a, [hli] ; hl = wEnemyMoveStruct + MOVE_TYPE
-	and $1f
+	ld hl, wEnemyMoveStructPower
+	ld a, [hli] ; hl = wEnemyMoveStructType
 	ld d, a
 	and a
 	ret z
@@ -3830,7 +3829,7 @@ BattleCommanda1: ; 35461
 	ld a, [hl]
 	ld e, a
 	pop bc
-	ld a, [wPlayerMoveStruct + MOVE_POWER]
+	ld a, [wPlayerMoveStructPower]
 	ld d, a
 	ret
 
@@ -3935,7 +3934,7 @@ BattleCommanda1: ; 35461
 	ld a, [hl]
 	ld e, a
 	pop bc
-	ld a, [wEnemyMoveStruct + MOVE_POWER]
+	ld a, [wEnemyMoveStructPower]
 	ld d, a
 	ret
 ; 355b0
@@ -4014,7 +4013,7 @@ Function355dd: ; 355dd
 	ld l, [hl]
 	ld h, a
 	call Function3534d
-	ld d, $28
+	ld d, 40
 	pop af
 	ld e, a
 	ret
@@ -4415,14 +4414,14 @@ BattleCommand3f: ; 35726
 	ld a, [hl]
 	jr nz, .asm_357f8
 
-	ld hl, wPlayerMoveStruct + MOVE_POWER
+	ld hl, wPlayerMoveStructPower
 	ld [hl], a
 	push hl
 	call PlayerAttackDamage
 	jr .asm_35800
 
 .asm_357f8
-	ld hl, wEnemyMoveStruct + MOVE_POWER
+	ld hl, wEnemyMoveStructPower
 	ld [hl], a
 	push hl
 	call EnemyAttackDamage
@@ -7148,8 +7147,8 @@ BattleCommand22: ; 366e5
 	ld [de], a
 	inc de
 	ld [de], a
-	ld [wPlayerMoveStruct + MOVE_EFFECT], a
-	ld [wEnemyMoveStruct + MOVE_EFFECT], a
+	ld [wPlayerMoveStructEffect], a
+	ld [wEnemyMoveStructEffect], a
 	call BattleRandom
 	and 1
 	inc a
@@ -7365,7 +7364,7 @@ BattleCommand23: ; 3680f
 	inc a
 	ld [wd232], a
 	call Function36804
-	ld a, [wPlayerMoveStruct + MOVE_ANIM]
+	ld a, [wPlayerMoveStructAnimation]
 	jp .asm_36975
 .asm_36869
 	call CountEnemyAliveMons
@@ -7456,7 +7455,7 @@ BattleCommand23: ; 3680f
 	inc a
 	ld [wd232], a
 	call Function36804
-	ld a, [wEnemyMoveStruct + MOVE_ANIM]
+	ld a, [wEnemyMoveStructAnimation]
 	jr .asm_36975
 
 .asm_36908

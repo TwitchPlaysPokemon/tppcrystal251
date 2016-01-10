@@ -259,7 +259,7 @@ ENDM
 	move CRUNCH,       EFFECT_DEFENSE_DOWN_HIT,   80, PHYSICAL, DARK,     100, 15,  20
 	move MIRROR_COAT,  EFFECT_MIRROR_COAT,         1, SPECIAL,  PSYCHIC,  100, 20,   0 
 	move SHADOW_CLAW,  EFFECT_NORMAL_HIT,         70, PHYSICAL, GHOST,    100, 15,   0 ; replaced Psych Up
-	move EXTREMESPEED, EFFECT_PRIORITY_HIT,       80, PHYSICAL, NORMAL,   100,  5,   0 ; +2 priority now, would require new effect
+	move EXTREMESPEED, EFFECT_EXTREMESPEED,       80, PHYSICAL, NORMAL,   100,  5,   0 ; +2 priority now, would require new effect
 	move ANCIENTPOWER, EFFECT_ANCIENTPOWER,       60, SPECIAL,  ROCK,     100,  5,  10
 	move SHADOW_BALL,  EFFECT_SP_DEF_DOWN_HIT,    80, SPECIAL,  GHOST,    100, 15,  20 ;
 	move FUTURE_SIGHT, EFFECT_FUTURE_SIGHT,      120, SPECIAL,  PSYCHIC,  100, 10,   0 ; EFFECT_FUTURE_SIGHT now works as normal Psychic-type attack, gets stab and accounts for weaknesses f8

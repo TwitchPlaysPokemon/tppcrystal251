@@ -217,3 +217,13 @@ hall_of_fame: MACRO
 \1Mon6:: hof_mon \1Mon6
 \1End:: ds 1
 ENDM
+
+move_struct: MACRO
+\1Animation:: ds 1
+\1Effect:: ds 1
+\1Power:: ds 1
+\1Type:: ds 1
+\1Accuracy:: ds 1
+\1PP:: ds 1
+\1EffectChance:: ds 1
+endm
