@@ -68016,6 +68016,7 @@ Function9038a: ; 9038a (24:438a)
 	ld a, c
 	call Function9039a
 	ld a, c
+	and a
 	ret nz
 	ld a, b
 	cp $1
