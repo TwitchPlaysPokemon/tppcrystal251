@@ -34,43 +34,47 @@ UnknownScript_0x726fd: ; 0x726fd
 ; 0x72714
 
 UnknownScript_0x72714: ; 0x72714
-	checkcoins 1500
+	checkcoins 2000
 	if_equal $2, UnknownScript_0x72778
-	itemtotext TM_DOUBLE_TEAM, $0
+	itemtotext LEFTOVERS, $0
 	scall UnknownScript_0x72768
 	iffalse UnknownScript_0x72784
-	giveitem TM_DOUBLE_TEAM, $1
+	giveitem LEFTOVERS, $1
 	iffalse UnknownScript_0x7277e
-	takecoins 1500
+	takecoins 2000
 	jump UnknownScript_0x7276d
 ; 0x72730
 
 UnknownScript_0x72730: ; 0x72730
-	checkcoins 3500
+	checkcoins 50
 	if_equal $2, UnknownScript_0x72778
-	itemtotext TM_PSYCHIC, $0
-	scall UnknownScript_0x72768
+	scall WantBerserkGene
 	iffalse UnknownScript_0x72784
-	giveitem TM_PSYCHIC, $1
+	giveitem BERSERK_GENE, $1
 	iffalse UnknownScript_0x7277e
-	takecoins 3500
+	takecoins 50
 	jump UnknownScript_0x7276d
 ; 0x7274c
 
 UnknownScript_0x7274c: ; 0x7274c
-	checkcoins 7500
+	checkcoins 600
 	if_equal $2, UnknownScript_0x72778
-	itemtotext TM_HYPER_BEAM, $0
+	itemtotext PP_UP, $0
 	scall UnknownScript_0x72768
 	iffalse UnknownScript_0x72784
-	giveitem TM_HYPER_BEAM, $1
+	giveitem PP_UP, $1
 	iffalse UnknownScript_0x7277e
-	takecoins 7500
+	takecoins 600
 	jump UnknownScript_0x7276d
 ; 0x72768
 
 UnknownScript_0x72768: ; 0x72768
 	writetext UnknownText_0x72991
+	yesorno
+	end
+
+WantBerserkGene: ; 0x72768
+	writetext WantBerserkGeneText
 	yesorno
 	end
 ; 0x7276d
@@ -123,9 +127,9 @@ MenuDataHeader_0x72790: ; 0x72790
 MenuData2_0x72798: ; 0x72798
 	db $80 ; flags
 	db 4 ; items
-	db "TM32    1500@"
-	db "TM29    3500@"
-	db "TM15    7500@"
+	db "Lefties 2000@"
+	db "Power up  50@"
+	db "PP-up    600@"
 	db "CANCEL@"
 ; 0x727c8
 
@@ -150,108 +154,94 @@ UnknownScript_0x727d3: ; 0x727d3
 ; 0x727ed
 
 UnknownScript_0x727ed: ; 0x727ed
-	checkcoins 2222
+	checkcoins 10000
 	if_equal $2, UnknownScript_0x72778
 	checkcode VAR_PARTYCOUNT
 	if_equal $6, CGCSlot1PC
-	pokenamemem PIKACHU, $0
+	pokenamemem PORYGON2, $0
 	scall UnknownScript_0x72768
 	iffalse UnknownScript_0x72784
 	waitsfx
 	playsound SFX_TRANSACTION
 	writetext UnknownText_0x729ad
 	waitbutton
-	writebyte PIKACHU
+	writebyte PORYGON2
 	special Functionc230
-	givepoke PIKACHU, 25, 0, 0
-	takecoins 2222
+	givepoke PORYGON2, 80, 0, 0
+	takecoins 10000
 	jump UnknownScript_0x727d3
 ; 0x7281b
 
 CGCSlot1PC:
 	checkcode VAR_BOXSPACE
 	if_equal $0, UnknownScript_0x7277e
-	pokenamemem PIKACHU, $0
+	pokenamemem PORYGON2, $0
 	scall UnknownScript_0x72768
 	iffalse UnknownScript_0x72784
 	waitsfx
 	playsound SFX_TRANSACTION
 	writetext UnknownText_0x729ad
 	waitbutton
-	writebyte PIKACHU
+	writebyte PORYGON2
 	special Functionc230
-	givepoke PIKACHU, 25, 0, 0
-	takecoins 2222
+	givepoke PORYGON2, 80, 0, 0
+	takecoins 10000
 	jump UnknownScript_0x727d3
 
 UnknownScript_0x7281b: ; 0x7281b
-	checkcoins 5555
+	checkcoins 2000
 	if_equal $2, UnknownScript_0x72778
-	checkcode VAR_PARTYCOUNT
-	if_equal $6, CGCSlot2PC
-	pokenamemem PORYGON, $0
+	itemtotext UP_GRADE, $0
 	scall UnknownScript_0x72768
 	iffalse UnknownScript_0x72784
-	waitsfx
-	playsound SFX_TRANSACTION
-	writetext UnknownText_0x729ad
-	waitbutton
-	writebyte PORYGON
-	special Functionc230
-	givepoke PORYGON, 15, 0, 0
-	takecoins 5555
-	jump UnknownScript_0x727d3
+	giveitem UP_GRADE, $1
+	iffalse UnknownScript_0x7277e
+	takecoins 2000
+	jump UnknownScript_0x7276d
 
 
-CGCSlot2PC:
-	checkcode VAR_BOXSPACE
-	if_equal $0, UnknownScript_0x7277e
-	pokenamemem PORYGON, $0
-	scall UnknownScript_0x72768
-	iffalse UnknownScript_0x72784
-	waitsfx
-	playsound SFX_TRANSACTION
-	writetext UnknownText_0x729ad
-	waitbutton
-	writebyte PORYGON
-	special Functionc230
-	givepoke PORYGON, 15, 0, 0
-	takecoins 5555
-	jump UnknownScript_0x727d3
+;CGCSlot2PC:
+;	checkcode VAR_BOXSPACE
+;	if_equal $0, UnknownScript_0x7277e
+;	pokenamemem PORYGON, $0
+;	scall UnknownScript_0x72768
+;	iffalse UnknownScript_0x72784
+;	waitsfx
+;	playsound SFX_TRANSACTION
+;	writetext UnknownText_0x729ad
+;	waitbutton
+;	writebyte PORYGON
+;	special Functionc230
+;	givepoke PORYGON, 15, 0, 0
+;	takecoins 5555
+;	jump UnknownScript_0x727d3
 
 UnknownScript_0x72849: ; 0x72849
-	checkcoins 8888
+	checkcoins 300
 	if_equal $2, UnknownScript_0x72778
-	checkcode VAR_PARTYCOUNT
-	if_equal $6, CGCSlot3PC
-	pokenamemem LARVITAR, $0
+	itemtotext NUGGET, $0
 	scall UnknownScript_0x72768
 	iffalse UnknownScript_0x72784
-	waitsfx
-	playsound SFX_TRANSACTION
-	writetext UnknownText_0x729ad
-	waitbutton
-	writebyte LARVITAR
-	special Functionc230
-	givepoke LARVITAR, 40, 0, 0
-	takecoins 8888
-	jump UnknownScript_0x727d3
+	giveitem NUGGET, $1
+	iffalse UnknownScript_0x7277e
+	takecoins 300
+	jump UnknownScript_0x7276d
 
 CGCSlot3PC:
-	checkcode VAR_BOXSPACE
-	if_equal $0, UnknownScript_0x7277e
-	pokenamemem LARVITAR, $0
-	scall UnknownScript_0x72768
-	iffalse UnknownScript_0x72784
-	waitsfx
-	playsound SFX_TRANSACTION
-	writetext UnknownText_0x729ad
-	waitbutton
-	writebyte LARVITAR
-	special Functionc230
-	givepoke LARVITAR, 40, 0, 0
-	takecoins 8888
-	jump UnknownScript_0x727d3
+;	checkcode VAR_BOXSPACE
+;	if_equal $0, UnknownScript_0x7277e
+;	pokenamemem LARVITAR, $0
+;	scall UnknownScript_0x72768
+;	iffalse UnknownScript_0x72784
+;	waitsfx
+;	playsound SFX_TRANSACTION
+;	writetext UnknownText_0x729ad
+;	waitbutton
+;	writebyte LARVITAR
+;	special Functionc230
+;	givepoke LARVITAR, 40, 0, 0
+;	takecoins 8888
+;	jump UnknownScript_0x727d3
 
 
 MenuDataHeader_0x72877: ; 0x72877
@@ -265,9 +255,9 @@ MenuDataHeader_0x72877: ; 0x72877
 MenuData2_0x7287f: ; 0x7287f
 	db $80 ; flags
 	db 4 ; items
-	db "PIKACHU    2222@"
-	db "PORYGON    5555@"
-	db "LARVITAR   8888@"
+	db "PORYGON2  10000@"
+	db "Up-Grade   2000@"
+	db "Nugget      300@"
 	db "CANCEL@"
 ; 0x728b8
 
@@ -311,6 +301,11 @@ UnknownText_0x72991: ; 0x72991
 	line "a @"
 	text_from_ram StringBuffer3
 	text "?"
+	done
+
+WantBerserkGeneText: ; 0x72991
+	text "OK, so you wanted"
+	line "a Power up?"
 	done
 ; 0x729ad
 
