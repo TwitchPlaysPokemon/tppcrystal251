@@ -5784,6 +5784,8 @@ Function35fe1: ; 35fe1
 	ld a, [de]
 	cp POISON
 	ret
+
+
 ; 35ff5
 
 
@@ -8304,7 +8306,7 @@ BattleCommand30: ; 36dc7
 	ld hl, ProtectedByText
 	jp StdBattleTextBox
 
-;.asm_36def
+.asm_36def
 	;ld a, [hBattleTurn] Removed chance of miss for ai
 	;and a
 	;jr z, .asm_36e0e
