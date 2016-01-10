@@ -102,9 +102,18 @@ CharmanderPokeballScript:
 	buttonsound
 	givepoke CHARMANDER, 5, BERRY
 	closetext
+	checkcode VAR_FACING
+	if_equal RIGHT, .facing_right
 	applymovement $6, Movement_RivalTakesTwoStepsDown
 	applymovement $6, Movement_RivalTakesThreeStepsRight
 	applymovement $6, Movement_RivalTakesOneStepUp
+	jump .RivalPicksMon
+
+.facing_right
+	applymovement $6, Movement_RivalTakesOneStepDown
+	applymovement $6, Movement_RivalTakesThreeStepsRight
+	spriteface $6, UP
+.RivalPicksMon
 	scall OaksLab_PrintRivalPickingMonText
 	pokenamemem SQUIRTLE, $1
 	disappear $8
@@ -143,9 +152,9 @@ BulbasaurPokeballScript:
 	buttonsound
 	givepoke BULBASAUR, 5, BERRY
 	closetext
-	applymovement $6, Movement_RivalTakesTwoStepsDown
+	applymovement $6, Movement_RivalTakesOneStepDown
 	applymovement $6, Movement_RivalTakesTwoStepsRight
-	applymovement $6, Movement_RivalTakesOneStepUp
+	spriteface $6, UP
 	loadfont
 	writetext _OaksLabRivalPickingMonText
 	buttonsound
@@ -561,6 +570,7 @@ Movement_RivalTakesTwoStepsDown:
 Movement_RivalTakesOneStepDown:
 	step_down
 	step_end
+
 Movement_RivalTakesFourStepsRight:
 	step_right
 Movement_RivalTakesThreeStepsRight:
