@@ -12357,6 +12357,7 @@ Function123a1: ; 123a1
 Function123a7: ; 123a7
 	ld a, [PartyCount]
 	ld b, a
+	call .SubtractEggs
 .asm_123ab
 	call Function124a3
 	push de
@@ -12369,6 +12370,22 @@ Function123a7: ; 123a7
 	jr nz, .asm_123ab
 	ret
 ; 123bf
+
+.SubtractEggs
+	push hl
+	ld hl, PartySpecies
+.loop
+	ld a, [hli]
+	cp $ff
+	jr z, .done
+	cp EGG
+	jr nz, .loop
+	dec b
+	jr .loop
+
+.done
+	pop hl
+	ret
 
 Function123bf: ; 123bf
 	ld de, MUSIC_HEAL
