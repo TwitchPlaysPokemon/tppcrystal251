@@ -5552,8 +5552,8 @@ BattleCommand14: ; 35e5c
 	jp nz, PrintDidntAffect2
 
 	ld hl, DidntAffect1Text
-	call Function35ece
-	jr c, .asm_35ec6
+	;call Function35ece skip AI miss chance
+	;jr c, .asm_35ec6
 
 	ld a, [de]
 	and a
@@ -5563,19 +5563,19 @@ BattleCommand14: ; 35e5c
 	jr nz, .asm_35ec6
 
 	call AnimateCurrentMove
-	ld b, $7
-	ld a, [InBattleTowerBattle]
-	and a
-	jr z, .asm_35ea4
+	;ld b, $7
+	;ld a, [InBattleTowerBattle]
+	;and a
+	;jr z, .asm_35ea4
 	ld b, $3
 
 .asm_35ea4
 	call BattleRandom
 	and b
 	jr z, .asm_35ea4
-	cp 7
+	cp 3 ;sleep turns 1-3
 	jr z, .asm_35ea4
-	inc a
+	inc a ;1-7 if not in battle tower, else 1-4
 	ld [de], a
 	call UpdateOpponentInParty
 	call RefreshBattleHuds
@@ -5598,30 +5598,30 @@ BattleCommand14: ; 35e5c
 
 Function35ece: ; 35ece
 	; Enemy turn
-	ld a, [hBattleTurn]
-	and a
-	jr z, .asm_35eec
+	;ld a, [hBattleTurn]
+	;and a
+	;jr z, .asm_35eec
 
 	; Not in link battle
-	ld a, [wLinkMode]
-	and a
-	jr nz, .asm_35eec
+	;ld a, [wLinkMode]
+	;and a
+	;jr nz, .asm_35eec
 
-	ld a, [InBattleTowerBattle]
-	and a
-	jr nz, .asm_35eec
+	;ld a, [InBattleTowerBattle]
+	;and a
+	;jr nz, .asm_35eec
 
 	; Not locked-on by the enemy
-	ld a, [PlayerSubStatus5]
-	bit SUBSTATUS_LOCK_ON, a
-	jr nz, .asm_35eec
+	;ld a, [PlayerSubStatus5]
+	;bit SUBSTATUS_LOCK_ON, a
+	;jr nz, .asm_35eec
 
-	call BattleRandom
-	cp $40
-	ret c
+	;call BattleRandom
+	;cp $40
+	;ret c
 
 .asm_35eec
-	xor a
+	;xor a
 	ret
 ; 35eee
 
@@ -5696,21 +5696,21 @@ BattleCommand2f: ; 35f2c
 	call GetBattleVar
 	and a
 	jr nz, .asm_35fb8
-	ld a, [hBattleTurn]
-	and a
-	jr z, .asm_35f89
-	ld a, [wLinkMode]
-	and a
-	jr nz, .asm_35f89
-	ld a, [InBattleTowerBattle]
-	and a
-	jr nz, .asm_35f89
-	ld a, [PlayerSubStatus5]
-	bit SUBSTATUS_LOCK_ON, a
-	jr nz, .asm_35f89
-	call BattleRandom
-	cp $40
-	jr c, .asm_35fb8
+	;ld a, [hBattleTurn]
+	;and a
+	;jr z, .asm_35f89
+	;ld a, [wLinkMode]
+	;and a
+	;jr nz, .asm_35f89
+	;ld a, [InBattleTowerBattle]
+	;and a
+	;jr nz, .asm_35f89
+	;ld a, [PlayerSubStatus5]
+	;bit SUBSTATUS_LOCK_ON, a
+	;jr nz, .asm_35f89
+	;call BattleRandom
+	;cp $40
+	;jr c, .asm_35fb8
 
 .asm_35f89
 	call CheckSubstituteOpp
@@ -5829,25 +5829,25 @@ BattleCommand_Burn: ; 35f2c
 	and a
 	jr nz, .failed
 
-	ld a, [hBattleTurn]
-	and a
-	jr z, .mimic_random
+	;ld a, [hBattleTurn]
+	;and a
+	;jr z, .mimic_random
 
-	ld a, [wLinkMode]
-	and a
-	jr nz, .mimic_random
+	;ld a, [wLinkMode]
+	;and a
+	;jr nz, .mimic_random
 
-	ld a, [InBattleTowerBattle]
-	and a
-	jr nz, .mimic_random
+	;ld a, [InBattleTowerBattle]
+	;and a
+	;jr nz, .mimic_random
 
-	ld a, [PlayerSubStatus5]
-	bit SUBSTATUS_LOCK_ON, a
-	jr nz, .mimic_random
+	;ld a, [PlayerSubStatus5]
+	;bit SUBSTATUS_LOCK_ON, a
+	;jr nz, .mimic_random
 
-	call BattleRandom
-	cp $40 ; 25% chance AI fails
-	jr c, .failed
+	;call BattleRandom
+	;cp $40 ; 25% chance AI fails
+	;jr c, .failed
 
 .mimic_random
 	call CheckSubstituteOpp
@@ -6452,32 +6452,32 @@ BattleCommand1d: ; 362e3
 	inc b
 
 .ComputerMiss
-; Computer opponents have a 1/4 chance of failing.
-	ld a, [hBattleTurn]
-	and a
-	jr z, .DidntMiss
-	ld a, [wLinkMode]
-	and a
-	jr nz, .DidntMiss
+; Computer opponents have a 1/4 chance of failing. removed
+	;ld a, [hBattleTurn]
+	;and a
+	;jr z, .DidntMiss
+	;ld a, [wLinkMode]
+	;and a
+	;jr nz, .DidntMiss
 
-	ld a, [InBattleTowerBattle]
-	and a
-	jr nz, .DidntMiss
+	;ld a, [InBattleTowerBattle]
+	;and a
+	;jr nz, .DidntMiss
 
 ; Lock-On still always works.
-	ld a, [PlayerSubStatus5]
-	bit SUBSTATUS_LOCK_ON, a
-	jr nz, .DidntMiss
+	;ld a, [PlayerSubStatus5]
+	;bit SUBSTATUS_LOCK_ON, a
+	;jr nz, .DidntMiss
 
 ; Attacking moves that also lower accuracy are unaffected.
-	ld a, BATTLE_VARS_MOVE_EFFECT
-	call GetBattleVar
-	cp EFFECT_ACCURACY_DOWN_HIT
-	jr z, .DidntMiss
+	;ld a, BATTLE_VARS_MOVE_EFFECT
+	;call GetBattleVar
+	;cp EFFECT_ACCURACY_DOWN_HIT
+	;jr z, .DidntMiss
 
-	call BattleRandom
-	cp $40
-	jr c, .Failed
+	;call BattleRandom
+	;cp $40
+	;jr c, .Failed
 
 .DidntMiss
 	call CheckSubstituteOpp
@@ -8304,22 +8304,22 @@ BattleCommand30: ; 36dc7
 	ld hl, ProtectedByText
 	jp StdBattleTextBox
 
-.asm_36def
-	ld a, [hBattleTurn]
-	and a
-	jr z, .asm_36e0e
-	ld a, [wLinkMode]
-	and a
-	jr nz, .asm_36e0e
-	ld a, [InBattleTowerBattle]
-	and a
-	jr nz, .asm_36e0e
-	ld a, [PlayerSubStatus5]
-	bit SUBSTATUS_LOCK_ON, a
-	jr nz, .asm_36e0e
-	call BattleRandom
-	cp $40
-	jr c, .asm_36e52
+;.asm_36def
+	;ld a, [hBattleTurn] Removed chance of miss for ai
+	;and a
+	;jr z, .asm_36e0e
+	;ld a, [wLinkMode]
+	;and a
+	;jr nz, .asm_36e0e
+	;ld a, [InBattleTowerBattle]
+	;and a
+	;jr nz, .asm_36e0e
+	;ld a, [PlayerSubStatus5]
+	;bit SUBSTATUS_LOCK_ON, a
+	;jr nz, .asm_36e0e
+	;call BattleRandom
+	;cp $40
+	;jr c, .asm_36e52
 .asm_36e0e
 	ld a, BATTLE_VARS_STATUS_OPP
 	call GetBattleVarAddr

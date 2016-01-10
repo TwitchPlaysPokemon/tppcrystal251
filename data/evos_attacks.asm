@@ -204,7 +204,7 @@ MetapodEvosAttacks:
 
 ButterfreeEvosAttacks:
 	db 0 ; no more evolutions
-	db 1,CONFUSION
+	db 1,TACKLE
 	db 10,CONFUSION
 	db 13,POISONPOWDER
 	db 16,GUST
