@@ -13212,46 +13212,46 @@ StartMenu_Pack: ; 1295b
 StartMenu_Pokemon: ; 12976
 	ld a, [PartyCount]
 	and a
-	jr z, .return
+	jp z, PokeMenuReturn
 	call FadeToMenu
-.choosemenu
+Pokechoosemenu:
 	xor a
 	ld [PartyMenuActionText], a ; Choose a POKéMON.
 	call WhiteBGMap
-.menu
+Pokemenu:
 	callba Function5004f
-	callba Function50405
+	callba Function50405 ;SELECTADD
 	callba Function503e0
-.menunoreload
+Pokemenunoreload:
 	callba WritePartyMenuTilemap
 	callba PrintPartyMenuText
 	call WaitBGMap
 	call Function32f9 ; load regular palettes?
 	call DelayFrame
 	callba PartyMenuSelect ;make menu selection and set curpartymon and curspecies 
-	jr c, .return ; if cancelled or pressed B, back out
-	; ld b, [$ffa9] ;handle select button to switch
-	; bit 0, b
-	; jr z, SelectSwitch
+	jr c, PokeMenuReturn ; if cancelled or pressed B, back out
+	ld a, [$ffa9] ;handle select button to switch
+	bit 0, a
+	jr z, SelectSwitch
 	call PokemonActionSubmenu ;handle pokemon menu and run selected action
-	; jr SkipSelect
-;SelectSwitch
-	;call SwitchPartyMons
-;SkipSelect
+	jr SkipSelect
+SelectSwitch
+	call SwitchPartyMons
+SkipSelect
 	cp 3
-	jr z, .menu
+	jr z, Pokemenu
 	cp 0
-	jr z, .choosemenu
+	jr z, Pokechoosemenu
 	cp 1
-	jr z, .menunoreload
+	jr z, Pokemenunoreload
 	cp 2
-	jr z, .quit
-.return
+	jr z, PokeMenuquit
+PokeMenuReturn:
 	call Function2b3c
 	ld a, 0
 	ret
 
-.quit
+PokeMenuquit
 	ld a, b
 	push af
 	call Function2b4d
@@ -47559,7 +47559,7 @@ Function50405: ; 50405
 	ld a, $1
 .asm_50424
 	ld [wcfa9], a ;load it into  cursor positon
-	ld a, $3 ;$7 SELECTADD If I want it to recognise select, change this
+	ld a, $7 ;$3 SELECTADD If I want it to not recognise select, change this
 	ld [wcfa8], a ;load 3 into loop exit (a and b)
 	ret
 ; 5042d
