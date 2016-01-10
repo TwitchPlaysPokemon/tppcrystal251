@@ -356,8 +356,9 @@ YoungsterJoey1SeenText: ; 0x1a1849
 	line "to here from the"
 	cont "KANTO region!"
 
-	para "I brought a #MON I"
-	line "caught back home."
+	para "I brought a"
+	line "#MON that I"
+	cont "caught back home."
 
 	para "My RATTATA is a"
 	cont "very special one!"

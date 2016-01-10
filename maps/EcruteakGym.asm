@@ -445,7 +445,7 @@ SagePingBeatenText: ; 0x9a2a7
 
 UnknownText_0x9a2b7: ; 0x9a2b7
 	text "Only leader MORTY"
-	line "uses ghost #MON."
+	line "use ghost #MON."
 
 	para "Still, none of"
 	line "us can stand up"
