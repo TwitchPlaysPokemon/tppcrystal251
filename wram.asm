@@ -2282,7 +2282,7 @@ wdc40:: ds 1
 wdc41:: ds 1
 wdc42:: ds 8
 wdc4a:: ds 1
-wdc4b:: ds 1
+wBlueCardBalance:: ds 1
 wdc4c:: ds 4
 wdc50:: ds 4
 wdc54:: ds 4
