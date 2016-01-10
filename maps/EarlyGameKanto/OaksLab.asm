@@ -102,9 +102,18 @@ CharmanderPokeballScript:
 	buttonsound
 	givepoke CHARMANDER, 5, BERRY
 	closetext
+	checkcode VAR_FACING
+	if_equal RIGHT, .facing_right
 	applymovement $6, Movement_RivalTakesTwoStepsDown
 	applymovement $6, Movement_RivalTakesThreeStepsRight
 	applymovement $6, Movement_RivalTakesOneStepUp
+	jump .RivalPicksMon
+
+.facing_right
+	applymovement $6, Movement_RivalTakesOneStepDown
+	applymovement $6, Movement_RivalTakesThreeStepsRight
+	spriteface $6, UP
+.RivalPicksMon
 	scall OaksLab_PrintRivalPickingMonText
 	pokenamemem SQUIRTLE, $1
 	disappear $8
@@ -143,9 +152,9 @@ BulbasaurPokeballScript:
 	buttonsound
 	givepoke BULBASAUR, 5, BERRY
 	closetext
-	applymovement $6, Movement_RivalTakesTwoStepsDown
+	applymovement $6, Movement_RivalTakesOneStepDown
 	applymovement $6, Movement_RivalTakesTwoStepsRight
-	applymovement $6, Movement_RivalTakesOneStepUp
+	spriteface $6, UP
 	loadfont
 	writetext _OaksLabRivalPickingMonText
 	buttonsound
@@ -449,7 +458,7 @@ OakScript_OaksLabRB:
 	closetext
 	spriteface $0, DOWN
 	playmusic MUSIC_RIVAL_AFTER_RB
-	applymovement $6, Movement_RivalTakesFiveStepsDown
+	applymovement $6, Movement_RivalTakesSixStepsDown
 	disappear $6
 	special RestartMapMusic
 	end
@@ -485,7 +494,7 @@ OaksLabRB_WaitComeBack:
 	writetext _OaksLabLeavingText
 	waitbutton
 	closetext
-	applymovement $0, Movement_RivalTakesOneStepUp
+	applymovement $0, Movement_PlayerTakesOneStepUp
 	end
 
 BlankEncyclopoediaScript:
@@ -513,62 +522,73 @@ MapOaksLabRBSignpost13Script:
 MapOaksLabRBSignpost14Script
 	jumpstd trashcan
 
+
+Movement_RivalTakesFiveStepsUp:
+	slow_step_up
+Movement_RivalTakesFourStepsUp:
+	slow_step_up
+Movement_RivalTakesThreeStepsUp:
+	slow_step_up
+Movement_RivalTakesTwoStepsUp:
+	slow_step_up
+Movement_RivalTakesOneStepUp:
+	slow_step_up
+	step_end
+
 MovementData_OakWalksUp:
 	step_up
 	step_up
 	step_up
-Movement_RivalTakesFiveStepsUp:
 	step_up
-Movement_RivalTakesFourStepsUp:
 	step_up
-Movement_RivalTakesThreeStepsUp:
 	step_up
-Movement_RivalTakesTwoStepsUp:
 	step_up
-Movement_RivalTakesOneStepUp:
+Movement_PlayerTakesOneStepUp:
 	step_up
 	step_end
 
 Movement_RivalTakesFourStepsLeft:
-	step_left
+	slow_step_left
 Movement_RivalTakesThreeStepsLeft:
-	step_left
+	slow_step_left
 Movement_RivalTakesTwoStepsLeft:
-	step_left
+	slow_step_left
 Movement_RivalTakesOneStepLeft:
-	step_left
+	slow_step_left
 	step_end
 
 Movement_RivalTakesFourStepsLeftOneStepDown:
-	step_left
+	slow_step_left
 Movement_RivalTakesThreeStepsLeftOneStepDown:
-	step_left
+	slow_step_left
 Movement_RivalTakesTwoStepsLeftOneStepDown:
-	step_left
+	slow_step_left
 Movement_RivalTakesOneStepLeftOneStepDown:
-	step_left
-	step_down
+	slow_step_left
+	slow_step_down
 	step_end
 
-Movement_RivalTakesFiveStepsDown:
-	step_down
+Movement_RivalTakesSixStepsDown:
+	slow_step_down
+	slow_step_down
 Movement_RivalTakesFourStepsDown:
-	step_down
+	slow_step_down
 Movement_RivalTakesThreeStepsDown:
-	step_down
+	slow_step_down
 Movement_RivalTakesTwoStepsDown:
-	step_down
+	slow_step_down
 Movement_RivalTakesOneStepDown:
-	step_down
+	slow_step_down
 	step_end
+
 Movement_RivalTakesFourStepsRight:
-	step_right
+	slow_step_right
 Movement_RivalTakesThreeStepsRight:
-	step_right
+	slow_step_right
 Movement_RivalTakesTwoStepsRight:
-	step_right
+	slow_step_right
 Movement_RivalTakesOneStepRight:
-	step_right
+	slow_step_right
 	step_end
 
 _OaksLabGaryText1:

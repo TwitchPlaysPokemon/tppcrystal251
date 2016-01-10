@@ -51033,7 +51033,7 @@ Unknown_80671: ; 80671
 	dwb wcf64,         $00 ; $15 Unused
 	dwb wdca4,         $00 ; $16 Unused
 	dwb wdbf9,         $40 ; $17 Caller ID
-	dwb wdc4b,         $40 ; $18 BlueCard Balance
+	dwb wBlueCardBalance,         $40 ; $18 BlueCard Balance
 	dwb wdc4a,         $40 ; $19 Unused
 	dwb wdc58,         $00 ; $1a
 	dwb NULL,          $00
@@ -60136,7 +60136,7 @@ SpecialBuenaPrize: ; 8afd4
 	inc hl
 	ld a, [hld]
 	ld c, a
-	ld a, [wdc4b]
+	ld a, [wBlueCardBalance]
 	cp c
 	jr c, .asm_8b047
 	ld a, [hli]
@@ -60150,9 +60150,9 @@ SpecialBuenaPrize: ; 8afd4
 	jr nc, .asm_8b04c
 	ld a, [hl]
 	ld c, a
-	ld a, [wdc4b]
+	ld a, [wBlueCardBalance]
 	sub c
-	ld [wdc4b], a
+	ld [wBlueCardBalance], a
 	call Function8b097
 	jr .asm_8b051
 
@@ -60225,7 +60225,7 @@ Function8b090: ; 8b090
 ; 8b097
 
 Function8b097: ; 8b097
-	ld de, wdc4b
+	ld de, wBlueCardBalance
 	call Function8b09e
 	ret
 ; 8b09e
@@ -68016,6 +68016,7 @@ Function9038a: ; 9038a (24:438a)
 	ld a, c
 	call Function9039a
 	ld a, c
+	and a
 	ret nz
 	ld a, b
 	cp $1

@@ -8,7 +8,10 @@ CeladonDeptStore1F_MapScriptHeader: ; 0x709de
 ; 0x709e0
 
 AddStairsToTMDepot:
+	checkcode VAR_BADGES
+	if_not_equal 16, .no_stairs
 	changeblock $6, $0, $1
+.no_stairs
 	return
 
 ReceptionistScript_0x709e0: ; 0x709e0
@@ -24,7 +27,16 @@ TeacherScript_0x709e6: ; 0x709e6
 ; 0x709e9
 
 MapCeladonDeptStore1FSignpost0Script: ; 0x709e9
-	jumptext UnknownText_0x70aea
+	loadfont
+	checkcode VAR_BADGES
+	if_not_equal 16, .skip_depot
+	writetext UnknownText_0x70aea
+	buttonsound
+.skip_depot
+	writetext CeladonDeptStore1F_Directory
+	waitbutton
+	closetext
+	end
 ; 0x709ec
 
 MapCeladonDeptStore6FSignpost1Script: ; 0x709ec
@@ -67,8 +79,10 @@ UnknownText_0x70aa9: ; 0x70aa9
 
 UnknownText_0x70aea: ; 0x70aea
 	text "B1F: TM DEPOT"
+	done
 
-	para "1F: SERVICE"
+CeladonDeptStore1F_Directory:
+	text "1F: SERVICE"
 	line "    COUNTER"
 
 	para "2F: TRAINER'S"
