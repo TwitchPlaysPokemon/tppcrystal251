@@ -63,7 +63,7 @@ UnknownText_0x18add3: ; 0x18add3
 	line "the # DOLL that"
 
 	para "a boy gave her"
-	line "three years ago."
+	line "three months ago."
 
 	para "Ever since then,"
 	line "she's gotten even"

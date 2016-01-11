@@ -200,7 +200,7 @@ UnknownText_0x6a0cb: ; 0x6a0cb
 	para "there are in the"
 	line "world."
 
-	para "Three years ago,"
+	para "Three months ago,"
 	line "PROF.OAK said that"
 
 	para "there were 150"

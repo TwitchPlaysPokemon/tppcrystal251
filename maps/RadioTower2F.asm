@@ -482,7 +482,7 @@ UnknownText_0x5da44: ; 0x5da44
 ; 0x5da9b
 
 GruntM4SeenText: ; 0x5da9b
-	text "Three years ago,"
+	text "Three months ago,"
 	line "TEAM ROCKET was"
 	cont "forced to disband."
 

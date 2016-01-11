@@ -494,7 +494,7 @@ UnknownText_0x6e400: ; 0x6e400
 	para "Since disbanding"
 	line "TEAM ROCKET three"
 
-	para "years ago, he has"
+	para "months ago, he has"
 	line "been in training."
 
 	para "But we're certain"

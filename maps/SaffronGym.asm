@@ -189,7 +189,7 @@ UnknownText_0x189cdf: ; 0x189cdf
 	text "SABRINA: I knew"
 	line "you were coming…"
 
-	para "Three years ago I"
+	para "Three months ago I"
 	line "had a vision of"
 	cont "your arrival."
 

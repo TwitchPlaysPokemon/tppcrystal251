@@ -108,7 +108,7 @@ SuperNerdMiguelBeatenText:
 SuperNerdMiguelFirstFossilText:
 	text "I've held on to"
 	line "this FOSSIL for"
-	cont "three years now."
+	cont "three months now."
 
 	para "But in my recent"
 	line "excavations, I've"

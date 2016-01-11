@@ -317,7 +317,7 @@ GruntM1BeatenText: ; 0x5a9d0
 TrainerGruntM1WhenTalkText: ; 0x5a9fc
 	text "Yeah, TEAM ROCKET"
 	line "was broken up"
-	cont "three years ago."
+	cont "three months ago."
 
 	para "But we continued"
 	line "our activities"

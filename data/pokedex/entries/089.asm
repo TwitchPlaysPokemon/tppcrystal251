@@ -7,6 +7,6 @@
 	next "leaks from it,"
 	page "making the ground"
 	next "there barren for"
-	next "three years.@"
+	next "three months.@"
 ; 0x1b8a68
 
