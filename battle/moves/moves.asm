@@ -36,7 +36,7 @@ ENDM
 	move STOMP,        EFFECT_STOMP,              65, PHYSICAL, NORMAL,   100, 20,  30
 	move DOUBLE_KICK,  EFFECT_DOUBLE_HIT,         30, PHYSICAL, FIGHTING, 100, 30,   0 ; EFFECT_DOUBLE_HIT could be changed to continue after breaking sub ;$18
 	move MEGA_KICK,    EFFECT_NORMAL_HIT,        120, PHYSICAL, NORMAL,    75,  5,   0
-	move FLARE_BLITZ,  EFFECT_RECOIL_HIT,        120, PHYSICAL, FIRE,     100, 15,   0 ; replacing Jump Kick
+	move FLARE_BLITZ,  EFFECT_FLARE_BLITZ,       120, PHYSICAL, FIRE,     100, 15,  10 ; replacing Jump Kick
 	move ROLLING_KICK, EFFECT_FLINCH_HIT,         60, PHYSICAL, FIGHTING,  85, 15,  30
 	move SAND_ATTACK,  EFFECT_ACCURACY_DOWN,       0, STATUS,   GROUND,   100, 15,   0
 	move HEADBUTT,     EFFECT_FLINCH_HIT,         70, PHYSICAL, NORMAL,   100, 15,  30
@@ -156,7 +156,7 @@ ENDM
 	move SEED_BOMB,    EFFECT_NORMAL_HIT,         80, PHYSICAL, GRASS,    100, 15,   0 ; replacing Barrage
 	move LEECH_LIFE,   EFFECT_LEECH_HIT,          35, PHYSICAL, BUG,      100, 15,   0 ; small buff to make useful early game
 	move LOVELY_KISS,  EFFECT_SLEEP,               0, STATUS,   NORMAL,    75, 10,   0
-	move SKY_ATTACK,   EFFECT_SKY_ATTACK,        140, PHYSICAL, FLYING,    90,  5,   0 ; EFFECT_SKY_ATTACK add flinch effect; it has 30% chance to flinch 
+	move SKY_ATTACK,   EFFECT_SKY_ATTACK,        140, PHYSICAL, FLYING,    90,  5,  30 ; EFFECT_SKY_ATTACK has a flinch effect, it has 30% chance to flinch 
 	move TRANSFORM,    EFFECT_TRANSFORM,           0, STATUS,   NORMAL,   100, 10,   0 ;$90
 	move BUBBLE,       EFFECT_SPEED_DOWN_HIT,     40, SPECIAL,  WATER,    100, 30,  10
 	move DIZZY_PUNCH,  EFFECT_CONFUSE_HIT,        70, PHYSICAL, FAIRY_T,  100, 10,  20 ; retconned to fairy type

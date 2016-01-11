@@ -186,7 +186,7 @@ EFFECT_RAZOR_WIND          EQU $27
 EFFECT_SUPER_FANG          EQU $28
 EFFECT_STATIC_DAMAGE       EQU $29
 EFFECT_BIND                EQU $2a
-EFFECT_UNUSED_2B           EQU $2b ; unused
+EFFECT_FLARE_BLITZ         EQU $2b ; now used
 EFFECT_DOUBLE_HIT          EQU $2c
 EFFECT_JUMP_KICK           EQU $2d
 EFFECT_MIST                EQU $2e

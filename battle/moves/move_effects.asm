@@ -1080,7 +1080,6 @@ OHKOHit:
 
 TakeDown:
 WildCharge:
-FlareBlitz:
 DoubleEdge:
 Submission:
 Struggle:
@@ -1094,6 +1093,7 @@ RecoilHit:
 	stab
 	damagevariation
 	checkhit
+	effectchance
 	hittarget
 	resulttext
 	checkfaint
@@ -1102,6 +1102,30 @@ RecoilHit:
 	recoil
 	checkdestinybond
 	buildopponentrage
+	kingsrock
+	endmove
+
+FlareBlitz:
+checkobedience
+	usedmovetext
+	doturn
+	critical
+	damagestats
+	damagecalc
+	stab
+	damagevariation
+	checkhit
+	effectchance
+	hittarget
+	resulttext
+	checkfaint
+	criticaltext
+	supereffectivetext
+	recoil
+	defrost
+	checkdestinybond
+	buildopponentrage
+	burntarget
 	kingsrock
 	endmove
 

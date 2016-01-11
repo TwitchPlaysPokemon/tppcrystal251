@@ -209,11 +209,13 @@ CheckPlayerTurn: ;checks if player can act
 	bit FRZ, [hl]
 	jr z, .not_frozen
 
-	; Flame Wheel and Sacred Fire thaw the user.
+	; Flame Wheel, flare blitz and Sacred Fire thaw the user.
 	ld a, [CurPlayerMove]
 	cp FLAME_WHEEL
 	jr z, .not_frozen
 	cp SACRED_FIRE
+	jr z, .not_frozen
+	cp FLARE_BLITZ
 	jr z, .not_frozen
 
 	ld hl, FrozenSolidText
@@ -456,6 +458,8 @@ CheckEnemyTurn: ; 3421f
 	cp FLAME_WHEEL
 	jr z, .not_frozen
 	cp SACRED_FIRE
+	jr z, .not_frozen
+	cp FLARE_BLITZ
 	jr z, .not_frozen
 
 	ld hl, FrozenSolidText
@@ -8111,6 +8115,10 @@ BattleCommand27: ; 36cb2
 .asm_36cbd
 	cp STRUGGLE ;handle struggle seperatly
 	jr z, .Struggle
+	cp DOUBLE_EDGE
+	jr z, .ThirdRecoil
+	cp FLAREBLITZ
+	jr z, .ThirdRecoil
 	ld a, BATTLE_VARS_MOVE_ANIM
 	call GetBattleVar
 	ld d, a
@@ -8165,6 +8173,25 @@ BattleCommand27: ; 36cb2
 	ld hl, RecoilText
 	jp StdBattleTextBox
 ; 36d1d
+.ThirdRecoil ;1/3 of HP instead of 1/4
+	ld a, [CurDamage]
+	ld [$ffb6], a
+	ld a, [CurDamage + 1]
+	ld [$ffb7], a
+	ld a, 3
+	ld [hDivisor], a
+	ld a, 2
+	ld b, a
+	call Divide
+	ld a ,[$ffb7]
+	ld c, a
+	ld a ,[$ffb6]
+	ld b, a
+	or c
+	jr z, .asm_36cd8
+	inc c
+	jr .asm_36cd8
+
 .Struggle:
 	ld hl, GetQuarterMaxHP
 	call CallBattleCore

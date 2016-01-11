@@ -88855,7 +88855,7 @@ DoBadgeTypeBoosts: ; fbe24
 .CheckBadge
 	ld a, [hl]
 	cp $ff
-	jr z, .done
+	jr z, .done ;if out of badges, exit
 	srl b
 	rr c
 	jr nc, .NextBadge

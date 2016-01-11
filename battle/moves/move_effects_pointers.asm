@@ -41,7 +41,7 @@
 	dw SuperFang
 	dw StaticDamage
 	dw Bind
-	dw NormalHit
+	dw FlareBlitz
 	dw MultiHit
 	dw NormalHit
 	dw Mist
