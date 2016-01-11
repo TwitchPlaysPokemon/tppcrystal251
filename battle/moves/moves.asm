@@ -45,7 +45,7 @@ ENDM
 	move HORN_DRILL,   EFFECT_OHKO,                1, PHYSICAL, NORMAL,    30,  5,   0 ;$20
 	move TACKLE,       EFFECT_NORMAL_HIT,         50, PHYSICAL, NORMAL,   100, 35,   0
 	move BODY_SLAM,    EFFECT_PARALYZE_HIT,       85, PHYSICAL, NORMAL,   100, 15,  30
-	move WRAP,         EFFECT_BIND,               15, PHYSICAL, NORMAL,    85, 20,   0 ; EFFECT_BIND should last 4-5 turns, do 1/8 damage
+	move WRAP,         EFFECT_BIND,               15, PHYSICAL, NORMAL,    90, 20,   0 ; EFFECT_BIND should last 4-5 turns, do 1/8 damage
 	move TAKE_DOWN,    EFFECT_RECOIL_HIT,         90, PHYSICAL, NORMAL,    85, 20,   0
 	move THRASH,       EFFECT_RAMPAGE,           120, PHYSICAL, NORMAL,   100, 10,   0
 	move DOUBLE_EDGE,  EFFECT_RECOIL_HIT,        120, PHYSICAL, NORMAL,   100, 15,   0
@@ -67,7 +67,7 @@ ENDM
 	move MIST,         EFFECT_MIST,                0, STATUS,   ICE,      100, 30,   0
 	move WATER_GUN,    EFFECT_NORMAL_HIT,         50, SPECIAL,  WATER,    100, 25,   0 ; small buff to keep it better than Bubble
 	move HYDRO_PUMP,   EFFECT_NORMAL_HIT,        120, SPECIAL,  WATER,     80,  5,   0  ;$38
-	move SURF,         EFFECT_NORMAL_HIT,        100, SPECIAL,  WATER,    100, 15,   0
+	move SURF,         EFFECT_NORMAL_HIT,         95, SPECIAL,  WATER,    100, 15,   0
 	move ICE_BEAM,     EFFECT_FREEZE_HIT,         95, SPECIAL,  ICE,      100, 10,  10
 	move BLIZZARD,     EFFECT_FREEZE_HIT,        120, SPECIAL,  ICE,       70,  5,  10
 	move PSYBEAM,      EFFECT_CONFUSE_HIT,        65, SPECIAL,  PSYCHIC,  100, 20,  10

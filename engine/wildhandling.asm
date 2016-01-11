@@ -392,9 +392,9 @@ Function2a14f: ; 2a14f choose an encounter
 .asm_2a175
 	call Random
 	cp 200
-	jr nc, .asm_2a175 ; loop until you get <200 randomly
-	inc a; make rand 1 to 200
-	ld b, a ; put the random number in b
+	jr nc, .asm_2a175 
+	inc a
+	ld b, a ; put rand 1-200 in b
 	ld h, d ; load the encounter% table location into hl
 	ld l, e
 	ld e, 0 ;e holds loops needed and amount of slots to go down
@@ -407,21 +407,28 @@ Function2a14f: ; 2a14f choose an encounter
 	jr .asm_2a180 ; loop until encounter found
 .asm_2a187
 		;ld c, [hl] ; e already holds correct decrement thanks to the rebuilds
-	; (cur stack: table byte, first mon byte)
 	ld d, 0
-	pop hl ; pull tables byte from stack (cur stack: first mon byte)
-	push hl ; put it back on (cur stack: table byte, first mon byte)
+	pop hl ;=tables byte
+	push hl ;(cur stack: table byte, first mon byte)
+	ld a, [TimeOfDay]
+	ld c, a ;store ToD for level pointer
 	ld a, [hl] 
 	swap a
 	and $f ; only use second nyble
-	jr z, SkipBonLvl ;skip if "table" 0 and thus no bonus. convienantly a is also 0
-	ld b, 0 ; for addNtimes
-	dec a ;go 1 down as no table 0 exists for lvl tables
-	ld hl, LvlTables ;load lvl table loc
-	ld c, $10 ;put 16 into c to move down the right number of tables
-	call AddNTimes
+	jr z, SkipBonLvl ;skip if "table" 0 and thus no bonus. convienantly a is also 0 so 0 will be added
+	ld b, 0 
+	dec a ;go 1 down as no table 0 exists for lvl pointers
+	ld hl, LvlPointers
+	add hl, bc ;go to correct ToD
+	ld a, [hl] ;load table
+	and a
+	jr z, SkipBonLvl ;skip if 0
+	dec a
+	ld hl, LvlTables
+	ld c, $10 
+	call AddNTimes ;do to correct level table
 	add hl, de ; find slot
-	ld a, [hl] ;put the level bonus in a for addition
+	ld a, [hl] ;put the level bonus in a
 SkipBonLvl
 	pop hl ;get table byte (cur stack: first mon byte)
 	dec hl ;move onto base level byte
@@ -527,7 +534,11 @@ PctTables: ;0 = big 30
 	db 198
 	db 200
 
-LvlTables: ; 0 = all base
+LvlPointers: ;0 skips, 1 and onwards uses these to select the table used for each ToD. feel free to change examples
+;1 = example table
+	db 0, 1, 2 ;Lvl table to use in specific Tod, first slot is morning, second is day and third is night
+
+LvlTables: ;0 = no adjustment feel free to change examples
 ; 1 = example table, increases the level of each slot by it's number
 	db 1
 	db 2
@@ -545,7 +556,23 @@ LvlTables: ; 0 = all base
 	db 14
 	db 15
 	db 16
-; 2 = not implemented
+; 2 = example 2, all levels 0 exept slot 1,which is -1 good for lowering levels
+	db -1
+	db 0
+	db 0
+	db 0
+	db 0
+	db 0
+	db 0
+	db 0
+	db 0
+	db 0
+	db 0
+	db 0
+	db 0
+	db 0
+	db 0
+	db 0
 
 Function2a200: ; 2a200 from 2a14f
 	call Function1852
