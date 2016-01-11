@@ -6404,7 +6404,7 @@ UnknownText_0xd0ae: ; 0xd0ae
 ; 0xd0b3
 
 Functiond0b3: ; d0b3
-	call Functiond0bc
+	; call Functiond0bc
 	and $7f
 	ld [wd0ec], a
 	ret
@@ -6425,6 +6425,9 @@ Functiond0bc: ; d0bc
 	ld de, UnknownScript_0xd14e
 	call Functiond119
 	call Function31cd
+	ld a, [wMapMusic]
+	cp MUSIC_VICTORY_ROAD
+	jr z, .done
 	xor a
 	ld [MusicFade], a
 	ld de, MUSIC_NONE
@@ -6435,6 +6438,7 @@ Functiond0bc: ; d0bc
 	ld a, e
 	ld [wMapMusic], a
 	call PlayMusic
+.done
 	ld a, $1
 	ret
 
@@ -35920,7 +35924,7 @@ Function421f5: ; 421f5
 	jr z, Function421f5
 	ld b, a
 	cp EVOLVE_TRADE
-	jr z, .trade
+	jp z, .trade
 	ld a, [wLinkMode]
 	and a
 	jp nz, .DontEvolve2
@@ -35964,6 +35968,9 @@ Function421f5: ; 421f5
 	jp .GoAheadAndEvolve
 
 .happiness
+	ld a, [StatusFlags]
+	bit 7, a
+	jp z, .DontEvolve2
 	ld a, [TempMonHappiness]
 	cp 220
 	jp c, .DontEvolve2
@@ -49044,6 +49051,9 @@ Function50e1b: ; 50e1b
 Function50e47: ; 50e47
 ;d = level
 ; (a/b)*n**3 + c*n**2 + d*n - e
+	ld a, d
+	cp 2
+	jp c, .zero_exp
 	ld a, [BaseGrowthRate]
 	add a
 	add a
@@ -49170,7 +49180,14 @@ Function50e47: ; 50e47
 	ld [hMultiplicand + 2], a
 	ld [hMultiplier], a
 	jp Multiply
-; 50efa
+
+.zero_exp
+	xor a
+	ld hl, hMultiplicand
+	ld [hli], a
+	ld [hli], a
+	ld [hl], a
+	ret
 
 GrowthRates: ; 50efa
 growth_rate: MACRO
