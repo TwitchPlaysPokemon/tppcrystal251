@@ -537,6 +537,32 @@ PctTables: ;0 = big 30
 LvlPointers: ;0 skips, 1 and onwards uses these to select the table used for each ToD. feel free to change examples
 ;1 = example table
 	db 0, 1, 2 ;Lvl table to use in specific Tod, first slot is morning, second is day and third is night
+;2 = Route 29
+	db 3, 4, 5
+;3 = Route 46
+	db 6, 7, 8
+;4 = Route 30
+	db 9, 10, 11
+;5 = Route 31
+	db 12, 13, 14
+;6 = Dark Cave Violet Entrance
+	db 15, 16, 17
+;7 = Sprout Tower
+	db 18, 19, 20
+;8 = Route 36
+	db 21, 22, 23
+;9 = Route 32
+	db 24, 25, 26
+;10 = Route 33
+	db 27, 28, 29
+;11 = Route 37
+	db 30, 31, 32
+;12 = Route 42
+	db 33, 34, 35
+;13 = Route 38
+	db 36, 37, 38
+;14 = Dark Cave Blackthorn Entrance
+	db 39, 40, 41
 
 LvlTables: ;0 = no adjustment feel free to change examples
 ; 1 = example table, increases the level of each slot by it's number
@@ -556,6 +582,7 @@ LvlTables: ;0 = no adjustment feel free to change examples
 	db 14
 	db 15
 	db 16
+
 ; 2 = example 2, all levels 0 exept slot 1,which is -1 good for lowering levels
 	db -1
 	db 0
@@ -563,6 +590,708 @@ LvlTables: ;0 = no adjustment feel free to change examples
 	db 0
 	db 0
 	db 0
+	db 0
+	db 0
+	db 0
+	db 0
+	db 0
+	db 0
+	db 0
+	db 0
+	db 0
+	db 0
+
+; 3 = Route 29 Morning
+	db 0
+	db 0
+	db -4
+	db 0
+	db 0
+	db 0
+	db -4
+	db -4
+	db 0
+	db 0
+	db 6
+	db 3
+	db 6
+	db 3
+	db 0
+	db 0
+
+; 4 = Route 29 Day
+	db 0
+	db 0
+	db 0
+	db -4
+	db 0
+	db 0
+	db -4
+	db -4
+	db 0
+	db 6
+	db 0
+	db 0
+	db 0
+	db 0
+	db 0
+	db 6
+
+; 5 = Route 29 Night
+	db 0
+	db 0
+	db 0
+	db -4
+	db 0
+	db 0
+	db -4
+	db -4
+	db 0
+	db 0
+	db 0
+	db 8
+	db 10
+	db 0
+	db 0
+	db 0
+
+; 6 = Route 46 Morning
+	db 0
+	db 0
+	db -2
+	db -4
+	db 0
+	db -2
+	db -4
+	db -4
+	db 2
+	db 0
+	db 2
+	db 0
+	db 2
+	db 4
+	db 0
+	db 0
+
+; 7 = Route 46 Day
+	db 0
+	db 0
+	db -4
+	db 2
+	db 0
+	db 0
+	db -4
+	db -4
+	db -2
+	db 0
+	db 0
+	db 0
+	db 4
+	db 0
+	db -2
+	db 0
+
+; 8 = Route 46 Night
+	db 0
+	db 0
+	db -4
+	db 2
+	db 0
+	db -4
+	db -4
+	db 0
+	db 0
+	db 0
+	db 0
+	db 6
+	db 8
+	db 0
+	db 4
+	db 4
+
+; 9 = Route 30 Morning
+	db -2
+	db 0
+	db 0
+	db -4
+	db 0
+	db 0
+	db -4
+	db -4
+	db 0
+	db 5
+	db 5
+	db 5
+	db 5
+	db 5
+	db 5
+	db 9
+
+; 10 = Route 30 Day
+	db 0
+	db 0
+	db -2
+	db -4
+	db 0
+	db -4
+	db -4
+	db 0
+	db 5
+	db 5
+	db 0
+	db 0
+	db 5
+	db 0
+	db 5
+	db 5
+
+; 11 = Route 30 Night
+	db 0
+	db 0
+	db 0
+	db 0
+	db 0
+	db 0
+	db 0
+	db 0
+	db -2
+	db 0
+	db 0
+	db 7
+	db 7
+	db 9
+	db -2
+	db 0
+
+; 12 = Route 31 Morning
+	db 0
+	db 0
+	db -2
+	db -3
+	db 0
+	db -2
+	db 4
+	db -2
+	db 0
+	db 0
+	db 0
+	db 1
+	db 6
+	db 0
+	db 0
+	db 2
+
+; 13 = Route 31 Day
+	db 0
+	db -3
+	db 0
+	db 0
+	db 0
+	db 0
+	db 1
+	db 0
+	db 0
+	db 2
+	db 0
+	db 6
+	db 0
+	db 0
+	db 0
+	db 0
+
+; 14 = Route 31 Night
+	db 0
+	db 0
+	db 0
+	db 0
+	db 0
+	db 6
+	db 6
+	db 0
+	db 0
+	db 0
+	db 0
+	db 1
+	db 0
+	db 6
+	db 6
+	db 0
+
+; 15 = Dark Cave Morning
+	db -2
+	db 0
+	db 0
+	db 2
+	db 0
+	db 0
+	db 0
+	db 0
+	db 0
+	db 2
+	db 0
+	db 1
+	db 0
+	db 1
+	db 0
+	db 4
+
+; 16 = Dark Cave Day
+	db 0
+	db 0
+	db 0
+	db -2
+	db 0
+	db 0
+	db 0
+	db 2
+	db 2
+	db 1
+	db 0
+	db 4
+	db 0
+	db 0
+	db 2
+	db 1
+
+; 17 = Dark Cave Night
+	db 0
+	db 0
+	db 0
+	db 2
+	db 0
+	db 0
+	db 6
+	db 0
+	db 6
+	db 0
+	db 2
+	db 1
+	db 2
+	db 1
+	db 4
+	db 0
+
+; 18 = Sprout Tower Morning
+	db 0
+	db 0
+	db 2
+	db 0
+	db 0
+	db 2
+	db 0
+	db 0
+	db 0
+	db 0
+	db 8
+	db 8
+	db 9
+	db 0
+	db 0
+	db 2
+
+; 19 = Sprout Tower Day
+	db 0
+	db 0
+	db 0
+	db 0
+	db 0
+	db 0
+	db 2
+	db 0
+	db 2
+	db 8
+	db 9
+	db 8
+	db 0
+	db 0
+	db 2
+	db 2
+
+; 20 = Sprout Tower Night
+	db 0
+	db 1
+	db 0
+	db 1
+	db 0
+	db 1
+	db 0
+	db 0
+	db 0
+	db 8
+	db 0
+	db 8
+	db 2
+	db 0
+	db 9
+	db 2
+
+; 21 = Route 36 Morning
+	db 0
+	db 0
+	db 0
+	db 0
+	db 0
+	db 3
+	db 0
+	db 0
+	db 2
+	db 9
+	db 0
+	db 0
+	db 0
+	db 0
+	db 2
+	db 9
+
+; 22 = Route 36 Day
+	db 0
+	db 0
+	db 0
+	db 0
+	db 0
+	db 3
+	db 2
+	db 0
+	db 0
+	db 2
+	db 9
+	db 0
+	db 0
+	db 0
+	db 2
+	db 0
+
+; 23 = Route 36 Night
+	db 0
+	db 1
+	db 0
+	db 0
+	db 2
+	db 3
+	db 1
+	db 0
+	db 0
+	db 0
+	db 6
+	db 0
+	db 6
+	db 0
+	db 0
+	db 0
+
+; 24 = Route 32 Morning
+	db 0
+	db -4
+	db 0
+	db 0
+	db 0
+	db 0
+	db 0
+	db 0
+	db 3
+	db 3
+	db 5
+	db 1
+	db 1
+	db 1
+	db 0
+	db 0
+
+; 25 = Route 32 Day
+	db 0
+	db 0
+	db -1
+	db 0
+	db 0
+	db 0
+	db 3
+	db -1
+	db 3
+	db 0
+	db 0
+	db 0
+	db 0
+	db 0
+	db 3
+	db 5
+
+; 26 = Route 32 Night
+	db 0
+	db 0
+	db 0
+	db 5
+	db 1
+	db 0
+	db 0
+	db 0
+	db 1
+	db 5
+	db 0
+	db 1
+	db 0
+	db 0
+	db 5
+	db 0
+
+; 27 = Route 33 Morning
+	db 0
+	db 0
+	db 0
+	db 0
+	db 0
+	db 2
+	db 0
+	db 0
+	db 0
+	db 6
+	db 0
+	db 2
+	db 0
+	db 2
+	db 0
+	db 2
+
+; 28 = Route 33 Day
+	db 0
+	db 0
+	db 0
+	db 2
+	db 0
+	db 0
+	db 0
+	db 0
+	db 6
+	db 6
+	db 0
+	db 0
+	db 5
+	db 0
+	db 5
+	db 2
+
+; 29 = Route 33 Night
+	db 0
+	db 0
+	db 2
+	db 0
+	db 0
+	db 2
+	db 0
+	db 5
+	db 2
+	db 2
+	db 0
+	db 0
+	db 0
+	db 0
+	db 5
+	db 2
+
+; 30 = Route 37 Morning
+	db -2
+	db 0
+	db 0
+	db 0
+	db 0
+	db 1
+	db 3
+	db 0
+	db 0
+	db 0
+	db 0
+	db 0
+	db 0
+	db 0
+	db 9
+	db 3
+	
+; 31 = Route 37 Day
+	db 1
+	db 0
+	db 3
+	db 0
+	db 0
+	db 0
+	db 3
+	db 0
+	db 0
+	db -2
+	db 0
+	db 0
+	db 0
+	db 9
+	db 0
+	db 0
+
+; 32 = Route 37 Night
+	db 0
+	db 0
+	db 0
+	db 0
+	db 0
+	db 0
+	db 0
+	db 0
+	db 0
+	db 3
+	db 0
+	db 0
+	db 2
+	db 0
+	db 0
+	db 2
+
+; 33 = Route 42 Morning
+	db -3
+	db 0
+	db 0
+	db 0
+	db 0
+	db 0
+	db 0
+	db 3
+	db 0
+	db 0
+	db 2
+	db 0
+	db 2
+	db 3
+	db 0
+	db 0
+
+; 34 = Route 42 Day
+	db 0
+	db 0
+	db 0
+	db 0
+	db 0
+	db 0
+	db 0
+	db 0
+	db 0
+	db 0
+	db 3
+	db 0
+	db 2
+	db 7
+	db 3
+	db 7
+
+; 35 = Route 42 Night
+	db 0
+	db 0
+	db 0
+	db 2
+	db 0
+	db 0
+	db 2
+	db 0
+	db 0
+	db 0
+	db 6
+	db 0
+	db 0
+	db 0
+	db 0
+	db 7
+
+; 36 = Route 38 Morning
+	db 0
+	db 1
+	db 0
+	db 0
+	db 0
+	db 0
+	db 0
+	db 0
+	db 2
+	db 4
+	db 0
+	db 2
+	db 2
+	db 2
+	db 2
+	db 2
+
+; 37 = Route 38 Day
+	db 0
+	db 0
+	db 0
+	db 0
+	db 1
+	db 2
+	db 0
+	db 0
+	db 0
+	db 2
+	db 2
+	db 0
+	db 2
+	db 0
+	db 2
+	db 4
+
+; 38 = Route 38 Night
+	db 0
+	db 0
+	db 2
+	db 0
+	db 0
+	db 0
+	db 0
+	db 0
+	db 2
+	db 0
+	db 0
+	db 2
+	db 2
+	db 1
+	db 2
+	db 1
+
+; 39 = Dark Cave Blackthorn Morning
+	db 2
+	db 0
+	db 0
+	db 0
+	db 0
+	db 0
+	db 0
+	db 0
+	db 6
+	db 0
+	db 3
+	db 0
+	db 2
+	db 3
+	db 3
+	db 2
+
+; 40 = Dark Cave Blackthorn Day
+	db 2
+	db 0
+	db 0
+	db 0
+	db 0
+	db 0
+	db 0
+	db 2
+	db 0
+	db 3
+	db 0
+	db 6
+	db 2
+	db 0
+	db 3
+	db 6
+
+; 41 = Dark Cave Blackthorn Night
+	db 0
+	db 2
+	db 0
+	db 0
+	db 0
+	db 3
 	db 0
 	db 0
 	db 0

@@ -3,7 +3,7 @@
 	db GROUP_SPROUT_TOWER_2F, MAP_SPROUT_TOWER_2F ;MAP tells you what map this encounter table is for, should be pretty obvious. don't touch it
 	db $05 ; encounter rates for all day Encounter rate out of 255, delete 2 of the 3 identical numbers and both commas
 	db 14 ;base level for the area before alteration. Use lower bound for random spread (for 2-6, use 2)
-	db $00 ;Tables to use. first is a $ for tech reasons Left number/letter is level alteration table. Right number is what %chance table to use. 0 = big 30, 1 = 2020, 2 = 2015, 3 = 1510
+	db $70 ;Tables to use. first is a $ for tech reasons Left number/letter is level alteration table. Right number is what %chance table to use. 0 = big 30, 1 = 2020, 2 = 2015, 3 = 1510
 	; The level alteration table hasn't been decided/coded yet, though 0 is for no alteration exept random variance
 ;morning Mons go here, make sure no semi-colons are where they shouldn't be (before mons), and that morning/day/night are after semi-colons
         db BELLSPROUT ;30 level is no longer stored next to mon
@@ -60,7 +60,7 @@
 	db GROUP_SPROUT_TOWER_3F, MAP_SPROUT_TOWER_3F
 	db $05
 	db 14
-	db $00 
+	db $70 
 ;morning Mons go here, make sure no semi-colons are where they shouldn't be (before mons), and that morning/day/night are after semi-colons
         db BELLSPROUT ;30 level is no longer stored next to mons
         db ZUBAT ;10
@@ -1762,7 +1762,7 @@
 	db GROUP_DARK_CAVE_VIOLET_ENTRANCE, MAP_DARK_CAVE_VIOLET_ENTRANCE
 	db $0a ; encounter rates: morn/day/nite
 	db 16
-	db $00
+	db $60
 	; morn
 		db TYROGUE ;30
 		db LARVITAR ;10
@@ -1818,7 +1818,7 @@
 	db GROUP_DARK_CAVE_BLACKTHORN_ENTRANCE, MAP_DARK_CAVE_BLACKTHORN_ENTRANCE
 	db $0a ; encounter rates: morn/day/nite
 	db 49
-	db $02
+	db $e2
 	; morn
 		db PUPITAR ;20
 		db SHUCKLE ;15
@@ -1874,7 +1874,7 @@
 	db GROUP_ROUTE_29, MAP_ROUTE_29
 	db $19 ; encounter rates: morn/day/nite
 	db 12
-	db $00
+	db $20
 	; morn
 		db HOPPIP ;30
 		db SENTRET ;10
@@ -1930,7 +1930,7 @@
 	db GROUP_ROUTE_30, MAP_ROUTE_30
 	db $19 ; encounter rates: morn/day/nite
 	db 13
-	db $01
+	db $41
 	; morn
 		db LEDYBA ;20
 		db HOPPIP ;20
@@ -1974,19 +1974,19 @@
 		db SMOOCHUM ;5
 		db MARILL ;5
 		db NOCTOWL ;5
-		db LEDIAN ;4
-		db ARIADOS ;4
+		db LEDYBA ;4
+		db HOOTHOOT ;4
 		db MARILL ;3
-		db HOOTHOOT ;3
+		db NOCTOWL ;3
 		db NOCTOWL ;2
-		db LEDIAN ;2
-		db LEDIAN ;1
-		db AZUMARILL ;1
+		db ARIADOS ;2
+		db LEDYBA ;1
+		db HOOTHOOT ;1
 
 	db GROUP_ROUTE_31, MAP_ROUTE_31
 	db $19 ; encounter rates: morn/day/nite
 	db 14
-	db $02
+	db $52
 	; morn
 		db SUNKERN ;20
 		db MAREEP ;15
@@ -2042,7 +2042,7 @@
 	db GROUP_ROUTE_32, MAP_ROUTE_32
 	db $19 ; encounter rates: morn/day/nite
 	db 15
-	db $01
+	db $91
 	; morn
 		db SUNKERN ;20
 		db TOGEPI ;20
@@ -2098,7 +2098,7 @@
 	db GROUP_ROUTE_33, MAP_ROUTE_33
 	db $19 ; encounter rates: morn/day/nite
 	db 19
-	db $01
+	db $a1
 	; morn
 		db HOPPIP ;20
 		db FURRET ;20
@@ -2266,7 +2266,7 @@
 	db GROUP_ROUTE_36, MAP_ROUTE_36
 	db $19 ; encounter rates: morn/day/nite
 	db 14
-	db $01
+	db $81
 	; morn
 		db SNUBBULL ;20
 		db TEDDIURSA ;20
@@ -2322,7 +2322,7 @@
 	db GROUP_ROUTE_37, MAP_ROUTE_37
 	db $19 ; encounter rates: morn/day/nite
 	db 27
-	db $03
+	db $b3
 	; morn
 		db SNUBBULL ;15
 		db TEDDIURSA ;10
@@ -2350,7 +2350,7 @@
 		db AMPHAROS ;5
 		db SUDOWOODO ;5
 		db BELLOSSOM ;5
-		db MAREEP ;5
+		db SNUBBULL ;5
 		db FLAAFFY ;5
 		db PIDGEOTTO ;5
 		db MAREEP ;4
@@ -2378,7 +2378,7 @@
 	db GROUP_ROUTE_38, MAP_ROUTE_38
 	db $19 ; encounter rates: morn/day/nite
 	db 28
-	db $02
+	db $d2
 	; morn
 		db FURRET ;20
 		db TAUROS ;15
@@ -2490,7 +2490,7 @@
 	db GROUP_ROUTE_42, MAP_ROUTE_42
 	db $19 ; encounter rates: morn/day/nite
 	db 29
-	db $03
+	db $c3
 	; morn
 		db TOGEPI ;15
 		db GIRAFARIG ;10
@@ -2714,7 +2714,7 @@
 	db GROUP_ROUTE_46, MAP_ROUTE_46
 	db $19 ; encounter rates: morn/day/nite
 	db 14
-	db $00
+	db $30
 	; morn
 		db PHANPY ;30
 		db TEDDIURSA ;10
@@ -2754,16 +2754,16 @@
 		db PHANPY ;10
 		db MAGBY ;10
 		db GLIGAR ;10
-		db PHANPY ;5
+		db SPINARAK ;5
 		db SMOOCHUM ;5
 		db ELEKID ;5
 		db TEDDIURSA ;5
-		db NOCTOWL ;4
-		db NOCTOWL ;4
+		db SPINARAK ;4
+		db PHANPY ;4
 		db TEDDIURSA ;3
-		db PHANPY ;3
+		db NOCTOWL ;3
+		db ARIADOS ;2
 		db TEDDIURSA ;2
-		db PHANPY ;2
 		db SKARMORY ;1
 		db SKARMORY ;1
 

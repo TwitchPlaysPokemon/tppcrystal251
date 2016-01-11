@@ -2969,7 +2969,7 @@ LassGroup:
 	db 0 ; normal
 
 	; party
-	db 21, MARILL
+	db 46, DELIBIRD
 
 	db $ff ; end
 
