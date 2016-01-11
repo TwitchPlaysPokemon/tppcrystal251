@@ -1,6 +1,6 @@
 	db PINSIR ; 127
 
-	db 65, 125, 100, $5a, $3c, $3c
+	db 65, 125, 100, $5a, $3c, $4c
 	; hp atk def spd sat sdf
 
 	db BUG, BUG

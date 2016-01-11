@@ -1,6 +1,6 @@
 	db BEEDRILL ; 015
 
-	db $69, $64, $50, $55, $5f, $5f
+	db $69, $64, $50, $55, $5f, $a8
 	; hp atk def spd sat sdf
 
 	db BUG, POISON

@@ -1,6 +1,6 @@
 	db GROWLITHE ; 058
 
-	db 55, 70, 45, 60, 50, 50
+	db 55, 70, 45, 60, 50, 35
 	; hp atk def spd sat sdf
 
 	db FIRE, FIRE

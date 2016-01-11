@@ -1,6 +1,6 @@
 	db GOLDEEN ; 118
 
-	db $37, $4d, $46, 63, 50, 50
+	db $37, $4d, $46, 63, 50, 71
 	; hp atk def spd sat sdf
 
 	db WATER, WATER

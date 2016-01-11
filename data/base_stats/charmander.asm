@@ -1,6 +1,6 @@
 	db CHARMANDER ; 004
 
-	db 39, 52, 43, 65, 50, 50
+	db 39, 52, 43, 65, 50, 41
 	; hp atk def spd sat sdf
 
 	db FIRE, FIRE

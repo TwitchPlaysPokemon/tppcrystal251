@@ -1,6 +1,6 @@
 	db FLAREON ; 136
 
-	db $4b, 130, $46, 65, 110, 110
+	db $4b, 130, $46, 65, 110, 127
 	; hp atk def spd sat sdf
 
 	db FIRE, FIRE

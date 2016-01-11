@@ -1,6 +1,6 @@
 	db CHANSEY ; 113
 
-	db 250, 5, 5, 50, 105, 105
+	db 250, 5, 5, 50, 105, 250
 	; hp atk def spd sat sdf
 
 	db NORMAL, NORMAL

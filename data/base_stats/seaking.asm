@@ -1,6 +1,6 @@
 	db SEAKING ; 119
 
-	db 80, 92, $69, 68, 80, 80
+	db 80, 92, $69, 68, 80, 98
 	; hp atk def spd sat sdf
 
 	db WATER, WATER

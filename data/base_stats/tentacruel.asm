@@ -1,6 +1,6 @@
 	db TENTACRUEL ; 073
 
-	db 80, $50, 65, $6e, 120, 120
+	db 80, $50, 65, $6e, 120, 180
 	; hp atk def spd sat sdf
 
 	db WATER, POISON

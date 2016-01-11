@@ -1,6 +1,6 @@
 	db GOLDUCK ; 055
 
-	db 80, 82, 78, 85, 80, 80
+	db 80, 82, 78, 85, 80, 67
 	; hp atk def spd sat sdf
 
 	db WATER, WATER

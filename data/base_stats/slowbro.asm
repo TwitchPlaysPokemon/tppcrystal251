@@ -1,6 +1,6 @@
 	db SLOWBRO ; 080
 
-	db 95, 75, 110, 30, 80, 80
+	db 95, 75, 110, 30, 80, 64
 	; hp atk def spd sat sdf
 
 	db WATER, PSYCHIC

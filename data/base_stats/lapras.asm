@@ -1,6 +1,6 @@
 	db LAPRAS ; 131
 
-	db 130, 85, 80, 60, 95, 95
+	db 130, 85, 80, 60, 95, 106
 	; hp atk def spd sat sdf
 
 	db WATER, ICE

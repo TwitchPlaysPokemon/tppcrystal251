@@ -1,6 +1,6 @@
 	db PARAS ; 046
 
-	db $32, $5a, $4b, $2d, $3c, $3c
+	db $32, $5a, $4b, $2d, $3c, $49
 	; hp atk def spd sat sdf
 
 	db BUG, GRASS

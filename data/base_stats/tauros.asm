@@ -1,6 +1,6 @@
 	db TAUROS ; 128
 
-	db 75, 100, $69, 110, $5a, $5a
+	db 75, 100, $69, 110, $5a, $9d
 	; hp atk def spd sat sdf
 
 	db NORMAL, NORMAL

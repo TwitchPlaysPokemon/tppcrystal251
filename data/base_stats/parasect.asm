@@ -1,6 +1,6 @@
 	db PARASECT ; 047
 
-	db $64, $73, $73, $64, $64, $64
+	db $64, $73, $73, $64, $64, $85
 	; hp atk def spd sat sdf
 
 	db BUG, GRASS

@@ -1,6 +1,6 @@
 	db VAPOREON ; 134
 
-	db 130, 65, $46, $4b, 110, 110
+	db 130, 65, $46, $4b, 110, 95
 	; hp atk def spd sat sdf
 
 	db WATER, WATER

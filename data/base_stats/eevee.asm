@@ -1,6 +1,6 @@
 	db EEVEE ; 133
 
-	db 55, 55, 50, 55, 65, 65
+	db 55, 55, 50, 55, 65, 93
 	; hp atk def spd sat sdf
 
 	db NORMAL, NORMAL

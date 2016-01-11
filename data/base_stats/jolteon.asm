@@ -1,6 +1,6 @@
 	db JOLTEON ; 135
 
-	db 65, $4b, $46, 130, 110, 110
+	db 65, $4b, $46, 130, 110, 95
 	; hp atk def spd sat sdf
 
 	db ELECTRIC, ELECTRIC
