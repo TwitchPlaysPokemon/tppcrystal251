@@ -57,6 +57,8 @@ PokeCenterNurseScript:
 ; EVENT_WELCOMED_TO_POKECOM_CENTER is never set
 
 	loadfont
+	checkcode VAR_PARTYCOUNT
+	iffalse .no_pokemon
 	checkmorn
 	iftrue .morn
 	checkday
@@ -163,6 +165,11 @@ PokeCenterNurseScript:
 	setflag ENGINE_POKERUS
 	specialphonecall 1 ; elm calls about pokerus
 	end
+
+.no_pokemon
+	farwritetext NoPokemonHealText
+	pause 20
+	jump .done
 
 DifficultBookshelfScript: ; 0xbc162
 	farjumptext UnknownText_0x1b035a

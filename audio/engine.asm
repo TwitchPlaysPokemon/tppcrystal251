@@ -1377,7 +1377,7 @@ MusicCommands: ; e8720
 	dw MusicE3 ; music noise sampling
 	dw MusicE4 ; force panning
 	dw MusicE5 ; volume
-	dw MusicE6 ; tune
+	dw MusicE6 ; tone
 	dw MusicE7 ;
 	dw MusicE8 ;
 	dw MusicE9 ; global tempo

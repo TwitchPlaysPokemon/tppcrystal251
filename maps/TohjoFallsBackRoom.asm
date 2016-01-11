@@ -61,7 +61,7 @@ GiovanniText1:
 	para "My name is"
 	line "GIOVANNI."
 
-	para "Three months ago, I"
+	para "Three months ago I"
 	line "led my TEAM ROCKET"
 	cont "to glory."
 

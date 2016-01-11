@@ -12356,6 +12356,10 @@ Function123a1: ; 123a1
 	ld de, Unknown_1241c
 Function123a7: ; 123a7
 	ld a, [PartyCount]
+	cp 6
+	jr c, .okay
+	ld a, 6
+.okay
 	ld b, a
 	call .SubtractEggs
 .asm_123ab
