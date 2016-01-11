@@ -33514,7 +33514,6 @@ RoamMaps: ; 2a40f
 
 RandomPhoneMon: ; 2a567
 ; Get a random monster owned by the trainer who's calling.
-
 	callba Function90439
 	ld hl, TrainerGroups
 	ld a, d
@@ -33524,13 +33523,15 @@ RandomPhoneMon: ; 2a567
 	add hl, bc
 	add hl, bc
 	add hl, bc
-	ld a, [hli]
+	ld a, BANK(TrainerGroups)
+	call GetFarByte2
+	ld [wd002], a
 	call GetFarHalfword
 .skip_trainer
 	dec e
 	jr z, .skipped
 .skip
-	ld a, BANK(Trainers)
+	ld a, [wd002]
 	call GetFarByte2
 	cp -1
 	jr nz, .skip
@@ -33538,29 +33539,37 @@ RandomPhoneMon: ; 2a567
 
 .skipped
 .skip_name
-	ld a, BANK(Trainers)
+	ld a, [wd002]
 	call GetFarByte2
 	cp "@"
 	jr nz, .skip_name
-	ld a, BANK(Trainers)
+	ld a, [wd002]
 	call GetFarByte2
 	ld bc, 2
-	cp 0
+	bit TRAINERTYPE_MOVES, a
+	jr z, .no_moves
+	push af
+	ld a, NUM_MOVES
+	add c
+	ld c, a
+	pop af
+.no_moves
+	bit TRAINERTYPE_ITEM, a
+	jr z, .no_item
+	inc c
+.no_item
+	bit TRAINERTYPE_NICKNAME, a
 	jr z, .got_mon_length
-	ld bc, 2 + NUM_MOVES
-	cp 1
-	jr z, .got_mon_length
-	ld bc, 2 + 1
-	cp 2
-	jr z, .got_mon_length
-	ld bc, 2 + 1 + NUM_MOVES
+	ld a, PKMN_NAME_LENGTH
+	add c
+	ld c, a
 .got_mon_length
 	ld e, 0
 	push hl
 .count_mon
 	inc e
 	add hl, bc
-	ld a, BANK(Trainers)
+	ld a, [wd002]
 	call GetFarByte
 	cp -1
 	jr nz, .count_mon
@@ -33579,7 +33588,7 @@ RandomPhoneMon: ; 2a567
 
 .got_mon
 	inc hl ; species
-	ld a, BANK(Trainers)
+	ld a, [wd002]
 	call GetFarByte
 	ld [wd265], a
 	call GetPokemonName
