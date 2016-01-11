@@ -7,8 +7,7 @@ RuinsofAlphInnerChamber_MapScriptHeader: ; 0x58f5f
 	dw UnknownScript_0x58f6a, $0000
 
 	; callback count
-	db 1
-	dbw 1, CreateUnownWordsScript
+	db 0
 ; 0x58f69
 
 UnknownScript_0x58f69: ; 0x58f69
@@ -22,13 +21,6 @@ UnknownScript_0x58f6a: ; 0x58f6a
 UnknownScript_0x58f6d: ; 0x58f6d
 	end
 ; 0x58f6e
-
-CreateUnownWordsScript:
-	checkevent EVENT_UNLOCKED_PHANCERO_DUNGEON
-	iffalse DontCreateUnownWords
-	changeblock 12, 12, $2f
-DontCreateUnownWords:
-	return
 
 UnknownScript_0x58f6e: ; 0x58f6e
 	loadfont
@@ -54,38 +46,8 @@ GrampsScript_0x58f83: ; 0x58f83
 ; 0x58f86
 
 MapRuinsofAlphInnerChamberSignpost25Script:; 0x58f86
-	loadfont
-	writetext UnknownText_0x59072
-	checkevent EVENT_UNLOCKED_PHANCERO_DUNGEON
-	iftrue MapRuinsofAlphInnerChamberSignpost25Scriptb
-	copybytetovar UnlockedUnowns
-	if_less_than $f, MapRuinsofAlphInnerChamberSignpost25Scriptb
-	checkevent EVENT_PHANCERO_AVAILABLE
-	iftrue PhanceroConditionScript
-MapRuinsofAlphInnerChamberSignpost25Scriptb:
-	waitbutton
-	closetext
-	end
+	jumptext UnknownText_0x59072
 ; 0x58f89
-
-PhanceroConditionScript:
-	buttonsound
-	writetext DiscoveredPhanceroMessage
-	writebyte $4
-	special Function8ae68
-	closetext
-	earthquake 60
-	showemote $0, $0, 15
-	pause 15
-	earthquake 80
-	playsound SFX_ENTER_DOOR
-	setevent EVENT_UNLOCKED_PHANCERO_DUNGEON
-	changeblock 12, 12, $2f
-	loadfont
-	writetext PhanceroHoleOpenedText
-	waitbutton
-	closetext
-	end
 
 UnknownText_0x58f89: ; 0x58f89
 	text "There is a strange"
@@ -127,22 +89,12 @@ UnknownText_0x59072: ; 0x59072
 	done
 ; 0x59097
 
-DiscoveredPhanceroMessage:
-	text "There is a strange"
-	line "inscription…"
-	done
-
-PhanceroHoleOpenedText:
-	text "Sounds like some-"
-	line "thing opened!"
-	done
-
 RuinsofAlphInnerChamber_MapEventHeader: ; 0x59097
 	; filler
 	db 0, 0
 
 	; warps
-	db 10
+	db 9
 	warp_def $d, $a, 5, GROUP_RUINS_OF_ALPH_OUTSIDE, MAP_RUINS_OF_ALPH_OUTSIDE
 	warp_def $f, $3, 3, GROUP_RUINS_OF_ALPH_HO_OH_CHAMBER, MAP_RUINS_OF_ALPH_HO_OH_CHAMBER
 	warp_def $f, $4, 4, GROUP_RUINS_OF_ALPH_HO_OH_CHAMBER, MAP_RUINS_OF_ALPH_HO_OH_CHAMBER
@@ -152,7 +104,6 @@ RuinsofAlphInnerChamber_MapEventHeader: ; 0x59097
 	warp_def $15, $4, 4, GROUP_RUINS_OF_ALPH_OMANYTE_CHAMBER, MAP_RUINS_OF_ALPH_OMANYTE_CHAMBER
 	warp_def $18, $f, 3, GROUP_RUINS_OF_ALPH_AERODACTYL_CHAMBER, MAP_RUINS_OF_ALPH_AERODACTYL_CHAMBER
 	warp_def $18, $10, 4, GROUP_RUINS_OF_ALPH_AERODACTYL_CHAMBER, MAP_RUINS_OF_ALPH_AERODACTYL_CHAMBER
-	warp_def 13, 13, 1, GROUP_PHANCERO_RUINS_B1F, MAP_PHANCERO_RUINS_B1F
 
 	; xy triggers
 	db 0

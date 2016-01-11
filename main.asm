@@ -81182,10 +81182,10 @@ Unknown_e17bd: ; e17bd
 	dw LZ_e1c9b
 	dw LZ_e19fb
 	dw LZ_e18ab
-	dw LZ_Articuno
-	dw LZ_Zapdos
-	dw LZ_Moltres
-	dw LZ_Phancero
+	; dw LZ_Articuno
+	; dw LZ_Zapdos
+	; dw LZ_Moltres
+	; dw LZ_Mon252
 ; e17c5
 
 GFX_e17c5: ; e17c5
@@ -81206,17 +81206,17 @@ INCBIN "gfx/unknown/0e1bab.2bpp.lz"
 LZ_e1c9b: ; e1c9b
 INCBIN "gfx/unknown/0e1c9b.2bpp.lz"
 
-LZ_Articuno:
-INCBIN "gfx/custom/Articuno.2bpp.lz"
+; LZ_Articuno:
+; INCBIN "gfx/custom/Articuno.2bpp.lz"
 
-LZ_Zapdos:
-INCBIN "gfx/custom/Zapdos.2bpp.lz"
+; LZ_Zapdos:
+; INCBIN "gfx/custom/Zapdos.2bpp.lz"
 
-LZ_Moltres:
-INCBIN "gfx/custom/Moltres.2bpp.lz"
+; LZ_Moltres:
+; INCBIN "gfx/custom/Moltres.2bpp.lz"
 
-LZ_Phancero:
-INCBIN "gfx/custom/Phancero.2bpp.lz"
+; LZ_Mon252:
+; INCBIN "gfx/custom/Mon252.2bpp.lz"
 
 Functione1e5b: ; e1e5b (38:5e5b)
 	call Functione1e67

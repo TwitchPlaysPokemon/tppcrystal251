@@ -249,7 +249,7 @@
 	db "LUGIA@@@@@"
 	db "HO-OH@@@@@"
 	db "CELEBI@@@@"
-	db "PHANCERO@@"
+	db "?????@@@@@"
 	db "EGG@@@@@@@"
 	db "?????@@@@@"
 	db "?????@@@@@"

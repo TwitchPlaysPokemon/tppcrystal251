@@ -211,9 +211,8 @@ UnionCaveB2F_MapEventHeader: ; 0x5a57a
 	db 0, 0
 
 	; warps
-	db 2
+	db 1
 	warp_def $3, $5, 5, GROUP_UNION_CAVE_B1F, MAP_UNION_CAVE_B1F
-	warp_def 2, 17, 2, GROUP_PHANCERO_RUINS_B3F, MAP_PHANCERO_RUINS_B3F
 
 	; xy triggers
 	db 0
