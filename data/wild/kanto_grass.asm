@@ -334,7 +334,7 @@ db GROUP_ROUTE_2_RB, MAP_ROUTE_2_RB
 
 	db GROUP_VICTORY_ROAD, MAP_VICTORY_ROAD
 	db $0f ; encounter rates: morn/day/nite
-	db 65
+	db 56
 	db $03
 ;morning
 		db GRAVELER ;15
@@ -1571,7 +1571,7 @@ db GROUP_ROUTE_2_RB, MAP_ROUTE_2_RB
 
 	db GROUP_ROUTE_26, MAP_ROUTE_26
 	db $19 ; encounter rates: morn/day/nite
-	db 60
+	db 54
 	db $02
 	; morn
 		db CHANSEY ;20
@@ -1627,7 +1627,7 @@ db GROUP_ROUTE_2_RB, MAP_ROUTE_2_RB
 	
 	db GROUP_ROUTE_27, MAP_ROUTE_27
 	db $19 ; encounter rates: morn/day/nite
-	db 60
+	db 52
 	db $02
 	; morn
 		db CHANSEY ;20

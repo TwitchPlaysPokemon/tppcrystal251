@@ -2302,7 +2302,7 @@ SchoolboyGroup:
 
 	; SCHOOLBOY (1)
 	db "JACK@"
-	db (1 << TRAINERTYPE_ITEM)
+	db (1 << TRAINERTYPE_MOVES)
 
 	; party
 	db 28, HOUNDOUR

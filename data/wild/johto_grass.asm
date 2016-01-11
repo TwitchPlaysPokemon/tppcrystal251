@@ -330,7 +330,7 @@
 		db HERACROSS ;2
 		db HERACROSS ;1
 	; nite
-		db ARIADOS;15
+		db ARIADOS ;15
 		db GLOOM ;10
 		db HOUNDOUR ;10
 		db SKARMORY ;10
@@ -349,7 +349,7 @@
 
 	db GROUP_RUINS_OF_ALPH_OUTSIDE, MAP_RUINS_OF_ALPH_OUTSIDE
 	db $0a ; encounter rates: morn/day/nite
-	db 40
+	db 33
 	db $03
 ;morning
 		db PICHU ;15
@@ -405,7 +405,7 @@
 
 	db GROUP_RUINS_OF_ALPH_INNER_CHAMBER, MAP_RUINS_OF_ALPH_INNER_CHAMBER
 	db $0f ; encounter rates: morn/day/nite
-	db 50
+	db 48
 	db $00
 ;morning
 		db UNOWN ;30
@@ -1020,8 +1020,8 @@
 		db POLITOED ;1
 
 	db GROUP_ICE_PATH_1F, MAP_ICE_PATH_1F
-	db $05 ; encounter rates: morn/day/nite
-	db 45
+	db $07 ; encounter rates: morn/day/nite
+	db 47
 	db $02
 	; morn
 		db SWINUB ;20
@@ -1033,7 +1033,7 @@
 		db PILOSWINE ;5
 		db SNEASEL ;5
 		db JYNX ;6
-		db ;SWINUB 4
+		db SWINUB ;4
 		db SMOOCHUM ;3
 		db CROBAT ;2
 		db PILOSWINE ;2
@@ -1075,8 +1075,61 @@
 		db SMOOCHUM ;1
 		db CROBAT ;1
 
-;	db GROUP_ICE_PATH_B1F, MAP_ICE_PATH_B1F
-;	db $05,$05,$05 ; encounter rates: morn/day/nite
+	db GROUP_ICE_PATH_B1F, MAP_ICE_PATH_B1F
+	db $02 ; encounter rates: morn/day/nite
+	db 48
+	db $02
+	; morn
+		db SWINUB ;20
+		db SMOOCHUM ;15
+		db SNEASEL ;10
+		db DELIBIRD ;10
+		db GOLBAT ;10
+		db SNEASEL ;5
+		db PILOSWINE ;5
+		db SNEASEL ;5
+		db JYNX ;6
+		db SWINUB ;4
+		db SMOOCHUM ;3
+		db CROBAT ;2
+		db PILOSWINE ;2
+		db CROBAT ;1
+		db GOLBAT ;1
+		db JYNX ;1
+	; day
+		db SWINUB ;20
+		db SWINUB ;15
+		db GOLBAT ;10
+		db DELIBIRD ;10
+		db SNEASEL ;10
+		db GOLBAT ;5
+		db CROBAT ;5
+		db PILOSWINE ;5
+		db SMOOCHUM ;6
+		db JYNX ;4
+		db SMOOCHUM ;3
+		db PILOSWINE ;2
+		db PILOSWINE ;2
+		db PILOSWINE ;1
+		db SNEASEL ;1
+		db SNEASEL ;1
+	; nite
+		db SNEASEL ;20
+		db SNEASEL ;15
+		db SWINUB ;10
+		db JYNX ;10
+		db DELIBIRD ;10
+		db PILOSWINE ;5
+		db SMOOCHUM ;5
+		db SMOOCHUM ;5
+		db PILOSWINE ;6
+		db GOLBAT ;4
+		db PILOSWINE ;3
+		db SMOOCHUM ;2
+		db SMOOCHUM ;2
+		db GOLBAT ;1
+		db SMOOCHUM ;1
+		db CROBAT ;1
 
 ;	db GROUP_ICE_PATH_B2F_MAHOGANY_SIDE, MAP_ICE_PATH_B2F_MAHOGANY_SIDE
 ;	db $05,$05,$05 ; encounter rates: morn/day/nite
@@ -1764,7 +1817,7 @@
 
 	db GROUP_DARK_CAVE_BLACKTHORN_ENTRANCE, MAP_DARK_CAVE_BLACKTHORN_ENTRANCE
 	db $0a ; encounter rates: morn/day/nite
-	db 50
+	db 49
 	db $02
 	; morn
 		db PUPITAR ;20
@@ -2548,7 +2601,7 @@
 
 	db GROUP_ROUTE_44, MAP_ROUTE_44
 	db $19 ; encounter rates: morn/day/nite
-	db 45
+	db 46
 	db $03
 	; morn
 		db SKIPLOOM ;15
@@ -2604,7 +2657,7 @@
 
 	db GROUP_ROUTE_45, MAP_ROUTE_45
 	db $19 ; encounter rates: morn/day/nite
-	db 50
+	db 48
 	db $02
 	; morn
 		db PHANPY ;20

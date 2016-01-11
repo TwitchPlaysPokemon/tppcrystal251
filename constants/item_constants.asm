@@ -193,30 +193,30 @@
 	const ITEM_BE
 
 	add_tm DYNAMICPUNCH
-	add_tm HEADBUTT
+	add_tm ZEN_HEADBUTT
 	add_tm CURSE
-	add_tm ROLLOUT
+	add_tm BODY_SLAM
 	const ITEM_C3
-	add_tm ROAR
+	add_tm DAZZLINGLEAM
 	add_tm TOXIC
 	add_tm ZAP_CANNON
 	add_tm ROCK_SMASH
-	add_tm SWORDS_DANCE ;filler
+	add_tm FOCUS_BLAST
 	add_tm HIDDEN_POWER
 	add_tm SUNNY_DAY
-	add_tm DOUBLE_EDGE ;filler
-	add_tm POISON_JAB ;filler
+	add_tm EARTH_POWER
+	add_tm WILLOWISP
 	add_tm BLIZZARD
 	add_tm HYPER_BEAM
 	add_tm ICY_WIND
 	add_tm PROTECT
 	add_tm RAIN_DANCE
 	add_tm GIGA_DRAIN
-	add_tm ENDURE
-	add_tm ROCK_POLISH ;filler
+	add_tm FLARE_BLITZ
+	add_tm WILD_CHARGE
 	add_tm SOLARBEAM
-	add_tm IRON_TAIL
-	add_tm DRAGONBREATH
+	add_tm FLASH_CANNON
+	add_tm DRAGON_PULSE
 	add_tm THUNDER
 	add_tm EARTHQUAKE
 	add_tm RETURN
@@ -224,26 +224,26 @@
 	const ITEM_DC
 	add_tm PSYCHIC
 	add_tm SHADOW_BALL
-	add_tm MUD_SLAP
+	add_tm SKY_ATTACK
 	add_tm DOUBLE_TEAM
-	add_tm ICE_PUNCH
+	add_tm SHADOW_CLAW
 	add_tm SWAGGER
 	add_tm SLEEP_TALK
 	add_tm SLUDGE_BOMB
 	add_tm SANDSTORM
 	add_tm FIRE_BLAST
-	add_tm SWIFT
-	add_tm DEFENSE_CURL
-	add_tm THUNDERPUNCH
-	add_tm DREAM_EATER
-	add_tm DAZZLINGLEAM ; filler
+	add_tm GUNK_SHOT
+	add_tm SEISMIC_TOSS
+	add_tm SWORDS_DANCE
+	add_tm STRING_SHOT
+	add_tm DARK_PULSE
 	add_tm REST
 	add_tm ATTRACT
 	add_tm THIEF
-	add_tm STEEL_WING
-	add_tm FIRE_PUNCH
+	add_tm THUNDER_WAVE
+	add_tm ROCK_SLIDE
 	add_tm FURY_CUTTER
-	add_tm NIGHTMARE
+	add_tm SUBSTITUTE
 NUM_TMS = const_value - TM01 - 2
 
 	add_hm CUT
@@ -259,6 +259,9 @@ NUM_HMS = const_value - HM01
 	add_mt FLAMETHROWER
 	add_mt THUNDERBOLT
 	add_mt ICE_BEAM
+	add_mt ICE_PUNCH
+	add_mt THUNDERPUNCH
+	add_mt FIRE_PUNCH
 
 
 
