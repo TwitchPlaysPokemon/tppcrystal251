@@ -537,9 +537,6 @@ MapGroup28:
 	map_header SeafoamIslandsB1F, $1d, 4, SEAFOAM_ISLANDS, MUSIC_MT_MOON, 1, 2, 1
 	map_header SeafoamIslandsB2F, $1d, 4, SEAFOAM_ISLANDS, MUSIC_MT_MOON, 1, 2, 1
 	map_header SeafoamIslandsB3F, $1d, 4, SEAFOAM_ISLANDS, MUSIC_MT_MOON, 1, 2, 1
-	map_header PhanceroRuinsB1F, $1a, 7, RUINS_OF_ALPH, MUSIC_RUINS_OF_ALPH_INTERIOR, 1, 1, 1
-	map_header PhanceroRuinsB2F, $1a, 7, RUINS_OF_ALPH, MUSIC_RUINS_OF_ALPH_INTERIOR, 1, 1, 1
-	map_header PhanceroRuinsB3F, $1a, 7, RUINS_OF_ALPH, MUSIC_RUINS_OF_ALPH_INTERIOR, 1, 1, 1
 	map_header TohjoFallsBackRoom, $18, 4, TOHJO_FALLS, MUSIC_UNION_CAVE, 1, 2, 3
 	map_header CeladonDeptStoreB1F, $c, 3, CELADON_CITY, MUSIC_MART, 0, 1, 1
 	map_header SilverCaveDreamRoom, $18, 3, SILVER_CAVE, MUSIC_NONE, 1, 1, 3

@@ -1,6 +1,6 @@
 	db GOLDEEN ; 118
 
-	db $37, $4d, $46, 63, 50, 50
+	db  55,  77,  70,  63,  35,  50
 	;   hp  atk  def  spd  sat  sdf
 
 	db WATER, WATER
@@ -19,4 +19,5 @@
 
 	; tmhm
 	tmhm CURSE, TOXIC, HIDDEN_POWER,   BLIZZARD, ICY_WIND, PROTECT, RAIN_DANCE, RETURN, DOUBLE_TEAM, SWAGGER, SLEEP_TALK, REST, ATTRACT, FURY_CUTTER, SUBSTITUTE, SURF, WATERFALL, ICE_BEAM
+
 	; end

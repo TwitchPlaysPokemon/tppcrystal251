@@ -36,12 +36,6 @@ CinnabarVolcanoB3F_Bld34_BlockData:
 	INCBIN "maps/CinnabarVolcanoB3F_Bld34.blk"
 CinnabarVolcanoB3F_Bld4_BlockData:
 	INCBIN "maps/CinnabarVolcanoB3F_Bld4.blk"
-PhanceroRuinsB1F_BlockData:
-	INCBIN "maps/PhanceroRuinsB1F.blk"
-PhanceroRuinsB2F_BlockData:
-	INCBIN "maps/PhanceroRuinsB2F.blk"
-PhanceroRuinsB3F_BlockData:
-	INCBIN "maps/PhanceroRuinsB3F.blk"
 TohjoFallsBackRoom_BlockData:
 	INCBIN "maps/TohjoFallsBackRoom.blk"
 BattleTentPCRoom_BlockData:

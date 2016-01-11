@@ -18,5 +18,5 @@
 	dn INSECT, INSECT ; egg groups
 
 	; tmhm
-	tmhm STRING_SHOT,
+	tmhm STRING_SHOT
 	; end

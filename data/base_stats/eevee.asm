@@ -1,6 +1,7 @@
 	db EEVEE ; 133
 
-	db 55, 55, 50, 55, 65, 65
+
+	db 55, 55, 50, 55, 45, 65
 	;   hp  atk  def  spd  sat  sdf
 
 	db NORMAL, NORMAL
@@ -19,4 +20,5 @@
 
 	; tmhm
 	tmhm CURSE, BODY_SLAM, TOXIC, HIDDEN_POWER, SUNNY_DAY, PROTECT, RAIN_DANCE, RETURN, DIG, SHADOW_BALL, DOUBLE_TEAM, SWAGGER, SLEEP_TALK, REST, ATTRACT, SUBSTITUTE, 
+
 	; end

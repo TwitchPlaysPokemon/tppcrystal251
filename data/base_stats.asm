@@ -752,7 +752,3 @@ INCLUDE "data/base_stats/ho_oh.asm"
 
 CelebiBaseData:: ; 0x53364
 INCLUDE "data/base_stats/celebi.asm"
-
-PhanceroBaseData::
-INCLUDE "data/base_stats/phancero.asm"
-

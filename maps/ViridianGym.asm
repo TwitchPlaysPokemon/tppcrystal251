@@ -268,7 +268,7 @@ ViridianGymGuyText: ; 0x9acee
 	line "a guy who battled"
 
 	para "the CHAMPION three"
-	line "years ago."
+	line "months ago."
 
 	para "He's no pushover."
 

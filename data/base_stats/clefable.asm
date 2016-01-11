@@ -1,6 +1,6 @@
 	db CLEFABLE ; 036
 
-	db 95, 70, 73, 60, 85, 85
+	db 95, 70, 73, 60, 95, 90
 	;   hp  atk  def  spd  sat  sdf
 
 	db FAIRY_T, FAIRY_T

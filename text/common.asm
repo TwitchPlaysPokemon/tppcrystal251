@@ -127,6 +127,14 @@ UnknownText_0x1b02d6: ; 0x1b02d6
 	done
 ; 0x1b035a
 
+NoPokemonHealText:
+	text "I'm sorry. You"
+	line "need to have a"
+
+	para "#MON in order to"
+	line "use this service."
+	done
+
 UnknownText_0x1b035a: ; 0x1b035a
 	text "It's full of"
 	line "difficult books."

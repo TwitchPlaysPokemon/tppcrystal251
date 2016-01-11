@@ -1,6 +1,6 @@
 	db DODRIO ; 085
 
-	db $50, 110, 70, 100, $50, $50
+	db  80, 110, 70,  100,  80, 80
 	;   hp  atk  def  spd  sat  sdf
 
 	db NORMAL, FLYING
@@ -19,4 +19,5 @@
 
 	; tmhm
 	tmhm CURSE, BODY_SLAM, TOXIC, HIDDEN_POWER, SUNNY_DAY, HYPER_BEAM, PROTECT, RETURN, DOUBLE_TEAM, SWAGGER, SLEEP_TALK, REST, ATTRACT, THIEF, SUBSTITUTE, FLY,
+
 	; end

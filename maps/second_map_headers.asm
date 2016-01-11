@@ -635,10 +635,6 @@
 	map_header_2 SeafoamIslandsB2F, SEAFOAM_ISLANDS_B2F, $9, NONE
 	map_header_2 SeafoamIslandsB3F, SEAFOAM_ISLANDS_B3F, $9, NONE
 	
-	map_header_2 PhanceroRuinsB1F, PHANCERO_RUINS_B1F, $0, NONE
-	map_header_2 PhanceroRuinsB2F, PHANCERO_RUINS_B2F, $0, NONE
-	map_header_2 PhanceroRuinsB3F, PHANCERO_RUINS_B2F, $0, NONE
-	
 	map_header_2 TohjoFallsBackRoom, TOHJO_FALLS_BACK_ROOM, $9, NONE ; 0x95b94
 	map_header_2 CeladonDeptStoreB1F, CELADON_DEPT_STORE_B1F, $0, NONE
 	map_header_2 SilverCaveDreamRoom, SILVER_CAVE_DREAM_ROOM, $9, NONE ; 0x95b40

@@ -20,21 +20,12 @@ GrampsScript_0x1a9a4c: ; 0x1a9a4c
 	loadfont
 	writetext UnknownText_0x1a9aa5
 	yesorno
-	iffalse UnknownScript_0x1a9a5b
+	iffalse GrampsScript_ShowCatchingVideo
 	writetext UnknownText_0x1a9b6f
 	waitbutton
 	closetext
 	end
 ; 0x1a9a5b
-
-UnknownScript_0x1a9a5b: ; 0x1a9a5b
-	checkevent EVENT_PHANCERO_AVAILABLE
-	iftrue GrampsScript_ShowCatchingVideo
-	writetext UnknownText_0x1a9bb7
-	waitbutton
-	closetext
-	end
-; 0x1a9a61
 
 GrampsScript_ShowCatchingVideo:
 	writetext GrampsText_IntroCatchingVideo
@@ -42,10 +33,8 @@ GrampsScript_ShowCatchingVideo:
 	closetext
 	loadpokedata WEEDLE, 5
 	catchtutorial BATTLETYPE_TUTORIAL
-	; catchtutorial BATTLETYPE_TUTORIAL
 	loadfont
 	writetext GrampsText_AfterCatchingVideo
-	setevent EVENT_CAN_GET_PHANCERO
 	waitbutton
 	closetext
 	end

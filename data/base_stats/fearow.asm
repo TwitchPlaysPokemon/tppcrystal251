@@ -1,6 +1,6 @@
 	db FEAROW ; 022
 
-	db $54, $64, 65, $78, $47, $47
+	db 84, 100,  65,  120, 71,  71
 	;   hp  atk  def  spd  sat  sdf
 
 	db NORMAL, FLYING
@@ -19,4 +19,5 @@
 
 	; tmhm
 	tmhm CURSE, BODY_SLAM, TOXIC, HIDDEN_POWER, SUNNY_DAY, HYPER_BEAM, PROTECT, RAIN_DANCE, RETURN, SKY_ATTACK, DOUBLE_TEAM, SWAGGER, SLEEP_TALK, REST, ATTRACT, THIEF, SUBSTITUTE, FLY,
+
 	; end

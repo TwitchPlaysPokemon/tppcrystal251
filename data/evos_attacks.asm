@@ -74,10 +74,10 @@ CharmanderEvosAttacks:
 	db 0 ; no more evolutions
 	db 1,SCRATCH
 	db 3,GROWL
-	db 6,FIRE_SPIN
+	db 6,EMBER
 	db 9,METAL_CLAW
 	db 12,SMOKESCREEN
-	db 15,EMBER
+	db 15,FIRE_SPIN
 	db 18,SCARY_FACE
 	db 22,BITE
 	db 26,DRAGON_RAGE
@@ -95,7 +95,7 @@ CharmeleonEvosAttacks:
 	db 1,GROWL
 	db 1,METAL_CLAW
 	db 1,SMOKESCREEN
-	db 1,EMBER
+	db 1,FIRE_SPIN
 	db 20,SCARY_FACE
 	db 24,BITE
 	db 28,DRAGON_RAGE
@@ -114,7 +114,7 @@ CharizardEvosAttacks:
 	db 1,WING_ATTACK ; *
 	db 1,DRAGON_RAGE
 	db 1,BITE
-	db 1,EMBER ; tm move
+	db 1,FIRE_SPIN
 	db 36, WING_ATTACK ; *
 	db 40,ANCIENTPOWER ; egg move
 	db 44,FIRE_PUNCH ; tm move

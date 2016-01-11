@@ -445,7 +445,7 @@ SkipBonLvl
 	jr c, QuitWithA1
 	ld a, b
 	cp UNOWN
-	jr nz, .asm_2a1bf ;check for unown, is unkown do special case for unlocked unowns, otherwise jump down
+	jr nz, .asm_2a1bf ;if unkown do special case for unlocked unowns, otherwise jump down
 	ld a, [UnlockedUnowns] ;if no unown unlocked, no encounter
 	and a
 	jr z, QuitWithA1
@@ -758,9 +758,9 @@ AddVariance: ;add level variance and ensure it is between 2 and 100. accepts num
 	inc b
 .asm_2a1aa
 	ld a, b ; load level back into a
-	cp 2 ;If level is less then 2, set it to 2
+	cp 1 ;If level is less then 1, set it to 1
 	jr nc, .Pass
-	ld b, 2
+	ld b, 1
 	;pop bc
 	ret
 

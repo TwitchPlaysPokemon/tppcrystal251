@@ -1,6 +1,6 @@
 	db PIDGEOT ; 018
 
-	db $54, $5a, $5f, $5b, $50, $50
+	db 84,  90,  95,  101,  80, 80 
 	;   hp  atk  def  spd  sat  sdf
 
 	db NORMAL, FLYING
@@ -18,5 +18,6 @@
 	dn AVIAN, AVIAN ; egg groups
 
 	; tmhm
+
 	tmhm CURSE, TOXIC, HIDDEN_POWER, SUNNY_DAY, HYPER_BEAM, PROTECT, RAIN_DANCE, RETURN, SKY_ATTACK, DOUBLE_TEAM, SWAGGER, SLEEP_TALK, REST, ATTRACT, THIEF, SUBSTITUTE, FLY,
 	; end

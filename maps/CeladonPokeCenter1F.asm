@@ -93,7 +93,7 @@ UnknownText_0x71ec1: ; 0x71ec1
 	line "GAME CORNER."
 
 	para "Oh, wait. That was"
-	line "three years ago."
+	line "three months ago."
 	done
 ; 0x71f22
 
