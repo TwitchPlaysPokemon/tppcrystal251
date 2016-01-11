@@ -18,9 +18,5 @@
 	dn INSECT, INSECT ; egg groups
 
 	; tmhm
-<<<<<<< HEAD
 	tmhm STRING_SHOT,
-=======
-	tmhm
->>>>>>> upstream/master
 	; end

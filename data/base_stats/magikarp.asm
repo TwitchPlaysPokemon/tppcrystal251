@@ -1,10 +1,6 @@
 	db MAGIKARP ; 129
 
-<<<<<<< HEAD
-	db 20, 10, 55, 80, 20, 20
-=======
-	db 20, 10, 55, 80, 20, 26
->>>>>>> upstream/master
+	db 20, 10, 55, 80, 15, 20
 	;   hp  atk  def  spd  sat  sdf
 
 	db WATER, WATER
