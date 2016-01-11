@@ -1,0 +1,2 @@
+BEESAFREE EQU 1
+INCLUDE "home.asm"

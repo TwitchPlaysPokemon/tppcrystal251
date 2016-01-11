@@ -41,7 +41,23 @@ data/pokedex/entries_crystal.o \
 misc/crystal_misc.o \
 gfx/pics.o
 
-all_obj := $(crystal_obj) crystal11.o wram11.o
+beesafree_obj := \
+wram_ai.o \
+main_ai.o \
+lib/mobile/main_ai.o \
+home_ai.o \
+audio_ai.o \
+maps_crystal_ai.o \
+engine/events_crystal_ai.o \
+engine/credits_crystal_ai.o \
+data/egg_moves_crystal_ai.o \
+data/evos_attacks_crystal_ai.o \
+data/pokedex/entries_crystal_ai.o \
+misc/crystal_misc_ai.o \
+gfx/pics_ai.o
+
+
+all_obj := $(crystal_obj) crystal11.o wram11.o $(beesafree_obj)
 
 # object dependencies
 $(foreach obj, $(all_obj), \
@@ -54,6 +70,7 @@ roms := pokecrystal.gbc
 all: $(roms)
 crystal: pokecrystal.gbc
 crystal11: pokecrystal11.gbc
+beesafree: pokecrystal_ai.gbc
 
 clean:
 	rm -f $(roms) $(all_obj) $(roms:.gbc=.map) $(roms:.gbc=.sym)
@@ -71,6 +88,11 @@ pokecrystal11.gbc: $(crystal11_obj)
 pokecrystal.gbc: $(crystal_obj)
 	rgblink -n $*.sym -m $*.map -o $@ $^
 	rgbfix -Cjv -i BORT -k 01 -l 0x33 -m 0x10 -p 0 -r 3 -t TPPCRYSTAL $@
+
+pokecrystal_ai.gbc: $(beesafree_obj)
+	rgblink -n $*.sym -m $*.map -o $@ $^
+	rgbfix -Cjv -i BORT -k 01 -l 0x33 -m 0x10 -p 0 -r 3 -t TPPCRYSTAL $@
+
 
 
 %.2bpp: %.png ; $(gfx) 2bpp $<
