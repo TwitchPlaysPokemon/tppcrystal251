@@ -2027,114 +2027,90 @@ _Multiply:: ; 66de
 ; 673e
 
 _Divide:: ; 673e
-	xor a
-	ld [hMathBuffer + 0], a
-	ld [hMathBuffer + 1], a
-	ld [hMathBuffer + 2], a
-	ld [hMathBuffer + 3], a
-	ld [hMathBuffer + 4], a
-	
-	ld a, 9
-	ld e, a
-
-.loop
-	ld a, [hMathBuffer + 0]
-	ld c, a
-	ld a, [hDividend + 1]
-	sub c
-	ld d, a
-
+	push hl
 	ld a, [hDivisor]
-	ld c, a
-	ld a, [hDividend + 0]
-	sbc c
-	jr c, .next
-
-	ld [hDividend + 0], a
-
-	ld a, d
-	ld [hDividend + 1], a
-
-	ld a, [hMathBuffer + 4]
-	inc a
-	ld [hMathBuffer + 4], a
-
-	jr .loop
-
-.next
+	and a
+	jp z, .div0
+	ld d, a
+	ld c, hDividend % $100
+	ld e, 0
+	ld l, e
+.loop
+	push bc
+	ld b, 8
+	ld a, [$ff00+c]
+	ld h, a
+	ld l, 0
+.loop2
+	sla h
+	rl e
+	ld a, e
+	jr c, .carry
+	cp d
+	jr c, .skip
+.carry
+	sub d
+	ld e, a
+	inc l
+.skip
 	ld a, b
 	cp 1
 	jr z, .done
-
-	ld a, [hMathBuffer + 4]
-	add a
-	ld [hMathBuffer + 4], a
-	
-	ld a, [hMathBuffer + 3]
-	rla
-	ld [hMathBuffer + 3], a
-
-	ld a, [hMathBuffer + 2]
-	rla
-	ld [hMathBuffer + 2], a
-
-	ld a, [hMathBuffer + 1]
-	rla
-	ld [hMathBuffer + 1], a
-
-	dec e
-	jr nz, .next2
-
-	ld e, 8
-	ld a, [hMathBuffer + 0]
-	ld [hDivisor], a
-	xor a
-	ld [hMathBuffer + 0], a
-
-	ld a, [hDividend + 1]
-	ld [hDividend + 0], a
-
-	ld a, [hDividend + 2]
-	ld [hDividend + 1], a
-
-	ld a, [hDividend + 3]
-	ld [hDividend + 2], a
-
-.next2
-	ld a, e
-	cp 1
-	jr nz, .okay
+	sla l
 	dec b
-
-.okay
-	ld a, [hDivisor]
-	srl a
-	ld [hDivisor], a
-
-	ld a, [hMathBuffer + 0]
-	rr a
-	ld [hMathBuffer + 0], a
-
-	jr .loop
-
+	jr .loop2
 .done
-	ld a, [hDividend + 1]
-	ld [hDivisor], a
-
-	ld a, [hMathBuffer + 4]
-	ld [hDividend + 3], a
-
-	ld a, [hMathBuffer + 3]
-	ld [hDividend + 2], a
+	ld a, c
+	add hMathBuffer - hDividend
+	ld c, a
+	ld a, l
+	ld [$ff00+c], a
+	pop bc
+	inc c
+	dec b
+	jr nz, .loop
 	
-	ld a, [hMathBuffer + 2]
+	xor a
+	ld [hDividend], a
 	ld [hDividend + 1], a
-	
-	ld a, [hMathBuffer + 1]
-	ld [hDividend + 0], a
-
+	ld [hDividend + 2], a
+	ld [hDividend + 3], a
+	ld a, h
+	ld [hDivisor], a ; I believe the remainder is stored here…
+	ld a, c
+	sub hDividend % $100
+	ld b, a
+	ld a, c
+	add hMathBuffer - hDividend - 1
+	ld c, a
+	ld a, [$ff00+c]
+	ld [hDividend + 3], a
+	dec b
+	ret z
+	dec c
+	ld a, [$ff00+c]
+	ld [hDividend + 2], a
+	dec b
+	ret z
+	dec c
+	ld a, [$ff00+c]
+	ld [hDividend + 1], a
+	dec b
+	ret z
+	dec c
+	ld a, [$ff00+c]
+	ld [hDividend], a
+	pop hl
 	ret
-; 67c1
+	
+.div0 ; OH SHI-
+	ld a, $ff
+	ld [hDividend], a
+	ld [hDividend + 1], a
+	ld [hDividend + 2], a
+	ld [hDividend + 3], a
+	pop hl
+	ret
 ; 67c1
 
 ItemAttributes: ; 67c1
