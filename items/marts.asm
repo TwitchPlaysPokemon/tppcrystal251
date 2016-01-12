@@ -510,7 +510,7 @@ TmDepot6:
 	db TM_STEEL_WING
 	db TM_FIRE_PUNCH
 	db TM_FURY_CUTTER
-	db TM_NIGHTMARE
+	db TM_SUBSTITUTE
 	db $ff
 
 DefaultMart: ; 16214

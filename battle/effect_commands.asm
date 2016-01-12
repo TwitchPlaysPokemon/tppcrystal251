@@ -8114,7 +8114,7 @@ BattleCommand27: ; 36cb2
 	ld a, [LastEnemyMove]
 .asm_36cbd
 	cp STRUGGLE ;handle struggle seperatly
-	jr z, .Struggle
+	jp z, .Struggle
 	cp DOUBLE_EDGE
 	jr z, .ThirdRecoil
 	cp FLAREBLITZ
