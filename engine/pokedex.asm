@@ -1136,9 +1136,9 @@ Unknown_407e1: ; 407e1
 Unknown_407e6: ; 407e6
 	db "OWN", $ff
 Unknown_407ea: ; 407ea
-	db $3b, $48, $49, $4a, $44, $45, $46, $47, $3c ; SELECT > OPTION
+	db $3b, $48, $49, $4a, $44, $45, $46, $47 ; SELECT > OPTION
 Unknown_407f2: ; 407f2
-	db $3b, $41, $42, $43, $4b, $4c, $4d, $4e, $3c, $ff ; START > SEARCH
+	db $3c, $3b, $41, $42, $43, $4b, $4c, $4d, $4e, $ff ; START > SEARCH
 ; 407fd
 
 Function407fd: ; 407fd
@@ -1835,7 +1835,7 @@ Function40f4f: ; 40f4f (10:4f4f)
 	dec [hl]
 	jr .asm_40f82
 .asm_40f80
-	ld [hl], $11
+	ld [hl], $12
 .asm_40f82
 	scf
 	ret
@@ -1847,7 +1847,7 @@ Function40f84: ; 40f84
 	jr nz, .asm_40f99
 	ld hl, wc7d5
 	ld a, [hl]
-	cp $11
+	cp $12
 	jr nc, .asm_40f95
 	inc [hl]
 	jr .asm_40fa6
@@ -1857,7 +1857,7 @@ Function40f84: ; 40f84
 .asm_40f99
 	ld hl, wc7d6
 	ld a, [hl]
-	cp $11
+	cp $12
 	jr nc, .asm_40fa4
 	inc [hl]
 	jr .asm_40fa6
@@ -1924,6 +1924,7 @@ Strings_40fe4: ; 40fe4
 	db " DRAGON @"
 	db "  DARK  @"
 	db " STEEL  @"
+	db " FAIRY  @"
 ; 41086
 
 Function41086: ; 41086
@@ -2019,6 +2020,7 @@ Unknown_410f6: ; 410f6
 	db DRAGON
 	db DARK
 	db STEEL
+	db FAIRY_T
 ; 41107
 
 Function41107: ; 41107
