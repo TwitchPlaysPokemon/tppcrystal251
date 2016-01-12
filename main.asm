@@ -1968,85 +1968,61 @@ CheckNickErrors:: ; 669f
 
 _Multiply:: ; 66de
 ; hMultiplier is one byte.
-	ld a, 8
-	ld b, a
-
-	xor a
+	push de
+	push hl
+	ld a, [hMultiplier]
+	cp 1
+	jr z, .skip
+	and a
+	jr nz, .skip2
 	ld [hProduct], a
-	ld [hMathBuffer + 1], a
-	ld [hMathBuffer + 2], a
-	ld [hMathBuffer + 3], a
-	ld [hMathBuffer + 4], a
-
+	ld [hProduct + 1], a
+	ld [hProduct + 2], a
+	ld [hProduct + 3], a
+	jr .skip
+.skip2
+	ld c, a
+	ld a, [hMultiplicand]
+	ld e, a
+	ld a, [hMultiplicand + 1]
+	ld h, a
+	ld a, [hMultiplicand + 2]
+	ld l, a
+	xor a
+	ld d, a
+	ld [hProduct], a
+	ld [hProduct + 1], a
+	ld [hProduct + 2], a
+	ld [hProduct + 3], a
+	ld b, 8
 
 .loop
-	ld a, [hMultiplier]
-	srl a
-	ld [hMultiplier], a
+	srl c
 	jr nc, .next
 
-	ld a, [hMathBuffer + 4]
-	ld c, a
-	ld a, [hMultiplicand + 2]
-	add c
-	ld [hMathBuffer + 4], a
-
-	ld a, [hMathBuffer + 3]
-	ld c, a
-	ld a, [hMultiplicand + 1]
-	adc c
-	ld [hMathBuffer + 3], a
-
-	ld a, [hMathBuffer + 2]
-	ld c, a
-	ld a, [hMultiplicand + 0]
-	adc c
-	ld [hMathBuffer + 2], a
-
-	ld a, [hMathBuffer + 1]
-	ld c, a
+	ld a, [hProduct + 3]
+	add l
+	ld [hProduct + 3], a
+	ld a, [hProduct + 2]
+	adc h
+	ld [hProduct + 2], a
+	ld a, [hProduct + 1]
+	adc e
+	ld [hProduct + 1], a
 	ld a, [hProduct]
-	adc c
-	ld [hMathBuffer + 1], a
-
-.next
-	dec b
-	jr z, .done
-
-; hMultiplicand <<= 1
-
-	ld a, [hMultiplicand + 2]
-	add a
-	ld [hMultiplicand + 2], a
-
-	ld a, [hMultiplicand + 1]
-	rla
-	ld [hMultiplicand + 1], a
-
-	ld a, [hMultiplicand + 0]
-	rla
-	ld [hMultiplicand + 0], a
-
-	ld a, [hProduct]
-	rla
+	adc d
 	ld [hProduct], a
 
-	jr .loop
-
-
-.done
-	ld a, [hMathBuffer + 4]
-	ld [hProduct + 3], a
-
-	ld a, [hMathBuffer + 3]
-	ld [hProduct + 2], a
-
-	ld a, [hMathBuffer + 2]
-	ld [hProduct + 1], a
-
-	ld a, [hMathBuffer + 1]
-	ld [hProduct + 0], a
-
+.next
+	sla l
+	rl h
+	rl e
+	rl d
+	dec b
+	jr nz, .loop
+.skip
+	pop hl
+	pop de
 	ret
 ; 673e
 
