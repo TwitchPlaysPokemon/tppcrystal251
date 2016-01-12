@@ -15,6 +15,7 @@ BEESAFREE_LSC_COMPLETED     = 0x00
 
 BEESAFREE_SND_RESET         = 0x00
 BEESAFREE_SND_ASKMOVE       = 0x01
+BEESAFREE_SND_ASKITEM       = 0x02
 
 BEESAFREE_RES_RESET         = 0x00
 
@@ -35,7 +36,7 @@ function handletransfer()
 		dis = memory.readbyte(EnemyDisabledMove)
 		for t = 0,3 do
 			tt = memory.readbyte(EnemyMonMoves + t)
-			pp = memory.readbyte(EnemyMonPP + t)
+			pp = (memory.readbyte(EnemyMonPP + t)) & 0x3f -- Upper two bits are the PP Up counters
 			if tt ~= 0 and tt ~= dis and pp >= 0 then
 				table.insert(usablemoves, t)
 			end

@@ -698,7 +698,7 @@ Rival1Group:
 	db 0 ; normal
 
 	; party
-	db 7, CHIKORITA
+	db 20, CHIKORITA
 
 	db $ff ; end
 
@@ -709,7 +709,7 @@ Rival1Group:
 	db 0 ; normal
 
 	; party
-	db 7, CYNDAQUIL
+	db 20, CYNDAQUIL
 
 	db $ff ; end
 
@@ -720,7 +720,7 @@ Rival1Group:
 	db 0 ; normal
 
 	; party
-	db 7, TOTODILE
+	db 20, TOTODILE
 
 	db $ff ; end
 

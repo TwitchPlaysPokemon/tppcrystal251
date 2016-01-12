@@ -6404,7 +6404,7 @@ UnknownText_0xd0ae: ; 0xd0ae
 ; 0xd0b3
 
 Functiond0b3: ; d0b3
-	call Functiond0bc
+	; call Functiond0bc
 	and $7f
 	ld [wd0ec], a
 	ret
@@ -6425,6 +6425,9 @@ Functiond0bc: ; d0bc
 	ld de, UnknownScript_0xd14e
 	call Functiond119
 	call Function31cd
+	ld a, [wMapMusic]
+	cp MUSIC_VICTORY_ROAD
+	jr z, .done
 	xor a
 	ld [MusicFade], a
 	ld de, MUSIC_NONE
@@ -6435,6 +6438,7 @@ Functiond0bc: ; d0bc
 	ld a, e
 	ld [wMapMusic], a
 	call PlayMusic
+.done
 	ld a, $1
 	ret
 
@@ -33513,7 +33517,6 @@ RoamMaps: ; 2a40f
 
 RandomPhoneMon: ; 2a567
 ; Get a random monster owned by the trainer who's calling.
-
 	callba Function90439
 	ld hl, TrainerGroups
 	ld a, d
@@ -33523,13 +33526,15 @@ RandomPhoneMon: ; 2a567
 	add hl, bc
 	add hl, bc
 	add hl, bc
-	ld a, [hli]
+	ld a, BANK(TrainerGroups)
+	call GetFarByte2
+	ld [wd002], a
 	call GetFarHalfword
 .skip_trainer
 	dec e
 	jr z, .skipped
 .skip
-	ld a, BANK(Trainers)
+	ld a, [wd002]
 	call GetFarByte2
 	cp -1
 	jr nz, .skip
@@ -33537,29 +33542,37 @@ RandomPhoneMon: ; 2a567
 
 .skipped
 .skip_name
-	ld a, BANK(Trainers)
+	ld a, [wd002]
 	call GetFarByte2
 	cp "@"
 	jr nz, .skip_name
-	ld a, BANK(Trainers)
+	ld a, [wd002]
 	call GetFarByte2
 	ld bc, 2
-	cp 0
+	bit TRAINERTYPE_MOVES, a
+	jr z, .no_moves
+	push af
+	ld a, NUM_MOVES
+	add c
+	ld c, a
+	pop af
+.no_moves
+	bit TRAINERTYPE_ITEM, a
+	jr z, .no_item
+	inc c
+.no_item
+	bit TRAINERTYPE_NICKNAME, a
 	jr z, .got_mon_length
-	ld bc, 2 + NUM_MOVES
-	cp 1
-	jr z, .got_mon_length
-	ld bc, 2 + 1
-	cp 2
-	jr z, .got_mon_length
-	ld bc, 2 + 1 + NUM_MOVES
+	ld a, PKMN_NAME_LENGTH
+	add c
+	ld c, a
 .got_mon_length
 	ld e, 0
 	push hl
 .count_mon
 	inc e
 	add hl, bc
-	ld a, BANK(Trainers)
+	ld a, [wd002]
 	call GetFarByte
 	cp -1
 	jr nz, .count_mon
@@ -33578,7 +33591,7 @@ RandomPhoneMon: ; 2a567
 
 .got_mon
 	inc hl ; species
-	ld a, BANK(Trainers)
+	ld a, [wd002]
 	call GetFarByte
 	ld [wd265], a
 	call GetPokemonName
@@ -35923,7 +35936,7 @@ Function421f5: ; 421f5
 	jr z, Function421f5
 	ld b, a
 	cp EVOLVE_TRADE
-	jr z, .trade
+	jp z, .trade
 	ld a, [wLinkMode]
 	and a
 	jp nz, .DontEvolve2
@@ -35967,6 +35980,9 @@ Function421f5: ; 421f5
 	jp .GoAheadAndEvolve
 
 .happiness
+	ld a, [StatusFlags]
+	bit 7, a
+	jp z, .DontEvolve2
 	ld a, [TempMonHappiness]
 	cp 220
 	jp c, .DontEvolve2
@@ -49047,6 +49063,9 @@ Function50e1b: ; 50e1b
 Function50e47: ; 50e47
 ;d = level
 ; (a/b)*n**3 + c*n**2 + d*n - e
+	ld a, d
+	cp 2
+	jp c, .zero_exp
 	ld a, [BaseGrowthRate]
 	add a
 	add a
@@ -49173,7 +49192,14 @@ Function50e47: ; 50e47
 	ld [hMultiplicand + 2], a
 	ld [hMultiplier], a
 	jp Multiply
-; 50efa
+
+.zero_exp
+	xor a
+	ld hl, hMultiplicand
+	ld [hli], a
+	ld [hli], a
+	ld [hl], a
+	ret
 
 GrowthRates: ; 50efa
 growth_rate: MACRO
