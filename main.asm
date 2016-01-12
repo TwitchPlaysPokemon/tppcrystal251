@@ -33468,7 +33468,7 @@ RandomPhoneMon: ; 2a567
 ; Get a random monster owned by the trainer who's calling.
 	push af
 	callba GetRematchTrainer
-	jr nc, .okay_pop
+	jr c, .okay_pop
 	pop af
 	callba Function90439
 	jr .okay

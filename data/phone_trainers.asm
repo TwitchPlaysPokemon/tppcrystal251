@@ -2,23 +2,28 @@ GetRematchTrainer:
 	ld hl, RematchCallers
 	ld de, 3
 	call IsInArray
-	ret c
+	ret nc
 	inc hl
+	; load pointer
 	ld a, [hli]
 	ld h, [hl]
 	ld l, a
+	; load rematch index pointer into bc
 	ld a, [hli]
 	ld c, a
 	ld a, [hli]
 	ld b, a
+	; load trainer class into d
 	ld a, [hli]
 	ld d, a
+	; use the rematch index to look up the trainer id and load it into e
 	ld a, [bc]
 	ld c, a
 	ld b, 0
 	add hl, bc
 	ld e, [hl]
-	and a
+	; set carry
+	scf
 	ret
 
 RematchCallers:
