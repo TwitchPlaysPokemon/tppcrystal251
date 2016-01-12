@@ -505,8 +505,8 @@
 	dbw BANK(HoOhBackpic)         - $36, HoOhBackpic
 	dbw BANK(CelebiFrontpic)      - $36, CelebiFrontpic
 	dbw BANK(CelebiBackpic)       - $36, CelebiBackpic
-	dbw BANK(PhanceroFrontpic)    - $36, PhanceroFrontpic
-	dbw BANK(PhanceroBackpic)     - $36, PhanceroBackpic
+	dbw                             $ff, $ffff ; unused
+	dbw                             $ff, $ffff ; unused
 	dbw BANK(EggPic)              - $36, EggPic
 	dbw                             $ff, $ffff ; unused
 

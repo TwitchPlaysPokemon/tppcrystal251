@@ -1,122 +1,5 @@
 INCLUDE "includes.asm"
-
-flag_array: MACRO
-	ds ((\1) + 7) / 8
-ENDM
-
-box_struct_length EQU 24 + NUM_MOVES * 2
-box_struct: MACRO
-\1Species::        db
-\1Item::           db
-\1Moves::          ds NUM_MOVES
-\1ID::             dw
-\1Exp::            ds 3 ;11
-\1StatExp::
-\1HPExp::          dw
-\1AtkExp::         dw
-\1DefExp::         dw
-\1SpdExp::         dw
-\1SpcExp::         dw 
-\1DVs::            ds 2 ;23
-\1PP::             ds NUM_MOVES
-\1Happiness::      db
-\1PokerusStatus::  db
-\1CaughtData::
-\1CaughtTime::
-\1CaughtLevel::    db
-\1CaughtGender::
-\1CaughtLocation:: db
-\1Level::          db
-\1End::
-ENDM
-
-party_struct: MACRO
-	box_struct \1
-\1Status::         db
-\1Unused::         db
-\1HP::             dw
-\1MaxHP::          dw
-\1Stats:: ; big endian
-\1Attack::         dw
-\1Defense::        dw
-\1Speed::          dw
-\1SpclAtk::        dw
-\1SpclDef::        dw
-\1StatsEnd::
-ENDM
-
-battle_struct: MACRO
-\1Species::   db
-\1Item::      db
-\1Moves::     ds NUM_MOVES
-\1MovesEnd::
-\1DVs::       ds 2
-\1PP::        ds NUM_MOVES
-\1Happiness:: db
-\1Level::     db
-\1Status::    ds 2
-\1HP::        dw
-\1MaxHP::     dw
-\1Stats:: ; big endian
-\1Attack::    dw
-\1Defense::   dw
-\1Speed::     dw
-\1SpclAtk::   dw
-\1SpclDef::   dw
-\1StatsEnd::
-\1Type::
-\1Type1::     db
-\1Type2::     db
-ENDM
-
-
-channel_struct: MACRO
-; Addreses are Channel1 (c101).
-\1MusicID::           dw
-\1MusicBank::         db
-\1Flags::             db ; 0:on/off 1:subroutine 4:noise
-\1Flags2::            db ; 0:vibrato on/off 2:duty
-\1Flags3::            db ; 0:vibrato up/down
-\1MusicAddress::      dw
-\1LastMusicAddress::  dw
-                      dw
-\1NoteFlags::         db ; 5:rest
-\1Condition::         db ; conditional jumps
-\1DutyCycle::         db ; bits 6-7 (0:12.5% 1:25% 2:50% 3:75%)
-\1Intensity::         db ; hi:pressure lo:velocity
-\1Frequency:: ; 11 bits
-\1FrequencyLo::       db
-\1FrequencyHi::       db
-\1Pitch::             db ; 0:rest 1-c:note
-\1Octave::            db ; 7-0 (0 is highest)
-\1StartingOctave::    db ; raises existing octaves (to repeat phrases)
-\1NoteDuration::      db ; frames remaining for the current note
-                      ds 1 ; c117
-                      ds 1 ; c118
-\1LoopCount::         db
-\1Tempo::             dw
-\1Tracks::            db ; hi:left lo:right
-                      ds 1 ; c11d
-\1VibratoDelayCount:: db ; initialized by \1VibratoDelay
-\1VibratoDelay::      db ; number of frames a note plays until vibrato starts
-\1VibratoExtent::     db
-\1VibratoRate::       db ; hi:frames for each alt lo:frames to the next alt
-                      ds 1 ; c122
-                      ds 1 ; c123
-                      ds 1 ; c124
-                      ds 1 ; c125
-                      ds 1 ; c126
-                      ds 1 ; c127
-\1CryPitch::          dw
-                      ds 4
-\1NoteLength::        db ; frames per 16th note
-                      ds 1 ; c12f
-                      ds 1 ; c130
-                      ds 1 ; c131
-                      ds 1 ; c132
-ENDM
-
-
+INCLUDE "macros/wram.asm"
 
 SECTION "CHR0", VRAM [$8000], BANK [0]
 VTiles0::
@@ -343,12 +226,12 @@ wc302:: ds 1
 wc303:: ds 2
 wc305:: ds 1
 wc306:: ds 1
-wc307:: ds 1
-wc308:: ds 1
-wc309:: ds 1
-wc30a:: ds 1
-wc30b:: ds 1
-wc30c:: ds 1
+wc307:: ds 1 ;10
+wc308:: ds 1 ;18
+wc309:: ds 1 ;filled by Function115e2b
+wc30a:: ds 1 ;decide table used by Function115e2b
+wc30b:: ds 1 ;decide entry used by Function115e2b
+wc30c:: ds 1 ;filled by Function115e2b
 wc30d:: ds 1
 wc30e:: ds 1
 wc30f:: ds 1
@@ -363,11 +246,11 @@ wc317:: ds 1
 wc318:: ds 1
 wc319:: ds 1
 wc31a:: ds 1
-wc31b:: ds 1
+wc31b:: ds 1 ;text pointer to battle tower text?  something loaded in load $20 and $c3
 wc31c:: ds 1
-wc31d:: ds 1
+wc31d:: ds 1 ;bank of above text? also used to hold coords in tilemap
 wc31e:: ds 1
-wc31f:: ds 1
+wc31f:: ds 1 ;checked as an input?
 wc320:: ds 4
 wc324:: ds 34
 wc346:: ds 94
@@ -444,9 +327,9 @@ SECTION "Battle", WRAM0
 wBattle::
 
 wc608::
-wEnemyMoveStruct::  ds MOVE_LENGTH ; c608
+wEnemyMoveStruct::  move_struct wEnemyMoveStruct
 wc60f::
-wPlayerMoveStruct:: ds MOVE_LENGTH ; c60f
+wPlayerMoveStruct:: move_struct wPlayerMoveStruct
 wc616::
 EnemyMonNick::  ds PKMN_NAME_LENGTH ; c616
 BattleMonNick:: ds PKMN_NAME_LENGTH ; c621
@@ -840,7 +723,7 @@ wc72c:: ds 1
 wc72d:: ds 1
 wc72e:: ds 1
 wc72f:: ds 1
-wc730:: ds 1
+wc730:: ds 1 ;trapping turns
 wc731:: ds 1
 wc732:: ds 1
 wc733:: ds 1
@@ -1074,20 +957,20 @@ wcd42:: ds 1
 wcd43:: ds 1
 wcd44:: ds 1
 wcd45:: ds 1
-wcd46:: ds 1
+wcd46:: ds 1 ;0 if b is pressed in bt level menu
 wcd47:: ds 1
 
 BGMapPalBuffer:: ; cd48
 	ds 1 ; 40
 
-wcd49:: ds 1
-wcd4a:: ds 1
+wcd49:: ds 1 ;holds something based on trainer class
+wcd4a:: ds 1 ;holds string tables for battle tower menu and max position?
 wcd4b:: ds 1
-wcd4c:: ds 1
+wcd4c:: ds 1 ;holds bank?
 wcd4d:: ds 1
 wcd4e:: ds 1
-wcd4f:: ds 1
-wcd50:: ds 1
+wcd4f:: ds 1 ;position in battle tower level menu
+wcd50:: ds 1 ;max level of tower, before that needs to be at 1 for level menu to run?
 wcd51:: ds 1
 wcd52:: ds 1
 wcd53:: ds 1
@@ -1108,7 +991,7 @@ wcd62:: ds 1
 wcd63:: ds 1
 wcd64:: ds 1
 wcd65:: ds 1
-wcd66:: ds 1
+wcd66:: ds 1 ;7 if exiting bt level menu
 wcd67:: ds 1
 wcd68:: ds 1
 wcd69:: ds 1
@@ -1185,12 +1068,12 @@ CurSpecies:: ; cf60
 
 wcf61:: ds 2
 wcf63:: ds 1
-wcf64:: ds 1
+wcf64:: ds 1 ;battle tower current wins?
 IF !DEF(CRYSTAL11)
 wPokedexStatus::
 ENDC
-wcf65:: ds 1
-wcf66:: ds 1
+wcf65:: ds 1 ;selection in tower level menu divided by 2
+wcf66:: ds 1 ;4 if level check fails, 10 if species check fails
 
 Requested2bpp:: ; cf67
 	ds 1
@@ -1209,7 +1092,7 @@ Requested1bppDest:: ; cf6f
 wcf71:: ds 1 ;holds pointer to top of stack of menu tile data,stored in reverse.
 ;structure is, from the "top", a byte holding whether here is tile data,the location of the top of the previous stack, then the tiles of attrimap, then tile replaced in tilemap, then the menu header used to replace it
 wcf72:: ds 1
-wcf73:: ds 1
+wcf73:: ds 1 ;menu joypad
 MenuSelection:: ; cf74
 	ds 1
 
@@ -1230,7 +1113,7 @@ wcf91:: ds 1
 wcf92:: ds 1 ;number of vertical options?
 wcf93:: ds 1
 wcf94:: ds 1
-wcf95:: ds 1 ;bit 7 set = skip btton check on loop?
+wcf95:: ds 1 ;bit 7 set = skip btton check on loop? points at something to run?
 wcf96:: ds 1
 wcf97:: ds 1
 wcf98:: ds 3
@@ -1303,7 +1186,7 @@ Options:: ; cfcc
 ; bit 7: battle scene off/on
 	ds 1
 
-wcfcd:: ds 1
+wcfcd:: ds 1 ;have talked to batt;e tower receptionist once?
 
 TextBoxFrame:: ; cfce
 ; bits 0-2: textbox frame 0-7
@@ -1325,6 +1208,7 @@ Options2:: ; cfd1
 	ds 1
 
 	ds 2
+OptionsEnd::
 wcfd4:: ds 1
 wcfd5:: ds 1
 wcfd6:: ds 1
@@ -1837,19 +1721,20 @@ TimeOfDay:: ; d269
 	ds 1
 
 	ds 1
-wd26b:: ds 1
+SECTION "Enemy Party", WRAMX, BANK [1]
+OTPartyData::
+OTPlayerName::
+wd26b:: ds 1 ;trainer name?
 wd26c:: ds 1
 wd26d:: ds 4
 wd271:: ds 5
 wd276:: ds 10
 
 
-SECTION "Enemy Party", WRAMX, BANK [1]
 
 OTPartyCount::   ds 1 ; d280
 OTPartySpecies:: ds PARTY_LENGTH ; d281
 OTPartyEnd::     ds 1
-
 OTPartyMons::
 OTPartyMon1:: party_struct OTPartyMon1 ; d288
 OTPartyMon2:: party_struct OTPartyMon2 ; d2b8
@@ -1861,7 +1746,7 @@ OTPartyMonsEnd::
 
 OTPartyMonOT:: ds NAME_LENGTH * PARTY_LENGTH ; d3a8
 OTPartyMonNicknames:: ds PKMN_NAME_LENGTH * PARTY_LENGTH ; d3ea
-
+OTPartyDataEnd::
 	ds 4
 
 wd430::
@@ -1913,6 +1798,7 @@ wd466:: ds 6
 wd46c:: ds 1
 wd46d:: ds 5
 
+wCrystalData::
 PlayerGender:: ; d472
 ; bit 0:
 ;	0 male
@@ -1924,8 +1810,11 @@ wd475:: ds 1
 wd476:: ds 1
 wd477:: ds 1
 wd478:: ds 1
+wCrystalDataEnd::
 wd479:: ds 2
 
+wGameData::
+wPlayerData::
 PlayerID:: ; d47b
 	ds 2
 
@@ -2393,7 +2282,7 @@ wdc40:: ds 1
 wdc41:: ds 1
 wdc42:: ds 8
 wdc4a:: ds 1
-wdc4b:: ds 1
+wBlueCardBalance:: ds 1
 wdc4c:: ds 4
 wdc50:: ds 4
 wdc54:: ds 4
@@ -2420,6 +2309,9 @@ wdc9f:: ds 1
 wdca0:: ds 1
 wdca1:: ds 3 ; Repel step count
 wdca4:: ds 1
+
+wPlayerDataEnd::
+wMapData::
 
 VisitedSpawns:: ; dca5
 	flag_array 35
@@ -2453,11 +2345,14 @@ XCoord:: ; dcb8
 	ds 1 ; current x coordinate relative to top-left corner of current map
 
 	ds 6
+
 wdcbf:: ds 1
 	ds 23
 
-
+wMapDataEnd::
 SECTION "Party", WRAMX, BANK [1]
+
+wPokemonData::
 
 PartyCount:: ; dcd7
 	ds 1 ; number of Pokémon in party
@@ -2573,6 +2468,10 @@ wdfec:: ds 1
 	ds 3
 
 	ds 5
+
+wPokemonDataEnd::
+wGameDataEnd::
+
 wdff5:: ds 2
 wdff7:: ds 1
 wdff8:: ds 1 ; AI Control byte
@@ -2621,9 +2520,36 @@ w2_d188:: ds 1
 
 SECTION "WRAM 3", WRAMX, BANK [3]
 
-	ds $800
+w3_d000:: ds 1 ; d000
+w3_d001:: ds 1
+w3_d002::
+	ds $7e
+w3_d080::
+	ds $10
+w3_d090::
+	ds $70
 
-w3_d800:: ds 1
+w3_d100:: ; BattleTower OpponentTrainer-Data (length = 0xe0 = $a + $1 + 3*$3b + $24)
+BT_OTTrainer:: battle_tower_struct BT_OT
+; d1e0	
+	ds $20
+; d200
+BT_TrainerTextIndex:: ds 2
+w3_d202:: battle_tower_struct w3_d202
+w3_d2e2:: battle_tower_struct w3_d2e2
+w3_d3c2:: battle_tower_struct w3_d3c2
+w3_d4a2:: battle_tower_struct w3_d4a2
+w3_d582:: battle_tower_struct w3_d582
+w3_d662:: battle_tower_struct w3_d662
+w3_d742:: battle_tower_struct w3_d742
+; d822
+	ds -$22
+
+wBTChoiceOfLvlGroup::
+
+w3_d800:: ; ds BG_MAP_WIDTH * SCREEN_HEIGHT ($240)
+	ds 1
+
 
 SECTION "WRAM 4", WRAMX[$d800], BANK[$4] ; seems like this bank is unused
 
@@ -2716,25 +2642,4 @@ SECTION "WRAM 6", WRAMX, BANK [6]
 w6_d000:: ds $600
 w6_d600:: ds $600
 
-
-SECTION "Scratch", SRAM, BANK [0]
-
-
-SECTION "SRAM Bank 1", SRAM, BANK [1]
-
-SECTION "BoxMons", SRAM [$ad10], BANK [1]
-
-sBoxCount::   ds 1 ; ad10
-sBoxSpecies:: ds MONS_PER_BOX ; ad11
-	ds 1
-
-sBoxMons:: ; ad26
-sBoxMon1:: box_struct sBoxMon1
-sBoxMon2::
-	ds box_struct_length * (MONS_PER_BOX +- 1)
-
-sBoxMonOT:: ds NAME_LENGTH * MONS_PER_BOX ; afa6
-
-sBoxMonNicknames:: ds PKMN_NAME_LENGTH * MONS_PER_BOX ; b082
-sBoxMonNicknamesEnd::
-; b15e
+INCLUDE "sram.asm"

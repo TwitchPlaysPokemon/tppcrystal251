@@ -696,6 +696,8 @@
 	const BLUE_RB_4B
 	const BLUE_RB_4C
 
+	trainerclass BLUE_RB_F
+
 NUM_TRAINER_CLASSES EQU __enum__
 
 

@@ -78,7 +78,7 @@ ScriptCommandTable: ; 0x96cb1
 	dw Script_2ptjump
 	dw Script_if_equal
 	dw Script_if_not_equal
-	dw Script_iffalse
+	dw Script_iffalse ;8
 	dw Script_iftrue
 	dw Script_if_greater_than
 	dw Script_if_less_than
@@ -86,7 +86,7 @@ ScriptCommandTable: ; 0x96cb1
 	dw Script_callstd
 	dw Script_3callasm
 	dw Script_special
-	dw Script_2ptcallasm
+	dw Script_2ptcallasm ;10
 	dw Script_checkmaptriggers
 	dw Script_domaptrigger
 	dw Script_checktriggers
@@ -94,7 +94,7 @@ ScriptCommandTable: ; 0x96cb1
 	dw Script_writebyte
 	dw Script_addvar
 	dw Script_random
-	dw Script_checkver
+	dw Script_checkver ;18
 	dw Script_copybytetovar
 	dw Script_copyvartobyte
 	dw Script_loadvar
@@ -102,7 +102,7 @@ ScriptCommandTable: ; 0x96cb1
 	dw Script_writevarcode
 	dw Script_writecode
 	dw Script_giveitem
-	dw Script_takeitem
+	dw Script_takeitem ;20
 	dw Script_checkitem
 	dw Script_givemoney
 	dw Script_takemoney
@@ -110,7 +110,7 @@ ScriptCommandTable: ; 0x96cb1
 	dw Script_givecoins
 	dw Script_takecoins
 	dw Script_checkcoins
-	dw Script_addcellnum
+	dw Script_addcellnum ;28
 	dw Script_delcellnum
 	dw Script_checkcellnum
 	dw Script_checktime
@@ -118,7 +118,7 @@ ScriptCommandTable: ; 0x96cb1
 	dw Script_givepoke
 	dw Script_giveegg
 	dw Script_givepokeitem
-	dw Script_checkpokeitem
+	dw Script_checkpokeitem ;30
 	dw Script_checkevent
 	dw Script_clearevent
 	dw Script_setevent
@@ -126,7 +126,7 @@ ScriptCommandTable: ; 0x96cb1
 	dw Script_clearflag
 	dw Script_setflag
 	dw Script_wildon
-	dw Script_wildoff
+	dw Script_wildoff ;38
 	dw Script_xycompare
 	dw Script_warpmod
 	dw Script_blackoutmod
@@ -134,7 +134,7 @@ ScriptCommandTable: ; 0x96cb1
 	dw Script_readmoney
 	dw Script_readcoins
 	dw Script_RAM2MEM
-	dw Script_pokenamemem
+	dw Script_pokenamemem ;40
 	dw Script_itemtotext
 	dw Script_mapnametotext
 	dw Script_trainertotext
@@ -142,7 +142,7 @@ ScriptCommandTable: ; 0x96cb1
 	dw Script_itemnotify
 	dw Script_pocketisfull
 	dw Script_loadfont
-	dw Script_refreshscreen
+	dw Script_refreshscreen ;48
 	dw Script_closetext
 	dw Script_loadbytec1ce
 	dw Script_3writetext
@@ -150,7 +150,7 @@ ScriptCommandTable: ; 0x96cb1
 	dw Script_repeattext
 	dw Script_yesorno
 	dw Script_loadmenudata
-	dw Script_writebackup
+	dw Script_writebackup ;50
 	dw Script_jumptextfaceplayer
 IF _CRYSTAL
 	dw Script_3jumptext
@@ -161,7 +161,7 @@ ENDC
 	dw Script_pokepic
 	dw Script_closepokepic
 	dw Script_interpretmenu
-	dw Script_interpretmenu2
+	dw Script_interpretmenu2 ;58
 	dw Script_loadpikachudata
 	dw Script_battlecheck
 	dw Script_loadtrainerdata
@@ -169,7 +169,7 @@ ENDC
 	dw Script_loadtrainer
 	dw Script_startbattle
 	dw Script_returnafterbattle
-	dw Script_catchtutorial
+	dw Script_catchtutorial ;60
 	dw Script_trainertext
 	dw Script_trainerstatus
 	dw Script_winlosstext
@@ -177,7 +177,7 @@ ENDC
 	dw Script_talkaftercancel
 	dw Script_talkaftercheck
 	dw Script_setlasttalked
-	dw Script_applymovement
+	dw Script_applymovement ;68
 	dw Script_applymovement2
 	dw Script_faceplayer
 	dw Script_faceperson
@@ -185,7 +185,7 @@ ENDC
 	dw Script_disappear
 	dw Script_appear
 	dw Script_follow
-	dw Script_stopfollow
+	dw Script_stopfollow ;70
 	dw Script_moveperson
 	dw Script_writepersonxy
 	dw Script_loademote
@@ -2334,7 +2334,7 @@ Script_giveitem: ; 0x977ca
 
 	call GetScriptByte
 	cp $ff
-	jr nz, .asm_977d4 ; 0x977cf $3 ;if not ff, load into scriptvar
+	jr nz, .asm_977d4 ; 0x977cf $3 ;if ff, load from scriptvar
 	ld a, [ScriptVar]
 .asm_977d4
 	ld [CurItem], a ;store item to work with

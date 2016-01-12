@@ -161,21 +161,22 @@ UnknownText_0x5a3f0: ; 0x5a3f0
 ; 0x5a444
 
 CooltrainerfGwenSeenText: ; 0x5a444
-	text "I'm in training."
-	line "Care for a round?"
+	text "What is your favo-"
+	line "-urite #MON?"
+	
+	para "Mine is EEVEE!"
 	done
 ; 0x5a467
 
 CooltrainerfGwenBeatenText: ; 0x5a467
-	text "Aww, no! You're"
-	line "too good for me."
+	text "Not too hard..."
 	done
 ; 0x5a488
 
 UnknownText_0x5a488: ; 0x5a488
-	text "I'm going to train"
-	line "by myself until I"
-	cont "improve."
+	text "I also like all"
+	line "of EEVEE's"
+	cont "five evolutions!"
 	done
 ; 0x5a4b6
 
@@ -197,11 +198,11 @@ CooltrainerfEmmaBeatenText: ; 0x5a507
 
 UnknownText_0x5a52b: ; 0x5a52b
 	text "Just once a week,"
-	line "a #MON comes to"
+	line "LAPRAS comes to"
 	cont "the water's edge."
 
-	para "I wanted to see"
-	line "that #MON…"
+	para "I got my LAPRAS"
+	line "elsewhere, though!"
 	done
 ; 0x5a57a
 
@@ -210,9 +211,8 @@ UnionCaveB2F_MapEventHeader: ; 0x5a57a
 	db 0, 0
 
 	; warps
-	db 2
+	db 1
 	warp_def $3, $5, 5, GROUP_UNION_CAVE_B1F, MAP_UNION_CAVE_B1F
-	warp_def 2, 17, 2, GROUP_PHANCERO_RUINS_B3F, MAP_PHANCERO_RUINS_B3F
 
 	; xy triggers
 	db 0

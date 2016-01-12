@@ -675,7 +675,7 @@ MapRoute34SignpostItem3: ; 0x7832d
 MapRoute34SignpostItem4: ; 0x78330
 	dw $00a8
 	db SUPER_POTION
-
+	
 RandomEggScript:
 	checkevent EVENT_BULBASAUR_EGG
 	iffalse RandomEggScriptMain
@@ -786,14 +786,18 @@ MovementData_0x78337: ; 0x78337
 ; 0x7833d
 
 YoungsterSamuelSeenText: ; 0x7833d
-	text "This is where I do"
-	line "my training!"
+	text "I went to"
+	line "KANTO once!"
+	
+	para "My strategy is to"
+	line "combine #MON"
+	cont "from both regions!"
 	done
 ; 0x7835e
 
 YoungsterSamuelBeatenText: ; 0x7835e
-	text "Beaten by a"
-	line "passing stranger!"
+	text "It wasn't"
+	line "enough..."
 	done
 ; 0x7837d
 
@@ -822,19 +826,32 @@ UnknownText_0x783d8: ; 0x783d8
 YoungsterIanSeenText: ; 0x78425
 	text "I'm the best in my"
 	line "class at #MON."
+	
+	para "I make use of"
+	line "STAT-ENHANCING"
+	cont "items."
+	
+	para "They make my"
+	line "#MON even"
+	cont "more powerful!"
 	done
 ; 0x78447
 
 YoungsterIanBeatenText: ; 0x78447
-	text "No! There are bet-"
-	line "ter trainers…"
+	text "I guess I have"
+	line "things to learn"
+	cont "still..."
 	done
 ; 0x78469
 
 UnknownText_0x78469: ; 0x78469
-	text "I'm trying hard so"
-	line "I can be the star"
-	cont "in my class."
+	text "LUCKY PUNCH..."
+	
+	para "METAL POWDER..."
+	
+	para "They make CHANSEY"
+	line "and DITTO even"
+	cont "more powerful."
 	done
 ; 0x7849b
 
@@ -886,9 +903,13 @@ PicnickerGina1BeatenText: ; 0x7859e
 ; 0x785b8
 
 UnknownText_0x785b8: ; 0x785b8
-	text "You're too strong"
-	line "to be a practice"
-	cont "partner."
+	text "Maybe it is time"
+	line "for my CHIKORITA"
+	cont "to evolve..."
+	
+	para "It is so cute"
+	line "so I have been"
+	cont "putting it off..."
 	done
 ; 0x785e4
 
@@ -922,28 +943,40 @@ UnknownText_0x7866a: ; 0x7866a
 ; 0x78696
 
 PokefanmBrandonSeenText: ; 0x78696
-	text "I just got my"
-	line "#MON back from"
-	cont "DAY-CARE."
+	text "I'm helping my"
+	line "son with his"
+	cont "#MON battles."
 
-	para "Let's see how much"
-	line "stronger it got!"
+	para "These aren't"
+	line "my own #MON,"
+	cont "honestly!"
 	done
 ; 0x786e1
 
 PokefanmBrandonBeatenText: ; 0x786e1
-	text "Why does it end"
-	line "this way?"
+	text "DAD: I'll bring"
+	line "my own #MON"
+	cont "next time..."
+	
+	para "SON: But these"
+	line "aren't my"
+	cont "#MON, dad..."
+	
+	para "DAD: ..."
 	done
 ; 0x786fc
 
 UnknownText_0x786fc: ; 0x786fc
-	text "My #MON knew"
-	line "moves I didn't"
-	cont "know it had."
+	text "..."
 
-	para "That confounded me"
-	line "to no end!"
+	para "......."
+	
+	para "I happen to like"
+	line "cute baby #MON!"
+	
+	para "It's nothing to"
+	line "be ashamed"
+	cont "about..."
 	done
 ; 0x78743
 

@@ -599,7 +599,7 @@ ParkBall: ; e8a2
 	xor a
 	ld [MonType], a
 	ld b, 0
-	callba Function116c1
+	callba NamingScreen
 
 	call Function4b6
 
@@ -647,7 +647,7 @@ ParkBall: ; e8a2
 	ld [MonType], a
 	ld de, wd050
 	ld b, $0
-	callba Function116c1
+	callba NamingScreen
 
 	ld a, $1
 	call GetSRAMBank

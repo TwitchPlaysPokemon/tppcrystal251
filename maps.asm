@@ -158,7 +158,6 @@ INCLUDE "maps/Route1718Gate.asm"
 SECTION "Map Scripts 8", ROMX
 
 INCLUDE "maps/DiglettsCave.asm"
-INCLUDE "maps/MountMoon.asm"
 INCLUDE "maps/Underground.asm"
 INCLUDE "maps/RockTunnel1F.asm"
 INCLUDE "maps/RockTunnelB1F.asm"
@@ -559,9 +558,6 @@ INCLUDE "maps/SeafoamIslandsEntrance.asm"
 INCLUDE "maps/SeafoamIslandsB1F.asm"
 INCLUDE "maps/SeafoamIslandsB2F.asm"
 INCLUDE "maps/SeafoamIslandsB3F.asm"
-INCLUDE "maps/PhanceroRuinsB1F.asm"
-INCLUDE "maps/PhanceroRuinsB2F.asm"
-INCLUDE "maps/PhanceroRuinsB3F.asm"
 
 SECTION "Map Scripts 28", ROMX
 INCLUDE "maps/EarlyGameKanto/PalletTown.asm"

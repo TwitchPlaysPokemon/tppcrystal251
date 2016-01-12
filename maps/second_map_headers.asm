@@ -377,7 +377,6 @@
 	map_header_2 MahoganyPokeCenter1F, MAHOGANY_POKECENTER_1F, $0, NONE ; 0x95c3c
 	map_header_2 Route42EcruteakGate, ROUTE_42_ECRUTEAK_GATE, $0, NONE ; 0x95c48
 	map_header_2 DiglettsCave, DIGLETTS_CAVE, $9, NONE ; 0x95c54
-	map_header_2 MountMoon, MOUNT_MOON, $9, NONE ; 0x95c60
 	map_header_2 Underground, UNDERGROUND, $0, NONE ; 0x95c6c
 	map_header_2 RockTunnel1F, ROCK_TUNNEL_1F, $9, NONE ; 0x95c78
 	map_header_2 RockTunnelB1F, ROCK_TUNNEL_B1F, $9, NONE ; 0x95c84
@@ -635,10 +634,6 @@
 	map_header_2 SeafoamIslandsB1F, SEAFOAM_ISLANDS_B1F, $9, NONE
 	map_header_2 SeafoamIslandsB2F, SEAFOAM_ISLANDS_B2F, $9, NONE
 	map_header_2 SeafoamIslandsB3F, SEAFOAM_ISLANDS_B3F, $9, NONE
-	
-	map_header_2 PhanceroRuinsB1F, PHANCERO_RUINS_B1F, $0, NONE
-	map_header_2 PhanceroRuinsB2F, PHANCERO_RUINS_B2F, $0, NONE
-	map_header_2 PhanceroRuinsB3F, PHANCERO_RUINS_B2F, $0, NONE
 	
 	map_header_2 TohjoFallsBackRoom, TOHJO_FALLS_BACK_ROOM, $9, NONE ; 0x95b94
 	map_header_2 CeladonDeptStoreB1F, CELADON_DEPT_STORE_B1F, $0, NONE

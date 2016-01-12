@@ -724,12 +724,12 @@ UnownPBackpic:       INCBIN "gfx/pics/unown_p/back.6x6.2bpp.lz"
 UnownIBackpic:       INCBIN "gfx/pics/unown_i/back.6x6.2bpp.lz"
 UnownRBackpic:       INCBIN "gfx/pics/unown_r/back.6x6.2bpp.lz"
 BillPic:             INCBIN "gfx/trainers/bill.7x7.2bpp.lz"
-PhanceroFrontpic:    INCBIN "gfx/pics/phancero/front.7x7.2bpp.lz"
-PhanceroBackpic:     INCBIN "gfx/pics/phancero/back.6x6.2bpp.lz"
 ProfElmPic:          INCBIN "gfx/trainers/profelm.7x7.2bpp.lz"
 tppPcPic:            INCBIN "gfx/trainers/tppPc.7x7.2bpp.lz"
 GiovanniPic:         INCBIN "gfx/trainers/giovanni.7x7.2bpp.lz"
 CoolSiblingsPic:     INCBIN "gfx/trainers/coolsiblings.7x7.2bpp.lz"
+ChrisPicLZ:          INCBIN "gfx/misc/chris.7x7.2bpp.lz"
+KrisPicLZ:           INCBIN "gfx/misc/kris.7x7.2bpp.lz"
 ; 1669d3
 
 

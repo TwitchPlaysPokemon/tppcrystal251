@@ -42,7 +42,14 @@ WalkUpWithOak:
 	faceperson $2, $0
 	faceperson $6, $2
 	loadfont
+	checkflag ENGINE_PLAYER_IS_FEMALE
+	iftrue .male_rival_1
+	writetext _OaksLabRivalWaitingTextF
+	jump .done_text_1
+
+.male_rival_1
 	writetext _OaksLabRivalWaitingText
+.done_text_1
 	waitbutton
 	closetext
 	loadfont
@@ -50,7 +57,14 @@ WalkUpWithOak:
 	waitbutton
 	closetext
 	loadfont
+	checkflag ENGINE_PLAYER_IS_FEMALE
+	iftrue .male_rival_2
+	writetext _OaksLabRivalInterjectionTextF
+	jump .done_text_2
+
+.male_rival_2
 	writetext _OaksLabRivalInterjectionText
+.done_text_2
 	waitbutton
 	closetext
 	loadfont
@@ -88,12 +102,19 @@ CharmanderPokeballScript:
 	buttonsound
 	givepoke CHARMANDER, 5, BERRY
 	closetext
+	checkcode VAR_FACING
+	if_equal RIGHT, .facing_right
 	applymovement $6, Movement_RivalTakesTwoStepsDown
 	applymovement $6, Movement_RivalTakesThreeStepsRight
 	applymovement $6, Movement_RivalTakesOneStepUp
-	loadfont
-	writetext _OaksLabRivalPickingMonText
-	buttonsound
+	jump .RivalPicksMon
+
+.facing_right
+	applymovement $6, Movement_RivalTakesOneStepDown
+	applymovement $6, Movement_RivalTakesThreeStepsRight
+	spriteface $6, UP
+.RivalPicksMon
+	scall OaksLab_PrintRivalPickingMonText
 	pokenamemem SQUIRTLE, $1
 	disappear $8
 	writetext _OaksLabRivalReceivedMonText
@@ -131,9 +152,9 @@ BulbasaurPokeballScript:
 	buttonsound
 	givepoke BULBASAUR, 5, BERRY
 	closetext
-	applymovement $6, Movement_RivalTakesTwoStepsDown
+	applymovement $6, Movement_RivalTakesOneStepDown
 	applymovement $6, Movement_RivalTakesTwoStepsRight
-	applymovement $6, Movement_RivalTakesOneStepUp
+	spriteface $6, UP
 	loadfont
 	writetext _OaksLabRivalPickingMonText
 	buttonsound
@@ -189,6 +210,19 @@ SquirtlePokeballScript:
 	dotrigger $3
 	end
 
+OaksLab_PrintRivalPickingMonText:
+	loadfont
+	checkflag ENGINE_PLAYER_IS_FEMALE
+	iftrue .male_rival
+	writetext _OaksLabRivalPickingMonTextF
+	buttonsound
+	end
+
+.male_rival
+	writetext _OaksLabRivalPickingMonText
+	buttonsound
+	end
+
 OaksLabRB_DidntChooseStarterScript:
 	closetext
 	end
@@ -242,27 +276,47 @@ OaksLab_RivalBattleTriggerRight:
 	applymovement $6, Movement_RivalTakesOneStepLeft
 	spriteface $0, LEFT
 	jump OaksLab_RivalFinishesLeaving
-	
 OaksLab_RivalBattleIntroScript:
 	playmusic MUSIC_RIVAL_RB
 	spriteface $6, DOWN
+	spriteface $2, DOWN
 	spriteface $0, UP
 	loadfont
+	checkflag ENGINE_PLAYER_IS_FEMALE
+	iftrue .male_rival
+	writetext _OaksLabRivalChallengeTextF
+	jump .done_text
+
+.male_rival
 	writetext _OaksLabRivalChallengeText
+.done_text
 	waitbutton
 	closetext
 	end
 
 OaksLab_DoRivalBattle:
-	writecode VAR_BATTLETYPE, BATTLETYPE_CANLOSE
 	winlosstext _OaksLabText_1d3be, _OaksLabText_1d3c3
+	checkflag ENGINE_PLAYER_IS_FEMALE
+	iftrue .got_rival_gender
+	loadvar OtherTrainerClass, BLUE_RB_F
+	winlosstext _OaksLabText_1d3beF, _OaksLabText_1d3c3F
+.got_rival_gender
+	writecode VAR_BATTLETYPE, BATTLETYPE_CANLOSE
 	startbattle
 	special DeleteSavedMusic
 	reloadmapmusic
 	reloadmap
 	playmapmusic
+	special HealParty
 	loadfont
+	checkflag ENGINE_PLAYER_IS_FEMALE
+	iftrue .male_rival
+	writetext _OaksLabRivalToughenUpTextF
+	jump .done_text
+
+.male_rival
 	writetext _OaksLabRivalToughenUpText
+.done_text
 	waitbutton
 	closetext
 	playmusic MUSIC_RIVAL_AFTER_RB
@@ -322,7 +376,14 @@ OakScript_OaksLabRB:
 	closetext
 	playmusic MUSIC_RIVAL_RB
 	loadfont
+	checkflag ENGINE_PLAYER_IS_FEMALE
+	iftrue .male_rival_1
+	writetext _OaksLabText21F
+	jump .done_text_1
+
+.male_rival_1
 	writetext _OaksLabText21
+.done_text_1
 	waitbutton
 	closetext
 	spriteface $2, DOWN
@@ -345,7 +406,14 @@ OakScript_OaksLabRB:
 .continuewithdex
 	special RestartMapMusic
 	loadfont
+	checkflag ENGINE_PLAYER_IS_FEMALE
+	iftrue .male_rival_2
+	writetext _OaksLabText22F
+	jump .done_text_2
+
+.male_rival_2
 	writetext _OaksLabText22
+.done_text_2
 	waitbutton
 	closetext
 	loadfont
@@ -364,34 +432,33 @@ OakScript_OaksLabRB:
 	clearevent EVENT_RIVAL_ROUTE_22_RB
 	playsound SFX_KEY_ITEM
 	waitsfx
+	writetext _OaksLabGivePokeballsText1
+	giveitem POKE_BALL, 5
+	playsound SFX_ITEM
+	waitsfx
+	waitbutton
+	writetext _OaksLabGivePokeballsText2
+	buttonsound
+	itemnotify
 	writetext _OaksLabText26
 	waitbutton
 	closetext
 	faceperson $0, $6
 	faceperson $6, $0
 	loadfont
+	checkflag ENGINE_PLAYER_IS_FEMALE
+	iftrue .male_rival_3
+	writetext _OaksLabText27F
+	jump .done_text_3
+
+.male_rival_3
 	writetext _OaksLabText27
+.done_text_3
 	waitbutton
 	closetext
 	spriteface $0, DOWN
 	playmusic MUSIC_RIVAL_AFTER_RB
-	checkcode VAR_FACING
-	if_equal DOWN, .finishaboveoak
-	spriteface $6, RIGHT
-	if_equal UP, .finishbelowoak
-	applymovement $6, Movement_RivalTakesFourStepsDown
-	disappear $6
-	special RestartMapMusic
-	end
-
-.finishaboveoak
-	applymovement $6, Movement_RivalTakesThreeStepsDown
-	disappear $6
-	special RestartMapMusic
-	end
-
-.finishbelowoak
-	applymovement $6, Movement_RivalTakesFiveStepsDown
+	applymovement $6, Movement_RivalTakesSixStepsDown
 	disappear $6
 	special RestartMapMusic
 	end
@@ -401,12 +468,24 @@ BlueScript_OaksLabRB:
 	iftrue .MyMonIsTheBest
 	checkevent EVENT_OAKS_LAB_OAK
 	iffalse .HurryUpAndChoose
+	checkflag ENGINE_PLAYER_IS_FEMALE
+	iftrue .male1
+	jumptextfaceplayer _OaksLabGaryText1F
+.male1
 	jumptextfaceplayer _OaksLabGaryText1
 
 .HurryUpAndChoose
+	checkflag ENGINE_PLAYER_IS_FEMALE
+	iftrue .male2
+	jumptextfaceplayer _OaksLabText40F
+.male2
 	jumptextfaceplayer _OaksLabText40
 
 .MyMonIsTheBest
+	checkflag ENGINE_PLAYER_IS_FEMALE
+	iftrue .male3
+	jumptextfaceplayer _OaksLabText41F
+.male3
 	jumptextfaceplayer _OaksLabText41
 
 OaksLabRB_WaitComeBack:
@@ -415,7 +494,7 @@ OaksLabRB_WaitComeBack:
 	writetext _OaksLabLeavingText
 	waitbutton
 	closetext
-	applymovement $0, Movement_RivalTakesOneStepUp
+	applymovement $0, Movement_PlayerTakesOneStepUp
 	end
 
 BlankEncyclopoediaScript:
@@ -443,84 +522,118 @@ MapOaksLabRBSignpost13Script:
 MapOaksLabRBSignpost14Script
 	jumpstd trashcan
 
+
+Movement_RivalTakesFiveStepsUp:
+	slow_step_up
+Movement_RivalTakesFourStepsUp:
+	slow_step_up
+Movement_RivalTakesThreeStepsUp:
+	slow_step_up
+Movement_RivalTakesTwoStepsUp:
+	slow_step_up
+Movement_RivalTakesOneStepUp:
+	slow_step_up
+	step_end
+
 MovementData_OakWalksUp:
 	step_up
 	step_up
 	step_up
-Movement_RivalTakesFiveStepsUp:
 	step_up
-Movement_RivalTakesFourStepsUp:
 	step_up
-Movement_RivalTakesThreeStepsUp:
 	step_up
-Movement_RivalTakesTwoStepsUp:
 	step_up
-Movement_RivalTakesOneStepUp:
+Movement_PlayerTakesOneStepUp:
 	step_up
 	step_end
 
 Movement_RivalTakesFourStepsLeft:
-	step_left
+	slow_step_left
 Movement_RivalTakesThreeStepsLeft:
-	step_left
+	slow_step_left
 Movement_RivalTakesTwoStepsLeft:
-	step_left
+	slow_step_left
 Movement_RivalTakesOneStepLeft:
-	step_left
+	slow_step_left
 	step_end
 
 Movement_RivalTakesFourStepsLeftOneStepDown:
-	step_left
+	slow_step_left
 Movement_RivalTakesThreeStepsLeftOneStepDown:
-	step_left
+	slow_step_left
 Movement_RivalTakesTwoStepsLeftOneStepDown:
-	step_left
+	slow_step_left
 Movement_RivalTakesOneStepLeftOneStepDown:
-	step_left
-	step_down
+	slow_step_left
+	slow_step_down
 	step_end
 
-Movement_RivalTakesFiveStepsDown:
-	step_down
+Movement_RivalTakesSixStepsDown:
+	slow_step_down
+	slow_step_down
 Movement_RivalTakesFourStepsDown:
-	step_down
+	slow_step_down
 Movement_RivalTakesThreeStepsDown:
-	step_down
+	slow_step_down
 Movement_RivalTakesTwoStepsDown:
-	step_down
+	slow_step_down
 Movement_RivalTakesOneStepDown:
-	step_down
+	slow_step_down
 	step_end
-	
+
 Movement_RivalTakesFourStepsRight:
-	step_right
+	slow_step_right
 Movement_RivalTakesThreeStepsRight:
-	step_right
+	slow_step_right
 Movement_RivalTakesTwoStepsRight:
-	step_right
+	slow_step_right
 Movement_RivalTakesOneStepRight:
-	step_right
+	slow_step_right
 	step_end
 
 _OaksLabGaryText1:
-	text "<GREEN>: Yo"
-	line "<PLAYER>! Gramps"
-	cont "isn't around!"
+	text "<GREEN>: Hey-ya,"
+	line "<PLAYER>! Ol' Pappy"
+	cont "ain't around!"
 	done
 
 _OaksLabText40:
-	text "<GREEN>: Heh, I"
+	text "<GREEN>: Meh, I"
 	line "don't need to be"
-	cont "greedy like you!"
+	cont "in a rush like"
+	cont "you!"
 
-	para "Go ahead and"
-	line "choose, <PLAYER>!"
+	para "Go right ahead,"
+	line "and pick, <PLAYER>!"
 	done
 
 _OaksLabText41:
-	text "<GREEN>: My"
-	line "#MON looks a"
-	cont "lot stronger."
+	text "<GREEN>: This"
+	line "#MON I picked"
+	cont "looks a lot"
+	cont "stronger."
+	done
+
+_OaksLabGaryText1F:
+	text "<GREEN>: Oh, hello"
+	line "<PLAYER>."
+
+	para "The professor's"
+	line "not around."
+	done
+
+_OaksLabText40F:
+	text "<GREEN>: Oh, me?"
+	line "I'm not in a rush."
+
+	para "Go right ahead,"
+	line "<PLAYER>."
+	done
+
+_OaksLabText41F:
+	text "<GREEN>: I wanted"
+	line "this #MON"
+	cont "anyway…"
 	done
 
 _OaksLabText39:
@@ -628,8 +741,8 @@ _OaksLabGivePokeballsText1:
 	cont "to capture wild"
 	cont "#MON."
 
-	para "<PLAYER> got 5"
-	line "# BALLs!"
+	para "<PLAYER> received"
+	line "# BALL!"
 	done
 
 _OaksLabGivePokeballsText2:
@@ -639,7 +752,7 @@ _OaksLabGivePokeballsText2:
 
 	para "Just throw a #"
 	line "BALL at it and try"
-	line "to catch it!"
+	cont "to catch it!"
 
 	para "This won't always"
 	line "work, though."
@@ -672,10 +785,6 @@ _OaksLabText_1d32c:
 	cont "pages are blank!"
 	done
 
-_OaksLabText8:
-	text "?"
-	done
-
 _OaksLabText_1d340:
 	text "PROF.OAK is the"
 	line "authority on"
@@ -687,14 +796,21 @@ _OaksLabText_1d340:
 	done
 
 _OaksLabRivalWaitingText:
-	text "<GREEN>: Gramps!"
-	line "I'm fed up with"
-	cont "waiting!"
+	text "<GREEN>: Come"
+	line "on Pappy! I'm"
+	cont "tired of waiting!"
+	done
+
+_OaksLabRivalWaitingTextF:
+	text "<GREEN>: Oh,"
+	line "there you are!" 
+	cont "Are we getting"
+	cont "#MON now?"
 	done
 
 _OaksLabChooseMonText:
 	text "OAK: <GREEN>?"
-	line "Let me think..."
+	line "Let me think…"
 
 	para "Oh, that's right,"
 	line "I told you to"
@@ -715,15 +831,21 @@ _OaksLabChooseMonText:
 	cont "#MON trainer!"
 
 	para "In my old age, I"
-	line "have only 3 left,"
-	cont "but you can have"
-	cont "one! Choose!"
+	line "have only a few"
+	cont "left, but you can"
+	cont "have one! Choose!"
 	done
 
 _OaksLabRivalInterjectionText:
 	text "<GREEN>: Hey!"
-	line "Gramps! What"
-	cont "about me?"
+	line "Pop! What about"
+	cont "me?"
+	done
+
+_OaksLabRivalInterjectionTextF:
+	text "<GREEN>: Will"
+	line "I get my turn"
+	cont "after him?"
 	done
 
 _OaksLabBePatientText:
@@ -738,8 +860,15 @@ _OaksLabLeavingText:
 	done
 
 _OaksLabRivalPickingMonText:
-	text "<GREEN>: I'll take"
-	line "this one, then!"
+	text "<GREEN>: I'll be"
+	line "taking this one,"
+	cont "then!"
+	done
+
+_OaksLabRivalPickingMonTextF:
+	text "<GREEN>: Then"
+	line "I will just take"
+	cont "this one…"
 	done
 
 _OaksLabRivalReceivedMonText:
@@ -750,44 +879,93 @@ _OaksLabRivalReceivedMonText:
 	done
 
 _OaksLabRivalChallengeText:
-	text "<GREEN>: Wait"
+	text "<GREEN>: Hey!"
 	line "<PLAYER>!"
-	cont "Let's check out"
-	cont "our #MON!"
 
-	para "Come on, I'll take"
-	line "you on!"
+	para "Let's duke it"
+	line "out with our"
+	cont "#MON!"
+
+	para "Bring it on!"
 	done
 
 _OaksLabText_1d3be:
-	text "WHAT?"
-	line "Unbelievable!"
-	cont "I picked the"
-	cont "wrong #MON!"
+	text "HUH!?"
+	line "How'd I lose?"
 	done
 
 _OaksLabText_1d3c3:
-	text "<GREEN>: Yeah! Am"
-	line "I great or what?"
+	text "<GREEN>: Aw yeah!"
+	line "Am I good or what?"
 	done
 
 _OaksLabRivalToughenUpText:
-	text "<GREEN>: Okay!"
-	line "I'll make my"
-	cont "#MON fight to"
-	cont "toughen it up!"
+	text "<GREEN>: Well,"
+	line "I'm gonna make"
+	cont "my #MON"
+	cont "tougher from"
+	cont "now on!"
 
-	para "<PLAYER>! Gramps!"
-	line "Smell you later!"
+	para "<PLAYER>! Pops!"
+	line "See ya later!"
+	done
+
+_OaksLabRivalChallengeTextF:
+	text "<GREEN>: Wait"
+	line "a minute,"
+	cont "<PLAYER>!"
+
+	para "Let's try battling"
+	line "our #MON"
+
+	para "like we always"
+	line "wanted!"
+
+	para "Alright! Here I"
+	line "come!"
+	done
+
+_OaksLabText_1d3beF:
+	text "Oh my…"
+	line "It looks like"
+	cont "I have more to"
+	cont "learn about this."
+	done
+
+_OaksLabText_1d3c3F:
+	text "<GREEN>: Oh, um…"
+	line "Should I have gone"
+	cont "easier on you?"
+	done
+
+_OaksLabRivalToughenUpTextF:
+	text "<GREEN>: Okay!"
+	line "I'll work hard"
+	cont "to raise my"
+	cont "#MON with love"
+	cont "and care!"
+
+	para "<PLAYER>! Profes-"
+	line "sor!"
+	cont "See you later!"
 	done
 
 _OaksLabText21:
-	text "<GREEN>: Gramps!"
+	text "<GREEN>: Pops!"
 	done
 
 _OaksLabText22:
 	text "<GREEN>: What did"
 	line "you call me for?"
+	done
+
+_OaksLabText21F:
+	text "<GREEN>: Hey…!"
+	done
+
+_OaksLabText22F:
+	text "<GREEN>: You"
+	line "called for me?"
 	done
 
 _OaksLabText23:
@@ -823,7 +1001,7 @@ _OaksLabText26:
 	text "To make a complete"
 	line "guide on all the"
 	cont "#MON in the"
-	cont "world..."
+	cont "world…"
 
 	para "That was my dream!"
 
@@ -844,20 +1022,44 @@ _OaksLabText26:
 
 _OaksLabText27:
 	text "<GREEN>: Alright"
-	line "Gramps! Leave it"
-	cont "all to me!"
+	line "Pappy! Leave the"
+	cont "catching to me!"
 
-	para "<PLAYER>, I hate to"
-	line "say it, but I"
-	cont "don't need you!"
+	para "<PLAYER>, I hate"
+	line "saying this, but I"
 
-	para "I know! I'll"
-	line "borrow a TOWN MAP"
+	para "don't need your"
+	line "help here!"
+
+	para "Heh, I know! I'll"
+	line "borrow a MAP CARD"
 	cont "from my sis!"
 
-	para "I'll tell her not"
-	line "to lend you one,"
-	cont "<PLAYER>! Hahaha!"
+	para "I'll ask her not"
+	line "to give you one,"
+	cont "<PLAYER>! Haha!"
+	done
+
+_OaksLabText27F:
+	text "<GREEN>: Okay,"
+	line "this sounds like"
+	cont "fun."
+
+	para "Oh, I know!"
+	line "<PLAYER>, I'll"
+	cont "race you to"
+	cont "completing one!"
+
+	para "I don't want"
+	line "things to be"
+	cont "unfair for you…"
+
+	para "…so I'll ask my"
+	line "sister to lend you"
+	cont "a MAP CARD."
+
+	para "I'll be seeing"
+	line "you!"
 	done
 
 _OaksLabText_1d405:
@@ -869,7 +1071,7 @@ _OakLabEmailText:
 	text "There's an e-mail"
 	line "message here!"
 
-	para "..."
+	para "…"
 
 	para "Calling all"
 	line "#MON trainers!"
@@ -889,7 +1091,7 @@ _OakLabEmailText:
 
 	para "PS: PROF.OAK,"
 	line "please visit us!"
-	cont "..."
+	cont "…"
 	done
 
 _PushStartText:
@@ -945,7 +1147,7 @@ OaksLabRB_MapEventHeader: ; 0x19ba33
 	person_event SPRITE_SCIENTIST, 12, 6, $5, 0, 1, -1, -1, 8 + PAL_OW_BLUE, 0, 0, Scientist1Script_OaksLabRB, -1
 	person_event SPRITE_SCIENTIST, 13, 12, $4, 1, 0, -1, -1, 8 + PAL_OW_BLUE, 0, 0, Scientist2Script_OaksLabRB, -1
 	person_event SPRITE_TEACHER, 15, 5, $2, 1, 1, -1, -1, 8 + PAL_OW_BLUE, 0, 0, LassScript_OaksLabRB, -1
-	person_event SPRITE_BLUE, 7, 8, $3, 0, 0, -1, -1, 0, 0, 0, BlueScript_OaksLabRB, EVENT_RB_RIVAL_IN_LAB
+	person_event SPRITE_EGK_RIVAL, 7, 8, $3, 0, 0, -1, -1, 0, 0, 0, BlueScript_OaksLabRB, EVENT_RB_RIVAL_IN_LAB
 	person_event SPRITE_POKE_BALL, 7, 10, $0, 0, 0, -1, -1, 0, 0, 0, CharmanderPokeballScript, EVENT_SOMEONE_GOT_CHARMANDER_FROM_OAK
 	person_event SPRITE_POKE_BALL, 7, 11, $0, 0, 0, -1, -1, 0, 0, 0, SquirtlePokeballScript, EVENT_SOMEONE_GOT_SQUIRTLE_FROM_OAK
 	person_event SPRITE_POKE_BALL, 7, 12, $0, 0, 0, -1, -1, 0, 0, 0, BulbasaurPokeballScript, EVENT_SOMEONE_GOT_BULBASAUR_FROM_OAK

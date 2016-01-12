@@ -290,7 +290,7 @@ Function401ae: ; 401ae (10:41ae)
 
 .select
 	ld a, [StatusFlags]
-	bit 5, a
+	bit 7, a
 	ret z
 	call Function41401
 	ld a, $7
@@ -1105,7 +1105,7 @@ Function4074c: ; 4074c (10:474c)
 	ld bc, $103
 	call PrintNum
 	ld a, [StatusFlags]
-	bit 5, a
+	bit 7, a
 	jr z, .skip
 	hlcoord 1, 17
 	ld de, Unknown_407ea
@@ -2594,3 +2594,255 @@ Function41a58: ; 41a58 (10:5a58)
 	ld [UnownLetter], a
 	ret
 
+Function41ad7: ; 41ad7 (10:5ad7)
+	ld a, $3
+	ld [hBGMapMode], a ; $ff00+$d4
+	ld c, $4
+	call DelayFrames
+	ret
+
+Function41ae1: ; 41ae1 (10:5ae1)
+	ld a, $4
+	ld [hBGMapMode], a ; $ff00+$d4
+	ld c, $4
+	call DelayFrames
+	ret
+
+Function41aeb: ; 41aeb (10:5aeb)
+	ld a, [hCGB] ; $ff00+$e6
+	and a
+	jr z, .asm_41af3
+	call Function41ae1
+.asm_41af3
+	call Function41ad7
+	ret
+
+Function41af7: ; 41af7
+	xor a
+	ld [hBGMapMode], a
+	ret
+
+PokedexDataPointerTable: ; 0x44378
+INCLUDE "data/pokedex/entry_pointers.asm"
+
+Function44333: ; 44333
+	push hl
+	ld hl, PokedexDataPointerTable
+	ld a, b
+	dec a
+	ld d, 0
+	ld e, a
+	add hl, de
+	add hl, de
+	ld e, [hl]
+	inc hl
+	ld d, [hl]
+	push de
+	rlca
+	rlca
+	and $3
+	ld hl, PokedexEntryBanks
+	ld d, 0
+	ld e, a
+	add hl, de
+	ld b, [hl]
+	pop de
+	pop hl
+	ret
+; 44351
+
+PokedexEntryBanks: ; 44351
+GLOBAL PokedexEntries1
+GLOBAL PokedexEntries2
+GLOBAL PokedexEntries3
+GLOBAL PokedexEntries4
+	db BANK(PokedexEntries1)
+	db BANK(PokedexEntries2)
+	db BANK(PokedexEntries3)
+	db BANK(PokedexEntries4)
+
+Function44355: ; 44355
+	call Function44333
+	push hl
+	ld h, d
+	ld l, e
+.asm_4435b
+	ld a, b
+	call GetFarByte2
+	cp $50
+	jr nz, .asm_4435b
+	inc hl
+	inc hl
+	inc hl
+	inc hl
+	dec c
+	jr z, .asm_44374
+.asm_4436b
+	ld a, b
+	call GetFarByte2
+	cp $50
+	jr nz, .asm_4436b
+.asm_44374
+	ld d, h
+	ld e, l
+	pop hl
+	ret
+
+	
+Function4424d: ; 4424d
+	call GetPokemonName
+	hlcoord 9, 3
+	call PlaceString
+	ld a, [wd265]
+	ld b, a
+	call Function44333
+	ld a, b
+	push af
+	hlcoord 9, 5
+	call FarString
+	ld h, b
+	ld l, c
+	push de
+	hlcoord 2, 8
+	ld a, $5c
+	ld [hli], a
+	ld a, $5d
+	ld [hli], a
+	ld de, wd265
+	ld bc, $8103
+	call PrintNum
+	ld a, [wd265]
+	dec a
+	call CheckCaughtMon
+	pop hl
+	pop bc
+	ret z
+	ld a, [CurPartySpecies]
+	ld [CurSpecies], a
+	inc hl
+	ld a, b
+	push af
+	push hl
+	call GetFarHalfword
+	ld d, l
+	ld e, h
+	pop hl
+	inc hl
+	inc hl
+	ld a, d
+	or e
+	jr z, .asm_442b0
+	push hl
+	push de
+	ld hl, [sp+$0]
+	ld d, h
+	ld e, l
+	hlcoord 12, 7
+	ld bc, $0224
+	call PrintNum
+	hlcoord 14, 7
+	ld [hl], $5e
+	pop af
+	pop hl
+.asm_442b0
+	pop af
+	push af
+	inc hl
+	push hl
+	dec hl
+	call GetFarHalfword
+	ld d, l
+	ld e, h
+	ld a, e
+	or d
+	jr z, .asm_442cd
+	push de
+	ld hl, [sp+$0]
+	ld d, h
+	ld e, l
+	hlcoord 11, 9
+	ld bc, $0245
+	call PrintNum
+	pop de
+.asm_442cd
+	ld bc, $0512
+	hlcoord 2, 11
+	call ClearBox
+	hlcoord 1, 10
+	ld bc, $0013
+	ld a, $61
+	call ByteFill
+	hlcoord 1, 9
+	ld [hl], $55
+	inc hl
+	ld [hl], $55
+	hlcoord 1, 10
+	ld [hl], $56
+	inc hl
+	ld [hl], $57
+	pop de
+	inc de
+	pop af
+	hlcoord 2, 11
+	push af
+	call FarString
+	pop bc
+	ld a, [wPokedexStatus]
+	or a
+	ret z
+	push bc
+	push de
+	ld bc, $0512
+	hlcoord 2, 11
+	call ClearBox
+	hlcoord 1, 10
+	ld bc, $0013
+	ld a, $61
+	call ByteFill
+	hlcoord 1, 9
+	ld [hl], $55
+	inc hl
+	ld [hl], $55
+	hlcoord 1, 10
+	ld [hl], $56
+	inc hl
+	ld [hl], $58
+	pop de
+	inc de
+	pop af
+	hlcoord 2, 11
+	call FarString
+	ret
+
+	
+Function41a7f: ; 41a7f
+	xor a
+	ld [hBGMapMode], a
+	callba Function1de247
+	call Function41af7
+	call DisableLCD
+	call Functione51
+	call Functione5f
+	call Function414b7
+	call Function4147b
+	ld a, [wd265]
+	ld [CurPartySpecies], a
+	call Function407fd
+	call Function40ba0
+	hlcoord 0, 17
+	ld [hl], $3b
+	inc hl
+	ld bc, $0013
+	ld a, $7f
+	call ByteFill
+	callba Function4424d
+	call EnableLCD
+	call WaitBGMap
+	call GetBaseData
+	ld de, VTiles2
+	predef GetFrontpic
+	ld a, $4
+	call Function41423
+	ld a, [CurPartySpecies]
+	call PlayCry
+	ret

@@ -41,44 +41,46 @@ CooltrainerMScript_0x19046f: ; 0x19046f
 UnknownScript_0x190470: ; 0x190470
 	loadfont
 	checkevent EVENT_GOT_MIRACLE_SEED_IN_ROUTE_32
-	iftrue UnknownScript_0x1904a5
+	iftrue .GotSeed
 	checkflag ENGINE_ZEPHYRBADGE
-	iffalse UnknownScript_0x19049f
+	iffalse .GetBadge
+	checkevent EVENT_GOT_HM05_FLASH
+	iffalse .GetFlash
 	checkevent EVENT_GOT_TOGEPI_EGG_FROM_ELMS_AIDE
-	iftrue UnknownScript_0x19048f
+	iftrue .GotEgg
 	writetext UnknownText_0x1907ab
 	waitbutton
 	closetext
 	end
 ; 0x190489
 
-UnknownScript_0x190489: ; 0x190489
+.GetFlash: ; 0x190489
 	writetext UnknownText_0x190820
 	waitbutton
 	closetext
 	end
 ; 0x19048f
 
-UnknownScript_0x19048f: ; 0x19048f
+.GotEgg: ; 0x19048f
 	writetext UnknownText_0x190925
 	buttonsound
 	verbosegiveitem MIRACLE_SEED, 1
-	iffalse UnknownScript_0x1904a9
+	iffalse .BagFull
 	setevent EVENT_GOT_MIRACLE_SEED_IN_ROUTE_32
-	jump UnknownScript_0x1904a5
+	jump .GotSeed
 ; 0x19049f
 
-UnknownScript_0x19049f: ; 0x19049f
+.GetBadge: ; 0x19049f
 	writetext UnknownText_0x1908b0
 	waitbutton
 	closetext
 	end
 ; 0x1904a5
 
-UnknownScript_0x1904a5: ; 0x1904a5
+.GotSeed: ; 0x1904a5
 	writetext UnknownText_0x190a15
 	waitbutton
-UnknownScript_0x1904a9: ; 0x1904a9
+.BagFull: ; 0x1904a9
 	closetext
 	end
 ; 0x1904ab
@@ -131,14 +133,14 @@ UnknownScript_0x1904f3: ; 0x1904f3
 	loadfont
 	writetext UnknownText_0x190a59
 	yesorno
-	iffalse UnknownScript_0x190503
+	iffalse .refused
 	writetext UnknownText_0x190acf
 	waitbutton
 	closetext
 	end
 ; 0x190503
 
-UnknownScript_0x190503: ; 0x190503
+.refused: ; 0x190503
 	writetext UnknownText_0x190afc
 	waitbutton
 	closetext
@@ -935,22 +937,30 @@ UnknownText_0x190d92: ; 0x190d92
 ; --- end a segment of possibly unused texts
 
 FisherHenrySeenText: ; 0x190dcf
-	text "My #MON?"
-	line "Freshly caught!"
+	text "I was surfing"
+	line "around in the"
+	
+	para "lake just now"
+	line "when I found"
+	cont "this rare #MON!"
 	done
 ; 0x190de9
 
 FisherHenryBeatenText: ; 0x190de9
-	text "SPLASH?"
+	text "Splashed ashore!"
 	done
 ; 0x190df2
 
 UnknownText_0x190df2: ; 0x190df2
-	text "Freshly caught"
-	line "#MON are no"
+	text "You can find all"
+	line "sort of rare"
+	cont "#MON in lakes!"
 
-	para "match for properly"
-	line "raised ones."
+	para "If you want to"
+	line "catch them all,"
+	
+	para "fish and surf in"
+	line "various places!"
 	done
 ; 0x190e2e
 
@@ -973,9 +983,9 @@ UnknownText_0x190e82: ; 0x190e82
 	line "to be the best"
 	cont "with my favorites."
 
-	para "I'm not using the"
-	line "same tough #MON"
-	cont "as everyone else."
+	para "It is important"
+	line "as trainer to do"
+	cont "your own thing."
 	done
 ; 0x190ee8
 
@@ -1014,9 +1024,12 @@ CamperRolandBeatenText: ; 0x190f8c
 ; 0x190faa
 
 UnknownText_0x190faa: ; 0x190faa
-	text "If you don't want"
-	line "to battle, just"
-	cont "avoid eye contact."
+	text "This area has a"
+	line "lot of unique"
+	cont "#MON around!"
+
+	para "The lake attracts"
+	line "lots of #MON."
 	done
 ; 0x190fdf
 

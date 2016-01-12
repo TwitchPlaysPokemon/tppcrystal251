@@ -1128,7 +1128,7 @@ UnknownText_0x1bcdba: ; 0x1bcdba
 
 UnknownText_0x1bcdc9: ; 0x1bcdc9
 	text ""
-	line "After three years"
+	line "After three months"
 	done
 ; 0x1bcddd
 

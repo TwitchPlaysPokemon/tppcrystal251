@@ -11,23 +11,11 @@ CooltrainerMScript_0x71670: ; 0x71670
 	loadfont
 	writetext UnknownText_0x716ce
 	checkcode VAR_DEXCAUGHT
-	if_equal $fb, CeladonMansion3FNearlyThereScript
-	if_greater_than $fb, UnknownScript_0x7167e
+	if_equal $fb, UnknownScript_0x7167e
 	waitbutton
 	closetext
 	end
 ; 0x7167e
-
-CeladonMansion3FNearlyThereScript:
-	buttonsound
-	writetext CeladonMansion3FNearlyThereText1
-	playsound SFX_DEX_FANFARE_230_PLUS
-	waitsfx
-	writetext CeladonMansion3FNearlyThereText2
-	waitbutton
-	closetext
-	setevent EVENT_PHANCERO_AVAILABLE
-	end
 
 UnknownScript_0x7167e: ; 0x7167e
 	buttonsound
@@ -89,12 +77,6 @@ UnknownScript_0x716b6: ; 0x716b6
 ; 0x716bc
 
 SuperNerdScript_0x716bc: ; 0x716bc
-	checkevent EVENT_ENABLE_DIPLOMA_PRINTING
-	iftrue .default
-	checkevent EVENT_PHANCERO_AVAILABLE
-	iftrue .default
-	jumptextfaceplayer SuperNerdText_Phancero
-.default
 	jumptextfaceplayer UnknownText_0x71895
 
 FisherScript_0x716bf: ; 0x716bf
@@ -128,37 +110,6 @@ UnknownText_0x716ce: ; 0x716ce
 	cont "but don't give up!"
 	done
 ; 0x71725
-
-CeladonMansion3FNearlyThereText1:
-	text "Wow! Excellent"
-	line "You caught 251"
-	cont "#MON!"
-
-	para "Congratulations!"
-	done
-CeladonMansion3FNearlyThereText2:
-	text "But there's still"
-	line "one more #MON"
-	cont "out there."
-
-	para "Legends speak of a"
-	line "#MON which can"
-	cont "distort reality."
-
-	para "Even my developers"
-	line "had trouble with"
-	cont "this #MON."
-
-	para "It really is"
-	line "something strange."
-
-	para "If you can catch"
-	line "this #MON, I'll"
-
-	para "give you a hand-"
-	line "some reward. How"
-	cont "about it?"
-	done
 
 UnknownText_0x71725: ; 0x71725
 	text "Wow! Excellent!"
@@ -232,14 +183,6 @@ UnknownText_0x71895: ; 0x71895
 	line "machines!"
 	done
 ; 0x718ca
-
-SuperNerdText_Phancero:
-	text "Who, me? I'm the"
-	line "PROGRAMMER."
-
-	para "Check out the"
-	line "RUINS OF ALPH!"
-	done
 
 UnknownText_0x718ca: ; 0x718ca
 	text "Aren't the TWINS"

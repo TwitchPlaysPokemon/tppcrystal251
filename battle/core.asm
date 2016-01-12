@@ -278,6 +278,14 @@ Function3c1d6: ; 3c1d6
 	call Function3c801
 	call Function3c23c
 	ret c
+	call SetPlayerTurn
+	call ResidualDamage
+	call Function3c23c
+	ret c
+	call SetEnemyTurn
+	call ResidualDamage
+	call Function3c23c
+	ret c
 	jr .asm_3c21e
 
 .asm_3c1fe
@@ -293,6 +301,14 @@ Function3c1d6: ; 3c1d6
 	call Function3c25c
 	ret c
 	call Function3c801
+	call Function3c25c
+	ret c
+	call SetEnemyTurn
+	call ResidualDamage
+	call Function3c23c
+	ret c
+	call SetPlayerTurn
+	call ResidualDamage
 	call Function3c25c
 	ret c
 
@@ -914,7 +930,8 @@ GetMovePriority: ; 3c5c5
 MoveEffectPriorities: ; 3c5df
 	db EFFECT_PROTECT,      3
 	db EFFECT_ENDURE,       3
-	db EFFECT_PRIORITY_HIT, 2
+	db EFFECT_EXTREMESPEED, 2
+	db EFFECT_PRIORITY_HIT, 1
 	db EFFECT_WHIRLWIND,    0
 	db EFFECT_COUNTER,      0
 	db EFFECT_MIRROR_COAT,  0
@@ -957,8 +974,6 @@ Function3c5fe: ; 3c5fe
 
 .asm_3c62f
 	call SetEnemyTurn
-	call ResidualDamage
-	jp z, Function3cd55
 	call RefreshBattleHuds
 	call Function3c6cf
 	call Function3d2e0
@@ -971,8 +986,6 @@ Function3c5fe: ; 3c5fe
 	call HasPlayerFainted
 	jp z, Function3d14e
 	call SetPlayerTurn
-	call ResidualDamage
-	jp z, Function3d14e
 	call RefreshBattleHuds
 	xor a
 	ld [wd0ec], a
@@ -998,10 +1011,6 @@ Function3c664: ; 3c664
 	jp z, Function3d14e
 	push bc
 	call SetPlayerTurn
-	call ResidualDamage
-	pop bc
-	jp z, Function3d14e
-	push bc
 	call RefreshBattleHuds
 	pop af
 	jr c, .asm_3c6be
@@ -1021,8 +1030,6 @@ Function3c664: ; 3c664
 
 .asm_3c6be
 	call SetEnemyTurn
-	call ResidualDamage
-	jp z, Function3cd55
 	call RefreshBattleHuds
 	xor a
 	ld [wd0ec], a
@@ -1318,11 +1325,11 @@ Function3c874: ; 3c874
 	ld [FXAnimIDLo], a
 	call GetMoveName
 	dec [hl]
-	jr z, .asm_3c8de
+	jr z, .asm_3c8de; release
 	ld a, BATTLE_VARS_SUBSTATUS3
 	call GetBattleVar
 	and 1 << SUBSTATUS_FLYING | 1 << SUBSTATUS_UNDERGROUND
-	jr nz, .asm_3c8d3
+	jr nz, .asm_3c8d3 ;if fly or dig, release?
 	call SwitchTurnCore
 	xor a
 	ld [wcfca], a
@@ -1331,7 +1338,7 @@ Function3c874: ; 3c874
 	call SwitchTurnCore
 
 .asm_3c8d3
-	call GetSixteenthMaxHP
+	call GetEighthMaxHP
 	call Function3cc3f
 	ld hl, BattleText_0x80de2
 	jr .asm_3c8e1

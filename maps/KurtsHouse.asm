@@ -521,7 +521,7 @@ UnknownText_0x18e473: ; 0x18e473
 
 	para "They're supposed"
 	line "to have disbanded"
-	cont "three years ago."
+	cont "three months ago."
 
 	para "Anyway, they're at"
 	line "the WELL, cutting"

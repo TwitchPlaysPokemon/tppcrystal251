@@ -400,6 +400,7 @@ AI_Smart: ; 386be
 	dbw EFFECT_SOLARBEAM,        AI_Smart_Solarbeam
 	dbw EFFECT_THUNDER,          AI_Smart_Thunder
 	dbw EFFECT_FLY,              AI_Smart_Fly
+	dbw EFFECT_EXTREMESPEED,     AI_Smart_Extremespeed
 	db $ff
 ; 387e3
 
@@ -1538,14 +1539,14 @@ AI_Smart_Encore: ; 38c3b
 	db HAZE
 	db FOCUS_ENERGY
 	db DREAM_EATER
-	db POISON_GAS
+	;db POISON_GAS
 	db SPLASH
 	db SHARPEN
 	db CONVERSION
 	db SUPER_FANG
 	db SUBSTITUTE
-	db TRIPLE_KICK
-	db SPIDER_WEB
+	;db TRIPLE_KICK
+	;db SPIDER_WEB
 	db MIND_READER
 	db FLAME_WHEEL
 	db AEROBLAST
@@ -1747,7 +1748,7 @@ AI_Smart_HealBell: ; 38d1f
 
 ; 38d5a
 
-
+AI_Smart_Extremespeed:
 AI_Smart_PriorityHit: ; 38d5a
 	call AICompareSpeed
 	ret c
@@ -3410,7 +3411,7 @@ AI_Cautious: ; 39418
 	db THUNDER_WAVE
 	db FOCUS_ENERGY
 	db BIDE
-	db POISON_GAS
+	;db POISON_GAS
 	db TRANSFORM
 	db CONVERSION
 	db SUBSTITUTE

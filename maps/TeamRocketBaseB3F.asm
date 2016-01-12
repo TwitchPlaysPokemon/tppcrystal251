@@ -494,7 +494,7 @@ UnknownText_0x6e400: ; 0x6e400
 	para "Since disbanding"
 	line "TEAM ROCKET three"
 
-	para "years ago, he has"
+	para "months ago, he has"
 	line "been in training."
 
 	para "But we're certain"
@@ -550,8 +550,8 @@ GruntF5SeenText: ; 0x6e5af
 ; 0x6e5f1
 
 GruntF5BeatenText: ; 0x6e5f1
-	text "All right. Stop."
-	line "I'll tell you."
+	text "I failed the"
+	line "EXECUTIVE..."
 	done
 ; 0x6e611
 
@@ -630,18 +630,17 @@ UnknownText_0x6e822: ; 0x6e822
 	para "My experiment is a"
 	line "complete success."
 
-	para "My promotion is"
-	line "assured. This loss"
+	para "Together with our"
+	line "secret weapon,"
 
-	para "means absolutely"
-	line "nothing."
+	para "nothing will stop"
+	line "TEAM ROCKET!"
 	done
 ; 0x6e8ac
 
 ScientistMitchSeenText: ; 0x6e8ac
-	text "I don't care that"
-	line "#MON are hurt"
-	cont "by our experiment."
+	text "I genetically"
+	line "engineer plants!"
 	done
 ; 0x6e8df
 

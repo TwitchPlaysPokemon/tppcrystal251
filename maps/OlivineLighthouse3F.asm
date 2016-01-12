@@ -98,17 +98,14 @@ ItemFragment_0x5b279: ; 0x5b279
 ; 0x5b27b
 
 Bird_keeperTheoSeenText: ; 0x5b27b
-	text "Why are you here?"
-	line "Are you just going"
-
-	para "to gawk? I suggest"
-	line "that you leave!"
+	text "I am a collector"
+	line "of rare bird-"
+	cont "type #MON."
 	done
 ; 0x5b2c4
 
 Bird_keeperTheoBeatenText: ; 0x5b2c4
-	text "You really are"
-	line "concerned…"
+	text "Angry birds..."
 	done
 ; 0x5b2df
 
@@ -125,9 +122,10 @@ UnknownText_0x5b2df: ; 0x5b2df
 ; 0x5b333
 
 SailorTerrellSeenText: ; 0x5b333
-	text "Sailors are both"
-	line "kind and strong."
-	cont "How about you?"
+	text "Finally ashore!"
+	
+	para "I am giving my"
+	line "dogs a walk."
 	done
 ; 0x5b365
 

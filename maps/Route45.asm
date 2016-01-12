@@ -647,9 +647,9 @@ CooltrainerfKellySeenText: ; 0x19e76f
 	text "What is your"
 	line "battle strategy?"
 
-	para "It is foolish to"
-	line "use strong moves"
-	cont "indiscriminately."
+	para "Mine is to build"
+	line "a team with good"
+	cont "type synergy!"
 	done
 ; 0x19e7c2
 
@@ -659,13 +659,9 @@ CooltrainerfKellyBeatenText: ; 0x19e7c2
 ; 0x19e7d1
 
 UnknownText_0x19e7d1: ; 0x19e7d1
-	text "I'm not in favor"
-	line "of overly power-"
-	cont "ful moves."
-
-	para "I want to win, but"
-	line "I also don't want"
-	cont "to harm #MON."
+	text "The better type"
+	line "coverage you have"
+	cont "the better."
 	done
 ; 0x19e830
 

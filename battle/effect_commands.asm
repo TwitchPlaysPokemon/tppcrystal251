@@ -194,8 +194,8 @@ CheckPlayerTurn:
 
 	; Snore and Sleep Talk bypass sleep.
 	ld a, [CurPlayerMove]
-	cp SNORE
-	jr z, .not_asleep
+	;cp SNORE
+	;jr z, .not_asleep
 	cp SLEEP_TALK
 	jr z, .not_asleep
 
@@ -439,8 +439,8 @@ CheckEnemyTurn: ; 3421f
 .fast_asleep
 	; Snore and Sleep Talk bypass sleep.
 	ld a, [CurEnemyMove]
-	cp SNORE
-	jr z, .not_asleep
+	;cp SNORE
+	;jr z, .not_asleep
 	cp SLEEP_TALK
 	jr z, .not_asleep
 	call CantMove
@@ -482,18 +482,18 @@ CheckEnemyTurn: ; 3421f
 
 	ld hl, EnemyDisableCount
 	ld a, [hl]
-	and a
+	and a ;if disable turns = 0, not disabled
 	jr z, .not_disabled
 
 	dec a
 	ld [hl], a
-	and $f
+	and $f ;dec it, if disabled turn is not 0, still disabled
 	jr nz, .not_disabled
 
-	ld [hl], a
+	ld [hl], a ;else set disabled move to 0
 	ld [EnemyDisabledMove], a
 
-	ld hl, DisabledNoMoreText
+	ld hl, DisabledNoMoreText ;disabled no more
 	call StdBattleTextBox
 
 .not_disabled
@@ -993,8 +993,8 @@ IgnoreSleepOnly: ; 3451f
 	ld a, BATTLE_VARS_MOVE_ANIM
 	call GetBattleVar
 
-	cp SNORE
-	jr z, .CheckSleep
+	;cp SNORE
+	;jr z, .CheckSleep
 	cp SLEEP_TALK
 	jr z, .CheckSleep
 	and a
@@ -1239,7 +1239,7 @@ BattleCommand05: ; 34631
 
 ; +2 critical level
 	ld c, 2
-	jr .Tally
+	jr .FocusEnergy ;.Tally fixed a non-stacking bug
 
 .Farfetchd
 	cp FARFETCH_D
@@ -1250,7 +1250,7 @@ BattleCommand05: ; 34631
 
 ; +2 critical level
 	ld c, 2
-	jr .Tally
+	jr .FocusEnergy ;.Tally fixed a non-stacking bug
 
 .FocusEnergy
 	ld a, BATTLE_VARS_SUBSTATUS4
@@ -1258,7 +1258,8 @@ BattleCommand05: ; 34631
 	bit SUBSTATUS_FOCUS_ENERGY, a
 	jr z, .CheckCritical
 
-; +1 critical level
+; +2 critical level
+	inc c
 	inc c
 
 .CheckCritical
@@ -1298,10 +1299,10 @@ BattleCommand05: ; 34631
 	ret
 
 .Criticals
-	db KARATE_CHOP, RAZOR_WIND, RAZOR_LEAF, CRABHAMMER, SLASH, AEROBLAST, CROSS_CHOP, $ff
+	db KARATE_CHOP, RAZOR_LEAF, CRABHAMMER, SLASH, AEROBLAST, CROSS_CHOP, SKY_ATTACK, SHADOW_CLAW, $ff ;crit+ moves
 .Chances
-	; 6.25% 12.1% 24.6% 33.2% 49.6% 49.6% 49.6%
-	db $11,  $20,  $40,  $55,  $80,  $80,  $80
+	; 6.25% 12.1% 24.6% 33.2% 49.6% 66.015% 75.3%
+	db $11,  $20,  $40,  $55,  $80,  $A8,   $c0
 	;   0     1     2     3     4     5     6
 ; 346b2
 
@@ -2422,8 +2423,8 @@ BattleCommand09: ; 34d32
 ; Keep the damage value intact if we're using (Hi) Jump Kick.
 	ld a, BATTLE_VARS_MOVE_EFFECT
 	call GetBattleVar
-	cp EFFECT_JUMP_KICK
-	jr z, .Missed
+		;cp EFFECT_JUMP_KICK redundent
+		;jr z, .Missed
 	call ResetDamage
 
 .Missed
@@ -3074,23 +3075,30 @@ Function350e4: ; 350e4
 	call GetBattleVar
 	cp EFFECT_JUMP_KICK
 	ret nz
-	ld a, [TypeModifier]
-	and $7f
-	ret z
-	ld hl, CurDamage
+	ld hl, BattleMonMaxHP
+	ld a, [hBattleTurn]
+	and a
+	jr z, .start
+	ld hl, EnemyMonMaxHP
+		;ld a, [TypeModifier]
+		;and $7f
+		;ret z ;if no effect, return?
+		;ld hl, CurDamage
+.start
 	ld a, [hli]
-	ld b, [hl]
-	rept 3
-	srl a
+	ld b, [hl] ;load damage
+		;rept 3
+	srl a ;divide max HP by 2 to deal self damage
 	rr b
-	endr
-	ld [hl], b
+		;endr
+	ld hl, CurDamage
+	ld [hl], b ;put result in damage
 	dec hl
 	ld [hli], a
-	or b
-	jr nz, .asm_3513e
-	inc a
-	ld [hl], a
+		;or b
+		;jr nz, .asm_3513e ;if result is 0, set to 1
+		;inc a
+		;ld [hl], a
 .asm_3513e
 	ld hl, CrashedText
 	call StdBattleTextBox
@@ -3420,7 +3428,7 @@ PlayerAttackDamage: ; 352e2
 
 	call ResetDamage
 
-	ld hl, wPlayerMoveStruct + MOVE_POWER
+	ld hl, wPlayerMoveStructPower
 	ld a, [hli]
 	and a
 	ld d, a
@@ -3564,7 +3572,7 @@ GetDamageStats: ; 3537e
 	ld a, [hBattleTurn]
 	and a
 	jr nz, .enemy
-	ld a, [wPlayerMoveStruct + MOVE_TYPE]
+	ld a, [wPlayerMoveStructType]
 	bit 6, a
 ; special
 	ld a, [PlayerSAtkLevel]
@@ -3578,7 +3586,7 @@ GetDamageStats: ; 3537e
 	jr .end
 
 .enemy
-	ld a, [wEnemyMoveStruct + MOVE_TYPE]
+	ld a, [wEnemyMoveStructType]
 	bit 6, a
 ; special
 	ld a, [EnemySAtkLevel]
@@ -3677,9 +3685,8 @@ EnemyAttackDamage: ; 353f6
 	call ResetDamage
 
 ; No damage dealt with 0 power.
-	ld hl, wEnemyMoveStruct + MOVE_POWER
-	ld a, [hli] ; hl = wEnemyMoveStruct + MOVE_TYPE
-	and $1f
+	ld hl, wEnemyMoveStructPower
+	ld a, [hli] ; hl = wEnemyMoveStructType
 	ld d, a
 	and a
 	ret z
@@ -3822,7 +3829,7 @@ BattleCommanda1: ; 35461
 	ld a, [hl]
 	ld e, a
 	pop bc
-	ld a, [wPlayerMoveStruct + MOVE_POWER]
+	ld a, [wPlayerMoveStructPower]
 	ld d, a
 	ret
 
@@ -3927,7 +3934,7 @@ BattleCommanda1: ; 35461
 	ld a, [hl]
 	ld e, a
 	pop bc
-	ld a, [wEnemyMoveStruct + MOVE_POWER]
+	ld a, [wEnemyMoveStructPower]
 	ld d, a
 	ret
 ; 355b0
@@ -4006,7 +4013,7 @@ Function355dd: ; 355dd
 	ld l, [hl]
 	ld h, a
 	call Function3534d
-	ld d, $28
+	ld d, 40
 	pop af
 	ld e, a
 	ret
@@ -4407,14 +4414,14 @@ BattleCommand3f: ; 35726
 	ld a, [hl]
 	jr nz, .asm_357f8
 
-	ld hl, wPlayerMoveStruct + MOVE_POWER
+	ld hl, wPlayerMoveStructPower
 	ld [hl], a
 	push hl
 	call PlayerAttackDamage
 	jr .asm_35800
 
 .asm_357f8
-	ld hl, wEnemyMoveStruct + MOVE_POWER
+	ld hl, wEnemyMoveStructPower
 	ld [hl], a
 	push hl
 	call EnemyAttackDamage
@@ -5161,10 +5168,11 @@ BattleCommand4a: ; 35c0f
 	jr z, .asm_35c91
 	push bc
 	call GetMoveName
-	call BattleRandom
-	and 3
-	inc a
-	inc a
+		;call BattleRandom
+		;and 3 ;0-3
+		;inc a
+		;inc a ;2-5
+	ld a, 4 ;made spite non-random
 	ld b, a
 	ld a, [hl]
 	and $3f
@@ -7139,8 +7147,8 @@ BattleCommand22: ; 366e5
 	ld [de], a
 	inc de
 	ld [de], a
-	ld [wPlayerMoveStruct + MOVE_EFFECT], a
-	ld [wEnemyMoveStruct + MOVE_EFFECT], a
+	ld [wPlayerMoveStructEffect], a
+	ld [wEnemyMoveStructEffect], a
 	call BattleRandom
 	and 1
 	inc a
@@ -7356,7 +7364,7 @@ BattleCommand23: ; 3680f
 	inc a
 	ld [wd232], a
 	call Function36804
-	ld a, [wPlayerMoveStruct + MOVE_ANIM]
+	ld a, [wPlayerMoveStructAnimation]
 	jp .asm_36975
 .asm_36869
 	call CountEnemyAliveMons
@@ -7447,7 +7455,7 @@ BattleCommand23: ; 3680f
 	inc a
 	ld [wd232], a
 	call Function36804
-	ld a, [wEnemyMoveStruct + MOVE_ANIM]
+	ld a, [wEnemyMoveStructAnimation]
 	jr .asm_36975
 
 .asm_36908
@@ -7931,17 +7939,17 @@ BattleCommand39: ; 36b4d
 
 	ld a, BATTLE_VARS_MOVE_ANIM
 	call GetBattleVar
-	cp RAZOR_WIND
-	ld hl, .RazorWind
-	jr z, .done
+	;cp RAZOR_WIND
+	;ld hl, .RazorWind
+	;jr z, .done
 
 	cp SOLARBEAM
 	ld hl, .Solarbeam
 	jr z, .done
 
-	cp SKULL_BASH
-	ld hl, .SkullBash
-	jr z, .done
+	;cp SKULL_BASH
+	;ld hl, .SkullBash
+	;jr z, .done
 
 	cp SKY_ATTACK
 	ld hl, .SkyAttack
@@ -8018,10 +8026,12 @@ BattleCommand3b: ; 36c2d
 	bit SUBSTATUS_SUBSTITUTE, a
 	ret nz
 	call BattleRandom
-	and 3
+	and 1 ;changed from 2-5 turns to 4-5 turns
 	inc a
 	inc a
 	inc a
+	inc a
+	inc a 
 	ld [hl], a
 	ld a, BATTLE_VARS_MOVE_ANIM
 	call GetBattleVar
@@ -8044,7 +8054,7 @@ BattleCommand3b: ; 36c2d
 	jp StdBattleTextBox
 
 .Traps
-	dbw BIND,      UsedBindText      ; 'used BIND on'
+	;dbw BIND,      UsedBindText      ; 'used BIND on'
 	dbw WRAP,      WrappedByText     ; 'was WRAPPED by'
 	dbw FIRE_SPIN, FireSpinTrapText  ; 'was trapped!'
 	dbw CLAMP,     ClampedByText     ; 'was CLAMPED by'
@@ -8089,7 +8099,7 @@ BattleCommand29: ; 36c98
 BattleCommand27: ; 36cb2
 ; recoil
 
-	ld hl, BattleMonMaxHP
+	ld hl, BattleMonMaxHP ;load correct side
 	ld a, [hBattleTurn]
 	and a
 	ld a, [LastPlayerMove]
@@ -8097,7 +8107,7 @@ BattleCommand27: ; 36cb2
 	ld hl, EnemyMonMaxHP
 	ld a, [LastEnemyMove]
 .asm_36cbd
-	cp STRUGGLE
+	cp STRUGGLE ;handle struggle seperatly
 	jr z, .Struggle
 	ld a, BATTLE_VARS_MOVE_ANIM
 	call GetBattleVar
@@ -8659,22 +8669,22 @@ BattleCommand37: ; 36fed
 
 	ld a, [de]
 	and a
-	jr nz, .asm_37059
+	jr nz, .asm_37059 ;fail if already disabled
 
 	ld a, BATTLE_VARS_LAST_COUNTER_MOVE_OPP
 	call GetBattleVar
 	and a
-	jr z, .asm_37059
+	jr z, .asm_37059 ;skip if no move or struggle was last move used
 	cp STRUGGLE
 	jr z, .asm_37059
 
-	ld b, a
+	ld b, a ;load move into b
 	ld c, $ff
 .asm_37017
-	inc c
+	inc c 
 	ld a, [hli]
 	cp b
-	jr nz, .asm_37017
+	jr nz, .asm_37017 ;c = slot of move disabled
 
 	ld a, [hBattleTurn]
 	and a
@@ -8686,16 +8696,17 @@ BattleCommand37: ; 36fed
 	add hl, bc
 	ld a, [hl]
 	and a
-	jr z, .asm_37059
+	jr z, .asm_37059 ;if diabled move is out of pp, fail
 .asm_3702e
-	call BattleRandom
-	and 7
-	jr z, .asm_3702e
-	inc a
+	;call BattleRandom
+	;and 7
+	;jr z, .asm_3702e ;1-7
+	;inc a ;2-8
+	ld a, 5
 	inc c
 	swap c
-	add c
-	ld [de], a
+	add c ;add movedisabled to back nyble
+	ld [de], a ;load into disabled turns
 	call AnimateCurrentMove
 	ld hl, DisabledMove
 	ld a, [hBattleTurn]
@@ -9453,12 +9464,12 @@ BattleCommand5e: ; 37792
 
 	inc [hl]
 
-; Damage capped at 5 turns' worth (16x).
+; Damage capped at 3 turns' worth (4x).
 	ld a, [hl]
 	ld b, a
-	cp 6
+	cp 4
 	jr c, .checkdouble
-	ld b, 5
+	ld b, 3
 
 .checkdouble
 	dec b

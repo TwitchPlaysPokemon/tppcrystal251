@@ -250,12 +250,12 @@ UnknownText_0x59dc9: ; 0x59dc9
 ; 0x59e15
 
 FirebreatherBillSeenText: ; 0x59e15
-	text "ZUBAT's SUPERSONIC"
-	line "keeps confusing"
-	cont "my #MON."
+	text "SWINUB is very"
+	line "common during"
+	cont "the day here."
 
-	para "I'm seriously"
-	line "upset about that!"
+	para "It's no match for"
+	line "my fire #MON!"
 	done
 ; 0x59e60
 
@@ -265,11 +265,11 @@ FirebreatherBillBeatenText: ; 0x59e60
 ; 0x59e6f
 
 UnknownText_0x59e6f: ; 0x59e6f
-	text "On weekends, you"
-	line "can hear strange"
+	text "The #MON you"
+	line "encounter varies"
 
-	para "roars from deep in"
-	line "the cave."
+	para "depending on time"
+	line "of the day."
 	done
 ; 0x59eaf
 

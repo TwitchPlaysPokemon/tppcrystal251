@@ -57,6 +57,8 @@ PokeCenterNurseScript:
 ; EVENT_WELCOMED_TO_POKECOM_CENTER is never set
 
 	loadfont
+	checkcode VAR_PARTYCOUNT
+	iffalse .no_pokemon
 	checkmorn
 	iftrue .morn
 	checkday
@@ -163,6 +165,11 @@ PokeCenterNurseScript:
 	setflag ENGINE_POKERUS
 	specialphonecall 1 ; elm calls about pokerus
 	end
+
+.no_pokemon
+	farwritetext NoPokemonHealText
+	pause 20
+	jump .done
 
 DifficultBookshelfScript: ; 0xbc162
 	farjumptext UnknownText_0x1b035a
@@ -848,6 +855,14 @@ InitializeEventsScript: ; 0xbc3db
 	variablesprite SPRITE_FUCHSIA_GYM_4, SPRITE_JANINE
 	variablesprite SPRITE_COPYCAT, SPRITE_LASS
 	variablesprite SPRITE_JANINE_IMPERSONATOR, SPRITE_LASS
+	checkflag ENGINE_PLAYER_IS_FEMALE
+	iftrue .rival_is_male
+	variablesprite SPRITE_EGK_RIVAL, SPRITE_KRIS
+	jump .done_rival
+
+.rival_is_male
+	variablesprite SPRITE_EGK_RIVAL, SPRITE_CHRIS
+.done_rival
 	setevent EVENT_FOUND_MACHINE_PART_IN_CERULEAN_GYM
 	setevent EVENT_ROCKET_IN_CERULEAN_GYM
 	setevent EVENT_ROCKET_ON_ROUTE_24

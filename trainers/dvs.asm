@@ -95,5 +95,6 @@ TrainerClassDVs: ; 270d6
 	db $D8, $C8 ; Giovanni
 	db $D8, $C8 ; coolsibs
 	db $DD, $DD ; rivalrb
+	db $DD, $DD ; rivalrb
 ; 2715c
 

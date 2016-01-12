@@ -98,12 +98,12 @@ SailorErnestBeatenText: ; 0x609fe
 ; 0x60a1f
 
 UnknownText_0x60a1f: ; 0x60a1f
-	text "A GYM LEADER isn't"
-	line "just about being"
+	text "REMORAID might not"
+	line "be the strongest"
+	cont "#MON,"
 
-	para "strong. A LEADER"
-	line "also needs to be"
-	cont "compassionate."
+	para "but it learns a"
+	line "lot of moves!"
 	done
 ; 0x60a74
 
@@ -122,13 +122,12 @@ Bird_keeperDenisBeatenText: ; 0x60aaf
 ; 0x60ac3
 
 UnknownText_0x60ac3: ; 0x60ac3
-	text "My #MON learned"
-	line "how to use FLY in"
-	cont "CIANWOOD."
+	text "Are you saying"
+	line "my #MON"
+	cont "aren't birds?"
 
-	para "Well, since I'm a"
-	line "loser, I'll FLY"
-	cont "across the sea…"
+	para "But they are"
+	line "flying?"
 	done
 ; 0x60b20
 

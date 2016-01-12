@@ -281,6 +281,9 @@ Executivef1SeenText: ; 0x602cb
 
 	para "I lost then, but I"
 	line "won't this time."
+	
+	para "I am well prepared"
+	line "this time!"
 	done
 ; 0x6031e
 

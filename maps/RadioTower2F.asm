@@ -482,7 +482,7 @@ UnknownText_0x5da44: ; 0x5da44
 ; 0x5da9b
 
 GruntM4SeenText: ; 0x5da9b
-	text "Three years ago,"
+	text "Three months ago,"
 	line "TEAM ROCKET was"
 	cont "forced to disband."
 
@@ -515,37 +515,38 @@ GruntM5SeenText: ; 0x5db39
 ; 0x5db80
 
 GruntM5BeatenText: ; 0x5db80
-	text "You think you're a"
-	line "hero?"
+	text "You think you are"
+	line "some kind of hero?"
 	done
 ; 0x5db99
 
 UnknownText_0x5db99: ; 0x5db99
-	text "We're not always"
-	line "evil. We just do"
-	cont "whatever we like."
+	text "You may be strong,"
+	line "but we are too"
+	cont "many for you!"
 	done
 ; 0x5dbcd
 
 GruntM6SeenText: ; 0x5dbcd
-	text "Hey, hey! Keep out"
-	line "of our way!"
+	text "We have a secret"
+	line "weapon for taking"
+	cont "over this tower!"
 	done
 ; 0x5dbed
 
 GruntM6BeatenText: ; 0x5dbed
-	text "Arggh. I give up."
+	text "I still lose!?"
 	done
 ; 0x5dc00
 
 UnknownText_0x5dc00: ; 0x5dc00
-	text "Our EXECUTIVES are"
-	line "trying to take"
-	cont "this place over."
+	text "The BERSERK GENE"
+	line "is our ultimate"
+	cont "creation!"
 
-	para "They have some big"
-	line "plan. I wonder"
-	cont "what that is?"
+	para "It has some bad"
+	line "side effects"
+	cont "though..."
 	done
 ; 0x5dc64
 

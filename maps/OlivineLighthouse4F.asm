@@ -90,33 +90,26 @@ UnknownText_0x5b584: ; 0x5b584
 ; 0x5b5c5
 
 LassConnie1SeenText: ; 0x5b5c5
-	text "JASMINE is this"
-	line "city's GYM LEADER."
+	text "I am visiting from"
+	line "northern JOHTO."
 
-	para "I mean to bring"
-	line "her back with me."
-
-	para "Nobody had better"
-	line "get in my way!"
+	para "It gets very"
+	line "cold there!"
 	done
 ; 0x5b62b
 
 LassConnie1BeatenText: ; 0x5b62b
-	text "Aaack! My #MON!"
+	text "Maybe I should"
+	line "teach DELIBIRD"
+	cont "some new moves..."
 	done
 ; 0x5b63c
 
 UnknownText_0x5b63c: ; 0x5b63c
-	text "Right. Anybody"
-	line "would be worried"
-	cont "if his or her own"
-	cont "#MON were hurt."
-
-	para "I'll pray for the"
-	line "#MON here, so"
-
-	para "JASMINE can come"
-	line "back to the GYM."
+	text "DELIBIRD lives"
+	line "in the north"
+	cont "due to the"
+	cont "colder climate!"
 	done
 ; 0x5b6c0
 

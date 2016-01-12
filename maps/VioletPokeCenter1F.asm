@@ -205,7 +205,7 @@ UnknownText_0x69809: ; 0x69809
 
 UnknownText_0x6983c: ; 0x6983c
 	text "It was around"
-	line "three years ago."
+	line "three months ago."
 
 	para "TEAM ROCKET was up"
 	line "to no good with"

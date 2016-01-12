@@ -31,6 +31,10 @@ MapGroupPointers:: ; 0x94000
 	dw MapGroup28
 	dw MapGroup29
 	dw MapGroup30
+	dw MapGroup31
+	dw MapGroup32
+	dw MapGroup33
+	dw MapGroup34
 
 
 MapGroup1:
@@ -145,7 +149,6 @@ MapGroup3:
 	map_header DragonShrine, $a, 3, DRAGONS_DEN, MUSIC_DRAGONS_DEN, 1, 2, 4
 	map_header TohjoFalls, $18, 4, TOHJO_FALLS, MUSIC_UNION_CAVE, 1, 2, 2
 	map_header DiglettsCave, $18, 4, DIGLETTS_CAVE, MUSIC_MT_MOON, 1, 2, 1
-	map_header MountMoon, $18, 4, MT_MOON, MUSIC_MT_MOON, 1, 2, 1
 	map_header Underground, $1c, 6, UNDERGROUND, MUSIC_MT_MOON, 0, 2, 1
 	map_header RockTunnel1F, $1e, 4, ROCK_TUNNEL, MUSIC_MT_MOON, 1, 4, 1
 	map_header RockTunnelB1F, $1e, 4, ROCK_TUNNEL, MUSIC_MT_MOON, 1, 4, 1
@@ -207,26 +210,7 @@ MapGroup7:
 	map_header Route10North, $3, 2, ROUTE_10, MUSIC_ROUTE_3, 0, 0, 14
 	map_header Route24, $3, 2, ROUTE_24, MUSIC_ROUTE_24, 0, 0, 14
 	map_header Route25, $3, 2, ROUTE_25, MUSIC_ROUTE_24, 0, 0, 14
-	map_header CeruleanCity, $3, 1, CERULEAN_CITY, MUSIC_CERULEAN_CITY, 0, 0, 0
-; RB
-	; map_header CeruleanGymBadgeSpeechHouseRB, $5, 3, CERULEAN_CITY, MUSIC_CERULEAN_CITY, 0, 1, 1
-	; map_header CeruleanPoliceStationRB, $5, 3, CERULEAN_CITY, MUSIC_CERULEAN_CITY, 0, 1, 1
-	; map_header CeruleanTradeSpeechHouseRB, $5, 3, CERULEAN_CITY, MUSIC_CERULEAN_CITY, 0, 1, 1
-	; map_header CeruleanPokeCenter1FRB, $7, 3, CERULEAN_CITY, MUSIC_POKEMON_CENTER, 0, 1, 1
-	; map_header CeruleanPokeCenter2FBetaRB, $7, 3, CERULEAN_CITY, MUSIC_POKEMON_CENTER, 0, 1, 1
-	; map_header CeruleanGymRB, $9, 3, CERULEAN_CITY, MUSIC_GYM, 1, 1, 0
-	; map_header CeruleanMartRB, $c, 3, CERULEAN_CITY, MUSIC_MART, 0, 1, 1
-	; map_header Route10PokeCenter1FRB, $7, 3, ROUTE_10, MUSIC_POKEMON_CENTER, 0, 1, 1
-	; map_header Route10PokeCenter2FBetaRB, $7, 3, ROUTE_10, MUSIC_POKEMON_CENTER, 0, 1, 1
-	; map_header PowerPlantRB, $b, 3, POWER_PLANT, MUSIC_CERULEAN_CITY, 0, 1, 1
-	; map_header BillsHouseRB, $5, 3, ROUTE_25, MUSIC_CERULEAN_CITY, 0, 1, 1
-	; map_header Route4RB, $3, 2, ROUTE_4, MUSIC_ROUTE_3, 0, 0, 0
-	; map_header Route9RB, $3, 2, ROUTE_9, MUSIC_ROUTE_3, 0, 0, 3
-	; map_header Route10NorthRB, $3, 2, ROUTE_10, MUSIC_ROUTE_3, 0, 0, 3
-	; map_header Route24RB, $3, 2, ROUTE_24, MUSIC_ROUTE_24, 0, 0, 3
-	; map_header Route25RB, $3, 2, ROUTE_25, MUSIC_ROUTE_24, 0, 0, 3
-	; map_header CeruleanCityRB, $3, 1, CERULEAN_CITY, MUSIC_CERULEAN_CITY, 0, 0, 0
-	
+	map_header CeruleanCity, $3, 1, CERULEAN_CITY, MUSIC_CERULEAN_CITY, 0, 0, 0	
 
 MapGroup8:
 	map_header AzaleaPokeCenter1F, $7, 3, AZALEA_TOWN, MUSIC_POKEMON_CENTER, 0, 1, 1
@@ -339,8 +323,6 @@ MapGroup15:
 	map_header FastShipB1F, $13, 3, FAST_SHIP, MUSIC_SS_AQUA, 0, 1, 1
 	map_header OlivinePortPassage, $1c, 3, OLIVINE_CITY, MUSIC_VIOLET_CITY, 0, 1, 1
 	map_header VermilionPortPassage, $1c, 3, VERMILION_CITY, MUSIC_VERMILION_CITY, 0, 1, 1
-	map_header MountMoonSquare, $3, 2, MT_MOON, MUSIC_MT_MOON_SQUARE, 0, 0, 1
-	map_header MountMoonGiftShop, $10, 3, MT_MOON, MUSIC_VIRIDIAN_CITY, 0, 1, 1
 	map_header TinTowerRoof, $17, 2, TIN_TOWER, MUSIC_TIN_TOWER, 0, 0, 1
 
 
@@ -555,9 +537,6 @@ MapGroup28:
 	map_header SeafoamIslandsB1F, $1d, 4, SEAFOAM_ISLANDS, MUSIC_MT_MOON, 1, 2, 1
 	map_header SeafoamIslandsB2F, $1d, 4, SEAFOAM_ISLANDS, MUSIC_MT_MOON, 1, 2, 1
 	map_header SeafoamIslandsB3F, $1d, 4, SEAFOAM_ISLANDS, MUSIC_MT_MOON, 1, 2, 1
-	map_header PhanceroRuinsB1F, $1a, 7, RUINS_OF_ALPH, MUSIC_RUINS_OF_ALPH_INTERIOR, 1, 1, 1
-	map_header PhanceroRuinsB2F, $1a, 7, RUINS_OF_ALPH, MUSIC_RUINS_OF_ALPH_INTERIOR, 1, 1, 1
-	map_header PhanceroRuinsB3F, $1a, 7, RUINS_OF_ALPH, MUSIC_RUINS_OF_ALPH_INTERIOR, 1, 1, 1
 	map_header TohjoFallsBackRoom, $18, 4, TOHJO_FALLS, MUSIC_UNION_CAVE, 1, 2, 3
 	map_header CeladonDeptStoreB1F, $c, 3, CELADON_CITY, MUSIC_MART, 0, 1, 1
 	map_header SilverCaveDreamRoom, $18, 3, SILVER_CAVE, MUSIC_NONE, 1, 1, 3
@@ -580,4 +559,32 @@ MapGroup30:
 	map_header ViridianNicknameSpeechHouseRB, $5, 3, VIRIDIAN_CITY, MUSIC_VIRIDIAN_CITY, 0, 1, 1
 	map_header ViridianTrainerSchoolRB, $5, 3, VIRIDIAN_CITY, MUSIC_VIRIDIAN_CITY, 0, 1, 1
 	map_header VictoryRoadGateRB, $8, 6, ROUTE_22, MUSIC_ROUTE_2, 0, 1, 1
+
+MapGroup31:
+; pewter city rb
+
+MapGroup32:
+	; map_header CeruleanGymBadgeSpeechHouseRB, $5, 3, CERULEAN_CITY, MUSIC_CERULEAN_CITY, 0, 1, 1
+	; map_header CeruleanPoliceStationRB, $5, 3, CERULEAN_CITY, MUSIC_CERULEAN_CITY, 0, 1, 1
+	; map_header CeruleanTradeSpeechHouseRB, $5, 3, CERULEAN_CITY, MUSIC_CERULEAN_CITY, 0, 1, 1
+	; map_header CeruleanPokeCenter1FRB, $7, 3, CERULEAN_CITY, MUSIC_POKEMON_CENTER, 0, 1, 1
+	; map_header CeruleanPokeCenter2FBetaRB, $7, 3, CERULEAN_CITY, MUSIC_POKEMON_CENTER, 0, 1, 1
+	; map_header CeruleanGymRB, $9, 3, CERULEAN_CITY, MUSIC_GYM, 1, 1, 0
+	; map_header CeruleanMartRB, $c, 3, CERULEAN_CITY, MUSIC_MART, 0, 1, 1
+	; map_header Route10PokeCenter1FRB, $7, 3, ROUTE_10, MUSIC_POKEMON_CENTER, 0, 1, 1
+	; map_header Route10PokeCenter2FBetaRB, $7, 3, ROUTE_10, MUSIC_POKEMON_CENTER, 0, 1, 1
+	; map_header PowerPlantRB, $b, 3, POWER_PLANT, MUSIC_CERULEAN_CITY, 0, 1, 1
+	; map_header BillsHouseRB, $5, 3, ROUTE_25, MUSIC_CERULEAN_CITY, 0, 1, 1
+	; map_header Route4RB, $3, 2, ROUTE_4, MUSIC_ROUTE_3, 0, 0, 0
+	; map_header Route9RB, $3, 2, ROUTE_9, MUSIC_ROUTE_3, 0, 0, 3
+	; map_header Route10NorthRB, $3, 2, ROUTE_10, MUSIC_ROUTE_3, 0, 0, 3
+	; map_header Route24RB, $3, 2, ROUTE_24, MUSIC_ROUTE_24, 0, 0, 3
+	; map_header Route25RB, $3, 2, ROUTE_25, MUSIC_ROUTE_24, 0, 0, 3
+	; map_header CeruleanCityRB, $3, 1, CERULEAN_CITY, MUSIC_CERULEAN_CITY, 0, 0, 0
+
+MapGroup33:
+; vermilion city rb
+
+MapGroup34:
+; ss anne rb
 
