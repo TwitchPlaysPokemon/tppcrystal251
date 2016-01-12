@@ -35920,7 +35920,7 @@ Function421f5: ; 421f5
 	ld a, [TempMonLevel]
 	cp [hl]
 	jp c, .DontEvolve3
-	call Function42461
+	call CheckMonHoldingEverstone
 	jp z, .DontEvolve3
 	push hl
 	ld de, TempMonAttack
@@ -35947,7 +35947,7 @@ Function421f5: ; 421f5
 	ld a, [TempMonHappiness]
 	cp 220
 	jp c, .DontEvolve2
-	call Function42461
+	call CheckMonHoldingEverstone
 	jp z, .DontEvolve2
 	ld a, [hli]
 	cp TR_ANYTIME
@@ -35970,8 +35970,9 @@ Function421f5: ; 421f5
 .trade
 	ld a, [wLinkMode]
 	and a
-	jp z, .DontEvolve2
-	call Function42461
+	jp z, .level
+.trade_item
+	call CheckMonHoldingEverstone
 	jp z, .DontEvolve2
 	ld a, [hli]
 	ld b, a
@@ -36002,6 +36003,9 @@ Function421f5: ; 421f5
 	jr .GoAheadAndEvolve
 
 .levelitem
+	ld a, [wLinkMode]
+	and a
+	jr nz, .trade_item
 	ld a, [hli]
 	ld b, a
 	ld a, [TempMonItem]
@@ -36015,7 +36019,7 @@ Function421f5: ; 421f5
 	ld a, [TempMonLevel]
 	cp b
 	jp c, .DontEvolve
-	call Function42461
+	call CheckMonHoldingEverstone
 	jp z, .DontEvolve
 .GoAheadAndEvolve
 	ld a, [TempMonLevel]
@@ -36195,7 +36199,7 @@ Function42454: ; 42454
 	jp Function421f5
 ; 42461
 
-Function42461: ; 42461
+CheckMonHoldingEverstone: ; 42461
 	push hl
 	ld a, [CurPartyMon]
 	ld hl, PartyMon1Item
