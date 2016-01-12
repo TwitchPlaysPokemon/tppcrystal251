@@ -201,7 +201,7 @@ wEnemyHPAtTimeOfPlayerSwitch = 0xc6ea -- 2 bytes
 wPayDayMoney = 0xc6ec -- 3 bytes
 
 wSafariMonAngerCount = 0xc6ef -- 1 byte
-wSafariMonEating = 0xc6f0 -- 2 bytes
+wSafariMonEating = 0xc6f0 -- 1 byte
 wEnemyBackupDVs = 0xc6f2 -- 2 bytes used when enemy is transformed
 AlreadyDisobeyed = 0xc6f4 -- 1 byte
 
@@ -210,7 +210,8 @@ EnemyDisabledMove = 0xc6f6 -- 1 byte
 wWhichMonFaintedFirst = 0xc6f7 -- 1 byte
 
 -- exists so you can't counter on switch
-LastEnemyCounterMove:: ds LastPlayerCounterMove = 0xc6f9 -- 1 byte
+LastEnemyCounterMove = 0xc6f8 -- 1 byte
+LastPlayerCounterMove = 0xc6f9 -- 1 byte
 
 wEnemyMinimized = 0xc6fa -- 1 byte
 
