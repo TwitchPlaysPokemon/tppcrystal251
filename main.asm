@@ -33466,7 +33466,16 @@ RoamMaps: ; 2a40f
 
 RandomPhoneMon: ; 2a567
 ; Get a random monster owned by the trainer who's calling.
+	push af
+	callba GetRematchTrainer
+	jr nc, .okay_pop
+	pop af
 	callba Function90439
+	jr .okay
+
+.okay_pop
+	pop af
+.okay
 	ld hl, TrainerGroups
 	ld a, d
 	dec a
@@ -33728,6 +33737,9 @@ INCBIN "gfx/misc/dude.6x6.2bpp.lz"
 SECTION "WildHandling", ROMX 
 
 INCLUDE "engine/wildhandling.asm"
+
+SECTION "Phone Trainers", ROMX
+INCLUDE "data/phone_trainers.asm"
 
 SECTION "bankB", ROMX, BANK[$B]
 
