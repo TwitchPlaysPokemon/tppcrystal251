@@ -1879,6 +1879,8 @@ HandleWeather: ; 3cb9e
 	ld d, 0
 	add hl, de
 	ld e, [hl]
+	xor a
+	ld [wcfca], a
 	jp Function3ee17
 
 .WeatherAnims
