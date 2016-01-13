@@ -1959,17 +1959,16 @@ BattleAnim_Confusion: ; ca058
 	anim_ret
 ; ca06c
 
-;BattleAnim_Constrict: ; ca06c Find the old label and comment it out
-	anim_1gfx ANIM_GFX_ROPE
-	anim_sound $1, SFX_BIND
-	anim_obj $49, 132, 64, $0
+BattleAnim_ZenHeadbutt:
+	anim_1gfx ANIM_GFX_HIT
+	anim_sound $0, SFX_POUND
+	anim_obj $4, 44, 96, $0
+	anim_wait 16
+	anim_call BattleAnim_Headbutt_branch_cbca7
+	anim_sound $1, SFX_HEADBUTT
+	anim_obj $1, 136, 56, $0
 	anim_wait 8
-	anim_obj $48, 132, 48, $0
-	anim_wait 8
-	anim_obj $49, 132, 40, $0
-	anim_wait 8
-	anim_obj $48, 132, 56, $0
-	anim_wait 64
+	anim_call BattleAnim_Headbutt_branch_cbcb7
 	anim_ret
 ; ca08a
 
@@ -2245,7 +2244,6 @@ BattleAnim_StringShot: ; ca293
 ; ca2d1
 
 BattleAnim_Headbutt: ; ca2d1
-BattleAnim_ZenHeadbutt:
 	anim_1gfx ANIM_GFX_HIT
 	anim_bgeffect $1f, $14, $2, $0
 	anim_wait 32

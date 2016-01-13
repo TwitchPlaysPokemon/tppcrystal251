@@ -74783,7 +74783,7 @@ endm
 	treemon_map ROUTE_31, 2
 	treemon_map ROUTE_32, 4
 	treemon_map ROUTE_33, 4
-	treemon_map ROUTE_34, 9
+	treemon_map ROUTE_34, 5
 	treemon_map ROUTE_35, 9
 	treemon_map ROUTE_36, 9
 	treemon_map ROUTE_37, 9
@@ -74868,131 +74868,136 @@ TreeMons: ; b82e8 ;what tables are assosiate with wwhat numbers
 ; Structure:
 ;	db  %, species, level
 TreeMons1: ; 1 - Route 29, New Bark Town
-	db 50, PINECO,		25
-	db 30, SENTRET,		25
-	db 20, SPINARAK,	25
+	db 50, PINECO,		14
+	db 30, SENTRET,		14
+	db 20, SPINARAK,	14
 	db -1
-	db 55, PIDGEY,		35
-	db 30, PIDGEOTTO,	40
-	db 15, PIDGEOT,		50
+	db 40, PIDGEY,		14
+	db 40, SPEAROW,		14
+	db 10, PIDGEOTTO,	18
+	db 10, FEAROW,		20
 	db -1
 	
 TreeMons2: ; 2 - Route 30-31
-	db 40, PINECO,		25
-	db 20, LEDYBA,		25
-	db 20, HOPPIP,		25
-	db 20, SUNKERN,		25
+	db 40, PINECO,		15
+	db 20, LEDYBA,		15
+	db 20, HOPPIP,		15
+	db 20, SUNKERN,		15
 	db -1
-	db 65, SPEAROW, 	35
-	db 35, FEAROW,		50
+	db 45, VENONAT,		16
+	db 45, PARAS,		15
+	db 10, PARASECT,	24
 	db -1
 TreeMons3: ; 3 - Violet City
-	db 100, PINECO,		25
+	db 100, PINECO,		16
 	db -1
-	db 50, WEEPINBELL,	35
-	db 25, NIDORINO,	25
-	db 25, NIDORINA,	25
+	db 40, NIDORAN_M,	15
+	db 40, NIDORAN_F,	15
+	db 20, WEEPINBELL,	21
 	db -1
 TreeMons4: ; 4 - Route 32-33
-	db 50, PINECO,		30
-	db 20, SUNKERN,		30
-	db 20, AIPOM,		30
-	db 10, SMEARGLE,	30
+	db 50, PINECO,		17
+	db 20, SUNKERN,		17
+	db 20, AIPOM,		17
+	db 10, SMEARGLE,	17
 	db -1
-	db 80, RATICATE,	50
-	db 20, RATTATA,		35
+	db 75, RATTATA,		17
+	db 25, RATICATE,	22
 	db -1
-TreeMons5: ; 5 - Azalea Town
-	db 100, PINECO,		30
+TreeMons5: ; 5 - Azalea Town, Route 34
+	db 100, PINECO,		19
 	db -1
-	db 80, EKANS,		35
-	db 20, ARBOK,		50
+	db 40, NIDORINO,	20
+	db 40, NIDORINA,	20
+	db 20, TANGELA,		19
 	db -1
-TreeMons6: ; 6 - Dragons Den
-	db 100, PINECO,		30
+TreeMons6: ; 6 - Lake of Rage
+	db 100, PINECO,		24
 	db -1
-	db 100, FORRETRESS, 40
+	db 100, FORRETRESS, 31
 	db -1
 RockMons: ; 7
-	db 90, KRABBY,     15
-	db 10, SHUCKLE,    15
+	db 80, KRABBY,		15
+	db 10, SHUCKLE,		23
+	db 10, KINGLER,		28
 	db -1
 TreeMons7: ;8 - Ilex Forest
-	db 60, PINECO,		35
-	db 20, AIPOM,		35
-	db 10, BUTTERFREE,	45
-	db 10, BEEDRILL,	45
+	db 60, PINECO,		20
+	db 20, AIPOM,		20
+	db 10, BUTTERFREE,	22
+	db 10, BEEDRILL,	22
 	db -1
 	
-	db 50, METAPOD,		35
-	db 50, KAKUNA,		35
+	db 50, METAPOD,		19
+	db 50, KAKUNA,		19
 	db -1
-TreeMons8: ;9 - Route 34-37
-	db 75, PINECO,		35
-	db 25, TEDDIURSA,	35
+TreeMons8: ;9 - Route 35-37
+	db 75, PINECO,		24
+	db 25, TEDDIURSA,	24
 	db -1
 	
-	db 80, PIKACHU,		35
-	db 80, RAICHU,		50
+	db 75, PIKACHU,		24
+	db 25, RAICHU,		28
 	db -1
 	
 TreeMons9: ;10 - Ecruteak City
 	db 100, PINECO,		35
 	db -1
 	
-	db 65, GASTLY,		35
-	db 30, HAUNTER,		45
-	db 5, GENGAR,		55
+	db 75, GASTLY,		24
+	db 24, HAUNTER,		28
+	db 1, GENGAR,		50
 	db -1
 	
 TreeMons10: ;11 - Route 38-39
-	db 75, PINECO, 		40
-	db 25, LEDIAN,		45
+	db 75, PINECO, 		29
+	db 25, LEDIAN,		29
 	db -1
 	
-	db 80, MEOWTH,		40
-	db 20, PERSIAN,		55
+	db 75, MEOWTH,		27
+	db 25, PERSIAN,		31
 	db -1
 	
 TreeMons11: ;12 - Battle Tower
-	db 75, PINECO,		40
-	db 25, ARIADOS,		45
+	db 75, PINECO,		30
+	db 25, ARIADOS,		30
 	db -1
 	
-	db 80, DROWZEE,		40
-	db 20, HYPNO,		55
+	db 75, EKANS,		28
+	db 25, ARBOK,		32
 	
 TreeMons12: ;13 - Route 42
-	db 50, PINECO,		40
-	db 30, TOGETIC,		55
-	db 20, TOGEPI,		40
+	db 50, PINECO,		29
+	db 30, TOGETIC,		27
+	db 20, TOGEPI,		31
 	db -1
-	db 80, MANKEY,		40
-	db 20, PRIMEAPE,	55
+	db 75, MANKEY,		27
+	db 25, PRIMEAPE,	31
 	db -1
 TreeMons13: ;14 - Mahogany Town, Route 43
-	db 50, PINECO,		40
-	db 30, YANMA,		45
-	db 20, FURRET,		50
+	db 50, PINECO,		30
+	db 30, YANMA,		30
+	db 20, FURRET,		30
 	db -1
-	db 80, VENONAT,		40
-	db 20, VENOMOTH,	55
+	db 70, SANDSHREW,	28
+	db 15, SANDSLASH,	32
+	db 15, VENOMOTH,	32
 	db -1
 TreeMons14: ;15 - Route 44
 	db 50, PINECO,		45
 	db 30, SNEASEL,		50
 	db 20, DELIBIRD,	45
 	db -1
-	db 65, ZUBAT,		45
-	db 25, GOLBAT,		55
-	db 10, CROBAT,		60
+	db 65, ZUBAT,		38
+	db 25, GOLBAT,		45
+	db 10, CROBAT,		52
 	db -1
 	
 TreeMons15: ;16 - Route 26-27
-	db 100, PINECO, 	45
+	db 100, PINECO, 	48
 	db -1
-	db 80, DODUO, 		45
-	db 20, DODRIO,		60
+	db 75, EXEGGCUTE, 	45
+	db 25, EXEGGUTOR,	55
 	db -1
 	
 ; b83e5

@@ -583,7 +583,7 @@ FishGroup14_Super:
 	db 179, $0,			56
 	db $ff, $0,			57
 
-FishGroup15: ; Seafoam
+FishGroup15: ; Seafoam outside
 FishGroup15_Old: 
 	db 51, SHELLDER,	10
 	db 77, $0,			58

@@ -7030,10 +7030,10 @@ BikerGroup:
 
 	; BIKER (7)
 	db "RILEY@"
-	db 0 ; normal
+	db db (1 << TRAINERTYPE_NICKNAME)
 
 	; party
-	db 75, BEEDRILL
+	db 75, BEEDRILL, "STINGER@@@@"
 
 	db $ff ; end
 
