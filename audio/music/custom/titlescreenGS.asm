@@ -1,12 +1,12 @@
 ; eb7b1 (3a:77b1)
-Music_TitleScreen:
-	dbw $c0, Music_TitleScreen_Ch1
-	dbw $1, Music_TitleScreen_Ch2
-	dbw $2, Music_TitleScreen_Ch3
-	dbw $3, Music_TitleScreen_Ch4
+Music_TitleScreenGS:
+	dbw $c0, Music_TitleScreenGS_Ch1
+	dbw $1, Music_TitleScreenGS_Ch2
+	dbw $2, Music_TitleScreenGS_Ch3
+	dbw $3, Music_TitleScreenGS_Ch4
 ; eb7bd (3a:77bd)
 
-Music_TitleScreen_Ch1: ; eb7bd
+Music_TitleScreenGS_Ch1: ; eb7bd
 	tempo $100
 	volume $77
 	dutycycle 3
@@ -209,17 +209,17 @@ Music_TitleScreen_Ch1: ; eb7bd
 	note C_,  6
 	tempo $88, $25
 	tempo $86
-	callchannel Music_TitleScreen_branch_eb92c
+	callchannel Music_TitleScreenGS_branch_eb92c
 	octave 4
 	note C_,  4
 	note C_,  4
 	note C#,  4
-	callchannel Music_TitleScreen_branch_eb92c
+	callchannel Music_TitleScreenGS_branch_eb92c
 	octave 4
 	note C_,  4
 	note C_,  4
 	note C#,  4
-	callchannel Music_TitleScreen_branch_eb92c
+	callchannel Music_TitleScreenGS_branch_eb92c
 	octave 3
 	note E_,  4
 	note E_,  4
@@ -287,10 +287,10 @@ Music_TitleScreen_Ch1: ; eb7bd
 	note __, 11
 	endchannel
 
-Music_TitleScreen_branch_eb92c:
+Music_TitleScreenGS_branch_eb92c:
 	notetype $c, $c3
 	note D_,  1
-Music_TitleScreen_branch_eb930:
+Music_TitleScreenGS_branch_eb930:
 	note __,  1
 	octave 2
 	note D_,  1
@@ -298,7 +298,7 @@ Music_TitleScreen_branch_eb930:
 	note A_,  1
 	octave 2
 	note D_,  1
-	loopchannel 5, Music_TitleScreen_branch_eb930
+	loopchannel 5, Music_TitleScreenGS_branch_eb930
 	note __,  1
 	note D_,  1
 	octave 1
@@ -309,7 +309,7 @@ Music_TitleScreen_branch_eb930:
 	endchannel
 
 ; eb943
-Music_TitleScreen_Ch2
+Music_TitleScreenGS_Ch2
 	dutycycle $3
 	vibrato $14, $12
 	notetype $c, $c7
@@ -513,11 +513,11 @@ Music_TitleScreen_Ch2
 	note __,  1
 	note __,  2
 	stereopanning $f
-	callchannel Music_TitleScreen_branch_ebabb
+	callchannel Music_TitleScreenGS_branch_ebabb
 	note C#,  4
-	callchannel Music_TitleScreen_branch_ebabb
+	callchannel Music_TitleScreenGS_branch_ebabb
 	note C#,  4
-	callchannel Music_TitleScreen_branch_ebabb
+	callchannel Music_TitleScreenGS_branch_ebabb
 	octave 4
 	note A_,  4
 	stereopanning $ff
@@ -588,17 +588,17 @@ Music_TitleScreen_Ch2
 	note __, 11
 	endchannel
 
-Music_TitleScreen_branch_ebabb:
+Music_TitleScreenGS_branch_ebabb:
 	notetype $c, $b2
 	note D_,  1
-Music_TitleScreen_branch_ebabf:
+Music_TitleScreenGS_branch_ebabf:
 	octave 3
 	note A_,  1
 	octave 4
 	note D_,  1
 	note A_,  1
 	note D_,  1
-	loopchannel 5, Music_TitleScreen_branch_ebabf
+	loopchannel 5, Music_TitleScreenGS_branch_ebabf
 	octave 3
 	note A_,  1
 	octave 4
@@ -611,7 +611,7 @@ Music_TitleScreen_branch_ebabf:
 	endchannel
 
 ; ebad5
-Music_TitleScreen_Ch3:
+Music_TitleScreenGS_Ch3:
 	stereopanning $f
 	vibrato $10, $14
 	tone $1
@@ -951,7 +951,7 @@ Music_TitleScreen_Ch3:
 	endchannel
 
 ; ebc47
-Music_TitleScreen_Ch4:
+Music_TitleScreenGS_Ch4:
 	togglenoise $5
 	stereopanning $f0
 	notetype $c
@@ -1015,9 +1015,9 @@ Music_TitleScreen_Ch4:
 	note C_,  1
 	note C_,  1
 	notetype $c
-	callchannel Music_TitleScreen_branch_ebd6b
-	callchannel Music_TitleScreen_branch_ebd75
-	callchannel Music_TitleScreen_branch_ebd75
+	callchannel Music_TitleScreenGS_branch_ebd6b
+	callchannel Music_TitleScreenGS_branch_ebd75
+	callchannel Music_TitleScreenGS_branch_ebd75
 	note C_,  2
 	note D#,  2
 	note C_,  2
@@ -1033,7 +1033,7 @@ Music_TitleScreen_Ch4:
 	note C_,  1
 	octave 0
 	note __, 13
-	callchannel Music_TitleScreen_branch_ebd6b
+	callchannel Music_TitleScreenGS_branch_ebd6b
 	note C_,  2
 	note D#,  2
 	note C_,  2
@@ -1043,7 +1043,7 @@ Music_TitleScreen_Ch4:
 	note C_,  1
 	note C_,  2
 	note C_,  2
-	callchannel Music_TitleScreen_branch_ebd75
+	callchannel Music_TitleScreenGS_branch_ebd75
 	note C_,  2
 	note D#,  2
 	note C_,  2
@@ -1054,9 +1054,9 @@ Music_TitleScreen_Ch4:
 	note C_,  2
 	note C_,  1
 	note C_,  1
-	callchannel Music_TitleScreen_branch_ebd6b
-	callchannel Music_TitleScreen_branch_ebd75
-	callchannel Music_TitleScreen_branch_ebd75
+	callchannel Music_TitleScreenGS_branch_ebd6b
+	callchannel Music_TitleScreenGS_branch_ebd75
+	callchannel Music_TitleScreenGS_branch_ebd75
 	note C_,  2
 	note D#,  2
 	note C_,  2
@@ -1072,8 +1072,8 @@ Music_TitleScreen_Ch4:
 	note C#,  1
 	octave 0
 	note __, 13
-	callchannel Music_TitleScreen_branch_ebd6b
-	callchannel Music_TitleScreen_branch_ebd75
+	callchannel Music_TitleScreenGS_branch_ebd6b
+	callchannel Music_TitleScreenGS_branch_ebd75
 	note C_,  2
 	note D#,  2
 	note C_,  2
@@ -1123,33 +1123,33 @@ Music_TitleScreen_Ch4:
 	note C#,  1
 	note C_,  1
 	note C_,  1
-	callchannel Music_TitleScreen_branch_ebd7f
-	callchannel Music_TitleScreen_branch_ebd87
+	callchannel Music_TitleScreenGS_branch_ebd7f
+	callchannel Music_TitleScreenGS_branch_ebd87
 	note C#,  1
 	note D_,  1
 	note D_,  1
 	note C#,  1
 	octave 0
 	note __, 13
-	callchannel Music_TitleScreen_branch_ebd7f
-	callchannel Music_TitleScreen_branch_ebd87
+	callchannel Music_TitleScreenGS_branch_ebd7f
+	callchannel Music_TitleScreenGS_branch_ebd87
 	note D_,  1
 	note D_,  1
 	note C#,  1
 	note C#,  1
 	octave 0
 	note __, 13
-	callchannel Music_TitleScreen_branch_ebd7f
-	callchannel Music_TitleScreen_branch_ebd87
+	callchannel Music_TitleScreenGS_branch_ebd7f
+	callchannel Music_TitleScreenGS_branch_ebd87
 	note C#,  1
 	note C#,  1
 	note C#,  1
 	note C#,  1
 	notetype $c
 	note G#, 16
-Music_TitleScreen_branch_ebd34:
+Music_TitleScreenGS_branch_ebd34:
 	note __, 16
-	loopchannel 6, Music_TitleScreen_branch_ebd34
+	loopchannel 6, Music_TitleScreenGS_branch_ebd34
 	note __, 12
 	notetype $6
 	note D_,  1
@@ -1196,7 +1196,7 @@ Music_TitleScreen_branch_ebd34:
 	note B_,  4
 	endchannel
 
-Music_TitleScreen_branch_ebd6b:
+Music_TitleScreenGS_branch_ebd6b:
 	note C_,  2
 	note D#,  2
 	note C_,  2
@@ -1208,7 +1208,7 @@ Music_TitleScreen_branch_ebd6b:
 	note D#,  2
 	endchannel
 
-Music_TitleScreen_branch_ebd75:
+Music_TitleScreenGS_branch_ebd75:
 	note C_,  2
 	note D#,  2
 	note C_,  2
@@ -1220,14 +1220,14 @@ Music_TitleScreen_branch_ebd75:
 	note D#,  2
 	endchannel
 
-Music_TitleScreen_branch_ebd7f:
+Music_TitleScreenGS_branch_ebd7f:
 	note C_,  2
 	note C_,  1
 	note C_,  1
-	loopchannel 4, Music_TitleScreen_branch_ebd7f
+	loopchannel 4, Music_TitleScreenGS_branch_ebd7f
 	endchannel
 
-Music_TitleScreen_branch_ebd87:
+Music_TitleScreenGS_branch_ebd87:
 	note C_,  2
 	note C_,  1
 	note C_,  1
