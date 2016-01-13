@@ -142,7 +142,7 @@ BattleText_0x808e7: ; 0x808e7
 	prompt
 ; 0x80905
 
-BattleText_0x80905: ; 0x80905
+BattleText_PkmnReflectFaded: ; 0x80905
 	text_from_ram StringBuffer1
 	text " #MON's"
 	line "REFLECT faded!"

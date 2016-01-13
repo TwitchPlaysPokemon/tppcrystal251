@@ -2086,20 +2086,21 @@ _Divide:: ; 673e
 	ld a, [$ff00+c]
 	ld [hDividend + 3], a
 	dec b
-	ret z
+	jr z, .finished
 	dec c
 	ld a, [$ff00+c]
 	ld [hDividend + 2], a
 	dec b
-	ret z
+	jr z, .finished
 	dec c
 	ld a, [$ff00+c]
 	ld [hDividend + 1], a
 	dec b
-	ret z
+	jr z, .finished
 	dec c
 	ld a, [$ff00+c]
 	ld [hDividend], a
+.finished
 	pop hl
 	ret
 	

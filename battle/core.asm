@@ -1763,7 +1763,7 @@ FadeReflect: ; 3cb91
 	ld [de], a
 	ret nz
 	res SCREENS_REFLECT, [hl]
-	ld hl, BattleText_0x80905
+	ld hl, BattleText_PkmnReflectFaded
 	jp StdBattleTextBox
 ; 3cb9e
 
@@ -1778,6 +1778,8 @@ HandleWeather: ; 3cb9e
 
 	ld hl, .WeatherMessages
 	call .PrintWeatherMessage
+	ld hl, .WeatherAnims
+	call .PlayWeatherAnimation
 
 	ld a, [Weather]
 	cp WEATHER_SANDSTORM
@@ -1867,6 +1869,22 @@ HandleWeather: ; 3cb9e
 	dw BattleText_0x8097a
 	dw BattleText_0x8098f
 ; 3cc39
+
+.PlayWeatherAnimation
+	ld a, [Weather]
+	cp WEATHER_RAIN_END
+	ret nc
+	dec a
+	ld e, a
+	ld d, 0
+	add hl, de
+	ld e, [hl]
+	jp Function3ee17
+
+.WeatherAnims
+	db RAIN_DANCE
+	db SUNNY_DAY
+	db SANDSTORM
 
 Function3cc39: ; 3cc39
 	call Function3cc45
