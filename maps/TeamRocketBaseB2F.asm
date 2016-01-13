@@ -422,7 +422,7 @@ UnknownScript_0x6d207: ; 0x6d207
 ; 0x6d20d
 
 ItemFragment_0x6d20d: ; 0x6d20d
-	db TM_THIEF, 1
+	db TM_DARK_PULSE, 1
 ; 0x6d20f
 
 MapTeamRocketBaseB2FSignpostItem22: ; 0x6d20f

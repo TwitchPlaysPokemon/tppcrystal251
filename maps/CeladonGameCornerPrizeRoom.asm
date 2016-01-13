@@ -189,14 +189,14 @@ CGCSlot1PC:
 	jump UnknownScript_0x727d3
 
 UnknownScript_0x7281b: ; 0x7281b
-	checkcoins 2000
+	checkcoins 3000
 	if_equal $2, UnknownScript_0x72778
-	itemtotext UP_GRADE, $0
+	itemtotext LUCKY_EGG, $0
 	scall UnknownScript_0x72768
 	iffalse UnknownScript_0x72784
-	giveitem UP_GRADE, $1
+	giveitem LUCKY_EGG, $1
 	iffalse UnknownScript_0x7277e
-	takecoins 2000
+	takecoins 3000
 	jump UnknownScript_0x7276d
 
 
@@ -219,10 +219,10 @@ UnknownScript_0x7281b: ; 0x7281b
 UnknownScript_0x72849: ; 0x72849
 	checkcoins 300
 	if_equal $2, UnknownScript_0x72778
-	itemtotext NUGGET, $0
+	itemtotext SLOWPOKETAIL, $0
 	scall UnknownScript_0x72768
 	iffalse UnknownScript_0x72784
-	giveitem NUGGET, $1
+	giveitem SLOWPOKETAIL, $1
 	iffalse UnknownScript_0x7277e
 	takecoins 300
 	jump UnknownScript_0x7276d
@@ -256,8 +256,8 @@ MenuData2_0x7287f: ; 0x7287f
 	db $80 ; flags
 	db 4 ; items
 	db "PORYGON2  10000@"
-	db "Up-Grade   2000@"
-	db "Nugget      300@"
+	db "Lucky Egg  3000@"
+	db "SlowpokeTail300@"
 	db "CANCEL@"
 ; 0x728b8
 

@@ -47,12 +47,18 @@ UnknownText_0x55f08: ; 0x55f08
 	para "I feed them PRO-"
 	line "TEIN to crank up"
 	cont "their ATTACK."
+
+	para "The new recipe"
+	line "can crank it up"
+	cont "TO THE MAX!!!"
 	done
 ; 0x55f52
 
 UnknownText_0x55f52: ; 0x55f52
-	text "IRON adds to your"
-	line "#MON's DEFENSE."
+	text "They started"
+	line "selling ways to"
+	cont "evolve your #MON"
+	cont "just recently."
 	done
 ; 0x55f74
 
@@ -78,7 +84,7 @@ UnknownText_0x5600d: ; 0x5600d
 	text "Let Us Pump Up"
 	line "Your #MON!"
 
-	para "4F MEDICINE BOX"
+	para "4F POWER PALACE"
 	done
 ; 0x56038
 

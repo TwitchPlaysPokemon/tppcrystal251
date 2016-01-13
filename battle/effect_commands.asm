@@ -8117,7 +8117,7 @@ BattleCommand27: ; 36cb2
 	jp z, .Struggle
 	cp DOUBLE_EDGE
 	jr z, .ThirdRecoil
-	cp FLAREBLITZ
+	cp FLARE_BLITZ
 	jr z, .ThirdRecoil
 	ld a, BATTLE_VARS_MOVE_ANIM
 	call GetBattleVar

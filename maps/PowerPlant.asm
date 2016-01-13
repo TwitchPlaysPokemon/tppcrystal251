@@ -183,7 +183,7 @@ UnknownScript_0x188eac: ; 0x188eac
 	iftrue UnknownScript_0x188ec5
 	writetext UnknownText_0x1893c4
 	buttonsound
-	verbosegiveitem TM_ZAP_CANNON, 1
+	verbosegiveitem TM_THUNDER, 1
 	iffalse UnknownScript_0x188ec3
 	setevent EVENT_GOT_TM07_ZAP_CANNON
 	writetext UnknownText_0x1893f4
@@ -399,8 +399,8 @@ UnknownText_0x1893c4: ; 0x1893c4
 ; 0x1893f4
 
 UnknownText_0x1893f4: ; 0x1893f4
-	text "MANAGER: TM07 is"
-	line "my ZAP CANNON."
+	text "MANAGER: TM25 is"
+	line "THUNDER."
 
 	para "It's a powerful"
 	line "technique!"

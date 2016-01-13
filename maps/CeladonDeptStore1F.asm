@@ -88,11 +88,11 @@ CeladonDeptStore1F_Directory:
 	para "2F: TRAINER'S"
 	line "    MARKET"
 
-	para "3F: TM SHOP"
+	para "3F: BATTLE SHOP"
 
 	para "4F: WISEMAN GIFTS"
 
-	para "5F: DRUG STORE"
+	para "5F: BUFF BAZAAR"
 
 	para "6F: ROOFTOP"
 	line "    SQUARE"

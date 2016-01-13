@@ -57,9 +57,9 @@ UnknownScript_0x18c8b8: ; 0x18c8b8
 	iftrue ClairRematchScript
 	writetext UnknownText_0x18c9bf
 	buttonsound
-	giveitem TM_DRAGONBREATH, $1
+	giveitem TM_DRAGON_PULSE, $1
 	iffalse UnknownScript_0x18c8f4
-	itemtotext TM_DRAGONBREATH, $0
+	itemtotext TM_DRAGON_PULSE, $0
 	writetext UnknownText_0x18c9fb
 	playsound SFX_ITEM
 	waitsfx
@@ -366,11 +366,11 @@ UnknownText_0x18c9fb: ; 0x18c9fb
 
 UnknownText_0x18ca0d: ; 0x18ca0d
 	text "That contains"
-	line "DRAGONBREATH."
+	line "DRAGON PULSE."
 
-	para "No, it doesn't"
-	line "have anything to"
-	cont "do with my breath."
+	para "It fires a huge"
+	line "energy of some"
+	cont "kind"
 
 	para "If you don't want"
 	line "it, you don't have"

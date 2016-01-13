@@ -31,9 +31,9 @@ MapCeladonDeptStore4FSignpost1Script: ; 0x70f1e
 ; 0x70f21
 
 UnknownText_0x70f21: ; 0x70f21
-	text "I'm here to buy"
-	line "SURF MAIL to send"
-	cont "to my girlfriend."
+	text "Some gifts can be"
+	line "given to #MON to"
+	cont "up thier power."
 	done
 ; 0x70f55
 

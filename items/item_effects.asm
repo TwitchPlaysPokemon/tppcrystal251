@@ -1225,10 +1225,10 @@ Calcium: ; ee3d
 
 	add hl, bc
 	ld a, [hl]
-	cp 100
+	cp 235
 	jr nc, Functionee83
 
-	add 10
+	add 20
 	ld [hl], a
 	call Functionee8c
 

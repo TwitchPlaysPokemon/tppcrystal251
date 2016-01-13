@@ -121,7 +121,7 @@ UnknownScript_0x18622a: ; 0x18622a
 ; 0x186231
 
 ItemFragment_0x186231: ; 0x186231
-	db TM_ENDURE, 1
+	db TM_WILLOWISP, 1
 ; 0x186233
 
 BoulderScript_0x186233: ; 0x186233

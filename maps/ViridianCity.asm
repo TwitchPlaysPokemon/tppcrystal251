@@ -60,13 +60,13 @@ UnknownScript_0x1a9a6f: ; 0x1a9a6f
 FisherScript_0x1a9a75: ; 0x1a9a75
 	faceplayer
 	loadfont
-	checkevent EVENT_GOT_TM42_DREAM_EATER
-	iftrue UnknownScript_0x1a9a8a
-	writetext UnknownText_0x1a9cc4
-	buttonsound
-	verbosegiveitem TM_DREAM_EATER, 1
-	iffalse UnknownScript_0x1a9a8e
-	setevent EVENT_GOT_TM42_DREAM_EATER
+		;checkevent EVENT_GOT_TM42_DREAM_EATER
+		;iftrue UnknownScript_0x1a9a8a
+		;writetext UnknownText_0x1a9cc4
+		;buttonsound
+		;verbosegiveitem TM_DREAM_EATER, 1
+		;iffalse UnknownScript_0x1a9a8e
+		;setevent EVENT_GOT_TM42_DREAM_EATER
 UnknownScript_0x1a9a8a: ; 0x1a9a8a
 	writetext UnknownText_0x1a9d86
 	waitbutton

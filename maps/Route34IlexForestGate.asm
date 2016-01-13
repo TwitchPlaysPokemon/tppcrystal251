@@ -52,7 +52,7 @@ TeacherScript_0x62d63: ; 0x62d63
 	iftrue UnknownScript_0x62d7e
 	writetext UnknownText_0x62d9d
 	buttonsound
-	verbosegiveitem TM_POISON_JAB, 1
+	verbosegiveitem TM_ATTRACT, 1
 	iffalse UnknownScript_0x62d82
 	setevent EVENT_GOT_TM12_SWEET_SCENT
 UnknownScript_0x62d7e: ; 0x62d7e
@@ -100,21 +100,21 @@ UnknownText_0x62d9d: ; 0x62d9d
 	line "making a #DEX?"
 
 	para "It must be hard if"
-	line "#MON won't"
-
-	para "appear. Try using"
-	line "this TM."
+	line "#MON don't like you"
+	cont "Try using this TM."
+	
 	done
 ; 0x62df6
 
 UnknownText_0x62df6: ; 0x62df6
-	text "It's SWEET SCENT."
+	text "It's ATTRACT."
 
-	para "Use it wherever"
-	line "#MON appear."
+	para "Use it on a"
+	line "mon of the"
+	cont "opposite gender"
 
-	para "#MON will be"
-	line "enticed by it."
+	para "and it won't"
+	line "want to attack."
 	done
 ; 0x62e41
 

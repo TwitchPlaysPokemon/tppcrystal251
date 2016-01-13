@@ -21,7 +21,7 @@ GrannyScript_0x7b394: ; 0x7b394
 UnknownScript_0x7b3aa: ; 0x7b3aa
 	writetext UnknownText_0x7b42b
 	buttonsound
-	verbosegiveitem TM_SANDSTORM, 1
+	verbosegiveitem TM_SWORDS_DANCE, 1
 	iffalse UnknownScript_0x7b3bb
 	setevent EVENT_GOT_TM37_SANDSTORM
 UnknownScript_0x7b3b7: ; 0x7b3b7
@@ -71,15 +71,15 @@ UnknownText_0x7b42b: ; 0x7b42b
 ; 0x7b48f
 
 UnknownText_0x7b48f: ; 0x7b48f
-	text "TM37 happens to be"
-	line "SANDSTORM."
+	text "TM41 happens to be"
+	line "SWORDS DANCE."
 
-	para "It's a move that"
-	line "inflicts damage on"
-	cont "both battlers."
+	para "It builds attack"
+	line "very fast."
 
-	para "It's for advanced"
-	line "trainers only."
+	para "but allows other"
+	line "#MON to switch"
+	cont "in."
 
 	para "Use it if you"
 	line "dare. Good luck!"

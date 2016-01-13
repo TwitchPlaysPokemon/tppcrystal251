@@ -80,7 +80,7 @@ UnknownScript_0x54044: ; 0x54044
 UnknownScript_0x54064: ; 0x54064
 	writetext UnknownText_0x5428b
 	buttonsound
-	verbosegiveitem TM_ATTRACT, 1
+	verbosegiveitem TM_BODY_SLAM, 1
 	iffalse UnknownScript_0x5407b
 	setevent EVENT_GOT_TM45_ATTRACT
 	writetext UnknownText_0x54302
@@ -379,11 +379,11 @@ UnknownText_0x5428b: ; 0x5428b
 ; 0x54302
 
 UnknownText_0x54302: ; 0x54302
-	text "It's ATTRACT!"
+	text "It's BODY SLAM!"
 	line "It makes full use"
 
 	para "of a #MON's"
-	line "charm."
+	line "presence."
 
 	para "Isn't it just per-"
 	line "fect for a cutie"
