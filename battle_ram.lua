@@ -481,8 +481,18 @@ OTPartyMon6Speed = 0xD3A2 -- 2 bytes
 OTPartyMon6SpclAtk = 0xD3A4 -- 2 bytes
 OTPartyMon6SpclDef = 0xD3A6 -- 2 bytes
 
-OTPartyMonOT = 0xD3A8 -- 11 * 6 bytes
-OTPartyMonNicknames = 0xD3EA -- 11 * 66 bytes
+OTPartyMon1OT = 0xD3A8 -- 11 bytes
+OTPartyMon2OT = 0xD3B3 -- 11 bytes
+OTPartyMon3OT = 0xD3BE -- 11 bytes
+OTPartyMon4OT = 0xD3C9 -- 11 bytes
+OTPartyMon5OT = 0xD3D4 -- 11 bytes
+OTPartyMon6OT = 0xD3DF -- 11 bytes
+OTPartyMon1Nickname = 0xD3EA -- 11 bytes
+OTPartyMon2Nickname = 0xD3F5 -- 11 bytes
+OTPartyMon3Nickname = 0xD400 -- 11 bytes
+OTPartyMon4Nickname = 0xD40B -- 11 bytes
+OTPartyMon5Nickname = 0xD416 -- 11 bytes
+OTPartyMon6Nickname = 0xD421 -- 11 bytes
 
 PartyCount = 0xDCD7 -- 1 byte
 PartySpecies = 0xDCD8 -- 6 bytes
@@ -674,6 +684,16 @@ PartyMon6Speed = 0xDDF9 -- 2 bytes
 PartyMon6SpclAtk = 0xDDFB -- 2 bytes
 PartyMon6SpclDef = 0xDDFD -- 2 bytes
 
-PartyMonOT = 0xDDFF -- 11 * 6 bytes
-PartyMonNicknames = 0xDE41 -- 11 * 6 bytes
+PartyMon1OT = 0xDDFF -- 11 bytes
+PartyMon2OT = 0xDE0A -- 11 bytes
+PartyMon3OT = 0xDE15 -- 11 bytes
+PartyMon4OT = 0xDE20 -- 11 bytes
+PartyMon5OT = 0xDE2B -- 11 bytes
+PartyMon6OT = 0xDE36 -- 11 bytes
+PartyMon1Nickname = 0xDE41 -- 11 bytes
+PartyMon2Nickname = 0xDE4C -- 11 bytes
+PartyMon3Nickname = 0xDE57 -- 11 bytes
+PartyMon4Nickname = 0xDE62 -- 11 bytes
+PartyMon5Nickname = 0xDE6D -- 11 bytes
+PartyMon6Nickname = 0xDE78 -- 11 bytes
 
