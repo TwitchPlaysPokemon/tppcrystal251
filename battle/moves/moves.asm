@@ -133,7 +133,7 @@ ENDM
 	move SELFDESTRUCT, EFFECT_EXPLOSION,         200, PHYSICAL, NORMAL,   100,  5,   0 ;$78
 	move METAL_SOUND,  EFFECT_SP_DEF_DOWN_2,       0, STATUS,   STEEL,    100, 40,   0 ; replacing Egg Bomb
 	move LICK,         EFFECT_PARALYZE_HIT,       30, PHYSICAL, GHOST,    100, 30,  30
-	move DRAGON_PULSE, EFFECT_NORMAL_HIT,         85, SPECIAL,  DRAGON,   100, 10,   0 ; replacing Smog
+	move DRAGON_PULSE, EFFECT_NORMAL_HIT,         90, SPECIAL,  DRAGON,   100, 10,   0 ; replacing Smog
 	move SLUDGE,       EFFECT_POISON_HIT,         65, SPECIAL,  POISON,   100, 20,  30
 	move BONE_CLUB,    EFFECT_FLINCH_HIT,         65, PHYSICAL, GROUND,    85, 20,  10
 	move FIRE_BLAST,   EFFECT_BURN_HIT,          120, SPECIAL,  FIRE,      85,  5,  10
