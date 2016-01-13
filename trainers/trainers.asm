@@ -7030,7 +7030,7 @@ BikerGroup:
 
 	; BIKER (7)
 	db "RILEY@"
-	db db (1 << TRAINERTYPE_NICKNAME)
+	db (1 << TRAINERTYPE_NICKNAME)
 
 	; party
 	db 75, BEEDRILL, "STINGER@@@@"
