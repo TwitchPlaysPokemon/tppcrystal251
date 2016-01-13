@@ -11,7 +11,7 @@ ItemFragment_0x743b5: ; 0x743b5
 ; 0x743b7
 
 ItemFragment_0x743b7: ; 0x743b7
-	db TM_STEEL_WING, 1
+	db ULTRA_BALL, 10
 ; 0x743b9
 
 MapRockTunnel1FSignpostItem0: ; 0x743b9

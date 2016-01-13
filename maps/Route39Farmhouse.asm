@@ -84,7 +84,7 @@ PokefanFScript_0x9cf0e: ; 0x9cf0e
 UnknownScript_0x9cf22: ; 0x9cf22
 	writetext UnknownText_0x9d156
 	buttonsound
-	verbosegiveitem TM_SWORDS_DANCE, 1
+	verbosegiveitem TM_DAZZLINGLEAM, 1
 	iffalse UnknownScript_0x9cf33
 	setevent EVENT_GOT_TM13_SNORE_FROM_MOOMOO_FARM
 UnknownScript_0x9cf2f: ; 0x9cf2f
@@ -195,17 +195,18 @@ UnknownText_0x9d1b5: ; 0x9d1b5
 
 UnknownText_0x9d1c7: ; 0x9d1c7
 	text "That there's"
-	line "SNORE."
+	line "DAZZLINGLEAM."
 
-	para "It's a rare move"
-	line "that only works"
+	para "It's a strong"
+	line "FAIRY type attack"
 
-	para "while the #MON"
-	line "is asleep."
+	para "Whitney bought a"
+	line "ton of 'em, and"
 
-	para "You best think how"
-	line "you ought to use"
-	cont "it, hon."
+	para "she loves MOOMOO"
+	line "so she'll not mind"
+	cont "mind if we hand ya"
+	cont "one."
 	done
 ; 0x9d242
 

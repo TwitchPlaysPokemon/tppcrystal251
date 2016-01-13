@@ -30,6 +30,9 @@ SabrinaScript_0x189c2e: ; 0x189c2e
 	setflag ENGINE_MARSHBADGE
 	writetext UnknownText_0x189ead
 	waitbutton
+	verbosegiveitem TM_REST, 1
+	writetext AfterGIveRestText
+	waitbutton
 	closetext
 	end
 ; 0x189c65
@@ -243,6 +246,16 @@ UnknownText_0x189ead: ; 0x189ead
 
 	para "your subliminal"
 	line "powers…"
+
+	para "I forsee this"
+	line "helping."
+
+AfterGIveRestText:
+	text "TM44 grants REST"
+
+	para "By enetering a"
+	line "trance, a #MON fully"
+	cont "recovers."
 
 	para "Although I failed"
 	line "to accurately pre-"

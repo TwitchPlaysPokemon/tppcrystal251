@@ -55,7 +55,7 @@ UnknownScript_0x99d8c: ; 0x99d8c
 	setevent EVENT_BEAT_MEDIUM_GRACE
 	writetext UnknownText_0x9a059
 	buttonsound
-	verbosegiveitem TM_SHADOW_BALL, 1
+	verbosegiveitem TM_SHADOW_CLAW, 1
 	iffalse UnknownScript_0x99db5
 	setevent EVENT_GOT_TM30_SHADOW_BALL
 	writetext UnknownText_0x9a0ec
@@ -374,11 +374,12 @@ UnknownText_0x9a059: ; 0x9a059
 ; 0x9a0ec
 
 UnknownText_0x9a0ec: ; 0x9a0ec
-	text "It's SHADOW BALL."
+	text "It's SHADOW CLAW."
 	line "It causes damage"
 
-	para "and may reduce"
-	line "SPCL.DEF."
+	para "and is likely"
+	line "to inflict"
+	cont "critical hits."
 
 	para "Use it if it"
 	line "appeals to you."

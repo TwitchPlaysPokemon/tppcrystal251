@@ -35,7 +35,7 @@ UnknownScript_0x9c159: ; 0x9c159
 	iftrue UnknownScript_0x9c172
 	writetext UnknownText_0x9c354
 	buttonsound
-	verbosegiveitem TM_IRON_TAIL, 1
+	verbosegiveitem TM_FLASH_CANNON, 1
 	iffalse UnknownScript_0x9c176
 	setevent EVENT_GOT_TM23_IRON_TAIL
 	writetext UnknownText_0x9c3a5
@@ -152,11 +152,14 @@ JasmineRematchTextBefore:
 	done
 	
 JasmineRematchBeatenText:
-	text "…You are a better"
-	line "trainer than me,"
+	text "True to your"
+	line "reputation..."
 
-	para "in both skill and"
-	line "kindness."
+	para "I'm glad someone"
+	line "as strong as you"
+	cont "is so nice."
+
+	para "... Good luck"
 	done
 
 UnknownText_0x9c2bb: ; 0x9c2bb
@@ -199,7 +202,7 @@ UnknownText_0x9c393: ; 0x9c393
 UnknownText_0x9c3a5: ; 0x9c3a5
 	text "…You could use"
 	line "that TM to teach"
-	cont "IRON TAIL."
+	cont "FLASH CANNON."
 	done
 ; 0x9c3d1
 

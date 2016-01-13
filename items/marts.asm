@@ -140,7 +140,12 @@ Mart7: ; 1612b
 ; 16134
 
 Mart8: ; 16134
-	db 5 ; # items
+	db 10 ; # items
+	db FIRE_STONE
+	db THUNDERSTONE
+	db WATER_STONE 
+	db LEAF_STONE
+	db MOON_STONE
 	db PROTEIN
 	db IRON
 	db CARBOS
@@ -150,38 +155,46 @@ Mart8: ; 16134
 ; 1613b
 
 Mart9: ; 1613b
-	db 3 ; # items
-	db TM_THUNDERPUNCH
-	db TM_FIRE_PUNCH
-	db TM_ICE_PUNCH
+	db 6 ; # items
+	db TM_ROCK_SMASH
+	db TM_THUNDER_WAVE
+	db TM_STRING_SHOT
+	db TM_SEISMIC_TOSS
+	db TM_RETURN
 	db $ff
 ; 16140
 
 Mart10: ; 16140
-	db 4 ; # items
-	db TM_THUNDERPUNCH
-	db TM_FIRE_PUNCH
-	db TM_ICE_PUNCH
-	db TM_HEADBUTT
+	db 10 ; # items
+	db DRAGON_SCALE
+	db METAL_COAT
+	db KINGS_ROCK
+	db TWISTEDSPOON
+	db SILVERPOWDER
+	db POLKADOT_BOW
+	db SCOPE_LENS
+	db SOFT_SAND
+	db POISON_BARB
+	db MIRACLE_SEED
 	db $ff
 ; 16146
 
-Mart11: ; 16146
+Mart11: ; 16146 ;unused
 	db 4 ; # items
-	db TM_THUNDERPUNCH
-	db TM_FIRE_PUNCH
-	db TM_ICE_PUNCH
-	db TM_ROCK_SMASH
+	db POISON_BARB
+	db POISON_BARB
+	db POISON_BARB
+	db POISON_BARB
 	db $ff
 ; 1614c
 
-Mart12: ; 1614c
+Mart12: ; 1614c ;unused
 	db 5 ; # items
-	db TM_THUNDERPUNCH
-	db TM_FIRE_PUNCH
-	db TM_ICE_PUNCH
-	db TM_HEADBUTT
-	db TM_ROCK_SMASH
+	db POISON_BARB
+	db POISON_BARB
+	db POISON_BARB
+	db POISON_BARB
+	db POISON_BARB
 	db $ff
 ; 16153
 
@@ -345,25 +358,38 @@ Mart24: ; 161c2
 ; 161ce
 
 Mart25: ; 161ce
-	db 5 ; # items
-	db TM_HIDDEN_POWER
-	db TM_SUNNY_DAY
-	db TM_PROTECT
-	db TM_RAIN_DANCE
-	db TM_SANDSTORM
+	db 9 ; # items
+	db FOCUS_BAND
+	db BRIGHTPOWDER
+	db BLACKBELT
+	db HARD_STONE
+	db NEVERMELTICE
+	db SHARP_BEAK
+	db EXP_SHARE
+	db MIRACLEBERRY
+	db MYSTERYBERRY
 	db $ff
 ; 161d5
 
 Mart26: ; 161d5
-	db 3 ; # items
+	db 7 ; # items
 	db POKE_DOLL
 	db LOVELY_MAIL
 	db SURF_MAIL
+	db BLACKGLASSES
+	db PINK_BOW
+	db SPELL_TAG
+	db MAGNET
 	db $ff
 ; 161da
 
 Mart27: ; 161da
-	db 5 ; # items
+	db 10 ; # items
+	db FIRE_STONE
+	db THUNDERSTONE
+	db WATER_STONE 
+	db LEAF_STONE
+	db SUN_STONE
 	db HP_UP
 	db PROTEIN
 	db IRON
@@ -444,35 +470,35 @@ Mart33: ; 1620e
 TmDepot1:
 	db 8
 	db TM_DYNAMICPUNCH
+	db TM_ZEN_HEADBUTT
 	db TM_CURSE
-	db TM_ROLLOUT
-	db TM_ROAR
+	db TM_BODY_SLAM
+	db TM_DAZZLINGLEAM
 	db TM_TOXIC
 	db TM_ZAP_CANNON
-	db TM_SWORDS_DANCE
-	db TM_HIDDEN_POWER
+	db TM_ROCK_SMASH
 	db $ff
 
 TmDepot2:
 	db 8
+	db TM_FOCUS_BLAST
+	db TM_HIDDEN_POWER
 	db TM_SUNNY_DAY
-	db TM_DOUBLE_EDGE
-	db TM_POISON_JAB
+	db TM_EARTH_POWER
+	db TM_WILLOWISP
 	db TM_BLIZZARD
-	db TM_HYPER_BEAM
 	db TM_ICY_WIND
-	db TM_PROTECT
 	db TM_RAIN_DANCE
 	db $ff
 
 TmDepot3:
 	db 8
 	db TM_GIGA_DRAIN
-	db TM_ENDURE
-	db TM_ROCK_POLISH
+	db TM_FLARE_BLITZ
+	db TM_WILD_CHARGE
 	db TM_SOLARBEAM
-	db TM_IRON_TAIL
-	db TM_DRAGONBREATH
+	db TM_FOCUS_BLAST
+	db TM_DRAGON_PULSE
 	db TM_THUNDER
 	db TM_EARTHQUAKE
 	db $ff
@@ -483,9 +509,9 @@ TmDepot4:
 	db TM_DIG
 	db TM_PSYCHIC
 	db TM_SHADOW_BALL
-	db TM_MUD_SLAP
+	db TM_SKY_ATTACK
 	db TM_DOUBLE_TEAM
-	db TM_ICE_PUNCH
+	db TM_SHADOW_CLAW
 	db TM_SWAGGER
 	db $ff
 
@@ -495,20 +521,20 @@ TmDepot5:
 	db TM_SLUDGE_BOMB
 	db TM_SANDSTORM
 	db TM_FIRE_BLAST
-	db TM_SWIFT
-	db TM_DEFENSE_CURL
-	db TM_THUNDERPUNCH
-	db TM_DREAM_EATER
+	db TM_GUNK_SHOT
+	db TM_SEISMIC_TOSS
+	db TM_SWORDS_DANCE
+	db TM_STRING_SHOT
 	db $ff
 
 TmDepot6:
 	db 8
-	db TM_DAZZLINGLEAM
+	db TM_DARK_PULSE
 	db TM_REST
 	db TM_ATTRACT
 	db TM_THIEF
-	db TM_STEEL_WING
-	db TM_FIRE_PUNCH
+	db TM_THUNDER_WAVE
+	db TM_ROCK_SLIDE
 	db TM_FURY_CUTTER
 	db TM_SUBSTITUTE
 	db $ff

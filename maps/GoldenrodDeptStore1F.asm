@@ -74,9 +74,9 @@ UnknownText_0x55a80: ; 0x55a80
 	para "3F BATTLE"
 	line "   COLLECTION"
 
-	para "4F MEDICINE BOX"
+	para "4F POWER PALACE"
 
-	para "5F TM CORNER"
+	para "5F TACTICS CORNER"
 
 	para "6F TRANQUIL SQUARE"
 

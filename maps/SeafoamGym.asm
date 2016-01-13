@@ -36,6 +36,9 @@ UnknownScript_0x1ab516: ; 0x1ab516
 	setflag ENGINE_VOLCANOBADGE
 	writetext UnknownText_0x1ab69d
 	waitbutton
+	verbosegiveitem TM_FIRE_BLAST, 1
+	writetext AfterFireBlastText
+	waitbutton
 	closetext
 	end
 ; 0x1ab52b
@@ -110,10 +113,17 @@ UnknownText_0x1ab683: ; 0x1ab683
 ; 0x1ab69d
 
 UnknownText_0x1ab69d: ; 0x1ab69d
-	text "BLAINE: I did lose"
-	line "this time, but I'm"
+	text "BLAINE: also"
+	line "take this."
 
-	para "going to win the"
+AfterFireBlastText:
+	text "It contains"
+	line "FIRE BLAST!"
+
+	text "Don't waste it"
+	line "on water types!"
+
+	para "I'm going to win"
 	line "next time."
 
 	para "When I rebuild my"

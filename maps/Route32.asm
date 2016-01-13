@@ -109,7 +109,7 @@ FisherScript_0x1904ce: ; 0x1904ce
 	iftrue UnknownScript_0x1904e3
 	writetext UnknownText_0x191133
 	buttonsound
-	verbosegiveitem TM_ROAR, 1
+	verbosegiveitem TM_ROCK_SLIDE, 1
 	iffalse UnknownScript_0x1904e7
 	setevent EVENT_GOT_TM05_ROAR
 UnknownScript_0x1904e3: ; 0x1904e3
@@ -1087,23 +1087,24 @@ UnknownText_0x191105: ; 0x191105
 ; 0x191133
 
 UnknownText_0x191133: ; 0x191133
-	text "WROOOOAR!"
-	line "PEOPLE RUN WHEN I"
+	text "YEEEAAAAAAAAAHH!"
+	line "PEOPLE COWER WHEN"
 
-	para "ROAR! BUT YOU"
-	line "CAME LOOKING!"
+	para "I ROCK! BUT YOU"
+	line "STOOD FIRM!"
 
-	para "THAT PLEASES ME!"
-	line "NOW TAKE THIS!"
+	para "YOU'RE AWESOME!"
+	line "TAKE THIS!"
 	done
 ; 0x19118c
 
 UnknownText_0x19118c: ; 0x19118c
-	text "WROOOAR!"
-	line "IT'S ROAR!"
+	text "WOOOOOOOOOOAAA!"
+	line "IT'S ROCK SLIDE!"
 
-	para "EVEN #MON RUN"
-	line "FROM A GOOD ROAR!"
+	para "EVEN #MON FLINCH"
+	line "BEFORE THE POWER"
+	cont "OF ROCK!!!"
 	done
 ; 0x1911c1
 

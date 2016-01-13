@@ -365,12 +365,13 @@ UnknownText_0x1a56d9: ; 0x1a56d9
 	line "#MON, I'd be"
 	cont "easy to catch…"
 
-	para "…Zzzz…"
+	para "Can't someone else"
+	line "do it?"
 	done
 ; 0x1a5761
 
 UnknownText_0x1a5761: ; 0x1a5761
-	text "…Zzzz… Huh?"
+	text "Huh?"
 
 	para "What's that? You"
 	line "have MAIL for me?"
@@ -410,19 +411,19 @@ UnknownText_0x1a57ba: ; 0x1a57ba
 ; 0x1a5896
 
 UnknownText_0x1a5896: ; 0x1a5896
-	text "TM50 is NIGHTMARE."
+	text "TM50 is"
+	line "SUBSTITUTE."
 
-	para "It's a wicked move"
-	line "that steadily cuts"
+	para "It lets a doll"
+	line "take hits for a #MON,"
 
-	para "the HP of a sleep-"
-	line "ing enemy."
+	para "stopping it from"
+	line "being hit by status"
+	cont "or being KO'd."
 
-	para "Ooooh…"
-	line "That's scary…"
-
-	para "I don't want to"
-	line "have bad dreams."
+	para "It's nice to have"
+	line "others do the work"
+	cont "for you"
 	done
 ; 0x1a5921
 

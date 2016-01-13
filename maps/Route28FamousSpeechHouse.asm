@@ -20,7 +20,7 @@ CooltrainerFScript_0x1ae658: ; 0x1ae658
 	iftrue UnknownScript_0x1ae66f
 	writetext UnknownText_0x1ae682
 	buttonsound
-	verbosegiveitem TM_STEEL_WING, 1
+	verbosegiveitem SACRED_ASH, 1
 	iffalse UnknownScript_0x1ae66d
 	setevent EVENT_GOT_TM47_STEEL_WING
 UnknownScript_0x1ae66d: ; 0x1ae66d

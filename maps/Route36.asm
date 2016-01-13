@@ -573,23 +573,18 @@ UnknownText_0x1944d0: ; 0x1944d0
 
 UnknownText_0x19451a: ; 0x19451a
 	text "<PLAYER> received"
-	line "TM08."
+	line "TM15."
 	done
 ; 0x19452c
 
 UnknownText_0x19452c: ; 0x19452c
 	text "That happens to be"
-	line "ROCK SMASH."
+	line "HYPER BEAM."
 
-	para "You can shatter"
-	line "rocks with just a"
-
-	para "single well-aimed"
-	line "smack."
-
-	para "If any rocks are"
-	line "in your way, just"
-	cont "smash 'em up!"
+	para "it's a very strong"
+	line "attack, but your"
+	cont "#MON needs a rest"
+	cont "afterwards."
 	done
 ; 0x1945b8
 

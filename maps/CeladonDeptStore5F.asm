@@ -43,12 +43,14 @@ MapCeladonDeptStore5FSignpost1Script: ; 0x71020
 ; 0x71023
 
 UnknownText_0x71023: ; 0x71023
-	text "I want to buy some"
-	line "items that raise"
+	text "I hate it when"
+	line "stores move things"
+	cont "around."
 
-	para "#MON stats, but"
-	line "I don't have"
-	cont "enough money…"
+	text "They just put"
+	line "stones with"
+	cont "vitamins for some"
+	cont "reason..."
 	done
 ; 0x71072
 
@@ -57,22 +59,23 @@ UnknownText_0x71072: ; 0x71072
 	line "can raise the PP"
 
 	para "of moves. But you"
-	line "can't buy it…"
+	line "have to gamble"
+	cont "for it..."
 	done
 ; 0x710b6
 
 UnknownText_0x710b6: ; 0x710b6
-	text "Using items on"
-	line "them makes #-"
-	cont "MON happy."
+	text "For some reason"
+	line "they say FIRE"
+	cont "STONES sell very"
+	cont "well."
 
-	para "They hate certain"
-	line "items, though…"
+	para "I wonder why..."
 	done
 ; 0x71100
 
 UnknownText_0x71100: ; 0x71100
-	text "5F: DRUG STORE"
+	text "5F: BUFF BAZAAR"
 	done
 ; 0x71110
 
