@@ -290,7 +290,6 @@ MAP_N_A   EQU -1
 	mapgroup KARENS_ROOM, 9, 5
 	mapgroup LANCES_ROOM, 12, 5
 	mapgroup HALL_OF_FAME, 7, 5
-	mapgroup ROUTE_23_RB, 6, 10
 
 	newgroup ; Fuchsia City Roofs
 	mapgroup ROUTE_13, 9, 30
@@ -310,7 +309,6 @@ MAP_N_A   EQU -1
 	newgroup ; Lavender Town
 	mapgroup ROUTE_8, 9, 20
 	mapgroup ROUTE_12, 27, 10
-	mapgroup ROUTE_12_RB, 27, 10 ; RB
 	mapgroup ROUTE_10_SOUTH, 9, 10
 	mapgroup LAVENDER_TOWN, 9, 10
 	mapgroup LAVENDER_POKECENTER_1F, 4, 5
@@ -430,11 +428,6 @@ MAP_N_A   EQU -1
 	mapgroup ROUTE_5_UNDERGROUND_ENTRANCE, 4, 4
 	mapgroup ROUTE_5_SAFFRON_CITY_GATE, 4, 5
 	mapgroup ROUTE_5_CLEANSE_TAG_SPEECH_HOUSE, 4, 4
-; RB
-	mapgroup ROUTE_5_RB, 9, 10
-	mapgroup ROUTE_5_UNDERGROUND_ENTRANCE_RB, 4, 4
-	mapgroup ROUTE_5_SAFFRON_CITY_GATE_RB, 4, 5
-	mapgroup ROUTE_5_CLEANSE_TAG_SPEECH_HOUSE_RB, 4, 4
 
 	newgroup
 	mapgroup ROUTE_30, 27, 10
@@ -508,6 +501,7 @@ MAP_N_A   EQU -1
 	mapgroup VIRIDIAN_NICKNAME_SPEECH_HOUSE_RB, 4, 4
 	mapgroup VIRIDIAN_TRAINER_SCHOOL_RB, 4, 4
 	mapgroup VICTORY_ROAD_GATE_RB, 4, 5
+	mapgroup ROUTE_23_RB, 6, 10
 
 	newgroup ; Pewter City RB
 	mapgroup ROUTE_3_RB, 9, 30
@@ -549,6 +543,13 @@ MAP_N_A   EQU -1
 	mapgroup VERMILION_GYM_RB, 9, 5
 	mapgroup ROUTE_6_SAFFRON_GATE_RB, 4, 5
 	mapgroup ROUTE_6_UNDERGROUND_ENTRANCE_RB, 4, 4
+	mapgroup ROUTE_12_RB, 27, 10 ; RB
+
+	newgroup ; Saffron Area RB
+	mapgroup ROUTE_5_RB, 9, 10
+	mapgroup ROUTE_5_UNDERGROUND_ENTRANCE_RB, 4, 4
+	mapgroup ROUTE_5_SAFFRON_CITY_GATE_RB, 4, 5
+	mapgroup ROUTE_5_CLEANSE_TAG_SPEECH_HOUSE_RB, 4, 4
 
 	newgroup ; SS Anne
 ; place ss anne constants here
