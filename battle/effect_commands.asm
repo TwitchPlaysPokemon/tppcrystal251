@@ -8138,7 +8138,7 @@ BattleCommand27: ; 36cb2
 	ld a, [hli]
 	ld [Buffer2], a
 	ld a, [hl]
-	ld [Buffer1], a
+	ld [Buffer1], a ;put enemy mon max HP in buffer
 	dec hl
 	dec hl
 	ld a, [hl]
@@ -8174,18 +8174,20 @@ BattleCommand27: ; 36cb2
 	jp StdBattleTextBox
 ; 36d1d
 .ThirdRecoil ;1/3 of HP instead of 1/4
+	ld a, BATTLE_VARS_MOVE_ANIM
+	call GetBattleVar
+	ld d, a
 	ld a, [CurDamage]
-	ld [$ffb6], a
+	ld [$ffb5], a
 	ld a, [CurDamage + 1]
-	ld [$ffb7], a
+	ld [$ffb6], a
 	ld a, 3
 	ld [hDivisor], a
-	ld a, 2
-	ld b, a
+	ld b, 2
 	call Divide
-	ld a ,[$ffb7]
-	ld c, a
 	ld a ,[$ffb6]
+	ld c, a
+	ld a ,[$ffb5]
 	ld b, a
 	or c
 	jr z, .asm_36cd8
