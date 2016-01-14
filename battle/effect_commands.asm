@@ -10311,7 +10311,6 @@ BattleCommand6f: ; 37c07
 
 BattleCommand95: ; 37c1a
 ; bellydrum
-	call BattleCommand77
 	ld a, [AttackMissed]
 	and a
 	jr nz, .asm_37c4f
@@ -10326,7 +10325,7 @@ BattleCommand95: ; 37c1a
 	pop bc
 	callab Function3cc3f
 	call UpdateUserInParty
-	ld a, 5
+	ld a, 6 ; fixes Belly Drum effect error
 
 .asm_37c41
 	push af

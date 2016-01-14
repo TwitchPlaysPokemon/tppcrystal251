@@ -1872,7 +1872,7 @@ HandleWeather: ; 3cb9e
 
 .PlayWeatherAnimation
 	ld a, [Weather]
-	cp WEATHER_RAIN_END
+	cp WEATHER_SANDSTORM
 	ret nc
 	dec a
 	ld e, a
@@ -1886,7 +1886,6 @@ HandleWeather: ; 3cb9e
 .WeatherAnims
 	db RAIN_DANCE
 	db SUNNY_DAY
-	db SANDSTORM
 
 Function3cc39: ; 3cc39
 	call Function3cc45

@@ -75111,7 +75111,7 @@ GetTreeScore: ; b8443
 	ld [hDivisor], a
 	ld b, 2
 	call Divide
-	ld a, [hQuotient + 3]
+	ld a, [hQuotient + 2]
 	ret
 ; b849d
 
@@ -75124,7 +75124,7 @@ GetTreeScore: ; b8443
 	ld [hDivisor], a
 	ld b, 2
 	call Divide
-	ld a, [hQuotient + 3]
+	ld a, [hQuotient + 2]
 	ret
 ; b84b3
 
