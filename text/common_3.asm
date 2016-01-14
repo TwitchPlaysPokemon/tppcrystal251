@@ -116,7 +116,7 @@ UnknownText_0x1c02a9: ; 1c02a9
 	text ""
 	line "a boosted"
 	cont "@"
-	deciram StringBuffer2, $24
+	deciram StringBuffer2, $25 ; fixes 5-digit EXP glitch
 	text " EXP. Points!"
 	prompt
 ; 1c02c9
@@ -124,7 +124,7 @@ UnknownText_0x1c02a9: ; 1c02a9
 UnknownText_0x1c02c9: ; 1c02c9
 	text ""
 	line "@"
-	deciram StringBuffer2, $24
+	deciram StringBuffer2, $25 ; fixes 5-digit EXP glitch
 	text " EXP. Points!"
 	prompt
 ; 1c02df
