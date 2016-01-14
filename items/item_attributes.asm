@@ -1148,7 +1148,7 @@ Item2Attributes:
 
 ; DRAGON FANG
 	dw 5000 ; price
-	db NONE ; effect
+	db HELD_DRAGON_BOOST ; effect ; fixes Dragon Fang glitch
 	db 0 ; param
 	db CANT_SELECT
 	db ITEM
@@ -1203,8 +1203,8 @@ Item2Attributes:
 	db $55 ; heal menu
 
 ; DRAGON SCALE
-	dw 5000 ; price
-	db HELD_DRAGON_BOOST ; effect
+	dw 2100 ; price
+	db NONE ; effect ; fixes Dragon Fang glitch
 	db 10 ; param
 	db CANT_SELECT
 	db ITEM

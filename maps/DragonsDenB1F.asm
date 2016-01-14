@@ -221,11 +221,11 @@ TwinsLeaandpia2Script: ; 0x18c952
 ; 0x18c95a
 
 PokeBallScript_0x18c95a: ; 0x18c95a
-	giveitem DRAGON_SCALE, $1
+	giveitem DRAGON_FANG, $1
 	iffalse UnknownScript_0x18c970
 	disappear $2
 	loadfont
-	itemtotext DRAGON_SCALE, $0
+	itemtotext DRAGON_FANG, $0
 	writetext UnknownText_0x18cf41
 	playsound SFX_ITEM
 	waitsfx
@@ -236,7 +236,7 @@ PokeBallScript_0x18c95a: ; 0x18c95a
 
 UnknownScript_0x18c970: ; 0x18c970
 	loadfont
-	itemtotext DRAGON_SCALE, $0
+	itemtotext DRAGON_FANG, $0
 	writetext UnknownText_0x18cf41
 	buttonsound
 	writetext UnknownText_0x18cf51

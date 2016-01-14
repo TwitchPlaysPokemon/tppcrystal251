@@ -843,8 +843,8 @@ MetalCoatDesc:
 	next "type moves. (HOLD)@"
 
 DragonFangDesc:
-	db   "Looks useful"
-	next "but isn't.@"
+	db   "Powers up dragon-"
+	next "type moves. (HOLD)@"
 
 TeruSama14Desc:
 	db   "?@"
@@ -867,8 +867,8 @@ MysteryBerryDesc:
 	next "for PP. (HOLD)@"
 
 DragonScaleDesc:
-	db   "Powers up dragon-"
-	next "type moves. (HOLD)@"
+	db   "A rare dragon-type"
+	next "item.@"
 
 BerserkGeneDesc:
 	db   "Boosts ATTACK but"
