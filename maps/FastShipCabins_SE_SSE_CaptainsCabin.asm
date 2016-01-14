@@ -13,7 +13,7 @@ UnknownScript_0x75ea6: ; 0x75ea6
 CaptainScript_0x75ea7: ; 0x75ea7
 	faceplayer
 	loadfont
-	checkevent EVENT_FAST_SHIP_030
+	checkevent EVENT_FAST_SHIP_FIRST_TIME
 	iftrue UnknownScript_0x75eb5
 	writetext UnknownText_0x76012
 	waitbutton
@@ -105,7 +105,7 @@ UnknownScript_0x75f44: ; 0x75f44
 	loadfont
 	writetext UnknownText_0x76645
 	waitbutton
-	setevent EVENT_FAST_SHIP_031
+	setevent EVENT_FAST_SHIP_ARRIVED
 	setevent EVENT_FAST_SHIP_032
 	closetext
 	end

@@ -386,7 +386,7 @@ TwinScript_0x18e3ed: ; 0x18e3ed
 	iftrue UnknownScript_0x18e448
 	checkevent EVENT_GOT_GS_BALL_BACK_FROM_KURT
 	iftrue UnknownScript_0x18e420
-	checkevent EVENT_FAST_SHIP_030
+	checkevent EVENT_FAST_SHIP_FIRST_TIME
 	iftrue UnknownScript_0x18e427
 	checkevent EVENT_CLEARED_SLOWPOKE_WELL
 	iftrue UnknownScript_0x18e419

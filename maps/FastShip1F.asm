@@ -32,8 +32,8 @@ UnknownScript_0x7513b: ; 0x7513b
 	playsound SFX_BOAT
 	earthquake 30
 	blackoutmod GROUP_FAST_SHIP_CABINS_SW_SSW_NW, MAP_FAST_SHIP_CABINS_SW_SSW_NW
-	clearevent EVENT_FAST_SHIP_031
-	checkevent EVENT_FAST_SHIP_030
+	clearevent EVENT_FAST_SHIP_ARRIVED
+	checkevent EVENT_FAST_SHIP_FIRST_TIME
 	iftrue UnknownScript_0x7515d
 	dotrigger $2
 	end
@@ -47,44 +47,48 @@ UnknownScript_0x7515d: ; 0x7515d
 SailorScript_0x75160: ; 0x75160
 	faceplayer
 	loadfont
-	checkevent EVENT_FAST_SHIP_031
-	iftrue UnknownScript_0x7517a
-	checkevent EVENT_FAST_SHIP_02F
-	iftrue UnknownScript_0x75174
+	checkevent EVENT_FAST_SHIP_ARRIVED
+	iftrue .arrived
+	checkevent EVENT_FAST_SHIP_WESTBOUND
+	iftrue .westbound
 	writetext UnknownText_0x7523b
 	waitbutton
 	closetext
 	end
 ; 0x75174
 
-UnknownScript_0x75174: ; 0x75174
+.westbound: ; 0x75174
 	writetext UnknownText_0x7529b
 	waitbutton
 	closetext
 	end
 ; 0x7517a
 
-UnknownScript_0x7517a: ; 0x7517a
-	checkevent EVENT_FAST_SHIP_02F
-	iftrue UnknownScript_0x7519c
+.arrived: ; 0x7517a
+	checkevent EVENT_FAST_SHIP_WESTBOUND
+	iftrue .arrive_at_olivine
 	writetext UnknownText_0x754be
 	waitbutton
 	closetext
-	scall UnknownScript_0x751b8
+	scall .LetPlayerOff
 	playsound SFX_EXIT_BUILDING
 	special Function8c084
 	waitsfx
 	setevent EVENT_SAILOR_IN_VERMILION_PORT
 	domaptrigger GROUP_VERMILION_PORT, MAP_VERMILION_PORT, $1
+	checkevent EVENT_FAST_SHIP_FIRST_TIME
+	iftrue .no_blackout
+	blackoutmod GROUP_VERMILION_PORT, MAP_VERMILION_PORT
+.no_blackout
 	warp GROUP_VERMILION_PORT, MAP_VERMILION_PORT, $7, $11
 	end
 ; 0x7519c
 
-UnknownScript_0x7519c: ; 0x7519c
+.arrive_at_olivine: ; 0x7519c
 	writetext UnknownText_0x7548d
 	waitbutton
 	closetext
-	scall UnknownScript_0x751b8
+	scall .LetPlayerOff
 	playsound SFX_EXIT_BUILDING
 	special Function8c084
 	waitsfx
@@ -94,15 +98,15 @@ UnknownScript_0x7519c: ; 0x7519c
 	end
 ; 0x751b8
 
-UnknownScript_0x751b8: ; 0x751b8
+.LetPlayerOff: ; 0x751b8
 	checkcode VAR_FACING
-	if_equal $3, UnknownScript_0x751c7
+	if_equal $3, .FacingRight
 	applymovement $2, MovementData_0x7520e
 	applymovement $0, MovementData_0x75235
 	end
 ; 0x751c7
 
-UnknownScript_0x751c7: ; 0x751c7
+.FacingRight: ; 0x751c7
 	applymovement $2, MovementData_0x75214
 	applymovement $0, MovementData_0x75238
 	end
@@ -111,7 +115,7 @@ UnknownScript_0x751c7: ; 0x751c7
 SailorScript_0x751d0: ; 0x751d0
 	faceplayer
 	loadfont
-	checkevent EVENT_FAST_SHIP_030
+	checkevent EVENT_FAST_SHIP_FIRST_TIME
 	iftrue UnknownScript_0x751de
 	writetext UnknownText_0x752f9
 	waitbutton
@@ -132,8 +136,6 @@ SailorScript_0x751e4: ; 0x751e4
 
 UnknownScript_0x751e7: ; 0x751e7
 	moveperson $5, $14, $6
-; 0x751eb
-
 UnknownScript_0x751eb: ; 0x751eb
 	appear $5
 	applymovement $5, MovementData_0x7521b

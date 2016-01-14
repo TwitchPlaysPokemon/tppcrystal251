@@ -35,7 +35,7 @@ MapGroupPointers:: ; 0x94000
 	dw MapGroup32
 	dw MapGroup33
 	dw MapGroup34
-
+	dw MapGroup35
 
 MapGroup1:
 	map_header OlivinePokeCenter1F, $7, 3, OLIVINE_CITY, MUSIC_POKEMON_CENTER, 0, 1, 1
@@ -587,4 +587,7 @@ MapGroup33:
 
 MapGroup34:
 ; ss anne rb
+
+MapGroup35:
+; egk dungeons
 

@@ -149,11 +149,11 @@ MapFastShipCabins_SW_SSW_NWSignpost1Script: ; 0x75aac
 	writetext UnknownText_0x75dc1
 	waitbutton
 	closetext
-	checkevent EVENT_FAST_SHIP_031
+	checkevent EVENT_FAST_SHIP_ARRIVED
 	iftrue UnknownScript_0x75ae1
 	checkevent EVENT_FAST_SHIP_032
 	iftrue UnknownScript_0x75ae2
-	checkevent EVENT_FAST_SHIP_030
+	checkevent EVENT_FAST_SHIP_FIRST_TIME
 	iftrue UnknownScript_0x75ae2
 UnknownScript_0x75ae1: ; 0x75ae1
 	end
@@ -162,13 +162,13 @@ UnknownScript_0x75ae1: ; 0x75ae1
 UnknownScript_0x75ae2: ; 0x75ae2
 	playsound SFX_ELEVATOR_END
 	pause 30
-	checkevent EVENT_FAST_SHIP_02F
+	checkevent EVENT_FAST_SHIP_WESTBOUND
 	iftrue UnknownScript_0x75af7
 	loadfont
 	writetext UnknownText_0x75e0f
 	waitbutton
 	closetext
-	setevent EVENT_FAST_SHIP_031
+	setevent EVENT_FAST_SHIP_ARRIVED
 	end
 ; 0x75af7
 
@@ -177,7 +177,7 @@ UnknownScript_0x75af7: ; 0x75af7
 	writetext UnknownText_0x75dde
 	waitbutton
 	closetext
-	setevent EVENT_FAST_SHIP_031
+	setevent EVENT_FAST_SHIP_ARRIVED
 	end
 ; 0x75b01
 

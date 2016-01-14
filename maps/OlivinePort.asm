@@ -45,7 +45,7 @@ SailorScript_0x748c0: ; 0x748c0
 	playsound SFX_EXIT_BUILDING
 	special Function8c084
 	waitsfx
-	checkevent EVENT_FAST_SHIP_030
+	checkevent EVENT_FAST_SHIP_FIRST_TIME
 	iffalse UnknownScript_0x7490a
 	clearevent EVENT_FAST_SHIP_POPULATION_2
 	setevent EVENT_FAST_SHIP_POPULATION_3
@@ -59,7 +59,7 @@ SailorScript_0x748c0: ; 0x748c0
 	clearevent EVENT_BEAT_FISHER_JONAH
 	clearevent EVENT_BEAT_BLACKBELT_WAI
 UnknownScript_0x7490a: ; 0x7490a
-	clearevent EVENT_FAST_SHIP_02F
+	clearevent EVENT_FAST_SHIP_WESTBOUND
 	appear $2
 	domaptrigger GROUP_FAST_SHIP_1F, MAP_FAST_SHIP_1F, $1
 	warp GROUP_FAST_SHIP_1F, MAP_FAST_SHIP_1F, $19, $1
@@ -81,7 +81,7 @@ UnknownScript_0x7491f: ; 0x7491f
 	iftrue UnknownScript_0x7498b
 	spriteface $0, $2
 	loadfont
-	checkevent EVENT_FAST_SHIP_030
+	checkevent EVENT_FAST_SHIP_FIRST_TIME
 	iffalse UnknownScript_0x7494e
 	checkcode VAR_WEEKDAY
 	if_equal SUNDAY, UnknownScript_0x74977
@@ -153,7 +153,7 @@ SailorScript_0x7499c: ; 0x7499c
 	loadfont
 	checkevent EVENT_000_STD
 	iftrue UnknownScript_0x74919
-	checkevent EVENT_FAST_SHIP_030
+	checkevent EVENT_FAST_SHIP_FIRST_TIME
 	iffalse UnknownScript_0x749c0
 	checkcode VAR_WEEKDAY
 	if_equal SUNDAY, UnknownScript_0x749f2

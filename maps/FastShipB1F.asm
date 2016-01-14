@@ -47,7 +47,7 @@ UnknownScript_0x76766: ; 0x76766
 SailorScript_0x76767: ; 0x76767
 	faceplayer
 	loadfont
-	checkevent EVENT_FAST_SHIP_030
+	checkevent EVENT_FAST_SHIP_FIRST_TIME
 	iftrue UnknownScript_0x767a0
 	checkevent EVENT_FAST_SHIP_033
 	iftrue UnknownScript_0x7678d

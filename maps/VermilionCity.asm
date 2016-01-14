@@ -1,6 +1,6 @@
 VermilionCity_MapScriptHeader: ; 0x1aa97a
 	; trigger count
-	db 2
+	db 3
 	
 	; triggers
 	

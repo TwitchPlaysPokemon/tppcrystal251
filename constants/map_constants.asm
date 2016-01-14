@@ -453,18 +453,10 @@ MAP_N_A   EQU -1
 	mapgroup VIRIDIAN_FOREST, $18, $11
 	mapgroup VIRIDIAN_FOREST_GATE_NORTH, $04, $05
 	mapgroup VIRIDIAN_FOREST_GATE_SOUTH, $04, $05
-	mapgroup VIRIDIAN_FOREST_RB, $18, $11
-	mapgroup VIRIDIAN_FOREST_GATE_NORTH_RB, $04, $05
-	mapgroup VIRIDIAN_FOREST_GATE_SOUTH_RB, $04, $05
 	mapgroup MTMOON1, 18, 20
 	mapgroup MTMOON2, 14, 14
 	mapgroup MTMOON3, 18, 20
 	mapgroup MOUNT_MOON_POKECENTER_1F, 4, 5
-	mapgroup MTMOON1_RB, 18, 20
-	mapgroup MTMOON2_RB, 14, 14
-	mapgroup MTMOON3_RB, 18, 20
-	mapgroup MOUNT_MOON_POKECENTER_1F_RB, 4, 5
-	mapgroup DIGLETTS_CAVE_RB, 18, 10
 	mapgroup CERULEANCAVE1, 9, 15
 	mapgroup CERULEANCAVE2, 9, 15
 	mapgroup CERULEANCAVE3, 9, 15
@@ -560,6 +552,16 @@ MAP_N_A   EQU -1
 
 	newgroup ; SS Anne
 ; place ss anne constants here
+
+	newgroup ; EGK dungeons etc
+	mapgroup VIRIDIAN_FOREST_RB, $18, $11
+	mapgroup VIRIDIAN_FOREST_GATE_NORTH_RB, $04, $05
+	mapgroup VIRIDIAN_FOREST_GATE_SOUTH_RB, $04, $05
+	mapgroup MTMOON1_RB, 18, 20
+	mapgroup MTMOON2_RB, 14, 14
+	mapgroup MTMOON3_RB, 18, 20
+	mapgroup MOUNT_MOON_POKECENTER_1F_RB, 4, 5
+	mapgroup DIGLETTS_CAVE_RB, 18, 10
 
 ; elevator floors
 	const_def
