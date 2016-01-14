@@ -53,7 +53,6 @@ MapGroup1:
 	map_header Route39, $1, 2, ROUTE_39, MUSIC_ROUTE_37, 0, 0, 1
 	map_header OlivineCity, $1, 1, OLIVINE_CITY, MUSIC_VIOLET_CITY, 0, 0, 2
 
-
 MapGroup2:
 	map_header MahoganyRedGyaradosSpeechHouse, $5, 3, MAHOGANY_TOWN, MUSIC_CHERRYGROVE_CITY, 0, 1, 1
 	map_header MahoganyGym, $f, 3, MAHOGANY_TOWN, MUSIC_GYM, 1, 1, 1
@@ -62,7 +61,6 @@ MapGroup2:
 	map_header Route42, $1, 2, ROUTE_42, MUSIC_LAKE_OF_RAGE, 0, 0, 1
 	map_header Route44, $1, 2, ROUTE_44, MUSIC_LAKE_OF_RAGE, 0, 0, 1
 	map_header MahoganyTown, $1, 1, MAHOGANY_TOWN, MUSIC_CHERRYGROVE_CITY, 0, 0, 1
-
 
 MapGroup3:
 	map_header SproutTower1F, $17, 7, SPROUT_TOWER, MUSIC_SPROUT_TOWER, 0, 1, 1
@@ -156,7 +154,6 @@ MapGroup3:
 	map_header SafariZoneBeta, $19, 4, FUCHSIA_CITY, MUSIC_EVOLUTION, 0, 0, 1
 	map_header VictoryRoad, $18, 4, VICTORY_ROAD, MUSIC_VICTORY_ROAD, 1, 2, 1
 
-
 MapGroup4:
 	map_header EcruteakHouse, $17, 3, ECRUTEAK_CITY, MUSIC_ECRUTEAK_CITY, 0, 1, 1
 	map_header WiseTriosRoom, $10, 3, ECRUTEAK_CITY, MUSIC_ECRUTEAK_CITY, 1, 1, 1
@@ -167,7 +164,6 @@ MapGroup4:
 	map_header EcruteakGym, $17, 3, ECRUTEAK_CITY, MUSIC_GYM, 1, 1, 1
 	map_header EcruteakItemfinderHouse, $10, 3, ECRUTEAK_CITY, MUSIC_ECRUTEAK_CITY, 0, 1, 1
 	map_header EcruteakCity, $1, 1, ECRUTEAK_CITY, MUSIC_ECRUTEAK_CITY, 0, 0, 1
-
 
 MapGroup5:
 	map_header BlackthornGym1F, $f, 3, BLACKTHORN_CITY, MUSIC_GYM, 1, 1, 1
@@ -181,7 +177,6 @@ MapGroup5:
 	map_header Route46, $1, 2, ROUTE_46, MUSIC_ROUTE_36, 0, 0, 2
 	map_header BlackthornCity, $1, 1, BLACKTHORN_CITY, MUSIC_AZALEA_TOWN, 0, 0, 5
 
-
 MapGroup6:
 	map_header CinnabarPokeCenter1F, $7, 3, CINNABAR_ISLAND, MUSIC_POKEMON_CENTER, 0, 1, 1
 	map_header CinnabarPokeCenter2FBeta, $7, 3, CINNABAR_ISLAND, MUSIC_POKEMON_CENTER, 0, 1, 1
@@ -191,7 +186,6 @@ MapGroup6:
 	map_header Route20, $3, 2, ROUTE_20, MUSIC_ROUTE_3, 0, 0, 15
 	map_header Route21, $3, 2, ROUTE_21, MUSIC_ROUTE_3, 0, 0, 14
 	map_header CinnabarIsland, $3, 1, CINNABAR_ISLAND, MUSIC_CINNIBAR_ISLAND, 0, 0, 14
-
 
 MapGroup7:
 	map_header CeruleanGymBadgeSpeechHouse, $5, 3, CERULEAN_CITY, MUSIC_CERULEAN_CITY, 0, 1, 1
@@ -221,7 +215,6 @@ MapGroup8:
 	map_header Route33, $2, 2, ROUTE_33, MUSIC_ROUTE_30, 0, 0, 1
 	map_header AzaleaTown, $2, 1, AZALEA_TOWN, MUSIC_AZALEA_TOWN, 0, 0, 1
 
-
 MapGroup9:
 	map_header LakeofRageHiddenPowerHouse, $5, 3, LAKE_OF_RAGE, MUSIC_LAKE_OF_RAGE, 0, 1, 1
 	map_header LakeofRageMagikarpHouse, $5, 3, LAKE_OF_RAGE, MUSIC_LAKE_OF_RAGE, 0, 1, 1
@@ -229,7 +222,6 @@ MapGroup9:
 	map_header Route43Gate, $8, 6, ROUTE_43, MUSIC_LAKE_OF_RAGE, 0, 1, 1
 	map_header Route43, $1, 2, ROUTE_43, MUSIC_LAKE_OF_RAGE, 0, 0, 4
 	map_header LakeofRage, $1, 1, LAKE_OF_RAGE, MUSIC_LAKE_OF_RAGE, 0, 0, 8
-
 
 MapGroup10:
 	map_header Route32, $1, 2, ROUTE_32, MUSIC_ROUTE_30, 0, 0, 11
@@ -249,7 +241,6 @@ MapGroup10:
 	map_header Route35NationalParkgate, $8, 3, ROUTE_35, MUSIC_GOLDENROD_CITY, 0, 1, 1
 	map_header Route36RuinsofAlphgate, $8, 6, ROUTE_36, MUSIC_ROUTE_36, 0, 1, 1
 	map_header Route36NationalParkgate, $8, 3, ROUTE_36, MUSIC_GOLDENROD_CITY, 0, 1, 1
-
 
 MapGroup11:
 	map_header Route34, $2, 2, ROUTE_34, MUSIC_ROUTE_36, 0, 0, 2
@@ -277,7 +268,6 @@ MapGroup11:
 	map_header Route34IlexForestGate, $8, 6, ROUTE_34, MUSIC_ROUTE_36, 0, 1, 1
 	map_header DayCare, $5, 3, ROUTE_34, MUSIC_AZALEA_TOWN, 0, 1, 1
 
-
 MapGroup12:
 	map_header Route6, $3, 2, ROUTE_6, MUSIC_ROUTE_3, 0, 0, 13
 	map_header Route11, $3, 2, ROUTE_11, MUSIC_ROUTE_12, 0, 0, 1
@@ -292,7 +282,6 @@ MapGroup12:
 	map_header VermilionGym, $e, 3, VERMILION_CITY, MUSIC_GYM, 1, 1, 1
 	map_header Route6SaffronGate, $8, 6, ROUTE_6, MUSIC_ROUTE_3, 0, 1, 1
 	map_header Route6UndergroundEntrance, $8, 6, ROUTE_6, MUSIC_ROUTE_3, 0, 1, 1
-
 
 MapGroup13:
 	map_header Route1, $3, 2, ROUTE_1, MUSIC_ROUTE_1, 0, 0, 1
@@ -312,7 +301,6 @@ MapGroup14:
 	map_header PewterPokeCEnter2FBeta, $7, 3, PEWTER_CITY, MUSIC_VIRIDIAN_CITY, 0, 1, 1
 	map_header PewterSnoozeSpeechHouse, $5, 3, PEWTER_CITY, MUSIC_VIRIDIAN_CITY, 0, 1, 1
 
-
 MapGroup15:
 	map_header OlivinePort, $9, 2, OLIVINE_CITY, MUSIC_VIOLET_CITY, 0, 0, 2
 	map_header VermilionPort, $9, 2, VERMILION_CITY, MUSIC_VERMILION_CITY, 0, 0, 2
@@ -325,7 +313,6 @@ MapGroup15:
 	map_header VermilionPortPassage, $1c, 3, VERMILION_CITY, MUSIC_VERMILION_CITY, 0, 1, 1
 	map_header TinTowerRoof, $17, 2, TIN_TOWER, MUSIC_TIN_TOWER, 0, 0, 1
 
-
 MapGroup16:
 	map_header Route23, $3, 1, ROUTE_23, MUSIC_INDIGO_PLATEAU, 0, 0, 13
 	map_header IndigoPlateauPokeCenter1F, $7, 3, INDIGO_PLATEAU, MUSIC_INDIGO_PLATEAU, 0, 1, 1
@@ -335,7 +322,6 @@ MapGroup16:
 	map_header KarensRoom, $f, 3, INDIGO_PLATEAU, MUSIC_INDIGO_PLATEAU, 1, 1, 1
 	map_header LancesRoom, $12, 3, INDIGO_PLATEAU, MUSIC_INDIGO_PLATEAU, 1, 1, 13
 	map_header HallOfFame, $1d, 3, INDIGO_PLATEAU, MUSIC_NEW_BARK_TOWN, 1, 1, 1
-
 
 MapGroup17:
 	map_header Route13, $3, 2, ROUTE_13, MUSIC_ROUTE_12, 0, 0, 13
@@ -351,7 +337,6 @@ MapGroup17:
 	map_header FuchsiaPokeCenter2FBeta, $7, 3, FUCHSIA_CITY, MUSIC_CERULEAN_CITY, 0, 1, 1
 	map_header SafariZoneWardensHome, $5, 3, FUCHSIA_CITY, MUSIC_CERULEAN_CITY, 0, 1, 1
 	map_header Route15FuchsiaGate, $8, 6, ROUTE_15, MUSIC_ROUTE_12, 0, 1, 1
-
 
 MapGroup18:
 	map_header Route8, $3, 2, ROUTE_8, MUSIC_ROUTE_3, 0, 0, 1
@@ -369,13 +354,11 @@ MapGroup18:
 	map_header Route8SaffronGate, $8, 6, ROUTE_8, MUSIC_ROUTE_3, 0, 1, 1
 	map_header Route12SuperRodHouse, $5, 3, ROUTE_12, MUSIC_VIRIDIAN_CITY, 0, 1, 1
 
-
 MapGroup19:
 	map_header Route28, $3, 2, ROUTE_28, MUSIC_INDIGO_PLATEAU, 0, 0, 10
 	map_header SilverCaveOutside, $3, 1, SILVER_CAVE, MUSIC_INDIGO_PLATEAU, 0, 0, 10
 	map_header SilverCavePokeCenter1F, $7, 3, SILVER_CAVE, MUSIC_POKEMON_CENTER, 0, 1, 1
 	map_header Route28FamousSpeechHouse, $5, 3, ROUTE_28, MUSIC_AZALEA_TOWN, 0, 1, 1
-
 
 MapGroup20:
 	map_header PokeCenter2F, $7, 3, SPECIAL_MAP, MUSIC_POKEMON_CENTER, 1, 1, 1
@@ -384,7 +367,6 @@ MapGroup20:
 	map_header TimeCapsule, $8, 3, SPECIAL_MAP, MUSIC_CHERRYGROVE_CITY, 1, 1, 1
 	map_header MobileTradeRoomMobile, $d, 3, SPECIAL_MAP, MUSIC_CHERRYGROVE_CITY, 1, 1, 1
 	map_header MobileBattleRoom, $d, 3, SPECIAL_MAP, MUSIC_CHERRYGROVE_CITY, 1, 1, 1
-
 
 MapGroup21:
 	map_header Route7, $3, 2, ROUTE_7, MUSIC_ROUTE_3, 0, 0, 1
@@ -414,7 +396,6 @@ MapGroup21:
 	map_header Route7SaffronGate, $8, 6, ROUTE_7, MUSIC_ROUTE_3, 0, 1, 1
 	map_header Route1718Gate, $8, 6, ROUTE_17, MUSIC_ROUTE_3, 0, 1, 1
 
-
 MapGroup22:
 	map_header Route40, $1, 2, ROUTE_40, MUSIC_ROUTE_36, 0, 0, 2
 	map_header Route41, $1, 2, ROUTE_41, MUSIC_ROUTE_36, 0, 0, 2
@@ -432,7 +413,6 @@ MapGroup22:
 	map_header BattleTowerHallway, $16, 3, BATTLE_TOWER, MUSIC_BATTLE_TOWER_THEME, 1, 1, 1
 	map_header Route40BattleTowerGate, $8, 6, BATTLE_TOWER, MUSIC_ROUTE_36, 0, 1, 1
 	map_header BattleTowerOutside, $4, 2, BATTLE_TOWER, MUSIC_BATTLE_TOWER_THEME, 0, 0, 1
-
 
 MapGroup23:
 	map_header Route2, $3, 2, ROUTE_2, MUSIC_ROUTE_1, 0, 0, 1
@@ -464,7 +444,6 @@ MapGroup24:
 	map_header Route27SandstormHouse, $5, 3, ROUTE_27, MUSIC_AZALEA_TOWN, 0, 1, 1
 	map_header Route2946Gate, $8, 6, ROUTE_29, MUSIC_ROUTE_29, 0, 1, 1
 
-
 MapGroup25:
 	map_header Route5, $3, 2, ROUTE_5, MUSIC_ROUTE_3, 0, 0, 1
 	map_header SaffronCity, $3, 1, SAFFRON_CITY, MUSIC_VIRIDIAN_CITY, 0, 0, 1
@@ -481,7 +460,6 @@ MapGroup25:
 	map_header Route5UndergroundEntrance, $8, 6, ROUTE_5, MUSIC_ROUTE_3, 0, 1, 1
 	map_header Route5SaffronCityGate, $8, 6, ROUTE_5, MUSIC_VIRIDIAN_CITY, 0, 1, 1
 	map_header Route5CleanseTagSpeechHouse, $5, 3, ROUTE_5, MUSIC_VIRIDIAN_CITY, 0, 1, 1
-
 
 MapGroup26:
 	map_header Route30, $1, 2, ROUTE_30, MUSIC_ROUTE_30, 0, 0, 1

@@ -88,7 +88,7 @@ TrainerClassDVs: ; 270d6
 	db $9D, $DD ; blue
 	db $98, $88 ; officer
 	db $7E, $A8 ; gruntf
-	db $98, $88 ; mysticalman
+	db $aa, $aa ; mysticalman
 	db $88, $98 ; bill
 	db $DD, $DD ; elm
 	db $DD, $DD ; tppPc
