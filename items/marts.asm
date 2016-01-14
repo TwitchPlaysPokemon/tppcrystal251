@@ -180,20 +180,13 @@ Mart10: ; 16140
 ; 16146
 
 Mart11: ; 16146 ;unused
-	db 4 ; # items
-	db POISON_BARB
-	db POISON_BARB
-	db POISON_BARB
+	db 1 ; # items
 	db POISON_BARB
 	db $ff
 ; 1614c
 
 Mart12: ; 1614c ;unused
-	db 5 ; # items
-	db POISON_BARB
-	db POISON_BARB
-	db POISON_BARB
-	db POISON_BARB
+	db 1 ; # items
 	db POISON_BARB
 	db $ff
 ; 16153
@@ -373,13 +366,14 @@ Mart25: ; 161ce
 
 Mart26: ; 161d5
 	db 7 ; # items
-	db POKE_DOLL
 	db LOVELY_MAIL
 	db SURF_MAIL
+	db POKE_DOLL
 	db BLACKGLASSES
 	db PINK_BOW
 	db SPELL_TAG
 	db MAGNET
+	db LIGHT_BALL
 	db $ff
 ; 161da
 

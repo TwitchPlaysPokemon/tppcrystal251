@@ -7888,7 +7888,7 @@ Functiond88c: ; d88c if montype is non-zero, load mon into enemy trainer. else l
 	ld de, PartyCount
 	ld a, [MonType]
 	and $f
-	jr z, .asm_d899 ;if montype first bits are all zero, jump. else load into opposing trainer mons
+	jr z, .asm_d899 ;if montype first nyble is zero load into player party, else load into opposing trainer 
 	ld de, OTPartyCount
 .asm_d899
 	ld a, [de] ;if mons in party 6 or more, ret

@@ -371,11 +371,11 @@ Function2a14f: ; 2a14f choose an encounter
 	inc hl ;place it over tables bit to store the loc (is add 4 faster?)
 	inc hl
 	ld d, h 
-	ld e, l;put table bit into de to get it back once first mon bit is on the stack
+	ld e, l ;put table bit into de to get it back once first mon bit is on the stack
 	inc hl ; move onto first mon bit
-	ld a, [TimeOfDay];load ToD into a
-	ld bc, $10 ;load 16 into bc for ToD mmovement
-	call AddNTimes ; HL + (bc *a), moves down 16 lines per ToD, moving onto first mon of right time
+	ld a, [TimeOfDay]
+	ld bc, $10 
+	call AddNTimes ;moves down 16 lines per ToD, moving onto first mon of right time
 	push hl ; place first mon location on stack (cur stack: first mon byte)
 	ld a, [de]
 	and $f ;use first nyble
@@ -394,12 +394,12 @@ Function2a14f: ; 2a14f choose an encounter
 	cp 200
 	jr nc, .asm_2a175 
 	inc a
-	ld b, a ; put rand 1-200 in b
-	ld h, d ; load the encounter% table location into hl
+	ld b, a ; b = rand 1-200 
+	ld h, d ; hl = encounter% table
 	ld l, e
 	ld e, 0 ;e holds loops needed and amount of slots to go down
 .asm_2a180
-	ld a, [hli] ;load encouner slot chance into a and increment hl, making a contain the encounter chance and hl point to the offset needed to find the mon
+	ld a, [hli] ;load encouner slot chance into a and increment hl, making a contain the encounter chance and hl point to next mon
 	cp b ; set flags for the random number - the encounter chance
 	jr nc, .asm_2a187 ; If this the correct encounter jump out, otherwise fall through 
 		;inc hl ; go down another line, putting hl onto the next encounter slot
@@ -416,24 +416,29 @@ Function2a14f: ; 2a14f choose an encounter
 	swap a
 	and $f ; only use second nyble
 	jr z, SkipBonLvl ;skip if "table" 0 and thus no bonus. convienantly a is also 0 so 0 will be added
+
 	ld b, 0 
 	dec a ;go 1 down as no table 0 exists for lvl pointers
 	ld hl, LvlPointers
 	add hl, bc ;go to correct ToD
+	ld c, 3
+	call AddNTimes ;go to correct pointer
 	ld a, [hl] ;load table
 	and a
 	jr z, SkipBonLvl ;skip if 0
+
 	dec a
 	ld hl, LvlTables
 	ld c, $10 
 	call AddNTimes ;do to correct level table
 	add hl, de ; find slot
 	ld a, [hl] ;put the level bonus in a
+
 SkipBonLvl
 	pop hl ;get table byte (cur stack: first mon byte)
 	dec hl ;move onto base level byte
 	add a, [hl] ;add base level onto level bonus
-	pop hl ; get first mon byte (stack equal to start)
+	pop hl ; get first mon byte (stack empty)
 	add hl, de ;move to correct mon
 	ld b, a
 	call AddVariance ;add level variance and ensure it is between 2 and 100. accepts number to increase into a and returns the new number in a
@@ -602,19 +607,19 @@ LvlTables: ;0 = no adjustment feel free to change examples
 	db 0
 
 ; 3 = Route 29 Morning
-	db 0
-	db 0
-	db -4
-	db 0
-	db 0
+	db 0 ;0
 	db 0
 	db -4
-	db -4
 	db 0
+	db 0 ;4
+	db 0
+	db -4
+	db -4
+	db 0 ;8
 	db 0
 	db 6
 	db 3
-	db 6
+	db 6 ;c
 	db 3
 	db 0
 	db 0

@@ -19,7 +19,7 @@ Item2Attributes:
 	db $06 ; ball
 
 ; BRIGHTPOWDER
-	dw 10 ; price
+	dw 6000 ; price
 	db HELD_BRIGHTPOWDER ; effect
 	db 20 ; param
 	db CANT_SELECT
@@ -59,7 +59,7 @@ Item2Attributes:
 	db $60 ; overworld
 
 ; MOON STONE
-	dw 0 ; price
+	dw 5000 ; price
 	db NONE ; effect
 	db 0 ; param
 	db CANT_SELECT
@@ -235,7 +235,7 @@ Item2Attributes:
 	db $50 ; party menu
 
 ; LUCKY PUNCH
-	dw 10 ; price
+	dw 3000 ; price
 	db NONE ; effect
 	db 0 ; param
 	db CANT_SELECT
@@ -603,7 +603,7 @@ Item2Attributes:
 	db $00 ; can't use
 
 ; SOFT SAND
-	dw 100 ; price
+	dw 5000 ; price
 	db HELD_GROUND_BOOST ; effect
 	db 10 ; param
 	db CANT_SELECT
@@ -611,7 +611,7 @@ Item2Attributes:
 	db $00 ; can't use
 
 ; SHARP BEAK
-	dw 100 ; price
+	dw 5000 ; price
 	db HELD_FLYING_BOOST ; effect
 	db 10 ; param
 	db CANT_SELECT
@@ -643,7 +643,7 @@ Item2Attributes:
 	db $55 ; heal menu
 
 ; POISON BARB
-	dw 100 ; price
+	dw 5000 ; price
 	db HELD_POISON_BOOST ; effect
 	db 10 ; param
 	db CANT_SELECT
@@ -651,7 +651,7 @@ Item2Attributes:
 	db $00 ; can't use
 
 ; KING'S ROCK
-	dw 100 ; price
+	dw 5000 ; price
 	db HELD_TRADE_EVOLVE ; effect
 	db 30 ; param
 	db CANT_SELECT
@@ -699,7 +699,7 @@ Item2Attributes:
 	db $00 ; can't use
 
 ; SILVERPOWDER
-	dw 100 ; price
+	dw 5000 ; price
 	db HELD_BUG_BOOST ; effect
 	db 10 ; param
 	db CANT_SELECT
@@ -755,7 +755,7 @@ Item2Attributes:
 	db $00 ; can't use
 
 ; MYSTIC WATER
-	dw 100 ; price
+	dw 5000 ; price
 	db HELD_WATER_BOOST ; effect
 	db 10 ; param
 	db CANT_SELECT
@@ -763,7 +763,7 @@ Item2Attributes:
 	db $00 ; can't use
 
 ; TWISTEDSPOON
-	dw 100 ; price
+	dw 5000 ; price
 	db HELD_PSYCHIC_BOOST ; effect
 	db 10 ; param
 	db CANT_SELECT
@@ -779,7 +779,7 @@ Item2Attributes:
 	db $00 ; can't use
 
 ; BLACKBELT
-	dw 100 ; price
+	dw 5000 ; price
 	db HELD_FIGHTING_BOOST ; effect
 	db 10 ; param
 	db CANT_SELECT
@@ -811,7 +811,7 @@ Item2Attributes:
 	db $00 ; can't use
 
 ; BLACKGLASSES
-	dw 100 ; price
+	dw 5000 ; price
 	db HELD_DARK_BOOST ; effect
 	db 10 ; param
 	db CANT_SELECT
@@ -827,7 +827,7 @@ Item2Attributes:
 	db $00 ; can't use
 
 ; PINK BOW
-	dw 100 ; price
+	dw 5000 ; price
 	db HELD_NORMAL_BOOST ; effect
 	db 10 ; param
 	db CANT_SELECT
@@ -851,7 +851,7 @@ Item2Attributes:
 	db $00 ; can't use
 
 ; NEVERMELTICE
-	dw 100 ; price
+	dw 5000 ; price
 	db HELD_ICE_BOOST ; effect
 	db 10 ; param
 	db CANT_SELECT
@@ -859,7 +859,7 @@ Item2Attributes:
 	db $00 ; can't use
 
 ; MAGNET
-	dw 100 ; price
+	dw 5000 ; price
 	db HELD_ELECTRIC_BOOST ; effect
 	db 10 ; param
 	db CANT_SELECT
@@ -867,7 +867,7 @@ Item2Attributes:
 	db $00 ; can't use
 
 ; MIRACLEBERRY
-	dw 10 ; price
+	dw 1000 ; price
 	db HELD_HEAL_STATUS ; effect
 	db 0 ; param
 	db CANT_SELECT
@@ -899,7 +899,7 @@ Item2Attributes:
 	db $00 ; can't use
 
 ; SPELL TAG
-	dw 100 ; price
+	dw 5000 ; price
 	db HELD_GHOST_BOOST ; effect
 	db 10 ; param
 	db CANT_SELECT
@@ -931,7 +931,7 @@ Item2Attributes:
 	db $40 ; current menu
 
 ; MIRACLE SEED
-	dw 100 ; price
+	dw 5000 ; price
 	db HELD_GRASS_BOOST ; effect
 	db 10 ; param
 	db CANT_SELECT
@@ -947,7 +947,7 @@ Item2Attributes:
 	db $00 ; can't use
 
 ; FOCUS BAND
-	dw 200 ; price
+	dw 4000 ; price
 	db HELD_FOCUS_BAND ; effect
 	db 30 ; param
 	db CANT_SELECT
@@ -995,7 +995,7 @@ Item2Attributes:
 	db $55 ; heal menu
 
 ; HARD STONE
-	dw 100 ; price
+	dw 5000 ; price
 	db HELD_ROCK_BOOST ; effect
 	db 10 ; param
 	db CANT_SELECT
@@ -1099,7 +1099,7 @@ Item2Attributes:
 	db $00 ; can't use
 
 ; CHARCOAL
-	dw 9800 ; price
+	dw 5000 ; price
 	db HELD_FIRE_BOOST ; effect
 	db 10 ; param
 	db CANT_SELECT
@@ -1115,7 +1115,7 @@ Item2Attributes:
 	db $55 ; heal menu
 
 ; SCOPE LENS
-	dw 200 ; price
+	dw 4000 ; price
 	db HELD_CRITICAL_UP ; effect
 	db 0 ; param
 	db CANT_SELECT
@@ -1139,7 +1139,7 @@ Item2Attributes:
 	db $00 ; can't use
 
 ; METAL COAT
-	dw 100 ; price
+	dw 5000 ; price
 	db HELD_STEEL_BOOST ; effect
 	db 10 ; param
 	db CANT_SELECT
@@ -1147,7 +1147,7 @@ Item2Attributes:
 	db $00 ; can't use
 
 ; DRAGON FANG
-	dw 100 ; price
+	dw 5000 ; price
 	db NONE ; effect
 	db 0 ; param
 	db CANT_SELECT
@@ -1195,7 +1195,7 @@ Item2Attributes:
 	db $00 ; can't use
 
 ; MYSTERYBERRY
-	dw 10 ; price
+	dw 3000 ; price
 	db HELD_RESTORE_PP ; effect
 	db 255 ; param
 	db CANT_SELECT
@@ -1203,7 +1203,7 @@ Item2Attributes:
 	db $55 ; heal menu
 
 ; DRAGON SCALE
-	dw 2100 ; price
+	dw 5000 ; price
 	db HELD_DRAGON_BOOST ; effect
 	db 10 ; param
 	db CANT_SELECT
@@ -1299,7 +1299,7 @@ Item2Attributes:
 	db $00 ; can't use
 
 ; LIGHT BALL
-	dw 100 ; price
+	dw 3000 ; price
 	db NONE ; effect
 	db 0 ; param
 	db CANT_SELECT
@@ -1355,7 +1355,7 @@ Item2Attributes:
 	db $50 ; party menu
 
 ; POLKADOT BOW
-	dw 100 ; price
+	dw 5000 ; price
 	db HELD_NORMAL_BOOST ; effect
 	db 10 ; param
 	db CANT_SELECT
