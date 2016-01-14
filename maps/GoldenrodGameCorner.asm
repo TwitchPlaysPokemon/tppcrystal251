@@ -65,38 +65,38 @@ UnknownScript_0x56c36: ; 056c36
 ; 0x56c4d
 
 UnknownScript_0x56c4d: ; 0x56c4d
-	checkcoins 5500
+	checkcoins 3500
 	if_equal $2, UnknownScript_0x56cb1
-	itemtotext TM_THUNDER, $0
+	itemtotext TM_ZAP_CANNON, $0
 	scall UnknownScript_0x56ca1
 	iffalse UnknownScript_0x56cbd
-	giveitem TM_THUNDER, $1
+	giveitem TM_ZAP_CANNON, $1
 	iffalse UnknownScript_0x56cb7
-	takecoins 5500
+	takecoins 3500
 	jump UnknownScript_0x56ca6
 ; 0x56c69
 
 UnknownScript_0x56c69: ; 0x56c69
-	checkcoins 5500
+	checkcoins 3500
 	if_equal $2, UnknownScript_0x56cb1
-	itemtotext TM_BLIZZARD, $0
+	itemtotext TM_DOUBLE_TEAM, $0
 	scall UnknownScript_0x56ca1
 	iffalse UnknownScript_0x56cbd
-	giveitem TM_BLIZZARD, $1
+	giveitem TM_DOUBLE_TEAM, $1
 	iffalse UnknownScript_0x56cb7
-	takecoins 5500
+	takecoins 3500
 	jump UnknownScript_0x56ca6
 ; 0x56c85
 
 UnknownScript_0x56c85: ; 0x56c85
-	checkcoins 5500
+	checkcoins 1500
 	if_equal $2, UnknownScript_0x56cb1
-	itemtotext TM_FIRE_BLAST, $0
+	itemtotext QUICK_CLAW, $0
 	scall UnknownScript_0x56ca1
 	iffalse UnknownScript_0x56cbd
-	giveitem TM_FIRE_BLAST, $1
+	giveitem QUICK_CLAW, $1
 	iffalse UnknownScript_0x56cb7
-	takecoins 5500
+	takecoins 1500
 	jump UnknownScript_0x56ca6
 ; 0x56ca1
 
@@ -154,9 +154,9 @@ MenuDataHeader_0x56cc9: ; 0x56cc9
 MenuData2_0x56cd1: ; 0x56cd1
 	db $80 ; flags
 	db 4 ; items
-	db "TM25    5500@"
-	db "TM14    5500@"
-	db "TM38    5500@"
+	db "TM07    3500@"
+	db "TM32    3500@"
+	db "QckClaw 1500@"
 	db "CANCEL@"
 ; 0x56d01
 

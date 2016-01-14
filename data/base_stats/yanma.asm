@@ -1,8 +1,9 @@
 	db YANMA ; 193
 
-	db 65, 65, 45, 95, 75, 45
-	; hp atk def spd sat sdf
-
+	db  70,  65,  60,  95,  105,  50 ; BST 390 > 445
+	;   hp  atk  def  spd  sat  sdf
+;	db  65,  65,  45,  95,  75,  45 old stats
+	
 	db BUG, FLYING
 	db 75 ; catch rate
 	db 147 ; base exp
@@ -18,5 +19,5 @@
 	dn INSECT, INSECT ; egg groups
 
 	; tmhm
-	tmhm HEADBUTT, CURSE, TOXIC, HIDDEN_POWER, SUNNY_DAY, PROTECT, GIGA_DRAIN, ENDURE, SOLARBEAM, RETURN, DOUBLE_TEAM, SWAGGER, SLEEP_TALK, SWIFT, REST, ATTRACT, THIEF, FLASH,
+	tmhm CURSE, TOXIC, HIDDEN_POWER, SUNNY_DAY, PROTECT, GIGA_DRAIN, SOLARBEAM, RETURN, PSYCHIC, SHADOW_BALL, DOUBLE_TEAM, SWAGGER, SLEEP_TALK, STRING_SHOT, REST, ATTRACT, THIEF, SUBSTITUTE, FLASH,
 	; end

@@ -377,8 +377,7 @@ BugsyRematchTextBefore:
 	cont "bug #MON."
 
 	para "Let me demonstrate"
-	line "what I've learned"
-	cont "recently."
+	line "what I've learned!"
 	done
 
 BugsyRematchBeatenText:
@@ -413,12 +412,6 @@ UnknownText_0x18ee2b: ; 0x18ee2b
 	text "Do you know the"
 	line "benefits of HIVE-"
 	cont "BADGE?"
-
-	para "If you have it,"
-	line "#MON up to L30"
-
-	para "will obey you,"
-	line "even traded ones."
 
 	para "#MON that know"
 	line "CUT will be able"

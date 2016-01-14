@@ -84,14 +84,14 @@ UnknownText_0x9f97b: ; 0x9f97b
 ; 0x9f9db
 
 UnknownText_0x9f9db: ; 0x9f9db
-	text "You can use only"
-	line "three #MON."
+	text "Your opponents use"
+	line "the same number of"
+	cont "#MON as you"
 
-	para "It's so hard to"
-	line "decide which three"
+	para "I wonder how many"
+	line "#MON I should"
+	cont "take..."
 
-	para "should go into"
-	line "battle…"
 	done
 ; 0x9fa32
 

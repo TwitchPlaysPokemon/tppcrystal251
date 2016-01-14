@@ -574,7 +574,7 @@
 
 	db GROUP_ROUTE_26, MAP_ROUTE_26
 	db $0f ; encounter rate
-	db 55
+	db 53
 	db $01
 ;morning
 		db GOLDEEN ;20
@@ -630,7 +630,7 @@
 
 	db GROUP_ROUTE_27, MAP_ROUTE_27
 	db $0f ; encounter rate
-	db 55
+	db 53
 	db $01
 ;morning
 		db GOLDEEN ;20
@@ -911,7 +911,7 @@
 		db HORSEA ;1
 
 	db GROUP_CELADON_CITY, MAP_CELADON_CITY
-	db $ff ; encounter rate
+	db $fe ; encounter rate
 	db 60
 	db $00
 ;morning

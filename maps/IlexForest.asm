@@ -405,7 +405,7 @@ RockerScript_0x6edde: ; 0x6edde
 	iftrue UnknownScript_0x6edf3
 	writetext UnknownText_0x6f21b
 	buttonsound
-	verbosegiveitem TM_HEADBUTT, 1
+	verbosegiveitem TM_ZEN_HEADBUTT, 1
 	iffalse UnknownScript_0x6edf7
 	setevent EVENT_GOT_TM02_HEADBUTT
 UnknownScript_0x6edf3: ; 0x6edf3
@@ -951,6 +951,9 @@ UnknownText_0x6f26d: ; 0x6f26d
 	line "HEADBUTT. Some-"
 	cont "times, sleeping"
 	cont "#MON fall out."
+
+	para "Both kinds of"
+	line "headbutts work."
 	done
 ; 0x6f2af
 

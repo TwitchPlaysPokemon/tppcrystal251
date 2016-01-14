@@ -22,7 +22,7 @@ BugCatcherScript_0x18e04a: ; 0x18e04a
 ; 0x18e04d
 
 UnknownText_0x18e04d: ; 0x18e04d
-	text "There's no GREAT"
+	text "There's no MASTER"
 	line "BALL here. #"
 
 	para "BALLS will have"

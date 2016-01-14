@@ -36,7 +36,7 @@ ENDM
 	move STOMP,        EFFECT_STOMP,              65, PHYSICAL, NORMAL,   100, 20,  30
 	move DOUBLE_KICK,  EFFECT_DOUBLE_HIT,         30, PHYSICAL, FIGHTING, 100, 30,   0 ; EFFECT_DOUBLE_HIT could be changed to continue after breaking sub ;$18
 	move MEGA_KICK,    EFFECT_NORMAL_HIT,        120, PHYSICAL, NORMAL,    75,  5,   0
-	move FLARE_BLITZ,  EFFECT_RECOIL_HIT,        120, PHYSICAL, FIRE,     100, 15,   0 ; replacing Jump Kick
+	move FLARE_BLITZ,  EFFECT_FLARE_BLITZ,       120, PHYSICAL, FIRE,     100, 15,  10 ; replacing Jump Kick
 	move ROLLING_KICK, EFFECT_FLINCH_HIT,         60, PHYSICAL, FIGHTING,  85, 15,  30
 	move SAND_ATTACK,  EFFECT_ACCURACY_DOWN,       0, STATUS,   GROUND,   100, 15,   0
 	move HEADBUTT,     EFFECT_FLINCH_HIT,         70, PHYSICAL, NORMAL,   100, 15,  30
@@ -45,7 +45,7 @@ ENDM
 	move HORN_DRILL,   EFFECT_OHKO,                1, PHYSICAL, NORMAL,    30,  5,   0 ;$20
 	move TACKLE,       EFFECT_NORMAL_HIT,         50, PHYSICAL, NORMAL,   100, 35,   0
 	move BODY_SLAM,    EFFECT_PARALYZE_HIT,       85, PHYSICAL, NORMAL,   100, 15,  30
-	move WRAP,         EFFECT_BIND,               15, PHYSICAL, NORMAL,    85, 20,   0 ; EFFECT_BIND should last 4-5 turns, do 1/8 damage
+	move WRAP,         EFFECT_BIND,               15, PHYSICAL, NORMAL,    90, 20,   0 ; EFFECT_BIND should last 4-5 turns, do 1/8 damage
 	move TAKE_DOWN,    EFFECT_RECOIL_HIT,         90, PHYSICAL, NORMAL,    85, 20,   0
 	move THRASH,       EFFECT_RAMPAGE,           120, PHYSICAL, NORMAL,   100, 10,   0
 	move DOUBLE_EDGE,  EFFECT_RECOIL_HIT,        120, PHYSICAL, NORMAL,   100, 15,   0
@@ -67,7 +67,7 @@ ENDM
 	move MIST,         EFFECT_MIST,                0, STATUS,   ICE,      100, 30,   0
 	move WATER_GUN,    EFFECT_NORMAL_HIT,         50, SPECIAL,  WATER,    100, 25,   0 ; small buff to keep it better than Bubble
 	move HYDRO_PUMP,   EFFECT_NORMAL_HIT,        120, SPECIAL,  WATER,     80,  5,   0  ;$38
-	move SURF,         EFFECT_NORMAL_HIT,        100, SPECIAL,  WATER,    100, 15,   0
+	move SURF,         EFFECT_NORMAL_HIT,         95, SPECIAL,  WATER,    100, 15,   0
 	move ICE_BEAM,     EFFECT_FREEZE_HIT,         95, SPECIAL,  ICE,      100, 10,  10
 	move BLIZZARD,     EFFECT_FREEZE_HIT,        120, SPECIAL,  ICE,       70,  5,  10
 	move PSYBEAM,      EFFECT_CONFUSE_HIT,        65, SPECIAL,  PSYCHIC,  100, 20,  10
@@ -133,7 +133,7 @@ ENDM
 	move SELFDESTRUCT, EFFECT_EXPLOSION,         200, PHYSICAL, NORMAL,   100,  5,   0 ;$78
 	move METAL_SOUND,  EFFECT_SP_DEF_DOWN_2,       0, STATUS,   STEEL,    100, 40,   0 ; replacing Egg Bomb
 	move LICK,         EFFECT_PARALYZE_HIT,       30, PHYSICAL, GHOST,    100, 30,  30
-	move DRAGON_PULSE, EFFECT_NORMAL_HIT,         85, SPECIAL,  DRAGON,   100, 10,   0 ; replacing Smog
+	move DRAGON_PULSE, EFFECT_NORMAL_HIT,         90, SPECIAL,  DRAGON,   100, 10,   0 ; replacing Smog
 	move SLUDGE,       EFFECT_POISON_HIT,         65, SPECIAL,  POISON,   100, 20,  30
 	move BONE_CLUB,    EFFECT_FLINCH_HIT,         65, PHYSICAL, GROUND,    85, 20,  10
 	move FIRE_BLAST,   EFFECT_BURN_HIT,          120, SPECIAL,  FIRE,      85,  5,  10
@@ -156,7 +156,7 @@ ENDM
 	move SEED_BOMB,    EFFECT_NORMAL_HIT,         80, PHYSICAL, GRASS,    100, 15,   0 ; replacing Barrage
 	move LEECH_LIFE,   EFFECT_LEECH_HIT,          35, PHYSICAL, BUG,      100, 15,   0 ; small buff to make useful early game
 	move LOVELY_KISS,  EFFECT_SLEEP,               0, STATUS,   NORMAL,    75, 10,   0
-	move SKY_ATTACK,   EFFECT_SKY_ATTACK,        140, PHYSICAL, FLYING,    90,  5,   0 ; EFFECT_SKY_ATTACK add flinch effect; it has 30% chance to flinch 
+	move SKY_ATTACK,   EFFECT_SKY_ATTACK,        140, PHYSICAL, FLYING,    90,  5,  30 ; EFFECT_SKY_ATTACK has a flinch effect, it has 30% chance to flinch 
 	move TRANSFORM,    EFFECT_TRANSFORM,           0, STATUS,   NORMAL,   100, 10,   0 ;$90
 	move BUBBLE,       EFFECT_SPEED_DOWN_HIT,     40, SPECIAL,  WATER,    100, 30,  10
 	move DIZZY_PUNCH,  EFFECT_CONFUSE_HIT,        70, PHYSICAL, FAIRY_T,  100, 10,  20 ; retconned to fairy type

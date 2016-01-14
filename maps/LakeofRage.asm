@@ -308,7 +308,7 @@ ItemFragment_0x70148: ; 0x70148
 ; 0x7014a
 
 ItemFragment_0x7014a: ; 0x7014a
-	db TM_DAZZLINGLEAM, 1
+	db TM_FOCUS_BLAST, 1
 ; 0x7014c
 
 MapLakeofRageSignpostItem2: ; 0x7014c

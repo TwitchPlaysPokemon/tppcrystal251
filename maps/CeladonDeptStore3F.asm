@@ -88,7 +88,14 @@ UnknownText_0x70dc7: ; 0x70dc7
 
 UnknownText_0x70e61: ; 0x70e61
 	text "The TM SHOP sells"
-	line "some rare moves."
+	line "some rare moves,"
+
+	para "but the TM depot"
+	line "sells them all."
+
+	para "They only open to"
+	line "those who beat"
+	cont "all Kanto gyms."
 	done
 ; 0x70e85
 

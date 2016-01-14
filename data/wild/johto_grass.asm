@@ -2,8 +2,8 @@
 
 	db GROUP_SPROUT_TOWER_2F, MAP_SPROUT_TOWER_2F ;MAP tells you what map this encounter table is for, should be pretty obvious. don't touch it
 	db $05 ; encounter rates for all day Encounter rate out of 255, delete 2 of the 3 identical numbers and both commas
-	db 20 ;base level for the area before alteration. Use lower bound for random spread (for 2-6, use 2)
-	db $00 ;Tables to use. first is a $ for tech reasons Left number/letter is level alteration table. Right number is what %chance table to use. 0 = big 30, 1 = 2020, 2 = 2015, 3 = 1510
+	db 14 ;base level for the area before alteration. Use lower bound for random spread (for 2-6, use 2)
+	db $70 ;Tables to use. first is a $ for tech reasons Left number/letter is level alteration table. Right number is what %chance table to use. 0 = big 30, 1 = 2020, 2 = 2015, 3 = 1510
 	; The level alteration table hasn't been decided/coded yet, though 0 is for no alteration exept random variance
 ;morning Mons go here, make sure no semi-colons are where they shouldn't be (before mons), and that morning/day/night are after semi-colons
         db BELLSPROUT ;30 level is no longer stored next to mon
@@ -59,8 +59,8 @@
 
 	db GROUP_SPROUT_TOWER_3F, MAP_SPROUT_TOWER_3F
 	db $05
-	db 20
-	db $00 
+	db 14
+	db $70 
 ;morning Mons go here, make sure no semi-colons are where they shouldn't be (before mons), and that morning/day/night are after semi-colons
         db BELLSPROUT ;30 level is no longer stored next to mons
         db ZUBAT ;10
@@ -181,7 +181,7 @@
 
 	db GROUP_BURNED_TOWER_1F, MAP_BURNED_TOWER_1F
 	db $0a ; encounter rates: morn/day/nite
-	db 35
+	db 27
 	db $02
 	; morn
 		db HOUNDOUR ;20
@@ -237,7 +237,7 @@
 
 	db GROUP_BURNED_TOWER_B1F, MAP_BURNED_TOWER_B1F
 	db $0f ; encounter rates: morn/day/nite
-	db 35
+	db 28
 	db $02
 	; morn
 		db KOFFING ;20
@@ -250,7 +250,7 @@
 		db SHUCKLE ;5
 		db LARVITAR ;6
 		db MAGMAR ;4
-		db PUPITAR ;3
+		db LARVITAR ;3
 		db LARVITAR ;2
 		db HOUNDOOM ;2
 		db LARVITAR ;1
@@ -263,13 +263,13 @@
 		db KOFFING ;10
 		db LARVITAR ;10
 		db HOUNDOOM ;5
-		db MAGMAR ;5
+		db HOUNDOOM ;5
 		db SLUGMA ;5
 		db MAGMAR ;6
-		db PUPITAR ;4
+		db LARVITAR ;4
 		db SWINUB ;3
 		db SHUCKLE ;2
-		db LARVITAR ;2
+		db MAGMAR ;2
 		db SHUCKLE ;1
 		db SHUCKLE ;1
 		db SHUCKLE ;1
@@ -283,17 +283,17 @@
 		db SHUCKLE ;5
 		db SLUGMA ;5
 		db HOUNDOUR ;6
-		db PUPITAR ;4
+		db LARVITAR ;4
 		db HOUNDOUR ;3
 		db SWINUB ;2
 		db SWINUB ;2
 		db SWINUB ;1
-		db PUPITAR ;1
+		db LARVITAR ;1
 		db HOUNDOOM ;1
 
 	db GROUP_NATIONAL_PARK, MAP_NATIONAL_PARK
 	db $19 ; encounter rates: morn/day/nite
-	db 30
+	db 24
 	db $03
 	; morn
 		db LEDIAN ;15
@@ -330,7 +330,7 @@
 		db HERACROSS ;2
 		db HERACROSS ;1
 	; nite
-		db ARIADOS;15
+		db ARIADOS ;15
 		db GLOOM ;10
 		db HOUNDOUR ;10
 		db SKARMORY ;10
@@ -339,8 +339,8 @@
 		db GLOOM ;5
 		db BAYLEEF ;5
 		db CHANSEY ;5
-		db VENOMOTH ;5
-		db HOUNDOOM ;5
+		db SNEASEL ;5
+		db HOUNDOUR ;5
 		db GLOOM ;5
 		db SCYTHER ;4
 		db SCIZOR ;3
@@ -349,7 +349,7 @@
 
 	db GROUP_RUINS_OF_ALPH_OUTSIDE, MAP_RUINS_OF_ALPH_OUTSIDE
 	db $0a ; encounter rates: morn/day/nite
-	db 40
+	db 33
 	db $03
 ;morning
 		db PICHU ;15
@@ -405,7 +405,7 @@
 
 	db GROUP_RUINS_OF_ALPH_INNER_CHAMBER, MAP_RUINS_OF_ALPH_INNER_CHAMBER
 	db $0f ; encounter rates: morn/day/nite
-	db 50
+	db 48
 	db $00
 ;morning
 		db UNOWN ;30
@@ -461,7 +461,7 @@
 
 	db GROUP_UNION_CAVE_1F, MAP_UNION_CAVE_1F
 	db $0f ; encounter rates: morn/day/nite
-	db 20
+	db 17
 	db $01
 	; morn
 		db WOOPER  ;20
@@ -485,14 +485,14 @@
 		db SLUGMA ;20
 		db SWINUB ;10
 		db SHUCKLE ;10
-		db QUAGSIRE ;5
-		db PUPITAR ;5
+		db TYROGUE ;5
+		db SWINUB ;5
 		db SWINUB ;5
 		db WOOPER ;5
 		db GLIGAR ;4
 		db LARVITAR ;4
 		db GLIGAR ;3
-		db QUAGSIRE ;3
+		db WOOPER ;3
 		db GLIGAR ;2
 		db LARVITAR ;2
 		db GLIGAR ;1
@@ -502,14 +502,14 @@
 		db LARVITAR ;20
 		db WOOPER ;10
 		db SHUCKLE ;10
-		db QUAGSIRE ;5
-		db PUPITAR ;5
+		db SWINUB ;5
+		db TYROGUE ;5
 		db WOOPER ;5
 		db TYROGUE ;5
 		db GLIGAR ;4
 		db SWINUB ;4
 		db GLIGAR ;3
-		db PUPITAR ;3
+		db SHUCKLE ;3
 		db GLIGAR ;2
 		db TYROGUE ;2
 		db GLIGAR ;1
@@ -517,7 +517,7 @@
 
 	db GROUP_UNION_CAVE_B1F, MAP_UNION_CAVE_B1F
 	db $0f ; encounter rates: morn/day/nite
-	db 25
+	db 18
 	db $01
 	; morn
 		db WOOPER  ;20
@@ -531,9 +531,9 @@
 		db GLIGAR ;4
 		db LARVITAR ;4
 		db GLIGAR ;3
-		db PUPITAR ;3
+		db SWINUB ;3
 		db GLIGAR ;2
-		db QUAGSIRE ;2
+		db SWINUB ;2
 		db GLIGAR ;1
 		db LARVITAR ;1
 	; day
@@ -541,14 +541,14 @@
 		db SLUGMA ;20
 		db SWINUB ;10
 		db SHUCKLE ;10
-		db QUAGSIRE ;5
-		db PUPITAR ;5
+		db TYROGUE ;5
+		db SWINUB ;5
 		db SWINUB ;5
 		db WOOPER ;5
 		db GLIGAR ;4
 		db LARVITAR ;4
 		db GLIGAR ;3
-		db QUAGSIRE ;3
+		db WOOPER ;3
 		db GLIGAR ;2
 		db LARVITAR ;2
 		db GLIGAR ;1
@@ -558,14 +558,14 @@
 		db LARVITAR ;20
 		db WOOPER ;10
 		db SHUCKLE ;10
-		db QUAGSIRE ;5
-		db PUPITAR ;5
+		db SWINUB ;5
+		db TYROGUE ;5
 		db WOOPER ;5
 		db TYROGUE ;5
 		db GLIGAR ;4
 		db SWINUB ;4
 		db GLIGAR ;3
-		db PUPITAR ;3
+		db SHUCKLE ;3
 		db GLIGAR ;2
 		db TYROGUE ;2
 		db GLIGAR ;1
@@ -573,7 +573,7 @@
 
 	db GROUP_UNION_CAVE_B2F, MAP_UNION_CAVE_B2F
 	db $0a ; encounter rates: morn/day/nite
-	db 50
+	db 38
 	db $03
 	; morn
 		db SLUGMA ;15
@@ -629,7 +629,7 @@
 
 	db GROUP_SLOWPOKE_WELL_B1F, MAP_SLOWPOKE_WELL_B1F
 	db $05 ; encounter rates: morn/day/nite
-	db 25
+	db 19
 	db $00
 	; morn
 		db SLOWPOKE ;30
@@ -645,9 +645,9 @@
 		db MARILL ;3
 		db SWINUB ;3
 		db MARILL ;2
-		db SLOWBRO ;2
+		db AZUMARILL ;2
 		db MARILL ;1
-		db QUAGSIRE ;1
+		db AZUMARILL ;1
 	; day
 		db SLOWPOKE ;30
 		db SWINUB ;10
@@ -660,32 +660,32 @@
 		db SWINUB ;4
 		db MARILL ;4
 		db MARILL ;3
-		db QUAGSIRE ;3
+		db SWINUB ;3
 		db MARILL ;2
-		db SLOWBRO ;2
+		db AZUMARILL ;2
 		db AZUMARILL ;1
-		db ;AZUMARILL 1
+		db AZUMARILL ;1
 	; nite
 		db SLOWPOKE ;30
 		db WOOPER ;10
 		db SPINARAK ;10
 		db WOOPER ;10
-		db QUAGSIRE ;5
+		db WOOPER ;5
 		db CORSOLA ;5
 		db SPINARAK ;5
 		db SLOWPOKE ;5
 		db SWINUB ;4
-		db ARIADOS ;4
+		db SPINARAK ;4
 		db SPINARAK ;3
 		db SPINARAK ;3
-		db ARIADOS ;2
-		db SLOWBRO ;2
+		db SPINARAK ;2
+		db SWINUB ;2
 		db SPINARAK ;1
 		db SPINARAK ;1
 
 	db GROUP_SLOWPOKE_WELL_B2F, MAP_SLOWPOKE_WELL_B2F
 	db $05 ; encounter rates: morn/day/nite
-	db 60
+	db 38
 	db $00
 	; morn
 		db SLOWPOKE ;30
@@ -741,7 +741,7 @@
 
 	db GROUP_ILEX_FOREST, MAP_ILEX_FOREST
 	db $0a ; encounter rates: morn/day/nite
-	db 25
+	db 20
 	db $01
 	; morn
 		db PINECO ;20
@@ -749,7 +749,7 @@
 		db BUTTERFREE ;10
 		db AIPOM ;10
 		db BEEDRILL ;5
-		db FORRETRESS ;5
+		db PIDGEOTTO ;5
 		db BUTTERFREE ;5
 		db PINECO ;5
 		db FARFETCH_D ;4
@@ -758,8 +758,8 @@
 		db STANTLER ;3
 		db PIDGEOTTO ;2
 		db PIDGEOTTO ;2
-		db PIDGEOT ;1
-		db PIDGEOT ;1
+		db BEEDRILL ;1
+		db BEEDRILL ;1
 	; day
 		db GIRAFARIG ;20
 		db AIPOM ;20
@@ -768,15 +768,15 @@
 		db BUTTERFREE ;5
 		db GIRAFARIG ;5
 		db BEEDRILL ;5
-		db PINECO ;5
-		db FORRETRESS ;4
+		db FARFETCH_D ;5
+		db PINECO ;4
 		db PIDGEOTTO ;4
 		db PINECO ;3
 		db PINECO ;3
 		db PIDGEOTTO ;2
 		db PIDGEOTTO ;2
-		db PIDGEOT ;1
-		db PIDGEOT ;1
+		db BUTTERFREE ;1
+		db BUTTERFREE ;1
 	; nite
 		db STANTLER ;20
 		db NOCTOWL ;20
@@ -792,12 +792,12 @@
 		db PINECO ;3
 		db PINECO ;2
 		db PINECO ;2
-		db FORRETRESS ;1
-		db FORRETRESS ;1
+		db MISDREAVUS ;1
+		db MISDREAVUS ;1
 
 	db GROUP_MOUNT_MORTAR_1F_OUTSIDE, MAP_MOUNT_MORTAR_1F_OUTSIDE
 	db $0f ; encounter rates: morn/day/nite
-	db 40
+	db 30
 	db $02
 	; morn
 		db PUPITAR ;20
@@ -811,7 +811,7 @@
 		db ONIX ;6
 		db STEELIX ;4
 		db STEELIX ;3
-		db GOLEM ;2
+		db GRAVELER ;2
 		db SWINUB ;2
 		db CROBAT ;1
 		db CROBAT ;1
@@ -830,7 +830,7 @@
 		db WOBBUFFET ;3
 		db ONIX ;2
 		db WOBBUFFET ;2
-		db GOLEM ;1
+		db GRAVELER ;1
 		db PILOSWINE ;1
 		db CORSOLA ;1
 	; nite
@@ -843,17 +843,17 @@
 		db PUPITAR ;5
 		db WOBBUFFET ;5
 		db LARVITAR ;6
-		db GOLEM ;4
+		db GRAVELER ;4
 		db SWINUB ;3
 		db CROBAT ;2
 		db ONIX ;2
 		db GRAVELER ;1
-		db LARVITAR ;1
+		db SWINUB ;1
 		db GRAVELER ;1
 
 	db GROUP_MOUNT_MORTAR_1F_INSIDE, MAP_MOUNT_MORTAR_1F_INSIDE
 	db $0f ; encounter rates: morn/day/nite
-	db 40
+	db 30
 	db $01
 	; morn
 		db LARVITAR ;20
@@ -867,7 +867,7 @@
 		db STEELIX ;4
 		db SLUGMA ;4
 		db MAGCARGO ;3
-		db GOLEM ;3
+		db GRAVELER ;3
 		db MAGCARGO ;2
 		db GRAVELER ;2
 		db ONIX ;1
@@ -883,7 +883,7 @@
 		db QUAGSIRE ;5
 		db ONIX ;4
 		db MAGCARGO ;4
-		db GOLEM ;3
+		db GRAVELER ;3
 		db STEELIX ;3
 		db ONIX ;2
 		db GRAVELER ;2
@@ -905,11 +905,11 @@
 		db STEELIX ;2
 		db MAGCARGO ;2
 		db SHUCKLE ;1
-		db GOLEM ;1
+		db GRAVELER ;1
 
 	db GROUP_MOUNT_MORTAR_2F_INSIDE, MAP_MOUNT_MORTAR_2F_INSIDE
 	db $0f ; encounter rates: morn/day/nite
-	db 45
+	db 53
 	db $01
 	; morn
 		db PUPITAR ;20
@@ -965,7 +965,7 @@
 
 	db GROUP_MOUNT_MORTAR_B1F, MAP_MOUNT_MORTAR_B1F
 	db $0f ; encounter rates: morn/day/nite
-	db 45
+	db 34
 	db $01
 	; morn
 		db PUPITAR ;20
@@ -1020,8 +1020,8 @@
 		db POLITOED ;1
 
 	db GROUP_ICE_PATH_1F, MAP_ICE_PATH_1F
-	db $05 ; encounter rates: morn/day/nite
-	db 45
+	db $07 ; encounter rates: morn/day/nite
+	db 47
 	db $02
 	; morn
 		db SWINUB ;20
@@ -1033,7 +1033,7 @@
 		db PILOSWINE ;5
 		db SNEASEL ;5
 		db JYNX ;6
-		db ;SWINUB 4
+		db SWINUB ;4
 		db SMOOCHUM ;3
 		db CROBAT ;2
 		db PILOSWINE ;2
@@ -1075,8 +1075,61 @@
 		db SMOOCHUM ;1
 		db CROBAT ;1
 
-;	db GROUP_ICE_PATH_B1F, MAP_ICE_PATH_B1F
-;	db $05,$05,$05 ; encounter rates: morn/day/nite
+	db GROUP_ICE_PATH_B1F, MAP_ICE_PATH_B1F
+	db $02 ; encounter rates: morn/day/nite
+	db 48
+	db $02
+	; morn
+		db SWINUB ;20
+		db SMOOCHUM ;15
+		db SNEASEL ;10
+		db DELIBIRD ;10
+		db GOLBAT ;10
+		db SNEASEL ;5
+		db PILOSWINE ;5
+		db SNEASEL ;5
+		db JYNX ;6
+		db SWINUB ;4
+		db SMOOCHUM ;3
+		db CROBAT ;2
+		db PILOSWINE ;2
+		db CROBAT ;1
+		db GOLBAT ;1
+		db JYNX ;1
+	; day
+		db SWINUB ;20
+		db SWINUB ;15
+		db GOLBAT ;10
+		db DELIBIRD ;10
+		db SNEASEL ;10
+		db GOLBAT ;5
+		db CROBAT ;5
+		db PILOSWINE ;5
+		db SMOOCHUM ;6
+		db JYNX ;4
+		db SMOOCHUM ;3
+		db PILOSWINE ;2
+		db PILOSWINE ;2
+		db PILOSWINE ;1
+		db SNEASEL ;1
+		db SNEASEL ;1
+	; nite
+		db SNEASEL ;20
+		db SNEASEL ;15
+		db SWINUB ;10
+		db JYNX ;10
+		db DELIBIRD ;10
+		db PILOSWINE ;5
+		db SMOOCHUM ;5
+		db SMOOCHUM ;5
+		db PILOSWINE ;6
+		db GOLBAT ;4
+		db PILOSWINE ;3
+		db SMOOCHUM ;2
+		db SMOOCHUM ;2
+		db GOLBAT ;1
+		db SMOOCHUM ;1
+		db CROBAT ;1
 
 ;	db GROUP_ICE_PATH_B2F_MAHOGANY_SIDE, MAP_ICE_PATH_B2F_MAHOGANY_SIDE
 ;	db $05,$05,$05 ; encounter rates: morn/day/nite
@@ -1708,8 +1761,8 @@
 	
 	db GROUP_DARK_CAVE_VIOLET_ENTRANCE, MAP_DARK_CAVE_VIOLET_ENTRANCE
 	db $0a ; encounter rates: morn/day/nite
-	db 20
-	db $00
+	db 16
+	db $60
 	; morn
 		db TYROGUE ;30
 		db LARVITAR ;10
@@ -1764,8 +1817,8 @@
 
 	db GROUP_DARK_CAVE_BLACKTHORN_ENTRANCE, MAP_DARK_CAVE_BLACKTHORN_ENTRANCE
 	db $0a ; encounter rates: morn/day/nite
-	db 50
-	db $02
+	db 49
+	db $e2
 	; morn
 		db PUPITAR ;20
 		db SHUCKLE ;15
@@ -1820,8 +1873,8 @@
 
 	db GROUP_ROUTE_29, MAP_ROUTE_29
 	db $19 ; encounter rates: morn/day/nite
-	db 15
-	db $00
+	db 12
+	db $20
 	; morn
 		db HOPPIP ;30
 		db SENTRET ;10
@@ -1865,19 +1918,19 @@
 		db SPINARAK ;5
 		db ELEKID ;5
 		db MAGBY ;5
-		db ARIADOS ;4
 		db SPINARAK ;4
-		db NOCTOWL ;3
+		db SPINARAK ;4
 		db SPINARAK ;3
-		db NOCTOWL ;2
+		db NOCTOWL ;3
+		db ARIADOS ;2
 		db SPINARAK ;2
-		db ARIADOS ;1
+		db SPINARAK ;1
 		db SPINARAK ;1
 		
 	db GROUP_ROUTE_30, MAP_ROUTE_30
 	db $19 ; encounter rates: morn/day/nite
-	db 15
-	db $01
+	db 13
+	db $41
 	; morn
 		db LEDYBA ;20
 		db HOPPIP ;20
@@ -1920,20 +1973,20 @@
 		db MAGBY ;5
 		db SMOOCHUM ;5
 		db MARILL ;5
-		db ARIADOS ;5
-		db LEDIAN ;4
-		db NOCTOWL ;4
+		db NOCTOWL ;5
+		db LEDYBA ;4
+		db HOOTHOOT ;4
 		db MARILL ;3
-		db HOOTHOOT ;3
+		db NOCTOWL ;3
+		db NOCTOWL ;2
 		db ARIADOS ;2
-		db LEDIAN ;2
-		db LEDIAN ;1
-		db AZUMARILL ;1
+		db LEDYBA ;1
+		db HOOTHOOT ;1
 
 	db GROUP_ROUTE_31, MAP_ROUTE_31
 	db $19 ; encounter rates: morn/day/nite
-	db 20
-	db $02
+	db 14
+	db $52
 	; morn
 		db SUNKERN ;20
 		db MAREEP ;15
@@ -1988,8 +2041,8 @@
 
 	db GROUP_ROUTE_32, MAP_ROUTE_32
 	db $19 ; encounter rates: morn/day/nite
-	db 20
-	db $01
+	db 15
+	db $91
 	; morn
 		db SUNKERN ;20
 		db TOGEPI ;20
@@ -2036,7 +2089,7 @@
 		db HOUNDOUR ;4
 		db NOCTOWL ;4
 		db HOOTHOOT ;3
-		db HOUNDOOM ;3
+		db HOUNDOUR ;3
 		db HOOTHOOT ;2
 		db TOTODILE ;2
 		db QUAGSIRE ;1
@@ -2044,8 +2097,8 @@
 
 	db GROUP_ROUTE_33, MAP_ROUTE_33
 	db $19 ; encounter rates: morn/day/nite
-	db 25
-	db $01
+	db 19
+	db $a1
 	; morn
 		db HOPPIP ;20
 		db FURRET ;20
@@ -2100,7 +2153,7 @@
 
 	db GROUP_ROUTE_34, MAP_ROUTE_34
 	db $19 ; encounter rates: morn/day/nite
-	db 30
+	db 21
 	db $03
 	; morn
 		db CHANSEY ;15
@@ -2108,7 +2161,7 @@
 		db GIRAFARIG ;10
 		db DITTO ;10
 		db IGGLYBUFF ;10
-		db GRANBULL ;5
+		db TOGEPI ;5
 		db POLIWHIRL ;5
 		db MANTINE ;5
 		db PICHU ;5
@@ -2121,7 +2174,7 @@
 		db TYROGUE ;1
 	; day
 		db CHANSEY ;15
-		db GRANBULL ;10
+		db TOGETIC ;10
 		db DITTO ;10
 		db TOGETIC ;10
 		db GIRAFARIG ;10
@@ -2156,7 +2209,7 @@
 
 	db GROUP_ROUTE_35, MAP_ROUTE_35
 	db $19 ; encounter rates: morn/day/nite
-	db 30
+	db 23
 	db $02
 	; morn
 		db LEDIAN ;20
@@ -2168,7 +2221,7 @@
 		db SUNFLORA ;5
 		db BAYLEEF ;5
 		db SKIPLOOM ;6
-		db JUMPLUFF ;4
+		db SKIPLOOM ;4
 		db SUNKERN ;3
 		db AZUMARILL ;2
 		db POLIWHIRL ;2
@@ -2189,16 +2242,16 @@
 		db SUNFLORA ;3
 		db SUNFLORA ;2
 		db SUNKERN ;2
-		db JUMPLUFF ;1
-		db JUMPLUFF ;1
-		db MEGANIUM ;1
+		db YANMA ;1
+		db SUNFLORA ;1
+		db SUNFLORA ;1
 	; nite
 		db YANMA ;20
 		db HOUNDOUR ;15
 		db GLOOM ;10
 		db ARIADOS ;10
 		db POLIWHIRL ;10
-		db HOUNDOOM ;5
+		db GLOOM ;5
 		db GLOOM ;5
 		db VILEPLUME ;5
 		db NOCTOWL ;6
@@ -2212,8 +2265,8 @@
 
 	db GROUP_ROUTE_36, MAP_ROUTE_36
 	db $19 ; encounter rates: morn/day/nite
-	db 20
-	db $01
+	db 14
+	db $81
 	; morn
 		db SNUBBULL ;20
 		db TEDDIURSA ;20
@@ -2244,7 +2297,7 @@
 		db FLAAFFY ;4
 		db GRANBULL ;3
 		db NATU ;3
-		db XATU ;2
+		db NATU ;2
 		db NATU ;2
 		db FLAAFFY ;1
 		db NATU ;1
@@ -2268,8 +2321,8 @@
 
 	db GROUP_ROUTE_37, MAP_ROUTE_37
 	db $19 ; encounter rates: morn/day/nite
-	db 35
-	db $03
+	db 27
+	db $b3
 	; morn
 		db SNUBBULL ;15
 		db TEDDIURSA ;10
@@ -2294,14 +2347,14 @@
 		db MAREEP ;10
 		db FLAAFFY ;10
 		db PIDGEOTTO ;5
-		db PIDGEOT ;5
+		db AMPHAROS ;5
 		db SUDOWOODO ;5
 		db BELLOSSOM ;5
-		db MAREEP ;5
+		db SNUBBULL ;5
 		db FLAAFFY ;5
 		db PIDGEOTTO ;5
 		db MAREEP ;4
-		db AMPHAROS ;3
+		db PIDGEOT ;3
 		db PIDGEOTTO ;2
 		db MAREEP ;1
 	; nite
@@ -2324,8 +2377,8 @@
 
 	db GROUP_ROUTE_38, MAP_ROUTE_38
 	db $19 ; encounter rates: morn/day/nite
-	db 35
-	db $02
+	db 28
+	db $d2
 	; morn
 		db FURRET ;20
 		db TAUROS ;15
@@ -2380,7 +2433,7 @@
 
 	db GROUP_ROUTE_39, MAP_ROUTE_39
 	db $05 ; encounter rates: morn/day/nite
-	db 40
+	db 30
 	db $02
 	; morn
 		db MILTANK ;20
@@ -2393,7 +2446,7 @@
 		db TAUROS ;5
 		db PONYTA ;6
 		db ODDISH ;4
-		db RAPIDASH ;3
+		db PONYTA ;3
 		db AMPHAROS ;2
 		db AMPHAROS ;2
 		db GLOOM ;1
@@ -2411,7 +2464,7 @@
 		db TAUROS ;6
 		db TAUROS ;4
 		db PONYTA ;3
-		db RAPIDASH ;2
+		db PONYTA ;2
 		db EXEGGCUTE ;2
 		db EXEGGUTOR ;1
 		db EXEGGCUTE ;1
@@ -2424,7 +2477,7 @@
 		db FLAAFFY ;10
 		db TAUROS ;5
 		db GLOOM  ;5
-		db RAPIDASH ;5
+		db PONYTA ;5
 		db ODDISH ;6
 		db STANTLER ;4
 		db SNEASEL ;3
@@ -2436,8 +2489,8 @@
 
 	db GROUP_ROUTE_42, MAP_ROUTE_42
 	db $19 ; encounter rates: morn/day/nite
-	db 40
-	db $03
+	db 29
+	db $c3
 	; morn
 		db TOGEPI ;15
 		db GIRAFARIG ;10
@@ -2492,7 +2545,7 @@
 
 	db GROUP_ROUTE_43, MAP_ROUTE_43
 	db $19 ; encounter rates: morn/day/nite
-	db 40
+	db 30
 	db $01
 	; morn
 		db LEDIAN ;20
@@ -2548,7 +2601,7 @@
 
 	db GROUP_ROUTE_44, MAP_ROUTE_44
 	db $19 ; encounter rates: morn/day/nite
-	db 45
+	db 46
 	db $03
 	; morn
 		db SKIPLOOM ;15
@@ -2604,7 +2657,7 @@
 
 	db GROUP_ROUTE_45, MAP_ROUTE_45
 	db $19 ; encounter rates: morn/day/nite
-	db 50
+	db 48
 	db $02
 	; morn
 		db PHANPY ;20
@@ -2660,8 +2713,8 @@
 
 	db GROUP_ROUTE_46, MAP_ROUTE_46
 	db $19 ; encounter rates: morn/day/nite
-	db 15
-	db $00
+	db 14
+	db $30
 	; morn
 		db PHANPY ;30
 		db TEDDIURSA ;10
@@ -2701,16 +2754,16 @@
 		db PHANPY ;10
 		db MAGBY ;10
 		db GLIGAR ;10
-		db PHANPY ;5
+		db SPINARAK ;5
 		db SMOOCHUM ;5
 		db ELEKID ;5
 		db TEDDIURSA ;5
-		db NOCTOWL ;4
-		db NOCTOWL ;4
+		db SPINARAK ;4
+		db PHANPY ;4
 		db TEDDIURSA ;3
-		db PHANPY ;3
+		db NOCTOWL ;3
+		db ARIADOS ;2
 		db TEDDIURSA ;2
-		db PHANPY ;2
 		db SKARMORY ;1
 		db SKARMORY ;1
 

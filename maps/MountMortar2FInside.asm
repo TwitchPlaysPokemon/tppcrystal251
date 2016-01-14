@@ -44,7 +44,7 @@ ItemFragment_0x7e0e0: ; 0x7e0e0
 ; 0x7e0e2
 
 ItemFragment_0x7e0e2: ; 0x7e0e2
-	db TM_DEFENSE_CURL, 1
+	db TM_EARTH_POWER, 1
 ; 0x7e0e4
 
 ItemFragment_0x7e0e4: ; 0x7e0e4

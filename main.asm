@@ -2069,7 +2069,7 @@ _Divide:: ; 673e
 	inc c
 	dec b
 	jr nz, .loop
-	
+
 	xor a
 	ld [hDividend], a
 	ld [hDividend + 1], a
@@ -7888,7 +7888,7 @@ Functiond88c: ; d88c if montype is non-zero, load mon into enemy trainer. else l
 	ld de, PartyCount
 	ld a, [MonType]
 	and $f
-	jr z, .asm_d899 ;if montype first bits are all zero, jump. else load into opposing trainer mons
+	jr z, .asm_d899 ;if montype first nyble is zero load into player party, else load into opposing trainer 
 	ld de, OTPartyCount
 .asm_d899
 	ld a, [de] ;if mons in party 6 or more, ret
@@ -10638,55 +10638,55 @@ GetTMHMMove: ; 1166a
 
 TMHMMoves: ; 1167a
 	db DYNAMICPUNCH
-	db HEADBUTT
+	db ZEN_HEADBUTT
 	db CURSE
-	db ROLLOUT
-	db ROAR
+	db BODY_SLAM
+	db DAZZLINGLEAM
 	db TOXIC
 	db ZAP_CANNON
 	db ROCK_SMASH
-	db SWORDS_DANCE
+	db FOCUS_BLAST
 	db HIDDEN_POWER
 	db SUNNY_DAY
-	db DOUBLE_EDGE
-	db POISON_JAB
+	db EARTH_POWER
+	db WILLOWISP
 	db BLIZZARD
 	db HYPER_BEAM
 	db ICY_WIND
 	db PROTECT
 	db RAIN_DANCE
 	db GIGA_DRAIN
-	db ENDURE
-	db ROCK_POLISH
+	db FLARE_BLITZ
+	db WILD_CHARGE
 	db SOLARBEAM
-	db IRON_TAIL
-	db DRAGONBREATH
+	db FLASH_CANNON
+	db DRAGON_PULSE
 	db THUNDER
 	db EARTHQUAKE
 	db RETURN
 	db DIG
 	db PSYCHIC_M
 	db SHADOW_BALL
-	db MUD_SLAP
+	db SKY_ATTACK
 	db DOUBLE_TEAM
-	db ICE_PUNCH
+	db SHADOW_CLAW
 	db SWAGGER
 	db SLEEP_TALK
 	db SLUDGE_BOMB
 	db SANDSTORM
 	db FIRE_BLAST
-	db SWIFT
-	db DEFENSE_CURL
-	db THUNDERPUNCH
-	db DREAM_EATER
-	db DAZZLINGLEAM
+	db GUNK_SHOT
+	db SEISMIC_TOSS
+	db SWORDS_DANCE
+	db STRING_SHOT
+	db DARK_PULSE
 	db REST
 	db ATTRACT
 	db THIEF
-	db STEEL_WING
-	db FIRE_PUNCH
+	db THUNDER_WAVE
+	db ROCK_SLIDE
 	db FURY_CUTTER
-	db NIGHTMARE
+	db SUBSTITUTE
 	db CUT
 	db FLY
 	db SURF
@@ -10699,6 +10699,9 @@ TMHMMoves: ; 1167a
 	db FLAMETHROWER
 	db THUNDERBOLT
 	db ICE_BEAM
+	db ICE_PUNCH
+	db THUNDERPUNCH
+	db FIRE_PUNCH
 	db 0 ; end
 ; 116b7
 
@@ -13190,46 +13193,46 @@ StartMenu_Pack: ; 1295b
 StartMenu_Pokemon: ; 12976
 	ld a, [PartyCount]
 	and a
-	jr z, .return
+	jp z, PokeMenuReturn
 	call FadeToMenu
-.choosemenu
+Pokechoosemenu:
 	xor a
 	ld [PartyMenuActionText], a ; Choose a POKéMON.
 	call WhiteBGMap
-.menu
+Pokemenu:
 	callba Function5004f
-	callba Function50405
+	callba Function50405 ;SELECTADD
 	callba Function503e0
-.menunoreload
+Pokemenunoreload:
 	callba WritePartyMenuTilemap
 	callba PrintPartyMenuText
 	call WaitBGMap
 	call Function32f9 ; load regular palettes?
 	call DelayFrame
 	callba PartyMenuSelect ;make menu selection and set curpartymon and curspecies 
-	jr c, .return ; if cancelled or pressed B, back out
-	; ld b, [$ffa9] ;handle select button to switch
-	; bit 0, b
-	; jr z, SelectSwitch
+	jr c, PokeMenuReturn ; if cancelled or pressed B, back out
+	ld a, [$ffa9] ;handle select button to switch
+	bit 0, a
+	jr z, SelectSwitch
 	call PokemonActionSubmenu ;handle pokemon menu and run selected action
-	; jr SkipSelect
-;SelectSwitch
-	;call SwitchPartyMons
-;SkipSelect
+	jr SkipSelect
+SelectSwitch
+	call SwitchPartyMons
+SkipSelect
 	cp 3
-	jr z, .menu
+	jr z, Pokemenu
 	cp 0
-	jr z, .choosemenu
+	jr z, Pokechoosemenu
 	cp 1
-	jr z, .menunoreload
+	jr z, Pokemenunoreload
 	cp 2
-	jr z, .quit
-.return
+	jr z, PokeMenuquit
+PokeMenuReturn:
 	call Function2b3c
 	ld a, 0
 	ret
 
-.quit
+PokeMenuquit
 	ld a, b
 	push af
 	call Function2b4d
@@ -47565,7 +47568,7 @@ Function50405: ; 50405
 	ld a, $1
 .asm_50424
 	ld [wcfa9], a ;load it into  cursor positon
-	ld a, $3 ;$7 SELECTADD If I want it to recognise select, change this
+	ld a, $7 ;$3 SELECTADD If I want it to not recognise select, change this
 	ld [wcfa8], a ;load 3 into loop exit (a and b)
 	ret
 ; 5042d
@@ -74749,7 +74752,7 @@ endm
 	treemon_map ROUTE_31, 2
 	treemon_map ROUTE_32, 4
 	treemon_map ROUTE_33, 4
-	treemon_map ROUTE_34, 9
+	treemon_map ROUTE_34, 5
 	treemon_map ROUTE_35, 9
 	treemon_map ROUTE_36, 9
 	treemon_map ROUTE_37, 9
@@ -74834,131 +74837,136 @@ TreeMons: ; b82e8 ;what tables are assosiate with wwhat numbers
 ; Structure:
 ;	db  %, species, level
 TreeMons1: ; 1 - Route 29, New Bark Town
-	db 50, PINECO,		25
-	db 30, SENTRET,		25
-	db 20, SPINARAK,	25
+	db 50, PINECO,		14
+	db 30, SENTRET,		14
+	db 20, SPINARAK,	14
 	db -1
-	db 55, PIDGEY,		35
-	db 30, PIDGEOTTO,	40
-	db 15, PIDGEOT,		50
+	db 40, PIDGEY,		14
+	db 40, SPEAROW,		14
+	db 10, PIDGEOTTO,	18
+	db 10, FEAROW,		20
 	db -1
 	
 TreeMons2: ; 2 - Route 30-31
-	db 40, PINECO,		25
-	db 20, LEDYBA,		25
-	db 20, HOPPIP,		25
-	db 20, SUNKERN,		25
+	db 40, PINECO,		15
+	db 20, LEDYBA,		15
+	db 20, HOPPIP,		15
+	db 20, SUNKERN,		15
 	db -1
-	db 65, SPEAROW, 	35
-	db 35, FEAROW,		50
+	db 45, VENONAT,		16
+	db 45, PARAS,		15
+	db 10, PARASECT,	24
 	db -1
 TreeMons3: ; 3 - Violet City
-	db 100, PINECO,		25
+	db 100, PINECO,		16
 	db -1
-	db 50, WEEPINBELL,	35
-	db 25, NIDORINO,	25
-	db 25, NIDORINA,	25
+	db 40, NIDORAN_M,	15
+	db 40, NIDORAN_F,	15
+	db 20, WEEPINBELL,	21
 	db -1
 TreeMons4: ; 4 - Route 32-33
-	db 50, PINECO,		30
-	db 20, SUNKERN,		30
-	db 20, AIPOM,		30
-	db 10, SMEARGLE,	30
+	db 50, PINECO,		17
+	db 20, SUNKERN,		17
+	db 20, AIPOM,		17
+	db 10, SMEARGLE,	17
 	db -1
-	db 80, RATICATE,	50
-	db 20, RATTATA,		35
+	db 75, RATTATA,		17
+	db 25, RATICATE,	22
 	db -1
-TreeMons5: ; 5 - Azalea Town
-	db 100, PINECO,		30
+TreeMons5: ; 5 - Azalea Town, Route 34
+	db 100, PINECO,		19
 	db -1
-	db 80, EKANS,		35
-	db 20, ARBOK,		50
+	db 40, NIDORINO,	20
+	db 40, NIDORINA,	20
+	db 20, TANGELA,		19
 	db -1
-TreeMons6: ; 6 - Dragons Den
-	db 100, PINECO,		30
+TreeMons6: ; 6 - Lake of Rage
+	db 100, PINECO,		24
 	db -1
-	db 100, FORRETRESS, 40
+	db 100, FORRETRESS, 31
 	db -1
 RockMons: ; 7
-	db 90, KRABBY,     15
-	db 10, SHUCKLE,    15
+	db 80, KRABBY,		15
+	db 10, SHUCKLE,		23
+	db 10, KINGLER,		28
 	db -1
 TreeMons7: ;8 - Ilex Forest
-	db 60, PINECO,		35
-	db 20, AIPOM,		35
-	db 10, BUTTERFREE,	45
-	db 10, BEEDRILL,	45
+	db 60, PINECO,		20
+	db 20, AIPOM,		20
+	db 10, BUTTERFREE,	22
+	db 10, BEEDRILL,	22
 	db -1
 	
-	db 50, METAPOD,		35
-	db 50, KAKUNA,		35
+	db 50, METAPOD,		19
+	db 50, KAKUNA,		19
 	db -1
-TreeMons8: ;9 - Route 34-37
-	db 75, PINECO,		35
-	db 25, TEDDIURSA,	35
+TreeMons8: ;9 - Route 35-37
+	db 75, PINECO,		24
+	db 25, TEDDIURSA,	24
 	db -1
 	
-	db 80, PIKACHU,		35
-	db 80, RAICHU,		50
+	db 75, PIKACHU,		24
+	db 25, RAICHU,		28
 	db -1
 	
 TreeMons9: ;10 - Ecruteak City
 	db 100, PINECO,		35
 	db -1
 	
-	db 65, GASTLY,		35
-	db 30, HAUNTER,		45
-	db 5, GENGAR,		55
+	db 75, GASTLY,		24
+	db 24, HAUNTER,		28
+	db 1, GENGAR,		50
 	db -1
 	
 TreeMons10: ;11 - Route 38-39
-	db 75, PINECO, 		40
-	db 25, LEDIAN,		45
+	db 75, PINECO, 		29
+	db 25, LEDIAN,		29
 	db -1
 	
-	db 80, MEOWTH,		40
-	db 20, PERSIAN,		55
+	db 75, MEOWTH,		27
+	db 25, PERSIAN,		31
 	db -1
 	
 TreeMons11: ;12 - Battle Tower
-	db 75, PINECO,		40
-	db 25, ARIADOS,		45
+	db 75, PINECO,		30
+	db 25, ARIADOS,		30
 	db -1
 	
-	db 80, DROWZEE,		40
-	db 20, HYPNO,		55
+	db 75, EKANS,		28
+	db 25, ARBOK,		32
 	
 TreeMons12: ;13 - Route 42
-	db 50, PINECO,		40
-	db 30, TOGETIC,		55
-	db 20, TOGEPI,		40
+	db 50, PINECO,		29
+	db 30, TOGETIC,		27
+	db 20, TOGEPI,		31
 	db -1
-	db 80, MANKEY,		40
-	db 20, PRIMEAPE,	55
+	db 75, MANKEY,		27
+	db 25, PRIMEAPE,	31
 	db -1
 TreeMons13: ;14 - Mahogany Town, Route 43
-	db 50, PINECO,		40
-	db 30, YANMA,		45
-	db 20, FURRET,		50
+	db 50, PINECO,		30
+	db 30, YANMA,		30
+	db 20, FURRET,		30
 	db -1
-	db 80, VENONAT,		40
-	db 20, VENOMOTH,	55
+	db 70, SANDSHREW,	28
+	db 15, SANDSLASH,	32
+	db 15, VENOMOTH,	32
 	db -1
 TreeMons14: ;15 - Route 44
 	db 50, PINECO,		45
 	db 30, SNEASEL,		50
 	db 20, DELIBIRD,	45
 	db -1
-	db 65, ZUBAT,		45
-	db 25, GOLBAT,		55
-	db 10, CROBAT,		60
+	db 65, ZUBAT,		38
+	db 25, GOLBAT,		45
+	db 10, CROBAT,		52
 	db -1
 	
 TreeMons15: ;16 - Route 26-27
-	db 100, PINECO, 	45
+	db 100, PINECO, 	48
 	db -1
-	db 80, DODUO, 		45
-	db 20, DODRIO,		60
+	db 75, EXEGGCUTE, 	45
+	db 25, EXEGGUTOR,	55
 	db -1
 	
 ; b83e5
@@ -88847,7 +88855,7 @@ DoBadgeTypeBoosts: ; fbe24
 .CheckBadge
 	ld a, [hl]
 	cp $ff
-	jr z, .done
+	jr z, .done ;if out of badges, exit
 	srl b
 	rr c
 	jr nc, .NextBadge

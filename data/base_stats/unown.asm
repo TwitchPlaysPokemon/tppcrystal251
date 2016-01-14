@@ -1,7 +1,7 @@
 	db UNOWN ; 201
 
-	db 48, 72, 48, 48, 72, 48
-	; hp atk def spd sat sdf
+	db  48,  72,  48,  48,  72,  48
+	;   hp  atk  def  spd  sat  sdf
 
 	db PSYCHIC, PSYCHIC
 	db 225 ; catch rate

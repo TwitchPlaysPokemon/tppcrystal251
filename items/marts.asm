@@ -81,8 +81,8 @@ Mart2: ; 160fa
 Mart3: ; 16106
 	db 9 ; # items
 	db CHARCOAL
+	db GREAT_BALL
 	db POKE_BALL
-	db POTION
 	db SUPER_POTION
 	db ESCAPE_ROPE
 	db REPEL
@@ -94,9 +94,9 @@ Mart3: ; 16106
 
 Mart4: ; 16111
 	db 5 ; # items
-	db POTION
-	db SUPER_POTION
 	db HYPER_POTION
+	db SUPER_POTION
+	db POTION
 	db FULL_HEAL
 	db REVIVE
 	db $ff
@@ -104,8 +104,8 @@ Mart4: ; 16111
 
 Mart5: ; 16118
 	db 7 ; # items
-	db POTION
 	db SUPER_POTION
+	db POTION
 	db ANTIDOTE
 	db PARLYZ_HEAL
 	db AWAKENING
@@ -116,8 +116,8 @@ Mart5: ; 16118
 
 Mart6: ; 16121
 	db 8 ; # items
-	db POKE_BALL
 	db GREAT_BALL
+	db POKE_BALL
 	db ESCAPE_ROPE
 	db REPEL
 	db REVIVE
@@ -140,7 +140,12 @@ Mart7: ; 1612b
 ; 16134
 
 Mart8: ; 16134
-	db 5 ; # items
+	db 10 ; # items
+	db FIRE_STONE
+	db THUNDERSTONE
+	db WATER_STONE 
+	db LEAF_STONE
+	db DRAGON_SCALE
 	db PROTEIN
 	db IRON
 	db CARBOS
@@ -150,46 +155,47 @@ Mart8: ; 16134
 ; 1613b
 
 Mart9: ; 1613b
-	db 3 ; # items
-	db TM_THUNDERPUNCH
-	db TM_FIRE_PUNCH
-	db TM_ICE_PUNCH
+	db 6 ; # items
+	db TM_ROCK_SMASH
+	db TM_THUNDER_WAVE
+	db TM_STRING_SHOT
+	db TM_SEISMIC_TOSS
+	db TM_RETURN
 	db $ff
 ; 16140
 
 Mart10: ; 16140
-	db 4 ; # items
-	db TM_THUNDERPUNCH
-	db TM_FIRE_PUNCH
-	db TM_ICE_PUNCH
-	db TM_HEADBUTT
+	db 10 ; # items
+	db METAL_COAT
+	db KINGS_ROCK
+	db TWISTEDSPOON
+	db SILVERPOWDER
+	db POLKADOT_BOW
+	db SCOPE_LENS
+	db SOFT_SAND
+	db POISON_BARB
+	db MIRACLE_SEED
+	db STICK
 	db $ff
 ; 16146
 
-Mart11: ; 16146
-	db 4 ; # items
-	db TM_THUNDERPUNCH
-	db TM_FIRE_PUNCH
-	db TM_ICE_PUNCH
-	db TM_ROCK_SMASH
+Mart11: ; 16146 ;unused
+	db 1 ; # items
+	db POISON_BARB
 	db $ff
 ; 1614c
 
-Mart12: ; 1614c
-	db 5 ; # items
-	db TM_THUNDERPUNCH
-	db TM_FIRE_PUNCH
-	db TM_ICE_PUNCH
-	db TM_HEADBUTT
-	db TM_ROCK_SMASH
+Mart12: ; 1614c ;unused
+	db 1 ; # items
+	db POISON_BARB
 	db $ff
 ; 16153
 
 Mart13: ; 16153
 	db 9 ; # items
 	db GREAT_BALL
-	db SUPER_POTION
 	db HYPER_POTION
+	db SUPER_POTION
 	db ANTIDOTE
 	db PARLYZ_HEAL
 	db AWAKENING
@@ -201,10 +207,10 @@ Mart13: ; 16153
 
 Mart14: ; 1615e
 	db 10 ; # items
-	db POKE_BALL
 	db GREAT_BALL
-	db POTION
+	db POKE_BALL
 	db SUPER_POTION
+	db POTION
 	db ANTIDOTE
 	db PARLYZ_HEAL
 	db AWAKENING
@@ -227,8 +233,8 @@ Mart16: ; 16170
 	db 9 ; # items
 	db RAGECANDYBAR
 	db GREAT_BALL
-	db SUPER_POTION
 	db HYPER_POTION
+	db SUPER_POTION
 	db ANTIDOTE
 	db PARLYZ_HEAL
 	db SUPER_REPEL
@@ -239,10 +245,10 @@ Mart16: ; 16170
 
 Mart17: ; 1617b
 	db 9 ; # items
-	db GREAT_BALL
 	db ULTRA_BALL
-	db HYPER_POTION
+	db GREAT_BALL
 	db MAX_POTION
+	db HYPER_POTION
 	db FULL_HEAL
 	db REVIVE
 	db MAX_REPEL
@@ -279,8 +285,8 @@ Mart19: ; 16191
 
 Mart20: ; 1619a
 	db 9 ; # items
-	db GREAT_BALL
 	db ULTRA_BALL
+	db GREAT_BALL
 	db SUPER_POTION
 	db SUPER_REPEL
 	db FULL_HEAL
@@ -294,8 +300,8 @@ Mart20: ; 1619a
 Mart21: ; 161a5
 	db 8 ; # items
 	db GREAT_BALL
-	db POTION
 	db SUPER_POTION
+	db POTION
 	db MAX_REPEL
 	db ANTIDOTE
 	db PARLYZ_HEAL
@@ -307,8 +313,8 @@ Mart21: ; 161a5
 Mart22: ; 161af
 	db 8 ; # items
 	db ULTRA_BALL
-	db SUPER_POTION
 	db HYPER_POTION
+	db SUPER_POTION
 	db REVIVE
 	db PARLYZ_HEAL
 	db AWAKENING
@@ -319,21 +325,21 @@ Mart22: ; 161af
 
 Mart23: ; 161b9
 	db 7 ; # items
-	db POTION
-	db SUPER_POTION
-	db HYPER_POTION
 	db MAX_POTION
+	db HYPER_POTION
+	db SUPER_POTION
+	db POTION
 	db REVIVE
-	db SUPER_REPEL
 	db MAX_REPEL
+	db SUPER_REPEL
 	db $ff
 ; 161c2
 
 Mart24: ; 161c2
 	db 10 ; # items
-	db POKE_BALL
-	db GREAT_BALL
 	db ULTRA_BALL
+	db GREAT_BALL
+	db POKE_BALL
 	db ESCAPE_ROPE
 	db FULL_HEAL
 	db ANTIDOTE
@@ -345,25 +351,40 @@ Mart24: ; 161c2
 ; 161ce
 
 Mart25: ; 161ce
-	db 5 ; # items
-	db TM_HIDDEN_POWER
-	db TM_SUNNY_DAY
-	db TM_PROTECT
-	db TM_RAIN_DANCE
-	db TM_SANDSTORM
+	db 9 ; # items
+	db FOCUS_BAND
+	db BRIGHTPOWDER
+	db BLACKBELT
+	db HARD_STONE
+	db NEVERMELTICE
+	db SHARP_BEAK
+	db DRAGON_FANG
+	db EXP_SHARE
+	db MIRACLEBERRY
+	db MYSTERYBERRY
 	db $ff
 ; 161d5
 
 Mart26: ; 161d5
-	db 3 ; # items
-	db POKE_DOLL
+	db 7 ; # items
 	db LOVELY_MAIL
 	db SURF_MAIL
+	db POKE_DOLL
+	db BLACKGLASSES
+	db PINK_BOW
+	db SPELL_TAG
+	db MAGNET
+	db LIGHT_BALL
 	db $ff
 ; 161da
 
 Mart27: ; 161da
-	db 5 ; # items
+	db 10 ; # items
+	db FIRE_STONE
+	db THUNDERSTONE
+	db WATER_STONE 
+	db LEAF_STONE
+	db MOON_STONE
 	db HP_UP
 	db PROTEIN
 	db IRON
@@ -386,10 +407,10 @@ Mart28: ; 161e1
 
 Mart29: ; 161ea
 	db 7 ; # items
-	db GREAT_BALL
 	db ULTRA_BALL
-	db SUPER_POTION
+	db GREAT_BALL
 	db HYPER_POTION
+	db SUPER_POTION
 	db FULL_HEAL
 	db MAX_REPEL
 	db FLOWER_MAIL
@@ -398,10 +419,10 @@ Mart29: ; 161ea
 
 Mart30: ; 161f3
 	db 8 ; # items
-	db GREAT_BALL
 	db ULTRA_BALL
-	db HYPER_POTION
+	db GREAT_BALL
 	db MAX_POTION
+	db HYPER_POTION
 	db FULL_HEAL
 	db X_ATTACK
 	db X_DEFEND
@@ -424,8 +445,8 @@ Mart32: ; 16205
 	db 7 ; # items
 	db ULTRA_BALL
 	db MAX_REPEL
-	db HYPER_POTION
 	db MAX_POTION
+	db HYPER_POTION
 	db FULL_RESTORE
 	db REVIVE
 	db FULL_HEAL
@@ -444,35 +465,35 @@ Mart33: ; 1620e
 TmDepot1:
 	db 8
 	db TM_DYNAMICPUNCH
+	db TM_ZEN_HEADBUTT
 	db TM_CURSE
-	db TM_ROLLOUT
-	db TM_ROAR
+	db TM_BODY_SLAM
+	db TM_DAZZLINGLEAM
 	db TM_TOXIC
 	db TM_ZAP_CANNON
-	db TM_SWORDS_DANCE
-	db TM_HIDDEN_POWER
+	db TM_ROCK_SMASH
 	db $ff
 
 TmDepot2:
 	db 8
+	db TM_FOCUS_BLAST
+	db TM_HIDDEN_POWER
 	db TM_SUNNY_DAY
-	db TM_DOUBLE_EDGE
-	db TM_POISON_JAB
+	db TM_EARTH_POWER
+	db TM_WILLOWISP
 	db TM_BLIZZARD
-	db TM_HYPER_BEAM
 	db TM_ICY_WIND
-	db TM_PROTECT
 	db TM_RAIN_DANCE
 	db $ff
 
 TmDepot3:
 	db 8
 	db TM_GIGA_DRAIN
-	db TM_ENDURE
-	db TM_ROCK_POLISH
+	db TM_FLARE_BLITZ
+	db TM_WILD_CHARGE
 	db TM_SOLARBEAM
-	db TM_IRON_TAIL
-	db TM_DRAGONBREATH
+	db TM_FOCUS_BLAST
+	db TM_DRAGON_PULSE
 	db TM_THUNDER
 	db TM_EARTHQUAKE
 	db $ff
@@ -483,9 +504,9 @@ TmDepot4:
 	db TM_DIG
 	db TM_PSYCHIC
 	db TM_SHADOW_BALL
-	db TM_MUD_SLAP
+	db TM_SKY_ATTACK
 	db TM_DOUBLE_TEAM
-	db TM_ICE_PUNCH
+	db TM_SHADOW_CLAW
 	db TM_SWAGGER
 	db $ff
 
@@ -495,22 +516,22 @@ TmDepot5:
 	db TM_SLUDGE_BOMB
 	db TM_SANDSTORM
 	db TM_FIRE_BLAST
-	db TM_SWIFT
-	db TM_DEFENSE_CURL
-	db TM_THUNDERPUNCH
-	db TM_DREAM_EATER
+	db TM_GUNK_SHOT
+	db TM_SEISMIC_TOSS
+	db TM_SWORDS_DANCE
+	db TM_STRING_SHOT
 	db $ff
 
 TmDepot6:
 	db 8
-	db TM_DAZZLINGLEAM
+	db TM_DARK_PULSE
 	db TM_REST
 	db TM_ATTRACT
 	db TM_THIEF
-	db TM_STEEL_WING
-	db TM_FIRE_PUNCH
+	db TM_THUNDER_WAVE
+	db TM_ROCK_SLIDE
 	db TM_FURY_CUTTER
-	db TM_NIGHTMARE
+	db TM_SUBSTITUTE
 	db $ff
 
 DefaultMart: ; 16214

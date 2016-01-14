@@ -25,9 +25,10 @@ BulbasaurEggMoves:
 
 CharmanderEggMoves:
 	db RAGE
-	db LEER
+	db MUD_SLAP
 	db COUNTER
 	db OUTRAGE
+	db DRAGONBREATH
 	db $ff
 
 SquirtleEggMoves:
@@ -35,12 +36,13 @@ SquirtleEggMoves:
 	db FORESIGHT
 	db FLAIL
 	db HAZE
+	db ROLLOUT
 	db OUTRAGE
 	db $ff
 
 PidgeyEggMoves:
 	db FORESIGHT
-	db MUD_SLAP
+	db SWIFT
 	db PECK
 	db $ff
 
@@ -48,13 +50,15 @@ RattataEggMoves:
 	db TAKE_DOWN
 	db DEFENSE_CURL
 	db BODY_SLAM
+	db SWIFT
 	db $ff
 
 SpearowEggMoves:
 	db SCARY_FACE
 	db QUICK_ATTACK
 	db WING_ATTACK
-	db HEAT_WAVE ; tm move or not?
+	db HEAT_WAVE
+	db SWIFT
 	db $ff
 
 EkansEggMoves:
@@ -68,6 +72,7 @@ SandshrewEggMoves:
 	db SAFEGUARD
 	db COUNTER
 	db RAPID_SPIN
+	db ROLLOUT
 	db $ff
 
 NidoranFEggMoves:
@@ -75,7 +80,7 @@ NidoranFEggMoves:
 	db FOCUS_ENERGY
 	db TAKE_DOWN
 	db COUNTER
-	db DRILL_RUN ; tm move or not?
+	db DRILL_RUN
 	db $ff
 
 NidoranMEggMoves:
@@ -83,7 +88,7 @@ NidoranMEggMoves:
 	db BODY_SLAM
 	db COUNTER
 	db SUPER_FANG
-	db DRILL_RUN ; tm move or not?
+	db DRILL_RUN
 	db $ff
 
 VulpixEggMoves:
@@ -97,8 +102,7 @@ VulpixEggMoves:
 ZubatEggMoves:
 	db GUNK_SHOT
 	db PURSUIT
-	db HEAT_WAVE ; tm move or not?
-	db ZEN_HEADBUTT ; tm move or not?
+	db HEAT_WAVE
 	db $ff
 
 OddishEggMoves:
@@ -117,8 +121,7 @@ ParasEggMoves:
 VenonatEggMoves:
 	db SCREECH
 	db MIMIC
-	db STRING_SHOT
-	db SWIFT ; tm or not?
+	db SWIFT
 	db $ff
 
 DiglettEggMoves:
@@ -128,7 +131,6 @@ DiglettEggMoves:
 	db $ff
 
 MeowthEggMoves:
-	db IRON_TAIL
 	db DREAM_EATER
 	db NIGHTMARE
 	db MUD_SLAP
@@ -139,6 +141,7 @@ PsyduckEggMoves:
 	db FORESIGHT
 	db LIGHT_SCREEN
 	db CONFUSE_RAY
+	db SWIFT
 	db $ff
 
 MankeyEggMoves:
@@ -150,7 +153,8 @@ MankeyEggMoves:
 
 GrowlitheEggMoves:
 	db THRASH
-	db IRON_HEAD ; tm or not?
+	db IRON_HEAD
+	db SAFEGUARD
 	db MUD_SLAP
 	db BODY_SLAM
 	db $ff
@@ -205,6 +209,7 @@ SlowpokeEggMoves:
 	db COUNTER
 	db IRON_DEFENSE
 	db MEGA_KICK
+	db SWIFT
 	db $ff
 
 FarfetchDEggMoves:
@@ -236,7 +241,7 @@ GrimerEggMoves:
 
 ShellderEggMoves:
 	db BUBBLEBEAM
-	db POISON_JAB ; tm move or not?
+	db POISON_JAB
 	db RAPID_SPIN
 	db SCREECH
 	db $ff
@@ -272,17 +277,18 @@ ExeggcuteEggMoves:
 	db SELFDESTRUCT
 	db EXPLOSION
 	db NIGHTMARE
+	db ROLLOUT
 	db $ff
 
 CuboneEggMoves:
 	db ANCIENTPOWER
 	db BELLY_DRUM
 	db SCREECH
-	db IRON_TAIL ; tm or not?
+	db IRON_TAIL
 	db $ff
 
 LickitungEggMoves:
-	db IRON_TAIL ; tm move or not?
+	db IRON_TAIL
 	db MUD_SLAP
 	db MEGA_KICK
 	db AMNESIA
@@ -292,12 +298,14 @@ KoffingEggMoves:
 	db SCREECH
 	db BIDE
 	db DEFENSE_CURL
+	db ROLLOUT
 	db $ff
 
 RhyhornEggMoves:
 	db REVERSAL
 	db THRASH
 	db COUNTER
+	db SPITE
 	db $ff
 
 ChanseyEggMoves:
@@ -343,7 +351,7 @@ MrMimeEggMoves:
 ScytherEggMoves:
 	db SAFEGUARD
 	db LIGHT_SCREEN
-	db HEADBUTT ; tm move or not?
+	db HEADBUTT
 	db DOUBLE_EDGE
 	db $ff
 
@@ -365,6 +373,7 @@ EeveeEggMoves:
 	db BODY_SLAM
 	db HEAL_BELL
 	db QUICK_ATTACK
+	db SWIFT
 	db $ff
 
 OmanyteEggMoves:
@@ -385,12 +394,12 @@ AerodactylEggMoves:
 	db TAKE_DOWN
 	db PURSUIT
 	db FORESIGHT
+	db ROAR
 	db $ff
 
 SnorlaxEggMoves:
 	db SELFDESTRUCT
 	db OUTRAGE
-	db GUNK_SHOT ; tm or not?
 	db DOUBLE_EDGE
 	db $ff
 
@@ -398,7 +407,7 @@ DratiniEggMoves:
 	db LIGHT_SCREEN
 	db MIST
 	db HAZE
-	db IRON_TAIL ; tm or not?
+	db IRON_TAIL
 	db $ff
 
 ChikoritaEggMoves:
@@ -412,22 +421,20 @@ CyndaquilEggMoves:
 	db FURY_ATTACK
 	db QUICK_ATTACK
 	db FORESIGHT
-	db HEADBUTT ; tm or not?
+	db HEADBUTT
 	db $ff
 
 TotodileEggMoves:
 	db ANCIENTPOWER
 	db BODY_SLAM
 	db MUD_SLAP
-	db SEISMIC_TOSS ; tm or not?
-	db ROCK_SLIDE ; tm or not?
 	db $ff
 
 SentretEggMoves:
 	db FOCUS_ENERGY
 	db TAKE_DOWN
 	db CHARM
-	db IRON_TAIL ; tm or not?
+	db IRON_TAIL
 	db $ff
 
 HoothootEggMoves:
@@ -460,6 +467,7 @@ PichuEggMoves:
 	db BIDE
 	db PRESENT
 	db DOUBLESLAP
+	db ROLLOUT
 	db $ff
 
 CleffaEggMoves:
@@ -482,6 +490,7 @@ TogepiEggMoves:
 	db FORESIGHT
 	db COUNTER
 	db HEAL_BELL
+	db ROLLOUT
 	db $ff
 
 NatuEggMoves:
@@ -537,6 +546,7 @@ WooperEggMoves:
 	db ANCIENTPOWER
 	db SAFEGUARD
 	db SCARY_FACE
+	db ROLLOUT
 	db $ff
 
 MurkrowEggMoves:
@@ -556,6 +566,7 @@ GirafarigEggMoves:
 	db FORESIGHT
 	db FUTURE_SIGHT
 	db TAKE_DOWN
+	db SWIFT
 	db $ff
 
 PinecoEggMoves:
@@ -590,6 +601,7 @@ QwilfishEggMoves:
 	db ENDURE
 	db AQUA_JET
 	db SUPERSONIC
+	db ROLLOUT
 	db $ff
 
 ShuckleEggMoves:
@@ -608,7 +620,7 @@ SneaselEggMoves:
 	db COUNTER
 	db FORESIGHT
 	db REFLECT
-	db IRON_TAIL ; tm or not?
+	db IRON_TAIL
 	db $ff
 
 TeddiursaEggMoves:
@@ -616,7 +628,7 @@ TeddiursaEggMoves:
 	db SEISMIC_TOSS
 	db COUNTER
 	db SEED_BOMB
-	db GUNK_SHOT ; tm or not?
+	db ROLLOUT
 	db $ff
 
 SlugmaEggMoves:
@@ -624,12 +636,14 @@ SlugmaEggMoves:
 	db MUD_SLAP
 	db DEFENSE_CURL
 	db DOUBLE_EDGE
+	db ROLLOUT
 	db $ff
 
 SwinubEggMoves:
 	db MIMIC
 	db DEFENSE_CURL
 	db FISSURE
+	db ROAR
 	db $ff
 
 CorsolaEggMoves:
@@ -652,11 +666,11 @@ DelibirdEggMoves:
 	db FUTURE_SIGHT
 	db SPLASH
 	db RAPID_SPIN
+	db ROLLOUT
 	db $ff
 
 MantineEggMoves:
 	db SEED_BOMB
-	db GUNK_SHOT ; tm or not?
 	db HAZE
 	db SLAM
 	db $ff
@@ -671,12 +685,12 @@ HoundourEggMoves:
 	db RAGE
 	db REVERSAL
 	db FAINT_ATTACK
+	db SWIFT
 	db $ff
 
 PhanpyEggMoves:
 	db FOCUS_ENERGY
 	db PLAY_ROUGH
-	db GUNK_SHOT ; tm or not?
 	db COUNTER
 	db IRON_TAIL
 	db $ff
@@ -716,8 +730,8 @@ MagbyEggMoves:
 	db $ff
 
 MiltankEggMoves:
-	db IRON_TAIL ; tm or not?
-	db HEADBUTT ; tm or not?
+	db IRON_TAIL
+	db HEADBUTT
 	db MUD_SLAP
 	db DIZZY_PUNCH
 	db $ff

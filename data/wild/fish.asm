@@ -583,7 +583,7 @@ FishGroup14_Super:
 	db 179, $0,			56
 	db $ff, $0,			57
 
-FishGroup15: ; Seafoam
+FishGroup15: ; Seafoam outside
 FishGroup15_Old: 
 	db 51, SHELLDER,	10
 	db 77, $0,			58
@@ -634,6 +634,20 @@ FishGroup17_Super:
 	db 200, CLOYSTER,	80
 	db 248, TENTACRUEL,	75
 	db $ff, TOGEPI,		60
+	
+FishGroup18: ; Slowpoke Well
+FishGroup18_Old: 
+	db 
+	db 240,	SLOWPOKE,	10
+	db $ff, SLOWKING,	10
+FishGroup18_Good: 
+	db 200, SLOWPOKE,	30
+	db 228, SLOWBRO,	40
+	db $ff, SLOWKING,	40
+FishGroup18_Super:
+	db 180, SLOWPOKE,	70
+	db 218, SLOWBRO,	80
+	db $ff, SLOWKING,	80
 
 ; 9266f
 

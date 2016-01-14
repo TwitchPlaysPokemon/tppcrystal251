@@ -1,168 +1,168 @@
 ; Kanto Pokémon in grass
-	db GROUP_ROUTE_1_RB, MAP_ROUTE_1_RB
-	db $19 ; encounter rates: morn/day/nite
-	db 02
-	db $00		
-		db PIDGEY ;30
-        db VULPIX ;10
-        db RATTATA ;10
-        db EXEGGCUTE ;10
-        db SPEAROW ;5
-        db PIDGEY ;5
-        db BELLSPROUT ;5
-        db BELLSPROUT ;5
-        db BELLSPROUT ;4
-        db MEOWTH ;4
-        db MEOWTH ;3
-        db MEOWTH ;3
-        db MEOWTH ;2
-        db MEOWTH ;2
-        db BELLSPROUT ;1
-        db TANGELA ;1
+;	db GROUP_ROUTE_1_RB, MAP_ROUTE_1_RB
+;	db $19 ; encounter rates: morn/day/nite
+;	db 02
+;	db $00		
+		;db PIDGEY ;30
+     ;   db VULPIX ;10
+    ;    db RATTATA ;10
+   ;     db EXEGGCUTE ;10
+  ;      db SPEAROW ;5
+ ;       db PIDGEY ;5
+;        db BELLSPROUT ;5
+        ;db BELLSPROUT ;5
+       ; db BELLSPROUT ;4
+      ;  db MEOWTH ;4
+     ;   db MEOWTH ;3
+    ;    db MEOWTH ;3
+   ;     db MEOWTH ;2
+  ;      db MEOWTH ;2
+ ;       db BELLSPROUT ;1
+;        db TANGELA ;1
 ; day
-		db PIDGEY ;30
-        db VULPIX ;10
-        db PIDGEY ;10
-        db RATTATA ;10
-        db VULPIX ;5
-        db PIKACHU ;5
-        db BELLSPROUT ;5
-        db EXEGGCUTE ;5
-        db MEOWTH ;4
-        db MEOWTH ;4
-        db PICHU ;3
-        db SPEAROW ;3
-        db PIKACHU ;2
-        db VULPIX ;2
-        db MEOWTH ;1
-        db TANGELA ;1
+		;db PIDGEY ;30
+     ;   db VULPIX ;10
+    ;    db PIDGEY ;10
+   ;     db RATTATA ;10
+  ;      db VULPIX ;5
+ ;       db PIKACHU ;5
+;        db BELLSPROUT ;5
+        ;db EXEGGCUTE ;5
+       ; db MEOWTH ;4
+      ;  db MEOWTH ;4
+     ;   db PICHU ;3
+    ;    db SPEAROW ;3
+   ;     db PIKACHU ;2
+  ;      db VULPIX ;2
+ ;       db MEOWTH ;1
+;        db TANGELA ;1
 ; nite
-        db RATTATA ;30
-        db MEOWTH;10
-        db PIKACHU ;10
-        db CUBONE ;10
-        db PIDGEY ;5
-        db PIDGEY ;5
-        db PICHU ;5
-        db RATTATA;5
-        db MEOWTH ;4
-        db VULPIX ;4
-        db MEOWTH ;3
-        db VULPIX ;3
-        db SPEAROW;2
-        db MEOWTH ;2
-        db MEOWTH;1
-        db VULPIX ;1
+       ; db RATTATA ;30
+      ;  db MEOWTH;10
+     ;   db PIKACHU ;10
+    ;    db CUBONE ;10
+   ;     db PIDGEY ;5
+  ;      db PIDGEY ;5
+ ;       db PICHU ;5
+        ;db RATTATA;5
+       ; db MEOWTH ;4
+      ;  db VULPIX ;4
+     ;   db MEOWTH ;3
+    ;    db VULPIX ;3
+   ;     db SPEAROW;2
+  ;      db MEOWTH ;2
+ ;       db MEOWTH;1
+;        db VULPIX ;1
 
-	db GROUP_ROUTE_22_RB, MAP_ROUTE_22_RB
-	db $19 ; encounter rates: morn/day/nite
-	db 02
-	db $03	
-		db MANKEY ;20
-        db JIGGLYPUFF;15
-        db KOFFING;10
-        db IGGLYBUFF;10
-        db SPEAROW ;10
-        db NIDORAN_M ;6
-        db MANKEY ;5
-        db SANDSHREW;5
-        db NIDORAN_F;5
-        db ODDISH;4
-        db DODUO;3
-        db EKANS;2
-        db EKANS;2
-        db EKANS;1
-        db ODDISH;1
-        db NIDORAN_F;1
+;	db GROUP_ROUTE_22_RB, MAP_ROUTE_22_RB
+;	db $19 ; encounter rates: morn/day/nite
+;	db 02
+;	db $03	
+		;db MANKEY ;20
+     ;   db JIGGLYPUFF;15
+    ;    db KOFFING;10
+   ;     db IGGLYBUFF;10
+  ;      db SPEAROW ;10
+ ;       db NIDORAN_M ;6
+;        db MANKEY ;5
+        ;db SANDSHREW;5
+       ; db NIDORAN_F;5
+      ;  db ODDISH;4
+     ;   db DODUO;3
+    ;    db EKANS;2
+   ;     db EKANS;2
+  ;      db EKANS;1
+ ;       db ODDISH;1
+;        db NIDORAN_F;1
 ;day
-        db EKANS;20
-        db NIDORAN_M;15
-        db MANKEY;10
-        db SANDSHREW;10
-        db SPEAROW ;10
-        db NIDORAN_F ;6
-        db JIGGLYPUFF;5
-        db KOFFING;5
-        db NIDORAN_F;5
-        db NIDORAN_F;4
-        db DODUO;3
-        db JIGGLYPUFF;2
-        db IGGLYBUFF;2
-        db IGGLYBUFF;1
-        db KOFFING;1
-        db KOFFING;1
+      ;  db EKANS;20
+     ;   db NIDORAN_M;15
+    ;    db MANKEY;10
+   ;     db SANDSHREW;10
+  ;      db SPEAROW ;10
+ ;       db NIDORAN_F ;6
+;        db JIGGLYPUFF;5
+        ;db KOFFING;5
+       ; db NIDORAN_F;5
+      ;  db NIDORAN_F;4
+     ;   db DODUO;3
+    ;    db JIGGLYPUFF;2
+   ;     db IGGLYBUFF;2
+  ;      db IGGLYBUFF;1
+ ;       db KOFFING;1
+;        db KOFFING;1
 ;nite 
-        db ODDISH;20
-        db RATTATA;15
-        db KOFFING;10
-        db JIGGLYPUFF;10
-        db GRIMER;10
-        db NIDORAN_M ;6
-        db MANKEY ;5
-        db SANDSHREW;5
-        db NIDORAN_F;5
-        db IGGLYBUFF;4
-        db SPEAROW;3
-        db ODDISH;2
-        db ODDISH;2
-        db ODDISH;1
-        db IGGLYBUFF;1
-        db NIDORAN_F;1	
+    ;    db ODDISH;20
+        ;db RATTATA;15
+       ; db KOFFING;10
+      ;  db JIGGLYPUFF;10
+     ;   db GRIMER;10
+    ;    db NIDORAN_M ;6
+   ;     db MANKEY ;5
+  ;      db SANDSHREW;5
+ ;       db NIDORAN_F;5
+;        db IGGLYBUFF;4
+       ; db SPEAROW;3
+     ;   db ODDISH;2
+    ;    db ODDISH;2
+   ;     db ODDISH;1
+  ;      db IGGLYBUFF;1
+ ;       db NIDORAN_F;1	
 
-db GROUP_ROUTE_2_RB, MAP_ROUTE_2_RB
-	db $19 ; encounter rates: morn/day/nite
-	db 02
-	db $03	
-		db VULPIX ;20
-        db PIDGEY;15
-        db POLIWAG ;10
-        db WEEDLE;10
-        db CATERPIE;10
-        db RATTATA;6
-        db EKANS;5
-        db NIDORAN_M;5
-        db NIDORAN_F;5
-        db DIGLETT;4
-        db PIKACHU;3
-        db VULPIX;2
-        db PICHU;2
-        db CHARMANDER;1
-        db VULPIX;1
-        db PIKACHU;1
+;db GROUP_ROUTE_2_RB, MAP_ROUTE_2_RB
+;	db $19 ; encounter rates: morn/day/nite
+;	db 02
+;	db $03	
+	;	db VULPIX ;20
+  ;      db PIDGEY;15
+  ;      db POLIWAG ;10
+  ;      db WEEDLE;10
+  ;      db CATERPIE;10
+  ;      db RATTATA;6
+  ;      db EKANS;5
+  ;      db NIDORAN_M;5
+  ;      db NIDORAN_F;5
+ ;       db DIGLETT;4
+ ;       db PIKACHU;3
+ ;       db VULPIX;2
+ ;       db PICHU;2
+ ;       db CHARMANDER;1
+  ;      db VULPIX;1
+  ;      db PIKACHU;1
 ;day
-		db VULPIX ;20
-        db EKANS;15
-        db PIKACHU;10
-        db NIDORAN_M;10
-        db NIDORAN_F;10
-        db WEEDLE;6
-        db CATERPIE;5
-        db PICHU;5
-        db POLIWAG;5
-        db PIDGEY;4
-        db PIDGEY;3
-        db PIDGEY;2
-        db CATERPIE;2
-        db CHARMANDER;1
-        db PIDGEY;1
-        db WEEDLE;1
+	;	db VULPIX ;20
+   ;     db EKANS;15
+   ;     db PIKACHU;10
+   ;     db NIDORAN_M;10
+  ;      db NIDORAN_F;10
+   ;     db WEEDLE;6
+   ;     db CATERPIE;5
+  ;      db PICHU;5
+  ;      db POLIWAG;5
+   ;     db PIDGEY;4
+  ;      db PIDGEY;3
+  ;      db PIDGEY;2
+   ;     db CATERPIE;2
+   ;     db CHARMANDER;1
+   ;     db PIDGEY;1
+   ;     db WEEDLE;1
 ;NITE
-		db RATTATA;20
-        db PIKACHU;15
-        db DIGLETT;10
-        db POLIWAG;10
-        db POLIWAG;10
-        db PICHU;6
-        db CATERPIE;5
-        db VULPIX;5
-        db POLIWAG;5
-        db NIDORAN_M;4
-        db WEEDLE;3
-        db WEEDLE;2
-        db NIDORAN_F;2
-        db NIDORAN_F;1
-        db PICHU;1
-        db NIDORAN_F;1
+	;	db RATTATA;20
+   ;     db PIKACHU;15
+   ;     db DIGLETT;10
+   ;     db POLIWAG;10
+  ;      db POLIWAG;10
+ ;       db PICHU;6
+ ;       db CATERPIE;5
+ ;       db VULPIX;5
+ ;       db POLIWAG;5
+ ;       db NIDORAN_M;4
+ ;       db WEEDLE;3
+ ;       db WEEDLE;2
+ ;       db NIDORAN_F;2
+ ;       db NIDORAN_F;1
+;        db PICHU;1
+;        db NIDORAN_F;1
 
 	db GROUP_DIGLETTS_CAVE, MAP_DIGLETTS_CAVE
 	db $0a ; encounter rates: morn/day/nite
@@ -334,7 +334,7 @@ db GROUP_ROUTE_2_RB, MAP_ROUTE_2_RB
 
 	db GROUP_VICTORY_ROAD, MAP_VICTORY_ROAD
 	db $0f ; encounter rates: morn/day/nite
-	db 65
+	db 56
 	db $03
 ;morning
 		db GRAVELER ;15
@@ -1571,7 +1571,7 @@ db GROUP_ROUTE_2_RB, MAP_ROUTE_2_RB
 
 	db GROUP_ROUTE_26, MAP_ROUTE_26
 	db $19 ; encounter rates: morn/day/nite
-	db 60
+	db 54
 	db $02
 	; morn
 		db CHANSEY ;20
@@ -1627,7 +1627,7 @@ db GROUP_ROUTE_2_RB, MAP_ROUTE_2_RB
 	
 	db GROUP_ROUTE_27, MAP_ROUTE_27
 	db $19 ; encounter rates: morn/day/nite
-	db 60
+	db 52
 	db $02
 	; morn
 		db CHANSEY ;20

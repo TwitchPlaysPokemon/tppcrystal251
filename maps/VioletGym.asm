@@ -39,7 +39,7 @@ UnknownScript_0x683ec: ; 0x683ec
 	specialphonecall $3
 	writetext UnknownText_0x685c8
 	buttonsound
-	verbosegiveitem TM_MUD_SLAP, 1
+	verbosegiveitem TM_SKY_ATTACK, 1
 	iffalse UnknownScript_0x68416
 	setevent EVENT_GOT_TM31_MUD_SLAP
 	writetext UnknownText_0x68648
@@ -196,18 +196,25 @@ UnknownText_0x68473: ; 0x68473
 FalknerRematchTextBefore:
 	text "Welcome back."
 
-	para "I've been polish-"
-	line "ing my dad's old"
-	cont "#MON."
+	para "Long ago my dad"
+	line "caught the 3"
+	cont "ultimate bird #MON"
+
+	para "You, who have"
+	line "matched this feat,"
+	cont "stand before me,"
+	cont "his legacy."
 
 	para "Let me show you"
-	line "their true power!"
+	line "our true power!"
 	done
 
 FalknerRematchBeatenText:
-	text "…Darn! My dad's"
-	line "cherished bird"
-	cont "#MON…"
+	text "…No! Not even"
+	line "the ultimate"
+	cont "bird #MON…"
+
+	para "I accept defeat"
 	done
 	
 UnknownText_0x6854a: ; 0x6854a
@@ -247,28 +254,20 @@ UnknownText_0x685c8: ; 0x685c8
 ; 0x68648
 
 UnknownText_0x68648: ; 0x68648
-	text "By using a TM, a"
-	line "#MON will"
+	text "TM31 contains"
+	line "SKY ATTACK."
 
-	para "instantly learn a"
-	line "new move."
+	para "It's the strongest"
+	line "flying type"
+	cont "attack!"
 
-	para "Think before you"
-	line "act--a TM can be"
-	cont "used only once."
+	para "While it needs"
+	line "to charge, it"
+	cont "crits often and"
+	cont "causes flinching."
 
-	para "TM31 contains"
-	line "MUD-SLAP."
-
-	para "It reduces the"
-	line "enemy's accuracy"
-
-	para "while it causes"
-	line "damage."
-
-	para "In other words, it"
-	line "is both defensive"
-	cont "and offensive."
+	para "use it to rule"
+	line "the skies!"
 	done
 ; 0x68735
 
@@ -333,8 +332,8 @@ Bird_keeperAbeBeatenText: ; 0x688b3
 ; 0x688c7
 
 UnknownText_0x688c7: ; 0x688c7
-	text "Bird #MON are more"
-	line "common in the"
+	text "Bird #MON are"
+	line "more common in the"
 	cont "KANTO region!"
 	
 	para "You usually only"

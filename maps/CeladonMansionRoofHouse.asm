@@ -24,7 +24,7 @@ PharmacistScript_0x71afd: ; 0x71afd
 UnknownScript_0x71b14: ; 0x71b14
 	writetext UnknownText_0x71ba3
 	buttonsound
-	verbosegiveitem TM_CURSE, 1
+	verbosegiveitem TM_SHADOW_BALL, 1
 	iffalse UnknownScript_0x71b25
 	setevent EVENT_GOT_TM03_CURSE
 UnknownScript_0x71b21: ; 0x71b21
@@ -105,18 +105,17 @@ UnknownText_0x71ba3: ; 0x71ba3
 
 	para "For listening so"
 	line "patiently, you may"
-	cont "take this--TM03!"
+	cont "take this--TM30!"
 	done
 ; 0x71db3
 
 UnknownText_0x71db3: ; 0x71db3
-	text "TM03 is CURSE."
+	text "TM30 is"
+	line "SHADOW BALL."
 
 	para "It's a terrifying"
-	line "move that slowly"
-
-	para "whittles down the"
-	line "victim's HP."
+	line "move that strikes"
+	cont "with dark energy."
 	done
 ; 0x71e03
 

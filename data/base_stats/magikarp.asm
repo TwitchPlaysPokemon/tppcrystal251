@@ -1,7 +1,7 @@
 	db MAGIKARP ; 129
 
-	db 20, 10, 55, 80, 20, 26
-	; hp atk def spd sat sdf
+	db 20, 10, 55, 80, 15, 20
+	;   hp  atk  def  spd  sat  sdf
 
 	db WATER, WATER
 	db 255 ; catch rate

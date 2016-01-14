@@ -45,6 +45,9 @@ SurgeScript_0x1920a5: ; 0x1920a5
 	setflag ENGINE_THUNDERBADGE
 	writetext UnknownText_0x192291
 	waitbutton
+	verbosegiveitem TM_WILD_CHARGE, 1
+	writetext SurgeLastText
+	waitbutton
 	closetext
 	end
 ; 0x1920d9
@@ -453,11 +456,26 @@ UnknownText_0x192291: ; 0x192291
 	line "BADGE increases"
 	cont "#MON's speed. "
 
+	para "Oh, and have"
+	line "this too!"
+
+SurgeLastText:
+	text "That's WILD"
+	line "CHARGE"
+
+	para "An electrifying"
+	line "strike for brave" 
+	cont "electric #MON."
+
+	para "It's good for"
+	line "shock tactics!"
+
 	para "Consider it proof"
 	line "that you defeated"
 
-	para "me. You wear it"
+	para "me. Use it"
 	line "proudly, hear?"
+
 	done
 ; 0x192303
 

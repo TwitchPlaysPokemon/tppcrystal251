@@ -13,7 +13,7 @@ SailorScript_0x9c8c1: ; 0x9c8c1
 	iftrue UnknownScript_0x9c8d3
 	writetext UnknownText_0x9c8df
 	buttonsound
-	verbosegiveitem HM_STRENGTH, 1
+	verbosegiveitem TM_SOLARBEAM, 1
 	setevent EVENT_GOT_HM04_STRENGTH
 UnknownScript_0x9c8d3: ; 0x9c8d3
 	writetext UnknownText_0x9c965
@@ -32,16 +32,15 @@ SailorScript_0x9c8dc: ; 0x9c8dc
 
 UnknownText_0x9c8df: ; 0x9c8df
 	text "Hah! Your #MON"
-	line "sure look like"
-	cont "lightweights!"
+	line "sure look pale!"
 
-	para "They don't have"
-	line "the power to move"
-	cont "boulders aside."
+	para "They need to get"
+	line "outside and see"
+	cont "the sun!"
 
 	para "Here, use this"
-	line "and teach them"
-	cont "STRENGTH!"
+	line "and get them"
+	cont "a tan!"
 	done
 ; 0x9c965
 
@@ -53,7 +52,7 @@ UnknownText_0x9c965: ; 0x9c965
 	line "own good self!"
 
 	para "I'm so proud of my"
-	line "buff bod!"
+	line "crisp tan!"
 	done
 ; 0x9c9c5
 

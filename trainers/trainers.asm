@@ -2302,7 +2302,7 @@ SchoolboyGroup:
 
 	; SCHOOLBOY (1)
 	db "JACK@"
-	db (1 << TRAINERTYPE_ITEM)
+	db (1 << TRAINERTYPE_MOVES)
 
 	; party
 	db 28, HOUNDOUR
@@ -2969,7 +2969,7 @@ LassGroup:
 	db 0 ; normal
 
 	; party
-	db 21, MARILL
+	db 46, DELIBIRD
 
 	db $ff ; end
 
@@ -3032,7 +3032,7 @@ LassGroup:
 	db (1 << TRAINERTYPE_MOVES)
 
 	; party
-	db 35, TOGEPI
+	db 35, TOGETIC
 		db METRONOME
 		db 0
 		db 0
@@ -3050,7 +3050,7 @@ LassGroup:
 		db 0
 		db 0
 
-	db 35, TOGETIC
+	db 35, TOGEPI
 		db METRONOME
 		db 0
 		db 0
@@ -3380,6 +3380,7 @@ CooltrainerMGroup:
 	db 82, VICTREEBEL
 	db 82, KINGLER
 	db 84, FLAREON
+	db 84, MACHAMP
 
 	db $ff ; end
 
@@ -3393,9 +3394,10 @@ CooltrainerMGroup:
 
 	db 96, VICTREEBEL
 	db 97, KINGLER
-	db 98, FLAREON
+	db 98, FLAREON	
 	db 99, SNORLAX
-
+	db 100, MACHAMP
+	
 	db $ff ; end
 
 ; ================
@@ -3436,6 +3438,7 @@ CooltrainerMGroup:
 	db 60, WEEPINBELL
 	db 61, KINGLER
 	db 62, FLAREON
+	db 63, MACHAMP
 
 	db $ff ; end
 
@@ -5255,7 +5258,7 @@ FisherGroup:
 
 	; FISHER (11)
 	db "EDGAR@"
-	db (1 << TRAINERTYPE_MOVES)
+	db 0 ; normal
 
 	; party
 
@@ -6005,7 +6008,7 @@ SailorGroup:
 		db PSYCHIC_M
 		db ICE_BEAM
 	
-	db 20, KRABBY
+	db 45, KRABBY
 		db CRABHAMMER
 		db FISSURE
 		db ROCK_SMASH
@@ -7027,10 +7030,10 @@ BikerGroup:
 
 	; BIKER (7)
 	db "RILEY@"
-	db 0 ; normal
+	db (1 << TRAINERTYPE_NICKNAME)
 
 	; party
-	db 75, BEEDRILL
+	db 75, BEEDRILL, "STINGER@@@@"
 
 	db $ff ; end
 
@@ -7588,7 +7591,7 @@ ExecutiveMGroup:
 
 	; EXECUTIVEM (2)
 	db "EXECUTIVE@"
-	db (1 << TRAINERTYPE_MOVES)
+	db (1 << TRAINERTYPE_ITEM)
 
 	; party
 

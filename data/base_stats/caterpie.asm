@@ -1,7 +1,7 @@
 	db CATERPIE ; 010
 
 	db 45, 30, 35, 45, 20, 20
-	; hp atk def spd sat sdf
+	;   hp  atk  def  spd  sat  sdf
 
 	db BUG, BUG
 	db 255 ; catch rate
@@ -18,5 +18,5 @@
 	dn INSECT, INSECT ; egg groups
 
 	; tmhm
-	tmhm
+	tmhm STRING_SHOT
 	; end

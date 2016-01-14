@@ -1,7 +1,7 @@
 	db DITTO ; 132
 
 	db 48, 48, 48, 48, 48, 48
-	; hp atk def spd sat sdf
+	;   hp  atk  def  spd  sat  sdf
 
 	db NORMAL, NORMAL
 	db 35 ; catch rate

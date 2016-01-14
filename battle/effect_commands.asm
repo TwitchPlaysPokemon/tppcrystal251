@@ -144,7 +144,7 @@ BattleCommand01: ; 34084
 	jp nz, CheckEnemyTurn
 
 
-CheckPlayerTurn:
+CheckPlayerTurn: ;checks if player can act
 
 	ld hl, PlayerSubStatus4
 	bit SUBSTATUS_RECHARGE, [hl]
@@ -209,11 +209,13 @@ CheckPlayerTurn:
 	bit FRZ, [hl]
 	jr z, .not_frozen
 
-	; Flame Wheel and Sacred Fire thaw the user.
+	; Flame Wheel, flare blitz and Sacred Fire thaw the user.
 	ld a, [CurPlayerMove]
 	cp FLAME_WHEEL
 	jr z, .not_frozen
 	cp SACRED_FIRE
+	jr z, .not_frozen
+	cp FLARE_BLITZ
 	jr z, .not_frozen
 
 	ld hl, FrozenSolidText
@@ -456,6 +458,8 @@ CheckEnemyTurn: ; 3421f
 	cp FLAME_WHEEL
 	jr z, .not_frozen
 	cp SACRED_FIRE
+	jr z, .not_frozen
+	cp FLARE_BLITZ
 	jr z, .not_frozen
 
 	ld hl, FrozenSolidText
@@ -1299,7 +1303,7 @@ BattleCommand05: ; 34631
 	ret
 
 .Criticals
-	db KARATE_CHOP, RAZOR_LEAF, CRABHAMMER, SLASH, AEROBLAST, CROSS_CHOP, SKY_ATTACK, SHADOW_CLAW, $ff ;crit+ moves
+	db KARATE_CHOP, RAZOR_LEAF, CRABHAMMER, SLASH, AEROBLAST, CROSS_CHOP, SKY_ATTACK, SHADOW_CLAW, DRILL_RUN, $ff ;crit+ moves
 .Chances
 	; 6.25% 12.1% 24.6% 33.2% 49.6% 66.015% 75.3%
 	db $11,  $20,  $40,  $55,  $80,  $A8,   $c0
@@ -4061,7 +4065,7 @@ BattleCommand62: ; 35612
 .asm_35631
 
 	xor a
-	ld hl, hDividend
+	ld hl, hDividend ;$ffb3
 	ld [hli], a
 	ld [hli], a
 	ld [hl], a
@@ -4070,26 +4074,26 @@ BattleCommand62: ; 35612
 	ld a, e
 	add a
 	jr nc, .asm_3563e
-	ld [hl], $1
+	ld [hl], $1 ;if carry, add 1 to $ffb5
 .asm_3563e
 	inc hl
-	ld [hli], a
+	ld [hli], a ;add result to $ffb6
 
 ; / 5
 	ld a, 5
-	ld [hld], a
+	ld [hld], a ;5 into $ffb7
 	push bc
 	ld b, $4
-	call Divide
+	call Divide ;result in $ffb4
 	pop bc
 
 ; + 2
-	inc [hl]
+	inc [hl] ;$ffb6
 	inc [hl]
 
 ; * bp
 	inc hl
-	ld [hl], d
+	ld [hl], d ;$ffb7
 	call Multiply
 
 ; * Attack
@@ -5552,8 +5556,8 @@ BattleCommand14: ; 35e5c
 	jp nz, PrintDidntAffect2
 
 	ld hl, DidntAffect1Text
-	call Function35ece
-	jr c, .asm_35ec6
+	;call Function35ece skip AI miss chance
+	;jr c, .asm_35ec6
 
 	ld a, [de]
 	and a
@@ -5563,19 +5567,19 @@ BattleCommand14: ; 35e5c
 	jr nz, .asm_35ec6
 
 	call AnimateCurrentMove
-	ld b, $7
-	ld a, [InBattleTowerBattle]
-	and a
-	jr z, .asm_35ea4
+	;ld b, $7
+	;ld a, [InBattleTowerBattle]
+	;and a
+	;jr z, .asm_35ea4
 	ld b, $3
 
 .asm_35ea4
 	call BattleRandom
 	and b
 	jr z, .asm_35ea4
-	cp 7
+	cp 3 ;sleep turns 1-3
 	jr z, .asm_35ea4
-	inc a
+	inc a ;1-7 if not in battle tower, else 1-4
 	ld [de], a
 	call UpdateOpponentInParty
 	call RefreshBattleHuds
@@ -5598,30 +5602,30 @@ BattleCommand14: ; 35e5c
 
 Function35ece: ; 35ece
 	; Enemy turn
-	ld a, [hBattleTurn]
-	and a
-	jr z, .asm_35eec
+	;ld a, [hBattleTurn]
+	;and a
+	;jr z, .asm_35eec
 
 	; Not in link battle
-	ld a, [wLinkMode]
-	and a
-	jr nz, .asm_35eec
+	;ld a, [wLinkMode]
+	;and a
+	;jr nz, .asm_35eec
 
-	ld a, [InBattleTowerBattle]
-	and a
-	jr nz, .asm_35eec
+	;ld a, [InBattleTowerBattle]
+	;and a
+	;jr nz, .asm_35eec
 
 	; Not locked-on by the enemy
-	ld a, [PlayerSubStatus5]
-	bit SUBSTATUS_LOCK_ON, a
-	jr nz, .asm_35eec
+	;ld a, [PlayerSubStatus5]
+	;bit SUBSTATUS_LOCK_ON, a
+	;jr nz, .asm_35eec
 
-	call BattleRandom
-	cp $40
-	ret c
+	;call BattleRandom
+	;cp $40
+	;ret c
 
 .asm_35eec
-	xor a
+	;xor a
 	ret
 ; 35eee
 
@@ -5696,21 +5700,21 @@ BattleCommand2f: ; 35f2c
 	call GetBattleVar
 	and a
 	jr nz, .asm_35fb8
-	ld a, [hBattleTurn]
-	and a
-	jr z, .asm_35f89
-	ld a, [wLinkMode]
-	and a
-	jr nz, .asm_35f89
-	ld a, [InBattleTowerBattle]
-	and a
-	jr nz, .asm_35f89
-	ld a, [PlayerSubStatus5]
-	bit SUBSTATUS_LOCK_ON, a
-	jr nz, .asm_35f89
-	call BattleRandom
-	cp $40
-	jr c, .asm_35fb8
+	;ld a, [hBattleTurn]
+	;and a
+	;jr z, .asm_35f89
+	;ld a, [wLinkMode]
+	;and a
+	;jr nz, .asm_35f89
+	;ld a, [InBattleTowerBattle]
+	;and a
+	;jr nz, .asm_35f89
+	;ld a, [PlayerSubStatus5]
+	;bit SUBSTATUS_LOCK_ON, a
+	;jr nz, .asm_35f89
+	;call BattleRandom
+	;cp $40
+	;jr c, .asm_35fb8
 
 .asm_35f89
 	call CheckSubstituteOpp
@@ -5784,6 +5788,8 @@ Function35fe1: ; 35fe1
 	ld a, [de]
 	cp POISON
 	ret
+
+
 ; 35ff5
 
 
@@ -5829,25 +5835,25 @@ BattleCommand_Burn: ; 35f2c
 	and a
 	jr nz, .failed
 
-	ld a, [hBattleTurn]
-	and a
-	jr z, .mimic_random
+	;ld a, [hBattleTurn]
+	;and a
+	;jr z, .mimic_random
 
-	ld a, [wLinkMode]
-	and a
-	jr nz, .mimic_random
+	;ld a, [wLinkMode]
+	;and a
+	;jr nz, .mimic_random
 
-	ld a, [InBattleTowerBattle]
-	and a
-	jr nz, .mimic_random
+	;ld a, [InBattleTowerBattle]
+	;and a
+	;jr nz, .mimic_random
 
-	ld a, [PlayerSubStatus5]
-	bit SUBSTATUS_LOCK_ON, a
-	jr nz, .mimic_random
+	;ld a, [PlayerSubStatus5]
+	;bit SUBSTATUS_LOCK_ON, a
+	;jr nz, .mimic_random
 
-	call BattleRandom
-	cp $40 ; 25% chance AI fails
-	jr c, .failed
+	;call BattleRandom
+	;cp $40 ; 25% chance AI fails
+	;jr c, .failed
 
 .mimic_random
 	call CheckSubstituteOpp
@@ -6452,32 +6458,32 @@ BattleCommand1d: ; 362e3
 	inc b
 
 .ComputerMiss
-; Computer opponents have a 1/4 chance of failing.
-	ld a, [hBattleTurn]
-	and a
-	jr z, .DidntMiss
-	ld a, [wLinkMode]
-	and a
-	jr nz, .DidntMiss
+; Computer opponents have a 1/4 chance of failing. removed
+	;ld a, [hBattleTurn]
+	;and a
+	;jr z, .DidntMiss
+	;ld a, [wLinkMode]
+	;and a
+	;jr nz, .DidntMiss
 
-	ld a, [InBattleTowerBattle]
-	and a
-	jr nz, .DidntMiss
+	;ld a, [InBattleTowerBattle]
+	;and a
+	;jr nz, .DidntMiss
 
 ; Lock-On still always works.
-	ld a, [PlayerSubStatus5]
-	bit SUBSTATUS_LOCK_ON, a
-	jr nz, .DidntMiss
+	;ld a, [PlayerSubStatus5]
+	;bit SUBSTATUS_LOCK_ON, a
+	;jr nz, .DidntMiss
 
 ; Attacking moves that also lower accuracy are unaffected.
-	ld a, BATTLE_VARS_MOVE_EFFECT
-	call GetBattleVar
-	cp EFFECT_ACCURACY_DOWN_HIT
-	jr z, .DidntMiss
+	;ld a, BATTLE_VARS_MOVE_EFFECT
+	;call GetBattleVar
+	;cp EFFECT_ACCURACY_DOWN_HIT
+	;jr z, .DidntMiss
 
-	call BattleRandom
-	cp $40
-	jr c, .Failed
+	;call BattleRandom
+	;cp $40
+	;jr c, .Failed
 
 .DidntMiss
 	call CheckSubstituteOpp
@@ -8108,7 +8114,11 @@ BattleCommand27: ; 36cb2
 	ld a, [LastEnemyMove]
 .asm_36cbd
 	cp STRUGGLE ;handle struggle seperatly
-	jr z, .Struggle
+	jp z, .Struggle
+	cp DOUBLE_EDGE
+	jr z, .ThirdRecoil
+	cp FLARE_BLITZ
+	jr z, .ThirdRecoil
 	ld a, BATTLE_VARS_MOVE_ANIM
 	call GetBattleVar
 	ld d, a
@@ -8163,6 +8173,25 @@ BattleCommand27: ; 36cb2
 	ld hl, RecoilText
 	jp StdBattleTextBox
 ; 36d1d
+.ThirdRecoil ;1/3 of HP instead of 1/4
+	ld a, [CurDamage]
+	ld [$ffb6], a
+	ld a, [CurDamage + 1]
+	ld [$ffb7], a
+	ld a, 3
+	ld [hDivisor], a
+	ld a, 2
+	ld b, a
+	call Divide
+	ld a ,[$ffb7]
+	ld c, a
+	ld a ,[$ffb6]
+	ld b, a
+	or c
+	jr z, .asm_36cd8
+	inc c
+	jr .asm_36cd8
+
 .Struggle:
 	ld hl, GetQuarterMaxHP
 	call CallBattleCore
@@ -8305,21 +8334,21 @@ BattleCommand30: ; 36dc7
 	jp StdBattleTextBox
 
 .asm_36def
-	ld a, [hBattleTurn]
-	and a
-	jr z, .asm_36e0e
-	ld a, [wLinkMode]
-	and a
-	jr nz, .asm_36e0e
-	ld a, [InBattleTowerBattle]
-	and a
-	jr nz, .asm_36e0e
-	ld a, [PlayerSubStatus5]
-	bit SUBSTATUS_LOCK_ON, a
-	jr nz, .asm_36e0e
-	call BattleRandom
-	cp $40
-	jr c, .asm_36e52
+	;ld a, [hBattleTurn] Removed chance of miss for ai
+	;and a
+	;jr z, .asm_36e0e
+	;ld a, [wLinkMode]
+	;and a
+	;jr nz, .asm_36e0e
+	;ld a, [InBattleTowerBattle]
+	;and a
+	;jr nz, .asm_36e0e
+	;ld a, [PlayerSubStatus5]
+	;bit SUBSTATUS_LOCK_ON, a
+	;jr nz, .asm_36e0e
+	;call BattleRandom
+	;cp $40
+	;jr c, .asm_36e52
 .asm_36e0e
 	ld a, BATTLE_VARS_STATUS_OPP
 	call GetBattleVarAddr

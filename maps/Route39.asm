@@ -360,8 +360,13 @@ UnknownText_0x1a5db2: ; 0x1a5db2
 ; 0x1a5dec
 
 UnknownText_0x1a5dec: ; 0x1a5dec
-	text "PIKACHU is it!"
-	line "Don't you agree?"
+	text "You can train"
+	line "#MON by other"
+	cont "means than battle."
+
+	para "Mine train by"
+	line "mowing the grass"
+	cont "at ROUTE 38!"
 	done
 ; 0x1a5e0c
 

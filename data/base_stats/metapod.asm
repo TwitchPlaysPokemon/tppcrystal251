@@ -1,7 +1,7 @@
 	db METAPOD ; 011
 
 	db 50, 20, 55, 30, 25, 25
-	; hp atk def spd sat sdf
+	;   hp  atk  def  spd  sat  sdf
 
 	db BUG, BUG
 	db 120 ; catch rate
@@ -18,5 +18,5 @@
 	dn INSECT, INSECT ; egg groups
 
 	; tmhm
-	tmhm
+	tmhm STRING_SHOT
 	; end

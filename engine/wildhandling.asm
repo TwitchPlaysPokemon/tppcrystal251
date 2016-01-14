@@ -371,11 +371,11 @@ Function2a14f: ; 2a14f choose an encounter
 	inc hl ;place it over tables bit to store the loc (is add 4 faster?)
 	inc hl
 	ld d, h 
-	ld e, l;put table bit into de to get it back once first mon bit is on the stack
+	ld e, l ;put table bit into de to get it back once first mon bit is on the stack
 	inc hl ; move onto first mon bit
-	ld a, [TimeOfDay];load ToD into a
-	ld bc, $10 ;load 16 into bc for ToD mmovement
-	call AddNTimes ; HL + (bc *a), moves down 16 lines per ToD, moving onto first mon of right time
+	ld a, [TimeOfDay]
+	ld bc, $10 
+	call AddNTimes ;moves down 16 lines per ToD, moving onto first mon of right time
 	push hl ; place first mon location on stack (cur stack: first mon byte)
 	ld a, [de]
 	and $f ;use first nyble
@@ -392,14 +392,14 @@ Function2a14f: ; 2a14f choose an encounter
 .asm_2a175
 	call Random
 	cp 200
-	jr nc, .asm_2a175 ; loop until you get <200 randomly
-	inc a; make rand 1 to 200
-	ld b, a ; put the random number in b
-	ld h, d ; load the encounter% table location into hl
+	jr nc, .asm_2a175 
+	inc a
+	ld b, a ; b = rand 1-200 
+	ld h, d ; hl = encounter% table
 	ld l, e
 	ld e, 0 ;e holds loops needed and amount of slots to go down
 .asm_2a180
-	ld a, [hli] ;load encouner slot chance into a and increment hl, making a contain the encounter chance and hl point to the offset needed to find the mon
+	ld a, [hli] ;load encouner slot chance into a and increment hl, making a contain the encounter chance and hl point to next mon
 	cp b ; set flags for the random number - the encounter chance
 	jr nc, .asm_2a187 ; If this the correct encounter jump out, otherwise fall through 
 		;inc hl ; go down another line, putting hl onto the next encounter slot
@@ -407,26 +407,38 @@ Function2a14f: ; 2a14f choose an encounter
 	jr .asm_2a180 ; loop until encounter found
 .asm_2a187
 		;ld c, [hl] ; e already holds correct decrement thanks to the rebuilds
-	; (cur stack: table byte, first mon byte)
 	ld d, 0
-	pop hl ; pull tables byte from stack (cur stack: first mon byte)
-	push hl ; put it back on (cur stack: table byte, first mon byte)
+	pop hl ;=tables byte
+	push hl ;(cur stack: table byte, first mon byte)
+	ld a, [TimeOfDay]
+	ld c, a ;store ToD for level pointer
 	ld a, [hl] 
 	swap a
 	and $f ; only use second nyble
-	jr z, SkipBonLvl ;skip if "table" 0 and thus no bonus. convienantly a is also 0
-	ld b, 0 ; for addNtimes
-	dec a ;go 1 down as no table 0 exists for lvl tables
-	ld hl, LvlTables ;load lvl table loc
-	ld c, $10 ;put 16 into c to move down the right number of tables
-	call AddNTimes
+	jr z, SkipBonLvl ;skip if "table" 0 and thus no bonus. convienantly a is also 0 so 0 will be added
+
+	ld b, 0 
+	dec a ;go 1 down as no table 0 exists for lvl pointers
+	ld hl, LvlPointers
+	add hl, bc ;go to correct ToD
+	ld c, 3
+	call AddNTimes ;go to correct pointer
+	ld a, [hl] ;load table
+	and a
+	jr z, SkipBonLvl ;skip if 0
+
+	dec a
+	ld hl, LvlTables
+	ld c, $10 
+	call AddNTimes ;do to correct level table
 	add hl, de ; find slot
-	ld a, [hl] ;put the level bonus in a for addition
+	ld a, [hl] ;put the level bonus in a
+
 SkipBonLvl
 	pop hl ;get table byte (cur stack: first mon byte)
 	dec hl ;move onto base level byte
 	add a, [hl] ;add base level onto level bonus
-	pop hl ; get first mon byte (stack equal to start)
+	pop hl ; get first mon byte (stack empty)
 	add hl, de ;move to correct mon
 	ld b, a
 	call AddVariance ;add level variance and ensure it is between 2 and 100. accepts number to increase into a and returns the new number in a
@@ -438,7 +450,7 @@ SkipBonLvl
 	jr c, QuitWithA1
 	ld a, b
 	cp UNOWN
-	jr nz, .asm_2a1bf ;check for unown, is unkown do special case for unlocked unowns, otherwise jump down
+	jr nz, .asm_2a1bf ;if unkown do special case for unlocked unowns, otherwise jump down
 	ld a, [UnlockedUnowns] ;if no unown unlocked, no encounter
 	and a
 	jr z, QuitWithA1
@@ -527,7 +539,37 @@ PctTables: ;0 = big 30
 	db 198
 	db 200
 
-LvlTables: ; 0 = all base
+LvlPointers: ;0 skips, 1 and onwards uses these to select the table used for each ToD. feel free to change examples
+;1 = example table
+	db 0, 1, 2 ;Lvl table to use in specific Tod, first slot is morning, second is day and third is night
+;2 = Route 29
+	db 3, 4, 5
+;3 = Route 46
+	db 6, 7, 8
+;4 = Route 30
+	db 9, 10, 11
+;5 = Route 31
+	db 12, 13, 14
+;6 = Dark Cave Violet Entrance
+	db 15, 16, 17
+;7 = Sprout Tower
+	db 18, 19, 20
+;8 = Route 36
+	db 21, 22, 23
+;9 = Route 32
+	db 24, 25, 26
+;10 = Route 33
+	db 27, 28, 29
+;11 = Route 37
+	db 30, 31, 32
+;12 = Route 42
+	db 33, 34, 35
+;13 = Route 38
+	db 36, 37, 38
+;14 = Dark Cave Blackthorn Entrance
+	db 39, 40, 41
+
+LvlTables: ;0 = no adjustment feel free to change examples
 ; 1 = example table, increases the level of each slot by it's number
 	db 1
 	db 2
@@ -545,7 +587,726 @@ LvlTables: ; 0 = all base
 	db 14
 	db 15
 	db 16
-; 2 = not implemented
+
+; 2 = example 2, all levels 0 exept slot 1,which is -1 good for lowering levels
+	db -1
+	db 0
+	db 0
+	db 0
+	db 0
+	db 0
+	db 0
+	db 0
+	db 0
+	db 0
+	db 0
+	db 0
+	db 0
+	db 0
+	db 0
+	db 0
+
+; 3 = Route 29 Morning
+	db 0 ;0
+	db 0
+	db -4
+	db 0
+	db 0 ;4
+	db 0
+	db -4
+	db -4
+	db 0 ;8
+	db 0
+	db 6
+	db 3
+	db 6 ;c
+	db 3
+	db 0
+	db 0
+
+; 4 = Route 29 Day
+	db 0
+	db 0
+	db 0
+	db -4
+	db 0
+	db 0
+	db -4
+	db -4
+	db 0
+	db 6
+	db 0
+	db 0
+	db 0
+	db 0
+	db 0
+	db 6
+
+; 5 = Route 29 Night
+	db 0
+	db 0
+	db 0
+	db -4
+	db 0
+	db 0
+	db -4
+	db -4
+	db 0
+	db 0
+	db 0
+	db 8
+	db 10
+	db 0
+	db 0
+	db 0
+
+; 6 = Route 46 Morning
+	db 0
+	db 0
+	db -2
+	db -4
+	db 0
+	db -2
+	db -4
+	db -4
+	db 2
+	db 0
+	db 2
+	db 0
+	db 2
+	db 4
+	db 0
+	db 0
+
+; 7 = Route 46 Day
+	db 0
+	db 0
+	db -4
+	db 2
+	db 0
+	db 0
+	db -4
+	db -4
+	db -2
+	db 0
+	db 0
+	db 0
+	db 4
+	db 0
+	db -2
+	db 0
+
+; 8 = Route 46 Night
+	db 0
+	db 0
+	db -4
+	db 2
+	db 0
+	db -4
+	db -4
+	db 0
+	db 0
+	db 0
+	db 0
+	db 6
+	db 8
+	db 0
+	db 4
+	db 4
+
+; 9 = Route 30 Morning
+	db -2
+	db 0
+	db 0
+	db -4
+	db 0
+	db 0
+	db -4
+	db -4
+	db 0
+	db 5
+	db 5
+	db 5
+	db 5
+	db 5
+	db 5
+	db 9
+
+; 10 = Route 30 Day
+	db 0
+	db 0
+	db -2
+	db -4
+	db 0
+	db -4
+	db -4
+	db 0
+	db 5
+	db 5
+	db 0
+	db 0
+	db 5
+	db 0
+	db 5
+	db 5
+
+; 11 = Route 30 Night
+	db 0
+	db 0
+	db 0
+	db 0
+	db 0
+	db 0
+	db 0
+	db 0
+	db -2
+	db 0
+	db 0
+	db 7
+	db 7
+	db 9
+	db -2
+	db 0
+
+; 12 = Route 31 Morning
+	db 0
+	db 0
+	db -2
+	db -3
+	db 0
+	db -2
+	db 4
+	db -2
+	db 0
+	db 0
+	db 0
+	db 1
+	db 6
+	db 0
+	db 0
+	db 2
+
+; 13 = Route 31 Day
+	db 0
+	db -3
+	db 0
+	db 0
+	db 0
+	db 0
+	db 1
+	db 0
+	db 0
+	db 2
+	db 0
+	db 6
+	db 0
+	db 0
+	db 0
+	db 0
+
+; 14 = Route 31 Night
+	db 0
+	db 0
+	db 0
+	db 0
+	db 0
+	db 6
+	db 6
+	db 0
+	db 0
+	db 0
+	db 0
+	db 1
+	db 0
+	db 6
+	db 6
+	db 0
+
+; 15 = Dark Cave Morning
+	db -2
+	db 0
+	db 0
+	db 2
+	db 0
+	db 0
+	db 0
+	db 0
+	db 0
+	db 2
+	db 0
+	db 1
+	db 0
+	db 1
+	db 0
+	db 4
+
+; 16 = Dark Cave Day
+	db 0
+	db 0
+	db 0
+	db -2
+	db 0
+	db 0
+	db 0
+	db 2
+	db 2
+	db 1
+	db 0
+	db 4
+	db 0
+	db 0
+	db 2
+	db 1
+
+; 17 = Dark Cave Night
+	db 0
+	db 0
+	db 0
+	db 2
+	db 0
+	db 0
+	db 6
+	db 0
+	db 6
+	db 0
+	db 2
+	db 1
+	db 2
+	db 1
+	db 4
+	db 0
+
+; 18 = Sprout Tower Morning
+	db 0
+	db 0
+	db 2
+	db 0
+	db 0
+	db 2
+	db 0
+	db 0
+	db 0
+	db 0
+	db 8
+	db 8
+	db 9
+	db 0
+	db 0
+	db 2
+
+; 19 = Sprout Tower Day
+	db 0
+	db 0
+	db 0
+	db 0
+	db 0
+	db 0
+	db 2
+	db 0
+	db 2
+	db 8
+	db 9
+	db 8
+	db 0
+	db 0
+	db 2
+	db 2
+
+; 20 = Sprout Tower Night
+	db 0
+	db 1
+	db 0
+	db 1
+	db 0
+	db 1
+	db 0
+	db 0
+	db 0
+	db 8
+	db 0
+	db 8
+	db 2
+	db 0
+	db 9
+	db 2
+
+; 21 = Route 36 Morning
+	db 0
+	db 0
+	db 0
+	db 0
+	db 0
+	db 3
+	db 0
+	db 0
+	db 2
+	db 9
+	db 0
+	db 0
+	db 0
+	db 0
+	db 2
+	db 9
+
+; 22 = Route 36 Day
+	db 0
+	db 0
+	db 0
+	db 0
+	db 0
+	db 3
+	db 2
+	db 0
+	db 0
+	db 2
+	db 9
+	db 0
+	db 0
+	db 0
+	db 2
+	db 0
+
+; 23 = Route 36 Night
+	db 0
+	db 1
+	db 0
+	db 0
+	db 2
+	db 3
+	db 1
+	db 0
+	db 0
+	db 0
+	db 6
+	db 0
+	db 6
+	db 0
+	db 0
+	db 0
+
+; 24 = Route 32 Morning
+	db 0
+	db -4
+	db 0
+	db 0
+	db 0
+	db 0
+	db 0
+	db 0
+	db 3
+	db 3
+	db 5
+	db 1
+	db 1
+	db 1
+	db 0
+	db 0
+
+; 25 = Route 32 Day
+	db 0
+	db 0
+	db -1
+	db 0
+	db 0
+	db 0
+	db 3
+	db -1
+	db 3
+	db 0
+	db 0
+	db 0
+	db 0
+	db 0
+	db 3
+	db 5
+
+; 26 = Route 32 Night
+	db 0
+	db 0
+	db 0
+	db 5
+	db 1
+	db 0
+	db 0
+	db 0
+	db 1
+	db 5
+	db 0
+	db 1
+	db 0
+	db 0
+	db 5
+	db 0
+
+; 27 = Route 33 Morning
+	db 0
+	db 0
+	db 0
+	db 0
+	db 0
+	db 2
+	db 0
+	db 0
+	db 0
+	db 6
+	db 0
+	db 2
+	db 0
+	db 2
+	db 0
+	db 2
+
+; 28 = Route 33 Day
+	db 0
+	db 0
+	db 0
+	db 2
+	db 0
+	db 0
+	db 0
+	db 0
+	db 6
+	db 6
+	db 0
+	db 0
+	db 5
+	db 0
+	db 5
+	db 2
+
+; 29 = Route 33 Night
+	db 0
+	db 0
+	db 2
+	db 0
+	db 0
+	db 2
+	db 0
+	db 5
+	db 2
+	db 2
+	db 0
+	db 0
+	db 0
+	db 0
+	db 5
+	db 2
+
+; 30 = Route 37 Morning
+	db -2
+	db 0
+	db 0
+	db 0
+	db 0
+	db 1
+	db 3
+	db 0
+	db 0
+	db 0
+	db 0
+	db 0
+	db 0
+	db 0
+	db 9
+	db 3
+	
+; 31 = Route 37 Day
+	db 1
+	db 0
+	db 3
+	db 0
+	db 0
+	db 0
+	db 3
+	db 0
+	db 0
+	db -2
+	db 0
+	db 0
+	db 0
+	db 9
+	db 0
+	db 0
+
+; 32 = Route 37 Night
+	db 0
+	db 0
+	db 0
+	db 0
+	db 0
+	db 0
+	db 0
+	db 0
+	db 0
+	db 3
+	db 0
+	db 0
+	db 2
+	db 0
+	db 0
+	db 2
+
+; 33 = Route 42 Morning
+	db -3
+	db 0
+	db 0
+	db 0
+	db 0
+	db 0
+	db 0
+	db 3
+	db 0
+	db 0
+	db 2
+	db 0
+	db 2
+	db 3
+	db 0
+	db 0
+
+; 34 = Route 42 Day
+	db 0
+	db 0
+	db 0
+	db 0
+	db 0
+	db 0
+	db 0
+	db 0
+	db 0
+	db 0
+	db 3
+	db 0
+	db 2
+	db 7
+	db 3
+	db 7
+
+; 35 = Route 42 Night
+	db 0
+	db 0
+	db 0
+	db 2
+	db 0
+	db 0
+	db 2
+	db 0
+	db 0
+	db 0
+	db 6
+	db 0
+	db 0
+	db 0
+	db 0
+	db 7
+
+; 36 = Route 38 Morning
+	db 0
+	db 1
+	db 0
+	db 0
+	db 0
+	db 0
+	db 0
+	db 0
+	db 2
+	db 4
+	db 0
+	db 2
+	db 2
+	db 2
+	db 2
+	db 2
+
+; 37 = Route 38 Day
+	db 0
+	db 0
+	db 0
+	db 0
+	db 1
+	db 2
+	db 0
+	db 0
+	db 0
+	db 2
+	db 2
+	db 0
+	db 2
+	db 0
+	db 2
+	db 4
+
+; 38 = Route 38 Night
+	db 0
+	db 0
+	db 2
+	db 0
+	db 0
+	db 0
+	db 0
+	db 0
+	db 2
+	db 0
+	db 0
+	db 2
+	db 2
+	db 1
+	db 2
+	db 1
+
+; 39 = Dark Cave Blackthorn Morning
+	db 2
+	db 0
+	db 0
+	db 0
+	db 0
+	db 0
+	db 0
+	db 0
+	db 6
+	db 0
+	db 3
+	db 0
+	db 2
+	db 3
+	db 3
+	db 2
+
+; 40 = Dark Cave Blackthorn Day
+	db 2
+	db 0
+	db 0
+	db 0
+	db 0
+	db 0
+	db 0
+	db 2
+	db 0
+	db 3
+	db 0
+	db 6
+	db 2
+	db 0
+	db 3
+	db 6
+
+; 41 = Dark Cave Blackthorn Night
+	db 0
+	db 2
+	db 0
+	db 0
+	db 0
+	db 3
+	db 0
+	db 0
+	db 0
+	db 0
+	db 0
+	db 0
+	db 0
+	db 0
+	db 0
+	db 0
 
 Function2a200: ; 2a200 from 2a14f
 	call Function1852
@@ -731,9 +1492,9 @@ AddVariance: ;add level variance and ensure it is between 2 and 100. accepts num
 	inc b
 .asm_2a1aa
 	ld a, b ; load level back into a
-	cp 2 ;If level is less then 2, set it to 2
+	cp 1 ;If level is less then 1, set it to 1
 	jr nc, .Pass
-	ld b, 2
+	ld b, 1
 	;pop bc
 	ret
 

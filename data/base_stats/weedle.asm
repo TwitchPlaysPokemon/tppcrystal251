@@ -1,7 +1,7 @@
 	db WEEDLE ; 013
 
 	db 40, 35, 30, 50, 20, 20
-	; hp atk def spd sat sdf
+	;   hp  atk  def  spd  sat  sdf
 
 	db BUG, POISON
 	db 255 ; catch rate
@@ -18,5 +18,5 @@
 	dn INSECT, INSECT ; egg groups
 
 	; tmhm
-	tmhm
+	tmhm STRING_SHOT
 	; end
