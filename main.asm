@@ -8111,7 +8111,7 @@ Functiond906: ; d906
 	add hl, bc ;move hl down 10 to start of stat xp
 	ld a, $1
 	ld c, a ;get hp
-	ld b, $1 ;stat xp on
+	ld b, 1 ;stat xp on
 	call Functione17b ; load stats in, put HP into in $ffb5 and $ffb6. 
 	ld a, [$ffb5] ;load hp
 	ld [de], a
@@ -8178,7 +8178,7 @@ Functiond906: ; d906
 	pop hl ;start of mon data
 	ld bc, $000a
 	add hl, bc ;stat xp location
-	ld b, $0
+	ld b, 1
 	call Functione167 ;fill rest of stats
 .asm_da45
 	ld a, [MonType]
@@ -9224,7 +9224,7 @@ Functione17b: ; e17b return stat c for mon species whose base stats are loaded o
 	push bc
 	ld a, b
 	ld d, a ;load b into d
-	push hl ;start of stat xp?
+	push hl ;start of stat xp
 	ld hl, BaseHP ;base hp stored
 	dec hl ;go up 1
 	ld b, $0
@@ -9254,12 +9254,12 @@ Functione17b: ; e17b return stat c for mon species whose base stats are loaded o
 	srl c ; c is normal again
 	pop hl ;hl = start of stat xp
 	push bc ; c is chosen stat, b is stat xp added
-	ld bc, $000b ;b = 11
+	ld bc, $000b ;bc = 11
 	add hl, bc ;over DVs
 	pop bc
 	ld a, c
 	cp $2
-	jr z, .asm_e1e3 ;branch code based on stat
+	jr z, .asm_e1e3 ;branch code based on stat to get dv, store in a
 	cp $3
 	jr z, .asm_e1ea
 	cp $4
@@ -9291,7 +9291,7 @@ Functione17b: ; e17b return stat c for mon species whose base stats are loaded o
 	ld a, [hl]
 	and $1 ;if on, add 1, regardless, add b to a
 	add b
-	pop bc ;c = stat, b = base stat
+	pop bc ;c = stat, b = stat xp
 	jr .asm_e1fb
 
 .asm_e1e3
@@ -9316,7 +9316,7 @@ Functione17b: ; e17b return stat c for mon species whose base stats are loaded o
 	inc hl ;get special dv
 	ld a, [hl]
 	and $f
-.asm_e1fb
+.asm_e1fb ;dv = a, 
 	ld d, $0
 	add e
 	ld e, a ;add dv to base stat
@@ -9338,7 +9338,7 @@ Functione17b: ; e17b return stat c for mon species whose base stats are loaded o
 	xor a
 	ld [hMultiplicand], a
 	ld a, [CurPartyLevel]
-	ld [hMultiplier], a ;multiply by level?
+	ld [hMultiplier], a ;multiply by level
 	call Multiply
 	ld a, [hMultiplicand]
 	ld [hProduct], a
