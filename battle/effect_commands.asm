@@ -8178,16 +8178,16 @@ BattleCommand27: ; 36cb2
 	call GetBattleVar
 	ld d, a
 	ld a, [CurDamage]
-	ld [$ffb5], a
+	ld [hDividend], a
 	ld a, [CurDamage + 1]
-	ld [$ffb6], a
+	ld [hDividend + 1], a
 	ld a, 3
 	ld [hDivisor], a
 	ld b, 2
 	call Divide
-	ld a ,[$ffb6]
+	ld a, [hQuotient + 2]
 	ld c, a
-	ld a ,[$ffb5]
+	ld a, [hQuotient + 1]
 	ld b, a
 	or c
 	jr z, .asm_36cd8
