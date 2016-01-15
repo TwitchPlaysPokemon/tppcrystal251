@@ -537,6 +537,7 @@ MapGroup30:
 	map_header ViridianNicknameSpeechHouseRB, $5, 3, VIRIDIAN_CITY, MUSIC_VIRIDIAN_CITY, 0, 1, 1
 	map_header ViridianTrainerSchoolRB, $5, 3, VIRIDIAN_CITY, MUSIC_VIRIDIAN_CITY, 0, 1, 1
 	map_header VictoryRoadGateRB, $8, 6, ROUTE_22, MUSIC_ROUTE_2, 0, 1, 1
+	map_header Route23RB, $3, 2, ROUTE_23, MUSIC_INDIGO_PLATEAU, 0, 0, 1
 
 MapGroup31:
 ; pewter city rb

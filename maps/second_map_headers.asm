@@ -278,6 +278,7 @@
 	connection south, LAVENDER_TOWN, LavenderTown, 0, 0, 10, ROUTE_10_SOUTH
 
 	map_header_2 Route23, ROUTE_23, $f, NONE ; 0x957b0
+	map_header_2 Route23RB, ROUTE_23_RB, $f, NONE ; 0x957b0
 	map_header_2 SproutTower1F, SPROUT_TOWER_1F, $0, NONE ; 0x957bc
 	map_header_2 SproutTower2F, SPROUT_TOWER_2F, $0, NONE ; 0x957c8
 	map_header_2 SproutTower3F, SPROUT_TOWER_3F, $0, NONE ; 0x957d4

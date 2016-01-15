@@ -1,21 +1,24 @@
 Route23RB_MapScriptHeader:
-	db 2
+	db 3
 	dw .Trigger0, 0
 	dw .Trigger1, 0
+	dw .Trigger2, 0
 	db 0
 .Trigger0
 	end
 .Trigger1
 	end
+.Trigger2
+	end
 
-Route23RB_OfficerScript:
+Route23RB_CascadeBadgeCheckOfficerScript:
 	faceplayer
-	jump Route23RBScript_Continue
+	jump Route23RBScript_ContinueCascade
 
 Route23RB_CascadeBadgeCheckTrigger:
 	faceperson $2, $0
 	faceperson $0, $2
-Route23RBScript_Continue:
+Route23RBScript_ContinueCascade:
 	loadfont
 	checkflag ENGINE_CASCADEBADGE
 	iftrue .permit
@@ -36,6 +39,36 @@ Route23RBScript_Continue:
 	closetext
 	dotrigger $1
 	end
+
+Route23RB_ThunderBadgeCheckOfficerScript:
+	faceplayer
+	jump Route23RBScript_ContinueThunder
+
+Route23RB_ThunderBadgeCheckTrigger:
+	faceperson $3, $0
+	faceperson $0, $3
+Route23RBScript_ContinueThunder:
+	loadfont
+	checkflag ENGINE_THUNDERBADGE
+	iftrue .permit
+	writetext _VictoryRoadGuardText3
+	waitbutton
+	closetext
+	spriteface $2, DOWN
+	applymovement $0, Movement_PlayerStepsDown_Route23RB
+	end
+
+.permit
+	writetext _VictoryRoadGuardText4
+	playsound SFX_LEVEL_UP
+	waitsfx
+	buttonsound
+	writetext _VictoryRoadGuardText_513a3
+	waitbutton
+	closetext
+	dotrigger $2
+	end
+
 
 Movement_PlayerStepsDown_Route23RB:
 	step_down
@@ -68,6 +101,28 @@ _VictoryRoadGuardText_513a3:
 	line "go right ahead!"
 	done
 
+_VictoryRoadGuardText3:
+	text "You can pass here"
+	line "only if you have"
+	cont "the THUNDERBADGE!"
+
+	para "You don't have the"
+	line "THUNDERBADGE yet!"
+
+	para "You have to have"
+	line "it to get to"
+	cont "#MON LEAGUE!"
+	done
+
+_VictoryRoadGuardText4:
+	text "You can pass here"
+	line "only if you have"
+	cont "the THUNDERBADGE!"
+
+	para "Oh! That is the"
+	line "THUNDERBADGE!"
+	done
+
 _Route23Text8:
 	text "VICTORY ROAD GATE"
 	line "- #MON LEAGUE"
@@ -78,15 +133,16 @@ _Route23Text8:
 Route23RB_MapEventHeader:
 	db 0, 0
 	db 2
-	warp_def $7, $6, 3, GROUP_VICTORY_ROAD_GATE_RB, MAP_VICTORY_ROAD_GATE_RB
-	warp_def $7, $7, 4, GROUP_VICTORY_ROAD_GATE_RB, MAP_VICTORY_ROAD_GATE_RB
+	warp_def $23, $7, 3, GROUP_VICTORY_ROAD_GATE_RB, MAP_VICTORY_ROAD_GATE_RB
+	warp_def $23, $8, 4, GROUP_VICTORY_ROAD_GATE_RB, MAP_VICTORY_ROAD_GATE_RB
 
-	db 3
-	xy_trigger 0, 4, 5, $0, Route23RB_CascadeBadgeCheckTrigger, 0, 0
-	xy_trigger 0, 4, 6, $0, Route23RB_CascadeBadgeCheckTrigger, 0, 0
-	xy_trigger 0, 4, 8, $0, Route23RB_CascadeBadgeCheckTrigger, 0, 0
-
+	db 4
+	xy_trigger 0, 31, 6, $0, Route23RB_CascadeBadgeCheckTrigger, 0, 0
+	xy_trigger 0, 31, 7, $0, Route23RB_CascadeBadgeCheckTrigger, 0, 0
+	xy_trigger 0, 31, 9, $0, Route23RB_CascadeBadgeCheckTrigger, 0, 0
+	xy_trigger 1, 14, 9, $0, Route23RB_CascadeBadgeCheckTrigger, 0, 0
 	db 0
 
-	db 1
-	person_event SPRITE_OFFICER, 10, 14, $6, 0, 0, -1, -1, 0, 0, 0, Route23RB_OfficerScript, -1
+	db 2
+	person_event SPRITE_OFFICER, 35, 12, $6, 0, 0, -1, -1, 0, 0, 0, Route23RB_ThunderBadgeCheckOfficerScript, -1
+	person_event SPRITE_OFFICER, 18, 12, $6, 0, 0, -1, -1, 0, 0, 0, Route23RB_CascadeBadgeCheckOfficerScript, -1
