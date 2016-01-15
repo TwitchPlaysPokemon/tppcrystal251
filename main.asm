@@ -88155,30 +88155,12 @@ Functionfb877: ; fb877
 	call MaxVolume
 	call Function4b6
 	ld a, [hSCX]
-	add $fb
+	add -5
 	ld [hSCX], a
-	call Functionfb8c8
 	pop af
 	ld [$ffde], a
 	ret
 ; fb8c8
-
-Functionfb8c8: ; fb8c8
-	call ClearTileMap
-	call Functione5f
-	call Functione51
-	callba Function40ab2
-	call Function3200
-	callba Function3da97
-	ld a, [hli]
-	ld [TempMonDVs], a
-	ld a, [hl]
-	ld [TempMonDVs + 1], a
-	ld b, $1c
-	call GetSGBLayout
-	call Function32f9
-	ret
-; fb8f1
 
 Functionfb8f1: ; fb8f1
 	push bc
