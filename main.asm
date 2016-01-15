@@ -2075,8 +2075,8 @@ _Divide:: ; 673e
 	ld [hDividend + 1], a
 	ld [hDividend + 2], a
 	ld [hDividend + 3], a
-	ld a, h
-	ld [hDivisor], a ; I believe the remainder is stored here…
+	ld a, e
+	ld [hDividend + 4], a ; I believe the remainder is stored here…
 	ld a, c
 	sub hDividend % $100
 	ld b, a

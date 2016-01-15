@@ -489,23 +489,7 @@ end
 
 while true do
 	if emu.framecount() % 30 == 1 then
-		if memory.readdword(0x013C) == 0x41444C47 or memory.readdword(0x013C) == 0x41564C53 then --GS
-			ReadParty(0xDA22)
-			ReadSeen(0xDC04)
-			ReadOwn(0xDBE4)
-			CheckDex(0xDBE4)
-			ReadMoney(0xD573)
-			ReadBadge1(0xD57C)
-			ReadBadge2(0xD57D)
-			ReadTitle(0xC3C9)
-			ReadDiploma(0x9902)
-			MapID = (memory.readbyte(0xDA00) * 256) + memory.readbyte(0xDA01)
-
-			if LastCaptured ~= LastCaptured2 then
-				on_pokemon_capture(LastCaptured)
-				LastCaptured2 = LastCaptured
-			end
-		elseif memory.readdword(0x013C) == 0x42004C41 then --C
+		if memory.readdword(0x013C) == 0x54524F42 then --BORT
 			ReadParty(0xDCD7)
 			ReadSeen(0xDEB9)
 			ReadOwn(0xDE99)

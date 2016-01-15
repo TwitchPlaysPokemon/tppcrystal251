@@ -9,17 +9,16 @@ VermilionGym_MapScriptHeader: ; 0x1920a3
 
 VermilionGymDoorsScript:
 	checkevent EVENT_VERMILION_DOOR_2
-	iffalse VermilionGymEndDoorsScript
+	iffalse .closed
 	changeblock 4, 4, 1
 	return
 
-VermilionGymEndDoorsScript:
+.closed
 	checkevent EVENT_VERMILION_DOOR_1
-	iffalse VermilionGymResetDoorsScript
+	iffalse .resample
 	clearevent EVENT_VERMILION_DOOR_1
-VermilionGymResetDoorsScript:
-	random 38
-	copyvartobyte wdff7
+.resample
+	callasm SampleVermilionTrashCan
 	return
 
 SurgeScript_0x1920a5: ; 0x1920a5
@@ -163,201 +162,30 @@ VermilionGymGuyScript: ; 0x19211b
 	end
 ; 0x19212f
 
-MapVermilionGymSignpost1Script: ; 0x19212f
-	copybytetovar wdff7
-	if_equal 0, VermilionGym_FoundSwitch
-	if_equal 12, VermilionGym_FoundSwitch
-	if_equal 22, VermilionGym_FoundSwitch
+MapVermilionGymTrashcanScript:
+	checkevent EVENT_VERMILION_DOOR_2
+	iftrue .trashcan
+	callasm CheckVermilionTrashCan
+	iftrue .open_lock
 	checkevent EVENT_VERMILION_DOOR_1
-	iftrue VermilionGym_ResetSwitches
-	jumptext UnknownText_0x19261e
-; 0x192132
+	iftrue .reset_switches
+.trashcan
+	jumpstd trashcan
 
-MapVermilionGymSignpost2Script: ; 0x19212f
-	copybytetovar wdff7
-	if_equal 0, VermilionGym_FoundSwitch
-	if_equal 1, VermilionGym_FoundSwitch
-	if_equal 14, VermilionGym_FoundSwitch
-	if_equal 23, VermilionGym_FoundSwitch
-	if_equal 26, VermilionGym_FoundSwitch
-	checkevent EVENT_VERMILION_DOOR_1
-	iftrue VermilionGym_ResetSwitches
-	jumptext UnknownText_0x19261e
-; 0x192132
-
-MapVermilionGymSignpost3Script: ; 0x19212f
-	copybytetovar wdff7
-	if_equal 1, VermilionGym_FoundSwitch
-	if_equal 2, VermilionGym_FoundSwitch
-	if_equal 16, VermilionGym_FoundSwitch
-	if_equal 27, VermilionGym_FoundSwitch
-	if_equal 30, VermilionGym_FoundSwitch
-	checkevent EVENT_VERMILION_DOOR_1
-	iftrue VermilionGym_ResetSwitches
-	jumptext UnknownText_0x19261e
-; 0x192132
-
-MapVermilionGymSignpost4Script: ; 0x19212f
-	copybytetovar wdff7
-	if_equal 2, VermilionGym_FoundSwitch
-	if_equal 3, VermilionGym_FoundSwitch
-	if_equal 18, VermilionGym_FoundSwitch
-	if_equal 31, VermilionGym_FoundSwitch
-	if_equal 34, VermilionGym_FoundSwitch
-	checkevent EVENT_VERMILION_DOOR_1
-	iftrue VermilionGym_ResetSwitches
-	jumptext UnknownText_0x19261e
-; 0x192132
-
-MapVermilionGymSignpost5Script: ; 0x19212f
-	copybytetovar wdff7
-	if_equal 3, VermilionGym_FoundSwitch
-	if_equal 20, VermilionGym_FoundSwitch
-	if_equal 35, VermilionGym_FoundSwitch
-	checkevent EVENT_VERMILION_DOOR_1
-	iftrue VermilionGym_ResetSwitches
-	jumptext UnknownText_0x19261e
-; 0x192132
-
-MapVermilionGymSignpost6Script: ; 0x19212f
-	copybytetovar wdff7
-	if_equal 4, VermilionGym_FoundSwitch
-	if_equal 12, VermilionGym_FoundSwitch
-	if_equal 13, VermilionGym_FoundSwitch
-	if_equal 23, VermilionGym_FoundSwitch
-	if_equal 24, VermilionGym_FoundSwitch
-	checkevent EVENT_VERMILION_DOOR_1
-	iftrue VermilionGym_ResetSwitches
-	jumptext UnknownText_0x19261e
-; 0x192132
-
-MapVermilionGymSignpost7Script: ; 0x19212f
-	copybytetovar wdff7
-	if_equal 4, VermilionGym_FoundSwitch
-	if_equal 5, VermilionGym_FoundSwitch
-	if_equal 14, VermilionGym_FoundSwitch
-	if_equal 15, VermilionGym_FoundSwitch
-	if_equal 22, VermilionGym_FoundSwitch
-	if_equal 25, VermilionGym_FoundSwitch
-	if_equal 27, VermilionGym_FoundSwitch
-	if_equal 28, VermilionGym_FoundSwitch
-	checkevent EVENT_VERMILION_DOOR_1
-	iftrue VermilionGym_ResetSwitches
-	jumptext UnknownText_0x19261e
-; 0x192132
-
-MapVermilionGymSignpost8Script: ; 0x19212f
-	copybytetovar wdff7
-	if_equal 5, VermilionGym_FoundSwitch
-	if_equal 6, VermilionGym_FoundSwitch
-	if_equal 16, VermilionGym_FoundSwitch
-	if_equal 17, VermilionGym_FoundSwitch
-	if_equal 26, VermilionGym_FoundSwitch
-	if_equal 29, VermilionGym_FoundSwitch
-	if_equal 31, VermilionGym_FoundSwitch
-	if_equal 32, VermilionGym_FoundSwitch
-	checkevent EVENT_VERMILION_DOOR_1
-	iftrue VermilionGym_ResetSwitches
-	jumptext UnknownText_0x19261e
-; 0x192132
-
-MapVermilionGymSignpost9Script: ; 0x19212f
-	copybytetovar wdff7
-	if_equal 6, VermilionGym_FoundSwitch
-	if_equal 7, VermilionGym_FoundSwitch
-	if_equal 18, VermilionGym_FoundSwitch
-	if_equal 19, VermilionGym_FoundSwitch
-	if_equal 30, VermilionGym_FoundSwitch
-	if_equal 33, VermilionGym_FoundSwitch
-	if_equal 35, VermilionGym_FoundSwitch
-	if_equal 36, VermilionGym_FoundSwitch
-	checkevent EVENT_VERMILION_DOOR_1
-	iftrue VermilionGym_ResetSwitches
-	jumptext UnknownText_0x19261e
-; 0x192132
-
-MapVermilionGymSignpost10Script: ; 0x19212f
-	copybytetovar wdff7
-	if_equal 7, VermilionGym_FoundSwitch
-	if_equal 20, VermilionGym_FoundSwitch
-	if_equal 21, VermilionGym_FoundSwitch
-	if_equal 35, VermilionGym_FoundSwitch
-	if_equal 37, VermilionGym_FoundSwitch
-	checkevent EVENT_VERMILION_DOOR_1
-	iftrue VermilionGym_ResetSwitches
-	jumptext UnknownText_0x19261e
-; 0x192132
-
-MapVermilionGymSignpost11Script: ; 0x19212f
-	copybytetovar wdff7
-	if_equal 8, VermilionGym_FoundSwitch
-	if_equal 13, VermilionGym_FoundSwitch
-	if_equal 25, VermilionGym_FoundSwitch
-	checkevent EVENT_VERMILION_DOOR_1
-	iftrue VermilionGym_ResetSwitches
-	jumptext UnknownText_0x19261e
-; 0x192132
-
-MapVermilionGymSignpost12Script: ; 0x19212f
-	copybytetovar wdff7
-	if_equal 8, VermilionGym_FoundSwitch
-	if_equal 9, VermilionGym_FoundSwitch
-	if_equal 15, VermilionGym_FoundSwitch
-	if_equal 24, VermilionGym_FoundSwitch
-	if_equal 29, VermilionGym_FoundSwitch
-	checkevent EVENT_VERMILION_DOOR_1
-	iftrue VermilionGym_ResetSwitches
-	jumptext UnknownText_0x19261e
-; 0x192132
-
-MapVermilionGymSignpost13Script: ; 0x19212f
-	copybytetovar wdff7
-	if_equal 9, VermilionGym_FoundSwitch
-	if_equal 10, VermilionGym_FoundSwitch
-	if_equal 17, VermilionGym_FoundSwitch
-	if_equal 28, VermilionGym_FoundSwitch
-	if_equal 33, VermilionGym_FoundSwitch
-	checkevent EVENT_VERMILION_DOOR_1
-	iftrue VermilionGym_ResetSwitches
-	jumptext UnknownText_0x19261e
-; 0x192132
-
-MapVermilionGymSignpost14Script: ; 0x19212f
-	copybytetovar wdff7
-	if_equal 10, VermilionGym_FoundSwitch
-	if_equal 11, VermilionGym_FoundSwitch
-	if_equal 19, VermilionGym_FoundSwitch
-	if_equal 32, VermilionGym_FoundSwitch
-	if_equal 37, VermilionGym_FoundSwitch
-	checkevent EVENT_VERMILION_DOOR_1
-	iftrue VermilionGym_ResetSwitches
-	jumptext UnknownText_0x19261e
-; 0x192132
-
-MapVermilionGymSignpost15Script: ; 0x19212f
-	copybytetovar wdff7
-	if_equal 11, VermilionGym_FoundSwitch
-	if_equal 21, VermilionGym_FoundSwitch
-	if_equal 36, VermilionGym_FoundSwitch
-	checkevent EVENT_VERMILION_DOOR_1
-	iftrue VermilionGym_ResetSwitches
-	jumptext UnknownText_0x19261e
-; 0x192132
-
-VermilionGym_FoundSwitch:
+.open_lock
 	loadfont
 	writetext Text_FoundSwitch
 	playsound SFX_PUSH_BUTTON
 	buttonsound
 	checkevent EVENT_VERMILION_DOOR_1
-	iftrue UnlockSecondSwitch
+	iftrue .second_switch
 	setevent EVENT_VERMILION_DOOR_1
 	writetext Text_FoundFirstSwitch
 	waitbutton
 	closetext
 	end
 	
-UnlockSecondSwitch:
+.second_switch
 	setevent EVENT_VERMILION_DOOR_2
 	writetext Text_FoundSecondSwitch
 	playsound SFX_ENTER_DOOR
@@ -366,7 +194,7 @@ UnlockSecondSwitch:
 	closetext
 	end
 	
-VermilionGym_ResetSwitches:
+.reset_switches
 	loadfont
 	writetext UnknownText_0x19261e
 	buttonsound
@@ -374,8 +202,7 @@ VermilionGym_ResetSwitches:
 	playsound SFX_WRONG
 	waitbutton
 	closetext
-	random 38
-	copyvartobyte wdff7
+	callasm SampleVermilionTrashCan
 	clearevent EVENT_VERMILION_DOOR_1
 	end
 
@@ -610,21 +437,21 @@ VermilionGym_MapEventHeader: ; 0x19263d
 
 	; signposts
 	db 17
-	signpost 7, 1, $0, MapVermilionGymSignpost1Script
-	signpost 7, 3, $0, MapVermilionGymSignpost2Script
-	signpost 7, 5, $0, MapVermilionGymSignpost3Script
-	signpost 7, 7, $0, MapVermilionGymSignpost4Script
-	signpost 7, 9, $0, MapVermilionGymSignpost5Script
-	signpost 9, 1, $0, MapVermilionGymSignpost6Script
-	signpost 9, 3, $0, MapVermilionGymSignpost7Script
-	signpost 9, 5, $0, MapVermilionGymSignpost8Script
-	signpost 9, 7, $0, MapVermilionGymSignpost9Script
-	signpost 9, 9, $0, MapVermilionGymSignpost10Script
-	signpost 11, 1, $0, MapVermilionGymSignpost11Script
-	signpost 11, 3, $0, MapVermilionGymSignpost12Script
-	signpost 11, 5, $0, MapVermilionGymSignpost13Script
-	signpost 11, 7, $0, MapVermilionGymSignpost14Script
-	signpost 11, 9, $0, MapVermilionGymSignpost15Script
+	signpost  7, 1, $0, MapVermilionGymTrashcanScript
+	signpost  7, 3, $0, MapVermilionGymTrashcanScript
+	signpost  7, 5, $0, MapVermilionGymTrashcanScript
+	signpost  7, 7, $0, MapVermilionGymTrashcanScript
+	signpost  7, 9, $0, MapVermilionGymTrashcanScript
+	signpost  9, 1, $0, MapVermilionGymTrashcanScript
+	signpost  9, 3, $0, MapVermilionGymTrashcanScript
+	signpost  9, 5, $0, MapVermilionGymTrashcanScript
+	signpost  9, 7, $0, MapVermilionGymTrashcanScript
+	signpost  9, 9, $0, MapVermilionGymTrashcanScript
+	signpost 11, 1, $0, MapVermilionGymTrashcanScript
+	signpost 11, 3, $0, MapVermilionGymTrashcanScript
+	signpost 11, 5, $0, MapVermilionGymTrashcanScript
+	signpost 11, 7, $0, MapVermilionGymTrashcanScript
+	signpost 11, 9, $0, MapVermilionGymTrashcanScript
 	signpost 15, 3, $0, MapVermilionGymSignpost16Script
 	signpost 15, 6, $0, MapVermilionGymSignpost16Script
 
@@ -637,3 +464,112 @@ VermilionGym_MapEventHeader: ; 0x19263d
 	person_event SPRITE_GYM_GUY, 19, 11, $6, 0, 0, -1, -1, 8 + PAL_OW_BLUE, 0, 1, VermilionGymGuyScript, -1
 ; 0x1926e3
 
+SampleVermilionTrashCan:
+	ld a, [rSVBK]
+	push af
+	ld a, 3
+	ld [rSVBK], a
+.loop
+	call Random
+	and $3f
+	cp 38
+	jr nc, .loop
+	ld [w3_d800], a
+	pop af
+	ld [rSVBK], a
+	ret
+
+CheckVermilionTrashCan:
+	call GetFacingTileCoord
+	ld hl, .CoordTable
+.loop
+	push hl
+	ld a, [hli]
+	cp d
+	jr nz, .next
+	ld a, [hl]
+	cp e
+	jr z, .got_cans
+.next
+	pop hl
+	ld bc, 4
+	add hl, bc
+	jr .loop
+
+.got_cans
+	pop hl
+	inc hl
+	inc hl
+	ld a, [hli]
+	ld h, [hl]
+	ld l, a
+	ld a, [rSVBK]
+	push af
+	ld a, 3
+	ld [rSVBK], a
+	ld a, [w3_d800]
+	ld b, a
+	pop af
+	ld [rSVBK], a
+.loop2
+	ld a, [hli]
+	cp -1
+	jr z, .nope
+	cp b
+	jr nz, .loop2
+	ld a, 1
+	jr .done
+
+.nope
+	xor a
+.done
+	ld [ScriptVar], a
+	ret
+
+.CoordTable
+	dbbw  1,  7, .Set1_1
+	dbbw  3,  7, .Set2_1
+	dbbw  5,  7, .Set3_1
+	dbbw  7,  7, .Set4_1
+	dbbw  9,  7, .Set5_1
+	dbbw  1,  9, .Set1_2
+	dbbw  3,  9, .Set2_2
+	dbbw  5,  9, .Set3_2
+	dbbw  7,  9, .Set4_2
+	dbbw  9,  9, .Set5_2
+	dbbw  1, 11, .Set1_3
+	dbbw  3, 11, .Set2_3
+	dbbw  5, 11, .Set3_3
+	dbbw  7, 11, .Set4_3
+	dbbw  9, 11, .Set5_3
+
+.Set1_1
+	db 0, 12, 22, -1
+.Set2_1
+	db 0, 1, 14, 23, 26, -1
+.Set3_1
+	db 1, 2, 16, 27, 30, -1
+.Set4_1
+	db 2, 3, 18, 31, 34, -1
+.Set5_1
+	db 3, 20, 35, -1
+.Set1_2
+	db 4, 12, 13, 23, 24, -1
+.Set2_2
+	db 4, 5, 14, 15, 22, 25, 27, 28, -1
+.Set3_2
+	db 5, 6, 16, 17, 26, 29, 31, 32, -1
+.Set4_2
+	db 6, 7, 18, 19, 30, 33, 35, 36, -1
+.Set5_2
+	db 7, 20, 21, 35, 37, -1
+.Set1_3
+	db 8, 13, 25, -1
+.Set2_3
+	db 8, 9, 15, 24, 29, -1
+.Set3_3
+	db 9, 10, 17, 28, 33, -1
+.Set4_3
+	db 10, 11, 19, 32, 37, -1
+.Set5_3
+	db 11, 21, 36, -1
