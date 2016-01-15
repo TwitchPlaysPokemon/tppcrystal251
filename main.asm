@@ -9225,7 +9225,7 @@ Functione17b: ; e17b return stat c for mon species whose base stats are loaded o
 	ld a, b
 	ld d, a ;load b into d
 	push hl ;start of stat xp
-	ld hl, BaseHP ;base hp stored
+	ld hl, BaseHP ;start if base stats
 	dec hl ;go up 1
 	ld b, $0
 	add hl, bc ;go down to base stat c. 1 = hp, 2 = attack, 3 = defence, 4 = speed, 5 = special attack, 6 = special defence
@@ -9254,7 +9254,7 @@ Functione17b: ; e17b return stat c for mon species whose base stats are loaded o
 	srl c ; c is normal again
 	pop hl ;hl = start of stat xp
 	push bc ; c is chosen stat, b is stat xp added
-	ld bc, $000b ;bc = 11
+	ld bc, $000b 
 	add hl, bc ;over DVs
 	pop bc
 	ld a, c
