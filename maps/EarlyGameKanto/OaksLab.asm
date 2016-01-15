@@ -325,8 +325,10 @@ OaksLab_DoRivalBattle:
 OaksLab_RivalFinishesLeaving:
 	applymovement $6, Movement_RivalTakesTwoStepsDown
 	spriteface $0, DOWN
-	applymovement $6, Movement_RivalTakesThreeStepsDown
+	applymovement $6, Movement_RivalTakesFourStepsDown
 	disappear $6
+	playsound SFX_EXIT_BUILDING
+	waitsfx
 	special RestartMapMusic
 	dotrigger $4
 	end
@@ -460,6 +462,8 @@ OakScript_OaksLabRB:
 	playmusic MUSIC_RIVAL_AFTER_RB
 	applymovement $6, Movement_RivalTakesSixStepsDown
 	disappear $6
+	playsound SFX_EXIT_BUILDING
+	waitsfx
 	special RestartMapMusic
 	end
 
@@ -568,6 +572,8 @@ Movement_RivalTakesOneStepLeftOneStepDown:
 	slow_step_down
 	step_end
 
+Movement_RivalTakesSevenStepsDown:
+	slow_step_down
 Movement_RivalTakesSixStepsDown:
 	slow_step_down
 	slow_step_down
