@@ -70,18 +70,12 @@ ViridianTrainerSchoolRBBlackboardScript:
 ; 0x68af2
 
 .Strings
-	db "PSN"
-	done
-	db "PAR"
-	done
-	db "SLP"
-	done
-	db "BRN"
-	done
-	db "FRZ"
-	done
-	db "QUIT"
-	done
+	db "PSN@"
+	db "PAR@"
+	db "SLP@"
+	db "BRN@"
+	db "FRZ@"
+	db "QUIT@"
 ; 0x68b0b
 
 ViridianTrainerSchoolRB_NotebookScript
