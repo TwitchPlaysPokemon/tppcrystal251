@@ -8175,17 +8175,16 @@ BattleCommand27: ; 36cb2
 ; 36d1d
 .ThirdRecoil ;1/3 of HP instead of 1/4
 	ld a, [CurDamage]
-	ld [$ffb6], a
+	ld [hDividend], a
 	ld a, [CurDamage + 1]
-	ld [$ffb7], a
+	ld [hDividend + 1], a
 	ld a, 3
 	ld [hDivisor], a
-	ld a, 2
-	ld b, a
+	ld b, 2
 	call Divide
-	ld a ,[$ffb7]
+	ld a, [hQuotient + 2]
 	ld c, a
-	ld a ,[$ffb6]
+	ld a, [hQuotient + 1]
 	ld b, a
 	or c
 	jr z, .asm_36cd8
