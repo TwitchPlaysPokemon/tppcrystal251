@@ -7,11 +7,9 @@ VermilionPort_MapScriptHeader: ; 0x74d90
 	dw UnknownScript_0x74d9e, $0000
 
 	; callback count
-	db 1
+	db 0
 
 	; callbacks
-
-	dbw 5, UnknownScript_0x74da2
 ; 0x74d9d
 
 UnknownScript_0x74d9d: ; 0x74d9d
@@ -22,11 +20,6 @@ UnknownScript_0x74d9e: ; 0x74d9e
 	priorityjump UnknownScript_0x74da6
 	end
 ; 0x74da2
-
-UnknownScript_0x74da2: ; 0x74da2
-	setflag ENGINE_FLYPOINT_VERMILION
-	return
-; 0x74da6
 
 UnknownScript_0x74da6: ; 0x74da6
 	applymovement $0, MovementData_0x74ef3

@@ -59,6 +59,7 @@ VermilionCitySimonScript1:
 	dotrigger $1
 	setevent EVENT_BEAT_SIMON_4
 	blackoutmod GROUP_VERMILION_CITY, MAP_VERMILION_CITY
+	setflag ENGINE_FLYPOINT_VERMILION
 	end
 
 VermilionCitySimonMovement1:
