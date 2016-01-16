@@ -1936,7 +1936,7 @@ MistyGroup:
 	db 70, GOLDUCK
 		db SURF
 		db DISABLE
-		db NONE
+		db CONFUSION
 		db PSYCHIC_M
 
 	db 70, QUAGSIRE
@@ -1968,6 +1968,69 @@ MistyGroup:
 		db HYDRO_PUMP
 		db SPIKE_CANNON
 		db SCREECH
+
+	db $ff ; end
+	; MISTY (1)
+	db "MISTY@"
+	db (1 << TRAINERTYPE_MOVES)
+
+	; party
+
+	db 100, GOLDUCK
+		db SURF
+		db DISABLE
+		db CONFUSION
+		db PSYCHIC_M
+
+	db 100, QUAGSIRE
+		db SURF
+		db AMNESIA
+		db EARTHQUAKE
+		db RAIN_DANCE
+
+	db 100, LAPRAS
+		db SURF
+		db PERISH_SONG
+		db BLIZZARD
+		db RAIN_DANCE
+
+	db 100, STARMIE
+		db SURF
+		db CONFUSE_RAY
+		db RECOVER
+		db ICE_BEAM
+
+	db 100, KINGDRA
+		db OCTAZOOKA
+		db DRAGONBREATH
+		db TWISTER
+		db SMOKESCREEN
+
+	db 100, QWILFISH
+		db POISON_STING
+		db HYDRO_PUMP
+		db SPIKE_CANNON
+		db SCREECH
+
+	db $ff ; end
+
+	; MISTY (1)
+	db "MISTY@"
+	db (1 << TRAINERTYPE_MOVES)
+
+	; party
+
+	db 18, STARYU
+		db SWIFT
+		db RAIN_DANCE
+		db RAPID_SPIN
+		db BUBBLEBEAM
+
+	db 22, STARMIE
+		db BUBBLEBEAM
+		db SWIFT
+		db HARDEN
+		db RAIN_DANCE
 
 	db $ff ; end
 
