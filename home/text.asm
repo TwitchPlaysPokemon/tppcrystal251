@@ -378,7 +378,7 @@ Char3F:: ; 121b
 	cp RIVAL2
 	jr z, .rival
 
-	ld de, OTName
+	ld de, OTClassName
 	call PlaceString
 	ld h, b
 	ld l, c
@@ -395,7 +395,7 @@ Char3F:: ; 121b
 	jr Function126a
 
 .linkbattle
-	ld de, OTName
+	ld de, OTClassName
 	jr Function126a
 
 
