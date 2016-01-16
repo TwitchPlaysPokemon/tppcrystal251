@@ -3329,7 +3329,7 @@ Function3d4c3: ; 3d4c3
 
 Function3d4e1: ; 3d4e1
 	call Function3d714
-	jr nc, Function3d517
+	jr nc, Function3d517 ;jump if set mode
 	call Function3d557
 	call Function3d533
 	jr c, .asm_3d4f1
@@ -3354,12 +3354,12 @@ Function3d4e1: ; 3d4e1
 ; 3d517
 
 Function3d517: ; 3d517
-	call Function3d557
+	call Function3d557 ;reset battle vars
 	call Function3d533
 	jr c, .asm_3d522
 	call Function3d599
 .asm_3d522
-	call Function3d6ca
+	call Function3d6ca ;load mon to switch to
 	ld a, 1
 	ld [wEnemyIsSwitching], a
 	call Function3d7a0
@@ -3622,16 +3622,16 @@ Function3d6ca: ; 3d6ca
 	ld a, b
 	ld [CurPartyMon], a
 	ld hl, OTPartyMon1Level
-	call GetPartyLocation
+	call GetPartyLocation ;hl = selected mon level
 	ld a, [hl]
-	ld [CurPartyLevel], a
+	ld [CurPartyLevel], a ;set level
 	ld a, [CurPartyMon]
 	inc a
 	ld hl, OTPartyCount
 	ld c, a
 	ld b, 0
 	add hl, bc
-	ld a, [hl]
+	ld a, [hl] ;a = mon species
 	ld [TempEnemyMonSpecies], a
 	ld [CurPartySpecies], a
 	call LoadEnemyMon
@@ -4187,7 +4187,7 @@ Function3dabd: ; 3dabd
 	ld de, EnemyStats
 	ld bc, 2 * 5
 	call CopyBytes
-	call Function3ec30
+	call Function3ec30 ;apply burn and prz drops
 	ld hl, BaseType1
 	ld de, EnemyMonType1
 	ld a, [hli]
@@ -4204,6 +4204,8 @@ Function3dabd: ; 3dabd
 	inc de
 	dec b
 	jr nz, .asm_3db25
+	ld a, [BaseExp]
+	ld [EnemyMonBaseExp], a ;load in xp
 	ld a, [CurPartyMon]
 	ld [CurOTMon], a
 	ret
@@ -6278,8 +6280,12 @@ LoadEnemyMon: ; 3e8eb
 	jp z, Function3dabd
 	
 .continueloading
-	ld a, [InBattleTowerBattle] ; ????
+	ld a, [InBattleTowerBattle] ; if in battle tower, copy outright
 	bit 0, a
+	jp nz, Function3dabd
+
+	ld a, [IsInBattle] ;experiment 
+	dec a
 	jp nz, Function3dabd
 
 ; Make sure everything knows what species we're working with
@@ -6539,7 +6545,7 @@ LoadEnemyMon: ; 3e8eb
 ; Finally done with DVs
 	
 .Happiness
-; Set happiness
+; Set happiness ;bug does not consider happiness set elsewhere
 	ld a, BASE_HAPPINESS
 	ld [EnemyMonHappiness], a
 ; Set level
@@ -7573,7 +7579,7 @@ Function3ee3b: ; 3ee3b
 	ld a, [CurPartyMon]
 	ld hl, PartyMonNicknames
 	call GetNick
-	ld hl, UnknownText_0x3f11b
+	ld hl, UnknownText_0x3f11b ;xp text
 	call BattleTextBox
 	ld a, [StringBuffer2 + 1]
 	ld [$ffb6], a
