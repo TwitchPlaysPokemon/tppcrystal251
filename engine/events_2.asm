@@ -143,9 +143,6 @@ RockSmashBattleScript: ; 97cf9
 ; 97cfd
 
 Function97cfd:: ; 97cfd if encounters are on(?) , is on encounter enabled tile (or wd19a is 4 or 7) and is not on ice tile: scf. else and a
-	ld hl, StatusFlags
-	bit 5, [hl] ; if bit 5 is on, ret
-	jr nz, .asm_97d21
 	ld a, [wd19a] ;load ???
 	cp $4 
 	jr z, .asm_97d17

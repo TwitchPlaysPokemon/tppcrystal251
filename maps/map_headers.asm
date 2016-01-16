@@ -36,6 +36,7 @@ MapGroupPointers:: ; 0x94000
 	dw MapGroup33
 	dw MapGroup34
 	dw MapGroup35
+	dw MapGroup36
 
 MapGroup1:
 	map_header OlivinePokeCenter1F, $7, 3, OLIVINE_CITY, MUSIC_POKEMON_CENTER, 0, 1, 1
@@ -462,7 +463,7 @@ MapGroup26:
 	map_header Route31VioletGate, $8, 6, ROUTE_31, MUSIC_ROUTE_30, 0, 1, 1
 
 MapGroup27:
-	map_header ViridianForest, $25, 2, VIRIDIAN_FOREST, MUSIC_ROUTE_2, 0, 2, 0
+	map_header ViridianForest, $25, 4, VIRIDIAN_FOREST, MUSIC_ROUTE_2, 0, 2, 0
 	map_header ViridianForestNorth, $26, 6, VIRIDIAN_FOREST, MUSIC_ROUTE_2, 0, 1, 1
 	map_header ViridianForestSouth, $26, 6, VIRIDIAN_FOREST, MUSIC_ROUTE_2, 0, 1, 1
 	
@@ -560,11 +561,14 @@ MapGroup33:
 ; vermilion city rb
 
 MapGroup34:
-; ss anne rb
+; saffron area rb
 
 MapGroup35:
+; ss anne rb
+
+MapGroup36:
 ; egk dungeons
-	map_header ViridianForestRB, $25, 2, VIRIDIAN_FOREST, MUSIC_ROUTE_2, 0, 2, 0
+	map_header ViridianForestRB, $25, 4, VIRIDIAN_FOREST, MUSIC_ROUTE_2, 0, 2, 0
 	map_header ViridianForestNorthRB, $26, 6, VIRIDIAN_FOREST, MUSIC_ROUTE_2, 0, 1, 1
 	map_header ViridianForestSouthRB, $26, 6, VIRIDIAN_FOREST, MUSIC_ROUTE_2, 0, 1, 1
 	map_header DiglettsCaveRB, $18, 4, DIGLETTS_CAVE, MUSIC_MT_MOON, 1, 2, 1

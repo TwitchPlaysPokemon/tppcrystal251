@@ -663,5 +663,5 @@
 	map_header_2 Route2GateRB, ROUTE_2_GATE_RB, $0, NONE
 	map_header_2 Route2NuggetSpeechHouseRB, ROUTE_2_NUGGET_SPEECH_HOUSE_RB, $0, NONE
 	map_header_2 ViridianForestRB, VIRIDIAN_FOREST_RB, $2, NONE
-	map_header_2 ViridianForestNorthRB, VIRIDIAN_FOREST_NORTH_RB, $0, NONE
-	map_header_2 ViridianForestSouthRB, VIRIDIAN_FOREST_SOUTH_RB, $0, NONE
+	map_header_2 ViridianForestNorthRB, VIRIDIAN_FOREST_NORTH_RB, $a, NONE
+	map_header_2 ViridianForestSouthRB, VIRIDIAN_FOREST_SOUTH_RB, $a, NONE

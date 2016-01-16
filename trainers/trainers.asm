@@ -5124,6 +5124,31 @@ BugCatcherGroup:
 
 	db $ff ; end
 
+	db "RICK@"
+	db 0
+	db 6, WEEDLE
+	db 6, WEEDLE
+	db $ff
+
+	db "DOUG@"
+	db 0
+	db 7, WEEDLE
+	db 7, KAKUNA
+	db 7, WEEDLE
+	db $ff
+
+	db "CHARLIE@"
+	db 0
+	db 7, CATERPIE
+	db 7, METAPOD
+	db 7, CATERPIE
+	db $ff
+
+	db "SAMMY@"
+	db 0
+	db 9, WEEDLE
+	db $ff
+
 ; ================
 ; ================================
 
