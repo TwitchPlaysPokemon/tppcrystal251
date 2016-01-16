@@ -2031,7 +2031,7 @@ PlayerState:: ; d95d
 	ds 1
 
 wd95e:: ds 2
-wd960:: ds 2
+wTradeFlags:: flag_array 16
 MooMooBerries:: ; d962
 	ds 1 ; how many berries fed to MooMoo
 UndergroundSwitchPositions:: ; d963

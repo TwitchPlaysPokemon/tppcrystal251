@@ -6,19 +6,33 @@ ViridianForestNorthRB_MapScriptHeader: ; 0x1ac2ba
 	db 0
 ; 0x1ac2bc
 
-OfficerScript_ViridianNorthRB: ; 0x197634
-	jumptextfaceplayer Office_ViridianNorthRB_Text
-; 0x197637
+ViridianForestNorthRB_CooltrainerMScript:
+	jumptextfaceplayer _ViridianForestExitText1
 
-Office_ViridianNorthRB_Text: ; 0x19763a
-	text "VIRIDIAN FOREST"
-	line "has many trees"
-	cont "that form a maze."
-	
-	para "People get lost"
-	line "easily here."
+ViridianForestNorthRB_GrampsScript:
+	jumptextfaceplayer _ViridianForestExitText2
+
+_ViridianForestExitText1: ; 8a6fd (22:66fd)
+	text "Many #MON live"
+	line "only in forests "
+	cont "and caves."
+
+	para "You need to look"
+	line "everywhere to get"
+	cont "different kinds!"
 	done
-; 0x197661
+
+_ViridianForestExitText2: ; 8a75d (22:675d)
+	text "Have you noticed"
+	line "the bushes on the"
+	cont "roadside?"
+
+	para "They can be cut"
+	line "down by a special"
+	cont "#MON move."
+	done
+
+
 
 ViridianForestNorthRB_MapEventHeader: ; 0x1ac4af 
 	; filler
@@ -37,7 +51,8 @@ ViridianForestNorthRB_MapEventHeader: ; 0x1ac4af
 	db 0
 
 	; people-events
-	db 1
-	person_event SPRITE_OFFICER, 7, 11, $8, 0, 1, -1, -1, 8 + PAL_OW_RED, 0, 0, OfficerScript_ViridianNorthRB, -1
+	db 2
+	person_event SPRITE_COOLTRAINER_M, 6, 7, $3, 0, 0, -1, -1, 8 + PAL_OW_RED, 0, 0, ViridianForestNorthRB_CooltrainerMScript, -1
+	person_event SPRITE_GRAMPS, 9, 6, $3, 0, 0, -1, -1, 8 + PAL_OW_RED, 0, 0, ViridianForestNorthRB_GrampsScript, -1
 ; 0x1ac554
 
