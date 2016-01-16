@@ -5137,7 +5137,7 @@ BugCatcherGroup:
 	db 7, WEEDLE
 	db $ff
 
-	db "CHARLIE@"
+	db "CHUCK@"
 	db 0
 	db 7, CATERPIE
 	db 7, METAPOD

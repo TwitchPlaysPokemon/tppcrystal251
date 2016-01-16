@@ -35,12 +35,12 @@ Trainer_BugCatcherDoug:
 	closetext
 	end
 
-Trainer_BugCatcherCharlie:
-	trainer EVENT_BUG_CATCHER_CHARLIE, BUG_CATCHER, CHARLIE_RB, BugCatcherCharlieSeenText, BugCatcherCharlieBeatenText, 0, .Script
+Trainer_BugCatcherChuck:
+	trainer EVENT_BUG_CATCHER_CHUCK, BUG_CATCHER, CHUCK_RB, BugCatcherChuckSeenText, BugCatcherChuckBeatenText, 0, .Script
 .Script
 	talkaftercancel
 	loadfont
-	writetext BugCatcherCharlieAfterText
+	writetext BugCatcherChuckAfterText
 	waitbutton
 	closetext
 	end
@@ -131,18 +131,18 @@ BugCatcherDougAfterText: ; 8040b (20:440b)
 	cont "stronger ones!"
 	done
 
-BugCatcherCharlieSeenText:
+BugCatcherChuckSeenText:
 	text "Bug #MON are"
 	line "great! They get"
 	cont "strong quickly!"
 	done
 
-BugCatcherCharlieBeatenText:
+BugCatcherChuckBeatenText:
 	text "Your #MON are"
 	line "even stronger!"
 	done
 
-BugCatcherCharlieAfterText:
+BugCatcherChuckAfterText:
 	text "If your #MON"
 	line "evolve too early,"
 
@@ -158,7 +158,7 @@ BugCatcherSammySeenText: ; 80438 (20:4438)
 
 BugCatcherSammyBeatenText: ; 80458 (20:4458)
 	text "I give! You're good"
-	cont "at this!"
+	line "at this!"
 	done
 
 BugCatcherSammyAfterText: ; 80475 (20:4475)
@@ -252,17 +252,17 @@ ViridianForestRB_MapEventHeader: ; 0x1ac4af
 	signpost 17, 26, $0, MapViridianForestRBSignpost3Script
 	signpost 24,  4, $0, MapViridianForestRBSignpost4Script
 	signpost  3,  2, $0, MapViridianForestRBSignpost5Script
-	signpost 42, 16, $6, MapViridianForestRBHiddenAntidote
-	signpost 18,  1, $6, MapViridianForestRBHiddenPotion
+	signpost 42, 16, $7, MapViridianForestRBHiddenAntidote
+	signpost 18,  1, $7, MapViridianForestRBHiddenPotion
 
 	; people-events
 	db 10
 	person_event SPRITE_BUG_CATCHER, 47, 20, $3, 0, 0, -1, -1, 0, 0, 0, ViridianForestRBCameHereWithFriendsScript, -1 ; I came here with friends
 	person_event SPRITE_BUG_CATCHER, 44, 31, $2, 1, 1, -1, -1, 0, 0, 0, ViridianForestRBRanOutOfBallsScript, -1 ; You should carry extra balls
 	person_event SPRITE_BUG_CATCHER, 37, 34, $8, 0, 0, -1, -1, 0, 2, 4, Trainer_BugCatcherRick, -1 ; Bug Catcher Rick - Caterpie, Weedle
-	person_event SPRITE_BUG_CATCHER,  0,  0, $8, 0, 0, -1, -1, 0, 2, 4, Trainer_BugCatcherDoug, -1 ; Bug Catcher Doug - Weedle, Kakuna, Weedle
-	person_event SPRITE_BUG_CATCHER,  0,  0, $3, 0, 0, -1, -1, 0, 2, 0, Trainer_BugCatcherCharlie, -1 ; Bug Catcher Charlie - Metapod, Caterpie, Metapod
-	person_event SPRITE_BUG_CATCHER,  0,  0, $8, 0, 0, -1, -1, 0, 2, 1, Trainer_BugCatcherSammy, -1 ; Bug Catcher Sammy - Weedle
+	person_event SPRITE_BUG_CATCHER, 23, 34, $8, 0, 0, -1, -1, 0, 2, 4, Trainer_BugCatcherDoug, -1 ; Bug Catcher Doug - Weedle, Kakuna, Weedle
+	person_event SPRITE_BUG_CATCHER,  6, 21, $3, 0, 0, -1, -1, 0, 2, 0, Trainer_BugCatcherChuck, -1 ; Bug Catcher Chuck - Metapod, Caterpie, Metapod
+	person_event SPRITE_BUG_CATCHER, 22,  6, $8, 0, 0, -1, -1, 0, 2, 1, Trainer_BugCatcherSammy, -1 ; Bug Catcher Sammy - Weedle
 	person_event SPRITE_POKE_BALL,   15, 29, $1, 0, 0, -1, -1, 0, 1, 0, MapViridianForestRBAntidote, EVENT_VIRIDIAN_FOREST_RB_ANTIDOTE
 	person_event SPRITE_POKE_BALL,   33, 16, $1, 0, 0, -1, -1, 0, 1, 0, MapViridianForestRBPotion, EVENT_VIRIDIAN_FOREST_RB_POTION
 	person_event SPRITE_POKE_BALL,   35,  5, $1, 0, 0, -1, -1, 0, 1, 0, MapViridianForestRBPokeBall, EVENT_VIRIDIAN_FOREST_RB_POKE_BALL
