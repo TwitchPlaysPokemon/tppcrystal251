@@ -98,6 +98,7 @@ Route3_BlockData: ; 0xa97c1
 ; 0xa98cf
 
 PewterCity_BlockData: ; 0xa98cf
+PewterCityRB_BlockData: ; 0xa98cf
 	INCBIN "maps/PewterCity.blk"
 ; 0xa9a37
 
