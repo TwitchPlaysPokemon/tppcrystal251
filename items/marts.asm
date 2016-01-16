@@ -155,7 +155,7 @@ Mart8: ; 16134
 ; 1613b
 
 Mart9: ; 1613b
-	db 6 ; # items
+	db 5 ; # items
 	db TM_ROCK_SMASH
 	db TM_THUNDER_WAVE
 	db TM_STRING_SHOT
