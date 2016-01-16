@@ -51,3 +51,5 @@
 	enum pcscript
 	enum gamecornercoinvendor
 	enum happinesschecknpc
+	enum leaguestatues1
+	enum leaguestatues2

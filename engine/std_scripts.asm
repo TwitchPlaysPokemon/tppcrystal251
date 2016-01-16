@@ -51,6 +51,8 @@ StdScripts:: ; bc000
 	dba PCScript ; $31
 	dba GameCornerCoinVendorScript ; $32
 	dba HappinessCheckScript ; $33
+	dba IndigoPlateauStatue1Script ; $34
+	dba IndigoPlateauStatue2Script ; $35
 ; bc09c
 
 PokeCenterNurseScript:
@@ -2570,3 +2572,17 @@ MovementData_0xbcea1: ; bcea1
 	step_end
 ; bcea5
 
+
+IndigoPlateauStatue1Script:
+	loadfont
+	farwritetext _IndigoPlateauStatuesText1
+	waitbutton
+	closetext
+	end
+
+IndigoPlateauStatue2Script:
+	loadfont
+	farwritetext _IndigoPlateauStatuesText2
+	waitbutton
+	closetext
+	end

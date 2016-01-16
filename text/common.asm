@@ -1211,3 +1211,16 @@ UnknownText_0x1b201f: ; 0x1b201f
 	done
 ; 0x1b2042
 
+_IndigoPlateauStatuesText1: ; 89557 (22:5557)
+	text "INDIGO PLATEAU"
+	para "The ultimate goal"
+	line "of trainers!"
+	cont "#MON LEAGUE HQ"
+	done
+
+_IndigoPlateauStatuesText2: ; 89596 (22:5596)
+	text "INDIGO PLATEAU"
+	para "The highest"
+	line "#MON authority"
+	cont "#MON LEAGUE HQ"
+	done

@@ -52,19 +52,8 @@ Route10South_BlockData: ; 0xa8d9c
 	INCBIN "maps/Route10South.blk"
 ; 0xa8df6
 
-CinnabarPokeCenter2FBeta_BlockData: ; 0xa8df6
-CeruleanPokeCenter2FBeta_BlockData:
-Route10PokeCenter2FBeta_BlockData:
-VermilionPokeCenter2FBeta_BlockData:
-PewterPokeCEnter2FBeta_BlockData:
-FuchsiaPokeCenter2FBeta_BlockData:
-LavenderPokeCenter2FBeta_BlockData:
 PokeCenter2F_BlockData:
-CeladonPokeCenter2FBeta_BlockData:
-ViridianPokeCenter2FBeta_BlockData:
-SaffronPokeCenter2FBeta_BlockData:
-	INCBIN "maps/CinnabarPokeCenter2FBeta.blk"
-; 0xa8e16
+	INCBIN "maps/PokeCenter2F.blk"
 
 Route41_BlockData: ; 0xa8e16
 	INCBIN "maps/Route41.blk"
@@ -151,7 +140,6 @@ Route38_BlockData: ; 0xaa759
 
 
 OlivineVoltorbHouse_BlockData: ; 0xaa867
-OlivineHouseBeta_BlockData:
 OlivinePunishmentSpeechHouse_BlockData:
 OlivineGoodRodHouse_BlockData:
 Route39Farmhouse_BlockData:
@@ -192,6 +180,7 @@ PokeSeersHouse_BlockData:
 ViridianNicknameSpeechHouse_BlockData:
 ViridianNicknameSpeechHouseRB_BlockData:
 Route2NuggetSpeechHouse_BlockData:
+Route2NuggetSpeechHouseRB_BlockData:
 KrissNeighborsHouse_BlockData:
 Route26HealSpeechHouse_BlockData:
 Route26DayofWeekSiblingsHouse_BlockData:
@@ -205,7 +194,6 @@ Route30BerrySpeechHouse_BlockData:
 	INCBIN "maps/OlivineVoltorbHouse.blk"
 ; 0xaa877
 
-SafariZoneFuchsiaGateBeta_BlockData: ; 0xaa877
 Route19FuchsiaGate_BlockData:
 Route43MahoganyGate_BlockData:
 Route43Gate_BlockData:
@@ -215,9 +203,10 @@ Route34IlexForestGate_BlockData:
 Route6SaffronGate_BlockData:
 Route40BattleTowerGate_BlockData:
 Route2Gate_BlockData:
+Route2GateRB_BlockData:
 Route2946Gate_BlockData:
 Route5SaffronCityGate_BlockData:
-	INCBIN "maps/SafariZoneFuchsiaGateBeta.blk"
+	INCBIN "maps/Route40BattleTowerGate.blk"
 ; 0xaa88b
 
 CinnabarIsland_BlockData: ; 0xaaa4d

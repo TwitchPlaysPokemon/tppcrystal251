@@ -313,6 +313,10 @@
 	const ARNIE4
 	const ARNIE5
 	const WAYNE
+	const RICK_RB
+	const DOUG_RB
+	const CHUCK_RB
+	const SAMMY_RB
 
 	trainerclass FISHER ; 25
 	const JUSTIN

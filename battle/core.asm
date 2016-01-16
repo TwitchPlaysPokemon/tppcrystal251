@@ -3112,8 +3112,11 @@ LostBattle: ; 3d38e
 	jr nz, .asm_3d3bd
 
 	ld a, [BattleType]
+	cp BATTLETYPE_RIVAL_RB
+	jr z, .LossText
 	cp BATTLETYPE_CANLOSE
 	jr nz, .asm_3d3e3
+.LossText
 
 ; Remove the enemy from the screen.
 	hlcoord 0, 0

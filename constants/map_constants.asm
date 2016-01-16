@@ -7,7 +7,6 @@ MAP_N_A   EQU -1
 	mapgroup OLIVINE_POKECENTER_1F, 4, 5
 	mapgroup OLIVINE_GYM, 8, 5
 	mapgroup OLIVINE_VOLTORB_HOUSE, 4, 4
-	mapgroup OLIVINE_HOUSE_BETA, 4, 4
 	mapgroup OLIVINE_PUNISHMENT_SPEECH_HOUSE, 4, 4
 	mapgroup OLIVINE_GOOD_ROD_HOUSE, 4, 4
 	mapgroup OLIVINE_CAFE, 4, 4
@@ -116,8 +115,6 @@ MAP_N_A   EQU -1
 	mapgroup UNDERGROUND, 14, 3
 	mapgroup ROCK_TUNNEL_1F, 18, 15
 	mapgroup ROCK_TUNNEL_B1F, 18, 15
-	mapgroup SAFARI_ZONE_FUCHSIA_GATE_BETA, 4, 5
-	mapgroup SAFARI_ZONE_BETA, 18, 10
 	mapgroup VICTORY_ROAD, 36, 10
 
 	newgroup ; Ecruteak City
@@ -145,7 +142,6 @@ MAP_N_A   EQU -1
 
 	newgroup ; Cinnabar Island
 	mapgroup CINNABAR_POKECENTER_1F, 4, 5
-	mapgroup CINNABAR_POKECENTER_2F_BETA, 4, 8
 	mapgroup ROUTE_19___FUCHSIA_GATE, 4, 5
 	mapgroup SEAFOAM_GYM, 4, 5
 	mapgroup ROUTE_19, 18, 10
@@ -158,11 +154,9 @@ MAP_N_A   EQU -1
 	mapgroup CERULEAN_POLICE_STATION, 4, 4
 	mapgroup CERULEAN_TRADE_SPEECH_HOUSE, 4, 4
 	mapgroup CERULEAN_POKECENTER_1F, 4, 5
-	mapgroup CERULEAN_POKECENTER_2F_BETA, 4, 8
 	mapgroup CERULEAN_GYM, 8, 5
 	mapgroup CERULEAN_MART, 4, 6
 	mapgroup ROUTE_10_POKECENTER_1F, 4, 5
-	mapgroup ROUTE_10_POKECENTER_2F_BETA, 4, 8
 	mapgroup POWER_PLANT, 9, 10
 	mapgroup BILLS_HOUSE, 4, 4
 	mapgroup ROUTE_4, 9, 20
@@ -240,7 +234,6 @@ MAP_N_A   EQU -1
 	mapgroup VERMILION_CITY, 18, 20
 	mapgroup VERMILION_HOUSE_FISHING_SPEECH_HOUSE, 4, 4
 	mapgroup VERMILION_POKECENTER_1F, 4, 5
-	mapgroup VERMILION_POKECENTER_2F_BETA, 4, 8
 	mapgroup POKEMON_FAN_CLUB, 4, 5
 	mapgroup VERMILION_MAGNET_TRAIN_SPEECH_HOUSE, 4, 4
 	mapgroup VERMILION_MART, 4, 6
@@ -264,7 +257,6 @@ MAP_N_A   EQU -1
 	mapgroup PEWTER_GYM, 7, 5
 	mapgroup PEWTER_MART, 4, 6
 	mapgroup PEWTER_POKECENTER_1F, 4, 5
-	mapgroup PEWTER_POKECENTER_2F_BETA, 4, 8
 	mapgroup PEWTER_SNOOZE_SPEECH_HOUSE, 4, 4
 
 	newgroup ; Ports and Ship
@@ -302,7 +294,6 @@ MAP_N_A   EQU -1
 	mapgroup FUCHSIA_GYM, 9, 5
 	mapgroup FUCHSIA_BILL_SPEECH_HOUSE, 4, 4
 	mapgroup FUCHSIA_POKECENTER_1F, 4, 5
-	mapgroup FUCHSIA_POKECENTER_2F_BETA, 4, 8
 	mapgroup SAFARI_ZONE_WARDENS_HOME, 4, 5
 	mapgroup ROUTE_15_FUCHSIA_GATE, 4, 5
 
@@ -312,7 +303,6 @@ MAP_N_A   EQU -1
 	mapgroup ROUTE_10_SOUTH, 9, 10
 	mapgroup LAVENDER_TOWN, 9, 10
 	mapgroup LAVENDER_POKECENTER_1F, 4, 5
-	mapgroup LAVENDER_POKECENTER_2F_BETA, 4, 8
 	mapgroup MR_FUJIS_HOUSE, 4, 5
 	mapgroup LAVENDER_TOWN_SPEECH_HOUSE, 4, 4
 	mapgroup LAVENDER_NAME_RATER, 4, 4
@@ -354,7 +344,6 @@ MAP_N_A   EQU -1
 	mapgroup CELADON_MANSION_ROOF, 5, 4
 	mapgroup CELADON_MANSION_ROOF_HOUSE, 4, 4
 	mapgroup CELADON_POKECENTER_1F, 4, 5
-	mapgroup CELADON_POKECENTER_2F_BETA, 4, 8
 	mapgroup CELADON_GAME_CORNER, 7, 10
 	mapgroup CELADON_GAME_CORNER_PRIZE_ROOM, 3, 3
 	mapgroup CELADON_GYM, 9, 5
@@ -392,7 +381,6 @@ MAP_N_A   EQU -1
 	mapgroup TRAINER_HOUSE_B1F, 8, 5
 	mapgroup VIRIDIAN_MART, 4, 6
 	mapgroup VIRIDIAN_POKECENTER_1F, 4, 5
-	mapgroup VIRIDIAN_POKECENTER_2F_BETA, 4, 8
 	mapgroup ROUTE_2_NUGGET_SPEECH_HOUSE, 4, 4
 	mapgroup ROUTE_2_GATE, 4, 5
 	mapgroup VICTORY_ROAD_GATE, 9, 10
@@ -419,7 +407,6 @@ MAP_N_A   EQU -1
 	mapgroup SAFFRON_GYM, 9, 10
 	mapgroup SAFFRON_MART, 4, 6
 	mapgroup SAFFRON_POKECENTER_1F, 4, 5
-	mapgroup SAFFRON_POKECENTER_2F_BETA, 4, 8
 	mapgroup MR_PSYCHICS_HOUSE, 4, 4
 	mapgroup SAFFRON_TRAIN_STATION, 9, 10
 	mapgroup SILPH_CO_1F, 4, 8
@@ -502,6 +489,8 @@ MAP_N_A   EQU -1
 	mapgroup VIRIDIAN_TRAINER_SCHOOL_RB, 4, 4
 	mapgroup VICTORY_ROAD_GATE_RB, 4, 5
 	mapgroup ROUTE_23_RB, 20, 10
+	mapgroup ROUTE_2_NUGGET_SPEECH_HOUSE_RB, 4, 4
+	mapgroup ROUTE_2_GATE_RB, 4, 5
 
 	newgroup ; Pewter City RB
 	mapgroup ROUTE_3_RB, 9, 30
@@ -510,7 +499,6 @@ MAP_N_A   EQU -1
 	mapgroup PEWTER_GYM_RB, 7, 5
 	mapgroup PEWTER_MART_RB, 4, 6
 	mapgroup PEWTER_POKECENTER_1F_RB, 4, 5
-	mapgroup PEWTER_POKECENTER_2F_BETA_RB, 4, 8
 	mapgroup PEWTER_SNOOZE_SPEECH_HOUSE_RB, 4, 4
 
 	newgroup ; Cerulean City RB
@@ -518,7 +506,6 @@ MAP_N_A   EQU -1
 	mapgroup CERULEAN_POLICE_STATION_RB, 4, 4
 	mapgroup CERULEAN_TRADE_SPEECH_HOUSE_RB, 4, 4
 	mapgroup CERULEAN_POKECENTER_1F_RB, 4, 5
-	mapgroup CERULEAN_POKECENTER_2F_BETA_RB, 4, 8
 	mapgroup CERULEAN_GYM_RB, 8, 5
 	mapgroup CERULEAN_MART_RB, 4, 6
 	mapgroup POWER_PLANT_RB, 9, 10
@@ -535,7 +522,6 @@ MAP_N_A   EQU -1
 	mapgroup VERMILION_CITY_RB, 18, 20
 	mapgroup VERMILION_HOUSE_FISHING_SPEECH_HOUSE_RB, 4, 4
 	mapgroup VERMILION_POKECENTER_1F_RB, 4, 5
-	mapgroup VERMILION_POKECENTER_2F_BETA_RB, 4, 8
 	mapgroup POKEMON_FAN_CLUB_RB, 4, 5
 	mapgroup VERMILION_MAGNET_TRAIN_SPEECH_HOUSE_RB, 4, 4
 	mapgroup VERMILION_MART_RB, 4, 6
@@ -556,13 +542,13 @@ MAP_N_A   EQU -1
 
 	newgroup ; EGK dungeons etc
 	mapgroup VIRIDIAN_FOREST_RB, $18, $11
-	mapgroup VIRIDIAN_FOREST_GATE_NORTH_RB, $04, $05
-	mapgroup VIRIDIAN_FOREST_GATE_SOUTH_RB, $04, $05
+	mapgroup VIRIDIAN_FOREST_NORTH_RB, $04, $05
+	mapgroup VIRIDIAN_FOREST_SOUTH_RB, $04, $05
+	mapgroup DIGLETTS_CAVE_RB, 18, 10
 	mapgroup MTMOON1_RB, 18, 20
 	mapgroup MTMOON2_RB, 14, 14
 	mapgroup MTMOON3_RB, 18, 20
 	mapgroup MOUNT_MOON_POKECENTER_1F_RB, 4, 5
-	mapgroup DIGLETTS_CAVE_RB, 18, 10
 
 ; elevator floors
 	const_def

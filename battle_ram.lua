@@ -34,14 +34,12 @@ BattleMonSpclDef = 0xc648 -- 2 bytes
 BattleMonType1 = 0xc64a -- 1 byte
 BattleMonType2 = 0xc64b -- 1 byte
 
-
 wWildMon = 0xc64e -- 1 byte
 wEnemyTrainerItem1 = 0xc650 -- 1 byte
 wEnemyTrainerItem2 = 0xc651 -- 1 byte
 wEnemyTrainerBaseReward = 0xc652 -- 1 byte
 wEnemyTrainerAIFlags = 0xc653 -- 3 bytes
 OTName = 0xc656 -- 11 bytes
-
 
 CurOTMon = 0xc663 -- 1 byte
 
@@ -165,7 +163,6 @@ PlayerAtkLevel = 0xc6cc -- 1 byte
 PlayerDefLevel = 0xc6cd -- 1 byte
 PlayerSpdLevel = 0xc6ce -- 1 byte
 PlayerSAtkLevel = 0xc6cf -- 1 byte
-
 PlayerSDefLevel = 0xc6d0 -- 1 byte
 PlayerAccLevel = 0xc6d1 -- 1 byte
 PlayerEvaLevel = 0xc6d2 -- 1 byte
@@ -182,7 +179,6 @@ EnemyEvaLevel = 0xc6da -- 1 byte
 
 EnemyTurnsTaken = 0xc6dc -- 1 byte
 PlayerTurnsTaken = 0xc6dd -- 1 byte
-
 
 PlayerSubstituteHP = 0xc6df -- 1 byte
 EnemySubstituteHP = 0xc6e0 -- 1 byte
@@ -294,7 +290,62 @@ wSomeoneIsRampaging = 0xc73b -- 1 byte
 wPlayerJustGotFrozen = 0xc73c -- 1 byte
 wEnemyJustGotFrozen = 0xc73d -- 1 byte
 
+TempEnemyMonSpecies = 0xd204 -- 1 bytes
+TempBattleMonSpecies = 0xd205 -- 1 bytes
 
+EnemyMonSpecies = 0xd206 -- 1 byte
+EnemyMonItem = 0xd207 -- 1 byte
+EnemyMonMoves = 0xd208 -- 4 bytes
+EnemyMonDVs = 0xd20c -- 2 bytes
+EnemyMonPP = 0xd20e -- 4 bytes
+EnemyMonHappiness = 0xd212 -- 1 byte
+EnemyMonLevel = 0xd213 -- 1 byte
+EnemyMonStatus = 0xd214 -- 2 bytes
+EnemyMonHP = 0xd216 -- 2 bytes
+EnemyMonMaxHP = 0xd218 -- 2 bytes
+EnemyMonAttack = 0xd21a -- 2 bytes
+EnemyMonDefense = 0xd21c -- 2 bytes
+EnemyMonSpeed = 0xd21e -- 2 bytes
+EnemyMonSpclAtk = 0xd220 -- 2 bytes
+EnemyMonSpclDef = 0xd222 -- 2 bytes
+EnemyMonType1 = 0xd224 -- 1 byte
+EnemyMonType2 = 0xd225 -- 1 byte
+EnemyMonBaseStats = 0xd226 -- 5 bytes
+EnemyMonCatchRate = 0xd22b -- 1 byte
+EnemyMonBaseExp = 0xd22c -- 1 byte
+
+wBattleMode = 0xd22d -- 1 byte
+-- 0: overworld
+-- 1: wild battle
+-- 2: trainer battle
+
+TempWildMonSpecies = 0xd22e -- 1 byte
+OtherTrainerClass = 0xd22f -- 1 byte
+-- class (Youngster, Bug Catcher, etc.) of opposing trainer
+-- 0 if opponent is a wild Pokémon, not a trainer
+
+BattleType = 0xd230 -- 1 byte
+-- $00 normal
+-- $01 can lose
+-- $02 debug
+-- $03 dude/tutorial
+-- $04 fishing
+-- $05 roaming
+-- $06 contest
+-- $07 shiny
+-- $08 headbutt/rock smash
+-- $09 trap
+-- $0a force Item1
+-- $0b celebi
+-- $0c suicune
+
+OtherTrainerID = 0xd231 -- 1 byte
+-- which trainer of the class that you're fighting
+-- (Joey, Mikey, Albert, etc.)
+
+wForcedSwitch = 0xd232 -- ds 1
+
+TrainerClass = 0xd233 -- 1 byte
 
 OTPlayerName = 0xd26b -- 11 bytes
 OTPlayerID = 0xd276 -- 2 bytes
