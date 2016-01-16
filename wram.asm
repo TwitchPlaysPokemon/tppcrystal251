@@ -345,7 +345,7 @@ wc650:: ds 1
 wc651:: ds 1
 wc652:: ds 4
 wc656::
-OTName:: ds NAME_LENGTH ; c656
+OTClassName:: ds NAME_LENGTH ; c656
 
 	ds 2
 

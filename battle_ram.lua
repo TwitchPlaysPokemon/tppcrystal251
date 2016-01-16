@@ -39,7 +39,7 @@ wEnemyTrainerItem1 = 0xc650 -- 1 byte
 wEnemyTrainerItem2 = 0xc651 -- 1 byte
 wEnemyTrainerBaseReward = 0xc652 -- 1 byte
 wEnemyTrainerAIFlags = 0xc653 -- 3 bytes
-OTName = 0xc656 -- 11 bytes
+OTClassName = 0xc656 -- 11 bytes
 
 CurOTMon = 0xc663 -- 1 byte
 
@@ -289,6 +289,8 @@ wAmuletCoin = 0xc73a -- 1 byte
 wSomeoneIsRampaging = 0xc73b -- 1 byte
 wPlayerJustGotFrozen = 0xc73c -- 1 byte
 wEnemyJustGotFrozen = 0xc73d -- 1 byte
+
+StringBuffer1 = 0xd073 -- 19 bytes, variable uses including temporary storage of enemy trainer's name
 
 TempEnemyMonSpecies = 0xd204 -- 1 bytes
 TempBattleMonSpecies = 0xd205 -- 1 bytes
