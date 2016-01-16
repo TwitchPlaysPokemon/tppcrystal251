@@ -1856,6 +1856,70 @@ BrockGroup:
 	db $ff ; end
 
 ; ================
+
+	; BROCK (1)
+	db "BROCK@"
+	db (1 << TRAINERTYPE_MOVES)
+
+	; party
+
+	db 100, GOLEM
+		db EXPLOSION
+		db ROCK_SLIDE
+		db ROLLOUT
+		db EARTHQUAKE
+
+	db 100, RHYHORN
+		db FURY_ATTACK
+		db SCARY_FACE
+		db EARTHQUAKE
+		db HORN_DRILL
+
+	db 100, OMASTAR
+		db BITE
+		db SURF
+		db PROTECT
+		db SPIKE_CANNON
+
+	db 100, ONIX
+		db WRAP
+		db ROCK_SLIDE
+		db BIDE
+		db SANDSTORM
+
+	db 100, KABUTOPS
+		db SLASH
+		db SURF
+		db ENDURE
+		db GIGA_DRAIN
+
+	db 100, AERODACTYL
+		db WING_ATTACK
+		db CRUNCH
+		db ROCK_SLIDE
+		db DOUBLE_TEAM
+
+	db $ff ; end
+
+	; BROCK (1)
+	db "BROCK@"
+	db (1 << TRAINERTYPE_MOVES)
+
+	; party
+
+	db 12, GEODUDE
+		db TACKLE
+		db DEFENSE_CURL
+		db ROLLOUT
+		db SANDSTORM
+
+	db 14, ONIX
+		db TACKLE
+		db WRAP
+		db IRON_TAIL
+		db SANDSTORM
+	db $ff ; end
+
 ; ================================
 
 
