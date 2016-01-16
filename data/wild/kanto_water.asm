@@ -800,6 +800,7 @@
 		db DELIBIRD ;1
 
 	db GROUP_CERULEAN_CITY, MAP_CERULEAN_CITY
+	db $05
 	db 70
 	db $02
 ;morning

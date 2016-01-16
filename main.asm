@@ -8034,12 +8034,23 @@ Functiond906: ; d906
 	ld [de], a
 	inc de
 	xor a
-	ld b, $a
+	ld h, a
+	ld l, a ;hl = stat xp to add
+	ld b, 5 ;repeat 5 times (once a stat)
+	ld a, [MonType]
+	cp 1
+	jr nz, .asm_d97a
+	ld a, [CurPartyLevel] ;a = level
+	call TrainerStatXp ;load trainer stat xp into hl depending on level
 .asm_d97a
-	ld [de], a ;load 0 into stat xp
+	ld a, h
+	ld [de], a ;load in stat xp
+	inc de
+	ld a , l
+	ld [de], a
 	inc de
 	dec b
-	jr nz, .asm_d97a ;repeat 10 times (2 bytes a stat)
+	jr nz, .asm_d97a 
 	pop hl ;start of mon data
 	push hl
 	ld a, [MonType] ;if montype = z, jump and random dvs, else call trainer dvs and put in bc
@@ -8087,8 +8098,14 @@ Functiond906: ; d906
 	inc de
 	inc de
 	inc de ;de = happiness
-	ld a, $46
-	ld [de], a ;load base happiness
+	ld b, $ff
+	ld a, [MonType]
+	cp 1
+	jr z, .MaxHappiness
+	ld b, $46
+.MaxHappiness
+	ld a, b
+	ld [de], a ;load base happiness if not a trainer, else load max happiness
 	inc de
 	xor a
 	ld [de], a ;load 0 into pokerus and caught data
@@ -8109,8 +8126,8 @@ Functiond906: ; d906
 	add hl, bc ;move hl down 10 to start of stat xp
 	ld a, $1
 	ld c, a ;get hp
-	ld b, $0 ;no stat xp
-	call Functione17b ; put HP into in $ffb5 and $ffb6. 
+	ld b, 1 ;stat xp on
+	call Functione17b ; load stats in, put HP into in $ffb5 and $ffb6. 
 	ld a, [$ffb5] ;load hp
 	ld [de], a
 	inc de
@@ -8176,7 +8193,7 @@ Functiond906: ; d906
 	pop hl ;start of mon data
 	ld bc, $000a
 	add hl, bc ;stat xp location
-	ld b, $0
+	ld b, 1
 	call Functione167 ;fill rest of stats
 .asm_da45
 	ld a, [MonType]
@@ -8196,6 +8213,45 @@ Functiond906: ; d906
 	scf ;ret c when done
 	ret
 ; da6d
+
+TrainerStatXp: ; hl = (a(level) - 5) * 600 + (a - 40)*100) +(a - 75) * 100) + 35 if a = 100
+	sub 5 ;ret if < 5, else reduce by 5
+	ret c
+	ret z
+	push bc
+	cp 95
+	jr nc, .Over99 ;if level 100 or more, load in max
+	ld bc, 800
+	sub 70 ;if < 70, then skip and return to before, else go down to 69, adding 800 each time, then return there
+	jr c, .DoneHighLoop
+.StatXPHighLoop
+	jr z, .DoneHighLoop
+	add hl, bc
+	dec a
+	jr .StatXPHighLoop
+.DoneHighLoop
+	add 70
+	ld bc, 700
+	sub 35 ;repeat for 35
+	jr c, .DoneMidLoop
+.StatXPMidLoop
+	jr z, .DoneMidLoop
+	add hl, bc
+	dec a
+	jr .StatXPMidLoop
+.DoneMidLoop
+	add 35
+	ld bc, 600
+.StatXPLowLoop
+	jr z, .DoneAllLoop
+	add hl, bc
+	dec a
+	jr .StatXPLowLoop
+.Over99
+	ld hl, $ffff ;if level 100, max stat xp
+.DoneAllLoop
+	pop bc
+	ret
 
 FillPP: ; da6d hl = start of moves, de = start of place to put pp
 	push bc
@@ -9183,8 +9239,8 @@ Functione17b: ; e17b return stat c for mon species whose base stats are loaded o
 	push bc
 	ld a, b
 	ld d, a ;load b into d
-	push hl ;start of stat xp?
-	ld hl, BaseHP ;base hp stored
+	push hl ;start of stat xp
+	ld hl, BaseHP ;start if base stats
 	dec hl ;go up 1
 	ld b, $0
 	add hl, bc ;go down to base stat c. 1 = hp, 2 = attack, 3 = defence, 4 = speed, 5 = special attack, 6 = special defence
@@ -9203,7 +9259,7 @@ Functione17b: ; e17b return stat c for mon species whose base stats are loaded o
 	and a
 	jr z, .asm_e1a5 ;if d = zero, skip and b = 0
 	add hl, bc ;move down to correct stat xp slot
-	push de ;d = original b, e = base stat
+	push de 
 	ld a, [hld] ;load stat xp and root it
 	ld e, a
 	ld d, [hl]
@@ -9213,12 +9269,12 @@ Functione17b: ; e17b return stat c for mon species whose base stats are loaded o
 	srl c ; c is normal again
 	pop hl ;hl = start of stat xp
 	push bc ; c is chosen stat, b is stat xp added
-	ld bc, $000b ;b = 11
+	ld bc, $000b 
 	add hl, bc ;over DVs
 	pop bc
 	ld a, c
 	cp $2
-	jr z, .asm_e1e3 ;branch code based on stat
+	jr z, .asm_e1e3 ;branch code based on stat to get dv, store in a
 	cp $3
 	jr z, .asm_e1ea
 	cp $4
@@ -9250,7 +9306,7 @@ Functione17b: ; e17b return stat c for mon species whose base stats are loaded o
 	ld a, [hl]
 	and $1 ;if on, add 1, regardless, add b to a
 	add b
-	pop bc ;c = stat, b = base stat
+	pop bc ;c = stat, b = stat xp
 	jr .asm_e1fb
 
 .asm_e1e3
@@ -9275,7 +9331,7 @@ Functione17b: ; e17b return stat c for mon species whose base stats are loaded o
 	inc hl ;get special dv
 	ld a, [hl]
 	and $f
-.asm_e1fb
+.asm_e1fb ;dv = a, 
 	ld d, $0
 	add e
 	ld e, a ;add dv to base stat
@@ -9297,7 +9353,7 @@ Functione17b: ; e17b return stat c for mon species whose base stats are loaded o
 	xor a
 	ld [hMultiplicand], a
 	ld a, [CurPartyLevel]
-	ld [hMultiplier], a ;multiply by level?
+	ld [hMultiplier], a ;multiply by level
 	call Multiply
 	ld a, [hMultiplicand]
 	ld [hProduct], a

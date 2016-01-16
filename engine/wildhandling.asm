@@ -14,8 +14,8 @@ Function29ff8: ; 29ff8
 	ld de, wd25a
 	ld a, [hl]
 	ld [de], a
-	;ld bc, $1 ;only first needs carryng over now
-	;call CopyBytes
+		;ld bc, $1 ;only first needs carryng over now
+		;call CopyBytes
 .asm_2a011
 	call Function2a21d ;a = current mapnumber, hl = top of encounter area and carry is set if it has a water encounter, otherwise a is 0 and carry flag is not set
 	ld a, $0

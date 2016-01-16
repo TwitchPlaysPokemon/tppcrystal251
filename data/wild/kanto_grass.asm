@@ -163,7 +163,6 @@
  ;       db NIDORAN_F;1
 ;        db PICHU;1
 ;        db NIDORAN_F;1
-
 	db GROUP_DIGLETTS_CAVE, MAP_DIGLETTS_CAVE
 	db $0a ; encounter rates: morn/day/nite
 	db 60
