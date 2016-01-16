@@ -569,3 +569,5 @@ INCLUDE "maps/EarlyGameKanto/Route2NuggetSpeechHouse.asm"
 INCLUDE "maps/EarlyGameKanto/DiglettsCave.asm"
 INCLUDE "maps/EarlyGameKanto/ViridianForest.asm"
 
+SECTION "Pewter Gym Events", ROMX
+INCLUDE "maps/EarlyGameKanto/PewterGym.asm"

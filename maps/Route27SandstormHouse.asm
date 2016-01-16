@@ -9,7 +9,7 @@ Route27SandstormHouse_MapScriptHeader: ; 0x7b392
 GrannyScript_0x7b394: ; 0x7b394
 	faceplayer
 	loadfont
-	checkevent EVENT_GOT_TM37_SANDSTORM
+	checkevent EVENT_GOT_TM_SWORDS_DANCE
 	iftrue UnknownScript_0x7b3b7
 	special Function718d
 	writetext UnknownText_0x7b3c6
@@ -23,7 +23,7 @@ UnknownScript_0x7b3aa: ; 0x7b3aa
 	buttonsound
 	verbosegiveitem TM_SWORDS_DANCE, 1
 	iffalse UnknownScript_0x7b3bb
-	setevent EVENT_GOT_TM37_SANDSTORM
+	setevent EVENT_GOT_TM_SWORDS_DANCE
 UnknownScript_0x7b3b7: ; 0x7b3b7
 	writetext UnknownText_0x7b48f
 	waitbutton

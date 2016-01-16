@@ -82,6 +82,7 @@
 	trainerclass BROCK ; 11
 	const BROCK_1
 	const BROCK_2
+	const BROCK_RB
 
 	trainerclass MISTY ; 12
 	const MISTY_1
@@ -573,6 +574,9 @@
 	const TODD4
 	const TODD5
 	const QUENTIN
+
+	const JERRY_RB
+	const JERRY_RB_2
 
 	trainerclass EXECUTIVEF ; 37
 
