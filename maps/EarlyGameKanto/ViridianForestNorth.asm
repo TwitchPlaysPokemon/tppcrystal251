@@ -53,6 +53,6 @@ ViridianForestNorthRB_MapEventHeader: ; 0x1ac4af
 	; people-events
 	db 2
 	person_event SPRITE_COOLTRAINER_M, 6, 7, $3, 0, 0, -1, -1, 8 + PAL_OW_RED, 0, 0, ViridianForestNorthRB_CooltrainerMScript, -1
-	person_event SPRITE_GRAMPS, 9, 6, $3, 0, 0, -1, -1, 8 + PAL_OW_RED, 0, 0, ViridianForestNorthRB_GrampsScript, -1
+	person_event SPRITE_GRAMPS, 9, 6, $3, 0, 0, -1, -1, 8 + PAL_OW_BLUE, 0, 0, ViridianForestNorthRB_GrampsScript, -1
 ; 0x1ac554
 

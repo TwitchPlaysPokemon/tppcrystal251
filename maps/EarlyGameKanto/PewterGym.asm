@@ -59,14 +59,14 @@ PewterGymRB_GymGuyScript:
 	faceplayer
 	loadfont
 	checkevent EVENT_BEAT_BROCK
-	iftrue .Won
-	writetext PewterGymRB_GymGuyText
+	iffalse .NotChallengedYet
+	writetext PewterGymRB_GymGuyWinText
 	waitbutton
 	closetext
 	end
 
-.Won
-	writetext PewterGymRB_GymGuyWinText
+.NotChallengedYet
+	writetext PewterGymRB_GymGuyText
 	yesorno
 	iffalse .no
 	writetext PewterGymRB_GymGuyYesText
@@ -74,6 +74,7 @@ PewterGymRB_GymGuyScript:
 .no
 	writetext PewterGymRB_GymGuyNoText
 .ok
+	buttonsound
 	writetext PewterGymRB_AdviceText
 	waitbutton
 	closetext

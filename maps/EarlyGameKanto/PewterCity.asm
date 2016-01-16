@@ -26,18 +26,23 @@ PewterCityRBPokemaniac1Script:
 	writetext _PewterCityText_193fb
 	waitbutton
 	closetext
-	playmusic MUSIC_FOLLOW_ME
+	playmusic MUSIC_SHOW_ME_AROUND
 	follow $4, $0
 	applymovement $4, Movement_PewterRBPokemaniacDragsPlayerToMuseum
+	stopfollow
 	loadfont
 	writetext _PewterCityText13
 	waitbutton
 	closetext
+	special RestartMapMusic
 	applymovement $4, Movement_PewterRBPokemaniacReturns
+	disappear $4
 	moveperson $4, 21, 31
+	appear $4
 	end
 
 PewterCityRBPokemaniac2Script:
+	faceplayer
 	loadfont
 	writetext _PewterCityText_19427
 	yesorno
@@ -50,6 +55,12 @@ PewterCityRBPokemaniac2Script:
 	waitbutton
 	closetext
 	end
+
+PewterRBFruitTree1:
+	fruittree $1c
+
+PewterRBFruitTree2:
+	fruittree $1d
 
 MapPewterCityRBSignpost0Script:
 	jumptext _PewterCityText12
@@ -100,7 +111,6 @@ Movement_PewterRBPokemaniacDragsPlayerToMuseum:
 	step_end
 
 Movement_PewterRBPokemaniacReturns:
-	slow_step_down
 	slow_step_down
 	slow_step_down
 	slow_step_down
@@ -242,8 +252,10 @@ PewterCityRB_MapEventHeader: ; 0x18c2f5
 	signpost 17, 24, $0, MapPewterCityRBSignpost6Script
 
 	; people-events
-	db 4
-	person_event SPRITE_LASS, 19, 12, $3, 0, 0, -1, -1, 8 + PAL_OW_GREEN, 0, 0, PewterCityRBLassScript, -1
-	person_event SPRITE_COOLTRAINER_M, 29, 21, $3, 0, 0, -1, -1, 8 + PAL_OW_RED, 0, 0, PewterCityRBCooltrainerMScript, -1
-	person_event SPRITE_SUPER_NERD, 21, 31, $5, 0, 2, -1, -1, 8 + PAL_OW_BLUE, 0, 0, PewterCityRBPokemaniac1Script, -1
-	person_event SPRITE_SUPER_NERD, 20, 39, $0, 0, 0, -1, -1, 8 + PAL_OW_BLUE, 0, 0, PewterCityRBPokemaniac2Script, -1
+	db 6
+	person_event SPRITE_TEACHER, 19, 12, $3, 0, 0, -1, -1, 8 + PAL_OW_GREEN, 0, 0, PewterCityRBLassScript, -1
+	person_event SPRITE_YOUNGSTER, 29, 21, $3, 0, 0, -1, -1, 8 + PAL_OW_RED, 0, 0, PewterCityRBCooltrainerMScript, -1
+	person_event SPRITE_SUPER_NERD, 21, 31, $3, 0, 0, -1, -1, 8 + PAL_OW_BLUE, 0, 0, PewterCityRBPokemaniac1Script, -1
+	person_event SPRITE_YOUNGSTER, 29, 30, $5, 0, 2, -1, -1, 8 + PAL_OW_GREEN, 0, 0, PewterCityRBPokemaniac2Script, -1
+	person_event SPRITE_FRUIT_TREE, 7, 36, $1, 0, 0, -1, -1, 0, 0, 0, PewterRBFruitTree1, -1
+	person_event SPRITE_FRUIT_TREE, 7, 34, $1, 0, 0, -1, -1, 0, 0, 0, PewterRBFruitTree2, -1
