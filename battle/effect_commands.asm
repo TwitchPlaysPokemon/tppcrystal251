@@ -6229,7 +6229,7 @@ BattleCommand7c: ; 361dc
 BattleCommand7d: ; 361e0
 ; evasionup2
 	ld b, $16
-	jr BattleCommand1c
+	;jr BattleCommand1c
 BattleCommand1c: ; 361e4
 ; statup
 	call Function361ef
