@@ -88993,6 +88993,11 @@ TRADE_CANCEL   EQU 1
 TRADE_WRONG    EQU 2
 TRADE_COMPLETE EQU 3
 TRADE_AFTER    EQU 4
+; Trade gender
+
+TRADE_EITHER_GENDER EQU 0
+TRADE_MALE_ONLY EQU 1
+TRADE_FEMALE_ONLY EQU 2
 NPCTrade:: ; fcba8
 	ld a, e
 	ld [wcf63], a
@@ -89079,7 +89084,7 @@ CheckTradeGender: ; fcc23
 ; fcc4a
 
 TradeFlagAction: ; fcc4a
-	ld hl, wd960
+	ld hl, wTradeFlags
 	ld a, [wcf63]
 	ld c, a
 	predef FlagPredef
@@ -89354,13 +89359,25 @@ GetTradeMonNames: ; fce1b
 ; fce58
 
 NPCTrades: ; fce58
-	db 0, ABRA,       MACHOP,     "MUSCLE@@@@@", $37, $66, GOLD_BERRY,   $54, $92, "MIKE@@@@@@@", 0, 0
-	db 0, BELLSPROUT, ONIX,       "ROCKY@@@@@@", $96, $66, BITTER_BERRY, $1e, $bf, "KYLE@@@@@@@", 0, 0
-	db 1, KRABBY,     VOLTORB,    "VOLTY@@@@@@", $98, $88, PRZCUREBERRY, $05, $72, "TIM@@@@@@@@", 0, 0
-	db 3, DRAGONAIR,  DODRIO,     "DORIS@@@@@@", $77, $66, SMOKE_BALL,   $1b, $01, "EMY@@@@@@@@", 2, 0
-	db 2, HAUNTER,    XATU,       "PAUL@@@@@@@", $96, $86, MYSTERYBERRY, $00, $3d, "CHRIS@@@@@@", 0, 0
-	db 3, CHANSEY,    AERODACTYL, "AEROY@@@@@@", $96, $66, GOLD_BERRY,   $7b, $67, "KIM@@@@@@@@", 0, 0
-	db 0, DUGTRIO,    MAGNETON,   "MAGGIE@@@@@", $96, $66, METAL_COAT,   $a2, $c3, "FOREST@@@@@", 0, 0
+
+npctrade: MACRO
+	db \1, \2, \3, \4 ; dialog set, requested mon, offered mon, nickname
+	db \5, \6 ; dvs
+	shift
+	db \6 ; item
+	dw \7 ; OT ID
+	db \8, \9, 0 ; OT name, gender requested
+ENDM
+
+
+	npctrade 0, ABRA,       MACHOP,     "MUSCLE@@@@@", $37, $66, GOLD_BERRY,   37460, "MIKE@@@@@@@", TRADE_EITHER_GENDER
+	npctrade 0, BELLSPROUT, ONIX,       "ROCKY@@@@@@", $96, $66, BITTER_BERRY, 48926, "KYLE@@@@@@@", TRADE_EITHER_GENDER
+	npctrade 1, KRABBY,     VOLTORB,    "VOLTY@@@@@@", $98, $88, PRZCUREBERRY, 29189, "TIM@@@@@@@@", TRADE_EITHER_GENDER
+	npctrade 3, DRAGONAIR,  DODRIO,     "DORIS@@@@@@", $77, $66, SMOKE_BALL,   00283, "EMY@@@@@@@@", TRADE_FEMALE_ONLY
+	npctrade 2, HAUNTER,    XATU,       "PAUL@@@@@@@", $96, $86, MYSTERYBERRY, 15616, "CHRIS@@@@@@", TRADE_EITHER_GENDER
+	npctrade 3, CHANSEY,    AERODACTYL, "AEROY@@@@@@", $96, $66, GOLD_BERRY,   26491, "KIM@@@@@@@@", TRADE_EITHER_GENDER
+	npctrade 0, DUGTRIO,    MAGNETON,   "MAGGIE@@@@@", $96, $66, METAL_COAT,   50082, "FOREST@@@@@", TRADE_EITHER_GENDER
+	npctrade 1, ABRA,       MR__MIME,   "MARCEL@@@@@", $68, $82, BERRY,        49677, "ANDREW@@@@@", TRADE_EITHER_GENDER
 ; fcf38
 
 PrintTradeText: ; fcf38

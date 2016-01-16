@@ -545,6 +545,7 @@ INCLUDE "maps/SeafoamIslandsEntrance.asm"
 INCLUDE "maps/SeafoamIslandsB1F.asm"
 INCLUDE "maps/SeafoamIslandsB2F.asm"
 INCLUDE "maps/SeafoamIslandsB3F.asm"
+INCLUDE "maps/EarlyGameKanto/ViridianForest.asm"
 
 SECTION "Map Scripts 28", ROMX
 INCLUDE "maps/EarlyGameKanto/PalletTown.asm"
@@ -567,7 +568,8 @@ INCLUDE "maps/EarlyGameKanto/ViridianForestSouth.asm"
 INCLUDE "maps/EarlyGameKanto/ViridianForestNorth.asm"
 INCLUDE "maps/EarlyGameKanto/Route2NuggetSpeechHouse.asm"
 INCLUDE "maps/EarlyGameKanto/DiglettsCave.asm"
-INCLUDE "maps/EarlyGameKanto/ViridianForest.asm"
+
+SECTION "Map Scripts 29", ROMX
 
 SECTION "Pewter Gym Events", ROMX
 INCLUDE "maps/EarlyGameKanto/PewterGym.asm"
