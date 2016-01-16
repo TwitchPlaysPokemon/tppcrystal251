@@ -571,7 +571,15 @@ INCLUDE "maps/EarlyGameKanto/DiglettsCave.asm"
 
 SECTION "Map Scripts 29", ROMX
 
-SECTION "EGK Pewter Gym Events", ROMX
+SECTION "EGK PewterGym Events", ROMX
 INCLUDE "maps/EarlyGameKanto/PewterGym.asm"
-SECTION "EGK Cerulean Gym Events", ROMX
+SECTION "EGK CeruleanGym Events", ROMX
 INCLUDE "maps/EarlyGameKanto/CeruleanGym.asm"
+SECTION "EGK PewterCity Events", ROMX
+INCLUDE "maps/EarlyGameKanto/PewterCity.asm"
+SECTION "EGK PewterMart Events", ROMX
+INCLUDE "maps/EarlyGameKanto/PewterMart.asm"
+SECTION "EGK PewterPokeCenter1F Events", ROMX
+INCLUDE "maps/EarlyGameKanto/PewterPokeCenter1F.asm"
+SECTION "EGK PewterSnoozeSpeechHouse Events", ROMX
+INCLUDE "maps/EarlyGameKanto/PewterSnoozeSpeechHouse.asm"

@@ -1,45 +1,49 @@
 Marts: ; 160a9
-	dw Mart0          ; 00
-	dw Mart1          ; 01
-	dw Mart2          ; 02
-	dw Mart3          ; 03
-	dw Mart4          ; 04
-	dw Mart5          ; 05
-	dw Mart6          ; 06
-	dw Mart7          ; 07
-	dw Mart8          ; 08
-	dw Mart9          ; 09
-	dw Mart10         ; 0a
-	dw Mart11         ; 0b
-	dw Mart12         ; 0c
-	dw Mart13         ; 0d
-	dw Mart14         ; 0e
-	dw Mart15         ; 0f
-	dw Mart16         ; 10
-	dw Mart17         ; 11
-	dw Mart18         ; 12
-	dw Mart19         ; 13
-	dw Mart20         ; 14
-	dw Mart21         ; 15
-	dw Mart22         ; 16
-	dw Mart23         ; 17
-	dw Mart24         ; 18
-	dw Mart25         ; 19
-	dw Mart26         ; 1a
-	dw Mart27         ; 1b
-	dw Mart28         ; 1c
-	dw Mart29         ; 1d
-	dw Mart30         ; 1e
-	dw Mart31         ; 1f
-	dw Mart32         ; 20
-	dw Mart33         ; 21
-	dw TmDepot1       ; 22
-	dw TmDepot2       ; 23
-	dw TmDepot3       ; 24
-	dw TmDepot4       ; 25
-	dw TmDepot5       ; 26
-	dw TmDepot6       ; 27
-	dw ViridianMartRB ; 28
+	dw Mart0              ; 00
+	dw Mart1              ; 01
+	dw Mart2              ; 02
+	dw Mart3              ; 03
+	dw Mart4              ; 04
+	dw Mart5              ; 05
+	dw Mart6              ; 06
+	dw Mart7              ; 07
+	dw Mart8              ; 08
+	dw Mart9              ; 09
+	dw Mart10             ; 0a
+	dw Mart11             ; 0b
+	dw Mart12             ; 0c
+	dw Mart13             ; 0d
+	dw Mart14             ; 0e
+	dw Mart15             ; 0f
+	dw Mart16             ; 10
+	dw Mart17             ; 11
+	dw Mart18             ; 12
+	dw Mart19             ; 13
+	dw Mart20             ; 14
+	dw Mart21             ; 15
+	dw Mart22             ; 16
+	dw Mart23             ; 17
+	dw Mart24             ; 18
+	dw Mart25             ; 19
+	dw Mart26             ; 1a
+	dw Mart27             ; 1b
+	dw Mart28             ; 1c
+	dw Mart29             ; 1d
+	dw Mart30             ; 1e
+	dw Mart31             ; 1f
+	dw Mart32             ; 20
+	dw Mart33             ; 21
+	dw TmDepot1           ; 22
+	dw TmDepot2           ; 23
+	dw TmDepot3           ; 24
+	dw TmDepot4           ; 25
+	dw TmDepot5           ; 26
+	dw TmDepot6           ; 27
+	dw ViridianMartRB     ; 28
+	dw PewterMartRB       ; 29
+	dw CeruleanMartRB     ; 2a
+	dw CeruleanBikeShopRB ; 2b
+	dw VermilionMartRB    ; 2c
 MartsEnd
 ; 160ed
 
@@ -548,3 +552,43 @@ ViridianMartRB:
 	db PARLYZ_HEAL
 	db BURN_HEAL
 	db $ff
+
+PewterMartRB:
+	db 7
+	db POKE_BALL
+	db POTION
+	db ESCAPE_ROPE
+	db ANTIDOTE
+	db BURN_HEAL
+	db AWAKENING
+	db PARLYZ_HEAL
+	db $ff
+
+CeruleanMartRB: ; 2453 (0:2453)
+	db 7
+	db POKE_BALL
+	db POTION
+	db REPEL
+	db ANTIDOTE
+	db BURN_HEAL
+	db AWAKENING
+	db PARLYZ_HEAL
+	db $ff
+
+; Bike shop
+CeruleanBikeShopRB:
+	db 1
+	db BICYCLE
+	db $ff
+
+; Vermilion
+VermilionMartRB: ; 2461 (0:2461)
+	db 6
+	db POKE_BALL
+	db SUPER_POTION
+	db ICE_HEAL
+	db AWAKENING
+	db PARLYZ_HEAL
+	db REPEL
+	db $ff
+

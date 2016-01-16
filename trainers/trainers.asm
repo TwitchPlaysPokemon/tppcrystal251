@@ -8428,6 +8428,13 @@ CamperGroup:
 	db $ff ; end
 
 ; ================
+
+	db "JERRY@"
+	db 0
+
+	db 11, DIGLETT
+	db 11, SANDSHREW
+	db $ff
 ; ================================
 
 

@@ -99,6 +99,8 @@ Route3_BlockData: ; 0xa97c1
 
 PewterCity_BlockData: ; 0xa98cf
 	INCBIN "maps/PewterCity.blk"
+PewterCityRB_BlockData: ; 0xa98cf
+	INCBIN "maps/PewterCityRB.blk"
 ; 0xa9a37
 
 Route12_BlockData: ; 0xa9bf9
@@ -164,7 +166,9 @@ VermilionHouseDiglettsCaveSpeechHouse_BlockData:
 BluesHouse_BlockData:
 BluesHouseRB_BlockData:
 PewterNidoranSpeechHouse_BlockData:
+PewterNidoranSpeechHouseRB_BlockData:
 PewterSnoozeSpeechHouse_BlockData:
+PewterSnoozeSpeechHouseRB_BlockData:
 FuchsiaBillSpeechHouse_BlockData:
 LavenderTownSpeechHouse_BlockData:
 LavenderNameRater_BlockData:

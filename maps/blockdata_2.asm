@@ -11,6 +11,7 @@ AzaleaMart_BlockData:
 VioletMart_BlockData:
 VermilionMart_BlockData:
 PewterMart_BlockData:
+PewterMartRB_BlockData:
 FuchsiaMart_BlockData:
 LavenderMart_BlockData:
 ViridianMart_BlockData:
@@ -38,6 +39,7 @@ Route32PokeCenter1F_BlockData:
 GoldenrodPokeCenter1F_BlockData:
 VermilionPokeCenter1F_BlockData:
 PewterPokeCenter1F_BlockData:
+PewterPokeCenter1FRB_BlockData:
 FuchsiaPokeCenter1F_BlockData:
 LavenderPokeCenter1F_BlockData:
 SilverCavePokeCenter1F_BlockData:

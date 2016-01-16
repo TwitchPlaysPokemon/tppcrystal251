@@ -59,14 +59,14 @@ PewterGymRB_GymGuyScript:
 	faceplayer
 	loadfont
 	checkevent EVENT_BEAT_BROCK
-	iftrue .Won
-	writetext PewterGymRB_GymGuyText
+	iffalse .NotChallengedYet
+	writetext PewterGymRB_GymGuyWinText
 	waitbutton
 	closetext
 	end
 
-.Won
-	writetext PewterGymRB_GymGuyWinText
+.NotChallengedYet
+	writetext PewterGymRB_GymGuyText
 	yesorno
 	iffalse .no
 	writetext PewterGymRB_GymGuyYesText
@@ -74,6 +74,7 @@ PewterGymRB_GymGuyScript:
 .no
 	writetext PewterGymRB_GymGuyNoText
 .ok
+	buttonsound
 	writetext PewterGymRB_AdviceText
 	waitbutton
 	closetext
@@ -196,12 +197,12 @@ PewterGymRB_TMText:
 	line "#MON!"
 
 	; XXX Is this still the case?
-	para "A TM is good only"
-	line "once! So when you"
-	para "use one to teach"
-	line "a new technique,"
-	para "pick the #MON"
-	line "carefully!"
+	para "What's more, you"
+	line "can use that TM"
+
+	para "as many times as"
+	line "you'd like, so"
+	cont "don't be stingy!"
 
 	para "TM37 contains"
 	line "SANDSTORM!"
@@ -220,7 +221,7 @@ PewterGymRB_TMText:
 ;	cont "battle then pay"
 ;	cont "it back double!"
 ;	done
-t
+
 CamperJerryRBSeenText:
 	text "Stop right there,"
 	line "kid!"
