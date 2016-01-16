@@ -8222,31 +8222,40 @@ TrainerStatXp: ; hl = (a(level) - 5) * 600 + (a - 40)*100) +(a - 75) * 100) + 35
 	cp 95
 	jr nc, .Over99 ;if level 100 or more, load in max
 	ld bc, 800
-	sub 70 ;if < 70, then skip and return to before, else go down to 69, adding 800 each time, then return there
-	jr c, .DoneHighLoop
+	cp 70 ;if < 70, then skip to next loop, else go down to 70, adding 800 each time, then add the rest as a constant
+	jr c, .SkipHighLoop
 .StatXPHighLoop
 	jr z, .DoneHighLoop
 	add hl, bc
 	dec a
 	jr .StatXPHighLoop
-.DoneHighLoop
-	add 70
+.SkipHighLoop
 	ld bc, 700
-	sub 35 ;repeat for 35
-	jr c, .DoneMidLoop
+	cp 35 ;repeat for 35 ;if < 35, then skip to next loop, else go down to 70, adding 800 each time, then add the rest as a constant
+	jr c, .SkipMidLoop
 .StatXPMidLoop
 	jr z, .DoneMidLoop
 	add hl, bc
 	dec a
 	jr .StatXPMidLoop
-.DoneMidLoop
-	add 35
+.SkipMidLoop
 	ld bc, 600
 .StatXPLowLoop
 	jr z, .DoneAllLoop
 	add hl, bc
 	dec a
 	jr .StatXPLowLoop
+
+.DoneHighLoop
+	ld bc, 45500
+	add hl, bc ;add remining stat xp all at once as it is constant
+	jr .DoneAllLoop
+
+.DoneMidLoop
+	ld bc, 21000
+	add hl, bc
+	jr .DoneAllLoop
+
 .Over99
 	ld hl, $ffff ;if level 100, max stat xp
 .DoneAllLoop
