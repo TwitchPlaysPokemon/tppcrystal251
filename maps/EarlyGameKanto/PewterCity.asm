@@ -61,10 +61,10 @@ MapPewterCityRBSignpost2Script:
 	jumptext _PewterCityText10
 
 MapPewterCityRBSignpost3Script:
-	jumptext _PewterCityText9
+	jumptext _PewterCityText7
 
 MapPewterCityRBSignpost4Script:
-	jumptext _PewterCityText7
+	jumptext _PewterCityText6
 
 MapPewterCityRBSignpost5Script:
 	jumpstd pokecentersign
@@ -245,5 +245,5 @@ PewterCityRB_MapEventHeader: ; 0x18c2f5
 	db 4
 	person_event SPRITE_LASS, 19, 12, $3, 0, 0, -1, -1, 8 + PAL_OW_GREEN, 0, 0, PewterCityRBLassScript, -1
 	person_event SPRITE_COOLTRAINER_M, 29, 21, $3, 0, 0, -1, -1, 8 + PAL_OW_RED, 0, 0, PewterCityRBCooltrainerMScript, -1
-	person_event SPRITE_POKEMANIAC, 21, 31, $5, 0, 2, -1, -1, 8 + PAL_OW_BLUE, 0, 0, PewterCityRBPokemaniac1Script, -1
-	person_event SPRITE_POKEMANIAC, 20, 39, $0, 0, 0, -1, -1, 8 + PAL_OW_BLUE, 0, 0, PewterCityRBPokemaniac2Script, -1
+	person_event SPRITE_SUPER_NERD, 21, 31, $5, 0, 2, -1, -1, 8 + PAL_OW_BLUE, 0, 0, PewterCityRBPokemaniac1Script, -1
+	person_event SPRITE_SUPER_NERD, 20, 39, $0, 0, 0, -1, -1, 8 + PAL_OW_BLUE, 0, 0, PewterCityRBPokemaniac2Script, -1
