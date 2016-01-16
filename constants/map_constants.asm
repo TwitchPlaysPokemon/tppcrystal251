@@ -501,7 +501,7 @@ MAP_N_A   EQU -1
 	mapgroup VIRIDIAN_NICKNAME_SPEECH_HOUSE_RB, 4, 4
 	mapgroup VIRIDIAN_TRAINER_SCHOOL_RB, 4, 4
 	mapgroup VICTORY_ROAD_GATE_RB, 4, 5
-	mapgroup ROUTE_23_RB, 6, 10
+	mapgroup ROUTE_23_RB, 20, 10
 
 	newgroup ; Pewter City RB
 	mapgroup ROUTE_3_RB, 9, 30

@@ -405,7 +405,6 @@ UnknownText_0x1a06d6: ; 0x1a06d6
 UnknownText_0x1a0725: ; 0x1a0725
 	text "CIANWOOD CITY"
 	line "PHOTO STUDIO"
-	cont "'TTours Kappa'"
 
 	para "Take a Snapshot as"
 	line "a Keepsake!"
