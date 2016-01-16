@@ -38,6 +38,7 @@ Route23RBScript_ContinueCascade:
 	waitbutton
 	closetext
 	dotrigger $1
+	spriteface $2, DOWN
 	end
 
 Route23RB_ThunderBadgeCheckOfficerScript:
@@ -54,7 +55,7 @@ Route23RBScript_ContinueThunder:
 	writetext _VictoryRoadGuardText3
 	waitbutton
 	closetext
-	spriteface $2, DOWN
+	spriteface $3, DOWN
 	applymovement $0, Movement_PlayerStepsDown_Route23RB
 	end
 
@@ -67,6 +68,7 @@ Route23RBScript_ContinueThunder:
 	waitbutton
 	closetext
 	dotrigger $2
+	spriteface $3, DOWN
 	end
 
 
@@ -140,9 +142,9 @@ Route23RB_MapEventHeader:
 	xy_trigger 0, 31, 6, $0, Route23RB_CascadeBadgeCheckTrigger, 0, 0
 	xy_trigger 0, 31, 7, $0, Route23RB_CascadeBadgeCheckTrigger, 0, 0
 	xy_trigger 0, 31, 9, $0, Route23RB_CascadeBadgeCheckTrigger, 0, 0
-	xy_trigger 1, 14, 9, $0, Route23RB_CascadeBadgeCheckTrigger, 0, 0
+	xy_trigger 1, 15, 9, $0, Route23RB_ThunderBadgeCheckTrigger, 0, 0
 	db 0
 
 	db 2
 	person_event SPRITE_OFFICER, 35, 12, $6, 0, 0, -1, -1, 0, 0, 0, Route23RB_ThunderBadgeCheckOfficerScript, -1
-	person_event SPRITE_OFFICER, 18, 12, $6, 0, 0, -1, -1, 0, 0, 0, Route23RB_CascadeBadgeCheckOfficerScript, -1
+	person_event SPRITE_OFFICER, 19, 12, $6, 0, 0, -1, -1, 0, 0, 0, Route23RB_CascadeBadgeCheckOfficerScript, -1

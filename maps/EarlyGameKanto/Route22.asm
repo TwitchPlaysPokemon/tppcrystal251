@@ -66,7 +66,7 @@ Route22RBRivalBattle:
 	loadvar OtherTrainerClass, BLUE_RB_F
 	winlosstext _Route22RivalDefeatedText1F, _Route22RivalLossTextF
 .got_rival_gender
-	writecode VAR_BATTLETYPE, BATTLETYPE_CANLOSE
+	writecode VAR_BATTLETYPE, BATTLETYPE_RIVAL_RB
 	startbattle
 	reloadmapmusic
 	returnafterbattle

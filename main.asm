@@ -15156,7 +15156,7 @@ Function1364f: ; 1364f
 
 Function1365b:: ; 1365b
 	ld a, c
-	ld de, .table2 - .table1
+	ld de, 3
 	ld hl, .table1
 	call IsInArray
 	jr nc, .asm_1367f
@@ -15179,15 +15179,16 @@ Function1365b:: ; 1365b
 ; 13681
 
 .table1
-	dbw $91, $0003 ; bookshelf
-.table2
-	dbw $93, $0031 ; pc
-	dbw $94, $000b ; radio
-	dbw $95, $0007 ; map
-	dbw $96, $0006 ; merchandise
-	dbw $97, $0009 ; tv
-	dbw $9d, $0008 ; window
-	dbw $9f, $0005 ; incense burner
+	dbw $91, magazinebookshelf
+	dbw $93, pcscript
+	dbw $94, radio1
+	dbw $95, townmap
+	dbw $96, merchandiseshelf
+	dbw $97, tv
+	dbw $99, leaguestatues1
+	dbw $9a, leaguestatues2
+	dbw $9d, window
+	dbw $9f, incenseburner
 	db $ff ; end
 ; 1369a
 
@@ -17742,7 +17743,7 @@ Group30Sprites: ; 144ec
 	db SPRITE_BUG_CATCHER
 	db SPRITE_COOLTRAINER_F
 	db SPRITE_OAK
-	db SPRITE_SWIMMER_GUY
+	db SPRITE_OFFICER
 	db SPRITE_POKE_BALL
 	db SPRITE_FRUIT_TREE ; 23
 
