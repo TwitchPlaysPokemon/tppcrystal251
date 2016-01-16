@@ -545,7 +545,7 @@ MapGroup32:
 	; map_header CeruleanPoliceStationRB, $5, 3, CERULEAN_CITY, MUSIC_CERULEAN_CITY, 0, 1, 1
 	; map_header CeruleanTradeSpeechHouseRB, $5, 3, CERULEAN_CITY, MUSIC_CERULEAN_CITY, 0, 1, 1
 	; map_header CeruleanPokeCenter1FRB, $7, 3, CERULEAN_CITY, MUSIC_POKEMON_CENTER, 0, 1, 1
-	; map_header CeruleanGymRB, $9, 3, CERULEAN_CITY, MUSIC_GYM, 1, 1, 0
+	map_header CeruleanGymRB, $9, 3, CERULEAN_CITY, MUSIC_GYM, 1, 1, 0
 	; map_header CeruleanMartRB, $c, 3, CERULEAN_CITY, MUSIC_MART, 0, 1, 1
 	; map_header Route10PokeCenter1FRB, $7, 3, ROUTE_10, MUSIC_POKEMON_CENTER, 0, 1, 1
 	; map_header PowerPlantRB, $b, 3, POWER_PLANT, MUSIC_CERULEAN_CITY, 0, 1, 1
