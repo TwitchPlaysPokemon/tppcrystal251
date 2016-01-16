@@ -51,12 +51,12 @@ MtMoonPokeCenter1F_BlockData:
 	INCBIN "maps/OlivinePokeCenter1F.blk"
 ; 0xac2fc
 
-BetaPewterMuseumOfScience1F_BlockData: ; 0xac2fc
-	INCBIN "maps/BetaPewterMuseumOfScience1F.blk"
+PewterMuseumOfScience1F_BlockData: ; 0xac2fc
+	INCBIN "maps/PewterMuseumOfScience1F.blk"
 ; 0xac324
 
-BetaPewterMuseumOfScience2F_BlockData: ; 0xac324
-	INCBIN "maps/BetaPewterMuseumOfScience2F.blk"
+PewterMuseumOfScience2F_BlockData: ; 0xac324
+	INCBIN "maps/PewterMuseumOfScience2F.blk"
 ; 0xac340
 
 EarlsPokemonAcademy_BlockData: ; 0xac340

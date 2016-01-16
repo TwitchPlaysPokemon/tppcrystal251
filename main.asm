@@ -76644,7 +76644,7 @@ Unknown_b8e11: ; b8e11
 	map ROUTE_11
 	map ROUTE_16
 	map ROUTE_14
-	map CINNABAR_POKECENTER_2F_BETA
+	map CINNABAR_POKECENTER_1F
 ; b8e23
 
 UnknownText_0xb8e23: ; 0xb8e23

@@ -41,7 +41,6 @@ MapGroup1:
 	map_header OlivinePokeCenter1F, $7, 3, OLIVINE_CITY, MUSIC_POKEMON_CENTER, 0, 1, 1
 	map_header OlivineGym, $12, 3, OLIVINE_CITY, MUSIC_GYM, 1, 1, 1
 	map_header OlivineVoltorbHouse, $5, 3, OLIVINE_CITY, MUSIC_VIOLET_CITY, 0, 1, 1
-	map_header OlivineHouseBeta, $5, 3, OLIVINE_CITY, MUSIC_VIOLET_CITY, 0, 1, 1
 	map_header OlivinePunishmentSpeechHouse, $5, 3, OLIVINE_CITY, MUSIC_VIOLET_CITY, 0, 1, 1
 	map_header OlivineGoodRodHouse, $5, 3, OLIVINE_CITY, MUSIC_VIOLET_CITY, 0, 1, 1
 	map_header OlivineCafe, $e, 3, OLIVINE_CITY, MUSIC_VIOLET_CITY, 0, 1, 1
@@ -150,8 +149,6 @@ MapGroup3:
 	map_header Underground, $1c, 6, UNDERGROUND, MUSIC_MT_MOON, 0, 2, 1
 	map_header RockTunnel1F, $1e, 4, ROCK_TUNNEL, MUSIC_MT_MOON, 1, 4, 1
 	map_header RockTunnelB1F, $1e, 4, ROCK_TUNNEL, MUSIC_MT_MOON, 1, 4, 1
-	map_header SafariZoneFuchsiaGateBeta, $8, 3, FUCHSIA_CITY, MUSIC_VIRIDIAN_CITY, 0, 1, 1
-	map_header SafariZoneBeta, $19, 4, FUCHSIA_CITY, MUSIC_EVOLUTION, 0, 0, 1
 	map_header VictoryRoad, $18, 4, VICTORY_ROAD, MUSIC_VICTORY_ROAD, 1, 2, 1
 
 MapGroup4:
@@ -179,7 +176,6 @@ MapGroup5:
 
 MapGroup6:
 	map_header CinnabarPokeCenter1F, $7, 3, CINNABAR_ISLAND, MUSIC_POKEMON_CENTER, 0, 1, 1
-	map_header CinnabarPokeCenter2FBeta, $7, 3, CINNABAR_ISLAND, MUSIC_POKEMON_CENTER, 0, 1, 1
 	map_header Route19FuchsiaGate, $8, 6, ROUTE_19, MUSIC_ROUTE_3, 0, 1, 1
 	map_header SeafoamGym, $18, 3, SEAFOAM_ISLANDS, MUSIC_GYM, 1, 1, 14
 	map_header Route19, $3, 2, ROUTE_19, MUSIC_ROUTE_3, 0, 0, 15
@@ -192,11 +188,9 @@ MapGroup7:
 	map_header CeruleanPoliceStation, $5, 3, CERULEAN_CITY, MUSIC_CERULEAN_CITY, 0, 1, 1
 	map_header CeruleanTradeSpeechHouse, $5, 3, CERULEAN_CITY, MUSIC_CERULEAN_CITY, 0, 1, 1
 	map_header CeruleanPokeCenter1F, $7, 3, CERULEAN_CITY, MUSIC_POKEMON_CENTER, 0, 1, 1
-	map_header CeruleanPokeCenter2FBeta, $7, 3, CERULEAN_CITY, MUSIC_POKEMON_CENTER, 0, 1, 1
 	map_header CeruleanGym, $9, 3, CERULEAN_CITY, MUSIC_GYM, 1, 1, 17
 	map_header CeruleanMart, $c, 3, CERULEAN_CITY, MUSIC_MART, 0, 1, 1
 	map_header Route10PokeCenter1F, $7, 3, ROUTE_10, MUSIC_POKEMON_CENTER, 0, 1, 1
-	map_header Route10PokeCenter2FBeta, $7, 3, ROUTE_10, MUSIC_POKEMON_CENTER, 0, 1, 1
 	map_header PowerPlant, $b, 3, POWER_PLANT, MUSIC_CERULEAN_CITY, 0, 1, 1
 	map_header BillsHouse, $5, 3, ROUTE_25, MUSIC_CERULEAN_CITY, 0, 1, 1
 	map_header Route4, $3, 2, ROUTE_4, MUSIC_ROUTE_3, 0, 0, 0
@@ -274,7 +268,6 @@ MapGroup12:
 	map_header VermilionCity, $3, 1, VERMILION_CITY, MUSIC_VERMILION_CITY, 0, 0, 14
 	map_header VermilionHouseFishingSpeechHouse, $5, 3, VERMILION_CITY, MUSIC_VERMILION_CITY, 0, 1, 1
 	map_header VermilionPokeCenter1F, $7, 3, VERMILION_CITY, MUSIC_POKEMON_CENTER, 0, 1, 1
-	map_header VermilionPokeCenter2FBeta, $7, 3, VERMILION_CITY, MUSIC_VERMILION_CITY, 0, 1, 1
 	map_header PokemonFanClub, $5, 3, VERMILION_CITY, MUSIC_VERMILION_CITY, 0, 1, 1
 	map_header VermilionMagnetTrainSpeechHouse, $5, 3, VERMILION_CITY, MUSIC_VERMILION_CITY, 0, 1, 1
 	map_header VermilionMart, $c, 3, VERMILION_CITY, MUSIC_MART, 0, 1, 1
@@ -298,7 +291,6 @@ MapGroup14:
 	map_header PewterGym, $17, 3, PEWTER_CITY, MUSIC_GYM, 1, 1, 1
 	map_header PewterMart, $c, 3, PEWTER_CITY, MUSIC_MART, 0, 1, 1
 	map_header PewterPokeCenter1F, $7, 3, PEWTER_CITY, MUSIC_POKEMON_CENTER, 0, 1, 1
-	map_header PewterPokeCEnter2FBeta, $7, 3, PEWTER_CITY, MUSIC_VIRIDIAN_CITY, 0, 1, 1
 	map_header PewterSnoozeSpeechHouse, $5, 3, PEWTER_CITY, MUSIC_VIRIDIAN_CITY, 0, 1, 1
 
 MapGroup15:
@@ -334,7 +326,6 @@ MapGroup17:
 	map_header FuchsiaGym, $a, 3, FUCHSIA_CITY, MUSIC_GYM, 1, 1, 1
 	map_header FuchsiaBillSpeechHouse, $5, 3, FUCHSIA_CITY, MUSIC_CERULEAN_CITY, 0, 1, 1
 	map_header FuchsiaPokeCenter1F, $7, 3, FUCHSIA_CITY, MUSIC_POKEMON_CENTER, 0, 1, 1
-	map_header FuchsiaPokeCenter2FBeta, $7, 3, FUCHSIA_CITY, MUSIC_CERULEAN_CITY, 0, 1, 1
 	map_header SafariZoneWardensHome, $5, 3, FUCHSIA_CITY, MUSIC_CERULEAN_CITY, 0, 1, 1
 	map_header Route15FuchsiaGate, $8, 6, ROUTE_15, MUSIC_ROUTE_12, 0, 1, 1
 
@@ -344,7 +335,6 @@ MapGroup18:
 	map_header Route10South, $3, 2, ROUTE_10, MUSIC_ROUTE_3, 0, 0, 13
 	map_header LavenderTown, $3, 1, LAVENDER_TOWN, MUSIC_LAVENDER_TOWN, 0, 0, 1
 	map_header LavenderPokeCenter1F, $7, 3, LAVENDER_TOWN, MUSIC_POKEMON_CENTER, 0, 1, 1
-	map_header LavenderPokeCenter2FBeta, $7, 3, LAVENDER_TOWN, MUSIC_POKEMON_CENTER, 0, 1, 1
 	map_header MrFujisHouse, $5, 3, LAVENDER_TOWN, MUSIC_LAVENDER_TOWN, 0, 1, 1
 	map_header LavenderTownSpeechHouse, $5, 3, LAVENDER_TOWN, MUSIC_LAVENDER_TOWN, 0, 1, 1
 	map_header LavenderNameRater, $5, 3, LAVENDER_TOWN, MUSIC_LAVENDER_TOWN, 0, 1, 1
@@ -386,7 +376,6 @@ MapGroup21:
 	map_header CeladonMansionRoof, $d, 3, CELADON_CITY, MUSIC_CELADON_CITY, 0, 1, 1
 	map_header CeladonMansionRoofHouse, $5, 3, CELADON_CITY, MUSIC_CELADON_CITY, 0, 1, 1
 	map_header CeladonPokeCenter1F, $7, 3, CELADON_CITY, MUSIC_POKEMON_CENTER, 0, 1, 1
-	map_header CeladonPokeCenter2FBeta, $7, 3, CELADON_CITY, MUSIC_CELADON_CITY, 0, 1, 1
 	map_header CeladonGameCorner, $e, 3, CELADON_CITY, MUSIC_GAME_CORNER, 0, 1, 1
 	map_header CeladonGameCornerPrizeRoom, $e, 3, CELADON_CITY, MUSIC_CELADON_CITY, 0, 1, 1
 	map_header CeladonGym, $11, 3, CELADON_CITY, MUSIC_GYM, 1, 1, 1
@@ -424,7 +413,6 @@ MapGroup23:
 	map_header TrainerHouseB1F, $b, 3, VIRIDIAN_CITY, MUSIC_VIRIDIAN_CITY, 0, 1, 1
 	map_header ViridianMart, $c, 3, VIRIDIAN_CITY, MUSIC_MART, 0, 1, 1
 	map_header ViridianPokeCenter1F, $7, 3, VIRIDIAN_CITY, MUSIC_POKEMON_CENTER, 0, 1, 1
-	map_header ViridianPokeCenter2FBeta, $7, 3, VIRIDIAN_CITY, MUSIC_VIRIDIAN_CITY, 0, 1, 1
 	map_header Route2NuggetSpeechHouse, $5, 3, ROUTE_2, MUSIC_VIRIDIAN_CITY, 0, 1, 1
 	map_header Route2Gate, $8, 6, ROUTE_2, MUSIC_ROUTE_1, 0, 1, 1
 	map_header VictoryRoadGate, $8, 6, ROUTE_26, MUSIC_INDIGO_PLATEAU, 0, 1, 1
@@ -451,7 +439,6 @@ MapGroup25:
 	map_header SaffronGym, $1c, 3, SAFFRON_CITY, MUSIC_GYM, 1, 1, 1
 	map_header SaffronMart, $c, 3, SAFFRON_CITY, MUSIC_MART, 0, 1, 1
 	map_header SaffronPokeCenter1F, $7, 3, SAFFRON_CITY, MUSIC_POKEMON_CENTER, 0, 1, 1
-	map_header SaffronPokeCenter2FBeta, $7, 3, SAFFRON_CITY, MUSIC_VIRIDIAN_CITY, 0, 1, 1
 	map_header MrPsychicsHouse, $5, 3, SAFFRON_CITY, MUSIC_VIRIDIAN_CITY, 0, 1, 1
 	map_header SaffronTrainStation, $11, 3, SAFFRON_CITY, MUSIC_VIRIDIAN_CITY, 0, 1, 1
 	map_header SilphCo1F, $b, 3, SAFFRON_CITY, MUSIC_VIRIDIAN_CITY, 0, 1, 1
@@ -538,20 +525,28 @@ MapGroup30:
 	map_header ViridianTrainerSchoolRB, $5, 3, VIRIDIAN_CITY, MUSIC_VIRIDIAN_CITY, 0, 1, 1
 	map_header VictoryRoadGateRB, $8, 6, ROUTE_22, MUSIC_ROUTE_2, 0, 1, 1
 	map_header Route23RB, $3, 2, ROUTE_23, MUSIC_INDIGO_PLATEAU, 0, 0, 1
+	map_header Route2NuggetSpeechHouseRB, $5, 3, ROUTE_2, MUSIC_VIRIDIAN_CITY, 0, 1, 1
+	map_header Route2GateRB, $8, 6, ROUTE_2, MUSIC_ROUTE_1, 0, 1, 1
 
 MapGroup31:
 ; pewter city rb
+	; map_header Route3RB, $3, 2, ROUTE_3, MUSIC_ROUTE_3, 0, 0, 1
+	; map_header PewterCityRB, $3, 1, PEWTER_CITY, MUSIC_VIRIDIAN_CITY, 0, 0, 1
+	; map_header PewterNidoranSpeechHouseRB, $5, 3, PEWTER_CITY, MUSIC_VIRIDIAN_CITY, 0, 1, 1
+	; map_header PewterGymRB, $17, 3, PEWTER_CITY, MUSIC_GYM, 1, 1, 1
+	; map_header PewterMartRB, $c, 3, PEWTER_CITY, MUSIC_MART, 0, 1, 1
+	; map_header PewterPokeCenter1FRB, $7, 3, PEWTER_CITY, MUSIC_POKEMON_CENTER, 0, 1, 1
+	; map_header PewterSnoozeSpeechHouseRB, $5, 3, PEWTER_CITY, MUSIC_VIRIDIAN_CITY, 0, 1, 1
 
 MapGroup32:
+; cerulean city rb
 	; map_header CeruleanGymBadgeSpeechHouseRB, $5, 3, CERULEAN_CITY, MUSIC_CERULEAN_CITY, 0, 1, 1
 	; map_header CeruleanPoliceStationRB, $5, 3, CERULEAN_CITY, MUSIC_CERULEAN_CITY, 0, 1, 1
 	; map_header CeruleanTradeSpeechHouseRB, $5, 3, CERULEAN_CITY, MUSIC_CERULEAN_CITY, 0, 1, 1
 	; map_header CeruleanPokeCenter1FRB, $7, 3, CERULEAN_CITY, MUSIC_POKEMON_CENTER, 0, 1, 1
-	; map_header CeruleanPokeCenter2FBetaRB, $7, 3, CERULEAN_CITY, MUSIC_POKEMON_CENTER, 0, 1, 1
 	; map_header CeruleanGymRB, $9, 3, CERULEAN_CITY, MUSIC_GYM, 1, 1, 0
 	; map_header CeruleanMartRB, $c, 3, CERULEAN_CITY, MUSIC_MART, 0, 1, 1
 	; map_header Route10PokeCenter1FRB, $7, 3, ROUTE_10, MUSIC_POKEMON_CENTER, 0, 1, 1
-	; map_header Route10PokeCenter2FBetaRB, $7, 3, ROUTE_10, MUSIC_POKEMON_CENTER, 0, 1, 1
 	; map_header PowerPlantRB, $b, 3, POWER_PLANT, MUSIC_CERULEAN_CITY, 0, 1, 1
 	; map_header BillsHouseRB, $5, 3, ROUTE_25, MUSIC_CERULEAN_CITY, 0, 1, 1
 	; map_header Route4RB, $3, 2, ROUTE_4, MUSIC_ROUTE_3, 0, 0, 0
@@ -569,4 +564,8 @@ MapGroup34:
 
 MapGroup35:
 ; egk dungeons
+	map_header ViridianForestRB, $25, 2, VIRIDIAN_FOREST, MUSIC_ROUTE_2, 0, 2, 0
+	map_header ViridianForestNorthRB, $26, 6, VIRIDIAN_FOREST, MUSIC_ROUTE_2, 0, 1, 1
+	map_header ViridianForestSouthRB, $26, 6, VIRIDIAN_FOREST, MUSIC_ROUTE_2, 0, 1, 1
+	map_header DiglettsCaveRB, $18, 4, DIGLETTS_CAVE, MUSIC_MT_MOON, 1, 2, 1
 

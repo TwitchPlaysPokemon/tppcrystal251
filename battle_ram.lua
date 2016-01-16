@@ -34,14 +34,12 @@ BattleMonSpclDef = 0xc648 -- 2 bytes
 BattleMonType1 = 0xc64a -- 1 byte
 BattleMonType2 = 0xc64b -- 1 byte
 
-
 wWildMon = 0xc64e -- 1 byte
 wEnemyTrainerItem1 = 0xc650 -- 1 byte
 wEnemyTrainerItem2 = 0xc651 -- 1 byte
 wEnemyTrainerBaseReward = 0xc652 -- 1 byte
 wEnemyTrainerAIFlags = 0xc653 -- 3 bytes
 OTName = 0xc656 -- 11 bytes
-
 
 CurOTMon = 0xc663 -- 1 byte
 
@@ -182,7 +180,6 @@ EnemyEvaLevel = 0xc6da -- 1 byte
 EnemyTurnsTaken = 0xc6dc -- 1 byte
 PlayerTurnsTaken = 0xc6dd -- 1 byte
 
-
 PlayerSubstituteHP = 0xc6df -- 1 byte
 EnemySubstituteHP = 0xc6e0 -- 1 byte
 
@@ -293,8 +290,6 @@ wSomeoneIsRampaging = 0xc73b -- 1 byte
 wPlayerJustGotFrozen = 0xc73c -- 1 byte
 wEnemyJustGotFrozen = 0xc73d -- 1 byte
 
-
-
 TempEnemyMonSpecies = 0xd204 -- 1 bytes
 TempBattleMonSpecies = 0xd205 -- 1 bytes
 
@@ -318,7 +313,6 @@ EnemyMonType2 = 0xd225 -- 1 byte
 EnemyMonBaseStats = 0xd226 -- 5 bytes
 EnemyMonCatchRate = 0xd22b -- 1 byte
 EnemyMonBaseExp = 0xd22c -- 1 byte
-
 
 wBattleMode = 0xd22d -- 1 byte
 -- 0: overworld
@@ -352,9 +346,6 @@ OtherTrainerID = 0xd231 -- 1 byte
 wForcedSwitch = 0xd232 -- ds 1
 
 TrainerClass = 0xd233 -- 1 byte
-
-
-
 
 OTPlayerName = 0xd26b -- 11 bytes
 OTPlayerID = 0xd276 -- 2 bytes

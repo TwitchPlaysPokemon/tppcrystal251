@@ -53,10 +53,10 @@ Route19FuchsiaGate_MapEventHeader: ; 0x1ab4cd
 
 	; warps
 	db 4
-	warp_def $0, $4, 10, GROUP_FUCHSIA_CITY, MAP_FUCHSIA_CITY
-	warp_def $0, $5, 11, GROUP_FUCHSIA_CITY, MAP_FUCHSIA_CITY
-	warp_def $7, $4, 1, GROUP_ROUTE_19, MAP_ROUTE_19
-	warp_def $7, $5, 1, GROUP_ROUTE_19, MAP_ROUTE_19
+	warp_def $0, $4,  9, GROUP_FUCHSIA_CITY, MAP_FUCHSIA_CITY
+	warp_def $0, $5, 10, GROUP_FUCHSIA_CITY, MAP_FUCHSIA_CITY
+	warp_def $7, $4,  1, GROUP_ROUTE_19, MAP_ROUTE_19
+	warp_def $7, $5,  1, GROUP_ROUTE_19, MAP_ROUTE_19
 
 	; xy triggers
 	db 0

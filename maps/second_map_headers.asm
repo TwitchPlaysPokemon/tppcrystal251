@@ -365,7 +365,6 @@
 	map_header_2 OlivinePokeCenter1F, OLIVINE_POKECENTER_1F, $0, NONE ; 0x95ba0
 	map_header_2 OlivineGym, OLIVINE_GYM, $0, NONE ; 0x95bac
 	map_header_2 OlivineVoltorbHouse, OLIVINE_VOLTORB_HOUSE, $0, NONE ; 0x95bb8
-	map_header_2 OlivineHouseBeta, OLIVINE_HOUSE_BETA, $0, NONE ; 0x95bc4
 	map_header_2 OlivinePunishmentSpeechHouse, OLIVINE_PUNISHMENT_SPEECH_HOUSE, $0, NONE ; 0x95bd0
 	map_header_2 OlivineGoodRodHouse, OLIVINE_GOOD_ROD_HOUSE, $0, NONE ; 0x95bdc
 	map_header_2 OlivineCafe, OLIVINE_CAFE, $0, NONE ; 0x95be8
@@ -381,8 +380,6 @@
 	map_header_2 Underground, UNDERGROUND, $0, NONE ; 0x95c6c
 	map_header_2 RockTunnel1F, ROCK_TUNNEL_1F, $9, NONE ; 0x95c78
 	map_header_2 RockTunnelB1F, ROCK_TUNNEL_B1F, $9, NONE ; 0x95c84
-	map_header_2 SafariZoneFuchsiaGateBeta, SAFARI_ZONE_FUCHSIA_GATE_BETA, $0, NONE ; 0x95c90
-	map_header_2 SafariZoneBeta, SAFARI_ZONE_BETA, $13, NONE ; 0x95c9c
 	map_header_2 VictoryRoad, VICTORY_ROAD, $1d, NONE ; 0x95ca8
 	map_header_2 EcruteakHouse, ECRUTEAK_HOUSE, $0, NONE ; 0x95cb4
 	map_header_2 WiseTriosRoom, WISE_TRIOS_ROOM, $0, NONE ; 0x95cc0
@@ -400,18 +397,15 @@
 	map_header_2 BlackthornPokeCenter1F, BLACKTHORN_POKECENTER_1F, $0, NONE ; 0x95d50
 	map_header_2 MoveDeletersHouse, MOVE_DELETERS_HOUSE, $0, NONE ; 0x95d5c
 	map_header_2 CinnabarPokeCenter1F, CINNABAR_POKECENTER_1F, $0, NONE ; 0x95d68
-	map_header_2 CinnabarPokeCenter2FBeta, CINNABAR_POKECENTER_2F_BETA, $0, NONE ; 0x95d74
 	map_header_2 Route19FuchsiaGate, ROUTE_19___FUCHSIA_GATE, $0, NONE ; 0x95d80
 	map_header_2 SeafoamGym, SEAFOAM_GYM, $9, NONE ; 0x95d8c
 	map_header_2 CeruleanGymBadgeSpeechHouse, CERULEAN_GYM_BADGE_SPEECH_HOUSE, $0, NONE ; 0x95d98
 	map_header_2 CeruleanPoliceStation, CERULEAN_POLICE_STATION, $0, NONE ; 0x95da4
 	map_header_2 CeruleanTradeSpeechHouse, CERULEAN_TRADE_SPEECH_HOUSE, $0, NONE ; 0x95db0
 	map_header_2 CeruleanPokeCenter1F, CERULEAN_POKECENTER_1F, $0, NONE ; 0x95dbc
-	map_header_2 CeruleanPokeCenter2FBeta, CERULEAN_POKECENTER_2F_BETA, $0, NONE ; 0x95dc8
 	map_header_2 CeruleanGym, CERULEAN_GYM, $0, NONE ; 0x95dd4
 	map_header_2 CeruleanMart, CERULEAN_MART, $0, NONE ; 0x95de0
 	map_header_2 Route10PokeCenter1F, ROUTE_10_POKECENTER_1F, $0, NONE ; 0x95dec
-	map_header_2 Route10PokeCenter2FBeta, ROUTE_10_POKECENTER_2F_BETA, $0, NONE ; 0x95df8
 	map_header_2 PowerPlant, POWER_PLANT, $0, NONE ; 0x95e04
 	map_header_2 BillsHouse, BILLS_HOUSE, $0, NONE ; 0x95e10
 	map_header_2 AzaleaPokeCenter1F, AZALEA_POKECENTER_1F, $0, NONE ; 0x95e1c
@@ -459,7 +453,6 @@
 	map_header_2 DayCare, DAY_CARE, $0, NONE ; 0x96014
 	map_header_2 VermilionHouseFishingSpeechHouse, VERMILION_HOUSE_FISHING_SPEECH_HOUSE, $0, NONE ; 0x96020
 	map_header_2 VermilionPokeCenter1F, VERMILION_POKECENTER_1F, $0, NONE ; 0x9602c
-	map_header_2 VermilionPokeCenter2FBeta, VERMILION_POKECENTER_2F_BETA, $0, NONE ; 0x96038
 	map_header_2 PokemonFanClub, POKEMON_FAN_CLUB, $0, NONE ; 0x96044
 	map_header_2 VermilionMagnetTrainSpeechHouse, VERMILION_MAGNET_TRAIN_SPEECH_HOUSE, $0, NONE ; 0x96050
 	map_header_2 VermilionMart, VERMILION_MART, $0, NONE ; 0x9605c
@@ -475,7 +468,6 @@
 	map_header_2 PewterGym, PEWTER_GYM, $0, NONE ; 0x960d4
 	map_header_2 PewterMart, PEWTER_MART, $0, NONE ; 0x960e0
 	map_header_2 PewterPokeCenter1F, PEWTER_POKECENTER_1F, $0, NONE ; 0x960ec
-	map_header_2 PewterPokeCEnter2FBeta, PEWTER_POKECENTER_2F_BETA, $0, NONE ; 0x960f8
 	map_header_2 PewterSnoozeSpeechHouse, PEWTER_SNOOZE_SPEECH_HOUSE, $0, NONE ; 0x96104
 	map_header_2 OlivinePort, OLIVINE_PORT, $a, NONE ; 0x96110
 	map_header_2 VermilionPort, VERMILION_PORT, $a, NONE ; 0x9611c
@@ -501,11 +493,9 @@
 	map_header_2 FuchsiaGym, FUCHSIA_GYM, $0, NONE ; 0x9620c
 	map_header_2 FuchsiaBillSpeechHouse, FUCHSIA_BILL_SPEECH_HOUSE, $0, NONE ; 0x96218
 	map_header_2 FuchsiaPokeCenter1F, FUCHSIA_POKECENTER_1F, $0, NONE ; 0x96224
-	map_header_2 FuchsiaPokeCenter2FBeta, FUCHSIA_POKECENTER_2F_BETA, $0, NONE ; 0x96230
 	map_header_2 SafariZoneWardensHome, SAFARI_ZONE_WARDENS_HOME, $0, NONE ; 0x9623c
 	map_header_2 Route15FuchsiaGate, ROUTE_15_FUCHSIA_GATE, $0, NONE ; 0x96248
 	map_header_2 LavenderPokeCenter1F, LAVENDER_POKECENTER_1F, $0, NONE ; 0x96254
-	map_header_2 LavenderPokeCenter2FBeta, LAVENDER_POKECENTER_2F_BETA, $0, NONE ; 0x96260
 	map_header_2 MrFujisHouse, MR_FUJIS_HOUSE, $0, NONE ; 0x9626c
 	map_header_2 LavenderTownSpeechHouse, LAVENDER_TOWN_SPEECH_HOUSE, $0, NONE ; 0x96278
 	map_header_2 LavenderNameRater, LAVENDER_NAME_RATER, $0, NONE ; 0x96284
@@ -535,7 +525,6 @@
 	map_header_2 CeladonMansionRoof, CELADON_MANSION_ROOF, $1, NONE ; 0x963a4
 	map_header_2 CeladonMansionRoofHouse, CELADON_MANSION_ROOF_HOUSE, $0, NONE ; 0x963b0
 	map_header_2 CeladonPokeCenter1F, CELADON_POKECENTER_1F, $0, NONE ; 0x963bc
-	map_header_2 CeladonPokeCenter2FBeta, CELADON_POKECENTER_2F_BETA, $0, NONE ; 0x963c8
 	map_header_2 CeladonGameCorner, CELADON_GAME_CORNER, $0, NONE ; 0x963d4
 	map_header_2 CeladonGameCornerPrizeRoom, CELADON_GAME_CORNER_PRIZE_ROOM, $0, NONE ; 0x963e0
 	map_header_2 CeladonGym, CELADON_GYM, $0, NONE ; 0x963ec
@@ -563,7 +552,6 @@
 	map_header_2 TrainerHouseB1F, TRAINER_HOUSE_B1F, $0, NONE ; 0x964f4
 	map_header_2 ViridianMart, VIRIDIAN_MART, $0, NONE ; 0x96500
 	map_header_2 ViridianPokeCenter1F, VIRIDIAN_POKECENTER_1F, $0, NONE ; 0x9650c
-	map_header_2 ViridianPokeCenter2FBeta, VIRIDIAN_POKECENTER_2F_BETA, $0, NONE ; 0x96518
 	map_header_2 Route2NuggetSpeechHouse, ROUTE_2_NUGGET_SPEECH_HOUSE, $0, NONE ; 0x96524
 	map_header_2 Route2Gate, ROUTE_2_GATE, $0, NONE ; 0x96530
 	map_header_2 VictoryRoadGate, VICTORY_ROAD_GATE, $0, NONE ; 0x9653c
@@ -580,7 +568,6 @@
 	map_header_2 SaffronGym, SAFFRON_GYM, $0, NONE ; 0x965c0
 	map_header_2 SaffronMart, SAFFRON_MART, $0, NONE ; 0x965cc
 	map_header_2 SaffronPokeCenter1F, SAFFRON_POKECENTER_1F, $0, NONE ; 0x965d8
-	map_header_2 SaffronPokeCenter2FBeta, SAFFRON_POKECENTER_2F_BETA, $0, NONE ; 0x965e4
 	map_header_2 MrPsychicsHouse, MR_PSYCHICS_HOUSE, $0, NONE ; 0x965f0
 	map_header_2 SaffronTrainStation, SAFFRON_TRAIN_STATION, $0, NONE ; 0x965fc
 	map_header_2 SilphCo1F, SILPH_CO_1F, $0, NONE ; 0x96608
@@ -672,3 +659,9 @@
 	map_header_2 ViridianNicknameSpeechHouseRB, VIRIDIAN_NICKNAME_SPEECH_HOUSE_RB, $0, NONE
 	map_header_2 ViridianTrainerSchoolRB, VIRIDIAN_TRAINER_SCHOOL_RB, $0, NONE
 	map_header_2 VictoryRoadGateRB, VICTORY_ROAD_GATE_RB, $0, NONE
+	map_header_2 DiglettsCaveRB, DIGLETTS_CAVE_RB, $0, NONE
+	map_header_2 Route2GateRB, ROUTE_2_GATE_RB, $0, NONE
+	map_header_2 Route2NuggetSpeechHouseRB, ROUTE_2_NUGGET_SPEECH_HOUSE_RB, $0, NONE
+	map_header_2 ViridianForestRB, VIRIDIAN_FOREST_RB, $2, NONE
+	map_header_2 ViridianForestNorthRB, VIRIDIAN_FOREST_NORTH_RB, $0, NONE
+	map_header_2 ViridianForestSouthRB, VIRIDIAN_FOREST_SOUTH_RB, $0, NONE

@@ -182,6 +182,7 @@ RockTunnelB1F_BlockData: ; 0xb0e34
 ; 0xb0f42
 
 DiglettsCave_BlockData: ; 0xb0f42
+DiglettsCaveRB_BlockData: ; 0xb0f42
 	INCBIN "maps/DiglettsCave.blk"
 ; 0xb0ff6
 
@@ -206,10 +207,6 @@ MewIslandEntranceUnderground_BlockData:
 FuchsiaGym_BlockData: ; 0xb1155
 	INCBIN "maps/FuchsiaGym.blk"
 ; 0xb1182
-
-SafariZoneBeta_BlockData: ; 0xb1182
-	INCBIN "maps/SafariZoneBeta.blk"
-; 0xb1236
 
 Underground_BlockData: ; 0xb1236
 	INCBIN "maps/Underground.blk"
@@ -331,11 +328,14 @@ GoldenrodDeptStoreRoof_BlockData: ; 0xb1b22
 ; 0xb1b42
 
 ViridianForest_BlockData:
+ViridianForestRB_BlockData:
 	INCBIN "maps/ViridianForest.blk"
 
 ViridianForestNorth_BlockData: 
+ViridianForestNorthRB_BlockData: 
 	INCBIN "maps/ViridianForestNorth.blk"
 ViridianForestSouth_BlockData: 
+ViridianForestSouthRB_BlockData: 
 	INCBIN "maps/ViridianForestSouth.blk"
 	
 MtMoon1_BlockData:
