@@ -166,7 +166,9 @@ VermilionHouseDiglettsCaveSpeechHouse_BlockData:
 BluesHouse_BlockData:
 BluesHouseRB_BlockData:
 PewterNidoranSpeechHouse_BlockData:
+PewterNidoranSpeechHouseRB_BlockData:
 PewterSnoozeSpeechHouse_BlockData:
+PewterSnoozeSpeechHouseRB_BlockData:
 FuchsiaBillSpeechHouse_BlockData:
 LavenderTownSpeechHouse_BlockData:
 LavenderNameRater_BlockData:

@@ -574,3 +574,6 @@ SECTION "Map Scripts 29", ROMX
 SECTION "Pewter Gym Events", ROMX
 INCLUDE "maps/EarlyGameKanto/PewterGym.asm"
 INCLUDE "maps/EarlyGameKanto/PewterCity.asm"
+INCLUDE "maps/EarlyGameKanto/PewterMart.asm"
+INCLUDE "maps/EarlyGameKanto/PewterPokeCenter1F.asm"
+INCLUDE "maps/EarlyGameKanto/PewterSnoozeSpeechHouse.asm"

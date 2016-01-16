@@ -670,3 +670,7 @@
 	map_header_2 PewterCityRB, PEWTER_CITY_RB, $f, SOUTH | EAST
 	connection south, ROUTE_2_RB, Route2RB, 5, 0, 10, PEWTER_CITY_RB
 	connection east, ROUTE_3, Route3, 5, 0, 9, PEWTER_CITY_RB
+
+	map_header_2 PewterMartRB, PEWTER_MART_RB, $0, NONE ; 0x960e0
+	map_header_2 PewterPokeCenter1FRB, PEWTER_POKECENTER_1F_RB, $0, NONE ; 0x960ec
+	map_header_2 PewterSnoozeSpeechHouseRB, PEWTER_SNOOZE_SPEECH_HOUSE_RB, $0, NONE ; 0x96104
