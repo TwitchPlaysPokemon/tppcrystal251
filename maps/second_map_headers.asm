@@ -665,3 +665,5 @@
 	map_header_2 ViridianForestRB, VIRIDIAN_FOREST_RB, $2, NONE
 	map_header_2 ViridianForestNorthRB, VIRIDIAN_FOREST_NORTH_RB, $a, NONE
 	map_header_2 ViridianForestSouthRB, VIRIDIAN_FOREST_SOUTH_RB, $a, NONE
+
+	map_header_2 PewterGymRB, PEWTER_GYM_RB, $0, NONE

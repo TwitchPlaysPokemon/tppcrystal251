@@ -1,5 +1,6 @@
 INCLUDE "macros/enum.asm"
 INCLUDE "macros/event.asm"
+INCLUDE "macros/event_extra.asm"
 INCLUDE "macros/sound.asm"
 INCLUDE "macros/text.asm"
 INCLUDE "macros/charmap.asm"

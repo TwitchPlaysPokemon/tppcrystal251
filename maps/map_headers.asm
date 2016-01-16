@@ -534,7 +534,7 @@ MapGroup31:
 	; map_header Route3RB, $3, 2, ROUTE_3, MUSIC_ROUTE_3, 0, 0, 1
 	; map_header PewterCityRB, $3, 1, PEWTER_CITY, MUSIC_VIRIDIAN_CITY, 0, 0, 1
 	; map_header PewterNidoranSpeechHouseRB, $5, 3, PEWTER_CITY, MUSIC_VIRIDIAN_CITY, 0, 1, 1
-	; map_header PewterGymRB, $17, 3, PEWTER_CITY, MUSIC_GYM, 1, 1, 1
+	map_header PewterGymRB, $17, 3, PEWTER_CITY, MUSIC_GYM, 1, 1, 1
 	; map_header PewterMartRB, $c, 3, PEWTER_CITY, MUSIC_MART, 0, 1, 1
 	; map_header PewterPokeCenter1FRB, $7, 3, PEWTER_CITY, MUSIC_POKEMON_CENTER, 0, 1, 1
 	; map_header PewterSnoozeSpeechHouseRB, $5, 3, PEWTER_CITY, MUSIC_VIRIDIAN_CITY, 0, 1, 1

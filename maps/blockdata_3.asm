@@ -161,6 +161,7 @@ SoulHouse_BlockData: ; 0xb0c7e
 	INCBIN "maps/SoulHouse.blk"
 ; 0xb0c92
 
+PewterGymRB_BlockData:
 PewterGym_BlockData: ; 0xb0c92
 	INCBIN "maps/PewterGym.blk"
 ; 0xb0cb5
