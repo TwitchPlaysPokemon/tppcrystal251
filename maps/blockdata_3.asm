@@ -89,6 +89,7 @@ SaffronTrainStation_BlockData: ; 0xb0969
 	INCBIN "maps/SaffronTrainStation.blk"
 ; 0xb09c3
 
+CeruleanGymRB_BlockData:
 CeruleanGym_BlockData: ; 0xb09c3
 	INCBIN "maps/CeruleanGym.blk"
 ; 0xb09eb

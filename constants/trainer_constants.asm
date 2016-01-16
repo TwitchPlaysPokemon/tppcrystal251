@@ -87,6 +87,7 @@
 	trainerclass MISTY ; 12
 	const MISTY_1
 	const MISTY_2
+	const MISTY_RB
 
 	trainerclass LT_SURGE ; 13
 	const SURGE_1
@@ -368,6 +369,7 @@
 	const JAMES
 	const LEWIS
 	const PARKER
+	const PARKER_RB
 
 	trainerclass SWIMMERF ; 27
 	const ELAINE
@@ -389,6 +391,7 @@
 	const NIKKI
 	const DIANA
 	const BRIANA
+	const DIANA_RB
 
 	trainerclass SAILOR ; 28
 	const EUGENE
