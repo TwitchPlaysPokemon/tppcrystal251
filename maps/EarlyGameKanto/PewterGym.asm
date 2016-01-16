@@ -44,13 +44,13 @@ PewterGymRB_BrockScript:
 .bag_full:
 	end
 
-TrainerCamperJerry:
-	trainer EVENT_BEAT_CAMPER_JERRY, CAMPER, JERRY_RB, CamperJerrySeenText, CamperJerryBeatenText, NULL, CamperJerryScript
+TrainerCamperJerryRB:
+	trainer EVENT_BEAT_CAMPER_JERRY, CAMPER, JERRY_RB, CamperJerryRBSeenText, CamperJerryRBBeatenText, NULL, CamperJerryRBScript
 
-CamperJerryScript:
+CamperJerryRBScript:
 	talkaftercancel
 	loadfont
-	writetext CamperJerryAfterText
+	writetext CamperJerryRBAfterText
 	waitbutton
 	closetext
 	end
@@ -221,7 +221,7 @@ PewterGymRB_TMText:
 ;	cont "it back double!"
 ;	done
 t
-CamperJerrySeenText:
+CamperJerryRBSeenText:
 	text "Stop right there,"
 	line "kid!"
 
@@ -230,7 +230,7 @@ CamperJerrySeenText:
 	cont "BROCK!"
 	done
 
-CamperJerryBeatenText:
+CamperJerryRBBeatenText:
 	text "Darn!"
 
 	para "Light years isn't"
@@ -238,7 +238,7 @@ CamperJerryBeatenText:
 	cont "distance!"
 	done
 
-CamperJerryAfterText:
+CamperJerryRBAfterText:
 	text "You're pretty hot,"
 	line "but not as hot"
 	cont "as BROCK!"
@@ -312,6 +312,6 @@ PewterGymRB_MapEventHeader:
 	; people-events
 	db 3
 	person_event SPRITE_BROCK, 5, 9, $6, 0, 0, -1, -1, 8 + PAL_OW_BROWN, 0, 0, PewterGymRB_BrockScript, -1
-	person_event SPRITE_YOUNGSTER, 9, 6, $9, 0, 0, -1, -1, 8 + PAL_OW_GREEN, 2, 3, TrainerCamperJerry, -1
+	person_event SPRITE_YOUNGSTER, 9, 6, $9, 0, 0, -1, -1, 8 + PAL_OW_GREEN, 2, 3, TrainerCamperJerryRB, -1
 	person_event SPRITE_GYM_GUY, 15, 10, $6, 0, 0, -1, -1, 8 + PAL_OW_BLUE, 0, 1, PewterGymRB_GymGuyScript, -1
 
