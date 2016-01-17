@@ -1,4 +1,4 @@
--- Revo's really hacky as shit battlestate JSON reader WIP v0.4
+-- Revo's really hacky as shit battlestate JSON reader WIP v0.5
 
 JSON = (loadfile "JSON.lua")()
 
@@ -49,11 +49,15 @@ local itemArray = {}
 local wEnemyTrainerItem1 = memory.readbyte(0xc650) -- 1 byte
 local wEnemyTrainerItem2 = memory.readbyte(0xc651) -- 1 byte
 
-itemArray["item1"] = itemTable[wEnemyTrainerItem1 + 1]
-itemArray["item2"] = itemTable[wEnemyTrainerItem2 + 1]
+itemArray["item1"] = checkItem(wEnemyTrainerItem1 + 1)
+itemArray["item2"] = checkItem(wEnemyTrainerItem2 + 1)
 
 return itemArray
+end
 
+function checkItem(value)
+local returnedItem = itemTable[value + 1]
+return returnedItem
 end
 
 function getPlayerScreens()
@@ -138,12 +142,61 @@ function getEnemyPokemonData()
 end
 
 function getWildPokemonData()
+local wildPokemon = {}
+local wildStats = memory.readbyterange(0xc6c1, 10)
+local wildMaxHP = memory.readbyterange(0xd218, 2)
+local wildStats = {}
+local types = {}
+local moves = {}
+local substatus = {}
+
+-- moves
+
+wildStats["hp"] = memory.readbyte(0xd219) + (memory.readbyte(0xd218) * 255)
+wildStats["atk"] = memory.readbyte(0xc6c2) + (memory.readbyte(0xC6C1) * 255)
+wildStats["def"] = memory.readbyte(0xc6c4) + (memory.readbyte(0xC6C3) * 255)
+wildStats["spatk"] = memory.readbyte(0xc6c8) + (memory.readbyte(0xC6C7) * 255)
+wildStats["spdef"] = memory.readbyte(0xc6D0) + (memory.readbyte(0xC6C9) * 255)
+wildStats["spd"] = memory.readbyte(0xc6c6) + (memory.readbyte(0xC6C5) * 255)
+
+-- types
+
+--substatus
+
+wildPokemon["dexNumber"] = getWildMon()
+wildPokemon["gender"] = checkGender(memory.readbyte(0xC4BD))
+wildPokemon["item"] = checkItem(memory.readbyte(0xD207))
+wildPokemon["moves"] = {}
+wildPokemon["stats"] = wildStats
+wildPokemon["types"] = {}
+wildPokemon["currenthp"] = memory.readbyte(0xD217) + (memory.readbyte(0xd216) * 255)
+wildPokemon["level"] = memory.readbyte(0xd213)
+wildPokemon["substatus"] = "dummy"
+wildPokemon["status"] = "dummy"
+
+return wildPokemon
+end
+
+function checkGender(value)
+gender = ""
+
+if value == 245 then
+    gender = "F"
+elseif value == 239 then
+    gender = "M"
+else
+    gender = "I"
+end
+
+return gender
 end
 
 repeat
     battleState = {}
     wBattleMode = memory.readbyte(0xD22D)
     rSVBK = memory.readbyte(0xFF70)
+    
+    vba.print("rSVBK: ", rSVBK)
 
     if wBattleMode == 2 and rSVBK == 1 then 
         battleState["wBattleMode"] = wBattleMode
@@ -156,11 +209,11 @@ repeat
         vba.print(battleState)
     elseif wBattleMode == 1 and rSVBK == 1 then 
         battleState["wBattleMode"] = wBattleMode
-        battleState["wildpokenum"] = getWildMon()
         battleState["turn"] = getTurns()
         battleState["enemyscreens"] = getEnemyScreens()
         battleState["playerscreens"] = getPlayerScreens()
         battleState["weather"] = getWeather()
+        battleState["wildpokemon"] = getWildPokemonData()
         vba.print(battleState)
     elseif wBattleMode == 0 and rSVBK == 1 then 
         vba.print("Not in battle.")
