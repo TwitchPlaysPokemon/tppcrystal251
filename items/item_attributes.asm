@@ -605,7 +605,7 @@ Item2Attributes:
 ; SOFT SAND
 	dw 5000 ; price
 	db HELD_GROUND_BOOST ; effect
-	db 10 ; param
+	db 20 ; param
 	db CANT_SELECT
 	db ITEM
 	db $00 ; can't use
@@ -613,7 +613,7 @@ Item2Attributes:
 ; SHARP BEAK
 	dw 5000 ; price
 	db HELD_FLYING_BOOST ; effect
-	db 10 ; param
+	db 20 ; param
 	db CANT_SELECT
 	db ITEM
 	db $00 ; can't use
@@ -645,7 +645,7 @@ Item2Attributes:
 ; POISON BARB
 	dw 5000 ; price
 	db HELD_POISON_BOOST ; effect
-	db 10 ; param
+	db 20 ; param
 	db CANT_SELECT
 	db ITEM
 	db $00 ; can't use
@@ -701,7 +701,7 @@ Item2Attributes:
 ; SILVERPOWDER
 	dw 5000 ; price
 	db HELD_BUG_BOOST ; effect
-	db 10 ; param
+	db 20 ; param
 	db CANT_SELECT
 	db ITEM
 	db $00 ; can't use
@@ -757,7 +757,7 @@ Item2Attributes:
 ; MYSTIC WATER
 	dw 5000 ; price
 	db HELD_WATER_BOOST ; effect
-	db 10 ; param
+	db 20 ; param
 	db CANT_SELECT
 	db ITEM
 	db $00 ; can't use
@@ -765,7 +765,7 @@ Item2Attributes:
 ; TWISTEDSPOON
 	dw 5000 ; price
 	db HELD_PSYCHIC_BOOST ; effect
-	db 10 ; param
+	db 20 ; param
 	db CANT_SELECT
 	db ITEM
 	db $00 ; can't use
@@ -781,7 +781,7 @@ Item2Attributes:
 ; BLACKBELT
 	dw 5000 ; price
 	db HELD_FIGHTING_BOOST ; effect
-	db 10 ; param
+	db 20 ; param
 	db CANT_SELECT
 	db ITEM
 	db $00 ; can't use
@@ -813,7 +813,7 @@ Item2Attributes:
 ; BLACKGLASSES
 	dw 5000 ; price
 	db HELD_DARK_BOOST ; effect
-	db 10 ; param
+	db 20 ; param
 	db CANT_SELECT
 	db ITEM
 	db $00 ; can't use
@@ -828,8 +828,8 @@ Item2Attributes:
 
 ; PINK BOW
 	dw 5000 ; price
-	db HELD_NORMAL_BOOST ; effect
-	db 10 ; param
+	db HELD_FAIRY_BOOST ; effect
+	db 20 ; param
 	db CANT_SELECT
 	db ITEM
 	db $00 ; can't use
@@ -853,7 +853,7 @@ Item2Attributes:
 ; NEVERMELTICE
 	dw 5000 ; price
 	db HELD_ICE_BOOST ; effect
-	db 10 ; param
+	db 20 ; param
 	db CANT_SELECT
 	db ITEM
 	db $00 ; can't use
@@ -861,7 +861,7 @@ Item2Attributes:
 ; MAGNET
 	dw 5000 ; price
 	db HELD_ELECTRIC_BOOST ; effect
-	db 10 ; param
+	db 20 ; param
 	db CANT_SELECT
 	db ITEM
 	db $00 ; can't use
@@ -901,7 +901,7 @@ Item2Attributes:
 ; SPELL TAG
 	dw 5000 ; price
 	db HELD_GHOST_BOOST ; effect
-	db 10 ; param
+	db 20 ; param
 	db CANT_SELECT
 	db ITEM
 	db $00 ; can't use
@@ -933,7 +933,7 @@ Item2Attributes:
 ; MIRACLE SEED
 	dw 5000 ; price
 	db HELD_GRASS_BOOST ; effect
-	db 10 ; param
+	db 20 ; param
 	db CANT_SELECT
 	db ITEM
 	db $00 ; can't use
@@ -997,7 +997,7 @@ Item2Attributes:
 ; HARD STONE
 	dw 5000 ; price
 	db HELD_ROCK_BOOST ; effect
-	db 10 ; param
+	db 20 ; param
 	db CANT_SELECT
 	db ITEM
 	db $00 ; can't use
@@ -1101,7 +1101,7 @@ Item2Attributes:
 ; CHARCOAL
 	dw 5000 ; price
 	db HELD_FIRE_BOOST ; effect
-	db 10 ; param
+	db 20 ; param
 	db CANT_SELECT
 	db ITEM
 	db $00 ; can't use
@@ -1141,7 +1141,7 @@ Item2Attributes:
 ; METAL COAT
 	dw 5000 ; price
 	db HELD_STEEL_BOOST ; effect
-	db 10 ; param
+	db 20 ; param
 	db CANT_SELECT
 	db ITEM
 	db $00 ; can't use
@@ -1149,7 +1149,7 @@ Item2Attributes:
 ; DRAGON FANG
 	dw 5000 ; price
 	db HELD_DRAGON_BOOST ; effect ; fixes Dragon Fang glitch
-	db 0 ; param
+	db 20 ; param
 	db CANT_SELECT
 	db ITEM
 	db $00 ; can't use
@@ -1357,7 +1357,7 @@ Item2Attributes:
 ; POLKADOT BOW
 	dw 5000 ; price
 	db HELD_NORMAL_BOOST ; effect
-	db 10 ; param
+	db 20 ; param
 	db CANT_SELECT
 	db ITEM
 	db $00 ; can't use
