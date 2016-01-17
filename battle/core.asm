@@ -799,7 +799,16 @@ Function3c543: ; 3c543
 
 	ld a, [PlayerSubStatus5]
 	bit SUBSTATUS_CANT_RUN, a
+	jr z, .NotTrapped
+	ld hl, EnemyMonType1
+	ld a, [hli]
+	cp GHOST
+	jr z, .NotTrapped
+	ld a, [hl]
+	cp GHOST
 	jr nz, .Stay
+.NotTrapped
+	
 
 	ld a, [wc731]
 	and a
@@ -3905,7 +3914,16 @@ Function3d8b3: ; 3d8b3
 
 	ld a, [EnemySubStatus5]
 	bit SUBSTATUS_CANT_RUN, a
+	jr z, NotTrapped
+	ld hl, BattleMonType1
+	ld a, [hli]
+	cp GHOST
+	jr z, NotTrapped
+	ld a, [hl]
+	cp GHOST
 	jp nz, .asm_3d98d
+.NotTrapped
+	
 
 	ld a, [wc730]
 	and a
@@ -5445,6 +5463,14 @@ Function3e358: ; 3e358
 	ld a, [EnemySubStatus5]
 	bit SUBSTATUS_CANT_RUN, a
 	jr z, .asm_3e381
+	ld hl, BattleMonType1
+	ld a, [hli]
+	cp GHOST
+	jr z, .asm_3e381
+	ld a, [hl]
+	cp GHOST
+	jr z, .asm_3e381
+
 
 .asm_3e378
 	ld hl, BattleText_0x80c22

@@ -2363,8 +2363,8 @@ BattleCommand09: ; 34d32
 	call .Protect
 	jp nz, .Miss
 
-	call .DrainSub
-	jp z, .Miss
+	;call .DrainSub
+	;jp z, .Miss
 
 	call .LockOn
 	ret nz
@@ -2383,6 +2383,24 @@ BattleCommand09: ; 34d32
 	call GetBattleVar
 	cp EFFECT_ALWAYS_HIT
 	ret z
+	cp EFFECT_EFFECT_FORESIGHT
+	ret z
+	cp EFFECT_WHIRLWIND
+	ret z
+
+	cp EFFECT_TOXIC
+	jr nz, .NotToxic
+	ld a, BATTLE_VARS_TYPE_1OPP ;poison always hits toxic
+	call GetBattleVarAddr
+	cp POISON
+	ret z
+	ld a, BATTLE_VARS_TYPE_2OPP
+	call GetBattleVarAddr
+	cp POISON
+	ret z
+
+.NotToxic
+
 
 	call .StatModifiers
 
@@ -5551,6 +5569,15 @@ BattleCommand14: ; 35e5c
 	ld hl, AlreadyAsleepText
 	jr nz, .asm_35ec6
 
+	ld a, BATTLE_VARS_LAST_MOVE
+	call GetBattleVar
+	cp SLEEP_POWDER
+	call z, CheckForGrassType ;ret z if target is a grass type
+	jp z, PrintDidntAffect2
+	cp SPORE
+	call z, CheckForGrassType ;ret z if target is a grass type
+	jp z, PrintDidntAffect2
+
 	ld a, [AttackMissed]
 	and a
 	jp nz, PrintDidntAffect2
@@ -5675,6 +5702,12 @@ BattleCommand2f: ; 35f2c
 	jp z, .asm_35fb8
 
 	call Function35fe1
+	jp z, .asm_35fb8
+
+	ld a, BATTLE_VARS_LAST_MOVE
+	call GetBattleVar
+	cp POISON_POWDER
+	call z, CheckForGrassType ;ret z if target is a grass type
 	jp z, .asm_35fb8
 
 	ld a, BATTLE_VARS_STATUS_OPP
@@ -6023,15 +6056,25 @@ BattleCommand17: ; 3608c
 	call GetBattleVarAddr
 	and a
 	jp nz, Defrost
-	ld a, [TypeModifier]
-	and $7f
-	ret z
-	call Function36e5b
+		;ld a, [TypeModifier] redundent
+		;and $7f
+		;ret z
+		;call Function36e5b
 	ret z
 	call GetOpponentItem
 	ld a, b
 	cp HELD_PREVENT_BURN
 	ret z
+
+	ld a, BATTLE_VARS_TYPE_1OPP ;fire immunity to burn
+	call GetBattleVarAddr
+	cp FIRE
+	ret z
+	ld a, BATTLE_VARS_TYPE_2OPP
+	call GetBattleVarAddr
+	cp FIRE
+	ret z
+
 	ld a, [EffectFailed]
 	and a
 	ret nz
@@ -6093,18 +6136,25 @@ BattleCommand18: ; 36102
 	call GetBattleVarAddr
 	and a
 	ret nz
-	ld a, [TypeModifier]
-	and $7f
-	ret z
 	ld a, [Weather]
 	cp WEATHER_SUN
 	ret z
-	call Function36e5b
+		;call Function36e5b
 	ret z
 	call GetOpponentItem
 	ld a, b
 	cp HELD_PREVENT_FREEZE
 	ret z
+
+	ld a, BATTLE_VARS_TYPE_1OPP ;fire immunity to burn
+	call GetBattleVarAddr
+	cp ICE
+	ret z
+	ld a, BATTLE_VARS_TYPE_2OPP
+	call GetBattleVarAddr
+	cp ICE
+	ret z
+
 	ld a, [EffectFailed]
 	and a
 	ret nz
@@ -6150,6 +6200,16 @@ BattleCommand19: ; 36165
 	ld a, [TypeModifier]
 	and $7f
 	ret z
+
+	ld a, BATTLE_VARS_TYPE_1OPP ;electric immunity to prz
+	call GetBattleVarAddr
+	cp ELECTRIC
+	ret z
+	ld a, BATTLE_VARS_TYPE_2OPP
+	call GetBattleVarAddr
+	cp ELECTRIC
+	ret z
+
 	call GetOpponentItem
 	ld a, b
 	cp HELD_PREVENT_PARALYZE
@@ -6486,6 +6546,13 @@ BattleCommand1d: ; 362e3
 	;jr c, .Failed
 
 .DidntMiss
+
+	ld a, BATTLE_VARS_LAST_MOVE
+	call GetBattleVar
+	cp COTTON_SPORE
+	call z, CheckForGrassType ;ret z if target is a grass type
+	jp z, .Failed
+
 	call CheckSubstituteOpp
 	jr nz, .Failed
 
@@ -7248,7 +7315,16 @@ BattleCommanda0: ; 36778
 	ld a, BATTLE_VARS_SUBSTATUS5_OPP
 	call GetBattleVar
 	bit SUBSTATUS_CANT_RUN, a
+	jr z, .NotTrapped
+	ld a, BATTLE_VARS_TYPE_1
+	call GetBattleVar
+	cp GHOST
+	jr z, .NotTrapped
+	ld a, BATTLE_VARS_TYPE_2
+	call GetBattleVar
+	cp GHOST
 	jr nz, .failed
+.NotTrapped
 	ld a, [hBattleTurn]
 	and a
 	jr nz, .asm_367bf
@@ -8313,6 +8389,15 @@ Function36db6: ; 36db6
 	jp PrintDidntAffect2
 ; 36dc7
 
+CheckForGrassType: ;ret z if opposing mon is a grass type
+	ld a, BATTLE_VARS_TYPE_1OPP 
+	call GetBattleVarAddr
+	cp GRASS
+	ret z
+	ld a, BATTLE_VARS_TYPE_2OPP
+	call GetBattleVarAddr
+	cp GRASS
+	ret
 
 BattleCommand30: ; 36dc7
 ; paralyze
@@ -8324,6 +8409,22 @@ BattleCommand30: ; 36dc7
 	ld a, [TypeModifier]
 	and $7f
 	jr z, .asm_36e55
+
+	ld a, BATTLE_VARS_TYPE_1OPP ;electric immunity to prz
+	call GetBattleVarAddr
+	cp ELECTRIC
+	jr z, .asm_36e55
+	ld a, BATTLE_VARS_TYPE_2OPP
+	call GetBattleVarAddr
+	cp ELECTRIC
+	jr z, .asm_36e55
+
+	ld a, BATTLE_VARS_LAST_MOVE
+	call GetBattleVar
+	cp STUN_SPORE
+	call z, CheckForGrassType ;ret z if target is a grass type
+	jr z, .asm_36e55
+
 	call GetOpponentItem
 	ld a, b
 	cp HELD_PREVENT_PARALYZE

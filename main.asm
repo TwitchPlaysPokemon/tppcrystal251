@@ -36823,7 +36823,15 @@ AIWaitMove:
 .switch
 	ld hl, PlayerSubStatus5
 	bit SUBSTATUS_CANT_RUN, [hl]
+	jr z, .NotTrapped
+	ld hl, EnemyMonType1
+	ld a, [hli]
+	cp GHOST
+	jr z, .NotTrapped
+	ld a, [hl]
+	cp GHOST
 	jr nz, .invalid
+.NotTrapped
 	and $f
 	jr z, .invalid
 	dec a

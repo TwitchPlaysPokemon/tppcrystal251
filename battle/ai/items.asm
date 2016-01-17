@@ -14,8 +14,16 @@ Function38000: ; 38000
 
 	ld a, [PlayerSubStatus5]
 	bit SUBSTATUS_CANT_RUN, a
+	jr z, .NotTrapped
+	ld hl, EnemyMonType1
+	ld a, [hli]
+	cp GHOST
+	jr z, .NotTrapped
+	ld a, [hl]
+	cp GHOST
 	jr nz, DontSwitch
-
+.NotTrapped
+	
 	ld a, [wc731]
 	and a
 	jr nz, DontSwitch
