@@ -1,4 +1,4 @@
--- Revo's really hacky as shit battlestate JSON reader WIP v0.4
+-- Revo's really hacky as shit battlestate JSON reader WIP v0.6
 
 JSON = (loadfile "JSON.lua")()
 
@@ -154,9 +154,28 @@ local move1 = {}
 local move2 = {}
 local move3 = {}
 local move4 = {}
+local status = {}
 local substatus = {}
 
--- moves
+move1["move"] = moveTable[memory.readbyte(0xC735) + 1]
+move1["pp"] = memory.readbyte(0xc739)
+moves["move1"] = move1
+
+if memory.readbyte(0xC736) ~= 0x00 then
+move2["move"] = moveTable[memory.readbyte(0xC736) + 1]
+move2["pp"] = memory.readbyte(0xc73A)
+moves["move2"] = move2
+end
+if memory.readbyte(0xC737) ~= 0x00 then
+move3["move"] = moveTable[memory.readbyte(0xC737) + 1]
+move3["pp"] = memory.readbyte(0xc73B)
+moves["move3"] = move3
+end
+if memory.readbyte(0xC738) ~= 0x00 then
+move4["move"] = moveTable[memory.readbyte(0xC738) + 1]
+move4["pp"] = memory.readbyte(0xc73C)
+moves["move4"] = move4
+end
 
 wildStats["hp"] = memory.readbyte(0xd219) + (memory.readbyte(0xd218) * 255)
 wildStats["atk"] = memory.readbyte(0xc6c2) + (memory.readbyte(0xC6C1) * 255)
@@ -172,13 +191,36 @@ wildStats["spd"] = memory.readbyte(0xc6c6) + (memory.readbyte(0xC6C5) * 255)
 wildPokemon["dexNumber"] = getWildMon()
 wildPokemon["gender"] = checkGender(memory.readbyte(0xC4BD))
 wildPokemon["item"] = checkItem(memory.readbyte(0xD207))
-wildPokemon["moves"] = {}
+wildPokemon["moves"] = moves
 wildPokemon["stats"] = wildStats
 wildPokemon["types"] = {}
 wildPokemon["currenthp"] = memory.readbyte(0xD217) + (memory.readbyte(0xd216) * 255)
 wildPokemon["level"] = memory.readbyte(0xd213)
 wildPokemon["substatus"] = "dummy"
 wildPokemon["status"] = "dummy"
+
+wildStatus = memory.readbyte(0xd214)
+
+if (AND(memory.readbyte(0xd214), 8) == 8) then
+wildPokemon["status"] = "PSN"
+elseif (AND(memory.readbyte(0xd214), 16) == 16) then
+wildPokemon["status"] = "BRN"
+elseif (AND(memory.readbyte(0xd214), 32) == 32) then
+wildPokemon["status"] = "FRZ"
+elseif (AND(memory.readbyte(0xd214), 64) == 128) then
+wildPokemon["status"] = "PAR"
+elseif (AND(memory.readbyte(0xd214), 128) == 128) then
+sleepCounter = 0
+    if(AND(wildStatus,2)==2) then
+        sleepCounter = sleepCounter + 1
+    end
+    if(AND(wildStatus,4)==4) then
+        sleepCounter = sleepCounter + 2
+    end
+status["SLP"] = sleepCounter
+else
+wildPokemon["status"] = "NONE"
+end
 
 return wildPokemon
 end
