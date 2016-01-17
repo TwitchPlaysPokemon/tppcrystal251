@@ -76,7 +76,7 @@
 	dw SkyAttack
 	dw ConfuseHit
 	dw Twineedle
-	dw NormalHit
+	dw Growth
 	dw Substitute
 	dw HyperBeam
 	dw Rage
@@ -156,3 +156,4 @@
 	dw Fly
 	dw DefenseCurl
 	dw Extremespeed
+	

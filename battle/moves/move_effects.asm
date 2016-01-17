@@ -296,7 +296,7 @@ SpeedUp:
 	statupfailtext
 	endmove
 
-Growth:
+;Growth:
 SpecialAttackUp:
 	checkobedience
 	usedmovetext
@@ -2298,6 +2298,15 @@ DefenseCurl:
 	statupfailtext
 	endmove
 
-
-
+Growth:
+	checkobedience
+	usedmovetext
+	doturn
+	growth
+	effect0x0a
+	effect0x92
+	effect0x0c
+	statmessageuser
+	statupfailtext
+	endmove
 

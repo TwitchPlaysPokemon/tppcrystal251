@@ -7255,10 +7255,11 @@ BattleCommand22: ; 366e5
 	ld [de], a
 	ld [wPlayerMoveStructEffect], a
 	ld [wEnemyMoveStructEffect], a
-	call BattleRandom
-	and 1
-	inc a
-	inc a
+	;call BattleRandom
+	;and 1
+	;inc a
+	;inc a
+	ld a, 2
 	ld [bc], a
 	ld a, 1
 	ld [wc689], a
@@ -10728,6 +10729,17 @@ BattleCommand9f: ; 37d94
 	ret
 ; 37daa
 
+BattleCommand_Growth:
+	ld a, [Weather]
+	cp WEATHER_SUN
+	jr z, .SunBoost
+	call BattleCommand70
+	call BattleCommand73
+	ret
+.SunBoost
+	BattleCommand77
+	BattleCommand7a
+	ret
 
 CheckHiddenOpponent: ; 37daa
 	ld a, BATTLE_VARS_SUBSTATUS3_OPP
