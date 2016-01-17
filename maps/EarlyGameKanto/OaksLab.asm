@@ -307,7 +307,6 @@ OaksLab_DoRivalBattle:
 	reloadmapmusic
 	reloadmap
 	playmapmusic
-	special HealParty
 	loadfont
 	checkflag ENGINE_PLAYER_IS_FEMALE
 	iftrue .male_rival

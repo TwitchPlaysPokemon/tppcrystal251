@@ -32,6 +32,7 @@ EcruteakPokeCenter1F_BlockData:
 BlackthornPokeCenter1F_BlockData:
 CinnabarPokeCenter1F_BlockData:
 CeruleanPokeCenter1F_BlockData:
+CeruleanPokeCenter1FRB_BlockData:
 Route10PokeCenter1F_BlockData:
 AzaleaPokeCenter1F_BlockData:
 VioletPokeCenter1F_BlockData:

@@ -678,7 +678,7 @@
 
 	map_header_2 Route4RB, ROUTE_4_RB, $2c, WEST | EAST ; 0x95720
 	connection west, ROUTE_3_RB, Route3RB, 0, 0, 9, ROUTE_4_RB
-	connection east, CERULEAN_CITY, CeruleanCity, -3, 2, 15, ROUTE_4_RB
+	connection east, CERULEAN_CITY_RB, CeruleanCityRB, -2, 2, 15, ROUTE_4_RB
 
 	map_header_2 PewterMartRB, PEWTER_MART_RB, $0, NONE ; 0x960e0
 	map_header_2 PewterPokeCenter1FRB, PEWTER_POKECENTER_1F_RB, $0, NONE ; 0x960ec
@@ -692,3 +692,11 @@
 	map_header_2 MtMoonB3FRB, MT_MOON_B3F_RB, $3, NONE
 
 	map_header_2 CeruleanGymRB, CERULEAN_GYM, $0, NONE
+
+	map_header_2 CeruleanPokeCenter1FRB, CERULEAN_POKECENTER_1F_RB, $0, NONE ; 0x960ec
+
+	map_header_2 CeruleanCityRB, CERULEAN_CITY_RB, $f, NORTH | SOUTH | WEST | EAST ; 0x95660
+	connection north, ROUTE_24, Route24, 6, 0, 10, CERULEAN_CITY_RB
+	connection south, ROUTE_5, Route5, 5, 0, 10, CERULEAN_CITY_RB
+	connection west, ROUTE_4_RB, Route4RB, 4, 0, 9, CERULEAN_CITY_RB
+	connection east, ROUTE_9, Route9, 6, 0, 9, CERULEAN_CITY_RB

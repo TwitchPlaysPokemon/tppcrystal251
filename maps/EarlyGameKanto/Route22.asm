@@ -68,7 +68,6 @@ Route22RBRivalBattle:
 .got_rival_gender
 	writecode VAR_BATTLETYPE, BATTLETYPE_RIVAL_RB
 	startbattle
-	reloadmapmusic
 	returnafterbattle
 	playmapmusic
 	loadfont
