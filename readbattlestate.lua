@@ -1,4 +1,4 @@
--- Revo's really hacky as shit battlestate JSON reader WIP v0.2
+-- Revo's really hacky as shit battlestate JSON reader WIP v0.3
 
 JSON = (loadfile "JSON.lua")()
 
@@ -58,37 +58,62 @@ return itemArray
 
 end
 
+function getPlayerScreens()
+local playerScreensArray = {}
+local PlayerScreens = memory.readbyte(0xc6ff)
+
+playerScreensArray["dummy"] = "dummy"
+
+return playerScreensArray
+end
+
+function getEnemyScreens()
+end
+
+function getWeather()
+end
+
 repeat
     local OTClassName = memory.readbyterange(0xc656, 11)
     --local OTPlayerName = memory.readbyterange(0xd073 , 19) --do not update this if AI is asked for a move
     wBattleMode = memory.readbyte(0xD22D)
     wWildMon = memory.readbyte(0xD22E) -- 1 byte
+    --EnemyTurnsTaken = memory.readbyte(0xc6dc) -- 1 byte
+    PlayerTurnsTaken = memory.readbyte(0xc6dd) -- 1 byte
     wEnemyTrainerItem1 = memory.readbyte(0xc650) -- 1 byte
     wEnemyTrainerItem2 = memory.readbyte(0xc651) -- 1 byte
+    PlayerScreens = memory.readbyte(0xc6ff)
+    EnemyScreens = memory.readbyte(0xc700)
     OtherTrainerID = memory.readbyte(0xd231) -- 1 byte
     rSVBK = memory.readbyte(0xFF70)
     battleState = {}
     if wBattleMode == 2 and rSVBK == 1 then
     battleState["class"] = getTrainerClass()
+    elseif wBattleMode == 1 and rSVBK == 1 then
+    battleState["wildpokenum"] = wWildMon
     end
 	battleState["wBattleMode"] = wBattleMode --if somehow wBattleMode is 0, ignore the data entirely
-    battleState["turn"] = "dummy"
+    battleState["turn"] = PlayerTurnsTaken + 1
 	battleState["items"] = getItems()
-	battleState["oparena"] = "dummy"
-	battleState["playerarena"] = "dummy"
+	battleState["enemyscreens"] = "dummy"
+	battleState["playerscreens"] = getPlayerScreens()
 	battleState["wholearena"] = "dummy"
-	battleState["oppokemon"] = "dummy"
+	battleState["enemypokemon"] = "dummy"
 	battleState["yourpokemon"] = "dummy"
     
     -- put item stuff here?
     
     if wBattleMode == 2 and rSVBK == 1 then 
     vba.print("rSVBK: Bank ", rSVBK)
+    vba.print(PlayerScreens)
+    vba.print(EnemyScreens)
     vba.print(battleState)
     vba.print("Trainer battle!")
     vba.print("Trainer ID: ", OtherTrainerID)
     elseif wBattleMode == 1 and rSVBK == 1 then 
     vba.print("rSVBK: Bank ", rSVBK)
+    vba.print(PlayerScreens)
+    vba.print(EnemyScreens)
     vba.print(battleState)
     vba.print("Wild pokemon!")
     vba.print("Wild ID: ", wWildMon)
