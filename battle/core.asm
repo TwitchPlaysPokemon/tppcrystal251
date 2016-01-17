@@ -909,13 +909,13 @@ CompareMovePriority: ; 3c5b4
 ; 3c5c5
 
 GetMovePriority: ; 3c5c5
-; Return the priority (0-3) of move a.
+; Return the priority phaze = 0, counter  = 1, vital throw = 2, normal = 3, +1 = 4, +2 = 5, protect = 6
 
 	ld b, a
 
 	; Vital throw goes last.
 	cp VITAL_THROW
-	ld a, 0
+	ld a, 2
 	ret z
 
 	call GetMoveEffect
@@ -928,7 +928,7 @@ GetMovePriority: ; 3c5c5
 	cp -1
 	jr nz, .loop
 
-	ld a, 1
+	ld a, 3
 	ret
 
 .done
@@ -937,13 +937,14 @@ GetMovePriority: ; 3c5c5
 ; 3c5df
 
 MoveEffectPriorities: ; 3c5df
-	db EFFECT_PROTECT,      3
-	db EFFECT_ENDURE,       3
-	db EFFECT_EXTREMESPEED, 2
-	db EFFECT_PRIORITY_HIT, 1
+	db EFFECT_PROTECT,      6
+	db EFFECT_ENDURE,       6
+	db EFFECT_EXTREMESPEED, 5
+	db EFFECT_PRIORITY_HIT, 4
+	db EFFECT_BIDE,			4
 	db EFFECT_WHIRLWIND,    0
-	db EFFECT_COUNTER,      0
-	db EFFECT_MIRROR_COAT,  0
+	db EFFECT_COUNTER,      1
+	db EFFECT_MIRROR_COAT,  1
 	db -1
 ; 3c5ec
 
@@ -3914,11 +3915,11 @@ Function3d8b3: ; 3d8b3
 
 	ld a, [EnemySubStatus5]
 	bit SUBSTATUS_CANT_RUN, a
-	jr z, NotTrapped
+	jr z, .NotTrapped
 	ld hl, BattleMonType1
 	ld a, [hli]
 	cp GHOST
-	jr z, NotTrapped
+	jr z, .NotTrapped
 	ld a, [hl]
 	cp GHOST
 	jp nz, .asm_3d98d

@@ -1382,6 +1382,7 @@ BattleCommand07: ; 346d2
 .go
 	ld a, BATTLE_VARS_MOVE_TYPE
 	call GetBattleVarAddr
+	and $1f
 	ld [wd265], a
 
 	push hl
@@ -3490,6 +3491,8 @@ PlayerAttackDamage: ; 352e2
 	ld b, a
 	ld c, [hl]
 
+	call SandstormDefenceBoost ;and sandstorm boost
+
 	ld a, [EnemyScreens]
 	bit SCREENS_LIGHT_SCREEN, a
 	jr z, .specialcrit
@@ -3572,6 +3575,34 @@ Function3534d: ; 3534d
 	ret
 ; 35378
 
+SandstormDefenceBoost: ;apply special defence boost to rock types in sandstorm
+	ld a, [Weather]
+	cp WEATHER_SANDSTORM
+	ret nz
+		;ld a, BATTLE_VARS_MOVE_TYPE
+		;call GetBattleVar
+		;and $70 ;only attack type bit
+		;and a
+		;ret z ;if phys, don't apply. redundent unless placed elsewhere
+	ld a, BATTLE_VARS_TYPE_1OPP
+	call GetBattleVar
+	cp ROCK
+	jr z, .IsRock
+	ld a, BATTLE_VARS_TYPE_2OPP
+	call GetBattleVar
+	cp ROCK
+	ret nz
+.IsRock
+	push hl ;bc*1.5
+	ld h, b
+	ld l, c
+	srl h
+	rr l
+	add hl, bc
+	ld b, h
+	ld c, l
+	pop hl
+	ret
 
 GetDamageStatsCritical: ; 35378
 ; Return carry if non-critical.
@@ -4811,6 +4842,7 @@ BattleCommand44: ; 359e6
 	push hl
 	ld a, BATTLE_VARS_MOVE_TYPE
 	call GetBattleVarAddr
+	and $1f
 	push af
 	push hl
 	ld a, d
@@ -10256,9 +10288,11 @@ BattleCommand69: ; 37b39
 	ld hl, EnemyScreens
 	ld de, wc731
 .asm_37b5b
-	bit SCREENS_SPIKES, [hl]
-	jr z, .asm_37b69 ; 37b5d $a
+	ld a, [hl]
+	and $03
+	jr nz, .asm_37b69 ; 37b5d $a
 	res SCREENS_SPIKES, [hl]
+	res SCREENS_SPIKES2, [hl]
 	ld hl, BlewSpikesText
 	push de
 	call StdBattleTextBox

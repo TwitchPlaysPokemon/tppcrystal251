@@ -34290,7 +34290,7 @@ AI_Redundant: ; 2c41a
 
 .Spikes: ; 2c4e3
 	ld a, [PlayerScreens]
-	bit SCREENS_SPIKES, a
+	and $03
 	ret
 
 .Foresight: ; 2c4e9
@@ -88827,13 +88827,14 @@ DoWeatherModifiers: ; fbda4
 	ld b, a
 	ld a, [wd265] ; move type
 	ld c, a
+
 .CheckWeatherType
 	ld a, [de]
 	inc de
 	cp $ff
-	jr z, .asm_fbdc0
+	jr z, .asm_fbdc0 ;of end of array, stop checking type
 	cp b
-	jr nz, .NextWeatherType
+	jr nz, .NextWeatherType ;if move type matches type modified, apply it, else try next slot
 	ld a, [de]
 	cp c
 	jr z, .ApplyModifier
@@ -88905,6 +88906,7 @@ DoWeatherModifiers: ; fbda4
 	db $ff
 .WeatherMoveModifiers
 	db WEATHER_RAIN, EFFECT_SOLARBEAM, 05
+	db WEATHER_SANDSTORM, EFFECT_SOLARBEAM, 05
 	db $ff
 ; fbe24
 

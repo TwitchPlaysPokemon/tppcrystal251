@@ -633,7 +633,7 @@ PlayerScreens:: ; c6ff
 ; 4 reflect
 ; 3 light screen
 ; 2 safeguard
-; 0 spikes
+; 0-1 spikes
 	ds 1
 
 wc700::
