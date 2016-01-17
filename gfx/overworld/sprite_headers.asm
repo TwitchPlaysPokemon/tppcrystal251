@@ -624,3 +624,18 @@ SidewaysGrampsSprite:
 	dw SidewaysGrampsSpriteGFX
 	db $1 * $40, BANK(SidewaysGrampsSpriteGFX)
 	db STANDING_SPRITE, PAL_OW_BROWN
+
+OldAmberSprite:
+	dw OldAmberSpriteGFX
+	db $1 * $40, BANK(SidewaysGrampsSpriteGFX)
+	db STANDING_SPRITE, PAL_OW_BROWN
+
+DomeFossilSprite:
+	dw DomeFossilSpriteGFX
+	db $1 * $40, BANK(DomeFossilSpriteGFX)
+	db STANDING_SPRITE, PAL_OW_BROWN
+
+HelixFossilSprite:
+	dw HelixFossilSpriteGFX
+	db $1 * $40, BANK(HelixFossilSpriteGFX)
+	db STANDING_SPRITE, PAL_OW_BROWN

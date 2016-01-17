@@ -269,5 +269,5 @@ PewterMuseumOfScience1F_MapEventHeader:
 	person_event SPRITE_UNUSED_GUY, 8, 5, $3, 0, 0, -1, -1, 8 + PAL_OW_BLUE, 0, 0, PewterMuseumOfScience1FUnusedGuyScript, -1
 	person_event SPRITE_SCIENTIST, 6, 19, $6, 0, 0, -1, -1, 0, 0, 0, PewterMuseumOfScience1FScientist2Script, -1
 	person_event SPRITE_SCIENTIST, 8, 21, $3, 0, 0, -1, -1, 0, 0, 0, PewterMuseumOfScience1FScientist3Script, -1
-	person_event SPRITE_ROCK, 6, 20, $1, 0, 0, -1, -1, 0, 0, 0, PewterMuseumOfScience1FOldAmberScript, EVENT_PEWTER_MUSEUM_OLD_AMBER
+	person_event SPRITE_OLD_AMBER, 6, 20, $1, 0, 0, -1, -1, 0, 0, 0, PewterMuseumOfScience1FOldAmberScript, EVENT_PEWTER_MUSEUM_OLD_AMBER
 	
