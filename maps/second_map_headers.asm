@@ -684,7 +684,7 @@
 	map_header_2 PewterMuseumOfScience2F, PEWTER_MUSEUM_2F_RB, $a, NONE
 	map_header_2 MtMoonPokeCenter1FRB, MOUNT_MOON_POKECENTER_1F_RB, $0, NONE
 	map_header_2 MtMoonB1FRB, MT_MOON_B1F_RB, $3, NONE
-	; map_header_2 MtMoonB2FRB, MT_MOON_B2F_RB, $3, NONE
-	; map_header_2 MtMoonB3FRB, MT_MOON_B3F_RB, $3, NONE
+	map_header_2 MtMoonB2FRB, MT_MOON_B2F_RB, $3, NONE
+	map_header_2 MtMoonB3FRB, MT_MOON_B3F_RB, $3, NONE
 
 	map_header_2 CeruleanGymRB, CERULEAN_GYM, $0, NONE

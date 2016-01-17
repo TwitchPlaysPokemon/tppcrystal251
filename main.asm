@@ -35661,9 +35661,17 @@ TrainerType:
 	call GetFarByte2
 	cp $ff
 	ret z ;ret if done
+	cp 101
+	jr c, .level_okay
+	ld a, 100
+.level_okay
 	ld [CurPartyLevel], a ;else load in as level
 	ld a, [wdff5]
 	call GetFarByte2
+	cp NUM_POKEMON + 1
+	jr c, .species_okay
+	ld a, UNOWN
+.species_okay
 	ld [CurPartySpecies], a ;load species in
 	ld a, OTPARTYMON ;load montype
 	ld [MonType], a 

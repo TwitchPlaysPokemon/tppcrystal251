@@ -576,5 +576,5 @@ MapGroup36:
 	map_header ViridianForestSouthRB, $26, 6, VIRIDIAN_FOREST, MUSIC_ROUTE_2, 0, 1, 1
 	map_header DiglettsCaveRB, $18, 4, DIGLETTS_CAVE, MUSIC_MT_MOON, 1, 2, 1
 	map_header MtMoonB1FRB, $27, 4, MT_MOON, MUSIC_MT_MOON, 1, 2, 1
-	; map_header MtMoonB2FRB, $27, 4, MT_MOON, MUSIC_MT_MOON, 1, 2, 1
-	; map_header MtMoonB3FRB, $27, 4, MT_MOON, MUSIC_MT_MOON, 1, 2, 1
+	map_header MtMoonB2FRB, $27, 4, MT_MOON, MUSIC_MT_MOON, 1, 2, 1
+	map_header MtMoonB3FRB, $27, 4, MT_MOON, MUSIC_MT_MOON, 1, 2, 1

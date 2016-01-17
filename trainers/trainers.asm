@@ -4863,8 +4863,22 @@ GruntMGroup:
 	db 14, GRIMER
 	db 12, RATTATA
 	db $ff
-; ================================
 
+; 34
+	db "GRUNT@"
+	db 0
+	db 12, ZUBAT
+	db 12, EKANS
+	db $ff
+
+; 35
+	db "GRUNT@"
+	db 0
+	db 13, RATTATA
+	db 13, ZUBAT
+	db $ff
+
+; ================================
 
 GentlemanGroup:
 ; ================================
@@ -6606,6 +6620,13 @@ SuperNerdGroup:
 	db 11, MAGNEMITE
 	db 11, VOLTORB
 	db $ff
+
+	db "MIGUEL@"
+	db 0
+	db 12, GRIMER
+	db 12, VOLTORB
+	db 12, KOFFING
+	db $ff
 ; ================================
 
 
@@ -7894,6 +7915,11 @@ ExecutiveMGroup:
 	db $ff ; end
 
 ; ================
+
+	db "EXECUTIVE@" ; 5
+	db (1 << TRAINERTYPE_ITEM)
+	db 16, RATICATE, GOLD_BERRY
+	db $ff
 ; ================================
 
 
@@ -9835,6 +9861,13 @@ GruntFGroup:
 	db 39, SNUBBULL, KINGS_ROCK
 
 	db $ff ; end
+
+	db "GRUNT@" ; 6
+	db 0
+	db 11, SANDSHREW
+	db 11, RATTATA
+	db 11, ZUBAT
+	db $ff
 
 ; ================
 ; ================================

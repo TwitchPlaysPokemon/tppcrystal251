@@ -47,7 +47,7 @@ _PewterHouse1Text3:
 	cont "in battle!"
 
 	para "If only we had"
-	line "some BADGEs..."
+	line "some BADGEs…"
 	done
 
 

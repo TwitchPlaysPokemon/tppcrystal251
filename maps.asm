@@ -591,3 +591,5 @@ INCLUDE "maps/EarlyGameKanto/Route3.asm"
 INCLUDE "maps/EarlyGameKanto/MtMoonPokeCenter1F.asm"
 SECTION "EGK Mt Moon Events", ROMX
 INCLUDE "maps/EarlyGameKanto/MtMoonB1F.asm"
+INCLUDE "maps/EarlyGameKanto/MtMoonB2F.asm"
+INCLUDE "maps/EarlyGameKanto/MtMoonB3F.asm"

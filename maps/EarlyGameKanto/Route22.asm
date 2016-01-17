@@ -170,7 +170,7 @@ _Route22RivalAfterBattleText1::
 _Route22RivalDefeatedText1::
 	text "<GREEN>: Ugh!"
 	line "You just got"
-	cont "lucky is all..."
+	cont "lucky is all…"
 	done
 
 _Route22RivalLossText:

@@ -439,6 +439,7 @@
 	const MARKUS
 	const MIGUEL
 	const JOVAN_RB
+	const MIGUEL_RB
 
 	trainerclass RIVAL2 ; 2a
 

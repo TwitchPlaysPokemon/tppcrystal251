@@ -167,9 +167,9 @@ Route3RBMovement_StepUp
 	step_end
 
 _Route3Text1:
-	text "Whew... I better"
-	line "take a rest..."
-	cont "Groan..."
+	text "Whew… I better"
+	line "take a rest…"
+	cont "Groan…"
 
 	para "That tunnel from"
 	line "CERULEAN takes a"
