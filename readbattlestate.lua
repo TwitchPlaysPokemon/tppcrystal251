@@ -51,7 +51,7 @@ local itemArray = {}
 local wEnemyTrainerItem1 = memory.readbyte(0xc650) -- 1 byte
 local wEnemyTrainerItem2 = memory.readbyte(0xc651) -- 1 byte
 
-itemArray["item1"] = itemTable[wEnemyTrainerItem1 + 2]
+itemArray["item1"] = itemTable[wEnemyTrainerItem1 + 1]
 itemArray["item2"] = itemTable[wEnemyTrainerItem2 + 1]
 
 return itemArray
