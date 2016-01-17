@@ -583,3 +583,5 @@ SECTION "EGK PewterPokeCenter1F Events", ROMX
 INCLUDE "maps/EarlyGameKanto/PewterPokeCenter1F.asm"
 SECTION "EGK PewterSnoozeSpeechHouse Events", ROMX
 INCLUDE "maps/EarlyGameKanto/PewterSnoozeSpeechHouse.asm"
+INCLUDE "maps/EarlyGameKanto/PewterNidoranSpeechHouse.asm"
+INCLUDE "maps/EarlyGameKanto/PewterMuseumOfScience1F.asm"

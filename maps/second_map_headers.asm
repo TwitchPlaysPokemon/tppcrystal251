@@ -675,5 +675,8 @@
 	map_header_2 PewterMartRB, PEWTER_MART_RB, $0, NONE ; 0x960e0
 	map_header_2 PewterPokeCenter1FRB, PEWTER_POKECENTER_1F_RB, $0, NONE ; 0x960ec
 	map_header_2 PewterSnoozeSpeechHouseRB, PEWTER_SNOOZE_SPEECH_HOUSE_RB, $0, NONE ; 0x96104
+	map_header_2 PewterNidoranSpeechHouseRB, PEWTER_NIDORAN_SPEECH_HOUSE_RB, $0, NONE ; 0x960c8
+	map_header_2 PewterMuseumOfScience1F, PEWTER_MUSEUM_1F_RB, $a, NONE
+	; map_header_2 PewterMuseumOfScience2F, PEWTER_MUSEUM_2F_RB, $a, NONE
 
 	map_header_2 CeruleanGymRB, CERULEAN_GYM, $0, NONE

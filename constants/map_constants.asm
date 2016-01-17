@@ -499,8 +499,8 @@ MAP_N_A   EQU -1
 	mapgroup PEWTER_POKECENTER_1F_RB, 4, 5
 	mapgroup PEWTER_SNOOZE_SPEECH_HOUSE_RB, 4, 4
 	mapgroup PEWTER_NIDORAN_SPEECH_HOUSE_RB, 4, 4
-	mapgroup PEWTER_MUSEUM_1F_BETA, 4, 10
-	mapgroup PEWTER_MUSEUM_2F_BETA, 4, 7
+	mapgroup PEWTER_MUSEUM_1F_RB, 4, 10
+	mapgroup PEWTER_MUSEUM_2F_RB, 4, 7
 	mapgroup ROUTE_3_RB, 9, 30
 
 	newgroup ; Cerulean City RB

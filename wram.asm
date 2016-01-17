@@ -2142,13 +2142,14 @@ wRoute22RBTrigger::                          ds 1
 wVictoryRoadGateRBTrigger::                  ds 1
 wRoute23RBTrigger::                          ds 1
 wPewterCityRBTrigger::                       ds 1
+wPewterMuseum1FRBTrigger::                   ds 1
 wCeruleanCityRBTrigger::                     ds 1
 wRoute24RBTrigger::                          ds 1
 wRoute5SaffronGateRBTrigger::                ds 1
 wRoute6SaffronGateRBTrigger::                ds 1
 wVermilionCityRBTrigger::                    ds 1
 
-	ds 25
+	ds 24
 
 
 SECTION "Events", WRAMX, BANK [1]

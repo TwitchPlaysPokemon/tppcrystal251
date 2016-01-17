@@ -105,7 +105,7 @@ Tileset20PalMap: ; 0x4caf5
 INCBIN "tilesets/20_palette_map.bin"
 ; 0x4cb65
 
-UnusedPalMap1:
+Tileset38PalMap:
 INCBIN "tilesets/unused_palette_map_1.bin"
 ; 4cbd5
 

@@ -4643,6 +4643,7 @@ CheckPartyMove: ; c742
 
 FieldMovePokepicScript:
 	copybytetovar wd1ef
+	refreshscreen $0
 	pokepic $0000
 	cry $0000
 	waitsfx
@@ -4757,6 +4758,7 @@ UnknownScript_0xc802: ; 0xc802 CUT
 	waitbutton
 	closetext
 	copybytetovar wd1ef
+	refreshscreen $0
 	pokepic $0000
 	cry $0000
 	closepokepic

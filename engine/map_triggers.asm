@@ -106,6 +106,7 @@ ENDM
 	trigger_def VICTORY_ROAD_GATE_RB,                   wVictoryRoadGateRBTrigger
 	trigger_def ROUTE_23_RB,                            wRoute23RBTrigger
 	trigger_def PEWTER_CITY_RB,                         wPewterCityRBTrigger
+	trigger_def PEWTER_MUSEUM_1F_RB,                    wPewterMuseum1FRBTrigger
 	trigger_def CERULEAN_CITY_RB,                       wCeruleanCityRBTrigger
 	trigger_def ROUTE_24_RB,                            wRoute24RBTrigger
 	trigger_def ROUTE_5_SAFFRON_CITY_GATE_RB,           wRoute5SaffronGateRBTrigger

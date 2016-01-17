@@ -308,7 +308,7 @@ Tileset38: ;Kanto Route Gates
 	dbw BANK(Tileset38Coll), Tileset38Coll
 	dw Tileset38Anim
 	dw $0000
-	dw UnusedPalMap1
+	dw Tileset38PalMap
 	
 Tileset39: ;Kanto Caves
 	dbw BANK(Tileset39GFX), Tileset39GFX

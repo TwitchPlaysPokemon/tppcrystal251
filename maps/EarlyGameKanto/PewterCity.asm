@@ -235,8 +235,8 @@ PewterCityRB_MapEventHeader: ; 0x18c2f5
 	warp_def $11, $17, 2, GROUP_PEWTER_MART_RB, MAP_PEWTER_MART_RB
 	warp_def $19, $d, 1, GROUP_PEWTER_POKECENTER_1F_RB, MAP_PEWTER_POKECENTER_1F_RB
 	warp_def $1d, $7, 1, GROUP_PEWTER_SNOOZE_SPEECH_HOUSE_RB, MAP_PEWTER_SNOOZE_SPEECH_HOUSE_RB
-	warp_def $7, $e, 1, GROUP_PEWTER_MUSEUM_1F_BETA, MAP_PEWTER_MUSEUM_1F_BETA
-	warp_def $5, $13, 1, GROUP_PEWTER_MUSEUM_1F_BETA, MAP_PEWTER_MUSEUM_1F_BETA ; this one should be inaccessible without cut
+	warp_def $7, $e, 1, GROUP_PEWTER_MUSEUM_1F_RB, MAP_PEWTER_MUSEUM_1F_RB
+	warp_def $5, $13, 1, GROUP_PEWTER_MUSEUM_1F_RB, MAP_PEWTER_MUSEUM_1F_RB ; this one should be inaccessible without cut
 
 	; xy triggers
 	db 0
