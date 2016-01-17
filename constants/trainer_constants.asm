@@ -193,6 +193,7 @@
 	const ROBIN_RB
 	const MIRIAM_RB
 	const IRIS_RB
+	const CRISSY_RB
 
 	trainerclass JANINE ; 1a
 	const JANINE_1

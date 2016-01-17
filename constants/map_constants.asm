@@ -505,19 +505,18 @@ MAP_N_A   EQU -1
 	mapgroup MOUNT_MOON_POKECENTER_1F_RB, 4, 5
 
 	newgroup ; Cerulean City RB
+	mapgroup CERULEAN_GYM_RB, 8, 5
+	mapgroup ROUTE_4_RB, 9, 20
+	mapgroup CERULEAN_CITY_RB, 18, 20
+	mapgroup CERULEAN_POKECENTER_1F_RB, 4, 5
+	mapgroup CERULEAN_MART_RB, 4, 6
 	mapgroup CERULEAN_GYM_BADGE_SPEECH_HOUSE_RB, 4, 4
 	mapgroup CERULEAN_POLICE_STATION_RB, 4, 4
 	mapgroup CERULEAN_TRADE_SPEECH_HOUSE_RB, 4, 4
-	mapgroup CERULEAN_POKECENTER_1F_RB, 4, 5
-	mapgroup CERULEAN_GYM_RB, 8, 5
-	mapgroup CERULEAN_MART_RB, 4, 6
-	mapgroup POWER_PLANT_RB, 9, 10
-	mapgroup BILLS_HOUSE_RB, 4, 4
-	mapgroup ROUTE_4_RB, 9, 20
-	mapgroup ROUTE_9_RB, 9, 30
 	mapgroup ROUTE_24_RB, 9, 10
 	mapgroup ROUTE_25_RB, 9, 30
-	mapgroup CERULEAN_CITY_RB, 18, 20
+	mapgroup BILLS_HOUSE_RB, 4, 4
+	mapgroup ROUTE_9_RB, 9, 30
 
 	newgroup ; Vermilion City RB
 	mapgroup ROUTE_6_RB, 9, 10

@@ -41,6 +41,7 @@ PewterGymRB_BrockScript:
 .tm:
 	givetm TM_SANDSTORM, EVENT_GOT_TM_SANDSTORM, .already_had_it, .bag_full
 	writetext PewterGymRB_TMText
+	waitbutton
 .already_had_it:
 .bag_full:
 	end

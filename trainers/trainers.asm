@@ -3421,6 +3421,13 @@ LassGroup:
 	db 14, CLEFAIRY, "CLEFFLES@"
 	db $ff
 
+	db "CRISSY@"
+	db 0
+	db 31, PARAS
+	db 31, PARAS
+	db 33, PARASECT
+	db $ff
+
 
 ; ================
 ; ================================

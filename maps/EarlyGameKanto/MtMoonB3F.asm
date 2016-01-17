@@ -254,7 +254,7 @@ MtMoonB3FRB_MapEventHeader: ; 0x1ac4af
 	person_event SPRITE_ROCKET, 20, 15, $6, 0, 0, -1, -1, 0, 2, 2, Trainer_MtMoonB3FRBRocket1, EVENT_MT_MOON_ROCKETS_RB ; Executive
 	person_event SPRITE_ROCKET, 26, 19, $6, 0, 0, -1, -1, 0, 2, 3, Trainer_MtMoonB3FRBRocket2, EVENT_MT_MOON_ROCKETS_RB
 	person_event SPRITE_ROCKET, 15, 33, $7, 0, 0, -1, -1, 0, 2, 3, Trainer_MtMoonB3FRBRocket3, EVENT_MT_MOON_ROCKETS_RB
-	person_event SPRITE_ROCKET_GIRL, 20, 33, $8, 0, 0, -1, -1, 0, 2, 3, Trainer_MtMoonB3FRBRocket4, -1 ; GruntF
+	person_event SPRITE_ROCKET_GIRL, 20, 33, $8, 0, 0, -1, -1, 8 + PAL_OW_RED, 2, 3, Trainer_MtMoonB3FRBRocket4, -1 ; GruntF
 	person_event SPRITE_DOME_FOSSIL, 10, 16, $1, 0, 0, -1, -1, 0, 0, 0, MtMoonB3FRBDomeFossilScript, EVENT_MT_MOON_B3F_RB_DOME_FOSSIL
 	person_event SPRITE_HELIX_FOSSIL, 10, 17, $1, 0, 0, -1, -1, 0, 0, 0, MtMoonB3FRBHelixFossilScript, EVENT_MT_MOON_B3F_RB_HELIX_FOSSIL
 	person_event SPRITE_POKE_BALL, 25, 29, $1, 0, 0, -1, -1, 0, 1, 0, MtMoonB3FRB_HPUp, EVENT_MT_MOON_B3F_RB_HP_UP

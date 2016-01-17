@@ -151,8 +151,18 @@ Route3RBRocketsScript:
 	special RestartMapMusic
 	end
 
+Route3RBLassScript:
+	checkevent EVENT_ROUTE_3_ROCKETS
+	iftrue .true
+	jumptextfaceplayer Route3RBLassTextBeforeRockets
+.true
+	jumptextfaceplayer Route3RBLassText
+
 MapRoute3RBSignpost0Script:
 	jumptext _Route3Text10
+
+MapRoute3RBPokecenterSign:
+	jumpstd pokecentersign
 
 Route3RBMovement_HalfStepRight:
 	half_step_right
@@ -372,6 +382,20 @@ Route3RBRocketsText6:
 	cont "remember you."
 	done
 
+Route3RBLassTextBeforeRockets:
+	text "Those shady-"
+	line "looking men…"
+
+	para "What are they"
+	line "talking about?"
+	done
+
+Route3RBLassText:
+	text "Ouch! I tripped"
+	line "over a rocky"
+	cont "#MON, GEODUDE!"
+	done
+
 Route3RB_MapEventHeader: ; 0x1ae18a
 	; filler
 	db 0, 0
@@ -385,11 +409,12 @@ Route3RB_MapEventHeader: ; 0x1ae18a
 	db 0
 
 	; signposts
-	db 1
+	db 2
 	signpost 13, 49, $0, MapRoute3RBSignpost0Script
+	signpost  3, 48, $0, MapRoute3RBPokecenterSign
 
 	; people-events
-	db 11
+	db 12
 	person_event SPRITE_SUPER_NERD, 16, 56, $3, 0, 0, -1, -1, 0, 0, 0, Route3RBSuperNerdScript, -1
 	person_event SPRITE_BUG_CATCHER, 8, 10, $9, 0, 0, -1, -1, 0, 2, 2, Trainer_BugCatcherGreg, -1
 	person_event SPRITE_YOUNGSTER, 6, 14, $6, 0, 0, -1, -1, 0, 2, 3, Trainer_YoungsterBen, -1
@@ -401,5 +426,6 @@ Route3RB_MapEventHeader: ; 0x1ae18a
 	person_event SPRITE_LASS, 17, 28, $7, 0, 0, -1, -1, 0, 2, 2, Trainer_LassRobin, -1
 	person_event SPRITE_ROCKET, 6, 56, $9, 0, 0, -1, -1, 0, 0, 0, Route3RBRocketsScript, EVENT_ROUTE_3_ROCKETS
 	person_event SPRITE_ROCKET, 6, 57, $8, 0, 0, -1, -1, 0, 0, 0, Route3RBRocketsScript, EVENT_ROUTE_3_ROCKETS
+	person_event SPRITE_LASS, 7, 54, $4, 2, 0, -1, -1, 0, 0, 0, Route3RBLassScript, -1
 ; 0x1ae1ce
 

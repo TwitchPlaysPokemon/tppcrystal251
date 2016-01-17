@@ -900,7 +900,7 @@ CompareMovePriority: ; 3c5b4
 ; 3c5c5
 
 GetMovePriority: ; 3c5c5
-; Return the priority (0-3) of move a.
+; Return the priority (0-4) of move a.
 
 	ld b, a
 
@@ -928,10 +928,10 @@ GetMovePriority: ; 3c5c5
 ; 3c5df
 
 MoveEffectPriorities: ; 3c5df
-	db EFFECT_PROTECT,      3
-	db EFFECT_ENDURE,       3
-	db EFFECT_EXTREMESPEED, 2
-	db EFFECT_PRIORITY_HIT, 1
+	db EFFECT_PROTECT,      4
+	db EFFECT_ENDURE,       4
+	db EFFECT_EXTREMESPEED, 3
+	db EFFECT_PRIORITY_HIT, 2
 	db EFFECT_WHIRLWIND,    0
 	db EFFECT_COUNTER,      0
 	db EFFECT_MIRROR_COAT,  0

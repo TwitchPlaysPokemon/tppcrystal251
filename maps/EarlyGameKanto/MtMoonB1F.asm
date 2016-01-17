@@ -246,9 +246,9 @@ MtMoonB1FRB_MapEventHeader: ; 0x1ac4af
 	person_event SPRITE_LASS,        27, 20, $6, 0, 0, -1, -1, 0, 2, 3, Trainer_LassIris, -1
 	person_event SPRITE_BUG_CATCHER, 26, 11, $6, 0, 0, -1, -1, 0, 2, 3, Trainer_BugCatcherKent, -1
 	person_event SPRITE_BUG_CATCHER, 31, 34, $9, 0, 0, -1, -1, 0, 2, 3, Trainer_BugCatcherRobby, -1
-	person_event SPRITE_POKE_BALL, 24,  6, $1, 0, 0, -1, -1, 0, 1, 0, Item_MtMoonB1FRBPotion1, -1
-	person_event SPRITE_POKE_BALL,  6,  6, $1, 0, 0, -1, -1, 0, 1, 0, Item_MtMoonB1FRBMoonStone, -1
-	person_event SPRITE_POKE_BALL, 35, 39, $1, 0, 0, -1, -1, 0, 1, 0, Item_MtMoonB1FRBRareCandy, -1
-	person_event SPRITE_POKE_BALL, 27, 40, $1, 0, 0, -1, -1, 0, 1, 0, Item_MtMoonB1FRBEscapeRope, -1
-	person_event SPRITE_POKE_BALL, 37, 24, $1, 0, 0, -1, -1, 0, 1, 0, Item_MtMoonB1FRBPotion1, -1
-	person_event SPRITE_POKE_BALL, 36,  9, $1, 0, 0, -1, -1, 0, 1, 0, Item_MtMoonB1FRBTMSunnyDay, -1
+	person_event SPRITE_POKE_BALL, 24,  6, $1, 0, 0, -1, -1, 0, 1, 0, Item_MtMoonB1FRBPotion1,    EVENT_MT_MOON_B1F_POTION_1
+	person_event SPRITE_POKE_BALL,  6,  6, $1, 0, 0, -1, -1, 0, 1, 0, Item_MtMoonB1FRBMoonStone,  EVENT_MT_MOON_B1F_MOON_STONE
+	person_event SPRITE_POKE_BALL, 35, 39, $1, 0, 0, -1, -1, 0, 1, 0, Item_MtMoonB1FRBRareCandy,  EVENT_MT_MOON_B1F_RARE_CANDY
+	person_event SPRITE_POKE_BALL, 27, 40, $1, 0, 0, -1, -1, 0, 1, 0, Item_MtMoonB1FRBEscapeRope, EVENT_MT_MOON_B1F_ESCAPE_ROPE
+	person_event SPRITE_POKE_BALL, 37, 24, $1, 0, 0, -1, -1, 0, 1, 0, Item_MtMoonB1FRBPotion2,    EVENT_MT_MOON_B1F_POTION_2
+	person_event SPRITE_POKE_BALL, 36,  9, $1, 0, 0, -1, -1, 0, 1, 0, Item_MtMoonB1FRBTMSunnyDay, EVENT_MT_MOON_B1F_SUNNY_DAY
