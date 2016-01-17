@@ -14,7 +14,10 @@ PewterMuseumOfScience1F_MapScriptHeader:
 .Trigger1
 	end
 .ResetTrigger
+	checkcode VAR_XCOORD
+	if_equal 7, .skip
 	dotrigger 0
+.skip
 	return
 
 PewterMuseumOfScience1FPayWall:
