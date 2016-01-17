@@ -2828,11 +2828,11 @@ BattleCommandab: ; 34f57
 BattleCommand0b: ; 34f60
 	ld a, [AttackMissed]
 	and a
-	jp nz, BattleCommandaa
+	jp nz, BattleCommandaa ;if missed
 
 	ld a, [hBattleTurn]
 	and a
-	ld de, PlayerRolloutCount
+	ld de, PlayerRolloutCount ;holds number of hits
 	ld a, 1
 	jr z, .asm_34f76
 	ld de, EnemyRolloutCount
@@ -2873,11 +2873,11 @@ BattleCommand0b: ; 34f60
 .asm_34fad
 ; clear sprite
 	jp Function37ec7
-.asm_34fb0
+.asm_34fb0 ;if normal multi-hit
 	ld a, [wc689]
 	and 1
 	xor 1
-	ld [wc689], a
+	ld [wc689], a ;load in opposite of first bit
 	ld a, [de]
 	cp $1
 	push af
@@ -3031,7 +3031,7 @@ BattleCommand0e: ; 3505e
 	ld b, $2
 .asm_3508b
 	push bc
-	call .asm_50bb
+	call .asm_50bb ;if no sub, add to hit curdamage
 	ld c, $0
 	ld a, [hBattleTurn]
 	and a
@@ -3065,7 +3065,7 @@ BattleCommand0e: ; 3505e
 	ld a, BATTLE_VARS_SUBSTATUS4_OPP
 	call GetBattleVar
 	bit SUBSTATUS_SUBSTITUTE, a
-	ret nz
+	ret nz ;if sub up, ret
 
 	ld de, PlayerDamageTaken + 1
 	ld a, [hBattleTurn]
@@ -3074,7 +3074,7 @@ BattleCommand0e: ; 3505e
 	ld de, EnemyDamageTaken + 1
 
 .asm_350ce
-	ld a, [CurDamage + 1]
+	ld a, [CurDamage + 1] ;add curdamage to damage taken
 	ld b, a
 	ld a, [de]
 	add b
@@ -5410,15 +5410,15 @@ Function35d1c: ; 35d1c
 	ld b, a
 	ld a, [hl]
 	or b
-	jr z, .asm_35d7b
+	jr z, .asm_35d7b ;if damage is 0, do nothing
 
 	ld a, c
 	and a
-	jr nz, .asm_35d31
+	jr nz, .asm_35d31 ;if c is 0, check for sub
 
 	ld a, [EnemySubStatus4]
 	bit SUBSTATUS_SUBSTITUTE, a
-	jp nz, Function35de0
+	jp nz, Function35de0 ;if sub up, apply damage to sub
 .asm_35d31
 	ld a, [hld]
 	ld b, a
@@ -5564,7 +5564,7 @@ Function35de0: ; 35de0
 
 	ld a, BATTLE_VARS_MOVE_EFFECT
 	call GetBattleVarAddr
-	cp EFFECT_MULTI_HIT
+	cp EFFECT_MULTI_HIT ;clear effects other then multi-hit
 	jr z, .ok
 	cp EFFECT_DOUBLE_HIT
 	jr z, .ok
@@ -7738,31 +7738,32 @@ BattleCommand24: ; 369b6
 	ld a, BATTLE_VARS_SUBSTATUS3
 	call GetBattleVarAddr
 	bit SUBSTATUS_IN_LOOP, [hl]
-	jp nz, .asm_36a43
-	set SUBSTATUS_IN_LOOP, [hl]
+	jp nz, .asm_36a43 ;if in loop, dec loop counter
+	set SUBSTATUS_IN_LOOP, [hl] ;set in-loop
 	ld a, BATTLE_VARS_MOVE_EFFECT
 	call GetBattleVarAddr
-	ld a, [hl]
+	ld a, [hl] ;redundent?
 	cp EFFECT_TWINEEDLE
-	jr z, .asm_36a3f
+	jr z, .asm_36a3f ;if twinneedle, load 1 more hit
 	cp EFFECT_DOUBLE_HIT
-	ld a, $1
+	ld a, $1 ;if double hit, load 1 more hit and jump somewhere different
 	jr z, .asm_36a3a
 	ld a, [hl]
 	cp EFFECT_BEAT_UP
-	jr z, .asm_369fb
+	jr z, .asm_369fb ;if beat up or triple kick, jump elsewhere
 	cp EFFECT_TRIPLE_KICK
 	jr nz, .asm_36a2b
-.asm_369ec
+.asm_369ec ;if triple kick
 	call BattleRandom
-	and $3
-	jr z, .asm_369ec
-	dec a
-	jr nz, .asm_36a3a
+	and $3 ;random from 0-3
+	jr z, .asm_369ec ; 1-3
+	dec a ; 0-2
+	jr nz, .asm_36a3a ;if 1 or 2, branch
 	ld a, $1
-	ld [bc], a
-	jr .asm_36a48
-.asm_369fb
+	ld [bc], a ;else load 1 into damage dealt
+	jr .asm_36a48 ;jump
+
+.asm_369fb ;beat up
 	ld a, [hBattleTurn]
 	and a
 	jr nz, .asm_36a0b
@@ -7780,42 +7781,44 @@ BattleCommand24: ; 369b6
 	jp z, .asm_36a1e
 	dec a
 	jr .asm_36a3a
-
 .asm_36a1e
 	ld a, BATTLE_VARS_SUBSTATUS3
 	call GetBattleVarAddr
 	res SUBSTATUS_IN_LOOP, [hl]
 	call BattleCommanda8
 	jp EndMoveEffect
-.asm_36a2b
+
+.asm_36a2b ;normal multi-hit
 	call BattleRandom
-	and $3
+	and $3 ;rand from 0-3
 	cp $2
-	jr c, .asm_36a39
+	jr c, .asm_36a39 ;if 2 or 3, reroll
 	call BattleRandom
 	and $3
 .asm_36a39
-	inc a
-.asm_36a3a
-	ld [de], a
+	inc a ;+1 (1-4)
+
+
+.asm_36a3a ;a = 1 if double kick, 1-2 if triple kick, 1-4 if random hits
+	ld [de], a ;load into de and it+1 into bc
 	inc a
 	ld [bc], a
 	jr .asm_36a6b
-.asm_36a3f
+.asm_36a3f ;if twinneedle
 	ld a, $1
 	jr .asm_36a3a
 
-.asm_36a43
+.asm_36a43 ;if in loop
 	ld a, [de]
 	dec a
-	ld [de], a
-	jr nz, .asm_36a6b
+	ld [de], a ;dec de
+	jr nz, .asm_36a6b ;if not zero, loop
 .asm_36a48
 	ld a, BATTLE_VARS_SUBSTATUS3
 	call GetBattleVarAddr
-	res SUBSTATUS_IN_LOOP, [hl]
+	res SUBSTATUS_IN_LOOP, [hl] ;reset in-loop
 
-	ld hl, PlayerHitTimesText
+	ld hl, PlayerHitTimesText ;load hit number text
 	ld a, [hBattleTurn]
 	and a
 	jr z, .asm_36a5a
