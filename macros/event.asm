@@ -987,7 +987,11 @@ checkphonecall: macro
 verbosegiveitem: macro
 	db verbosegiveitem_command
 	db \1 ; item
+if _NARG < 2
+	db 1
+else
 	db \2 ; quantity
+endc
 	endm
 
 	enum verbosegiveitem2_command
@@ -1050,7 +1054,7 @@ name: macro
 	db name_command
 	db \1 ; type
 	db \2 ; id
-	db \3 ; mempry
+	db \3 ; memory
 	endm
 
 	enum wait_command

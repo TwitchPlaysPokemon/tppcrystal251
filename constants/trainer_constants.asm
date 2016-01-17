@@ -82,10 +82,12 @@
 	trainerclass BROCK ; 11
 	const BROCK_1
 	const BROCK_2
+	const BROCK_RB
 
 	trainerclass MISTY ; 12
 	const MISTY_1
 	const MISTY_2
+	const MISTY_RB
 
 	trainerclass LT_SURGE ; 13
 	const SURGE_1
@@ -117,6 +119,8 @@
 	const JASON
 	const JOEY4
 	const JOEY5
+	const BEN_RB
+	const CALVIN_RB
 
 	trainerclass SCHOOLBOY ; 17
 	const JACK1
@@ -183,6 +187,9 @@
 	const DANA3
 	const DANA4
 	const DANA5
+	const JANICE_RB
+	const SALLY_RB
+	const ROBIN_RB
 
 	trainerclass JANINE ; 1a
 	const JANINE_1
@@ -317,6 +324,10 @@
 	const DOUG_RB
 	const CHUCK_RB
 	const SAMMY_RB
+	const GREG_RB
+	const COLTON_RB
+	const JAMES_RB
+	
 
 	trainerclass FISHER ; 25
 	const JUSTIN
@@ -367,6 +378,7 @@
 	const JAMES
 	const LEWIS
 	const PARKER
+	const PARKER_RB
 
 	trainerclass SWIMMERF ; 27
 	const ELAINE
@@ -388,6 +400,7 @@
 	const NIKKI
 	const DIANA
 	const BRIANA
+	const DIANA_RB
 
 	trainerclass SAILOR ; 28
 	const EUGENE
@@ -573,6 +586,9 @@
 	const TODD4
 	const TODD5
 	const QUENTIN
+
+	const JERRY_RB
+	const JERRY_RB_2
 
 	trainerclass EXECUTIVEF ; 37
 

@@ -1856,6 +1856,70 @@ BrockGroup:
 	db $ff ; end
 
 ; ================
+
+	; BROCK (1)
+	db "BROCK@"
+	db (1 << TRAINERTYPE_MOVES)
+
+	; party
+
+	db 100, GOLEM
+		db EXPLOSION
+		db ROCK_SLIDE
+		db ROLLOUT
+		db EARTHQUAKE
+
+	db 100, RHYHORN
+		db FURY_ATTACK
+		db SCARY_FACE
+		db EARTHQUAKE
+		db HORN_DRILL
+
+	db 100, OMASTAR
+		db BITE
+		db SURF
+		db PROTECT
+		db SPIKE_CANNON
+
+	db 100, ONIX
+		db WRAP
+		db ROCK_SLIDE
+		db BIDE
+		db SANDSTORM
+
+	db 100, KABUTOPS
+		db SLASH
+		db SURF
+		db ENDURE
+		db GIGA_DRAIN
+
+	db 100, AERODACTYL
+		db WING_ATTACK
+		db CRUNCH
+		db ROCK_SLIDE
+		db DOUBLE_TEAM
+
+	db $ff ; end
+
+	; BROCK (1)
+	db "BROCK@"
+	db (1 << TRAINERTYPE_MOVES)
+
+	; party
+
+	db 12, GEODUDE
+		db TACKLE
+		db DEFENSE_CURL
+		db ROLLOUT
+		db SANDSTORM
+
+	db 14, ONIX
+		db TACKLE
+		db WRAP
+		db IRON_TAIL
+		db SANDSTORM
+	db $ff ; end
+
 ; ================================
 
 
@@ -1872,7 +1936,7 @@ MistyGroup:
 	db 70, GOLDUCK
 		db SURF
 		db DISABLE
-		db NONE
+		db CONFUSION
 		db PSYCHIC_M
 
 	db 70, QUAGSIRE
@@ -1904,6 +1968,69 @@ MistyGroup:
 		db HYDRO_PUMP
 		db SPIKE_CANNON
 		db SCREECH
+
+	db $ff ; end
+	; MISTY (1)
+	db "MISTY@"
+	db (1 << TRAINERTYPE_MOVES)
+
+	; party
+
+	db 100, GOLDUCK
+		db SURF
+		db DISABLE
+		db CONFUSION
+		db PSYCHIC_M
+
+	db 100, QUAGSIRE
+		db SURF
+		db AMNESIA
+		db EARTHQUAKE
+		db RAIN_DANCE
+
+	db 100, LAPRAS
+		db SURF
+		db PERISH_SONG
+		db BLIZZARD
+		db RAIN_DANCE
+
+	db 100, STARMIE
+		db SURF
+		db CONFUSE_RAY
+		db RECOVER
+		db ICE_BEAM
+
+	db 100, KINGDRA
+		db OCTAZOOKA
+		db DRAGONBREATH
+		db TWISTER
+		db SMOKESCREEN
+
+	db 100, QWILFISH
+		db POISON_STING
+		db HYDRO_PUMP
+		db SPIKE_CANNON
+		db SCREECH
+
+	db $ff ; end
+
+	; MISTY (1)
+	db "MISTY@"
+	db (1 << TRAINERTYPE_MOVES)
+
+	; party
+
+	db 18, STARYU
+		db SWIFT
+		db RAIN_DANCE
+		db RAPID_SPIN
+		db BUBBLEBEAM
+
+	db 22, STARMIE
+		db BUBBLEBEAM
+		db SWIFT
+		db HARDEN
+		db RAIN_DANCE
 
 	db $ff ; end
 
@@ -2291,6 +2418,17 @@ YoungsterGroup:
 	db 82, RATICATE
 
 	db $ff ; end
+
+	db "BEN@"
+	db 0
+	db 11, RATTATA
+	db 11, EKANS
+	db $ff
+
+	db "CALVIN@"
+	db 0
+	db 14, SPEAROW
+	db $ff
 
 ; ================
 ; ================================
@@ -3247,6 +3385,24 @@ LassGroup:
 
 	db $ff ; end
 
+	db "JANICE@"
+	db 0
+	db 9, PIDGEY
+	db 9, PIDGEY
+	db $ff
+
+	db "SALLY@"
+	db 0
+	db 10, RATTATA
+	db 10, NIDORAN_F
+	db $ff
+
+	db "ROBIN@"
+	db 0
+	db 14, JIGGLYPUFF
+	db $ff
+
+
 ; ================
 ; ================================
 
@@ -3298,7 +3454,6 @@ JanineGroup:
 		db PSYCHIC_M
 
 	db $ff ; end
-
 ; ================
 ; ================================
 
@@ -5149,6 +5304,26 @@ BugCatcherGroup:
 	db 9, WEEDLE
 	db $ff
 
+	db "GREG@"
+	db 0
+	db 9, WEEDLE
+	db 9, KAKUNA
+	db 9, CATERPIE
+	db 9, METAPOD
+	db $ff
+
+	db "COLTON@"
+	db 0
+	db 10, CATERPIE
+	db 10, WEEDLE
+	db 10, CATERPIE
+	db $ff
+
+	db "JAMES@"
+	db 0
+	db 11, CATERPIE
+	db 11, METAPOD
+	db $ff
 ; ================
 ; ================================
 
@@ -8428,6 +8603,13 @@ CamperGroup:
 	db $ff ; end
 
 ; ================
+
+	db "JERRY@"
+	db 0
+
+	db 11, DIGLETT
+	db 11, SANDSHREW
+	db $ff
 ; ================================
 
 

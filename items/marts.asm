@@ -40,6 +40,10 @@ Marts: ; 160a9
 	dw TmDepot5       ; 26
 	dw TmDepot6       ; 27
 	dw ViridianMartRB ; 28
+	dw PewterMartRB       ; 29
+	dw CeruleanMartRB     ; 2a
+	dw CeruleanBikeShopRB ; 2b
+	dw VermilionMartRB    ; 2c
 MartsEnd
 ; 160ed
 
@@ -549,3 +553,43 @@ ViridianMartRB:
 	db PARLYZ_HEAL
 	db BURN_HEAL
 	db $ff
+
+PewterMartRB:
+	db 7
+	db POKE_BALL
+	db POTION
+	db ESCAPE_ROPE
+	db ANTIDOTE
+	db BURN_HEAL
+	db AWAKENING
+	db PARLYZ_HEAL
+	db $ff
+
+CeruleanMartRB: ; 2453 (0:2453)
+	db 7
+	db POKE_BALL
+	db POTION
+	db REPEL
+	db ANTIDOTE
+	db BURN_HEAL
+	db AWAKENING
+	db PARLYZ_HEAL
+	db $ff
+
+; Bike shop
+CeruleanBikeShopRB:
+	db 1
+	db BICYCLE
+	db $ff
+
+; Vermilion
+VermilionMartRB: ; 2461 (0:2461)
+	db 6
+	db POKE_BALL
+	db SUPER_POTION
+	db ICE_HEAL
+	db AWAKENING
+	db PARLYZ_HEAL
+	db REPEL
+	db $ff
+

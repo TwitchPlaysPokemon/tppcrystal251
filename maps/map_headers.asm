@@ -531,21 +531,23 @@ MapGroup30:
 
 MapGroup31:
 ; pewter city rb
-	; map_header Route3RB, $3, 2, ROUTE_3, MUSIC_ROUTE_3, 0, 0, 1
-	; map_header PewterCityRB, $3, 1, PEWTER_CITY, MUSIC_VIRIDIAN_CITY, 0, 0, 1
-	; map_header PewterNidoranSpeechHouseRB, $5, 3, PEWTER_CITY, MUSIC_VIRIDIAN_CITY, 0, 1, 1
-	; map_header PewterGymRB, $17, 3, PEWTER_CITY, MUSIC_GYM, 1, 1, 1
-	; map_header PewterMartRB, $c, 3, PEWTER_CITY, MUSIC_MART, 0, 1, 1
-	; map_header PewterPokeCenter1FRB, $7, 3, PEWTER_CITY, MUSIC_POKEMON_CENTER, 0, 1, 1
-	; map_header PewterSnoozeSpeechHouseRB, $5, 3, PEWTER_CITY, MUSIC_VIRIDIAN_CITY, 0, 1, 1
+	map_header PewterCityRB, $3, 1, PEWTER_CITY, MUSIC_VIRIDIAN_CITY, 0, 0, 1
+	map_header PewterGymRB, $17, 3, PEWTER_CITY, MUSIC_GYM, 1, 1, 1
+	map_header PewterMartRB, $c, 3, PEWTER_CITY, MUSIC_MART, 0, 1, 1
+	map_header PewterPokeCenter1FRB, $7, 3, PEWTER_CITY, MUSIC_POKEMON_CENTER, 0, 1, 1
+	map_header PewterSnoozeSpeechHouseRB, $5, 3, PEWTER_CITY, MUSIC_VIRIDIAN_CITY, 0, 1, 1
+	map_header PewterNidoranSpeechHouseRB, $5, 3, PEWTER_CITY, MUSIC_VIRIDIAN_CITY, 0, 1, 1
+	map_header PewterMuseumOfScience1F, $26, 3, PEWTER_CITY, MUSIC_VIRIDIAN_CITY, 0, 1, 1
+	map_header PewterMuseumOfScience2F, $26, 3, PEWTER_CITY, MUSIC_VIRIDIAN_CITY, 0, 1, 1
+	map_header Route3RB, $3, 2, ROUTE_3, MUSIC_ROUTE_3, 0, 0, 1
 
 MapGroup32:
 ; cerulean city rb
+	map_header CeruleanGymRB, $9, 3, CERULEAN_CITY, MUSIC_GYM, 1, 1, 0
 	; map_header CeruleanGymBadgeSpeechHouseRB, $5, 3, CERULEAN_CITY, MUSIC_CERULEAN_CITY, 0, 1, 1
 	; map_header CeruleanPoliceStationRB, $5, 3, CERULEAN_CITY, MUSIC_CERULEAN_CITY, 0, 1, 1
 	; map_header CeruleanTradeSpeechHouseRB, $5, 3, CERULEAN_CITY, MUSIC_CERULEAN_CITY, 0, 1, 1
 	; map_header CeruleanPokeCenter1FRB, $7, 3, CERULEAN_CITY, MUSIC_POKEMON_CENTER, 0, 1, 1
-	; map_header CeruleanGymRB, $9, 3, CERULEAN_CITY, MUSIC_GYM, 1, 1, 0
 	; map_header CeruleanMartRB, $c, 3, CERULEAN_CITY, MUSIC_MART, 0, 1, 1
 	; map_header Route10PokeCenter1FRB, $7, 3, ROUTE_10, MUSIC_POKEMON_CENTER, 0, 1, 1
 	; map_header PowerPlantRB, $b, 3, POWER_PLANT, MUSIC_CERULEAN_CITY, 0, 1, 1
@@ -572,4 +574,3 @@ MapGroup36:
 	map_header ViridianForestNorthRB, $26, 6, VIRIDIAN_FOREST, MUSIC_ROUTE_2, 0, 1, 1
 	map_header ViridianForestSouthRB, $26, 6, VIRIDIAN_FOREST, MUSIC_ROUTE_2, 0, 1, 1
 	map_header DiglettsCaveRB, $18, 4, DIGLETTS_CAVE, MUSIC_MT_MOON, 1, 2, 1
-

@@ -493,13 +493,15 @@ MAP_N_A   EQU -1
 	mapgroup ROUTE_2_GATE_RB, 4, 5
 
 	newgroup ; Pewter City RB
-	mapgroup ROUTE_3_RB, 9, 30
 	mapgroup PEWTER_CITY_RB, 18, 20
-	mapgroup PEWTER_NIDORAN_SPEECH_HOUSE_RB, 4, 4
 	mapgroup PEWTER_GYM_RB, 7, 5
 	mapgroup PEWTER_MART_RB, 4, 6
 	mapgroup PEWTER_POKECENTER_1F_RB, 4, 5
 	mapgroup PEWTER_SNOOZE_SPEECH_HOUSE_RB, 4, 4
+	mapgroup PEWTER_NIDORAN_SPEECH_HOUSE_RB, 4, 4
+	mapgroup PEWTER_MUSEUM_1F_RB, 4, 10
+	mapgroup PEWTER_MUSEUM_2F_RB, 4, 7
+	mapgroup ROUTE_3_RB, 9, 30
 
 	newgroup ; Cerulean City RB
 	mapgroup CERULEAN_GYM_BADGE_SPEECH_HOUSE_RB, 4, 4

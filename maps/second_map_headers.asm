@@ -643,7 +643,7 @@
 	map_header_2 BluesHouseRB, BLUES_HOUSE_RB, $0, NONE
 
 	map_header_2 Route2RB, ROUTE_2_RB, $f, NORTH | SOUTH ; 0x952a0
-	connection north, PEWTER_CITY, PewterCity, -3, 2, 16, ROUTE_2_RB
+	connection north, PEWTER_CITY_RB, PewterCityRB, -3, 2, 16, ROUTE_2_RB
 	connection south, VIRIDIAN_CITY_RB, ViridianCityRB, -3, 2, 16, ROUTE_2_RB
 
 	map_header_2 ViridianCityRB, VIRIDIAN_CITY_RB, $f, NORTH | SOUTH | WEST ; 0x952c4
@@ -665,3 +665,22 @@
 	map_header_2 ViridianForestRB, VIRIDIAN_FOREST_RB, $2, NONE
 	map_header_2 ViridianForestNorthRB, VIRIDIAN_FOREST_NORTH_RB, $a, NONE
 	map_header_2 ViridianForestSouthRB, VIRIDIAN_FOREST_SOUTH_RB, $a, NONE
+
+	map_header_2 PewterGymRB, PEWTER_GYM_RB, $0, NONE
+
+	map_header_2 PewterCityRB, PEWTER_CITY_RB, $f, SOUTH | EAST
+	connection south, ROUTE_2_RB, Route2RB, 5, 0, 10, PEWTER_CITY_RB
+	connection east, ROUTE_3_RB, Route3RB, 5, 0, 9, PEWTER_CITY_RB
+
+	map_header_2 Route3RB, ROUTE_3_RB, $2c, WEST | EAST ; 0x956fc
+	connection west, PEWTER_CITY_RB, PewterCityRB, -3, 2, 15, ROUTE_3_RB
+	connection east, ROUTE_4, Route4, 0, 0, 9, ROUTE_3
+
+	map_header_2 PewterMartRB, PEWTER_MART_RB, $0, NONE ; 0x960e0
+	map_header_2 PewterPokeCenter1FRB, PEWTER_POKECENTER_1F_RB, $0, NONE ; 0x960ec
+	map_header_2 PewterSnoozeSpeechHouseRB, PEWTER_SNOOZE_SPEECH_HOUSE_RB, $0, NONE ; 0x96104
+	map_header_2 PewterNidoranSpeechHouseRB, PEWTER_NIDORAN_SPEECH_HOUSE_RB, $0, NONE ; 0x960c8
+	map_header_2 PewterMuseumOfScience1F, PEWTER_MUSEUM_1F_RB, $a, NONE
+	map_header_2 PewterMuseumOfScience2F, PEWTER_MUSEUM_2F_RB, $a, NONE
+
+	map_header_2 CeruleanGymRB, CERULEAN_GYM, $0, NONE

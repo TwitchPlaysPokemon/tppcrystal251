@@ -89,6 +89,7 @@ SaffronTrainStation_BlockData: ; 0xb0969
 	INCBIN "maps/SaffronTrainStation.blk"
 ; 0xb09c3
 
+CeruleanGymRB_BlockData:
 CeruleanGym_BlockData: ; 0xb09c3
 	INCBIN "maps/CeruleanGym.blk"
 ; 0xb09eb
@@ -161,6 +162,7 @@ SoulHouse_BlockData: ; 0xb0c7e
 	INCBIN "maps/SoulHouse.blk"
 ; 0xb0c92
 
+PewterGymRB_BlockData:
 PewterGym_BlockData: ; 0xb0c92
 	INCBIN "maps/PewterGym.blk"
 ; 0xb0cb5

@@ -6,6 +6,27 @@ Route2GateRB_MapScriptHeader: ; 0x9b950
 	db 0
 ; 0x9b952
 
+Route2GateRBScientistScript:
+	jumptextfaceplayer Route2GateRBScientistText
+
+Route2GateRBScientistText:
+	text "Hi, I'm an unused"
+	line "object."
+
+	para "The devs put me in"
+	line "here assuming you"
+	cont "would be unable to"
+	cont "reach me."
+
+	para "And yet, here you"
+	line "are! Well done!"
+
+	para "Don't forget to"
+	line "turn off your"
+	cont "cheat codes on"
+	cont "your way out!"
+	done
+
 Route2GateRB_MapEventHeader: ; 0x9b9ca
 	; filler
 	db 0, 0
@@ -25,6 +46,6 @@ Route2GateRB_MapEventHeader: ; 0x9b9ca
 
 	; people-events
 	db 1
-	person_event SPRITE_SCIENTIST, 8, 10, $4, 2, 0, -1, -1, 8 + PAL_OW_BLUE, 0, 0, ObjectEvent, -1
+	person_event SPRITE_SCIENTIST, 8, 10, $4, 2, 0, -1, -1, 8 + PAL_OW_PINK, 0, 0, Route2GateRBScientistScript, -1
 ; 0x9b9f1
 

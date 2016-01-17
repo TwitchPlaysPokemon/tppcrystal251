@@ -80,6 +80,6 @@ SlowpokeWellB2F_MapEventHeader: ; 0x5ae40
 	; people-events
 	db 2
 	person_event SPRITE_GYM_GUY, 8, 9, $2, 2, 1, -1, -1, 0, 0, 1, GymGuyScript_0x5ad0b, -1
-	person_event SPRITE_POKE_BALL, 9, 19, $1, 0, 0, -1, -1, 0, 1, 0, ItemFragment_0x5ad28, EVENT_ITEM_SLOWPOKE_WELL_B2F_TM_RAIN_DANCE
+	person_event SPRITE_POKE_BALL, 9, 19, $1, 0, 0, -1, -1, 0, 1, 0, ItemFragment_0x5ad28, EVENT_ITEM_SLOWPOKE_WELL_B2F_TM_CURSE
 ; 0x5ae65
 

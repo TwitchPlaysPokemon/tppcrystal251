@@ -345,7 +345,7 @@ wc650:: ds 1
 wc651:: ds 1
 wc652:: ds 4
 wc656::
-OTName:: ds NAME_LENGTH ; c656
+OTClassName:: ds NAME_LENGTH ; c656
 
 	ds 2
 
@@ -2031,7 +2031,7 @@ PlayerState:: ; d95d
 	ds 1
 
 wd95e:: ds 2
-wd960:: ds 2
+wTradeFlags:: flag_array 16
 MooMooBerries:: ; d962
 	ds 1 ; how many berries fed to MooMoo
 UndergroundSwitchPositions:: ; d963
@@ -2142,13 +2142,14 @@ wRoute22RBTrigger::                          ds 1
 wVictoryRoadGateRBTrigger::                  ds 1
 wRoute23RBTrigger::                          ds 1
 wPewterCityRBTrigger::                       ds 1
+wPewterMuseum1FRBTrigger::                   ds 1
 wCeruleanCityRBTrigger::                     ds 1
 wRoute24RBTrigger::                          ds 1
 wRoute5SaffronGateRBTrigger::                ds 1
 wRoute6SaffronGateRBTrigger::                ds 1
 wVermilionCityRBTrigger::                    ds 1
 
-	ds 25
+	ds 24
 
 
 SECTION "Events", WRAMX, BANK [1]
