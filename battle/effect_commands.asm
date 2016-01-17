@@ -3336,18 +3336,19 @@ BattleCommand12: ; 35250
 	bit SUBSTATUS_RAGE, a
 	ret z
 
-	ld de, wc72c
-	ld a, [hBattleTurn]
-	and a
-	jr z, .asm_3526b
-	ld de, wc72b
+	;ld de, wc72c
+	;ld a, [hBattleTurn]
+	;and a
+	;jr z, .asm_3526b
+	;ld de, wc72b
 .asm_3526b
-	ld a, [de]
-	inc a
-	ret z
-	ld [de], a
+	;ld a, [de]
+	;inc a
+	;ret z
+	;ld [de], a
 
 	call SwitchTurn
+	call BattleCommand70
 	ld hl, RageBuildingText
 	call StdBattleTextBox
 	jp SwitchTurn

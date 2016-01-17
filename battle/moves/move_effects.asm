@@ -1324,7 +1324,7 @@ Rage:
 	damagecalc
 	stab
 	checkhit
-	ragedamage
+	;ragedamage
 	damagevariation
 	hittarget
 	resulttext
