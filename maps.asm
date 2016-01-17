@@ -569,7 +569,6 @@ INCLUDE "maps/EarlyGameKanto/ViridianForestNorth.asm"
 INCLUDE "maps/EarlyGameKanto/Route2NuggetSpeechHouse.asm"
 INCLUDE "maps/EarlyGameKanto/DiglettsCave.asm"
 
-SECTION "Map Scripts 29", ROMX
 
 SECTION "EGK PewterGym Events", ROMX
 INCLUDE "maps/EarlyGameKanto/PewterGym.asm"
@@ -581,8 +580,11 @@ SECTION "EGK PewterMart Events", ROMX
 INCLUDE "maps/EarlyGameKanto/PewterMart.asm"
 SECTION "EGK PewterPokeCenter1F Events", ROMX
 INCLUDE "maps/EarlyGameKanto/PewterPokeCenter1F.asm"
-SECTION "EGK PewterSnoozeSpeechHouse Events", ROMX
+SECTION "EGK Pewter Houses Events", ROMX
 INCLUDE "maps/EarlyGameKanto/PewterSnoozeSpeechHouse.asm"
 INCLUDE "maps/EarlyGameKanto/PewterNidoranSpeechHouse.asm"
+SECTION "EGK Pewter Museum Events", ROMX
 INCLUDE "maps/EarlyGameKanto/PewterMuseumOfScience1F.asm"
 INCLUDE "maps/EarlyGameKanto/PewterMuseumOfScience2F.asm"
+SECTION "EGK Route3 Events", ROMX
+INCLUDE "maps/EarlyGameKanto/Route3.asm"

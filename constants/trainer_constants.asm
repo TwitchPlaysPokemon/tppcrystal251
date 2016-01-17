@@ -119,6 +119,8 @@
 	const JASON
 	const JOEY4
 	const JOEY5
+	const BEN_RB
+	const CALVIN_RB
 
 	trainerclass SCHOOLBOY ; 17
 	const JACK1
@@ -185,6 +187,9 @@
 	const DANA3
 	const DANA4
 	const DANA5
+	const JANICE_RB
+	const SALLY_RB
+	const ROBIN_RB
 
 	trainerclass JANINE ; 1a
 	const JANINE_1
@@ -319,6 +324,10 @@
 	const DOUG_RB
 	const CHUCK_RB
 	const SAMMY_RB
+	const GREG_RB
+	const COLTON_RB
+	const JAMES_RB
+	
 
 	trainerclass FISHER ; 25
 	const JUSTIN

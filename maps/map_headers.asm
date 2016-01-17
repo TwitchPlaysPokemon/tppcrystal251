@@ -539,7 +539,7 @@ MapGroup31:
 	map_header PewterNidoranSpeechHouseRB, $5, 3, PEWTER_CITY, MUSIC_VIRIDIAN_CITY, 0, 1, 1
 	map_header PewterMuseumOfScience1F, $26, 3, PEWTER_CITY, MUSIC_VIRIDIAN_CITY, 0, 1, 1
 	map_header PewterMuseumOfScience2F, $26, 3, PEWTER_CITY, MUSIC_VIRIDIAN_CITY, 0, 1, 1
-	; map_header Route3RB, $3, 2, ROUTE_3, MUSIC_ROUTE_3, 0, 0, 1
+	map_header Route3RB, $3, 2, ROUTE_3, MUSIC_ROUTE_3, 0, 0, 1
 
 MapGroup32:
 ; cerulean city rb

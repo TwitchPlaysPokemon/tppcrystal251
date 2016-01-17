@@ -2419,6 +2419,17 @@ YoungsterGroup:
 
 	db $ff ; end
 
+	db "BEN@"
+	db 0
+	db 11, RATTATA
+	db 11, EKANS
+	db $ff
+
+	db "CALVIN@"
+	db 0
+	db 14, SPEAROW
+	db $ff
+
 ; ================
 ; ================================
 
@@ -3374,6 +3385,24 @@ LassGroup:
 
 	db $ff ; end
 
+	db "JANICE@"
+	db 0
+	db 9, PIDGEY
+	db 9, PIDGEY
+	db $ff
+
+	db "SALLY@"
+	db 0
+	db 10, RATTATA
+	db 10, NIDORAN_F
+	db $ff
+
+	db "ROBIN@"
+	db 0
+	db 14, JIGGLYPUFF
+	db $ff
+
+
 ; ================
 ; ================================
 
@@ -3425,7 +3454,6 @@ JanineGroup:
 		db PSYCHIC_M
 
 	db $ff ; end
-
 ; ================
 ; ================================
 
@@ -5276,6 +5304,26 @@ BugCatcherGroup:
 	db 9, WEEDLE
 	db $ff
 
+	db "GREG@"
+	db 0
+	db 9, WEEDLE
+	db 9, KAKUNA
+	db 9, CATERPIE
+	db 9, METAPOD
+	db $ff
+
+	db "COLTON@"
+	db 0
+	db 10, CATERPIE
+	db 10, WEEDLE
+	db 10, CATERPIE
+	db $ff
+
+	db "JAMES@"
+	db 0
+	db 11, CATERPIE
+	db 11, METAPOD
+	db $ff
 ; ================
 ; ================================
 

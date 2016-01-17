@@ -85,15 +85,18 @@ PalletTownRB_BlockData:
 ; 0xa94f1
 
 Route25_BlockData: ; 0xa94f1
+Route25RB_BlockData: ; 0xa94f1
 	INCBIN "maps/Route25.blk"
 ; 0xa95ff
 
 Route24_BlockData: ; 0xa95ff
+Route24RB_BlockData: ; 0xa95ff
 	INCBIN "maps/Route24.blk"
 ; 0xa9659
 
 
 Route3_BlockData: ; 0xa97c1
+Route3RB_BlockData: ; 0xa97c1
 	INCBIN "maps/Route3.blk"
 ; 0xa98cf
 

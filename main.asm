@@ -17800,7 +17800,7 @@ Group30Sprites: ; 144ec
 	db SPRITE_GRAMPS
 	db SPRITE_BUG_CATCHER
 	db SPRITE_SUPER_NERD
-	db SPRITE_OAK
+	db SPRITE_LASS
 	db SPRITE_OFFICER
 	db SPRITE_POKE_BALL
 	db SPRITE_FRUIT_TREE ; 23
@@ -17825,8 +17825,8 @@ Group31Sprites: ; 144ec
 	db SPRITE_GRAMPS
 	db SPRITE_BUG_CATCHER
 	db SPRITE_SUPER_NERD
-	db SPRITE_OAK
-	db SPRITE_OFFICER
+	db SPRITE_LASS
+	db SPRITE_ROCKET
 	db SPRITE_POKE_BALL
 	db SPRITE_FRUIT_TREE ; 23
 
@@ -35867,9 +35867,9 @@ Function39984: ; 39984
 
 INCLUDE "trainers/trainer_pointers.asm"
 
+SECTION "Trainers 1", ROMX
 INCLUDE "trainers/trainers.asm"
-SECTION "bankE_split", ROMX
-
+SECTION "Trainers 2", ROMX
 INCLUDE "trainers/trainers2.asm"
 
 SECTION "bankF", ROMX, BANK[$F]
