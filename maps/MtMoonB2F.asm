@@ -1,11 +1,11 @@
-MtMoon2_MapScriptHeader: ; 0x1ac2ba
+MtMoonB2F_MapScriptHeader: ; 0x1ac2ba
 	; trigger count
 	db 0
 
 	; callback count
 	db 0
 
-MtMoon2_MapEventHeader: ; 0x1ac4af 
+MtMoonB2F_MapEventHeader: ; 0x1ac4af 
 	; filler
 	db 0, 0
 

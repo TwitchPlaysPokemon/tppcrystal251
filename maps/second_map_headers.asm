@@ -588,9 +588,9 @@
 	map_header_2 ViridianForest, VIRIDIAN_FOREST, $2, NONE ;Start of custom
 	map_header_2 ViridianForestNorth, VIRIDIAN_FOREST_GATE_NORTH, $A, NONE 
 	map_header_2 ViridianForestSouth, VIRIDIAN_FOREST_GATE_SOUTH, $A, NONE 
-	map_header_2 MtMoon1, MT_MOON_B1F, $3, NONE 
-	map_header_2 MtMoon2, MT_MOON_B2F, $3, NONE 
-	map_header_2 MtMoon3, MT_MOON_B3F, $3, NONE
+	map_header_2 MtMoonB1F, MT_MOON_B1F, $3, NONE 
+	map_header_2 MtMoonB2F, MT_MOON_B2F, $3, NONE 
+	map_header_2 MtMoonB3F, MT_MOON_B3F, $3, NONE
 	map_header_2 MtMoonPokeCenter1F, MOUNT_MOON_POKECENTER_1F, $0, NONE
 	map_header_2 CeruleanCave1, CERULEANCAVE1, $7D, NONE 
 	map_header_2 CeruleanCave2, CERULEANCAVE2, $7D, NONE 
@@ -683,8 +683,8 @@
 	map_header_2 PewterMuseumOfScience1F, PEWTER_MUSEUM_1F_RB, $a, NONE
 	map_header_2 PewterMuseumOfScience2F, PEWTER_MUSEUM_2F_RB, $a, NONE
 	map_header_2 MtMoonPokeCenter1FRB, MOUNT_MOON_POKECENTER_1F_RB, $0, NONE
-	; map_header_2 MtMoon1RB, MT_MOON_B1F_RB, $3, NONE 
-	; map_header_2 MtMoon2RB, MT_MOON_B2F_RB, $3, NONE 
-	; map_header_2 MtMoon3RB, MT_MOON_B3F_RB, $3, NONE
+	map_header_2 MtMoonB1FRB, MT_MOON_B1F_RB, $3, NONE
+	; map_header_2 MtMoonB2FRB, MT_MOON_B2F_RB, $3, NONE
+	; map_header_2 MtMoonB3FRB, MT_MOON_B3F_RB, $3, NONE
 
 	map_header_2 CeruleanGymRB, CERULEAN_GYM, $0, NONE

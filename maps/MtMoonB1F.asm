@@ -1,4 +1,4 @@
-MtMoon1_MapScriptHeader: ; 0x7407f
+MtMoonB1F_MapScriptHeader: ; 0x7407f
 	; trigger count
 	db 2
 
@@ -171,7 +171,7 @@ UnknownText_0x742e0: ; 0x742e0
 	done
 ; 0x74356
 
-MtMoon1_MapEventHeader: ; 0x1ac4af 
+MtMoonB1F_MapEventHeader: ; 0x1ac4af 
 	; filler
 	db 0, 0
 

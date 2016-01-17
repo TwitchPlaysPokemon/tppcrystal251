@@ -466,16 +466,16 @@ MapGroup27:
 	map_header ViridianForest, $25, 4, VIRIDIAN_FOREST, MUSIC_ROUTE_2, 0, 2, 0
 	map_header ViridianForestNorth, $26, 6, VIRIDIAN_FOREST, MUSIC_ROUTE_2, 0, 1, 1
 	map_header ViridianForestSouth, $26, 6, VIRIDIAN_FOREST, MUSIC_ROUTE_2, 0, 1, 1
-	
-	map_header MtMoon1, $27, 4, MT_MOON, MUSIC_MT_MOON, 1, 2, 1
-	map_header MtMoon2, $27, 4, MT_MOON, MUSIC_MT_MOON, 1, 2, 1
-	map_header MtMoon3, $27, 4, MT_MOON, MUSIC_MT_MOON, 1, 2, 1
+
+	map_header MtMoonB1F, $27, 4, MT_MOON, MUSIC_MT_MOON, 1, 2, 1
+	map_header MtMoonB2F, $27, 4, MT_MOON, MUSIC_MT_MOON, 1, 2, 1
+	map_header MtMoonB3F, $27, 4, MT_MOON, MUSIC_MT_MOON, 1, 2, 1
 	map_header MtMoonPokeCenter1F, $7, 3, ROUTE_3, MUSIC_POKEMON_CENTER, 0, 1, 1
-	
+
 	map_header CeruleanCave1, $27, 4, CERULEAN_CAVE, MUSIC_POWER_PLANT, 1, 2, 13
 	map_header CeruleanCave2, $27, 4, CERULEAN_CAVE, MUSIC_POWER_PLANT, 1, 2, 13
 	map_header CeruleanCave3, $27, 4, CERULEAN_CAVE, MUSIC_POWER_PLANT, 1, 2, 13
-	
+
 	map_header MewIslandEntrance, $1, 2, MEW_ISLAND, MUSIC_INDIGO_PLATEAU, 0, 0, 1
 	map_header MewIslandEntranceUnderground, $1c, 3, MEW_ISLAND, MUSIC_INDIGO_PLATEAU, 0, 1, 1
 	map_header MewIslandEntranceDock, $9, 2, MEW_ISLAND, MUSIC_INDIGO_PLATEAU, 0, 0, 2
@@ -575,3 +575,6 @@ MapGroup36:
 	map_header ViridianForestNorthRB, $26, 6, VIRIDIAN_FOREST, MUSIC_ROUTE_2, 0, 1, 1
 	map_header ViridianForestSouthRB, $26, 6, VIRIDIAN_FOREST, MUSIC_ROUTE_2, 0, 1, 1
 	map_header DiglettsCaveRB, $18, 4, DIGLETTS_CAVE, MUSIC_MT_MOON, 1, 2, 1
+	map_header MtMoonB1FRB, $27, 4, MT_MOON, MUSIC_MT_MOON, 1, 2, 1
+	; map_header MtMoonB2FRB, $27, 4, MT_MOON, MUSIC_MT_MOON, 1, 2, 1
+	; map_header MtMoonB3FRB, $27, 4, MT_MOON, MUSIC_MT_MOON, 1, 2, 1

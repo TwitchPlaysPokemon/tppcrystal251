@@ -2431,6 +2431,14 @@ YoungsterGroup:
 	db $ff
 
 ; ================
+
+	db "JOSH@"
+	db 0
+	db 10, RATTATA
+	db 11, RATTATA
+	db 12, ZUBAT
+	db $ff
+
 ; ================================
 
 
@@ -3398,8 +3406,19 @@ LassGroup:
 	db $ff
 
 	db "ROBIN@"
+	db (1 << TRAINERTYPE_NICKNAME)
+	db 14, JIGGLYPUFF, "JIGGLES@"
+	db $ff
+
+	db "MIRIAM@"
 	db 0
-	db 14, JIGGLYPUFF
+	db 11, ODDISH
+	db 11, BELLSPROUT
+	db $ff
+	
+	db "IRIS@"
+	db (1 << TRAINERTYPE_NICKNAME)
+	db 14, CLEFAIRY, "CLEFFLES@"
 	db $ff
 
 
@@ -5339,6 +5358,22 @@ BugCatcherGroup:
 	db 11, CATERPIE
 	db 11, METAPOD
 	db $ff
+
+; ================
+
+	db "KENT@"
+	db 0
+	db 11, WEEDLE
+	db 11, KAKUNA
+	db $ff
+
+	db "ROBBY@"
+	db 0
+	db 10, CATERPIE
+	db 12, METAPOD
+	db 10, CATERPIE
+	db $ff
+
 ; ================
 ; ================================
 
@@ -6565,6 +6600,12 @@ SuperNerdGroup:
 	db $ff ; end
 
 ; ================
+
+	db "JOVAN@"
+	db 0
+	db 11, MAGNEMITE
+	db 11, VOLTORB
+	db $ff
 ; ================================
 
 
@@ -7161,6 +7202,13 @@ HikerGroup:
 	db $ff ; end
 
 ; ================
+
+	db "MARCOS@"
+	db 0
+	db 10, GEODUDE
+	db 10, GEODUDE
+	db 12, ONIX
+	db $ff
 ; ================================
 
 

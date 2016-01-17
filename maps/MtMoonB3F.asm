@@ -1,4 +1,4 @@
-MtMoon3_MapScriptHeader: ; 0x1ac2ba
+MtMoonB3F_MapScriptHeader: ; 0x1ac2ba
 	; trigger count
 	db 0
 
@@ -162,7 +162,7 @@ SuperNerdMiguelAlreadyHaveItText:
 	line "this one."
 	done
 
-MtMoon3_MapEventHeader: ; 0x1ac4af 
+MtMoonB3F_MapEventHeader: ; 0x1ac4af 
 	; filler
 	db 0, 0
 
