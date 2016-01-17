@@ -250,7 +250,7 @@ MtMoonB3FRB_MapEventHeader: ; 0x1ac4af
 
 	; people-events
 	db 9
-	person_event SPRITE_SUPER_NERD, 12, 16, $9, 0, 0, -1, -1, 8 + PAL_OW_BLUE, 2, 1, TrainerSuperNerdMiguelRB, EVENT_MT_MOON_ROCKETS_RB
+	person_event SPRITE_SUPER_NERD, 12, 16, $9, 0, 0, -1, -1, 8 + PAL_OW_BLUE, 2, 1, TrainerSuperNerdMiguelRB, -1
 	person_event SPRITE_ROCKET, 20, 15, $6, 0, 0, -1, -1, 0, 2, 2, Trainer_MtMoonB3FRBRocket1, EVENT_MT_MOON_ROCKETS_RB ; Executive
 	person_event SPRITE_ROCKET, 26, 19, $6, 0, 0, -1, -1, 0, 2, 3, Trainer_MtMoonB3FRBRocket2, EVENT_MT_MOON_ROCKETS_RB
 	person_event SPRITE_ROCKET, 15, 33, $7, 0, 0, -1, -1, 0, 2, 3, Trainer_MtMoonB3FRBRocket3, EVENT_MT_MOON_ROCKETS_RB
