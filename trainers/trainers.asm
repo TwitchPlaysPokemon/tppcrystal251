@@ -3418,7 +3418,7 @@ LassGroup:
 	
 	db "IRIS@"
 	db (1 << TRAINERTYPE_NICKNAME)
-	db 14, CLEFAIRY, "CLEFFLES@"
+	db 14, CLEFAIRY, "CLEFFLES@@@"
 	db $ff
 
 

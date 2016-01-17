@@ -3,8 +3,13 @@ MtMoonB1FRB_MapScriptHeader: ; 0x7407f
 	db 0
 
 	; callback count
-	db 0
+	db 1
+	dbw 1, .HideLadders
 ; 0x74089
+.HideLadders
+	changeblock $23, $07, 1
+	changeblock $23, $1F, 1
+	return
 
 Trainer_HikerMarcos:
 	trainer EVENT_HIKER_MARCOS, HIKER, MARCOS_RB, _MtMoon1BattleText2, _MtMoon1EndBattleText2, 0, .Script
@@ -230,7 +235,7 @@ MtMoonB1FRB_MapEventHeader: ; 0x1ac4af
 
 	; signposts
 	db 1
-	signpost 19, 27, $0, MtMoonB1FRBSignpostScript
+	signpost 23, 15, $0, MtMoonB1FRBSignpostScript
 
 	; people-events
 	db 13
