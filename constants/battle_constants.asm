@@ -261,7 +261,7 @@ EFFECT_MEAN_LOOK           EQU $6a
 EFFECT_NIGHTMARE           EQU $6b
 EFFECT_FLAME_WHEEL         EQU $6c
 EFFECT_CURSE               EQU $6d
-EFFECT_UNUSED_6E           EQU $6e ; unused
+EFFECT_BODY_SLAM           EQU $6e ; now used
 EFFECT_PROTECT             EQU $6f
 EFFECT_SPIKES              EQU $70
 EFFECT_FORESIGHT           EQU $71

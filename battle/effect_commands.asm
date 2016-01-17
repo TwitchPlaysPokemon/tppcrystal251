@@ -1547,34 +1547,34 @@ Function347c8: ; 347c8
 ; 347d3
 
 
-Function347d3: ; 347d3
-	push hl
+Function347d3: ; 347d3 ;put type matchup in wd265 
+	push hl 
 	push de
 	push bc
 	ld a, BATTLE_VARS_MOVE_TYPE
 	call GetBattleVar
 	and $1f
-	ld d, a
+	ld d, a ;d = move type
 	ld b, [hl]
 	inc hl
-	ld c, [hl]
+	ld c, [hl] ;load foe type into bc
 	ld a, 10 ; 1.0
-	ld [wd265], a
+	ld [wd265], a ;load 10 into type matchup
 	ld hl, TypeMatchup
 .asm_347e7
 	ld a, [hli]
 	cp $ff
-	jr z, .asm_3482f
+	jr z, .asm_3482f ;if end of table, done, if fe, skip and if foe id'd, continue till ff
 	cp $fe
 	jr nz, .asm_347fb
 	ld a, BATTLE_VARS_SUBSTATUS1_OPP
 	call GetBattleVar
 	bit SUBSTATUS_IDENTIFIED, a
-	jr nz, .asm_3482f
-	jr .asm_347e7
+	jr nz, .asm_3482f ;if id'd done, else check ghost matchups
+	jr .asm_347e7 ;loop
 .asm_347fb
 	cp d
-	jr nz, .asm_34807
+	jr nz, .asm_34807 ;if match-up matches, multiply
 	ld a, [hli]
 	cp b
 	jr z, .asm_3480b
@@ -1604,7 +1604,7 @@ Function347d3: ; 347d3
 	pop bc
 	ld a, [$ffb6]
 	ld [wd265], a
-	jr .asm_347e7
+	jr .asm_347e7 ;loop until end of table
 
 .asm_3482f
 	pop bc
@@ -1614,12 +1614,12 @@ Function347d3: ; 347d3
 ; 34833
 
 
-BattleCommanda3: ; 34833
-	call Function347c8
+BattleCommanda3: ; 34833 
+	call Function347c8 ;put type matchup in wd265 
 	ld a, [wd265]
 	and a
 	ld a, 10 ; 1.0
-	jr nz, .asm_3484a
+	jr nz, .asm_3484a ;if not immune, set damage to neutral
 	call ResetDamage
 	xor a
 	ld [TypeModifier], a
@@ -2389,6 +2389,23 @@ BattleCommand09: ; 34d32
 	cp EFFECT_WHIRLWIND
 	ret z
 
+	cp EFFECT_BODY_SLAM
+	jr z, .MinimiseCheck
+	cp EFFECT_STOMP
+	jr nz, .NotStomp
+
+.MinimiseCheck
+	ld hl, wc6fa
+	ld a, [hBattleTurn]
+	and a
+	jr z, .ok
+	ld hl, wc6fe
+.ok
+	ld a, [hl]
+	and a
+	ret nz
+.NotStomp
+
 	cp EFFECT_TOXIC
 	jr nz, .NotToxic
 	ld a, BATTLE_VARS_TYPE_1OPP ;poison always hits toxic
@@ -2402,6 +2419,7 @@ BattleCommand09: ; 34d32
 
 .NotToxic
 
+	
 
 	call .StatModifiers
 
@@ -2700,9 +2718,14 @@ BattleCommand90: ; 34ecc
 
 	xor a
 	ld [EffectFailed], a
+
+	ld a, BATTLE_VARS_LAST_MOVE
+	call GetBattleVar
+	cp BUG_BUZZ
+	jr z, .IgnoreSub
 	call CheckSubstituteOpp
 	jr nz, .failed
-
+.IgnoreSub
 	push hl
 	ld hl, wPlayerMoveStruct + MOVE_CHANCE
 	ld a, [hBattleTurn]
@@ -5624,8 +5647,13 @@ BattleCommand14: ; 35e5c
 	and a
 	jr nz, .asm_35ec6
 
+	ld a, BATTLE_VARS_LAST_MOVE
+	call GetBattleVar
+	cp SING
+	jr z, .IgnoreSub
 	call CheckSubstituteOpp
 	jr nz, .asm_35ec6
+.IgnoreSub
 
 	call AnimateCurrentMove
 	;ld b, $7
@@ -6587,8 +6615,17 @@ BattleCommand1d: ; 362e3
 	call z, CheckForGrassType ;ret z if target is a grass type
 	jp z, .Failed
 
+	ld a, BATTLE_VARS_LAST_MOVE
+	call GetBattleVar
+	cp GROWL
+	jr z, .IgnoreSub
+	cp SCREECH
+	jr z, .IgnoreSub
+	cp METAL_SOUND
+	jr z, .IgnoreSub
 	call CheckSubstituteOpp
 	jr nz, .Failed
+.IgnoreSub
 
 	ld a, [AttackMissed]
 	and a
@@ -8359,8 +8396,13 @@ BattleCommand2a: ; 36d3b
 	jp StdBattleTextBox
 
 .asm_36d65
+	ld a, BATTLE_VARS_LAST_MOVE
+	call GetBattleVar
+	cp SUPERONIC
+	jr z, .IgnoreSub
 	call CheckSubstituteOpp
 	jr nz, Function36db6
+.IgnoreSub
 	ld a, [AttackMissed]
 	and a
 	jr nz, Function36db6

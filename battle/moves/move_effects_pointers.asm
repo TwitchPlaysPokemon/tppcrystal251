@@ -108,7 +108,7 @@
 	dw Nightmare
 	dw FlameWheel
 	dw Curse
-	dw NormalHit
+	dw BodySlam
 	dw Protect
 	dw Spikes
 	dw Foresight
