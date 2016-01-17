@@ -3418,7 +3418,7 @@ LassGroup:
 	
 	db "IRIS@"
 	db (1 << TRAINERTYPE_NICKNAME)
-	db 14, CLEFAIRY, "CLEFFLES@@@"
+	db 14, CLEFAIRY, "CLEFFLES@"
 	db $ff
 
 
@@ -7296,7 +7296,7 @@ BikerGroup:
 	db (1 << TRAINERTYPE_NICKNAME)
 
 	; party
-	db 75, BEEDRILL, "STINGER@@@@"
+	db 75, BEEDRILL, "STINGER@"
 
 	db $ff ; end
 
@@ -9437,7 +9437,7 @@ PokefanFGroup:
 	db (1 << TRAINERTYPE_NICKNAME)
 
 	; party
-	db 35, AMPHAROS, "ZAPPY@@@@@@"
+	db 35, AMPHAROS, "ZAPPY@"
 
 	db $ff ; end
 
@@ -9562,13 +9562,13 @@ RedGroup:
 		db SURF
 		db STRENGTH
 
-	db 100, VENOMOTH, "AATTVVV@@@@"
+	db 100, VENOMOTH, "AATTVVV@"
 		db DISABLE
 		db POISONPOWDER
 		db LEECH_LIFE
 		db STUN_SPORE
 
-	db 100, ZAPDOS, "AA-j@@@@@@@"
+	db 100, ZAPDOS, "AA-j@"
 		db THUNDERSHOCK
 		db DRILL_PECK
 		db TAKE_DOWN
@@ -9580,7 +9580,7 @@ RedGroup:
 		db STRENGTH
 		db FURY_ATTACK
 
-	db 100, OMASTAR, "OMASTAR@@@@"
+	db 100, OMASTAR, "OMASTAR@"
 		db HYDRO_PUMP
 		db WITHDRAW
 		db SURF

@@ -35703,6 +35703,8 @@ TrainerType:
 .copy_nick
 	ld a, [wdff5]
 	call GetFarByte2
+	cp "@"
+	jr z, .copied_nick
 	ld [de], a
 	inc de
 	dec b
