@@ -399,7 +399,7 @@ Route3RB_MapEventHeader: ; 0x1ae18a
 	person_event SPRITE_YOUNGSTER, 11, 22, $8, 0, 0, -1, -1, 0, 2, 3, Trainer_YoungsterCalvin, -1
 	person_event SPRITE_BUG_CATCHER, 8, 24, $9, 0, 0, -1, -1, 0, 2, 3, Trainer_BugCatcherJames, -1
 	person_event SPRITE_LASS, 17, 28, $7, 0, 0, -1, -1, 0, 2, 2, Trainer_LassRobin, -1
-	person_event SPRITE_ROCKET, 6, 56, $9, 0, 0, -1, -1, 0, 0, 0, Route3RBRocketsScript, -1
-	person_event SPRITE_ROCKET, 6, 57, $8, 0, 0, -1, -1, 0, 0, 0, Route3RBRocketsScript, -1
+	person_event SPRITE_ROCKET, 6, 56, $9, 0, 0, -1, -1, 0, 0, 0, Route3RBRocketsScript, EVENT_ROUTE_3_ROCKETS
+	person_event SPRITE_ROCKET, 6, 57, $8, 0, 0, -1, -1, 0, 0, 0, Route3RBRocketsScript, EVENT_ROUTE_3_ROCKETS
 ; 0x1ae1ce
 
