@@ -160,8 +160,8 @@ MountMoonSquare_MapEventHeader: ; 0x77158
 
 	; warps
 	db 3
-	warp_def $5, $14, 6, GROUP_MTMOON1, MAP_MTMOON1
-	warp_def $b, $16, 7, GROUP_MTMOON1, MAP_MTMOON1
+	warp_def $5, $14, 6, GROUP_MT_MOON_B1F, MAP_MT_MOON_B1F
+	warp_def $b, $16, 7, GROUP_MT_MOON_B1F, MAP_MT_MOON_B1F
 	warp_def $7, $d, 1, GROUP_MOUNT_MOON_GIFT_SHOP, MAP_MOUNT_MOON_GIFT_SHOP
 
 	; xy triggers

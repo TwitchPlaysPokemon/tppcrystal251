@@ -105,11 +105,49 @@ Route3RBRocketsScript:
 	faceperson $b, $0
 	faceperson $c, $0
 	loadfont
+	checkflag ENGINE_BOULDERBADGE
+	iftrue .battle
 	writetext Route3RBRocketsText3
 	waitbutton
 	closetext
 	spriteface $b, RIGHT
 	spriteface $c, LEFT
+	special RestartMapMusic
+	end
+
+.battle
+	writetext Route3RBRocketsText4
+	waitbutton
+	closetext
+	loadtrainer GRUNTM, 32
+	winlosstext Route3RBRocketsWinText1, 0
+	setlasttalked $b
+	startbattle
+	returnafterbattle
+	playmusic MUSIC_ROCKET_ENCOUNTER
+	loadfont
+	writetext Route3RBRocketsText5
+	waitbutton
+	closetext
+	loadtrainer GRUNTM, 33
+	winlosstext Route3RBRocketsWinText2, 0
+	setlasttalked $c
+	startbattle
+	returnafterbattle
+	playmusic MUSIC_ROCKET_ENCOUNTER
+	loadfont
+	writetext Route3RBRocketsText6
+	waitbutton
+	closetext
+	follow $b, $c
+	applymovement $b, Route3RBMovement_StepUp
+	stopfollow
+	disappear $b
+	playsound SFX_EXIT_BUILDING
+	applymovement $c, Route3RBMovement_StepUp
+	disappear $c
+	playsound SFX_EXIT_BUILDING
+	waitsfx
 	special RestartMapMusic
 	end
 
@@ -122,6 +160,10 @@ Route3RBMovement_HalfStepRight:
 
 Route3RBMovement_HalfStepLeft
 	half_step_left
+	step_end
+
+Route3RBMovement_StepUp
+	step_up
 	step_end
 
 _Route3Text1:
@@ -289,13 +331,54 @@ Route3RBRocketsText3:
 	cont "sation! Get lost!"
 	done
 
+Route3RBRocketsText4:
+	text "Hey! Were you"
+	line "eavesdropping?"
+
+	para "You've heard far"
+	line "too much, squirt."
+
+	para "Now prepare to"
+	line "feel the wrath of"
+	cont "TEAM ROCKET!"
+	done
+
+Route3RBRocketsWinText1:
+	text "What the-?"
+	done
+
+Route3RBRocketsText5:
+	text "Now it's my turn."
+	line "I'll make you cry!"
+	done
+
+Route3RBRocketsWinText2:
+	text "This power…"
+	done
+
+Route3RBRocketsText6:
+	text "We're TEAM ROCKET."
+	line "We exist to con-"
+	cont "trol all #MON."
+
+	para "You dare to meddle"
+	line "in our BOSS's"
+	cont "schemes?"
+	cont "Bring it on!"
+
+	para "… I'd say that, but"
+	line "you trashed us"
+	cont "good, kid. We'll"
+	cont "remember you."
+	done
+
 Route3RB_MapEventHeader: ; 0x1ae18a
 	; filler
 	db 0, 0
 
 	; warps
 	db 2
-	warp_def $1, $34, 1, GROUP_MTMOON1_RB, MAP_MTMOON1_RB
+	warp_def $1, $34, 1, GROUP_MT_MOON_B1F_RB, MAP_MT_MOON_B1F_RB
 	warp_def $3, $2f, 1, GROUP_MOUNT_MOON_POKECENTER_1F_RB, MAP_MOUNT_MOON_POKECENTER_1F_RB
 
 	; xy triggers

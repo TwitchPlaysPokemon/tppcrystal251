@@ -4829,6 +4829,21 @@ GruntMGroup:
 	db $ff ; end
 
 ; ================
+
+; 32
+	db "GRUNT@"
+	db 0
+	db 12, RATTATA
+	db 12, KOFFING
+	db $ff
+
+; 33
+	db "GRUNT@"
+	db 0
+	db 12, ZUBAT
+	db 14, GRIMER
+	db 12, RATTATA
+	db $ff
 ; ================================
 
 

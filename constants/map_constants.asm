@@ -433,9 +433,9 @@ MAP_N_A   EQU -1
 	mapgroup VIRIDIAN_FOREST, $18, $11
 	mapgroup VIRIDIAN_FOREST_GATE_NORTH, $04, $05
 	mapgroup VIRIDIAN_FOREST_GATE_SOUTH, $04, $05
-	mapgroup MTMOON1, 18, 20
-	mapgroup MTMOON2, 14, 14
-	mapgroup MTMOON3, 18, 20
+	mapgroup MT_MOON_B1F, 18, 20
+	mapgroup MT_MOON_B2F, 14, 14
+	mapgroup MT_MOON_B3F, 18, 20
 	mapgroup MOUNT_MOON_POKECENTER_1F, 4, 5
 	mapgroup CERULEANCAVE1, 9, 15
 	mapgroup CERULEANCAVE2, 9, 15
@@ -502,6 +502,7 @@ MAP_N_A   EQU -1
 	mapgroup PEWTER_MUSEUM_1F_RB, 4, 10
 	mapgroup PEWTER_MUSEUM_2F_RB, 4, 7
 	mapgroup ROUTE_3_RB, 9, 30
+	mapgroup MOUNT_MOON_POKECENTER_1F_RB, 4, 5
 
 	newgroup ; Cerulean City RB
 	mapgroup CERULEAN_GYM_BADGE_SPEECH_HOUSE_RB, 4, 4
@@ -547,10 +548,9 @@ MAP_N_A   EQU -1
 	mapgroup VIRIDIAN_FOREST_NORTH_RB, $04, $05
 	mapgroup VIRIDIAN_FOREST_SOUTH_RB, $04, $05
 	mapgroup DIGLETTS_CAVE_RB, 18, 10
-	mapgroup MTMOON1_RB, 18, 20
-	mapgroup MTMOON2_RB, 14, 14
-	mapgroup MTMOON3_RB, 18, 20
-	mapgroup MOUNT_MOON_POKECENTER_1F_RB, 4, 5
+	mapgroup MT_MOON_B1F_RB, 18, 20
+	mapgroup MT_MOON_B2F_RB, 14, 14
+	mapgroup MT_MOON_B3F_RB, 18, 20
 
 ; elevator floors
 	const_def

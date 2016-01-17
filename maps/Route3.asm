@@ -219,7 +219,7 @@ Route3_MapEventHeader: ; 0x1ae18a
 
 	; warps
 	db 2
-	warp_def $1, $34, 1, GROUP_MTMOON1, MAP_MTMOON1
+	warp_def $1, $34, 1, GROUP_MT_MOON_B1F, MAP_MT_MOON_B1F
 	warp_def $3, $2f, 1, GROUP_MOUNT_MOON_POKECENTER_1F, MAP_MOUNT_MOON_POKECENTER_1F
 
 	; xy triggers

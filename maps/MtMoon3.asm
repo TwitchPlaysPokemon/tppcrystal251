@@ -167,10 +167,10 @@ MtMoon3_MapEventHeader: ; 0x1ac4af
 	db 0, 0
 
 	db 4
-	warp_def $09, $19, 2, GROUP_MTMOON2, MAP_MTMOON2
-	warp_def $11, $15, 5, GROUP_MTMOON2, MAP_MTMOON2
-	warp_def $1b, $f, 6, GROUP_MTMOON2, MAP_MTMOON2
-	warp_def $7, $5, 7, GROUP_MTMOON2, MAP_MTMOON2
+	warp_def $09, $19, 2, GROUP_MT_MOON_B2F, MAP_MT_MOON_B2F
+	warp_def $11, $15, 5, GROUP_MT_MOON_B2F, MAP_MT_MOON_B2F
+	warp_def $1b, $f, 6, GROUP_MT_MOON_B2F, MAP_MT_MOON_B2F
+	warp_def $7, $5, 7, GROUP_MT_MOON_B2F, MAP_MT_MOON_B2F
 
 	; xy triggers
 	db 0

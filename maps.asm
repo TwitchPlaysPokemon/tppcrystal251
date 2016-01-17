@@ -588,3 +588,4 @@ INCLUDE "maps/EarlyGameKanto/PewterMuseumOfScience1F.asm"
 INCLUDE "maps/EarlyGameKanto/PewterMuseumOfScience2F.asm"
 SECTION "EGK Route3 Events", ROMX
 INCLUDE "maps/EarlyGameKanto/Route3.asm"
+INCLUDE "maps/EarlyGameKanto/MtMoonPokeCenter1F.asm"
