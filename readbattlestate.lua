@@ -43,6 +43,19 @@ function getBattleType()
     vba.print("dummy")
 end
 
+function getItems()
+local itemArray = {}
+
+local wEnemyTrainerItem1 = memory.readbyte(0xc650) -- 1 byte
+local wEnemyTrainerItem2 = memory.readbyte(0xc651) -- 1 byte
+
+itemArray["item1"] = itemTable[wEnemyTrainerItem1 + 2]
+itemArray["item2"] = itemTable[wEnemyTrainerItem2 + 1]
+
+return itemArray
+
+end
+
 repeat
     local OTClassName = memory.readbyterange(0xc656, 11)
     --local OTPlayerName = memory.readbyterange(0xd073 , 19) --do not update this if AI is asked for a move
@@ -51,16 +64,13 @@ repeat
     wEnemyTrainerItem1 = memory.readbyte(0xc650) -- 1 byte
     wEnemyTrainerItem2 = memory.readbyte(0xc651) -- 1 byte
     rSVBK = memory.readbyte(0xFF70)
-    vba.print("OTClassName: ", OTClassName)
-    vba.print("Item test: ", itemTable[190])
     battleState = {}
     if wBattleMode == 2 and rSVBK == 1 then
     battleState["class"] = getTrainerClass()
-    vba.print("I'm executing")
     end
-	battleState["wBattleMode"] = wBattleMode --if somehow wBattleMode is 0, ignore the data entirely  
-	battleState["turn"] = "dummy"
-	battleState["items"] = {}
+	battleState["wBattleMode"] = wBattleMode --if somehow wBattleMode is 0, ignore the data entirely
+    battleState["turn"] = "dummy"
+	battleState["items"] = getItems()
 	battleState["oparena"] = "dummy"
 	battleState["playerarena"] = "dummy"
 	battleState["wholearena"] = "dummy"
@@ -71,19 +81,14 @@ repeat
     
     if wBattleMode == 2 and rSVBK == 1 then 
     vba.print("rSVBK: Bank ", rSVBK)
-    vba.print("Item 1: ", wEnemyTrainerItem1)
-    vba.print("Item 2: ", wEnemyTrainerItem2)
     vba.print(battleState)
     vba.print("Trainer battle!") 
     elseif wBattleMode == 1 and rSVBK == 1 then 
     vba.print("rSVBK: Bank ", rSVBK)
-    vba.print("Item 1: ", wEnemyTrainerItem1)
-    vba.print("Item 2: ", wEnemyTrainerItem2)
     vba.print(battleState)
     vba.print("Wild pokemon!") 
     elseif wBattleMode == 0 and rSVBK == 1 then 
     vba.print("rSVBK: Bank ", rSVBK)
-    vba.print("Battle state: ", wBattleMode)
     vba.print("Not in battle") 
     else 
     vba.print("rSVBK: Bank ", rSVBK)
