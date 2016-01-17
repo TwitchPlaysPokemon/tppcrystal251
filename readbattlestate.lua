@@ -11,6 +11,8 @@ itemTable = {"NO_ITEM", "MASTER_BALL", "ULTRA_BALL", "BRIGHTPOWDER", "GREAT_BALL
 
 moveTable = {"NO_MOVE", "POUND", "KARATE_CHOP", "DOUBLESLAP", "GUNK_SHOT", "ZEN_HEADBUTT", "PAY_DAY", "FIRE_PUNCH", "ICE_PUNCH", "THUNDERPUNCH", "SCRATCH", "FAIRY_WIND", "FOCUS_BLAST", "IRON_DEFENSE", "SWORDS_DANCE", "CUT", "GUST", "WING_ATTACK", "WHIRLWIND", "FLY", "BUG_BUZZ", "SLAM", "VINE_WHIP", "STOMP", "DOUBLE_KICK", "MEGA_KICK", "FLARE_BLITZ", "ROLLING_KICK", "SAND_ATTACK", "HEADBUTT", "HORN_ATTACK", "FURY_ATTACK", "HORN_DRILL", "TACKLE", "BODY_SLAM", "WRAP", "TAKE_DOWN", "THRASH", "DOUBLE_EDGE", "TAIL_WHIP", "POISON_STING", "TWINEEDLE", "PIN_MISSILE", "LEER", "BITE", "GROWL", "ROAR", "SING", "SUPERSONIC", "SONICBOOM", "DISABLE", "ACID", "EMBER", "FLAMETHROWER", "MIST", "WATER_GUN", "HYDRO_PUMP", "SURF", "ICE_BEAM", "BLIZZARD", "PSYBEAM", "BUBBLEBEAM", "AURORA_BEAM", "HYPER_BEAM", "PECK", "DRILL_PECK", "SUBMISSION", "HEAT_WAVE", "COUNTER", "SEISMIC_TOSS", "STRENGTH", "ABSORB", "MEGA_DRAIN", "LEECH_SEED", "GROWTH", "RAZOR_LEAF", "SOLARBEAM", "POISONPOWDER", "STUN_SPORE", "SLEEP_POWDER", "PETAL_DANCE", "STRING_SHOT", "DRAGON_RAGE", "FIRE_SPIN", "THUNDERSHOCK", "THUNDERBOLT", "THUNDER_WAVE", "THUNDER", "ROCK_THROW", "EARTHQUAKE", "FISSURE", "DIG", "TOXIC", "CONFUSION", "PSYCHIC_M", "HYPNOSIS", "MEDITATE", "AGILITY", "QUICK_ATTACK", "RAGE", "TELEPORT", "NIGHT_SHADE", "MIMIC", "SCREECH", "DOUBLE_TEAM", "RECOVER", "HARDEN", "MINIMIZE", "SMOKESCREEN", "CONFUSE_RAY", "WITHDRAW", "DEFENSE_CURL", "BARRIER", "LIGHT_SCREEN", "HAZE", "REFLECT", "FOCUS_ENERGY", "BIDE", "METRONOME", "MIRROR_MOVE", "SELFDESTRUCT", "METAL_SOUND", "LICK", "DRAGON_PULSE", "SLUDGE", "BONE_CLUB", "FIRE_BLAST", "WATERFALL", "CLAMP", "SWIFT", "AQUA_JET", "SPIKE_CANNON", "FLASH_CANNON", "AMNESIA", "WILLOWISP", "SOFTBOILED", "HI_JUMP_KICK", "GLARE", "DREAM_EATER", "ROCK_POLISH", "SEED_BOMB", "LEECH_LIFE", "LOVELY_KISS", "SKY_ATTACK", "TRANSFORM", "BUBBLE", "DIZZY_PUNCH", "SPORE", "FLASH", "PSYWAVE", "SPLASH", "ACID_ARMOR", "CRABHAMMER", "EXPLOSION", "POISON_JAB", "BONEMERANG", "REST", "ROCK_SLIDE", "HYPER_FANG", "SHARPEN", "CONVERSION", "TRI_ATTACK", "SUPER_FANG", "SLASH", "SUBSTITUTE", "STRUGGLE", "SKETCH", "WILD_CHARGE", "THIEF", "X_SCISSOR", "MIND_READER", "NIGHTMARE", "FLAME_WHEEL", "IRON_HEAD", "CURSE", "FLAIL", "CONVERSION2", "AEROBLAST", "COTTON_SPORE", "REVERSAL", "SPITE", "POWDER_SNOW", "PROTECT", "MACH_PUNCH", "SCARY_FACE", "FAINT_ATTACK", "SWEET_KISS", "BELLY_DRUM", "SLUDGE_BOMB", "MUD_SLAP", "OCTAZOOKA", "SPIKES", "ZAP_CANNON", "FORESIGHT", "DESTINY_BOND", "PERISH_SONG", "ICY_WIND", "AIR_SLASH", "DARK_PULSE", "EARTH_POWER", "OUTRAGE", "SANDSTORM", "GIGA_DRAIN", "ENDURE", "CHARM", "ROLLOUT", "FALSE_SWIPE", "SWAGGER", "MILK_DRINK", "SPARK", "FURY_CUTTER", "STEEL_WING", "MEAN_LOOK", "ATTRACT", "SLEEP_TALK", "HEAL_BELL", "RETURN", "PRESENT", "DAZZLINGLEAM", "SAFEGUARD", "PAIN_SPLIT", "SACRED_FIRE", "MAGNITUDE", "DYNAMICPUNCH", "MEGAHORN", "DRAGONBREATH", "BATON_PASS", "ENCORE", "PURSUIT", "RAPID_SPIN", "NASTY_PLOT", "IRON_TAIL", "METAL_CLAW", "VITAL_THROW", "MORNING_SUN", "SYNTHESIS", "MOONLIGHT", "HIDDEN_POWER", "CROSS_CHOP", "TWISTER", "RAIN_DANCE", "SUNNY_DAY", "CRUNCH", "MIRROR_COAT", "SHADOW_CLAW", "EXTREMESPEED", "ANCIENTPOWER", "SHADOW_BALL", "FUTURE_SIGHT", "ROCK_SMASH", "WHIRLPOOL", "DRILL_RUN", "MOONBLAST", "PLAY_ROUGH", "SHEER_COLD"}
 
+typeTable = {"NORMAL", "FIGHTING", "FLYING", "POISON", "GROUND", "ROCK", "BIRD", "BUG", "GHOST", "STEEL", "---", "---", "---", "---", "---", "---", "---", "---", "---", "???", "FIRE", "WATER", "GRASS", "ELECTRIC", "PSYCHIC", "ICE", "DRAGON", "DARK", "FAIRY"}
+
 function refreshinterval(seconds)
 	local lastupdate = os.time()
 	local now
@@ -184,7 +186,12 @@ wildStats["spatk"] = memory.readbyte(0xc6c8) + (memory.readbyte(0xC6C7) * 255)
 wildStats["spdef"] = memory.readbyte(0xc6D0) + (memory.readbyte(0xC6C9) * 255)
 wildStats["spd"] = memory.readbyte(0xc6c6) + (memory.readbyte(0xC6C5) * 255)
 
--- types
+if memory.readbyte(0xD224) == memory.readbyte(0xD225) then
+    types["1"] = typeTable[memory.readbyte(0xD224) + 1]
+else
+    types["1"] = typeTable[memory.readbyte(0xD224) + 1]
+    types["2"] = typeTable[memory.readbyte(0xD225) + 1]
+end
 
 --substatus
 
@@ -193,10 +200,10 @@ wildPokemon["gender"] = checkGender(memory.readbyte(0xC4BD))
 wildPokemon["item"] = checkItem(memory.readbyte(0xD207))
 wildPokemon["moves"] = moves
 wildPokemon["stats"] = wildStats
-wildPokemon["types"] = {}
+wildPokemon["types"] = types
 wildPokemon["currenthp"] = memory.readbyte(0xD217) + (memory.readbyte(0xd216) * 255)
 wildPokemon["level"] = memory.readbyte(0xd213)
-wildPokemon["substatus"] = "dummy"
+wildPokemon["substatus"] = calculateSubstatus(memory.readbyte(0xc66d), memory.readbyte(0xc66e), memory.readbyte(0xc66f), memory.readbyte(0xc670), memory.readbyte(0xc671))
 wildPokemon["status"] = "dummy"
 
 wildStatus = memory.readbyte(0xd214)
@@ -237,6 +244,38 @@ else
 end
 
 return gender
+end
+
+function calculateSubstatus(byte1, byte2, byte3, byte4, byte5)
+substatus = {}
+vba.print(byte1, byte2, byte3, byte4, byte5)
+
+if (AND(byte1, 2) == 2) then
+vba.print("nightmare")
+end
+if (AND(byte1, 4) == 4) then
+vba.print("curse")
+end
+if (AND(byte1, 8) == 8) then
+vba.print("protect")
+end
+if (AND(byte1, 16) == 16) then
+vba.print("identified")
+end
+if (AND(byte1, 32) == 32) then
+vba.print("perish song")
+end
+if (AND(byte1, 64) == 64) then
+vba.print("endure")
+end
+if (AND(byte1, 128) == 128) then
+vba.print("encore")
+end
+if (AND(byte1, 256) == 256) then
+vba.print("attract")
+end
+
+return "DUMMY"
 end
 
 repeat
