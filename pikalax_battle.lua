@@ -177,13 +177,13 @@ end
 
 function getPlayerPokemonData()
 	playerMon = getMonBattleState(0xc62c)
-	playerMon["subStatus"] = getSubstatus(0xc668, 0xc672, 0xc6df, 0xc71a)
+	if playerMon ~= nil then playerMon["subStatus"] = getSubstatus(0xc668, 0xc672, 0xc6df, 0xc71a) end
 	return playerMon
 end
 
 function getEnemyPokemonData()
 	enemyMon = getMonBattleState(0xd206)
-	enemyMon["subStatus"] = getSubstatus(0xc66d, 0xc67a, 0xc6e0, 0xc71b)
+	if enemyMon ~= nil then enemyMon["subStatus"] = getSubstatus(0xc66d, 0xc67a, 0xc6e0, 0xc71b) end
 	return enemyMon
 end
 
