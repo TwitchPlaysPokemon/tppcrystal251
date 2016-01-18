@@ -36828,11 +36828,7 @@ AIWaitMove:
 	ld [CurEnemyMoveNum], a
 	ret
 
-.invalid
-	call AIChooseMove
-	jr .loop
-
-.switch
+.CheckIfTrapped
 	ld hl, PlayerSubStatus5
 	bit SUBSTATUS_CANT_RUN, [hl]
 	jr z, .NotTrapped
@@ -36843,6 +36839,13 @@ AIWaitMove:
 	ld a, [hl]
 	cp GHOST
 	jr nz, .invalid
+
+.invalid
+	call AIChooseMove
+	jr .loop
+
+.switch
+	jr .CheckIfTrapped
 .NotTrapped
 	and $f
 	jr z, .invalid

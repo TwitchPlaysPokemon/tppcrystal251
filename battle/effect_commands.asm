@@ -2384,7 +2384,7 @@ BattleCommand09: ; 34d32
 	call GetBattleVar
 	cp EFFECT_ALWAYS_HIT
 	ret z
-	cp EFFECT_EFFECT_FORESIGHT
+	cp EFFECT_FORESIGHT
 	ret z
 	cp EFFECT_WHIRLWIND
 	ret z
@@ -2542,21 +2542,21 @@ BattleCommand09: ; 34d32
 
 .DrainSub
 ; Return z if using an HP drain move on a substitute.
-	call CheckSubstituteOpp
-	jr z, .asm_34e00
+;	call CheckSubstituteOpp
+;	jr z, .asm_34e00
+;
+;	ld a, BATTLE_VARS_MOVE_EFFECT
+;	call GetBattleVar
 
-	ld a, BATTLE_VARS_MOVE_EFFECT
-	call GetBattleVar
-
-	cp EFFECT_LEECH_HIT
-	ret z
-	cp EFFECT_DREAM_EATER
-	ret z
+;	cp EFFECT_LEECH_HIT
+;	ret z
+;	cp EFFECT_DREAM_EATER
+;	ret z
 
 .asm_34e00
-	ld a, 1
-	and a
-	ret
+;	ld a, 1
+;	and a
+;	ret
 
 
 .FlyDigMoves
@@ -3841,179 +3841,179 @@ EnemyAttackDamage: ; 353f6
 BattleCommanda1: ; 35461
 ; beatup
 
-	call ResetDamage
-	ld a, [hBattleTurn]
-	and a
-	jp nz, .asm_354ef
-	ld a, [PlayerSubStatus3]
-	bit SUBSTATUS_IN_LOOP, a
-	jr nz, .asm_35482
-	ld c, 20
-	call DelayFrames
-	xor a
-	ld [PlayerRolloutCount], a
-	ld [DefaultFlypoint], a
-	ld [wc72d], a
-	jr .asm_3548d
+;	call ResetDamage
+;	ld a, [hBattleTurn]
+;	and a
+;	jp nz, .asm_354ef
+;	ld a, [PlayerSubStatus3]
+;	bit SUBSTATUS_IN_LOOP, a
+;	jr nz, .asm_35482
+;	ld c, 20
+;	call DelayFrames
+;	xor a
+;	ld [PlayerRolloutCount], a
+;	ld [DefaultFlypoint], a
+;	ld [wc72d], a
+;	jr .asm_3548d
 .asm_35482
-	ld a, [PlayerRolloutCount]
-	ld b, a
-	ld a, [PartyCount]
-	sub b
-	ld [DefaultFlypoint], a
+;	ld a, [PlayerRolloutCount]
+;	ld b, a
+;	ld a, [PartyCount]
+;	sub b
+;	ld [DefaultFlypoint], a
 .asm_3548d
-	ld a, [DefaultFlypoint]
-	ld hl, PartyMonNicknames
-	call GetNick
-	ld a, $22
-	call Function355bd
-	ld a, [hli]
-	or [hl]
-	jp z, Function355b0
-	ld a, [DefaultFlypoint]
-	ld c, a
-	ld a, [CurBattleMon]
-	cp [hl]
-	ld hl, BattleMonStatus
-	jr z, .asm_354b2
-	ld a, $20
-	call Function355bd
+;	ld a, [DefaultFlypoint]
+;	ld hl, PartyMonNicknames
+;	call GetNick
+;	ld a, $22
+;	call Function355bd
+;	ld a, [hli]
+;	or [hl]
+;	jp z, Function355b0
+;	ld a, [DefaultFlypoint]
+;	ld c, a
+;	ld a, [CurBattleMon]
+;	cp [hl]
+;	ld hl, BattleMonStatus
+;	jr z, .asm_354b2
+;	ld a, $20
+;	call Function355bd
 .asm_354b2
-	ld a, [hl]
-	and a
-	jp nz, Function355b0
-	ld a, $1
-	ld [wc72d], a
-	ld hl, BeatUpAttackText
-	call StdBattleTextBox
-	ld a, [EnemyMonSpecies]
-	ld [CurSpecies], a
-	call GetBaseData
-	ld a, [BaseDefense]
-	ld c, a
-	push bc
-	ld a, $0
-	call Function355bd
-	ld a, [hl]
-	ld [CurSpecies], a
-	call GetBaseData
-	ld a, [BaseAttack]
-	pop bc
-	ld b, a
-	push bc
-	ld a, $1f
-	call Function355bd
-	ld a, [hl]
-	ld e, a
-	pop bc
-	ld a, [wPlayerMoveStructPower]
-	ld d, a
-	ret
+;	ld a, [hl]
+;	and a
+;	jp nz, Function355b0
+;	ld a, $1
+;	ld [wc72d], a
+;	ld hl, BeatUpAttackText
+;	call StdBattleTextBox
+;	ld a, [EnemyMonSpecies]
+;	ld [CurSpecies], a
+;	call GetBaseData
+;	ld a, [BaseDefense]
+;	ld c, a
+;	push bc
+;	ld a, $0
+;	call Function355bd
+;	ld a, [hl]
+;	ld [CurSpecies], a
+;	call GetBaseData
+;	ld a, [BaseAttack]
+;	pop bc
+;	ld b, a
+;	push bc
+;	ld a, $1f
+;	call Function355bd
+;	ld a, [hl]
+;	ld e, a
+;	pop bc
+;	ld a, [wPlayerMoveStructPower]
+;	ld d, a
+;	ret
 
 .asm_354ef
-	ld a, [EnemySubStatus3]
-	bit SUBSTATUS_IN_LOOP, a
-	jr nz, .asm_35502
+;	ld a, [EnemySubStatus3]
+;	bit SUBSTATUS_IN_LOOP, a
+;	jr nz, .asm_35502
 
-	xor a
-	ld [EnemyRolloutCount], a
-	ld [DefaultFlypoint], a
-	ld [wc72d], a
-	jr .asm_3550d
+;	xor a
+;	ld [EnemyRolloutCount], a
+;	ld [DefaultFlypoint], a
+;	ld [wc72d], a
+;	jr .asm_3550d
 
 .asm_35502
-	ld a, [EnemyRolloutCount]
-	ld b, a
-	ld a, [OTPartyCount]
-	sub b
-	ld [DefaultFlypoint], a
+;	ld a, [EnemyRolloutCount]
+;	ld b, a
+;	ld a, [OTPartyCount]
+;	sub b
+;	ld [DefaultFlypoint], a
 .asm_3550d
-	ld a, [IsInBattle]
-	dec a
-	jr z, .asm_3556b
+;	ld a, [IsInBattle]
+;	dec a
+;	jr z, .asm_3556b
 
-	ld a, [wLinkMode]
-	and a
-	jr nz, .asm_35532
+;	ld a, [wLinkMode]
+;	and a
+;	jr nz, .asm_35532
 
-	ld a, [InBattleTowerBattle]
-	and a
-	jr nz, .asm_35532
+;	ld a, [InBattleTowerBattle]
+;	and a
+;	jr nz, .asm_35532
 
-	ld a, [DefaultFlypoint]
-	ld c, a
-	ld b, 0
-	ld hl, OTPartySpecies
-	add hl, bc
-	ld a, [hl]
-	ld [wd265], a
-	call GetPokemonName
-	jr .asm_35544
+;	ld a, [DefaultFlypoint]
+;	ld c, a
+;	ld b, 0
+;	ld hl, OTPartySpecies
+;	add hl, bc
+;	ld a, [hl]
+;	ld [wd265], a
+;	call GetPokemonName
+;	jr .asm_35544
 
 .asm_35532
-	ld a, [DefaultFlypoint]
-	ld hl, OTPartyMonNicknames
-	ld bc, NAME_LENGTH
-	call AddNTimes
-	ld de, StringBuffer1
-	call CopyBytes
+;	ld a, [DefaultFlypoint]
+;	ld hl, OTPartyMonNicknames
+;	ld bc, NAME_LENGTH
+;	call AddNTimes
+;	ld de, StringBuffer1
+;	call CopyBytes
 .asm_35544
-	ld a, $22
-	call Function355bd
-	ld a, [hli]
-	or [hl]
-	jp z, Function355b0
-	ld a, [DefaultFlypoint]
-	ld b, a
-	ld a, [CurOTMon]
-	cp b
-	ld hl, EnemyMonStatus
-	jr z, .asm_35560
+;	ld a, $22
+;	call Function355bd
+;	ld a, [hli]
+;	or [hl]
+;	jp z, Function355b0
+;	ld a, [DefaultFlypoint]
+	;ld b, a
+;	ld a, [CurOTMon]
+;	cp b
+;	ld hl, EnemyMonStatus
+;	jr z, .asm_35560
 
-	ld a, $20
-	call Function355bd
+;	ld a, $20
+;	call Function355bd
 .asm_35560
-	ld a, [hl]
-	and a
-	jr nz, Function355b0
+;	ld a, [hl]
+;	and a
+;	jr nz, Function355b0
 
-	ld a, $1
-	ld [wc72d], a
-	jr .asm_3557d
+;	ld a, $1
+;	ld [wc72d], a
+;	jr .asm_3557d
 
 .asm_3556b
-	ld a, [EnemyMonSpecies]
-	ld [wd265], a
-	call GetPokemonName
-	ld hl, BeatUpAttackText
-	call StdBattleTextBox
-	jp EnemyAttackDamage
+;	ld a, [EnemyMonSpecies]
+;	ld [wd265], a
+;	call GetPokemonName
+;	ld hl, BeatUpAttackText
+;	call StdBattleTextBox
+;	jp EnemyAttackDamage
 .asm_3557d
-	ld hl, BeatUpAttackText
-	call StdBattleTextBox
-	ld a, [BattleMonSpecies]
-	ld [CurSpecies], a
-	call GetBaseData
-	ld a, [BaseDefense]
-	ld c, a
-	push bc
-	ld a, $0
-	call Function355bd
-	ld a, [hl]
-	ld [CurSpecies], a
-	call GetBaseData
-	ld a, [BaseAttack]
-	pop bc
-	ld b, a
-	push bc
-	ld a, $1f
-	call Function355bd
-	ld a, [hl]
-	ld e, a
-	pop bc
-	ld a, [wEnemyMoveStructPower]
-	ld d, a
-	ret
+;	ld hl, BeatUpAttackText
+;	call StdBattleTextBox
+;	ld a, [BattleMonSpecies]
+;	ld [CurSpecies], a
+;	call GetBaseData
+;	ld a, [BaseDefense]
+;	ld c, a
+;	push bc
+;	ld a, $0
+;	call Function355bd
+;	ld a, [hl]
+;	ld [CurSpecies], a
+;	call GetBaseData
+;	ld a, [BaseAttack]
+;	pop bc
+;	ld b, a
+;	push bc
+;	ld a, $1f
+;	call Function355bd
+;	ld a, [hl]
+;	ld e, a
+;	pop bc
+;	ld a, [wEnemyMoveStructPower]
+;	ld d, a
+;	ret
 ; 355b0
 
 
@@ -5768,7 +5768,7 @@ BattleCommand2f: ; 35f2c
 
 	ld a, BATTLE_VARS_LAST_MOVE
 	call GetBattleVar
-	cp POISON_POWDER
+	cp POISONPOWDER
 	call z, CheckForGrassType ;ret z if target is a grass type
 	jp z, .asm_35fb8
 
@@ -8401,7 +8401,7 @@ BattleCommand2a: ; 36d3b
 .asm_36d65
 	ld a, BATTLE_VARS_LAST_MOVE
 	call GetBattleVar
-	cp SUPERONIC
+	cp SUPERSONIC
 	jr z, .IgnoreSub
 	call CheckSubstituteOpp
 	jr nz, Function36db6
@@ -10783,8 +10783,8 @@ BattleCommand_Growth:
 	call BattleCommand73
 	ret
 .SunBoost
-	BattleCommand77
-	BattleCommand7a
+	call BattleCommand77
+	call BattleCommand7a
 	ret
 
 CheckHiddenOpponent: ; 37daa

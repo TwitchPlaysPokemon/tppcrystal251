@@ -191,7 +191,7 @@ GetBattleVarAddr:: ; 39e7
 	dw .substatus1opp, .substatus2opp, .substatus3opp, .substatus4opp, .substatus5opp
 	dw .status, .statusopp, .animation, .effect, .power, .type
 	dw .curmove, .lastcounter, .lastcounteropp, .lastmove, .lastmoveopp
-	dw .type1 , type2, .type1opp , type2opp, .screens, .screensopp
+	dw .type1 , .type2, .type1opp , .type2opp, .screens, .screensopp
 
 	const_def
 	const PLAYER_SUBSTATUS_1
