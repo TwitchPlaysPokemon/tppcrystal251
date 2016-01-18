@@ -47,6 +47,7 @@ UnknownScript_0x72aae: ; 0x72aae
 	end
 ; 0x72ab4
 
+ErikaRematchScript:
 	writetext ErikaRematchTextBefore
 	waitbutton
 	closetext
@@ -56,7 +57,7 @@ UnknownScript_0x72aae: ; 0x72aae
 	returnafterbattle
 	setevent EVENT_ERIKA_REMATCH
 	loadfont
-	jump 
+	jump UnknownScript_0x72aae
 
 ErikaRematchTextBefore:
 	text "What interesting"
