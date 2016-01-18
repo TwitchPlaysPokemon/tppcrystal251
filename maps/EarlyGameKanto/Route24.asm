@@ -77,40 +77,48 @@ Route24RBRocketBattleTrigger:
 NuggetBridgeRBEndGuyScript:
 	faceplayer
 	loadfont
-	checkevent EVENT_ROUTE_24_JR_TRAINER_RB
+	checkevent EVENT_NUGGET_BRIDGE_TRAINER_6_RB
 	iftrue .after_text
-	writetext Route24RBRocketText1
+	writetext Route24RBRocketText1a
+	writetext Route24RBRocketText1b
 	buttonsound
 	verbosegiveitem NUGGET, 1
 	writetext Route24RBRocketText2a
-.ask1
+.loop1
 	yesorno
 	iffalse .ask2
 	writetext Route24RBOakIntervenesText
-	jump .ask1
+	jump .loop1
 
-	writetext Route24RBRocketText2b
 .ask2
+	writetext Route24RBRocketText2b
+	yesorno
+	iftrue .ask3
+	writetext Route24RBOakIntervenesText
+.loop2
 	yesorno
 	iffalse .ask3
 	writetext Route24RBOakIntervenesText
-	jump .ask2
+	jump .loop2
 
-	writetext Route24RBRocketText2c
 .ask3
+	writetext Route24RBRocketText2c
+.loop3
 	yesorno
 	iffalse .ask4
 	writetext Route24RBOakIntervenesText
-	jump .ask3
+	jump .loop3
 
-	writetext Route24RBRocketText2d
 .ask4
+	writetext Route24RBRocketText2d
+.loop4
 	yesorno
 	iffalse .startbattle
 	writetext Route24RBOakIntervenesText
-	jump .ask4
+	jump .loop4
 
 .startbattle
+	playmusic MUSIC_ROCKET_ENCOUNTER
 	writetext Route24RBRocketText3
 	waitbutton
 	closetext
@@ -118,6 +126,7 @@ NuggetBridgeRBEndGuyScript:
 	winlosstext Route24RBRocketWinText, 0
 	startbattle
 	returnafterbattle
+	special RestartMapMusic
 	dotrigger $1
 	setevent EVENT_NUGGET_BRIDGE_TRAINER_6_RB
 	loadfont
@@ -130,12 +139,15 @@ NuggetBridgeRBEndGuyScript:
 Route24RBTM45:
 	db TM_ATTRACT, 1
 
-Route24RBRocketText1:
+Route24RBRocketText1a:
 	text "Congratulations!"
 	para "You beat our 5"
 	line "contest trainers!@"
 	sound0x02
 	text_waitsfx
+	db "@"
+
+Route24RBRocketText1b:
 	text "You just earned a"
 	line "fabulous prize!"
 	done
@@ -208,8 +220,7 @@ _Route24BattleText1:
 	done
 
 _Route24EndBattleText1:
-	text "I"
-	line "thought not!"
+	text "I thought not!"
 	done
 
 _Route24AfterBattleText1:
@@ -224,8 +235,7 @@ _Route24BattleText2:
 	done
 
 _Route24EndBattleText2:
-	text "Whoa!"
-	line "Too much!"
+	text "Whoa! Too much!"
 	done
 
 _Route24AfterBattleText2:
@@ -239,8 +249,7 @@ _Route24BattleText3:
 	done
 
 _Route24EndBattleText3:
-	text "I lost"
-	line "too!"
+	text "I lost too!"
 	done
 
 _Route24AfterBattleText3:
@@ -254,8 +263,7 @@ _Route24BattleText4:
 	done
 
 _Route24EndBattleText4:
-	text "Ow!"
-	line "Stomped flat!"
+	text "Ow! Stomped flat!"
 	done
 
 _Route24AfterBattleText4:
@@ -269,8 +277,7 @@ _Route24BattleText5:
 	done
 
 _Route24EndBattleText5:
-	text "How could I"
-	line "lose?"
+	text "How could I lose?"
 	done
 
 _Route24AfterBattleText5:
@@ -289,8 +296,7 @@ _Route24BattleText6:
 	done
 
 _Route24EndBattleText6:
-	text "Whoo!"
-	line "Good stuff!"
+	text "Whoo! Good stuff!"
 	done
 
 _Route24AfterBattleText6:

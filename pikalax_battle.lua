@@ -40,6 +40,7 @@ function parseString(start_addr, length)
 	for i = 0, length do
 		curr_byte = memory.readbyte(start_addr + i)
 		if curr_byte == 0x50 then return outstr end
+		if curr_byte < 0x7f then return outstr end
 		outstr = outstr .. charmap[curr_byte - 0x7f + 1]
 	end
 end
