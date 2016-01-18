@@ -17844,7 +17844,7 @@ Group32Sprites: ; 144ec
 	db SPRITE_BIG_ONIX
 	db SPRITE_SUDOWOODO
 	db SPRITE_BIG_SNORLAX
-	db SPRITE_OFFICER
+	db SPRITE_POKEFAN_M
 	db SPRITE_GRAMPS
 	db SPRITE_YOUNGSTER
 	db SPRITE_EGK_RIVAL
@@ -35705,8 +35705,11 @@ TrainerType:
 	ld hl, OTPartyMonNicknames
 	ld bc, PKMN_NAME_LENGTH
 	call AddNTimes
-	ld d, h
-	ld e, l
+	push hl
+	ld bc, PKMN_NAME_LENGTH
+	ld a, "@"
+	call ByteFill
+	pop de
 	pop hl
 	ld b, PKMN_NAME_LENGTH
 .copy_nick
@@ -69666,8 +69669,8 @@ Function90fe9: ; 90fe9 (24:4fe9)
 	jr Function90ff2
 
 Function90fee: ; 90fee (24:4fee)
-	ld d, $2e
-	ld e, $1
+	ld d, SILVER_CAVE
+	ld e, NEW_BARK_TOWN
 Function90ff2: ; 90ff2 (24:4ff2)
 	ld hl, $ffa9
 	ld a, [hl]

@@ -857,6 +857,7 @@ InitializeEventsScript: ; 0xbc3db
 	variablesprite SPRITE_FUCHSIA_GYM_4, SPRITE_JANINE
 	variablesprite SPRITE_COPYCAT, SPRITE_LASS
 	variablesprite SPRITE_JANINE_IMPERSONATOR, SPRITE_LASS
+	variablesprite SPRITE_EGK_BILL, SPRITE_FAIRY
 	checkflag ENGINE_PLAYER_IS_FEMALE
 	iftrue .rival_is_male
 	variablesprite SPRITE_EGK_RIVAL, SPRITE_KRIS
