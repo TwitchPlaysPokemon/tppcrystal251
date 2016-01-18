@@ -84642,13 +84642,13 @@ StringOptions: ; e4241
 	db "        :", $22
 	db "SOUND", $22
 	db "        :", $22
-	db "PRINT", $22
+	db "PRINT SETTING", $22
 	db "        :", $22
-	db "MENU ACCOUNT", $22
+	db "MENU TOOLTIPS", $22
 	db "        :", $22
 	db "FRAME", $22
 	db "        :TYPE", $22
-	db "CANCEL@"
+	db "EXIT@"
 ; e42d6
 
 GetOptionPointer: ; e42d6
