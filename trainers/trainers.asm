@@ -2439,12 +2439,6 @@ YoungsterGroup:
 	db 12, ZUBAT
 	db $ff
 
-	db "TIMMY@"
-	db 0
-	db 14, SANDSHREW
-	db 14, EKANS
-	db $ff
-
 ; ================================
 
 
@@ -2983,9 +2977,8 @@ BirdKeeperGroup:
 	db 0 ; normal
 
 	; party
-	db 94, DODRIO
-	db 96, FEAROW
-	db 98, FARFETCH_D
+	db 58, FARFETCH_D
+	db 60, DODRIO
 
 	db $ff ; end
 
@@ -3016,15 +3009,13 @@ BirdKeeperGroup:
 
 	; BIRD_KEEPER (17)
 	db "JOSE@"
-	db (1 << TRAINERTYPE_MOVES)
+	db 0 ; normal
 
 	; party
 
-	db 40, FARFETCH_D
-		db FURY_ATTACK
-		db PROTECT
-		db FLY
-		db SLASH
+	db 94, DODRIO
+	db 96, FEAROW
+	db 98, FARFETCH_D
 
 	db $ff ; end
 
@@ -3434,18 +3425,6 @@ LassGroup:
 	db 33, PARASECT
 	db $ff
 
-	db "ALI@"
-	db 0
-	db 12, PIDGEY
-	db 12, ODDISH
-	db 12, BELLSPROUT
-	db $ff
-
-	db "RELI@"
-	db 0
-	db 16, NIDORAN_M
-	db 16, NIDORAN_F
-	db $ff
 
 ; ================
 ; ================================
@@ -4903,20 +4882,6 @@ GruntMGroup:
 	db 13, ZUBAT
 	db $ff
 
-; 36
-	db "GRUNT@"
-	db 0
-	db 15, EKANS
-	db 15, ZUBAT
-	db $ff
-
-; 37
-	db "GRUNT@"
-	db 0
-	db 17, MACHOP
-	db 17, DROWZEE
-	db $ff
-
 ; ================================
 
 GentlemanGroup:
@@ -5425,14 +5390,6 @@ BugCatcherGroup:
 	db 10, CATERPIE
 	db 12, METAPOD
 	db 10, CATERPIE
-	db $ff
-
-	db "CALE@"
-	db 0
-	db 10, CATERPIE
-	db 10, WEEDLE
-	db 11, METAPOD
-	db 11, KAKUNA
 	db $ff
 
 ; ================
@@ -6029,16 +5986,6 @@ SwimmerMGroup:
 	db $ff ; end
 
 ; ================
-	; SWIMMERM (21)
-	db "PARKER@"
-	db 0 ; normal
-
-	; party
-	db 16, HORSEA
-	db 16, SHELLDER
-
-	db $ff ; end
-
 ; ================================
 
 
@@ -6265,11 +6212,6 @@ SwimmerFGroup:
 	db $ff ; end
 
 ; ================
-
-	db "DIANA@"
-	db 0
-	db 19, GOLDEEN
-	db $ff
 ; ================================
 
 
@@ -8761,17 +8703,6 @@ CamperGroup:
 	db 11, DIGLETT
 	db 11, SANDSHREW
 	db $ff
-
-	db "ETHAN@"
-	db 0
-	db 18, MANKEY
-	db $ff
-
-	db "SHANE@"
-	db 0
-	db 14, RATTATA
-	db 14, EKANS
-	db $ff
 ; ================================
 
 
@@ -9958,7 +9889,7 @@ MysticalmanGroup:
 
 	db 50, SKARMORY, LEFTOVERS
 	db 50, HAUNTER, BRIGHTPOWDER
-	db 50, PORYGON2, PINK_BOW
+	db 50, PORYGON2, POLKADOT_BOW
 
 	db $ff ; end
 
