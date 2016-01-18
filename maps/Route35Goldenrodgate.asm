@@ -187,9 +187,19 @@ UnknownText_0x6a00a: ; 0x6a00a
 ; 0x6a09a
 
 UnknownText_0x6a09a: ; 0x6a09a
-	text "I like the #MON"
-	line "Lullaby they play"
-	cont "on the radio."
+	text "I feel bad for"
+	line "the guy at the"
+	cont "counter..."
+	
+	para "He let some"
+	line "girl borrow his"
+	
+	para "number one mail"
+	line "carrier, and she"
+	
+	para "never gave it"
+	line "back. I wonder"
+	cont "where it's at now."
 	done
 ; 0x6a0cb
 

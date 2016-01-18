@@ -2977,9 +2977,8 @@ BirdKeeperGroup:
 	db 0 ; normal
 
 	; party
-	db 94, DODRIO
-	db 96, FEAROW
-	db 98, FARFETCH_D
+	db 58, FARFETCH_D
+	db 60, DODRIO
 
 	db $ff ; end
 
@@ -3010,15 +3009,13 @@ BirdKeeperGroup:
 
 	; BIRD_KEEPER (17)
 	db "JOSE@"
-	db (1 << TRAINERTYPE_MOVES)
+	db 0 ; normal
 
 	; party
 
-	db 40, FARFETCH_D
-		db FURY_ATTACK
-		db PROTECT
-		db FLY
-		db SLASH
+	db 94, DODRIO
+	db 96, FEAROW
+	db 98, FARFETCH_D
 
 	db $ff ; end
 
