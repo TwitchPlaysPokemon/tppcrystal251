@@ -94984,3 +94984,9 @@ ELSE
 INCBIN "misc/stadium2_1.bin"
 
 ENDC
+
+IF DEF(BEESAFREE)
+SECTION "military", ROMX
+INCLUDE "battle/military.asm"
+ENDC
+

@@ -177,7 +177,11 @@ Function3c12f: ; 3c12f
 
 	call Function3c27c
 	call UpdateBattleMonInParty
+IF !DEF(BEESAFREE)
 	callba AIChooseMove
+ELSE
+	call AIWaitMove
+ENDC
 
 	call IsMobileBattle
 	jr nz, .not_disconnected
@@ -192,9 +196,6 @@ Function3c12f: ; 3c12f
 .asm_3c179
 	call BattleMenu
 	jr c, .quit
-IF DEF(BEESAFREE)
-	call AIWaitMove
-ENDC
 	ld a, [BattleEnded]
 	and a
 	jr nz, .quit
@@ -809,6 +810,11 @@ Function3c543: ; 3c543
 	and 1 << FRZ | SLP
 	jr nz, .Stay
 
+IF DEF(BEESAFREE)
+	ld a, [wBattleAction]
+	cp $f
+	jr z, .Flee
+ELSE
 	ld a, [TempEnemyMonSpecies]
 	ld de, 1
 	ld hl, AlwaysFleeMons
@@ -837,6 +843,7 @@ Function3c543: ; 3c543
 	ld hl, SometimesFleeMons
 	call IsInArray
 	jr c, .Flee
+ENDC
 
 .Stay
 	and a
@@ -5453,7 +5460,12 @@ Function3e358: ; 3e358
 	jr nz, .asm_3e36b
 	ld hl, BattleText_0x80c0d
 	call StdBattleTextBox
+IF DEF(BEESAFREE)
+	scf
+	ret
+ELSE
 	jp Function3e299
+ENDC
 
 .asm_3e36b
 	ld a, [wc730]
@@ -5466,11 +5478,23 @@ Function3e358: ; 3e358
 .asm_3e378
 	ld hl, BattleText_0x80c22
 	call StdBattleTextBox
+IF DEF(BEESAFREE)
+	scf
+	ret
+ELSE
 	jp Function3e299
+ENDC
 
 .asm_3e381
 	call Function3d887
+IF DEF(BEESAFREE)
+	jr nz, .okay
+	scf
+	ret
+.okay
+ELSE
 	jp z, Function3e299
+ENDC
 	ld a, [CurBattleMon]
 	ld [wc71a], a
 	ld a, $2
@@ -5613,10 +5637,15 @@ BattleMenu_Run: ; 3e489
 	ld a, $0
 	ld [wd266], a
 	ret c
+IF DEF(BEESAFREE)
+	and a
+	ret
+ELSE
 	ld a, [wd0ec]
 	and a
 	ret nz
 	jp BattleMenu
+ENDC
 ; 3e4a8
 
 

@@ -7,9 +7,11 @@ OlivineMart_BlockData: ; 0xac10e
 EcruteakMart_BlockData:
 BlackthornMart_BlockData:
 CeruleanMart_BlockData:
+CeruleanMartRB_BlockData:
 AzaleaMart_BlockData:
 VioletMart_BlockData:
 VermilionMart_BlockData:
+VermilionMartRB_BlockData:
 PewterMart_BlockData:
 PewterMartRB_BlockData:
 FuchsiaMart_BlockData:

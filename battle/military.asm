@@ -6,68 +6,140 @@
 ;Let's start
 MilitaryInit:
 	ld a, [wdffa] ;Checks if in military mode
-	and $1
-	ret z
+	bit MILITARY_ON, a
+	jr z, MilitaryGetEnemyActionOnly
 	callab Function4000
-	ld a, MILITARY_IDLE + (MILITARY_IDLE * $10)
+	ld a, MILITARY_IDLE + (MILITARY_IDLE << 4)
 	ld [wdff8], a
 MilitaryPlayerLoop:
-	ld a, [wdffa]
-	res 1, a
-	ld [wdffa], a
+	ld hl, wdffa
+	res MILITARY_ACTION_SIDE, [hl]
 MilitaryLoop:
-	call GetCommand
+	call GetMilitaryCommand
 	cp MILITARY_IDLE
-	jr z, MilitaryPlayerLoop
-	cp MILITARY_ATTACK + NUM_MOVES
-	jp c, GetMove
+	jr z, MilitaryLoop
+	cp MILITARY_SWITCH
+	jr c, MilitaryGetMove
+	cp MILITARY_OKAY
+	jr c, MilitarySwitchOrItem
+	cp MILITARY_STRUGGLE
+	jr c, MilitaryLoop
+	jr z, MilitarySetMove
+	jr MilitaryRun
+
+.RunOrItem
+	cp MILITARY_RUN
+	jr z, MilitaryRun
+	
+MilitarySwitchOrItem:
+	ld b, a
+	ld a, [wdff9]
+	and a
+	jr z, MilitarySwitch
+
+	call GetMilitaryActionSide
+	jr z, .player
+	
+	ld hl, wc650
+	jr z, .got_item
+	inc hl
+.got_item
+	; handle AI item
+	ld a, [hl]
+	and a
+	jr z, MilitaryLoop
+	call GetMilitaryCommand
+	ld [wBattleAction], a
+	ret
+
+.player
+	ld [CurItem], a
+	call DoItemEffect
+	ld a, [wd0ec]
+	and a
+	jr z, MilitaryLoop
+	ret
+
+MilitarySwitch:
+	ld a, b
+	sub 3
+	call GetMilitaryActionSide
+	jr z, .player
+	ld [c718], a
+	ld a, 1
+	ld [wEnemyIsSwitching], a
+	ret
+.player
+	ld [CurPartyMon], a
+	ld d, a
+	callba Function3e358
+	jr c, MilitaryLoop
 	ret
 
 MilitaryEnemyLoop:
 	ld a, [wdffa]
-	set 1, a
+	set MILITARY_ACTION_SIDE, a
 	ld [wdffa], a
-	jp MilitaryLoop
-	
+	jr MilitaryLoop
+
+MilitaryRun:
+	call GetMilitaryActionSide
+	jr z, .player
+	ld a, $f
+	ld [wBattleAction], a
+	ret
+.player
+	callba BattleMenu_Run
+	ret c
+	jr MilitaryLoop
+
+MilitaryGetEnemyActionOnly:
+	call MilitaryEnemyLoop
+	call Function30bf
+	callab Function3c5fe
+	ret
+
+
 ;Start at base (hl) then goes up by a
-GetArrayPosition:
-	ld bc, $0001
-	call AddNTimes
+MilitaryUnitWidthArrayOffset:
+	ld c, a
+	ld b, 0
+	add hl, bc
 	ld a, [hl]
 	ret
 
-AddressEnd:
+MilitaryGotAddr:
 	pop af
 	ret
-	
-MoveAddress:
+
+MilitaryGetMoveAddr:
 	push af
 	ld hl, BattleMonMoves
-	call GetMode
-	jp z, AddressEnd
+	call GetMilitaryActionSide
+	jr z, MilitaryGotAddr
 	ld hl, EnemyMonMoves
-	jp AddressEnd
-	
-PPAddress:
+	jr MilitaryGotAddr
+
+MilitaryGetPPAddr:
 	push af
 	ld hl, BattleMonPP
-	call GetMode
-	jp z, AddressEnd
+	call GetMilitaryActionSide
+	jr z, MilitaryGotAddr
 	ld hl, EnemyMonPP
-	jp AddressEnd
-	
-DisableAddress:
+	jr MilitaryGotAddr
+
+MilitaryGetDisabledMove:
 	push af
 	ld hl, DisabledMove
-	call GetMode
-	jp z, AddressEnd
+	call GetMilitaryActionSide
+	jr z, MilitaryGotAddr
 	ld hl, EnemyDisabledMove
-	jp AddressEnd
+	jr MilitaryGotAddr
 
 ;Set the move that's going to be used	
-SetMove:
+MilitarySetMove:
 	push af
-	call GetMode
+	call GetMilitaryActionSide
 	jp z, .setPlayerMove
 	pop af
 	ld [CurEnemyMove], a
@@ -76,57 +148,54 @@ SetMove:
 	pop af
 	ld [CurPlayerMove], a
 	ret
-	
+
 ;Checks if you have enough PP for this move and that it isn't disabled. If all checks out then use it. 
-GetMove:
-	call PPAddress
-	call GetArrayPosition
-	and a
+MilitaryGetMove:
+	call MilitaryGetPPAddr
+	call MilitaryUnitWidthArrayOffset
+	and $3f
 	jp z, MilitaryPlayerLoop ;If you're out of PP return to the loop
-	call GetCommand
-	
-	call MoveAddress
-	call GetArrayPosition
+	call GetMilitaryCommand
+
+	call MilitaryGetMoveAddr
+	call MilitaryUnitWidthArrayOffset
 	and a
 	jp z, MilitaryPlayerLoop ;return to the loop if the move index is 0
-	
+
 	ld b, a
-	call DisableAddress 
+	call MilitaryGetDisabledMove 
 	ld a, [hl]
 	cp b
 	jp z, MilitaryPlayerLoop ;return to the loop if disabled
 	ld a, b
-	call SetMove
-	jp ChangeMode
+	call MilitarySetMove
+	jp ChangeMilitaryActionSide
 
 ;Switches checking from player or enemy. 
-ChangeMode:
-	call GetMode
+ChangeMilitaryActionSide:
+	call GetMilitaryActionSide
 	jr nz, .endSegment
 	jp MilitaryEnemyLoop
 .endSegment;Let's execute these commands
-	ld a, [wdffa]
-	res 1, a
+	ld hl, wdffa
+	res MILITARY_ACTION_SIDE, [hl]
 	call Function30bf
 	callab Function3c5fe
 	ret
-	
-GetCommand:
-	call GetMode
+
+GetMilitaryCommand:
+	call GetMilitaryActionSide
 	jr nz, .enemyCommand
 	ld a, [wdff8]
 	and $f
 	ret
 .enemyCommand
-	push bc
 	ld a, [wdff8]
-	ld c, $10
-	call SimpleDivide
-	ld a, b
-	pop bc
+	and $f0
+	swap a
 	ret
-	
-GetMode:
-	ld a, [wdffa]
-	and $2
+
+GetMilitaryActionSide:
+	ld hl, wdffa
+	bit MILITARY_ACTION_SIDE, [hl]
 	ret

@@ -200,6 +200,8 @@ CherrygroveEvolutionSpeechHouse_BlockData:
 Route30BerrySpeechHouse_BlockData:
 	INCBIN "maps/OlivineVoltorbHouse.blk"
 ; 0xaa877
+CeruleanGymBadgeSpeechHouseRB_BlockData:
+	INCBIN "maps/CeruleanGymBadgeSpeechHouseRB.blk"
 
 Route19FuchsiaGate_BlockData:
 Route43MahoganyGate_BlockData:

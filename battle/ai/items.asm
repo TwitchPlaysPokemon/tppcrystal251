@@ -9,6 +9,7 @@ Function38000: ; 38000
 	and a
 	ret nz
 
+IF !DEF(BEESAFREE)
 	callba Function3e8d1
 	ret nz
 
@@ -531,6 +532,53 @@ AI_Items: ; 39196
 	jp nc, .DontUse
 	jp .Use
 
+ELSE
+	ld a, [wBattleAction]
+	cp $f
+	jr z, .DontUse
+	sub $d
+	ret c
+	ld hl, wc650
+	and a
+	jr z, .okay
+	inc hl
+.okay
+	ld a, [hl]
+	and a
+	jr z, .DontUse
+	push af
+	xor a
+	ld [hl], a
+	pop af
+	ld de, 3
+	ld hl, .AI_Items
+	call IsInArray
+	jr nc, .DontUse
+	inc hl
+	ld a, [hli]
+	ld h, [hl]
+	ld l, a
+	ld de, .Use
+	push de
+	jp [hl]
+
+.AI_Items
+	dbw FULL_RESTORE, Function383b5
+	dbw MAX_POTION,   Function383ae
+	dbw HYPER_POTION, Function383f4
+	dbw SUPER_POTION, Function383ee
+	dbw POTION,       Function383e8
+	dbw X_ACCURACY,   Function384f7
+	dbw FULL_HEAL,    Function383a3
+	dbw GUARD_SPEC,   Function38504
+	dbw DIRE_HIT,     Funciton38511
+	dbw X_ATTACK,     Function38541
+	dbw X_DEFEND,     Function38547
+	dbw X_SPEED,      Function3854d
+	dbw X_SPECIAL,    Function38553
+	db $ff
+ENDC
+
 .DontUse:
 	scf
 	ret
@@ -538,8 +586,6 @@ AI_Items: ; 39196
 .Use:
 	and a
 	ret
-
-
 AIUpdateHUD: ; 38387
 	call UpdateEnemyMonInParty
 	callba UpdateEnemyHUD
