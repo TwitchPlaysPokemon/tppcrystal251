@@ -2439,6 +2439,28 @@ YoungsterGroup:
 	db 12, ZUBAT
 	db $ff
 
+	db "TIMMY@"
+	db 0
+	db 14, SANDSHREW
+	db 14, EKANS
+	db $ff
+;==========
+	db "JOEY@"
+	db 0
+	db 15, SPEAROW
+	db 16, RATTATA
+	db $ff
+
+	db "DAN@"
+	db 0
+	db 17, SLOWPOKE
+	db $ff
+
+	db "CHAD@"
+	db 0
+	db 14, EKANS
+	db 14, SANDSHREW
+	db $ff
 ; ================================
 
 
@@ -3425,6 +3447,13 @@ LassGroup:
 	db 33, PARASECT
 	db $ff
 
+
+	db "HALEY@"
+	db 0
+	db 13, ODDISH
+	db 14, PIDGEY
+	db 13, ODDISH
+	db $ff
 
 ; ================
 ; ================================
@@ -7234,6 +7263,25 @@ HikerGroup:
 	db 10, GEODUDE
 	db 12, ONIX
 	db $ff
+
+	db "FRANK@"
+	db 0
+	db 15, MACHOP
+	db 15, GEODUDE
+	db $ff
+
+	db "WAYNE@"
+	db 0
+	db 17, ONIX
+	db $ff
+
+	db "NOB@"
+	db 0
+	db 13, GEODUDE
+	db 14, GEODUDE
+	db 15, GEODUDE
+	db 16, MACHOP
+	db $ff
 ; ================================
 
 
@@ -8411,6 +8459,11 @@ PicnickerGroup:
 
 	db $ff ; end
 
+	db "KELSEY@"
+	db (1 << TRAINERTYPE_NICKNAME)
+	db 15, NIDORAN_M, "NEEDLES@"
+	db 15, NIDORAN_F, "PRINCESS@"
+	db $ff
 ; ================
 ; ================================
 
@@ -8702,6 +8755,23 @@ CamperGroup:
 
 	db 11, DIGLETT
 	db 11, SANDSHREW
+	db $ff
+
+	db "ETHAN@"
+	db 0
+	db 18, MANKEY
+	db $ff
+
+	db "SHANE@"
+	db 0
+	db 14, RATTATA
+	db 14, EKANS
+	db $ff
+
+	db "FLINT@"
+	db (1 << TRAINERTYPE_NICKNAME | 1 << TRAINERTYPE_ITEM)
+	db 14, RATTATA, BERRY, "RATMAN@"
+	db 14, EKANS, BERRY, "PYTHON@"
 	db $ff
 ; ================================
 

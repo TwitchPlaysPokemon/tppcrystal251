@@ -21,6 +21,16 @@ GetLandmarkName:: ; 0x1ca8a5
 	push de
 	push bc
 
+	ld a, e
+	cp LAV_RADIO_TOWER
+	jr nz, .normal
+	ld a, [StatusFlags]
+	bit 5, a
+	jr nz, .normal
+	ld hl, .PokemonTower
+	jr .copy
+
+.normal
 	ld l, e
 	ld h, 0
 	add hl, hl
@@ -45,7 +55,8 @@ GetLandmarkName:: ; 0x1ca8a5
 	pop hl
 	ret
 ; 0x1ca8c3
-
+.PokemonTower
+	db "#MON", $1f, "TOWER@"
 
 Landmarks: ; 0x1ca8c3
 

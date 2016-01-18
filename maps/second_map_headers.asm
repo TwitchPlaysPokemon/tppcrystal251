@@ -705,4 +705,7 @@
 
 	map_header_2 Route24RB, ROUTE_24_RB, $2c, EAST | SOUTH ; 0x956c0
 	connection south, CERULEAN_CITY_RB, CeruleanCityRB, -3, 2, 16, ROUTE_24_RB
-	connection east, ROUTE_25, Route25, 0, 0, 9, ROUTE_24_RB
+	connection east, ROUTE_25_RB, Route25RB, 0, 0, 9, ROUTE_24_RB
+
+	map_header_2 Route25RB, ROUTE_25_RB, $2c, WEST ; 0x956e4
+	connection west, ROUTE_24_RB, Route24RB, 0, 0, 10, ROUTE_25_RB

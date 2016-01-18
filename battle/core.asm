@@ -6359,10 +6359,6 @@ LoadEnemyMon: ; 3e8eb
 	bit 0, a
 	jp nz, Function3dabd
 
-	ld a, [IsInBattle] ;experiment 
-	dec a
-	jp nz, Function3dabd
-
 ; Make sure everything knows what species we're working with
 	ld a, [TempEnemyMonSpecies]
 	ld [EnemyMonSpecies], a
@@ -6626,41 +6622,6 @@ LoadEnemyMon: ; 3e8eb
 ; Set level
 	ld a, [CurPartyLevel]
 	ld [EnemyMonLevel], a
-; ; Adjust the wild Pokemon's level if it's not fixed (redundent?)
-	; ld a, [IsInBattle]
-	; cp a, TRAINER_BATTLE
-	; jr z, .Stats
-	; ld a, [BattleType]
-	; cp BATTLETYPE_CELEBI
-	; jr z, .Stats
-	; cp BATTLETYPE_FORCEITEM
-	; jr z, .Stats
-	; cp BATTLETYPE_TREE
-	; jr z, .Stats
-	; cp BATTLETYPE_ROAMING
-	; jr z, .Stats
-	; cp BATTLETYPE_KANTOLEGEND
-	; jr z, .Stats
-; ; 33% chance of the level not changing
-	; call BattleRandom
-	; cp a, $55
-	; jr c, .Stats
-; ; From there, 50% chance of increase and 50% chance of decrease
-	; call BattleRandom
-	; cp a, $80
-	; jr c, .IncreaseLevel
-	; ld a, [EnemyMonLevel]
-	; cp 2
-	; jr z, .Stats
-	; dec a
-	; ld [EnemyMonLevel], a
-	; jr .Stats
-; .IncreaseLevel
-	; cp 100
-	; jr z, .Stats
-	; ld a, [EnemyMonLevel]
-	; inc a
-	; ld [EnemyMonLevel], a
 .Stats
 ; Fill stats
 	ld de, EnemyMonMaxHP
@@ -6841,7 +6802,7 @@ LoadEnemyMon: ; 3e8eb
 	dec a
 	jr z, .UseDefaultName
 	ld a, [wdff5 + 1]
-	bit 1, a
+	bit TRAINERTYPE_NICKNAME, a
 	jr z, .UseDefaultName
 	ld a, [CurPartyMon]
 	ld hl, OTPartyMonNicknames

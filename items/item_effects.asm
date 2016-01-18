@@ -504,6 +504,7 @@ ParkBall: ; e8a2
 .asm_ea67
 
 	ld a, [EnemyMonSpecies]
+	push af
 	ld [wc64e], a
 	ld [CurPartySpecies], a
 	ld [wd265], a
@@ -516,11 +517,11 @@ ParkBall: ; e8a2
 	ld hl, UnknownText_0xedc9
 	call PrintText
 
-	ld a, [CurPartySpecies]
-	push af
 	callba Function3ee3b
 	pop af
+	ld [wc64e], a
 	ld [CurPartySpecies], a
+	ld [wd265], a
 
 	dec a
 	call CheckCaughtMon
