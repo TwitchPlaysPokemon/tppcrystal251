@@ -4,7 +4,7 @@ SpawnPoints: ; 0x152ab
 	const_def
 
 spawn: MACRO
-; name, map, y, x
+; name, map, x, y
 	const SPAWN_\1
 	map \2
 	db \3, \4
@@ -45,7 +45,7 @@ ENDM
 	spawn PALLET_RB,    PALLET_TOWN_RB,              5,  6
 	spawn VIRIDIAN_RB,  VIRIDIAN_CITY_RB,           23, 26
 	spawn PEWTER_RB,    PEWTER_CITY_RB,             13, 26 ; 32
-	spawn CERULEAN_RB,  CERULEAN_CITY_RB,           19, 22
+	spawn CERULEAN_RB,  CERULEAN_CITY_RB,           19, 18
 	spawn MT_MOON_RB,   ROUTE_3_RB,                 47,  4
 	spawn VERMILION_RB, VERMILION_CITY_RB,           9,  6
 

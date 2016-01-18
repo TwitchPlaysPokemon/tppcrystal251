@@ -2431,6 +2431,14 @@ YoungsterGroup:
 	db $ff
 
 ; ================
+
+	db "JOSH@"
+	db 0
+	db 10, RATTATA
+	db 11, RATTATA
+	db 12, ZUBAT
+	db $ff
+
 ; ================================
 
 
@@ -3398,8 +3406,26 @@ LassGroup:
 	db $ff
 
 	db "ROBIN@"
+	db (1 << TRAINERTYPE_NICKNAME)
+	db 14, JIGGLYPUFF, "JIGGLES@"
+	db $ff
+
+	db "MIRIAM@"
 	db 0
-	db 14, JIGGLYPUFF
+	db 11, ODDISH
+	db 11, BELLSPROUT
+	db $ff
+	
+	db "IRIS@"
+	db (1 << TRAINERTYPE_NICKNAME)
+	db 14, CLEFAIRY, "CLEFFLES@"
+	db $ff
+
+	db "CRISSY@"
+	db 0
+	db 31, PARAS
+	db 31, PARAS
+	db 33, PARASECT
 	db $ff
 
 
@@ -4829,8 +4855,37 @@ GruntMGroup:
 	db $ff ; end
 
 ; ================
-; ================================
 
+; 32
+	db "GRUNT@"
+	db 0
+	db 12, RATTATA
+	db 12, KOFFING
+	db $ff
+
+; 33
+	db "GRUNT@"
+	db 0
+	db 12, ZUBAT
+	db 14, GRIMER
+	db 12, RATTATA
+	db $ff
+
+; 34
+	db "GRUNT@"
+	db 0
+	db 12, ZUBAT
+	db 12, EKANS
+	db $ff
+
+; 35
+	db "GRUNT@"
+	db 0
+	db 13, RATTATA
+	db 13, ZUBAT
+	db $ff
+
+; ================================
 
 GentlemanGroup:
 ; ================================
@@ -5324,6 +5379,22 @@ BugCatcherGroup:
 	db 11, CATERPIE
 	db 11, METAPOD
 	db $ff
+
+; ================
+
+	db "KENT@"
+	db 0
+	db 11, WEEDLE
+	db 11, KAKUNA
+	db $ff
+
+	db "ROBBY@"
+	db 0
+	db 10, CATERPIE
+	db 12, METAPOD
+	db 10, CATERPIE
+	db $ff
+
 ; ================
 ; ================================
 
@@ -6550,6 +6621,19 @@ SuperNerdGroup:
 	db $ff ; end
 
 ; ================
+
+	db "JOVAN@"
+	db 0
+	db 11, MAGNEMITE
+	db 11, VOLTORB
+	db $ff
+
+	db "MIGUEL@"
+	db 0
+	db 12, GRIMER
+	db 12, VOLTORB
+	db 12, KOFFING
+	db $ff
 ; ================================
 
 
@@ -7146,6 +7230,13 @@ HikerGroup:
 	db $ff ; end
 
 ; ================
+
+	db "MARCOS@"
+	db 0
+	db 10, GEODUDE
+	db 10, GEODUDE
+	db 12, ONIX
+	db $ff
 ; ================================
 
 
@@ -7233,7 +7324,7 @@ BikerGroup:
 	db (1 << TRAINERTYPE_NICKNAME)
 
 	; party
-	db 75, BEEDRILL, "STINGER@@@@"
+	db 75, BEEDRILL, "STINGER@"
 
 	db $ff ; end
 
@@ -7831,6 +7922,11 @@ ExecutiveMGroup:
 	db $ff ; end
 
 ; ================
+
+	db "EXECUTIVE@" ; 5
+	db (1 << TRAINERTYPE_ITEM)
+	db 16, RATICATE, GOLD_BERRY
+	db $ff
 ; ================================
 
 
@@ -9374,7 +9470,7 @@ PokefanFGroup:
 	db (1 << TRAINERTYPE_NICKNAME)
 
 	; party
-	db 35, AMPHAROS, "ZAPPY@@@@@@"
+	db 35, AMPHAROS, "ZAPPY@"
 
 	db $ff ; end
 
@@ -9499,13 +9595,13 @@ RedGroup:
 		db SURF
 		db STRENGTH
 
-	db 100, VENOMOTH, "AATTVVV@@@@"
+	db 100, VENOMOTH, "AATTVVV@"
 		db DISABLE
 		db POISONPOWDER
 		db LEECH_LIFE
 		db STUN_SPORE
 
-	db 100, ZAPDOS, "AA-j@@@@@@@"
+	db 100, ZAPDOS, "AA-j@"
 		db THUNDERSHOCK
 		db DRILL_PECK
 		db TAKE_DOWN
@@ -9517,7 +9613,7 @@ RedGroup:
 		db STRENGTH
 		db FURY_ATTACK
 
-	db 100, OMASTAR, "OMASTAR@@@@"
+	db 100, OMASTAR, "OMASTAR@"
 		db HYDRO_PUMP
 		db WITHDRAW
 		db SURF
@@ -9772,6 +9868,13 @@ GruntFGroup:
 	db 39, SNUBBULL, KINGS_ROCK
 
 	db $ff ; end
+
+	db "GRUNT@" ; 6
+	db 0
+	db 11, SANDSHREW
+	db 11, RATTATA
+	db 11, ZUBAT
+	db $ff
 
 ; ================
 ; ================================

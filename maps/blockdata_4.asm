@@ -55,3 +55,5 @@ VictoryRoadGateRB_BlockData:
 	INCBIN "maps/VictoryRoadGateRB.blk"
 Route23RB_BlockData:
 	INCBIN "maps/Route23RB.blk"
+CeruleanCityRB_BlockData:
+	INCBIN "maps/CeruleanCityRB.blk"

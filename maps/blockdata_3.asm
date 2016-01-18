@@ -340,12 +340,15 @@ ViridianForestSouth_BlockData:
 ViridianForestSouthRB_BlockData: 
 	INCBIN "maps/ViridianForestSouth.blk"
 	
-MtMoon1_BlockData:
-	INCBIN "maps/MtMoon1.blk"
-MtMoon2_BlockData:
-	INCBIN "maps/MtMoon2.blk"
-MtMoon3_BlockData:
-	INCBIN "maps/MtMoon3.blk"
+MtMoonB1F_BlockData:
+MtMoonB1FRB_BlockData:
+	INCBIN "maps/MtMoonB1F.blk"
+MtMoonB2F_BlockData:
+MtMoonB2FRB_BlockData:
+	INCBIN "maps/MtMoonB2F.blk"
+MtMoonB3F_BlockData:
+MtMoonB3FRB_BlockData:
+	INCBIN "maps/MtMoonB3F.blk"
 	
 CeruleanCave1_BlockData:
 	INCBIN "maps/CeruleanCave1.blk"

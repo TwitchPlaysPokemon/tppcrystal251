@@ -190,7 +190,7 @@ Route4_MapEventHeader: ; 0x1ae3ab
 
 	; warps
 	db 1
-	warp_def $5, $2, 8, GROUP_MTMOON2, MAP_MTMOON2
+	warp_def $5, $2, 8, GROUP_MT_MOON_B2F, MAP_MT_MOON_B2F
 
 	; xy triggers
 	db 0

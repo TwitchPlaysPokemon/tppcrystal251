@@ -50,10 +50,10 @@ _PewterCityPokecenterGuyText: ; 0x1a2f75
 
 	para "When JIGGLYPUFF"
 	line "sings, #MON"
-	cont "get drowsy..."
+	cont "get drowsy…"
 
-	para "...Me too..."
-	line "Snore..."
+	para "…Me too…"
+	line "Snore…"
 	done
 ; 0x1a2ff4
 

@@ -58,7 +58,7 @@ ENDM
 	trigger_def BATTLE_TOWER_HALLWAY,                   wBattleTowerHallwayTrigger
 	trigger_def BATTLE_TOWER_OUTSIDE,                   wBattleTowerOutsideTrigger
 	trigger_def ROUTE_43_GATE,                          wRoute43GateTrigger
-	trigger_def MTMOON1,                                wMountMoonTrigger
+	trigger_def MT_MOON_B1F,                                wMountMoonTrigger
 	trigger_def SPROUT_TOWER_3F,                        wSproutTower3FTrigger
 	trigger_def TIN_TOWER_1F,                           wTinTower1FTrigger
 	trigger_def BURNED_TOWER_1F,                        wBurnedTower1FTrigger

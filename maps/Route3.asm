@@ -125,6 +125,8 @@ FirebreatherBurtScript: ; 0x1adfad
 MapRoute3Signpost0Script: ; 0x1adfb5
 	jumptext UnknownText_0x1ae163
 ; 0x1adfb8
+MapRoute3PokecenterSign:
+	jumpstd pokecentersign
 
 FirebreatherOtisSeenText: ; 0x1adfb8
 	text "Ah! The weather's"
@@ -219,7 +221,7 @@ Route3_MapEventHeader: ; 0x1ae18a
 
 	; warps
 	db 2
-	warp_def $1, $34, 1, GROUP_MTMOON1, MAP_MTMOON1
+	warp_def $1, $34, 1, GROUP_MT_MOON_B1F, MAP_MT_MOON_B1F
 	warp_def $3, $2f, 1, GROUP_MOUNT_MOON_POKECENTER_1F, MAP_MOUNT_MOON_POKECENTER_1F
 
 	; xy triggers
@@ -228,6 +230,7 @@ Route3_MapEventHeader: ; 0x1ae18a
 	; signposts
 	db 1
 	signpost 13, 49, $0, MapRoute3Signpost0Script
+	signpost  3, 48, $0, MapRoute3PokecenterSign
 
 	; people-events
 	db 4

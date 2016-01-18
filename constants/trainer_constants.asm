@@ -121,6 +121,7 @@
 	const JOEY5
 	const BEN_RB
 	const CALVIN_RB
+	const JOSH_RB
 
 	trainerclass SCHOOLBOY ; 17
 	const JACK1
@@ -190,6 +191,9 @@
 	const JANICE_RB
 	const SALLY_RB
 	const ROBIN_RB
+	const MIRIAM_RB
+	const IRIS_RB
+	const CRISSY_RB
 
 	trainerclass JANINE ; 1a
 	const JANINE_1
@@ -327,6 +331,8 @@
 	const GREG_RB
 	const COLTON_RB
 	const JAMES_RB
+	const KENT_RB
+	const ROBBY_RB
 	
 
 	trainerclass FISHER ; 25
@@ -433,6 +439,8 @@
 	const HUGH
 	const MARKUS
 	const MIGUEL
+	const JOVAN_RB
+	const MIGUEL_RB
 
 	trainerclass RIVAL2 ; 2a
 
@@ -463,6 +471,7 @@
 	const PARRY3
 	const ANTHONY4
 	const ANTHONY5
+	const MARCOS_RB
 
 	trainerclass BIKER ; 2d
 	const BIKER_BENNY

@@ -17822,7 +17822,7 @@ Group31Sprites: ; 144ec
 	db SPRITE_WILL
 	db SPRITE_KAREN
 	db SPRITE_NURSE
-	db SPRITE_SIDEWAYS_GRAMPS
+	db SPRITE_OLD_LINK_RECEPTIONIST
 	db SPRITE_BIG_LAPRAS
 	db SPRITE_BIG_ONIX
 	db SPRITE_SUDOWOODO
@@ -17847,7 +17847,7 @@ Group32Sprites: ; 144ec
 	db SPRITE_WILL
 	db SPRITE_KAREN
 	db SPRITE_NURSE
-	db SPRITE_SIDEWAYS_GRAMPS
+	db SPRITE_OLD_LINK_RECEPTIONIST
 	db SPRITE_BIG_LAPRAS
 	db SPRITE_BIG_ONIX
 	db SPRITE_SUDOWOODO
@@ -17856,13 +17856,13 @@ Group32Sprites: ; 144ec
 	db SPRITE_FISHER
 	db SPRITE_YOUNGSTER
 	db SPRITE_EGK_RIVAL
-	db SPRITE_GRAMPS
+	db SPRITE_COOLTRAINER_M
 	db SPRITE_BUG_CATCHER
-	db SPRITE_COOLTRAINER_F
-	db SPRITE_OAK
-	db SPRITE_SWIMMER_GUY
+	db SPRITE_SUPER_NERD
+	db SPRITE_LASS
+	db SPRITE_ROCKET
 	db SPRITE_POKE_BALL
-	db SPRITE_FRUIT_TREE ; 23
+	db SPRITE_SLOWPOKE
 
 Group33Sprites: ; 144ec
 	db SPRITE_SUICUNE
@@ -17872,7 +17872,7 @@ Group33Sprites: ; 144ec
 	db SPRITE_WILL
 	db SPRITE_KAREN
 	db SPRITE_NURSE
-	db SPRITE_SIDEWAYS_GRAMPS
+	db SPRITE_OLD_LINK_RECEPTIONIST
 	db SPRITE_BIG_LAPRAS
 	db SPRITE_BIG_ONIX
 	db SPRITE_SUDOWOODO
@@ -17897,7 +17897,7 @@ Group34Sprites: ; 144ec
 	db SPRITE_WILL
 	db SPRITE_KAREN
 	db SPRITE_NURSE
-	db SPRITE_SIDEWAYS_GRAMPS
+	db SPRITE_OLD_LINK_RECEPTIONIST
 	db SPRITE_BIG_LAPRAS
 	db SPRITE_BIG_ONIX
 	db SPRITE_SUDOWOODO
@@ -35670,9 +35670,17 @@ TrainerType:
 	call GetFarByte2
 	cp $ff
 	ret z ;ret if done
+	cp 101
+	jr c, .level_okay
+	ld a, 100
+.level_okay
 	ld [CurPartyLevel], a ;else load in as level
 	ld a, [wdff5]
 	call GetFarByte2
+	cp NUM_POKEMON + 1
+	jr c, .species_okay
+	ld a, UNOWN
+.species_okay
 	ld [CurPartySpecies], a ;load species in
 	ld a, OTPARTYMON ;load montype
 	ld [MonType], a 
@@ -35712,6 +35720,8 @@ TrainerType:
 .copy_nick
 	ld a, [wdff5]
 	call GetFarByte2
+	cp "@"
+	jr z, .copied_nick
 	ld [de], a
 	inc de
 	dec b

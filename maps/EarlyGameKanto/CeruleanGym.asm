@@ -237,8 +237,8 @@ CeruleanGymRB_MapEventHeader:
 
 	; warps
 	db 2
-	warp_def 15, 4, 5, GROUP_CERULEAN_CITY_RB, MAP_CERULEAN_CITY_RB
-	warp_def 15, 5, 5, GROUP_CERULEAN_CITY_RB, MAP_CERULEAN_CITY_RB
+	warp_def 15, 4, 4, GROUP_CERULEAN_CITY_RB, MAP_CERULEAN_CITY_RB
+	warp_def 15, 5, 4, GROUP_CERULEAN_CITY_RB, MAP_CERULEAN_CITY_RB
 
 	; xy triggers
 	db 0

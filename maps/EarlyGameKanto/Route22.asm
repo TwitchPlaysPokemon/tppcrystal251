@@ -68,7 +68,6 @@ Route22RBRivalBattle:
 .got_rival_gender
 	writecode VAR_BATTLETYPE, BATTLETYPE_RIVAL_RB
 	startbattle
-	reloadmapmusic
 	returnafterbattle
 	playmapmusic
 	loadfont
@@ -170,7 +169,7 @@ _Route22RivalAfterBattleText1::
 _Route22RivalDefeatedText1::
 	text "<GREEN>: Ugh!"
 	line "You just got"
-	cont "lucky is all..."
+	cont "lucky is all…"
 	done
 
 _Route22RivalLossText:

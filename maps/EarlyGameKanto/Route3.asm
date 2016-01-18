@@ -105,6 +105,8 @@ Route3RBRocketsScript:
 	faceperson $b, $0
 	faceperson $c, $0
 	loadfont
+	checkflag ENGINE_BOULDERBADGE
+	iftrue .battle
 	writetext Route3RBRocketsText3
 	waitbutton
 	closetext
@@ -113,8 +115,54 @@ Route3RBRocketsScript:
 	special RestartMapMusic
 	end
 
+.battle
+	writetext Route3RBRocketsText4
+	waitbutton
+	closetext
+	loadtrainer GRUNTM, 32
+	winlosstext Route3RBRocketsWinText1, 0
+	setlasttalked $b
+	startbattle
+	returnafterbattle
+	playmusic MUSIC_ROCKET_ENCOUNTER
+	loadfont
+	writetext Route3RBRocketsText5
+	waitbutton
+	closetext
+	loadtrainer GRUNTM, 33
+	winlosstext Route3RBRocketsWinText2, 0
+	setlasttalked $c
+	startbattle
+	returnafterbattle
+	playmusic MUSIC_ROCKET_ENCOUNTER
+	loadfont
+	writetext Route3RBRocketsText6
+	waitbutton
+	closetext
+	follow $b, $c
+	applymovement $b, Route3RBMovement_StepUp
+	stopfollow
+	disappear $b
+	playsound SFX_EXIT_BUILDING
+	applymovement $c, Route3RBMovement_StepUp
+	disappear $c
+	playsound SFX_EXIT_BUILDING
+	waitsfx
+	special RestartMapMusic
+	end
+
+Route3RBLassScript:
+	checkevent EVENT_ROUTE_3_ROCKETS
+	iftrue .true
+	jumptextfaceplayer Route3RBLassTextBeforeRockets
+.true
+	jumptextfaceplayer Route3RBLassText
+
 MapRoute3RBSignpost0Script:
 	jumptext _Route3Text10
+
+MapRoute3RBPokecenterSign:
+	jumpstd pokecentersign
 
 Route3RBMovement_HalfStepRight:
 	half_step_right
@@ -124,10 +172,14 @@ Route3RBMovement_HalfStepLeft
 	half_step_left
 	step_end
 
+Route3RBMovement_StepUp
+	step_up
+	step_end
+
 _Route3Text1:
-	text "Whew... I better"
-	line "take a rest..."
-	cont "Groan..."
+	text "Whew… I better"
+	line "take a rest…"
+	cont "Groan…"
 
 	para "That tunnel from"
 	line "CERULEAN takes a"
@@ -289,24 +341,80 @@ Route3RBRocketsText3:
 	cont "sation! Get lost!"
 	done
 
+Route3RBRocketsText4:
+	text "Hey! Were you"
+	line "eavesdropping?"
+
+	para "You've heard far"
+	line "too much, squirt."
+
+	para "Now prepare to"
+	line "feel the wrath of"
+	cont "TEAM ROCKET!"
+	done
+
+Route3RBRocketsWinText1:
+	text "What the-?"
+	done
+
+Route3RBRocketsText5:
+	text "Now it's my turn."
+	line "I'll make you cry!"
+	done
+
+Route3RBRocketsWinText2:
+	text "This power…"
+	done
+
+Route3RBRocketsText6:
+	text "We're TEAM ROCKET."
+	line "We exist to con-"
+	cont "trol all #MON."
+
+	para "You dare to meddle"
+	line "in our BOSS's"
+	cont "schemes?"
+	cont "Bring it on!"
+
+	para "… I'd say that, but"
+	line "you trashed us"
+	cont "good, kid. We'll"
+	cont "remember you."
+	done
+
+Route3RBLassTextBeforeRockets:
+	text "Those shady-"
+	line "looking men…"
+
+	para "What are they"
+	line "talking about?"
+	done
+
+Route3RBLassText:
+	text "Ouch! I tripped"
+	line "over a rocky"
+	cont "#MON, GEODUDE!"
+	done
+
 Route3RB_MapEventHeader: ; 0x1ae18a
 	; filler
 	db 0, 0
 
 	; warps
 	db 2
-	warp_def $1, $34, 1, GROUP_MTMOON1_RB, MAP_MTMOON1_RB
+	warp_def $1, $34, 1, GROUP_MT_MOON_B1F_RB, MAP_MT_MOON_B1F_RB
 	warp_def $3, $2f, 1, GROUP_MOUNT_MOON_POKECENTER_1F_RB, MAP_MOUNT_MOON_POKECENTER_1F_RB
 
 	; xy triggers
 	db 0
 
 	; signposts
-	db 1
+	db 2
 	signpost 13, 49, $0, MapRoute3RBSignpost0Script
+	signpost  3, 48, $0, MapRoute3RBPokecenterSign
 
 	; people-events
-	db 11
+	db 12
 	person_event SPRITE_SUPER_NERD, 16, 56, $3, 0, 0, -1, -1, 0, 0, 0, Route3RBSuperNerdScript, -1
 	person_event SPRITE_BUG_CATCHER, 8, 10, $9, 0, 0, -1, -1, 0, 2, 2, Trainer_BugCatcherGreg, -1
 	person_event SPRITE_YOUNGSTER, 6, 14, $6, 0, 0, -1, -1, 0, 2, 3, Trainer_YoungsterBen, -1
@@ -316,7 +424,8 @@ Route3RB_MapEventHeader: ; 0x1ae18a
 	person_event SPRITE_YOUNGSTER, 11, 22, $8, 0, 0, -1, -1, 0, 2, 3, Trainer_YoungsterCalvin, -1
 	person_event SPRITE_BUG_CATCHER, 8, 24, $9, 0, 0, -1, -1, 0, 2, 3, Trainer_BugCatcherJames, -1
 	person_event SPRITE_LASS, 17, 28, $7, 0, 0, -1, -1, 0, 2, 2, Trainer_LassRobin, -1
-	person_event SPRITE_ROCKET, 6, 56, $9, 0, 0, -1, -1, 0, 0, 0, Route3RBRocketsScript, -1
-	person_event SPRITE_ROCKET, 6, 57, $8, 0, 0, -1, -1, 0, 0, 0, Route3RBRocketsScript, -1
+	person_event SPRITE_ROCKET, 6, 56, $9, 0, 0, -1, -1, 0, 0, 0, Route3RBRocketsScript, EVENT_ROUTE_3_ROCKETS
+	person_event SPRITE_ROCKET, 6, 57, $8, 0, 0, -1, -1, 0, 0, 0, Route3RBRocketsScript, EVENT_ROUTE_3_ROCKETS
+	person_event SPRITE_LASS, 7, 54, $4, 2, 0, -1, -1, 0, 0, 0, Route3RBLassScript, -1
 ; 0x1ae1ce
 

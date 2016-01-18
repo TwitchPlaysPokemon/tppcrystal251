@@ -1792,7 +1792,7 @@
 		db PICHU ;1
 		db PIKACHU ;1
 	
-	db GROUP_MTMOON1, MAP_MTMOON1
+	db GROUP_MT_MOON_B1F, MAP_MT_MOON_B1F
 	db $0a ; encounter rates: morn/day/nite
 	db 60
 	db $01
@@ -1848,7 +1848,7 @@
 		db GOLBAT ;1
 		db CLEFAIRY ;1
 
-	db GROUP_MTMOON2, MAP_MTMOON2
+	db GROUP_MT_MOON_B2F, MAP_MT_MOON_B2F
 	db $0a; encounter rates: morn/day/nite
 	db 65
 	db $02
@@ -1904,7 +1904,7 @@
 		db CLEFABLE ;1
 		db CLEFABLE ;1
 
-	db GROUP_MTMOON3, MAP_MTMOON3
+	db GROUP_MT_MOON_B3F, MAP_MT_MOON_B3F
 	db $0a ; encounter rates: morn/day/nite
 	db 70
 	db $03

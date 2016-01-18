@@ -893,6 +893,7 @@ InitializeEventsScript: ; 0xbc3db
 	setevent EVENT_PALLET_TOWN_RB_OAK
 	setevent EVENT_OAKS_LAB_OAK
 	setevent EVENT_VIRIDIAN_CITY_RB_OLD_MAN_WALKING_ABOUT
+	setevent EVENT_CERULEAN_CITY_RB_NOT_YET_ROBBERY
 	return
 ; 0xbc574
 

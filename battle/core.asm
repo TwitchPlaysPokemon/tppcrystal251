@@ -909,8 +909,7 @@ CompareMovePriority: ; 3c5b4
 ; 3c5c5
 
 GetMovePriority: ; 3c5c5
-; Return the priority phaze = 0, counter  = 1, vital throw = 2, normal = 3, +1 = 4, +2 = 5, protect = 6
-
+; Return the priority: phaze = 0, counter  = 1, vital throw = 2, normal = 3, +1 = 4, +2 = 5, protect = 6
 	ld b, a
 
 	; Vital throw goes last.
@@ -4361,7 +4360,8 @@ SpikesDamage: ; 3dc23
 	ld bc, UpdateEnemyHUD
 .ok
 
-	bit SCREENS_SPIKES, [hl]
+	ld a, [hl]
+	and $3
 	ret z
 
 	; Flying-types aren't affected by Spikes.
@@ -4373,12 +4373,28 @@ SpikesDamage: ; 3dc23
 	cp FLYING
 	ret z
 
+	ld a, [hl]
+	and $3
+	ld [wc689], a
+
 	push bc
 
 	ld hl, BattleText_0x80bae ; "hurt by SPIKES!"
 	call StdBattleTextBox
 
 	call GetEighthMaxHP
+	ld b, 0
+	ld hl, 0
+	ld a, [wc689]
+.loop
+	dec a
+	jr z, .done
+	add hl, bc
+	jr .loop
+.done
+	ld b, h
+	ld c, l
+	
 	call Function3cc39
 
 	pop hl

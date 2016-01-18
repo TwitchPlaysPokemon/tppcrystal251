@@ -1,4 +1,4 @@
-MtMoon1_MapScriptHeader: ; 0x7407f
+MtMoonB1F_MapScriptHeader: ; 0x7407f
 	; trigger count
 	db 2
 
@@ -171,7 +171,7 @@ UnknownText_0x742e0: ; 0x742e0
 	done
 ; 0x74356
 
-MtMoon1_MapEventHeader: ; 0x1ac4af 
+MtMoonB1F_MapEventHeader: ; 0x1ac4af 
 	; filler
 	db 0, 0
 
@@ -179,9 +179,9 @@ MtMoon1_MapEventHeader: ; 0x1ac4af
 	db 7
 	warp_def $23, $0e, 1, GROUP_ROUTE_3, MAP_ROUTE_3
 	warp_def $23, $0f, 1, GROUP_ROUTE_3, MAP_ROUTE_3
-	warp_def $05, $05, 1, GROUP_MTMOON2, MAP_MTMOON2
-	warp_def $0B, $11, 3, GROUP_MTMOON2, MAP_MTMOON2
-	warp_def $0F, $19, 4, GROUP_MTMOON2, MAP_MTMOON2
+	warp_def $05, $05, 1, GROUP_MT_MOON_B2F, MAP_MT_MOON_B2F
+	warp_def $0B, $11, 3, GROUP_MT_MOON_B2F, MAP_MT_MOON_B2F
+	warp_def $0F, $19, 4, GROUP_MT_MOON_B2F, MAP_MT_MOON_B2F
 	warp_def $07, $23, 1, GROUP_MOUNT_MOON_SQUARE, MAP_MOUNT_MOON_SQUARE
 	warp_def $1F, $23, 2, GROUP_MOUNT_MOON_SQUARE, MAP_MOUNT_MOON_SQUARE
 

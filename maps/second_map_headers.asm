@@ -588,9 +588,9 @@
 	map_header_2 ViridianForest, VIRIDIAN_FOREST, $2, NONE ;Start of custom
 	map_header_2 ViridianForestNorth, VIRIDIAN_FOREST_GATE_NORTH, $A, NONE 
 	map_header_2 ViridianForestSouth, VIRIDIAN_FOREST_GATE_SOUTH, $A, NONE 
-	map_header_2 MtMoon1, MTMOON1, $3, NONE 
-	map_header_2 MtMoon2, MTMOON2, $3, NONE 
-	map_header_2 MtMoon3, MTMOON3, $3, NONE
+	map_header_2 MtMoonB1F, MT_MOON_B1F, $3, NONE 
+	map_header_2 MtMoonB2F, MT_MOON_B2F, $3, NONE 
+	map_header_2 MtMoonB3F, MT_MOON_B3F, $3, NONE
 	map_header_2 MtMoonPokeCenter1F, MOUNT_MOON_POKECENTER_1F, $0, NONE
 	map_header_2 CeruleanCave1, CERULEANCAVE1, $7D, NONE 
 	map_header_2 CeruleanCave2, CERULEANCAVE2, $7D, NONE 
@@ -674,7 +674,11 @@
 
 	map_header_2 Route3RB, ROUTE_3_RB, $2c, WEST | EAST ; 0x956fc
 	connection west, PEWTER_CITY_RB, PewterCityRB, -3, 2, 15, ROUTE_3_RB
-	connection east, ROUTE_4, Route4, 0, 0, 9, ROUTE_3
+	connection east, ROUTE_4_RB, Route4RB, 0, 0, 9, ROUTE_3_RB
+
+	map_header_2 Route4RB, ROUTE_4_RB, $2c, WEST | EAST ; 0x95720
+	connection west, ROUTE_3_RB, Route3RB, 0, 0, 9, ROUTE_4_RB
+	connection east, CERULEAN_CITY_RB, CeruleanCityRB, -2, 2, 15, ROUTE_4_RB
 
 	map_header_2 PewterMartRB, PEWTER_MART_RB, $0, NONE ; 0x960e0
 	map_header_2 PewterPokeCenter1FRB, PEWTER_POKECENTER_1F_RB, $0, NONE ; 0x960ec
@@ -682,5 +686,17 @@
 	map_header_2 PewterNidoranSpeechHouseRB, PEWTER_NIDORAN_SPEECH_HOUSE_RB, $0, NONE ; 0x960c8
 	map_header_2 PewterMuseumOfScience1F, PEWTER_MUSEUM_1F_RB, $a, NONE
 	map_header_2 PewterMuseumOfScience2F, PEWTER_MUSEUM_2F_RB, $a, NONE
+	map_header_2 MtMoonPokeCenter1FRB, MOUNT_MOON_POKECENTER_1F_RB, $0, NONE
+	map_header_2 MtMoonB1FRB, MT_MOON_B1F_RB, $3, NONE
+	map_header_2 MtMoonB2FRB, MT_MOON_B2F_RB, $3, NONE
+	map_header_2 MtMoonB3FRB, MT_MOON_B3F_RB, $3, NONE
 
 	map_header_2 CeruleanGymRB, CERULEAN_GYM, $0, NONE
+
+	map_header_2 CeruleanPokeCenter1FRB, CERULEAN_POKECENTER_1F_RB, $0, NONE ; 0x960ec
+
+	map_header_2 CeruleanCityRB, CERULEAN_CITY_RB, $f, NORTH | SOUTH | WEST | EAST ; 0x95660
+	connection north, ROUTE_24, Route24, 6, 0, 10, CERULEAN_CITY_RB
+	connection south, ROUTE_5, Route5, 5, 0, 10, CERULEAN_CITY_RB
+	connection west, ROUTE_4_RB, Route4RB, 4, 0, 9, CERULEAN_CITY_RB
+	connection east, ROUTE_9, Route9, 6, 0, 9, CERULEAN_CITY_RB

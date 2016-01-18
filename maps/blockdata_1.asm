@@ -221,6 +221,7 @@ CinnabarIsland_BlockData: ; 0xaaa4d
 ; 0xaaaa7
 
 Route4_BlockData: ; 0xaaaa7
+Route4RB_BlockData: ; 0xaaaa7
 	INCBIN "maps/Route4.blk"
 ; 0xaab5b
 

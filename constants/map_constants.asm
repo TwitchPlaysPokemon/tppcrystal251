@@ -433,9 +433,9 @@ MAP_N_A   EQU -1
 	mapgroup VIRIDIAN_FOREST, $18, $11
 	mapgroup VIRIDIAN_FOREST_GATE_NORTH, $04, $05
 	mapgroup VIRIDIAN_FOREST_GATE_SOUTH, $04, $05
-	mapgroup MTMOON1, 18, 20
-	mapgroup MTMOON2, 14, 14
-	mapgroup MTMOON3, 18, 20
+	mapgroup MT_MOON_B1F, 18, 20
+	mapgroup MT_MOON_B2F, 14, 14
+	mapgroup MT_MOON_B3F, 18, 20
 	mapgroup MOUNT_MOON_POKECENTER_1F, 4, 5
 	mapgroup CERULEANCAVE1, 9, 15
 	mapgroup CERULEANCAVE2, 9, 15
@@ -502,21 +502,21 @@ MAP_N_A   EQU -1
 	mapgroup PEWTER_MUSEUM_1F_RB, 4, 10
 	mapgroup PEWTER_MUSEUM_2F_RB, 4, 7
 	mapgroup ROUTE_3_RB, 9, 30
+	mapgroup MOUNT_MOON_POKECENTER_1F_RB, 4, 5
 
 	newgroup ; Cerulean City RB
+	mapgroup CERULEAN_GYM_RB, 8, 5
+	mapgroup ROUTE_4_RB, 9, 20
+	mapgroup CERULEAN_CITY_RB, 18, 20
+	mapgroup CERULEAN_POKECENTER_1F_RB, 4, 5
+	mapgroup CERULEAN_MART_RB, 4, 6
 	mapgroup CERULEAN_GYM_BADGE_SPEECH_HOUSE_RB, 4, 4
 	mapgroup CERULEAN_POLICE_STATION_RB, 4, 4
 	mapgroup CERULEAN_TRADE_SPEECH_HOUSE_RB, 4, 4
-	mapgroup CERULEAN_POKECENTER_1F_RB, 4, 5
-	mapgroup CERULEAN_GYM_RB, 8, 5
-	mapgroup CERULEAN_MART_RB, 4, 6
-	mapgroup POWER_PLANT_RB, 9, 10
-	mapgroup BILLS_HOUSE_RB, 4, 4
-	mapgroup ROUTE_4_RB, 9, 20
-	mapgroup ROUTE_9_RB, 9, 30
 	mapgroup ROUTE_24_RB, 9, 10
 	mapgroup ROUTE_25_RB, 9, 30
-	mapgroup CERULEAN_CITY_RB, 18, 20
+	mapgroup BILLS_HOUSE_RB, 4, 4
+	mapgroup ROUTE_9_RB, 9, 30
 
 	newgroup ; Vermilion City RB
 	mapgroup ROUTE_6_RB, 9, 10
@@ -547,10 +547,9 @@ MAP_N_A   EQU -1
 	mapgroup VIRIDIAN_FOREST_NORTH_RB, $04, $05
 	mapgroup VIRIDIAN_FOREST_SOUTH_RB, $04, $05
 	mapgroup DIGLETTS_CAVE_RB, 18, 10
-	mapgroup MTMOON1_RB, 18, 20
-	mapgroup MTMOON2_RB, 14, 14
-	mapgroup MTMOON3_RB, 18, 20
-	mapgroup MOUNT_MOON_POKECENTER_1F_RB, 4, 5
+	mapgroup MT_MOON_B1F_RB, 18, 20
+	mapgroup MT_MOON_B2F_RB, 14, 14
+	mapgroup MT_MOON_B3F_RB, 18, 20
 
 ; elevator floors
 	const_def
@@ -684,6 +683,9 @@ NORTH EQU 8
 	const SPRITE_STANDING_YOUNGSTER
 	const SPRITE_GIOVANNI
 	const SPRITE_SIDEWAYS_GRAMPS
+	const SPRITE_OLD_AMBER
+	const SPRITE_DOME_FOSSIL
+	const SPRITE_HELIX_FOSSIL
 
 const_value = $80
 SPRITE_POKEMON EQU const_value
