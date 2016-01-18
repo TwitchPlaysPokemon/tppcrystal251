@@ -36838,7 +36838,7 @@ AIWaitMove:
 	jr z, .NotTrapped
 	ld a, [hl]
 	cp GHOST
-	jr nz, .invalid
+	jr z, .NotTrapped
 
 .invalid
 	call AIChooseMove

@@ -2474,8 +2474,8 @@ UnknownScript_0xbcde4: ; 0xbcde4
 ; 0xbcdf7
 
 UnknownScript_0xbcdf7: ; 0xbcdf7
-	checkcoins 9949
-	if_equal $0, UnknownScript_0xbce46
+	checkcoins 4949
+	if_equal $0, ForcedGambling
 	checkmoney $0, 1000
 	if_equal $2, UnknownScript_0xbce3f
 	givecoins 50
@@ -2488,8 +2488,8 @@ UnknownScript_0xbcdf7: ; 0xbcdf7
 ; 0xbce1b
 
 UnknownScript_0xbce1b: ; 0xbce1b
-	checkcoins 9499
-	if_equal $0, UnknownScript_0xbce46
+	checkcoins 4499
+	if_equal $0, ForcedGambling
 	checkmoney $0, 10000
 	if_equal $2, UnknownScript_0xbce3f
 	givecoins 500
@@ -2514,6 +2514,12 @@ UnknownScript_0xbce46: ; 0xbce46
 	closetext
 	end
 ; 0xbce4d
+
+ForcedGambling: ; 0xbce46
+	farwritetext ForcedGamblingText
+	waitbutton
+	closetext
+	end
 
 UnknownScript_0xbce4d: ; 0xbce4d
 	farwritetext UnknownText_0x1b08ad

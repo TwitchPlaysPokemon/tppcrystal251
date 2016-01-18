@@ -7750,7 +7750,7 @@ BattleCommand24: ; 369b6
 	jr z, .asm_36a3a
 	ld a, [hl]
 	cp EFFECT_BEAT_UP
-	jr z, .asm_369fb ;if beat up or triple kick, jump elsewhere
+	jr z, .asm_369fb ;if beat up, branch
 	cp EFFECT_TRIPLE_KICK
 	jr nz, .asm_36a2b
 .asm_369ec ;if triple kick
@@ -10687,7 +10687,7 @@ BattleCommand9b: ; 37d0d
 
 	ld a, [hl]
 	and a
-	ret z
+	ret z ;if [hl] = 0 or 1, ret
 	cp 1
 	ret nz
 
@@ -10705,7 +10705,7 @@ BattleCommand9c: ; 37d34
 ; futuresight
 
 	call Function34548
-	jr nz, .asm_37d4b ; 37d37 $12
+	jr nz, .asm_37d4b ; 37d37 $12 ;check if charging, if so skip loading anim into last move
 	ld a, BATTLE_VARS_MOVE_ANIM
 	call GetBattleVar
 	ld b, a
@@ -10715,7 +10715,7 @@ BattleCommand9c: ; 37d34
 	ld a, BATTLE_VARS_LAST_MOVE
 	call GetBattleVarAddr
 	ld [hl], b
-.asm_37d4b
+.asm_37d4b ;hl = future sight variable
 	ld hl, wc71d
 	ld a, [hBattleTurn]
 	and a
@@ -10724,14 +10724,14 @@ BattleCommand9c: ; 37d34
 .asm_37d56
 	ld a, [hl]
 	and a
-	jr nz, .asm_37d87 ; 37d58 $2d
+	jr nz, .asm_37d87 ; 37d58 $2d ;if already has a value, fail
 	ld a, $4
-	ld [hl], a
-	call BattleCommand0a
-	call BattleCommandaa
+	ld [hl], a ;load 4 into count
+	call BattleCommand0a ;lower sub
+	call BattleCommandaa ;delay
 	ld hl, ForesawAttackText
 	call StdBattleTextBox
-	call BattleCommand0c
+	call BattleCommand0c ;raise sub
 	ld de, wc727
 	ld a, [hBattleTurn]
 	and a

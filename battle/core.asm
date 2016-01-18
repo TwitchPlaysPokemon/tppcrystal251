@@ -686,7 +686,7 @@ Function3c434: ; 3c434
 	xor a
 	ld [PlayerFuryCutterCount], a
 
-.asm_3c494
+.asm_3c494 ;if not rage, reset rage buffs
 	ld a, [wPlayerMoveStruct + MOVE_EFFECT]
 	cp EFFECT_RAGE
 	jr z, .asm_3c4a4
@@ -713,7 +713,7 @@ Function3c434: ; 3c434
 	xor a
 	ld [PlayerFuryCutterCount], a
 	ld [PlayerProtectCount], a
-	ld [wc72b], a
+	ld [wc72b], a ;reset rage
 	ld hl, PlayerSubStatus4
 	res SUBSTATUS_RAGE, [hl]
 
@@ -726,7 +726,7 @@ Function3c434: ; 3c434
 	xor a
 	ld [PlayerFuryCutterCount], a
 	ld [PlayerProtectCount], a
-	ld [wc72b], a
+	ld [wc72b], a ;reset rage
 	ld hl, PlayerSubStatus4
 	res SUBSTATUS_RAGE, [hl]
 	xor a
@@ -4329,7 +4329,7 @@ NewBattleMonStatus: ; 3dbde
 	ld [PlayerDisableCount], a
 	ld [PlayerFuryCutterCount], a
 	ld [PlayerProtectCount], a
-	ld [wc72b], a
+	ld [wc72b], a ;reset rage
 	ld [DisabledMove], a
 	ld [wc6fe], a
 	ld [wc731], a

@@ -9,6 +9,10 @@ CeladonGym_MapScriptHeader: ; 0x72a68
 ErikaScript_0x72a6a: ; 0x72a6a
 	faceplayer
 	loadfont
+	checkevent EVENT_BUGSY_REMATCH
+	iftrue UnknownScript_0x72a9b
+	checkevent EVENT_FIRST_TIME_RED
+	iftrue ErikaRematchScript
 	checkflag ENGINE_RAINBOWBADGE
 	iftrue UnknownScript_0x72a9b
 	writetext UnknownText_0x72b28
@@ -42,6 +46,39 @@ UnknownScript_0x72aae: ; 0x72aae
 	closetext
 	end
 ; 0x72ab4
+
+	writetext ErikaRematchTextBefore
+	waitbutton
+	closetext
+	winlosstext ErikaRematchBeatenText, $0000
+	loadtrainer ERIKA, 2
+	startbattle
+	returnafterbattle
+	setevent EVENT_ERIKA_REMATCH
+	loadfont
+	jump 
+
+ErikaRematchTextBefore:
+	text "What interesting"
+	line "timing."
+
+	para "This unusal #MON"
+	line "showed up just"
+	cont "now"
+
+	done
+	
+
+ErikaRematchBeatenText:
+	text "What interesting"
+	line "timing."
+
+	para "This unusal #MON"
+	line "showed up just"
+	cont "now"
+
+	done
+
 
 TrainerLassMichelle: ; 0x72ab4
 	; bit/flag number
