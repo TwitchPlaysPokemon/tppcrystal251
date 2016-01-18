@@ -155,7 +155,9 @@ MoveDeletersHouse_BlockData:
 CeruleanGymBadgeSpeechHouse_BlockData:
 CeruleanPoliceStation_BlockData:
 CeruleanTradeSpeechHouse_BlockData:
+CeruleanTradeSpeechHouseRB_BlockData:
 BillsHouse_BlockData:
+BillsHouseRB_BlockData:
 CharcoalKiln_BlockData:
 LakeofRageHiddenPowerHouse_BlockData:
 LakeofRageMagikarpHouse_BlockData:

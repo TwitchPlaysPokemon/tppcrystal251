@@ -7,7 +7,12 @@ Route2NuggetSpeechHouseRB_MapScriptHeader: ; 0x9b845
 ; 0x9b847
 
 Route2NuggetSpeechHouseTradeScript:
+	faceplayer
+	loadfont
 	trade $7
+	waitbutton
+	closetext
+	end
 
 Route2NuggetSpeechHouseGameboyKidScript:
 	jumptextfaceplayer _Route2HouseText1

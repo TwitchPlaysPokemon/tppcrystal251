@@ -695,6 +695,7 @@
 	map_header_2 CeruleanMartRB, CERULEAN_MART_RB, $0, NONE ; 0x95de0
 	map_header_2 CeruleanPokeCenter1FRB, CERULEAN_POKECENTER_1F_RB, $0, NONE ; 0x960ec
 	map_header_2 CeruleanGymBadgeSpeechHouseRB, CERULEAN_GYM_BADGE_SPEECH_HOUSE_RB, $0, NONE ; 0x95d98
+	map_header_2 CeruleanTradeSpeechHouseRB, CERULEAN_TRADE_SPEECH_HOUSE_RB, $0, NONE ; 0x95db0
 
 	map_header_2 CeruleanCityRB, CERULEAN_CITY_RB, $f, NORTH | SOUTH | WEST | EAST ; 0x95660
 	connection north, ROUTE_24, Route24, 6, 0, 10, CERULEAN_CITY_RB
