@@ -17,8 +17,8 @@ PewterGymRB_BrockScript:
 	loadtrainer BROCK, BROCK_RB
 	startbattle
 	returnafterbattle
-	setevent EVENT_BEAT_BROCK
-	setevent EVENT_BEAT_CAMPER_JERRY ; XXX
+	setevent EVENT_BEAT_BROCK_RB
+	setevent EVENT_BEAT_CAMPER_JERRY_RB ; XXX
 	loadfont
 	writetext PewterGymRB_GotBadgeText
 	playsound SFX_GET_BADGE
@@ -47,7 +47,7 @@ PewterGymRB_BrockScript:
 	end
 
 TrainerCamperJerryRB:
-	trainer EVENT_BEAT_CAMPER_JERRY, CAMPER, JERRY_RB, CamperJerryRBSeenText, CamperJerryRBBeatenText, NULL, CamperJerryRBScript
+	trainer EVENT_BEAT_CAMPER_JERRY_RB, CAMPER, JERRY_RB, CamperJerryRBSeenText, CamperJerryRBBeatenText, NULL, CamperJerryRBScript
 
 CamperJerryRBScript:
 	talkaftercancel
