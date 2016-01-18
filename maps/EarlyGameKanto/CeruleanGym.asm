@@ -175,7 +175,7 @@ CeruleanGymRB_BattleText1:
 CeruleanGymRB_EndBattleText1:
 	text "You totally"
 	line "overwhelmed me!"
-	prompt
+	done
 
 CeruleanGymRB_AfterBattleText1:
 	text "You have to face"
@@ -193,7 +193,7 @@ CeruleanGymRB_BattleText2:
 
 CeruleanGymRB_EndBattleText2:
 	text "That can't be!"
-	prompt
+	done
 
 CeruleanGymRB_AfterBattleText2:
 	text "MISTY is going to"

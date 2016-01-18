@@ -70,6 +70,7 @@ end
 
 function calcGender(dvs, species)
 	-- Reproduce gender calculation from Pokemon Crystal
+	if species == 0 then return "None" end
 	baseGender = GRVal[species]
 	if (baseGender == 255) then return "None" end
 	if (baseGender == 0)   then return "Male" end
@@ -95,6 +96,7 @@ function getMonBattleState(pointer)
 	local stats = {}
 	-- read
 	species_idx = memory.readbyte(pointer + 0)
+	if species_idx == 0 then return end
 	mon["species"] = speciesTable[species_idx]
 	mon["item"] = itemTable[memory.readbyte(pointer + 1)]
 	mon["moves"] = getMoves(pointer + 2, pointer + 8)
@@ -119,12 +121,70 @@ function getMonBattleState(pointer)
 	return mon
 end
 
+function getSubstatus(flags, counts, subhp, lockedmove)
+	local subStatus = {}
+	substatus1 = memory.readbyte(flags + 0)
+	substatus2 = memory.readbyte(flags + 1)
+	substatus3 = memory.readbyte(flags + 2)
+	substatus4 = memory.readbyte(flags + 3)
+	substatus5 = memory.readbyte(flags + 4)
+
+	-- substatus1
+	if (AND(substatus1, 0x01) ~= 0) then subStatus["nightmare"] = 1 end
+	if (AND(substatus1, 0x02) ~= 0) then subStatus["curse"] = 1 end
+	if (AND(substatus1, 0x04) ~= 0) then subStatus["protect"] = memory.readbyte(counts + 7) end
+	if (AND(substatus1, 0x08) ~= 0) then subStatus["identified"] = 1 end
+	if (AND(substatus1, 0x10) ~= 0) then subStatus["perish song"] = memory.readbyte(counts + 5) end
+	if (AND(substatus1, 0x20) ~= 0) then subStatus["endure"] = 1 end
+	if (AND(substatus1, 0x40) ~= 0) then subStatus["rollout"] = memory.readbyte(counts + 0) end
+	if (AND(substatus1, 0x80) ~= 0) then subStatus["attract"] = 1 end
+
+	-- substatus2
+	if (AND(substatus2, 0x01) ~= 0) then subStatus["curled"] = 1 end
+
+	-- substatus3
+	if (AND(substatus3, 0x01) ~= 0) then subStatus["bide"] = 1 end
+	if (AND(substatus3, 0x02) ~= 0) then subStatus["rampage"] = 1 end
+	if (AND(substatus3, 0x04) ~= 0) then subStatus["multihit"] = 1 end
+	if (AND(substatus3, 0x08) ~= 0) then subStatus["flinch"] = 1 end
+	if (AND(substatus3, 0x10) ~= 0) then subStatus["charged"] = 1 end
+	if (AND(substatus3, 0x20) ~= 0) then subStatus["underground"] = 1 end
+	if (AND(substatus3, 0x40) ~= 0) then subStatus["flying"] = 1 end
+	if (AND(substatus3, 0x80) ~= 0) then subStatus["confused"] = memory.readbyte(counts + 1) end
+
+	-- substatus4
+	if (AND(substatus4, 0x01) ~= 0) then subStatus["x accuracy"] = 1 end
+	if (AND(substatus4, 0x02) ~= 0) then subStatus["mist"] = 1 end
+	if (AND(substatus4, 0x04) ~= 0) then subStatus["pumped"] = 1 end
+	if (AND(substatus4, 0x10) ~= 0) then subStatus["substitute"] = memory.readbyte(subhp) end
+	if (AND(substatus4, 0x20) ~= 0) then subStatus["recharge"] = 1 end
+	if (AND(substatus4, 0x40) ~= 0) then subStatus["raging"] = memory.readbyte(counts + 6) end
+	if (AND(substatus4, 0x80) ~= 0) then subStatus["seeded"] = 1 end
+	
+	if (AND(substatus5, 0x01) ~= 0) then substatus["toxic"] = memory.readbyte(counts + 2) end
+	if (AND(substatus5, 0x04) ~= 0) then subStatus["transformed"] = 1 end
+	if (AND(substatus5, 0x10) ~= 0) then
+		local encore = {}
+		encore["count"] = memory.readbyte(counts + 4)
+		encore["move idx"] = memory.readbyte(lockedmove)
+		subStatus["encore"] = encore
+	end
+	if (AND(substatus5, 0x20) ~= 0) then subStatus["lock on"] = 1 end
+	if (AND(substatus5, 0x40) ~= 0) then subStatus["destiny bond"] = 1 end
+	if (AND(substatus5, 0x80) ~= 0) then subStatus["trapped"] = 1 end
+	return subStatus
+end
+
 function getPlayerPokemonData()
-	return getMonBattleState(0xc62c)
+	playerMon = getMonBattleState(0xc62c)
+	playerMon["subStatus"] = getSubstatus(0xc668, 0xc672, 0xc6df, 0xc71a)
+	return playerMon
 end
 
 function getEnemyPokemonData()
-	return getMonBattleState(0xd206)
+	enemyMon = getMonBattleState(0xd206)
+	enemyMon["subStatus"] = getSubstatus(0xc66d, 0xc67a, 0xc6e0, 0xc71b)
+	return enemyMon
 end
 
 function getTrainerClass()
