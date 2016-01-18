@@ -5542,6 +5542,7 @@ MovementData_0xcc5d: ; 0xcc5d
 ; 0xcc61
 
 Functioncc61: ; cc61
+; Teleport
 	call Functionc6ea
 .asm_cc64
 	ld hl, Tablecc72
@@ -5561,7 +5562,7 @@ Tablecc72: ; cc72
 Functioncc78: ; cc78
 	call GetMapPermission
 	call CheckOutdoorMap
-	jr z, .asm_cc82
+	jr z, .asm_cc82 ; outdoors
 	jr .asm_cc99
 
 .asm_cc82
@@ -17843,8 +17844,8 @@ Group32Sprites: ; 144ec
 	db SPRITE_BIG_ONIX
 	db SPRITE_SUDOWOODO
 	db SPRITE_BIG_SNORLAX
-	db SPRITE_TEACHER
-	db SPRITE_FISHER
+	db SPRITE_OFFICER
+	db SPRITE_GRAMPS
 	db SPRITE_YOUNGSTER
 	db SPRITE_EGK_RIVAL
 	db SPRITE_COOLTRAINER_M

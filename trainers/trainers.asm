@@ -4885,6 +4885,20 @@ GruntMGroup:
 	db 13, ZUBAT
 	db $ff
 
+; 36
+	db "GRUNT@"
+	db 0
+	db 15, EKANS
+	db 15, ZUBAT
+	db $ff
+
+; 37
+	db "GRUNT@"
+	db 0
+	db 17, MACHOP
+	db 17, DROWZEE
+	db $ff
+
 ; ================================
 
 GentlemanGroup:

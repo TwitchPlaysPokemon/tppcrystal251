@@ -22,9 +22,7 @@ CeruleanCityRivalBattleLeftTrigger:
 	end
 
 CeruleanCityRivalBattleRightTrigger:
-	disappear $2
 	moveperson $2, 21, 3
-	appear $2
 	scall CeruleanCityRivalBattle
 	spriteface $0, LEFT
 	applymovement $2, Movement_CeruleanRivalExitsLeft
@@ -35,6 +33,7 @@ CeruleanCityRivalBattleRightTrigger:
 	end
 
 CeruleanCityRivalBattle:
+	appear $2
 	playmusic MUSIC_RIVAL_RB
 	applymovement $2, Movement_CeruleanRivalEnters
 	loadfont
@@ -135,6 +134,136 @@ CeruleanCityRBSlowbroScript:
 CeruleanCityRBLass2Script:
 	jumptextfaceplayer _CeruleanCityText9
 
+CeruleanCityRBRocketScript:
+	loadfont
+	writetext CeruleanCityRBRocketText1
+	waitbutton
+	closetext
+	pause 15
+	showemote $0, $c, 15
+	pause 15
+	faceplayer
+	playmusic MUSIC_ROCKET_ENCOUNTER
+	loadfont
+	writetext CeruleanCityRBRocketText2
+	waitbutton
+	closetext
+	loadtrainer GRUNTM, 37
+	winlosstext CeruleanCityRBRocketWinText, 0
+	startbattle
+	reloadmapmusic
+	returnafterbattle
+	playmusic MUSIC_ROCKET_ENCOUNTER
+	loadfont
+	writetext CeruleanCityRBRocketText3
+	waitbutton
+	closetext
+	disappear $6
+	disappear $8
+	appear $7
+	appear $9
+	moveperson $d, 27, 11
+	checkcode VAR_FACING
+	if_equal RIGHT, CeruleanRBGrampsScript_Right
+	if_equal LEFT, CeruleanRBGrampsScript_Left
+	spriteface $0, LEFT
+	applymovement $c, Movement_CeruleanRocketRBRunsAway_playerbelow
+	disappear $c
+	special RestartMapMusic
+	pause 15
+	appear $d
+	playsound SFX_EXIT_BUILDING
+	waitsfx
+	applymovement $d, Movement_CeruleanGrampsRBApproaches_playerbelow
+	loadfont
+	writetext CeruleanCityRBRocketText4
+	buttonsound
+	verbosegiveitem TM_THIEF, 1
+	iffalse .bag_full_up
+	writetext CeruleanCityRBRocketText5
+	waitbutton
+	closetext
+	applymovement $d, Movement_CeruleanGrampsRBRetreats_playerbelow
+	disappear $d
+	playsound SFX_ENTER_DOOR
+	waitsfx
+	end
+
+.bag_full_up
+	closetext
+	applymovement $d, Movement_CeruleanGrampsRBPartialRetreat_playerbelow
+	spriteface $d, DOWN
+	end
+
+CeruleanRBGrampsScript_Left
+	spriteface $0, LEFT
+	applymovement $c, Movement_CeruleanRocketRBRunsAway_playerright
+	disappear $c
+	special RestartMapMusic
+	pause 15
+	appear $d
+	playsound SFX_EXIT_BUILDING
+	waitsfx
+	applymovement $d, Movement_CeruleanGrampsRBApproaches_playerright
+	loadfont
+	writetext CeruleanCityRBRocketText4
+	buttonsound
+	verbosegiveitem TM_THIEF, 1
+	iffalse .bag_full_left
+	writetext CeruleanCityRBRocketText5
+	waitbutton
+	closetext
+	applymovement $d, Movement_CeruleanGrampsRBRetreats_playerright
+	disappear $d
+	playsound SFX_ENTER_DOOR
+	waitsfx
+	end
+
+.bag_full_left
+	closetext
+	applymovement $d, Movement_CeruleanGrampsRBPartialRetreat_playerright
+	spriteface $d, DOWN
+	end
+
+CeruleanRBGrampsScript_Right
+	spriteface $0, LEFT
+	applymovement $c, Movement_CeruleanRocketRBRunsAway_playerleft
+	disappear $c
+	special RestartMapMusic
+	pause 15
+	appear $d
+	playsound SFX_EXIT_BUILDING
+	waitsfx
+	follow $0, $d
+	applymovement $0, Movement_CeruleanGrampsRBApproaches_playerleft
+	stopfollow
+	spriteface $d, RIGHT
+	loadfont
+	writetext CeruleanCityRBRocketText4
+CeruleanCityRBGrampsScriptContinue:
+	buttonsound
+	verbosegiveitem TM_THIEF, 1
+	iffalse .bag_full_right
+	writetext CeruleanCityRBRocketText5
+	waitbutton
+	closetext
+	applymovement $d, Movement_CeruleanGrampsRBRetreats_playerleft
+	disappear $d
+	playsound SFX_ENTER_DOOR
+	waitsfx
+	end
+
+.bag_full_right
+	closetext
+	spriteface $d, DOWN
+	end
+
+CeruleanCityRBGrampsScript:
+	faceplayer
+	loadfont
+	writetext CeruleanCityRBRocketText6
+	jump CeruleanCityRBGrampsScriptContinue
+
 MapCeruleanCityRBSignpost0Script:
 	jumptext _CeruleanCityText12
 
@@ -175,6 +304,49 @@ Movement_CeruleanRivalEnters:
 	slow_step_down
 	slow_step_down
 	slow_step_down
+	step_end
+
+Movement_CeruleanRocketRBRunsAway_playerleft:
+	big_step_down
+Movement_CeruleanRocketRBRunsAway_playerbelow:
+Movement_CeruleanRocketRBRunsAway_playerright:
+	big_step_left
+	big_step_left
+	big_step_left
+	big_step_left
+	big_step_left
+	step_end
+
+Movement_CeruleanGrampsRBApproaches_playerleft:
+	step_right
+	turn_head_left
+	step_end
+
+Movement_CeruleanGrampsRBApproaches_playerright:
+	step_down
+	step_right
+	step_end
+
+Movement_CeruleanGrampsRBApproaches_playerbelow:
+	step_down
+	step_down
+	turn_head_right
+	step_end
+
+Movement_CeruleanGrampsRBRetreats_playerbelow:
+	step_up
+Movement_CeruleanGrampsRBPartialRetreat_playerbelow
+	step_up
+	step_end
+
+Movement_CeruleanGrampsRBRetreats_playerright:
+	step_left
+Movement_CeruleanGrampsRBRetreats_playerleft:
+	step_up
+	step_end
+
+Movement_CeruleanGrampsRBPartialRetreat_playerright:
+	step_left
 	step_end
 
 _CeruleanCityText_19668F:
@@ -415,6 +587,66 @@ Text_CeruleanCityRBLockedDoor:
 	text "It's locked…"
 	done
 
+CeruleanCityRBRocketText1:
+	text "So that's where he"
+	line "keeps it…"
+	done
+
+CeruleanCityRBRocketText2:
+	text "What? I was just"
+	line "muttering to my-"
+	cont "self."
+
+	para "I'm innocent! Don't"
+	line "you believe me?"
+	done
+
+CeruleanCityRBRocketWinText:
+	text "Stop! I give up!"
+	line "I'll leave quiet-"
+	cont "ly!"
+	done
+
+CeruleanCityRBRocketText3:
+	text "Darn it all! I'll"
+	line "make sure you pay"
+	cont "dearly for this!"
+	done
+
+CeruleanCityRBRocketText4:
+	text "What was all that"
+	line "commotion?"
+
+	para "… Oh? Was that man"
+	line "after my TM?"
+
+	para "Thank you for cha-"
+	line "sing him off."
+
+	para "If I were just a"
+	line "few years younger…"
+
+	para "Ah, it can't be"
+	line "helped."
+
+	para "Here, let me thank"
+	line "you for your trou-"
+	cont "ble."
+	done
+
+CeruleanCityRBRocketText5:
+	text "That TM teaches"
+	line "THIEF."
+
+	para "Not that you"
+	line "should become one."
+	done
+
+CeruleanCityRBRocketText6:
+	text "There you are! I've"
+	line "held this for you!"
+	done
+
 CeruleanCityRB_MapEventHeader: ; 0x18445d
 	; filler
 	db 0, 0
@@ -446,7 +678,7 @@ CeruleanCityRB_MapEventHeader: ; 0x18445d
 	signpost  8, 17, $7, MapCeruleanCityRBHiddenRareCandy
 
 	; people-events
-	db 10
+	db 12
 	person_event SPRITE_EGK_RIVAL,  7, 24, $0, 0, 0, -1, -1, 0, 0, 0, ObjectEvent, EVENT_BEAT_RIVAL_IN_EGK_CERULEAN
 	person_event SPRITE_SUPER_NERD, 24, 35, $6, 0, 0, -1, -1, 0, 0, 0, CeruleanCityRBSuperNerdScript, -1
 	person_event SPRITE_COOLTRAINER_M, 22, 19, $2, 1, 1, -1, -1, 0, 0, 0, CeruleanCityRBCooltrainerM1Script, -1
@@ -454,8 +686,10 @@ CeruleanCityRB_MapEventHeader: ; 0x18445d
 	person_event SPRITE_LASS, 31, 24, $8, 0, 0, -1, -1, 0, 0, 0, CeruleanCityRBLass1Script, EVENT_CERULEAN_CITY_RB_STOPPED_ROBBERY
 	person_event SPRITE_LASS, 30, 24, $8, 0, 0, -1, -1, 0, 0, 0, CeruleanCityRBLass1Script, EVENT_CERULEAN_CITY_RB_NOT_YET_ROBBERY
 	person_event SPRITE_SLOWPOKE, 31, 23, $1, 0, 0, -1, -1, 0, 0, 0, CeruleanCityRBSlowbroScript, EVENT_CERULEAN_CITY_RB_STOPPED_ROBBERY
-	person_event SPRITE_SLOWPOKE, 30, 23, $16, 0, 0, -1, -1, 0, 0, 0, CeruleanCityRBSlowbroScript, EVENT_CERULEAN_CITY_RB_NOT_YET_ROBBERY
+	person_event SPRITE_SLOWPOKE, 30, 23, $1, 0, 0, -1, -1, 0, 0, 0, CeruleanCityRBSlowbroScript, EVENT_CERULEAN_CITY_RB_NOT_YET_ROBBERY
 	person_event SPRITE_LASS, 31, 13, $5, 0, 2, -1, -1, 0, 0, 0, CeruleanCityRBLass2Script, -1
 	person_event SPRITE_COOLTRAINER_M, 16, 8, $6, 0, 0, -1, -1, 8 + PAL_OW_BROWN, 0, 0, ObjectEvent, EVENT_SET_BY_OAK_AFTER_16_BADGES
+	person_event SPRITE_ROCKET, 16, 32, $7, 0, 0, -1, -1, 0, 0, 0, CeruleanCityRBRocketScript, EVENT_CERULEAN_RB_ROCKET_1
+	person_event SPRITE_GRAMPS, 16, 31, $3, 0, 0, -1, -1, 0, 0, 0, CeruleanCityRBGrampsScript, EVENT_CERULEAN_RB_ROCKET_2
 ; 0x1844fc
 
