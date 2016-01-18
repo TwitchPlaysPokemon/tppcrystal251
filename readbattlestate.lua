@@ -60,7 +60,7 @@ return itemArray
 end
 
 function checkItem(value)
-local returnedItem = itemTable[value + 1]
+local returnedItem = itemTable[value]
 return returnedItem
 end
 
@@ -164,19 +164,19 @@ move1["pp"] = memory.readbyte(0xc739)
 moves["move1"] = move1
 
 if memory.readbyte(0xC736) ~= 0x00 then
-move2["move"] = moveTable[memory.readbyte(0xC736) + 1]
-move2["pp"] = memory.readbyte(0xc73A)
-moves["move2"] = move2
+    move2["move"] = moveTable[memory.readbyte(0xC736) + 1]
+    move2["pp"] = memory.readbyte(0xc73A)
+    moves["move2"] = move2
 end
 if memory.readbyte(0xC737) ~= 0x00 then
-move3["move"] = moveTable[memory.readbyte(0xC737) + 1]
-move3["pp"] = memory.readbyte(0xc73B)
-moves["move3"] = move3
+    move3["move"] = moveTable[memory.readbyte(0xC737) + 1]
+    move3["pp"] = memory.readbyte(0xc73B)
+    moves["move3"] = move3
 end
 if memory.readbyte(0xC738) ~= 0x00 then
-move4["move"] = moveTable[memory.readbyte(0xC738) + 1]
-move4["pp"] = memory.readbyte(0xc73C)
-moves["move4"] = move4
+    move4["move"] = moveTable[memory.readbyte(0xC738) + 1]
+    move4["pp"] = memory.readbyte(0xc73C)
+    moves["move4"] = move4
 end
 
 wildStats["hp"] = memory.readbyte(0xd219) + (memory.readbyte(0xd218) * 255)
@@ -203,30 +203,37 @@ wildPokemon["stats"] = wildStats
 wildPokemon["types"] = types
 wildPokemon["currenthp"] = memory.readbyte(0xD217) + (memory.readbyte(0xd216) * 255)
 wildPokemon["level"] = memory.readbyte(0xd213)
-wildPokemon["substatus"] = calculateSubstatus(memory.readbyte(0xc66d), memory.readbyte(0xc66e), memory.readbyte(0xc66f), memory.readbyte(0xc670), memory.readbyte(0xc671))
-wildPokemon["status"] = "dummy"
+wildPokemon["substatus"] = calculateSubstatus(memory.readbyte(0xc66d), memory.readbyte(0xc66e), memory.readbyte(0xc66f), memory.readbyte(0xc670), memory.readbyte(0xc671), memory.readbyterange(0xc67a, 8))
+wildPokemon["status"] = "DUMMY"
 
 wildStatus = memory.readbyte(0xd214)
 
-if (AND(memory.readbyte(0xd214), 8) == 8) then
-wildPokemon["status"] = "PSN"
-elseif (AND(memory.readbyte(0xd214), 16) == 16) then
-wildPokemon["status"] = "BRN"
-elseif (AND(memory.readbyte(0xd214), 32) == 32) then
-wildPokemon["status"] = "FRZ"
-elseif (AND(memory.readbyte(0xd214), 64) == 128) then
-wildPokemon["status"] = "PAR"
-elseif (AND(memory.readbyte(0xd214), 128) == 128) then
-sleepCounter = 0
-    if(AND(wildStatus,2)==2) then
-        sleepCounter = sleepCounter + 1
-    end
-    if(AND(wildStatus,4)==4) then
-        sleepCounter = sleepCounter + 2
-    end
-status["SLP"] = sleepCounter
+
+vba.print("before")
+if (AND(memory.readbyte(0xd214), 8) ~= 0) then
+    wildPokemon["status"] = "PSN"
+elseif (AND(memory.readbyte(0xd214), 16) ~= 0) then
+    wildPokemon["status"] = "BRN"
+elseif (AND(memory.readbyte(0xd214), 32) ~= 0) then
+    wildPokemon["status"] = "FRZ"
+elseif (AND(memory.readbyte(0xd214), 64) ~= 0) then
+    wildPokemon["status"] = "PAR"
+elseif (AND(memory.readbyte(0xd214), 7) ~= 0) then
+    sleepCounter = 0
+        if(AND(wildStatus,1)==1) then
+            sleepCounter = sleepCounter + 1
+        end
+        if(AND(wildStatus,2)==2) then
+            sleepCounter = sleepCounter + 2
+        end
+    status["SLP"] = sleepCounter
 else
-wildPokemon["status"] = "NONE"
+    wildPokemon["status"] = "NONE"
+end
+vba.print("after")
+
+if (AND(memory.readbyte(0xd214), 7) ~= 0) then
+    vba.print("SLP")
 end
 
 return wildPokemon
@@ -246,33 +253,35 @@ end
 return gender
 end
 
-function calculateSubstatus(byte1, byte2, byte3, byte4, byte5)
+function calculateSubstatus(byte1, byte2, byte3, byte4, byte5, countRange)
 substatus = {}
 vba.print(byte1, byte2, byte3, byte4, byte5)
+vba.print(countRange)
 
+if (AND(byte1, 1) == 1) then
+    substatus["nightmare"] = 
+    vba.print("nightmare")
+end
 if (AND(byte1, 2) == 2) then
-vba.print("nightmare")
+    vba.print("curse")
 end
 if (AND(byte1, 4) == 4) then
-vba.print("curse")
+    vba.print("protect")
 end
 if (AND(byte1, 8) == 8) then
-vba.print("protect")
+    vba.print("identified")
 end
 if (AND(byte1, 16) == 16) then
-vba.print("identified")
+    vba.print("perish song")
 end
 if (AND(byte1, 32) == 32) then
-vba.print("perish song")
+    vba.print("endure")
 end
 if (AND(byte1, 64) == 64) then
-vba.print("endure")
+    vba.print("encore")
 end
 if (AND(byte1, 128) == 128) then
-vba.print("encore")
-end
-if (AND(byte1, 256) == 256) then
-vba.print("attract")
+    vba.print("attract")
 end
 
 return "DUMMY"
