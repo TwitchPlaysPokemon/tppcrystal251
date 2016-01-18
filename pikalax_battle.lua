@@ -325,6 +325,9 @@ repeat
     vba.print("rSVBK: ", rSVBK)
 
 	if rSVBK == 1 then
+		playerParty = getTrainerParty(0xdcd7)
+		vba.print("Player Party:")
+		vba.print(playerParty)
 		if wBattleMode == 0 then
 			vba.print("Not in battle")
 		else
@@ -332,14 +335,16 @@ repeat
 				battleState["enemy type"] = "TRAINER"
 				battleState["trainer class"] = getTrainerClass()
 				battleState["trainer items"] = getTrainerItems()
+				enemyParty = getTrainerParty(0xd280)
+				vba.print("Enemy Party:")
+				vba.print(enemyParty)
 			elseif wBattleMode == 1 then 
 				battleState["enemy type"] = "WILD"
 			end
 			battleState["weather"] = getWeather()
 			battleState["playerpokemon"] = getPlayerPokemonData()
 			battleState["enemypokemon"] = getEnemyPokemonData()
-			battleState["playerparty"] = getTrainerParty(0xdcd7)
-			battleState["enemyparty"] = getTrainerParty(0xd280)
+			vba.print("Battle State:")
 			vba.print(battleState)
 		end
     else 
