@@ -540,8 +540,8 @@ PctTables: ;0 = big 30
 	db 200
 
 LvlPointers: ;0 skips, 1 and onwards uses these to select the table used for each ToD. feel free to change examples
-;1 = example table
-	db 0, 1, 2 ;Lvl table to use in specific Tod, first slot is morning, second is day and third is night
+;1 = EGK Diglett's Cave
+	db 1, 1, 1 ;Lvl table to use in specific Tod, first slot is morning, second is day and third is night
 ;2 = Route 29
 	db 3, 4, 5
 ;3 = Route 46
@@ -568,28 +568,33 @@ LvlPointers: ;0 skips, 1 and onwards uses these to select the table used for eac
 	db 36, 37, 38
 ;14 = Dark Cave Blackthorn Entrance
 	db 39, 40, 41
+;15 = Viridian Forest
+	db 2, 2, 2
 
 LvlTables: ;0 = no adjustment feel free to change examples
-; 1 = example table, increases the level of each slot by it's number
-	db 1
-	db 2
-	db 3
-	db 4
-	db 5
-	db 6
-	db 7
-	db 8
-	db 9
-	db 10
-	db 11
-	db 12
-	db 13
+; 1 = EGK Diglett Cave
+	db 0
+	db -3
+	db -3
+	db -3
 	db 14
-	db 15
-	db 16
+	db 0
+	db 0
+	db 0
+	db 0
+	db 0
+	db 0
+	db 0
+	db 0
+	db 0
+	db 0
+	db 0
 
-; 2 = example 2, all levels 0 exept slot 1,which is -1 good for lowering levels
-	db -1
+; 2 = EGK Viridian Forest
+	db 0
+	db 0
+	db 4
+	db 4
 	db 0
 	db 0
 	db 0
@@ -598,11 +603,8 @@ LvlTables: ;0 = no adjustment feel free to change examples
 	db 0
 	db 0
 	db 0
-	db 0
-	db 0
-	db 0
-	db 0
-	db 0
+	db 4
+	db 4
 	db 0
 	db 0
 
@@ -617,10 +619,10 @@ LvlTables: ;0 = no adjustment feel free to change examples
 	db -4
 	db 0 ;8
 	db 0
-	db 6
 	db 3
-	db 6 ;c
+	db 1
 	db 3
+	db 1
 	db 0
 	db 0
 
@@ -634,13 +636,13 @@ LvlTables: ;0 = no adjustment feel free to change examples
 	db -4
 	db -4
 	db 0
-	db 6
+	db 3
 	db 0
 	db 0
 	db 0
 	db 0
 	db 0
-	db 6
+	db 3
 
 ; 5 = Route 29 Night
 	db 0
@@ -654,8 +656,8 @@ LvlTables: ;0 = no adjustment feel free to change examples
 	db 0
 	db 0
 	db 0
-	db 8
-	db 10
+	db 5
+	db 7
 	db 0
 	db 0
 	db 0
@@ -669,12 +671,12 @@ LvlTables: ;0 = no adjustment feel free to change examples
 	db -2
 	db -4
 	db -4
-	db 2
+	db 1
 	db 0
-	db 2
+	db 1
 	db 0
+	db 1
 	db 2
-	db 4
 	db 0
 	db 0
 
@@ -682,7 +684,7 @@ LvlTables: ;0 = no adjustment feel free to change examples
 	db 0
 	db 0
 	db -4
-	db 2
+	db 1
 	db 0
 	db 0
 	db -4
@@ -691,7 +693,7 @@ LvlTables: ;0 = no adjustment feel free to change examples
 	db 0
 	db 0
 	db 0
-	db 4
+	db 2
 	db 0
 	db -2
 	db 0
@@ -700,7 +702,7 @@ LvlTables: ;0 = no adjustment feel free to change examples
 	db 0
 	db 0
 	db -4
-	db 2
+	db 1
 	db 0
 	db -4
 	db -4
@@ -708,11 +710,11 @@ LvlTables: ;0 = no adjustment feel free to change examples
 	db 0
 	db 0
 	db 0
-	db 6
-	db 8
+	db 3
+	db 5
 	db 0
-	db 4
-	db 4
+	db 1
+	db 1
 
 ; 9 = Route 30 Morning
 	db -2
@@ -724,13 +726,13 @@ LvlTables: ;0 = no adjustment feel free to change examples
 	db -4
 	db -4
 	db 0
-	db 5
-	db 5
-	db 5
-	db 5
-	db 5
-	db 5
-	db 9
+	db 2
+	db 2
+	db 2
+	db 2
+	db 2
+	db 2
+	db 6
 
 ; 10 = Route 30 Day
 	db 0
@@ -741,14 +743,14 @@ LvlTables: ;0 = no adjustment feel free to change examples
 	db -4
 	db -4
 	db 0
-	db 5
-	db 5
+	db 2
+	db 2
 	db 0
 	db 0
-	db 5
+	db 2
 	db 0
-	db 5
-	db 5
+	db 2
+	db 2
 
 ; 11 = Route 30 Night
 	db 0
@@ -762,9 +764,9 @@ LvlTables: ;0 = no adjustment feel free to change examples
 	db -2
 	db 0
 	db 0
-	db 7
-	db 7
-	db 9
+	db 4
+	db 4
+	db 6
 	db -2
 	db 0
 
@@ -775,16 +777,16 @@ LvlTables: ;0 = no adjustment feel free to change examples
 	db -3
 	db 0
 	db -2
-	db 4
+	db 1
 	db -2
 	db 0
 	db 0
 	db 0
+	db 0
+	db 3
+	db 0
+	db 0
 	db 1
-	db 6
-	db 0
-	db 0
-	db 2
 
 ; 13 = Route 31 Day
 	db 0
@@ -793,12 +795,12 @@ LvlTables: ;0 = no adjustment feel free to change examples
 	db 0
 	db 0
 	db 0
+	db 0
+	db 0
+	db 0
 	db 1
 	db 0
-	db 0
-	db 2
-	db 0
-	db 6
+	db 3
 	db 0
 	db 0
 	db 0
@@ -810,35 +812,35 @@ LvlTables: ;0 = no adjustment feel free to change examples
 	db 0
 	db 0
 	db 0
-	db 6
-	db 6
+	db 3
+	db 3
 	db 0
 	db 0
 	db 0
 	db 0
-	db 1
 	db 0
-	db 6
-	db 6
+	db 0
+	db 3
+	db 3
 	db 0
 
 ; 15 = Dark Cave Morning
 	db -2
 	db 0
 	db 0
-	db 2
+	db 1
 	db 0
 	db 0
 	db 0
 	db 0
-	db 0
-	db 2
 	db 0
 	db 1
 	db 0
-	db 1
 	db 0
-	db 4
+	db 0
+	db 0
+	db 0
+	db 2
 
 ; 16 = Dark Cave Day
 	db 0
@@ -848,51 +850,51 @@ LvlTables: ;0 = no adjustment feel free to change examples
 	db 0
 	db 0
 	db 0
-	db 2
-	db 2
+	db 1
 	db 1
 	db 0
-	db 4
-	db 0
 	db 0
 	db 2
+	db 0
+	db 0
 	db 1
+	db 0
 
 ; 17 = Dark Cave Night
 	db 0
 	db 0
 	db 0
-	db 2
-	db 0
-	db 0
-	db 6
-	db 0
-	db 6
-	db 0
-	db 2
 	db 1
-	db 2
+	db 0
+	db 0
+	db 3
+	db 0
+	db 3
+	db 0
 	db 1
-	db 4
+	db 0
+	db 1
+	db 0
+	db 2
 	db 0
 
 ; 18 = Sprout Tower Morning
 	db 0
 	db 0
-	db 2
+	db 1
 	db 0
 	db 0
-	db 2
+	db 1
 	db 0
 	db 0
 	db 0
 	db 0
-	db 8
-	db 8
-	db 9
+	db 5
+	db 5
+	db 6
 	db 0
 	db 0
-	db 2
+	db 1
 
 ; 19 = Sprout Tower Day
 	db 0
@@ -901,34 +903,34 @@ LvlTables: ;0 = no adjustment feel free to change examples
 	db 0
 	db 0
 	db 0
-	db 2
+	db 1
 	db 0
-	db 2
-	db 8
-	db 9
-	db 8
+	db 1
+	db 5
+	db 6
+	db 5
 	db 0
 	db 0
-	db 2
-	db 2
+	db 1
+	db 1
 
 ; 20 = Sprout Tower Night
 	db 0
+	db 0
+	db 0
+	db 0
+	db 0
+	db 0
+	db 0
+	db 0
+	db 0
+	db 5
+	db 0
+	db 5
 	db 1
 	db 0
+	db 6
 	db 1
-	db 0
-	db 1
-	db 0
-	db 0
-	db 0
-	db 8
-	db 0
-	db 8
-	db 2
-	db 0
-	db 9
-	db 2
 
 ; 21 = Route 36 Morning
 	db 0
@@ -936,17 +938,17 @@ LvlTables: ;0 = no adjustment feel free to change examples
 	db 0
 	db 0
 	db 0
-	db 3
-	db 0
-	db 0
-	db 2
-	db 9
+	db 1
 	db 0
 	db 0
 	db 0
+	db 6
 	db 0
-	db 2
-	db 9
+	db 0
+	db 0
+	db 0
+	db 0
+	db 6
 
 ; 22 = Route 36 Day
 	db 0
@@ -954,32 +956,32 @@ LvlTables: ;0 = no adjustment feel free to change examples
 	db 0
 	db 0
 	db 0
-	db 3
-	db 2
-	db 0
-	db 0
-	db 2
-	db 9
+	db 1
 	db 0
 	db 0
 	db 0
-	db 2
+	db 0
+	db 6
+	db 0
+	db 0
+	db 0
+	db 0
 	db 0
 
 ; 23 = Route 36 Night
 	db 0
+	db 0
+	db 0
+	db 0
+	db 0
 	db 1
 	db 0
 	db 0
-	db 2
+	db 0
+	db 0
 	db 3
-	db 1
 	db 0
-	db 0
-	db 0
-	db 6
-	db 0
-	db 6
+	db 3
 	db 0
 	db 0
 	db 0
@@ -993,12 +995,12 @@ LvlTables: ;0 = no adjustment feel free to change examples
 	db 0
 	db 0
 	db 0
-	db 3
-	db 3
-	db 5
 	db 1
 	db 1
-	db 1
+	db 2
+	db 0
+	db 0
+	db 0
 	db 0
 	db 0
 
@@ -1009,33 +1011,33 @@ LvlTables: ;0 = no adjustment feel free to change examples
 	db 0
 	db 0
 	db 0
-	db 3
+	db 1
 	db -1
-	db 3
+	db 1
 	db 0
 	db 0
 	db 0
 	db 0
 	db 0
-	db 3
-	db 5
+	db 1
+	db 2
 
 ; 26 = Route 32 Night
 	db 0
 	db 0
 	db 0
-	db 5
-	db 1
+	db 2
 	db 0
 	db 0
 	db 0
-	db 1
-	db 5
-	db 0
-	db 1
 	db 0
 	db 0
-	db 5
+	db 2
+	db 0
+	db 0
+	db 0
+	db 0
+	db 2
 	db 0
 
 ; 27 = Route 33 Morning
@@ -1044,53 +1046,53 @@ LvlTables: ;0 = no adjustment feel free to change examples
 	db 0
 	db 0
 	db 0
-	db 2
+	db 1
 	db 0
 	db 0
 	db 0
-	db 6
+	db 5
 	db 0
-	db 2
+	db 1
 	db 0
-	db 2
+	db 1
 	db 0
-	db 2
+	db 1
 
 ; 28 = Route 33 Day
 	db 0
 	db 0
 	db 0
-	db 2
+	db 1
 	db 0
 	db 0
-	db 0
-	db 0
-	db 6
-	db 6
 	db 0
 	db 0
 	db 5
-	db 0
 	db 5
-	db 2
+	db 0
+	db 0
+	db 4
+	db 0
+	db 4
+	db 1
 
 ; 29 = Route 33 Night
 	db 0
 	db 0
-	db 2
+	db 1
 	db 0
 	db 0
-	db 2
+	db 1
 	db 0
-	db 5
-	db 2
-	db 2
-	db 0
-	db 0
+	db 4
+	db 1
+	db 1
 	db 0
 	db 0
-	db 5
-	db 2
+	db 0
+	db 0
+	db 4
+	db 1
 
 ; 30 = Route 37 Morning
 	db -2
