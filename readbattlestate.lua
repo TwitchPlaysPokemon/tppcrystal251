@@ -208,8 +208,6 @@ wildPokemon["status"] = "DUMMY"
 
 wildStatus = memory.readbyte(0xd214)
 
-
-vba.print("before")
 if (AND(memory.readbyte(0xd214), 8) ~= 0) then
     wildPokemon["status"] = "PSN"
 elseif (AND(memory.readbyte(0xd214), 16) ~= 0) then
@@ -220,20 +218,16 @@ elseif (AND(memory.readbyte(0xd214), 64) ~= 0) then
     wildPokemon["status"] = "PAR"
 elseif (AND(memory.readbyte(0xd214), 7) ~= 0) then
     sleepCounter = 0
-        if(AND(wildStatus,1)==1) then
+        if(AND(memory.readbyte(0xd214),1)~=0) then
             sleepCounter = sleepCounter + 1
         end
-        if(AND(wildStatus,2)==2) then
+        if(AND(memory.readbyte(0xd214),2)~=0) then
             sleepCounter = sleepCounter + 2
         end
     status["SLP"] = sleepCounter
+    wildPokemon["status"] = status
 else
     wildPokemon["status"] = "NONE"
-end
-vba.print("after")
-
-if (AND(memory.readbyte(0xd214), 7) ~= 0) then
-    vba.print("SLP")
 end
 
 return wildPokemon
