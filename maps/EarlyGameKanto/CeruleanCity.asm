@@ -67,6 +67,7 @@ CeruleanCityRivalBattle:
 .got_rival_gender
 	writecode VAR_BATTLETYPE, BATTLETYPE_RIVAL_RB
 	startbattle
+	reloadmapmusic
 	returnafterbattle
 	special RestartMapMusic
 	loadfont
