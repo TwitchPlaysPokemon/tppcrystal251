@@ -75,7 +75,7 @@ TrainerSwimmermParkerRB:
 CeruleanGymRB_GymGuyScript:
 	faceplayer
 	loadfont
-	checkevent EVENT_BEAT_MISTY
+	checkevent EVENT_BEAT_MISTY_RB
 	iftrue .Won
 	writetext CeruleanGymRB_GymGuyText
 	waitbutton

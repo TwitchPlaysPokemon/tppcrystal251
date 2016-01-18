@@ -678,7 +678,7 @@ CeruleanCityRB_MapEventHeader: ; 0x18445d
 	signpost  8, 17, $7, MapCeruleanCityRBHiddenRareCandy
 
 	; people-events
-	db 12
+	db 13
 	person_event SPRITE_EGK_RIVAL,  7, 24, $0, 0, 0, -1, -1, 0, 0, 0, ObjectEvent, EVENT_BEAT_RIVAL_IN_EGK_CERULEAN
 	person_event SPRITE_SUPER_NERD, 24, 35, $6, 0, 0, -1, -1, 0, 0, 0, CeruleanCityRBSuperNerdScript, -1
 	person_event SPRITE_COOLTRAINER_M, 22, 19, $2, 1, 1, -1, -1, 0, 0, 0, CeruleanCityRBCooltrainerM1Script, -1

@@ -698,7 +698,11 @@
 	map_header_2 CeruleanTradeSpeechHouseRB, CERULEAN_TRADE_SPEECH_HOUSE_RB, $0, NONE ; 0x95db0
 
 	map_header_2 CeruleanCityRB, CERULEAN_CITY_RB, $f, NORTH | SOUTH | WEST | EAST ; 0x95660
-	connection north, ROUTE_24, Route24, 6, 0, 10, CERULEAN_CITY_RB
+	connection north, ROUTE_24_RB, Route24RB, 5, 0, 10, CERULEAN_CITY_RB
 	connection south, ROUTE_5, Route5, 5, 0, 10, CERULEAN_CITY_RB
 	connection west, ROUTE_4_RB, Route4RB, 4, 0, 9, CERULEAN_CITY_RB
 	connection east, ROUTE_9, Route9, 6, 0, 9, CERULEAN_CITY_RB
+
+	map_header_2 Route24RB, ROUTE_24_RB, $2c, EAST | SOUTH ; 0x956c0
+	connection south, CERULEAN_CITY_RB, CeruleanCityRB, -3, 2, 16, ROUTE_24_RB
+	connection east, ROUTE_25, Route25, 0, 0, 9, ROUTE_24_RB
