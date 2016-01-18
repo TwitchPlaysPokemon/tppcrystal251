@@ -306,6 +306,7 @@ OaksLab_DoRivalBattle:
 	special DeleteSavedMusic
 	reloadmapmusic
 	reloadmap
+	special HealParty
 	playmapmusic
 	loadfont
 	checkflag ENGINE_PLAYER_IS_FEMALE

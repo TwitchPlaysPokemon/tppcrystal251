@@ -175,7 +175,7 @@ CeruleanGymRB_BattleText1:
 CeruleanGymRB_EndBattleText1:
 	text "You totally"
 	line "overwhelmed me!"
-	prompt
+	done
 
 CeruleanGymRB_AfterBattleText1:
 	text "You have to face"
@@ -193,7 +193,7 @@ CeruleanGymRB_BattleText2:
 
 CeruleanGymRB_EndBattleText2:
 	text "That can't be!"
-	prompt
+	done
 
 CeruleanGymRB_AfterBattleText2:
 	text "MISTY is going to"
@@ -252,7 +252,6 @@ CeruleanGymRB_MapEventHeader:
 	db 4
 	person_event SPRITE_MISTY, 7, 9, $6, 0, 0, -1, -1, 8 + PAL_OW_RED, 0, 0, CeruleanGymRB_MistyScript, -1
 	person_event SPRITE_SWIMMER_GIRL, 10, 8, $9, 0, 0, -1, -1, 8 + PAL_OW_GREEN, 2, 3, TrainerSwimmerfDianaRB, -1
-	;person_event SPRITE_SWIMMER_GIRL, 13, 5, $9, 0, 0, -1, -1, 8 + PAL_OW_GREEN, 2, 1, TrainerSwimmerfBrianaRB, -1
 	person_event SPRITE_SWIMMER_GUY, 13, 12, $8, 0, 0, -1, -1, 8 + PAL_OW_RED, 2, 3, TrainerSwimmermParkerRB, -1
 	person_event SPRITE_GYM_GUY, 17, 11, $6, 0, 0, -1, -1, 8 + PAL_OW_BLUE, 0, 0, CeruleanGymRB_GymGuyScript, -1
 

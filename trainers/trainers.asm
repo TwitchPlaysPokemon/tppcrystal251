@@ -5989,6 +5989,16 @@ SwimmerMGroup:
 	db $ff ; end
 
 ; ================
+	; SWIMMERM (21)
+	db "PARKER@"
+	db 0 ; normal
+
+	; party
+	db 16, HORSEA
+	db 16, SHELLDER
+
+	db $ff ; end
+
 ; ================================
 
 
@@ -6215,6 +6225,11 @@ SwimmerFGroup:
 	db $ff ; end
 
 ; ================
+
+	db "DIANA@"
+	db 0
+	db 19, GOLDEEN
+	db $ff
 ; ================================
 
 

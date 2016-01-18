@@ -90,7 +90,6 @@ Trainer_LassRobin:
 	end
 
 Route3RBRocketsScript:
-	playmusic MUSIC_ROCKET_ENCOUNTER
 	applymovement $b, Route3RBMovement_HalfStepRight
 	loadfont
 	writetext Route3RBRocketsText1
@@ -112,10 +111,10 @@ Route3RBRocketsScript:
 	closetext
 	spriteface $b, RIGHT
 	spriteface $c, LEFT
-	special RestartMapMusic
 	end
 
 .battle
+	playmusic MUSIC_ROCKET_ENCOUNTER
 	writetext Route3RBRocketsText4
 	waitbutton
 	closetext
@@ -133,6 +132,7 @@ Route3RBRocketsScript:
 	winlosstext Route3RBRocketsWinText2, 0
 	setlasttalked $c
 	startbattle
+	reloadmapmusic
 	returnafterbattle
 	playmusic MUSIC_ROCKET_ENCOUNTER
 	loadfont
