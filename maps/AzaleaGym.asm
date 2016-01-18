@@ -71,7 +71,7 @@ BugsyScript_0x18ec1e: ; 0x18ec1e
 	faceplayer
 	loadfont
 	checkevent EVENT_BUGSY_REMATCH
-	iftrue UnknownScript_0x18ec48
+	iftrue BugsyAfterRematch
 	checkevent EVENT_FIRST_TIME_RED
 	iftrue BugsyRematchScript
 	checkevent EVENT_BEAT_BUGSY
@@ -109,6 +109,12 @@ UnknownScript_0x18ec48: ; 0x18ec48
 	end
 ; 0x18ec6d
 
+BugsyAfterRematch:
+	writetext BugsyAfterRematchText
+	waitbutton
+	closetext
+	end
+
 BugsyRematchScript:
 	writetext BugsyRematchTextBefore
 	waitbutton
@@ -119,7 +125,7 @@ BugsyRematchScript:
 	returnafterbattle
 	setevent EVENT_BUGSY_REMATCH
 	loadfont
-	jump UnknownScript_0x18ec71
+	jump BugsyAfterRematch
 
 UnknownScript_0x18ec6d: ; 0x18ec6d
 	writetext UnknownText_0x18ef98
@@ -385,14 +391,17 @@ BugsyRematchBeatenText:
 	line "years of study,"
 	cont "I cannot solve"
 	cont "#MON battles."
+	
+	done
 
+BugsyAfterRematchText:
 	para "You beat me at"
 	line "my best,"
 
 	para "I need to do"
 	line "find a new"
-	cont "theory"
-	
+	cont "theory on #MON"
+	cont "battles."
 	done
 
 UnknownText_0x18edae: ; 0x18edae

@@ -9,8 +9,8 @@ CeladonGym_MapScriptHeader: ; 0x72a68
 ErikaScript_0x72a6a: ; 0x72a6a
 	faceplayer
 	loadfont
-	checkevent EVENT_BUGSY_REMATCH
-	iftrue UnknownScript_0x72a9b
+	checkevent EVENT_ERIKA_REMATCH
+	iftrue ErikaAfterRematch
 	checkevent EVENT_FIRST_TIME_RED
 	iftrue ErikaRematchScript
 	checkflag ENGINE_RAINBOWBADGE
@@ -57,26 +57,48 @@ ErikaRematchScript:
 	returnafterbattle
 	setevent EVENT_ERIKA_REMATCH
 	loadfont
-	jump UnknownScript_0x72aae
+	jump ErikaAfterRematch
+
+ErikaAfterRematch:
+	writetext ErikaAfterRematchText
+	waitbutton
+	closetext
+	end
 
 ErikaRematchTextBefore:
-	text "What interesting"
+	text "What wonderful"
 	line "timing."
 
 	para "This unusal #MON"
 	line "showed up just"
 	cont "now"
+
+	para "She's excited to"
+	line "meet you. Do you" 
+	cont "know each other?"
+
+	para "She seems to want"
+	line "a battle, would"
+	cont "you be so kind?"
+
+	para "Please do not"
+	line "hold back."
 
 	done
 	
 
 ErikaRematchBeatenText:
-	text "What interesting"
-	line "timing."
+	text "We concede defeat"
+	done
 
-	para "This unusal #MON"
-	line "showed up just"
-	cont "now"
+ErikaAfterRematchText:
+	text "You have grown"
+	line "even stronger."
+
+	para "It would be an"
+	line "honour to battle"
+	cont "you again"
+	cont "sometime."
 
 	done
 
