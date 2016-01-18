@@ -5542,6 +5542,7 @@ MovementData_0xcc5d: ; 0xcc5d
 ; 0xcc61
 
 Functioncc61: ; cc61
+; Teleport
 	call Functionc6ea
 .asm_cc64
 	ld hl, Tablecc72
@@ -5561,7 +5562,7 @@ Tablecc72: ; cc72
 Functioncc78: ; cc78
 	call GetMapPermission
 	call CheckOutdoorMap
-	jr z, .asm_cc82
+	jr z, .asm_cc82 ; outdoors
 	jr .asm_cc99
 
 .asm_cc82
@@ -17852,8 +17853,8 @@ Group32Sprites: ; 144ec
 	db SPRITE_BIG_ONIX
 	db SPRITE_SUDOWOODO
 	db SPRITE_BIG_SNORLAX
-	db SPRITE_TEACHER
-	db SPRITE_FISHER
+	db SPRITE_OFFICER
+	db SPRITE_GRAMPS
 	db SPRITE_YOUNGSTER
 	db SPRITE_EGK_RIVAL
 	db SPRITE_COOLTRAINER_M
@@ -89412,6 +89413,7 @@ ENDM
 	npctrade 3, CHANSEY,    AERODACTYL, "AEROY@@@@@@", $96, $66, GOLD_BERRY,   26491, "KIM@@@@@@@@", TRADE_EITHER_GENDER
 	npctrade 0, DUGTRIO,    MAGNETON,   "MAGGIE@@@@@", $96, $66, METAL_COAT,   50082, "FOREST@@@@@", TRADE_EITHER_GENDER
 	npctrade 1, ABRA,       MR__MIME,   "MARCEL@@@@@", $68, $82, BERRY,        49677, "ANDREW@@@@@", TRADE_EITHER_GENDER
+	npctrade 0, PIDGEOTTO,  TANGELA,    "GELA@@@@@@@", $52, $67, PSNCUREBERRY, 60392, "JEREMY@@@@@", TRADE_EITHER_GENDER
 ; fcf38
 
 PrintTradeText: ; fcf38
@@ -95006,3 +95008,9 @@ ELSE
 INCBIN "misc/stadium2_1.bin"
 
 ENDC
+
+IF DEF(BEESAFREE)
+SECTION "military", ROMX
+INCLUDE "battle/military.asm"
+ENDC
+

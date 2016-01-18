@@ -17,9 +17,9 @@ CeruleanGymRB_MistyScript:
 	loadtrainer MISTY, MISTY_RB
 	startbattle
 	returnafterbattle
-	setevent EVENT_BEAT_MISTY
-	setevent EVENT_BEAT_SWIMMERM_PARKER
-	setevent EVENT_BEAT_SWIMMERF_DIANA
+	setevent EVENT_BEAT_MISTY_RB
+	setevent EVENT_BEAT_SWIMMERM_PARKER_RB
+	setevent EVENT_BEAT_SWIMMERF_DIANA_RB
 	loadfont
 	writetext CeruleanGymRB_GotBadgeText
 	playsound SFX_GET_BADGE
@@ -51,7 +51,7 @@ CeruleanGymRB_MistyScript:
 	end
 
 TrainerSwimmerfDianaRB:
-	trainer EVENT_BEAT_SWIMMERF_DIANA, SWIMMERF, DIANA_RB, CeruleanGymRB_BattleText1, CeruleanGymRB_EndBattleText1, NULL, .After
+	trainer EVENT_BEAT_SWIMMERF_DIANA_RB, SWIMMERF, DIANA_RB, CeruleanGymRB_BattleText1, CeruleanGymRB_EndBattleText1, NULL, .After
 
 .After:
 	talkaftercancel
@@ -62,7 +62,7 @@ TrainerSwimmerfDianaRB:
 	end
 
 TrainerSwimmermParkerRB:
-	trainer EVENT_BEAT_SWIMMERM_PARKER, SWIMMERM, PARKER_RB, CeruleanGymRB_BattleText2, CeruleanGymRB_EndBattleText2, NULL, .After
+	trainer EVENT_BEAT_SWIMMERM_PARKER_RB, SWIMMERM, PARKER_RB, CeruleanGymRB_BattleText2, CeruleanGymRB_EndBattleText2, NULL, .After
 
 .After:
 	talkaftercancel
@@ -75,7 +75,7 @@ TrainerSwimmermParkerRB:
 CeruleanGymRB_GymGuyScript:
 	faceplayer
 	loadfont
-	checkevent EVENT_BEAT_MISTY
+	checkevent EVENT_BEAT_MISTY_RB
 	iftrue .Won
 	writetext CeruleanGymRB_GymGuyText
 	waitbutton

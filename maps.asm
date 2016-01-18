@@ -597,3 +597,9 @@ INCLUDE "maps/EarlyGameKanto/MtMoonB3F.asm"
 SECTION "EGK CeruleanCity Events", ROMX
 INCLUDE "maps/EarlyGameKanto/CeruleanCity.asm"
 INCLUDE "maps/EarlyGameKanto/CeruleanPokeCenter1F.asm"
+INCLUDE "maps/EarlyGameKanto/CeruleanMart.asm"
+SECTION "EGK Cerulean Houses Events", ROMX
+INCLUDE "maps/EarlyGameKanto/CeruleanGymBadgeSpeechHouse.asm"
+INCLUDE "maps/EarlyGameKanto/CeruleanTradeSpeechHouse.asm"
+SECTION "EGK Route 24 Events", ROMX
+INCLUDE "maps/EarlyGameKanto/Route24.asm"

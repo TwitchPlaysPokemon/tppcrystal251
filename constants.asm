@@ -28,5 +28,6 @@ INCLUDE "constants/std_constants.asm"
 
 IF DEF(BEESAFREE)
 INCLUDE "constants/beesafree_constants.asm"
+INCLUDE "constants/military_constants.asm"
 ENDC
 

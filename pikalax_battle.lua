@@ -16,6 +16,8 @@ local trainerClassTable = {"FALKNER", "WHITNEY", "BUGSY", "MORTY", "PRYCE", "JAS
 
 local weatherTable = {"None", "Rain", "Sun", "Sandstorm"}
 
+local charmap = {" ", "A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z", "(", ")", ":", ";", "[", "]", "a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z", "Ä", "Ö", "Ü", "ä", "ö", "ü", "'d", "'l", "'m", "'r", "'s", "'t", "'v", "←", "'", "<PK>", "<MN>", "-", "?", "!", ".", "&", "é", "→", "▷", "▶", "▼", "♂", "¥", "×", "·", "/", ",", "♀", "0", "1", "2", "3", "4", "5", "6", "7", "8", "9"}
+
 function getBigDW(pointer)
 	-- There is no built-in for big-endian DWs, which are used extensively in battle structs.
 	return memory.readbyte(pointer) * 256 + memory.readbyte(pointer + 1)
@@ -33,6 +35,14 @@ function refreshinterval(seconds)
 	return true
 end
 
+function parseString(start_addr, length)
+	outstr = ""
+	for i = 0, length do
+		curr_byte = memory.readbyte(start_addr + i)
+		if curr_byte == 0x50 then return outstr end
+		outstr = outstr .. charmap[curr_byte - 0x7f + 1]
+	end
+end
 
 function getMove(movePointer, ppPointer)
 	local move = {}
@@ -91,10 +101,18 @@ function getMonType(pointer)
 	end
 end
 
+function getDVs(pointer)
+	local dvs = {}
+	dvs["atk"] = AND(memory.readbyte(pointer),0xf0) / 16
+	dvs["def"] = memory.readbyte(pointer) % 16
+	dvs["spd"] = AND(memory.readbyte(pointer + 1),0xf0) / 16
+	dvs["spc"] = memory.readbyte(pointer + 1) % 16
+	return dvs
+end
+
 function getMonBattleState(pointer)
 	-- init
 	local mon = {}
-	local dvs = {}
 	local stats = {}
 	-- read
 	species_idx = memory.readbyte(pointer + 0)
@@ -102,16 +120,12 @@ function getMonBattleState(pointer)
 	mon["species"] = speciesTable[species_idx]
 	mon["item"] = itemTable[memory.readbyte(pointer + 1) + 1]
 	mon["moves"] = getMoves(pointer + 2, pointer + 8)
-	dvs["atk"] = AND(memory.readbyte(pointer + 6),0xf0) / 16
-	dvs["def"] = memory.readbyte(pointer + 6) % 16
-	dvs["spd"] = AND(memory.readbyte(pointer + 7),0xf0) / 16
-	dvs["spc"] = memory.readbyte(pointer + 7) % 16
-	mon["dvs"] = dvs
+	mon["dvs"] = getDVs(pointer + 6)
 	mon["happiness"] = memory.readbyte(pointer + 12)
 	mon["level"] = memory.readbyte(pointer + 13)
 	mon["status"] = getMonStatus(pointer + 14)
 	mon["hp"] = getBigDW(pointer + 16)
-	mon["gender"] = calcGender(dvs, species_idx)
+	mon["gender"] = calcGender(mon["dvs"], species_idx)
 	stats["maxhp"] = getBigDW(pointer + 18)
 	stats["attack"] = getBigDW(pointer + 20)
 	stats["defense"] = getBigDW(pointer + 22)
@@ -245,6 +259,64 @@ function getTrainerItems()
 	return trainerItems
 end
 
+function getTrainerParty(partycount_addr)
+	local trainerParty = {}
+	trainerParty["length"] = memory.readbyte(partycount_addr)
+	local mons = {}
+	local party = {}
+	for i = 1, trainerParty["length"] do
+		table.insert(mons, speciesTable[memory.readbyte(partycount_addr + i)])
+		local curr_mon = {}
+		mon_pointer = partycount_addr + 8 + 48 * (i - 1)
+		species_idx = memory.readbyte(mon_pointer + 0)
+		curr_mon["species"] = speciesTable[species_idx]
+		curr_mon["item"] = itemTable[memory.readbyte(mon_pointer + 1) + 1]
+		curr_mon["moves"] = getMoves(mon_pointer + 2, mon_pointer + 23)
+		curr_mon["id"] = getBigDW(mon_pointer + 6)
+		curr_mon["exp"] = memory.readbyte(mon_pointer + 8) * 0x10000 + memory.readbyte(mon_pointer + 9) * 0x100 + memory.readbyte(mon_pointer + 10)
+		local statexp = {}
+		statexp["hp"] = getBigDW(mon_pointer + 11)
+		statexp["atk"] = getBigDW(mon_pointer + 13)
+		statexp["def"] = getBigDW(mon_pointer + 15)
+		statexp["spd"] = getBigDW(mon_pointer + 17)
+		statexp["spc"] = getBigDW(mon_pointer + 19)
+		curr_mon["statexp"] = statexp
+		curr_mon["dvs"] = getDVs(mon_pointer + 21)
+		curr_mon["happiness"] = memory.readbyte(mon_pointer + 27)
+		local pokerus = {}
+		pkrs_byte = memory.readbyte(mon_pointer + 28)
+		if pkrs_byte == 0 then
+			pokerus["strain"] = "None"
+			pokerus["count"] = "Uninfected"
+		else
+			pokerus["strain"] = AND(pkrs_byte, 0xf0) / 16
+			if AND(pkrs_byte, 0xf) == 0 then
+				pokerus["count"] = "Immune"
+			else
+				pokerus["count"] = AND(pkrs_byte, 0xf)
+			end
+		end
+		curr_mon["pokerus"] = pokerus
+		curr_mon["level"] = memory.readbyte(mon_pointer + 31)
+		curr_mon["gender"] = calcGender(curr_mon["dvs"], species_idx)
+		curr_mon["status"] = getMonStatus(mon_pointer + 32)
+		curr_mon["hp"] = getBigDW(mon_pointer + 34)
+		local stats = {}
+		stats["maxhp"] = getBigDW(mon_pointer + 36)
+		stats["attack"] = getBigDW(mon_pointer + 38)
+		stats["defense"] = getBigDW(mon_pointer + 40)
+		stats["speed"] = getBigDW(mon_pointer + 42)
+		stats["spatk"] = getBigDW(mon_pointer + 44)
+		stats["spdef"] = getBigDW(mon_pointer + 46)
+		curr_mon["stats"] = stats
+		curr_mon["nickname"] = parseString(partycount_addr + 8 + 48 * 6 + 11 * 6 + 11 * (i - 1), 11)
+		table.insert(party, curr_mon)
+	end
+	trainerParty["mons"] = mons
+	trainerParty["party"] = party
+	return trainerParty
+end
+
 repeat
     battleState = {}
     wBattleMode = memory.readbyte(0xD22D)
@@ -266,6 +338,8 @@ repeat
 			battleState["weather"] = getWeather()
 			battleState["playerpokemon"] = getPlayerPokemonData()
 			battleState["enemypokemon"] = getEnemyPokemonData()
+			battleState["playerparty"] = getTrainerParty(0xdcd7)
+			battleState["enemyparty"] = getTrainerParty(0xd280)
 			vba.print(battleState)
 		end
     else 

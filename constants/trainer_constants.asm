@@ -122,6 +122,7 @@
 	const BEN_RB
 	const CALVIN_RB
 	const JOSH_RB
+	const TIMMY_RB
 
 	trainerclass SCHOOLBOY ; 17
 	const JACK1
@@ -194,6 +195,8 @@
 	const MIRIAM_RB
 	const IRIS_RB
 	const CRISSY_RB
+	const ALI_RB
+	const RELI_RB
 
 	trainerclass JANINE ; 1a
 	const JANINE_1
@@ -333,7 +336,7 @@
 	const JAMES_RB
 	const KENT_RB
 	const ROBBY_RB
-	
+	const CALE_RB
 
 	trainerclass FISHER ; 25
 	const JUSTIN
@@ -597,7 +600,8 @@
 	const QUENTIN
 
 	const JERRY_RB
-	const JERRY_RB_2
+	const ETHAN_RB
+	const SHANE_RB
 
 	trainerclass EXECUTIVEF ; 37
 

@@ -17,8 +17,8 @@ PewterGymRB_BrockScript:
 	loadtrainer BROCK, BROCK_RB
 	startbattle
 	returnafterbattle
-	setevent EVENT_BEAT_BROCK
-	setevent EVENT_BEAT_CAMPER_JERRY ; XXX
+	setevent EVENT_BEAT_BROCK_RB
+	setevent EVENT_BEAT_CAMPER_JERRY_RB ; XXX
 	loadfont
 	writetext PewterGymRB_GotBadgeText
 	playsound SFX_GET_BADGE
@@ -47,7 +47,7 @@ PewterGymRB_BrockScript:
 	end
 
 TrainerCamperJerryRB:
-	trainer EVENT_BEAT_CAMPER_JERRY, CAMPER, JERRY_RB, CamperJerryRBSeenText, CamperJerryRBBeatenText, NULL, CamperJerryRBScript
+	trainer EVENT_BEAT_CAMPER_JERRY_RB, CAMPER, JERRY_RB, CamperJerryRBSeenText, CamperJerryRBBeatenText, NULL, CamperJerryRBScript
 
 CamperJerryRBScript:
 	talkaftercancel
@@ -60,7 +60,7 @@ CamperJerryRBScript:
 PewterGymRB_GymGuyScript:
 	faceplayer
 	loadfont
-	checkevent EVENT_BEAT_BROCK
+	checkevent EVENT_BEAT_BROCK_RB
 	iffalse .NotChallengedYet
 	writetext PewterGymRB_GymGuyWinText
 	waitbutton
@@ -111,30 +111,6 @@ PewterGymRB_BrockIntroText:
 	line "me your best!"
 	done
 
-;	text "BROCK: Wow, it's"
-;	line "not often that we"
-
-;	para "get a challenger"
-;	line "from JOHTO."
-
-;	para "I'm BROCK, the"
-;	line "PEWTER GYM LEADER."
-
-;	para "I'm an expert on"
-;	line "rock-type #MON."
-
-;	para "My #MON are im-"
-;	line "pervious to most"
-
-;	para "physical attacks."
-;	line "You'll have a hard"
-
-;	para "time inflicting"
-;	line "any damage."
-
-;	para "Come on!"
-;	done
-
 PewterGymRB_BrockLostText:
 
 	text "BROCK: I took"
@@ -180,18 +156,6 @@ PewterGymRB_BrockAfterText:
 	cont "your abilities!"
 	done
 
-;	text "BROCK: The world"
-;	line "is huge. There are"
-
-;	para "still many strong"
-;	line "trainers like you."
-
-;	para "Just wait and see."
-;	line "I'm going to be-"
-;	cont "come a lot strong-"
-;	cont "er too."
-;	done
-
 PewterGymRB_TMText:
 	text "A TM contains a"
 	line "technique that"
@@ -215,14 +179,6 @@ PewterGymRB_TMText:
 	line "dealing damage!"
 	done
 
-;	para "TM34 contains"
-;	line "BIDE!"
-
-;	para "Your #MON will"
-;	line "absorb damage in"
-;	cont "battle then pay"
-;	cont "it back double!"
-;	done
 
 CamperJerryRBSeenText:
 	text "Stop right there,"

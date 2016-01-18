@@ -85,12 +85,10 @@ PalletTownRB_BlockData:
 ; 0xa94f1
 
 Route25_BlockData: ; 0xa94f1
-Route25RB_BlockData: ; 0xa94f1
 	INCBIN "maps/Route25.blk"
 ; 0xa95ff
 
 Route24_BlockData: ; 0xa95ff
-Route24RB_BlockData: ; 0xa95ff
 	INCBIN "maps/Route24.blk"
 ; 0xa9659
 
@@ -155,7 +153,9 @@ MoveDeletersHouse_BlockData:
 CeruleanGymBadgeSpeechHouse_BlockData:
 CeruleanPoliceStation_BlockData:
 CeruleanTradeSpeechHouse_BlockData:
+CeruleanTradeSpeechHouseRB_BlockData:
 BillsHouse_BlockData:
+BillsHouseRB_BlockData:
 CharcoalKiln_BlockData:
 LakeofRageHiddenPowerHouse_BlockData:
 LakeofRageMagikarpHouse_BlockData:
@@ -200,6 +200,8 @@ CherrygroveEvolutionSpeechHouse_BlockData:
 Route30BerrySpeechHouse_BlockData:
 	INCBIN "maps/OlivineVoltorbHouse.blk"
 ; 0xaa877
+CeruleanGymBadgeSpeechHouseRB_BlockData:
+	INCBIN "maps/CeruleanGymBadgeSpeechHouseRB.blk"
 
 Route19FuchsiaGate_BlockData:
 Route43MahoganyGate_BlockData:

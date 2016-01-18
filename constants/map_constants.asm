@@ -511,9 +511,8 @@ MAP_N_A   EQU -1
 	mapgroup CERULEAN_POKECENTER_1F_RB, 4, 5
 	mapgroup CERULEAN_MART_RB, 4, 6
 	mapgroup CERULEAN_GYM_BADGE_SPEECH_HOUSE_RB, 4, 4
-	mapgroup CERULEAN_POLICE_STATION_RB, 4, 4
 	mapgroup CERULEAN_TRADE_SPEECH_HOUSE_RB, 4, 4
-	mapgroup ROUTE_24_RB, 9, 10
+	mapgroup ROUTE_24_RB, 18, 10
 	mapgroup ROUTE_25_RB, 9, 30
 	mapgroup BILLS_HOUSE_RB, 4, 4
 	mapgroup ROUTE_9_RB, 9, 30

@@ -2439,6 +2439,12 @@ YoungsterGroup:
 	db 12, ZUBAT
 	db $ff
 
+	db "TIMMY@"
+	db 0
+	db 14, SANDSHREW
+	db 14, EKANS
+	db $ff
+
 ; ================================
 
 
@@ -3428,6 +3434,18 @@ LassGroup:
 	db 33, PARASECT
 	db $ff
 
+	db "ALI@"
+	db 0
+	db 12, PIDGEY
+	db 12, ODDISH
+	db 12, BELLSPROUT
+	db $ff
+
+	db "RELI@"
+	db 0
+	db 16, NIDORAN_M
+	db 16, NIDORAN_F
+	db $ff
 
 ; ================
 ; ================================
@@ -4885,6 +4903,20 @@ GruntMGroup:
 	db 13, ZUBAT
 	db $ff
 
+; 36
+	db "GRUNT@"
+	db 0
+	db 15, EKANS
+	db 15, ZUBAT
+	db $ff
+
+; 37
+	db "GRUNT@"
+	db 0
+	db 17, MACHOP
+	db 17, DROWZEE
+	db $ff
+
 ; ================================
 
 GentlemanGroup:
@@ -5393,6 +5425,14 @@ BugCatcherGroup:
 	db 10, CATERPIE
 	db 12, METAPOD
 	db 10, CATERPIE
+	db $ff
+
+	db "CALE@"
+	db 0
+	db 10, CATERPIE
+	db 10, WEEDLE
+	db 11, METAPOD
+	db 11, KAKUNA
 	db $ff
 
 ; ================
@@ -8720,6 +8760,17 @@ CamperGroup:
 
 	db 11, DIGLETT
 	db 11, SANDSHREW
+	db $ff
+
+	db "ETHAN@"
+	db 0
+	db 18, MANKEY
+	db $ff
+
+	db "SHANE@"
+	db 0
+	db 14, RATTATA
+	db 14, EKANS
 	db $ff
 ; ================================
 
