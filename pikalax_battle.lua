@@ -14,6 +14,8 @@ local PPVal = { 35, 25, 10, 15, 20, 20, 15, 15, 15, 35, 30, 5, 10, 30, 30, 35, 3
 
 local trainerClassTable = {"FALKNER", "WHITNEY", "BUGSY", "MORTY", "PRYCE", "JASMINE", "CHUCK", "CLAIR", "RIVAL1", "POKEMON_PROF", "WILL", "CAL", "BRUNO", "KAREN", "KOGA", "CHAMPION", "BROCK", "MISTY", "LT_SURGE", "SCIENTIST", "ERIKA", "YOUNGSTER", "SCHOOLBOY", "BIRD_KEEPER", "LASS", "JANINE", "COOLTRAINERM", "COOLTRAINERF", "BEAUTY", "POKEMANIAC", "GRUNTM", "GENTLEMAN", "SKIER", "TEACHER", "SABRINA", "BUG_CATCHER", "FISHER", "SWIMMERM", "SWIMMERF", "SAILOR", "SUPER_NERD", "RIVAL2", "GUITARIST", "HIKER", "BIKER", "BLAINE", "BURGLAR", "FIREBREATHER", "JUGGLER", "BLACKBELT_T", "EXECUTIVEM", "PSYCHIC_T", "PICNICKER", "CAMPER", "EXECUTIVEF", "SAGE", "MEDIUM", "BOARDER", "POKEFANM", "KIMONO_GIRL", "TWINS", "POKEFANF", "RED", "BLUE", "OFFICER", "GRUNTF", "MYSTICALMAN", "BILL_TC", "PROF_ELM", "TPPPC", "ROCKETBOSS", "COOL_SIBLINGS", "BLUE_RB", "BLUE_RB_F"}
 
+local weatherTable = {"None", "Rain", "Sun", "Sandstorm"}
+
 function getBigDW(pointer)
 	-- There is no built-in for big-endian DWs, which are used extensively in battle structs.
 	return memory.readbyte(pointer) * 256 + memory.readbyte(pointer + 1)
@@ -98,7 +100,7 @@ function getMonBattleState(pointer)
 	species_idx = memory.readbyte(pointer + 0)
 	if species_idx == 0 then return end
 	mon["species"] = speciesTable[species_idx]
-	mon["item"] = itemTable[memory.readbyte(pointer + 1)]
+	mon["item"] = itemTable[memory.readbyte(pointer + 1) + 1]
 	mon["moves"] = getMoves(pointer + 2, pointer + 8)
 	dvs["atk"] = AND(memory.readbyte(pointer + 6),0xf0) / 16
 	dvs["def"] = memory.readbyte(pointer + 6) % 16
@@ -175,15 +177,60 @@ function getSubstatus(flags, counts, subhp, lockedmove)
 	return subStatus
 end
 
+function getWeather()
+	weather = memory.readbyte(0xc70a)
+	if weather >= 4 then return string.format("%s end", weatherTable[weather - 2]) end
+	if weather == 0 then return "Clear" end
+	return string.format("%s (%d turns left)", weatherTable[weather + 1], memory.readbyte(0xc70b))
+end
+
+function getScreens(flags, counts)
+	local screens = {}
+	screenflags = memory.readbyte(flags)
+	if (AND(screenflags, 0x03) ~= 0) then
+		screens["spikes"] = AND(screenflags, 0x03)
+	end
+	if (AND(screenflags, 0x04) ~= 0) then
+		screens["safeguard"] = memory.readbyte(counts + 0)
+	end
+	if (AND(screenflags, 0x08) ~= 0) then
+		screens["light screen"] = memory.readbyte(counts + 1)
+	end
+	if (AND(screenflags, 0x10) ~= 0) then
+		screens["reflect"] = memory.readbyte(counts + 2)
+	end
+	return screens
+end
+
+function getStatLevels(pointer)
+	local statLevels = {}
+	statLevels["atk"] = memory.readbyte(pointer + 0) - 7
+	statLevels["def"] = memory.readbyte(pointer + 1) - 7
+	statLevels["spd"] = memory.readbyte(pointer + 2) - 7
+	statLevels["satk"] = memory.readbyte(pointer + 3) - 7
+	statLevels["sdef"] = memory.readbyte(pointer + 4) - 7
+	statLevels["acc"] = memory.readbyte(pointer + 5) - 7
+	statLevels["eva"] = memory.readbyte(pointer + 6) - 7
+	return statLevels
+end
+
 function getPlayerPokemonData()
 	playerMon = getMonBattleState(0xc62c)
-	if playerMon ~= nil then playerMon["subStatus"] = getSubstatus(0xc668, 0xc672, 0xc6df, 0xc71a) end
+	if playerMon == nil then return end
+	playerMon["subStatus"] = getSubstatus(0xc668, 0xc672, 0xc6df, 0xc71a)
+	playerMon["screens"] = getScreens(0xc6ff, 0xc701)
+	playerMon["turns"] = memory.readbyte(0xc6dd)
+	playerMon["stat levels"] = getStatLevels(0xc6cc)
 	return playerMon
 end
 
 function getEnemyPokemonData()
 	enemyMon = getMonBattleState(0xd206)
-	if enemyMon ~= nil then enemyMon["subStatus"] = getSubstatus(0xc66d, 0xc67a, 0xc6e0, 0xc71b) end
+	if enemyMon == nil then return end
+	enemyMon["subStatus"] = getSubstatus(0xc66d, 0xc67a, 0xc6e0, 0xc71b)
+	enemyMon["screens"] = getScreens(0xc700, 0xc702)
+	enemyMon["turns"] = memory.readbyte(0xc6dc)
+	enemyMon["stat levels"] = getStatLevels(0xc6d4)
 	return enemyMon
 end
 
@@ -216,10 +263,7 @@ repeat
 			elseif wBattleMode == 1 then 
 				battleState["enemy type"] = "WILD"
 			end
-			-- battleState["turn"] = getTurns()
-			-- battleState["enemyscreens"] = getEnemyScreens()
-			-- battleState["playerscreens"] = getPlayerScreens()
-			-- battleState["weather"] = getWeather()
+			battleState["weather"] = getWeather()
 			battleState["playerpokemon"] = getPlayerPokemonData()
 			battleState["enemypokemon"] = getEnemyPokemonData()
 			vba.print(battleState)
