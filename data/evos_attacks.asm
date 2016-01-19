@@ -1743,9 +1743,8 @@ OnixEvosAttacks:
 	db 0 ; no more evolutions
 	db 1, TACKLE
 	db 3, HARDEN
-	db 5, WRAP ; Bind replacement
-	db 8, RAGE
-	db 10, BIDE ; gen 1 move
+	db 6, WRAP ; Bind replacement
+	db 9, RAGE
 	db 12, ROCK_THROW
 	db 15, DRAGONBREATH ; later gen move
 	db 18, SLAM

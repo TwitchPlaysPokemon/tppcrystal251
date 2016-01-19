@@ -40,7 +40,7 @@ AzaleaGym_BurglarSimonScript1:
 	loadfont
 	writetext AzaleaGym_BurglarSimonText2
 	buttonsound
-	verbosegiveitem TM_SEISMIC_TOSS, 1
+	verbosegiveitem GREAT_BALL, 1
 	writetext AzaleaGym_BurglarSimonText3
 	waitbutton
 	closetext
@@ -71,7 +71,7 @@ BugsyScript_0x18ec1e: ; 0x18ec1e
 	faceplayer
 	loadfont
 	checkevent EVENT_BUGSY_REMATCH
-	iftrue BugsyAfterRematch
+	iftrue UnknownScript_0x18ec48
 	checkevent EVENT_FIRST_TIME_RED
 	iftrue BugsyRematchScript
 	checkevent EVENT_BEAT_BUGSY
@@ -109,12 +109,6 @@ UnknownScript_0x18ec48: ; 0x18ec48
 	end
 ; 0x18ec6d
 
-BugsyAfterRematch:
-	writetext BugsyAfterRematchText
-	waitbutton
-	closetext
-	end
-
 BugsyRematchScript:
 	writetext BugsyRematchTextBefore
 	waitbutton
@@ -125,7 +119,7 @@ BugsyRematchScript:
 	returnafterbattle
 	setevent EVENT_BUGSY_REMATCH
 	loadfont
-	jump BugsyAfterRematch
+	jump UnknownScript_0x18ec48
 
 UnknownScript_0x18ec6d: ; 0x18ec6d
 	writetext UnknownText_0x18ef98
@@ -387,21 +381,12 @@ BugsyRematchTextBefore:
 	done
 
 BugsyRematchBeatenText:
-	text "Even after"
-	line "years of study,"
-	cont "I cannot solve"
-	cont "#MON battles."
-	
-	done
+	text "Whoa, amazing!"
+	line "You're an expert"
+	cont "on #MON!"
 
-BugsyAfterRematchText:
-	para "You beat me at"
-	line "my best,"
-
-	para "I need to do"
-	line "find a new"
-	cont "theory on #MON"
-	cont "battles."
+	para "My research isn't"
+	line "complete yet."
 	done
 
 UnknownText_0x18edae: ; 0x18edae

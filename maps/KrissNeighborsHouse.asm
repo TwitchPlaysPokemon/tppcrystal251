@@ -52,19 +52,22 @@ UnknownScript_0x7ad27: ; 0x7ad27
 ; 0x7ad2f
 
 UnknownText_0x7ad2f: ; 0x7ad2f
-	text "Today I learned"
-	line "PIKACHU is an"
-	cont "evolved #MON."
+	text "PIKACHU is an"
+	line "evolved #MON."
 
-	para "I also heared it"
-	line "can go by another"
-	cont "name, PIKAQ."
+	para "I was amazed by"
+	line "PROF.ELM's find-"
+	cont "ings."
+
+	para "He's so famous for"
+	line "his research on"
+	cont "#MON evolution."
 
 	para "…sigh…"
 
-	para "I only I was a"
-	line "great researcher"
-	cont "like PROF.ELM."
+	para "I wish I could be"
+	line "a researcher like"
+	cont "him…"
 	done
 ; 0x7add4
 

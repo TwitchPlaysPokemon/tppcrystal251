@@ -191,7 +191,6 @@ GetBattleVarAddr:: ; 39e7
 	dw .substatus1opp, .substatus2opp, .substatus3opp, .substatus4opp, .substatus5opp
 	dw .status, .statusopp, .animation, .effect, .power, .type
 	dw .curmove, .lastcounter, .lastcounteropp, .lastmove, .lastmoveopp
-	dw .type1 , .type2, .type1opp , .type2opp, .screens, .screensopp
 
 	const_def
 	const PLAYER_SUBSTATUS_1
@@ -220,12 +219,6 @@ GetBattleVarAddr:: ; 39e7
 	const ENEMY_COUNTER_MOVE
 	const PLAYER_LAST_MOVE
 	const ENEMY_LAST_MOVE
-	const PLAYER_TYPE_1
-	const ENEMY_TYPE_1
-	const PLAYER_TYPE_2
-	const ENEMY_TYPE_2
-	const PLAYER_SCREENS
-	const ENEMY_SCREENS
 
 ;                       player                     enemy
 .substatus1     db PLAYER_SUBSTATUS_1,    ENEMY_SUBSTATUS_1
@@ -249,13 +242,6 @@ GetBattleVarAddr:: ; 39e7
 .lastcounteropp db ENEMY_COUNTER_MOVE,    PLAYER_COUNTER_MOVE
 .lastmove       db PLAYER_LAST_MOVE,      ENEMY_LAST_MOVE
 .lastmoveopp    db ENEMY_LAST_MOVE,       PLAYER_LAST_MOVE
-.type1			db PLAYER_TYPE_1,		  ENEMY_TYPE_1
-.type1opp		db ENEMY_TYPE_1,		  PLAYER_TYPE_1
-.type2			db PLAYER_TYPE_2,		  ENEMY_TYPE_2
-.type2opp		db ENEMY_TYPE_2,		  PLAYER_TYPE_2
-.screens		db PLAYER_SCREENS,		  ENEMY_SCREENS
-.screensopp		db ENEMY_SCREENS,		  PLAYER_SCREENS
-
 
 .vars
 	dw PlayerSubStatus1,           EnemySubStatus1
@@ -271,10 +257,6 @@ GetBattleVarAddr:: ; 39e7
 	dw CurPlayerMove,              CurEnemyMove
 	dw LastEnemyCounterMove,       LastPlayerCounterMove
 	dw LastPlayerMove,             LastEnemyMove
-	dw BattleMonType1,			   EnemyMonType1
-	dw BattleMonType2,			   EnemyMonType2
-	dw PlayerScreens,				EnemyScreens
-
 ; 3a90
 
 

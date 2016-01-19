@@ -687,7 +687,7 @@ Function3c434: ; 3c434
 	xor a
 	ld [PlayerFuryCutterCount], a
 
-.asm_3c494 ;if not rage, reset rage buffs
+.asm_3c494
 	ld a, [wPlayerMoveStruct + MOVE_EFFECT]
 	cp EFFECT_RAGE
 	jr z, .asm_3c4a4
@@ -714,7 +714,7 @@ Function3c434: ; 3c434
 	xor a
 	ld [PlayerFuryCutterCount], a
 	ld [PlayerProtectCount], a
-	ld [wc72b], a ;reset rage
+	ld [wc72b], a
 	ld hl, PlayerSubStatus4
 	res SUBSTATUS_RAGE, [hl]
 
@@ -727,7 +727,7 @@ Function3c434: ; 3c434
 	xor a
 	ld [PlayerFuryCutterCount], a
 	ld [PlayerProtectCount], a
-	ld [wc72b], a ;reset rage
+	ld [wc72b], a
 	ld hl, PlayerSubStatus4
 	res SUBSTATUS_RAGE, [hl]
 	xor a
@@ -800,16 +800,7 @@ Function3c543: ; 3c543
 
 	ld a, [PlayerSubStatus5]
 	bit SUBSTATUS_CANT_RUN, a
-	jr z, .NotTrapped
-	ld hl, EnemyMonType1
-	ld a, [hli]
-	cp GHOST
-	jr z, .NotTrapped
-	ld a, [hl]
-	cp GHOST
 	jr nz, .Stay
-.NotTrapped
-	
 
 	ld a, [wc731]
 	and a
@@ -916,12 +907,13 @@ CompareMovePriority: ; 3c5b4
 ; 3c5c5
 
 GetMovePriority: ; 3c5c5
-; Return the priority: phaze = 0, counter  = 1, vital throw = 2, normal = 3, +1 = 4, +2 = 5, protect = 6
+; Return the priority (0-4) of move a.
+
 	ld b, a
 
 	; Vital throw goes last.
 	cp VITAL_THROW
-	ld a, 2
+	ld a, 0
 	ret z
 
 	call GetMoveEffect
@@ -934,7 +926,7 @@ GetMovePriority: ; 3c5c5
 	cp -1
 	jr nz, .loop
 
-	ld a, 3
+	ld a, 1
 	ret
 
 .done
@@ -943,14 +935,13 @@ GetMovePriority: ; 3c5c5
 ; 3c5df
 
 MoveEffectPriorities: ; 3c5df
-	db EFFECT_PROTECT,      6
-	db EFFECT_ENDURE,       6
-	db EFFECT_EXTREMESPEED, 5
-	db EFFECT_PRIORITY_HIT, 4
-	db EFFECT_BIDE,			4
+	db EFFECT_PROTECT,      4
+	db EFFECT_ENDURE,       4
+	db EFFECT_EXTREMESPEED, 3
+	db EFFECT_PRIORITY_HIT, 2
 	db EFFECT_WHIRLWIND,    0
-	db EFFECT_COUNTER,      1
-	db EFFECT_MIRROR_COAT,  1
+	db EFFECT_COUNTER,      0
+	db EFFECT_MIRROR_COAT,  0
 	db -1
 ; 3c5ec
 
@@ -3921,16 +3912,7 @@ Function3d8b3: ; 3d8b3
 
 	ld a, [EnemySubStatus5]
 	bit SUBSTATUS_CANT_RUN, a
-	jr z, .NotTrapped
-	ld hl, BattleMonType1
-	ld a, [hli]
-	cp GHOST
-	jr z, .NotTrapped
-	ld a, [hl]
-	cp GHOST
 	jp nz, .asm_3d98d
-.NotTrapped
-	
 
 	ld a, [wc730]
 	and a
@@ -4336,7 +4318,7 @@ NewBattleMonStatus: ; 3dbde
 	ld [PlayerDisableCount], a
 	ld [PlayerFuryCutterCount], a
 	ld [PlayerProtectCount], a
-	ld [wc72b], a ;reset rage
+	ld [wc72b], a
 	ld [DisabledMove], a
 	ld [wc6fe], a
 	ld [wc731], a
@@ -5492,14 +5474,6 @@ ENDC
 	ld a, [EnemySubStatus5]
 	bit SUBSTATUS_CANT_RUN, a
 	jr z, .asm_3e381
-	ld hl, BattleMonType1
-	ld a, [hli]
-	cp GHOST
-	jr z, .asm_3e381
-	ld a, [hl]
-	cp GHOST
-	jr z, .asm_3e381
-
 
 .asm_3e378
 	ld hl, BattleText_0x80c22
@@ -6622,29 +6596,12 @@ LoadEnemyMon: ; 3e8eb
 ; Set level
 	ld a, [CurPartyLevel]
 	ld [EnemyMonLevel], a
-
-
 .Stats
 ; Fill stats
-
-	ld de, EnemyMonMaxHP ;goes into the same place
-
-	ld a, [IsInBattle]
-	dec a
-	jr nz, .CalcTrainerStats
+	ld de, EnemyMonMaxHP
 	ld b, $00
-	ld hl, LinkBattleRNs + 7 
+	ld hl, LinkBattleRNs + 7 ; ?
 	predef Functione167 ;load in stats, hl is start of stat xp
-	jr .DoneStats
-
-.CalcTrainerStats
-	ld a, [CurPartyMon]
-	ld hl, OTPartyMon1StatExp
-	call GetPartyLocation
-	ld b, $01
-	predef Functione167 ;fill stats using correct party mon
-
-.DoneStats
 	
 ; If we're in a trainer battle,
 ; get the rest of the parameters from the party struct

@@ -100,7 +100,6 @@ PoisonHit:
 	checkdestinybond
 	buildopponentrage
 	poisontarget
-	kingsrock
 	endmove
 
 Absorb:
@@ -152,7 +151,6 @@ BurnHit:
 	checkdestinybond
 	buildopponentrage
 	burntarget
-	kingsrock
 	endmove
 
 IcePunch:
@@ -178,11 +176,10 @@ FreezeHit:
 	checkdestinybond
 	buildopponentrage
 	freezetarget
-	kingsrock
 	endmove
 
 Thunderpunch:
-;BodySlam:
+BodySlam:
 Thundershock:
 Thunderbolt:
 Lick:
@@ -208,7 +205,6 @@ ParalyzeHit:
 	checkdestinybond
 	buildopponentrage
 	paralyzetarget
-	kingsrock
 	endmove
 
 Selfdestruct:
@@ -251,7 +247,6 @@ DreamEater:
 	eatdream
 	checkdestinybond
 	buildopponentrage
-	kingsrock
 	endmove
 
 MirrorMove:
@@ -301,7 +296,7 @@ SpeedUp:
 	statupfailtext
 	endmove
 
-;Growth:
+Growth:
 SpecialAttackUp:
 	checkobedience
 	usedmovetext
@@ -662,7 +657,6 @@ AttackDownHit:
 	buildopponentrage
 	attackdown
 	statmessagetarget
-	kingsrock
 	endmove
 
 
@@ -690,7 +684,6 @@ DefenseDownHit:
 	effectchance
 	defensedown
 	statmessagetarget
-	kingsrock
 	endmove
 
 Bubblebeam:
@@ -717,7 +710,6 @@ SpeedDownHit:
 	buildopponentrage
 	speeddown
 	statmessagetarget
-	kingsrock
 	endmove
 
 SpecialAttackDownHit:
@@ -740,7 +732,6 @@ SpecialAttackDownHit:
 	buildopponentrage
 	specialattackdown
 	statmessagetarget
-	kingsrock
 	endmove
 
 PsychicM:
@@ -770,7 +761,6 @@ SpecialDefenseDownHit:
 	buildopponentrage
 	specialdefensedown
 	statmessagetarget
-	kingsrock
 	endmove
 
 MudSlap:
@@ -795,7 +785,6 @@ AccuracyDownHit:
 	buildopponentrage
 	accuracydown
 	statmessagetarget
-	kingsrock
 	endmove
 
 EvasionDownHit:
@@ -818,7 +807,6 @@ EvasionDownHit:
 	buildopponentrage
 	evasiondown
 	statmessagetarget
-	kingsrock
 	endmove
 
 SteelWing:
@@ -842,7 +830,6 @@ DefenseUpHit:
 	buildopponentrage
 	defenseup
 	statmessageuser
-	kingsrock
 	endmove
 
 MetalClaw:
@@ -866,7 +853,6 @@ AttackUpHit:
 	buildopponentrage
 	attackup
 	statmessageuser
-	kingsrock
 	endmove
 
 Ancientpower:
@@ -889,7 +875,6 @@ AllUpHit:
 	checkdestinybond
 	buildopponentrage
 	allstatsup
-	kingsrock
 	endmove
 
 PayDay:
@@ -933,7 +918,7 @@ Bide:
 	doturn
 	usedmovetext
 	unleashenergy
-	;effect0xa3
+	effect0xa3
 	checkhit
 	hittarget
 	effect0xa5
@@ -1193,7 +1178,6 @@ ConfuseHit:
 	supereffectivetext
 	checkdestinybond
 	buildopponentrage
-	kingsrock
 	confusetarget
 	endmove
 
@@ -1241,7 +1225,6 @@ TriAttack:
 	supereffectivetext
 	checkdestinybond
 	buildopponentrage
-	kingsrock
 	tristatuschance
 	endmove
 
@@ -1330,7 +1313,6 @@ HyperBeam:
 	rechargenextturn
 	checkdestinybond
 	buildopponentrage
-	kingsrock
 	endmove
 
 Rage:
@@ -1342,7 +1324,7 @@ Rage:
 	damagecalc
 	stab
 	checkhit
-	;ragedamage
+	ragedamage
 	damagevariation
 	hittarget
 	resulttext
@@ -1462,7 +1444,6 @@ Whirlpool:
 	checkdestinybond
 	buildopponentrage
 	traptarget
-	kingsrock
 	endmove
 
 SuperFang:
@@ -1513,7 +1494,7 @@ Counter:
 	checkfaint
 	checkdestinybond
 	buildopponentrage
-	;kingsrock
+	kingsrock
 	endmove
 
 Encore:
@@ -1721,7 +1702,6 @@ FlameWheel:
 	checkdestinybond
 	buildopponentrage
 	burntarget
-	kingsrock
 	endmove
 
 Curse:
@@ -1934,7 +1914,6 @@ SacredFire:
 	checkdestinybond
 	buildopponentrage
 	burntarget
-	kingsrock
 	endmove
 
 Magnitude:
@@ -2097,7 +2076,7 @@ MirrorCoat:
 	checkfaint
 	checkdestinybond
 	buildopponentrage
-	;kingsrock
+	kingsrock
 	endmove
 
 SkullBash:
@@ -2166,7 +2145,6 @@ Earthquake:
 	supereffectivetext
 	checkdestinybond
 	buildopponentrage
-	kingsrock
 	endmove
 
 FutureSight:
@@ -2204,7 +2182,6 @@ Gust:
 	supereffectivetext
 	checkdestinybond
 	buildopponentrage
-	kingsrock
 	endmove
 
 Stomp:
@@ -2272,7 +2249,6 @@ Thunder:
 	checkdestinybond
 	buildopponentrage
 	paralyzetarget
-	kingsrock
 	endmove
 
 Teleport:
@@ -2322,37 +2298,6 @@ DefenseCurl:
 	statupfailtext
 	endmove
 
-Growth:
-	checkobedience
-	usedmovetext
-	doturn
-	growth
-	effect0x0a
-	effect0x92
-	effect0x0c
-	statmessageuser
-	statupfailtext
-	endmove
 
-BodySlam:
-	checkobedience
-	usedmovetext
-	doturn
-	critical
-	damagestats
-	damagecalc
-	stab
-	damagevariation
-	doubleminimizedamage
-	checkhit
-	effectchance
-	hittarget
-	resulttext
-	checkfaint
-	criticaltext
-	supereffectivetext
-	checkdestinybond
-	buildopponentrage
-	paralyzetarget
-	kingsrock
-	endmove
+
+

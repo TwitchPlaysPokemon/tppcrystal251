@@ -8225,40 +8225,31 @@ TrainerStatXp: ; hl = (a(level) - 5) * 600 + (a - 40)*100) +(a - 75) * 100) + 35
 	cp 95
 	jr nc, .Over99 ;if level 100 or more, load in max
 	ld bc, 800
-	cp 70 ;if < 70, then skip to next loop, else go down to 70, adding 800 each time, then add the rest as a constant
-	jr c, .SkipHighLoop
+	sub 70 ;if < 70, then skip and return to before, else go down to 69, adding 800 each time, then return there
+	jr c, .DoneHighLoop
 .StatXPHighLoop
 	jr z, .DoneHighLoop
 	add hl, bc
 	dec a
 	jr .StatXPHighLoop
-.SkipHighLoop
+.DoneHighLoop
+	add 70
 	ld bc, 700
-	cp 35 ;repeat for 35 ;if < 35, then skip to next loop, else go down to 70, adding 800 each time, then add the rest as a constant
-	jr c, .SkipMidLoop
+	sub 35 ;repeat for 35
+	jr c, .DoneMidLoop
 .StatXPMidLoop
 	jr z, .DoneMidLoop
 	add hl, bc
 	dec a
 	jr .StatXPMidLoop
-.SkipMidLoop
+.DoneMidLoop
+	add 35
 	ld bc, 600
 .StatXPLowLoop
 	jr z, .DoneAllLoop
 	add hl, bc
 	dec a
 	jr .StatXPLowLoop
-
-.DoneHighLoop
-	ld bc, 45500
-	add hl, bc ;add remining stat xp all at once as it is constant
-	jr .DoneAllLoop
-
-.DoneMidLoop
-	ld bc, 21000
-	add hl, bc
-	jr .DoneAllLoop
-
 .Over99
 	ld hl, $ffff ;if level 100, max stat xp
 .DoneAllLoop
@@ -34293,7 +34284,7 @@ AI_Redundant: ; 2c41a
 
 .Spikes: ; 2c4e3
 	ld a, [PlayerScreens]
-	and $03
+	bit SCREENS_SPIKES, a
 	ret
 
 .Foresight: ; 2c4e9
@@ -36834,25 +36825,14 @@ AIWaitMove:
 	ld [CurEnemyMoveNum], a
 	ret
 
-.CheckIfTrapped
-	ld hl, PlayerSubStatus5
-	bit SUBSTATUS_CANT_RUN, [hl]
-	jr z, .NotTrapped
-	ld hl, EnemyMonType1
-	ld a, [hli]
-	cp GHOST
-	jr z, .NotTrapped
-	ld a, [hl]
-	cp GHOST
-	jr z, .NotTrapped
-
 .invalid
 	call AIChooseMove
 	jr .loop
 
 .switch
-	jr .CheckIfTrapped
-.NotTrapped
+	ld hl, PlayerSubStatus5
+	bit SUBSTATUS_CANT_RUN, [hl]
+	jr nz, .invalid
 	and $f
 	jr z, .invalid
 	dec a
@@ -74875,7 +74855,7 @@ endm
 	treemon_map ROUTE_44, 15 
 	;treemon_map ROUTE_45, 0
 	;treemon_map ROUTE_46, 0
-	treemon_map NEW_BARK_TOWN, 1
+	treemon_map NEW_BARK_TOWN, 0
 	;treemon_map CHERRYGROVE_CITY, 0
 	treemon_map VIOLET_CITY, 3
 	treemon_map AZALEA_TOWN, 5
@@ -74889,7 +74869,6 @@ endm
 	;treemon_map SILVER_CAVE_OUTSIDE, 0
 	treemon_map ILEX_FOREST, 8
 	treemon_map BATTLE_TOWER_OUTSIDE, 12 ;yes but the area with trees is the outside bit
-	treemon_map DRAGONS_DEN_B1F, 17
 	db -1
 ; b82c5
 
@@ -74943,7 +74922,6 @@ TreeMons: ; b82e8 ;what tables are assosiate with wwhat numbers
 	dw TreeMons13 ;14
 	dw TreeMons14 ;15
 	dw TreeMons15 ;16
-	dw TreeMons16 ;17
 	
 ; Two tables each (normal, rare).
 ; Structure:
@@ -75075,17 +75053,11 @@ TreeMons14: ;15 - Route 44
 	db -1
 	
 TreeMons15: ;16 - Route 26-27
-	db 75, FLAAFFY,		50
-	db 22, AMPHAROS,	55
-	db 3, DRAGONITE,	58
+	db 100, PINECO, 	48
 	db -1
-	db 60, FLAAFFY,		50
-	db 30, AMPHAROS,	55
-	db 10, DRAGONITE,	58
+	db 75, EXEGGCUTE, 	45
+	db 25, EXEGGUTOR,	55
 	db -1
-
-TreeMons16: ;17 - Route 26-27
-	db 
 	
 ; b83e5
 
@@ -88854,14 +88826,13 @@ DoWeatherModifiers: ; fbda4
 	ld b, a
 	ld a, [wd265] ; move type
 	ld c, a
-
 .CheckWeatherType
 	ld a, [de]
 	inc de
 	cp $ff
-	jr z, .asm_fbdc0 ;of end of array, stop checking type
+	jr z, .asm_fbdc0
 	cp b
-	jr nz, .NextWeatherType ;if move type matches type modified, apply it, else try next slot
+	jr nz, .NextWeatherType
 	ld a, [de]
 	cp c
 	jr z, .ApplyModifier
@@ -88933,7 +88904,6 @@ DoWeatherModifiers: ; fbda4
 	db $ff
 .WeatherMoveModifiers
 	db WEATHER_RAIN, EFFECT_SOLARBEAM, 05
-	db WEATHER_SANDSTORM, EFFECT_SOLARBEAM, 05
 	db $ff
 ; fbe24
 

@@ -9,10 +9,6 @@ CeladonGym_MapScriptHeader: ; 0x72a68
 ErikaScript_0x72a6a: ; 0x72a6a
 	faceplayer
 	loadfont
-	checkevent EVENT_ERIKA_REMATCH
-	iftrue ErikaAfterRematch
-	checkevent EVENT_FIRST_TIME_RED
-	iftrue ErikaRematchScript
 	checkflag ENGINE_RAINBOWBADGE
 	iftrue UnknownScript_0x72a9b
 	writetext UnknownText_0x72b28
@@ -46,62 +42,6 @@ UnknownScript_0x72aae: ; 0x72aae
 	closetext
 	end
 ; 0x72ab4
-
-ErikaRematchScript:
-	writetext ErikaRematchTextBefore
-	waitbutton
-	closetext
-	winlosstext ErikaRematchBeatenText, $0000
-	loadtrainer ERIKA, 2
-	startbattle
-	returnafterbattle
-	setevent EVENT_ERIKA_REMATCH
-	loadfont
-	jump ErikaAfterRematch
-
-ErikaAfterRematch:
-	writetext ErikaAfterRematchText
-	waitbutton
-	closetext
-	end
-
-ErikaRematchTextBefore:
-	text "What wonderful"
-	line "timing."
-
-	para "This unusal #MON"
-	line "showed up just"
-	cont "now"
-
-	para "She's excited to"
-	line "meet you. Do you" 
-	cont "know each other?"
-
-	para "She seems to want"
-	line "a battle, would"
-	cont "you be so kind?"
-
-	para "Please do not"
-	line "hold back."
-
-	done
-	
-
-ErikaRematchBeatenText:
-	text "We concede defeat"
-	done
-
-ErikaAfterRematchText:
-	text "You have grown"
-	line "even stronger."
-
-	para "It would be an"
-	line "honour to battle"
-	cont "you again"
-	cont "sometime."
-
-	done
-
 
 TrainerLassMichelle: ; 0x72ab4
 	; bit/flag number

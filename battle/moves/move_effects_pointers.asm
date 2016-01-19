@@ -76,7 +76,7 @@
 	dw SkyAttack
 	dw ConfuseHit
 	dw Twineedle
-	dw Growth
+	dw NormalHit
 	dw Substitute
 	dw HyperBeam
 	dw Rage
@@ -108,7 +108,7 @@
 	dw Nightmare
 	dw FlameWheel
 	dw Curse
-	dw BodySlam
+	dw NormalHit
 	dw Protect
 	dw Spikes
 	dw Foresight
@@ -156,4 +156,3 @@
 	dw Fly
 	dw DefenseCurl
 	dw Extremespeed
-	
