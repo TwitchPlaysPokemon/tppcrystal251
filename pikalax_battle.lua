@@ -149,48 +149,48 @@ function getSubstatus(flags, counts, subhp, lockedmove)
 	substatus5 = memory.readbyte(flags + 4)
 
 	-- substatus1
-	if (AND(substatus1, 0x01) ~= 0) then subStatus["nightmare"] = 1 end
-	if (AND(substatus1, 0x02) ~= 0) then subStatus["curse"] = 1 end
+	if (AND(substatus1, 0x01) ~= 0) then table.insert(subStatus, "nightmare") end
+	if (AND(substatus1, 0x02) ~= 0) then table.insert(subStatus, "curse") end
 	if (AND(substatus1, 0x04) ~= 0) then subStatus["protect"] = memory.readbyte(counts + 7) end
-	if (AND(substatus1, 0x08) ~= 0) then subStatus["identified"] = 1 end
+	if (AND(substatus1, 0x08) ~= 0) then table.insert(subStatus, "identified") end
 	if (AND(substatus1, 0x10) ~= 0) then subStatus["perish song"] = memory.readbyte(counts + 5) end
-	if (AND(substatus1, 0x20) ~= 0) then subStatus["endure"] = 1 end
+	if (AND(substatus1, 0x20) ~= 0) then table.insert(subStatus, "endure") end
 	if (AND(substatus1, 0x40) ~= 0) then subStatus["rollout"] = memory.readbyte(counts + 0) end
-	if (AND(substatus1, 0x80) ~= 0) then subStatus["attract"] = 1 end
+	if (AND(substatus1, 0x80) ~= 0) then table.insert(subStatus, "attract") end
 
 	-- substatus2
-	if (AND(substatus2, 0x01) ~= 0) then subStatus["curled"] = 1 end
+	if (AND(substatus2, 0x01) ~= 0) then table.insert(subStatus, "curled") end
 
 	-- substatus3
-	if (AND(substatus3, 0x01) ~= 0) then subStatus["bide"] = 1 end
-	if (AND(substatus3, 0x02) ~= 0) then subStatus["rampage"] = 1 end
-	if (AND(substatus3, 0x04) ~= 0) then subStatus["multihit"] = 1 end
-	if (AND(substatus3, 0x08) ~= 0) then subStatus["flinch"] = 1 end
-	if (AND(substatus3, 0x10) ~= 0) then subStatus["charged"] = 1 end
-	if (AND(substatus3, 0x20) ~= 0) then subStatus["underground"] = 1 end
-	if (AND(substatus3, 0x40) ~= 0) then subStatus["flying"] = 1 end
+	if (AND(substatus3, 0x01) ~= 0) then table.insert(subStatus, "bide") end
+	if (AND(substatus3, 0x02) ~= 0) then table.insert(subStatus, "rampage") end
+	if (AND(substatus3, 0x04) ~= 0) then table.insert(subStatus, "multihit") end
+	if (AND(substatus3, 0x08) ~= 0) then table.insert(subStatus, "flinch") end
+	if (AND(substatus3, 0x10) ~= 0) then table.insert(subStatus, "charged") end
+	if (AND(substatus3, 0x20) ~= 0) then table.insert(subStatus, "underground") end
+	if (AND(substatus3, 0x40) ~= 0) then table.insert(subStatus, "flying") end
 	if (AND(substatus3, 0x80) ~= 0) then subStatus["confused"] = memory.readbyte(counts + 1) end
 
 	-- substatus4
-	if (AND(substatus4, 0x01) ~= 0) then subStatus["x accuracy"] = 1 end
-	if (AND(substatus4, 0x02) ~= 0) then subStatus["mist"] = 1 end
-	if (AND(substatus4, 0x04) ~= 0) then subStatus["pumped"] = 1 end
+	if (AND(substatus4, 0x01) ~= 0) then table.insert(subStatus, "x accuracy") end
+	if (AND(substatus4, 0x02) ~= 0) then table.insert(subStatus, "mist") end
+	if (AND(substatus4, 0x04) ~= 0) then table.insert(subStatus, "pumped") end
 	if (AND(substatus4, 0x10) ~= 0) then subStatus["substitute"] = memory.readbyte(subhp) end
-	if (AND(substatus4, 0x20) ~= 0) then subStatus["recharge"] = 1 end
+	if (AND(substatus4, 0x20) ~= 0) then table.insert(subStatus, "recharge") end
 	if (AND(substatus4, 0x40) ~= 0) then subStatus["raging"] = memory.readbyte(counts + 6) end
-	if (AND(substatus4, 0x80) ~= 0) then subStatus["seeded"] = 1 end
+	if (AND(substatus4, 0x80) ~= 0) then table.insert(subStatus, "seeded") end
 	
 	if (AND(substatus5, 0x01) ~= 0) then substatus["toxic"] = memory.readbyte(counts + 2) end
-	if (AND(substatus5, 0x04) ~= 0) then subStatus["transformed"] = 1 end
+	if (AND(substatus5, 0x04) ~= 0) then table.insert(subStatus, "transformed") end
 	if (AND(substatus5, 0x10) ~= 0) then
 		local encore = {}
 		encore["count"] = memory.readbyte(counts + 4)
 		encore["move idx"] = memory.readbyte(lockedmove)
 		subStatus["encore"] = encore
 	end
-	if (AND(substatus5, 0x20) ~= 0) then subStatus["lock on"] = 1 end
-	if (AND(substatus5, 0x40) ~= 0) then subStatus["destiny bond"] = 1 end
-	if (AND(substatus5, 0x80) ~= 0) then subStatus["trapped"] = 1 end
+	if (AND(substatus5, 0x20) ~= 0) then table.insert(subStatus, "lock on") end
+	if (AND(substatus5, 0x40) ~= 0) then table.insert(subStatus, "destiny bond") end
+	if (AND(substatus5, 0x80) ~= 0) then table.insert(subStatus, "trapped") end
 	return subStatus
 end
 

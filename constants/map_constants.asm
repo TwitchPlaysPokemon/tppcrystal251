@@ -520,7 +520,7 @@ MAP_N_A   EQU -1
 	newgroup ; Vermilion City RB
 	mapgroup ROUTE_6_SAFFRON_GATE_RB, 4, 5
 	mapgroup ROUTE_6_UNDERGROUND_ENTRANCE_RB, 4, 4
-	mapgroup ROUTE_6_RB, 9, 10
+	mapgroup ROUTE_6_RB, 12, 10
 	mapgroup VERMILION_CITY_RB, 18, 20
 	mapgroup VERMILION_POKECENTER_1F_RB, 4, 5
 	mapgroup VERMILION_MART_RB, 4, 6
@@ -546,6 +546,7 @@ MAP_N_A   EQU -1
 	mapgroup MT_MOON_B2F_RB, 14, 14
 	mapgroup MT_MOON_B3F_RB, 18, 20
 	mapgroup UNDERGROUND_RB, 14, 3
+	mapgroup VERMILION_PORT_PASSAGE_RB, 10, 10
 
 ; elevator floors
 	const_def

@@ -628,3 +628,8 @@ INCLUDE "maps/EarlyGameKanto/Route6SaffronGate.asm"
 INCLUDE "maps/EarlyGameKanto/Route5UndergroundEntrance.asm"
 INCLUDE "maps/EarlyGameKanto/Route6UndergroundEntrance.asm"
 INCLUDE "maps/EarlyGameKanto/Underground.asm"
+
+SECTION "EGK Vermilion City Events", ROMX
+INCLUDE "maps/EarlyGameKanto/VermilionCity.asm"
+
+SECTION "EGK SS Anne Events", ROMX
