@@ -25,7 +25,7 @@ function getBigDW(pointer)
 end
 
 function refreshinterval(seconds)
-	-- Revo's function
+	-- Revo's function (liar, it's Timmy's function)
 	local lastupdate = os.time()
 	local now
 	repeat
