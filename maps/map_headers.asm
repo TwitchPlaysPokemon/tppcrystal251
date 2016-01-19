@@ -557,12 +557,14 @@ MapGroup32:
 
 MapGroup33:
 ; vermilion city rb
+	map_header Route6SaffronGateRB, $8, 6, ROUTE_6, MUSIC_VIRIDIAN_CITY, 0, 1, 1
+	map_header Route6UndergroundEntranceRB, $8, 6, ROUTE_6, MUSIC_VIRIDIAN_CITY, 0, 1, 1
 
 MapGroup34:
 ; saffron area rb
 	map_header Route5RB, $3, 2, ROUTE_5, MUSIC_ROUTE_3, 0, 0, 1
-	; map_header Route5UndergroundEntranceRB, $8, 6, ROUTE_5, MUSIC_ROUTE_3, 0, 1, 1
-	; map_header Route5SaffronCityGateRB, $8, 6, ROUTE_5, MUSIC_VIRIDIAN_CITY, 0, 1, 1
+	map_header Route5UndergroundEntranceRB, $8, 6, ROUTE_5, MUSIC_VIRIDIAN_CITY, 0, 1, 1
+	map_header Route5SaffronCityGateRB, $8, 6, ROUTE_5, MUSIC_VIRIDIAN_CITY, 0, 1, 1
 
 MapGroup35:
 ; egk dungeons and ss anne
@@ -573,3 +575,4 @@ MapGroup35:
 	map_header MtMoonB1FRB, $27, 4, MT_MOON, MUSIC_MT_MOON, 1, 2, 1
 	map_header MtMoonB2FRB, $27, 4, MT_MOON, MUSIC_MT_MOON, 1, 2, 1
 	map_header MtMoonB3FRB, $27, 4, MT_MOON, MUSIC_MT_MOON, 1, 2, 1
+	map_header UndergroundRB, $1c, 6, UNDERGROUND, MUSIC_ROUTE_1, 0, 2, 1

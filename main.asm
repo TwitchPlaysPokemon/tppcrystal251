@@ -89397,6 +89397,7 @@ ENDM
 	npctrade 0, DUGTRIO,    MAGNETON,   "MAGGIE@@@@@", $96, $66, METAL_COAT,   50082, "FOREST@@@@@", TRADE_EITHER_GENDER
 	npctrade 1, ABRA,       MR__MIME,   "MARCEL@@@@@", $68, $82, BERRY,        49677, "ANDREW@@@@@", TRADE_EITHER_GENDER
 	npctrade 0, PIDGEOTTO,  TANGELA,    "GELA@@@@@@@", $52, $67, PSNCUREBERRY, 60392, "JEREMY@@@@@", TRADE_EITHER_GENDER
+	npctrade 3, CUBONE,     MACHOP,     "MUSCLE@@@@@", $e3, $b5, BURNT_BERRY,  62577, "LUCY@@@@@@@", TRADE_MALE_ONLY
 ; fcf38
 
 PrintTradeText: ; fcf38

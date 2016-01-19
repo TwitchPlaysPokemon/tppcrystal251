@@ -118,7 +118,7 @@ PokefanmCarterBeatenText: ; 0x1ad4ff
 ; 0x1ad508
 
 UnknownText_0x1ad508: ; 0x1ad508
-	text "Cat, duck, bird..."
+	text "Cat, duck, bird…"
 
 	para "I wonder how they"
 	line "will get along."

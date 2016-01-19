@@ -553,7 +553,7 @@ JugglerIrwin1BeatenText: ; 0x19cd42
 UnknownText_0x19cd5a: ; 0x19cd5a
 	text "Someday I will"
 	line "be able to juggle"
-	cont "six at once..."
+	cont "six at once…"
 	done
 ; 0x19cdaa
 

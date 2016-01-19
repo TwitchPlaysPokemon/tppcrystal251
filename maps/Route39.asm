@@ -278,7 +278,7 @@ SailorEugeneSeenText: ; 0x1a5c09
 
 	para "Some #MON"
 	line "happened to get"
-	cont "mixed into it..."
+	cont "mixed into it…"
 	done
 ; 0x1a5c42
 
@@ -317,7 +317,7 @@ PokefanmDerek1BeatenText: ; 0x1a5cd4
 	text "SON: Dad, how"
 	line "could you lose!?"
 	
-	para "DAD: ..."
+	para "DAD: …"
 	done
 ; 0x1a5cf8
 

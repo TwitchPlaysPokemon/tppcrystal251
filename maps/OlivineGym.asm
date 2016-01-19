@@ -153,13 +153,13 @@ JasmineRematchTextBefore:
 	
 JasmineRematchBeatenText:
 	text "True to your"
-	line "reputation..."
+	line "reputation…"
 
 	para "I'm glad someone"
 	line "as strong as you"
 	cont "is so nice."
 
-	para "... Good luck"
+	para "… Good luck"
 	done
 
 UnknownText_0x9c2bb: ; 0x9c2bb

@@ -622,3 +622,8 @@ INCLUDE "maps/EarlyGameKanto/BillsHouse.asm"
 
 SECTION "EGK Route 5 Events", ROMX
 INCLUDE "maps/EarlyGameKanto/Route5.asm"
+INCLUDE "maps/EarlyGameKanto/Route5SaffronCityGate.asm"
+INCLUDE "maps/EarlyGameKanto/Route6SaffronGate.asm"
+INCLUDE "maps/EarlyGameKanto/Route5UndergroundEntrance.asm"
+INCLUDE "maps/EarlyGameKanto/Route6UndergroundEntrance.asm"
+INCLUDE "maps/EarlyGameKanto/Underground.asm"

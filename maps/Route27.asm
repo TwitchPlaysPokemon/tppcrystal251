@@ -613,7 +613,7 @@ UnknownText_0x1a0e42: ; 0x1a0e42
 
 	para "Social media"
 	line "isn't easy"
-	cont "for everyone..."
+	cont "for everyone…"
 	done
 ; 0x1a0e7f
 

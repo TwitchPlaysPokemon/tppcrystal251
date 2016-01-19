@@ -185,7 +185,7 @@ UnknownText_0x72242: ; 0x72242
 	line "as a prize in"
 	
 	para "the CELADON"
-	line "GAME CORNER..."
+	line "GAME CORNER…"
 	done
 ; 0x72295
 

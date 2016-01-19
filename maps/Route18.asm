@@ -93,7 +93,7 @@ UnknownText_0x1acfa5: ; 0x1acfa5
 ; 0x1acfd7
 
 Bird_keeperBobSeenText: ; 0x1acfd7
-	text "If I was a bird..."
+	text "If I was a bird…"
 
 	para "I would fly around"
 	line "all the happy"

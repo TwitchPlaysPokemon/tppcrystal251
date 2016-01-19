@@ -137,7 +137,7 @@ UnknownText_0x1aa043: ; 0x1aa043
 	cont "in GOLDENROD."
 
 	para "Looks like I've"
-	line "overdone it..."
+	line "overdone it…"
 	
 	para "I can't get out"
 	line "of my house now!"

@@ -493,7 +493,7 @@ BeautySamanthaSeenText: ; 0x545be
 
 BeautySamanthaBeatenText: ; 0x545ed
 	text "Graceful in"
-	line "defeat..."
+	line "defeat…"
 	done
 ; 0x5460b
 
@@ -515,11 +515,11 @@ GoldenrodGymGuyText: ; 0x5463a
 	line "to normal-type"
 	cont "#MON trainers!"
 	
-	para "Also... Uhm..."
+	para "Also… Uhm…"
 	
 	para "It feels like I"
 	line "forgot something"
-	cont "important..."
+	cont "important…"
 	done
 ; 0x546a7
 

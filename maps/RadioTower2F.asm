@@ -546,7 +546,7 @@ UnknownText_0x5dc00: ; 0x5dc00
 
 	para "It has some bad"
 	line "side effects"
-	cont "though..."
+	cont "though…"
 	done
 ; 0x5dc64
 

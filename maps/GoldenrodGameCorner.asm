@@ -568,7 +568,7 @@ UnknownText_0x5718a: ; 0x5718a
 	line "-ays covered in"
 	
 	para "salt for some"
-	line "reason..."
+	line "reason…"
 	done
 ; 0x571af
 

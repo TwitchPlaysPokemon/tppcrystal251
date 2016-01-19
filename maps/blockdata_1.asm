@@ -212,6 +212,7 @@ Route35Goldenrodgate_BlockData:
 Route36RuinsofAlphgate_BlockData:
 Route34IlexForestGate_BlockData:
 Route6SaffronGate_BlockData:
+Route6SaffronGateRB_BlockData:
 Route40BattleTowerGate_BlockData:
 Route2Gate_BlockData:
 Route2GateRB_BlockData:

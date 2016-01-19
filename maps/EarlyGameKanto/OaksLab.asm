@@ -304,7 +304,6 @@ OaksLab_DoRivalBattle:
 	writecode VAR_BATTLETYPE, BATTLETYPE_CANLOSE
 	startbattle
 	special DeleteSavedMusic
-	reloadmapmusic
 	reloadmap
 	special HealParty
 	playmapmusic

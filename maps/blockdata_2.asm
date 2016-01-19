@@ -163,6 +163,8 @@ NationalParkBugContest_BlockData:
 
 Route6UndergroundEntrance_BlockData: ; 0xac9f1
 Route5UndergroundEntrance_BlockData:
+Route6UndergroundEntranceRB_BlockData: ; 0xac9f1
+Route5UndergroundEntranceRB_BlockData:
 	INCBIN "maps/Route6UndergroundEntrance.blk"
 ; 0xaca01
 

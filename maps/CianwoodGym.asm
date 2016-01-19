@@ -367,7 +367,7 @@ BlackbeltYoshiBeatenText: ; 0x9d9e9
 
 UnknownText_0x9d9fa: ; 0x9d9fa
 	text "I'll go and sulk"
-	line "in the corner..."
+	line "in the corner…"
 	done
 ; 0x9da2e
 
