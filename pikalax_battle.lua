@@ -109,6 +109,7 @@ function getDVs(pointer)
 	dvs["def"] = memory.readbyte(pointer) % 16
 	dvs["spd"] = AND(memory.readbyte(pointer + 1),0xf0) / 16
 	dvs["spc"] = memory.readbyte(pointer + 1) % 16
+	dvs["hp"] = AND(dvs["atk"], 1) * 8 + AND(dvs["def"], 1) * 4 + AND(dvs["spd"], 1) * 2 + AND(dvs["spc"], 1)
 	return dvs
 end
 

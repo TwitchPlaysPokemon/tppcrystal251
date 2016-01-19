@@ -1,7 +1,7 @@
 Function38000: ; 38000
 	and a
 
-	ld a, [IsInBattle]
+	ld a, [wBattleMode]
 	dec a
 	ret z
 

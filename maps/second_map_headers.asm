@@ -724,3 +724,11 @@
 	map_header_2 Route6UndergroundEntranceRB, ROUTE_6_UNDERGROUND_ENTRANCE_RB, $0, NONE ; 0x9662c
 	map_header_2 Route6SaffronGateRB, ROUTE_6_SAFFRON_GATE_RB, $0, NONE ; 0x96638
 	map_header_2 UndergroundRB, UNDERGROUND_RB, $0, NONE ; 0x95c6c
+
+	; map_header_2 VermilionCityRB, VERMILION_CITY_RB, $43, NORTH | EAST ; 0x955b8
+	; connection north, ROUTE_6_RB, Route6RB, 5, 0, 10, VERMILION_CITY_RB
+	; connection east, ROUTE_11_RB, Route11RB, 0, 0, 9, VERMILION_CITY_RB
+
+	map_header_2 Route6RB, ROUTE_6_RB, $f, NORTH | SOUTH ; 0x955dc
+	connection north, SAFFRON_CITY, SaffronCity, -3, 2, 16, ROUTE_6_RB
+	connection south, VERMILION_CITY, VermilionCity, -3, 2, 16, ROUTE_6_RB

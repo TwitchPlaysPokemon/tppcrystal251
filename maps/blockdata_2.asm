@@ -273,6 +273,7 @@ SilverCaveOutside_BlockData: ; 0xad9d6
 ; 0xadb3e
 
 Route6_BlockData: ; 0xadb3e
+Route6RB_BlockData: ; 0xadb3e
 	INCBIN "maps/Route6.blk"
 ; 0xadb98
 

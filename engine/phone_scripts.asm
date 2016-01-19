@@ -3106,7 +3106,7 @@ String_be662: db "Brother@"
 
 UnknownScript_0xbe66a:: ; 0xbe66a
 	faceplayer
-	trainerstatus $2
+	trainerstatus CHECK_FLAG
 	iftrue UnknownScript_0xbe698
 	loadtrainerdata
 	playrammusic
@@ -3132,7 +3132,7 @@ UnknownScript_0xbe68a: ; 0xbe68a
 	loadtrainerdata
 	startbattle
 	returnafterbattle
-	trainerstatus $1
+	trainerstatus SET_FLAG
 	loadvar wd04d, $ff
 
 UnknownScript_0xbe698:

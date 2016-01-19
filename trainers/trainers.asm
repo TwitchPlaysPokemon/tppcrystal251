@@ -5458,6 +5458,18 @@ BugCatcherGroup:
 	db 11, KAKUNA
 	db $ff
 
+	db "KEIGO@"
+	db 0
+	db 16, WEEDLE
+	db 16, CATERPIE
+	db 18, WEEDLE
+	db $ff
+
+	db "ELIJAH@"
+	db 0
+	db 20, BUTTERFREE
+	db $ff
+
 ; ================
 ; ================================
 
@@ -8517,6 +8529,18 @@ PicnickerGroup:
 	db 15, NIDORAN_F, "PRINCESS@"
 	db $ff
 ; ================
+	db "NANCY@"
+	db 0
+	db 16, RATTATA
+	db 16, PIKACHU
+	db $ff
+
+	db "IZZY@"
+	db (1 << TRAINERTYPE_NICKNAME)
+	db 16, PIDGEY, "HOPSY@"
+	db 16, PIDGEY, "PECKSY@"
+	db 16, PIDGEY, "FLAPSY@"
+	db $ff
 ; ================================
 
 
@@ -8824,6 +8848,17 @@ CamperGroup:
 	db (1 << TRAINERTYPE_NICKNAME | 1 << TRAINERTYPE_ITEM)
 	db 14, RATTATA, BERRY, "RATMAN@"
 	db 14, EKANS, BERRY, "PYTHON@"
+	db $ff
+
+	db "RICKY@"
+	db 0
+	db 20, SQUIRTLE
+	db $ff
+
+	db "JEFF@"
+	db 0
+	db 16, SPEAROW
+	db 17, RATICATE
 	db $ff
 ; ================================
 
