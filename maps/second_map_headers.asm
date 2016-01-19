@@ -709,3 +709,5 @@
 
 	map_header_2 Route25RB, ROUTE_25_RB, $2c, WEST ; 0x956e4
 	connection west, ROUTE_24_RB, Route24RB, 0, 0, 10, ROUTE_25_RB
+
+	map_header_2 BillsHouseRB, BILLS_HOUSE_RB, $0, NONE ; 0x95e10

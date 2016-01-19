@@ -118,6 +118,7 @@ CeruleanCityRBLass1Script:
 	end
 
 CeruleanCityRBSlowbroScript:
+	waitsfx
 	cry SLOWBRO
 	random 4
 	if_equal 1, .text1

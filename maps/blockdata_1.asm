@@ -154,7 +154,6 @@ CeruleanGymBadgeSpeechHouse_BlockData:
 CeruleanPoliceStation_BlockData:
 CeruleanTradeSpeechHouse_BlockData:
 CeruleanTradeSpeechHouseRB_BlockData:
-BillsHouse_BlockData:
 CharcoalKiln_BlockData:
 LakeofRageHiddenPowerHouse_BlockData:
 LakeofRageMagikarpHouse_BlockData:
@@ -199,8 +198,10 @@ CherrygroveEvolutionSpeechHouse_BlockData:
 Route30BerrySpeechHouse_BlockData:
 	INCBIN "maps/OlivineVoltorbHouse.blk"
 ; 0xaa877
+BillsHouse_BlockData:
 CeruleanGymBadgeSpeechHouseRB_BlockData:
 	INCBIN "maps/CeruleanGymBadgeSpeechHouseRB.blk"
+
 BillsHouseRB_BlockData:
 	INCBIN "maps/BillsHouseRB.blk"
 

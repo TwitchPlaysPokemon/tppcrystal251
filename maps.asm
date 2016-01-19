@@ -605,3 +605,4 @@ SECTION "EGK Route 24 Events", ROMX
 INCLUDE "maps/EarlyGameKanto/Route24.asm"
 SECTION "EGK Route 25 Events", ROMX
 INCLUDE "maps/EarlyGameKanto/Route25.asm"
+INCLUDE "maps/EarlyGameKanto/BillsHouse.asm"
