@@ -340,17 +340,11 @@ function readPlayerPack()
 	local tmhm = {}
 	numItems = memory.readbyte(0xd892)
 	for i = 1, numItems do
-		local curItem = {}
-		curItem['name'] = itemTable[memory.readbyte(0xd893 + 2 * (i-1)) + 1]
-		curItem['quantity'] = memory.readbyte(0xd893 + 2 * (i-1) + 1)
-		table.insert(items, curItem)
+		items[itemTable[memory.readbyte(0xd893 + 2 * (i-1)) + 1]] = memory.readbyte(0xd893 + 2 * (i-1) + 1)
 	end
 	numBalls = memory.readbyte(0xd8d7)
 	for i = 1, numBalls do
-		local curItem = {}
-		curItem['name'] = itemTable[memory.readbyte(0xd8d8 + 2 * (i-1)) + 1]
-		curItem['quantity'] = memory.readbyte(0xd8d8 + 2 * (i-1) + 1)
-		table.insert(balls, curItem)
+		balls[itemTable[memory.readbyte(0xd8d8 + 2 * (i-1)) + 1]] = memory.readbyte(0xd8d8 + 2 * (i-1) + 1)
 	end
 	numKeys = memory.readbyte(0xd8bc)
 	for i = 1, numKeys do
@@ -378,7 +372,7 @@ repeat
     wBattleMode = memory.readbyte(0xD22D)
     rSVBK = memory.readbyte(0xFF70)
     
-    vba.print("rSVBK: ", rSVBK)
+    vba.print("WRAM bank: ", rSVBK)
 
 	if rSVBK == 1 then
 		playerParty = getTrainerParty(0xdcd7)
