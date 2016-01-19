@@ -245,8 +245,8 @@ MapBattleTentBattleRoomBillText7:
 	text "Ah, <PLAY_G>!"
 
 	para "Here's the thing I"
-	line "wanted you to have"
-	cont "from me."
+	line "found."
+	;cont "from me."
 	done
 	
 MapBattleTentBattleRoomDoorText:
