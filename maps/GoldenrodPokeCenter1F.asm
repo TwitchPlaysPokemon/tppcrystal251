@@ -723,15 +723,14 @@ UnknownText_0x620a1: ; 0x620a1
 ; 0x62105
 
 UnknownText_0x62105: ; 0x62105
-	text "The COLOSSEUM"
-	line "upstairs is for"
-	cont "link battles."
+	text "In all of the"
+	line "#MON CENTER,"
 
-	para "Battle records are"
-	line "posted on the"
+	para "There is a PC"
+	line "on both floors."
 
-	para "wall, so I can't"
-	line "afford to lose."
+	para "Feels like a big"
+	line "waste of money."
 	done
 ; 0x62173
 
@@ -764,19 +763,21 @@ UnknownText_0x62222: ; 0x62222
 ; 0x62260
 
 UnknownText_0x62260: ; 0x62260
-	text "A higher level"
-	line "#MON doesn't"
-	cont "always win."
+	text "You just came"
+	line "from training your"
+	cont "#MON too?"
 
-	para "After all, it may"
-	line "have a type dis-"
-	cont "advantage."
+	para "I'm training my"
+	line "SENTRET for the"
+	cont "gym around here."
 
-	para "I don't think"
-	line "there is a single"
+	para "For some weird"
+	line "reason though,"
 
-	para "#MON that is"
-	line "the toughest."
+	para "she gets really"
+	line "scared when I"
+	cont "go near this"
+	cont "particular PC..."
 	done
 ; 0x622f0
 

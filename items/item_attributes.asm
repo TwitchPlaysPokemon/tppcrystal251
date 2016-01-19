@@ -605,7 +605,7 @@ Item2Attributes:
 ; SOFT SAND
 	dw 5000 ; price
 	db HELD_GROUND_BOOST ; effect
-	db 10 ; param
+	db 20 ; param
 	db CANT_SELECT
 	db ITEM
 	db $00 ; can't use
@@ -613,7 +613,7 @@ Item2Attributes:
 ; SHARP BEAK
 	dw 5000 ; price
 	db HELD_FLYING_BOOST ; effect
-	db 10 ; param
+	db 20 ; param
 	db CANT_SELECT
 	db ITEM
 	db $00 ; can't use
@@ -645,7 +645,7 @@ Item2Attributes:
 ; POISON BARB
 	dw 5000 ; price
 	db HELD_POISON_BOOST ; effect
-	db 10 ; param
+	db 20 ; param
 	db CANT_SELECT
 	db ITEM
 	db $00 ; can't use
@@ -701,7 +701,7 @@ Item2Attributes:
 ; SILVERPOWDER
 	dw 5000 ; price
 	db HELD_BUG_BOOST ; effect
-	db 10 ; param
+	db 20 ; param
 	db CANT_SELECT
 	db ITEM
 	db $00 ; can't use
@@ -757,7 +757,7 @@ Item2Attributes:
 ; MYSTIC WATER
 	dw 5000 ; price
 	db HELD_WATER_BOOST ; effect
-	db 10 ; param
+	db 20 ; param
 	db CANT_SELECT
 	db ITEM
 	db $00 ; can't use
@@ -765,7 +765,7 @@ Item2Attributes:
 ; TWISTEDSPOON
 	dw 5000 ; price
 	db HELD_PSYCHIC_BOOST ; effect
-	db 10 ; param
+	db 20 ; param
 	db CANT_SELECT
 	db ITEM
 	db $00 ; can't use
@@ -781,7 +781,7 @@ Item2Attributes:
 ; BLACKBELT
 	dw 5000 ; price
 	db HELD_FIGHTING_BOOST ; effect
-	db 10 ; param
+	db 20 ; param
 	db CANT_SELECT
 	db ITEM
 	db $00 ; can't use
@@ -813,7 +813,7 @@ Item2Attributes:
 ; BLACKGLASSES
 	dw 5000 ; price
 	db HELD_DARK_BOOST ; effect
-	db 10 ; param
+	db 20 ; param
 	db CANT_SELECT
 	db ITEM
 	db $00 ; can't use
@@ -828,8 +828,8 @@ Item2Attributes:
 
 ; PINK BOW
 	dw 5000 ; price
-	db HELD_NORMAL_BOOST ; effect
-	db 10 ; param
+	db HELD_FAIRY_BOOST ; effect
+	db 20 ; param
 	db CANT_SELECT
 	db ITEM
 	db $00 ; can't use
@@ -853,7 +853,7 @@ Item2Attributes:
 ; NEVERMELTICE
 	dw 5000 ; price
 	db HELD_ICE_BOOST ; effect
-	db 10 ; param
+	db 20 ; param
 	db CANT_SELECT
 	db ITEM
 	db $00 ; can't use
@@ -861,7 +861,7 @@ Item2Attributes:
 ; MAGNET
 	dw 5000 ; price
 	db HELD_ELECTRIC_BOOST ; effect
-	db 10 ; param
+	db 20 ; param
 	db CANT_SELECT
 	db ITEM
 	db $00 ; can't use
@@ -901,7 +901,7 @@ Item2Attributes:
 ; SPELL TAG
 	dw 5000 ; price
 	db HELD_GHOST_BOOST ; effect
-	db 10 ; param
+	db 20 ; param
 	db CANT_SELECT
 	db ITEM
 	db $00 ; can't use
@@ -933,7 +933,7 @@ Item2Attributes:
 ; MIRACLE SEED
 	dw 5000 ; price
 	db HELD_GRASS_BOOST ; effect
-	db 10 ; param
+	db 20 ; param
 	db CANT_SELECT
 	db ITEM
 	db $00 ; can't use
@@ -997,7 +997,7 @@ Item2Attributes:
 ; HARD STONE
 	dw 5000 ; price
 	db HELD_ROCK_BOOST ; effect
-	db 10 ; param
+	db 20 ; param
 	db CANT_SELECT
 	db ITEM
 	db $00 ; can't use
@@ -1101,7 +1101,7 @@ Item2Attributes:
 ; CHARCOAL
 	dw 5000 ; price
 	db HELD_FIRE_BOOST ; effect
-	db 10 ; param
+	db 20 ; param
 	db CANT_SELECT
 	db ITEM
 	db $00 ; can't use
@@ -1141,7 +1141,7 @@ Item2Attributes:
 ; METAL COAT
 	dw 5000 ; price
 	db HELD_STEEL_BOOST ; effect
-	db 10 ; param
+	db 20 ; param
 	db CANT_SELECT
 	db ITEM
 	db $00 ; can't use
@@ -1149,7 +1149,7 @@ Item2Attributes:
 ; DRAGON FANG
 	dw 5000 ; price
 	db HELD_DRAGON_BOOST ; effect ; fixes Dragon Fang glitch
-	db 0 ; param
+	db 20 ; param
 	db CANT_SELECT
 	db ITEM
 	db $00 ; can't use
@@ -1357,7 +1357,7 @@ Item2Attributes:
 ; POLKADOT BOW
 	dw 5000 ; price
 	db HELD_NORMAL_BOOST ; effect
-	db 10 ; param
+	db 20 ; param
 	db CANT_SELECT
 	db ITEM
 	db $00 ; can't use
@@ -1523,7 +1523,7 @@ Item2Attributes:
 	db $00 ; can't use
 
 ; TM01
-	dw 0 ; price
+	dw 10000 ; price
 	db NONE ; effect
 	db 0 ; param
 	db CANT_SELECT | CANT_TOSS
@@ -1531,7 +1531,7 @@ Item2Attributes:
 	db $50 ; party menu
 
 ; TM02
-	dw 0 ; price
+	dw 10000 ; price
 	db NONE ; effect
 	db 0 ; param
 	db CANT_SELECT | CANT_TOSS
@@ -1539,7 +1539,7 @@ Item2Attributes:
 	db $50 ; party menu
 
 ; TM03
-	dw 0 ; price
+	dw 10000 ; price
 	db NONE ; effect
 	db 0 ; param
 	db CANT_SELECT | CANT_TOSS
@@ -1547,7 +1547,7 @@ Item2Attributes:
 	db $50 ; party menu
 
 ; TM04
-	dw 0 ; price
+	dw 10000 ; price
 	db NONE ; effect
 	db 0 ; param
 	db CANT_SELECT | CANT_TOSS
@@ -1563,7 +1563,7 @@ Item2Attributes:
 	db $00 ; can't use
 
 ; TM05
-	dw 0 ; price
+	dw 10000 ; price
 	db NONE ; effect
 	db 0 ; param
 	db CANT_SELECT | CANT_TOSS
@@ -1571,7 +1571,7 @@ Item2Attributes:
 	db $50 ; party menu
 
 ; TM06
-	dw 0 ; price
+	dw 10000 ; price
 	db NONE ; effect
 	db 0 ; param
 	db CANT_SELECT | CANT_TOSS
@@ -1579,7 +1579,7 @@ Item2Attributes:
 	db $50 ; party menu
 
 ; TM07
-	dw 0 ; price
+	dw 10000 ; price
 	db NONE ; effect
 	db 0 ; param
 	db CANT_SELECT | CANT_TOSS
@@ -1587,7 +1587,7 @@ Item2Attributes:
 	db $50 ; party menu
 
 ; TM08
-	dw 0 ; price
+	dw 10000 ; price
 	db NONE ; effect
 	db 0 ; param
 	db CANT_SELECT | CANT_TOSS
@@ -1595,7 +1595,7 @@ Item2Attributes:
 	db $50 ; party menu
 
 ; TM09
-	dw 0 ; price
+	dw 10000 ; price
 	db NONE ; effect
 	db 0 ; param
 	db CANT_SELECT | CANT_TOSS
@@ -1603,7 +1603,7 @@ Item2Attributes:
 	db $50 ; party menu
 
 ; TM10
-	dw 0 ; price
+	dw 10000 ; price
 	db NONE ; effect
 	db 0 ; param
 	db CANT_SELECT | CANT_TOSS
@@ -1611,7 +1611,7 @@ Item2Attributes:
 	db $50 ; party menu
 
 ; TM11
-	dw 0 ; price
+	dw 10000 ; price
 	db NONE ; effect
 	db 0 ; param
 	db CANT_SELECT | CANT_TOSS
@@ -1619,7 +1619,7 @@ Item2Attributes:
 	db $50 ; party menu
 
 ; TM12
-	dw 0 ; price
+	dw 10000 ; price
 	db NONE ; effect
 	db 0 ; param
 	db CANT_SELECT | CANT_TOSS
@@ -1627,7 +1627,7 @@ Item2Attributes:
 	db $50 ; party menu
 
 ; TM13
-	dw 0 ; price
+	dw 10000 ; price
 	db NONE ; effect
 	db 0 ; param
 	db CANT_SELECT | CANT_TOSS
@@ -1635,7 +1635,7 @@ Item2Attributes:
 	db $50 ; party menu
 
 ; TM14
-	dw 0 ; price
+	dw 10000 ; price
 	db NONE ; effect
 	db 0 ; param
 	db CANT_SELECT | CANT_TOSS
@@ -1643,7 +1643,7 @@ Item2Attributes:
 	db $50 ; party menu
 
 ; TM15
-	dw 0 ; price
+	dw 10000 ; price
 	db NONE ; effect
 	db 0 ; param
 	db CANT_SELECT | CANT_TOSS
@@ -1651,7 +1651,7 @@ Item2Attributes:
 	db $50 ; party menu
 
 ; TM16
-	dw 0 ; price
+	dw 10000 ; price
 	db NONE ; effect
 	db 0 ; param
 	db CANT_SELECT | CANT_TOSS
@@ -1659,7 +1659,7 @@ Item2Attributes:
 	db $50 ; party menu
 
 ; TM17
-	dw 0 ; price
+	dw 10000 ; price
 	db NONE ; effect
 	db 0 ; param
 	db CANT_SELECT | CANT_TOSS
@@ -1667,7 +1667,7 @@ Item2Attributes:
 	db $50 ; party menu
 
 ; TM18
-	dw 0 ; price
+	dw 10000 ; price
 	db NONE ; effect
 	db 0 ; param
 	db CANT_SELECT | CANT_TOSS
@@ -1675,7 +1675,7 @@ Item2Attributes:
 	db $50 ; party menu
 
 ; TM19
-	dw 0 ; price
+	dw 10000 ; price
 	db NONE ; effect
 	db 0 ; param
 	db CANT_SELECT | CANT_TOSS
@@ -1683,7 +1683,7 @@ Item2Attributes:
 	db $50 ; party menu
 
 ; TM20
-	dw 0 ; price
+	dw 10000 ; price
 	db NONE ; effect
 	db 0 ; param
 	db CANT_SELECT | CANT_TOSS
@@ -1691,7 +1691,7 @@ Item2Attributes:
 	db $50 ; party menu
 
 ; TM21
-	dw 0 ; price
+	dw 10000 ; price
 	db NONE ; effect
 	db 0 ; param
 	db CANT_SELECT | CANT_TOSS
@@ -1699,7 +1699,7 @@ Item2Attributes:
 	db $50 ; party menu
 
 ; TM22
-	dw 0 ; price
+	dw 10000 ; price
 	db NONE ; effect
 	db 0 ; param
 	db CANT_SELECT | CANT_TOSS
@@ -1707,7 +1707,7 @@ Item2Attributes:
 	db $50 ; party menu
 
 ; TM23
-	dw 0 ; price
+	dw 10000 ; price
 	db NONE ; effect
 	db 0 ; param
 	db CANT_SELECT | CANT_TOSS
@@ -1715,7 +1715,7 @@ Item2Attributes:
 	db $50 ; party menu
 
 ; TM24
-	dw 0 ; price
+	dw 10000 ; price
 	db NONE ; effect
 	db 0 ; param
 	db CANT_SELECT | CANT_TOSS
@@ -1723,7 +1723,7 @@ Item2Attributes:
 	db $50 ; party menu
 
 ; TM25
-	dw 0 ; price
+	dw 10000 ; price
 	db NONE ; effect
 	db 0 ; param
 	db CANT_SELECT | CANT_TOSS
@@ -1731,7 +1731,7 @@ Item2Attributes:
 	db $50 ; party menu
 
 ; TM26
-	dw 0 ; price
+	dw 10000 ; price
 	db NONE ; effect
 	db 0 ; param
 	db CANT_SELECT | CANT_TOSS
@@ -1739,7 +1739,7 @@ Item2Attributes:
 	db $50 ; party menu
 
 ; TM27
-	dw 0 ; price
+	dw 10000 ; price
 	db NONE ; effect
 	db 0 ; param
 	db CANT_SELECT | CANT_TOSS
@@ -1747,7 +1747,7 @@ Item2Attributes:
 	db $50 ; party menu
 
 ; TM28
-	dw 0 ; price
+	dw 10000 ; price
 	db NONE ; effect
 	db 0 ; param
 	db CANT_SELECT | CANT_TOSS
@@ -1763,7 +1763,7 @@ Item2Attributes:
 	db $00 ; can't use
 
 ; TM29
-	dw 0 ; price
+	dw 10000 ; price
 	db NONE ; effect
 	db 0 ; param
 	db CANT_SELECT | CANT_TOSS
@@ -1771,7 +1771,7 @@ Item2Attributes:
 	db $50 ; party menu
 
 ; TM30
-	dw 0 ; price
+	dw 10000 ; price
 	db NONE ; effect
 	db 0 ; param
 	db CANT_SELECT | CANT_TOSS
@@ -1779,7 +1779,7 @@ Item2Attributes:
 	db $50 ; party menu
 
 ; TM31
-	dw 0 ; price
+	dw 10000 ; price
 	db NONE ; effect
 	db 0 ; param
 	db CANT_SELECT | CANT_TOSS
@@ -1787,7 +1787,7 @@ Item2Attributes:
 	db $50 ; party menu
 
 ; TM32
-	dw 0 ; price
+	dw 10000 ; price
 	db NONE ; effect
 	db 0 ; param
 	db CANT_SELECT | CANT_TOSS
@@ -1795,7 +1795,7 @@ Item2Attributes:
 	db $50 ; party menu
 
 ; TM33
-	dw 0 ; price
+	dw 10000 ; price
 	db NONE ; effect
 	db 0 ; param
 	db CANT_SELECT | CANT_TOSS
@@ -1803,7 +1803,7 @@ Item2Attributes:
 	db $50 ; party menu
 
 ; TM34
-	dw 0 ; price
+	dw 10000 ; price
 	db NONE ; effect
 	db 0 ; param
 	db CANT_SELECT | CANT_TOSS
@@ -1811,7 +1811,7 @@ Item2Attributes:
 	db $50 ; party menu
 
 ; TM35
-	dw 0 ; price
+	dw 10000 ; price
 	db NONE ; effect
 	db 0 ; param
 	db CANT_SELECT | CANT_TOSS
@@ -1819,7 +1819,7 @@ Item2Attributes:
 	db $50 ; party menu
 
 ; TM36
-	dw 0 ; price
+	dw 10000 ; price
 	db NONE ; effect
 	db 0 ; param
 	db CANT_SELECT | CANT_TOSS
@@ -1827,7 +1827,7 @@ Item2Attributes:
 	db $50 ; party menu
 
 ; TM37
-	dw 0 ; price
+	dw 10000 ; price
 	db NONE ; effect
 	db 0 ; param
 	db CANT_SELECT | CANT_TOSS
@@ -1835,7 +1835,7 @@ Item2Attributes:
 	db $50 ; party menu
 
 ; TM38
-	dw 0 ; price
+	dw 10000 ; price
 	db NONE ; effect
 	db 0 ; param
 	db CANT_SELECT | CANT_TOSS
@@ -1843,7 +1843,7 @@ Item2Attributes:
 	db $50 ; party menu
 
 ; TM39
-	dw 0 ; price
+	dw 10000 ; price
 	db NONE ; effect
 	db 0 ; param
 	db CANT_SELECT | CANT_TOSS
@@ -1851,7 +1851,7 @@ Item2Attributes:
 	db $50 ; party menu
 
 ; TM40
-	dw 0 ; price
+	dw 10000 ; price
 	db NONE ; effect
 	db 0 ; param
 	db CANT_SELECT | CANT_TOSS
@@ -1859,7 +1859,7 @@ Item2Attributes:
 	db $50 ; party menu
 
 ; TM41
-	dw 0 ; price
+	dw 10000 ; price
 	db NONE ; effect
 	db 0 ; param
 	db CANT_SELECT | CANT_TOSS
@@ -1867,7 +1867,7 @@ Item2Attributes:
 	db $50 ; party menu
 
 ; TM42
-	dw 0 ; price
+	dw 10000 ; price
 	db NONE ; effect
 	db 0 ; param
 	db CANT_SELECT | CANT_TOSS
@@ -1875,7 +1875,7 @@ Item2Attributes:
 	db $50 ; party menu
 
 ; TM43
-	dw 0 ; price
+	dw 10000 ; price
 	db NONE ; effect
 	db 0 ; param
 	db CANT_SELECT | CANT_TOSS
@@ -1883,7 +1883,7 @@ Item2Attributes:
 	db $50 ; party menu
 
 ; TM44
-	dw 0 ; price
+	dw 10000 ; price
 	db NONE ; effect
 	db 0 ; param
 	db CANT_SELECT | CANT_TOSS
@@ -1891,7 +1891,7 @@ Item2Attributes:
 	db $50 ; party menu
 
 ; TM45
-	dw 0 ; price
+	dw 10000 ; price
 	db NONE ; effect
 	db 0 ; param
 	db CANT_SELECT | CANT_TOSS
@@ -1899,7 +1899,7 @@ Item2Attributes:
 	db $50 ; party menu
 
 ; TM46
-	dw 0 ; price
+	dw 10000 ; price
 	db NONE ; effect
 	db 0 ; param
 	db CANT_SELECT | CANT_TOSS
@@ -1907,7 +1907,7 @@ Item2Attributes:
 	db $50 ; party menu
 
 ; TM47
-	dw 0 ; price
+	dw 10000 ; price
 	db NONE ; effect
 	db 0 ; param
 	db CANT_SELECT | CANT_TOSS
@@ -1915,7 +1915,7 @@ Item2Attributes:
 	db $50 ; party menu
 
 ; TM48
-	dw 0 ; price
+	dw 10000 ; price
 	db NONE ; effect
 	db 0 ; param
 	db CANT_SELECT | CANT_TOSS
@@ -1923,7 +1923,7 @@ Item2Attributes:
 	db $50 ; party menu
 
 ; TM49
-	dw 0 ; price
+	dw 10000 ; price
 	db NONE ; effect
 	db 0 ; param
 	db CANT_SELECT | CANT_TOSS
@@ -1931,7 +1931,7 @@ Item2Attributes:
 	db $50 ; party menu
 
 ; TM50
-	dw 0 ; price
+	dw 10000 ; price
 	db NONE ; effect
 	db 0 ; param
 	db CANT_SELECT | CANT_TOSS
