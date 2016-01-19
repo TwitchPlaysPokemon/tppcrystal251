@@ -17,7 +17,7 @@ UnknownText_0x18b5bc: ; 0x18b5bc
 	para "How do you like"
 	line "KANTO?"
 
-	para "...wait, you are"
+	para "… Wait, you are"
 	line "from here?"
 	done
 ; 0x18b60b

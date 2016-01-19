@@ -211,6 +211,7 @@ FuchsiaGym_BlockData: ; 0xb1155
 ; 0xb1182
 
 Underground_BlockData: ; 0xb1236
+UndergroundRB_BlockData: ; 0xb1236
 	INCBIN "maps/Underground.blk"
 ; 0xb1260
 

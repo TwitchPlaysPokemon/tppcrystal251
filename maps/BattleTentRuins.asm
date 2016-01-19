@@ -43,7 +43,7 @@ MapBattleTentRuinsMonitorScript2:
 
 ; <text goes here>
 MapBattleTentRuinsDoorText:
-	text "It's locked..."
+	text "It's locked…"
 	done
 
 MapBattleTentRuinsMonitorText1:

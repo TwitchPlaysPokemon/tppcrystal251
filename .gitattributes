@@ -2,7 +2,7 @@
 * -text
 
 *.asm -text
-*.pal text=LF
+*.pal -text
 
 # hexdump binary files
 *.png  diff=hex

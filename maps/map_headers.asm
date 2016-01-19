@@ -36,7 +36,6 @@ MapGroupPointers:: ; 0x94000
 	dw MapGroup33
 	dw MapGroup34
 	dw MapGroup35
-	dw MapGroup36
 
 MapGroup1:
 	map_header OlivinePokeCenter1F, $7, 3, OLIVINE_CITY, MUSIC_POKEMON_CENTER, 0, 1, 1
@@ -558,15 +557,17 @@ MapGroup32:
 
 MapGroup33:
 ; vermilion city rb
+	map_header Route6SaffronGateRB, $8, 6, ROUTE_6, MUSIC_VIRIDIAN_CITY, 0, 1, 1
+	map_header Route6UndergroundEntranceRB, $8, 6, ROUTE_6, MUSIC_VIRIDIAN_CITY, 0, 1, 1
 
 MapGroup34:
 ; saffron area rb
+	map_header Route5RB, $3, 2, ROUTE_5, MUSIC_ROUTE_3, 0, 0, 1
+	map_header Route5UndergroundEntranceRB, $8, 6, ROUTE_5, MUSIC_VIRIDIAN_CITY, 0, 1, 1
+	map_header Route5SaffronCityGateRB, $8, 6, ROUTE_5, MUSIC_VIRIDIAN_CITY, 0, 1, 1
 
 MapGroup35:
-; ss anne rb
-
-MapGroup36:
-; egk dungeons
+; egk dungeons and ss anne
 	map_header ViridianForestRB, $25, 4, VIRIDIAN_FOREST, MUSIC_ROUTE_2, 0, 2, 0
 	map_header ViridianForestNorthRB, $26, 6, VIRIDIAN_FOREST, MUSIC_ROUTE_2, 0, 1, 1
 	map_header ViridianForestSouthRB, $26, 6, VIRIDIAN_FOREST, MUSIC_ROUTE_2, 0, 1, 1
@@ -574,3 +575,4 @@ MapGroup36:
 	map_header MtMoonB1FRB, $27, 4, MT_MOON, MUSIC_MT_MOON, 1, 2, 1
 	map_header MtMoonB2FRB, $27, 4, MT_MOON, MUSIC_MT_MOON, 1, 2, 1
 	map_header MtMoonB3FRB, $27, 4, MT_MOON, MUSIC_MT_MOON, 1, 2, 1
+	map_header UndergroundRB, $1c, 6, UNDERGROUND, MUSIC_ROUTE_1, 0, 2, 1

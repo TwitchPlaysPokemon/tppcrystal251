@@ -214,7 +214,7 @@ SailorHuey1SeenText: ; 0x5b07a
 
 SailorHuey1BeatenText: ; 0x5b0b0
 	text "At least I have"
-	line "my honor..."
+	line "my honor…"
 	done
 ; 0x5b0be
 

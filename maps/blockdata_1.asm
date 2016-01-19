@@ -212,11 +212,13 @@ Route35Goldenrodgate_BlockData:
 Route36RuinsofAlphgate_BlockData:
 Route34IlexForestGate_BlockData:
 Route6SaffronGate_BlockData:
+Route6SaffronGateRB_BlockData:
 Route40BattleTowerGate_BlockData:
 Route2Gate_BlockData:
 Route2GateRB_BlockData:
 Route2946Gate_BlockData:
 Route5SaffronCityGate_BlockData:
+Route5SaffronCityGateRB_BlockData:
 	INCBIN "maps/Route40BattleTowerGate.blk"
 ; 0xaa88b
 
@@ -304,6 +306,7 @@ Route1RB_BlockData
 ; 0xabd8f
 
 Route5_BlockData: ; 0xabd8f
+Route5RB_BlockData: ; 0xabd8f
 	INCBIN "maps/Route5.blk"
 ; 0xabde9
 

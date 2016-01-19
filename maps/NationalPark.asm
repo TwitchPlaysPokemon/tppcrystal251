@@ -525,7 +525,7 @@ UnknownText_0x5c4f3: ; 0x5c4f3
 
 	para "You can use TM's,"
 	line "breed for egg"
-	cont "moves..."
+	cont "moves…"
 
 	para "There are also"
 	line "move tutors."

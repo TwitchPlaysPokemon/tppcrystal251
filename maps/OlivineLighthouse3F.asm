@@ -105,7 +105,7 @@ Bird_keeperTheoSeenText: ; 0x5b27b
 ; 0x5b2c4
 
 Bird_keeperTheoBeatenText: ; 0x5b2c4
-	text "Angry birds..."
+	text "Angry birds…"
 	done
 ; 0x5b2df
 

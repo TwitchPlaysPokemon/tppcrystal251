@@ -368,7 +368,7 @@ PicnickerTanyaSeenText: ; 0x72e53
 ; 0x72e7f
 
 PicnickerTanyaBeatenText: ; 0x72e7f
-	text "EXEGGUTOR, no..."
+	text "EXEGGUTOR, no…"
 	done
 ; 0x72e8e
 
