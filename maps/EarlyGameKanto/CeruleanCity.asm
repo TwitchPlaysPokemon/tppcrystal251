@@ -118,6 +118,7 @@ CeruleanCityRBLass1Script:
 	end
 
 CeruleanCityRBSlowbroScript:
+	waitsfx
 	cry SLOWBRO
 	random 4
 	if_equal 1, .text1
@@ -151,7 +152,6 @@ CeruleanCityRBRocketScript:
 	loadtrainer GRUNTM, 37
 	winlosstext CeruleanCityRBRocketWinText, 0
 	startbattle
-	reloadmapmusic
 	returnafterbattle
 	playmusic MUSIC_ROCKET_ENCOUNTER
 	loadfont
@@ -169,7 +169,7 @@ CeruleanCityRBRocketScript:
 	spriteface $0, LEFT
 	applymovement $c, Movement_CeruleanRocketRBRunsAway_playerbelow
 	disappear $c
-	special RestartMapMusic
+	playmapmusic
 	pause 15
 	appear $d
 	playsound SFX_EXIT_BUILDING

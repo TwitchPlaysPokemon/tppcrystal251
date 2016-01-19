@@ -1,6 +1,7 @@
 
 -- PikalaxALT's first attempt at lua to read battle state
 -- AKA readbattlestate_clean.lua
+-- Version 0.2a
 
 local itemTable = {"NO ITEM", "MASTER BALL", "ULTRA BALL", "BRIGHTPOWDER", "GREAT BALL", "POKE BALL", "LAPTOP", "BICYCLE", "MOON STONE", "ANTIDOTE", "BURN HEAL", "ICE HEAL", "AWAKENING", "PARALYZE HEAL", "FULL RESTORE", "MAX POTION", "HYPER POTION", "SUPER POTION", "POTION", "ESCAPE ROPE", "REPEL", "MAX ELIXER", "FIRE STONE", "THUNDERSTONE", "WATER STONE", "POISON GUARD", "HP UP", "PROTEIN", "IRON", "CARBOS", "LUCKY PUNCH", "CALCIUM", "RARE CANDY", "X ACCURACY", "LEAF STONE", "METAL POWDER", "NUGGET", "POKE DOLL", "FULL HEAL", "REVIVE", "MAX REVIVE", "GUARD SPEC", "SUPER REPEL", "MAX REPEL", "DIRE HIT", "BURN GUARD", "FRESH WATER", "SODA POP", "LEMONADE", "X ATTACK", "FREEZE GUARD", "X DEFEND", "X SPEED", "X SPECIAL", "COIN CASE", "ITEMFINDER", "POKE FLUTE", "EXP SPARE", "OLD ROD", "GOOD ROD", "SILVER LEAF", "SUPER ROD", "PP UP", "ETHER", "MAX ETHER", "ELIXER", "RED SCALE", "SECRETPOTION", "S S TICKET", "MYSTERY EGG", "CLEAR BELL", "SILVER WING", "MOOMOO MILK", "QUICK CLAW", "PSNCUREBERRY", "GOLD LEAF", "SOFT SAND", "SHARP BEAK", "PRZCUREBERRY", "BURNT BERRY", "ICE BERRY", "POISON BARB", "KINGS ROCK", "BITTER BERRY", "MINT BERRY", "RED APRICORN", "TINYMUSHROOM", "BIG MUSHROOM", "SILVERPOWDER", "BLU APRICORN", "SLEEP GUARD", "AMULET COIN", "YLW APRICORN", "GRN APRICORN", "CLEANSE TAG", "MYSTIC WATER", "WHT APRICORN", "BLACKBELT", "BLK APRICORN", "PARLYZ GUARD", "PNK APRICORN", "BLACKGLASSES", "SLOWPOKETAIL", "PINK BOW", "STICK", "SMOKE BALL", "NEVERMELTICE", "MAGNET", "MIRACLEBERRY", "PEARL", "BIG PEARL", "EVERSTONE", "SPELL TAG", "RAGECANDYBAR", "GS BALL", "BLUE CARD", "MIRACLE SEED", "THICK CLUB", "FOCUS BAND", "CONFUSEGUARD", "ENERGYPOWDER", "ENERGY ROOT", "HEAL POWDER", "REVIVAL HERB", "HARD STONE", "LUCKY EGG", "CARD KEY", "MACHINE PART", "EGG TICKET", "LOST ITEM", "STARDUST", "STAR PIECE", "BASEMENT KEY", "PASS", "HELIX FOSSIL", "DOME FOSSIL", "OLD AMBER", "CHARCOAL", "BERRY JUICE", "SCOPE LENS", "OAKS PARCEL", "ITEM 8E", "METAL COAT", "DRAGON FANG", "ITEM 91", "LEFTOVERS", "ITEM 93", "ITEM 94", "ITEM 95", "MYSTERYBERRY", "DRAGON SCALE", "BERSERK GENE", "ITEM 99", "ITEM 9A", "ITEM 9B", "SACRED ASH", "HEAVY BALL", "FLOWER MAIL", "LEVEL BALL", "LURE BALL", "FAST BALL", "ITEM A2", "LIGHT BALL", "FRIEND BALL", "MOON BALL", "LOVE BALL", "NORMAL BOX", "GORGEOUS BOX", "SUN STONE", "POLKADOT BOW", "ITEM AB", "UP GRADE", "BERRY", "GOLD BERRY", "SQUIRTBOTTLE", "ITEM B0", "PARK BALL", "RAINBOW WING", "ITEM B3", "BRICK PIECE", "SURF MAIL", "LITEBLUEMAIL", "PORTRAITMAIL", "LOVELY MAIL", "EON MAIL", "MORPH MAIL", "BLUESKY MAIL", "MUSIC MAIL", "MIRAGE MAIL", "ITEM BE", "TM01", "TM02", "TM03", "TM04", "ITEM C3", "TM05", "TM06", "TM07", "TM08", "TM09", "TM10", "TM11", "TM12", "TM13", "TM14", "TM15", "TM16", "TM17", "TM18", "TM19", "TM20", "TM21", "TM22", "TM23", "TM24", "TM25", "TM26", "TM27", "TM28", "ITEM DC", "TM29", "TM30", "TM31", "TM32", "TM33", "TM34", "TM35", "TM36", "TM37", "TM38", "TM39", "TM40", "TM41", "TM42", "TM43", "TM44", "TM45", "TM46", "TM47", "TM48", "TM49", "TM50", "HM01", "HM02", "HM03", "HM04", "HM05", "HM06", "HM07", "HM08"}
 
@@ -24,7 +25,7 @@ function getBigDW(pointer)
 end
 
 function refreshinterval(seconds)
-	-- Revo's function
+	-- Revo's function (liar, it's Timmy's function)
 	local lastupdate = os.time()
 	local now
 	repeat
@@ -236,6 +237,12 @@ function getPlayerPokemonData()
 	playerMon["screens"] = getScreens(0xc6ff, 0xc701)
 	playerMon["turns"] = memory.readbyte(0xc6dd)
 	playerMon["stat levels"] = getStatLevels(0xc6cc)
+	lastMove = memory.readbyte(0xc71b)
+	if lastMove == 0 then
+		playerMon["last used"] = "None"
+	else
+		playerMon["last used"] = moveTable[lastMove + 1]
+	end
 	return playerMon
 end
 
@@ -246,6 +253,12 @@ function getEnemyPokemonData()
 	enemyMon["screens"] = getScreens(0xc700, 0xc702)
 	enemyMon["turns"] = memory.readbyte(0xc6dc)
 	enemyMon["stat levels"] = getStatLevels(0xc6d4)
+	lastMove = memory.readbyte(0xc71c)
+	if lastMove == 0 then
+		enemyMon["last used"] = "None"
+	else
+		enemyMon["last used"] = moveTable[lastMove + 1]
+	end
 	return enemyMon
 end
 
