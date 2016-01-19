@@ -17841,6 +17841,7 @@ Group31Sprites: ; 144ec
 	db SPRITE_POKE_BALL
 	db SPRITE_FRUIT_TREE ; 23
 
+Group34Sprites: ; 144ec
 Group32Sprites: ; 144ec
 	db SPRITE_SUICUNE
 	db SPRITE_SILVER_TROPHY
@@ -17891,7 +17892,6 @@ Group33Sprites: ; 144ec
 	db SPRITE_POKE_BALL
 	db SPRITE_FRUIT_TREE ; 23
 
-Group34Sprites: ; 144ec
 Group35Sprites:
 	db SPRITE_SUICUNE
 	db SPRITE_SILVER_TROPHY
