@@ -332,6 +332,47 @@ function getTrainerParty(partycount_addr)
 	return trainerParty
 end
 
+function readPlayerPack()
+	local pack = {}
+	local items = {}
+	local balls = {}
+	local key = {}
+	local tmhm = {}
+	numItems = memory.readbyte(0xd892)
+	for i = 1, numItems do
+		local curItem = {}
+		curItem['name'] = itemTable[memory.readbyte(0xd893 + 2 * (i-1)) + 1]
+		curItem['quantity'] = memory.readbyte(0xd893 + 2 * (i-1) + 1)
+		table.insert(items, curItem)
+	end
+	numBalls = memory.readbyte(0xd8d7)
+	for i = 1, numBalls do
+		local curItem = {}
+		curItem['name'] = itemTable[memory.readbyte(0xd8d8 + 2 * (i-1)) + 1]
+		curItem['quantity'] = memory.readbyte(0xd8d8 + 2 * (i-1) + 1)
+		table.insert(balls, curItem)
+	end
+	numKeys = memory.readbyte(0xd8bc)
+	for i = 1, numKeys do
+		table.insert(key, itemTable[memory.readbyte(0xd8bd + (i-1)) + 1])
+	end
+	for i = 1, 50 do
+		if memory.readbyte(0xd859 + (i-1)) ~= 0 then
+			table.insert(tmhm, string.format("TM%02d", i))
+		end
+	end
+	for i = 1, 7 do
+		if memory.readbyte(0xd859 + (i+50-1)) ~= 0 then
+			table.insert(tmhm, string.format("HM%02d", i))
+		end
+	end
+	pack["items"] = items
+	pack["balls"] = balls
+	pack["key"] = key
+	pack["tmhm"] = tmhm
+	return pack
+end
+
 repeat
     battleState = {}
     wBattleMode = memory.readbyte(0xD22D)
@@ -343,6 +384,9 @@ repeat
 		playerParty = getTrainerParty(0xdcd7)
 		vba.print("Player Party:")
 		vba.print(playerParty)
+		pack = readPlayerPack()
+		vba.print("Player Pack:")
+		vba.print(pack)
 		if wBattleMode == 0 then
 			vba.print("Not in battle")
 		else
