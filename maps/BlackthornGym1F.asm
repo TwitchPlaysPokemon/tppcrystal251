@@ -473,15 +473,14 @@ BlackthornGymGuyText: ; 0x195544
 	cont "red dragon-type"
 	cont "#MON."
 
-	para "They resist many"
-	line "common types"
+	para "You can't damage"
+	line "them very easily."
 
-	para "but reptiles"
-	line "dislike ice,"
+	para "But you know,"
+	line "they're supposed"
 
-	para "and fairys have"
-	line "have a huge"
-	cont "advantage."
+	para "to be weak against"
+	line "ice-type moves."
 	done
 ; 0x195632
 

@@ -181,7 +181,6 @@ endm
 	command startloop
 	command curl
 	command burn
-	command growth
 
 	enum_start -1, -1
 	command endmove

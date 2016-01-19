@@ -2459,8 +2459,6 @@ AI_Smart_RapidSpin: ; 39084
 	ld a, [EnemyScreens]
 	bit SCREENS_SPIKES, a
 	ret z
-	bit SCREENS_SPIKES2, a
-	ret z
 
 .asm_39097
 	call AI_80_20
