@@ -536,10 +536,6 @@ MAP_N_A   EQU -1
 	mapgroup ROUTE_5_RB, 9, 10
 	mapgroup ROUTE_5_UNDERGROUND_ENTRANCE_RB, 4, 4
 	mapgroup ROUTE_5_SAFFRON_CITY_GATE_RB, 4, 5
-	mapgroup ROUTE_5_CLEANSE_TAG_SPEECH_HOUSE_RB, 4, 4
-
-	newgroup ; SS Anne
-; place ss anne constants here
 
 	newgroup ; EGK dungeons etc
 	mapgroup VIRIDIAN_FOREST_RB, $18, $11
@@ -549,6 +545,7 @@ MAP_N_A   EQU -1
 	mapgroup MT_MOON_B1F_RB, 18, 20
 	mapgroup MT_MOON_B2F_RB, 14, 14
 	mapgroup MT_MOON_B3F_RB, 18, 20
+	mapgroup UNDERGROUND_RB, 14, 3
 
 ; elevator floors
 	const_def

@@ -699,7 +699,7 @@
 
 	map_header_2 CeruleanCityRB, CERULEAN_CITY_RB, $f, NORTH | SOUTH | WEST | EAST ; 0x95660
 	connection north, ROUTE_24_RB, Route24RB, 5, 0, 10, CERULEAN_CITY_RB
-	connection south, ROUTE_5, Route5, 5, 0, 10, CERULEAN_CITY_RB
+	connection south, ROUTE_5_RB, Route5RB, 5, 0, 10, CERULEAN_CITY_RB
 	connection west, ROUTE_4_RB, Route4RB, 4, 0, 9, CERULEAN_CITY_RB
 	connection east, ROUTE_9_RB, Route9RB, 6, 0, 9, CERULEAN_CITY_RB
 
@@ -714,3 +714,7 @@
 	connection west, CERULEAN_CITY_RB, CeruleanCityRB, -6, 0, 18, ROUTE_9_RB
 
 	map_header_2 BillsHouseRB, BILLS_HOUSE_RB, $0, NONE ; 0x95e10
+
+	map_header_2 Route5RB, ROUTE_5_RB, $f, NORTH | SOUTH ; 0x9563c
+	connection north, CERULEAN_CITY_RB, CeruleanCityRB, -3, 2, 16, ROUTE_5_RB
+	connection south, SAFFRON_CITY, SaffronCity, -3, 2, 16, ROUTE_5_RB

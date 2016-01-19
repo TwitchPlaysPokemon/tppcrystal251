@@ -572,38 +572,53 @@ INCLUDE "maps/EarlyGameKanto/DiglettsCave.asm"
 
 SECTION "EGK PewterGym Events", ROMX
 INCLUDE "maps/EarlyGameKanto/PewterGym.asm"
+
 SECTION "EGK CeruleanGym Events", ROMX
 INCLUDE "maps/EarlyGameKanto/CeruleanGym.asm"
+
 SECTION "EGK PewterCity Events", ROMX
 INCLUDE "maps/EarlyGameKanto/PewterCity.asm"
+
 SECTION "EGK PewterMart Events", ROMX
 INCLUDE "maps/EarlyGameKanto/PewterMart.asm"
+
 SECTION "EGK PewterPokeCenter1F Events", ROMX
 INCLUDE "maps/EarlyGameKanto/PewterPokeCenter1F.asm"
+
 SECTION "EGK Pewter Houses Events", ROMX
 INCLUDE "maps/EarlyGameKanto/PewterSnoozeSpeechHouse.asm"
 INCLUDE "maps/EarlyGameKanto/PewterNidoranSpeechHouse.asm"
+
 SECTION "EGK Pewter Museum Events", ROMX
 INCLUDE "maps/EarlyGameKanto/PewterMuseumOfScience1F.asm"
 INCLUDE "maps/EarlyGameKanto/PewterMuseumOfScience2F.asm"
+
 SECTION "EGK Route3 Events", ROMX
 INCLUDE "maps/EarlyGameKanto/Route3.asm"
 INCLUDE "maps/EarlyGameKanto/MtMoonPokeCenter1F.asm"
 INCLUDE "maps/EarlyGameKanto/Route4.asm"
+
 SECTION "EGK Mt Moon Events", ROMX
 INCLUDE "maps/EarlyGameKanto/MtMoonB1F.asm"
 INCLUDE "maps/EarlyGameKanto/MtMoonB2F.asm"
 INCLUDE "maps/EarlyGameKanto/MtMoonB3F.asm"
+
 SECTION "EGK CeruleanCity Events", ROMX
 INCLUDE "maps/EarlyGameKanto/CeruleanCity.asm"
 INCLUDE "maps/EarlyGameKanto/CeruleanPokeCenter1F.asm"
 INCLUDE "maps/EarlyGameKanto/CeruleanMart.asm"
 INCLUDE "maps/EarlyGameKanto/Route9.asm"
+
 SECTION "EGK Cerulean Houses Events", ROMX
 INCLUDE "maps/EarlyGameKanto/CeruleanGymBadgeSpeechHouse.asm"
 INCLUDE "maps/EarlyGameKanto/CeruleanTradeSpeechHouse.asm"
+
 SECTION "EGK Route 24 Events", ROMX
 INCLUDE "maps/EarlyGameKanto/Route24.asm"
+
 SECTION "EGK Route 25 Events", ROMX
 INCLUDE "maps/EarlyGameKanto/Route25.asm"
 INCLUDE "maps/EarlyGameKanto/BillsHouse.asm"
+
+SECTION "EGK Route 5 Events", ROMX
+INCLUDE "maps/EarlyGameKanto/Route5.asm"

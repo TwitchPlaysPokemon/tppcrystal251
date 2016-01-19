@@ -17064,6 +17064,7 @@ OutdoorSprites: ; 144b8
 	dw Group32Sprites
 	dw Group33Sprites
 	dw Group34Sprites
+	dw Group35Sprites
 ; 144ec
 
 Group1Sprites: ; 146a1
@@ -17882,6 +17883,7 @@ Group33Sprites: ; 144ec
 	db SPRITE_FRUIT_TREE ; 23
 
 Group34Sprites: ; 144ec
+Group35Sprites:
 	db SPRITE_SUICUNE
 	db SPRITE_SILVER_TROPHY
 	db SPRITE_FAMICOM
