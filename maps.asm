@@ -631,5 +631,6 @@ INCLUDE "maps/EarlyGameKanto/Underground.asm"
 
 SECTION "EGK Vermilion City Events", ROMX
 INCLUDE "maps/EarlyGameKanto/VermilionCity.asm"
+INCLUDE "maps/EarlyGameKanto/VermilionPokeCenter1F.asm"
 
 SECTION "EGK SS Anne Events", ROMX

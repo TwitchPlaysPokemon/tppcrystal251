@@ -108,8 +108,8 @@ _Route6EndBattleText1:
 	done
 
 _Route6AfterBattleText1:
-	text "Whisper..."
-	line "whisper..."
+	text "Whisper…"
+	line "whisper…"
 	done
 
 _Route6BattleText2:
