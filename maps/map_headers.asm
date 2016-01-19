@@ -554,7 +554,7 @@ MapGroup32:
 	map_header Route24RB, $3, 2, ROUTE_24, MUSIC_ROUTE_24, 0, 0, 3
 	map_header Route25RB, $3, 2, ROUTE_25, MUSIC_ROUTE_24, 0, 0, 3
 	map_header BillsHouseRB, $5, 3, ROUTE_25, MUSIC_CERULEAN_CITY, 0, 1, 1
-	; map_header Route9RB, $3, 2, ROUTE_9, MUSIC_ROUTE_3, 0, 0, 3
+	map_header Route9RB, $3, 2, ROUTE_9, MUSIC_ROUTE_3, 0, 0, 3
 
 MapGroup33:
 ; vermilion city rb

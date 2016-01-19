@@ -310,6 +310,8 @@ Route5_BlockData: ; 0xabd8f
 Route9_BlockData: ; 0xabde9
 	INCBIN "maps/Route9.blk"
 ; 0xabef7
+Route9RB_BlockData:
+	INCBIN "maps/Route9RB.blk"
 
 Route22_BlockData: ; 0xabef7
 Route22RB_BlockData: ; 0xabef7
