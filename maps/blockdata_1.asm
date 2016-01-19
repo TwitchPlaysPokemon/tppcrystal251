@@ -202,6 +202,8 @@ Route30BerrySpeechHouse_BlockData:
 ; 0xaa877
 CeruleanGymBadgeSpeechHouseRB_BlockData:
 	INCBIN "maps/CeruleanGymBadgeSpeechHouseRB.blk"
+BillsHouseRB_BlockData:
+	INCBIN "maps/BillsHouseRB.blk"
 
 Route19FuchsiaGate_BlockData:
 Route43MahoganyGate_BlockData:
