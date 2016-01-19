@@ -6622,12 +6622,29 @@ LoadEnemyMon: ; 3e8eb
 ; Set level
 	ld a, [CurPartyLevel]
 	ld [EnemyMonLevel], a
+
+
 .Stats
 ; Fill stats
-	ld de, EnemyMonMaxHP
+
+	ld de, EnemyMonMaxHP ;goes into the same place
+
+	ld a, [IsInBattle]
+	dec a
+	jr nz, .CalcTrainerStats
 	ld b, $00
-	ld hl, LinkBattleRNs + 7 ; ?
+	ld hl, LinkBattleRNs + 7 
 	predef Functione167 ;load in stats, hl is start of stat xp
+	jr .DoneStats
+
+.CalcTrainerStats
+	ld a, [CurPartyMon]
+	ld hl, OTPartyMon1StatExp
+	call GetPartyLocation
+	ld b, $01
+	predef Functione167 ;fill stats using correct party mon
+
+.DoneStats
 	
 ; If we're in a trainer battle,
 ; get the rest of the parameters from the party struct
