@@ -28,7 +28,7 @@ GetLandmarkName:: ; 0x1ca8a5
 	bit 5, a
 	jr nz, .normal
 	ld hl, .PokemonTower
-	jr .copy
+	jr .okay
 
 .normal
 	ld l, e
@@ -40,7 +40,7 @@ GetLandmarkName:: ; 0x1ca8a5
 	ld a, [hli]
 	ld h, [hl]
 	ld l, a
-
+.okay
 	ld de, StringBuffer1
 	ld c, 18
 .copy
