@@ -5119,7 +5119,7 @@ TrySurfOW:: ; c9e7
 	jr c, .quit
 	ld de, ENGINE_FOGBADGE
 	call CheckEngineFlag
-	jr c, .quit
+	jr c, .print_message
 	ld d, SURF
 	call CheckPartyMove
 	jr c, .print_message
@@ -5136,12 +5136,22 @@ TrySurfOW:: ; c9e7
 	scf
 	ret
 .print_message
-	ld hl, .LovelyWaterText
-	call PrintText
+	ld a, BANK(.LovelyWaterScript)
+	ld hl, .LovelyWaterScript
+	call CallScript
+	scf
+	ret
+
 .quit
 	xor a
 	ret
 ; ca2c
+.LovelyWaterScript
+	loadfont
+	writetext .LovelyWaterText
+	waitbutton
+	closetext
+	end
 
 .LovelyWaterText:
 	TX_FAR _LovelyWaterText
