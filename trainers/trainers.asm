@@ -5392,7 +5392,7 @@ BugCatcherGroup:
 	db "RICK@"
 	db 0
 	db 6, WEEDLE
-	db 6, WEEDLE
+	db 6, CATERPIE
 	db $ff
 
 	db "DOUG@"
