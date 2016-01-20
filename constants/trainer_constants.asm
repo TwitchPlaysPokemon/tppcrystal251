@@ -124,6 +124,10 @@
 	const JOEY_RB
 	const DAN_RB
 	const CHAD_RB
+	const EDDIE_RB
+	const DAVE_RB
+	const DILLON_RB
+	const YASU_RB
 
 	trainerclass SCHOOLBOY ; 17
 	const JACK1
@@ -295,6 +299,10 @@
 	const GREGORY
 	const VIRGIL
 	const ALFRED
+	const HUGO_RB
+	const JASPER_RB
+	const DARIAN_RB
+	const DIRK_RB
 
 	trainerclass SKIER ; 21
 	const ROXANNE
@@ -454,6 +462,8 @@
 	trainerclass GUITARIST ; 2b
 	const CLYDE
 	const VINCENT
+	const BERNIE_RB
+	const BRAXTON_RB
 
 	trainerclass HIKER ; 2c
 	const ANTHONY1
