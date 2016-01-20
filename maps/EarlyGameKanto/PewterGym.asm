@@ -14,11 +14,11 @@ PewterGymRB_BrockScript:
 	waitbutton
 	closetext
 	winlosstext PewterGymRB_BrockLostText, $0000
-	loadtrainer BROCK, BROCK_RB
+	loadtrainer BROCK_RB, 1
 	startbattle
 	returnafterbattle
 	setevent EVENT_BEAT_BROCK_RB
-	setevent EVENT_BEAT_CAMPER_JERRY_RB ; XXX
+	setevent EVENT_BEAT_CAMPER_JERRY_RB ; Moved camper 2 tiles down, allowing player to skip him
 	loadfont
 	writetext PewterGymRB_GotBadgeText
 	playsound SFX_GET_BADGE
@@ -140,6 +140,9 @@ PewterGymRB_BrockCongratsText:
 
 	para "#MON even more"
 	line "powerful."
+
+	para "Here, have this as"
+	line "well."
 	done
 
 PewterGymRB_BrockAfterText:
@@ -162,7 +165,6 @@ PewterGymRB_TMText:
 	para "can be taught to"
 	line "#MON!"
 
-	; XXX Is this still the case?
 	para "What's more, you"
 	line "can use that TM"
 
@@ -173,10 +175,14 @@ PewterGymRB_TMText:
 	para "TM37 contains"
 	line "SANDSTORM!"
 
-	para "Your #MON will"
-	line "strengthen their"
-	para "defenses while"
-	line "dealing damage!"
+	para "It whips up a"
+	line "sandstorm that"
+	cont "damages #MON"
+	cont "for 5 turns."
+
+	para "Some #MON are"
+	line "immune, so use it"
+	cont "with caution."
 	done
 
 
@@ -271,6 +277,6 @@ PewterGymRB_MapEventHeader:
 	; people-events
 	db 3
 	person_event SPRITE_BROCK, 5, 9, $6, 0, 0, -1, -1, 8 + PAL_OW_BROWN, 0, 0, PewterGymRB_BrockScript, -1
-	person_event SPRITE_YOUNGSTER, 9, 6, $9, 0, 0, -1, -1, 8 + PAL_OW_GREEN, 2, 3, TrainerCamperJerryRB, -1
+	person_event SPRITE_YOUNGSTER, 11, 6, $9, 0, 0, -1, -1, 8 + PAL_OW_GREEN, 2, 3, TrainerCamperJerryRB, -1
 	person_event SPRITE_GYM_GUY, 15, 10, $6, 0, 0, -1, -1, 8 + PAL_OW_BLUE, 0, 1, PewterGymRB_GymGuyScript, -1
 

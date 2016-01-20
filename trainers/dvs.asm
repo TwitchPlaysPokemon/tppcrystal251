@@ -96,5 +96,7 @@ TrainerClassDVs: ; 270d6
 	db $D8, $C8 ; coolsibs
 	db $DD, $DD ; rivalrb
 	db $DD, $DD ; rivalrb
+	db $98, $88 ; brockrb
+	db $78, $88 ; mistyrb
 ; 2715c
 

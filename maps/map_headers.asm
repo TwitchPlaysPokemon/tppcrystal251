@@ -548,7 +548,7 @@ MapGroup32:
 	map_header CeruleanCityRB, $3, 1, CERULEAN_CITY, MUSIC_CERULEAN_CITY, 0, 0, 0
 	map_header CeruleanPokeCenter1FRB, $7, 3, CERULEAN_CITY, MUSIC_POKEMON_CENTER, 0, 1, 1
 	map_header CeruleanMartRB, $c, 3, CERULEAN_CITY, MUSIC_MART, 0, 1, 1
-	map_header CeruleanGymBadgeSpeechHouseRB, $5, 3, CERULEAN_CITY, MUSIC_CERULEAN_CITY, 0, 1, 1
+	map_header CeruleanGymBadgeSpeechHouseRB, $5, 3, CERULEAN_CITY, MUSIC_VIRIDIAN_CITY, 0, 1, 1
 	map_header CeruleanTradeSpeechHouseRB, $5, 3, CERULEAN_CITY, MUSIC_CERULEAN_CITY, 0, 1, 1
 	map_header Route24RB, $3, 2, ROUTE_24, MUSIC_ROUTE_24, 0, 0, 3
 	map_header Route25RB, $3, 2, ROUTE_25, MUSIC_ROUTE_24, 0, 0, 3
@@ -562,10 +562,11 @@ MapGroup33:
 	map_header Route6RB, $3, 2, ROUTE_6, MUSIC_ROUTE_3, 0, 0, 13
 	map_header VermilionCityRB, $3, 1, VERMILION_CITY, MUSIC_VERMILION_CITY, 0, 0, 14
 	map_header VermilionPokeCenter1FRB, $7, 3, VERMILION_CITY, MUSIC_POKEMON_CENTER, 0, 1, 1
-	; map_header VermilionMartRB, $c, 3, VERMILION_CITY, MUSIC_MART, 0, 1, 1
-	; map_header VermilionHouseFishingSpeechHouseRB, $5, 3, VERMILION_CITY, MUSIC_VERMILION_CITY, 0, 1, 1
-	; map_header PokemonFanClubRB, $5, 3, VERMILION_CITY, MUSIC_VERMILION_CITY, 0, 1, 1
-	; map_header VermilionMagnetTrainSpeechHouseRB, $5, 3, VERMILION_CITY, MUSIC_VERMILION_CITY, 0, 1, 1
+	map_header VermilionMartRB, $c, 3, VERMILION_CITY, MUSIC_MART, 0, 1, 1
+	map_header VermilionHouseFishingSpeechHouseRB, $5, 3, VERMILION_CITY, MUSIC_CERULEAN_CITY, 0, 1, 1
+	map_header PokemonFanClubRB, $5, 3, VERMILION_CITY, MUSIC_VERMILION_CITY, 0, 1, 1
+	map_header VermilionMagnetTrainSpeechHouseRB, $5, 3, VERMILION_CITY, MUSIC_VERMILION_CITY, 0, 1, 1
+	map_header VermilionHouseDiglettsCaveSpeechHouseRB, $5, 3, VERMILION_CITY, MUSIC_VERMILION_CITY, 0, 1, 1
 	; map_header Route11RB, $3, 2, ROUTE_11, MUSIC_ROUTE_12, 0, 0, 1
 	; map_header Route12RB, $3, 2, ROUTE_11, MUSIC_ROUTE_12, 0, 0, 1
 	; map_header Route11GateRB, $8, 6, ROUTE_11, MUSIC_ROUTE_12, 0, 1, 1
@@ -579,8 +580,8 @@ MapGroup34:
 MapGroup35:
 ; egk dungeons and ss anne
 	map_header ViridianForestRB, $25, 4, VIRIDIAN_FOREST, MUSIC_ROUTE_2, 0, 2, 0
-	map_header ViridianForestNorthRB, $26, 6, VIRIDIAN_FOREST, MUSIC_ROUTE_2, 0, 1, 1
-	map_header ViridianForestSouthRB, $26, 6, VIRIDIAN_FOREST, MUSIC_ROUTE_2, 0, 1, 1
+	map_header ViridianForestNorthRB, $26, 6, VIRIDIAN_FOREST, MUSIC_VIRIDIAN_CITY, 0, 1, 1
+	map_header ViridianForestSouthRB, $26, 6, VIRIDIAN_FOREST, MUSIC_VIRIDIAN_CITY, 0, 1, 1
 	map_header DiglettsCaveRB, $18, 4, DIGLETTS_CAVE, MUSIC_MT_MOON, 1, 2, 1
 	map_header MtMoonB1FRB, $27, 4, MT_MOON, MUSIC_MT_MOON, 1, 2, 1
 	map_header MtMoonB2FRB, $27, 4, MT_MOON, MUSIC_MT_MOON, 1, 2, 1

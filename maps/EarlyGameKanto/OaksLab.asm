@@ -423,17 +423,24 @@ OakScript_OaksLabRB:
 	writetext _OaksLabText23
 	buttonsound
 	writetext _OaksLabText24
-	buttonsound
-	writetext _OaksLabText25
+	waitbutton
+	closetext
+	applymovement $2, OaksLabMovement_OakGrabsDexes
+	pause 8
 	disappear $a
+	pause 2
 	disappear $b
+	pause 8
+	applymovement $2, OaksLabMovement_OakReturnsWithDexes
+	loadfont
+	writetext _OaksLabText25
 	setflag ENGINE_POKEDEX
 	setevent EVENT_VIRIDIAN_CITY_RB_OLD_MAN_LYING_DOWN
 	clearevent EVENT_VIRIDIAN_CITY_RB_OLD_MAN_WALKING_ABOUT
 	domaptrigger GROUP_ROUTE_22_RB, MAP_ROUTE_22_RB, $1
 	domaptrigger GROUP_VIRIDIAN_CITY_RB, MAP_VIRIDIAN_CITY_RB, $1
 	clearevent EVENT_RIVAL_ROUTE_22_RB
-	playsound SFX_KEY_ITEM
+	playsound SFX_CAUGHT_MON
 	waitsfx
 	writetext _OaksLabGivePokeballsText1
 	giveitem POKE_BALL, 5
@@ -550,6 +557,18 @@ MovementData_OakWalksUp:
 	step_up
 Movement_PlayerTakesOneStepUp:
 	step_up
+	step_end
+
+OaksLabMovement_OakGrabsDexes:
+	step_left
+	step_left
+	turn_head_up
+	step_end
+
+OaksLabMovement_OakReturnsWithDexes:
+	step_right
+	step_right
+	turn_head_down
 	step_end
 
 Movement_RivalTakesFourStepsLeft:

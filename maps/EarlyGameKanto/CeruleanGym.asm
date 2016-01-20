@@ -14,7 +14,7 @@ CeruleanGymRB_MistyScript:
 	waitbutton
 	closetext
 	winlosstext CeruleanGymRB_MistyLostText, $0000
-	loadtrainer MISTY, MISTY_RB
+	loadtrainer MISTY_RB, 1
 	startbattle
 	returnafterbattle
 	setevent EVENT_BEAT_MISTY_RB
