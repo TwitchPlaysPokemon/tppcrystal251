@@ -19,6 +19,8 @@ local weatherTable = {"None", "Rain", "Sun", "Sandstorm"}
 
 local charmap = {" ", "A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z", "(", ")", ":", ";", "[", "]", "a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z", "Ä", "Ö", "Ü", "ä", "ö", "ü", "'d", "'l", "'m", "'r", "'s", "'t", "'v", "←", "'", "<PK>", "<MN>", "-", "?", "!", ".", "&", "é", "→", "▷", "▶", "▼", "♂", "¥", "×", "·", "/", ",", "♀", "0", "1", "2", "3", "4", "5", "6", "7", "8", "9"}
 
+militaryMode = 0
+
 function getBigDW(pointer)
 	-- There is no built-in for big-endian DWs, which are used extensively in battle structs.
 	return memory.readbyte(pointer) * 256 + memory.readbyte(pointer + 1)
@@ -179,7 +181,8 @@ function getSubstatus(flags, counts, subhp, lockedmove)
 	if (AND(substatus4, 0x20) ~= 0) then table.insert(subStatus, "recharge") end
 	if (AND(substatus4, 0x40) ~= 0) then subStatus["raging"] = memory.readbyte(counts + 6) end
 	if (AND(substatus4, 0x80) ~= 0) then table.insert(subStatus, "seeded") end
-	
+
+	-- substatus5
 	if (AND(substatus5, 0x01) ~= 0) then substatus["toxic"] = memory.readbyte(counts + 2) end
 	if (AND(substatus5, 0x04) ~= 0) then table.insert(subStatus, "transformed") end
 	if (AND(substatus5, 0x10) ~= 0) then
@@ -386,6 +389,7 @@ function readBattlestate() --read this ONLY when LUA Serial is called
 		--output_table["pack"] = pack
 		if wBattleMode == 0 then
 			vba.print("Not in battle")
+			memory.writebyte(0xdffa, militaryMode)
 		else
 			if wBattleMode == 2 then
 				battleState["enemy type"] = "TRAINER"
@@ -417,9 +421,9 @@ function readBattlestate() --read this ONLY when LUA Serial is called
 end
 
 function transferStateToAIAndWait()
--- transfer to AI and get a response here
--- check DFFA, if Military mode is on, then wait for the first valid player shortcut command, if not, ignore
--- calculate the bytes to write to DFF8 and DFF9, write them, then end here and resume looping playerstate reading
+	-- transfer to AI and get a response here
+	-- check DFFA, if Military mode is on, then wait for the first valid player shortcut command, if not, ignore
+	-- calculate the bytes to write to DFF8 and DFF9, write them, then end here and resume looping playerstate reading
 end
 
 function readPlayerstate() --loop read this for the overlay

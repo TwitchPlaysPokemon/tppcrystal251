@@ -118,7 +118,7 @@ NuggetBridgeRBEndGuyScript:
 	jump .loop4
 
 .startbattle
-	playmusic MUSIC_ROCKET_ENCOUNTER
+	playmusic MUSIC_HIKER_ENCOUNTER
 	writetext Route24RBRocketText3
 	waitbutton
 	closetext
@@ -126,7 +126,7 @@ NuggetBridgeRBEndGuyScript:
 	winlosstext Route24RBRocketWinText, 0
 	startbattle
 	returnafterbattle
-	special RestartMapMusic
+	playmapmusic
 	dotrigger $1
 	setevent EVENT_NUGGET_BRIDGE_TRAINER_6_RB
 	loadfont

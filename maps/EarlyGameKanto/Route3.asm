@@ -114,7 +114,7 @@ Route3RBRocketsScript:
 	end
 
 .battle
-	playmusic MUSIC_ROCKET_ENCOUNTER
+	playmusic MUSIC_HIKER_ENCOUNTER
 	writetext Route3RBRocketsText4
 	waitbutton
 	closetext
@@ -123,7 +123,7 @@ Route3RBRocketsScript:
 	setlasttalked $b
 	startbattle
 	returnafterbattle
-	playmusic MUSIC_ROCKET_ENCOUNTER
+	playmusic MUSIC_HIKER_ENCOUNTER
 	loadfont
 	writetext Route3RBRocketsText5
 	waitbutton
@@ -132,9 +132,8 @@ Route3RBRocketsScript:
 	winlosstext Route3RBRocketsWinText2, 0
 	setlasttalked $c
 	startbattle
-	reloadmapmusic
 	returnafterbattle
-	playmusic MUSIC_ROCKET_ENCOUNTER
+	playmapmusic
 	loadfont
 	writetext Route3RBRocketsText6
 	waitbutton
@@ -148,7 +147,6 @@ Route3RBRocketsScript:
 	disappear $c
 	playsound SFX_EXIT_BUILDING
 	waitsfx
-	special RestartMapMusic
 	end
 
 Route3RBLassScript:

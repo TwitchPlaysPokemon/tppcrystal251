@@ -586,3 +586,14 @@ MapGroup35:
 	map_header MtMoonB2FRB, $27, 4, MT_MOON, MUSIC_MT_MOON, 1, 2, 1
 	map_header MtMoonB3FRB, $27, 4, MT_MOON, MUSIC_MT_MOON, 1, 2, 1
 	map_header UndergroundRB, $1c, 6, UNDERGROUND, MUSIC_ROUTE_1, 0, 2, 1
+	; map_header VermilionDock, $2a, 6, S_S_ANNE, MUSIC_S_S_ANNE, 1, 0, 0
+	; map_header SSAnne1, $2a, 6, S_S_ANNE, MUSIC_S_S_ANNE, 1, 1, 1
+	; map_header SSAnne2, $2a, 6, S_S_ANNE, MUSIC_S_S_ANNE, 1, 1, 1
+	; map_header SSAnne3, $2a, 6, S_S_ANNE, MUSIC_S_S_ANNE, 1, 1, 1
+	; map_header SSAnne4, $2a, 6, S_S_ANNE, MUSIC_S_S_ANNE, 1, 1, 1
+	; map_header SSAnne5, $2a, 6, S_S_ANNE, MUSIC_S_S_ANNE, 1, 1, 1
+	; map_header SSAnne6, $2a, 6, S_S_ANNE, MUSIC_S_S_ANNE, 1, 1, 1
+	; map_header SSAnne7, $2a, 6, S_S_ANNE, MUSIC_S_S_ANNE, 1, 1, 1
+	; map_header SSAnne8, $2a, 6, S_S_ANNE, MUSIC_S_S_ANNE, 1, 1, 1
+	; map_header SSAnne9, $2a, 6, S_S_ANNE, MUSIC_S_S_ANNE, 1, 1, 1
+	; map_header SSAnne10, $2a, 6, S_S_ANNE, MUSIC_S_S_ANNE, 1, 1, 1

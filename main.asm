@@ -5122,7 +5122,7 @@ TrySurfOW:: ; c9e7
 	jr c, .quit
 	ld d, SURF
 	call CheckPartyMove
-	jr c, .quit
+	jr c, .print_message
 	ld hl, BikeFlags
 	bit 1, [hl] ; always on bike (can't surf)
 	jr nz, .quit
@@ -5135,11 +5135,17 @@ TrySurfOW:: ; c9e7
 	call CallScript
 	scf
 	ret
-
+.print_message
+	ld hl, .LovelyWaterText
+	call PrintText
 .quit
 	xor a
 	ret
 ; ca2c
+
+.LovelyWaterText:
+	TX_FAR _LovelyWaterText
+	db "@"
 
 AskSurfScript: ; ca2c
 	loadfont
@@ -35331,7 +35337,7 @@ PlayBattleMusic: ; 2ee6c
 .trainermusic
 	ld de, MUSIC_CHAMPION_BATTLE
 	cp CHAMPION
-	jr z, .done
+	jp z, .done
 	cp RED
 	jr z, .done
 	cp POKEMON_PROF
@@ -35340,6 +35346,10 @@ PlayBattleMusic: ; 2ee6c
 	jr z, .done
 	; really, they should have included admins and scientists here too...
 	ld de, MUSIC_ROCKET_BATTLE
+	call RocketMusicCheck
+	jr nc, .okay_rocket
+	ld de, MUSIC_KANTO_TRAINER_BATTLE
+.okay_rocket
 	cp GRUNTM
 	jr z, .done
 	cp GRUNTF
@@ -69721,7 +69731,7 @@ Function9102f: ; 9102f (24:502f)
 	ld hl, StatusFlags
 	bit 5, [hl]
 	pop hl
-	jr nz, .asm_91047
+	jr nz, .check_ss_anne
 	cp CELADON_CITY
 	jr z, .inc_extra
 	cp CINNABAR_ISLAND
@@ -69731,6 +69741,11 @@ Function9102f: ; 9102f (24:502f)
 .inc_extra
 	inc [hl]
 	jr .asm_91047
+
+.check_ss_anne
+	cp VERMILION_CITY
+	jr nz, .asm_91047
+	jr .inc_extra
 	
 .wrap_around
 	ld a, e
@@ -69751,7 +69766,7 @@ Function9102f: ; 9102f (24:502f)
 	ld hl, StatusFlags
 	bit 5, [hl]
 	pop hl
-	jr nz, .asm_91054
+	jr nz, .check_ss_anne_2
 	cp SAFFRON_CITY
 	jr z, .dec_extra
 	cp ROUTE_21
@@ -69761,6 +69776,11 @@ Function9102f: ; 9102f (24:502f)
 .dec_extra
 	dec [hl]
 	jr .asm_91054
+
+.check_ss_anne_2
+	cp DIGLETTS_CAVE
+	jr nz, .asm_91054
+	jr .dec_extra
 
 .wrap_back
 	ld a, d
