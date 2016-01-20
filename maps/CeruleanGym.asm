@@ -55,10 +55,16 @@ UnknownScript_0x1883de: ; 0x1883de
 	pause 15
 	end
 ; 0x188432
-
+EVENT_BEAT_MISTY_RB
 MistyScript_0x188432: ; 0x188432
+	checkevent EVENT_MISTY_REMATCH
+	iftrue MistyAfterRematch
+	checkevent EVENT_FIRST_TIME_RED
+	iftrue MistyRematchScript
 	faceplayer
 	loadfont
+	checkflag 
+	iftrue MistyRematchScript
 	checkflag ENGINE_CASCADEBADGE
 	iftrue UnknownScript_0x188460
 	writetext UnknownText_0x188674
@@ -82,7 +88,53 @@ UnknownScript_0x188460: ; 0x188460
 	waitbutton
 	closetext
 	end
+
+
+MistyRematchScript:
+	writetext MistyRematchTextBefore
+	waitbutton
+	closetext
+	winlosstext BugsyRematchBeatenText, $0000
+	loadtrainer MISTY, 2
+	startbattle
+	returnafterbattle
+	setevent EVENT_MISTY_REMATCH
+	loadfont
+	jump MistyAfterRematch
 ; 0x188466
+
+MistyAfterRematch:
+	writetext MistyAfterRematchText
+	waitbutton
+	closetext
+	end
+
+MistyRematchTextBefore:
+	text "My dream was to"
+	line "go on a journey"
+	cont "and battle"
+	cont "powerful trainers."
+	
+	para "I made my dream
+	line "come true,"
+	cont "and now..."
+	
+	para "My next dream is"
+	line "to defeat you!"
+	done
+
+MistyRematchBeatenText:
+	text "First my date"
+	line "now my dreams."
+
+	para "must you always"
+	line "be in the way.."
+	done
+
+MistyAfterRematchText:
+	text "How could I"
+	line "lose to someone"
+	cont "like you?!?"
 
 TrainerSwimmerfDiana: ; 0x188466
 	; bit/flag number
@@ -419,7 +471,7 @@ SwimmermParkerBeatenText: ; 0x188934
 UnknownText_0x188943: ; 0x188943
 	text "MISTY has gotten"
 	line "much better in the"
-	cont "past few years."
+	cont "past few months."
 
 	para "Don't let your"
 	line "guard down, or"
