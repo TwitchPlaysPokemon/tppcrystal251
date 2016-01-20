@@ -761,3 +761,16 @@ PartyMon6Nickname = 0xDE78 -- 11 bytes
 wMilitaryMode = 0xDFFA -- 1 byte
 
 rSVBK = 0xFF70 -- 1 byte
+rLSB = 0xFFF1 -- 1 byte
+rLSC = 0xFFF2 -- 1 byte
+
+-- Beesafree constants
+
+BEESAFREE_LSC_TRANSFERRING  = 0xFF
+BEESAFREE_LSC_COMPLETED     = 0x00
+
+BEESAFREE_SND_RESET         = 0x00
+BEESAFREE_SND_ASKMOVE       = 0x01
+BEESAFREE_SND_ASKITEM       = 0x02
+
+BEESAFREE_RES_RESET         = 0x00

@@ -425,6 +425,12 @@ function transferStateToAIAndWait()
 	-- transfer to AI and get a response here
 	-- check DFFA, if Military mode is on, then wait for the first valid player shortcut command, if not, ignore
 	-- calculate the bytes to write to DFF8 and DFF9, write them, then end here and resume looping playerstate reading
+	send(0) -- TODO
+end
+
+function send(a)
+	memory.writebyte(rLSB, a)
+	memory.writebyte(rLSC, BEESAFREE_LSC_COMPLETED)
 end
 
 function readPlayerstate() --loop read this for the overlay
@@ -439,7 +445,13 @@ function readPlayerstate() --loop read this for the overlay
     vba.print(pack)
     output_table["playerParty"] = playerParty
     output_table["pack"] = pack
-    -- check if LUA serial, if yes, readBattlestate
+    if memory.readbyte(rLSC) ~= BEESAFREE_LSC_TRANSFERRING then return end
+	req = memory.readbyte(rLSB)
+	if req == BEESAFREE_SND_RESET then send(BEESAFREE_RES_RESET)
+	elseif req == BEESAFREE_SND_ASKMOVE then
+		readBattlestate()
+		transferStateToAIAndWait()
+	end
 end
 
 repeat
