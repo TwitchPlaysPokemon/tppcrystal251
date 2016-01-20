@@ -423,7 +423,7 @@ end
 
 function transferStateToAIAndWait()
 	-- transfer to AI and get a response here
-	-- check DFFA, if Military mode is on, then wait for the first valid player shortcut command, if not, ignore
+	-- if Military mode is on, then wait for the first valid player shortcut command, if not, ignore
 	-- calculate the bytes to write to DFF8 and DFF9, write them, then end here and resume looping playerstate reading
 	send(0) -- TODO
 end

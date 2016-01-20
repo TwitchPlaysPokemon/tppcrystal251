@@ -69,8 +69,7 @@ Route22RBRivalBattle:
 	writecode VAR_BATTLETYPE, BATTLETYPE_RIVAL_RB
 	startbattle
 	returnafterbattle
-	special DeleteSavedMusic
-	playmapmusic
+	special RestartMapMusic
 	loadfont
 	checkflag ENGINE_PLAYER_IS_FEMALE
 	iftrue .male_rival_2

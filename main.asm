@@ -8050,8 +8050,8 @@ Functiond906: ; d906
 	ld [de], a
 	inc de
 	ld a, [$ffb6]
-	inc de
 	ld [de], a
+	inc de
 	ld a, [MonType]
 	cp 1
 	jr nz, .yours
@@ -8242,6 +8242,7 @@ Functiond906: ; d906
 ; da6d
 
 TrainerStatXp: ; hl = (a(level) - 5) * 600 + (a - 40)*100) +(a - 75) * 100) + 35 if a = 100
+	ld hl, 0
 	sub 5 ;ret if < 5, else reduce by 5
 	ret c
 	ret z
@@ -10233,6 +10234,7 @@ UnknownText_0xfa06: ; 0xfa06
 	db "@"
 ; 0xfa0b
 
+
 SECTION "bank4", ROMX, BANK[$4]
 
 INCLUDE "engine/pack.asm"
@@ -11738,14 +11740,14 @@ NameInputUpper:
 	db "A B C D E F G H I"
 	db "J K L M N O P Q R"
 	db "S T U V W X Y Z  "
-	db "- ? ! / .,      "
+	db "- ? ! / . ,      "
 	db "lower  DEL   END "
 BoxNameInputUpper:
 	db "A B C D E F G H I"
 	db "J K L M N O P Q R"
 	db "S T U V W X Y Z  "
 	db "× ( ) : ; [ ] ", $e1, " ", $e2
-	db "- ? ! ♂ ♀ / ., &"
+	db "- ? ! ♂ ♀ / . , &"
 	db "lower  DEL   END "
 ; 11e5d
 
@@ -22313,10 +22315,6 @@ Function16a3b: ; 16a3b
 	cp 150
 	jr c, .asm_16a59
 	ld [wStepsToEgg], a
-	jp Function16a66
-; 16a66
-
-Function16a66: ; 16a66
 	xor a
 	ld hl, wEggMon
 	ld bc, wEggMonEnd - wEggMon
