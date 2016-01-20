@@ -208,7 +208,7 @@ FriendBall:
 MoonBall:
 LoveBall:
 ParkBall: ; e8a2
-	ld a, [IsInBattle]
+	ld a, [wBattleMode]
 	dec a
 	jp nz, Functionf7a0
 
@@ -504,6 +504,7 @@ ParkBall: ; e8a2
 .asm_ea67
 
 	ld a, [EnemyMonSpecies]
+	push af
 	ld [wc64e], a
 	ld [CurPartySpecies], a
 	ld [wd265], a
@@ -516,11 +517,11 @@ ParkBall: ; e8a2
 	ld hl, UnknownText_0xedc9
 	call PrintText
 
-	ld a, [CurPartySpecies]
-	push af
 	callba Function3ee3b
 	pop af
+	ld [wc64e], a
 	ld [CurPartySpecies], a
+	ld [wd265], a
 
 	dec a
 	call CheckCaughtMon
@@ -1638,7 +1639,7 @@ Functionf0d6: ; f0d6
 	call Functionf30d
 	ld a, 1
 	ret nz
-	ld a, [IsInBattle]
+	ld a, [wBattleMode]
 	and a
 	jr z, .asm_f104
 
@@ -1917,7 +1918,7 @@ Functionf2a2: ; f2a2 (3:72a2)
 	ret
 
 Functionf2a6: ; f2a6 (3:72a6)
-	ld a, [IsInBattle]
+	ld a, [wBattleMode]
 	and a
 	ret z
 	ld a, [CurPartyMon]
@@ -2260,7 +2261,7 @@ XAccuracy: ; f482
 
 
 PokeDoll: ; f48f
-	ld a, [IsInBattle]
+	ld a, [wBattleMode]
 	dec a
 	jr nz, .asm_f4a6
 	inc a
@@ -2341,7 +2342,7 @@ Tablef504: ; f504
 
 
 PokeFlute: ; f50c
-	ld a, [IsInBattle]
+	ld a, [wBattleMode]
 	and a
 	jr nz, .asm_f512
 .asm_f512
@@ -2354,7 +2355,7 @@ PokeFlute: ; f50c
 	ld hl, PartyMon1Status
 	call .Functionf554
 
-	ld a, [IsInBattle]
+	ld a, [wBattleMode]
 	cp WILD_BATTLE
 	jr z, .asm_f52b
 	ld hl, OTPartyMon1Status
@@ -2427,7 +2428,7 @@ UnknownText_0xf576: ; 0xf576
 
 
 Function_0xf57b: ; f57b
-	ld a, [IsInBattle]
+	ld a, [wBattleMode]
 	and a
 	jr nz, .asm_f58c
 
@@ -2579,7 +2580,7 @@ Functionf64c: ; f64c
 ; f652
 
 Functionf652: ; f652
-	ld a, [IsInBattle]
+	ld a, [wBattleMode]
 	and a
 	jr z, .asm_f66c
 	ld a, [CurPartyMon]

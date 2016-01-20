@@ -50,7 +50,7 @@ UnknownText_0x71023: ; 0x71023
 	text "They just put"
 	line "stones with"
 	cont "vitamins for some"
-	cont "reason..."
+	cont "reason…"
 	done
 ; 0x71072
 
@@ -60,7 +60,7 @@ UnknownText_0x71072: ; 0x71072
 
 	para "of moves. But you"
 	line "have to gamble"
-	cont "for it..."
+	cont "for it…"
 	done
 ; 0x710b6
 
@@ -70,7 +70,7 @@ UnknownText_0x710b6: ; 0x710b6
 	cont "STONES sell very"
 	cont "well."
 
-	para "I wonder why..."
+	para "I wonder why…"
 	done
 ; 0x71100
 

@@ -555,7 +555,7 @@ CooltrainerfLoisBeatenText: ; 0x70745
 UnknownText_0x70752: ; 0x70752
 	text "Come to think of"
 	line "it, I've seen a"
-	cont "pink BUTTERFREE..."
+	cont "pink BUTTERFREE…"
 	
 	para "Also, I caught"
 	line "my FORRETRESS"

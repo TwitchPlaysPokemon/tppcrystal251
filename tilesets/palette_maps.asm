@@ -144,3 +144,6 @@ INCBIN "tilesets/40_palette_map.bin"
 
 Tileset41PalMap:
 INCBIN "tilesets/41_palette_map.bin"
+
+Tileset42PalMap:
+INCBIN "tilesets/42_palette_map.bin"

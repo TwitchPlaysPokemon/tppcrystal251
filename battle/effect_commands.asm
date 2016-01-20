@@ -1094,7 +1094,7 @@ BattleCommand04: ; 34555
 	jr z, .asm_345a4
 
 ; skip this part entirely if wildbattle
-	ld a, [IsInBattle]
+	ld a, [wBattleMode]
 	dec a
 	jr z, .asm_345c5
 
@@ -3855,7 +3855,7 @@ BattleCommanda1: ; 35461
 	sub b
 	ld [DefaultFlypoint], a
 .asm_3550d
-	ld a, [IsInBattle]
+	ld a, [wBattleMode]
 	dec a
 	jr z, .asm_3556b
 
@@ -4910,7 +4910,7 @@ BattleCommand46: ; 35a74
 	ld a, [hBattleTurn]
 	and a
 	jr z, .asm_35af6
-	ld a, [IsInBattle]
+	ld a, [wBattleMode]
 	dec a
 	jr nz, .asm_35af6
 	ld a, [hl]
@@ -5202,7 +5202,7 @@ BattleCommand4a: ; 35c0f
 	ld a, [hBattleTurn]
 	and a
 	jr nz, .asm_35c81
-	ld a, [IsInBattle]
+	ld a, [wBattleMode]
 	dec a
 	jr nz, .asm_35c81
 	ld hl, wc739
@@ -7252,7 +7252,7 @@ BattleCommanda0: ; 36778
 	ld a, [hBattleTurn]
 	and a
 	jr nz, .asm_367bf
-	ld a, [IsInBattle]
+	ld a, [wBattleMode]
 	dec a
 	jr nz, .failed
 	ld a, [CurPartyLevel]
@@ -7277,7 +7277,7 @@ BattleCommanda0: ; 36778
 	jp PrintButItFailed
 
 .asm_367bf
-	ld a, [IsInBattle]
+	ld a, [wBattleMode]
 	dec a
 	jr nz, .failed
 	ld a, [BattleMonLevel]
@@ -7342,7 +7342,7 @@ BattleCommand23: ; 3680f
 	ld a, [AttackMissed]
 	and a
 	jr nz, .asm_36852 ; 36830 $20
-	ld a, [IsInBattle]
+	ld a, [wBattleMode]
 	dec a
 	jr nz, .asm_36869 ; 36836 $31
 	ld a, [CurPartyLevel]
@@ -7428,7 +7428,7 @@ BattleCommand23: ; 3680f
 	and a
 	jr nz, .asm_368f3
 
-	ld a, [IsInBattle]
+	ld a, [wBattleMode]
 	dec a
 	jr nz, .asm_36908
 
@@ -7624,7 +7624,7 @@ BattleCommand24: ; 369b6
 	dec a
 	jr .asm_36a3a
 .asm_36a0b
-	ld a, [IsInBattle]
+	ld a, [wBattleMode]
 	cp $1
 	jp z, .asm_36a1e
 	ld a, [OTPartyCount]
@@ -9440,7 +9440,7 @@ BattleCommand53: ; 37563
 	and a
 	jr z, .party
 
-	ld a, [IsInBattle]
+	ld a, [wBattleMode]
 	dec a
 	jr z, .done
 
@@ -9923,7 +9923,7 @@ BattleCommand67: ; 379c9
 .Enemy
 
 ; Wildmons don't have anything to switch to
-	ld a, [IsInBattle]
+	ld a, [wBattleMode]
 	dec a ; WILDMON
 	jp z, FailedBatonPass
 

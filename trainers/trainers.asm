@@ -2439,6 +2439,28 @@ YoungsterGroup:
 	db 12, ZUBAT
 	db $ff
 
+	db "TIMMY@"
+	db 0
+	db 14, SANDSHREW
+	db 14, EKANS
+	db $ff
+;==========
+	db "JOEY@"
+	db 0
+	db 15, SPEAROW
+	db 16, RATTATA
+	db $ff
+
+	db "DAN@"
+	db 0
+	db 17, SLOWPOKE
+	db $ff
+
+	db "CHAD@"
+	db 0
+	db 14, EKANS
+	db 14, SANDSHREW
+	db $ff
 ; ================================
 
 
@@ -3428,6 +3450,25 @@ LassGroup:
 	db 33, PARASECT
 	db $ff
 
+	db "ALI@"
+	db 0
+	db 12, PIDGEY
+	db 12, ODDISH
+	db 12, BELLSPROUT
+	db $ff
+
+	db "RELI@"
+	db 0
+	db 16, NIDORAN_M
+	db 16, NIDORAN_F
+	db $ff
+
+	db "HALEY@"
+	db 0
+	db 13, ODDISH
+	db 14, PIDGEY
+	db 13, ODDISH
+	db $ff
 
 ; ================
 ; ================================
@@ -4885,6 +4926,20 @@ GruntMGroup:
 	db 13, ZUBAT
 	db $ff
 
+; 36
+	db "GRUNT@"
+	db 0
+	db 15, EKANS
+	db 15, ZUBAT
+	db $ff
+
+; 37
+	db "GRUNT@"
+	db 0
+	db 17, MACHOP
+	db 17, DROWZEE
+	db $ff
+
 ; ================================
 
 GentlemanGroup:
@@ -5393,6 +5448,26 @@ BugCatcherGroup:
 	db 10, CATERPIE
 	db 12, METAPOD
 	db 10, CATERPIE
+	db $ff
+
+	db "CALE@"
+	db 0
+	db 10, CATERPIE
+	db 10, WEEDLE
+	db 11, METAPOD
+	db 11, KAKUNA
+	db $ff
+
+	db "KEIGO@"
+	db 0
+	db 16, WEEDLE
+	db 16, CATERPIE
+	db 18, WEEDLE
+	db $ff
+
+	db "ELIJAH@"
+	db 0
+	db 20, BUTTERFREE
 	db $ff
 
 ; ================
@@ -5989,6 +6064,16 @@ SwimmerMGroup:
 	db $ff ; end
 
 ; ================
+	; SWIMMERM (21)
+	db "PARKER@"
+	db 0 ; normal
+
+	; party
+	db 16, HORSEA
+	db 16, SHELLDER
+
+	db $ff ; end
+
 ; ================================
 
 
@@ -6215,6 +6300,11 @@ SwimmerFGroup:
 	db $ff ; end
 
 ; ================
+
+	db "DIANA@"
+	db 0
+	db 19, GOLDEEN
+	db $ff
 ; ================================
 
 
@@ -7236,6 +7326,25 @@ HikerGroup:
 	db 10, GEODUDE
 	db 10, GEODUDE
 	db 12, ONIX
+	db $ff
+
+	db "FRANK@"
+	db 0
+	db 15, MACHOP
+	db 15, GEODUDE
+	db $ff
+
+	db "WAYNE@"
+	db 0
+	db 17, ONIX
+	db $ff
+
+	db "NOB@"
+	db 0
+	db 13, GEODUDE
+	db 14, GEODUDE
+	db 15, GEODUDE
+	db 16, MACHOP
 	db $ff
 ; ================================
 
@@ -8414,7 +8523,24 @@ PicnickerGroup:
 
 	db $ff ; end
 
+	db "KELSEY@"
+	db (1 << TRAINERTYPE_NICKNAME)
+	db 15, NIDORAN_M, "NEEDLES@"
+	db 15, NIDORAN_F, "PRINCESS@"
+	db $ff
 ; ================
+	db "NANCY@"
+	db 0
+	db 16, RATTATA
+	db 16, PIKACHU
+	db $ff
+
+	db "IZZY@"
+	db (1 << TRAINERTYPE_NICKNAME)
+	db 16, PIDGEY, "HOPSY@"
+	db 16, PIDGEY, "PECKSY@"
+	db 16, PIDGEY, "FLAPSY@"
+	db $ff
 ; ================================
 
 
@@ -8705,6 +8831,34 @@ CamperGroup:
 
 	db 11, DIGLETT
 	db 11, SANDSHREW
+	db $ff
+
+	db "ETHAN@"
+	db 0
+	db 18, MANKEY
+	db $ff
+
+	db "SHANE@"
+	db 0
+	db 14, RATTATA
+	db 14, EKANS
+	db $ff
+
+	db "FLINT@"
+	db (1 << TRAINERTYPE_NICKNAME | 1 << TRAINERTYPE_ITEM)
+	db 14, RATTATA, BERRY, "RATMAN@"
+	db 14, EKANS, BERRY, "PYTHON@"
+	db $ff
+
+	db "RICKY@"
+	db 0
+	db 20, SQUIRTLE
+	db $ff
+
+	db "JEFF@"
+	db 0
+	db 16, SPEAROW
+	db 17, RATICATE
 	db $ff
 ; ================================
 

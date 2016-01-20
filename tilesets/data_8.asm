@@ -26,3 +26,9 @@ Tileset17Coll: ; 0x23791
 INCBIN "tilesets/17_collision.bin"
 ; 0x23891
 
+Tileset42GFX:
+INCBIN "gfx/tilesets/42.2bpp.lz"
+Tileset42Meta:
+INCBIN "tilesets/42_metatiles.bin"
+Tileset42Coll:
+INCBIN "tilesets/42_collision.bin"

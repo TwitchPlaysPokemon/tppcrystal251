@@ -57,3 +57,7 @@ Route23RB_BlockData:
 	INCBIN "maps/Route23RB.blk"
 CeruleanCityRB_BlockData:
 	INCBIN "maps/CeruleanCityRB.blk"
+Route24RB_BlockData:
+	INCBIN "maps/Route24RB.blk"
+Route25RB_BlockData:
+	INCBIN "maps/Route25RB.blk"

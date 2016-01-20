@@ -551,7 +551,7 @@ GruntF5SeenText: ; 0x6e5af
 
 GruntF5BeatenText: ; 0x6e5f1
 	text "I failed the"
-	line "EXECUTIVE..."
+	line "EXECUTIVE…"
 	done
 ; 0x6e611
 

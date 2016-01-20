@@ -857,6 +857,7 @@ InitializeEventsScript: ; 0xbc3db
 	variablesprite SPRITE_FUCHSIA_GYM_4, SPRITE_JANINE
 	variablesprite SPRITE_COPYCAT, SPRITE_LASS
 	variablesprite SPRITE_JANINE_IMPERSONATOR, SPRITE_LASS
+	variablesprite SPRITE_EGK_BILL, SPRITE_FAIRY
 	checkflag ENGINE_PLAYER_IS_FEMALE
 	iftrue .rival_is_male
 	variablesprite SPRITE_EGK_RIVAL, SPRITE_KRIS
@@ -894,6 +895,9 @@ InitializeEventsScript: ; 0xbc3db
 	setevent EVENT_OAKS_LAB_OAK
 	setevent EVENT_VIRIDIAN_CITY_RB_OLD_MAN_WALKING_ABOUT
 	setevent EVENT_CERULEAN_CITY_RB_NOT_YET_ROBBERY
+	setevent EVENT_BEAT_RIVAL_IN_EGK_CERULEAN
+	setevent EVENT_CERULEAN_RB_ROCKET_1
+	setevent EVENT_CERULEAN_RB_ROCKET_2
 	return
 ; 0xbc574
 

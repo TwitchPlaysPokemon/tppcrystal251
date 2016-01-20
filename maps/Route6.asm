@@ -99,7 +99,7 @@ PokefanmRexSeenText: ; 0x1ad9cc
 PokefanmRexBeatenText: ; 0x1ad9f3
 	text "Dad: My PONYTA!"
 	
-	para "Son: Please dad..."
+	para "Son: Please dad…"
 	done
 ; 0x1ad9ff
 
@@ -121,10 +121,10 @@ PokefanmAllanSeenText: ; 0x1ada4f
 
 PokefanmAllanBeatenText: ; 0x1ada79
 	text "Dad: BELLSPROUT,"
-	line "no..."
+	line "no…"
 	
 	para "Son: It's embar-"
-	line "-rassing, dad..."
+	line "-rassing, dad…"
 	done
 ; 0x1ada88
 

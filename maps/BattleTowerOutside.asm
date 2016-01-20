@@ -90,7 +90,7 @@ UnknownText_0x9f9db: ; 0x9f9db
 
 	para "I wonder how many"
 	line "#MON I should"
-	cont "take..."
+	cont "take…"
 
 	done
 ; 0x9fa32

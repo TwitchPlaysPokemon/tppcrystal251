@@ -17,9 +17,9 @@ CeruleanGymRB_MistyScript:
 	loadtrainer MISTY, MISTY_RB
 	startbattle
 	returnafterbattle
-	setevent EVENT_BEAT_MISTY
-	setevent EVENT_BEAT_SWIMMERM_PARKER
-	setevent EVENT_BEAT_SWIMMERF_DIANA
+	setevent EVENT_BEAT_MISTY_RB
+	setevent EVENT_BEAT_SWIMMERM_PARKER_RB
+	setevent EVENT_BEAT_SWIMMERF_DIANA_RB
 	loadfont
 	writetext CeruleanGymRB_GotBadgeText
 	playsound SFX_GET_BADGE
@@ -51,7 +51,7 @@ CeruleanGymRB_MistyScript:
 	end
 
 TrainerSwimmerfDianaRB:
-	trainer EVENT_BEAT_SWIMMERF_DIANA, SWIMMERF, DIANA_RB, CeruleanGymRB_BattleText1, CeruleanGymRB_EndBattleText1, NULL, .After
+	trainer EVENT_BEAT_SWIMMERF_DIANA_RB, SWIMMERF, DIANA_RB, CeruleanGymRB_BattleText1, CeruleanGymRB_EndBattleText1, NULL, .After
 
 .After:
 	talkaftercancel
@@ -62,7 +62,7 @@ TrainerSwimmerfDianaRB:
 	end
 
 TrainerSwimmermParkerRB:
-	trainer EVENT_BEAT_SWIMMERM_PARKER, SWIMMERM, PARKER_RB, CeruleanGymRB_BattleText2, CeruleanGymRB_EndBattleText2, NULL, .After
+	trainer EVENT_BEAT_SWIMMERM_PARKER_RB, SWIMMERM, PARKER_RB, CeruleanGymRB_BattleText2, CeruleanGymRB_EndBattleText2, NULL, .After
 
 .After:
 	talkaftercancel
@@ -75,7 +75,7 @@ TrainerSwimmermParkerRB:
 CeruleanGymRB_GymGuyScript:
 	faceplayer
 	loadfont
-	checkevent EVENT_BEAT_MISTY
+	checkevent EVENT_BEAT_MISTY_RB
 	iftrue .Won
 	writetext CeruleanGymRB_GymGuyText
 	waitbutton
@@ -175,7 +175,7 @@ CeruleanGymRB_BattleText1:
 CeruleanGymRB_EndBattleText1:
 	text "You totally"
 	line "overwhelmed me!"
-	prompt
+	done
 
 CeruleanGymRB_AfterBattleText1:
 	text "You have to face"
@@ -193,7 +193,7 @@ CeruleanGymRB_BattleText2:
 
 CeruleanGymRB_EndBattleText2:
 	text "That can't be!"
-	prompt
+	done
 
 CeruleanGymRB_AfterBattleText2:
 	text "MISTY is going to"
@@ -252,7 +252,6 @@ CeruleanGymRB_MapEventHeader:
 	db 4
 	person_event SPRITE_MISTY, 7, 9, $6, 0, 0, -1, -1, 8 + PAL_OW_RED, 0, 0, CeruleanGymRB_MistyScript, -1
 	person_event SPRITE_SWIMMER_GIRL, 10, 8, $9, 0, 0, -1, -1, 8 + PAL_OW_GREEN, 2, 3, TrainerSwimmerfDianaRB, -1
-	;person_event SPRITE_SWIMMER_GIRL, 13, 5, $9, 0, 0, -1, -1, 8 + PAL_OW_GREEN, 2, 1, TrainerSwimmerfBrianaRB, -1
 	person_event SPRITE_SWIMMER_GUY, 13, 12, $8, 0, 0, -1, -1, 8 + PAL_OW_RED, 2, 3, TrainerSwimmermParkerRB, -1
 	person_event SPRITE_GYM_GUY, 17, 11, $6, 0, 0, -1, -1, 8 + PAL_OW_BLUE, 0, 0, CeruleanGymRB_GymGuyScript, -1
 

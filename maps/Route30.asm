@@ -421,7 +421,7 @@ Bug_catcherDonSeenText: ; 0x1a19d8
 Bug_catcherDonBeatenText: ; 0x1a1a03
 	text "Argh! You're too"
 	line "strong for my bug"
-	cont "#MON ..."
+	cont "#MON …"
 	done
 ; 0x1a1a1c
 

@@ -268,7 +268,7 @@ UnknownText_0x5ee69: ; 0x5ee69
 	text "Maybe I relied"
 	line "too much on"
 	cont "the power of the"
-	cont "BERSERK GENE..."
+	cont "BERSERK GENE…"
 	done
 ; 0x5eec4
 
@@ -293,11 +293,11 @@ GruntF4BeatenText: ; 0x5ef15
 ; 0x5ef31
 
 UnknownText_0x5ef31: ; 0x5ef31
-	text "Stupid RICH..."
+	text "Stupid RICH…"
 
 	para "The BERSERK GENE"
 	line "has horrible"
-	cont "side effects..."
+	cont "side effects…"
 	done
 ; 0x5ef62
 
@@ -323,10 +323,10 @@ UnknownText_0x5efcb: ; 0x5efcb
 	line "the BERSERK GENE."
 	
 	para "I regret it to"
-	line "this day..."
+	line "this day…"
 	
 	para "We did horrible"
-	line "things..."
+	line "things…"
 	done
 ; 0x5effe
 

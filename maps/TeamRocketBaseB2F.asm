@@ -928,7 +928,7 @@ GruntM17SeenText: ; 0x6db22
 GruntM17BeatenText: ; 0x6db79
 	text "Bringing bats"
 	line "inside wasn't"
-	cont "a good idea..."
+	cont "a good idea…"
 	done
 ; 0x6db88
 
@@ -954,7 +954,7 @@ GruntM18SeenText: ; 0x6dbca
 ; 0x6dc09
 
 GruntM18BeatenText: ; 0x6dc09
-	text "Not even close..."
+	text "Not even close…"
 	done
 ; 0x6dc1a
 

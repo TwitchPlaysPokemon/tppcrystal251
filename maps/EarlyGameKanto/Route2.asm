@@ -35,7 +35,7 @@ Route2RB_MapEventHeader:
 
 	; warps
 	db 8
-	warp_def 19, 15, 1, GROUP_N_A, MAP_N_A
+	warp_def 19, 15, 1, GROUP_ROUTE_2_NUGGET_SPEECH_HOUSE_RB, MAP_ROUTE_2_NUGGET_SPEECH_HOUSE_RB
 	warp_def 39, 15, 3, GROUP_ROUTE_2_GATE_RB, MAP_ROUTE_2_GATE_RB
 	warp_def 35, 16, 1, GROUP_ROUTE_2_GATE_RB, MAP_ROUTE_2_GATE_RB
 	warp_def 35, 17, 2, GROUP_ROUTE_2_GATE_RB, MAP_ROUTE_2_GATE_RB
@@ -49,7 +49,7 @@ Route2RB_MapEventHeader:
 
 	; signposts
 	db 2
-	signpost 11, 11, $0, BGEvent
+	signpost 11, 11, $0, Route2RBSignpost0Script
 	signpost 65,  5, $0, Route2RBSignpost1Script
 
 	; people-events

@@ -85,12 +85,10 @@ PalletTownRB_BlockData:
 ; 0xa94f1
 
 Route25_BlockData: ; 0xa94f1
-Route25RB_BlockData: ; 0xa94f1
 	INCBIN "maps/Route25.blk"
 ; 0xa95ff
 
 Route24_BlockData: ; 0xa95ff
-Route24RB_BlockData: ; 0xa95ff
 	INCBIN "maps/Route24.blk"
 ; 0xa9659
 
@@ -155,7 +153,7 @@ MoveDeletersHouse_BlockData:
 CeruleanGymBadgeSpeechHouse_BlockData:
 CeruleanPoliceStation_BlockData:
 CeruleanTradeSpeechHouse_BlockData:
-BillsHouse_BlockData:
+CeruleanTradeSpeechHouseRB_BlockData:
 CharcoalKiln_BlockData:
 LakeofRageHiddenPowerHouse_BlockData:
 LakeofRageMagikarpHouse_BlockData:
@@ -200,6 +198,12 @@ CherrygroveEvolutionSpeechHouse_BlockData:
 Route30BerrySpeechHouse_BlockData:
 	INCBIN "maps/OlivineVoltorbHouse.blk"
 ; 0xaa877
+BillsHouse_BlockData:
+CeruleanGymBadgeSpeechHouseRB_BlockData:
+	INCBIN "maps/CeruleanGymBadgeSpeechHouseRB.blk"
+
+BillsHouseRB_BlockData:
+	INCBIN "maps/BillsHouseRB.blk"
 
 Route19FuchsiaGate_BlockData:
 Route43MahoganyGate_BlockData:
@@ -208,11 +212,13 @@ Route35Goldenrodgate_BlockData:
 Route36RuinsofAlphgate_BlockData:
 Route34IlexForestGate_BlockData:
 Route6SaffronGate_BlockData:
+Route6SaffronGateRB_BlockData:
 Route40BattleTowerGate_BlockData:
 Route2Gate_BlockData:
 Route2GateRB_BlockData:
 Route2946Gate_BlockData:
 Route5SaffronCityGate_BlockData:
+Route5SaffronCityGateRB_BlockData:
 	INCBIN "maps/Route40BattleTowerGate.blk"
 ; 0xaa88b
 
@@ -285,6 +291,9 @@ Route31VioletGate_BlockData:
 VermilionCity_BlockData: ; 0xab82b
 	INCBIN "maps/VermilionCity.blk"
 ; 0xab993
+VermilionCityRB_BlockData: ; 0xab82b
+	INCBIN "maps/VermilionCityRB.blk"
+; 0xab993
 
 ElmsLab_BlockData: ; 0xabb55
 	INCBIN "maps/ElmsLab.blk"
@@ -300,12 +309,15 @@ Route1RB_BlockData
 ; 0xabd8f
 
 Route5_BlockData: ; 0xabd8f
+Route5RB_BlockData: ; 0xabd8f
 	INCBIN "maps/Route5.blk"
 ; 0xabde9
 
 Route9_BlockData: ; 0xabde9
 	INCBIN "maps/Route9.blk"
 ; 0xabef7
+Route9RB_BlockData:
+	INCBIN "maps/Route9RB.blk"
 
 Route22_BlockData: ; 0xabef7
 Route22RB_BlockData: ; 0xabef7

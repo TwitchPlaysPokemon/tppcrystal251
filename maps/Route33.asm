@@ -183,7 +183,7 @@ HikerAnthony2SeenText: ; 0x1ac0ec
 
 HikerAnthony2BeatenText: ; 0x1ac130
 	text "Now I feel like"
-	line "a MAGIKARP..."
+	line "a MAGIKARP…"
 	done
 ; 0x1ac153
 

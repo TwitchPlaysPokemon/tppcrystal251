@@ -549,7 +549,7 @@ FisherMarvinSeenText: ; 0x19d461
 	cont "eating fishes!"
 
 	para "I've only got one"
-	line "big haul today..."
+	line "big haul today…"
 	done
 ; 0x19d4b0
 

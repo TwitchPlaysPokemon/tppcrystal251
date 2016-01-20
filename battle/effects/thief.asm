@@ -34,7 +34,7 @@ BattleCommand50: ; 37492
 	and a
 	jr z, .stealenemyitem
 
-	ld a, [IsInBattle]
+	ld a, [wBattleMode]
 	dec a
 	ret z
 

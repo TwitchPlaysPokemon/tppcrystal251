@@ -304,8 +304,8 @@ OaksLab_DoRivalBattle:
 	writecode VAR_BATTLETYPE, BATTLETYPE_CANLOSE
 	startbattle
 	special DeleteSavedMusic
-	reloadmapmusic
 	reloadmap
+	special HealParty
 	playmapmusic
 	loadfont
 	checkflag ENGINE_PLAYER_IS_FEMALE

@@ -183,7 +183,7 @@ MapBattleTentBattleRoomBillText2:
 	done
 MapBattleTentBattleRoomBillText3:
 	text "Hey! While you're"
-	line "here..."
+	line "here…"
 	
 	para "How about a"
 	line "quick battle?"
@@ -193,7 +193,7 @@ MapBattleTentBattleRoomBillText3:
 	done
 
 MapBattleTentBattleRoomBillLossText:
-	text "Whew..."
+	text "Whew…"
 	done
 
 MapBattleTentBattleRoomBillText4:

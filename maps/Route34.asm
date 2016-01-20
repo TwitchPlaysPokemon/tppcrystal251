@@ -797,7 +797,7 @@ YoungsterSamuelSeenText: ; 0x7833d
 
 YoungsterSamuelBeatenText: ; 0x7835e
 	text "It wasn't"
-	line "enough..."
+	line "enough…"
 	done
 ; 0x7837d
 
@@ -840,14 +840,14 @@ YoungsterIanSeenText: ; 0x78425
 YoungsterIanBeatenText: ; 0x78447
 	text "I guess I have"
 	line "things to learn"
-	cont "still..."
+	cont "still…"
 	done
 ; 0x78469
 
 UnknownText_0x78469: ; 0x78469
-	text "LUCKY PUNCH..."
+	text "LUCKY PUNCH…"
 	
-	para "METAL POWDER..."
+	para "METAL POWDER…"
 	
 	para "They make CHANSEY"
 	line "and DITTO even"
@@ -905,11 +905,11 @@ PicnickerGina1BeatenText: ; 0x7859e
 UnknownText_0x785b8: ; 0x785b8
 	text "Maybe it is time"
 	line "for my CHIKORITA"
-	cont "to evolve..."
+	cont "to evolve…"
 	
 	para "It is so cute"
 	line "so I have been"
-	cont "putting it off..."
+	cont "putting it off…"
 	done
 ; 0x785e4
 
@@ -956,27 +956,27 @@ PokefanmBrandonSeenText: ; 0x78696
 PokefanmBrandonBeatenText: ; 0x786e1
 	text "DAD: I'll bring"
 	line "my own #MON"
-	cont "next time..."
+	cont "next time…"
 	
 	para "SON: But these"
 	line "aren't my"
-	cont "#MON, dad..."
+	cont "#MON, dad…"
 	
-	para "DAD: ..."
+	para "DAD: …"
 	done
 ; 0x786fc
 
 UnknownText_0x786fc: ; 0x786fc
-	text "..."
+	text "…"
 
-	para "......."
+	para "……."
 	
 	para "I happen to like"
 	line "cute baby #MON!"
 	
 	para "It's nothing to"
 	line "be ashamed"
-	cont "about..."
+	cont "about…"
 	done
 ; 0x78743
 

@@ -691,12 +691,50 @@
 	map_header_2 MtMoonB2FRB, MT_MOON_B2F_RB, $3, NONE
 	map_header_2 MtMoonB3FRB, MT_MOON_B3F_RB, $3, NONE
 
-	map_header_2 CeruleanGymRB, CERULEAN_GYM, $0, NONE
-
+	map_header_2 CeruleanGymRB, CERULEAN_GYM_RB, $0, NONE
+	map_header_2 CeruleanMartRB, CERULEAN_MART_RB, $0, NONE ; 0x95de0
 	map_header_2 CeruleanPokeCenter1FRB, CERULEAN_POKECENTER_1F_RB, $0, NONE ; 0x960ec
+	map_header_2 CeruleanGymBadgeSpeechHouseRB, CERULEAN_GYM_BADGE_SPEECH_HOUSE_RB, $0, NONE ; 0x95d98
+	map_header_2 CeruleanTradeSpeechHouseRB, CERULEAN_TRADE_SPEECH_HOUSE_RB, $0, NONE ; 0x95db0
 
 	map_header_2 CeruleanCityRB, CERULEAN_CITY_RB, $f, NORTH | SOUTH | WEST | EAST ; 0x95660
-	connection north, ROUTE_24, Route24, 6, 0, 10, CERULEAN_CITY_RB
-	connection south, ROUTE_5, Route5, 5, 0, 10, CERULEAN_CITY_RB
+	connection north, ROUTE_24_RB, Route24RB, 5, 0, 10, CERULEAN_CITY_RB
+	connection south, ROUTE_5_RB, Route5RB, 5, 0, 10, CERULEAN_CITY_RB
 	connection west, ROUTE_4_RB, Route4RB, 4, 0, 9, CERULEAN_CITY_RB
-	connection east, ROUTE_9, Route9, 6, 0, 9, CERULEAN_CITY_RB
+	connection east, ROUTE_9_RB, Route9RB, 6, 0, 9, CERULEAN_CITY_RB
+
+	map_header_2 Route24RB, ROUTE_24_RB, $2c, EAST | SOUTH ; 0x956c0
+	connection south, CERULEAN_CITY_RB, CeruleanCityRB, -3, 2, 16, ROUTE_24_RB
+	connection east, ROUTE_25_RB, Route25RB, 0, 0, 9, ROUTE_24_RB
+
+	map_header_2 Route25RB, ROUTE_25_RB, $2c, WEST ; 0x956e4
+	connection west, ROUTE_24_RB, Route24RB, 0, 0, 10, ROUTE_25_RB
+
+	map_header_2 Route9RB, ROUTE_9_RB, $2c, WEST ; 0x9569c
+	connection west, CERULEAN_CITY_RB, CeruleanCityRB, -6, 0, 18, ROUTE_9_RB
+
+	map_header_2 BillsHouseRB, BILLS_HOUSE_RB, $0, NONE ; 0x95e10
+
+	map_header_2 Route5RB, ROUTE_5_RB, $f, NORTH | SOUTH ; 0x9563c
+	connection north, CERULEAN_CITY_RB, CeruleanCityRB, -3, 2, 16, ROUTE_5_RB
+	connection south, SAFFRON_CITY, SaffronCity, -3, 2, 16, ROUTE_5_RB
+
+	map_header_2 Route5UndergroundEntranceRB, ROUTE_5_UNDERGROUND_ENTRANCE_RB, $0, NONE ; 0x9662c
+	map_header_2 Route5SaffronCityGateRB, ROUTE_5_SAFFRON_CITY_GATE_RB, $0, NONE ; 0x96638
+	map_header_2 Route6UndergroundEntranceRB, ROUTE_6_UNDERGROUND_ENTRANCE_RB, $0, NONE ; 0x9662c
+	map_header_2 Route6SaffronGateRB, ROUTE_6_SAFFRON_GATE_RB, $0, NONE ; 0x96638
+	map_header_2 UndergroundRB, UNDERGROUND_RB, $0, NONE ; 0x95c6c
+
+	map_header_2 VermilionCityRB, VERMILION_CITY_RB, $43, NORTH | EAST ; 0x955b8
+	connection north, ROUTE_6_RB, Route6RB, 6, 0, 10, VERMILION_CITY_RB
+	connection east, ROUTE_11, Route11, 0, 0, 9, VERMILION_CITY_RB
+
+	map_header_2 Route6RB, ROUTE_6_RB, $f, NORTH | SOUTH ; 0x955dc
+	connection north, SAFFRON_CITY, SaffronCity, -3, 2, 16, ROUTE_6_RB
+	connection south, VERMILION_CITY_RB, VermilionCityRB, -4, 2, 16, ROUTE_6_RB
+
+	map_header_2 VermilionPokeCenter1FRB, VERMILION_POKECENTER_1F_RB, $0, NONE ; 0x9602c
+	; map_header_2 PokemonFanClubRB, POKEMON_FAN_CLUB_RB, $0, NONE ; 0x96044
+	; map_header_2 VermilionMagnetTrainSpeechHouseRB, VERMILION_MAGNET_TRAIN_SPEECH_HOUSE_RB, $0, NONE ; 0x96050
+	; map_header_2 VermilionMartRB, VERMILION_MART_RB, $0, NONE ; 0x9605c
+	; map_header_2 VermilionHouseDiglettsCaveSpeechHouseRB, VERMILION_HOUSE_DIGLETTS_CAVE_SPEECH_HOUSE_RB, $0, NONE ; 0x96068

@@ -67,7 +67,7 @@ AttackMissed = 0xc667 -- 1 byte
 PlayerSubStatus1 = 0xc668 -- 1 byte
 -- bit
 -- 7 attract
--- 6 encore
+-- 6 rollout
 -- 5 endure
 -- 4 perish song
 -- 3 identified
@@ -91,8 +91,8 @@ PlayerSubStatus3 = 0xc66a -- 1 byte
 -- 5 underground
 -- 4 charged
 -- 3 flinch
--- 2
--- 1 rollout
+-- 2 looping
+-- 1 rampaging
 -- 0 bide
 PlayerSubStatus4 = 0xc66b -- 1 byte
 -- bit

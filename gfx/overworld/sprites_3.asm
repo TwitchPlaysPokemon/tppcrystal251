@@ -1,5 +1,5 @@
 GiovanniSpriteGFX:            INCBIN "gfx/overworld/102.2bpp"
 SidewaysGrampsSpriteGFX:      INCBIN "gfx/overworld/sideways_gramps.2bpp"
 OldAmberSpriteGFX:            INCBIN "gfx/overworld/old_amber.2bpp"
-DomeFossilSpriteGFX:          ; INCBIN "gfx/overworld/kabuto.2bpp"
+DomeFossilSpriteGFX:          INCBIN "gfx/overworld/kabuto.2bpp"
 HelixFossilSpriteGFX:         INCBIN "gfx/overworld/omanyte.2bpp"

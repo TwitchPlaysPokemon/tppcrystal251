@@ -122,6 +122,10 @@
 	const BEN_RB
 	const CALVIN_RB
 	const JOSH_RB
+	const TIMMY_RB
+	const JOEY_RB
+	const DAN_RB
+	const CHAD_RB
 
 	trainerclass SCHOOLBOY ; 17
 	const JACK1
@@ -194,6 +198,9 @@
 	const MIRIAM_RB
 	const IRIS_RB
 	const CRISSY_RB
+	const ALI_RB
+	const RELI_RB
+	const HALEY_RB
 
 	trainerclass JANINE ; 1a
 	const JANINE_1
@@ -333,7 +340,9 @@
 	const JAMES_RB
 	const KENT_RB
 	const ROBBY_RB
-	
+	const CALE_RB
+	const KEIGO_RB
+	const ELIJAH_RB
 
 	trainerclass FISHER ; 25
 	const JUSTIN
@@ -472,6 +481,9 @@
 	const ANTHONY4
 	const ANTHONY5
 	const MARCOS_RB
+	const FRANK_RB
+	const WAYNE_RB
+	const NOB_RB
 
 	trainerclass BIKER ; 2d
 	const BIKER_BENNY
@@ -571,6 +583,9 @@
 	const GINA4
 	const GINA5
 	const TIFFANY4
+	const KELSEY_RB
+	const NANCY_RB
+	const IZZY_RB
 
 	trainerclass CAMPER ; 36
 	const ROLAND
@@ -597,7 +612,11 @@
 	const QUENTIN
 
 	const JERRY_RB
-	const JERRY_RB_2
+	const ETHAN_RB
+	const SHANE_RB
+	const FLINT_RB
+	const RICKY_RB
+	const JEFF_RB
 
 	trainerclass EXECUTIVEF ; 37
 

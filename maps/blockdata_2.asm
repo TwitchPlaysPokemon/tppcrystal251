@@ -7,9 +7,11 @@ OlivineMart_BlockData: ; 0xac10e
 EcruteakMart_BlockData:
 BlackthornMart_BlockData:
 CeruleanMart_BlockData:
+CeruleanMartRB_BlockData:
 AzaleaMart_BlockData:
 VioletMart_BlockData:
 VermilionMart_BlockData:
+VermilionMartRB_BlockData:
 PewterMart_BlockData:
 PewterMartRB_BlockData:
 FuchsiaMart_BlockData:
@@ -39,6 +41,7 @@ VioletPokeCenter1F_BlockData:
 Route32PokeCenter1F_BlockData:
 GoldenrodPokeCenter1F_BlockData:
 VermilionPokeCenter1F_BlockData:
+VermilionPokeCenter1FRB_BlockData:
 PewterPokeCenter1F_BlockData:
 PewterPokeCenter1FRB_BlockData:
 FuchsiaPokeCenter1F_BlockData:
@@ -161,6 +164,8 @@ NationalParkBugContest_BlockData:
 
 Route6UndergroundEntrance_BlockData: ; 0xac9f1
 Route5UndergroundEntrance_BlockData:
+Route6UndergroundEntranceRB_BlockData: ; 0xac9f1
+Route5UndergroundEntranceRB_BlockData:
 	INCBIN "maps/Route6UndergroundEntrance.blk"
 ; 0xaca01
 
@@ -270,6 +275,8 @@ SilverCaveOutside_BlockData: ; 0xad9d6
 
 Route6_BlockData: ; 0xadb3e
 	INCBIN "maps/Route6.blk"
+Route6RB_BlockData: ; 0xadb3e
+	INCBIN "maps/Route6RB.blk"
 ; 0xadb98
 
 Route7_BlockData: ; 0xadb98

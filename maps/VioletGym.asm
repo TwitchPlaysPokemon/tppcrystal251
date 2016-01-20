@@ -338,7 +338,7 @@ UnknownText_0x688c7: ; 0x688c7
 	
 	para "You usually only"
 	line "see HOOTHOOT"
-	cont "around here..."
+	cont "around here…"
 	done
 ; 0x688f9
 

@@ -1612,7 +1612,7 @@ EnemyMonBaseExp::   db ; d22c
 EnemyMonEnd::
 
 
-IsInBattle:: ; d22d
+wBattleMode:: ; d22d
 ; 0: overworld
 ; 1: wild battle
 ; 2: trainer battle

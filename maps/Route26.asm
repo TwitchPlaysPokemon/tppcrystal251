@@ -533,13 +533,13 @@ FisherScottSeenText: ; 0x1a52c4
 
 FisherScottBeatenText: ; 0x1a530d
 	text "I still have"
-	line "my memories..."
+	line "my memories…"
 	done
 ; 0x1a5326
 
 UnknownText_0x1a5326: ; 0x1a5326
 	text "It feels so"
-	line "long ago..."
+	line "long ago…"
 
 	para "When my BLASTOISE"
 	line "was a WARTORTLE."

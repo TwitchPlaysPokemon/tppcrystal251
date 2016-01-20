@@ -2,7 +2,6 @@ BattleCore:
 
 ; Core components of the battle engine.
 
-
 Function3c000: ; 3c000
 	xor a
 	ld [wc664], a
@@ -34,7 +33,7 @@ Function3c000: ; 3c000
 	jr z, .asm_3c04c
 
 .asm_3c031
-	ld a, [IsInBattle]
+	ld a, [wBattleMode]
 	dec a
 	jr z, .asm_3c047
 	xor a
@@ -119,8 +118,6 @@ Function3c000: ; 3c000
 	jp BattleMenu
 ; 3c0e5
 
-
-
 Function3c0e5: ; 3c0e5
 	call Function30b4
 	ld a, [wd0ee]
@@ -177,7 +174,11 @@ Function3c12f: ; 3c12f
 
 	call Function3c27c
 	call UpdateBattleMonInParty
+IF !DEF(BEESAFREE)
 	callba AIChooseMove
+ELSE
+	call AIWaitMove
+ENDC
 
 	call IsMobileBattle
 	jr nz, .not_disconnected
@@ -192,9 +193,6 @@ Function3c12f: ; 3c12f
 .asm_3c179
 	call BattleMenu
 	jr c, .quit
-IF DEF(BEESAFREE)
-	call AIWaitMove
-ENDC
 	ld a, [BattleEnded]
 	and a
 	jr nz, .quit
@@ -240,7 +238,6 @@ Function3c1bf: ; 3c1bf
 	ret
 ; 3c1c0
 
-
 Function3c1c0: ; 3c1c0
 	ld a, $5
 	call GetSRAMBank
@@ -258,7 +255,6 @@ Function3c1c0: ; 3c1c0
 	call CloseSRAM
 	ret
 ; 3c1d6
-
 
 Function3c1d6: ; 3c1d6
 	ld a, [$ffcb]
@@ -791,9 +787,8 @@ Function3c4df: ; 3c4df
 	jp StdBattleTextBox
 ; 3c543
 
-
 Function3c543: ; 3c543
-	ld a, [IsInBattle]
+	ld a, [wBattleMode]
 	dec a
 	jr nz, .Stay
 
@@ -809,6 +804,11 @@ Function3c543: ; 3c543
 	and 1 << FRZ | SLP
 	jr nz, .Stay
 
+IF DEF(BEESAFREE)
+	ld a, [wBattleAction]
+	cp $f
+	jr z, .Flee
+ELSE
 	ld a, [TempEnemyMonSpecies]
 	ld de, 1
 	ld hl, AlwaysFleeMons
@@ -837,6 +837,7 @@ Function3c543: ; 3c543
 	ld hl, SometimesFleeMons
 	call IsInArray
 	jr c, .Flee
+ENDC
 
 .Stay
 	and a
@@ -882,7 +883,6 @@ AlwaysFleeMons: ; 3c5b1
 ;	db SUICUNE
 	db -1
 ; 3c5b4
-
 
 CompareMovePriority: ; 3c5b4
 ; Compare the priority of the player and enemy's moves.
@@ -938,7 +938,6 @@ MoveEffectPriorities: ; 3c5df
 	db -1
 ; 3c5ec
 
-
 GetMoveEffect: ; 3c5ec
 	ld a, b
 	dec a
@@ -950,7 +949,6 @@ GetMoveEffect: ; 3c5ec
 	ld b, a
 	ret
 ; 3c5fe
-
 
 Function3c5fe: ; 3c5fe
 	call Function309d
@@ -1278,7 +1276,7 @@ Function3c801: ; 3c801
 	xor a
 	ld [hli], a
 	ld [hl], a
-	ld a, [IsInBattle]
+	ld a, [wBattleMode]
 	dec a
 	ret z
 	ld hl, OTPartyMon1HP
@@ -1435,7 +1433,7 @@ Function3c93c: ; 3c93c
 	jr z, .asm_3c99b
 	ld de, wc739
 	ld hl, wc735
-	ld a, [IsInBattle]
+	ld a, [wBattleMode]
 	dec a
 	jr z, .asm_3c99b
 	ld hl, OTPartyMon1PP
@@ -1524,7 +1522,7 @@ Function3c93c: ; 3c93c
 	ld a, [hBattleTurn]
 	and a
 	jr z, .asm_3ca12
-	ld a, [IsInBattle]
+	ld a, [wBattleMode]
 	dec a
 	jr z, .asm_3ca14
 	call Function3df1f
@@ -1643,7 +1641,7 @@ Function3ca8f: ; 3ca8f
 	xor a
 	ld [EnemyMonStatus], a
 
-	ld a, [IsInBattle]
+	ld a, [wBattleMode]
 	dec a
 	jr z, .asm_3caef
 	ld a, [CurOTMon]
@@ -1696,7 +1694,6 @@ Function3cafb: ; 3cafb
 	jp StdBattleTextBox
 ; 3cb36
 
-
 Function3cb36: ; 3cb36
 	ld a, [$ffcb]
 	cp 1
@@ -1739,7 +1736,6 @@ Function3cb36: ; 3cb36
 .Enemy
 	db "Enemy@"
 ; 3cb80
-
 
 FadeLightScreen: ; 3cb80
 	ld a, [de]
@@ -1897,7 +1893,6 @@ Function3cc3f: ; 3cc3f
 	jp Function3cd36
 ; 3cc45
 
-
 Function3cc45: ; 3cc45
 	ld hl, BattleMonHP
 	ld a, [hBattleTurn]
@@ -1943,7 +1938,6 @@ GetSixteenthMaxHP: ; 3cc76
 	ret
 ; 3cc83
 
-
 GetEighthMaxHP: ; 3cc83
 ; output: bc
 	call GetQuarterMaxHP
@@ -1958,7 +1952,6 @@ GetEighthMaxHP: ; 3cc83
 .end
 	ret
 ; 3cc8e
-
 
 GetQuarterMaxHP: ; 3cc8e
 ; output: bc
@@ -1980,7 +1973,6 @@ GetQuarterMaxHP: ; 3cc8e
 	ret
 ; 3cc9f
 
-
 GetHalfMaxHP: ; 3cc9f
 ; output: bc
 	call GetMaxHP
@@ -1997,7 +1989,6 @@ GetHalfMaxHP: ; 3cc9f
 .end
 	ret
 ; 3ccac
-
 
 GetMaxHP: ; 3ccac
 ; output: bc, Buffer1-2
@@ -2052,7 +2043,6 @@ Function3ccde: ; 3ccde
 	sbc [hl]
 	ret
 ; 3ccef
-
 
 Function3ccef: ; 3ccef
 	ld hl, EnemyMonMaxHP
@@ -2144,7 +2134,7 @@ Function3cd55: ; 3cd55
 	ld c, 60
 	call DelayFrames
 
-	ld a, [IsInBattle]
+	ld a, [wBattleMode]
 	dec a
 	jr nz, .asm_3cd8c
 
@@ -2221,7 +2211,7 @@ Function3cdca: ; 3cdca
 
 Function3ce01: ; 3ce01
 	call UpdateBattleMonInParty
-	ld a, [IsInBattle]
+	ld a, [wBattleMode]
 	dec a
 	jr z, .asm_3ce16
 	ld a, [CurOTMon]
@@ -2240,7 +2230,7 @@ Function3ce01: ; 3ce01
 	ld [hl], a
 	call NewEnemyMonStatus
 	call BreakAttraction
-	ld a, [IsInBattle]
+	ld a, [wBattleMode]
 	dec a
 	jr z, .asm_3ce2f
 	jr .asm_3ce37
@@ -2265,7 +2255,7 @@ Function3ce01: ; 3ce01
 	ld a, d
 	and a
 	ret z
-	ld a, [IsInBattle]
+	ld a, [wBattleMode]
 	dec a
 	call z, Function3d0ea
 	call EmptyBattleTextBox
@@ -2364,8 +2354,6 @@ Function3ceaa: ; 3ceaa
 	and a
 	ret
 ; 3ceec
-
-
 
 Function3ceec: ; 3ceec
 	xor a
@@ -2642,7 +2630,6 @@ SentToMomTexts: ; 3d0ab
 	dw BattleText_0x80a3d
 ; 3d0b1
 
-
 Function3d0b1: ; 3d0b1
 	ld hl, wMomsMoney + 2
 	ld a, [hld]
@@ -2695,7 +2682,7 @@ Function3d0ea: ; 3d0ea
 	call PlayMusic
 	call DelayFrame
 	ld de, MUSIC_WILD_VICTORY
-	ld a, [IsInBattle]
+	ld a, [wBattleMode]
 	dec a
 	jr nz, .asm_3d113
 	push de
@@ -2727,8 +2714,6 @@ Function3d0ea: ; 3d0ea
 	pop de
 	ret
 ; 3d123
-
-
 
 ; These functions check if the current opponent is a gym leader or one of a
 ; few other special trainers.
@@ -2784,7 +2769,6 @@ KantoGymLeaders:
 	db TPPPC
 	db $ff
 
-
 Function3d14e: ; 3d14e
 	call Function3cef1
 	ld hl, EnemyMonHP
@@ -2803,7 +2787,7 @@ Function3d14e: ; 3d14e
 	or [hl]
 	jr nz, .asm_3d185
 	call Function3ce01
-	ld a, [IsInBattle]
+	ld a, [wBattleMode]
 	dec a
 	jr nz, .asm_3d17f
 	ld a, $1
@@ -2876,7 +2860,7 @@ Function3d1aa: ; 3d1aa
 Function3d1f8: ; 3d1f8
 	call EmptyBattleTextBox
 	call Function309d
-	ld a, [IsInBattle]
+	ld a, [wBattleMode]
 	and a
 	dec a
 	ret nz
@@ -2981,7 +2965,6 @@ Function3d2b3: ; 3d2b3
 	jp SpikesDamage
 ; 3d2e0
 
-
 Function3d2e0: ; 3d2e0
 	ld a, [wLinkMode]
 	cp $4
@@ -3077,7 +3060,6 @@ ForcePickPartyMonInBattle: ; 3d362
 	jr .pick
 ; 3d375
 
-
 PickSwitchMonInBattle: ; 3d375
 .pick
 	call PickPartyMonInBattle
@@ -3101,7 +3083,6 @@ ForcePickSwitchMonInBattle: ; 3d380
 	xor a
 	ret
 ; 3d38e
-
 
 LostBattle: ; 3d38e
 	ld a, 1
@@ -3202,7 +3183,6 @@ LostBattle: ; 3d38e
 	ret
 ; 3d432
 
-
 Function3d432: ; 3d432
 	hlcoord 12, 5
 	decoord 12, 6
@@ -3266,7 +3246,6 @@ Function3d444: ; 3d444
 	db "       @"
 ; 3d490
 
-
 Function3d490: ; 3d490
 	ld [$ffaf], a
 	ld c, a
@@ -3313,7 +3292,6 @@ Function3d4ae: ; 3d4ae
 	ret
 ; 3d4c3
 
-
 Function3d4c3: ; 3d4c3
 	call Function3d557
 	ld a, [wc718]
@@ -3328,7 +3306,6 @@ Function3d4c3: ; 3d4c3
 	call Function3d57a
 	ret
 ; 3d4e1
-
 
 Function3d4e1: ; 3d4e1
 	call Function3d714
@@ -3849,7 +3826,6 @@ Function3d873: ; 3d873
 	ret
 ; 3d887
 
-
 Function3d887: ; 3d887
 	ld a, [CurPartyMon]
 	ld hl, PartyMon1HP
@@ -3879,7 +3855,6 @@ Function3d887: ; 3d887
 	ret
 ; 3d8b3
 
-
 Function3d8b3: ; 3d8b3
 	ld a, [BattleType]
 	cp $2
@@ -3899,7 +3874,7 @@ Function3d8b3: ; 3d8b3
 	and a
 	jp nz, .asm_3d9a2
 
-	ld a, [IsInBattle]
+	ld a, [wBattleMode]
 	dec a
 	jp nz, .asm_3d992
 
@@ -4067,7 +4042,6 @@ Function3d8b3: ; 3d8b3
 	ret
 ; 3da0d
 
-
 Function3da0d: ; 3da0d
 	ld a, PartyMon1Species - PartyMon1
 	call GetPartyParamLocation
@@ -4139,7 +4113,7 @@ Function3da97: ; 3da97
 	bit SUBSTATUS_TRANSFORMED, a
 	ret z
 	ld hl, wc6f2
-	ld a, [IsInBattle]
+	ld a, [wBattleMode]
 	dec a
 	ret z
 	ld hl, OTPartyMon1DVs
@@ -4157,7 +4131,6 @@ ResetPlayerStatLevels: ; 3dab1
 	jr nz, .loop
 	ret
 ; 3dabd
-
 
 Function3dabd: ; 3dabd
 	ld a, [CurPartyMon]
@@ -4214,7 +4187,6 @@ Function3dabd: ; 3dabd
 	ret
 ; 3db32
 
-
 Function3db32: ; 3db32
 	call ClearSprites
 	ld a, [CurBattleMon]
@@ -4234,7 +4206,6 @@ Function3db32: ; 3db32
 	or [hl]
 	ret
 ; 3db5f
-
 
 Function3db5f: ; 3db5f
 	ld hl, BattleMonDVs
@@ -4376,7 +4347,7 @@ SpikesDamage: ; 3dc23
 .done
 	ld b, h
 	ld c, l
-	
+
 	call Function3cc39
 
 	pop hl
@@ -4608,7 +4579,6 @@ Function3ddac:
 	jp StdBattleTextBox
 ; 3ddc8
 
-
 Function3ddc8: ; 3ddc8
 	push hl
 	push de
@@ -4693,7 +4663,6 @@ Function3dde9: ; 3dde9
 	db $ff
 ; 3de51
 
-
 Function3de51: ; 3de51
 	ld a, BATTLE_VARS_SUBSTATUS3_OPP
 	call GetBattleVar
@@ -4722,7 +4691,7 @@ Function3de51: ; 3de51
 	call Function3df1f
 	xor a
 	ld [bc], a
-	ld a, [IsInBattle]
+	ld a, [wBattleMode]
 	dec a
 	ret z
 	ld [hl], $0
@@ -4817,7 +4786,6 @@ Function3deb6: ; 3deb6
 	db $ff
 ; 3df12
 
-
 Function3df12: ; 3df12
 	ld hl, PartyMon1Item
 	ld a, [CurBattleMon]
@@ -4850,8 +4818,6 @@ Function3df2c: ; 3df2c
 	pop hl
 	ret
 ; 3df48
-
-
 
 UpdatePlayerHUD:: ; 3df48
 	push hl
@@ -5444,7 +5410,6 @@ Function3e308: ; 3e308
 	ret
 ; 3e358
 
-
 Function3e358: ; 3e358
 	ld a, [CurBattleMon]
 	ld d, a
@@ -5453,7 +5418,12 @@ Function3e358: ; 3e358
 	jr nz, .asm_3e36b
 	ld hl, BattleText_0x80c0d
 	call StdBattleTextBox
+IF DEF(BEESAFREE)
+	scf
+	ret
+ELSE
 	jp Function3e299
+ENDC
 
 .asm_3e36b
 	ld a, [wc730]
@@ -5466,11 +5436,23 @@ Function3e358: ; 3e358
 .asm_3e378
 	ld hl, BattleText_0x80c22
 	call StdBattleTextBox
+IF DEF(BEESAFREE)
+	scf
+	ret
+ELSE
 	jp Function3e299
+ENDC
 
 .asm_3e381
 	call Function3d887
+IF DEF(BEESAFREE)
+	jr nz, .okay
+	scf
+	ret
+.okay
+ELSE
 	jp z, Function3e299
+ENDC
 	ld a, [CurBattleMon]
 	ld [wc71a], a
 	ld a, $2
@@ -5602,7 +5584,6 @@ PassedBattleMonEntrance: ; 3e459
 	jp SpikesDamage
 ; 3e489
 
-
 BattleMenu_Run: ; 3e489
 	call Function30b4
 	ld a, $3
@@ -5613,12 +5594,16 @@ BattleMenu_Run: ; 3e489
 	ld a, $0
 	ld [wd266], a
 	ret c
+IF DEF(BEESAFREE)
+	and a
+	ret
+ELSE
 	ld a, [wd0ec]
 	and a
 	ret nz
 	jp BattleMenu
+ENDC
 ; 3e4a8
-
 
 CheckAmuletCoin: ; 3e4a8
 	ld a, [BattleMonItem]
@@ -6024,7 +6009,6 @@ MoveInfoBox: ; 3e6c8
 	db "TYPE/@"
 ; 3e75f
 
-
 Function3e75f: ; 3e75f
 	hlcoord 5, 11
 	ld a, [wLinkMode]
@@ -6093,8 +6077,6 @@ Function3e786: ; 3e786
 	xor a
 	ret
 ; 3e7c1
-
-
 
 Function3e7c1: ; 3e7c1
 	ld a, [wEnemyIsSwitching]
@@ -6174,7 +6156,7 @@ Function3e7c1: ; 3e7c1
 	jr .asm_3e8bd
 
 .asm_3e84f
-	ld a, [IsInBattle]
+	ld a, [wBattleMode]
 	dec a
 	jr nz, .asm_3e882
 .asm_3e855
@@ -6273,7 +6255,6 @@ Function3e8e4: ; 3e8e4
 	ret
 ; 3e8eb
 
-
 LoadEnemyMon: ; 3e8eb
 ; Initialize enemy monster parameters
 ; To do this we pull the species from TempEnemyMonSpecies
@@ -6286,26 +6267,22 @@ LoadEnemyMon: ; 3e8eb
 	ld hl, EnemyMonSpecies
 	ld bc, EnemyMonEnd - EnemyMon
 	call ByteFill
-	
+
 ; We don't need to be here if we're in a link battle
 	ld a, [wLinkMode]
 	and a
 	jp nz, Function3dabd
-	
+
 	ld a, [OtherTrainerClass]
 	cp TPPPC
 	jr nz, .continueloading ;if not the PC, skip 
 	ld a, [OtherTrainerID]
 	cp MIRROR ;if mirror (?) go to ?
 	jp z, Function3dabd
-	
+
 .continueloading
 	ld a, [InBattleTowerBattle] ; if in battle tower, copy outright
 	bit 0, a
-	jp nz, Function3dabd
-
-	ld a, [IsInBattle] ;experiment 
-	dec a
 	jp nz, Function3dabd
 
 ; Make sure everything knows what species we're working with
@@ -6313,29 +6290,24 @@ LoadEnemyMon: ; 3e8eb
 	ld [EnemyMonSpecies], a
 	ld [CurSpecies], a
 	ld [CurPartySpecies], a
-	
+
 ; Grab the BaseData for this species
 	call GetBaseData
-	
 
 ; Let's get the item:
 
 ; Is the item predetermined?
-	ld a, [IsInBattle]
+	ld a, [wBattleMode]
 	dec a
 	jr z, .WildItem
-	
+
 ; If we're in a trainer battle, the item is in the party struct
 	ld a, [CurPartyMon]
 	ld hl, OTPartyMon1Item
 	call GetPartyLocation ; go to opposing mon party slot item
 	ld a, [hl] ;load it into a
 	jr .UpdateItem
-	
-	
-	
-	
-	
+
 ; In a wild battle, we pull from the item slots in BaseData
 
 ; I will hijack this script to adjust the wild Pokemon's level.
@@ -6348,7 +6320,7 @@ LoadEnemyMon: ; 3e8eb
 	jr z, .UpdateItem
 	cp BATTLETYPE_KANTOLEGEND
 	jr z, .UpdateItem
-	
+
 ; Failing that, it's all up to chance
 ;  Effective chances:
 ;    75% None
@@ -6360,30 +6332,28 @@ LoadEnemyMon: ; 3e8eb
 	cp a, $c0
 	ld a, NO_ITEM
 	jr c, .UpdateItem
-	
+
 ; From there, an 8% chance for Item2
 	call BattleRandom
 	cp a, $14 ; 8% of 25% = 2% Item2
 	ld a, [BaseItems]
 	jr nc, .UpdateItem
 	ld a, [BaseItems+1]
-	
-	
+
 .UpdateItem
 	ld [EnemyMonItem], a ;put item on mon
-	
-	
+
 ; Initialize DVs
-	
+
 ; If we're in a trainer battle, DVs are predetermined
-	ld a, [IsInBattle]
+	ld a, [wBattleMode]
 	and a
 	jr z, .InitDVs
-	
+
 	ld a, [EnemySubStatus5]
 	bit SUBSTATUS_TRANSFORMED, a
 	jr z, .InitDVs
-	
+
 ; Unknown
 	ld hl, wc6f2 ;set by transform?
 	ld de, EnemyMonDVs
@@ -6393,21 +6363,19 @@ LoadEnemyMon: ; 3e8eb
 	ld a, [hl]
 	ld [de], a
 	jp .Happiness
-	
-	
+
 .InitDVs
-	
+
 ; Trainer DVs
-	
+
 ; All trainers have preset DVs, determined by class
 ; See GetTrainerDVs for more on that
 	callba GetTrainerDVs
 ; These are the DVs we'll use if we're actually in a trainer battle
-	ld a, [IsInBattle]
+	ld a, [wBattleMode]
 	dec a
 	jr nz, .UpdateDVs
-	
-	
+
 ; Wild DVs
 ; Here's where the fun starts
 
@@ -6416,7 +6384,7 @@ LoadEnemyMon: ; 3e8eb
 	ld a, [BattleType]
 	cp a, BATTLETYPE_ROAMING
 	jr nz, .NotRoaming
-	
+
 ; Grab HP
 	call GetRoamMonHP
 	ld a, [hl]
@@ -6424,7 +6392,7 @@ LoadEnemyMon: ; 3e8eb
 	and a
 ; We'll do something with the result in a minute
 	push af
-	
+
 ; Grab DVs
 	call GetRoamMonDVs
 	inc hl
@@ -6436,7 +6404,7 @@ LoadEnemyMon: ; 3e8eb
 	pop af
 ; If the RoamMon struct has already been initialized, we're done
 	jr nz, .UpdateDVs
-	
+
 ; If it hasn't, we need to initialize the DVs
 ; (HP is initialized at the end of the battle)
 	call GetRoamMonDVs
@@ -6450,7 +6418,6 @@ LoadEnemyMon: ; 3e8eb
 ; We're done with DVs
 	jr .UpdateDVs
 
-	
 .NotRoaming
 ; Register a contains BattleType
 
@@ -6462,36 +6429,33 @@ LoadEnemyMon: ; 3e8eb
 	ld b, ATKDEFDV_SHINY ; $ea
 	ld c, SPDSPCDV_SHINY ; $aa
 	jr .UpdateDVs
-	
+
 .GenerateDVs
 ; Generate new random DVs
 	call BattleRandom
 	ld b, a
 	call BattleRandom
 	ld c, a
-	
+
 .UpdateDVs
 ; Input DVs from register bc into enemymons
 	ld hl, EnemyMonDVs
 	ld a, b
 	ld [hli], a
 	ld [hl], c
-	
-	
+
 ; We've still got more to do if we're dealing with a wild monster
-	ld a, [IsInBattle]
+	ld a, [wBattleMode]
 	dec a
 	jr nz, .Happiness
-	
-	
+
 ; Species-specfic:
-	
-	
+
 ; Unown
 	ld a, [TempEnemyMonSpecies]
 	cp a, UNOWN
 	jr nz, .Magikarp
-	
+
 ; Get letter based on DVs
 	ld hl, EnemyMonDVs
 	predef GetUnownLetter
@@ -6499,25 +6463,24 @@ LoadEnemyMon: ; 3e8eb
 ; If combined with forced shiny battletype, causes an infinite loop
 	call CheckUnownLetter
 	jr c, .GenerateDVs ; try again
-	
-	
+
 .Magikarp
 ; Skimming this part recommended
-	
+
 	ld a, [TempEnemyMonSpecies]
 	cp a, MAGIKARP
 	jr nz, .Happiness
-	
+
 ; Get Magikarp's length
 	ld de, EnemyMonDVs
 	ld bc, PlayerID
 	callab CalcMagikarpLength
-	
+
 ; We're clear if the length is < 1536
 	ld a, [MagikarpLength]
 	cp a, $06 ; $600 = 1536
 	jr nz, .CheckMagikarpArea
-	
+
 ; 5% chance of skipping size checks
 	call Random
 	cp a, $0c ; / $100
@@ -6526,7 +6489,7 @@ LoadEnemyMon: ; 3e8eb
 	ld a, [MagikarpLength + 1]
 	cp a, $50
 	jr nc, .GenerateDVs
-	
+
 ; 20% chance of skipping this check
 	call Random
 	cp a, $32 ; / $100
@@ -6535,15 +6498,15 @@ LoadEnemyMon: ; 3e8eb
 	ld a, [MagikarpLength + 1]
 	cp a, $40
 	jr nc, .GenerateDVs
-	
+
 .CheckMagikarpArea
 ; The z checks are supposed to be nz
 ; Instead, all maps in GROUP_LAKE_OF_RAGE (mahogany area)
 ; and routes 20 and 44 are treated as Lake of Rage
-	
+
 ; This also means Lake of Rage Magikarp can be smaller than ones
 ; caught elsewhere rather than the other way around
-	
+
 ; Intended behavior enforces a minimum size at Lake of Rage
 ; The real behavior prevents size flooring in the Lake of Rage area
 	ld a, [MapGroup]
@@ -6560,10 +6523,9 @@ LoadEnemyMon: ; 3e8eb
 	ld a, [MagikarpLength]
 	cp a, 1024 >> 8
 	jr c, .GenerateDVs ; try again
-	
-	
+
 ; Finally done with DVs
-	
+
 .Happiness
 ; Set happiness ;bug does not consider happiness set elsewhere
 	ld a, BASE_HAPPINESS
@@ -6571,62 +6533,29 @@ LoadEnemyMon: ; 3e8eb
 ; Set level
 	ld a, [CurPartyLevel]
 	ld [EnemyMonLevel], a
-; ; Adjust the wild Pokemon's level if it's not fixed (redundent?)
-	; ld a, [IsInBattle]
-	; cp a, TRAINER_BATTLE
-	; jr z, .Stats
-	; ld a, [BattleType]
-	; cp BATTLETYPE_CELEBI
-	; jr z, .Stats
-	; cp BATTLETYPE_FORCEITEM
-	; jr z, .Stats
-	; cp BATTLETYPE_TREE
-	; jr z, .Stats
-	; cp BATTLETYPE_ROAMING
-	; jr z, .Stats
-	; cp BATTLETYPE_KANTOLEGEND
-	; jr z, .Stats
-; ; 33% chance of the level not changing
-	; call BattleRandom
-	; cp a, $55
-	; jr c, .Stats
-; ; From there, 50% chance of increase and 50% chance of decrease
-	; call BattleRandom
-	; cp a, $80
-	; jr c, .IncreaseLevel
-	; ld a, [EnemyMonLevel]
-	; cp 2
-	; jr z, .Stats
-	; dec a
-	; ld [EnemyMonLevel], a
-	; jr .Stats
-; .IncreaseLevel
-	; cp 100
-	; jr z, .Stats
-	; ld a, [EnemyMonLevel]
-	; inc a
-	; ld [EnemyMonLevel], a
 .Stats
 ; Fill stats
+	ld hl, (OTPartyMon1StatExp - 1)
+	ld a, [CurPartyMon]
+	call GetPartyLocation
 	ld de, EnemyMonMaxHP
-	ld b, $00
-	ld hl, LinkBattleRNs + 7 ; ?
+	ld b, 1
 	predef Functione167 ;load in stats, hl is start of stat xp
-	
+
 ; If we're in a trainer battle,
 ; get the rest of the parameters from the party struct
-	ld a, [IsInBattle]
+	ld a, [wBattleMode]
 	cp a, TRAINER_BATTLE
 	jr z, .OpponentParty
-	
+
 ; If we're in a wild battle, check wild-specific stuff
 	and a
 	jr z, .TreeMon
-	
+
 	ld a, [EnemySubStatus5]
 	bit SUBSTATUS_TRANSFORMED, a
 	jp nz, .Moves
-	
+
 .TreeMon
 ; If we're headbutting trees, some monsters enter battle asleep
 	call CheckSleepingTreeMon ;ret c if mon asleep
@@ -6634,26 +6563,26 @@ LoadEnemyMon: ; 3e8eb
 	jr c, .UpdateStatus
 ; Otherwise, no status
 	xor a
-	
+
 .UpdateStatus
 	ld hl, EnemyMonStatus
 	ld [hli], a
-	
+
 ; Unused byte
 	xor a
 	ld [hli], a
-	
+
 ; Full HP...
 	ld a, [EnemyMonMaxHP]
 	ld [hli], a
 	ld a, [EnemyMonMaxHP + 1]
 	ld [hl], a
-	
+
 ; ...unless it's a RoamMon
 	ld a, [BattleType]
 	cp a, BATTLETYPE_ROAMING
 	jr nz, .Moves
-	
+
 ; Grab HP
 	call GetRoamMonHP
 	ld a, [hl]
@@ -6664,15 +6593,14 @@ LoadEnemyMon: ; 3e8eb
 	ld a, [hl]
 	ld [EnemyMonHP + 1], a
 	jr .Moves
-	
+
 .InitRoamHP
 ; HP only uses the lo byte in the RoamMon struct since
 ; Raikou/Entei/Suicune will have < 256 hp at level 40
 	ld a, [EnemyMonHP + 1]
 	ld [hl], a
 	jr .Moves
-	
-	
+
 .OpponentParty
 ; Get HP from the party struct
 	ld hl, (OTPartyMon1HP + 1)
@@ -6682,17 +6610,16 @@ LoadEnemyMon: ; 3e8eb
 	ld [EnemyMonHP + 1], a
 	ld a, [hld]
 	ld [EnemyMonHP], a
-	
+
 ; Make sure everything knows which monster the opponent is using
 	ld a, [CurPartyMon]
 	ld [CurOTMon], a
-	
+
 ; Get status from the party struct
 	dec hl
 	ld a, [hl] ; OTPartyMonStatus
 	ld [EnemyMonStatus], a
-	
-	
+
 .Moves
 	ld hl, BaseType1
 	ld de, EnemyMonType1
@@ -6701,11 +6628,11 @@ LoadEnemyMon: ; 3e8eb
 	inc de
 	ld a, [hl]
 	ld [de], a
-	
+
 ; Get moves
 	ld de, EnemyMonMoves
 ; Are we in a trainer battle?
-	ld a, [IsInBattle]
+	ld a, [wBattleMode]
 	cp a, TRAINER_BATTLE
 	jr nz, .WildMoves
 ; Then copy moves from the party struct
@@ -6715,7 +6642,7 @@ LoadEnemyMon: ; 3e8eb
 	ld bc, NUM_MOVES
 	call CopyBytes
 	jr .PP
-	
+
 .WildMoves
 ; Clear EnemyMonMoves
 	xor a
@@ -6729,19 +6656,19 @@ LoadEnemyMon: ; 3e8eb
 	ld [MagikarpLength], a
 ; Fill moves based on level
 	predef FillMoves
-	
+
 .PP
 ; Trainer battle?
-	ld a, [IsInBattle]
+	ld a, [wBattleMode]
 	cp a, TRAINER_BATTLE
 	jr z, .TrainerPP
-	
+
 ; Fill wild PP
 	ld hl, EnemyMonMoves
 	ld de, EnemyMonPP
 	predef FillPP
 	jr .Finish
-	
+
 .TrainerPP
 ; Copy PP from the party struct
 	ld hl, OTPartyMon1PP
@@ -6750,7 +6677,7 @@ LoadEnemyMon: ; 3e8eb
 	ld de, EnemyMonPP
 	ld bc, NUM_MOVES
 	call CopyBytes
-	
+
 .Finish
 ; Only the first five base stats are copied...
 	ld hl, BaseStats
@@ -6776,17 +6703,17 @@ LoadEnemyMon: ; 3e8eb
 	call GetPokemonName
 
 ; Did we catch it?
-	ld a, [IsInBattle]
+	ld a, [wBattleMode]
 	and a
 	ret z
 
 ; Update enemy nick	
 	ld bc, PKMN_NAME_LENGTH
-	ld a, [IsInBattle]
+	ld a, [wBattleMode]
 	dec a
 	jr z, .UseDefaultName
 	ld a, [wdff5 + 1]
-	bit 1, a
+	bit TRAINERTYPE_NICKNAME, a
 	jr z, .UseDefaultName
 	ld a, [CurPartyMon]
 	ld hl, OTPartyMonNicknames
@@ -6814,7 +6741,6 @@ LoadEnemyMon: ; 3e8eb
 	ret
 ; 3eb38
 
-
 CheckSleepingTreeMon: ; 3eb38
 ; Return carry if species is in the list
 ; for the current time of day
@@ -6823,7 +6749,7 @@ CheckSleepingTreeMon: ; 3eb38
 	ld a, [BattleType]
 	cp a, BATTLETYPE_TREE
 	jr nz, .NotSleeping
-	
+
 ; Get list for the time of day
 	ld hl, .Morn
 	ld a, [TimeOfDay]
@@ -6832,14 +6758,14 @@ CheckSleepingTreeMon: ; 3eb38
 	ld hl, .Day
 	jr z, .Check
 	ld hl, .Nite
-	
+
 .Check
 	ld a, [TempEnemyMonSpecies]
 	ld de, 1 ; length of species id
 	call IsInArray
 ; If it's a match, the opponent is asleep
 	ret c
-	
+
 .NotSleeping
 	and a
 	ret
@@ -6875,27 +6801,26 @@ CheckSleepingTreeMon: ; 3eb38
 	db $ff ; end
 ; 3eb75
 
-
 CheckUnownLetter: ; 3eb75
 ; Return carry if the Unown letter hasn't been unlocked yet
-	
+
 	ld a, [UnlockedUnowns]
 	ld c, a
 	ld de, 0
-	
+
 .loop
-	
+
 ; Don't check this set unless it's been unlocked
 	srl c
 	jr nc, .next
-	
+
 ; Is our letter in the set?
 	ld hl, .LetterSets
 	add hl, de
 	ld a, [hli]
 	ld h, [hl]
 	ld l, a
-	
+
 	push de
 	ld a, [UnownLetter]
 	ld de, 1
@@ -6903,9 +6828,9 @@ CheckUnownLetter: ; 3eb75
 	call IsInArray
 	pop bc
 	pop de
-	
+
 	jr c, .match
-	
+
 .next
 ; Make sure we haven't gone past the end of the table
 	inc e
@@ -6913,22 +6838,22 @@ CheckUnownLetter: ; 3eb75
 	ld a, e
 	cp a, .Set1 - .LetterSets
 	jr c, .loop
-	
+
 ; Hasn't been unlocked, or the letter is invalid
 	scf
 	ret
-	
+
 .match
 ; Valid letter
 	and a
 	ret
-	
+
 .LetterSets
 	dw .Set1
 	dw .Set2
 	dw .Set3
 	dw .Set4
-	
+
 .Set1
 	;  A   B   C   D   E   F   G   H   I   J   K
 	db 01, 02, 03, 04, 05, 06, 07, 08, 09, 10, 11, $ff
@@ -6941,9 +6866,8 @@ CheckUnownLetter: ; 3eb75
 .Set4
 	;  X   Y   Z
 	db 24, 25, 26, $ff
-	
-; 3ebc7
 
+; 3ebc7
 
 Function3ebc7: ; 3ebc7
 	push bc
@@ -7013,7 +6937,6 @@ Function3ec1a: ; 3ec1a
 	pop hl
 	ret
 ; 3ec2c
-
 
 Function3ec2c: ; 3ec2c
 	ld a, 1
@@ -7232,7 +7155,6 @@ Function3ecb7: ; 3ecb7
 	db  4,  1 ; 400%
 ; 3ed45
 
-
 BadgeStatBoosts: ; 3ed45
 ; Raise BattleMon stats depending on which badges have been obtained.
 
@@ -7291,7 +7213,6 @@ BadgeStatBoosts: ; 3ed45
 	ret
 ; 3ed7c
 
-
 BoostStat: ; 3ed7c
 ; Raise stat at hl by 1/8.
 
@@ -7324,7 +7245,6 @@ BoostStat: ; 3ed7c
 	ret
 ; 3ed9f
 
-
 Function3ed9f: ; 3ed9f
 	callab Functionfb4f2
 	ret
@@ -7334,7 +7254,6 @@ Function3eda6: ; 3eda6
 	callab Functionfb50d
 	ret
 ; 3edad
-
 
 Function3edad: ; 3edad
 	ld de, GFX_f8ac0
@@ -7351,14 +7270,12 @@ Function3edad: ; 3edad
 	jp Get2bpp
 ; 3edd1
 
-
 EmptyBattleTextBox: ; 3edd1
 	ld hl, .empty
 	jp BattleTextBox
 .empty
 	db "@"
 ; 3edd8
-
 
 _BattleRandom:: ; 3edd8
 ; If the normal RNG is used in a link battle it'll desync.
@@ -7429,7 +7346,6 @@ _BattleRandom:: ; 3edd8
 	ret
 ; 3ee0f
 
-
 Function3ee0f: ; 3ee0f
 	ld a, BATTLE_VARS_SUBSTATUS3
 	call GetBattleVar
@@ -7461,7 +7377,6 @@ Function3ee27: ; 3ee27
 	pop af
 	ret
 ; 3ee3b
-
 
 Function3ee3b: ; 3ee3b
 ; Give experience.
@@ -7583,7 +7498,7 @@ Function3ee3b: ; 3ee3b
 
 .asm_3eee2
 	ld [StringBuffer2 + 2], a
-	ld a, [IsInBattle]
+	ld a, [wBattleMode]
 	dec a
 	call nz, DoubleExp
 	push bc
@@ -7911,7 +7826,6 @@ UnknownText_0x3f131: ; 3f131
 	db "@"
 ; 3f136
 
-
 Function3f136: ; 3f136
 
 	push bc
@@ -8104,8 +8018,6 @@ Function3f22c: ; 3f22c
 	ret
 ; 3f26d
 
-
-
 Function3f26d: ; 3f26d
 ; SendOutMonText?
 
@@ -8162,7 +8074,6 @@ Function3f26d: ; 3f26d
 	jp BattleTextBox
 ; 3f2d1
 
-
 UnknownText_0x3f2d1: ; 3f2d1
 	text_jump UnknownText_0x1c02df
 	start_asm
@@ -8195,7 +8106,6 @@ UnknownText_0x3f2ef: ; 3f2ef
 	text_jump UnknownText_0x1c0317
 	db "@"
 ; 3f2f4
-
 
 Function3f2f4: ; 3f2f4
 	ld hl, UnknownText_0x3f2fa
@@ -8277,7 +8187,6 @@ UnknownText_0x3f35b: ; 3f35b
 	db "@"
 ; 3f360
 
-
 Function3f360: ; 3f360
 	ld hl, wc6f0
 	ld a, [hl]
@@ -8309,7 +8218,6 @@ Function3f360: ; 3f360
 	pop hl
 	jp StdBattleTextBox
 ; 3f390
-
 
 FillInExpBar: ; 3f390
 	push hl
@@ -8518,7 +8426,6 @@ Function3f4b4: ; 3f4b4
 	ret
 ; 3f4c1
 
-
 StartBattle: ; 3f4c1
 	ld a, [PartyCount]
 	and a
@@ -8534,12 +8441,10 @@ StartBattle: ; 3f4c1
 	ret
 ; 3f4d9
 
-
 Function3f4d9: ; 3f4d9
 	call Function3c000
 	ret
 ; 3f4dd
-
 
 Function3f4dd: ; 3f4dd
 	callba Function106050
@@ -8574,7 +8479,7 @@ Function3f4dd: ; 3f4dd
 	ld bc, 4 << 8 + 10
 	call ClearBox
 	call ClearSprites
-	ld a, [IsInBattle]
+	ld a, [wBattleMode]
 	cp $1
 	call z, UpdateEnemyHUD
 	ld a, $1
@@ -8652,7 +8557,7 @@ Function3f594: ; 3f594
 	ld a, $ff
 	ld [CurOTMon], a
 	ld a, TRAINER_BATTLE
-	ld [IsInBattle], a
+	ld [wBattleMode], a
 
 ; Pokemon get happier when they're fighting a Gym Leader.  Fainted Pokemon don't get this bonus.
 	call IsJohtoGymLeader
@@ -8683,7 +8588,7 @@ Function3f594: ; 3f594
 
 Function3f607: ; 3f607
 	ld a, $1
-	ld [IsInBattle], a
+	ld [wBattleMode], a
 	callba Function10605d
 	call LoadEnemyMon
 	ld hl, EnemyMonMoves
@@ -8768,7 +8673,6 @@ Function3f662: ; 3f662
 	ret
 ; 3f69e
 
-
 Function3f69e: ; 3f69e
 	call Function3f6a5
 	call Function3f6d0
@@ -8801,7 +8705,7 @@ Function3f6d0: ; 3f6d0
 	call Function3f998
 	xor a
 	ld [Danger], a
-	ld [IsInBattle], a
+	ld [wBattleMode], a
 	ld [BattleType], a
 	ld [AttackMissed], a
 	ld [wd22e], a
@@ -8941,7 +8845,6 @@ Function3f77c: ; 3f77c
 	db "  DRAW@"
 ; 3f80f
 
-
 Function3f80f: ; 3f80f
 	hlcoord 6, 8
 	ld de, .Invalid
@@ -8956,13 +8859,11 @@ Function3f80f: ; 3f80f
 	db "INVALID BATTLE@"
 ; 3f830
 
-
 Function3f830: ; 3f830
 	ld a, [wLinkMode]
 	cp $4
 	ret
 ; 3f836
-
 
 Function3f836: ; 3f836
 	ld a, $1
@@ -8982,7 +8883,6 @@ Function3f836: ; 3f836
 	call Functiona80
 	ret
 ; 3f85f
-
 
 Function3f85f: ; 3f85f
 	call ClearTileMap
@@ -9118,7 +9018,6 @@ Function3f85f: ; 3f85f
 	db "TOTAL  WIN LOSE DRAW@"
 ; 3f998
 
-
 Function3f998: ; 3f998
 	ld a, [BattleType]
 	cp BATTLETYPE_ROAMING
@@ -9239,7 +9138,6 @@ GetRoamMonSpecies: ; 3fa31
 	ld hl, wRoamMon3Species
 	ret
 ; 3fa42
-
 
 Function3fa42: ; 3fa42
 	ld hl, wd276
@@ -9520,7 +9418,6 @@ Function3fbf8: ; 3fbf8
 	ret
 ; 3fbff
 
-
 GetBattleBackpic: ; 3fbff
 ; Load the player character's backpic (6x6) into VRAM starting from $9310.
 
@@ -9561,7 +9458,6 @@ GetBattleBackpic: ; 3fbff
 	predef DecompressPredef
 	ret
 ; 3fc30
-
 
 Function3fc30: ; 3fc30
 	ld a, [rSVBK]
@@ -9621,9 +9517,8 @@ Function3fc5b: ; 3fc5b
 	ret
 ; 3fc8b
 
-
 BattleStartMessage: ; 3fc8b
-	ld a, [IsInBattle]
+	ld a, [wBattleMode]
 	dec a
 	jr z, .asm_3fcaa
 

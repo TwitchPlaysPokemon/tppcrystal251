@@ -6798,7 +6798,7 @@ Function102e07: ; 102e07
 	hlcoord 3, 10
 	ld b, $1
 	ld c, $b
-	ld a, [IsInBattle]
+	ld a, [wBattleMode]
 	and a
 	jr z, .asm_102e19
 	call TextBox

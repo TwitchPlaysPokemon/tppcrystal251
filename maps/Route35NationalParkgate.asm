@@ -42,8 +42,8 @@ UnknownScript_0x6a1ac: ; 0x6a1ac
 	return
 ; 0x6a1af
 
-UnknownScript_0x6a1af: ; 0x6a1af
-	jump UnknownScript_0x6a1ca ;redundent as bug catching always on
+; UnknownScript_0x6a1af: ; 0x6a1af
+	; jump UnknownScript_0x6a1ca ;redundent as bug catching always on
 	;checkcode VAR_WEEKDAY
 	;if_equal TUESDAY, UnknownScript_0x6a1ca
 	;if_equal THURSDAY, UnknownScript_0x6a1ca

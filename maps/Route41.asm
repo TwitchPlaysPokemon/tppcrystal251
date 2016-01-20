@@ -437,7 +437,7 @@ SwimmerfKayleeSeenText: ; 0x1a6c24
 
 SwimmerfKayleeBeatenText: ; 0x1a6c67
 	text "CHINCHOU lights"
-	line "my road ahead..."
+	line "my road ahead…"
 	done
 ; 0x1a6c7f
 
@@ -474,7 +474,7 @@ UnknownText_0x1a6d11: ; 0x1a6d11
 SwimmerfDeniseSeenText: ; 0x1a6d46
 	text "There's way"
 	line "too much water"
-	cont "around here..."
+	cont "around here…"
 	done
 ; 0x1a6d72
 

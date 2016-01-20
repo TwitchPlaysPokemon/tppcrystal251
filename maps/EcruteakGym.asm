@@ -425,7 +425,7 @@ SageJeffreyBeatenText: ; 0x9a23d
 
 UnknownText_0x9a263: ; 0x9a263
 	text "Our bond isn't"
-	line "strong enough..."
+	line "strong enough…"
 	done
 ; 0x9a27e
 
@@ -461,7 +461,7 @@ MediumMarthaSeenText: ; 0x9a2fb
 ; 0x9a309
 
 MediumMarthaBeatenText: ; 0x9a309
-	text "Or not..."
+	text "Or not…"
 	done
 ; 0x9a318
 
@@ -492,7 +492,7 @@ MediumGraceBeatenText: ; 0x9a37f
 
 UnknownText_0x9a38a: ; 0x9a38a
 	text "If I can't"
-	line "defeat you..."
+	line "defeat you…"
 
 	para "How will I ever"
 	line "defeat Morty?"
