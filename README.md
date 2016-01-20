@@ -1,12 +1,7 @@
 # Pokémon Crystal
 # Twitch Plays Pokemon Edition
 
-This is a disassembly of Pokémon Crystal.
-
-It builds the following roms:
-
-* Pokemon - Crystal Version (UE) (V1.0) [C][!].gbc `md5: 9f2922b235a5eeb78d65594e82ef5dde`
-* Pokemon - Crystal Version (UE) (V1.1) [C][!].gbc `md5: 301899b8087289a6436b0a241fbbb474`
+This is a modded disassembly of Pokémon Crystal, Created for  TwitchPlaysPokemon.
 
 To set up the repository, see [**INSTALL.md**](INSTALL.md).
 
