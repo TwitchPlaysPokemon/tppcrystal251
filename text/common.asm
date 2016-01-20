@@ -388,18 +388,6 @@ UnknownText_0x1b088c: ; 0x1b088c
 	done
 ; 0x1b08ad
 
-ForcedGamblingText:
-	text "You have alot of"
-	line "COINS already."
-
-	para "Are you trying"
-	line "to buy a prize?"
-
-	para "You should have"
-	line "some fun!"
-
-	done
-
 UnknownText_0x1b08ad: ; 0x1b08ad
 	text "No coins for you?"
 	line "Come again!"

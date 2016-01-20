@@ -631,17 +631,15 @@ UnknownText_0x18d82d: ; 0x18d82d
 ; 0x18d840
 
 UnknownText_0x18d840: ; 0x18d840
-	text "A rebel to"
-	line "the fossils."
+	text "It's been quite"
+	line "some time since a"
 
-	para "A champion"
-	line "to the fossils."
+	para "trainer has gained"
+	line "our MASTER's rare"
+	cont "approval."
 
-	para "A legend who"
-	line "became the best."
-	
-	para "What will become"
-	line "of your destiny?"
+	para "In fact, not since"
+	line "Master LANCE."
 	done
 ; 0x18d8b1
 

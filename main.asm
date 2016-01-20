@@ -6,7 +6,7 @@ Function4000:: ; 4000
 	hlcoord 3, 10
 	ld b, 1
 	ld c, 11
-	ld a, [IsInBattle]
+	ld a, [wBattleMode]
 	and a
 	jr z, .asm_4012
 	call TextBox
@@ -1683,7 +1683,7 @@ LearnMove: ; 6508
 	push de
 	ld [wd265], a
 	ld b, a
-	ld a, [IsInBattle]
+	ld a, [wBattleMode]
 	and a
 	jr z, .not_disabled
 	ld a, [DisabledMove]
@@ -1714,7 +1714,7 @@ LearnMove: ; 6508
 	pop de
 	pop hl
 	ld [hl], a
-	ld a, [IsInBattle]
+	ld a, [wBattleMode]
 	and a
 	jp z, .learned
 	ld a, [CurPartyMon]
@@ -2758,7 +2758,7 @@ ChangeHappiness: ; 71c2
 	xor a
 .asm_720d
 	ld [de], a
-	ld a, [IsInBattle]
+	ld a, [wBattleMode]
 	and a
 	ret z
 	ld a, [CurPartyMon]
@@ -5122,7 +5122,7 @@ TrySurfOW:: ; c9e7
 	jr c, .quit
 	ld d, SURF
 	call CheckPartyMove
-	jr c, .quit
+	jr c, .print_message
 	ld hl, BikeFlags
 	bit 1, [hl] ; always on bike (can't surf)
 	jr nz, .quit
@@ -5135,11 +5135,17 @@ TrySurfOW:: ; c9e7
 	call CallScript
 	scf
 	ret
-
+.print_message
+	ld hl, .LovelyWaterText
+	call PrintText
 .quit
 	xor a
 	ret
 ; ca2c
+
+.LovelyWaterText:
+	TX_FAR _LovelyWaterText
+	db "@"
 
 AskSurfScript: ; ca2c
 	loadfont
@@ -7976,7 +7982,7 @@ Functiond906: ; d906
 	ld a, [BaseDexNo]
 	ld [de], a ;load in dex number as species
 	inc de
-	ld a, [IsInBattle]
+	ld a, [wBattleMode]
 	and a
 	ld a, $0 ;if in battle, load enemy mon item, else load no item
 	jr z, .asm_d922
@@ -7987,7 +7993,7 @@ Functiond906: ; d906
 	push de ;remember start of moves
 	ld h, d
 	ld l, e
-	ld a, [IsInBattle]
+	ld a, [wBattleMode]
 	and a
 	jr z, .asm_d943 ;if not in battle, jump
 	ld a, [MonType]
@@ -8034,22 +8040,25 @@ Functiond906: ; d906
 	ld [de], a
 	inc de
 	ld a, [$ffb6]
-	ld [de], a
 	inc de
-	xor a
-	ld h, a
-	ld l, a ;hl = stat xp to add
-	ld b, 5 ;repeat 5 times (once a stat)
+	ld [de], a
 	ld a, [MonType]
 	cp 1
-	jr nz, .asm_d97a
+	jr nz, .yours
 	ld a, [CurPartyLevel] ;a = level
 	call TrainerStatXp ;load trainer stat xp into hl depending on level
+	jr .okay
+.yours
+	xor a
+	ld l, a ;hl = stat xp to add
+	ld h, a
+.okay
+	ld b, 5 ;repeat 5 times (once a stat)
 .asm_d97a
 	ld a, h
 	ld [de], a ;load in stat xp
 	inc de
-	ld a , l
+	ld a, l
 	ld [de], a
 	inc de
 	dec b
@@ -8076,7 +8085,7 @@ Functiond906: ; d906
 	pop de ;start of dvs
 	pop hl ;start of mon data
 	push hl
-	ld a, [IsInBattle]
+	ld a, [wBattleMode]
 	and a
 	jr nz, .asm_d9f3 ;if in battle, jump, else random bc
 	call Random
@@ -8183,9 +8192,9 @@ Functiond906: ; d906
 	ld [de], a
 	inc de
 .asm_da29 ;
-	ld a, [IsInBattle]
+	ld a, [wBattleMode]
 	dec a
-	jr nz, .asm_da3b ;if battle, get mon stats from battle mon
+	jr nz, .asm_da3b ;if trainer battle, get mon stats from battle mon
 	ld hl, EnemyMonMaxHP
 	ld bc, $000c
 	call CopyBytes
@@ -8197,14 +8206,19 @@ Functiond906: ; d906
 	ld bc, $000a
 	add hl, bc ;stat xp location
 	ld b, 1
+	ld a, [MonType]
+	cp $1
+	jr z, .okay2
+	ld b, 0
+.okay2
 	call Functione167 ;fill rest of stats
 .asm_da45
 	ld a, [MonType]
 	and $f
-	jr nz, .asm_da6b ;if mon type not z, skip unown check
+	jr nz, .asm_da6b ;if mon type not yours, skip unown check
 	ld a, [CurPartySpecies]
 	cp UNOWN
-	jr nz, .asm_da6b ;if unkown
+	jr nz, .asm_da6b ;if unown
 	ld hl, PartyMon1DVs ;load unown letter
 	ld a, [PartyCount]
 	dec a
@@ -8213,7 +8227,7 @@ Functiond906: ; d906
 	predef GetUnownLetter
 	callab Functionfba18
 .asm_da6b
-	scf ;ret c when done
+	scf ; When this function returns, the carry flag indicates success vs failure.
 	ret
 ; da6d
 
@@ -8225,40 +8239,31 @@ TrainerStatXp: ; hl = (a(level) - 5) * 600 + (a - 40)*100) +(a - 75) * 100) + 35
 	cp 95
 	jr nc, .Over99 ;if level 100 or more, load in max
 	ld bc, 800
-	cp 70 ;if < 70, then skip to next loop, else go down to 70, adding 800 each time, then add the rest as a constant
-	jr c, .SkipHighLoop
+	sub 70 ;if < 70, then skip and return to before, else go down to 69, adding 800 each time, then return there
+	jr c, .DoneHighLoop
 .StatXPHighLoop
 	jr z, .DoneHighLoop
 	add hl, bc
 	dec a
 	jr .StatXPHighLoop
-.SkipHighLoop
+.DoneHighLoop
+	add 70
 	ld bc, 700
-	cp 35 ;repeat for 35 ;if < 35, then skip to next loop, else go down to 70, adding 800 each time, then add the rest as a constant
-	jr c, .SkipMidLoop
+	sub 35 ;repeat for 35
+	jr c, .DoneMidLoop
 .StatXPMidLoop
 	jr z, .DoneMidLoop
 	add hl, bc
 	dec a
 	jr .StatXPMidLoop
-.SkipMidLoop
+.DoneMidLoop
+	add 35
 	ld bc, 600
 .StatXPLowLoop
 	jr z, .DoneAllLoop
 	add hl, bc
 	dec a
 	jr .StatXPLowLoop
-
-.DoneHighLoop
-	ld bc, 45500
-	add hl, bc ;add remining stat xp all at once as it is constant
-	jr .DoneAllLoop
-
-.DoneMidLoop
-	ld bc, 21000
-	add hl, bc
-	jr .DoneAllLoop
-
 .Over99
 	ld hl, $ffff ;if level 100, max stat xp
 .DoneAllLoop
@@ -11723,14 +11728,14 @@ NameInputUpper:
 	db "A B C D E F G H I"
 	db "J K L M N O P Q R"
 	db "S T U V W X Y Z  "
-	db "- ? ! / . ,      "
+	db "- ? ! / .,      "
 	db "lower  DEL   END "
 BoxNameInputUpper:
 	db "A B C D E F G H I"
 	db "J K L M N O P Q R"
 	db "S T U V W X Y Z  "
 	db "× ( ) : ; [ ] ", $e1, " ", $e2
-	db "- ? ! ♂ ♀ / . , &"
+	db "- ? ! ♂ ♀ / ., &"
 	db "lower  DEL   END "
 ; 11e5d
 
@@ -12233,7 +12238,7 @@ Function121b2: ; 121b2
 String_121dd: ; 122dd
 	db "A B C D E F G H I J"
 	db "K L M N O P Q R S T"
-	db "U V W X Y Z   , ? !"
+	db "U V W X Y Z, ? !"
 	db "1 2 3 4 5 6 7 8 9 0"
 	db "ゅ ょ ", $70, " ", $71, " é ♂ ♀ ¥ … ×"
 	db "lower  DEL   END   "
@@ -14371,7 +14376,7 @@ Function12fd5: ; 12fd5
 	ld bc, $0015
 	add hl, bc
 	call Function1313a
-	ld a, [IsInBattle]
+	ld a, [wBattleMode]
 	jr z, .asm_13113
 	ld hl, BattleMonMoves
 	ld bc, $0020
@@ -15312,7 +15317,7 @@ UnknownText_0x136fd: ; 0x136fd
 ; 0x13702
 
 UnknownText_0x13702: ; 0x13702
-	; Placing second was @ , who caught a @ !@ @
+	; Placing second was @, who caught a @ !@ @
 	text_jump UnknownText_0x1c1166
 	start_asm
 ; 0x13707
@@ -15332,7 +15337,7 @@ UnknownText_0x13714: ; 0x13714
 ; 0x13719
 
 UnknownText_0x13719: ; 0x13719
-	; Placing third was @ , who caught a @ !@ @
+	; Placing third was @, who caught a @ !@ @
 	text_jump UnknownText_0x1c11b5
 	start_asm
 ; 0x1371e
@@ -17868,30 +17873,6 @@ Group32Sprites: ; 144ec
 	db SPRITE_SLOWPOKE
 
 Group33Sprites: ; 144ec
-	db SPRITE_SUICUNE
-	db SPRITE_SILVER_TROPHY
-	db SPRITE_FAMICOM
-	db SPRITE_POKEDEX
-	db SPRITE_WILL
-	db SPRITE_KAREN
-	db SPRITE_NURSE
-	db SPRITE_OLD_LINK_RECEPTIONIST
-	db SPRITE_BIG_LAPRAS
-	db SPRITE_BIG_ONIX
-	db SPRITE_SUDOWOODO
-	db SPRITE_BIG_SNORLAX
-	db SPRITE_TEACHER
-	db SPRITE_FISHER
-	db SPRITE_YOUNGSTER
-	db SPRITE_EGK_RIVAL
-	db SPRITE_GRAMPS
-	db SPRITE_BUG_CATCHER
-	db SPRITE_COOLTRAINER_F
-	db SPRITE_OAK
-	db SPRITE_SWIMMER_GUY
-	db SPRITE_POKE_BALL
-	db SPRITE_FRUIT_TREE ; 23
-
 Group35Sprites:
 	db SPRITE_SUICUNE
 	db SPRITE_SILVER_TROPHY
@@ -17908,14 +17889,15 @@ Group35Sprites:
 	db SPRITE_TEACHER
 	db SPRITE_FISHER
 	db SPRITE_YOUNGSTER
-	db SPRITE_EGK_RIVAL
+	db SPRITE_COOLTRAINER_M
 	db SPRITE_GRAMPS
 	db SPRITE_BUG_CATCHER
-	db SPRITE_COOLTRAINER_F
-	db SPRITE_OAK
-	db SPRITE_SWIMMER_GUY
+	db SPRITE_MACHOP
+	db SPRITE_SAILOR
+	db SPRITE_LASS
 	db SPRITE_POKE_BALL
 	db SPRITE_FRUIT_TREE ; 23
+
 ; 14503
 
 SpriteHeaders: ; 14736
@@ -21685,7 +21667,7 @@ UnknownText_0x16680: ; 0x16680
 ; 0x16685
 
 UnknownText_0x16685: ; 0x16685
-	; OK, I'll save your money. Trust me! , stick with it!
+	; OK, I'll save your money. Trust me!, stick with it!
 	text_jump UnknownText_0x1bda25
 	db "@"
 ; 0x1668a
@@ -21697,7 +21679,7 @@ UnknownText_0x1668a: ; 0x1668a
 ; 0x1668f
 
 UnknownText_0x1668f: ; 0x1668f
-	; , don't give up!
+	;, don't give up!
 	text_jump UnknownText_0x1bda7e
 	db "@"
 ; 0x16694
@@ -29108,7 +29090,7 @@ Function27192: ; 27192
 	ld a, [hBattleTurn]
 	and a
 	jr nz, .asm_271d8
-	ld a, [IsInBattle]
+	ld a, [wBattleMode]
 	dec a
 	jr z, .asm_271da
 .asm_271d8
@@ -32446,7 +32428,7 @@ Function2977f: ; 2977f
 ; 2979a
 
 UnknownText_0x2979a: ; 0x2979a
-	; For @ 's @ ,
+	; For @ 's @,
 	text_jump UnknownText_0x1bc739
 	db "@"
 ; 0x2979f
@@ -33838,7 +33820,7 @@ Function2c000: ; 2c000
 	ld [rOBP0], a
 	call Function2c165
 	call Function2c01c
-	ld a, [IsInBattle]
+	ld a, [wBattleMode]
 	dec a
 	ret z
 	jp Function2c03a
@@ -33972,7 +33954,7 @@ Function2c0c5: ; 2c0c5
 	hlcoord 1, 2
 	ld de, 1
 	call Function2c0f1
-	ld a, [IsInBattle]
+	ld a, [wBattleMode]
 	dec a
 	ret nz
 	ld a, [TempEnemyMonSpecies]
@@ -34293,7 +34275,7 @@ AI_Redundant: ; 2c41a
 
 .Spikes: ; 2c4e3
 	ld a, [PlayerScreens]
-	and $03
+	bit SCREENS_SPIKES, a
 	ret
 
 .Foresight: ; 2c4e9
@@ -35355,7 +35337,7 @@ PlayBattleMusic: ; 2ee6c
 .trainermusic
 	ld de, MUSIC_CHAMPION_BATTLE
 	cp CHAMPION
-	jr z, .done
+	jp z, .done
 	cp RED
 	jr z, .done
 	cp POKEMON_PROF
@@ -35364,6 +35346,10 @@ PlayBattleMusic: ; 2ee6c
 	jr z, .done
 	; really, they should have included admins and scientists here too...
 	ld de, MUSIC_ROCKET_BATTLE
+	call RocketMusicCheck
+	jr nc, .okay_rocket
+	ld de, MUSIC_KANTO_TRAINER_BATTLE
+.okay_rocket
 	cp GRUNTM
 	jr z, .done
 	cp GRUNTF
@@ -35938,7 +35924,7 @@ INCLUDE "engine/pokedex.asm"
 
 
 ; 41afb
-SECTION "bank10", ROMX , BANK[$10]
+SECTION "bank10", ROMX, BANK[$10]
 
 
 INCLUDE "battle/moves/moves.asm"
@@ -36253,7 +36239,7 @@ Function423ff: ; 423ff
 	ld a, [wLinkMode]
 	and a
 	ret nz
-	ld a, [IsInBattle]
+	ld a, [wBattleMode]
 	and a
 	ret nz
 	ld a, [wd268]
@@ -36604,7 +36590,7 @@ IF DEF(BEESAFREE)
 ELSE
 ; Wildmons attack at random.
 
-	ld a, [IsInBattle]
+	ld a, [wBattleMode]
 	dec a
 	ret z
 	ld a, [wLinkMode]
@@ -36834,25 +36820,14 @@ AIWaitMove:
 	ld [CurEnemyMoveNum], a
 	ret
 
-.CheckIfTrapped
-	ld hl, PlayerSubStatus5
-	bit SUBSTATUS_CANT_RUN, [hl]
-	jr z, .NotTrapped
-	ld hl, EnemyMonType1
-	ld a, [hli]
-	cp GHOST
-	jr z, .NotTrapped
-	ld a, [hl]
-	cp GHOST
-	jr z, .NotTrapped
-
 .invalid
 	call AIChooseMove
 	jr .loop
 
 .switch
-	jr .CheckIfTrapped
-.NotTrapped
+	ld hl, PlayerSubStatus5
+	bit SUBSTATUS_CANT_RUN, [hl]
+	jr nz, .invalid
 	and $f
 	jr z, .invalid
 	dec a
@@ -42650,7 +42625,7 @@ Function4a9d7: ; 4a9d7
 ; 4aa1d
 
 UnknownText_0x4aa1d: ; 0x4aa1d
-	; , @  and @ . Use these three?
+	;, @  and @ . Use these three?
 	text_jump UnknownText_0x1c51f4
 	db "@"
 ; 0x4aa22
@@ -45078,7 +45053,7 @@ Function4dc7b: ; 4dc7b (13:5c7b)
 	ld a, [wLinkMode]
 	cp $4
 	jr nz, StatsScreenInit
-	ld a, [IsInBattle] ; wd22d (aliases: EnemyMonEnd)
+	ld a, [wBattleMode] ; wd22d (aliases: EnemyMonEnd)
 	and a
 	jr z, StatsScreenInit
 	jr Function4dc8f
@@ -47692,7 +47667,7 @@ Function5042d: ; 0x5042d ;load menu data for party switch and set cursor up
 	ld a, [wd0d8] ;cursor memory
 	and a
 	jr z, .asm_50444 ;if cursor memory = 0, a = 1
-	inc b ;if cursor memory > partycount +1 , a = 1, else a = cursor memory
+	inc b ;if cursor memory > partycount +1, a = 1, else a = cursor memory
 	cp b
 	jr c, .asm_50446
 .asm_50444
@@ -51118,7 +51093,7 @@ Function80648:: ; 80648 (20:4648)
 	and $80
 	jr nz, .asm_80668 ;if $80, call de 
 	ld a, b 
-	and $40 ;if $40 , return stringbuffer with what's at location in it?
+	and $40 ;if $40, return stringbuffer with what's at location in it?
 	ret nz ;if 0 just return de
 	ld a, [de]
 	jr Function8066c
@@ -68932,7 +68907,7 @@ UnknownText_0x90a44: ; 0x90a44
 ; 90a4f (24:4a4f)
 
 UnknownText_0x90a4f: ; 0x90a4f
-	; , is it?
+	;, is it?
 	text_jump UnknownText_0x1bc37a
 	db "@"
 ; 0x90a54
@@ -68994,7 +68969,7 @@ UnknownText_0x90aa0: ; 90aa0
 ; 90ab7
 
 UnknownText_0x90ab7: ; 0x90ab7
-	; , is that OK?
+	;, is that OK?
 	text_jump UnknownText_0x1c5ff1
 	db "@"
 ; 0x90abc
@@ -69756,7 +69731,7 @@ Function9102f: ; 9102f (24:502f)
 	ld hl, StatusFlags
 	bit 5, [hl]
 	pop hl
-	jr nz, .asm_91047
+	jr nz, .check_ss_anne
 	cp CELADON_CITY
 	jr z, .inc_extra
 	cp CINNABAR_ISLAND
@@ -69766,6 +69741,11 @@ Function9102f: ; 9102f (24:502f)
 .inc_extra
 	inc [hl]
 	jr .asm_91047
+
+.check_ss_anne
+	cp VERMILION_CITY
+	jr nz, .asm_91047
+	jr .inc_extra
 	
 .wrap_around
 	ld a, e
@@ -69786,7 +69766,7 @@ Function9102f: ; 9102f (24:502f)
 	ld hl, StatusFlags
 	bit 5, [hl]
 	pop hl
-	jr nz, .asm_91054
+	jr nz, .check_ss_anne_2
 	cp SAFFRON_CITY
 	jr z, .dec_extra
 	cp ROUTE_21
@@ -69796,6 +69776,11 @@ Function9102f: ; 9102f (24:502f)
 .dec_extra
 	dec [hl]
 	jr .asm_91054
+
+.check_ss_anne_2
+	cp DIGLETTS_CAVE
+	jr nz, .asm_91054
+	jr .dec_extra
 
 .wrap_back
 	ld a, d
@@ -74875,7 +74860,7 @@ endm
 	treemon_map ROUTE_44, 15 
 	;treemon_map ROUTE_45, 0
 	;treemon_map ROUTE_46, 0
-	treemon_map NEW_BARK_TOWN, 1
+	treemon_map NEW_BARK_TOWN, 0
 	;treemon_map CHERRYGROVE_CITY, 0
 	treemon_map VIOLET_CITY, 3
 	treemon_map AZALEA_TOWN, 5
@@ -74889,7 +74874,6 @@ endm
 	;treemon_map SILVER_CAVE_OUTSIDE, 0
 	treemon_map ILEX_FOREST, 8
 	treemon_map BATTLE_TOWER_OUTSIDE, 12 ;yes but the area with trees is the outside bit
-	treemon_map DRAGONS_DEN_B1F, 17
 	db -1
 ; b82c5
 
@@ -74943,7 +74927,6 @@ TreeMons: ; b82e8 ;what tables are assosiate with wwhat numbers
 	dw TreeMons13 ;14
 	dw TreeMons14 ;15
 	dw TreeMons15 ;16
-	dw TreeMons16 ;17
 	
 ; Two tables each (normal, rare).
 ; Structure:
@@ -75075,17 +75058,11 @@ TreeMons14: ;15 - Route 44
 	db -1
 	
 TreeMons15: ;16 - Route 26-27
-	db 75, FLAAFFY,		50
-	db 22, AMPHAROS,	55
-	db 3, DRAGONITE,	58
+	db 100, PINECO, 	48
 	db -1
-	db 60, FLAAFFY,		50
-	db 30, AMPHAROS,	55
-	db 10, DRAGONITE,	58
+	db 75, EXEGGCUTE, 	45
+	db 25, EXEGGUTOR,	55
 	db -1
-
-TreeMons16: ;17 - Route 26-27
-	db 
 	
 ; b83e5
 
@@ -76292,7 +76269,7 @@ UnknownText_0xb8bbe: ; 0xb8bbe
 ; 0xb8bc3
 
 UnknownText_0xb8bc3: ; 0xb8bc3
-	; Today's @ ,
+	; Today's @,
 	text_jump UnknownText_0x1bcae8
 	db "@"
 ; 0xb8bc8
@@ -81680,7 +81657,7 @@ Functione2084: ; e2084
 ; e2093
 
 UnknownText_0xe2093: ; 0xe2093
-	; , yeah!
+	;, yeah!
 	text_jump UnknownText_0x1c1a5b
 	db "@"
 ; 0xe2098
@@ -83632,7 +83609,7 @@ Functione2f18: ; e2f18 (38:6f18) seems to check if removing mon from party is go
 	jr nz, .asm_e2f3d ; if not zero, jump out with sucsess
 	ld a, [wcb2c] ;  load ?? into a
 	cp $3
-	jr c, .asm_e2f49 ;if < 3 , say it's your last ??? and jump out unsec
+	jr c, .asm_e2f49 ;if < 3, say it's your last ??? and jump out unsec
 	ld a, [wcb2b] ; load ?? into a
 	ld hl, wcb2a ;load the location of ?? into hl
 	add [hl] ;add ??? to ???, makes the slot of the mon being deposited (0-5)
@@ -88854,14 +88831,13 @@ DoWeatherModifiers: ; fbda4
 	ld b, a
 	ld a, [wd265] ; move type
 	ld c, a
-
 .CheckWeatherType
 	ld a, [de]
 	inc de
 	cp $ff
-	jr z, .asm_fbdc0 ;of end of array, stop checking type
+	jr z, .asm_fbdc0
 	cp b
-	jr nz, .NextWeatherType ;if move type matches type modified, apply it, else try next slot
+	jr nz, .NextWeatherType
 	ld a, [de]
 	cp c
 	jr z, .ApplyModifier
@@ -88933,7 +88909,6 @@ DoWeatherModifiers: ; fbda4
 	db $ff
 .WeatherMoveModifiers
 	db WEATHER_RAIN, EFFECT_SOLARBEAM, 05
-	db WEATHER_SANDSTORM, EFFECT_SOLARBEAM, 05
 	db $ff
 ; fbe24
 
@@ -89536,7 +89511,7 @@ TradeAfterText1: ; 0xfcfab
 
 TradeIntroText2:
 TradeIntroText3: ; 0xfcfb0
-	; Hi, I'm looking for this #MON. If you have @ , would you trade it for my @ ?
+	; Hi, I'm looking for this #MON. If you have @, would you trade it for my @ ?
 	text_jump UnknownText_0x1bd512
 	db "@"
 ; 0xfcfb5

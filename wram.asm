@@ -633,7 +633,7 @@ PlayerScreens:: ; c6ff
 ; 4 reflect
 ; 3 light screen
 ; 2 safeguard
-; 0-1 spikes
+; 0 spikes
 	ds 1
 
 wc700::
@@ -718,8 +718,8 @@ wc720:: ds 4
 wc724:: ds 3
 wc727:: ds 2
 wc729:: ds 2
-wc72b:: ds 1 ;player rage count
-wc72c:: ds 1 ;enemy rage count
+wc72b:: ds 1
+wc72c:: ds 1
 wc72d:: ds 1
 wc72e:: ds 1
 wc72f:: ds 1
@@ -1612,7 +1612,7 @@ EnemyMonBaseExp::   db ; d22c
 EnemyMonEnd::
 
 
-IsInBattle:: ; d22d
+wBattleMode:: ; d22d
 ; 0: overworld
 ; 1: wild battle
 ; 2: trainer battle

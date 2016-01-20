@@ -28,7 +28,7 @@ GetLandmarkName:: ; 0x1ca8a5
 	bit 5, a
 	jr nz, .normal
 	ld hl, .PokemonTower
-	jr .copy
+	jr .okay
 
 .normal
 	ld l, e
@@ -40,7 +40,7 @@ GetLandmarkName:: ; 0x1ca8a5
 	ld a, [hli]
 	ld h, [hl]
 	ld l, a
-
+.okay
 	ld de, StringBuffer1
 	ld c, 18
 .copy
@@ -129,6 +129,7 @@ ENDM
 	landmark 116,  92, UndergroundName
 	landmark 108,  92, Route6Name
 	landmark 108, 100, VermilionCityName
+	landmark 110,  98, SSAnneName
 	landmark  96,  76, DiglettsCaveName
 	landmark  96,  84, Route7Name
 	landmark 124,  84, Route8Name
@@ -273,7 +274,7 @@ UndergroundName:     db "UNDERGROUND@"
 BattleTowerName:     db "BATTLE", $1f, "TOWER@"
 SpecialMapName:      db "SPECIAL@"
 BattleTentRuinsName: db "BATTLE TENT", $1f, "RUINS@"
-
+SSAnneName:          db "S.S. ANNE@"
 
 RegionCheck: ; 0x1caea1
 ; Checks if the player is in Kanto or Johto.

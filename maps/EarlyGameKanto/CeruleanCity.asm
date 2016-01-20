@@ -144,7 +144,7 @@ CeruleanCityRBRocketScript:
 	showemote $0, $c, 15
 	pause 15
 	faceplayer
-	playmusic MUSIC_ROCKET_ENCOUNTER
+	playmusic MUSIC_HIKER_ENCOUNTER
 	loadfont
 	writetext CeruleanCityRBRocketText2
 	waitbutton
@@ -153,7 +153,7 @@ CeruleanCityRBRocketScript:
 	winlosstext CeruleanCityRBRocketWinText, 0
 	startbattle
 	returnafterbattle
-	playmusic MUSIC_ROCKET_ENCOUNTER
+	playmapmusic
 	loadfont
 	writetext CeruleanCityRBRocketText3
 	waitbutton
@@ -169,7 +169,6 @@ CeruleanCityRBRocketScript:
 	spriteface $0, LEFT
 	applymovement $c, Movement_CeruleanRocketRBRunsAway_playerbelow
 	disappear $c
-	playmapmusic
 	pause 15
 	appear $d
 	playsound SFX_EXIT_BUILDING
@@ -199,7 +198,6 @@ CeruleanRBGrampsScript_Left
 	spriteface $0, LEFT
 	applymovement $c, Movement_CeruleanRocketRBRunsAway_playerright
 	disappear $c
-	special RestartMapMusic
 	pause 15
 	appear $d
 	playsound SFX_EXIT_BUILDING
@@ -229,7 +227,6 @@ CeruleanRBGrampsScript_Right
 	spriteface $0, LEFT
 	applymovement $c, Movement_CeruleanRocketRBRunsAway_playerleft
 	disappear $c
-	special RestartMapMusic
 	pause 15
 	appear $d
 	playsound SFX_EXIT_BUILDING

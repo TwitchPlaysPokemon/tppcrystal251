@@ -44,7 +44,7 @@ Route6SaffronGateRB_MapEventHeader: ; 0x18b60b
 	; warps
 	db 2
 	warp_def $7, $4, 2, GROUP_ROUTE_6_RB, MAP_ROUTE_6_RB
-	warp_def $7, $5, 3, GROUP_ROUTE_6_RB, MAP_ROUTE_6_RB
+	warp_def $7, $5, 2, GROUP_ROUTE_6_RB, MAP_ROUTE_6_RB
 
 	; xy triggers
 	db 6

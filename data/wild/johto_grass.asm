@@ -461,7 +461,7 @@
 
 	db GROUP_UNION_CAVE_1F, MAP_UNION_CAVE_1F
 	db $0f ; encounter rates: morn/day/nite
-	db 18
+	db 17
 	db $01
 	; morn
 		db WOOPER  ;20
@@ -517,7 +517,7 @@
 
 	db GROUP_UNION_CAVE_B1F, MAP_UNION_CAVE_B1F
 	db $0f ; encounter rates: morn/day/nite
-	db 19
+	db 18
 	db $01
 	; morn
 		db WOOPER  ;20
@@ -629,7 +629,7 @@
 
 	db GROUP_SLOWPOKE_WELL_B1F, MAP_SLOWPOKE_WELL_B1F
 	db $05 ; encounter rates: morn/day/nite
-	db 20
+	db 19
 	db $00
 	; morn
 		db SLOWPOKE ;30
@@ -741,7 +741,7 @@
 
 	db GROUP_ILEX_FOREST, MAP_ILEX_FOREST
 	db $0a ; encounter rates: morn/day/nite
-	db 22
+	db 20
 	db $01
 	; morn
 		db PINECO ;20
@@ -1761,7 +1761,7 @@
 	
 	db GROUP_DARK_CAVE_VIOLET_ENTRANCE, MAP_DARK_CAVE_VIOLET_ENTRANCE
 	db $0a ; encounter rates: morn/day/nite
-	db 18
+	db 16
 	db $60
 	; morn
 		db TYROGUE ;30
@@ -1873,7 +1873,7 @@
 
 	db GROUP_ROUTE_29, MAP_ROUTE_29
 	db $19 ; encounter rates: morn/day/nite
-	db 16
+	db 12
 	db $20
 	; morn
 		db HOPPIP ;30
@@ -1929,7 +1929,7 @@
 		
 	db GROUP_ROUTE_30, MAP_ROUTE_30
 	db $19 ; encounter rates: morn/day/nite
-	db 16
+	db 13
 	db $41
 	; morn
 		db LEDYBA ;20
@@ -1985,7 +1985,7 @@
 
 	db GROUP_ROUTE_31, MAP_ROUTE_31
 	db $19 ; encounter rates: morn/day/nite
-	db 17
+	db 14
 	db $52
 	; morn
 		db SUNKERN ;20
@@ -2041,7 +2041,7 @@
 
 	db GROUP_ROUTE_32, MAP_ROUTE_32
 	db $19 ; encounter rates: morn/day/nite
-	db 18
+	db 15
 	db $91
 	; morn
 		db SUNKERN ;20
@@ -2097,7 +2097,7 @@
 
 	db GROUP_ROUTE_33, MAP_ROUTE_33
 	db $19 ; encounter rates: morn/day/nite
-	db 20
+	db 19
 	db $a1
 	; morn
 		db HOPPIP ;20
@@ -2153,7 +2153,7 @@
 
 	db GROUP_ROUTE_34, MAP_ROUTE_34
 	db $19 ; encounter rates: morn/day/nite
-	db 23
+	db 21
 	db $03
 	; morn
 		db CHANSEY ;15
@@ -2209,7 +2209,7 @@
 
 	db GROUP_ROUTE_35, MAP_ROUTE_35
 	db $19 ; encounter rates: morn/day/nite
-	db 24
+	db 23
 	db $02
 	; morn
 		db LEDIAN ;20
@@ -2265,7 +2265,7 @@
 
 	db GROUP_ROUTE_36, MAP_ROUTE_36
 	db $19 ; encounter rates: morn/day/nite
-	db 17
+	db 14
 	db $81
 	; morn
 		db SNUBBULL ;20
@@ -2713,7 +2713,7 @@
 
 	db GROUP_ROUTE_46, MAP_ROUTE_46
 	db $19 ; encounter rates: morn/day/nite
-	db 17
+	db 14
 	db $30
 	; morn
 		db PHANPY ;30

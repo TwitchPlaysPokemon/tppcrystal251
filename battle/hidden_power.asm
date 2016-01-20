@@ -97,7 +97,6 @@ HiddenPowerDamage: ; fbced
 	ld a, BATTLE_VARS_MOVE_TYPE
 	call GetBattleVarAddr
 	pop af
-	and $70
 	ld [hl], a
 
 ; Get the rest of the damage formula variables

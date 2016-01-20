@@ -520,7 +520,7 @@ MAP_N_A   EQU -1
 	newgroup ; Vermilion City RB
 	mapgroup ROUTE_6_SAFFRON_GATE_RB, 4, 5
 	mapgroup ROUTE_6_UNDERGROUND_ENTRANCE_RB, 4, 4
-	mapgroup ROUTE_6_RB, 9, 10
+	mapgroup ROUTE_6_RB, 12, 10
 	mapgroup VERMILION_CITY_RB, 18, 20
 	mapgroup VERMILION_POKECENTER_1F_RB, 4, 5
 	mapgroup VERMILION_MART_RB, 4, 6
@@ -530,6 +530,7 @@ MAP_N_A   EQU -1
 	mapgroup VERMILION_HOUSE_DIGLETTS_CAVE_SPEECH_HOUSE_RB, 4, 4
 	mapgroup ROUTE_11_RB, 9, 20
 	mapgroup ROUTE_12_RB, 27, 10 ; RB
+	mapgroup ROUTE_11_GATE_RB, 4, 5
 
 	newgroup ; Saffron Area RB
 	mapgroup ROUTE_5_RB, 9, 10
@@ -545,6 +546,17 @@ MAP_N_A   EQU -1
 	mapgroup MT_MOON_B2F_RB, 14, 14
 	mapgroup MT_MOON_B3F_RB, 18, 20
 	mapgroup UNDERGROUND_RB, 14, 3
+	mapgroup VERMILION_DOCK, 6, 14
+	mapgroup S_S_ANNE_1,   9, 20
+	mapgroup S_S_ANNE_2,   9, 20
+	mapgroup S_S_ANNE_3,   3, 10
+	mapgroup S_S_ANNE_4,   4, 15
+	mapgroup S_S_ANNE_5,   7, 10
+	mapgroup S_S_ANNE_6,   8,  7
+	mapgroup S_S_ANNE_7,   4,  3
+	mapgroup S_S_ANNE_8,   8, 12
+	mapgroup S_S_ANNE_9,   8, 12
+	mapgroup S_S_ANNE_10,  8, 12
 
 ; elevator floors
 	const_def
@@ -742,6 +754,7 @@ SPRITE_VARS EQU const_value
 	const SPRITE_JANINE_IMPERSONATOR
 	const SPRITE_EGK_RIVAL
 	const SPRITE_EGK_BILL
+	const SPRITE_EGK_ROCKET
 
 ; sprite types
 WALKING_SPRITE  EQU 1

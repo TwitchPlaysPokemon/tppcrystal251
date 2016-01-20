@@ -599,3 +599,23 @@ SFXChannelsOff:: ; 3e21
 	ld [SoundInput], a
 	ret
 ; 3e32
+
+RocketMusicCheck::
+	push af
+	ld a, [StatusFlags]
+	bit 5, a
+	jr nz, .rocket
+	ld a, [MapGroup]
+	cp GROUP_VERMILION_DOCK
+	jr nz, .no_rocket
+	ld a, [MapNumber]
+	cp MAP_VERMILION_DOCK
+	jr nc, .rocket
+.no_rocket
+	pop af
+	and a
+	ret
+.rocket
+	pop af
+	scf
+	ret

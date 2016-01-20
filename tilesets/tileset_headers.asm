@@ -334,6 +334,13 @@ Tileset41: ;Volcano
 	dw $0000
 	dw Tileset41PalMap
 
+Tileset42: ; SS Anne
+	dbw BANK(Tileset42GFX), Tileset42GFX
+	dbw BANK(Tileset42Meta), Tileset42Meta
+	dbw BANK(Tileset42Coll), Tileset42Coll
+	dw Tileset42Anim
+	dw $0000
+	dw Tileset42PalMap
 
 ; 0x4d7c1
 

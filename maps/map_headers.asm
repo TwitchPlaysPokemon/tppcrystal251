@@ -509,7 +509,7 @@ MapGroup28:
 
 MapGroup29:
 	map_header Route1RB, $3, 2, ROUTE_1, MUSIC_ROUTE_1, 0, 0, 1
-	map_header PalletTownRB, $3, 1, PALLET_TOWN, MUSIC_PALLET_TOWN, 0, 0, 20
+	map_header PalletTownRB, $3, 1, PALLET_TOWN, MUSIC_PALLET_TOWN, 0, 0, 14
 	map_header RedsHouse1FRB, $6, 3, PALLET_TOWN, MUSIC_PALLET_TOWN, 0, 1, 1
 	map_header RedsHouse2FRB, $6, 3, PALLET_TOWN, MUSIC_PALLET_TOWN, 0, 1, 1
 	map_header BluesHouseRB, $5, 3, PALLET_TOWN, MUSIC_PALLET_TOWN, 0, 1, 1
@@ -517,8 +517,8 @@ MapGroup29:
 
 MapGroup30:
 	map_header Route2RB, $3, 2, ROUTE_2, MUSIC_ROUTE_1, 0, 0, 1
-	map_header Route22RB, $3, 2, ROUTE_22, MUSIC_ROUTE_3, 0, 0, 19
-	map_header ViridianCityRB, $3, 1, VIRIDIAN_CITY, MUSIC_VIRIDIAN_CITY, 0, 0, 19
+	map_header Route22RB, $3, 2, ROUTE_22, MUSIC_ROUTE_3, 0, 0, 13
+	map_header ViridianCityRB, $3, 1, VIRIDIAN_CITY, MUSIC_VIRIDIAN_CITY, 0, 0, 13
 	map_header ViridianMartRB, $c, 3, VIRIDIAN_CITY, MUSIC_MART, 0, 1, 1
 	map_header ViridianPokeCenter1FRB, $7, 3, VIRIDIAN_CITY, MUSIC_POKEMON_CENTER, 0, 1, 1
 	map_header ViridianNicknameSpeechHouseRB, $5, 3, VIRIDIAN_CITY, MUSIC_VIRIDIAN_CITY, 0, 1, 1
@@ -543,15 +543,15 @@ MapGroup31:
 
 MapGroup32:
 ; cerulean city rb
-	map_header CeruleanGymRB, $9, 3, CERULEAN_CITY, MUSIC_GYM, 1, 1, 21
+	map_header CeruleanGymRB, $9, 3, CERULEAN_CITY, MUSIC_GYM, 1, 1, 0
 	map_header Route4RB, $3, 2, ROUTE_4, MUSIC_ROUTE_3, 0, 0, 0
 	map_header CeruleanCityRB, $3, 1, CERULEAN_CITY, MUSIC_CERULEAN_CITY, 0, 0, 0
 	map_header CeruleanPokeCenter1FRB, $7, 3, CERULEAN_CITY, MUSIC_POKEMON_CENTER, 0, 1, 1
 	map_header CeruleanMartRB, $c, 3, CERULEAN_CITY, MUSIC_MART, 0, 1, 1
 	map_header CeruleanGymBadgeSpeechHouseRB, $5, 3, CERULEAN_CITY, MUSIC_CERULEAN_CITY, 0, 1, 1
 	map_header CeruleanTradeSpeechHouseRB, $5, 3, CERULEAN_CITY, MUSIC_CERULEAN_CITY, 0, 1, 1
-	map_header Route24RB, $3, 2, ROUTE_24, MUSIC_ROUTE_24, 0, 0, 20
-	map_header Route25RB, $3, 2, ROUTE_25, MUSIC_ROUTE_24, 0, 0, 19
+	map_header Route24RB, $3, 2, ROUTE_24, MUSIC_ROUTE_24, 0, 0, 3
+	map_header Route25RB, $3, 2, ROUTE_25, MUSIC_ROUTE_24, 0, 0, 3
 	map_header BillsHouseRB, $5, 3, ROUTE_25, MUSIC_CERULEAN_CITY, 0, 1, 1
 	map_header Route9RB, $3, 2, ROUTE_9, MUSIC_ROUTE_3, 0, 0, 3
 
@@ -559,6 +559,16 @@ MapGroup33:
 ; vermilion city rb
 	map_header Route6SaffronGateRB, $8, 6, ROUTE_6, MUSIC_VIRIDIAN_CITY, 0, 1, 1
 	map_header Route6UndergroundEntranceRB, $8, 6, ROUTE_6, MUSIC_VIRIDIAN_CITY, 0, 1, 1
+	map_header Route6RB, $3, 2, ROUTE_6, MUSIC_ROUTE_3, 0, 0, 13
+	map_header VermilionCityRB, $3, 1, VERMILION_CITY, MUSIC_VERMILION_CITY, 0, 0, 14
+	map_header VermilionPokeCenter1FRB, $7, 3, VERMILION_CITY, MUSIC_POKEMON_CENTER, 0, 1, 1
+	; map_header VermilionMartRB, $c, 3, VERMILION_CITY, MUSIC_MART, 0, 1, 1
+	; map_header VermilionHouseFishingSpeechHouseRB, $5, 3, VERMILION_CITY, MUSIC_VERMILION_CITY, 0, 1, 1
+	; map_header PokemonFanClubRB, $5, 3, VERMILION_CITY, MUSIC_VERMILION_CITY, 0, 1, 1
+	; map_header VermilionMagnetTrainSpeechHouseRB, $5, 3, VERMILION_CITY, MUSIC_VERMILION_CITY, 0, 1, 1
+	; map_header Route11RB, $3, 2, ROUTE_11, MUSIC_ROUTE_12, 0, 0, 1
+	; map_header Route12RB, $3, 2, ROUTE_11, MUSIC_ROUTE_12, 0, 0, 1
+	; map_header Route11GateRB, $8, 6, ROUTE_11, MUSIC_ROUTE_12, 0, 1, 1
 
 MapGroup34:
 ; saffron area rb
@@ -576,3 +586,14 @@ MapGroup35:
 	map_header MtMoonB2FRB, $27, 4, MT_MOON, MUSIC_MT_MOON, 1, 2, 1
 	map_header MtMoonB3FRB, $27, 4, MT_MOON, MUSIC_MT_MOON, 1, 2, 1
 	map_header UndergroundRB, $1c, 6, UNDERGROUND, MUSIC_ROUTE_1, 0, 2, 1
+	; map_header VermilionDock, $2a, 6, S_S_ANNE, MUSIC_S_S_ANNE, 1, 0, 0
+	; map_header SSAnne1, $2a, 6, S_S_ANNE, MUSIC_S_S_ANNE, 1, 1, 1
+	; map_header SSAnne2, $2a, 6, S_S_ANNE, MUSIC_S_S_ANNE, 1, 1, 1
+	; map_header SSAnne3, $2a, 6, S_S_ANNE, MUSIC_S_S_ANNE, 1, 1, 1
+	; map_header SSAnne4, $2a, 6, S_S_ANNE, MUSIC_S_S_ANNE, 1, 1, 1
+	; map_header SSAnne5, $2a, 6, S_S_ANNE, MUSIC_S_S_ANNE, 1, 1, 1
+	; map_header SSAnne6, $2a, 6, S_S_ANNE, MUSIC_S_S_ANNE, 1, 1, 1
+	; map_header SSAnne7, $2a, 6, S_S_ANNE, MUSIC_S_S_ANNE, 1, 1, 1
+	; map_header SSAnne8, $2a, 6, S_S_ANNE, MUSIC_S_S_ANNE, 1, 1, 1
+	; map_header SSAnne9, $2a, 6, S_S_ANNE, MUSIC_S_S_ANNE, 1, 1, 1
+	; map_header SSAnne10, $2a, 6, S_S_ANNE, MUSIC_S_S_ANNE, 1, 1, 1

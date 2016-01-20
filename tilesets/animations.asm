@@ -132,6 +132,7 @@ TilesetAnimfc103: ; 0xfc103
 ; 0xfc12f
 
 Tileset09Anim: ; 0xfc12f
+Tileset42Anim:
 ;	   param, function
 	dw $9140, AnimateWaterTile
 	dw NULL,  WaitTileAnimation

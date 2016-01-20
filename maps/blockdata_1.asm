@@ -291,6 +291,9 @@ Route31VioletGate_BlockData:
 VermilionCity_BlockData: ; 0xab82b
 	INCBIN "maps/VermilionCity.blk"
 ; 0xab993
+VermilionCityRB_BlockData: ; 0xab82b
+	INCBIN "maps/VermilionCityRB.blk"
+; 0xab993
 
 ElmsLab_BlockData: ; 0xabb55
 	INCBIN "maps/ElmsLab.blk"

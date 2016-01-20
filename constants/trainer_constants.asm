@@ -341,6 +341,8 @@
 	const KENT_RB
 	const ROBBY_RB
 	const CALE_RB
+	const KEIGO_RB
+	const ELIJAH_RB
 
 	trainerclass FISHER ; 25
 	const JUSTIN
@@ -582,6 +584,8 @@
 	const GINA5
 	const TIFFANY4
 	const KELSEY_RB
+	const NANCY_RB
+	const IZZY_RB
 
 	trainerclass CAMPER ; 36
 	const ROLAND
@@ -611,6 +615,8 @@
 	const ETHAN_RB
 	const SHANE_RB
 	const FLINT_RB
+	const RICKY_RB
+	const JEFF_RB
 
 	trainerclass EXECUTIVEF ; 37
 

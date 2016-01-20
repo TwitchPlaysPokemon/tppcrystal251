@@ -620,10 +620,17 @@ SECTION "EGK Route 25 Events", ROMX
 INCLUDE "maps/EarlyGameKanto/Route25.asm"
 INCLUDE "maps/EarlyGameKanto/BillsHouse.asm"
 
-SECTION "EGK Route 5 Events", ROMX
+SECTION "EGK Route 5/6 Events", ROMX
 INCLUDE "maps/EarlyGameKanto/Route5.asm"
+INCLUDE "maps/EarlyGameKanto/Route6.asm"
 INCLUDE "maps/EarlyGameKanto/Route5SaffronCityGate.asm"
 INCLUDE "maps/EarlyGameKanto/Route6SaffronGate.asm"
 INCLUDE "maps/EarlyGameKanto/Route5UndergroundEntrance.asm"
 INCLUDE "maps/EarlyGameKanto/Route6UndergroundEntrance.asm"
 INCLUDE "maps/EarlyGameKanto/Underground.asm"
+
+SECTION "EGK Vermilion City Events", ROMX
+INCLUDE "maps/EarlyGameKanto/VermilionCity.asm"
+INCLUDE "maps/EarlyGameKanto/VermilionPokeCenter1F.asm"
+
+SECTION "EGK SS Anne Events", ROMX

@@ -17,7 +17,14 @@ PlayTrainerEncounterMusic:: ; e900a
 	ld d, $00
 	ld hl, TrainerEncounterMusic
 	add hl, de
-	ld e, [hl]
+	ld a, [hl]
+	cp MUSIC_ROCKET_ENCOUNTER
+	jr nz, .play
+	call RocketMusicCheck
+	jr nc, .play
+	ld a, MUSIC_HIKER_ENCOUNTER
+.play
+	ld e, a
 	call PlayMusic
 	ret
 ; e9027

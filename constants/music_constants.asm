@@ -118,4 +118,5 @@
 	const MUSIC_RIVAL_AFTER_RB               ; 71
 	const MUSIC_RIVAL_BATTLE_RB              ; 72
 	const MUSIC_VS_WCS                       ; 73
+	const MUSIC_S_S_ANNE                     ; 74
 MUSIC_MAHOGANY_MART EQU $64
