@@ -3,6 +3,8 @@
 -- AKA readbattlestate_clean.lua
 -- Version 0.3.2
 JSON = (loadfile "JSON.lua")()
+package.path = package.path..';/libs/?.lua' -- i did this wrong too?
+package.cpath = package.cpath..';/libs/?.dll'
 local http = require("socket.http") -- i did this wrong did i
 dofile("battle_ram.lua")
 dofile("constants.lua")
