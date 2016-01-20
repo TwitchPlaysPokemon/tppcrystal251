@@ -1,8 +1,9 @@
 
 -- PikalaxALT's first attempt at lua to read battle state
 -- AKA readbattlestate_clean.lua
--- Version 0.3.1
+-- Version 0.3.2
 JSON = (loadfile "JSON.lua")()
+local http = require("socket.http") -- i did this wrong did i
 dofile("battle_ram.lua")
 dofile("constants.lua")
 militaryMode = 0
@@ -408,11 +409,10 @@ function readBattlestate() --read this ONLY when LUA Serial is called
     end
 end
 
-function transferStateToAIAndWait()
-	-- transfer to AI and get a response here
-	-- if Military mode is on, then wait for the first valid player shortcut command, if not, ignore
-	-- calculate the bytes to write to DFF8 and DFF9, write them, then end here and resume looping playerstate reading
-	send(0) -- TODO
+function transferStateToAIAndWait(output_table)
+ next_move = http.request("http://localhost:12345/ai/"..JSON:encode(output_table))
+ return next_move
+ send(0) -- TODO
 end
 
 function send(a)
