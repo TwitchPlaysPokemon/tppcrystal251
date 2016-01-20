@@ -24,11 +24,13 @@ PewterMuseumOfScience1FPayWall:
 	spriteface $2, LEFT
 	spriteface $0, RIGHT
 	loadfont
+	special Function24ae8
 	writetext _Museum1FText_5c21f
 	yesorno
 	iffalse .send_back
 	takemoney 0, 50
 	if_equal 2, .insufficient_funds
+	special Function24ae8
 	playsound SFX_TRANSACTION
 	waitsfx
 	writetext _Museum1FText_5c224
