@@ -135,6 +135,7 @@ MistyAfterRematchText:
 	text "How could I"
 	line "lose to someone"
 	cont "like you?!?"
+	done
 
 TrainerSwimmerfDiana: ; 0x188466
 	; bit/flag number
