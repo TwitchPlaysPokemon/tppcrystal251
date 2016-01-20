@@ -402,7 +402,7 @@ function readBattlestate() --read this ONLY when LUA Serial is called
 		end
 		local raw_json = JSON:encode(output_table)
 		file = io.open("battlestate.json", "w+")
-        -- call transferStateToAIAndWait() here and calculate the bytes to 
+        transferStateToAIAndWait(raw_json)
 		io.output(file)
 		io.write(raw_json)
 		io.close(file)
@@ -414,7 +414,7 @@ end
 function transferStateToAIAndWait(output_table)
  next_move = http.request("http://localhost:12345/ai/"..JSON:encode(output_table))
  return next_move
- send(0) -- TODO
+ send(0) -- TODO, plz process next_move appropriately and send to game
 end
 
 function send(a)
@@ -440,7 +440,6 @@ function readPlayerstate() --loop read this for the overlay
 		if req == BEESAFREE_SND_RESET then send(BEESAFREE_RES_RESET)
 		elseif req == BEESAFREE_SND_ASKMOVE then
 			readBattlestate()
-			transferStateToAIAndWait()
 		end
 	end
 end
