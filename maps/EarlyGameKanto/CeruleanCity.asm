@@ -66,7 +66,6 @@ CeruleanCityRivalBattle:
 .got_rival_gender
 	writecode VAR_BATTLETYPE, BATTLETYPE_RIVAL_RB
 	startbattle
-	reloadmapmusic
 	returnafterbattle
 	special RestartMapMusic
 	loadfont
@@ -153,7 +152,7 @@ CeruleanCityRBRocketScript:
 	winlosstext CeruleanCityRBRocketWinText, 0
 	startbattle
 	returnafterbattle
-	playmapmusic
+	special RestartMapMusic
 	loadfont
 	writetext CeruleanCityRBRocketText3
 	waitbutton

@@ -133,7 +133,7 @@ Route3RBRocketsScript:
 	setlasttalked $c
 	startbattle
 	returnafterbattle
-	playmapmusic
+	special RestartMapMusic
 	loadfont
 	writetext Route3RBRocketsText6
 	waitbutton

@@ -1,8 +1,9 @@
 
 -- PikalaxALT's first attempt at lua to read battle state
 -- AKA readbattlestate_clean.lua
--- Version 0.3
+-- Version 0.3.1
 JSON = (loadfile "JSON.lua")()
+dofile("battle_ram.lua")
 local itemTable = {"NO ITEM", "MASTER BALL", "ULTRA BALL", "BRIGHTPOWDER", "GREAT BALL", "POKE BALL", "LAPTOP", "BICYCLE", "MOON STONE", "ANTIDOTE", "BURN HEAL", "ICE HEAL", "AWAKENING", "PARALYZE HEAL", "FULL RESTORE", "MAX POTION", "HYPER POTION", "SUPER POTION", "POTION", "ESCAPE ROPE", "REPEL", "MAX ELIXER", "FIRE STONE", "THUNDERSTONE", "WATER STONE", "POISON GUARD", "HP UP", "PROTEIN", "IRON", "CARBOS", "LUCKY PUNCH", "CALCIUM", "RARE CANDY", "X ACCURACY", "LEAF STONE", "METAL POWDER", "NUGGET", "POKE DOLL", "FULL HEAL", "REVIVE", "MAX REVIVE", "GUARD SPEC", "SUPER REPEL", "MAX REPEL", "DIRE HIT", "BURN GUARD", "FRESH WATER", "SODA POP", "LEMONADE", "X ATTACK", "FREEZE GUARD", "X DEFEND", "X SPEED", "X SPECIAL", "COIN CASE", "ITEMFINDER", "POKE FLUTE", "EXP SPARE", "OLD ROD", "GOOD ROD", "SILVER LEAF", "SUPER ROD", "PP UP", "ETHER", "MAX ETHER", "ELIXER", "RED SCALE", "SECRETPOTION", "S S TICKET", "MYSTERY EGG", "CLEAR BELL", "SILVER WING", "MOOMOO MILK", "QUICK CLAW", "PSNCUREBERRY", "GOLD LEAF", "SOFT SAND", "SHARP BEAK", "PRZCUREBERRY", "BURNT BERRY", "ICE BERRY", "POISON BARB", "KINGS ROCK", "BITTER BERRY", "MINT BERRY", "RED APRICORN", "TINYMUSHROOM", "BIG MUSHROOM", "SILVERPOWDER", "BLU APRICORN", "SLEEP GUARD", "AMULET COIN", "YLW APRICORN", "GRN APRICORN", "CLEANSE TAG", "MYSTIC WATER", "WHT APRICORN", "BLACKBELT", "BLK APRICORN", "PARLYZ GUARD", "PNK APRICORN", "BLACKGLASSES", "SLOWPOKETAIL", "PINK BOW", "STICK", "SMOKE BALL", "NEVERMELTICE", "MAGNET", "MIRACLEBERRY", "PEARL", "BIG PEARL", "EVERSTONE", "SPELL TAG", "RAGECANDYBAR", "GS BALL", "BLUE CARD", "MIRACLE SEED", "THICK CLUB", "FOCUS BAND", "CONFUSEGUARD", "ENERGYPOWDER", "ENERGY ROOT", "HEAL POWDER", "REVIVAL HERB", "HARD STONE", "LUCKY EGG", "CARD KEY", "MACHINE PART", "EGG TICKET", "LOST ITEM", "STARDUST", "STAR PIECE", "BASEMENT KEY", "PASS", "HELIX FOSSIL", "DOME FOSSIL", "OLD AMBER", "CHARCOAL", "BERRY JUICE", "SCOPE LENS", "OAKS PARCEL", "ITEM 8E", "METAL COAT", "DRAGON FANG", "ITEM 91", "LEFTOVERS", "ITEM 93", "ITEM 94", "ITEM 95", "MYSTERYBERRY", "DRAGON SCALE", "BERSERK GENE", "ITEM 99", "ITEM 9A", "ITEM 9B", "SACRED ASH", "HEAVY BALL", "FLOWER MAIL", "LEVEL BALL", "LURE BALL", "FAST BALL", "ITEM A2", "LIGHT BALL", "FRIEND BALL", "MOON BALL", "LOVE BALL", "NORMAL BOX", "GORGEOUS BOX", "SUN STONE", "POLKADOT BOW", "ITEM AB", "UP GRADE", "BERRY", "GOLD BERRY", "SQUIRTBOTTLE", "ITEM B0", "PARK BALL", "RAINBOW WING", "ITEM B3", "BRICK PIECE", "SURF MAIL", "LITEBLUEMAIL", "PORTRAITMAIL", "LOVELY MAIL", "EON MAIL", "MORPH MAIL", "BLUESKY MAIL", "MUSIC MAIL", "MIRAGE MAIL", "ITEM BE", "TM01", "TM02", "TM03", "TM04", "ITEM C3", "TM05", "TM06", "TM07", "TM08", "TM09", "TM10", "TM11", "TM12", "TM13", "TM14", "TM15", "TM16", "TM17", "TM18", "TM19", "TM20", "TM21", "TM22", "TM23", "TM24", "TM25", "TM26", "TM27", "TM28", "ITEM DC", "TM29", "TM30", "TM31", "TM32", "TM33", "TM34", "TM35", "TM36", "TM37", "TM38", "TM39", "TM40", "TM41", "TM42", "TM43", "TM44", "TM45", "TM46", "TM47", "TM48", "TM49", "TM50", "HM01", "HM02", "HM03", "HM04", "HM05", "HM06", "HM07", "HM08"}
 
 local moveTable = {"NO MOVE", "POUND", "KARATE CHOP", "DOUBLESLAP", "GUNK SHOT", "ZEN HEADBUTT", "PAY DAY", "FIRE PUNCH", "ICE PUNCH", "THUNDERPUNCH", "SCRATCH", "FAIRY WIND", "FOCUS BLAST", "IRON DEFENSE", "SWORDS DANCE", "CUT", "GUST", "WING ATTACK", "WHIRLWIND", "FLY", "BUG BUZZ", "SLAM", "VINE WHIP", "STOMP", "DOUBLE KICK", "MEGA KICK", "FLARE BLITZ", "ROLLING KICK", "SAND ATTACK", "HEADBUTT", "HORN ATTACK", "FURY ATTACK", "HORN DRILL", "TACKLE", "BODY SLAM", "WRAP", "TAKE DOWN", "THRASH", "DOUBLE EDGE", "TAIL WHIP", "POISON STING", "TWINEEDLE", "PIN MISSILE", "LEER", "BITE", "GROWL", "ROAR", "SING", "SUPERSONIC", "SONICBOOM", "DISABLE", "ACID", "EMBER", "FLAMETHROWER", "MIST", "WATER GUN", "HYDRO PUMP", "SURF", "ICE BEAM", "BLIZZARD", "PSYBEAM", "BUBBLEBEAM", "AURORA BEAM", "HYPER BEAM", "PECK", "DRILL PECK", "SUBMISSION", "HEAT WAVE", "COUNTER", "SEISMIC TOSS", "STRENGTH", "ABSORB", "MEGA DRAIN", "LEECH SEED", "GROWTH", "RAZOR LEAF", "SOLARBEAM", "POISONPOWDER", "STUN SPORE", "SLEEP POWDER", "PETAL DANCE", "STRING SHOT", "DRAGON RAGE", "FIRE SPIN", "THUNDERSHOCK", "THUNDERBOLT", "THUNDER WAVE", "THUNDER", "ROCK THROW", "EARTHQUAKE", "FISSURE", "DIG", "TOXIC", "CONFUSION", "PSYCHIC M", "HYPNOSIS", "MEDITATE", "AGILITY", "QUICK ATTACK", "RAGE", "TELEPORT", "NIGHT SHADE", "MIMIC", "SCREECH", "DOUBLE TEAM", "RECOVER", "HARDEN", "MINIMIZE", "SMOKESCREEN", "CONFUSE RAY", "WITHDRAW", "DEFENSE CURL", "BARRIER", "LIGHT SCREEN", "HAZE", "REFLECT", "FOCUS ENERGY", "BIDE", "METRONOME", "MIRROR MOVE", "SELFDESTRUCT", "METAL SOUND", "LICK", "DRAGON PULSE", "SLUDGE", "BONE CLUB", "FIRE BLAST", "WATERFALL", "CLAMP", "SWIFT", "AQUA JET", "SPIKE CANNON", "FLASH CANNON", "AMNESIA", "WILLOWISP", "SOFTBOILED", "HI JUMP KICK", "GLARE", "DREAM EATER", "ROCK POLISH", "SEED BOMB", "LEECH LIFE", "LOVELY KISS", "SKY ATTACK", "TRANSFORM", "BUBBLE", "DIZZY PUNCH", "SPORE", "FLASH", "PSYWAVE", "SPLASH", "ACID ARMOR", "CRABHAMMER", "EXPLOSION", "POISON JAB", "BONEMERANG", "REST", "ROCK SLIDE", "HYPER FANG", "SHARPEN", "CONVERSION", "TRI ATTACK", "SUPER FANG", "SLASH", "SUBSTITUTE", "STRUGGLE", "SKETCH", "WILD CHARGE", "THIEF", "X SCISSOR", "MIND READER", "NIGHTMARE", "FLAME WHEEL", "IRON HEAD", "CURSE", "FLAIL", "CONVERSION2", "AEROBLAST", "COTTON SPORE", "REVERSAL", "SPITE", "POWDER SNOW", "PROTECT", "MACH PUNCH", "SCARY FACE", "FAINT ATTACK", "SWEET KISS", "BELLY DRUM", "SLUDGE BOMB", "MUD SLAP", "OCTAZOOKA", "SPIKES", "ZAP CANNON", "FORESIGHT", "DESTINY BOND", "PERISH SONG", "ICY WIND", "AIR SLASH", "DARK PULSE", "EARTH POWER", "OUTRAGE", "SANDSTORM", "GIGA DRAIN", "ENDURE", "CHARM", "ROLLOUT", "FALSE SWIPE", "SWAGGER", "MILK DRINK", "SPARK", "FURY CUTTER", "STEEL WING", "MEAN LOOK", "ATTRACT", "SLEEP TALK", "HEAL BELL", "RETURN", "PRESENT", "DAZZLINGLEAM", "SAFEGUARD", "PAIN SPLIT", "SACRED FIRE", "MAGNITUDE", "DYNAMICPUNCH", "MEGAHORN", "DRAGONBREATH", "BATON PASS", "ENCORE", "PURSUIT", "RAPID SPIN", "NASTY PLOT", "IRON TAIL", "METAL CLAW", "VITAL THROW", "MORNING SUN", "SYNTHESIS", "MOONLIGHT", "HIDDEN POWER", "CROSS CHOP", "TWISTER", "RAIN DANCE", "SUNNY DAY", "CRUNCH", "MIRROR COAT", "SHADOW CLAW", "EXTREMESPEED", "ANCIENTPOWER", "SHADOW BALL", "FUTURE SIGHT", "ROCK SMASH", "WHIRLPOOL", "DRILL RUN", "MOONBLAST", "PLAY ROUGH", "SHEER COLD"}
@@ -235,13 +236,13 @@ function getStatLevels(pointer)
 end
 
 function getPlayerPokemonData()
-	playerMon = getMonBattleState(0xc62c)
+	playerMon = getMonBattleState(BattleMonSpecies)
 	if playerMon == nil then return end
-	playerMon["subStatus"] = getSubstatus(0xc668, 0xc672, 0xc6df, 0xc71a)
-	playerMon["screens"] = getScreens(0xc6ff, 0xc701)
-	playerMon["turns"] = memory.readbyte(0xc6dd)
-	playerMon["stat levels"] = getStatLevels(0xc6cc)
-	lastMove = memory.readbyte(0xc71b)
+	playerMon["subStatus"] = getSubstatus(PlayerSubStatus1, PlayerRolloutCount, PlayerSubstituteHP, LastPlayerMon)
+	playerMon["screens"] = getScreens(PlayerScreens, PlayerSafeguardCount)
+	playerMon["turns"] = memory.readbyte(PlayerTurnsTaken)
+	playerMon["stat levels"] = getStatLevels(PlayerAtkLevel)
+	lastMove = memory.readbyte(LastPlayerMove)
 	if lastMove == 0 then
 		playerMon["last used"] = "None"
 	else
@@ -251,13 +252,13 @@ function getPlayerPokemonData()
 end
 
 function getEnemyPokemonData()
-	enemyMon = getMonBattleState(0xd206)
+	enemyMon = getMonBattleState(EnemyMonSpecies)
 	if enemyMon == nil then return end
-	enemyMon["subStatus"] = getSubstatus(0xc66d, 0xc67a, 0xc6e0, 0xc71b)
-	enemyMon["screens"] = getScreens(0xc700, 0xc702)
-	enemyMon["turns"] = memory.readbyte(0xc6dc)
-	enemyMon["stat levels"] = getStatLevels(0xc6d4)
-	lastMove = memory.readbyte(0xc71c)
+	enemyMon["subStatus"] = getSubstatus(EnemySubStatus1, EnemyRolloutCount, EnemySubstituteHP, LastPlayerMove)
+	enemyMon["screens"] = getScreens(EnemyScreens, PlayerLightScreenCount)
+	enemyMon["turns"] = memory.readbyte(EnemyTurnsTaken)
+	enemyMon["stat levels"] = getStatLevels(EnemyAtkLevel)
+	lastMove = memory.readbyte(LastEnemyMove)
 	if lastMove == 0 then
 		enemyMon["last used"] = "None"
 	else
@@ -267,13 +268,13 @@ function getEnemyPokemonData()
 end
 
 function getTrainerClass()
-	return trainerClassTable[memory.readbyte(0xd22f)]
+	return trainerClassTable[memory.readbyte(OtherTrainerClass)]
 end
 
 function getTrainerItems()
 	local trainerItems = {}
-	trainerItems["item1"] = itemTable[memory.readbyte(0xc650)+1]
-	trainerItems["item2"] = itemTable[memory.readbyte(0xc651)+1]
+	trainerItems["item1"] = itemTable[memory.readbyte(wEnemyTrainerItem1)+1]
+	trainerItems["item2"] = itemTable[memory.readbyte(wEnemyTrainerItem2)+1]
 	return trainerItems
 end
 
@@ -341,25 +342,25 @@ function readPlayerPack()
 	local balls = {}
 	local key = {}
 	local tmhm = {}
-	numItems = memory.readbyte(0xd892)
+	numItems = memory.readbyte(NumItems)
 	for i = 1, numItems do
-		items[itemTable[memory.readbyte(0xd893 + 2 * (i-1)) + 1]] = memory.readbyte(0xd893 + 2 * (i-1) + 1)
+		items[itemTable[memory.readbyte(Items + 2 * (i-1)) + 1]] = memory.readbyte(Items + 2 * (i-1) + 1)
 	end
-	numBalls = memory.readbyte(0xd8d7)
+	numBalls = memory.readbyte(NumBalls)
 	for i = 1, numBalls do
-		balls[itemTable[memory.readbyte(0xd8d8 + 2 * (i-1)) + 1]] = memory.readbyte(0xd8d8 + 2 * (i-1) + 1)
+		balls[itemTable[memory.readbyte(Balls + 2 * (i-1)) + 1]] = memory.readbyte(Balls + 2 * (i-1) + 1)
 	end
-	numKeys = memory.readbyte(0xd8bc)
+	numKeys = memory.readbyte(NumKeyItems)
 	for i = 1, numKeys do
-		table.insert(key, itemTable[memory.readbyte(0xd8bd + (i-1)) + 1])
+		table.insert(key, itemTable[memory.readbyte(KeyItems + (i-1)) + 1])
 	end
 	for i = 1, 50 do
-		if memory.readbyte(0xd859 + (i-1)) ~= 0 then
+		if memory.readbyte(TMsHMs + (i-1)) ~= 0 then
 			table.insert(tmhm, string.format("TM%02d", i))
 		end
 	end
 	for i = 1, 7 do
-		if memory.readbyte(0xd859 + (i+50-1)) ~= 0 then
+		if memory.readbyte(TMsHMs + (i+50-1)) ~= 0 then
 			table.insert(tmhm, string.format("HM%02d", i))
 		end
 	end
@@ -372,12 +373,12 @@ end
 
 function readBattlestate() --read this ONLY when LUA Serial is called
     battleState = {}
-    wBattleMode = memory.readbyte(0xD22D)
-    rSVBK = memory.readbyte(0xFF70)
+    battlemode = memory.readbyte(wBattleMode)
+    svbk = memory.readbyte(rSVBK)
     
-    vba.print("WRAM bank: ", rSVBK)
+    vba.print("WRAM bank: ", svbk)
 
-	if rSVBK == 1 then
+	if svbk == 1 then
 		--local output_table = {}
 		--playerParty = getTrainerParty(0xdcd7)
 		--vba.print("Player Party:")
@@ -387,19 +388,19 @@ function readBattlestate() --read this ONLY when LUA Serial is called
 		--vba.print(pack)
 		--output_table["playerParty"] = playerParty
 		--output_table["pack"] = pack
-		if wBattleMode == 0 then
+		if battlemode == 0 then
 			vba.print("Not in battle")
-			memory.writebyte(0xdffa, militaryMode)
+			memory.writebyte(wMilitaryMode, militaryMode)
 		else
-			if wBattleMode == 2 then
+			if battlemode == 2 then
 				battleState["enemy type"] = "TRAINER"
 				battleState["trainer class"] = getTrainerClass()
 				battleState["trainer items"] = getTrainerItems()
-				enemyParty = getTrainerParty(0xd280)
+				enemyParty = getTrainerParty(OTPartyCount)
 				vba.print("Enemy Party:")
 				vba.print(enemyParty)
 				output_table["enemyParty"] = enemyParty
-			elseif wBattleMode == 1 then 
+			elseif battlemode == 1 then 
 				battleState["enemy type"] = "WILD"
 			end
 			battleState["weather"] = getWeather()
@@ -422,23 +423,37 @@ end
 
 function transferStateToAIAndWait()
 	-- transfer to AI and get a response here
-	-- check DFFA, if Military mode is on, then wait for the first valid player shortcut command, if not, ignore
+	-- if Military mode is on, then wait for the first valid player shortcut command, if not, ignore
 	-- calculate the bytes to write to DFF8 and DFF9, write them, then end here and resume looping playerstate reading
+	send(0) -- TODO
+end
+
+function send(a)
+	memory.writebyte(rLSB, a)
+	memory.writebyte(rLSC, BEESAFREE_LSC_COMPLETED)
 end
 
 function readPlayerstate() --loop read this for the overlay
-    rSVBK = memory.readbyte(0xFF70)
+    svbk = memory.readbyte(rSVBK)
     local output_table = {}
-    vba.print("WRAM bank: ", rSVBK)
-    playerParty = getTrainerParty(0xdcd7)
-    vba.print("Player Party:")
-    vba.print(playerParty)
-    pack = readPlayerPack()
-    vba.print("Player Pack:")
-    vba.print(pack)
-    output_table["playerParty"] = playerParty
-    output_table["pack"] = pack
-    -- check if LUA serial, if yes, readBattlestate
+    vba.print("WRAM bank: ", svbk)
+	if svbk == 1 then
+		playerParty = getTrainerParty(PartyCount)
+		vba.print("Player Party:")
+		vba.print(playerParty)
+		pack = readPlayerPack()
+		vba.print("Player Pack:")
+		vba.print(pack)
+		output_table["playerParty"] = playerParty
+		output_table["pack"] = pack
+		if memory.readbyte(rLSC) ~= BEESAFREE_LSC_TRANSFERRING then return end
+		req = memory.readbyte(rLSB)
+		if req == BEESAFREE_SND_RESET then send(BEESAFREE_RES_RESET)
+		elseif req == BEESAFREE_SND_ASKMOVE then
+			readBattlestate()
+			transferStateToAIAndWait()
+		end
+	end
 end
 
 repeat

@@ -278,5 +278,5 @@ Route25RB_MapEventHeader: ; 0x19f58f
 	person_event SPRITE_POKEFAN_M,      8, 12, $9, 0, 0, -1, -1, 0, 2, 3, Route25RBTrainer7, -1
 	person_event SPRITE_POKEFAN_M,     13, 27, $7, 0, 0, -1, -1, 0, 2, 2, Route25RBTrainer8, -1
 	person_event SPRITE_POKEFAN_M,     11, 17, $9, 0, 0, -1, -1, 0, 2, 2, Route25RBTrainer9, -1
-	person_event SPRITE_POKE_BALL,      6, 26, $1, 0, 0, -1, -1, 0, 0, 0, Route25RB_TMBall, -1
+	person_event SPRITE_POKE_BALL,      6, 26, $1, 0, 0, -1, -1, 0, 1, 0, Route25RB_TMBall, -1
 ; 0x19f643

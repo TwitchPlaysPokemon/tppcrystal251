@@ -1,5 +1,5 @@
 # No monkey business with line endings
-* -text
+* text eol=lf
 
 *.asm -text
 *.pal -text

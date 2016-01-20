@@ -69,7 +69,7 @@ BattleTentRuins_MapEventHeader: ; -- Required
 
 	; bg events
 	db 2
-	signpost $0, $5, $0, MapBattleTentRuinsDoorScript
+	signpost $0, $5, $6, MapBattleTentRuinsDoorScript
 	signpost $4, $4, $0, MapBattleTentRuinsMonitorScript
 
 	; object events

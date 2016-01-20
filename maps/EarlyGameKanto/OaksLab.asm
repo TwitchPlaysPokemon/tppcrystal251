@@ -9,7 +9,7 @@ OaksLabRB_MapScriptHeader: ; 0x19b3c5
 
 	; callback count
 	db 1
-	dbw 1, .SetSprites
+	dbw 4, .SetSprites
 ; 0x19b3c7
 .Trigger0:
 	end
@@ -30,8 +30,8 @@ OaksLabRB_MapScriptHeader: ; 0x19b3c5
 .SetSprites:
 	checkevent EVENT_GOT_POKEMON_FROM_OAK
 	iftrue .skip
-	moveperson $2, $5, $a
 	spriteface $2, UP
+	moveperson $2, $5, $a
 .skip
 	return
 
@@ -39,8 +39,8 @@ WalkUpWithOak:
 	follow $2, $0
 	applymovement $2, MovementData_OakWalksUp
 	stopfollow
-	faceperson $2, $0
-	faceperson $6, $2
+	spriteface $2, DOWN
+	spriteface $6, UP
 	loadfont
 	checkflag ENGINE_PLAYER_IS_FEMALE
 	iftrue .male_rival_1
@@ -79,7 +79,10 @@ CharmanderPokeballScript:
 	iftrue OaksLab_LastMonScript
 	checkevent EVENT_OAKS_LAB_OAK
 	iftrue OaksLab_LookAtPokeballScript
+	checkcode VAR_FACING
+	if_equal RIGHT, .right
 	spriteface $2, RIGHT
+.right
 	refreshscreen $0
 	pokepic CHARMANDER
 	cry CHARMANDER
@@ -303,10 +306,9 @@ OaksLab_DoRivalBattle:
 .got_rival_gender
 	writecode VAR_BATTLETYPE, BATTLETYPE_CANLOSE
 	startbattle
-	special DeleteSavedMusic
 	reloadmap
+	special RestartMapMusic
 	special HealParty
-	playmapmusic
 	loadfont
 	checkflag ENGINE_PLAYER_IS_FEMALE
 	iftrue .male_rival

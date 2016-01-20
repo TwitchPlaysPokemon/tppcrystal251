@@ -55,7 +55,7 @@ UnknownScript_0x1883de: ; 0x1883de
 	pause 15
 	end
 ; 0x188432
-EVENT_BEAT_MISTY_RB
+; EVENT_BEAT_MISTY_RB
 MistyScript_0x188432: ; 0x188432
 	checkevent EVENT_MISTY_REMATCH
 	iftrue MistyAfterRematch
@@ -63,7 +63,7 @@ MistyScript_0x188432: ; 0x188432
 	iftrue MistyRematchScript
 	faceplayer
 	loadfont
-	checkflag 
+	checkflag ENGINE_EARLY_GAME_KANTO
 	iftrue MistyRematchScript
 	checkflag ENGINE_CASCADEBADGE
 	iftrue UnknownScript_0x188460
@@ -115,9 +115,9 @@ MistyRematchTextBefore:
 	cont "and battle"
 	cont "powerful trainers."
 	
-	para "I made my dream
+	para "I made my dream"
 	line "come true,"
-	cont "and now..."
+	cont "and now…"
 	
 	para "My next dream is"
 	line "to defeat you!"
@@ -128,7 +128,7 @@ MistyRematchBeatenText:
 	line "now my dreams."
 
 	para "must you always"
-	line "be in the way.."
+	line "be in the way…"
 	done
 
 MistyAfterRematchText:

@@ -547,6 +547,14 @@ OTPartyMon4Nickname = 0xD40B -- 11 bytes
 OTPartyMon5Nickname = 0xD416 -- 11 bytes
 OTPartyMon6Nickname = 0xD421 -- 11 bytes
 
+TMsHMs = 0xD859 -- NUM_TMS + NUM_HMS bytes
+NumItems = 0xD892 -- 1 byte
+Items = 0xD893 -- MAX_ITEMS * 2 + 1 bytes
+NumKeyItems = 0xD8BC -- 1 byte
+KeyItems = 0xD8BD -- MAX_KEY_ITEMS + 1 bytes
+NumBalls = 0xD8D7 -- 1 byte
+Balls = 0xD8D8 -- MAX_BALLS * 2 + 1 bytes
+
 PartyCount = 0xDCD7 -- 1 byte
 PartySpecies = 0xDCD8 -- 6 bytes
 PartyEnd = 0xDCDE -- 1 byte
@@ -750,3 +758,19 @@ PartyMon4Nickname = 0xDE62 -- 11 bytes
 PartyMon5Nickname = 0xDE6D -- 11 bytes
 PartyMon6Nickname = 0xDE78 -- 11 bytes
 
+wMilitaryMode = 0xDFFA -- 1 byte
+
+rSVBK = 0xFF70 -- 1 byte
+rLSB = 0xFFF1 -- 1 byte
+rLSC = 0xFFF2 -- 1 byte
+
+-- Beesafree constants
+
+BEESAFREE_LSC_TRANSFERRING  = 0xFF
+BEESAFREE_LSC_COMPLETED     = 0x00
+
+BEESAFREE_SND_RESET         = 0x00
+BEESAFREE_SND_ASKMOVE       = 0x01
+BEESAFREE_SND_ASKITEM       = 0x02
+
+BEESAFREE_RES_RESET         = 0x00
