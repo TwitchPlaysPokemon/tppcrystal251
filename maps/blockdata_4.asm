@@ -61,3 +61,24 @@ Route24RB_BlockData:
 	INCBIN "maps/Route24RB.blk"
 Route25RB_BlockData:
 	INCBIN "maps/Route25RB.blk"
+VermilionDock_BlockData:
+	INCBIN "maps/VermilionDock.blk"
+SSAnne1_BlockData:
+	INCBIN "maps/SSAnne1.blk"
+SSAnne2_BlockData:
+	INCBIN "maps/SSAnne2.blk"
+SSAnne3_BlockData:
+	INCBIN "maps/SSAnne3.blk"
+SSAnne4_BlockData:
+	INCBIN "maps/SSAnne4.blk"
+SSAnne5_BlockData:
+	INCBIN "maps/SSAnne5.blk"
+SSAnne6_BlockData:
+	INCBIN "maps/SSAnne6.blk"
+SSAnne7_BlockData:
+	INCBIN "maps/SSAnne7.blk"
+SSAnne8_BlockData:
+	INCBIN "maps/SSAnne8.blk"
+SSAnne9_BlockData:
+SSAnne10_BlockData:
+	INCBIN "maps/SSAnne9.blk"
