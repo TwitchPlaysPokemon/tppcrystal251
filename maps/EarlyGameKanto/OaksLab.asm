@@ -423,10 +423,17 @@ OakScript_OaksLabRB:
 	writetext _OaksLabText23
 	buttonsound
 	writetext _OaksLabText24
-	buttonsound
-	writetext _OaksLabText25
+	waitbutton
+	closetext
+	applymovement $2, OaksLabMovement_OakGrabsDexes
+	pause 8
 	disappear $a
+	pause 2
 	disappear $b
+	pause 8
+	applymovement $2, OaksLabMovement_OakReturnsWithDexes
+	loadfont
+	writetext _OaksLabText25
 	setflag ENGINE_POKEDEX
 	setevent EVENT_VIRIDIAN_CITY_RB_OLD_MAN_LYING_DOWN
 	clearevent EVENT_VIRIDIAN_CITY_RB_OLD_MAN_WALKING_ABOUT
@@ -550,6 +557,18 @@ MovementData_OakWalksUp:
 	step_up
 Movement_PlayerTakesOneStepUp:
 	step_up
+	step_end
+
+OaksLabMovement_OakGrabsDexes:
+	step_left
+	step_left
+	turn_head_up
+	step_end
+
+OaksLabMovement_OakReturnsWithDexes:
+	step_right
+	step_right
+	turn_head_down
 	step_end
 
 Movement_RivalTakesFourStepsLeft:

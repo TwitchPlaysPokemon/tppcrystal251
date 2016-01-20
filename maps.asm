@@ -626,5 +626,9 @@ SECTION "EGK Vermilion City Events", ROMX
 INCLUDE "maps/EarlyGameKanto/VermilionCity.asm"
 INCLUDE "maps/EarlyGameKanto/VermilionPokeCenter1F.asm"
 INCLUDE "maps/EarlyGameKanto/VermilionMart.asm"
+INCLUDE "maps/EarlyGameKanto/PokemonFanClub.asm"
+INCLUDE "maps/EarlyGameKanto/VermilionHouseFishingSpeechHouse.asm"
+INCLUDE "maps/EarlyGameKanto/VermilionHouseDiglettsCaveSpeechHouse.asm"
+INCLUDE "maps/EarlyGameKanto/VermilionMagnetTrainSpeechHouse.asm"
 
 SECTION "EGK SS Anne Events", ROMX

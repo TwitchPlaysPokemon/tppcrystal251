@@ -89416,6 +89416,7 @@ ENDM
 	npctrade 1, ABRA,       MR__MIME,   "MARCEL@@@@@", $68, $82, BERRY,        49677, "ANDREW@@@@@", TRADE_EITHER_GENDER
 	npctrade 0, PIDGEOTTO,  TANGELA,    "GELA@@@@@@@", $52, $67, PSNCUREBERRY, 60392, "JEREMY@@@@@", TRADE_EITHER_GENDER
 	npctrade 3, CUBONE,     MACHOP,     "MUSCLE@@@@@", $e3, $b5, BURNT_BERRY,  62577, "LUCY@@@@@@@", TRADE_MALE_ONLY
+	npctrade 1, FARFETCH_D, GASTLY,     "SPOOKS@@@@@", $62, $6c, ICE_BERRY,    44627, "ELYSSA@@@@@", TRADE_EITHER_GENDER
 ; fcf38
 
 PrintTradeText: ; fcf38

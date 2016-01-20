@@ -734,7 +734,8 @@
 	connection south, VERMILION_CITY_RB, VermilionCityRB, -4, 2, 16, ROUTE_6_RB
 
 	map_header_2 VermilionPokeCenter1FRB, VERMILION_POKECENTER_1F_RB, $0, NONE ; 0x9602c
-	; map_header_2 PokemonFanClubRB, POKEMON_FAN_CLUB_RB, $0, NONE ; 0x96044
-	; map_header_2 VermilionMagnetTrainSpeechHouseRB, VERMILION_MAGNET_TRAIN_SPEECH_HOUSE_RB, $0, NONE ; 0x96050
+	map_header_2 VermilionHouseFishingSpeechHouseRB, VERMILION_HOUSE_FISHING_SPEECH_HOUSE_RB, $0, NONE ; 0x96020
+	map_header_2 PokemonFanClubRB, POKEMON_FAN_CLUB_RB, $0, NONE ; 0x96044
+	map_header_2 VermilionMagnetTrainSpeechHouseRB, VERMILION_MAGNET_TRAIN_SPEECH_HOUSE_RB, $0, NONE ; 0x96050
 	map_header_2 VermilionMartRB, VERMILION_MART_RB, $0, NONE ; 0x9605c
-	; map_header_2 VermilionHouseDiglettsCaveSpeechHouseRB, VERMILION_HOUSE_DIGLETTS_CAVE_SPEECH_HOUSE_RB, $0, NONE ; 0x96068
+	map_header_2 VermilionHouseDiglettsCaveSpeechHouseRB, VERMILION_HOUSE_DIGLETTS_CAVE_SPEECH_HOUSE_RB, $0, NONE ; 0x96068

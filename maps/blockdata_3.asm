@@ -107,6 +107,7 @@ PowerPlant_BlockData: ; 0xb0a72
 ; 0xb0acc
 
 PokemonFanClub_BlockData: ; 0xb0acc
+PokemonFanClubRB_BlockData: ; 0xb0acc
 SafariZoneWardensHome_BlockData:
 	INCBIN "maps/PokemonFanClub.blk"
 ; 0xb0ae0
