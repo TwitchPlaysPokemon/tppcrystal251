@@ -85,6 +85,8 @@ GiovanniPalette:     INCLUDE "gfx/trainers/070.pal"
 CoolSiblingsPalette: INCLUDE "gfx/trainers/071.pal"
 ChrisRBPalette:      INCLUDE "gfx/trainers/072.pal"
 KrisRBPalette:       INCLUDE "gfx/trainers/073.pal"
+BrockRBPalette:      INCLUDE "gfx/trainers/016.pal"
+MistyRBPalette:      INCLUDE "gfx/trainers/017.pal"
 
 ; b1de
 

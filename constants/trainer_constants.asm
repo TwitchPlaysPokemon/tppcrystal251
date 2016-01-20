@@ -82,12 +82,10 @@
 	trainerclass BROCK ; 11
 	const BROCK_1
 	const BROCK_2
-	const BROCK_RB
 
 	trainerclass MISTY ; 12
 	const MISTY_1
 	const MISTY_2
-	const MISTY_RB
 
 	trainerclass LT_SURGE ; 13
 	const SURGE_1
@@ -745,6 +743,8 @@
 	const BLUE_RB_4C
 
 	trainerclass BLUE_RB_F
+	trainerclass BROCK_RB
+	trainerclass MISTY_RB
 
 NUM_TRAINER_CLASSES EQU __enum__
 

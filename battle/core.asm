@@ -2767,6 +2767,8 @@ KantoGymLeaders:
 	db BLAINE
 	db BLUE
 	db TPPPC
+	db BROCK_RB
+	db MISTY_RB
 	db $ff
 
 Function3d14e: ; 3d14e

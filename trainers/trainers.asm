@@ -1901,24 +1901,6 @@ BrockGroup:
 
 	db $ff ; end
 
-	; BROCK (1)
-	db "BROCK@"
-	db (1 << TRAINERTYPE_MOVES)
-
-	; party
-
-	db 12, GEODUDE
-		db TACKLE
-		db DEFENSE_CURL
-		db ROLLOUT
-		db SANDSTORM
-
-	db 14, ONIX
-		db TACKLE
-		db WRAP
-		db IRON_TAIL
-		db SANDSTORM
-	db $ff ; end
 
 ; ================================
 
@@ -2014,25 +1996,6 @@ MistyGroup:
 
 	db $ff ; end
 
-	; MISTY (1)
-	db "MISTY@"
-	db (1 << TRAINERTYPE_MOVES)
-
-	; party
-
-	db 18, STARYU
-		db SWIFT
-		db RAIN_DANCE
-		db RAPID_SPIN
-		db BUBBLEBEAM
-
-	db 22, STARMIE
-		db BUBBLEBEAM
-		db SWIFT
-		db HARDEN
-		db RAIN_DANCE
-
-	db $ff ; end
 
 ; ================
 ; ================================

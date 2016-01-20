@@ -75,3 +75,5 @@ TrainerGroups: ; 0x39999
 	dba CoolSiblingsGroup
 	dba RivalRBGroup
 	dba RivalRBGroup
+	dba BrockRBGroup
+	dba MistyRBGroup

@@ -73,3 +73,5 @@
 	dbw BANK(CoolSiblingsPic)     - $36, CoolSiblingsPic
 	dbw BANK(ChrisPicLZ)          - $36, ChrisPicLZ
 	dbw BANK(KrisPicLZ)           - $36, KrisPicLZ
+	dbw BANK(BrockPic)            - $36, BrockPic
+	dbw BANK(MistyPic)            - $36, MistyPic

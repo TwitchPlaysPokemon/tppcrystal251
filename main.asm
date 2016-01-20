@@ -8056,7 +8056,7 @@ Functiond906: ; d906
 	cp 1
 	jr nz, .yours
 	ld a, [CurPartyLevel] ;a = level
-	call TrainerStatXp ;load trainer stat xp into hl depending on level
+	call TrainerStatExp ;load trainer stat xp into hl depending on level
 	jr .okay
 .yours
 	xor a
@@ -8241,45 +8241,47 @@ Functiond906: ; d906
 	ret
 ; da6d
 
-TrainerStatXp: ; hl = (a(level) - 5) * 600 + (a - 40)*100) +(a - 75) * 100) + 35 if a = 100
+TrainerStatExp:
+	; Level stored in a.  Return stat exp in hl.
+	cp 5 + 1
 	ld hl, 0
-	sub 5 ;ret if < 5, else reduce by 5
 	ret c
-	ret z
-	push bc
-	cp 95
-	jr nc, .Over99 ;if level 100 or more, load in max
-	ld bc, 800
-	sub 70 ;if < 70, then skip and return to before, else go down to 69, adding 800 each time, then return there
-	jr c, .DoneHighLoop
-.StatXPHighLoop
-	jr z, .DoneHighLoop
-	add hl, bc
-	dec a
-	jr .StatXPHighLoop
-.DoneHighLoop
-	add 70
-	ld bc, 700
-	sub 35 ;repeat for 35
-	jr c, .DoneMidLoop
-.StatXPMidLoop
-	jr z, .DoneMidLoop
-	add hl, bc
-	dec a
-	jr .StatXPMidLoop
-.DoneMidLoop
-	add 35
+	cp 100
+	jr nc, .max
+	sub 5
+	ld bc, 150
+	cp 16
+	jr c, .add
+	sub 15
+	ld bc, 250
+	ld hl, 2250
+	cp 16
+	jr c, .add
+	sub 15
+	ld bc, 400
+	ld hl, 6000
+	cp 21
+	jr c, .add
+	sub 20
 	ld bc, 600
-.StatXPLowLoop
-	jr z, .DoneAllLoop
+	ld hl, 14000
+	cp 21
+	jr c, .add
+	sub 20
+	ld bc, 1500
+	ld hl, 26000
+.add
+	and a
+	ret z
+.loop
 	add hl, bc
 	dec a
-	jr .StatXPLowLoop
-.Over99
-	ld hl, $ffff ;if level 100, max stat xp
-.DoneAllLoop
-	pop bc
+	jr nz, .loop
 	ret
+.max
+	ld hl, 63500
+	ret
+
 
 FillPP: ; da6d hl = start of moves, de = start of place to put pp
 	push bc
@@ -34160,6 +34162,9 @@ TrainerClassNames:: ; 2c1ef
 	db "COOLSIBS@"
 	db "RIVAL@"
 	db "RIVAL@"
+	db "LEADER@"
+	db "LEADER@"
+
 AI_Redundant: ; 2c41a
 ; Check if move effect c will fail because it's already been used.
 ; Return z if the move is a good choice.
