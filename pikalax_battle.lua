@@ -437,20 +437,22 @@ function readPlayerstate() --loop read this for the overlay
     svbk = memory.readbyte(rSVBK)
     local output_table = {}
     vba.print("WRAM bank: ", svbk)
-    playerParty = getTrainerParty(PartyCount)
-    vba.print("Player Party:")
-    vba.print(playerParty)
-    pack = readPlayerPack()
-    vba.print("Player Pack:")
-    vba.print(pack)
-    output_table["playerParty"] = playerParty
-    output_table["pack"] = pack
-    if memory.readbyte(rLSC) ~= BEESAFREE_LSC_TRANSFERRING then return end
-	req = memory.readbyte(rLSB)
-	if req == BEESAFREE_SND_RESET then send(BEESAFREE_RES_RESET)
-	elseif req == BEESAFREE_SND_ASKMOVE then
-		readBattlestate()
-		transferStateToAIAndWait()
+	if svbk == 1 then
+		playerParty = getTrainerParty(PartyCount)
+		vba.print("Player Party:")
+		vba.print(playerParty)
+		pack = readPlayerPack()
+		vba.print("Player Pack:")
+		vba.print(pack)
+		output_table["playerParty"] = playerParty
+		output_table["pack"] = pack
+		if memory.readbyte(rLSC) ~= BEESAFREE_LSC_TRANSFERRING then return end
+		req = memory.readbyte(rLSB)
+		if req == BEESAFREE_SND_RESET then send(BEESAFREE_RES_RESET)
+		elseif req == BEESAFREE_SND_ASKMOVE then
+			readBattlestate()
+			transferStateToAIAndWait()
+		end
 	end
 end
 
