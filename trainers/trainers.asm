@@ -2424,6 +2424,30 @@ YoungsterGroup:
 	db 14, EKANS
 	db 14, SANDSHREW
 	db $ff
+
+	db "EDDIE@"
+	db 0
+	db 21, EKANS
+	db $ff
+
+	db "DAVE@"
+	db 0
+	db 18, NIDORAN_M
+	db 19, NIDORINO
+	db $ff
+
+	db "DILLON@"
+	db 0
+	db 19, SANDSHREW
+	db 19, ZUBAT
+	db $ff
+
+	db "YASU@"
+	db 0
+	db 15, RATTATA
+	db 17, RATTATA
+	db 19, RATICATE
+	db $ff
 ; ================================
 
 
@@ -4962,6 +4986,29 @@ GentlemanGroup:
 
 	db $ff ; end
 
+	db "HUGO@"
+	db 0
+	db 18, POLIWAG
+	db 18, HORSEA
+	db $ff
+
+	db "JASPER@"
+	db 0
+	db 18, BELLSPROUT
+	db 18, ODDISH
+	db $ff
+
+	db "DARIAN@"
+	db 0
+	db 18, GROWLITHE
+	db 18, VULPIX
+	db $ff
+
+	db "DIRK@"
+	db 0
+	db 18, VOLTORB
+	db 18, MAGNEMITE
+
 ; ================
 ; ================================
 
@@ -6997,6 +7044,18 @@ GuitaristGroup:
 	db 72, FLAAFFY, KINGS_ROCK
 
 	db $ff ; end
+
+	db "BERNIE@"
+	db 0
+	db 18, MAGNEMITE
+	db 18, MAGNEMITE
+	db 20, MAGNETON
+	db $ff
+
+	db "BRAXTON@"
+	db 0
+	db 21, MAGNEMITE
+	db $ff
 
 ; ================
 ; ================================

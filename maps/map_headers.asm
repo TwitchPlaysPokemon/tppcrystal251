@@ -567,9 +567,7 @@ MapGroup33:
 	map_header PokemonFanClubRB, $5, 3, VERMILION_CITY, MUSIC_VERMILION_CITY, 0, 1, 1
 	map_header VermilionMagnetTrainSpeechHouseRB, $5, 3, VERMILION_CITY, MUSIC_VERMILION_CITY, 0, 1, 1
 	map_header VermilionHouseDiglettsCaveSpeechHouseRB, $5, 3, VERMILION_CITY, MUSIC_VERMILION_CITY, 0, 1, 1
-	; map_header Route11RB, $3, 2, ROUTE_11, MUSIC_ROUTE_12, 0, 0, 1
-	; map_header Route12RB, $3, 2, ROUTE_11, MUSIC_ROUTE_12, 0, 0, 1
-	; map_header Route11GateRB, $8, 6, ROUTE_11, MUSIC_ROUTE_12, 0, 1, 1
+	map_header Route11RB, $3, 2, ROUTE_11, MUSIC_ROUTE_12, 0, 0, 1
 
 MapGroup34:
 ; saffron area rb

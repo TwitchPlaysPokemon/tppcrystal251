@@ -727,11 +727,15 @@
 
 	map_header_2 VermilionCityRB, VERMILION_CITY_RB, $43, NORTH | EAST ; 0x955b8
 	connection north, ROUTE_6_RB, Route6RB, 6, 0, 10, VERMILION_CITY_RB
-	connection east, ROUTE_11, Route11, 0, 0, 9, VERMILION_CITY_RB
+	connection east, ROUTE_11_RB, Route11RB, 0, 0, 9, VERMILION_CITY_RB
 
 	map_header_2 Route6RB, ROUTE_6_RB, $f, NORTH | SOUTH ; 0x955dc
 	connection north, SAFFRON_CITY, SaffronCity, -3, 2, 16, ROUTE_6_RB
 	connection south, VERMILION_CITY_RB, VermilionCityRB, -4, 2, 16, ROUTE_6_RB
+
+	map_header_2 Route11RB, ROUTE_11_RB, $f, WEST | EAST ; 0x95564
+	connection west, VERMILION_CITY_RB, VermilionCityRB, 0, 0, 12, ROUTE_11_RB
+	connection east, ROUTE_12, Route12, -3, 6, 15, ROUTE_11_RB
 
 	map_header_2 VermilionPokeCenter1FRB, VERMILION_POKECENTER_1F_RB, $0, NONE ; 0x9602c
 	map_header_2 VermilionHouseFishingSpeechHouseRB, VERMILION_HOUSE_FISHING_SPEECH_HOUSE_RB, $0, NONE ; 0x96020

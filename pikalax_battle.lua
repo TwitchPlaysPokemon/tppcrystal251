@@ -8,7 +8,9 @@ package.cpath = package.cpath..';./libs/?.dll'
 local http = require("socket.http") -- i did this wrong did i
 dofile("battle_ram.lua")
 dofile("constants.lua")
-militaryMode = 0
+
+military_mode = 0
+ignore_serial = 1 -- please set this to 0 for normal use.
 
 function getBigDW(pointer)
 	-- There is no built-in for big-endian DWs, which are used extensively in battle structs.
@@ -380,7 +382,7 @@ function readBattlestate() --read this ONLY when LUA Serial is called
 		--output_table["pack"] = pack
 		if battlemode == 0 then
 			vba.print("Not in battle")
-			memory.writebyte(wMilitaryMode, militaryMode)
+			memory.writebyte(wMilitaryMode, military_mode)
 		else
 			if battlemode == 2 then
 				battleState["enemy type"] = "TRAINER"
@@ -402,7 +404,7 @@ function readBattlestate() --read this ONLY when LUA Serial is called
 		end
 		local raw_json = JSON:encode(output_table)
 		file = io.open("battlestate.json", "w+")
-        -- call transferStateToAIAndWait() here and calculate the bytes to 
+        transferStateToAIAndWait(raw_json)
 		io.output(file)
 		io.write(raw_json)
 		io.close(file)
@@ -414,7 +416,7 @@ end
 function transferStateToAIAndWait(output_table)
  next_move = http.request("http://localhost:12345/ai/"..JSON:encode(output_table))
  return next_move
- send(0) -- TODO
+ send(0) -- TODO, plz process next_move appropriately and send to game
 end
 
 function send(a)
@@ -438,9 +440,8 @@ function readPlayerstate() --loop read this for the overlay
 		if memory.readbyte(rLSC) ~= BEESAFREE_LSC_TRANSFERRING then return end
 		req = memory.readbyte(rLSB)
 		if req == BEESAFREE_SND_RESET then send(BEESAFREE_RES_RESET)
-		elseif req == BEESAFREE_SND_ASKMOVE then
+		elseif req == BEESAFREE_SND_ASKMOVE or ignore_serial == 1 then
 			readBattlestate()
-			transferStateToAIAndWait()
 		end
 	end
 end

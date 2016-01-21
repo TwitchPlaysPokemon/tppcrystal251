@@ -36,6 +36,7 @@ ElmsHouse_BlockData: ; 0xa8930
 ; 0xa8940
 
 Route11_BlockData: ; 0xa899a
+Route11RB_BlockData: ; 0xa899a
 	INCBIN "maps/Route11.blk"
 ; 0xa8a4e
 
