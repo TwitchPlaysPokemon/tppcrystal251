@@ -363,7 +363,7 @@ function readPlayerPack()
 	return pack
 end
 
-function readBattlestate() --read this ONLY when LUA Serial is called
+function readBattlestate(output_table) --read this ONLY when LUA Serial is called
 	battleState = {}
 	battlemode = memory.readbyte(wBattleMode)
 	svbk = memory.readbyte(rSVBK)
@@ -406,6 +406,7 @@ function readBattlestate() --read this ONLY when LUA Serial is called
 		file = io.open("battlestate.json", "w+")
 		local result = transferStateToAIAndWait(raw_json)
 		vba.print("AI Response:", result)
+		sendLUASerial(result) -- the most important step
 		io.output(file)
 		io.write(raw_json)
 		io.close(file)
@@ -419,7 +420,7 @@ function transferStateToAIAndWait(output_table)
 	return next_move
 end
 
-function send(a)
+function sendLUASerial(a)
 	memory.writebyte(rLSB, a)
 	memory.writebyte(rLSC, BEESAFREE_LSC_COMPLETED)
 end
@@ -437,11 +438,14 @@ function readPlayerstate() --loop read this for the overlay
 		vba.print(pack)
 		output_table["playerParty"] = playerParty
 		output_table["pack"] = pack
-		if memory.readbyte(rLSC) ~= BEESAFREE_LSC_TRANSFERRING then return end
-		req = memory.readbyte(rLSB)
-		if req == BEESAFREE_SND_RESET then send(BEESAFREE_RES_RESET)
-		elseif req == BEESAFREE_SND_ASKMOVE or ignore_serial == 1 then
-			readBattlestate()
+		if memory.readbyte(rLSC) == BEESAFREE_LSC_TRANSFERRING then
+			req = memory.readbyte(rLSB)
+			if req == BEESAFREE_SND_RESET then sendLUASerial(BEESAFREE_RES_RESET)
+			elseif req == BEESAFREE_SND_ASKMOVE then
+				readBattlestate(output_table)
+			end
+		elseif ignore_serial == 1 then
+			readBattlestate(output_table)
 		end
 	end
 end
