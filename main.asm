@@ -10821,6 +10821,8 @@ NamingScreen: ; 116c1
 	ld [hl], d
 	ld hl, wc6d4
 	ld [hl], b
+	xor a
+	ld [wc6da], a
 	ld hl, Options
 	ld a, [hl]
 	push af
@@ -11241,6 +11243,9 @@ Function119a1: ; 119a1 (4:59a1)
 	and B_BUTTON
 	jr nz, .b
 	ld a, [hl]
+	and START
+	jr nz, .start
+	ld a, [hl]
 	and SELECT
 	jr nz, .select
 	ret
@@ -11255,8 +11260,12 @@ Function119a1: ; 119a1 (4:59a1)
 	jr z, .asm_119eb
 	call Function11c11
 	call Function11b14
+	push af
+	ld a, [wc6da]
+	and a
+	call z, .set_lower
+	pop af
 	ret nc
-.start
 	ld hl, wc6d5
 	ld c, [hl]
 	inc hl
@@ -11272,6 +11281,22 @@ Function119a1: ; 119a1 (4:59a1)
 	inc [hl]
 	ret
 
+.start
+	ld a, [wc6da]
+	xor 1
+	ld [wc6da], a
+	jr z, .restore_mode
+	call .set_upper
+	hlcoord 1, 16
+	ld de, .upper_str
+	call PlaceString
+	ret
+.restore_mode
+	ld a, [wcf64]
+	and a
+	jr z, .set_upper
+	jr .set_lower
+
 .b
 	call Function11bbc
 	ret
@@ -11283,19 +11308,33 @@ Function119a1: ; 119a1 (4:59a1)
 	ret
 
 .select
+	ld hl, wc6da
+	bit 0, [hl]
+	res 0, [hl]
 	ld hl, wcf64
+	jr nz, .bit0
 	ld a, [hl]
 	xor 1
 	ld [hl], a
-	jr z, .asm_11a04
+	jr z, .set_upper
+	jr .set_lower
+.bit0
+	ld a, [hl]
+	and a
+	jr z, .set_upper
+	
+.set_lower
 	ld de, NameInputLower
 	call Function118ca
 	ret
 
-.asm_11a04
+.set_upper
 	ld de, NameInputUpper
 	call Function118ca
 	ret
+
+.upper_str
+	db $61, "UPPER@"
 
 Function11a0b: ; 11a0b (4:5a0b)
 	ld hl, wc6d5
@@ -34088,82 +34127,82 @@ Function2c1b2: ; 2c1b2
 ; 2c1ef
 
 TrainerClassNames:: ; 2c1ef
-	db "LEADER@"
-	db "LEADER@"
-	db "LEADER@"
-	db "LEADER@"
-	db "LEADER@"
-	db "LEADER@"
-	db "LEADER@"
-	db "LEADER@"
-	db "RIVAL@"
-	db "#MON PROF.@"
-	db "ELITE FOUR@"
-	db $4a, " TRAINER@"
-	db "ELITE FOUR@"
-	db "ELITE FOUR@"
-	db "ELITE FOUR@"
-	db "CHAMPION@"
-	db "LEADER@"
-	db "LEADER@"
-	db "LEADER@"
-	db "SCIENTIST@"
-	db "LEADER@"
-	db "YOUNGSTER@"
-	db "SCHOOLBOY@"
-	db "BIRD KEEPER@"
-	db "LASS@"
-	db "LEADER@"
-	db "COOLTRAINER@"
-	db "COOLTRAINER@"
-	db "BEAUTY@"
-	db "#MANIAC@"
-	db "ROCKET@"
-	db "GENTLEMAN@"
-	db "SKIER@"
-	db "TEACHER@"
-	db "LEADER@"
-	db "BUG CATCHER@"
-	db "FISHER@"
-	db "SWIMMER♂@"
-	db "SWIMMER♀@"
-	db "SAILOR@"
-	db "SUPER NERD@"
-	db "RIVAL@"
-	db "GUITARIST@"
-	db "HIKER@"
-	db "BIKER@"
-	db "LEADER@"
-	db "BURGLAR@"
-	db "FIREBREATHER@"
-	db "JUGGLER@"
-	db "BLACKBELT@"
-	db "ROCKET@"
-	db "PSYCHIC@"
-	db "PICNICKER@"
-	db "CAMPER@"
-	db "ROCKET@"
-	db "SAGE@"
-	db "MEDIUM@"
-	db "BOARDER@"
-	db "#FAN@"
-	db "KIMONO GIRL@"
-	db "TWINS@"
-	db "#FAN@"
-	db $4a, " TRAINER@"
-	db "LEADER@"
-	db "OFFICER@"
-	db "ROCKET@"
-	db "MYSTICALMAN@"
-	db "#MANIAC@"
-	db $4a, " PROF.@"
-	db $4a, " LEAGUE@"
-	db "BOSS@"
-	db "COOLSIBS@"
-	db "RIVAL@"
-	db "RIVAL@"
-	db "LEADER@"
-	db "LEADER@"
+	db "Leader@"
+	db "Leader@"
+	db "Leader@"
+	db "Leader@"
+	db "Leader@"
+	db "Leader@"
+	db "Leader@"
+	db "Leader@"
+	db "Rival@"
+	db "#Mon Prof.@"
+	db "Elite Four@"
+	db "<PKMN> Trainer@"
+	db "Elite Four@"
+	db "Elite Four@"
+	db "Elite Four@"
+	db "Champion@"
+	db "Leader@"
+	db "Leader@"
+	db "Leader@"
+	db "Scientist@"
+	db "Leader@"
+	db "Youngster@"
+	db "Schoolboy@"
+	db "Bird Keeper@"
+	db "Lass@"
+	db "Leader@"
+	db "Cooltrainer@"
+	db "Cooltrainer@"
+	db "Beauty@"
+	db "#Maniac@"
+	db "Rocket@"
+	db "Gentleman@"
+	db "Skier@"
+	db "Teacher@"
+	db "Leader@"
+	db "Bug Catcher@"
+	db "Fisher@"
+	db "Swimmer♂@"
+	db "Swimmer♀@"
+	db "Sailor@"
+	db "Super Nerd@"
+	db "Rival@"
+	db "Guitarist@"
+	db "Hiker@"
+	db "Biker@"
+	db "Leader@"
+	db "Burglar@"
+	db "Firebreather@"
+	db "Juggler@"
+	db "Blackbelt@"
+	db "Rocket@"
+	db "Psychic@"
+	db "Picnicker@"
+	db "Camper@"
+	db "Rocket@"
+	db "Sage@"
+	db "Medium@"
+	db "Boarder@"
+	db "#Fan@"
+	db "Kimono Girl@"
+	db "Twins@"
+	db "#Fan@"
+	db "<PKMN> Trainer@"
+	db "Leader@"
+	db "Officer@"
+	db "Rocket@"
+	db "Mysticalman@"
+	db "#Maniac@"
+	db "<PKMN> Prof.@"
+	db "<PKMN> League@"
+	db "Boss@"
+	db "Coolsibs@"
+	db "Rival@"
+	db "Rival@"
+	db "Leader@"
+	db "Leader@"
 
 AI_Redundant: ; 2c41a
 ; Check if move effect c will fail because it's already been used.
