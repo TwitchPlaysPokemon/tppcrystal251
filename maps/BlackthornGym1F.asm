@@ -480,8 +480,7 @@ BlackthornGymGuyText: ; 0x195544
 	line "dislike ice,"
 
 	para "and fairys have"
-	line "have a huge"
-	cont "advantage."
+	line "a huge advantage."
 	done
 ; 0x195632
 
