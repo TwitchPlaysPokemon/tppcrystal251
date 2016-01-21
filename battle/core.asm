@@ -177,7 +177,7 @@ Function3c12f: ; 3c12f
 IF !DEF(BEESAFREE)
 	callba AIChooseMove
 ELSE
-	call AIWaitMove
+	callba Military
 ENDC
 
 	call IsMobileBattle
