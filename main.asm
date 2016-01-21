@@ -11256,7 +11256,6 @@ Function119a1: ; 119a1 (4:59a1)
 	call Function11c11
 	call Function11b14
 	ret nc
-.start
 	ld hl, wc6d5
 	ld c, [hl]
 	inc hl
@@ -62564,6 +62563,7 @@ Function8c314: ; 8c314
 
 Jumptable_8c323: ; 8c323 (23:4323)
 	dw Function8c365
+; cave
 	dw Function8c5dc
 	dw Function8c3a1
 	dw Function8c3ab
@@ -62572,6 +62572,7 @@ Jumptable_8c323: ; 8c323 (23:4323)
 	dw Function8c39c
 	dw Function8c3e8
 	dw Function8c408
+; cave, stronger foe
 	dw Function8c5dc
 	dw Function8c3a1
 	dw Function8c3ab
@@ -62579,6 +62580,7 @@ Jumptable_8c323: ; 8c323 (23:4323)
 	dw Function8c3ab
 	dw Function8c39c
 	dw Function8c768
+; outdoor
 	dw Function8c5dc
 	dw Function8c3a1
 	dw Function8c3ab
@@ -62588,6 +62590,7 @@ Jumptable_8c323: ; 8c323 (23:4323)
 	dw Function8c43d
 	dw Function8c44f
 	dw Function8c5dc
+; outdoor, stronger foe
 	dw Function8c3a1
 	dw Function8c3ab
 	dw Function8c3ab

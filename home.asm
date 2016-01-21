@@ -588,17 +588,7 @@ Function3238:: ; 3238
 	ld a, [hCGB]
 	and a
 	jr z, WaitBGMap
-
 Function323d:: ; 323d
-	jr Function3246
-; 323f
-
-Function323f:: ; 323f
-	callba Function104000
-	ret
-; 3246
-
-Function3246:: ; 3246
 	ld a, [hBGMapMode]
 	push af
 	xor a
@@ -743,13 +733,13 @@ GetSGBLayout:: ; 3340
 
 	ld a, [hCGB]
 	and a
-	jr nz, .sgb
+	jr nz, .cgb
 	
 	ld a, [hSGB]
 	and a
 	ret z
 	
-.sgb
+.cgb
 	predef_jump Function864c ; LoadSGBLayout
 ; 334e
 

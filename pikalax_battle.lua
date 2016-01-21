@@ -364,11 +364,11 @@ function readPlayerPack()
 end
 
 function readBattlestate() --read this ONLY when LUA Serial is called
-    battleState = {}
-    battlemode = memory.readbyte(wBattleMode)
-    svbk = memory.readbyte(rSVBK)
-    
-    vba.print("WRAM bank: ", svbk)
+	battleState = {}
+	battlemode = memory.readbyte(wBattleMode)
+	svbk = memory.readbyte(rSVBK)
+	
+	vba.print("WRAM bank: ", svbk)
 
 	if svbk == 1 then
 		--local output_table = {}
@@ -404,19 +404,19 @@ function readBattlestate() --read this ONLY when LUA Serial is called
 		end
 		local raw_json = JSON:encode(output_table)
 		file = io.open("battlestate.json", "w+")
-        local result = transferStateToAIAndWait(raw_json)
-        vba.print("AI Response:", result)
+		local result = transferStateToAIAndWait(raw_json)
+		vba.print("AI Response:", result)
 		io.output(file)
 		io.write(raw_json)
 		io.close(file)
-    else
-        vba.print("Waiting for bank switch...")
-    end
+	else
+		vba.print("Waiting for bank switch...")
+	end
 end
 
 function transferStateToAIAndWait(output_table)
- next_move = http.request("http://localhost:12345/ai/"..JSON:encode(output_table))
- return next_move
+	next_move = http.request("http://localhost:12345/ai/"..JSON:encode(output_table))
+	return next_move
 end
 
 function send(a)
@@ -425,9 +425,9 @@ function send(a)
 end
 
 function readPlayerstate() --loop read this for the overlay
-    svbk = memory.readbyte(rSVBK)
-    local output_table = {}
-    vba.print("WRAM bank: ", svbk)
+	svbk = memory.readbyte(rSVBK)
+	local output_table = {}
+	vba.print("WRAM bank: ", svbk)
 	if svbk == 1 then
 		playerParty = getTrainerParty(PartyCount)
 		vba.print("Player Party:")
@@ -447,5 +447,5 @@ function readPlayerstate() --loop read this for the overlay
 end
 
 repeat
-    readPlayerstate()
+	readPlayerstate()
 until not refreshinterval(0.100)
