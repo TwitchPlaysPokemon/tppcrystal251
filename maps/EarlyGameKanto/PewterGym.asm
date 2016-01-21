@@ -83,12 +83,12 @@ PewterGymRB_GymGuyScript:
 	end
 
 PewterGymRB_StatueScript:
+	trainertotext BROCK_RB, 1, $1
 	checkflag ENGINE_BOULDERBADGE
 	iftrue .HaveBadge
 	jumpstd gymstatue1
 
 .HaveBadge:
-	trainertotext BROCK, BROCK_RB, $1
 	jumpstd gymstatue2
 
 PewterGymRB_BrockIntroText:

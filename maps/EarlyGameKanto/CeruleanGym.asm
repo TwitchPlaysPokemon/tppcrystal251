@@ -89,12 +89,12 @@ CeruleanGymRB_GymGuyScript:
 	end
 
 CeruleanGymRB_StatueScript:
+	trainertotext MISTY_RB, 1, $1
 	checkflag ENGINE_CASCADEBADGE
 	iftrue .HaveBadge
 	jumpstd gymstatue1
 
 .HaveBadge:
-	trainertotext MISTY, MISTY_RB, $1
 	jumpstd gymstatue2
 
 CeruleanGymRB_MistyIntroText:

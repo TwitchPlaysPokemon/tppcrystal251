@@ -325,7 +325,7 @@ UnknownText_0x1b070d: ; 0x1b070d
 
 UnknownText_0x1b074e: ; 0x1b074e
 	text_from_ram StringBuffer3
-	db $0
+	text ""
 	line "#MON GYM"
 	done
 ; 0x1b075c
@@ -333,9 +333,29 @@ UnknownText_0x1b074e: ; 0x1b074e
 UnknownText_0x1b075c: ; 0x1b075c
 	text "LEADER: @"
 	text_from_ram StringBuffer4
-	db $0, $51
-	db "WINNING TRAINERS:"
-	line $52, $57
+	text ""
+	para "WINNING TRAINERS:"
+	line "<PLAYER>"
+	done
+; 0x1b077f
+
+EGKGymStatueTextBefore: ; 0x1b075c
+	text "LEADER: @"
+	text_from_ram StringBuffer4
+	text ""
+	para "WINNING TRAINERS:"
+	line "<GREEN>"
+	done
+; 0x1b077f
+
+
+EGKGymStatueTextAfter: ; 0x1b075c
+	text "LEADER: @"
+	text_from_ram StringBuffer4
+	text ""
+	para "WINNING TRAINERS:"
+	line "<GREEN>, <PLAYER>"
+	done
 ; 0x1b077f
 
 UnknownText_0x1b077f: ; 0x1b077f
