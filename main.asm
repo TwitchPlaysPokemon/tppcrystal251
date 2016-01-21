@@ -71693,7 +71693,7 @@ FlyMap: ; 91c90
 	ld a, b
 	ld [wd004], a
 	ret
-; 91d11
+; 	
 
 Function91d11: ; 91d11
 	ld a, [DefaultFlypoint]
@@ -71731,7 +71731,13 @@ Function91d11: ; 91d11
 	call Function32f9
 	xor a
 	ld [hBGMapMode], a
-	xor a
+	ld a, [StatusFlags]
+	bit 7, a
+	ld a, 0
+	jr nz, .got_region
+	ld [hWY], a
+	inc a
+.got_region
 	call Function91e1e
 .asm_91d6e
 	call Functiona57 ;update joypad
@@ -71762,6 +71768,9 @@ Function91d11: ; 91d11
 ; 91d9b
 
 Function91d9b: ; 91d9b
+	ld a, [StatusFlags]
+	bit 7, a
+	ret z
 	ld a, [hl] ;if joypad = left
 	and $20
 	jr nz, .asm_91da6 ;branch
