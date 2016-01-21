@@ -1,7 +1,7 @@
 
 -- PikalaxALT's first attempt at lua to read battle state
 -- AKA readbattlestate_clean.lua
--- Version 0.3.2
+-- Version 0.3.3
 JSON = (loadfile "JSON.lua")()
 package.path = package.path..';./libs/lua/?.lua'
 package.cpath = package.cpath..';./libs/?.dll'
@@ -416,6 +416,7 @@ end
 function transferStateToAIAndWait(output_table)
  next_move = http.request("http://localhost:12345/ai/"..JSON:encode(output_table))
  return next_move
+ vba.print("AI response:", next_move)
  send(0) -- TODO, plz process next_move appropriately and send to game
 end
 

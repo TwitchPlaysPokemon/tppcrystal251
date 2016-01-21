@@ -771,6 +771,18 @@ PAL_OW_SILVER EQU 5
 PAL_OW_TREE   EQU 6
 PAL_OW_ROCK   EQU 7
 
+
+	const_def
+	const PAL_BG_GRAY   ; 0
+	const PAL_BG_RED    ; 1
+	const PAL_BG_GREEN  ; 2
+	const PAL_BG_WATER  ; 3
+	const PAL_BG_YELLOW ; 4
+	const PAL_BG_BROWN  ; 5
+	const PAL_BG_ROOF   ; 6
+	const PAL_BG_TEXT   ; 7
+
+
 ; permissions
 TOWN EQU 1
 ROUTE EQU 2

@@ -1,3 +1,4 @@
+Military::
 ; In link battle, the player chooses moves, not the AI.
 	ld a, [wLinkMode]
 	and a
@@ -7,7 +8,7 @@
 MilitaryInit:
 	ld a, [wdffa] ;Checks if in military mode
 	bit MILITARY_ON, a
-	jr z, MilitaryGetEnemyActionOnly
+	jp z, MilitaryGetEnemyActionOnly
 	callab Function4000
 	ld a, MILITARY_IDLE + (MILITARY_IDLE << 4)
 	ld [wdff8], a
@@ -19,12 +20,12 @@ MilitaryLoop:
 	cp MILITARY_IDLE
 	jr z, MilitaryLoop
 	cp MILITARY_SWITCH
-	jr c, MilitaryGetMove
+	jp c, MilitaryGetMove
 	cp MILITARY_OKAY
 	jr c, MilitarySwitchOrItem
 	cp MILITARY_STRUGGLE
 	jr c, MilitaryLoop
-	jr z, MilitarySetMove
+	jp z, MilitarySetMove
 	jr MilitaryRun
 
 .RunOrItem
@@ -65,7 +66,7 @@ MilitarySwitch:
 	sub 3
 	call GetMilitaryActionSide
 	jr z, .player
-	ld [c718], a
+	ld [wc718], a
 	ld a, 1
 	ld [wEnemyIsSwitching], a
 	ret
@@ -91,7 +92,7 @@ MilitaryRun:
 .player
 	callba BattleMenu_Run
 	ret c
-	jr MilitaryLoop
+	jp MilitaryLoop
 
 MilitaryGetEnemyActionOnly:
 	call MilitaryEnemyLoop

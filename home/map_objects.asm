@@ -121,7 +121,7 @@ GetTileCollision:: ; 185d
 ; 1875
 
 
-Function1875:: ; 1875
+CheckGrassTile:: ; 1875
 	ld d, a
 	and $f0
 	cp $10
@@ -146,7 +146,7 @@ Function1875:: ; 1875
 	ret
 ; 188e
 
-Function188e:: ; 188e
+CheckSuperTallGrassTile:: ; 188e
 	cp $14 ;if standing tile is $14 then ret zero, otherwise cp $1c
 	ret z
 	cp $1c
