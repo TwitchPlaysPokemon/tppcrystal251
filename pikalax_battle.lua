@@ -404,7 +404,8 @@ function readBattlestate() --read this ONLY when LUA Serial is called
 		end
 		local raw_json = JSON:encode(output_table)
 		file = io.open("battlestate.json", "w+")
-        transferStateToAIAndWait(raw_json)
+        local result = transferStateToAIAndWait(raw_json)
+        vba.print("AI Response:", result)
 		io.output(file)
 		io.write(raw_json)
 		io.close(file)
@@ -416,8 +417,6 @@ end
 function transferStateToAIAndWait(output_table)
  next_move = http.request("http://localhost:12345/ai/"..JSON:encode(output_table))
  return next_move
- vba.print("AI response:", next_move)
- send(0) -- TODO, plz process next_move appropriately and send to game
 end
 
 function send(a)
