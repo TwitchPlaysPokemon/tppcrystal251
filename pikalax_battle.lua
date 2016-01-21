@@ -9,6 +9,7 @@ local http = require("socket.http") -- i did this wrong did i
 dofile("battle_ram.lua")
 dofile("constants.lua")
 
+lastBattleState = 0
 military_mode = 0
 ignore_serial = 1 -- please set this to 0 for normal use.
 
@@ -36,7 +37,7 @@ function parseString(start_addr, length)
 		curr_byte = memory.readbyte(start_addr + i)
 		if curr_byte == 0x50 then return outstr end
 		if curr_byte < 0x7f then return outstr end
-		vba.print(string.format("%02X - %s",curr_byte, charmap[curr_byte - 0x7f + 1]))
+		-- vba.print(string.format("%02X - %s",curr_byte, charmap[curr_byte - 0x7f + 1]))
 		outstr = outstr .. charmap[curr_byte - 0x7f + 1]
 	end
 end
@@ -45,7 +46,7 @@ function getMove(movePointer, ppPointer)
 	local move = {}
 	move_idx = memory.readbyte(movePointer)
 	if move_idx == 0 then return nil end
-	move["move"] = moveTable[move_idx + 1]
+	move["name"] = moveTable[move_idx + 1]
 	tempPP = memory.readbyte(ppPointer)
 	move["curpp"] = AND(tempPP, 0x3f)
 	move["ppUp"] = (AND(tempPP, 0xc0)) / 0x40
@@ -56,7 +57,7 @@ end
 function getMoves(movePointer, ppPointer)
 	local moves = {}
 	for i = 0, 3 do
-		moves[string.format("move%d",i+1)] = getMove(movePointer + i, ppPointer + i)
+		table.insert(moves, getMove(movePointer + i, ppPointer + i))
 	end
 	return moves
 end
@@ -383,6 +384,9 @@ function readBattlestate(output_table) --read this ONLY when LUA Serial is calle
 		if battlemode == 0 then
 			vba.print("Not in battle")
 			memory.writebyte(wMilitaryMode, military_mode)
+			if (ignore_serial ~= 1) and (lastBattleState ~= 0) then
+				transferStateToAIAndWait("Battle ended")
+			end
 		else
 			if battlemode == 2 then
 				battleState["enemy type"] = "TRAINER"
@@ -402,14 +406,20 @@ function readBattlestate(output_table) --read this ONLY when LUA Serial is calle
 			vba.print(battleState)
 			output_table["battleState"] = battleState
 		end
+		if (ignore_serial ~= 1) and (lastBattleState == 0) then
+			transferStateToAIAndWait("Battle started")
+		end
 		local raw_json = JSON:encode(output_table)
+		if ignore_serial ~= 1 then
+			local result = transferStateToAIAndWait(raw_json)
+			vba.print("AI Response:", result)
+			if result ~= nil then sendLUASerial(result) end -- the most important step
+		end
 		file = io.open("battlestate.json", "w+")
-		local result = transferStateToAIAndWait(raw_json)
-		vba.print("AI Response:", result)
-		sendLUASerial(result) -- the most important step
 		io.output(file)
 		io.write(raw_json)
 		io.close(file)
+		lastBattleState = battlemode
 	else
 		vba.print("Waiting for bank switch...")
 	end
