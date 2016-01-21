@@ -55,21 +55,24 @@ UnknownScript_0x1883de: ; 0x1883de
 	pause 15
 	end
 ; 0x188432
-; EVENT_BEAT_MISTY_RB
+; 
 MistyScript_0x188432: ; 0x188432
+	faceplayer
+	loadfont
 	checkevent EVENT_MISTY_REMATCH
 	iftrue MistyAfterRematch
 	checkevent EVENT_FIRST_TIME_RED
-	iftrue MistyRematchScript
-	faceplayer
-	loadfont
-	checkflag ENGINE_EARLY_GAME_KANTO
 	iftrue MistyRematchScript
 	checkflag ENGINE_CASCADEBADGE
 	iftrue UnknownScript_0x188460
 	writetext UnknownText_0x188674
 	waitbutton
+	checkflag EVENT_BEAT_MISTY_RB
+	iftrue MistySecondScript
+	writetext TextBranchFirstMisty
+	waitbutton
 	closetext
+MistyFight:
 	winlosstext UnknownText_0x18870c, $0000
 	loadtrainer MISTY, 1
 	startbattle
@@ -83,18 +86,25 @@ MistyScript_0x188432: ; 0x188432
 	playsound SFX_GET_BADGE
 	waitsfx
 	setflag ENGINE_CASCADEBADGE
+	checkevent EVENT_BEAT_MISTY_RB
+	iffalse GiveRainBranch
 UnknownScript_0x188460: ; 0x188460
 	writetext UnknownText_0x188782
 	waitbutton
 	closetext
 	end
 
+MistySecondScript:
+	writetext TextBranchSecondMisty
+	waitbutton
+	closetext
+	jump MistyFight
 
 MistyRematchScript:
 	writetext MistyRematchTextBefore
 	waitbutton
 	closetext
-	winlosstext BugsyRematchBeatenText, $0000
+	winlosstext MistyRematchBeatenText, $0000
 	loadtrainer MISTY, 2
 	startbattle
 	returnafterbattle
@@ -127,15 +137,24 @@ MistyRematchBeatenText:
 	text "First my date"
 	line "now my dreams."
 
-	para "must you always"
-	line "be in the way…"
 	done
 
 MistyAfterRematchText:
-	text "How could I"
-	line "lose to someone"
-	cont "like you?!?"
+	text "You really are"
+	line "strong..."
+	
+	para "I'll admit that"
+	line "you are skilled."
 	done
+
+GiveRainBranch:
+	writetext MistyBeforeRainDance
+	verbosegiveitem TM_RAIN_DANCE, 1
+	writetext MistyAfterRainDance
+	waitbutton
+	closetext
+	end
+
 
 TrainerSwimmerfDiana: ; 0x188466
 	; bit/flag number
@@ -376,10 +395,25 @@ UnknownText_0x188674: ; 0x188674
 	para "BADGES, but you'd"
 	line "better not take me"
 	cont "too lightly."
+	done
 
-	para "My water-type"
+TextBranchFirstMisty
+	text "My water-type"
 	line "#MON are tough!"
 	done
+
+TextBranchSecondMisty:
+	text "Oh you already"
+	line "won and had your"
+	cont "badge stolen?"
+
+	text "Too bad! Pests"
+	line "have to work"
+	cont "for thier"
+	cont "badges!"
+
+	done
+
 ; 0x18870c
 
 UnknownText_0x18870c: ; 0x18870c
@@ -399,6 +433,27 @@ UnknownText_0x188768: ; 0x188768
 	line "CASCADEBADGE."
 	done
 ; 0x188782
+
+MistyBeforeRainDance:
+	text "Here is another"
+	line "memento from"
+	cont "this battle."
+	
+	para "Take it!"
+
+	done
+
+MistyAfterRainDance:
+	text "It contains the"
+	line "move RAIN DANCE."
+
+	para "It powers up"
+	line "water moves."
+
+	para "I'm sure you have" 
+	line "a good use"
+	cont "for it."
+	done
 
 UnknownText_0x188782: ; 0x188782
 	text "MISTY: Are there"
