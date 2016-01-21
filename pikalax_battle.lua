@@ -241,6 +241,7 @@ function getPlayerPokemonData()
 	else
 		playerMon["last used"] = moveTable[lastMove + 1]
 	end
+	playerMon["party idx"] = memory.readbyte(0xd0d4)
 	return playerMon
 end
 
@@ -257,6 +258,7 @@ function getEnemyPokemonData()
 	else
 		enemyMon["last used"] = moveTable[lastMove + 1]
 	end
+	enemyMon["party idx"] = memory.readbyte(0xd0d5)
 	return enemyMon
 end
 
