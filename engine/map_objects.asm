@@ -635,18 +635,18 @@ Function463f: ; 463f
 ; 4661
 
 Function4661: ; 4661
-	call Function188e
-	jr z, .asm_466b
-	call Function1875
-	jr c, .asm_4672
+	call CheckSuperTallGrassTile
+	jr z, .grass
+	call CheckGrassTile
+	jr c, .not_grass
 
-.asm_466b
+.grass
 	ld hl, OBJECT_FLAGS
 	add hl, bc
 	set 3, [hl]
 	ret
 
-.asm_4672
+.not_grass
 	ld hl, OBJECT_FLAGS
 	add hl, bc
 	res 3, [hl]

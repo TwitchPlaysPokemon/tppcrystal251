@@ -727,16 +727,16 @@ Function5412: ; 5412
 	ld hl, OBJECT_STANDING_TILE
 	add hl, bc
 	ld a, [hl]
-	call Function188e
-	jr z, .asm_542d
+	call CheckSuperTallGrassTile
+	jr z, .super_tall_grass
 
-	call Function1875
-	jr c, .asm_5430
+	call CheckGrassTile
+	jr c, .not_grass
 
-.asm_542d
+.super_tall_grass
 	call Function5556
 
-.asm_5430
+.not_grass
 	ld hl, wd4cf
 	ld a, [hConnectionStripLength]
 	cp [hl]

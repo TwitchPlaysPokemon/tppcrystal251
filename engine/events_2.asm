@@ -227,7 +227,7 @@ Function97d31:: ; 97d31
 
 Function97d64: ; 97d64
 	ld a, [StandingTile] 
-	call Function188e ;if standing tile is $14 then ret zero, otherwise cp $1c
+	call CheckSuperTallGrassTile ;if standing tile is $14 then ret zero, otherwise cp $1c
 	ld b, $66 
 	jr z, .asm_97d70 ;if exactly $14 or $1c then b = %66, otherwise b = %33. b = encounter rate
 	ld b, $33
