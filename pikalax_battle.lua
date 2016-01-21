@@ -32,7 +32,7 @@ end
 
 function parseString(start_addr, length)
 	outstr = ""
-	vba.print(charmap)
+	-- vba.print(charmap)
 	for i = 0, length do
 		curr_byte = memory.readbyte(start_addr + i)
 		if curr_byte == 0x50 then return outstr end

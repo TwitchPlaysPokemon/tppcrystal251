@@ -39916,56 +39916,56 @@ Function49496: ; 49496
 ; 494ac
 
 Function494ac: ; 494ac
-	ld a, [wd199]
+	ld a, [wTileset]
 	cp $15
-	jr z, .asm_494c9
+	jr z, .pokecom
 	cp $16
-	jr z, .asm_494ce
+	jr z, .battletower
 	cp $1d
-	jr z, .asm_494d3
+	jr z, .icepath
 	cp $5
-	jr z, .asm_494e1
+	jr z, .house1
 	cp $1b
-	jr z, .asm_494e6
+	jr z, .radiotower
 	cp $d
-	jr z, .asm_494eb
-	jr .asm_494f0
+	jr z, .mansion
+	jr .indoor
 
-.asm_494c9
+.pokecom
 	call Function494f2
 	scf
 	ret
 
-.asm_494ce
+.battletower
 	call Function49541
 	scf
 	ret
 
-.asm_494d3
-	ld a, [wd19a]
+.icepath
+	ld a, [wMapHeaderPermission]
 	and $7
-	cp $3
-	jr z, .asm_494f0
+	cp INDOOR
+	jr z, .indoor
 	call Function49590
 	scf
 	ret
 
-.asm_494e1
+.house1
 	call Function495df
 	scf
 	ret
 
-.asm_494e6
+.radiotower
 	call Function4962e
 	scf
 	ret
 
-.asm_494eb
+.mansion
 	call Function496c5
 	scf
 	ret
 
-.asm_494f0
+.indoor
 	and a
 	ret
 ; 494f2
@@ -51140,7 +51140,7 @@ Unknown_80671: ; 80671
 	dwb MapGroup,      $00 ; $c
 	dwb MapNumber,     $00 ; $d
 	dwb Function806ff, $80 ; $e Unown count
-	dwb wd19a,         $00 ; $f Roof palette (?)
+	dwb wMapHeaderPermission,         $00 ; $f Roof palette (?)
 	dwb Function80715, $80 ; $10 Empty Box Slots
 	dwb wd46c,         $00 ; $11 time left on bug catching?
 	dwb XCoord,        $00 ; $12
@@ -62609,12 +62609,12 @@ Function8c365: ; 8c365 (23:4365)
 	jr nc, .asm_8c375
 	set 0, e
 .asm_8c375
-	ld a, [wd19a]
-	cp $4
+	ld a, [wMapHeaderPermission]
+	cp CAVE
 	jr z, .asm_8c386
-	cp $5
+	cp FOREST
 	jr z, .asm_8c386
-	cp $7
+	cp DUNGEON
 	jr z, .asm_8c386
 	set 1, e
 .asm_8c386
@@ -64161,13 +64161,13 @@ Function8ceae: ; 8ceae
 	ld [rSVBK], a
 	ld a, [TimeOfDayPal]
 	push af
-	ld a, [wd19a]
+	ld a, [wMapHeaderPermission]
 	push af
 	ld a, [TimeOfDay]
 	and $3
 	ld [TimeOfDayPal], a
 	ld a, $1
-	ld [wd19a], a
+	ld [wMapHeaderPermission], a
 	ld b, $9
 	call GetSGBLayout
 	call UpdateTimePals
@@ -64178,7 +64178,7 @@ Function8ceae: ; 8ceae
 	ld a, [rOBP1]
 	ld [wcfc9], a
 	pop af
-	ld [wd19a], a
+	ld [wMapHeaderPermission], a
 	pop af
 	ld [TimeOfDayPal], a
 	pop af
@@ -67805,7 +67805,7 @@ Function90178: ; 90178 (24:4178)
 	ret
 
 Function90188: ; 90188
-	ld a, [wd19a]
+	ld a, [wMapHeaderPermission]
 	cp $1
 	jr z, .asm_90195
 	cp $2
@@ -90450,7 +90450,7 @@ FishingRodGFX: INCBIN "gfx/misc/fishing.2bpp"
 Function1045b0: ; 1045b0 reset top 8 event flags, do callbacks 3 and 5, load ToD map data, clear some of command queue
 	call Function210f ; fill 24 bytes at wc7e8 with 0
 	call Function2e50 ;reset top 8 event flags
-	call Function2e5d ;if wd19a = 1 or 2, reset bit 2 of statusflags
+	call Function2e5d ;if wMapHeaderPermission = 1 or 2, reset bit 2 of statusflags
 	call GetCurrentMapTrigger ;de = map trigger, if none found ret c
 	call Function2e56 ;load 0 into bikeflags and bikelflags +1
 	ld a, $5

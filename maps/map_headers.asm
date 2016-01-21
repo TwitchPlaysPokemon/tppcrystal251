@@ -462,7 +462,7 @@ MapGroup26:
 	map_header Route31VioletGate, $8, 6, ROUTE_31, MUSIC_ROUTE_30, 0, 1, 1
 
 MapGroup27:
-	map_header ViridianForest, $25, 4, VIRIDIAN_FOREST, MUSIC_ROUTE_2, 0, 2, 0
+	map_header ViridianForest, $25, 5, VIRIDIAN_FOREST, MUSIC_ROUTE_2, 0, 2, 0
 	map_header ViridianForestNorth, $26, 6, VIRIDIAN_FOREST, MUSIC_ROUTE_2, 0, 1, 1
 	map_header ViridianForestSouth, $26, 6, VIRIDIAN_FOREST, MUSIC_ROUTE_2, 0, 1, 1
 
@@ -577,7 +577,7 @@ MapGroup34:
 
 MapGroup35:
 ; egk dungeons and ss anne
-	map_header ViridianForestRB, $25, 4, VIRIDIAN_FOREST, MUSIC_ROUTE_2, 0, 2, 0
+	map_header ViridianForestRB, $25, 5, VIRIDIAN_FOREST, MUSIC_ROUTE_2, 0, 2, 0
 	map_header ViridianForestNorthRB, $26, 6, VIRIDIAN_FOREST, MUSIC_VIRIDIAN_CITY, 0, 1, 1
 	map_header ViridianForestSouthRB, $26, 6, VIRIDIAN_FOREST, MUSIC_VIRIDIAN_CITY, 0, 1, 1
 	map_header DiglettsCaveRB, $18, 4, DIGLETTS_CAVE, MUSIC_MT_MOON, 1, 2, 1

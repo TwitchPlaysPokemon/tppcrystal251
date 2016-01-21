@@ -367,6 +367,8 @@ CheckIndoorMap:: ; 22f4
 	cp DUNGEON
 	ret z
 	cp GATE
+	ret z
+	cp $5
 	ret
 ; 2300
 

@@ -1449,7 +1449,7 @@ wd196:: ds 1
 wd197:: ds 2 ;d198 is location of map header data(5 bytes)
 wTileset::
 wd199:: ds 1
-wd19a:: ds 3
+wMapHeaderPermission:: ds 3
 
 ; width/height are in blocks (2x2 walkable tiles, 4x4 graphics tiles)
 MapHeader:: ; d19d
