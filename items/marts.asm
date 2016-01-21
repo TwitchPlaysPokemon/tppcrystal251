@@ -58,12 +58,15 @@ Mart0: ; 160ed
 ; 160f3
 
 Mart1: ; 160f3
-	db 5 ; # items
+	db 8 ; # items
 	db POKE_BALL
+	db SUPER_POTION
 	db POTION
 	db ANTIDOTE
 	db PARLYZ_HEAL
 	db AWAKENING
+	db BURN_HEAL
+	db REPEL
 	db $ff
 ; 160fa
 
@@ -210,10 +213,10 @@ Mart13: ; 16153
 
 Mart14: ; 1615e
 	db 10 ; # items
+	db ULTRA_BALL
 	db GREAT_BALL
-	db POKE_BALL
+	db HYPER_POTION
 	db SUPER_POTION
-	db POTION
 	db ANTIDOTE
 	db PARLYZ_HEAL
 	db AWAKENING

@@ -191,7 +191,7 @@ CyndaquilPokeBallScript: ; 0x78c73
 	playsound SFX_CAUGHT_MON
 	waitsfx
 	buttonsound
-	givepoke CYNDAQUIL, 20, BERRY, 0
+	givepoke CYNDAQUIL, 20, GOLD_BERRY, 0
 	closetext
 	checkcode VAR_FACING
 	if_equal $3, ElmDirectionsScript
@@ -222,7 +222,7 @@ TotodilePokeBallScript: ; 0x78cb5
 	playsound SFX_CAUGHT_MON
 	waitsfx
 	buttonsound
-	givepoke TOTODILE, 20, BERRY, 0
+	givepoke TOTODILE, 20, GOLD_BERRY, 0
 	closetext
 	applymovement $0, AfterTotodileMovement
 	jump ElmDirectionsScript
@@ -251,7 +251,7 @@ ChikoritaPokeBallScript: ; 0x78cf1
 	playsound SFX_CAUGHT_MON
 	waitsfx
 	buttonsound
-	givepoke CHIKORITA, 20, BERRY, 0
+	givepoke CHIKORITA, 20, GOLD_BERRY, 0
 	closetext
 	applymovement $0, AfterChikoritaMovement
 	jump ElmDirectionsScript

@@ -29,7 +29,7 @@ UnknownText_0x1ab335: ; 0x1ab335
 ; 0x1ab37f
 
 UnknownText_0x1ab37f: ; 0x1ab37f
-	text "It's been a year"
+	text "It's been a month"
 	line "since the volcano"
 	cont "erupted."
 	done

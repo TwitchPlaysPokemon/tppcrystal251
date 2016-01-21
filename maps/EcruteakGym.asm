@@ -64,6 +64,12 @@ UnknownScript_0x99d8c: ; 0x99d8c
 	end
 ; 0x99db1
 
+MortyAfterRematch:
+	writetext MortyAfterRematchText
+	waitbutton
+	closetext
+	end
+
 MortyRematchScript:
 	writetext MortyRematchTextBefore
 	waitbutton
@@ -74,7 +80,7 @@ MortyRematchScript:
 	returnafterbattle
 	setevent EVENT_MORTY_REMATCH
 	loadfont
-	jump UnknownScript_0x99d8c
+	jump MortyAfterRematch
 
 UnknownScript_0x99db1: ; 0x99db1
 	writetext UnknownText_0x9a145
@@ -322,22 +328,36 @@ MortyRematchTextBefore:
 	text "Welcome back,"
 	line "<PLAY_G>."
 
-	para "So you caught the"
-	line "rainbow #MON…"
+	para "So the legend was"
+	line "true, and Ho-oh"
+	cont "chose you…"
 
-	para "I hope you brought"
-	line "it with you today."
-
-	para "I want the oppor-"
-	line "tunity to pit my"
-
-	para "#MON against"
-	line "it."
+	para "But that does not"
+	line "mean that I have"
+	cont "lost out on my"
+	cont "future."
+	
+	para "Show me the"
+	line "legandary power"
+	cont "I trained for!"
 	done
 
 MortyRematchBeatenText:
-	text "I'm not good"
-	line "enough yet…"
+	text "How is this"
+	line "possible…"
+	done
+
+MortyAfterRematchText:
+	text "Our potentials"
+	line "aren't so"
+	cont "different."
+	
+	para "But you seem to"
+	line "have something…"
+	
+	para "Something more" 
+	line "than that…"
+
 	done
 
 UnknownText_0x9a00a: ; 0x9a00a

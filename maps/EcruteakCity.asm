@@ -105,26 +105,26 @@ MapEcruteakCitySignpostItem7: ; 0x1a4055
 	
 ; 0x1a4058
 
-UnusedMissingDaughterText: ; 0x1a4058
+;UnusedMissingDaughterText: ; 0x1a4058
 ; This text is neither used nor referenced in the final game.
-	text "Oh, no. Oh, no…"
+;	text "Oh, no. Oh, no…"
 
-	para "My daughter is"
-	line "missing."
+;	para "My daughter is"
+;	line "missing."
 
-	para "No… She couldn't"
-	line "have gone to the"
-	cont "BURNED TOWER."
+;	para "No… She couldn't"
+;	line "have gone to the"
+;	cont "BURNED TOWER."
 
-	para "I told her not to"
-	line "go near it…"
+;	para "I told her not to"
+;	line "go near it…"
 
-	para "People seem to"
-	line "disappear there…"
+;	para "People seem to"
+;	line "disappear there…"
 
-	para "Oh, what should I"
-	line "do…?"
-	done
+	;para "Oh, what should I"
+	;line "do…?"
+	;done
 
 UnknownText_0x1a4105: ; 0x1a4105
 	text "ECRUTEAK used to"
