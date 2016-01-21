@@ -285,7 +285,7 @@ UnknownText_0x9d78a: ; 0x9d78a
 ChuckRematchTextBefore:
 	text "WAHAHAH!"
 
-	para "Oh, hey, sorry
+	para "Oh, hey, sorry"
 	line "for shouting!"
 	
 	para "I’m doing great!"
@@ -328,14 +328,8 @@ UnknownText_0x9d835: ; 0x9d835
 ; 0x9d84d
 
 UnknownText_0x9d84d: ; 0x9d84d
-	text "STORMBADGE makes"
-	line "all #MON up to"
-
-	para "L70 obey, even"
-	line "traded ones."
-
-	para "It also lets your"
-	line "#MON use FLY"
+	text "STORMBADGE lets"
+	line "your #MON use Fly"
 
 	para "when you're not in"
 	line "a battle."

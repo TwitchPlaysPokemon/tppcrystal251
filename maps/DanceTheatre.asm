@@ -190,7 +190,7 @@ UnknownScript_0x994ff: ; 0x994ff
 UnknownScript_0x99505: ; 0x99505
 	writetext UnknownText_0x9991a
 	buttonsound
-	verbosegiveitem HM_STREGNTH, 1
+	verbosegiveitem HM_STRENGTH, 1
 	setevent EVENT_GOT_HM03_SURF
 	writetext UnknownText_0x9999b
 	waitbutton
@@ -388,7 +388,7 @@ UnknownText_0x9991a: ; 0x9991a
 ; 0x9999b
 
 UnknownText_0x9999b: ; 0x9999b
-	text "That's Stregnth."
+	text "That's Strength."
 
 	para "It's a move that"
 	line "lets #MON push"
