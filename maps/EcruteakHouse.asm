@@ -80,7 +80,7 @@ SageScript_0x98062: ; 0x98062
 	checkevent EVENT_CLEARED_RADIO_TOWER
 	iftrue UnknownScript_0x9807c
 	writetext OffLimitsWithoutBadge
-	waitbutton
+	buttonsound
 	checkflag ENGINE_FOGBADGE
 	iftrue UnknownScript_0x98076 ;allowed because badge
 	writetext YouHaveToLeave ;off limits without badge, leave
@@ -113,9 +113,9 @@ UnknownScript_0x9807c: ; 0x9807c
 
 UnknownScript_0x98093: ; 0x98093
 	writetext ClearBell ;have clear bell
-	waitbutton
+	buttonsound
 	writetext BellsChimeSoul
-	waitbutton
+	buttonsound
 	writetext PleaseGoOn
 	waitbutton
 	closetext
