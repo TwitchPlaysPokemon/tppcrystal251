@@ -2540,7 +2540,7 @@ BattleCommand09: ; 34d32
 	ret
 
 
-.DrainSub
+;.DrainSub
 ; Return z if using an HP drain move on a substitute.
 ;	call CheckSubstituteOpp
 ;	jr z, .asm_34e00
@@ -2553,7 +2553,7 @@ BattleCommand09: ; 34d32
 ;	cp EFFECT_DREAM_EATER
 ;	ret z
 
-.asm_34e00
+;.asm_34e00
 ;	ld a, 1
 ;	and a
 ;	ret
@@ -6122,7 +6122,7 @@ BattleCommand17: ; 3608c
 		;and $7f
 		;ret z
 		;call Function36e5b
-	ret z
+		;ret z
 	call GetOpponentItem
 	ld a, b
 	cp HELD_PREVENT_BURN

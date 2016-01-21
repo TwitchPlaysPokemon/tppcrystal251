@@ -398,7 +398,7 @@ BugsyAfterRematchText:
 	para "You beat me at"
 	line "my best,"
 
-	para "I need to do"
+	para "I need to"
 	line "find a new"
 	cont "theory on #MON"
 	cont "battles."

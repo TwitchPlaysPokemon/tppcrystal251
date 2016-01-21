@@ -723,8 +723,8 @@ UnknownText_0x620a1: ; 0x620a1
 ; 0x62105
 
 UnknownText_0x62105: ; 0x62105
-	text "In all of the"
-	line "#MON CENTER,"
+	text "In all #MON"
+	line "CENTERS,"
 
 	para "There is a PC"
 	line "on both floors."
@@ -776,8 +776,7 @@ UnknownText_0x62260: ; 0x62260
 
 	para "she gets really"
 	line "scared when I"
-	cont "go near this"
-	cont "particular PC..."
+	cont "go near a PC."
 	done
 ; 0x622f0
 

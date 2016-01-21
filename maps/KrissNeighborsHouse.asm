@@ -56,15 +56,15 @@ UnknownText_0x7ad2f: ; 0x7ad2f
 	line "PIKACHU is an"
 	cont "evolved #MON."
 
-	para "I also heared it"
-	line "can go by another"
-	cont "name, PIKAQ."
+	para "I also heared"
+	line "some people"
+	cont "call it PIKAQ."
 
 	para "…sigh…"
 
-	para "I only I was a"
+	para "If only I was a"
 	line "great researcher"
-	cont "like PROF.ELM."
+	cont "like PROF.ELM…"
 	done
 ; 0x7add4
 

@@ -384,10 +384,11 @@ UnknownText_0x1b086f: ; 0x1b086f
 
 UnknownText_0x1b088c: ; 0x1b088c
 	text "You're buying"
-	line "alot of coins,"
+	line "alot of coins…"
 	
 	para "Are you trying"
-	line "to buy a prize?"
+	line "to buy a prize"
+	cont "outright?"
 	
 	para "That's so dull,"
 	line "go have some fun!"

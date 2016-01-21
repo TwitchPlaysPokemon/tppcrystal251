@@ -71,7 +71,7 @@ ErikaRematchTextBefore:
 
 	para "This unusal #MON"
 	line "showed up just"
-	cont "now"
+	cont "now."
 
 	para "She's excited to"
 	line "meet you. Do you" 
@@ -88,7 +88,8 @@ ErikaRematchTextBefore:
 	
 
 ErikaRematchBeatenText:
-	text "We concede defeat"
+	text "We concede" 
+	line "defeat."
 	done
 
 ErikaAfterRematchText:

@@ -95,7 +95,7 @@ UnknownText_0x70e61: ; 0x70e61
 
 	para "they only open to"
 	line "the best trainers"
-	cont "in Kanto"
+	cont "in Kanto."
 	done
 ; 0x70e85
 
