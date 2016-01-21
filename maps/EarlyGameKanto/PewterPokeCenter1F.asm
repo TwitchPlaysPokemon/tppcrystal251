@@ -27,6 +27,28 @@ PewterPokecenter1FRBBugCatcherScript: ; 0x1a2ef7
 	jumptextfaceplayer _PewterCityPokecenterGuyText
 ; 0x1a2efa
 
+PewterPokecenterLUASerialScript: ; debug script
+    loadfont
+    writetext _PewterPokeCenterDebugLUAText
+    yesorno
+    iffalse .no
+IF DEF(BEESAFREE)
+    writetext _PewterPokeCenterDebugLUAText2
+    callasm .serial
+ELSE
+    writetext _PewterPokeCenterDebugLUAText3
+    waitbutton
+ENDC
+.no
+    closetext
+    end
+.serial
+    ld a, 1
+    IF DEF(BEESAFREE) ; just enables this to build
+    rst LUASerial
+    ENDC
+    ret
+
 _PewterPokecenterText1: ; 0x1a2f01
 	text "What!?"
 
@@ -57,6 +79,26 @@ _PewterCityPokecenterGuyText: ; 0x1a2f75
 	done
 ; 0x1a2ff4
 
+_PewterPokeCenterDebugLUAText:
+    text "LUA serial?"
+    done
+    
+_PewterPokeCenterDebugLUAText2:
+    text "Waiting…"
+    done
+    
+_PewterPokeCenterDebugLUAText3:
+    text "What's that,"
+    line "soldier? This"
+    cont "isn't a MILITARY"
+    cont "game?"
+    
+    para "I'll have you know"
+    line "I was in the front"
+    cont "lines. LT.SURGE"
+    cont "was my CO!"
+    done
+    
 PewterPokeCenter1FRB_MapEventHeader: ; 0x1a2ff4
 	; filler
 	db 0, 0
@@ -74,10 +116,11 @@ PewterPokeCenter1FRB_MapEventHeader: ; 0x1a2ff4
 	db 0
 
 	; people-events
-	db 4
+	db 5
 	person_event SPRITE_NURSE, 5, 7, $6, 0, 0, -1, -1, 0, 0, 0, PewterPokecenter1FRBNurseScript, -1
 	person_event SPRITE_GENTLEMAN, 10, 12, $8, 0, 0, -1, -1, 8 + PAL_OW_GREEN, 0, 0, PewterPokecenter1FRBTeacherScript, -1
 	person_event SPRITE_JIGGLYPUFF, 7, 5, $16, 0, 0, -1, -1, 0, 0, 0, PewterPokecenter1FRBJigglypuffScript, -1
 	person_event SPRITE_BUG_CATCHER, 7, 6, $6, 0, 0, -1, -1, 8 + PAL_OW_BLUE, 0, 0, PewterPokecenter1FRBBugCatcherScript, -1
+    person_event SPRITE_GENTLEMAN, 5, 11, $6, 0, 0, -1, -1, 0, 0, 0, PewterPokecenterLUASerialScript, -1 ; DELIST THIS BEFORE TWITCH BUILD!
 ; 0x1a304a
 
