@@ -579,7 +579,7 @@ ELSE
 	dbw X_ACCURACY,   Function384f7
 	dbw FULL_HEAL,    Function383a3
 	dbw GUARD_SPEC,   Function38504
-	dbw DIRE_HIT,     Funciton38511
+	dbw DIRE_HIT,     Function38511
 	dbw X_ATTACK,     Function38541
 	dbw X_DEFEND,     Function38547
 	dbw X_SPEED,      Function3854d
