@@ -16,6 +16,7 @@ VermilionCityRB_MapScriptHeader: ; 0x1aa97a
 	end
 .Trigger2
 	end
+
 .Callback
 	checktriggers
 	if_not_equal 2, .reset

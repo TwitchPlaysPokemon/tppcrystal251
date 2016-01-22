@@ -637,7 +637,7 @@ INCLUDE "maps/EarlyGameKanto/Route11.asm"
 SECTION "EGK SS Anne Events", ROMX
 INCLUDE "maps/EarlyGameKanto/VermilionDock.asm"
 INCLUDE "maps/EarlyGameKanto/SSAnne1.asm"
-; INCLUDE "maps/EarlyGameKanto/SSAnne2.asm"
+INCLUDE "maps/EarlyGameKanto/SSAnne2.asm"
 ; INCLUDE "maps/EarlyGameKanto/SSAnne3.asm"
 ; INCLUDE "maps/EarlyGameKanto/SSAnne4.asm"
 ; INCLUDE "maps/EarlyGameKanto/SSAnne5.asm"
