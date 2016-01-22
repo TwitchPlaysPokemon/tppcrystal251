@@ -99,6 +99,16 @@ function getMonType(pointer)
 	end
 end
 
+function handleBugCatchingContest()
+	local contest_struct = {}
+	if (AND(memory.readbyte(0xd84d), 0x04) ~= 0) then
+		contest_struct["balls"] = memory.readbyte(0xdc79)
+		contest_struct["caught mon"] = readPartyStruct(0xdf9c)
+		contest_struct["time left"] = string.format("%d:%02d", memory.readbyte(0xd46c), memory.readbyte(0xd46d))
+	end
+	return contest_struct
+end
+
 function getDVs(pointer)
 	local dvs = {}
 	dvs["atk"] = AND(memory.readbyte(pointer),0xf0) / 16
@@ -289,6 +299,52 @@ function getTrainerItems()
 	return trainerItems
 end
 
+function readPartyStruct(struct_addr)
+	local curr_mon = {}
+	species_idx = memory.readbyte(mon_pointer + 0)
+	curr_mon["species"] = speciesTable[species_idx]
+	curr_mon["item"] = itemTable[memory.readbyte(mon_pointer + 1) + 1]
+	curr_mon["moves"] = getMoves(mon_pointer + 2, mon_pointer + 23)
+	curr_mon["id"] = getBigDW(mon_pointer + 6)
+	curr_mon["exp"] = memory.readbyte(mon_pointer + 8) * 0x10000 + memory.readbyte(mon_pointer + 9) * 0x100 + memory.readbyte(mon_pointer + 10)
+	local statexp = {}
+	statexp["hp"] = getBigDW(mon_pointer + 11)
+	statexp["atk"] = getBigDW(mon_pointer + 13)
+	statexp["def"] = getBigDW(mon_pointer + 15)
+	statexp["spd"] = getBigDW(mon_pointer + 17)
+	statexp["spc"] = getBigDW(mon_pointer + 19)
+	curr_mon["statexp"] = statexp
+	curr_mon["dvs"] = getDVs(mon_pointer + 21)
+	curr_mon["happiness"] = memory.readbyte(mon_pointer + 27)
+	local pokerus = {}
+	pkrs_byte = memory.readbyte(mon_pointer + 28)
+	if pkrs_byte == 0 then
+		pokerus["strain"] = "None"
+		pokerus["count"] = "Uninfected"
+	else
+		pokerus["strain"] = AND(pkrs_byte, 0xf0) / 16
+		if AND(pkrs_byte, 0xf) == 0 then
+			pokerus["count"] = "Immune"
+		else
+			pokerus["count"] = AND(pkrs_byte, 0xf)
+		end
+	end
+	curr_mon["pokerus"] = pokerus
+	curr_mon["level"] = memory.readbyte(mon_pointer + 31)
+	curr_mon["gender"] = calcGender(curr_mon["dvs"], species_idx)
+	curr_mon["status"] = getMonStatus(mon_pointer + 32)
+	curr_mon["hp"] = getBigDW(mon_pointer + 34)
+	local stats = {}
+	stats["maxhp"] = getBigDW(mon_pointer + 36)
+	stats["attack"] = getBigDW(mon_pointer + 38)
+	stats["defense"] = getBigDW(mon_pointer + 40)
+	stats["speed"] = getBigDW(mon_pointer + 42)
+	stats["spatk"] = getBigDW(mon_pointer + 44)
+	stats["spdef"] = getBigDW(mon_pointer + 46)
+	curr_mon["stats"] = stats
+	return curr_mon
+end
+
 function getTrainerParty(partycount_addr)
 	local trainerParty = {}
 	trainerParty["length"] = memory.readbyte(partycount_addr)
@@ -296,49 +352,8 @@ function getTrainerParty(partycount_addr)
 	local party = {}
 	for i = 1, trainerParty["length"] do
 		table.insert(mons, speciesTable[memory.readbyte(partycount_addr + i)])
-		local curr_mon = {}
 		mon_pointer = partycount_addr + 8 + 48 * (i - 1)
-		species_idx = memory.readbyte(mon_pointer + 0)
-		curr_mon["species"] = speciesTable[species_idx]
-		curr_mon["item"] = itemTable[memory.readbyte(mon_pointer + 1) + 1]
-		curr_mon["moves"] = getMoves(mon_pointer + 2, mon_pointer + 23)
-		curr_mon["id"] = getBigDW(mon_pointer + 6)
-		curr_mon["exp"] = memory.readbyte(mon_pointer + 8) * 0x10000 + memory.readbyte(mon_pointer + 9) * 0x100 + memory.readbyte(mon_pointer + 10)
-		local statexp = {}
-		statexp["hp"] = getBigDW(mon_pointer + 11)
-		statexp["atk"] = getBigDW(mon_pointer + 13)
-		statexp["def"] = getBigDW(mon_pointer + 15)
-		statexp["spd"] = getBigDW(mon_pointer + 17)
-		statexp["spc"] = getBigDW(mon_pointer + 19)
-		curr_mon["statexp"] = statexp
-		curr_mon["dvs"] = getDVs(mon_pointer + 21)
-		curr_mon["happiness"] = memory.readbyte(mon_pointer + 27)
-		local pokerus = {}
-		pkrs_byte = memory.readbyte(mon_pointer + 28)
-		if pkrs_byte == 0 then
-			pokerus["strain"] = "None"
-			pokerus["count"] = "Uninfected"
-		else
-			pokerus["strain"] = AND(pkrs_byte, 0xf0) / 16
-			if AND(pkrs_byte, 0xf) == 0 then
-				pokerus["count"] = "Immune"
-			else
-				pokerus["count"] = AND(pkrs_byte, 0xf)
-			end
-		end
-		curr_mon["pokerus"] = pokerus
-		curr_mon["level"] = memory.readbyte(mon_pointer + 31)
-		curr_mon["gender"] = calcGender(curr_mon["dvs"], species_idx)
-		curr_mon["status"] = getMonStatus(mon_pointer + 32)
-		curr_mon["hp"] = getBigDW(mon_pointer + 34)
-		local stats = {}
-		stats["maxhp"] = getBigDW(mon_pointer + 36)
-		stats["attack"] = getBigDW(mon_pointer + 38)
-		stats["defense"] = getBigDW(mon_pointer + 40)
-		stats["speed"] = getBigDW(mon_pointer + 42)
-		stats["spatk"] = getBigDW(mon_pointer + 44)
-		stats["spdef"] = getBigDW(mon_pointer + 46)
-		curr_mon["stats"] = stats
+		curr_mon = readPartyStruct(mon_pointer)
 		curr_mon["nickname"] = parseString(partycount_addr + 8 + 48 * 6 + 11 * 6 + 11 * (i - 1), 11)
 		table.insert(party, curr_mon)
 	end
@@ -423,10 +438,11 @@ function readBattlestate(output_table) --read this ONLY when LUA Serial is calle
 			vba.print("Battle State:")
 			vba.print(battleState)
 			output_table["battleState"] = battleState
+			if (ignore_serial ~= 1) and (lastBattleState == 0) then
+				transferStateToAIAndWait("Battle started")
+			end
 		end
-		if (ignore_serial ~= 1) and (lastBattleState == 0) then
-			transferStateToAIAndWait("Battle started")
-		end
+		output_table["bug contest"] = handleBugCatchingContest()
 		local raw_json = JSON:encode_pretty(output_table)
 		if ignore_serial ~= 1 then
 			local result = transferStateToAIAndWait(raw_json)

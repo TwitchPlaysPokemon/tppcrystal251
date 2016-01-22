@@ -72025,7 +72025,11 @@ FillJohtoMap: ; 91eff
 	jr FillTownMap
 	
 FillKantoMap: ; 91f04
+	ld a, [StatusFlags]
+	bit 5, a
 	ld de, KantoMap
+	jr nz, FillTownMap
+	ld de, EGKMap
 	
 FillTownMap: ; 91f07
 	hlcoord 0, 0
@@ -72209,6 +72213,7 @@ INCBIN "gfx/misc/johto.bin"
 KantoMap: ; 92168
 INCBIN "gfx/misc/kanto.bin"
 ; 922d1
+EGKMap: INCBIN "gfx/misc/egk.bin"
 
 GFX_922d1: ; 922d1
 INCBIN "gfx/unknown/0922d1.2bpp"
