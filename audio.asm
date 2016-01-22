@@ -184,3 +184,4 @@ INCLUDE "audio/music/titlescreen.asm"
 
 SECTION "TPP Songs 2", ROMX
 INCLUDE "audio/music/custom/trainerbattle.asm"
+INCLUDE "audio/music/custom/ssanne.asm"

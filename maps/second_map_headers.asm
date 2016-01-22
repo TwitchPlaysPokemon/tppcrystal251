@@ -743,3 +743,15 @@
 	map_header_2 VermilionMagnetTrainSpeechHouseRB, VERMILION_MAGNET_TRAIN_SPEECH_HOUSE_RB, $0, NONE ; 0x96050
 	map_header_2 VermilionMartRB, VERMILION_MART_RB, $0, NONE ; 0x9605c
 	map_header_2 VermilionHouseDiglettsCaveSpeechHouseRB, VERMILION_HOUSE_DIGLETTS_CAVE_SPEECH_HOUSE_RB, $0, NONE ; 0x96068
+
+	map_header_2 VermilionDock, VERMILION_DOCK, $4d, NONE
+	map_header_2 SSAnne1, S_S_ANNE_1, $c, NONE
+	; map_header_2 SSAnne2, S_S_ANNE_2, $c, NONE
+	; map_header_2 SSAnne3, S_S_ANNE_3, $c, NONE
+	; map_header_2 SSAnne4, S_S_ANNE_4, $c, NONE
+	; map_header_2 SSAnne5, S_S_ANNE_5, $23, NONE
+	; map_header_2 SSAnne6, S_S_ANNE_6, $c, NONE
+	; map_header_2 SSAnne7, S_S_ANNE_7, $c, NONE
+	; map_header_2 SSAnne8, S_S_ANNE_8, $c, NONE
+	; map_header_2 SSAnne9, S_S_ANNE_9, $c, NONE
+	; map_header_2 SSAnne10, S_S_ANNE_10, $c, NONE

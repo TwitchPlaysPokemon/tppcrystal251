@@ -898,6 +898,7 @@ InitializeEventsScript: ; 0xbc3db
 	setevent EVENT_BEAT_RIVAL_IN_EGK_CERULEAN
 	setevent EVENT_CERULEAN_RB_ROCKET_1
 	setevent EVENT_CERULEAN_RB_ROCKET_2
+	setevent EVENT_ROCKETS_NOT_YET_BOARDED_SS_ANNE
 	return
 ; 0xbc574
 
