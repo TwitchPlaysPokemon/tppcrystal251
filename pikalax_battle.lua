@@ -82,11 +82,11 @@ function calcGender(dvs, species)
 	-- Reproduce gender calculation from Pokemon Crystal
 	if species == 0 then return "None" end
 	baseGender = GRVal[species]
-	if (baseGender == 255) then return "None" end
-	if (baseGender == 0)   then return "Male" end
-	if (baseGender == 254) then return "Female" end
+	if (baseGender == 255) then return " " end
+	if (baseGender == 0)   then return "♂" end
+	if (baseGender == 254) then return "♀" end
 	attPlusSpeed = dvs["atk"] * 16 + dvs["spd"]
-	if (baseGender < attPlusSpeed) then return "Male" else return "Female" end
+	if (baseGender < attPlusSpeed) then return "♂" else return "♀" end
 end
 
 function getMonType(pointer)
@@ -177,7 +177,7 @@ function getSubstatus(flags, counts, subhp, lockedmove)
 	if (AND(substatus4, 0x80) ~= 0) then table.insert(subStatus, "seeded") end
 
 	-- substatus5
-	if (AND(substatus5, 0x01) ~= 0) then substatus["toxic"] = memory.readbyte(counts + 2) end
+	if (AND(substatus5, 0x01) ~= 0) then subStatus["toxic"] = memory.readbyte(counts + 2) end
 	if (AND(substatus5, 0x04) ~= 0) then table.insert(subStatus, "transformed") end
 	if (AND(substatus5, 0x10) ~= 0) then
 		local encore = {}
@@ -242,6 +242,14 @@ function getPlayerPokemonData()
 		playerMon["last used"] = moveTable[lastMove + 1]
 	end
 	playerMon["party idx"] = memory.readbyte(0xd0d4)
+	local futureSight = {}
+	futureSight["count"] = memory.readbyte(wPlayerFutureSightCount)
+	futureSight["damage"] = getBigDW(wPlayerFutureSightDamage)
+	playerMon["future sight"] = futureSight
+	playerMon["rage counter"] = memory.readbyte(wPlayerRageCounter)
+	playerMon["trapping move"] = memory.readbyte(wPlayerTrappingMove)
+	playerMon["wrap count"] = memory.readbyte(wPlayerWrapCount)
+	playerMon["charging"] = memory.readbyte(wPlayerCharging)
 	return playerMon
 end
 
@@ -259,6 +267,14 @@ function getEnemyPokemonData()
 		enemyMon["last used"] = moveTable[lastMove + 1]
 	end
 	enemyMon["party idx"] = memory.readbyte(0xd0d5)
+	local futureSight = {}
+	futureSight["count"] = memory.readbyte(wEnemyFutureSightCount)
+	futureSight["damage"] = getBigDW(wEnemyFutureSightDamage)
+	enemyMon["future sight"] = futureSight
+	enemyMon["rage counter"] = memory.readbyte(wEnemyRageCounter)
+	enemyMon["trapping move"] = memory.readbyte(wEnemyTrappingMove)
+	enemyMon["wrap count"] = memory.readbyte(wEnemyWrapCount)
+	enemyMon["charging"] = memory.readbyte(wEnemyCharging)
 	return enemyMon
 end
 
@@ -411,7 +427,7 @@ function readBattlestate(output_table) --read this ONLY when LUA Serial is calle
 		if (ignore_serial ~= 1) and (lastBattleState == 0) then
 			transferStateToAIAndWait("Battle started")
 		end
-		local raw_json = JSON:encode(output_table)
+		local raw_json = JSON:encode_pretty(output_table)
 		if ignore_serial ~= 1 then
 			local result = transferStateToAIAndWait(raw_json)
 			vba.print("AI Response:", result)
@@ -428,7 +444,7 @@ function readBattlestate(output_table) --read this ONLY when LUA Serial is calle
 end
 
 function transferStateToAIAndWait(output_table)
-	next_move = http.request("http://localhost:12345/ai/"..JSON:encode(output_table))
+	next_move = http.request("http://localhost:12345/ai/"..JSON:encode_pretty(output_table))
 	return next_move
 end
 
