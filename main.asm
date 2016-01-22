@@ -11228,6 +11228,43 @@ Function1197b: ; 1197b (4:597b)
 	ld hl, $e
 	add hl, bc
 	ld [hl], a
+	
+	ld e, 4
+	call Function1189c
+	jr nz, .loop1
+	inc e
+.loop1
+	call Random
+	and 7
+	cp e
+	jr nc, .loop1
+	ld e, a
+	
+	ld d, 9
+	call Function1189c
+	jr nz, .loop2
+	inc d
+.loop2
+	call Random
+	and 15
+	cp d
+	jr nc, .loop2
+	ld d, a
+
+	ld hl, $c
+	add hl, bc
+	ld a, d
+	ld [hli], a
+	ld [hl], e
+
+	swap d
+	swap e
+	ld hl, $6
+	add hl, bc
+	ld a, e
+	ld [hli], a
+	ld [hl], d
+	
 	ld hl, wcf63
 	inc [hl]
 	ret
