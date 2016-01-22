@@ -169,12 +169,8 @@ ElmText1:
 	para "You've caught every"
 	line "#MON out there,"
 	
-	para "including one I've"
-	line "never heard of."
-	
-	para "It seems my re-"
-	line "search is far from"
-	cont "complete."
+	para "and defeated the"
+	line "greatest trainers."
 	
 	para "That's why I want"
 	line "to challenge you,"

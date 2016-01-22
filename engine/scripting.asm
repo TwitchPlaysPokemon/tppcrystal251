@@ -607,11 +607,11 @@ Script_verbosegiveitem2: ; 0x96f8e
 .ok
 	ld [CurItem], a
 	call GetScriptByte
-	call Function9769e
+	call Function9769e ;get variable pointed to by table based on second variable
 	ld a, [de]
 	ld [wd10c], a
 	ld hl, NumItems
-	call ReceiveItem
+	call ReceiveItem ;add the number of items from the variable
 	ld a, $1
 	jr c, .ok2
 	xor a

@@ -454,11 +454,11 @@ Mart31: ; 161fd
 
 Mart32: ; 16205
 	db 7 ; # items
-	db ULTRA_BALL
-	db MAX_REPEL
+	db FULL_RESTORE
 	db MAX_POTION
 	db HYPER_POTION
-	db FULL_RESTORE
+	db ULTRA_BALL
+	db MAX_REPEL
 	db REVIVE
 	db FULL_HEAL
 	db $ff

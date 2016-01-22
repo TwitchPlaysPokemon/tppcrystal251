@@ -51223,7 +51223,7 @@ Unknown_80671: ; 80671
 	dwb YCoord,        $00 ; $13
 	dwb wdc31,         $00 ; $14 Pokerus
 	dwb wcf64,         $00 ; $15 Unused
-	dwb wdca4,         $00 ; $16 Unused
+	dwb wdca4,         $00 ; $16 kurt ball count?
 	dwb wdbf9,         $40 ; $17 Caller ID
 	dwb wBlueCardBalance,         $40 ; $18 BlueCard Balance
 	dwb wdc4a,         $40 ; $19 Unused

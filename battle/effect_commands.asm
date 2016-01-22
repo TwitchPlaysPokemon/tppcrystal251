@@ -6202,7 +6202,7 @@ BattleCommand18: ; 36102
 	cp WEATHER_SUN
 	ret z
 		;call Function36e5b
-	ret z
+		;ret z
 	call GetOpponentItem
 	ld a, b
 	cp HELD_PREVENT_FREEZE
