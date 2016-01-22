@@ -35866,6 +35866,14 @@ Function3991b: ; 3991b (e:591b)
 	ret
 
 Function39939:: ; 39939
+	ld a, [StatusFlags]
+	bit 5, a
+	jr nz, .skip
+	ld a, [EventFlags + (EVENT_ROCKET_TAKEOVER_OF_SS_ANNE >> 3)]
+	bit (EVENT_ROCKET_TAKEOVER_OF_SS_ANNE & 7), a
+	ld hl, ReadTrainerName_GruntName
+	jp nz, Function39984
+.skip
 	ld a, [InBattleTowerBattle]
 	bit 0, a
 	ld hl, wd26b
@@ -35924,6 +35932,8 @@ Function39984: ; 39984
 	pop de
 	ret
 ; 39990
+ReadTrainerName_GruntName:
+	db "GRUNT@"
 
 INCLUDE "trainers/trainer_pointers.asm"
 
@@ -94179,9 +94189,9 @@ SampleRandomRocket:
 	add hl, hl
 	add hl, de
 	ld a, [hli]
-	ld [CurPartySpecies], a
-	ld a, [hl]
 	ld [CurPartyLevel], a
+	ld a, [hl]
+	ld [CurPartySpecies], a
 	ld a, OTPARTYMON
 	ld [MonType], a
 	predef Functiond88c
@@ -94189,24 +94199,25 @@ SampleRandomRocket:
 	inc c
 	jr .loop
 
-.RocketMons:
-	db ZUBAT, 18
-	db ZUBAT, 19
-	db ZUBAT, 20
-	db KOFFING, 18
-	db KOFFING, 19
-	db KOFFING, 20
-	db GRIMER, 18
-	db GRIMER, 19
-	db GRIMER, 20
-	db SANDSHREW, 18
-	db EKANS, 18
-	db RATTATA, 18
-	db MEOWTH, 18
-	db DROWZEE, 19
-	db RATICATE, 20
-	db HYPNO, 20
-.RocketMonsEnd:
+.RocketMons
+	db 18, ZUBAT
+	db 19, ZUBAT
+	db 20, ZUBAT
+	db 18, KOFFING
+	db 19, KOFFING
+	db 20, KOFFING
+	db 18, GRIMER
+	db 19, GRIMER
+	db 20, GRIMER
+	db 18, SANDSHREW
+	db 18, EKANS
+	db 18, RATTATA
+	db 18, MEOWTH
+	db 19, DROWZEE
+	db 20, RATICATE
+	db 20, HYPNO
+.RocketMonsEnd
+
 
 IF DEF(MUSICPLYR)
 SECTION "Music Player", ROMX

@@ -6507,6 +6507,18 @@ SailorGroup:
 	db $ff ; end
 
 ; ================
+
+	db "TREVOR@"
+	db 0
+	db 17, MACHOP
+	db 17, TENTACOOL
+	db $ff
+
+	db "EDMOND@"
+	db 0
+	db 18, MACHOP
+	db 18, SHELLDER
+	db $ff
 ; ================================
 
 

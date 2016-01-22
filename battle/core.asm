@@ -8538,8 +8538,18 @@ Function3f594: ; 3f594
 	xor a
 	ld [TempEnemyMonSpecies], a
 	callab Function3957b
+	ld a, [MapGroup]
+	cp GROUP_S_S_ANNE_5
+	jr nz, .readparty
+	ld a, [MapNumber]
+	cp MAP_S_S_ANNE_5
+	jr nz, .readparty
+	ld a, [EventFlags + (EVENT_ROCKET_TAKEOVER_OF_SS_ANNE >> 3)]
+	bit (EVENT_ROCKET_TAKEOVER_OF_SS_ANNE & 7), a
+	jr nz, .skip_read
+.readparty
 	callab ReadTrainerParty
-
+.skip_read
 	ld a, [TrainerClass]
 	cp RIVAL1
 	jr nz, .ok

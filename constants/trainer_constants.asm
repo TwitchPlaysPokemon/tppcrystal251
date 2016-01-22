@@ -437,6 +437,8 @@
 	const HUEY2
 	const HUEY3
 	const HUEY4
+	const TREVOR_RB
+	const EDMOND_RB
 
 	trainerclass SUPER_NERD ; 29
 	const STAN
