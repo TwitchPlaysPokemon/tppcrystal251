@@ -77,11 +77,6 @@ UnknownScript_0x192895: ; 0x192895
 ; 0x19289d
 
 LinkReceptionistScript_0x19289d: ; 0x19289d
-	checkflag ENGINE_EARLY_GAME_KANTO
-	iftrue .continue_trade
-	jumptextfaceplayer TradeCenterUnderMaintenanceText
-	
-.continue_trade
 	checkevent EVENT_GAVE_MYSTERY_EGG_TO_ELM
 	iffalse UnknownScript_0x19288d
 	loadfont
@@ -1155,17 +1150,6 @@ UnknownText_0x1932bc: ; 0x1932bc
 	line "when you're ready."
 	done
 ; 0x19337f
-
-TradeCenterUnderMaintenanceText:
-	text "I'm so sorry."
-
-	para "The TRADE CENTER"
-	line "is closed for"
-	cont "maintenance."
-
-	para "Please come back"
-	line "later."
-	done
 
 PokeCenter2F_MapEventHeader: ; 0x19337f
 	; filler
