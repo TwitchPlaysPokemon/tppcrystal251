@@ -14,7 +14,7 @@ Function2e56:: ; 2e56
 ; 2e5d
 
 Function2e5d:: ; 2e5d
-	ld a, [wd19a]
+	ld a, [wMapHeaderPermission]
 	cp $2
 	jr z, .asm_2e69
 	cp $1

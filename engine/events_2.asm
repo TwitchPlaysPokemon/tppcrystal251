@@ -100,7 +100,7 @@ Function97cc0:: ; 97cc0
 
 	call Function968c7 ;if wd452 = 1 or 0, ret
 	jr c, .asm_97ce2
-	call Function97cfd ; if encounters are on(?) , is on encounter enabled tile (or wd19a is 4 or 7) and is not on ice tile: continue, else jump out
+	call Function97cfd ; if encounters are on(?) , is on encounter enabled tile (or wMapHeaderPermission is 4 or 7) and is not on ice tile: continue, else jump out
 	jr nc, .asm_97ce2
 	ld hl, StatusFlags2
 	bit 2, [hl] ;if bug catching contest is on(?) branch out
@@ -142,11 +142,11 @@ RockSmashBattleScript: ; 97cf9
 	end
 ; 97cfd
 
-Function97cfd:: ; 97cfd if encounters are on(?) , is on encounter enabled tile (or wd19a is 4 or 7) and is not on ice tile: scf. else and a
-	ld a, [wd19a] ;load ???
-	cp $4 
+Function97cfd:: ; 97cfd if encounters are on(?) , is on encounter enabled tile (or wMapHeaderPermission is 4 or 7) and is not on ice tile: scf. else and a
+	ld a, [wMapHeaderPermission] ;load ???
+	cp CAVE
 	jr z, .asm_97d17
-	cp $7
+	cp DUNGEON
 	jr z, .asm_97d17 ;if 4 or 7 skip ahead
 	callba Function149dd ;if tile is in encounter enabaled tile(?) keep going, else jump out
 	jr nc, .asm_97d21

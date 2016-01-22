@@ -9,6 +9,7 @@ local http = require("socket.http") -- i did this wrong did i
 dofile("battle_ram.lua")
 dofile("constants.lua")
 
+lastBattleState = 0
 military_mode = 0
 ignore_serial = 1 -- please set this to 0 for normal use.
 
@@ -31,12 +32,12 @@ end
 
 function parseString(start_addr, length)
 	outstr = ""
-	vba.print(charmap)
+	-- vba.print(charmap)
 	for i = 0, length do
 		curr_byte = memory.readbyte(start_addr + i)
 		if curr_byte == 0x50 then return outstr end
 		if curr_byte < 0x7f then return outstr end
-		vba.print(string.format("%02X - %s",curr_byte, charmap[curr_byte - 0x7f + 1]))
+		-- vba.print(string.format("%02X - %s",curr_byte, charmap[curr_byte - 0x7f + 1]))
 		outstr = outstr .. charmap[curr_byte - 0x7f + 1]
 	end
 end
@@ -45,7 +46,7 @@ function getMove(movePointer, ppPointer)
 	local move = {}
 	move_idx = memory.readbyte(movePointer)
 	if move_idx == 0 then return nil end
-	move["move"] = moveTable[move_idx + 1]
+	move["name"] = moveTable[move_idx + 1]
 	tempPP = memory.readbyte(ppPointer)
 	move["curpp"] = AND(tempPP, 0x3f)
 	move["ppUp"] = (AND(tempPP, 0xc0)) / 0x40
@@ -56,7 +57,7 @@ end
 function getMoves(movePointer, ppPointer)
 	local moves = {}
 	for i = 0, 3 do
-		moves[string.format("move%d",i+1)] = getMove(movePointer + i, ppPointer + i)
+		table.insert(moves, getMove(movePointer + i, ppPointer + i))
 	end
 	return moves
 end
@@ -81,11 +82,11 @@ function calcGender(dvs, species)
 	-- Reproduce gender calculation from Pokemon Crystal
 	if species == 0 then return "None" end
 	baseGender = GRVal[species]
-	if (baseGender == 255) then return "None" end
-	if (baseGender == 0)   then return "Male" end
-	if (baseGender == 254) then return "Female" end
+	if (baseGender == 255) then return " " end
+	if (baseGender == 0)   then return "♂" end
+	if (baseGender == 254) then return "♀" end
 	attPlusSpeed = dvs["atk"] * 16 + dvs["spd"]
-	if (baseGender < attPlusSpeed) then return "Male" else return "Female" end
+	if (baseGender < attPlusSpeed) then return "♂" else return "♀" end
 end
 
 function getMonType(pointer)
@@ -96,6 +97,16 @@ function getMonType(pointer)
 	else
 		return string.format("%s / %s", typeTable[type1+1], typeTable[type2+1])
 	end
+end
+
+function handleBugCatchingContest()
+	local contest_struct = {}
+	if (AND(memory.readbyte(0xd84d), 0x04) ~= 0) then
+		contest_struct["balls"] = memory.readbyte(0xdc79)
+		contest_struct["caught mon"] = readPartyStruct(0xdf9c)
+		contest_struct["time left"] = string.format("%d:%02d", memory.readbyte(0xd46c), memory.readbyte(0xd46d))
+	end
+	return contest_struct
 end
 
 function getDVs(pointer)
@@ -176,7 +187,7 @@ function getSubstatus(flags, counts, subhp, lockedmove)
 	if (AND(substatus4, 0x80) ~= 0) then table.insert(subStatus, "seeded") end
 
 	-- substatus5
-	if (AND(substatus5, 0x01) ~= 0) then substatus["toxic"] = memory.readbyte(counts + 2) end
+	if (AND(substatus5, 0x01) ~= 0) then subStatus["toxic"] = memory.readbyte(counts + 2) end
 	if (AND(substatus5, 0x04) ~= 0) then table.insert(subStatus, "transformed") end
 	if (AND(substatus5, 0x10) ~= 0) then
 		local encore = {}
@@ -240,6 +251,15 @@ function getPlayerPokemonData()
 	else
 		playerMon["last used"] = moveTable[lastMove + 1]
 	end
+	playerMon["party idx"] = memory.readbyte(0xd0d4)
+	local futureSight = {}
+	futureSight["count"] = memory.readbyte(wPlayerFutureSightCount)
+	futureSight["damage"] = getBigDW(wPlayerFutureSightDamage)
+	playerMon["future sight"] = futureSight
+	playerMon["rage counter"] = memory.readbyte(wPlayerRageCounter)
+	playerMon["trapping move"] = memory.readbyte(wPlayerTrappingMove)
+	playerMon["wrap count"] = memory.readbyte(wPlayerWrapCount)
+	playerMon["charging"] = memory.readbyte(wPlayerCharging)
 	return playerMon
 end
 
@@ -256,6 +276,15 @@ function getEnemyPokemonData()
 	else
 		enemyMon["last used"] = moveTable[lastMove + 1]
 	end
+	enemyMon["party idx"] = memory.readbyte(0xd0d5)
+	local futureSight = {}
+	futureSight["count"] = memory.readbyte(wEnemyFutureSightCount)
+	futureSight["damage"] = getBigDW(wEnemyFutureSightDamage)
+	enemyMon["future sight"] = futureSight
+	enemyMon["rage counter"] = memory.readbyte(wEnemyRageCounter)
+	enemyMon["trapping move"] = memory.readbyte(wEnemyTrappingMove)
+	enemyMon["wrap count"] = memory.readbyte(wEnemyWrapCount)
+	enemyMon["charging"] = memory.readbyte(wEnemyCharging)
 	return enemyMon
 end
 
@@ -270,6 +299,52 @@ function getTrainerItems()
 	return trainerItems
 end
 
+function readPartyStruct(struct_addr)
+	local curr_mon = {}
+	species_idx = memory.readbyte(mon_pointer + 0)
+	curr_mon["species"] = speciesTable[species_idx]
+	curr_mon["item"] = itemTable[memory.readbyte(mon_pointer + 1) + 1]
+	curr_mon["moves"] = getMoves(mon_pointer + 2, mon_pointer + 23)
+	curr_mon["id"] = getBigDW(mon_pointer + 6)
+	curr_mon["exp"] = memory.readbyte(mon_pointer + 8) * 0x10000 + memory.readbyte(mon_pointer + 9) * 0x100 + memory.readbyte(mon_pointer + 10)
+	local statexp = {}
+	statexp["hp"] = getBigDW(mon_pointer + 11)
+	statexp["atk"] = getBigDW(mon_pointer + 13)
+	statexp["def"] = getBigDW(mon_pointer + 15)
+	statexp["spd"] = getBigDW(mon_pointer + 17)
+	statexp["spc"] = getBigDW(mon_pointer + 19)
+	curr_mon["statexp"] = statexp
+	curr_mon["dvs"] = getDVs(mon_pointer + 21)
+	curr_mon["happiness"] = memory.readbyte(mon_pointer + 27)
+	local pokerus = {}
+	pkrs_byte = memory.readbyte(mon_pointer + 28)
+	if pkrs_byte == 0 then
+		pokerus["strain"] = "None"
+		pokerus["count"] = "Uninfected"
+	else
+		pokerus["strain"] = AND(pkrs_byte, 0xf0) / 16
+		if AND(pkrs_byte, 0xf) == 0 then
+			pokerus["count"] = "Immune"
+		else
+			pokerus["count"] = AND(pkrs_byte, 0xf)
+		end
+	end
+	curr_mon["pokerus"] = pokerus
+	curr_mon["level"] = memory.readbyte(mon_pointer + 31)
+	curr_mon["gender"] = calcGender(curr_mon["dvs"], species_idx)
+	curr_mon["status"] = getMonStatus(mon_pointer + 32)
+	curr_mon["hp"] = getBigDW(mon_pointer + 34)
+	local stats = {}
+	stats["maxhp"] = getBigDW(mon_pointer + 36)
+	stats["attack"] = getBigDW(mon_pointer + 38)
+	stats["defense"] = getBigDW(mon_pointer + 40)
+	stats["speed"] = getBigDW(mon_pointer + 42)
+	stats["spatk"] = getBigDW(mon_pointer + 44)
+	stats["spdef"] = getBigDW(mon_pointer + 46)
+	curr_mon["stats"] = stats
+	return curr_mon
+end
+
 function getTrainerParty(partycount_addr)
 	local trainerParty = {}
 	trainerParty["length"] = memory.readbyte(partycount_addr)
@@ -277,49 +352,8 @@ function getTrainerParty(partycount_addr)
 	local party = {}
 	for i = 1, trainerParty["length"] do
 		table.insert(mons, speciesTable[memory.readbyte(partycount_addr + i)])
-		local curr_mon = {}
 		mon_pointer = partycount_addr + 8 + 48 * (i - 1)
-		species_idx = memory.readbyte(mon_pointer + 0)
-		curr_mon["species"] = speciesTable[species_idx]
-		curr_mon["item"] = itemTable[memory.readbyte(mon_pointer + 1) + 1]
-		curr_mon["moves"] = getMoves(mon_pointer + 2, mon_pointer + 23)
-		curr_mon["id"] = getBigDW(mon_pointer + 6)
-		curr_mon["exp"] = memory.readbyte(mon_pointer + 8) * 0x10000 + memory.readbyte(mon_pointer + 9) * 0x100 + memory.readbyte(mon_pointer + 10)
-		local statexp = {}
-		statexp["hp"] = getBigDW(mon_pointer + 11)
-		statexp["atk"] = getBigDW(mon_pointer + 13)
-		statexp["def"] = getBigDW(mon_pointer + 15)
-		statexp["spd"] = getBigDW(mon_pointer + 17)
-		statexp["spc"] = getBigDW(mon_pointer + 19)
-		curr_mon["statexp"] = statexp
-		curr_mon["dvs"] = getDVs(mon_pointer + 21)
-		curr_mon["happiness"] = memory.readbyte(mon_pointer + 27)
-		local pokerus = {}
-		pkrs_byte = memory.readbyte(mon_pointer + 28)
-		if pkrs_byte == 0 then
-			pokerus["strain"] = "None"
-			pokerus["count"] = "Uninfected"
-		else
-			pokerus["strain"] = AND(pkrs_byte, 0xf0) / 16
-			if AND(pkrs_byte, 0xf) == 0 then
-				pokerus["count"] = "Immune"
-			else
-				pokerus["count"] = AND(pkrs_byte, 0xf)
-			end
-		end
-		curr_mon["pokerus"] = pokerus
-		curr_mon["level"] = memory.readbyte(mon_pointer + 31)
-		curr_mon["gender"] = calcGender(curr_mon["dvs"], species_idx)
-		curr_mon["status"] = getMonStatus(mon_pointer + 32)
-		curr_mon["hp"] = getBigDW(mon_pointer + 34)
-		local stats = {}
-		stats["maxhp"] = getBigDW(mon_pointer + 36)
-		stats["attack"] = getBigDW(mon_pointer + 38)
-		stats["defense"] = getBigDW(mon_pointer + 40)
-		stats["speed"] = getBigDW(mon_pointer + 42)
-		stats["spatk"] = getBigDW(mon_pointer + 44)
-		stats["spdef"] = getBigDW(mon_pointer + 46)
-		curr_mon["stats"] = stats
+		curr_mon = readPartyStruct(mon_pointer)
 		curr_mon["nickname"] = parseString(partycount_addr + 8 + 48 * 6 + 11 * 6 + 11 * (i - 1), 11)
 		table.insert(party, curr_mon)
 	end
@@ -363,12 +397,12 @@ function readPlayerPack()
 	return pack
 end
 
-function readBattlestate() --read this ONLY when LUA Serial is called
-    battleState = {}
-    battlemode = memory.readbyte(wBattleMode)
-    svbk = memory.readbyte(rSVBK)
-    
-    vba.print("WRAM bank: ", svbk)
+function readBattlestate(output_table) --read this ONLY when LUA Serial is called
+	battleState = {}
+	battlemode = memory.readbyte(wBattleMode)
+	svbk = memory.readbyte(rSVBK)
+	
+	vba.print("WRAM bank: ", svbk)
 
 	if svbk == 1 then
 		--local output_table = {}
@@ -383,6 +417,9 @@ function readBattlestate() --read this ONLY when LUA Serial is called
 		if battlemode == 0 then
 			vba.print("Not in battle")
 			memory.writebyte(wMilitaryMode, military_mode)
+			if (ignore_serial ~= 1) and (lastBattleState ~= 0) then
+				transferStateToAIAndWait("Battle ended")
+			end
 		else
 			if battlemode == 2 then
 				battleState["enemy type"] = "TRAINER"
@@ -401,34 +438,41 @@ function readBattlestate() --read this ONLY when LUA Serial is called
 			vba.print("Battle State:")
 			vba.print(battleState)
 			output_table["battleState"] = battleState
+			if (ignore_serial ~= 1) and (lastBattleState == 0) then
+				transferStateToAIAndWait("Battle started")
+			end
 		end
-		local raw_json = JSON:encode(output_table)
+		output_table["bug contest"] = handleBugCatchingContest()
+		local raw_json = JSON:encode_pretty(output_table)
+		if ignore_serial ~= 1 then
+			local result = transferStateToAIAndWait(raw_json)
+			vba.print("AI Response:", result)
+			if result ~= nil then sendLUASerial(result) end -- the most important step
+		end
 		file = io.open("battlestate.json", "w+")
-        transferStateToAIAndWait(raw_json)
 		io.output(file)
 		io.write(raw_json)
 		io.close(file)
-    else
-        vba.print("Waiting for bank switch...")
-    end
+		lastBattleState = battlemode
+	else
+		vba.print("Waiting for bank switch...")
+	end
 end
 
 function transferStateToAIAndWait(output_table)
- next_move = http.request("http://localhost:12345/ai/"..JSON:encode(output_table))
- return next_move
- vba.print("AI response:", next_move)
- send(0) -- TODO, plz process next_move appropriately and send to game
+	next_move = http.request("http://localhost:12345/ai/"..JSON:encode_pretty(output_table))
+	return next_move
 end
 
-function send(a)
+function sendLUASerial(a)
 	memory.writebyte(rLSB, a)
 	memory.writebyte(rLSC, BEESAFREE_LSC_COMPLETED)
 end
 
 function readPlayerstate() --loop read this for the overlay
-    svbk = memory.readbyte(rSVBK)
-    local output_table = {}
-    vba.print("WRAM bank: ", svbk)
+	svbk = memory.readbyte(rSVBK)
+	local output_table = {}
+	vba.print("WRAM bank: ", svbk)
 	if svbk == 1 then
 		playerParty = getTrainerParty(PartyCount)
 		vba.print("Player Party:")
@@ -438,15 +482,18 @@ function readPlayerstate() --loop read this for the overlay
 		vba.print(pack)
 		output_table["playerParty"] = playerParty
 		output_table["pack"] = pack
-		if memory.readbyte(rLSC) ~= BEESAFREE_LSC_TRANSFERRING then return end
-		req = memory.readbyte(rLSB)
-		if req == BEESAFREE_SND_RESET then send(BEESAFREE_RES_RESET)
-		elseif req == BEESAFREE_SND_ASKMOVE or ignore_serial == 1 then
-			readBattlestate()
+		if memory.readbyte(rLSC) == BEESAFREE_LSC_TRANSFERRING then
+			req = memory.readbyte(rLSB)
+			if req == BEESAFREE_SND_RESET then sendLUASerial(BEESAFREE_RES_RESET)
+			elseif req == BEESAFREE_SND_ASKMOVE then
+				readBattlestate(output_table)
+			end
+		elseif ignore_serial == 1 then
+			readBattlestate(output_table)
 		end
 	end
 end
 
 repeat
-    readPlayerstate()
+	readPlayerstate()
 until not refreshinterval(0.100)

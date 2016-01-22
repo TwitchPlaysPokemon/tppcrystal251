@@ -37,7 +37,7 @@ PewterCityRBPokemaniac1Script:
 	special RestartMapMusic
 	applymovement $4, Movement_PewterRBPokemaniacReturns
 	disappear $4
-	moveperson $4, 21, 31
+	moveperson $4, 27, 17
 	appear $4
 	end
 

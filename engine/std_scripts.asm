@@ -2419,21 +2419,36 @@ GymStatue1Script: ; 0xbcda0
 	mapnametotext $0
 	loadfont
 	farwritetext UnknownText_0x1b074e
+	checkflag ENGINE_EARLY_GAME_KANTO
+	iffalse .rival_won
 	waitbutton
 	closetext
 	end
 ; 0xbcdaa
+.rival_won
+	buttonsound
+	farwritetext EGKGymStatueTextBefore
+	waitbutton
+	closetext
+	end
 
 GymStatue2Script: ; 0xbcdaa
 	mapnametotext $0
 	loadfont
 	farwritetext UnknownText_0x1b074e
 	buttonsound
+	checkflag ENGINE_EARLY_GAME_KANTO
+	iffalse .rival_won
 	farwritetext UnknownText_0x1b075c
 	waitbutton
 	closetext
 	end
 ; 0xbcdb9
+.rival_won
+	farwritetext EGKGymStatueTextAfter
+	waitbutton
+	closetext
+	end
 
 ReceiveItemScript: ; 0xbcdb9
 	waitsfx

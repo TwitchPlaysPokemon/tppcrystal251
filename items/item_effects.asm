@@ -518,6 +518,8 @@ ParkBall: ; e8a2
 	call PrintText
 
 	callba Function3ee3b
+	ld a, [EnemyMonLevel]
+	ld [CurPartyLevel], a
 	pop af
 	ld [wc64e], a
 	ld [CurPartySpecies], a
@@ -687,6 +689,7 @@ ParkBall: ; e8a2
 	jr .asm_ebe2
 
 .asm_ebd9
+	pop af
 	ld hl, UnknownText_0xedc9
 
 .asm_ebdc

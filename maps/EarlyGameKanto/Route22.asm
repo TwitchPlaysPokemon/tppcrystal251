@@ -185,14 +185,13 @@ _Route22RivalBeforeBattleText1F::
 	line "towards the"
 	cont "#MON LEAGUE?"
 
-	para "I'd hate to"
-	line "dissapoint you"
-	cont "but… don't"
-	cont "bother."
+	para "I hate to disap-"
+	line "point you, but…"
+	cont "Don't bother."
 
 	para "They won't let you"
 	line "in without any"
-	cont "badges…"
+	cont "BADGEs…"
 
 	para "By the way, have"
 	line "you taken good"
@@ -226,7 +225,8 @@ _Route22RivalDefeatedText1F::
 _Route22RivalLossTextF:
 	text "<GREEN>: Oh… I'm"
 	line "sorry. I should've"
-	cont "went easier…"
+	cont "gone easier on"
+	cont "you…"
 	done
 
 _Route22FrontGateText::
