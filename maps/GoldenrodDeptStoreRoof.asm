@@ -212,10 +212,11 @@ UnknownText_0x56a2b: ; 0x56a2b
 
 UnknownText_0x56aa6: ; 0x56aa6
 	text "A FISHER caught a"
-	line "lot of MAGIKARP…"
+	line "lot of REMORAID…"
 
-	para "They're SPLASHing"
-	line "at the same time!"
+	para "They're using"
+	line "WATER GUN at the"
+	cont "same time!"
 
 	para "Look at the water"
 	line "going everywhere!"

@@ -76,7 +76,7 @@ WateredWeirdTreeScript:: ; 0x194053
 	writetext UnknownText_0x1942aa
 	waitbutton
 	closetext
-	loadpokedata SUDOWOODO, 20
+	loadpokedata SUDOWOODO, 40
 	startbattle
 	setevent EVENT_FOUGHT_SUDOWOODO
 	if_equal $2, UnknownScript_0x19407b
@@ -104,6 +104,8 @@ UnknownScript_0x19407b: ; 0x19407b
 LassScript_0x19408c: ; 0x19408c
 	faceplayer
 	loadfont
+	checkevent EVENT_GOT_SQUIRTBOTTLE
+	iftrue UnknownScript_0x1940b3
 	checkevent EVENT_SPOKE_TO_FLOWER_SHOP_GIRL_IN_FLOWER_SHOP
 	iftrue UnknownScript_0x1940b3
 	setevent EVENT_SPOKE_TO_FLOWER_SHOP_GIRL_AT_SUDOWOODO
@@ -147,7 +149,7 @@ FisherScript_0x1940b9: ; 0x1940b9
 UnknownScript_0x1940cd: ; 0x1940cd
 	writetext UnknownText_0x1944d0
 	buttonsound
-	verbosegiveitem TM_ROCK_SMASH, 1
+	verbosegiveitem TM_HYPER_BEAM, 1
 	iffalse UnknownScript_0x1940de
 	setevent EVENT_GOT_TM08_ROCK_SMASH
 UnknownScript_0x1940da: ; 0x1940da

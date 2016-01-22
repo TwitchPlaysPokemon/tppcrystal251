@@ -63,17 +63,15 @@ UnknownText_0x55f52: ; 0x55f52
 ; 0x55f74
 
 UnknownText_0x55f74: ; 0x55f74
-	text "Some #MON"
-	line "evolve only by"
-
-	para "being traded via a"
-	line "Game Link cable."
+	text "Some #MON evolve"
+	line "by being traded"
+	cont "via a Game Link"
+	cont "cable."
 
 	para "I know of four:"
 	line "MACHOKE, KADABRA,"
-
-	para "HAUNTER and, um,"
-	line "GRAVELER."
+	cont "HAUNTER and, um,"
+	cont "GRAVELER."
 
 	para "I heard there are"
 	line "others too."

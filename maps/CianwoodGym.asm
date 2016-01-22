@@ -10,7 +10,7 @@ ChuckScript_0x9d60f: ; 0x9d60f
 	faceplayer
 	loadfont
 	checkevent EVENT_CHUCK_REMATCH
-	iftrue UnknownScript_0x9d656
+	iftrue ChuckAfterRematch
 	checkevent EVENT_FIRST_TIME_RED
 	iftrue ChuckRematchScript
 	checkevent EVENT_BEAT_CHUCK

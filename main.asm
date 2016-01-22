@@ -34727,7 +34727,7 @@ Function2c867: ; 2c867
 	ret c
 	; ld c, $5
 	; callab ChangeHappiness ;+ new move happiness
-	; call Function2cb0c ; remove TM from TM pocket? (will skipping this enable infinite TMs?)
+	; call Function2cb0c ; remove TM from TM pocket
 	jr .asm_2c8bd
 
 .asm_2c8b6
@@ -39661,22 +39661,21 @@ Function4925b: ; 4925b
 	ret
 ; 492a5
 
-Function492a5: ; 492a5
+Function492a5: ; 492a5 load appropriote tutor move into a
+	push hl
+	push bc
+	ld hl, TutorMovesTable
 	ld a, [ScriptVar]
-	cp $1
-	jr z, .asm_492b3
-	cp $2
-	jr z, .asm_492b6
-	ld a, ICE_BEAM
+	ld c, a
+	ld b, 0
+	add hl, bc
+	ld a, [hl]
+	pop bc
+	pop hl
 	ret
 
-.asm_492b3
-	ld a, FLAMETHROWER
-	ret
-
-.asm_492b6
-	ld a, THUNDERBOLT
-	ret
+TutorMovesTable:
+	db 0, FLAMETHROWER, THUNDERBOLT, ICE_BEAM, ICE_PUNCH, THUNDERPUNCH, FIRE_PUNCH
 ; 492b9
 
 Function492b9: ; 492b9

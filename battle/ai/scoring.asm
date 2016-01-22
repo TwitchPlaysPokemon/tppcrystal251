@@ -2457,9 +2457,7 @@ AI_Smart_RapidSpin: ; 39084
 	jr nz, .asm_39097
 
 	ld a, [EnemyScreens]
-	bit SCREENS_SPIKES, a
-	ret z
-	bit SCREENS_SPIKES2, a
+	and SCREENS_SPIKES | SCREENS_SPIKES2
 	ret z
 
 .asm_39097

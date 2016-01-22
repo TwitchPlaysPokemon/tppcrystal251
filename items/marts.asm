@@ -110,9 +110,11 @@ Mart4: ; 16111
 ; 16118
 
 Mart5: ; 16118
-	db 7 ; # items
+	db 9 ; # items
+	db HYPER_POTION
 	db SUPER_POTION
 	db POTION
+	db FULL_HEAL
 	db ANTIDOTE
 	db PARLYZ_HEAL
 	db AWAKENING
@@ -122,24 +124,26 @@ Mart5: ; 16118
 ; 16121
 
 Mart6: ; 16121
-	db 8 ; # items
+	db 10 ; # items
+	db ULTRA_BALL
 	db GREAT_BALL
 	db POKE_BALL
 	db ESCAPE_ROPE
+	db MAX_REPEL
+	db SUPER_REPEL
 	db REPEL
 	db REVIVE
-	db FULL_HEAL
 	db POKE_DOLL
 	db FLOWER_MAIL
 	db $ff
 ; 1612b
 
 Mart7: ; 1612b
-	db 7 ; # items
+	db 7 ; # items goldenrod
+	db X_ATTACK
 	db X_SPEED
 	db X_SPECIAL
 	db X_DEFEND
-	db X_ATTACK
 	db DIRE_HIT
 	db GUARD_SPEC
 	db X_ACCURACY
@@ -167,6 +171,7 @@ Mart9: ; 1613b
 	db TM_SUNNY_DAY
 	db TM_THUNDER_WAVE
 	db TM_STRING_SHOT
+	db TM_SEISMIC_TOSS
 	db $ff
 ; 16140
 
@@ -181,7 +186,7 @@ Mart10: ; 16140
 	db SOFT_SAND
 	db POISON_BARB
 	db MIRACLE_SEED
-	db STICK
+	db QUICK_CLAW
 	db $ff
 ; 16146
 

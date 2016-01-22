@@ -23,13 +23,13 @@ UnknownScript_0x1988e7: ; 0x1988e7
 ; 0x1988e8
 
 UnknownScript_0x1988e8: ; 0x1988e8
-	checkevent EVENT_FIRST_TIME_HALL_OF_FAME
+	checkevent EVENT_CLEARED_RADIO_TOWER
 	iffalse UnknownScript_0x198908
 	checkitem COIN_CASE
-	iffalse UnknownScript_0x1988fd
-	checkcode VAR_WEEKDAY
-	if_equal WEDNESDAY, UnknownScript_0x198900
-	if_equal SATURDAY, UnknownScript_0x198900
+	iftrue UnknownScript_0x198900
+		;checkcode VAR_WEEKDAY
+		;if_equal WEDNESDAY, UnknownScript_0x198900
+		;if_equal SATURDAY, UnknownScript_0x198900
 UnknownScript_0x1988fd: ; 0x1988fd
 	disappear $10
 	return
@@ -49,11 +49,11 @@ PokefanMScript_0x198909: ; 0x198909
 	writetext UnknownText_0x199042 ;shall I teach
 	yesorno
 	iffalse UnknownScript_0x19899a ;no
-	special Function24b25 ;comething to do with coins and text
+	special Function24b25 ;something to do with coins and text
 	writetext UnknownText_0x199090 ;will cost coins
 	yesorno
 	iffalse UnknownScript_0x1989a0
-	checkcoins 4000
+	checkcoins 2000
 	if_equal $2, UnknownScript_0x1989dd ;check for coins
 	writetext UnknownText_0x1990ce
 	loadmenudata MenuDataHeader_0x198967
@@ -76,9 +76,9 @@ UnknownScript_0x19893a: ; 0x19893a
 UnknownScript_0x198949: ; 0x198949
 	writebyte $2
 	writetext UnknownText_0x1991cf
-	special Function4925b
-	if_equal $0, UnknownScript_0x1989a6
-	jump UnknownScript_0x1989d7
+	special Function4925b ;teach move
+	if_equal $0, UnknownScript_0x1989a6 ;if done
+	jump UnknownScript_0x1989d7 ;else quit
 ; 0x198958
 
 UnknownScript_0x198958: ; 0x198958
@@ -125,28 +125,30 @@ UnknownScript_0x1989a0: ; 0x1989a0
 UnknownScript_0x1989a6: ; 0x1989a6
 	writetext UnknownText_0x19913a
 	buttonsound
-	takecoins 4000
+	takecoins 2000
 	waitsfx
 	playsound SFX_TRANSACTION
-	special Function24b25
+	special Function24b25 ;coin related
 	writetext UnknownText_0x19918b
 	waitbutton
 	closetext
-	checkcode VAR_FACING
-	if_equal $2, UnknownScript_0x1989c6
-	applymovement $10, MovementData_0x198a5f
-	jump UnknownScript_0x1989ca
+	end
+
+	;checkcode VAR_FACING
+	;if_equal $2, UnknownScript_0x1989c6
+	;applymovement $10, MovementData_0x198a5f
+	;jump UnknownScript_0x1989ca
 ; 0x1989c6
 
-UnknownScript_0x1989c6: ; 0x1989c6
-	applymovement $10, MovementData_0x198a63
-UnknownScript_0x1989ca: ; 0x1989ca
-	playsound SFX_ENTER_DOOR
-	disappear $10
-	clearevent EVENT_POKEFAN_M_IN_GOLDENROD_GAME_CORNER
-	setflag ENGINE_5E
-	waitsfx
-	end
+;UnknownScript_0x1989c6: ; 0x1989c6
+;	applymovement $10, MovementData_0x198a63
+;UnknownScript_0x1989ca: ; 0x1989ca
+;	playsound SFX_ENTER_DOOR
+;	disappear $10
+;	clearevent EVENT_POKEFAN_M_IN_GOLDENROD_GAME_CORNER
+;	setflag ENGINE_5E
+;	waitsfx
+;	end
 ; 0x1989d7
 
 UnknownScript_0x1989d7: ; 0x1989d7
@@ -303,20 +305,20 @@ MapGoldenrodCitySignpost11Script: ; 0x198a5c
 	jumptext UnknownText_0x199022
 ; 0x198a5f
 
-MovementData_0x198a5f: ; 0x198a5f
-	step_right
-	step_right
-	step_up
-	step_end
+;MovementData_0x198a5f: ; 0x198a5f
+;	step_right
+;	step_right
+;	step_up
+;	step_end
 ; 0x198a63
 
-MovementData_0x198a63: ; 0x198a63
-	step_down
-	step_right
-	step_right
-	step_up
-	step_up
-	step_end
+;MovementData_0x198a63: ; 0x198a63
+;	step_down
+;	step_right
+;	step_right
+;	step_up
+;	step_up
+;	step_end
 ; 0x198a69
 
 UnknownText_0x198a69: ; 0x198a69
@@ -541,10 +543,10 @@ UnknownText_0x198fee: ; 0x198fee
 	done
 ; 0x199004
 
-UnknownText_0x199004: ; 0x199004
-	text "For Mobile Tips!"
-	line "#COM CENTER"
-	done
+;UnknownText_0x199004: ; 0x199004
+;	text "For Mobile Tips!"
+;	line "#COM CENTER"
+;	done
 ; 0x199022
 
 UnknownText_0x199022: ; 0x199022
@@ -567,7 +569,7 @@ UnknownText_0x199042: ; 0x199042
 
 UnknownText_0x199090: ; 0x199090
 	text "It will cost you"
-	line "4000 coins. Okay?"
+	line "2000 coins. Okay?"
 	done
 ; 0x1990b4
 
