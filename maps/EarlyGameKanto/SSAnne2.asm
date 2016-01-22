@@ -236,15 +236,15 @@ _SSAnneRivalCaptainTextF:
 SSAnne2_MapEventHeader
 	db 0, 0
 	db 9
-	warp_def 11,  9,  0, GROUP_S_S_ANNE_9, MAP_S_S_ANNE_9
-	warp_def 11, 13,  2, GROUP_S_S_ANNE_9, MAP_S_S_ANNE_9
-	warp_def 11, 17,  4, GROUP_S_S_ANNE_9, MAP_S_S_ANNE_9
-	warp_def 11, 21,  6, GROUP_S_S_ANNE_9, MAP_S_S_ANNE_9
-	warp_def 11, 25,  8, GROUP_S_S_ANNE_9, MAP_S_S_ANNE_9
-	warp_def 11, 29, 10, GROUP_S_S_ANNE_9, MAP_S_S_ANNE_9
-	warp_def  4,  2,  8, GROUP_S_S_ANNE_1, MAP_S_S_ANNE_1
-	warp_def 12,  2,  1, GROUP_S_S_ANNE_3, MAP_S_S_ANNE_3
-	warp_def  4, 36,  0, GROUP_S_S_ANNE_7, MAP_S_S_ANNE_7
+	warp_def 11,  9,  1, GROUP_S_S_ANNE_9, MAP_S_S_ANNE_9
+	warp_def 11, 13,  3, GROUP_S_S_ANNE_9, MAP_S_S_ANNE_9
+	warp_def 11, 17,  5, GROUP_S_S_ANNE_9, MAP_S_S_ANNE_9
+	warp_def 11, 21,  7, GROUP_S_S_ANNE_9, MAP_S_S_ANNE_9
+	warp_def 11, 25,  9, GROUP_S_S_ANNE_9, MAP_S_S_ANNE_9
+	warp_def 11, 29, 11, GROUP_S_S_ANNE_9, MAP_S_S_ANNE_9
+	warp_def  4,  2,  9, GROUP_S_S_ANNE_1, MAP_S_S_ANNE_1
+	warp_def 12,  2,  2, GROUP_S_S_ANNE_3, MAP_S_S_ANNE_3
+	warp_def  4, 36,  1, GROUP_S_S_ANNE_7, MAP_S_S_ANNE_7
 
 	db 2
 	xy_trigger 0,  8, 36, $0, SSAnne2RivalBattleTriggerLeft, 0, 0

@@ -67,17 +67,17 @@ SSAnne1Rocket2Text:
 SSAnne1_MapEventHeader:
 	db 0, 0
 	db 11
-	warp_def  0, 26, 1, GROUP_VERMILION_DOCK, MAP_VERMILION_DOCK
-	warp_def  0, 27, 1, GROUP_VERMILION_DOCK, MAP_VERMILION_DOCK
-	warp_def  8, 31, 0, GROUP_S_S_ANNE_8, MAP_S_S_ANNE_8
-	warp_def  8, 23, 1, GROUP_S_S_ANNE_8, MAP_S_S_ANNE_8
-	warp_def  8, 19, 2, GROUP_S_S_ANNE_8, MAP_S_S_ANNE_8
-	warp_def  8, 15, 3, GROUP_S_S_ANNE_8, MAP_S_S_ANNE_8
-	warp_def  8, 11, 4, GROUP_S_S_ANNE_8, MAP_S_S_ANNE_8
-	warp_def  8,  7, 5, GROUP_S_S_ANNE_8, MAP_S_S_ANNE_8
-	warp_def  6,  2, 6, GROUP_S_S_ANNE_2, MAP_S_S_ANNE_2
-	warp_def 15, 37, 5, GROUP_S_S_ANNE_4, MAP_S_S_ANNE_4
-	warp_def 16,  3, 0, GROUP_S_S_ANNE_6, MAP_S_S_ANNE_6
+	warp_def  0, 26, 2, GROUP_VERMILION_DOCK, MAP_VERMILION_DOCK
+	warp_def  0, 27, 2, GROUP_VERMILION_DOCK, MAP_VERMILION_DOCK
+	warp_def  8, 31, 1, GROUP_S_S_ANNE_8, MAP_S_S_ANNE_8
+	warp_def  8, 23, 2, GROUP_S_S_ANNE_8, MAP_S_S_ANNE_8
+	warp_def  8, 19, 3, GROUP_S_S_ANNE_8, MAP_S_S_ANNE_8
+	warp_def  8, 15, 4, GROUP_S_S_ANNE_8, MAP_S_S_ANNE_8
+	warp_def  8, 11, 5, GROUP_S_S_ANNE_8, MAP_S_S_ANNE_8
+	warp_def  8,  7, 6, GROUP_S_S_ANNE_8, MAP_S_S_ANNE_8
+	warp_def  6,  2, 7, GROUP_S_S_ANNE_2, MAP_S_S_ANNE_2
+	warp_def 15, 37, 6, GROUP_S_S_ANNE_4, MAP_S_S_ANNE_4
+	warp_def 16,  3, 1, GROUP_S_S_ANNE_6, MAP_S_S_ANNE_6
 
 	db 0
 

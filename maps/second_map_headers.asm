@@ -747,7 +747,7 @@
 	map_header_2 VermilionDock, VERMILION_DOCK, $4d, NONE
 	map_header_2 SSAnne1, S_S_ANNE_1, $c, NONE
 	map_header_2 SSAnne2, S_S_ANNE_2, $c, NONE
-	; map_header_2 SSAnne3, S_S_ANNE_3, $c, NONE
+	map_header_2 SSAnne3, S_S_ANNE_3, $c, NONE
 	; map_header_2 SSAnne4, S_S_ANNE_4, $c, NONE
 	; map_header_2 SSAnne5, S_S_ANNE_5, $23, NONE
 	; map_header_2 SSAnne6, S_S_ANNE_6, $c, NONE

@@ -2269,9 +2269,13 @@ RADIO_TOWER_MUSIC EQU 7
 	ret
 
 .radiotower
+	and $7f
+	cp MUSIC_S_S_ANNE
+	jr z, .ssanne
 	ld a, [StatusFlags2]
 	bit 0, a
 	jr z, .clearedradiotower
+.rocket
 	ld de, MUSIC_ROCKET_OVERTURE
 	jr .done
 
@@ -2294,6 +2298,11 @@ RADIO_TOWER_MUSIC EQU 7
 	ld de, MUSIC_CHERRYGROVE_CITY
 	jr .done
 ; 2cff
+.ssanne
+	ld a, [EventFlags + (EVENT_ROCKET_TAKEOVER_OF_SS_ANNE >> 3)]
+	bit (EVENT_ROCKET_TAKEOVER_OF_SS_ANNE & 7), a
+	jr nz, .rocket
+	jr .clearedradiotower
 
 Function2cff:: ; 2cff
 	call Function2d0d ;put first nyble of ToD data into a
