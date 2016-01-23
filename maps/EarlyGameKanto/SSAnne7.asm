@@ -121,39 +121,39 @@ SSAnne7SeasicknessBookScript:
 	jumptext _SSAnne7Text3
 
 SSAnne7_Rocket1RunsUpToCaptainLeft:
-	big_step_right
-	big_step_right
-	big_step_right
-	big_step_up
-	big_step_up
-	big_step_up
-	big_step_up
-	big_step_up
+	step_right
+	step_right
+	step_right
+	step_up
+	step_up
+	step_up
+	step_up
+	step_up
 	turn_head_right
 	step_end
 
 SSAnne7_Rocket1RunsUpToCaptainBelow:
-	big_step_right
-	big_step_right
-	big_step_right
-	big_step_right
-	big_step_up
-	big_step_up
-	big_step_up
-	big_step_up
+	step_right
+	step_right
+	step_right
+	step_right
+	step_up
+	step_up
+	step_up
+	step_up
 	step_end
 
 SSAnne7_Rocket1RunsUpToCaptainRight:
-	big_step_right
-	big_step_right
-	big_step_right
-	big_step_right
-	big_step_up
-	big_step_up
-	big_step_up
-	big_step_up
-	big_step_right
-	big_step_up
+	step_right
+	step_right
+	step_right
+	step_right
+	step_up
+	step_up
+	step_up
+	step_up
+	step_right
+	step_up
 	turn_head_left
 	step_end
 
@@ -222,9 +222,13 @@ SSAnne7Text_CaptainSetsSail4:
 
 SSAnne7Text_RocketsText:
 	text "Not another word,"
-	line "gramps."
+	line "CAPTAIN."
+	cont "This is a mutiny."
 
-	para "This is a mutiny!"
+	para "Come quietly, or"
+	line "you will expe-"
+	cont "rience a world of"
+	cont "pain."
 	done
 
 SSAnne7Text_CaptainConfused:
@@ -257,4 +261,4 @@ SSAnne7_MapEventHeader:
 	db 3
 	person_event SPRITE_GRAMPS, 6, 8, $7, 0, 0, -1, -1, 8 + PAL_OW_RED, 0, 0, SSAnne7CaptainScript, EVENT_ROCKET_TAKEOVER_OF_SS_ANNE
 	person_event SPRITE_ROCKET, 11, 4, $7, 0, 0, -1, -1, 0, 0, 0, ObjectEvent, EVENT_S_S_ANNE_7_ROCKETS
-	person_event SPRITE_ROCKET, 11, 4, $7, 0, 0, -1, -1, 0, 0, 0, ObjectEvent, EVENT_S_S_ANNE_7_ROCKETS
+	person_event SPRITE_GIOVANNI, 11, 4, $7, 0, 0, -1, -1, 0, 0, 0, ObjectEvent, EVENT_S_S_ANNE_7_ROCKETS

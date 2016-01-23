@@ -2448,6 +2448,10 @@ YoungsterGroup:
 	db 17, RATTATA
 	db 19, RATICATE
 	db $ff
+
+	db "TYLER@"
+	db 0
+	db 21, NIDORAN_M
 ; ================================
 
 
@@ -3455,6 +3459,12 @@ LassGroup:
 	db 13, ODDISH
 	db 14, PIDGEY
 	db 13, ODDISH
+	db $ff
+
+	db "ANN@"
+	db 0
+	db 18, PIDGEY
+	db 18, NIDORAN_F
 	db $ff
 
 ; ================
@@ -5008,7 +5018,19 @@ GentlemanGroup:
 	db 0
 	db 18, VOLTORB
 	db 18, MAGNEMITE
+	db $ff
 
+	db "ARTHUR@"
+	db 0
+	db 19, NIDORAN_M
+	db 19, NIDORAN_F
+	db $ff
+
+	db "THOMAS@"
+	db (1 << TRAINERTYPE_NICKNAME)
+	db 18, GROWLITHE, "FIDO@"
+	db 18, GROWLITHE, "MAX@"
+	db $ff
 ; ================
 ; ================================
 
