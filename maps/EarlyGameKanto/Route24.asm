@@ -126,7 +126,7 @@ NuggetBridgeRBEndGuyScript:
 	winlosstext Route24RBRocketWinText, 0
 	startbattle
 	returnafterbattle
-	playmapmusic
+	special RestartMapMusic
 	dotrigger $1
 	setevent EVENT_NUGGET_BRIDGE_TRAINER_6_RB
 	loadfont
