@@ -60,10 +60,10 @@ UnknownText_0x19a5de: ; 0x19a5de
 	line "power of #MON"
 	cont "for attacking."
 
-	para "Remember this: its"
-	line "type and power de-"
-	cont "pend on the #-"
-	cont "MON using it."
+	para "Remember this:"
+	line "its type depends"
+	cont "on the #MON"
+	cont "using it."
 	done
 ; 0x19a673
 

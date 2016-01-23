@@ -79,7 +79,8 @@ UnknownScript_0x70057: ; 0x70057
 ; 0x70063
 
 ChargingGyarados:
-
+	writetext RIPGrapsText
+	applymovement $a, GyaradosCharge ;fallthrough
 
 GyaradosScript_0x70063: ; 0x70063
 	loadfont
@@ -107,13 +108,23 @@ UnknownScript_0x7007a: ; 0x7007a
 	end
 ; 0x7008e
 
+GyaradosCharge:
+	fast_slide_step_right
+	fast_slide_step_right
+	fast_slide_step_right
+	fast_slide_step_right
+	fast_slide_step_right
+	fast_slide_step_right
+	fast_slide_step_right
+	step_end
+
 GrampsScript_0x7008e: ; 0x7008e
 	faceplayer
 	loadfont
 	checkevent EVENT_CLEARED_ROCKET_HIDEOUT
 	iftrue UnknownScript_0x7009c
 	writetext UnknownText_0x703f8
-	checkevent EVENT_CLEARED_ROCKET_HIDEOUT
+	checkevent EVENT_RED_GYARADOS
 	iffalse ChargingGyarados
 	waitbutton
 	closetext
@@ -434,6 +445,7 @@ UnknownText_0x703f8: ; 0x703f8
 RIPGrapsText:
 	text "Oh no! it's"
 	line "charging!"
+	done
 ; 0x70421
 
 UnknownText_0x70421: ; 0x70421

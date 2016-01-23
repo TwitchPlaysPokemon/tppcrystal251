@@ -26,7 +26,7 @@ UnknownText_0x1963f9: ; 0x1963f9
 	line "BEEDRILL on"
 	cont "CYCLING ROAD."
 
-	para "It was scary"
+	para "It was scary."
 	done
 ; 0x196428
 
