@@ -2148,8 +2148,10 @@ wRoute24RBTrigger::                          ds 1
 wRoute5SaffronGateRBTrigger::                ds 1
 wRoute6SaffronGateRBTrigger::                ds 1
 wVermilionCityRBTrigger::                    ds 1
+wSSAnne2Trigger::                            ds 1
+wSSAnne5Trigger::                            ds 1
 
-	ds 24
+	ds 22
 
 
 SECTION "Events", WRAMX, BANK [1]
@@ -2186,11 +2188,6 @@ wda0d:: ds 1
 	ds 100
 
 EventFlags:: ; da72
-;RoomDecorations:: ; dac6
-;TeamRocketAzaleaTownAttackEvent:: ; db51
-;PoliceAtElmsLabEvent:: ; db52
-;SalesmanMahoganyTownEvent:: ; db5c
-;RedGyaradosEvent:: ; db5c
 	flag_array 2000
 ; db6c
 

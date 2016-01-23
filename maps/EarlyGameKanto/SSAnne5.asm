@@ -38,7 +38,7 @@ SSAnne5_MapScriptHeader:
 	reloadmapmusic
 	reloadmap
 	iftrue .InfiniteRockets
-	dotrigger 1
+	dotrigger 0
 	loadfont
 	writetext SSAnne5TextAfter
 	waitbutton
@@ -53,6 +53,7 @@ SSAnne5_MapScriptHeader:
 	pause 180
 	setflag ENGINE_EARLY_GAME_KANTO
 	warpfacing DOWN, GROUP_CHERRYGROVE_CITY, MAP_CHERRYGROVE_CITY, 10, 10
+	blackoutmod GROUP_CHERRYGROVE_CITY, MAP_CHERRYGROVE_CITY
 	end
 
 .GetWinText
@@ -255,15 +256,16 @@ _SSAnne5BattleText2:
 	done
 
 _SSAnne5EndBattleText2:
-	text "I was"
-	line "just careless!"
+	text "I was just"
+	line "careless!"
 	done
 
 _SSAnne5AfterBattleText2:
 	text "My Pa said there"
 	line "are 150 kinds of"
-	cont "#MON. I think"
-	cont "there are more."
+	cont "#MON."
+	para "I think there are"
+	line "more."
 	done
 
 
