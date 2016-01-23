@@ -307,7 +307,7 @@ PryceRematchTextBefore:
 	done
 
 PryceRematchBeatenText:
-	text "Hmm.
+	text "Hmm."
 	
 	para "Seems as if my"
 	line "luck has run out."

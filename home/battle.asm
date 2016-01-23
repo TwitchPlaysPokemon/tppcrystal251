@@ -310,17 +310,18 @@ CELL_PHONE_TOP    EQU $5e
 CELL_PHONE_BOTTOM EQU $5f
 
 	; For mobile link battles only.
-	ld a, [wLinkMode]
-	cp 4
+	;ld a, [wLinkMode]
+	;cp 4
+	scf
 	ret c
 
 	; Draw a cell phone icon at the
 	; top right corner of the border.
-	hlcoord 19, 12
-	ld [hl], CELL_PHONE_TOP
-	hlcoord 19, 13
-	ld [hl], CELL_PHONE_BOTTOM
-	ret
+	;hlcoord 19, 12
+	;ld [hl], CELL_PHONE_TOP
+	;hlcoord 19, 13
+	;ld [hl], CELL_PHONE_BOTTOM
+	;ret
 ; 3ac3
 
 

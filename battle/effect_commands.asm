@@ -1306,7 +1306,7 @@ BattleCommand05: ; 34631
 	db KARATE_CHOP, RAZOR_LEAF, CRABHAMMER, SLASH, AEROBLAST, CROSS_CHOP, SKY_ATTACK, SHADOW_CLAW, DRILL_RUN, $ff ;crit+ moves
 .Chances
 	; 6.25% 12.1% 24.6% 33.2% 49.6% 66.015% 75.3%
-	db $11,  $20,  $40,  $55,  $80,  $A8,   $c0
+	db $11,  $80,  $ff,  $ff,  $ff,  $ff,   $ff
 	;   0     1     2     3     4     5     6
 ; 346b2
 
@@ -4311,15 +4311,27 @@ BattleCommand62: ; 35612
 	ld a, [CriticalHit]
 	and a
 	ret z
-
-; x2
-	ld a, [$ffb6]
-	add a
-	ld [$ffb6], a
+	push hl
+	push de
+; x1.5
 
 	ld a, [$ffb5]
-	rl a
+	ld h, a
+	srl a
+	ld d, a
+
+	ld a, [$ffb6]
+	ld l, a
+	rr a
+	ld e, a
+
+	add hl, de
+	ld a, l
+	ld [$ffb6], a
+	ld a, h
 	ld [$ffb5], a
+	pop de
+	pop hl
 
 ; Cap at $ffff.
 	ret nc

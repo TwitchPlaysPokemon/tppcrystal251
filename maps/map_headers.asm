@@ -257,7 +257,7 @@ MapGroup11:
 	map_header GoldenrodDeptStoreRoof, $c, 3, GOLDENROD_CITY, MUSIC_MART, 0, 1, 1
 	map_header GoldenrodGameCorner, $e, 3, GOLDENROD_CITY, MUSIC_GAME_CORNER, 0, 1, 1
 	map_header GoldenrodPokeCenter1F, $7, 3, GOLDENROD_CITY, MUSIC_POKEMON_CENTER, 0, 1, 1
-	map_header GoldenrodPokeComCenter2FMobile, $15, 3, GOLDENROD_CITY, MUSIC_POKEMON_CENTER, 0, 1, 1
+		;map_header GoldenrodPokeComCenter2FMobile, $15, 3, GOLDENROD_CITY, MUSIC_POKEMON_CENTER, 0, 1, 1
 	map_header IlexForestAzaleaGate, $8, 6, ROUTE_34, MUSIC_ROUTE_36, 0, 1, 1
 	map_header Route34IlexForestGate, $8, 6, ROUTE_34, MUSIC_ROUTE_36, 0, 1, 1
 	map_header DayCare, $5, 3, ROUTE_34, MUSIC_AZALEA_TOWN, 0, 1, 1
@@ -589,10 +589,10 @@ MapGroup35:
 	map_header SSAnne1, $2a, 6, S_S_ANNE, $80 | MUSIC_S_S_ANNE, 1, 1, 1
 	map_header SSAnne2, $2a, 6, S_S_ANNE,$80 |  MUSIC_S_S_ANNE, 1, 1, 1
 	map_header SSAnne3, $2a, 6, S_S_ANNE, $80 | MUSIC_S_S_ANNE, 1, 1, 1
-	; map_header SSAnne4, $2a, 6, S_S_ANNE, $80 | MUSIC_S_S_ANNE, 1, 1, 1
-	; map_header SSAnne5, $2a, 6, S_S_ANNE, $80 | MUSIC_S_S_ANNE, 1, 1, 1
-	; map_header SSAnne6, $2a, 6, S_S_ANNE, $80 | MUSIC_S_S_ANNE, 1, 1, 1
-	; map_header SSAnne7, $2a, 6, S_S_ANNE, $80 | MUSIC_S_S_ANNE, 1, 1, 1
-	; map_header SSAnne8, $2a, 6, S_S_ANNE, $80 | MUSIC_S_S_ANNE, 1, 1, 1
-	; map_header SSAnne9, $2a, 6, S_S_ANNE, $80 | MUSIC_S_S_ANNE, 1, 1, 1
-	; map_header SSAnne10, $2a, 6, S_S_ANNE, $80 | MUSIC_S_S_ANNE, 1, 1, 1
+	map_header SSAnne4, $2a, 6, S_S_ANNE, $80 | MUSIC_S_S_ANNE, 1, 1, 1
+	map_header SSAnne5, $2a, 6, S_S_ANNE, $80 | MUSIC_S_S_ANNE, 1, 1, 1
+	map_header SSAnne6, $2a, 6, S_S_ANNE, $80 | MUSIC_S_S_ANNE, 1, 1, 1
+	map_header SSAnne7, $2a, 6, S_S_ANNE, $80 | MUSIC_S_S_ANNE, 1, 1, 1
+	map_header SSAnne8, $2a, 6, S_S_ANNE, $80 | MUSIC_S_S_ANNE, 1, 1, 1
+	map_header SSAnne9, $2a, 6, S_S_ANNE, $80 | MUSIC_S_S_ANNE, 1, 1, 1
+	map_header SSAnne10, $2a, 6, S_S_ANNE, $80 | MUSIC_S_S_ANNE, 1, 1, 1

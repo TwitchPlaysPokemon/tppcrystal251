@@ -11079,7 +11079,7 @@ Function11890: ; 11890 (4:5890)
 	ld [wc6d9], a
 	ret
 
-Function1189c: ; 1189c
+NamingScreen_IsTargetBox: ; 1189c
 	push bc
 	push af
 	ld a, [wc6d4]
@@ -11099,14 +11099,14 @@ Function118a8: ; 118a8
 	call ByteFill
 	hlcoord 1, 1
 	ld bc, $0612
-	call Function1189c
+	call NamingScreen_IsTargetBox
 	jr nz, .asm_118c4
 	ld bc, $0412
 .asm_118c4
 	call ClearBox
 	ld de, NameInputUpper
-Function118ca: ; 118ca
-	call Function1189c
+NamingScreen_ApplyTextInputMode: ; 118ca
+	call NamingScreen_IsTargetBox
 	jr nz, .asm_118d5
 	ld hl, BoxNameInputLower - NameInputLower
 	add hl, de
@@ -11116,7 +11116,7 @@ Function118ca: ; 118ca
 	push de
 	hlcoord 1, 8
 	ld bc, $0712
-	call Function1189c
+	call NamingScreen_IsTargetBox
 	jr nz, .asm_118e7
 	hlcoord 1, 6
 	ld bc, $0912
@@ -11128,7 +11128,7 @@ Function118ca: ; 118ca
 	pop de
 	hlcoord 2, 8
 	ld b, $5
-	call Function1189c
+	call NamingScreen_IsTargetBox
 	jr nz, .asm_11903
 	hlcoord 2, 6
 	ld b, $6
@@ -11175,7 +11175,7 @@ Function11940: ; 11940
 	xor a
 	ld [hBGMapMode], a
 	hlcoord 1, 5
-	call Function1189c
+	call NamingScreen_IsTargetBox
 	jr nz, .asm_1194e
 	hlcoord 1, 3
 .asm_1194e
@@ -11209,12 +11209,12 @@ Function11968: ; 11968
 ; 11977
 
 Jumptable_11977: ; 11977 (4:5977)
-	dw Function1197b
-	dw Function119a1
+	dw .InitCursor
+	dw .ReadButtons
 
-Function1197b: ; 1197b (4:597b)
+.InitCursor: ; 1197b (4:597b)
 	lb de, $50, $18
-	call Function1189c
+	call NamingScreen_IsTargetBox
 	jr nz, .asm_11985
 	ld d, $40
 .asm_11985
@@ -11232,7 +11232,7 @@ Function1197b: ; 1197b (4:597b)
 	ld [hl], a
 	
 	ld e, 4
-	call Function1189c
+	call NamingScreen_IsTargetBox
 	jr nz, .loop1
 	inc e
 .loop1
@@ -11243,7 +11243,7 @@ Function1197b: ; 1197b (4:597b)
 	ld e, a
 	
 	ld d, 9
-	call Function1189c
+	call NamingScreen_IsTargetBox
 	jr nz, .loop2
 	inc d
 .loop2
@@ -11271,7 +11271,7 @@ Function1197b: ; 1197b (4:597b)
 	inc [hl]
 	ret
 
-Function119a1: ; 119a1 (4:59a1)
+.ReadButtons: ; 119a1 (4:59a1)
 	ld hl, hJoyPressed ; $ffa7
 	ld a, [hl]
 	and A_BUTTON
@@ -11288,20 +11288,15 @@ Function119a1: ; 119a1 (4:59a1)
 	ret
 
 .a
-	call Function11a0b
+	call .GetCursorPosition
 	cp $1
 	jr z, .select
 	cp $2
 	jr z, .b
 	cp $3
-	jr z, .asm_119eb
-	call Function11c11
-	call Function11b14
-	push af
-	ld a, [wc6da]
-	and a
-	call z, .set_lower
-	pop af
+	jr z, .end
+	call NamingScreen_GetLastCharacer
+	call NamingScreen_TryAddCharacer
 	ret nc
 	ld hl, wc6d5
 	ld c, [hl]
@@ -11313,7 +11308,7 @@ Function119a1: ; 119a1 (4:59a1)
 	ld hl, $d
 	add hl, bc
 	ld [hl], $4
-	call Function1189c
+	call NamingScreen_IsTargetBox
 	ret nz
 	inc [hl]
 	ret
@@ -11335,11 +11330,11 @@ Function119a1: ; 119a1 (4:59a1)
 	jr .set_lower
 
 .b
-	call Function11bbc
+	call NamingScreen_DeleteCharacter
 	ret
 
-.asm_119eb
-	call Function11bf7
+.end
+	call NamingScreen_StoreEntry
 	ld hl, wcf63
 	set 7, [hl]
 	ret
@@ -11362,54 +11357,55 @@ Function119a1: ; 119a1 (4:59a1)
 	
 .set_lower
 	ld de, NameInputLower
-	call Function118ca
+	call NamingScreen_ApplyTextInputMode
 	ret
 
 .set_upper
 	ld de, NameInputUpper
-	call Function118ca
+	call NamingScreen_ApplyTextInputMode
 	ret
+
 
 .upper_str
 	db $61, "UPPER@"
 
-Function11a0b: ; 11a0b (4:5a0b)
+.GetCursorPosition: ; 11a0b (4:5a0b)
 	ld hl, wc6d5
 	ld c, [hl]
 	inc hl
 	ld b, [hl]
-Function11a11: ; 11a11 (4:5a11)
+NamingScreen_GetCursorPosition: ; 11a11 (4:5a11)
 	ld hl, $d
 	add hl, bc
 	ld a, [hl]
 	push bc
 	ld b, $4
-	call Function1189c
-	jr nz, .asm_11a1f
+	call NamingScreen_IsTargetBox
+	jr nz, .not_box
 	inc b
-.asm_11a1f
+.not_box
 	cp b
 	pop bc
-	jr nz, .asm_11a39
+	jr nz, .not_bottom_row
 	ld hl, $c
 	add hl, bc
 	ld a, [hl]
 	cp $3
-	jr c, .asm_11a33
+	jr c, .case_switch
 	cp $6
-	jr c, .asm_11a36
+	jr c, .delete
 	ld a, $3
 	ret
 
-.asm_11a33
+.case_switch
 	ld a, $1
 	ret
 
-.asm_11a36
+.delete
 	ld a, $2
 	ret
 
-.asm_11a39
+.not_bottom_row
 	xor a
 	ret
 
@@ -11424,7 +11420,7 @@ Function11a3b: ; 11a3b (4:5a3b)
 	add hl, bc
 	ld [hl], e
 	ld d, $4
-	call Function1189c
+	call NamingScreen_IsTargetBox
 	jr nz, .asm_11a53
 	inc d
 .asm_11a53
@@ -11476,7 +11472,7 @@ Function11a8b: ; 11a8b (4:5a8b)
 	ret
 
 .right
-	call Function11a11
+	call NamingScreen_GetCursorPosition
 	and a
 	jr nz, .asm_11ab7
 	ld hl, $c
@@ -11505,7 +11501,7 @@ Function11a8b: ; 11a8b (4:5a8b)
 	ret
 
 .left
-	call Function11a11
+	call NamingScreen_GetCursorPosition
 	and a
 	jr nz, .asm_11ad8
 	ld hl, $c
@@ -11539,7 +11535,7 @@ Function11a8b: ; 11a8b (4:5a8b)
 	ld hl, $d
 	add hl, bc
 	ld a, [hl]
-	call Function1189c
+	call NamingScreen_IsTargetBox
 	jr nz, .asm_11af9
 	cp $5
 	jr nc, .asm_11aff
@@ -11567,12 +11563,12 @@ Function11a8b: ; 11a8b (4:5a8b)
 
 .asm_11b0c
 	ld [hl], $4
-	call Function1189c
+	call NamingScreen_IsTargetBox
 	ret nz
 	inc [hl]
 	ret
 
-Function11b14: ; 11b14 (4:5b14)
+NamingScreen_TryAddCharacer: ; 11b14 (4:5b14)
 	ld a, [wc6d7]
 Function11b17: ; 11b17 (4:5b17)
 	ld a, [wc6d3]
@@ -11640,7 +11636,7 @@ Handakutens: ; 11ba7
 	db $ff
 ; 11bbc
 
-Function11bbc: ; 11bbc (4:5bbc)
+NamingScreen_DeleteCharacter: ; 11bbc (4:5bbc)
 	ld hl, wc6d2
 	ld a, [hl]
 	and a
@@ -11688,7 +11684,7 @@ Function11be0: ; 11be0
 	ret
 ; 11bf7
 
-Function11bf7: ; 11bf7 (4:5bf7)
+NamingScreen_StoreEntry: ; 11bf7 (4:5bf7)
 	ld hl, wc6d0
 	ld a, [hli]
 	ld h, [hl]
@@ -11709,7 +11705,7 @@ Function11bf7: ; 11bf7 (4:5bf7)
 	jr nz, .asm_11c01
 	ret
 
-Function11c11: ; 11c11 (4:5c11)
+NamingScreen_GetLastCharacer: ; 11c11 (4:5c11)
 	ld hl, wc6d5
 	ld c, [hl]
 	inc hl
@@ -12049,7 +12045,7 @@ Function1203a: ; 1203a (4:603a)
 	jr z, .b
 	cp $3
 	jr z, .asm_120a1
-	call Function11c11
+	call NamingScreen_GetLastCharacer
 	call Function121ac
 	jr c, .start
 	ld hl, wc6d2
@@ -12077,7 +12073,7 @@ Function1203a: ; 1203a (4:603a)
 	ret
 
 .b
-	call Function11bbc
+	call NamingScreen_DeleteCharacter
 	ld hl, wc6d2
 	ld a, [hl]
 	cp $10
@@ -12090,7 +12086,7 @@ Function1203a: ; 1203a (4:603a)
 	ret
 
 .asm_120a1
-	call Function11bf7
+	call NamingScreen_StoreEntry
 	ld hl, wcf63
 	set 7, [hl]
 	ret
@@ -20321,6 +20317,7 @@ Unknown_15cbf: ; 15cbf
 	dw UnknownText_0x15faa
 	dw UnknownText_0x15fa0
 	dw Function15cef
+	dw Text_PremierBallBonus
 
 Unknown_15ccb: ; 15ccb
 	dw UnknownText_0x15e4f
@@ -20329,6 +20326,7 @@ Unknown_15ccb: ; 15ccb
 	dw UnknownText_0x15e5e
 	dw UnknownText_0x15e59
 	dw Function15cef
+	dw Text_PremierBallBonus
 
 Unknown_15cd7: ; 15cd7
 	dw Function15cef
@@ -20337,6 +20335,7 @@ Unknown_15cd7: ; 15cd7
 	dw UnknownText_0x15e7c
 	dw UnknownText_0x15e77
 	dw UnknownText_0x15e81
+	dw Text_PremierBallBonus
 
 Unknown_15ce3: ; 15ce3
 	dw UnknownText_0x15e95
@@ -20345,6 +20344,7 @@ Unknown_15ce3: ; 15ce3
 	dw UnknownText_0x15ea4
 	dw UnknownText_0x15e9f
 	dw Function15cef
+	dw Text_PremierBallBonus
 ; 15cef
 
 Function15cef: ; 15cef
@@ -20365,9 +20365,6 @@ Function15cef: ; 15cef
 	ld a, [wcf73]
 	cp $2
 	jr z, .asm_15d6d
-	cp $1
-	jr z, .asm_15d27
-.asm_15d27
 	call Function15c91
 	jr c, .asm_15d68
 	call Function15d97
@@ -20391,6 +20388,25 @@ Function15cef: ; 15cef
 	ld bc, $ffc3
 	call Function15ffa
 	ld a, $4
+	call Function15c7d
+	call Functiona36
+	callba CheckItemPocket
+	ld a, [wd142]
+	cp BALL
+	jr nz, .asm_15d68
+	ld a, [wd10c]
+	cp 10
+	jr c, .asm_15d68
+	ld a, PREMIER_BALL
+	ld [CurItem], a
+	ld a, [wd10c]
+	ld c, 10
+	call SimpleDivide
+	ld a, b
+	ld [wd10c], a
+	ld hl, NumItems
+	call ReceiveItem
+	ld a, $6
 	call Function15c7d
 	call Functiona36
 .asm_15d68
@@ -20680,6 +20696,9 @@ UnknownText_0x15eae: ; 0x15eae
 	text_jump UnknownText_0x1c4ef6
 	db "@"
 ; 0x15eb3
+Text_PremierBallBonus:
+	text_jump _Text_PremierBallBonus
+	db "@"
 
 Function15eb3: ; 15eb3
 	call Function2ed3
@@ -35436,7 +35455,7 @@ PlayBattleMusic: ; 2ee6c
 	; really, they should have included admins and scientists here too...
 	ld de, MUSIC_ROCKET_BATTLE
 	call RocketMusicCheck
-	jr nc, .okay_rocket
+	jr c, .okay_rocket
 	ld de, MUSIC_KANTO_TRAINER_BATTLE
 .okay_rocket
 	cp GRUNTM
@@ -35906,6 +35925,14 @@ Function3991b: ; 3991b (e:591b)
 	ret
 
 Function39939:: ; 39939
+	ld a, [StatusFlags]
+	bit 5, a
+	jr nz, .skip
+	ld a, [EventFlags + (EVENT_ROCKET_TAKEOVER_OF_SS_ANNE >> 3)]
+	bit (EVENT_ROCKET_TAKEOVER_OF_SS_ANNE & 7), a
+	ld hl, ReadTrainerName_GruntName
+	jp nz, Function39984
+.skip
 	ld a, [InBattleTowerBattle]
 	bit 0, a
 	ld hl, wd26b
@@ -35964,6 +35991,8 @@ Function39984: ; 39984
 	pop de
 	ret
 ; 39990
+ReadTrainerName_GruntName:
+	db "GRUNT@"
 
 INCLUDE "trainers/trainer_pointers.asm"
 
@@ -94218,9 +94247,9 @@ SampleRandomRocket:
 	add hl, hl
 	add hl, de
 	ld a, [hli]
-	ld [CurPartySpecies], a
-	ld a, [hl]
 	ld [CurPartyLevel], a
+	ld a, [hl]
+	ld [CurPartySpecies], a
 	ld a, OTPARTYMON
 	ld [MonType], a
 	predef Functiond88c
@@ -94228,24 +94257,25 @@ SampleRandomRocket:
 	inc c
 	jr .loop
 
-.RocketMons:
-	db ZUBAT, 18
-	db ZUBAT, 19
-	db ZUBAT, 20
-	db KOFFING, 18
-	db KOFFING, 19
-	db KOFFING, 20
-	db GRIMER, 18
-	db GRIMER, 19
-	db GRIMER, 20
-	db SANDSHREW, 18
-	db EKANS, 18
-	db RATTATA, 18
-	db MEOWTH, 18
-	db DROWZEE, 19
-	db RATICATE, 20
-	db HYPNO, 20
-.RocketMonsEnd:
+.RocketMons
+	db 18, ZUBAT
+	db 19, ZUBAT
+	db 20, ZUBAT
+	db 18, KOFFING
+	db 19, KOFFING
+	db 20, KOFFING
+	db 18, GRIMER
+	db 19, GRIMER
+	db 20, GRIMER
+	db 18, SANDSHREW
+	db 18, EKANS
+	db 18, RATTATA
+	db 18, MEOWTH
+	db 19, DROWZEE
+	db 20, RATICATE
+	db 20, HYPNO
+.RocketMonsEnd
+
 
 IF DEF(MUSICPLYR)
 SECTION "Music Player", ROMX

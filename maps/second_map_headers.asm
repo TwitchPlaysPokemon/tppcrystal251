@@ -447,7 +447,7 @@
 	map_header_2 GoldenrodDeptStoreRoof, GOLDENROD_DEPT_STORE_ROOF, $24, NONE ; 0x95fcc
 	map_header_2 GoldenrodGameCorner, GOLDENROD_GAME_CORNER, $0, NONE ; 0x95fd8
 	map_header_2 GoldenrodPokeCenter1F, GOLDENROD_POKECENTER_1F, $0, NONE ; 0x95fe4
-	map_header_2 GoldenrodPokeComCenter2FMobile, GOLDENROD_POKECOM_CENTER_2F_MOBILE, $0, NONE ; 0x95ff0
+		;map_header_2 GoldenrodPokeComCenter2FMobile, GOLDENROD_POKECOM_CENTER_2F_MOBILE, $0, NONE ; 0x95ff0
 	map_header_2 IlexForestAzaleaGate, ILEX_FOREST_AZALEA_GATE, $0, NONE ; 0x95ffc
 	map_header_2 Route34IlexForestGate, ROUTE_34_ILEX_FOREST_GATE, $0, NONE ; 0x96008
 	map_header_2 DayCare, DAY_CARE, $0, NONE ; 0x96014

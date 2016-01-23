@@ -2730,7 +2730,7 @@ MoltresEvosAttacks:
 	db 98,STEEL_WING
 	db 98,AGILITY
 	db 99,FLAMETHROWER
-	db 99,SOLAR_BEAM
+	db 99,SOLARBEAM
 	db 100,SUNNY_DAY
 	db 100,HEAT_WAVE
 	db 0 ; no more level-up moves
@@ -2802,7 +2802,7 @@ MewEvosAttacks:
 	db 1,SUBMISSION
     db 1,PSYCHIC
     db 1,METRONOME
-    db 1,LOVELY KISS
+    db 1,LOVELY_KISS
     db 100,EXPLOSION
     db 100,SKETCH
 	db 100,TRANSFORM
