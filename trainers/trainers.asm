@@ -3467,6 +3467,12 @@ LassGroup:
 	db 18, NIDORAN_F
 	db $ff
 
+	db "DAWN@"
+	db 0
+	db 18, RATTATA
+	db 18, PIKACHU
+	db $ff
+
 ; ================
 ; ================================
 
@@ -5031,6 +5037,17 @@ GentlemanGroup:
 	db 18, GROWLITHE, "FIDO@"
 	db 18, GROWLITHE, "MAX@"
 	db $ff
+
+	db "BROOKS@"
+	db (1 << TRAINERTYPE_ITEM)
+	db 23, PIKACHU, LIGHT_BALL
+	db $ff
+
+	db "LAMAR@"
+	db 0
+	db 17, GROWLITHE
+	db 17, PONYTA
+	db $ff
 ; ================
 ; ================================
 
@@ -5825,6 +5842,20 @@ FisherGroup:
 
 	db $ff ; end
 
+	db "DALE@"
+	db 0
+	db 17, GOLDEEN
+	db 19, GOLDEEN
+	db 17, TENTACOOL
+	db $ff
+
+	db "BARNY@"
+	db 0
+	db 17, TENTACOOL
+	db 17, STARYU
+	db 17, SHELLDER
+	db $ff
+
 ; ================
 ; ================================
 
@@ -6540,6 +6571,36 @@ SailorGroup:
 	db 0
 	db 18, MACHOP
 	db 18, SHELLDER
+	db $ff
+
+	db "PHILLIP@"
+	db 0
+	db 20, MACHOP
+	db $ff
+
+	db "HUEY@"
+	db 0
+	db 18, TENTACOOL
+	db 18, STARYU
+	db $ff
+
+	db "DYLAN@"
+	db 0
+	db 17, HORSEA
+	db 18, HORSEA
+	db 19, HORSEA
+	db $ff
+
+	db "DUNCAN@"
+	db 0
+	db 17, HORSEA
+	db 19, SHELLDER
+	db 17, TENTACOOL
+	db $ff
+
+	db "LEONARD@"
+	db 0
+	db 21, SHELLDER
 	db $ff
 ; ================================
 
