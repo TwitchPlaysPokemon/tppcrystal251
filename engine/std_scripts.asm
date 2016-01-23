@@ -903,6 +903,7 @@ InitializeEventsScript: ; 0xbc3db
 	setevent EVENT_ROCKETS_SS_ANNE_2
 	setevent EVENT_ROCKETS_SS_ANNE_1
 	setevent EVENT_SS_ANNE_SIMON
+	setevent EVENT_S_S_ANNE_7_ROCKETS
 	return
 ; 0xbc574
 
