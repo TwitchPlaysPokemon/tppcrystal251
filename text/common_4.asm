@@ -804,6 +804,12 @@ UnknownText_0x1c500d: ; 0x1c500d
 	done
 ; 0x1c502e
 
+_Text_PremierBallBonus:
+	text "You also get a"
+	line "PREMIER BALL as an"
+	cont "added bonus."
+	done
+
 UnknownText_0x1c502e: ; 0x1c502e
 	text "Got ¥@"
 	deciram $ffc3, $36

@@ -34,8 +34,8 @@ MtMoonB3FRBDomeFossilScript:
 	disappear $8
 	playsound SFX_ITEM
 	waitsfx
-	closetext
 .finish
+	closetext
 	end
 
 MtMoonB3FRBHelixFossilScript:
@@ -52,8 +52,8 @@ MtMoonB3FRBHelixFossilScript:
 	disappear $7
 	playsound SFX_ITEM
 	waitsfx
-	closetext
 .finish
+	closetext
 	end
 
 Trainer_MtMoonB3FRBRocket1:

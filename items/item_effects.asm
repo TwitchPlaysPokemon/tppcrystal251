@@ -19,7 +19,7 @@ ItemEffects: ; e73c
 	dw Brightpowder
 	dw GreatBall
 	dw PokeBall
-	dw TownMap
+	dw PremierBall ; TownMap
 	dw Bicycle
 	dw MoonStone
 	dw Antidote
@@ -208,6 +208,7 @@ FriendBall:
 MoonBall:
 LoveBall:
 ParkBall: ; e8a2
+PremierBall:
 	ld a, [wBattleMode]
 	dec a
 	jp nz, Functionf7a0
@@ -1160,10 +1161,10 @@ Functionedfa: ; edfa (3:6dfa)
 	callba Function2715c
 	ret
 
-TownMap: ; ee01
-	callba Function91ae1
-	ret
-; ee08
+; TownMap: ; ee01
+	; callba Function91ae1
+	; ret
+; ; ee08
 
 
 Bicycle: ; ee08

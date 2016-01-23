@@ -83,6 +83,9 @@ DoRivalBattleSSAnne:
 	dotrigger 1
 	end
 
+SSAnne2RocketScript:
+	jumptextfaceplayer SSAnne2RocketText
+
 Movement_SSAnneRivalWalksStraightDown:
 	slow_step_down
 	slow_step_down
@@ -233,6 +236,14 @@ _SSAnneRivalCaptainTextF:
 	para "See you around!"
 	done
 
+SSAnne2RocketText:
+	text "The mutiny was a"
+	line "success!"
+
+	para "BOSS will be so"
+	line "pleased!"
+	done
+
 SSAnne2_MapEventHeader
 	db 0, 0
 	db 9
@@ -251,6 +262,14 @@ SSAnne2_MapEventHeader
 	xy_trigger 0,  8, 37, $0, SSAnne2RivalBattleTriggerRight, 0, 0
 
 	db 0
-	db 2
-	person_event SPRITE_GENTLEMAN, 11,  7, $4, 2, 0, -1, -1, 0, 0, 0, SSAnne2GentlemanScript, EVENT_ROCKETS_NOT_YET_BOARDED_SS_ANNE
+	db 10
+	person_event SPRITE_GENTLEMAN, 11,  7, $4, 2, 0, -1, -1, 0, 0, 0, SSAnne2GentlemanScript, EVENT_ROCKET_TAKEOVER_OF_SS_ANNE
 	person_event SPRITE_EGK_RIVAL,  8, 36, $0, 0, 0, -1, -1, 0, 0, 0, ObjectEvent, EVENT_SS_ANNE_EGK_RIVAL
+	person_event SPRITE_ROCKET,    16, 13, $6, 0, 0, -1, -1, 0, 0, 0, SSAnne2RocketScript, EVENT_ROCKET_TAKEOVER_OF_SS_ANNE
+	person_event SPRITE_ROCKET,    16, 17, $6, 0, 0, -1, -1, 0, 0, 0, SSAnne2RocketScript, EVENT_ROCKET_TAKEOVER_OF_SS_ANNE
+	person_event SPRITE_ROCKET,    16, 21, $6, 0, 0, -1, -1, 0, 0, 0, SSAnne2RocketScript, EVENT_ROCKET_TAKEOVER_OF_SS_ANNE
+	person_event SPRITE_ROCKET,    16, 25, $6, 0, 0, -1, -1, 0, 0, 0, SSAnne2RocketScript, EVENT_ROCKET_TAKEOVER_OF_SS_ANNE
+	person_event SPRITE_ROCKET_GIRL,    16, 29, $6, 0, 0, -1, -1, 0, 0, 0, SSAnne2RocketScript, EVENT_ROCKET_TAKEOVER_OF_SS_ANNE
+	person_event SPRITE_ROCKET,    16, 33, $6, 0, 0, -1, -1, 0, 0, 0, SSAnne2RocketScript, EVENT_ROCKET_TAKEOVER_OF_SS_ANNE
+	person_event SPRITE_ROCKET,    14, 7, $6, 0, 0, -1, -1, 0, 0, 0, SSAnne2RocketScript, EVENT_ROCKET_TAKEOVER_OF_SS_ANNE
+	person_event SPRITE_ROCKET_GIRL,    14, 6, $6, 0, 0, -1, -1, 0, 0, 0, SSAnne2RocketScript, EVENT_ROCKET_TAKEOVER_OF_SS_ANNE

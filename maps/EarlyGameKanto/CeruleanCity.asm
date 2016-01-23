@@ -86,7 +86,18 @@ CeruleanCityRBSuperNerdScript:
 	jumptextfaceplayer _CeruleanCityText3
 
 CeruleanCityRBCooltrainerM1Script:
-	jumptextfaceplayer _CeruleanCityText4
+	loadfont
+	checkevent EVENT_CERULEAN_CITY_RB_STOPPED_ROBBERY
+	iftrue .after
+	writetext _CeruleanCityText4
+	waitbutton
+	closetext
+	end
+.after
+	writetext _CeruleanCityText4After
+	waitbutton
+	closetext
+	end
 	
 CeruleanCityRBCooltrainerM2Script:
 	jumptextfaceplayer _CeruleanCityText5
@@ -479,6 +490,16 @@ _CeruleanCityText4:
 
 	para "There might be a"
 	line "way around."
+	done
+
+_CeruleanCityText4After:
+	text "#MON have fee-"
+	line "lings, too."
+
+	para "If you let them"
+	line "faint too often,"
+	cont "they'll be un-"
+	cont "happy with you."
 	done
 
 _CeruleanCityText5:

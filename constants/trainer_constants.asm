@@ -128,6 +128,7 @@
 	const DAVE_RB
 	const DILLON_RB
 	const YASU_RB
+	const TYLER_RB
 
 	trainerclass SCHOOLBOY ; 17
 	const JACK1
@@ -203,6 +204,8 @@
 	const ALI_RB
 	const RELI_RB
 	const HALEY_RB
+	const ANN_RB
+	const DAWN_RB
 
 	trainerclass JANINE ; 1a
 	const JANINE_1
@@ -303,6 +306,10 @@
 	const JASPER_RB
 	const DARIAN_RB
 	const DIRK_RB
+	const ARTHUR_RB
+	const THOMAS_RB
+	const BROOKS_RB
+	const LAMAR_RB
 
 	trainerclass SKIER ; 21
 	const ROXANNE
@@ -376,6 +383,8 @@
 	const RALPH4
 	const RALPH5
 	const TULLY4
+	const DALE_RB
+	const BARNY_RB
 
 	trainerclass SWIMMERM ; 26
 	const HAROLD
@@ -437,6 +446,13 @@
 	const HUEY2
 	const HUEY3
 	const HUEY4
+	const TREVOR_RB
+	const EDMOND_RB
+	const PHILLIP_RB
+	const HUEY_RB
+	const DYLAN_RB
+	const DUNCAN_RB
+	const LEONARD_RB
 
 	trainerclass SUPER_NERD ; 29
 	const STAN
