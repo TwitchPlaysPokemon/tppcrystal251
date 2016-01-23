@@ -20281,6 +20281,7 @@ Unknown_15cbf: ; 15cbf
 	dw UnknownText_0x15faa
 	dw UnknownText_0x15fa0
 	dw Function15cef
+	dw Text_PremierBallBonus
 
 Unknown_15ccb: ; 15ccb
 	dw UnknownText_0x15e4f
@@ -20289,6 +20290,7 @@ Unknown_15ccb: ; 15ccb
 	dw UnknownText_0x15e5e
 	dw UnknownText_0x15e59
 	dw Function15cef
+	dw Text_PremierBallBonus
 
 Unknown_15cd7: ; 15cd7
 	dw Function15cef
@@ -20297,6 +20299,7 @@ Unknown_15cd7: ; 15cd7
 	dw UnknownText_0x15e7c
 	dw UnknownText_0x15e77
 	dw UnknownText_0x15e81
+	dw Text_PremierBallBonus
 
 Unknown_15ce3: ; 15ce3
 	dw UnknownText_0x15e95
@@ -20305,6 +20308,7 @@ Unknown_15ce3: ; 15ce3
 	dw UnknownText_0x15ea4
 	dw UnknownText_0x15e9f
 	dw Function15cef
+	dw Text_PremierBallBonus
 ; 15cef
 
 Function15cef: ; 15cef
@@ -20325,9 +20329,6 @@ Function15cef: ; 15cef
 	ld a, [wcf73]
 	cp $2
 	jr z, .asm_15d6d
-	cp $1
-	jr z, .asm_15d27
-.asm_15d27
 	call Function15c91
 	jr c, .asm_15d68
 	call Function15d97
@@ -20351,6 +20352,25 @@ Function15cef: ; 15cef
 	ld bc, $ffc3
 	call Function15ffa
 	ld a, $4
+	call Function15c7d
+	call Functiona36
+	callba CheckItemPocket
+	ld a, [wd142]
+	cp BALL
+	jr nz, .asm_15d68
+	ld a, [wd10c]
+	cp 10
+	jr c, .asm_15d68
+	ld a, PREMIER_BALL
+	ld [CurItem], a
+	ld a, [wd10c]
+	ld c, 10
+	call SimpleDivide
+	ld a, b
+	ld [wd10c], a
+	ld hl, NumItems
+	call ReceiveItem
+	ld a, $6
 	call Function15c7d
 	call Functiona36
 .asm_15d68
@@ -20640,6 +20660,9 @@ UnknownText_0x15eae: ; 0x15eae
 	text_jump UnknownText_0x1c4ef6
 	db "@"
 ; 0x15eb3
+Text_PremierBallBonus:
+	text_jump _Text_PremierBallBonus
+	db "@"
 
 Function15eb3: ; 15eb3
 	call Function2ed3

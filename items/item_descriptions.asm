@@ -37,7 +37,7 @@ ItemDescriptions:
 	dw BrightpowderDesc
 	dw GreatBallDesc
 	dw PokeBallDesc
-	dw TeruSama1Desc
+	dw PremierBallDesc
 	dw BicycleDesc
 	dw MoonStoneDesc
 	dw AntidoteDesc
@@ -308,8 +308,9 @@ PokeBallDesc:
 	db   "An item for catch-"
 	next "ing #MON.@"
 
-TeruSama1Desc:
-	db   "?@"
+PremierBallDesc:
+	db   "A commemorative"
+	next "BALL for an event.@"
 
 BicycleDesc:
 	db   "A collapsible bike"

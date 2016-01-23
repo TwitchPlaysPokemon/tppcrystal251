@@ -6,7 +6,7 @@
 	const BRIGHTPOWDER
 	const GREAT_BALL
 	const POKE_BALL
-	const LAPTOP        ;NEW
+	const PREMIER_BALL   ;NEW
 	const BICYCLE
 	const MOON_STONE
 	const ANTIDOTE
