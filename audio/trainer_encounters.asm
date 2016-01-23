@@ -21,7 +21,7 @@ PlayTrainerEncounterMusic:: ; e900a
 	cp MUSIC_ROCKET_ENCOUNTER
 	jr nz, .play
 	call RocketMusicCheck
-	jr nc, .play
+	jr c, .play
 	ld a, MUSIC_HIKER_ENCOUNTER
 .play
 	ld e, a
