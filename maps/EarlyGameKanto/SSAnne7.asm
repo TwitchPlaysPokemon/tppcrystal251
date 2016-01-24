@@ -4,7 +4,13 @@ SSAnne7_MapScriptHeader:
 
 SSAnne7CaptainScript:
 	loadfont
+	checkevent EVENT_S_S_ANNE_RUBBED_CAPTAINS_BACK
+	iftrue .rubbed_back
 	writetext _SSAnne7RubText
+	playmusic MUSIC_HEAL
+	pause 60
+	setevent EVENT_S_S_ANNE_RUBBED_CAPTAINS_BACK
+	special RestartMapMusic
 	waitbutton
 	closetext
 	faceplayer
@@ -16,7 +22,7 @@ SSAnne7CaptainScript:
 	special Functiond91
 	playmusic MUSIC_HEAL
 	special HealParty
-	blackoutmod GROUP_S_S_ANNE_1, MAP_S_S_ANNE_1
+	blackoutmod GROUP_S_S_ANNE_10, MAP_S_S_ANNE_10
 	pause 60
 	special Function8c0ab
 	special RestartMapMusic
@@ -42,6 +48,15 @@ SSAnne7CaptainScript:
 	writetext SSAnne7Text_CaptainSetsSail4
 	waitbutton
 	closetext
+	special Function114fc
+	end
+
+.rubbed_back
+	writetext SSAnne7Text_CaptainSetsSail5
+	waitbutton
+	closetext
+	checkflag ENGINE_51
+	iffalse .end
 	appear $3
 	playsound SFX_EXIT_BUILDING
 	waitsfx
@@ -113,6 +128,7 @@ SSAnne7CaptainScript:
 	waitsfx
 	special Function8c0ab
 	special RestartMapMusic
+.end
 	end
 
 SSAnne7TrashcanScript:
@@ -218,6 +234,44 @@ SSAnne7Text_CaptainSetsSail4:
 
 	para $56, " ", $56, " ", $56
 	line $56, " ", $56, "Huh?"
+
+	para "You wanted to get"
+	line "off in VERMILION?"
+
+	para "Oh, this is un-"
+	line "usual", $75
+
+	para "If we go back now,"
+	line "other passengers"
+	cont "will be upset."
+
+	para "It'll be another"
+	line "year before we"
+	cont "can return."
+
+	para "Our next port of"
+	line "call is OLIVINE"
+	cont "CITY in around"
+	cont "a week's time."
+
+	para "If you get off in"
+	line "OLIVINE, we can"
+	cont "arrange FAST SHIP"
+	cont "passage back to"
+	cont "VERMILION CITY."
+
+	para "Meanwhile, you're"
+	line "welcome to enjoy"
+	cont "our onboard"
+	cont "luxury services."
+	done
+
+SSAnne7Text_CaptainSetsSail5:
+	text "Ah, <PLAYER>!"
+
+	para "Are you enjoying"
+	line "your stay aboard"
+	cont "the S.S.ANNE?"
 	done
 
 SSAnne7Text_RocketsText:

@@ -975,6 +975,7 @@ Unknown_cd26c: ; cd26c
 	db ULTRA_BALL,  3
 	db GREAT_BALL,  6
 	db POKE_BALL,   4
+	db PREMIER_BALL, 3
 	db HEAVY_BALL,  2
 	db LEVEL_BALL,  7
 	db LURE_BALL,   6

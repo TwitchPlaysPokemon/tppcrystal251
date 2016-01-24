@@ -587,7 +587,7 @@ MapGroup35:
 	map_header UndergroundRB, $1c, 6, UNDERGROUND, MUSIC_ROUTE_1, 0, 2, 1
 	map_header VermilionDock, $2a, 6, S_S_ANNE, $80 | MUSIC_S_S_ANNE, 1, 0, 0
 	map_header SSAnne1, $2a, 6, S_S_ANNE, $80 | MUSIC_S_S_ANNE, 1, 1, 1
-	map_header SSAnne2, $2a, 6, S_S_ANNE,$80 |  MUSIC_S_S_ANNE, 1, 1, 1
+	map_header SSAnne2, $2a, 6, S_S_ANNE, $80 | MUSIC_S_S_ANNE, 1, 1, 1
 	map_header SSAnne3, $2a, 6, S_S_ANNE, $80 | MUSIC_S_S_ANNE, 1, 1, 1
 	map_header SSAnne4, $2a, 6, S_S_ANNE, $80 | MUSIC_S_S_ANNE, 1, 1, 1
 	map_header SSAnne5, $2a, 6, S_S_ANNE, $80 | MUSIC_S_S_ANNE, 1, 1, 1

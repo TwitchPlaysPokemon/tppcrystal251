@@ -517,7 +517,9 @@ Function9693a: ; 9693a
 	jr z, .asm_96951
 
 	callba Function114a4
-	jr c, .elevator
+	jr c, .bug_contest_over
+	callba Function1150c
+	jr c, .ssanne_arrived
 	xor a
 	ret
 
@@ -531,11 +533,14 @@ Function9693a: ; 9693a
 	xor a
 	ret
 
-.elevator
+.bug_contest_over
 	ld a, BANK(UnknownScript_0x135f8)
 	ld hl, UnknownScript_0x135f8
 	call CallScript
 	scf
+	ret
+.ssanne_arrived
+	callba Function1151c
 	ret
 ; 96970
 

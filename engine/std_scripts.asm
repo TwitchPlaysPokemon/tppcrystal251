@@ -860,11 +860,11 @@ InitializeEventsScript: ; 0xbc3db
 	variablesprite SPRITE_EGK_BILL, SPRITE_FAIRY
 	checkflag ENGINE_PLAYER_IS_FEMALE
 	iftrue .rival_is_male
-	variablesprite SPRITE_EGK_RIVAL, SPRITE_KRIS
+	variablesprite SPRITE_EGK_RIVAL, SPRITE_AZURE
 	jump .done_rival
 
 .rival_is_male
-	variablesprite SPRITE_EGK_RIVAL, SPRITE_CHRIS
+	variablesprite SPRITE_EGK_RIVAL, SPRITE_RUST
 .done_rival
 	setevent EVENT_FOUND_MACHINE_PART_IN_CERULEAN_GYM
 	setevent EVENT_ROCKET_IN_CERULEAN_GYM

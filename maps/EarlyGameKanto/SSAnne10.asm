@@ -80,6 +80,33 @@ SSAnne10Nugget:
 SSAnne10MaxPotion:
 	db MAX_POTION, 1
 
+SSAnne10BedScript:
+	loadfont
+	writetext _SSAnne10BedText1
+	waitbutton
+	closetext
+	special Special_FadeToBlack
+	special Functiond91
+	playmusic MUSIC_HEAL
+	special HealParty
+	special DecrementSSAnneTimer
+	blackoutmod GROUP_S_S_ANNE_10, MAP_S_S_ANNE_10
+	pause 60
+	special Function8c0ab
+	special RestartMapMusic
+	loadfont
+	checkflag ENGINE_PLAYER_IS_FEMALE
+	iftrue .female
+	writetext _SSAnne10BedText2
+	waitbutton
+	closetext
+	end
+.female
+	writetext _SSAnne10BedText2F
+	waitbutton
+	closetext
+	end
+
 _SSAnne10Text8:
 	text "MACHOKE: Gwoh!"
 	line "Goggoh!"
@@ -193,11 +220,26 @@ _SSAnne10Text7:
 	cont "big rocks!"
 	done
 
+_SSAnne10BedText1:
+	text "It's a comfy bed."
+	line "Let's take a nap", $75
+	done
 
+_SSAnne10BedText2:
+	text "<PLAYER> and his"
+	line "#MON woke up"
+	cont "feeling refreshed!"
+	done
+
+_SSAnne10BedText2F:
+	text "<PLAYER> and her"
+	line "#MON woke up"
+	cont "feeling refreshed!"
+	done
 
 SSAnne10_MapEventHeader:
 	db 0, 0
-	db 10
+	db 12
 	db  5,  2, 5, GROUP_S_S_ANNE_4, MAP_S_S_ANNE_4
 	db  5,  3, 5, GROUP_S_S_ANNE_4, MAP_S_S_ANNE_4
 	db  5, 12, 4, GROUP_S_S_ANNE_4, MAP_S_S_ANNE_4
@@ -208,10 +250,14 @@ SSAnne10_MapEventHeader:
 	db 15,  3, 2, GROUP_S_S_ANNE_4, MAP_S_S_ANNE_4
 	db 15, 12, 1, GROUP_S_S_ANNE_4, MAP_S_S_ANNE_4
 	db 15, 13, 1, GROUP_S_S_ANNE_4, MAP_S_S_ANNE_4
+	db 15, 22, 7, GROUP_S_S_ANNE_4, MAP_S_S_ANNE_4
+	db 15, 23, 7, GROUP_S_S_ANNE_4, MAP_S_S_ANNE_4
 
 	db 0
 
-	db 0
+	db 2
+	signpost 11, 23, $0, SSAnne10BedScript
+	signpost 12, 23, $0, SSAnne10BedScript
 
 	db 11
 	person_event SPRITE_SAILOR, 17,  4, $6, 0, 0, -1, -1, 0, 2, 3, Trainer_SSAnne10Sailor1, -1
