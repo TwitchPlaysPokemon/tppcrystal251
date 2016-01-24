@@ -361,8 +361,8 @@ UnknownText_0x189264: ; 0x189264
 	para "If I catch him,"
 	line "he's going to get"
 
-	para "a taste of my ZAP"
-	line "CANNON!"
+	para "a taste of my"
+	line "THUNDERSHOT!"
 	done
 ; 0x189308
 

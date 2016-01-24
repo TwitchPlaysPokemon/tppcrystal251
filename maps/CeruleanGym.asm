@@ -458,8 +458,7 @@ MistyAfterRainDance:
 UnknownText_0x188782: ; 0x188782
 	text "MISTY: Are there"
 	line "many strong train-"
-	cont "ers in JOHTO? Like"
-	cont "you, I mean."
+	cont "ers in JOHTO?"
 
 	para "I'm going to"
 	line "travel one day, so"

@@ -100,7 +100,13 @@ UnknownText_0x1a28d0: ; 0x1a28d0
 	line "not often that we"
 
 	para "get a challenger"
-	line "from JOHTO."
+	line "from JOHTO-"
+
+	para "…"
+
+	para "So you're from"
+	line "PALLET TOWN,"
+	cont "but "
 
 	para "I'm BROCK, the"
 	line "PEWTER GYM LEADER."

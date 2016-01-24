@@ -204,14 +204,14 @@ Mart12: ; 1614c ;unused
 
 Mart13: ; 16153
 	db 9 ; # items
+	db ULTRA_BALL
 	db GREAT_BALL
 	db HYPER_POTION
-	db SUPER_POTION
 	db ANTIDOTE
 	db PARLYZ_HEAL
 	db AWAKENING
 	db ICE_HEAL
-	db SUPER_REPEL
+	db MAX_REPEL
 	db SURF_MAIL
 	db $ff
 ; 1615e

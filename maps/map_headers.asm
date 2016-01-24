@@ -355,8 +355,8 @@ MapGroup20:
 	map_header TradeCenter, $8, 3, SPECIAL_MAP, MUSIC_CHERRYGROVE_CITY, 1, 1, 1
 	map_header Colosseum, $8, 3, SPECIAL_MAP, MUSIC_CHERRYGROVE_CITY, 1, 1, 1
 	map_header TimeCapsule, $8, 3, SPECIAL_MAP, MUSIC_CHERRYGROVE_CITY, 1, 1, 1
-	map_header MobileTradeRoomMobile, $d, 3, SPECIAL_MAP, MUSIC_CHERRYGROVE_CITY, 1, 1, 1
-	map_header MobileBattleRoom, $d, 3, SPECIAL_MAP, MUSIC_CHERRYGROVE_CITY, 1, 1, 1
+		;map_header MobileTradeRoomMobile, $d, 3, SPECIAL_MAP, MUSIC_CHERRYGROVE_CITY, 1, 1, 1
+		;map_header MobileBattleRoom, $d, 3, SPECIAL_MAP, MUSIC_CHERRYGROVE_CITY, 1, 1, 1
 
 MapGroup21:
 	map_header Route7, $3, 2, ROUTE_7, MUSIC_ROUTE_3, 0, 0, 1

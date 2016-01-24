@@ -10,7 +10,7 @@ JasmineScript_0x9c12f: ; 0x9c12f
 	faceplayer
 	loadfont
 	checkevent EVENT_JASMINE_REMATCH
-	iftrue UnknownScript_0x9c159
+	iftrue JasmineAfterRematch
 	checkevent EVENT_FIRST_TIME_RED
 	iftrue JasmineRematchScript
 	checkevent EVENT_BEAT_JASMINE
@@ -54,7 +54,12 @@ JasmineRematchScript:
 	returnafterbattle
 	setevent EVENT_JASMINE_REMATCH
 	loadfont
-	jump UnknownScript_0x9c159
+
+JasmineAfterRematchText:
+	writetext JasmineAfterRematchText
+	waitbutton
+	closetext
+	end
 
 UnknownScript_0x9c172: ; 0x9c172
 	writetext UnknownText_0x9c3d1
@@ -154,12 +159,17 @@ JasmineRematchTextBefore:
 JasmineRematchBeatenText:
 	text "True to your"
 	line "reputation…"
+	done
 
-	para "I'm glad someone"
-	line "as strong as you"
-	cont "is so nice."
+JasmineAfterRematchText:
+	text "…You're better"
+	line "than me."
 
-	para "… Good luck"
+	para "This is hard to"
+	line "say…"
+	
+	para "But…"
+	line "Good luck"
 	done
 
 UnknownText_0x9c2bb: ; 0x9c2bb

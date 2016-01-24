@@ -364,8 +364,8 @@ INCLUDE "maps/PokeCenter2F.asm"
 INCLUDE "maps/TradeCenter.asm"
 INCLUDE "maps/Colosseum.asm"
 INCLUDE "maps/TimeCapsule.asm"
-INCLUDE "maps/MobileTradeRoomMobile.asm"
-INCLUDE "maps/MobileBattleRoom.asm"
+	;INCLUDE "maps/MobileTradeRoomMobile.asm"
+	;INCLUDE "maps/MobileBattleRoom.asm"
 
 
 SECTION "Map Scripts 18", ROMX

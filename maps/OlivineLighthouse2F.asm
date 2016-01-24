@@ -219,13 +219,13 @@ SailorHuey1BeatenText: ; 0x5b0b0
 ; 0x5b0be
 
 ; possibly unused
-UnknownText_0x5b0be: ; 0x5b0be
-	text "What power!"
-	line "How would you like"
+;UnknownText_0x5b0be: ; 0x5b0be
+	;text "What power!"
+;	line "How would you like"
 
-	para "to sail the seas"
-	line "with me?"
-	done
+	;para "to sail the seas"
+	;line "with me?"
+	;done
 ; 0x5b0f8
 
 GentlemanAlfredSeenText: ; 0x5b0f8

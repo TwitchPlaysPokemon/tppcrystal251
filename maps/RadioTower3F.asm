@@ -69,7 +69,7 @@ UnknownScript_0x5e584: ; 0x5e584
 UnknownScript_0x5e58a: ; 0x5e58a
 	writetext UnknownText_0x5e7e2
 	buttonsound
-	verbosegiveitem TM_SUNNY_DAY, 1
+	verbosegiveitem TM_RETURN, 1
 	iffalse UnknownScript_0x5e5a1
 	writetext UnknownText_0x5e821
 	waitbutton
@@ -305,10 +305,14 @@ UnknownText_0x5e7e2: ; 0x5e7e2
 ; 0x5e821
 
 UnknownText_0x5e821: ; 0x5e821
-	text "It's SUNNY DAY."
-	line "It powers up fire-"
-	cont "type moves for a"
-	cont "while."
+	text "It's RETURN."
+	line "The more the user"
+	cont "likes it's trainer"
+	cont "the stronger it is."
+	
+	para "Unleash your"
+	line "annihilation of"
+	cont "LOOOVE!!"
 	done
 ; 0x5e85c
 
