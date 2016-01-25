@@ -13,7 +13,7 @@ NurseScript_0x69b52: ; 0x69b52
 FishingGuruScript_0x69b55: ; 0x69b55
 	faceplayer
 	loadfont
-	checkevent EVENT_GOT_OLD_ROD
+	checkevent EVENT_RECEIVED_OLD_ROD_EGK
 	iftrue UnknownScript_0x69b7a
 	writetext UnknownText_0x69b83
 	yesorno
@@ -24,7 +24,7 @@ FishingGuruScript_0x69b55: ; 0x69b55
 	writetext UnknownText_0x69c1b
 	waitbutton
 	closetext
-	setevent EVENT_GOT_OLD_ROD
+	setevent EVENT_RECEIVED_OLD_ROD_EGK
 	end
 ; 0x69b74
 

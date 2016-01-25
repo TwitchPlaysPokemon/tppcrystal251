@@ -55,7 +55,7 @@ JasmineRematchScript:
 	setevent EVENT_JASMINE_REMATCH
 	loadfont
 
-JasmineAfterRematchText:
+JasmineAfterRematch:
 	writetext JasmineAfterRematchText
 	waitbutton
 	closetext

@@ -663,11 +663,11 @@ FriedaNotFridayScript:
 	end
 
 ItemFragment_0x190773: ; 0x190773
-	db GREAT_BALL, 1
+	db ULTRA_BALL, 1
 ; 0x190775
 
 ItemFragment_0x190775: ; 0x190775
-	db REPEL, 1
+	db SUPER_REPEL, 1
 ; 0x190777
 
 MapRoute32Signpost0Script: ; 0x190777
@@ -688,13 +688,13 @@ MapRoute32Signpost3Script: ; 0x190780
 
 MapRoute32SignpostItem4: ; 0x190783
 	dw $00a5
-	db GREAT_BALL
+	db ULTRA_BALL
 	
 ; 0x190786
 
 MapRoute32SignpostItem5: ; 0x190786
 	dw $00a6
-	db SUPER_POTION
+	db HYPER_POTION
 	
 ; 0x190789
 
@@ -735,7 +735,6 @@ UnknownText_0x1907ab: ; 0x1907ab
 	done
 ; 0x190820
 
-; might not be referenced anywhere
 UnknownText_0x190820: ; 0x190820
 	text "Have you gone to"
 	line "SPROUT TOWER?"
@@ -889,49 +888,49 @@ UnknownText_0x190c37: ; 0x190c37
 
 ; --- start a segment of possibly unused texts
 
-UnknownText_0x190c9c: ; 0x190c9c
-	text "I keep catching"
-	line "the same #MON…"
+;UnknownText_0x190c9c: ; 0x190c9c
+;	text "I keep catching"
+;	line "the same #MON…"
 
-	para "Maybe a battle"
-	line "will turn things"
-	cont "around for me."
-	done
+;	para "Maybe a battle"
+;	line "will turn things"
+;;	cont "around for me."
+;	done
 ; 0x190ceb
 
-UnknownText_0x190ceb: ; 0x190ceb
-	text "Nothing ever goes"
-	line "right for me now…"
-	done
+;UnknownText_0x190ceb: ; 0x190ceb
+;	text "Nothing ever goes"
+;	line "right for me now…"
+;	done
 ; 0x190d10
 
-UnknownText_0x190d10: ; 0x190d10
-	text "How come the guy"
-	line "next to me catches"
-	cont "good #MON?"
-	done
+;UnknownText_0x190d10: ; 0x190d10
+;	text "How come the guy"
+;	line "next to me catches"
+;;	cont "good #MON?"
+;	done
 ; 0x190d40
 
-UnknownText_0x190d40: ; 0x190d40
-	text "Heh, I'm on a roll"
-	line "today. How about a"
-	cont "battle, kid?"
-	done
+;UnknownText_0x190d40: ; 0x190d40
+;	text "Heh, I'm on a roll"
+;	line "today. How about a"
+;	cont "battle, kid?"
+;	done
 ; 0x190d73
 
-UnknownText_0x190d73: ; 0x190d73
-	text "Oof. I wasn't"
-	line "lucky that time."
-	done
+;UnknownText_0x190d73: ; 0x190d73
+;	text "Oof. I wasn't"
+;	line "lucky that time."
+;	done
 ; 0x190d92
 
-UnknownText_0x190d92: ; 0x190d92
-	text "You have to have a"
-	line "good ROD if you"
+;UnknownText_0x190d92: ; 0x190d92
+;	text "You have to have a"
+;	line "good ROD if you"
 
-	para "want to catch good"
-	line "#MON."
-	done
+;;	para "want to catch good"
+;	line "#MON."
+;	done
 ; 0x190dcf
 
 ; --- end a segment of possibly unused texts

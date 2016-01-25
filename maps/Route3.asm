@@ -210,8 +210,8 @@ UnknownText_0x1ae118: ; 0x1ae118
 UnknownText_0x1ae163: ; 0x1ae163
 	text "MT.MOON SQUARE"
 
-	para "Just go up the"
-	line "stairs."
+	para "go right and then"
+	line "up the stairs"
 	done
 ; 0x1ae18a
 

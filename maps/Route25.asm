@@ -315,7 +315,7 @@ ItemFragment_0x19efe3: ; 0x19efe3
 
 MapRoute25SignpostItem1: ; 0x19efe5
 	dw $00f8
-	db POTION
+	db HYPER_POTION
 	
 ; 0x19efe8
 

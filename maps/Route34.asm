@@ -674,7 +674,7 @@ MapRoute34SignpostItem3: ; 0x7832d
 
 MapRoute34SignpostItem4: ; 0x78330
 	dw $00a8
-	db SUPER_POTION
+	db LUCKY_PUNCH
 	
 RandomEggScript:
 	checkevent EVENT_BULBASAUR_EGG

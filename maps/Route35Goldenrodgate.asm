@@ -26,7 +26,7 @@ OfficerScript_0x69d37: ; 0x69d37
 	writetext UnknownText_0x69eb8
 	playsound SFX_KEY_ITEM
 	waitsfx
-	givepoke SPEAROW, 10, 0, 1, GiftSpearowName, GiftSpearowOTName
+	givepoke SPEAROW, 30, 0, 1, GiftSpearowName, GiftSpearowOTName
 	givepokeitem GiftSpearowMail
 	setevent EVENT_GOT_KENYA
 UnknownScript_0x69d73: ; 0x69d73
