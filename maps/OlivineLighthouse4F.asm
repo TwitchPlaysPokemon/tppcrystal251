@@ -76,7 +76,7 @@ SailorKentSeenText: ; 0x5b512
 
 SailorKentBeatenText: ; 0x5b565
 	text "I can't manage a"
-	line "smile either…"
+	line "smile either<...>"
 	done
 ; 0x5b584
 
@@ -101,7 +101,7 @@ LassConnie1SeenText: ; 0x5b5c5
 LassConnie1BeatenText: ; 0x5b62b
 	text "Maybe I should"
 	line "teach DELIBIRD"
-	cont "some new moves…"
+	cont "some new moves<...>"
 	done
 ; 0x5b63c
 

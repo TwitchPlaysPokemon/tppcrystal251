@@ -163,7 +163,7 @@ CooltrainerfFranSeenText: ; 0x19582b
 ; 0x195874
 
 CooltrainerfFranBeatenText: ; 0x195874
-	text "Awww… I lost…"
+	text "Awww<...> I lost<...>"
 	done
 ; 0x195883
 

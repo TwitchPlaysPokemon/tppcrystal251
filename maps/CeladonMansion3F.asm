@@ -121,7 +121,7 @@ UnknownText_0x71725: ; 0x71725
 ; 0x71760
 
 UnknownText_0x71760: ; 0x71760
-	text "…"
+	text "<...>"
 	done
 ; 0x71763
 

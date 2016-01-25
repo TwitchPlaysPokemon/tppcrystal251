@@ -266,7 +266,7 @@ SwimmermRandallSeenText: ; 0x1a62b4
 ; 0x1a62ea
 
 SwimmermRandallBeatenText: ; 0x1a62ea
-	text "Uh-oh. I lost…"
+	text "Uh-oh. I lost<...>"
 	done
 ; 0x1a62fa
 
@@ -418,7 +418,7 @@ MonicaMondayText:
 MonicaNotMondayText:
 	text "MONICA: I don't"
 	line "think today is"
-	cont "Monday. How sad…"
+	cont "Monday. How sad<...>"
 	done
 
 UnknownText_0x1a6767: ; 0x1a6767

@@ -292,7 +292,7 @@ Executivef1BeatenText: ; 0x6031e
 	line "happening!"
 
 	para "I fought hard, but"
-	line "I still lost…"
+	line "I still lost<...>"
 	done
 ; 0x60358
 
@@ -404,17 +404,17 @@ UnknownText_0x6062c: ; 0x6062c
 	para "lived in GOLDENROD"
 	line "in the past."
 
-	para "Perhaps…"
+	para "Perhaps<...>"
 
 	para "That bell has some"
 	line "connection to the"
 
 	para "TIN TOWER in"
-	line "ECRUTEAK CITY…"
+	line "ECRUTEAK CITY<...>"
 
 	para "Ah!"
 
-	para "That reminds me…"
+	para "That reminds me<...>"
 
 	para "I overheard TEAM"
 	line "ROCKET whispering."

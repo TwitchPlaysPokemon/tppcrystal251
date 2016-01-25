@@ -183,7 +183,7 @@ MapBattleTentBattleRoomBillText2:
 	done
 MapBattleTentBattleRoomBillText3:
 	text "Hey! While you're"
-	line "here…"
+	line "here<...>"
 	
 	para "How about a"
 	line "quick battle?"
@@ -193,7 +193,7 @@ MapBattleTentBattleRoomBillText3:
 	done
 
 MapBattleTentBattleRoomBillLossText:
-	text "Whew…"
+	text "Whew<...>"
 	done
 
 MapBattleTentBattleRoomBillText4:
@@ -225,7 +225,7 @@ MapBattleTentBattleRoomBillText5:
 
 MapBattleTentBattleRoomBillText6:
 	text "Oh? You have no"
-	line "room for this…"
+	line "room for this<...>"
 
 	para "That's fine. I'll"
 	line "hang out here for"
@@ -250,7 +250,7 @@ MapBattleTentBattleRoomBillText7:
 	done
 	
 MapBattleTentBattleRoomDoorText:
-	text "It's locked…"
+	text "It's locked<...>"
 	done
 	
 BattleTentBattleRoom_MapEventHeader:

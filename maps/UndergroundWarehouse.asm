@@ -269,7 +269,7 @@ GruntM24SeenText: ; 0x7d9ea
 ; 0x7da34
 
 GruntM24BeatenText: ; 0x7da34
-	text "I got disposed of…"
+	text "I got disposed of<...>"
 	done
 ; 0x7da48
 
@@ -300,7 +300,7 @@ GruntM14BeatenText: ; 0x7daf6
 ; 0x7db01
 
 UnknownText_0x7db01: ; 0x7db01
-	text "I lost…"
+	text "I lost<...>"
 
 	para "Please forgive me,"
 	line "GIOVANNI!"
@@ -376,7 +376,7 @@ UnknownText_0x7dc8d: ; 0x7dc8d
 	line "one I can call on."
 
 	para "Please save the"
-	line "RADIO TOWER…"
+	line "RADIO TOWER<...>"
 
 	para "And all the #-"
 	line "MON nationwide!"

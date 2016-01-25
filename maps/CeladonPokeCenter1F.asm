@@ -142,7 +142,7 @@ UnknownText_0x7201a: ; 0x7201a
 
 	para $56, $56, $56
 
-	para "Okay…"
+	para "Okay<...>"
 
 	para "If you catch even"
 	line "one, I hope that"

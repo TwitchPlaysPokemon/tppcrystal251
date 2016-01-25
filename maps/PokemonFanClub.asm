@@ -149,23 +149,23 @@ UnknownText_0x191911: ; 0x191911
 	text "Good!"
 	line "Then listen up!"
 
-	para "So… my favorite"
-	line "RAPIDASH…"
+	para "So<...> my favorite"
+	line "RAPIDASH<...>"
 
-	para "It… cute… lovely…"
-	line "smart… unbearably…"
-	cont "plus… amazing… oh…"
-	cont "you think so?…"
-	cont "Too much… wild…"
-	cont "beautiful… kindly…"
+	para "It<...> cute<...> lovely<...>"
+	line "smart<...> unbearably<...>"
+	cont "plus<...> amazing<...> oh<...>"
+	cont "you think so?<...>"
+	cont "Too much<...> wild<...>"
+	cont "beautiful<...> kindly<...>"
 	cont "love it!"
 
-	para "Hug it… when…"
-	line "sleeping… warm and"
-	cont "cuddly… Oh, and…"
-	cont "spectacular…"
-	cont "ravishing… simply"
-	cont "divine…"
+	para "Hug it<...> when<...>"
+	line "sleeping<...> warm and"
+	cont "cuddly<...> Oh, and<...>"
+	cont "spectacular<...>"
+	cont "ravishing<...> simply"
+	cont "divine<...>"
 	cont "Oops! Look at the"
 	cont "time! I've kept"
 	cont "you too long!"
@@ -199,13 +199,13 @@ UnknownText_0x191ae0: ; 0x191ae0
 	line "me about my #-"
 	cont "MON again?"
 
-	para "No? Oh… I had more"
-	line "tales to tell…"
+	para "No? Oh<...> I had more"
+	line "tales to tell<...>"
 	done
 ; 0x191b38
 
 UnknownText_0x191b38: ; 0x191b38
-	text "How disappointing…"
+	text "How disappointing<...>"
 
 	para "Come back if you"
 	line "want to listen."
@@ -215,7 +215,7 @@ UnknownText_0x191b38: ; 0x191b38
 UnknownText_0x191b6d: ; 0x191b6d
 	text "Our CHAIRMAN is"
 	line "very vocal when it"
-	cont "comes to #MON…"
+	cont "comes to #MON<...>"
 	done
 ; 0x191ba0
 
@@ -247,7 +247,7 @@ UnknownText_0x191c5a: ; 0x191c5a
 	text "Oh, I see now. The"
 	line "girl who lost this"
 
-	para "# DOLL is sad…"
+	para "# DOLL is sad<...>"
 
 	para "OK. Could you take"
 	line "this # DOLL"

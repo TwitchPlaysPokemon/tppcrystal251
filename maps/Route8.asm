@@ -202,7 +202,7 @@ BikerHarrisBeatenText: ; 0x6c134
 
 UnknownText_0x6c143: ; 0x6c143
 	text "We lost our home"
-	line "UNDERGROUND…"
+	line "UNDERGROUND<...>"
 
 	para "All I have left is"
 	line "the HELIX CHOIR."
@@ -245,7 +245,7 @@ UnknownText_0x6c219: ; 0x6c219
 	text "CELADON has a pond"
 	line "full of GRIMER!"
 
-	para "I fell down…"
+	para "I fell down<...>"
 	done
 ; 0x6c23d
 
@@ -265,12 +265,12 @@ SupernerdTomBeatenText: ; 0x6c25d
 UnknownText_0x6c27e: ; 0x6c27e
 	text "Rumours say ghosts"
 	line "still live in the"
-	cont "RADIO TOWER…"
+	cont "RADIO TOWER<...>"
 	done
 ; 0x6c2aa
 
 UnknownText_0x6c2aa: ; 0x6c2aa
-	text "It's locked…"
+	text "It's locked<...>"
 	done
 ; 0x6c2b7
 
@@ -278,7 +278,7 @@ UnknownText_0x6c2b7: ; 0x6c2b7
 	text "The flyer's torn."
 
 	para "It's impossible to"
-	line "read…"
+	line "read<...>"
 	done
 ; 0x6c2e1
 

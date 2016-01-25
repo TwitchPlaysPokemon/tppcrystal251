@@ -309,7 +309,7 @@ SeerTexts: ; 4f27c
 ; 4f28c
 
 SeerIntroText: ; 0x4f28c
-	; I see all. I know all… Certainly, I know of your #MON!
+	; I see all. I know all<...> Certainly, I know of your #MON!
 	text_jump UnknownText_0x1c475f
 	db "@"
 ; 0x4f291
@@ -321,7 +321,7 @@ SeerCantTellText: ; 0x4f291
 ; 0x4f296
 
 SeerMetAtText: ; 0x4f296
-	; Hm… I see you met @  here: @ !
+	; Hm<...> I see you met @  here: @ !
 	text_jump UnknownText_0x1c47d4
 	db "@"
 ; 0x4f29b
@@ -333,7 +333,7 @@ SeerTimeLevelText: ; 0x4f29b
 ; 0x4f2a0
 
 SeerTradedText: ; 0x4f2a0
-	; Hm… @ came from @ in a trade? @ was where @ met @ !
+	; Hm<...> @ came from @ in a trade? @ was where @ met @ !
 	text_jump UnknownText_0x1c4837
 	db "@"
 ; 0x4f2a5
@@ -345,7 +345,7 @@ SeerLevelOnlyText: ; 0x4f2a5
 ; 0x4f2aa
 
 SeerEggText: ; 0x4f2aa
-	; Hey! That's an EGG! You can't say that you've met it yet…
+	; Hey! That's an EGG! You can't say that you've met it yet<...>
 	text_jump UnknownText_0x1c491d
 	db "@"
 ; 0x4f2af
@@ -395,31 +395,31 @@ SeerAdviceTexts: ; 4f2d6
 ; 4f2e8
 
 SeerAdvice1: ; 0x4f2e8
-	; Incidentally… It would be wise to raise your #MON with a little more care.
+	; Incidentally<...> It would be wise to raise your #MON with a little more care.
 	text_jump UnknownText_0x1c497a
 	db "@"
 ; 0x4f2ed
 
 SeerAdvice2: ; 0x4f2ed
-	; Incidentally… It seems to have grown a little. @  seems to be becoming more confident.
+	; Incidentally<...> It seems to have grown a little. @  seems to be becoming more confident.
 	text_jump UnknownText_0x1c49c6
 	db "@"
 ; 0x4f2f2
 
 SeerAdvice3: ; 0x4f2f2
-	; Incidentally… @  has grown. It's gained much strength.
+	; Incidentally<...> @  has grown. It's gained much strength.
 	text_jump UnknownText_0x1c4a21
 	db "@"
 ; 0x4f2f7
 
 SeerAdvice4: ; 0x4f2f7
-	; Incidentally… It certainly has grown mighty! This @ must have come through numerous #MON battles. It looks brimming with confidence.
+	; Incidentally<...> It certainly has grown mighty! This @ must have come through numerous #MON battles. It looks brimming with confidence.
 	text_jump UnknownText_0x1c4a5b
 	db "@"
 ; 0x4f2fc
 
 SeerAdvice5: ; 0x4f2fc
-	; Incidentally… I'm impressed by your dedication. It's been a long time since I've seen a #MON as mighty as this @ . I'm sure that seeing @ in battle would excite anyone.
+	; Incidentally<...> I'm impressed by your dedication. It's been a long time since I've seen a #MON as mighty as this @ . I'm sure that seeing @ in battle would excite anyone.
 	text_jump UnknownText_0x1c4ae5
 	db "@"
 ; 0x4f301

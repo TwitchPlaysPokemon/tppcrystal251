@@ -109,7 +109,7 @@ UnknownText_0x7a8e5: ; 0x7a8e5
 	text "So, what was PROF."
 	line "ELM's errand?"
 
-	para "…"
+	para "<...>"
 
 	para "That does sound"
 	line "challenging."
@@ -182,7 +182,7 @@ UnknownText_0x7aa64: ; 0x7aa64
 
 UnknownText_0x7aa91: ; 0x7aa91
 	text "Let's see what's"
-	line "in the fridge…"
+	line "in the fridge<...>"
 
 	para "FRESH WATER and"
 	line "tasty LEMONADE!"
@@ -194,7 +194,7 @@ UnknownText_0x7aad0: ; 0x7aad0
 	line "TV: Stars dot the"
 
 	para "sky as two boys"
-	line "ride on a train…"
+	line "ride on a train<...>"
 
 	para "I'd better get"
 	line "rolling too!"

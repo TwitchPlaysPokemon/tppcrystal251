@@ -1,16 +1,16 @@
 UnknownText_0xa0c28: ; 0xa0c28
-	text "Hi, this is BUENA…"
+	text "Hi, this is BUENA<...>"
 
 	para "Oh! Good morning,"
 	line $14, "!"
 
 	para "I'm kind of foggy"
-	line "in the morning…"
+	line "in the morning<...>"
 	done
 ; 0xa0c72
 
 UnknownText_0xa0c72: ; 0xa0c72
-	text "Hi, this is BUENA…"
+	text "Hi, this is BUENA<...>"
 	line "Oh! Hi, ", $14, "!"
 
 	para "Do you tune into"
@@ -37,7 +37,7 @@ UnknownText_0xa0caf: ; 0xa0caf
 ; 0xa0d42
 
 UnknownText_0xa0d42: ; 0xa0d42
-	text "Hi, this is BUENA…"
+	text "Hi, this is BUENA<...>"
 	line "Oh! Hi, ", $14, "!"
 
 	para "I just got off"
@@ -119,7 +119,7 @@ UnknownText_0xa0efb: ; 0xa0efb
 	para "Oh, wow! Like,"
 	line "what should I do?"
 
-	para "…Oops, I have to"
+	para "<...>Oops, I have to"
 	line "get ready for my"
 
 	para "show! I'll catch"
@@ -171,7 +171,7 @@ UnknownText_0xa109d: ; 0xa109d
 
 UnknownText_0xa1143: ; 0xa1143
 	text "You know, last"
-	line "night…"
+	line "night<...>"
 
 	para "I was so stressed"
 	line "out from work, I"
@@ -181,9 +181,9 @@ UnknownText_0xa1143: ; 0xa1143
 
 	para "MARY and I have"
 	line "this deal about"
-	cont "losing weight…"
+	cont "losing weight<...>"
 
-	para "This won't do…"
+	para "This won't do<...>"
 
 	para "Huh? What's the"
 	line "weight?"
@@ -191,11 +191,11 @@ UnknownText_0xa1143: ; 0xa1143
 	para "This has to be a"
 	line "total secret!"
 
-	para "MARY weighs…"
+	para "MARY weighs<...>"
 
 	para "Aiyee! M-MARY!"
 
-	para "Uh… Um… I… Sorry,"
+	para "Uh<...> Um<...> I<...> Sorry,"
 	line "wrong number!"
 	done
 ; 0xa1244
@@ -224,7 +224,7 @@ UnknownText_0xa1244: ; 0xa1244
 ; 0xa1318
 
 UnknownText_0xa1318: ; 0xa1318
-	text "…Cough, cough!"
+	text "<...>Cough, cough!"
 
 	para "Uhm sorry uh got"
 	line "uh code dite now."
@@ -257,7 +257,7 @@ UnknownText_0xa13d8: ; 0xa13d8
 	para "Guess what? I made"
 	line "up the questions!"
 
-	para "…Were they too"
+	para "<...>Were they too"
 	line "easy for you?"
 
 	para "Well, let's chat"
@@ -275,7 +275,7 @@ UnknownText_0xa1488: ; 0xa1488
 	para "But when PIKACHU"
 	line "was the password,"
 
-	para "it was uh… whew…"
+	para "it was uh<...> whew<...>"
 	line "overwhelming."
 
 	para "FAN CLUB people"
@@ -349,7 +349,7 @@ UnknownText_0xa1717: ; 0xa1717
 	line "It's so pleasant"
 
 	para "that it gradually"
-	line "makes me drowsy…"
+	line "makes me drowsy<...>"
 
 	para $56, " ", $56, " ", $56
 
@@ -358,7 +358,7 @@ UnknownText_0xa1717: ; 0xa1717
 	para "Oops, I drifted"
 	line "off just thinking"
 
-	para "about it! How, uh…"
+	para "about it! How, uh<...>"
 	line "embarrassing!"
 
 	para "Please forget this"
@@ -371,7 +371,7 @@ UnknownText_0xa183d: ; 0xa183d
 	line "the first #MON"
 	cont "you ever caught?"
 
-	para "…Oh, really?"
+	para "<...>Oh, really?"
 
 	para "I've seen lots of"
 	line "#MON around,"
@@ -437,7 +437,7 @@ UnknownText_0xa19b1: ; 0xa19b1
 ; 0xa1ac0
 
 UnknownText_0xa1ac0: ; 0xa1ac0
-	text "Did you know…?"
+	text "Did you know<...>?"
 
 	para "BEN and FERN talk"
 	line "on the phone for"
@@ -476,7 +476,7 @@ UnknownText_0xa1bed: ; 0xa1bed
 	line "GOLDENROD DEPT."
 
 	para "STORE has a sale"
-	line "on when we go…"
+	line "on when we go<...>"
 
 	para $14, ", maybe we"
 	line "can hook up too!"
@@ -493,7 +493,7 @@ UnknownText_0xa1c88: ; 0xa1c88
 	line "It's been a while."
 
 	para "You see, I have my"
-	line "favorite machine…"
+	line "favorite machine<...>"
 
 	para "It pays out a lot,"
 	line "I kid you not!"
@@ -525,7 +525,7 @@ UnknownText_0xa1d5f: ; 0xa1d5f
 	line "of direction, so"
 
 	para "#GEAR would be"
-	line "handy…"
+	line "handy<...>"
 
 	para "Anyway, thanks for"
 	line "calling! Later!"

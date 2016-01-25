@@ -659,7 +659,7 @@ _OaksLabText40F:
 _OaksLabText41F:
 	text "<GREEN>: I wanted"
 	line "this #MON"
-	cont "anyway…"
+	cont "anyway<...>"
 	done
 
 _OaksLabText39:
@@ -836,7 +836,7 @@ _OaksLabRivalWaitingTextF:
 
 _OaksLabChooseMonText:
 	text "OAK: <GREEN>?"
-	line "Let me think…"
+	line "Let me think<...>"
 
 	para "Oh, that's right,"
 	line "I told you to"
@@ -894,7 +894,7 @@ _OaksLabRivalPickingMonText:
 _OaksLabRivalPickingMonTextF:
 	text "<GREEN>: Then"
 	line "I will just take"
-	cont "this one…"
+	cont "this one<...>"
 	done
 
 _OaksLabRivalReceivedMonText:
@@ -952,14 +952,14 @@ _OaksLabRivalChallengeTextF:
 	done
 
 _OaksLabText_1d3beF:
-	text "Oh my…"
+	text "Oh my<...>"
 	line "It looks like"
 	cont "I have more to"
 	cont "learn about this."
 	done
 
 _OaksLabText_1d3c3F:
-	text "<GREEN>: Oh, um…"
+	text "<GREEN>: Oh, um<...>"
 	line "Should I have gone"
 	cont "easier on you?"
 	done
@@ -986,7 +986,7 @@ _OaksLabText22:
 	done
 
 _OaksLabText21F:
-	text "<GREEN>: Hey…!"
+	text "<GREEN>: Hey<...>!"
 	done
 
 _OaksLabText22F:
@@ -1027,7 +1027,7 @@ _OaksLabText26:
 	text "To make a complete"
 	line "guide on all the"
 	cont "#MON in the"
-	cont "world…"
+	cont "world<...>"
 
 	para "That was my dream!"
 
@@ -1078,9 +1078,9 @@ _OaksLabText27F:
 
 	para "I don't want"
 	line "things to be"
-	cont "unfair for you…"
+	cont "unfair for you<...>"
 
-	para "…so I'll ask my"
+	para "<...>so I'll ask my"
 	line "sister to lend you"
 	cont "a MAP CARD."
 
@@ -1097,7 +1097,7 @@ _OakLabEmailText:
 	text "There's an e-mail"
 	line "message here!"
 
-	para "…"
+	para "<...>"
 
 	para "Calling all"
 	line "#MON trainers!"
@@ -1117,7 +1117,7 @@ _OakLabEmailText:
 
 	para "PS: PROF.OAK,"
 	line "please visit us!"
-	cont "…"
+	cont "<...>"
 	done
 
 _PushStartText:

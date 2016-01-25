@@ -62,11 +62,11 @@ UnknownText_0x7e779: ; 0x7e779
 	line "isn't running, the"
 
 	para "MAGNET TRAIN won't"
-	line "run either…"
+	line "run either<...>"
 
 	para "It also means the"
 	line "RADIO STATION"
-	cont "can't broadcast…"
+	cont "can't broadcast<...>"
 	done
 ; 0x7e7ed
 

@@ -323,13 +323,13 @@ WhitneyRematchBeatenText:
 	done
 
 UnknownText_0x541a5: ; 0x541a5
-	text "Sob…"
+	text "Sob<...>"
 
-	para "…Waaaaaaah!"
+	para "<...>Waaaaaaah!"
 	line "You're mean!"
 
 	para "You shouldn't be"
-	line "so serious! You…"
+	line "so serious! You<...>"
 	cont "you child, you!"
 	done
 ; 0x541f4
@@ -339,13 +339,13 @@ UnknownText_0x541f4: ; 0x541f4
 
 	para "Waaaaah!"
 
-	para "…Snivel, hic…"
-	line "…You meanie!"
+	para "<...>Snivel, hic<...>"
+	line "<...>You meanie!"
 	done
 ; 0x54222
 
 UnknownText_0x54222: ; 0x54222
-	text "…Sniff…"
+	text "<...>Sniff<...>"
 
 	para "What? What do you"
 	line "want? A BADGE?"
@@ -411,8 +411,8 @@ LassCarrieSeenText: ; 0x5439b
 ; 0x543d6
 
 LassCarrieBeatenText: ; 0x543d6
-	text "Darn… I thought"
-	line "you were weak…"
+	text "Darn<...> I thought"
+	line "you were weak<...>"
 	done
 ; 0x543f6
 
@@ -439,7 +439,7 @@ LassBridgetBeatenText: ; 0x5445f
 
 LassBridgetOWText: ; 0x54470
 	text "I'm trying to beat"
-	line "WHITNEY, but…"
+	line "WHITNEY, but<...>"
 	cont "It's depressing."
 
 	para "I'm okay! If I"
@@ -472,7 +472,7 @@ BeautyVictoriaSeenText: ; 0x5452d
 ; 0x54574
 
 BeautyVictoriaBeatenText: ; 0x54574
-	text "Let's see… Oops,"
+	text "Let's see<...> Oops,"
 	line "it's over?"
 	done
 ; 0x5458f
@@ -493,7 +493,7 @@ BeautySamanthaSeenText: ; 0x545be
 
 BeautySamanthaBeatenText: ; 0x545ed
 	text "Graceful in"
-	line "defeat…"
+	line "defeat<...>"
 	done
 ; 0x5460b
 
@@ -515,11 +515,11 @@ GoldenrodGymGuyText: ; 0x5463a
 	line "to normal-type"
 	cont "#MON trainers!"
 	
-	para "Also… Uhm…"
+	para "Also<...> Uhm<...>"
 	
 	para "It feels like I"
 	line "forgot something"
-	cont "important…"
+	cont "important<...>"
 	done
 ; 0x546a7
 
@@ -529,7 +529,7 @@ GoldenrodGymGuyWinText: ; 0x546a7
 	cont "the ladies here."
 
 	para "Also, I kinda for-"
-	line "got to mention…"
+	line "got to mention<...>"
 
 	para "WHITNEY's #MON"
 	line "are of the newly-"

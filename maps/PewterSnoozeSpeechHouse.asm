@@ -16,8 +16,8 @@ MapPewterSnoozeSpeechHouseSignpost1Script: ; 0x1a305c
 
 UnknownText_0x1a305f: ; 0x1a305f
 	text "I like snoozing"
-	line "with the radio on…"
-	cont "…Zzzz…"
+	line "with the radio on<...>"
+	cont "<...>Zzzz<...>"
 	done
 ; 0x1a308a
 

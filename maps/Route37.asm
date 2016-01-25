@@ -179,7 +179,7 @@ TwinsAnnandanne1SeenText: ; 0x1a8e12
 ; 0x1a8e3b
 
 TwinsAnnandanne1BeatenText: ; 0x1a8e3b
-	text "ANN & ANNE: Nnn… A"
+	text "ANN & ANNE: Nnn<...> A"
 	line "little too strong."
 	done
 ; 0x1a8e62
@@ -201,7 +201,7 @@ TwinsAnnandanne2SeenText: ; 0x1a8e9c
 ; 0x1a8ec5
 
 TwinsAnnandanne2BeatenText: ; 0x1a8ec5
-	text "ANN & ANNE: Nnn… A"
+	text "ANN & ANNE: Nnn<...> A"
 	line "little too strong."
 	done
 ; 0x1a8eec
@@ -225,7 +225,7 @@ PsychicGregSeenText: ; 0x1a8f1b
 
 PsychicGregBeatenText: ; 0x1a8f65
 	text "I lost. That's"
-	line "pretty sad…"
+	line "pretty sad<...>"
 	done
 ; 0x1a8f80
 
@@ -258,13 +258,13 @@ SunnyGivesGiftText2:
 	done
 
 SunnyGaveGiftText:
-	text "SUNNY: That thing…"
+	text "SUNNY: That thing<...>"
 
-	para "Um…"
+	para "Um<...>"
 
-	para "… What was it now…"
+	para "<...> What was it now<...>"
 
-	para "…"
+	para "<...>"
 
 	para "Oh! I remember"
 	line "now!"
@@ -294,7 +294,7 @@ SunnySundayText:
 SunnyNotSundayText:
 	text "SUNNY: Isn't today"
 	line "Sunday?"
-	cont "Um… I forgot!"
+	cont "Um<...> I forgot!"
 	done
 
 UnknownText_0x1a9197: ; 0x1a9197

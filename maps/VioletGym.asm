@@ -179,7 +179,7 @@ UnknownText_0x68473: ; 0x68473
 
 	para "#MON's wings"
 	line "with a jolt of"
-	cont "electricity…"
+	cont "electricity<...>"
 
 	para "I won't allow such"
 	line "insults to bird"
@@ -210,17 +210,17 @@ FalknerRematchTextBefore:
 	done
 
 FalknerRematchBeatenText:
-	text "…No! Not even"
+	text "<...>No! Not even"
 	line "the ultimate"
-	cont "bird #MON…"
+	cont "bird #MON<...>"
 
 	para "I accept defeat"
 	done
 	
 UnknownText_0x6854a: ; 0x6854a
-	text "…Darn! My dad's"
+	text "<...>Darn! My dad's"
 	line "cherished bird"
-	cont "#MON…"
+	cont "#MON<...>"
 
 	para "All right."
 	line "Take this."
@@ -338,7 +338,7 @@ UnknownText_0x688c7: ; 0x688c7
 	
 	para "You usually only"
 	line "see HOOTHOOT"
-	cont "around here…"
+	cont "around here<...>"
 	done
 ; 0x688f9
 

@@ -57,7 +57,7 @@ UnknownText_0x1ac9d2: ; 0x1ac9d2
 
 	para "Well, it's plain"
 	line "to see that you're"
-	cont "a trainer…"
+	cont "a trainer<...>"
 
 	para "My name's BLUE."
 
@@ -65,10 +65,10 @@ UnknownText_0x1ac9d2: ; 0x1ac9d2
 	line "CHAMPION, although"
 
 	para "it was for only a"
-	line "short time…"
+	line "short time<...>"
 
 	para "That meddling"
-	line "<RED> did me in…"
+	line "<RED> did me in<...>"
 
 	para "Anyway, what do"
 	line "you want? You want"
@@ -76,14 +76,14 @@ UnknownText_0x1ac9d2: ; 0x1ac9d2
 	para "to challenge me or"
 	line "something?"
 
-	para "…I hate to say"
+	para "<...>I hate to say"
 	line "it, but I'm not in"
 
 	para "the mood for a"
 	line "battle now."
 
 	para "Take a good look"
-	line "around you…"
+	line "around you<...>"
 
 	para "A volcano erupts,"
 	line "and just like"
@@ -100,10 +100,10 @@ UnknownText_0x1ac9d2: ; 0x1ac9d2
 	para "twitches, we can"
 	line "lose in a second."
 
-	para "…"
+	para "<...>"
 
 	para "That's the way it"
-	line "is…"
+	line "is<...>"
 
 	para "But, anyway, I'm"
 	line "still a trainer."
@@ -123,7 +123,7 @@ UnknownText_0x1ac9d2: ; 0x1ac9d2
 
 UnknownText_0x1acc73: ; 0x1acc73
 	text "There's a notice"
-	line "here…"
+	line "here<...>"
 
 	para "CINNABAR GYM has"
 	line "relocated to SEA-"

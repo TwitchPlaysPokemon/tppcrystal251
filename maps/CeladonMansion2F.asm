@@ -22,13 +22,13 @@ UnknownText_0x71539: ; 0x71539
 	text "<PLAYER> turned on"
 	line "the PC."
 
-	para "…"
+	para "<...>"
 
 	para "Someone was in the"
 	line "middle of compos-"
 	cont "ing an e-mail."
 
-	para "…I hope you'll"
+	para "<...>I hope you'll"
 	line "come visit KANTO."
 
 	para "I think you'll be"
@@ -45,7 +45,7 @@ UnknownText_0x71539: ; 0x71539
 
 	para "To the PRODUCER"
 
-	para "…"
+	para "<...>"
 	done
 ; 0x7162c
 

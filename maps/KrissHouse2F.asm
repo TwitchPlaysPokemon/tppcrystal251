@@ -124,7 +124,7 @@ UnknownText_0x7ac64: ; 0x7ac64
 
 UnknownText_0x7ac84: ; 0x7ac84
 	text "#MON!"
-	line "#MON CHANNEL…"
+	line "#MON CHANNEL<...>"
 	done
 ; 0x7ac99
 

@@ -205,14 +205,14 @@ UnknownText_0x981a4: ; 0x981a4
 	line "but I must ask you"
 	cont "to leave."
 
-	para "…What soothes the"
-	line "soul…"
+	para "<...>What soothes the"
+	line "soul<...>"
 
 	para "The WISE TRIO say"
 	line "things that are so"
 
 	para "very difficult to"
-	line "understand…"
+	line "understand<...>"
 	done
 ; 0x98250
 
@@ -231,7 +231,7 @@ UnknownText_0x98250: ; 0x98250
 	para "The sound of that"
 	line "CLEAR BELL!"
 
-	para "It… It's sublime!"
+	para "It<...> It's sublime!"
 
 	para "I've never heard"
 	line "so beautiful a"
@@ -241,7 +241,7 @@ UnknownText_0x98250: ; 0x98250
 	line "is indicative of"
 	cont "the bearer's soul."
 
-	para "You…"
+	para "You<...>"
 
 	para "You may be able to"
 	line "make it through"
@@ -261,7 +261,7 @@ UnknownText_0x98391: ; 0x98391
 	line "is indicative of"
 	cont "the bearer's soul."
 
-	para "You…"
+	para "You<...>"
 
 	para "You may be able to"
 	line "make it through"
@@ -294,8 +294,8 @@ UnknownText_0x9846f: ; 0x9846f
 ; 0x984ab
 
 UnknownText_0x984ab: ; 0x984ab
-	text "Two towers…"
-	line "Two #MON…"
+	text "Two towers<...>"
+	line "Two #MON<...>"
 
 	para "But when one"
 	line "burned down, both"

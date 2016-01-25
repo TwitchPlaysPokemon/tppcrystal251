@@ -123,8 +123,8 @@ UnknownText_0x180531: ; 0x180531
 ; 0x18062c
 
 UnknownText_0x18062c: ; 0x18062c
-	text "I… I can't…"
-	line "believe it…"
+	text "I<...> I can't<...>"
+	line "believe it<...>"
 	done
 ; 0x180644
 

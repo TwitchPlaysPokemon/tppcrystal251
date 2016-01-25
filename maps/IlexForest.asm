@@ -845,9 +845,9 @@ MovementData_0x6ef58: ; 0x6ef58
 ; 0x6ef5c
 
 UnknownText_0x6ef5c: ; 0x6ef5c
-	text "Oh, man… My boss"
+	text "Oh, man<...> My boss"
 	line "is going to be"
-	cont "steaming…"
+	cont "steaming<...>"
 
 	para "The FARFETCH'D"
 	line "that CUTS trees"
@@ -860,7 +860,7 @@ UnknownText_0x6ef5c: ; 0x6ef5c
 	cont "ILEX FOREST."
 
 	para "It's too big, dark"
-	line "and scary for me…"
+	line "and scary for me<...>"
 	done
 ; 0x6f019
 
@@ -901,7 +901,7 @@ UnknownText_0x6f099: ; 0x6f099
 	para "Thanks, kid!"
 
 	para "Now, how can I"
-	line "thank you…"
+	line "thank you<...>"
 
 	para "I know! Here, take"
 	line "this."
@@ -979,21 +979,21 @@ UnknownText_0x6f2de: ; 0x6f2de
 
 UnknownText_0x6f358: ; 0x6f358
 	text "ILEX FOREST"
-	line "SHRINE…"
+	line "SHRINE<...>"
 
 	para "It's in honor of"
 	line "the forest's"
-	cont "protector…"
+	cont "protector<...>"
 	done
 ; 0x6f394
 
 UnknownText_0x6f394: ; 0x6f394
 	text "ILEX FOREST"
-	line "SHRINE…"
+	line "SHRINE<...>"
 
 	para "It's in honor of"
 	line "the forest's"
-	cont "protector…"
+	cont "protector<...>"
 
 	para "Oh? What is this?"
 
@@ -1046,7 +1046,7 @@ Bug_catcherWayneSeenText: ; 0x6f515
 
 Bug_catcherWayneBeatenText: ; 0x6f551
 	text "I hadn't seen that"
-	line "#MON before…"
+	line "#MON before<...>"
 	done
 ; 0x6f571
 

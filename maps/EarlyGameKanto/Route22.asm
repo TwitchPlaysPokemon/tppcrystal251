@@ -169,7 +169,7 @@ _Route22RivalAfterBattleText1::
 _Route22RivalDefeatedText1::
 	text "<GREEN>: Ugh!"
 	line "You just got"
-	cont "lucky is all…"
+	cont "lucky is all<...>"
 	done
 
 _Route22RivalLossText:
@@ -186,12 +186,12 @@ _Route22RivalBeforeBattleText1F::
 	cont "#MON LEAGUE?"
 
 	para "I hate to disap-"
-	line "point you, but…"
+	line "point you, but<...>"
 	cont "Don't bother."
 
 	para "They won't let you"
 	line "in without any"
-	cont "BADGEs…"
+	cont "BADGEs<...>"
 
 	para "By the way, have"
 	line "you taken good"
@@ -203,7 +203,7 @@ _Route22RivalAfterBattleText1F::
 	text "I've heard a lot"
 	line "of things about"
 	cont "the #MON"
-	cont "LEAGUE…"
+	cont "LEAGUE<...>"
 
 	para "There are a lot of"
 	line "powerful trainers"
@@ -211,22 +211,22 @@ _Route22RivalAfterBattleText1F::
 
 	para "I'd really like to "
 	line "see their battling"
-	cont "techniques…"
+	cont "techniques<...>"
 
 	para "Oh, excuse me."
 	line "I'll be on my way."
 	done
 
 _Route22RivalDefeatedText1F::
-	text "<GREEN>: Oh…"
+	text "<GREEN>: Oh<...>"
 	line "not bad at all."
 	done
 
 _Route22RivalLossTextF:
-	text "<GREEN>: Oh… I'm"
+	text "<GREEN>: Oh<...> I'm"
 	line "sorry. I should've"
 	cont "gone easier on"
-	cont "you…"
+	cont "you<...>"
 	done
 
 _Route22FrontGateText::

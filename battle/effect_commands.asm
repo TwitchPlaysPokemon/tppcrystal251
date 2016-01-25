@@ -1010,7 +1010,7 @@ IgnoreSleepOnly: ; 3451f
 	and SLP
 	ret z
 
-; 'ignored orders…sleeping!'
+; 'ignored orders<...>sleeping!'
 	ld hl, IgnoredSleepingText
 	call StdBattleTextBox
 

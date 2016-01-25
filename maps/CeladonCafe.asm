@@ -134,7 +134,7 @@ UnknownText_0x730de: ; 0x730de
 ; 0x73129
 
 UnknownText_0x73129: ; 0x73129
-	text "…Snarfle, chew…"
+	text "<...>Snarfle, chew<...>"
 	done
 ; 0x7313a
 
@@ -147,7 +147,7 @@ UnknownText_0x7313a: ; 0x7313a
 ; 0x7316a
 
 UnknownText_0x7316a: ; 0x7316a
-	text "…Gulp… Chew…"
+	text "<...>Gulp<...> Chew<...>"
 	done
 ; 0x73178
 
@@ -161,7 +161,7 @@ UnknownText_0x73178: ; 0x73178
 ; 0x731ae
 
 UnknownText_0x731ae: ; 0x731ae
-	text "Munch, munch…"
+	text "Munch, munch<...>"
 	done
 ; 0x731bd
 
@@ -174,7 +174,7 @@ UnknownText_0x731bd: ; 0x731bd
 ; 0x73201
 
 UnknownText_0x73201: ; 0x73201
-	text "Crunch… Crunch…"
+	text "Crunch<...> Crunch<...>"
 	done
 ; 0x73212
 
@@ -188,7 +188,7 @@ UnknownText_0x73212: ; 0x73212
 ; 0x73254
 
 UnknownText_0x73254: ; 0x73254
-	text "Crunch… Crunch…"
+	text "Crunch<...> Crunch<...>"
 
 	para "I can keep eating!"
 	done
@@ -221,7 +221,7 @@ UnknownText_0x732e7: ; 0x732e7
 
 UnknownText_0x732f7: ; 0x732f7
 	text "But <PLAYER> can't"
-	line "hold another item…"
+	line "hold another item<...>"
 	done
 ; 0x73316
 

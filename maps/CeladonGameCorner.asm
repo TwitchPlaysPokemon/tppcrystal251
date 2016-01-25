@@ -185,14 +185,14 @@ UnknownText_0x72242: ; 0x72242
 	line "as a prize in"
 	
 	para "the CELADON"
-	line "GAME CORNER…"
+	line "GAME CORNER<...>"
 	done
 ; 0x72295
 
 UnknownText_0x72295: ; 0x72295
 	text "I think this slot"
 	line "machine will pay"
-	cont "out…"
+	cont "out<...>"
 
 	para "The odds vary"
 	line "among machines."
@@ -256,16 +256,16 @@ CeladonGymGuyText: ; 0x72425
 	cont "prize #MON."
 
 	para "But I don't have"
-	line "enough coins yet…"
+	line "enough coins yet<...>"
 	done
 ; 0x724ad
 
 UnknownText_0x724ad: ; 0x724ad
-	text "Hmmm… The odds are"
+	text "Hmmm<...> The odds are"
 	line "surely better for"
 
 	para "PIKACHU's line,"
-	line "but… What to do?"
+	line "but<...> What to do?"
 	done
 ; 0x724f3
 
@@ -273,7 +273,7 @@ UnknownText_0x724f3: ; 0x724f3
 	text "Hey!"
 
 	para "Underneath this"
-	line "poster…"
+	line "poster<...>"
 
 	para "There's nothing!"
 	done
@@ -283,7 +283,7 @@ UnknownText_0x72521: ; 0x72521
 	text "Hey!"
 
 	para "Underneath this"
-	line "poster…"
+	line "poster<...>"
 
 	para "There's nothing!"
 	done
@@ -296,10 +296,10 @@ UnknownText_0x7254f: ; 0x7254f
 ; 0x72567
 
 UnknownText_0x72567: ; 0x72567
-	text "A can of soda…"
+	text "A can of soda<...>"
 
 	para "Someone must be"
-	line "coming back…"
+	line "coming back<...>"
 
 	para "Huh? It's empty!"
 	done

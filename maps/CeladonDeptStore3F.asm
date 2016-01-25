@@ -55,7 +55,7 @@ UnknownText_0x70d53: ; 0x70d53
 	line "which #MON I"
 
 	para "should use this TM"
-	line "on…"
+	line "on<...>"
 	done
 ; 0x70d86
 
@@ -76,9 +76,9 @@ UnknownText_0x70dc7: ; 0x70dc7
 	line "slots, so I could"
 
 	para "never get enough"
-	line "coins…"
+	line "coins<...>"
 
-	para "…Huh?"
+	para "<...>Huh?"
 
 	para "The traded PORYGON"
 	line "turned into a dif-"

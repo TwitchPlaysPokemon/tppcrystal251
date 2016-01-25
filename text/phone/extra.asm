@@ -17,7 +17,7 @@ UnknownText_0x64032: ; 0x64032
 	para "taken over by TEAM"
 	line "ROCKET!"
 
-	para "…Um… What's TEAM"
+	para "<...>Um<...> What's TEAM"
 	line "ROCKET?"
 	done
 ; 0x64099
@@ -61,7 +61,7 @@ UnknownText_0x6416d: ; 0x6416d
 	para "You're like a"
 	line "movie hero, even!"
 
-	para "But um… What was"
+	para "But um<...> What was"
 	line "TEAM ROCKET?"
 	done
 ; 0x641e8
@@ -236,7 +236,7 @@ UnknownText_0x646df: ; 0x646df
 	line "all over! So I"
 
 	para "chickened out and"
-	line "took off for home…"
+	line "took off for home<...>"
 	done
 ; 0x647d8
 
@@ -392,7 +392,7 @@ UnknownText_0x64b5f: ; 0x64b5f
 UnknownText_0x64bc6: ; 0x64bc6
 	text "I haven't had any"
 	line "luck seeing rare"
-	cont "#MON lately…"
+	cont "#MON lately<...>"
 
 	para "But I know they're"
 	line "out there!"
@@ -456,7 +456,7 @@ UnknownText_0x64d4f: ; 0x64d4f
 	cont "on me yesterday."
 
 	para "A computational"
-	line "error on my part…"
+	line "error on my part<...>"
 	done
 ; 0x64da4
 
@@ -569,7 +569,7 @@ UnknownText_0x6501c: ; 0x6501c
 	line "Really, just a"
 
 	para "little bit more,"
-	line "and I would've…"
+	line "and I would've<...>"
 	done
 ; 0x65091
 
@@ -704,7 +704,7 @@ UnknownText_0x65399: ; 0x65399
 	para "wanting to observe"
 	line "@"
 	text_from_ram StringBuffer4
-	text ". Rats…"
+	text ". Rats<...>"
 	done
 ; 0x65419
 
@@ -776,7 +776,7 @@ UnknownText_0x655c7: ; 0x655c7
 
 	para "I envy you for"
 	line "taking part in"
-	cont "that project…"
+	cont "that project<...>"
 	done
 ; 0x65628
 
@@ -883,11 +883,11 @@ UnknownText_0x65969: ; 0x65969
 	para "about #MON"
 	line "naturally."
 
-	para "I envy him…"
+	para "I envy him<...>"
 	line "I'd like to travel"
 
 	para "and learn about"
-	line "things too…"
+	line "things too<...>"
 	done
 ; 0x65a23
 
@@ -962,7 +962,7 @@ UnknownText_0x65bc8: ; 0x65bc8
 	para "But it wasn't very"
 	line "cute, so I left"
 
-	para "it…"
+	para "it<...>"
 	line "#MON have to be"
 
 	para "cute. They're no"
@@ -1053,7 +1053,7 @@ UnknownText_0x65e42: ; 0x65e42
 
 	para "Heh, I guess you"
 	line "can't tell over"
-	cont "the phone…"
+	cont "the phone<...>"
 	done
 ; 0x65eac
 
@@ -1068,7 +1068,7 @@ UnknownText_0x65eac: ; 0x65eac
 
 	para "Heh, I guess you"
 	line "can't tell over"
-	cont "the phone…"
+	cont "the phone<...>"
 	done
 ; 0x65f17
 
@@ -1119,7 +1119,7 @@ UnknownText_0x65ff2: ; 0x65ff2
 ; 0x66043
 
 UnknownText_0x66043: ; 0x66043
-	text "Yup, TULLY here…"
+	text "Yup, TULLY here<...>"
 
 	para $14, "? What?"
 	line "You're lost?"
@@ -1180,7 +1180,7 @@ UnknownText_0x6618c: ; 0x6618c
 	line "sighting. But I"
 
 	para "didn't have any"
-	line "# BALLS…"
+	line "# BALLS<...>"
 
 	para "Would BILL laugh"
 	line "at my mistakes?"
@@ -1213,7 +1213,7 @@ UnknownText_0x662a9: ; 0x662a9
 ; 0x662bc
 
 UnknownText_0x662bc: ; 0x662bc
-	text "Did you know…?"
+	text "Did you know<...>?"
 	line "BILL's father is"
 
 	para "supposed to be a"
@@ -1222,7 +1222,7 @@ UnknownText_0x662bc: ; 0x662bc
 ; 0x662fc
 
 UnknownText_0x662fc: ; 0x662fc
-	text "Did you know…?"
+	text "Did you know<...>?"
 	line "Apparently BILL's"
 
 	para "grandpa isn't a"
@@ -1231,14 +1231,14 @@ UnknownText_0x662fc: ; 0x662fc
 ; 0x66335
 
 UnknownText_0x66335: ; 0x66335
-	text "Did you know…?"
+	text "Did you know<...>?"
 	line "BILL's originally"
 	cont "from GOLDENROD."
 	done
 ; 0x66366
 
 UnknownText_0x66366: ; 0x66366
-	text "Did you know…?"
+	text "Did you know<...>?"
 	line "BILL evidently"
 
 	para "lives on ROUTE 25"
@@ -1247,7 +1247,7 @@ UnknownText_0x66366: ; 0x66366
 ; 0x663a1
 
 UnknownText_0x663a1: ; 0x663a1
-	text "Did you know…?"
+	text "Did you know<...>?"
 	line "ABRA was the first"
 
 	para "#MON that BILL"
@@ -1256,7 +1256,7 @@ UnknownText_0x663a1: ; 0x663a1
 ; 0x663e6
 
 UnknownText_0x663e6: ; 0x663e6
-	text "Did you know…?"
+	text "Did you know<...>?"
 	line "BILL's younger"
 
 	para "sister apparently"
@@ -1265,7 +1265,7 @@ UnknownText_0x663e6: ; 0x663e6
 ; 0x66421
 
 UnknownText_0x66421: ; 0x66421
-	text "Did you know…?"
+	text "Did you know<...>?"
 	line "BILL supposedly"
 
 	para "hates milk and"
@@ -1274,7 +1274,7 @@ UnknownText_0x66421: ; 0x66421
 ; 0x6645f
 
 UnknownText_0x6645f: ; 0x6645f
-	text "Did you know…?"
+	text "Did you know<...>?"
 	line "Evidently, BILL"
 
 	para "isn't very good at"
@@ -1283,7 +1283,7 @@ UnknownText_0x6645f: ; 0x6645f
 ; 0x6649b
 
 UnknownText_0x6649b: ; 0x6649b
-	text "Did you know…?"
+	text "Did you know<...>?"
 	line "BILL appears to"
 
 	para "like the lady at"
@@ -1292,7 +1292,7 @@ UnknownText_0x6649b: ; 0x6649b
 ; 0x664dd
 
 UnknownText_0x664dd: ; 0x664dd
-	text "Did you know…?"
+	text "Did you know<...>?"
 	line "BILL's mother is"
 
 	para "said to have been"
@@ -1344,7 +1344,7 @@ UnknownText_0x66605: ; 0x66605
 	para "@"
 	text_from_ram StringBuffer4
 	text " a while"
-	line "ago…"
+	line "ago<...>"
 
 	para "My CLEFAIRY came"
 	line "close to fainting!"
@@ -1365,7 +1365,7 @@ UnknownText_0x66688: ; 0x66688
 	para "@"
 	text_from_ram StringBuffer4
 	text " a while"
-	line "ago…"
+	line "ago<...>"
 
 	para "My CLEFAIRY got"
 	line "frightened, so we"
@@ -1399,12 +1399,12 @@ UnknownText_0x66796: ; 0x66796
 	text "!"
 
 	para "It's awful."
-	line "My CLEFAIRY…"
+	line "My CLEFAIRY<...>"
 
 	para "Huh? ", $14, "?"
 
 	para "Oh, sorry! I was"
-	line "in a hurry, and I…"
+	line "in a hurry, and I<...>"
 
 	para "I have to go!"
 	line "Bye-bye!"
@@ -1447,7 +1447,7 @@ UnknownText_0x668a3: ; 0x668a3
 	line "and fell asleep."
 
 	para "I'm not sure if I"
-	line "can wake it up…"
+	line "can wake it up<...>"
 
 	para "Please hurry to"
 	line "@"
@@ -1488,7 +1488,7 @@ UnknownText_0x669b2: ; 0x669b2
 	text_from_ram StringBuffer4
 	text "!"
 
-	para "…Huh? You too?"
+	para "<...>Huh? You too?"
 	line "Isn't that great?"
 	done
 ; 0x669ed
@@ -1502,7 +1502,7 @@ UnknownText_0x669ed: ; 0x669ed
 	line "us."
 
 	para "I wanted to FLY"
-	line "after it…"
+	line "after it<...>"
 	done
 ; 0x66a3a
 
@@ -1558,7 +1558,7 @@ UnknownText_0x66b3e: ; 0x66b3e
 	text "We beat a wild"
 	line "@"
 	text_from_ram StringBuffer4
-	text "…"
+	text "<...>"
 
 	para "You know, I have"
 	line "more fun fishing"
@@ -1626,13 +1626,13 @@ UnknownText_0x66ca7: ; 0x66ca7
 ; 0x66cf7
 
 UnknownText_0x66cf7: ; 0x66cf7
-	text "Sigh…"
+	text "Sigh<...>"
 	line "They're not biting"
 
 	para "like before on"
 	line "@"
 	text_from_ram StringBuffer5
-	text "…"
+	text "<...>"
 
 	para "You have to come"
 	line "for a battle!"
@@ -1648,7 +1648,7 @@ UnknownText_0x66d45: ; 0x66d45
 
 	para "@"
 	text_from_ram StringBuffer5
-	text "…"
+	text "<...>"
 	line "Just head from"
 
 	para "MAHOGANY toward"
@@ -1742,7 +1742,7 @@ UnknownText_0x66fc0: ; 0x66fc0
 	text "!"
 
 	para "That was OK, but I"
-	line "wanted to get it…"
+	line "wanted to get it<...>"
 	done
 ; 0x67001
 
@@ -1815,7 +1815,7 @@ UnknownText_0x6717a: ; 0x6717a
 ; 0x671a4
 
 UnknownText_0x671a4: ; 0x671a4
-	text "And, and…"
+	text "And, and<...>"
 	line "I just battled and"
 	cont "beat @"
 	text_from_ram StringBuffer4
@@ -1827,7 +1827,7 @@ UnknownText_0x671a4: ; 0x671a4
 ; 0x671eb
 
 UnknownText_0x671eb: ; 0x671eb
-	text "But, but…"
+	text "But, but<...>"
 
 	para "A wild @"
 	text_from_ram StringBuffer4

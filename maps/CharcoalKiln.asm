@@ -89,7 +89,7 @@ UnknownText_0x18dd74: ; 0x18dd74
 
 	para "The forest's pro-"
 	line "tector may be"
-	cont "angry with us…"
+	cont "angry with us<...>"
 
 	para "It may be a bad"
 	line "omen. We should"
@@ -99,7 +99,7 @@ UnknownText_0x18dd74: ; 0x18dd74
 
 UnknownText_0x18ddfd: ; 0x18ddfd
 	text "The SLOWPOKE have"
-	line "returned…"
+	line "returned<...>"
 
 	para "But my APPRENTICE"
 	line "hasn't come back"

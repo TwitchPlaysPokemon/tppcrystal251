@@ -41,7 +41,7 @@ UnknownText_0x9cb16: ; 0x9cb16
 	para "Want to know what"
 	line "it says?"
 
-	para "Let's see… Nope!"
+	para "Let's see<...> Nope!"
 	line "It's a secret!"
 	done
 ; 0x9cb9e

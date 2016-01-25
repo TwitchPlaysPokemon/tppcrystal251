@@ -337,11 +337,11 @@ MovementData_0x70155: ; 0x70155
 UnknownText_0x70157: ; 0x70157
 	text "This lake is full"
 	line "of GYARADOS but"
-	cont "nothing else…"
+	cont "nothing else<...>"
 
 	para "So the MAGIKARP"
 	line "are being forced"
-	cont "to evolve…"
+	cont "to evolve<...>"
 	done
 ; 0x701b4
 
@@ -356,7 +356,7 @@ UnknownText_0x701b4: ; 0x701b4
 
 	para "I heard some ru-"
 	line "mors, so I came to"
-	cont "investigate…"
+	cont "investigate<...>"
 
 	para "I saw the way you"
 	line "battled earlier,"
@@ -395,7 +395,7 @@ UnknownText_0x702c6: ; 0x702c6
 ; 0x70371
 
 UnknownText_0x70371: ; 0x70371
-	text "Oh… Well, if you"
+	text "Oh<...> Well, if you"
 	line "change your mind,"
 	cont "please help me."
 	done
@@ -450,7 +450,7 @@ UnknownText_0x704bb: ; 0x704bb
 	line "ceive me? I saw a"
 
 	para "red GYARADOS in"
-	line "the LAKE…"
+	line "the LAKE<...>"
 
 	para "But I thought"
 	line "GYARADOS were"
@@ -470,7 +470,7 @@ FisherAndreBeatenText: ; 0x7054e
 	line "pert angler, but"
 
 	para "I stink as a #-"
-	line "MON trainer…"
+	line "MON trainer<...>"
 	done
 ; 0x7058f
 
@@ -519,7 +519,7 @@ CooltrainermAaronSeenText: ; 0x70632
 ; 0x70688
 
 CooltrainermAaronBeatenText: ; 0x70688
-	text "Whew…"
+	text "Whew<...>"
 	line "Good battle."
 	done
 ; 0x7069c
@@ -555,7 +555,7 @@ CooltrainerfLoisBeatenText: ; 0x70745
 UnknownText_0x70752: ; 0x70752
 	text "Come to think of"
 	line "it, I've seen a"
-	cont "pink BUTTERFREE…"
+	cont "pink BUTTERFREE<...>"
 	
 	para "Also, I caught"
 	line "my FORRETRESS"

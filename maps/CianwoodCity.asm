@@ -212,7 +212,7 @@ UnknownText_0x1a00f1: ; 0x1a00f1
 	line "easier if your"
 
 	para "#MON knew how"
-	line "to FLY…"
+	line "to FLY<...>"
 	done
 ; 0x1a0163
 
@@ -329,10 +329,10 @@ UnknownText_0x1a0433: ; 0x1a0433
 	para "roads at simply"
 	line "awesome speeds."
 
-	para "It's wonderful…"
+	para "It's wonderful<...>"
 
 	para "I want to see"
-	line "SUICUNE up close…"
+	line "SUICUNE up close<...>"
 
 	para "I've decided."
 

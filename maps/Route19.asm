@@ -191,7 +191,7 @@ SwimmermHaroldSeenText: ; 0x19ea7b
 ; 0x19eaad
 
 SwimmermHaroldBeatenText: ; 0x19eaad
-	text "Glub…"
+	text "Glub<...>"
 	done
 ; 0x19eab4
 
@@ -205,11 +205,11 @@ UnknownText_0x19eab4: ; 0x19eab4
 ; 0x19eafa
 
 SwimmermTuckerSeenText: ; 0x19eafa
-	text "Pant, pant…"
-	line "Just… a little…"
+	text "Pant, pant<...>"
+	line "Just<...> a little<...>"
 
-	para "farther… to…"
-	line "FUCHSIA…"
+	para "farther<...> to<...>"
+	line "FUCHSIA<...>"
 	done
 ; 0x19eb2d
 
@@ -219,9 +219,9 @@ SwimmermTuckerBeatenText: ; 0x19eb2d
 ; 0x19eb3b
 
 UnknownText_0x19eb3b: ; 0x19eb3b
-	text "I… asked my girl-"
+	text "I<...> asked my girl-"
 	line "friend to swim to"
-	cont "FUCHSIA… Gasp…"
+	cont "FUCHSIA<...> Gasp<...>"
 	done
 ; 0x19eb6f
 
@@ -233,7 +233,7 @@ SwimmerfDawnSeenText: ; 0x19eb6f
 
 SwimmerfDawnBeatenText: ; 0x19eb8e
 	text "I could beat you"
-	line "at swimming…"
+	line "at swimming<...>"
 	done
 ; 0x19ebad
 
@@ -242,7 +242,7 @@ UnknownText_0x19ebad: ; 0x19ebad
 	line "between FUCHSIA"
 
 	para "and SEAFOAM IS-"
-	line "LANDS…"
+	line "LANDS<...>"
 
 	para "Sheesh, some big"
 	line "man my boyfriend"
@@ -296,7 +296,7 @@ UnknownText_0x19ed24: ; 0x19ed24
 UnknownText_0x19ed45: ; 0x19ed45
 	text "Who knows how long"
 	line "it would take to"
-	cont "move this boulder…"
+	cont "move this boulder<...>"
 	done
 ; 0x19ed7d
 

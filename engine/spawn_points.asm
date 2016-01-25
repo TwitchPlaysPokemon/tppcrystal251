@@ -48,7 +48,7 @@ ENDM
 	spawn CERULEAN_RB,  CERULEAN_CITY_RB,           19, 18
 	spawn MT_MOON_RB,   ROUTE_3_RB,                 47,  4
 	spawn VERMILION_RB, VERMILION_CITY_RB,           9,  6
-	spawn S_S_ANNE,     S_S_ANNE_10,                11, 22 ; fix this later
+	spawn S_S_ANNE,     S_S_ANNE_10,                22, 11 ; fix this later
 
 	db -1, -1, -1
 

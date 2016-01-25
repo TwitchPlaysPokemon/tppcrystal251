@@ -818,7 +818,7 @@ UnknownText_0x190a59: ; 0x190a59
 UnknownText_0x190acf: ; 0x190acf
 	text "Tch! I thought"
 	line "kids these days"
-	cont "were loaded…"
+	cont "were loaded<...>"
 	done
 ; 0x190afc
 
@@ -842,7 +842,7 @@ FisherJustinBeatenText: ; 0x190b44
 ; 0x190b4e
 
 UnknownText_0x190b4e: ; 0x190b4e
-	text "Calm, collected…"
+	text "Calm, collected<...>"
 	line "The essence of"
 
 	para "fishing and #-"
@@ -862,7 +862,7 @@ FisherRalph1SeenText: ; 0x190b8f
 
 FisherRalph1BeatenText: ; 0x190bda
 	text "Tch! I tried to"
-	line "rush things…"
+	line "rush things<...>"
 	done
 ; 0x190bf8
 
@@ -876,7 +876,7 @@ UnknownText_0x190bf8: ; 0x190bf8
 ; 0x190c37
 
 UnknownText_0x190c37: ; 0x190c37
-	text "One, two, three…"
+	text "One, two, three<...>"
 	line "Muahahaha, what a"
 
 	para "great haul!"
@@ -891,7 +891,7 @@ UnknownText_0x190c37: ; 0x190c37
 
 UnknownText_0x190c9c: ; 0x190c9c
 	text "I keep catching"
-	line "the same #MON…"
+	line "the same #MON<...>"
 
 	para "Maybe a battle"
 	line "will turn things"
@@ -901,7 +901,7 @@ UnknownText_0x190c9c: ; 0x190c9c
 
 UnknownText_0x190ceb: ; 0x190ceb
 	text "Nothing ever goes"
-	line "right for me now…"
+	line "right for me now<...>"
 	done
 ; 0x190d10
 
@@ -1012,7 +1012,7 @@ UnknownText_0x190f49: ; 0x190f49
 ; 0x190f6e
 
 CamperRolandSeenText: ; 0x190f6e
-	text "That glance…"
+	text "That glance<...>"
 	line "It's intriguing."
 	done
 ; 0x190f8c
@@ -1035,7 +1035,7 @@ UnknownText_0x190faa: ; 0x190faa
 
 PicnickerLiz1SeenText: ; 0x190fdf
 	text "Uh-huh. Yeah, and"
-	line "you know…"
+	line "you know<...>"
 
 	para "Pardon? Battle?"
 	line "I'm on the phone."
@@ -1082,7 +1082,7 @@ UnknownText_0x1910d4: ; 0x1910d4
 UnknownText_0x191105: ; 0x191105
 	text "The fishermen"
 	line "yelled at me for"
-	cont "bugging them…"
+	cont "bugging them<...>"
 	done
 ; 0x191133
 

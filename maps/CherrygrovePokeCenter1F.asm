@@ -18,6 +18,13 @@ GentlemanScript_0x196973: ; 0x196973
 	jumptextfaceplayer UnknownText_0x1969c8
 ; 0x196976
 
+CherrygrovePCScript:
+	checkevent EVENT_HEALED_PKMN_IN_CHERRYGROVE
+	iffalse .pleasehealpkmn
+	jumpstd pcscript
+.pleasehealpkmn
+	jumptext Text_CherrygrovePC_PleaseHealPkmn
+
 TeacherScript_0x196976: ; 0x196976
 	faceplayer
 	loadfont
@@ -72,6 +79,12 @@ UnknownText_0x196a46: ; 0x196a46
 	done
 ; 0x196a96
 
+Text_CherrygrovePC_PleaseHealPkmn:
+	text "BZZT! You don't"
+	line "have a #MON fit"
+	cont "to fight!"
+	done
+
 CherrygrovePokeCenter1F_MapEventHeader: ; 0x196a96
 	; filler
 	db 0, 0
@@ -86,7 +99,8 @@ CherrygrovePokeCenter1F_MapEventHeader: ; 0x196a96
 	db 0
 
 	; signposts
-	db 0
+	db 1
+	signpost 1, 9, $0, CherrygrovePCScript
 
 	; people-events
 	db 4

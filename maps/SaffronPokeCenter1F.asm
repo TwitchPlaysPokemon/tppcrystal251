@@ -62,7 +62,7 @@ UnknownText_0x18a532: ; 0x18a532
 	line "#MON CENTERS"
 	cont "like?"
 
-	para "…Oh, I see."
+	para "<...>Oh, I see."
 	line "So they let you"
 
 	para "link with people"

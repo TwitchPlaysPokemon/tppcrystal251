@@ -794,8 +794,8 @@ UnknownText_0x9f264: ; 0x9f264
 	text "Destroyed by the"
 	line "first opponent in"
 
-	para "no time at all…"
-	line "I'm no good…"
+	para "no time at all<...>"
+	line "I'm no good<...>"
 	done
 ; 0x9f2a4
 
@@ -831,7 +831,7 @@ UnknownText_0x9f35b: ; 0x9f35b
 	line "#MON."
 
 	para "Don't let there be"
-	line "any fire #MON…"
+	line "any fire #MON<...>"
 	done
 ; 0x9f3b4
 

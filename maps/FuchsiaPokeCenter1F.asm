@@ -85,7 +85,7 @@ UnknownText_0x1964dc: ; 0x1964dc
 
 UnknownText_0x19652e: ; 0x19652e
 	text "I'm JANINE! Hocus-"
-	line "pocus… Poof!"
+	line "pocus<...> Poof!"
 	done
 ; 0x19654e
 

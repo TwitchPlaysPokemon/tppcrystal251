@@ -59,12 +59,12 @@ SSAnne5_MapScriptHeader:
 	startbattle
 	reloadmap
 	iffalse .loop
-	playmusic MUSIC_NONE
 	loadfont
 	writetext SSAnne5TextAfter
 	waitbutton
 	closetext
 	pause 30
+	playmusic MUSIC_NONE
 	earthquake 100
 	pause 30
 	loadfont
@@ -94,16 +94,11 @@ SSAnne5_MapScriptHeader:
 	playsound SFX_HYDRO_PUMP
 	pause 8
 	playsound SFX_HYDRO_PUMP
-	pause 8
-	playsound SFX_HYDRO_PUMP
-	pause 8
-	playsound SFX_HYDRO_PUMP
-	pause 8
-	playsound SFX_HYDRO_PUMP
 	pause 180
 	setflag ENGINE_EARLY_GAME_KANTO
-	warpfacing DOWN, GROUP_CHERRYGROVE_CITY, MAP_CHERRYGROVE_CITY, 10, 9
+	domaptrigger GROUP_CHERRYGROVE_CITY, MAP_CHERRYGROVE_CITY, 2
 	blackoutmod GROUP_CHERRYGROVE_CITY, MAP_CHERRYGROVE_CITY
+	warpfacing DOWN, GROUP_CHERRYGROVE_CITY, MAP_CHERRYGROVE_CITY, 10, 9
 	end
 
 .GetWinText
@@ -363,5 +358,5 @@ SSAnne5_MapEventHeader:
 	person_event SPRITE_SUPER_NERD,    15, 11, $2, 1, 1, -1, -1, 0, 0, 0, SSAnne5SuperNerdScript, EVENT_ROCKET_TAKEOVER_OF_SS_ANNE
 	person_event SPRITE_SAILOR,         8,  8, $6, 0, 0, -1, -1, 0, 2, 3, SSAnee5Sailor1Battle, EVENT_ROCKET_TAKEOVER_OF_SS_ANNE
 	person_event SPRITE_SAILOR,        12, 14, $7, 0, 0, -1, -1, 0, 2, 3, SSAnee5Sailor2Battle, EVENT_ROCKET_TAKEOVER_OF_SS_ANNE
-	person_event SPRITE_ROCKET,         12, 15, $9, 0, 0, -1, -1, 0, 0, 0, ObjectEvent, EVENT_ROCKETS_NOT_YET_BOARDED_SS_ANNE
-	person_event SPRITE_ROCKET,          8, 14, $9, 0, 0, -1, -1, 0, 0, 0, ObjectEvent, EVENT_ROCKETS_NOT_YET_BOARDED_SS_ANNE
+	person_event SPRITE_ROCKET,         11, 15, $9, 0, 0, -1, -1, 0, 0, 0, ObjectEvent, EVENT_ROCKETS_NOT_YET_BOARDED_SS_ANNE
+	person_event SPRITE_ROCKET,          9, 14, $9, 0, 0, -1, -1, 0, 0, 0, ObjectEvent, EVENT_ROCKETS_NOT_YET_BOARDED_SS_ANNE

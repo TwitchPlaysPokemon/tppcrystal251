@@ -210,11 +210,11 @@ _Route11AfterBattleText6:
 
 _Route11BattleText7:
 	text "I have never won"
-	line "before…"
+	line "before<...>"
 	done
 
 _Route11EndBattleText7:
-	text "I saw this coming…"
+	text "I saw this coming<...>"
 	done
 
 _Route11AfterBattleText7:

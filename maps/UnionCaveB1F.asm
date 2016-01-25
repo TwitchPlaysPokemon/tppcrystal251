@@ -145,13 +145,13 @@ HikerPhillipSeenText: ; 0x5a01d
 ; 0x5a06a
 
 HikerPhillipBeatenText: ; 0x5a06a
-	text "Uurggh…"
+	text "Uurggh<...>"
 	done
 ; 0x5a073
 
 UnknownText_0x5a073: ; 0x5a073
 	text "I've been lost for"
-	line "a long time…"
+	line "a long time<...>"
 
 	para "I don't mind it"
 	line "here, but I am"
@@ -191,7 +191,7 @@ PokemaniacAndrewSeenText: ; 0x5a14a
 ; 0x5a173
 
 PokemaniacAndrewBeatenText: ; 0x5a173
-	text "Go…"
+	text "Go<...>"
 	line "Go away!"
 	done
 ; 0x5a181

@@ -185,7 +185,7 @@ MovementData_0x185cd3: ; 0x185cd3
 UnknownText_0x185cd9: ; 0x185cd9
 	text $56, " ", $56, " ", $56
 
-	para "…Oh, it's you."
+	para "<...>Oh, it's you."
 
 	para "I came looking for"
 	line "some legendary"
@@ -208,7 +208,7 @@ UnknownText_0x185cd9: ; 0x185cd9
 ; 0x185d9b
 
 UnknownText_0x185d9b: ; 0x185d9b
-	text "…Humph!"
+	text "<...>Humph!"
 
 	para "This is why I hate"
 	line "battling wimps."
@@ -219,7 +219,7 @@ UnknownText_0x185d9b: ; 0x185d9b
 ; 0x185de2
 
 UnknownText_0x185de2: ; 0x185de2
-	text "…Aw, whatever."
+	text "<...>Aw, whatever."
 
 	para "You would never be"
 	line "able to catch a"
@@ -230,7 +230,7 @@ UnknownText_0x185de2: ; 0x185de2
 ; 0x185e2c
 
 UnknownText_0x185e2c: ; 0x185e2c
-	text "…Humph!"
+	text "<...>Humph!"
 
 	para "This is why I hate"
 	line "battling wimps."
@@ -261,7 +261,7 @@ UnknownText_0x185ecc: ; 0x185ecc
 	line "of a #MON named"
 	cont "SUICUNE."
 
-	para "And you are…?"
+	para "And you are<...>?"
 
 	para "<PLAYER>? Glad to"
 	line "meet you!"

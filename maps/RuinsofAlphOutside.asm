@@ -241,11 +241,11 @@ UnknownText_0x581e5: ; 0x581e5
 ; 0x58217
 
 UnknownText_0x58217: ; 0x58217
-	text "Sorry…"
+	text "Sorry<...>"
 	line "I'm frustrated by"
 
 	para "our lack of real"
-	line "understanding…"
+	line "understanding<...>"
 	done
 ; 0x58250
 
@@ -263,27 +263,27 @@ UnknownText_0x58250: ; 0x58250
 	cont "any meaning."
 
 	para "It's all one big"
-	line "mystery…"
+	line "mystery<...>"
 	done
 ; 0x582eb
 
 PsychicNathanSeenText: ; 0x582eb
-	text "…strange place."
+	text "<...>strange place."
 	
-	para "…strange"
+	para "<...>strange"
 	line "#MON."
 	
-	para "…caught one."
+	para "<...>caught one."
 	done
 ; 0x5830b
 
 PsychicNathanBeatenText: ; 0x5830b
-	text "…"
+	text "<...>"
 	done
 ; 0x5830e
 
 UnknownText_0x5830e: ; 0x5830e
-	text "…it came"
+	text "<...>it came"
 	line "from the ruins."
 	done
 ; 0x58325
@@ -328,7 +328,7 @@ UnknownText_0x58420: ; 0x58420
 	text "The RUINS hide a"
 	line "huge secret!"
 
-	para "…I think…"
+	para "<...>I think<...>"
 	done
 ; 0x58449
 
@@ -342,8 +342,8 @@ UnknownText_0x58449: ; 0x58449
 ; 0x5848e
 
 UnknownText_0x5848e: ; 0x5848e
-	text "A… H… E… A… D…"
-	line "Hmm…"
+	text "A<...> H<...> E<...> A<...> D<...>"
+	line "Hmm<...>"
 
 	para "What?"
 

@@ -513,7 +513,7 @@ LassDana1SeenText: ; 0x1a207d
 
 LassDana1BeatenText: ; 0x1a20c8
 	text "Down to my"
-	line "last 100…"
+	line "last 100<...>"
 	done
 ; 0x1a20ec
 
@@ -561,14 +561,14 @@ SailorHarrySeenText: ; 0x1a21b7
 
 SailorHarryBeatenText: ; 0x1a21f0
 	text "A cut below"
-	line "the rest…"
+	line "the rest<...>"
 	done
 ; 0x1a220c
 
 UnknownText_0x1a220c: ; 0x1a220c
 	text "I wonder how"
 	line "useful CUT"
-	cont "will be at sea…"
+	cont "will be at sea<...>"
 	done
 ; 0x1a224c
 

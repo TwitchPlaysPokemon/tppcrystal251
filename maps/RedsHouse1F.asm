@@ -80,7 +80,7 @@ UnknownText_0x19af81: ; 0x19af81
 UnknownText_0x19afe8: ; 0x19afe8
 	text "They have programs"
 	line "that aren't shown"
-	cont "in JOHTO…"
+	cont "in JOHTO<...>"
 	done
 ; 0x19b017
 

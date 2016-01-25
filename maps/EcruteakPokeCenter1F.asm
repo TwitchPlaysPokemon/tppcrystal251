@@ -210,10 +210,10 @@ UnknownText_0x99240: ; 0x99240
 ; 0x99286
 
 UnknownText_0x99286: ; 0x99286
-	text "LAKE OF RAGE…"
+	text "LAKE OF RAGE<...>"
 
 	para "The appearance of"
-	line "a GYARADOS swarm…"
+	line "a GYARADOS swarm<...>"
 
 	para "I smell a conspir-"
 	line "acy. I know it!"

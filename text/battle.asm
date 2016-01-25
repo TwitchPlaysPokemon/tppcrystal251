@@ -640,7 +640,7 @@ IgnoredOrdersText: ; 0x80f66
 IgnoredSleepingText: ; 0x80f7b
 	text_from_ram BattleMonNick
 	text " ignored"
-	line "orders…sleeping!"
+	line "orders<...>sleeping!"
 	prompt
 ; 0x80f99
 
@@ -727,7 +727,7 @@ SuperEffectiveText: ; 0x810aa
 
 NotVeryEffectiveText: ; 0x810c1
 	text "It's not very"
-	line "effective…"
+	line "effective<...>"
 	prompt
 ; 0x810da
 
@@ -1291,10 +1291,10 @@ IgnoredOrders2Text: ; 0x81850
 ; 0x81863
 
 BattleText_0x81863: ; 0x81863
-	text "Link error…"
+	text "Link error<...>"
 
 	para "The battle has"
-	line "been canceled…"
+	line "been canceled<...>"
 	prompt
 ; 0x8188e
 

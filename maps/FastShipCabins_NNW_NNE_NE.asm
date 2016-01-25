@@ -357,8 +357,8 @@ GentlemanEdwardSeenText: ; 0x758f1
 ; 0x75923
 
 GentlemanEdwardBeatenText: ; 0x75923
-	text "I… I can't find"
-	line "it…"
+	text "I<...> I can't find"
+	line "it<...>"
 	done
 ; 0x75937
 
@@ -388,7 +388,7 @@ UnknownText_0x75996: ; 0x75996
 	line "coin here."
 
 	para "Someone must have"
-	line "lost it…"
+	line "lost it<...>"
 	done
 ; 0x759ce
 

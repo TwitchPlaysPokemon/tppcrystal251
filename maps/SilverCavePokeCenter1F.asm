@@ -19,13 +19,13 @@ UnknownText_0x1ae5a0: ; 0x1ae5a0
 	line "power climb MT."
 
 	para "SILVER despite its"
-	line "many dangers…"
+	line "many dangers<...>"
 
 	para "With their trusted"
 	line "#MON, they must"
 
 	para "feel they can go"
-	line "anywhere…"
+	line "anywhere<...>"
 	done
 ; 0x1ae622
 

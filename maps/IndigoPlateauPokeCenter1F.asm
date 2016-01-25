@@ -256,19 +256,19 @@ UnknownText_0x1801f5: ; 0x1801f5
 ; 0x180295
 
 UnknownText_0x180295: ; 0x180295
-	text "…"
+	text "<...>"
 
-	para "OK--I lost…"
+	para "OK--I lost<...>"
 	done
 ; 0x1802a4
 
 UnknownText_0x1802a4: ; 0x1802a4
-	text "…Darn… I still"
-	line "can't win…"
+	text "<...>Darn<...> I still"
+	line "can't win<...>"
 
-	para "I… I have to think"
+	para "I<...> I have to think"
 	line "more about my"
-	cont "#MON…"
+	cont "#MON<...>"
 
 	para "Humph! Try not to"
 	line "lose!"
@@ -276,9 +276,9 @@ UnknownText_0x1802a4: ; 0x1802a4
 ; 0x1802fd
 
 UnknownText_0x1802fd: ; 0x1802fd
-	text "…"
+	text "<...>"
 
-	para "Whew…"
+	para "Whew<...>"
 	line "With my partners,"
 
 	para "I'm going to be"
@@ -310,7 +310,7 @@ UnknownText_0x180335: ; 0x180335
 UnknownText_0x1803e7: ; 0x1803e7
 	text "OK, OK. Picture"
 	line "your house in your"
-	cont "mind…"
+	cont "mind<...>"
 	done
 ; 0x180411
 
@@ -321,7 +321,7 @@ UnknownText_0x180411: ; 0x180411
 ; 0x180433
 
 UnknownText_0x180433: ; 0x180433
-	text "ABRA: Aabra…"
+	text "ABRA: Aabra<...>"
 	done
 ; 0x180441
 

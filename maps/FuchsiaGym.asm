@@ -249,10 +249,10 @@ MovementData_0x195f27: ; 0x195f27
 ; 0x195f35
 
 UnknownText_0x195f35: ; 0x195f35
-	text "Fufufufu…"
+	text "Fufufufu<...>"
 
 	para "I'm sorry to dis-"
-	line "appoint you…"
+	line "appoint you<...>"
 
 	para "I'm only joking!"
 
@@ -266,7 +266,7 @@ UnknownText_0x195f35: ; 0x195f35
 UnknownText_0x195fa1: ; 0x195fa1
 	text "JANINE: You're a"
 	line "tough one. You"
-	cont "definitely won…"
+	cont "definitely won<...>"
 
 	para "Here's SOULBADGE."
 	line "Take it."
@@ -317,7 +317,7 @@ UnknownText_0x1960e6: ; 0x1960e6
 ; 0x196126
 
 UnknownText_0x196126: ; 0x196126
-	text "I had you fooled…"
+	text "I had you fooled<...>"
 	done
 ; 0x196139
 
@@ -335,8 +335,8 @@ UnknownText_0x196166: ; 0x196166
 ; 0x19617b
 
 UnknownText_0x19617b: ; 0x19617b
-	text "Ooh… I lost…"
-	line "You're not weak…"
+	text "Ooh<...> I lost<...>"
+	line "You're not weak<...>"
 	done
 ; 0x196199
 

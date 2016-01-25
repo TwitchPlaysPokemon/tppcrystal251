@@ -59,7 +59,7 @@ UnknownText_0x70c3e: ; 0x70c3e
 	line "and how they are"
 
 	para "supposed to be"
-	line "used…"
+	line "used<...>"
 	done
 ; 0x70c9c
 

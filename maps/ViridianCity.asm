@@ -194,7 +194,7 @@ UnknownText_0x1a9cc4: ; 0x1a9cc4
 	para "I must have dozed"
 	line "off in the sun."
 
-	para "…I had this dream"
+	para "<...>I had this dream"
 	line "about a DROWZEE"
 
 	para "eating my dream."
@@ -214,9 +214,9 @@ UnknownText_0x1a9cc4: ; 0x1a9cc4
 
 UnknownText_0x1a9d86: ; 0x1a9d86
 	text "TM42 contains"
-	line "DREAM EATER…"
+	line "DREAM EATER<...>"
 
-	para "…Zzzzz…"
+	para "<...>Zzzzz<...>"
 	done
 ; 0x1a9daa
 
@@ -245,10 +245,10 @@ UnknownText_0x1a9def: ; 0x1a9def
 UnknownText_0x1a9e1b: ; 0x1a9e1b
 	text "VIRIDIAN CITY"
 	line "#MON GYM"
-	cont "LEADER: …"
+	cont "LEADER: <...>"
 
 	para "The rest of the"
-	line "text is illegible…"
+	line "text is illegible<...>"
 	done
 ; 0x1a9e60
 

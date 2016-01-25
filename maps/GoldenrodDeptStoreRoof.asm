@@ -152,11 +152,11 @@ UnknownText_0x5688e: ; 0x5688e
 	line "I really want, but"
 
 	para "I don't have the"
-	line "necessary cash…"
+	line "necessary cash<...>"
 
 	para "Maybe I'll sell"
 	line "off the BERRIES"
-	cont "I've collected…"
+	cont "I've collected<...>"
 	done
 ; 0x56901
 
@@ -174,7 +174,7 @@ UnknownText_0x56942: ; 0x56942
 	line "get paralyzed or"
 
 	para "poisoned when the"
-	line "chips are down…"
+	line "chips are down<...>"
 
 	para "So I came to buy"
 	line "some FULL HEAL."
@@ -212,7 +212,7 @@ UnknownText_0x56a2b: ; 0x56a2b
 
 UnknownText_0x56aa6: ; 0x56aa6
 	text "A FISHER caught a"
-	line "lot of MAGIKARP…"
+	line "lot of MAGIKARP<...>"
 
 	para "They're SPLASHing"
 	line "at the same time!"
@@ -227,10 +227,10 @@ UnknownText_0x56b11: ; 0x56b11
 	line "for #MON dolls?"
 
 	para "Insert money, then"
-	line "turn the crank…"
+	line "turn the crank<...>"
 
 	para "But it's almost"
-	line "empty…"
+	line "empty<...>"
 	done
 ; 0x56b6d
 

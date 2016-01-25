@@ -110,7 +110,7 @@ UnknownText_0x180793: ; 0x180793
 	cont "destroy you!"
 
 	para "Confusion, sleep,"
-	line "poison…"
+	line "poison<...>"
 
 	para "Prepare to be the"
 	line "victim of my sin-"

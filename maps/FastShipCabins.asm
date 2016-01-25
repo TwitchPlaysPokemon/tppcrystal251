@@ -389,7 +389,7 @@ UnknownText_0x76064: ; 0x76064
 ; 0x760ae
 
 UnknownText_0x760ae: ; 0x760ae
-	text "Oh, hello…"
+	text "Oh, hello<...>"
 
 	para "I still can't find"
 	line "my granddaughter."
@@ -401,7 +401,7 @@ UnknownText_0x760ae: ; 0x760ae
 	line "child, so she may"
 
 	para "be bugging some-"
-	line "one. I'm worried…"
+	line "one. I'm worried<...>"
 	done
 ; 0x76143
 
@@ -441,7 +441,7 @@ UnknownText_0x7621f: ; 0x7621f
 	text "Hi! Will you play"
 	line "with me?"
 
-	para "…Oh!"
+	para "<...>Oh!"
 
 	para "Grandpa's worried"
 	line "about me?"
@@ -544,7 +544,7 @@ PsychicRodneySeenText: ; 0x76455
 ; 0x76481
 
 PsychicRodneyBeatenText: ; 0x76481
-	text "…I hear some-"
+	text "<...>I hear some-"
 	line "thing!"
 	done
 ; 0x76497
@@ -579,7 +579,7 @@ UnknownText_0x7651c: ; 0x7651c
 PokefanfGeorgiaSeenText: ; 0x7654f
 	text "I'm going to shop"
 	line "at the DEPT.STORE"
-	cont "and then…"
+	cont "and then<...>"
 	done
 ; 0x7657d
 

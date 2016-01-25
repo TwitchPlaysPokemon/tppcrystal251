@@ -549,7 +549,7 @@ FisherMarvinSeenText: ; 0x19d461
 	cont "eating fishes!"
 
 	para "I've only got one"
-	line "big haul today…"
+	line "big haul today<...>"
 	done
 ; 0x19d4b0
 
@@ -581,7 +581,7 @@ CamperSpencerSeenText: ; 0x19d535
 
 CamperSpencerBeatenText: ; 0x19d565
 	text "Losing isn't fun"
-	line "at all…"
+	line "at all<...>"
 	done
 ; 0x19d57e
 

@@ -203,7 +203,7 @@ UnknownText_0x588f5: ; 0x588f5
 
 	para "It's odd. They"
 	line "weren't here a"
-	cont "little while ago…"
+	cont "little while ago<...>"
 
 	para "You should take a"
 	line "look at the walls."
@@ -225,7 +225,7 @@ UnknownText_0x589b8: ; 0x589b8
 
 	para "But I'm more"
 	line "concerned about"
-	cont "this wall here…"
+	cont "this wall here<...>"
 	done
 ; 0x58a03
 
@@ -245,13 +245,13 @@ UnknownText_0x58a03: ; 0x58a03
 	line "#MON appear,"
 
 	para "but it's not clear"
-	line "yet…"
+	line "yet<...>"
 	done
 ; 0x58aa7
 
 UnknownText_0x58aa7: ; 0x58aa7
 	text "Patterns appeared"
-	line "on the walls…"
+	line "on the walls<...>"
 	done
 ; 0x58ac8
 
@@ -263,7 +263,7 @@ UnknownText_0x58ac8: ; 0x58ac8
 
 UnknownText_0x58ad9: ; 0x58ad9
 	text "Patterns appeared"
-	line "on the walls…"
+	line "on the walls<...>"
 	done
 ; 0x58afa
 

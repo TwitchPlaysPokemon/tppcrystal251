@@ -335,10 +335,10 @@ GruntM7BeatenText: ; 0x5e8c8
 
 UnknownText_0x5e8d0: ; 0x5e8d0
 	text "I failed in my"
-	line "duties…"
+	line "duties<...>"
 
 	para "I'll be docked pay"
-	line "for this…"
+	line "for this<...>"
 	done
 ; 0x5e904
 

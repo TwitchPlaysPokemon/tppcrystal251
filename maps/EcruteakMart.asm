@@ -33,7 +33,7 @@ UnknownText_0x99c48: ; 0x99c48
 	line "both were raising"
 
 	para "our EEVEE in the"
-	line "same way…"
+	line "same way<...>"
 	done
 ; 0x99cd5
 

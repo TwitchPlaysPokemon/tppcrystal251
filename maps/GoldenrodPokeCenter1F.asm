@@ -261,7 +261,7 @@ UnknownText_0x61344: ; 0x61344
 
 UnknownText_0x6135f: ; 0x6135f
 	text "Communication"
-	line "error…"
+	line "error<...>"
 	done
 ; 0x61375
 
@@ -544,13 +544,13 @@ UnknownText_0x61b7c: ; 0x61b7c
 
 UnknownText_0x61b9d: ; 0x61b9d
 	text "Reading the latest"
-	line "NEWS… Please wait."
+	line "NEWS<...> Please wait."
 	done
 ; 0x61bc4
 
 UnknownText_0x61bc4: ; 0x61bc4
 	text "There is no old"
-	line "NEWS…"
+	line "NEWS<...>"
 	done
 ; 0x61bdb
 
@@ -750,7 +750,7 @@ UnknownText_0x62173: ; 0x62173
 	line "they're still busy"
 
 	para "with all their"
-	line "preparations…"
+	line "preparations<...>"
 	done
 ; 0x62222
 
@@ -819,7 +819,7 @@ UnknownText_0x623c7: ; 0x623c7
 	line "NEWS MACHINE!"
 
 	para "It's not in"
-	line "operation yet…"
+	line "operation yet<...>"
 	done
 ; 0x623fb
 
@@ -867,7 +867,7 @@ UnknownText_0x62509: ; 0x62509
 ; 0x6252a
 
 UnknownText_0x6252a: ; 0x6252a
-	text "Oh… Well, another"
+	text "Oh<...> Well, another"
 	line "time, then."
 	done
 ; 0x62549

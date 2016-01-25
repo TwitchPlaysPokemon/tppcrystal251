@@ -318,7 +318,7 @@ ItemFragment_0x1a55fd: ; 0x1a55fd
 ; 0x1a55ff
 
 UnknownText_0x1a55ff: ; 0x1a55ff
-	text "DARK CAVE…"
+	text "DARK CAVE<...>"
 
 	para "If #MON could"
 	line "light it up, I'd"
@@ -334,7 +334,7 @@ Bug_catcherWade1SeenText: ; 0x1a5635
 ; 0x1a5668
 
 Bug_catcherWade1BeatenText: ; 0x1a5668
-	text "Awwwww…"
+	text "Awwwww<...>"
 	done
 ; 0x1a5671
 
@@ -352,18 +352,18 @@ UnknownText_0x1a5671: ; 0x1a5671
 ; 0x1a56d9
 
 UnknownText_0x1a56d9: ; 0x1a56d9
-	text "… Hnuurg… Huh?"
+	text "<...> Hnuurg<...> Huh?"
 
 	para "I walked too far"
 	line "today looking for"
 	cont "#MON."
 
 	para "My feet hurt and"
-	line "I'm sleepy…"
+	line "I'm sleepy<...>"
 
 	para "If I were a wild"
 	line "#MON, I'd be"
-	cont "easy to catch…"
+	cont "easy to catch<...>"
 
 	para "Can't someone else"
 	line "do it?"
@@ -386,10 +386,10 @@ UnknownText_0x1a5790: ; 0x1a5790
 ; 0x1a57ba
 
 UnknownText_0x1a57ba: ; 0x1a57ba
-	text "Let's see…"
+	text "Let's see<...>"
 
-	para "…DARK CAVE leads"
-	line "to another road…"
+	para "<...>DARK CAVE leads"
+	line "to another road<...>"
 
 	para "That's good to"
 	line "know."

@@ -167,13 +167,13 @@ BikerJoelSeenText: ; 0x1ad15c
 	
 	para "BEE positive!"
 	
-	para "…heh."
+	para "<...>heh."
 	done
 ; 0x1ad178
 
 BikerJoelBeatenText: ; 0x1ad178
 	text "You sting"
-	line "like a bee…"
+	line "like a bee<...>"
 	done
 ; 0x1ad196
 
@@ -192,7 +192,7 @@ BikerGlennSeenText: ; 0x1ad1e0
 	line "the eyes of the"
 	cont "beeholder!"
 	
-	para "…heh."
+	para "<...>heh."
 	done
 ; 0x1ad203
 
@@ -211,7 +211,7 @@ BikerCharlesSeenText: ; 0x1ad25c
 	text "I made it! I can't"
 	line "beelieve it!"
 	
-	para "…"
+	para "<...>"
 	
 	para "Ok, that bee pun"
 	line "didn't wing it."

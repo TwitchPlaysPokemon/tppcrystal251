@@ -41,7 +41,7 @@ UnknownText_0x18814d: ; 0x18814d
 ; 0x18818a
 
 UnknownText_0x18818a: ; 0x18818a
-	text "Ah… I'm so happy…"
+	text "Ah<...> I'm so happy<...>"
 	done
 ; 0x18819c
 

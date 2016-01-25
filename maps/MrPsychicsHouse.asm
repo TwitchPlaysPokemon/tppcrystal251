@@ -29,13 +29,13 @@ MapMrPsychicsHouseSignpost1Script: ; 0x18a795
 ; 0x18a798
 
 UnknownText_0x18a798: ; 0x18a798
-	text "…"
+	text "<...>"
 
-	para "…"
+	para "<...>"
 
-	para "…"
+	para "<...>"
 
-	para "…I got it!"
+	para "<...>I got it!"
 
 	para "You wanted this!"
 	done

@@ -74,10 +74,10 @@ SSAnneSimonText:
 
 SSAnneBadgesGoneText:
 	text "<PLAYER>'s BADGE"
-	line "CASE had fallen"
+	line "CASE had fallen!"
 
 	para "<PLAYER> went to"
-	line "pick it up…"
+	line "pick it up<...>"
 
 	para "But the BADGES are"
 	line "gone!"

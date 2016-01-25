@@ -256,7 +256,7 @@ UnknownText_0x1c454b: ; 0x1c454b
 ; 0x1c456d
 
 UnknownText_0x1c456d: ; 0x1c456d
-	text "SAVING… DON'T TURN"
+	text "SAVING<...> DON'T TURN"
 	line "OFF THE POWER."
 	done
 ; 0x1c4590
@@ -356,13 +356,13 @@ UnknownText_0x1c474b:: ; 0x1c474b
 	text "The @"
 	text_from_ram StringBuffer3
 	text ""
-	line "is full…"
+	line "is full<...>"
 	prompt
 ; 0x1c475f
 
 UnknownText_0x1c475f: ; 0x1c475f
 	text "I see all."
-	line "I know all…"
+	line "I know all<...>"
 
 	para "Certainly, I know"
 	line "of your #MON!"
@@ -379,7 +379,7 @@ UnknownText_0x1c4797: ; 0x1c4797
 ; 0x1c47d4
 
 UnknownText_0x1c47d4: ; 0x1c47d4
-	text "Hm… I see you met"
+	text "Hm<...> I see you met"
 	line "@"
 	text_from_ram wd003
 	text " here:"
@@ -404,7 +404,7 @@ UnknownText_0x1c47fa: ; 0x1c47fa
 ; 0x1c4837
 
 UnknownText_0x1c4837: ; 0x1c4837
-	text "Hm… @"
+	text "Hm<...> @"
 	text_from_ram wd003
 	text ""
 	line "came from @"
@@ -449,7 +449,7 @@ UnknownText_0x1c491d: ; 0x1c491d
 	para "That's an EGG!"
 
 	para "You can't say that"
-	line "you've met it yet…"
+	line "you've met it yet<...>"
 	done
 ; 0x1c4955
 
@@ -460,7 +460,7 @@ UnknownText_0x1c4955: ; 0x1c4955
 ; 0x1c497a
 
 UnknownText_0x1c497a: ; 0x1c497a
-	text "Incidentally…"
+	text "Incidentally<...>"
 
 	para "It would be wise"
 	line "to raise your"
@@ -471,7 +471,7 @@ UnknownText_0x1c497a: ; 0x1c497a
 ; 0x1c49c6
 
 UnknownText_0x1c49c6: ; 0x1c49c6
-	text "Incidentally…"
+	text "Incidentally<...>"
 
 	para "It seems to have"
 	line "grown a little."
@@ -485,7 +485,7 @@ UnknownText_0x1c49c6: ; 0x1c49c6
 ; 0x1c4a21
 
 UnknownText_0x1c4a21: ; 0x1c4a21
-	text "Incidentally…"
+	text "Incidentally<...>"
 
 	para "@"
 	text_from_ram wd003
@@ -496,7 +496,7 @@ UnknownText_0x1c4a21: ; 0x1c4a21
 ; 0x1c4a5b
 
 UnknownText_0x1c4a5b: ; 0x1c4a5b
-	text "Incidentally…"
+	text "Incidentally<...>"
 
 	para "It certainly has"
 	line "grown mighty!"
@@ -515,7 +515,7 @@ UnknownText_0x1c4a5b: ; 0x1c4a5b
 ; 0x1c4ae5
 
 UnknownText_0x1c4ae5: ; 0x1c4ae5
-	text "Incidentally…"
+	text "Incidentally<...>"
 
 	para "I'm impressed by"
 	line "your dedication."
@@ -602,7 +602,7 @@ UnknownText_0x1c4c28: ; 0x1c4c28
 	para "Your #MON may"
 	line "not like them."
 
-	para "Hehehehe…"
+	para "Hehehehe<...>"
 	done
 ; 0x1c4ca3
 
@@ -624,7 +624,7 @@ UnknownText_0x1c4cae: ; 0x1c4cae
 
 UnknownText_0x1c4cce: ; 0x1c4cce
 	text "Thank you, dear."
-	line "Hehehehe…"
+	line "Hehehehe<...>"
 	done
 ; 0x1c4cea
 
@@ -635,14 +635,14 @@ UnknownText_0x1c4cea: ; 0x1c4cea
 ; 0x1c4d08
 
 UnknownText_0x1c4d08: ; 0x1c4d08
-	text "Hehehe… You don't"
+	text "Hehehe<...> You don't"
 	line "have the money."
 	done
 ; 0x1c4d2a
 
 UnknownText_0x1c4d2a: ; 0x1c4d2a
 	text "Come again, dear."
-	line "Hehehehe…"
+	line "Hehehehe<...>"
 	done
 ; 0x1c4d47
 
@@ -838,8 +838,8 @@ UnknownText_0x1c5066: ; 0x1c5066
 ; 0x1c5079
 
 UnknownText_0x1c5079: ; 0x1c5079
-	text "Darn… Ran out of"
-	line "coins…"
+	text "Darn<...> Ran out of"
+	line "coins<...>"
 	done
 ; 0x1c5092
 
@@ -1147,7 +1147,7 @@ UnknownText_0x1c56c9: ; 0x1c56c9
 ; 0x1c5740
 
 UnknownText_0x1c5740: ; 0x1c5740
-	text "1, 2 and…@"
+	text "1, 2 and<...>@"
 	interpret_data
 	db "@"
 ; 0x1c574d
@@ -1167,7 +1167,7 @@ UnknownText_0x1c574e: ; 0x1c574e
 	text_from_ram StringBuffer1
 	text "."
 
-	para "And…"
+	para "And<...>"
 	prompt
 ; 0x1c5772
 
@@ -1184,7 +1184,7 @@ UnknownText_0x1c5793: ; 0x1c5793
 ; 0x1c57ab
 
 UnknownText_0x1c57ab: ; 0x1c57ab
-	text "Not enough coins…"
+	text "Not enough coins<...>"
 	prompt
 ; 0x1c57be
 
@@ -1216,7 +1216,7 @@ UnknownText_0x1c5813: ; 0x1c5813
 ; 0x1c581a
 
 UnknownText_0x1c581a: ; 0x1c581a
-	text "Darn…"
+	text "Darn<...>"
 	done
 ; 0x1c5821
 
@@ -1553,7 +1553,7 @@ UnknownText_0x1c5d03: ; 0x1c5d03
 ; 0x1c5d3e
 
 UnknownText_0x1c5d3e: ; 0x1c5d3e
-	text "It looks bitter…"
+	text "It looks bitter<...>"
 	prompt
 ; 0x1c5d50
 
@@ -1687,7 +1687,7 @@ UnknownText_0x1c5f50: ; 0x1c5f50
 ; 0x1c5f74
 
 UnknownText_0x1c5f74: ; 0x1c5f74
-	text "Um… Oh, yes, I'm"
+	text "Um<...> Oh, yes, I'm"
 	line "the MOVE DELETER."
 
 	para "I can make #MON"

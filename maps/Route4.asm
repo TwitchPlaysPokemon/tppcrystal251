@@ -116,7 +116,7 @@ Bird_keeperHankSeenText: ; 0x1ae214
 
 Bird_keeperHankBeatenText: ; 0x1ae241
 	text "Ack! I lost that"
-	line "one…"
+	line "one<...>"
 	done
 ; 0x1ae258
 
@@ -160,19 +160,19 @@ UnknownText_0x1ae320: ; 0x1ae320
 ; 0x1ae35e
 
 PicnickerSharonSeenText: ; 0x1ae35e
-	text "Um…"
-	line "I…"
+	text "Um<...>"
+	line "I<...>"
 	done
 ; 0x1ae366
 
 PicnickerSharonBeatenText: ; 0x1ae366
-	text "…"
+	text "<...>"
 	done
 ; 0x1ae369
 
 UnknownText_0x1ae369: ; 0x1ae369
-	text "……I'll go train"
-	line "some more…"
+	text "<...><...>I'll go train"
+	line "some more<...>"
 	done
 ; 0x1ae384
 

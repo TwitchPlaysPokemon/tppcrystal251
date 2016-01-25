@@ -379,7 +379,7 @@ UnknownText_0x198c14: ; 0x198c14
 ; 0x198c36
 
 UnknownText_0x198c36: ; 0x198c36
-	text "E-he-he-he…"
+	text "E-he-he-he<...>"
 
 	para "I got in trouble"
 	line "for playing in the"
@@ -410,7 +410,7 @@ UnknownText_0x198ccf: ; 0x198ccf
 
 UnknownText_0x198d0d: ; 0x198d0d
 	text "So this is the"
-	line "RADIO TOWER…"
+	line "RADIO TOWER<...>"
 	done
 ; 0x198d2a
 
@@ -428,7 +428,7 @@ UnknownText_0x198d4e: ; 0x198d4e
 
 UnknownText_0x198d6d: ; 0x198d6d
 	text "Take over the"
-	line "RADIO TOWER…"
+	line "RADIO TOWER<...>"
 
 	para "What? It's none of"
 	line "your business!"
@@ -446,10 +446,10 @@ UnknownText_0x198daa: ; 0x198daa
 
 UnknownText_0x198de2: ; 0x198de2
 	text "Our dream will"
-	line "soon come true…"
+	line "soon come true<...>"
 
 	para "It was such a long"
-	line "struggle…"
+	line "struggle<...>"
 	done
 ; 0x198e1f
 
@@ -572,8 +572,8 @@ UnknownText_0x199090: ; 0x199090
 ; 0x1990b4
 
 UnknownText_0x1990b4: ; 0x1990b4
-	text "Aww… But they're"
-	line "amazing…"
+	text "Aww<...> But they're"
+	line "amazing<...>"
 	done
 ; 0x1990ce
 
@@ -589,7 +589,7 @@ UnknownText_0x1990ce: ; 0x1990ce
 UnknownText_0x199107: ; 0x199107
 	text "Hm, too bad. I'll"
 	line "have to get some"
-	cont "cash from home…"
+	cont "cash from home<...>"
 	done
 ; 0x19913a
 
@@ -610,13 +610,13 @@ UnknownText_0x19918b: ; 0x19918b
 ; 0x1991a4
 
 UnknownText_0x1991a4: ; 0x1991a4
-	text "B-but…"
+	text "B-but<...>"
 	done
 ; 0x1991ac
 
 UnknownText_0x1991ac: ; 0x1991ac
-	text "…You don't have"
-	line "enough coins here…"
+	text "<...>You don't have"
+	line "enough coins here<...>"
 	done
 ; 0x1991cf
 

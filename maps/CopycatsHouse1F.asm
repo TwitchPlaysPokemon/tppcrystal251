@@ -51,7 +51,7 @@ UnknownText_0x18ad34: ; 0x18ad34
 
 UnknownText_0x18ad95: ; 0x18ad95
 	text "My daughter is so"
-	line "self-centered…"
+	line "self-centered<...>"
 
 	para "She only has a few"
 	line "friends."
@@ -67,7 +67,7 @@ UnknownText_0x18add3: ; 0x18add3
 
 	para "Ever since then,"
 	line "she's gotten even"
-	cont "better at mimicry…"
+	cont "better at mimicry<...>"
 	done
 ; 0x18ae4b
 

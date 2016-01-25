@@ -34,7 +34,7 @@ UnknownText_0x1ab40a: ; 0x1ab40a
 
 	para "I wonder if the"
 	line "people of CINNABAR"
-	cont "are safe…"
+	cont "are safe<...>"
 	done
 ; 0x1ab48a
 

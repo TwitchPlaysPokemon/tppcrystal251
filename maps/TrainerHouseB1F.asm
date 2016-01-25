@@ -175,8 +175,8 @@ UnknownText_0x9b51d: ; 0x9b51d
 ; 0x9b578
 
 UnknownText_0x9b578: ; 0x9b578
-	text "I lost…"
-	line "Darn…"
+	text "I lost<...>"
+	line "Darn<...>"
 	done
 ; 0x9b587
 

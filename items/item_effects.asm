@@ -3007,7 +3007,7 @@ CantUseItemMessage: ; f804
 ; f80b
 
 LooksBitterText: ; 0xf80b
-	; It looks bitter…
+	; It looks bitter<...>
 	text_jump UnknownText_0x1c5d3e
 	db "@"
 ; 0xf810

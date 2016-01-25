@@ -102,7 +102,7 @@ UnknownText_0x18460a: ; 0x18460a
 
 UnknownText_0x184649: ; 0x184649
 	text "A BELLSPROUT over"
-	line "100 feet tall…"
+	line "100 feet tall<...>"
 
 	para "People say that it"
 	line "became the center"
@@ -120,7 +120,7 @@ UnknownText_0x18469d: ; 0x18469d
 ; 0x1846d6
 
 UnknownText_0x1846d6: ; 0x1846d6
-	text "A #MON statue…"
+	text "A #MON statue<...>"
 
 	para "It looks very"
 	line "distinguished."

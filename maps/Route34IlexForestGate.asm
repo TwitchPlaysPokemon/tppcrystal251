@@ -120,7 +120,7 @@ UnknownText_0x62df6: ; 0x62df6
 
 UnknownText_0x62e41: ; 0x62e41
 	text "Something's wrong"
-	line "in ILEX FOREST…"
+	line "in ILEX FOREST<...>"
 
 	para "You should stay"
 	line "away right now."

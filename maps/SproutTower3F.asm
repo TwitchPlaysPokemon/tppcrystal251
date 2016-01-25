@@ -231,13 +231,13 @@ UnknownText_0x184a27: ; 0x184a27
 	line "is far too harsh."
 
 	para "#MON are not"
-	line "tools of war…"
+	line "tools of war<...>"
 	done
 ; 0x184aec
 
 UnknownText_0x184aec: ; 0x184aec
-	text "…"
-	line "…Humph!"
+	text "<...>"
+	line "<...>Humph!"
 
 	para "He claims to be"
 	line "the ELDER but"
@@ -338,7 +338,7 @@ SageJinSeenText: ; 0x184db6
 
 SageJinBeatenText: ; 0x184dde
 	text "My training is"
-	line "incomplete…"
+	line "incomplete<...>"
 	done
 ; 0x184dfa
 
@@ -406,7 +406,7 @@ UnknownText_0x184f37: ; 0x184f37
 ; 0x184f61
 
 UnknownText_0x184f61: ; 0x184f61
-	text "A #MON statue…"
+	text "A #MON statue<...>"
 
 	para "It looks very"
 	line "distinguished."

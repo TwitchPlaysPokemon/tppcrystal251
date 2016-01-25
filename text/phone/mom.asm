@@ -9,7 +9,7 @@ UnknownText_0x1b4021: ; 0x1b4021
 	text "Oh, so you're in"
 	line "@"
 	TX_RAM StringBuffer3
-	text "…"
+	text "<...>"
 
 	para "Isn't that where"
 	line "@"
@@ -151,14 +151,14 @@ MomPhoneNoGymQuestText: ; 0x1b435f
 MomPhoneLectureText: ; 0x1b43a1
 	text "Hello?"
 
-	para "…… ", $52, "?"
+	para "<...><...> ", $52, "?"
 	line "I heard from PROF."
 
 	para "ELM that you went"
 	line "on a long trip."
 
 	para "I wish you would"
-	line "have told me…"
+	line "have told me<...>"
 
 	para "What about money?"
 	line "Should I save it?"

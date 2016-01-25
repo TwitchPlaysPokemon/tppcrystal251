@@ -87,7 +87,7 @@ _CeruleanHouse2Text_74e77:
 	done
 
 _CeruleanHouse2Text_74e7c:
-	text "Now then…"
+	text "Now then<...>"
 
 	para "Which of the 8"
 	line "BADGEs should I"

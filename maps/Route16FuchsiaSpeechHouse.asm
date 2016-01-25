@@ -20,7 +20,7 @@ UnknownText_0x73379: ; 0x73379
 	cont "bees this season."
 
 	para "I can't even go"
-	line "outside…"
+	line "outside<...>"
 	done
 ; 0x733bc
 

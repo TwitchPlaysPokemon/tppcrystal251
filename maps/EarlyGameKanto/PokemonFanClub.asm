@@ -187,7 +187,7 @@ FanClubMeetChairText:
 	line "when it comes to"
 	cont "#MON!"
 
-	para "So…"
+	para "So<...>"
 
 	para "Did you come"
 	line "visit to hear"
@@ -199,24 +199,24 @@ FanClubChairStoryText:
 	line "Then listen up!"
 
 	para "My favorite"
-	line "RAPIDASH…"
+	line "RAPIDASH<...>"
 
-	para "It… cute…"
-	line "lovely… smart…"
-	cont "plus… amazing…"
-	cont "you think so?…"
-	cont "oh yes… it…"
-	cont "stunning…"
-	cont "kindly…"
+	para "It<...> cute<...>"
+	line "lovely<...> smart<...>"
+	cont "plus<...> amazing<...>"
+	cont "you think so?<...>"
+	cont "oh yes<...> it<...>"
+	cont "stunning<...>"
+	cont "kindly<...>"
 	cont "love it!"
 
-	para "Hug it… when…"
-	line "sleeping… warm"
-	cont "and cuddly…"
-	cont "spectacular…"
-	cont "ravishing…"
+	para "Hug it<...> when<...>"
+	line "sleeping<...> warm"
+	cont "and cuddly<...>"
+	cont "spectacular<...>"
+	cont "ravishing<...>"
 
-	para "… Oops! Look at"
+	para "<...> Oops! Look at"
 	line "the time! I kept"
 	cont "you too long!"
 

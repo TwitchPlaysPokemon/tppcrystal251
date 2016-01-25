@@ -284,12 +284,12 @@ UnknownText_0x1a82a6: ; 0x1a82a6
 
 	para "So this is the"
 	line "famous ELM #MON"
-	cont "LAB…"
+	cont "LAB<...>"
 	done
 ; 0x1a82cd
 
 UnknownText_0x1a82cd: ; 0x1a82cd
-	text "…What are you"
+	text "<...>What are you"
 	line "staring at?"
 	done
 ; 0x1a82e8

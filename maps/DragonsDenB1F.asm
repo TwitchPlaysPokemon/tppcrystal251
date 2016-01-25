@@ -336,15 +336,15 @@ ClairRematchBeatenText:
 
 	para "I don't believe"
 	line "it. There must be"
-	cont "some mistake…"
+	cont "some mistake<...>"
 	done
 
 ClairRematchTextAfter:
-	text "…I see. So this"
+	text "<...>I see. So this"
 	line "is what I must've"
 
 	para "been lacking this"
-	line "whole time…"
+	line "whole time<...>"
 
 	para "Thanks, <PLAY_G>."
 
@@ -436,11 +436,11 @@ UnknownText_0x18cc2e: ; 0x18cc2e
 ; 0x18cc83
 
 UnknownText_0x18cc83: ; 0x18cc83
-	text "…"
+	text "<...>"
 	line "What? <PLAYER>?"
 
-	para "…No, I won't"
-	line "battle you now…"
+	para "<...>No, I won't"
+	line "battle you now<...>"
 
 	para "My #MON aren't"
 	line "ready to beat you."
@@ -452,17 +452,17 @@ UnknownText_0x18cc83: ; 0x18cc83
 	line "ciplined to become"
 
 	para "the greatest #-"
-	line "MON trainer…"
+	line "MON trainer<...>"
 	done
 ; 0x18cd2d
 
 UnknownText_0x18cd2d: ; 0x18cd2d
-	text "…"
+	text "<...>"
 
-	para "Whew…"
+	para "Whew<...>"
 
 	para "Learn to stay out"
-	line "of my way…"
+	line "of my way<...>"
 	done
 ; 0x18cd53
 

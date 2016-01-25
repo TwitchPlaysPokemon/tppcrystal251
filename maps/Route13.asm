@@ -176,11 +176,11 @@ PokefanmAlexSeenText: ; 0x1a24a2
 ; 0x1a24c2
 
 PokefanmAlexBeatenText: ; 0x1a24c2
-	text "DAD: How… How dare"
+	text "DAD: How<...> How dare"
 	line "you mock royalty!"
 	
 	para "SON: Dad, please!"
-	line "Stop…"
+	line "Stop<...>"
 	done
 ; 0x1a24e3
 
@@ -201,9 +201,9 @@ PokefanmJoshuaSeenText: ; 0x1a250f
 
 PokefanmJoshuaBeatenText: ; 0x1a2542
 	text "DAD: Five feet"
-	line "under…"
+	line "under<...>"
 	
-	para "SON: Good job…"
+	para "SON: Good job<...>"
 	done
 ; 0x1a254f
 
@@ -223,7 +223,7 @@ Bird_keeperPerrySeenText: ; 0x1a2591
 
 Bird_keeperPerryBeatenText: ; 0x1a25bd
 	text "FARFETCH'd isn't"
-	line "fast though…"
+	line "fast though<...>"
 	done
 ; 0x1a25db
 
@@ -262,7 +262,7 @@ HikerKennySeenText: ; 0x1a2686
 ; 0x1a26b9
 
 HikerKennyBeatenText: ; 0x1a26b9
-	text "I lost…"
+	text "I lost<...>"
 	done
 ; 0x1a26c2
 

@@ -190,7 +190,7 @@ UnknownScript_0x189cd8: ; 0x189cd8
 
 UnknownText_0x189cdf: ; 0x189cdf
 	text "SABRINA: I knew"
-	line "you were coming…"
+	line "you were coming<...>"
 
 	para "Three months ago I"
 	line "had a vision of"
@@ -217,16 +217,16 @@ UnknownText_0x189cdf: ; 0x189cdf
 
 UnknownText_0x189df4: ; 0x189df4
 	text "SABRINA: Your"
-	line "power…"
+	line "power<...>"
 
 	para "It far exceeds"
-	line "what I foresaw…"
+	line "what I foresaw<...>"
 
 	para "Maybe it isn't"
 	line "possible to fully"
 
 	para "predict what the"
-	line "future holds…"
+	line "future holds<...>"
 
 	para "OK, you win. You"
 	line "earned yourself"
@@ -245,7 +245,7 @@ UnknownText_0x189ead: ; 0x189ead
 	line "BADGE draws out"
 
 	para "your subliminal"
-	line "powers…"
+	line "powers<...>"
 
 	para "I forsee this"
 	line "helping."
@@ -274,13 +274,13 @@ UnknownText_0x189f6c: ; 0x189f6c
 	line "for your #MON"
 
 	para "overwhelmed my"
-	line "psychic power…"
+	line "psychic power<...>"
 
 	para "The power of love,"
 	line "I think, is also a"
 
 	para "kind of psychic"
-	line "power…"
+	line "power<...>"
 	done
 ; 0x189fe9
 
@@ -292,8 +292,8 @@ MediumRebeccaSeenText: ; 0x189fe9
 ; 0x18a01b
 
 MediumRebeccaBeatenText: ; 0x18a01b
-	text "Strong…"
-	line "Far too strong…"
+	text "Strong<...>"
+	line "Far too strong<...>"
 	done
 ; 0x18a034
 
@@ -324,7 +324,7 @@ UnknownText_0x18a0a6: ; 0x18a0a6
 ; 0x18a0dd
 
 MediumDorisSeenText: ; 0x18a0dd
-	text "Fufufufu…"
+	text "Fufufufu<...>"
 	line "I see it clearly."
 
 	para "I can see into"
@@ -334,7 +334,7 @@ MediumDorisSeenText: ; 0x18a0dd
 
 MediumDorisBeatenText: ; 0x18a114
 	text "Though I read you,"
-	line "I still lost…"
+	line "I still lost<...>"
 	done
 ; 0x18a136
 
@@ -353,7 +353,7 @@ PsychicJaredSeenText: ; 0x18a16c
 ; 0x18a1a2
 
 PsychicJaredBeatenText: ; 0x18a1a2
-	text "I was no match…"
+	text "I was no match<...>"
 	done
 ; 0x18a1b3
 

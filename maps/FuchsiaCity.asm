@@ -87,7 +87,7 @@ UnknownText_0x194b83: ; 0x194b83
 
 UnknownText_0x194bd3: ; 0x194bd3
 	text "The SAFARI ZONE is"
-	line "closed… It's sad,"
+	line "closed<...> It's sad,"
 
 	para "considering it's"
 	line "FUCHSIA's main"
@@ -115,7 +115,7 @@ UnknownText_0x194c4a: ; 0x194c4a
 
 UnknownText_0x194c8b: ; 0x194c8b
 	text "There's a notice"
-	line "here…"
+	line "here<...>"
 
 	para "SAFARI ZONE OFFICE"
 	line "is closed until"
@@ -149,7 +149,7 @@ UnknownText_0x194d37: ; 0x194d37
 
 FuchsiaCityDoorText:
 	text "The door is"
-	line "locked…"
+	line "locked<...>"
 	done
 
 FuchsiaCity_MapEventHeader: ; 0x194d67

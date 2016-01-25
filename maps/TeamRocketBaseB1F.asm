@@ -720,7 +720,7 @@ CameraGrunt1SeenText: ; 0x6cb12
 ; 0x6cb28
 
 CameraGrunt1BeatenText: ; 0x6cb28
-	text "Dang… I failed…"
+	text "Dang<...> I failed<...>"
 	done
 ; 0x6cb39
 
@@ -752,7 +752,7 @@ ScientistJedSeenText: ; 0x6cbbb
 ; 0x6cc0b
 
 ScientistJedBeatenText: ; 0x6cc0b
-	text "I get it…"
+	text "I get it<...>"
 	done
 ; 0x6cc16
 
@@ -803,7 +803,7 @@ UnknownText_0x6cd1b: ; 0x6cd1b
 
 SecurityCameraText: ; 0x6cd7c
 	text "It's a PERSIAN"
-	line "statue…"
+	line "statue<...>"
 
 	para "Its eyes are oddly"
 	line "shiny."

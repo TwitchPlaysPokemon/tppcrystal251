@@ -1,10 +1,12 @@
 CherrygroveCity_MapScriptHeader: ; 0x19c000
 	; trigger count
-	db 2
+	db 4
 
 	; triggers
-	dw UnknownScript_0x19c00d, $0000
-	dw UnknownScript_0x19c00e, $0000
+	dw .Trigger0, 0
+	dw .Trigger1, 0
+	dw .Trigger2, 0
+	dw .Trigger3, 0
 
 	; callback count
 	db 1
@@ -14,11 +16,44 @@ CherrygroveCity_MapScriptHeader: ; 0x19c000
 	dbw 5, UnknownScript_0x19c00f
 ; 0x19c00d
 
-UnknownScript_0x19c00d: ; 0x19c00d
+.Trigger0: ; 0x19c00d
 	end
 ; 0x19c00e
 
-UnknownScript_0x19c00e: ; 0x19c00e
+.Trigger1: ; 0x19c00e
+	end
+
+.Trigger2:
+	priorityjump Cherrygrove_WashedUpOnShore
+	end
+
+.Trigger3:
+	end
+
+Cherrygrove_WashedUpOnShore:
+	disappear $2
+	moveperson $2, 15, 6
+	appear $2
+	applymovement $2, Movement_GuideGentWalksUpToPlayerAfterShipwreck
+	spriteface $0, UP
+	loadfont
+	writetext Text_GuideGentExplainsWhatHappened
+	waitbutton
+	closetext
+	playmusic MUSIC_SHOW_ME_AROUND
+	follow $2, $0
+	applymovement $2, Movement_GuideGentTakesPlayerToPokecenter
+	stopfollow
+	pause 60
+	spriteface $2, LEFT
+	spriteface $0, RIGHT
+	loadfont
+	writetext Text_GuideGentForcesPlayerToHealParty
+	waitbutton
+	closetext
+	special RestartMapMusic
+	applymovement $2, Movement_GuideGentResetPosition
+	dotrigger 3
 	end
 
 UnknownScript_0x19c00f: ; 0x19c00f
@@ -29,13 +64,11 @@ UnknownScript_0x19c00f: ; 0x19c00f
 GrampsScript_0x19c013: ; 0x19c013
 	faceplayer
 	loadfont
+	checkevent EVENT_GOT_A_POKEMON_FROM_ELM
+	iffalse .first_landed
 	writetext UnknownText_0x19c1e3
 	yesorno
 	iffalse UnknownScript_0x19c0a4
-	jump UnknownScript_0x19c01f
-; 0x19c01f
-
-UnknownScript_0x19c01f: ; 0x19c01f
 	writetext UnknownText_0x19c26f
 	waitbutton
 	closetext
@@ -72,12 +105,18 @@ UnknownScript_0x19c01f: ; 0x19c01f
 	loadfont
 	writetext UnknownText_0x19c3ec
 	buttonsound
+	checkflag ENGINE_MAP_CARD
+	iftrue .alreadyhavemapcard
 	stringtotext .mapcardname, $1
 	scall .UnknownScript_0x19c097
 	setflag ENGINE_MAP_CARD
 	writetext UnknownText_0x19c438
 	buttonsound
 	writetext UnknownText_0x19c451
+	jump .finish
+.alreadyhavemapcard
+	writetext Text_AlreadyHaveMapCard
+.finish
 	waitbutton
 	closetext
 	stopfollow
@@ -110,6 +149,19 @@ UnknownScript_0x19c01f: ; 0x19c01f
 .runningshoesname
 	db "RUNNING SHOES@"
 ; 0x19c0a4
+.first_landed
+	checktriggers
+	iftrue .healyourpokemon
+	writetext GuideGentDirectsPlayerToNewBark
+	waitbutton
+	closetext
+	dotrigger 0
+	end
+.healyourpokemon
+	writetext Text_PleaseHealYourPokemon
+	waitbutton
+	closetext
+	end
 
 UnknownScript_0x19c0a4: ; 0x19c0a4
 	writetext UnknownText_0x19c49f
@@ -272,6 +324,27 @@ MapCherrygroveCitySignpost3Script: ; 0x19c18f
 MapCherrygroveCitySignpost2Script: ; 0x19c192
 	jumpstd martsign
 ; 0x19c195
+Cherrygrove_PleaseHealYourPokemon:
+	spriteface $0, UP
+	loadfont
+	checkevent EVENT_HEALED_PKMN_IN_CHERRYGROVE
+	iftrue .directtonewbark
+	writetext Text_PleaseHealYourPokemon
+	waitbutton
+	closetext
+	applymovement $0, Movement_PlayerPushedBackIntoCherrygrove
+	end
+.directtonewbark
+	writetext GuideGentDirectsPlayerToNewBark
+	waitbutton
+	closetext
+	dotrigger 0
+	end
+
+CherrygroveYoungsterScript1:
+	jumptext CherrygroveYoungsterText1
+CherrygroveYoungsterScript2:
+	jumptext CherrygroveYoungsterText2
 
 MovementData_0x19c195: ; 0x19c195
 	step_left
@@ -381,18 +454,63 @@ MovementData_0x19c1da: ; 0x19c1da
 	step_end
 ; 0x19c1e3
 
+Movement_GuideGentWalksUpToPlayerAfterShipwreck:
+	step_left
+	step_left
+	step_left
+	step_left
+	step_left
+	step_down
+	step_down
+	step_end
+
+Movement_GuideGentTakesPlayerToPokecenter:
+	step_up
+	step_up
+	step_right
+	step_right
+	step_right
+	step_right
+	step_right
+	step_up
+	step_right
+	step_right
+	step_right
+	step_right
+	step_right
+	step_right
+	step_right
+	step_right
+	step_right
+	step_right
+	step_right
+	step_right
+	step_right
+	step_right
+	step_up
+	step_right
+	turn_head_up
+	step_end
+
+Movement_GuideGentResetPosition:
+	step_down
+	step_down
+	step_right
+	step_right
+	turn_head_down
+	step_end
+
+Movement_PlayerPushedBackIntoCherrygrove:
+	step_left
+	step_end
+
 UnknownText_0x19c1e3: ; 0x19c1e3
-	text "You're a rookie"
-	line "trainer, aren't"
-	cont "you? I can tell!"
+	text "Ah, <PLAYER>, good"
+	line "to see you again!"
 
-	para "That's OK! Every-"
-	line "one is a rookie"
-	cont "at some point!"
-
-	para "If you'd like, I"
-	line "can teach you a"
-	cont "few things."
+	para "Since you're back"
+	line "here, mind if I"
+	cont "show you around?"
 	done
 ; 0x19c26f
 
@@ -403,29 +521,24 @@ UnknownText_0x19c26f: ; 0x19c26f
 ; 0x19c285
 
 UnknownText_0x19c285: ; 0x19c285
-	text "This is a #MON"
-	line "CENTER. They heal"
+	text "This is the #-"
+	line "MON CENTER."
 
-	para "your #MON in no"
-	line "time at all."
-
-	para "You'll be relying"
-	line "on them a lot, so"
-
-	para "you better learn"
-	line "about them."
+	para "I'm sure you're"
+	line "quite familiar"
+	cont "with them."
 	done
 ; 0x19c304
 
 UnknownText_0x19c304: ; 0x19c304
-	text "This is a #MON"
-	line "MART."
+	text "Here's the local"
+	line "#MON MART."
 
-	para "They sell BALLS"
-	line "for catching wild"
-
-	para "#MON and other"
-	line "useful items."
+	para "It's always well-"
+	line "stocked, so feel"
+	cont "free to do some"
+	cont "shopping while"
+	cont "you're in town."
 	done
 ; 0x19c359
 
@@ -442,17 +555,17 @@ UnknownText_0x19c359: ; 0x19c359
 ; 0x19c3a7
 
 UnknownText_0x19c3a7: ; 0x19c3a7
-	text "This is the sea,"
-	line "as you can see."
+	text $56, " ", $56, " ", $56
+	line $56, " ", $56, " ", $56
 
-	para "Some #MON are"
-	line "found only in"
-	cont "water."
+	para "Perhaps we should"
+	line "skip this part for"
+	cont "now."
 	done
 ; 0x19c3ec
 
 UnknownText_0x19c3ec: ; 0x19c3ec
-	text "Here…"
+	text "Here<...>"
 
 	para "It's my house!"
 	line "Thanks for your"
@@ -477,8 +590,8 @@ UnknownText_0x19c451: ; 0x19c451
 ; 0x19c49f
 
 UnknownText_0x19c49f: ; 0x19c49f
-	text "Oh… It's something"
-	line "I enjoy doing…"
+	text "Oh<...> It's something"
+	line "I enjoy doing<...>"
 
 	para "Fine. Come see me"
 	line "when you like."
@@ -612,16 +725,12 @@ UnknownText_0x19c815: ; 0x19c815
 	done
 ; 0x19c829
 
-Text_GuideGentHasRunningShoes1:
-	text "Wait up a second!"
-	done
-	
 Text_GuideGentHasRunningShoes2:
 	text "Oh yes, I nearly"
 	line "forgot."
 
 	para "I also want you to"
-	line "have these as a"
+	line "have these, as a"
 	cont "gift from me."
 	done
 	
@@ -647,6 +756,123 @@ Text_GuideGentHasRunningShoes3:
 	line "your journey!"
 	done
 
+Text_GuideGentExplainsWhatHappened:
+	text "Are you alright,"
+	line "child?"
+
+	para "That was quite"
+	line "scary, what hap-"
+	cont "pened there."
+
+	para "I saw the whole"
+	line "thing!"
+
+	para "In all my years"
+	line "I've never seen"
+	cont "such a grand ship"
+	cont "meet such a grim"
+	cont "fate."
+
+	para "You seem mostly"
+	line "unhurt. That's a"
+	cont "relief."
+
+	para "Oh? But your #-"
+	line "MON are all"
+	cont "fainted!"
+
+	para "Let's get them"
+	line "fixed up."
+
+	para "Follow me."
+	done
+
+Text_GuideGentForcesPlayerToHealParty:
+	text "Here we are."
+
+	para "Oh, my apologies."
+	line "I never told you"
+	cont "where <``>here<''> is!"
+
+	para "You've made land"
+	line "in CHERRYGROVE"
+	cont "CITY."
+
+	para "This is our local"
+	line "#MON CENTER."
+
+	para "The NURSE inside"
+	line "will fix you right"
+	cont "up."
+
+	para "Go on, have a chat"
+	line "with her!"
+	done
+
+Text_PleaseHealYourPokemon:
+	text "Where are you"
+	line "going?"
+
+	para "You should heal"
+	line "your #MON!"
+	done
+
+GuideGentDirectsPlayerToNewBark:
+	text "Oh good, your"
+	line "#MON look all"
+	cont "healthy again!"
+
+	para "Oh, where are my"
+	line "manners? I never"
+	cont "asked your name!"
+
+	para $56, " ", $56, " ", $56
+	line $56, " ", $56, " ", $56
+
+	para "So, it's <PLAYER>?"
+	line "That's a nice name."
+
+	para "You can call me"
+	line "the GUIDE GENT."
+
+	para "And now, allow me"
+	line "to guide you."
+
+	para "If you need help"
+	line "getting home, you"
+	cont "should talk to"
+	cont "PROF.ELM."
+
+	para "He runs a lab in"
+	line "NEW BARK TOWN, to"
+	cont "the east of here."
+
+	para "It's a short hop"
+	line "down some ledges."
+
+	para "I wish you the"
+	line "best of luck!"
+	done
+
+CherrygroveYoungsterText1:
+	text "I'm totally going"
+	line "to win this match!"
+	done
+
+CherrygroveYoungsterText2:
+	text "You, winning? Ha!"
+	line "In your dreams!"
+	done
+
+Text_AlreadyHaveMapCard:
+	text "Oh? But you seem"
+	line "to already have"
+	cont "a MAP CARD."
+
+	para "It's even the la-"
+	line "test version."
+	done
+
 CherrygroveCity_MapEventHeader: ; 0x19c829
 	; filler
 	db 0, 0
@@ -660,9 +886,10 @@ CherrygroveCity_MapEventHeader: ; 0x19c829
 	warp_def $b, $1f, 1, GROUP_CHERRYGROVE_EVOLUTION_SPEECH_HOUSE, MAP_CHERRYGROVE_EVOLUTION_SPEECH_HOUSE
 
 	; xy triggers
-	db 2
+	db 3
 	xy_trigger 1, $6, $21, $0, UnknownScript_0x19c0ae, $0, $0
 	xy_trigger 1, $7, $21, $0, UnknownScript_0x19c0aa, $0, $0
+	xy_trigger 3, $7, $21, $0, Cherrygrove_PleaseHealYourPokemon, $0, $0
 
 	; signposts
 	db 4
@@ -672,11 +899,13 @@ CherrygroveCity_MapEventHeader: ; 0x19c829
 	signpost 3, 30, $0, MapCherrygroveCitySignpost3Script
 
 	; people-events
-	db 5
+	db 7
 	person_event SPRITE_GRAMPS, 10, 36, $6, 0, 0, -1, -1, 0, 0, 0, GrampsScript_0x19c013, EVENT_GUIDE_GENT_VISIBLE_IN_HIS_HOUSE
 	person_event SPRITE_SILVER, 10, 43, $3, 0, 0, -1, -1, 0, 0, 0, ObjectEvent, EVENT_SILVER_IN_CHERRYGROVE_CITY
 	person_event SPRITE_TEACHER, 16, 31, $5, 0, 1, -1, -1, 8 + PAL_OW_BLUE, 0, 0, TeacherScript_0x19c146, -1
 	person_event SPRITE_YOUNGSTER, 11, 27, $5, 0, 1, -1, -1, 8 + PAL_OW_RED, 0, 0, YoungsterScript_0x19c15a, -1
 	person_event SPRITE_FISHER, 16, 11, $9, 0, 0, -1, -1, 8 + PAL_OW_GREEN, 0, 0, FisherScript_0x19c16e, -1
+	person_event SPRITE_YOUNGSTER, 7, 20, $9, 0, 0, -1, -1, 8 + PAL_OW_BLUE, 0, 0, CherrygroveYoungsterScript1, EVENT_GOT_A_POKEMON_FROM_ELM
+	person_event SPRITE_YOUNGSTER, 7, 21, $8, 0, 0, -1, -1, 8 + PAL_OW_BLUE, 0, 0, CherrygroveYoungsterScript2, EVENT_GOT_A_POKEMON_FROM_ELM
 ; 0x19c8ad
 

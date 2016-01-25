@@ -119,9 +119,9 @@ UnknownScript_0x9c1b2: ; 0x9c1b2
 ; 0x9c1b9
 
 UnknownText_0x9c1b9: ; 0x9c1b9
-	text "…Thank you for"
+	text "<...>Thank you for"
 	line "your help at the"
-	cont "LIGHTHOUSE…"
+	cont "LIGHTHOUSE<...>"
 
 	para "But this is dif-"
 	line "ferent. Please"
@@ -133,37 +133,37 @@ UnknownText_0x9c1b9: ; 0x9c1b9
 	line "GYM LEADER. I use"
 	cont "the steel-type."
 
-	para "…Do you know about"
+	para "<...>Do you know about"
 	line "the steel-type?"
 
 	para "It's a type that"
 	line "was only recently"
 	cont "discovered."
 
-	para "…Um… May I begin?"
+	para "<...>Um<...> May I begin?"
 	done
 ; 0x9c2bb
 
 JasmineRematchTextBefore:
-	text "…Welcome back."
+	text "<...>Welcome back."
 
-	para "…Um… Do you want a"
+	para "<...>Um<...> Do you want a"
 	line "rematch?"
 	done
 	
 JasmineRematchBeatenText:
 	text "True to your"
-	line "reputation…"
+	line "reputation<...>"
 
 	para "I'm glad someone"
 	line "as strong as you"
 	cont "is so nice."
 
-	para "… Good luck"
+	para "<...> Good luck"
 	done
 
 UnknownText_0x9c2bb: ; 0x9c2bb
-	text "…You are a better"
+	text "<...>You are a better"
 	line "trainer than me,"
 
 	para "in both skill and"
@@ -188,8 +188,8 @@ UnknownText_0x9c354: ; 0x9c354
 	line "raises #MON's"
 	cont "DEFENSE."
 
-	para "…Um… Please take"
-	line "this too…"
+	para "<...>Um<...> Please take"
+	line "this too<...>"
 	done
 ; 0x9c393
 
@@ -200,16 +200,16 @@ UnknownText_0x9c393: ; 0x9c393
 ; 0x9c3a5
 
 UnknownText_0x9c3a5: ; 0x9c3a5
-	text "…You could use"
+	text "<...>You could use"
 	line "that TM to teach"
 	cont "FLASH CANNON."
 	done
 ; 0x9c3d1
 
 UnknownText_0x9c3d1: ; 0x9c3d1
-	text "Um… I don't know"
+	text "Um<...> I don't know"
 	line "how to say this,"
-	cont "but good luck…"
+	cont "but good luck<...>"
 	done
 ; 0x9c402
 

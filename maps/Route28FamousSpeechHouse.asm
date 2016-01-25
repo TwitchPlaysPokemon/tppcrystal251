@@ -69,7 +69,7 @@ UnknownText_0x1ae6f0: ; 0x1ae6f0
 	line "people chase me."
 
 	para "I just want to be"
-	line "left alone…"
+	line "left alone<...>"
 	done
 ; 0x1ae752
 

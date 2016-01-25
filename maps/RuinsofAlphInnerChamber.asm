@@ -51,7 +51,7 @@ MapRuinsofAlphInnerChamberSignpost25Script:; 0x58f86
 
 UnknownText_0x58f89: ; 0x58f89
 	text "There is a strange"
-	line "presence here…"
+	line "presence here<...>"
 	done
 ; 0x58fac
 

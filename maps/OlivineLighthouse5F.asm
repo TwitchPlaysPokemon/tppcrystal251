@@ -117,7 +117,7 @@ Bird_keeperDenisSeenText: ; 0x60a74
 ; 0x60aaf
 
 Bird_keeperDenisBeatenText: ; 0x60aaf
-	text "Oops…They crashed…"
+	text "Oops<...>They crashed<...>"
 	done
 ; 0x60ac3
 

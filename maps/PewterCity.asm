@@ -181,7 +181,7 @@ UnknownText_0x18c080: ; 0x18c080
 
 MuseumDoorText:
 	text "The door is"
-	line "locked…"
+	line "locked<...>"
 	done
 
 UnknownText_0x18c0c6: ; 0x18c0c6
@@ -210,7 +210,7 @@ UnknownText_0x18c0c6: ; 0x18c0c6
 UnknownText_0x18c1aa: ; 0x18c1aa
 	text "Going to new, un-"
 	line "known places and"
-	cont "seeing new people…"
+	cont "seeing new people<...>"
 
 	para "Those are the joys"
 	line "of travel."
@@ -235,17 +235,17 @@ UnknownText_0x18c21e: ; 0x18c21e
 
 UnknownText_0x18c25e: ; 0x18c25e
 	text "There's a notice"
-	line "here…"
+	line "here<...>"
 
 	para "PEWTER MUSEUM OF"
 	line "SCIENCE is closed"
-	cont "for renovations…"
+	cont "for renovations<...>"
 	done
 ; 0x18c2a9
 
 UnknownText_0x18c2a9: ; 0x18c2a9
 	text "There's a notice"
-	line "here…"
+	line "here<...>"
 
 	para "MT.MOON GIFT SHOP"
 	line "NOW OPEN!"
@@ -280,7 +280,7 @@ MapPewterCitySimonText2:
 	line "clean getaway is"
 	cont "ruined!"
 	
-	para "Sigh… A loss is a"
+	para "Sigh<...> A loss is a"
 	line "loss, though."
 	
 	para "And to the winner"

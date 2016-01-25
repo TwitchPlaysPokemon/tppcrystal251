@@ -60,13 +60,13 @@ UnknownText_0x19b050: ; 0x19b050
 UnknownText_0x19b087: ; 0x19b087
 	text "It looks like it"
 	line "hasn't been used"
-	cont "in a long time…"
+	cont "in a long time<...>"
 	done
 ; 0x19b0b9
 
 RedsHouse2FComfyBedText:
 	text "It's a comfy bed."
-	line "Let's take a nap…"
+	line "Let's take a nap<...>"
 	done
 
 RedsHouse2FBedHealedMText:

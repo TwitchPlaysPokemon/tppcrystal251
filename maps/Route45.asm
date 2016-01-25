@@ -548,7 +548,7 @@ HikerTimothySeenText: ; 0x19e47a
 ; 0x19e4d6
 
 HikerTimothyBeatenText: ; 0x19e4d6
-	text "Losses…"
+	text "Losses<...>"
 	line "They're there too!"
 	done
 ; 0x19e4f1
@@ -683,7 +683,7 @@ UnknownText_0x19e87f: ; 0x19e87f
 
 UnknownText_0x19e899: ; 0x19e899
 	text "I was tough at the"
-	line "BATTLE TOWER…"
+	line "BATTLE TOWER<...>"
 	done
 ; 0x19e8bb
 
@@ -692,7 +692,7 @@ UnknownText_0x19e8bb: ; 0x19e8bb
 	line "the BATTLE TOWER?"
 
 	para "I never, ever lose"
-	line "there, but…"
+	line "there, but<...>"
 	done
 ; 0x19e8fe
 

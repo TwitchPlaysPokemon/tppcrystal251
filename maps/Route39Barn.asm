@@ -136,7 +136,7 @@ UnknownScript_0x9cd25: ; 0x9cd25
 ; 0x9cd2e
 
 UnknownText_0x9cd2e: ; 0x9cd2e
-	text "MOOMOO is sick…"
+	text "MOOMOO is sick<...>"
 
 	para "She needs lots of"
 	line "BERRIES."
@@ -150,12 +150,12 @@ UnknownText_0x9cd5a: ; 0x9cd5a
 ; 0x9cd70
 
 UnknownText_0x9cd70: ; 0x9cd70
-	text "MILTANK: …Moo…"
+	text "MILTANK: <...>Moo<...>"
 	done
 ; 0x9cd80
 
 UnknownText_0x9cd80: ; 0x9cd80
-	text "Its cry is weak…"
+	text "Its cry is weak<...>"
 	done
 ; 0x9cd92
 
@@ -196,7 +196,7 @@ UnknownText_0x9ce1b: ; 0x9ce1b
 
 UnknownText_0x9ce3c: ; 0x9ce3c
 	text "<PLAYER> has no"
-	line "BERRIES…"
+	line "BERRIES<...>"
 	done
 ; 0x9ce4f
 

@@ -1645,7 +1645,7 @@ MPLPlaceString:
     jr .last
 .notend
     dec hl
-    ld [hl], "…"
+    ld [hl], "<...>"
     inc hl
     ld [hl], "@"
 .loop2
@@ -1818,7 +1818,7 @@ NT_Right1Left1:
 	ret
 
 LoadingText:
-    db "LOADING…@"
+    db "LOADING<...>@"
 
 ; ┌─┐│└┘
 MPTilemap:

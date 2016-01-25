@@ -286,7 +286,7 @@ UnknownText_0x180f67: ; 0x180f67
 	line "ful trainer and as"
 
 	para "the #MON LEAGUE"
-	line "CHAMPION…"
+	line "CHAMPION<...>"
 
 	para "I, LANCE the drag-"
 	line "on master, accept"
@@ -295,7 +295,7 @@ UnknownText_0x180f67: ; 0x180f67
 ; 0x1810a4
 
 UnknownText_0x1810a4: ; 0x1810a4
-	text "…It's over."
+	text "<...>It's over."
 
 	para "But it's an odd"
 	line "feeling."
@@ -313,7 +313,7 @@ UnknownText_0x1810a4: ; 0x1810a4
 ; 0x181132
 
 UnknownText_0x181132: ; 0x181132
-	text "…Whew."
+	text "<...>Whew."
 
 	para "You have become"
 	line "truly powerful,"
@@ -338,7 +338,7 @@ UnknownText_0x1811dd: ; 0x1811dd
 	line "It's all over!"
 
 	para "PROF.OAK, if you"
-	line "weren't so slow…"
+	line "weren't so slow<...>"
 	done
 ; 0x18121b
 
@@ -386,7 +386,7 @@ UnknownText_0x18134b: ; 0x18134b
 UnknownText_0x18137b: ; 0x18137b
 	text "LANCE: This is"
 	line "getting to be a"
-	cont "bit too noisy…"
+	cont "bit too noisy<...>"
 
 	para "<PLAY_G>, could you"
 	line "come with me?"

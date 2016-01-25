@@ -227,7 +227,7 @@ UnknownText_0x1aaa6f: ; 0x1aaa6f
 
 	para "But I have no"
 	line "money to start the"
-	cont "project…"
+	cont "project<...>"
 	done
 ; 0x1aaaca
 
@@ -256,16 +256,16 @@ UnknownText_0x1aab1a: ; 0x1aab1a
 
 UnknownText_0x1aab64: ; 0x1aab64
 	text "SNORLAX is snoring"
-	line "peacefully…"
+	line "peacefully<...>"
 	done
 ; 0x1aab84
 
 UnknownText_0x1aab84: ; 0x1aab84
 	text "The #GEAR was"
 	line "placed near the"
-	cont "sleeping SNORLAX…"
+	cont "sleeping SNORLAX<...>"
 
-	para "…"
+	para "<...>"
 
 	para "SNORLAX woke up!"
 	done

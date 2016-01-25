@@ -187,7 +187,7 @@ Route24RBRocketText3:
 	done
 
 Route24RBOakIntervenesText:
-	text "OAK's words echoed…"
+	text "OAK's words echoed<...>"
 
 	para "<PLAYER>! Is this"
 	line "the right thing to"

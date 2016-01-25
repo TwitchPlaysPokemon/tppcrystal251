@@ -278,7 +278,7 @@ SailorEugeneSeenText: ; 0x1a5c09
 
 	para "Some #MON"
 	line "happened to get"
-	cont "mixed into it…"
+	cont "mixed into it<...>"
 	done
 ; 0x1a5c42
 
@@ -317,7 +317,7 @@ PokefanmDerek1BeatenText: ; 0x1a5cd4
 	text "SON: Dad, how"
 	line "could you lose!?"
 	
-	para "DAD: …"
+	para "DAD: <...>"
 	done
 ; 0x1a5cf8
 
@@ -396,7 +396,7 @@ UnknownText_0x1a5e57: ; 0x1a5e57
 ; 0x1a5ec4
 
 UnknownText_0x1a5ec4: ; 0x1a5ec4
-	text "Ufufufu… I hope it"
+	text "Ufufufu<...> I hope it"
 	line "gets dark soon."
 	done
 ; 0x1a5ee8
@@ -411,7 +411,7 @@ UnknownText_0x1a5ee8: ; 0x1a5ee8
 
 UnknownText_0x1a5f17: ; 0x1a5f17
 	text "Oh, how disap-"
-	line "pointing…"
+	line "pointing<...>"
 	done
 ; 0x1a5f31
 

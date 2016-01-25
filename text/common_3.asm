@@ -6,7 +6,7 @@ UnknownText_0x1c0000: ; 1c0000
 
 UnknownText_0x1c0021: ; 1c0021
 	text "An EGG? My talent"
-	line "is worth more…"
+	line "is worth more<...>"
 	done
 ; 1c0043
 
@@ -30,9 +30,9 @@ UnknownText_0x1c00a0: ; 1c00a0
 ; 1c00cd
 
 UnknownText_0x1c00cd: ; 1c00cd
-	text "Hm… @"
+	text "Hm<...> @"
 	text_from_ram StringBuffer1
-	text "…"
+	text "<...>"
 	line "That's a fairly"
 	cont "decent name."
 
@@ -67,7 +67,7 @@ UnknownText_0x1c019e: ; 1c019e
 ; 1c01be
 
 UnknownText_0x1c01be: ; 1c01be
-	text "Hm… @"
+	text "Hm<...> @"
 	text_from_ram StringBuffer1
 	text "?"
 	line "What a great name!"
@@ -81,7 +81,7 @@ UnknownText_0x1c01be: ; 1c01be
 ; 1c0208
 
 UnknownText_0x1c0208: ; 1c0208
-	text "Whoa… That's just"
+	text "Whoa<...> That's just"
 	line "an EGG."
 	done
 ; 1c0222
@@ -519,7 +519,7 @@ UnknownText_0x1c0897: ; 1c0897
 ; 1c08ac
 
 UnknownText_0x1c08ac: ; 1c08ac
-	text "Nope. Nothing…"
+	text "Nope. Nothing<...>"
 	done
 ; 1c08bc
 
@@ -669,7 +669,7 @@ UnknownText_0x1c0b03: ; 1c0b03
 
 UnknownText_0x1c0b1a: ; 1c0b1a
 	text "Looks like there's"
-	line "nothing here…"
+	line "nothing here<...>"
 	done
 ; 1c0b3b
 
@@ -678,7 +678,7 @@ UnknownText_0x1c0b3b: ; 1c0b3b
 	line "water."
 
 	para "But nothing"
-	line "happened…"
+	line "happened<...>"
 	done
 ; 1c0b65
 
@@ -1142,7 +1142,7 @@ UnknownText_0x1c10fa: ; 1c10fa
 	text "This Bug-Catching"
 	line "Contest winner is@"
 	interpret_data
-	text "…", $51
+	text "<...>", $51
 	db "@"
 	text_from_ram wd016
 	text ","
@@ -1208,7 +1208,7 @@ UnknownText_0x1c1203: ; 1c1203
 	text "Let me measure"
 	line "that MAGIKARP."
 
-	para "…Hm, it measures"
+	para "<...>Hm, it measures"
 	line "@"
 	text_from_ram StringBuffer1
 	text "."
@@ -1376,8 +1376,8 @@ UnknownText_0x1c14d2: ; 1c14d2
 ; 1c1505
 
 UnknownText_0x1c1505: ; 1c1505
-	text "…"
-	line "Link closed…"
+	text "<...>"
+	line "Link closed<...>"
 	done
 ; 1c1515
 
@@ -1592,7 +1592,7 @@ UnknownText_0x1c1a5b: ; 1c1a5b
 ; 1c1a65
 
 UnknownText_0x1c1a65: ; 1c1a65
-	text "Darn…"
+	text "Darn<...>"
 	done
 ; 1c1a6c
 

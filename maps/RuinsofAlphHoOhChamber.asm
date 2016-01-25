@@ -132,7 +132,7 @@ MovementData_0x58610: ; 0x58610
 
 UnknownText_0x58612: ; 0x58612
 	text "Patterns appeared"
-	line "on the walls…"
+	line "on the walls<...>"
 	done
 ; 0x58633
 
@@ -144,7 +144,7 @@ UnknownText_0x58633: ; 0x58633
 
 UnknownText_0x58644: ; 0x58644
 	text "Patterns appeared"
-	line "on the walls…"
+	line "on the walls<...>"
 	done
 ; 0x58665
 

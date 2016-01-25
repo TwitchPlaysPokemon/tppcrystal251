@@ -38,7 +38,7 @@ UnknownText_0x1adb66: ; 0x1adb66
 UnknownText_0x1adb97: ; 0x1adb97
 	text "What's this?"
 
-	para "House for Sale…"
+	para "House for Sale<...>"
 	line "Nobody lives here."
 	done
 ; 0x1adbc7

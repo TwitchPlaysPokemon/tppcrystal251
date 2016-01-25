@@ -136,25 +136,25 @@ FirebreatherOtisSeenText: ; 0x1adfb8
 
 FirebreatherOtisBeatenText: ; 0x1adfdb
 	text "It's sunny, but"
-	line "I'm all wet…"
+	line "I'm all wet<...>"
 	done
 ; 0x1adff7
 
 UnknownText_0x1adff7: ; 0x1adff7
 	text "When it rains,"
 	line "it's hard to get"
-	cont "ignition…"
+	cont "ignition<...>"
 	done
 ; 0x1ae021
 
 YoungsterWarrenSeenText: ; 0x1ae021
-	text "Hmmm… I don't know"
-	line "what to do…"
+	text "Hmmm<...> I don't know"
+	line "what to do<...>"
 	done
 ; 0x1ae040
 
 YoungsterWarrenBeatenText: ; 0x1ae040
-	text "I knew I'd lose…"
+	text "I knew I'd lose<...>"
 	done
 ; 0x1ae051
 
@@ -162,7 +162,7 @@ UnknownText_0x1ae051: ; 0x1ae051
 	text "You looked strong."
 
 	para "I was afraid to"
-	line "take you on…"
+	line "take you on<...>"
 	done
 ; 0x1ae082
 
@@ -203,7 +203,7 @@ UnknownText_0x1ae118: ; 0x1ae118
 	cont "that's me."
 
 	para "But not the best"
-	line "trainer…"
+	line "trainer<...>"
 	done
 ; 0x1ae163
 

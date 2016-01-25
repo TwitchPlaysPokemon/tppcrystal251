@@ -255,7 +255,7 @@ UnknownText_0x189760: ; 0x189760
 
 UnknownText_0x189784: ; 0x189784
 	text "You don't have it?"
-	line "That's too bad…"
+	line "That's too bad<...>"
 	done
 ; 0x1897a6
 

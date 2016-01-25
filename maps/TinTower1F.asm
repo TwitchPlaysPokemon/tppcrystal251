@@ -389,7 +389,7 @@ UnknownText_0x185203: ; 0x185203
 
 UnknownText_0x185386: ; 0x185386
 	text "According to"
-	line "legend…"
+	line "legend<...>"
 
 	para "When the souls of"
 	line "#MON and humans"
@@ -398,7 +398,7 @@ UnknownText_0x185386: ; 0x185386
 	line "heavens descends a"
 
 	para "#MON of rainbow"
-	line "colors…"
+	line "colors<...>"
 
 	para "Could it mean the"
 	line "legendary #MON"
@@ -418,12 +418,12 @@ UnknownText_0x185433: ; 0x185433
 	para "to have perished."
 	line "It was tragic."
 
-	para "However…"
+	para "However<...>"
 
 	para "A rainbow-colored"
-	line "#MON…"
+	line "#MON<...>"
 
-	para "In other words…"
+	para "In other words<...>"
 
 	para "HO-OH descended"
 	line "from the sky and"
@@ -431,7 +431,7 @@ UnknownText_0x185433: ; 0x185433
 	para "gave new life to"
 	line "the three #MON."
 
-	para "They are…"
+	para "They are<...>"
 
 	para "SUICUNE, ENTEI and"
 	line "RAIKOU."
@@ -517,7 +517,7 @@ UnknownText_0x185765: ; 0x185765
 	line "#MON are said"
 
 	para "to embody three"
-	line "powers…"
+	line "powers<...>"
 
 	para "The lightning that"
 	line "struck the TOWER."
@@ -526,19 +526,19 @@ UnknownText_0x185765: ; 0x185765
 	line "burned the TOWER."
 
 	para "And the rain that"
-	line "put out the fire…"
+	line "put out the fire<...>"
 	done
 ; 0x185803
 
 UnknownText_0x185803: ; 0x185803
 	text "When the legendary"
-	line "#MON appeared…"
+	line "#MON appeared<...>"
 
 	para "They struck terror"
 	line "in those who saw"
 	cont "their rise."
 
-	para "And…"
+	para "And<...>"
 
 	para "Some even took to"
 	line "futile attacks."

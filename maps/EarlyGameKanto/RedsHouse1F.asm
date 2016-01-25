@@ -224,7 +224,7 @@ MovementData_MomLookUp:
 	step_end
 
 MomText1: ; 0x7a604
-	text "Oh, <PLAYER>…! Our"
+	text "Oh, <PLAYER><...>! Our"
 	line "neighbor, PROF."
 
 	para "OAK, was looking"

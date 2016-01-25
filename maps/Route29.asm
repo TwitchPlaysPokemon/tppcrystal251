@@ -270,7 +270,7 @@ UnknownText_0x1a10a7: ; 0x1a10a7
 	line "the grass. Who"
 
 	para "knows when they'll"
-	line "pop out…"
+	line "pop out<...>"
 	done
 ; 0x1a10df
 
@@ -426,7 +426,7 @@ TuscanyTuesdayText:
 TuscanyNotTuesdayText:
 	text "TUSCANY: Today is"
 	line "not Tuesday. That"
-	cont "is unfortunate…"
+	cont "is unfortunate<...>"
 	done
 
 UnknownText_0x1a158e: ; 0x1a158e

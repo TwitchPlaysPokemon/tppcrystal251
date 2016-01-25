@@ -117,7 +117,7 @@ MistyRematchTextBefore:
 	
 	para "I made my dream"
 	line "come true,"
-	cont "and now…"
+	cont "and now<...>"
 	
 	para "My next dream is"
 	line "to defeat you!"
@@ -128,7 +128,7 @@ MistyRematchBeatenText:
 	line "now my dreams."
 
 	para "must you always"
-	line "be in the way…"
+	line "be in the way<...>"
 	done
 
 MistyAfterRematchText:
@@ -384,10 +384,10 @@ UnknownText_0x188674: ; 0x188674
 
 UnknownText_0x18870c: ; 0x18870c
 	text "MISTY: You really"
-	line "are good…"
+	line "are good<...>"
 
 	para "I'll admit that"
-	line "you are skilled…"
+	line "you are skilled<...>"
 
 	para "Here you go. It's"
 	line "CASCADEBADGE."
@@ -442,7 +442,7 @@ SwimmerfBrianaSeenText: ; 0x188870
 
 SwimmerfBrianaBeatenText: ; 0x18889f
 	text "Ooh, you calmly"
-	line "disposed of me…"
+	line "disposed of me<...>"
 	done
 ; 0x1888c0
 
@@ -457,7 +457,7 @@ UnknownText_0x1888c0: ; 0x1888c0
 ; 0x188912
 
 SwimmermParkerSeenText: ; 0x188912
-	text "Glub…"
+	text "Glub<...>"
 
 	para "I'm first! Come"
 	line "and get me!"
@@ -465,7 +465,7 @@ SwimmermParkerSeenText: ; 0x188912
 ; 0x188934
 
 SwimmermParkerBeatenText: ; 0x188934
-	text "This can't be…"
+	text "This can't be<...>"
 	done
 ; 0x188943
 

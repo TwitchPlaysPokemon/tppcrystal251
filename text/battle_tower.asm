@@ -21,7 +21,7 @@ UnknownText_0x1ec060: ; 0x1ec060
 ; 0x1ec080
 
 UnknownText_0x1ec080: ; 0x1ec080
-	text "Work, work, work…"
+	text "Work, work, work<...>"
 	line "I'm always busy!"
 	done
 ; 0x1ec0a3
@@ -123,8 +123,8 @@ UnknownText_0x1ec2a0: ; 0x1ec2a0
 ; 0x1ec2c0
 
 UnknownText_0x1ec2c0: ; 0x1ec2c0
-	text "Ouch… I'm just too"
-	line "weak…"
+	text "Ouch<...> I'm just too"
+	line "weak<...>"
 	done
 ; 0x1ec2d9
 
@@ -141,8 +141,8 @@ UnknownText_0x1ec2fe: ; 0x1ec2fe
 ; 0x1ec320
 
 UnknownText_0x1ec320: ; 0x1ec320
-	text "…Urgh… Nothing"
-	line "positive here…"
+	text "<...>Urgh<...> Nothing"
+	line "positive here<...>"
 	done
 ; 0x1ec33f
 
@@ -244,7 +244,7 @@ UnknownText_0x1ec4f5: ; 0x1ec4f5
 
 UnknownText_0x1ec512: ; 0x1ec512
 	text "Uh? My plans are"
-	line "out of whack…"
+	line "out of whack<...>"
 	done
 ; 0x1ec532
 
@@ -273,13 +273,13 @@ UnknownText_0x1ec580: ; 0x1ec580
 ; 0x1ec59d
 
 UnknownText_0x1ec59d: ; 0x1ec59d
-	text "This battle…"
+	text "This battle<...>"
 	line "I'm bored!"
 	done
 ; 0x1ec5b5
 
 UnknownText_0x1ec5b5: ; 0x1ec5b5
-	text "…I won't turn tail"
+	text "<...>I won't turn tail"
 	line "in battle!"
 	done
 ; 0x1ec5d3
@@ -318,14 +318,14 @@ UnknownText_0x1ec651: ; 0x1ec651
 ; 0x1ec68f
 
 UnknownText_0x1ec68f: ; 0x1ec68f
-	text "Aww… Don't lose"
+	text "Aww<...> Don't lose"
 	line "after beating me."
 	done
 ; 0x1ec6b1
 
 UnknownText_0x1ec6b1: ; 0x1ec6b1
 	text "Who are you?"
-	line "I don't know you…"
+	line "I don't know you<...>"
 	done
 ; 0x1ec6d0
 
@@ -334,31 +334,31 @@ UnknownText_0x1ec6d0: ; 0x1ec6d0
 	line "that."
 
 	para "There seems to be"
-	line "no one here…"
+	line "no one here<...>"
 	done
 ; 0x1ec708
 
 UnknownText_0x1ec708: ; 0x1ec708
 	text "Who am I?"
-	line "I don't know…"
+	line "I don't know<...>"
 	done
 ; 0x1ec720
 
 UnknownText_0x1ec720: ; 0x1ec720
-	text "Um… Are you that…"
-	line "um…person?"
+	text "Um<...> Are you that<...>"
+	line "um<...>person?"
 	done
 ; 0x1ec73e
 
 UnknownText_0x1ec73e: ; 0x1ec73e
 	text "It doesn't appear"
-	line "to be you…"
+	line "to be you<...>"
 	done
 ; 0x1ec75b
 
 UnknownText_0x1ec75b: ; 0x1ec75b
 	text "Then you really"
-	line "are the legendary…"
+	line "are the legendary<...>"
 	done
 ; 0x1ec77f
 
@@ -421,19 +421,19 @@ UnknownText_0x1ec898: ; 0x1ec898
 
 UnknownText_0x1ec8b1: ; 0x1ec8b1
 	text "I wonder if I can"
-	line "battle properly…"
+	line "battle properly<...>"
 	done
 ; 0x1ec8d5
 
 UnknownText_0x1ec8d5: ; 0x1ec8d5
-	text "Um… Sorry…"
+	text "Um<...> Sorry<...>"
 	line "I think I won."
 	done
 ; 0x1ec8f0
 
 UnknownText_0x1ec8f0: ; 0x1ec8f0
 	text "I guess I'm not"
-	line "good enough yet…"
+	line "good enough yet<...>"
 	done
 ; 0x1ec911
 
@@ -558,7 +558,7 @@ UnknownText_0x1ecb37: ; 0x1ecb37
 ; 0x1ecb55
 
 UnknownText_0x1ecb55: ; 0x1ecb55
-	text "…I want one of"
+	text "<...>I want one of"
 	line "your #MON."
 	done
 ; 0x1ecb70
@@ -625,12 +625,12 @@ UnknownText_0x1ecc92: ; 0x1ecc92
 
 UnknownText_0x1ecca7: ; 0x1ecca7
 	text "Well, I beg your"
-	line "pardon…"
+	line "pardon<...>"
 	done
 ; 0x1eccc1
 
 UnknownText_0x1eccc1: ; 0x1eccc1
-	text "Sob… That's not"
+	text "Sob<...> That's not"
 	line "fair!"
 	done
 ; 0x1eccd7
@@ -649,7 +649,7 @@ UnknownText_0x1eccef: ; 0x1eccef
 
 UnknownText_0x1ecd0e: ; 0x1ecd0e
 	text "I won't accept"
-	line "this… No way!"
+	line "this<...> No way!"
 	done
 ; 0x1ecd2b
 
@@ -720,7 +720,7 @@ UnknownText_0x1ece70: ; 0x1ece70
 ; 0x1ece8a
 
 UnknownText_0x1ece8a: ; 0x1ece8a
-	text "Oh… Want to trade"
+	text "Oh<...> Want to trade"
 	line "something?"
 	done
 ; 0x1ecea8

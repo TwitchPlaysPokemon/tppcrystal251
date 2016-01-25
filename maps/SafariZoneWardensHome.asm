@@ -42,7 +42,7 @@ UnknownText_0x1965e6: ; 0x1965e6
 	line "SAFARI ZONE WAR-"
 	cont "DEN."
 
-	para "At least he was…"
+	para "At least he was<...>"
 
 	para "He decided to go"
 	line "on a vacation and"
@@ -62,7 +62,7 @@ UnknownText_0x196691: ; 0x196691
 
 	para "SAFARI ZONE closed"
 	line "down, but Grandpa"
-	cont "is so stubborn…"
+	cont "is so stubborn<...>"
 	done
 ; 0x1966ea
 

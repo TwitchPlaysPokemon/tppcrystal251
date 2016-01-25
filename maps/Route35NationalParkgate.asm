@@ -338,7 +338,7 @@ MovementData_0x6a2e9: ; 0x6a2e9
 ; 0x6a2eb
 
 BagIsFullText:
-	text "Uh-oh… Your BAG"
+	text "Uh-oh<...> Your BAG"
 	line "is full."
 
 	para "We'll hold on to"
@@ -411,7 +411,7 @@ UnknownText_0x6a3e2: ; 0x6a3e2
 ; 0x6a4c6
 
 UnknownText_0x6a4c6: ; 0x6a4c6
-	text "Uh-oh…"
+	text "Uh-oh<...>"
 
 	para "You have more than"
 	line "one #MON."
@@ -460,7 +460,7 @@ UnknownText_0x6a5dc: ; 0x6a5dc
 ; 0x6a608
 
 UnknownText_0x6a608: ; 0x6a608
-	text "Uh-oh…"
+	text "Uh-oh<...>"
 	line "The first #MON"
 
 	para "in your party"
@@ -475,7 +475,7 @@ UnknownText_0x6a608: ; 0x6a608
 ; 0x6a67c
 
 UnknownText_0x6a67c: ; 0x6a67c
-	text "Uh-oh…"
+	text "Uh-oh<...>"
 	line "Both your party"
 
 	para "and your PC BOX"
@@ -494,7 +494,7 @@ UnknownText_0x6a67c: ; 0x6a67c
 ; 0x6a71f
 
 UnknownText_0x6a71f: ; 0x6a71f
-	text "Uh-oh…"
+	text "Uh-oh<...>"
 	line "You have an EGG as"
 
 	para "the first #MON"

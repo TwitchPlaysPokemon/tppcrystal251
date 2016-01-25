@@ -266,7 +266,7 @@ CamperTedSeenText: ; 0x1a9819
 ; 0x1a984a
 
 CamperTedBeatenText: ; 0x1a984a
-	text "Wha…?"
+	text "Wha<...>?"
 	done
 ; 0x1a9851
 
@@ -306,7 +306,7 @@ UnknownText_0x1a98c6: ; 0x1a98c6
 ; 0x1a9927
 
 UnknownText_0x1a9927: ; 0x1a9927
-	text "Aww… I keep losing"
+	text "Aww<...> I keep losing"
 	line "all the time!"
 
 	para "I'll just have to"

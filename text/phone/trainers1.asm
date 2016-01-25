@@ -2,7 +2,7 @@ UnknownText_0x1b4dc5: ; 0x1b4dc5
 	text "Hello. This is"
 	line "@"
 	TX_RAM StringBuffer3
-	text "…"
+	text "<...>"
 
 	para "Good morning,"
 	line $14, "!"
@@ -12,7 +12,7 @@ UnknownText_0x1b4ded: ; 0x1b4ded
 	text "Hello. This is"
 	line "@"
 	TX_RAM StringBuffer3
-	text "…"
+	text "<...>"
 
 	para "How's it going,"
 	line $14, "?"
@@ -22,7 +22,7 @@ UnknownText_0x1b4e16: ; 0x1b4e16
 	text "Hello. This is"
 	line "@"
 	TX_RAM StringBuffer3
-	text "…"
+	text "<...>"
 
 	para "Good evening,"
 	line $14, "!"
@@ -67,7 +67,7 @@ UnknownText_0x1b4ecd: ; 0x1b4ecd
 	line "so curious, it's a"
 
 	para "problem. Maybe"
-	line "it's like me…"
+	line "it's like me<...>"
 	done
 
 UnknownText_0x1b4f21: ; 0x1b4f21
@@ -234,7 +234,7 @@ UnknownText_0x1b5270: ; 0x1b5270
 	text "Hello, this is"
 	line "@"
 	TX_RAM StringBuffer3
-	text " speaking…"
+	text " speaking<...>"
 
 	para "Hi, ", $14, "!"
 	line "Good morning!"
@@ -244,7 +244,7 @@ UnknownText_0x1b52a5: ; 0x1b52a5
 	text "Hello, this is"
 	line "@"
 	TX_RAM StringBuffer3
-	text " speaking…"
+	text " speaking<...>"
 
 	para "Hi, ", $14, "!"
 	done
@@ -253,7 +253,7 @@ UnknownText_0x1b52cc: ; 0x1b52cc
 	text "Hello, this is"
 	line "@"
 	TX_RAM StringBuffer3
-	text " speaking…"
+	text " speaking<...>"
 
 	para "Hi, ", $14, "!"
 	line "Good evening!"
@@ -384,7 +384,7 @@ UnknownText_0x1b55ae: ; 0x1b55ae
 	text "Hello, this is"
 	line "@"
 	TX_RAM StringBuffer3
-	text "…"
+	text "<...>"
 
 	para "Oh, ", $14, "?"
 	line "Good morning!"
@@ -394,7 +394,7 @@ UnknownText_0x1b55da: ; 0x1b55da
 	text "Hello, this is"
 	line "@"
 	TX_RAM StringBuffer3
-	text "…"
+	text "<...>"
 
 	para "Oh, ", $14, "? Hi!"
 	done
@@ -403,7 +403,7 @@ UnknownText_0x1b55fc: ; 0x1b55fc
 	text "Hello, this is"
 	line "@"
 	TX_RAM StringBuffer3
-	text "…"
+	text "<...>"
 
 	para "Oh, ", $14, "?"
 	line "Good evening!"
@@ -454,7 +454,7 @@ UnknownText_0x1b5702: ; 0x1b5702
 	text "Hello, this is"
 	line "@"
 	TX_RAM StringBuffer3
-	text "…"
+	text "<...>"
 
 	para "Oh. Hi, ", $52, "."
 	line "What's up?"
@@ -464,7 +464,7 @@ UnknownText_0x1b572e: ; 0x1b572e
 	text "Hello, this is"
 	line "@"
 	TX_RAM StringBuffer3
-	text "…"
+	text "<...>"
 
 	para "Oh, hi, ", $52, ","
 	line "what's up?"
@@ -474,7 +474,7 @@ UnknownText_0x1b575a: ; 0x1b575a
 	text "Hello, this is"
 	line "@"
 	TX_RAM StringBuffer3
-	text "…"
+	text "<...>"
 
 	para "Oh, hi, ", $52, ","
 	line "what's up?"
@@ -512,7 +512,7 @@ UnknownText_0x1b5819: ; 0x1b5819
 	line "#MON doing?"
 
 	para "What? Great?"
-	line "I see…"
+	line "I see<...>"
 
 	para "What? My #MON?"
 
@@ -966,7 +966,7 @@ UnknownText_0x1b626a: ; 0x1b626a
 	text "Hello? This is"
 	line "@"
 	TX_RAM StringBuffer3
-	text "…"
+	text "<...>"
 
 	para "Oh, ", $14, "!"
 	line "Good morning!"
@@ -976,7 +976,7 @@ UnknownText_0x1b6296: ; 0x1b6296
 	text "Hello? This is"
 	line "@"
 	TX_RAM StringBuffer3
-	text "…"
+	text "<...>"
 
 	para "Oh, ", $14, "!"
 	line "Hi, how are you?"
@@ -986,7 +986,7 @@ UnknownText_0x1b62c5: ; 0x1b62c5
 	text "Hello? This is"
 	line "@"
 	TX_RAM StringBuffer3
-	text "…"
+	text "<...>"
 
 	para "Oh, ", $14, "!"
 	line "Good evening!"
@@ -1033,7 +1033,7 @@ UnknownText_0x1b638c: ; 0x1b638c
 	text "Hello? @"
 	TX_RAM StringBuffer3
 	db $0
-	line "here…"
+	line "here<...>"
 
 	para "Hey, ", $14, "!"
 	done
@@ -1042,7 +1042,7 @@ UnknownText_0x1b63a8: ; 0x1b63a8
 	text "Hello? @"
 	TX_RAM StringBuffer3
 	db $0
-	line "here…"
+	line "here<...>"
 
 	para "Wow, ", $14, "!"
 	done
@@ -1051,7 +1051,7 @@ UnknownText_0x1b63c4: ; 0x1b63c4
 	text "Hello? @"
 	TX_RAM StringBuffer3
 	db $0
-	line "here…"
+	line "here<...>"
 
 	para "Yippee, ", $14, "!"
 	done
@@ -1092,7 +1092,7 @@ UnknownText_0x1b6454: ; 0x1b6454
 	TX_RAM StringBuffer3
 	text "."
 
-	para "…Huh, ", $14, "? Yo!"
+	para "<...>Huh, ", $14, "? Yo!"
 	done
 
 UnknownText_0x1b647e: ; 0x1b647e
@@ -1101,7 +1101,7 @@ UnknownText_0x1b647e: ; 0x1b647e
 	TX_RAM StringBuffer3
 	text "."
 
-	para "…Huh, ", $14, "? Yo!"
+	para "<...>Huh, ", $14, "? Yo!"
 	done
 
 UnknownText_0x1b64a8: ; 0x1b64a8
@@ -1110,7 +1110,7 @@ UnknownText_0x1b64a8: ; 0x1b64a8
 	TX_RAM StringBuffer3
 	text "."
 
-	para "…Huh, ", $14, "? Yo!"
+	para "<...>Huh, ", $14, "? Yo!"
 	done
 
 UnknownText_0x1b64d2: ; 0x1b64d2
@@ -1282,7 +1282,7 @@ UnknownText_0x1b67e2: ; 0x1b67e2
 	text "Hello, this is"
 	line "@"
 	TX_RAM StringBuffer3
-	text "…"
+	text "<...>"
 
 	para "Hi, ", $14, "!"
 	line "Good morning!"
@@ -1292,7 +1292,7 @@ UnknownText_0x1b680e: ; 0x1b680e
 	text "Hello, this is"
 	line "@"
 	TX_RAM StringBuffer3
-	text "…"
+	text "<...>"
 
 	para "Hi, ", $14, ", good"
 	line "day!"
@@ -1302,7 +1302,7 @@ UnknownText_0x1b6836: ; 0x1b6836
 	text "Hello, this is"
 	line "@"
 	TX_RAM StringBuffer3
-	text "…"
+	text "<...>"
 
 	para "Hi, ", $14, ", good"
 	line "evening!"
@@ -1426,7 +1426,7 @@ UnknownText_0x1b6b39: ; 0x1b6b39
 	text "Hello, this is"
 	line "@"
 	TX_RAM StringBuffer3
-	text "…"
+	text "<...>"
 
 	para "Oh, Good morning,"
 	line $14, "."
@@ -1436,9 +1436,9 @@ UnknownText_0x1b6b65: ; 0x1b6b65
 	text "Hello, this is"
 	line "@"
 	TX_RAM StringBuffer3
-	text "…"
+	text "<...>"
 
-	para "That voice…"
+	para "That voice<...>"
 	line $14, ", right?"
 	done
 
@@ -1446,7 +1446,7 @@ UnknownText_0x1b6b92: ; 0x1b6b92
 	text "Hello, this is"
 	line "@"
 	TX_RAM StringBuffer3
-	text "…"
+	text "<...>"
 
 	para "This must be"
 	line $14, "!"
@@ -1456,7 +1456,7 @@ UnknownText_0x1b6bb9: ; 0x1b6bb9
 	text "Hello!"
 	line "@"
 	TX_RAM StringBuffer3
-	text " here…"
+	text " here<...>"
 
 	para "Good morning! The"
 	line "weather's great!"
@@ -1466,7 +1466,7 @@ UnknownText_0x1b6bef: ; 0x1b6bef
 	text "Hello!"
 	line "@"
 	TX_RAM StringBuffer3
-	text " here…"
+	text " here<...>"
 
 	para "What a perfect day"
 	line "for fishing!"
@@ -1476,7 +1476,7 @@ UnknownText_0x1b6c23: ; 0x1b6c23
 	text "Hello!"
 	line "@"
 	TX_RAM StringBuffer3
-	text " here…"
+	text " here<...>"
 
 	para "It's a great night"
 	line "for fishing!"
@@ -1493,7 +1493,7 @@ UnknownText_0x1b6c56: ; 0x1b6c56
 UnknownText_0x1b6c96: ; 0x1b6c96
 	text "Yes? @"
 	TX_RAM StringBuffer3
-	text " here…"
+	text " here<...>"
 
 	para "Ah, ", $52, ". What"
 	line "can I do for you?"
@@ -1502,7 +1502,7 @@ UnknownText_0x1b6c96: ; 0x1b6c96
 UnknownText_0x1b6cc6: ; 0x1b6cc6
 	text "Yes? @"
 	TX_RAM StringBuffer3
-	text " here…"
+	text " here<...>"
 
 	para "Ah, ", $52, ". What"
 	line "can I do for you?"
@@ -1511,7 +1511,7 @@ UnknownText_0x1b6cc6: ; 0x1b6cc6
 UnknownText_0x1b6cf6: ; 0x1b6cf6
 	text "Yes? @"
 	TX_RAM StringBuffer3
-	text " here…"
+	text " here<...>"
 
 	para "Ah, ", $52, ". What"
 	line "can I do for you?"
@@ -1735,7 +1735,7 @@ UnknownText_0x1b71d5: ; 0x1b71d5
 	text "Hello, you have"
 	line "reached @"
 	TX_RAM StringBuffer3
-	text "…"
+	text "<...>"
 
 	para "Ah, ", $14, "."
 	done
@@ -1744,7 +1744,7 @@ UnknownText_0x1b71fc: ; 0x1b71fc
 	text "Hello, you have"
 	line "reached @"
 	TX_RAM StringBuffer3
-	text "…"
+	text "<...>"
 
 	para "Ah, ", $14, ", is"
 	line "it?"
@@ -1754,7 +1754,7 @@ UnknownText_0x1b722a: ; 0x1b722a
 	text "Hello, you have"
 	line "reached @"
 	TX_RAM StringBuffer3
-	text "…"
+	text "<...>"
 
 	para "Ah, if it isn't"
 	line $14, "."
@@ -1763,7 +1763,7 @@ UnknownText_0x1b722a: ; 0x1b722a
 UnknownText_0x1b725c: ; 0x1b725c
 	text "Ah, it's @"
 	TX_RAM StringBuffer3
-	text "…"
+	text "<...>"
 
 	para "Have you got a"
 	line "moment?"
@@ -1772,7 +1772,7 @@ UnknownText_0x1b725c: ; 0x1b725c
 UnknownText_0x1b7283: ; 0x1b7283
 	text "Ah, it's @"
 	TX_RAM StringBuffer3
-	text "…"
+	text "<...>"
 
 	para "Can you talk now?"
 	done
@@ -1780,7 +1780,7 @@ UnknownText_0x1b7283: ; 0x1b7283
 UnknownText_0x1b72a5: ; 0x1b72a5
 	text "Ah, it's @"
 	TX_RAM StringBuffer3
-	text "…"
+	text "<...>"
 
 	para "Sorry for calling"
 	line "so late."
@@ -1798,7 +1798,7 @@ UnknownText_0x1b72d0: ; 0x1b72d0
 
 UnknownText_0x1b730b: ; 0x1b730b
 	TX_RAM StringBuffer3
-	text " here…"
+	text " here<...>"
 
 	para $52, "! Beautiful"
 	line "morning, hey?"
@@ -1806,7 +1806,7 @@ UnknownText_0x1b730b: ; 0x1b730b
 
 UnknownText_0x1b7331: ; 0x1b7331
 	TX_RAM StringBuffer3
-	text " here…"
+	text " here<...>"
 
 	para $52, "! Beautiful"
 	line "weather, hey?"
@@ -1814,7 +1814,7 @@ UnknownText_0x1b7331: ; 0x1b7331
 
 UnknownText_0x1b7357: ; 0x1b7357
 	TX_RAM StringBuffer3
-	text " here…"
+	text " here<...>"
 
 	para $52, "! Beautiful"
 	line "moonlight, hey?"
@@ -1918,7 +1918,7 @@ UnknownText_0x1b751a: ; 0x1b751a
 	text "Yes, this is"
 	line "@"
 	TX_RAM StringBuffer3
-	text "…"
+	text "<...>"
 
 	para "Oh. Hi, ", $14, "!"
 	line "Good morning!"
@@ -1928,7 +1928,7 @@ UnknownText_0x1b7548: ; 0x1b7548
 	text "Yes, this is"
 	line "@"
 	TX_RAM StringBuffer3
-	text "…"
+	text "<...>"
 
 	para "Oh, hi, ", $14, "!"
 	line "Yahoo!"
@@ -1938,7 +1938,7 @@ UnknownText_0x1b756f: ; 0x1b756f
 	text "Yes, this is"
 	line "@"
 	TX_RAM StringBuffer3
-	text "…"
+	text "<...>"
 
 	para "Oh, hi, ", $14, "!"
 	done

@@ -23,7 +23,7 @@ Route6SaffronGateRB_TriggerScript:
 
 SaffronGateRBThirstyText:
 	text "Gee, I sure am"
-	line "thirsty…"
+	line "thirsty<...>"
 
 	para "Oh, wait there,"
 	line "the road's closed."

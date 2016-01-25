@@ -110,7 +110,7 @@ PokemaniacMillerSeenText: ; 0x7de8d
 
 PokemaniacMillerBeatenText: ; 0x7dea7
 	text "I lost to some"
-	line "kid…?"
+	line "kid<...>?"
 	done
 ; 0x7debd
 
@@ -139,7 +139,7 @@ SupernerdMarkusSeenText: ; 0x7df6a
 
 SupernerdMarkusBeatenText: ; 0x7df76
 	text "I mistook you for"
-	line "someone else…"
+	line "someone else<...>"
 	done
 ; 0x7df97
 
@@ -148,7 +148,7 @@ UnknownText_0x7df97: ; 0x7df97
 	line "MT.MORTAR, but I"
 
 	para "got separated from"
-	line "my partner…"
+	line "my partner<...>"
 
 	para "Did you run into a"
 	line "trainer who uses a"

@@ -486,7 +486,7 @@ Bug_catcherAlSeenText: ; 0x18f081
 
 Bug_catcherAlBeatenText: ; 0x18f0b4
 	text "You proved how"
-	line "tough you are…"
+	line "tough you are<...>"
 	done
 ; 0x18f0d3
 
@@ -497,7 +497,7 @@ UnknownText_0x18f0d3: ; 0x18f0d3
 	para "don't like bug"
 	line "#MON."
 
-	para "I don't know why…"
+	para "I don't know why<...>"
 	done
 ; 0x18f118
 
@@ -520,7 +520,7 @@ Bug_catcherJoshBeatenText: ; 0x18f174
 UnknownText_0x18f17e: ; 0x18f17e
 	text "I guess I should"
 	line "teach them better"
-	cont "moves…"
+	cont "moves<...>"
 	done
 ; 0x18f1a9
 
@@ -576,7 +576,7 @@ AzaleaGymGuyText: ; 0x18f296
 	line "tough without my"
 	cont "advice."
 
-	para "Let's see… Bug"
+	para "Let's see<...> Bug"
 	line "#MON don't like"
 	cont "fire."
 

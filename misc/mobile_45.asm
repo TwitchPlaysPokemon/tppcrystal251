@@ -14168,12 +14168,12 @@ UnknownText_0x11aa13: ; 0x11aa13
 
 UnknownText_0x11aa2c: ; 0x11aa2c
 	text "Sent SAVE FILE."
-	line "Reading NEWS…"
+	line "Reading NEWS<...>"
 	done
 ; 0x11aa4b
 
 UnknownText_0x11aa4b: ; 0x11aa4b
-	text "Reading NEWS…"
+	text "Reading NEWS<...>"
 	done
 ; 0x11aa5a
 
@@ -14201,7 +14201,7 @@ UnknownText_0x11aa9b: ; 0x11aa9b
 
 UnknownText_0x11aab2: ; 0x11aab2
 	text "Registering your"
-	line "record…"
+	line "record<...>"
 	done
 ; 0x11aacc
 
@@ -14241,7 +14241,7 @@ UnknownText_0x11ab6e: ; 0x11ab6e
 
 UnknownText_0x11ab8b: ; 0x11ab8b
 	text "Linking with the"
-	line "CENTER…"
+	line "CENTER<...>"
 	done
 ; 0x11aba5
 
@@ -14274,7 +14274,7 @@ UnknownText_0x11ac1f: ; 0x11ac1f
 	line "@"
 	text_from_ram StringBuffer4
 	text "?"
-	cont "Please wait…"
+	cont "Please wait<...>"
 	done
 ; 0x11ac3e
 
@@ -19966,9 +19966,9 @@ Unknown_11e0c8: ; 11e0c8
 	db "!!@@@", $2, $0, $0
 	db "!?@@@", $4, $0, $0
 	db "?@@@@", $6, $0, $0
-	db "…@@@@", $8, $0, $0
-	db "…!@@@", $a, $0, $0
-	db "………@@", $c, $0, $0
+	db "<...>@@@@", $8, $0, $0
+	db "<...>!@@@", $a, $0, $0
+	db "<...><...><...>@@", $c, $0, $0
 	db "ー@@@@", $e, $0, $0
 	db "ーーー@@", $10, $0, $0
 	db "あーあ@@", $14, $0, $0

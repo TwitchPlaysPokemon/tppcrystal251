@@ -63,11 +63,11 @@ UnknownText_0x7ad2f: ; 0x7ad2f
 	line "his research on"
 	cont "#MON evolution."
 
-	para "…sigh…"
+	para "<...>sigh<...>"
 
 	para "I wish I could be"
 	line "a researcher like"
-	cont "him…"
+	cont "him<...>"
 	done
 ; 0x7add4
 
@@ -105,7 +105,7 @@ UnknownText_0x7ae7b: ; 0x7ae7b
 
 UnknownText_0x7ae9b: ; 0x7ae9b
 	text "#MON!"
-	line "#MON CHANNEL…"
+	line "#MON CHANNEL<...>"
 	done
 ; 0x7aeb0
 

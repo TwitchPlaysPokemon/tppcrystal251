@@ -183,7 +183,7 @@ UnknownText_0xfb814: ; 0xfb814
 ; 0xfb819
 
 UnknownText_0xfb819: ; 0xfb819
-	; Hm… @ … That's a fairly decent name.
+	; Hm<...> @ <...> That's a fairly decent name.
 	; But, how about a slightly better nickname?
 	; Want me to give it a better name?
 	text_jump UnknownText_0x1c00cd
@@ -209,14 +209,14 @@ UnknownText_0xfb828: ; 0xfb828
 ; 0xfb82d
 
 UnknownText_0xfb82d: ; 0xfb82d
-	; Hm… @ ? What a great name! It's perfect.
+	; Hm<...> @ ? What a great name! It's perfect.
 	; Treat @ with loving care.
 	text_jump UnknownText_0x1c01be
 	db "@"
 ; 0xfb832
 
 UnknownText_0xfb832: ; 0xfb832
-	; Whoa… That's just an EGG.
+	; Whoa<...> That's just an EGG.
 	text_jump UnknownText_0x1c0208
 	db "@"
 ; 0xfb837

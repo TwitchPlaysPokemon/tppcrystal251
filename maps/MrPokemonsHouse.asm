@@ -285,7 +285,7 @@ UnknownText_0x197185: ; 0x197185
 	para "Oh! What's this?"
 	line "A rare #MON!"
 
-	para "Let's see…"
+	para "Let's see<...>"
 
 	para "Hm, I see!"
 
@@ -307,7 +307,7 @@ UnknownText_0x197185: ; 0x197185
 	para "#MON with love"
 	line "and care."
 
-	para "…Ah!"
+	para "<...>Ah!"
 
 	para "You seem to be"
 	line "dependable."
@@ -361,7 +361,7 @@ UnknownText_0x197476: ; 0x197476
 	cont "A red GYARADOS?"
 
 	para "That's rare! "
-	line "I, I want it…"
+	line "I, I want it<...>"
 
 	para "<PLAY_G>, would you"
 	line "care to trade it?"
@@ -384,7 +384,7 @@ UnknownText_0x197543: ; 0x197543
 	line "foreign magazines."
 
 	para "Can't even read"
-	line "their titles…"
+	line "their titles<...>"
 	done
 ; 0x197584
 
@@ -400,7 +400,7 @@ UnknownText_0x1975ac: ; 0x1975ac
 	line "strange coins!"
 
 	para "Maybe they're from"
-	line "another country…"
+	line "another country<...>"
 	done
 ; 0x1975ef
 

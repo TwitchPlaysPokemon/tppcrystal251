@@ -37,13 +37,13 @@ PokefanMScript_0x1a2efa: ; 0x1a2efa
 ; 0x1a2f01
 
 UnknownText_0x1a2f01: ; 0x1a2f01
-	text "…Yeah, and the"
+	text "<...>Yeah, and the"
 	line "GYM in CINNABAR's"
 
 	para "gone. I was really"
 	line "amazed."
 
-	para "…Yes? I'm on the"
+	para "<...>Yes? I'm on the"
 	line "phone. Go away!"
 	done
 ; 0x1a2f5d
