@@ -100,7 +100,7 @@ UnknownText_0x62d9d: ; 0x62d9d
 	line "making a #DEX?"
 
 	para "It must be hard if"
-	line "#MON don't like you"
+	line "#MON don't love you"
 	cont "Try using this TM."
 	
 	done

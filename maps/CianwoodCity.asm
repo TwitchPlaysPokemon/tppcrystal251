@@ -156,7 +156,7 @@ RockScript_0x1a00d1: ; 0x1a00d1
 
 MapCianwoodCitySignpostItem6: ; 0x1a00d4
 	dw $00b2
-	db REVIVE
+	db SOFT_SAND
 	
 ; 0x1a00d7
 

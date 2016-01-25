@@ -563,6 +563,51 @@ CooltrainerfIreneScript: ; 0x782c4
 	end
 ; 0x782d2
 
+TeachMove:
+	writetext WhoToTeachText
+	special Function4925b
+	if_equal $0, UnknownScript_0x1989a6
+	writetext TutorQuitText
+	waitbutton
+	closetext
+	end
+
+AfterTutor:
+	writetext TutorTakeMoneyText
+	buttonsound
+	takemoney 5000, 0
+	waitsfx
+	writetext LightPocketsText
+	waitbutton
+	closetext
+	end
+
+WhoToTeachText:
+	text "Who should"
+	line "I teach?"
+	done
+
+WierdTutorText:
+	db $0, $57
+
+TutorQuitText:
+	text "Well if you change"
+	line "your mind..."
+	done
+
+TutorTakeMoneyText:
+	text "Great, they learn"
+	line "fast!"
+
+	para "Now to hold up"
+	line "your end..."
+	done
+
+LightPocketsText:
+	text "Your pockets are"
+	line "suddenly lighter…"
+	done
+
 UnknownScript_0x782d2: ; 0x782d2
 	writetext UnknownText_0x787ad
 	waitbutton
@@ -634,12 +679,11 @@ CooltrainerfKateScript: ; 0x78304
 	checkevent EVENT_GOT_SOFT_SAND_FROM_KATE
 	iftrue UnknownScript_0x78319
 	writetext UnknownText_0x788e2
-	buttonsound
-	verbosegiveitem SOFT_SAND, 1
-	iffalse UnknownScript_0x7831d
 	setevent EVENT_GOT_SOFT_SAND_FROM_KATE
 UnknownScript_0x78319: ; 0x78319
 	writetext UnknownText_0x7892b
+	yesno
+	iftrue TeachMove
 	waitbutton
 UnknownScript_0x7831d: ; 0x7831d
 	closetext
@@ -1049,12 +1093,24 @@ CooltrainerfKateBeatenText: ; 0x788c0
 ; 0x788e2
 
 UnknownText_0x788e2: ; 0x788e2
-	text "KATE: You're too"
-	line "strong. I didn't"
-	cont "stand a chance."
+	text "KATE: Oh, you only"
+	line "wanted a #MON"
+	cont "battle?"
 
-	para "Here. You deserve"
-	line "this."
+	para "What a relief…"
+
+	para "We're training"
+	line "elemental martial"
+	cont "arts in secret, but"
+	cont "so far we only"
+	cont "taught our #MON…"
+
+	para "*grooowwl*"
+
+	para "Say, if you bring"
+	line "us some snack money"
+	cont "we can teach your"
+	cont "#MON too."
 	done
 ; 0x7892b
 

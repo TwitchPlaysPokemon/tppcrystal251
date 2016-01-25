@@ -270,7 +270,7 @@ ItemFragment_0x1a9349: ; 0x1a9349
 ; 0x1a934b
 
 ItemFragment_0x1a934b: ; 0x1a934b
-	db SUPER_POTION, 1
+	db HYPER_POTION, 1
 ; 0x1a934d
 
 FruitTreeScript_0x1a934d: ; 0x1a934d

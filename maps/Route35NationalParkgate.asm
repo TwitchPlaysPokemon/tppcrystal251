@@ -338,7 +338,7 @@ MovementData_0x6a2e9: ; 0x6a2e9
 ; 0x6a2eb
 
 BagIsFullText:
-	text "Uh-oh… Your BAG"
+	text "Uh-oh… Your PACK"
 	line "is full."
 
 	para "We'll hold on to"

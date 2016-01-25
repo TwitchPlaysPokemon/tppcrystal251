@@ -343,35 +343,35 @@ UnknownText_0x595cb: ; 0x595cb
 ; 0x59669
 
 ; possibly unused
-UnknownText_0x59669: ; 0x59669
-	text "We think something"
-	line "caused the cryptic"
+;UnknownText_0x59669: ; 0x59669
+;	text "We think something"
+;	line "caused the cryptic"
 
-	para "patterns to appear"
-	line "in the RUINS."
+;	para "patterns to appear"
+;	line "in the RUINS."
 
-	para "We've focused our"
-	line "studies on that."
-	done
+	;para "We've focused our"
+;	line "studies on that."
+;	done
 ; 0x596d3
 
 ; possibly unused
-UnknownText_0x596d3: ; 0x596d3
-	text "According to my"
-	line "research…"
+;UnknownText_0x596d3: ; 0x596d3
+;	text "According to my"
+;	line "research…"
 
-	para "Those mysterious"
-	line "patterns appeared"
+	;para "Those mysterious"
+;	line "patterns appeared"
 
-	para "when the #COM"
-	line "CENTER was built."
+;	para "when the #COM"
+;	line "CENTER was built."
 
-	para "It must mean that"
-	line "radio waves have"
+;	para "It must mean that"
+;	line "radio waves have"
 
-	para "some sort of a"
-	line "link…"
-	done
+;	para "some sort of a"
+;	line "link…"
+;	done
 ; 0x59769
 
 UnknownText_0x59769: ; 0x59769

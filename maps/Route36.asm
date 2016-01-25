@@ -76,7 +76,7 @@ WateredWeirdTreeScript:: ; 0x194053
 	writetext UnknownText_0x1942aa
 	waitbutton
 	closetext
-	loadpokedata SUDOWOODO, 40
+	loadpokedata SUDOWOODO, 35
 	startbattle
 	setevent EVENT_FOUGHT_SUDOWOODO
 	if_equal $2, UnknownScript_0x19407b

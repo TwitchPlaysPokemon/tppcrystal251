@@ -208,7 +208,7 @@ UnknownText_0x5ecef: ; 0x5ecef
 	text "MARY: It's just"
 	line "right for #MON"
 
-	para "that know normal-"
+	para "that know fairy-"
 	line "type moves."
 	done
 ; 0x5ed2c
