@@ -175,9 +175,9 @@ Route3RBMovement_StepUp
 	step_end
 
 _Route3Text1:
-	text "Whew… I better"
-	line "take a rest…"
-	cont "Groan…"
+	text "Whew<...> I better"
+	line "take a rest<...>"
+	cont "Groan<...>"
 
 	para "That tunnel from"
 	line "CERULEAN takes a"
@@ -317,7 +317,7 @@ _Route3Text10:
 	done
 
 Route3RBRocketsText1:
-	text "…"
+	text "<...>"
 
 	para "So BOSS wants us"
 	line "to go down there"
@@ -361,7 +361,7 @@ Route3RBRocketsText5:
 	done
 
 Route3RBRocketsWinText2:
-	text "This power…"
+	text "This power<...>"
 	done
 
 Route3RBRocketsText6:
@@ -374,7 +374,7 @@ Route3RBRocketsText6:
 	cont "schemes?"
 	cont "Bring it on!"
 
-	para "… I'd say that, but"
+	para "<...> I'd say that, but"
 	line "you trashed us"
 	cont "good, kid. We'll"
 	cont "remember you."
@@ -382,7 +382,7 @@ Route3RBRocketsText6:
 
 Route3RBLassTextBeforeRockets:
 	text "Those shady-"
-	line "looking men…"
+	line "looking men<...>"
 
 	para "What are they"
 	line "talking about?"

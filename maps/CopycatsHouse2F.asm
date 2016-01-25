@@ -267,7 +267,7 @@ UnknownText_0x18b116: ; 0x18b116
 	cont "do?"
 
 	para "But I'm really"
-	line "worried… What if"
+	line "worried<...> What if"
 	cont "someone finds it?"
 	done
 ; 0x18b17f
@@ -361,7 +361,7 @@ UnknownText_0x18b415: ; 0x18b415
 	text "<PLAYER>: Thank you"
 	line "for the rail PASS!"
 
-	para "<PLAYER>: …Pardon?"
+	para "<PLAYER>: <...>Pardon?"
 
 	para "<PLAYER>: Is it"
 	line "really that fun to"
@@ -389,7 +389,7 @@ UnknownText_0x18b4c4: ; 0x18b4c4
 	text "This is a rare"
 	line "#MON! Huh?"
 
-	para "It's only a doll…"
+	para "It's only a doll<...>"
 	done
 ; 0x18b4f0
 

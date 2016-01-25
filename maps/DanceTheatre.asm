@@ -281,7 +281,7 @@ Kimono_girlZukiSeenText: ; 0x9963f
 
 Kimono_girlZukiBeatenText: ; 0x9966c
 	text "I don't have any"
-	line "#MON left…"
+	line "#MON left<...>"
 	done
 ; 0x99688
 
@@ -351,7 +351,7 @@ UnknownText_0x9980a: ; 0x9980a
 	line "them, but I've"
 
 	para "never even left a"
-	line "scratch…"
+	line "scratch<...>"
 	done
 ; 0x99891
 
@@ -404,7 +404,7 @@ UnknownText_0x9999b: ; 0x9999b
 UnknownText_0x999d5: ; 0x999d5
 	text "I wish my #MON"
 	line "were as elegant as"
-	cont "the KIMONO GIRLS…"
+	cont "the KIMONO GIRLS<...>"
 	done
 ; 0x99a0a
 
@@ -430,7 +430,7 @@ UnknownText_0x99a24: ; 0x99a24
 
 UnknownText_0x99aaa: ; 0x99aaa
 	text "The KIMONO GIRLS"
-	line "are so beautiful…"
+	line "are so beautiful<...>"
 
 	para "But they have to"
 	line "go through rigor-"

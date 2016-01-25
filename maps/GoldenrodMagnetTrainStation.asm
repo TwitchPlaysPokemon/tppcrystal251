@@ -118,7 +118,7 @@ MovementData_0x55158: ; 0x55158
 
 UnknownText_0x55160: ; 0x55160
 	text "The train hasn't"
-	line "come in…"
+	line "come in<...>"
 
 	para "I know! I'll carry"
 	line "the passengers on"

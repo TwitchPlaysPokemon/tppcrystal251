@@ -659,7 +659,7 @@ UnknownText_0x18e736: ; 0x18e736
 ; 0x18e7bc
 
 UnknownText_0x18e7bc: ; 0x18e7bc
-	text "KURT: Oh…"
+	text "KURT: Oh<...>"
 	line "That's a letdown."
 	done
 ; 0x18e7d8
@@ -720,7 +720,7 @@ UnknownText_0x18e934: ; 0x18e934
 
 UnknownText_0x18e949: ; 0x18e949
 	text "Ah-ha! I see!"
-	line "So…"
+	line "So<...>"
 	done
 ; 0x18e95c
 
@@ -738,7 +738,7 @@ UnknownText_0x18e95c: ; 0x18e95c
 
 UnknownText_0x18e9b5: ; 0x18e9b5
 	text "The SLOWPOKE are"
-	line "gone… Were they"
+	line "gone<...> Were they"
 
 	para "taken away by bad"
 	line "people?"
@@ -746,8 +746,8 @@ UnknownText_0x18e9b5: ; 0x18e9b5
 ; 0x18e9f1
 
 UnknownText_0x18e9f1: ; 0x18e9f1
-	text "Grandpa's gone…"
-	line "I'm so lonely…"
+	text "Grandpa's gone<...>"
+	line "I'm so lonely<...>"
 	done
 ; 0x18ea0f
 
@@ -797,13 +797,13 @@ UnknownText_0x18eb14: ; 0x18eb14
 ; 0x18eb56
 
 UnknownText_0x18eb56: ; 0x18eb56
-	text "SLOWPOKE: …"
+	text "SLOWPOKE: <...>"
 	line "Yawn?"
 	done
 ; 0x18eb69
 
 UnknownText_0x18eb69: ; 0x18eb69
-	text "…A young PROF."
+	text "<...>A young PROF."
 	line "OAK?"
 	done
 ; 0x18eb7e

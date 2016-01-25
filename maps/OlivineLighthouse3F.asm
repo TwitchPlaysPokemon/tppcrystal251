@@ -105,7 +105,7 @@ Bird_keeperTheoSeenText: ; 0x5b27b
 ; 0x5b2c4
 
 Bird_keeperTheoBeatenText: ; 0x5b2c4
-	text "Angry birds…"
+	text "Angry birds<...>"
 	done
 ; 0x5b2df
 
@@ -117,7 +117,7 @@ UnknownText_0x5b2df: ; 0x5b2df
 	line "the sick #MON,"
 
 	para "but I can't get up"
-	line "there…"
+	line "there<...>"
 	done
 ; 0x5b333
 
@@ -131,7 +131,7 @@ SailorTerrellSeenText: ; 0x5b333
 
 SailorTerrellBeatenText: ; 0x5b365
 	text "You are both kind"
-	line "and strong…"
+	line "and strong<...>"
 	done
 ; 0x5b384
 
@@ -157,8 +157,8 @@ GentlemanPrestonSeenText: ; 0x5b3f4
 ; 0x5b437
 
 GentlemanPrestonBeatenText: ; 0x5b437
-	text "…sigh… I must"
-	line "train some more…"
+	text "<...>sigh<...> I must"
+	line "train some more<...>"
 	done
 ; 0x5b457
 

@@ -99,7 +99,7 @@ UnknownText_0x1ab548: ; 0x1ab548
 
 UnknownText_0x1ab646: ; 0x1ab646
 	text "BLAINE: Awesome."
-	line "I've burned out…"
+	line "I've burned out<...>"
 
 	para "You've earned"
 	line "VOLCANOBADGE!"
@@ -146,7 +146,7 @@ UnknownText_0x1ab71c: ; 0x1ab71c
 SeafoamGymGuyWinText: ; 0x1ab759
 	text "Yo!"
 
-	para "… Huh? It's over"
+	para "<...> Huh? It's over"
 	line "already?"
 
 	para "Sorry, sorry!"

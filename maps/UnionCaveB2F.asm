@@ -172,7 +172,7 @@ CooltrainerfGwenSeenText: ; 0x5a444
 ; 0x5a467
 
 CooltrainerfGwenBeatenText: ; 0x5a467
-	text "Not too hard…"
+	text "Not too hard<...>"
 	done
 ; 0x5a488
 

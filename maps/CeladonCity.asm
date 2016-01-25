@@ -120,7 +120,7 @@ UnknownText_0x1a9fcb: ; 0x1a9fcb
 
 UnknownText_0x1a9fde: ; 0x1a9fde
 	text "I lost at the slot"
-	line "machines again…"
+	line "machines again<...>"
 
 	para "We girls also play"
 	line "the slots now."
@@ -137,7 +137,7 @@ UnknownText_0x1aa043: ; 0x1aa043
 	cont "in GOLDENROD."
 
 	para "Looks like I've"
-	line "overdone it…"
+	line "overdone it<...>"
 	
 	para "I can't get out"
 	line "of my house now!"
@@ -170,7 +170,7 @@ UnknownText_0x1aa155: ; 0x1aa155
 
 	para "Just watching them"
 	line "go at it makes me"
-	cont "feel bloated…"
+	cont "feel bloated<...>"
 	done
 ; 0x1aa1bd
 
@@ -187,7 +187,7 @@ UnknownText_0x1aa1bd: ; 0x1aa1bd
 	para "can't get it any-"
 	line "where."
 
-	para "Gee… I sound like"
+	para "Gee<...> I sound like"
 	line "a sales clerk."
 	done
 ; 0x1aa25b
@@ -208,7 +208,7 @@ UnknownText_0x1aa25b: ; 0x1aa25b
 	;line "I wish we had a"
 
 	;para "place like that in"
-	;line "KANTO…"
+	;line "KANTO<...>"
 	;done
 ; 0x1aa306
 

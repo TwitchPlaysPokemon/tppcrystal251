@@ -100,7 +100,7 @@ SwimmermSethSeenText: ; 0x1ac850
 ; 0x1ac86c
 
 SwimmermSethBeatenText: ; 0x1ac86c
-	text "Glug…"
+	text "Glug<...>"
 	done
 ; 0x1ac873
 
@@ -120,7 +120,7 @@ SwimmerfNikkiSeenText: ; 0x1ac8a0
 
 SwimmerfNikkiBeatenText: ; 0x1ac8d6
 	text "I'm worried about"
-	line "sunburn…"
+	line "sunburn<...>"
 	done
 ; 0x1ac8f1
 
@@ -138,13 +138,13 @@ FisherArnoldSeenText: ; 0x1ac927
 ; 0x1ac94c
 
 FisherArnoldBeatenText: ; 0x1ac94c
-	text "Utter failure…"
+	text "Utter failure<...>"
 	done
 ; 0x1ac95c
 
 UnknownText_0x1ac95c: ; 0x1ac95c
 	text "I'll just go back"
-	line "to fishing…"
+	line "to fishing<...>"
 	done
 ; 0x1ac97a
 

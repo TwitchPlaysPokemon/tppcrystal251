@@ -106,9 +106,9 @@ UnknownText_0x553d4: ; 0x553d4
 	line "got all excited"
 
 	para "and went to see"
-	line "it…"
+	line "it<...>"
 
-	para "I'm worried… Isn't"
+	para "I'm worried<...> Isn't"
 	line "it dangerous?"
 	done
 ; 0x55463
@@ -127,7 +127,7 @@ UnknownText_0x55463: ; 0x55463
 
 UnknownText_0x554c2: ; 0x554c2
 	text "Oh, you're better"
-	line "than WHITNEY…"
+	line "than WHITNEY<...>"
 
 	para "You'll be OK,"
 	line "then. Here's the"
@@ -159,7 +159,7 @@ UnknownText_0x55561: ; 0x55561
 	line "I wonder if she'll"
 
 	para "lend me her water"
-	line "bottle…"
+	line "bottle<...>"
 	done
 ; 0x555e6
 

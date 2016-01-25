@@ -252,7 +252,7 @@ UnknownText_0x194efa: ; 0x194efa
 	para "Do you still want"
 	line "to take me on?"
 
-	para "…Fine."
+	para "<...>Fine."
 	line "Let's do it!"
 
 	para "As a GYM LEADER,"
@@ -268,7 +268,7 @@ UnknownText_0x194fd6: ; 0x194fd6
 
 	para "I don't believe"
 	line "it. There must be"
-	cont "some mistake…"
+	cont "some mistake<...>"
 	done
 ; 0x19500e
 

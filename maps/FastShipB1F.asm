@@ -418,10 +418,10 @@ UnknownText_0x7687b: ; 0x7687b
 ; 0x76907
 
 UnknownText_0x76907: ; 0x76907
-	text "Oh, gee…"
+	text "Oh, gee<...>"
 
 	para "The CAPTAIN will"
-	line "be furious…"
+	line "be furious<...>"
 	done
 ; 0x7692e
 
@@ -485,7 +485,7 @@ PicnickerDebraBeatenText: ; 0x76a81
 ; 0x76a99
 
 UnknownText_0x76a99: ; 0x76a99
-	text "SAFFRON, CELADON…"
+	text "SAFFRON, CELADON<...>"
 	line "I hear there are"
 
 	para "many big cities"
@@ -494,14 +494,14 @@ UnknownText_0x76a99: ; 0x76a99
 ; 0x76ad7
 
 JugglerFritzSeenText: ; 0x76ad7
-	text "Urrf…"
+	text "Urrf<...>"
 	line "I'm seasick!"
 	done
 ; 0x76aea
 
 JugglerFritzBeatenText: ; 0x76aea
 	text "I can't move any-"
-	line "more…"
+	line "more<...>"
 	done
 ; 0x76b02
 
@@ -522,7 +522,7 @@ SailorGarrettSeenText: ; 0x76b40
 
 SailorGarrettBeatenText: ; 0x76b60
 	text "I lost on my home"
-	line "field…"
+	line "field<...>"
 	done
 ; 0x76b7a
 
@@ -546,8 +546,8 @@ FisherJonahSeenText: ; 0x76bbc
 ; 0x76c08
 
 FisherJonahBeatenText: ; 0x76c08
-	text "I… I'm not bored"
-	line "anymore…"
+	text "I<...> I'm not bored"
+	line "anymore<...>"
 	done
 ; 0x76c22
 
@@ -594,7 +594,7 @@ SailorKennethSeenText: ; 0x76cf9
 
 SailorKennethBeatenText: ; 0x76d3c
 	text "My lack of train-"
-	line "ing is obvious…"
+	line "ing is obvious<...>"
 	done
 ; 0x76d5f
 

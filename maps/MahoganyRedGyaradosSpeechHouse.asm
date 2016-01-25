@@ -41,6 +41,7 @@ UnknownText_0x19999c: ; 0x19999c
 	para "That's odd,"
 	line "they're usually"
 	cont "blue"
+
 	done
 ; 0x199a0e
 
@@ -55,7 +56,7 @@ UnknownText_0x199a3d: ; 0x199a3d
 	text "I've been hearing"
 	line "laughter on the"
 
-	para "radio…"
+	para "radio<...>"
 	line "It's creepy."
 	done
 ; 0x199a72

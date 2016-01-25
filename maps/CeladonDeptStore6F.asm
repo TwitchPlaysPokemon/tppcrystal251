@@ -134,20 +134,20 @@ UnknownText_0x71274: ; 0x71274
 
 UnknownText_0x7128e: ; 0x7128e
 	text "Oops, not enough"
-	line "money…"
+	line "money<...>"
 	done
 ; 0x712a7
 
 UnknownText_0x712a7: ; 0x712a7
 	text "There's no more"
-	line "room for stuff…"
+	line "room for stuff<...>"
 	done
 ; 0x712c7
 
 UnknownText_0x712c7: ; 0x712c7
 	text "A vending machine"
 	line "with a prize rou-"
-	cont "lette…"
+	cont "lette<...>"
 
 	para "You never see"
 	line "those anymore."
@@ -158,7 +158,7 @@ UnknownText_0x71310: ; 0x71310
 	text "Aww! There's no"
 	line "games here!"
 
-	para "I wanted to play…"
+	para "I wanted to play<...>"
 	done
 ; 0x7133e
 

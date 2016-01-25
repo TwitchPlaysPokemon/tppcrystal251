@@ -356,9 +356,9 @@ UnknownText_0x74b11: ; 0x74b11
 UnknownText_0x74b41: ; 0x74b41
 	text "<PLAYER> tried to"
 	line "show the S.S."
-	cont "TICKET…"
+	cont "TICKET<...>"
 
-	para "…But no TICKET!"
+	para "<...>But no TICKET!"
 
 	para "Sorry!"
 	line "You may board only"
@@ -410,7 +410,7 @@ UnknownText_0x74ca2: ; 0x74ca2
 	text "There are lots of"
 	line "#MON in KANTO."
 
-	para "I wish I could go…"
+	para "I wish I could go<...>"
 	done
 ; 0x74cd7
 

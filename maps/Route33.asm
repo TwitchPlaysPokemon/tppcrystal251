@@ -183,7 +183,7 @@ HikerAnthony2SeenText: ; 0x1ac0ec
 
 HikerAnthony2BeatenText: ; 0x1ac130
 	text "Now I feel like"
-	line "a MAGIKARP…"
+	line "a MAGIKARP<...>"
 	done
 ; 0x1ac153
 
@@ -206,7 +206,7 @@ UnknownText_0x1ac180: ; 0x1ac180
 ; 0x1ac1e7
 
 UnknownText_0x1ac1e7: ; 0x1ac1e7
-	text "Pant, pant…"
+	text "Pant, pant<...>"
 
 	para "I finally got"
 	line "through that cave."

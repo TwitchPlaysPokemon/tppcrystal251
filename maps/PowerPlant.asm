@@ -232,7 +232,7 @@ MovementData_0x188eda: ; 0x188eda
 
 UnknownText_0x188ee0: ; 0x188ee0
 	text "A thief broke into"
-	line "the POWER PLANT…"
+	line "the POWER PLANT<...>"
 
 	para "What is the world"
 	line "coming to?"
@@ -314,7 +314,7 @@ UnknownText_0x18910e: ; 0x18910e
 	line "wrecked the gener-"
 	cont "ator, he's been"
 	cont "both sad and"
-	cont "furious…"
+	cont "furious<...>"
 	done
 ; 0x18917f
 

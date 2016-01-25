@@ -211,7 +211,7 @@ PokemaniacLarrySeenText: ; 0x59cb5
 
 PokemaniacLarryBeatenText: ; 0x59d1b
 	text "Ugh. My poor #-"
-	line "MON…"
+	line "MON<...>"
 	done
 ; 0x59d31
 

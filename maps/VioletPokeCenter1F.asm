@@ -160,8 +160,8 @@ UnknownText_0x69693: ; 0x69693
 ; 0x696f2
 
 UnknownText_0x696f2: ; 0x696f2
-	text "B-but… PROF.ELM"
-	line "asked for you…"
+	text "B-but<...> PROF.ELM"
+	line "asked for you<...>"
 	done
 ; 0x69712
 

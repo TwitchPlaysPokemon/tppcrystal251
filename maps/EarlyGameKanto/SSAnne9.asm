@@ -13,7 +13,7 @@ SSAnne9Trainer_Gentleman1:
 	end
 
 SSAnne9Trainer_Fisher:
-	trainer EVENT_S_S_ANNE_9_FISHER, FISHER, DALE, _SSAnne9BattleText2, _SSAnne9EndBattleText2, 0, .Script
+	trainer EVENT_S_S_ANNE_9_FISHER, FISHER, DALE_RB, _SSAnne9BattleText2, _SSAnne9EndBattleText2, 0, .Script
 .Script
 	talkaftercancel
 	loadfont

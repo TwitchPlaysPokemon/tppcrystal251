@@ -309,7 +309,7 @@ UnknownText_0x99e65: ; 0x99e65
 	line "now see what"
 	cont "others cannot."
 
-	para "Just a bit more…"
+	para "Just a bit more<...>"
 
 	para "With a little"
 	line "more, I could see"
@@ -330,7 +330,7 @@ MortyRematchTextBefore:
 
 	para "So the legend was"
 	line "true, and Ho-oh"
-	cont "chose you…"
+	cont "chose you<...>"
 
 	para "But that does not"
 	line "mean that I have"
@@ -344,7 +344,7 @@ MortyRematchTextBefore:
 
 MortyRematchBeatenText:
 	text "How is this"
-	line "possible…"
+	line "possible<...>"
 	done
 
 MortyAfterRematchText:
@@ -356,13 +356,12 @@ MortyAfterRematchText:
 	line "have something…"
 	
 	para "Something more" 
-	line "than that…"
-
+	line "than that<...>"
 	done
 
 UnknownText_0x9a00a: ; 0x9a00a
 	text "I'm not good"
-	line "enough yet…"
+	line "enough yet<...>"
 
 	para "All right. This"
 	line "BADGE is yours."
@@ -407,7 +406,7 @@ UnknownText_0x9a0ec: ; 0x9a0ec
 ; 0x9a145
 
 UnknownText_0x9a145: ; 0x9a145
-	text "I see…"
+	text "I see<...>"
 
 	para "Your journey has"
 	line "taken you to far-"
@@ -418,7 +417,7 @@ UnknownText_0x9a145: ; 0x9a145
 	cont "than I."
 
 	para "I envy you for"
-	line "that…"
+	line "that<...>"
 	done
 ; 0x9a1bd
 
@@ -445,7 +444,7 @@ SageJeffreyBeatenText: ; 0x9a23d
 
 UnknownText_0x9a263: ; 0x9a263
 	text "Our bond isn't"
-	line "strong enough…"
+	line "strong enough<...>"
 	done
 ; 0x9a27e
 
@@ -481,7 +480,7 @@ MediumMarthaSeenText: ; 0x9a2fb
 ; 0x9a309
 
 MediumMarthaBeatenText: ; 0x9a309
-	text "Or not…"
+	text "Or not<...>"
 	done
 ; 0x9a318
 
@@ -512,7 +511,7 @@ MediumGraceBeatenText: ; 0x9a37f
 
 UnknownText_0x9a38a: ; 0x9a38a
 	text "If I can't"
-	line "defeat you…"
+	line "defeat you<...>"
 
 	para "How will I ever"
 	line "defeat Morty?"

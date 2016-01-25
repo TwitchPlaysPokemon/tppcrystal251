@@ -233,7 +233,7 @@ UnknownText_0x5a6b5: ; 0x5a6b5
 	line "fit, my #MON"
 
 	para "would've punished"
-	line "them…"
+	line "them<...>"
 
 	para "Ah, it can't be"
 	line "helped."
@@ -340,8 +340,8 @@ GruntM2SeenText: ; 0x5aa8d
 ; 0x5aadf
 
 GruntM2BeatenText: ; 0x5aadf
-	text "Just…"
-	line "Too strong…"
+	text "Just<...>"
+	line "Too strong<...>"
 	done
 ; 0x5aaf2
 
@@ -379,7 +379,7 @@ UnknownText_0x5ab8d: ; 0x5ab8d
 
 UnknownText_0x5abcb: ; 0x5abcb
 	text "A SLOWPOKE with"
-	line "its TAIL cut off…"
+	line "its TAIL cut off<...>"
 
 	para "Huh? It has MAIL."
 	line "Read it?"
@@ -402,7 +402,7 @@ UnknownText_0x5ac09: ; 0x5ac09
 
 UnknownText_0x5ac61: ; 0x5ac61
 	text "A SLOWPOKE with"
-	line "its TAIL cut off…"
+	line "its TAIL cut off<...>"
 	done
 ; 0x5ac84
 

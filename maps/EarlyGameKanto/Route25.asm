@@ -142,7 +142,7 @@ _Route25BattleText3:
 	done
 
 _Route25EndBattleText3:
-	text "Aww, darn…"
+	text "Aww, darn<...>"
 	done
 
 _Route25AfterBattleText3:

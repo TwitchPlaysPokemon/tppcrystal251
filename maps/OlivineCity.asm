@@ -217,7 +217,7 @@ SteelixText:
 	done
 
 UnknownText_0x1a88fa: ; 0x1a88fa
-	text "…"
+	text "<...>"
 
 	para "You again?"
 
@@ -301,7 +301,7 @@ UnknownText_0x1a8b71: ; 0x1a8b71
 
 	para "Sing with me! "
 	line "Yo-ho! Blow the"
-	cont "man down!…"
+	cont "man down!<...>"
 	done
 ; 0x1a8bd0
 

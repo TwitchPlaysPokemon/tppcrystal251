@@ -147,21 +147,19 @@ UnknownText_0x19940d: ; 0x19940d
 ; 0x199460
 
 UnknownText_0x199460: ; 0x199460
-	text "You came out from"
-	line "JOHTO?"
+	text "You went to JOHTO?"
 
 	para "You can zip back"
-	line "home if the MAGNET"
+	line "if the MAGNET"
 	cont "TRAIN's running."
 	done
 ; 0x1994ae
 
 UnknownText_0x1994ae: ; 0x1994ae
-	text "You came out from"
-	line "JOHTO?"
+	text "You went to JOHTO?"
 
 	para "You can zip back"
-	line "home by hopping on"
+	line "by hopping on"
 	cont "the MAGNET TRAIN."
 	done
 ; 0x1994fe
@@ -169,7 +167,7 @@ UnknownText_0x1994ae: ; 0x1994ae
 UnknownText_0x1994fe: ; 0x1994fe
 	text "I went to the GYM,"
 	line "raring for battles"
-	cont "against trainers…"
+	cont "against trainers<...>"
 
 	para "It turns out, I"
 	line "stumbled into the"
@@ -196,24 +194,24 @@ UnknownText_0x19958e: ; 0x19958e
 ; 0x1995fc
 
 UnknownText_0x1995fc: ; 0x1995fc
-	text "Chew… Chew…"
+	text "Chew<...> Chew<...>"
 
 	para "I hear there's big"
 	line "trouble brewing at"
 	cont "the POWER PLANT."
 
-	para "Chew… Chew…"
+	para "Chew<...> Chew<...>"
 	done
 ; 0x19964b
 
 UnknownText_0x19964b: ; 0x19964b
-	text "Chew… Chew…"
+	text "Chew<...> Chew<...>"
 
 	para "I hear there was"
 	line "big trouble at the"
 	cont "POWER PLANT."
 
-	para "Chew… Chew…"
+	para "Chew<...> Chew<...>"
 	line "Haaah, I'm full!"
 	done
 ; 0x1996a5

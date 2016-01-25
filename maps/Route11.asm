@@ -180,40 +180,40 @@ UnknownText_0x6814a: ; 0x6814a
 ; 0x68175
 
 PsychicHermanSeenText: ; 0x68175
-	text "…"
+	text "<...>"
 	done
 ; 0x68178
 
 PsychicHermanBeatenText: ; 0x68178
-	text "…"
+	text "<...>"
 	done
 ; 0x6817b
 
 UnknownText_0x6817b: ; 0x6817b
-	text "…"
+	text "<...>"
 
 	para "I lost while I had"
-	line "my eyes closed…"
+	line "my eyes closed<...>"
 	done
 ; 0x681a1
 
 PsychicFidelSeenText: ; 0x681a1
-	text "I can see it…"
+	text "I can see it<...>"
 
 	para "Everything to see"
-	line "about you…"
+	line "about you<...>"
 	done
 ; 0x681cd
 
 PsychicFidelBeatenText: ; 0x681cd
 	text "I couldn't foresee"
-	line "your power…"
+	line "your power<...>"
 	done
 ; 0x681ec
 
 UnknownText_0x681ec: ; 0x681ec
 	text "Strength in con-"
-	line "viction…"
+	line "viction<...>"
 
 	para "You're strong be-"
 	line "cause you believe"

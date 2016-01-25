@@ -25,7 +25,7 @@ GrannyScript_0x7ec50: ; 0x7ec50
 UnknownText_0x7ec53: ; 0x7ec53
 	text "MR.FUJI: Welcome."
 
-	para "Hmm… You appear to"
+	para "Hmm<...> You appear to"
 	line "be raising your"
 
 	para "#MON in a kind"
@@ -62,16 +62,16 @@ UnknownText_0x7ed4d: ; 0x7ed4d
 UnknownText_0x7edb1: ; 0x7edb1
 	text "I came with my mom"
 	line "to visit #MON"
-	cont "graves…"
+	cont "graves<...>"
 	done
 ; 0x7eddb
 
 UnknownText_0x7eddb: ; 0x7eddb
 	text "The #MON that"
-	line "lived with me…"
+	line "lived with me<...>"
 
 	para "I loved them like"
-	line "my grandchildren…"
+	line "my grandchildren<...>"
 	done
 ; 0x7ee1d
 

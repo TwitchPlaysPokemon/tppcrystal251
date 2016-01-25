@@ -356,7 +356,7 @@ UnknownText_0x199d55: ; 0x199d55
 	cont "POOL to get across"
 	cont "real whirlpools."
 
-	para "And this… This is"
+	para "And this<...> This is"
 	line "a gift from me!"
 	done
 ; 0x199def
@@ -452,7 +452,7 @@ BoarderDouglasBeatenText: ; 0x19a026
 
 UnknownText_0x19a047: ; 0x19a047
 	text "The secret behind"
-	line "PRYCE's power…"
+	line "PRYCE's power<...>"
 
 	para "He meditates under"
 	line "a waterfall daily"
@@ -501,7 +501,7 @@ SkierClarissaBeatenText: ; 0x19a174
 UnknownText_0x19a18f: ; 0x19a18f
 	text "I shouldn't have"
 	line "been bragging"
-	cont "about my skiing…"
+	cont "about my skiing<...>"
 	done
 ; 0x19a1bf
 

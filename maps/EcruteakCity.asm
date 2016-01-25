@@ -107,23 +107,23 @@ MapEcruteakCitySignpostItem7: ; 0x1a4055
 
 ;UnusedMissingDaughterText: ; 0x1a4058
 ; This text is neither used nor referenced in the final game.
-;	text "Oh, no. Oh, no…"
+;	text "Oh, no. Oh, no<...>"
 
 ;	para "My daughter is"
 ;	line "missing."
 
-;	para "No… She couldn't"
+;	para "No<...> She couldn't"
 ;	line "have gone to the"
 ;	cont "BURNED TOWER."
 
 ;	para "I told her not to"
-;	line "go near it…"
+;	line "go near it<...>"
 
 ;	para "People seem to"
 ;	line "disappear there…"
 
 	;para "Oh, what should I"
-	;line "do…?"
+	;line "do<...>?"
 	;done
 
 UnknownText_0x1a4105: ; 0x1a4105
@@ -162,7 +162,7 @@ UnknownText_0x1a41db: ; 0x1a41db
 
 UnknownText_0x1a421a: ; 0x1a421a
 	text "The tower that"
-	line "used to be here…"
+	line "used to be here<...>"
 
 	para "My grandma told me"
 	line "it used to be much"
@@ -214,7 +214,7 @@ UnknownText_0x1a4386: ; 0x1a4386
 
 UnknownText_0x1a43cb: ; 0x1a43cb
 	text "In the distant"
-	line "past…"
+	line "past<...>"
 
 	para "This tower burned"
 	line "in a fire. Three"
@@ -226,7 +226,7 @@ UnknownText_0x1a43cb: ; 0x1a43cb
 	line "#MON descended"
 
 	para "from the sky and"
-	line "resurrected them…"
+	line "resurrected them<...>"
 
 	para "It's a legend that"
 	line "has been passed"

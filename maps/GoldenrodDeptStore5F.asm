@@ -167,7 +167,7 @@ MapGoldenrodDeptStore5FSignpost1Script: ; 0x56140
 
 UnknownText_0x56143: ; 0x56143
 	;text "Hello. Oh, your"
-	;line "#MON…"
+	;line "#MON<...>"
 	;done
 ; 0x5615a
 

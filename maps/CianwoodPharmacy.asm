@@ -51,7 +51,7 @@ UnknownText_0x9dfcd: ; 0x9dfcd
 	para "Is something wor- "
 	line "rying you?"
 
-	para "…"
+	para "<...>"
 
 	para "The LIGHTHOUSE"
 	line "#MON is in"

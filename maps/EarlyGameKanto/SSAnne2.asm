@@ -228,11 +228,11 @@ _SSAnneRivalDefeatedTextF:
 	done
 
 _SSAnneRivalWonTextF:
-	text "Aww, <PLAYER>…"
+	text "Aww, <PLAYER><...>"
 
 	para "Are you seasick?"
 	line "You should've told"
-	cont "me…"
+	cont "me<...>"
 	done
 
 _SSAnneRivalCaptainTextF:
@@ -242,7 +242,7 @@ _SSAnneRivalCaptainTextF:
 
 	para "But, he seems to"
 	line "be seasick. Poor"
-	cont "guy…"
+	cont "guy<...>"
 
 	para "The HM is pretty"
 	line "handy, though."

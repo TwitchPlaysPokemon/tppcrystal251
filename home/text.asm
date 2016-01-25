@@ -427,7 +427,7 @@ Char5BText:: db "PC@" ; 127e
 Char5EText:: db "Rocket@" ; 1281
 Char54Text:: db "Poké@" ; 1288
 Char23Text:: db "こうげき@" ; 128d
-Char56Text:: db "……@" ; 1292
+Char56Text:: db "<...><...>@" ; 1292
 Char5AText:: db "Enemy @" ; 1295
 Char4AText:: db $e1, $e2, "@" ; PK MN ; 129c
 Char24Text:: db $70, $71, "@" ; PO KE ; 129f
@@ -1043,7 +1043,7 @@ Text_0C:: ; 1543
 	ld l, c
 .loop
 	push de
-	ld a, "…"
+	ld a, "<...>"
 	ld [hli], a
 	call GetJoypad
 	ld a, [hJoyDown]

@@ -194,7 +194,7 @@ UnknownText_0x54e02: ; 0x54e02
 ; 0x54e2d
 
 UnknownText_0x54e2d: ; 0x54e2d
-	text "Oh… Now what to"
+	text "Oh<...> Now what to"
 	line "do?"
 	done
 ; 0x54e42
@@ -207,7 +207,7 @@ UnknownText_0x54e42: ; 0x54e42
 	line "all day long."
 
 	para "He's getting to be"
-	line "a real headache…"
+	line "a real headache<...>"
 	done
 ; 0x54ea8
 
@@ -226,7 +226,7 @@ UnknownText_0x54ea8: ; 0x54ea8
 	line "off to the GAME"
 
 	para "CORNER without"
-	line "being called…"
+	line "being called<...>"
 	done
 ; 0x54f4e
 
@@ -264,7 +264,7 @@ UnknownText_0x54ff3: ; 0x54ff3
 
 	para "I was going to"
 	line "give you BILL's"
-	cont "number…"
+	cont "number<...>"
 	done
 ; 0x55046
 

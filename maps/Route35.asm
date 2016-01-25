@@ -460,14 +460,14 @@ CamperElliotSeenText: ; 0x19caf8
 
 CamperElliotBeatenText: ; 0x19cb23
 	text "I wish you would"
-	line "have lost for me…"
+	line "have lost for me<...>"
 	done
 ; 0x19cb47
 
 UnknownText_0x19cb47: ; 0x19cb47
 	text "I was humiliated"
 	line "in front of my"
-	cont "girlfriend…"
+	cont "girlfriend<...>"
 	done
 ; 0x19cb74
 
@@ -499,7 +499,7 @@ PicnickerKimSeenText: ; 0x19cbea
 
 PicnickerKimBeatenText: ; 0x19cc0d
 	text "Oh. I couldn't"
-	line "win…"
+	line "win<...>"
 	done
 ; 0x19cc21
 
@@ -553,7 +553,7 @@ JugglerIrwin1BeatenText: ; 0x19cd42
 UnknownText_0x19cd5a: ; 0x19cd5a
 	text "Someday I will"
 	line "be able to juggle"
-	cont "six at once…"
+	cont "six at once<...>"
 	done
 ; 0x19cdaa
 
@@ -566,7 +566,7 @@ Bug_catcherArnie1SeenText: ; 0x19cdaa
 
 Bug_catcherArnie1BeatenText: ; 0x19cdd5
 	text "Huh? I shouldn't"
-	line "have lost that…"
+	line "have lost that<...>"
 	done
 ; 0x19cdf6
 
@@ -580,7 +580,7 @@ UnknownText_0x19cdf6: ; 0x19cdf6
 ; 0x19ce38
 
 UnknownText_0x19ce38: ; 0x19ce38
-	text "Wow… Look at all"
+	text "Wow<...> Look at all"
 	line "those YANMA!"
 
 	para "I'm so blown away,"

@@ -174,10 +174,10 @@ UnknownText_0x1a29bb: ; 0x1a29bb
 	text "BROCK: Your #-"
 	line "MON's powerful at-"
 	cont "tacks overcame my"
-	cont "rock-hard defense…"
+	cont "rock-hard defense<...>"
 
 	para "You're stronger"
-	line "than I expected…"
+	line "than I expected<...>"
 
 	para "Go ahead--take"
 	line "this BADGE."
@@ -238,7 +238,7 @@ CamperJerrySeenText: ; 0x1a2b62
 
 CamperJerryBeatenText: ; 0x1a2bf1
 	text "I have to win"
-	line "these battles…"
+	line "these battles<...>"
 	done
 ; 0x1a2c0f
 

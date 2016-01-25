@@ -56,7 +56,7 @@ DummyMap_Continue
 
 RedsHouse2FDreaming1Text:
 	text "While ",$14
-	line "was sleeping…"
+	line "was sleeping<...>"
 	done
 
 RedsHouse2FDreaming2Text:
@@ -66,7 +66,7 @@ RedsHouse2FDreaming2Text:
 
 WasItADreamText:
 	text "Was it all a"
-	line "dream…?"
+	line "dream<...>?"
 	done
 
 DummyBlankMap_MapEventHeader:

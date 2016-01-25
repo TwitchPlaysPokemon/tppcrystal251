@@ -818,7 +818,7 @@ UnknownText_0x78fb6: ; 0x78fb6
 	para "could help me with"
 	line "it, <PLAY_G>."
 
-	para "You see…"
+	para "You see<...>"
 
 	para "I'm writing a"
 	line "paper that I want"
@@ -851,7 +851,7 @@ UnknownText_0x790fa: ; 0x790fa
 ; 0x7911a
 
 UnknownText_0x7911a: ; 0x7911a
-	text "But… Please, I"
+	text "But<...> Please, I"
 	line "need your help!"
 	done
 ; 0x7913a
@@ -876,9 +876,9 @@ UnknownText_0x791ae: ; 0x791ae
 	line "e-mail!"
 
 	para $56, $56, $56
-	line "Hm… Uh-huh…"
+	line "Hm<...> Uh-huh<...>"
 
-	para "Okay…"
+	para "Okay<...>"
 	done
 ; 0x791df
 
@@ -905,7 +905,7 @@ UnknownText_0x791df: ; 0x791df
 	line "but we're busy"
 
 	para "with our #MON"
-	line "research…"
+	line "research<...>"
 
 	para "Wait!"
 
@@ -1041,7 +1041,7 @@ ElmDescribesMrPokemonText: ; 0x7960d
 
 	para "Too bad they're"
 	line "just rare and"
-	cont "not very useful…"
+	cont "not very useful<...>"
 	done
 ; 0x79668
 
@@ -1066,7 +1066,7 @@ UnknownText_0x796aa: ; 0x796aa
 
 ElmAfterTheftText1: ; 0x796cd
 	text "ELM: <PLAY_G>, this"
-	line "is terrible…"
+	line "is terrible<...>"
 
 	para "Oh, yes, what was"
 	line "MR.#MON's big"
@@ -1087,7 +1087,7 @@ ElmAfterTheftText3: ; 0x79739
 ; 0x79745
 
 ElmAfterTheftText4: ; 0x79745
-	text "But… Is it a"
+	text "But<...> Is it a"
 	line "#MON EGG?"
 
 	para "If it is, it is a"
@@ -1131,7 +1131,7 @@ ElmAfterTheftText5: ; 0x79780
 ; 0x798cf
 
 ElmAfterTheftText6: ; 0x798cf
-	text "…<PLAY_G>. The"
+	text "<...><PLAY_G>. The"
 	line "road to the"
 
 	para "championship will"
@@ -1199,7 +1199,7 @@ ShowElmTogepiText2: ; 0x79a8b
 ShowElmTogepiText3: ; 0x79a9f
 	text "The EGG hatched!"
 	line "So, #MON are"
-	cont "born from EGGS…"
+	cont "born from EGGS<...>"
 
 	para "No, perhaps not"
 	line "all #MON are."
@@ -1251,7 +1251,7 @@ UnknownText_0x79c37: ; 0x79c37
 ; 0x79c65
 
 UnknownText_0x79c65: ; 0x79c65
-	text "…sigh… That"
+	text "<...>sigh<...> That"
 	line "stolen #MON."
 
 	para "I wonder how it's"
@@ -1355,7 +1355,7 @@ UnknownText_0x79f65: ; 0x79f65
 
 UnknownText_0x79f95: ; 0x79f95
 	text "There was a loud"
-	line "noise outside…"
+	line "noise outside<...>"
 
 	para "When we went to"
 	line "look, someone"
@@ -1365,7 +1365,7 @@ UnknownText_0x79f95: ; 0x79f95
 	line "that anyone would"
 	cont "do that!"
 
-	para "…sigh… That"
+	para "<...>sigh<...> That"
 	line "stolen #MON."
 
 	para "I wonder how it's"
@@ -1400,7 +1400,7 @@ UnknownText_0x7a09a: ; 0x7a09a
 
 UnknownText_0x7a0f0: ; 0x7a0f0
 	text "I heard a #MON"
-	line "was stolen here…"
+	line "was stolen here<...>"
 
 	para "I was just getting"
 	line "some information"
@@ -1408,7 +1408,7 @@ UnknownText_0x7a0f0: ; 0x7a0f0
 
 	para "Apparently, it was"
 	line "a young male with"
-	cont "long, red hair…"
+	cont "long, red hair<...>"
 
 	para "What?"
 
@@ -1494,7 +1494,7 @@ UnknownText_0x7a315: ; 0x7a315
 UnknownText_0x7a370: ; 0x7a370
 	text "The wrapper from"
 	line "the snack PROF.ELM"
-	cont "ate is in there…"
+	cont "ate is in there<...>"
 	done
 ; 0x7a3a6
 
@@ -1502,8 +1502,8 @@ UnknownText_0x7a3a6: ; 0x7a3a6
 	text "OBSERVATIONS ON"
 	line "#MON EVOLUTION"
 
-	para "…It says on the"
-	line "screen…"
+	para "<...>It says on the"
+	line "screen<...>"
 	done
 ; 0x7a3de
 

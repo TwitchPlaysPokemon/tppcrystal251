@@ -809,7 +809,7 @@ UnknownText_0x7ce9d: ; 0x7ce9d
 	para "take care of TEAM"
 	line "ROCKET."
 
-	para "…Wait a second."
+	para "<...>Wait a second."
 	line "You beat me be-"
 	cont "fore, didn't you?"
 
@@ -822,7 +822,7 @@ UnknownText_0x7ce9d: ; 0x7ce9d
 ; 0x7cf5d
 
 UnknownText_0x7cf5d: ; 0x7cf5d
-	text "…Why…"
+	text "<...>Why<...>"
 	line "Why do I lose?"
 
 	para "I've assembled the"
@@ -836,8 +836,8 @@ UnknownText_0x7cf5d: ; 0x7cf5d
 ; 0x7cfc2
 
 UnknownText_0x7cfc2: ; 0x7cfc2
-	text "…I don't under-"
-	line "stand…"
+	text "<...>I don't under-"
+	line "stand<...>"
 
 	para "Is what that LANCE"
 	line "guy said true?"
@@ -845,9 +845,9 @@ UnknownText_0x7cfc2: ; 0x7cfc2
 	para "That I don't treat"
 	line "#MON properly?"
 
-	para "Love…"
+	para "Love<...>"
 
-	para "Trust…"
+	para "Trust<...>"
 
 	para "Are they really"
 	line "what I lack?"
@@ -855,7 +855,7 @@ UnknownText_0x7cfc2: ; 0x7cfc2
 	para "Are they keeping"
 	line "me from winning?"
 
-	para "I… I just don't"
+	para "I<...> I just don't"
 	line "understand."
 
 	para "But it's not going"
@@ -898,7 +898,7 @@ UnknownText_0x7d176: ; 0x7d176
 
 UnknownText_0x7d1d0: ; 0x7d1d0
 	text "There are some"
-	line "shops downstairs…"
+	line "shops downstairs<...>"
 
 	para "But there are"
 	line "also trainers."
@@ -924,11 +924,11 @@ GruntM11BeatenText: ; 0x7d26f
 ; 0x7d290
 
 UnknownText_0x7d290: ; 0x7d290
-	text "I'm confused too…"
+	text "I'm confused too<...>"
 	line "The switch on the"
 
 	para "end is the one to"
-	line "press first, but…"
+	line "press first, but<...>"
 	done
 ; 0x7d2d8
 
@@ -945,7 +945,7 @@ GruntM25SeenText: ; 0x7d2d8
 ; 0x7d335
 
 GruntM25BeatenText: ; 0x7d335
-	text "Uwww…"
+	text "Uwww<...>"
 	line "I blew it."
 	done
 ; 0x7d347

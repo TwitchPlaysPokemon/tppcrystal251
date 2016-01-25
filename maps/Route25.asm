@@ -384,10 +384,10 @@ UnknownText_0x19f006: ; 0x19f006
 	para "Pests! You heard"
 	line "me right, pest!"
 
-	para "…"
+	para "<...>"
 
-	para "…Oh? Those BADGES"
-	line "you have… Are they"
+	para "<...>Oh? Those BADGES"
+	line "you have<...> Are they"
 	cont "JOHTO GYM BADGES?"
 
 	para "If you have eight,"
@@ -467,7 +467,7 @@ LassLauraSeenText: ; 0x19f27f
 ; 0x19f299
 
 LassLauraBeatenText: ; 0x19f299
-	text "I lost too…"
+	text "I lost too<...>"
 	done
 ; 0x19f2a6
 
@@ -513,7 +513,7 @@ UnknownText_0x19f35b: ; 0x19f35b
 ; 0x19f37e
 
 SupernerdPatSeenText: ; 0x19f37e
-	text "Mufufufu…"
+	text "Mufufufu<...>"
 
 	para "I have nothing to"
 	line "do with the six-"
@@ -534,8 +534,8 @@ SupernerdPatBeatenText: ; 0x19f401
 ; 0x19f41a
 
 UnknownText_0x19f41a: ; 0x19f41a
-	text "I'm sorry… I won't"
-	line "cheat anymore…"
+	text "I'm sorry<...> I won't"
+	line "cheat anymore<...>"
 	done
 ; 0x19f43b
 

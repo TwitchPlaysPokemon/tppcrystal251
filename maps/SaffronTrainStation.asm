@@ -197,12 +197,12 @@ UnknownText_0x18a9ca: ; 0x18a9ca
 
 	para "However, if there"
 	line "isn't any elec-"
-	cont "tricity…"
+	cont "tricity<...>"
 	done
 ; 0x18aa61
 
 UnknownText_0x18aa61: ; 0x18aa61
-	text "Whew…"
+	text "Whew<...>"
 
 	para "How many times"
 	line "have I gone back"

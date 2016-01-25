@@ -53,7 +53,7 @@ MovementData_PlayerTFBR:
 	step_end
 
 GiovanniText1:
-	text "You… How did you"
+	text "You<...> How did you"
 	line "find me here?"
 
 	para "Never mind that."
@@ -100,7 +100,7 @@ GiovanniText2:
 
 	para "How could this be?"
 	line "Those years of"
-	cont "training…"
+	cont "training<...>"
 
 	para "Were they all for"
 	line "naught?"

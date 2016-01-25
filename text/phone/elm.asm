@@ -137,7 +137,7 @@ ElmPhoneDisasterText: ; 0x1b4b17
 	line "terrible!"
 
 	para "What should I do?"
-	line "It… Oh, no…"
+	line "It<...> Oh, no<...>"
 
 	para "Please get back"
 	line "here now!"

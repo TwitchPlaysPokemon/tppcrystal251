@@ -65,7 +65,7 @@ UnknownScript_0x193624: ; 0x193624
 
 UnknownText_0x193626: ; 0x193626
 	text "Establishing"
-	line "communications…"
+	line "communications<...>"
 	done
 ; 0x193644
 

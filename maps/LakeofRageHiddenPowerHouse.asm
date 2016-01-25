@@ -35,8 +35,8 @@ MapLakeofRageHiddenPowerHouseSignpost1Script: ; 0x19a548
 ; 0x19a54b
 
 UnknownText_0x19a54b: ; 0x19a54b
-	text "…You have strayed"
-	line "far…"
+	text "<...>You have strayed"
+	line "far<...>"
 
 	para "Here I have medi-"
 	line "tated. Inside me,"
@@ -68,7 +68,7 @@ UnknownText_0x19a5de: ; 0x19a5de
 ; 0x19a673
 
 UnknownText_0x19a673: ; 0x19a673
-	text "I am meditating…"
+	text "I am meditating<...>"
 	done
 ; 0x19a685
 

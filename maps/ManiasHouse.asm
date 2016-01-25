@@ -154,7 +154,7 @@ UnknownText_0x9d42f: ; 0x9d42f
 ; 0x9d449
 
 UnknownText_0x9d449: ; 0x9d449
-	text "Oh, no… What'll"
+	text "Oh, no<...> What'll"
 	line "I do if he comes"
 	cont "back?"
 	done
@@ -195,7 +195,7 @@ UnknownText_0x9d4e3: ; 0x9d4e3
 ; 0x9d53f
 
 UnknownText_0x9d53f: ; 0x9d53f
-	text "Oh, no, no… That's"
+	text "Oh, no, no<...> That's"
 	line "the same as being"
 	cont "robbed."
 	done

@@ -116,6 +116,12 @@ PokeCenterNurseScript:
 	spriteface $fe, LEFT
 	pause 10
 	special HealParty
+	checkcode VAR_MAPGROUP
+	if_not_equal GROUP_CHERRYGROVE_CITY, .skip_cherrygrove
+	checkevent EVENT_HEALED_PKMN_IN_CHERRYGROVE
+	iftrue .skip_cherrygrove
+	setevent EVENT_HEALED_PKMN_IN_CHERRYGROVE
+.skip_cherrygrove
 	special SaveMusic
 	playmusic MUSIC_NONE
 	writebyte 0

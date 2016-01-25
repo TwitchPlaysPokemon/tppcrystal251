@@ -109,10 +109,10 @@ UnknownText_0x7e2a9: ; 0x7e2a9
 ; 0x7e2c0
 
 UnknownText_0x7e2c0: ; 0x7e2c0
-	text "I… I'm crushed…"
+	text "I<...> I'm crushed<...>"
 
 	para "My training is"
-	line "still not enough…"
+	line "still not enough<...>"
 
 	para "But a loss is a"
 	line "loss. I admit it."

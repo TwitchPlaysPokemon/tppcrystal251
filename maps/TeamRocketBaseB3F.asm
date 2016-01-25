@@ -435,14 +435,14 @@ UnknownText_0x6e179: ; 0x6e179
 ; 0x6e235
 
 UnknownText_0x6e235: ; 0x6e235
-	text "Urrggh… The guy"
+	text "Urrggh<...> The guy"
 	line "in the cape is"
-	cont "incredibly tough…"
+	cont "incredibly tough<...>"
 	done
 ; 0x6e267
 
 UnknownText_0x6e267: ; 0x6e267
-	text "…"
+	text "<...>"
 
 	para "Didn't I tell you"
 	line "that I was going"
@@ -450,7 +450,7 @@ UnknownText_0x6e267: ; 0x6e267
 	para "to destroy TEAM"
 	line "ROCKET?"
 
-	para "…Tell me, who was"
+	para "<...>Tell me, who was"
 	line "the guy in the"
 
 	para "cape who used"
@@ -466,7 +466,7 @@ UnknownText_0x6e267: ; 0x6e267
 	line "stronger #MON."
 
 	para "It's what he said"
-	line "that bothers me…"
+	line "that bothers me<...>"
 
 	para "He told me that"
 	line "I don't love and"
@@ -478,7 +478,7 @@ UnknownText_0x6e267: ; 0x6e267
 	line "lost to a bleeding"
 	cont "heart like him."
 
-	para "…Humph! I don't"
+	para "<...>Humph! I don't"
 	line "have the time for"
 	cont "the likes of you!"
 	done
@@ -513,11 +513,11 @@ UnknownText_0x6e400: ; 0x6e400
 ; 0x6e511
 
 UnknownText_0x6e511: ; 0x6e511
-	text "I… I couldn't do a"
-	line "thing…"
+	text "I<...> I couldn't do a"
+	line "thing<...>"
 
 	para "GIOVANNI, please"
-	line "forgive me…"
+	line "forgive me<...>"
 	done
 ; 0x6e548
 
@@ -526,13 +526,13 @@ UnknownText_0x6e548: ; 0x6e548
 	line "this affect me."
 
 	para "I have to inform"
-	line "the others…"
+	line "the others<...>"
 	done
 ; 0x6e585
 
 UnknownText_0x6e585: ; 0x6e585
 	text "MURKROW: The"
-	line "password is…"
+	line "password is<...>"
 
 	para "HAIL GIOVANNI."
 	done
@@ -551,7 +551,7 @@ GruntF5SeenText: ; 0x6e5af
 
 GruntF5BeatenText: ; 0x6e5f1
 	text "I failed the"
-	line "EXECUTIVE…"
+	line "EXECUTIVE<...>"
 	done
 ; 0x6e611
 
@@ -596,9 +596,9 @@ UnknownText_0x6e737: ; 0x6e737
 	text "Hyuck-hyuck-hyuck!"
 
 	para "The password to"
-	line "the boss's room…"
+	line "the boss's room<...>"
 
-	para "Uh…, I think it is"
+	para "Uh<...>, I think it is"
 	line "RATICATE TAIL."
 	done
 ; 0x6e78d
@@ -618,14 +618,14 @@ ScientistRossSeenText: ; 0x6e78d
 
 ScientistRossBeatenText: ; 0x6e802
 	text "A mere tactical"
-	line "error cost me…"
+	line "error cost me<...>"
 	done
 ; 0x6e822
 
 UnknownText_0x6e822: ; 0x6e822
 	text "A radio signal"
 	line "that drives #-"
-	cont "MON mad…"
+	cont "MON mad<...>"
 
 	para "My experiment is a"
 	line "complete success."
@@ -656,7 +656,7 @@ UnknownText_0x6e90a: ; 0x6e90a
 	line "power of our radio"
 
 	para "signal for broad-"
-	line "cast nationwide…"
+	line "cast nationwide<...>"
 
 	para "The very thought"
 	line "excites me!"
@@ -664,7 +664,7 @@ UnknownText_0x6e90a: ; 0x6e90a
 ; 0x6e970
 
 UnknownText_0x6e970: ; 0x6e970
-	text "The door's closed…"
+	text "The door's closed<...>"
 
 	para "It needs two"
 	line "passwords to open."
@@ -672,7 +672,7 @@ UnknownText_0x6e970: ; 0x6e970
 ; 0x6e9a3
 
 UnknownText_0x6e9a3: ; 0x6e9a3
-	text "The door's closed…"
+	text "The door's closed<...>"
 
 	para "<PLAYER> entered"
 	line "the two passwords."

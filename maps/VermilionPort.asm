@@ -293,9 +293,9 @@ UnknownText_0x74fc2: ; 0x74fc2
 UnknownText_0x74ff2: ; 0x74ff2
 	text "<PLAYER> tried to"
 	line "show the S.S."
-	cont "TICKET…"
+	cont "TICKET<...>"
 
-	para "…But no TICKET!"
+	para "<...>But no TICKET!"
 
 	para "Sorry!"
 	line "You may board only"

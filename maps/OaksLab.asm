@@ -107,7 +107,7 @@ UnknownText_0x19b4a2: ; 0x19b4a2
 	text "How is your #-"
 	line "DEX coming?"
 
-	para "Let's see…"
+	para "Let's see<...>"
 	done
 ; 0x19b4c8
 
@@ -247,7 +247,7 @@ UnknownText_0x19b909: ; 0x19b909
 
 UnknownText_0x19b945: ; 0x19b945
 	text "There's nothing in"
-	line "here…"
+	line "here<...>"
 	done
 ; 0x19b95e
 
@@ -255,7 +255,7 @@ UnknownText_0x19b95e: ; 0x19b95e
 	text "There's an e-mail"
 	line "message on the PC."
 
-	para "…"
+	para "<...>"
 
 	para "PROF.OAK, how is"
 	line "your research"

@@ -149,11 +149,11 @@ UnknownText_0x1b0378: ; 0x1b0378
 ; 0x1b03a3
 
 UnknownText_0x1b03a3: ; 0x1b03a3
-	text "#MON magazines…"
+	text "#MON magazines<...>"
 	line "#MON PAL,"
 
 	para "#MON HANDBOOK,"
-	line "#MON GRAPH…"
+	line "#MON GRAPH<...>"
 	done
 ; 0x1b03d9
 
@@ -204,10 +204,10 @@ UnknownText_0x1b04be: ; 0x1b04be
 
 UnknownText_0x1b04c9: ; 0x1b04c9
 	text "#MON JOURNAL"
-	line "HOME PAGE…"
+	line "HOME PAGE<...>"
 
 	para "It hasn't been"
-	line "updated…"
+	line "updated<...>"
 	done
 ; 0x1b04f9
 
@@ -221,7 +221,7 @@ UnknownText_0x1b04f9: ; 0x1b04f9
 
 UnknownText_0x1b0526: ; 0x1b0526
 	text "There's nothing in"
-	line "here…"
+	line "here<...>"
 	done
 ; 0x1b053f
 
@@ -513,7 +513,7 @@ UnknownText_0x1b0adb: ; 0x1b0adb
 ; 0x1b0afd
 
 UnknownText_0x1b0afd: ; 0x1b0afd
-	text "Oh, OK. Too bad…"
+	text "Oh, OK. Too bad<...>"
 
 	para "Well, if you ever"
 	line "want my number,"
@@ -576,10 +576,10 @@ UnknownText_0x1b0c9b: ; 0x1b0c9b
 ; 0x1b0ce0
 
 UnknownText_0x1b0ce0: ; 0x1b0ce0
-	text "Oh… That's"
-	line "disappointing…"
+	text "Oh<...> That's"
+	line "disappointing<...>"
 
-	para "Goodbye, MARILL…"
+	para "Goodbye, MARILL<...>"
 	done
 ; 0x1b0d0b
 
@@ -643,7 +643,7 @@ UnknownText_0x1b0e89: ; 0x1b0e89
 
 UnknownText_0x1b0ea2: ; 0x1b0ea2
 	text "Looks like you're"
-	line "a wimp…"
+	line "a wimp<...>"
 	done
 ; 0x1b0ebc
 
@@ -660,7 +660,7 @@ UnknownText_0x1b0edc: ; 0x1b0edc
 ; 0x1b0eff
 
 UnknownText_0x1b0eff: ; 0x1b0eff
-	text "Oh… Your PACK's"
+	text "Oh<...> Your PACK's"
 	line "full. I'll give it"
 	cont "to you later."
 	done
@@ -680,19 +680,19 @@ UnknownText_0x1b0f2f: ; 0x1b0f2f
 	line "items to toughen"
 
 	para "up my #MON, but"
-	line "to no avail…"
+	line "to no avail<...>"
 
 	para "Items alone aren't"
 	line "the answer."
 
 	para "That must be what"
-	line "it is…"
+	line "it is<...>"
 
 	para "Here, take this,"
 	line $52, "."
 
 	para "I won't be needing"
-	line "it anymore…"
+	line "it anymore<...>"
 	done
 ; 0x1b102e
 
@@ -735,12 +735,12 @@ UnknownText_0x1b1136: ; 0x1b1136
 	line "you? I'm tormented"
 
 	para "by those thoughts"
-	line "all the time…"
+	line "all the time<...>"
 	done
 ; 0x1b117b
 
 UnknownText_0x1b117b: ; 0x1b117b
-	text "OK… I understand…"
+	text "OK<...> I understand<...>"
 	line "But if you change"
 
 	para "your mind, give me"
@@ -768,7 +768,7 @@ UnknownText_0x1b11fe: ; 0x1b11fe
 
 UnknownText_0x1b1239: ; 0x1b1239
 	text "It's been a while"
-	line "since I lost…"
+	line "since I lost<...>"
 
 	para "You're very good"
 	line "at battling."
@@ -810,7 +810,7 @@ UnknownText_0x1b1392: ; 0x1b1392
 ; 0x1b13af
 
 UnknownText_0x1b13af: ; 0x1b13af
-	text "That's too bad…"
+	text "That's too bad<...>"
 
 	para "Let me know if you"
 	line "change your mind."
@@ -912,11 +912,11 @@ UnknownText_0x1b164d: ; 0x1b164d
 ; 0x1b1690
 
 UnknownText_0x1b1690: ; 0x1b1690
-	text "Not bad…"
+	text "Not bad<...>"
 	line "It's something to"
 
 	para "beat me, even by"
-	line "an unlikely fluke…"
+	line "an unlikely fluke<...>"
 
 	para "I like you! Give"
 	line "me your number!"
@@ -996,7 +996,7 @@ UnknownText_0x1b18d7: ; 0x1b18d7
 ; 0x1b1908
 
 UnknownText_0x1b1908: ; 0x1b1908
-	text "Oh, all right…"
+	text "Oh, all right<...>"
 
 	para "But I won't lose"
 	line "to you again!"
@@ -1026,7 +1026,7 @@ UnknownText_0x1b1978: ; 0x1b1978
 
 UnknownText_0x1b19be: ; 0x1b19be
 	text "And yet another"
-	line "loss…"
+	line "loss<...>"
 
 	para "No doubt about"
 	line "it--you're tough."
@@ -1128,7 +1128,7 @@ UnknownText_0x1b1cd5: ; 0x1b1cd5
 
 	para "I've seen rare"
 	line "#MON while I've"
-	cont "been fishing…"
+	cont "been fishing<...>"
 
 	para "You young people"
 	line "like that, right?"
@@ -1158,11 +1158,11 @@ UnknownText_0x1b1db9: ; 0x1b1db9
 ; 0x1b1df4
 
 UnknownText_0x1b1df4: ; 0x1b1df4
-	text "Oh…"
+	text "Oh<...>"
 	line "My own kids won't"
 
 	para "even give me their"
-	line "phone numbers…"
+	line "phone numbers<...>"
 
 	para "Is that how young"
 	line "people are today?"
@@ -1221,7 +1221,7 @@ UnknownText_0x1b1faa: ; 0x1b1faa
 ; 0x1b1fdd
 
 UnknownText_0x1b1fdd: ; 0x1b1fdd
-	text "Aww… You won't be"
+	text "Aww<...> You won't be"
 	line "my friend?"
 	done
 ; 0x1b1ffa

@@ -207,7 +207,7 @@ _ViridianSchoolNotebookText1:
 	text "Looked at the"
 	line "notebook!"
 
-	para "First page…"
+	para "First page<...>"
 
 	para "# BALLs are"
 	line "used to catch"
@@ -223,7 +223,7 @@ _ViridianSchoolNotebookText1:
 	done
 
 _ViridianSchoolNotebookText2:
-	text "Second page…"
+	text "Second page<...>"
 
 	para "A healthy #MON"
 	line "may be hard to"
@@ -236,7 +236,7 @@ _ViridianSchoolNotebookText2:
 	done
 
 _ViridianSchoolNotebookText3:
-	text "Third page…"
+	text "Third page<...>"
 
 	para "#MON trainers"
 	line "seek others to"
@@ -249,7 +249,7 @@ _ViridianSchoolNotebookText3:
 	done
 
 _ViridianSchoolNotebookText4:
-	text "Fourth page…"
+	text "Fourth page<...>"
 
 	para "The goal for"
 	line "#MON trainers"
@@ -258,7 +258,7 @@ _ViridianSchoolNotebookText4:
 	cont "GYM LEADERs."
 
 	para "Do so to earn the"
-	line "right to face…"
+	line "right to face<...>"
 
 	para "The ELITE FOUR of"
 	line "#MON LEAGUE!"

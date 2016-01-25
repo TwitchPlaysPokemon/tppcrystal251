@@ -104,7 +104,7 @@ UnknownText_0x9b11d: ; 0x9b11d
 ; 0x9b1c9
 
 UnknownText_0x9b1c9: ; 0x9b1c9
-	text "Whew… I'm taking a"
+	text "Whew<...> I'm taking a"
 	line "rest from #MON"
 	cont "battles."
 	done
@@ -136,14 +136,14 @@ UnknownText_0x9b25d: ; 0x9b25d
 ; 0x9b2c1
 
 UnknownText_0x9b2c1: ; 0x9b2c1
-	text "…What's this?"
+	text "<...>What's this?"
 	line "A strategy memo?"
 
 	para "This writing looks"
-	line "like ONIX tracks…"
+	line "like ONIX tracks<...>"
 
 	para "It's completely"
-	line "illegible…"
+	line "illegible<...>"
 	done
 ; 0x9b31f
 

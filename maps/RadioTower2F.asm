@@ -453,7 +453,7 @@ UnknownText_0x5d983: ; 0x5d983
 
 UnknownText_0x5d9b6: ; 0x5d9b6
 	text "JIGGLYPUFF:"
-	line "Jiggly…"
+	line "Jiggly<...>"
 	done
 ; 0x5d9cb
 
@@ -467,7 +467,7 @@ UnknownText_0x5d9cb: ; 0x5d9cb
 
 	para "There's something"
 	line "wrong with the"
-	cont "DIRECTOR…"
+	cont "DIRECTOR<...>"
 	done
 ; 0x5da44
 
@@ -546,7 +546,7 @@ UnknownText_0x5dc00: ; 0x5dc00
 
 	para "It has some bad"
 	line "side effects"
-	cont "though…"
+	cont "though<...>"
 	done
 ; 0x5dc64
 
@@ -628,7 +628,7 @@ UnknownText_0x5de84: ; 0x5de84
 	para "What was your name"
 	line "again?"
 
-	para "…<PLAY_G>, OK!"
+	para "<...><PLAY_G>, OK!"
 
 	para "Come on, <PLAY_G>."
 	line "Join the show."
@@ -657,7 +657,7 @@ UnknownText_0x5df29: ; 0x5df29
 ; 0x5df6c
 
 UnknownText_0x5df6c: ; 0x5df6c
-	text "BUENA: Sorry…"
+	text "BUENA: Sorry<...>"
 
 	para "You get just one"
 	line "chance each day."
@@ -680,8 +680,8 @@ UnknownText_0x5dfc1: ; 0x5dfc1
 ; 0x5e01c
 
 UnknownText_0x5e01c: ; 0x5e01c
-	text "BUENA: Aww…"
-	line "That's not it…"
+	text "BUENA: Aww<...>"
+	line "That's not it<...>"
 
 	para "Did you forget the"
 	line "password?"
@@ -750,9 +750,9 @@ UnknownText_0x5e1ee: ; 0x5e1ee
 	para "30 points today!"
 	line "That's so wild!"
 
-	para "Hmm… There isn't a"
+	para "Hmm<...> There isn't a"
 	line "prize for hitting"
-	cont "30 points, but…"
+	cont "30 points, but<...>"
 
 	para "You came by so"
 	line "often, <PLAY_G>."
@@ -788,8 +788,8 @@ UnknownText_0x5e310: ; 0x5e310
 ; 0x5e33c
 
 UnknownText_0x5e33c: ; 0x5e33c
-	text "BUENA: Aww… It's a"
-	line "special prize…"
+	text "BUENA: Aww<...> It's a"
+	line "special prize<...>"
 	done
 ; 0x5e35e
 
@@ -798,7 +798,7 @@ UnknownText_0x5e35e: ; 0x5e35e
 	line "your phone list"
 
 	para "has no room left"
-	line "for me…"
+	line "for me<...>"
 	done
 ; 0x5e392
 

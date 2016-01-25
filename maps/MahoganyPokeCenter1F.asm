@@ -29,7 +29,7 @@ UnknownText_0x19a362: ; 0x19a362
 
 	para "I saw some men in"
 	line "black at LAKE OF"
-	cont "RAGE…"
+	cont "RAGE<...>"
 	done
 ; 0x19a3b3
 

@@ -137,7 +137,7 @@ Bug_catcherRobSeenText: ; 0x1ac314
 ; 0x1ac33d
 
 Bug_catcherRobBeatenText: ; 0x1ac33d
-	text "I was whipped…"
+	text "I was whipped<...>"
 	done
 ; 0x1ac34d
 

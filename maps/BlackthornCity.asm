@@ -247,43 +247,43 @@ UnknownText_0x1a49f1: ; 0x1a49f1
 ; 0x1a4a27
 
 MeetSantosText:
-	text "SANTOS: …"
+	text "SANTOS: <...>"
 
-	para "It's Saturday…"
+	para "It's Saturday<...>"
 
 	para "I'm SANTOS of"
-	line "Saturday…"
+	line "Saturday<...>"
 	done
 
 SantosGivesGiftText:
-	text "You can have this…"
+	text "You can have this<...>"
 	done
 
 SantosGaveGiftText:
-	text "SANTOS: …"
+	text "SANTOS: <...>"
 
-	para "SPELL TAG…"
+	para "SPELL TAG<...>"
 
 	para "Ghost-type moves"
-	line "get stronger…"
+	line "get stronger<...>"
 
 	para "It will frighten"
-	line "you…"
+	line "you<...>"
 	done
 
 SantosSaturdayText:
-	text "SANTOS: …"
+	text "SANTOS: <...>"
 
 	para "See you again on"
-	line "another Saturday…"
+	line "another Saturday<...>"
 
 	para "I won't have any"
-	line "more gifts…"
+	line "more gifts<...>"
 	done
 
 SantosNotSaturdayText:
 	text "SANTOS: Today's"
-	line "not Saturday…"
+	line "not Saturday<...>"
 	done
 
 UnknownText_0x1a4b1e: ; 0x1a4b1e

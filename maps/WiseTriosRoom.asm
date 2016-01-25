@@ -196,11 +196,11 @@ MovementData_0x98628: ; 0x98628
 ; 0x9862b
 
 UnknownText_0x9862b: ; 0x9862b
-	text "Astounding…"
+	text "Astounding<...>"
 
 	para "SUICUNE, ENTEI and"
 	line "RAIKOU have arisen"
-	cont "from their sleep…"
+	cont "from their sleep<...>"
 
 	para "Is the legend"
 	line "coming true?"
@@ -282,7 +282,7 @@ SageGakuSeenText: ; 0x987ed
 
 SageGakuBeatenText: ; 0x98914
 	text "Stronger than we"
-	line "thought? Perhaps…"
+	line "thought? Perhaps<...>"
 	done
 ; 0x98938
 
@@ -298,7 +298,7 @@ UnknownText_0x98938: ; 0x98938
 
 	para "Legend has it that"
 	line "they can't be seen"
-	cont "while they sleep…"
+	cont "while they sleep<...>"
 	done
 ; 0x989d2
 
@@ -312,8 +312,8 @@ SageMasaSeenText: ; 0x989d2
 ; 0x98a18
 
 SageMasaBeatenText: ; 0x98a18
-	text "…I will tell you"
-	line "the truth…"
+	text "<...>I will tell you"
+	line "the truth<...>"
 	done
 ; 0x98a35
 
@@ -346,7 +346,7 @@ UnknownText_0x98a35: ; 0x98a35
 	para "its roost atop the"
 	line "BRASS TOWER."
 
-	para "However…"
+	para "However<...>"
 
 	para "About 150 years"
 	line "ago, a lightning"
@@ -381,7 +381,7 @@ SageKojiBeatenText: ; 0x98c5a
 ; 0x98c6c
 
 UnknownText_0x98c6c: ; 0x98c6c
-	text "You… Are you the"
+	text "You<...> Are you the"
 	line "trainer who is"
 
 	para "awaited by the"
@@ -390,7 +390,7 @@ UnknownText_0x98c6c: ; 0x98c6c
 ; 0x98cac
 
 UnknownText_0x98cac: ; 0x98cac
-	text "I see…"
+	text "I see<...>"
 
 	para "We, the WISE TRIO,"
 	line "have been given "

@@ -265,12 +265,12 @@ MenuData2_0x7287f: ; 0x7287f
 UnknownText_0x728b8: ; 0x728b8
 	text "I wanted PORYGON2,"
 	line "but I was short by"
-	cont "100 coins…"
+	cont "100 coins<...>"
 	done
 ; 0x728e9
 
 UnknownText_0x728e9: ; 0x728e9
-	text "Wow…"
+	text "Wow<...>"
 
 	para "PORYGON2 is a"
 	line "prize here."

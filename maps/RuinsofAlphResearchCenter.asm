@@ -334,11 +334,11 @@ UnknownText_0x595cb: ; 0x595cb
 	para "drawings on the"
 	line "walls there."
 
-	para "Hmm…"
+	para "Hmm<...>"
 
 	para "That must mean"
 	line "there are many"
-	cont "kinds of them…"
+	cont "kinds of them<...>"
 	done
 ; 0x59669
 
@@ -358,7 +358,7 @@ UnknownText_0x595cb: ; 0x595cb
 ; possibly unused
 ;UnknownText_0x596d3: ; 0x596d3
 ;	text "According to my"
-;	line "research…"
+;	line "research<...>"
 
 	;para "Those mysterious"
 ;	line "patterns appeared"
@@ -370,7 +370,7 @@ UnknownText_0x595cb: ; 0x595cb
 ;	line "radio waves have"
 
 ;	para "some sort of a"
-;	line "link…"
+;	line "link<...>"
 ;	done
 ; 0x59769
 
@@ -382,7 +382,7 @@ UnknownText_0x59769: ; 0x59769
 	line "now?"
 
 	para "The mystery"
-	line "deepens…"
+	line "deepens<...>"
 	done
 ; 0x597b6
 
@@ -429,9 +429,9 @@ UnknownText_0x59886: ; 0x59886
 	text "There are many"
 	line "academic books."
 
-	para "Ancient Ruins…"
+	para "Ancient Ruins<...>"
 	line "Mysteries of the"
-	cont "Ancients…"
+	cont "Ancients<...>"
 	done
 ; 0x598d0
 

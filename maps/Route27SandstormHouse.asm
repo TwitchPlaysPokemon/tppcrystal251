@@ -53,7 +53,7 @@ UnknownText_0x7b3c6: ; 0x7b3c6
 	line "loyal enough for"
 	cont "you to win?"
 
-	para "Let me see…"
+	para "Let me see<...>"
 	done
 ; 0x7b42b
 

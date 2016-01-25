@@ -58,7 +58,7 @@ UnknownText_0x174165: ; 0x174165
 	line "more informed, I'm"
 
 	para "sure I would've"
-	line "caught it…"
+	line "caught it<...>"
 	done
 ; 0x1741e1
 
@@ -94,7 +94,7 @@ UnknownText_0x174261: ; 0x174261
 ; 0x17429d
 
 UnknownText_0x17429d: ; 0x17429d
-	text "Did you know…?"
+	text "Did you know<...>?"
 
 	para "If you use DEFENSE"
 	line "CURL, ROLLOUT's"
@@ -105,7 +105,7 @@ UnknownText_0x17429d: ; 0x17429d
 ; 0x1742ee
 
 UnknownText_0x1742ee: ; 0x1742ee
-	text "Did you know…?"
+	text "Did you know<...>?"
 
 	para "If the sunlight is"
 	line "harsh, SOLARBEAM"
@@ -116,7 +116,7 @@ UnknownText_0x1742ee: ; 0x1742ee
 ; 0x174340
 
 UnknownText_0x174340: ; 0x174340
-	text "Did you know…?"
+	text "Did you know<...>?"
 
 	para "If the opponent"
 	line "uses MINIMIZE,"
@@ -127,7 +127,7 @@ UnknownText_0x174340: ; 0x174340
 ; 0x174391
 
 UnknownText_0x174391: ; 0x174391
-	text "Did you know…?"
+	text "Did you know<...>?"
 
 	para "If your opponent"
 	line "is FLYing, your"
@@ -138,7 +138,7 @@ UnknownText_0x174391: ; 0x174391
 ; 0x1743e3
 
 UnknownText_0x1743e3: ; 0x1743e3
-	text "Did you know…?"
+	text "Did you know<...>?"
 
 	para "If your opponent"
 	line "is FLYing, your"
@@ -149,7 +149,7 @@ UnknownText_0x1743e3: ; 0x1743e3
 ; 0x174433
 
 UnknownText_0x174433: ; 0x174433
-	text "Did you know…?"
+	text "Did you know<...>?"
 
 	para "If your opponent"
 	line "uses DIG, your"
@@ -160,7 +160,7 @@ UnknownText_0x174433: ; 0x174433
 ; 0x174485
 
 UnknownText_0x174485: ; 0x174485
-	text "Did you know…?"
+	text "Did you know<...>?"
 
 	para "If your opponent"
 	line "uses DIG, your"
@@ -171,7 +171,7 @@ UnknownText_0x174485: ; 0x174485
 ; 0x1744d6
 
 UnknownText_0x1744d6: ; 0x1744d6
-	text "Did you know…?"
+	text "Did you know<...>?"
 
 	para "The rock, ground"
 	line "and steel types"
@@ -182,7 +182,7 @@ UnknownText_0x1744d6: ; 0x1744d6
 ; 0x174522
 
 UnknownText_0x174522: ; 0x174522
-	text "Did you know…?"
+	text "Did you know<...>?"
 
 	para "If the sunlight is"
 	line "harsh, water-type"
@@ -193,7 +193,7 @@ UnknownText_0x174522: ; 0x174522
 ; 0x174571
 
 UnknownText_0x174571: ; 0x174571
-	text "Did you know…?"
+	text "Did you know<...>?"
 
 	para "When it's raining,"
 	line "fire-type moves"
@@ -398,7 +398,7 @@ UnknownText_0x174a80: ; 0x174a80
 	line "@"
 	text_from_ram StringBuffer4
 	text " get"
-	cont "that strong…"
+	cont "that strong<...>"
 
 	para "You shouldn't let"
 	line "your guard down,"
@@ -422,7 +422,7 @@ UnknownText_0x174b2d: ; 0x174b2d
 	para "One wrong decision"
 	line "could mean total"
 
-	para "failure… You ought"
+	para "failure<...> You ought"
 	line "to be careful too."
 	done
 ; 0x174bc5
@@ -490,7 +490,7 @@ UnknownText_0x174cf6: ; 0x174cf6
 	db "before?"
 
 	para "I just battled"
-	line "one…"
+	line "one<...>"
 
 	para "It was much faster"
 	line "than I expected."
@@ -554,7 +554,7 @@ UnknownText_0x174ec5: ; 0x174ec5
 ; 0x174ee2
 
 UnknownText_0x174ee2: ; 0x174ee2
-	text "Um… ", $14, "?"
+	text "Um<...> ", $14, "?"
 	line "What's wrong?"
 
 	para "Did you forget our"
@@ -602,7 +602,7 @@ UnknownText_0x174ffd: ; 0x174ffd
 	text "I ran into a wild"
 	line "@"
 	text_from_ram StringBuffer4
-	text "…"
+	text "<...>"
 
 	para "I was trying to"
 	line "catch it, but it"
@@ -710,7 +710,7 @@ UnknownText_0x17529c: ; 0x17529c
 ; 0x1752f5
 
 UnknownText_0x1752f5: ; 0x1752f5
-	text "Listen, dear…"
+	text "Listen, dear<...>"
 
 	para "Do you recall my"
 	line "@"
@@ -756,7 +756,7 @@ UnknownText_0x1753c5: ; 0x1753c5
 
 	para "@"
 	text_from_ram StringBuffer4
-	text "…"
+	text "<...>"
 	line "Oh! Never mind!"
 	done
 ; 0x17543a
@@ -785,7 +785,7 @@ UnknownText_0x17549b: ; 0x17549b
 	line "just because you"
 
 	para "happened to beat"
-	line "me… "
+	line "me<...> "
 
 	para "It was a fluke!"
 	done
@@ -950,7 +950,7 @@ UnknownText_0x1758e4: ; 0x1758e4
 	line "the last second."
 
 	para "I know it's a"
-	line "common #MON…"
+	line "common #MON<...>"
 
 	para "But it does annoy"
 	line "me that it got"
@@ -1078,7 +1078,7 @@ UnknownText_0x175c24: ; 0x175c24
 	line "thing easily."
 
 	para "Boy, has he gotten"
-	line "cocky…"
+	line "cocky<...>"
 	done
 ; 0x175c9f
 
@@ -1126,7 +1126,7 @@ UnknownText_0x175db7: ; 0x175db7
 ; 0x175dd9
 
 UnknownText_0x175dd9: ; 0x175dd9
-	text "Listen, I… Yowch!"
+	text "Listen, I<...> Yowch!"
 
 	para "Uh, sorry! See,"
 	line "@"
@@ -1163,7 +1163,7 @@ UnknownText_0x175eaf: ; 0x175eaf
 
 	para "Recently, all I've"
 	line "been catching are"
-	cont "MAGIKARP, though…"
+	cont "MAGIKARP, though<...>"
 	done
 ; 0x175f11
 
@@ -1209,7 +1209,7 @@ UnknownText_0x175fda: ; 0x175fda
 ; 0x17602d
 
 UnknownText_0x17602d: ; 0x17602d
-	text "And, and! Um…"
+	text "And, and! Um<...>"
 
 	para "We beat a wild"
 	line "@"
@@ -1225,7 +1225,7 @@ UnknownText_0x17602d: ; 0x17602d
 ; 0x176095
 
 UnknownText_0x176095: ; 0x176095
-	text "And, and! Uh…"
+	text "And, and! Uh<...>"
 
 	para "We just saw a"
 	line "really gorgeous"
@@ -1268,7 +1268,7 @@ UnknownText_0x1761a7: ; 0x1761a7
 	para "I'm fine, but I'm"
 	line "bored silly!"
 
-	para "Huh… Wrong number?"
+	para "Huh<...> Wrong number?"
 	line "Oops! Sorry!"
 	done
 ; 0x17620a
@@ -1402,7 +1402,7 @@ UnknownText_0x176599: ; 0x176599
 	line "have a hard time"
 
 	para "trying to decide"
-	line "whom I should use…"
+	line "whom I should use<...>"
 	done
 ; 0x1766ac
 
@@ -1465,7 +1465,7 @@ UnknownText_0x176816: ; 0x176816
 UnknownText_0x17686d: ; 0x17686d
 	text "Listen, listen!"
 
-	para "Uh… Um… Whoops!"
+	para "Uh<...> Um<...> Whoops!"
 
 	para "I forgot what I"
 	line "was going to say!"
@@ -1477,25 +1477,25 @@ UnknownText_0x1768b0: ; 0x1768b0
 
 	para "My @"
 	text_from_ram StringBuffer4
-	text "…"
-	line "it… so pretty…"
+	text "<...>"
+	line "it<...> so pretty<...>"
 
-	para "and… giggle… so"
-	line "awesome… yes… but…"
+	para "and<...> giggle<...> so"
+	line "awesome<...> yes<...> but<...>"
 
-	para "very much… eeek!"
-	line "And… lovely…"
+	para "very much<...> eeek!"
+	line "And<...> lovely<...>"
 
-	para "Just ravishing…"
+	para "Just ravishing<...>"
 	line "Oh, too much!"
 
-	para "…Hug it… sleeping…"
-	line "That's right…"
+	para "<...>Hug it<...> sleeping<...>"
+	line "That's right<...>"
 
-	para "pretty… sigh… So"
-	line "nice… Cute…"
+	para "pretty<...> sigh<...> So"
+	line "nice<...> Cute<...>"
 
-	para "…Oops! Look at the"
+	para "<...>Oops! Look at the"
 	line "time! I chatted"
 	cont "too long!"
 
@@ -1565,7 +1565,7 @@ UnknownText_0x176b45: ; 0x176b45
 	para "@"
 	text_from_ram StringBuffer4
 	text " the"
-	line "other day…"
+	line "other day<...>"
 
 	para "It took off when I"
 	line "got distracted by"
@@ -1707,7 +1707,7 @@ UnknownText_0x176eee: ; 0x176eee
 	line "#MON's levels"
 
 	para "aren't high enough"
-	line "yet…"
+	line "yet<...>"
 	done
 ; 0x176f60
 
@@ -1752,7 +1752,7 @@ UnknownText_0x176feb: ; 0x176feb
 	line "a huckster?"
 
 	para "Well, yeah. I was"
-	line "mimicking them…"
+	line "mimicking them<...>"
 
 	para "Anyway, you've got"
 	line "to get there as"
@@ -1831,7 +1831,7 @@ UnknownText_0x177297: ; 0x177297
 	text "."
 
 	para "It's getting past"
-	line "frustrating…"
+	line "frustrating<...>"
 	done
 ; 0x1772e2
 
@@ -1845,7 +1845,7 @@ UnknownText_0x1772e2: ; 0x1772e2
 	text_from_ram StringBuffer5
 	text "."
 
-	para "…Could you take it"
+	para "<...>Could you take it"
 	line "a little easier on"
 	cont "me next time?"
 	done
@@ -1891,7 +1891,7 @@ UnknownText_0x177465: ; 0x177465
 	text "Sorry, I haven't"
 	line "found anything"
 
-	para "useful yet…"
+	para "useful yet<...>"
 	line "I promise, if I"
 
 	para "find anything, you"

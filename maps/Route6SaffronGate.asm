@@ -36,7 +36,7 @@ UnknownText_0x1926fe: ; 0x1926fe
 	line "CITY, home of the"
 	cont "MAGNET TRAIN!"
 
-	para "…That's what I'd"
+	para "<...>That's what I'd"
 	line "normally say, but"
 
 	para "the MAGNET TRAIN"

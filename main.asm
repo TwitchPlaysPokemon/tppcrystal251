@@ -2076,7 +2076,7 @@ _Divide:: ; 673e
 	ld [hDividend + 2], a
 	ld [hDividend + 3], a
 	ld a, e
-	ld [hDividend + 4], a ; I believe the remainder is stored here…
+	ld [hDividend + 4], a ; I believe the remainder is stored here<...>
 	ld a, c
 	sub hDividend % $100
 	ld b, a
@@ -5994,7 +5994,7 @@ UnknownText_0xce9d: ; 0xce9d
 ; 0xcea2
 
 UnknownText_0xcea2: ; 0xcea2
-	; Nope. Nothing…
+	; Nope. Nothing<...>
 	text_jump UnknownText_0x1c08ac
 	db "@"
 ; 0xcea7
@@ -12332,7 +12332,7 @@ String_121dd: ; 122dd
 	db "K L M N O P Q R S T"
 	db "U V W X Y Z, ? !"
 	db "1 2 3 4 5 6 7 8 9 0"
-	db "ゅ ょ ", $70, " ", $71, " é ♂ ♀ ¥ … ×"
+	db "ゅ ょ ", $70, " ", $71, " é ♂ ♀ ¥ <...> ×"
 	db "lower  DEL   END   "
 ; 1224f
 
@@ -15305,7 +15305,7 @@ UnknownText_0x13645: ; 0x13645
 ; 0x1364a
 
 UnknownText_0x1364a: ; 0x1364a
-	; But   has no space left…
+	; But   has no space left<...>
 	text_jump UnknownText_0x1bd331
 	db "@"
 ; 0x1364f
@@ -19205,7 +19205,7 @@ UnknownText_0x15283: ; 0x15283
 ; 0x15288
 
 UnknownText_0x15288: ; 0x15288
-	; SAVING… DON'T TURN OFF THE POWER.
+	; SAVING<...> DON'T TURN OFF THE POWER.
 	text_jump UnknownText_0x1c456d
 	db "@"
 ; 0x1528d
@@ -19916,7 +19916,7 @@ UnknownText_0x15a3b: ; 0x15a3b
 ; 0x15a40
 
 UnknownText_0x15a40: ; 0x15a40
-	; … Link closed…
+	; <...> Link closed<...>
 	text_jump UnknownText_0x1c1505
 	db "@"
 ; 0x15a45
@@ -20578,7 +20578,7 @@ Function15e30: ; 15e30
 ; 15e4a (5:5e4a)
 
 UnknownText_0x15e4a: ; 0x15e4a
-	; Hello, dear. I sell inexpensive herbal medicine. They're good, but a trifle bitter. Your #MON may not like them. Hehehehe…
+	; Hello, dear. I sell inexpensive herbal medicine. They're good, but a trifle bitter. Your #MON may not like them. Hehehehe<...>
 	text_jump UnknownText_0x1c4c28
 	db "@"
 ; 0x15e4f
@@ -20596,7 +20596,7 @@ UnknownText_0x15e54: ; 0x15e54
 ; 0x15e59
 
 UnknownText_0x15e59: ; 0x15e59
-	; Thank you, dear. Hehehehe…
+	; Thank you, dear. Hehehehe<...>
 	text_jump UnknownText_0x1c4cce
 	db "@"
 ; 0x15e5e
@@ -20608,13 +20608,13 @@ UnknownText_0x15e5e: ; 0x15e5e
 ; 0x15e63
 
 UnknownText_0x15e63: ; 0x15e63
-	; Hehehe… You don't have the money.
+	; Hehehe<...> You don't have the money.
 	text_jump UnknownText_0x1c4d08
 	db "@"
 ; 0x15e68
 
 UnknownText_0x15e68: ; 0x15e68
-	; Come again, dear. Hehehehe…
+	; Come again, dear. Hehehehe<...>
 	text_jump UnknownText_0x1c4d2a
 	db "@"
 ; 0x15e6d
@@ -21710,7 +21710,7 @@ Unknown_16613: ; 16613
 ; 16649
 
 UnknownText_0x16649: ; 0x16649
-	; Wow, that's a cute #MON. Where did you get it? … So, you're leaving on an adventure… OK! I'll help too. But what can I do for you? I know! I'll save money for you. On a long journey, money's important. Do you want me to save your money?
+	; Wow, that's a cute #MON. Where did you get it? <...> So, you're leaving on an adventure<...> OK! I'll help too. But what can I do for you? I know! I'll save money for you. On a long journey, money's important. Do you want me to save your money?
 	text_jump UnknownText_0x1bd77f
 	db "@"
 ; 0x1664e
@@ -22249,7 +22249,7 @@ Function16936: ; 16936
 	ret
 
 UnknownText_0x16944: ; 0x16944
-	; Not yet…
+	; Not yet<...>
 	text_jump UnknownText_0x1bdef6
 	db "@"
 ; 0x16949
@@ -22859,7 +22859,7 @@ UnknownText_0x16e13: ; 0x16e13
 ; 0x16e18
 
 UnknownText_0x16e18: ; 0x16e18
-	; An EGG? My talent is worth more…
+	; An EGG? My talent is worth more<...>
 	text_jump UnknownText_0x1c0021
 	db "@"
 ; 0x16e1d
@@ -46789,7 +46789,7 @@ Function4e881: ; 4e881
 ; 4e8bd
 
 UnknownText_0x4e8bd: ; 0x4e8bd
-	; SAVING RECORD… DON'T TURN OFF!
+	; SAVING RECORD<...> DON'T TURN OFF!
 	text_jump UnknownText_0x1bd39e
 	db "@"
 ; 0x4e8c2
@@ -47591,15 +47591,15 @@ Function502b1: ; 502b1
 ; 502ee
 
 String_502ee: ; 502ee
-	db "♂…MALE@"
+	db "♂<...>MALE@"
 ; 502f5
 
 String_502f5: ; 502f5
-	db "♀…FEMALE@"
+	db "♀<...>FEMALE@"
 ; 502fe
 
 String_502fe: ; 502fe
-	db "…UNKNOWN@"
+	db "<...>UNKNOWN@"
 ; 50307
 
 Function50307: ; 50307
@@ -48247,7 +48247,7 @@ UnknownText_0x50726: ; 0x50726
 ; 0x5072b
 
 UnknownText_0x5072b: ; 0x5072b
-	; Looks like there's nothing here…
+	; Looks like there's nothing here<...>
 	text_jump UnknownText_0x1c0b1a
 	db "@"
 ; 0x50730
@@ -48273,7 +48273,7 @@ UnknownScript_0x5074b: ; 0x5074b
 ; 0x5074e
 
 UnknownText_0x5074e: ; 0x5074e
-	; sprinkled water. But nothing happened…
+	; sprinkled water. But nothing happened<...>
 	text_jump UnknownText_0x1c0b3b
 	db "@"
 ; 0x50753
@@ -50562,8 +50562,11 @@ TryStep: ; 8016b
 	ret
 
 .asm_801ae
-	ld hl, EventFlags + $df
-	bit 7, [hl]
+	ld de, EVENT_GUIDE_GENT_VISIBLE_IN_CHERRYGROVE
+	ld b, CHECK_FLAG
+	call EventFlagAction
+	ld a, c
+	and a
 	jr nz, .norm
 	ld a, [CurInput]
 	and B_BUTTON
@@ -68769,7 +68772,7 @@ Function90867: ; 90867 (24:4867)
 ; 90874 (24:4874)
 
 UnknownText_0x90874: ; 0x90874
-	; Zzz… Hm? Wha…? You woke me up! Will you check the clock for me?
+	; Zzz<...> Hm? Wha<...>? You woke me up! Will you check the clock for me?
 	text_jump UnknownText_0x1bc29c
 	db "@"
 ; 0x90879
@@ -69166,7 +69169,7 @@ UnknownText_0x90acc: ; 0x90acc
 
 UnknownText_0x90b13: ; 0x90b13
 	db $0
-	para "Now on DEBUG…"
+	para "Now on DEBUG<...>"
 	prompt
 ; 0x90b23
 
@@ -76608,13 +76611,13 @@ UnknownText_0xb8cb0: ; 0xb8cb0
 ; 0xb8cb5
 
 UnknownText_0xb8cb5: ; 0xb8cb5
-	; …Repeating myself
+	; <...>Repeating myself
 	text_jump UnknownText_0x1bcc11
 	db "@"
 ; 0xb8cba
 
 UnknownText_0xb8cba: ; 0xb8cba
-	; gets to be a drag…
+	; gets to be a drag<...>
 	text_jump UnknownText_0x1bcc25
 	db "@"
 ; 0xb8cbf
@@ -76981,7 +76984,7 @@ Functionb8ebd: ; b8ebd (2e:4ebd)
 ; b8ec5 (2e:4ec5)
 
 UnknownText_0xb8ec5: ; 0xb8ec5
-	; … …Ahem, we are
+	; <...> <...>Ahem, we are
 	text_jump UnknownText_0x1bcda8
 	db "@"
 ; 0xb8eca
@@ -77375,7 +77378,7 @@ UnknownText_0xb9187: ; 0xb9187
 ; 0xb918c
 
 UnknownText_0xb918c: ; 0xb918c
-	; Let me think… It's
+	; Let me think<...> It's
 	text_jump UnknownText_0x1bce9a
 	db "@"
 ; 0xb9191
@@ -77405,7 +77408,7 @@ UnknownText_0xb91a0: ; 0xb91a0
 ; 0xb91a5
 
 UnknownText_0xb91a5: ; 0xb91a5
-	; BUENA: Oh my…
+	; BUENA: Oh my<...>
 	text_jump UnknownText_0x1bceeb
 	db "@"
 ; 0xb91aa
@@ -77459,7 +77462,7 @@ UnknownText_0xb91cd: ; 0xb91cd
 ; 0xb91d2
 
 UnknownText_0xb91d2: ; 0xb91d2
-	; …
+	; <...>
 	text_jump UnknownText_0x1bcf96
 	db "@"
 ; 0xb91d7
@@ -79106,7 +79109,7 @@ Functione01d2: ; e01d2
 ; e0212
 
 UnknownText_0xe0212: ; 0xe0212
-	; Not enough coins…
+	; Not enough coins<...>
 	text_jump UnknownText_0x1c57ab
 	db "@"
 ; 0xe0217
@@ -80083,7 +80086,7 @@ UnknownText_0xe0811: ; 0xe0811
 ; 0xe0816
 
 UnknownText_0xe0816: ; 0xe0816
-	; Darn…
+	; Darn<...>
 	text_jump UnknownText_0x1c581a
 	db "@"
 ; 0xe081b
@@ -81814,7 +81817,7 @@ UnknownText_0xe2093: ; 0xe2093
 ; 0xe2098
 
 UnknownText_0xe2098: ; 0xe2098
-	; Darn…
+	; Darn<...>
 	text_jump UnknownText_0x1c1a65
 	db "@"
 ; 0xe209d
@@ -84129,7 +84132,7 @@ Functione322a: ; e322a
 ; e3233
 
 String_e3233:
-	db "Saving… Leave ON!@"
+	db "Saving<...> Leave ON!@"
 ; e3245
 
 Jumptable_e3245: ; e3245
@@ -88869,7 +88872,7 @@ Functionfbb32: ; fbb32
 ; fbba9
 
 UnknownText_0xfbba9: ; 0xfbba9
-	; Let me measure that MAGIKARP. …Hm, it measures @ .
+	; Let me measure that MAGIKARP. <...>Hm, it measures @ .
 	text_jump UnknownText_0x1c1203
 	db "@"
 ; 0xfbbae
@@ -89638,13 +89641,13 @@ TradeIntroText1: ; 0xfcf97
 ; 0xfcf9c
 
 TradeCancelText1: ; 0xfcf9c
-	; You don't want to trade? Aww…
+	; You don't want to trade? Aww<...>
 	text_jump UnknownText_0x1bd48c
 	db "@"
 ; 0xfcfa1
 
 TradeWrongText1: ; 0xfcfa1
-	; Huh? That's not @ .  What a letdown…
+	; Huh? That's not @ .  What a letdown<...>
 	text_jump UnknownText_0x1bd4aa
 	db "@"
 ; 0xfcfa6
@@ -89670,7 +89673,7 @@ TradeIntroText3: ; 0xfcfb0
 
 TradeCancelText2:
 TradeCancelText3: ; 0xfcfb5
-	; You don't have one either? Gee, that's really disappointing…
+	; You don't have one either? Gee, that's really disappointing<...>
 	text_jump UnknownText_0x1bd565
 	db "@"
 ; 0xfcfba
@@ -89701,7 +89704,7 @@ TradeIntroText4: ; 0xfcfc9
 ; 0xfcfce
 
 TradeCancelText4: ; 0xfcfce
-	; You don't want to trade? Oh, darn…
+	; You don't want to trade? Oh, darn<...>
 	text_jump UnknownText_0x1bd673
 	db "@"
 ; 0xfcfd3
@@ -89731,7 +89734,7 @@ TradeCompleteText3: ; 0xfcfe2
 ; 0xfcfe7
 
 TradeAfterText3: ; 0xfcfe7
-	; Trading is so odd… I still have a lot to learn about it.
+	; Trading is so odd<...> I still have a lot to learn about it.
 	text_jump UnknownText_0x1bd745
 	db "@"
 ; 0xfcfec

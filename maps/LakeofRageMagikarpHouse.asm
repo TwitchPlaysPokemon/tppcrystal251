@@ -122,7 +122,7 @@ UnknownText_0x19a72e: ; 0x19a72e
 	line "you could catch"
 
 	para "lively MAGIKARP"
-	line "there, but…"
+	line "there, but<...>"
 
 	para "I don't understand"
 	line "what's happening."
@@ -190,7 +190,7 @@ UnknownText_0x19aa01: ; 0x19aa01
 	text "Wow! This one is"
 	line "outstanding!"
 
-	para "…I wish I could"
+	para "<...>I wish I could"
 	line "say that, but I've"
 
 	para "seen a bigger one"
@@ -205,7 +205,7 @@ UnknownText_0x19aa5c: ; 0x19aa5c
 ; 0x19aa79
 
 UnknownText_0x19aa79: ; 0x19aa79
-	text "Oh… So you didn't"
+	text "Oh<...> So you didn't"
 	line "get one good"
 
 	para "enough to show me?"

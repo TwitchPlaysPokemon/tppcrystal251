@@ -107,7 +107,7 @@ UnknownText_0x1addc0: ; 0x1addc0
 ; 0x1adee1
 
 UnknownText_0x1adee1: ; 0x1adee1
-	text "…"
+	text "<...>"
 
 	para "You say what? TEAM"
 	line "ROCKET bye-bye a"

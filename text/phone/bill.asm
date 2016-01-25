@@ -31,7 +31,7 @@ BillPhoneNiteGreetingText: ; 0x1b44b5
 BillPhoneGeneriText: ; 0x1b44fe
 	db $0, "Who's calling?", $51
 	db $14, ", is it?", $4f
-	db "Hang on a sec…", $51
+	db "Hang on a sec<...>", $51
 	db $56, $4f
 	db $56, $57
 

@@ -186,7 +186,7 @@ UnknownText_0x9aa7b: ; 0x9aa7b
 	para "but now I'm ready"
 	line "to battle you."
 
-	para "…"
+	para "<...>"
 
 	para "You're telling me"
 	line "you conquered all"
@@ -216,9 +216,9 @@ UnknownText_0x9abae: ; 0x9abae
 	para "How the heck did I"
 	line "lose to you?"
 
-	para "…"
+	para "<...>"
 
-	para "Tch, all right…"
+	para "Tch, all right<...>"
 	line "Here, take this--"
 	cont "it's EARTHBADGE."
 	done
@@ -231,7 +231,7 @@ UnknownText_0x9ac0f: ; 0x9ac0f
 ; 0x9ac27
 
 UnknownText_0x9ac27: ; 0x9ac27
-	text "BLUE: …"
+	text "BLUE: <...>"
 
 	para "All right, I was"
 	line "wrong. You're the"
@@ -279,7 +279,7 @@ ViridianGymGuyText: ; 0x9acee
 
 ViridianGymGuyWinText: ; 0x9ada0
 	text "Man, you are truly"
-	line "tough…"
+	line "tough<...>"
 
 	para "That was a heck of"
 	line "an inspirational"
@@ -333,7 +333,7 @@ CoolSibsAraBellaBeatenText:
 CoolSibsAraBella1Text:
 	text "ARA: Me, I should"
 	line "be a pretty good"
-	cont "practice partner…"
+	cont "practice partner<...>"
 	done
 
 CoolSibsAraBella2Text:
@@ -394,9 +394,9 @@ CooltrainerMBonitaSeenText:
 	done
 
 CooltrainerMBonitaBeatenText:
-	text "All of my #MON…"
+	text "All of my #MON<...>"
 	line "All dizzy and"
-	cont "fainted…"
+	cont "fainted<...>"
 	done
 
 CooltrainerMBonitaText:

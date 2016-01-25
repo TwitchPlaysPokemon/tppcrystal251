@@ -46,7 +46,7 @@ _VermilionPokecenterGuyText:
 	text "It is true that a"
 	line "higher level"
 	cont "#MON will be"
-	cont "more powerful…"
+	cont "more powerful<...>"
 
 	para "But, all #MON"
 	line "will have weak"

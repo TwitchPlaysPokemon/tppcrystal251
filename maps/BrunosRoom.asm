@@ -136,7 +136,7 @@ UnknownText_0x180b23: ; 0x180b23
 UnknownText_0x180b3c: ; 0x180b3c
 	text "Having lost, I"
 	line "have no right to"
-	cont "say anything…"
+	cont "say anything<...>"
 
 	para "Go face your next"
 	line "challenge!"

@@ -24,7 +24,7 @@ UnknownText_0x1ab335: ; 0x1ab335
 
 	para "lives alone in the"
 	line "SEAFOAM ISLANDS"
-	cont "cave…"
+	cont "cave<...>"
 	done
 ; 0x1ab37f
 

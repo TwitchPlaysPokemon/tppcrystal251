@@ -144,13 +144,13 @@ UnknownText_0x69ed6: ; 0x69ed6
 
 UnknownText_0x69f56: ; 0x69f56
 	text "You can't carry"
-	line "another #MON…"
+	line "another #MON<...>"
 	done
 ; 0x69f74
 
 UnknownText_0x69f74: ; 0x69f74
-	text "Oh… Never mind,"
-	line "then…"
+	text "Oh<...> Never mind,"
+	line "then<...>"
 	done
 ; 0x69f8b
 

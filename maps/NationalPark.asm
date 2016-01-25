@@ -428,7 +428,7 @@ UnknownText_0x5c265: ; 0x5c265
 	text "Pay attention,"
 	line "please!"
 
-	para "…Oops, I have to"
+	para "<...>Oops, I have to"
 	line "quit thinking like"
 
 	para "a teacher all the"
@@ -477,7 +477,7 @@ UnknownText_0x5c3bc: ; 0x5c3bc
 	line "grass."
 
 	para "Trainers always"
-	line "want to battle…"
+	line "want to battle<...>"
 	done
 ; 0x5c416
 
@@ -521,11 +521,11 @@ UnknownText_0x5c4f3: ; 0x5c4f3
 	line "on #MON require"
 	cont "hard work."
 
-	para "For example…"
+	para "For example<...>"
 
 	para "You can use TM's,"
 	line "breed for egg"
-	cont "moves…"
+	cont "moves<...>"
 
 	para "There are also"
 	line "move tutors."
@@ -544,7 +544,7 @@ PokefanfBeverly1SeenText: ; 0x5c552
 
 PokefanfBeverly1BeatenText: ; 0x5c59e
 	text "I can beat you in"
-	line "pride, but…"
+	line "pride, but<...>"
 	done
 ; 0x5c5bd
 
@@ -587,7 +587,7 @@ UnknownText_0x5c68a: ; 0x5c68a
 	line "endearing."
 
 	para "Oh, I wish for a"
-	line "MARILL of my own…"
+	line "MARILL of my own<...>"
 	done
 ; 0x5c6e4
 
@@ -600,7 +600,7 @@ LassKriseSeenText: ; 0x5c6e4
 ; 0x5c715
 
 LassKriseBeatenText: ; 0x5c715
-	text "…Hmmm…"
+	text "<...>Hmmm<...>"
 	done
 ; 0x5c71d
 

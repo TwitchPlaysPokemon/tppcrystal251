@@ -336,7 +336,7 @@ SwimmermGeorgeSeenText: ; 0x1a6999
 ; 0x1a69c7
 
 SwimmermGeorgeBeatenText: ; 0x1a69c7
-	text "Pant, pant…"
+	text "Pant, pant<...>"
 	done
 ; 0x1a69d4
 
@@ -370,7 +370,7 @@ SwimmermBerkeBeatenText: ; 0x1a6a80
 
 UnknownText_0x1a6aa4: ; 0x1a6aa4
 	text "It was a dark and"
-	line "stormy night…"
+	line "stormy night<...>"
 
 	para "I saw this giant"
 	line "#MON flying"
@@ -419,7 +419,7 @@ SwimmermMathewBeatenText: ; 0x1a6bcc
 
 UnknownText_0x1a6bed: ; 0x1a6bed
 	text "A secret about"
-	line "WHIRL ISLANDS…"
+	line "WHIRL ISLANDS<...>"
 
 	para "It's pitch-black"
 	line "inside!"
@@ -437,7 +437,7 @@ SwimmerfKayleeSeenText: ; 0x1a6c24
 
 SwimmerfKayleeBeatenText: ; 0x1a6c67
 	text "CHINCHOU lights"
-	line "my road ahead…"
+	line "my road ahead<...>"
 	done
 ; 0x1a6c7f
 
@@ -460,7 +460,7 @@ SwimmerfSusieSeenText: ; 0x1a6cda
 ; 0x1a6d04
 
 SwimmerfSusieBeatenText: ; 0x1a6d04
-	text "I'm crushed…"
+	text "I'm crushed<...>"
 	done
 ; 0x1a6d11
 
@@ -474,7 +474,7 @@ UnknownText_0x1a6d11: ; 0x1a6d11
 SwimmerfDeniseSeenText: ; 0x1a6d46
 	text "There's way"
 	line "too much water"
-	cont "around here…"
+	cont "around here<...>"
 	done
 ; 0x1a6d72
 
@@ -526,7 +526,7 @@ SwimmerfWendySeenText: ; 0x1a6e85
 ; 0x1a6eb7
 
 SwimmerfWendyBeatenText: ; 0x1a6eb7
-	text "Oh, dear…"
+	text "Oh, dear<...>"
 	done
 ; 0x1a6ec2
 

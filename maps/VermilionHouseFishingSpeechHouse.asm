@@ -45,10 +45,10 @@ UnknownText_0x191496: ; 0x191496
 
 UnknownText_0x1915a3: ; 0x1915a3
 	text "It's a photo of"
-	line "people fishing…"
+	line "people fishing<...>"
 
 	para "They're having a"
-	line "great time…"
+	line "great time<...>"
 	done
 ; 0x1915df
 

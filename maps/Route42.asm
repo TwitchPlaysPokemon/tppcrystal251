@@ -363,7 +363,7 @@ PokemaniacShaneSeenText: ; 0x1a947c
 
 PokemaniacShaneBeatenText: ; 0x1a94b3
 	text "I should have used"
-	line "my MOON STONE…"
+	line "my MOON STONE<...>"
 	done
 ; 0x1a94d6
 

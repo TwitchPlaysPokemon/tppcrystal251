@@ -47,7 +47,7 @@ UnknownText_0x9e156: ; 0x9e156
 	line "bad. I thought it"
 
 	para "would be a great"
-	line "memento…"
+	line "memento<...>"
 	done
 ; 0x9e191
 

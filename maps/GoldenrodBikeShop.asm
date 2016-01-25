@@ -52,7 +52,7 @@ MapGoldenrodBikeShopSignpost8Script: ; 0x54784
 ; 0x54787
 
 UnknownText_0x54787: ; 0x54787
-	text "…sigh… I moved"
+	text "<...>sigh<...> I moved"
 	line "here, but I can't"
 
 	para "sell my BICYCLES."
@@ -91,9 +91,9 @@ UnknownText_0x5485f: ; 0x5485f
 ; 0x54898
 
 UnknownText_0x54898: ; 0x54898
-	text "…sigh… Oh, for"
+	text "<...>sigh<...> Oh, for"
 	line "the kindness of"
-	cont "people…"
+	cont "people<...>"
 	done
 ; 0x548c0
 

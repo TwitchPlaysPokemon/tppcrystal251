@@ -95,8 +95,8 @@ UnknownText_0x1847ff: ; 0x1847ff
 ; 0x184841
 
 SageEdmondSeenText: ; 0x184841
-	text "…Sway like leaves"
-	line "in the wind…"
+	text "<...>Sway like leaves"
+	line "in the wind<...>"
 	done
 ; 0x184861
 
@@ -110,7 +110,7 @@ UnknownText_0x18486f: ; 0x18486f
 	line "BELLSPROUT's"
 
 	para "gentle movements"
-	line "for battle…"
+	line "for battle<...>"
 
 	para "But I didn't train"
 	line "well enough."
@@ -118,7 +118,7 @@ UnknownText_0x18486f: ; 0x18486f
 ; 0x1848c8
 
 UnknownText_0x1848c8: ; 0x1848c8
-	text "A #MON statue…"
+	text "A #MON statue<...>"
 
 	para "It looks very"
 	line "distinguished."

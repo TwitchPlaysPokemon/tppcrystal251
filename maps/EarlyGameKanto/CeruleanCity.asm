@@ -404,7 +404,7 @@ _CeruleanCityText_1966d:
 	done
 
 _CeruleanCityText_19672F:
-	text "Aww… Looks like"
+	text "Aww<...> Looks like"
 	line "my #MON won"
 	cont "this time!"
 	done
@@ -539,22 +539,22 @@ _CeruleanCityText_1973a_2:
 
 _CeruleanCityText_1976f:
 	text "SLOWBRO took a"
-	line "snooze…"
+	line "snooze<...>"
 	done
 
 _CeruleanCityText_19774:
 	text "SLOWBRO is"
-	line "loafing around…"
+	line "loafing around<...>"
 	done
 
 _CeruleanCityText_19779:
 	text "SLOWBRO turned"
-	line "away…"
+	line "away<...>"
 	done
 
 _CeruleanCityText_1977e:
 	text "SLOWBRO"
-	line "ignored orders…"
+	line "ignored orders<...>"
 	done
 
 _CeruleanCityText9:
@@ -601,12 +601,12 @@ _CeruleanCityText17:
 	done
 
 Text_CeruleanCityRBLockedDoor:
-	text "It's locked…"
+	text "It's locked<...>"
 	done
 
 CeruleanCityRBRocketText1:
 	text "So that's where he"
-	line "keeps it…"
+	line "keeps it<...>"
 	done
 
 CeruleanCityRBRocketText2:
@@ -634,14 +634,14 @@ CeruleanCityRBRocketText4:
 	text "What was all that"
 	line "commotion?"
 
-	para "… Oh? Was that man"
+	para "<...> Oh? Was that man"
 	line "after my TM?"
 
 	para "Thank you for cha-"
 	line "sing him off."
 
 	para "If I were just a"
-	line "few years younger…"
+	line "few years younger<...>"
 
 	para "Ah, it can't be"
 	line "helped."

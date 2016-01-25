@@ -26,7 +26,7 @@ UnknownText_0x195cf5: ; 0x195cf5
 	line "buy some SAFARI"
 
 	para "ZONE souvenirs,"
-	line "but it's closed…"
+	line "but it's closed<...>"
 	done
 ; 0x195d36
 

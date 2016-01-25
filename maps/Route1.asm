@@ -80,8 +80,8 @@ SchoolboyDannySeenText: ; 0x1ac583
 ; 0x1ac5b7
 
 SchoolboyDannyBeatenText: ; 0x1ac5b7
-	text "Awww… I've got a"
-	line "losing record…"
+	text "Awww<...> I've got a"
+	line "losing record<...>"
 	done
 ; 0x1ac5d7
 
@@ -101,7 +101,7 @@ CooltrainerfQuinnSeenText: ; 0x1ac615
 ; 0x1ac631
 
 CooltrainerfQuinnBeatenText: ; 0x1ac631
-	text "Down and out…"
+	text "Down and out<...>"
 	done
 ; 0x1ac640
 

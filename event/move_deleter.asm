@@ -97,7 +97,7 @@ UnknownText_0x2c5ea: ; 0x2c5ea
 ; 0x2c5ef
 
 UnknownText_0x2c5ef: ; 0x2c5ef
-	; Um… Oh, yes, I'm the MOVE DELETER. I can make #MON forget moves. Shall I make a #MON forget?
+	; Um<...> Oh, yes, I'm the MOVE DELETER. I can make #MON forget moves. Shall I make a #MON forget?
 	text_jump UnknownText_0x1c5f74
 	db "@"
 ; 0x2c5f4

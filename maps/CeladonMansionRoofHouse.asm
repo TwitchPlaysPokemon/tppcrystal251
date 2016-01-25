@@ -37,7 +37,7 @@ UnknownScript_0x71b25: ; 0x71b25
 
 UnknownText_0x71b27: ; 0x71b27
 	text "Let me recount a"
-	line "terrifying tale…"
+	line "terrifying tale<...>"
 	done
 ; 0x71b4a
 
@@ -58,16 +58,16 @@ UnknownText_0x71ba3: ; 0x71ba3
 	line "there was a little"
 
 	para "boy who was given"
-	line "a new BICYCLE…"
+	line "a new BICYCLE<...>"
 
 	para "He wanted to try"
-	line "it right away…"
+	line "it right away<...>"
 
 	para "He was having so"
 	line "much fun that he"
 
 	para "didn't notice the"
-	line "sun had set…"
+	line "sun had set<...>"
 
 	para "While riding home"
 	line "in the pitch-black"
@@ -90,9 +90,9 @@ UnknownText_0x71ba3: ; 0x71ba3
 	para "and trying to drag"
 	line "him into oblivion!"
 
-	para "…"
+	para "<...>"
 
-	para "…"
+	para "<...>"
 
 	para "SHRIEEEEK!"
 
@@ -100,7 +100,7 @@ UnknownText_0x71ba3: ; 0x71ba3
 	line "riding uphill on"
 	cont "CYCLING ROAD!"
 
-	para "…"
+	para "<...>"
 	line "Ba-dum ba-dum!"
 
 	para "For listening so"

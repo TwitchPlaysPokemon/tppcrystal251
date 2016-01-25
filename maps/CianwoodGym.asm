@@ -261,7 +261,7 @@ UnknownText_0x9d6f9: ; 0x9d6f9
 
 UnknownText_0x9d76f: ; 0x9d76f
 	text "CHUCK: Urggh!"
-	line "…"
+	line "<...>"
 
 	para "Oooarrgh!"
 	done
@@ -381,7 +381,7 @@ BlackbeltYoshiBeatenText: ; 0x9d9e9
 
 UnknownText_0x9d9fa: ; 0x9d9fa
 	text "I'll go and sulk"
-	line "in the corner…"
+	line "in the corner<...>"
 	done
 ; 0x9da2e
 
@@ -399,7 +399,7 @@ BlackbeltLaoBeatenText: ; 0x9da50
 UnknownText_0x9da61: ; 0x9da61
 	text "Fighting #MON"
 	line "are afraid of psy-"
-	cont "chics…"
+	cont "chics<...>"
 	done
 ; 0x9da8a
 
@@ -411,7 +411,7 @@ BlackbeltNobSeenText: ; 0x9da8a
 ; 0x9dabd
 
 BlackbeltNobBeatenText: ; 0x9dabd
-	text "…"
+	text "<...>"
 	done
 ; 0x9dac0
 
@@ -443,9 +443,9 @@ BlackbeltLungBeatenText: ; 0x9db02
 ; 0x9db14
 
 UnknownText_0x9db14: ; 0x9db14
-	text "My #MON lost…"
-	line "My… my pride is"
-	cont "shattered…"
+	text "My #MON lost<...>"
+	line "My<...> my pride is"
+	cont "shattered<...>"
 	done
 ; 0x9db3e
 

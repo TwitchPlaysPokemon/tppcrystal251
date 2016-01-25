@@ -79,7 +79,7 @@ UnknownText_0x7b01b: ; 0x7b01b
 	para "life to the study"
 	line "of #MON!"
 
-	para "…"
+	para "<...>"
 
 	para "It's a part of"
 	line "PROF.ELM's re-"

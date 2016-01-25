@@ -539,19 +539,19 @@ SupernerdEricSeenText: ; 0x7c314
 
 	para "I was trying to"
 	line "cheat using my"
-	cont "#MON…"
+	cont "#MON<...>"
 	done
 ; 0x7c361
 
 SupernerdEricBeatenText: ; 0x7c361
-	text "…Grumble…"
+	text "<...>Grumble<...>"
 	done
 ; 0x7c36c
 
 UnknownText_0x7c36c: ; 0x7c36c
 	text "I guess I have to"
 	line "do things fair and"
-	cont "square…"
+	cont "square<...>"
 	done
 ; 0x7c39a
 
@@ -636,7 +636,7 @@ UnknownText_0x7c52f: ; 0x7c52f
 ; 0x7c5b0
 
 UnknownText_0x7c5b0: ; 0x7c5b0
-	text "The door's locked…"
+	text "The door's locked<...>"
 	done
 ; 0x7c5c3
 

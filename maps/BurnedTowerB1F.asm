@@ -206,7 +206,7 @@ MovementData_0x186263: ; 0x186263
 
 UnknownText_0x18626a: ; 0x18626a
 	text "EUSINE: I dug a"
-	line "hole here, too…"
+	line "hole here, too<...>"
 
 	para "I was shocked!"
 

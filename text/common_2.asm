@@ -22,13 +22,13 @@ _ObtainedFruitText: ; 0x1bc02d
 
 _FruitPackIsFullText: ; 0x1bc03e
 	text "But the PACK is"
-	line "full…"
+	line "full<...>"
 	done
 ; 0x1bc055
 
 _NothingHereText: ; 0x1bc055
 	text "There's nothing"
-	line "here…"
+	line "here<...>"
 	done
 ; 0x1bc06b
 
@@ -176,7 +176,7 @@ UnknownText_0x1bc29c: ; 0x1bc29c
 	text $56, $56, $56, $56, $56, $56
 	line $56, $56, $56, $56, $56, $56
 
-	para "Zzz… Hm? Wha…?"
+	para "Zzz<...> Hm? Wha<...>?"
 	line "You woke me up!"
 
 	para "Will you check the"
@@ -538,7 +538,7 @@ UnknownText_0x1bc7b0: ; 0x1bc7b0
 	text "'s"
 	line "@"
 	text_from_ram wc6d1
-	text " trade…"
+	text " trade<...>"
 	done
 ; 0x1bc7c3
 
@@ -555,7 +555,7 @@ UnknownText_0x1bc7dd: ; 0x1bc7dd
 	text "'s"
 	line "@"
 	text_from_ram wc6d1
-	text " trade…"
+	text " trade<...>"
 	done
 ; 0x1bc7f0
 
@@ -966,13 +966,13 @@ UnknownText_0x1bcbfe: ; 0x1bcbfe
 
 UnknownText_0x1bcc11: ; 0x1bcc11
 	text ""
-	line "…Repeating myself"
+	line "<...>Repeating myself"
 	done
 ; 0x1bcc25
 
 UnknownText_0x1bcc25: ; 0x1bcc25
 	text ""
-	line "gets to be a drag…"
+	line "gets to be a drag<...>"
 	done
 ; 0x1bcc3a
 
@@ -1116,7 +1116,7 @@ UnknownText_0x1bcda7: ; 0x1bcda7
 
 UnknownText_0x1bcda8: ; 0x1bcda8
 	text ""
-	line "… …Ahem, we are"
+	line "<...> <...>Ahem, we are"
 	done
 ; 0x1bcdba
 
@@ -1196,7 +1196,7 @@ UnknownText_0x1bce87: ; 0x1bce87
 
 UnknownText_0x1bce9a: ; 0x1bce9a
 	text ""
-	line "Let me think… It's"
+	line "Let me think<...> It's"
 	done
 ; 0x1bceae
 
@@ -1228,7 +1228,7 @@ UnknownText_0x1bcedc: ; 0x1bcedc
 
 UnknownText_0x1bceeb: ; 0x1bceeb
 	text ""
-	line "BUENA: Oh my…"
+	line "BUENA: Oh my<...>"
 	done
 ; 0x1bcefb
 
@@ -1280,7 +1280,7 @@ UnknownText_0x1bcf86: ; 0x1bcf86
 ; 0x1bcf96
 
 UnknownText_0x1bcf96: ; 0x1bcf96
-	text "…"
+	text "<...>"
 	done
 ; 0x1bcf99
 
@@ -1342,7 +1342,7 @@ UnknownText_0x1bd039: ; 0x1bd039
 ; 0x1bd054
 
 UnknownText_0x1bd054: ; 0x1bd054
-	text "Warping…"
+	text "Warping<...>"
 	done
 ; 0x1bd05e
 
@@ -1493,7 +1493,7 @@ UnknownText_0x1bd286: ; 0x1bd286
 	text ""
 	line "for @"
 	text_from_ram StringBuffer1
-	text "…"
+	text "<...>"
 	done
 ; 0x1bd2a0
 
@@ -1541,7 +1541,7 @@ UnknownText_0x1bd321: ; 0x1bd321
 
 UnknownText_0x1bd331: ; 0x1bd331
 	text "But ", $52, " has"
-	line "no space left…"
+	line "no space left<...>"
 	done
 ; 0x1bd34b
 
@@ -1561,7 +1561,7 @@ UnknownText_0x1bd34b: ; 0x1bd34b
 ; 0x1bd39e
 
 UnknownText_0x1bd39e: ; 0x1bd39e
-	text "SAVING RECORD…"
+	text "SAVING RECORD<...>"
 	line "DON'T TURN OFF!"
 	done
 ; 0x1bd3be
@@ -1635,7 +1635,7 @@ UnknownText_0x1bd449: ; 0x1bd449
 
 UnknownText_0x1bd48c: ; 0x1bd48c
 	text "You don't want to"
-	line "trade? Aww…"
+	line "trade? Aww<...>"
 	done
 ; 0x1bd4aa
 
@@ -1644,7 +1644,7 @@ UnknownText_0x1bd4aa: ; 0x1bd4aa
 	line "@"
 	text_from_ram StringBuffer1
 	text ". "
-	cont "What a letdown…"
+	cont "What a letdown<...>"
 	done
 ; 0x1bd4d2
 
@@ -1686,7 +1686,7 @@ UnknownText_0x1bd565: ; 0x1bd565
 	line "one either?"
 
 	para "Gee, that's really"
-	line "disappointing…"
+	line "disappointing<...>"
 	done
 ; 0x1bd5a1
 
@@ -1737,7 +1737,7 @@ UnknownText_0x1bd621: ; 0x1bd621
 
 UnknownText_0x1bd673: ; 0x1bd673
 	text "You don't want to"
-	line "trade? Oh, darn…"
+	line "trade? Oh, darn<...>"
 	done
 ; 0x1bd696
 
@@ -1781,7 +1781,7 @@ UnknownText_0x1bd731: ; 0x1bd731
 ; 0x1bd745
 
 UnknownText_0x1bd745: ; 0x1bd745
-	text "Trading is so odd…"
+	text "Trading is so odd<...>"
 
 	para "I still have a lot"
 	line "to learn about it."
@@ -1795,10 +1795,10 @@ UnknownText_0x1bd77f: ; 0x1bd77f
 	para "Where did you get"
 	line "it?"
 
-	para "…"
+	para "<...>"
 
 	para "So, you're leaving"
-	line "on an adventure…"
+	line "on an adventure<...>"
 
 	para "OK!"
 	line "I'll help too."
@@ -2107,7 +2107,7 @@ UnknownText_0x1bdee9: ; 0x1bdee9
 ; 0x1bdef6
 
 UnknownText_0x1bdef6: ; 0x1bdef6
-	text "Not yet…"
+	text "Not yet<...>"
 	done
 ; 0x1bdf00
 

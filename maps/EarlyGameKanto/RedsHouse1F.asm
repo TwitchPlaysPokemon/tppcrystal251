@@ -55,11 +55,7 @@ RedsHouse1FRB_SkipMovement: ; 0x7a4f6
 	stringtotext RedsHouse1FRB_GearName, $1
 	scall RedsHouse1FRB_GetItem
 	setflag ENGINE_POKEGEAR
-	setflag ENGINE_PHONE_CARD
-	addcellnum $1
 	dotrigger $1
-	setevent EVENT_MOM_POSITION_1
-	clearevent EVENT_MOM_POSITION_2
 	writetext MomText2
 	buttonsound
 	special Function90913
@@ -79,20 +75,20 @@ RedsHouse1FRB_NotDST: ; 0x7a52a
 	iffalse RedsHouse1FRB_DSTLoop
 RedsHouse1FRB_TimeIsSet: ; 0x7a531
 	writetext MomText4
-	yesorno
-	iffalse RedsHouse1FRB_DontNeedPhoneExplanation
-	writetext MomText5
-	buttonsound
-	jump RedsHouse1FRB_AfterPhoneExplanation
-; 0x7a542
+	; yesorno
+	; iffalse RedsHouse1FRB_DontNeedPhoneExplanation
+	; writetext MomText5
+	; buttonsound
+	; jump RedsHouse1FRB_AfterPhoneExplanation
+; ; 0x7a542
 
-RedsHouse1FRB_DontNeedPhoneExplanation: ; 0x7a542
-	writetext MomText6
-	buttonsound
-; 0x7a549
+; RedsHouse1FRB_DontNeedPhoneExplanation: ; 0x7a542
+	; writetext MomText6
+	; buttonsound
+; ; 0x7a549
 
-RedsHouse1FRB_AfterPhoneExplanation: ; 0x7a549
-	writetext MomText7
+; RedsHouse1FRB_AfterPhoneExplanation: ; 0x7a549
+	; writetext MomText7
 	waitbutton
 	closetext
 	checkevent EVENT_003_STD
@@ -224,7 +220,7 @@ MovementData_MomLookUp:
 	step_end
 
 MomText1: ; 0x7a604
-	text "Oh, <PLAYER>…! Our"
+	text "Oh, <PLAYER><...>! Our"
 	line "neighbor, PROF."
 
 	para "OAK, was looking"
@@ -273,42 +269,42 @@ MomText4: ; 0x7a763
 	para "for Daylight"
 	line "Saving Time."
 
-	para "By the way, do you"
-	line "know how to use"
-	cont "the PHONE?"
+	; para "By the way, do you"
+	; line "know how to use"
+	; cont "the PHONE?"
 	done
 ; 0x7a7cb
 
-MomText5: ; 0x7a7cb
-	text "Don't you just"
-	line "turn the #GEAR"
+; MomText5: ; 0x7a7cb
+	; text "Don't you just"
+	; line "turn the #GEAR"
 
-	para "on and select the"
-	line "PHONE icon?"
-	done
-; 0x7a807
+	; para "on and select the"
+	; line "PHONE icon?"
+	; done
+; ; 0x7a807
 
-MomText6: ; 0x7a807
-	text "I'll read the"
-	line "instructions."
+; MomText6: ; 0x7a807
+	; text "I'll read the"
+	; line "instructions."
 
-	para "Turn the #GEAR"
-	line "on and select the"
-	cont "PHONE icon."
-	done
-; 0x7a850
+	; para "Turn the #GEAR"
+	; line "on and select the"
+	; cont "PHONE icon."
+	; done
+; ; 0x7a850
 
-MomText7: ; 0x7a850
-	text "Phone numbers are"
-	line "stored in memory."
+; MomText7: ; 0x7a850
+	; text "Phone numbers are"
+	; line "stored in memory."
 
-	para "Just choose a name"
-	line "you want to call."
+	; para "Just choose a name"
+	; line "you want to call."
 
-	para "Gee, isn't that"
-	line "convenient?"
-	done
-; 
+	; para "Gee, isn't that"
+	; line "convenient?"
+	; done
+
 
 MomText_AllBoysLeaveHomeSomeday:
 	text "Right. All boys"
@@ -382,6 +378,6 @@ RedsHouse1FRB_MapEventHeader: ; 0x19b017
 
 	; people-events
 	db 1
-	person_event SPRITE_REDS_MOM, 7, 9, $8, 0, 0, -1, -1, 0, 0, 0, MomScript1, -1
+	person_event SPRITE_MOM, 7, 9, $8, 0, 0, -1, -1, 0, 0, 0, MomScript1, -1
 ; 0x19b048
 

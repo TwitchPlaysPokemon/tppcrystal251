@@ -517,7 +517,7 @@ UnknownText_0x56ff4: ; 0x56ff4
 ; 0x5702b
 
 UnknownText_0x5702b: ; 0x5702b
-	text "Card flip…"
+	text "Card flip<...>"
 
 	para "I prefer it over"
 	line "the slots because"
@@ -553,7 +553,7 @@ UnknownText_0x5710d: ; 0x5710d
 	line "the slots, and I"
 
 	para "blew it on card"
-	line "flipping…"
+	line "flipping<...>"
 
 	para "I got so furious,"
 	line "I tossed out my"
@@ -568,7 +568,7 @@ UnknownText_0x5718a: ; 0x5718a
 	line "-ays covered in"
 	
 	para "salt for some"
-	line "reason…"
+	line "reason<...>"
 	done
 ; 0x571af
 

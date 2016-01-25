@@ -158,7 +158,7 @@ FisherMartinBeatenText: ; 0x1a7043
 
 UnknownText_0x1a704c: ; 0x1a704c
 	text "I'm too impatient"
-	line "for fishing…"
+	line "for fishing<...>"
 	done
 ; 0x1a706b
 
@@ -232,7 +232,7 @@ UnknownText_0x1a7238: ; 0x1a7238
 	line "on the ROD when"
 
 	para "you hook a #-"
-	line "MON…"
+	line "MON<...>"
 
 	para "That's the best"
 	line "feeling ever for"

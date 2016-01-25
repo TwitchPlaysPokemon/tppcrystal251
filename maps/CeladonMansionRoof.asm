@@ -28,7 +28,7 @@ UnknownText_0x71a3f: ; 0x71a3f
 
 UnknownText_0x71aa1: ; 0x71aa1
 	text "There's graffiti"
-	line "on the wall…"
+	line "on the wall<...>"
 
 	para "<PLAYER> added a"
 	line "moustache!"

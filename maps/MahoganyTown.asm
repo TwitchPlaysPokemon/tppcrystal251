@@ -191,7 +191,7 @@ UnknownText_0x19015b: ; 0x19015b
 ; 0x190178
 
 UnknownText_0x190178: ; 0x190178
-	text "Oh, fine then…"
+	text "Oh, fine then<...>"
 	done
 ; 0x190188
 

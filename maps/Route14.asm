@@ -118,7 +118,7 @@ PokefanmCarterBeatenText: ; 0x1ad4ff
 ; 0x1ad508
 
 UnknownText_0x1ad508: ; 0x1ad508
-	text "Cat, duck, bird…"
+	text "Cat, duck, bird<...>"
 
 	para "I wonder how they"
 	line "will get along."
@@ -153,7 +153,7 @@ UnknownText_0x1ad5a4: ; 0x1ad5a4
 ; 0x1ad5e4
 
 PokefanmTrevorSeenText: ; 0x1ad5e4
-	text "Hi. Did you know…?"
+	text "Hi. Did you know<...>?"
 
 	para "#MON get more"
 	line "friendly if you"
@@ -175,7 +175,7 @@ UnknownText_0x1ad660: ; 0x1ad660
 	line "an easy way to"
 
 	para "identify where I"
-	line "got my #MON…"
+	line "got my #MON<...>"
 	done
 ; 0x1ad6a1
 

@@ -275,7 +275,7 @@ MovementData_0x198148: ; 0x198148
 ; 0x19814d
 
 UnknownText_0x19814d: ; 0x19814d
-	text "…Tell me some-"
+	text "<...>Tell me some-"
 	line "thing."
 
 	para "Is it true that"
@@ -293,7 +293,7 @@ UnknownText_0x19814d: ; 0x19814d
 ; 0x1981e6
 
 UnknownText_0x1981e6: ; 0x1981e6
-	text "… Humph! Useless"
+	text "<...> Humph! Useless"
 	line "#MON!"
 
 	para "Listen, you. You"
@@ -336,7 +336,7 @@ UnknownText_0x198233: ; 0x198233
 ; 0x19835b
 
 UnknownText_0x19835b: ; 0x19835b
-	text "…Humph! I knew"
+	text "<...>Humph! I knew"
 	line "you were lying."
 	done
 ; 0x19837b
@@ -364,7 +364,7 @@ UnknownText_0x1983c7: ; 0x1983c7
 UnknownText_0x19841b: ; 0x19841b
 	text "The SLOWPOKE have"
 	line "disappeared from"
-	cont "town…"
+	cont "town<...>"
 
 	para "I heard their"
 	line "TAILS are being"
@@ -412,7 +412,7 @@ UnknownText_0x19851a: ; 0x19851a
 ; 0x1985b0
 
 UnknownText_0x1985b0: ; 0x1985b0
-	text "SLOWPOKE: …"
+	text "SLOWPOKE: <...>"
 
 	para $56, " ", $56, " ", $56
 	done
@@ -424,7 +424,7 @@ UnknownText_0x1985c3: ; 0x1985c3
 ; 0x1985cd
 
 WoosterText: ; 0x1985cd
-	text "WOOSTER: Gugyoo…"
+	text "WOOSTER: Gugyoo<...>"
 	done
 ; 0x1985df
 

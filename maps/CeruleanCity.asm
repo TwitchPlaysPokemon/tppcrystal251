@@ -224,7 +224,7 @@ UnknownText_0x184229: ; 0x184229
 ; 0x18424b
 
 UnknownText_0x18424b: ; 0x18424b
-	text "…"
+	text "<...>"
 	done
 ; 0x18424e
 
@@ -264,7 +264,7 @@ UnknownText_0x1842ee: ; 0x1842ee
 	text "Ayuh?"
 
 	para "My ITEMFINDER is"
-	line "responding…"
+	line "responding<...>"
 	done
 ; 0x184312
 
@@ -288,17 +288,17 @@ UnknownText_0x184345: ; 0x184345
 
 UnknownText_0x184381: ; 0x184381
 	text "There's a notice"
-	line "here…"
+	line "here<...>"
 
 	para "The BIKE SHOP has"
 	line "moved to GOLDENROD"
-	cont "CITY in JOHTO…"
+	cont "CITY in JOHTO<...>"
 	done
 ; 0x1843cc
 
 UnknownText_0x1843cc: ; 0x1843cc
 	text "There's a notice"
-	line "here…"
+	line "here<...>"
 
 	para "Stamp out thievery"
 	line "and make the city"
@@ -317,7 +317,7 @@ UnknownText_0x18443b: ; 0x18443b
 ; 0x184450
 
 UnknownText_0x184450: ; 0x184450
-	text "It's locked…"
+	text "It's locked<...>"
 	done
 ; 0x18445d
 

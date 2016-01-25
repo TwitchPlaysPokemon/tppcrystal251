@@ -722,8 +722,8 @@ UnknownText_0x6d45c: ; 0x6d45c
 ; 0x6d4c6
 
 UnknownText_0x6d4c6: ; 0x6d4c6
-	text "…This hideout is"
-	line "done for…"
+	text "<...>This hideout is"
+	line "done for<...>"
 
 	para "But that's fine."
 	line "The broadcast ex-"
@@ -744,9 +744,9 @@ UnknownText_0x6d4c6: ; 0x6d4c6
 	line "power soon enough."
 
 	para "Enjoy yourself"
-	line "while you can…"
+	line "while you can<...>"
 
-	para "Fufufufu…"
+	para "Fufufufu<...>"
 	done
 ; 0x6d5d8
 
@@ -761,7 +761,7 @@ UnknownText_0x6d5d8: ; 0x6d5d8
 	line "about the young"
 
 	para "guy I battled in"
-	line "the process…"
+	line "the process<...>"
 	done
 ; 0x6d64e
 
@@ -786,7 +786,7 @@ UnknownText_0x6d6cf: ; 0x6d6cf
 	cont "the problems."
 
 	para "I don't see a"
-	line "switch on it…"
+	line "switch on it<...>"
 
 	para "We have no choice."
 	line "We have to make"
@@ -865,7 +865,7 @@ UnknownText_0x6d8f8: ; 0x6d8f8
 ; 0x6d994
 
 UnknownText_0x6d994: ; 0x6d994
-	text "<PLAY_G>…"
+	text "<PLAY_G><...>"
 
 	para "The journey to be-"
 	line "coming the #MON"
@@ -876,7 +876,7 @@ UnknownText_0x6d994: ; 0x6d994
 	para "Knowing that, will"
 	line "you keep going?"
 
-	para "…"
+	para "<...>"
 
 	para "I see. No, you're"
 	line "right."
@@ -928,7 +928,7 @@ GruntM17SeenText: ; 0x6db22
 GruntM17BeatenText: ; 0x6db79
 	text "Bringing bats"
 	line "inside wasn't"
-	cont "a good idea…"
+	cont "a good idea<...>"
 	done
 ; 0x6db88
 
@@ -954,7 +954,7 @@ GruntM18SeenText: ; 0x6dbca
 ; 0x6dc09
 
 GruntM18BeatenText: ; 0x6dc09
-	text "Not even close…"
+	text "Not even close<...>"
 	done
 ; 0x6dc1a
 
@@ -983,7 +983,7 @@ GruntM19SeenText: ; 0x6dcb0
 ; 0x6dcc9
 
 GruntM19BeatenText: ; 0x6dcc9
-	text "Grrrr…"
+	text "Grrrr<...>"
 	done
 ; 0x6dcd1
 
@@ -999,7 +999,7 @@ UnknownText_0x6dcd1: ; 0x6dcd1
 ; 0x6dd39
 
 UnknownText_0x6dd39: ; 0x6dd39
-	text "The door's closed…"
+	text "The door's closed<...>"
 
 	para "It needs a pass-"
 	line "word to open."
@@ -1007,7 +1007,7 @@ UnknownText_0x6dd39: ; 0x6dd39
 ; 0x6dd6b
 
 UnknownText_0x6dd6b: ; 0x6dd6b
-	text "The door's closed…"
+	text "The door's closed<...>"
 
 	para "<PLAYER> entered"
 	line "the password."

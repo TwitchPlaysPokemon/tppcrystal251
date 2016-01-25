@@ -90,13 +90,13 @@ UnknownText_0x9f9db: ; 0x9f9db
 
 	para "I wonder how many"
 	line "#MON I should"
-	cont "take…"
+	cont "take<...>"
 
 	done
 ; 0x9fa32
 
 UnknownText_0x9fa32: ; 0x9fa32
-	text "Ehehehe…"
+	text "Ehehehe<...>"
 	line "I sneaked out of"
 	cont "work to come here."
 
@@ -133,7 +133,7 @@ UnknownText_0x9fafc: ; 0x9fafc
 
 UnknownText_0x9fb2f: ; 0x9fb2f
 	text "The BATTLE TOWER's"
-	line "doors are closed…"
+	line "doors are closed<...>"
 	done
 ; 0x9fb54
 

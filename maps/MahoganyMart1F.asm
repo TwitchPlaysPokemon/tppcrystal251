@@ -184,9 +184,9 @@ UnknownText_0x6c414: ; 0x6c414
 ; 0x6c46b
 
 UnknownText_0x6c46b: ; 0x6c46b
-	text "Arrgh… You found"
+	text "Arrgh<...> You found"
 	line "the secret stair-"
-	cont "way…"
+	cont "way<...>"
 	done
 ; 0x6c494
 
@@ -204,10 +204,10 @@ UnknownText_0x6c494: ; 0x6c494
 ; 0x6c501
 
 UnknownText_0x6c501: ; 0x6c501
-	text "Urrgh…"
+	text "Urrgh<...>"
 
 	para "That guy's dragon"
-	line "#MON are tough…"
+	line "#MON are tough<...>"
 	done
 ; 0x6c52a
 

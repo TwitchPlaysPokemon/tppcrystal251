@@ -434,7 +434,7 @@ MovementData_0x18d2e3: ; 0x18d2e3
 ; 0x18d2ea
 
 UnknownText_0x18d2ea: ; 0x18d2ea
-	text "Hm… Good to see"
+	text "Hm<...> Good to see"
 	line "you here."
 
 	para "No need to explain"
@@ -444,7 +444,7 @@ UnknownText_0x18d2ea: ; 0x18d2ea
 	line "here, didn't she?"
 
 	para "That girl is a"
-	line "handful…"
+	line "handful<...>"
 
 	para "I am sorry, but I"
 	line "must test you."
@@ -493,7 +493,7 @@ UnknownText_0x18d44a: ; 0x18d44a
 ; 0x18d47c
 
 UnknownText_0x18d47c: ; 0x18d47c
-	text "Hm… I see…"
+	text "Hm<...> I see<...>"
 
 	para "You care deeply"
 	line "for #MON."
@@ -523,13 +523,13 @@ UnknownText_0x18d520: ; 0x18d520
 	line "confer the RISING-"
 	cont "BADGE!"
 
-	para "…Or must I inform"
+	para "<...>Or must I inform"
 	line "LANCE of this?"
 	done
 ; 0x18d5a3
 
 UnknownText_0x18d5a3: ; 0x18d5a3
-	text "CLAIR…"
+	text "CLAIR<...>"
 
 	para "Reflect upon what"
 	line "it is that you"
@@ -546,7 +546,7 @@ UnknownText_0x18d5e5: ; 0x18d5e5
 ; 0x18d604
 
 UnknownText_0x18d604: ; 0x18d604
-	text "Hm… Good to see"
+	text "Hm<...> Good to see"
 	line "you here."
 
 	para "Your arrival is"
@@ -609,13 +609,13 @@ UnknownText_0x18d782: ; 0x18d782
 	line "CLAIR when she was"
 
 	para "younger. It is a"
-	line "little worrisome…"
+	line "little worrisome<...>"
 	done
 ; 0x18d7f6
 
 UnknownText_0x18d7f6: ; 0x18d7f6
 	text "Hah? I didn't"
-	line "quite catch that…"
+	line "quite catch that<...>"
 	done
 ; 0x18d816
 
@@ -626,7 +626,7 @@ UnknownText_0x18d816: ; 0x18d816
 ; 0x18d82d
 
 UnknownText_0x18d82d: ; 0x18d82d
-	text "Oh, I understand…"
+	text "Oh, I understand<...>"
 	done
 ; 0x18d840
 
@@ -668,7 +668,7 @@ UnknownText_0x18d916: ; 0x18d916
 
 	para $56, $56, $56, $56, $56, $56
 
-	para "…What? You passed?"
+	para "<...>What? You passed?"
 	done
 ; 0x18d974
 
@@ -686,13 +686,13 @@ UnknownText_0x18d983: ; 0x18d983
 ; 0x18d9ae
 
 UnknownText_0x18d9ae: ; 0x18d9ae
-	text "I-I understand…"
+	text "I-I understand<...>"
 	done
 ; 0x18d9bf
 
 UnknownText_0x18d9bf: ; 0x18d9bf
 	text "Here, this is the"
-	line "RISINGBADGE…"
+	line "RISINGBADGE<...>"
 
 	para "Hurry up! Take it!"
 	done

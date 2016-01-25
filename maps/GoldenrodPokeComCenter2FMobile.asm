@@ -172,7 +172,7 @@ UnknownText_0x627ee: ; 0x627ee
 	line "about where MOBILE"
 
 	para "ADAPTERS are to be"
-	line "used…"
+	line "used<...>"
 	done
 ; 0x62828
 
@@ -218,7 +218,7 @@ UnknownText_0x628f4: ; 0x628f4
 UnknownText_0x62989: ; 0x62989
 	text "It's a notice"
 	line "about using the"
-	cont "phone…"
+	cont "phone<...>"
 	done
 ; 0x629ae
 
@@ -264,12 +264,12 @@ UnknownText_0x62a5a: ; 0x62a5a
 UnknownText_0x62b26: ; 0x62b26
 	text "The ADMINISTRATION"
 	line "OFFICE received an"
-	cont "e-mail. It says…"
+	cont "e-mail. It says<...>"
 
 	para $56, " ", $56, " ", $56
 
 	para "To the #COM"
-	line "CENTER staff…"
+	line "CENTER staff<...>"
 
 	para "Wireless communi-"
 	line "cation has enabled"

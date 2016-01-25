@@ -30,7 +30,7 @@ ENDM
 	trigger_def ROUTE_27,                               wRoute27Trigger
 	trigger_def NEW_BARK_TOWN,                          wNewBarkTownTrigger
 	trigger_def ELMS_LAB,                               wElmsLabTrigger
-	trigger_def REDS_HOUSE_1F_RB,                         wKrissHouse1FTrigger
+	trigger_def REDS_HOUSE_1F_RB,                       wRedsHouse1FRBTrigger
 	trigger_def ROUTE_29,                               wRoute29Trigger
 	trigger_def CHERRYGROVE_CITY,                       wCherrygroveCityTrigger
 	trigger_def MR_POKEMONS_HOUSE,                      wMrPokemonsHouseTrigger
@@ -58,7 +58,7 @@ ENDM
 	trigger_def BATTLE_TOWER_HALLWAY,                   wBattleTowerHallwayTrigger
 	trigger_def BATTLE_TOWER_OUTSIDE,                   wBattleTowerOutsideTrigger
 	trigger_def ROUTE_43_GATE,                          wRoute43GateTrigger
-	trigger_def MT_MOON_B1F,                                wMountMoonTrigger
+	trigger_def MT_MOON_B1F,                            wMountMoonTrigger
 	trigger_def SPROUT_TOWER_3F,                        wSproutTower3FTrigger
 	trigger_def TIN_TOWER_1F,                           wTinTower1FTrigger
 	trigger_def BURNED_TOWER_1F,                        wBurnedTower1FTrigger
@@ -116,5 +116,6 @@ ENDM
 	trigger_def S_S_ANNE_2,                             wSSAnne2Trigger
 	trigger_def S_S_ANNE_3,                             wSSAnne3Trigger
 	trigger_def S_S_ANNE_5,                             wSSAnne5Trigger
+	trigger_def KRISS_HOUSE_1F,                         wKrissHouse1FTrigger
 	db $ff
 ; 4d15b

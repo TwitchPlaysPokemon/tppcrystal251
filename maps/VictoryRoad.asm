@@ -185,11 +185,11 @@ MovementData_0x74555: ; 0x74555
 UnknownText_0x7455f: ; 0x7455f
 	text "Hold it."
 
-	para "…Are you going to"
+	para "<...>Are you going to"
 	line "take the #MON"
 	cont "LEAGUE challenge?"
 
-	para "…Don't make me"
+	para "<...>Don't make me"
 	line "laugh."
 
 	para "You're so much"
@@ -210,32 +210,32 @@ UnknownText_0x7455f: ; 0x7455f
 ; 0x7463d
 
 UnknownText_0x7463d: ; 0x7463d
-	text "…I couldn't win…"
+	text "<...>I couldn't win<...>"
 
 	para "I gave it every-"
-	line "thing I had…"
+	line "thing I had<...>"
 
 	para "What you possess,"
-	line "and what I lack…"
+	line "and what I lack<...>"
 
 	para "I'm beginning to"
 	line "understand what"
 
 	para "that dragon master"
-	line "said to me…"
+	line "said to me<...>"
 	done
 ; 0x746ce
 
 UnknownText_0x746ce: ; 0x746ce
-	text "…I haven't given up"
+	text "<...>I haven't given up"
 	line "on becoming the"
-	cont "greatest trainer…"
+	cont "greatest trainer<...>"
 
 	para "I'm going to find"
 	line "out why I can't"
 
 	para "win and become"
-	line "stronger…"
+	line "stronger<...>"
 
 	para "When I do, I will"
 	line "challenge you."
@@ -244,13 +244,13 @@ UnknownText_0x746ce: ; 0x746ce
 	line "down with all my"
 	cont "power."
 
-	para "…Humph! You keep"
+	para "<...>Humph! You keep"
 	line "at it until then."
 	done
 ; 0x747aa
 
 UnknownText_0x747aa: ; 0x747aa
-	text "…Humph!"
+	text "<...>Humph!"
 
 	para "When it comes down"
 	line "to it, nothing can"

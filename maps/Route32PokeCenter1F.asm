@@ -81,7 +81,7 @@ UnknownText_0x69c1b: ; 0x69c1b
 
 UnknownText_0x69c6c: ; 0x69c6c
 	text "Oh. That's rather"
-	line "disappointing…"
+	line "disappointing<...>"
 	done
 ; 0x69c8d
 
@@ -97,7 +97,7 @@ UnknownText_0x69cac: ; 0x69cac
 
 	para "Maybe an item that"
 	line "increases ATTACK"
-	cont "power…"
+	cont "power<...>"
 	done
 ; 0x69cf9
 

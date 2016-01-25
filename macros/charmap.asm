@@ -47,7 +47,8 @@
 	charmap "<''>",     $73
 	charmap "<ID>",     $73
 	charmap "№",        $74
-	charmap "…",        $75
+	; charmap "…",        $75
+	charmap "<...>",    $75
 
 	charmap "┌",        $79
 	charmap "─",        $7a

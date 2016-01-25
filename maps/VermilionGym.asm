@@ -363,7 +363,7 @@ UnknownText_0x19244b: ; 0x19244b
 	line "were working, you"
 
 	para "would have been"
-	line "toast…"
+	line "toast<...>"
 	done
 ; 0x192487
 
@@ -381,7 +381,7 @@ JugglerHortonBeatenText: ; 0x1924ba
 UnknownText_0x1924d6: ; 0x1924d6
 	text "I can only juggle"
 	line "three balls"
-	cont "at once…"
+	cont "at once<...>"
 	done
 ; 0x192517
 

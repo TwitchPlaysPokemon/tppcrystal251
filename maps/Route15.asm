@@ -222,7 +222,7 @@ TeacherHillarySeenText: ; 0x1aa64b
 
 TeacherHillaryBeatenText: ; 0x1aa6b3
 	text "I didn't want to"
-	line "lose…"
+	line "lose<...>"
 	done
 ; 0x1aa6ca
 

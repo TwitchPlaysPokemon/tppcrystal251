@@ -88,7 +88,7 @@ UnknownText_0x549a3: ; 0x549a3
 	para "Oh? Let me see"
 	line "your @"
 	text_from_ram StringBuffer3
-	text "…"
+	text "<...>"
 	done
 ; 0x549fc
 
@@ -137,11 +137,11 @@ UnknownText_0x54b04: ; 0x54b04
 	line "battles, and my"
 
 	para "#MON end up"
-	line "fainting…"
+	line "fainting<...>"
 
 	para "Maybe that's why"
 	line "my #MON don't"
-	cont "like me much…"
+	cont "like me much<...>"
 	done
 ; 0x54b67
 

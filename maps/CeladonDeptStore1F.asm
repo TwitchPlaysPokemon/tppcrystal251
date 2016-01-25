@@ -70,7 +70,7 @@ UnknownText_0x70aa9: ; 0x70aa9
 	text "This is my first"
 	line "time here."
 
-	para "It's so big…"
+	para "It's so big<...>"
 
 	para "I'm afraid I'll"
 	line "get lost."

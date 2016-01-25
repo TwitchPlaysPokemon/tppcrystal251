@@ -59,23 +59,46 @@ SSAnne5_MapScriptHeader:
 	startbattle
 	reloadmap
 	iffalse .loop
-	playmusic MUSIC_NONE
 	loadfont
 	writetext SSAnne5TextAfter
 	waitbutton
 	closetext
-	; replace with shipwreck
-	special Function4989a
-	cry CELEBI
 	pause 30
+	playmusic MUSIC_NONE
+	earthquake 100
+	pause 30
+	loadfont
+	writetext SSAnne5ShipwreckText
+	waitbutton
+	closetext
+	checkevent EVENT_ROCKETS_SS_ANNE_1
+	iftrue .female2
+	showemote $0, $2, 15
+	pause 15
+	spriteface $2, LEFT
+	jump .finish
+.female2
+	showemote $0, $3, 15
+	pause 15
+	spriteface $3, LEFT
+.finish
+	loadfont
+	writetext SSAnne5ShipwreckText2
+	closetext
 	special Special_FadeToBlack
 	special Functiond91
-	special HealParty
-	playsound SFX_WARP_FROM
+	playsound SFX_HYDRO_PUMP
+	pause 8
+	playsound SFX_HYDRO_PUMP
+	pause 8
+	playsound SFX_HYDRO_PUMP
+	pause 8
+	playsound SFX_HYDRO_PUMP
 	pause 180
 	setflag ENGINE_EARLY_GAME_KANTO
-	warpfacing DOWN, GROUP_CHERRYGROVE_CITY, MAP_CHERRYGROVE_CITY, 10, 9
+	domaptrigger GROUP_CHERRYGROVE_CITY, MAP_CHERRYGROVE_CITY, 2
 	blackoutmod GROUP_CHERRYGROVE_CITY, MAP_CHERRYGROVE_CITY
+	warpfacing DOWN, GROUP_CHERRYGROVE_CITY, MAP_CHERRYGROVE_CITY, 10, 9
 	end
 
 .GetWinText
@@ -302,6 +325,22 @@ _SSAnne5AfterBattleText2:
 	line "more."
 	done
 
+SSAnne5ShipwreckText:
+	text "PA: All GRUNTS!"
+	line "All GRUNTS!"
+
+	para "This ship is on a"
+	line "collision course."
+	cont "Abort mission!"
+
+	para "Repeat:"
+	line "Abort mission!"
+	done
+
+SSAnne5ShipwreckText2:
+	text "ABANDON"
+	line "SHIIIIIIIIIIIIIIII"
+	done
 
 SSAnne5_MapEventHeader:
 	db 0, 0
@@ -319,5 +358,5 @@ SSAnne5_MapEventHeader:
 	person_event SPRITE_SUPER_NERD,    15, 11, $2, 1, 1, -1, -1, 0, 0, 0, SSAnne5SuperNerdScript, EVENT_ROCKET_TAKEOVER_OF_SS_ANNE
 	person_event SPRITE_SAILOR,         8,  8, $6, 0, 0, -1, -1, 0, 2, 3, SSAnee5Sailor1Battle, EVENT_ROCKET_TAKEOVER_OF_SS_ANNE
 	person_event SPRITE_SAILOR,        12, 14, $7, 0, 0, -1, -1, 0, 2, 3, SSAnee5Sailor2Battle, EVENT_ROCKET_TAKEOVER_OF_SS_ANNE
-	person_event SPRITE_ROCKET,         12, 15, $9, 0, 0, -1, -1, 0, 0, 0, ObjectEvent, EVENT_ROCKETS_NOT_YET_BOARDED_SS_ANNE
-	person_event SPRITE_ROCKET,          8, 14, $9, 0, 0, -1, -1, 0, 0, 0, ObjectEvent, EVENT_ROCKETS_NOT_YET_BOARDED_SS_ANNE
+	person_event SPRITE_ROCKET,         11, 15, $9, 0, 0, -1, -1, 0, 0, 0, ObjectEvent, EVENT_ROCKETS_NOT_YET_BOARDED_SS_ANNE
+	person_event SPRITE_ROCKET,          9, 14, $9, 0, 0, -1, -1, 0, 0, 0, ObjectEvent, EVENT_ROCKETS_NOT_YET_BOARDED_SS_ANNE

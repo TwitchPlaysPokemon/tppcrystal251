@@ -545,7 +545,7 @@ UnknownText_0x1943ed: ; 0x1943ed
 	line "I wonder if she'll"
 
 	para "lend me her water"
-	line "bottle…"
+	line "bottle<...>"
 	done
 ; 0x19446f
 
@@ -599,7 +599,7 @@ UnknownText_0x1945b8: ; 0x1945b8
 	line "the huge #MON"
 
 	para "CENTER they just"
-	line "opened…"
+	line "opened<...>"
 	done
 ; 0x194626
 

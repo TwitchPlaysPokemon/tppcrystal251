@@ -485,7 +485,7 @@ FisherWilton1BeatenText: ; 0x19da91
 
 UnknownText_0x19daa8: ; 0x19daa8
 	text "That POLIWAG that"
-	line "got away…"
+	line "got away<...>"
 	cont "It was huge."
 
 	para "I swear it must've"
@@ -507,7 +507,7 @@ FisherEdgarSeenText: ; 0x19daf7
 ; 0x19db55
 
 FisherEdgarBeatenText: ; 0x19db55
-	text "Hmmmm… "
+	text "Hmmmm<...> "
 	line "This isn't right."
 	done
 ; 0x19db6f
@@ -566,8 +566,8 @@ PsychicPhilSeenText: ; 0x19dcc4
 ; 0x19dcdd
 
 PsychicPhilBeatenText: ; 0x19dcdd
-	text "Arrgh… That's a"
-	line "shocking loss…"
+	text "Arrgh<...> That's a"
+	line "shocking loss<...>"
 	done
 ; 0x19dcfc
 

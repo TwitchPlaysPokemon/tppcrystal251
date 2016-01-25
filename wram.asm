@@ -2066,7 +2066,7 @@ wHallOfFameTrigger::                         ds 1 ; d984
 wRoute27Trigger::                            ds 1 ; d985
 wNewBarkTownTrigger::                        ds 1 ; d986
 wElmsLabTrigger::                            ds 1 ; d987
-wKrissHouse1FTrigger::                       ds 1 ; d988
+wRedsHouse1FRBTrigger::                      ds 1 ; d988
 wRoute29Trigger::                            ds 1 ; d989
 wCherrygroveCityTrigger::                    ds 1 ; d98a
 wMrPokemonsHouseTrigger::                    ds 1 ; d98b
@@ -2152,8 +2152,9 @@ wSSAnne1Trigger::                            ds 1
 wSSAnne2Trigger::                            ds 1
 wSSAnne3Trigger::                            ds 1
 wSSAnne5Trigger::                            ds 1
+wKrissHouse1FTrigger::                       ds 1
 
-	ds 20
+	ds 19
 
 
 SECTION "Events", WRAMX, BANK [1]

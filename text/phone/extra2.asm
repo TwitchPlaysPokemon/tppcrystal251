@@ -96,7 +96,7 @@ UnknownText_0xa42ab: ; 0xa42ab
 ; 0xa42f2
 
 UnknownText_0xa42f2: ; 0xa42f2
-	text "Anyway…"
+	text "Anyway<...>"
 
 	para "If you're short on"
 	line "money, take down"
@@ -247,7 +247,7 @@ UnknownText_0xa4730: ; 0xa4730
 ; 0xa4794
 
 UnknownText_0xa4794: ; 0xa4794
-	text "Oh, but…"
+	text "Oh, but<...>"
 	line "I'm not dangerous!"
 
 	para "I just want to"
@@ -260,10 +260,10 @@ UnknownText_0xa4794: ; 0xa4794
 
 UnknownText_0xa47eb: ; 0xa47eb
 	text "Your phone list is"
-	line "already full…"
+	line "already full<...>"
 
 	para "You must be really"
-	line "popular…"
+	line "popular<...>"
 	done
 ; 0xa4829
 
@@ -373,11 +373,11 @@ UnknownText_0xa4b47: ; 0xa4b47
 ; 0xa4b87
 
 UnknownText_0xa4b87: ; 0xa4b87
-	text "Oh… I thought it"
+	text "Oh<...> I thought it"
 	line "would be a good"
 
 	para "break to call you"
-	line "when I'm studying…"
+	line "when I'm studying<...>"
 	done
 ; 0xa4bcd
 
@@ -539,9 +539,9 @@ UnknownText_0xa502e: ; 0xa502e
 ; 0xa505f
 
 UnknownText_0xa505f: ; 0xa505f
-	text "Oh… I wish I had a"
+	text "Oh<...> I wish I had a"
 	line "chance to meet"
-	cont "PROF.OAK…"
+	cont "PROF.OAK<...>"
 	done
 ; 0xa508c
 
@@ -593,10 +593,10 @@ UnknownText_0xa51ac: ; 0xa51ac
 ; 0xa51ee
 
 UnknownText_0xa51ee: ; 0xa51ee
-	text "You…"
+	text "You<...>"
 
 	para "I bet you don't"
-	line "even like PIKACHU…"
+	line "even like PIKACHU<...>"
 	done
 ; 0xa5216
 
@@ -710,7 +710,7 @@ UnknownText_0xa5513: ; 0xa5513
 
 UnknownText_0xa5545: ; 0xa5545
 	text "By the way, you're"
-	line "a #MANIAC…"
+	line "a #MANIAC<...>"
 
 	para "I can tell."
 	line "Yes, you are."
@@ -746,7 +746,7 @@ UnknownText_0xa5666: ; 0xa5666
 	line "than amazing!"
 
 	para "To be a #MANIAC"
-	line "like him someday…"
+	line "like him someday<...>"
 
 	para "That's my dream."
 	done
@@ -754,9 +754,9 @@ UnknownText_0xa5666: ; 0xa5666
 
 UnknownText_0xa56b6: ; 0xa56b6
 	text "You're going to"
-	line "regret it…"
+	line "regret it<...>"
 
-	para "And I won't care…"
+	para "And I won't care<...>"
 	done
 ; 0xa56e2
 
@@ -811,7 +811,7 @@ UnknownText_0xa5820: ; 0xa5820
 ; 0xa5842
 
 UnknownText_0xa5842: ; 0xa5842
-	text "Aww… Oh well."
+	text "Aww<...> Oh well."
 	line "Look for me if you"
 
 	para "want to talk about"
@@ -853,7 +853,7 @@ UnknownText_0xa5937: ; 0xa5937
 	line "really strong."
 
 	para "But I don't want"
-	line "to just slink off…"
+	line "to just slink off<...>"
 
 	para "I know! Could I"
 	line "get your number?"
@@ -886,7 +886,7 @@ UnknownText_0xa5a28: ; 0xa5a28
 UnknownText_0xa5a5a: ; 0xa5a5a
 	text "A bird-user friend"
 	line "isn't a bad thing"
-	cont "to have, I think…"
+	cont "to have, I think<...>"
 
 	para "Won't you"
 	line "reconsider?"
@@ -932,7 +932,7 @@ UnknownText_0xa5b3f: ; 0xa5b3f
 
 UnknownText_0xa5bc4: ; 0xa5bc4
 	text "Eh, our battle was"
-	line "fun, I'd say…"
+	line "fun, I'd say<...>"
 
 	para "When I'm fishing,"
 	line "I sometimes snag"
@@ -962,7 +962,7 @@ UnknownText_0xa5c8e: ; 0xa5c8e
 ; 0xa5cc5
 
 UnknownText_0xa5cc5: ; 0xa5cc5
-	text "All right… Come"
+	text "All right<...> Come"
 	line "back if you have a"
 	cont "change of heart."
 	done
@@ -1013,7 +1013,7 @@ UnknownText_0xa5dc6: ; 0xa5dc6
 
 	para "My training makes"
 	line "it impossible to"
-	cont "chat much, but…"
+	cont "chat much, but<...>"
 	done
 ; 0xa5e63
 
@@ -1053,10 +1053,10 @@ UnknownText_0xa5f37: ; 0xa5f37
 	line "you, ", $52, "!"
 
 	para "I've been training"
-	line "all alone…"
+	line "all alone<...>"
 
 	para "I was happy that"
-	line "you cared to call…"
+	line "you cared to call<...>"
 
 	para "I want you to have"
 	line "this!"
@@ -1147,7 +1147,7 @@ UnknownText_0xa6200: ; 0xa6200
 
 	para "If only I'd begun"
 	line "#MON when I was"
-	cont "a tad younger…"
+	cont "a tad younger<...>"
 
 	para "I want you to work"
 	line "and succeed for"
@@ -1162,7 +1162,7 @@ UnknownText_0xa6295: ; 0xa6295
 	line "angry to lose."
 
 	para "I'll have to train"
-	line "much harder…"
+	line "much harder<...>"
 
 	para "Here's my number."
 	line "I'm ERIN--don't"
@@ -1189,7 +1189,7 @@ UnknownText_0xa6359: ; 0xa6359
 ; 0xa638c
 
 UnknownText_0xa638c: ; 0xa638c
-	text "Oh… I'm sad…"
+	text "Oh<...> I'm sad<...>"
 	line "If you do want to"
 
 	para "battle, come see"
@@ -1211,7 +1211,7 @@ UnknownText_0xa63f1: ; 0xa63f1
 
 UnknownText_0xa6411: ; 0xa6411
 	text "That's too bad!"
-	line "You have no room…"
+	line "You have no room<...>"
 
 	para "I'll give it to"
 	line "you another time."
@@ -1219,10 +1219,10 @@ UnknownText_0xa6411: ; 0xa6411
 ; 0xa6454
 
 UnknownText_0xa6454: ; 0xa6454
-	text "Aww… I lost again!"
+	text "Aww<...> I lost again!"
 
 	para "I wonder how many"
-	line "times that is…"
+	line "times that is<...>"
 
 	para "Thanks for coming!"
 	line "Here's a present!"

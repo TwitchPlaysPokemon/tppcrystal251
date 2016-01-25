@@ -225,7 +225,7 @@ _SSAnne10Text7:
 
 _SSAnne10BedText1:
 	text "It's a comfy bed."
-	line "Let's take a nap…"
+	line "Let's take a nap<...>"
 	done
 
 _SSAnne10BedText2:

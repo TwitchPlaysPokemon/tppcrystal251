@@ -281,10 +281,10 @@ UnknownText_0x68e39: ; 0x68e39
 
 	para "Many other items"
 	line "can be held by"
-	cont "#MON…"
+	cont "#MON<...>"
 
 	para "It sure is tough"
-	line "taking notes…"
+	line "taking notes<...>"
 	done
 ; 0x68eb2
 
@@ -381,7 +381,7 @@ UnknownText_0x690cb: ; 0x690cb
 
 UnknownText_0x69136: ; 0x69136
 	text "It's this kid's"
-	line "notebook…"
+	line "notebook<...>"
 
 	para "Catch #MON"
 	line "using # BALLS."
@@ -436,12 +436,12 @@ UnknownText_0x69287: ; 0x69287
 	line "other trainers."
 
 	para "The next page"
-	line "is… Blank!"
+	line "is<...> Blank!"
 
-	para "Boy: E-he-he…"
+	para "Boy: E-he-he<...>"
 
 	para "I haven't written"
-	line "anymore…"
+	line "anymore<...>"
 	done
 ; 0x69344
 

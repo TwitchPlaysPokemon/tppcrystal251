@@ -1109,7 +1109,7 @@ UnknownText_0x1931ef: ; 0x1931ef
 
 UnknownText_0x19324d: ; 0x19324d
 	text "No? That's very"
-	line "strange…"
+	line "strange<...>"
 	done
 ; 0x193266
 
@@ -1120,7 +1120,7 @@ UnknownText_0x193266: ; 0x193266
 
 UnknownText_0x193278: ; 0x193278
 	text "We need to change"
-	line "the look here…"
+	line "the look here<...>"
 	done
 ; 0x19329a
 

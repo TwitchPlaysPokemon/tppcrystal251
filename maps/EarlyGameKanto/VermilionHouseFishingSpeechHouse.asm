@@ -86,8 +86,8 @@ _VermilionHouse2Text_560bb:
 	done
 
 _VermilionHouse2Text_560c0:
-	text "Oh… That's so"
-	line "disappointing…"
+	text "Oh<...> That's so"
+	line "disappointing<...>"
 	done
 
 _VermilionHouse2Text_560c5:

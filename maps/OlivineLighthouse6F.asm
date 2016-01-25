@@ -180,39 +180,39 @@ MovementData_0x60c79: ; 0x60c79
 ; 0x60c81
 
 UnknownText_0x60c81: ; 0x60c81
-	text "JASMINE: … This"
+	text "JASMINE: <...> This"
 	line "#MON always"
 
 	para "kept the sea lit"
 	line "at night."
 
-	para "…But it suddenly"
-	line "got sick… It's"
-	cont "gasping for air…"
+	para "<...>But it suddenly"
+	line "got sick<...> It's"
+	cont "gasping for air<...>"
 
-	para "…I understand"
+	para "<...>I understand"
 	line "that there is a"
 
 	para "wonderful PHARMACY"
-	line "in CIANWOOD…"
+	line "in CIANWOOD<...>"
 
 	para "But that's across"
-	line "the sea…"
+	line "the sea<...>"
 
 	para "And I can't leave"
-	line "AMPHY unattended…"
+	line "AMPHY unattended<...>"
 	done
 ; 0x60d64
 
 UnknownText_0x60d64: ; 0x60d64
-	text "…May I ask you to"
+	text "<...>May I ask you to"
 	line "get some medicine"
 	cont "for me? Please?"
 	done
 ; 0x60d99
 
 UnknownText_0x60d99: ; 0x60d99
-	text "JASMINE: …Will"
+	text "JASMINE: <...>Will"
 	line "that medicine cure"
 	cont "AMPHY?"
 	done
@@ -226,18 +226,18 @@ UnknownText_0x60dc3: ; 0x60dc3
 ; 0x60dea
 
 UnknownText_0x60dea: ; 0x60dea
-	text "JASMINE: …Um,"
+	text "JASMINE: <...>Um,"
 	line "please don't be"
-	cont "offended…"
+	cont "offended<...>"
 
-	para "…AMPHY will not"
+	para "<...>AMPHY will not"
 	line "take anything from"
-	cont "anyone but me…"
+	cont "anyone but me<...>"
 	done
 ; 0x60e44
 
 UnknownText_0x60e44: ; 0x60e44
-	text "JASMINE: …"
+	text "JASMINE: <...>"
 
 	para "AMPHY, how are you"
 	line "feeling?"
@@ -245,39 +245,39 @@ UnknownText_0x60e44: ; 0x60e44
 ; 0x60e6c
 
 UnknownText_0x60e6c: ; 0x60e6c
-	text "JASMINE: …Oh, I'm"
-	line "so relieved…"
+	text "JASMINE: <...>Oh, I'm"
+	line "so relieved<...>"
 
 	para "This is just so"
-	line "wonderful…"
+	line "wonderful<...>"
 
 	para "Thank you so very,"
 	line "very much."
 
-	para "…I will return to"
-	line "the GYM…"
+	para "<...>I will return to"
+	line "the GYM<...>"
 	done
 ; 0x60edf
 
 UnknownText_0x60edf: ; 0x60edf
-	text "JASMINE: …I see…"
+	text "JASMINE: <...>I see<...>"
 	done
 ; 0x60ef1
 
 UnknownText_0x60ef1: ; 0x60ef1
-	text "…AMPHY, hang on!"
+	text "<...>AMPHY, hang on!"
 	done
 ; 0x60f03
 
 UnknownText_0x60f03: ; 0x60f03
-	text "AMPHY: …"
-	line "…Pa… paloo…"
+	text "AMPHY: <...>"
+	line "<...>Pa<...> paloo<...>"
 	done
 ; 0x60f19
 
 UnknownText_0x60f19: ; 0x60f19
 	text "Its breathing is"
-	line "terribly labored…"
+	line "terribly labored<...>"
 	done
 ; 0x60f3d
 

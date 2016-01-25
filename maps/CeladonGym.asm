@@ -261,22 +261,22 @@ UnknownScript_0x72b21: ; 0x72b21
 ; 0x72b28
 
 UnknownText_0x72b28: ; 0x72b28
-	text "ERIKA: Hello…"
+	text "ERIKA: Hello<...>"
 	line "Lovely weather,"
 
 	para "isn't it?"
-	line "It's so pleasant…"
+	line "It's so pleasant<...>"
 
-	para "…I'm afraid I may"
-	line "doze off…"
+	para "<...>I'm afraid I may"
+	line "doze off<...>"
 
 	para "My name is ERIKA."
 	line "I am the LEADER of"
 	cont "CELADON GYM."
 
-	para "…Oh? A native"
+	para "<...>Oh? A native"
 	line "of KANTO, you"
-	cont "say? How nice…"
+	cont "say? How nice<...>"
 
 	para "Oh. I'm sorry, I"
 	line "didn't realize"
@@ -291,13 +291,13 @@ UnknownText_0x72b28: ; 0x72b28
 
 UnknownText_0x72c3e: ; 0x72c3e
 	text "ERIKA: Oh!"
-	line "I concede defeat…"
+	line "I concede defeat<...>"
 
 	para "You are remarkably"
-	line "strong…"
+	line "strong<...>"
 
 	para "I shall give you"
-	line "RAINBOWBADGE…"
+	line "RAINBOWBADGE<...>"
 	done
 ; 0x72c96
 
@@ -325,20 +325,20 @@ UnknownText_0x72cb0: ; 0x72cb0
 	cont "your #MON."
 
 	para "Please use it if"
-	line "it pleases you…"
+	line "it pleases you<...>"
 	done
 ; 0x72d8f
 
 UnknownText_0x72d8f: ; 0x72d8f
 	text "ERIKA: Losing"
 	line "leaves a bitter"
-	cont "aftertaste…"
+	cont "aftertaste<...>"
 
 	para "But knowing that"
 	line "there are strong"
 
 	para "trainers spurs me"
-	line "to do better…"
+	line "to do better<...>"
 	done
 ; 0x72dfc
 
@@ -369,7 +369,7 @@ PicnickerTanyaSeenText: ; 0x72e53
 ; 0x72e7f
 
 PicnickerTanyaBeatenText: ; 0x72e7f
-	text "EXEGGUTOR, no…"
+	text "EXEGGUTOR, no<...>"
 	done
 ; 0x72e8e
 
@@ -407,7 +407,7 @@ TwinsJoandzoe1SeenText: ; 0x72f32
 ; 0x72f62
 
 TwinsJoandzoe1BeatenText: ; 0x72f62
-	text "Oh… We lost…"
+	text "Oh<...> We lost<...>"
 	done
 ; 0x72f70
 
@@ -424,7 +424,7 @@ TwinsJoandzoe2SeenText: ; 0x72f91
 ; 0x72faf
 
 TwinsJoandzoe2BeatenText: ; 0x72faf
-	text "We couldn't win…"
+	text "We couldn't win<...>"
 	done
 ; 0x72fc0
 

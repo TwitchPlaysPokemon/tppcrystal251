@@ -495,7 +495,7 @@ GruntM3SeenText: ; 0x5d4f4
 
 GruntM3BeatenText: ; 0x5d582
 	text "Too strong! We"
-	line "must watch you…"
+	line "must watch you<...>"
 	done
 ; 0x5d5a2
 
@@ -504,7 +504,7 @@ UnknownText_0x5d5a2: ; 0x5d5a2
 
 	para "Our plan could be"
 	line "ruined. I must"
-	cont "warn the others…"
+	cont "warn the others<...>"
 	done
 ; 0x5d5e7
 

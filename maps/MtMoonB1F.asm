@@ -100,12 +100,12 @@ UnknownText_0x74105: ; 0x74105
 	para "It's been a while,"
 	line "<PLAYER>."
 
-	para "…Since I lost to"
+	para "<...>Since I lost to"
 	line "you, I thought"
 
 	para "about what I was"
 	line "lacking with my"
-	cont "#MON…"
+	cont "#MON<...>"
 
 	para "And we came up"
 	line "with an answer."
@@ -122,17 +122,17 @@ UnknownText_0x7419d: ; 0x7419d
 	line "my #MON to be"
 
 	para "the best they"
-	line "could be…"
+	line "could be<...>"
 
-	para "…But it still "
-	line "wasn't enough…"
+	para "<...>But it still "
+	line "wasn't enough<...>"
 	done
 ; 0x741fa
 
 UnknownText_0x741fa: ; 0x741fa
 	text $56, " ", $56, " ", $56
 
-	para "…You won, fair"
+	para "<...>You won, fair"
 	line "and square."
 
 	para "I admit it. But"
@@ -146,7 +146,7 @@ UnknownText_0x741fa: ; 0x741fa
 	para "Because these guys"
 	line "are behind me."
 
-	para "…Listen, <PLAYER>."
+	para "<...>Listen, <PLAYER>."
 
 	para "One of these days"
 	line "I'm going to prove"

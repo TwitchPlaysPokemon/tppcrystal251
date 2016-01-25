@@ -60,11 +60,11 @@ UnknownText_0x7ad2f: ; 0x7ad2f
 	line "some people"
 	cont "call it PIKAQ."
 
-	para "…sigh…"
+	para "<...>sigh<...>"
 
 	para "If only I was a"
 	line "great researcher"
-	cont "like PROF.ELM…"
+	cont "like PROF.ELM<...>"
 	done
 ; 0x7add4
 
@@ -102,7 +102,7 @@ UnknownText_0x7ae7b: ; 0x7ae7b
 
 UnknownText_0x7ae9b: ; 0x7ae9b
 	text "#MON!"
-	line "#MON CHANNEL…"
+	line "#MON CHANNEL<...>"
 	done
 ; 0x7aeb0
 

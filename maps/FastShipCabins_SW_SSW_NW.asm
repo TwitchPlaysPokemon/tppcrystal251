@@ -193,8 +193,8 @@ FirebreatherLyleSeenText: ; 0x75b04
 ; 0x75b38
 
 FirebreatherLyleBeatenText: ; 0x75b38
-	text "Fizzle… The"
-	line "flame's tiny…"
+	text "Fizzle<...> The"
+	line "flame's tiny<...>"
 	done
 ; 0x75b52
 
@@ -235,7 +235,7 @@ BeautyCassieSeenText: ; 0x75c07
 ; 0x75c32
 
 BeautyCassieBeatenText: ; 0x75c32
-	text "My heart weeps…"
+	text "My heart weeps<...>"
 	done
 ; 0x75c43
 
@@ -268,11 +268,11 @@ GuitaristClydeBeatenText: ; 0x75ce4
 UnknownText_0x75cfe: ; 0x75cfe
 	text "I was going to"
 	line "make my debut at"
-	cont "the BATTLE TOWER…"
+	cont "the BATTLE TOWER<...>"
 
 	para "I should go back"
 	line "to VERMILION and"
-	cont "redo my training…"
+	cont "redo my training<...>"
 	done
 ; 0x75d65
 
@@ -287,7 +287,7 @@ UnknownText_0x75d65: ; 0x75d65
 
 UnknownText_0x75da4: ; 0x75da4
 	text "A comfy bed!"
-	line "Time to sleep…"
+	line "Time to sleep<...>"
 	done
 ; 0x75dc1
 

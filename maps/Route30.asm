@@ -421,7 +421,7 @@ Bug_catcherDonSeenText: ; 0x1a19d8
 Bug_catcherDonBeatenText: ; 0x1a1a03
 	text "Argh! You're too"
 	line "strong for my bug"
-	cont "#MON …"
+	cont "#MON <...>"
 	done
 ; 0x1a1a1c
 
@@ -491,7 +491,7 @@ UnknownText_0x1a1b66: ; 0x1a1b66
 ; 0x1a1bc0
 
 UnknownText_0x1a1bc0: ; 0x1a1bc0
-	text "I lost again…"
+	text "I lost again<...>"
 	line "Gee, you're tough!"
 
 	para "Oh yeah, I almost"

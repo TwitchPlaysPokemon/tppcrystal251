@@ -114,8 +114,8 @@ UnknownText_0x9a70e: ; 0x9a70e
 ; 0x9a805
 
 UnknownText_0x9a805: ; 0x9a805
-	text "Oh… To each his"
-	line "own, I suppose…"
+	text "Oh<...> To each his"
+	line "own, I suppose<...>"
 	done
 ; 0x9a826
 
@@ -141,7 +141,7 @@ UnknownText_0x9a84c: ; 0x9a84c
 
 	para "The two #MON"
 	line "haven't been seen"
-	cont "since…"
+	cont "since<...>"
 
 	para "Keep reading?"
 	done

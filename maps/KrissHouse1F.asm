@@ -1,10 +1,27 @@
 KrissHouse1F_MapScriptHeader: ; 0x7a4cc
 	; trigger count
-	db 0
+	db 2
+	dw .Trigger0, 0
+	dw .Trigger1, 0
 
 	; callback count
 	db 0
 ; 0x7a4d6
+.Trigger0
+	priorityjump MomElatedToSeeYouAlive
+	end
+
+.Trigger1
+	end
+
+MomElatedToSeeYouAlive:
+	; put script here
+	dotrigger 1
+	setevent EVENT_MOM_POSITION_1
+	clearevent EVENT_MOM_POSITION_2
+	setflag ENGINE_PHONE_CARD
+	addcellnum $1 ; PHONE_MOM
+	end
 
 MomScript_0x7a582: ; 0x7a582
 	loadfont
@@ -109,7 +126,7 @@ UnknownText_0x7a8e5: ; 0x7a8e5
 	text "So, what was PROF."
 	line "ELM's errand?"
 
-	para "…"
+	para "<...>"
 
 	para "That does sound"
 	line "challenging."
@@ -182,7 +199,7 @@ UnknownText_0x7aa64: ; 0x7aa64
 
 UnknownText_0x7aa91: ; 0x7aa91
 	text "Let's see what's"
-	line "in the fridge…"
+	line "in the fridge<...>"
 
 	para "FRESH WATER and"
 	line "tasty LEMONADE!"
@@ -194,7 +211,7 @@ UnknownText_0x7aad0: ; 0x7aad0
 	line "TV: Stars dot the"
 
 	para "sky as two boys"
-	line "ride on a train…"
+	line "ride on a train<...>"
 
 	para "I'd better get"
 	line "rolling too!"

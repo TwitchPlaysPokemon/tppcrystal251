@@ -246,7 +246,7 @@ CamperSidSeenText: ; 0x1ab0c2
 
 CamperSidBeatenText: ; 0x1ab0da
 	text "I was just point-"
-	line "ing out…"
+	line "ing out<...>"
 	done
 ; 0x1ab0f6
 
@@ -285,7 +285,7 @@ UnknownText_0x1ab15f: ; 0x1ab15f
 HikerTimSeenText: ; 0x1ab1a8
 	text "She'll be coming"
 	line "'round MT.SILVER"
-	cont "when she comes…"
+	cont "when she comes<...>"
 
 	para "MT.SILVER is in"
 	line "JOHTO, right?"
@@ -294,7 +294,7 @@ HikerTimSeenText: ; 0x1ab1a8
 
 HikerTimBeatenText: ; 0x1ab1f7
 	text "I was too busy"
-	line "singing…"
+	line "singing<...>"
 	done
 ; 0x1ab210
 
@@ -315,7 +315,7 @@ HikerSidneySeenText: ; 0x1ab232
 
 HikerSidneyBeatenText: ; 0x1ab260
 	text "Oh, dang!"
-	line "I lost that…"
+	line "I lost that<...>"
 	done
 ; 0x1ab278
 

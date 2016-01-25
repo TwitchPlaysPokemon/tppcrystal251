@@ -17,7 +17,7 @@ MapRoute7Signpost1Script: ; 0x1ad385
 UnknownText_0x1ad388: ; 0x1ad388
 	text "What's this flyer?"
 
-	para "… Uncouth members"
+	para "<...> Uncouth members"
 	line "of the HELIX CHOIR"
 	cont "have been holding"
 
@@ -35,7 +35,7 @@ UnknownText_0x1ad388: ; 0x1ad388
 ; 0x1ad456
 
 UnknownText_0x1ad456: ; 0x1ad456
-	text "It's locked…"
+	text "It's locked<...>"
 	done
 ; 0x1ad463
 
