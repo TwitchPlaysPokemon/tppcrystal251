@@ -44,11 +44,11 @@ UnknownScript_0x1a8016: ; 0x1a8016
 	follow $2, $0
 	applymovement $2, MovementData_0x1a80e0
 	stopfollow
-	loadfont
-	writetext UnknownText_0x1a815e
-	waitbutton
-	closetext
-	special RestartMapMusic
+	disappear $2
+	playsound SFX_ENTER_DOOR
+	waitsfx
+	applymovement $0, MovementData_NewBarkTown_PlayerEntersHome
+	warpcheck
 	end
 ; 0x1a8041
 
@@ -69,11 +69,11 @@ UnknownScript_0x1a8041: ; 0x1a8041
 	follow $2, $0
 	applymovement $2, MovementData_0x1a80e6
 	stopfollow
-	loadfont
-	writetext UnknownText_0x1a815e
-	waitbutton
-	closetext
-	special RestartMapMusic
+	disappear $2
+	playsound SFX_ENTER_DOOR
+	waitsfx
+	applymovement $0, MovementData_NewBarkTown_PlayerEntersHome
+	warpcheck
 	end
 ; 0x1a806f
 
@@ -173,24 +173,26 @@ MovementData_0x1a80d9: ; 0x1a80d9
 	step_end
 ; 0x1a80e0
 
+MovementData_0x1a80e6: ; 0x1a80e6
+	step_right
 MovementData_0x1a80e0: ; 0x1a80e0
 	step_right
 	step_right
 	step_right
 	step_right
-	turn_head_left
+	step_up
+	step_up
+	step_right
+	step_right
+	step_right
+	step_right
+	step_right
+	step_right
+	step_right
+MovementData_NewBarkTown_PlayerEntersHome:
+	step_up
 	step_end
 ; 0x1a80e6
-
-MovementData_0x1a80e6: ; 0x1a80e6
-	step_right
-	step_right
-	step_right
-	step_right
-	step_right
-	turn_head_left
-	step_end
-; 0x1a80ed
 
 MovementData_0x1a80ed: ; 0x1a80ed
 	turn_head_up
@@ -221,28 +223,29 @@ UnknownText_0x1a80f7: ; 0x1a80f7
 ; 0x1a8134
 
 UnknownText_0x1a8134: ; 0x1a8134
-	text "Wait, <PLAY_G>!"
+	text "Oh? Are you<...>"
+	line "<PLAY_G><...>?"
 	done
 ; 0x1a813e
 
 UnknownText_0x1a813e: ; 0x1a813e
-	text "What do you think"
-	line "you're doing?"
+	text "Your mother moved"
+	line "here not too long"
+	cont "ago."
+
+	para "She keeps talking"
+	line "about how she lost"
+	cont "you in the S.S."
+	cont "ANNE incident."
+
+	para "She'd be thrilled"
+	line "to see you made it"
+	cont "out okay!"
+
+	para "Oh, it can't wait!"
+	line "Come with me!"
 	done
 ; 0x1a815e
-
-UnknownText_0x1a815e: ; 0x1a815e
-	text "It's dangerous to"
-	line "go out without a"
-	cont "#MON!"
-
-	para "Wild #MON"
-	line "jump out of the"
-
-	para "grass on the way"
-	line "to the next town."
-	done
-; 0x1a81c4
 
 UnknownText_0x1a81c4: ; 0x1a81c4
 	text "Oh! Your #MON"
