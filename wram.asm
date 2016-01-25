@@ -2148,10 +2148,11 @@ wRoute24RBTrigger::                          ds 1
 wRoute5SaffronGateRBTrigger::                ds 1
 wRoute6SaffronGateRBTrigger::                ds 1
 wVermilionCityRBTrigger::                    ds 1
+wSSAnne1Trigger::                            ds 1
 wSSAnne2Trigger::                            ds 1
 wSSAnne5Trigger::                            ds 1
 
-	ds 22
+	ds 21
 
 
 SECTION "Events", WRAMX, BANK [1]

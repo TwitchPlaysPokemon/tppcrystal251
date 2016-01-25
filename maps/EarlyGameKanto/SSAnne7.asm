@@ -3,9 +3,9 @@ SSAnne7_MapScriptHeader:
 	db 0
 
 SSAnne7CaptainScript:
-	loadfont
 	checkevent EVENT_S_S_ANNE_RUBBED_CAPTAINS_BACK
 	iftrue .rubbed_back
+	loadfont
 	writetext _SSAnne7RubText
 	playmusic MUSIC_HEAL
 	pause 60
@@ -30,7 +30,9 @@ SSAnne7CaptainScript:
 	writetext _SSAnne7Text_61932
 	waitbutton
 	closetext
-	spriteface $0, DOWN
+	follow $2, $0
+	applymovement $2, Movement_CaptainReturnsToHisPost
+	stopfollow
 	loadfont
 	writetext SSAnne7Text_CaptainSetsSail1
 	pause 30
@@ -49,72 +51,44 @@ SSAnne7CaptainScript:
 	waitbutton
 	closetext
 	special Function114fc
+	disappear $2
+	appear $3
+	domaptrigger GROUP_S_S_ANNE_1, MAP_S_S_ANNE_1, 1
 	end
 
 .rubbed_back
+	faceplayer
+	loadfont
 	writetext SSAnne7Text_CaptainSetsSail5
 	waitbutton
 	closetext
 	checkflag ENGINE_51
 	iffalse .end
-	appear $3
+	appear $4
 	playsound SFX_EXIT_BUILDING
 	waitsfx
+	spriteface $3, DOWN
+	spriteface $0, DOWN
 	playmusic MUSIC_ROCKET_ENCOUNTER
-	checkcode VAR_FACING
-	if_equal LEFT, .facing_left
-	if_equal RIGHT, .facing_right
-	applymovement $3, SSAnne7_Rocket1RunsUpToCaptainLeft
-	appear $4
+	applymovement $4, SSAnne7_RocketRunsUpToCaptain
+	spriteface $0, RIGHT
+	appear $5
 	playsound SFX_EXIT_BUILDING
 	waitsfx
-	applymovement $4, SSAnne7_Rocket1RunsUpToCaptainRight
+	applymovement $5, SSAnne7_GiovanniRunsUpToCaptain
 	loadfont
 	writetext SSAnne7Text_RocketsText
 	waitbutton
 	closetext
-	spriteface $2, LEFT
-	pause 15
-	spriteface $2, RIGHT
-	jump .finish
-.facing_left
-	applymovement $3, SSAnne7_Rocket1RunsUpToCaptainLeft
-	appear $4
-	playsound SFX_EXIT_BUILDING
-	waitsfx
-	applymovement $4, SSAnne7_Rocket1RunsUpToCaptainBelow
-	loadfont
-	writetext SSAnne7Text_RocketsText
-	waitbutton
-	closetext
-	spriteface $2, LEFT
-	pause 15
-	spriteface $2, DOWN
-	jump .finish
-.facing_right
-	applymovement $3, SSAnne7_Rocket1RunsUpToCaptainRight
-	appear $4
-	playsound SFX_EXIT_BUILDING
-	waitsfx
-	applymovement $4, SSAnne7_Rocket1RunsUpToCaptainBelow
-	loadfont
-	writetext SSAnne7Text_RocketsText
-	waitbutton
-	closetext
-	spriteface $2, RIGHT
-	pause 15
-	spriteface $2, DOWN
-.finish
-	pause 15
 	loadfont
 	writetext SSAnne7Text_CaptainConfused
 	waitbutton
 	closetext
 	special Special_FadeToBlack
 	special Functiond91
-	disappear $2
 	disappear $3
 	disappear $4
+	disappear $5
 	clearevent EVENT_ROCKETS_NOT_YET_BOARDED_SS_ANNE
 	domaptrigger GROUP_S_S_ANNE_5, MAP_S_S_ANNE_5, 1
 	playmusic MUSIC_NONE
@@ -136,54 +110,40 @@ SSAnne7TrashcanScript:
 SSAnne7SeasicknessBookScript:
 	jumptext _SSAnne7Text3
 
-SSAnne7_Rocket1RunsUpToCaptainLeft:
-	step_right
-	step_right
-	step_right
+Movement_CaptainReturnsToHisPost:
+	step_left
 	step_up
-	step_up
-	step_up
-	step_up
-	step_up
-	turn_head_right
+	step_left
+	step_left
+	turn_head_down
 	step_end
 
-SSAnne7_Rocket1RunsUpToCaptainBelow:
-	step_right
-	step_right
-	step_right
-	step_right
-	step_up
-	step_up
-	step_up
-	step_up
-	step_end
-
-SSAnne7_Rocket1RunsUpToCaptainRight:
-	step_right
-	step_right
-	step_right
-	step_right
-	step_up
-	step_up
-	step_up
-	step_up
-	step_right
-	step_up
+SSAnne7_RocketRunsUpToCaptain:
+	big_step_up
+	big_step_up
+	big_step_right
+	big_step_right
+	big_step_up
+	big_step_up
 	turn_head_left
 	step_end
 
+SSAnne7_GiovanniRunsUpToCaptain:
+	step_up
+	step_up
+	step_end
+
 _SSAnne7RubText:
-	text "CAPTAIN: Ooargh…"
-	line "I feel hideous…"
-	cont "Urrp! Seasick…"
+	text "CAPTAIN: Ooargh", $75
+	line "I feel hideous", $75
+	cont "Urrp! Seasick", $75
 
 	para "<PLAYER> rubbed"
 	line "the CAPTAIN's"
 	cont "back!"
 
-	para "Rub-rub…"
-	line "Rub-rub…"
+	para "Rub-rub", $75
+	line "Rub-rub", $75
 	done
 
 _NotReceivingHM01Text:
@@ -195,7 +155,7 @@ _NotReceivingHM01Text:
 	line "my CUT technique?"
 
 	para "I could show you"
-	line "if I wasn't ill…"
+	line "if I wasn't ill", $75
 
 	para "I know! Let me"
 	line "heal your #MON."
@@ -297,7 +257,7 @@ _SSAnne7Text2:
 
 _SSAnne7Text3:
 	text "How to Conquer"
-	line "Seasickness…"
+	line "Seasickness", $75
 	para "The CAPTAIN's"
 	line "reading this!"
 	done
@@ -312,7 +272,8 @@ SSAnne7_MapEventHeader:
 	signpost 1, 4, $0, SSAnne7TrashcanScript
 	signpost 2, 1, $0, SSAnne7SeasicknessBookScript
 
-	db 3
-	person_event SPRITE_GRAMPS, 6, 8, $7, 0, 0, -1, -1, 8 + PAL_OW_RED, 0, 0, SSAnne7CaptainScript, EVENT_ROCKET_TAKEOVER_OF_SS_ANNE
-	person_event SPRITE_ROCKET, 11, 4, $7, 0, 0, -1, -1, 0, 0, 0, ObjectEvent, EVENT_S_S_ANNE_7_ROCKETS
-	person_event SPRITE_GIOVANNI, 11, 4, $7, 0, 0, -1, -1, 0, 0, 0, ObjectEvent, EVENT_S_S_ANNE_7_ROCKETS
+	db 4
+	person_event SPRITE_GRAMPS, 6, 8, $7, 0, 0, -1, -1, 8 + PAL_OW_RED, 0, 0, SSAnne7CaptainScript, EVENT_S_S_ANNE_RUBBED_CAPTAINS_BACK
+	person_event SPRITE_GRAMPS, 5, 5, $6, 0, 0, -1, -1, 8 + PAL_OW_RED, 0, 0, SSAnne7CaptainScript, EVENT_S_S_ANNE_NOT_YET_DEPARTED
+	person_event SPRITE_ROCKET, 10, 5, $7, 0, 0, -1, -1, 0, 0, 0, ObjectEvent, EVENT_S_S_ANNE_7_ROCKETS
+	person_event SPRITE_GIOVANNI, 10, 5, $7, 0, 0, -1, -1, 0, 0, 0, ObjectEvent, EVENT_S_S_ANNE_7_ROCKETS

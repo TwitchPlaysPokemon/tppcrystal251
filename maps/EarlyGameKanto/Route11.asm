@@ -313,12 +313,12 @@ Route11RB_MapEventHeader: ; 0x68242
 	person_event SPRITE_GENTLEMAN, 18, 8, $6, 0, 0, -1, -1, 0, 2, 3, Trainer_Route11RBGambler1, -1
 	person_event SPRITE_GENTLEMAN, 13, 19, $6, 0, 0, -1, -1, 0, 2, 2, Trainer_Route11RBGambler2, -1
 	person_event SPRITE_YOUNGSTER, 9, 11, $8, 0, 0, -1, -1, 0, 2, 3, Trainer_Route11RBYoungster1, -1
-	person_event SPRITE_ROCKER, 15, 26, $6, 0, 0, -1, -1, 0, 2, 3, Trainer_Route11RBRocker1, -1
+	person_event SPRITE_COOLTRAINER_M, 15, 26, $6, 0, 0, -1, -1, 0, 2, 3, Trainer_Route11RBRocker1, -1
 	person_event SPRITE_YOUNGSTER, 8, 16, $7, 0, 0, -1, -1, 0, 2, 3, Trainer_Route11RBYoungster2, -1
 	person_event SPRITE_GENTLEMAN, 17, 35, $6, 0, 0, -1, -1, 0, 2, 3, Trainer_Route11RBGambler3, -1
 	person_event SPRITE_GENTLEMAN, 7, 23, $7, 0, 0, -1, -1, 0, 2, 3, Trainer_Route11RBGambler4, -1
 	person_event SPRITE_YOUNGSTER, 9, 32, $9, 0, 0, -1, -1, 0, 2, 4, Trainer_Route11RBYoungster3, -1
-	person_event SPRITE_ROCKER, 20, 33, $8, 0, 0, -1, -1, 0, 2, 4, Trainer_Route11RBRocker2, -1
+	person_event SPRITE_COOLTRAINER_M, 20, 33, $8, 0, 0, -1, -1, 0, 2, 4, Trainer_Route11RBRocker2, -1
 	person_event SPRITE_YOUNGSTER, 16, 16, $6, 0, 0, -1, -1, 0, 2, 3, Trainer_Route11RBYoungster4, -1
 	person_event SPRITE_FRUIT_TREE, 6, 36, $1, 0, 0, -1, -1, 0, 0, 0, Route11RBFruitTree, -1
 	person_event SPRITE_BIG_SNORLAX, 12, 32, $15, 0, 0, -1, -1, 0, 0, 0, Route11RBSnorlaxScript, -1

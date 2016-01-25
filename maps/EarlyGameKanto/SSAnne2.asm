@@ -11,9 +11,10 @@ SSAnne2_MapScriptHeader:
 	end
 
 SSAnne2RivalBattleTriggerLeft:
-	playmusic MUSIC_RIVAL_RB
 	appear $3
 	playsound SFX_EXIT_BUILDING
+	waitsfx
+	playmusic MUSIC_RIVAL_RB
 	applymovement $3, Movement_SSAnneRivalWalksStraightDown
 	scall DoRivalBattleSSAnne
 	applymovement $3, Movement_SSAnneRivalDepartsAroundPlayer
@@ -22,9 +23,10 @@ SSAnne2RivalBattleTriggerLeft:
 	end
 
 SSAnne2RivalBattleTriggerRight:
-	playmusic MUSIC_RIVAL_RB
 	appear $3
 	playsound SFX_EXIT_BUILDING
+	waitsfx
+	playmusic MUSIC_RIVAL_RB
 	applymovement $3, Movement_SSAnneRivalWalksDownFacesRight
 	spriteface $0, LEFT
 	scall DoRivalBattleSSAnne
@@ -100,11 +102,26 @@ Movement_SSAnneRivalWalksDownFacesRight:
 	turn_head_right
 	step_end
 
+Movement_SSAnneRivalDepartsDirectly:
+	slow_step_down
+	slow_step_down
+	slow_step_down
+	slow_step_down
+	slow_step_left
+	slow_step_left
+	slow_step_left
+	slow_step_left
+	slow_step_left
+	step_end
+
 Movement_SSAnneRivalDepartsAroundPlayer:
 	slow_step_right
 	slow_step_down
 	slow_step_down
-Movement_SSAnneRivalDepartsDirectly:
+	slow_step_down
+	slow_step_down
+	slow_step_down
+	slow_step_left
 	slow_step_left
 	slow_step_left
 	slow_step_left
@@ -265,11 +282,11 @@ SSAnne2_MapEventHeader:
 	db 10
 	person_event SPRITE_GENTLEMAN, 11, 7, $4, 2, 0, -1, -1, 0, 0, 0, SSAnne2GentlemanScript, EVENT_ROCKET_TAKEOVER_OF_SS_ANNE
 	person_event SPRITE_EGK_RIVAL, 8, 40, $0, 0, 0, -1, -1, 0, 0, 0, ObjectEvent, EVENT_SS_ANNE_EGK_RIVAL
-	person_event SPRITE_ROCKET, 16, 13, $6, 0, 0, -1, -1, 0, 0, 0, SSAnne2RocketScript, EVENT_ROCKET_TAKEOVER_OF_SS_ANNE
-	person_event SPRITE_ROCKET, 16, 17, $6, 0, 0, -1, -1, 0, 0, 0, SSAnne2RocketScript, EVENT_ROCKET_TAKEOVER_OF_SS_ANNE
-	person_event SPRITE_ROCKET, 16, 21, $6, 0, 0, -1, -1, 0, 0, 0, SSAnne2RocketScript, EVENT_ROCKET_TAKEOVER_OF_SS_ANNE
-	person_event SPRITE_ROCKET, 16, 25, $6, 0, 0, -1, -1, 0, 0, 0, SSAnne2RocketScript, EVENT_ROCKET_TAKEOVER_OF_SS_ANNE
-	person_event SPRITE_ROCKET_GIRL, 16, 29, $6, 0, 0, -1, -1, 0, 0, 0, SSAnne2RocketScript, EVENT_ROCKET_TAKEOVER_OF_SS_ANNE
-	person_event SPRITE_ROCKET, 16, 33, $6, 0, 0, -1, -1, 0, 0, 0, SSAnne2RocketScript, EVENT_ROCKET_TAKEOVER_OF_SS_ANNE
-	person_event SPRITE_ROCKET, 14, 7, $6, 0, 0, -1, -1, 0, 0, 0, SSAnne2RocketScript, EVENT_ROCKET_TAKEOVER_OF_SS_ANNE
-	person_event SPRITE_ROCKET_GIRL, 14, 6, $6, 0, 0, -1, -1, 0, 0, 0, SSAnne2RocketScript, EVENT_ROCKET_TAKEOVER_OF_SS_ANNE
+	person_event SPRITE_ROCKET, 16, 13, $6, 0, 0, -1, -1, 0, 0, 0, SSAnne2RocketScript, EVENT_ROCKETS_NOT_YET_BOARDED_SS_ANNE
+	person_event SPRITE_ROCKET, 16, 17, $6, 0, 0, -1, -1, 0, 0, 0, SSAnne2RocketScript, EVENT_ROCKETS_NOT_YET_BOARDED_SS_ANNE
+	person_event SPRITE_ROCKET, 16, 21, $6, 0, 0, -1, -1, 0, 0, 0, SSAnne2RocketScript, EVENT_ROCKETS_NOT_YET_BOARDED_SS_ANNE
+	person_event SPRITE_ROCKET, 16, 25, $6, 0, 0, -1, -1, 0, 0, 0, SSAnne2RocketScript, EVENT_ROCKETS_NOT_YET_BOARDED_SS_ANNE
+	person_event SPRITE_ROCKET_GIRL, 16, 29, $6, 0, 0, -1, -1, 8 + PAL_OW_RED, 0, 0, SSAnne2RocketScript, EVENT_ROCKETS_NOT_YET_BOARDED_SS_ANNE
+	person_event SPRITE_ROCKET, 16, 33, $6, 0, 0, -1, -1, 0, 0, 0, SSAnne2RocketScript, EVENT_ROCKETS_NOT_YET_BOARDED_SS_ANNE
+	person_event SPRITE_ROCKET, 14, 7, $6, 0, 0, -1, -1, 0, 0, 0, SSAnne2RocketScript, EVENT_ROCKETS_NOT_YET_BOARDED_SS_ANNE
+	person_event SPRITE_ROCKET_GIRL, 14, 6, $6, 0, 0, -1, -1, 8 + PAL_OW_RED, 0, 0, SSAnne2RocketScript, EVENT_ROCKETS_NOT_YET_BOARDED_SS_ANNE

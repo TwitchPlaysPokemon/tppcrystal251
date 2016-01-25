@@ -2,6 +2,7 @@ SSAnne5_MapScriptHeader:
 	db 2
 	dw .Trigger0, 0
 	dw .Trigger1, 0
+	db 0
 .Trigger0
 	end
 .Trigger1
@@ -100,11 +101,11 @@ SSAnne5_MapScriptHeader:
 	end
 
 SSAnne5CooltrainerMScript:
-	jumptext _SSAnne5Text1
+	jumptextfaceplayer _SSAnne5Text1
 SSAnne5SailorScript:
-	jumptext _SSAnne5Text2
+	jumptextfaceplayer _SSAnne5Text2
 SSAnne5SuperNerdScript:
-	jumptext _SSAnne5Text3
+	jumptextfaceplayer _SSAnne5Text3
 SSAnee5Sailor1Battle:
 	trainer EVENT_S_S_ANNE_5_SAILOR1, SAILOR, TREVOR_RB, _SSAnne5BattleText1, _SSAnne5EndBattleText1, 0, .Script
 .Script

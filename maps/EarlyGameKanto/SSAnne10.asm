@@ -89,7 +89,10 @@ SSAnne10BedScript:
 	special Functiond91
 	playmusic MUSIC_HEAL
 	special HealParty
+	checkevent EVENT_S_S_ANNE_RUBBED_CAPTAINS_BACK
+	iffalse .skip_timer
 	special DecrementSSAnneTimer
+.skip_timer
 	blackoutmod GROUP_S_S_ANNE_10, MAP_S_S_ANNE_10
 	pause 60
 	special Function8c0ab

@@ -1,12 +1,37 @@
 SSAnne1_MapScriptHeader:
+	db 2
+	dw .Trigger0, 0
+	dw .Trigger1, 0
 	db 0
-	db 0
+.Trigger0
+	end
+.Trigger1
+	end
 
 SSAnne1GentlemanScript:
 	jumptextfaceplayer _SSAnne1Text1
 
 SSAnne1Sailor1Script:
-	jumptextfaceplayer _SSAnne1Text2
+	faceplayer
+	loadfont
+	checkevent EVENT_S_S_ANNE_RUBBED_CAPTAINS_BACK
+	iftrue SailorContinue_SSAnne1RefuseExit
+	writetext _SSAnne1Text2
+	waitbutton
+	closetext
+	end
+
+SSAnne1PreventExitTrigger:
+	spriteface $3, LEFT
+	spriteface $0, RIGHT
+	loadfont
+SailorContinue_SSAnne1RefuseExit
+	writetext SSAnne1SailorDepartedText
+	waitbutton
+	closetext
+	spriteface $3, DOWN
+	applymovement $0, Movement_SSAnne1PlayerWalksBack
+	end
 
 SSAnne1Rocket1Script:
 	jumptextfaceplayer SSAnne1Rocket1Text
@@ -16,6 +41,10 @@ SSAnne1Sailor2Script:
 
 SSAnne1Rocket2Script:
 	jumptext SSAnne1Rocket2Text
+
+Movement_SSAnne1PlayerWalksBack:
+	step_down
+	step_end
 
 _SSAnne1Text1:
 	text "Bonjour!"
@@ -37,6 +66,12 @@ _SSAnne1Text2:
 	para "You might be"
 	line "challenged by the"
 	cont "more bored ones!"
+	done
+
+SSAnne1SailorDepartedText:
+	text "We'll make land at"
+	line "OLIVINE in a few"
+	cont "days' time."
 	done
 
 SSAnne1Rocket1Text:
@@ -79,7 +114,8 @@ SSAnne1_MapEventHeader:
 	warp_def 15, 37, 6, GROUP_S_S_ANNE_4, MAP_S_S_ANNE_4
 	warp_def 16,  3, 1, GROUP_S_S_ANNE_6, MAP_S_S_ANNE_6
 
-	db 0
+	db 1
+	xy_trigger 1, 5, 26, $0, SSAnne1PreventExitTrigger, 0, 0
 
 	db 0
 

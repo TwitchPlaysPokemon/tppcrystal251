@@ -112,6 +112,7 @@ ENDM
 	trigger_def ROUTE_5_SAFFRON_CITY_GATE_RB,           wRoute5SaffronGateRBTrigger
 	trigger_def ROUTE_6_SAFFRON_GATE_RB,                wRoute6SaffronGateRBTrigger
 	trigger_def VERMILION_CITY_RB,                      wVermilionCityRBTrigger
+	trigger_def S_S_ANNE_1,                             wSSAnne1Trigger
 	trigger_def S_S_ANNE_2,                             wSSAnne2Trigger
 	trigger_def S_S_ANNE_5,                             wSSAnne5Trigger
 	db $ff
