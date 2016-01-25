@@ -575,7 +575,7 @@ TeachMove:
 AfterTutor:
 	writetext TutorTakeMoneyText
 	buttonsound
-	takemoney 5000, 0
+	takemoney 0, 5000
 	waitsfx
 	writetext LightPocketsText
 	waitbutton
@@ -682,7 +682,7 @@ CooltrainerfKateScript: ; 0x78304
 	setevent EVENT_GOT_SOFT_SAND_FROM_KATE
 UnknownScript_0x78319: ; 0x78319
 	writetext UnknownText_0x7892b
-	yesno
+	yesorno
 	iftrue TeachMove
 	waitbutton
 UnknownScript_0x7831d: ; 0x7831d
