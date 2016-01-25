@@ -64,14 +64,42 @@ SSAnne5_MapScriptHeader:
 	writetext SSAnne5TextAfter
 	waitbutton
 	closetext
-	; replace with shipwreck
-	special Function4989a
-	cry CELEBI
 	pause 30
+	earthquake 100
+	pause 30
+	loadfont
+	writetext SSAnne5ShipwreckText
+	waitbutton
+	closetext
+	checkevent EVENT_ROCKETS_SS_ANNE_1
+	iftrue .female2
+	showemote $0, $2, 15
+	pause 15
+	spriteface $2, LEFT
+	jump .finish
+.female2
+	showemote $0, $3, 15
+	pause 15
+	spriteface $3, LEFT
+.finish
+	loadfont
+	writetext SSAnne5ShipwreckText2
+	closetext
 	special Special_FadeToBlack
 	special Functiond91
-	special HealParty
-	playsound SFX_WARP_FROM
+	playsound SFX_HYDRO_PUMP
+	pause 8
+	playsound SFX_HYDRO_PUMP
+	pause 8
+	playsound SFX_HYDRO_PUMP
+	pause 8
+	playsound SFX_HYDRO_PUMP
+	pause 8
+	playsound SFX_HYDRO_PUMP
+	pause 8
+	playsound SFX_HYDRO_PUMP
+	pause 8
+	playsound SFX_HYDRO_PUMP
 	pause 180
 	setflag ENGINE_EARLY_GAME_KANTO
 	warpfacing DOWN, GROUP_CHERRYGROVE_CITY, MAP_CHERRYGROVE_CITY, 10, 9
@@ -302,6 +330,22 @@ _SSAnne5AfterBattleText2:
 	line "more."
 	done
 
+SSAnne5ShipwreckText:
+	text "PA: All GRUNTS!"
+	line "All GRUNTS!"
+
+	para "This ship is on a"
+	line "collision course."
+	cont "Abort mission!"
+
+	para "Repeat:"
+	line "Abort mission!"
+	done
+
+SSAnne5ShipwreckText2:
+	text "ABANDON"
+	line "SHIIIIIIIIIIIIIIII"
+	done
 
 SSAnne5_MapEventHeader:
 	db 0, 0
