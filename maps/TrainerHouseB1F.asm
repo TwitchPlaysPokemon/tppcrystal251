@@ -213,6 +213,6 @@ TrainerHouseB1F_MapEventHeader: ; 0x9b5b8
 	; people-events
 	db 2
 	person_event SPRITE_RECEPTIONIST, 5, 11, $6, 0, 0, -1, -1, 8 + PAL_OW_GREEN, 0, 0, ObjectEvent, -1
-	person_event SPRITE_CHRIS, 15, 10, $8, 0, 0, -1, -1, 8 + PAL_OW_RED, 0, 0, ObjectEvent, -1
+	person_event SPRITE_RUST, 15, 10, $8, 0, 0, -1, -1, 8 + PAL_OW_RED, 0, 0, ObjectEvent, -1
 ; 0x9b5e5
 

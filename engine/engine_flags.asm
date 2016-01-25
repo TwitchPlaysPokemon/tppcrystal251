@@ -101,7 +101,7 @@
 	dwb StatusFlags2, %00001000
 
 	dwb DailyFlags, %00000001 ; kurt making balls  ; $50
-	dwb DailyFlags, %00000010 ; done bug catching today (dummied as once per day restriction removed)
+	dwb DailyFlags, %00000010 ; ss anne set sail
 	dwb DailyFlags, %00000100 ; special wilddata?
 	dwb DailyFlags, %00001000 ; time capsule (24h wait)
 	dwb DailyFlags, %00010000 ; all fruit trees

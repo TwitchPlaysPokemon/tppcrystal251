@@ -8544,17 +8544,24 @@ Function3f594: ; 3f594
 	ld a, [MapNumber]
 	cp MAP_S_S_ANNE_5
 	jr nz, .readparty
-	ld a, [EventFlags + (EVENT_ROCKET_TAKEOVER_OF_SS_ANNE >> 3)]
-	bit (EVENT_ROCKET_TAKEOVER_OF_SS_ANNE & 7), a
-	jr nz, .skip_read
+	push bc
+	ld de, EVENT_ROCKET_TAKEOVER_OF_SS_ANNE
+	ld b, CHECK_FLAG
+	call EventFlagAction
+	ld a, c
+	pop bc
+	and a
+	jr nz, .rocket
 .readparty
 	callab ReadTrainerParty
-.skip_read
 	ld a, [TrainerClass]
 	cp RIVAL1
 	jr nz, .ok
 	xor a
 	ld [OTPartyMon1Item], a
+	jr .ok
+.rocket
+	callab Function3991b
 .ok
 
 	ld de, VTiles2

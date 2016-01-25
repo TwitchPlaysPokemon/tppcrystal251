@@ -190,6 +190,8 @@ SpecialsPointers:: ; c029
 	add_special RestoreMusic
 	add_special DeleteSavedMusic
 	add_special SampleRandomRocket
+	add_special Function114fc
+	add_special DecrementSSAnneTimer
 	add_special SpecialNone
 ; c224
 

@@ -35,6 +35,7 @@ SSAnne6Gentleman6Script:
 SSAnne6Gentleman7Script:
 	checkevent EVENT_ROCKET_TAKEOVER_OF_SS_ANNE
 	iftrue SSAnne6CookingUpTroubleScript
+	faceplayer
 	loadfont
 	writetext _SSAnne6Text_61807
 	buttonsound
