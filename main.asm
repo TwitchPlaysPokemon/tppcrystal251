@@ -35898,10 +35898,20 @@ Function39939:: ; 39939
 	ld a, [StatusFlags]
 	bit 5, a
 	jr nz, .skip
-	ld a, [EventFlags + (EVENT_ROCKET_TAKEOVER_OF_SS_ANNE >> 3)]
-	bit (EVENT_ROCKET_TAKEOVER_OF_SS_ANNE & 7), a
+	push bc
+	ld de, EVENT_ROCKET_TAKEOVER_OF_SS_ANNE
+	ld b, CHECK_FLAG
+	call EventFlagAction
+	ld a, c
+	pop bc
+	and a
+	jr z, .skip
 	ld hl, ReadTrainerName_GruntName
-	jp nz, Function39984
+	ld de, StringBuffer1
+	ld bc, $b
+	call CopyBytes
+	ret
+
 .skip
 	ld a, [InBattleTowerBattle]
 	bit 0, a
@@ -94178,6 +94188,10 @@ SECTION "bank75", ROMX, BANK[$75]
 SECTION "Random Rockets", ROMX
 NUM_ROCKET_MONS EQUS "(.RocketMonsEnd - .RocketMons) / 2"
 SampleRandomRocket:
+	ld hl, OTPartyData
+	ld bc, OTPartyDataEnd - OTPartyData
+	xor a
+	call ByteFill
 	ld hl, wRocketParty
 	ld [hl], -1
 .num_mons
@@ -94201,17 +94215,17 @@ SampleRandomRocket:
 	jr .new_mon
 
 .add_mon
-	ld a, b
-	ld [hli], a
-	ld [hl], -1
+	ld a, -1
+	ld [hld], a
+	ld [hl], b
 	dec c
 	jr nz, .new_mon
-.loop
-	ld de, .RocketMons
 	ld hl, wRocketParty
+.loop
 	ld a, [hli]
 	cp -1
 	ret z
+	ld de, .RocketMons
 	push hl
 	ld l, a
 	ld h, 0

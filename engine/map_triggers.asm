@@ -114,6 +114,7 @@ ENDM
 	trigger_def VERMILION_CITY_RB,                      wVermilionCityRBTrigger
 	trigger_def S_S_ANNE_1,                             wSSAnne1Trigger
 	trigger_def S_S_ANNE_2,                             wSSAnne2Trigger
+	trigger_def S_S_ANNE_3,                             wSSAnne3Trigger
 	trigger_def S_S_ANNE_5,                             wSSAnne5Trigger
 	db $ff
 ; 4d15b

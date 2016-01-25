@@ -75,6 +75,7 @@ SSAnne7CaptainScript:
 	appear $5
 	playsound SFX_EXIT_BUILDING
 	waitsfx
+	spriteface $0, DOWN
 	applymovement $5, SSAnne7_GiovanniRunsUpToCaptain
 	loadfont
 	writetext SSAnne7Text_RocketsText
@@ -90,7 +91,9 @@ SSAnne7CaptainScript:
 	disappear $4
 	disappear $5
 	clearevent EVENT_ROCKETS_NOT_YET_BOARDED_SS_ANNE
+	setevent EVENT_ROCKET_TAKEOVER_OF_SS_ANNE
 	domaptrigger GROUP_S_S_ANNE_5, MAP_S_S_ANNE_5, 1
+	domaptrigger GROUP_S_S_ANNE_3, MAP_S_S_ANNE_3, 1
 	playmusic MUSIC_NONE
 	playsound SFX_TACKLE
 	pause 60
@@ -101,7 +104,7 @@ SSAnne7CaptainScript:
 	playsound SFX_EXIT_BUILDING
 	waitsfx
 	special Function8c0ab
-	special RestartMapMusic
+	playmapmusic
 .end
 	end
 
@@ -125,6 +128,7 @@ SSAnne7_RocketRunsUpToCaptain:
 	big_step_right
 	big_step_up
 	big_step_up
+	big_step_up
 	turn_head_left
 	step_end
 
@@ -134,16 +138,16 @@ SSAnne7_GiovanniRunsUpToCaptain:
 	step_end
 
 _SSAnne7RubText:
-	text "CAPTAIN: Ooargh", $75
-	line "I feel hideous", $75
-	cont "Urrp! Seasick", $75
+	text "CAPTAIN: Ooargh…"
+	line "I feel hideous…"
+	cont "Urrp! Seasick…"
 
 	para "<PLAYER> rubbed"
 	line "the CAPTAIN's"
 	cont "back!"
 
-	para "Rub-rub", $75
-	line "Rub-rub", $75
+	para "Rub-rub…"
+	line "Rub-rub…"
 	done
 
 _NotReceivingHM01Text:
@@ -155,7 +159,7 @@ _NotReceivingHM01Text:
 	line "my CUT technique?"
 
 	para "I could show you"
-	line "if I wasn't ill", $75
+	line "if I wasn't ill…"
 
 	para "I know! Let me"
 	line "heal your #MON."
@@ -199,7 +203,7 @@ SSAnne7Text_CaptainSetsSail4:
 	line "off in VERMILION?"
 
 	para "Oh, this is un-"
-	line "usual", $75
+	line "usual…"
 
 	para "If we go back now,"
 	line "other passengers"
@@ -257,7 +261,7 @@ _SSAnne7Text2:
 
 _SSAnne7Text3:
 	text "How to Conquer"
-	line "Seasickness", $75
+	line "Seasickness…"
 	para "The CAPTAIN's"
 	line "reading this!"
 	done

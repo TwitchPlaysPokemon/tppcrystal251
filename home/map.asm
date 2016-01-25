@@ -2299,8 +2299,13 @@ RADIO_TOWER_MUSIC EQU 7
 	jr .done
 ; 2cff
 .ssanne
-	ld a, [EventFlags + (EVENT_ROCKET_TAKEOVER_OF_SS_ANNE >> 3)]
-	bit (EVENT_ROCKET_TAKEOVER_OF_SS_ANNE & 7), a
+	push bc
+	ld de, EVENT_ROCKET_TAKEOVER_OF_SS_ANNE
+	ld b, CHECK_FLAG
+	call EventFlagAction
+	ld a, c
+	pop bc
+	and a
 	jr nz, .rocket
 	jr .clearedradiotower
 

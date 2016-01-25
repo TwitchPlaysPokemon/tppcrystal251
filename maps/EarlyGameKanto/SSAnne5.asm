@@ -10,22 +10,43 @@ SSAnne5_MapScriptHeader:
 	end
 
 .InfiniteRockets
+	dotrigger 0
 	disappear $2
 	disappear $3
+	jump .next_rocket
+.loop
+	loadfont
+	writetext SSAnne10Text_WontGetAwayWithThis
+	waitbutton
+	closetext
+	checkevent EVENT_ROCKETS_SS_ANNE_1
+	iftrue .female
+	applymovement $2, Movement_SSAnneRocketRetreat
+	disappear $2
+	jump .okay
+.female
+	applymovement $3, Movement_SSAnneRocketRetreat
+	disappear $3
+.okay
+	playsound SFX_EXIT_BUILDING
+	waitsfx
+.next_rocket
 	playmusic MUSIC_ROCKET_ENCOUNTER
 	random 2
 	iffalse .male
 	loadtrainer GRUNTF, 0
-	moveperson $3, 9, 6
+	moveperson $3, 8, 6
 	appear $3
+	applymovement $3, Movement_SSAnneRocketOneStepRight
 	showemote $0, $3, 15
 	pause 15
 	applymovement $3, Movement_SSAnneRocketApproachesPlayer
 	jump .got_class
 .male
 	loadtrainer GRUNTM, 0
-	moveperson $2, 9, 6
+	moveperson $2, 8, 6
 	appear $2
+	applymovement $2, Movement_SSAnneRocketOneStepRight
 	showemote $0, $2, 15
 	pause 15
 	applymovement $2, Movement_SSAnneRocketApproachesPlayer
@@ -36,14 +57,14 @@ SSAnne5_MapScriptHeader:
 	closetext
 	special SampleRandomRocket
 	startbattle
-	reloadmapmusic
 	reloadmap
-	iftrue .InfiniteRockets
-	dotrigger 0
+	iffalse .loop
+	playmusic MUSIC_NONE
 	loadfont
 	writetext SSAnne5TextAfter
 	waitbutton
 	closetext
+	; replace with shipwreck
 	special Function4989a
 	cry CELEBI
 	pause 30
@@ -53,7 +74,7 @@ SSAnne5_MapScriptHeader:
 	playsound SFX_WARP_FROM
 	pause 180
 	setflag ENGINE_EARLY_GAME_KANTO
-	warpfacing DOWN, GROUP_CHERRYGROVE_CITY, MAP_CHERRYGROVE_CITY, 10, 10
+	warpfacing DOWN, GROUP_CHERRYGROVE_CITY, MAP_CHERRYGROVE_CITY, 10, 9
 	blackoutmod GROUP_CHERRYGROVE_CITY, MAP_CHERRYGROVE_CITY
 	end
 
@@ -129,6 +150,12 @@ SSAnee5Sailor2Battle:
 Movement_SSAnneRocketApproachesPlayer:
 	big_step_right
 	big_step_right
+Movement_SSAnneRocketOneStepRight:
+	big_step_right
+	step_end
+
+Movement_SSAnneRocketRetreat:
+	big_step_down
 	big_step_right
 	step_end
 
@@ -215,6 +242,12 @@ SSAnne5TextAfter:
 	cont "leaves unscathed!"
 	done
 
+SSAnne10Text_WontGetAwayWithThis:
+	text "You won't get away"
+	line "with this, you"
+	cont "little brat!"
+	done
+
 _SSAnne5Text1:
 	text "The party's over."
 	line "The ship will be"
@@ -280,7 +313,7 @@ SSAnne5_MapEventHeader:
 	db 0
 	db 9
 	person_event SPRITE_ROCKET,        10, 13, $9, 0, 0, -1, -1, 0, 0, 0, ObjectEvent, EVENT_ROCKETS_SS_ANNE_1
-	person_event SPRITE_ROCKET_GIRL,   10, 13, $9, 0, 0, -1, -1, 0, 0, 0, ObjectEvent, EVENT_ROCKETS_SS_ANNE_2
+	person_event SPRITE_ROCKET_GIRL,   10, 13, $9, 0, 0, -1, -1, 8 + PAL_OW_RED, 0, 0, ObjectEvent, EVENT_ROCKETS_SS_ANNE_2
 	person_event SPRITE_COOLTRAINER_M,  6,  9, $7, 0, 0, -1, -1, 0, 0, 0, SSAnne5CooltrainerMScript, EVENT_ROCKET_TAKEOVER_OF_SS_ANNE
 	person_event SPRITE_SAILOR,        13,  8, $3, 0, 0, -1, -1, 0, 0, 0, SSAnne5SailorScript, EVENT_ROCKET_TAKEOVER_OF_SS_ANNE
 	person_event SPRITE_SUPER_NERD,    15, 11, $2, 1, 1, -1, -1, 0, 0, 0, SSAnne5SuperNerdScript, EVENT_ROCKET_TAKEOVER_OF_SS_ANNE
