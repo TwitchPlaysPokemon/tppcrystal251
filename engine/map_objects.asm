@@ -751,15 +751,13 @@ AddStepVector: ; 46d7
 	ld [hl], a
 	pop af
 	ret nc
-	ld hl, 30
+	ld hl, OBJECT_STEP_DURATION
 	add hl, bc
 	ld a, [hl]
-	inc a
-	ld [hl], a
 	cp 5
-	ret c
-	xor a
-	ld [hl], a
+	ret z
+	cp 2
+	ret z
 	ld a, d
 	call Function4730
 	jr z, .check_y
@@ -841,10 +839,10 @@ StepVectors: ; 4700
 	db -4,  0,  4, 4
 	db  4,  0,  4, 4
 	; running shoes
-	db  0,  3,  5, 3
-	db  0, -3,  5, 3
-	db -3,  0,  5, 3
-	db  3,  0,  5, 3
+	db  0,  2,  6, 2
+	db  0, -2,  6, 2
+	db -2,  0,  6, 2
+	db  2,  0,  6, 2
 
 Function4730: ; 4730
 	add a

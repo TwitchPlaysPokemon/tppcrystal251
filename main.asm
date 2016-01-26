@@ -6393,7 +6393,7 @@ UnknownText_0xd0ae: ; 0xd0ae
 ; 0xd0b3
 
 Functiond0b3: ; d0b3
-	; call Functiond0bc
+	call Functiond0bc
 	and $7f
 	ld [wd0ec], a
 	ret
