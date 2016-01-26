@@ -49,7 +49,7 @@ UnknownScript_0x1a0f6d: ; 0x1a0f6d
 	follow $2, $0
 	applymovement $2, MovementData_0x1a109a
 	stopfollow
-	loadpokedata RATTATA, 5
+	loadpokedata SENTRET, 18
 	catchtutorial BATTLETYPE_TUTORIAL
 	spriteface $2, $1
 	loadfont
@@ -75,7 +75,7 @@ UnknownScript_0x1a0fa3: ; 0x1a0fa3
 	follow $2, $0
 	applymovement $2, MovementData_0x1a10a1
 	stopfollow
-	loadpokedata RATTATA, 5
+	loadpokedata SENTRET, 18
 	catchtutorial BATTLETYPE_TUTORIAL
 	spriteface $2, $1
 	loadfont

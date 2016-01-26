@@ -5243,7 +5243,14 @@ BattleMenu_Pack: ; 3e1c7
 
 .tutorial
 	callba Function107bb
+	ld a, [MapGroup]
+	cp GROUP_VIRIDIAN_CITY_RB
+	jr z, .OldMan
+	ld a, GREAT_BALL
+	jr .got_tutorial_ball
+.OldMan
 	ld a, POKE_BALL
+.got_tutorial_ball
 	ld [CurItem], a
 	call DoItemEffect
 	jr .asm_3e209

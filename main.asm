@@ -46386,26 +46386,36 @@ Function4e56a: ; 4e56a (13:656a)
 
 Function4e5b7: ; 4e5b7 (13:65b7)
 	ld hl, OTPartyMon1
-	ld [hl], $1
+	ld [hl], 1
 	inc hl
-	ld [hl], $12
+	ld [hl], POTION
 	inc hl
-	ld [hl], $1
+	ld [hl], 1
 	inc hl
-	ld [hl], $ff
+	ld [hl], -1
 	ld hl, OTPartyMon1Exp + 2
-	ld [hl], $0
+	ld [hl], 0
 	inc hl
-	ld [hl], $ff
+	ld [hl], -1
 	ld hl, OTPartyMon1CaughtGender
-	ld a, $1
+	ld a, 1
 	ld [hli], a
-	ld a, $5
+	ld a, [MapGroup]
+	cp GROUP_VIRIDIAN_CITY_RB
+	jr z, .OldMan
+	ld a, GREAT_BALL
 	ld [hli], a
+	ld a, 5
 	ld [hli], a
-	ld [hl], $ff
+	ld [hl], -1
 	ret
-; 4e5da (13:65da)
+.OldMan
+	ld a, POKE_BALL ; 5
+	ld [hli], a
+	ld [hli], a
+	ld [hl], -1
+	ret
+
 
 DudeString: ; 4e5da
 	db "DUDE@"

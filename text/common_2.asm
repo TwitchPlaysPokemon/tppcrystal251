@@ -1789,13 +1789,7 @@ UnknownText_0x1bd745: ; 0x1bd745
 ; 0x1bd77f
 
 UnknownText_0x1bd77f: ; 0x1bd77f
-	text "Wow, that's a cute"
-	line "#MON."
-
-	para "Where did you get"
-	line "it?"
-
-	para "<...>"
+	text "<...>"
 
 	para "So, you're leaving"
 	line "on an adventure<...>"
@@ -1819,8 +1813,9 @@ UnknownText_0x1bd77f: ; 0x1bd77f
 
 UnknownText_0x1bd868: ; 0x1bd868
 	text "OK, I'll take care"
-	line "of your money.", $51
-	db $56, $56, $56, $58
+	line "of your money."
+	para $56, $56, $56
+	prompt
 ; 0x1bd88e
 
 UnknownText_0x1bd88e: ; 0x1bd88e
