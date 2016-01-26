@@ -734,10 +734,10 @@ Function46a6: ; 46a6
 	ret
 ; 46d7
 
-Function46d7: ; 46d7
+AddStepVector: ; 46d7
 
 	call GetStepVector
-
+	push af
 	ld hl, OBJECT_SPRITE_X
 	add hl, bc
 	ld a, [hl]
@@ -749,7 +749,40 @@ Function46d7: ; 46d7
 	ld a, [hl]
 	add e
 	ld [hl], a
-
+	pop af
+	ret nc
+	ld hl, 30
+	add hl, bc
+	ld a, [hl]
+	inc a
+	ld [hl], a
+	cp 5
+	ret c
+	xor a
+	ld [hl], a
+	ld a, d
+	call Function4730
+	jr z, .check_y
+	push af
+	ld hl, OBJECT_SPRITE_X
+	add hl, bc
+	add [hl]
+	ld [hl], a
+	pop af
+	add d
+	ld d, a
+	ret
+.check_y
+	ld a, e
+	call Function4730
+	push af
+	ld hl, OBJECT_SPRITE_Y
+	add hl, bc
+	add [hl]
+	ld [hl], a
+	pop af
+	add e
+	ld e, a
 	ret
 ; 46e9
 
@@ -771,6 +804,22 @@ GetStepVector: ; 46e9
 	inc hl
 	ld a, [hli]
 	ld h, [hl]
+	push af
+	push hl
+	ld hl, OBJECT_07
+	add hl, bc
+	ld a, [hl]
+	and $c
+	cp $c
+	jr z, .running
+	pop hl
+	pop af
+	and a
+	ret
+.running
+	pop hl
+	pop af
+	scf
 	ret
 ; 4700
 
@@ -791,7 +840,11 @@ StepVectors: ; 4700
 	db  0, -4,  4, 4
 	db -4,  0,  4, 4
 	db  4,  0,  4, 4
-; 4730
+	; running shoes
+	db  0,  3,  5, 3
+	db  0, -3,  5, 3
+	db -3,  0,  5, 3
+	db  3,  0,  5, 3
 
 Function4730: ; 4730
 	add a
@@ -808,7 +861,7 @@ Function4738: ; 4738
 	ld a, [hl]
 	and $3
 	ld [wd151], a
-	call Function46d7
+	call AddStepVector
 	ld a, [wd14e]
 	add d
 	ld [wd14e], a
@@ -1602,7 +1655,7 @@ Function4b86: ; 4b86
 ; 4b8d
 
 Function4b8d: ; 4b8d
-	call Function46d7
+	call AddStepVector
 	call UpdateJumpPosition
 	ld hl, OBJECT_STEP_DURATION
 	add hl, bc
@@ -1618,7 +1671,7 @@ Function4b8d: ; 4b8d
 ; 4ba9
 
 Function4ba9: ; 4ba9
-	call Function46d7
+	call AddStepVector
 	call UpdateJumpPosition
 	ld hl, OBJECT_STEP_DURATION
 	add hl, bc
@@ -2071,7 +2124,7 @@ Function4e21: ; 4e21
 
 Function4e2b: ; 4e2b
 	call Function4fb2
-	call Function46d7
+	call AddStepVector
 	ld hl, OBJECT_STEP_DURATION
 	add hl, bc
 	dec [hl]
@@ -2087,7 +2140,7 @@ Function4e2b: ; 4e2b
 ; 4e47
 
 Function4e47: ; 4e47
-	call Function46d7
+	call AddStepVector
 	ld hl, OBJECT_STEP_DURATION
 	add hl, bc
 	dec [hl]
@@ -2186,7 +2239,7 @@ Function4ec0: ; 4ec0
 ; 4ecd
 
 Function4ecd: ; 4ecd
-	call Function46d7
+	call AddStepVector
 	ld hl, OBJECT_STEP_DURATION
 	add hl, bc
 	dec [hl]

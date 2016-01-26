@@ -50809,10 +50809,10 @@ DoStep: ; 8025f ;load appropriote animations for the type of step, walk in place
 	turn_waterfall_left
 	turn_waterfall_right
 .Run
-	big_step_down
-	big_step_up
-	big_step_left
-	big_step_right
+	run_step_down
+	run_step_up
+	run_step_left
+	run_step_right
 ; 802b3
 
 StandInPlace: ; 802b3

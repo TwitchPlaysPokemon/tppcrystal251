@@ -29,6 +29,7 @@ MomElatedToSeeYouAlive:
 	setevent EVENT_MOM_POSITION_1
 	clearevent EVENT_MOM_POSITION_2
 	setflag ENGINE_PHONE_CARD
+	domaptrigger GROUP_NEW_BARK_TOWN, MAP_NEW_BARK_TOWN, 2
 	addcellnum $1 ; PHONE_MOM
 	writetext MomText4_Johto
 	yesorno
