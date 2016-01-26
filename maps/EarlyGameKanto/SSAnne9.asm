@@ -53,6 +53,7 @@ SSAnne9Gentleman1Script:
 	pokepic SNORLAX
 	waitbutton
 	closepokepic
+	reloadmappart
 	end
 
 SSAnne9MaxEther:
