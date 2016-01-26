@@ -54,10 +54,12 @@ MomElatedToSeeYouAlive:
 	spriteface $7, UP
 	pause 30
 	spriteface $7, DOWN
+	pause 5
 	disappear $7
 	playsound SFX_EXIT_BUILDING
 	waitsfx
 	special RestartMapMusic
+	applymovement $2, ResetMomKrissHouse1F
 	end
 
 .jumpstdRecvItem
@@ -164,6 +166,13 @@ NBT_MomApproaches:
 	step_down
 	big_step_left
 	turn_head_down
+	step_end
+
+ResetMomKrissHouse1F:
+	step_up
+	step_right
+	step_up
+	turn_head_left
 	step_end
 
 UnknownText_0x7a8b5: ; 0x7a8b5
