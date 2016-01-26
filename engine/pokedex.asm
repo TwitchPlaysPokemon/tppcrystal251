@@ -1001,18 +1001,7 @@ Function406ea: ; 406ea (10:46ea)
 	dec [hl]
 	jr asm_4073f
 
-LimitTo151:
-	ld a, e
-	cp MEW
-	ret c
-	ret z
-	ld e, MEW
-	ret
-
 Function406fe: ; 406fe (10:46fe)
-	ld hl, StatusFlags
-	bit 7, [hl]
-	call z, LimitTo151
 	ld hl, wc7d1
 	ld a, [hl]
 	inc a
@@ -1044,9 +1033,6 @@ asm_40716: ; 40716 (10:4716)
 	ld [hl], a
 	jr asm_4073f
 asm_40728: ; 40728 (10:4728)
-	ld hl, StatusFlags
-	bit 7, [hl]
-	call z, LimitTo151
 	ld hl, wc7d0
 	ld a, d
 	add a
@@ -1689,8 +1675,14 @@ Function40c08: ; 40c08 (10:4c08)
 	ret
 
 Function40c18: ; 40c18 (10:4c18)
-	ld hl, wc7ca
+	ld hl, wc6d0 + NUM_POKEMON - 1
 	ld d, NUM_POKEMON
+	ld a, [StatusFlags]
+	bit 7, a
+	jr nz, .okay
+	ld hl, wc6d0 + MEW - 1
+	ld d, MEW
+.okay
 	ld e, d
 .asm_40c1e
 	ld a, [hld]
@@ -2711,7 +2703,18 @@ Function4424d: ; 4424d
 	call PlaceString
 	ld a, [wd265]
 	ld b, a
+	ld a, [StatusFlags]
+	bit 7, a
+	jr nz, .okay_p1
+	ld a, [wd265]
+	cp MEW
+	jr c, .okay_p1
+	ld de, .Unknown
+	ld b, BANK(Function4424d)
+	jr .got_pointer
+.okay_p1
 	call Function44333
+.got_pointer
 	ld a, b
 	push af
 	hlcoord 9, 5
@@ -2829,7 +2832,15 @@ Function4424d: ; 4424d
 	hlcoord 2, 11
 	call FarString
 	ret
-
+.Unknown
+	db "?????@"
+	dw 0, 0
+	db   "No information is"
+	next "available for this"
+	next "#MON currently."
+	page "Please ensure the"
+	next "latest data pack"
+	next "is installed.@"
 	
 Function41a7f: ; 41a7f
 	xor a
