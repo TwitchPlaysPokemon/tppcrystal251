@@ -1001,7 +1001,18 @@ Function406ea: ; 406ea (10:46ea)
 	dec [hl]
 	jr asm_4073f
 
+LimitTo151:
+	ld a, e
+	cp MEW
+	ret c
+	ret z
+	ld e, MEW
+	ret
+
 Function406fe: ; 406fe (10:46fe)
+	ld hl, StatusFlags
+	bit 7, [hl]
+	call z, LimitTo151
 	ld hl, wc7d1
 	ld a, [hl]
 	inc a
@@ -1033,6 +1044,9 @@ asm_40716: ; 40716 (10:4716)
 	ld [hl], a
 	jr asm_4073f
 asm_40728: ; 40728 (10:4728)
+	ld hl, StatusFlags
+	bit 7, [hl]
+	call z, LimitTo151
 	ld hl, wc7d0
 	ld a, d
 	add a
@@ -1136,9 +1150,9 @@ Unknown_407e1: ; 407e1
 Unknown_407e6: ; 407e6
 	db "OWN", $ff
 Unknown_407ea: ; 407ea
-	db $3b, $48, $49, $4a, $44, $45, $46, $47 ; SELECT > OPTION
+	db $3b, $48, $49, $4a, $44, $45, $46, $47, $3c ; SELECT > OPTION
 Unknown_407f2: ; 407f2
-	db $3c, $3b, $41, $42, $43, $4b, $4c, $4d, $4e, $ff ; START > SEARCH
+	db $3b, $41, $42, $43, $4b, $4c, $4d, $4e, $ff ; START > SEARCH
 ; 407fd
 
 Function407fd: ; 407fd
