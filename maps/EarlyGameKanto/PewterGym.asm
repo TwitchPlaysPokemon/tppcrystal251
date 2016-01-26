@@ -8,6 +8,8 @@ PewterGymRB_MapScriptHeader:
 PewterGymRB_BrockScript:
 	faceplayer
 	loadfont
+	checkevent EVENT_GOT_TM_SANDSTORM
+	iftrue .have_tm
 	checkflag ENGINE_BOULDERBADGE
 	iftrue .have_badge
 	writetext PewterGymRB_BrockIntroText
@@ -31,7 +33,14 @@ PewterGymRB_BrockScript:
 	closetext
 	end
 
-.have_badge:
+.have_badge
+	writetext PewterGymRB_BrockCongratsText
+	waitbutton
+	scall.tm
+	closetext
+	end
+
+.have_tm
 	writetext PewterGymRB_BrockAfterText
 	waitbutton
 	scall .tm
