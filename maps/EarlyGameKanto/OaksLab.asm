@@ -79,10 +79,6 @@ CharmanderPokeballScript:
 	iftrue OaksLab_LastMonScript
 	checkevent EVENT_OAKS_LAB_OAK
 	iftrue OaksLab_LookAtPokeballScript
-	checkcode VAR_FACING
-	if_equal RIGHT, .right
-	spriteface $2, RIGHT
-.right
 	refreshscreen $0
 	pokepic CHARMANDER
 	cry CHARMANDER
@@ -425,6 +421,8 @@ OakScript_OaksLabRB:
 	writetext _OaksLabText24
 	waitbutton
 	closetext
+	checkcode VAR_FACING
+	if_equal RIGHT, .right
 	applymovement $2, OaksLabMovement_OakGrabsDexes
 	pause 8
 	disappear $a
@@ -432,6 +430,19 @@ OakScript_OaksLabRB:
 	disappear $b
 	pause 8
 	applymovement $2, OaksLabMovement_OakReturnsWithDexes
+	jump .finish_giving_dex
+
+.right
+	applymovement $2, OaksLabMovement_OakGrabsDexes2
+	spriteface $0, LEFT
+	spriteface $6, LEFT
+	pause 8
+	disappear $a
+	pause 2
+	disappear $b
+	pause 8
+	spriteface $2, RIGHT
+.finish_giving_dex
 	loadfont
 	writetext _OaksLabText25
 	setflag ENGINE_POKEDEX
@@ -570,6 +581,19 @@ OaksLabMovement_OakReturnsWithDexes:
 	step_right
 	turn_head_down
 	step_end
+
+OaksLabMovement_OakGrabsDexes2:
+	step_down
+	step_down
+	step_left
+	step_left
+	step_up
+	step_up
+	step_end
+
+; OaksLabMovement_OakReturnsWithDexes2:
+	; turn_head_right
+	; step_end
 
 Movement_RivalTakesFourStepsLeft:
 	slow_step_left

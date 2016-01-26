@@ -513,7 +513,7 @@ UnknownScript_0x78e9d: ; 0x78e9d
 	loadfont
 	writetext UnknownText_0x79f38
 	buttonsound
-	verbosegiveitem POTION, 1
+	verbosegiveitem SUPER_POTION, 1
 	writetext UnknownText_0x79f65
 	waitbutton
 	closetext
@@ -541,9 +541,9 @@ UnknownScript_0x78ecb: ; 0x78ecb
 	loadfont
 	writetext UnknownText_0x7a078
 	buttonsound
-	itemtotext POKE_BALL, $1
+	itemtotext GREAT_BALL, $1
 	scall UnknownScript_0x78ee2
-	giveitem POKE_BALL, $5
+	giveitem GREAT_BALL, $5
 	writetext UnknownText_0x7a09a
 	buttonsound
 	itemnotify
@@ -803,11 +803,19 @@ AfterChikoritaMovement: ; 0x78fb0
 ; 0x78fb6
 
 UnknownText_0x78fb6: ; 0x78fb6
-	text "ELM: <PLAY_G>!"
-	line "There you are!"
+	text "Oh, hello. You"
+	line "must be <PLAY_G>!"
 
-	para "I needed to ask"
-	line "you a favor."
+	para "Your mother told"
+	line "me all about you"
+	cont "when she moved in."
+
+	para "My name is PROF."
+	line "ELM. Nice to meet"
+	cont "you!"
+
+	para "ELM: Can I ask"
+	line "you a favor?"
 
 	para "I'm conducting new"
 	line "#MON research"
@@ -1388,13 +1396,13 @@ UnknownText_0x7a078: ; 0x7a078
 ; 0x7a09a
 
 UnknownText_0x7a09a: ; 0x7a09a
-	text "To add to your"
-	line "#DEX, you have"
-	cont "to catch #MON."
+	text "These are slightly"
+	line "better than #"
+	cont "BALLS."
 
-	para "Throw # BALLS"
-	line "at wild #MON"
-	cont "to get them."
+	para "It's easier to"
+	line "catch #MON"
+	cont "with them."
 	done
 ; 0x7a0f0
 

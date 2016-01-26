@@ -6202,6 +6202,8 @@ Functioncfaf: ; cfaf
 	jr z, .asm_cfc4
 	cp PLAYER_SURF_PIKA
 	jr z, .asm_cfc4
+	callba CheckAlivePartyMon
+	jr nc, .asm_cfc4
 	call GetFacingTileCoord
 	call GetTileCollision
 	cp $1
@@ -10236,6 +10238,37 @@ UnknownText_0xfa06: ; 0xfa06
 	db "@"
 ; 0xfa0b
 
+SECTION "alive_party_mon", ROMX
+
+CheckAlivePartyMon::
+	push hl
+	push de
+	push bc
+	ld a, [PartyCount]
+	and a
+	jr z, .nope
+	ld e, a
+	ld hl, PartyMon1HP
+	ld bc, PartyMon2 - PartyMon1 - 1
+.loop
+	ld a, [hli]
+	or [hl]
+	jr nz, .yep
+	add hl, bc
+	dec e
+	jr nz, .loop
+.nope
+	pop bc
+	pop de
+	pop hl
+	and a
+	ret
+.yep
+	pop bc
+	pop de
+	pop hl
+	scf
+	ret
 
 SECTION "bank4", ROMX, BANK[$4]
 
@@ -46388,26 +46421,36 @@ Function4e56a: ; 4e56a (13:656a)
 
 Function4e5b7: ; 4e5b7 (13:65b7)
 	ld hl, OTPartyMon1
-	ld [hl], $1
+	ld [hl], 1
 	inc hl
-	ld [hl], $12
+	ld [hl], POTION
 	inc hl
-	ld [hl], $1
+	ld [hl], 1
 	inc hl
-	ld [hl], $ff
+	ld [hl], -1
 	ld hl, OTPartyMon1Exp + 2
-	ld [hl], $0
+	ld [hl], 0
 	inc hl
-	ld [hl], $ff
+	ld [hl], -1
 	ld hl, OTPartyMon1CaughtGender
-	ld a, $1
+	ld a, 1
 	ld [hli], a
-	ld a, $5
+	ld a, [MapGroup]
+	cp GROUP_VIRIDIAN_CITY_RB
+	jr z, .OldMan
+	ld a, GREAT_BALL
 	ld [hli], a
+	ld a, 5
 	ld [hli], a
-	ld [hl], $ff
+	ld [hl], -1
 	ret
-; 4e5da (13:65da)
+.OldMan
+	ld a, POKE_BALL ; 5
+	ld [hli], a
+	ld [hli], a
+	ld [hl], -1
+	ret
+
 
 DudeString: ; 4e5da
 	db "DUDE@"

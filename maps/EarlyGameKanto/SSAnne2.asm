@@ -50,15 +50,15 @@ DoRivalBattleSSAnne:
 	iftrue .charmander
 	checkevent EVENT_GOT_SQUIRTLE_FROM_OAK
 	iftrue .squirtle
-	loadtrainer BLUE_RB, BLUE_RB_3C
+	loadtrainer BLUE_RB, BLUE_RB_4C
 	jump .StartBattle
 
 .charmander
-	loadtrainer BLUE_RB, BLUE_RB_3A
+	loadtrainer BLUE_RB, BLUE_RB_4A
 	jump .StartBattle
 
 .squirtle
-	loadtrainer BLUE_RB, BLUE_RB_3B
+	loadtrainer BLUE_RB, BLUE_RB_4B
 .StartBattle
 	winlosstext _SSAnneRivalDefeatedText, _SSAnneRivalWonText
 	checkflag ENGINE_PLAYER_IS_FEMALE

@@ -981,6 +981,16 @@ Palettes_9469: ; 9469
 
 Function9499: ; 9499
 	call Function91c8
+	xor a
+	ld hl, TempMonDVs
+	ld [hli], a
+	ld [hld], a
+	ld b, h
+	ld c, l
+	ld de, $d038
+	ld a, [CurPartySpecies]
+	call Function97f9
+	call Function9643
 	ld de, $0014
 	ld hl, AttrMap
 	ld a, [wcf82]
@@ -1008,9 +1018,13 @@ Function9499: ; 9499
 	sub c
 	inc a
 	ld c, a
-	ld a, $0
+	ld a, $7
 	call Function9663
 	call Function96b3
+	call Function96a4
+	ld a, 1
+	ld [hCGBPalUpdate], a
+	call UpdateCGBPals
 	ret
 ; 94d0
 

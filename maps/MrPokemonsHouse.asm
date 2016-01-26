@@ -97,6 +97,12 @@ UnknownScript_0x196ec9: ; 0x196ec9
 	writetext UnknownText_0x197185
 	buttonsound
 	waitsfx
+	special ProfOaksPCBoot
+	buttonsound
+	waitsfx
+	writetext UnknownText_0x197185_2
+	buttonsound
+	waitsfx
 	writetext UnknownText_0x1973cc
 	playsound SFX_ITEM
 	waitsfx
@@ -266,73 +272,36 @@ UnknownText_0x19714a: ; 0x19714a
 ; 0x197185
 
 UnknownText_0x197185: ; 0x197185
-	text "OAK: Aha! So"
-	line "you're <PLAY_G>!"
+	text "OAK: Ah, <PLAY_G>!"
+	line "What a surprise!"
 
-	para "I'm OAK! A #MON"
-	line "researcher."
+	para "I heard what hap-"
+	line "pened on the S.S."
+	cont "ANNE."
 
-	para "I was just visit-"
-	line "ing my old friend"
-	cont "MR.#MON."
+	para "You're safe! That's"
+	line "great news!"
 
-	para "I heard you were"
-	line "running an errand"
-
-	para "for PROF.ELM, so I"
-	line "waited here."
-
-	para "Oh! What's this?"
-	line "A rare #MON!"
-
-	para "Let's see<...>"
-
-	para "Hm, I see!"
-
-	para "I understand why"
-	line "PROF.ELM gave you"
-
-	para "a #MON for this"
-	line "errand."
-
-	para "To researchers"
-	line "like PROF.ELM and"
-
-	para "I, #MON are our"
-	line "friends."
-
-	para "He saw that you"
-	line "would treat your"
-
-	para "#MON with love"
-	line "and care."
-
-	para "<...>Ah!"
-
-	para "You seem to be"
-	line "dependable."
-
-	para "How would you like"
-	line "to help me out?"
-
-	para "See? This is the"
-	line "latest version of"
-	cont "#DEX."
-
-	para "It automatically"
-	line "records data on"
-
-	para "#MON you've"
-	line "seen or caught."
-
-	para "It's a hi-tech"
-	line "encyclopedia!"
+	para "Ah! Let me check"
+	line "your #DEX."
 	done
 ; 0x1973cc
+UnknownText_0x197185_2:
+	text "Ah, yes, I almost"
+	line "forgot."
+
+	para "Here, it's the"
+	line "latest upgrade for"
+	cont "your #DEX!"
+
+	para "I was working on"
+	line "developing it"
+	cont "since you set out."
+	done
 
 UnknownText_0x1973cc: ; 0x1973cc
-	text "<PLAYER> received"
-	line "#DEX!"
+	text "<PLAYER>'s #DEX"
+	line "was upgraded!"
 	done
 ; 0x1973de
 

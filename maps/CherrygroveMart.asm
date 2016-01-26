@@ -8,14 +8,6 @@ CherrygroveMart_MapScriptHeader: ; 0x196808
 
 ClerkScript_0x19680a: ; 0x19680a
 	loadfont
-	checkevent EVENT_GAVE_MYSTERY_EGG_TO_ELM
-	iftrue UnknownScript_0x196817
-	pokemart $0, $0000
-	closetext
-	end
-; 0x196817
-
-UnknownScript_0x196817: ; 0x196817
 	pokemart $0, $0001
 	closetext
 	end

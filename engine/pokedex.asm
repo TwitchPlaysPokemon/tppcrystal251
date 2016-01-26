@@ -1136,9 +1136,9 @@ Unknown_407e1: ; 407e1
 Unknown_407e6: ; 407e6
 	db "OWN", $ff
 Unknown_407ea: ; 407ea
-	db $3b, $48, $49, $4a, $44, $45, $46, $47 ; SELECT > OPTION
+	db $3b, $48, $49, $4a, $44, $45, $46, $47, $3c ; SELECT > OPTION
 Unknown_407f2: ; 407f2
-	db $3c, $3b, $41, $42, $43, $4b, $4c, $4d, $4e, $ff ; START > SEARCH
+	db $3b, $41, $42, $43, $4b, $4c, $4d, $4e, $ff ; START > SEARCH
 ; 407fd
 
 Function407fd: ; 407fd
@@ -1675,8 +1675,14 @@ Function40c08: ; 40c08 (10:4c08)
 	ret
 
 Function40c18: ; 40c18 (10:4c18)
-	ld hl, wc7ca
+	ld hl, wc6d0 + NUM_POKEMON - 1
 	ld d, NUM_POKEMON
+	ld a, [StatusFlags]
+	bit 7, a
+	jr nz, .okay
+	ld hl, wc6d0 + MEW - 1
+	ld d, MEW
+.okay
 	ld e, d
 .asm_40c1e
 	ld a, [hld]
@@ -2697,7 +2703,18 @@ Function4424d: ; 4424d
 	call PlaceString
 	ld a, [wd265]
 	ld b, a
+	ld a, [StatusFlags]
+	bit 7, a
+	jr nz, .okay_p1
+	ld a, [wd265]
+	cp MEW
+	jr c, .okay_p1
+	ld de, .Unknown
+	ld b, BANK(Function4424d)
+	jr .got_pointer
+.okay_p1
 	call Function44333
+.got_pointer
 	ld a, b
 	push af
 	hlcoord 9, 5
@@ -2815,7 +2832,15 @@ Function4424d: ; 4424d
 	hlcoord 2, 11
 	call FarString
 	ret
-
+.Unknown
+	db "?????@"
+	dw 0, 0
+	db   "No information is"
+	next "available for this"
+	next "#MON currently."
+	page "Please ensure the"
+	next "latest data pack"
+	next "is installed.@"
 	
 Function41a7f: ; 41a7f
 	xor a

@@ -16,14 +16,57 @@ KrissHouse1F_MapScriptHeader: ; 0x7a4cc
 
 MomElatedToSeeYouAlive:
 	; put script here
+	spriteface $2, DOWN
+	loademote $0, $2, 15
+	pause 15
+	applymovement $2, NBT_MomApproaches
+	loadfont
+	writetext MomText1_Johto
+	buttonsound
+	stringtotext .phonecardname, $1
+	scall .jumpstdRecvItem
 	dotrigger 1
 	setevent EVENT_MOM_POSITION_1
 	clearevent EVENT_MOM_POSITION_2
 	setflag ENGINE_PHONE_CARD
 	addcellnum $1 ; PHONE_MOM
+	writetext MomText4_Johto
+	yesorno
+	iffalse .declined
+	writetext MomText5
+	buttonsound
+	jump .finish
+
+.declined
+	writetext MomText6
+	buttonsound
+.finish
+	writetext MomText7
+	waitbutton
+	closetext
+	spriteface $7, LEFT
+	spriteface $0, RIGHT
+	loadfont
+	writetext NBTLadyText_KrisHouse1F
+	waitbutton
+	closetext
+	spriteface $7, UP
+	pause 30
+	spriteface $7, DOWN
+	disappear $7
+	playsound SFX_EXIT_BUILDING
+	waitsfx
+	special RestartMapMusic
 	end
 
+.jumpstdRecvItem
+	jumpstd receiveitem
+
+.phonecardname
+	db "PHONE CARD@"
+
 MomScript_0x7a582: ; 0x7a582
+	faceplayer
 	loadfont
 	checkevent EVENT_SPOKE_TO_MOM_AFTER_DELIVERING_MYSTERY_EGG
 	iftrue UnknownScript_0x7a5af
@@ -113,6 +156,14 @@ MapKrissHouse1FSignpost1Script: ; 0x7a5f6
 MapKrissHouse1FSignpost2Script: ; 0x7a5f9
 	jumptext UnknownText_0x7aa91
 ; 0x7a5fc
+
+NBT_MomApproaches:
+	slow_step_down
+	step_sleep 20
+	step_down
+	big_step_left
+	turn_head_down
+	step_end
 
 UnknownText_0x7a8b5: ; 0x7a8b5
 	text "PROF.ELM is wait-"
@@ -218,6 +269,99 @@ UnknownText_0x7aad0: ; 0x7aad0
 	done
 ; 0x7ab31
 
+MomText1_Johto:
+	text "<PLAY_G>? Is that"
+	line "really you, honey?"
+
+	para "All this time I"
+	line "thought<...>"
+
+	para "It doesn't matter."
+	line "What's important"
+	cont "is, you're safe."
+
+	para "Oh, <PLAY_G><...>"
+
+	para "I was worried sick"
+	line "about you!"
+
+	para "When I heard the"
+	line "news<...>"
+
+	para "Don't you ever"
+	line "scare me like that"
+	cont "again!"
+
+	para "I should have in-"
+	line "stalled this the"
+	cont "moment your #-"
+	cont "GEAR came back!"
+	done
+
+MomText4_Johto:
+	text "I already regis-"
+	line "tered my number on"
+	cont "it."
+
+	para "Please, check in"
+	line "every once in a"
+	cont "while, okay honey?"
+
+	para "I never want to go"
+	line "through that worry"
+	cont "ever again."
+
+	para "By the way, do you"
+	line "know how to use"
+	cont "the PHONE?"
+	done
+; 0x7a7cb
+
+MomText5: ; 0x7a7cb
+	text "Don't you just"
+	line "turn the #GEAR"
+
+	para "on and select the"
+	line "PHONE icon?"
+	done
+; 0x7a807
+
+MomText6: ; 0x7a807
+	text "I'll read the"
+	line "instructions."
+
+	para "Turn the #GEAR"
+	line "on and select the"
+	cont "PHONE icon."
+	done
+; 0x7a850
+
+MomText7: ; 0x7a850
+	text "Phone numbers are"
+	line "stored in memory."
+
+	para "Just choose a name"
+	line "you want to call."
+
+	para "Gee, isn't that"
+	line "convenient?"
+
+	para $56, " ", $56, " ", $56
+	line "<PLAY_G><...>"
+
+	para "Don't ever forget"
+	line "that I love you."
+	done
+
+NBTLadyText_KrisHouse1F:
+	text "I have to get"
+	line "going."
+
+	para "It was a pleasure"
+	line "meeting you,"
+	cont "<PLAY_G>!"
+	done
+
 KrissHouse1F_MapEventHeader: ; 0x7ab31
 	; filler
 	db 0, 0
@@ -241,11 +385,12 @@ KrissHouse1F_MapEventHeader: ; 0x7ab31
 	signpost 1, 4, $0, MapKrissHouse1FSignpost3Script
 
 	; people-events
-	db 5
+	db 7
 	person_event SPRITE_MOM, 8, 11, $8, 0, 0, -1, -1, 0, 0, 0, MomScript_0x7a582, EVENT_MOM_POSITION_1
 	person_event SPRITE_MOM, 6, 6, $7, 0, 0, -1, 1, 0, 0, 0, MomScript_0x7a582, EVENT_MOM_POSITION_2
 	person_event SPRITE_MOM, 8, 11, $8, 0, 0, -1, 2, 0, 0, 0, MomScript_0x7a582, EVENT_MOM_POSITION_2
 	person_event SPRITE_MOM, 6, 4, $7, 0, 0, -1, 4, 0, 0, 0, MomScript_0x7a582, EVENT_MOM_POSITION_2
 	person_event SPRITE_POKEFAN_F, 8, 8, $9, 0, 0, -1, -1, 8 + PAL_OW_RED, 0, 0, PokefanFScript_0x7a5c1, EVENT_NEIGHBOR_IN_YOUR_HOUSE_1F
+	person_event SPRITE_TEACHER, 11, 11, $7, 0, 0, -1, -1, 8 + PAL_OW_RED, 0, 0, PokefanFScript_0x7a5c1, EVENT_MOM_POSITION_1
 ; 0x7abab
 

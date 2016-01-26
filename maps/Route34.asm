@@ -563,6 +563,20 @@ CooltrainerfIreneScript: ; 0x782c4
 	end
 ; 0x782d2
 
+TeachMoveIce:
+	writetext UnknownText_0x78866
+	writebyte 4
+	jump TeachMove
+
+TeachMoveFire
+	writetext UnknownText_0x78866
+	writebyte 6
+	jump TeachMove
+
+TeachMoveThunder:
+	writetext UnknownText_0x78866
+	writebyte 5
+
 TeachMove:
 	writetext WhoToTeachText
 	special Function4925b
@@ -610,6 +624,9 @@ LightPocketsText:
 
 UnknownScript_0x782d2: ; 0x782d2
 	writetext UnknownText_0x787ad
+	yesorno
+	iftrue TeachMoveFire
+	writetext TutorQuitText
 	waitbutton
 	closetext
 	end
@@ -648,10 +665,15 @@ CooltrainerfJennScript: ; 0x782e4
 
 UnknownScript_0x782f2: ; 0x782f2
 	writetext UnknownText_0x78866
+	yesorno
+	iftrue TeachMoveThunder
+	writetext TutorQuitText
 	waitbutton
 	closetext
 	end
 ; 0x782f8
+
+
 
 TrainerCooltrainerfKate: ; 0x782f8
 	; bit/flag number
@@ -683,7 +705,8 @@ CooltrainerfKateScript: ; 0x78304
 UnknownScript_0x78319: ; 0x78319
 	writetext UnknownText_0x7892b
 	yesorno
-	iftrue TeachMove
+	iftrue TeachMoveIce
+	writetext TutorQuitText
 	waitbutton
 UnknownScript_0x7831d: ; 0x7831d
 	closetext
@@ -1032,7 +1055,7 @@ CooltrainerfIreneSeenText: ; 0x78743
 
 CooltrainerfIreneBeatenText: ; 0x78765
 	text "IRENE: Ohhh!"
-	line "Too strong!"
+	line "Too hot!"
 	done
 ; 0x7877f
 
@@ -1044,11 +1067,13 @@ UnknownText_0x7877f: ; 0x7877f
 ; 0x787ad
 
 UnknownText_0x787ad: ; 0x787ad
-	text "IRENE: Isn't this"
-	line "beach great?"
+	text "IRENE: I'm so hot"
+	line "it's like my fists"
+	cont "are on fire."
 
-	para "It's our secret"
-	line "little getaway!"
+	para "For ¥5000 I can"
+	line "teach you my"
+	cont "secret?"
 	done
 ; 0x787eb
 
@@ -1073,9 +1098,15 @@ UnknownText_0x78836: ; 0x78836
 ; 0x78866
 
 UnknownText_0x78866: ; 0x78866
-	text "JENN: Sunlight"
-	line "makes your body"
-	cont "stronger."
+	text "JENN: Strike hard!"
+
+	para "Fast!"
+
+	para "Like lightinig!"
+
+	para "For ¥5000 your"
+	line "mon can too."
+	cont "Well?"
 	done
 ; 0x78890
 
@@ -1088,22 +1119,23 @@ CooltrainerfKateSeenText: ; 0x78890
 
 CooltrainerfKateBeatenText: ; 0x788c0
 	text "KATE: No! I can't"
-	line "believe I lost."
+	line "believe we lost."
 	done
 ; 0x788e2
 
 UnknownText_0x788e2: ; 0x788e2
-	text "KATE: Oh, you only"
-	line "wanted a #MON"
-	cont "battle?"
+	text "KATE: Oh, you're"
+	line "just a #MON"
+	cont "trainer?"
 
-	para "What a relief…"
+	para "I thought you were"
+	line "a spy<...>"
 
 	para "We're training"
 	line "elemental martial"
 	cont "arts in secret, but"
 	cont "so far we only"
-	cont "taught our #MON…"
+	cont "taught our #MON<...>"
 
 	para "*grooowwl*"
 
@@ -1115,14 +1147,13 @@ UnknownText_0x788e2: ; 0x788e2
 ; 0x7892b
 
 UnknownText_0x7892b: ; 0x7892b
-	text "KATE: I'm sorry we"
-	line "jumped you."
+	text "KATE: I'm so cool"
+	line "it's like my hands"
+	cont "are ice."
 
-	para "We never expected"
-	line "anyone to find us"
-
-	para "here. You sure"
-	line "startled us."
+	para "¥5000 and I can"
+	line "give your mon my"
+	cont "freezng touch."
 	done
 ; 0x7898a
 

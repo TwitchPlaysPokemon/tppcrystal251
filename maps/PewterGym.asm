@@ -50,8 +50,7 @@ BrockRematchScript:
 	startbattle
 	returnafterbattle
 	setevent EVENT_BROCK_REMATCH
-	loadfont
-	jump BrockAfterRematch
+	loadfont ;fallthrough
 ; 0x188466
 
 BrockAfterRematch:
