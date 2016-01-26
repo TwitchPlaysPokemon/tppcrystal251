@@ -311,6 +311,6 @@ PokemonFanClubRB_MapEventHeader: ; 0x191e4d
 	person_event SPRITE_FISHER, 7, 6, $9, 0, 0, -1, -1, 0, 0, 0, PokemonFanClubRB_FisherScript, -1
 	person_event SPRITE_TEACHER, 6, 11, $8, 0, 0, -1, -1, 0, 0, 0, PokemonFanClubRB_TeacherScript, -1
 	person_event SPRITE_PIKACHU, 8, 6, $16, 0, 0, -1, -1, 0, 0, 0, PokemonFanClubRB_PikachuScript, -1
-	person_event SPRITE_LAPRAS, 7, 11, $16, 0, 0, -1, -1, 8 + PAL_OW_GREEN, 0, 0, PokemonFanClubRB_SeelScript, -1
+	person_event SPRITE_LAPRAS, 7, 11, $16, 0, 0, -1, -1, 0, 0, 0, PokemonFanClubRB_SeelScript, -1
 ; 0x191eb5
 
