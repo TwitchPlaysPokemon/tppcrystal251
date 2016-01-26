@@ -6202,6 +6202,8 @@ Functioncfaf: ; cfaf
 	jr z, .asm_cfc4
 	cp PLAYER_SURF_PIKA
 	jr z, .asm_cfc4
+	callba CheckAlivePartyMon
+	jr nc, .asm_cfc4
 	call GetFacingTileCoord
 	call GetTileCollision
 	cp $1
@@ -10236,6 +10238,37 @@ UnknownText_0xfa06: ; 0xfa06
 	db "@"
 ; 0xfa0b
 
+SECTION "alive_party_mon", ROMX
+
+CheckAlivePartyMon::
+	push hl
+	push de
+	push bc
+	ld a, [PartyCount]
+	and a
+	jr z, .nope
+	ld e, a
+	ld hl, PartyMon1HP
+	ld bc, PartyMon2 - PartyMon1 - 1
+.loop
+	ld a, [hli]
+	or [hl]
+	jr nz, .yep
+	add hl, bc
+	dec e
+	jr nz, .loop
+.nope
+	pop bc
+	pop de
+	pop hl
+	and a
+	ret
+.yep
+	pop bc
+	pop de
+	pop hl
+	scf
+	ret
 
 SECTION "bank4", ROMX, BANK[$4]
 

@@ -20,7 +20,6 @@ MomElatedToSeeYouAlive:
 	loademote $0, $2, 15
 	pause 15
 	applymovement $2, NBT_MomApproaches
-	spriteface $0, LEFT
 	loadfont
 	writetext MomText1_Johto
 	buttonsound
@@ -45,11 +44,14 @@ MomElatedToSeeYouAlive:
 	writetext MomText7
 	waitbutton
 	closetext
+	spriteface $7, LEFT
 	spriteface $0, RIGHT
 	loadfont
 	writetext NBTLadyText_KrisHouse1F
 	waitbutton
 	closetext
+	spriteface $7, UP
+	pause 30
 	spriteface $7, DOWN
 	disappear $7
 	playsound SFX_EXIT_BUILDING
@@ -159,8 +161,8 @@ NBT_MomApproaches:
 	slow_step_down
 	step_sleep 20
 	step_down
-	big_step_down
-	big_step_right
+	big_step_left
+	turn_head_down
 	step_end
 
 UnknownText_0x7a8b5: ; 0x7a8b5
@@ -389,6 +391,6 @@ KrissHouse1F_MapEventHeader: ; 0x7ab31
 	person_event SPRITE_MOM, 8, 11, $8, 0, 0, -1, 2, 0, 0, 0, MomScript_0x7a582, EVENT_MOM_POSITION_2
 	person_event SPRITE_MOM, 6, 4, $7, 0, 0, -1, 4, 0, 0, 0, MomScript_0x7a582, EVENT_MOM_POSITION_2
 	person_event SPRITE_POKEFAN_F, 8, 8, $9, 0, 0, -1, -1, 8 + PAL_OW_RED, 0, 0, PokefanFScript_0x7a5c1, EVENT_NEIGHBOR_IN_YOUR_HOUSE_1F
-	person_event SPRITE_TEACHER, 11, 11, $8, 0, 0, -1, -1, 8 + PAL_OW_RED, 0, 0, PokefanFScript_0x7a5c1, EVENT_MOM_POSITION_1
+	person_event SPRITE_TEACHER, 11, 11, $7, 0, 0, -1, -1, 8 + PAL_OW_RED, 0, 0, PokefanFScript_0x7a5c1, EVENT_MOM_POSITION_1
 ; 0x7abab
 
