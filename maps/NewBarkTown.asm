@@ -1,28 +1,27 @@
 NewBarkTown_MapScriptHeader: ; 0x1a8000
 	; trigger count
-	db 2
+	db 3
 
 	; triggers
-	dw UnknownScript_0x1a800d, $0000
-	dw UnknownScript_0x1a800e, $0000
+	dw .Trigger0, 0
+	dw .Trigger1, 0
+	dw .Trigger2, 0
 
 	; callback count
 	db 1
 
 	; callbacks
 
-	dbw 5, UnknownScript_0x1a800f
-; 0x1a800d
+	dbw 5, .flypoint
 
-UnknownScript_0x1a800d: ; 0x1a800d
+.Trigger0
 	end
-; 0x1a800e
-
-UnknownScript_0x1a800e: ; 0x1a800e
+.Trigger1
 	end
-; 0x1a800f
+.Trigger2
+	end
 
-UnknownScript_0x1a800f: ; 0x1a800f
+.flypoint: ; 0x1a800f
 	setflag ENGINE_FLYPOINT_NEW_BARK
 	clearevent EVENT_SPOKE_TO_MOM_AFTER_DELIVERING_MYSTERY_EGG
 	return
@@ -139,6 +138,58 @@ SilverScript_0x1a809e: ; 0x1a809e
 	end
 ; 0x1a80c8
 
+
+
+NewBarkTown_TeacherStopsYouTrigger1: ; 0x1a8016
+	playmusic MUSIC_MOM
+	spriteface $2, LEFT
+	loadfont
+	writetext Text_WaitPlayer
+	waitbutton
+	closetext
+	spriteface $0, RIGHT
+	applymovement $2, MovementData_0x1a80d9
+	loadfont
+	writetext Text_WhatDoYouThinkYoureDoing
+	waitbutton
+	closetext
+	follow $2, $0
+	applymovement $2, Movement_TeacherBringsYouBack1_NBT
+	stopfollow
+	loadfont
+	writetext Text_ItsDangerousToGoAlone
+	waitbutton
+	closetext
+	special RestartMapMusic
+	end
+
+NewBarkTown_TeacherStopsYouTrigger2: ; 0x1a8041
+	playmusic MUSIC_MOM
+	spriteface $2, LEFT
+	loadfont
+	writetext Text_WaitPlayer
+	waitbutton
+	closetext
+	spriteface $0, RIGHT
+	applymovement $2, MovementData_0x1a80d4
+	spriteface $0, UP
+	loadfont
+	writetext Text_WhatDoYouThinkYoureDoing
+	waitbutton
+	closetext
+	follow $2, $0
+	applymovement $2, Movement_TeacherBringsYouBack2_NBT
+	stopfollow
+	loadfont
+	writetext Text_ItsDangerousToGoAlone
+	waitbutton
+	closetext
+	special RestartMapMusic
+	end
+
+; 0x1a806f
+
+
 MapNewBarkTownSignpost0Script: ; 0x1a80c8
 	jumptext UnknownText_0x1a82e8
 ; 0x1a80cb
@@ -172,6 +223,15 @@ MovementData_0x1a80d9: ; 0x1a80d9
 	turn_head_down
 	step_end
 ; 0x1a80e0
+
+Movement_TeacherBringsYouBack2_NBT: ; 0x1a80e6
+	step_right
+Movement_TeacherBringsYouBack1_NBT: ; 0x1a80e0
+	step_right
+	step_right
+	step_right
+	step_right
+	step_end
 
 MovementData_0x1a80e6: ; 0x1a80e6
 	step_right
@@ -273,6 +333,27 @@ UnknownText_0x1a8236: ; 0x1a8236
 	done
 ; 0x1a8274
 
+Text_WaitPlayer:
+	text "Wait, <PLAY_G>!"
+	done
+
+Text_WhatDoYouThinkYoureDoing:
+	text "What do you think"
+	line "you're doing?"
+	done
+
+Text_ItsDangerousToGoAlone:
+	text "PROF.ELM is look-"
+	line "for helpers."
+
+	para "His lab is just to"
+	line "the north of here."
+
+	para "Why don't you go"
+	line "introduce your-"
+	cont "self to him?"
+	done
+
 UnknownText_0x1a8274: ; 0x1a8274
 	text "Yo, <PLAYER>!"
 
@@ -333,9 +414,11 @@ NewBarkTown_MapEventHeader: ; 0x1a834d
 	warp_def $d, $b, 1, GROUP_ELMS_HOUSE, MAP_ELMS_HOUSE
 
 	; xy triggers
-	db 2
+	db 4
 	xy_trigger 0, $8, $1, $0, UnknownScript_0x1a8016, $0, $0
 	xy_trigger 0, $9, $1, $0, UnknownScript_0x1a8041, $0, $0
+	xy_trigger 2, $8, $1, $0, NewBarkTown_TeacherStopsYouTrigger1, $0, $0
+	xy_trigger 2, $9, $1, $0, NewBarkTown_TeacherStopsYouTrigger2, $0, $0
 
 	; signposts
 	db 4

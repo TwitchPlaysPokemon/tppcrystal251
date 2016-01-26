@@ -141,7 +141,6 @@ GrampsScript_0x19c013: ; 0x19c013
 
 .UnknownScript_0x19c097 ; 0x19c097
 	jumpstd receiveitem
-	end
 
 .mapcardname ; 0x19c09b
 	db "MAP CARD@"

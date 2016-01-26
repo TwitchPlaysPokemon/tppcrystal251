@@ -803,11 +803,19 @@ AfterChikoritaMovement: ; 0x78fb0
 ; 0x78fb6
 
 UnknownText_0x78fb6: ; 0x78fb6
-	text "ELM: <PLAY_G>!"
-	line "There you are!"
+	text "Oh, hello. You"
+	line "must be <PLAY_G>!"
 
-	para "I needed to ask"
-	line "you a favor."
+	para "Your mother told"
+	line "me all about you"
+	cont "when she moved in."
+
+	para "My name is PROF."
+	line "ELM. Nice to meet"
+	cont "you!"
+
+	para "ELM: Can I ask"
+	line "you a favor?"
 
 	para "I'm conducting new"
 	line "#MON research"

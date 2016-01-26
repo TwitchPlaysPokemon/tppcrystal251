@@ -268,43 +268,7 @@ MomText4: ; 0x7a763
 
 	para "for Daylight"
 	line "Saving Time."
-
-	; para "By the way, do you"
-	; line "know how to use"
-	; cont "the PHONE?"
 	done
-; 0x7a7cb
-
-; MomText5: ; 0x7a7cb
-	; text "Don't you just"
-	; line "turn the #GEAR"
-
-	; para "on and select the"
-	; line "PHONE icon?"
-	; done
-; ; 0x7a807
-
-; MomText6: ; 0x7a807
-	; text "I'll read the"
-	; line "instructions."
-
-	; para "Turn the #GEAR"
-	; line "on and select the"
-	; cont "PHONE icon."
-	; done
-; ; 0x7a850
-
-; MomText7: ; 0x7a850
-	; text "Phone numbers are"
-	; line "stored in memory."
-
-	; para "Just choose a name"
-	; line "you want to call."
-
-	; para "Gee, isn't that"
-	; line "convenient?"
-	; done
-
 
 MomText_AllBoysLeaveHomeSomeday:
 	text "Right. All boys"
