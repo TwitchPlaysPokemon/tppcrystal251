@@ -1,5 +1,5 @@
 # Pokémon Crystal
-# TwitchPlaysPokemon Edition
+# Twitch Plays Pokemon Edition
 
 This is a modded disassembly of Pokémon Crystal, Created for  TwitchPlaysPokemon.
 
