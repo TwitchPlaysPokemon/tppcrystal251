@@ -343,8 +343,11 @@ SSAnne5ShipwreckText:
 	done
 
 SSAnne5ShipwreckText2:
-	text "ABANDON"
-	line "SHIIIIIIIIIIIIIIII"
+	text "We gotta get out"
+	line "of here!"
+
+	para "Abandon ship!"
+	line "Abando"
 	done
 
 SSAnne5_MapEventHeader:

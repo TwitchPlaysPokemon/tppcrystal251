@@ -32,7 +32,7 @@ CherrygroveCity_MapScriptHeader: ; 0x19c000
 
 Cherrygrove_WashedUpOnShore:
 	disappear $2
-	moveperson $2, 15, 6
+	moveperson $2, 14, 6
 	appear $2
 	applymovement $2, Movement_GuideGentWalksUpToPlayerAfterShipwreck
 	spriteface $0, UP
@@ -54,6 +54,7 @@ Cherrygrove_WashedUpOnShore:
 	special RestartMapMusic
 	applymovement $2, Movement_GuideGentResetPosition
 	dotrigger 3
+	moveperson $2, 32, 6
 	end
 
 UnknownScript_0x19c00f: ; 0x19c00f
@@ -141,6 +142,7 @@ GrampsScript_0x19c013: ; 0x19c013
 
 .UnknownScript_0x19c097 ; 0x19c097
 	jumpstd receiveitem
+	end
 
 .mapcardname ; 0x19c09b
 	db "MAP CARD@"
@@ -149,7 +151,7 @@ GrampsScript_0x19c013: ; 0x19c013
 	db "RUNNING SHOES@"
 ; 0x19c0a4
 .first_landed
-	checktriggers
+	special _CheckAlivePartyMon
 	iftrue .healyourpokemon
 	writetext GuideGentDirectsPlayerToNewBark
 	waitbutton
@@ -326,7 +328,7 @@ MapCherrygroveCitySignpost2Script: ; 0x19c192
 Cherrygrove_PleaseHealYourPokemon:
 	spriteface $0, UP
 	loadfont
-	checkevent EVENT_HEALED_PKMN_IN_CHERRYGROVE
+	special _CheckAlivePartyMon
 	iftrue .directtonewbark
 	writetext Text_PleaseHealYourPokemon
 	waitbutton
@@ -458,7 +460,6 @@ Movement_GuideGentWalksUpToPlayerAfterShipwreck:
 	step_left
 	step_left
 	step_left
-	step_left
 	step_down
 	step_down
 	step_end
@@ -470,8 +471,8 @@ Movement_GuideGentTakesPlayerToPokecenter:
 	step_right
 	step_right
 	step_right
-	step_right
 	step_up
+	step_right
 	step_right
 	step_right
 	step_right
@@ -799,7 +800,6 @@ Text_GuideGentForcesPlayerToHealParty:
 
 	para "This is our local"
 	line "#MON CENTER."
-
 	para "The NURSE inside"
 	line "will fix you right"
 	cont "up."
@@ -885,10 +885,12 @@ CherrygroveCity_MapEventHeader: ; 0x19c829
 	warp_def $b, $1f, 1, GROUP_CHERRYGROVE_EVOLUTION_SPEECH_HOUSE, MAP_CHERRYGROVE_EVOLUTION_SPEECH_HOUSE
 
 	; xy triggers
-	db 3
+	db 5
 	xy_trigger 1, $6, $21, $0, UnknownScript_0x19c0ae, $0, $0
 	xy_trigger 1, $7, $21, $0, UnknownScript_0x19c0aa, $0, $0
-	xy_trigger 3, $7, $21, $0, Cherrygrove_PleaseHealYourPokemon, $0, $0
+	xy_trigger 3, $7, $20, $0, Cherrygrove_PleaseHealYourPokemon, $0, $0
+	xy_trigger 3, $8, $20, $0, Cherrygrove_PleaseHealYourPokemon, $0, $0
+	xy_trigger 3, $9, $20, $0, Cherrygrove_PleaseHealYourPokemon, $0, $0
 
 	; signposts
 	db 4
