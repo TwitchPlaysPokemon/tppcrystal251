@@ -96,7 +96,7 @@ Route25RBTrainer9:
 	end
 
 Route25RB_TMBall:
-	db TM_THUNDER_WAVE, 1
+	db TM_SEISMIC_TOSS, 1
 
 Route25RB_HiddenEther:
 	dwb EVENT_ROUTE_25_RB_HIDDEN_ETHER, ETHER
