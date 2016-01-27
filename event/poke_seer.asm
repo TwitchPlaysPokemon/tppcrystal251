@@ -1,16 +1,11 @@
-SEER_INTRO      EQU 0
-SEER_CANT_TELL  EQU 1
-SEER_MET_AT     EQU 2
-SEER_TIME_LEVEL EQU 3
-SEER_TRADED     EQU 4
-SEER_CANCEL     EQU 5
-SEER_EGG        EQU 6
-SEER_LEVEL_ONLY EQU 7
-
 
 SpecialPokeSeer: ; 4f0bc
-	ld a, SEER_INTRO
-	call PrintSeerText
+	ld hl, .Intro
+	call PrintText
+	call YesNoBox
+	jr c, .cancel
+	ld hl, .Which
+	call PrintText
 	call Functiona36
 
 	ld b, $6
@@ -24,409 +19,542 @@ SpecialPokeSeer: ; 4f0bc
 	call IsAPokemon
 	jr c, .no_mon
 
-	call ReadCaughtData
-	call SeerAction
+	call ReadDVs
+	call JudgePokemon
 	ret
 
 .cancel
-	ld a, SEER_CANCEL
-	call PrintSeerText
+	ld hl, .Cancel
+	call PrintText
 	ret
 
 .no_mon
 	ret
 
 .egg
-	ld a, SEER_EGG
-	call PrintSeerText
+	ld hl, .Egg
+	call PrintText
 	ret
 ; 4f0ee
 
+.Intro
+	text "I'm the STATS"
+	line "JUDGE."
 
-SeerAction: ; 4f0ee
-	ld a, [wd002]
-	ld hl, SeerActions
-	rst JumpTable
-	ret
-; 4f0f6
+	para "I can reveal the"
+	line "hidden potential"
+	cont "of your #MON."
 
-SeerActions: ; 4f0f6
-	dw SeerAction0
-	dw SeerAction1
-	dw SeerAction2
-	dw SeerAction3
-	dw SeerAction4
-; 4f100
+	para "Want me to judge"
+	line "one of your #-"
+	cont "MON?"
+	done
 
-SeerAction0: ; 4f100
-	ld a, SEER_MET_AT
-	call PrintSeerText
-	ld a, SEER_TIME_LEVEL
-	call PrintSeerText
-	call SeerAdvice
-	ret
-; 4f10e
+.Which
+	text "Which #MON"
+	line "should I judge?"
+	done
+.Cancel
+	text "Oh, okay. Come"
+	line "again sometime."
+	done
+.Egg
+	text "I can't judge an"
+	line "EGG."
+	done
 
-SeerAction1: ; 4f10e
-	call GetCaughtOT
-	ld a, SEER_TRADED
-	call PrintSeerText
-	ld a, SEER_TIME_LEVEL
-	call PrintSeerText
-	call SeerAdvice
-	ret
-; 4f11f
-
-SeerAction2: ; 4f11f
-	ld a, SEER_CANT_TELL
-	call PrintSeerText
-	ret
-; 4f125
-
-SeerAction3: ; 4f125
-	ld a, SEER_CANT_TELL
-	call PrintSeerText
-	ret
-; 4f12b
-
-SeerAction4: ; 4f12b
-	ld a, SEER_LEVEL_ONLY
-	call PrintSeerText
-	call SeerAdvice
-	ret
-; 4f134
-
-ReadCaughtData: ; 4f134
-	ld a, PartyMon1CaughtData - PartyMon1
+ReadDVs:
+	ld a, PartyMon1DVs - PartyMon1
 	call GetPartyParamLocation
 	ld a, [hli]
-	ld [wd03b], a
-	ld a, [hld]
-	ld [wd03b + 1], a
-	or [hl]
-	jr z, .asm_4f170
-
-	ld a, 1
-	ld [wd002], a
-
-	ld a, PartyMon1ID - PartyMon1
-	call GetPartyParamLocation
-	ld a, [PlayerID]
-	cp [hl]
-	jr nz, .asm_4f15f
-
-	inc hl
-	ld a, [PlayerID + 1]
-	cp [hl]
-	jr nz, .asm_4f15f
-
-	ld a, 0
-	ld [wd002], a
-
-.asm_4f15f
-	call GetCaughtLevel
-	call GetCaughtOT
-	call GetCaughtName
-	call GetCaughtTime
-	call GetCaughtLocation
-	and a
-	ret
-
-.asm_4f170
-	ld a, 2
-	ld [wd002], a
-	ret
-; 4f176
-
-GetCaughtName: ; 4f176
-	ld a, [CurPartyMon]
-	ld hl, PartyMonNicknames
-	ld bc, PKMN_NAME_LENGTH
-	call AddNTimes
-	ld de, wd003
-	ld bc, PKMN_NAME_LENGTH
-	call CopyBytes
-	ret
-; 4f18c
-
-GetCaughtLevel: ; 4f18c
-	ld a, "@"
-	ld hl, wd036
-	ld bc, 4
-	call ByteFill
-
-	; caught level
-	ld a, [wd03b]
-	and $3f
-	jr z, .unknown
-	cp 1 ; hatched from an egg
-	jr nz, .print
-	ld a, 5 ; egg hatch level
-
-.print
-	ld [wd038 + 2], a
-	ld hl, wd036
-	ld de, wd038 + 2
-	ld bc, $4103
-	call PrintNum
-	ret
-
-.unknown
-	ld de, wd036
-	ld hl, .unknown_level
-	ld bc, 4
-	call CopyBytes
-	ret
-; 4f1c1
-
-.unknown_level ; 4f1c1
-	db "???@"
-; 4f1c5
-
-GetCaughtTime: ; 4f1c5
-	ld a, [wd03b]
-	and $c0
-	jr z, .none
-
-	rlca
-	rlca
-	dec a
-	ld hl, .times
-	call GetNthString
-	ld d, h
-	ld e, l
-	ld hl, wd01f
-	call CopyName2
-	and a
-	ret
-
-.none
-	ld de, wd01f
-	call UnknownCaughtData
-	ret
-; 4f1e6
-
-.times ; 4f1e6
-	db "Morning@"
-	db "Day@"
-	db "Night@"
-; 4f1f8
-
-UnknownCaughtData: ; 4f1f8
-	ld hl, .unknown
-	ld bc, $000b
-	call CopyBytes
-	ret
-; 4f202
-
-.unknown ; 4f202
-	db "Unknown@"
-; 4f20a
-
-GetCaughtLocation: ; 4f20a
-	ld a, [wd03b + 1]
-	and $7f
-	jr z, .asm_4f22e
-	cp $7f
-	jr z, .asm_4f234
-	cp $7e
-	jr z, .asm_4f23b
+	ld d, a
+	ld a, [hl]
 	ld e, a
-	callba GetLandmarkName
-	ld hl, StringBuffer1
-	ld de, wd00e
-	ld bc, $0011
-	call CopyBytes
+	ld hl, wd002
+; HP
+	ld a, d
+	and $10
+	srl a
+	ld b, a
+	ld a, d
+	and $1
+	add a
+	add a
+	or b
+	ld b, a
+	ld a, e
+	and $10
+	swap a
+	add a
+	or b
+	ld b, a
+	ld a, e
+	and $1
+	or b
+	ld [hli], a
+; Attack
+	ld a, d
+	and $f0
+	swap a
+	ld [hli], a
+; Defense
+	ld a, d
+	and $f
+	ld [hli], a
+; Speed
+	ld a, e
+	and $f0
+	swap a
+	ld [hli], a
+; Special
+	ld a, e
+	and $f
+	ld [hl], a
+	ret
+
+JudgePokemon:
+	ld hl, .InitJudge
+	call PrintText
+	call Functiona36
+	call GetDVTotal
+	push bc
+	call JudgeDVTotal
+	ld hl, .Incidentally
+	call PrintText
+	call Functiona36
+	
+	pop bc
+	ld a, b
 	and a
+	jr z, .skip_maxdv
+	cp 75
+	jr z, .skip_maxdv
+	call GetMaxDV
+	push bc
+	call InformMaxDVs
+	pop bc
+	call JudgeMaxDV
+	ld hl, .Conclude
+	call PrintText
+	call Functiona36
+	call GetMinDV
+	call InformMinDVs
+.skip_maxdv
+	ld hl, .Finish
+	call PrintText
 	ret
 
-.asm_4f22e
-	ld de, wd00e
-	jp UnknownCaughtData
+.InitJudge
+	text "Let's see", $56
+	line $56, " ", $56, " ", $56
+	done
 
-.asm_4f234
-	ld a, $4
-	ld [wd002], a
-	scf
+.Incidentally
+	text "Incidentally<...>"
+	done
+
+.Conclude
+	text "That's how I judge"
+	line "it."
+	done
+
+.Finish
+	text "Come again some-"
+	line "time."
+	done
+
+GetDVTotal:
+	ld hl, wd002
+	ld b, 0
+	ld c, 5
+.loop
+	ld a, [hli]
+	add b
+	ld b, a
+	dec c
+	jr nz, .loop
 	ret
 
-.asm_4f23b
-	ld a, $3
-	ld [wd002], a
-	scf
+JudgeDVTotal:
+	ld a, b
+	; max dv total is 5 * 15 = 75
+	and a
+	ld hl, .AbsoluteWorst
+	jr z, .okay
+	cp 20
+	ld hl, .Poor
+	jr c, .okay
+	cp 35
+	ld hl, .Unremarkable
+	jr c, .okay
+	cp 50
+	ld hl, .Decent
+	jr c, .okay
+	cp 75
+	ld hl, .Strong
+	jr c, .okay
+	ld hl, .Perfect
+.okay
+	call PrintText
+	call Functiona36
 	ret
-; 4f242
 
-GetCaughtOT: ; 4f242
-	ld a, [CurPartyMon]
-	ld hl, PartyMonOT
-	ld bc, NAME_LENGTH
-	call AddNTimes
-	ld de, wd02a
-	ld bc, $000b
-	call CopyBytes
-	ld hl, .male
-	ld a, [wd03b + 1]
-	bit 7, a
-	jr z, .asm_4f264
-	ld hl, .female
+.AbsoluteWorst
+	text "Oh my! Your #-"
+	line "MON has so little"
+	cont "potential!"
 
-.asm_4f264
-	ld de, wd034 + 1
-	ld a, "@"
-	ld [de], a
+	para "I've never seen a"
+	line "#MON so weak!"
+	done
+.Poor
+	text "Your #MON"
+	line "seems to be lac-"
+	cont "king in potential."
+	done
+
+.Unremarkable
+	text "Your #MON's"
+	line "potential is"
+	cont "unremarkable."
+	done
+
+.Decent
+	text "Your #MON seems"
+	line "to be decent"
+	cont "overall."
+	done
+
+.Strong
+	text "Your #MON seems"
+	line "to be spectacular"
+	cont "overall."
+	done
+
+.Perfect
+	text "I don't even need"
+	line "to look closely"
+
+	para "to see your #-"
+	line "MON's perfection!"
+	done
+
+GetMaxDV:
+	ld hl, wd002
+	ld b, 0
+	ld c, 5
+.loop
+	ld a, [hli]
+	cp b
+	jr c, .skip
+	ld b, a
+.skip
+	dec c
+	jr nz, .loop
+	; We found the max value, now let's get which ones are equal.
+	ld hl, wd002
+	ld c, 5
+	ld d, 0
+.loop2
+	srl d
+	ld a, [hli]
+	cp b
+	jr nz, .skip2
+	ld a, $10
+	or d
+	ld d, a
+.skip2
+	dec c
+	jr nz, .loop2
 	ret
-; 4f26b
 
-.male ; 4f26b
-	db "@"
-.female ; 4f26c
-	db "@"
-; 4f26d
-
-PrintSeerText: ; 4f26d
+InformMaxDVs:
+	ld c, 5
+	ld b, 0
+.loop
+	srl d
+	jr nc, .next
+	push de
+	push bc
+	ld a, 5
+	sub c
+	add a
 	ld e, a
 	ld d, 0
-	ld hl, SeerTexts
+	ld hl, .StatNames
 	add hl, de
+	ld a, [hli]
+	ld h, [hl]
+	ld l, a
+	ld de, StringBuffer1
+.loop1
+	ld a, [hli]
+	ld [de], a
+	cp "@"
+	jr z, .done1
+	inc de
+	jr .loop1
+.done1
+	ld a, b
+	add a
+	ld e, a
+	ld d, 0
+	ld hl, .WhichStatTexts
 	add hl, de
 	ld a, [hli]
 	ld h, [hl]
 	ld l, a
 	call PrintText
-	ret
-; 4f27c
-
-SeerTexts: ; 4f27c
-	dw SeerIntroText
-	dw SeerCantTellText
-	dw SeerMetAtText
-	dw SeerTimeLevelText
-	dw SeerTradedText
-	dw SeerCancelText
-	dw SeerEggText
-	dw SeerLevelOnlyText
-; 4f28c
-
-SeerIntroText: ; 0x4f28c
-	; I see all. I know all<...> Certainly, I know of your #MON!
-	text_jump UnknownText_0x1c475f
-	db "@"
-; 0x4f291
-
-SeerCantTellText: ; 0x4f291
-	; Whaaaat? I can't tell a thing! How could I not know of this?
-	text_jump UnknownText_0x1c4797
-	db "@"
-; 0x4f296
-
-SeerMetAtText: ; 0x4f296
-	; Hm<...> I see you met @  here: @ !
-	text_jump UnknownText_0x1c47d4
-	db "@"
-; 0x4f29b
-
-SeerTimeLevelText: ; 0x4f29b
-	; The time was @ ! Its level was @ ! Am I good or what?
-	text_jump UnknownText_0x1c47fa
-	db "@"
-; 0x4f2a0
-
-SeerTradedText: ; 0x4f2a0
-	; Hm<...> @ came from @ in a trade? @ was where @ met @ !
-	text_jump UnknownText_0x1c4837
-	db "@"
-; 0x4f2a5
-
-SeerLevelOnlyText: ; 0x4f2a5
-	; What!? Incredible! I don't understand how, but it is incredible! You are special. I can't tell where you met it, but it was at level @ . Am I good or what?
-	text_jump UnknownText_0x1c487f
-	db "@"
-; 0x4f2aa
-
-SeerEggText: ; 0x4f2aa
-	; Hey! That's an EGG! You can't say that you've met it yet<...>
-	text_jump UnknownText_0x1c491d
-	db "@"
-; 0x4f2af
-
-SeerCancelText: ; 0x4f2af
-	; Fufufu! I saw that you'd do nothing!
-	text_jump UnknownText_0x1c4955
-	db "@"
-; 0x4f2b4
-
-
-SeerAdvice: ; 4f2b4
-	ld a, PartyMon1Level - PartyMon1
-	call GetPartyParamLocation
-	ld a, [wd038 + 2]
-	ld c, a
-	ld a, [hl]
-	sub c
-	ld c, a
-
-	ld hl, SeerAdviceTexts
-	ld de, 3
+	call Functiona36
+	pop bc
+	pop de
+	inc b
 .next
-	cp [hl]
-	jr c, .print
-	jr z, .print
-	add hl, de
-	jr .next
+	dec c
+	jr nz, .loop
+	ret
 
-.print
-	inc hl
+.StatNames
+	dw .hp
+	dw .atk
+	dw .def
+	dw .spd
+	dw .spc
+.hp
+	db "HP@"
+.atk
+	db "ATTACK@"
+.def
+	db "DEFENSE@"
+.spd
+	db "SPEED@"
+.spc
+	db "SPECIAL@"
+
+.WhichStatTexts
+	dw .FirstStatText
+	dw .SecondStatText
+	dw .ThirdStatText
+	dw .FourthStatText
+	dw .FifthStatText
+
+.FirstStatText
+	text "Its greatest po-"
+	line "tential lies in"
+	cont "its @"
+	TX_RAM StringBuffer1
+	text "."
+	done
+
+.SecondStatText
+	text "Its @"
+	TX_RAM StringBuffer1
+	text " is"
+	line "equally good."
+	done
+
+.ThirdStatText
+	text "Its @"
+	TX_RAM StringBuffer1
+	text " is"
+	line "also impressive."
+	done
+
+.FourthStatText
+	text "Its @"
+	TX_RAM StringBuffer1
+	text " is"
+	line "good as well."
+	done
+
+.FifthStatText
+	text "Well, its @"
+	TX_RAM StringBuffer1
+	text ""
+	line "is worth mention-"
+	cont "ing also."
+	done
+
+JudgeMaxDV:
+	ld a, b
+	cp 7
+	ld hl, .Decent
+	jr c, .okay
+	cp 12
+	ld hl, .Good
+	jr c, .okay
+	cp 15
+	ld hl, .Fantastic
+	jr c, .okay
+	ld hl, .Perfect
+.okay
+	call PrintText
+	call Functiona36
+	ret
+
+.Decent
+	text "It has rather"
+	line "decent stats, I'd"
+	cont "say."
+	done
+.Good
+	text "It's definitely"
+	line "got some good"
+	cont "stats."
+	done
+.Fantastic
+	text "This #MON has"
+	line "some pretty fan-"
+	cont "tastic stats."
+	done
+.Perfect
+	text "Stats like those<...>"
+	line "They simply can't"
+	cont "be beat!"
+	done
+
+GetMinDV:
+	ld hl, wd002
+	ld b, 15
+	ld c, 5
+.loop
+	ld a, [hli]
+	cp b
+	jr nc, .skip
+	ld b, a
+.skip
+	dec c
+	jr nz, .loop
+	; We found the max value, now let's get which ones are equal.
+	ld hl, wd002
+	ld c, 5
+	ld d, 0
+.loop2
+	srl d
+	ld a, [hli]
+	cp b
+	jr nz, .skip2
+	ld a, $10
+	or d
+	ld d, a
+.skip2
+	dec c
+	jr nz, .loop2
+	ret
+
+InformMinDVs:
+	ld c, 5
+	ld b, 0
+.loop
+	srl d
+	jr nc, .next
+	push de
+	push bc
+	ld a, 5
+	sub c
+	add a
+	ld e, a
+	ld d, 0
+	ld hl, .StatNames
+	add hl, de
+	ld a, [hli]
+	ld h, [hl]
+	ld l, a
+	ld de, StringBuffer1
+.loop1
+	ld a, [hli]
+	ld [de], a
+	cp "@"
+	jr z, .done1
+	inc de
+	jr .loop1
+.done1
+	ld a, b
+	add a
+	ld e, a
+	ld d, 0
+	ld hl, .WhichStatTexts
+	add hl, de
 	ld a, [hli]
 	ld h, [hl]
 	ld l, a
 	call PrintText
+	call Functiona36
+	pop bc
+	pop de
+	inc b
+.next
+	dec c
+	jr nz, .loop
 	ret
-; 4f2d6
 
-SeerAdviceTexts: ; 4f2d6
-; level, text
-	dbw 9,   SeerAdvice1
-	dbw 29,  SeerAdvice2
-	dbw 59,  SeerAdvice3
-	dbw 89,  SeerAdvice4
-	dbw 100, SeerAdvice5
-	dbw 255, SeerAdvice1
-; 4f2e8
+.StatNames
+	dw .hp
+	dw .atk
+	dw .def
+	dw .spd
+	dw .spc
+.hp
+	db "HP@"
+.atk
+	db "ATTACK@"
+.def
+	db "DEFENSE@"
+.spd
+	db "SPEED@"
+.spc
+	db "SPECIAL@"
 
-SeerAdvice1: ; 0x4f2e8
-	; Incidentally<...> It would be wise to raise your #MON with a little more care.
-	text_jump UnknownText_0x1c497a
-	db "@"
-; 0x4f2ed
+.WhichStatTexts
+	dw .FirstStatText
+	dw .SecondStatText
+	dw .ThirdStatText
+	dw .FourthStatText
+	dw .FifthStatText
 
-SeerAdvice2: ; 0x4f2ed
-	; Incidentally<...> It seems to have grown a little. @  seems to be becoming more confident.
-	text_jump UnknownText_0x1c49c6
-	db "@"
-; 0x4f2f2
+.FirstStatText
+	text "But its @"
+	TX_RAM StringBuffer1
+	text "<...>"
+	line "It's pretty dis-"
+	cont "mal, you know?"
+	done
 
-SeerAdvice3: ; 0x4f2f2
-	; Incidentally<...> @  has grown. It's gained much strength.
-	text_jump UnknownText_0x1c4a21
-	db "@"
-; 0x4f2f7
+.SecondStatText
+	text "And its @"
+	TX_RAM StringBuffer1
+	text ""
+	line "is pretty disap-"
+	cont "pointing, too."
+	done
 
-SeerAdvice4: ; 0x4f2f7
-	; Incidentally<...> It certainly has grown mighty! This @ must have come through numerous #MON battles. It looks brimming with confidence.
-	text_jump UnknownText_0x1c4a5b
-	db "@"
-; 0x4f2fc
+.ThirdStatText
+	text "I'm afraid its"
+	line "@"
+	TX_RAM StringBuffer1
+	text "is pretty"
+	cont "bad, too<...>"
+	done
 
-SeerAdvice5: ; 0x4f2fc
-	; Incidentally<...> I'm impressed by your dedication. It's been a long time since I've seen a #MON as mighty as this @ . I'm sure that seeing @ in battle would excite anyone.
-	text_jump UnknownText_0x1c4ae5
-	db "@"
-; 0x4f301
+.FourthStatText
+	text "I'm not too happy"
+	line "with its @"
+	TX_RAM StringBuffer1
+	text ""
+	cont "either."
+	done
 
+.FifthStatText
+	text "Well, its @"
+	TX_RAM StringBuffer1
+	text ""
+	line "is nothing to brag"
+	cont "about, that's for"
+	cont "sure."
+	done
 
 GetCaughtGender: ; 4f301
-	ld hl, PartyMon1CaughtGender - PartyMon1
+	ld hl, MON_CAUGHTGENDER
 	add hl, bc
 
 	ld a, [hl]
@@ -449,5 +577,3 @@ GetCaughtGender: ; 4f301
 	ld c, 0
 	ret
 ; 4f31c
-
-

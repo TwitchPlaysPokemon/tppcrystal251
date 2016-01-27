@@ -800,9 +800,8 @@ GetStepVector: ; 46e9
 	ld hl, OBJECT_07
 	add hl, bc
 	ld a, [hl]
-	and $c
 	cp $c
-	jr z, .running
+	jr nc, .running
 	pop hl
 	pop af
 	and a

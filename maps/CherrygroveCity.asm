@@ -287,6 +287,7 @@ YoungsterScript_0x19c15a: ; 0x19c15a
 
 UnknownScript_0x19c168: ; 0x19c168
 	writetext UnknownText_0x19c701
+	; special SpecialPokeSeer
 	waitbutton
 	closetext
 	end
