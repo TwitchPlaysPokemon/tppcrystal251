@@ -284,14 +284,14 @@ UnknownText_0x6c2b7: ; 0x6c2b7
 Snorlax8:
 	loadfont
 	special SpecialSnorlaxAwake
-	iftrue WakeSnorlax5
-	writetext Snorlax5Text
+	iftrue WakeSnorlax8
+	writetext Snorlax8Text
 	waitbutton
 	closetext
 	end
 
 WakeSnorlax8:
-	writetext Snorlax5WakeText
+	writetext Snorlax8WakeText
 	pause 15
 	cry SNORLAX
 	closetext

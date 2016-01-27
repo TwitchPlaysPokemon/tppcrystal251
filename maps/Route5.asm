@@ -103,6 +103,6 @@ Route5_MapEventHeader: ; 0x1adbc7
 	; people-events
 	db 2
 	person_event SPRITE_POKEFAN_M, 20, 21, $6, 0, 0, -1, -1, 8 + PAL_OW_RED, 0, 0, PokefanMScript_0x1adb19, EVENT_MEN_BLOCKING_UNDERGROUND_PATH_ROUTES_5_6
-	person_event SPRITE_BIG_SNORLAX, 11, 19, $15, 0, 0, -1, -1, 0, 0, 0, Snorlax5, EVENT_ROUTE_5_SNORLAX
+	person_event SPRITE_BIG_SNORLAX, 18, 12, $15, 0, 0, -1, -1, 0, 0, 0, Snorlax5, EVENT_ROUTE_5_SNORLAX
 ; 0x1adbf8
 
