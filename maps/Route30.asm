@@ -390,8 +390,8 @@ YoungsterMikeySeenText: ; 0x1a1928
 
 	para "Great! I just"
 	line "caught some new"
-	cont "#MON in the moun-"
-	cont "tains!"
+	cont "#MON in the"
+	cont "mountains!"
 	done
 ; 0x1a195f
 
