@@ -77,6 +77,7 @@ WalkUpWithOak:
 CharmanderPokeballScript:
 	checkevent EVENT_GOT_POKEMON_FROM_OAK
 	iftrue OaksLab_LastMonScript
+	spriteface $2, DOWN
 	checkevent EVENT_OAKS_LAB_OAK
 	iftrue OaksLab_LookAtPokeballScript
 	refreshscreen $0

@@ -19301,6 +19301,7 @@ Unknown_155e6: ; 155e6
 	dw Function15689, String_15609
 	dw Function1569a, String_15616
 	dw Function156ab, String_15623
+	dw Function15668_2, String_SomeonesPC
 ; 155fa
 
 String_155fa:	db "<PLAYER>'s PC@"
@@ -19308,11 +19309,14 @@ String_15600:	db "BILL's PC@"
 String_15609:	db "PROF.OAK's PC@"
 String_15616:	db "HALL OF FAME@"
 String_15623:	db "TURN OFF@"
+String_SomeonesPC: db "SOMEONE's PC@"
 ; 1562c
 
 Unknown_1562c: ; 1562c
 	db 3
-	db 1, 0, 4, $ff
+	db 5, 0, 4, $ff
+	db 4
+	db 5, 0, 2, 4, $ff
 	db 4
 	db 1, 0, 2, 4, $ff
 	db 5
@@ -19326,11 +19330,18 @@ Function1563e: ; 1563e ;dex check. ret a=0 if no dex, 1 if wd95e = 0 and dex and
 	ret
 
 .asm_15646
-	ld a, [wd95e]
-	and a ;if ?? = 0, a = 1. else a = 2
+	ld de, EVENT_HELPED_BILL_RB
+	ld b, CHECK_FLAG
+	call EventFlagAction
+	ld a, c
+	and a
 	ld a, $1
 	ret z
+	ld a, [wd95e]
+	and a ;if ?? = 0, a = 1. else a = 2
 	ld a, $2
+	ret z
+	ld a, $3
 	ret
 ; 15650
 
@@ -19360,6 +19371,14 @@ Function15668: ; 15668
 	and a
 	ret
 ; 15679 (5:5679)
+
+Function15668_2:
+	call Function156c2 ;play PC sfx
+	ld hl, UnknownText_0x15a31_2 ;bills PC accsessed
+	call Function15a20 ; draw a text box with text from HL
+	callba Functione3fd
+	and a
+	ret
 
 Function15679: ; 15679
 	call Function156c2
@@ -19901,6 +19920,11 @@ UnknownText_0x15a2c: ; 0x15a2c
 UnknownText_0x15a31: ; 0x15a31
 	; BILL's PC accessed. #MON Storage System opened.
 	text_jump UnknownText_0x1c1474
+	db "@"
+; 0x15a36
+UnknownText_0x15a31_2: ; 0x15a31
+	; BILL's PC accessed. #MON Storage System opened.
+	text_jump UnknownText_0x1c1474_2
 	db "@"
 ; 0x15a36
 

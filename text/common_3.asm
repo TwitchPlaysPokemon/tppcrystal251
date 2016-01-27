@@ -1358,6 +1358,15 @@ UnknownText_0x1c1474: ; 1c1474
 	prompt
 ; 1c14a4
 
+UnknownText_0x1c1474_2: ; 1c1474
+	text "SOMEONE's PC"
+	line "accessed."
+
+	para "#MON Storage"
+	line "System opened."
+	prompt
+; 1c14a4
+
 UnknownText_0x1c14a4: ; 1c14a4
 	text "Accessed own PC."
 
