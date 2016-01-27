@@ -633,6 +633,8 @@ INCLUDE "maps/EarlyGameKanto/VermilionHouseFishingSpeechHouse.asm"
 INCLUDE "maps/EarlyGameKanto/VermilionHouseDiglettsCaveSpeechHouse.asm"
 INCLUDE "maps/EarlyGameKanto/VermilionMagnetTrainSpeechHouse.asm"
 INCLUDE "maps/EarlyGameKanto/Route11.asm"
+INCLUDE "maps/EarlyGameKanto/Route11Gate.asm"
+INCLUDE "maps/EarlyGameKanto/Route12.asm"
 
 SECTION "EGK SS Anne Events", ROMX
 INCLUDE "maps/EarlyGameKanto/VermilionDock.asm"

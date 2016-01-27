@@ -735,7 +735,10 @@
 
 	map_header_2 Route11RB, ROUTE_11_RB, $f, WEST | EAST ; 0x95564
 	connection west, VERMILION_CITY_RB, VermilionCityRB, 0, 0, 12, ROUTE_11_RB
-	connection east, ROUTE_12, Route12, -3, 6, 15, ROUTE_11_RB
+	connection east, ROUTE_12_RB, Route12RB, 0, 0, 15, ROUTE_11_RB
+
+	map_header_2 Route12RB, ROUTE_12_RB, $f, WEST ; 0x95564
+	connection west, ROUTE_11_RB, Route11RB, 0, 0, 15, ROUTE_12_RB
 
 	map_header_2 VermilionPokeCenter1FRB, VERMILION_POKECENTER_1F_RB, $0, NONE ; 0x9602c
 	map_header_2 VermilionHouseFishingSpeechHouseRB, VERMILION_HOUSE_FISHING_SPEECH_HOUSE_RB, $0, NONE ; 0x96020
@@ -743,6 +746,7 @@
 	map_header_2 VermilionMagnetTrainSpeechHouseRB, VERMILION_MAGNET_TRAIN_SPEECH_HOUSE_RB, $0, NONE ; 0x96050
 	map_header_2 VermilionMartRB, VERMILION_MART_RB, $0, NONE ; 0x9605c
 	map_header_2 VermilionHouseDiglettsCaveSpeechHouseRB, VERMILION_HOUSE_DIGLETTS_CAVE_SPEECH_HOUSE_RB, $0, NONE ; 0x96068
+	map_header_2 Route11GateRB, ROUTE_11_GATE_RB, $0, NONE ; 0x95c00
 
 	map_header_2 VermilionDock, VERMILION_DOCK, $4d, NONE
 	map_header_2 SSAnne1, S_S_ANNE_1, $c, NONE
