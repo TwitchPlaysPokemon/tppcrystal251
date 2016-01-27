@@ -214,7 +214,10 @@ FalknerRematchBeatenText:
 	line "the ultimate"
 	cont "bird #MON<...>"
 
-	para "I accept defeat"
+	para "<...> Sigh<...>"
+
+	para "I must accept this"
+	line "defeat, I suppose<...>"
 	done
 	
 UnknownText_0x6854a: ; 0x6854a
@@ -266,7 +269,7 @@ UnknownText_0x68648: ; 0x68648
 	cont "crits often and"
 	cont "causes flinching."
 
-	para "use it to rule"
+	para "Use it to rule"
 	line "the skies!"
 	done
 ; 0x68735
@@ -297,10 +300,8 @@ Bird_keeperRodSeenText: ; 0x687cd
 	line "by riding on my"
 	cont "bird #MON!"
 
-	para "You are no"
-	line "match to me!"
-	
-	para "Come on!"
+	para "Think you can rise"
+	line "above me? Come on!"
 	done
 ; 0x6882f
 
@@ -310,18 +311,18 @@ Bird_keeperRodBeatenText: ; 0x6882f
 ; 0x68837
 
 UnknownText_0x68837: ; 0x68837
-	text "I fly on the"
-	line "wings of my"
-	cont "FEAROW!"
+	text "I fly on the wings"
+	line "of my FEAROW!"
 	done
 ; 0x6887f
 
 Bird_keeperAbeSeenText: ; 0x6887f
-	text "All VIOLET GYM"
-	line "trainers use BIRD"
+	text "Our #MON all"
+	line "come from KANTO."
 
-	para "#MON from the"
-	line "KANTO region!"
+	para "They're far supe-"
+	line "rior to the local"
+	cont "FLYING types."
 	done
 ; 0x688b3
 
@@ -343,18 +344,21 @@ UnknownText_0x688c7: ; 0x688c7
 ; 0x688f9
 
 VioletGymGuyText: ; 0x688f9
-	text "Hey! I'm no train-"
-	line "er but I can give"
-	cont "some advice!"
+	text "Yo, champ in the"
+	line "making!"
 
-	para "Believe me!"
-	line "If you believe, a"
+	para "You're challenging"
+	line "the gyms in JOHTO?"
 
-	para "championship dream"
-	line "can come true."
+	para "The #MON here"
+	line "are tougher than"
+	cont "in KANTO's GYMs!"
 
-	para "You believe?"
-	line "Then listen."
+	para "FALKNER, the GYM"
+	line "LEADER, specia-"
+
+	para "lizes in the"
+	cont "flying type."
 
 	para "The grass-type is"
 	line "weak against the"

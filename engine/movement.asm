@@ -89,6 +89,10 @@ MovementPointers: ; 5075
 	dw Function5196
 	dw Function516a
 	dw Function513e
+	dw Movement_run_step_down
+	dw Movement_run_step_up
+	dw Movement_run_step_left
+	dw Movement_run_step_right
 ; 5129
 
 
@@ -505,6 +509,21 @@ Movement_big_step_right: ; 5337
 	jp Function5412
 ; 533c
 
+Movement_run_step_down:
+	ld a, $c
+	jp Function5412
+
+Movement_run_step_up:
+	ld a, $d
+	jp Function5412
+
+Movement_run_step_left:
+	ld a, $e
+	jp Function5412
+
+Movement_run_step_right:
+	ld a, $f
+	jp Function5412
 
 Movement_turn_away_down: ; 533c
 	ld a, $0

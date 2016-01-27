@@ -149,6 +149,7 @@ NewBarkTown_TeacherStopsYouTrigger1: ; 0x1a8016
 	closetext
 	spriteface $0, RIGHT
 	applymovement $2, MovementData_0x1a80d9
+	spriteface $0, UP
 	loadfont
 	writetext Text_WhatDoYouThinkYoureDoing
 	waitbutton
@@ -172,7 +173,6 @@ NewBarkTown_TeacherStopsYouTrigger2: ; 0x1a8041
 	closetext
 	spriteface $0, RIGHT
 	applymovement $2, MovementData_0x1a80d4
-	spriteface $0, UP
 	loadfont
 	writetext Text_WhatDoYouThinkYoureDoing
 	waitbutton
@@ -231,6 +231,7 @@ Movement_TeacherBringsYouBack1_NBT: ; 0x1a80e0
 	step_right
 	step_right
 	step_right
+	turn_head_left
 	step_end
 
 MovementData_0x1a80e6: ; 0x1a80e6
@@ -417,8 +418,8 @@ NewBarkTown_MapEventHeader: ; 0x1a834d
 	db 4
 	xy_trigger 0, $8, $1, $0, UnknownScript_0x1a8016, $0, $0
 	xy_trigger 0, $9, $1, $0, UnknownScript_0x1a8041, $0, $0
-	xy_trigger 2, $8, $1, $0, NewBarkTown_TeacherStopsYouTrigger1, $0, $0
-	xy_trigger 2, $9, $1, $0, NewBarkTown_TeacherStopsYouTrigger2, $0, $0
+	xy_trigger 2, $8, $1, $0, NewBarkTown_TeacherStopsYouTrigger2, $0, $0
+	xy_trigger 2, $9, $1, $0, NewBarkTown_TeacherStopsYouTrigger1, $0, $0
 
 	; signposts
 	db 4

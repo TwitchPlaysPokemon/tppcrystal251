@@ -192,6 +192,7 @@ SpecialsPointers:: ; c029
 	add_special SampleRandomRocket
 	add_special Function114fc
 	add_special DecrementSSAnneTimer
+	add_special _CheckAlivePartyMon
 	add_special SpecialNone
 ; c224
 
@@ -655,3 +656,15 @@ SpecialTrainerHouse: ; 0xc4b9
 	ld a, [$abfd] ; XXX what is this memory location?
 	ld [ScriptVar], a
 	jp CloseSRAM
+
+_CheckAlivePartyMon:
+	callba CheckAlivePartyMon
+	jr c, .yes
+	ld a, 0
+	ld [ScriptVar], a
+	ret
+.yes
+	ld a, 1
+	ld [ScriptVar], a
+	ret
+

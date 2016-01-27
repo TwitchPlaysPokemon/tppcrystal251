@@ -13,6 +13,7 @@ SSAnne5_MapScriptHeader:
 	dotrigger 0
 	disappear $2
 	disappear $3
+	loadvar EngineBuffer1, 0
 	jump .next_rocket
 .loop
 	loadfont
@@ -30,6 +31,10 @@ SSAnne5_MapScriptHeader:
 .okay
 	playsound SFX_EXIT_BUILDING
 	waitsfx
+	copybytetovar EngineBuffer1
+	if_equal 100, .next_rocket
+	addvar 1
+	copyvartobyte EngineBuffer1
 .next_rocket
 	playmusic MUSIC_ROCKET_ENCOUNTER
 	random 2
@@ -252,7 +257,7 @@ RandomRocketsWinText7:
 	text "Now I'm mad!"
 	done
 RandomRocketsWinText8:
-	text "Grrrr…"
+	text "Grrrr<...>"
 	done
 
 SSAnne5TextAfter:
@@ -338,8 +343,11 @@ SSAnne5ShipwreckText:
 	done
 
 SSAnne5ShipwreckText2:
-	text "ABANDON"
-	line "SHIIIIIIIIIIIIIIII"
+	text "We gotta get out"
+	line "of here!"
+
+	para "Abandon ship!"
+	line "Abando"
 	done
 
 SSAnne5_MapEventHeader:

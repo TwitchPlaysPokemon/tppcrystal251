@@ -1024,7 +1024,6 @@ Function9499: ; 9499
 	call Function96a4
 	ld a, 1
 	ld [hCGBPalUpdate], a
-	call UpdateCGBPals
 	ret
 ; 94d0
 

@@ -29,6 +29,7 @@ MomElatedToSeeYouAlive:
 	setevent EVENT_MOM_POSITION_1
 	clearevent EVENT_MOM_POSITION_2
 	setflag ENGINE_PHONE_CARD
+	domaptrigger GROUP_NEW_BARK_TOWN, MAP_NEW_BARK_TOWN, 2
 	addcellnum $1 ; PHONE_MOM
 	writetext MomText4_Johto
 	yesorno
@@ -53,10 +54,12 @@ MomElatedToSeeYouAlive:
 	spriteface $7, UP
 	pause 30
 	spriteface $7, DOWN
+	pause 5
 	disappear $7
 	playsound SFX_EXIT_BUILDING
 	waitsfx
 	special RestartMapMusic
+	applymovement $2, ResetMomKrissHouse1F
 	end
 
 .jumpstdRecvItem
@@ -163,6 +166,13 @@ NBT_MomApproaches:
 	step_down
 	big_step_left
 	turn_head_down
+	step_end
+
+ResetMomKrissHouse1F:
+	step_up
+	step_right
+	step_up
+	turn_head_left
 	step_end
 
 UnknownText_0x7a8b5: ; 0x7a8b5

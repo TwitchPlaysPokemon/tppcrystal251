@@ -138,16 +138,16 @@ SSAnne7_GiovanniRunsUpToCaptain:
 	step_end
 
 _SSAnne7RubText:
-	text "CAPTAIN: Ooargh…"
-	line "I feel hideous…"
-	cont "Urrp! Seasick…"
+	text "CAPTAIN: Ooargh<...>"
+	line "I feel hideous<...>"
+	cont "Urrp! Seasick<...>"
 
 	para "<PLAYER> rubbed"
 	line "the CAPTAIN's"
 	cont "back!"
 
-	para "Rub-rub…"
-	line "Rub-rub…"
+	para "Rub-rub<...>"
+	line "Rub-rub<...>"
 	done
 
 _NotReceivingHM01Text:
@@ -159,7 +159,7 @@ _NotReceivingHM01Text:
 	line "my CUT technique?"
 
 	para "I could show you"
-	line "if I wasn't ill…"
+	line "if I wasn't ill<...>"
 
 	para "I know! Let me"
 	line "heal your #MON."
@@ -203,7 +203,7 @@ SSAnne7Text_CaptainSetsSail4:
 	line "off in VERMILION?"
 
 	para "Oh, this is un-"
-	line "usual…"
+	line "usual<...>"
 
 	para "If we go back now,"
 	line "other passengers"
@@ -261,7 +261,7 @@ _SSAnne7Text2:
 
 _SSAnne7Text3:
 	text "How to Conquer"
-	line "Seasickness…"
+	line "Seasickness<...>"
 	para "The CAPTAIN's"
 	line "reading this!"
 	done

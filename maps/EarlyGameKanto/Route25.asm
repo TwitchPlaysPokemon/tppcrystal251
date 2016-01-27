@@ -98,6 +98,12 @@ Route25RBTrainer9:
 Route25RB_TMBall:
 	db TM_THUNDER_WAVE, 1
 
+Route25RB_HiddenEther:
+	dwb EVENT_ROUTE_25_RB_HIDDEN_ETHER, ETHER
+
+Route25RB_HiddenElixer:
+	dwb EVENT_ROUTE_25_RB_HIDDEN_ELIXER, ELIXER
+
 Route25RB_BillsHouseSignScript:
 	jumptext _Route25Text11
 
@@ -264,8 +270,10 @@ Route25RB_MapEventHeader: ; 0x19f58f
 	db 0
 
 	; signposts
-	db 1
+	db 3
 	signpost 3, 43, $0, Route25RB_BillsHouseSignScript
+	signpost 3, 38, $7, Route25RB_HiddenEther
+	signpost 1, 10, $7, Route25RB_HiddenElixer
 
 	; people-events
 	db 10
