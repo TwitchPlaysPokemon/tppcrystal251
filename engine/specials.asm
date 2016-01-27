@@ -549,7 +549,7 @@ Functionc434: ; c434
 
 SpecialSnorlaxAwake: ; 0xc43d
 ; Check if the Poké Flute channel is playing, and if the player is standing
-; next to Snorlax.
+; next to Snorlax. EXPERIMENT removed position check, shouldn't matter if this is only triggered by talking to it
 
 ; outputs:
 ; ScriptVar is 1 if the conditions are met, otherwise 0.
@@ -558,44 +558,45 @@ SpecialSnorlaxAwake: ; 0xc43d
 	ld a, [wMapMusic]
 	cp MUSIC_POKE_FLUTE_CHANNEL
 	jr nz, .nope
-
-	ld a, [XCoord]
-	ld b, a
-	ld a, [YCoord]
-	ld c, a
-
-	ld hl, .ProximityCoords
-.loop
-	ld a, [hli]
-	cp $ff
-	jr z, .nope
-	cp b
-	jr nz, .nextcoord
-	ld a, [hli]
-	cp c
-	jr nz, .loop
-
-	ld a, $1
 	jr .done
 
-.nextcoord
-	inc hl
-	jr .loop
+	;ld a, [XCoord]
+	;ld b, a
+	;ld a, [YCoord]
+	;ld c, a
 
+	;ld hl, .ProximityCoords
+;.loop
+;	ld a, [hli]
+	;cp $ff
+	;jr z, .nope
+	;cp b
+	;jr nz, .nextcoord
+	;ld a, [hli]
+	;cp c
+	;jr nz, .loop
+
+;	ld a, $1
+;	jr .done
+
+;.nextcoord
+;	inc hl
+;	jr .loop
+;
 .nope
 	xor a
 .done
 	ld [ScriptVar], a
 	ret
 
-.ProximityCoords
+;.ProximityCoords
 	;   x,  y
-	db 33,  8 ; left
-	db 34, 10 ; below
-	db 35, 10 ; below
-	db 36,  8 ; right
-	db 36,  9 ; right
-	db $ff
+;	db 33,  8 ; left
+;	db 34, 10 ; below
+;	db 35, 10 ; below
+;	db 36,  8 ; right
+;	db 36,  9 ; right
+;	db $ff
 
 
 Functionc472: ; c472

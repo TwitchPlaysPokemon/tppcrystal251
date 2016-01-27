@@ -280,6 +280,44 @@ UnknownText_0x6c2b7: ; 0x6c2b7
 	para "It's impossible to"
 	line "read<...>"
 	done
+
+Snorlax8:
+	loadfont
+	special SpecialSnorlaxAwake
+	iftrue WakeSnorlax5
+	writetext Snorlax5Text
+	waitbutton
+	closetext
+	end
+
+WakeSnorlax8:
+	writetext Snorlax5WakeText
+	pause 15
+	cry SNORLAX
+	closetext
+	writecode VAR_BATTLETYPE, BATTLETYPE_FORCEITEM
+	loadpokedata SNORLAX, 85
+	startbattle
+	disappear $3
+	setevent EVENT_ROUTE_8_SNORLAX
+	returnafterbattle
+	end
+
+Snorlax8Text:
+	text "SNORLAX is snoring"
+	line "peacefully<...>"
+	done
+
+Snorlax8WakeText:
+	text "The #GEAR was"
+	line "placed near the"
+	cont "sleeping SNORLAX<...>"
+
+	para "<...>"
+
+	para "SNORLAX woke up!"
+	done
+
 ; 0x6c2e1
 
 Route8_MapEventHeader: ; 0x6c2e1
@@ -300,12 +338,13 @@ Route8_MapEventHeader: ; 0x6c2e1
 	signpost 5, 10, $0, MapRoute8Signpost1Script
 
 	; people-events
-	db 6
+	db 7
 	person_event SPRITE_BIKER, 12, 14, $8, 0, 0, -1, -1, 8 + PAL_OW_RED, 2, 5, TrainerBikerDwayne, -1
 	person_event SPRITE_BIKER, 13, 14, $8, 0, 0, -1, -1, 8 + PAL_OW_GREEN, 2, 5, TrainerBikerHarris, -1
 	person_event SPRITE_BIKER, 14, 14, $8, 0, 0, -1, -1, 8 + PAL_OW_BLUE, 2, 5, TrainerBikerZeke, -1
 	person_event SPRITE_SUPER_NERD, 6, 27, $6, 0, 0, -1, -1, 8 + PAL_OW_BROWN, 2, 3, TrainerSupernerdSam, -1
 	person_event SPRITE_SUPER_NERD, 16, 35, $a, 0, 0, -1, -1, 8 + PAL_OW_BROWN, 2, 4, TrainerSupernerdTom, -1
 	person_event SPRITE_FRUIT_TREE, 9, 37, $1, 0, 0, -1, -1, 0, 0, 0, FruitTreeScript_0x6c06c, -1
+	person_event SPRITE_BIG_SNORLAX, 12, 38, $15, 0, 0, -1, -1, 0, 0, 0, Snorlax8, EVENT_ROUTE_8_SNORLAX
 ; 0x6c349
 

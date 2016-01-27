@@ -131,7 +131,7 @@ ItemFragment_0x5a36a: ; 0x5a36a
 ; 0x5a36c
 
 ItemFragment_0x5a36c: ; 0x5a36c
-	db HYPER_POTION, 1
+	db MAX_POTION, 1
 ; 0x5a36e
 
 CooltrainermNickSeenText: ; 0x5a36e

@@ -152,7 +152,7 @@ FirebreatherRayScript: ; 0x59bf8
 ; 0x59c00
 
 ItemFragment_0x59c00: ; 0x59c00
-	db GREAT_BALL, 1
+	db ULTRA_BALL, 1
 ; 0x59c02
 
 ItemFragment_0x59c02: ; 0x59c02
@@ -160,7 +160,7 @@ ItemFragment_0x59c02: ; 0x59c02
 ; 0x59c04
 
 ItemFragment_0x59c04: ; 0x59c04
-	db POTION, 1
+	db SUER_POTION, 1
 ; 0x59c06
 
 ItemFragment_0x59c06: ; 0x59c06
