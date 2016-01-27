@@ -257,7 +257,7 @@ RandomRocketsWinText7:
 	text "Now I'm mad!"
 	done
 RandomRocketsWinText8:
-	text "Grrrr…"
+	text "Grrrr<...>"
 	done
 
 SSAnne5TextAfter:
