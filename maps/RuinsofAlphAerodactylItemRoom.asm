@@ -7,7 +7,7 @@ RuinsofAlphAerodactylItemRoom_MapScriptHeader: ; 0x59ab4
 ; 0x59ab6
 
 ItemFragment_0x59ab6: ; 0x59ab6
-	db TM_SEISMIC_TOSS, 1
+	db SILVERPOWDER, 1
 ; 0x59ab8
 
 ItemFragment_0x59ab8: ; 0x59ab8

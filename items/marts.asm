@@ -172,11 +172,12 @@ Mart8: ; 16134
 ; 1613b
 
 Mart9: ; 1613b
-	db 4 ; # items
+	db 5 ; # items
 	db TM_ROCK_SMASH
 	db TM_SUNNY_DAY
 	db TM_THUNDER_WAVE
 	db TM_STRING_SHOT
+	db TM_SEISMIC_TOSS
 	db $ff
 ; 16140
 
