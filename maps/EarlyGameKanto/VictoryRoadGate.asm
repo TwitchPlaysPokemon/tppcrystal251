@@ -18,12 +18,17 @@ VictoryRoadGateRB_MapScriptHeader: ; 0x9b9f1
 	end
 ; 0x9b9fd
 
-VictoryRoadGateRB_OfficerScript:
-	faceplayer
-	jump VictoryRoadGateRB_OfficerScriptAndTriggerContinue
-
 VictoryRoadGateRB_BoulderBadgeCheckTrigger:
 	spriteface $0, RIGHT
+	spriteface $2, LEFT
+	scall VictoryRoadGateRB_OfficerScriptAndTriggerContinue
+	iftrue .permit
+	applymovement $0, VictoryRoadGateRB_PlayerStepsDown
+.permit
+	end
+
+VictoryRoadGateRB_OfficerScript:
+	faceplayer
 VictoryRoadGateRB_OfficerScriptAndTriggerContinue:
 	loadfont
 	checkflag ENGINE_BOULDERBADGE
@@ -35,7 +40,6 @@ VictoryRoadGateRB_OfficerScriptAndTriggerContinue:
 	waitsfx
 	waitbutton
 	closetext
-	applymovement $0, VictoryRoadGateRB_PlayerStepsDown
 	end
 
 .permit

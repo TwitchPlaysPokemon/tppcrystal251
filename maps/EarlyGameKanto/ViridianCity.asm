@@ -16,11 +16,16 @@ ViridianCityRB_MapScriptHeader: ; 0x1a9a43
 	end
 
 ViridianCityRBAngryGrandpaTrigger:
+	spriteface $0, LEFT
+	scall ViridianCityRBAngryGrandpaScript
+	applymovement $0, ViridianCityRB_PlayerStepsDown
+	end
+
+ViridianCityRBAngryGrandpaScript:
 	loadfont
 	writetext _ViridianCityText_19191
 	waitbutton
 	closetext
-	applymovement $0, ViridianCityRB_PlayerStepsDown
 	end
 
 ViridianCityRBGymDoorTrigger:
@@ -295,7 +300,7 @@ ViridianCityRB_MapEventHeader: ; 0x1a9ec9
 
 	; people-events
 	db 8
-	person_event SPRITE_SIDEWAYS_GRAMPS, 10, 22, $0, 0, 0, -1, -1, 0, 0, 0, ViridianCityRBAngryGrandpaTrigger, EVENT_VIRIDIAN_CITY_RB_OLD_MAN_LYING_DOWN
+	person_event SPRITE_SIDEWAYS_GRAMPS, 10, 22, $0, 0, 0, -1, -1, 0, 0, 0, ViridianCityRBAngryGrandpaScript, EVENT_VIRIDIAN_CITY_RB_OLD_MAN_LYING_DOWN
 	person_event SPRITE_GRAMPS, 10, 22, $5, 0, 1, -1, -1, 8 + PAL_OW_BLUE, 0, 0, ViridianCityRB_CatchingTutorial, EVENT_VIRIDIAN_CITY_RB_OLD_MAN_WALKING_ABOUT
 	person_event SPRITE_GRAMPS, 12, 34, $6, 0, 0, -1, -1, 8 + PAL_OW_BLUE, 0, 0, ViridianCityRB_WhereIsTheLeader, -1
 	person_event SPRITE_FISHER, 27, 10, $6, 0, 0, -1, -1, 8 + PAL_OW_RED, 0, 0, ObjectEvent, -1
