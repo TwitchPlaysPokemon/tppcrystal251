@@ -22,6 +22,7 @@ BattleCommand56: ; 37683
 	ld a, [hl]
 	and $fc
 	or b
+	ld [hl], a
 	pop bc
 	call AnimateCurrentMove
 
