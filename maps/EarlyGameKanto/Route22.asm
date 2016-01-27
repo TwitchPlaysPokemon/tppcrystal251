@@ -5,16 +5,12 @@ Route22RB_MapScriptHeader:
 	dw .Trigger1, 0
 
 	; callback count
-	db 1
-	dbw 2, .FixRival
+	db 0
 
 .Trigger0
 	end
 
 .Trigger1
-	end
-.FixRival
-	disappear $2
 	end
 
 Route22RBRivalBattleTriggerBottom:
