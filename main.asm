@@ -785,8 +785,6 @@ OakSpeech: ; 0x5f99
 	call Function616a
 	ld hl, OakText7
 	call PrintText
-	call Function4b6
-	call ClearTileMap
 	ret
 
 OakText1: ; 0x6045
