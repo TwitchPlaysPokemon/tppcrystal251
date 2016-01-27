@@ -58,6 +58,10 @@ MomElatedToSeeYouAlive:
 	disappear $7
 	playsound SFX_EXIT_BUILDING
 	waitsfx
+	pause 20
+	spriteface $0, UP
+	loadfont
+	writetext MomText8
 	special RestartMapMusic
 	applymovement $2, ResetMomKrissHouse1F
 	end
@@ -370,6 +374,27 @@ NBTLadyText_KrisHouse1F:
 	para "It was a pleasure"
 	line "meeting you,"
 	cont "<PLAY_G>!"
+	done
+
+MomText8:
+	text "Oh! I almost"
+	line "forgot!"
+
+	para "One of PROF.OAK's"
+	line "colleagues lives"
+	cont "nearby."
+
+	para "His name is PROF."
+	line "ELM. His lab is"
+	cont "right next door."
+
+	para "You should go over"
+	line "and introduce"
+	cont "yourself to him."
+
+	para "I'll call ahead to"
+	line "let him know you're"
+	cont "coming."
 	done
 
 KrissHouse1F_MapEventHeader: ; 0x7ab31

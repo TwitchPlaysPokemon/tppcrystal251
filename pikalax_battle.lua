@@ -276,7 +276,7 @@ function getEnemyPokemonData()
 	else
 		enemyMon["last used"] = moveTable[lastMove + 1]
 	end
-	enemyMon["party idx"] = memory.readbyte(0xd0d5)
+	if memory.readbyte(wBattleMode) == 2 then enemyMon["party idx"] = memory.readbyte(0xc663) end
 	local futureSight = {}
 	futureSight["count"] = memory.readbyte(wEnemyFutureSightCount)
 	futureSight["damage"] = getBigDW(wEnemyFutureSightDamage)

@@ -1408,6 +1408,8 @@ MusicCommands: ; e8720
 MusicF1: ; e8780
 ; loads a custom wave sample
 ; params: 16
+	xor a
+	ld [rNR30], a
 	ld e, 16
 	ld hl, $ff30
 .loop

@@ -152,7 +152,7 @@ GrampsScript_0x19c013: ; 0x19c013
 ; 0x19c0a4
 .first_landed
 	special _CheckAlivePartyMon
-	iftrue .healyourpokemon
+	iffalse .healyourpokemon
 	writetext GuideGentDirectsPlayerToNewBark
 	waitbutton
 	closetext
@@ -326,6 +326,7 @@ MapCherrygroveCitySignpost2Script: ; 0x19c192
 	jumpstd martsign
 ; 0x19c195
 Cherrygrove_PleaseHealYourPokemon:
+	spriteface $2, DOWN
 	spriteface $0, UP
 	loadfont
 	special _CheckAlivePartyMon

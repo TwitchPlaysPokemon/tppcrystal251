@@ -224,9 +224,9 @@ MovementData_0x1a80d9: ; 0x1a80d9
 	step_end
 ; 0x1a80e0
 
-Movement_TeacherBringsYouBack2_NBT: ; 0x1a80e6
+Movement_TeacherBringsYouBack1_NBT: ; 0x1a80e6
 	step_right
-Movement_TeacherBringsYouBack1_NBT: ; 0x1a80e0
+Movement_TeacherBringsYouBack2_NBT: ; 0x1a80e0
 	step_right
 	step_right
 	step_right
