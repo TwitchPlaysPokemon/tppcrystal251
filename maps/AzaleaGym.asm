@@ -40,7 +40,7 @@ AzaleaGym_BurglarSimonScript1:
 	loadfont
 	writetext AzaleaGym_BurglarSimonText2
 	buttonsound
-	verbosegiveitem TM_SEISMIC_TOSS, 1
+	verbosegiveitem EXP_SHARE, 1
 	writetext AzaleaGym_BurglarSimonText3
 	waitbutton
 	closetext
