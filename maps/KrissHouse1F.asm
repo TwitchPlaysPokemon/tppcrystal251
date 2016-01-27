@@ -60,6 +60,7 @@ MomElatedToSeeYouAlive:
 	waitsfx
 	pause 20
 	spriteface $0, UP
+	loadfont
 	writetext MomText8
 	special RestartMapMusic
 	applymovement $2, ResetMomKrissHouse1F
