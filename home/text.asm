@@ -422,10 +422,10 @@ Function126a:: ; 126a
 ; 0x1273
 
 Char5CText:: db "TM@" ; 1273
-Char5DText:: db "TRAINER@" ; 1276
+Char5DText:: db "Trainer@" ; 1276
 Char5BText:: db "PC@" ; 127e
-Char5EText:: db "ROCKET@" ; 1281
-Char54Text:: db "POKé@" ; 1288
+Char5EText:: db "Rocket@" ; 1281
+Char54Text:: db "Poké@" ; 1288
 Char23Text:: db "こうげき@" ; 128d
 Char56Text:: db "<...><...>@" ; 1292
 Char5AText:: db "Enemy @" ; 1295

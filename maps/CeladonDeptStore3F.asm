@@ -87,20 +87,20 @@ UnknownText_0x70dc7: ; 0x70dc7
 ; 0x70e61
 
 UnknownText_0x70e61: ; 0x70e61
-	text "The TM SHOP sells"
-	line "some rare moves,"
+	text "This place used"
+	line "to sell TM's,"
 
-	para "but the TM depot"
-	line "sells them all."
+	para "some say they"
+	line "still do, but"
 
-	para "They only open to"
-	line "those who beat"
-	cont "all Kanto gyms."
+	para "they only open to"
+	line "the best trainers"
+	cont "in Kanto."
 	done
 ; 0x70e85
 
 UnknownText_0x70e85: ; 0x70e85
-	text "3F: TM SHOP"
+	text "3F: BATTLE SHOP"
 
 	para "Make Your #MON"
 	line "Stronger!"

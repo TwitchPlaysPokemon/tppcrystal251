@@ -69,7 +69,7 @@ ItemFragment_0x609aa: ; 0x609aa
 ; 0x609ac
 
 ItemFragment_0x609ac: ; 0x609ac
-	db SUPER_REPEL, 1
+	db MAX_REPEL, 1
 ; 0x609ae
 
 ItemFragment_0x609ae: ; 0x609ae

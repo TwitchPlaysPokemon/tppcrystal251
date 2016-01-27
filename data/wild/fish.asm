@@ -637,7 +637,6 @@ FishGroup17_Super:
 	
 FishGroup18: ; Slowpoke Well
 FishGroup18_Old: 
-	db 
 	db 240,	SLOWPOKE,	10
 	db $ff, SLOWKING,	10
 FishGroup18_Good: 
@@ -648,6 +647,46 @@ FishGroup18_Super:
 	db 180, SLOWPOKE,	70
 	db 218, SLOWBRO,	80
 	db $ff, SLOWKING,	80
+
+FishGroup19: ; EGK Freshwater
+FishGroup19_Old: 
+	db 75,	MAGIKARP,	5
+	db 125,	GOLDEEN,	5
+	db 175,	PSYDUCK,	5
+	db 200,	SLOWPOKE,	5
+	db 213,	DRATINI,	5
+	db 227,	POLIWAG,	5
+	db $ff, $0,			70
+FishGroup19_Good:
+	db $ff, MAGIKARP,	5
+FishGroup19_Super:
+	dw $ff, MAGIKARP,	5
+
+FishGroup20: ; EGK Seawater
+FishGroup20_Old: 
+	db 63,	MAGIKARP,	5
+	db 101,	TENTACOOL,	5
+	db 126,	KRABBY,		5
+	db 176,	SHELLDER,	5
+	db 202,	$0,			71
+	db $ff, $0,			72
+FishGroup20_Good:
+	db $ff, MAGIKARP,	5
+FishGroup20_Super:
+	dw $ff, MAGIKARP,	5
+
+FishGroup21: ; EGK Misty Gym
+FishGroup21_Old: 
+	db 75,	MAGIKARP,	5
+	db 100,	SEEL,		5
+	db 150,	KRABBY,		5
+	db 175,	STARYU,		5
+	db 200,	GOLDEEN,	5
+	db $ff, $0,			73
+FishGroup21_Good:
+	db $ff, MAGIKARP,	5
+FishGroup21_Super:
+	dw $ff, MAGIKARP,	5
 
 ; 9266f
 
@@ -865,6 +904,18 @@ TimeFishGroups: ; 9266f
 ; 69
 	db GOLDUCK,    75 ; nite
 	db DEWGONG,    80 ; day
-	
+; 70 - EGK Freshwater
+	db MAGIKARP,    5 ; nite
+	db POLIWAG,     5 ; day
+; 71 - EGK Seawater 1
+	db TENTACOOL,   5 ; nite
+	db MAGIKARP,    5 ; day
+; 72 - EGK Seawater 2
+	db STARYU,      5 ; nite
+	db KRABBY,      5 ; day
+; 73 - EGK Misty Gym
+	db STARYU,		5 ; nite
+	db SEEL,        5 ; day
+
 ; 926c7
 

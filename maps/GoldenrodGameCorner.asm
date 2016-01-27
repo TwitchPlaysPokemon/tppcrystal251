@@ -11,21 +11,21 @@ GoldenrodGameCorner_MapScriptHeader: ; 0x56bf4
 ; 0x56bf9
 
 UnknownScript_0x56bf9: ; 0x56bf9 looks like the move tutor appearance check
-	checkevent EVENT_FIRST_TIME_HALL_OF_FAME
+	checkevent EVENT_CLEARED_RADIO_TOWER
 	iffalse UnknownScript_0x56c19
 	checkitem COIN_CASE
 	iffalse UnknownScript_0x56c0e
-	checkcode VAR_WEEKDAY
-	if_equal WEDNESDAY, UnknownScript_0x56c11
-	if_equal SATURDAY, UnknownScript_0x56c11
+		;checkcode VAR_WEEKDAY
+		;if_equal WEDNESDAY, UnknownScript_0x56c11
+		;if_equal SATURDAY, UnknownScript_0x56c11
 UnknownScript_0x56c0e: ; 0x56c0e
 	appear $d
 	return
 ; 0x56c11
 
 UnknownScript_0x56c11: ; 0x56c11
-	checkflag ENGINE_5E
-	iftrue UnknownScript_0x56c19
+		;checkflag ENGINE_5E
+		;iftrue UnknownScript_0x56c19
 	disappear $d
 UnknownScript_0x56c19: ;0x56c19
 	return
@@ -65,38 +65,38 @@ UnknownScript_0x56c36: ; 056c36
 ; 0x56c4d
 
 UnknownScript_0x56c4d: ; 0x56c4d
-	checkcoins 3500
+	checkcoins 3000
 	if_equal $2, UnknownScript_0x56cb1
 	itemtotext TM_ZAP_CANNON, $0
 	scall UnknownScript_0x56ca1
 	iffalse UnknownScript_0x56cbd
 	giveitem TM_ZAP_CANNON, $1
 	iffalse UnknownScript_0x56cb7
-	takecoins 3500
+	takecoins 3000
 	jump UnknownScript_0x56ca6
 ; 0x56c69
 
 UnknownScript_0x56c69: ; 0x56c69
-	checkcoins 3500
+	checkcoins 3000
 	if_equal $2, UnknownScript_0x56cb1
 	itemtotext TM_DOUBLE_TEAM, $0
 	scall UnknownScript_0x56ca1
 	iffalse UnknownScript_0x56cbd
 	giveitem TM_DOUBLE_TEAM, $1
 	iffalse UnknownScript_0x56cb7
-	takecoins 3500
+	takecoins 3000
 	jump UnknownScript_0x56ca6
 ; 0x56c85
 
 UnknownScript_0x56c85: ; 0x56c85
-	checkcoins 1500
+	checkcoins 999
 	if_equal $2, UnknownScript_0x56cb1
-	itemtotext QUICK_CLAW, $0
+	itemtotext UP_GRADE, $0
 	scall UnknownScript_0x56ca1
 	iffalse UnknownScript_0x56cbd
-	giveitem QUICK_CLAW, $1
+	giveitem UP_GRADE, $1
 	iffalse UnknownScript_0x56cb7
-	takecoins 1500
+	takecoins 999
 	jump UnknownScript_0x56ca6
 ; 0x56ca1
 
@@ -154,9 +154,9 @@ MenuDataHeader_0x56cc9: ; 0x56cc9
 MenuData2_0x56cd1: ; 0x56cd1
 	db $80 ; flags
 	db 4 ; items
-	db "TM07    3500@"
-	db "TM32    3500@"
-	db "QckClaw 1500@"
+	db "TM07    3000@"
+	db "TM32    3000@"
+	db "UP-GRADE 999@"
 	db "CANCEL@"
 ; 0x56d01
 
@@ -185,32 +185,32 @@ UnknownScript_0x56d26: ; 0x56d26 NEEDS NEW MONS
 	if_equal $2, UnknownScript_0x56cb1
 	checkcode VAR_PARTYCOUNT
 	if_equal $6, GCSlot1PC  ;if party is ful, can't carry more
-	pokenamemem ABRA, $0
+	pokenamemem PORYGON, $0
 	scall UnknownScript_0x56ca1
 	iffalse UnknownScript_0x56cbd
 	waitsfx
 	playsound SFX_TRANSACTION
 	writetext UnknownText_0x56ebd
 	waitbutton
-	writebyte ABRA
+	writebyte PORYGON
 	special Functionc230
-	givepoke ABRA, 5, 0, 0
+	givepoke PORYGON, 30, 0, 0
 	takecoins 100
 	jump UnknownScript_0x56d0c
 
 GCSlot1PC:
 	checkcode VAR_BOXSPACE ;else  check to make sure there is space in the box
 	if_equal $0, UnknownScript_0x56cb7
-	pokenamemem ABRA, $0
+	pokenamemem PORYGON, $0
 	scall UnknownScript_0x56ca1
 	iffalse UnknownScript_0x56cbd
 	waitsfx
 	playsound SFX_TRANSACTION
 	writetext GCSentToPCText
 	waitbutton
-	writebyte ABRA
+	writebyte PORYGON
 	special Functionc230
-	givepoke ABRA, 5, 0, 0
+	givepoke PORYGON, 30, 0, 0
 	takecoins 100
 	jump UnknownScript_0x56d0c
 ; 0x56d54
@@ -220,16 +220,16 @@ UnknownScript_0x56d54: ; 0x56d54
 	if_equal $2, UnknownScript_0x56cb1
 	checkcode VAR_PARTYCOUNT
 	if_equal $6, GCSlot2PC
-	pokenamemem CUBONE, $0
+	pokenamemem LAPRAS, $0
 	scall UnknownScript_0x56ca1
 	iffalse UnknownScript_0x56cbd
 	waitsfx
 	playsound SFX_TRANSACTION
 	writetext UnknownText_0x56ebd
 	waitbutton
-	writebyte CUBONE
+	writebyte LAPRAS
 	special Functionc230
-	givepoke CUBONE, 15, 0, 0
+	givepoke LAPRAS, 30, 0, 0
 	takecoins 800
 	jump UnknownScript_0x56d0c
 ; 0x56d82
@@ -237,52 +237,52 @@ UnknownScript_0x56d54: ; 0x56d54
 GCSlot2PC:
 	checkcode VAR_BOXSPACE ;else  check to make sure there is space in the box
 	if_equal $0, UnknownScript_0x56cb7
-	pokenamemem ABRA, $0
+	pokenamemem LAPRAS, $0
 	scall UnknownScript_0x56ca1
 	iffalse UnknownScript_0x56cbd
 	waitsfx
 	playsound SFX_TRANSACTION
 	writetext GCSentToPCText
 	waitbutton
-	writebyte ABRA
+	writebyte LAPRAS
 	special Functionc230
-	givepoke ABRA, 5, 0, 0
+	givepoke LAPRAS, 30, 0, 0
 	takecoins 100
 	jump UnknownScript_0x56d0c
 
 UnknownScript_0x56d82: ; 0x56d82
-	checkcoins 1500
+	checkcoins 500
 	if_equal $2, UnknownScript_0x56cb1
 	checkcode VAR_PARTYCOUNT
 	if_equal $6, GCSlot3PC
-	pokenamemem WOBBUFFET, $0
+	pokenamemem GRIMER, $0
 	scall UnknownScript_0x56ca1
 	iffalse UnknownScript_0x56cbd
 	waitsfx
 	playsound SFX_TRANSACTION
 	writetext UnknownText_0x56ebd
 	waitbutton
-	writebyte WOBBUFFET
+	writebyte GRIMER
 	special Functionc230
-	givepoke WOBBUFFET, 15, 0, 0
-	takecoins 1500
+	givepoke GRIMER, 30, 0, 0
+	takecoins 500
 	jump UnknownScript_0x56d0c
 ; 0x56db0
 
 GCSlot3PC:
 	checkcode VAR_BOXSPACE ;else  check to make sure there is space in the box
 	if_equal $0, UnknownScript_0x56cb7
-	pokenamemem ABRA, $0
+	pokenamemem GRIMER, $0
 	scall UnknownScript_0x56ca1
 	iffalse UnknownScript_0x56cbd
 	waitsfx
 	playsound SFX_TRANSACTION
 	writetext GCSentToPCText
 	waitbutton
-	writebyte ABRA
+	writebyte GRIMER
 	special Functionc230
-	givepoke ABRA, 5, 0, 0
-	takecoins 100
+	givepoke ABRA, 30, 0, 0
+	takecoins 500
 	jump UnknownScript_0x56d0c
 
 MenuDataHeader_0x56db0: ; 0x56db0
@@ -296,9 +296,9 @@ MenuDataHeader_0x56db0: ; 0x56db0
 MenuData2_0x56db8: ; 0x56db8
 	db $80 ; flags
 	db 4 ; items
-	db "ABRA        100@"
-	db "CUBONE      800@"
-	db "WOBBUFFET  1500@"
+	db "PORYGON    2000@"
+	db "LAPRAS     2000@"
+	db "GRIMER      500@"
 	db "CANCEL@"
 ; 0x56df1
 
@@ -537,7 +537,7 @@ UnknownText_0x57097: ; 0x57097
 ; 0x570b1
 
 UnknownText_0x570b1: ; 0x570b1
-	text "I taught BLIZZARD"
+	text "I taught ZAP CANNON"
 	line "to my #MON."
 
 	para "It was hard to get"

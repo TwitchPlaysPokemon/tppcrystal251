@@ -403,8 +403,15 @@ UnknownText_0x1b086f: ; 0x1b086f
 ; 0x1b088c
 
 UnknownText_0x1b088c: ; 0x1b088c
-	text "Whoops! Your COIN"
-	line "CASE is full."
+	text "You're buying"
+	line "alot of coins…"
+	
+	para "Are you trying"
+	line "to buy a prize"
+	cont "outright?"
+	
+	para "That's so dull,"
+	line "go have some fun!"
 	done
 ; 0x1b08ad
 
@@ -1244,3 +1251,4 @@ _IndigoPlateauStatuesText2: ; 89596 (22:5596)
 	line "#MON authority"
 	cont "#MON LEAGUE HQ"
 	done
+

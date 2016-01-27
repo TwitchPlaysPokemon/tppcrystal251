@@ -25,7 +25,7 @@ UnknownScript_0x18c739: ; 0x18c739
 ; 0x18c73b
 
 ItemFragment_0x18c73b: ; 0x18c73b
-	db REVIVE, 1
+	db MAX_REVIVE, 1
 ; 0x18c73d
 
 ItemFragment_0x18c73d: ; 0x18c73d

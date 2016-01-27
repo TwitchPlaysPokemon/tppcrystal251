@@ -1,6 +1,6 @@
 	db NOCTOWL ; 164
 
-	db 100,  75,  50,  70,  86,  96 ; BST 442 > 477
+	db 110,  75,  50,  70,  86,  96 ; BST 442 > 487
 	;   hp  atk  def  spd  sat  sdf
 ;	db 100,  50,  50,  70,  76,  96 old stats
 

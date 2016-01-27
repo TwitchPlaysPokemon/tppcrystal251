@@ -21,7 +21,7 @@ UnknownScript_0x5400b: ; 0x5400b
 WhitneyScript_0x5400c: ; 0x5400c
 	faceplayer
 	checkevent EVENT_WHITNEY_REMATCH
-	iftrue UnknownScript_0x54037
+	iftrue WhitneyAfterRematch
 	checkevent EVENT_FIRST_TIME_RED
 	iftrue WhitneyRematchScript
 	checkevent EVENT_BEAT_WHITNEY
@@ -60,8 +60,14 @@ WhitneyRematchScript:
 	startbattle
 	returnafterbattle
 	setevent EVENT_WHITNEY_REMATCH
+	loadfont ;fallthrough
+
+WhitneyAfterRematch:
 	loadfont
-	jump UnknownScript_0x54037
+	writetext WhitneyAfterRematchText
+	waitbutton
+	closetext
+	end
 
 UnknownScript_0x54044: ; 0x54044
 	checkevent EVENT_GOT_TM45_ATTRACT
@@ -313,13 +319,28 @@ WhitneyRematchTextBefore:
 	para "I'm ready for a"
 	line "rematch."
 
-	para "Tee-hee! I won't"
+	para "Tee-hee! I won't" 
 	line "cry this time if I"
 	cont "lose. Promise!"
 	done
 
 WhitneyRematchBeatenText:
 	text "I lost again?!"
+	done
+
+WhitneyAfterRematchText:
+	text "You didn't"
+	line "have to play so"
+	cont "rough…"
+
+	para "I was surprised"
+	line "by how strong"
+	cont "you were," 
+
+	para "When you have a"
+	line "chance, tell me"
+	cont "all about why"
+	cont "you're so strong!"
 	done
 
 UnknownText_0x541a5: ; 0x541a5
@@ -382,7 +403,7 @@ UnknownText_0x54302: ; 0x54302
 	text "It's BODY SLAM!"
 	line "It makes full use"
 
-	para "of a #MON's"
+	para "of a #MON's…"
 	line "presence."
 
 	para "Isn't it just per-"
@@ -427,8 +448,8 @@ LassBridgetSeenText: ; 0x54411
 	line "on both normal"
 	cont "and fairy types."
 
-	para "I prefer FAIRY"
-	line "types personally!"
+	para "I prefer FAIRYS"
+	line "personally!"
 	done
 ; 0x5445f
 

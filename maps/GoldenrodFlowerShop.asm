@@ -11,12 +11,15 @@ TeacherScript_0x5535d: ; 0x5535d
 	iftrue UnknownScript_0x5538f
 	checkevent EVENT_GOT_SQUIRTBOTTLE
 	iftrue UnknownScript_0x55399
+	checkflag ENGINE_PLAINBADGE
+	iftrue FlowerShopWithBadge
 	checkevent EVENT_SPOKE_TO_FLOWER_SHOP_GIRL_AT_SUDOWOODO
 	iffalse UnknownScript_0x5539f
 	checkevent EVENT_SPOKE_TO_FLOWER_SHOP_GIRL_IN_FLOWER_SHOP
 	iffalse UnknownScript_0x5538f
-	checkflag ENGINE_PLAINBADGE
-	iffalse UnknownScript_0x5539c
+	jumptextfaceplayer UnknownText_0x55463
+
+FlowerShopWithBadge:
 	faceplayer
 	loadfont
 	writetext UnknownText_0x554c2
@@ -42,8 +45,8 @@ UnknownScript_0x55399: ; 0x55399
 	jumptextfaceplayer UnknownText_0x5550d
 ; 0x5539c
 
-UnknownScript_0x5539c: ; 0x5539c
-	jumptextfaceplayer UnknownText_0x55463
+;UnknownScript_0x5539c: ; 0x5539c
+	
 ; 0x5539f
 
 UnknownScript_0x5539f: ; 0x5539f

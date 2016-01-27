@@ -78,9 +78,9 @@ UnknownText_0x9b0b5: ; 0x9b0b5
 	cont "here."
 
 	para "I would love to"
-	line "see how well a"
+	line "see how well the"
 
-	para "trainer from JOHTO"
+	para "champion of JOHTO"
 	line "battles."
 	done
 ; 0x9b11d

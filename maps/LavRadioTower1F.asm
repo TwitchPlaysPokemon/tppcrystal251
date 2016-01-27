@@ -22,36 +22,56 @@ GentlemanScript_0x7ee6c: ; 0x7ee6c
 	faceplayer
 	loadfont
 	checkflag ENGINE_EXPN_CARD
-	iftrue .UnknownScript_0x7ee8e
+	iftrue UnknownScript_0x7ee8e
 	checkevent EVENT_RETURNED_MACHINE_PART
-	iftrue .UnknownScript_0x7ee80
+	iftrue UnknownScript_0x7ee80
 	writetext UnknownText_0x7effb
 	waitbutton
 	closetext
 	end
 ; 0x7ee80
 
-.UnknownScript_0x7ee80: ; 0x7ee80
+UnknownScript_0x7ee80: ; 0x7ee80
 	writetext UnknownText_0x7f0a1
 	buttonsound
-	stringtotext .expncardname, $1
-	scall .UnknownScript_0x7ee94
+	stringtotext expncardname, $1
+	scall UnknownScript_0x7ee94
 	setflag ENGINE_EXPN_CARD
-.UnknownScript_0x7ee8e ; 0x7ee8e
+UnknownScript_0x7ee8e ; 0x7ee8e
 	writetext UnknownText_0x7f141
 	waitbutton
+	checkflag ENGINE_RADIO_CARD
+	iftrue HasRadioCard
+	writetext NeedsRadioCard
+	buttonsound
+	stringtotext RadioCardName, $1
+	scall UnknownScript_0x7ee94
+	setflag ENGINE_RADIO_CARD
+HasRadioCard:
 	closetext
 	end
+
+NeedsRadioCard:
+	text "What? You don't"
+	line "have a"
+	cont "RADIO CARD!?"
+
+	para "That won't do,"
+	line "take this."
+	done
 ; 0x7ee94
 
-.UnknownScript_0x7ee94 ; 0x7ee94
+UnknownScript_0x7ee94 ; 0x7ee94
 	jumpstd receiveitem
 	end
 ; 0x7ee98
 
-.expncardname ; 0x7ee98
+expncardname ; 0x7ee98
 	db "EXPN CARD@"
 ; 0x7eea2
+
+RadioCardName:
+	db "RADIO CARD@"
 
 SuperNerdScript_0x7eea2: ; 0x7eea2
 	faceplayer

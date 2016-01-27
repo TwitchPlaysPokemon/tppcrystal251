@@ -10,7 +10,7 @@ ChuckScript_0x9d60f: ; 0x9d60f
 	faceplayer
 	loadfont
 	checkevent EVENT_CHUCK_REMATCH
-	iftrue UnknownScript_0x9d656
+	iftrue ChuckAfterRematch
 	checkevent EVENT_FIRST_TIME_RED
 	iftrue ChuckRematchScript
 	checkevent EVENT_BEAT_CHUCK
@@ -72,8 +72,13 @@ ChuckRematchScript:
 	startbattle
 	returnafterbattle
 	setevent EVENT_CHUCK_REMATCH
-	loadfont
-	jump UnknownScript_0x9d656
+	loadfont ;fallthrough
+
+ChuckAfterRematch:
+	writetext ChuckAfterRematchText
+	waitbutton
+	closetext
+	end
 
 UnknownScript_0x9d67b: ; 0x9d67b
 	writetext UnknownText_0x9d930
@@ -280,8 +285,16 @@ UnknownText_0x9d78a: ; 0x9d78a
 ChuckRematchTextBefore:
 	text "WAHAHAH!"
 
-	para "Are you here for a"
-	line "rematch? Bring it!"
+	para "Oh, hey, sorry"
+	line "for shouting!"
+	
+	para "I’m doing great!"
+	
+	para "I just finished"
+	line "training,"
+	
+	para "do you want to"
+	line "battle again?"
 	done
 
 ChuckRematchBeatenText:
@@ -289,6 +302,13 @@ ChuckRematchBeatenText:
 	line "I lost again?"
 
 	para "How about that!"
+	done
+
+ChuckAfterRematchText:
+	text "Wahaha!"
+	line "A battle with"
+	cont "you is never"
+	cont "boring!"
 	done
 
 UnknownText_0x9d7f6: ; 0x9d7f6
@@ -308,14 +328,8 @@ UnknownText_0x9d835: ; 0x9d835
 ; 0x9d84d
 
 UnknownText_0x9d84d: ; 0x9d84d
-	text "STORMBADGE makes"
-	line "all #MON up to"
-
-	para "L70 obey, even"
-	line "traded ones."
-
-	para "It also lets your"
-	line "#MON use FLY"
+	text "STORMBADGE lets"
+	line "your #MON use Fly"
 
 	para "when you're not in"
 	line "a battle."

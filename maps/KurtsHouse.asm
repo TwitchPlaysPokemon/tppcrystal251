@@ -75,8 +75,10 @@ UnknownScript_0x18e1bf: ; 0x18e1bf
 	iffalse UnknownScript_0x18e2b2
 	setevent EVENT_KURT_GAVE_YOU_LURE_BALL
 UnknownScript_0x18e1cc: ; 0x18e1cc
-	checkevent EVENT_000_STD
-	iftrue UnknownScript_0x18e29f
+		;checkevent EVENT_000_STD
+		;iftrue UnknownScript_0x18e29f ;it'll take a day
+	checkevent EVENT_CAN_GIVE_GS_BALL_TO_KURT
+	iftrue UnknownScript_0x18e34e
 	checkevent EVENT_KURT_HAS_LEVEL_BALL
 	iftrue UnknownScript_0x18e2b4
 	checkevent EVENT_KURT_HAS_LURE_BALL
@@ -91,18 +93,16 @@ UnknownScript_0x18e1cc: ; 0x18e1cc
 	iftrue UnknownScript_0x18e322
 	checkevent EVENT_KURT_HAS_LOVE_BALL
 	iftrue UnknownScript_0x18e338
-	checkevent EVENT_CAN_GIVE_GS_BALL_TO_KURT
-	iftrue UnknownScript_0x18e34e
 UnknownScript_0x18e202: ; 0x18e202
 	checkevent EVENT_001_STD
 	iftrue UnknownScript_0x18e212
 	checkevent EVENT_002_STD
 	iftrue UnknownScript_0x18e212
-	writetext UnknownText_0x18e6c9
+	writetext UnknownText_0x18e6c9 ;i can make balls from apricorns
 	waitbutton
 UnknownScript_0x18e212: ; 0x18e212
 	checkitem RED_APRICORN
-	iftrue UnknownScript_0x18e249
+	iftrue UnknownScript_0x18e249 ;if any apricorn, go to apricorn menu
 	checkitem BLU_APRICORN
 	iftrue UnknownScript_0x18e249
 	checkitem YLW_APRICORN
@@ -115,75 +115,104 @@ UnknownScript_0x18e212: ; 0x18e212
 	iftrue UnknownScript_0x18e249
 	checkitem PNK_APRICORN
 	iftrue UnknownScript_0x18e249
-	checkevent EVENT_001_STD
-	iftrue UnknownScript_0x18e2ae
+		;checkevent EVENT_001_STD
+		;iftrue UnknownScript_0x18e2ae ;if made a ball
 	checkevent EVENT_002_STD
-	iftrue UnknownScript_0x18e243
+	iftrue UnknownScript_0x18e243 ;can make balls
 	closetext
 	end
 ; 0x18e243
 
 UnknownScript_0x18e243: ; 0x18e243
-	writetext UnknownText_0x18e6c9
+	writetext UnknownText_0x18e6c9 ;I can make balls from apricorns
 	waitbutton
 	closetext
 	end
 ; 0x18e249
 
 UnknownScript_0x18e249: ; 0x18e249
-	writetext UnknownText_0x18e736
+	writetext UnknownText_0x18e736 ;you have an apricorn for me?
 	buttonsound
 	setevent EVENT_002_STD
 	special Function88018
-	if_equal $0, UnknownScript_0x18e2a5
-	if_equal $59, UnknownScript_0x18e275
-	if_equal $5c, UnknownScript_0x18e27b
-	if_equal $5d, UnknownScript_0x18e281
-	if_equal $61, UnknownScript_0x18e287
-	if_equal $63, UnknownScript_0x18e28d
-	if_equal $65, UnknownScript_0x18e293
-	setevent EVENT_KURT_HAS_LEVEL_BALL
-	jump UnknownScript_0x18e299
+	if_equal $0, UnknownScript_0x18e2a5 ;letdown
+	if_equal $59, UnknownScript_0x18e275 ;lure
+	if_equal $5c, UnknownScript_0x18e27b ;moon
+	if_equal $5d, UnknownScript_0x18e281 ;friend
+	if_equal $61, UnknownScript_0x18e287 ;fast
+	if_equal $63, UnknownScript_0x18e28d ;heavy
+	if_equal $65, UnknownScript_0x18e293 ;love
+	writetext KurtGivesBallsText ;I finised your ball
+	buttonsound
+	verbosegiveitem2 LEVEL_BALL, $16
+	iftrue KurtGaveBalls ;quit
+	setflag EVENT_KURT_HAS_LEVEL_BALL
+	jump KurtBagFull
 ; 0x18e275
 
-UnknownScript_0x18e275: ; 0x18e275
-	setevent EVENT_KURT_HAS_LURE_BALL
-	jump UnknownScript_0x18e299
+UnknownScript_0x18e275: ; 0x18e275 lure
+	writetext KurtGivesBallsText ;I finised your ball
+	buttonsound
+	verbosegiveitem2 LURE_BALL, $16
+	iftrue KurtGaveBalls ;quit
+	setflag EVENT_KURT_HAS_LURE_BALL
+	jump KurtBagFull
 ; 0x18e27b
 
 UnknownScript_0x18e27b: ; 0x18e27b
-	setevent EVENT_KURT_HAS_MOON_BALL
-	jump UnknownScript_0x18e299
+	writetext KurtGivesBallsText ;I finised your ball
+	buttonsound
+	verbosegiveitem2 MOON_BALL, $16
+	iftrue KurtGaveBalls ;quit
+	setflag EVENT_KURT_HAS_MOON_BALL
+	jump KurtBagFull
 ; 0x18e281
 
 UnknownScript_0x18e281: ; 0x18e281
-	setevent EVENT_KURT_HAS_FRIEND_BALL
-	jump UnknownScript_0x18e299
+	writetext KurtGivesBallsText ;I finised your ball
+	buttonsound
+	verbosegiveitem2 FRIEND_BALL, $16
+	iftrue KurtGaveBalls ;quit
+	setflag EVENT_KURT_HAS_FRIEND_BALL
+	jump KurtBagFull
 ; 0x18e287
 
 UnknownScript_0x18e287: ; 0x18e287
-	setevent EVENT_KURT_HAS_FAST_BALL
-	jump UnknownScript_0x18e299
+	writetext KurtGivesBallsText ;I finised your ball
+	buttonsound
+	verbosegiveitem2 FAST_BALL, $16
+	iftrue KurtGaveBalls ;quit
+	setflag EVENT_KURT_HAS_FAST_BALL
+	jump KurtBagFull
 ; 0x18e28d
 
 UnknownScript_0x18e28d: ; 0x18e28d
-	setevent EVENT_KURT_HAS_HEAVY_BALL
-	jump UnknownScript_0x18e299
+	writetext KurtGivesBallsText ;I finised your ball
+	buttonsound
+	verbosegiveitem2 HEAVY_BALL, $16
+	iftrue KurtGaveBalls ;quit
+	setflag EVENT_KURT_HAS_HEAVY_BALL
+	jump KurtBagFull
 ; 0x18e293
 
 UnknownScript_0x18e293: ; 0x18e293
-	setevent EVENT_KURT_HAS_LOVE_BALL
-	jump UnknownScript_0x18e299
+	writetext KurtGivesBallsText ;I finised your ball
+	buttonsound
+	verbosegiveitem2 LOVE_BALL, $16
+	iftrue KurtGaveBalls ;quit
+	setflag EVENT_KURT_HAS_LOVE_BALL
+	jump KurtBagFull
 ; 0x18e299
+	
 
-UnknownScript_0x18e299: ; 0x18e299
-	setevent EVENT_000_STD
-	setflag ENGINE_KURT_MAKING_BALLS
-UnknownScript_0x18e29f: ; 0x18e29f
-	writetext UnknownText_0x18e779
-	waitbutton
-	closetext
-	end
+;UnknownScript_0x18e299: ; 0x18e299
+;	setevent EVENT_000_STD
+;	setflag ENGINE_KURT_MAKING_BALLS
+;UnknownScript_0x18e29f: ; 0x18e29f
+;	writetext UnknownText_0x18e779 ;it'll take a day
+;	waitbutton
+;	closetext
+;	end
 ; 0x18e2a5
 
 UnknownScript_0x18e2a5: ; 0x18e2a5
@@ -193,98 +222,128 @@ UnknownScript_0x18e2a5: ; 0x18e2a5
 	end
 ; 0x18e2ab
 
-UnknownScript_0x18e2ab: ; 0x18e2ab
-	setevent EVENT_001_STD
-UnknownScript_0x18e2ae: ; 0x18e2ae
-	writetext UnknownText_0x18e82a
-	waitbutton
+;UnknownScript_0x18e2ab: ; 0x18e2ab
+	;setevent EVENT_001_STD
+;UnknownScript_0x18e2ae: ; 0x18e2ae
+	;writetext UnknownText_0x18e82a ;turned out great
+	;waitbutton
+
 UnknownScript_0x18e2b2: ; 0x18e2b2
 	closetext
 	end
 ; 0x18e2b4
 
+KurtBagFull:
+	writetext KurtBagFullText
+	waitbutton
+	closetext
+	end
+
+KurtGaveBalls:
+	writetext KurtGaveBallsText
+	setevent EVENT_001_STD
+	waitbutton
+	closetext
+	end
+
+KurtGivesBallsText:
+	text "And here's the"
+	line "BALLS I made"
+	cont "earlier."
+	done
+
+KurtGaveBallsText:
+	text "I could always"
+	line "use more"
+	cont "APRICORNS"
+
+	para "Keep bringin' me"
+	line "them."
+	done
+
+KurtBagFullText:
+	text "Can't carry them?"
+	line "Guess I'll have"
+	cont "to owe ya some."
+
+	para "Come back"
+	line "whenever."
+	done
+
+KurtOwesBallsText:
+	text "Here are those"
+	line "balls I owe ya."
+
 UnknownScript_0x18e2b4: ; 0x18e2b4
-	checkflag ENGINE_KURT_MAKING_BALLS
-	iftrue UnknownScript_0x18e3c5
-	writetext UnknownText_0x18e7fb
+		;checkflag ENGINE_KURT_MAKING_BALLS
+		;iftrue UnknownScript_0x18e3c5 ;I'm working
+	writetext KurtOwesBallsText ;I finised your ball
 	buttonsound
 	verbosegiveitem2 LEVEL_BALL, $16
-	iffalse UnknownScript_0x18e2b2
+	iffalse KurtBagFull ;quit
 UnknownScript_0x18e2c4: ; 0x18e2c4
 	clearevent EVENT_KURT_HAS_LEVEL_BALL
-	jump UnknownScript_0x18e2ab
+	jump KurtGaveBalls ;set event
 ; 0x18e2ca
 
 UnknownScript_0x18e2ca: ; 0x18e2ca
-	checkflag ENGINE_KURT_MAKING_BALLS
-	iftrue UnknownScript_0x18e3c5
-	writetext UnknownText_0x18e7fb
+	writetext KurtOwesBallsText
 	buttonsound
 	verbosegiveitem2 LURE_BALL, $16
-	iffalse UnknownScript_0x18e2b2
+	iffalse KurtBagFull
 UnknownScript_0x18e2da: ; 0x18e2da
 	clearevent EVENT_KURT_HAS_LURE_BALL
-	jump UnknownScript_0x18e2ab
+	jump KurtGaveBalls
 ; 0x18e2e0
 
 UnknownScript_0x18e2e0: ; 0x18e2e0
-	checkflag ENGINE_KURT_MAKING_BALLS
-	iftrue UnknownScript_0x18e3c5
-	writetext UnknownText_0x18e7fb
+	writetext KurtOwesBallsText
 	buttonsound
 	verbosegiveitem2 MOON_BALL, $16
-	iffalse UnknownScript_0x18e2b2
+	iffalse KurtBagFull
 UnknownScript_0x18e2f0: ; 0x18e2f0
 	clearevent EVENT_KURT_HAS_MOON_BALL
-	jump UnknownScript_0x18e2ab
+	jump KurtGaveBalls
 ; 0x18e2f6
 
 UnknownScript_0x18e2f6: ; 0x18e2f6
-	checkflag ENGINE_KURT_MAKING_BALLS
-	iftrue UnknownScript_0x18e3c5
-	writetext UnknownText_0x18e7fb
+	writetext KurtOwesBallsText
 	buttonsound
 	verbosegiveitem2 FRIEND_BALL, $16
-	iffalse UnknownScript_0x18e2b2
+	iffalse KurtBagFull
 UnknownScript_0x18e306: ; 0x18e306
 	clearevent EVENT_KURT_HAS_FRIEND_BALL
-	jump UnknownScript_0x18e2ab
+	jump KurtGaveBalls
 ; 0x18e30c
 
 UnknownScript_0x18e30c: ; 0x18e30c
-	checkflag ENGINE_KURT_MAKING_BALLS
-	iftrue UnknownScript_0x18e3c5
-	writetext UnknownText_0x18e7fb
+	writetext KurtOwesBallsText
 	buttonsound
 	verbosegiveitem2 FAST_BALL, $16
-	iffalse UnknownScript_0x18e2b2
+	iffalse KurtBagFull
 UnknownScript_0x18e31c: ; 0x18e31c
 	clearevent EVENT_KURT_HAS_FAST_BALL
-	jump UnknownScript_0x18e2ab
+	jump KurtGaveBalls
 ; 0x18e322
 
 UnknownScript_0x18e322: ; 0x18e322
-	checkflag ENGINE_KURT_MAKING_BALLS
-	iftrue UnknownScript_0x18e3c5
-	writetext UnknownText_0x18e7fb
+	writetext KurtOwesBallsText
 	buttonsound
 	verbosegiveitem2 HEAVY_BALL, $16
-	iffalse UnknownScript_0x18e2b2
+	iffalse KurtBagFull
 UnknownScript_0x18e332: ; 0x18e332
 	clearevent EVENT_KURT_HAS_HEAVY_BALL
-	jump UnknownScript_0x18e2ab
+	jump KurtGaveBalls
 ; 0x18e338
 
 UnknownScript_0x18e338: ; 0x18e338
-	checkflag ENGINE_KURT_MAKING_BALLS
-	iftrue UnknownScript_0x18e3c5
-	writetext UnknownText_0x18e7fb
+	writetext KurtOwesBallsText
 	buttonsound
 	verbosegiveitem2 LOVE_BALL, $16
-	iffalse UnknownScript_0x18e2b2
+	iffalse KurtBagFull
 UnknownScript_0x18e348: ; 0x18e348
 	clearevent EVENT_KURT_HAS_LOVE_BALL
-	jump UnknownScript_0x18e2ab
+	jump KurtGaveBalls
 ; 0x18e34e
 
 UnknownScript_0x18e34e: ; 0x18e34e
@@ -352,7 +411,7 @@ KurtScript_0x18e3bd: ; 0x18e3bd
 UnknownScript_0x18e3c5: ; 0x18e3c5
 	checkevent EVENT_KURT_TOLD_YOU_ABOUT_HIS_DAUGHTER_HELPING_HIM
 	iffalse UnknownScript_0x18e3d4
-	writetext UnknownText_0x18e7d8
+	writetext UnknownText_0x18e7d8 ;I'm working
 	waitbutton
 	closetext
 	spriteface $5, $1
@@ -554,8 +613,17 @@ UnknownText_0x18e615: ; 0x18e615
 	para "a trainer like"
 	line "you."
 
-	para "This is all I have"
-	line "now, but take it."
+	para "Actually…"
+
+	para "I have a bunch in"
+	line "the back, so I can"
+	cont "trade BALLS"
+	cont "for APRICORNS"
+	cont "without you having"
+	cont "to wait."
+
+	para "Here's a sample"
+	line "for all you did."
 	done
 ; 0x18e6c9
 
@@ -567,8 +635,8 @@ UnknownText_0x18e6c9: ; 0x18e6c9
 	line "trees and bring"
 	cont "'em to me."
 
-	para "I'll make BALLS"
-	line "out of them."
+	para "I'll trade BALLS"
+	line "for them."
 	done
 ; 0x18e736
 
@@ -576,18 +644,18 @@ UnknownText_0x18e736: ; 0x18e736
 	text "KURT: You have an"
 	line "APRICORN for me?"
 
-	para "Fine! I'll turn it"
-	line "into a BALL."
+	para "Fine! I'll trade"
+	line "it for a BALL."
 	done
 ; 0x18e779
 
-UnknownText_0x18e779: ; 0x18e779
-	text "KURT: It'll take a"
-	line "day to make you a"
+;UnknownText_0x18e779: ; 0x18e779
+;	text "KURT: It'll take a"
+;	line "day to make you a"
 
-	para "BALL. Come back"
-	line "for it later."
-	done
+;	para "BALL. Come back"
+;	line "for it later."
+;	done
 ; 0x18e7bc
 
 UnknownText_0x18e7bc: ; 0x18e7bc
@@ -602,20 +670,20 @@ UnknownText_0x18e7d8: ; 0x18e7d8
 	done
 ; 0x18e7fb
 
-UnknownText_0x18e7fb: ; 0x18e7fb
-	text "KURT: Ah, <PLAYER>!"
-	line "I just finished"
-	cont "your BALL. Here!"
-	done
+;UnknownText_0x18e7fb: ; 0x18e7fb
+	;text "KURT: Ah, <PLAYER>!"
+	;line "I just finished"
+	;cont "your BALL. Here!"
+	;done
 ; 0x18e82a
 
-UnknownText_0x18e82a: ; 0x18e82a
-	text "KURT: That turned"
-	line "out great."
+;UnknownText_0x18e82a: ; 0x18e82a
+;	text "KURT: That turned"
+;	line "out great."
 
-	para "Try catching"
-	line "#MON with it."
-	done
+;	para "Try catching"
+;	line "#MON with it."
+;	done
 ; 0x18e863
 
 UnknownText_0x18e863: ; 0x18e863

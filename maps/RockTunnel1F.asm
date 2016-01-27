@@ -7,7 +7,7 @@ RockTunnel1F_MapScriptHeader: ; 0x743b3
 ; 0x743b5
 
 ItemFragment_0x743b5: ; 0x743b5
-	db ELIXER, 1
+	db THICK_CLUB, 1
 ; 0x743b7
 
 ItemFragment_0x743b7: ; 0x743b7
@@ -22,7 +22,7 @@ MapRockTunnel1FSignpostItem0: ; 0x743b9
 
 MapRockTunnel1FSignpostItem1: ; 0x743bc
 	dw $00e8
-	db X_DEFEND
+	db ELIXER
 	
 ; 0x743bf
 

@@ -1,6 +1,6 @@
 	db UNOWN ; 201
 
-	db  48,  72,  48,  48,  72,  48
+	db  96, 144,  96,  96, 144,  96; (Doubled. yes. doubled)
 	;   hp  atk  def  spd  sat  sdf
 
 	db PSYCHIC, PSYCHIC

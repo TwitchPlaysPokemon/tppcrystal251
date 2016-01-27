@@ -190,7 +190,7 @@ UnknownScript_0x994ff: ; 0x994ff
 UnknownScript_0x99505: ; 0x99505
 	writetext UnknownText_0x9991a
 	buttonsound
-	verbosegiveitem HM_SURF, 1
+	verbosegiveitem HM_STRENGTH, 1
 	setevent EVENT_GOT_HM03_SURF
 	writetext UnknownText_0x9999b
 	waitbutton
@@ -388,11 +388,16 @@ UnknownText_0x9991a: ; 0x9991a
 ; 0x9999b
 
 UnknownText_0x9999b: ; 0x9999b
-	text "That's SURF."
+	text "That's Strength."
 
 	para "It's a move that"
-	line "lets #MON swim"
-	cont "across water."
+	line "lets #MON push"
+	cont "boulders."
+
+	para "If you want to"
+	line "cross the sea,"
+	cont "you should find"
+	cont "my friend Lance."
 	done
 ; 0x999d5
 
@@ -415,12 +420,11 @@ UnknownText_0x99a24: ; 0x99a24
 
 	para "Says he wants a"
 	line "#MON that can"
-	cont "SURF and dance."
+	cont "push and dance."
 
 	para "Is he trying to"
-	line "make a synchro-"
-	cont "nized swimming"
-	cont "#MON?"
+	line "make a burly"
+	cont "ballet?"
 	done
 ; 0x99aaa
 

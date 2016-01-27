@@ -7,7 +7,7 @@ RuinsofAlphOmanyteItemRoom_MapScriptHeader: ; 0x59a2a
 ; 0x59a2c
 
 ItemFragment_0x59a2c: ; 0x59a2c
-	db MYSTERYBERRY, 1
+	db SUN_STONE, 1
 ; 0x59a2e
 
 ItemFragment_0x59a2e: ; 0x59a2e

@@ -28,9 +28,10 @@ UnknownScript_0x733f3: ; 0x733f3
 	spriteface $0, $1
 	loadfont
 	writetext UnknownText_0x73496
+	buttonsound
+	verbosegiveitem BICYCLE, 1
 	waitbutton
 	closetext
-	applymovement $0, MovementData_0x73405
 	end
 ; 0x73405
 
@@ -64,6 +65,17 @@ UnknownText_0x73496: ; 0x73496
 
 	para "ROAD without a"
 	line "BICYCLE."
+
+	para "Thanks to a deal"
+	line "with GOLDENROD"
+	cont "BIKE STORE we have"
+	cont "a special offer."
+
+	para "If you agree to"
+	line "use this BIKE on"
+	cont "your travels, you"
+	cont "may keep it for a"
+	cont "while."
 	done
 ; 0x734df
 

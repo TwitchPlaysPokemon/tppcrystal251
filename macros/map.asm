@@ -22,11 +22,25 @@ person_event: macro
 	db \2 ; y
 	db \3 ; x
 	db \4 ; movement function
+	;$2 = random wander
+	;$6 = stand still facing down
+	;$7 = facing up
+	;$8 = left
+	;$9 = right 
+	;$3 = look around
+	;$4 = random walk y
+	;$5 = random walk x
+	;$a = fast random spinner
+	;$16 = bouncing pokemon
+	;$15 = big sprite i.e. snorlax
+	;$1e = timed spin counterclockwise
+	;$1f = timed spin clockwise
 	dn \5, \6 ; radius: y, x
 	shift
 	db \6 ; clock_hour
+	;-1 indicates no time dependence, otherwise time appears
 	db \7 ; clock_daytime
-	dn \8, \9 ; color_function
+	dn \8, \9 ; color_function ;if bit 3 is set, the palette used is given by bits 0-2; otherwise, the default palette is used 
 	shift
 	db \9 ; sight_range
 	shift
@@ -34,6 +48,9 @@ person_event: macro
 	shift
 	dw \9 ; event flag
 	endm
+	;0 = run script
+	;1 = give item
+	;2 = load trainer
 
 signpost: macro
 	db \1 ; y

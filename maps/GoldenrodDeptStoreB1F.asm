@@ -77,7 +77,7 @@ ItemFragment_0x7d7c5: ; 0x7d7c5
 ; 0x7d7c7
 
 ItemFragment_0x7d7c7: ; 0x7d7c7
-	db BURN_HEAL, 1
+	db FULL_HEAL, 1
 ; 0x7d7c9
 
 ItemFragment_0x7d7c9: ; 0x7d7c9

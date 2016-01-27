@@ -10,7 +10,7 @@ PryceScript_0x199a9e: ; 0x199a9e
 	faceplayer
 	loadfont
 	checkevent EVENT_PRYCE_REMATCH
-	iftrue UnknownScript_0x199ac8
+	iftrue PryceAfterRematch
 	checkevent EVENT_FIRST_TIME_RED
 	iftrue PryceRematchScript
 	checkevent EVENT_BEAT_PRYCE
@@ -58,8 +58,13 @@ PryceRematchScript:
 	startbattle
 	returnafterbattle
 	setevent EVENT_PRYCE_REMATCH
-	loadfont
-	jump UnknownScript_0x199ac8
+	loadfont ;fallthrough
+
+PryceAfterRematch:
+	writetext PryceAfterRematchText
+	waitbutton
+	closetext
+	end
 
 UnknownScript_0x199af0: ; 0x199af0
 	writetext UnknownText_0x199e59
@@ -289,22 +294,35 @@ UnknownText_0x199b8d: ; 0x199b8d
 ; 0x199cb3
 
 PryceRematchTextBefore:
-	text "So, you've come"
-	line "back for another"
+	text "You've had some"
+	line "hard times, but"
+	cont "my experience"
+	cont "means I will not"
+	cont "fall easily."
 
-	para "thrashing from the"
-	line "winter trainer?"
+	text "No need for words."
+	line "A #MON battle is"
+	cont "the way for us to"
+	cont "communicate."
 	done
 
 PryceRematchBeatenText:
-	text "Ah, I am impressed"
-	line "by your prowess."
+	text "Hmm."
+	
+	para "Seems as if my"
+	line "luck has run out."
+	done
 
-	para "With your strong"
-	line "will, I know you"
+PryceAfterRematchText:
+	text "Yes, yes…"
+	
+	para "It was an"
+	line "impressive match."
 
-	para "will overcome all"
-	line "life's obstacles."
+	para "You should be able"
+	line "to overcome"
+	cont "anything."
+
 	done
 
 UnknownText_0x199cb3: ; 0x199cb3

@@ -68,7 +68,7 @@ MapBattleTentBattleRoomBillScript1:
 	waitbutton
 	closetext
 	applymovement $2, MapBattleTentBattleRoomMovementData9
-	verbosegiveitem NUGGET, 1
+	verbosegiveitem HM_WHIRLPOOL, 1
 	iffalse BillStandingBy
 	writetext MapBattleTentBattleRoomBillText5
 	waitbutton
@@ -90,7 +90,7 @@ MapBattleTentBattleRoomBillScript2:
 	loadfont
 	writetext MapBattleTentBattleRoomBillText7
 	buttonsound
-	verbosegiveitem NUGGET, 1
+	verbosegiveitem HM_WHIRLPOOL, 1
 	iffalse BillStandingBy
 	writetext MapBattleTentBattleRoomBillText5
 	waitbutton
@@ -245,8 +245,8 @@ MapBattleTentBattleRoomBillText7:
 	text "Ah, <PLAY_G>!"
 
 	para "Here's the thing I"
-	line "wanted you to have"
-	cont "from me."
+	line "found."
+	;cont "from me."
 	done
 	
 MapBattleTentBattleRoomDoorText:

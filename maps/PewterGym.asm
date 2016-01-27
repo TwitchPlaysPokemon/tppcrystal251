@@ -9,6 +9,10 @@ PewterGym_MapScriptHeader: ; 0x1a2862
 BrockScript_0x1a2864: ; 0x1a2864
 	faceplayer
 	loadfont
+	checkevent EVENT_BROCK_REMATCH
+	iftrue BrockAfterRematch
+	checkevent EVENT_FIRST_TIME_RED
+	iftrue BrockRematchScript
 	checkflag ENGINE_BOULDERBADGE
 	iftrue UnknownScript_0x1a2892
 	writetext UnknownText_0x1a28d0
@@ -36,7 +40,52 @@ UnknownScript_0x1a2892: ; 0x1a2892
 	waitbutton
 	closetext
 	end
+
+BrockRematchScript:
+	writetext BrockBeforeRematchText
+	waitbutton
+	closetext
+	winlosstext BrockRematchBeatenText, $0000
+	loadtrainer BROCK, 2
+	startbattle
+	returnafterbattle
+	setevent EVENT_BROCK_REMATCH
+	loadfont ;fallthrough
+; 0x188466
+
+BrockAfterRematch:
+	writetext BrockAfterRematchText
+	waitbutton
+	closetext
+	end
 ; 0x1a2898
+
+BrockBeforeRematchText:
+	text "So, you're here."
+
+	para "It has been some"
+	line "time since I was"
+	cont "able to go all"
+	cont "out like this."
+
+	para "When it comes to"
+	line "rock #MON,"
+	cont "I'm the best!"
+	 
+	para "Come on!"
+
+	done
+
+BrockRematchBeatenText:
+	text "Ow ow ow ow ow"
+
+BrockAfterRematchText:
+	text "I've lost again…"
+
+	para "You aren't"
+	line "adventuring around" 
+	cont "for nothing!"
+	done
 
 TrainerCamperJerry: ; 0x1a2898
 	; bit/flag number
@@ -100,22 +149,21 @@ UnknownText_0x1a28d0: ; 0x1a28d0
 	line "not often that we"
 
 	para "get a challenger"
-	line "from JOHTO."
+	line "from JOHTO-"
 
-	para "I'm BROCK, the"
-	line "PEWTER GYM LEADER."
+	para "…"
 
-	para "I'm an expert on"
-	line "rock-type #MON."
+	para "So you're from"
+	line "PALLET TOWN,"
+	cont "but lost your"
+	cont "BOULDERBADGE…"
 
-	para "My #MON are im-"
-	line "pervious to most"
-
-	para "physical attacks."
-	line "You'll have a hard"
-
-	para "time inflicting"
-	line "any damage."
+	para "While I could"
+	line "simply replace it,"
+	cont "I want to see how"
+	cont "much you've grown"
+	cont "to become JOHTO's"
+	cont "CHAMPION."
 
 	para "Come on!"
 	done
@@ -194,11 +242,9 @@ CamperJerryBeatenText: ; 0x1a2bf1
 ; 0x1a2c0f
 
 UnknownText_0x1a2c0f: ; 0x1a2c0f
-	text "Hey, you! Trainer"
-	line "from JOHTO! BROCK"
-
-	para "is tough. He'll"
-	line "punish you if you"
+	text "Hey, you! BROCK"
+	line "is tough. He'll"
+	cont "punish you if you"
 
 	para "don't take him"
 	line "seriously."

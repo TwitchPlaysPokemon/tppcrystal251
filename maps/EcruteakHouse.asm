@@ -79,16 +79,18 @@ SageScript_0x98062: ; 0x98062
 	loadfont
 	checkevent EVENT_CLEARED_RADIO_TOWER
 	iftrue UnknownScript_0x9807c
+	writetext OffLimitsWithoutBadge
+	buttonsound
 	checkflag ENGINE_FOGBADGE
-	iftrue UnknownScript_0x98076
-	writetext UnknownText_0x980d1
+	iftrue UnknownScript_0x98076 ;allowed because badge
+	writetext YouHaveToLeave ;off limits without badge, leave
 	waitbutton
 	closetext
 	end
 ; 0x98076
 
 UnknownScript_0x98076: ; 0x98076
-	writetext UnknownText_0x98131
+	writetext HaveFogBadge
 	waitbutton
 	closetext
 	end
@@ -96,19 +98,25 @@ UnknownScript_0x98076: ; 0x98076
 
 UnknownScript_0x9807c: ; 0x9807c
 	checkevent EVENT_KOJI_ALLOWS_YOU_PASSAGE_TO_TIN_TOWER
-	iftrue UnknownScript_0x980a4
+	iftrue UnknownScript_0x980a4 ;go on
 	checkevent EVENT_000_STD
-	iftrue UnknownScript_0x980aa
+	iftrue UnknownScript_0x980aa ;bell chime
+	writetext MomentousEvent
+	waitbutton
 	checkitem CLEAR_BELL
 	iftrue UnknownScript_0x98093
-	writetext UnknownText_0x981a4
+	writetext DifficultWiseTrio ;ask to leave
 	waitbutton
 	closetext
 	end
 ; 0x98093
 
 UnknownScript_0x98093: ; 0x98093
-	writetext UnknownText_0x98250
+	writetext ClearBell ;have clear bell
+	buttonsound
+	writetext BellsChimeSoul
+	buttonsound
+	writetext PleaseGoOn
 	waitbutton
 	closetext
 	dotrigger $1
@@ -119,17 +127,18 @@ UnknownScript_0x98093: ; 0x98093
 ; 0x980a4
 
 UnknownScript_0x980a4: ; 0x980a4
-	writetext UnknownText_0x9837e
+	writetext PleaseGoOn
 	waitbutton
 	closetext
 	end
 ; 0x980aa
 
 UnknownScript_0x980aa: ; 0x980aa
-	writetext UnknownText_0x98391
+	writetext BellsChimeSoul
 	waitbutton
-	closetext
-	end
+	jump UnknownScript_0x980a4
+	;closetext
+	;end
 ; 0x980b0
 
 SageScript_0x980b0: ; 0x980b0
@@ -170,26 +179,28 @@ MovementData_0x980cc: ; 0x980cc
 	step_end
 ; 0x980d1
 
-UnknownText_0x980d1: ; 0x980d1
+OffLimitsWithoutBadge: ; 0x980d1
 	text "TIN TOWER is off"
 	line "limits to anyone"
 
 	para "without ECRUTEAK"
 	line "GYM's BADGE."
+	done
 
-	para "Sorry, but you'll"
+YouHaveToLeave:
+	text "Sorry, but you'll"
 	line "have to leave."
 	done
 ; 0x98131
 
-UnknownText_0x98131: ; 0x98131
-	text "TIN TOWER is off"
-	line "limits to anyone"
+HaveFogBadge: ; 0x98131
+	;text "TIN TOWER is off"
+	;line "limits to anyone"
 
-	para "without ECRUTEAK"
-	line "GYM's BADGE."
+	;para "without ECRUTEAK"
+	;line "GYM's BADGE."
 
-	para "Ah!"
+	text "Ah!"
 
 	para "ECRUTEAK's GYM"
 	line "BADGE! Please, go"
@@ -197,15 +208,17 @@ UnknownText_0x98131: ; 0x98131
 	done
 ; 0x981a4
 
-UnknownText_0x981a4: ; 0x981a4
+MomentousEvent: ; 0x981a4
 	text "A momentous event"
 	line "has occurred."
 
 	para "I beg your pardon,"
 	line "but I must ask you"
 	cont "to leave."
+	done
 
-	para "<...>What soothes the"
+DifficultWiseTrio:
+	text "<...>What soothes the"
 	line "soul<...>"
 
 	para "The WISE TRIO say"
@@ -216,15 +229,15 @@ UnknownText_0x981a4: ; 0x981a4
 	done
 ; 0x98250
 
-UnknownText_0x98250: ; 0x98250
-	text "A momentous event"
-	line "has occurred."
+ClearBell: ; 0x98250
+	;text "A momentous event"
+	;line "has occurred."
 
-	para "I beg your pardon,"
-	line "but I must ask you"
-	cont "to leave."
+	;para "I beg your pardon,"
+	;line "but I must ask you"
+	;cont "to leave."
 
-	para $56, $56, $56
+	text $56, $56, $56
 
 	para "Ah!"
 
@@ -236,7 +249,9 @@ UnknownText_0x98250: ; 0x98250
 	para "I've never heard"
 	line "so beautiful a"
 	cont "sound before!"
+	done
 
+BellsChimeSoul:
 	para "That bell's chime"
 	line "is indicative of"
 	cont "the bearer's soul."
@@ -247,28 +262,28 @@ UnknownText_0x98250: ; 0x98250
 	line "make it through"
 	cont "TIN TOWER."
 
-	para "Please, do go on."
+	;para "Please, do go on."
 	done
 ; 0x9837e
 
-UnknownText_0x9837e: ; 0x9837e
+PleaseGoOn: ; 0x9837e
 	text "Please, do go on."
 	done
 ; 0x98391
 
-UnknownText_0x98391: ; 0x98391
-	text "That bell's chime"
-	line "is indicative of"
-	cont "the bearer's soul."
+;UnknownText_0x98391: ; 0x98391
+;	text "That bell's chime"
+;	line "is indicative of"
+;	cont "the bearer's soul."
 
-	para "You<...>"
+;	para "You<...>"
 
-	para "You may be able to"
-	line "make it through"
-	cont "TIN TOWER."
+;	para "You may be able to"
+;	line "make it through"
+;	cont "TIN TOWER."
 
-	para "Please, do go on."
-	done
+;	para "Please, do go on."
+;	done
 ; 0x9840b
 
 UnknownText_0x9840b: ; 0x9840b

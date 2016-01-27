@@ -142,7 +142,7 @@ UnknownScript_0x60c51: ; 0x60c51
 ; 0x60c66
 
 ItemFragment_0x60c66: ; 0x60c66
-	db SUPER_POTION, 1
+	db MAX_POTION, 1
 ; 0x60c68
 
 MovementData_0x60c68: ; 0x60c68

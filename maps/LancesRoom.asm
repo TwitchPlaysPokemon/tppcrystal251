@@ -104,7 +104,7 @@ StartBattleLance:
 	stopfollow
 	spriteface $4, $1
 	spriteface $2, $2
-	checkevent EVENT_BEAT_AIIIAAB
+	checkevent EVENT_ENABLE_DIPLOMA_PRINTING
 	iffalse Script_NoOakBattle
 	loadfont
 	special HealParty

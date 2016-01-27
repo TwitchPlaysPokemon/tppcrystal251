@@ -257,7 +257,7 @@ MapGroup11:
 	map_header GoldenrodDeptStoreRoof, $c, 3, GOLDENROD_CITY, MUSIC_MART, 0, 1, 1
 	map_header GoldenrodGameCorner, $e, 3, GOLDENROD_CITY, MUSIC_GAME_CORNER, 0, 1, 1
 	map_header GoldenrodPokeCenter1F, $7, 3, GOLDENROD_CITY, MUSIC_POKEMON_CENTER, 0, 1, 1
-	map_header GoldenrodPokeComCenter2FMobile, $15, 3, GOLDENROD_CITY, MUSIC_POKEMON_CENTER, 0, 1, 1
+		;map_header GoldenrodPokeComCenter2FMobile, $15, 3, GOLDENROD_CITY, MUSIC_POKEMON_CENTER, 0, 1, 1
 	map_header IlexForestAzaleaGate, $8, 6, ROUTE_34, MUSIC_ROUTE_36, 0, 1, 1
 	map_header Route34IlexForestGate, $8, 6, ROUTE_34, MUSIC_ROUTE_36, 0, 1, 1
 	map_header DayCare, $5, 3, ROUTE_34, MUSIC_AZALEA_TOWN, 0, 1, 1
@@ -355,8 +355,8 @@ MapGroup20:
 	map_header TradeCenter, $8, 3, SPECIAL_MAP, MUSIC_CHERRYGROVE_CITY, 1, 1, 1
 	map_header Colosseum, $8, 3, SPECIAL_MAP, MUSIC_CHERRYGROVE_CITY, 1, 1, 1
 	map_header TimeCapsule, $8, 3, SPECIAL_MAP, MUSIC_CHERRYGROVE_CITY, 1, 1, 1
-	map_header MobileTradeRoomMobile, $d, 3, SPECIAL_MAP, MUSIC_CHERRYGROVE_CITY, 1, 1, 1
-	map_header MobileBattleRoom, $d, 3, SPECIAL_MAP, MUSIC_CHERRYGROVE_CITY, 1, 1, 1
+		;map_header MobileTradeRoomMobile, $d, 3, SPECIAL_MAP, MUSIC_CHERRYGROVE_CITY, 1, 1, 1
+		;map_header MobileBattleRoom, $d, 3, SPECIAL_MAP, MUSIC_CHERRYGROVE_CITY, 1, 1, 1
 
 MapGroup21:
 	map_header Route7, $3, 2, ROUTE_7, MUSIC_ROUTE_3, 0, 0, 1
@@ -509,7 +509,7 @@ MapGroup28:
 
 MapGroup29:
 	map_header Route1RB, $3, 2, ROUTE_1, MUSIC_ROUTE_1, 0, 0, 1
-	map_header PalletTownRB, $3, 1, PALLET_TOWN, MUSIC_PALLET_TOWN, 0, 0, 14
+	map_header PalletTownRB, $3, 1, PALLET_TOWN, MUSIC_PALLET_TOWN, 0, 0, 20
 	map_header RedsHouse1FRB, $6, 3, PALLET_TOWN, MUSIC_PALLET_TOWN, 0, 1, 1
 	map_header RedsHouse2FRB, $6, 3, PALLET_TOWN, MUSIC_PALLET_TOWN, 0, 1, 1
 	map_header BluesHouseRB, $5, 3, PALLET_TOWN, MUSIC_PALLET_TOWN, 0, 1, 1
@@ -517,8 +517,8 @@ MapGroup29:
 
 MapGroup30:
 	map_header Route2RB, $3, 2, ROUTE_2, MUSIC_ROUTE_1, 0, 0, 1
-	map_header Route22RB, $3, 2, ROUTE_22, MUSIC_ROUTE_3, 0, 0, 13
-	map_header ViridianCityRB, $3, 1, VIRIDIAN_CITY, MUSIC_VIRIDIAN_CITY, 0, 0, 13
+	map_header Route22RB, $3, 2, ROUTE_22, MUSIC_ROUTE_3, 0, 0, 19
+	map_header ViridianCityRB, $3, 1, VIRIDIAN_CITY, MUSIC_VIRIDIAN_CITY, 0, 0, 19
 	map_header ViridianMartRB, $c, 3, VIRIDIAN_CITY, MUSIC_MART, 0, 1, 1
 	map_header ViridianPokeCenter1FRB, $7, 3, VIRIDIAN_CITY, MUSIC_POKEMON_CENTER, 0, 1, 1
 	map_header ViridianNicknameSpeechHouseRB, $5, 3, VIRIDIAN_CITY, MUSIC_VIRIDIAN_CITY, 0, 1, 1
@@ -543,15 +543,15 @@ MapGroup31:
 
 MapGroup32:
 ; cerulean city rb
-	map_header CeruleanGymRB, $9, 3, CERULEAN_CITY, MUSIC_GYM, 1, 1, 0
+	map_header CeruleanGymRB, $9, 3, CERULEAN_CITY, MUSIC_GYM, 1, 1, 21
 	map_header Route4RB, $3, 2, ROUTE_4, MUSIC_ROUTE_3, 0, 0, 0
 	map_header CeruleanCityRB, $3, 1, CERULEAN_CITY, MUSIC_CERULEAN_CITY, 0, 0, 0
 	map_header CeruleanPokeCenter1FRB, $7, 3, CERULEAN_CITY, MUSIC_POKEMON_CENTER, 0, 1, 1
 	map_header CeruleanMartRB, $c, 3, CERULEAN_CITY, MUSIC_MART, 0, 1, 1
 	map_header CeruleanGymBadgeSpeechHouseRB, $5, 3, CERULEAN_CITY, MUSIC_VIRIDIAN_CITY, 0, 1, 1
 	map_header CeruleanTradeSpeechHouseRB, $5, 3, CERULEAN_CITY, MUSIC_CERULEAN_CITY, 0, 1, 1
-	map_header Route24RB, $3, 2, ROUTE_24, MUSIC_ROUTE_24, 0, 0, 3
-	map_header Route25RB, $3, 2, ROUTE_25, MUSIC_ROUTE_24, 0, 0, 3
+	map_header Route24RB, $3, 2, ROUTE_24, MUSIC_ROUTE_24, 0, 0, 20
+	map_header Route25RB, $3, 2, ROUTE_25, MUSIC_ROUTE_24, 0, 0, 19
 	map_header BillsHouseRB, $5, 3, ROUTE_25, MUSIC_CERULEAN_CITY, 0, 1, 1
 	map_header Route9RB, $3, 2, ROUTE_9, MUSIC_ROUTE_3, 0, 0, 3
 

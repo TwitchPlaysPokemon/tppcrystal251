@@ -1,3 +1,4 @@
+
 	db "MASTER BALL@"
 	db "ULTRA BALL@"
 	db "BRIGHTPOWDER@"

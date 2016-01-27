@@ -7,7 +7,7 @@ RuinsofAlphHoOhItemRoom_MapScriptHeader: ; 0x59916
 ; 0x59918
 
 ItemFragment_0x59918: ; 0x59918
-	db GOLD_BERRY, 1
+	db SACRED_ASH, 1
 ; 0x5991a
 
 ItemFragment_0x5991a: ; 0x5991a

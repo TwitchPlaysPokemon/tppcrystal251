@@ -78,13 +78,17 @@ UnknownScript_0x70057: ; 0x70057
 	jump UnknownScript_0x70035
 ; 0x70063
 
+ChargingGyarados:
+	writetext RIPGrapsText
+	applymovement $a, GyaradosCharge ;fallthrough
+
 GyaradosScript_0x70063: ; 0x70063
 	loadfont
 	writetext UnknownText_0x703cb
 	pause 15
 	cry GYARADOS
 	closetext
-	loadpokedata GYARADOS, 30
+	loadpokedata GYARADOS, 55
 	writecode VAR_BATTLETYPE, BATTLETYPE_SHINY
 	startbattle
 	if_equal $1, UnknownScript_0x7007a
@@ -104,12 +108,24 @@ UnknownScript_0x7007a: ; 0x7007a
 	end
 ; 0x7008e
 
+GyaradosCharge:
+	fast_slide_step_right
+	fast_slide_step_right
+	fast_slide_step_right
+	fast_slide_step_right
+	fast_slide_step_right
+	fast_slide_step_right
+	fast_slide_step_right
+	step_end
+
 GrampsScript_0x7008e: ; 0x7008e
 	faceplayer
 	loadfont
 	checkevent EVENT_CLEARED_ROCKET_HIDEOUT
 	iftrue UnknownScript_0x7009c
 	writetext UnknownText_0x703f8
+	checkevent EVENT_RED_GYARADOS
+	iffalse ChargingGyarados
 	waitbutton
 	closetext
 	end
@@ -423,6 +439,12 @@ UnknownText_0x703f8: ; 0x703f8
 	line "angry!"
 
 	para "It's a bad omen!"
+
+	done
+
+RIPGrapsText:
+	text "Oh no! it's"
+	line "charging!"
 	done
 ; 0x70421
 

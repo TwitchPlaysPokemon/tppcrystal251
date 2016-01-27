@@ -77,8 +77,9 @@ UnknownText_0x55c25: ; 0x55c25
 ; 0x55c7b
 
 UnknownText_0x55c7b: ; 0x55c7b
-	text "I got my ABRA at"
-	line "the GAME CORNER."
+	text "I got my PORYGON"
+	line "at the"
+	cont "GAME CORNER."
 
 	para "Now it's my best"
 	line "partner."

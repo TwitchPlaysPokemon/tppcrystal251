@@ -306,7 +306,7 @@ MapRoute30Signpost3Script: ; 0x1a17f2
 ; 0x1a17f5
 
 ItemFragment_0x1a17f5: ; 0x1a17f5
-	db ANTIDOTE, 1
+	db METAL_POWDER, 1
 ; 0x1a17f7
 
 FruitTreeScript_0x1a17f7: ; 0x1a17f7
@@ -319,7 +319,7 @@ FruitTreeScript_0x1a17f9: ; 0x1a17f9
 
 MapRoute30SignpostItem4: ; 0x1a17fb
 	dw $00a4
-	db POTION
+	db SUPER_POTION
 	
 ; 0x1a17fe
 

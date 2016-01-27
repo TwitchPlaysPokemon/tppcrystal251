@@ -53,7 +53,7 @@ UnknownScript_0x18c8b8: ; 0x18c8b8
 	playmusic MUSIC_CLAIR
 	applymovement $3, MovementData_0x18c9ae
 	loadfont
-	checkevent EVENT_BEAT_AIIIAAB
+	checkevent EVENT_FIRST_TIME_RED
 	iftrue ClairRematchScript
 	writetext UnknownText_0x18c9bf
 	buttonsound

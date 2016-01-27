@@ -534,7 +534,7 @@ UnknownText_0x19cc87: ; 0x19cc87
 	line "WHT APRICORN, I"
 	cont "take it to KURT."
 
-	para "He turns it into a"
+	para "He gives me a"
 	line "custom BALL."
 	done
 ; 0x19cd1e
