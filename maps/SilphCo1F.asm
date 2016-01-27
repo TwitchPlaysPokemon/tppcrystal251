@@ -85,7 +85,7 @@ BoughtMasterBallText:
 	cont "GOLDEEN."
 	done
 
-Not300ktext:
+Not300kText:
 	text "No money?"
 	line "Shame<...>"
 	done
