@@ -529,8 +529,8 @@ MAP_N_A   EQU -1
 	mapgroup VERMILION_MAGNET_TRAIN_SPEECH_HOUSE_RB, 4, 4
 	mapgroup VERMILION_HOUSE_DIGLETTS_CAVE_SPEECH_HOUSE_RB, 4, 4
 	mapgroup ROUTE_11_RB, 9, 20
-	mapgroup ROUTE_12_RB, 27, 10 ; RB
 	mapgroup ROUTE_11_GATE_RB, 4, 5
+	mapgroup ROUTE_12_RB, 9, 10 ; RB
 
 	newgroup ; Saffron Area RB
 	mapgroup ROUTE_5_RB, 9, 10

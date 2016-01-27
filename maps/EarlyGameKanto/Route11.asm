@@ -115,9 +115,6 @@ MapRoute11RBSignpost0Script:
 Route11RBHiddenEscapeRope:
 	dwb EVENT_ROUTE_11_HIDDEN_ESCAPE_ROPE_RB, ESCAPE_ROPE
 
-Route11RBSnorlaxScript:
-	jumptext Route11RBSnorlaxText
-
 _Route11BattleText1:
 	text "Win, lose or draw!"
 	done
@@ -285,20 +282,14 @@ Route11RBSignpostText: ; 0x68238
 	text "ROUTE 11"
 	done
 
-Route11RBSnorlaxText:
-	text "A large #MON"
-	line "sleeps soundly."
-
-	para "When will it wake"
-	line "up?"
-	done
-
 Route11RB_MapEventHeader: ; 0x68242
 	; filler
 	db 0, 0
 
 	; warps
-	db 0
+	db 2
+	warp_def 8, 33, 1, GROUP_ROUTE_11_GATE_RB, MAP_ROUTE_11_GATE_RB
+	warp_def 9, 33, 2, GROUP_ROUTE_11_GATE_RB, MAP_ROUTE_11_GATE_RB
 
 	; xy triggers
 	db 0
@@ -309,7 +300,7 @@ Route11RB_MapEventHeader: ; 0x68242
 	signpost 5, 32, $7, Route11RBHiddenEscapeRope
 
 	; people-events
-	db 12
+	db 11
 	person_event SPRITE_GENTLEMAN, 18, 8, $6, 0, 0, -1, -1, 0, 2, 3, Trainer_Route11RBGambler1, -1
 	person_event SPRITE_GENTLEMAN, 13, 19, $6, 0, 0, -1, -1, 0, 2, 2, Trainer_Route11RBGambler2, -1
 	person_event SPRITE_YOUNGSTER, 9, 11, $8, 0, 0, -1, -1, 0, 2, 3, Trainer_Route11RBYoungster1, -1
@@ -321,6 +312,5 @@ Route11RB_MapEventHeader: ; 0x68242
 	person_event SPRITE_COOLTRAINER_M, 20, 33, $8, 0, 0, -1, -1, 0, 2, 4, Trainer_Route11RBRocker2, -1
 	person_event SPRITE_YOUNGSTER, 16, 16, $6, 0, 0, -1, -1, 0, 2, 3, Trainer_Route11RBYoungster4, -1
 	person_event SPRITE_FRUIT_TREE, 6, 36, $1, 0, 0, -1, -1, 0, 0, 0, Route11RBFruitTree, -1
-	person_event SPRITE_BIG_SNORLAX, 12, 32, $15, 0, 0, -1, -1, 0, 0, 0, Route11RBSnorlaxScript, -1
 ; 0x68293
 

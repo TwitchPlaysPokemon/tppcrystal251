@@ -36,8 +36,9 @@ ElmsHouse_BlockData: ; 0xa8930
 ; 0xa8940
 
 Route11_BlockData: ; 0xa899a
-Route11RB_BlockData: ; 0xa899a
 	INCBIN "maps/Route11.blk"
+Route11RB_BlockData: ; 0xa899a
+	INCBIN "maps/Route11RB.blk"
 ; 0xa8a4e
 
 Route15_BlockData: ; 0xa8aa8
@@ -107,6 +108,8 @@ PewterCityRB_BlockData: ; 0xa98cf
 
 Route12_BlockData: ; 0xa9bf9
 	INCBIN "maps/Route12.blk"
+Route12RB_BlockData: ; 0xa9bf9
+	INCBIN "maps/Route12RB.blk"
 ; 0xa9d07
 
 Route20_BlockData: ; 0xa9e6f
@@ -280,6 +283,7 @@ KrissHouse1F_BlockData: ; 0xab69b
 ; 0xab6af
 
 Route38EcruteakGate_BlockData: ; 0xab6af
+Route11GateRB_BlockData: ; 0xab6af
 Route42EcruteakGate_BlockData:
 Route32RuinsofAlphGate_BlockData:
 IlexForestAzaleaGate_BlockData:
