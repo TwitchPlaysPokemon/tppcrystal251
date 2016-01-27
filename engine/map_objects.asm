@@ -737,7 +737,32 @@ Function46a6: ; 46a6
 AddStepVector: ; 46d7
 
 	call GetStepVector
-	push af
+	jr nc, .okay
+	ld hl, OBJECT_STEP_DURATION
+	add hl, bc
+	ld a, [hl]
+	cp 3
+	jr nz, .okay
+	ld a, d
+	and a
+	jr z, .no_d
+	add a
+	jr c, .dec_d
+	inc d
+	jr .okay
+.dec_d
+	dec d
+	jr .okay
+
+.no_d
+	ld a, e
+	add a
+	jr c, .dec_e
+	inc e
+	jr .okay
+.dec_e
+	dec e
+.okay
 	ld hl, OBJECT_SPRITE_X
 	add hl, bc
 	ld a, [hl]
@@ -749,38 +774,6 @@ AddStepVector: ; 46d7
 	ld a, [hl]
 	add e
 	ld [hl], a
-	pop af
-	ret nc
-	ld hl, OBJECT_STEP_DURATION
-	add hl, bc
-	ld a, [hl]
-	cp 5
-	ret z
-	cp 2
-	ret z
-	ld a, d
-	call Function4730
-	jr z, .check_y
-	push af
-	ld hl, OBJECT_SPRITE_X
-	add hl, bc
-	add [hl]
-	ld [hl], a
-	pop af
-	add d
-	ld d, a
-	ret
-.check_y
-	ld a, e
-	call Function4730
-	push af
-	ld hl, OBJECT_SPRITE_Y
-	add hl, bc
-	add [hl]
-	ld [hl], a
-	pop af
-	add e
-	ld e, a
 	ret
 ; 46e9
 
@@ -839,10 +832,10 @@ StepVectors: ; 4700
 	db -4,  0,  4, 4
 	db  4,  0,  4, 4
 	; running shoes
-	db  0,  2,  6, 2
-	db  0, -2,  6, 2
-	db -2,  0,  6, 2
-	db  2,  0,  6, 2
+	db  0,  3,  5, 3
+	db  0, -3,  5, 3
+	db -3,  0,  5, 3
+	db  3,  0,  5, 3
 
 Function4730: ; 4730
 	add a
