@@ -3,12 +3,16 @@ SSAnne2_MapScriptHeader:
 	dw .Trigger0, 0
 	dw .Trigger1, 0
 
-	db 0
+	db 1
+	dbw 2, .HideRival
 
 .Trigger0
 	end
 .Trigger1
 	end
+.HideRival
+	disappear $3
+	return
 
 SSAnne2RivalBattleTriggerLeft:
 	appear $3

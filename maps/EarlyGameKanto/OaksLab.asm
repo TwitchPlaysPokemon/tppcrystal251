@@ -99,7 +99,7 @@ CharmanderPokeballScript:
 	playsound SFX_CAUGHT_MON
 	waitsfx
 	buttonsound
-	givepoke CHARMANDER, 5, BERRY
+	givepoke CHARMANDER, 5
 	closetext
 	checkcode VAR_FACING
 	if_equal RIGHT, .facing_right
@@ -149,7 +149,7 @@ BulbasaurPokeballScript:
 	playsound SFX_CAUGHT_MON
 	waitsfx
 	buttonsound
-	givepoke BULBASAUR, 5, BERRY
+	givepoke BULBASAUR, 5
 	closetext
 	applymovement $6, Movement_RivalTakesOneStepDown
 	applymovement $6, Movement_RivalTakesTwoStepsRight
@@ -192,7 +192,7 @@ SquirtlePokeballScript:
 	playsound SFX_CAUGHT_MON
 	waitsfx
 	buttonsound
-	givepoke SQUIRTLE, 5, BERRY
+	givepoke SQUIRTLE, 5
 	closetext
 	applymovement $6, Movement_RivalTakesTwoStepsDown
 	applymovement $6, Movement_RivalTakesFourStepsRight

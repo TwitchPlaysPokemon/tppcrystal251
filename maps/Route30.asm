@@ -361,7 +361,7 @@ YoungsterJoey1SeenText: ; 0x1a1849
 	cont "caught back home."
 
 	para "My RATTATA is a"
-	cont "very special one!"
+	line "very special one!"
 	done
 ; 0x1a18a2
 
@@ -388,9 +388,10 @@ YoungsterMikeySeenText: ; 0x1a1928
 	text "You're a #MON"
 	line "trainer, right?"
 
-	para "Great! I just cau-"
-	line "-ght some new #MON"
-	cont "in the mountains!"
+	para "Great! I just"
+	line "caught some new"
+	cont "#MON in the moun-"
+	cont "tains!"
 	done
 ; 0x1a195f
 
@@ -453,9 +454,9 @@ UnknownText_0x1a1a94: ; 0x1a1a94
 UnknownText_0x1a1ac4: ; 0x1a1ac4
 	text "I'm not a trainer."
 
-	para "Me and my AZU-"
-	line "-MARILL prefer to"
-	cont "travel the seas."
+	para "My AZUMARILL and I"
+	line "prefer to travel"
+	cont "the seas."
 	done
 ; 0x1a1b0b
 

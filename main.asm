@@ -6393,7 +6393,7 @@ UnknownText_0xd0ae: ; 0xd0ae
 ; 0xd0b3
 
 Functiond0b3: ; d0b3
-	; call Functiond0bc
+	call Functiond0bc
 	and $7f
 	ld [wd0ec], a
 	ret
@@ -12734,6 +12734,10 @@ UnknownScript_0x124ce: ; 0x124ce
 	special Function8c084
 	pause 40
 	special HealParty
+	checkflag ENGINE_EARLY_GAME_KANTO
+	iftrue .skip_egk_reset
+	domaptrigger GROUP_VERMILION_CITY_RB, MAP_VERMILION_CITY_RB, 0
+.skip_egk_reset
 	checkflag ENGINE_BUG_CONTEST_TIMER
 	iftrue .script_64f2
 	callasm HalveMoney
@@ -50844,10 +50848,10 @@ DoStep: ; 8025f ;load appropriote animations for the type of step, walk in place
 	turn_waterfall_left
 	turn_waterfall_right
 .Run
-	big_step_down
-	big_step_up
-	big_step_left
-	big_step_right
+	run_step_down
+	run_step_up
+	run_step_left
+	run_step_right
 ; 802b3
 
 StandInPlace: ; 802b3
@@ -94312,8 +94316,14 @@ SampleRandomRocket:
 	ld h, 0
 	add hl, hl
 	add hl, de
-	ld a, [hli]
+	ld a, [EngineBuffer1]
+	add [hl]
+	cp 100
+	jr c, .okay
+	ld a, 100
+.okay
 	ld [CurPartyLevel], a
+	inc hl
 	ld a, [hl]
 	ld [CurPartySpecies], a
 	ld a, OTPARTYMON
@@ -94325,21 +94335,49 @@ SampleRandomRocket:
 
 .RocketMons
 	db 18, ZUBAT
+	db 18, ZUBAT
+	db 18, ZUBAT
+	db 19, ZUBAT
 	db 19, ZUBAT
 	db 20, ZUBAT
 	db 18, KOFFING
+	db 18, KOFFING
+	db 18, KOFFING
+	db 19, KOFFING
 	db 19, KOFFING
 	db 20, KOFFING
 	db 18, GRIMER
+	db 18, GRIMER
+	db 18, GRIMER
+	db 19, GRIMER
 	db 19, GRIMER
 	db 20, GRIMER
 	db 18, SANDSHREW
+	db 18, SANDSHREW
+	db 19, SANDSHREW
 	db 18, EKANS
+	db 18, EKANS
+	db 19, EKANS
 	db 18, RATTATA
+	db 18, RATTATA
+	db 18, RATTATA
+	db 19, RATTATA
+	db 19, RATTATA
+	db 20, RATTATA
 	db 18, MEOWTH
+	db 18, MEOWTH
+	db 19, MEOWTH
+	db 18, DROWZEE
+	db 18, DROWZEE
 	db 19, DROWZEE
-	db 20, RATICATE
-	db 20, HYPNO
+	db 21, RATICATE
+	db 21, HYPNO
+	db 21, PERSIAN
+	db 21, WEEZING
+	db 21, MUK
+	db 21, SANDSLASH
+	db 21, ARBOK
+	db 21, GOLBAT
 .RocketMonsEnd
 
 

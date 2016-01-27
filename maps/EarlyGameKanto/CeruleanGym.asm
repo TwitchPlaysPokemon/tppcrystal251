@@ -8,6 +8,8 @@ CeruleanGymRB_MapScriptHeader:
 CeruleanGymRB_MistyScript:
 	faceplayer
 	loadfont
+	checkevent EVENT_GOT_TM_RAIN_DANCE
+	iftrue .got_tm
 	checkflag ENGINE_CASCADEBADGE
 	iftrue .have_badge
 	writetext CeruleanGymRB_MistyIntroText
@@ -25,14 +27,10 @@ CeruleanGymRB_MistyScript:
 	playsound SFX_GET_BADGE
 	waitsfx
 	setflag ENGINE_CASCADEBADGE
+.have_badge:
 	writetext CeruleanGymRB_MistyCongratsText
 	waitbutton
-	scall .tm
-	closetext
-	end
-
-.have_badge:
-	waitbutton
+.got_tm
 	scall .tm
 	closetext
 	end

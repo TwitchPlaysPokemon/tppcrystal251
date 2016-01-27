@@ -300,23 +300,23 @@ CoolSiblingsGroup:
 RivalRBGroup:
 	; Lab, choose Charmander
 	db "<GREEN>@"
-	db (1 << TRAINERTYPE_ITEM)
+	db 0
 
-	db 5, SQUIRTLE, BERRY
+	db 5, SQUIRTLE
 	db $ff
 
 	; Lab, choose Squirtle
 	db "<GREEN>@"
-	db (1 << TRAINERTYPE_ITEM)
+	db 0
 
-	db 5, BULBASAUR, BERRY
+	db 5, BULBASAUR
 	db $ff
 
 	; Lab, choose Bulbasaur
 	db "<GREEN>@"
-	db (1 << TRAINERTYPE_ITEM)
+	db 0
 
-	db 5, CHARMANDER, BERRY
+	db 5, CHARMANDER
 	db $ff
 
 ; ===============================

@@ -19,7 +19,7 @@ GentlemanScript_0x196973: ; 0x196973
 ; 0x196976
 
 CherrygrovePCScript:
-	checkevent EVENT_HEALED_PKMN_IN_CHERRYGROVE
+	special _CheckAlivePartyMon
 	iffalse .pleasehealpkmn
 	jumpstd pcscript
 .pleasehealpkmn

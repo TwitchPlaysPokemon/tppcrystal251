@@ -5,11 +5,15 @@ CeruleanCityRB_MapScriptHeader: ; 0x184000
 	dw .Trigger1, 0
 
 	; callback count
-	db 0
+	db 1
+	dbw 2, .FixRival
 .Trigger0
 	end
 .Trigger1
 	end
+.FixRival
+	disappear $2
+	return
 
 CeruleanCityRivalBattleLeftTrigger:
 	scall CeruleanCityRivalBattle

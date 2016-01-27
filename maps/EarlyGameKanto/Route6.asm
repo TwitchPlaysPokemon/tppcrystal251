@@ -10,6 +10,8 @@ TrainerRoute6RBCamper1:
 	checkevent EVENT_ROUTE_6_CAMPER_1_RB
 	iftrue .Script
 	faceplayer
+	waitsfx
+	special SaveMusic
 	playmusic MUSIC_YOUNGSTER_ENCOUNTER
 	loadfont
 	writetext _Route6BattleText1
@@ -19,6 +21,7 @@ TrainerRoute6RBCamper1:
 	winlosstext _Route6EndBattleText1, 0
 	startbattle
 	returnafterbattle
+	playmapmusic
 	setevent EVENT_ROUTE_6_CAMPER_1_RB
 	spriteface $2, RIGHT
 	end
@@ -34,6 +37,8 @@ TrainerRoute6RBPicnicker1:
 	checkevent EVENT_ROUTE_6_PICNICKER_1_RB
 	iftrue .Script
 	faceplayer
+	waitsfx
+	special SaveMusic
 	playmusic MUSIC_LASS_ENCOUNTER
 	loadfont
 	writetext _Route6BattleText2
@@ -43,6 +48,7 @@ TrainerRoute6RBPicnicker1:
 	winlosstext _Route6EndBattleText2, 0
 	startbattle
 	returnafterbattle
+	playmapmusic
 	spriteface $3, LEFT
 	setevent EVENT_ROUTE_6_PICNICKER_1_RB
 	end
