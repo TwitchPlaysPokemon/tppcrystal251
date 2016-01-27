@@ -109,7 +109,7 @@ MapNationalParkBugContestSignpost3Script: ; 0x5c942
 ; 0x5c945
 
 ItemFragment_0x5c945: ; 0x5c945
-	db SUN_STONE, 1
+	db FREEZE_GUARD, 1
 ; 0x5c947
 
 ItemFragment_0x5c947: ; 0x5c947

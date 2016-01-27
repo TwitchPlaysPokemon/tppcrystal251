@@ -835,7 +835,7 @@ UnknownText_0x6d809: ; 0x6d809
 	line "should take this."
 
 	para "I found it a"
-	line "while back but I
+	line "while back but I"
 	cont "don't have any need"
 	cont "for it."
 	done

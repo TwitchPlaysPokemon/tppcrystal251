@@ -49,11 +49,17 @@ MartsEnd
 
 
 Mart0: ; 160ed
-	db 4 ; # items
-	db POTION
-	db ANTIDOTE
-	db PARLYZ_HEAL
-	db AWAKENING
+	db 10 ; # items
+	db POISON_GUARD
+	db PARLYZ_GUARD
+	db SLEEP_GUARD
+	db CONFUSEGUARD
+	db BURN_GUARD
+	db FREEZE_GUARD
+	db LUCKY_PUNCH
+	db METAL_POWDER
+	db THICK_CLUB
+	db STICK
 	db $ff
 ; 160f3
 
@@ -171,7 +177,6 @@ Mart9: ; 1613b
 	db TM_SUNNY_DAY
 	db TM_THUNDER_WAVE
 	db TM_STRING_SHOT
-	db TM_SEISMIC_TOSS
 	db $ff
 ; 16140
 
@@ -377,7 +382,7 @@ Mart25: ; 161ce
 ; 161d5
 
 Mart26: ; 161d5
-	db 7 ; # items
+	db 9 ; # items
 	db LOVELY_MAIL
 	db SURF_MAIL
 	db POKE_DOLL
@@ -386,6 +391,7 @@ Mart26: ; 161d5
 	db SPELL_TAG
 	db MAGNET
 	db LIGHT_BALL
+	db AMULET_COIN
 	db $ff
 ; 161da
 

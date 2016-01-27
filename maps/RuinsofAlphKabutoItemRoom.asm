@@ -7,19 +7,19 @@ RuinsofAlphKabutoItemRoom_MapScriptHeader: ; 0x599a0
 ; 0x599a2
 
 ItemFragment_0x599a2: ; 0x599a2
-	db FIRE_STONE, 1
+	db SUN_STONE, 1
 ; 0x599a4
 
 ItemFragment_0x599a4: ; 0x599a4
-	db WATER_STONE, 1
+	db POISON_GUARD, 1
 ; 0x599a6
 
 ItemFragment_0x599a6: ; 0x599a6
-	db THUNDERSTONE, 1
+	db REVIVAL_HERB, 1
 ; 0x599a8
 
 ItemFragment_0x599a8: ; 0x599a8
-	db LEAF_STONE, 1
+	db ENERGY_ROOT, 1
 ; 0x599aa
 
 MapRuinsofAlphKabutoItemRoomSignpost1Script: ; 0x599aa

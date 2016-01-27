@@ -160,7 +160,7 @@ ItemFragment_0x59c02: ; 0x59c02
 ; 0x59c04
 
 ItemFragment_0x59c04: ; 0x59c04
-	db SUER_POTION, 1
+	db SUPER_POTION, 1
 ; 0x59c06
 
 ItemFragment_0x59c06: ; 0x59c06
