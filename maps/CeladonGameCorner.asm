@@ -44,6 +44,15 @@ FishingGuruScript_0x72139: ; 0x72139
 	end
 ; 0x72144
 
+CeladonVoltorbFlipGuyScript:
+	faceplayer
+	loadfont
+	writetext CeladonVoltorbFlipGuyText
+	waitbutton
+	closetext
+	spriteface $b, $3
+	end
+
 FisherScript_0x72144: ; 0x72144
 	faceplayer
 	loadfont
@@ -151,6 +160,36 @@ MapCeladonGameCornerSignpost9Script: ; 0x721c3
 	closetext
 	end
 ; 0x721cd
+MapCeladonGameCornerVFlipSignpostScript: ; 0x56e2e
+	loadfont
+	checkcoins 3
+	if_equal $2, .NotEnoughCoins
+	writetext CeladonVoltorbFlipText
+	waitbutton
+	closetext
+	refreshscreen $0
+	special Special_VoltorbFlip
+	closetext
+	if_equal $a, .ReachedLevel10
+	end
+; 0x56e31
+.NotEnoughCoins
+	writetext CeladonVoltorbFlipNotEnoughCoinsText
+	waitbutton
+	closetext
+	end
+
+.ReachedLevel10
+	loadfont
+	writetext CeladonVoltorbFlipReachedHighestLevel
+	waitbutton
+	verbosegiveitem MASTER_BALL, 1
+	iffalse .nope
+	writetext CeladonVoltorbFlipReceivedMasterBallText
+.nope
+	waitbutton
+	closetext
+	end
 
 MovementData_0x721cd: ; 0x721cd
 ; Unreferenced.
@@ -304,6 +343,45 @@ UnknownText_0x72567: ; 0x72567
 	para "Huh? It's empty!"
 	done
 ; 0x725a4
+CeladonVoltorbFlipGuyText:
+	text "I'm trying out a"
+	line "fun new game here."
+
+	para "Sit across from me"
+	line "to play!"
+	done
+
+CeladonVoltorbFlipText:
+	text "Let's play some"
+	line "VOLTORB FLIP!"
+	done
+
+CeladonVoltorbFlipNotEnoughCoinsText:
+	text "You need 3 coins"
+	line "to play this game."
+	done
+
+CeladonVoltorbFlipReachedHighestLevel:
+	text "Splendid! Marve-"
+	line "lous!"
+
+	para "You've reached the"
+	line "highest possible"
+
+	para "level in VOLTORB"
+	line "FLIP!"
+
+	para "This deserves a"
+	line "special reward."
+
+	para "Here, take this."
+	done
+
+CeladonVoltorbFlipReceivedMasterBallText:
+	text "Come back and play"
+	line "again any time!"
+	done
+
 
 CeladonGameCorner_MapEventHeader: ; 0x725a4
 	; filler
@@ -318,7 +396,7 @@ CeladonGameCorner_MapEventHeader: ; 0x725a4
 	db 0
 
 	; signposts
-	db 38
+	db 39
 	signpost 6, 1, $0, MapCeladonGameCornerSignpost11Script
 	signpost 7, 1, $0, MapCeladonGameCornerSignpost11Script
 	signpost 8, 1, $0, MapCeladonGameCornerSignpost11Script
@@ -355,11 +433,12 @@ CeladonGameCorner_MapEventHeader: ; 0x725a4
 	signpost 9, 18, $0, MapCeladonGameCornerSignpost35Script
 	signpost 10, 18, $0, MapCeladonGameCornerSignpost35Script
 	signpost 11, 18, $3, MapCeladonGameCornerSignpost35Script
-	signpost 0, 15, $0, MapCeladonGameCornerSignpost36Script
-	signpost 0, 9, $0, MapCeladonGameCornerSignpost37Script
+	signpost 0, 17, $0, MapCeladonGameCornerSignpost36Script
+	signpost 0, 13, $0, MapCeladonGameCornerSignpost37Script
+	signpost 1, 10, $4, MapCeladonGameCornerVFlipSignpostScript
 
 	; people-events
-	db 9
+	db 10
 	person_event SPRITE_CLERK, 6, 9, $6, 0, 0, -1, -1, 8 + PAL_OW_GREEN, 0, 0, ClerkScript_0x7211d, -1
 	person_event SPRITE_RECEPTIONIST, 6, 7, $6, 0, 0, -1, -1, 8 + PAL_OW_GREEN, 0, 0, ReceptionistScript_0x72120, -1
 	person_event SPRITE_POKEFAN_M, 14, 18, $8, 0, 0, -1, -1, 8 + PAL_OW_RED, 0, 0, PokefanMScript_0x72123, -1
@@ -369,5 +448,6 @@ CeladonGameCorner_MapEventHeader: ; 0x725a4
 	person_event SPRITE_FISHER, 14, 12, $8, 0, 0, -1, 4, 8 + PAL_OW_RED, 0, 0, FisherScript_0x72144, -1
 	person_event SPRITE_GYM_GUY, 7, 15, $6, 0, 0, -1, -1, 8 + PAL_OW_RED, 0, 0, CeladonGymGuyScript, -1
 	person_event SPRITE_GRAMPS, 12, 6, $8, 0, 0, -1, -1, 8 + PAL_OW_GREEN, 0, 0, GrampsScript_0x72190, -1
+	person_event SPRITE_GENTLEMAN, 5, 12, $9, 0, 0, -1, -1, 8 + PAL_OW_GREEN, 0, 0, CeladonVoltorbFlipGuyScript, -1
 ; 0x726e7
 
