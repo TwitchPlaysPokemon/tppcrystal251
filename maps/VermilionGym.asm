@@ -24,7 +24,7 @@ VermilionGymDoorsScript:
 SurgeScript_0x1920a5: ; 0x1920a5
 	faceplayer
 	loadfont
-	checkevent EVENT_LTSURGE_REMATCH
+	checkevent EVENT_SURGE_REMATCH
 	iftrue SurgeAfterRematch
 	checkevent EVENT_FIRST_TIME_RED
 	iftrue SurgeRematchScript
@@ -229,7 +229,7 @@ SurgeRematchScript:
 	loadtrainer LT_SURGE, 2
 	startbattle
 	returnafterbattle
-	setevent EVENT_LTSURGE_REMATCH
+	setevent EVENT_SURGE_REMATCH
 	loadfont ;fallthrough
 
 SurgeAfterRematch:
@@ -433,25 +433,23 @@ UnknownText_0x1924d6: ; 0x1924d6
 ; 0x192517
 
 VermilionGymGuyText: ; 0x192517
-	text "Yo! CHAMP in"
-	line "making!"
-
-	para "You lucked out"
-	line "this time."
+	text "Yo! CHAMP"
+	line "Your luck ran out."
 
 	para "LT.SURGE is very"
 	line "cautious. He has"
+	cont "traps set all over"
+	cont "the GYM."
 
-	para "traps set all over"
-	line "the GYM."
+	para "To get through you"
+	line "need to find both"
+	cont "switches."
 
-	para "But--he-heh--the"
-	line "traps aren't"
-	cont "active right now."
+	para "But if you guess"
+	line "wrong, they reset<...>"
 
-	para "You'll have no"
-	line "problem getting to"
-	cont "LT.SURGE."
+	para "Good luck!"
+
 	done
 ; 0x1925df
 

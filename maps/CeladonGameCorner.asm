@@ -284,8 +284,7 @@ UnknownText_0x723d9: ; 0x723d9
 ; 0x72425
 
 CeladonGymGuyText: ; 0x72425
-	text "Hey! CHAMP in"
-	line "making!"
+	text "Hey! CHAMP!"
 
 	para "Are you playing"
 	line "the slots too?"

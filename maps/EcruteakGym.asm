@@ -376,16 +376,10 @@ UnknownText_0x9a043: ; 0x9a043
 
 UnknownText_0x9a059: ; 0x9a059
 	text "By having FOG-"
-	line "BADGE, #MON up"
-
-	para "to L50 will obey"
-	line "you."
-
-	para "Also, #MON that"
-	line "know SURF will be"
-
-	para "able to use that"
-	line "move anytime."
+	line "BADGE, #MON that"
+	cont "know SURF will be"
+	cont "able to use that"
+	cont "move anytime."
 
 	para "I want you to have"
 	line "this too."
@@ -495,7 +489,7 @@ UnknownText_0x9a318: ; 0x9a318
 ; 0x9a33e
 
 MediumGraceSeenText: ; 0x9a33e
-	text "Dark #MON has an"
+	text "Dark #MON have an"
 	line "advantage against"
 	cont "ghost #MON."
 

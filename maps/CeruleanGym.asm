@@ -534,8 +534,7 @@ UnknownText_0x188943: ; 0x188943
 ; 0x1889a7
 
 CeruleanGymGuyText: ; 0x1889a7
-	text "Yo! CHAMP in"
-	line "making!"
+	text "Yo! CHAMP!"
 
 	para "Since MISTY was"
 	line "away, I went out"

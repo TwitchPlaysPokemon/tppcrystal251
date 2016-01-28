@@ -95,7 +95,7 @@ BlueRematchBeatenText:
 
 BlueAfterRematchText:
 	text "You're tough,"
-	line "I'll give you""
+	line "I'll give you"
 	cont "that."
 	
 	para "But there's always"
@@ -310,7 +310,7 @@ UnknownText_0x9ac27: ; 0x9ac27
 	cont "for you."
 
 	para "Someday I'm going"
-	line "to beat you someday."
+	line "to beat you."
 
 	para "Don't you forget"
 	line "it!"
@@ -327,8 +327,7 @@ UnknownText_0x9acab: ; 0x9acab
 ; 0x9acee
 
 ViridianGymGuyText: ; 0x9acee
-	text "Yo, CHAMP in"
-	line "making!"
+	text "Yo, CHAMP!"
 
 	para "How's it going?"
 	line "Looks like you're"
@@ -351,8 +350,8 @@ ViridianGymGuyWinText: ; 0x9ada0
 	text "Man, you are truly"
 	line "tough<...>"
 
-	para "That was a heck of"
-	line "an inspirational"
+	para "That was an"
+	line "inspirational"
 
 	para "battle. It brought"
 	line "tears to my eyes."
@@ -445,7 +444,7 @@ CoolSibsElanIda1Text:
 	para "Bringing out your"
 	line "opponent's"
 	cont "strength is also"
-	cont "very important!"
+	cont "important!"
 	done
 
 CoolSibsElanIda2Text:
@@ -464,9 +463,8 @@ CooltrainerMBonitaSeenText:
 	done
 
 CooltrainerMBonitaBeatenText:
-	text "All of my #MON<...>"
-	line "All dizzy and"
-	cont "fainted<...>"
+	text "All of my #MON"
+	line "are dizzy<...>"
 	done
 
 CooltrainerMBonitaText:

@@ -430,8 +430,7 @@ UnknownText_0x18a1b3: ; 0x18a1b3
 ; 0x18a201
 
 SaffronGymGuyText: ; 0x18a201
-	text "Yo, CHAMP in"
-	line "making!"
+	text "Yo, CHAMP"
 
 	para "A trainer as"
 	line "skilled as you"

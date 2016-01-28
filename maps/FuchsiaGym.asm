@@ -449,8 +449,7 @@ UnknownText_0x19626b: ; 0x19626b
 ; 0x196299
 
 FuchsiaGymGuyText: ; 0x196299
-	text "Yo, CHAMP in"
-	line "making!"
+	text "Yo, CHAMP!"
 
 	para "Whoops! Take a"
 	line "good look around"

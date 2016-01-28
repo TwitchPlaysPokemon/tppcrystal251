@@ -33,17 +33,17 @@ GrowlitheScript_0x9ae4a: ; 0x9ae4a
 ; 0x9ae54
 
 UnknownText_0x9ae54: ; 0x9ae54
-	text "Do you put a lot"
-	line "of thought into"
+	text "Do you put much"
+	line "thought into"
 
 	para "naming your"
 	line "#MON?"
 
-	para "Giving them good"
+	para "Having good"
 	line "nicknames adds to"
 
 	para "the fun of trading"
-	line "with others."
+	line "#MON."
 	done
 ; 0x9aecb
 

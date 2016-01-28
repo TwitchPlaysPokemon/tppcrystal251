@@ -146,7 +146,7 @@ UnknownText_0x98f22: ; 0x98f22
 	line "remove anything"
 
 	para "that wasn't around"
-	line "in the past."
+	line "then."
 
 	para "Put simply, no"
 	line "sending new moves"
@@ -191,8 +191,6 @@ UnknownText_0x991aa: ; 0x991aa
 
 	para "some place where"
 	line "trainers gather."
-
-	para "Where, you ask?"
 
 	para "It's a little past"
 	line "OLIVINE CITY."

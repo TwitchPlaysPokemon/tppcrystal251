@@ -232,8 +232,6 @@ INCLUDE "maps/TrainerHouse1F.asm"
 INCLUDE "maps/TrainerHouseB1F.asm"
 INCLUDE "maps/ViridianMart.asm"
 INCLUDE "maps/ViridianPokeCenter1F.asm"
-INCLUDE "maps/Route2NuggetSpeechHouse.asm"
-INCLUDE "maps/Route2Gate.asm"
 
 
 SECTION "Map Scripts 12", ROMX
@@ -364,6 +362,8 @@ INCLUDE "maps/PokeCenter2F.asm"
 INCLUDE "maps/TradeCenter.asm"
 INCLUDE "maps/Colosseum.asm"
 INCLUDE "maps/TimeCapsule.asm"
+INCLUDE "maps/Route2NuggetSpeechHouse.asm"
+INCLUDE "maps/Route2Gate.asm"
 	;INCLUDE "maps/MobileTradeRoomMobile.asm"
 	;INCLUDE "maps/MobileBattleRoom.asm"
 

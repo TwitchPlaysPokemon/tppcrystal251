@@ -252,11 +252,9 @@ UnknownText_0x1a2c0f: ; 0x1a2c0f
 ; 0x1a2c6e
 
 PewterGymGuyText: ; 0x1a2c6e
-	text "Yo! CHAMP in"
-	line "making! You're"
-
-	para "really rocking."
-	line "Are you battling"
+	text "Yo! CHAMP. You're"
+	line "really rocking."
+	cont "Are you battling"
 
 	para "the GYM LEADERS of"
 	line "KANTO?"
