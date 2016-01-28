@@ -226,7 +226,7 @@ Function8edb: ; 8edb
 	call Function9643
 	ld hl, Palette8f52
 	ld de, Unkn1Pals + 8 * 3
-	ld bc, $0018
+	ld bc, $0020
 	ld a, $5
 	call FarCopyWRAM
 	call Function9699
@@ -238,17 +238,21 @@ Function8edb: ; 8edb
 	ld bc, $000a
 	ld a, $2
 	call ByteFill
-	hlcoord 13, 5, AttrMap
+	hlcoord 11, 5, AttrMap
 	ld bc, $0202
 	ld a, $3
 	call Function9663
-	hlcoord 15, 5, AttrMap
+	hlcoord 13, 5, AttrMap
 	ld bc, $0202
 	ld a, $4
 	call Function9663
-	hlcoord 17, 5, AttrMap
+	hlcoord 15, 5, AttrMap
 	ld bc, $0202
 	ld a, $5
+	call Function9663
+	hlcoord 17, 5, AttrMap
+	ld bc, $0202
+	ld a, $6
 	call Function9663
 	call Function96b3
 	call Function96a4
@@ -272,6 +276,11 @@ Palette8f52: ; 8f52
 	RGB 17, 31, 31
 	RGB 17, 31, 31
 	RGB 00, 00, 00
+	
+	RGB 31, 31, 31
+	RGB 30, 24, 16
+	RGB 30, 22, 12
+	RGB 00, 00, 00
 ; 8f6a
 
 Unknown_8f6a: ; 8f6a
@@ -280,6 +289,8 @@ Unknown_8f6a: ; 8f6a
 	RGB 21, 31, 14
 
 	RGB 17, 31, 31
+	
+	RGB 30, 24, 16
 ; 8f70
 
 Function8f70: ; 8f70

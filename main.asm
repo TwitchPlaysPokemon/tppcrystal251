@@ -45295,7 +45295,6 @@ StatsScreenInit_gotaddress: ; 4dc94
 StatsScreenMain: ; 0x4dcd2
 	xor a
 	ld [wcf63], a
-	inc a
 	ld [wcf64], a
 .loop ; 4dce3
 	ld a, [wcf63]
@@ -45312,7 +45311,6 @@ StatsScreenMain: ; 0x4dcd2
 StatsScreenBattle: ; 4dcf7
 	xor a
 	ld [wcf63], a
-	inc a
 	ld [wcf64], a
 .asm_4dd08
 	callba Function100dd2
@@ -45571,11 +45569,13 @@ Function4de54: ; 4de54 (13:5e54)
 	ld a, $3
 	cp c
 	jr nc, .asm_4decf
-	ld c, $1
+	ld c, 0
 	jr .asm_4decf
 
 .asm_4dec7
+	ld a, c
 	dec c
+	and a
 	jr nz, .asm_4decf
 	ld c, $3
 	jr .asm_4decf
@@ -45700,7 +45700,7 @@ Function4df8f: ; 4df8f (13:5f8f)
 	ret
 
 Function4df9b: ; 4df9b (13:5f9b)
-	hlcoord 12, 6
+	hlcoord 10, 6
 	ld [hl], $71
 	hlcoord 19, 6
 	ld [hl], $ed
@@ -45756,7 +45756,6 @@ Function4dfed: ; 4dfed (13:5fed)
 Function4e002: ; 4e002 (13:6002)
 	ld a, [wcf64]
 	and $3
-	dec a
 	ld hl, Jumptable_4e00d
 	rst JumpTable
 	ret
@@ -45765,6 +45764,7 @@ Jumptable_4e00d: ; 4e00d (13:600d)
 	dw Function4e013
 	dw Function4e147
 	dw Function4e1ae
+	dw TrainerNotes
 
 Function4e013: ; 4e013 (13:6013)
 	hlcoord 0, 9
@@ -46195,6 +46195,10 @@ Unknown_4e32a: ; 4e32a
 	ds 16
 ; 4e33a
 
+TrainerNotes:
+	callba TrainerNotes_
+	ret
+
 EggStatsScreen: ; 4e33a
 	xor a
 	ld [hBGMapMode], a
@@ -46299,6 +46303,9 @@ Function4e497: ; 4e497 (13:6497)
 	ret
 
 Function4e4cd: ; 4e4cd (13:64cd)
+	hlcoord 11, 5
+	ld a, $36
+	call Function4e4f7
 	hlcoord 13, 5
 	ld a, $36
 	call Function4e4f7
@@ -46309,6 +46316,8 @@ Function4e4cd: ; 4e4cd (13:64cd)
 	ld a, $36
 	call Function4e4f7
 	ld a, c
+	and a
+	jr z, .zero
 	cp $2
 	ld a, $3a
 	hlcoord 13, 5
@@ -46316,6 +46325,10 @@ Function4e4cd: ; 4e4cd (13:64cd)
 	hlcoord 15, 5
 	jr z, Function4e4f7
 	hlcoord 17, 5
+	jr Function4e4f7
+.zero
+	ld a, $3a
+	hlcoord 11, 5
 Function4e4f7: ; 4e4f7 (13:64f7)
 	push bc
 	ld [hli], a
@@ -85840,11 +85853,11 @@ INCBIN "gfx/unknown/0f8aa0.2bpp"
 ; f8ac0
 
 GFX_f8ac0: ; f8ac0
-INCBIN "gfx/unknown/0f8ac0.2bpp"
+INCBIN "gfx/unknown/0f8ac0.1bpp"
 ; f8ae0
 
 GFX_f8ae0: ; f8ae0
-INCBIN "gfx/unknown/0f8ae0.2bpp"
+INCBIN "gfx/unknown/0f8ae0.1bpp"
 ; f8b10
 
 GFX_f8b10: ; f8b10
@@ -93106,6 +93119,7 @@ INCLUDE "TPP.asm"
 SECTION "bank7B", ROMX, BANK[$7B]
 
 INCLUDE "text/battle_tower.asm"
+INCLUDE "engine/fourth_stats_screen.asm"
 
 GBCOnlyGFX2:
 INCBIN "gfx/misc/gbc_only_2.w112.2bpp"
