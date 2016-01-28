@@ -31,7 +31,7 @@ GrampsScript_ShowCatchingVideo:
 	writetext GrampsText_IntroCatchingVideo
 	waitbutton
 	closetext
-	loadpokedata WEEDLE, 5
+	loadpokedata BUTTERFREE, 15
 	catchtutorial BATTLETYPE_TUTORIAL
 	loadfont
 	writetext GrampsText_AfterCatchingVideo
@@ -188,35 +188,32 @@ UnknownText_0x1a9c7e: ; 0x1a9c7e
 	done
 ; 0x1a9cc4
 
-UnknownText_0x1a9cc4: ; 0x1a9cc4
-	text "Yawn!"
+;UnknownText_0x1a9cc4: ; 0x1a9cc4
+;	text "Yawn!"
 
-	para "I must have dozed"
-	line "off in the sun."
+;	para "I must have dozed"
+;	line "off in the sun."
 
-	para "<...>I had this dream"
-	line "about a DROWZEE"
+;	para "<...>I had this dream"
+;	line "about a DROWZEE"
 
-	para "eating my dream."
-	line "Weird, huh?"
+;	para "eating my dream."
+;	line "Weird, huh?"
 
-	para "Huh?"
-	line "What's this?"
+;	para "Huh?"
+;	line "What's this?"
 
-	para "Where did this TM"
-	line "come from?"
+;	para "Where did this TM"
+;	line "come from?"
 
-	para "This is spooky!"
-	line "Here, you can have"
-	cont "this TM."
-	done
+	;para "This is spooky!"
+	;line "Here, you can have"
+	;cont "this TM."
+	;done
 ; 0x1a9d86
 
 UnknownText_0x1a9d86: ; 0x1a9d86
-	text "TM42 contains"
-	line "DREAM EATER<...>"
-
-	para "<...>Zzzzz<...>"
+	text "<...>Zzzzz<...>"
 	done
 ; 0x1a9daa
 

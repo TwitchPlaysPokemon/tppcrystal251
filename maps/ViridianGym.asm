@@ -9,15 +9,19 @@ ViridianGym_MapScriptHeader: ; 0x9aa24
 BlueScript_0x9aa26: ; 0x9aa26
 	faceplayer
 	loadfont
+	checkevent EVENT_BLUE_REMATCH
+	iftrue BlueAfterRematch
+	checkevent EVENT_FIRST_TIME_RED
+	iftrue BlueRematchScript
 	checkflag ENGINE_EARTHBADGE
 	iftrue UnknownScript_0x9aa51
 	writetext UnknownText_0x9aa7b
 	waitbutton
 	closetext
 	winlosstext UnknownText_0x9abae, $0000
-	checkevent EVENT_GOT_CYNDAQUIL_FROM_ELM
+	checkevent EVENT_GOT_CHARMANDER_FROM_OAK
 	iftrue BlueScript_TeamVaporeon
-	checkevent EVENT_GOT_CHIKORITA_FROM_ELM
+	checkevent EVENT_GOT_BULBASAUR_FROM_OAK
 	iftrue BlueScript_TeamFlareon
 	loadtrainer BLUE, 3
 	jump BlueScript_StartBattle
@@ -43,6 +47,66 @@ BlueScript_StartBattle:
 	waitbutton
 	closetext
 	end
+
+
+BlueRematchScript:
+	writetext BlueRematchTextBefore
+	waitbutton
+	closetext
+	winlosstext BlueRematchBeatenText, $0000
+	checkevent EVENT_GOT_CHARMANDER_FROM_OAK
+	iftrue BlueScript_TeamVaporeonRe
+	checkevent EVENT_GOT_BULBASAUR_FROM_OAK
+	iftrue BlueScript_TeamFlareonRe
+	loadtrainer BLUE, 6
+	jump BlueScript_StartBattleRe
+BlueScript_TeamVaporeonRe:
+	loadtrainer BLUE, 4
+	jump BlueScript_StartBattleRe
+BlueScript_TeamFlareonRe:
+	loadtrainer BLUE, 5
+BlueScript_StartBattleRe:
+	startbattle
+	returnafterbattle
+	setevent EVENT_BLUE_REMATCH
+	loadfont ;fallthrough
+
+BlueAfterRematch:
+	writetext BlueAfterRematchText
+	waitbutton
+	closetext
+	end
+
+BlueRematchTextBefore:
+	text "Thanks for coming" 
+	line "to lose to me!"
+	
+	para "This is what I,"
+	line "Kanto's top-level"
+	cont "Trainer,"
+	cont "can really do!"
+
+	done
+
+BlueRematchBeatenText:
+	text "You're the"
+	line "real deal"
+	done
+
+BlueAfterRematchText:
+	text "You're tough,"
+	line "I'll give you""
+	cont "that."
+	
+	para "But there's always"
+	line "someone better."
+	
+	para "You have to be"
+	line "more dedicated!"
+	
+	para "Smell ya later!"
+	done
+
 ; 0x9aa51
 
 Trainer_CoolSibsAraBella1:
@@ -239,8 +303,14 @@ UnknownText_0x9ac27: ; 0x9ac27
 	para "real deal. You are"
 	line "a good trainer."
 
-	para "But I'm going to"
-	line "beat you someday."
+	para "I'm going to call"
+	line "CELADON and tell"
+	cont "them what they can"
+	cont "open the TM DEPOT"
+	cont "for you."
+
+	para "Someday I'm going"
+	line "to beat you someday."
 
 	para "Don't you forget"
 	line "it!"
