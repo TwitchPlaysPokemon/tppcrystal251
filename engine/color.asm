@@ -397,7 +397,6 @@ Function8c8a: ; 8c8a
 	ret z
 	ld hl, Unknown_8f6a
 	ld b, 0
-	dec c
 	add hl, bc
 	add hl, bc
 	ld a, [rSVBK]
