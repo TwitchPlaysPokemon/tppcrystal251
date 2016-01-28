@@ -82,7 +82,7 @@ TN_PrintLV:
 	db "Met at Lv.   .@"
 	
 .egg
-	db "Hatched from EGG."
+	db "Hatched from EGG.@"
 
 TN_PrintCharacteristics:
 	ld hl, TempMonDVs
