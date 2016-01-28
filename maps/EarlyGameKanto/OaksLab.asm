@@ -541,6 +541,10 @@ MapOaksLabRBSignpost12Script:
 	jumptext _PushStartText
 
 MapOaksLabRBSignpost13Script:
+	checkcode VAR_DEXCAUGHT
+	if_less_than 2, .saveoption
+	jumptext _StrengthsAndWeaknessesText
+.saveoption
 	jumptext _SaveOptionText
 
 MapOaksLabRBSignpost14Script
@@ -1155,6 +1159,14 @@ _SaveOptionText:
 	line "on the MENU"
 	cont "screen."
 	done
+
+_StrengthsAndWeaknessesText:
+	text "All #MON types"
+	line "have strong and"
+	para "weak points"
+	line "against others."
+	done
+
 
 OaksLabRB_MapEventHeader: ; 0x19ba33
 	; filler
