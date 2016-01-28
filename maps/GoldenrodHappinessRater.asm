@@ -12,12 +12,13 @@ TeacherScript_0x54953: ; 0x54953
 	special Function718d
 	writetext UnknownText_0x549a3
 	buttonsound
-	if_greater_than $f9, UnknownScript_0x54973
+	if_greater_than $fe, UnknownScript_0x54973
 	if_greater_than $c7, UnknownScript_0x54979
 	if_greater_than $95, UnknownScript_0x5497f
 	if_greater_than $63, UnknownScript_0x54985
 	if_greater_than $31, UnknownScript_0x5498b
-	jump UnknownScript_0x54991
+	if_greater_than $00, UnknownScript_0x54991
+	jump UnknownScript_0x54991_2
 ; 0x54973
 
 UnknownScript_0x54973: ; 0x54973
@@ -61,6 +62,12 @@ UnknownScript_0x54991: ; 0x54991
 	closetext
 	end
 ; 0x54997
+
+UnknownScript_0x54991_2:
+	writetext UnknownText_0x54ad1_2
+	waitbutton
+	closetext
+	end
 
 PokefanMScript_0x54997: ; 0x54997
 	jumptextfaceplayer UnknownText_0x54b04
@@ -129,6 +136,12 @@ UnknownText_0x54ad1: ; 0x54ad1
 	text "It doesn't seem to"
 	line "like you at all."
 	cont "It looks mean."
+	done
+; 0x54b04
+
+UnknownText_0x54ad1_2: ; 0x54ad1
+	text "It simply detests"
+	line "you so much."
 	done
 ; 0x54b04
 
