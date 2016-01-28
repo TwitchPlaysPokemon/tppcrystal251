@@ -18,16 +18,18 @@ FisherScript1_MtMoonPokeCenter1FRB:
 	writetext FisherText1_MtMoonPokeCenter1FRB
 	yesorno
 	iffalse FisherScript3_MtMoonPokeCenter1FRB
+	checkmoney $0, 500
+	if_equal 2, FisherScript_NotEnoughMoney_MtMoonPokeCenter1FRB
 	checkcode VAR_PARTYCOUNT
 	if_equal $6, FisherScript4_MtMoonPokeCenter1FRB
+	takemoney $0, 500
+	playsound SFX_TRANSACTION
+	waitsfx
+	setevent EVENT_BOUGHT_MAGIKARP_FROM_SALESMAN
 	writetext FisherText2_MtMoonPokeCenter1FRB
 	playsound SFX_CAUGHT_MON
 	waitsfx
 	givepoke MAGIKARP, 5, 0, 0
-	takemoney $0, 500
-	if_equal 2, FisherScript_NotEnoughMoney_MtMoonPokeCenter1FRB
-	playsound SFX_TRANSACTION
-	setevent EVENT_BOUGHT_MAGIKARP_FROM_SALESMAN
 FisherScript2_MtMoonPokeCenter1FRB:
 	writetext FisherText3_MtMoonPokeCenter1FRB
 	waitbutton

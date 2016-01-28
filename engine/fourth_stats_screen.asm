@@ -79,7 +79,7 @@ TN_PrintLV:
 	jp PlaceString
 	
 .metat
-	db "Met at Lv.   .@"
+	db "Met at Lv.@"
 	
 .egg
 	db "Hatched from EGG.@"
