@@ -648,3 +648,8 @@ INCLUDE "maps/EarlyGameKanto/SSAnne7.asm"
 INCLUDE "maps/EarlyGameKanto/SSAnne8.asm"
 INCLUDE "maps/EarlyGameKanto/SSAnne9.asm"
 INCLUDE "maps/EarlyGameKanto/SSAnne10.asm"
+
+SECTION "BillsGarden", ROMX
+INCLUDE "maps/BillsGarden.asm"SECTION "BillsGarden Blockdata", ROMX
+BillsGarden_BlockData: INCBIN "maps/BillsGarden.blk"
+

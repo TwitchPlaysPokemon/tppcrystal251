@@ -28,8 +28,9 @@ PewterMuseumOfScience1FPayWall:
 	writetext _Museum1FText_5c21f
 	yesorno
 	iffalse .send_back
-	takemoney 0, 50
+	checkmoney 0, 50
 	if_equal 2, .insufficient_funds
+	takemoney 0, 50
 	special Function24ae8
 	playsound SFX_TRANSACTION
 	waitsfx

@@ -181,7 +181,7 @@ MapGroup6:
 	map_header Route19, $3, 2, ROUTE_19, MUSIC_ROUTE_3, 0, 0, 15
 	map_header Route20, $3, 2, ROUTE_20, MUSIC_ROUTE_3, 0, 0, 15
 	map_header Route21, $3, 2, ROUTE_21, MUSIC_ROUTE_3, 0, 0, 14
-	map_header CinnabarIsland, $3, 1, CINNABAR_ISLAND, MUSIC_CINNIBAR_ISLAND, 0, 0, 14
+	map_header CinnabarIsland, $3, 1, CINNABAR_ISLAND, MUSIC_CINNABAR_ISLAND, 0, 0, 14
 
 MapGroup7:
 	map_header CeruleanGymBadgeSpeechHouse, $5, 3, CERULEAN_CITY, MUSIC_CERULEAN_CITY, 0, 1, 1
@@ -199,6 +199,7 @@ MapGroup7:
 	map_header Route24, $3, 2, ROUTE_24, MUSIC_ROUTE_24, 0, 0, 14
 	map_header Route25, $3, 2, ROUTE_25, MUSIC_ROUTE_24, 0, 0, 14
 	map_header CeruleanCity, $3, 1, CERULEAN_CITY, MUSIC_CERULEAN_CITY, 0, 0, 14	
+	map_header BillsGarden, 3, 0, ROUTE_25, MUSIC_CERULEAN_CITY, 0, 1
 
 MapGroup8:
 	map_header AzaleaPokeCenter1F, $7, 3, AZALEA_TOWN, MUSIC_POKEMON_CENTER, 0, 1, 1

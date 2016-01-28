@@ -1286,8 +1286,56 @@ UnknownText_0x1bcf96: ; 0x1bcf96
 
 UnknownText_0x1bcf99: ; 0x1bcf99
 	text ""
-	line $57
+	line ""
+	done
 ; 0x1bcf9c
+
+_WhosThatPkmnText1:
+	text ""
+	line "It's time for"
+	done
+
+_WhosThatPkmnText2:
+	text ""
+	line "#MON Quiz!"
+	done
+
+_WhosThatPkmnText3:
+	text ""
+	line "With me, MARY!"
+	done
+
+_WhosThatPkmnText4:
+	text ""
+	line "Can you guess"
+	done
+
+_WhosThatPkmnText5:
+	text ""
+	line "what #MON this"
+	done
+
+_WhosThatPkmnText6:
+	text ""
+	line "is?"
+	done
+
+_WhosThatPkmnText7:
+	text ""
+	line $56, " ", $56, " ", $56
+	done
+
+_WhosThatPkmnText8:
+	text ""
+	line "Did you guess it?"
+	done
+
+_WhosThatPkmnText9:
+	text ""
+	line "It's @"
+	TX_RAM StringBuffer1
+	text "!"
+	done
 
 UnknownText_0x1bcf9c: ; 0x1bcf9c
 	text $3f

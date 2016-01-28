@@ -5,15 +5,11 @@ CeruleanCityRB_MapScriptHeader: ; 0x184000
 	dw .Trigger1, 0
 
 	; callback count
-	db 1
-	dbw 2, .FixRival
+	db 0
 .Trigger0
 	end
 .Trigger1
 	end
-.FixRival
-	disappear $2
-	return
 
 CeruleanCityRivalBattleLeftTrigger:
 	scall CeruleanCityRivalBattle
@@ -26,7 +22,9 @@ CeruleanCityRivalBattleLeftTrigger:
 	end
 
 CeruleanCityRivalBattleRightTrigger:
+	disappear $2
 	moveperson $2, 21, 3
+	appear $2
 	scall CeruleanCityRivalBattle
 	spriteface $0, LEFT
 	applymovement $2, Movement_CeruleanRivalExitsLeft
@@ -37,7 +35,6 @@ CeruleanCityRivalBattleRightTrigger:
 	end
 
 CeruleanCityRivalBattle:
-	appear $2
 	playmusic MUSIC_RIVAL_RB
 	applymovement $2, Movement_CeruleanRivalEnters
 	loadfont

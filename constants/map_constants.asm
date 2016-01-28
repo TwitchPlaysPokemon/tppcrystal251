@@ -516,6 +516,7 @@ MAP_N_A   EQU -1
 	mapgroup ROUTE_25_RB, 9, 30
 	mapgroup BILLS_HOUSE_RB, 4, 4
 	mapgroup ROUTE_9_RB, 9, 6
+	mapgroup BILLSGARDEN, 20, 20
 
 	newgroup ; Vermilion City RB
 	mapgroup ROUTE_6_SAFFRON_GATE_RB, 4, 5

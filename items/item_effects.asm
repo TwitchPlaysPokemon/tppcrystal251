@@ -2922,9 +2922,6 @@ Functionf789: ; f789
 	call PrintText
 	call Functionf780
 	call Functiona80
-	; fallthrough
-; f795
-
 Functionf795: ; f795
 	ld hl, NumItems
 	ld a, 1
@@ -2948,7 +2945,8 @@ Functionf7a0: ; f7a0
 	call PrintText
 	ld hl, DontBeAThiefText
 	call PrintText
-	jr Functionf795
+	; jr Functionf795
+	ret
 ; f7ca
 
 WontHaveAnyEffect_NotUsedMessage: ; f7ca

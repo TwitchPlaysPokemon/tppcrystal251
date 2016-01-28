@@ -759,3 +759,5 @@
 	map_header_2 SSAnne8, S_S_ANNE_8, $c, NONE
 	map_header_2 SSAnne9, S_S_ANNE_9, $c, NONE
 	map_header_2 SSAnne10, S_S_ANNE_10, $c, NONE
+
+	map_header_2 BillsGarden, BILLSGARDEN, $2c, NONE

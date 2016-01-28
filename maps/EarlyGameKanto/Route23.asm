@@ -11,13 +11,18 @@ Route23RB_MapScriptHeader:
 .Trigger2
 	end
 
-Route23RB_CascadeBadgeCheckOfficerScript:
-	faceplayer
-	jump Route23RBScript_ContinueCascade
 
 Route23RB_CascadeBadgeCheckTrigger:
 	faceperson $2, $0
 	faceperson $0, $2
+	scall Route23RBScript_ContinueCascade
+	iftrue .permit
+	applymovement $0, Movement_PlayerStepsDown_Route23RB
+.permit
+	end
+
+Route23RB_CascadeBadgeCheckOfficerScript:
+	faceplayer
 Route23RBScript_ContinueCascade:
 	loadfont
 	checkflag ENGINE_CASCADEBADGE
@@ -26,7 +31,6 @@ Route23RBScript_ContinueCascade:
 	waitbutton
 	closetext
 	spriteface $2, DOWN
-	applymovement $0, Movement_PlayerStepsDown_Route23RB
 	end
 
 .permit
@@ -42,12 +46,16 @@ Route23RBScript_ContinueCascade:
 	end
 
 Route23RB_ThunderBadgeCheckOfficerScript:
-	faceplayer
-	jump Route23RBScript_ContinueThunder
-
-Route23RB_ThunderBadgeCheckTrigger:
 	faceperson $3, $0
 	faceperson $0, $3
+	scall Route23RBScript_ContinueThunder
+	iftrue .permit
+	applymovement $0, Movement_PlayerStepsDown_Route23RB
+.permit
+	end
+
+Route23RB_ThunderBadgeCheckTrigger:
+	faceplayer
 Route23RBScript_ContinueThunder:
 	loadfont
 	checkflag ENGINE_THUNDERBADGE
@@ -56,7 +64,6 @@ Route23RBScript_ContinueThunder:
 	waitbutton
 	closetext
 	spriteface $3, DOWN
-	applymovement $0, Movement_PlayerStepsDown_Route23RB
 	end
 
 .permit
