@@ -26978,7 +26978,7 @@ TrainerCardPage2_WaitJoypad: ; 25221 (9:5221)
 .right
 	ld a, [KantoBadges]
 	and a
-	jr z, .dotrick
+	jr z, .asm_25235
 .kanto
 	ld a, $4
 	ld [wcf63], a
@@ -27024,7 +27024,7 @@ TrainerCardPage3_WaitJoypad: ; 25279 (9:5279)
 	jr nz, .asm_2528d
 	ld a, [hl]
 	and $10
-	jr nz, .asm_25293
+	jr nz, .page_1
 	ld a, [hl]
 	and $1
 	jr nz, .quit
@@ -27038,10 +27038,10 @@ TrainerCardPage3_WaitJoypad: ; 25279 (9:5279)
 	ld [wcf63], a
 	jr .dotrick
 
-.asm_25293
-	ld hl, StatusFlags
-	bit 5, [hl]
-	jr z, .dotrick
+; .asm_25293
+	; ld hl, StatusFlags
+	; bit 5, [hl]
+	; jr z, .dotrick
 .page_1
 	ld a, $0
 	ld [wcf63], a
