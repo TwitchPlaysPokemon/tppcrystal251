@@ -5,27 +5,37 @@ TrainerNotes_:
 	jp TN_PrintCharacteristics
 
 TN_PrintToD
-	ld a, [TempMonCaughtTime]
-	ld hl, 0
-	ld bc, .times
-	sla a
-	rl l
-	sla a
-	rl l
-	dec l
-	add hl, hl
-	add hl, hl
-	add hl, hl
-	add hl, bc
-	ld d, h
-	ld e, l
+	ld de, .caughtat
 	hlcoord 1, 9
+	call PlaceString
+	ld a, [TempMonCaughtTime]
+	ld l, 0
+	sla a
+	rl l
+	sla a
+	rl l
+	ld a, 2
+	cp l
+	ld de, .morn
+	jr c, .print
+	ld de, .day
+	jr z, .print
+	ld de, .nite
+.print
+	hlcoord 11, 9
 	jp PlaceString
 	
-.times:
-	db "Morning@"
-	db "Day    @"
-	db "Night@"
+.caughtat
+	db "Caught at@"
+	
+.morn
+	db "morning.@"
+	
+.day
+	db "day.@"
+	
+.nite
+	db "night.@"
 	
 TN_PrintLocation:
 	ld de, .unknown
