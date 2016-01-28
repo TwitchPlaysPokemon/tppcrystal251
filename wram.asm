@@ -1962,7 +1962,7 @@ wd847:: ds 1
 CurTimeOfDay:: ; d848
 	ds 1
 
-	ds 1
+wMilitaryFlags:: ds 1
 
 wd84a:: ds 1
 wd84b:: ds 1
