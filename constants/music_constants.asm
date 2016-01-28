@@ -105,7 +105,7 @@
 	const MUSIC_MOBILE_CENTER                ; 66
 
 	const MUSIC_CERULEAN_CITY                ; 67
-	const MUSIC_CINNIBAR_ISLAND              ; 68
+	const MUSIC_CINNABAR_ISLAND              ; 68
 	const MUSIC_ROUTE_24                     ; 69
 	const MUSIC_MART                         ; 6a
 	const MUSIC_POWER_PLANT                  ; 6b

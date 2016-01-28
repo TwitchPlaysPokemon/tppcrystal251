@@ -181,7 +181,7 @@ MapGroup6:
 	map_header Route19, $3, 2, ROUTE_19, MUSIC_ROUTE_3, 0, 0, 15
 	map_header Route20, $3, 2, ROUTE_20, MUSIC_ROUTE_3, 0, 0, 15
 	map_header Route21, $3, 2, ROUTE_21, MUSIC_ROUTE_3, 0, 0, 14
-	map_header CinnabarIsland, $3, 1, CINNABAR_ISLAND, MUSIC_CINNIBAR_ISLAND, 0, 0, 14
+	map_header CinnabarIsland, $3, 1, CINNABAR_ISLAND, MUSIC_CINNABAR_ISLAND, 0, 0, 14
 
 MapGroup7:
 	map_header CeruleanGymBadgeSpeechHouse, $5, 3, CERULEAN_CITY, MUSIC_CERULEAN_CITY, 0, 1, 1
