@@ -32,6 +32,7 @@ CeruleanGymRB_MistyScript:
 	waitbutton
 .got_tm
 	scall .tm
+	waitbutton
 	closetext
 	end
 
@@ -249,7 +250,7 @@ CeruleanGymRB_MapEventHeader:
 	; people-events
 	db 4
 	person_event SPRITE_MISTY, 7, 9, $6, 0, 0, -1, -1, 8 + PAL_OW_RED, 0, 0, CeruleanGymRB_MistyScript, -1
-	person_event SPRITE_SWIMMER_GIRL, 10, 8, $9, 0, 0, -1, -1, 8 + PAL_OW_GREEN, 2, 3, TrainerSwimmerfDianaRB, -1
+	person_event SPRITE_LASS, 8, 6, $9, 0, 0, -1, -1, 8 + PAL_OW_GREEN, 2, 3, TrainerSwimmerfDianaRB, -1
 	person_event SPRITE_SWIMMER_GUY, 13, 12, $8, 0, 0, -1, -1, 8 + PAL_OW_RED, 2, 3, TrainerSwimmermParkerRB, -1
 	person_event SPRITE_GYM_GUY, 17, 11, $6, 0, 0, -1, -1, 8 + PAL_OW_BLUE, 0, 0, CeruleanGymRB_GymGuyScript, -1
 
