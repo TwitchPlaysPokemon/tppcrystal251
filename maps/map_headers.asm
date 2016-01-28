@@ -199,7 +199,7 @@ MapGroup7:
 	map_header Route24, $3, 2, ROUTE_24, MUSIC_ROUTE_24, 0, 0, 14
 	map_header Route25, $3, 2, ROUTE_25, MUSIC_ROUTE_24, 0, 0, 14
 	map_header CeruleanCity, $3, 1, CERULEAN_CITY, MUSIC_CERULEAN_CITY, 0, 0, 14	
-	map_header BillsGarden, 3, 0, ROUTE_25, MUSIC_CERULEAN_CITY, 0, 1
+	map_header BillsGarden, $3, 0, ROUTE_25, MUSIC_CERULEAN_CITY, 0, 0, 14
 
 MapGroup8:
 	map_header AzaleaPokeCenter1F, $7, 3, AZALEA_TOWN, MUSIC_POKEMON_CENTER, 0, 1, 1
