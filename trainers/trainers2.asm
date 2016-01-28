@@ -5,7 +5,7 @@ BillGroup:
 ; ================
 
 	; BILL_TC (1)
-	db "Bill@"
+	db "BILL@"
 	db (1 << TRAINERTYPE_MOVES) | (1 << TRAINERTYPE_ITEM)
 
 	; party
@@ -52,7 +52,7 @@ BillGroup:
 ; ================================
 
 ProfElmGroup:
-	db "Elm@"
+	db "ELM@"
 	db (1 << TRAINERTYPE_MOVES)
 
 	; party
@@ -96,7 +96,7 @@ ProfElmGroup:
 
 
 
-	db "Elm@"
+	db "ELM@"
 	db (1 << TRAINERTYPE_MOVES)
 
 	; party
@@ -140,7 +140,7 @@ ProfElmGroup:
 
 
 
-	db "Elm@"
+	db "ELM@"
 	db (1 << TRAINERTYPE_MOVES)
 
 	; party
@@ -226,7 +226,7 @@ tppPcGroup:
 	db $ff
 
 GiovanniGroup:
-	db "Giovanni@"
+	db "GIOVANNI@"
 	db (1 << TRAINERTYPE_MOVES)
 
 	db 62, MURKROW
@@ -268,27 +268,27 @@ GiovanniGroup:
 	db $ff
 
 CoolSiblingsGroup:
-	db "ELAN&Ida@"
+	db "ELAN&IDA@"
 	db 0 ; normal
 
 	db 90, PORYGON2
 	db 90, AZUMARILL
 	db $ff
 
-	db "ELAN&Ida@"
+	db "ELAN&IDA@"
 	db 0 ; normal
 
 	db 90, AZUMARILL
 	db 90, PORYGON2
 	db $ff
 
-	db "ARA&Bella@"
+	db "ARA&BELLA@"
 	db 0 ; normal
 	db 91, STANTLER
 	db 91, TAUROS
 	db $ff
 
-	db "ARA&Bella@"
+	db "ARA&BELLA@"
 	db 0 ; normal
 	db 91, TAUROS
 	db 91, STANTLER
@@ -411,7 +411,7 @@ RivalRBGroup:
 
 BrockRBGroup:
 ; BROCK (1)
-	db "Brock@"
+	db "BROCK@"
 	db (1 << TRAINERTYPE_MOVES)
 
 	; party
@@ -431,7 +431,7 @@ BrockRBGroup:
 
 MistyRBGroup:
 	; MISTY (1)
-	db "Misty@"
+	db "MISTY@"
 	db (1 << TRAINERTYPE_MOVES)
 
 	; party

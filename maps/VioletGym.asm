@@ -10,7 +10,7 @@ FalknerScript_0x683c2: ; 0x683c2
 	faceplayer
 	loadfont
 	checkevent EVENT_FALKNER_REMATCH
-	iftrue UnknownScript_0x683ec
+	iftrue FalknerAfterRematch
 	checkevent EVENT_FIRST_TIME_RED
 	iftrue FalknerRematchScript
 	checkevent EVENT_BEAT_FALKNER
@@ -58,7 +58,12 @@ FalknerRematchScript:
 	returnafterbattle
 	setevent EVENT_FALKNER_REMATCH
 	loadfont
-	jump UnknownScript_0x683ec
+
+FalknerAfterRematch:
+	writetext FalknerAfterRematchText
+	waitbutton
+	closetext
+	end
 	
 
 UnknownScript_0x68412: ; 0x68412
@@ -213,11 +218,21 @@ FalknerRematchBeatenText:
 	text "<...>No! Not even"
 	line "the ultimate"
 	cont "bird #MON<...>"
+	done
 
-	para "<...> Sigh<...>"
+FalknerAfterRematchText:
+	text "A defeat is a"
+	line "defeat." 
+	
+	para "You are strong"
+	line "indeed."
+	
+	para "I'm going to train"
+	line "harder with my"
+	cont "#MON to become"
+	cont "the greatest Bird"
+	cont "Keeper of all!"
 
-	para "I must accept this"
-	line "defeat, I suppose<...>"
 	done
 	
 UnknownText_0x6854a: ; 0x6854a

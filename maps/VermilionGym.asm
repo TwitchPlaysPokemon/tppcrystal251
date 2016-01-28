@@ -24,6 +24,10 @@ VermilionGymDoorsScript:
 SurgeScript_0x1920a5: ; 0x1920a5
 	faceplayer
 	loadfont
+	checkevent EVENT_LTSURGE_REMATCH
+	iftrue SurgeAfterRematch
+	checkevent EVENT_FIRST_TIME_RED
+	iftrue SurgeRematchScript
 	checkflag ENGINE_THUNDERBADGE
 	iftrue UnknownScript_0x1920d9
 	writetext UnknownText_0x192142
@@ -216,6 +220,49 @@ UnknownScript_0x19213b: ; 0x19213b
 	trainertotext LT_SURGE, 1, $1
 	jumpstd gymstatue2
 ; 0x192142
+
+SurgeRematchScript:
+	writetext SurgeRematchTextBefore
+	waitbutton
+	closetext
+	winlosstext SurgeRematchBeatenText, $0000
+	loadtrainer LT_SURGE, 2
+	startbattle
+	returnafterbattle
+	setevent EVENT_LTSURGE_REMATCH
+	loadfont ;fallthrough
+
+SurgeAfterRematch:
+	writetext SurgeAfterRematchText
+	waitbutton
+	closetext
+	end
+
+SurgeRematchTextBefore:
+	text "What's up?"
+	line "I'm doing great!"
+	
+	para "Hey, you!"
+	line "Battle me again!"
+	cont "What do you say?"
+	
+	done
+
+SurgeRematchBeatenText:
+	text "Arrrgh!"
+	line "You are strong!"
+	done
+
+SurgeAfterRematchText:
+	text "You are very"
+	line "strong!" 
+	
+	para "I'll have to go"
+	line "back to camp and"
+	cont "brush up on my"
+	cont "training."
+
+	done
 
 Text_FoundSwitch:
 	text "A switch beneath"

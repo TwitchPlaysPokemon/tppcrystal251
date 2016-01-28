@@ -78,8 +78,8 @@ Mart1: ; 160f3
 
 Mart2: ; 160fa
 	db 10 ; # items
-	db POKE_BALL
-	db POTION
+	db GREAT_BALL
+	db SUPER_POTION
 	db ESCAPE_ROPE
 	db ANTIDOTE
 	db PARLYZ_HEAL

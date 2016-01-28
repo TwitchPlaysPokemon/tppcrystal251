@@ -183,17 +183,17 @@ UnknownText_0x6972d: ; 0x6972d
 	done
 ; 0x69791
 
-UnknownText_0x69791: ; 0x69791
-	text "I just battled a"
-	line "friend in CIANWOOD"
-	cont "over a link."
+;UnknownText_0x69791: ; 0x69791
+	;text "I just battled a"
+	;line "friend in CIANWOOD"
+	;cont "over a link."
 
-	para "If you connect a"
-	line "MOBILE ADAPTER,"
+	;para "If you connect a"
+	;line "MOBILE ADAPTER,"
 
-	para "you can link with"
-	line "a friend far away."
-	done
+	;para "you can link with"
+	;line "a friend far away."
+	;done
 ; 0x69809
 
 UnknownText_0x69809: ; 0x69809
