@@ -79,10 +79,10 @@ TN_PrintLV:
 	jp PlaceString
 	
 .metat
-	db "Met at Lv.   .@"
+	db "Met at Lv.@"
 	
 .egg
-	db "Hatched from EGG."
+	db "Hatched from EGG.@"
 
 TN_PrintCharacteristics:
 	ld hl, TempMonDVs
@@ -155,10 +155,35 @@ TN_PrintCharacteristics:
 	add hl, hl
 	add hl, bc
 	ld a, [hli]
-	ld e, a
-	ld d, [hl]
-	hlcoord 1, 15
-	jp PlaceString
+	ld h, [hl]
+	ld l, a
+	decoord 1, 15
+	push de
+.loop
+	ld a, [hli]
+	cp "@"
+	jr z, .done
+	cp $4e
+	jr z, .line
+	ld [de], a
+	inc de
+	jr .loop
+
+.line
+	pop de
+	push hl
+	ld hl, $0014
+	add hl, de
+	ld d, h
+	ld e, l
+	pop hl
+	push de
+	jr .loop
+
+.done
+	pop de
+	ret
+	
 
 Characteristics:
 	dw Chara_HP0, Chara_HP1, Chara_HP2, Chara_HP3, Chara_HP4
@@ -170,27 +195,35 @@ Characteristics:
 	
 ;              |                  ||
 Chara_HP0:  db "Loves to eat.@"
-Chara_HP1:  db "Takes plenty of     siestas.@"
+Chara_HP1:  db "Takes plenty of"
+	next "siestas.@"
 Chara_HP2:  db "Nods off a lot.@"
-Chara_HP3:  db "Scatters things     often.@"
+Chara_HP3:  db "Scatters things"
+	next "often.@"
 Chara_HP4:  db "Likes to relax.@"
 
-Chara_ATK0: db "Proud of its        power.@"
-Chara_ATK1: db "Likes to thrash     about.@"
-Chara_ATK2: db "A little quick      tempered.@"
+Chara_ATK0: db "Proud of its"
+	next "power.@"
+Chara_ATK1: db "Likes to thrash"
+	next "about.@"
+Chara_ATK2: db "A little quick"
+	next "tempered.@"
 Chara_ATK3: db "Likes to fight.@"
 Chara_ATK4: db "Quick tempered.@"
 
 Chara_DEF0: db "Sturdy body.@"
-Chara_DEF1: db "Capable of taking   hits.@"
+Chara_DEF1: db "Capable of taking"
+	next "hits.@"
 Chara_DEF2: db "Highly persistent.@"
 Chara_DEF3: db "Good endurance.@"
 Chara_DEF4: db "Good perseverance.@"
 
 Chara_SPA0: db "Highly curious.@"
 Chara_SPA1: db "Mischievous@"
-Chara_SPA2: db "Thoroughly          cunning.@"
-Chara_SPA3: db "Often lost in       thought.@"
+Chara_SPA2: db "Thoroughly"
+	next "cunning.@"
+Chara_SPA3: db "Often lost in"
+	next "thought.@"
 Chara_SPA4: db "Very finicky.@"
 
 Chara_SPD0: db "Strong willed.@"
@@ -201,6 +234,8 @@ Chara_SPD4: db "Somewhat stubborn.@"
 
 Chara_SPE0: db "Likes to run.@"
 Chara_SPE1: db "Alert to sounds.@"
-Chara_SPE2: db "Impetuous and       silly.@"
-Chara_SPE3: db "Somewhat of a       clown.@"
+Chara_SPE2: db "Impetuous and"
+	next "silly.@"
+Chara_SPE3: db "Somewhat of a"
+	next "clown.@"
 Chara_SPE4: db "Quick to flee.@"
