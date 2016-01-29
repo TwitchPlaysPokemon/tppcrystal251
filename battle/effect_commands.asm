@@ -4362,7 +4362,7 @@ TypeBoostItems: ; 35703
 	db HELD_DRAGON_BOOST,   DRAGON   ; Dragon Scale
 	db HELD_DARK_BOOST,     DARK     ; Blackglasses
 	db HELD_STEEL_BOOST,    STEEL    ; Metal Coat
-	db HELD_FAIRY_BOOST,	FAIRY	 ; Pink Bow
+	db HELD_FAIRY_BOOST,	FAIRY_T  ; Pink Bow
 	db $ff
 ; 35726
 
@@ -5782,6 +5782,7 @@ BattleCommand2f: ; 35f2c
 	call GetBattleVar
 	cp POISONPOWDER
 	call z, CheckForGrassType ;ret z if target is a grass type
+	ld hl, DoesntAffectText
 	jp z, .asm_35fb8
 
 	ld a, BATTLE_VARS_STATUS_OPP
