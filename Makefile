@@ -85,7 +85,7 @@ both: pokecrystal.gbc pokecrystal11.gbc
 %11.o: %.asm $$(%_dep)
 	rgbasm -D CRYSTAL11 -o $@ $<
 %.o: %.asm $$(%_dep)
-	rgbasm -D CRYSTAL -o $@ $<
+	rgbasm -o $@ $<
 
 pokecrystal11.gbc: $(crystal11_obj)
 	rgblink -n $*.sym -m $*.map -o $@ $^
