@@ -8149,7 +8149,7 @@ ExecutiveMGroup:
 
 ; ================
 
-	db "Executive@" ; 5
+	db "EXECUTIVE@" ; 5
 	db (1 << TRAINERTYPE_ITEM)
 	db 16, RATICATE, GOLD_BERRY
 	db $ff
