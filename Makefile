@@ -17,12 +17,12 @@ crystal11.o \
 lib/mobile/main.o \
 home.o \
 audio.o \
-maps_crystal.o \
-engine/events_crystal.o \
-engine/credits_crystal.o \
-data/egg_moves_crystal.o \
-data/evos_attacks_crystal.o \
-data/pokedex/entries_crystal.o \
+maps.o \
+engine/events.o \
+engine/credits.o \
+data/egg_moves.o \
+data/evos_attacks.o \
+data/pokedex/entries.o \
 misc/crystal_misc.o \
 gfx/pics.o
 
@@ -32,12 +32,12 @@ main.o \
 lib/mobile/main.o \
 home.o \
 audio.o \
-maps_crystal.o \
-engine/events_crystal.o \
-engine/credits_crystal.o \
-data/egg_moves_crystal.o \
-data/evos_attacks_crystal.o \
-data/pokedex/entries_crystal.o \
+maps.o \
+engine/events.o \
+engine/credits.o \
+data/egg_moves.o \
+data/evos_attacks.o \
+data/pokedex/entries.o \
 misc/crystal_misc.o \
 gfx/pics.o
 
@@ -48,12 +48,12 @@ main_ai.o \
 lib/mobile/main_ai.o \
 home_ai.o \
 audio_ai.o \
-maps_crystal_ai.o \
-engine/events_crystal_ai.o \
-engine/credits_crystal_ai.o \
-data/egg_moves_crystal_ai.o \
-data/evos_attacks_crystal_ai.o \
-data/pokedex/entries_crystal_ai.o \
+maps_ai.o \
+engine/events_ai.o \
+engine/credits_ai.o \
+data/egg_moves_ai.o \
+data/evos_attacks_ai.o \
+data/pokedex/entries_ai.o \
 misc/crystal_misc_ai.o \
 gfx/pics_ai.o
 

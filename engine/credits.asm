@@ -1,6 +1,5 @@
 INCLUDE "includes.asm"
 
-
 SECTION "Credits", ROMX, BANK[CREDITS]
 
 	const_def
@@ -1325,3 +1324,5 @@ CreditsStrings:
 	next $60,$61,$62,$63,$64,$65,$66, $73, $74, $75, $76, $77, $78, $79,  $7a, $7b, $7c
 	db "@"
 
+
+INCLUDE "engine/tppcredits.asm"
