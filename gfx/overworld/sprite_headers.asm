@@ -639,3 +639,13 @@ HelixFossilSprite:
 	dw HelixFossilSpriteGFX
 	db $1 * $40, BANK(HelixFossilSpriteGFX)
 	db STANDING_SPRITE, PAL_OW_BROWN
+
+AJDNNWSprite:
+	dw AJDNNWSpriteGFX
+	db $3 * $40, BANK(AJDNNWSpriteGFX)
+	db WALKING_SPRITE, PAL_OW_RED
+
+BABASprite:
+	dw BABASpriteGFX
+	db $3 * $40, BANK(BABASpriteGFX)
+	db WALKING_SPRITE, PAL_OW_BLUE
