@@ -1,2 +1,0 @@
-BEESAFREE EQU 1
-INCLUDE "wram.asm"
