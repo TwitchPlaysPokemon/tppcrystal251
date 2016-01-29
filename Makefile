@@ -3,7 +3,7 @@ MD5 := md5sum -c --quiet
 
 .SUFFIXES:
 .SUFFIXES: .asm .o .gbc .png .2bpp .1bpp .lz .pal .bin .blk .tilemap
-.PHONY: all clean crystal pngs crystal11 both
+.PHONY: all clean crystal pngs crystal11 both beesafree
 .SECONDEXPANSION:
 
 poketools := extras/pokemontools
@@ -17,12 +17,12 @@ crystal11.o \
 lib/mobile/main.o \
 home.o \
 audio.o \
-maps_crystal.o \
-engine/events_crystal.o \
-engine/credits_crystal.o \
-data/egg_moves_crystal.o \
-data/evos_attacks_crystal.o \
-data/pokedex/entries_crystal.o \
+maps.o \
+engine/events.o \
+engine/credits.o \
+data/egg_moves.o \
+data/evos_attacks.o \
+data/pokedex/entries.o \
 misc/crystal_misc.o \
 gfx/pics.o
 
@@ -32,36 +32,38 @@ main.o \
 lib/mobile/main.o \
 home.o \
 audio.o \
-maps_crystal.o \
-engine/events_crystal.o \
-engine/credits_crystal.o \
-data/egg_moves_crystal.o \
-data/evos_attacks_crystal.o \
-data/pokedex/entries_crystal.o \
+maps.o \
+engine/events.o \
+engine/credits.o \
+data/egg_moves.o \
+data/evos_attacks.o \
+data/pokedex/entries.o \
 misc/crystal_misc.o \
 gfx/pics.o
 
-beesafree_obj := \
+beesafree_obj := $(crystal_obj:.o=_ai.o)
+# \
 wram_ai.o \
 main_ai.o \
 lib/mobile/main_ai.o \
 home_ai.o \
 audio_ai.o \
-maps_crystal_ai.o \
-engine/events_crystal_ai.o \
-engine/credits_crystal_ai.o \
-data/egg_moves_crystal_ai.o \
-data/evos_attacks_crystal_ai.o \
-data/pokedex/entries_crystal_ai.o \
+maps_ai.o \
+engine/events_ai.o \
+engine/credits_ai.o \
+data/egg_moves_ai.o \
+data/evos_attacks_ai.o \
+data/pokedex/entries_ai.o \
 misc/crystal_misc_ai.o \
 gfx/pics_ai.o
 
 
-all_obj := $(crystal_obj) crystal11.o wram11.o $(beesafree_obj)
+all_obj := $(sort $(crystal_obj) $(crystal11_obj) $(beesafree_obj))
 
 # object dependencies
-$(foreach obj, $(all_obj), \
-	$(eval $(obj:.o=)_dep := $(shell $(includes) $(obj:.o=.asm))) \
+deps := $(crystal_obj:.o=.asm)
+$(foreach dep, $(deps), \
+	$(eval $(dep:.asm=)_dep := $(shell $(includes) $(dep))) \
 )
 
 
@@ -78,7 +80,11 @@ clean:
 both: pokecrystal.gbc pokecrystal11.gbc
 
 %.asm: ;
-$(all_obj): $$*.asm $$($$*_dep)
+%_ai.o: %.asm $$(%_dep)
+	rgbasm -D BEESAFREE -o $@ $<
+%11.o: %.asm $$(%_dep)
+	rgbasm -D CRYSTAL11 -o $@ $<
+%.o: %.asm $$(%_dep)
 	rgbasm -o $@ $<
 
 pokecrystal11.gbc: $(crystal11_obj)
