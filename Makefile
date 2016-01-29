@@ -63,7 +63,7 @@ all_obj := $(sort $(crystal_obj) $(crystal11_obj) $(beesafree_obj))
 # object dependencies
 deps := $(crystal_obj:.o=.asm)
 $(foreach dep, $(deps), \
-	$(eval $(dep)_dep := $(shell $(includes) $(dep))) \
+	$(eval $(dep:.asm=)_dep := $(shell $(includes) $(dep))) \
 )
 
 
