@@ -86,6 +86,9 @@ both: pokecrystal.gbc pokecrystal11.gbc
 	rgbasm -D CRYSTAL11 -o $@ $<
 %.o: %.asm $$(%_dep)
 	rgbasm -o $@ $<
+# I don't know why this works. Without it, lib/mobile/main.o will not find a rule.
+lib/%.o: lib/%.asm $$(lib/%_dep)
+	rgbasm -o $@ $<
 
 pokecrystal11.gbc: $(crystal11_obj)
 	rgblink -n $*.sym -m $*.map -o $@ $^
