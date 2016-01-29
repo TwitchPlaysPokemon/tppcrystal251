@@ -191,7 +191,8 @@ GetBattleVarAddr:: ; 39e7
 	dw .substatus1opp, .substatus2opp, .substatus3opp, .substatus4opp, .substatus5opp
 	dw .status, .statusopp, .animation, .effect, .power, .type
 	dw .curmove, .lastcounter, .lastcounteropp, .lastmove, .lastmoveopp
-	dw .type1 , .type2, .type1opp , .type2opp;, .screens, .screensopp
+	dw .type1 , .type2, .type1opp , .type2opp
+	;, .screens, .screensopp
 
 	const_def
 	const PLAYER_SUBSTATUS_1
@@ -254,7 +255,7 @@ GetBattleVarAddr:: ; 39e7
 .type2			db PLAYER_TYPE_2,		  ENEMY_TYPE_2
 .type2opp		db ENEMY_TYPE_2,		  PLAYER_TYPE_2
 ;.screens		db PLAYER_SCREENS,		  ENEMY_SCREENS
-;.screensopp		db ENEMY_SCREENS,		  PLAYER_SCREENS
+;.screensopp	db ENEMY_SCREENS,		  PLAYER_SCREENS
 
 
 .vars
@@ -304,7 +305,7 @@ Function3a90:: ; 3a90
 ; 3ab2
 
 
-MobileTextBorder:: ; 3ab2
+;MobileTextBorder:: ; 3ab2
 
 CELL_PHONE_TOP    EQU $5e
 CELL_PHONE_BOTTOM EQU $5f
@@ -312,8 +313,9 @@ CELL_PHONE_BOTTOM EQU $5f
 	; For mobile link battles only.
 	;ld a, [wLinkMode]
 	;cp 4
-	scf
-	ret c
+
+	;scf
+	;ret c
 
 	; Draw a cell phone icon at the
 	; top right corner of the border.
@@ -329,7 +331,7 @@ BattleTextBox:: ; 3ac3
 ; Open a textbox and print text at hl.
 	push hl
 	call SpeechTextBox
-	call MobileTextBorder
+	;call MobileTextBorder
 	call Function1ad2
 	call Function321c
 	pop hl

@@ -2719,7 +2719,7 @@ BattleCommand90: ; 34ecc
 	xor a
 	ld [EffectFailed], a
 
-	ld a, BATTLE_VARS_LAST_MOVE
+	ld a, BATTLE_VARS_MOVE
 	call GetBattleVar
 	cp BUG_BUZZ
 	jr z, .IgnoreSub
@@ -5638,7 +5638,7 @@ BattleCommand14: ; 35e5c
 	ld hl, AlreadyAsleepText
 	jr nz, .asm_35ec6
 
-	ld a, BATTLE_VARS_LAST_MOVE
+	ld a, BATTLE_VARS_MOVE
 	call GetBattleVar
 	cp SLEEP_POWDER
 	call z, CheckForGrassType ;ret z if target is a grass type
@@ -5659,7 +5659,7 @@ BattleCommand14: ; 35e5c
 	and a
 	jr nz, .asm_35ec6
 
-	ld a, BATTLE_VARS_LAST_MOVE
+	ld a, BATTLE_VARS_MOVE
 	call GetBattleVar
 	cp SING
 	jr z, .IgnoreSub
@@ -5778,7 +5778,7 @@ BattleCommand2f: ; 35f2c
 	call Function35fe1
 	jp z, .asm_35fb8
 
-	ld a, BATTLE_VARS_LAST_MOVE
+	ld a, BATTLE_VARS_MOVE
 	call GetBattleVar
 	cp POISONPOWDER
 	call z, CheckForGrassType ;ret z if target is a grass type
@@ -6621,13 +6621,13 @@ BattleCommand1d: ; 362e3
 
 .DidntMiss
 
-	ld a, BATTLE_VARS_LAST_MOVE
+	ld a, BATTLE_VARS_MOVE
 	call GetBattleVar
 	cp COTTON_SPORE
 	call z, CheckForGrassType ;ret z if target is a grass type
 	jp z, .Failed
 
-	ld a, BATTLE_VARS_LAST_MOVE
+	ld a, BATTLE_VARS_MOVE
 	call GetBattleVar
 	cp GROWL
 	jr z, .IgnoreSub
@@ -8411,7 +8411,7 @@ BattleCommand2a: ; 36d3b
 	jp StdBattleTextBox
 
 .asm_36d65
-	ld a, BATTLE_VARS_LAST_MOVE
+	ld a, BATTLE_VARS_MOVE
 	call GetBattleVar
 	cp SUPERSONIC
 	jr z, .IgnoreSub
@@ -8511,7 +8511,7 @@ BattleCommand30: ; 36dc7
 	cp ELECTRIC
 	jr z, .asm_36e55
 
-	ld a, BATTLE_VARS_LAST_MOVE
+	ld a, BATTLE_VARS_MOVE
 	call GetBattleVar
 	cp STUN_SPORE
 	call z, CheckForGrassType ;ret z if target is a grass type

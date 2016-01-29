@@ -900,13 +900,13 @@ CompareMovePriority: ; 3c5b4
 ; 3c5c5
 
 GetMovePriority: ; 3c5c5
-; Return the priority (0-4) of move a.
+; Return the priority (0-6) of move a.
 
 	ld b, a
 
-	; Vital throw goes last.
+	; Vital throw goes at -1
 	cp VITAL_THROW
-	ld a, 0
+	ld a, 1
 	ret z
 
 	call GetMoveEffect
@@ -919,7 +919,7 @@ GetMovePriority: ; 3c5c5
 	cp -1
 	jr nz, .loop
 
-	ld a, 1
+	ld a, 2
 	ret
 
 .done
@@ -928,10 +928,11 @@ GetMovePriority: ; 3c5c5
 ; 3c5df
 
 MoveEffectPriorities: ; 3c5df
-	db EFFECT_PROTECT,      4
-	db EFFECT_ENDURE,       4
-	db EFFECT_EXTREMESPEED, 3
-	db EFFECT_PRIORITY_HIT, 2
+	db EFFECT_PROTECT,      6
+	db EFFECT_ENDURE,       5
+	db EFFECT_EXTREMESPEED, 4
+	db EFFECT_PRIORITY_HIT, 3
+	db EFFECT_BIDE,			3
 	db EFFECT_WHIRLWIND,    0
 	db EFFECT_COUNTER,      0
 	db EFFECT_MIRROR_COAT,  0
@@ -5948,7 +5949,7 @@ MoveInfoBox: ; 3e6c8
 	ld b, 3
 	ld c, 9
 	call TextBox
-	call MobileTextBorder
+	;call MobileTextBorder
 
 	ld a, [PlayerDisableCount]
 	and a
@@ -9381,7 +9382,7 @@ Function3fb6c: ; 3fb6c
 	ld b, $4
 	ld c, $12
 	call TextBox
-	callba MobileTextBorder
+	;callba MobileTextBorder
 	hlcoord 1, 5
 	ld bc, $0307
 	call ClearBox

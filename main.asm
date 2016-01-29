@@ -24152,7 +24152,7 @@ Function24022:: ; 24022
 	ld a, [wcf94]
 	rst FarCall
 	call Function24085
-	callba MobileTextBorder
+	;callba MobileTextBorder
 	call Function1ad2
 	call Function321c
 	call Function2408f
@@ -24164,7 +24164,7 @@ Function2403c:: ; 2403c
 	ld a, [wcf94]
 	rst FarCall
 	call Function24085
-	callba MobileTextBorder
+	;callba MobileTextBorder
 	call Function1ad2
 	call Function321c
 	call Function2411a
@@ -47122,7 +47122,7 @@ Function4ea0a: ; 4ea0a
 	ld a, c
 	push af
 	call SpeechTextBox
-	call MobileTextBorder
+	;call MobileTextBorder
 	pop af
 	dec a
 	ld bc, $000c
