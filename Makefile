@@ -3,7 +3,7 @@ MD5 := md5sum -c --quiet
 
 .SUFFIXES:
 .SUFFIXES: .asm .o .gbc .png .2bpp .1bpp .lz .pal .bin .blk .tilemap
-.PHONY: all clean crystal pngs crystal11 both
+.PHONY: all clean crystal pngs crystal11 both beesafree
 .SECONDEXPANSION:
 
 poketools := extras/pokemontools
@@ -41,7 +41,8 @@ data/pokedex/entries_crystal.o \
 misc/crystal_misc.o \
 gfx/pics.o
 
-beesafree_obj := \
+beesafree_obj := $(crystal_obj:.o=_ai.o)
+# \
 wram_ai.o \
 main_ai.o \
 lib/mobile/main_ai.o \
@@ -57,11 +58,12 @@ misc/crystal_misc_ai.o \
 gfx/pics_ai.o
 
 
-all_obj := $(crystal_obj) crystal11.o wram11.o $(beesafree_obj)
+all_obj := $(sort $(crystal_obj) $(crystal11_obj) $(beesafree_obj))
 
 # object dependencies
-$(foreach obj, $(all_obj), \
-	$(eval $(obj:.o=)_dep := $(shell $(includes) $(obj:.o=.asm))) \
+deps := $(crystal_obj:.o=.asm)
+$(foreach dep, $(deps), \
+	$(eval $(dep)_dep := $(shell $(includes) $(dep))) \
 )
 
 
@@ -78,8 +80,12 @@ clean:
 both: pokecrystal.gbc pokecrystal11.gbc
 
 %.asm: ;
-$(all_obj): $$*.asm $$($$*_dep)
-	rgbasm -o $@ $<
+%_ai.o: %.asm $$(%_dep)
+	rgbasm -D BEESAFREE -o $@ $<
+%11.o: %.asm $$(%_dep)
+	rgbasm -D CRYSTAL11 -o $@ $<
+%.o: %.asm $$(%_dep)
+	rgbasm -D CRYSTAL -o $@ $<
 
 pokecrystal11.gbc: $(crystal11_obj)
 	rgblink -n $*.sym -m $*.map -o $@ $^
