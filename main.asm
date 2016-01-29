@@ -70826,6 +70826,7 @@ Unknown_916ad: ; 916ad
 	dbw 32, Function916e0
 	dbw 40, Function916e8
 	dbw 52, Function916f0
+	dbw 58, TuneQuizShow
 	dbw 64, Function916fa
 	dbw 72, Function91709
 	dbw 78, Function91718
@@ -70835,7 +70836,7 @@ Unknown_916ad: ; 916ad
 
 Function916c9: ; 916c9
 	call Function91744
-	jr nc, Function91740
+	jp nc, Function91740
 	ld a, [TimeOfDay]
 	and a
 	jp z, Function91766
@@ -70902,6 +70903,14 @@ Function91727: ; 91727
 	jr nz, Function91740
 .ok
 	jp Function9183e
+
+TuneQuizShow:
+	call Function91744
+	jr c, Function91740
+	ld a, [wd957]
+	bit 3, a ; EXPN CARD
+	jr z, Function91740
+	jp LoadStation_WhosThatPokemon
 
 Function91740: ; 91740
 	call NoRadioStation

@@ -199,3 +199,4 @@
 	dwb DailyFlags + 2, %00010000 ; daily egg
 	dwb DailyFlags + 2, %00100000 ; daily fossil
 	dwb StatusFlags, %00100000 ; Early Game Kanto
+	dwb wMilitaryFlags, %00000001 ; Military Mode

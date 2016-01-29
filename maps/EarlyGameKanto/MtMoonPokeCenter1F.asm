@@ -14,52 +14,44 @@ FisherScript1_MtMoonPokeCenter1FRB:
 	faceplayer
 	loadfont
 	checkevent EVENT_BOUGHT_MAGIKARP_FROM_SALESMAN
-	iftrue FisherScript2_MtMoonPokeCenter1FRB
+	iftrue .already_bought_karp
 	writetext FisherText1_MtMoonPokeCenter1FRB
 	yesorno
-	iffalse FisherScript3_MtMoonPokeCenter1FRB
+	iffalse .Refused
+	checkmoney $0, 500
+	if_equal 2, .NotEnoughMoney
 	checkcode VAR_PARTYCOUNT
-	if_equal $6, FisherScript4_MtMoonPokeCenter1FRB
+	if_not_equal $6, .give_karp
+	checkcode VAR_BOXSPACE 
+	if_equal $0, .BoxAndPartyAreFull
+.give_karp
+	takemoney $0, 500
+	playsound SFX_TRANSACTION
+	waitsfx
+	setevent EVENT_BOUGHT_MAGIKARP_FROM_SALESMAN
 	writetext FisherText2_MtMoonPokeCenter1FRB
 	playsound SFX_CAUGHT_MON
 	waitsfx
 	givepoke MAGIKARP, 5, 0, 0
-	takemoney $0, 500
-	if_equal 2, FisherScript_NotEnoughMoney_MtMoonPokeCenter1FRB
-	playsound SFX_TRANSACTION
-	setevent EVENT_BOUGHT_MAGIKARP_FROM_SALESMAN
-FisherScript2_MtMoonPokeCenter1FRB:
+.already_bought_karp
 	writetext FisherText3_MtMoonPokeCenter1FRB
 	waitbutton
 	closetext
 	end
 
-FisherScript3_MtMoonPokeCenter1FRB:
+.Refused
 	writetext FisherText4_MtMoonPokeCenter1FRB
 	waitbutton
 	closetext
 	end
 
-FisherScript4_MtMoonPokeCenter1FRB:
+.BoxAndPartyAreFull
 	writetext FisherText5_MtMoonPokeCenter1FRB
 	waitbutton
 	closetext
 	end
 
-FisherScript5_MtMoonPokeCenter1FRB: ;send to pc check
-	checkcode VAR_BOXSPACE 
-	if_equal $0, FisherScript4_MtMoonPokeCenter1FRB
-	writetext FisherText6_MtMoonPokeCenter1FRB
-	playsound SFX_CAUGHT_MON
-	waitsfx
-	givepoke MAGIKARP, 5, 0, 0
-	takemoney $0, 500
-	if_equal 2, FisherScript_NotEnoughMoney_MtMoonPokeCenter1FRB
-	playsound SFX_TRANSACTION
-	setevent EVENT_BOUGHT_MAGIKARP_FROM_SALESMAN
-	jump FisherScript2_MtMoonPokeCenter1FRB
-
-FisherScript_NotEnoughMoney_MtMoonPokeCenter1FRB:
+.NotEnoughMoney
 	writetext FisherText7_MtMoonPokeCenter1FRB
 	waitbutton
 	closetext
