@@ -4331,26 +4331,27 @@ SpikesDamage: ; 3dc23
 
 	ld a, [hl]
 	and $3
-	ld [wc689], a
+	ld [wc689], a ;store spikes into ??
 
-	push bc
+	push bc ;push correct hud update
 
 	ld hl, BattleText_0x80bae ; "hurt by SPIKES!"
 	call StdBattleTextBox
 
-	call GetEighthMaxHP
-	ld b, 0
-	ld hl, 0
+	call GetEighthMaxHP ;put 1/8th of max HP in bc
+	ld b, 0 ;clear numbers over 255
+	ld hl, 0 ;clear hl to hold result
 	ld a, [wc689]
 .loop
 	dec a
 	jr z, .done
 	add hl, bc
-	jr .loop
+	jr .loop 
 .done
 	ld b, h
 	ld c, l
 
+.DoneSpikes
 	call Function3cc39
 
 	pop hl
@@ -4361,6 +4362,14 @@ SpikesDamage: ; 3dc23
 .hl
 	jp [hl]
 ; 3dc5b
+
+;SpikesDamageJumptable:
+;	dw NoSpikes
+;	dw 1LayerSpikes
+;	dw 2LayerSpikes
+;	dw 3LayerSpikes
+
+
 
 Function3dc5b: ; 3dc5b
 	ld a, BATTLE_VARS_MOVE
