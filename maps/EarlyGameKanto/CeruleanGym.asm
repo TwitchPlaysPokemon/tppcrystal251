@@ -152,7 +152,7 @@ CeruleanGymRB_MistyCongratsText:
 	done
 
 CeruleanGymRB_TMText:
-	text "TM11 teaches"
+	text "TM18 teaches"
 	line "RAIN DANCE!"
 
 	para "Use it on an"
