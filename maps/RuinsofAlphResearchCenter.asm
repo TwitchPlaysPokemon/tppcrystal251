@@ -196,6 +196,88 @@ MapRuinsofAlphResearchCenterSignpost0Script: ; 0x5926c
 	jumptext UnknownText_0x59886
 ; 0x5926f
 
+FossilRevivalGuyScript:
+	faceplayer
+	loadfont
+	checkevent EVENT_000_STD
+	iftrue .PleaseWait
+	checkevent EVENT_LEFT_FOSSIL_TO_BE_REVIVED
+	iftrue .give_fossil
+	writetext Text_IntroFossilGuy
+	buttonsound
+	waitsfx
+	special FossilMenu
+	iffalse .nope
+	if_equal 1, .helix
+	if_equal 2, .dome
+	if_equal 3, .amber
+.nope
+	writetext Text_ComeBackWithAFossil
+	waitbutton
+	closetext
+	end
+.helix
+	setevent EVENT_LEFT_HELIX_TO_BE_REVIVED
+	takeitem HELIX_FOSSIL, 1
+	jump .takeawalk
+.dome
+	setevent EVENT_LEFT_DOME_TO_BE_REVIVED
+	takeitem DOME_FOSSIL, 1
+	jump .takeawalk
+.amber
+	setevent EVENT_LEFT_AMBER_TO_BE_REVIVED
+	takeitem OLD_AMBER, 1
+.takeawalk
+	setevent EVENT_LEFT_FOSSIL_TO_BE_REVIVED
+	setevent EVENT_000_STD
+	writetext Text_TakeAWalk
+	waitbutton
+	closetext
+	end
+
+.give_fossil
+	writetext Text_WhereHaveYouBeen
+	buttonsound
+	waitsfx
+	checkevent EVENT_LEFT_HELIX_TO_BE_REVIVED
+	iftrue .omanyte
+	checkevent EVENT_LEFT_DOME_TO_BE_REVIVED
+	iftrue .kabuto
+	; aerodactyl
+	pokenamemem AERODACTYL, 0
+	writetext Text_ReceiveRevivedPokemon
+	playsound SFX_CAUGHT_MON
+	waitsfx
+	givepoke AERODACTYL, 20
+	jump .finish
+.omanyte
+	pokenamemem OMANYTE, 0
+	writetext Text_ReceiveRevivedPokemon
+	playsound SFX_CAUGHT_MON
+	waitsfx
+	givepoke OMANYTE, 20
+	jump .finish
+.kabuto
+	pokenamemem KABUTO, 0
+	writetext Text_ReceiveRevivedPokemon
+	playsound SFX_CAUGHT_MON
+	waitsfx
+	givepoke KABUTO, 20
+.finish
+	clearevent EVENT_LEFT_DOME_TO_BE_REVIVED
+	clearevent EVENT_LEFT_HELIX_TO_BE_REVIVED
+	clearevent EVENT_LEFT_AMBER_TO_BE_REVIVED
+	clearevent EVENT_LEFT_FOSSIL_TO_BE_REVIVED
+	writetext Text_ComeBackAgain
+	waitbutton
+	closetext
+	end
+.PleaseWait
+	writetext Text_StillBusy
+	waitbutton
+	closetext
+	end
+
 MovementData_0x5926f: ; 0x5926f
 	step_up
 	step_up
@@ -435,6 +517,78 @@ UnknownText_0x59886: ; 0x59886
 	done
 ; 0x598d0
 
+Text_IntroFossilGuy:
+	text "Hello, I am a very"
+	line "important resear-"
+	cont "cher."
+
+	para "I've developed a"
+	line "technology that"
+
+	para "revives #MON"
+	line "from FOSSILs!"
+	done
+
+Text_TakeAWalk:
+	text "It'll take me some"
+	line "time to revive"
+	cont "this."
+
+	para "Why don't you go"
+	line "take a walk?"
+
+	para "It should be done"
+	line "by the time you"
+	cont "get back."
+	done
+
+Text_WhereHaveYouBeen:
+	text "There you are!"
+	line "Where have you"
+	cont "been?"
+
+	para "The experiment was"
+	line "a success!"
+	done
+
+Text_ReceiveRevivedPokemon:
+	text "We resurrected the"
+	line "ancient #MON,"
+	cont "@"
+	TX_RAM StringBuffer3
+	text "!"
+
+	para "<PLAYER> received"
+	line "@"
+	TX_RAM StringBuffer3
+	text "!"
+	done
+
+Text_StillBusy:
+	text "Don't bother me!"
+	line "I'm busy with the"
+
+	para "FOSSIL you gave"
+	line "me!"
+	done
+
+Text_ComeBackAgain:
+	text "I did a good job,"
+	line "didn't I?"
+
+	para "Come back again if"
+	line "you find another"
+	cont "FOSSIL."
+	done
+
+Text_ComeBackWithAFossil:
+	text "If you find a"
+	line "fossil, bring it"
+
+	para "here, and I'll"
+	line "revive it for you."
+	done
+
 RuinsofAlphResearchCenter_MapEventHeader: ; 0x598d0
 	; filler
 	db 0, 0
@@ -454,9 +608,10 @@ RuinsofAlphResearchCenter_MapEventHeader: ; 0x598d0
 	signpost 1, 7, $0, MapRuinsofAlphResearchCenterSignpost2Script
 
 	; people-events
-	db 3
+	db 4
 	person_event SPRITE_SCIENTIST, 9, 8, $7, 0, 0, -1, -1, 8 + PAL_OW_BLUE, 0, 0, ScientistScript_0x591e5, -1
 	person_event SPRITE_SCIENTIST, 6, 9, $2, 1, 2, -1, -1, 8 + PAL_OW_BLUE, 0, 0, ScientistScript_0x59214, -1
 	person_event SPRITE_SCIENTIST, 9, 6, $7, 0, 0, -1, -1, 8 + PAL_OW_BLUE, 0, 0, ScientistScript_0x591d1, EVENT_SCIENTIST_IN_RUINS_OF_ALPH_RESEARCH_CENTER
+	person_event SPRITE_SCIENTIST, 6, 4, $3, 0, 0, -1, -1, 8 + PAL_OW_BLUE, 0, 0, FossilRevivalGuyScript, -1
 ; 0x59916
 

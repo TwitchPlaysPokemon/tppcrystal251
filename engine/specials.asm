@@ -193,6 +193,7 @@ SpecialsPointers:: ; c029
 	add_special Function114fc
 	add_special DecrementSSAnneTimer
 	add_special _CheckAlivePartyMon
+	add_special FossilMenu
 	add_special SpecialNone
 ; c224
 
@@ -668,4 +669,3 @@ _CheckAlivePartyMon:
 	ld a, 1
 	ld [ScriptVar], a
 	ret
-

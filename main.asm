@@ -67720,6 +67720,9 @@ INCLUDE "menu/mon_icons.asm"
 
 INCLUDE "engine/voltorb_flip.asm"
 
+SECTION "Revive Fossils", ROMX
+INCLUDE "engine/fossilmenu.asm"
+
 SECTION "bank24", ROMX, BANK[$24]
 
 Function90000:: ; 90000
