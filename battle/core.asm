@@ -4329,29 +4329,22 @@ SpikesDamage: ; 3dc23
 	cp FLYING
 	ret z
 
-	ld a, [hl]
-	and $3
-	ld [wc689], a ;store spikes into ??
-
 	push bc ;push correct hud update
 
 	ld hl, BattleText_0x80bae ; "hurt by SPIKES!"
 	call StdBattleTextBox
 
-	call GetEighthMaxHP ;put 1/8th of max HP in bc
-	ld b, 0 ;clear numbers over 255
-	ld hl, 0 ;clear hl to hold result
-	ld a, [wc689]
-.loop
-	dec a
-	jr z, .done
-	add hl, bc
-	jr .loop 
-.done
-	ld b, h
-	ld c, l
+	ld a, [hl]
+	and $3
 
-.DoneSpikes
+	ld hl, SpikesDamageJumptable
+	dec a
+	ld c,a 
+	add hl, bc
+	add hl, bc
+	jp [hl]	
+
+DoneSpikes:
 	call Function3cc39
 
 	pop hl
@@ -4363,13 +4356,37 @@ SpikesDamage: ; 3dc23
 	jp [hl]
 ; 3dc5b
 
-;SpikesDamageJumptable:
-;	dw NoSpikes
-;	dw 1LayerSpikes
-;	dw 2LayerSpikes
-;	dw 3LayerSpikes
+SpikesDamageJumptable:
+	dw OneLayerSpikes
+	dw TwoLayerSpikes
+	dw ThreeLayerSpikes
 
+OneLayerSpikes:
+	call GetEighthMaxHP
+	jr DoneSpikes
 
+TwoLayerSpikes:
+	call GetMaxHP
+	ld a, b
+	ld [hDividend], a
+	ld a, c
+	ld [hDividend + 1], a
+	ld a, 6
+	ld [hDivisor], a
+	ld b, 2
+	call Divide
+	ld a, [hQuotient + 2]
+	ld c, a
+	ld a, [hQuotient + 1]
+	ld b, a
+	or c
+	jr z, DoneSpikes
+	inc c
+	jr DoneSpikes
+
+ThreeLayerSpikes:
+	call GetQuarterMaxHP
+	jr DoneSpikes
 
 Function3dc5b: ; 3dc5b
 	ld a, BATTLE_VARS_MOVE
