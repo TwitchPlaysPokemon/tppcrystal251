@@ -64,8 +64,8 @@ MapPewterCitySignpostDoor1Script: ; 0x18c02f
 	closetext
 	checkevent EVENT_BEAT_SIMON_6
 	iftrue MapPewterCitySignpost2EndScript
-	disappear $7
-	moveperson $7, $12, $6
+	; disappear $7
+	; moveperson $7, $12, $6
 	appear $7
 	playsound SFX_EXIT_BUILDING
 	pause 20
@@ -100,6 +100,7 @@ MapPewterCitySignpostDoor1Script: ; 0x18c02f
 	spriteface $0, $2
 	applymovement $7, MapPewterCityMovementData5
 	disappear $7
+	setevent EVENT_BEAT_SIMON_6
 	special DeleteSavedMusic
 	playmapmusic
 MapPewterCitySignpost2EndScript:
@@ -329,6 +330,6 @@ PewterCity_MapEventHeader: ; 0x18c2f5
 	person_event SPRITE_GRAMPS, 21, 33, $5, 0, 2, -1, -1, 8 + PAL_OW_BLUE, 0, 0, GrampsScript_0x18c00f, -1
 	person_event SPRITE_FRUIT_TREE, 7, 36, $1, 0, 0, -1, -1, 0, 0, 0, FruitTreeScript_0x18c03e, -1
 	person_event SPRITE_FRUIT_TREE, 7, 34, $1, 0, 0, -1, -1, 0, 0, 0, FruitTreeScript_0x18c040, -1
-	person_event SPRITE_PHARMACIST, 0, 0, $0, 0, 0, -1, -1, 8 + PAL_OW_GREEN, 0, 0, ObjectEvent, EVENT_BEAT_SIMON_6
+	person_event SPRITE_PHARMACIST, 9, 23, $0, 0, 0, -1, -1, 8 + PAL_OW_GREEN, 0, 0, ObjectEvent, EVENT_SIMON_IN_PEWTER_CITY
 ; 0x18c378
 

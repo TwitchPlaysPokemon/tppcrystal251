@@ -910,6 +910,7 @@ InitializeEventsScript: ; 0xbc3db
 	setevent EVENT_SS_ANNE_SIMON
 	setevent EVENT_S_S_ANNE_7_ROCKETS
 	setevent EVENT_S_S_ANNE_NOT_YET_DEPARTED
+	setevent EVENT_SIMON_IN_PEWTER_CITY
 	return
 ; 0xbc574
 
