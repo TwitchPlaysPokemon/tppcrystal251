@@ -42,21 +42,6 @@ misc/crystal_misc.o \
 gfx/pics.o
 
 beesafree_obj := $(crystal_obj:.o=_ai.o)
-# \
-wram_ai.o \
-main_ai.o \
-lib/mobile/main_ai.o \
-home_ai.o \
-audio_ai.o \
-maps_ai.o \
-engine/events_ai.o \
-engine/credits_ai.o \
-data/egg_moves_ai.o \
-data/evos_attacks_ai.o \
-data/pokedex/entries_ai.o \
-misc/crystal_misc_ai.o \
-gfx/pics_ai.o
-
 
 all_obj := $(sort $(crystal_obj) $(crystal11_obj) $(beesafree_obj))
 
@@ -67,7 +52,7 @@ $(foreach dep, $(deps), \
 )
 
 
-roms := pokecrystal.gbc
+roms := pokecrystal.gbc pokecrystal11.gbc pokecrystal_ai.gbc
 
 all: $(roms)
 crystal: pokecrystal.gbc
@@ -76,8 +61,6 @@ beesafree: pokecrystal_ai.gbc
 
 clean:
 	rm -f $(roms) $(all_obj) $(roms:.gbc=.map) $(roms:.gbc=.sym)
-
-both: pokecrystal.gbc pokecrystal11.gbc
 
 %.asm: ;
 %_ai.o: %.asm $$(%_dep)
@@ -88,6 +71,10 @@ both: pokecrystal.gbc pokecrystal11.gbc
 	rgbasm -o $@ $<
 # I don't know why this works. Without it, lib/mobile/main.o will not find a rule.
 lib/%.o: lib/%.asm $$(lib/%_dep)
+	rgbasm -o $@ $<
+
+
+lib/%_ai.o: lib/%.asm $$(lib/%_dep)
 	rgbasm -o $@ $<
 
 pokecrystal11.gbc: $(crystal11_obj)
