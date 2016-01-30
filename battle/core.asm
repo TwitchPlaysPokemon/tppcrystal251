@@ -4314,9 +4314,9 @@ SpikesDamage: ; 3dc23
 	ld hl, EnemyScreens
 	ld de, EnemyMonType
 	ld bc, UpdateEnemyHUD
-.ok
+.ok ;choose correct side
 
-	ld a, [hl]
+	ld a, [hl] ;if no spikes, ret
 	and $3
 	ret z
 
