@@ -8810,10 +8810,14 @@ BattleCommand33: ; 36f46
 	cp MIMIC
 	jr nz, .asm_36f79 ;loop back to find mimic's slot
 	inc hl
+
 	ld a, BATTLE_VARS_LAST_COUNTER_MOVE_OPP
 	call GetBattleVar
-
+	ld [hl], a
+	ld [wd265], a
+	push af
 	push hl
+	dec a
 	ld hl, Moves + MOVE_PP ;(move pp)
 	ld bc, MOVE_LENGTH
 	call AddNTimes ;go down to move in database, over PP
@@ -8821,11 +8825,14 @@ BattleCommand33: ; 36f46
 	call GetFarByte ;get total PP
 	ld b, a
 	pop hl
+	pop af
 	push bc
 
 	ld bc, BattleMonPP - BattleMonMoves
 	add hl, bc
+
 	pop bc
+
 	ld [hl], b ;load in pp
 	call GetMoveName
 	call AnimateCurrentMove
