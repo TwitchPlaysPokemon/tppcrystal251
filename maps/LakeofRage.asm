@@ -87,7 +87,7 @@ GyaradosScript_0x70063: ; 0x70063
 	pause 15
 	cry GYARADOS
 	closetext
-	loadpokedata GYARADOS, 55
+	loadpokedata GYARADOS, 40
 	writecode VAR_BATTLETYPE, BATTLETYPE_SHINY
 	startbattle
 	if_equal $1, UnknownScript_0x7007a

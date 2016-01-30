@@ -8781,42 +8781,52 @@ BattleCommand33: ; 36f46
 	call BattleCommandaa
 	ld a, [AttackMissed]
 	and a
-	jr nz, .asm_36f9a
+	jr nz, .asm_36f9a ;if missed, fail
 	ld hl, BattleMonMoves
 	ld a, [hBattleTurn]
 	and a
 	jr z, .asm_36f5d
-	ld hl, EnemyMonMoves
+	ld hl, EnemyMonMoves ;load correct moves in
 .asm_36f5d
 	call CheckHiddenOpponent
-	jr nz, .asm_36f9a
+	jr nz, .asm_36f9a ;if hidden, fail
 	ld a, BATTLE_VARS_LAST_COUNTER_MOVE_OPP
 	call GetBattleVar
 	and a
 	jr z, .asm_36f9a
 	cp STRUGGLE
-	jr z, .asm_36f9a
-	ld b, a
+	jr z, .asm_36f9a ;if no last move or is struggle, fail
+	ld b, a ;store in b
 	ld c, NUM_MOVES
 .asm_36f71
 	ld a, [hli]
 	cp b
-	jr z, .asm_36f9a
+	jr z, .asm_36f9a ;if already known, fail
 	dec c
-	jr nz, .asm_36f71
+	jr nz, .asm_36f71 ;loop 4 times
 	dec hl
 .asm_36f79
 	ld a, [hld]
 	cp MIMIC
-	jr nz, .asm_36f79
+	jr nz, .asm_36f79 ;loop back to find mimic's slot
 	inc hl
 	ld a, BATTLE_VARS_LAST_COUNTER_MOVE_OPP
 	call GetBattleVar
-	ld [hl], a
-	ld [wd265], a
+
+	push hl
+	ld hl, Moves + MOVE_PP ;(move pp)
+	ld bc, MOVE_LENGTH
+	call AddNTimes ;go down to move in database, over PP
+	ld a, BANK(Moves)
+	call GetFarByte ;get total PP
+	ld b, a
+	pop hl
+	push bc
+
 	ld bc, BattleMonPP - BattleMonMoves
 	add hl, bc
-	ld [hl], 5
+	pop bc
+	ld [hl], b ;load in pp
 	call GetMoveName
 	call AnimateCurrentMove
 	ld hl, LearnedMoveText
