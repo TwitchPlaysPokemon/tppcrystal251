@@ -27229,13 +27229,10 @@ Function2536c: ; 2536c (9:536c)
 	ld [wcf64], a
 	ld a, [wcf63]
 	cp $5
-	jr c, .Kanto
-	ld hl, Unknown_254c9
-	jr .okay
-
-.Kanto
 	ld hl, KantoBadgesOAM
-.okay
+	jr c, .Johto
+	ld hl, Unknown_254c9
+.Johto
 	call Function25448
 	ret
 ; 253a2 (9:53a2)
@@ -27400,6 +27397,17 @@ Function25448: ; 25448 (9:5448)
 	dec b
 	jr nz, .asm_25453
 	ret
+; a hacky method to get rid of unanimated badges
+	ld h, d
+	ld l, e
+.loop
+	ld a, l
+	cp $80
+	ret z
+	xor a
+	ld [hli], a
+	jr .loop
+
 
 Function2547b: ; 2547b (9:547b)
 	ld a, [wcf65]
@@ -27472,15 +27480,15 @@ Unknown_254c9: ; 254c9
 	db $0c, $20, $24, $20 | $80
 	db $0c, $20, $24, $20 | $80
 	; Mineralbadge
-	db $80, $38, $00
+	db $80, $58, $00
 	db $10, $20, $24, $20 | $80
 	db $10, $20, $24, $20 | $80
 	; Stormbadge
-	db $80, $18, $00
+	db $80, $38, $00
 	db $14, $20, $24, $20 | $80
 	db $14, $20, $24, $20 | $80
 	; Glacierbadge
-	db $80, $58, $00
+	db $80, $18, $00
 	db $18, $20, $24, $20 | $80
 	db $18, $20, $24, $20 | $80
 	; Risingbadge
@@ -27510,11 +27518,11 @@ KantoBadgesOAM:
 	db $0c, $20, $24, $20 | $80
 	; Soulbadge
 	; X-flips on alternate cycles.
-	db $80, $38, $00
+	db $80, $18, $00
 	db $10, $20, $24, $20 | $80
 	db $10 | $80, $20, $24, $20 | $80
 	; Marshbadge
-	db $80, $18, $00
+	db $80, $38, $00
 	db $14, $20, $24, $20 | $80
 	db $14, $20, $24, $20 | $80
 	; Volcanobadge
