@@ -8200,7 +8200,8 @@ BattleCommand27: ; 36cb2
 	ld hl, Function3cc3f
 	call CallBattleCore
 	call UpdateUserInParty
-	jr .asm_36d0c
+	ld hl, RecoilText
+	jp StdBattleTextBox
 
 
 BattleCommand2b: ; 36d1d
