@@ -688,8 +688,8 @@ Function3c434: ; 3c434
 	jr z, .asm_3c4a4
 	ld hl, PlayerSubStatus4
 	res SUBSTATUS_RAGE, [hl]
-	xor a
-	ld [wc72b], a
+	;xor a
+	;ld [wc72b], a
 
 .asm_3c4a4
 	ld a, [wPlayerMoveStruct + MOVE_EFFECT]
@@ -709,7 +709,7 @@ Function3c434: ; 3c434
 	xor a
 	ld [PlayerFuryCutterCount], a
 	ld [PlayerProtectCount], a
-	ld [wc72b], a
+	;ld [wc72b], a
 	ld hl, PlayerSubStatus4
 	res SUBSTATUS_RAGE, [hl]
 
@@ -722,7 +722,7 @@ Function3c434: ; 3c434
 	xor a
 	ld [PlayerFuryCutterCount], a
 	ld [PlayerProtectCount], a
-	ld [wc72b], a
+	;ld [wc72b], a
 	ld hl, PlayerSubStatus4
 	res SUBSTATUS_RAGE, [hl]
 	xor a
@@ -3790,7 +3790,7 @@ NewEnemyMonStatus: ; 3d834
 	ld [EnemyDisableCount], a
 	ld [EnemyFuryCutterCount], a
 	ld [EnemyProtectCount], a
-	ld [wc72c], a
+	;ld [wc72c], a
 	ld [EnemyDisabledMove], a
 	ld [wc6fa], a
 	ld [wc730], a
@@ -4285,7 +4285,7 @@ NewBattleMonStatus: ; 3dbde
 	ld [PlayerDisableCount], a
 	ld [PlayerFuryCutterCount], a
 	ld [PlayerProtectCount], a
-	ld [wc72b], a
+	;ld [wc72b], a
 	ld [DisabledMove], a
 	ld [wc6fe], a
 	ld [wc731], a
@@ -4346,6 +4346,9 @@ SpikesDamage: ; 3dc23
 	ld c,a 
 	add hl, bc
 	add hl, bc
+	ld a, [hli]
+	ld h, [hl]
+	ld l, a
 	jp [hl]	
 
 DoneSpikes:
@@ -6249,8 +6252,8 @@ Function3e7c1: ; 3e7c1
 	jr z, .asm_3e8af
 	ld hl, EnemySubStatus4
 	res SUBSTATUS_RAGE, [hl]
-	xor a
-	ld [wc72c], a
+	;xor a
+	;ld [wc72c], a
 
 .asm_3e8af
 	ld a, [wEnemyMoveStruct + MOVE_EFFECT]
@@ -6271,7 +6274,7 @@ Function3e8c1: ; 3e8c1
 	xor a
 	ld [EnemyFuryCutterCount], a
 	ld [EnemyProtectCount], a
-	ld [wc72c], a
+	;ld [wc72c], a
 	ld hl, EnemySubStatus4
 	res SUBSTATUS_RAGE, [hl]
 	ret
