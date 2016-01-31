@@ -26798,7 +26798,7 @@ MenuDataHeader_0x250fd: ; 0x250fd
 	db 0 ; default option
 ; 0x25105
 
-SECTION "Trainer Card", ROMX
+; SECTION "Trainer Card", ROMX
 
 Function25105: ; 25105
 	ld a, [VramState]
@@ -27005,15 +27005,15 @@ TrainerCardPage3_LoadGFX: ; 2524c (9:524c)
 	ld de, LeaderGFX2
 	ld hl, $9290
 	lb bc, BANK(LeaderGFX2), $56
-	ld a, [StatusFlags]
-	bit 5, a
-	jr nz, .okay
-	ld de, LeaderGFX3
-.okay
-	call Request2bpp
 	; ld a, [StatusFlags]
 	; bit 5, a
-	; call z, LoadBadgeNumberIcons_EarlyGameKanto
+	; jr nz, .okay
+	; ld de, LeaderGFX3
+; .okay
+	call Request2bpp
+	ld a, [StatusFlags]
+	bit 5, a
+	call z, LoadBadgeNumberIcons_EarlyGameKanto
 	ld de, BadgeGFX2
 	ld hl, $8000
 	lb bc, BANK(BadgeGFX2), $2c
@@ -27548,6 +27548,14 @@ LoadBadgeNumberIcons_EarlyGameKanto:
 	pop af
 	dec a
 	jr nz, .loop
+	ld de, LeaderGFX3
+	ld hl, $95c0
+	lb bc, BANK(LeaderGFX3), 9
+	call Request2bpp
+	ld de, LeaderGFX3 + $90
+	ld hl, $9700
+	lb bc, BANK(LeaderGFX3), 9
+	call Request2bpp
 	ret
 
 CardStatusGFX: INCBIN "gfx/misc/card_status.2bpp"
@@ -27562,7 +27570,7 @@ BadgeGFX2:  INCBIN "gfx/misc/kantobadges.w16.2bpp"
 
 CardRightCornerGFX: INCBIN "gfx/misc/card_right_corner.2bpp"
 
-SECTION "Oak's PC", ROMX
+; SECTION "Oak's PC", ROMX
 
 ProfOaksPC: ; 0x265d3
 	ld hl, OakPCText1
