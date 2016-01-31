@@ -159,6 +159,7 @@ MAP_N_A   EQU -1
 	mapgroup ROUTE_10_POKECENTER_1F, 4, 5
 	mapgroup POWER_PLANT, 9, 10
 	mapgroup POWERPLANTB1, 18, 20
+	mapgroup POWERPLANTB2, 18, 20
 	mapgroup BILLS_HOUSE, 4, 4
 	mapgroup ROUTE_4, 9, 20
 	mapgroup ROUTE_9, 9, 30

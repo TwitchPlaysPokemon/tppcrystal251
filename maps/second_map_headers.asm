@@ -763,3 +763,4 @@
 	map_header_2 BillsGarden, BILLSGARDEN, $2c, NONE
 
 	map_header_2 PowerplantB1, POWERPLANTB1, 46, NONE
+	map_header_2 PowerplantB2, POWERPLANTB1, $1d, NONE
