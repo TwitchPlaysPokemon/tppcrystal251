@@ -761,3 +761,5 @@
 	map_header_2 SSAnne10, S_S_ANNE_10, $c, NONE
 
 	map_header_2 BillsGarden, BILLSGARDEN, $2c, NONE
+
+	map_header_2 PowerplantB1, POWERPLANTB1, 46, NONE
