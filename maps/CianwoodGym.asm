@@ -329,7 +329,7 @@ UnknownText_0x9d835: ; 0x9d835
 
 UnknownText_0x9d84d: ; 0x9d84d
 	text "STORMBADGE lets"
-	line "your #MON use Fly"
+	line "your #MON Fly"
 
 	para "when you're not in"
 	line "a battle."

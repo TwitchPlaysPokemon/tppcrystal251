@@ -130,7 +130,7 @@ MoltresScript1:
 	cry MOLTRES
 	waitbutton
 	closetext
-	loadpokedata MOLTRES, 70
+	loadpokedata MOLTRES, 95
 	writecode VAR_BATTLETYPE, BATTLETYPE_KANTOLEGEND
 	startbattle
 	writebyte MOLTRES

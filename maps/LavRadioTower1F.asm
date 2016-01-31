@@ -10,8 +10,18 @@ ReceptionistScript_0x7ee63: ; 0x7ee63
 	jumptextfaceplayer UnknownText_0x7eebf
 ; 0x7ee66
 
-OfficerScript_0x7ee66: ; 0x7ee66
-	jumptextfaceplayer UnknownText_0x7eefa
+OfficerScript_0x7ee66: ; 0x7ee66 ;	loadpokedata HAUNTER, 75
+	;startbattle
+	faceplayer
+	loadfont
+;	checktime $4
+;	iffalse NotNightLavender
+
+NotNightLavender:
+	writetext UnknownText_0x7eefa
+	waitbutton
+	closetext
+	end
 ; 0x7ee69
 
 SuperNerdScript_0x7ee69: ; 0x7ee69

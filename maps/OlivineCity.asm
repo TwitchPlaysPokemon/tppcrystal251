@@ -100,10 +100,22 @@ UnknownScript_0x1a88b4: ; 0x1a88b4
 ; 0x1a88ba
 
 OlivineRocket1Script: ; 0x1a88ba
-	jumptextfaceplayer OlivineRocketText1
+	faceplayer
+	loadfont
+	writetext OlivineRocketText1
+	waitbutton
+	spriteface $6, $3
+	closetext
+	end
 
 OlivineRocket2Script: ; 0x1a88ba
-	jumptextfaceplayer OlivineRocketText2
+	faceplayer
+	loadfont
+	writetext OlivineRocketText2
+	waitbutton
+	spriteface $7, $1
+	closetext
+	end
 
 SteelixScript: ; 0x1a88ba
 	jumptextfaceplayer SteelixText
@@ -207,8 +219,8 @@ OlivineRocketText1:
 OlivineRocketText2:
 	text "Hey kid, can you"
 	line "run in there and"
-	cont "grab the #MON at"
-	cont "the top of the"
+	cont "grab the #MON"
+	cont "at the top of the"
 	cont "LIGHTHOUSE for us?"
 	done
 

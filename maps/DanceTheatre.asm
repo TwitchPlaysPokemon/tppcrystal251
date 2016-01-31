@@ -388,7 +388,7 @@ UnknownText_0x9991a: ; 0x9991a
 ; 0x9999b
 
 UnknownText_0x9999b: ; 0x9999b
-	text "That's Strength."
+	text "That's STRENGTH."
 
 	para "It's a move that"
 	line "lets #MON push"
@@ -397,7 +397,7 @@ UnknownText_0x9999b: ; 0x9999b
 	para "If you want to"
 	line "cross the sea,"
 	cont "you should find"
-	cont "my friend Lance."
+	cont "my friend LANCE."
 	done
 ; 0x999d5
 

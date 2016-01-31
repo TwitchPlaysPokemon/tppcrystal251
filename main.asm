@@ -8246,30 +8246,30 @@ TrainerStatExp:
 	cp 5 + 1
 	ld hl, 0
 	ret c
-	cp 100
-	jr nc, .max
-	sub 5
-	ld bc, 150
-	cp 16
+	;cp 100
+	;jr nc, .max
+	sub 5 ;5-20 ;reduce by last catagory
+	ld bc, 150 ;load in amount to add per level
+	cp 16 ;if in this box, add loop, else next group
 	jr c, .add
-	sub 15
+	sub 15 ;21-35
 	ld bc, 250
 	ld hl, 2250
 	cp 16
 	jr c, .add
-	sub 15
+	sub 15 ;36-55
 	ld bc, 400
 	ld hl, 6000
 	cp 21
 	jr c, .add
-	sub 20
-	ld bc, 600
+	sub 20 ;56-75
+	ld bc, 400
 	ld hl, 14000
 	cp 21
 	jr c, .add
-	sub 20
-	ld bc, 1500
-	ld hl, 26000
+	sub 20 ;75-100
+	ld bc, 600
+	ld hl, 22000
 .add
 	and a
 	ret z
@@ -8278,9 +8278,9 @@ TrainerStatExp:
 	dec a
 	jr nz, .loop
 	ret
-.max
-	ld hl, 63500
-	ret
+;.max
+;	ld hl, 63500
+;	ret
 
 
 FillPP: ; da6d hl = start of moves, de = start of place to put pp

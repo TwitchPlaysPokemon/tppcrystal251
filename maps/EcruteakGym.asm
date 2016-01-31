@@ -376,7 +376,7 @@ UnknownText_0x9a043: ; 0x9a043
 
 UnknownText_0x9a059: ; 0x9a059
 	text "By having FOG-"
-	line "BADGE, #MON that"
+	line "BADGE, #MON who"
 	cont "know SURF will be"
 	cont "able to use that"
 	cont "move anytime."
@@ -489,9 +489,10 @@ UnknownText_0x9a318: ; 0x9a318
 ; 0x9a33e
 
 MediumGraceSeenText: ; 0x9a33e
-	text "Dark #MON have an"
-	line "advantage against"
-	cont "ghost #MON."
+	text "Dark #MON have"
+	line "an advantage"
+	cont "against ghost"
+	cont "#MON."
 
 	para "Someday, MORTY"
 	line "will be defeated!"

@@ -280,7 +280,7 @@ GruntM19Script: ; 0x6d0f9
 
 VoltorbScript_0x6d101: ; 0x6d101
 	cry ELECTRODE
-	loadpokedata ELECTRODE, 43
+	loadpokedata ELECTRODE, 40
 	startbattle
 	iftrue UnknownScript_0x6d182
 	disappear $6
@@ -299,7 +299,7 @@ VoltorbScript_0x6d101: ; 0x6d101
 
 VoltorbScript_0x6d12c: ; 0x6d12c
 	cry ELECTRODE
-	loadpokedata ELECTRODE, 43
+	loadpokedata ELECTRODE, 40
 	startbattle
 	iftrue UnknownScript_0x6d182
 	disappear $7
@@ -318,7 +318,7 @@ VoltorbScript_0x6d12c: ; 0x6d12c
 
 VoltorbScript_0x6d157: ; 0x6d157
 	cry ELECTRODE
-	loadpokedata ELECTRODE, 43
+	loadpokedata ELECTRODE, 40
 	startbattle
 	iftrue UnknownScript_0x6d182
 	disappear $8
