@@ -2102,6 +2102,8 @@ Functionf378: ; f378 (3:7378)
 Functionf395: ; f395 (3:7395)
 	push hl
 	ld a, [CurItem]
+	cp GOLD_BERRY
+	jr z, .QuarterMaxHP
 	ld hl, Tablef3af
 	ld d, a
 .next
@@ -2123,6 +2125,26 @@ Functionf395: ; f395 (3:7395)
 	pop hl
 	ret
 ; f3af (3:73af)
+.QuarterMaxHP
+	push bc
+	ld a, PartyMon1MaxHP - PartyMon1
+	call GetPartyParamLocation
+	ld a, [hli]
+	ld d, a
+	ld e, [hl]
+	srl d
+	rr e
+	srl d
+	rr e
+	ld a, d
+	or e
+	jr nz, .okay
+	ld e, 1
+.okay
+	pop bc
+	pop hl
+	and a
+	ret
 
 Tablef3af: ; f3af
 	dbw FRESH_WATER,   50
@@ -2135,7 +2157,7 @@ Tablef3af: ; f3af
 	dbw FULL_RESTORE, 999
 	dbw MOOMOO_MILK,  100
 	dbw BERRY,         10
-	dbw GOLD_BERRY,    30
+	; dbw GOLD_BERRY,    30
 	dbw ENERGYPOWDER,  50
 	dbw ENERGY_ROOT,  200
 	dbw RAGECANDYBAR,  20
@@ -2706,13 +2728,13 @@ Functionf6e8: ; f6e8
 	cp MAX_ETHER
 	jr z, .asm_f71d
 
-	ld c, 5
-	cp MYSTERYBERRY
-	jr z, .asm_f715
+	; ld c, 5
+	; cp MYSTERYBERRY
+	; jr z, .asm_f715
 
 	ld c, 10
 
-.asm_f715
+; .asm_f715
 	ld a, [hl]
 	and $3f
 	add c

@@ -13,7 +13,7 @@ includes  := $(PYTHON) $(poketools)/scan_includes.py
 
 crystal11_obj := \
 wram11.o \
-crystal11.o \
+main11.o \
 lib/mobile/main.o \
 home.o \
 audio.o \
