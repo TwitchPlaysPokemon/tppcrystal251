@@ -652,3 +652,11 @@ INCLUDE "maps/EarlyGameKanto/SSAnne10.asm"
 SECTION "BillsGarden", ROMX
 INCLUDE "maps/BillsGarden.asm"SECTION "BillsGarden Blockdata", ROMX
 BillsGarden_BlockData: INCBIN "maps/BillsGarden.blk"
+
+SECTION "PowerplantB1", ROMX
+INCLUDE "maps/PowerplantB1.asm"SECTION "PowerplantB1 Blockdata", ROMX
+PowerplantB1_BlockData: INCBIN "maps/PowerplantB1.blk"
+
+SECTION "PowerplantB2", ROMX
+INCLUDE "maps/PowerplantB2.asm"SECTION "PowerplantB2 Blockdata", ROMX
+PowerplantB2_BlockData: INCBIN "maps/PowerplantB2.blk"

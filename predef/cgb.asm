@@ -764,7 +764,12 @@ Function9289: ; 9289
 	ld a, ERIKA
 	call Function976b
 	call Function9643_2
+	ld a, [StatusFlags]
+	bit 5, a
+	ld a, KOGA
+	jr z, .egk
 	ld a, JANINE
+.egk
 	call Function976b
 	call Function9643_2
 	ld a, SABRINA
@@ -773,7 +778,12 @@ Function9289: ; 9289
 	ld a, BLAINE
 	call Function976b
 	call Function9643_2
+	ld a, [StatusFlags]
+	bit 5, a
+	ld a, ROCKETBOSS
+	jr z, .egk2
 	ld a, BLUE
+.egk2
 	call Function976b
 	call Function9643_2
 	ld hl, AttrMap
