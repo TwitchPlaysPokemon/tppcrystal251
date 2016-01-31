@@ -104,33 +104,32 @@ StartBattleLance:
 	stopfollow
 	spriteface $4, $1
 	spriteface $2, $2
-	checkevent EVENT_ENABLE_DIPLOMA_PRINTING
-	iffalse Script_NoOakBattle
-	loadfont
-	special HealParty
-	writetext Text_OakBeforeBattle
-	waitbutton
-	closetext
-	winlosstext OakBeatenText, $0000
-	checkevent EVENT_GOT_CHIKORITA_FROM_ELM
-	iftrue Script_OakHasBlastoise
-	checkevent EVENT_GOT_CYNDAQUIL_FROM_ELM
-	iftrue Script_OakHasVenusaur
-	loadtrainer POKEMON_PROF, OAK_2
-	jump Script_StartOakBattle
-Script_OakHasBlastoise:
-	loadtrainer POKEMON_PROF, OAK_1
-	jump Script_StartOakBattle
-Script_OakHasVenusaur:
-	loadtrainer POKEMON_PROF, OAK_3
-Script_StartOakBattle:
-	startbattle
-	returnafterbattle
-	setevent EVENT_BEAT_OAK
-	playmusic MUSIC_BEAUTY_ENCOUNTER, $10
-	jump Script_returnafteroakbattle
-	
-Script_NoOakBattle:
+	; checkevent EVENT_ENABLE_DIPLOMA_PRINTING
+	; iffalse Script_NoOakBattle
+	; loadfont
+	; special HealParty
+	; writetext Text_OakBeforeBattle
+	; waitbutton
+	; closetext
+	; winlosstext OakBeatenText, $0000
+	; checkevent EVENT_GOT_CHIKORITA_FROM_ELM
+	; iftrue Script_OakHasBlastoise
+	; checkevent EVENT_GOT_CYNDAQUIL_FROM_ELM
+	; iftrue Script_OakHasVenusaur
+	; loadtrainer POKEMON_PROF, OAK_2
+	; jump Script_StartOakBattle
+; Script_OakHasBlastoise:
+	; loadtrainer POKEMON_PROF, OAK_1
+	; jump Script_StartOakBattle
+; Script_OakHasVenusaur:
+	; loadtrainer POKEMON_PROF, OAK_3
+; Script_StartOakBattle:
+	; startbattle
+	; returnafterbattle
+	; setevent EVENT_BEAT_OAK
+	; playmusic MUSIC_BEAUTY_ENCOUNTER, $10
+	; jump Script_returnafteroakbattle
+; Script_NoOakBattle:
 	loadfont
 	writetext UnknownText_0x18121b
 	waitbutton
@@ -400,53 +399,53 @@ UnknownText_0x1813c5: ; 0x1813c5
 	done
 ; 0x1813f4
 
-Text_OakBeforeBattle:
-	text "PROF.OAK: Ah,"
-	line "<PLAY_G>!"
+; Text_OakBeforeBattle:
+	; text "PROF.OAK: Ah,"
+	; line "<PLAY_G>!"
 
-	para "It's been a long"
-	line "while."
+	; para "It's been a long"
+	; line "while."
 
-	para "You certainly look"
-	line "more impressive."
+	; para "You certainly look"
+	; line "more impressive."
 
-	para "Your conquest of"
-	line "the LEAGUE is just"
-	cont "fantastic!"
+	; para "Your conquest of"
+	; line "the LEAGUE is just"
+	; cont "fantastic!"
 
-	para "Your dedication,"
-	line "trust and love for"
+	; para "Your dedication,"
+	; line "trust and love for"
 
-	para "your #MON made"
-	line "this happen."
+	; para "your #MON made"
+	; line "this happen."
 
-	para "Your #MON were"
-	line "outstanding too."
+	; para "Your #MON were"
+	; line "outstanding too."
 
-	para "Because they be-"
-	line "lieved in you as a"
+	; para "Because they be-"
+	; line "lieved in you as a"
 
-	para "trainer, they per-"
-	line "severed."
+	; para "trainer, they per-"
+	; line "severed."
 
-	para "Now, <PLAY_G>."
+	; para "Now, <PLAY_G>."
 
-	para "I want you to come"
-	line "at me with all"
+	; para "I want you to come"
+	; line "at me with all"
 
-	para "the strength that"
-	line "got you this far."
-	done
+	; para "the strength that"
+	; line "got you this far."
+	; done
 	
-OakBeatenText:
-	text "Excellent!"
+; OakBeatenText:
+	; text "Excellent!"
 
-	para "I have nothing"
-	line "left to say. You"
+	; para "I have nothing"
+	; line "left to say. You"
 
-	para "truly are a"
-	line "#MON MASTER!"
-	done
+	; para "truly are a"
+	; line "#MON MASTER!"
+	; done
 
 LancesRoom_MapEventHeader: ; 0x1813f4
 	; filler
