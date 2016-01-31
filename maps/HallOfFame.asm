@@ -29,9 +29,9 @@ UnknownScript_0x181454: ; 0x181454
 	writetext UnknownText_0x1814a6
 	waitbutton
 	closetext
-	checkevent EVENT_BEAT_OAK
-	iftrue ElmBattleScript
-ReturnAfterElmBattle:
+	; checkevent EVENT_BEAT_OAK
+	; iftrue ElmBattleScript
+; ReturnAfterElmBattle:
 	spriteface $2, $1
 	applymovement $0, MovementData_0x1814a4
 	dotrigger $1
@@ -54,34 +54,34 @@ UnknownScript_0x181497: ; 0x181497
 	end
 ; 0x181499
 
-ElmBattleScript:
-	showemote $0, $2, 15
-	pause 15
-	spriteface $0, $0
-	spriteface $2, $0
-	appear $3
-	applymovement $3, MovementData_ElmWalksUp
-	loadfont
-	writetext ElmText1
-	waitbutton
-	closetext
-	winlosstext ElmText2, $0000
-	checkevent EVENT_GOT_CHIKORITA_FROM_ELM
-	iftrue ElmFightsWithFeraligatr
-	checkevent EVENT_GOT_CYNDAQUIL_FROM_ELM
-	iftrue ElmFightsWithMeganium
-	loadtrainer PROF_ELM, ELM_2
-	jump StartElmBattle
-ElmFightsWithFeraligatr:
-	loadtrainer PROF_ELM, ELM_3
-	jump StartElmBattle
-ElmFightsWithMeganium:
-	loadtrainer PROF_ELM, ELM_1
-StartElmBattle:
-	startbattle
-	returnafterbattle
-	setevent EVENT_BEAT_ELM
-	jump ReturnAfterElmBattle
+; ElmBattleScript:
+	; showemote $0, $2, 15
+	; pause 15
+	; spriteface $0, $0
+	; spriteface $2, $0
+	; appear $3
+	; applymovement $3, MovementData_ElmWalksUp
+	; loadfont
+	; writetext ElmText1
+	; waitbutton
+	; closetext
+	; winlosstext ElmText2, $0000
+	; checkevent EVENT_GOT_CHIKORITA_FROM_ELM
+	; iftrue ElmFightsWithFeraligatr
+	; checkevent EVENT_GOT_CYNDAQUIL_FROM_ELM
+	; iftrue ElmFightsWithMeganium
+	; loadtrainer PROF_ELM, ELM_2
+	; jump StartElmBattle
+; ElmFightsWithFeraligatr:
+	; loadtrainer PROF_ELM, ELM_3
+	; jump StartElmBattle
+; ElmFightsWithMeganium:
+	; loadtrainer PROF_ELM, ELM_1
+; StartElmBattle:
+	; startbattle
+	; returnafterbattle
+	; setevent EVENT_BEAT_ELM
+	; jump ReturnAfterElmBattle
 
 MovementData_0x181499: ; 0x181499
 	step_up
@@ -97,11 +97,11 @@ MovementData_0x181499: ; 0x181499
 	step_end
 ; 0x1814a4
 
-MovementData_ElmWalksUp:
-	step_up
-	step_up
-	step_up
-	step_end
+; MovementData_ElmWalksUp:
+	; step_up
+	; step_up
+	; step_up
+	; step_end
 
 MovementData_0x1814a4: ; 0x1814a4
 	slow_step_up
@@ -155,58 +155,58 @@ UnknownText_0x1814a6: ; 0x1814a6
 	done
 ; 0x181678
 
-ElmText1:
-	text "ELM: Ah, <PLAY_G>!"
+; ElmText1:
+	; text "ELM: Ah, <PLAY_G>!"
 	
-	para "Before you do"
-	line "that, I wanted to"
-	cont "ask you something."
+	; para "Before you do"
+	; line "that, I wanted to"
+	; cont "ask you something."
 	
-	para "You have been all"
-	line "over both JOHTO"
-	cont "and KANTO."
+	; para "You have been all"
+	; line "over both JOHTO"
+	; cont "and KANTO."
 	
-	para "You've caught every"
-	line "#MON out there,"
+	; para "You've caught every"
+	; line "#MON out there,"
 	
-	para "including one I've"
-	line "never heard of."
+	; para "including one I've"
+	; line "never heard of."
 	
-	para "It seems my re-"
-	line "search is far from"
-	cont "complete."
+	; para "It seems my re-"
+	; line "search is far from"
+	; cont "complete."
 	
-	para "That's why I want"
-	line "to challenge you,"
-	cont "<PLAY_G>."
+	; para "That's why I want"
+	; line "to challenge you,"
+	; cont "<PLAY_G>."
 	
-	para "To help me see"
-	line "just how far away"
-	cont "I really am."
-	done
+	; para "To help me see"
+	; line "just how far away"
+	; cont "I really am."
+	; done
 
-ElmText2:
-	text "Well done!"
+; ElmText2:
+	; text "Well done!"
 	
-	para "In all my life I"
-	line "have never seen"
+	; para "In all my life I"
+	; line "have never seen"
 	
-	para "such an intense"
-	line "battle, let alone"
+	; para "such an intense"
+	; line "battle, let alone"
 	
-	para "participated in"
-	line "one."
+	; para "participated in"
+	; line "one."
 	
-	para "I have nothing"
-	line "more to say."
+	; para "I have nothing"
+	; line "more to say."
 	
-	para "<PLAY_G>!"
-	line "Go forth and re-"
+	; para "<PLAY_G>!"
+	; line "Go forth and re-"
 	
-	para "gister your #-"
-	line "MON for all poste-"
-	cont "rity!"
-	done
+	; para "gister your #-"
+	; line "MON for all poste-"
+	; cont "rity!"
+	; done
 
 HallOfFame_MapEventHeader: ; 0x181678
 	; filler
@@ -224,9 +224,10 @@ HallOfFame_MapEventHeader: ; 0x181678
 	db 0
 
 	; people-events
-	db 2
+	; db 2
+	db 1
 	person_event SPRITE_LANCE, 16, 8, $7, 0, 0, -1, -1, 0, 0, 0, ObjectEvent, -1
-	person_event SPRITE_ELM, 12, 8, $7, 0, 0, -1, -1, 0, 0, 0, ObjectEvent, EVENT_ELM_VISIBLE_IN_HALLOFFAME
+	; person_event SPRITE_ELM, 12, 8, $7, 0, 0, -1, -1, 0, 0, 0, ObjectEvent, EVENT_ELM_VISIBLE_IN_HALLOFFAME
 ; 0x181695
 
 
