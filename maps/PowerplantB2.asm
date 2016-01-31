@@ -1,4 +1,4 @@
-PowerplantB1_MapScriptHeader:
+PowerplantB2_MapScriptHeader:
 	; triggers
 	db 0
 
@@ -9,7 +9,7 @@ PowerplantB1_MapScriptHeader:
 
 ; <text goes here>
 
-PowerplantB1_MapEventHeader:
+PowerplantB2_MapEventHeader:
 	; filler
 	db 0, 0
 

@@ -919,8 +919,8 @@
 	const EVENT_35E
 	const EVENT_35F
 ; 360
-	const EVENT_360
-	const EVENT_361
+	const EVENT_LAVENDER_HAUNTER
+	const EVENT_SCARED_LASS
 	const EVENT_362
 	const EVENT_363
 	const EVENT_364

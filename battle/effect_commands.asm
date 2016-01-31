@@ -2388,6 +2388,8 @@ BattleCommand09: ; 34d32
 	ret z
 	cp EFFECT_WHIRLWIND
 	ret z
+	cp EFFECT_BIDE
+	ret z
 
 	cp EFFECT_BODY_SLAM
 	jr z, .MinimiseCheck
@@ -2408,11 +2410,11 @@ BattleCommand09: ; 34d32
 
 	cp EFFECT_TOXIC
 	jr nz, .NotToxic
-	ld a, BATTLE_VARS_TYPE_1OPP ;poison always hits toxic
+	ld a, BATTLE_VARS_TYPE_1 ;poison always hits toxic
 	call GetBattleVarAddr
 	cp POISON
 	ret z
-	ld a, BATTLE_VARS_TYPE_2OPP
+	ld a, BATTLE_VARS_TYPE_2
 	call GetBattleVarAddr
 	cp POISON
 	ret z
@@ -3062,11 +3064,17 @@ BattleCommand0e: ; 3505e
 	jp StdBattleTextBox
 
 .asm_50bb
+	ld a, BATTLE_VARS_MOVE
+	call GetBattleVar
+	cp BUG_BUZZ
+	jr .ignoresub
+
 	ld a, BATTLE_VARS_SUBSTATUS4_OPP
 	call GetBattleVar
 	bit SUBSTATUS_SUBSTITUTE, a
 	ret nz ;if sub up, ret
 
+.ignoresub	
 	ld de, PlayerDamageTaken + 1
 	ld a, [hBattleTurn]
 	and a
@@ -3121,6 +3129,7 @@ Function350e4: ; 350e4
 	call GetBattleVar
 	cp EFFECT_JUMP_KICK
 	ret nz
+
 	ld hl, BattleMonMaxHP
 	ld a, [hBattleTurn]
 	and a
@@ -3137,7 +3146,7 @@ Function350e4: ; 350e4
 	srl a ;divide max HP by 2 to deal self damage
 	rr b
 		;endr
-	ld hl, CurDamage
+	ld hl, CurDamage+1
 	ld [hl], b ;put result in damage
 	dec hl
 	ld [hli], a
@@ -5427,6 +5436,11 @@ Function35d1c: ; 35d1c
 	ld a, c
 	and a
 	jr nz, .asm_35d31 ;if c is 0, check for sub
+
+	ld a, BATTLE_VARS_MOVE
+	call GetBattleVar
+	cp BUG_BUZZ
+	jr .asm_35d31
 
 	ld a, [EnemySubStatus4]
 	bit SUBSTATUS_SUBSTITUTE, a
@@ -10806,16 +10820,56 @@ BattleCommand9f: ; 37d94
 ; 37daa
 
 BattleCommand_Growth:
+
+	ld bc, PlayerStatLevels
+	ld a, [hBattleTurn]
+	and a
+	jr z, .go
+	ld bc, EnemyStatLevels
+.go
+;attack
+	ld a, [bc]
+	cp 13 ; max
+	jr c, .raise
+
+; sp.attack
+	inc bc
+	inc bc
+	inc bc
+	ld a, [bc]
+	cp 13 ; max
+	jr nc, .cantraise
+
+.raise
 	ld a, [Weather]
 	cp WEATHER_SUN
 	jr z, .SunBoost
+	call BattleCommand0a
+	call BattleCommand92
+	call BattleCommand0c
 	call BattleCommand70
+	call BattleCommand8c
 	call BattleCommand73
+	ld a, 0
+	ld [FailedMessage], a
 	ret
 .SunBoost
+	call BattleCommand0a
+	call BattleCommand92
+	call BattleCommand0c
 	call BattleCommand77
+	call BattleCommand8c
 	call BattleCommand7a
+	ld a, 0
+	ld [FailedMessage], a
 	ret
+
+.cantraise
+	ld b, $8 ; ABILITY
+	call GetStatName
+	call AnimateFailedMove
+	ld hl, WontRiseAnymoreText
+	jp StdBattleTextBox
 
 CheckHiddenOpponent: ; 37daa
 	ld a, BATTLE_VARS_SUBSTATUS3_OPP

@@ -55,6 +55,21 @@ MapLavenderTownSignpost5Script: ; 0x1ad6ff
 	jumpstd martsign
 ; 0x1ad702
 
+ScareLassScript:
+;	checkflag 
+;	checktime $4
+;	iffalse
+;	applymovement $6,
+;	playsound SFX_STRENGTH
+;	applymovement $0,
+;	applymovement $6,
+	;loadfont
+;	writetext
+;	applymovement $6,
+;	waitbutton
+;	closetext
+	end
+
 UnknownText_0x1ad702: ; 0x1ad702
 	text "That's quite some"
 	line "building, eh?"
@@ -137,7 +152,8 @@ LavenderTown_MapEventHeader: ; 0x1ad8ac
 	warp_def $5, $e, 1, GROUP_LAV_RADIO_TOWER_1F, MAP_LAV_RADIO_TOWER_1F
 
 	; xy triggers
-	db 0
+	db 1
+	xy_trigger 0, $6, $e, $0, UnknownScript_0x60011, $0, $0
 
 	; signposts
 	db 6
@@ -149,10 +165,11 @@ LavenderTown_MapEventHeader: ; 0x1ad8ac
 	signpost 5, 2, $0, MapLavenderTownSignpost5Script
 
 	; people-events
-	db 4
+	db 5
 	person_event SPRITE_POKEFAN_M, 11, 16, $5, 0, 1, -1, -1, 8 + PAL_OW_RED, 0, 0, PokefanMScript_0x1ad6e4, -1
 	person_event SPRITE_TEACHER, 19, 6, $5, 0, 1, -1, -1, 8 + PAL_OW_BLUE, 0, 0, TeacherScript_0x1ad6e7, -1
 	person_event SPRITE_GRAMPS, 16, 18, $7, 0, 0, -1, -1, 0, 0, 0, GrampsScript_0x1ad6ea, -1
 	person_event SPRITE_YOUNGSTER, 15, 10, $5, 0, 1, -1, -1, 8 + PAL_OW_GREEN, 0, 1, YoungsterScript_0x1ad6ed, -1
+	person_event SPRITE_TEACHER, 4, 14, 6, 0, 0, -1, -1, 0, 0, 0, YoungsterScript_0x1ad6ed, EVENT_SCARED_LASS
 ; 0x1ad927
 

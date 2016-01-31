@@ -8248,7 +8248,7 @@ TrainerStatExp:
 	ret c
 	;cp 100
 	;jr nc, .max
-	sub 5 ;5-20 ;reduce by last catagory
+	sub 5 ;6-20 ;reduce by last catagory
 	ld bc, 150 ;load in amount to add per level
 	cp 16 ;if in this box, add loop, else next group
 	jr c, .add

@@ -4331,14 +4331,18 @@ SpikesDamage: ; 3dc23
 
 	push bc ;push correct hud update
 
+	ld a, [hl]
+	and $3
+	push af
+
 	ld hl, BattleText_0x80bae ; "hurt by SPIKES!"
 	call StdBattleTextBox
 
-	ld a, [hl]
-	and $3
+	pop af
 
 	ld hl, SpikesDamageJumptable
 	dec a
+	ld b, 0
 	ld c,a 
 	add hl, bc
 	add hl, bc

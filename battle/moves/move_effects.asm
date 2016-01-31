@@ -2327,11 +2327,6 @@ Growth:
 	usedmovetext
 	doturn
 	growth
-	effect0x0a
-	effect0x92
-	effect0x0c
-	statmessageuser
-	statupfailtext
 	endmove
 
 BodySlam:
