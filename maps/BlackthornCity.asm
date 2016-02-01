@@ -19,7 +19,10 @@ BlackthornCity_MapScriptHeader: ; 0x1a46d0
 	end
 
 UnknownScript_0x1a46d8: ; 0x1a46d8
+	checkevent EVENT_EGK_RIVAL_IN_BLACKTHORN
+	iffalse .false
 	setflag ENGINE_FLYPOINT_BLACKTHORN
+.false
 	return
 ; 0x1a46dc
 
@@ -34,6 +37,7 @@ SantosCallback:
 	return
 
 BlackthornRivalBattle:
+	special HealParty
 	playmusic MUSIC_RIVAL_RB
 	showemote $0, $b, 15
 	pause 15
@@ -87,6 +91,7 @@ BlackthornRivalBattle:
 	disappear $b
 	special RestartMapMusic
 	dotrigger 1
+	setflag ENGINE_FLYPOINT_BLACKTHORN
 	end
 
 .SelectBattle
