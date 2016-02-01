@@ -57,7 +57,6 @@ VermilionCitySimonScript1:
 	special DeleteSavedMusic
 	playmapmusic
 	dotrigger $1
-	setevent EVENT_BEAT_SIMON_4
 	blackoutmod GROUP_VERMILION_CITY, MAP_VERMILION_CITY
 	setflag ENGINE_FLYPOINT_VERMILION
 	end
@@ -76,7 +75,10 @@ VermilionCitySimonMovement2:
 	step_end
 
 UnknownScript_0x1aa97f: ; 0x1aa97f
+	checkevent EVENT_BEAT_SIMON_4
+	iffalse .false
 	setflag ENGINE_FLYPOINT_VERMILION
+.false
 	return
 ; 0x1aa983
 
