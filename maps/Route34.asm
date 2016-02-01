@@ -702,6 +702,10 @@ CooltrainerfKateScript: ; 0x78304
 	iftrue UnknownScript_0x78319
 	writetext UnknownText_0x788e2
 	setevent EVENT_GOT_SOFT_SAND_FROM_KATE
+	waitbutton
+	closetext
+	end
+
 UnknownScript_0x78319: ; 0x78319
 	writetext UnknownText_0x7892b
 	yesorno
@@ -1133,14 +1137,14 @@ UnknownText_0x788e2: ; 0x788e2
 
 	para "We're training"
 	line "elemental martial"
-	cont "arts in secret, but"
-	cont "so far we only"
+	cont "arts in secret,"
+	cont "but so far we only"
 	cont "taught our #MON<...>"
 
-	para "*grooowwl*"
+	para "Say<...>"
 
-	para "Say, if you bring"
-	line "us some snack money"
+	para "If you bring us"
+	line "some snack money"
 	cont "we can teach your"
 	cont "#MON too."
 	done

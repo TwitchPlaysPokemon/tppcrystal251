@@ -415,10 +415,11 @@ UnknownText_0x1a5896: ; 0x1a5896
 	line "SUBSTITUTE."
 
 	para "It lets a doll"
-	line "fight for a #MON,"
-	cont "stopping it from"
-	cont "being hit by status"
-	cont "or being KO'd."
+	line "fight for a"
+	cont "#MON, stopping"
+	cont "it from being hit" "
+	cont "by status or"
+	cont "being KO'd."
 
 	para "It's nice to have"
 	line "others do the work"
