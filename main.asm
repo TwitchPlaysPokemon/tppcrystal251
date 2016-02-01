@@ -70128,11 +70128,15 @@ Function910d4: ; 910d4
 Function910e8: ; Kanto Landmarks that can be viewed after beating the Elite Four
 	ld a, [StatusFlags]
 	bit 5, a
-	jr z, .okay
+	jr z, .egk
 	bit 6, a
 	jr z, .asm_910f4
 .okay
 	ld d, ROUTE_28
+	ld e, PALLET_TOWN
+	ret
+.egk
+	ld d, INDIGO_PLATEAU
 	ld e, PALLET_TOWN
 	ret
 
