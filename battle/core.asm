@@ -3414,6 +3414,12 @@ Function3d581: ; 3d581
 ; 3d599
 
 Function3d599: ; 3d599
+IF DEF(BEESAFREE)
+	ld a, BEESAFREE_SND_ASKENEMY | BEESAFREE_SND_ASKMONTARGET
+	rst LUASerial
+	ld b, a
+	ret
+ELSE
 	ld b, $ff
 	ld a, $1
 	ld [Buffer1], a
@@ -3599,6 +3605,7 @@ Function3d672: ; 3d672
 .asm_3d6c9
 	ret
 ; 3d6ca
+ENDC
 
 Function3d6ca: ; 3d6ca
 	ld a, b

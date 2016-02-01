@@ -397,8 +397,9 @@ function readPlayerPack()
 	return pack
 end
 
-function readBattlestate(output_table) --read this ONLY when LUA Serial is called
+function readBattlestate(output_table, req) --read this ONLY when LUA Serial is called
 	battleState = {}
+	battleState["requested action"] = req
 	battlemode = memory.readbyte(wBattleMode)
 	svbk = memory.readbyte(rSVBK)
 	
@@ -485,11 +486,11 @@ function readPlayerstate() --loop read this for the overlay
 		if memory.readbyte(rLSC) == BEESAFREE_LSC_TRANSFERRING then
 			req = memory.readbyte(rLSB)
 			if req == BEESAFREE_SND_RESET then sendLUASerial(BEESAFREE_RES_RESET)
-			elseif req == BEESAFREE_SND_ASKMOVE then
-				readBattlestate(output_table)
+			elseif AND(req, BEESAFREE_SND_ASKENEMY) ~= 0 then
+				readBattlestate(output_table, req)
 			end
 		elseif ignore_serial == 1 then
-			readBattlestate(output_table)
+			readBattlestate(output_table, 0x00)
 		end
 	end
 end
