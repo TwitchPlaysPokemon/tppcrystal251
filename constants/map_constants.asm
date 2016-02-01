@@ -147,7 +147,7 @@ MAP_N_A   EQU -1
 	mapgroup ROUTE_19, 18, 10
 	mapgroup ROUTE_20, 9, 30
 	mapgroup ROUTE_21, 18, 10
-	mapgroup CINNABAR_ISLAND, 11, 13
+	mapgroup CINNABAR_ISLAND, 16, 18
 
 	newgroup; Cerulean City
 	mapgroup CERULEAN_GYM_BADGE_SPEECH_HOUSE, 4, 4
