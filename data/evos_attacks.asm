@@ -449,10 +449,10 @@ PikachuEvosAttacks:
 	db 0 ; no more evolutions
 	db 1, QUICK_ATTACK
 	db 3, GROWL
-	db 7, TAIL_WHIP
-	db 11, THUNDERSHOCK 
-	db 15, DOUBLE_TEAM ; later gen move
-	db 18, IRON_TAIL ; * later gen move
+	db 7, THUNDERSHOCK 
+	db 11, TAIL_WHIP
+	db 15, IRON_TAIL ; * later gen move
+	db 18, DOUBLE_TEAM ; later gen move
 	db 22, SPARK ; illegal move
 	db 25, THUNDER_WAVE
 	db 28, LIGHT_SCREEN ; Pikachu move
@@ -1923,20 +1923,20 @@ CuboneEvosAttacks:
 	db EVOLVE_LEVEL, 28, MAROWAK
 	db 0 ; no more evolutions
 	db 1, TACKLE ; illegal move
-	db 3, GROWL
-	db 6, TAIL_WHIP
-	db 9, FURY_ATTACK ; event move
-	db 12, LEER
-	db 15, EARTH_POWER ; later gen move
-	db 18, IRON_DEFENSE ; later gen move
-	db 21, HEADBUTT
-	db 24, SCARY_FACE
-	db 27, BONE_CLUB
+	db 3, TAIL_WHIP
+	db 6, GROWL
+	db 9, DOUBLE_KICK ; later gen move
+	db 12, MUD_SLAP ; tm move
+	db 15, LEER
+	db 18, HEADBUTT
+	db 21, SCARY_FACE
+	db 24, BONE_CLUB
+	db 27, IRON_DEFENSE ; later gen move
 	db 30, BUBBLEBEAM ; gen 1 move
 	db 33, BODY_SLAM ; gen 1 move
-	db 36, SEISMIC_TOSS ; gen 1 move
-	db 39, PERISH_SONG ; egg move
-	db 42, BONEMERANG
+	db 36, BONEMERANG
+	db 39, SEISMIC_TOSS ; gen 1 move
+	db 42, PERISH_SONG ; egg move
 	db 45, THRASH
 	db 0 ; no more level-up moves
 
