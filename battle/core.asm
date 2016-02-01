@@ -3415,6 +3415,12 @@ Function3d581: ; 3d581
 ; 3d599
 
 Function3d599: ; 3d599
+IF DEF(BEESAFREE)
+	ld a, BEESAFREE_SND_ASKENEMY | BEESAFREE_SND_ASKMONTARGET
+	rst LUASerial
+	ld b, a
+	ret
+ELSE
 	ld b, $ff
 	ld a, $1
 	ld [Buffer1], a
@@ -3600,6 +3606,7 @@ Function3d672: ; 3d672
 .asm_3d6c9
 	ret
 ; 3d6ca
+ENDC
 
 Function3d6ca: ; 3d6ca
 	ld a, b
@@ -4569,6 +4576,14 @@ Function3dd2f: ; 3dd2f
 	ld [Buffer2], a
 	ld a, [hl]
 	ld [Buffer1], a
+	ld a, [hBattleTurn]
+	and a
+	ld a, [EnemyMonItem]
+	jr z, .double_check_item
+	ld a, [BattleMonItem]
+.double_check_item
+	cp GOLD_BERRY
+	jr z, .gold_berry
 	ld a, [de]
 	add c
 	ld [wd1ee], a
@@ -4578,6 +4593,13 @@ Function3dd2f: ; 3dd2f
 	adc $0
 	ld [wd1ef], a
 	ld b, a
+	jr .finish
+
+.gold_berry
+	push hl
+	callba GoldBerryHP
+	pop hl
+.finish
 	ld a, [hld]
 	cp c
 	ld a, [hl]
