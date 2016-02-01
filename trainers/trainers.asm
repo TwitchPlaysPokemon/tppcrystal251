@@ -1150,34 +1150,34 @@ WillGroup:
 	; party
 
 	db 63, XATU
-		db QUICK_ATTACK
-		db FUTURE_SIGHT
-		db CONFUSE_RAY
-		db PSYCHIC_M
+		db COUNTER
+		db MIRROR_COAT
+		db ENCORE
+		db DESTINY_BOND
 
 	db 64, JYNX
-		db DOUBLESLAP
+		db MEDITATE
 		db LOVELY_KISS
 		db ICE_PUNCH
-		db PSYCHIC_M
+		db ZEN_HEADBUTT
 
 	db 65, EXEGGUTOR
 		db REFLECT
 		db LEECH_SEED
-		db SEED_BOMB
+		db GIGA_DRAIN
 		db PSYCHIC_M
 
 	db 66, SLOWBRO
 		db CURSE
-		db AMNESIA
-		db BODY_SLAM
-		db PSYCHIC_M
+		db ZEN_HEADBUTT
+		db WATERFALL
+		db DISABLE
 
 	db 67, XATU
-		db QUICK_ATTACK
-		db FUTURE_SIGHT
-		db CONFUSE_RAY
+		db DRILL_PECK
+		db HEAT_WAVE
 		db PSYCHIC_M
+		db HAZE
 
 	db $ff ; end
 
@@ -1324,15 +1324,15 @@ BrunoGroup:
 	; party
 
 	db 67, HITMONTOP
-		db PURSUIT
+		db ROLLING_KICK
+		db MACH_PUNCH
+		db DRILL_RUN
 		db QUICK_ATTACK
-		db DIG
-		db PROTECT
 
 	db 69, HITMONLEE
-		db SWAGGER
-		db DOUBLE_KICK
 		db HI_JUMP_KICK
+		db MEGA_KICK
+		db FOCUS_ENERGY
 		db FORESIGHT
 
 	db 69, HITMONCHAN
@@ -1342,16 +1342,16 @@ BrunoGroup:
 		db MACH_PUNCH
 
 	db 68, ONIX
-		db WRAP
+		db ROCK_POLISH
 		db EARTHQUAKE
 		db SANDSTORM
 		db ROCK_SLIDE
 
 	db 71, MACHAMP
 		db ROCK_SLIDE
-		db FORESIGHT
-		db VITAL_THROW
 		db CROSS_CHOP
+		db POISON_JAB
+		db SCARY_FACE
 
 	db $ff ; end
 
@@ -1422,27 +1422,27 @@ KarenGroup:
 
 	db 71, VILEPLUME
 		db STUN_SPORE
-		db ACID
+		db SLUDGE_BOMB
 		db MOONLIGHT
 		db PETAL_DANCE
 
 	db 72, GENGAR
-		db LICK
-		db SPITE
+		db SHADOW_BALL
+		db FOCUS_BLAST
 		db CURSE
 		db DESTINY_BOND
 
 	db 70, MURKROW
-		db QUICK_ATTACK
-		db WHIRLWIND
-		db PURSUIT
 		db FAINT_ATTACK
+		db HEAT_WAVE
+		db DRILL_PECK
+		db CONFUSE_RAY
 
 	db 73, HOUNDOOM
 		db ROAR
-		db PURSUIT
+		db NASTY_PLOT
 		db FLAMETHROWER
-		db CRUNCH
+		db DARK_PULSE
 
 	db $ff ; end
 
@@ -1502,35 +1502,36 @@ KogaGroup:
 
 	; party
 
-	db 65, ARIADOS
+	db 65, FORRETRESS
+		db SPIKES
+		db PIN_MISSILE
+		db DRILL_RUN
+		db SPIKES
+
+	db 66, CROBAT
+		db WHIRLWIND
+		db POISON_JAB
+		db AIR_SLASH
+		db TOXIC
+
+	db 67, ARIADOS
 		db DOUBLE_TEAM
 		db MEAN_LOOK
 		db BATON_PASS
-		db GIGA_DRAIN
+		db MEGAHORN
 
-	db 66, VENOMOTH
-		db SUPERSONIC
-		db GUST
-		db PSYCHIC_M
-		db TOXIC
-
-	db 68, FORRETRESS
-		db PROTECT
-		db SWIFT
-		db EXPLOSION
-		db SPIKES
-
-	db 67, MUK
-		db MINIMIZE
-		db ACID_ARMOR
+	db 68, VENOMOTH
 		db SLUDGE_BOMB
+		db BUG_BUZZ
+		db PSYCHIC_M
+		db AGILITY
+
+	db 69, MUK
+		db MINIMIZE
+		db FIRE_PUNCH
+		db POISON_JAB
 		db TOXIC
 
-	db 69, CROBAT
-		db DOUBLE_TEAM
-		db QUICK_ATTACK
-		db WING_ATTACK
-		db TOXIC
 
 	db $ff ; end
 
@@ -1593,14 +1594,14 @@ ChampionGroup:
 	; party
 
 	db 71, GYARADOS
-		db FLAIL
+		db CRUNCH
 		db RAIN_DANCE
-		db SURF
+		db WATERFALL
 		db HYPER_BEAM
 
 	db 72, DRAGONITE
-		db THUNDER_WAVE
-		db TWISTER
+		db AQUA_JET
+		db DRAGONBREATH
 		db THUNDER
 		db HYPER_BEAM
 
@@ -1612,7 +1613,7 @@ ChampionGroup:
 
 	db 73, AERODACTYL
 		db WING_ATTACK
-		db ANCIENTPOWER
+		db IRON_HEAD
 		db ROCK_SLIDE
 		db HYPER_BEAM
 

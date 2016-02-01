@@ -256,7 +256,7 @@ GastlyEggMoves:
 OnixEggMoves:
 	db FLAIL
 	db EXPLOSION
-	db DARK_PULSE
+	db IRON_TAIL
 	db TWISTER
 	db $ff
 
@@ -353,6 +353,7 @@ ScytherEggMoves:
 	db LIGHT_SCREEN
 	db HEADBUTT
 	db DOUBLE_EDGE
+	db IRON_HEAD
 	db $ff
 
 PinsirEggMoves:
@@ -439,7 +440,7 @@ SentretEggMoves:
 
 HoothootEggMoves:
 	db SUPERSONIC
-	db DREAM_EATER
+	db NIGHT_SHADE
 	db NIGHTMARE
 	db AGILITY
 	db $ff
@@ -483,6 +484,7 @@ IgglybuffEggMoves:
 	db PAIN_SPLIT
 	db SEISMIC_TOSS
 	db COUNTER
+	db ROLLOUT
 	db $ff
 
 TogepiEggMoves:
@@ -594,6 +596,7 @@ SnubbullEggMoves:
 	db LEER
 	db TAKE_DOWN
 	db COUNTER
+	db PLAY_ROUGH
 	db $ff
 
 QwilfishEggMoves:

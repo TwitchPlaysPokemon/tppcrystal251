@@ -676,12 +676,13 @@ VulpixEvosAttacks:
 	db 1,QUICK_ATTACK
 	db 3,TAIL_WHIP
 	db 6,EMBER
-	db 10,DISABLE ; egg move
-	db 13,FAINT_ATTACK ; egg move
-	db 16,ROAR
-	db 19,FIRE_SPIN
-	db 22,REFLECT ; egg move
-	db 25,PSYBEAM ; illegal move
+	db 9,DISABLE ; egg move
+	db 12,FAINT_ATTACK ; egg move
+	db 15,ROAR
+	db 18,FIRE_SPIN
+	db 21,REFLECT ; egg move
+	db 24,PSYBEAM ; illegal move
+	db 26,WILLOWISP ; later gen move
 	db 29,SAFEGUARD
 	db 32,HEAT_WAVE ; later gen move
 	db 36,HYPNOSIS ; egg move
@@ -694,7 +695,7 @@ NinetalesEvosAttacks:
 	db 0 ; no more evolutions
 	db 1, DISABLE ; egg move
 	db 1, FAINT_ATTACK ; egg move
-	db 1, HEAT_WAVE ; later gen move *****
+	db 1, HEAT_WAVE ; later gen move
 	db 1, PSYBEAM ; illegal move
 	db 30, REFLECT
 	db 40, ROAR
@@ -1735,7 +1736,7 @@ GengarEvosAttacks:
 	db 70, HYPNOSIS
 	db 75, NIGHTMARE
 	db 80, SHADOW_BALL
-;	db 85, WILLOWISP ; * later gen move
+	db 85, WILLOWISP ; * later gen move
 	db 0 ; no more level-up moves
 
 OnixEvosAttacks:
@@ -2044,8 +2045,7 @@ WeezingEvosAttacks:
 	db 55, SLUDGE_BOMB
 	db 60, FIRE_BLAST ; tm move
 	db 65, PROTECT ; * tm move
-	db 70, TOXIC ; * tm move
-;	db 70, WILLOWISP ; *later gen move
+	db 70, WILLOWISP ; *later gen move
 	db 0 ; no more level-up moves
 
 RhyhornEvosAttacks:
