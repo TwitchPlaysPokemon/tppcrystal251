@@ -87,19 +87,14 @@ UnknownText_0x18a5d3: ; 0x18a5d3
 ; 0x18a62e
 
 UnknownText_0x18a62e: ; 0x18a62e
-	text "Caves collapse"
-	line "easily."
+	text "Caves are sturdy."
 
-	para "Several caves have"
-	line "disappeared in the"
+	para "I thought the one"
+	line "outside CERULEAN"
+	cont "was about to cave"
+	cont "in, but it still"
+	cont "stands today!"
 
-	para "past few years,"
-	line "like the one out-"
-	cont "side CERULEAN."
-
-	para "As a pro HIKER,"
-	line "that's common"
-	cont "knowledge."
 	done
 ; 0x18a6c5
 

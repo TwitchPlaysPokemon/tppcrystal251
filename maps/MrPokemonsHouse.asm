@@ -75,7 +75,7 @@ UnknownScript_0x196eb0: ; 0x196eb0
 	writetext UnknownText_0x197476
 	yesorno
 	iffalse UnknownScript_0x196ec3
-	verbosegiveitem EXP_SHARE, 1
+	verbosegiveitem SLEEP_GUARD, 1
 	iffalse UnknownScript_0x196ec7
 	takeitem RED_SCALE, 1
 	jump UnknownScript_0x196eaa
@@ -336,7 +336,7 @@ UnknownText_0x197476: ; 0x197476
 	line "care to trade it?"
 
 	para "I can offer this"
-	line "EXP.SHARE I got"
+	line "SLEEP GUARD I got"
 	cont "from PROF.OAK."
 	done
 ; 0x19750d

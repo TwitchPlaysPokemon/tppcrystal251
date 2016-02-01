@@ -45,7 +45,7 @@ VermilionCitySimonScript1:
 	loadfont
 	writetext VermilionCitySimonText2
 	buttonsound
-	verbosegiveitem TM_THIEF, 1
+	verbosegiveitem TM_ROCK_SLIDE, 1
 	writetext VermilionCitySimonText3
 	waitbutton
 	closetext
@@ -122,7 +122,7 @@ UnknownScript_0x1aa9ab: ; 0x1aa9ab
 	cry SNORLAX
 	closetext
 	writecode VAR_BATTLETYPE, BATTLETYPE_FORCEITEM
-	loadpokedata SNORLAX, 50
+	loadpokedata SNORLAX, 85
 	startbattle
 	writebyte SNORLAX
 	special SpecialMonCheck

@@ -118,7 +118,7 @@ CooltrainerMScript_0x1a0ff1: ; 0x1a0ff1
 	yesorno
 	iffalse UnknownScript_0x1a1022
 	closetext
-	loadpokedata RATTATA, 5
+	loadpokedata SENTRET, 15
 	catchtutorial BATTLETYPE_TUTORIAL
 	loadfont
 	writetext UnknownText_0x1a114d
@@ -190,7 +190,7 @@ TuscanyScript:
 .MetTuscany
 	writetext TuscanyGivesGiftText
 	buttonsound
-	verbosegiveitem PINK_BOW, 1
+	verbosegiveitem POLKADOT_BOW, 1
 	iffalse TuscanyDoneScript
 	setevent EVENT_GOT_PINK_BOW_FROM_TUSCANY
 	writetext TuscanyGaveGiftText
@@ -224,7 +224,7 @@ FruitTreeScript_0x1a1089: ; 0x1a1089
 ; 0x1a108b
 
 ItemFragment_0x1a108b: ; 0x1a108b
-	db POTION, 1
+	db SUPER_POTION, 1
 ; 0x1a108d
 
 MovementData_0x1a108d: ; 0x1a108d
@@ -350,13 +350,13 @@ UnknownText_0x1a12d9: ; 0x1a12d9
 ; 0x1a1316
 
 ; possibly unused
-UnknownText_0x1a1316: ; 0x1a1316
-	text "I'm waiting for"
-	line "#MON that"
+;UnknownText_0x1a1316: ; 0x1a1316
+;	text "I'm waiting for"
+;	line "#MON that"
 
-	para "appear only in the"
-	line "daytime."
-	done
+;	para "appear only in the"
+;	line "daytime."
+;	done
 ; 0x1a134c
 
 UnknownText_0x1a134c: ; 0x1a134c
@@ -396,7 +396,7 @@ TuscanyGivesGiftText:
 	line "duction, please"
 
 	para "accept this gift,"
-	line "a PINK BOW."
+	line "a POLKADOT BOW."
 	done
 
 TuscanyGaveGiftText:

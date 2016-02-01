@@ -1,6 +1,6 @@
 	db MAGCARGO ; 219
 
-	db  50,  60, 120,  30,  90,  80 ; BST 410 > 440
+	db  50,  60, 160,  30,  90,  120 ; BST 410 > 520
 	;   hp  atk  def  spd  sat  sdf
 ;	db  50,  40, 120,  30,  80,  80 old stats
 

@@ -108,17 +108,17 @@ UnknownText_0x9ddf2: ; 0x9ddf2
 	done
 ; 0x9de66
 
-UnknownText_0x9de66: ; 0x9de66
-	text "I've been battling"
-	line "my pal in VIOLET"
+;UnknownText_0x9de66: ; 0x9de66
+;	text "I've been battling" mobile and unrefernced
+;	line "my pal in VIOLET"
 
-	para "using a MOBILE"
-	line "ADAPTER link."
+;	para "using a MOBILE"
+;	line "ADAPTER link."
 
-	para "I'm down 5-7"
-	line "against him. I've"
-	cont "gotta crank it up!"
-	done
+;	para "I'm down 5-7"
+;	line "against him. I've"
+;	cont "gotta crank it up!"
+;	done
 ; 0x9ded7
 
 UnknownText_0x9ded7: ; 0x9ded7

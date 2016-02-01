@@ -1,45 +1,45 @@
 Marts: ; 160a9
-	dw Mart0              ; 00
-	dw Mart1              ; 01
-	dw Mart2              ; 02
-	dw Mart3              ; 03
-	dw Mart4              ; 04
-	dw Mart5              ; 05
-	dw Mart6              ; 06
-	dw Mart7              ; 07
-	dw Mart8              ; 08
-	dw Mart9              ; 09
-	dw Mart10             ; 0a
-	dw Mart11             ; 0b
-	dw Mart12             ; 0c
-	dw Mart13             ; 0d
-	dw Mart14             ; 0e
-	dw Mart15             ; 0f
-	dw Mart16             ; 10
-	dw Mart17             ; 11
-	dw Mart18             ; 12
-	dw Mart19             ; 13
-	dw Mart20             ; 14
-	dw Mart21             ; 15
-	dw Mart22             ; 16
-	dw Mart23             ; 17
-	dw Mart24             ; 18
-	dw Mart25             ; 19
-	dw Mart26             ; 1a
-	dw Mart27             ; 1b
-	dw Mart28             ; 1c
-	dw Mart29             ; 1d
-	dw Mart30             ; 1e
-	dw Mart31             ; 1f
-	dw Mart32             ; 20
-	dw Mart33             ; 21
-	dw TmDepot1           ; 22
-	dw TmDepot2           ; 23
-	dw TmDepot3           ; 24
-	dw TmDepot4           ; 25
-	dw TmDepot5           ; 26
-	dw TmDepot6           ; 27
-	dw ViridianMartRB     ; 28
+	dw Mart0          ; 00
+	dw Mart1          ; 01
+	dw Mart2          ; 02
+	dw Mart3          ; 03
+	dw Mart4          ; 04
+	dw Mart5          ; 05
+	dw Mart6          ; 06
+	dw Mart7          ; 07
+	dw Mart8          ; 08
+	dw Mart9          ; 09
+	dw Mart10         ; 0a
+	dw Mart11         ; 0b
+	dw Mart12         ; 0c
+	dw Mart13         ; 0d
+	dw Mart14         ; 0e
+	dw Mart15         ; 0f
+	dw Mart16         ; 10
+	dw Mart17         ; 11
+	dw Mart18         ; 12
+	dw Mart19         ; 13
+	dw Mart20         ; 14
+	dw Mart21         ; 15
+	dw Mart22         ; 16
+	dw Mart23         ; 17
+	dw Mart24         ; 18
+	dw Mart25         ; 19
+	dw Mart26         ; 1a
+	dw Mart27         ; 1b
+	dw Mart28         ; 1c
+	dw Mart29         ; 1d
+	dw Mart30         ; 1e
+	dw Mart31         ; 1f
+	dw Mart32         ; 20
+	dw Mart33         ; 21
+	dw TmDepot1       ; 22
+	dw TmDepot2       ; 23
+	dw TmDepot3       ; 24
+	dw TmDepot4       ; 25
+	dw TmDepot5       ; 26
+	dw TmDepot6       ; 27
+	dw ViridianMartRB ; 28
 	dw PewterMartRB       ; 29
 	dw CeruleanMartRB     ; 2a
 	dw CeruleanBikeShopRB ; 2b
@@ -49,28 +49,37 @@ MartsEnd
 
 
 Mart0: ; 160ed
-	db 4 ; # items
-	db POTION
-	db ANTIDOTE
-	db PARLYZ_HEAL
-	db AWAKENING
+	db 10 ; # items
+	db POISON_GUARD
+	db PARLYZ_GUARD
+	db SLEEP_GUARD
+	db CONFUSEGUARD
+	db BURN_GUARD
+	db FREEZE_GUARD
+	db LUCKY_PUNCH
+	db METAL_POWDER
+	db THICK_CLUB
+	db STICK
 	db $ff
 ; 160f3
 
 Mart1: ; 160f3
-	db 5 ; # items
+	db 8 ; # items
 	db POKE_BALL
+	db SUPER_POTION
 	db POTION
 	db ANTIDOTE
 	db PARLYZ_HEAL
 	db AWAKENING
+	db BURN_HEAL
+	db REPEL
 	db $ff
 ; 160fa
 
 Mart2: ; 160fa
 	db 10 ; # items
-	db POKE_BALL
-	db POTION
+	db GREAT_BALL
+	db SUPER_POTION
 	db ESCAPE_ROPE
 	db ANTIDOTE
 	db PARLYZ_HEAL
@@ -107,9 +116,11 @@ Mart4: ; 16111
 ; 16118
 
 Mart5: ; 16118
-	db 7 ; # items
+	db 9 ; # items
+	db HYPER_POTION
 	db SUPER_POTION
 	db POTION
+	db FULL_HEAL
 	db ANTIDOTE
 	db PARLYZ_HEAL
 	db AWAKENING
@@ -119,24 +130,26 @@ Mart5: ; 16118
 ; 16121
 
 Mart6: ; 16121
-	db 8 ; # items
+	db 10 ; # items
+	db ULTRA_BALL
 	db GREAT_BALL
 	db POKE_BALL
 	db ESCAPE_ROPE
+	db MAX_REPEL
+	db SUPER_REPEL
 	db REPEL
 	db REVIVE
-	db FULL_HEAL
 	db POKE_DOLL
 	db FLOWER_MAIL
 	db $ff
 ; 1612b
 
 Mart7: ; 1612b
-	db 7 ; # items
+	db 7 ; # items goldenrod
+	db X_ATTACK
 	db X_SPEED
 	db X_SPECIAL
 	db X_DEFEND
-	db X_ATTACK
 	db DIRE_HIT
 	db GUARD_SPEC
 	db X_ACCURACY
@@ -159,12 +172,12 @@ Mart8: ; 16134
 ; 1613b
 
 Mart9: ; 1613b
-	db 6 ; # items
+	db 5 ; # items
 	db TM_ROCK_SMASH
+	db TM_SUNNY_DAY
 	db TM_THUNDER_WAVE
 	db TM_STRING_SHOT
 	db TM_SEISMIC_TOSS
-	db TM_RETURN
 	db $ff
 ; 16140
 
@@ -179,7 +192,7 @@ Mart10: ; 16140
 	db SOFT_SAND
 	db POISON_BARB
 	db MIRACLE_SEED
-	db STICK
+	db QUICK_CLAW
 	db $ff
 ; 16146
 
@@ -197,24 +210,24 @@ Mart12: ; 1614c ;unused
 
 Mart13: ; 16153
 	db 9 ; # items
+	db ULTRA_BALL
 	db GREAT_BALL
 	db HYPER_POTION
-	db SUPER_POTION
 	db ANTIDOTE
 	db PARLYZ_HEAL
 	db AWAKENING
 	db ICE_HEAL
-	db SUPER_REPEL
+	db MAX_REPEL
 	db SURF_MAIL
 	db $ff
 ; 1615e
 
 Mart14: ; 1615e
 	db 10 ; # items
+	db ULTRA_BALL
 	db GREAT_BALL
-	db POKE_BALL
+	db HYPER_POTION
 	db SUPER_POTION
-	db POTION
 	db ANTIDOTE
 	db PARLYZ_HEAL
 	db AWAKENING
@@ -236,11 +249,11 @@ Mart15: ; 1616a
 Mart16: ; 16170
 	db 9 ; # items
 	db RAGECANDYBAR
+	db ULTRA_BALL
 	db GREAT_BALL
 	db HYPER_POTION
-	db SUPER_POTION
-	db ANTIDOTE
-	db PARLYZ_HEAL
+	db FULL_HEAL
+	db ESCAPE_ROPE
 	db SUPER_REPEL
 	db REVIVE
 	db FLOWER_MAIL
@@ -370,7 +383,7 @@ Mart25: ; 161ce
 ; 161d5
 
 Mart26: ; 161d5
-	db 7 ; # items
+	db 9 ; # items
 	db LOVELY_MAIL
 	db SURF_MAIL
 	db POKE_DOLL
@@ -379,6 +392,7 @@ Mart26: ; 161d5
 	db SPELL_TAG
 	db MAGNET
 	db LIGHT_BALL
+	db AMULET_COIN
 	db $ff
 ; 161da
 
@@ -447,11 +461,11 @@ Mart31: ; 161fd
 
 Mart32: ; 16205
 	db 7 ; # items
-	db ULTRA_BALL
-	db MAX_REPEL
+	db FULL_RESTORE
 	db MAX_POTION
 	db HYPER_POTION
-	db FULL_RESTORE
+	db ULTRA_BALL
+	db MAX_REPEL
 	db REVIVE
 	db FULL_HEAL
 	db $ff

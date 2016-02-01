@@ -1827,7 +1827,7 @@ Function100b7a: ; 100b7a
 	ld a, [wcf94]
 	rst FarCall
 	callba Function24085
-	callba MobileTextBorder
+	;callba MobileTextBorder
 	call Function1ad2
 	call Function321c
 	callba Function2411a

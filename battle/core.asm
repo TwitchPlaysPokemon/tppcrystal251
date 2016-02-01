@@ -688,8 +688,8 @@ Function3c434: ; 3c434
 	jr z, .asm_3c4a4
 	ld hl, PlayerSubStatus4
 	res SUBSTATUS_RAGE, [hl]
-	xor a
-	ld [wc72b], a
+	;xor a
+	;ld [wc72b], a
 
 .asm_3c4a4
 	ld a, [wPlayerMoveStruct + MOVE_EFFECT]
@@ -709,7 +709,7 @@ Function3c434: ; 3c434
 	xor a
 	ld [PlayerFuryCutterCount], a
 	ld [PlayerProtectCount], a
-	ld [wc72b], a
+	;ld [wc72b], a
 	ld hl, PlayerSubStatus4
 	res SUBSTATUS_RAGE, [hl]
 
@@ -722,7 +722,7 @@ Function3c434: ; 3c434
 	xor a
 	ld [PlayerFuryCutterCount], a
 	ld [PlayerProtectCount], a
-	ld [wc72b], a
+	;ld [wc72b], a
 	ld hl, PlayerSubStatus4
 	res SUBSTATUS_RAGE, [hl]
 	xor a
@@ -900,13 +900,13 @@ CompareMovePriority: ; 3c5b4
 ; 3c5c5
 
 GetMovePriority: ; 3c5c5
-; Return the priority (0-4) of move a.
+; Return the priority (0-6) of move a.
 
 	ld b, a
 
-	; Vital throw goes last.
+	; Vital throw goes at -1
 	cp VITAL_THROW
-	ld a, 0
+	ld a, 1
 	ret z
 
 	call GetMoveEffect
@@ -919,7 +919,7 @@ GetMovePriority: ; 3c5c5
 	cp -1
 	jr nz, .loop
 
-	ld a, 1
+	ld a, 2
 	ret
 
 .done
@@ -928,10 +928,11 @@ GetMovePriority: ; 3c5c5
 ; 3c5df
 
 MoveEffectPriorities: ; 3c5df
-	db EFFECT_PROTECT,      4
-	db EFFECT_ENDURE,       4
-	db EFFECT_EXTREMESPEED, 3
-	db EFFECT_PRIORITY_HIT, 2
+	db EFFECT_PROTECT,      6
+	db EFFECT_ENDURE,       5
+	db EFFECT_EXTREMESPEED, 4
+	db EFFECT_PRIORITY_HIT, 3
+	db EFFECT_BIDE,			3
 	db EFFECT_WHIRLWIND,    0
 	db EFFECT_COUNTER,      0
 	db EFFECT_MIRROR_COAT,  0
@@ -3796,7 +3797,7 @@ NewEnemyMonStatus: ; 3d834
 	ld [EnemyDisableCount], a
 	ld [EnemyFuryCutterCount], a
 	ld [EnemyProtectCount], a
-	ld [wc72c], a
+	;ld [wc72c], a
 	ld [EnemyDisabledMove], a
 	ld [wc6fa], a
 	ld [wc730], a
@@ -4291,7 +4292,7 @@ NewBattleMonStatus: ; 3dbde
 	ld [PlayerDisableCount], a
 	ld [PlayerFuryCutterCount], a
 	ld [PlayerProtectCount], a
-	ld [wc72b], a
+	;ld [wc72b], a
 	ld [DisabledMove], a
 	ld [wc6fe], a
 	ld [wc731], a
@@ -4320,9 +4321,9 @@ SpikesDamage: ; 3dc23
 	ld hl, EnemyScreens
 	ld de, EnemyMonType
 	ld bc, UpdateEnemyHUD
-.ok
+.ok ;choose correct side
 
-	ld a, [hl]
+	ld a, [hl] ;if no spikes, ret
 	and $3
 	ret z
 
@@ -4335,28 +4336,29 @@ SpikesDamage: ; 3dc23
 	cp FLYING
 	ret z
 
+	push bc ;push correct hud update
+
 	ld a, [hl]
 	and $3
-	ld [wc689], a
-
-	push bc
+	push af
 
 	ld hl, BattleText_0x80bae ; "hurt by SPIKES!"
 	call StdBattleTextBox
 
-	call GetEighthMaxHP
-	ld b, 0
-	ld hl, 0
-	ld a, [wc689]
-.loop
-	dec a
-	jr z, .done
-	add hl, bc
-	jr .loop
-.done
-	ld b, h
-	ld c, l
+	pop af
 
+	ld hl, SpikesDamageJumptable
+	dec a
+	ld b, 0
+	ld c,a 
+	add hl, bc
+	add hl, bc
+	ld a, [hli]
+	ld h, [hl]
+	ld l, a
+	jp [hl]	
+
+DoneSpikes:
 	call Function3cc39
 
 	pop hl
@@ -4367,6 +4369,38 @@ SpikesDamage: ; 3dc23
 .hl
 	jp [hl]
 ; 3dc5b
+
+SpikesDamageJumptable:
+	dw OneLayerSpikes
+	dw TwoLayerSpikes
+	dw ThreeLayerSpikes
+
+OneLayerSpikes:
+	call GetEighthMaxHP
+	jr DoneSpikes
+
+TwoLayerSpikes:
+	call GetMaxHP
+	ld a, b
+	ld [hDividend], a
+	ld a, c
+	ld [hDividend + 1], a
+	ld a, 6
+	ld [hDivisor], a
+	ld b, 2
+	call Divide
+	ld a, [hQuotient + 2]
+	ld c, a
+	ld a, [hQuotient + 1]
+	ld b, a
+	or c
+	jr z, DoneSpikes
+	inc c
+	jr DoneSpikes
+
+ThreeLayerSpikes:
+	call GetQuarterMaxHP
+	jr DoneSpikes
 
 Function3dc5b: ; 3dc5b
 	ld a, BATTLE_VARS_MOVE
@@ -4759,39 +4793,39 @@ Function3deb6: ; 3deb6
 	ld a, [bc]
 	ld b, a
 	callab GetItem
-	ld hl, .data_3defc
-.asm_3dec7
-	ld a, [hli]
-	cp $ff
-	jr z, .asm_3def9
-	inc hl
-	inc hl
-	cp b
-	jr nz, .asm_3dec7
-	pop bc
-	ld a, [bc]
-	ld [wd265], a
-	push bc
-	dec hl
-	dec hl
-	ld a, [hli]
-	ld h, [hl]
-	ld l, a
-	ld a, BANK(BattleCommand70)
-	rst FarCall
-	pop bc
-	pop de
-	ld a, [FailedMessage]
-	and a
-	ret nz
-	xor a
-	ld [bc], a
-	ld [de], a
-	call GetItemName
-	ld hl, BattleText_0x80bde
-	call StdBattleTextBox
-	callab BattleCommand8c
-	ret
+	;ld hl, .data_3defc
+;.asm_3dec7
+	;ld a, [hli]
+	;cp $ff
+	;jr z, .asm_3def9
+	;inc hl
+	;inc hl
+	;cp b
+	;jr nz, .asm_3dec7
+	;pop bc
+	;ld a, [bc]
+	;ld [wd265], a
+	;push bc
+	;dec hl
+	;dec hl
+	;ld a, [hli]
+	;ld h, [hl]
+	;ld l, a
+	;ld a, BANK(BattleCommand70)
+	;rst FarCall
+	;pop bc
+	;pop de
+	;ld a, [FailedMessage]
+	;and a
+	;ret nz
+	;xor a
+	;ld [bc], a
+	;ld [de], a
+	;call GetItemName
+	;ld hl, BattleText_0x80bde
+	;call StdBattleTextBox
+	;callab BattleCommand8c
+	;ret
 
 .asm_3def9
 	pop bc
@@ -4799,15 +4833,15 @@ Function3deb6: ; 3deb6
 	ret
 ; 3defc
 
-.data_3defc
-	dbw HELD_ATTACK_UP,     BattleCommand70
-	dbw HELD_DEFENSE_UP,    BattleCommand71
-	dbw HELD_SPEED_UP,      BattleCommand72
-	dbw HELD_SP_ATTACK_UP,  BattleCommand73
-	dbw HELD_SP_DEFENSE_UP, BattleCommand74
-	dbw HELD_ACCURACY_UP,   BattleCommand75
-	dbw HELD_EVASION_UP,    BattleCommand76
-	db $ff
+;.data_3defc
+	;dbw HELD_ATTACK_UP,     BattleCommand70
+	;dbw HELD_DEFENSE_UP,    BattleCommand71
+	;dbw HELD_SPEED_UP,      BattleCommand72
+	;dbw HELD_SP_ATTACK_UP,  BattleCommand73
+	;dbw HELD_SP_DEFENSE_UP, BattleCommand74
+	;dbw HELD_ACCURACY_UP,   BattleCommand75
+	;dbw HELD_EVASION_UP,    BattleCommand76
+	;db $ff
 ; 3df12
 
 Function3df12: ; 3df12
@@ -5970,7 +6004,7 @@ MoveInfoBox: ; 3e6c8
 	ld b, 3
 	ld c, 9
 	call TextBox
-	call MobileTextBorder
+	;call MobileTextBorder
 
 	ld a, [PlayerDisableCount]
 	and a
@@ -6240,8 +6274,8 @@ Function3e7c1: ; 3e7c1
 	jr z, .asm_3e8af
 	ld hl, EnemySubStatus4
 	res SUBSTATUS_RAGE, [hl]
-	xor a
-	ld [wc72c], a
+	;xor a
+	;ld [wc72c], a
 
 .asm_3e8af
 	ld a, [wEnemyMoveStruct + MOVE_EFFECT]
@@ -6262,7 +6296,7 @@ Function3e8c1: ; 3e8c1
 	xor a
 	ld [EnemyFuryCutterCount], a
 	ld [EnemyProtectCount], a
-	ld [wc72c], a
+	;ld [wc72c], a
 	ld hl, EnemySubStatus4
 	res SUBSTATUS_RAGE, [hl]
 	ret
@@ -9403,7 +9437,7 @@ Function3fb6c: ; 3fb6c
 	ld b, $4
 	ld c, $12
 	call TextBox
-	callba MobileTextBorder
+	;callba MobileTextBorder
 	hlcoord 1, 5
 	ld bc, $0307
 	call ClearBox

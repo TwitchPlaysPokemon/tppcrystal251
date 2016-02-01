@@ -168,14 +168,10 @@ UnknownText_0x1814a6: ; 0x1814a6
 	
 	; para "You've caught every"
 	; line "#MON out there,"
-	
-	; para "including one I've"
-	; line "never heard of."
-	
-	; para "It seems my re-"
-	; line "search is far from"
-	; cont "complete."
-	
+
+	;para "and defeated the"
+	;line "greatest trainers."
+
 	; para "That's why I want"
 	; line "to challenge you,"
 	; cont "<PLAY_G>."

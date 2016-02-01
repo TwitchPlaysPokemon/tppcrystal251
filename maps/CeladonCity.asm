@@ -194,22 +194,22 @@ UnknownText_0x1aa1bd: ; 0x1aa1bd
 
 ; possibly unused
 UnknownText_0x1aa25b: ; 0x1aa25b
-	text "I love being"
-	line "surrounded by tall"
-	cont "buildings!"
+	;text "I love being"
+	;line "surrounded by tall"
+	;cont "buildings!"
 
-	para "Isn't it true that"
-	line "GOLDENROD #MON"
+	;para "Isn't it true that"
+	;line "GOLDENROD #MON"
 
-	para "CENTER was made"
-	line "much, much bigger?"
+	;para "CENTER was made"
+	;line "much, much bigger?"
 
-	para "That is so neat!"
-	line "I wish we had a"
+	;para "That is so neat!"
+	;line "I wish we had a"
 
-	para "place like that in"
-	line "KANTO<...>"
-	done
+	;para "place like that in"
+	;line "KANTO<...>"
+	;done
 ; 0x1aa306
 
 UnknownText_0x1aa306: ; 0x1aa306

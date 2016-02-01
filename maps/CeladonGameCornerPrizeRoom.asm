@@ -154,7 +154,7 @@ UnknownScript_0x727d3: ; 0x727d3
 ; 0x727ed
 
 UnknownScript_0x727ed: ; 0x727ed
-	checkcoins 10000
+	checkcoins 5000
 	if_equal $2, UnknownScript_0x72778
 	checkcode VAR_PARTYCOUNT
 	if_equal $6, CGCSlot1PC
@@ -168,7 +168,7 @@ UnknownScript_0x727ed: ; 0x727ed
 	writebyte PORYGON2
 	special Functionc230
 	givepoke PORYGON2, 80, 0, 0
-	takecoins 10000
+	takecoins 5000
 	jump UnknownScript_0x727d3
 ; 0x7281b
 
@@ -185,7 +185,7 @@ CGCSlot1PC:
 	writebyte PORYGON2
 	special Functionc230
 	givepoke PORYGON2, 80, 0, 0
-	takecoins 10000
+	takecoins 5000
 	jump UnknownScript_0x727d3
 
 UnknownScript_0x7281b: ; 0x7281b
@@ -255,7 +255,7 @@ MenuDataHeader_0x72877: ; 0x72877
 MenuData2_0x7287f: ; 0x7287f
 	db $80 ; flags
 	db 4 ; items
-	db "PORYGON2  10000@"
+	db "PORYGON2   5000@"
 	db "Lucky Egg  3000@"
 	db "SlowpokeTail300@"
 	db "CANCEL@"

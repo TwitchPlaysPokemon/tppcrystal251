@@ -310,11 +310,11 @@ FruitTreeScript_0x1a55f9: ; 0x1a55f9
 ; 0x1a55fb
 
 ItemFragment_0x1a55fb: ; 0x1a55fb
-	db POTION, 1
+	db SUPER_POTION, 1
 ; 0x1a55fd
 
 ItemFragment_0x1a55fd: ; 0x1a55fd
-	db POKE_BALL, 1
+	db GREAT_BALL, 1
 ; 0x1a55ff
 
 UnknownText_0x1a55ff: ; 0x1a55ff
@@ -415,11 +415,11 @@ UnknownText_0x1a5896: ; 0x1a5896
 	line "SUBSTITUTE."
 
 	para "It lets a doll"
-	line "take hits for a #MON,"
-
-	para "stopping it from"
-	line "being hit by status"
-	cont "or being KO'd."
+	line "fight for a"
+	cont "#MON, stopping"
+	cont "it from being hit" 
+	cont "by status or"
+	cont "being KO'd."
 
 	para "It's nice to have"
 	line "others do the work"

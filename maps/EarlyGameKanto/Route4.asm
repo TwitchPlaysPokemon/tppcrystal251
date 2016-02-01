@@ -13,7 +13,7 @@ Trainer_LassCrissy:
 	end
 
 Route4RBEverstone:
-	db EVERSTONE, 1
+	db TM_STRING_SHOT, 1
 
 MapRoute4RBSignpost0Script:
 	jumptext _Route4Text6

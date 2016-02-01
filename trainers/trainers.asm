@@ -2,7 +2,7 @@ Trainers:
 
 ; All trainers follow a basic structure:
 	; Name
-		; String in format "TEXT@"
+		; String in format "Text@"
 	; Type
 		; Bit 0: moves
 		; Bit 1: item
@@ -15,7 +15,7 @@ Trainers:
 ;fist string is the name, ending in an @ symbol
 ; then it's how many features the trainer uses, 0 means none, (1 << TRAINERTYPE_MOVES) = custom sets, (1 << TRAINERTYPE_ITEM) = hold items and (1 << TRAINERTYPE_NICKNAME) = nickname
 ; multiple can be used by sepperating them by | , but those you use must be fully specified on the whole trainer
-; specifying moves requires specifying all 4 as the game assumes the trainer is so long based on that. items and nicknames are inserted after the species name behind commas with nicknames in quotes ("AIIIIIIRRR@")
+; specifying moves requires specifying all 4 as the game assumes the trainer is so long based on that. items and nicknames are inserted after the species name behind commas with nicknames in quotes ("Aiiiiiirrr@")
 ; Mon syntax: level, specicies, item/nickname, 4 moves. remove features that you have not turned on. up to 6 mons can be entered
 ; then, lastly an $ff to show that the trainer is complete
 
@@ -3420,7 +3420,7 @@ LassGroup:
 
 	db "ROBIN@"
 	db (1 << TRAINERTYPE_NICKNAME)
-	db 14, JIGGLYPUFF, "JIGGLES@"
+	db 14, JIGGLYPUFF, "Jiggles@"
 	db $ff
 
 	db "MIRIAM@"
@@ -3431,7 +3431,7 @@ LassGroup:
 	
 	db "IRIS@"
 	db (1 << TRAINERTYPE_NICKNAME)
-	db 14, CLEFAIRY, "CLEFFLES@"
+	db 14, CLEFAIRY, "Cleffles@"
 	db $ff
 
 	db "CRISSY@"
@@ -7550,7 +7550,7 @@ BikerGroup:
 	db (1 << TRAINERTYPE_NICKNAME)
 
 	; party
-	db 75, BEEDRILL, "STINGER@"
+	db 75, BEEDRILL, "Stinger@"
 
 	db $ff ; end
 
@@ -8642,8 +8642,8 @@ PicnickerGroup:
 
 	db "KELSEY@"
 	db (1 << TRAINERTYPE_NICKNAME)
-	db 15, NIDORAN_M, "NEEDLES@"
-	db 15, NIDORAN_F, "PRINCESS@"
+	db 15, NIDORAN_M, "Needles@"
+	db 15, NIDORAN_F, "Princess@"
 	db $ff
 ; ================
 	db "NANCY@"
@@ -8654,9 +8654,9 @@ PicnickerGroup:
 
 	db "IZZY@"
 	db (1 << TRAINERTYPE_NICKNAME)
-	db 16, PIDGEY, "HOPSY@"
-	db 16, PIDGEY, "PECKSY@"
-	db 16, PIDGEY, "FLAPSY@"
+	db 16, PIDGEY, "Hopsy@"
+	db 16, PIDGEY, "Pecksy@"
+	db 16, PIDGEY, "Flapsy@"
 	db $ff
 ; ================================
 
@@ -8963,8 +8963,8 @@ CamperGroup:
 
 	db "FLINT@"
 	db (1 << TRAINERTYPE_NICKNAME | 1 << TRAINERTYPE_ITEM)
-	db 14, RATTATA, BERRY, "RATMAN@"
-	db 14, EKANS, BERRY, "PYTHON@"
+	db 14, RATTATA, BERRY, "Ratman@"
+	db 14, EKANS, BERRY, "Python@"
 	db $ff
 
 	db "RICKY@"
@@ -9741,7 +9741,7 @@ PokefanFGroup:
 	db (1 << TRAINERTYPE_NICKNAME)
 
 	; party
-	db 35, AMPHAROS, "ZAPPY@"
+	db 35, AMPHAROS, "Zappy@"
 
 	db $ff ; end
 
@@ -9815,7 +9815,7 @@ RedGroup:
 		db AMNESIA
 		db PSYCHIC_M
 
-	db 100, VENOMOTH, " RRRRIIIIH@"
+	db 100, VENOMOTH, " Rrrriiiih@"
 		db STUN_SPORE
 		db PSYBEAM
 		db SLEEP_POWDER
@@ -10140,7 +10140,7 @@ GruntFGroup:
 
 	db $ff ; end
 
-	db "GRUNT@" ; 6
+	db "Grunt@" ; 6
 	db 0
 	db 11, SANDSHREW
 	db 11, RATTATA

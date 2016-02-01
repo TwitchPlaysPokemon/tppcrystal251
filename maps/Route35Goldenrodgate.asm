@@ -26,7 +26,7 @@ OfficerScript_0x69d37: ; 0x69d37
 	writetext UnknownText_0x69eb8
 	playsound SFX_KEY_ITEM
 	waitsfx
-	givepoke SPEAROW, 10, 0, 1, GiftSpearowName, GiftSpearowOTName
+	givepoke NOCTOWL, 30, 0, 1, GiftSpearowName, GiftSpearowOTName
 	givepokeitem GiftSpearowMail
 	setevent EVENT_GOT_KENYA
 UnknownScript_0x69d73: ; 0x69d73
@@ -113,8 +113,8 @@ UnknownText_0x69e48: ; 0x69e48
 	text "You will? Perfect!"
 	line "Thanks, kid!"
 
-	para "My pal's a chubby"
-	line "guy who snoozes"
+	para "My pal's a lazy"
+	line "guy who moans"
 	cont "all the time."
 
 	para "You'll recognize"
@@ -187,9 +187,19 @@ UnknownText_0x6a00a: ; 0x6a00a
 ; 0x6a09a
 
 UnknownText_0x6a09a: ; 0x6a09a
-	text "I like the #MON"
-	line "Lullaby they play"
-	cont "on the radio."
+	text "I feel bad for"
+	line "the guy at the"
+	cont "counter..."
+	
+	para "He let some"
+	line "girl borrow his"
+	
+	para "number one mail"
+	line "carrier, and she"
+	
+	para "never gave it"
+	line "back. I wonder"
+	cont "where it's at now."
 	done
 ; 0x6a0cb
 

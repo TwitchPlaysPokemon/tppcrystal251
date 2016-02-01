@@ -463,10 +463,12 @@ UnknownText_0x1a0a71: ; 0x1a0a71
 
 	para "You've taken your"
 	line "first step into"
-	cont "KANTO."
+	cont "KANTO-"
 
-	para "Check your #-"
-	line "GEAR MAP and see."
+	para "Oh, you were born"
+	line "here?"
+	
+	para "Then welcome home!"
 	done
 ; 0x1a0ad9
 

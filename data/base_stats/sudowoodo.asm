@@ -1,6 +1,6 @@
 	db SUDOWOODO ; 185
 
-	db  70, 100, 115,  30,  30,  65
+	db  80, 110, 155,  30,  30, 105; (+10 attack and HP +40 sdef)
 	;   hp  atk  def  spd  sat  sdf
 
 	db ROCK, ROCK

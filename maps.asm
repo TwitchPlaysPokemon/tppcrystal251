@@ -95,7 +95,7 @@ INCLUDE "maps/RadioTower5F.asm"
 INCLUDE "maps/OlivineLighthouse5F.asm"
 INCLUDE "maps/OlivineLighthouse6F.asm"
 INCLUDE "maps/GoldenrodPokeCenter1F.asm"
-INCLUDE "maps/GoldenrodPokeComCenter2FMobile.asm"
+;INCLUDE "maps/GoldenrodPokeComCenter2FMobile.asm"
 INCLUDE "maps/IlexForestAzaleaGate.asm"
 INCLUDE "maps/Route34IlexForestGate.asm"
 INCLUDE "maps/DayCare.asm"
@@ -232,8 +232,6 @@ INCLUDE "maps/TrainerHouse1F.asm"
 INCLUDE "maps/TrainerHouseB1F.asm"
 INCLUDE "maps/ViridianMart.asm"
 INCLUDE "maps/ViridianPokeCenter1F.asm"
-INCLUDE "maps/Route2NuggetSpeechHouse.asm"
-INCLUDE "maps/Route2Gate.asm"
 
 
 SECTION "Map Scripts 12", ROMX
@@ -364,8 +362,10 @@ INCLUDE "maps/PokeCenter2F.asm"
 INCLUDE "maps/TradeCenter.asm"
 INCLUDE "maps/Colosseum.asm"
 INCLUDE "maps/TimeCapsule.asm"
-INCLUDE "maps/MobileTradeRoomMobile.asm"
-INCLUDE "maps/MobileBattleRoom.asm"
+INCLUDE "maps/Route2NuggetSpeechHouse.asm"
+INCLUDE "maps/Route2Gate.asm"
+	;INCLUDE "maps/MobileTradeRoomMobile.asm"
+	;INCLUDE "maps/MobileBattleRoom.asm"
 
 
 SECTION "Map Scripts 18", ROMX
@@ -652,7 +652,6 @@ INCLUDE "maps/EarlyGameKanto/SSAnne10.asm"
 SECTION "BillsGarden", ROMX
 INCLUDE "maps/BillsGarden.asm"SECTION "BillsGarden Blockdata", ROMX
 BillsGarden_BlockData: INCBIN "maps/BillsGarden.blk"
-
 SECTION "PowerplantB1", ROMX
 INCLUDE "maps/PowerplantB1.asm"SECTION "PowerplantB1 Blockdata", ROMX
 PowerplantB1_BlockData: INCBIN "maps/PowerplantB1.blk"

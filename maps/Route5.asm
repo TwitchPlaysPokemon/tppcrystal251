@@ -18,6 +18,28 @@ MapRoute5Signpost1Script: ; 0x1adb1f
 	jumptext UnknownText_0x1adb97
 ; 0x1adb22
 
+Snorlax5:
+	loadfont
+	special SpecialSnorlaxAwake
+	iftrue WakeSnorlax5
+	writetext Snorlax5Text
+	waitbutton
+	closetext
+	end
+
+WakeSnorlax5:
+	writetext Snorlax5WakeText
+	pause 15
+	cry SNORLAX
+	closetext
+	writecode VAR_BATTLETYPE, BATTLETYPE_FORCEITEM
+	loadpokedata SNORLAX, 85
+	startbattle
+	disappear $3
+	setevent EVENT_ROUTE_5_SNORLAX
+	returnafterbattle
+	end
+
 UnknownText_0x1adb22: ; 0x1adb22
 	text "The road is closed"
 	line "until the problem"
@@ -41,6 +63,22 @@ UnknownText_0x1adb97: ; 0x1adb97
 	para "House for Sale<...>"
 	line "Nobody lives here."
 	done
+
+Snorlax5Text:
+	text "SNORLAX is snoring"
+	line "peacefully<...>"
+	done
+
+Snorlax5WakeText:
+	text "The #GEAR was"
+	line "placed near the"
+	cont "sleeping SNORLAX<...>"
+
+	para "<...>"
+
+	para "SNORLAX woke up!"
+	done
+
 ; 0x1adbc7
 
 Route5_MapEventHeader: ; 0x1adbc7
@@ -63,7 +101,8 @@ Route5_MapEventHeader: ; 0x1adbc7
 	signpost 11, 10, $0, MapRoute5Signpost1Script
 
 	; people-events
-	db 1
+	db 2
 	person_event SPRITE_POKEFAN_M, 20, 21, $6, 0, 0, -1, -1, 8 + PAL_OW_RED, 0, 0, PokefanMScript_0x1adb19, EVENT_MEN_BLOCKING_UNDERGROUND_PATH_ROUTES_5_6
+	person_event SPRITE_BIG_SNORLAX, 18, 12, $15, 0, 0, -1, -1, 0, 0, 0, Snorlax5, EVENT_ROUTE_5_SNORLAX
 ; 0x1adbf8
 

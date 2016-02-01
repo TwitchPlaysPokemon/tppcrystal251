@@ -897,7 +897,7 @@ UnknownText_0x6b7af: ; 0x6b7af
 ; 0x6b910
 
 UnknownText_0x6b910: ; 0x6b910
-	text "Uh-oh<...> Your BAG"
+	text "Uh-oh<...> Your PACK"
 	line "is full."
 
 	para "We'll hold on to"

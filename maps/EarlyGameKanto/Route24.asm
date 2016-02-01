@@ -137,7 +137,7 @@ NuggetBridgeRBEndGuyScript:
 	end
 
 Route24RBTM45:
-	db TM_ATTRACT, 1
+	db TM_THUNDER_WAVE, 1
 
 Route24RBRocketText1a:
 	text "Congratulations!"

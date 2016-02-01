@@ -85,8 +85,6 @@ ENDM
 	trigger_def FAST_SHIP_1F,                           wFastShip1FTrigger
 	trigger_def FAST_SHIP_B1F,                          wFastShipB1FTrigger
 	trigger_def MOUNT_MOON_SQUARE,                      wMountMoonSquareTrigger
-	trigger_def MOBILE_TRADE_ROOM_MOBILE,               wMobileTradeRoomMobileTrigger
-	trigger_def MOBILE_BATTLE_ROOM,                     wMobileBattleRoomTrigger
 	trigger_def BATTLE_TENT_BATTLE_ROOM,                wBattleTentBattleRoomTrigger
 	trigger_def VERMILION_CITY,                         wVermilionCityTrigger
 	trigger_def ROCKET_HIDEOUT_1,                       wRocketHideout1Trigger

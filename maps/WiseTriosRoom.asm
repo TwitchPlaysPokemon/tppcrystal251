@@ -226,8 +226,8 @@ UnknownText_0x98712: ; 0x98712
 	text "TIN TOWER may be"
 	line "entered by those"
 
-	para "bearing ECRUTEAK's"
-	line "GYM BADGE."
+	para "bearing the"
+	line "FOGBADGE."
 
 	para "However, now that"
 	line "SUICUNE, RAIKOU"
@@ -349,9 +349,9 @@ UnknownText_0x98a35: ; 0x98a35
 	para "However<...>"
 
 	para "About 150 years"
-	line "ago, a lightning"
+	line "ago, lightning"
 
-	para "bolt struck one of"
+	para "struck one of"
 	line "the TOWERS."
 
 	para "It was engulfed in"

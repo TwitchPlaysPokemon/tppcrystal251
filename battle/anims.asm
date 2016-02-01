@@ -3304,7 +3304,7 @@ BattleAnim_Counter_branch_cab6b: ; cab6b
 ; cabe6
 
 BattleAnim_WingAttack: ; cabe6
-BattleAnim_XScissor:
+;BattleAnim_XScissor:
 	anim_1gfx ANIM_GFX_HIT
 	anim_sound $1, SFX_WING_ATTACK
 	anim_obj $1, 148, 56, $0
@@ -5358,5 +5358,14 @@ BattleAnim_WaterGun_branch_cbcd2: ; cbcd2
 	anim_wait 4
 	anim_incobj $1
 	anim_wait 1
+	anim_ret
+
+BattleAnim_XScissor:
+	anim_1gfx ANIM_GFX_CUT
+    anim_sound $1, SFX_CUT
+    anim_obj $3a, 152, 40, $0
+    anim_obj $3b, 112, 40, $0
+    anim_bgeffect $1f, $14, $2, $0
+    anim_wait 16
 	anim_ret
 ; cbcdd

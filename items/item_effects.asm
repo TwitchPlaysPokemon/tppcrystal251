@@ -2671,7 +2671,7 @@ Functionf6a7: ; f6a7
 Functionf6af: ; f6af
 	xor a
 	ld hl, wcfa9
-	ld [hli], a
+	ld [hli], a 
 	ld [hl], a
 	ld b, NUM_MOVES
 .asm_f6b7
@@ -2711,18 +2711,18 @@ Functionf6e0: ; f6e0
 Functionf6e8: ; f6e8
 	xor a
 	ld [MonType], a
-	call Functionf8ec
+	call Functionf8ec ;get max pp of moveslot wcfa9 in move list hl, put result in wd265
 	ld hl, PartyMon1PP
 	ld bc, PartyMon2 - PartyMon1
-	call Functionf963
-	ld a, [wd265]
+	call Functionf963 ;go down to correct party mon PP then add wcfa9
+	ld a, [wd265] ;load base PP into b
 	ld b, a
 	ld a, [hl]
-	and $3f
+	and $3f ;if current is same as b, skip
 	cp b
 	jr nc, .asm_f723
 
-	ld a, [wd002]
+	ld a, [wd002] ;
 	cp MAX_ELIXER
 	jr z, .asm_f71d
 	cp MAX_ETHER
@@ -2743,7 +2743,7 @@ Functionf6e8: ; f6e8
 	ld b, a
 
 .asm_f71d
-	ld a, [hl]
+	ld a, [hl] ; "add" b to a and load into hl
 	and $c0
 	or b
 	ld [hl], a
@@ -3222,7 +3222,7 @@ Functionf8b9: ; f8b9
 ; f8ec
 
 
-Functionf8ec: ; f8ec ;get max pp of moveslot wcfa9 in move list hl, put result in wd265
+Functionf8ec: ; f8ec ;get max pp of moveslot wcfa9 in move list based a, put result in wd265
 	ld a, [StringBuffer1 + 0]
 	push af
 	ld a, [StringBuffer1 + 1]
@@ -3250,15 +3250,16 @@ Functionf8ec: ; f8ec ;get max pp of moveslot wcfa9 in move list hl, put result i
 	ld hl, BattleMonMoves
 
 .asm_f915
-	call Functionf969 ;bc and a = move, hl += move
+	call Functionf969 ;hl + moveslot no
 	jr .asm_f91d
 
 .asm_f91a
-	call Functionf963
+	call Functionf963 ;go down to correct party mon, then run f969
 
 .asm_f91d
-	ld a, [hl] ;put the move slot in a
+	ld a, [hl] ;put the move in a
 	dec a
+
 
 	push hl
 	ld hl, Moves + MOVE_PP ;(move pp)
@@ -3285,7 +3286,7 @@ Functionf8ec: ; f8ec ;get max pp of moveslot wcfa9 in move list hl, put result i
 
 	or b ; "add" base move max PP, saving the max PP and PP up bits
 	ld hl, StringBuffer1 + 1
-	ld [hl], a ;plce it in string buffer slot 2
+	ld [hl], a ;place it in string buffer slot 2
 	xor a
 	ld [wd265], a; place 0 in var
 	ld a, b
@@ -3301,7 +3302,7 @@ Functionf8ec: ; f8ec ;get max pp of moveslot wcfa9 in move list hl, put result i
 	ret
 ; f963
 
-Functionf963: ; f963
+Functionf963: ; f963 addntimes then add wcfa9
 	ld a, [CurPartyMon]
 	call AddNTimes
 

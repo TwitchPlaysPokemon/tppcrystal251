@@ -516,7 +516,7 @@ MapWarehouseEntranceSignpost1Script: ; 0x7c308
 
 MapWarehouseEntranceSignpostItem2: ; 0x7c30b
 	dw $008b
-	db PARLYZ_HEAL
+	db LIGHT_BALL
 	
 ; 0x7c30e
 
