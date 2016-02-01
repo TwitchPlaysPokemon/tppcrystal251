@@ -2242,7 +2242,7 @@ StaryuEvosAttacks:
 
 StarmieEvosAttacks:
 	db 0 ; no more evolutions
-	db 1, BUBBLEBEAM
+	db 5, BUBBLEBEAM
 	db 10, RAPID_SPIN
 	db 20, CONFUSION ; illegal move
 	db 30, MINIMIZE

@@ -53,8 +53,8 @@ UnknownText_0xa4158: ; 0xa4158
 UnknownText_0xa418d: ; 0xa418d
 	text "All righty, then!"
 
-	para "My #MON and I will"
-	line "do our very best!"
+	para "My #MON and I"
+	line "will do our best!"
 	done
 ; 0xa41c0
 
@@ -451,7 +451,7 @@ UnknownText_0xa4d72: ; 0xa4d72
 	line "contribution to"
 	
 	para "keep up my current"
-	line "gambling lifestyle."
+	line "gambling life."
 	done
 ; 0xa4dcd
 

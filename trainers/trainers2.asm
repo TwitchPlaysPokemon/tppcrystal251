@@ -263,7 +263,7 @@ GiovanniGroup:
 		db STOMP
 		db DOUBLE_TEAM
 		db EARTHQUAKE
-		db HEADBUTT
+		db REVERSAL
 
 	db $ff
 
@@ -423,7 +423,7 @@ BrockRBGroup:
 		db SANDSTORM
 
 	db 14, ONIX
-		db TACKLE
+		db BIDE
 		db WRAP
 		db IRON_TAIL
 		db SANDSTORM
@@ -440,12 +440,12 @@ MistyRBGroup:
 		db SWIFT
 		db RAIN_DANCE
 		db RAPID_SPIN
-		db BUBBLEBEAM
+		db BUBBLE
 
 	db 22, STARMIE
 		db BUBBLEBEAM
+		db CONFUSION
 		db SWIFT
 		db HARDEN
-		db RAIN_DANCE
 
 	db $ff ; end

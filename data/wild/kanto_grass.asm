@@ -1579,8 +1579,8 @@
 		db BLISSEY ;10
 		db JUMPLUFF ;10
 		db WARTORTLE ;5
-		db DODUO ;5
-		db DODUO ;5
+		db CHANSEY ;5
+		db QUAGSIRE ;5
 		db DODRIO ;6
 		db MEGANIUM ;4
 		db HOUNDOOM ;3
@@ -1592,11 +1592,11 @@
 	; day
 		db CHANSEY ;20
 		db WARTORTLE ;15
-		db DODUO ;10
+		db CHANSEY ;10
 		db DODRIO ;10
 		db SANDSLASH ;10
 		db CHANSEY ;5
-		db DODUO ;5
+		db CHANSEY ;5
 		db BLISSEY ;5
 		db MEGANIUM ;6
 		db MEGANIUM ;4
@@ -1635,8 +1635,8 @@
 		db BLISSEY ;10
 		db JUMPLUFF ;10
 		db WARTORTLE ;5
-		db DODUO ;5
-		db DODUO ;5
+		db CHANSEY ;5
+		db QUAGSIRE ;5
 		db DODRIO ;6
 		db MEGANIUM ;4
 		db HOUNDOOM ;3
@@ -1648,11 +1648,11 @@
 	; day
 		db CHANSEY ;20
 		db WARTORTLE ;15
-		db DODUO ;10
+		db CHANSEY ;10
 		db DODRIO ;10
 		db SANDSLASH ;10
 		db CHANSEY ;5
-		db DODUO ;5
+		db CHANSEY ;5
 		db BLISSEY ;5
 		db MEGANIUM ;6
 		db MEGANIUM ;4
