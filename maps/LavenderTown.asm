@@ -56,19 +56,46 @@ MapLavenderTownSignpost5Script: ; 0x1ad6ff
 ; 0x1ad702
 
 ScareLassScript:
-;	checkflag 
-;	checktime $4
-;	iffalse
-;	applymovement $6,
-;	playsound SFX_STRENGTH
-;	applymovement $0,
-;	applymovement $6,
-	;loadfont
-;	writetext
-;	applymovement $6,
-;	waitbutton
-;	closetext
+	checktime $4
+	iffalse NoLass
+	checkflag EVENT_LAVENDER_HAUNTER
+	iffalse NoLass
+	checkflag EVENT_CAUGHT_HAUNTER
+	iftrue NoLass
+	appear $6
+	playsound SFX_STRENGTH
+	applymovement $0, LassMove1
+	applymovement $6, LassMove1
+	loadfont
+	writetext ScaredLassText
+	waitbutton
+	closetext
+	applymovement $6,LassMove2
+	clearflag EVENT_LAVENDER_HAUNTER
+NoLass:
 	end
+
+LassMove1:
+	fast_slide_step_down
+	step_end
+
+LassMove2:
+	fast_slide_step_left
+	fast_slide_step_left
+	fast_slide_step_left
+	fast_slide_step_left
+	fast_slide_step_left
+	fast_slide_step_left
+	fast_slide_step_left
+	fast_slide_step_left
+	fast_slide_step_left
+	fast_slide_step_left
+	step_end
+
+ScaredLassText:
+	text "It's a"
+	line "G-G-G-GHOST!"
+	done
 
 UnknownText_0x1ad702: ; 0x1ad702
 	text "That's quite some"
@@ -153,7 +180,7 @@ LavenderTown_MapEventHeader: ; 0x1ad8ac
 
 	; xy triggers
 	db 1
-	xy_trigger 0, $6, $e, $0, UnknownScript_0x60011, $0, $0
+	xy_trigger 0, $6, $e, $0, ScareLassScript , $0, $0
 
 	; signposts
 	db 6

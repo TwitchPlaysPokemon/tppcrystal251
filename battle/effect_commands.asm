@@ -10383,7 +10383,7 @@ BattleCommand69: ; 37b39
 .asm_37b5b
 	ld a, [hl]
 	and $03
-	jr nz, .asm_37b69 ; 37b5d $a
+	jr z, .asm_37b69 ; 37b5d $a
 	res SCREENS_SPIKES, [hl]
 	res SCREENS_SPIKES2, [hl]
 	ld hl, BlewSpikesText
