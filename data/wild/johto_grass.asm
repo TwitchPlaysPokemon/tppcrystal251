@@ -405,7 +405,7 @@
 
 	db GROUP_RUINS_OF_ALPH_INNER_CHAMBER, MAP_RUINS_OF_ALPH_INNER_CHAMBER
 	db $0f ; encounter rates: morn/day/nite
-	db 48
+	db 25
 	db $00
 ;morning
 		db UNOWN ;30
