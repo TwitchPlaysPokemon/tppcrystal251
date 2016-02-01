@@ -4793,39 +4793,39 @@ Function3deb6: ; 3deb6
 	ld a, [bc]
 	ld b, a
 	callab GetItem
-	ld hl, .data_3defc
-.asm_3dec7
-	ld a, [hli]
-	cp $ff
-	jr z, .asm_3def9
-	inc hl
-	inc hl
-	cp b
-	jr nz, .asm_3dec7
-	pop bc
-	ld a, [bc]
-	ld [wd265], a
-	push bc
-	dec hl
-	dec hl
-	ld a, [hli]
-	ld h, [hl]
-	ld l, a
-	ld a, BANK(BattleCommand70)
-	rst FarCall
-	pop bc
-	pop de
-	ld a, [FailedMessage]
-	and a
-	ret nz
-	xor a
-	ld [bc], a
-	ld [de], a
-	call GetItemName
-	ld hl, BattleText_0x80bde
-	call StdBattleTextBox
-	callab BattleCommand8c
-	ret
+	;ld hl, .data_3defc
+;.asm_3dec7
+	;ld a, [hli]
+	;cp $ff
+	;jr z, .asm_3def9
+	;inc hl
+	;inc hl
+	;cp b
+	;jr nz, .asm_3dec7
+	;pop bc
+	;ld a, [bc]
+	;ld [wd265], a
+	;push bc
+	;dec hl
+	;dec hl
+	;ld a, [hli]
+	;ld h, [hl]
+	;ld l, a
+	;ld a, BANK(BattleCommand70)
+	;rst FarCall
+	;pop bc
+	;pop de
+	;ld a, [FailedMessage]
+	;and a
+	;ret nz
+	;xor a
+	;ld [bc], a
+	;ld [de], a
+	;call GetItemName
+	;ld hl, BattleText_0x80bde
+	;call StdBattleTextBox
+	;callab BattleCommand8c
+	;ret
 
 .asm_3def9
 	pop bc
@@ -4833,15 +4833,15 @@ Function3deb6: ; 3deb6
 	ret
 ; 3defc
 
-.data_3defc
-	dbw HELD_ATTACK_UP,     BattleCommand70
-	dbw HELD_DEFENSE_UP,    BattleCommand71
-	dbw HELD_SPEED_UP,      BattleCommand72
-	dbw HELD_SP_ATTACK_UP,  BattleCommand73
-	dbw HELD_SP_DEFENSE_UP, BattleCommand74
-	dbw HELD_ACCURACY_UP,   BattleCommand75
-	dbw HELD_EVASION_UP,    BattleCommand76
-	db $ff
+;.data_3defc
+	;dbw HELD_ATTACK_UP,     BattleCommand70
+	;dbw HELD_DEFENSE_UP,    BattleCommand71
+	;dbw HELD_SPEED_UP,      BattleCommand72
+	;dbw HELD_SP_ATTACK_UP,  BattleCommand73
+	;dbw HELD_SP_DEFENSE_UP, BattleCommand74
+	;dbw HELD_ACCURACY_UP,   BattleCommand75
+	;dbw HELD_EVASION_UP,    BattleCommand76
+	;db $ff
 ; 3df12
 
 Function3df12: ; 3df12

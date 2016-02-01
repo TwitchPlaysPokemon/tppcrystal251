@@ -564,23 +564,20 @@ CooltrainerfIreneScript: ; 0x782c4
 ; 0x782d2
 
 TeachMoveIce:
-	writetext UnknownText_0x78866
 	writebyte 4
 	jump TeachMove
 
-TeachMoveFire
-	writetext UnknownText_0x78866
+TeachMoveFire:
 	writebyte 6
 	jump TeachMove
 
 TeachMoveThunder:
-	writetext UnknownText_0x78866
 	writebyte 5
 
 TeachMove:
 	writetext WhoToTeachText
 	special Function4925b
-	if_equal $0, UnknownScript_0x1989a6
+	if_equal $0, AfterTutor
 	writetext TutorQuitText
 	waitbutton
 	closetext
@@ -625,7 +622,12 @@ LightPocketsText:
 UnknownScript_0x782d2: ; 0x782d2
 	writetext UnknownText_0x787ad
 	yesorno
-	iftrue TeachMoveFire
+	iffalse TutorQuit
+	checkmoney 0, 5000
+	if_equal 2, TutorQuit
+	jump TeachMoveFire
+
+TutorQuit:
 	writetext TutorQuitText
 	waitbutton
 	closetext
@@ -666,11 +668,10 @@ CooltrainerfJennScript: ; 0x782e4
 UnknownScript_0x782f2: ; 0x782f2
 	writetext UnknownText_0x78866
 	yesorno
-	iftrue TeachMoveThunder
-	writetext TutorQuitText
-	waitbutton
-	closetext
-	end
+	iffalse TutorQuit
+	checkmoney 0, 5000
+	if_equal 2, TutorQuit
+	jump TeachMoveThunder
 ; 0x782f8
 
 
@@ -709,12 +710,10 @@ CooltrainerfKateScript: ; 0x78304
 UnknownScript_0x78319: ; 0x78319
 	writetext UnknownText_0x7892b
 	yesorno
-	iftrue TeachMoveIce
-	writetext TutorQuitText
-	waitbutton
-UnknownScript_0x7831d: ; 0x7831d
-	closetext
-	end
+	iffalse TutorQuit
+	checkmoney 0, 5000
+	if_equal 2, TutorQuit
+	jump TeachMoveIce
 ; 0x7831f
 
 UnknownScript_0x7831f: ; 0x7831f
