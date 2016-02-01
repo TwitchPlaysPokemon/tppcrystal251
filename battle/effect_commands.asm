@@ -723,13 +723,27 @@ BattleCommand02: ; 343db
 .obeylevel
 	; The maximum obedience level is constrained by owned badges:
 	ld hl, JohtoBadges
-	ld b, [hl]
-	ld a, 20
-	ld c, 8
-	call AddBadgeLevels ;for every set bit in b up to bit (c-1), add 10 to a
-	ld hl, KantoBadges ;include the first 2 badges in kanto only as player will have maxed obediance by late game
-	ld c, 2
-	call AddBadgeLevels ;for every set bit in b up to bit (c-1), add 10 to a
+	ld bc, 2 ; 8 Johto Badges + first 2 Kanto Badges
+	call CountSetBits
+	cp 8
+	jr nc, .max_level
+	inc a
+	inc a
+	add a
+	ld c, a
+	add a
+	add a
+	add c
+	jr .got_level
+
+.max_level
+	ld a, MAX_LEVEL
+.got_level
+	; ld c, 8
+	; call AddBadgeLevels ;for every set bit in b up to bit (c-1), add 10 to a
+	; ld hl, KantoBadges ;include the first 2 badges in kanto only as player will have maxed obedience by late game
+	; ld c, 2
+	; call AddBadgeLevels ;for every set bit in b up to bit (c-1), add 10 to a
 		; risingbadge redundent code
 		;bit 7, [hl]
 		;ld a, MAX_LEVEL + 1
@@ -983,14 +997,14 @@ BattleCommand02: ; 343db
 
 	jp EndMoveEffect
 
-AddBadgeLevels: ;for every set bit in b up to bit (c-1), add 10 to a
-	srl b
-	jr nc, .nobadge
-	add a, 10
-.nobadge
-	dec c
-	jr nz, AddBadgeLevels
-	ret
+; AddBadgeLevels: ;for every set bit in b up to bit (c-1), add 10 to a
+	; srl b
+	; jr nc, .nobadge
+	; add a, 10
+; .nobadge
+	; dec c
+	; jr nz, AddBadgeLevels
+	; ret
 
 IgnoreSleepOnly: ; 3451f
 
@@ -1305,7 +1319,7 @@ BattleCommand05: ; 34631
 .Criticals
 	db KARATE_CHOP, RAZOR_LEAF, CRABHAMMER, SLASH, AEROBLAST, CROSS_CHOP, SKY_ATTACK, SHADOW_CLAW, DRILL_RUN, $ff ;crit+ moves
 .Chances
-	; 6.25% 12.5%  50%  100% 
+	; 6.25% 12.5%  50%  100%
 	db $11,  $1f,  $80,  $ff,  $ff,  $ff,  $ff
 	;   0     1     2     3     4     5     6
 ; 346b2
@@ -1547,8 +1561,8 @@ Function347c8: ; 347c8
 ; 347d3
 
 
-Function347d3: ; 347d3 ;put type matchup in wd265 
-	push hl 
+Function347d3: ; 347d3 ;put type matchup in wd265
+	push hl
 	push de
 	push bc
 	ld a, BATTLE_VARS_MOVE_TYPE
@@ -1614,8 +1628,8 @@ Function347d3: ; 347d3 ;put type matchup in wd265
 ; 34833
 
 
-BattleCommanda3: ; 34833 
-	call Function347c8 ;put type matchup in wd265 
+BattleCommanda3: ; 34833
+	call Function347c8 ;put type matchup in wd265
 	ld a, [wd265]
 	and a
 	ld a, 10 ; 1.0
@@ -8211,11 +8225,7 @@ BattleCommand3b: ; 36c2d
 	ret nz
 	call BattleRandom
 	and 1 ;changed from 2-5 turns to 4-5 turns
-	inc a
-	inc a
-	inc a
-	inc a
-	inc a 
+	add 4
 	ld [hl], a
 	ld a, BATTLE_VARS_MOVE_ANIM
 	call GetBattleVar
@@ -8498,7 +8508,7 @@ Function36db6: ; 36db6
 ; 36dc7
 
 CheckForGrassType: ;ret z if opposing mon is a grass type
-	ld a, BATTLE_VARS_TYPE_1OPP 
+	ld a, BATTLE_VARS_TYPE_1OPP
 	call GetBattleVarAddr
 	cp GRASS
 	ret z
@@ -8938,7 +8948,7 @@ BattleCommand37: ; 36fed
 	ld b, a ;load move into b
 	ld c, $ff
 .asm_37017
-	inc c 
+	inc c
 	ld a, [hli]
 	cp b
 	jr nz, .asm_37017 ;c = slot of move disabled
