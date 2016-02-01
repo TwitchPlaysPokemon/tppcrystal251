@@ -93201,3 +93201,29 @@ SECTION "military", ROMX
 INCLUDE "battle/military.asm"
 ENDC
 
+SECTION "Gold Berry HP", ROMX
+GoldBerryHP
+	ld a, [Buffer2]
+	ld b, a
+	ld a, [Buffer1]
+	ld c, a
+	srl b
+	rr c
+	srl b
+	rr c
+	ld a, b
+	or c
+	jr nz, .load_gold_berry
+	ld c, 1
+.load_gold_berry
+	ld a, [de]
+	add c
+	ld [wd1ee], a
+	ld c, a
+	dec de
+	ld a, [de]
+	adc b
+	ld [wd1ef], a
+	ld b, a
+	ret
+

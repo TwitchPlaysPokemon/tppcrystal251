@@ -10624,10 +10624,6 @@ GetOpponentItem: ; 37dc1
 	ld hl, BattleMonItem
 .go
 	ld b, [hl]
-	jp GetItem
-; 37dd0
-
-
 GetItem: ; 37dd0
 ; Return the effect of item b in bc.
 	ld a, b

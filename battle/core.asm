@@ -4542,6 +4542,14 @@ Function3dd2f: ; 3dd2f
 	ld [Buffer2], a
 	ld a, [hl]
 	ld [Buffer1], a
+	ld a, [hBattleTurn]
+	and a
+	ld a, [EnemyMonItem]
+	jr z, .double_check_item
+	ld a, [BattleMonItem]
+.double_check_item
+	cp GOLD_BERRY
+	jr z, .gold_berry
 	ld a, [de]
 	add c
 	ld [wd1ee], a
@@ -4551,6 +4559,13 @@ Function3dd2f: ; 3dd2f
 	adc $0
 	ld [wd1ef], a
 	ld b, a
+	jr .finish
+
+.gold_berry
+	push hl
+	callba GoldBerryHP
+	pop hl
+.finish
 	ld a, [hld]
 	cp c
 	ld a, [hl]
