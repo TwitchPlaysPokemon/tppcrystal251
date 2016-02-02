@@ -67,7 +67,7 @@ VermilionCitySimonScript1:
 	pause 10
 	disappear $8
 	playsound SFX_RAIN_DANCE
-	waitsfx
+	pause 30
 	special DeleteSavedMusic
 	playmapmusic
 	dotrigger $1
