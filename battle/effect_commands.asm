@@ -10787,7 +10787,7 @@ BattleCommand9c: ; 37d34
 	ld hl, ForesawAttackText
 	call StdBattleTextBox
 	call BattleCommand0c ;raise sub
-	ld de, wc727
+	ld de, wc727 ; damage
 	ld a, [hBattleTurn]
 	and a
 	jr z, .asm_37d77 ; 37d72 $3
@@ -11085,7 +11085,7 @@ BattleCommand38: ; 37e85
 
 
 SkipToBattleCommand: ; 37e8c
-; Skip over commands until reaching command b.
+; Skip over commands until passing command b.
 	ld a, [BattleScriptBufferLoc + 1]
 	ld h, a
 	ld a, [BattleScriptBufferLoc]

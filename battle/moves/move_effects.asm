@@ -223,7 +223,7 @@ Explosion:
 	damagevariation
 	checkhit
 	selfdestruct
-	effect0x0b
+	effect0x0b ; hittargetnosub
 	resulttext
 	checkfaint
 	criticaltext
@@ -1001,7 +1001,7 @@ MultiHit:
 	stab
 	damagevariation
 	clearmissdamage
-	effect0x0b
+	effect0x0b ; hittargetnosub
 	resulttext
 	checkfaint
 	criticaltext
@@ -1029,7 +1029,7 @@ PoisonMultiHit:
 	stab
 	damagevariation
 	clearmissdamage
-	effect0x0b
+	effect0x0b ; hittargetnosub
 	resulttext
 	checkfaint
 	criticaltext
@@ -1428,7 +1428,7 @@ Dig:
 	stab
 	damagevariation
 	checkhit
-	effect0x0b
+	effect0x0b ; hittargetnosub
 	effect0x0c
 	resulttext
 	checkfaint
@@ -1650,7 +1650,7 @@ TripleKick:
 ;	stab
 ;	damagevariation
 ;	clearmissdamage
-;	effect0x0b
+;	effect0x0b ; hittargetnosub
 ;	resulttext
 ;	checkfaint
 ;	criticaltext
@@ -2174,12 +2174,13 @@ FutureSight:
 	checkobedience
 	usedmovetext
 	doturn
+	futuresight
 	damagestats
 	damagecalc
-	futuresight
+	stab
 	damagevariation
 	checkhit
-	effect0x0b
+	effect0x0b ; hittargetnosub
 	resulttext
 	checkfaint
 	checkdestinybond
@@ -2295,7 +2296,7 @@ BeatUp:
 ;	damagecalc
 ;	damagevariation
 ;	clearmissdamage
-;	effect0x0b
+;	effect0x0b ; hittargetnosub
 ;	resulttext
 ;	checkfaint
 ;	criticaltext
