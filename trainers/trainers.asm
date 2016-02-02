@@ -609,31 +609,31 @@ ClairGroup:
 
 	; party
 
-	db 60, DRAGONAIR
+	db 61, DRAGONAIR
 		db THUNDER_WAVE
 		db SURF
 		db SLAM
 		db DRAGONBREATH
 
-	db 60, DRAGONAIR
+	db 61, DRAGONAIR
 		db AQUA_JET
 		db THUNDERBOLT
 		db FLAMETHROWER
 		db DRAGONBREATH
 
-	db 60, DRAGONAIR
+	db 61, DRAGONAIR
 		db EXTREMESPEED
 		db ICE_BEAM
 		db WATERFALL
 		db DRAGON_PULSE
 
-	db 62, KINGDRA
+	db 63, KINGDRA
 		db SMOKESCREEN
 		db SURF
 		db HYPER_BEAM
 		db DRAGON_PULSE
 
-	db 63, DRAGONITE
+	db 65, DRAGONITE
 		db OUTRAGE
 		db HYPER_BEAM
 		db EARTHQUAKE
@@ -864,7 +864,7 @@ Rival1Group:
 
 	; party
 
-	db 62, SNEASEL, FOCUS_BAND
+	db 61, SNEASEL, FOCUS_BAND
 		db SWORDS_DANCE
 		db BITE
 		db ICE_PUNCH
@@ -882,19 +882,19 @@ Rival1Group:
 		db TRI_ATTACK
 		db METAL_SOUND
 
-	db 63, ALAKAZAM, BRIGHTPOWDER
-		db SHADOW_BALL
-		db PSYCHIC_M
-		db DAZZLINGLEAM
-		db FOCUS_BLAST
-
-	db 64, TYRANITAR, QUICK_CLAW
-		db DARK_PULSE
-		db FLAMETHROWER
+	db 63, BLISSEY, POLKADOT_BOW
 		db ICE_BEAM
 		db THUNDERBOLT
+		db SUBSTITUTE
+		db SOFTBOILED
+
+	db 64, TYRANITAR, GOLD_BERRY
+		db DARK_PULSE
+		db ROCK_SLIDE
+		db FLAMETHROWER
+		db ROCK_POLISH
 		
-	db 65, MEGANIUM, MIRACLE_SEED
+	db 66, MEGANIUM, MIRACLE_SEED
 		db GIGA_DRAIN
 		db EARTH_POWER
 		db ANCIENTPOWER
@@ -910,7 +910,7 @@ Rival1Group:
 
 	; party
 
-	db 62, SNEASEL, FOCUS_BAND
+	db 61, SNEASEL, FOCUS_BAND
 		db SWORDS_DANCE
 		db BITE
 		db ICE_PUNCH
@@ -928,19 +928,19 @@ Rival1Group:
 		db TRI_ATTACK
 		db METAL_SOUND
 
-	db 63, ALAKAZAM, BRIGHTPOWDER
-		db SHADOW_BALL
-		db PSYCHIC_M
-		db DAZZLINGLEAM
-		db FOCUS_BLAST
-
-	db 64, TYRANITAR, QUICK_CLAW
-		db DARK_PULSE
-		db FLAMETHROWER
+	db 63, BLISSEY, POLKADOT_BOW
 		db ICE_BEAM
 		db THUNDERBOLT
+		db SUBSTITUTE
+		db SOFTBOILED
+
+	db 64, TYRANITAR, GOLD_BERRY
+		db DARK_PULSE
+		db ROCK_SLIDE
+		db FLAMETHROWER
+		db ROCK_POLISH
 		
-	db 65, TYPHLOSION, CHARCOAL
+	db 66, TYPHLOSION, CHARCOAL
 		db SHARPEN
 		db FLAME_WHEEL
 		db WILD_CHARGE
@@ -956,7 +956,7 @@ Rival1Group:
 
 	; party
 
-	db 62, SNEASEL, FOCUS_BAND
+	db 61, SNEASEL, FOCUS_BAND
 		db SWORDS_DANCE
 		db BITE
 		db ICE_PUNCH
@@ -974,19 +974,19 @@ Rival1Group:
 		db TRI_ATTACK
 		db METAL_SOUND
 
-	db 63, ALAKAZAM, BRIGHTPOWDER
-		db SHADOW_BALL
-		db PSYCHIC_M
-		db DAZZLINGLEAM
-		db FOCUS_BLAST
-
-	db 64, TYRANITAR, QUICK_CLAW
-		db DARK_PULSE
-		db FLAMETHROWER
+	db 63, BLISSEY, POLKADOT_BOW
 		db ICE_BEAM
 		db THUNDERBOLT
+		db SUBSTITUTE
+		db SOFTBOILED
+
+	db 64, TYRANITAR, GOLD_BERRY
+		db DARK_PULSE
+		db ROCK_SLIDE
+		db FLAMETHROWER
+		db ROCK_POLISH
 		
-	db 65, FERALIGATR, MYSTIC_WATER
+	db 66, FERALIGATR, MYSTIC_WATER
 		db SWORDS_DANCE
 		db AQUA_JET
 		db CRUNCH
@@ -1149,34 +1149,34 @@ WillGroup:
 
 	; party
 
-	db 63, XATU
+	db 63, WOBBUFFET
 		db COUNTER
 		db MIRROR_COAT
-		db ENCORE
 		db DESTINY_BOND
+		db ENCORE
 
 	db 64, JYNX
+		db ZEN_HEADBUTT
+		db ICE_PUNCH
 		db MEDITATE
 		db LOVELY_KISS
-		db ICE_PUNCH
-		db ZEN_HEADBUTT
 
 	db 65, EXEGGUTOR
-		db REFLECT
-		db LEECH_SEED
 		db GIGA_DRAIN
-		db PSYCHIC_M
+		db PSYWAVE
+		db LEECH_SEED
+		db REFLECT
 
 	db 66, SLOWBRO
-		db CURSE
-		db ZEN_HEADBUTT
 		db WATERFALL
+		db ZEN_HEADBUTT
+		db CURSE
 		db DISABLE
 
 	db 67, XATU
+		db PSYCHIC_M
 		db DRILL_PECK
 		db HEAT_WAVE
-		db PSYCHIC_M
 		db HAZE
 
 	db $ff ; end
@@ -1323,35 +1323,35 @@ BrunoGroup:
 
 	; party
 
-	db 67, HITMONTOP
-		db ROLLING_KICK
-		db MACH_PUNCH
-		db DRILL_RUN
-		db QUICK_ATTACK
+	db 67, ONIX
+		db EARTHQUAKE
+		db ROCK_SLIDE
+		db SANDSTORM
+		db ROCK_POLISH
 
-	db 69, HITMONLEE
-		db HI_JUMP_KICK
-		db MEGA_KICK
-		db FOCUS_ENERGY
-		db FORESIGHT
-
-	db 69, HITMONCHAN
+	db 68, HITMONCHAN
 		db THUNDERPUNCH
 		db ICE_PUNCH
 		db FIRE_PUNCH
 		db MACH_PUNCH
 
-	db 68, ONIX
-		db ROCK_POLISH
-		db EARTHQUAKE
-		db SANDSTORM
+	db 68, HITMONLEE
+		db HI_JUMP_KICK
+		db DOUBLE_KICK
+		db FOCUS_ENERGY
+		db FORESIGHT
+		
+	db 69, RHYDON
+		db DRILL_RUN
 		db ROCK_SLIDE
-
-	db 71, MACHAMP
-		db ROCK_SLIDE
-		db CROSS_CHOP
-		db POISON_JAB
+		db MEGAHORN
 		db SCARY_FACE
+
+	db 71, HITMONTOP
+		db ROLLING_KICK
+		db MACH_PUNCH
+		db DRILL_RUN
+		db PROTECT
 
 	db $ff ; end
 
@@ -1415,34 +1415,34 @@ KarenGroup:
 	; party
 
 	db 69, UMBREON
-		db SAND_ATTACK
+		db BITE
 		db CONFUSE_RAY
-		db FAINT_ATTACK
+		db SAND_ATTACK
 		db MEAN_LOOK
 
-	db 71, VILEPLUME
-		db STUN_SPORE
-		db SLUDGE_BOMB
-		db MOONLIGHT
+	db 70, VILEPLUME
 		db PETAL_DANCE
+		db MOONBLAST
+		db STUN_SPORE
+		db MOONLIGHT
+
+	db 71, MURKROW
+		db FAINT_ATTACK
+		db DRILL_PECK
+		db HEAT_WAVE
+		db CONFUSE_RAY
 
 	db 72, GENGAR
 		db SHADOW_BALL
-		db FOCUS_BLAST
+		db DAZZLINGLEAM
 		db CURSE
 		db DESTINY_BOND
 
-	db 70, MURKROW
-		db FAINT_ATTACK
-		db HEAT_WAVE
-		db DRILL_PECK
-		db CONFUSE_RAY
-
 	db 73, HOUNDOOM
-		db ROAR
-		db NASTY_PLOT
-		db FLAMETHROWER
 		db DARK_PULSE
+		db FLAMETHROWER
+		db NASTY_PLOT
+		db ROAR
 
 	db $ff ; end
 
@@ -1506,32 +1506,31 @@ KogaGroup:
 		db SPIKES
 		db PIN_MISSILE
 		db DRILL_RUN
-		db SPIKES
+		db IRON_DEFENSE
 
-	db 66, CROBAT
-		db WHIRLWIND
-		db POISON_JAB
-		db AIR_SLASH
+	db 66, VENOMOTH
+		db SLUDGE_BOMB
+		db BUG_BUZZ
+		db SUPERSONIC
 		db TOXIC
 
 	db 67, ARIADOS
-		db DOUBLE_TEAM
+		db MEGAHORN
 		db MEAN_LOOK
 		db BATON_PASS
-		db MEGAHORN
+		db DOUBLE_TEAM
 
-	db 68, VENOMOTH
-		db SLUDGE_BOMB
-		db BUG_BUZZ
-		db PSYCHIC_M
-		db AGILITY
-
-	db 69, MUK
-		db MINIMIZE
-		db FIRE_PUNCH
+	db 68, CROBAT
+		db AIR_SLASH
 		db POISON_JAB
+		db WHIRLWIND
 		db TOXIC
 
+	db 69, MUK
+		db POISON_JAB
+		db FIRE_PUNCH
+		db MINIMIZE
+		db ACID_ARMOR
 
 	db $ff ; end
 
@@ -1594,27 +1593,27 @@ ChampionGroup:
 	; party
 
 	db 71, GYARADOS
+		db WATERFALL
 		db CRUNCH
 		db RAIN_DANCE
-		db WATERFALL
 		db HYPER_BEAM
 
 	db 72, DRAGONITE
-		db AQUA_JET
 		db DRAGONBREATH
 		db THUNDER
+		db AQUA_JET
 		db HYPER_BEAM
 
 	db 72, DRAGONITE
-		db THUNDER_WAVE
 		db TWISTER
 		db BLIZZARD
+		db THUNDER_WAVE
 		db HYPER_BEAM
 
 	db 73, AERODACTYL
 		db WING_ATTACK
-		db IRON_HEAD
 		db ROCK_SLIDE
+		db IRON_HEAD
 		db HYPER_BEAM
 
 	db 74, CHARIZARD
@@ -1624,9 +1623,9 @@ ChampionGroup:
 		db HYPER_BEAM
 
 	db 75, DRAGONITE
+		db OUTRAGE
 		db FIRE_BLAST
 		db SAFEGUARD
-		db OUTRAGE
 		db HYPER_BEAM
 
 	db $ff ; end
@@ -3009,8 +3008,6 @@ LassGroup:
 	db 0 ; normal
 
 	; party
-	db 80, BULBASAUR
-	db 81, IVYSAUR
 	db 82, VENUSAUR
 
 	db $ff ; end
@@ -3784,7 +3781,7 @@ CooltrainerFGroup:
 
 	db 60, RAPIDASH, GOLD_BERRY
 	db 61, MANTINE, MIRACLEBERRY
-	db 62, VENUSAUR, LEFTOVERS
+	db 62, BELLOSSOM, LEFTOVERS
 
 	db $ff ; end
 
@@ -6711,7 +6708,7 @@ SuperNerdGroup:
 ; ================================
 
 
-Rival2Group: ;first rival fight is balanced for after Ice Path when you first exit it
+Rival2Group: ;not balanced yet
 ; ================================
 ; ================
 

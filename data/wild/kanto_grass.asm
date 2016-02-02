@@ -1231,7 +1231,7 @@
 		db PIDGEOTTO ;1
 
 	db GROUP_ROUTE_17, MAP_ROUTE_17
-	db $19 ; encounter rates: morn/day/nite
+	db $fe ; encounter rates: morn/day/nite
 	db 70
 	db $00
 ;morning
