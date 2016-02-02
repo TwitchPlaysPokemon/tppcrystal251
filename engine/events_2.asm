@@ -186,6 +186,7 @@ Function97d31:: ; 97d31
 	jr z .supertall
 	ld hl, ContestMons
 .supertall
+	ld a, d
 	ld de, 4 ;size of mons
 .CheckMon
 	sub [hl]
