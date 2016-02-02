@@ -257,7 +257,7 @@ Music_SSAnne_Ch1_L:
 	note D_, 3
 	notetype $c, $d6
 	octave 2
-	note A_, 5
+	note A_, 4
 	octave 3
 	note E_, 2
 	note __, 1
