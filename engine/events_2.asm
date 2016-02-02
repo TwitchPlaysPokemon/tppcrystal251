@@ -183,7 +183,7 @@ Function97d31:: ; 97d31
 	ld a, e ;0 if super tall grass
 	and a
 	ld hl, ContestMonsTall
-	jr z .supertall
+	jr z, .supertall
 	ld hl, ContestMons
 .supertall
 	ld a, d
