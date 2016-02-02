@@ -104,7 +104,7 @@ StartBattleLance:
 	stopfollow
 	spriteface $4, $1
 	spriteface $2, $2
-	; checkevent EVENT_BEAT_AIIIAAB
+	; checkevent EVENT_ENABLE_DIPLOMA_PRINTING
 	; iffalse Script_NoOakBattle
 	; loadfont
 	; special HealParty
@@ -129,7 +129,6 @@ StartBattleLance:
 	; setevent EVENT_BEAT_OAK
 	; playmusic MUSIC_BEAUTY_ENCOUNTER, $10
 	; jump Script_returnafteroakbattle
-	
 ; Script_NoOakBattle:
 	loadfont
 	writetext UnknownText_0x18121b

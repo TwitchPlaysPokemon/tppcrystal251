@@ -78,13 +78,16 @@ UnknownScript_0x70057: ; 0x70057
 	jump UnknownScript_0x70035
 ; 0x70063
 
+ChargingGyarados:
+	writetext RIPGrapsText
+	waitbutton
 GyaradosScript_0x70063: ; 0x70063
 	loadfont
 	writetext UnknownText_0x703cb
 	pause 15
 	cry GYARADOS
 	closetext
-	loadpokedata GYARADOS, 30
+	loadpokedata GYARADOS, 40
 	writecode VAR_BATTLETYPE, BATTLETYPE_SHINY
 	startbattle
 	if_equal $1, UnknownScript_0x7007a
@@ -107,6 +110,8 @@ UnknownScript_0x7007a: ; 0x7007a
 GrampsScript_0x7008e: ; 0x7008e
 	faceplayer
 	loadfont
+	checkevent EVENT_RED_GYARADOS
+	iffalse ChargingGyarados
 	checkevent EVENT_CLEARED_ROCKET_HIDEOUT
 	iftrue UnknownScript_0x7009c
 	writetext UnknownText_0x703f8
@@ -423,6 +428,11 @@ UnknownText_0x703f8: ; 0x703f8
 	line "angry!"
 
 	para "It's a bad omen!"
+
+	done
+
+RIPGrapsText:
+	text "HELP!!!"
 	done
 ; 0x70421
 
@@ -452,9 +462,10 @@ UnknownText_0x704bb: ; 0x704bb
 	para "red GYARADOS in"
 	line "the LAKE<...>"
 
-	para "But I thought"
-	line "GYARADOS were"
-	cont "usually blue?"
+	para "Oh No!"
+
+	para "It's attacking"
+	line "that old man!"
 	done
 ; 0x70522
 
@@ -650,7 +661,7 @@ LakeofRage_MapEventHeader: ; 0x70919
 	person_event SPRITE_FISHER, 30, 28, $7, 0, 0, -1, -1, 8 + PAL_OW_BLUE, 2, 1, TrainerFisherRaymond, EVENT_LAKE_OF_RAGE_TRAINERS
 	person_event SPRITE_COOLTRAINER_M, 19, 8, $9, 0, 0, -1, -1, 8 + PAL_OW_RED, 2, 1, TrainerCooltrainermAaron, EVENT_LAKE_OF_RAGE_TRAINERS
 	person_event SPRITE_COOLTRAINER_F, 11, 40, $8, 0, 0, -1, -1, 8 + PAL_OW_RED, 2, 0, TrainerCooltrainerfLois, EVENT_LAKE_OF_RAGE_TRAINERS
-	person_event SPRITE_GYARADOS, 25, 26, $26, 0, 0, -1, -1, 8 + PAL_OW_RED, 0, 0, GyaradosScript_0x70063, EVENT_RED_GYARADOS
+	person_event SPRITE_GYARADOS, 25, 33, $26, 0, 0, -1, -1, 8 + PAL_OW_RED, 0, 0, GyaradosScript_0x70063, EVENT_RED_GYARADOS
 	person_event SPRITE_SUPER_NERD, 8, 8, $6, 0, 0, -1, -1, 0, 0, 0, WesleyScript, EVENT_WESLEY_OF_WEDNESDAY
 	person_event SPRITE_POKE_BALL, 14, 11, $1, 0, 0, -1, -1, 0, 1, 0, ItemFragment_0x70148, EVENT_ITEM_LAKE_OF_RAGE_ELIXIR
 	person_event SPRITE_POKE_BALL, 6, 39, $1, 0, 0, -1, -1, 0, 1, 0, ItemFragment_0x7014a, EVENT_ITEM_LAKE_OF_RAGE_TM_DETECT

@@ -508,11 +508,11 @@
 	db $02
 ;morning
 		db SPEAROW ;20
-		db EEVEE ;15
-		db SPEAROW ;10
+		db SPEAROW ;15
 		db JIGGLYPUFF ;10
 		db JIGGLYPUFF ;10
-		db JIGGLYPUFF ;5
+		db JIGGLYPUFF ;10
+		db EEVEE ;5
 		db FEAROW ;5
 		db FEAROW ;5
 		db VOLTORB ;6
@@ -524,12 +524,12 @@
 		db ELECTRODE ;1
 		db ELECTRODE ;1
 ;day
-		db EEVEE ;20
+		db JIGGLYPUFF ;20
 		db FEAROW ;15
 		db SPEAROW ;10
 		db SPEAROW ;10
-		db JIGGLYPUFF ;10
-		db EEVEE ;5
+		db EEVEE ;10
+		db WIGGLYTUFF ;5
 		db SPEAROW ;5
 		db ELECTRODE ;5
 		db VOLTORB ;6
@@ -2800,4 +2800,10 @@
 		db FLAAFFY ;2
 		db FLAAFFY ;1
 		db AMPHAROS ;1
+
+	db GROUP_BILLSGARDEN, MAP_BILLSGARDEN
+	db $19
+	db 80
+	db $00
+
 	db $ff ; end

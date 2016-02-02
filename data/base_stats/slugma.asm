@@ -1,6 +1,6 @@
 	db SLUGMA ; 218
 
-	db  45,  40,  65,  25,  70,  55 ; BST 250 > 300
+	db  50,  50,  50,  30,  80,  50 ; BST 250 > 310
 	;   hp  atk  def  spd  sat  sdf
 ;	db  40,  40,  40,  20,  70,  40 old stats
 

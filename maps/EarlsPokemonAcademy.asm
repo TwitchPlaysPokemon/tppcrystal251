@@ -323,6 +323,11 @@ UnknownText_0x68f80: ; 0x68f80
 	line "speed and may"
 	cont "prevent movement."
 
+	para "It's important to"
+	line "remember that"
+	cont "electric #MON are"
+	cont "immune to PRZ."
+
 	para "It remains after"
 	line "battle, so use"
 	cont "a PARLYZ HEAL."
@@ -348,7 +353,10 @@ UnknownText_0x69055: ; 0x69055
 	line "consumes HP."
 
 	para "It also reduces"
-	line "attack power."
+	line "attack power,"
+
+	para "but fire types"
+	line "shrug it off."
 
 	para "A burn lingers"
 	line "after battle."

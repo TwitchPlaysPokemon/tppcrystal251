@@ -35,7 +35,14 @@ VermilionCitySimonScript1:
 	writetext VermilionCitySimonText1
 	waitbutton
 	closetext
+	checkcode VAR_XCOORD
+	if_equal 20, .simonextrastepdown
 	applymovement $8, VermilionCitySimonMovement1
+	jump .startbattle
+.simonextrastepdown
+	applymovement $8, VermilionCitySimonMovement1a
+	spriteface $0, LEFT
+.startbattle
 	winlosstext VermilionCitySimonLossText, $0000
 	loadtrainer BURGLAR, SIMON_4
 	startbattle
@@ -45,19 +52,25 @@ VermilionCitySimonScript1:
 	loadfont
 	writetext VermilionCitySimonText2
 	buttonsound
-	verbosegiveitem TM_THIEF, 1
+	verbosegiveitem TM_ROCK_SLIDE, 1
 	writetext VermilionCitySimonText3
 	waitbutton
 	closetext
+	checkcode VAR_FACING
+	if_equal LEFT, .simonextrastepup
 	applymovement $8, VermilionCitySimonMovement2
+	jump .simonsplashesdown
+.simonextrastepup
+	spriteface $0, UP
+	applymovement $8, VermilionCitySimonMovement2a
+.simonsplashesdown
 	pause 10
 	disappear $8
 	playsound SFX_RAIN_DANCE
-	waitsfx
+	pause 30
 	special DeleteSavedMusic
 	playmapmusic
 	dotrigger $1
-	setevent EVENT_BEAT_SIMON_4
 	blackoutmod GROUP_VERMILION_CITY, MAP_VERMILION_CITY
 	setflag ENGINE_FLYPOINT_VERMILION
 	end
@@ -67,7 +80,17 @@ VermilionCitySimonMovement1:
 	big_step_right
 	big_step_down
 	step_end
+
+VermilionCitySimonMovement1a:
+	big_step_down
+	big_step_right
+	big_step_down
+	big_step_down
+	turn_head_right
+	step_end
 	
+VermilionCitySimonMovement2a:
+	big_step_up
 VermilionCitySimonMovement2:
 	big_step_up
 	big_step_up
@@ -76,7 +99,10 @@ VermilionCitySimonMovement2:
 	step_end
 
 UnknownScript_0x1aa97f: ; 0x1aa97f
+	checkevent EVENT_BEAT_SIMON_4
+	iffalse .false
 	setflag ENGINE_FLYPOINT_VERMILION
+.false
 	return
 ; 0x1aa983
 
@@ -122,7 +148,7 @@ UnknownScript_0x1aa9ab: ; 0x1aa9ab
 	cry SNORLAX
 	closetext
 	writecode VAR_BATTLETYPE, BATTLETYPE_FORCEITEM
-	loadpokedata SNORLAX, 50
+	loadpokedata SNORLAX, 85
 	startbattle
 	writebyte SNORLAX
 	special SpecialMonCheck

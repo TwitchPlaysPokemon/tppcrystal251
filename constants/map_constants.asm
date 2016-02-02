@@ -147,7 +147,7 @@ MAP_N_A   EQU -1
 	mapgroup ROUTE_19, 18, 10
 	mapgroup ROUTE_20, 9, 30
 	mapgroup ROUTE_21, 18, 10
-	mapgroup CINNABAR_ISLAND, 11, 13
+	mapgroup CINNABAR_ISLAND, 16, 18
 
 	newgroup; Cerulean City
 	mapgroup CERULEAN_GYM_BADGE_SPEECH_HOUSE, 4, 4
@@ -225,7 +225,7 @@ MAP_N_A   EQU -1
 	mapgroup GOLDENROD_DEPT_STORE_ROOF, 4, 8
 	mapgroup GOLDENROD_GAME_CORNER, 7, 10
 	mapgroup GOLDENROD_POKECENTER_1F, 4, 5
-	mapgroup GOLDENROD_POKECOM_CENTER_2F_MOBILE, 16, 16
+		;mapgroup GOLDENROD_POKECOM_CENTER_2F_MOBILE, 16, 16
 	mapgroup ILEX_FOREST_AZALEA_GATE, 4, 5
 	mapgroup ROUTE_34_ILEX_FOREST_GATE, 4, 5
 	mapgroup DAY_CARE, 4, 5
@@ -325,8 +325,8 @@ MAP_N_A   EQU -1
 	mapgroup TRADE_CENTER, 4, 5
 	mapgroup COLOSSEUM, 4, 5
 	mapgroup TIME_CAPSULE, 4, 5
-	mapgroup MOBILE_TRADE_ROOM_MOBILE, 4, 5
-	mapgroup MOBILE_BATTLE_ROOM, 4, 5
+		;mapgroup MOBILE_TRADE_ROOM_MOBILE, 4, 5
+		;mapgroup MOBILE_BATTLE_ROOM, 4, 5
 
 	newgroup ; Celadon City
 	mapgroup ROUTE_7, 9, 10

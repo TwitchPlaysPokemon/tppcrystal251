@@ -458,7 +458,7 @@ ItemFragment_0x6ee12: ; 0x6ee12
 ; 0x6ee14
 
 ItemFragment_0x6ee14: ; 0x6ee14
-	db ANTIDOTE, 1
+	db STICK, 1
 ; 0x6ee16
 
 ItemFragment_0x6ee16: ; 0x6ee16
@@ -473,7 +473,7 @@ MapIlexForestSignpostItem1: ; 0x6ee18
 
 MapIlexForestSignpostItem2: ; 0x6ee1b
 	dw $0089
-	db SUPER_POTION
+	db HYPER_POTION
 	
 ; 0x6ee1e
 
@@ -939,7 +939,8 @@ UnknownText_0x6f21b: ; 0x6f21b
 	text "What am I doing?"
 
 	para "I'm shaking trees"
-	line "using HEADBUTT."
+	line "using" 
+	cont "ZEN HEADBUTT."
 
 	para "It's fun. Here,"
 	line "you try it too!"

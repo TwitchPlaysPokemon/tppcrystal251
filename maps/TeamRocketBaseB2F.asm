@@ -280,7 +280,7 @@ GruntM19Script: ; 0x6d0f9
 
 VoltorbScript_0x6d101: ; 0x6d101
 	cry ELECTRODE
-	loadpokedata ELECTRODE, 23
+	loadpokedata ELECTRODE, 40
 	startbattle
 	iftrue UnknownScript_0x6d182
 	disappear $6
@@ -299,7 +299,7 @@ VoltorbScript_0x6d101: ; 0x6d101
 
 VoltorbScript_0x6d12c: ; 0x6d12c
 	cry ELECTRODE
-	loadpokedata ELECTRODE, 23
+	loadpokedata ELECTRODE, 40
 	startbattle
 	iftrue UnknownScript_0x6d182
 	disappear $7
@@ -318,7 +318,7 @@ VoltorbScript_0x6d12c: ; 0x6d12c
 
 VoltorbScript_0x6d157: ; 0x6d157
 	cry ELECTRODE
-	loadpokedata ELECTRODE, 23
+	loadpokedata ELECTRODE, 40
 	startbattle
 	iftrue UnknownScript_0x6d182
 	disappear $8
@@ -348,7 +348,7 @@ UnknownScript_0x6d184: ; 0x6d184
 	loadfont
 	writetext UnknownText_0x6d809
 	buttonsound
-	verbosegiveitem HM_WHIRLPOOL, 1
+	verbosegiveitem HM_SURF, 1
 	setevent EVENT_GOT_HM06_WHIRLPOOL
 	writetext UnknownText_0x6d8f8
 	waitbutton
@@ -834,24 +834,25 @@ UnknownText_0x6d809: ; 0x6d809
 	para "Oh, yes. You"
 	line "should take this."
 
-	para "I found it here,"
-	line "but I don't have"
-	cont "any need for it."
+	para "I found it a"
+	line "while back but I"
+	cont "don't have any need"
+	cont "for it."
 	done
 ; 0x6d8e6
 
 UnknownText_0x6d8e6: ; 0x6d8e6
 	text "<PLAYER> received"
-	line "HM06."
+	line "HM03."
 	done
 ; 0x6d8f8
 
 UnknownText_0x6d8f8: ; 0x6d8f8
-	text "That's WHIRLPOOL."
+	text "That's SURF."
 	line "Teach it to a"
 
 	para "#MON to get"
-	line "across wild water."
+	line "across water."
 
 	para "But keep this in"
 	line "mind."
@@ -860,7 +861,7 @@ UnknownText_0x6d8f8: ; 0x6d8f8
 	line "out of battle only"
 
 	para "with the BADGE"
-	line "from MAHOGANY GYM."
+	line "from ECRUTEAK GYM."
 	done
 ; 0x6d994
 
@@ -972,7 +973,7 @@ UnknownText_0x6dc1a: ; 0x6dc1a
 
 	para "ONIX doesn't evol-"
 	line "-ve by levelling"
-	cont "up, though."
+	cont "up alone, though."
 	done
 ; 0x6dcb0
 

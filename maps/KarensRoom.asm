@@ -96,6 +96,7 @@ MovementData_0x180c22: ; 0x180c22
 	step_end
 ; 0x180c27
 
+
 UnknownText_0x180c27: ; 0x180c27
 	text "I am KAREN of the"
 	line "ELITE FOUR."

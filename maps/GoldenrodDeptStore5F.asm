@@ -14,6 +14,7 @@ UnknownScript_0x56090: ; 0x56090
 	;checkcode VAR_WEEKDAY
 	;if_equal SUNDAY, UnknownScript_0x56099
 	;disappear $7
+	appear $7
 	return
 ; 0x56099
 
@@ -68,6 +69,11 @@ UnknownScript_0x560c8: ; 0x560c8
 ReceptionistScript_0x560ce: ; 0x560ce
 	faceplayer
 	loadfont
+	pokemart $0, $000a
+	closetext
+	end
+
+
 	;checkcode VAR_WEEKDAY
 	;if_not_equal SUNDAY, UnknownScript_0x56112
 	;checkflag ENGINE_GOLDENROD_MALL_5F_HAPPINESS_EVENT
@@ -80,7 +86,7 @@ ReceptionistScript_0x560ce: ; 0x560ce
 	;jump UnknownScript_0x56103
 ; 0x560ee
 
-UnknownScript_0x560ee: ; 0x560ee
+;UnknownScript_0x560ee: ; 0x560ee
 	;writetext UnknownText_0x5615a
 	;buttonsound
 	;verbosegiveitem TM_RETURN, 1
@@ -90,14 +96,14 @@ UnknownScript_0x560ee: ; 0x560ee
 	;end
 ; 0x560fd
 
-UnknownScript_0x560fd: ; 0x560fd
+;UnknownScript_0x560fd: ; 0x560fd
 	;writetext UnknownText_0x561a6
 	;waitbutton
 	;closetext
 	;end
 ; 0x56103
 
-UnknownScript_0x56103: ; 0x56103
+;UnknownScript_0x56103: ; 0x56103
 	;writetext UnknownText_0x561d8
 	;buttonsound
 	;verbosegiveitem TM_ROCK_POLISH, 1
@@ -107,7 +113,7 @@ UnknownScript_0x56103: ; 0x56103
 	;end
 ; 0x56112
 
-UnknownScript_0x56112: ; 0x56112
+;UnknownScript_0x56112: ; 0x56112
 	;writetext UnknownText_0x56202
 	;waitbutton
 UnknownScript_0x56116: ; 0x56116

@@ -23440,7 +23440,7 @@ Jumptable_170696: ; 170696 (5c:4696)
 	dw Function170881 ;8 ;wd800 = be47
 	dw Function17089a ;if saved id = playerid, sciptvar = 1, else scriptvar = 0
 	dw Function1708b1
-	dw Function1708b9
+	dw Function1708b9 ;b
 	dw Function1708c8
 	dw Function1708f0
 	dw Function17093c

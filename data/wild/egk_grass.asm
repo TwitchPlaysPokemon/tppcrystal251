@@ -225,7 +225,7 @@
 	db GROUP_ROUTE_1_RB, MAP_ROUTE_1_RB ;map is unchanged
 	db $19 ;encounter rate, unchanged exept there's 1 for all day
 	db 2 ;base level before variance (+0-4) and variance table
-	db $00 ;most significant nyble is level variance table (tables not yet set), least significant is what % chance table to use.
+	db $00 ;most significant nyble is level variance table, least significant is what % chance table to use.
 ;morning
 		db PIDGEY ;30
 		db PIDGEY ;10
@@ -336,7 +336,7 @@
 
 	db GROUP_ROUTE_3_RB, MAP_ROUTE_3_RB
 	db $19
-	db 6
+	db 8
 	db $02
 ;morning
 		db SPEAROW ;20
@@ -561,58 +561,58 @@
 	db GROUP_ROUTE_11_RB, MAP_ROUTE_11_RB
 	db $19
 	db 15
-	db $01
+	db $02
 ;morning
 		db SPEAROW ;20
-		db EKANS ;20
+		db EKANS ;15
 		db DROWZEE ;10
-		db MEOWTH ;10
-		db SANDSHREW ;5
-		db SANDSHREW ;5
+		db LICKITUNG ;10
+		db SANDSHREW ;10
+		db MEOWTH ;6
 		db RATTATA ;5
 		db MAGNEMITE ;5
+		db MAGNEMITE ;5
 		db SANDSHREW ;4
-		db MAGNEMITE ;4
 		db MAGNEMITE ;3
-		db SPEAROW ;3
 		db MAGNEMITE ;2
-		db MAGNEMITE ;2
+		db MEOWTH ;2
+		db MAGNEMITE ;1
 		db MAGNEMITE ;1
 		db MAGNEMITE ;1
 ;day
 		db SANDSHREW ;20
-		db EKANS ;20
-		db SPEAROW ;10
+		db SPEAROW ;15
+		db EKANS ;10
 		db MAGNEMITE ;10
-		db EKANS ;5
-		db MAGNEMITE ;5
-		db DROWZEE ;5
+		db EKANS ;10
+		db MAGNEMITE ;6
+		db LICKITUNG ;5
 		db MEOWTH ;5
-		db SPEAROW ;4
-		db SPEAROW ;4
-		db MAGNEMITE ;3
+		db LICKITUNG ;5
+		db DROWZEE;4
 		db RATTATA ;3
+		db SPEAROW ;2
 		db SANDSHREW ;2
-		db DROWZEE ;2
-		db MEOWTH ;1
-		db EKANS ;1
+		db SPEAROW ;1
+		db LICKITUNG ;1
+		db LICKITUNG ;1
 ;night
 		db DROWZEE ;20
-		db MEOWTH ;20
+		db MEOWTH ;15
 		db DROWZEE ;10
 		db MAGNEMITE ;10
-		db MAGNEMITE ;5
-		db EKANS ;5
-		db EKANS ;5
+		db EKANS ;10
+		db RATTATA ;6
+		db MEOWTH ;5
 		db SPEAROW ;5
-		db SANDSHREW ;4
+		db SANDSHREW ;5
 		db RATTATA ;4
 		db MAGNEMITE ;3
-		db RATTATA ;3
-		db EKANS ;2
-		db RATTATA ;2
-		db SANDSHREW ;1
-		db RATTATA ;1
+		db MAGNEMITE ;2
+		db LICKITUNG ;2
+		db MAGNEMITE ;1
+		db MAGNEMITE ;1
+		db MAGNEMITE ;1
 
 	db GROUP_ROUTE_22_RB, MAP_ROUTE_22_RB
 	db $19
@@ -672,7 +672,7 @@
 	
 	db GROUP_ROUTE_24_RB, MAP_ROUTE_24_RB
 	db $19
-	db 11
+	db 12
 	db $02
 ;morning
 		db PIDGEY ;20

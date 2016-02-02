@@ -125,9 +125,8 @@ UnknownText_0x9b420: ; 0x9b420
 	text "Hi. Welcome to our"
 	line "TRAINING HALL."
 
-	para "You may battle a"
-	line "trainer once per"
-	cont "day."
+	para "You may battle 1"
+	line "trainer per day."
 	done
 ; 0x9b46a
 
@@ -165,12 +164,10 @@ UnknownText_0x9b4d6: ; 0x9b4d6
 UnknownText_0x9b51d: ; 0x9b51d
 	text "I'm sorry."
 	line "This would be your"
+	cont "second time today."
 
-	para "second time today."
-	line "You're permitted"
-
-	para "to enter just once"
-	line "a day."
+	para "You're allowed to"
+	line "enter once a day."
 	done
 ; 0x9b578
 

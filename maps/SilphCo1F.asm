@@ -13,20 +13,39 @@ ReceptionistScript_0x18abe5: ; 0x18abe5
 OfficerScript_0x18abe8: ; 0x18abe8
 	faceplayer
 	loadfont
-	checkevent EVENT_GOT_UP_GRADE
-	iftrue UnknownScript_0x18abfd
 	writetext UnknownText_0x18ac36
 	buttonsound
-	verbosegiveitem UP_GRADE, 1
-	iffalse UnknownScript_0x18ac01
-	setevent EVENT_GOT_UP_GRADE
-UnknownScript_0x18abfd: ; 0x18abfd
+	checkmoney 0, 300000
+	iffalse Not300k
+	yesorno
+	iffalse DontBuyMasterBall
+	verbosegiveitem MASTER_BALL, 1
+	iffalse BagFullMasterBall
+	takemoney 0, 300000
+	writetext BoughtMasterBallText
+	waitbutton
+	closetext
+	end
+
+DontBuyMasterBall:
 	writetext UnknownText_0x18aca8
 	waitbutton
-UnknownScript_0x18ac01: ; 0x18ac01
+	closetext
+	end
+
+BagFullMasterBall
+	writetext MasterBallBagFullText
+	waitbutton
 	closetext
 	end
 ; 0x18ac03
+
+Not300k:
+	writetext Not300kText
+	waitbutton
+	closetext
+	end
+
 
 UnknownText_0x18ac03: ; 0x18ac03
 	text "Welcome. This is"
@@ -40,20 +59,41 @@ UnknownText_0x18ac36: ; 0x18ac36
 	line "permitted to go"
 	cont "upstairs."
 
-	para "But since you came"
-	line "such a long way,"
+	para "But<...>"
+	
+	para "I got a few MASTER"
+	line "BALLS I swiped"
+	cont "off the shipment."
 
-	para "have this neat"
-	line "little souvenir."
+	para "I think I can"
+	line "let one vanish"
+	cont "for a<...>"
+	cont "small fee"
+	cont "of ¥300,000."
+
 	done
 ; 0x18aca8
 
 UnknownText_0x18aca8: ; 0x18aca8
-	text "It's SILPH CO.'s"
-	line "latest product."
+	text "Shame<...>"
+	done
 
-	para "It's not for sale"
-	line "anywhere yet."
+BoughtMasterBallText:
+	text "Pleasure doing"
+	line "business, don't"
+	cont "waste it on a"
+	cont "GOLDEEN."
+	done
+
+Not300kText:
+	text "No money?"
+	line "Shame<...>"
+	done
+
+MasterBallBagFullText:
+	text "I can't get it in"
+	line "your PACK, make"
+	cont "some space."
 	done
 ; 0x18ace7
 

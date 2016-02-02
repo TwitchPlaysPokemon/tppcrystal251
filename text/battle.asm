@@ -1165,6 +1165,7 @@ SpikesText: ; 0x81691
 	line "all around"
 	cont $59, "!"
 	prompt
+
 ; 0x816b1
 
 IdentifiedText: ; 0x816b1

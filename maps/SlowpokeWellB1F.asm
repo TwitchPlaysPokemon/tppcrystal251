@@ -191,7 +191,7 @@ BoulderScript_0x5a6a0: ; 0x5a6a0
 ; 0x5a6a3
 
 ItemFragment_0x5a6a3: ; 0x5a6a3
-	db SUPER_POTION, 1
+	db HYPER_POTION, 1
 ; 0x5a6a5
 
 KurtSlowpokeWellVictoryMovementData: ; 0x5a6a5

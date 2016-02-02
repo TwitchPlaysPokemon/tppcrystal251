@@ -7,7 +7,7 @@ RuinsofAlphAerodactylItemRoom_MapScriptHeader: ; 0x59ab4
 ; 0x59ab6
 
 ItemFragment_0x59ab6: ; 0x59ab6
-	db GOLD_BERRY, 1
+	db SILVERPOWDER, 1
 ; 0x59ab8
 
 ItemFragment_0x59ab8: ; 0x59ab8
@@ -15,7 +15,7 @@ ItemFragment_0x59ab8: ; 0x59ab8
 ; 0x59aba
 
 ItemFragment_0x59aba: ; 0x59aba
-	db HEAL_POWDER, 1
+	db BERRY, 10
 ; 0x59abc
 
 ItemFragment_0x59abc: ; 0x59abc

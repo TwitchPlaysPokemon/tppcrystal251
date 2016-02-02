@@ -4753,7 +4753,6 @@ UnknownScript_0xc7fe: ; c7fe
 UnknownScript_0xc802: ; 0xc802 CUT
 	callasm Functioncd12
 	writetext UnknownText_0xc7c4
-	waitbutton
 	closetext
 	copybytetovar wd1ef
 	refreshscreen $0
@@ -8246,30 +8245,30 @@ TrainerStatExp:
 	cp 5 + 1
 	ld hl, 0
 	ret c
-	cp 100
-	jr nc, .max
-	sub 5
-	ld bc, 150
-	cp 16
+	;cp 100
+	;jr nc, .max
+	sub 5 ;6-20 ;reduce by last catagory
+	ld bc, 150 ;load in amount to add per level
+	cp 16 ;if in this box, add loop, else next group
 	jr c, .add
-	sub 15
+	sub 15 ;21-35
 	ld bc, 250
 	ld hl, 2250
 	cp 16
 	jr c, .add
-	sub 15
+	sub 15 ;36-55
 	ld bc, 400
 	ld hl, 6000
 	cp 21
 	jr c, .add
-	sub 20
-	ld bc, 600
+	sub 20 ;56-75
+	ld bc, 400
 	ld hl, 14000
 	cp 21
 	jr c, .add
-	sub 20
-	ld bc, 1500
-	ld hl, 26000
+	sub 20 ;75-100
+	ld bc, 600
+	ld hl, 22000
 .add
 	and a
 	ret z
@@ -8278,9 +8277,9 @@ TrainerStatExp:
 	dec a
 	jr nz, .loop
 	ret
-.max
-	ld hl, 63500
-	ret
+;.max
+;	ld hl, 63500
+;	ret
 
 
 FillPP: ; da6d hl = start of moves, de = start of place to put pp
@@ -10858,6 +10857,8 @@ NamingScreen: ; 116c1
 	ld [hl], d
 	ld hl, wc6d4
 	ld [hl], b
+	xor a
+	ld [wc6da], a
 	ld hl, Options
 	ld a, [hl]
 	push af
@@ -11315,6 +11316,9 @@ Jumptable_11977: ; 11977 (4:5977)
 	and B_BUTTON
 	jr nz, .b
 	ld a, [hl]
+	and START
+	jr nz, .start
+	ld a, [hl]
 	and SELECT
 	jr nz, .select
 	ret
@@ -11345,6 +11349,22 @@ Jumptable_11977: ; 11977 (4:5977)
 	inc [hl]
 	ret
 
+.start
+	ld a, [wc6da]
+	xor 1
+	ld [wc6da], a
+	jr z, .restore_mode
+	call .set_upper
+	hlcoord 1, 16
+	ld de, .upper_str
+	call PlaceString
+	ret
+.restore_mode
+	ld a, [wcf64]
+	and a
+	jr z, .set_upper
+	jr .set_lower
+
 .b
 	call NamingScreen_DeleteCharacter
 	ret
@@ -11356,19 +11376,34 @@ Jumptable_11977: ; 11977 (4:5977)
 	ret
 
 .select
+	ld hl, wc6da
+	bit 0, [hl]
+	res 0, [hl]
 	ld hl, wcf64
+	jr nz, .bit0
 	ld a, [hl]
 	xor 1
 	ld [hl], a
-	jr z, .asm_11a04
+	jr z, .set_upper
+	jr .set_lower
+.bit0
+	ld a, [hl]
+	and a
+	jr z, .set_upper
+	
+.set_lower
 	ld de, NameInputLower
 	call NamingScreen_ApplyTextInputMode
 	ret
 
-.asm_11a04
+.set_upper
 	ld de, NameInputUpper
 	call NamingScreen_ApplyTextInputMode
 	ret
+
+
+.upper_str
+	db $61, "UPPER@"
 
 .GetCursorPosition: ; 11a0b (4:5a0b)
 	ld hl, wc6d5
@@ -17189,10 +17224,10 @@ Group1Sprites: ; 146a1
 	db SPRITE_POKEFAN_M
 	db SPRITE_LASS
 	db SPRITE_BUENA
-	db SPRITE_SWIMMER_GIRL
+	db SPRITE_ROCKET
 	db SPRITE_SAILOR
 	db SPRITE_POKEFAN_F
-	db SPRITE_SUPER_NERD
+	db SPRITE_EKANS
 	db SPRITE_TAUROS
 	db SPRITE_FRUIT_TREE
 	db SPRITE_ROCK ; 23
@@ -17290,16 +17325,17 @@ Group5Sprites: ; 146e6
 	db SPRITE_BIG_ONIX
 	db SPRITE_SUDOWOODO
 	db SPRITE_BIG_SNORLAX
-	db SPRITE_GRAMPS
-	db SPRITE_YOUNGSTER
-	db SPRITE_LASS
-	db SPRITE_SUPER_NERD
-	db SPRITE_COOLTRAINER_M
-	db SPRITE_POKEFAN_M
-	db SPRITE_BLACK_BELT
-	db SPRITE_COOLTRAINER_F
-	db SPRITE_FISHER
-	db SPRITE_FRUIT_TREE
+	db SPRITE_GRAMPS ;
+	db SPRITE_YOUNGSTER ;
+	db SPRITE_LASS ;
+	db SPRITE_SUPER_NERD ;
+	db SPRITE_COOLTRAINER_M ;
+	db SPRITE_POKEFAN_M ;
+	db SPRITE_BLACK_BELT ;
+	db SPRITE_COOLTRAINER_F ;
+	; db SPRITE_FISHER
+	db SPRITE_EGK_RIVAL
+	db SPRITE_FRUIT_TREE ;
 	db SPRITE_POKE_BALL ; 23
 ; 146fd
 
@@ -24116,7 +24152,7 @@ Function24022:: ; 24022
 	ld a, [wcf94]
 	rst FarCall
 	call Function24085
-	callba MobileTextBorder
+	;callba MobileTextBorder
 	call Function1ad2
 	call Function321c
 	call Function2408f
@@ -24128,7 +24164,7 @@ Function2403c:: ; 2403c
 	ld a, [wcf94]
 	rst FarCall
 	call Function24085
-	callba MobileTextBorder
+	;callba MobileTextBorder
 	call Function1ad2
 	call Function321c
 	call Function2411a
@@ -34238,81 +34274,81 @@ Function2c1b2: ; 2c1b2
 
 TrainerClassNames:: ; 2c1ef
 	db "LEADER@"
-	db "LEADER@"
-	db "LEADER@"
-	db "LEADER@"
-	db "LEADER@"
-	db "LEADER@"
-	db "LEADER@"
-	db "LEADER@"
-	db "RIVAL@"
-	db "#MON PROF.@"
-	db "ELITE FOUR@"
-	db $4a, " TRAINER@"
-	db "ELITE FOUR@"
-	db "ELITE FOUR@"
-	db "ELITE FOUR@"
-	db "CHAMPION@"
-	db "LEADER@"
-	db "LEADER@"
-	db "LEADER@"
-	db "SCIENTIST@"
-	db "LEADER@"
-	db "YOUNGSTER@"
-	db "SCHOOLBOY@"
-	db "BIRD KEEPER@"
-	db "LASS@"
-	db "LEADER@"
-	db "COOLTRAINER@"
-	db "COOLTRAINER@"
-	db "BEAUTY@"
-	db "#MANIAC@"
-	db "ROCKET@"
-	db "GENTLEMAN@"
-	db "SKIER@"
-	db "TEACHER@"
-	db "LEADER@"
-	db "BUG CATCHER@"
-	db "FISHER@"
-	db "SWIMMER♂@"
-	db "SWIMMER♀@"
-	db "SAILOR@"
-	db "SUPER NERD@"
-	db "RIVAL@"
-	db "GUITARIST@"
-	db "HIKER@"
-	db "BIKER@"
-	db "LEADER@"
-	db "BURGLAR@"
-	db "FIREBREATHER@"
-	db "JUGGLER@"
-	db "BLACKBELT@"
-	db "ROCKET@"
-	db "PSYCHIC@"
-	db "PICNICKER@"
-	db "CAMPER@"
-	db "ROCKET@"
-	db "SAGE@"
-	db "MEDIUM@"
-	db "BOARDER@"
-	db "#FAN@"
-	db "KIMONO GIRL@"
-	db "TWINS@"
-	db "#FAN@"
-	db $4a, " TRAINER@"
-	db "LEADER@"
-	db "OFFICER@"
-	db "ROCKET@"
-	db "MYSTICALMAN@"
-	db "#MANIAC@"
-	db $4a, " PROF.@"
-	db $4a, " LEAGUE@"
-	db "BOSS@"
-	db "COOLSIBS@"
-	db "RIVAL@"
-	db "RIVAL@"
-	db "LEADER@"
-	db "LEADER@"
+ 	db "LEADER@"
+ 	db "LEADER@"
+ 	db "LEADER@"
+ 	db "LEADER@"
+ 	db "LEADER@"
+ 	db "LEADER@"
+ 	db "LEADER@"
+ 	db "RIVAL@"
+ 	db "#MON PROF.@"
+ 	db "ELITE FOUR@"
+ 	db $4a, " TRAINER@"
+ 	db "ELITE FOUR@"
+ 	db "ELITE FOUR@"
+ 	db "ELITE FOUR@"
+ 	db "CHAMPION@"
+ 	db "LEADER@"
+ 	db "LEADER@"
+ 	db "LEADER@"
+ 	db "SCIENTIST@"
+ 	db "LEADER@"
+ 	db "YOUNGSTER@"
+ 	db "SCHOOLBOY@"
+ 	db "BIRD KEEPER@"
+ 	db "LASS@"
+ 	db "LEADER@"
+ 	db "COOLTRAINER@"
+ 	db "COOLTRAINER@"
+ 	db "BEAUTY@"
+ 	db "#MANIAC@"
+ 	db "ROCKET@"
+ 	db "GENTLEMAN@"
+ 	db "SKIER@"
+ 	db "TEACHER@"
+ 	db "LEADER@"
+ 	db "BUG CATCHER@"
+ 	db "FISHER@"
+ 	db "SWIMMER♂@"
+ 	db "SWIMMER♀@"
+ 	db "SAILOR@"
+ 	db "SUPER NERD@"
+ 	db "RIVAL@"
+ 	db "GUITARIST@"
+ 	db "HIKER@"
+ 	db "BIKER@"
+ 	db "LEADER@"
+ 	db "BURGLAR@"
+ 	db "FIREBREATHER@"
+ 	db "JUGGLER@"
+ 	db "BLACKBELT@"
+ 	db "ROCKET@"
+ 	db "PSYCHIC@"
+ 	db "PICNICKER@"
+ 	db "CAMPER@"
+ 	db "ROCKET@"
+ 	db "SAGE@"
+ 	db "MEDIUM@"
+ 	db "BOARDER@"
+ 	db "#FAN@"
+ 	db "KIMONO GIRL@"
+ 	db "TWINS@"
+ 	db "#FAN@"
+ 	db $4a, " TRAINER@"
+ 	db "LEADER@"
+ 	db "OFFICER@"
+ 	db "ROCKET@"
+ 	db "MYSTICALMAN@"
+ 	db "#MANIAC@"
+ 	db $4a, " PROF.@"
+ 	db $4a, " LEAGUE@"
+ 	db "BOSS@"
+ 	db "COOLSIBS@"
+ 	db "RIVAL@"
+ 	db "RIVAL@"
+ 	db "LEADER@"
+ 	db "LEADER@"
 
 AI_Redundant: ; 2c41a
 ; Check if move effect c will fail because it's already been used.
@@ -34837,7 +34873,7 @@ Function2c867: ; 2c867
 	ret c
 	; ld c, $5
 	; callab ChangeHappiness ;+ new move happiness
-	; call Function2cb0c ; remove TM from TM pocket? (will skipping this enable infinite TMs?)
+	; call Function2cb0c ; remove TM from TM pocket
 	jr .asm_2c8bd
 
 .asm_2c8b6
@@ -39791,22 +39827,21 @@ Function4925b: ; 4925b
 	ret
 ; 492a5
 
-Function492a5: ; 492a5
+Function492a5: ; 492a5 load appropriote tutor move into a
+	push hl
+	push bc
+	ld hl, TutorMovesTable
 	ld a, [ScriptVar]
-	cp $1
-	jr z, .asm_492b3
-	cp $2
-	jr z, .asm_492b6
-	ld a, ICE_BEAM
+	ld c, a
+	ld b, 0
+	add hl, bc
+	ld a, [hl]
+	pop bc
+	pop hl
 	ret
 
-.asm_492b3
-	ld a, FLAMETHROWER
-	ret
-
-.asm_492b6
-	ld a, THUNDERBOLT
-	ret
+TutorMovesTable:
+	db 0, FLAMETHROWER, THUNDERBOLT, ICE_BEAM, ICE_PUNCH, THUNDERPUNCH, FIRE_PUNCH
 ; 492b9
 
 Function492b9: ; 492b9
@@ -47112,7 +47147,7 @@ Function4ea0a: ; 4ea0a
 	ld a, c
 	push af
 	call SpeechTextBox
-	call MobileTextBorder
+	;call MobileTextBorder
 	pop af
 	dec a
 	ld bc, $000c
@@ -51343,7 +51378,7 @@ Unknown_80671: ; 80671
 	dwb YCoord,        $00 ; $13
 	dwb wdc31,         $00 ; $14 Pokerus
 	dwb wcf64,         $00 ; $15 Unused
-	dwb wdca4,         $00 ; $16 Unused
+	dwb wdca4,         $00 ; $16 kurt ball count?
 	dwb wdbf9,         $40 ; $17 Caller ID
 	dwb wBlueCardBalance,         $40 ; $18 BlueCard Balance
 	dwb wdc4a,         $40 ; $19 Unused
@@ -70093,11 +70128,15 @@ Function910d4: ; 910d4
 Function910e8: ; Kanto Landmarks that can be viewed after beating the Elite Four
 	ld a, [StatusFlags]
 	bit 5, a
-	jr z, .okay
+	jr z, .egk
 	bit 6, a
 	jr z, .asm_910f4
 .okay
 	ld d, ROUTE_28
+	ld e, PALLET_TOWN
+	ret
+.egk
+	ld d, INDIGO_PLATEAU
 	ld e, PALLET_TOWN
 	ret
 
@@ -87550,13 +87589,13 @@ npctrade: MACRO
 ENDM
 
 
-	npctrade 0, ABRA,       MACHOP,     "MUSCLE@@@@@", $37, $66, GOLD_BERRY,   37460, "MIKE@@@@@@@", TRADE_EITHER_GENDER
-	npctrade 0, BELLSPROUT, ONIX,       "ROCKY@@@@@@", $96, $66, BITTER_BERRY, 48926, "KYLE@@@@@@@", TRADE_EITHER_GENDER
-	npctrade 1, KRABBY,     VOLTORB,    "VOLTY@@@@@@", $98, $88, PRZCUREBERRY, 29189, "TIM@@@@@@@@", TRADE_EITHER_GENDER
-	npctrade 3, DRAGONAIR,  DODRIO,     "DORIS@@@@@@", $77, $66, SMOKE_BALL,   00283, "EMY@@@@@@@@", TRADE_FEMALE_ONLY
-	npctrade 2, HAUNTER,    XATU,       "PAUL@@@@@@@", $96, $86, MYSTERYBERRY, 15616, "CHRIS@@@@@@", TRADE_EITHER_GENDER
-	npctrade 3, CHANSEY,    AERODACTYL, "AEROY@@@@@@", $96, $66, GOLD_BERRY,   26491, "KIM@@@@@@@@", TRADE_EITHER_GENDER
-	npctrade 0, DUGTRIO,    MAGNETON,   "MAGGIE@@@@@", $96, $66, METAL_COAT,   50082, "FOREST@@@@@", TRADE_EITHER_GENDER
+	npctrade 0, BUTTERFREE, KANGASKHAN, "BRUNHILDA@@", $a9, $88, CONFUSEGUARD, 37460, "MIKE@@@@@@@", TRADE_EITHER_GENDER
+	npctrade 0, RATICATE,   DELIBIRD,   "NICK@@@@@@@", $fa, $ac, SHARP_BEAK,   48926, "KYLE@@@@@@@", TRADE_EITHER_GENDER
+	npctrade 1, GYARADOS,   EXEGGUTOR,  "COCOEGG@@@@", $eb, $6a, TWISTEDSPOON, 29189, "TIM@@@@@@@@", TRADE_EITHER_GENDER
+	npctrade 3, DRAGONAIR,  SNORLAX,    "FATSO@@@@@@", $cb, $3f, SMOKE_BALL,   00283, "EMY@@@@@@@@", TRADE_FEMALE_ONLY
+	npctrade 2, FLAREON,    HYPNO,      "HYPPY@@@@@@", $96, $86, SLEEP_GUARD,  15616, "CHRIS@@@@@@", TRADE_EITHER_GENDER
+	npctrade 3, OMASTAR,    AERODACTYL, "AEROY@@@@@@", $ba, $f8, RARE_CANDY,   26491, "KIM@@@@@@@@", TRADE_EITHER_GENDER
+	npctrade 0, LICKITUNG,  SCYTHER,    "SCYLVIA@@@@", $ec, $a8, METAL_COAT,   50082, "FOREST@@@@@", TRADE_EITHER_GENDER
 	npctrade 1, ABRA,       MR__MIME,   "MARCEL@@@@@", $68, $82, BERRY,        49677, "ANDREW@@@@@", TRADE_EITHER_GENDER
 	npctrade 0, PIDGEOTTO,  TANGELA,    "GELA@@@@@@@", $52, $67, PSNCUREBERRY, 60392, "JEREMY@@@@@", TRADE_EITHER_GENDER
 	npctrade 3, CUBONE,     MACHOP,     "MUSCLE@@@@@", $e3, $b5, BURNT_BERRY,  62577, "LUCY@@@@@@@", TRADE_MALE_ONLY
@@ -93200,4 +93239,30 @@ IF DEF(BEESAFREE)
 SECTION "military", ROMX
 INCLUDE "battle/military.asm"
 ENDC
+
+SECTION "Gold Berry HP", ROMX
+GoldBerryHP
+	ld a, [Buffer2]
+	ld b, a
+	ld a, [Buffer1]
+	ld c, a
+	srl b
+	rr c
+	srl b
+	rr c
+	ld a, b
+	or c
+	jr nz, .load_gold_berry
+	ld c, 1
+.load_gold_berry
+	ld a, [de]
+	add c
+	ld [wd1ee], a
+	ld c, a
+	dec de
+	ld a, [de]
+	adc b
+	ld [wd1ef], a
+	ld b, a
+	ret
 

@@ -425,7 +425,7 @@ UnknownScript_0x192ac3: ; 0x192ac3
 	special Function101220
 	scall UnknownScript_0x192ad0
 	dotrigger $0
-	domaptrigger GROUP_MOBILE_TRADE_ROOM_MOBILE, MAP_MOBILE_TRADE_ROOM_MOBILE, $0
+	;domaptrigger GROUP_MOBILE_TRADE_ROOM_MOBILE, MAP_MOBILE_TRADE_ROOM_MOBILE, $0
 	end
 ; 0x192ad0
 
@@ -448,7 +448,6 @@ UnknownScript_0x192aea: ; 0x192aea
 	special Function101220
 	scall UnknownScript_0x192af7
 	dotrigger $0
-	domaptrigger GROUP_MOBILE_BATTLE_ROOM, MAP_MOBILE_BATTLE_ROOM, $0
 	end
 ; 0x192af7
 
@@ -1156,13 +1155,13 @@ PokeCenter2F_MapEventHeader: ; 0x19337f
 	db 0, 0
 
 	; warps
-	db 6
+	db 4
 	warp_def $7, $0, 255, GROUP_POKECENTER_2F, MAP_POKECENTER_2F
 	warp_def $0, $5, 1, GROUP_TRADE_CENTER, MAP_TRADE_CENTER
 	warp_def $0, $9, 1, GROUP_COLOSSEUM, MAP_COLOSSEUM
 	warp_def $2, $d, 1, GROUP_TIME_CAPSULE, MAP_TIME_CAPSULE
-	warp_def $0, $6, 1, GROUP_MOBILE_TRADE_ROOM_MOBILE, MAP_MOBILE_TRADE_ROOM_MOBILE
-	warp_def $0, $a, 1, GROUP_MOBILE_BATTLE_ROOM, MAP_MOBILE_BATTLE_ROOM
+	;warp_def $0, $6, 1, GROUP_MOBILE_TRADE_ROOM_MOBILE, MAP_MOBILE_TRADE_ROOM_MOBILE
+	
 
 	; xy triggers
 	db 0

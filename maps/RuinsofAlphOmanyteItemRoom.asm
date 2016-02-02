@@ -7,11 +7,11 @@ RuinsofAlphOmanyteItemRoom_MapScriptHeader: ; 0x59a2a
 ; 0x59a2c
 
 ItemFragment_0x59a2c: ; 0x59a2c
-	db MYSTERYBERRY, 1
+	db PARLYZ_GUARD, 1
 ; 0x59a2e
 
 ItemFragment_0x59a2e: ; 0x59a2e
-	db MYSTIC_WATER, 1
+	db BURN_GUARD, 1
 ; 0x59a30
 
 ItemFragment_0x59a30: ; 0x59a30

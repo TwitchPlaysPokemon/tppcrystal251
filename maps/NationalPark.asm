@@ -392,7 +392,7 @@ MapNationalParkSignpost3Script: ; 0x5c1c9
 ; 0x5c1cc
 
 ItemFragment_0x5c1cc: ; 0x5c1cc
-	db PARLYZ_HEAL, 1
+	db FREEZE_GUARD, 1
 ; 0x5c1ce
 
 ItemFragment_0x5c1ce: ; 0x5c1ce

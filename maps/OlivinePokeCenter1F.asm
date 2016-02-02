@@ -23,11 +23,11 @@ TeacherScript_0x9c00b: ; 0x9c00b
 ; 0x9c00e
 
 UnknownText_0x9c00e: ; 0x9c00e
-	text "The SAILOR in the"
-	line "OLIVINE CAFE next"
+	text "The man in the"
+	line "DANCE THEATER in"
 
-	para "door is really"
-	line "generous."
+	para "ECRUTEAK is"
+	line "really generous."
 
 	para "He taught my"
 	line "#MON STRENGTH."

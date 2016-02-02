@@ -89,28 +89,28 @@ UnknownText_0x62fda: ; 0x62fda
 	done
 ; 0x62ff7
 
-UnknownText_0x62ff7: ; 0x62ff7
-	text "I'm the DAY-CARE"
-	line "MAN."
+;UnknownText_0x62ff7: ; 0x62ff7
+;	text "I'm the DAY-CARE"
+;	line "MAN."
 
-	para "There's something"
-	line "new in GOLDENROD"
+;	para "There's something"
+;	line "new in GOLDENROD"
 
-	para "called the TRADE"
-	line "CORNER."
+;	para "called the TRADE"
+;	line "CORNER."
 
-	para "I was given an EGG"
-	line "TICKET that can be"
+;	para "I was given an EGG"
+;	line "TICKET that can be"
 
-	para "traded in for a"
-	line "ODD EGG."
+;	para "traded in for a"
+;	line "ODD EGG."
 
-	para "But since we run a"
-	line "DAY-CARE, we don't"
+;	para "But since we run a"
+;	line "DAY-CARE, we don't"
 
-	para "need it. You may"
-	line "as well have it."
-	done
+	;para "need it. You may"
+	;line "as well have it."
+;	done
 ; 0x630ce
 
 UnknownText_0x630ce: ; 0x630ce

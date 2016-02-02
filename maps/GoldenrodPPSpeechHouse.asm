@@ -49,9 +49,9 @@ UnknownText_0x556ca: ; 0x556ca
 	line "use its moves."
 
 	para "If that happens,"
-	line "heal it at a #-"
-	cont "MON CENTER or use"
-	cont "an item."
+	line "heal it at a"
+	cont "#MON CENTER or"
+	cont "use an item."
 	done
 ; 0x55741
 

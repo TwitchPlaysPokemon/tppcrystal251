@@ -24,6 +24,10 @@ VermilionGymDoorsScript:
 SurgeScript_0x1920a5: ; 0x1920a5
 	faceplayer
 	loadfont
+	checkevent EVENT_SURGE_REMATCH
+	iftrue SurgeAfterRematch
+	checkevent EVENT_FIRST_TIME_RED
+	iftrue SurgeRematchScript
 	checkflag ENGINE_THUNDERBADGE
 	iftrue UnknownScript_0x1920d9
 	writetext UnknownText_0x192142
@@ -217,6 +221,49 @@ UnknownScript_0x19213b: ; 0x19213b
 	jumpstd gymstatue2
 ; 0x192142
 
+SurgeRematchScript:
+	writetext SurgeRematchTextBefore
+	waitbutton
+	closetext
+	winlosstext SurgeRematchBeatenText, $0000
+	loadtrainer LT_SURGE, 2
+	startbattle
+	returnafterbattle
+	setevent EVENT_SURGE_REMATCH
+	loadfont ;fallthrough
+
+SurgeAfterRematch:
+	writetext SurgeAfterRematchText
+	waitbutton
+	closetext
+	end
+
+SurgeRematchTextBefore:
+	text "What's up?"
+	line "I'm doing great!"
+	
+	para "Hey, you!"
+	line "Battle me again!"
+	cont "What do you say?"
+	
+	done
+
+SurgeRematchBeatenText:
+	text "Arrrgh!"
+	line "You are strong!"
+	done
+
+SurgeAfterRematchText:
+	text "You are very"
+	line "strong!" 
+	
+	para "I'll have to go"
+	line "back to camp and"
+	cont "brush up on my"
+	cont "training."
+
+	done
+
 Text_FoundSwitch:
 	text "A switch beneath"
 	line "the trash can?"
@@ -285,6 +332,7 @@ UnknownText_0x192291: ; 0x192291
 
 	para "Oh, and have"
 	line "this too!"
+	done
 
 SurgeLastText:
 	text "That's WILD"
@@ -386,25 +434,23 @@ UnknownText_0x1924d6: ; 0x1924d6
 ; 0x192517
 
 VermilionGymGuyText: ; 0x192517
-	text "Yo! CHAMP in"
-	line "making!"
-
-	para "You lucked out"
-	line "this time."
+	text "Yo! CHAMP"
+	line "Your luck ran out."
 
 	para "LT.SURGE is very"
 	line "cautious. He has"
+	cont "traps set all over"
+	cont "the GYM."
 
-	para "traps set all over"
-	line "the GYM."
+	para "To get through you"
+	line "need to find both"
+	cont "switches."
 
-	para "But--he-heh--the"
-	line "traps aren't"
-	cont "active right now."
+	para "But if you guess"
+	line "wrong, they reset<...>"
 
-	para "You'll have no"
-	line "problem getting to"
-	cont "LT.SURGE."
+	para "Good luck!"
+
 	done
 ; 0x1925df
 
@@ -482,23 +528,12 @@ SampleVermilionTrashCan:
 CheckVermilionTrashCan:
 	call GetFacingTileCoord
 	ld hl, .CoordTable
-.loop
-	push hl
-	ld a, [hli]
-	cp d
-	jr nz, .next
-	ld a, [hl]
-	cp e
-	jr z, .got_cans
-.next
-	pop hl
-	ld bc, 4
-	add hl, bc
-	jr .loop
-
-.got_cans
-	pop hl
-	inc hl
+	ld a, d
+	swap a
+	or e
+	ld de, 3
+	call IsInArray
+	jr nc, .nope
 	inc hl
 	ld a, [hli]
 	ld h, [hl]
@@ -511,15 +546,11 @@ CheckVermilionTrashCan:
 	ld b, a
 	pop af
 	ld [rSVBK], a
-.loop2
-	ld a, [hli]
-	cp -1
-	jr z, .nope
-	cp b
-	jr nz, .loop2
+	ld a, b
+	ld de, 1
+	call IsInArray
 	ld a, 1
-	jr .done
-
+	jr c, .done
 .nope
 	xor a
 .done
@@ -527,21 +558,26 @@ CheckVermilionTrashCan:
 	ret
 
 .CoordTable
-	dbbw  1,  7, .Set1_1
-	dbbw  3,  7, .Set2_1
-	dbbw  5,  7, .Set3_1
-	dbbw  7,  7, .Set4_1
-	dbbw  9,  7, .Set5_1
-	dbbw  1,  9, .Set1_2
-	dbbw  3,  9, .Set2_2
-	dbbw  5,  9, .Set3_2
-	dbbw  7,  9, .Set4_2
-	dbbw  9,  9, .Set5_2
-	dbbw  1, 11, .Set1_3
-	dbbw  3, 11, .Set2_3
-	dbbw  5, 11, .Set3_3
-	dbbw  7, 11, .Set4_3
-	dbbw  9, 11, .Set5_3
+vermtrashcan: MACRO
+	dn \1 + 4, \2 + 4
+	dw \3
+endm
+	vermtrashcan  1,  7, .Set1_1
+	vermtrashcan  3,  7, .Set2_1
+	vermtrashcan  5,  7, .Set3_1
+	vermtrashcan  7,  7, .Set4_1
+	vermtrashcan  9,  7, .Set5_1
+	vermtrashcan  1,  9, .Set1_2
+	vermtrashcan  3,  9, .Set2_2
+	vermtrashcan  5,  9, .Set3_2
+	vermtrashcan  7,  9, .Set4_2
+	vermtrashcan  9,  9, .Set5_2
+	vermtrashcan  1, 11, .Set1_3
+	vermtrashcan  3, 11, .Set2_3
+	vermtrashcan  5, 11, .Set3_3
+	vermtrashcan  7, 11, .Set4_3
+	vermtrashcan  9, 11, .Set5_3
+	db $ff
 
 .Set1_1
 	db 0, 12, 22, -1

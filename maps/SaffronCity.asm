@@ -147,21 +147,19 @@ UnknownText_0x19940d: ; 0x19940d
 ; 0x199460
 
 UnknownText_0x199460: ; 0x199460
-	text "You came out from"
-	line "JOHTO?"
+	text "You went to JOHTO?"
 
 	para "You can zip back"
-	line "home if the MAGNET"
+	line "if the MAGNET"
 	cont "TRAIN's running."
 	done
 ; 0x1994ae
 
 UnknownText_0x1994ae: ; 0x1994ae
-	text "You came out from"
-	line "JOHTO?"
+	text "You went to JOHTO?"
 
 	para "You can zip back"
-	line "home by hopping on"
+	line "by hopping on"
 	cont "the MAGNET TRAIN."
 	done
 ; 0x1994fe

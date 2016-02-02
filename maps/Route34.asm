@@ -563,8 +563,72 @@ CooltrainerfIreneScript: ; 0x782c4
 	end
 ; 0x782d2
 
+TeachMoveIce:
+	writebyte 4
+	jump TeachMove
+
+TeachMoveFire:
+	writebyte 6
+	jump TeachMove
+
+TeachMoveThunder:
+	writebyte 5
+
+TeachMove:
+	writetext WhoToTeachText
+	special Function4925b
+	if_equal $0, AfterTutor
+	writetext TutorQuitText
+	waitbutton
+	closetext
+	end
+
+AfterTutor:
+	writetext TutorTakeMoneyText
+	buttonsound
+	takemoney 0, 5000
+	waitsfx
+	writetext LightPocketsText
+	waitbutton
+	closetext
+	end
+
+WhoToTeachText:
+	text "Who should"
+	line "I teach?"
+	done
+
+WierdTutorText:
+	db $0, $57
+
+TutorQuitText:
+	text "Well if you change"
+	line "your mind..."
+	done
+
+TutorTakeMoneyText:
+	text "Great, they learn"
+	line "fast!"
+
+	para "Now to hold up"
+	line "your end..."
+	done
+
+LightPocketsText:
+	text "Your pockets are"
+	line "suddenly lighter…"
+	done
+
 UnknownScript_0x782d2: ; 0x782d2
 	writetext UnknownText_0x787ad
+	yesorno
+	iffalse TutorQuit
+	checkmoney 0, 5000
+	if_equal 2, TutorQuit
+	jump TeachMoveFire
+
+TutorQuit:
+	writetext TutorQuitText
 	waitbutton
 	closetext
 	end
@@ -603,10 +667,14 @@ CooltrainerfJennScript: ; 0x782e4
 
 UnknownScript_0x782f2: ; 0x782f2
 	writetext UnknownText_0x78866
-	waitbutton
-	closetext
-	end
+	yesorno
+	iffalse TutorQuit
+	checkmoney 0, 5000
+	if_equal 2, TutorQuit
+	jump TeachMoveThunder
 ; 0x782f8
+
+
 
 TrainerCooltrainerfKate: ; 0x782f8
 	; bit/flag number
@@ -634,16 +702,18 @@ CooltrainerfKateScript: ; 0x78304
 	checkevent EVENT_GOT_SOFT_SAND_FROM_KATE
 	iftrue UnknownScript_0x78319
 	writetext UnknownText_0x788e2
-	buttonsound
-	verbosegiveitem SOFT_SAND, 1
-	iffalse UnknownScript_0x7831d
 	setevent EVENT_GOT_SOFT_SAND_FROM_KATE
-UnknownScript_0x78319: ; 0x78319
-	writetext UnknownText_0x7892b
 	waitbutton
-UnknownScript_0x7831d: ; 0x7831d
 	closetext
 	end
+
+UnknownScript_0x78319: ; 0x78319
+	writetext UnknownText_0x7892b
+	yesorno
+	iffalse TutorQuit
+	checkmoney 0, 5000
+	if_equal 2, TutorQuit
+	jump TeachMoveIce
 ; 0x7831f
 
 UnknownScript_0x7831f: ; 0x7831f
@@ -674,7 +744,7 @@ MapRoute34SignpostItem3: ; 0x7832d
 
 MapRoute34SignpostItem4: ; 0x78330
 	dw $00a8
-	db SUPER_POTION
+	db LUCKY_PUNCH
 	
 RandomEggScript:
 	checkevent EVENT_BULBASAUR_EGG
@@ -988,7 +1058,7 @@ CooltrainerfIreneSeenText: ; 0x78743
 
 CooltrainerfIreneBeatenText: ; 0x78765
 	text "IRENE: Ohhh!"
-	line "Too strong!"
+	line "Too hot!"
 	done
 ; 0x7877f
 
@@ -1000,11 +1070,13 @@ UnknownText_0x7877f: ; 0x7877f
 ; 0x787ad
 
 UnknownText_0x787ad: ; 0x787ad
-	text "IRENE: Isn't this"
-	line "beach great?"
+	text "IRENE: I'm so hot"
+	line "it's like my fists"
+	cont "are on fire."
 
-	para "It's our secret"
-	line "little getaway!"
+	para "For ¥5000 I can"
+	line "teach you my"
+	cont "secret?"
 	done
 ; 0x787eb
 
@@ -1029,9 +1101,15 @@ UnknownText_0x78836: ; 0x78836
 ; 0x78866
 
 UnknownText_0x78866: ; 0x78866
-	text "JENN: Sunlight"
-	line "makes your body"
-	cont "stronger."
+	text "JENN: Strike hard!"
+
+	para "Fast!"
+
+	para "Like lightinig!"
+
+	para "For ¥5000 your"
+	line "mon can too."
+	cont "Well?"
 	done
 ; 0x78890
 
@@ -1044,29 +1122,41 @@ CooltrainerfKateSeenText: ; 0x78890
 
 CooltrainerfKateBeatenText: ; 0x788c0
 	text "KATE: No! I can't"
-	line "believe I lost."
+	line "believe we lost."
 	done
 ; 0x788e2
 
 UnknownText_0x788e2: ; 0x788e2
-	text "KATE: You're too"
-	line "strong. I didn't"
-	cont "stand a chance."
+	text "KATE: Oh, you're"
+	line "just a #MON"
+	cont "trainer?"
 
-	para "Here. You deserve"
-	line "this."
+	para "I thought you were"
+	line "a spy<...>"
+
+	para "We're training"
+	line "elemental martial"
+	cont "arts in secret,"
+	cont "but so far we only"
+	cont "taught our #MON<...>"
+
+	para "Say<...>"
+
+	para "If you bring us"
+	line "some snack money"
+	cont "we can teach your"
+	cont "#MON too."
 	done
 ; 0x7892b
 
 UnknownText_0x7892b: ; 0x7892b
-	text "KATE: I'm sorry we"
-	line "jumped you."
+	text "KATE: I'm so cool"
+	line "it's like my hands"
+	cont "are ice."
 
-	para "We never expected"
-	line "anyone to find us"
-
-	para "here. You sure"
-	line "startled us."
+	para "¥5000 and I can"
+	line "give your mon my"
+	cont "freezng touch."
 	done
 ; 0x7898a
 

@@ -22,9 +22,11 @@ UnknownText_0x1963c3: ; 0x1963c3
 ; 0x1963f9
 
 UnknownText_0x1963f9: ; 0x1963f9
-	text "I saw these weird,"
-	line "slow #MON on"
+	text "I saw a swarm of"
+	line "BEEDRILL on"
 	cont "CYCLING ROAD."
+
+	para "It was scary."
 	done
 ; 0x196428
 

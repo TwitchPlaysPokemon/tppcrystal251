@@ -122,8 +122,8 @@ LassScript_0x1a00b9: ; 0x1a00b9
 	jumptextfaceplayer UnknownText_0x1a0394
 ; 0x1a00bc
 
-UnknownScript_0x1a00bc: ; 0x1a00bc
-	jumptextfaceplayer UnknownText_0x1a03cc
+;UnknownScript_0x1a00bc: ; 0x1a00bc removing redundent stuff
+	;jumptextfaceplayer UnknownText_0x1a03cc
 ; 0x1a00bf
 
 MapCianwoodCitySignpost0Script: ; 0x1a00bf
@@ -156,7 +156,7 @@ RockScript_0x1a00d1: ; 0x1a00d1
 
 MapCianwoodCitySignpostItem6: ; 0x1a00d4
 	dw $00b2
-	db REVIVE
+	db SOFT_SAND
 	
 ; 0x1a00d7
 
@@ -295,15 +295,15 @@ UnknownText_0x1a0394: ; 0x1a0394
 ; 0x1a03cc
 
 ; possibly unused
-UnknownText_0x1a03cc: ; 0x1a03cc
-	text "There are several"
-	line "islands between"
-	cont "here and OLIVINE."
+;UnknownText_0x1a03cc: ; 0x1a03cc
+;	text "There are several"
+	;line "islands between"
+;	cont "here and OLIVINE."
 
-	para "A mythical sea"
-	line "creature supposed-"
-	cont "ly lives there."
-	done
+	;para "A mythical sea"
+;	line "creature supposed-"
+	;cont "ly lives there."
+;	done
 ; 0x1a0433
 
 UnknownText_0x1a0433: ; 0x1a0433

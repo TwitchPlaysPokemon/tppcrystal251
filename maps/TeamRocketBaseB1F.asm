@@ -465,7 +465,7 @@ VoltorbExplodingTrap: ; 0x6ca34
 	special Function8c079
 	setlasttalked $ff
 	writecode VAR_BATTLETYPE, BATTLETYPE_TRAP
-	loadpokedata VOLTORB, 23
+	loadpokedata ELECTRODE, 40
 	startbattle
 	end
 
@@ -475,7 +475,7 @@ GeodudeExplodingTrap: ; 0x6ca47
 	special Function8c079
 	setlasttalked $ff
 	writecode VAR_BATTLETYPE, BATTLETYPE_TRAP
-	loadpokedata GEODUDE, 21
+	loadpokedata GOLEM, 40
 	startbattle
 	end
 
@@ -485,7 +485,7 @@ KoffingExplodingTrap: ; 0x6ca5a
 	special Function8c079
 	setlasttalked $ff
 	writecode VAR_BATTLETYPE, BATTLETYPE_TRAP
-	loadpokedata KOFFING, 21
+	loadpokedata WEEZING, 40
 	startbattle
 	end
 

@@ -115,7 +115,7 @@ UnknownText_0x71db3: ; 0x71db3
 
 	para "It's a terrifying"
 	line "move that strikes"
-	cont "with dark energy."
+	cont "with spookiness."
 	done
 ; 0x71e03
 

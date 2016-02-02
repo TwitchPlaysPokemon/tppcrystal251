@@ -9,6 +9,10 @@ SaffronGym_MapScriptHeader: ; 0x189c2c
 SabrinaScript_0x189c2e: ; 0x189c2e
 	faceplayer
 	loadfont
+	checkevent EVENT_SABRINA_REMATCH
+	iftrue SabrinaAfterRematch
+	checkevent EVENT_FIRST_TIME_RED
+	iftrue SabrinaRematchScript
 	checkflag ENGINE_MARSHBADGE
 	iftrue UnknownScript_0x189c65
 	writetext UnknownText_0x189cdf
@@ -43,6 +47,24 @@ UnknownScript_0x189c65: ; 0x189c65
 	closetext
 	end
 ; 0x189c6b
+
+SabrinaRematchScript:
+	writetext SabrinaBeforeRematchText
+	waitbutton
+	closetext
+	winlosstext SabrinaRematchBeatenText, $0000
+	loadtrainer SABRINA, 2
+	startbattle
+	returnafterbattle
+	setevent EVENT_SABRINA_REMATCH
+	loadfont
+; 0x188466
+
+SabrinaAfterRematch:
+	writetext SabrinaAfterRematchText
+	waitbutton
+	closetext
+	end
 
 TrainerMediumRebecca: ; 0x189c6b
 	; bit/flag number
@@ -187,6 +209,46 @@ UnknownScript_0x189cd8: ; 0x189cd8
 	trainertotext SABRINA, 1, $1
 	jumpstd gymstatue2
 ; 0x189cdf
+
+SabrinaBeforeRematchText:
+	text "I can sense great"
+	line "ambition in you."
+	
+	para "I know this"
+	line "because I train"
+	cont "Psychic #MON."
+	
+	para "If I go all out I"
+	line "predict that you"
+	cont "will be defeated" 
+	cont "easily."
+	
+	para "Let us test my"
+	line "prediction and see"
+	cont "if I am right."
+	cont "Shall we?"
+	
+	done
+
+SabrinaRematchBeatenText:
+	text "Was what I saw<...>"
+	line "wrong?"
+	done
+
+SabrinaAfterRematchText:
+	text "Your victory<...>"
+	
+	para "It's exactly as I"
+	line "foresaw actually."
+	
+	para "But I wanted to"
+	line "turn that future"
+	cont "on its head with"
+	cont "my conviction as"
+	cont "a Trainer."
+
+	done
+
 
 UnknownText_0x189cdf: ; 0x189cdf
 	text "SABRINA: I knew"
@@ -368,8 +430,7 @@ UnknownText_0x18a1b3: ; 0x18a1b3
 ; 0x18a201
 
 SaffronGymGuyText: ; 0x18a201
-	text "Yo, CHAMP in"
-	line "making!"
+	text "Yo, CHAMP"
 
 	para "A trainer as"
 	line "skilled as you"

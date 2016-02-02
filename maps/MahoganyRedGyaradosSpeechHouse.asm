@@ -28,21 +28,20 @@ UnknownScript_0x199990: ; 0x199990
 	end
 ; 0x199996
 
-; TODO wtf?
-UnknownText_0x199996: ; 0x199996
-	limited_interpret_data 2
-	db $0, "ズ", $03, $00
+; TODO wtf? seems unrefernced
+;UnknownText_0x199996: ; 0x199996
+;	limited_interpret_data 2
+;	db $0, "ズ", $03, $00
 
 UnknownText_0x19999c: ; 0x19999c
 	text "I heard that a red"
 	line "GYARADOS appeared"
 	cont "at the LAKE."
 
-	para "That's odd, since"
-	line "even ordinary"
+	para "That's odd,"
+	line "they're usually"
+	cont "blue"
 
-	para "GYARADOS are rare"
-	line "in that lake<...>"
 	done
 ; 0x199a0e
 

@@ -32,10 +32,6 @@ UnknownText_0x9b865: ; 0x9b865
 	text "Hi! Wow, I'm glad"
 	line "to see you."
 
-	para "You're the first"
-	line "visitor I've had"
-	cont "in a long time."
-
 	para "I'm super-happy!"
 	line "Let me give you a"
 	cont "little present."

@@ -1,6 +1,6 @@
 	db LEDIAN ; 166
 
-	db  55,  65,  50,  85,  75, 110 ; BST 390 > 440
+	db  85,  65,  60,  85,  75, 110 ; BST 390 > 480
 	;   hp  atk  def  spd  sat  sdf
 ;	db  55,  35,  50,  85,  55, 110 old stats
 
