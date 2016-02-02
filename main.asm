@@ -4753,7 +4753,6 @@ UnknownScript_0xc7fe: ; c7fe
 UnknownScript_0xc802: ; 0xc802 CUT
 	callasm Functioncd12
 	writetext UnknownText_0xc7c4
-	waitbutton
 	closetext
 	copybytetovar wd1ef
 	refreshscreen $0
