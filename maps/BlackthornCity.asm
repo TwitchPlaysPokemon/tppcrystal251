@@ -38,6 +38,7 @@ SantosCallback:
 
 BlackthornRivalBattle:
 	special HealParty
+	applymovement $0, BlackthornPlayerMovement
 	playmusic MUSIC_RIVAL_RB
 	showemote $0, $b, 15
 	pause 15
@@ -249,8 +250,10 @@ BlackthornEGKRivalMovement2:
 	slow_step_down
 	slow_step_down
 	slow_step_down
+BlackthornPlayerMovement:
 	slow_step_down
 	step_end
+
 
 UnknownText_0x1a477a: ; 0x1a477a
 	text "I am sorry."

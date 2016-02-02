@@ -412,7 +412,7 @@ RivalRBGroup:
 ; ================================
 	; Blackthorn City, Choose Charmander
 	db "<GREEN>@"
-	db (1 << TRAINERTYPE_MOVES) | (1 < TRAINERTYPE_ITEM)
+	db (1 << TRAINERTYPE_MOVES) | (1 << TRAINERTYPE_ITEM)
 
 	db 59, PIDGEOT, SHARP_BEAK
 		db WING_ATTACK
@@ -454,7 +454,7 @@ RivalRBGroup:
 
 	; Blackthorn City, Choose Squirtle
 	db "<GREEN>@"
-	db (1 << TRAINERTYPE_MOVES) | (1 < TRAINERTYPE_ITEM)
+	db (1 << TRAINERTYPE_MOVES) | (1 << TRAINERTYPE_ITEM)
 
 	db 59, PIDGEOT, SHARP_BEAK
 		db WING_ATTACK
@@ -496,7 +496,7 @@ RivalRBGroup:
 
 	; Blackthorn City, Choose Bulbasaur
 	db "<GREEN>@"
-	db (1 << TRAINERTYPE_MOVES) | (1 < TRAINERTYPE_ITEM)
+	db (1 << TRAINERTYPE_MOVES) | (1 << TRAINERTYPE_ITEM)
 
 	db 59, PIDGEOT, SHARP_BEAK
 		db WING_ATTACK
