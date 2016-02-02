@@ -164,7 +164,7 @@ Function97cfd:: ; 97cfd if encounters are on(?) , is on encounter enabled tile (
 ; 97d23
 
 Function97d23: ; 97d23 ;choose bug catching mons
-	call Function97d64 ;return with a = 1 if no encounter, otherwise set encounter
+	call Function97d64 ;return with a = 1 if no encounter, otherwise set encounter set e to 0 if super tall grass
 	ret nc
 	call Function97d31 ; choose mon and level to spawn
 	callba Function2a1df ;if repel if off then set carry
@@ -176,11 +176,16 @@ Function97d31:: ; 97d31
 
 .asm_97d31
 	call Random
-	cp 100 << 1 ;???? unknown syntax
+	cp 100 << 1 ;
 	jr nc, .asm_97d31 ;loop until < 200
 	srl a ; divide by 2
-
+	ld d, a 
+	ld a, e ;0 if super tall grass
+	and a
+	ld hl, ContestMonsTall
+	jr z .supertall
 	ld hl, ContestMons
+.supertall
 	ld de, 4 ;size of mons
 .CheckMon
 	sub [hl]
@@ -228,6 +233,8 @@ Function97d31:: ; 97d31
 Function97d64: ; 97d64
 	ld a, [StandingTile] 
 	call CheckSuperTallGrassTile ;if standing tile is $14 then ret zero, otherwise cp $1c
+	ld e, a
+	push de
 	ld b, $66 
 	jr z, .asm_97d70 ;if exactly $14 or $1c then b = %66, otherwise b = %33. b = encounter rate
 	ld b, $33
@@ -235,6 +242,7 @@ Function97d64: ; 97d64
 .asm_97d70
 	callba Function2a124 ;adjust for music and clense tag
 	callba Function2a138
+	pop de ;de = if tile is super tall grass
 	call Random
 	ld a, [hRandomAdd] ;why add instead of default sub?
 	cp b
@@ -244,19 +252,38 @@ Function97d64: ; 97d64
 	ret
 ; 97d87
 
-ContestMons: ; 97d87
+
+ContestMons: ; 97d87 
 	;   %, species,   min, max
-	db 20, CATERPIE,    7, 18
-	db 20, WEEDLE,      7, 18
-	db 10, METAPOD,     9, 18
-	db 10, KAKUNA,      9, 18 
-	db  5, BUTTERFREE, 12, 15
-	db  5, BEEDRILL,   12, 15 
-	db 10, VENONAT,    10, 16
-	db 10, PARAS,      10, 17
-	db  5, SCYTHER,    13, 14
-	db  5, PINSIR,     13, 14
-	db -1, VENOMOTH,   30, 40
+	db 15, LEDYBA,      23, 27
+	db 11, CATERPIE,    23, 27
+	db 11, WEEDLE,      23, 27
+	db 10, SCYTHER,    25, 29
+	db 10, HERACROSS,   25, 29
+	db 9, LEDIAN,    25, 29
+	db 8, YANMA,      24, 28
+	db 6, BEEDRILL,      25, 29
+	db 6, BUTTERFREE, 25, 29
+	db 5, VENOMOTH,   25, 29
+	db 3, SCIZOR,    26, 30
+	db 3, METAPOD,     24, 28
+	db 3, KAKUNA,      24, 28
+	db -1, VENOMOTH,   90, 100
+
+ContestMonsTall: ; 97d87 
+	;   %, species,   min, max
+	db 15, CATERPIE,    23, 27
+	db 15, WEEDLE,      23, 27
+	db 10, SPINARAK,	 23, 27
+	db 10, PINSIR,		25, 29
+	db 10, HERACROSS,    25, 29
+	db 7, METAPOD,     24, 28
+	db 7, KAKUNA,      24, 28
+	db 8, VENONAT,    23, 27
+	db 8, PARAS,      23, 27
+	db 5, PARASECT,    25, 29
+	db 5, ARIADOS,   25, 29
+	db -1, VENOMOTH,   90, 100
 ; 97db3
 
 Function97db3:: ; 97db3

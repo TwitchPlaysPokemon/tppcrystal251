@@ -43,11 +43,11 @@ catch all 3 doges
 	> catch ho-oh
 		> morty rematch
 		
-beat lighthouse with lvl 100 trainers
+beat lighthouse with lvl 100 trainers (IF TIME, else no restrictions)
 	> see jasmine cutscene on top
 		> can challenge jasmine
 		
-catch all 4 dragon mons
+beat indigo rival
 	> can challenge clair
 	
 beat chuck rematch
