@@ -35538,6 +35538,7 @@ PlayBattleMusic: ; 2ee6c
 	jp z, .done
 	cp RED
 	jr z, .done
+	ld de, MUSIC_VS_WCS
 	cp POKEMON_PROF
 	jr z, .done
 	cp PROF_ELM
@@ -35560,9 +35561,6 @@ PlayBattleMusic: ; 2ee6c
 	cp BLUE_RB
 	jr z, .done
 	cp BLUE_RB_F
-	jr z, .done
-	ld de, MUSIC_VS_WCS
-	cp BLUE
 	jr z, .done
 	ld de, MUSIC_KANTO_GYM_LEADER_BATTLE
 	callba IsKantoGymLeader
