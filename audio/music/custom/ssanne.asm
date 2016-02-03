@@ -568,7 +568,7 @@ Music_SSAnne_Ch2_L:
 
 Music_SSAnne_Ch3:
 ; Pat 0 Row 0
-	notetype $c, $31
+	notetype $c, $13
 	stereopanning $ff
 	octave 3
 	note D_, 6
@@ -599,14 +599,14 @@ Music_SSAnne_Ch3:
 	octave 3
 	note C#, 9
 ; Pat 1 Row 0
-	notetype $8, $31
+	notetype $8, $13
 	octave 2
 	note A_, 16
-	notetype $c, $31
+	notetype $c, $13
 	note __, 16
 Music_SSAnne_Ch3_L:
 ; Pat 2 Row 0
-	notetype $8, $31
+	notetype $8, $13
 	note D_, 12
 	note A_, 12
 	note B_, 12
@@ -677,7 +677,7 @@ Music_SSAnne_Ch3_L:
 	note A_, 3
 	note D_, 12
 ; Pat 15 Row 0
-	notetype $6, $31
+	notetype $6, $13
 	note E_, 1
 	note __, 1
 	note E_, 8
