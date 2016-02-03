@@ -382,20 +382,21 @@ Music_VsWCS_Ch2:
 	intensity $c8
 	vibrato $5, $22
 	note F#, 16
-	note F#, 16
+	note G#, 8
+	note F#, 8
 	note F_, 16
-	note F_, 16
+	note C_, 8
+	note F_, 8
 ; Pat 4 Row 0
 	note D#, 16
+	note F_, 8
+	note D#, 8
 	note D#, 16
-	note C#, 16
-	octave 2
-	note A#, 8
-	octave 3
-	note C#, 8
+	note C_, 8
+	note D#, 8
 ; Pat 5 Row 0
-	note C_, 16
-	note G_, 16
+	note D_, 16
+	note E_, 16
 Music_VsWCS_Ch2_L:
 ; Pat 6 Row 0
 	intensity $e7
@@ -693,6 +694,7 @@ Music_VsWCS_Ch2_L:
 	note G_, 16
 	octave 4
 	note C_, 16
+	octave 3
 	loopchannel 0, Music_VsWCS_Ch2_L
 
 Music_VsWCS_Ch3:
