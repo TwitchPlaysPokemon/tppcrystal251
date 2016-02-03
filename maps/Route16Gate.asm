@@ -28,10 +28,19 @@ UnknownScript_0x733f3: ; 0x733f3
 	spriteface $0, $1
 	loadfont
 	writetext UnknownText_0x73496
+	checkevent EVENT_GOT_BICYCLE
+	iftrue .dontgiveextrabike
+	buttonsound
+	writetext Route16CyclingRoadGuardGiveBicycleText
 	buttonsound
 	verbosegiveitem BICYCLE, 1
 	waitbutton
 	closetext
+	end
+.dontgiveextrabike
+	waitbutton
+	closetext
+	applymovement $0, MovementData_0x73405
 	end
 ; 0x73405
 
@@ -65,16 +74,20 @@ UnknownText_0x73496: ; 0x73496
 
 	para "ROAD without a"
 	line "BICYCLE."
+	done
 
-	para "Thanks to a deal"
+Route16CyclingRoadGuardGiveBicycleText:
+	text "Thanks to a deal"
 	line "with GOLDENROD"
-	cont "BIKE STORE we have"
-	cont "a special offer."
+
+	para "BIKE STORE we have"
+	line "a special offer."
 
 	para "If you agree to"
 	line "use this BIKE on"
-	cont "your travels, you"
-	cont "may keep it for a"
+
+	para "your travels, you"
+	line "may keep it for a"
 	cont "while."
 	done
 ; 0x734df

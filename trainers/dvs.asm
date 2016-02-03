@@ -3,6 +3,13 @@ GetTrainerDVs: ; 270c4
 
 	push hl
 	ld a, [OtherTrainerClass]
+	cp BABA
+	jr nz, .okay
+	ld a, [EnemyMonSpecies]
+	cp GYARADOS
+	jr z, .dada
+	ld a, [OtherTrainerClass]
+.okay
 	dec a
 	ld c, a
 	ld b, 0
@@ -18,6 +25,11 @@ GetTrainerDVs: ; 270c4
 	pop hl
 	ret
 ; 270d6
+
+.dada
+	ld bc, $daaa
+	pop hl
+	ret
 
 TrainerClassDVs: ; 270d6
 	;  Atk  Spd
@@ -98,5 +110,6 @@ TrainerClassDVs: ; 270d6
 	db $DD, $DD ; rivalrb
 	db $98, $88 ; brockrb
 	db $78, $88 ; mistyrb
+	db $DD, $DD ; baba
 ; 2715c
 

@@ -4753,7 +4753,6 @@ UnknownScript_0xc7fe: ; c7fe
 UnknownScript_0xc802: ; 0xc802 CUT
 	callasm Functioncd12
 	writetext UnknownText_0xc7c4
-	waitbutton
 	closetext
 	copybytetovar wd1ef
 	refreshscreen $0
@@ -15310,6 +15309,20 @@ UnknownText_0x13620: ; 0x13620
 	text_jump UnknownText_0x1bd308
 	db "@"
 ; 0x13625
+
+UseAnotherRepelScript::
+	loadfont
+	writetext UseAnotherRepelText
+	yesorno
+	iffalse .quit
+	callasm DoItemEffect
+.quit
+	closetext
+	end
+
+UseAnotherRepelText:
+	text_jump _UseAnotherRepelText
+	db "@"
 
 UnknownScript_0x13625:: ; 0x13625
 	loadfont
@@ -35539,6 +35552,7 @@ PlayBattleMusic: ; 2ee6c
 	jp z, .done
 	cp RED
 	jr z, .done
+	ld de, MUSIC_VS_WCS
 	cp POKEMON_PROF
 	jr z, .done
 	cp PROF_ELM
@@ -35561,9 +35575,6 @@ PlayBattleMusic: ; 2ee6c
 	cp BLUE_RB
 	jr z, .done
 	cp BLUE_RB_F
-	jr z, .done
-	ld de, MUSIC_VS_WCS
-	cp BLUE
 	jr z, .done
 	ld de, MUSIC_KANTO_GYM_LEADER_BATTLE
 	callba IsKantoGymLeader

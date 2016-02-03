@@ -26,7 +26,7 @@ SurgeScript_0x1920a5: ; 0x1920a5
 	loadfont
 	checkevent EVENT_SURGE_REMATCH
 	iftrue SurgeAfterRematch
-	checkevent EVENT_FIRST_TIME_RED
+	checkevent EVENT_FIRST_TIME_BABA
 	iftrue SurgeRematchScript
 	checkflag ENGINE_THUNDERBADGE
 	iftrue UnknownScript_0x1920d9
@@ -528,23 +528,12 @@ SampleVermilionTrashCan:
 CheckVermilionTrashCan:
 	call GetFacingTileCoord
 	ld hl, .CoordTable
-.loop
-	push hl
-	ld a, [hli]
-	cp d
-	jr nz, .next
-	ld a, [hl]
-	cp e
-	jr z, .got_cans
-.next
-	pop hl
-	ld bc, 4
-	add hl, bc
-	jr .loop
-
-.got_cans
-	pop hl
-	inc hl
+	ld a, d
+	swap a
+	or e
+	ld de, 3
+	call IsInArray
+	jr nc, .nope
 	inc hl
 	ld a, [hli]
 	ld h, [hl]
@@ -557,15 +546,11 @@ CheckVermilionTrashCan:
 	ld b, a
 	pop af
 	ld [rSVBK], a
-.loop2
-	ld a, [hli]
-	cp -1
-	jr z, .nope
-	cp b
-	jr nz, .loop2
+	ld a, b
+	ld de, 1
+	call IsInArray
 	ld a, 1
-	jr .done
-
+	jr c, .done
 .nope
 	xor a
 .done
@@ -573,21 +558,26 @@ CheckVermilionTrashCan:
 	ret
 
 .CoordTable
-	dbbw  1,  7, .Set1_1
-	dbbw  3,  7, .Set2_1
-	dbbw  5,  7, .Set3_1
-	dbbw  7,  7, .Set4_1
-	dbbw  9,  7, .Set5_1
-	dbbw  1,  9, .Set1_2
-	dbbw  3,  9, .Set2_2
-	dbbw  5,  9, .Set3_2
-	dbbw  7,  9, .Set4_2
-	dbbw  9,  9, .Set5_2
-	dbbw  1, 11, .Set1_3
-	dbbw  3, 11, .Set2_3
-	dbbw  5, 11, .Set3_3
-	dbbw  7, 11, .Set4_3
-	dbbw  9, 11, .Set5_3
+vermtrashcan: MACRO
+	dn \1 + 4, \2 + 4
+	dw \3
+endm
+	vermtrashcan  1,  7, .Set1_1
+	vermtrashcan  3,  7, .Set2_1
+	vermtrashcan  5,  7, .Set3_1
+	vermtrashcan  7,  7, .Set4_1
+	vermtrashcan  9,  7, .Set5_1
+	vermtrashcan  1,  9, .Set1_2
+	vermtrashcan  3,  9, .Set2_2
+	vermtrashcan  5,  9, .Set3_2
+	vermtrashcan  7,  9, .Set4_2
+	vermtrashcan  9,  9, .Set5_2
+	vermtrashcan  1, 11, .Set1_3
+	vermtrashcan  3, 11, .Set2_3
+	vermtrashcan  5, 11, .Set3_3
+	vermtrashcan  7, 11, .Set4_3
+	vermtrashcan  9, 11, .Set5_3
+	db $ff
 
 .Set1_1
 	db 0, 12, 22, -1

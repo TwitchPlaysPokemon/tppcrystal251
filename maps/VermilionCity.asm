@@ -35,7 +35,14 @@ VermilionCitySimonScript1:
 	writetext VermilionCitySimonText1
 	waitbutton
 	closetext
+	checkcode VAR_XCOORD
+	if_equal 20, .simonextrastepdown
 	applymovement $8, VermilionCitySimonMovement1
+	jump .startbattle
+.simonextrastepdown
+	applymovement $8, VermilionCitySimonMovement1a
+	spriteface $0, LEFT
+.startbattle
 	winlosstext VermilionCitySimonLossText, $0000
 	loadtrainer BURGLAR, SIMON_4
 	startbattle
@@ -49,11 +56,18 @@ VermilionCitySimonScript1:
 	writetext VermilionCitySimonText3
 	waitbutton
 	closetext
+	checkcode VAR_FACING
+	if_equal LEFT, .simonextrastepup
 	applymovement $8, VermilionCitySimonMovement2
+	jump .simonsplashesdown
+.simonextrastepup
+	spriteface $0, UP
+	applymovement $8, VermilionCitySimonMovement2a
+.simonsplashesdown
 	pause 10
 	disappear $8
 	playsound SFX_RAIN_DANCE
-	waitsfx
+	pause 30
 	special DeleteSavedMusic
 	playmapmusic
 	dotrigger $1
@@ -66,7 +80,17 @@ VermilionCitySimonMovement1:
 	big_step_right
 	big_step_down
 	step_end
+
+VermilionCitySimonMovement1a:
+	big_step_down
+	big_step_right
+	big_step_down
+	big_step_down
+	turn_head_right
+	step_end
 	
+VermilionCitySimonMovement2a:
+	big_step_up
 VermilionCitySimonMovement2:
 	big_step_up
 	big_step_up

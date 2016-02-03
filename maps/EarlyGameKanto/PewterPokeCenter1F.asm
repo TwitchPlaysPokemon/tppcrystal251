@@ -48,6 +48,22 @@ ENDC
     rst LUASerial
     ENDC
     ret
+    
+PewterPokecenterTrueCreditsScript:
+    loadfont
+    writetext _PewterPokeCenterDebugTrueCredits
+    yesorno
+    iffalse .no
+.yes
+    setevent EVENT_BEAT_OAK
+    pause 30
+    special HealParty
+    refreshscreen $0
+    credits
+    end
+.no
+    closetext
+    end
 
 _PewterPokecenterText1: ; 0x1a2f01
 	text "What!?"
@@ -99,6 +115,11 @@ _PewterPokeCenterDebugLUAText3:
     cont "was my CO!"
     done
     
+_PewterPokeCenterDebugTrueCredits:
+    text "Initiate true"
+    line "credits?"
+    done
+    
 PewterPokeCenter1FRB_MapEventHeader: ; 0x1a2ff4
 	; filler
 	db 0, 0
@@ -116,11 +137,12 @@ PewterPokeCenter1FRB_MapEventHeader: ; 0x1a2ff4
 	db 0
 
 	; people-events
-	db 5
+	db 6
 	person_event SPRITE_NURSE, 5, 7, $6, 0, 0, -1, -1, 0, 0, 0, PewterPokecenter1FRBNurseScript, -1
 	person_event SPRITE_GENTLEMAN, 10, 12, $8, 0, 0, -1, -1, 8 + PAL_OW_GREEN, 0, 0, PewterPokecenter1FRBTeacherScript, -1
 	person_event SPRITE_JIGGLYPUFF, 7, 5, $16, 0, 0, -1, -1, 0, 0, 0, PewterPokecenter1FRBJigglypuffScript, -1
 	person_event SPRITE_BUG_CATCHER, 7, 6, $6, 0, 0, -1, -1, 8 + PAL_OW_BLUE, 0, 0, PewterPokecenter1FRBBugCatcherScript, -1
     person_event SPRITE_GENTLEMAN, 5, 11, $6, 0, 0, -1, -1, 0, 0, 0, PewterPokecenterLUASerialScript, -1 ; DELIST THIS BEFORE TWITCH BUILD!
+    person_event SPRITE_BUG_CATCHER, 5, 12, $6, 0, 0, -1, -1, 0, 0, 0, PewterPokecenterTrueCreditsScript, -1 ; DELIST THIS BEFORE TWITCH BUILD!
 ; 0x1a304a
 

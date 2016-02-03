@@ -38,7 +38,7 @@ DummyMap_WarpCheck1:
 
 DummyMap_WarpCheck2:
 	loadfont
-	checkevent EVENT_FIRST_TIME_RED
+	checkevent EVENT_FIRST_TIME_BABA
 	iftrue DummyMap_BeatRed
 	writetext RedsHouse2FDreaming2Text
 	dotrigger $0

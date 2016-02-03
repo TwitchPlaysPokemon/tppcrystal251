@@ -9,7 +9,7 @@ FuchsiaGym_MapScriptHeader: ; 0x195db7
 JanineScript_0x195db9: ; 0x195db9
 	checkevent EVENT_JANINE_REMATCH
 	iftrue JanineAfterRematch
-	checkevent EVENT_FIRST_TIME_RED
+	checkevent EVENT_FIRST_TIME_BABA
 	iftrue JanineRematchScript
 	checkflag ENGINE_SOULBADGE
 	iftrue UnknownScript_0x195e00

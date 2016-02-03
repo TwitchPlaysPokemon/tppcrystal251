@@ -412,7 +412,7 @@ RivalRBGroup:
 ; ================================
 	; Blackthorn City, Choose Charmander
 	db "<GREEN>@"
-	db (1 << TRAINERTYPE_MOVES) | (1 < TRAINERTYPE_ITEM)
+	db (1 << TRAINERTYPE_MOVES) | (1 << TRAINERTYPE_ITEM)
 
 	db 59, PIDGEOT, SHARP_BEAK
 		db WING_ATTACK
@@ -454,7 +454,7 @@ RivalRBGroup:
 
 	; Blackthorn City, Choose Squirtle
 	db "<GREEN>@"
-	db (1 << TRAINERTYPE_MOVES) | (1 < TRAINERTYPE_ITEM)
+	db (1 << TRAINERTYPE_MOVES) | (1 << TRAINERTYPE_ITEM)
 
 	db 59, PIDGEOT, SHARP_BEAK
 		db WING_ATTACK
@@ -496,7 +496,7 @@ RivalRBGroup:
 
 	; Blackthorn City, Choose Bulbasaur
 	db "<GREEN>@"
-	db (1 << TRAINERTYPE_MOVES) | (1 < TRAINERTYPE_ITEM)
+	db (1 << TRAINERTYPE_MOVES) | (1 << TRAINERTYPE_ITEM)
 
 	db 59, PIDGEOT, SHARP_BEAK
 		db WING_ATTACK
@@ -576,3 +576,45 @@ MistyRBGroup:
 		db HARDEN
 
 	db $ff ; end
+
+BabaGroup:
+	db "BABA@"
+	db (1 << TRAINERTYPE_MOVES) | (1 << TRAINERTYPE_NICKNAME) | (1 << TRAINERTYPE_ITEM)
+
+	db 100, TYPHLOSION, LEFTOVERS, "BEST@"
+		db THUNDERPUNCH
+		db FLAMETHROWER
+		db EARTHQUAKE
+		db STRENGTH
+
+	db 100, SUICUNE, MYSTIC_WATER, "DONG@"
+		db SURF
+		db ICY_WIND
+		db AURORA_BEAM
+		db GUST
+
+	db 100, PIDGEOT, GOLD_BERRY, "EVER@"
+		db FLY
+		db AIR_SLASH
+		db STEEL_WING
+		db HEAT_WAVE
+
+	db 100, GYARADOS, BITTER_BERRY, "DADA@"
+		db OUTRAGE
+		db CRUNCH
+		db WATERFALL
+		db HYPER_BEAM
+
+	db 100, POLITOED, PARLYZ_GUARD, "ORGY@"
+		db SURF
+		db PERISH_SONG
+		db HYPNOSIS
+		db RAIN_DANCE
+
+	db 100, TOGETIC, SCOPE_LENS, "DEKU@"
+		db NASTY_PLOT
+		db ATTRACT
+		db DAZZLINGLEAM
+		db METRONOME
+
+	db $ff

@@ -303,7 +303,7 @@ Function97db5: ; 97db5
 	call Function2d05
 	and a
 	jr nz, .asm_97df7
-	ld hl, wdca1 + 1
+	ld hl, wRepelStepCounter + 1
 	ld a, [hli]
 	ld d, a
 	ld e, [hl]

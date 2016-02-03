@@ -24,7 +24,7 @@ MortyScript_0x99d58: ; 0x99d58
 	loadfont
 	checkevent EVENT_MORTY_REMATCH
 	iftrue UnknownScript_0x99d8c
-	checkevent EVENT_FIRST_TIME_RED
+	checkevent EVENT_FIRST_TIME_BABA
 	iftrue MortyRematchScript
 	checkevent EVENT_BEAT_MORTY
 	iftrue UnknownScript_0x99d8c

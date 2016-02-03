@@ -774,6 +774,7 @@
 	trainerclass BLUE_RB_F
 	trainerclass BROCK_RB
 	trainerclass MISTY_RB
+	trainerclass BABA
 
 NUM_TRAINER_CLASSES EQU __enum__
 

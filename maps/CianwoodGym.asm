@@ -11,7 +11,7 @@ ChuckScript_0x9d60f: ; 0x9d60f
 	loadfont
 	checkevent EVENT_CHUCK_REMATCH
 	iftrue ChuckAfterRematch
-	checkevent EVENT_FIRST_TIME_RED
+	checkevent EVENT_FIRST_TIME_BABA
 	iftrue ChuckRematchScript
 	checkevent EVENT_BEAT_CHUCK
 	iftrue UnknownScript_0x9d656

@@ -1575,8 +1575,11 @@ UnknownText_0x1bd308: ; 0x1bd308
 	done
 ; 0x1bd321
 
-UseAnotherText:
-	text "Use another?"
+_UseAnotherRepelText:
+	text "REPEL's effect"
+	line "wore off."
+
+	para "Use another?"
 	done
 
 UnknownText_0x1bd321: ; 0x1bd321
