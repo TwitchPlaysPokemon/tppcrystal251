@@ -968,4 +968,5 @@ Music_SSAnne_Ch4_L2:
 	note D#, 4
 	note D#, 2
 	note C_, 8
+	notetype $c
 	loopchannel 0, Music_SSAnne_Ch4_L
