@@ -872,11 +872,11 @@ Music_VsWCS_Ch3:
 	note __, 1
 	note C#, 1
 	note __, 1
+	note F#, 1
+	note __, 1
 	note A#, 1
 	note __, 1
 	octave 5
-	note C_, 1
-	note __, 1
 	note C#, 1
 	note __, 1
 	note C_, 1
