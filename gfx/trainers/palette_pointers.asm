@@ -87,8 +87,8 @@ ChrisRBPalette:      INCLUDE "gfx/trainers/072.pal"
 KrisRBPalette:       INCLUDE "gfx/trainers/073.pal"
 BrockRBPalette:      INCLUDE "gfx/trainers/016.pal"
 MistyRBPalette:      INCLUDE "gfx/trainers/017.pal"
-BabaPalette:         INCLUDE "gfx/trainers/074.pal"
-; BabaPalette:         INCLUDE "gfx/trainers/000.pal" ; Uncomment this if the above is rejected
+; BabaPalette:         INCLUDE "gfx/trainers/074.pal"
+BabaPalette:         INCLUDE "gfx/trainers/000.pal" ; Uncomment this if the above is rejected
 
 ; b1de
 
