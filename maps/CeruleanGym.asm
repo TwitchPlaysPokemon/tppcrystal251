@@ -61,7 +61,7 @@ MistyScript_0x188432: ; 0x188432
 	loadfont
 	checkevent EVENT_MISTY_REMATCH
 	iftrue MistyAfterRematch
-	checkevent EVENT_FIRST_TIME_RED
+	checkevent EVENT_FIRST_TIME_BABA
 	iftrue MistyRematchScript
 	checkflag ENGINE_CASCADEBADGE
 	iftrue UnknownScript_0x188460

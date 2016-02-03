@@ -9,26 +9,26 @@ DeleteSilverCaveExit:
 	changeblock $9, $23, $5
 	return
 
-DreamRedScript: ; 0x18c603
+DreamBabaScript: ; 0x18c603
 	special Functionc48f
 	faceplayer
 	loadfont
-	writetext RedTextBefore
+	writetext BabaTextBefore
 	waitbutton
 	closetext
-	winlosstext RedTextWinLoss, RedTextWinLoss
+	winlosstext BabaTextWinLoss, BabaTextWinLoss
 	setlasttalked $2
-	loadtrainer RED, 2
+	loadtrainer BABA, 1
 	writecode VAR_BATTLETYPE, BATTLETYPE_CANLOSE
 	startbattle
 	reloadmapmusic
 	reloadmap
-	iftrue DreamRedLost
-	setevent EVENT_FIRST_TIME_RED
-DreamRedLost
+	iftrue DreamBabaLost
+	setevent EVENT_FIRST_TIME_BABA
+DreamBabaLost
 	special Functionc48f
 	loadfont
-	writetext RedTextAfter
+	writetext BabaTextAfter
 	waitbutton
 	closetext
 	special Special_FadeToBlack
@@ -41,18 +41,19 @@ DreamRedLost
 	warp GROUP_DUMMY_BLANK_MAP, MAP_DUMMY_BLANK_MAP, 0, 0
 	end
 
-RedTextBefore: ; 0x18c637
+BabaTextBefore: ; 0x18c637
 	db $0, $56, $4f
 	db $56, $57
 ; 0x18c63c
 
-RedTextWinLoss:
-	text "start9"
+BabaTextWinLoss:
+	text "select"
 	done
 
-RedTextAfter: ; 0x18c63f
-	db $0, $56, $4f
-	db $56, $57
+BabaTextAfter: ; 0x18c63f
+	text $56
+	line $56
+	done
 ; 0x18c644
 	
 SilverCaveDreamRoom_MapEventHeader: ; 0x18c644
@@ -70,5 +71,5 @@ SilverCaveDreamRoom_MapEventHeader: ; 0x18c644
 
 	; people-events
 	db 1
-	person_event SPRITE_RED, 14, 13, $7, 0, 0, -1, -1, 8 + PAL_OW_RED, 0, 0, DreamRedScript, -1
+	person_event SPRITE_BABA, 14, 13, $7, 0, 0, -1, -1, 8 + PAL_OW_RED, 0, 0, DreamBabaScript, -1
 ; 0x18c65c

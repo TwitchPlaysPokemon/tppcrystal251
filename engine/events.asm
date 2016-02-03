@@ -1026,15 +1026,23 @@ Function96bd3: ; 96bd3
 	ret
 ; 96bd7
 
-Function96bd7: ; 96bd7
-	ld a, [wdca1]
+Function96bd7: ; 96bd7 ; repel wore off
+	ld a, [wRepelStepCounter]
 	and a
 	ret z
 	dec a
-	ld [wdca1], a
+	ld [wRepelStepCounter], a
 	ret nz
+	ld a, [wRepelLastUsed]
+	ld [CurItem], a
+	ld hl, NumItems
+	call CheckItem
 	ld a, BANK(UnknownScript_0x13619)
 	ld hl, UnknownScript_0x13619
+	jr nc, .okay
+	ld a, BANK(UseAnotherRepelScript)
+	ld hl, UseAnotherRepelScript
+.okay
 	call CallScript
 	scf
 	ret

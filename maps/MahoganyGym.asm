@@ -11,7 +11,7 @@ PryceScript_0x199a9e: ; 0x199a9e
 	loadfont
 	checkevent EVENT_PRYCE_REMATCH
 	iftrue PryceAfterRematch
-	checkevent EVENT_FIRST_TIME_RED
+	checkevent EVENT_FIRST_TIME_BABA
 	iftrue PryceRematchScript
 	checkevent EVENT_BEAT_PRYCE
 	iftrue UnknownScript_0x199ac8

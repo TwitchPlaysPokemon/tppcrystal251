@@ -15310,6 +15310,20 @@ UnknownText_0x13620: ; 0x13620
 	db "@"
 ; 0x13625
 
+UseAnotherRepelScript::
+	loadfont
+	writetext UseAnotherRepelText
+	yesorno
+	iffalse .quit
+	callasm DoItemEffect
+.quit
+	closetext
+	end
+
+UseAnotherRepelText:
+	text_jump _UseAnotherRepelText
+	db "@"
+
 UnknownScript_0x13625:: ; 0x13625
 	loadfont
 	copybytetovar Unkn2Pals
@@ -35538,6 +35552,7 @@ PlayBattleMusic: ; 2ee6c
 	jp z, .done
 	cp RED
 	jr z, .done
+	ld de, MUSIC_VS_WCS
 	cp POKEMON_PROF
 	jr z, .done
 	cp PROF_ELM
@@ -35560,9 +35575,6 @@ PlayBattleMusic: ; 2ee6c
 	cp BLUE_RB
 	jr z, .done
 	cp BLUE_RB_F
-	jr z, .done
-	ld de, MUSIC_VS_WCS
-	cp BLUE
 	jr z, .done
 	ld de, MUSIC_KANTO_GYM_LEADER_BATTLE
 	callba IsKantoGymLeader

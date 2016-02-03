@@ -75,3 +75,4 @@
 	dbw BANK(KrisPicLZ)           - $36, KrisPicLZ
 	dbw BANK(BrockPic)            - $36, BrockPic
 	dbw BANK(MistyPic)            - $36, MistyPic
+	dbw BANK(BabaPic)             - $36, BabaPic

@@ -648,4 +648,5 @@ AJDNNWSprite:
 BABASprite:
 	dw BABASpriteGFX
 	db $3 * $40, BANK(BABASpriteGFX)
-	db WALKING_SPRITE, PAL_OW_BLUE
+	db WALKING_SPRITE, PAL_OW_RED
+	; db WALKING_SPRITE, PAL_OW_BLUE ; Uncomment this if the above is rejected

@@ -11,7 +11,7 @@ ErikaScript_0x72a6a: ; 0x72a6a
 	loadfont
 	checkevent EVENT_ERIKA_REMATCH
 	iftrue ErikaAfterRematch
-	checkevent EVENT_FIRST_TIME_RED
+	checkevent EVENT_FIRST_TIME_BABA
 	iftrue ErikaRematchScript
 	checkflag ENGINE_RAINBOWBADGE
 	iftrue UnknownScript_0x72a9b

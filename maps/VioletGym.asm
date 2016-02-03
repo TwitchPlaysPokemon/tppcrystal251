@@ -11,7 +11,7 @@ FalknerScript_0x683c2: ; 0x683c2
 	loadfont
 	checkevent EVENT_FALKNER_REMATCH
 	iftrue FalknerAfterRematch
-	checkevent EVENT_FIRST_TIME_RED
+	checkevent EVENT_FIRST_TIME_BABA
 	iftrue FalknerRematchScript
 	checkevent EVENT_BEAT_FALKNER
 	iftrue UnknownScript_0x683ec

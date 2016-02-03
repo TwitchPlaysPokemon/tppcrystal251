@@ -7,7 +7,7 @@ Music_VsWCS_Ch1:
 ; Pat 0 Row 0
 	tempo $69
 	dutycycle $2
-	notetype $c, $c8
+	notetype $c, $8c
 	stereopanning $f0
 	octave 2
 	note A#, 12
@@ -145,7 +145,7 @@ Music_VsWCS_Ch1_L:
 	note F_, 1
 	octave 3
 	note A#, 1
-	notetype $6, $e7
+	notetype $6, $7e
 	octave 4
 	note C_, 1
 	note D_, 1
@@ -155,7 +155,7 @@ Music_VsWCS_Ch1_L:
 	note A_, 1
 	note B_, 1
 ; Pat 9 Row 0
-	notetype $c, $e1
+	notetype $c, $1e
 	octave 5
 	note C_, 1
 	note C_, 3
@@ -325,7 +325,7 @@ Music_VsWCS_Ch1_L:
 Music_VsWCS_Ch2:
 ; Pat 0 Row 0
 	dutycycle $2
-	notetype $c, $c8
+	notetype $c, $8c
 	stereopanning $f
 	octave 2
 	note F_, 12
@@ -382,20 +382,21 @@ Music_VsWCS_Ch2:
 	intensity $c8
 	vibrato $5, $22
 	note F#, 16
-	note F#, 16
+	note G#, 8
+	note F#, 8
 	note F_, 16
-	note F_, 16
+	note C_, 8
+	note F_, 8
 ; Pat 4 Row 0
 	note D#, 16
+	note F_, 8
+	note D#, 8
 	note D#, 16
-	note C#, 16
-	octave 2
-	note A#, 8
-	octave 3
-	note C#, 8
+	note C_, 8
+	note D#, 8
 ; Pat 5 Row 0
-	note C_, 16
-	note G_, 16
+	note D_, 16
+	note E_, 16
 Music_VsWCS_Ch2_L:
 ; Pat 6 Row 0
 	intensity $e7
@@ -871,11 +872,11 @@ Music_VsWCS_Ch3:
 	note __, 1
 	note C#, 1
 	note __, 1
+	note F#, 1
+	note __, 1
 	note A#, 1
 	note __, 1
 	octave 5
-	note C_, 1
-	note __, 1
 	note C#, 1
 	note __, 1
 	note C_, 1
@@ -1125,11 +1126,9 @@ Music_VsWCS_Ch3_L3:
 	note __, 4
 	callchannel Music_VsWCS_Ch3_P1
 	note __, 4
-	notetype $2, $18
 	octave 3
-	note C_, 5
-	note __, 7
-	notetype $c, $18
+	note C_, 1
+	note __, 1
 	octave 2
 	note G_, 4
 	note A#, 2
@@ -1139,11 +1138,9 @@ Music_VsWCS_Ch3_L3:
 	note G_, 4
 	callchannel Music_VsWCS_Ch3_P1
 	note F#, 4
-	notetype $2, $18
 	octave 3
-	note C_, 5
-	note __, 7
-	notetype $c, $18
+	note C_, 1
+	note __, 1
 	octave 2
 	note G_, 4
 	note A#, 2
@@ -1264,12 +1261,8 @@ Music_VsWCS_Ch3_L18:
 	
 Music_VsWCS_Ch3_P1:
 	octave 3
-	notetype $2, $81
-	note C_, 5
-	note __, 1
-	note C_, 5
-	note __, 1
-	notetype $c, $81
+	note C_, 1
+	note C_, 1
 	note __, 2
 	octave 2
 	endchannel

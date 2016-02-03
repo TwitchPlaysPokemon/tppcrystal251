@@ -31,7 +31,7 @@ ClairScript_0x194e24: ; 0x194e24
 	loadfont
 	checkevent EVENT_CLAIR_REMATCH
 	iftrue UnknownScript_0x194e69
-	checkevent EVENT_FIRST_TIME_RED
+	checkevent EVENT_FIRST_TIME_BABA
 	iftrue ClairMeetMeInDragonsDenScript
 	checkflag ENGINE_RISINGBADGE
 	iftrue UnknownScript_0x194e69

@@ -158,8 +158,6 @@ MAP_N_A   EQU -1
 	mapgroup CERULEAN_MART, 4, 6
 	mapgroup ROUTE_10_POKECENTER_1F, 4, 5
 	mapgroup POWER_PLANT, 9, 10
-	mapgroup POWERPLANTB1, 18, 20
-	mapgroup POWERPLANTB2, 18, 20
 	mapgroup BILLS_HOUSE, 4, 4
 	mapgroup ROUTE_4, 9, 20
 	mapgroup ROUTE_9, 9, 30
@@ -167,6 +165,7 @@ MAP_N_A   EQU -1
 	mapgroup ROUTE_24, 9, 10
 	mapgroup ROUTE_25, 9, 30
 	mapgroup CERULEAN_CITY, 18, 20
+	mapgroup BILLSGARDEN, 20, 20
 
 	newgroup ; Azalea Town
 	mapgroup AZALEA_POKECENTER_1F, 4, 5
@@ -458,6 +457,8 @@ MAP_N_A   EQU -1
 	mapgroup ROCKET_HIDEOUT_4, 12, 15
 	mapgroup BATTLE_TENT_PC_ROOM, 4, 4
 	mapgroup OLIVINE_LIGHTHOUSE_ELEVATOR, 3, 3
+	mapgroup POWERPLANTB1, 18, 20
+	mapgroup POWERPLANTB2, 18, 20
 
 	newgroup
 	mapgroup CINNABAR_VOLCANO_ENTRANCE, 4, 5
@@ -518,7 +519,6 @@ MAP_N_A   EQU -1
 	mapgroup ROUTE_25_RB, 9, 30
 	mapgroup BILLS_HOUSE_RB, 4, 4
 	mapgroup ROUTE_9_RB, 9, 6
-	mapgroup BILLSGARDEN, 20, 20
 
 	newgroup ; Vermilion City RB
 	mapgroup ROUTE_6_SAFFRON_GATE_RB, 4, 5

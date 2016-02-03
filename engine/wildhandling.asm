@@ -1522,7 +1522,7 @@ Function2a4a0: ; 2a4a0 from 2a1aa
 	ret
 
 Function2a1df:: ; 2a1df
-	ld a, [wdca1] ;if repel steps is not 0
+	ld a, [wRepelStepCounter] ;if repel steps is not 0
 	and a
 	jr z, .asm_2a1fe
 	ld hl, PartyMon1HP ;load HP location into hl
