@@ -460,14 +460,17 @@ Mart31: ; 161fd
 ; 16205
 
 Mart32: ; 16205
-	db 7 ; # items
+	db 10 ; # items
 	db FULL_RESTORE
 	db MAX_POTION
 	db HYPER_POTION
 	db ULTRA_BALL
-	db MAX_REPEL
 	db REVIVE
 	db FULL_HEAL
+	db X_ATTACK
+	db X_DEFEND
+	db X_SPEED
+	db X_SPECIAL
 	db $ff
 ; 1620e
 

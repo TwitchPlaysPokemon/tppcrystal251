@@ -49,7 +49,6 @@ PidgeyEggMoves:
 RattataEggMoves:
 	db TAKE_DOWN
 	db DEFENSE_CURL
-	db BODY_SLAM
 	db SWIFT
 	db $ff
 
@@ -64,7 +63,6 @@ SpearowEggMoves:
 EkansEggMoves:
 	db DISABLE
 	db SPITE
-	db BODY_SLAM
 	db $ff
 
 SandshrewEggMoves:
@@ -127,7 +125,6 @@ VenonatEggMoves:
 DiglettEggMoves:
 	db TRI_ATTACK
 	db TAKE_DOWN
-	db BODY_SLAM
 	db $ff
 
 MeowthEggMoves:
@@ -137,7 +134,6 @@ MeowthEggMoves:
 	db $ff
 
 PsyduckEggMoves:
-	db ICE_BEAM
 	db FORESIGHT
 	db LIGHT_SCREEN
 	db CONFUSE_RAY
@@ -146,7 +142,6 @@ PsyduckEggMoves:
 
 MankeyEggMoves:
 	db COUNTER
-	db BODY_SLAM
 	db RAGE
 	db SPITE
 	db $ff
@@ -170,13 +165,11 @@ AbraEggMoves:
 	db ENCORE
 	db ENDURE
 	db FORESIGHT
-	db SEISMIC_TOSS
 	db $ff
 
 MachopEggMoves:
 	db LIGHT_SCREEN
 	db RAGE
-	db SEISMIC_TOSS
 	db $ff
 
 BellsproutEggMoves:
@@ -201,7 +194,6 @@ GeodudeEggMoves:
 PonytaEggMoves:
 	db THRASH
 	db QUICK_ATTACK
-	db FLARE_BLITZ
 	db $ff
 
 SlowpokeEggMoves:
@@ -263,7 +255,6 @@ OnixEggMoves:
 DrowzeeEggMoves:
 	db LIGHT_SCREEN
 	db COUNTER
-	db BODY_SLAM
 	db $ff
 
 KrabbyEggMoves:
@@ -482,7 +473,6 @@ IgglybuffEggMoves:
 	db PRESENT
 	db NIGHTMARE
 	db PAIN_SPLIT
-	db SEISMIC_TOSS
 	db COUNTER
 	db ROLLOUT
 	db $ff

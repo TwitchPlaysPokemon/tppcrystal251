@@ -9003,7 +9003,7 @@ GiveEgg:: ; df8c
 	push bc
 	call CheckSeenMon
 	push bc
-	call Functiond88c
+	call Functiond88c ;load in mon
 	pop bc
 	ld a, c
 	and a
@@ -18179,12 +18179,12 @@ Function14a58: ; 14a58
 	ret
 ; 14a83
 
-Function14a83: ; 14a83 (5:4a83)
+Function14a83: ; 14a83 (5:4a83) boxchangesave, saves with new active box e
 	push de
 	ld hl, UnknownText_0x152a1
 	call Function1d4f
 	call YesNoBox
-	call Function1c07
+	call Function1c07 ;unload menu
 	jr c, .asm_14ab0
 	call Function14b89
 	jr c, .asm_14ab0
@@ -35873,7 +35873,7 @@ TrainerType:
 	ld a, OTPARTYMON ;load montype
 	ld [MonType], a 
 	push hl
-	predef Functiond88c
+	predef Functiond88c ;load in mon
 	pop hl
 	ld a, [wdff5 + 1]
 	bit TRAINERTYPE_ITEM, a
@@ -35936,6 +35936,24 @@ TrainerType:
 	call CopyBytes
 	pop hl
 .copied_nick
+	ld a, [wdff5 + 1]
+	bit TRAINERTYPE_MAXXP, a
+	jr z, .no_maxxp
+	push hl
+	ld a, [OTPartyCount]
+	dec a
+	ld hl, OTPartyMon1StatExp
+	ld bc, OTPartyMon2 - OTPartyMon1
+	call AddNTimes
+	ld d, h
+	ld e, l
+	pop hl
+	ld a, $ff
+	rept 10
+	ld [de], a
+	inc de
+	endr
+.no_maxxp
 	ld a, [wdff5 + 1]
 	bit TRAINERTYPE_MOVES, a
 	jp z, ._loop
@@ -82564,7 +82582,7 @@ String_e3668: ; e3668
 	db "@"
 ; e366c
 
-Functione366c: ; e366c (38:766c)
+Functione366c: ; e366c (38:766c) get MenuSelection box count, ret in 
 	ld a, [wCurBox]
 	ld c, a
 	ld a, [MenuSelection]

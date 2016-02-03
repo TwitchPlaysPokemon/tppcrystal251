@@ -311,6 +311,7 @@ UnknownText_0x189ead: ; 0x189ead
 
 	para "I forsee this"
 	line "helping."
+	done
 
 AfterGIveRestText:
 	text "TM44 grants REST"

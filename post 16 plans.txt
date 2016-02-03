@@ -43,16 +43,16 @@ catch all 3 doges
 	> catch ho-oh
 		> morty rematch
 		
-beat lighthouse with lvl 100 trainers (IF TIME, else no restrictions)
-	> see jasmine cutscene on top
-		> can challenge jasmine
 		
 beat indigo rival
 	> can challenge clair
 	
-beat chuck rematch
+Beat mt morter karate master
+	> can challenge chuck rematch
+	
 beat whitney rematch
 beat janine rematch
+can challenge jasmine
 			
 beat all 16 gyms rematches
 	> e4 rematch opens

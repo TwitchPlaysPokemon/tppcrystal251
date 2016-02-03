@@ -194,6 +194,8 @@ SpecialsPointers:: ; c029
 	add_special DecrementSSAnneTimer
 	add_special _CheckAlivePartyMon
 	add_special FossilMenu
+	add_special BillBoxSwitchCheck
+	add_special BillBoxSwitch
 	add_special SpecialNone
 ; c224
 
@@ -668,4 +670,40 @@ _CheckAlivePartyMon:
 .yes
 	ld a, 1
 	ld [ScriptVar], a
+	ret
+
+
+BillBoxSwitchCheck: ;from current box, return first box with space or 0 if entire pc is full
+	ld a, [wCurBox]
+	inc a
+.billboxloop
+	push af
+	callab Functione366c
+	cp MONS_PER_BOX
+	jr nz, .foundspace
+	pop af
+	cp NUM_BOXES
+	jr nz, .notlastbox
+	ld a, 0
+.notlastbox
+	inc a
+	ld c, a
+	ld a, [wCurBox]
+	cp c
+	jr nz, .billboxloop
+	xor a
+	ld [ScriptVar], a
+	ret
+
+.foundspace
+	pop af
+	ld [ScriptVar], a
+	ld [EngineBuffer1], a
+	ret
+
+
+	BillBoxSwitch:
+	ld a, [EngineBuffer1]
+	ld e, a
+	callab Function14a83
 	ret

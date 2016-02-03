@@ -69,12 +69,6 @@ BillPhoneFullText: ; 0x1b45ed
 
 	para $14, ", your BOX"
 	line "is full!"
-
-	para "You'll have to"
-	line "switch BOXES if"
-
-	para "you want to catch"
-	line "more #MON."
 	done
 
 BillPhoneNewlyFullText: ; 0x1b4652
@@ -87,12 +81,22 @@ BillPhoneNewlyFullText: ; 0x1b4652
 	para "That last #MON"
 	line "you sent filled"
 	cont "your BOX up."
+	done
+
+BillWholePCFullText:
+	text "Wow, you filled"
+	line "a whole server."
 
 	para "You'll have to"
-	line "switch BOXES if"
+	line "release #MON"
+	cont "to make space."
+	done
 
-	para "you want to catch"
-	line "more #MON."
+BillWantNextBox:
+	text "If you want I can"
+	line "swap to the next"
+	cont "BOX with space"
+	cont "for you."
 
-	para "Bye now!"
+	para "Is that OK?"
 	done

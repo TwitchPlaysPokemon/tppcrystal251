@@ -332,10 +332,11 @@ UnknownText_0x192291: ; 0x192291
 
 	para "Oh, and have"
 	line "this too!"
+	done
 
 SurgeLastText:
 	text "That's WILD"
-	line "CHARGE"
+	line "CHARGE."
 
 	para "An electrifying"
 	line "strike for brave" 

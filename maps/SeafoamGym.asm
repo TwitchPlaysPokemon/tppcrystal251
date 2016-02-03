@@ -16,6 +16,10 @@ UnknownScript_0x1ab4fa: ; 0x1ab4fa
 BlaineScript_0x1ab4fb: ; 0x1ab4fb
 	faceplayer
 	loadfont
+	checkevent EVENT_BLAINE_REMATCH
+	iftrue BlaineAfterRematch
+	checkevent EVENT_FIRST_TIME_RED
+	iftrue BlaineRematchScript
 	checkflag ENGINE_VOLCANOBADGE
 	iftrue UnknownScript_0x1ab52b
 	writetext UnknownText_0x1ab548
@@ -49,6 +53,51 @@ UnknownScript_0x1ab52b: ; 0x1ab52b
 	closetext
 	end
 ; 0x1ab531
+
+BlaineRematchScript:
+	writetext BlaineRematchTextBefore
+	waitbutton
+	closetext
+	winlosstext BlaineRematchBeatenText, $0000
+	loadtrainer BLAINE, 2
+	startbattle
+	returnafterbattle
+	setevent EVENT_BLAINE_REMATCH
+	loadfont ;fallthrough
+
+BlaineAfterRematch:
+	writetext BlaineAfterRematchText
+	waitbutton
+	closetext
+	end
+
+BlaineBeforeRematch:
+	text "You must think you"
+	line "are pretty hot to"
+	cont "make it this far." 
+	
+	para "Your next"
+	line "opponent?"
+	
+	para "It's none other"
+	line "than me!"
+	
+	para "Let's get cookin'!"
+	done
+
+BlaineRematchBeatenText:
+	text "How could this be!" 
+	
+	para "My spirit has not"
+	line "been defeated!"
+	done
+
+BlaineAfterRematch:
+	text "I'll never give"
+	line "up until the day"
+	cont "I've rebuilt the"
+	cont "Cinnabar Gym!"
+	done
 
 SeafoamGymGuyScript: ; 0x1ab531
 	faceplayer

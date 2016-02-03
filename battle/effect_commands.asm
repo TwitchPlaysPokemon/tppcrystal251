@@ -4663,9 +4663,7 @@ BattleCommand41: ; 35864
 	set SUBSTATUS_ENCORED, [hl]
 	call BattleRandom
 	and $3
-	inc a
-	inc a
-	inc a
+	add 4
 	ld [de], a
 	call Function36abf
 	jr nz, .asm_3591a
@@ -5454,7 +5452,7 @@ Function35d1c: ; 35d1c
 	ld a, BATTLE_VARS_MOVE
 	call GetBattleVar
 	cp BUG_BUZZ
-	jr .asm_35d31
+	jr z, .asm_35d31
 
 	ld a, [EnemySubStatus4]
 	bit SUBSTATUS_SUBSTITUTE, a
