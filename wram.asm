@@ -2299,7 +2299,7 @@ StepCount:: ; dc73
 	ds 1
 PoisonStepCount:: ; dc74
 	ds 1
-
+wRepelLastUsed::
 	ds 2
 wdc77:: ds 2
 wdc79:: ds 1
@@ -2309,7 +2309,8 @@ wPhoneList:: ds 10
 wdc9d:: ds 2
 wdc9f:: ds 1
 wdca0:: ds 1
-wdca1:: ds 3 ; Repel step count
+wRepelStepCounter:: ds 1 ; Repel step count
+wBikeStepCounter:: ds 2
 wdca4:: ds 1
 
 wPlayerDataEnd::

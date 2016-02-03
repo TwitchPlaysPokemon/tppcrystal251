@@ -11,7 +11,7 @@ BlueScript_0x9aa26: ; 0x9aa26
 	loadfont
 	checkevent EVENT_BLUE_REMATCH
 	iftrue BlueAfterRematch
-	checkevent EVENT_FIRST_TIME_RED
+	checkevent EVENT_FIRST_TIME_BABA
 	iftrue BlueRematchScript
 	checkflag ENGINE_EARTHBADGE
 	iftrue UnknownScript_0x9aa51

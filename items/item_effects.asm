@@ -2261,12 +2261,14 @@ Repel: ; f46a
 ; f46c
 
 Function_0xf46c: ; f46c
-	ld a, [wdca1] ; Are there steps remaining?
+	ld a, [wRepelStepCounter] ; Are there steps remaining?
 	and a
 	ld hl, UnknownText_0xf47d
 	jp nz, PrintText ; If so, don't activate a new Repel.
 	ld a, b
-	ld [wdca1], a
+	ld [wRepelStepCounter], a
+	ld a, [CurItem]
+	ld [wRepelLastUsed], a
 	jp Functionf789
 ; f47d
 

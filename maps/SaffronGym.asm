@@ -11,7 +11,7 @@ SabrinaScript_0x189c2e: ; 0x189c2e
 	loadfont
 	checkevent EVENT_SABRINA_REMATCH
 	iftrue SabrinaAfterRematch
-	checkevent EVENT_FIRST_TIME_RED
+	checkevent EVENT_FIRST_TIME_BABA
 	iftrue SabrinaRematchScript
 	checkflag ENGINE_MARSHBADGE
 	iftrue UnknownScript_0x189c65

@@ -26,7 +26,7 @@ SurgeScript_0x1920a5: ; 0x1920a5
 	loadfont
 	checkevent EVENT_SURGE_REMATCH
 	iftrue SurgeAfterRematch
-	checkevent EVENT_FIRST_TIME_RED
+	checkevent EVENT_FIRST_TIME_BABA
 	iftrue SurgeRematchScript
 	checkflag ENGINE_THUNDERBADGE
 	iftrue UnknownScript_0x1920d9

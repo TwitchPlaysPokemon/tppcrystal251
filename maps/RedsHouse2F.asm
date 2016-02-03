@@ -25,7 +25,7 @@ MapRedsHouse2FBedScript:
 	playmusic MUSIC_HEAL
 	special HealParty
 	pause 60
-	checkevent EVENT_FIRST_TIME_RED
+	checkevent EVENT_FIRST_TIME_BABA
 	iffalse MapRedsHouseBedWarpScript
 	special Function8c0ab
 	special RestartMapMusic

@@ -72,7 +72,7 @@ BugsyScript_0x18ec1e: ; 0x18ec1e
 	loadfont
 	checkevent EVENT_BUGSY_REMATCH
 	iftrue BugsyAfterRematch
-	checkevent EVENT_FIRST_TIME_RED
+	checkevent EVENT_FIRST_TIME_BABA
 	iftrue BugsyRematchScript
 	checkevent EVENT_BEAT_BUGSY
 	iftrue UnknownScript_0x18ec48

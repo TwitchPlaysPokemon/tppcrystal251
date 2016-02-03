@@ -15310,6 +15310,20 @@ UnknownText_0x13620: ; 0x13620
 	db "@"
 ; 0x13625
 
+UseAnotherRepelScript::
+	loadfont
+	writetext UseAnotherRepelText
+	yesorno
+	iffalse .quit
+	callasm DoItemEffect
+.quit
+	closetext
+	end
+
+UseAnotherRepelText:
+	text_jump _UseAnotherRepelText
+	db "@"
+
 UnknownScript_0x13625:: ; 0x13625
 	loadfont
 	copybytetovar Unkn2Pals
