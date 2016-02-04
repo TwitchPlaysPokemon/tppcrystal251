@@ -50714,7 +50714,7 @@ TryStep: ; 8016b
 
 	ld a, [PlayerState]
 	cp PLAYER_SURF
-	jr z, TrySurfStep
+	jp z, TrySurfStep
 	cp PLAYER_SURF_PIKA
 	jr z, TrySurfStep
 	call CheckLandPermissions ; Return nc if walking onto land and tile permissions allow it.
@@ -50776,6 +50776,7 @@ TryStep: ; 8016b
 .run
 	ld a, STEP_RUN
 	call DoStep
+	call CheckTrainerRun
 	scf
 	ret
 
@@ -51014,6 +51015,141 @@ WalkInPlace: ; 802bf
 	xor a
 	ret
 ; 802cb
+
+CheckTrainerRun:: ; 360d
+; Check if any trainer on the map sees the player.
+
+; Skip the player object.
+	ld a, 1
+	ld de, MapObjects + OBJECT_LENGTH
+
+.loop
+
+; Have them face the player if the object:
+
+	push af
+	push de
+
+; Has a sprite
+	ld hl, MAPOBJECT_SPRITE
+	add hl, de
+	ld a, [hl]
+	and a
+	jr z, .next
+
+; Is a trainer
+	ld hl, MAPOBJECT_COLOR
+	add hl, de
+	ld a, [hl]
+	and $f
+	cp $2
+	jr nz, .next
+; Is visible on the map
+	ld hl, MAPOBJECT_OBJECT_STRUCT_ID
+	add hl, de
+	ld a, [hl]
+	cp -1
+	jr z, .next
+
+; Spins around
+	ld hl, MAPOBJECT_MOVEMENT
+	add hl, de
+	ld a, [hl]
+	cp $3
+	jr z, .spinner
+	cp $a
+	jr z, .spinner
+	cp $1e
+	jr z, .spinner
+	cp $1f
+	jr nz, .next
+
+.spinner
+
+; You're within their sight range
+	ld hl, MAPOBJECT_OBJECT_STRUCT_ID
+	add hl, de
+	ld a, [hl]
+	call Function1ae5
+	call AnyFacingPlayerDistance_bc
+	ld hl, MAPOBJECT_RANGE
+	add hl, de
+	ld a, [hl]
+	cp c
+	jr c, .next
+
+; Get them to face you
+	ld a, b
+	push af
+	ld hl, MAPOBJECT_OBJECT_STRUCT_ID
+	add hl, de
+	ld a, [hl]
+	call Function1ae5
+	pop af
+	call Function1af8
+	ld hl, OBJECT_STEP_DURATION
+	add hl, bc
+	ld a, [hl]
+	cp $40
+	jr nc, .next
+	ld a, $40
+	ld [hl], a
+
+.next
+	pop de
+	ld hl, OBJECT_LENGTH
+	add hl, de
+	ld d, h
+	ld e, l
+
+	pop af
+	inc a
+	cp NUM_OBJECTS
+	jr nz, .loop
+	xor a
+	ret
+
+AnyFacingPlayerDistance_bc::
+; Returns distance in c and direction in b.
+	push de
+	call .AnyFacingPlayerDistance
+	ld b, d
+	ld c, e
+	pop de
+	ret
+
+.AnyFacingPlayerDistance
+	ld hl, OBJECT_NEXT_MAP_X ; x
+	add hl, bc
+	ld d, [hl]
+
+	ld hl, OBJECT_NEXT_MAP_Y ; y
+	add hl, bc
+	ld e, [hl]
+
+	ld a, [MapY]
+	sub e
+	ld h, OW_DOWN
+	jr nc, .check_x
+	cpl
+	inc a
+	ld h, OW_UP
+.check_x
+	ld e, a
+	ld a, [MapX]
+	sub d
+	ld l, OW_RIGHT
+	jr nc, .compare
+	cpl
+	inc a
+	ld l, OW_LEFT
+.compare
+	cp e
+	ld d, l
+	ret nc
+	ld e, a
+	ld d, h
+	ret
 
 CheckForcedMovementInput: ; 802cb
 ; When sliding on ice, input is forced to remain in the same direction.
