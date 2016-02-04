@@ -459,7 +459,7 @@
 
 	db GROUP_WHIRL_ISLAND_SW, MAP_WHIRL_ISLAND_SW
 	db $0a ; encounter rate
-	db 60
+	db 73
 	db $02
 ;morning
 		db KRABBY ;20
@@ -515,7 +515,7 @@
 
 	db GROUP_WHIRL_ISLAND_B2F, MAP_WHIRL_ISLAND_B2F
 	db $0a ; encounter rate
-	db 60
+	db 74
 	db $02
 ;morning
 		db KRABBY ;20
@@ -571,7 +571,7 @@
 
 	db GROUP_WHIRL_ISLAND_LUGIA_CHAMBER, MAP_WHIRL_ISLAND_LUGIA_CHAMBER
 	db $0a ; encounter rate
-	db 60
+	db 75
 	db $02
 ;morning
 		db KRABBY ;20
@@ -627,7 +627,7 @@
 
 	db GROUP_SILVER_CAVE_ROOM_2, MAP_SILVER_CAVE_ROOM_2
 	db $05 ; encounter rate
-	db 100
+	db 88
 	db $03
 ;morning
 		db VAPOREON ;15
@@ -1871,7 +1871,7 @@
 
 	db GROUP_SILVER_CAVE_OUTSIDE, MAP_SILVER_CAVE_OUTSIDE
 	db $05 ; encounter rate
-	db 100
+	db 86
 	db $03
 ;morning
 		db POLIWRATH ;15

@@ -228,17 +228,18 @@ ButterfreeEvosAttacks:
 WeedleEvosAttacks:
 	db EVOLVE_LEVEL, 7, KAKUNA
 	db 0 ; no more evolutions
-	db 1,POISON_STING
-	db 3,STRING_SHOT
+	db 1, POISON_STING
+	db 3, STRING_SHOT
+	db 100, HORN_DRILL
 	db 0 ; no more level-up moves
 
 KakunaEvosAttacks:
 	db EVOLVE_LEVEL, 10, BEEDRILL
 	db 0 ; no more evolutions
-	db 1,POISON_STING
-	db 1,HARDEN
-	db 4,STRING_SHOT
-	db 7,HARDEN
+	db 1, POISON_STING
+	db 1, HARDEN
+	db 4, STRING_SHOT
+	db 7, HARDEN
 	db 0 ; no more level-up moves
 
 BeedrillEvosAttacks:
@@ -253,7 +254,7 @@ BeedrillEvosAttacks:
 	db 34, SWORDS_DANCE ; gen 1 move
 	db 38, PIN_MISSILE ; later gen move
 	db 42, TOXIC ; tm move
-	db 45, TAKE_DOWN ; later gen move
+	db 45, HORN_DRILL ; illegal move
 	db 49, AGILITY
 	db 52, FURY_CUTTER ; tm move
 	db 56, POISON_JAB ; later gen move
@@ -372,8 +373,8 @@ SpearowEvosAttacks:
 	db 12,MUD_SLAP ; later gen move
 	db 15,SONICBOOM ; event move
 	db 18,TAKE_DOWN ; gen 1 move
-	db 21,PURSUIT ; egg move
-	db 24,FAINT_ATTACK ; egg move
+	db 21,FAINT_ATTACK ; egg move
+	db 24,FALSE_SWIPE
 	db 27,DRILL_PECK 
 	db 30,STEEL_WING ; tm move
 	db 33,AGILITY
@@ -395,7 +396,7 @@ FearowEvosAttacks:
 	db 36,DRILL_PECK
 	db 39,LEER
 	db 43,STEEL_WING ; tm move
-	db 47,FALSE_SWIPE ; *
+	db 47,FALSE_SWIPE
 	db 52,SKY_ATTACK; later gen move
 	db 56,WHIRLWIND ; *later gen move
 	db 60,TRI_ATTACK ; * egg move
@@ -630,10 +631,10 @@ NidokingEvosAttacks:
 	db 1, FOCUS_ENERGY
 	db 30, HORN_ATTACK
 	db 40, DIG ; * tm move
-	db 50, THRASH ; * later gen move
+	db 50, THRASH ; *
 	db 60, MEGAHORN ; * later gen move
 	db 70, HORN_DRILL
-	db 80, EARTH_POWER ; * later gen move
+	db 80, DRILL_RUN ; * later gen move
 	db 0 ; no more level-up moves
 
 ClefairyEvosAttacks:
@@ -650,7 +651,7 @@ ClefairyEvosAttacks:
 	db 28, DAZZLINGLEAM ; later gen move
 	db 32, AMNESIA ; egg move
 	db 35, PETAL_DANCE ; event move
-	db 39, MOONLIGHT ; *
+	db 39, SOFTBOILED
 	db 42, MOONBLAST ; later gen move
 	db 46, TRI_ATTACK
 	db 50, LIGHT_SCREEN ; *
@@ -661,12 +662,12 @@ ClefableEvosAttacks:
 	db 1, DAZZLINGLEAM ; later gen move
 	db 1, METRONOME ; egg move
 	db 1, MINIMIZE
-	db 1, BELLY_DRUM ; * egg move
-	db 30, SWEET_KISS
+	db 1, SWEET_KISS
+	db 30, BELLY_DRUM ; * egg move
 	db 40, DIZZY_PUNCH ; * event move
 	db 50, HEAL_BELL ; * later gen move
 	db 60, SEISMIC_TOSS ; * later gen move
-	db 70, MOONLIGHT
+	db 70, MOONLIGHT ; *
 	db 80, MOONBLAST ; later gen move
 	db 0 ; no more level-up moves
 
@@ -765,7 +766,7 @@ ZubatEvosAttacks:
 GolbatEvosAttacks:
 	db EVOLVE_HAPPINESS, TR_ANYTIME, CROBAT
 	db 0 ; no more evolutions
-	db 1, NASTY_PLOT ; * later gen move
+	db 1, LEECH_LIFE
 	db 1, CONFUSE_RAY
 	db 1, BITE
 	db 1, GUST ; egg move
@@ -1125,7 +1126,7 @@ PoliwagEvosAttacks:
 	db 30, AMNESIA ; gen 1 move
 	db 33, BUBBLEBEAM 
 	db 36, SUBMISSION ; Poliwhirl move
-	db 39, PSYBEAM ; illegal move
+	db 39, ENCORE
 	db 42, LOVELY_KISS ; event move
 	db 45, HYDRO_PUMP
 	db 0 ; no more level-up moves
@@ -1450,15 +1451,15 @@ SlowpokeEvosAttacks:
 	db 1, TACKLE
 	db 3, GROWL
 	db 6, SAFEGUARD
-	db 9, WATER_GUN
-	db 12, FUTURE_SIGHT ; egg move
+	db 9, FUTURE_SIGHT ; egg move
+	db 12, WATER_GUN
 	db 15, STOMP ; egg move
 	db 18, THUNDER_WAVE ; gen 1 move
-	db 21, ZEN_HEADBUTT ; later gen move
+	db 21, CONFUSION
 	db 24, CURSE
 	db 27, HEADBUTT
 	db 30, DISABLE
-	db 34, CONFUSION
+	db 34, ZEN_HEADBUTT ; later gen move
 	db 38, BUBBLEBEAM ; gen 1 move
 	db 42, TRI_ATTACK ; gen 1 move
 	db 46, RAIN_DANCE ; tm move
@@ -1715,9 +1716,10 @@ HaunterEvosAttacks:
 	db 1, MEAN_LOOK
 	db 1, SHADOW_CLAW
 	db 29, EXPLOSION ; later gen move
-	db 33, DARK_PULSE ; later gen move
-	db 37, HYPNOSIS
-	db 41, NIGHT_SHADE
+	db 32, DARK_PULSE ; later gen move
+	db 35, NIGHT_SHADE
+	db 38, HYPNOSIS
+	db 42, NIGHTMARE
 	db 46, PSYWAVE ; * egg move
 	db 51, PERISH_SONG ; * egg move
 	db 55, PROTECT
@@ -3744,11 +3746,11 @@ SlowkingEvosAttacks:
 	db 13, FUTURE_SIGHT ; egg move
 	db 16, STOMP ; egg move
 	db 20, THUNDER_WAVE ; gen 1 move
-	db 23, ZEN_HEADBUTT ; later gen move
+	db 23, CONFUSION
 	db 27, SWAGGER ; *
 	db 31, HEADBUTT
 	db 35, DISABLE
-	db 39, CONFUSION
+	db 39, ZEN_HEADBUTT ; later gen move
 	db 43, BUBBLEBEAM ; gen 1 move
 	db 47, TRI_ATTACK ; gen 1 move
 	db 51, RAIN_DANCE ; tm move

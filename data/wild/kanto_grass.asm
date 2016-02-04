@@ -165,7 +165,7 @@
 ;        db NIDORAN_F;1
 	db GROUP_DIGLETTS_CAVE, MAP_DIGLETTS_CAVE
 	db $0a ; encounter rates: morn/day/nite
-	db 60
+	db 64
 	db $00
 ;morning
 		db DIGLETT ;30
@@ -221,7 +221,7 @@
 
 	db GROUP_ROCK_TUNNEL_1F, MAP_ROCK_TUNNEL_1F
 	db $0f ; encounter rates: morn/day/nite
-	db 70
+	db 62
 	db $01
 ;morning
 		db ONIX ;20
@@ -277,7 +277,7 @@
 
 	db GROUP_ROCK_TUNNEL_B1F, MAP_ROCK_TUNNEL_B1F
 	db $0f ; encounter rates: morn/day/nite
-	db 70
+	db 62
 	db $01
 ;morning
 		db ONIX ;20
@@ -392,7 +392,7 @@
 
 	db GROUP_ROUTE_1, MAP_ROUTE_1
 	db $19 ; encounter rates: morn/day/nite
-	db 60
+	db 54
 	db $00
 ;morning
 		db PIDGEY ;30
@@ -504,7 +504,7 @@
 		
 	db GROUP_ROUTE_3, MAP_ROUTE_3
 	db $19 ; encounter rates: morn/day/nite
-	db 60
+	db 64
 	db $02
 ;morning
 		db SPEAROW ;20
@@ -672,7 +672,7 @@
 
 	db GROUP_ROUTE_6, MAP_ROUTE_6
 	db $19 ; encounter rates: morn/day/nite
-	db 60
+	db 56
 	db $03
 ;morning
 		db PONYTA ;15
@@ -728,7 +728,7 @@
 
 	db GROUP_ROUTE_7, MAP_ROUTE_7
 	db $19 ; encounter rates: morn/day/nite
-	db 70
+	db 59
 	db $01
 ;morning
 		db BELLSPROUT ;20
@@ -784,7 +784,7 @@
 
 	db GROUP_ROUTE_8, MAP_ROUTE_8
 	db $19 ; encounter rates: morn/day/nite
-	db 70
+	db 59
 	db $02
 ;morning
 		db PRIMEAPE ;20
@@ -821,13 +821,13 @@
 		db NINETALES ;1
 		db NINETALES ;1
 ;night
-		db HAUNTER ;20
+		db WIGGLYTUFF ;20
 		db GASTLY ;15
 		db GASTLY ;10
 		db GASTLY ;10
-		db WIGGLYTUFF ;10
-		db WIGGLYTUFF ;5
-		db WIGGLYTUFF ;5
+		db GASTLY ;10
+		db GASTLY ;5
+		db HAUNTER ;5
 		db KADABRA ;5
 		db KADABRA ;6
 		db KADABRA ;4
@@ -840,7 +840,7 @@
 
 	db GROUP_ROUTE_9, MAP_ROUTE_9
 	db $19 ; encounter rates: morn/day/nite
-	db 70
+	db 63
 	db $01
 ;morning
 		db VOLTORB ;20
@@ -896,7 +896,7 @@
 
 	db GROUP_ROUTE_10_NORTH, MAP_ROUTE_10_NORTH
 	db $19 ; encounter rates: morn/day/nite
-	db 75
+	db 63
 	db $01
 ;morning
 		db MAGNEMITE ;20
@@ -952,7 +952,7 @@
 
 	db GROUP_ROUTE_11, MAP_ROUTE_11
 	db $19 ; encounter rates: morn/day/nite
-	db 80
+	db 62
 	db $02
 ;morning
 		db IVYSAUR ;20
@@ -970,7 +970,7 @@
 		db RHYDON ;2
 		db HYPNO ;1
 		db DODUO ;1
-		db DROWZEE ;1
+		db SNORLAX ;1
 ;day
 		db RHYHORN ;20
 		db LICKITUNG ;15
@@ -987,7 +987,7 @@
 		db DODRIO ;2
 		db DODRIO ;1
 		db DODRIO ;1
-		db DODRIO ;1
+		db SNORLAX ;1
 ;night
 		db GASTLY ;20
 		db IVYSAUR ;15
@@ -995,8 +995,8 @@
 		db DROWZEE ;10
 		db RHYHORN ;10
 		db SNORLAX ;5
-		db HAUNTER ;5
-		db HAUNTER ;5
+		db GASTLY ;5
+		db GASTLY ;5
 		db HYPNO ;6
 		db RHYDON ;4
 		db LICKITUNG ;3
@@ -1004,11 +1004,11 @@
 		db LICKITUNG ;2
 		db LICKITUNG ;1
 		db LICKITUNG ;1
-		db LICKITUNG ;1
+		db SNORLAX ;1
 
 	db GROUP_ROUTE_13, MAP_ROUTE_13
 	db $19 ; encounter rates: morn/day/nite
-	db 80
+	db 61
 	db $01
 ;morning
 		db VENOMOTH ;20
@@ -1064,7 +1064,7 @@
 
 	db GROUP_ROUTE_14, MAP_ROUTE_14
 	db $19 ; encounter rates: morn/day/nite
-	db 80
+	db 61
 	db $02
 ;morning
 		db EXEGGCUTE ;20
@@ -1120,7 +1120,7 @@
 
 	db GROUP_ROUTE_15, MAP_ROUTE_15
 	db $19 ; encounter rates: morn/day/nite
-	db 80
+	db 61
 	db $02
 ;morning
 		db MACHOKE ;20
@@ -1176,7 +1176,7 @@
 
 	db GROUP_ROUTE_16, MAP_ROUTE_16
 	db $19; encounter rates: morn/day/nite
-	db 75
+	db 60
 	db $02
 ;morning
 		db NIDOKING ;20
@@ -1192,9 +1192,9 @@
 		db NIDOQUEEN ;3
 		db NIDOQUEEN ;2
 		db SNORLAX ;2
-		db SNORLAX ;1
-		db SNORLAX ;1
-		db SNORLAX ;1
+		db PIDGEOTTO ;1
+		db PIDGEOTTO ;1
+		db PIDGEOTTO ;1
 ;day
 		db NIDOQUEEN ;20
 		db NIDORINA ;15
@@ -1204,18 +1204,18 @@
 		db NIDORINO ;5
 		db NIDORINO ;5
 		db NIDOKING ;5
-		db SNORLAX ;6
+		db MUK ;6
 		db MUK ;4
 		db PIDGEOTTO ;3
-		db MUK ;2
-		db MUK ;2
-		db MUK ;1
-		db MUK ;1
+		db PIDGEOT ;2
+		db PIDGEOT ;2
+		db SNORLAX ;1
+		db SNORLAX ;1
 		db SNORLAX ;1
 ;night
 		db PIDGEOT ;20
 		db MUK ;15
-		db SNORLAX ;10
+		db PIDGEOTTO ;10
 		db NIDORINO ;10
 		db NIDOKING ;10
 		db PIDGEOT ;5
@@ -1223,16 +1223,16 @@
 		db NIDORINA ;5
 		db NIDOQUEEN ;6
 		db NIDOQUEEN ;4
-		db PIDGEOTTO ;3
-		db PIDGEOTTO ;2
-		db PIDGEOTTO ;2
-		db PIDGEOTTO ;1
-		db PIDGEOTTO ;1
-		db PIDGEOTTO ;1
+		db GASTLY ;3
+		db SNORLAX ;2
+		db SNORLAX ;2
+		db SNORLAX ;1
+		db GASTLY ;1
+		db GASTLY ;1
 
 	db GROUP_ROUTE_17, MAP_ROUTE_17
 	db $fe ; encounter rates: morn/day/nite
-	db 70
+	db 60
 	db $00
 ;morning
 		db BEEDRILL ;30
@@ -1290,7 +1290,7 @@
 
 	db GROUP_ROUTE_18, MAP_ROUTE_18
 	db $19 ; encounter rates: morn/day/nite
-	db 75
+	db 61
 	db $02
 ;morning
 		db FEAROW ;20
@@ -1346,7 +1346,7 @@
 
 	db GROUP_ROUTE_21, MAP_ROUTE_21
 	db $0f ; encounter rates: morn/day/nite
-	db 70
+	db 64
 	db $02
 ;morning
 		db TANGELA ;20
@@ -1402,7 +1402,7 @@
 
 	db GROUP_ROUTE_22, MAP_ROUTE_22
 	db $19 ; encounter rates: morn/day/nite
-	db 60
+	db 58
 	db $02
 ;morning
 		db KOFFING ;20
@@ -1458,7 +1458,7 @@
 	
 	db GROUP_ROUTE_24, MAP_ROUTE_24
 	db $19 ; encounter rates: morn/day/nite
-	db 60
+	db 63
 	db $02
 ;morning
 		db BELLSPROUT ;20
@@ -1682,7 +1682,7 @@
 
 	db GROUP_ROUTE_28, MAP_ROUTE_28
 	db $19; encounter rates: morn/day/nite
-	db 100
+	db 86
 	db $03
 ;morning
 		db VILEPLUME ;15
@@ -1738,7 +1738,7 @@
 	
 	db GROUP_VIRIDIAN_FOREST, MAP_VIRIDIAN_FOREST
 	db $0a ; encounter rates: morn/day/nite
-	db 60
+	db 56
 	db $02
 ;morning
 		db CATERPIE ;20
@@ -1794,7 +1794,7 @@
 	
 	db GROUP_MT_MOON_B1F, MAP_MT_MOON_B1F
 	db $0a ; encounter rates: morn/day/nite
-	db 60
+	db 62
 	db $01
 ;morning
 		db ZUBAT ;20
@@ -1850,7 +1850,7 @@
 
 	db GROUP_MT_MOON_B2F, MAP_MT_MOON_B2F
 	db $0a; encounter rates: morn/day/nite
-	db 65
+	db 64
 	db $02
 ;morning
 		db GRAVELER ;20
@@ -1906,7 +1906,7 @@
 
 	db GROUP_MT_MOON_B3F, MAP_MT_MOON_B3F
 	db $0a ; encounter rates: morn/day/nite
-	db 70
+	db 66
 	db $03
 ;morning
 		db GEODUDE ;15
@@ -1962,7 +1962,7 @@
 	
 	db GROUP_CERULEANCAVE1, MAP_CERULEANCAVE1
 	db $0a ; encounter rates: morn/day/nite
-	db 90
+	db 81
 	db $02
 ;morning
 		db HYPNO ;20
@@ -2018,7 +2018,7 @@
 
 	db GROUP_CERULEANCAVE2, MAP_CERULEANCAVE2
 	db $0a ; encounter rates: morn/day/nite
-	db 90
+	db 82
 	db $02
 ;morning
 		db DITTO ;20
@@ -2074,7 +2074,7 @@
 
 	db GROUP_CERULEANCAVE3, MAP_CERULEANCAVE3
 	db $0a; encounter rates: morn/day/nite
-	db 95
+	db 83
 	db $03
 ;morning
 		db GOLEM ;15
@@ -2130,7 +2130,7 @@
 
 	db GROUP_MEWISLANDENTRANCE, MAP_MEWISLANDENTRANCE
 	db $19 ; encounter rates: morn/day/nite
-	db 80
+	db 76
 	db $03
 ;morning
 		db PINSIR ;15
@@ -2186,7 +2186,7 @@
 	
 	db GROUP_MEWISLANDB1, MAP_MEWISLANDB1
 	db $19 ; encounter rates: morn/day/nite
-	db 85
+	db 78
 	db $01
 ;morning
 		db PERSIAN ;20
@@ -2242,7 +2242,7 @@
 		
 	db GROUP_MEWISLANDF1, MAP_MEWISLANDF1
 	db $19 ; encounter rates: morn/day/nite
-	db 85
+	db 78
 	db $01
 ;morning
 		db VENOMOTH ;20
@@ -2298,7 +2298,7 @@
 
 	db GROUP_MEWISLANDF2, MAP_MEWISLANDF2
 	db $19 ; encounter rates: morn/day/nite
-	db 85
+	db 78
 	db $03
 ;morning
 		db KANGASKHAN ;15
@@ -2354,7 +2354,7 @@
 
 	db GROUP_CINNABAR_VOLCANO_B1F, MAP_CINNABAR_VOLCANO_B1F
 	db $19
-	db 80
+	db 68
 	db $02
 ;morning
 		db WEEZING ;20
@@ -2410,7 +2410,7 @@
 	
 	db GROUP_CINNABAR_VOLCANO_B2F, MAP_CINNABAR_VOLCANO_B2F
 	db $19
-	db 85
+	db 70
 	db $02
 ;morning
 		db NINETALES ;20
@@ -2466,7 +2466,7 @@
 	
 	db GROUP_CINNABAR_VOLCANO_B3F, MAP_CINNABAR_VOLCANO_B3F
 	db $19
-	db 90
+	db 72
 	db $03
 ;morning
 		db ARCANINE ;15
@@ -2522,7 +2522,7 @@
 
 	db GROUP_SEAFOAM_ISLANDS_ENTRANCE, MAP_SEAFOAM_ISLANDS_ENTRANCE
 	db $19
-	db 75
+	db 66
 	db $02
 ;morning
 		db ZUBAT ;20
@@ -2578,13 +2578,13 @@
 	
 	db GROUP_SEAFOAM_ISLANDS_B1F, MAP_SEAFOAM_ISLANDS_B1F
 	db $19
-	db 80
+	db 68
 	db $02
 ;morning
 		db OMANYTE ;20
 		db SHELLDER ;15
 		db KABUTO ;10
-		db SEEL ;10
+		db ONIX ;10
 		db SLOWPOKE ;10
 		db SHELLDER ;5
 		db PSYDUCK ;5
@@ -2604,55 +2604,55 @@
 		db PSYDUCK ;10
 		db OMANYTE ;10
 		db SHELLDER ;5
-		db SEEL ;5
+		db ONIX ;5
 		db GOLDUCK ;5
 		db KABUTOPS ;6
 		db SLOWBRO ;4
 		db OMASTAR ;3
-		db DEWGONG ;2
-		db SEEL ;2
+		db STEELIX ;2
+		db ONIX ;2
 		db SLOWBRO ;1
-		db DEWGONG ;1
+		db STEELIX ;1
 		db KABUTOPS ;1
 ;night
 		db SHELLDER ;20
 		db OMANYTE ;15
 		db SLOWPOKE ;10
-		db SEEL ;10
+		db ONIX ;10
 		db KABUTO ;10
 		db KABUTO ;5
-		db SEEL ;5
+		db ONIX ;5
 		db OMASTAR ;5
 		db GOLDUCK ;6
 		db KABUTOPS ;4
 		db PSYDUCK ;3
-		db DEWGONG ;2
-		db DEWGONG ;2
-		db DEWGONG ;1
+		db STEELIX ;2
+		db STEELIX ;2
+		db STEELIX ;1
 		db KABUTOPS ;1
 		db GOLDUCK ;1
 	
 	db GROUP_SEAFOAM_ISLANDS_B2F, MAP_SEAFOAM_ISLANDS_B2F
 	db $19
-	db 85
+	db 70
 	db $03
 ;morning
 		db SHELLDER ;15
 		db KABUTOPS ;10
 		db KABUTOPS ;10
 		db SLOWPOKE ;10
-		db SEEL ;10
+		db ONIX ;10
 		db KABUTO ;5
 		db OMASTAR ;5
 		db PSYDUCK ;5
 		db PSYDUCK ;5
 		db OMANYTE ;5
 		db GOLDUCK ;5
-		db DEWGONG ;5
+		db STEELIX ;5
 		db PSYDUCK ;4
 		db GOLDUCK ;3
 		db OMANYTE ;2
-		db DEWGONG ;1
+		db STEELIX ;1
 ;day
 		db SHELLDER ;15
 		db OMANYTE ;10
@@ -2662,35 +2662,35 @@
 		db KABUTO ;5
 		db KABUTO ;5
 		db KABUTO ;5
-		db SEEL ;5
+		db ONIX ;5
 		db KABUTOPS ;5
 		db GOLDUCK ;5
 		db KABUTO ;5
-		db DEWGONG ;4
-		db SEEL ;3
+		db STEELIX ;4
+		db ONIX ;3
 		db SLOWBRO ;2
 		db SLOWBRO ;1
 ;night
 		db OMASTAR ;15
-		db SEEL ;10
+		db ONIX ;10
 		db KABUTO ;10
 		db KABUTOPS ;10
 		db SLOWPOKE ;10
-		db SEEL ;5
+		db ONIX ;5
 		db OMANYTE ;5
 		db PSYDUCK ;5
 		db SHELLDER ;5
 		db SHELLDER ;5
 		db SHELLDER ;5
-		db DEWGONG ;5
-		db DEWGONG ;4
+		db STEELIX ;5
+		db STEELIX ;4
 		db GOLDUCK ;3
 		db PSYDUCK ;2
 		db SLOWBRO ;1
 
 	db GROUP_SEAFOAM_ISLANDS_B3F, MAP_SEAFOAM_ISLANDS_B3F
 	db $19
-	db 90
+	db 72
 	db $03
 ;morning
 		db BLASTOISE ;15
@@ -2704,11 +2704,11 @@
 		db OMANYTE ;5
 		db KABUTO ;5
 		db GOLDUCK ;5
-		db SEEL ;5
-		db SEEL ;4
-		db DEWGONG ;3
+		db ONIX ;5
+		db ONIX ;4
+		db STEELIX ;3
 		db PSYDUCK ;2
-		db DEWGONG ;1
+		db STEELIX ;1
 ;day
 		db OMANYTE ;15
 		db KABUTO ;10
@@ -2722,31 +2722,31 @@
 		db GOLDUCK ;5
 		db OMASTAR ;5
 		db GOLDUCK ;5
-		db SEEL ;4
-		db SEEL ;3
-		db DEWGONG ;2
+		db ONIX ;4
+		db ONIX ;3
+		db STEELIX ;2
 		db SLOWBRO ;1
 ;night
 		db BLASTOISE ;15
 		db OMASTAR ;10
 		db OMASTAR ;10
 		db OMANYTE ;10
-		db SEEL ;10
+		db ONIX ;10
 		db KABUTO ;5
 		db KABUTOPS ;5
-		db SEEL ;5
+		db ONIX ;5
 		db PSYDUCK ;5
 		db SLOWPOKE ;5
 		db SLOWPOKE ;5
-		db DEWGONG ;5
+		db STEELIX ;5
 		db GOLDUCK ;4
 		db PSYDUCK ;3
 		db SLOWBRO ;2
-		db DEWGONG ;1
+		db STEELIX ;1
 		
 	db GROUP_POWER_PLANT, MAP_POWER_PLANT
 	db $19
-	db 80
+	db 66
 	db $01
 ;morning
 		db VOLTORB ;20
@@ -2803,7 +2803,58 @@
 
 	db GROUP_BILLSGARDEN, MAP_BILLSGARDEN
 	db $19
-	db 80
-	db $00
+	db 72
+	db $02
+;morning
+		db PORYGON ;20
+		db XATU ;15
+		db EEVEE ;10
+		db EEVEE ;10
+		db AIPOM ;10
+		db PORYGON ;5
+		db MANTINE ;5
+		db JOLTEON ;5
+		db ESPEON ;6
+		db VAPOREON ;4
+		db FLAREON ;3
+		db AIPOM ;2
+		db EEVEE ;2
+		db FLAREON ;1
+		db FLAREON ;1
+		db VAPOREON ;1
+;day
+		db PORYGON ;20
+		db AIPOM ;15
+		db EEVEE ;10
+		db EEVEE ;10
+		db MANTINE ;10
+		db PORYGON ;5
+		db JOLTEON ;5
+		db FLAREON ;5
+		db EEVEE ;6
+		db VAPOREON ;4
+		db ESPEON ;3
+		db ESPEON ;2
+		db EEVEE ;2
+		db EEVEE ;1
+		db PORYGON2 ;1
+		db VAPOREON ;1
+;night
+		db PORYGON ;20
+		db EEVEE ;15
+		db EEVEE ;10
+		db MISDREAVUS ;10
+		db MISDREAVUS ;10
+		db PORYGON ;5
+		db MISDREAVUS ;5
+		db MANTINE ;5
+		db UMBREON ;6
+		db ESPEON ;4
+		db XATU ;3
+		db UMBREON ;2
+		db XATU ;2
+		db FLAREON ;1
+		db JOLTEON ;1
+		db VAPOREON ;1
 
 	db $ff ; end

@@ -467,7 +467,9 @@ LassLauraSeenText: ; 0x19f27f
 ; 0x19f299
 
 LassLauraBeatenText: ; 0x19f299
-	text "I lost too<...>"
+	text "No!"
+	
+	para "My cute babies <...>"
 	done
 ; 0x19f2a6
 

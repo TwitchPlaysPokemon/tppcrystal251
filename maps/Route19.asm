@@ -184,9 +184,12 @@ MapRoute19Signpost1Script: ; 0x19ea78
 ; 0x19ea7b
 
 SwimmermHaroldSeenText: ; 0x19ea7b
-	text "Have you ever gone"
-	line "swimming in the"
-	cont "sea at night?"
+	text "Have you been"
+	line "to the volcano?"
+
+	para "It's hot there,"
+	line "but I found some"
+	cont "cool #MON!"
 	done
 ; 0x19eaad
 
@@ -196,11 +199,11 @@ SwimmermHaroldBeatenText: ; 0x19eaad
 ; 0x19eab4
 
 UnknownText_0x19eab4: ; 0x19eab4
-	text "At night, the sea"
-	line "turns black. It"
+	text "The volcano was"
+	line "way too hot!"
 
-	para "feels like it will"
-	line "swallow you up."
+	para "I didn't dare"
+	line "explore all of it."
 	done
 ; 0x19eafa
 
@@ -268,9 +271,14 @@ SwimmermJeromeBeatenText: ; 0x19ec66
 ; 0x19ec7e
 
 UnknownText_0x19ec7e: ; 0x19ec7e
-	text "I might be bad at"
-	line "swimming, but I"
-	cont "love the sea."
+	text "I caught these"
+	line "#MON in"
+	cont "freshwater."
+	
+	para "Different types"
+	line "of #MON appear"
+	cont "depending on"
+	cont "where you surf."
 	done
 ; 0x19ecaf
 
