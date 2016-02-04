@@ -146,9 +146,9 @@ UnknownText_0x1accc2: ; 0x1accc2
 
 EnteiCaveSign: ; 0x1accc2
 	text "You try hard to"
-    line "read the sign"
-    para "<...> but it is too"
-    cont "charred to read."
+    line "read the sign<...>"
+    para "But it is too"
+    line "charred to read."
     done
 	
 CinnabarIsland_MapEventHeader: ; 0x1accf4

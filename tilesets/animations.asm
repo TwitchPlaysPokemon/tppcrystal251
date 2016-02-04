@@ -38,13 +38,27 @@ _AnimateTileset:: ; fc000
 
 Tileset00Anim: ; 0xfc01b
 Tileset02Anim: ; 0xfc01b
-Tileset03Anim: ; 0xfc01b
-;	   param, function
 	dw $9140, AnimateWaterTile
 	dw NULL,  WaitTileAnimation
 	dw NULL,  WaitTileAnimation
 	dw NULL,  WaitTileAnimation
 	dw NULL,  TileAnimationPalette
+	dw NULL,  WaitTileAnimation
+	dw NULL,  AnimateFlowerTile
+	dw NULL,  WaitTileAnimation
+	dw NULL,  WaitTileAnimation
+	dw NULL,  NextTileFrame8
+	dw NULL,  DoneTileAnimation
+
+Tileset03Anim: ; 0xfc01b
+;	   param, function
+	dw $9140, AnimateWaterTile
+	dw NULL,  SafariFountainAnim4
+	dw NULL,  WaitTileAnimation
+	dw NULL,  WaitTileAnimation
+	dw NULL,  WaitTileAnimation
+	dw NULL,  TileAnimationPalette
+	; dw NULL,  SafariFountainAnim3
 	dw NULL,  WaitTileAnimation
 	dw NULL,  AnimateFlowerTile
 	dw NULL,  WaitTileAnimation
@@ -879,6 +893,61 @@ SafariFountainAnim2: ; fc5eb
 	jp WriteTile
 ; fc605
 
+
+SafariFountainAnim3: ; fc5cc
+; Splash in the bottom-right corner of the fountain.
+	ld hl, [sp+0]
+	ld b, h
+	ld c, l
+	ld a, [TileAnimationTimer]
+	and 6
+	srl a
+	inc a
+	inc a
+	and 3
+	swap a
+	ld e, a
+	ld d, 0
+	ld hl, SafariFountainFrames
+	add hl, de
+	ld sp, hl
+	ld hl, $9370
+	ld a, [rVBK]
+	push af
+	ld a, 1
+	ld [rVBK], a
+	call WriteTile
+	pop af
+	ld [rVBK], a
+	ret
+; fc5eb
+
+
+SafariFountainAnim4: ; fc5eb
+; Splash in the top-left corner of the fountain.
+	ld hl, [sp+0]
+	ld b, h
+	ld c, l
+	ld a, [TileAnimationTimer]
+	and 6
+	add a
+	add a
+	add a
+	ld e, a
+	ld d, 0
+	ld hl, SafariFountainFrames
+	add hl, de
+	ld sp, hl
+	ld hl, $9380
+	ld a, [rVBK]
+	push af
+	ld a, 1
+	ld [rVBK], a
+	call WriteTile
+	pop af
+	ld [rVBK], a
+	ret	
+; fc605
 
 SafariFountainFrames: ; fc605
 	INCBIN "gfx/tilesets/safari/1.2bpp"
