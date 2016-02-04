@@ -51127,28 +51127,29 @@ AnyFacingPlayerDistance_bc::
 	add hl, bc
 	ld e, [hl]
 
-	ld a, [MapY]
-	sub e
-	ld h, OW_DOWN
-	jr nc, .check_x
-	cpl
-	inc a
-	ld h, OW_UP
-.check_x
-	ld e, a
 	ld a, [MapX]
 	sub d
 	ld l, OW_RIGHT
-	jr nc, .compare
+	jr nc, .check_y
 	cpl
 	inc a
 	ld l, OW_LEFT
+.check_y
+	ld d, a
+	ld a, [MapY]
+	sub e
+	ld h, OW_DOWN
+	jr nc, .compare
+	cpl
+	inc a
+	ld h, OW_UP
 .compare
-	cp e
-	ld d, l
+	cp d
+	ld e, d
+	ld d, h
 	ret nc
 	ld e, a
-	ld d, h
+	ld d, l
 	ret
 
 CheckForcedMovementInput: ; 802cb
