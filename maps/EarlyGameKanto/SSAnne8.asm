@@ -49,6 +49,7 @@ SSAnne8PokefanMScript:
 SSAnne8TwinScript:
 	jumptextfaceplayer _SSAnne8Text7
 SSAnne8WigglytuffScript:
+	faceplayer
 	loadfont
 	writetext _SSAnne8Text8
 	cry WIGGLYTUFF
@@ -191,7 +192,7 @@ SSAnne8_MapEventHeader:
 	person_event SPRITE_TEACHER, 7, 26, $4, 2, 0, -1, -1, 0, 0, 0, SSAnne8Teacher1Script, -1
 	person_event SPRITE_POKEFAN_M, 18, 4, $3, 0, 0, -1, -1, 0, 0, 0, SSAnne8PokefanMScript, -1
 	person_event SPRITE_TWIN, 15, 6, $6, 0, 0, -1, -1, 0, 0, 0, SSAnne8TwinScript, -1
-	person_event SPRITE_FAIRY, 15, 7, $16, 0, 0, -1, -1, 0, 0, 0, SSAnne8WigglytuffScript, -1
+	person_event SPRITE_FAIRY, 15, 7, $3, 0, 0, -1, -1, 0, 0, 0, SSAnne8WigglytuffScript, -1
 	person_event SPRITE_TEACHER, 17, 14, $9, 0, 0, -1, -1, 0, 0, 0, SSAnne8Teacher2Script, -1
 	person_event SPRITE_POKE_BALL, 19, 16, $1, 0, 0, -1, -1, 0, 1, 0, SSAnne8RareCandy, EVENT_S_S_ANNE_8_RARE_CANDY
 	person_event SPRITE_GENTLEMAN, 17, 25, $5, 0, 2, -1, -1, 8 + PAL_OW_BROWN, 0, 0, SSAnne8GentlemanScript, -1

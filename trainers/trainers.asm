@@ -2452,6 +2452,7 @@ YoungsterGroup:
 	db "TYLER@"
 	db 0
 	db 21, NIDORAN_M
+	db $ff
 ; ================================
 
 
@@ -2471,8 +2472,8 @@ SchoolboyGroup:
 		db BITE
 		
 	db 30, PINSIR
-		db FISSURE
-		db NONE
+		db TACKLE
+		db MEGAHORN
 		db HARDEN
 		db PIN_MISSILE
 
@@ -2763,7 +2764,7 @@ SchoolboyGroup:
 
 	db 35, QUAGSIRE
 		db TAIL_WHIP
-		db NONE
+		db SURF
 		db AMNESIA
 		db EARTHQUAKE
 
@@ -4491,7 +4492,7 @@ PokemaniacGroup:
 	db 41, CHANSEY
 		db ROLLOUT
 		db ATTRACT
-		db NONE
+		db METRONOME
 		db SOFTBOILED
 
 	db $ff ; end
