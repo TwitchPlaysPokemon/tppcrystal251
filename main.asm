@@ -34363,6 +34363,8 @@ TrainerClassNames:: ; 2c1ef
  	db "RIVAL@"
  	db "LEADER@"
  	db "LEADER@"
+	; db "ELF COACH@"
+ 	db $4a, " TRAINER@" ; Uncomment this if the above is rejected
 
 AI_Redundant: ; 2c41a
 ; Check if move effect c will fail because it's already been used.

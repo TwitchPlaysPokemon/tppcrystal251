@@ -1417,9 +1417,7 @@ BattleCommand07: ; 346d2
 	cp b
 	jr z, .stab
 	cp c
-	jr z, .stab
-
-	jr .asm_3473a
+	jr nz, .asm_3473a
 
 .stab
 	ld hl, CurDamage + 1
@@ -10730,31 +10728,70 @@ BattleCommand9e: ; 37d02
 
 BattleCommand9b: ; 37d0d
 ; checkfuturesight
-
-	ld hl, wc71d
-	ld de, wc727
+	ld hl, BattleMonLevel
+	push hl
+	ld hl, PlayerStats + 8
+	ld de, wc72b
+	push de
+	push hl
+	ld hl, wc71d ; count
+	ld de, wc727 ; damage
 	ld a, [hBattleTurn]
 	and a
 	jr z, .ok
-	ld hl, wc71e
-	ld de, wc729
+	pop hl
+	pop de
+	pop hl
+	ld hl, EnemyMonLevel
+	push hl
+	ld hl, EnemyStats + 8
+	ld de, wc72c
+	push de
+	push hl
+	ld hl, wc71e ; count
+	ld de, wc729 ; damage
 .ok
 
 	ld a, [hl]
-	and a
-	ret z ;if [hl] = 0 or 1, ret
+	; and a
+	; ret z
 	cp 1
-	ret nz
+	jr nz, .done
 
 	ld [hl], 0
+	pop hl
 	ld a, [de]
 	inc de
-	ld [CurDamage], a
+	ld [hli], a
 	ld a, [de]
-	ld [CurDamage + 1], a
+	ld [hl], a
+	pop hl
+	ld a, [hl]
+	ld [wc719], a
+	pop de
+	ld a, [de]
+	ld [hl], a
 	ld b, $9c ; futuresight
 	jp SkipToBattleCommand
 ; 37d34
+.done
+	pop hl
+	pop de
+	pop hl
+	ret
+
+BattleCommand_CleanUpFutureSight:
+	ld de, BattleMonLevel
+	ld hl, Function365d7
+	ld a, [hBattleTurn]
+	and a
+	jr z, .ok
+	ld de, EnemyMonLevel
+	ld hl, Function365fd
+.ok
+	ld a, [wc719]
+	ld [de], a
+	jp [hl]
 
 BattleCommand9c: ; 37d34
 ; futuresight
@@ -10787,21 +10824,33 @@ BattleCommand9c: ; 37d34
 	ld hl, ForesawAttackText
 	call StdBattleTextBox
 	call BattleCommand0c ;raise sub
+	ld de, wc72b
+	ld hl, BattleMonLevel
+	push hl
+	push de
 	ld de, wc727 ; damage
+	ld hl, PlayerStats + 8
 	ld a, [hBattleTurn]
 	and a
 	jr z, .asm_37d77 ; 37d72 $3
+	pop de
+	pop hl
+	ld hl, EnemyMonLevel
+	ld de, wc72c
+	push hl
+	push de
+	ld hl, EnemyStats + 8
 	ld de, wc729
 .asm_37d77
-	ld hl, CurDamage
-	ld a, [hl]
+	ld a, [hli]
 	ld [de], a
-	ld [hl], 0
-	inc hl
 	inc de
 	ld a, [hl]
 	ld [de], a
-	ld [hl], 0
+	pop de
+	pop hl
+	ld a, [hl]
+	ld [de], a
 	jp EndMoveEffect
 .asm_37d87
 	pop bc
@@ -10815,9 +10864,8 @@ BattleCommand9c: ; 37d34
 BattleCommand9f: ; 37d94
 ; thunderaccuracy
 
-	ld a, BATTLE_VARS_MOVE_TYPE
+	ld a, BATTLE_VARS_MOVE_ACCURACY
 	call GetBattleVarAddr
-	inc hl
 	ld a, [Weather]
 	cp WEATHER_RAIN
 	jr z, .rain

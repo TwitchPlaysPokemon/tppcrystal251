@@ -178,6 +178,7 @@ BattleCommandPointers: ; 3fd28
 	dw BattleCommandae ; 35197
 	dw BattleCommandaf ; 365a7
 	dw BattleCommand_Burn ; b0
-	dw BattleCommand_Growth
+	dw BattleCommand_Growth ; b1
+	dw BattleCommand_CleanUpFutureSight ; b2
 
 ; 3fe86

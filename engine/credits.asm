@@ -156,7 +156,7 @@ PlayCredits_109847:: ; 109847
 	lb bc, BANK(CopyrightGFX), $1d
 	call Request2bpp
 
-	CheckEvent_a EVENT_BEAT_OAK
+	CheckEvent_a EVENT_BEAT_ELM
 	jr nz, .tpp
 	ld de, TheEndGFX
 	ld hl, $9400
@@ -497,9 +497,14 @@ ParseCredits: ; 1099aa
 	set 7, [hl]
 	ld a, $20
 	ld [MusicFade], a
+	ld a, [rSVBK]
+	push af
 	ld a, 1
 	ld [rSVBK], a
-	CheckEvent_a EVENT_BEAT_OAK
+	CheckEvent_a EVENT_BEAT_ELM
+	pop bc
+	ld a, b
+	ld [rSVBK], a
 	jr nz, .tpp
 	ld a, MUSIC_POST_CREDITS % $100
 	ld [MusicFadeID], a
@@ -508,7 +513,10 @@ ParseCredits: ; 1099aa
 	ret
 
 .tpp
-	callba PlayTPPCredits_109847
+	xor a
+	ld [MusicFadeID], a
+	ld [MusicFadeIDHi], a
+	callba TPPCredits
 	ret
 
 .get

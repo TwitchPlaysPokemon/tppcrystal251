@@ -2185,6 +2185,7 @@ FutureSight:
 	checkfaint
 	checkdestinybond
 	buildopponentrage
+	cleanupfuturesight
 	endmove
 
 Gust:
