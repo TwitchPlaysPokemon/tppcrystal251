@@ -107,7 +107,43 @@ TPPCreditsList:
 .gf			db "Game Freak@"
 .twitch		db "Twitch@"
 .you		db "and You!@"
+
+TCText_Version:
+	db "Version ",_VERSION,"@"
 	
+TCText_Credits:
+	db "-- Credits --@"
+
+TextTransitionDelta:
+; ∆₁[f](⌊3x²/256⌋)
+	db 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1
+	db 0, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 1, 0, 1, 1, 1
+	db 0, 1, 1, 1, 1, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 2
+	db 1, 1, 1, 1, 1, 2, 1, 1, 2, 1, 1, 2, 1, 2, 1, 2
+	db 1, 2, 1, 2, 1, 2, 2, 1, 2, 2, 1, 2, 2, 2, 2, 2
+	db 1, 2, 2, 2, 2, 2, 2, 2, 2, 2, 3, 2, 2, 2, 2, 3
+	
+TextTransitionIn1:
+; initial position for top row transition in
+	db 144, 146, 149, 151, 154, 156, 159, 162
+	
+TextTransitionIn2:
+; initial position for middle row transition in
+	db 144, 147, 149, 151, 154, 156, 158, 161
+	
+TextTransitionIn3:
+; initial position for bottom row transition in
+	db 144, 145, 147, 149, 151, 153, 155, 157
+	
+StripBounds:
+	db   2,   6,  10,  16,  20,  24,  30,  34
+	db  38,  44,  48,  52,  58,  62,  66,  72
+	db  76,  80,  86,  90,  94, 100, 104, 108
+	db 114, 118, 122, 126, 132, 136, 140, 146
+	db 150, 154, 160, 164, 168, 174, 178, 182
+	db 188, 192, 196, 202, 206, 210, 216, 220
+	db 224, 230, 234, 238, 244, 248, 252,   0
+
 StripTiles: INCBIN "gfx/credits/strip_map.bin"
 	
 TPPCreditsBG1: ; TODO
