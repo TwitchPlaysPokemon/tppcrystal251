@@ -82783,6 +82783,48 @@ String_e3668: ; e3668
 	db "@"
 ; e366c
 
+CheckBoxForEggs:
+	ld a, [wCurBox]
+	ld c, a
+	ld a, [MenuSelection]
+	dec a
+	cp c
+	jr z, .sBox
+	ld c, a
+	ld b, 0
+	ld hl, Unknown_e36a5
+	add hl, bc
+	add hl, bc
+	add hl, bc
+	ld a, [hli]
+	ld b, a
+	call GetSRAMBank
+	ld a, [hli]
+	ld h, [hl]
+	ld l, a
+	inc hl
+.loop
+	ld a, [hli]
+	cp $ff
+	jr z, .done
+	cp EGG
+	jr nz, .loop
+	call CloseSRAM
+	scf
+	ret
+
+.done
+	call CloseSRAM
+	and a
+	ret
+
+.sBox
+	ld a, BANK(sBox)
+	ld b, a
+	call GetSRAMBank
+	ld hl, sBox + 1
+	jr .loop
+
 Functione366c: ; e366c (38:766c)
 	ld a, [wCurBox]
 	ld c, a
@@ -82827,20 +82869,20 @@ Functione366c: ; e366c (38:766c)
 
 Unknown_e36a5: ; e36a5
 	;  bank, address
-	dbw $02, $a000
-	dbw $02, $a450
-	dbw $02, $a8a0
-	dbw $02, $acf0
-	dbw $02, $b140
-	dbw $02, $b590
-	dbw $02, $b9e0
-	dbw $03, $a000
-	dbw $03, $a450
-	dbw $03, $a8a0
-	dbw $03, $acf0
-	dbw $03, $b140
-	dbw $03, $b590
-	dbw $03, $b9e0
+	dba sBox1
+	dba sBox2
+	dba sBox3
+	dba sBox4
+	dba sBox5
+	dba sBox6
+	dba sBox7
+	dba sBox8
+	dba sBox9
+	dba sBox10
+	dba sBox11
+	dba sBox12
+	dba sBox13
+	dba sBox14
 ; e36cf
 
 Functione36cf: ; e36cf (38:76cf)
@@ -82937,6 +82979,8 @@ Functione36f9: ; e36f9 (38:76f9)
 	call Functione366c
 	and a
 	jr z, .AlreadyEmpty
+	call CheckBoxForEggs
+	jr c, .EggFound
 	ld a, [MenuSelection]
 	dec a
 	ld e, a
@@ -82970,6 +83014,10 @@ Functione36f9: ; e36f9 (38:76f9)
 	call Function1c07
 	ret
 
+.EggFound
+	ld de, .EggFoundString
+	jr .wrong
+
 .AlreadyEmpty
 	ld de, .AlreadyEmptyString
 	jr .wrong
@@ -82994,6 +83042,9 @@ Functione36f9: ; e36f9 (38:76f9)
 
 .TimeUpString
 	db "Took too long!@"
+
+.EggFoundString
+	db "Can't release EGG!@"
 	
 .AreYouSure
 	text "WARNING: You are"
