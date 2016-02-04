@@ -2179,13 +2179,13 @@ FutureSight:
 	damagecalc
 	stab
 	damagevariation
+	cleanupfuturesight
 	checkhit
 	effect0x0b ; hittargetnosub
 	resulttext
 	checkfaint
 	checkdestinybond
 	buildopponentrage
-	cleanupfuturesight
 	endmove
 
 Gust:
