@@ -26283,7 +26283,7 @@ Function24d19: ; 24d19 MonSubMenu load, process, then unload the mon sub menu. p
 
 MenuDataHeader_0x24d3f: ; 24d3f
 	db $40 ; tile backup
-	db 00, 06 ; start coords
+	db 00, 05 ; start coords
 	db 17, 19 ; end coords
 	dw $0000
 	db 1 ; default option
