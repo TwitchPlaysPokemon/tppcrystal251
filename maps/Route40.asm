@@ -458,4 +458,4 @@ Route40_MapEventHeader: ; 0x1a678e
 	person_event SPRITE_BUENA, 14, 12, $3, 0, 0, -1, -1, 0, 0, 0, MonicaScript, EVENT_MONICA_OF_MONDAY
 	person_event SPRITE_POKEFAN_M, 10, 11, $9, 0, 0, -1, -1, 0, 0, 0, PokefanMScript_0x1a61c7, -1
 	person_event SPRITE_LASS, 8, 17, $3, 0, 0, -1, -1, 8 + PAL_OW_GREEN, 0, 0, LassScript_0x1a61d3, -1
-	person_event SPRITE_STANDING_YOUNGSTER, 13, 20, $3, 0, 0, -1, -1, 8 + PAL_OW_BLUE, 0, 0, StandingYoungsterScript_0x1a61d6, EVENT_BATTLE_TOWER_SPRITE_SET_INIT
+	person_event SPRITE_STANDING_YOUNGSTER, 13, 16, $3, 0, 0, -1, -1, 8 + PAL_OW_BLUE, 0, 0, StandingYoungsterScript_0x1a61d6, EVENT_BATTLE_TOWER_SPRITE_SET_INIT
