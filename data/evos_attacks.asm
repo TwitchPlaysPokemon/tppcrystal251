@@ -4660,8 +4660,8 @@ TyranitarEvosAttacks:
 	db 1, SCARY_FACE
 	db 1, ROCK_SLIDE
 	db 58, CRUNCH
-	db 62, HYPER_BEAM
-	db 66, ROCK_POLISH
+	db 62, ROCK_POLISH
+	db 66, HYPER_BEAM
 	db 70, EARTHQUAKE
 	db 75, ANCIENTPOWER
 	db 80, METAL_SOUND ; * illegal move
