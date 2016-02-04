@@ -3,7 +3,7 @@ Music_CinnabarGSC: ; f5127
 	dbw $01, Music_CinnabarGSC_Ch2
 
 Music_CinnabarGSC_Ch1:
-	tempo	 $118
+	tempo	 $100
 	volume $77
 	dutycycle 1
 	notetype $C, $B6

@@ -42,8 +42,9 @@ DreamBabaLost
 	end
 
 BabaTextBefore: ; 0x18c637
-	db $0, $56, $4f
-	db $56, $57
+	text $56
+	line $56
+	done
 ; 0x18c63c
 
 BabaTextWinLoss:

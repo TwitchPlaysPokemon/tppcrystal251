@@ -28,7 +28,7 @@ TPPCreditsList:
 	tc_draw			TPPCreditsBG1
 	tc_title		.director
 	tc_subtitle		  .streamer
-	tc_tltle		.projman
+	tc_title		.projman
 	tc_subtitle		  .revo
 	tc_draw			TPPCreditsBG2
 	tc_title		.programmer

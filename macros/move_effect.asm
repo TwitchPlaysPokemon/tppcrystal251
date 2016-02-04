@@ -182,6 +182,7 @@ endm
 	command curl
 	command burn
 	command growth
+	command cleanupfuturesight
 
 	enum_start -1, -1
 	command endmove

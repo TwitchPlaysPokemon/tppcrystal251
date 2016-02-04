@@ -301,6 +301,12 @@ UnknownText_0x1c465f: ; 0x1c465f
 	done
 ; 0x1c4693
 
+_Text_DeleteBox:
+	text "When releasing the"
+	line "whole BOX, data"
+	cont "will be saved. OK?"
+	done
+
 UnknownText_0x1c4693: ; 0x1c4693
 	text "The window save"
 	line "area was exceeded."

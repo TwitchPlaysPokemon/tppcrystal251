@@ -46,6 +46,9 @@ MapCinnabarIslandSignpostItem3: ; 0x1ac9cd
 	
 ; 0x1ac9d0
 
+MapCinnabarIslandSignpost4Script:
+	jumptext EnteiCaveSign
+
 MovementData_0x1ac9d0: ; 0x1ac9d0
 	teleport_from
 	step_end
@@ -141,6 +144,13 @@ UnknownText_0x1accc2: ; 0x1accc2
 	done
 ; 0x1accf4
 
+EnteiCaveSign: ; 0x1accc2
+	text "You try hard to"
+    line "read the sign<...>"
+    para "But it is too"
+    line "charred to read."
+    done
+	
 CinnabarIsland_MapEventHeader: ; 0x1accf4
 	; filler
 	db 0, 0
@@ -148,16 +158,17 @@ CinnabarIsland_MapEventHeader: ; 0x1accf4
 	; warps
 	db 2
 	warp_def 15, $b, 1, GROUP_CINNABAR_POKECENTER_1F, MAP_CINNABAR_POKECENTER_1F
-	warp_def 9, 8, 1, GROUP_CINNABAR_VOLCANO_ENTRANCE, MAP_CINNABAR_VOLCANO_ENTRANCE
+	warp_def 7, 22, 1, GROUP_CINNABAR_VOLCANO_ENTRANCE, MAP_CINNABAR_VOLCANO_ENTRANCE
 
 	; xy triggers
 	db 0
 
 	; signposts
-	db 4
+	db 5
 	signpost 15, 12, $0, MapCinnabarIslandSignpost0Script
 	signpost 15, 9, $0, MapCinnabarIslandSignpost1Script
 	signpost 11, 7, $0, MapCinnabarIslandSignpost2Script
+	signpost 23, 25, $0, MapCinnabarIslandSignpost4Script
 	signpost 5, 9, $7, MapCinnabarIslandSignpostItem3
 
 	; people-events

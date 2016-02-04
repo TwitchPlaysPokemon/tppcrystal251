@@ -84,11 +84,11 @@ _SSAnne6Text3:
 
 _SSAnne6Text4:
 	text "Hum-de-hum-de-"
-	line "ho…"
+	line "ho<...>"
 
 	para "I peel spuds"
 	line "every day!"
-	cont "Hum-hum…"
+	cont "Hum-hum<...>"
 	done
 
 _SSAnne6Text5:
@@ -100,11 +100,11 @@ _SSAnne6Text5:
 	done
 
 _SSAnne6Text6:
-	text "Snivel… Sniff…"
+	text "Snivel<...> Sniff<...>"
 
 	para "I only get to"
-	line "peel onions…"
-	cont "Snivel…"
+	line "peel onions<...>"
+	cont "Snivel<...>"
 	done
 
 _SSAnne6Text_61807:
@@ -147,7 +147,13 @@ SSAnne6TrashcanIfSet:
 SSAnne6Trashcan:
 	jumpstd trashcan
 SSAnne6HiddenGreatBall:
-	dwb EVENT_S_S_ANNE_6_GREAT_BALL, GREAT_BALL
+	checkevent EVENT_S_S_ANNE_6_GREAT_BALL
+	iftrue SSAnne6Trashcan
+	loadfont
+	verbosegiveitem GREAT_BALL, 1
+	setevent EVENT_S_S_ANNE_6_GREAT_BALL
+	closetext
+	end
 
 SSAnne6_MapEventHeader:
 	db 0, 0
@@ -155,11 +161,10 @@ SSAnne6_MapEventHeader:
 	warp_def 0, 6, 11, GROUP_S_S_ANNE_1, MAP_S_S_ANNE_1
 
 	db 0
-	db 4
+	db 3
 	signpost 5, 13, $0, SSAnne6Trashcan
 	signpost 7, 13, $0, SSAnne6Trashcan
-	signpost 9, 13, $5, SSAnne6TrashcanIfSet
-	signpost 9, 13, $7, SSAnne6HiddenGreatBall
+	signpost 9, 13, $0, SSAnne6HiddenGreatBall
 
 	db 7
 	person_event SPRITE_GENTLEMAN, 12,  5, $4, 2, 0, -1, -1, 8 + PAL_OW_RED, 0, 0, SSAnne6Gentleman1Script, -1
