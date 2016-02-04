@@ -55,7 +55,7 @@ UnknownScript_0x1ab52b: ; 0x1ab52b
 ; 0x1ab531
 
 BlaineRematchScript:
-	writetext BlaineRematchTextBefore
+	writetext BlaineBeforeRematchText
 	waitbutton
 	closetext
 	winlosstext BlaineRematchBeatenText, $0000
@@ -71,7 +71,7 @@ BlaineAfterRematch:
 	closetext
 	end
 
-BlaineBeforeRematch:
+BlaineBeforeRematchText:
 	text "You must think you"
 	line "are pretty hot to"
 	cont "make it this far." 
@@ -92,7 +92,7 @@ BlaineRematchBeatenText:
 	line "been defeated!"
 	done
 
-BlaineAfterRematch:
+BlaineAfterRematchText:
 	text "I'll never give"
 	line "up until the day"
 	cont "I've rebuilt the"

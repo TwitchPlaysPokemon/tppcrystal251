@@ -702,7 +702,7 @@ BillBoxSwitchCheck: ;from current box, return first box with space or 0 if entir
 	ret
 
 
-	BillBoxSwitch:
+BillBoxSwitch:
 	ld a, [EngineBuffer1]
 	ld e, a
 	callab Function14a83
