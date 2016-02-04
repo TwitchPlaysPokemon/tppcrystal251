@@ -81348,7 +81348,7 @@ Functione2b6d: ; e2b6d (38:6b6d)
 	cp $f
 	jr z, .asm_e2bf5
 	ld b, a
-	call Functione3396
+	call GetBoxPointer
 	ld a, b
 	call GetSRAMBank
 	push hl
@@ -81500,7 +81500,7 @@ Functione2c6e: ; e2c6e (38:6c6e)
 	cp $f
 	jr z, .asm_e2cf1
 	push hl
-	call Functione3396
+	call GetBoxPointer
 	ld a, b
 	call GetSRAMBank
 	push hl
@@ -81607,7 +81607,7 @@ Functione2d30: ; e2d30 (38:6d30)
 	cp $f
 	jr z, .asm_e2db7
 	ld b, a
-	call Functione3396
+	call GetBoxPointer
 	ld a, b
 	call GetSRAMBank
 	inc hl
@@ -82022,7 +82022,7 @@ Functione2fd6: ; e2fd6 (38:6fd6)
 
 .asm_e3048
 	ld b, a
-	call Functione3396
+	call GetBoxPointer
 	ld a, b
 	call GetSRAMBank
 	push hl
@@ -82428,7 +82428,7 @@ Functione3389: ; e3389 (38:7389)
 	call CopyBytes
 	ret
 
-Functione3396: ; e3396 (38:7396)
+GetBoxPointer: ; e3396 (38:7396)
 	dec b
 	ld c, b
 	ld b, 0
@@ -82788,6 +82788,9 @@ Functione36f9: ; e36f9 (38:76f9)
 ; e3778 (38:7778)
 
 .release_all
+	call Functione366c
+	and a
+	jr z, .AlreadyEmpty
 	ld a, [MenuSelection]
 	dec a
 	ld e, a
@@ -82821,9 +82824,14 @@ Functione36f9: ; e36f9 (38:76f9)
 	call Function1c07
 	ret
 
+.AlreadyEmpty
+	ld de, .AlreadyEmptyString
+	jr .wrong
+
 .TimeUp
 	pop de
 	ld de, .TimeUpString
+.wrong
 	call Functione37e3
 	ld de, SFX_WRONG
 	call WaitPlaySFX
@@ -82831,6 +82839,9 @@ Functione36f9: ; e36f9 (38:76f9)
 	ld c, 50
 	call DelayFrames
 	ret
+
+.AlreadyEmptyString
+	db "Nothing's here!@"
 
 .PressTheButtons
 	db "B/SELECT: Confirm@"
