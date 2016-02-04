@@ -281,6 +281,9 @@ AZURE_POS_Y equ 89
 	pop af
 	ld [rSVBK], a
 	
+; Use VBlank1 to fix artifacts on twitch plays
+	ld a, 1
+	ld [hVBlank], a	
 	
 ; Reset audio
 	call ChannelsOff

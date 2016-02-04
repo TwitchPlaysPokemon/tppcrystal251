@@ -21,7 +21,58 @@ tc_subtitle: MACRO
 ENDM
 
 TPPCredits::
+	call Fade2Black
+	ld a, 1 ; VBlank1
+	ld [hVBlank], a
+	;ld de, MUSIC_NONE
+	;call PlayMusic
 	; TODO
+	ret
+	
+Fade2Black:
+; fade all BGPs until it's pitch black
+	ld e, 32
+.loop
+	; credits is currently in WRAM bank 5 so it's safe to do this
+	ld hl, BGPals
+	ld d, 32
+.loop2
+	ld a, [hl]
+	and $1f
+	jr z, .skip
+	dec a
+.skip
+	ld c, a
+	inc hl
+	ld a, [hld]
+	and $3
+	ld b, a
+	ld a, [hl]
+	and $e0
+	or b
+	jr z, .skip2
+	and $e0
+	sub $20
+	jr nc, .skip2
+	dec b
+.skip2
+	or c
+	ld [hli], a
+	ld a, [hl]
+	and $7c
+	jr z, .skip3
+	sub $4
+.skip3
+	or b
+	ld [hli], a
+	dec d
+	jr nz, .loop2
+	ld a, 1
+	ld [hCGBPalUpdate], a
+	call DelayFrame
+	call DelayFrame
+	dec e
+	jr nz, .loop
 	ret
 	
 TPPCreditsList:

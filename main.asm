@@ -1210,11 +1210,18 @@ TitleScreenEntrance: ; 62bc
 	sub 4
 	ld [hSCX], a
 ; Lay out a base (all lines scrolling together).
+; the original method used ByteFill which will cause
+; a race condition with the drawing routine, making
+; interlaced effect fails on odd lines
 
 	ld e, a
 	ld hl, LYOverrides
-	ld bc, 8 * 10 ; logo height
-	call ByteFill
+	ld c, 40 ; logo height / 2
+.baseloop
+	ld [hli], a
+	inc hl
+	dec c
+	jr nz, .baseloop
 	
 ; The rest is the offset from title timer
 
@@ -1273,6 +1280,8 @@ TitleScreenTimer: ; 62f6
 	ld [hl], e
 	inc hl
 	ld [hl], d
+	xor a ; restore VBlank mode to get joypad inputs
+	ld [hVBlank], a	
 	jp TitleScreenTrick
 ; 6304
 
