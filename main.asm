@@ -18216,6 +18216,28 @@ Function14a83: ; 14a83 (5:4a83)
 .asm_14ab0
 	pop de
 	ret
+	
+DeleteBox: ; 14a83 (5:4a83)
+	push de
+	ld hl, Text_DeleteBox
+	call Function1d4f
+	call YesNoBox
+	call Function1c07
+	jr c, .asm_14ab0
+	call Function14b89
+	jr c, .asm_14ab0
+	call Function14b54
+	call Function14c99
+	pop de
+	call EmptyBox
+	call Function14be6
+	call Function14b5a
+	and a
+	ret
+
+.asm_14ab0
+	pop de
+	ret
 
 Function14ab2: ; 14ab2  ask if save, if yes save and ret nc
 	call Function14b89 ; ask if save, if yes erase save and ret nc
@@ -18938,6 +18960,24 @@ Function15021: ; 15021 (5:5021)
 	call Function1517d
 	ret
 
+EmptyBox:
+	ld a, [wCurBox]
+	push af
+	ld a, e
+	ld [wCurBox], a
+	push de
+	call Function150d8
+	call DeleteBoxAddress
+	pop de
+	pop af
+	ld [wCurBox], a
+	cp e
+	ret nz
+	ld de, sBox
+	ld a, BANK(sBox)
+	call DeleteBoxAddress
+	ret
+
 Function15028: ; 15028 (5:5028)
 	ld hl, $a009
 	ld bc, $b7a
@@ -19114,6 +19154,22 @@ Function150f9: ; 150f9
 	pop hl
 	ret
 ; 1517d
+
+DeleteBoxAddress:
+	ld h, d
+	ld l, e
+	call GetSRAMBank
+	xor a
+	ld [hli], a
+	dec a
+	ld [hl], a
+	ld bc, MONS_PER_BOX
+	add hl, bc
+	ld bc, sBoxEnd - sBoxMons
+	xor a
+	call ByteFill
+	call CloseSRAM
+	ret
 
 Function1517d: ; 1517d (5:517d)
 	push hl
@@ -19294,6 +19350,9 @@ UnknownText_0x152a6: ; 0x152a6
 	text_jump UnknownText_0x1c465f
 	db "@"
 ; 0x152ab
+Text_DeleteBox:
+	text_jump _Text_DeleteBox
+	db "@"
 
 INCLUDE "engine/spawn_points.asm"
 
@@ -81289,7 +81348,7 @@ Functione2b6d: ; e2b6d (38:6b6d)
 	cp $f
 	jr z, .asm_e2bf5
 	ld b, a
-	call Functione3396
+	call GetBoxPointer
 	ld a, b
 	call GetSRAMBank
 	push hl
@@ -81441,7 +81500,7 @@ Functione2c6e: ; e2c6e (38:6c6e)
 	cp $f
 	jr z, .asm_e2cf1
 	push hl
-	call Functione3396
+	call GetBoxPointer
 	ld a, b
 	call GetSRAMBank
 	push hl
@@ -81548,7 +81607,7 @@ Functione2d30: ; e2d30 (38:6d30)
 	cp $f
 	jr z, .asm_e2db7
 	ld b, a
-	call Functione3396
+	call GetBoxPointer
 	ld a, b
 	call GetSRAMBank
 	inc hl
@@ -81963,7 +82022,7 @@ Functione2fd6: ; e2fd6 (38:6fd6)
 
 .asm_e3048
 	ld b, a
-	call Functione3396
+	call GetBoxPointer
 	ld a, b
 	call GetSRAMBank
 	push hl
@@ -82369,7 +82428,7 @@ Functione3389: ; e3389 (38:7389)
 	call CopyBytes
 	ret
 
-Functione3396: ; e3396 (38:7396)
+GetBoxPointer: ; e3396 (38:7396)
 	dec b
 	ld c, b
 	ld b, 0
@@ -82671,6 +82730,8 @@ Functione36f9: ; e36f9 (38:76f9)
 	jr z, .asm_e3745
 	cp $3
 	jr z, .asm_e3717
+	cp $4
+	jr z, .release_all
 	and a
 	ret
 
@@ -82726,21 +82787,111 @@ Functione36f9: ; e36f9 (38:76f9)
 	ret
 ; e3778 (38:7778)
 
+.release_all
+	call Functione366c
+	and a
+	jr z, .AlreadyEmpty
+	ld a, [MenuSelection]
+	dec a
+	ld e, a
+	push de
+	ld de, .PressTheButtons
+	call Functione37e3
+	ld bc, 240
+.joy_loop
+	dec bc
+	ld a, b
+	or c
+	jr z, .TimeUp
+	call DelayFrame
+	ld a, [hJoypadDown]
+	and B_BUTTON | SELECT
+	cp B_BUTTON | SELECT
+	jr nz, .joy_loop
+	ld hl, .AreYouSure
+	call Function1d4f
+	ld hl, .NoYesBox
+	call LoadMenuDataHeader
+	call Function1d81
+	call Function1c07
+	pop de
+	jr c, .refused
+	ld a, [wcfa9]
+	cp $1
+	jr z, .refused
+	callba DeleteBox
+.refused
+	call Function1c07
+	ret
+
+.AlreadyEmpty
+	ld de, .AlreadyEmptyString
+	jr .wrong
+
+.TimeUp
+	pop de
+	ld de, .TimeUpString
+.wrong
+	call Functione37e3
+	ld de, SFX_WRONG
+	call WaitPlaySFX
+	call WaitSFX
+	ld c, 50
+	call DelayFrames
+	ret
+
+.AlreadyEmptyString
+	db "Nothing's here!@"
+
+.PressTheButtons
+	db "B/SELECT: Confirm@"
+
+.TimeUpString
+	db "Took too long!@"
+	
+.AreYouSure
+	text "WARNING: You are"
+	line "about to release"
+
+	para "all the #MON"
+	line "in this PC box."
+
+	para "Once released, the"
+	line "#MON can not be"
+	cont "be recovered."
+
+	para "Proceed anyway?"
+	done
+
+.NoYesBox:
+	db $40 ; flags
+	db 07, 14 ; start coords
+	db 11, 19 ; end coords
+	dw .NoYes_MenuData2
+	db 1 ; default option
+
+.NoYes_MenuData2: ; 0x4d415
+	db $c0 ; flags
+	db 2 ; items
+	db "NO@"
+	db "YES@"
+
 	hlcoord 11, 7 ; XXX
 MenuDataHeader_0xe377b: ; 0xe377b
 	db $40 ; flags
 	db 04, 11 ; start coords
-	db 13, 19 ; end coords
+	db 15, 19 ; end coords
 	dw MenuData2_0xe3783
 	db 1 ; default option
 ; 0xe3783
 
 MenuData2_0xe3783: ; 0xe3783
 	db $80 ; flags
-	db 4 ; items
+	db 5 ; items
 	db "SWITCH@"
 	db "NAME@"
 	db "PRINT@"
+	db "EMPTY@"
 	db "QUIT@"
 ; 0xe379c
 
