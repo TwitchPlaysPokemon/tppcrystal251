@@ -1,4 +1,5 @@
 GetRematchTrainer:
+	ld a, [wdbf9]
 	ld hl, RematchCallers
 	ld de, 3
 	call IsInArray

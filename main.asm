@@ -33768,6 +33768,7 @@ RandomPhoneMon: ; 2a567
 	ld a, BANK(TrainerGroups)
 	call GetFarByte2
 	ld [wd002], a
+	ld a, BANK(TrainerGroups)
 	call GetFarHalfword
 .skip_trainer
 	dec e
