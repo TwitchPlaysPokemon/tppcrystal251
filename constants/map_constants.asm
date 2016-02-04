@@ -165,7 +165,7 @@ MAP_N_A   EQU -1
 	mapgroup ROUTE_24, 9, 10
 	mapgroup ROUTE_25, 9, 30
 	mapgroup CERULEAN_CITY, 18, 20
-	mapgroup BILLSGARDEN, 20, 20
+	mapgroup BILLS_GARDEN, 20, 20
 
 	newgroup ; Azalea Town
 	mapgroup AZALEA_POKECENTER_1F, 4, 5
