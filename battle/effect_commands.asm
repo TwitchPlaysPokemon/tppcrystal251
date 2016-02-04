@@ -10864,8 +10864,9 @@ BattleCommand9c: ; 37d34
 BattleCommand9f: ; 37d94
 ; thunderaccuracy
 
-	ld a, BATTLE_VARS_MOVE_ACCURACY
+	ld a, BATTLE_VARS_MOVE_TYPE
 	call GetBattleVarAddr
+	inc hl
 	ld a, [Weather]
 	cp WEATHER_RAIN
 	jr z, .rain
