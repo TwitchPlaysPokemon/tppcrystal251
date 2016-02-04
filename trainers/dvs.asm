@@ -46,7 +46,7 @@ GetTrainerDVs: ; 270c4
 	ret
 
 .PsychicJared
-	ld a, [CurOTMon]
+	ld a, [CurPartyMon]
 	add a
 	ld c, a
 	ld b, 0
@@ -59,12 +59,12 @@ GetTrainerDVs: ; 270c4
 	ret
 
 .JaredDVs
-	db $98, $78
-	db $8A, $A2
-	db $76, $99
-	db $A5, $87
-	db $99, $8B
-	db $8A, $92
+	db $78, $9f
+	db $f2, $6e
+	db $ab, $23
+	db $f9, $b2
+	db $1a, $38
+	db $21, $d2
 
 TrainerClassDVs: ; 270d6
 	;  Atk  Spd
