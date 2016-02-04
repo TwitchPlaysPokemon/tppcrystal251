@@ -79,8 +79,9 @@ UnknownScript_0x70057: ; 0x70057
 ; 0x70063
 
 ChargingGyarados:
-	writetext RIPGrapsText
+	writetext RIPGrampsText
 	waitbutton
+	faceperson $0, $a
 GyaradosScript_0x70063: ; 0x70063
 	loadfont
 	writetext UnknownText_0x703cb
@@ -431,7 +432,7 @@ UnknownText_0x703f8: ; 0x703f8
 
 	done
 
-RIPGrapsText:
+RIPGrampsText:
 	text "HELP!!!"
 	done
 ; 0x70421

@@ -62,6 +62,8 @@ MomElatedToSeeYouAlive:
 	spriteface $0, UP
 	loadfont
 	writetext MomText8
+	waitbutton
+	closetext
 	special RestartMapMusic
 	applymovement $2, ResetMomKrissHouse1F
 	end
