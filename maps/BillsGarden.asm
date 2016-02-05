@@ -14,7 +14,9 @@ BillsGarden_MapEventHeader:
 	db 0, 0
 
 	; warps
-	db 0
+	db 2
+	warp_def 33, 17, 3, GROUP_BILLS_HOUSE, MAP_BILLS_HOUSE
+	warp_def 33, 18, 3, GROUP_BILLS_HOUSE, MAP_BILLS_HOUSE
 
 	; coord events
 	db 0

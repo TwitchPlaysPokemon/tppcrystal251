@@ -16,9 +16,9 @@ TohjoFalls_MapEventHeader: ; 0x18db04
 
 	; warps
 	db 3
-	warp_def $f, $d, 2, GROUP_ROUTE_27, MAP_ROUTE_27
-	warp_def $f, $19, 3, GROUP_ROUTE_27, MAP_ROUTE_27
-	warp_def $1, $d, 1, GROUP_TOHJO_FALLS_BACK_ROOM, MAP_TOHJO_FALLS_BACK_ROOM
+	warp_def 27, 13, 2, GROUP_ROUTE_27, MAP_ROUTE_27
+	warp_def 27, 25, 3, GROUP_ROUTE_27, MAP_ROUTE_27
+	warp_def 3, 9, 1, GROUP_TOHJO_FALLS_BACK_ROOM, MAP_TOHJO_FALLS_BACK_ROOM
 
 	; xy triggers
 	db 0
@@ -28,6 +28,6 @@ TohjoFalls_MapEventHeader: ; 0x18db04
 
 	; people-events
 	db 1
-	person_event SPRITE_POKE_BALL, 10, 6, $1, 0, 0, -1, -1, 0, 1, 0, ItemFragment_0x18db02, EVENT_ITEM_TOHJO_FALLS_MOON_STONE
+	person_event SPRITE_POKE_BALL, 22, 6, $1, 0, 0, -1, -1, 0, 1, 0, ItemFragment_0x18db02, EVENT_ITEM_TOHJO_FALLS_MOON_STONE
 ; 0x18db21
 

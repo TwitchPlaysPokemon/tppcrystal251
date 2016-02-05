@@ -495,11 +495,19 @@ Script_pokepic: ; 0x96f16
 
 	call GetScriptByte
 	and a
+	ld b, 0
 	jr nz, .ok
 	ld a, [ScriptVar]
+	ld b, 1
 .ok
 	ld [CurPartySpecies], a
+	ld a, [ScriptVar]
+	push af
+	ld a, b
+	ld [ScriptVar], a
 	callba Function244e3
+	pop af
+	ld [ScriptVar], a
 	ret
 ; 0x96f29
 

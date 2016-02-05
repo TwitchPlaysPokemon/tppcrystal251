@@ -281,6 +281,9 @@ AZURE_POS_Y equ 89
 	pop af
 	ld [rSVBK], a
 	
+; Use VBlank1 to fix artifacts on twitch plays
+	ld a, 1
+	ld [hVBlank], a	
 	
 ; Reset audio
 	call ChannelsOff
@@ -523,7 +526,7 @@ TitleSuicuneGFX: ; 10ef46
 INCBIN "gfx/title/hosts.w32.interleave.2bpp.lz"
 ; 10f326
 
-TitleLogoGFX: ; 10f326
+TitleLogoGFX:: ; 10f326
 INCBIN "gfx/title/logo.w160.t4.2bpp.lz"
 ; 10fcee
 
@@ -531,7 +534,7 @@ TitleCrystalGFX: ; 10fcee
 INCBIN "gfx/title/crystal.w48.interleave.2bpp.lz"
 ; 10fede
 
-TitleTPPGFX:
+TitleTPPGFX::
 INCBIN "gfx/title/twitchplays.2bpp"
 TitleTPPGFXEnd
 

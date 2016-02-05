@@ -10,6 +10,15 @@ GetTrainerDVs: ; 270c4
 	jr z, .dada
 	ld a, [OtherTrainerClass]
 .okay
+	cp PSYCHIC_T
+	jr nz, .okay2
+	ld a, [OtherTrainerID]
+	cp 1
+	jr z, .PsychicNathan
+	cp 11
+	jr z, .PsychicJared
+	ld a, [OtherTrainerClass]
+.okay2
 	dec a
 	ld c, a
 	ld b, 0
@@ -30,6 +39,35 @@ GetTrainerDVs: ; 270c4
 	ld bc, $daaa
 	pop hl
 	ret
+
+.PsychicNathan
+	ld a, [hRandomAdd]
+	ld b, a
+	ld a, [hRandomSub]
+	ld c, a
+	pop hl
+	ret
+
+.PsychicJared
+	ld a, [CurPartyMon]
+	add a
+	ld c, a
+	ld b, 0
+	ld hl, .JaredDVs
+	add hl, bc
+	ld b, [hl]
+	inc hl
+	ld c, [hl]
+	pop hl
+	ret
+
+.JaredDVs
+	db $78, $9f
+	db $f2, $6e
+	db $ab, $23
+	db $f9, $b2
+	db $1a, $38
+	db $21, $d2
 
 TrainerClassDVs: ; 270d6
 	;  Atk  Spd

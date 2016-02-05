@@ -1,5 +1,6 @@
 SECTION "TPPCredits", ROMX;, BANK[CREDITS]
 
+LOGO_DELAY     EQU 300
 SCROLLER_DELAY EQU 200
 C_TC_DRAW      EQU 0
 C_TC_TITLE     EQU 1
@@ -21,7 +22,227 @@ tc_subtitle: MACRO
 ENDM
 
 TPPCredits::
+	call Fade2Black
+	;ld de, MUSIC_TPP_CREDITS
+	;call PlayMusic
+	ld a, 1 ; VBlank1
+	ld [hVBlank], a
+	ld a, $70
+	ld [hSCY], a
+	
+; -- logo scene init --
+	
+; clear the bottom attributes
+	
+	xor a
+	ld hl, AttrMap
+	ld bc, AttrMapEnd - AttrMap
+	call ByteFill
+	ld a, $9a ; clear the bottom
+	ld [hBGMapAddress + 1], a
+	ld a, 2
+	ld [hBGMapMode], a
+	ld c, 4
+	call DelayFrames
+	
+; prepare logo attributes
+
+; lines 3-4
+	ld hl, AttrMap + SCREEN_WIDTH * 1
+	ld bc, SCREEN_WIDTH * 2
+	ld a, $a
+	call ByteFill
+; line 5
+	ld hl, AttrMap + SCREEN_WIDTH * 3
+	ld bc, SCREEN_WIDTH
+	ld a, $b
+	call ByteFill
+; line 6
+	ld hl, AttrMap + SCREEN_WIDTH * 4
+	ld bc, SCREEN_WIDTH
+	ld a, $c
+	call ByteFill
+; line 7
+	ld hl, AttrMap + SCREEN_WIDTH * 5
+	ld bc, SCREEN_WIDTH
+	ld a, $d
+	call ByteFill
+; lines 8-9
+	ld hl, AttrMap + SCREEN_WIDTH * 6
+	ld bc, SCREEN_WIDTH * 2
+	ld a, $e
+	call ByteFill
+	
+; TWITCH PLAYS
+	ld hl, AttrMap + 1
+	ld bc, $0011
+	ld a, $9
+	call ByteFill
+
+; 'CRYSTAL VERSION'
+	ld hl, AttrMap + SCREEN_WIDTH * 7 + 5
+	ld bc, $000d ; length of version text
+	ld a, $9
+	call ByteFill
+	
+	ld a, $98
+	ld [hBGMapAddress + 1], a
+	ld c, 4
+	call DelayFrames
+	
+; clear the bottom tiles
+	
+	ld a, $9a
+	ld [hBGMapAddress + 1], a
+	call ClearTileMap
+	ld a, $98
+	ld [hBGMapAddress + 1], a
+	xor a
+	ld [hBGMapMode], a
+	
+; Decompress and copy logo
+	ld a, 1
+	ld [rVBK], a
+	ld hl, TitleLogoGFX
+	ld de, $d600
+	ld a, BANK(TitleLogoGFX)
+	call FarDecompress
+	ld de, $d600
+	ld hl, VTiles1
+	lb bc, BANK(TPPCredits), $8B
+	call Request2bpp
+	
+; Copy Twitch Plays
+	ld de, TitleTPPGFX
+	ld hl, VTiles2 + $100
+	lb bc, BANK(TitleTPPGFX), $9
+	call Request2bpp
+	xor a
+	ld [rVBK], a
+	
+	
 	; TODO
+	ret
+	
+Fade2Black:
+; fade all BGPs until it's pitch black
+	ld e, 32
+.loop
+	; credits is currently in WRAM bank 5 so it's safe to do this
+	ld hl, BGPals
+	ld d, 32
+.loop2
+	ld a, [hl]
+	and $1f
+	jr z, .skip
+	dec a
+.skip
+	ld c, a
+	inc hl
+	ld a, [hld]
+	and $3
+	ld b, a
+	ld a, [hl]
+	and $e0
+	or b
+	jr z, .skip2
+	and $e0
+	sub $20
+	jr nc, .skip2
+	dec b
+.skip2
+	or c
+	ld [hli], a
+	ld a, [hl]
+	and $7c
+	jr z, .skip3
+	sub $4
+.skip3
+	or b
+	ld [hli], a
+	dec d
+	jr nz, .loop2
+	ld a, 1
+	ld [hCGBPalUpdate], a
+	call DelayFrame
+	call DelayFrame
+	dec e
+	jr nz, .loop
+	ret
+	
+DecodeWLE:
+; Walle Length Encoding decoder
+	ld c, 0
+	ld b, [hl]
+	xor a
+	sla b
+	rla
+	sla b
+	rla
+	push hl
+	ld hl, .functable
+	jp Jumptable
+	
+.functable
+	dw .literal
+	dw .repeat
+	dw .increment
+	dw .end
+	
+.literal
+	pop hl
+	ld a, [hli]
+	and $3f
+	ld b, a
+.loopl
+	ld a, [hli]
+	ld [de], a
+	inc de
+	dec b
+	jr nz, .loopl
+	ld c, a
+	jr DecodeWLE
+
+.repeat
+	pop hl
+	ld a, [hli]
+	bit 5, a
+	jr z, .nonewr
+	ld c, [hl]
+	inc hl
+.nonewr
+	and $1f
+	ld b, a
+	ld a, c
+.loopr
+	ld [de], a
+	inc de
+	dec b
+	jr nz, .loopr
+	jr DecodeWLE
+
+.increment
+	pop hl
+	ld a, [hli]
+	bit 5, a
+	jr z, .nonewi
+	ld c, [hl]
+	inc hl
+.nonewi
+	and $1f
+	ld b, a
+	ld a, c
+.loopi
+	ld [de], a
+	inc de
+	inc a
+	dec b
+	jr nz, .loopi
+	ld c, a
+	jr DecodeWLE
+
+.end
+	pop hl
 	ret
 	
 TPPCreditsList:
@@ -107,13 +328,93 @@ TPPCreditsList:
 .gf			db "Game Freak@"
 .twitch		db "Twitch@"
 .you		db "and You!@"
+
+TCText_Version:
+	db "Version ",_VERSION,"@"
 	
-StripTiles: INCBIN "gfx/credits/strip_map.bin"
+TCText_Credits:
+	db "-- Credits --@"
+
+TextTransitionDelta:
+; ∆₁[f](⌊3x²/256⌋)
+	db 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1
+	db 0, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 1, 0, 1, 1, 1
+	db 0, 1, 1, 1, 1, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 2
+	db 1, 1, 1, 1, 1, 2, 1, 1, 2, 1, 1, 2, 1, 2, 1, 2
+	db 1, 2, 1, 2, 1, 2, 2, 1, 2, 2, 1, 2, 2, 2, 2, 2
+	db 1, 2, 2, 2, 2, 2, 2, 2, 2, 2, 3, 2, 2, 2, 2, 3
 	
-TPPCreditsBG1: ; TODO
+TextTransitionIn1:
+; initial position for top row transition in
+	db 144, 146, 149, 151, 154, 156, 159, 162
+	
+TextTransitionIn2:
+; initial position for middle row transition in
+	db 144, 147, 149, 151, 154, 156, 158, 161
+	
+TextTransitionIn3:
+; initial position for bottom row transition in
+	db 144, 145, 147, 149, 151, 153, 155, 157
+	
+StripBounds:
+	db   2,   6,  10,  16,  20,  24,  30,  34
+	db  38,  44,  48,  52,  58,  62,  66,  72
+	db  76,  80,  86,  90,  94, 100, 104, 108
+	db 114, 118, 122, 126, 132, 136, 140, 146
+	db 150, 154, 160, 164, 168, 174, 178, 182
+	db 188, 192, 196, 202, 206, 210, 216, 220
+	db 224, 230, 234, 238, 244, 248, 252,   0
+	
+; Tiles and attributes are encoded in WLE
+
+TPPCreditsBG1: ; TODO	
 TPPCreditsBG2: ; TODO
-TPPCreditsBG3: ; TODO
+
+TPPCreditsBG3: INCBIN "gfx/credits/bg3.w96.2bpp.lz"
+
+TPPCreditsBG3Tiles:
+	db $7f, $00, $5f, $42, $7f, $01, $5f, $5f, $5f
+	db $44, $66, $02, $01, $03, $67, $02, $01, $03
+	db $67, $02, $01, $03, $67, $02, $02, $03, $02
+	db $b0, $04, $b0, $04, $bf, $14, $9f, $82, $ff
+	
+TPPCreditsBG3Attrs:
+	db $7f, $0f, $5f, $5f, $43, $70, $0e, $50, $70, $0d, $50, $70
+	db $0c, $50, $7f, $0b, $5f, $42, $7f, $0a, $5f, $42, $ff
+
+TPPCreditsBG3Pals:
+	RGB 11, 15, 11
+	RGB 10, 17, 10
+	RGB 11, 19, 10
+	RGB 18, 25, 10
+
+	RGB 00, 00, 00
+	RGB 12, 21, 10
+	RGB 29, 23, 17
+	RGB 18, 25, 10
+
+	RGB 29, 23, 18
+	RGB 29, 24, 18
+	RGB 28, 24, 19
+	RGB 27, 24, 19
+
+	RGB 27, 24, 20
+	RGB 26, 24, 20
+	RGB 26, 24, 21
+	RGB 25, 24, 21
+
+	RGB 25, 25, 22
+	RGB 24, 25, 22
+	RGB 23, 25, 22
+	RGB 22, 25, 23
+
+	RGB 22, 26, 24
+	RGB 20, 26, 25
+	RGB 19, 26, 26
+	RGB 18, 27, 26
+	
 TPPCreditsBG4: ; TODO
 CommandsGFX: INCBIN "gfx/udlrab.1bpp"
 StripGFX: INCBIN "gfx/credits/strip.1bpp"
+StripTiles: INCBIN "gfx/credits/strip_map.wle"
 	

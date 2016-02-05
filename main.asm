@@ -1210,11 +1210,18 @@ TitleScreenEntrance: ; 62bc
 	sub 4
 	ld [hSCX], a
 ; Lay out a base (all lines scrolling together).
+; the original method used ByteFill which will cause
+; a race condition with the drawing routine, making
+; interlaced effect fails on odd lines
 
 	ld e, a
 	ld hl, LYOverrides
-	ld bc, 8 * 10 ; logo height
-	call ByteFill
+	ld c, 40 ; logo height / 2
+.baseloop
+	ld [hli], a
+	inc hl
+	dec c
+	jr nz, .baseloop
 	
 ; The rest is the offset from title timer
 
@@ -1273,6 +1280,8 @@ TitleScreenTimer: ; 62f6
 	ld [hl], e
 	inc hl
 	ld [hl], d
+	xor a ; restore VBlank mode to get joypad inputs
+	ld [hVBlank], a	
 	jp TitleScreenTrick
 ; 6304
 
@@ -26274,7 +26283,7 @@ Function24d19: ; 24d19 MonSubMenu load, process, then unload the mon sub menu. p
 
 MenuDataHeader_0x24d3f: ; 24d3f
 	db $40 ; tile backup
-	db 00, 06 ; start coords
+	db 00, 05 ; start coords
 	db 17, 19 ; end coords
 	dw $0000
 	db 1 ; default option
@@ -50730,7 +50739,7 @@ TryStep: ; 8016b
 
 	ld a, [PlayerState]
 	cp PLAYER_SURF
-	jr z, TrySurfStep
+	jp z, TrySurfStep
 	cp PLAYER_SURF_PIKA
 	jr z, TrySurfStep
 	call CheckLandPermissions ; Return nc if walking onto land and tile permissions allow it.
@@ -50792,6 +50801,7 @@ TryStep: ; 8016b
 .run
 	ld a, STEP_RUN
 	call DoStep
+	call CheckTrainerRun
 	scf
 	ret
 
@@ -51030,6 +51040,142 @@ WalkInPlace: ; 802bf
 	xor a
 	ret
 ; 802cb
+
+CheckTrainerRun:: ; 360d
+; Check if any trainer on the map sees the player.
+
+; Skip the player object.
+	ld a, 1
+	ld de, MapObjects + OBJECT_LENGTH
+
+.loop
+
+; Have them face the player if the object:
+
+	push af
+	push de
+
+; Has a sprite
+	ld hl, MAPOBJECT_SPRITE
+	add hl, de
+	ld a, [hl]
+	and a
+	jr z, .next
+
+; Is a trainer
+	ld hl, MAPOBJECT_COLOR
+	add hl, de
+	ld a, [hl]
+	and $f
+	cp $2
+	jr nz, .next
+; Is visible on the map
+	ld hl, MAPOBJECT_OBJECT_STRUCT_ID
+	add hl, de
+	ld a, [hl]
+	cp -1
+	jr z, .next
+
+; Spins around
+	ld hl, MAPOBJECT_MOVEMENT
+	add hl, de
+	ld a, [hl]
+	cp $3
+	jr z, .spinner
+	cp $a
+	jr z, .spinner
+	cp $1e
+	jr z, .spinner
+	cp $1f
+	jr nz, .next
+
+.spinner
+
+; You're within their sight range
+	ld hl, MAPOBJECT_OBJECT_STRUCT_ID
+	add hl, de
+	ld a, [hl]
+	call Function1ae5
+	call AnyFacingPlayerDistance_bc
+	ld hl, MAPOBJECT_RANGE
+	add hl, de
+	ld a, [hl]
+	cp c
+	jr c, .next
+
+; Get them to face you
+	ld a, b
+	push af
+	ld hl, MAPOBJECT_OBJECT_STRUCT_ID
+	add hl, de
+	ld a, [hl]
+	call Function1ae5
+	pop af
+	call Function1af8
+	ld hl, OBJECT_STEP_DURATION
+	add hl, bc
+	ld a, [hl]
+	cp $40
+	jr nc, .next
+	ld a, $40
+	ld [hl], a
+
+.next
+	pop de
+	ld hl, OBJECT_LENGTH
+	add hl, de
+	ld d, h
+	ld e, l
+
+	pop af
+	inc a
+	cp NUM_OBJECTS
+	jr nz, .loop
+	xor a
+	ret
+
+AnyFacingPlayerDistance_bc::
+; Returns distance in c and direction in b.
+	push de
+	call .AnyFacingPlayerDistance
+	ld b, d
+	ld c, e
+	pop de
+	ret
+
+.AnyFacingPlayerDistance
+	ld hl, OBJECT_NEXT_MAP_X ; x
+	add hl, bc
+	ld d, [hl]
+
+	ld hl, OBJECT_NEXT_MAP_Y ; y
+	add hl, bc
+	ld e, [hl]
+
+	ld a, [MapX]
+	sub d
+	ld l, OW_RIGHT
+	jr nc, .check_y
+	cpl
+	inc a
+	ld l, OW_LEFT
+.check_y
+	ld d, a
+	ld a, [MapY]
+	sub e
+	ld h, OW_DOWN
+	jr nc, .compare
+	cpl
+	inc a
+	ld h, OW_UP
+.compare
+	cp d
+	ld e, d
+	ld d, h
+	ret nc
+	ld e, a
+	ld d, l
+	ret
 
 CheckForcedMovementInput: ; 802cb
 ; When sliding on ice, input is forced to remain in the same direction.
@@ -82662,6 +82808,48 @@ String_e3668: ; e3668
 	db "@"
 ; e366c
 
+CheckBoxForEggs:
+	ld a, [wCurBox]
+	ld c, a
+	ld a, [MenuSelection]
+	dec a
+	cp c
+	jr z, .sBox
+	ld c, a
+	ld b, 0
+	ld hl, Unknown_e36a5
+	add hl, bc
+	add hl, bc
+	add hl, bc
+	ld a, [hli]
+	ld b, a
+	call GetSRAMBank
+	ld a, [hli]
+	ld h, [hl]
+	ld l, a
+	inc hl
+.loop
+	ld a, [hli]
+	cp $ff
+	jr z, .done
+	cp EGG
+	jr nz, .loop
+	call CloseSRAM
+	scf
+	ret
+
+.done
+	call CloseSRAM
+	and a
+	ret
+
+.sBox
+	ld a, BANK(sBox)
+	ld b, a
+	call GetSRAMBank
+	ld hl, sBox + 1
+	jr .loop
+
 Functione366c: ; e366c (38:766c) get MenuSelection box count, ret in 
 	ld a, [wCurBox]
 	ld c, a
@@ -82706,20 +82894,20 @@ Functione366c: ; e366c (38:766c) get MenuSelection box count, ret in
 
 Unknown_e36a5: ; e36a5
 	;  bank, address
-	dbw $02, $a000
-	dbw $02, $a450
-	dbw $02, $a8a0
-	dbw $02, $acf0
-	dbw $02, $b140
-	dbw $02, $b590
-	dbw $02, $b9e0
-	dbw $03, $a000
-	dbw $03, $a450
-	dbw $03, $a8a0
-	dbw $03, $acf0
-	dbw $03, $b140
-	dbw $03, $b590
-	dbw $03, $b9e0
+	dba sBox1
+	dba sBox2
+	dba sBox3
+	dba sBox4
+	dba sBox5
+	dba sBox6
+	dba sBox7
+	dba sBox8
+	dba sBox9
+	dba sBox10
+	dba sBox11
+	dba sBox12
+	dba sBox13
+	dba sBox14
 ; e36cf
 
 Functione36cf: ; e36cf (38:76cf)
@@ -82816,6 +83004,8 @@ Functione36f9: ; e36f9 (38:76f9)
 	call Functione366c
 	and a
 	jr z, .AlreadyEmpty
+	call CheckBoxForEggs
+	jr c, .EggFound
 	ld a, [MenuSelection]
 	dec a
 	ld e, a
@@ -82849,6 +83039,10 @@ Functione36f9: ; e36f9 (38:76f9)
 	call Function1c07
 	ret
 
+.EggFound
+	ld de, .EggFoundString
+	jr .wrong
+
 .AlreadyEmpty
 	ld de, .AlreadyEmptyString
 	jr .wrong
@@ -82873,6 +83067,9 @@ Functione36f9: ; e36f9 (38:76f9)
 
 .TimeUpString
 	db "Took too long!@"
+
+.EggFoundString
+	db "Can't release EGG!@"
 	
 .AreYouSure
 	text "WARNING: You are"

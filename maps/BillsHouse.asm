@@ -3,8 +3,15 @@ BillsHouse_MapScriptHeader: ; 0x189536
 	db 0
 
 	; callback count
-	db 0
+	db 1
+	dbw 1, .OpenSesame
 ; 0x189538
+.OpenSesame
+	checkevent EVENT_UNLOCKED_GARDEN
+	iftrue .keepunlocked
+	changeblock 3, 0, $3d
+.keepunlocked
+	return
 
 GrampsScript_0x189538: ; 0x189538
 	faceplayer
@@ -173,7 +180,11 @@ UnknownScript_0x189697: ; 0x189697
 	verbosegiveitem THUNDERSTONE, 1
 	iffalse UnknownScript_0x1896cc
 	setevent EVENT_GOT_THUNDERSTONE_FROM_BILLS_GRANDPA
+	writetext UnknownText_0x18982a
+	waitbutton
 	closetext
+	setevent EVENT_UNLOCKED_GARDEN
+	changeblock 3, 0, $33
 	end
 ; 0x1896a5
 
@@ -227,6 +238,11 @@ UnknownScript_0x1896cc: ; 0x1896cc
 	closetext
 	end
 ; 0x1896ce
+
+BillsHouseGardenDoor:
+	dw EVENT_UNLOCKED_GARDEN, .script
+.script
+	jumptext Text_gardendoorlocked
 
 UnknownText_0x1896ce: ; 0x1896ce
 	text "Hm? You know BILL?"
@@ -295,6 +311,15 @@ UnknownText_0x18982a: ; 0x18982a
 
 	para "I've lived such a"
 	line "long life."
+
+	para "Feel free to ex-"
+	line "plore out back."
+
+	para "The garden's beau-"
+	line "tiful, but it's"
+
+	para "too big for little"
+	line "old me. Hohohoho!"
 	done
 ; 0x189891
 
@@ -385,20 +410,26 @@ UnknownText_0x189ab1: ; 0x189ab1
 	done
 ; 0x189b42
 
+Text_gardendoorlocked:
+	text "It's locked<...>"
+	done
+
 BillsHouse_MapEventHeader: ; 0x189b42
 	; filler
 	db 0, 0
 
 	; warps
-	db 2
+	db 3
 	warp_def $7, $2, 1, GROUP_ROUTE_25, MAP_ROUTE_25
 	warp_def $7, $3, 1, GROUP_ROUTE_25, MAP_ROUTE_25
+	warp_def 0, 3, 1, GROUP_BILLS_GARDEN, MAP_BILLS_GARDEN
 
 	; xy triggers
 	db 0
 
 	; signposts
-	db 0
+	db 1
+	signpost 0, 3, $6, BillsHouseGardenDoor
 
 	; people-events
 	db 1

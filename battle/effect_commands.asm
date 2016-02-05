@@ -1370,7 +1370,19 @@ BattleCommand07: ; 346d2
 	call GetBattleVar
 	cp STRUGGLE
 	ret z
+	cp FUTURE_SIGHT
+	jr nz, .not_future_sight
+	ld hl, BattleMonLevel
+	ld a, [hBattleTurn]
+	and a
+	jr z, .got_level
+	ld hl, EnemyMonLevel
+.got_level
+	bit 7, [hl]
+	jr z, .asm_3473a
+	jr .stab
 
+.not_future_sight
 	ld hl, BattleMonType1
 	ld a, [hli]
 	ld b, a
@@ -3568,6 +3580,7 @@ PlayerAttackDamage: ; 352e2
 	call Function3534d
 
 	ld a, [BattleMonLevel]
+	and $7f
 	ld e, a
 	call DittoMetalPowder
 
@@ -3850,6 +3863,7 @@ EnemyAttackDamage: ; 353f6
 	call Function3534d
 
 	ld a, [EnemyMonLevel]
+	and $7f
 	ld e, a
 	call DittoMetalPowder
 
@@ -10763,10 +10777,10 @@ BattleCommand9b: ; 37d0d
 	ld [hli], a
 	ld a, [de]
 	ld [hl], a
+	pop de
 	pop hl
 	ld a, [hl]
 	ld [wc719], a
-	pop de
 	ld a, [de]
 	ld [hl], a
 	ld b, $9c ; futuresight
@@ -10824,19 +10838,19 @@ BattleCommand9c: ; 37d34
 	call BattleCommand0c ;raise sub
 	ld de, wc72b
 	ld hl, BattleMonLevel
-	push hl
 	push de
+	push hl
 	ld de, wc727 ; damage
 	ld hl, PlayerStats + 8
 	ld a, [hBattleTurn]
 	and a
 	jr z, .asm_37d77 ; 37d72 $3
-	pop de
 	pop hl
+	pop de
 	ld hl, EnemyMonLevel
 	ld de, wc72c
-	push hl
 	push de
+	push hl
 	ld hl, EnemyStats + 8
 	ld de, wc729
 .asm_37d77
@@ -10845,9 +10859,23 @@ BattleCommand9c: ; 37d34
 	inc de
 	ld a, [hl]
 	ld [de], a
-	pop de
 	pop hl
+	ld b, [hl]
+	ld de, BattleMonType1 - BattleMonLevel
+	add hl, de
+	ld a, [hli]
+	cp PSYCHIC
+	jr z, .set_stab_flag
 	ld a, [hl]
+	cp PSYCHIC
+	jr z, .set_stab_flag
+	xor a
+	jr .done_stab
+.set_stab_flag
+	ld a, $80
+.done_stab
+	or b
+	pop de
 	ld [de], a
 	jp EndMoveEffect
 .asm_37d87

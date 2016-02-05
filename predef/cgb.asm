@@ -1002,10 +1002,20 @@ Palettes_9469: ; 9469
 
 Function9499: ; 9499
 	call Function91c8
+	ld a, [ScriptVar]
+	and a
+	jr z, .tempmon
+	ld a, [CurPartyMon]
+	ld hl, PartyMon1DVs
+	ld bc, $30
+	call AddNTimes
+	jr .got_dvs
+.tempmon
 	xor a
 	ld hl, TempMonDVs
 	ld [hli], a
 	ld [hld], a
+.got_dvs
 	ld b, h
 	ld c, l
 	ld de, $d038

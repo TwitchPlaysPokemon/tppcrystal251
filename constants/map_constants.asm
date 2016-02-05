@@ -110,7 +110,7 @@ MAP_N_A   EQU -1
 	mapgroup DRAGONS_DEN_1F, 9, 5
 	mapgroup DRAGONS_DEN_B1F, 18, 20
 	mapgroup DRAGON_SHRINE, 5, 5
-	mapgroup TOHJO_FALLS, 9, 15
+	mapgroup TOHJO_FALLS, 15, 21
 	mapgroup DIGLETTS_CAVE, 18, 10
 	mapgroup UNDERGROUND, 14, 3
 	mapgroup ROCK_TUNNEL_1F, 18, 15
@@ -165,7 +165,7 @@ MAP_N_A   EQU -1
 	mapgroup ROUTE_24, 9, 10
 	mapgroup ROUTE_25, 9, 30
 	mapgroup CERULEAN_CITY, 18, 20
-	mapgroup BILLSGARDEN, 20, 20
+	mapgroup BILLS_GARDEN, 20, 20
 
 	newgroup ; Azalea Town
 	mapgroup AZALEA_POKECENTER_1F, 4, 5
@@ -832,6 +832,25 @@ OBJECT_30 EQU $1e
 OBJECT_31 EQU $1f
 OBJECT_32 EQU $20
 ; 33-39 are not used
+; map object struct
+	const_def
+	const MAPOBJECT_OBJECT_STRUCT_ID ; 0
+	const MAPOBJECT_SPRITE ; 1
+	const MAPOBJECT_Y_COORD ; 2
+	const MAPOBJECT_X_COORD ; 3
+	const MAPOBJECT_MOVEMENT ; 4
+	const MAPOBJECT_RADIUS ; 5
+	const MAPOBJECT_HOUR ; 6
+	const MAPOBJECT_TIMEOFDAY ; 7
+	const MAPOBJECT_COLOR ; 8
+	const MAPOBJECT_RANGE ; 9
+	const MAPOBJECT_SCRIPT_POINTER ; a
+	const MAPOBJECT_POINTER_HI ; b
+	const MAPOBJECT_EVENT_FLAG ; c
+	const MAPOBJECT_FLAG_HI ; d
+	const MAPOBJECT_E ; unused
+	const MAPOBJECT_F ; unused
+
 
 ; roaming constants
 ROAM_RAIKOU EQU 1

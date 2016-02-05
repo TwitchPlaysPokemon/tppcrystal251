@@ -133,11 +133,6 @@
 	charmap "'s",       $d4
 	charmap "'t",       $d5
 	charmap "'v",       $d6
-	
-	; used in intro boot
-	charmap "<AT>",     $d7
-	charmap "*",        $d8
-	charmap "<GT>",     $d9
 
 	charmap "←",        $df
 	charmap "'",        $e0

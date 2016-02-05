@@ -618,7 +618,7 @@ StandingYoungsterSprite: ; 14994
 GiovaniSprite:
 	dw GiovanniSpriteGFX
 	db $3 * $40, BANK(GiovanniSpriteGFX)
-	db WALKING_SPRITE, PAL_OW_SILVER
+	db WALKING_SPRITE, PAL_OW_BROWN
 
 SidewaysGrampsSprite:
 	dw SidewaysGrampsSpriteGFX
