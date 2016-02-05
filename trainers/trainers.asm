@@ -7539,6 +7539,7 @@ BurglarGroup:
 	db 0 ; normal
 
 	; party
+	db 25, GRIMER
 	db 27, VULPIX
 
 	db $ff ; end
@@ -8160,6 +8161,11 @@ PsychicGroup:
 	db 0 ; normal
 
 	; party
+	db 75, UNOWN
+	db 75, UNOWN
+	db 75, UNOWN
+	db 75, UNOWN
+	db 75, UNOWN
 	db 75, UNOWN
 
 	db $ff ; end
@@ -9787,38 +9793,38 @@ BlueGroup:
 	db 100, SANDSLASH
 		db EARTHQUAKE
 		db POISON_JAB
-		db SLASH
+		db SWORDS_DANCE
 		db FISSURE
 
 	db 100, ALAKAZAM
-		db DISABLE
-		db RECOVER
 		db PSYCHIC_M
 		db REFLECT
+		db DISABLE
+		db RECOVER
 
 	db 100, EXEGGUTOR
-		db SUNNY_DAY
-		db LEECH_SEED
-		db SEED_BOMB
 		db SOLARBEAM
+		db ZEN_HEADBUTT
+		db LEECH_SEED
+		db SUNNY_DAY
 
 	db 100, NINETALES
-		db FLAMETHROWER
 		db FIRE_BLAST
-		db QUICK_ATTACK
-		db EARTHQUAKE
+		db FLARE_BLITZ
+		db WILD_CHARGE
+		db NASTY_PLOT
 
 	db 100, MAGNETON
 		db THUNDER
-		db THUNDERBOLT
-		db MIND_READER
+		db FLASH_CANNON
+		db RAIN_DANCE
 		db THUNDER_WAVE
 
 	db 100, VAPOREON
-		db ROAR
 		db HYDRO_PUMP
 		db AURORA_BEAM
-		db SURF
+		db BATON_PASS
+		db GROWTH
 
 	db $ff ; end
 
