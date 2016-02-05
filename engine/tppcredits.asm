@@ -170,6 +170,81 @@ Fade2Black:
 	jr nz, .loop
 	ret
 	
+DecodeWLE:
+; Walle Length Encoding decoder
+	ld c, 0
+	ld b, [hl]
+	xor a
+	sla b
+	rla
+	sla b
+	rla
+	push hl
+	ld hl, .functable
+	jp Jumptable
+	
+.functable
+	dw .literal
+	dw .repeat
+	dw .increment
+	dw .end
+	
+.literal
+	pop hl
+	ld a, [hli]
+	and $3f
+	ld b, a
+.loopl
+	ld a, [hli]
+	ld [de], a
+	inc de
+	dec b
+	jr nz, .loopl
+	ld c, a
+	jr DecodeWLE
+
+.repeat
+	pop hl
+	ld a, [hli]
+	bit 5, a
+	jr z, .nonewr
+	ld c, [hl]
+	inc hl
+.nonewr
+	and $1f
+	ld b, a
+	ld a, c
+.loopr
+	ld [de], a
+	inc de
+	dec b
+	jr nz, .loopr
+	jr DecodeWLE
+
+.increment
+	pop hl
+	ld a, [hli]
+	bit 5, a
+	jr z, .nonewi
+	ld c, [hl]
+	inc hl
+.nonewi
+	and $1f
+	ld b, a
+	ld a, c
+.loopi
+	ld [de], a
+	inc de
+	inc a
+	dec b
+	jr nz, .loopi
+	ld c, a
+	jr DecodeWLE
+
+.end
+	pop hl
+	ret
+	
 TPPCreditsList:
 	tc_draw			TPPCreditsBG1
 	tc_title		.director
@@ -289,13 +364,57 @@ StripBounds:
 	db 150, 154, 160, 164, 168, 174, 178, 182
 	db 188, 192, 196, 202, 206, 210, 216, 220
 	db 224, 230, 234, 238, 244, 248, 252,   0
-
-StripTiles: INCBIN "gfx/credits/strip_map.bin"
 	
-TPPCreditsBG1: ; TODO
+; Tiles and attributes are encoded in WLE
+
+TPPCreditsBG1: ; TODO	
 TPPCreditsBG2: ; TODO
-TPPCreditsBG3: ; TODO
+
+TPPCreditsBG3: INCBIN "gfx/credits/bg3.w96.2bpp.lz"
+
+TPPCreditsBG3Tiles:
+	db $7f, $00, $5f, $42, $7f, $01, $5f, $5f, $5f
+	db $44, $66, $02, $01, $03, $67, $02, $01, $03
+	db $67, $02, $01, $03, $67, $02, $02, $03, $02
+	db $b0, $04, $b0, $04, $bf, $14, $9f, $82, $ff
+	
+TPPCreditsBG3Attrs:
+	db $7f, $0f, $5f, $5f, $43, $70, $0e, $50, $70, $0d, $50, $70
+	db $0c, $50, $7f, $0b, $5f, $42, $7f, $0a, $5f, $42, $ff
+
+TPPCreditsBG3Pals:
+	RGB 11, 15, 11
+	RGB 10, 17, 10
+	RGB 11, 19, 10
+	RGB 18, 25, 10
+
+	RGB 00, 00, 00
+	RGB 12, 21, 10
+	RGB 29, 23, 17
+	RGB 18, 25, 10
+
+	RGB 29, 23, 18
+	RGB 29, 24, 18
+	RGB 28, 24, 19
+	RGB 27, 24, 19
+
+	RGB 27, 24, 20
+	RGB 26, 24, 20
+	RGB 26, 24, 21
+	RGB 25, 24, 21
+
+	RGB 25, 25, 22
+	RGB 24, 25, 22
+	RGB 23, 25, 22
+	RGB 22, 25, 23
+
+	RGB 22, 26, 24
+	RGB 20, 26, 25
+	RGB 19, 26, 26
+	RGB 18, 27, 26
+	
 TPPCreditsBG4: ; TODO
 CommandsGFX: INCBIN "gfx/udlrab.1bpp"
 StripGFX: INCBIN "gfx/credits/strip.1bpp"
+StripTiles: INCBIN "gfx/credits/strip_map.wle"
 	
