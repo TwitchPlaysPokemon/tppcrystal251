@@ -652,7 +652,7 @@ BlackthornEGKRivalText3F:
 	line "that your victory"
 
 	para "was not just your"
-	cont "own doing!"
+	line "own doing!"
 
 	para "The bond you share"
 	line "with your #MON"
