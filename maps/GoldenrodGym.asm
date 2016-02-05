@@ -22,7 +22,7 @@ WhitneyScript_0x5400c: ; 0x5400c
 	faceplayer
 	checkevent EVENT_WHITNEY_REMATCH
 	iftrue WhitneyAfterRematch
-	checkevent EVENT_FIRST_TIME_BABA
+	checkevent EVENT_SET_BY_OAK_AFTER_16_BADGES
 	iftrue WhitneyRematchScript
 	checkevent EVENT_BEAT_WHITNEY
 	iftrue UnknownScript_0x54037

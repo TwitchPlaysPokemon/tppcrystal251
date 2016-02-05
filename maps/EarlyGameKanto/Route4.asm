@@ -61,4 +61,4 @@ Route4RB_MapEventHeader:
 	db 3
 	person_event SPRITE_LASS,  8, 35, $9, 0, 0, -1, -1, 8 + PAL_OW_GREEN, 2, 2, Trainer_LassCrissy, -1
 	person_event SPRITE_POKE_BALL, 8, 26, $1, 0, 0, -1, -1, 0, 1, 0, Route4RBEverstone, EVENT_ROUTE_4_EVERSTONE
-	person_event SPRITE_COOLTRAINER_M, 8, 46, $6, 0, 0, -1, -1, 8 + PAL_OW_BROWN, 0, 0, ObjectEvent, EVENT_SET_BY_OAK_AFTER_16_BADGES
+	person_event SPRITE_COOLTRAINER_M, 8, 46, $6, 0, 0, -1, -1, 8 + PAL_OW_BROWN, 0, 0, ObjectEvent, EVENT_BLUE_REMATCH

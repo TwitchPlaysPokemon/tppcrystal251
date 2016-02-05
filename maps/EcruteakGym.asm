@@ -23,8 +23,8 @@ MortyScript_0x99d58: ; 0x99d58
 	faceplayer
 	loadfont
 	checkevent EVENT_MORTY_REMATCH
-	iftrue UnknownScript_0x99d8c
-	checkevent EVENT_FIRST_TIME_BABA
+	iftrue MortyAfterRematch
+	checkevent EVENT_SET_BY_OAK_AFTER_16_BADGES
 	iftrue MortyRematchScript
 	checkevent EVENT_BEAT_MORTY
 	iftrue UnknownScript_0x99d8c
@@ -71,6 +71,8 @@ MortyAfterRematch:
 	end
 
 MortyRematchScript:
+	checkevent EVENT_FOUGHT_HO_OH
+	iffalse MortyReject
 	writetext MortyRematchTextBefore
 	waitbutton
 	closetext
@@ -89,6 +91,44 @@ UnknownScript_0x99db5: ; 0x99db5
 	closetext
 	end
 ; 0x99db7
+
+MortyReject:
+	;checkevent EVENT_SET_WHEN_FOUGHT_HO_OH
+	;iftrue
+	;checkevent EVENT_FOUGHT_SUICUNE
+	;iffalse 
+	writetext MortyRejectTowerOpen
+	waitbutton
+	closetext
+	end
+
+MortyRejectSuicuneInTower:
+	text "SUICUNE awaits,"
+	line "you shouldn't"
+	cont "waste time here."
+
+	done
+
+MortyRejectTowerClosed:
+	text "The LEGENDARY"
+	line "BEASTS hold"
+	line "the secret to the"
+	cont "return of the"
+	cont "RAINBOW #MON."
+
+	para "Bring all 3"
+	cont "together and"
+	cont "something may"
+	cont "happen."
+	done
+
+MortyRejectTowerOpen:
+	text "It landed!"
+	
+	para "You must go meet"
+	line "the LEGANDARY"
+	cont "RAINBOW #MON."
+	done
 
 UnknownScript_0x99db7: ; 0x99db7
 	if_equal $7, UnknownScript_0x99dc3
@@ -329,7 +369,7 @@ MortyRematchTextBefore:
 	line "<PLAY_G>."
 
 	para "So the legend was"
-	line "true, and Ho-oh"
+	line "true, and HO-OH"
 	cont "chose you<...>"
 
 	para "But that does not"
@@ -337,9 +377,8 @@ MortyRematchTextBefore:
 	cont "lost out on my"
 	cont "future."
 	
-	para "Show me the"
-	line "legandary power"
-	cont "I trained for!"
+	para "Show me the power"
+	line "I trained for!"
 	done
 
 MortyRematchBeatenText:
@@ -481,7 +520,7 @@ MediumMarthaBeatenText: ; 0x9a309
 UnknownText_0x9a318: ; 0x9a318
 	text "MORTY is powerful."
 	
-	para "He adapts what"
+	para "He changes what"
 	line "#MON he uses"
 	cont "depending on the"
 	cont "opponents skill."

@@ -343,8 +343,30 @@ SailorScript_MewIsland:
 	loadfont
 	checkevent EVENT_TALKED_TO_MEW_ISLAND_GUY
 	iftrue SailorScript_MewIslandMain
-	writetext MewSailorIntroduceText
+	checkevent EVENT_GOT_RESEARCH_NOTES
+	iftrue MewIslandGotNotes
+	writetext MewSailorLostMapText
+	waitbutton
+	closetext
+	end
+
+MewIslandGotNotes:
+	checkevent EVENT_SURGE_REMATCH
+	iftrue MewIslandGotBoth
+	checkevent EVENT_MEW_ISLAND_SURGE_CHALLENGE
+	iftrue MewSailorAlreadyChallenged
+	writetext MewSailorNoSurgeText
+	buttonsound
+	setevent EVENT_MEW_ISLAND_SURGE_CHALLENGE
+MewSailorAlreadyChallenged:
+	writetext MewSailorChallengeText
+	waitbutton
+	closetext
+	end
+
+MewIslandGotBoth:
 	setevent EVENT_TALKED_TO_MEW_ISLAND_GUY
+	writetext MewSailorIntroduceText
 	yesorno
 	iffalse SailorScript_ChoseNo
 	iftrue SailorScript_MewIslandAskSkip
@@ -369,6 +391,27 @@ SailorScript_ChoseNo:
 	waitbutton
 	closetext
 	end
+
+MewSailorNoSurgeText:
+	text "Oh, those RESEARCH"
+	line "NOTES have a map"
+	cont "in them that leads"
+	cont "stright there."
+
+	para "GUYANA is very"
+	line "dangerous though,"
+	cont "the wild #MON"
+	cont "give even GYM"
+	cont "LEADERS trouble."
+	done
+
+MewSailorChallengeText:
+	text "I'll need my old"
+	line "superior SURGE to"
+	cont "give you the all"
+	cont "clear before we"
+	cont "can leave."
+	done
 	
 MewSailorYesText:	
 	text "Good, follow me."
@@ -380,26 +423,32 @@ MewSailorNoText:
 	
 MewSailorAskText:	
 	text "Want me to take"
-	line "you to that near-"
-	cont "by island?"
+	line "you to MEW'S"
+	cont "ISLAND?"
+	done
+
+MewSailorLostMapText:
+	text "I once chased a"
+	line "rare #MON to a"
+	cont "nearby island."
+
+	para "But my only map"
+	line "to it got eaten"
+	cont "by a MAGIKARP<...>"
 	done
 	
 MewSailorIntroduceText:
-	text "I've heard of you!"
+	text "You managed to"
+	line "beat SURGE?"
 
-	para "You're working on"
-	line "completing your"
-	cont "#DEX, right?"
-	
-	para "I once chased a"
-	line "rare #MON to a"
-	cont "nearby island."
-	
-	para "I'm not sure if"
-	line "it was caught or"
-	cont "not. Want to"
-	cont "visit the island"
-	cont "and take a look?"
+	para "And he was going"
+	line "all out!?"
+
+	para "I guess you're up"
+	line "for this trip"
+	cont "after all."
+
+	para "Ready to set sail?"
 	done
 
 VermilionPort_MapEventHeader: ; 0x750e3

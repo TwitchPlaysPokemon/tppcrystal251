@@ -31,7 +31,7 @@ ClairScript_0x194e24: ; 0x194e24
 	loadfont
 	checkevent EVENT_CLAIR_REMATCH
 	iftrue UnknownScript_0x194e69
-	checkevent EVENT_FIRST_TIME_BABA
+	checkevent EVENT_SET_BY_OAK_AFTER_16_BADGES
 	iftrue ClairMeetMeInDragonsDenScript
 	checkflag ENGINE_RISINGBADGE
 	iftrue UnknownScript_0x194e69
@@ -61,6 +61,10 @@ ClairScript_0x194e24: ; 0x194e24
 ; 0x194e63
 
 ClairMeetMeInDragonsDenScript:
+	checkflag EVENT_BEAT_RIVAL_IN_MT_MOON
+	iffalse ClairRejectNoMtMoon
+	checkflag EVENT_BEAT_INDIGO_RIVAL_AT_LEAST_ONCE
+	iffalse ClairReject
 	writetext ClairMeetMeInDragonsDenText
 	waitbutton
 	closetext
@@ -235,6 +239,42 @@ ClairMeetMeInDragonsDenText:
 
 	para "I will meet you"
 	line "there."
+	done
+
+ClairRejectNoMtMoon:
+	text "Let me guess."
+
+	para "You want a rematch"
+	line "with me?"
+
+	para "It'll have to be"
+	line "later, I'm"
+	cont "training with the"
+	cont "elders today."
+
+	done
+
+ClairReject:
+	text "Let me guess."
+
+	para "You want a rematch"
+	line "with me?"
+
+	para "Well there's"
+	line "someone else who's"
+	cont "been obsessed with"
+	cont "beating you in"
+	cont "DRAGON'S DEN"
+	cont "lately."
+
+	para "He ran off to the"
+	line "ELITE FOUR to"
+	cont "wait for you."
+
+	para "I'll get ready"
+	line "while you deal"
+	cont "with that."
+
 	done
 
 UnknownText_0x194efa: ; 0x194efa

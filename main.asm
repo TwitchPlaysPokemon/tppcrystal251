@@ -27703,7 +27703,7 @@ ProfOaksPC: ; 0x265d3
 	ret
 ; 0x265ee
 
-ProfOaksPCBoot ; 0x265ee
+ProfOaksPCBoot: ; 0x265ee
 	ld hl, OakPCText2
 	call PrintText
 	call Rate
@@ -27750,6 +27750,13 @@ Rate: ; 0x26616
 	pop de
 	ret
 ; 0x26647
+
+RateIntoScriptVar: ;load mons caught into scriptvar
+	ld hl, PokedexCaught
+	ld b, EndPokedexCaught - PokedexCaught
+	call CountSetBits
+	ld [ScriptVar], a
+	ret
 
 ClearOakRatingBuffers: ; 0x26647
 	ld hl, StringBuffer3
@@ -33563,7 +33570,7 @@ InitRoamMons:
 	call CheckPartyLevels
 	cp 40
 	jr nc, .loadraikoulevel
-	ld a, 40
+	ld a, 65
 .loadraikoulevel
 	ld [wRoamMon1Level], a
 	ld a, GROUP_ROUTE_42
@@ -33581,7 +33588,7 @@ InitRoamMons:
 	call CheckPartyLevels
 	cp 40
 	jr nc, .loadenteilevel
-	ld a, 40
+	ld a, 65
 .loadenteilevel
 	ld [wRoamMon2Level], a
 	ld a, GROUP_ROUTE_37
@@ -33599,7 +33606,7 @@ InitRoamMons:
 	call CheckPartyLevels
 	cp 40
 	jr nc, .loadsuicunelevel
-	ld a, 40
+	ld a, 65
 .loadsuicunelevel
 	ld [wRoamMon3Level], a
 	ld a, GROUP_ROUTE_38

@@ -18,7 +18,7 @@ BlaineScript_0x1ab4fb: ; 0x1ab4fb
 	loadfont
 	checkevent EVENT_BLAINE_REMATCH
 	iftrue BlaineAfterRematch
-	checkevent EVENT_FIRST_TIME_RED
+	checkevent EVENT_SET_BY_OAK_AFTER_16_BADGES
 	iftrue BlaineRematchScript
 	checkflag ENGINE_VOLCANOBADGE
 	iftrue UnknownScript_0x1ab52b
@@ -55,6 +55,8 @@ UnknownScript_0x1ab52b: ; 0x1ab52b
 ; 0x1ab531
 
 BlaineRematchScript:
+	checkevent EVENT_GOT_RESEARCH_NOTES
+	iffalse BlaineReject
 	writetext BlaineBeforeRematchText
 	waitbutton
 	closetext
@@ -71,16 +73,59 @@ BlaineAfterRematch:
 	closetext
 	end
 
+BlaineReject:
+	writetext BlaineRejectText
+	waitbutton
+	closetext
+	spriteface $2, $3
+	spriteface $2, $1
+	spriteface $2, $2
+	spriteface $2, $1
+	spriteface $2, $3
+	spriteface $2, $2
+	writetext BlaineRejectText2
+	waitbutton
+	closetext
+	end
+
+BlaineRejectText:
+	text "My RESEARCH NOTES!"
+
+	para "They're gone!"
+
+	para "The last traces of"
+	line "CINNABAR RESEARCH"
+	cont "LAB, gone!"
+
+	para "How could this"
+	line "have happened!?"
+	done
+
+BlaineRejectText2:
+	text "You decide it"
+	line "would be unwise"
+	cont "to interupt his"
+	cont "frenzy."
+	
+	done
+
 BlaineBeforeRematchText:
-	text "You must think you"
-	line "are pretty hot to"
-	cont "make it this far." 
-	
-	para "Your next"
-	line "opponent?"
-	
-	para "It's none other"
-	line "than me!"
+	text "MY RESEARCH NOTES!"
+
+	para "You got them back!"
+
+	para "Thanks for brining"
+	line "these here, they"
+	cont "are the last "
+	cont "copies of the map"
+	cont "to MEW's only"
+	cont "known home."
+
+	para "But I heard you"
+	line "want to test"
+	cont "yourself against"
+	cont "the hottest"
+	cont "flames I have."
 	
 	para "Let's get cookin'!"
 	done
@@ -93,6 +138,15 @@ BlaineRematchBeatenText:
 	done
 
 BlaineAfterRematchText:
+	text "I burnt out<...>" 
+
+	para "I'll take my NOTES"
+	line "back, but leave"
+	cont "you with a map to"
+	cont "GUYANA, the only"
+	cont "known habitat of"
+	cont "MEW, as thanks."
+	
 	text "I'll never give"
 	line "up until the day"
 	cont "I've rebuilt the"

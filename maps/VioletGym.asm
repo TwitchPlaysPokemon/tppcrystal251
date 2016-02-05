@@ -11,7 +11,7 @@ FalknerScript_0x683c2: ; 0x683c2
 	loadfont
 	checkevent EVENT_FALKNER_REMATCH
 	iftrue FalknerAfterRematch
-	checkevent EVENT_FIRST_TIME_BABA
+	checkevent EVENT_SET_BY_OAK_AFTER_16_BADGES
 	iftrue FalknerRematchScript
 	checkevent EVENT_BEAT_FALKNER
 	iftrue UnknownScript_0x683ec
@@ -49,6 +49,12 @@ UnknownScript_0x683ec: ; 0x683ec
 ; 0x68412
 
 FalknerRematchScript:
+	checkevent EVENT_FOUGHT_ARTICUNO
+	iffalse FalknerReject
+	checkevent EVENT_FOUGHT_ZAPDOS
+	iffalse FalknerReject
+	checkevent EVENT_FOUGHT_MOLTRES
+	iffalse FalknerReject
 	writetext FalknerRematchTextBefore
 	waitbutton
 	closetext
@@ -64,7 +70,32 @@ FalknerAfterRematch:
 	waitbutton
 	closetext
 	end
-	
+
+FalknerReject:
+	writetext FalknerRejectText
+	waitbutton
+	closetext
+	end
+
+FalknerRejectText:
+	text "ARTICUNO,"
+
+	para "ZAPDOS,"
+
+	para "MOLTRES,"
+
+	para "if you want to"
+	line "fill the #DEX,"
+	cont "you will have to"
+	cont "tame these"
+	cont "LEGENDARY BIRDS."
+
+	para "Once you have"
+	line "proven yourself to"
+	cont "them I will accept"
+	cont "accept your"
+	cont "challenge."
+	done
 
 UnknownScript_0x68412: ; 0x68412
 	writetext UnknownText_0x68735

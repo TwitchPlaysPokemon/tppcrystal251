@@ -11,7 +11,7 @@ BlueScript_0x9aa26: ; 0x9aa26
 	loadfont
 	checkevent EVENT_BLUE_REMATCH
 	iftrue BlueAfterRematch
-	checkevent EVENT_FIRST_TIME_BABA
+	checkevent EVENT_SET_BY_OAK_AFTER_16_BADGES
 	iftrue BlueRematchScript
 	checkflag ENGINE_EARTHBADGE
 	iftrue UnknownScript_0x9aa51
@@ -19,18 +19,7 @@ BlueScript_0x9aa26: ; 0x9aa26
 	waitbutton
 	closetext
 	winlosstext UnknownText_0x9abae, $0000
-	checkevent EVENT_GOT_CHARMANDER_FROM_OAK
-	iftrue BlueScript_TeamVaporeon
-	checkevent EVENT_GOT_BULBASAUR_FROM_OAK
-	iftrue BlueScript_TeamFlareon
-	loadtrainer BLUE, 3
-	jump BlueScript_StartBattle
-BlueScript_TeamVaporeon:
 	loadtrainer BLUE, 1
-	jump BlueScript_StartBattle
-BlueScript_TeamFlareon:
-	loadtrainer BLUE, 2
-BlueScript_StartBattle:
 	startbattle
 	returnafterbattle
 	setevent EVENT_BEAT_BLUE
@@ -50,22 +39,13 @@ BlueScript_StartBattle:
 
 
 BlueRematchScript:
+	special RateIntoScriptVar
+	if_less_than 151, BlueReject
 	writetext BlueRematchTextBefore
 	waitbutton
 	closetext
 	winlosstext BlueRematchBeatenText, $0000
-	checkevent EVENT_GOT_CHARMANDER_FROM_OAK
-	iftrue BlueScript_TeamVaporeonRe
-	checkevent EVENT_GOT_BULBASAUR_FROM_OAK
-	iftrue BlueScript_TeamFlareonRe
-	loadtrainer BLUE, 6
-	jump BlueScript_StartBattleRe
-BlueScript_TeamVaporeonRe:
-	loadtrainer BLUE, 4
-	jump BlueScript_StartBattleRe
-BlueScript_TeamFlareonRe:
-	loadtrainer BLUE, 5
-BlueScript_StartBattleRe:
+	loadtrainer BLUE, 2
 	startbattle
 	returnafterbattle
 	setevent EVENT_BLUE_REMATCH
@@ -77,9 +57,37 @@ BlueAfterRematch:
 	closetext
 	end
 
+BlueReject:
+	writetext BlueRejectText
+	waitbutton
+	closetext
+	end
+
+BlueRejectText:
+	text "3 months ago<..>"
+
+	para "I had a RIVAL."
+
+	para "He was the only"
+	line "TRAINER who could"
+	cont "match me in"
+	cont "#MON battle."
+
+	para "If you think you"
+	line "are my equal,"
+	cont "match his greatest"
+	cont "feat."
+
+	para "Catch 151 species"
+	line "of #MON!"
+	done
+
 BlueRematchTextBefore:
-	text "Thanks for coming" 
-	line "to lose to me!"
+	text "You caught plenty"
+	line "of #MON I see."
+
+	para "Just as I"
+	line "expected!"
 	
 	para "This is what I,"
 	line "Kanto's top-level"
@@ -104,7 +112,11 @@ BlueAfterRematchText:
 	para "You have to be"
 	line "more dedicated!"
 	
-	para "Smell ya later!"
+	para "I'll call ahead"
+	line "and tell the"
+	cont "CERULEAN CAVE"
+	cont "GUARD you can"
+	cont "handle MEWTWO."
 	done
 
 ; 0x9aa51

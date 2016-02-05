@@ -42,6 +42,8 @@ UnknownScript_0x1a2892: ; 0x1a2892
 	end
 
 BrockRematchScript:
+	checkevent EVENT_ACTIVATED_MIGUEL_FOSSILS
+	iffalse BrockReject
 	writetext BrockBeforeRematchText
 	waitbutton
 	closetext
@@ -59,6 +61,27 @@ BrockAfterRematch:
 	closetext
 	end
 ; 0x1a2898
+
+BrockReject:
+	writetext BrockRejectText
+	waitbutton
+	closetext
+	end
+
+BrockRejectText:
+	text "<PLAY_G>?"
+
+	para "Are you interested"
+	line "in FOSSIL #MON?"
+
+	para "You should visit"
+	line "MT. MOON, there's"
+	cont "someone digging"
+	cont "for rare fossils"
+	cont "that can be used"
+	cont "to bring back"
+	cont "ancient #MON."
+	done
 
 BrockBeforeRematchText:
 	text "So, you're here."

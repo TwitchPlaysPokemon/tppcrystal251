@@ -11,7 +11,7 @@ ChuckScript_0x9d60f: ; 0x9d60f
 	loadfont
 	checkevent EVENT_CHUCK_REMATCH
 	iftrue ChuckAfterRematch
-	checkevent EVENT_FIRST_TIME_BABA
+	checkevent EVENT_SET_BY_OAK_AFTER_16_BADGES
 	iftrue ChuckRematchScript
 	checkevent EVENT_BEAT_CHUCK
 	iftrue UnknownScript_0x9d656
@@ -64,6 +64,8 @@ UnknownScript_0x9d656: ; 0x9d656
 ; 0x9d67b
 
 ChuckRematchScript:
+	checkevent EVENT_BEAT_BLACKBELT_KIYO
+	iffalse ChuckReject
 	writetext ChuckRematchTextBefore
 	waitbutton
 	closetext
@@ -79,6 +81,35 @@ ChuckAfterRematch:
 	waitbutton
 	closetext
 	end
+
+ChuckReject:
+	writetext ChuckRejectText
+	waitbutton
+	closetext
+	end
+
+ChuckRejectText:
+	text "Hey, <PLAY-G>!"
+	line "Good to see you"
+	cont "again!"
+
+	para "I'm training for"
+	line "our rematch, but"
+	cont "kinda overdid it<...>"
+
+	para "While my #MON"
+	line "rest up you should"
+	cont "see KIYO, he's"
+	cont "in MT.MORTAR,"
+	cont "training."
+	
+	para "He's stong enough"
+	line "to give anyone a"
+	cont "work out!"
+	cont "WAHAHAHAHA!!!"
+
+	done
+
 
 UnknownScript_0x9d67b: ; 0x9d67b
 	writetext UnknownText_0x9d930

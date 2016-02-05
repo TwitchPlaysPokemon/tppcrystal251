@@ -11,7 +11,7 @@ PryceScript_0x199a9e: ; 0x199a9e
 	loadfont
 	checkevent EVENT_PRYCE_REMATCH
 	iftrue PryceAfterRematch
-	checkevent EVENT_FIRST_TIME_BABA
+	checkevent EVENT_SET_BY_OAK_AFTER_16_BADGES
 	iftrue PryceRematchScript
 	checkevent EVENT_BEAT_PRYCE
 	iftrue UnknownScript_0x199ac8
@@ -59,6 +59,14 @@ PryceRematchScript:
 	returnafterbattle
 	setevent EVENT_PRYCE_REMATCH
 	loadfont ;fallthrough
+	writetext PryceSilverWingText
+	buttonsound
+	verbosegiveitem SILVER_WING, 1
+	writetext PryceAfterSilverWingText
+	waitbutton
+	closetext
+	end
+
 
 PryceAfterRematch:
 	writetext PryceAfterRematchText
@@ -313,15 +321,43 @@ PryceRematchBeatenText:
 	line "luck has run out."
 	done
 
-PryceAfterRematchText:
+PryceSilverWingText:
 	text "Yes, yes…"
 	
 	para "It was an"
 	line "impressive match."
 
-	para "You should be able"
+	para "I want you to"
+	line "have this."
+
+	done
+
+PryceAfterSilverWingText:
+	text "I found this at"
+	line "the end of my"
+	cont "adventures."
+	
+	para "But my time had"
+	line "come to settle"
+	cont "down."
+
+	para "Since then, you"
+	line "are the only"
+	cont "trainer I have"
+	cont "seen capable of"
+	cont "using this."
+
+	para "Please finish"
+	line "what I could not."
+
+	done
+
+PryceAfterRematchText:
+	text "You should be able"
 	line "to overcome"
 	cont "anything."
+
+	para "Even LUGIA."
 
 	done
 

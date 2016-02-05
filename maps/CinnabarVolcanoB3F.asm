@@ -99,7 +99,21 @@ CinnabarVolcanoB3F_CheckBlocks_Not1_Not2_Not3_Not4:
 	return
 
 SimonScript1_CinnabarVolcanoB3F:
-	jumptextfaceplayer SimonText1_CinnabarVolcanoB3F
+	faceplayer
+	loadfont
+	checkevent EVENT_GOT_RESEARCH_NOTES
+	iftrue SimonScript2_CinnabarVolcanoB3F
+	writetext SimonText1_CinnabarVolcanoB3F
+	setevent EVENT_GOT_RESEARCH_NOTES
+	waitbutton
+	closetext
+	end
+
+SimonScript2_CinnabarVolcanoB3F
+	writetext SimonText2_CinnabarVolcanoB3F
+	waitbutton
+	closetext
+	end
 
 SimonCheck_CinnabarVolcanoB3F1:
 	checkevent EVENT_BEAT_SIMON_1
@@ -183,8 +197,27 @@ SimonText1_CinnabarVolcanoB3F:
 	
 	para "mansion, and no"
 	line "trace of him."
+
+	para "All I have left"
+	line "are these old"
+	cont "RESEARCH NOTES"
+	cont "I swiped from"
+	cont "BLAINE on the"
+	cont "way in."
+
+	para "Take them back."
+	
+	para "Just take them."
+
+	para "<PLAY_G> was"
+	line "given RESEARCH"
+	cont "NOTES."
 	done
 
+SimonText2_CinnabarVolcanoB3F:
+	text "I want to be"
+	line "alone for a while."
+	done
 ; <text goes here>
 
 CinnabarVolcanoB3F_MapEventHeader:

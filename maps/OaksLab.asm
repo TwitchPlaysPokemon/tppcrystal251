@@ -136,12 +136,6 @@ UnknownText_0x19b4fc: ; 0x19b4fc
 	line "that you can go to"
 	cont "MT.SILVER."
 
-	para "MT.SILVER is a big"
-	line "mountain that is"
-
-	para "home to many wild"
-	line "#MON."
-
 	para "It's too dangerous"
 	line "for your average"
 
@@ -152,11 +146,26 @@ UnknownText_0x19b4fc: ; 0x19b4fc
 	line "exception in your"
 	cont "case, <PLAY_G>."
 
-	para "Go up to INDIGO"
-	line "PLATEAU. You can"
+	para "The gate there is"
+	line "NORTH of ROUTE 22."
 
-	para "reach MT.SILVER"
-	line "from there."
+	para "Also, now you have"
+	line "proven a truly"
+	cont "remarkable TRAINER"
+	cont "the GYM LEADERS"
+	cont "are looking to"
+	cont "challenge you as"
+	cont "one of thier own."
+
+	para "They will not"
+	line "hold back,"
+	cont "but they may"
+	cont "request more than"
+	cont "battles, so keep"
+	cont "exploring the"
+	cont "world and filling"
+	cont "the #DEX."
+
 	done
 ; 0x19b6a2
 
