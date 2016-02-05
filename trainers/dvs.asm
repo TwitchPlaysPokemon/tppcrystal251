@@ -41,7 +41,10 @@ GetTrainerDVs: ; 270c4
 	ret
 
 .PsychicNathan
-	ld bc, $7215
+	ld a, [hRandomAdd]
+	ld b, a
+	ld a, [hRandomSub]
+	ld c, a
 	pop hl
 	ret
 

@@ -1,5 +1,6 @@
 SECTION "TPPCredits", ROMX;, BANK[CREDITS]
 
+LOGO_DELAY     EQU 300
 SCROLLER_DELAY EQU 200
 C_TC_DRAW      EQU 0
 C_TC_TITLE     EQU 1
@@ -22,10 +23,104 @@ ENDM
 
 TPPCredits::
 	call Fade2Black
+	;ld de, MUSIC_TPP_CREDITS
+	;call PlayMusic
 	ld a, 1 ; VBlank1
 	ld [hVBlank], a
-	;ld de, MUSIC_NONE
-	;call PlayMusic
+	ld a, $70
+	ld [hSCY], a
+	
+; -- logo scene init --
+	
+; clear the bottom attributes
+	
+	xor a
+	ld hl, AttrMap
+	ld bc, AttrMapEnd - AttrMap
+	call ByteFill
+	ld a, $9a ; clear the bottom
+	ld [hBGMapAddress + 1], a
+	ld a, 2
+	ld [hBGMapMode], a
+	ld c, 4
+	call DelayFrames
+	
+; prepare logo attributes
+
+; lines 3-4
+	ld hl, AttrMap + SCREEN_WIDTH * 1
+	ld bc, SCREEN_WIDTH * 2
+	ld a, $a
+	call ByteFill
+; line 5
+	ld hl, AttrMap + SCREEN_WIDTH * 3
+	ld bc, SCREEN_WIDTH
+	ld a, $b
+	call ByteFill
+; line 6
+	ld hl, AttrMap + SCREEN_WIDTH * 4
+	ld bc, SCREEN_WIDTH
+	ld a, $c
+	call ByteFill
+; line 7
+	ld hl, AttrMap + SCREEN_WIDTH * 5
+	ld bc, SCREEN_WIDTH
+	ld a, $d
+	call ByteFill
+; lines 8-9
+	ld hl, AttrMap + SCREEN_WIDTH * 6
+	ld bc, SCREEN_WIDTH * 2
+	ld a, $e
+	call ByteFill
+	
+; TWITCH PLAYS
+	ld hl, AttrMap + 1
+	ld bc, $0011
+	ld a, $9
+	call ByteFill
+
+; 'CRYSTAL VERSION'
+	ld hl, AttrMap + SCREEN_WIDTH * 7 + 5
+	ld bc, $000d ; length of version text
+	ld a, $9
+	call ByteFill
+	
+	ld a, $98
+	ld [hBGMapAddress + 1], a
+	ld c, 4
+	call DelayFrames
+	
+; clear the bottom tiles
+	
+	ld a, $9a
+	ld [hBGMapAddress + 1], a
+	call ClearTileMap
+	ld a, $98
+	ld [hBGMapAddress + 1], a
+	xor a
+	ld [hBGMapMode], a
+	
+; Decompress and copy logo
+	ld a, 1
+	ld [rVBK], a
+	ld hl, TitleLogoGFX
+	ld de, $d600
+	ld a, BANK(TitleLogoGFX)
+	call FarDecompress
+	ld de, $d600
+	ld hl, VTiles1
+	lb bc, BANK(TPPCredits), $8B
+	call Request2bpp
+	
+; Copy Twitch Plays
+	ld de, TitleTPPGFX
+	ld hl, VTiles2 + $100
+	lb bc, BANK(TitleTPPGFX), $9
+	call Request2bpp
+	xor a
+	ld [rVBK], a
+	
+	
 	; TODO
 	ret
 	
