@@ -104,7 +104,7 @@ OlivineRocket1Script: ; 0x1a88ba
 	loadfont
 	writetext OlivineRocketText1
 	waitbutton
-	spriteface $6, $3
+	spriteface $6, RIGHT
 	closetext
 	end
 
@@ -113,12 +113,9 @@ OlivineRocket2Script: ; 0x1a88ba
 	loadfont
 	writetext OlivineRocketText2
 	waitbutton
-	spriteface $7, $1
+	spriteface $7, UP
 	closetext
 	end
-
-SteelixScript: ; 0x1a88ba
-	jumptextfaceplayer SteelixText
 
 SailorScript_0x1a88ba: ; 0x1a88ba
 	jumptextfaceplayer UnknownText_0x1a8b71
@@ -211,21 +208,18 @@ MovementData_0x1a88f7: ; 0x1a88f7
 ; 0x1a88fa
 
 OlivineRocketText1:
-	text "Outta the way you"
+	text "Hey! Move it, you"
 	line "stupid hunk of"
-	cont "iron."
+	cont "metal!"
 	done
 
 OlivineRocketText2:
 	text "Hey kid, can you"
 	line "run in there and"
-	cont "grab the #MON"
-	cont "at the top of the"
-	cont "LIGHTHOUSE for us?"
-	done
 
-SteelixText:
-	text "your not meant to be here."
+	para "grab the #MON"
+	line "at the top of the"
+	cont "LIGHTHOUSE for us?"
 	done
 
 UnknownText_0x1a88fa: ; 0x1a88fa
@@ -275,7 +269,7 @@ UnknownText_0x1a8a58: ; 0x1a8a58
 	cont "night."
 
 	para "But in the pitch-"
-	line "black of night,"
+	line "black of night, "
 
 	para "the sea is even"
 	line "more treacherous!"
@@ -291,7 +285,7 @@ UnknownText_0x1a8a58: ; 0x1a8a58
 UnknownText_0x1a8b04: ; 0x1a8b04
 	text "That thing you"
 	line "have--it's a #-"
-	cont "GEAR, right? Wow,"
+	cont "GEAR, right? Wow, "
 	cont "that's cool."
 	done
 ; 0x1a8b41
@@ -398,8 +392,8 @@ OlivineCity_MapEventHeader: ; 0x1a8cce
 	person_event SPRITE_STANDING_YOUNGSTER, 17, 24, $3, 0, 0, -1, -1, 8 + PAL_OW_RED, 0, 0, StandingYoungsterScript_0x1a88a6, -1
 	person_event SPRITE_SAILOR, 25, 21, $2, 1, 1, -1, -1, 0, 0, 0, SailorScript_0x1a88ba, -1
 	person_event SPRITE_OLIVINE_RIVAL, 15, 14, $6, 0, 0, -1, -1, 0, 0, 0, ObjectEvent, EVENT_SILVER_IN_OLIVINE_CITY
-	person_event SPRITE_ROCKET, 32, 32, 9,0,0,-1,-1,0,0,0,OlivineRocket1Script,EVENT_CLEARED_ROCKET_HIDEOUT
-	person_event SPRITE_ROCKET, 33, 33, 7,0,0,-1,-1,0,0,0,OlivineRocket2Script,EVENT_CLEARED_ROCKET_HIDEOUT
-	person_event SPRITE_EKANS, 32, 33, 6,0,0,-1,-1,0,0,0,SteelixScript,EVENT_CLEARED_ROCKET_HIDEOUT
+	person_event SPRITE_ROCKET, 32, 32, $9, 0, 0, -1, -1, 0, 0, 0, OlivineRocket1Script, EVENT_CLEARED_ROCKET_HIDEOUT
+	person_event SPRITE_ROCKET, 33, 33, $7, 0, 0, -1, -1, 0, 0, 0, OlivineRocket2Script, EVENT_CLEARED_ROCKET_HIDEOUT
+	person_event SPRITE_EKANS, 32, 33, $16, 0, 0, -1, -1, 0, 0, 0, ObjectEvent, EVENT_CLEARED_ROCKET_HIDEOUT
 ; 0x1a8d72
 
