@@ -110,7 +110,7 @@ MAP_N_A   EQU -1
 	mapgroup DRAGONS_DEN_1F, 9, 5
 	mapgroup DRAGONS_DEN_B1F, 18, 20
 	mapgroup DRAGON_SHRINE, 5, 5
-	mapgroup TOHJO_FALLS, 9, 15
+	mapgroup TOHJO_FALLS, 15, 21
 	mapgroup DIGLETTS_CAVE, 18, 10
 	mapgroup UNDERGROUND, 14, 3
 	mapgroup ROCK_TUNNEL_1F, 18, 15
