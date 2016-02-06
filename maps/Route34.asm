@@ -902,8 +902,8 @@ YoungsterIanSeenText: ; 0x78425
 	cont "items."
 	
 	para "They make my"
-	line "#MON even"
-	cont "more powerful!"
+	line "#MON even more"
+	cont "powerful!"
 	done
 ; 0x78447
 
@@ -1029,8 +1029,8 @@ PokefanmBrandonBeatenText: ; 0x786e1
 	cont "next time<...>"
 	
 	para "SON: But these"
-	line "aren't my"
-	cont "#MON, dad<...>"
+	line "aren't my #MON,"
+	cont "DAD<...>"
 	
 	para "DAD: <...>"
 	done
@@ -1039,14 +1039,13 @@ PokefanmBrandonBeatenText: ; 0x786e1
 UnknownText_0x786fc: ; 0x786fc
 	text "<...>"
 
-	para "<...><...>."
+	para "<...><...>"
 	
 	para "I happen to like"
 	line "cute baby #MON!"
 	
 	para "It's nothing to"
-	line "be ashamed"
-	cont "about<...>"
+	line "be ashamed about!"
 	done
 ; 0x78743
 
@@ -1108,7 +1107,7 @@ UnknownText_0x78866: ; 0x78866
 	para "Like lightinig!"
 
 	para "For ¥5000 your"
-	line "mon can too."
+	line "#MON can too."
 	cont "Well?"
 	done
 ; 0x78890
