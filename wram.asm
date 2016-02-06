@@ -2154,8 +2154,8 @@ wSSAnne3Trigger::                            ds 1
 wSSAnne5Trigger::                            ds 1
 wKrissHouse1FTrigger::                       ds 1
 wBlackthornCityTrigger::                     ds 1
-
-	ds 18
+wLavenderTownTrigger::                       ds 1
+	ds 17
 
 
 SECTION "Events", WRAMX, BANK [1]

@@ -116,5 +116,6 @@ ENDM
 	trigger_def S_S_ANNE_5,                             wSSAnne5Trigger
 	trigger_def KRISS_HOUSE_1F,                         wKrissHouse1FTrigger
 	trigger_def BLACKTHORN_CITY,                        wBlackthornCityTrigger
+	trigger_def LAVENDER_TOWN,                          wLavenderTownTrigger
 	db $ff
 ; 4d15b
