@@ -706,7 +706,7 @@ CeruleanCityRB_MapEventHeader: ; 0x18445d
 	person_event SPRITE_SLOWPOKE, 31, 23, $1, 0, 0, -1, -1, 0, 0, 0, CeruleanCityRBSlowbroScript, EVENT_CERULEAN_CITY_RB_STOPPED_ROBBERY
 	person_event SPRITE_SLOWPOKE, 30, 23, $1, 0, 0, -1, -1, 0, 0, 0, CeruleanCityRBSlowbroScript, EVENT_CERULEAN_CITY_RB_NOT_YET_ROBBERY
 	person_event SPRITE_LASS, 31, 13, $5, 0, 2, -1, -1, 0, 0, 0, CeruleanCityRBLass2Script, -1
-	person_event SPRITE_COOLTRAINER_M, 16, 8, $6, 0, 0, -1, -1, 8 + PAL_OW_BROWN, 0, 0, ObjectEvent, EVENT_SET_BY_OAK_AFTER_16_BADGES
+	person_event SPRITE_COOLTRAINER_M, 16, 8, $6, 0, 0, -1, -1, 8 + PAL_OW_BROWN, 0, 0, ObjectEvent, EVENT_BLUE_REMATCH
 	person_event SPRITE_ROCKET, 16, 32, $7, 0, 0, -1, -1, 0, 0, 0, CeruleanCityRBRocketScript, EVENT_CERULEAN_RB_ROCKET_1
 	person_event SPRITE_GRAMPS, 16, 31, $3, 0, 0, -1, -1, 0, 0, 0, CeruleanCityRBGrampsScript, EVENT_CERULEAN_RB_ROCKET_2
 ; 0x1844fc

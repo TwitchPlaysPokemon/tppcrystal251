@@ -195,7 +195,7 @@ Item2Attributes:
 	dn 5, 0 ; party menu
 
 ; POISON GUARD
-	dw 100 ; price
+	dw 5000 ; price
 	db HELD_PREVENT_POISON ; effect
 	db 0 ; param
 	db CANT_SELECT
@@ -355,7 +355,7 @@ Item2Attributes:
 	dn 0, 6 ; ball
 
 ; BURN GUARD
-	dw 100 ; price
+	dw 6000 ; price
 	db HELD_PREVENT_BURN ; effect
 	db 0 ; param
 	db CANT_SELECT
@@ -715,7 +715,7 @@ Item2Attributes:
 	dn 0, 0 ; can't use
 
 ; SLEEP GUARD
-	dw 100 ; price
+	dw 7000 ; price
 	db HELD_PREVENT_SLEEP ; effect
 	db 0 ; param
 	db CANT_SELECT
@@ -795,7 +795,7 @@ Item2Attributes:
 	dn 0, 0 ; can't use
 
 ; PARLYZ GUARD
-	dw 100 ; price
+	dw 5000 ; price
 	db HELD_PREVENT_PARALYZE ; effect
 	db 0 ; param
 	db CANT_SELECT
@@ -955,7 +955,7 @@ Item2Attributes:
 	dn 0, 0 ; can't use
 	
 ; CONFUSEGUARD
-	dw 100 ; price
+	dw 5000 ; price
 	db HELD_PREVENT_CONFUSE ; effect
 	db 0 ; param
 	db CANT_SELECT

@@ -72,7 +72,7 @@ BugsyScript_0x18ec1e: ; 0x18ec1e
 	loadfont
 	checkevent EVENT_BUGSY_REMATCH
 	iftrue BugsyAfterRematch
-	checkevent EVENT_FIRST_TIME_BABA
+	checkevent EVENT_SET_BY_OAK_AFTER_16_BADGES
 	iftrue BugsyRematchScript
 	checkevent EVENT_BEAT_BUGSY
 	iftrue UnknownScript_0x18ec48
@@ -116,6 +116,8 @@ BugsyAfterRematch:
 	end
 
 BugsyRematchScript:
+	checkevent EVENT_NATIONAL_PARK_ROUTE_36_GATE_313
+	iffalse BugsyReject
 	writetext BugsyRematchTextBefore
 	waitbutton
 	closetext
@@ -134,6 +136,12 @@ UnknownScript_0x18ec71: ; 0x18ec71
 	closetext
 	end
 ; 0x18ec73
+
+BugsyReject:
+	writetext BugsyRejectText
+	waitbutton
+	closetext
+	end
 
 UnknownScript_0x18ec73: ; 0x18ec73
 	if_equal $7, UnknownScript_0x18ec7f
@@ -376,33 +384,56 @@ UnknownText_0x18ed0b: ; 0x18ed0b
 
 BugsyRematchTextBefore:
 	text "Nice to see you"
-	line "again!"
+	line "again! I saw you"
+	cont "win the BUG"
+	cont "CATCHING CONTEST."
 
 	para "I've been honing"
 	line "my knowledge of"
-	cont "bug #MON."
+	cont "bug #MON in the"
+	cont "meantime."
 
 	para "Let me demonstrate"
 	line "what I've learned!"
 	done
 
 BugsyRematchBeatenText:
-	text "Even after"
-	line "years of study,"
-	cont "I cannot solve"
-	cont "#MON battles."
-	
+	text "Aw, that's the"
+	line "end of it<...>"	
 	done
 
 BugsyAfterRematchText:
-	para "You beat me at"
-	line "my best,"
+	text "I lost to your"
+	line "passion for"
+	cont "training."
 
-	para "I need to"
-	line "find a new"
-	cont "theory on #MON"
-	cont "battles."
+	para "I need to do"
+	line "some more"
+	cont "research."
 	done
+
+BugsyRejectText:
+	text "Hi, <PLAY_G>!"
+	
+	para "We have "
+	line "BUG CATCHING" 
+	cont "CONTESTS every day"
+	cont "at NATIONAL PARK."
+	
+	para "I have won the"
+	line "CONTEST many" 
+	cont "times, so I won't"
+	cont "participate."
+
+	para "But you should"
+	line "try it."
+	
+	para "I'm sure you"
+	line "can win!"
+	
+	done
+
+
 
 UnknownText_0x18edae: ; 0x18edae
 	text "Whoa, amazing!"

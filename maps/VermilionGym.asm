@@ -26,7 +26,7 @@ SurgeScript_0x1920a5: ; 0x1920a5
 	loadfont
 	checkevent EVENT_SURGE_REMATCH
 	iftrue SurgeAfterRematch
-	checkevent EVENT_FIRST_TIME_BABA
+	checkevent EVENT_SET_BY_OAK_AFTER_16_BADGES
 	iftrue SurgeRematchScript
 	checkflag ENGINE_THUNDERBADGE
 	iftrue UnknownScript_0x1920d9
@@ -222,7 +222,13 @@ UnknownScript_0x19213b: ; 0x19213b
 ; 0x192142
 
 SurgeRematchScript:
+	checkevent EVENT_MEW_ISLAND_SURGE_CHALLENGE
+	iftrue TextBranchSurgeChallenge
 	writetext SurgeRematchTextBefore
+	jump TextBranchNoSurgeChallenge
+TextBranchSurgeChallenge:
+	writetext SurgeRematchTextBeforeChallenge
+TextBranchNoSurgeChallenge:
 	waitbutton
 	closetext
 	winlosstext SurgeRematchBeatenText, $0000
@@ -233,7 +239,13 @@ SurgeRematchScript:
 	loadfont ;fallthrough
 
 SurgeAfterRematch:
+	checkevent EVENT_MEW_ISLAND_SURGE_CHALLENGE
+	iftrue TextBranchSurgeChallenge2
 	writetext SurgeAfterRematchText
+	jump TextBranchNoSurgeChallenge2
+TextBranchSurgeChallenge2:
+	writetext SurgeAfterRematchTextChallenge
+TextBranchNoSurgeChallenge2:
 	waitbutton
 	closetext
 	end
@@ -248,6 +260,27 @@ SurgeRematchTextBefore:
 	
 	done
 
+SurgeRematchTextBeforeChallenge:
+	text "What's up?"
+	line "I'm doing great!"
+
+	para "You want to go"
+	line "chasing MEW?"
+
+	para "That's no place for"
+	line "kids to just go"
+	cont "wandering around!"
+
+	para "Tell ya what, you"
+	line "prove youself on"
+	cont "the battlefield"
+	cont "and I'll give the"
+	cont "all clear."
+
+	para "Ten-hut!"
+	done
+
+
 SurgeRematchBeatenText:
 	text "Arrrgh!"
 	line "You are strong!"
@@ -261,6 +294,16 @@ SurgeAfterRematchText:
 	line "back to camp and"
 	cont "brush up on my"
 	cont "training."
+
+	done
+
+SurgeAfterRematchTextChallenge:
+	text "You are very"
+	line "strong!" 
+	
+	para "You should be able"
+	line "to handle GUYANA"
+	cont "no problem!"
 
 	done
 
@@ -336,7 +379,7 @@ UnknownText_0x192291: ; 0x192291
 
 SurgeLastText:
 	text "That's WILD"
-	line "CHARGE"
+	line "CHARGE."
 
 	para "An electrifying"
 	line "strike for brave" 

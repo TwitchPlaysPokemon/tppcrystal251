@@ -133,6 +133,7 @@ UnknownText_0x7e355: ; 0x7e355
 MortarGiftPCText
 	text "HITMONTOP was sent"
 	line "to Bill's PC."
+	done
 
 UnknownText_0x7e36a: ; 0x7e36a
 	text "HITMONTOP is a"

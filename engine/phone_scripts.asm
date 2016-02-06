@@ -180,10 +180,23 @@ BillPhoneScript1: ; 0xbcfc5
 
 .full ; 0xbd002
 	farwritetext BillPhoneFullText
-	end
+	jump CheckForBoxes
 
 BillPhoneScript2: ; 0xbd007
 	farwritetext BillPhoneNewlyFullText
+CheckForBoxes:
+	special BillBoxSwitchCheck
+	if_equal 0, BillPhoneWholePCFull
+	farwritetext BillWantNextBox
+	yesorno
+	iffalse EndBillConversation
+	special BillBoxSwitch
+EndBillConversation:
+	waitbutton
+	end
+
+BillPhoneWholePCFull
+	farwritetext BillWholePCFullText
 	waitbutton
 	end
 

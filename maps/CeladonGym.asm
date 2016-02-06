@@ -11,7 +11,7 @@ ErikaScript_0x72a6a: ; 0x72a6a
 	loadfont
 	checkevent EVENT_ERIKA_REMATCH
 	iftrue ErikaAfterRematch
-	checkevent EVENT_FIRST_TIME_BABA
+	checkevent EVENT_SET_BY_OAK_AFTER_16_BADGES
 	iftrue ErikaRematchScript
 	checkflag ENGINE_RAINBOWBADGE
 	iftrue UnknownScript_0x72a9b
@@ -48,6 +48,8 @@ UnknownScript_0x72aae: ; 0x72aae
 ; 0x72ab4
 
 ErikaRematchScript:
+	checkevent EVENT_FOUGHT_CELEBI
+	iffalse ErikaReject
 	writetext ErikaRematchTextBefore
 	waitbutton
 	closetext
@@ -64,6 +66,51 @@ ErikaAfterRematch:
 	waitbutton
 	closetext
 	end
+
+ErikaReject:
+	checkevent EVENT_BEAT_SIMON_5 ;if haven't beat simon
+	iffalse ErikaRejectNoGSBall
+	writetext ErikaRejectGSBall
+	waitbutton
+	closetext
+	end
+	
+ErikaRejectNoGSBall:
+	text "How are you?"
+
+	para "I'm worried about"
+	line "BILL, he went to"
+	cont "fix something in"
+	cont "the BATTLE TENT,"
+	cont "but never left<...>"
+
+	para "A battle?"
+	line "I'm sorry but it"
+	cont "should wait until"
+	cont "we know BILL is"
+	cont "safe."
+	done
+	
+ErikaRejectGSBall:
+	text "Oh, what an"
+	line "unusual item you"
+	cont "have."
+
+	para "A gold and silver"
+	line "#BALL<...>"
+
+	para "I heard of legends"
+	line "of a remarkable"
+	cont "Grass #MON that"
+	cont "resides in such"
+	cont "a BALL."
+
+	para "You should take it"
+	line "to AZALEA TOWN and"
+	cont "ask KURT about how"
+	cont "to open it."
+
+	done
 
 ErikaRematchTextBefore:
 	text "What wonderful"

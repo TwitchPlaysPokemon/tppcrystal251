@@ -60,18 +60,14 @@ UnknownScript_0x180e74: ; 0x180e74
 LanceScript_0x180e7b: ; 0x180e7b
 	spriteface $2, $2
 	loadfont
+	checkevent EVENT_OAK_DEFEATED
+	iftrue LanceRematch
 	writetext UnknownText_0x180f67
 	waitbutton
 	closetext
 	winlosstext UnknownText_0x1810a4, $0000
 	setlasttalked $2
-	checkevent EVENT_ENABLE_DIPLOMA_PRINTING
-	iftrue LanceRematch
 	loadtrainer CHAMPION, 1
-	jump StartBattleLance
-LanceRematch:
-	loadtrainer CHAMPION, 2
-StartBattleLance:
 	startbattle
 	reloadmapmusic
 	returnafterbattle
@@ -97,6 +93,7 @@ StartBattleLance:
 	writetext UnknownText_0x1811dd
 	waitbutton
 	closetext
+AfterLanceFight:
 	appear $4
 	applymovement $4, MovementData_0x180f46
 	follow $3, $4
@@ -104,41 +101,20 @@ StartBattleLance:
 	stopfollow
 	spriteface $4, $1
 	spriteface $2, $2
-	; checkevent EVENT_ENABLE_DIPLOMA_PRINTING
-	; iffalse Script_NoOakBattle
-	; loadfont
-	; special HealParty
-	; writetext Text_OakBeforeBattle
-	; waitbutton
-	; closetext
-	; winlosstext OakBeatenText, $0000
-	; checkevent EVENT_GOT_CHIKORITA_FROM_ELM
-	; iftrue Script_OakHasBlastoise
-	; checkevent EVENT_GOT_CYNDAQUIL_FROM_ELM
-	; iftrue Script_OakHasVenusaur
-	; loadtrainer POKEMON_PROF, OAK_2
-	; jump Script_StartOakBattle
-; Script_OakHasBlastoise:
-	; loadtrainer POKEMON_PROF, OAK_1
-	; jump Script_StartOakBattle
-; Script_OakHasVenusaur:
-	; loadtrainer POKEMON_PROF, OAK_3
-; Script_StartOakBattle:
-	; startbattle
-	; returnafterbattle
-	; setevent EVENT_BEAT_OAK
-	; playmusic MUSIC_BEAUTY_ENCOUNTER, $10
-	; jump Script_returnafteroakbattle
-; Script_NoOakBattle:
 	loadfont
+	checkflag EVENT_OAK_DEFEATED
+	iftrue CheckDexForMtSilver
 	writetext UnknownText_0x18121b
+AfterOakTalk:
 	waitbutton
 	closetext
-Script_returnafteroakbattle:
 	applymovement $3, MovementData_0x180f4c
 	spriteface $0, $2
 	loadfont
+	checkflag EVENT_OAK_DEFEATED
+	iftrue MaryKnowsYoureChamp
 	writetext UnknownText_0x18134b
+NoInterviewsEver:
 	waitbutton
 	closetext
 	applymovement $2, MovementData_0x180f4f
@@ -168,9 +144,156 @@ Script_returnafteroakbattle:
 	pause 15
 	warpfacing $1, GROUP_HALL_OF_FAME, MAP_HALL_OF_FAME, $4, $d
 	end
+
+LanceRematch:
+	writetext LanceBeforeRematchText
+	waitbutton
+	closetext
+	winlosstext UnknownText_0x1810a4, $0000
+	setlasttalked $2
+	loadtrainer CHAMPION, 2
+	startbattle
+	reloadmapmusic
+	returnafterbattle
+	setevent EVENT_BEAT_CHAMPION_LANCE
+	setevent EVENT_BEAT_ELITE_REMATCH
+	loadfont
+	writetext LanceAfterRematch
+	waitbutton
+	closetext
+	jump AfterLanceFight
+
+
+CheckDexForMtSilver:
+	checkevent EVENT_ALLOWED_INTO_ROUTE_28
+	iftrue AfterOakTalk
+	checkevent EVENT_OAK_KNOWS_DEX_FULL
+	iftrue OakAllowsRoute28
+	writetext OakRematchText
+	buttonsound
+	writetext OakCheckDexAtHoF
+	special ProfOaksPCBoot
+	special RateIntoScriptVar
+	if_less_than 251, DexNotFull
+	writetext OakFullDex
+	buttonsound
+	writetext OakCongrats
+	jump AfterOakTalk
+
+DexNotFull:
+	writetext OakDexNotFull
+	jump AfterOakTalk
+
+OakAllowsRoute28:
+	writetext OakRematchText
+	buttonsound
+	writetext OakCongrats
+	jump AfterOakTalk
+
+MaryKnowsYoureChamp:
+	writetext MarySecondText
+	jump NoInterviewsEver
 ; 0x180f33
 
+LanceBeforeRematchText:
+	text "There's no need"
+	line "for words now."
 	
+	para "We will battle to"
+	line "determine who is"
+	cont "the stronger of"
+	cont "the two of us."
+
+	para "I, LANCE, accept"
+	line "your challenge!"
+
+	done
+
+LanceAfterRematch:
+	text "Just as I"
+	line "expected."
+	
+	para "You and your"
+	line "#MON make"
+	cont "quite a team."
+
+	para "As a Trainer,"
+	line "you will continue"
+	cont "to grow strong"
+	cont "with your #MON."
+
+	done
+
+OakRematchText:
+	text "PROF.OAK: Ah,"
+	line "<PLAY_G>!"
+
+	para "Congratulations"
+	line "on being able to"
+	cont "prove yourself"
+	cont "amongst the best"
+	cont "#MON TRAINERS"
+	cont "in the world."
+
+OakCheckDexAtHoF:
+	text "May I ask how your"
+	line "#DEX is coming"
+	cont "along?"
+
+	done
+
+OakFullDex: 
+	text "Wow!"
+	line "The #DEX is"
+	cont "complete!"
+
+OakCongrats:
+	text "You're a true"
+	line "#MON master!"
+
+	para "Tell you what,"
+	line "<PLAY_G>. I'll make"
+
+	para "arrangements so"
+	line "that you can go to"
+	cont "MT.SILVER."
+
+	para "It's too dangerous"
+	line "for your average"
+
+	para "trainer, so it's"
+	line "off limits. But"
+
+	para "we can make an"
+	line "exception in your"
+	cont "case, <PLAY_G>."
+
+	para "The gate there is"
+	line "NORTH of ROUTE 22."
+
+	para "Just remember to"
+	line "get a DIPLOMA"
+	cont "from CELADON as"
+	cont "proof of your"
+	cont "accomplishment."
+
+	done
+
+OakDexNotFull:
+	text "It seems your"
+	line "adventure is not"
+	cont "over yet."
+
+	para "Once you fill the"
+	line "#DEX come see"
+	cont "me in my LAB."
+
+	done 
+
+MarySecondText:
+	text "MARY: Let's inter-"
+	line "view the CHAMPION!"
+	done
 
 MovementData_0x180f33: ; 0x180f33
 	step_up

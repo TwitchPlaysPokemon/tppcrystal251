@@ -13,8 +13,14 @@ UnknownScript_0x19b3c7: ; 0x19b3c7
 OakScript_0x19b3c8: ; 0x19b3c8
 	faceplayer
 	loadfont
+	checkevent EVENT_ALLOWED_INTO_ROUTE_28
+	iftrue OakAfterAll
+	checkevent EVENT_BEAT_ELITE_REMATCH
+	iftrue OakAfterE4
+	checkevent EVENT_OAK_DEFEATED
+	iftrue OakAfterDefeat
 	checkevent EVENT_SET_BY_OAK_AFTER_16_BADGES
-	iftrue UnknownScript_0x19b3ea
+	iftrue RematchCheck
 	checkevent EVENT_TALKED_TO_OAK_IN_HIS_LAB
 	iftrue UnknownScript_0x19b3dd
 	writetext UnknownText_0x19b427
@@ -27,15 +33,192 @@ UnknownScript_0x19b3dd: ; 0x19b3dd
 	jump UnknownScript_0x19b408
 ; 0x19b3ea
 
+RematchCheck:
+	checkevent EVENT_BROCK_REMATCH
+	iffalse UnknownScript_0x19b3ea
+	checkevent EVENT_MISTY_REMATCH
+	iffalse UnknownScript_0x19b3ea
+	checkevent EVENT_SURGE_REMATCH
+	iffalse UnknownScript_0x19b3ea
+	checkevent EVENT_ERIKA_REMATCH
+	iffalse UnknownScript_0x19b3ea
+	checkevent EVENT_JANINE_REMATCH
+	iffalse UnknownScript_0x19b3ea
+	checkevent EVENT_SABRINA_REMATCH
+	iffalse UnknownScript_0x19b3ea
+	checkevent EVENT_BLAINE_REMATCH
+	iffalse UnknownScript_0x19b3ea
+	checkevent EVENT_BLUE_REMATCH
+	iffalse UnknownScript_0x19b3ea
+	checkevent EVENT_FALKNER_REMATCH
+	iffalse UnknownScript_0x19b3ea
+	checkevent EVENT_BUGSY_REMATCH
+	iffalse UnknownScript_0x19b3ea
+	checkevent EVENT_WHITNEY_REMATCH
+	iffalse UnknownScript_0x19b3ea
+	checkevent EVENT_MORTY_REMATCH
+	iffalse UnknownScript_0x19b3ea
+	checkevent EVENT_PRYCE_REMATCH
+	iffalse UnknownScript_0x19b3ea
+	checkevent EVENT_CHUCK_REMATCH
+	iffalse UnknownScript_0x19b3ea
+	checkevent EVENT_JASMINE_REMATCH
+	iffalse UnknownScript_0x19b3ea
+	checkevent EVENT_CLAIR_REMATCH
+	iffalse UnknownScript_0x19b3ea
+	writetext OakBeforeBattle
+	winlosstext OakDefeated, $0000
+	loadtrainer POKEMON_PROF, 1
+	startbattle
+	returnafterbattle
+	writetext OakAfterBattle
+	setflag EVENT_OAK_DEFEATED
+	waitbutton
+	closetext
+	end
+
+OakBeforeBattle:
+	text "To defeat all 16"
+	line "GYM LEADERS"
+	cont "without handicaps"
+	cont "is a rare feat."
+
+	para "The ELITE FOUR"
+	line "saw your potential"
+	cont "and asked me to"
+	cont "test you."
+
+	para "So far you have"
+	line "passed, but there"
+	cont "is one more"
+	cont "opponent you must"
+	cont "defeat."
+
+	para "Do not hold back."
+
+	done
+
+OakAfterBattle:
+	text "Well done."
+	line "That was an"
+	cont "amazing battle."
+
+	para "The ELITE FOUR"
+	line "challenge you,"
+	cont "This time using"
+	cont "their strongest"
+	cont "teams."
+
+	para "They await at"
+	line "INDIGO PLATEAU."
+
+	done
+
+OakDefeated:
+	text "Wow, I'm"
+	line "speachless!"
+
+	para "You are as good as"
+	line "they say you are."
+
+	done
+
+OakAfterDefeatText:
+	text "The ELITE FOUR"
+	line "await at INDIGO"
+	cont "PLATEAU."
+
+	para "Good luck."
+	done
+
+OakAfterDefeat: ; 0x19b3ea
+	writetext UnknownText_0x19b4a2
+	checkevent EVENT_OAK_KNOWS_DEX_FULL
+	iftrue SkipfterDefeatDexCheck
+	special ProfOaksPCBoot
+	special RateIntoScriptVar
+	if_equal 251, OakLabFullDex
+SkipfterDefeatDexCheck:
+	writetext OakAfterDefeatText
+	waitbutton
+	closetext
+	end
+
+OakAfterE4:
+	writetext UnknownText_0x19b4a2
+	special ProfOaksPCBoot
+	special RateIntoScriptVar
+	if_equal 251, OakLabFullDex
+	writetext OakAfterE4Text
+	waitbutton
+	closetext
+	end
+
+OakAfterE4Text:
+	text "Keep it up, soon"
+	para "you'll have caught"
+	cont "them all."
+	done
+
+OakAfterAll:
+	writetext OakAfterAllText
+	waitbutton
+	closetext
+	end
+
+OakAfterAllText:
+	text "The path to"
+	line "MT.SILVER lies"
+	cont "NORTH of ROUTE 22."
+	done
+
 UnknownScript_0x19b3ea: ; 0x19b3ea
 	writetext UnknownText_0x19b4a2
 	waitbutton
+	checkevent EVENT_OAK_KNOWS_DEX_FULL
+	iftrue SkipDexCheck
 	special ProfOaksPCBoot
+	special RateIntoScriptVar
+	if_equal 251, OakLabFullDex
+SkipDexCheck:
 	writetext UnknownText_0x19b4c8
 	waitbutton
 	closetext
 	end
 ; 0x19b3f7
+
+OakLabFullDex:
+	checkevent EVENT_BEAT_ELITE_REMATCH
+	iftrue OakLabUnlock28
+	writetext OakDexButNotE4Text
+	setevent EVENT_OAK_KNOWS_DEX_FULL
+	waitbutton
+	closetext
+	end
+
+OakDexButNotE4Text:
+	text "Whoa! A perfect"
+	line "#DEX! I've"
+
+	para "dreamt about this!"
+	line "Congratulations!"
+
+	para "Remember to"
+	line "get a DIPLOMA"
+	cont "from CELADON as"
+	cont "proof of your"
+	cont "accomplishment."
+	done
+
+OakLabUnlock28:
+	farwritetext OakFullDex
+	buttonsound
+	farwritetext OakCongrats
+	setevent EVENT_ALLOWED_INTO_ROUTE_28
+	waitbutton
+	closetext
+	end
+
 
 UnknownScript_0x19b3f7: ; 0x19b3f7
 	writetext UnknownText_0x19b4fc
@@ -112,9 +295,10 @@ UnknownText_0x19b4a2: ; 0x19b4a2
 ; 0x19b4c8
 
 UnknownText_0x19b4c8: ; 0x19b4c8
-	text "If you're in the"
-	line "area, I hope you"
-	cont "come visit again."
+	text "Come back once you"
+	line "defeat all 16 GYM"
+	cont "LEADER'S at thier"
+	cont "best."
 	done
 ; 0x19b4fc
 
@@ -129,34 +313,21 @@ UnknownText_0x19b4fc: ; 0x19b4fc
 	para "I was right in my"
 	line "assessment of you."
 
-	para "Tell you what,"
-	line "<PLAY_G>. I'll make"
+	para "Also, now you have"
+	line "proven a truly"
+	cont "remarkable TRAINER"
+	cont "the GYM LEADERS"
+	cont "are looking to"
+	cont "challenge you as"
+	cont "one of thier own."
 
-	para "arrangements so"
-	line "that you can go to"
-	cont "MT.SILVER."
+	para "They will not"
+	line "hold back,"
+	cont "but if you manage"
+	cont "to defeat them all"
+	cont "come back and see"
+	cont "me."
 
-	para "MT.SILVER is a big"
-	line "mountain that is"
-
-	para "home to many wild"
-	line "#MON."
-
-	para "It's too dangerous"
-	line "for your average"
-
-	para "trainer, so it's"
-	line "off limits. But"
-
-	para "we can make an"
-	line "exception in your"
-	cont "case, <PLAY_G>."
-
-	para "Go up to INDIGO"
-	line "PLATEAU. You can"
-
-	para "reach MT.SILVER"
-	line "from there."
 	done
 ; 0x19b6a2
 

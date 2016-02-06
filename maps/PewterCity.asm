@@ -26,21 +26,12 @@ BugCatcherScript_0x18c00c: ; 0x18c00c
 GrampsScript_0x18c00f: ; 0x18c00f
 	faceplayer
 	loadfont
-	checkevent EVENT_GOT_SILVER_WING
-	iftrue UnknownScript_0x18c023
-	writetext UnknownText_0x18c0c6
-	buttonsound
-	verbosegiveitem SILVER_WING, 1
-	setevent EVENT_GOT_SILVER_WING
-	closetext
-	end
-; 0x18c023
-
-UnknownScript_0x18c023: ; 0x18c023
 	writetext UnknownText_0x18c1aa
 	waitbutton
 	closetext
 	end
+; 0x18c023
+
 ; 0x18c029
 
 MapPewterCitySignpost0Script: ; 0x18c029
@@ -185,27 +176,27 @@ MuseumDoorText:
 	line "locked<...>"
 	done
 
-UnknownText_0x18c0c6: ; 0x18c0c6
-	text "Ah, you came all"
-	line "the way out here"
-	cont "from JOHTO?"
+;UnknownText_0x18c0c6: ; 0x18c0c6
+;	text "Ah, you came all"
+;	line "the way out here"
+;	cont "from JOHTO?"
 
-	para "That brings back"
-	line "memories. When I"
+;	para "That brings back"
+;	line "memories. When I"
 
-	para "was young, I went"
-	line "to JOHTO to train."
+;	para "was young, I went"
+;	line "to JOHTO to train."
 
-	para "You remind me so"
-	line "much of what I was"
+;	para "You remind me so"
+;	line "much of what I was"
 
-	para "like as a young"
-	line "man."
+;	para "like as a young"
+;	line "man."
 
-	para "Here. I want you"
-	line "to have this item"
-	cont "I found in JOHTO."
-	done
+;	para "Here. I want you"
+;	line "to have this item"
+;	cont "I found in JOHTO."
+;	done
 ; 0x18c1aa
 
 UnknownText_0x18c1aa: ; 0x18c1aa
@@ -215,6 +206,14 @@ UnknownText_0x18c1aa: ; 0x18c1aa
 
 	para "Those are the joys"
 	line "of travel."
+
+	para "I remember when"
+	line "PRYCE found that"
+	cont "rare item<...>"
+
+	para "Had I not stopped"
+	line "I would have"
+	cont "found it instead<...>"
 	done
 ; 0x18c1ff
 

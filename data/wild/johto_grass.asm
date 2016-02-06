@@ -405,7 +405,7 @@
 
 	db GROUP_RUINS_OF_ALPH_INNER_CHAMBER, MAP_RUINS_OF_ALPH_INNER_CHAMBER
 	db $0f ; encounter rates: morn/day/nite
-	db 48
+	db 25
 	db $00
 ;morning
 		db UNOWN ;30
@@ -1142,7 +1142,7 @@
 
 	db GROUP_WHIRL_ISLAND_NW, MAP_WHIRL_ISLAND_NW
 	db $0f ; encounter rates: morn/day/nite
-	db 55
+	db 73
 	db $02
 	; morn
 		db PUPITAR ;20
@@ -1198,7 +1198,7 @@
 
 	db GROUP_WHIRL_ISLAND_NE, MAP_WHIRL_ISLAND_NE
 	db $0f ; encounter rates: morn/day/nite
-	db 55
+	db 73
 	db $02
 	; morn
 		db PUPITAR ;20
@@ -1254,7 +1254,7 @@
 
 	db GROUP_WHIRL_ISLAND_SW, MAP_WHIRL_ISLAND_SW
 	db $0f ; encounter rates: morn/day/nite
-	db 55
+	db 73
 	db $02
 	; morn
 		db PUPITAR ;20
@@ -1310,7 +1310,7 @@
 
 	db GROUP_WHIRL_ISLAND_CAVE, MAP_WHIRL_ISLAND_CAVE
 	db $0f ; encounter rates: morn/day/nite
-	db 55
+	db 73
 	db $02
 	; morn
 		db PUPITAR ;20
@@ -1366,7 +1366,7 @@
 
 	db GROUP_WHIRL_ISLAND_SE, MAP_WHIRL_ISLAND_SE
 	db $0f ; encounter rates: morn/day/nite
-	db 55
+	db 73
 	db $02
 	; morn
 		db PUPITAR ;20
@@ -1422,7 +1422,7 @@
 
 	db GROUP_WHIRL_ISLAND_B1F, MAP_WHIRL_ISLAND_B1F
 	db $0f ; encounter rates: morn/day/nite
-	db 60
+	db 74
 	db $01
 	; morn
 		db LARVITAR ;20
@@ -1478,7 +1478,7 @@
 
 	db GROUP_WHIRL_ISLAND_B2F, MAP_WHIRL_ISLAND_B2F
 	db $0f ; encounter rates: morn/day/nite
-	db 65
+	db 75
 	db $03
 	; morn
 		db MARILL ;15
@@ -1537,7 +1537,7 @@
 
 	db GROUP_SILVER_CAVE_ROOM_1, MAP_SILVER_CAVE_ROOM_1
 	db $0f ; encounter rates: morn/day/nite
-	db 100
+	db 88
 	db $03
 ;morning
 		db STEELIX ;15
@@ -1593,7 +1593,7 @@
 
 	db GROUP_SILVER_CAVE_ROOM_2, MAP_SILVER_CAVE_ROOM_2
 	db $0f ; encounter rates: morn/day/nite
-	db 100
+	db 88
 	db $03
 ;morning
 		db FERALIGATR ;15
@@ -1649,7 +1649,7 @@
 
 	db GROUP_SILVER_CAVE_ROOM_3, MAP_SILVER_CAVE_ROOM_3
 	db $0f ; encounter rates: morn/day/nite
-	db 100
+	db 88
 	db $03
 ;morning
 		db TYPHLOSION ;15
@@ -1705,7 +1705,7 @@
 
 	db GROUP_SILVER_CAVE_ITEM_ROOMS, MAP_SILVER_CAVE_ITEM_ROOMS
 	db $0f ; encounter rates: morn/day/nite
-	db 100
+	db 88
 	db $03
 ;morning
 		db TYPHLOSION ;15
@@ -2769,7 +2769,7 @@
 
 	db GROUP_SILVER_CAVE_OUTSIDE, MAP_SILVER_CAVE_OUTSIDE
 	db $19 ; encounter rates: morn/day/nite
-	db 100
+	db 86
 	db $03
 ;morning
 		db VILEPLUME ;15

@@ -911,6 +911,8 @@ InitializeEventsScript: ; 0xbc3db
 	setevent EVENT_S_S_ANNE_7_ROCKETS
 	setevent EVENT_S_S_ANNE_NOT_YET_DEPARTED
 	setevent EVENT_SIMON_IN_PEWTER_CITY
+	setevent EVENT_LAVENDER_HAUNTER
+	setevent EVENT_SCARED_LASS
 	return
 ; 0xbc574
 

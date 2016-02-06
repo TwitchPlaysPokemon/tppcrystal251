@@ -11,7 +11,7 @@ JasmineScript_0x9c12f: ; 0x9c12f
 	loadfont
 	checkevent EVENT_JASMINE_REMATCH
 	iftrue JasmineAfterRematch
-	checkevent EVENT_FIRST_TIME_BABA
+	checkevent EVENT_SET_BY_OAK_AFTER_16_BADGES
 	iftrue JasmineRematchScript
 	checkevent EVENT_BEAT_JASMINE
 	iftrue UnknownScript_0x9c159

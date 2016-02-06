@@ -11,7 +11,7 @@ SabrinaScript_0x189c2e: ; 0x189c2e
 	loadfont
 	checkevent EVENT_SABRINA_REMATCH
 	iftrue SabrinaAfterRematch
-	checkevent EVENT_FIRST_TIME_BABA
+	checkevent EVENT_SET_BY_OAK_AFTER_16_BADGES
 	iftrue SabrinaRematchScript
 	checkflag ENGINE_MARSHBADGE
 	iftrue UnknownScript_0x189c65
@@ -49,6 +49,8 @@ UnknownScript_0x189c65: ; 0x189c65
 ; 0x189c6b
 
 SabrinaRematchScript:
+	checkevent EVENT_FIRST_TIME_BABA
+	iffalse SabrinaReject
 	writetext SabrinaBeforeRematchText
 	waitbutton
 	closetext
@@ -62,6 +64,12 @@ SabrinaRematchScript:
 
 SabrinaAfterRematch:
 	writetext SabrinaAfterRematchText
+	waitbutton
+	closetext
+	end
+
+SabrinaReject:
+	writetext SabrinaRejectText
 	waitbutton
 	closetext
 	end
@@ -210,6 +218,30 @@ UnknownScript_0x189cd8: ; 0x189cd8
 	jumpstd gymstatue2
 ; 0x189cdf
 
+SabrinaRejectText:
+	text "I got a vision."
+
+	para "You were battling"
+	line "an unknown foe"
+	cont "while sleeping"
+	cont "in PALLET TOWN."
+
+	para "I do not know"
+	line "the details, but"
+	cont "a vision this"
+	cont "clear must be"
+	cont "true."
+
+	para "The vision keeps"
+	line "repeating, I"
+	cont "cannot battle like"
+	cont "this."
+	
+	para "You must accept"
+	line "her challenge."
+
+	done
+
 SabrinaBeforeRematchText:
 	text "I can sense great"
 	line "ambition in you."
@@ -226,7 +258,8 @@ SabrinaBeforeRematchText:
 	para "Let us test my"
 	line "prediction and see"
 	cont "if I am right."
-	cont "Shall we?"
+
+	para "Shall we?"
 	
 	done
 
@@ -311,6 +344,7 @@ UnknownText_0x189ead: ; 0x189ead
 
 	para "I forsee this"
 	line "helping."
+	done
 
 AfterGIveRestText:
 	text "TM44 grants REST"

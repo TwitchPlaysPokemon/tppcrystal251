@@ -87,6 +87,7 @@ INCLUDE "maps/RadioTower1F.asm"
 INCLUDE "maps/RadioTower2F.asm"
 INCLUDE "maps/RadioTower3F.asm"
 INCLUDE "maps/RadioTower4F.asm"
+INCLUDE "maps/OaksLab.asm"
 
 
 SECTION "Map Scripts 4", ROMX
@@ -230,9 +231,6 @@ INCLUDE "maps/ViridianGym.asm"
 INCLUDE "maps/ViridianNicknameSpeechHouse.asm"
 INCLUDE "maps/TrainerHouse1F.asm"
 INCLUDE "maps/TrainerHouseB1F.asm"
-INCLUDE "maps/ViridianMart.asm"
-INCLUDE "maps/ViridianPokeCenter1F.asm"
-
 
 SECTION "Map Scripts 12", ROMX
 
@@ -271,6 +269,8 @@ INCLUDE "maps/BrunosRoom.asm"
 INCLUDE "maps/KarensRoom.asm"
 INCLUDE "maps/LancesRoom.asm"
 INCLUDE "maps/HallOfFame.asm"
+INCLUDE "maps/ViridianMart.asm"
+INCLUDE "maps/ViridianPokeCenter1F.asm"
 
 
 SECTION "Map Scripts 14", ROMX
@@ -412,7 +412,6 @@ INCLUDE "maps/Route43Gate.asm"
 INCLUDE "maps/RedsHouse1F.asm"
 INCLUDE "maps/RedsHouse2F.asm"
 INCLUDE "maps/BluesHouse.asm"
-INCLUDE "maps/OaksLab.asm"
 
 
 SECTION "Map Scripts 20", ROMX

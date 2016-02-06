@@ -7,22 +7,69 @@ LavRadioTower1F_MapScriptHeader: ; 0x7ee61
 ; 0x7ee63
 
 ReceptionistScript_0x7ee63: ; 0x7ee63
-	jumptextfaceplayer UnknownText_0x7eebf
+	faceplayer
+	checkflag EVENT_LAVENDER_HAUNTER
+	iftrue NotGhostReceptionist
+	checktime $4
+	iffalse NotGhostReceptionist
+	loadfont 
+	writetext GhostReceptionistText
+	waitbutton
+	closetext
+	end
+
+NotGhostReceptionist:
+	loadfont
+	writetext UnknownText_0x7eebf
+	waitbutton
+	closetext
+	end
 ; 0x7ee66
 
-OfficerScript_0x7ee66: ; 0x7ee66 ;	loadpokedata HAUNTER, 75
-	;startbattle
-	faceplayer
-	loadfont
-;	checktime $4
-;	iffalse NotNightLavender
+GhostReceptionistText:
+	text "Oh, the ghost"
+	line "came back."
 
-NotNightLavender:
+	para "Do you mind"
+	line "catching it?"
+	done
+
+OfficerScript_0x7ee66: ; 0x7ee66 
+	faceplayer
+	checkflag EVENT_LAVENDER_HAUNTER
+	iftrue NotGhostOfficer
+	checktime $4
+	iffalse NotGhostOfficer
+	loadfont 
+	writetext GhostOfficerText
+	waitbutton
+	closetext
+	end
+
+NotGhostOfficer:
+	loadfont
 	writetext UnknownText_0x7eefa
 	waitbutton
 	closetext
 	end
+
 ; 0x7ee69
+GhostOfficerText:
+	text "I-I-I can-n-n"
+	line "s-stay c-calm."
+	done
+
+HaunterScript:
+	loadpokedata HAUNTER, 75
+	startbattle
+	writebyte HAUNTER
+	special SpecialMonCheck
+	iffalse DontKillHaunter
+	disappear $7
+	setflag EVENT_CAUGHT_HAUNTER
+DontKillHaunter:
+	returnafterbattle
+	end
 
 SuperNerdScript_0x7ee69: ; 0x7ee69
 	jumptextfaceplayer UnknownText_0x7ef90
@@ -31,6 +78,9 @@ SuperNerdScript_0x7ee69: ; 0x7ee69
 GentlemanScript_0x7ee6c: ; 0x7ee6c
 	faceplayer
 	loadfont
+	checkflag EVENT_LAVENDER_HAUNTER
+	iffalse GhostGentleman
+NotGhostGentleman:
 	checkflag ENGINE_EXPN_CARD
 	iftrue UnknownScript_0x7ee8e
 	checkevent EVENT_RETURNED_MACHINE_PART
@@ -60,6 +110,22 @@ UnknownScript_0x7ee8e ; 0x7ee8e
 HasRadioCard:
 	closetext
 	end
+
+GhostGentleman:
+	checktime $4
+	iffalse NotGhostGentleman
+	writetext GhostGentlemanText
+	waitbutton
+	closetext
+	end
+
+GhostGentlemanText:
+	text "Not again<...>"
+
+	para "The ghosts have"
+	line "always been"
+	cont "restless here<...>"
+	done
 
 NeedsRadioCard:
 	text "What? You don't"
@@ -286,11 +352,12 @@ LavRadioTower1F_MapEventHeader: ; 0x7f3b9
 	signpost 0, 5, $0, MapLavRadioTower1FSignpost1Script
 
 	; people-events
-	db 5
+	db 6
 	person_event SPRITE_RECEPTIONIST, 10, 10, $7, 0, 0, -1, -1, 8 + PAL_OW_GREEN, 0, 0, ReceptionistScript_0x7ee63, -1
 	person_event SPRITE_OFFICER, 5, 19, $6, 0, 0, -1, -1, 8 + PAL_OW_GREEN, 0, 0, OfficerScript_0x7ee66, -1
-	person_event SPRITE_SUPER_NERD, 7, 5, $2, 1, 1, -1, -1, 8 + PAL_OW_RED, 0, 0, SuperNerdScript_0x7ee69, -1
+	person_event SPRITE_SUPER_NERD, 7, 5, $2, 1, 1, -1, 2, 8 + PAL_OW_RED, 0, 0, SuperNerdScript_0x7ee69, -1
 	person_event SPRITE_GENTLEMAN, 5, 13, $7, 0, 0, -1, -1, 0, 0, 0, GentlemanScript_0x7ee6c, -1
-	person_event SPRITE_SUPER_NERD, 10, 18, $9, 0, 0, -1, -1, 0, 0, 0, SuperNerdScript_0x7eea2, -1
+	person_event SPRITE_SUPER_NERD, 10, 18, $9, 0, 0, -1, 2, 0, 0, 0, SuperNerdScript_0x7eea2, -1
+	person_event SPRITE_GENGAR, 6, 10, $6, 0, 0, -1, 4, 0, 0, 0, HaunterScript, EVENT_LAVENDER_HAUNTER
 ; 0x7f414
 

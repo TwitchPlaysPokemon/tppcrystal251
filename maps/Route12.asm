@@ -177,7 +177,7 @@ FisherStephenSeenText: ; 0x1a706b
 	line "TOWER closed,"
 
 	para "ghosts are"
-	cont "common at night."
+	line "common at night."
 	done
 ; 0x1a70b4
 

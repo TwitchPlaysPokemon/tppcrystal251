@@ -306,25 +306,25 @@ MapRoute41SignpostItem0: ; 0x1a690c
 ; 0x1a690f
 
 SwimmermCharlieSeenText: ; 0x1a690f
-	text "The water's warm"
-	line "here. I'm loose"
-	cont "and limber."
+	text "I flew to here"
+	line "all from KANTO!"
 
-	para "Sure, I'll take"
-	line "you on!"
+	para "The waters are"
+	line "so much cleaner"
+	cont "over here."
 	done
 ; 0x1a6952
 
 SwimmermCharlieBeatenText: ; 0x1a6952
-	text "Yikes! I've got"
-	line "prune skin!"
+	text "Yikes!"
 	done
 ; 0x1a696e
 
 UnknownText_0x1a696e: ; 0x1a696e
-	text "Isn't it relaxing"
-	line "just floating like"
-	cont "this?"
+	text "Maybe letting out"
+	line "gases into the"
+	cont "ocean isn't"
+	cont "very smart..."
 	done
 ; 0x1a6999
 

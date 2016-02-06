@@ -347,37 +347,22 @@ UnknownScript_0x18e348: ; 0x18e348
 ; 0x18e34e
 
 UnknownScript_0x18e34e: ; 0x18e34e
-	checkevent EVENT_GAVE_GS_BALL_TO_KURT
-	iftrue UnknownScript_0x18e368
 	checkitem GS_BALL
 	iffalse UnknownScript_0x18e202
 	writetext UnknownText_0x18e8ab
 	waitbutton
 	closetext
-	setevent EVENT_GAVE_GS_BALL_TO_KURT
 	takeitem GS_BALL, 1
-	setflag ENGINE_KURT_MAKING_BALLS
-	end
-; 0x18e368
-
-UnknownScript_0x18e368: ; 0x18e368
-	checkflag ENGINE_KURT_MAKING_BALLS
-	iffalse UnknownScript_0x18e378
 	writetext UnknownText_0x18e934
 	waitbutton
 	writetext UnknownText_0x18e949
 	waitbutton
-	closetext
-	end
-; 0x18e378
-
 UnknownScript_0x18e378: ; 0x18e378
 	writetext UnknownText_0x18e95c
 	waitbutton
 	closetext
 	setevent EVENT_GOT_GS_BALL_BACK_FROM_KURT
 	clearevent EVENT_CAN_GIVE_GS_BALL_TO_KURT
-	clearevent EVENT_GAVE_GS_BALL_TO_KURT
 	special Functionc48f
 	pause 20
 	showemote $0, $2, 30
@@ -406,8 +391,8 @@ UnknownScript_0x18e3ac: ; 0x18e3ac
 KurtScript_0x18e3bd: ; 0x18e3bd
 	faceplayer
 	loadfont
-	checkevent EVENT_GAVE_GS_BALL_TO_KURT
-	iftrue UnknownScript_0x18e3e0
+	;checkevent EVENT_GAVE_GS_BALL_TO_KURT
+	;iftrue UnknownScript_0x18e3e0
 UnknownScript_0x18e3c5: ; 0x18e3c5
 	checkevent EVENT_KURT_TOLD_YOU_ABOUT_HIS_DAUGHTER_HELPING_HIM
 	iffalse UnknownScript_0x18e3d4
@@ -427,14 +412,14 @@ UnknownScript_0x18e3d4: ; 0x18e3d4
 	end
 ; 0x18e3e0
 
-UnknownScript_0x18e3e0: ; 0x18e3e0
-	writetext UnknownText_0x18e934
-	waitbutton
-	spriteface $5, $1
-	writetext UnknownText_0x18e949
-	waitbutton
-	closetext
-	end
+;UnknownScript_0x18e3e0: ; 0x18e3e0
+;	writetext UnknownText_0x18e934
+;	waitbutton
+;	spriteface $5, $1
+;	writetext UnknownText_0x18e949
+;	waitbutton
+;	closetext
+;	end
 ; 0x18e3ed
 
 TwinScript_0x18e3ed: ; 0x18e3ed
@@ -486,8 +471,7 @@ TwinScript_0x18e42e: ; 0x18e42e
 	faceplayer
 UnknownScript_0x18e42f: ; 0x18e42f
 	loadfont
-	checkevent EVENT_GAVE_GS_BALL_TO_KURT
-	iftrue UnknownScript_0x18e43f
+	
 	writetext UnknownText_0x18eab2
 	waitbutton
 	closetext
@@ -495,12 +479,7 @@ UnknownScript_0x18e42f: ; 0x18e42f
 	end
 ; 0x18e43f
 
-UnknownScript_0x18e43f: ; 0x18e43f
-	writetext UnknownText_0x18eb14
-	waitbutton
-	closetext
-	spriteface $6, $3
-	end
+
 ; 0x18e448
 
 UnknownScript_0x18e448: ; 0x18e448
@@ -787,13 +766,13 @@ UnknownText_0x18eafc: ; 0x18eafc
 	done
 ; 0x18eb14
 
-UnknownText_0x18eb14: ; 0x18eb14
-	text "Grandpa's checking"
-	line "a BALL right now."
+;UnknownText_0x18eb14: ; 0x18eb14
+	;text "Grandpa's checking"
+	;line "a BALL right now."
 
-	para "So I'm waiting"
-	line "till he's done."
-	done
+	;para "So I'm waiting"
+	;line "till he's done."
+	;done
 ; 0x18eb56
 
 UnknownText_0x18eb56: ; 0x18eb56

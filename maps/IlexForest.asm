@@ -530,7 +530,7 @@ UnknownScript_0x6ee42: ; 0x6ee42
 	pause 20
 	clearflag ENGINE_HAVE_EXAMINED_GS_BALL
 	special Function4989a
-	loadpokedata CELEBI, 30
+	loadpokedata CELEBI, 99
 	startbattle
 	writebyte CELEBI
 	special SpecialMonCheck
@@ -548,6 +548,7 @@ UnknownScript_0x6ee42: ; 0x6ee42
 	applymovement $7, MovementData_0x6ef53
 	disappear $7
 UnknownScript_0x6ee8e: ; 0x6ee8e
+	setevent EVENT_FOUGHT_CELEBI
 	end
 ; 0x6ee8f
 

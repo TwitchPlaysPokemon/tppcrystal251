@@ -64,6 +64,7 @@ RocketHideout1_SimonScript1:
 	playmapmusic
 	dotrigger $1
 	setevent EVENT_CAN_GIVE_GS_BALL_TO_KURT
+	setevent EVENT_BEAT_SIMON_5
 	end
 
 

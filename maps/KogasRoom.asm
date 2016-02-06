@@ -52,19 +52,15 @@ UnknownScript_0x180742: ; 0x180742
 KogaScript_0x18075a: ; 0x18075a
 	faceplayer
 	loadfont
+	checkevent EVENT_OAK_DEFEATED
+	iftrue KogaRematch
 	checkevent EVENT_BEAT_ELITE_4_KOGA
 	iftrue UnknownScript_0x180788
 	writetext UnknownText_0x180793
 	waitbutton
 	closetext
 	winlosstext UnknownText_0x1808a9, $0000
-	checkevent EVENT_ENABLE_DIPLOMA_PRINTING
-	iftrue KogaRematch
 	loadtrainer KOGA, 1
-	jump StartBattleKoga
-KogaRematch:
-	loadtrainer KOGA, 2
-StartBattleKoga:
 	startbattle
 	returnafterbattle
 	setevent EVENT_BEAT_ELITE_4_KOGA
@@ -81,8 +77,63 @@ StartBattleKoga:
 	end
 ; 0x180788
 
+KogaRematch:
+	checkevent EVENT_BEAT_ELITE_4_KOGA
+	iftrue KogaAfterRematch
+	writetext KogeBeforeRematchText
+	waitbutton
+	closetext
+	winlosstext UnknownText_0x1808a9, $0000
+	loadtrainer KOGA, 2
+	startbattle
+	returnafterbattle
+	setevent EVENT_BEAT_ELITE_4_KOGA
+	loadfont
+	writetext KogaAfterRematchText
+	waitbutton
+	closetext
+	playsound SFX_ENTER_DOOR
+	changeblock $4, $2, $16
+	reloadmappart
+	closetext
+	setevent EVENT_KOGAS_ROOM_EXIT_OPEN
+	waitsfx
+	end
+
+KogeBeforeRematchText:
+	text "Your arrival is"
+	line "indeed impressive,"
+	cont "as is your look of"
+	cont "resolve."
+
+	para "Fwahahahaha!"
+
+	para "My skill will be"
+	line "hard to overcome!"
+	
+	para "Let me show you"
+	line "what I mean!"
+
+	done
+
+KogaAfterRematchText:
+	text "Never have I met"
+	line "the likes of you"
+
+	para "I must devote"
+	line "myself to my"
+	cont "training"
+
+	done
+
 UnknownScript_0x180788: ; 0x180788
 	writetext UnknownText_0x1808ca
+	waitbutton
+	closetext
+	end
+
+KogaAfterRematch: ; 0x180788
+	writetext KogaAfterRematchText
 	waitbutton
 	closetext
 	end

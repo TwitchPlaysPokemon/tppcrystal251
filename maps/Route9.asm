@@ -265,7 +265,7 @@ PicnickerEdnaSeenText: ; 0x1ab127
 ; 0x1ab151
 
 PicnickerEdnaBeatenText: ; 0x1ab151
-	text "KOFFING helps with"
+	text "WEEZING helps with"
 	line "keeping it clean."
 	
 	para "It sucks all"

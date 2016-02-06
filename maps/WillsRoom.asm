@@ -52,19 +52,15 @@ UnknownScript_0x1804e0: ; 0x1804e0
 WillScript_0x1804f8: ; 0x1804f8
 	faceplayer
 	loadfont
+	checkevent EVENT_OAK_DEFEATED
+	iftrue WillRematch
 	checkevent EVENT_BEAT_ELITE_4_WILL
 	iftrue UnknownScript_0x180526
 	writetext UnknownText_0x180531
 	waitbutton
 	closetext
 	winlosstext UnknownText_0x18062c, $0000
-	checkevent EVENT_ENABLE_DIPLOMA_PRINTING
-	iftrue WillRematch
 	loadtrainer WILL, 1
-	jump StartBattleWill
-WillRematch:
-	loadtrainer WILL, 2
-StartBattleWill:
 	startbattle
 	returnafterbattle
 	setevent EVENT_BEAT_ELITE_4_WILL
@@ -88,6 +84,35 @@ UnknownScript_0x180526: ; 0x180526
 	end
 ; 0x18052c
 
+WillRematch:
+	checkevent EVENT_BEAT_ELITE_4_WILL
+	iftrue UnknownScript_0x180526
+	writetext WillBeforerematchText
+	waitbutton
+	closetext
+	winlosstext UnknownText_0x18062c, $0000
+	loadtrainer WILL, 2
+	startbattle
+	returnafterbattle
+	setevent EVENT_BEAT_ELITE_4_WILL
+	loadfont
+	writetext WillAfterRematchText
+	waitbutton
+	closetext
+	playsound SFX_ENTER_DOOR
+	changeblock $4, $2, $16
+	reloadmappart
+	closetext
+	setevent EVENT_WILLS_ROOM_EXIT_OPEN
+	waitsfx
+	end
+
+WillAfterRematch:
+	writetext WillAfterRematchText
+	waitbutton
+	closetext
+	end
+
 MovementData_0x18052c: ; 0x18052c
 	step_up
 	step_up
@@ -95,6 +120,31 @@ MovementData_0x18052c: ; 0x18052c
 	step_up
 	step_end
 ; 0x180531
+
+WillBeforerematchText:
+	text "So, you have"
+	line "finally appeared."
+
+	para "I have observed"
+	line "your battle"
+	cont "techniques."
+	
+	para "I'm ready for you!"
+
+	para "All right."
+
+	para "Prepare for"
+	line "battle!"
+	done
+
+WillAfterRematchText:
+	text "I've expended all"
+	line "my power."
+	
+	para "I have no regrets"
+	line "about losing"
+	cont "this way."
+	done
 
 UnknownText_0x180531: ; 0x180531
 	text "Welcome to #MON"

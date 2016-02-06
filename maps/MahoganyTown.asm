@@ -42,7 +42,7 @@ UnknownScript_0x190013: ; 0x190013
 PokefanMScript_0x19002e: ; 0x19002e
 	faceplayer
 UnknownScript_0x19002f: ; 0x19002f
-	checkevent EVENT_CLEARED_ROCKET_HIDEOUT
+	checkevent EVENT_CLEARED_RADIO_TOWER
 	iftrue UnknownScript_0x190039
 	scall UnknownScript_0x190040
 	end
