@@ -51,8 +51,6 @@
 
 	trainerclass POKEMON_PROF ; a
 	const OAK_1
-	const OAK_2
-	const OAK_3
 
 	trainerclass WILL ; b
 	const WILL_1

@@ -1005,140 +1005,48 @@ PokemonProfGroup:
 
 	; PROFESSOR (1)
 	db "OAK@"
-	db (1 << TRAINERTYPE_MOVES)
+	db (1 << TRAINERTYPE_MOVES) | ( 1 << TRAINERTYPE_ITEM) | (1 << TRAINERTYPE_MAXXP)
 
 	; party
-	db 100, TAUROS
-		db STOMP
+	db 100, TAUROS, BURN_GUARD
+		db PURSUIT
 		db EARTHQUAKE
-		db DOUBLE_EDGE
-		db GLARE
+		db THRASH
+		db SWAGGER
 
-	db 100, EXEGGUTOR
-		db SOLARBEAM
-		db SUNNY_DAY
+	db 100, EXEGGUTOR, MIRACLE_SEED
+		db EXPLOSION
+		db PSYCHIC_M
 		db HYPNOSIS
-		db SEED_BOMB
+		db GIGA_DRAIN
 
-	db 100, ARCANINE
+	db 100, ARCANINE, CHARCOAL
 		db EXTREMESPEED
-		db FLAMETHROWER
-		db CRUNCH
-		db AGILITY
+		db FLARE_BLITZ
+		db OUTRAGE
+		db WILLOWISP
 
-	db 100, BLASTOISE
+	db 100, BLASTOISE, LEFTOVERS
 		db ICE_BEAM
 		db HYDRO_PUMP
-		db RAPID_SPIN
-		db CRUNCH
+		db IRON_DEFENSE
+		db ZAP_CANNON
 
-	db 100, GYARADOS
-		db HYPER_BEAM
-		db CRUNCH
+	db 100, GYARADOS, MYSTIC_WATER
+		db ENDURE
+		db OUTRAGE
 		db FLAIL
-		db HYDRO_PUMP
+		db WATERFALL
 
-	db 100, PIKACHU
+	db 100, PIKACHU, LIGHT_BALL
 		db SURF
 		db FLY
 		db THUNDERBOLT
-		db DOUBLE_TEAM
+		db ENCORE
 
 	db $ff ; end
 
-; =================
-
-	; PROFESSOR (2)
-	db "OAK@"
-	db (1 << TRAINERTYPE_MOVES)
-
-	; party
-	db 100, TAUROS
-		db STOMP
-		db EARTHQUAKE
-		db DOUBLE_EDGE
-		db GLARE
-
-	db 100, EXEGGUTOR
-		db SOLARBEAM
-		db SUNNY_DAY
-		db HYPNOSIS
-		db SEED_BOMB
-
-	db 100, ARCANINE
-		db EXTREMESPEED
-		db FLAMETHROWER
-		db CRUNCH
-		db AGILITY
-
-	db 100, CHARIZARD
-		db FLY
-		db FIRE_BLAST
-		db DRAGONBREATH
-		db SLASH
-
-	db 100, GYARADOS
-		db HYPER_BEAM
-		db CRUNCH
-		db FLAIL
-		db HYDRO_PUMP
-
-	db 100, PIKACHU
-		db SURF
-		db FLY
-		db THUNDERBOLT
-		db DOUBLE_TEAM
-
-	db $ff ; end
-
-; =================
-
-	; PROFESSOR (3)
-	db "OAK@"
-	db (1 << TRAINERTYPE_MOVES)
-
-	; party
-	db 100, TAUROS
-		db STOMP
-		db EARTHQUAKE
-		db DOUBLE_EDGE
-		db GLARE
-
-	db 100, EXEGGUTOR
-		db SOLARBEAM
-		db SUNNY_DAY
-		db HYPNOSIS
-		db SEED_BOMB
-
-	db 100, ARCANINE
-		db EXTREMESPEED
-		db FLAMETHROWER
-		db CRUNCH
-		db AGILITY
-
-	db 100, VENUSAUR
-		db SOLARBEAM
-		db SLUDGE_BOMB
-		db BODY_SLAM
-		db LEECH_SEED
-
-	db 100, GYARADOS
-		db HYPER_BEAM
-		db CRUNCH
-		db FLAIL
-		db HYDRO_PUMP
-
-	db 100, PIKACHU
-		db SURF
-		db FLY
-		db THUNDERBOLT
-		db DOUBLE_TEAM
-
-	db $ff ; end
-
-; ================
-; ================================
-
+;
 
 WillGroup:
 ; ================================
@@ -5225,6 +5133,50 @@ SabrinaGroup:
 		db BATON_PASS
 
 	db 78, ALAKAZAM
+		db PSYCHIC_M
+		db SHADOW_BALL
+		db FUTURE_SIGHT
+		db RECOVER
+
+	db $ff ; end
+
+	; SABRINA (2)
+	db "SABRINA@"
+	db (1 << TRAINERTYPE_MOVES) | ( 1 << TRAINERTYPE_ITEM) | (1 << TRAINERTYPE_MAXXP)
+
+	; party
+
+	db 100, MEW, CONFUSEGUARD
+		db PSYCHIC_M
+		db FLAMETHROWER
+		db LOVELY_KISS
+		db BATON_PASS
+
+	db 100, GIRAFARIG, LEFTOVERS
+		db PSYCHIC_M
+		db HYPER_BEAM
+		db AGILITY
+		db BATON_PASS
+
+	db 100, ESPEON, CONFUSEGUARD
+		db PSYCHIC_M
+		db DAZZLINGLEAM
+		db DOUBLE_TEAM
+		db BATON_PASS
+
+	db 100, EXEGGUTOR, MIRACLE_SEED
+		db PSYCHIC_M
+		db GIGA_DRAIN
+		db LEECH_SEED
+		db SYNTHESIS
+
+	db 100, MR__MIME, PINK_BOW
+		db PSYCHIC_M
+		db MOONBLAST
+		db BARRIER
+		db BATON_PASS
+
+	db 100, ALAKAZAM, TWISTEDSPOON
 		db PSYCHIC_M
 		db SHADOW_BALL
 		db FUTURE_SIGHT

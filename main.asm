@@ -27874,7 +27874,7 @@ OakRatings: ; 0x2667f
 	db 248
 	dw SFX_DEX_FANFARE_230_PLUS
 	dw OakRating18
-	db 255
+	db 251
 	dw SFX_DEX_FANFARE_230_PLUS
 	dw OakRating19
 
@@ -68239,16 +68239,16 @@ Function90136:: ; 90136 (24:4136)
 	ld h, [hl]
 	ld l, a
 	call _hl_
-	jr nc, .asm_90171
-	call Function90178
+	jr nc, .asm_90171 ;leave if cannot recieve call
+	call Function90178 ;reset phone postion
 	inc hl
 	inc hl
-	ld a, [hli]
+	ld a, [hli] ;load contect
 	ld e, a
 	push hl
-	call Function9020d
+	call Function9020d ;place contact's bank into a and loc into hl
 	pop hl
-	ld de, wd048
+	ld de, wd048 ;load script bank and script position into ram
 	ld a, [hli]
 	ld [de], a
 	inc de
@@ -68373,14 +68373,14 @@ UnknownScript_0x90209: ; 0x90209
 	return
 ; 0x9020d
 
-Function9020d: ; 9020d (24:420d)
+Function9020d: ; 9020d (24:420d) ;place contect es bank into a and loc into hl
 	nop
 	nop
 	ld a, e
-	ld [wdbf9], a
+	ld [wdbf9], a 
 	and a
 	jr nz, .asm_9021d
-	ld a, BANK(Unknown_90233)
+	ld a, BANK(Unknown_90233) ;if 0, use below, else use that number phone contact
 	ld hl, Unknown_90233
 	jr .asm_90229
 

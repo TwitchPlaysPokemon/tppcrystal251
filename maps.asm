@@ -87,6 +87,7 @@ INCLUDE "maps/RadioTower1F.asm"
 INCLUDE "maps/RadioTower2F.asm"
 INCLUDE "maps/RadioTower3F.asm"
 INCLUDE "maps/RadioTower4F.asm"
+INCLUDE "maps/OaksLab.asm"
 
 
 SECTION "Map Scripts 4", ROMX
@@ -411,7 +412,6 @@ INCLUDE "maps/Route43Gate.asm"
 INCLUDE "maps/RedsHouse1F.asm"
 INCLUDE "maps/RedsHouse2F.asm"
 INCLUDE "maps/BluesHouse.asm"
-INCLUDE "maps/OaksLab.asm"
 
 
 SECTION "Map Scripts 20", ROMX

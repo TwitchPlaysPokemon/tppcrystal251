@@ -52,19 +52,15 @@ UnknownScript_0x180bd6: ; 0x180bd6
 KarenScript_0x180bee: ; 0x180bee
 	faceplayer
 	loadfont
+	checkevent EVENT_OAK_DEFEATED
+	iftrue KarenRematch
 	checkevent EVENT_BEAT_ELITE_4_KAREN
 	iftrue UnknownScript_0x180c1c
 	writetext UnknownText_0x180c27
 	waitbutton
 	closetext
 	winlosstext UnknownText_0x180cf8, $0000
-	checkevent EVENT_ENABLE_DIPLOMA_PRINTING
-	iftrue KarenRematch
 	loadtrainer KAREN, 1
-	jump StartBattleKaren
-KarenRematch:
-	loadtrainer KAREN, 2
-StartBattleKaren:
 	startbattle
 	returnafterbattle
 	setevent EVENT_BEAT_ELITE_4_KAREN
@@ -87,6 +83,60 @@ UnknownScript_0x180c1c: ; 0x180c1c
 	closetext
 	end
 ; 0x180c22
+
+KarenRematch:
+	checkevent EVENT_BEAT_ELITE_4_KAREN
+	iftrue UnknownScript_0x180c1c
+	writetext KarenBeforeRematchText
+	waitbutton
+	closetext
+	winlosstext UnknownText_0x180cf8, $0000
+	loadtrainer KAREN, 2
+	startbattle
+	returnafterbattle
+	setevent EVENT_BEAT_ELITE_4_KAREN
+	loadfont
+	writetext KarenAfterRematchText
+	waitbutton
+	closetext
+	playsound SFX_ENTER_DOOR
+	changeblock $4, $2, $16
+	reloadmappart
+	closetext
+	setevent EVENT_KARENS_ROOM_EXIT_OPEN
+	waitsfx
+	end
+
+KarenAfterRematch: ; 0x180c1c
+	writetext KarenAfterRematchText
+	waitbutton
+	closetext
+	end
+
+KarenBeforeRematchText:
+	text "You won through"
+	line "the ranks to reach"
+	cont "me. I'm impressed."
+
+	para "You've assembled a"
+	line "charming team."
+	
+	para "Our battle should"
+	line "be a good one."
+
+	para "Let's Begin!"
+	done
+
+KarenAfterRematchText:
+	text "I will not stray"
+	line "from my chosen"
+	cont "path."
+
+	para "LANCE is looking"
+	line "forward to meeting"
+	cont "you."
+
+	done
 
 MovementData_0x180c22: ; 0x180c22
 	step_up

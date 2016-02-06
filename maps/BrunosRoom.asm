@@ -52,19 +52,15 @@ UnknownScript_0x1809ad: ; 0x1809ad
 BrunoScript_0x1809c5: ; 0x1809c5
 	faceplayer
 	loadfont
+	checkevent EVENT_OAK_DEFEATED
+	iftrue BrunoRematch
 	checkevent EVENT_BEAT_ELITE_4_BRUNO
 	iftrue UnknownScript_0x1809f3
 	writetext UnknownText_0x1809fe
 	waitbutton
 	closetext
 	winlosstext UnknownText_0x180b23, $0000
-	checkevent EVENT_ENABLE_DIPLOMA_PRINTING
-	iftrue BrunoRematch
 	loadtrainer BRUNO, 1
-	jump StartBattleBruno
-BrunoRematch:
-	loadtrainer BRUNO, 2
-StartBattleBruno:
 	startbattle
 	returnafterbattle
 	setevent EVENT_BEAT_ELITE_4_BRUNO
@@ -81,12 +77,41 @@ StartBattleBruno:
 	end
 ; 0x1809f3
 
+BrunoRematch:
+	checkevent EVENT_BEAT_ELITE_4_BRUNO
+	iftrue BrunoAfterRematch
+	writetext BrunoBeforeRematchText
+	waitbutton
+	closetext
+	winlosstext UnknownText_0x180b23, $0000
+	loadtrainer BRUNO, 2
+	startbattle
+	returnafterbattle
+	setevent EVENT_BEAT_ELITE_4_BRUNO
+	loadfont
+	writetext BrunoAfterRematchText
+	waitbutton
+	closetext
+	playsound SFX_ENTER_DOOR
+	changeblock $4, $2, $16
+	reloadmappart
+	closetext
+	setevent EVENT_BRUNOS_ROOM_EXIT_OPEN
+	waitsfx
+	end
+
 UnknownScript_0x1809f3: ; 0x1809f3
 	writetext UnknownText_0x180b3c
 	waitbutton
 	closetext
 	end
 ; 0x1809f9
+
+BrunoAfterRematch:
+	writetext BrunoAfterRematchText
+	waitbutton
+	closetext
+	end
 
 MovementData_0x1809f9: ; 0x1809f9
 	step_up
@@ -95,6 +120,30 @@ MovementData_0x1809f9: ; 0x1809f9
 	step_up
 	step_end
 ; 0x1809fe
+
+BrunoBeforeRematchText:
+	text "Hello Again."
+	
+	para "As one of the"
+	line "ELITE FOUR, I will"
+	cont "stand up to your"
+	cont "challenge!"
+
+	para "It would disturb me"
+	line "for you to"
+	cont "underestimate my"
+	cont "fighting #MON."
+
+	para "Get ready!"
+
+	done
+
+BrunoAfterRematchText:
+	text "We tried hard."
+
+	para "Continue on!"
+
+	done
 
 UnknownText_0x1809fe: ; 0x1809fe
 	text "I am BRUNO of the"

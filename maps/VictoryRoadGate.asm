@@ -133,7 +133,7 @@ VictoryRoadGate_MapEventHeader: ; 0x9bb9b
 	; people-events
 	db 3
 	person_event SPRITE_OFFICER, 15, 12, $9, 0, 0, -1, -1, 0, 0, 0, OfficerScript_0x9ba03, -1
-	person_event SPRITE_BLACK_BELT, 9, 11, $9, 0, 0, -1, -1, 0, 0, 0, BlackBeltScript_0x9ba21, EVENT_SET_BY_OAK_AFTER_16_BADGES
+	person_event SPRITE_BLACK_BELT, 9, 11, $9, 0, 0, -1, -1, 0, 0, 0, BlackBeltScript_0x9ba21, EVENT_ALLOWED_INTO_ROUTE_28
 	person_event SPRITE_BLACK_BELT, 9, 16, $8, 0, 0, -1, -1, 0, 0, 0, BlackBeltScript_0x9ba24, EVENT_FOUGHT_SNORLAX
 ; 0x9bbf8
 
