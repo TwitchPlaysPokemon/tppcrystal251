@@ -128,7 +128,7 @@ Won1Text:
 	done
 
 Win2Match:
-	writetext Won1Text
+	writetext Won2Text
 	givemoney 0, 8000
 	buttonsound
 	jump BTPrizeGiven
@@ -140,7 +140,7 @@ Won2Text:
 	done
 
 Win3Match:
-	writetext Won1Text
+	writetext Won3Text
 	givemoney 0, 15000
 	buttonsound
 	jump BTPrizeGiven
@@ -152,7 +152,7 @@ Won3Text:
 	done
 
 Win4Match:
-	writetext Won1Text
+	writetext Won4Text
 	givemoney 0, 24000
 	buttonsound
 	jump BTPrizeGiven
@@ -164,7 +164,7 @@ Won4Text:
 	done
 
 Win5Match:
-	writetext Won1Text
+	writetext Won5Text
 	givemoney 0, 35000
 	buttonsound
 	jump BTPrizeGiven
@@ -176,7 +176,7 @@ Won5Text:
 	done
 
 Win6Match:
-	writetext Won1Text
+	writetext Won6Text
 	givemoney 0, 50000
 	buttonsound
 	jump BTPrizeGiven

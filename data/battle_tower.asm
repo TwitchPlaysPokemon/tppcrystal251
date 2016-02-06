@@ -172,11 +172,10 @@ Function1f8081:
 	ld [hli], a
 	ld a, [hMultiplicand + 2]
 	ld [hli], a
-	call Random
-	and $7 ;rand 0-7
+	ld a, wcf64
 	ld e, a
 	ld d, 0
-	ld hl, .StatExps ;load in random statxp into de (note to self, revert to always max, battle tower does not need the nerf)
+	ld hl, .StatExps ;load in statxp based on rounds won
 	add hl, de
 	add hl, de
 	ld a, [hli]
@@ -291,12 +290,12 @@ Function1f8081:
 	ret
 
 .StatExps
+	dw 10000
+	dw 15000
+	dw 20000
+	dw 25000
 	dw 30000
-	dw 33000
-	dw 35000
-	dw 37000
 	dw 40000
-	dw 43000
 	dw 45000
 	dw 50000
 
