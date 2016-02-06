@@ -785,42 +785,42 @@ GiveBulbasaurEgg:
 	checkevent EVENT_BULBASAUR_EGG
 	iftrue RandomEggRandomizer
 	setevent EVENT_BULBASAUR_EGG
-	giveegg BULBASAUR, 5
+	giveegg BULBASAUR, 1
 	jump GotEgg
 	
 GiveCharmanderEgg:
 	checkevent EVENT_CHARMANDER_EGG
 	iftrue RandomEggRandomizer
 	setevent EVENT_CHARMANDER_EGG
-	giveegg CHARMANDER, 5
+	giveegg CHARMANDER, 1
 	jump GotEgg
 	
 GiveSquirtleEgg:
 	checkevent EVENT_SQUIRTLE_EGG
 	iftrue RandomEggRandomizer
 	setevent EVENT_SQUIRTLE_EGG
-	giveegg SQUIRTLE, 5
+	giveegg SQUIRTLE, 1
 	jump GotEgg
 	
 GiveChikoritaEgg:
 	checkevent EVENT_CHIKORITA_EGG
 	iftrue RandomEggRandomizer
 	setevent EVENT_CHIKORITA_EGG
-	giveegg CHIKORITA, 5
+	giveegg CHIKORITA, 1
 	jump GotEgg
 	
 GiveCyndaquilEgg:
 	checkevent EVENT_CYNDAQUIL_EGG
 	iftrue RandomEggRandomizer
 	setevent EVENT_CYNDAQUIL_EGG
-	giveegg CYNDAQUIL, 5
+	giveegg CYNDAQUIL, 1
 	jump GotEgg
 
 GiveTotodileEgg:
 	checkevent EVENT_TOTODILE_EGG
 	iftrue RandomEggRandomizer
 	setevent EVENT_TOTODILE_EGG
-	giveegg TOTODILE, 5
+	giveegg TOTODILE, 1
 GotEgg:
 	disappear $f
 	writetext FoundEgg_Text

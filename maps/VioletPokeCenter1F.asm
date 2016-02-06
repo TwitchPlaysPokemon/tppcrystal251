@@ -21,7 +21,7 @@ UnknownScript_0x694d7: ; 0x694d7
 	iffalse UnknownScript_0x69531
 	checkcode VAR_PARTYCOUNT
 	if_equal $6, UnknownScript_0x6952b
-	giveegg TOGEPI, 5
+	giveegg TOGEPI, 1
 	stringtotext .eggname, $1
 	scall UnknownScript_0x69527
 	setevent EVENT_GOT_TOGEPI_EGG_FROM_ELMS_AIDE
