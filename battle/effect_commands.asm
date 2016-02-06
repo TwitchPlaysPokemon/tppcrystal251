@@ -5718,9 +5718,9 @@ BattleCommand14: ; 35e5c
 	call BattleRandom
 	and b
 	jr z, .asm_35ea4
-	cp 3 ;sleep turns 1-3
-	jr z, .asm_35ea4
-	inc a ;1-7 if not in battle tower, else 1-4
+	; cp 3 ; sleep turns 1-3
+	; jr z, .asm_35ea4
+	; inc a ; 2-3 turns
 	ld [de], a
 	call UpdateOpponentInParty
 	call RefreshBattleHuds

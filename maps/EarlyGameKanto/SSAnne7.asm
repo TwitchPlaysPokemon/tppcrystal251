@@ -104,6 +104,7 @@ SSAnne7CaptainScript:
 	playsound SFX_EXIT_BUILDING
 	waitsfx
 	special Function8c0ab
+	takeitem S_S_TICKET, 1
 	playmapmusic
 .end
 	end
@@ -277,7 +278,7 @@ SSAnne7_MapEventHeader:
 	signpost 2, 1, $0, SSAnne7SeasicknessBookScript
 
 	db 4
-	person_event SPRITE_GRAMPS, 6, 8, $7, 0, 0, -1, -1, 8 + PAL_OW_RED, 0, 0, SSAnne7CaptainScript, EVENT_S_S_ANNE_RUBBED_CAPTAINS_BACK
-	person_event SPRITE_GRAMPS, 5, 5, $6, 0, 0, -1, -1, 8 + PAL_OW_RED, 0, 0, SSAnne7CaptainScript, EVENT_S_S_ANNE_NOT_YET_DEPARTED
+	person_event SPRITE_CAPTAIN, 6, 8, $7, 0, 0, -1, -1, 8 + PAL_OW_RED, 0, 0, SSAnne7CaptainScript, EVENT_S_S_ANNE_RUBBED_CAPTAINS_BACK
+	person_event SPRITE_CAPTAIN, 5, 5, $6, 0, 0, -1, -1, 8 + PAL_OW_RED, 0, 0, SSAnne7CaptainScript, EVENT_S_S_ANNE_NOT_YET_DEPARTED
 	person_event SPRITE_ROCKET, 10, 5, $7, 0, 0, -1, -1, 0, 0, 0, ObjectEvent, EVENT_S_S_ANNE_7_ROCKETS
 	person_event SPRITE_GIOVANNI, 10, 5, $7, 0, 0, -1, -1, 0, 0, 0, ObjectEvent, EVENT_S_S_ANNE_7_ROCKETS

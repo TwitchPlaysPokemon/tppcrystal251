@@ -15,6 +15,9 @@ UnknownScript_0x1b2047: ; 0x1b2047
 	return
 ; 0x1b204b
 
+SilverCaveOutsideCooltrainerMScript:
+	jumptextfaceplayer SilverCaveOutsideCooltrainerMText
+
 MapSilverCaveOutsideSignpost0Script: ; 0x1b204b
 	jumpstd pokecentersign
 ; 0x1b204e
@@ -28,6 +31,19 @@ MapSilverCaveOutsideSignpostItem2: ; 0x1b2051
 	db FULL_RESTORE
 	
 ; 0x1b2054
+SilverCaveOutsideCooltrainerMText:
+	text "The #MON in"
+	line "this cave are im-"
+	cont "mensly powerful."
+
+	para "Only true #MON"
+	line "MASTERs may enter."
+
+	para "Only the GAMEFREAK"
+	line "DIRECTOR can cer-"
+	cont "tify you as a"
+	cont "#MON MASTER."
+	done
 
 UnknownText_0x1b2054: ; 0x1b2054
 	text "MT.SILVER"
@@ -53,6 +69,7 @@ SilverCaveOutside_MapEventHeader: ; 0x1b205f
 	signpost 25, 9, $7, MapSilverCaveOutsideSignpostItem2
 
 	; people-events
-	db 0
+	db 1
+	person_event SPRITE_COOLTRAINER_M, 16, 22, $6, 0, 0, -1, -1, 0, 0, 0, SilverCaveOutsideCooltrainerMScript, EVENT_ENABLE_DIPLOMA_PRINTING
 ; 0x1b207e
 

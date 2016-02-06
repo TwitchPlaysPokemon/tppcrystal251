@@ -55,7 +55,7 @@ DummyMap_Continue
 	end
 
 RedsHouse2FDreaming1Text:
-	text "While ",$14
+	text "While <PLAY_G>"
 	line "was sleeping<...>"
 	done
 
