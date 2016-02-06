@@ -122,6 +122,16 @@ FisherBarneyScript: ; 0x1a6ffd
 	end
 ; 0x1a7005
 
+TrainerFisherWilly:
+	trainer EVENT_BEAT_FISHER_WILLY, FISHER, WILLY, FisherWillySeenText, FisherWillyBeatenText, 0, .Script
+.Script
+	talkaftercancel
+	loadfont
+	writetext FisherWillyAfterText
+	waitbutton
+	closetext
+	end
+
 MapRoute12Signpost0Script: ; 0x1a7005
 	jumptext UnknownText_0x1a72a0
 ; 0x1a7008
@@ -240,6 +250,20 @@ UnknownText_0x1a7238: ; 0x1a7238
 	done
 ; 0x1a72a0
 
+FisherWillySeenText:
+	text "I've got a really"
+	line "good haul!"
+	done
+
+FisherWillyBeatenText:
+	text "Not that good<...>"
+	done
+
+FisherWillyAfterText:
+	text "Variety is the"
+	line "spice of life!"
+	done
+
 UnknownText_0x1a72a0: ; 0x1a72a0
 	text "ROUTE 12"
 
@@ -271,13 +295,14 @@ Route12_MapEventHeader: ; 0x1a72cf
 	signpost 13, 14, $7, MapRoute12SignpostItem2
 
 	; people-events
-	db 6
+	db 7
 	person_event SPRITE_FISHER, 17, 9, $a, 0, 0, -1, -1, 8 + PAL_OW_GREEN, 2, 1, TrainerFisherMartin, -1
 	person_event SPRITE_FISHER, 27, 18, $6, 0, 0, -1, -1, 8 + PAL_OW_GREEN, 2, 1, TrainerFisherStephen, -1
 	person_event SPRITE_FISHER, 42, 14, $8, 0, 0, -1, -1, 8 + PAL_OW_GREEN, 2, 5, TrainerFisherBarney, -1
 	person_event SPRITE_FISHER, 11, 10, $9, 0, 0, -1, -1, 8 + PAL_OW_GREEN, 2, 3, TrainerFisherKyle, -1
 	person_event SPRITE_POKE_BALL, 47, 9, $1, 0, 0, -1, -1, 0, 1, 0, ItemFragment_0x1a700b, EVENT_ITEM_ROUTE_12_CALCIUM
 	person_event SPRITE_POKE_BALL, 55, 9, $1, 0, 0, -1, -1, 0, 1, 0, ItemFragment_0x1a700d, EVENT_ITEM_ROUTE_12_NUGGET
+	person_event SPRITE_FISHER, 53, 16, $9, 0, 0, -1, -1, 8 + PAL_OW_GREEN, 2, 4, TrainerFisherWilly, -1
 ; 0x1a7337
 
 
