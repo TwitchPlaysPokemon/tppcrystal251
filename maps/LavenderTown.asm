@@ -1,8 +1,8 @@
 LavenderTown_MapScriptHeader: ; 0x1ad6db
 	; trigger count
-	db 0
-	; dw .Trigger0, 0
-	; dw .Trigger1, 0
+	db 2
+	dw .Trigger0, 0
+	dw .Trigger1, 0
 
 	; callback count
 	db 1
@@ -11,10 +11,10 @@ LavenderTown_MapScriptHeader: ; 0x1ad6db
 
 	dbw 5, UnknownScript_0x1ad6e0
 ; 0x1ad6e0
-; .Trigger0:
-	; end
-; .Trigger1:
-	; end
+.Trigger0:
+	end
+.Trigger1:
+	end
 
 UnknownScript_0x1ad6e0: ; 0x1ad6e0
 	setflag ENGINE_FLYPOINT_LAVENDER
@@ -61,48 +61,49 @@ MapLavenderTownSignpost5Script: ; 0x1ad6ff
 	jumpstd martsign
 ; 0x1ad702
 
-; ScareLassScript:
-	; checktime $4
-	; iffalse NoLass
-	; checkevent EVENT_LAVENDER_HAUNTER
-	; iffalse NoLass
-	; checkevent EVENT_CAUGHT_HAUNTER
-	; iftrue NoLass
-	; appear $6
-	; playsound SFX_STRENGTH
-	; applymovement $0, LassMove1
-	; applymovement $6, LassMove1
-	; loadfont
-	; writetext ScaredLassText
-	; waitbutton
-	; closetext
-	; applymovement $6, LassMove2
-	; clearevent EVENT_LAVENDER_HAUNTER
-	; dotrigger $1
-; NoLass:
-	; end
+ScareLassScript:
+	dotrigger $1
+	checktime $4
+	iffalse NoLass
+	checkevent EVENT_LAVENDER_HAUNTER
+	iffalse NoLass
+	checkevent EVENT_CAUGHT_HAUNTER
+	iftrue NoLass
+	appear $6
+	playsound SFX_STRENGTH
+	applymovement $0, LassMove1
+	applymovement $6, LassMove1
+	loadfont
+	writetext ScaredLassText
+	waitbutton
+	closetext
+	applymovement $6, LassMove2
+	clearevent EVENT_LAVENDER_HAUNTER
+	disappear $6
+NoLass:
+	end
 
-; LassMove1:
-	; fast_slide_step_down
-	; step_end
+LassMove1:
+	big_step_down
+	step_end
 
-; LassMove2:
-	; fast_slide_step_left
-	; fast_slide_step_left
-	; fast_slide_step_left
-	; fast_slide_step_left
-	; fast_slide_step_left
-	; fast_slide_step_left
-	; fast_slide_step_left
-	; fast_slide_step_left
-	; fast_slide_step_left
-	; fast_slide_step_left
-	; step_end
+LassMove2:
+	big_step_left
+	big_step_left
+	big_step_left
+	big_step_left
+	big_step_left
+	big_step_left
+	big_step_left
+	big_step_left
+	big_step_left
+	big_step_left
+	step_end
 
-; ScaredLassText:
-	; text "It's a"
-	; line "G-G-G-GHOST!"
-	; done
+ScaredLassText:
+	text "It's a"
+	line "G-G-G-GHOST!"
+	done
 
 UnknownText_0x1ad702: ; 0x1ad702
 	text "That's quite some"
@@ -186,8 +187,8 @@ LavenderTown_MapEventHeader: ; 0x1ad8ac
 	warp_def $5, $e, 1, GROUP_LAV_RADIO_TOWER_1F, MAP_LAV_RADIO_TOWER_1F
 
 	; xy triggers
-	db 0
-	; xy_trigger 0, $6, $e, $0, ScareLassScript, $0, $0
+	db 1
+	xy_trigger 0, $6, $e, $0, ScareLassScript, $0, $0
 
 	; signposts
 	db 6
@@ -199,11 +200,11 @@ LavenderTown_MapEventHeader: ; 0x1ad8ac
 	signpost 5, 2, $0, MapLavenderTownSignpost5Script
 
 	; people-events
-	db 4
+	db 5
 	person_event SPRITE_POKEFAN_M, 11, 16, $5, 0, 1, -1, -1, 8 + PAL_OW_RED, 0, 0, PokefanMScript_0x1ad6e4, -1
 	person_event SPRITE_TEACHER, 19, 6, $5, 0, 1, -1, -1, 8 + PAL_OW_BLUE, 0, 0, TeacherScript_0x1ad6e7, -1
 	person_event SPRITE_GRAMPS, 16, 18, $7, 0, 0, -1, -1, 0, 0, 0, GrampsScript_0x1ad6ea, -1
 	person_event SPRITE_YOUNGSTER, 15, 10, $5, 0, 1, -1, -1, 8 + PAL_OW_GREEN, 0, 1, YoungsterScript_0x1ad6ed, -1
-	; person_event SPRITE_TEACHER, 9, 18, 6, 0, 0, -1, NITE, 0, 0, 0, ScareLassScript, EVENT_SCARED_LASS
+	person_event SPRITE_TEACHER, 9, 18, 6, 0, 0, -1, NITE, 0, 0, 0, ObjectEvent, EVENT_SCARED_LASS
 ; 0x1ad927
 
