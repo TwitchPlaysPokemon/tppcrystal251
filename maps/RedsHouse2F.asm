@@ -26,12 +26,15 @@ MapRedsHouse2FBedScript:
 	special HealParty
 	pause 60
 	checkevent EVENT_FIRST_TIME_BABA
-	iffalse MapRedsHouseBedWarpScript
+	iftrue .skip
+	checkcode VAR_BADGES
+	if_equal 16, MapRedsHouseBedWarpScript
+.skip
 	special Function8c0ab
 	special RestartMapMusic
 	loadfont
 	copybytetovar PlayerGender
-	if_equal $1, RedsHouse2BedHealedFScript
+	iftrue RedsHouse2BedHealedFScript
 	writetext RedsHouse2FBedHealedMText
 	waitbutton
 	closetext
