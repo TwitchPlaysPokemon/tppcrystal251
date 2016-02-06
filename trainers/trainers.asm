@@ -5139,6 +5139,16 @@ SkierGroup:
 	db $ff ; end
 
 ; ================
+
+	; TEACHER (4)
+	db "HELENNA@"
+	db 0 ; normal
+
+	; party
+	db 85, PICHU
+	db 85, PICHU
+
+; ================
 ; ================================
 
 
