@@ -8,7 +8,7 @@ LavRadioTower1F_MapScriptHeader: ; 0x7ee61
 
 ReceptionistScript_0x7ee63: ; 0x7ee63
 	faceplayer
-	checkflag EVENT_LAVENDER_HAUNTER
+	checkevent EVENT_LAVENDER_HAUNTER
 	iftrue NotGhostReceptionist
 	checktime $4
 	iffalse NotGhostReceptionist
@@ -36,7 +36,7 @@ GhostReceptionistText:
 
 OfficerScript_0x7ee66: ; 0x7ee66 
 	faceplayer
-	checkflag EVENT_LAVENDER_HAUNTER
+	checkevent EVENT_LAVENDER_HAUNTER
 	iftrue NotGhostOfficer
 	checktime $4
 	iffalse NotGhostOfficer
@@ -78,7 +78,7 @@ SuperNerdScript_0x7ee69: ; 0x7ee69
 GentlemanScript_0x7ee6c: ; 0x7ee6c
 	faceplayer
 	loadfont
-	checkflag EVENT_LAVENDER_HAUNTER
+	checkevent EVENT_LAVENDER_HAUNTER
 	iffalse GhostGentleman
 NotGhostGentleman:
 	checkflag ENGINE_EXPN_CARD

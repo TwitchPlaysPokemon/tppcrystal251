@@ -72,7 +72,7 @@ RematchCheck:
 	startbattle
 	returnafterbattle
 	writetext OakAfterBattle
-	setflag EVENT_OAK_DEFEATED
+	setevent EVENT_OAK_DEFEATED
 	waitbutton
 	closetext
 	end

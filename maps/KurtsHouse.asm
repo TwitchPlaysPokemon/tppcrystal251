@@ -146,7 +146,7 @@ UnknownScript_0x18e249: ; 0x18e249
 	buttonsound
 	verbosegiveitem2 LEVEL_BALL, $16
 	iftrue KurtGaveBalls ;quit
-	setflag EVENT_KURT_HAS_LEVEL_BALL
+	setevent EVENT_KURT_HAS_LEVEL_BALL
 	jump KurtBagFull
 ; 0x18e275
 
@@ -155,7 +155,7 @@ UnknownScript_0x18e275: ; 0x18e275 lure
 	buttonsound
 	verbosegiveitem2 LURE_BALL, $16
 	iftrue KurtGaveBalls ;quit
-	setflag EVENT_KURT_HAS_LURE_BALL
+	setevent EVENT_KURT_HAS_LURE_BALL
 	jump KurtBagFull
 ; 0x18e27b
 
@@ -164,7 +164,7 @@ UnknownScript_0x18e27b: ; 0x18e27b
 	buttonsound
 	verbosegiveitem2 MOON_BALL, $16
 	iftrue KurtGaveBalls ;quit
-	setflag EVENT_KURT_HAS_MOON_BALL
+	setevent EVENT_KURT_HAS_MOON_BALL
 	jump KurtBagFull
 ; 0x18e281
 
@@ -173,7 +173,7 @@ UnknownScript_0x18e281: ; 0x18e281
 	buttonsound
 	verbosegiveitem2 FRIEND_BALL, $16
 	iftrue KurtGaveBalls ;quit
-	setflag EVENT_KURT_HAS_FRIEND_BALL
+	setevent EVENT_KURT_HAS_FRIEND_BALL
 	jump KurtBagFull
 ; 0x18e287
 
@@ -182,7 +182,7 @@ UnknownScript_0x18e287: ; 0x18e287
 	buttonsound
 	verbosegiveitem2 FAST_BALL, $16
 	iftrue KurtGaveBalls ;quit
-	setflag EVENT_KURT_HAS_FAST_BALL
+	setevent EVENT_KURT_HAS_FAST_BALL
 	jump KurtBagFull
 ; 0x18e28d
 
@@ -191,7 +191,7 @@ UnknownScript_0x18e28d: ; 0x18e28d
 	buttonsound
 	verbosegiveitem2 HEAVY_BALL, $16
 	iftrue KurtGaveBalls ;quit
-	setflag EVENT_KURT_HAS_HEAVY_BALL
+	setevent EVENT_KURT_HAS_HEAVY_BALL
 	jump KurtBagFull
 ; 0x18e293
 
@@ -200,7 +200,7 @@ UnknownScript_0x18e293: ; 0x18e293
 	buttonsound
 	verbosegiveitem2 LOVE_BALL, $16
 	iftrue KurtGaveBalls ;quit
-	setflag EVENT_KURT_HAS_LOVE_BALL
+	setevent EVENT_KURT_HAS_LOVE_BALL
 	jump KurtBagFull
 ; 0x18e299
 	

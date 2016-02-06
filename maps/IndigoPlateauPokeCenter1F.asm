@@ -48,7 +48,7 @@ UnknownScript_0x180053: ; 0x180053
 	iffalse UnknownScript_0x18012b
 	checkflag ENGINE_INDIGO_PLATEAU_RIVAL_FIGHT
 	iftrue UnknownScript_0x18012b
-	checkflag EVENT_BEAT_INDIGO_RIVAL_AT_LEAST_ONCE
+	checkevent EVENT_BEAT_INDIGO_RIVAL_AT_LEAST_ONCE
 	iffalse SkipDayCheck2
 	checkcode VAR_WEEKDAY
 	if_equal SUNDAY, UnknownScript_0x18012b
@@ -74,7 +74,7 @@ UnknownScript_0x180094: ; 0x180094
 	iffalse UnknownScript_0x18012b
 	checkflag ENGINE_INDIGO_PLATEAU_RIVAL_FIGHT
 	iftrue UnknownScript_0x18012b
-	checkflag EVENT_BEAT_INDIGO_RIVAL_AT_LEAST_ONCE
+	checkevent EVENT_BEAT_INDIGO_RIVAL_AT_LEAST_ONCE
 	iffalse SkipDayCheck2
 	checkcode VAR_WEEKDAY
 	if_equal SUNDAY, UnknownScript_0x18012b
@@ -143,7 +143,7 @@ UnknownScript_0x180113: ; 0x180113
 	dotrigger $0
 	playmapmusic
 	setflag ENGINE_INDIGO_PLATEAU_RIVAL_FIGHT
-	setflag EVENT_BEAT_INDIGO_RIVAL_AT_LEAST_ONCE
+	setevent EVENT_BEAT_INDIGO_RIVAL_AT_LEAST_ONCE
 UnknownScript_0x18012b: ; 0x18012b
 	end
 ; 0x18012c

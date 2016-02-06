@@ -67,7 +67,7 @@ MistyScript_0x188432: ; 0x188432
 	iftrue UnknownScript_0x188460
 	writetext UnknownText_0x188674
 	waitbutton
-	checkflag EVENT_BEAT_MISTY_RB
+	checkevent EVENT_BEAT_MISTY_RB
 	iftrue MistySecondScript
 	writetext TextBranchFirstMisty
 	waitbutton

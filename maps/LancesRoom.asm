@@ -102,7 +102,7 @@ AfterLanceFight:
 	spriteface $4, $1
 	spriteface $2, $2
 	loadfont
-	checkflag EVENT_OAK_DEFEATED
+	checkevent EVENT_OAK_DEFEATED
 	iftrue CheckDexForMtSilver
 	writetext UnknownText_0x18121b
 AfterOakTalk:
@@ -111,7 +111,7 @@ AfterOakTalk:
 	applymovement $3, MovementData_0x180f4c
 	spriteface $0, $2
 	loadfont
-	checkflag EVENT_OAK_DEFEATED
+	checkevent EVENT_OAK_DEFEATED
 	iftrue MaryKnowsYoureChamp
 	writetext UnknownText_0x18134b
 NoInterviewsEver:

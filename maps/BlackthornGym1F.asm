@@ -61,9 +61,9 @@ ClairScript_0x194e24: ; 0x194e24
 ; 0x194e63
 
 ClairMeetMeInDragonsDenScript:
-	checkflag EVENT_BEAT_RIVAL_IN_MT_MOON
+	checkevent EVENT_BEAT_RIVAL_IN_MT_MOON
 	iffalse ClairRejectNoMtMoon
-	checkflag EVENT_BEAT_INDIGO_RIVAL_AT_LEAST_ONCE
+	checkevent EVENT_BEAT_INDIGO_RIVAL_AT_LEAST_ONCE
 	iffalse ClairReject
 	writetext ClairMeetMeInDragonsDenText
 	waitbutton
