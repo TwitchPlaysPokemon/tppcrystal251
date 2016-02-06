@@ -383,6 +383,7 @@
 	const TULLY4
 	const DALE_RB
 	const BARNY_RB
+	const WILLY
 
 	trainerclass SWIMMERM ; 26
 	const HAROLD

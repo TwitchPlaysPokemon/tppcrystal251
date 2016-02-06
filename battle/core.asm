@@ -9113,6 +9113,10 @@ Function3f998: ; 3f998
 	jr .asm_3f9ca
 
 .asm_3f9af
+	ld hl, EnemyMonHP
+	ld a, [hli]
+	or [hl]
+	jr z, .respawn
 	call GetRoamMonHP
 	ld [hl], 0
 	call GetRoamMonMapGroup
@@ -9121,20 +9125,25 @@ Function3f998: ; 3f998
 	ld [hl], MAP_N_A
 	call GetRoamMonSpecies
 	ld a, [hl]
-	ld [hl], MISSINGNO_
-	; Set event for static beast
-
-	ld b, 0
+	ld [hl], 0
+	ret
+.respawn
+	call GetRoamMonSpecies
+	ld b, 1
 	cp RAIKOU
-	ld de, EVENT_STATIC_RAIKOU
-	jr z, .setflag
+	jr z, .okay
+	sla b
 	cp ENTEI
-	ld de, EVENT_STATIC_ENTEI
-	jr z, .setflag
-	ld de, EVENT_STATIC_SUICUNE
-
-.setflag
-	call EventFlagAction
+	jr z, .okay
+	sla b
+.okay
+	ld a, [ScriptVar]
+	push af
+	ld a, b
+	ld [ScriptVar], a
+	callba InitRoamMons
+	pop af
+	ld [ScriptVar], a
 	ret
 
 .asm_3f9c4

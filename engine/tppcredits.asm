@@ -367,7 +367,50 @@ StripBounds:
 	
 ; Tiles and attributes are encoded in WLE
 
-TPPCreditsBG1: ; TODO	
+TPPCreditsBG1: INCBIN "gfx/credits/bg1.2bpp.lz"
+
+TPPCreditsBG1Tiles:
+	db $a2, $02, $6d, $00, $a3, $02, $6d, $00, $01
+	db $01, $b0, $04, $b0, $04, $67, $19, $a7, $14
+	db $69, $19, $a7, $14, $62, $19, $7f, $1b, $5f
+	db $42, $70, $1c, $50, $70, $1d, $50, $70, $1c
+	db $50, $70, $1d, $50, $70, $19, $50, $ff
+	
+TPPCreditsBG1Attrs:
+	db $70, $0a, $50, $7f, $0b, $5f, $42, $70, $0c, $50
+	db $70, $0d, $50, $7f, $0e, $5f, $7f, $0f, $5f, $ff
+	
+TPPCreditsBG1Pals:
+	RGB 30, 30, 22
+	RGB 24, 24, 19
+	RGB 23, 23, 20
+	RGB 19, 23, 21
+
+	RGB 30, 29, 20
+	RGB 23, 23, 18
+	RGB 21, 22, 20
+	RGB 18, 22, 21
+
+	RGB 18, 21, 21
+	RGB 18, 21, 20
+	RGB 18, 20, 20
+	RGB 17, 20, 20
+
+	RGB 17, 20, 19
+	RGB 17, 19, 19
+	RGB 16, 19, 19
+	RGB 16, 18, 18
+
+	RGB 15, 18, 18
+	RGB 14, 17, 18
+	RGB 14, 16, 17
+	RGB 13, 15, 17
+
+	RGB 12, 14, 16
+	RGB 11, 13, 15
+	RGB 11, 12, 15
+	RGB 10, 12, 15
+	
 TPPCreditsBG2: ; TODO
 
 TPPCreditsBG3: INCBIN "gfx/credits/bg3.w96.2bpp.lz"

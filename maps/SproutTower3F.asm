@@ -78,6 +78,10 @@ SageLiScript: ; 0x1849a6
 	verbosegiveitem HM_FLASH, 1
 	setevent EVENT_GOT_HM05_FLASH
 	setevent EVENT_BEAT_SAGE_LI
+	checkevent EVENT_GOT_TOGEPI_EGG_FROM_ELMS_AIDE
+	iffalse .skip_trigger
+	domaptrigger GROUP_ROUTE_32, MAP_ROUTE_32, $1
+.skip_trigger
 	writetext UnknownText_0x184d13
 	waitbutton
 	closetext

@@ -3,20 +3,27 @@ PowerPlant_MapScriptHeader: ; 0x188db9
 	db 2
 
 	; triggers
-	dw UnknownScript_0x188dc3, $0000
-	dw UnknownScript_0x188dc4, $0000
+	dw .Trigger0, $0000
+	dw .Trigger1, $0000
 
 	; callback count
-	db 0
+	db 1
+	dbw 1, .OpenSesame
 ; 0x188dc3
 
-UnknownScript_0x188dc3: ; 0x188dc3
+.Trigger0: ; 0x188dc3
 	end
 ; 0x188dc4
 
-UnknownScript_0x188dc4: ; 0x188dc4
+.Trigger1: ; 0x188dc4
 	end
 ; 0x188dc5
+.OpenSesame
+	checkevent EVENT_FIRST_TIME_BABA
+	iffalse .skip
+	changeblock 0, 6, $5
+.skip
+	return
 
 UnknownScript_0x188dc5: ; 0x188dc5
 	playsound SFX_CALL
@@ -427,9 +434,10 @@ PowerPlant_MapEventHeader: ; 0x1894b9
 	db 0, 0
 
 	; warps
-	db 2
+	db 3
 	warp_def $11, $2, 2, GROUP_ROUTE_10_NORTH, MAP_ROUTE_10_NORTH
 	warp_def $11, $3, 2, GROUP_ROUTE_10_NORTH, MAP_ROUTE_10_NORTH
+	warp_def 6, 1, 1, GROUP_POWERPLANTB1, MAP_POWERPLANTB1
 
 	; xy triggers
 	db 1

@@ -1512,6 +1512,20 @@ Script_loadpokedata: ; 0x97412
 	call GetScriptByte
 	ld [wd22e], a
 	call GetScriptByte
+	and a
+	jr nz, .load
+	ld a, [wd22e]
+	ld hl, wRoamMon1Species
+	cp [hl]
+	jr z, .got_pointer
+	ld hl, wRoamMon2Species
+	cp [hl]
+	jr z, .got_pointer
+	ld hl, wRoamMon3Species
+.got_pointer
+	inc hl
+	ld a, [hl]
+.load
 	ld [CurPartyLevel], a
 	ret
 ; 0x97424

@@ -27,29 +27,6 @@ UnknownText_0x1b2086: ; 0x1b2086
 	done
 ; 0x1b2099
 
-ZapdosScript1: ; Debug
-	faceplayer
-	loadfont
-	writetext ZapdosText1
-	cry ZAPDOS
-	waitbutton
-	closetext
-	loadpokedata ZAPDOS, 95
-	writecode VAR_BATTLETYPE, BATTLETYPE_KANTOLEGEND
-	startbattle
-	writebyte ZAPDOS
-	special SpecialMonCheck
-	iffalse DontKillZapdos
-	disappear $2
-	setevent EVENT_FOUGHT_ZAPDOS
-DontKillZapdos:
-	returnafterbattle
-	end
-
-ZapdosText1:
-	text "Bizaaah!"
-	done
-	
 Route10North_MapEventHeader: ; 0x1b2099
 	; filler
 	db 0, 0
@@ -68,8 +45,8 @@ Route10North_MapEventHeader: ; 0x1b2099
 	signpost 1, 12, $0, MapRoute10NorthSignpost1Script
 
 	; people-events
-	db 1
-	person_event SPRITE_BIRD, 14, 8, $0, 0, 0, -1, -1, 0, 0, 0, ZapdosScript1, EVENT_FOUGHT_ZAPDOS
+	db 0 ; 1
+; 	person_event SPRITE_BIRD, 14, 8, $0, 0, 0, -1, -1, 0, 0, 0, ZapdosScript1, EVENT_FOUGHT_ZAPDOS
 ; 0x1b20b3
 
 

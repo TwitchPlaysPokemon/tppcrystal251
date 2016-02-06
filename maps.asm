@@ -656,5 +656,11 @@ INCLUDE "maps/PowerplantB1.asm"SECTION "PowerplantB1 Blockdata", ROMX
 PowerplantB1_BlockData: INCBIN "maps/PowerplantB1.blk"
 
 SECTION "PowerplantB2", ROMX
-INCLUDE "maps/PowerplantB2.asm"SECTION "PowerplantB2 Blockdata", ROMX
+INCLUDE "maps/PowerplantB2.asm"
+SECTION "PowerplantB2 Blockdata", ROMX
 PowerplantB2_BlockData: INCBIN "maps/PowerplantB2.blk"
+
+SECTION "Legendary Beast Rooms", ROMX
+INCLUDE "maps/EnteiRoom.asm"
+INCLUDE "maps/RaikouRoom.asm"
+INCLUDE "maps/SuicuneRoom.asm"

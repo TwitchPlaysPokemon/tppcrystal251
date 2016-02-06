@@ -5880,6 +5880,16 @@ FisherGroup:
 	db 17, SHELLDER
 	db $ff
 
+	db "WILLY@"
+	db 0
+	db 95, MAGIKARP
+	db 95, MAGIKARP
+	db 95, MAGIKARP
+	db 95, MAGIKARP
+	db 95, MAGIKARP
+	db 95, MAGIKARP
+	db $ff
+
 ; ================
 ; ================================
 

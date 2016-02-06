@@ -156,9 +156,10 @@ CinnabarIsland_MapEventHeader: ; 0x1accf4
 	db 0, 0
 
 	; warps
-	db 2
+	db 3
 	warp_def 15, $b, 1, GROUP_CINNABAR_POKECENTER_1F, MAP_CINNABAR_POKECENTER_1F
 	warp_def 7, 22, 1, GROUP_CINNABAR_VOLCANO_ENTRANCE, MAP_CINNABAR_VOLCANO_ENTRANCE
+	warp_def 21, 26, 1, GROUP_ENTEI_ROOM, MAP_ENTEI_ROOM
 
 	; xy triggers
 	db 0
