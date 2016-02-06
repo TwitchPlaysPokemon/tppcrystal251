@@ -7795,7 +7795,7 @@ BattleCommand24: ; 369b6
 	call GetBattleVarAddr
 	ld a, [hl] ;redundent?
 	cp EFFECT_TWINEEDLE
-	jr z, .asm_36a3f ;if twinneedle, load 1 more hit
+	jr z, .asm_36a3f ;if TWINEEDLE, load 1 more hit
 	cp EFFECT_DOUBLE_HIT
 	ld a, $1 ;if double hit, load 1 more hit and jump somewhere different
 	jr z, .asm_36a3a
@@ -7855,7 +7855,7 @@ BattleCommand24: ; 369b6
 	inc a
 	ld [bc], a
 	jr .asm_36a6b
-.asm_36a3f ;if twinneedle
+.asm_36a3f ;if TWINEEDLE
 	ld a, $1
 	jr .asm_36a3a
 
