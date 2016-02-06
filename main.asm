@@ -11325,9 +11325,9 @@ Jumptable_11977: ; 11977 (4:5977)
 	ld a, [hl]
 	and B_BUTTON
 	jr nz, .b
-	ld a, [hl]
-	and START
-	jr nz, .start
+	; ld a, [hl]
+	; and START
+	; jr nz, .start
 	ld a, [hl]
 	and SELECT
 	jr nz, .select
@@ -11359,21 +11359,21 @@ Jumptable_11977: ; 11977 (4:5977)
 	inc [hl]
 	ret
 
-.start
-	ld a, [wc6da]
-	xor 1
-	ld [wc6da], a
-	jr z, .restore_mode
-	call .set_upper
-	hlcoord 1, 16
-	ld de, .upper_str
-	call PlaceString
-	ret
-.restore_mode
-	ld a, [wcf64]
-	and a
-	jr z, .set_upper
-	jr .set_lower
+; .start
+	; ld a, [wc6da]
+	; xor 1
+	; ld [wc6da], a
+	; jr z, .restore_mode
+	; call .set_upper
+	; hlcoord 1, 16
+	; ld de, .upper_str
+	; call PlaceString
+	; ret
+; .restore_mode
+	; ld a, [wcf64]
+	; and a
+	; jr z, .set_upper
+	; jr .set_lower
 
 .b
 	call NamingScreen_DeleteCharacter
@@ -11386,22 +11386,22 @@ Jumptable_11977: ; 11977 (4:5977)
 	ret
 
 .select
-	ld hl, wc6da
-	bit 0, [hl]
-	res 0, [hl]
+	; ld hl, wc6da
+	; bit 0, [hl]
+	; res 0, [hl]
 	ld hl, wcf64
-	jr nz, .bit0
+	; jr nz, .bit0
 	ld a, [hl]
 	xor 1
 	ld [hl], a
 	jr z, .set_upper
-	jr .set_lower
-.bit0
-	ld a, [hl]
-	and a
-	jr z, .set_upper
+	; jr .set_lower
+; .bit0
+	; ld a, [hl]
+	; and a
+	; jr z, .set_upper
 	
-.set_lower
+; .set_lower
 	ld de, NameInputLower
 	call NamingScreen_ApplyTextInputMode
 	ret
@@ -20413,7 +20413,14 @@ Function15c25: ; 15c25
 ; 15c51
 
 Unknown_15c51: ; 15c51
-	db $05, $24, $94, $11, $6e, $8a, $02, $6f, $ac, $0d, $83, $84, $03, $84, $f8, $11, $ff
+	db 6
+	dbw NUGGET,     4500
+	dbw PEARL,       650
+	dbw BIG_PEARL,  3500
+	dbw STARDUST,    900
+	dbw STAR_PIECE, 4600
+	dbw EXP_SHARE,  2100
+	db -1
 ; 15c62
 
 Function15c62: ; 15c62

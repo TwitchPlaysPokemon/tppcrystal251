@@ -41,6 +41,9 @@ AzaleaGym_BurglarSimonScript1:
 	writetext AzaleaGym_BurglarSimonText2
 	buttonsound
 	verbosegiveitem EXP_SHARE, 1
+	iffalse .skip_set
+	setevent EVENT_GOT_EXP_SHARE_FROM_SIMON
+.skip_set
 	writetext AzaleaGym_BurglarSimonText3
 	waitbutton
 	closetext

@@ -75,8 +75,15 @@ UnknownScript_0x196eb0: ; 0x196eb0
 	writetext UnknownText_0x197476
 	yesorno
 	iffalse UnknownScript_0x196ec3
+	checkevent EVENT_GOT_EXP_SHARE_FROM_SIMON
+	iffalse .give_exp_share
 	verbosegiveitem SLEEP_GUARD, 1
 	iffalse UnknownScript_0x196ec7
+	jump .take_red_scale
+.give_exp_share
+	verbosegiveitem EXP_SHARE, 1
+	iffalse UnknownScript_0x196ec7
+.take_red_scale
 	takeitem RED_SCALE, 1
 	jump UnknownScript_0x196eaa
 ; 0x196ec3
