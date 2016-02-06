@@ -35622,10 +35622,12 @@ PlayBattleMusic: ; 2ee6c
 	cp CHAMPION
 	jp z, .done
 	cp RED
+	jp z, .done
+	cp POKEMON_PROF
+	jp z, .done
+	cp BABA
 	jr z, .done
 	ld de, MUSIC_VS_WCS
-	cp POKEMON_PROF
-	jr z, .done
 	cp PROF_ELM
 	jr z, .done
 	; really, they should have included admins and scientists here too...
@@ -35641,6 +35643,8 @@ PlayBattleMusic: ; 2ee6c
 	cp EXECUTIVEM
 	jr z, .done
 	cp EXECUTIVEF
+	jr z, .done
+	cp SCIENTIST
 	jr z, .done
 	ld de, MUSIC_RIVAL_BATTLE_RB
 	cp BLUE_RB
