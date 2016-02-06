@@ -10378,6 +10378,7 @@ Function11452:: ; 11452
 	ld hl, wdc1c
 	call Function11420
 	ret nc
+	callba DailyRoamMonUpdate
 	xor a
 	ld hl, DailyFlags
 	ld [hli], a
@@ -19168,6 +19169,27 @@ DeleteBoxAddress:
 	ld h, d
 	ld l, e
 	call GetSRAMBank
+	push hl
+	inc hl
+	ld b, MONS_PER_BOX
+.loop
+	ld a, [hli]
+	cp ENTEI
+	ld a, 1
+	jr z, .init
+	cp RAIKOU
+	ld a, 2
+	jr z, .init
+	cp SUICUNE
+	jr nz, .next
+	ld a, 4
+.init
+	ld [ScriptVar], a
+	callba InitRoamMons
+.next
+	dec b
+	jr nz, .loop
+	pop hl
 	xor a
 	ld [hli], a
 	dec a
@@ -33558,6 +33580,115 @@ CheckPartyLevels:
 	ld c, 10
 	call SimpleMultiply
 	ret
+
+DailyRoamMonUpdate:
+    call GetWeekday
+	cp MONDAY
+	jr z, .Entei
+	cp TUESDAY
+	jr z, .Suicune
+	cp WEDNESDAY
+	jr z, .Raikou
+	cp THURSDAY
+	jr z, .Entei
+	cp FRIDAY
+	jr z, .Suicune
+	cp SATURDAY
+	jr z, .Raikou
+	xor a
+	call .PutInRoom
+	ld a, 1
+	call .PutInRoom
+	ld a, 2
+	call .PutInRoom
+	ret
+
+.Entei
+	xor a
+	call .PutInRoom
+	ld a, 1
+	call .RestartRoam
+	ld a, 2
+	call .RestartRoam
+	ret
+
+.Suicune
+	xor a
+	call .RestartRoam
+	ld a, 1
+	call .RestartRoam
+	ld a, 2
+	call .PutInRoom
+	ret
+
+.Raikou
+	xor a
+	call .RestartRoam
+	ld a, 1
+	call .PutInRoom
+	ld a, 2
+	call .RestartRoam
+	ret
+
+.PutInRoom
+	call .GetPointers
+	ret z
+	ld a, b
+	ld [hli], a
+	ld a, c
+	ld [hl], a
+	ld b, 0
+	call EventFlagAction
+	ret
+
+.RestartRoam
+	call .GetPointers
+	ret z
+	push hl
+	callba Function2a3cd
+	pop hl
+	ld a, b
+	ld [hli], a
+	ld a, c
+	ld [hli], a
+	ld b, 1
+	call EventFlagAction
+	ret
+
+.GetPointers
+	ld l, a
+	ld h, 0
+	ld e, a
+	ld d, 0
+	add hl, hl
+	add hl, de
+	ld de, .pointers
+	add hl, hl
+	add hl, de
+	ld a, [hli]
+	ld b, a
+	ld a, [hli]
+	ld c, a
+	ld a, [hli]
+	ld e, a
+	ld a, [hli]
+	ld d, a
+	ld a, [hli]
+	ld h, [hl]
+	ld l, a
+	ld a, [hl]
+	cp $ff
+	ret
+
+.pointers
+roammonstaticdata: macro
+	map \1
+	dw \2, \3
+endm
+	roammonstaticdata ENTEI_ROOM, EVENT_STATIC_ENTEI, wRoamMon2MapGroup
+	roammonstaticdata RAIKOU_ROOM, EVENT_STATIC_RAIKOU, wRoamMon1MapGroup
+	roammonstaticdata SUICUNE_ROOM, EVENT_STATIC_SUICUNE, wRoamMon3MapGroup
+
 
 InitRoamMons:
 ; initialize wRoamMon struct with ID given in [ScriptVar]. 1: Raikou | 2: Entei | 4: Suicune
@@ -82322,6 +82453,20 @@ Functione3180: ; e3180 (38:7180)
 	ld d, b
 	call PlayCryHeader
 .asm_e31ab
+	ld a, [CurPartySpecies]
+	cp ENTEI
+	ld a, 1
+	jr z, .init
+	cp RAIKOU
+	ld a, 2
+	jr z, .init
+	cp SUICUNE
+	jr nz, .next
+	ld a, 4
+.init
+	ld [ScriptVar], a
+	callba InitRoamMons
+.next
 	ld a, [CurPartySpecies]
 	ld [wd265], a
 	call GetPokemonName

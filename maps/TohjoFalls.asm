@@ -15,10 +15,11 @@ TohjoFalls_MapEventHeader: ; 0x18db04
 	db 0, 0
 
 	; warps
-	db 3
+	db 4
 	warp_def 27, 13, 2, GROUP_ROUTE_27, MAP_ROUTE_27
 	warp_def 27, 25, 3, GROUP_ROUTE_27, MAP_ROUTE_27
 	warp_def 3, 9, 1, GROUP_TOHJO_FALLS_BACK_ROOM, MAP_TOHJO_FALLS_BACK_ROOM
+	warp_def 5, 37, 1, GROUP_SUICUNE_ROOM, MAP_SUICUNE_ROOM
 
 	; xy triggers
 	db 0

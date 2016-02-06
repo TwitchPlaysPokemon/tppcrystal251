@@ -242,6 +242,7 @@ MAP_N_A   EQU -1
 	mapgroup VERMILION_GYM, 9, 5
 	mapgroup ROUTE_6_SAFFRON_GATE, 4, 5
 	mapgroup ROUTE_6_UNDERGROUND_ENTRANCE, 4, 4
+	mapgroup MEWISLANDENTRANCE, 18, 10
 
 	newgroup ; Pallet Town Roofs
 	mapgroup ROUTE_1, 18, 10
@@ -441,7 +442,6 @@ MAP_N_A   EQU -1
 	mapgroup CERULEANCAVE1, 9, 15
 	mapgroup CERULEANCAVE2, 9, 15
 	mapgroup CERULEANCAVE3, 9, 15
-	mapgroup MEWISLANDENTRANCE, 18, 10
 	mapgroup MEWISLANDUNDERGROUND, 9, 10
 	mapgroup MEWISLANDENTRANCEDOCK, 18, 10
 	mapgroup MEWISLANDB1, 9, 15
@@ -460,6 +460,10 @@ MAP_N_A   EQU -1
 	mapgroup POWERPLANTB1, 18, 20
 	mapgroup POWERPLANTB2, 18, 20
 
+	mapgroup ENTEI_ROOM, 4, 5
+	mapgroup RAIKOU_ROOM, 4, 5
+	mapgroup SUICUNE_ROOM, 4, 5
+
 	newgroup
 	mapgroup CINNABAR_VOLCANO_ENTRANCE, 4, 5
 	mapgroup CINNABAR_VOLCANO_B1F, $12, $0c
@@ -473,6 +477,7 @@ MAP_N_A   EQU -1
 	mapgroup CELADON_DEPT_STORE_B1F, 4, 8
 	mapgroup SILVER_CAVE_DREAM_ROOM, 18, 10
 	mapgroup DUMMY_BLANK_MAP, 1, 1
+	
 
 	newgroup ; Pallet Town RB
 	mapgroup ROUTE_1_RB, 18, 10
