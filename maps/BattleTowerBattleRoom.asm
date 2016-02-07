@@ -98,8 +98,6 @@ UnknownScript_0x9f4c2: ; 0x9f4c2
 	pause 60
 	special Function8c092 ;pallete stuff
 	warpfacing $1, GROUP_BATTLE_TOWER_1F, MAP_BATTLE_TOWER_1F, $7, $7 ;warp downstairs
-	writebyte $4
-	special Function170687 ;load 0 into $be45
 	copybytetovar wcf64
 	loadfont
 	if_equal $2, Win1Match
@@ -111,6 +109,8 @@ UnknownScript_0x9f4c2: ; 0x9f4c2
 BTPrizeGiven:
 	writetext UnknownText_0x9ea49 ;thanks for visiting
 	waitbutton
+	writebyte $4
+	special Function170687 ;load 0 into $be45
 	closetext
 	end
 ; 0x9f4d9

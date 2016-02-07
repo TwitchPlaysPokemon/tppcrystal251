@@ -2427,7 +2427,7 @@ SchoolboyGroup:
 
 	; SCHOOLBOY (7)
 	db "DUDLEY@"
-	db 0 ; normal	
+	db (1 << TRAINERTYPE_ITEM) ; normal	
 
 	; party
 	db 80, ODDISH, FOCUS_BAND

@@ -22788,14 +22788,22 @@ Function17024d: ; 17024d ;generate trainer and run fight
 	ld a, [$be46]
 	ld [wcf64], a ;load $be46 into win streak
 	call CloseSRAM
+	pop af
 	ld hl, StringBuffer3
 	ld a, [wcf64]
 	add $f7 ;load be46 + $f7 into stringbuffer 3, follow with a string end
 	ld [hli], a
 	ld a, $50
 	ld [hl], a
+	jr SkipRepeatingWinStreak
 
 .asm_1702a9
+	ld a, $1
+	call GetSRAMBank
+	ld a, [$be46]
+	ld [wcf64], a ;load $be46 into win streak
+	call CloseSRAM
+SkipRepeatingWinStreak:
 	pop af
 	ld [InBattleTowerBattle], a ;reload options and other data set for battle tower fight
 	pop af
