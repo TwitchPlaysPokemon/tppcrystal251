@@ -391,6 +391,7 @@ OfficerScript_0x19ca49: ; 0x19ca49
 	iffalse UnknownScript_0x19ca73
 	checkevent EVENT_BEAT_OFFICER_ON_ROUTE_35
 	iftrue UnknownScript_0x19ca6d
+	special SaveMusic
 	playmusic MUSIC_OFFICER_ENCOUNTER
 	writetext UnknownText_0x19ceea
 	waitbutton
