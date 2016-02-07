@@ -2171,10 +2171,13 @@ Earthquake:
 
 FutureSight:
 	checkfuturesight
+	; on the turn that future sight hits, execution skips the next 4 commands
 	checkobedience
 	usedmovetext
 	doturn
 	futuresight
+	; on the turn that future sight is used, execution breaks here
+	; on the turn that future sight hits, execution jumps to here
 	damagestats
 	damagecalc
 	stab

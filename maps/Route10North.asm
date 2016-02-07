@@ -3,16 +3,16 @@ Route10North_MapScriptHeader: ; 0x1b207e
 	db 0
 
 	; callback count
-	db 1
-	dbw 1, ZapdosIsHereScript
-; 0x1b2080
+	db 0
+	; dbw 1, ZapdosIsHereScript
+; ; 0x1b2080
 
-ZapdosIsHereScript:
-	checkevent EVENT_RESTORED_POWER_TO_KANTO
-	iftrue YesZapdosIsHere
-	disappear $2
-YesZapdosIsHere
-	return
+; ZapdosIsHereScript:
+	; checkevent EVENT_RESTORED_POWER_TO_KANTO
+	; iftrue YesZapdosIsHere
+	; disappear $2
+; YesZapdosIsHere
+	; return
 
 MapRoute10NorthSignpost0Script: ; 0x1b2080
 	jumptext UnknownText_0x1b2086
