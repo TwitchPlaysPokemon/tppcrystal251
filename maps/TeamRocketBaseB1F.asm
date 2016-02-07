@@ -29,6 +29,7 @@ SecurityCamera1a: ; 0x6c65e
 	checkevent EVENT_ROCKETS_POPULATE_ROCKET_BASE
 	iftrue NoSecurityCamera
 	showemote $0, $0, 15
+	special SaveMusic
 	playmusic MUSIC_ROCKET_ENCOUNTER
 	moveperson $2, $13, $2
 	appear $2
@@ -38,6 +39,7 @@ SecurityCamera1a: ; 0x6c65e
 	if_equal $1, NoSecurityCamera
 	scall PlaySecurityCameraSounds
 	showemote $0, $0, 15
+	special SaveMusic
 	playmusic MUSIC_ROCKET_ENCOUNTER
 	moveperson $2, $13, $2
 	appear $2
@@ -55,6 +57,7 @@ SecurityCamera1b: ; 0x6c6a7
 	checkevent EVENT_ROCKETS_POPULATE_ROCKET_BASE
 	iftrue NoSecurityCamera
 	showemote $0, $0, 15
+	special SaveMusic
 	playmusic MUSIC_ROCKET_ENCOUNTER
 	moveperson $2, $13, $3
 	appear $2
@@ -64,6 +67,7 @@ SecurityCamera1b: ; 0x6c6a7
 	if_equal $1, NoSecurityCamera
 	scall PlaySecurityCameraSounds
 	showemote $0, $0, 15
+	special SaveMusic
 	playmusic MUSIC_ROCKET_ENCOUNTER
 	moveperson $2, $13, $3
 	appear $2
@@ -81,6 +85,7 @@ SecurityCamera2a: ; 0x6c6f0
 	checkevent EVENT_ROCKETS_POPULATE_ROCKET_BASE
 	iftrue NoSecurityCamera
 	showemote $0, $0, 15
+	special SaveMusic
 	playmusic MUSIC_ROCKET_ENCOUNTER
 	moveperson $2, $4, $7
 	appear $2
@@ -90,6 +95,7 @@ SecurityCamera2a: ; 0x6c6f0
 	if_equal $1, NoSecurityCamera
 	scall PlaySecurityCameraSounds
 	showemote $0, $0, 15
+	special SaveMusic
 	playmusic MUSIC_ROCKET_ENCOUNTER
 	spriteface $0, $3
 	moveperson $2, $c, $5
@@ -108,6 +114,7 @@ SecurityCamera2b: ; 0x6c73c
 	checkevent EVENT_ROCKETS_POPULATE_ROCKET_BASE
 	iftrue NoSecurityCamera
 	showemote $0, $0, 15
+	special SaveMusic
 	playmusic MUSIC_ROCKET_ENCOUNTER
 	moveperson $2, $4, $8
 	appear $2
@@ -117,6 +124,7 @@ SecurityCamera2b: ; 0x6c73c
 	if_equal $1, NoSecurityCamera
 	scall PlaySecurityCameraSounds
 	showemote $0, $0, 15
+	special SaveMusic
 	playmusic MUSIC_ROCKET_ENCOUNTER
 	spriteface $0, $3
 	moveperson $2, $c, $5
@@ -135,6 +143,7 @@ SecurityCamera3a: ; 0x6c788
 	checkevent EVENT_ROCKETS_POPULATE_ROCKET_BASE
 	iftrue NoSecurityCamera
 	showemote $0, $0, 15
+	special SaveMusic
 	playmusic MUSIC_ROCKET_ENCOUNTER
 	moveperson $2, $13, $6
 	appear $2
@@ -144,6 +153,7 @@ SecurityCamera3a: ; 0x6c788
 	if_equal $1, NoSecurityCamera
 	scall PlaySecurityCameraSounds
 	showemote $0, $0, 15
+	special SaveMusic
 	playmusic MUSIC_ROCKET_ENCOUNTER
 	spriteface $0, $3
 	moveperson $2, $19, $b
@@ -162,6 +172,7 @@ SecurityCamera3b: ; 0x6c7d4
 	checkevent EVENT_ROCKETS_POPULATE_ROCKET_BASE
 	iftrue NoSecurityCamera
 	showemote $0, $0, 15
+	special SaveMusic
 	playmusic MUSIC_ROCKET_ENCOUNTER
 	moveperson $2, $13, $7
 	appear $2
@@ -171,6 +182,7 @@ SecurityCamera3b: ; 0x6c7d4
 	if_equal $1, NoSecurityCamera
 	scall PlaySecurityCameraSounds
 	showemote $0, $0, 15
+	special SaveMusic
 	playmusic MUSIC_ROCKET_ENCOUNTER
 	spriteface $0, $3
 	moveperson $2, $19, $c
@@ -189,6 +201,7 @@ SecurityCamera4: ; 0x6c820
 	checkevent EVENT_ROCKETS_POPULATE_ROCKET_BASE
 	iftrue NoSecurityCamera
 	showemote $0, $0, 15
+	special SaveMusic
 	playmusic MUSIC_ROCKET_ENCOUNTER
 	moveperson $2, $11, $10
 	appear $2
@@ -198,6 +211,7 @@ SecurityCamera4: ; 0x6c820
 	if_equal $1, NoSecurityCamera
 	scall PlaySecurityCameraSounds
 	showemote $0, $0, 15
+	special SaveMusic
 	playmusic MUSIC_ROCKET_ENCOUNTER
 	spriteface $0, $3
 	moveperson $2, $19, $b
@@ -216,6 +230,7 @@ SecurityCamera5: ; 0x6c86c
 	checkevent EVENT_ROCKETS_POPULATE_ROCKET_BASE
 	iftrue NoSecurityCamera
 	showemote $0, $0, 15
+	special SaveMusic
 	playmusic MUSIC_ROCKET_ENCOUNTER
 	moveperson $2, $3, $10
 	appear $2
@@ -225,6 +240,7 @@ SecurityCamera5: ; 0x6c86c
 	if_equal $1, NoSecurityCamera
 	scall PlaySecurityCameraSounds
 	showemote $0, $0, 15
+	special SaveMusic
 	playmusic MUSIC_ROCKET_ENCOUNTER
 	spriteface $0, $3
 	moveperson $2, $e, $10

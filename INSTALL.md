@@ -7,7 +7,7 @@
 	sudo make install
 	cd ..
 
-	git clone --recursive git://github.com/kanzure/pokecrystal.git
+	git clone --recursive git://github.com/twitchplayspokemon/tppcrystal251.git
 	cd pokecrystal
 
 To build **pokecrystal.gbc**:
@@ -30,7 +30,7 @@ In the shell, run:
 	sudo make install
 	cd ..
 
-	git clone --recursive git://github.com/kanzure/pokecrystal.git
+	git clone --recursive git://github.com/twitchplayspokemon/tppcrystal251.git
 	cd pokecrystal
 
 To build **pokecrystal.gbc**:
@@ -41,8 +41,6 @@ To build **pokecrystal.gbc**:
 # Windows
 
 To build on Windows, use [**Cygwin**](http://cygwin.com/install.html) (32-bit).
-
-We highly recommend installing [**apt-cyg**](https://github.com/transcode-open/apt-cyg), which will allow you to install cygwin packages on the fly.
 
 In the installer, select the following packages: `make` `git` `python` `python-setuptools` `gcc` `libsasl2` `ca-certificates`
 
@@ -59,7 +57,7 @@ Put `rgbasm.exe`, `rgblink.exe` and `rgbfix.exe` in `C:\cygwin\usr\local\bin`.
 
 In the **Cygwin terminal**:
 
-	git clone --recursive git://github.com/kanzure/pokecrystal.git
+	git clone --recursive git://github.com/twitchplayspokemon/tppcrystal251.git
 	cd pokecrystal
 
 To build:
@@ -82,7 +80,7 @@ VirtualBox. Follow these steps:
 	cd vagrantbox
 	vagrant init pokecrystal
 	vagrant up
-	vagrant ssh -c "cd /vagrant && git clone --recursive git://github.com/kanzure/pokecrystal.git"
+	vagrant ssh -c "cd /vagrant && git clone --recursive git://github.com/twitchplayspokemon/tppcrystal251.git"
 	vagrant ssh
 ```
 

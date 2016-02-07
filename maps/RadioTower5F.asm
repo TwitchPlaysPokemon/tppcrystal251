@@ -31,6 +31,7 @@ UnknownScript_0x60011: ; 0x60011
 	waitbutton
 	closetext
 	applymovement $2, MovementData_0x60109
+	special SaveMusic
 	playmusic MUSIC_ROCKET_ENCOUNTER
 	loadfont
 	writetext UnknownText_0x60147
