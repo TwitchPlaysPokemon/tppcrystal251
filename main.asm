@@ -50883,7 +50883,7 @@ TryStep: ; 8016b
 	cp PLAYER_SURF
 	jp z, TrySurfStep
 	cp PLAYER_SURF_PIKA
-	jr z, TrySurfStep
+	jp z, TrySurfStep
 	call CheckLandPermissions ; Return nc if walking onto land and tile permissions allow it.
 	jr c, .asm_801be
 	call IsNPCInFront  ;ret a = 1 if something in way, do some bike checks and possibly a = 2
@@ -50943,7 +50943,11 @@ TryStep: ; 8016b
 .run
 	ld a, STEP_RUN
 	call DoStep
+	ld a, [$ffa4]
+	and $f0
+	jr z, .skip_trainer
 	call CheckTrainerRun
+.skip_trainer
 	scf
 	ret
 
@@ -51183,7 +51187,7 @@ WalkInPlace: ; 802bf
 	ret
 ; 802cb
 
-CheckTrainerRun:: ; 360d
+CheckTrainerRun:
 ; Check if any trainer on the map sees the player.
 
 ; Skip the player object.
@@ -51294,7 +51298,30 @@ AnyFacingPlayerDistance_bc::
 	add hl, bc
 	ld e, [hl]
 
+	ld a, [$ffa4]
+	bit 7, a
+	jr nz, .down
+	bit 6, a
+	jr nz, .up
+	bit 5, a
+	jr nz, .left
+	bit 4, a
+	jr nz, .right
+.down
+	ld bc, $0100
+	jr .got_vector
+.up
+	ld bc, $ff00
+	jr .got_vector
+.left
+	ld bc, $00ff
+	jr .got_vector
+.right
+	ld bc, $0001
+.got_vector
+
 	ld a, [MapX]
+	add c
 	sub d
 	ld l, OW_RIGHT
 	jr nc, .check_y
@@ -51304,6 +51331,7 @@ AnyFacingPlayerDistance_bc::
 .check_y
 	ld d, a
 	ld a, [MapY]
+	add b
 	sub e
 	ld h, OW_DOWN
 	jr nc, .compare
@@ -51312,7 +51340,8 @@ AnyFacingPlayerDistance_bc::
 	ld h, OW_UP
 .compare
 	cp d
-	ld e, d
+	ld e, a
+	ld a, d
 	ld d, h
 	ret nc
 	ld e, a
