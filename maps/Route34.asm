@@ -588,7 +588,6 @@ AfterTutor:
 	writetext TutorTakeMoneyText
 	buttonsound
 	takemoney 0, 5000
-	waitsfx
 	writetext LightPocketsText
 	waitbutton
 	closetext
