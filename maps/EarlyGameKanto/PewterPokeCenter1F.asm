@@ -55,7 +55,7 @@ PewterPokecenterTrueCreditsScript:
     yesorno
     iffalse .no
 .yes
-    setevent EVENT_BEAT_OAK
+    setevent EVENT_BEAT_ELM
     pause 30
     special HealParty
     refreshscreen $0
