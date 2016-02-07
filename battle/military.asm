@@ -6,14 +6,14 @@ Military::
 
 ;Let's start
 MilitaryInit:
-	ld a, [wdffa] ;Checks if in military mode
+	ld a, [wMilitaryFlags] ;Checks if in military mode
 	bit MILITARY_ON, a
 	jp z, MilitaryGetEnemyActionOnly
 	callab Function4000
 	ld a, MILITARY_IDLE + (MILITARY_IDLE << 4)
 	ld [wdff8], a
 MilitaryPlayerLoop:
-	ld hl, wdffa
+	ld hl, wMilitaryFlags
 	res MILITARY_ACTION_SIDE, [hl]
 MilitaryLoop:
 	call GetMilitaryCommand
@@ -31,7 +31,7 @@ MilitaryLoop:
 .RunOrItem
 	cp MILITARY_RUN
 	jr z, MilitaryRun
-	
+
 MilitarySwitchOrItem:
 	ld b, a
 	ld a, [wdff9]
@@ -40,7 +40,7 @@ MilitarySwitchOrItem:
 
 	call GetMilitaryActionSide
 	jr z, .player
-	
+
 	ld hl, wc650
 	jr z, .got_item
 	inc hl
@@ -78,9 +78,9 @@ MilitarySwitch:
 	ret
 
 MilitaryEnemyLoop:
-	ld a, [wdffa]
+	ld a, [wMilitaryFlags]
 	set MILITARY_ACTION_SIDE, a
-	ld [wdffa], a
+	ld [wMilitaryFlags], a
 	jr MilitaryLoop
 
 MilitaryRun:
@@ -163,15 +163,15 @@ MilitaryGetMove:
 	call MilitaryUnitWidthArrayOffset
 	and a
 	jp z, MilitaryPlayerLoop ;return to the loop if the move index is 0
-	
+
 	ld b, a
 	call MilitaryGetDisabledMove 
 	ld a, [hl]
 	cp b
 	jp z, MilitaryPlayerLoop ;return to the loop if disabled
 	ld a, b
-	
-	
+
+
 	call MilitarySetMove
 	jp ChangeMilitaryActionSide
 
@@ -181,7 +181,7 @@ ChangeMilitaryActionSide:
 	jr nz, .endSegment
 	jp MilitaryEnemyLoop
 .endSegment;Let's execute these commands
-	ld hl, wdffa
+	ld hl, wMilitaryFlags
 	res MILITARY_ACTION_SIDE, [hl]
 	call Function30bf
 	callab Function3c5fe
@@ -201,7 +201,7 @@ GetMilitaryCommand:
 
 GetMilitaryActionSide:
 	push hl
-	ld hl, wdffa
+	ld hl, wMilitaryFlags
 	bit MILITARY_ACTION_SIDE, [hl]
 	pop hl
 	ret
