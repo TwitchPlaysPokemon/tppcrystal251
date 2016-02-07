@@ -1,10 +1,11 @@
 SECTION "TPPCredits", ROMX;, BANK[CREDITS]
 
-LOGO_DELAY     EQU 300
-SCROLLER_DELAY EQU 200
-C_TC_DRAW      EQU 0
-C_TC_TITLE     EQU 1
-C_TC_SUBTITLE  EQU 2
+LOGO_DELAY      EQU 300
+LOGO_DELAY_POST EQU 300
+SCROLLER_DELAY  EQU 200
+C_TC_DRAW       EQU 0
+C_TC_TITLE      EQU 1
+C_TC_SUBTITLE   EQU 2
 
 tc_draw: MACRO
 	db C_TC_DRAW
@@ -25,6 +26,8 @@ TPPCredits::
 	call Fade2Black
 	;ld de, MUSIC_TPP_CREDITS
 	;call PlayMusic
+	xor a
+	ld [hLCDStatCustom], a
 	ld a, 1 ; VBlank1
 	ld [hVBlank], a
 	ld a, $70
@@ -80,7 +83,7 @@ TPPCredits::
 	call ByteFill
 
 ; 'CRYSTAL VERSION'
-	ld hl, AttrMap + SCREEN_WIDTH * 7 + 5
+	ld hl, AttrMap + SCREEN_WIDTH * 7 + 4
 	ld bc, $000d ; length of version text
 	ld a, $9
 	call ByteFill
@@ -117,11 +120,119 @@ TPPCredits::
 	ld hl, VTiles2 + $100
 	lb bc, BANK(TitleTPPGFX), $9
 	call Request2bpp
+	
+; Copy udlrab
+	ld de, CommandsGFX
+	ld hl, VTiles2 + $200
+	lb bc, BANK(CommandsGFX), $8
+	call Request2bpp
 	xor a
 	ld [rVBK], a
 	
+; Draw Pokemon logo
+	hlcoord 0, 1
+	lb bc, 7, 20
+	ld a, $80
+	call TC_DrawGraphic
 	
+; Draw Twitch Plays
+	hlcoord 1, 0
+	lb bc, 1, 5
+	ld a, $10
+	call TC_DrawGraphic
+	hlcoord $e, 0
+	lb bc, 1, 4
+	ld a, $15
+	call TC_DrawGraphic
+	
+; Draw texts
+	hlcoord 11 - _VERLEN, 8
+	ld de, TCText_Version
+	call PlaceString
+	hlcoord 4, 11
+	ld de, TCText_Credits
+	call PlaceString
+	ld a, 1
+	ld [hBGMapMode], a
+	ld c, 4
+	call DelayFrames
+	xor a
+	ld [hBGMapMode], a
+	
+; Update palette colors
+	ld hl, TitleScreenPalettes
+	ld de, Unkn1Pals
+	ld bc, $0080
+	ld a, BANK(TitleScreenPalettes)
+	call FarCopyBytes
+	ld hl, TitleScreenPalettes
+	ld de, BGPals
+	ld bc, $0080
+	ld a, BANK(TitleScreenPalettes)
+	call FarCopyBytes
+	ld a, 1
+	ld [hCGBPalUpdate], a
+	
+TPPCredits_LogoScene
+	; TODO: init command chaos
+	ld bc, LOGO_DELAY
+
+.loop_delay
+	push bc
+	call UpdateCommandChaos_Logo
+	call DelayFrame
+	pop bc
+	dec bc
+	ld a, b
+	or c
+	jr nz, .loop_delay
+.loop_scroll
+	ld c, 3
+.loop_scroll2
+	push bc
+	call UpdateCommandChaos_Logo
+	call DelayFrame
+	pop bc
+	dec c
+	jr nz, .loop_scroll2
+	ld a, [hSCY]
+	inc a
+	ld [hSCY], a
+	cp $f8
+	jr nz, .loop_scroll
+	ld bc, LOGO_DELAY_POST
+.loop_delay_post
+	push bc
+	call UpdateCommandChaos_Logo
+	call DelayFrame
+	pop bc
+	dec bc
+	ld a, b
+	or c
+	jr nz, .loop_delay_post
+	call Fade2White
+.todo
+	call DelayFrame
+	jr .todo
+	
+UpdateCommandChaos_Logo:
 	; TODO
+	ret
+	
+TC_DrawGraphic:
+	push bc
+	push hl
+.loop2
+	ld [hli], a
+	inc a
+	dec c
+	jr nz, .loop2
+	pop hl
+	ld bc, SCREEN_WIDTH
+	add hl, bc
+	pop bc
+	dec b
+	jr nz, TC_DrawGraphic
 	ret
 	
 Fade2Black:
@@ -165,6 +276,53 @@ Fade2Black:
 	ld a, 1
 	ld [hCGBPalUpdate], a
 	call DelayFrame
+	call DelayFrame
+	dec e
+	jr nz, .loop
+	ret
+	
+Fade2White:
+; fade all BGPs until it's white
+	ld e, 32
+.loop
+	ld hl, BGPals
+	ld d, 32
+.loop2
+	ld a, [hl]
+	and $1f
+	cp $1f
+	jr z, .skip
+	inc a
+.skip
+	ld c, a
+	inc hl
+	ld a, [hld]
+	and $3
+	ld b, a
+	ld a, [hl]
+	and $e0
+	or b
+	cp $e3
+	jr z, .skip2
+	and $e0
+	add $20
+	jr nc, .skip2
+	inc b
+.skip2
+	or c
+	ld [hli], a
+	ld a, [hl]
+	and $7c
+	cp $7c
+	jr z, .skip3
+	add $4
+.skip3
+	or b
+	ld [hli], a
+	dec d
+	jr nz, .loop2
+	ld a, 1
+	ld [hCGBPalUpdate], a
 	call DelayFrame
 	dec e
 	jr nz, .loop
