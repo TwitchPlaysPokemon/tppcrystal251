@@ -564,7 +564,7 @@ GoldenrodGymGuyWinText: ; 0x546a7
 	line "moves are not the"
 
 	para "best against them."
-	cont "Sorry about that."
+	line "Sorry about that."
 
 	para "Poison would do"
 	line "wonders, though."
