@@ -10850,6 +10850,7 @@ TMHMMoves: ; 1167a
 	db ICE_PUNCH
 	db THUNDERPUNCH
 	db FIRE_PUNCH
+	db FALSE_SWIPE
 	db 0 ; end
 ; 116b7
 
