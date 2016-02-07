@@ -576,12 +576,12 @@ PlaceHost:
 	jr nz, .loop
 	ret
 
-TitleScreenPalettes:
+TitleScreenPalettes::
 ; BG
 	RGB 00, 00, 00
 	RGB 00, 01, 05
 	RGB 00, 02, 08
-	RGB 15, 08, 31
+	RGB 31, 31, 31
 	
 	RGB 00, 00, 00
 	RGB 31, 31, 31
@@ -632,7 +632,7 @@ TitleScreenPalettes:
 	RGB 31, 31, 31
 	RGB 00, 00, 00
 	RGB 00, 00, 00
-	RGB 00, 00, 00
+	RGB 31, 31, 31
 	
 	RGB 31, 31, 31
 	RGB 00, 00, 00

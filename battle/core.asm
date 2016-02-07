@@ -814,8 +814,21 @@ ELSE
 	ld de, 1
 	ld hl, AlwaysFleeMons
 	call IsInArray
-	jr c, .Flee
+	jr nc, .SometimesFlee
+	; Don't let the beasts flee if in their static rooms
+	ld a, [MapGroup]
+	cp GROUP_ENTEI_ROOM
+	jr z, .Stay
+	cp GROUP_TIN_TOWER_1F
+	jr nz, .SometimesFlee
+	ld a, [MapNumber]
+	cp MAP_TIN_TOWER_1F
+	jr nz, .SometimesFlee
+	ld a, [TempEnemyMonSpecies]
+	cp SUICUNE
+	jr z, .Stay
 
+.SometimesFlee
 	call BattleRandom
 	ld b, a
 	cp $80
@@ -881,7 +894,7 @@ OftenFleeMons: ; 3c5a8
 AlwaysFleeMons: ; 3c5b1
 	db RAIKOU
 	db ENTEI
-;	db SUICUNE
+	db SUICUNE
 	db -1
 ; 3c5b4
 
