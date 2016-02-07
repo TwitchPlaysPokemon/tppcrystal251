@@ -13,8 +13,8 @@ ENDM
 
 	move POUND,        EFFECT_NORMAL_HIT,         40, PHYSICAL, NORMAL,   100, 35,   0
 	move KARATE_CHOP,  EFFECT_NORMAL_HIT,         50, PHYSICAL, FIGHTING, 100, 25,   0
-	; move DOUBLESLAP,   EFFECT_MULTI_HIT,          15, PHYSICAL, FAIRY_T,   85, 10,   0 ; EFFECT_MULTI_HIT can be made to continue attacking after breaking Substitute
-	move DOUBLESLAP,   EFFECT_MULTI_HIT,          15, PHYSICAL, NORMAL,    85, 10,   0 ; EFFECT_MULTI_HIT can be made to continue attacking after breaking Substitute
+	move DOUBLESLAP,   EFFECT_MULTI_HIT,          15, PHYSICAL, FAIRY_T,   85, 10,   0 ; EFFECT_MULTI_HIT can be made to continue attacking after breaking Substitute
+	; move DOUBLESLAP,   EFFECT_MULTI_HIT,          15, PHYSICAL, NORMAL,    85, 10,   0 ; EFFECT_MULTI_HIT can be made to continue attacking after breaking Substitute
 	move GUNK_SHOT,    EFFECT_POISON_HIT,        120, PHYSICAL, POISON,    80,  5,  30 ; replacing Comet Punch
 	move ZEN_HEADBUTT, EFFECT_FLINCH_HIT,         80, PHYSICAL, PSYCHIC,   90, 15,  20 ; replaced Mega Punch
 	move PAY_DAY,      EFFECT_PAY_DAY,            40, PHYSICAL, NORMAL,   100, 20,   0
@@ -160,8 +160,8 @@ ENDM
 	move SKY_ATTACK,   EFFECT_SKY_ATTACK,        140, PHYSICAL, FLYING,    90,  5,  30 ; EFFECT_SKY_ATTACK has a flinch effect, it has 30% chance to flinch 
 	move TRANSFORM,    EFFECT_TRANSFORM,           0, STATUS,   NORMAL,   100, 10,   0 ;$90
 	move BUBBLE,       EFFECT_SPEED_DOWN_HIT,     40, SPECIAL,  WATER,    100, 30,  10
-	; move DIZZY_PUNCH,  EFFECT_CONFUSE_HIT,        70, PHYSICAL, FAIRY_T,  100, 10,  20 ; retconned to fairy type
-	move DIZZY_PUNCH,  EFFECT_CONFUSE_HIT,        70, PHYSICAL, NORMAL,   100, 10,  20 ; vetoed
+	move DIZZY_PUNCH,  EFFECT_CONFUSE_HIT,        70, PHYSICAL, FAIRY_T,  100, 10,  20 ; retconned to fairy type
+	; move DIZZY_PUNCH,  EFFECT_CONFUSE_HIT,        70, PHYSICAL, NORMAL,   100, 10,  20 ; vetoed (vetoed again)
 	move SPORE,        EFFECT_SLEEP,               0, STATUS,   GRASS,    100, 15,   0
 	move FLASH,        EFFECT_ACCURACY_DOWN,       0, STATUS,   NORMAL,   100, 20,   0
 	move PSYWAVE,      EFFECT_PSYWAVE,             1, SPECIAL,  PSYCHIC,  100, 15,   0
