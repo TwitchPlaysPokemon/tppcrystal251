@@ -317,6 +317,7 @@ OaksLab_DoRivalBattle:
 .done_text
 	waitbutton
 	closetext
+	setevent EVENT_RB_BEAT_RIVAL_IN_LAB
 	playmusic MUSIC_RIVAL_AFTER_RB
 	end
 
