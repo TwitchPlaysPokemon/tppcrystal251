@@ -2184,6 +2184,7 @@ FutureSight:
 	effect0x0b ; hittargetnosub
 	resulttext
 	checkfaint
+	supereffectivetext
 	checkdestinybond
 	buildopponentrage
 	endmove

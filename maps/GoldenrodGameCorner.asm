@@ -372,6 +372,8 @@ PokefanMScript_0x56e2b: ; 0x56e2b
 
 MapGoldenrodGameCornerSignpost30Script: ; 0x56e2e
 	loadfont
+	checkitem COIN_CASE
+	iffalse .NoCoinCase
 	checkcoins 3
 	if_equal $2, .NotEnoughCoins
 	writetext GoldenrodVoltorbFlipText
@@ -380,11 +382,16 @@ MapGoldenrodGameCornerSignpost30Script: ; 0x56e2e
 	refreshscreen $0
 	special Special_VoltorbFlip
 	closetext
-	if_equal $a, .ReachedLevel10
+	if_equal 10, .ReachedLevel10
 	end
 ; 0x56e31
 .NotEnoughCoins
 	writetext GoldenrodVoltorbFlipNotEnoughCoinsText
+	waitbutton
+	closetext
+	end
+.NoCoinCase
+	writetext GoldenrodVoltorbFlipNoCoinCaseText
 	waitbutton
 	closetext
 	end
@@ -609,6 +616,11 @@ GoldenrodVoltorbFlipReachedHighestLevel:
 GoldenrodVoltorbFlipReceivedMasterBallText:
 	text "Come back and play"
 	line "again any time!"
+	done
+
+GoldenrodVoltorbFlipNoCoinCaseText:
+	text "You need to have a"
+	line "COIN CASE to play."
 	done
 
 GoldenrodGameCorner_MapEventHeader: ; 0x571db

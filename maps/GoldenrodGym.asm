@@ -427,7 +427,7 @@ LassCarrieSeenText: ; 0x5439b
 
 	para "With it I will"
 	line "one day beat"
-	cont "Whitney!"
+	cont "WHITNEY!"
 	done
 ; 0x543d6
 
@@ -448,7 +448,7 @@ LassBridgetSeenText: ; 0x54411
 	line "on both normal"
 	cont "and fairy types."
 
-	para "I prefer FAIRYS"
+	para "I prefer faries"
 	line "personally!"
 	done
 ; 0x5445f
@@ -564,7 +564,7 @@ GoldenrodGymGuyWinText: ; 0x546a7
 	line "moves are not the"
 
 	para "best against them."
-	cont "Sorry about that."
+	line "Sorry about that."
 
 	para "Poison would do"
 	line "wonders, though."

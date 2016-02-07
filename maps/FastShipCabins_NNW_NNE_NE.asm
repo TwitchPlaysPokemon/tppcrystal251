@@ -181,6 +181,7 @@ BurglarCoreyScript: ; 0x755e9
 ; 0x755f1
 
 SailorScript_0x755f1: ; 0x755f1
+	special SaveMusic
 	playmusic MUSIC_HIKER_ENCOUNTER
 	faceplayer
 	loadfont

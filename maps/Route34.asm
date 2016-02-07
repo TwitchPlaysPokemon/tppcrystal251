@@ -418,6 +418,7 @@ OfficerScript_0x7824c: ; 0x7824c
 	iffalse UnknownScript_0x78276
 	checkevent EVENT_BEAT_OFFICER_ON_ROUTE_34
 	iftrue UnknownScript_0x78270
+	special SaveMusic
 	playmusic MUSIC_OFFICER_ENCOUNTER
 	writetext UnknownText_0x785e4
 	waitbutton

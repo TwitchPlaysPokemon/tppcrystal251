@@ -178,6 +178,7 @@ IF !DEF(BEESAFREE)
 	callba AIChooseMove
 ELSE
 	callba Military
+	jr .MilitarySkip
 ENDC
 
 	call IsMobileBattle
@@ -195,17 +196,13 @@ ENDC
 	jr c, .quit
 	ld a, [BattleEnded]
 	and a
-	jr nz, .quit
-	ld a, [wd232] ; roared/whirlwinded/teleported
-	and a
-	jr nz, .quit
+	jr nz, .quit	
 .asm_3c18a
 	call Function3c434
 	jr nz, .asm_3c179
 
 	call Function3c300
 	jr c, .quit
-
 	call Function3c314
 	jr c, .asm_3c19e
 	call Function3c5fe
@@ -213,9 +210,13 @@ ENDC
 .asm_3c19e
 	call Function3c664
 .asm_3c1a1
+.MilitarySkip
+	ld a, [wd232] ; roared/whirlwinded/teleported
+	and a
+	jr nz, .quit
+	
 	call Function3d2e0
 	jr c, .quit
-
 	ld a, [wd232]
 	and a
 	jr nz, .quit

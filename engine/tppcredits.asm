@@ -181,7 +181,7 @@ DecodeWLE:
 	rla
 	push hl
 	ld hl, .functable
-	jp Jumptable
+	jp JumpTable
 	
 .functable
 	dw .literal
@@ -367,7 +367,7 @@ StripBounds:
 	
 ; Tiles and attributes are encoded in WLE
 
-TPPCreditsBG1: INCBIN "gfx/credits/bg1.2bpp.lz"
+TPPCreditsBG1: INCBIN "gfx/credits/bg1.w120.2bpp.lz"
 
 TPPCreditsBG1Tiles:
 	db $a2, $02, $6d, $00, $a3, $02, $6d, $00, $01
