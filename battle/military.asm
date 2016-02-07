@@ -107,6 +107,7 @@ MilitaryUnitWidthArrayOffset:
 	ld b, 0
 	add hl, bc
 	ld a, [hl]
+	ld [wdff9], a
 	ret
 
 MilitaryGotAddr:
@@ -162,13 +163,15 @@ MilitaryGetMove:
 	call MilitaryUnitWidthArrayOffset
 	and a
 	jp z, MilitaryPlayerLoop ;return to the loop if the move index is 0
-
+	
 	ld b, a
 	call MilitaryGetDisabledMove 
 	ld a, [hl]
 	cp b
 	jp z, MilitaryPlayerLoop ;return to the loop if disabled
 	ld a, b
+	
+	
 	call MilitarySetMove
 	jp ChangeMilitaryActionSide
 
@@ -197,6 +200,8 @@ GetMilitaryCommand:
 	ret
 
 GetMilitaryActionSide:
+	push hl
 	ld hl, wdffa
 	bit MILITARY_ACTION_SIDE, [hl]
+	pop hl
 	ret
