@@ -177,8 +177,16 @@ Function3c12f: ; 3c12f
 IF !DEF(BEESAFREE)
 	callba AIChooseMove
 ELSE
+	ld a, [Options]
+	push af
+	set 4, a
+	ld [Options], a
 	ld hl, .Waiting
 	call BattleTextBox
+	ld c, 4
+	call DelayFrames
+	pop af
+	ld [Options], a
 	callba ParseExternalAI
 	call EmptyBattleTextBox
 	; jr .MilitarySkip
