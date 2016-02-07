@@ -219,10 +219,10 @@ ENDC
 	jr c, .asm_3c19e
 	call Function3c5fe
 	jr .asm_3c1a1
+
 .asm_3c19e
 	call Function3c664
 .asm_3c1a1
-.MilitarySkip
 	ld a, [wd232] ; roared/whirlwinded/teleported
 	and a
 	jr nz, .quit

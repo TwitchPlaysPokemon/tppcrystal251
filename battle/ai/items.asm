@@ -541,11 +541,13 @@ AI_Items: ; 39196
 	jp .Use
 
 ELSE
-	ld a, [wBattleAction]
+	ld a, [wdff8]
+	swap a
+	and $f
 	cp $f
 	jr z, .DontUse
 	sub $d
-	ret c
+	jr c, .DontUse
 	ld hl, wc650
 	and a
 	jr z, .okay
@@ -588,11 +590,11 @@ ELSE
 ENDC
 
 .DontUse:
-	scf
+	and a
 	ret
 
 .Use:
-	and a
+	scf
 	ret
 AIUpdateHUD: ; 38387
 	call UpdateEnemyMonInParty

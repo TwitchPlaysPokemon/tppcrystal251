@@ -14,7 +14,7 @@ ParseExternalAI::
 	jr z, .okay
 	or BEESAFREE_SND_ASKMILITARY
 .okay
-	rst LUASerial
+	; rst LUASerial
 	ld a, [wdff8]
 	and $f0
 	swap a
@@ -27,26 +27,35 @@ ParseExternalAI::
 	; cp 13
 	; jr c, .UseItem
 	; jr z, .Struggle
-	; scf
 	; ret
 
 .UseMove
+	ld [CurEnemyMoveNum], a
 	ld c, a
 	ld b, 0
 	ld hl, EnemyMonMoves
 	add hl, bc
 	ld a, [hl]
 	ld [CurEnemyMove], a
-	and a
 	ret
 
 Military::
 ; This is a dummy function until we can get a version that actually works.
+	ld a, [wdff8]
+	and $f
+	cp 4
+	jr c, .UseMove
+	and 3 ; debug
+.UseMove
+	ld [CurMoveNum], a
+	ld c, a
+	ld b, 0
+	ld hl, BattleMonMoves
+	add hl, bc
+	ld a, [hl]
+	ld [CurPlayerMove], a
 	xor a
 	ld [wd0ec], a
-	ld [CurMoveNum], a
-	ld a, [BattleMonMoves]
-	ld [CurPlayerMove], a
 	ret
 
 
