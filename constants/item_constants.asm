@@ -262,6 +262,7 @@ NUM_HMS = const_value - HM01
 	add_mt ICE_PUNCH
 	add_mt THUNDERPUNCH
 	add_mt FIRE_PUNCH
+	add_mt FALSE_SWIPE
 
 
 
