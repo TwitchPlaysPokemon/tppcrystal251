@@ -78,7 +78,7 @@ _SSAnne8BattleText1:
 	done
 
 _SSAnne8EndBattleText1:
-	text "My, my friends…"
+	text "My, my friends<...>"
 	done
 
 _SSAnne8AfterBattleText1:
