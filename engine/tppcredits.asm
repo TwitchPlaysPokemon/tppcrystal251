@@ -181,7 +181,7 @@ DecodeWLE:
 	rla
 	push hl
 	ld hl, .functable
-	jp Jumptable
+	jp JumpTable
 	
 .functable
 	dw .literal
