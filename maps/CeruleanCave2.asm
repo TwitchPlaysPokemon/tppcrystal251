@@ -40,13 +40,13 @@ CeruleanCave2_MapEventHeader:
 
 	; people-events
 	db 8
-	person_event SPRITE_ROCK, $b + 4, $11 + 4, $18, 0, 0, -1, -1, 0, 0, 0, CeruleanCave2_Rock, -1
-	person_event SPRITE_ROCK, $9 + 4, $a + 4, $18, 0, 0, -1, -1, 0, 0, 0, CeruleanCave2_Rock, -1
-	person_event SPRITE_ROCK, $2 + 4, $0 + 4, $18, 0, 0, -1, -1, 0, 0, 0, CeruleanCave2_Rock, -1
-	person_event SPRITE_ROCK, $5 + 4, $4 + 4, $18, 0, 0, -1, -1, 0, 0, 0, CeruleanCave2_Rock, -1
+	person_event SPRITE_ROCK, 15, 21, $18, 0, 0, -1, -1, 0, 0, 0, CeruleanCave2_Rock, -1
+	person_event SPRITE_ROCK, 13, 14, $18, 0, 0, -1, -1, 0, 0, 0, CeruleanCave2_Rock, -1
+	person_event SPRITE_ROCK, 6, 4, $18, 0, 0, -1, -1, 0, 0, 0, CeruleanCave2_Rock, -1
+	person_event SPRITE_ROCK, 9, 8, $18, 0, 0, -1, -1, 0, 0, 0, CeruleanCave2_Rock, -1
 	
-	person_event SPRITE_POKE_BALL, $3 + 4, $1b + 4, $1, 0, 0, -1, -1, 0, 1, 0, CeruleanCave2_Item1, EVENT_ITEM_CERULEANCAVE2_PPUP
-	person_event SPRITE_POKE_BALL, $0 + 4, $9 + 4, $1, 0, 0, -1, -1, 0, 1, 0, CeruleanCave2_Item2, EVENT_ITEM_CERULEANCAVE2_CALCIUM
-	person_event SPRITE_POKE_BALL, $c + 4, $b + 4, $1, 0, 0, -1, -1, 0, 1, 0, CeruleanCave2_Item3, EVENT_ITEM_CERULEANCAVE2_FULL_HEAL
-	person_event SPRITE_POKE_BALL, $f + 4, $1b + 4, $1, 0, 0, -1, -1, 0, 1, 0, CeruleanCave2_Item4, EVENT_ITEM_CERULEANCAVE2_CONFUSEGUARD
+	person_event SPRITE_POKE_BALL, 7, 31, $1, 0, 0, -1, -1, 0, 1, 0, CeruleanCave2_Item1, EVENT_ITEM_CERULEANCAVE2_PPUP
+	person_event SPRITE_POKE_BALL, 4, 13, $1, 0, 0, -1, -1, 0, 1, 0, CeruleanCave2_Item2, EVENT_ITEM_CERULEANCAVE2_CALCIUM
+	person_event SPRITE_POKE_BALL, 16, 15, $1, 0, 0, -1, -1, 0, 1, 0, CeruleanCave2_Item3, EVENT_ITEM_CERULEANCAVE2_FULL_HEAL
+	person_event SPRITE_POKE_BALL, 19, 31, $1, 0, 0, -1, -1, 0, 1, 0, CeruleanCave2_Item4, EVENT_ITEM_CERULEANCAVE2_CONFUSEGUARD
 
