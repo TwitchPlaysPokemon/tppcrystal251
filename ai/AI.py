@@ -1,3 +1,4 @@
+# TPP Crystal 251 v0.9 by Beesafree
 
 from __future__ import division
 import math
@@ -5,8 +6,6 @@ import random
 import json
 import logging
 import os
-
-# TPP Crystal 251 AI by Beesafree
 
 # the program will give a response when called to from 0 to 11
 # 0-3 relate to move commands, 1 means use second move on json list (1 being it's index)
