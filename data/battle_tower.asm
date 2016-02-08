@@ -214,6 +214,9 @@ Function1f8081:
 	ld hl, TempMonMoves
 	ld de, TempMonPP
 	predef FillPP ;enter mon PP
+	ld hl TempMonHappiness
+	ld a, $ff
+	ld [hl], a
 	ld hl, OTPartyCount
 	ld a, [hl]
 	push af ;push partycount

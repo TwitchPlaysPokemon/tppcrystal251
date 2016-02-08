@@ -204,11 +204,14 @@ MetapodEvosAttacks:
 	db 1,HARDEN
 	db 4,STRING_SHOT
 	db 7,HARDEN
+	db 15, IRON_DEFENCE
 	db 0 ; no more level-up moves
 
 ButterfreeEvosAttacks:
 	db 0 ; no more evolutions
 	db 1,TACKLE
+	db 1,STRING_SHOT
+	db 1,HARDEN
 	db 10,CONFUSION
 	db 13,POISONPOWDER
 	db 16,GUST
@@ -243,10 +246,13 @@ KakunaEvosAttacks:
 	db 1, HARDEN
 	db 4, STRING_SHOT
 	db 7, HARDEN
+	db 15, IRON_DEFENCE
 	db 0 ; no more level-up moves
 
 BeedrillEvosAttacks:
 	db 0 ; no more evolutions
+	db 1,STRING_SHOT
+	db 1,HARDEN
 	db 1, POISON_STING
 	db 10, FURY_ATTACK
 	db 14, FOCUS_ENERGY
@@ -336,11 +342,11 @@ RattataEvosAttacks:
 	db 10,QUICK_ATTACK
 	db 13,FLAME_WHEEL ; egg move
 	db 16,BITE ; egg move
-	db 19,HEADBUTT ; tm move
+	db 19,HYPER_FANG
 	db 22,FOCUS_ENERGY
 	db 26,SUPER_FANG
 	db 29,COUNTER ; egg move
-	db 32,HYPER_FANG
+	db 32,HEADBUTT
 	db 36,SCREECH ; egg move
 	db 39,CRUNCH ; later gen move
 	db 42,REVERSAL ; egg move
@@ -352,11 +358,11 @@ RaticateEvosAttacks:
 	db 1,QUICK_ATTACK
 	db 1,FLAME_WHEEL ; egg move
 	db 1,BITE ; egg move
-	db 1,HEADBUTT ; tm move
+	db 1,HYPER_FANG 
 	db 24,FOCUS_ENERGY
 	db 28,BUBBLEBEAM ; * gen 1 move
 	db 32,COUNTER ; egg move
-	db 36,HYPER_FANG
+	db 36,HEADBUTT
 	db 40,SUPER_FANG
 	db 44,REVERSAL ; egg move
 	db 48,SCARY_FACE ; 
@@ -452,44 +458,46 @@ ArbokEvosAttacks:
 PikachuEvosAttacks:
 	db EVOLVE_ITEM, THUNDERSTONE, RAICHU
 	db 0 ; no more evolutions
-	db 1, QUICK_ATTACK
-	db 3, GROWL
-	db 7, THUNDERSHOCK 
+	db 1, GROWL
+	db 1, THUNDERSHOCK
+	db 7,  QUICK_ATTACK
 	db 11, TAIL_WHIP
-	db 15, IRON_TAIL ; * later gen move
-	db 18, DOUBLE_TEAM ; later gen move
-	db 22, SPARK ; illegal move
+	db 14, SLAM 
+	db 17, SPARK 
+	db 20, DOUBLE_TEAM
+	db 22, LIGHT_SCREEN 
 	db 25, THUNDER_WAVE
-	db 28, LIGHT_SCREEN ; Pikachu move
-	db 32, SLAM
+	db 28, THUNDERPUNCH ;
+	db 32, IRON_TAIL
 	db 36, THUNDERBOLT
 	db 39, EXTREMESPEED ; event move
 	db 42, SING ; Pikachu event move
-	db 46, SEISMIC_TOSS ; later gen move
-	db 50, PETAL_DANCE ; * event move
-	db 55, THUNDER ; *
+	db 46, NASTY_PLOT ; later gen move
+	db 50, THUNDER ; * 
+	db 55, PETAL_DANCE ; *event move
+	db 60, ENCORE
 	db 0 ; no more level-up moves
 
 RaichuEvosAttacks:
 	db 0 ; no more evolutions
 	db 1, GROWL
-	db 1, QUICK_ATTACK
-	db 1, THUNDER_WAVE
 	db 1, THUNDERSHOCK
-	db 20, DOUBLE_TEAM ; later gen move
-	db 25, IRON_TAIL ; later gen move
-	db 29, LIGHT_SCREEN ; Pikachu move
-	db 33, SPARK ; illegal move
-	db 38, SLAM
-	db 43, EXTREMESPEED ; event move
-	db 47, SING ; Pikachu event move
-	db 51, WILD_CHARGE ; * later gen move
+	db 10, QUICK_ATTACK
+	db 15, TAIL_WHIP
+	db 20, SLAM ; later gen move
+	db 25, SPARK ; later gen move
+	db 29, FLAIL ;
+	db 33, LIGHT_SCREEN ; illegal move
+	db 38, THUNDER_WAVE
+	db 43, THUNDERPUNCH ; event move
+	db 47, IRON_TAIL ; Pikachu event move
+	db 51, REVERSAL ; * later gen move
 	db 56, ENCORE ; * egg move
-	db 60, SEISMIC_TOSS ; later gen move
+	db 60, WILD_CHARGE ; later gen move
 	db 65, PETAL_DANCE ; event move
-	db 70, THUNDER
+	db 70, COUNTER
 	db 75, NASTY_PLOT ; later gen move
-	db 80, COUNTER ; *
+	db 80, THUNDER ; *
 	db 0 ; no more level-up moves
 
 SandshrewEvosAttacks:
@@ -1047,7 +1055,7 @@ GolduckEvosAttacks:
 MankeyEvosAttacks:
 	db EVOLVE_LEVEL, 28, PRIMEAPE
 	db 0 ; no more evolutions
-	db 1, FURY_ATTACK ; Fury Swipes replacement
+	db 1, SCRATCH
 	db 3, LEER
 	db 6, DEFENSE_CURL ; later gen move
 	db 9, PAY_DAY ; gen 1 move
@@ -3253,20 +3261,22 @@ LanturnEvosAttacks:
 PichuEvosAttacks:
 	db EVOLVE_HAPPINESS, TR_ANYTIME, PIKACHU
 	db 0 ; no more evolutions
-	db 1, QUICK_ATTACK  ; Pikachu move
-	db 3, CHARM
-	db 6, TAIL_WHIP
-	db 9, THUNDERSHOCK
+	db 1, CHARM  ; Pikachu move
+	db 1, THUNDERSHOCK
+	db 6, QUICK_ATTACK
+	db 9, TAIL_WHIP
 	db 12, DOUBLE_TEAM ; later gen move
-	db 15, THUNDER_WAVE
+	db 15, SPARK
 	db 18, SWEET_KISS
-	db 21, SPARK ; illegal move
-	db 25, DIZZY_PUNCH ; Pikachu event move
-	db 29, LIGHT_SCREEN ; Pikachu move
-	db 32, SING ; Pikachu event move
-	db 35, THUNDERBOLT ; move tutor move
+	db 21, THUNDER_WAVE ; illegal move
+	db 24, DIZZY_PUNCH ; Pikachu event move
+	db 27, WILD_CHARGE ; Pikachu move
+	db 30, IRON_TAIL ; 
+	db 33, SING 
+	db 36, THUNDERBOLT ; move tutor move
 	db 0 ; no more level-up moves
 
+	
 CleffaEvosAttacks:
 	db EVOLVE_HAPPINESS, TR_ANYTIME, CLEFAIRY
 	db 0 ; no more evolutions
