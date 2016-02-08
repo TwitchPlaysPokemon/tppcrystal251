@@ -467,7 +467,7 @@ function transferStateToAIAndWait(output_table)
 end
 
 function sendLUASerial(a)
-    memory.writebyterange(0xDFF8, 3, tablestobytes(commandstotables(0, transferStateToAIAndWait(readbattlestate())), commandstotables(1, readPlayerstate()))) --very long command
+    memory.writebyterange(0xDFF8, 3, tablestobytes(commandstotables(0, transferStateToAIAndWait(readBattlestate())), commandstotables(1, readPlayerstate()))) --very long command
 	--memory.writebyte(rLSB, a)
 	memory.writebyte(rLSC, BEESAFREE_LSC_COMPLETED)
 end

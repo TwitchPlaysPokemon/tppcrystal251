@@ -165,26 +165,29 @@ Function380ff: ; 380ff
 
 
 AI_TryItem: ; 38105
+; Items are prohibited in Battle Tower.
 	ld a, [InBattleTowerBattle]
 	and a
 	ret nz
-
+; AI's items are stored at wc650/1.
+; If no items remain, don't use an item.
 	ld a, [wc650]
 	ld b, a
 	ld a, [wc651]
 	or b
 	ret z
-
+; AI only uses an item on its ace Pokemon.
 	call .IsHighestLevel
 	ret nc
-
+; Store the pointer to the trainer class default items in bc (???)
 	ld a, [TrainerClass]
 	dec a
-	ld hl, TrainerClassAttributes + 5
+	ld hl, TrainerClassAttributes + 5 ; Items
 	ld bc, 7
 	call AddNTimes
 	ld b, h
 	ld c, l
+; Check the AI_Items table to see if the opponent has one of those items.
 	ld hl, AI_Items
 	ld de, wc650
 .loop
