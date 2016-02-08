@@ -3,7 +3,7 @@ ParseExternalAI:
 	ld a, [wLinkMode]
 	and a
 	ret nz
-	ld hl, wdff8
+	ld hl, wMilitaryAndAIBattleAction
 	xor a
 	ld [hli], a
 	ld [hli], a
@@ -15,7 +15,7 @@ ParseExternalAI:
 	or BEESAFREE_SND_ASKMILITARY
 .okay
 	rst LUASerial
-	ld a, [wdff8]
+	ld a, [wMilitaryAndAIBattleAction]
 	and $f0
 	swap a
 	cp 4
@@ -47,7 +47,7 @@ MilitaryRepeatRequest:
 	rst LUASerial
 Military:
 ; This is a dummy function until we can get a version that actually works.
-	ld a, [wdff8]
+	ld a, [wMilitaryAndAIBattleAction]
 	and $f
 	cp 4
 	jr c, .UseMove
@@ -74,7 +74,7 @@ Military:
 	ret
 
 .SwitchOrItem
-	ld a, [wdff9]
+	ld a, [wMilitaryItem]
 	and a
 	jr z, .Switch
 	ld [CurItem], a

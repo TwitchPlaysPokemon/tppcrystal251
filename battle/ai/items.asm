@@ -542,7 +542,7 @@ AI_Items: ; 39196
 	jp .Use
 
 ELSE
-	ld a, [wdff8]
+	ld a, [wMilitaryAndAIBattleAction]
 	swap a
 	and $f
 	cp $f
