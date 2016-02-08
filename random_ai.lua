@@ -1,6 +1,9 @@
+-- random AI test script v0.41
+
 -- RAM labels
 
 dofile("constants.lua")
+dofile("battle_ram.lua") -- not much use for this yet
 
 EnemyDisabledMove = 0xc6f6
 EnemyMonMoves     = 0xd208
@@ -10,7 +13,11 @@ PlayerMonMoves     = 0xc62e
 PlayerMonPP        = 0xc634
 rLSB              = 0xfff1
 rLSC              = 0xfff2
-hMilitary        = 0xfff3
+rSVBK = 0xFF70
+hMilitary        = 0xD849
+
+waiting = 0 -- technical
+military_mode = 1 -- 1 on, 0 off
 
 -- other stuff --
 
@@ -36,7 +43,18 @@ function refreshinterval(seconds)
 end
 
 function checkLUASerial()
-    if memory.readbyte(rLSC) == BEESAFREE_LSC_TRANSFERRING then
+    if waiting == 0 then
+        vba.print("Waiting on LUA serial...")
+        waiting = 1
+    end
+    if memory.readbyte(rLSC) == BEESAFREE_LSC_TRANSFERRING and memory.readbyte(rSVBK) == 0x01 then
+        --if memory.readbyte(rLSC) == 0x00 then -- both need to switch
+            
+        --elseif memory.readbyte(rLSC) == 0x00 then --opponent needs to switch
+            
+        --elseif memory.readbyte(rLSC) == 0x00 then --player needs to switch
+            
+        --end
         aiusablemoves = {}
         playerusablemoves = {}
         disai = memory.readbyte(EnemyDisabledMove)
@@ -72,13 +90,17 @@ function checkLUASerial()
         vba.print(string.format("Player: Move choice #%d, %s was selected.",outplayer+1, moveTable[memory.readbyte(0xc62e+outplayer)+1]))
         vba.print(string.format("AI: Move choice #%d, %s was selected.",outai+1, moveTable[memory.readbyte(0xd208+outai)+1]))
         vba.print("LUA serial! Wrote completed bytes.") -- it did not, was just a test
+        waiting = 0
         memory.writebyte(rLSB, BEESAFREE_LSC_COMPLETED) -- write the response here but whatever
         memory.writebyte(rLSC, BEESAFREE_LSC_COMPLETED)
     else
-        vba.print("Waiting on LUA serial...")
+        
     end
 end
 
 repeat
     checkLUASerial()
+    if memory.readbyte(rSVBK) == 1 then
+        memory.writebyte(hMilitary, military_mode) -- change this later to use bit operationz plz
+    end
 until not refreshinterval(0.100)
