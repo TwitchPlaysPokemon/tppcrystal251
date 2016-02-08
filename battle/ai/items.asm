@@ -165,26 +165,29 @@ Function380ff: ; 380ff
 
 
 AI_TryItem: ; 38105
+; Items are prohibited in Battle Tower.
 	ld a, [InBattleTowerBattle]
 	and a
 	ret nz
-
+; AI's items are stored at wc650/1.
+; If no items remain, don't use an item.
 	ld a, [wc650]
 	ld b, a
 	ld a, [wc651]
 	or b
 	ret z
-
-	call .IsHighestLevel
+; AI only uses an item on its ace Pokemon.
+	call AITryItem_IsHighestLevel
 	ret nc
-
+; Store the pointer to the trainer class default items in bc (???)
 	ld a, [TrainerClass]
 	dec a
-	ld hl, TrainerClassAttributes + 5
+	ld hl, TrainerClassAttributes + 5 ; Items
 	ld bc, 7
 	call AddNTimes
 	ld b, h
 	ld c, l
+; Check the AI_Items table to see if the opponent has one of those items.
 	ld hl, AI_Items
 	ld de, wc650
 .loop
@@ -209,7 +212,7 @@ AI_TryItem: ; 38105
 
 .has_item
 	inc hl
-
+; Load the function pointer.  Said function will return carry if the AI decides to use it.
 	push hl
 	push de
 	ld de, .callback
@@ -226,10 +229,31 @@ AI_TryItem: ; 38105
 	inc hl
 	jr c, .loop
 
-.used_item
-	call AI_Used_Item
+AI_Used_Item:
+	xor a
+	ld [de], a
+	inc a
+	ld [wc70f], a
 
-.IsHighestLevel: ; 38170
+	ld hl, EnemySubStatus3
+	res SUBSTATUS_BIDE, [hl]
+
+	xor a
+	ld [EnemyFuryCutterCount], a
+	ld [EnemyProtectCount], a
+	ld [wc72c], a
+
+	ld hl, EnemySubStatus4
+	res SUBSTATUS_RAGE, [hl]
+
+	xor a
+	ld [LastPlayerCounterMove], a
+
+	scf
+	ret
+
+
+AITryItem_IsHighestLevel: ; 38170
 	ld a, [OTPartyCount]
 	ld d, a
 	ld e, 0
@@ -260,29 +284,6 @@ AI_TryItem: ; 38105
 	scf
 	ret
 ; 38196
-AI_Used_Item:
-	xor a
-	ld [de], a
-	inc a
-	ld [wc70f], a
-
-	ld hl, EnemySubStatus3
-	res SUBSTATUS_BIDE, [hl]
-
-	xor a
-	ld [EnemyFuryCutterCount], a
-	ld [EnemyProtectCount], a
-	ld [wc72c], a
-
-	ld hl, EnemySubStatus4
-	res SUBSTATUS_RAGE, [hl]
-
-	xor a
-	ld [LastPlayerCounterMove], a
-
-	scf
-	ret
-
 AI_Items: ; 39196
 	dbw FULL_RESTORE, .FullRestore
 	dbw MAX_POTION,   .MaxPotion

@@ -30559,13 +30559,13 @@ Function28771: ; 28771
 ; catch rate as an item. However, if the catch rate appears in this table, the
 ; item associated with the table entry is used instead.
 
-	db $19, LEFTOVERS
-	db $2D, BITTER_BERRY
-	db $32, GOLD_BERRY
-	db $5A, BERRY
-	db $64, BERRY
-	db $78, BERRY
-	db $87, BERRY
+	; db $19, LEFTOVERS
+	; db $2D, BITTER_BERRY
+	; db $32, GOLD_BERRY
+	; db $5A, BERRY
+	; db $64, BERRY
+	; db $78, BERRY
+	; db $87, BERRY
 	db $BE, BERRY
 	db $C3, BERRY
 	db $DC, BERRY
