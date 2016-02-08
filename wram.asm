@@ -2643,6 +2643,7 @@ SECTION "TPP Credits WRAM", WRAMX[$d500], BANK[5]
 
 TC_CommandChaosTable:: ds 40
 TC_CommandChaosTableEnd:: ds 1
+TC_ScrollEffectsTable:: ds 48
 TC_CreditsTimer:: ds 1
 TC_ChaosTimer:: ds 1
 TC_ChaosRate:: ds 1

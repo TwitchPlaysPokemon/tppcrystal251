@@ -244,6 +244,45 @@ TPPCredits_LogoScene:
 	ld a, h
 	ld [TC_FadeUpdateAddr + 1], a
 	call Fade2White
+	
+TPPCredits_MainSceneInit:
+	call DelayFrame
+	call DisableLCD
+	call DoubleSpeed
+	call ClearTileMap
+	ld a, TEXTBOX_PAL
+	ld hl, AttrMap
+	ld bc, SCREEN_WIDTH * SCREEN_HEIGHT
+	call ByteFill
+	xor a
+	ld [hSCX], a
+	ld [hSCY], a
+	ld [rSCX], a
+	ld [rSCY], a
+	ld [rIF], a
+	ld a, $9b
+	ld [hBGMapAddress + 1], a
+	ld a, 1 ; don't let the other intterupts mess with our trick
+	ld [rIE], a
+
+; copy strips
+	ld hl, StripGFX
+	ld de, VTiles2
+	ld bc, StripGFXEnd - StripGFX
+	ld a, BANK(StripGFX)
+	call FarCopyBytesDouble
+	ld hl, StripTiles
+	ld de, VBGMap0 + $140
+	call DecodeWLE
+	ld a, 1
+	ld [rVBK], a
+	ld hl, VBGMap0 + $140
+	ld bc, 32 * 7
+	ld a, 1
+	call ByteFill
+	xor a
+	ld [rVBK], a	
+	
 .todo
 	call DelayFrame
 	jr .todo
@@ -438,7 +477,9 @@ Fade2White:
 	ld l, a
 	ld a, [TC_FadeUpdateAddr + 1]
 	ld h, a
+	push de
 	call _hl_ ; calls an attached update function
+	pop de
 	dec e
 	jr nz, .loop
 	ret
@@ -641,6 +682,7 @@ StripBounds:
 ; Tiles and attributes are encoded in WLE
 
 TPPCreditsBG1: INCBIN "gfx/credits/bg1.w120.2bpp.lz"
+TPPCreditsBG1End
 
 TPPCreditsBG1Tiles:
 	db $a2, $02, $6d, $00, $a3, $02, $6d, $00, $01
@@ -685,8 +727,10 @@ TPPCreditsBG1Pals:
 	RGB 10, 12, 15
 	
 TPPCreditsBG2: ; TODO
+TPPCreditsBG2End
 
 TPPCreditsBG3: INCBIN "gfx/credits/bg3.w96.2bpp.lz"
+TPPCreditsBG3End
 
 TPPCreditsBG3Tiles:
 	db $7f, $00, $5f, $42, $7f, $01, $5f, $5f, $5f
@@ -730,7 +774,10 @@ TPPCreditsBG3Pals:
 	RGB 18, 27, 26
 	
 TPPCreditsBG4: ; TODO
+TPPCreditsBG4End
+
 CommandsGFX: INCBIN "gfx/udlrab.2bpp"
 StripGFX: INCBIN "gfx/credits/strip.1bpp"
+StripGFXEnd
 StripTiles: INCBIN "gfx/credits/strip_map.wle"
 	
