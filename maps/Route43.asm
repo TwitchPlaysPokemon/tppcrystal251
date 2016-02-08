@@ -542,7 +542,7 @@ UnknownText_0x19d3f8: ; 0x19d3f8
 
 FisherMarvinSeenText: ; 0x19d461
 	text "This forest is"
-	cont "full of bugs!"
+	line "full of bugs!"
 
 	para "I keep riling them"
 	line "in while they are"

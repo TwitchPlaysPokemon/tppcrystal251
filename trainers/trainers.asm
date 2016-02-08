@@ -7129,8 +7129,8 @@ HikerGroup:
 	db 0 ; normal
 
 	; party
-	db 25,STANTLER
-	db 26,CYNDAQUIL
+	db 30,STANTLER
+	db 32,CYNDAQUIL
 
 	db $ff ; end
 
@@ -7179,8 +7179,8 @@ HikerGroup:
 	db 0 ; normal
 
 	; party
-	db 30,STANTLER
-	db 32,CYNDAQUIL
+	db 25,STANTLER
+	db 26,CYNDAQUIL
 	
 	db $ff ; end
 

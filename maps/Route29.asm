@@ -454,9 +454,9 @@ Route29_MapEventHeader: ; 0x1a15e4
 	warp_def $1, $1b, 3, GROUP_ROUTE_29_46_GATE, MAP_ROUTE_29_46_GATE
 
 	; xy triggers
-	db 2
-	xy_trigger 1, $8, $35, $0, UnknownScript_0x1a0f6d, $0, $0
-	xy_trigger 1, $9, $35, $0, UnknownScript_0x1a0fa3, $0, $0
+	db 0
+	;xy_trigger 1, $8, $35, $0, UnknownScript_0x1a0f6d, $0, $0
+	;xy_trigger 1, $9, $35, $0, UnknownScript_0x1a0fa3, $0, $0
 
 	; signposts
 	db 2

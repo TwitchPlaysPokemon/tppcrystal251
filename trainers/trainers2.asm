@@ -569,7 +569,7 @@ MistyRBGroup:
 		db RAPID_SPIN
 		db BUBBLE
 
-	db 22, STARMIE
+	db 21, STARMIE
 		db BUBBLEBEAM
 		db CONFUSION
 		db SWIFT

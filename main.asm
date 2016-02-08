@@ -8865,18 +8865,18 @@ Functionde6e: ; de6e
 	inc a
 	jr nz, .asm_de85 ;loop until end of box
 	call GetBaseData ;load base stats for newly added species
-	call ShiftBoxMon
+	call ShiftBoxMon ;move all box mons down 1 slot
 	ld hl, PlayerName
 	ld de, sBoxMonOT
 	ld bc, NAME_LENGTH
-	call CopyBytes
+	call CopyBytes ;copy in OT
 	ld a, [CurPartySpecies]
 	ld [wd265], a
 	call GetPokemonName
 	ld de, sBoxMonNicknames
 	ld hl, StringBuffer1
 	ld bc, PKMN_NAME_LENGTH
-	call CopyBytes
+	call CopyBytes ;copy in nickname
 	ld hl, EnemyMon
 	ld de, sBoxMon1
 	ld bc, 1 + 1 + NUM_MOVES ; species + item + moves
@@ -8972,27 +8972,27 @@ ShiftBoxMon: ; df47
 .asm_df5f
 	ld a, [sBoxCount]
 	cp 2
-	ret c
+	ret c ;ret if boxcount is 0 or 1
 	push hl
-	call AddNTimes
+	call AddNTimes ;go down to end of first open slot, put in de
 	dec hl
 	ld e, l
 	ld d, h
 	pop hl
 	ld a, [sBoxCount]
 	dec a
-	call AddNTimes
+	call AddNTimes ;go down to end of last full slot, put in hl
 	dec hl
 	push hl
 	ld a, [sBoxCount]
 	dec a
 	ld hl, 0
-	call AddNTimes
+	call AddNTimes ;find distance between start and first open slot, place in bc
 	ld c, l
 	ld b, h
 	pop hl
 .loop
-	ld a, [hld]
+	ld a, [hld] ;place contents of hl in de bc times
 	ld [de], a
 	dec de
 	dec bc
@@ -9488,7 +9488,7 @@ GivePoke:: ; e277
 	ld a, [CurPartySpecies]
 	ld [TempEnemyMonSpecies], a ;put species in enemy species
 	callab LoadEnemyMon ;place mon in enemy mon
-	call Functionde6e
+	call Functionde6e ;load enemy mon into PC
 	jp nc, Functione3d4 ;if failed, ret b = 2
 	ld a, $2
 	ld [MonType], a
@@ -9504,8 +9504,11 @@ GivePoke:: ; e277
 	ld a, [CurItem]
 	and a
 	jr z, .asm_e2e1
+	ld a, 1
+	call GetSRAMBank
 	ld a, [CurItem]
 	ld [sBoxMon1Item], a
+	call CloseSRAM
 .asm_e2e1
 	ld a, [CurPartySpecies]
 	ld [wd265], a

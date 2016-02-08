@@ -301,11 +301,11 @@ KrabbyEggMoves:
 	db $ff
 
 ExeggcuteEggMoves:
-	db SELFDESTRUCT
 	db EXPLOSION
 	db NIGHTMARE
 	db ROLLOUT
 	db LIGHT_SCREEN
+	db RAGE
 	db $ff
 
 CuboneEggMoves:

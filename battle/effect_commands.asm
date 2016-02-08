@@ -6016,6 +6016,7 @@ BattleCommand_Burn: ; 35f2c
 	callba Function3dde9
 	ret
 
+
 .failed
 	push hl
 	call AnimateFailedMove
@@ -6055,7 +6056,9 @@ BattleCommand_Burn: ; 35f2c
 	ld a, BATTLE_VARS_STATUS_OPP
 	call GetBattleVarAddr
 	set BRN, [hl]
-	jp UpdateOpponentInParty
+	call UpdateOpponentInParty
+	ld hl, Function3ec76
+	jp CallBattleCore
 
 ; 35fff
 

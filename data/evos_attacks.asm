@@ -140,9 +140,9 @@ SquirtleEvosAttacks:
 	db 6,BUBBLE
 	db 8,WITHDRAW
 	db 10,RAPID_SPIN
-	db 13,CONFUSION ; egg move
+	db 13,HAZE ; egg move
 	db 15,WATER_GUN
-	db 18,PROTECT
+	db 18,CONFUSION
 	db 21,BITE
 	db 24,IRON_DEFENSE ; later gen move
 	db 28,BUBBLEBEAM ; gen 1 move
@@ -158,9 +158,9 @@ WartortleEvosAttacks:
 	db 0 ; no more evolutions
 	db 1, WITHDRAW
 	db 1, RAPID_SPIN
-	db 1, CONFUSION ; egg move
+	db 1, HAZE ; egg move
 	db 1, WATER_GUN
-	db 20, PROTECT
+	db 20, CONFUSION
 	db 23, BITE
 	db 26, IRON_DEFENSE ; later gen move
 	db 30, BUBBLEBEAM ; gen 1 move
@@ -204,7 +204,7 @@ MetapodEvosAttacks:
 	db 1,HARDEN
 	db 4,STRING_SHOT
 	db 7,HARDEN
-	db 15, IRON_DEFENCE
+	db 15, IRON_DEFENSE
 	db 0 ; no more level-up moves
 
 ButterfreeEvosAttacks:
@@ -246,7 +246,7 @@ KakunaEvosAttacks:
 	db 1, HARDEN
 	db 4, STRING_SHOT
 	db 7, HARDEN
-	db 15, IRON_DEFENCE
+	db 15, IRON_DEFENSE
 	db 0 ; no more level-up moves
 
 BeedrillEvosAttacks:
@@ -1437,10 +1437,10 @@ PonytaEvosAttacks:
 	db 9, DOUBLE_KICK ; egg move
 	db 12, FIRE_SPIN
 	db 15, STOMP
-	db 18, AGILITY
+	db 18, CHARM
 	db 21, IRON_TAIL ; later gen move
 	db 24, FLAME_WHEEL ; egg move
-	db 27, CHARM
+	db 27, AGILITY
 	db 30, TAKE_DOWN
 	db 33, BATON_PASS
 	db 36, HEAT_WAVE ; later gen move
@@ -1910,13 +1910,13 @@ ElectrodeEvosAttacks:
 ExeggcuteEvosAttacks:
 	db EVOLVE_ITEM, LEAF_STONE, EXEGGUTOR
 	db 0 ; no more evolutions
-	db 1, RAGE ; gen 1 move
+	db 1, PSYWAVE ; gen 1 move
 	db 3, STUN_SPORE
 	db 6, REFLECT
-	db 9, PSYWAVE ; gen 1 move 
-	db 12, MIMIC ; later gen move
-	db 15, POISONPOWDER
-	db 18, MEGA_DRAIN ; gen 1 move
+	db 9, MIMIC ; gen 1 move 
+	db 12, POISONPOWDER ; later gen move
+	db 15, MEGA_DRAIN
+	db 18, SELFDESTRUCT ; gen 1 move
 	db 21, CONFUSION
 	db 24, SLEEP_POWDER
 	db 27, LEECH_SEED
@@ -1930,21 +1930,21 @@ ExeggcuteEvosAttacks:
 
 ExeggutorEvosAttacks:
 	db 0 ; no more evolutions
-	db 1, RAGE
+	db 1, PSYWAVE
 	db 4, STUN_SPORE
 	db 8, REFLECT
-	db 12, PSYWAVE ; gen 1 move 
-	db 15, MIMIC ; later gen move
-	db 19, POISONPOWDER
-	db 22, STOMP ; *
-	db 26, MEGA_DRAIN ; gen 1 move
-	db 29, LEECH_SEED
-	db 33, SLEEP_POWDER
-	db 37, MOONLIGHT ; egg move
-	db 37, CONFUSION
-	db 40, SEED_BOMB ; later gen move
-	db 44, ANCIENTPOWER ; * egg move
-	db 47, HYPNOSIS
+	db 12, MIMIC  ; gen 1 move 
+	db 15, POISONPOWDER  ; later gen move
+	db 19, STOMP
+	db 22, MEGA_DRAIN ; *
+	db 26, BIDE ; 
+	db 29, CONFUSION
+	db 33, LEECH_SEED
+	db 37, SLEEP_POWDER ; egg move
+	db 40, MOONLIGHT
+	db 44, SEED_BOMB ; later gen move
+	db 47, ANCIENTPOWER ; * egg move
+	db 50, HYPNOSIS
 	db 51, DREAM_EATER ; tm move
 	db 55, SYNTHESIS
 	db 60, SOLARBEAM
@@ -2282,7 +2282,7 @@ StaryuEvosAttacks:
 
 StarmieEvosAttacks:
 	db 0 ; no more evolutions
-	db 5, BUBBLEBEAM
+	db 1, BUBBLEBEAM
 	db 10, RAPID_SPIN
 	db 20, CONFUSION ; illegal move
 	db 30, MINIMIZE
