@@ -485,7 +485,8 @@ function readPlayerstate() --loop read this for the overlay
 		output_table["pack"] = pack
 		if memory.readbyte(rLSC) == BEESAFREE_LSC_TRANSFERRING then
 			req = memory.readbyte(rLSB)
-			if req == BEESAFREE_SND_RESET then sendLUASerial(BEESAFREE_RES_RESET)
+			if AND(req, BEESAFREE_SND_RESET) then
+				sendLUASerial(BEESAFREE_RES_RESET)
 			elseif AND(req, BEESAFREE_SND_ASKENEMY) ~= 0 then
 				readBattlestate(output_table, req)
 			end
