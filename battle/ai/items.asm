@@ -177,7 +177,7 @@ AI_TryItem: ; 38105
 	or b
 	ret z
 ; AI only uses an item on its ace Pokemon.
-	call .IsHighestLevel
+	call AITryItem_IsHighestLevel
 	ret nc
 ; Store the pointer to the trainer class default items in bc (???)
 	ld a, [TrainerClass]
@@ -212,7 +212,7 @@ AI_TryItem: ; 38105
 
 .has_item
 	inc hl
-
+; Load the function pointer.  Said function will return carry if the AI decides to use it.
 	push hl
 	push de
 	ld de, .callback
@@ -229,10 +229,31 @@ AI_TryItem: ; 38105
 	inc hl
 	jr c, .loop
 
-.used_item
-	call AI_Used_Item
+AI_Used_Item:
+	xor a
+	ld [de], a
+	inc a
+	ld [wc70f], a
 
-.IsHighestLevel: ; 38170
+	ld hl, EnemySubStatus3
+	res SUBSTATUS_BIDE, [hl]
+
+	xor a
+	ld [EnemyFuryCutterCount], a
+	ld [EnemyProtectCount], a
+	ld [wc72c], a
+
+	ld hl, EnemySubStatus4
+	res SUBSTATUS_RAGE, [hl]
+
+	xor a
+	ld [LastPlayerCounterMove], a
+
+	scf
+	ret
+
+
+AITryItem_IsHighestLevel: ; 38170
 	ld a, [OTPartyCount]
 	ld d, a
 	ld e, 0
@@ -263,29 +284,6 @@ AI_TryItem: ; 38105
 	scf
 	ret
 ; 38196
-AI_Used_Item:
-	xor a
-	ld [de], a
-	inc a
-	ld [wc70f], a
-
-	ld hl, EnemySubStatus3
-	res SUBSTATUS_BIDE, [hl]
-
-	xor a
-	ld [EnemyFuryCutterCount], a
-	ld [EnemyProtectCount], a
-	ld [wc72c], a
-
-	ld hl, EnemySubStatus4
-	res SUBSTATUS_RAGE, [hl]
-
-	xor a
-	ld [LastPlayerCounterMove], a
-
-	scf
-	ret
-
 AI_Items: ; 39196
 	dbw FULL_RESTORE, .FullRestore
 	dbw MAX_POTION,   .MaxPotion
