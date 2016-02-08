@@ -250,10 +250,6 @@ TPPCredits_MainSceneInit:
 	call DisableLCD
 	call DoubleSpeed
 	call ClearTileMap
-	ld a, TEXTBOX_PAL
-	ld hl, AttrMap
-	ld bc, SCREEN_WIDTH * SCREEN_HEIGHT
-	call ByteFill
 	xor a
 	ld [hSCX], a
 	ld [hSCY], a
