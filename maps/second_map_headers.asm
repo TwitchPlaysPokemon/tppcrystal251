@@ -766,3 +766,5 @@
 	map_header_2 EnteiRoom, ENTEI_ROOM, $9, NONE
 	map_header_2 RaikouRoom, RAIKOU_ROOM, $9, NONE
 	map_header_2 SuicuneRoom, SUICUNE_ROOM, $9, NONE
+	
+	map_header_2 MtSilverRuins, MTSILVERRUINS, 0, NONE
