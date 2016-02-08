@@ -2639,6 +2639,15 @@ BattleAnimTemps:: ; d419
 	ds 1
 w5_d422:: ds $40
 
+SECTION "TPP Credits WRAM", WRAMX[$d500], BANK[5] 
+
+TC_CommandChaosTable:: ds 40
+TC_CommandChaosTableEnd:: ds 1
+TC_CreditsTimer:: ds 1
+TC_ChaosTimer:: ds 1
+TC_ChaosRate:: ds 1
+TC_ChaosRateMod:: ds 1
+TC_FadeUpdateAddr:: ds 2
 
 SECTION "WRAM 6", WRAMX, BANK [6]
 
