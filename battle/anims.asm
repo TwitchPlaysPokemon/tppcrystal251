@@ -3146,6 +3146,48 @@ BattleAnim_Rage: ; caa45
 	anim_ret
 ; caa74
 
+BattleAnim_FocusBlast:
+	anim_2gfx ANIM_GFX_HIT, ANIM_GFX_WIND
+	anim_call BattleAnim_Agility_branch_cbca7
+	anim_bgeffect $18, $0, $1, $40
+	anim_obj $7d, 8, 24, $10
+	anim_obj $7d, 8, 48, $2
+	anim_obj $7d, 8, 88, $8
+	anim_wait 4
+	anim_obj $7d, 8, 32, $6
+	anim_obj $7d, 8, 56, $c
+	anim_obj $7d, 8, 80, $4
+	anim_obj $7d, 8, 104, $e
+	anim_sound $0, SFX_RAZOR_WIND
+	anim_wait 16
+
+	anim_bgeffect $1f, $60, $4, $10
+	anim_obj $a, 144, 48, $43
+	anim_call .sfx
+	anim_obj $a, 128, 40, $43
+	anim_call .sfx
+	anim_obj $a, 112, 44, $43
+	anim_call .sfx
+	anim_obj $a, 122, 32, $43
+	anim_call .sfx
+	anim_obj $a, 132, 48, $43
+	anim_call .sfx
+	anim_obj $a, 148, 36, $43
+	anim_call .sfx
+
+	anim_incbgeffect $18
+	anim_call BattleAnim_Agility_branch_cbcb7
+	anim_ret
+
+.sfx
+	anim_sound $0, SFX_RAZOR_WIND
+	anim_wait 4
+	anim_sound $0, SFX_RAZOR_WIND
+	anim_wait 4
+	anim_sound $0, SFX_RAZOR_WIND
+	anim_wait 4
+	anim_ret
+
 BattleAnim_Agility: ; caa74
 	anim_1gfx ANIM_GFX_WIND
 	anim_obp0 $fc
@@ -4665,7 +4707,6 @@ BattleAnim_Moonlight_branch_cb7d7: ; cb7d7
 ; cb7db
 
 BattleAnim_HiddenPower: ; cb7db
-BattleAnim_FocusBlast:
 	anim_1gfx ANIM_GFX_CHARGE
 	anim_call BattleAnim_HiddenPower_branch_cbca7
 	anim_bgeffect $1a, $0, $1, $20
