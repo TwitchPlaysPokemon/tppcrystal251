@@ -20586,6 +20586,7 @@ Function15cef: ; 15cef
 	ld [wd10c], a
 	ld hl, NumItems
 	call ReceiveItem
+	jr nc, .asm_15d68
 	ld a, $6
 	call Function15c7d
 	call Functiona36
