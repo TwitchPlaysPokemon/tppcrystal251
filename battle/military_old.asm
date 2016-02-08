@@ -11,7 +11,7 @@
 	; jp z, MilitaryGetEnemyActionOnly
 	; callab Function4000
 	; ld a, MILITARY_IDLE + (MILITARY_IDLE << 4)
-	; ld [wdff8], a
+	; ld [wMilitaryAndAIBattleAction], a
 ; MilitaryPlayerLoop:
 	; ld hl, wMilitaryFlags
 	; res MILITARY_ACTION_SIDE, [hl]
@@ -34,7 +34,7 @@
 
 ; MilitarySwitchOrItem:
 	; ld b, a
-	; ld a, [wdff9]
+	; ld a, [wMilitaryItem]
 	; and a
 	; jr z, MilitarySwitch
 
@@ -107,7 +107,7 @@
 	; ld b, 0
 	; add hl, bc
 	; ld a, [hl]
-	; ld [wdff9], a
+	; ld [wMilitaryItem], a
 	; ret
 
 ; MilitaryGotAddr:
@@ -190,11 +190,11 @@
 ; GetMilitaryCommand:
 	; call GetMilitaryActionSide
 	; jr nz, .enemyCommand
-	; ld a, [wdff8]
+	; ld a, [wMilitaryAndAIBattleAction]
 	; and $f
 	; ret
 ; .enemyCommand
-	; ld a, [wdff8]
+	; ld a, [wMilitaryAndAIBattleAction]
 	; and $f0
 	; swap a
 	; ret

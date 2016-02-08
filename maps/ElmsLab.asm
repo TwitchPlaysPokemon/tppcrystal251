@@ -171,6 +171,11 @@ LabTryToLeaveScript: ; 0x78c65
 CyndaquilPokeBallScript: ; 0x78c73
 	checkevent EVENT_GOT_A_POKEMON_FROM_ELM
 	iftrue LookAtElmPokeBallScript
+	checkcode VAR_PARTYCOUNT
+	if_not_equal 6, .okay
+	checkcode VAR_BOXSPACE
+	if_equal 20, ElmsLabNoRoomScript
+.okay
 	spriteface $2, $0
 	refreshscreen $0
 	pokepic CYNDAQUIL
@@ -197,11 +202,15 @@ CyndaquilPokeBallScript: ; 0x78c73
 	if_equal $3, ElmDirectionsScript
 	applymovement $0, AfterCyndaquilMovement
 	jump ElmDirectionsScript
-; 0x78cb5
 
 TotodilePokeBallScript: ; 0x78cb5
 	checkevent EVENT_GOT_A_POKEMON_FROM_ELM
 	iftrue LookAtElmPokeBallScript
+	checkcode VAR_PARTYCOUNT
+	if_not_equal 6, .okay
+	checkcode VAR_BOXSPACE
+	if_equal 20, ElmsLabNoRoomScript
+.okay
 	spriteface $2, $0
 	refreshscreen $0
 	pokepic TOTODILE
@@ -226,11 +235,15 @@ TotodilePokeBallScript: ; 0x78cb5
 	closetext
 	applymovement $0, AfterTotodileMovement
 	jump ElmDirectionsScript
-; 0x78cf1
 
 ChikoritaPokeBallScript: ; 0x78cf1
 	checkevent EVENT_GOT_A_POKEMON_FROM_ELM
 	iftrue LookAtElmPokeBallScript
+	checkcode VAR_PARTYCOUNT
+	if_not_equal 6, .okay
+	checkcode VAR_BOXSPACE
+	if_equal 20, ElmsLabNoRoomScript
+.okay
 	spriteface $2, $0
 	refreshscreen $0
 	pokepic CHIKORITA
@@ -255,7 +268,6 @@ ChikoritaPokeBallScript: ; 0x78cf1
 	closetext
 	applymovement $0, AfterChikoritaMovement
 	jump ElmDirectionsScript
-; 0x78d2d
 
 DidntChooseStarterScript: ; 0x78d2d
 	writetext DidntChooseStarterText
@@ -263,6 +275,12 @@ DidntChooseStarterScript: ; 0x78d2d
 	closetext
 	end
 ; 0x78d33
+ElmsLabNoRoomScript:
+	loadfont
+	writetext ElmsLabNoRoomText
+	waitbutton
+	closetext
+	end
 
 ElmDirectionsScript: ; 0x78d33
 	spriteface $0, $1
@@ -658,7 +676,14 @@ MapElmsLabSignpost13Script: ; 0x78f5b
 ; 0x78f5e
 
 MapElmsLabSignpost15Script: ; 0x78f5e
-	jumptext UnknownText_0x7a3a6
+	loadfont
+	writetext UnknownText_0x7a3a6
+	yesorno
+	iffalse .skip
+	special Function1559a
+.skip
+	closetext
+	end
 ; 0x78f61
 
 UnknownScript_0x78f61: ; 0x78f61
@@ -1512,8 +1537,16 @@ UnknownText_0x7a3a6: ; 0x7a3a6
 
 	para "<...>It says on the"
 	line "screen<...>"
+
+	para "Log PROF.ELM out"
+	line "and use the PC?"
 	done
 ; 0x7a3de
+ElmsLabNoRoomText:
+	text "There's no room in"
+	line "your party or PC"
+	cont "BOX for this!"
+	done
 
 ElmsLab_MapEventHeader: ; 0x7a3de
 	; filler

@@ -35,7 +35,7 @@ TPPCredits::
 	ld a, $70
 	ld [hSCY], a
 	
-TPPCredits_LogoSceneInit:
+TPPCredits_LogoSceneInit::
 	
 ; clear the bottom attributes
 	
@@ -175,7 +175,7 @@ TPPCredits_LogoSceneInit:
 	ld a, 1
 	ld [hCGBPalUpdate], a
 	
-TPPCredits_LogoScene:
+TPPCredits_LogoScene::
 	call ClearCommandChaos
 	ld a, LOGO_CHAOS_MOD
 	ld [TC_ChaosRateMod], a
@@ -244,11 +244,132 @@ TPPCredits_LogoScene:
 	ld a, h
 	ld [TC_FadeUpdateAddr + 1], a
 	call Fade2White
+	
+TPPCredits_MainSceneInit::
+	call DelayFrame
+	call DisableLCD
+	call DoubleSpeed
+	call ClearTileMap
+	xor a
+	ld [hSCX], a
+	ld [hSCY], a
+	ld [rSCX], a
+	ld [rSCY], a
+	ld [rIF], a
+	ld a, $9b
+	ld [hBGMapAddress + 1], a
+	ld a, 1 ; don't let the other intterupts mess with our trick
+	ld [rIE], a
+
+; copy strips
+	ld hl, StripGFX
+	ld de, VTiles2
+	ld bc, StripGFXEnd - StripGFX
+	ld a, BANK(StripGFX)
+	call FarCopyBytesDouble
+	ld hl, StripTiles
+	ld de, VBGMap0 + $140
+	call DecodeWLE
+	ld a, 1
+	ld [rVBK], a
+	ld hl, VBGMap0 + $140
+	ld bc, 32 * 7
+	ld a, 1
+	call ByteFill
+	xor a
+	ld [rVBK], a
+	ld [TC_CreditsPos], a
+	
+TPPCredits_MainScene::
+	ld a, [TC_CreditsPos]
+	ld hl, TPPCreditsList
+	ld bc, 3
+	call AddNTimes
+	ld a, [hli]
+	cp $ff
+	jr z, .end
+	push hl
+	ld hl, TC_MainSceneFuncList
+	jp JumpTable
+.end
 .todo
 	call DelayFrame
 	jr .todo
 	
-ClearCommandChaos
+TC_MainSceneFuncList:
+	dw TC_Main_Draw
+	dw TC_Main_Title
+	dw TC_Main_Subtitle
+	
+TC_Main_Draw::
+	call DisableLCD
+	call ClearCommandChaos
+	pop hl
+	ld a, [hli]
+	ld h, [hl]
+	ld l, a
+	ld a, [hli]
+	ld e, a
+	ld a, [hli]
+	ld d, a ; lz pointer
+	push hl
+	ld h, d
+	ld l, e
+	ld de, VTiles1
+	ld a, 1
+	ld [rVBK], a
+	call Decompress
+	pop hl
+	ld a, [hli]
+	ld e, a
+	ld a, [hli]
+	ld d, a
+	push hl
+	ld h, d
+	ld l, e
+	ld de, VBGMap0
+	call DecodeWLE ; attr map
+	xor a
+	ld [rVBK], a
+	pop hl
+	ld a, [hli]
+	ld e, a
+	ld a, [hli]
+	ld d, a
+	push hl
+	ld h, d
+	ld l, e
+	ld de, VBGMap0
+	call DecodeWLE ; tile map
+	pop hl
+	ld a, [hli]
+	ld h, [hl]
+	ld l, a
+	ld de, Unkn1Pals
+	ld bc, 8 * 8
+	call CopyBytes
+	; TODO fade in
+	ld a, [TC_CreditsPos]
+	inc a
+	ld [TC_CreditsPos], a
+	call EnableLCD
+	jp TPPCredits_MainScene
+	
+TC_Main_Title:
+	; TODO
+	ld a, [TC_CreditsPos]
+	inc a
+	ld [TC_CreditsPos], a
+	jp TPPCredits_MainScene
+	
+TC_Main_Subtitle:
+	; TODO
+	ld a, [TC_CreditsPos]
+	inc a
+	ld [TC_CreditsPos], a
+	jp TPPCredits_MainScene
+	
+ClearCommandChaos:
 	call ClearSprites
 	xor a
 	ld hl, TC_CommandChaosTable
@@ -438,7 +559,9 @@ Fade2White:
 	ld l, a
 	ld a, [TC_FadeUpdateAddr + 1]
 	ld h, a
+	push de
 	call _hl_ ; calls an attached update function
+	pop de
 	dec e
 	jr nz, .loop
 	ret
@@ -446,6 +569,7 @@ Fade2White:
 DecodeWLE:
 ; Walle Length Encoding decoder
 	ld c, 0
+DecodeWLELoop:
 	ld b, [hl]
 	xor a
 	sla b
@@ -474,7 +598,7 @@ DecodeWLE:
 	dec b
 	jr nz, .loopl
 	ld c, a
-	jr DecodeWLE
+	jr DecodeWLELoop
 
 .repeat
 	pop hl
@@ -492,7 +616,7 @@ DecodeWLE:
 	inc de
 	dec b
 	jr nz, .loopr
-	jr DecodeWLE
+	jr DecodeWLELoop
 
 .increment
 	pop hl
@@ -512,19 +636,19 @@ DecodeWLE:
 	dec b
 	jr nz, .loopi
 	ld c, a
-	jr DecodeWLE
+	jr DecodeWLELoop
 
 .end
 	pop hl
 	ret
 	
 TPPCreditsList:
-	tc_draw			TPPCreditsBG1
+	tc_draw			TPPCreditsBG1List
 	tc_title		.director
 	tc_subtitle		  .streamer
 	tc_title		.projman
 	tc_subtitle		  .revo
-	tc_draw			TPPCreditsBG2
+	tc_draw			TPPCreditsBG2List
 	tc_title		.programmer
 	tc_subtitle		  .pikalax
 	tc_subtitle		  .pigu
@@ -533,7 +657,7 @@ TPPCreditsList:
 	tc_subtitle		  .chaos
 	tc_subtitle		  .chauzu
 	tc_subtitle		  .padz
-	tc_draw			TPPCreditsBG3
+	tc_draw			TPPCreditsBG3List
 	tc_title		.sprite
 	tc_subtitle		  .eraclito
 	tc_subtitle		  .pioxys
@@ -548,7 +672,7 @@ TPPCreditsList:
 	tc_subtitle		  .koolboyman
 	tc_title		.ai
 	tc_subtitle		  .bee
-	tc_draw			TPPCreditsBG4
+	tc_draw			TPPCreditsBG4List
 	tc_title		.testers
 	tc_subtitle		  .timmy
 	tc_subtitle		  .eraclito
@@ -640,20 +764,37 @@ StripBounds:
 	
 ; Tiles and attributes are encoded in WLE
 
+TPPCreditsBG1List:
+	dw TPPCreditsBG1
+	dw TPPCreditsBG1Attrs
+	dw TPPCreditsBG1Tiles
+	dw TPPCreditsBG1Pals
+
 TPPCreditsBG1: INCBIN "gfx/credits/bg1.w120.2bpp.lz"
+TPPCreditsBG1End
 
 TPPCreditsBG1Tiles:
-	db $a2, $02, $6d, $00, $a3, $02, $6d, $00, $01
-	db $01, $b0, $04, $b0, $04, $67, $19, $a7, $14
-	db $69, $19, $a7, $14, $62, $19, $7f, $1b, $5f
-	db $42, $70, $1c, $50, $70, $1d, $50, $70, $1c
-	db $50, $70, $1d, $50, $70, $19, $50, $ff
+	db $a2, $82, $6d, $80, $a3, $81, $6d, $80, $01
+	db $81, $b0, $84, $b0, $84, $67, $99, $a7, $94
+	db $69, $99, $a7, $94, $62, $99, $7f, $9b, $5f
+	db $42, $70, $9c, $50, $70, $9d, $50, $70, $9c
+	db $50, $70, $9d, $50, $70, $99, $50, $ff
 	
 TPPCreditsBG1Attrs:
-	db $70, $0a, $50, $7f, $0b, $5f, $42, $70, $0c, $50
-	db $70, $0d, $50, $7f, $0e, $5f, $7f, $0f, $5f, $ff
+	db $70, $0a, $50, $7f, $0b, $5f, $42, $70, $0c, $50, $70, $0d
+	db $50, $7f, $0e, $5f, $42, $7f, $0f, $5f, $5f, $43, $ff
 	
 TPPCreditsBG1Pals:
+	RGB 30, 30, 22 ; placeholder
+	RGB 24, 24, 19
+	RGB 23, 23, 20
+	RGB 31, 31, 31
+	
+	RGB 30, 30, 22 ; placeholder
+	RGB 24, 24, 19
+	RGB 23, 23, 20
+	RGB 19, 23, 21
+	
 	RGB 30, 30, 22
 	RGB 24, 24, 19
 	RGB 23, 23, 20
@@ -683,22 +824,41 @@ TPPCreditsBG1Pals:
 	RGB 11, 13, 15
 	RGB 11, 12, 15
 	RGB 10, 12, 15
-	
+
+TPPCreditsBG2List:	
 TPPCreditsBG2: ; TODO
+TPPCreditsBG2End
+
+TPPCreditsBG3List:
+	dw TPPCreditsBG3
+	dw TPPCreditsBG3Attrs
+	dw TPPCreditsBG3Tiles
+	dw TPPCreditsBG3Pals
 
 TPPCreditsBG3: INCBIN "gfx/credits/bg3.w96.2bpp.lz"
+TPPCreditsBG3End
 
 TPPCreditsBG3Tiles:
-	db $7f, $00, $5f, $42, $7f, $01, $5f, $5f, $5f
-	db $44, $66, $02, $01, $03, $67, $02, $01, $03
-	db $67, $02, $01, $03, $67, $02, $02, $03, $02
-	db $b0, $04, $b0, $04, $bf, $14, $9f, $82, $ff
+	db $7f, $80, $5f, $42, $7f, $81, $5f, $5f, $5f
+	db $44, $66, $82, $01, $83, $67, $82, $01, $83
+	db $67, $82, $01, $83, $67, $82, $02, $83, $82
+	db $b0, $84, $b0, $84, $bf, $94, $9f, $82, $ff
 	
 TPPCreditsBG3Attrs:
 	db $7f, $0f, $5f, $5f, $43, $70, $0e, $50, $70, $0d, $50, $70
 	db $0c, $50, $7f, $0b, $5f, $42, $7f, $0a, $5f, $42, $ff
 
 TPPCreditsBG3Pals:
+	RGB 30, 30, 22 ; placeholder
+	RGB 24, 24, 19
+	RGB 23, 23, 20
+	RGB 31, 31, 31
+	
+	RGB 30, 30, 22 ; placeholder
+	RGB 24, 24, 19
+	RGB 23, 23, 20
+	RGB 19, 23, 21
+	
 	RGB 11, 15, 11
 	RGB 10, 17, 10
 	RGB 11, 19, 10
@@ -729,8 +889,12 @@ TPPCreditsBG3Pals:
 	RGB 19, 26, 26
 	RGB 18, 27, 26
 	
+TPPCreditsBG4List:
 TPPCreditsBG4: ; TODO
+TPPCreditsBG4End
+
 CommandsGFX: INCBIN "gfx/udlrab.2bpp"
 StripGFX: INCBIN "gfx/credits/strip.1bpp"
+StripGFXEnd
 StripTiles: INCBIN "gfx/credits/strip_map.wle"
 	

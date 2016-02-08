@@ -466,8 +466,8 @@ function transferStateToAIAndWait(output_table)
 	return next_move
 end
 
-function sendLUASerial(a)
-    memory.writebyterange(0xDFF8, 3, tablestobytes(commandstotables(0, transferStateToAIAndWait(readbattlestate())), commandstotables(1, readPlayerstate()))) --very long command
+function sendLUASerial(a, output_table, req)
+    memory.writebyterange(0xDFF8, 3, tablestobytes(commandstotables(0, transferStateToAIAndWait(readBattlestate(output_table, req))), commandstotables(1, readPlayerstate()))) --very long command
 	--memory.writebyte(rLSB, a)
 	memory.writebyte(rLSC, BEESAFREE_LSC_COMPLETED)
 end
@@ -487,8 +487,9 @@ function readPlayerstate() --loop read this for the overlay
 		output_table["pack"] = pack
 		if memory.readbyte(rLSC) == BEESAFREE_LSC_TRANSFERRING then
 			req = memory.readbyte(rLSB)
+			print(req)
 			if AND(req, BEESAFREE_SND_RESET) then
-				sendLUASerial(BEESAFREE_RES_RESET)
+				sendLUASerial(BEESAFREE_RES_RESET, output_table, req)
 			elseif AND(req, BEESAFREE_SND_ASKENEMY) ~= 0 then
 				readBattlestate(output_table, req)
 			end

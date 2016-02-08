@@ -65,8 +65,8 @@ UnknownScript_0x69d96: ; 0x69d96
 
 GiftSpearowMail: ; 0x69d98
 	db FLOWER_MAIL
-	db "DARK CAVE leads", $4E
-	db "to another road@"
+	db   "DARK CAVE leads"
+	next "to another road@"
 GiftSpearowName: ; 0x69db9
 	db "KENYA@"
 GiftSpearowOTName: ; 0x69dbf

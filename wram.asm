@@ -2477,9 +2477,9 @@ wGameDataEnd::
 
 wdff5:: ds 2
 wdff7:: ds 1
-wdff8:: ds 1 ; AI Control byte
-wdff9:: ds 1 ; AI Control (player item usage)
-wdffa:: ds 1 ; military mode on/off switch (FF is on, 00 is off)
+wMilitaryAndAIBattleAction:: ds 1 ; AI Control byte
+wMilitaryItem:: ds 1 ; AI Control (player item usage)
+wMilitaryPPRestoreMoveTarget:: ds 1 ; military mode on/off switch (FF is on, 00 is off)
 
 
 SECTION "Pic Animations", WRAMX, BANK [2]
@@ -2643,11 +2643,13 @@ SECTION "TPP Credits WRAM", WRAMX[$d500], BANK[5]
 
 TC_CommandChaosTable:: ds 40
 TC_CommandChaosTableEnd:: ds 1
+TC_ScrollEffectsTable:: ds 48
 TC_CreditsTimer:: ds 1
 TC_ChaosTimer:: ds 1
 TC_ChaosRate:: ds 1
 TC_ChaosRateMod:: ds 1
 TC_FadeUpdateAddr:: ds 2
+TC_CreditsPos:: ds 1
 
 SECTION "WRAM 6", WRAMX, BANK [6]
 
