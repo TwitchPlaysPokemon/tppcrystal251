@@ -1,6 +1,9 @@
+-- random AI test script v0.4
+
 -- RAM labels
 
 dofile("constants.lua")
+dofile("battle_ram.lua") -- not much use for this yet
 
 EnemyDisabledMove = 0xc6f6
 EnemyMonMoves     = 0xd208
@@ -10,7 +13,10 @@ PlayerMonMoves     = 0xc62e
 PlayerMonPP        = 0xc634
 rLSB              = 0xfff1
 rLSC              = 0xfff2
-hMilitary        = 0xfff3
+rSVBK = 0xFF70
+hMilitary        = 0xD849
+
+military_mode = 1 -- 1 on, 0 off
 
 -- other stuff --
 
@@ -36,7 +42,14 @@ function refreshinterval(seconds)
 end
 
 function checkLUASerial()
-    if memory.readbyte(rLSC) == BEESAFREE_LSC_TRANSFERRING then
+    if memory.readbyte(rLSC) == BEESAFREE_LSC_TRANSFERRING and memory.readbyte(rSVBK) == 0x01 then
+        --if memory.readbyte(rLSC) == 0x00 then -- both need to switch
+            
+        --elseif memory.readbyte(rLSC) == 0x00 then --opponent needs to switch
+            
+        --elseif memory.readbyte(rLSC) == 0x00 then --player needs to switch
+            
+        --end
         aiusablemoves = {}
         playerusablemoves = {}
         disai = memory.readbyte(EnemyDisabledMove)
@@ -81,4 +94,7 @@ end
 
 repeat
     checkLUASerial()
+    if memory.readbyte(rSVBK) == 1 then
+        memory.writebyte(hMilitary, military_mode) -- change this later to use bit operationz plz
+    end
 until not refreshinterval(0.100)
