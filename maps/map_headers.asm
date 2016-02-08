@@ -479,6 +479,7 @@ MapGroup27:
 
 	map_header MewIslandEntranceUnderground, $1c, 3, MEW_ISLAND, MUSIC_INDIGO_PLATEAU, 0, 1, 1
 	map_header MewIslandEntranceDock, $9, 2, MEW_ISLAND, MUSIC_INDIGO_PLATEAU, 0, 0, 2
+	map_header MewIslandB1B, $27, 4, MEW_ISLAND, MUSIC_SILPH_CO, 1, 2, 1
 	map_header MewIslandB1, $27, 4, MEW_ISLAND, MUSIC_SILPH_CO, 1, 2, 1
 	map_header MewIslandF1, $27, 4, MEW_ISLAND, MUSIC_SILPH_CO, 1, 2, 1
 	map_header MewIslandF2, $27, 4, MEW_ISLAND, MUSIC_SILPH_CO, 1, 2, 1
@@ -513,6 +514,7 @@ MapGroup28:
 	map_header CeladonDeptStoreB1F, $c, 3, CELADON_CITY, MUSIC_MART, 0, 1, 1
 	map_header SilverCaveDreamRoom, $18, 3, SILVER_CAVE, MUSIC_NONE, 1, 1, 3
 	map_header DummyBlankMap, $c, 0, 0, MUSIC_NONE, 1, 4, 0
+	map_header MtSilverRuins, $1a, 7, SILVER_CAVE, MUSIC_NONE, 1, 1, 16
 
 MapGroup29:
 	map_header Route1RB, $3, 2, ROUTE_1, MUSIC_ROUTE_1, 0, 0, 1

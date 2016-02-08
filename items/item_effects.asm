@@ -1868,6 +1868,26 @@ Functionf21c: ; f21c (3:721c)
 	call WaitBGMap
 	call Function32f9
 	call DelayFrame
+IF DEF(BEESAFREE)
+	ld a, [wBattleMode]
+	and a
+	jr z, .normal_menu
+	ld a, [wMilitaryFlags]
+	bit 0, a
+	jr z, .normal_menu
+	ld a, [wdff8]
+	and $f
+	sub 4
+	ld [CurPartyMon], a
+	ld hl, PartySpecies
+	ld c, a
+	ld b, 0
+	add hl, bc
+	ld a, [hl]
+	ld [CurPartySpecies], a
+	ret
+ENDC
+.normal_menu
 	callba PartyMenuSelect
 	ret
 
@@ -2552,10 +2572,22 @@ Mysteryberry: ; f5bf
 	push af
 	xor a
 	ld [CurMoveNum], a
+IF DEF(BEESAFREE)
+	ld a, [wBattleMode]
+	and a
+	jr z, .normal_menu
+	ld a, [wMilitaryFlags]
+	bit MILITARY_ON, a
+	jr z, .normal_menu
+	ld a, [wdffa]
+	ld [wcfa9], a
+	jr .skip
+ENDC
+.normal_menu
 	ld a, $2
 	ld [wd235], a
 	callba Function3e4bc
-
+.skip
 	pop bc
 	ld a, b
 	ld [CurMoveNum], a

@@ -150,7 +150,19 @@ SSAnne5_MapScriptHeader:
 	end
 
 SSAnne5CooltrainerMScript:
-	jumptextfaceplayer _SSAnne5Text1
+	faceplayer
+	loadfont
+	checkevent EVENT_S_S_ANNE_RUBBED_CAPTAINS_BACK
+	iftrue .departed_text
+	writetext _SSAnne5Text1
+	waitbutton
+	closetext
+	end
+.departed_text
+	writetext _SSAnne5Text1b
+	waitbutton
+	closetext
+	end
 SSAnne5SailorScript:
 	jumptextfaceplayer _SSAnne5Text2
 SSAnne5SuperNerdScript:
@@ -280,6 +292,16 @@ _SSAnne5Text1:
 	text "The party's over."
 	line "The ship will be"
 	cont "departing soon."
+	done
+
+_SSAnne5Text1b:
+	text "I can't wait until"
+	line "we make land in"
+	cont "OLIVINE."
+
+	para "The party there is"
+	line "said to outdo the"
+	cont "VERMILION parties."
 	done
 
 _SSAnne5Text2:

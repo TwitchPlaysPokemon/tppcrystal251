@@ -40,8 +40,8 @@ CeruleanCave1_MapEventHeader: ; 0x1ac4af
 
 	; people-events
 	db 5
-	person_event SPRITE_BOULDER, $e + 4, $18 + 4, $19, 0, 0, -1, -1, 0, 0, 0, CeruleanCave1_BoulderScript, -1
-	person_event SPRITE_BOULDER, $e + 4, $2 + 4, $19, 0, 0, -1, -1, 0, 0, 0, CeruleanCave1_BoulderScript, -1
-	person_event SPRITE_POKE_BALL, $d + 4, $18 + 4, $1, 0, 0, -1, -1, 0, 1, 0, CeruleanCave1_Item1, EVENT_ITEM_CERULEANCAVE1_FULLRESTORE
-	person_event SPRITE_POKE_BALL, $e + 4, $7 + 4, $1, 0, 0, -1, -1, 0, 1, 0, CeruleanCave1_Item2, EVENT_ITEM_CERULEANCAVE1_SCOPE_LENS
-	person_event SPRITE_POKE_BALL, $e + 4, $1 + 4, $1, 0, 0, -1, -1, 0, 1, 0, CeruleanCave1_Item3, EVENT_ITEM_CERULEANCAVE1_NUGGET
+	person_event SPRITE_BOULDER, 18, 28, $19, 0, 0, -1, -1, 0, 0, 0, CeruleanCave1_BoulderScript, -1
+	person_event SPRITE_BOULDER, 18, 6, $19, 0, 0, -1, -1, 0, 0, 0, CeruleanCave1_BoulderScript, -1
+	person_event SPRITE_POKE_BALL, 17, 28, $1, 0, 0, -1, -1, 0, 1, 0, CeruleanCave1_Item1, EVENT_ITEM_CERULEANCAVE1_FULLRESTORE
+	person_event SPRITE_POKE_BALL, 18, 11, $1, 0, 0, -1, -1, 0, 1, 0, CeruleanCave1_Item2, EVENT_ITEM_CERULEANCAVE1_SCOPE_LENS
+	person_event SPRITE_POKE_BALL, 18, $5, $1, 0, 0, -1, -1, 0, 1, 0, CeruleanCave1_Item3, EVENT_ITEM_CERULEANCAVE1_NUGGET

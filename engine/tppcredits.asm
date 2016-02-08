@@ -2,6 +2,8 @@ SECTION "TPPCredits", ROMX;, BANK[CREDITS]
 
 LOGO_DELAY      EQU 300
 LOGO_DELAY_POST EQU 300
+LOGO_CHAOS_MOD  EQU 12
+LOGO_CHAOS_LAST EQU 10
 SCROLLER_DELAY  EQU 200
 C_TC_DRAW       EQU 0
 C_TC_TITLE      EQU 1
@@ -33,7 +35,7 @@ TPPCredits::
 	ld a, $70
 	ld [hSCY], a
 	
-; -- logo scene init --
+TPPCredits_LogoSceneInit:
 	
 ; clear the bottom attributes
 	
@@ -123,7 +125,7 @@ TPPCredits::
 	
 ; Copy udlrab
 	ld de, CommandsGFX
-	ld hl, VTiles2 + $200
+	ld hl, VTiles0
 	lb bc, BANK(CommandsGFX), $8
 	call Request2bpp
 	xor a
@@ -173,25 +175,51 @@ TPPCredits::
 	ld a, 1
 	ld [hCGBPalUpdate], a
 	
-TPPCredits_LogoScene
-	; TODO: init command chaos
+TPPCredits_LogoScene:
+	call ClearCommandChaos
+	ld a, LOGO_CHAOS_MOD
+	ld [TC_ChaosRateMod], a
+	ld a, ((LOGO_DELAY + 544) / LOGO_CHAOS_MOD) + LOGO_CHAOS_LAST
+	ld [TC_ChaosRate], a
 	ld bc, LOGO_DELAY
 
 .loop_delay
 	push bc
 	call UpdateCommandChaos_Logo
 	call DelayFrame
+	ld a, [TC_ChaosRateMod]
+	dec a
+	ld [TC_ChaosRateMod], a
+	and a
+	jr nz, .skipmod_delay
+	ld a, [TC_ChaosRate]
+	dec a
+	ld [TC_ChaosRate], a
+	ld a, LOGO_CHAOS_MOD
+	ld [TC_ChaosRateMod], a
+.skipmod_delay
 	pop bc
 	dec bc
 	ld a, b
 	or c
 	jr nz, .loop_delay
 .loop_scroll
-	ld c, 3
+	ld c, 4
 .loop_scroll2
 	push bc
 	call UpdateCommandChaos_Logo
 	call DelayFrame
+	ld a, [TC_ChaosRateMod]
+	dec a
+	ld [TC_ChaosRateMod], a
+	and a
+	jr nz, .skipmod_scroll
+	ld a, [TC_ChaosRate]
+	dec a
+	ld [TC_ChaosRate], a
+	ld a, LOGO_CHAOS_MOD
+	ld [TC_ChaosRateMod], a
+.skipmod_scroll
 	pop bc
 	dec c
 	jr nz, .loop_scroll2
@@ -210,14 +238,132 @@ TPPCredits_LogoScene
 	ld a, b
 	or c
 	jr nz, .loop_delay_post
+	ld hl, UpdateCommandChaos_Logo
+	ld a, l
+	ld [TC_FadeUpdateAddr], a
+	ld a, h
+	ld [TC_FadeUpdateAddr + 1], a
 	call Fade2White
+	
+TPPCredits_MainSceneInit:
+	call DelayFrame
+	call DisableLCD
+	call DoubleSpeed
+	call ClearTileMap
+	xor a
+	ld [hSCX], a
+	ld [hSCY], a
+	ld [rSCX], a
+	ld [rSCY], a
+	ld [rIF], a
+	ld a, $9b
+	ld [hBGMapAddress + 1], a
+	ld a, 1 ; don't let the other intterupts mess with our trick
+	ld [rIE], a
+
+; copy strips
+	ld hl, StripGFX
+	ld de, VTiles2
+	ld bc, StripGFXEnd - StripGFX
+	ld a, BANK(StripGFX)
+	call FarCopyBytesDouble
+	ld hl, StripTiles
+	ld de, VBGMap0 + $140
+	call DecodeWLE
+	ld a, 1
+	ld [rVBK], a
+	ld hl, VBGMap0 + $140
+	ld bc, 32 * 7
+	ld a, 1
+	call ByteFill
+	xor a
+	ld [rVBK], a	
+	
 .todo
 	call DelayFrame
 	jr .todo
 	
-UpdateCommandChaos_Logo:
-	; TODO
+ClearCommandChaos
+	call ClearSprites
+	xor a
+	ld hl, TC_CommandChaosTable
+	ld bc, 40
+	call ByteFill
+	ld a, $ff
+	ld [TC_CommandChaosTableEnd], a
+	ld a, 1
+	ld [TC_ChaosTimer], a
 	ret
+	
+UpdateCommandChaos_Logo:
+; VBlank1 didn't cover RNG function so this needs to be manually called
+	call Random
+	ld a, [TC_ChaosTimer]
+	dec a
+	ld [TC_ChaosTimer], a
+	and a
+	jp nz, .skip
+	ld a, [TC_ChaosRate]
+	ld [TC_ChaosTimer], a
+	ld de, TC_CommandChaosTable
+	ld hl, Sprites
+.seek
+	ld a, [de]
+	and a
+	jr nz, .skipseek
+	ld a, 1
+	ld [de], a
+	ld a, 160
+	ld [hli], a ; start y position
+	ld a, [hRandomSub]
+	and $7f ; 0-127
+	ld b, a
+	ld a, [hRandomAdd]
+	and $1f ; 0-31
+	add b   ; 0-158
+	add 5
+	ld [hli], a ; start x position
+	ld a, [hRandomAdd]
+	swap a
+	ld b, 0
+	rrca
+	rl b
+	rrca
+	rl b   ; 0-3
+	and $3 ; 0-3
+	add b  ; 0-6
+	ld [hli], a ; tile no.
+	ld a, $8a ; pal 2 bank 1 behind bg
+	ld [hl], a ; attributes
+	jr .skip
+.skipseek
+	cp $ff
+	jr z, .skip ; table is full now
+	inc de
+	ld bc, 4
+	add hl, bc
+	jr .seek
+.skip
+	ld de, TC_CommandChaosTable
+	ld hl, Sprites
+	ld bc, 4
+.updateloop
+	ld a, [de]
+	and a
+	jr z, .skipupdate
+	cp $ff
+	ret z ; every commands is updated
+	ld a, [hl]
+	dec a
+	ld [hl], a
+	cp 8
+	jr nz, .skipupdate
+	xor a
+	ld [de], a
+.skipupdate
+	inc de
+	add hl, bc
+	jr .updateloop
 	
 TC_DrawGraphic:
 	push bc
@@ -323,7 +469,13 @@ Fade2White:
 	jr nz, .loop2
 	ld a, 1
 	ld [hCGBPalUpdate], a
-	call DelayFrame
+	ld a, [TC_FadeUpdateAddr]
+	ld l, a
+	ld a, [TC_FadeUpdateAddr + 1]
+	ld h, a
+	push de
+	call _hl_ ; calls an attached update function
+	pop de
 	dec e
 	jr nz, .loop
 	ret
@@ -526,6 +678,7 @@ StripBounds:
 ; Tiles and attributes are encoded in WLE
 
 TPPCreditsBG1: INCBIN "gfx/credits/bg1.w120.2bpp.lz"
+TPPCreditsBG1End
 
 TPPCreditsBG1Tiles:
 	db $a2, $02, $6d, $00, $a3, $02, $6d, $00, $01
@@ -570,8 +723,10 @@ TPPCreditsBG1Pals:
 	RGB 10, 12, 15
 	
 TPPCreditsBG2: ; TODO
+TPPCreditsBG2End
 
 TPPCreditsBG3: INCBIN "gfx/credits/bg3.w96.2bpp.lz"
+TPPCreditsBG3End
 
 TPPCreditsBG3Tiles:
 	db $7f, $00, $5f, $42, $7f, $01, $5f, $5f, $5f
@@ -615,7 +770,10 @@ TPPCreditsBG3Pals:
 	RGB 18, 27, 26
 	
 TPPCreditsBG4: ; TODO
-CommandsGFX: INCBIN "gfx/udlrab.1bpp"
+TPPCreditsBG4End
+
+CommandsGFX: INCBIN "gfx/udlrab.2bpp"
 StripGFX: INCBIN "gfx/credits/strip.1bpp"
+StripGFXEnd
 StripTiles: INCBIN "gfx/credits/strip_map.wle"
 	

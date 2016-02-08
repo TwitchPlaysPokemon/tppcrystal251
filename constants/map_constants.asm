@@ -116,6 +116,7 @@ MAP_N_A   EQU -1
 	mapgroup ROCK_TUNNEL_1F, 18, 15
 	mapgroup ROCK_TUNNEL_B1F, 18, 15
 	mapgroup VICTORY_ROAD, 36, 10
+	mapgroup MTSILVERRUINS, 24, 16
 
 	newgroup ; Ecruteak City
 	mapgroup ECRUTEAK_HOUSE, 9, 10
@@ -444,6 +445,7 @@ MAP_N_A   EQU -1
 	mapgroup CERULEANCAVE3, 9, 15
 	mapgroup MEWISLANDUNDERGROUND, 9, 10
 	mapgroup MEWISLANDENTRANCEDOCK, 18, 10
+	mapgroup MEWISLANDB1B, 7, 12
 	mapgroup MEWISLANDB1, 9, 15
 	mapgroup MEWISLANDF1, 9, 15
 	mapgroup MEWISLANDF2, 9, 15
