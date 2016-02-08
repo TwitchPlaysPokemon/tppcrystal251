@@ -767,7 +767,7 @@ AI_Switch: ; 3846c
 	ld d, h
 	ld e, l
 	ld hl, EnemyMonStatus
-	ld bc, $0004
+	ld bc, $0004 ; Status, ???, HP
 	call CopyBytes
 	pop af
 	jr c, .asm_384a3
