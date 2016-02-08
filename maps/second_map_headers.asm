@@ -597,6 +597,7 @@
     map_header_2 MewIslandEntrance, MEWISLANDENTRANCE, $35, NONE 
 	map_header_2 MewIslandEntranceUnderground, MEWISLANDUNDERGROUND, $0, NONE 
 	map_header_2 MewIslandEntranceDock, MEWISLANDENTRANCEDOCK, $a, NONE
+	map_header_2 MewIslandB1B, MEWISLANDB1B, $3, NONE 
 	map_header_2 MewIslandB1, MEWISLANDB1, $3, NONE 
 	map_header_2 MewIslandF1, MEWISLANDF1, $3, NONE 
 	map_header_2 MewIslandF2, MEWISLANDF2, $3, NONE

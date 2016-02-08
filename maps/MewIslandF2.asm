@@ -4,6 +4,9 @@ MewIslandF2_MapScriptHeader:
 
 	; callback count 
 	db 0
+	
+ItemFragment_MewIslandF2:
+	db MAX_REVIVE, 1
 
 MewIslandF2_MapEventHeader: 
 	; filler
@@ -22,7 +25,7 @@ MewIslandF2_MapEventHeader:
 	warp_def 8, 17, 22, GROUP_MEWISLANDF1, MAP_MEWISLANDF1
 	warp_def 2, 19, 23, GROUP_MEWISLANDF1, MAP_MEWISLANDF1
 	warp_def 8, 21, 24, GROUP_MEWISLANDF1, MAP_MEWISLANDF1
-	warp_def 6, 25, 25, GROUP_MEWISLANDF1, MAP_MEWISLANDF1
+	warp_def 10, 23, 25, GROUP_MEWISLANDF1, MAP_MEWISLANDF1
 	warp_def 13, 24, 26, GROUP_MEWISLANDF1, MAP_MEWISLANDF1
 	warp_def 12, 15, 27, GROUP_MEWISLANDF1, MAP_MEWISLANDF1
 	warp_def 12, 9, 28, GROUP_MEWISLANDF1, MAP_MEWISLANDF1
@@ -37,5 +40,6 @@ MewIslandF2_MapEventHeader:
 	db 0
 
 	; people-events
-	db 0
+	db 1
+	person_event SPRITE_POKE_BALL, 18, 8, $1, 0, 0, -1, -1, 0, 1, 0, ItemFragment_MewIslandF2, MEW_ISLAND_F2_ITEM
 	
