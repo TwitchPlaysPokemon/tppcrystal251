@@ -1,29 +1,29 @@
 Function1b1e:: ; 1b1e
 	ld [wd003], a
 	xor a
-	ld [DefaultFlypoint], a
+	ld [wd002], a
 	ld a, $0
 	ld [wd004], a
-	ld a, $7
-	ld [StartFlypoint], a
-	ld a, $d0
-	ld [EndFlypoint], a
+	ld a, MovementBuffer % $100
+	ld [wd005], a
+	ld a, MovementBuffer / $100
+	ld [wd006], a
 	ret
 ; 1b35
 
 Function1b35:: ; 1b35
-	ld a, [DefaultFlypoint]
+	ld a, [wd002]
 	and a
 	ret z
 	dec a
-	ld [DefaultFlypoint], a
+	ld [wd002], a
 	ret
 ; 1b3f
 
 Function1b3f:: ; 1b3f load a into movementbuffer + default flypoint+1
 	push hl
 	push de
-	ld hl, DefaultFlypoint 
+	ld hl, wd002 
 	ld e, [hl]
 	inc [hl]
 	ld d, 0

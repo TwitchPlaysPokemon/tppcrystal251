@@ -479,6 +479,7 @@ MapGroup27:
 
 	map_header MewIslandEntranceUnderground, $1c, 3, MEW_ISLAND, MUSIC_INDIGO_PLATEAU, 0, 1, 1
 	map_header MewIslandEntranceDock, $9, 2, MEW_ISLAND, MUSIC_INDIGO_PLATEAU, 0, 0, 2
+	map_header MewIslandB1B, $27, 4, MEW_ISLAND, MUSIC_SILPH_CO, 1, 2, 1
 	map_header MewIslandB1, $27, 4, MEW_ISLAND, MUSIC_SILPH_CO, 1, 2, 1
 	map_header MewIslandF1, $27, 4, MEW_ISLAND, MUSIC_SILPH_CO, 1, 2, 1
 	map_header MewIslandF2, $27, 4, MEW_ISLAND, MUSIC_SILPH_CO, 1, 2, 1

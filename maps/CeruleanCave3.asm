@@ -56,9 +56,9 @@ CeruleanCave3_MapEventHeader:
 	; people-events
 	db 6
 	person_event SPRITE_RHYDON, $11, $1e, $16, 0, 0, -1, -1, 8 + PAL_OW_RED, 0, 0, MewtwoScript, EVENT_FOUGHT_MEWTWO
-	person_event SPRITE_BOULDER, $4 + 4, $1c + 4, $19, 0, 0, -1, -1, 0, 0, 0, CeruleanCave3_BoulderScript, -1
-	person_event SPRITE_BOULDER, $a + 4, $b + 4, $19, 0, 0, -1, -1, 0, 0, 0, CeruleanCave3_BoulderScript, -1
-	person_event SPRITE_POKE_BALL, $0 + 4, $14 + 4, $1, 0, 0, -1, -1, 0, 1, 0, CeruleanCave3_Item1, EVENT_ITEM_CERULEANCAVE3_ULTRABALL
-	person_event SPRITE_POKE_BALL, $0 + 4, $a + 4, $1, 0, 0, -1, -1, 0, 1, 0, CeruleanCave3_Item2, EVENT_ITEM_CERULEANCAVE3_MAX_REVIVE
-	person_event SPRITE_POKE_BALL, $9 + 4, $6 + 4, $1, 0, 0, -1, -1, 0, 1, 0, CeruleanCave3_Item3, EVENT_ITEM_CERULEANCAVE3_MAX_ELIXER
+	person_event SPRITE_BOULDER, 8, 32, $19, 0, 0, -1, -1, 0, 0, 0, CeruleanCave3_BoulderScript, -1
+	person_event SPRITE_BOULDER, 14, 15, $19, 0, 0, -1, -1, 0, 0, 0, CeruleanCave3_BoulderScript, -1
+	person_event SPRITE_POKE_BALL, 4, 24, $1, 0, 0, -1, -1, 0, 1, 0, CeruleanCave3_Item1, EVENT_ITEM_CERULEANCAVE3_ULTRABALL
+	person_event SPRITE_POKE_BALL, 4, 14, $1, 0, 0, -1, -1, 0, 1, 0, CeruleanCave3_Item2, EVENT_ITEM_CERULEANCAVE3_MAX_REVIVE
+	person_event SPRITE_POKE_BALL, 13, 10, $1, 0, 0, -1, -1, 0, 1, 0, CeruleanCave3_Item3, EVENT_ITEM_CERULEANCAVE3_MAX_ELIXER
 	

@@ -14,45 +14,45 @@ includes  := $(PYTHON) $(poketools)/scan_includes.py
 crystal11_obj := \
 wram11.o \
 main11.o \
-lib/mobile/main.o \
+mobile.o \
 home.o \
 audio.o \
 maps.o \
-engine/events.o \
-engine/credits.o \
-data/egg_moves.o \
-data/evos_attacks.o \
-data/pokedex/entries.o \
-misc/crystal_misc.o \
-gfx/pics.o
+events.o \
+credits.o \
+egg_moves.o \
+evos_attacks.o \
+pokedex.o \
+crystal_misc.o \
+pics.o
 
 crystal_obj := \
 wram.o \
 main.o \
-lib/mobile/main.o \
+mobile.o \
 home.o \
 audio.o \
 maps.o \
-engine/events.o \
-engine/credits.o \
-data/egg_moves.o \
-data/evos_attacks.o \
-data/pokedex/entries.o \
-misc/crystal_misc.o \
-gfx/pics.o
+events.o \
+credits.o \
+egg_moves.o \
+evos_attacks.o \
+pokedex.o \
+crystal_misc.o \
+pics.o
 
 beesafree_obj := $(crystal_obj:.o=_ai.o)
 
 all_obj := $(sort $(crystal_obj) $(crystal11_obj) $(beesafree_obj))
 
 # object dependencies
-deps := $(crystal_obj:.o=.asm)
+deps := $(crystal_obj:.o=)
 $(foreach dep, $(deps), \
-	$(eval $(dep:.asm=)_dep := $(shell $(includes) $(dep))) \
+	$(eval $(dep)_dep := $(shell $(includes) $(dep).asm)) \
 )
 
 
-roms := pokecrystal.gbc pokecrystal11.gbc pokecrystal_ai.gbc
+roms := pokecrystal.gbc pokecrystal_ai.gbc
 
 all: $(roms)
 crystal: pokecrystal.gbc
@@ -68,13 +68,6 @@ clean:
 %11.o: %.asm $$(%_dep)
 	rgbasm -D CRYSTAL11 -o $@ $<
 %.o: %.asm $$(%_dep)
-	rgbasm -o $@ $<
-# I don't know why this works. Without it, lib/mobile/main.o will not find a rule.
-lib/%.o: lib/%.asm $$(lib/%_dep)
-	rgbasm -o $@ $<
-
-
-lib/%_ai.o: lib/%.asm $$(lib/%_dep)
 	rgbasm -o $@ $<
 
 pokecrystal11.gbc: $(crystal11_obj)

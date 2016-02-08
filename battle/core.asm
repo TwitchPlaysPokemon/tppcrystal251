@@ -177,8 +177,19 @@ Function3c12f: ; 3c12f
 IF !DEF(BEESAFREE)
 	callba AIChooseMove
 ELSE
-	callba Military
-	jr .MilitarySkip
+	ld a, [Options]
+	push af
+	set 4, a
+	ld [Options], a
+	ld hl, .Waiting
+	call BattleTextBox
+	ld c, 4
+	call DelayFrames
+	pop af
+	ld [Options], a
+	callba ParseExternalAI
+	call EmptyBattleTextBox
+	; jr .MilitarySkip
 ENDC
 
 	call IsMobileBattle
@@ -192,6 +203,14 @@ ENDC
 	call Function3c410
 	jr c, .asm_3c18a
 .asm_3c179
+IF DEF(BEESAFREE)
+	ld a, [wMilitaryFlags]
+	bit MILITARY_ON, a
+	jr z, .call_battle_menu
+	callba Military
+	jr .return_from_military
+.call_battle_menu
+ENDC
 	call BattleMenu
 	jr c, .quit
 	ld a, [BattleEnded]
@@ -200,6 +219,7 @@ ENDC
 .asm_3c18a
 	call Function3c434
 	jr nz, .asm_3c179
+.return_from_military
 
 	call Function3c300
 	jr c, .quit
@@ -207,10 +227,10 @@ ENDC
 	jr c, .asm_3c19e
 	call Function3c5fe
 	jr .asm_3c1a1
+
 .asm_3c19e
 	call Function3c664
 .asm_3c1a1
-.MilitarySkip
 	ld a, [wd232] ; roared/whirlwinded/teleported
 	and a
 	jr nz, .quit
@@ -234,6 +254,11 @@ ENDC
 .quit
 	ret
 ; 3c1bf
+IF DEF(BEESAFREE)
+.Waiting
+	text "Waiting!"
+	done
+ENDC
 
 Function3c1bf: ; 3c1bf
 	ret

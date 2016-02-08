@@ -229,6 +229,15 @@ SSAnne7Text_CaptainSetsSail4:
 	line "welcome to enjoy"
 	cont "our onboard"
 	cont "luxury services."
+
+	para "According to your"
+	line "ticket<...>"
+
+	para "Your cabin is on"
+	line "the lower deck."
+
+	para "Feel free to rest"
+	line "up there."
 	done
 
 SSAnne7Text_CaptainSetsSail5:

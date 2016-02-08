@@ -3699,7 +3699,7 @@ Function8379: ; 8379
 	call Function1b1e
 	call Function8388
 	call Function1b3f
-	ld a, $47
+	ld a, $47 ; movement_step_end
 	call Function1b3f
 	ret
 ; 8388
@@ -3718,7 +3718,10 @@ Function8388: ; 8388
 ; 839a
 
 .data_839a
-	db 8, 9, 10, 11
+	db $8 ; movement_slow_step_down
+	db $9 ; movement_slow_step_up
+	db $a ; movement_slow_step_left
+	db $b ; movement_slow_step_right
 ; 839e
 
 Function839e:: ; 839e
@@ -5032,6 +5035,7 @@ UsedSurfScript: ; c986 SURF
 	scall FieldMovePokepicScript
 	copybytetovar Buffer2
 	writevarcode VAR_MOVEMENT
+	pause 2
 	special Functione4a
 	special PlayMapMusic
 	special Function8379 ; (slow_step_x, step_end)
@@ -20582,6 +20586,7 @@ Function15cef: ; 15cef
 	ld [wd10c], a
 	ld hl, NumItems
 	call ReceiveItem
+	jr nc, .asm_15d68
 	ld a, $6
 	call Function15c7d
 	call Functiona36

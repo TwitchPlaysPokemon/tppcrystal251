@@ -1,7 +1,7 @@
 
 -- PikalaxALT's first attempt at lua to read battle state
 -- AKA readbattlestate_clean.lua
--- Version 0.3.3
+-- Version 0.4.0
 JSON = (loadfile "JSON.lua")()
 package.path = package.path..';./libs/lua/?.lua'
 package.cpath = package.cpath..';./libs/?.dll'
@@ -11,7 +11,7 @@ dofile("constants.lua")
 
 lastBattleState = 0
 military_mode = 0
-ignore_serial = 1 -- please set this to 0 for normal use.
+ignore_serial = 0 -- please set this to 0 for normal use.
 
 function getBigDW(pointer)
 	-- There is no built-in for big-endian DWs, which are used extensively in battle structs.
@@ -436,8 +436,8 @@ function readBattlestate(output_table, req) --read this ONLY when LUA Serial is 
 			battleState["weather"] = getWeather()
 			battleState["playerpokemon"] = getPlayerPokemonData()
 			battleState["enemypokemon"] = getEnemyPokemonData()
-			vba.print("Battle State:")
-			vba.print(battleState)
+			--vba.print("Battle State:")
+			--vba.print(battleState)
 			output_table["battleState"] = battleState
 			if (ignore_serial ~= 1) and (lastBattleState == 0) then
 				transferStateToAIAndWait("Battle started")
@@ -454,6 +454,7 @@ function readBattlestate(output_table, req) --read this ONLY when LUA Serial is 
 		io.output(file)
 		io.write(raw_json)
 		io.close(file)
+        vba.print(battleState)
 		lastBattleState = battlemode
 	else
 		vba.print("Waiting for bank switch...")
@@ -466,7 +467,8 @@ function transferStateToAIAndWait(output_table)
 end
 
 function sendLUASerial(a)
-	memory.writebyte(rLSB, a)
+    memory.writebyterange(0xDFF8, 3, tablestobytes(commandstotables(0, transferStateToAIAndWait(readbattlestate())), commandstotables(1, readPlayerstate()))) --very long command
+	--memory.writebyte(rLSB, a)
 	memory.writebyte(rLSC, BEESAFREE_LSC_COMPLETED)
 end
 
@@ -485,7 +487,8 @@ function readPlayerstate() --loop read this for the overlay
 		output_table["pack"] = pack
 		if memory.readbyte(rLSC) == BEESAFREE_LSC_TRANSFERRING then
 			req = memory.readbyte(rLSB)
-			if req == BEESAFREE_SND_RESET then sendLUASerial(BEESAFREE_RES_RESET)
+			if AND(req, BEESAFREE_SND_RESET) then
+				sendLUASerial(BEESAFREE_RES_RESET)
 			elseif AND(req, BEESAFREE_SND_ASKENEMY) ~= 0 then
 				readBattlestate(output_table, req)
 			end
@@ -493,6 +496,18 @@ function readPlayerstate() --loop read this for the overlay
 			readBattlestate(output_table, 0x00)
 		end
 	end
+end
+
+function tablestobytes(aitable, playertable)
+local bytes = 0x000000
+--do stuff here
+return bytes
+end
+
+function commandstotables(t_type, command)
+local rettable = {}
+--do more stuff here
+return rettable
 end
 
 repeat

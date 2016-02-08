@@ -361,8 +361,12 @@ CeruleanCave3_BlockData:
 	
 MewIslandEntrance_BlockData:
 	INCBIN "maps/MewIslandEntrance.blk"
+MewIslandB1B_BlockData:
+	INCBIN "maps/MewIslandB1B.blk"
 MewIslandB1_BlockData:
 	INCBIN "maps/MewIslandB1.blk"
+MewIslandB1Dammed_BlockData:
+	INCBIN "maps/MewIslandB1Dammed.blk"
 MewIslandF1_BlockData:
 	INCBIN "maps/MewIslandF1.blk"
 MewIslandF2_BlockData:
