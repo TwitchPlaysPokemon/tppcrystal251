@@ -70,7 +70,7 @@ class AI(object):
             return "speed"
         return statName
                     
-    def DataKeeping (self):
+    def parseMondataFromJsonlist (self):
         mondata['weather'] = self.jsonlist['battleState']['weather'].lower().replace(' ', '')
         mondata['enemypokemon'] = {}
         mondata['playerpokemon'] = {}
@@ -1591,7 +1591,7 @@ class AI(object):
 	#alright, start computing
 
         traincurrent = self.jsonlist['battleState']['playerpokemon']['party idx']+6
-        mondata = self.DataKeeping()
+        mondata = self.parseMondataFromJsonlist()
         if self.jsonlist['battleState']['enemy type'] == 'TRAINER':
             mycurrent = self.jsonlist['battleState']['enemypokemon']['party idx']
             if int(self.jsonlist['battleState']['requested action']) != 66:
