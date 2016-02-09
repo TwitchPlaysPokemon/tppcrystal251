@@ -172,7 +172,7 @@ GrowlitheEggMoves:
 PoliwagEggMoves:
 	db MIST
 	db SPLASH
-	db HAZE
+	db PSYWAVE
 	db ENDURE
 	db COUNTER
 	db $ff
@@ -181,25 +181,24 @@ AbraEggMoves:
 	db ENCORE
 	db ENDURE
 	db FORESIGHT
-	db REFLECT
+	db METRONOME
 	db $ff
 
 MachopEggMoves:
-	db LIGHT_SCREEN
-	db RAGE
-	db ENCORE
+	db MEGA_KICK
+	db METRONOME
 	db $ff
 
 BellsproutEggMoves:
 	db DOUBLE_EDGE
 	db MIMIC
+	db REFLECT
 	db $ff
 
 TentacoolEggMoves:
-	db HAZE
-	db SAFEGUARD
 	db WATER_GUN
-	db SLUDGE
+	db ACID
+	db SCREECH
 	db $ff
 
 GeodudeEggMoves:

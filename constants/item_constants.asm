@@ -16,7 +16,7 @@
 	const PARLYZ_HEAL
 	const FULL_RESTORE
 	const MAX_POTION
-	const HYPER_POTION
+	const HYPER_POTION ;10
 	const SUPER_POTION
 	const POTION
 	const ESCAPE_ROPE
@@ -24,7 +24,7 @@
 	const MAX_ELIXER
 	const FIRE_STONE
 	const THUNDERSTONE
-	const WATER_STONE
+	const WATER_STONE ;18
 	const POISON_GUARD   ;NEW
 	const HP_UP
 	const PROTEIN
@@ -32,7 +32,7 @@
 	const CARBOS
 	const LUCKY_PUNCH
 	const CALCIUM
-	const RARE_CANDY
+	const RARE_CANDY ;20
 	const X_ACCURACY
 	const LEAF_STONE
 	const METAL_POWDER
