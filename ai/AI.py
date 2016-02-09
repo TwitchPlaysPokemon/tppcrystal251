@@ -1447,6 +1447,8 @@ class AI(object):
         movepriority[2] = 20
         movepriority[3] = 20
         mondata['focusenergyused'] = False
+        mondata['painsplit'] = False
+        mondata['lockon'] = False
         mondata['defensecurlused'] = False
         mondata['leechseedused'] = False
         mondata['confused'] = False
