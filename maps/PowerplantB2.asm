@@ -38,9 +38,9 @@ PowerplantB2_MapEventHeader:
 	db 0, 0
 
 	; warps
-	db 2
+	db 1 ; 2
 	warp_def 31, 35, 2, GROUP_POWERPLANTB1, MAP_POWERPLANTB1
-	warp_def 23, 19, 1, GROUP_RAIKOU_ROOM, MAP_RAIKOU_ROOM
+	; warp_def 23, 19, 1, GROUP_RAIKOU_ROOM, MAP_RAIKOU_ROOM
 
 	; coord events
 	db 0
