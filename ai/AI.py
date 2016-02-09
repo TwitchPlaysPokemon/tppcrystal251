@@ -101,7 +101,7 @@ class AI(object):
         with open(MOVES_FILE_PATH, 'r') as tempX:
             self._moves = tempX.read().split(' ')
 
-	self.statNames = ["atk","def","satk","sdef","spd","eva","acc"]
+        self.statNames = ["atk","def","satk","sdef","spd","eva","acc"]
     def getStatNameWithSpeed(self, statName):
         #converts between statNames that use "spd" and those that use "speed"
         #this function shouldn't need to exist but it does
