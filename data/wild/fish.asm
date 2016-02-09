@@ -850,10 +850,10 @@ TimeFishGroups: ; 9266f
 ; 51
 	db MUK,        80 ; nite
 	db SEAKING,    75 ; day
-; 52
+; 52 - Kanto Seawater 1
 	db HORSEA,     10 ; nite
 	db KRABBY,     10 ; day
-; 53
+; 53 - Kanto Seawater 2
 	db KRABBY,     10 ; nite
 	db HORSEA,     10 ; day
 ; 54
