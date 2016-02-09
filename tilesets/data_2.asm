@@ -46,6 +46,8 @@ Tileset13Coll: ; 0x1e98c
 INCBIN "tilesets/13_collision.bin"
 ; 0x1ea8c
 
+SECTION "Tileset 24", ROMX
+
 Tileset24GFX: ; 0x1ea8c
 INCBIN "gfx/tilesets/24.2bpp.lz"
 ; 0x1ee1c
