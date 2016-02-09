@@ -170,7 +170,23 @@ ItemFragment_0x600fe: ; 0x600fe
 ; 0x60100
 
 MapRadioTower5FSignpost0Script: ; 0x60100
-	jumptext UnknownText_0x608e0
+	dw EVENT_000_STD, .script
+.script
+	loadfont
+	checkevent EVENT_FOUGHT_SUICUNE
+	iftrue .hidden_switch
+	writetext UnknownText_0x608e0
+	waitbutton
+	closetext
+	end
+.hidden_switch
+	writetext SwitchBehindPosterText
+	playsound SFX_PUSH_BUTTON
+	waitsfx
+	closetext
+	changeblock 3, 0, $03
+	setevent EVENT_000_STD
+	end
 ; 0x60103
 
 MapRadioTower5FSignpost2Script: ; 0x60103
@@ -465,6 +481,13 @@ UnknownText_0x608e0: ; 0x608e0
 	line "   OFFICE"
 	done
 ; 0x608f9
+SwitchBehindPosterText:
+	text "Hey!"
+
+	para "A switch behind"
+	line "the poster!?"
+	cont "Let's push it!"
+	done
 
 UnknownText_0x608f9: ; 0x608f9
 	text "5F STUDIO 1"
@@ -476,9 +499,10 @@ RadioTower5F_MapEventHeader: ; 0x60906
 	db 0, 0
 
 	; warps
-	db 2
+	db 3
 	warp_def $0, $0, 1, GROUP_RADIO_TOWER_4F, MAP_RADIO_TOWER_4F
 	warp_def $0, $c, 3, GROUP_RADIO_TOWER_4F, MAP_RADIO_TOWER_4F
+	warp_def $0, $3, 1, GROUP_RAIKOU_ROOM, MAP_RAIKOU_ROOM
 
 	; xy triggers
 	db 2
@@ -487,7 +511,7 @@ RadioTower5F_MapEventHeader: ; 0x60906
 
 	; signposts
 	db 5
-	signpost 0, 3, $0, MapRadioTower5FSignpost0Script
+	signpost 0, 3, $6, MapRadioTower5FSignpost0Script
 	signpost 0, 11, $0, MapRadioTower5FSignpost2Script
 	signpost 0, 15, $0, MapRadioTower5FSignpost2Script
 	signpost 1, 16, $0, MapRadioTower5FSignpost4Script
