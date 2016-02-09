@@ -1322,7 +1322,7 @@ class AI(object):
         return(1)
     
     #compare all mons for best mon
-    def items(self):
+    def checkIfUsingItem(self):
         if mondata['myitems'][1] != 'noitem' or mondata['myitems'][2] != 'noitem':
             for mymons in range(0, self.myparty):
                 for trainmons in range (6, self.trainparty+6):
@@ -1594,7 +1594,7 @@ class AI(object):
                 self.Fight(mondata, traincurrent, mycurrent, 4)
                 self.theaction = self.mybestmove[0]
                 self.OptionalSwitch(mondata, traincurrent)
-                theaction2 = self.items()
+                theaction2 = self.checkIfUsingItem()
                 if theaction2 != 20:
                     self.theaction = theaction2
 		potentialAction = self.ManualControl()
