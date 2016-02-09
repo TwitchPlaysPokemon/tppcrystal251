@@ -1613,9 +1613,9 @@ class AI(object):
                 theaction2 = self.checkIfUsingItem()
                 if theaction2 != 20:
                     self.theaction = theaction2
-            potentialAction = self.ManualControl()
-            if potentialAction is not None:
-                self.theaction = potentialAction
+                potentialAction = self.ManualControl()
+                if potentialAction is not None:
+                    self.theaction = potentialAction
             else:
                 self.theaction = self.ForcedSwitch(mondata, traincurrent)
         else:
