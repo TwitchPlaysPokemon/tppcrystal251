@@ -376,7 +376,7 @@ UnknownText_0x1951d1: ; 0x1951d1
 
 	para "It fires a huge"
 	line "energy of some"
-	cont "kind"
+	cont "kind."
 
 	para "If you don't want"
 	line "it, you don't have"

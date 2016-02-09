@@ -22769,7 +22769,7 @@ Function17024d: ; 17024d ;generate trainer and run fight
 	ld a, [InBattleTowerBattle] ;toggle "is in battle tower"
 	push af
 	or $1
-	ld [InBattleTowerBattle], a ;set but 1 of ???
+	ld [InBattleTowerBattle], a 
 	xor a
 	ld [wLinkMode], a
 	callba Function1060a2 ;mobile?
@@ -22788,7 +22788,6 @@ Function17024d: ; 17024d ;generate trainer and run fight
 	ld a, [$be46]
 	ld [wcf64], a ;load $be46 into win streak
 	call CloseSRAM
-	pop af
 	ld hl, StringBuffer3
 	ld a, [wcf64]
 	add $f7 ;load be46 + $f7 into stringbuffer 3, follow with a string end

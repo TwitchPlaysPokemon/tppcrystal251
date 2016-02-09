@@ -1137,7 +1137,8 @@ UnknownText_0x788e2: ; 0x788e2
 	line "elemental martial"
 	cont "arts in secret,"
 	cont "but so far we only"
-	cont "taught our #MON<...>"
+	cont "taught our"
+	cont "#MON<...>"
 
 	para "Say<...>"
 

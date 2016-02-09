@@ -106,6 +106,8 @@ OddishEggMoves:
 	db SYNTHESIS
 	db MIMIC
 	db SEED_BOMB
+	db SAFEGUARD
+	db REFLECT
 	db $ff
 
 ParasEggMoves:
@@ -115,6 +117,7 @@ ParasEggMoves:
 	db LIGHT_SCREEN
 	db PURSUIT
 	db SYNTHESIS
+	db DOUBLE_EDGE
 	db $ff
 
 VenonatEggMoves:
@@ -135,6 +138,7 @@ MeowthEggMoves:
 	db MUD_SLAP
 	db IRON_TAIL
 	db SING
+	db SWIFT
 	db $ff
 
 PsyduckEggMoves:
@@ -144,14 +148,11 @@ PsyduckEggMoves:
 	db SWIFT
 	db CHARM
 	db COUNTER
-	db ENCORE
-	db LIGHT_SCREEN
 	db SCREECH
 	db $ff
 
 MankeyEggMoves:
 	db COUNTER
-	db RAGE
 	db SPITE
 	db ENCORE
 	db IRON_TAIL
@@ -159,7 +160,7 @@ MankeyEggMoves:
 
 GrowlitheEggMoves:
 	db THRASH
-	db IRON_HEAD
+	db IRON_TAIL
 	db SAFEGUARD
 	db MUD_SLAP
 	db DOUBLE_EDGE

@@ -124,7 +124,7 @@ Win1Match:
 Won1Text:
 	text "For winning once,"
 	line "your prize is"
-	cont $f0, "3000"
+	cont $f0, "3000."
 	done
 
 Win2Match:
@@ -134,9 +134,9 @@ Win2Match:
 	jump BTPrizeGiven
 
 Won2Text:
-	text "For winning once,"
+	text "For winning twice,"
 	line "your prize is"
-	cont $f0, "8000"
+	cont $f0, "8000."
 	done
 
 Win3Match:
@@ -146,9 +146,9 @@ Win3Match:
 	jump BTPrizeGiven
 
 Won3Text:
-	text "For winning once,"
+	text "For 3 wins,"
 	line "your prize is"
-	cont $f0, "15000"
+	cont $f0, "15000."
 	done
 
 Win4Match:
@@ -158,9 +158,9 @@ Win4Match:
 	jump BTPrizeGiven
 
 Won4Text:
-	text "For winning once,"
+	text "After 4 wins,"
 	line "your prize is"
-	cont $f0, "24000"
+	cont $f0, "24000."
 	done
 
 Win5Match:
@@ -170,9 +170,9 @@ Win5Match:
 	jump BTPrizeGiven
 
 Won5Text:
-	text "For winning once,"
+	text "With 5 wins,"
 	line "your prize is"
-	cont $f0, "35000"
+	cont $f0, "35000."
 	done
 
 Win6Match:
@@ -182,9 +182,8 @@ Win6Match:
 	jump BTPrizeGiven
 
 Won6Text:
-	text "For winning once,"
-	line "your prize is"
-	cont $f0, "50000"
+	text "6 wins gives"
+	line "you ", $f0, "50000."
 	done
 
 UnknownScript_0x9f4d9: ; 0x9f4d9

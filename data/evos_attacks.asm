@@ -728,13 +728,14 @@ JigglypuffEvosAttacks:
 	db 0 ; no more evolutions
 	db 1, POUND
 	db 1, SING
-	db 3, DEFENSE_CURL
+	db 3, REFLECT
 	db 6, DOUBLESLAP
-	db 9, REFLECT
+	db 9, FAINT_ATTACK
 	db 12, HEAL_BELL
 	db 15, FAIRY_WIND
-	db 18, FAINT_ATTACK ; event move
+	db 18, DEFENSE_CURL  ; event move 
 	db 22, ROLLOUT; event move  
+	db 23, SING
 	db 25, DIZZY_PUNCH ; event move
 	db 29, TRI_ATTACK ; * later gen move
 	db 33, LIGHT_SCREEN
@@ -749,10 +750,10 @@ WigglytuffEvosAttacks:
 	db 0 ; no more evolutions
 	db 1, POUND
 	db 1, SING
-	db 5, DEFENSE_CURL
+	db 5, REFLECT
 	db 10, DOUBLESLAP 
-	db 15, REFLECT
-	db 20, HEAL_BELL
+	db 15, HEAL_BELL
+	db 20, DEFENSE_CURL
 	db 30, ROLLOUT ; * later gen move
 	db 40, DIZZY_PUNCH ; * gen 1 move
 	db 50, TRI_ATTACK
@@ -793,14 +794,16 @@ GolbatEvosAttacks:
 	db 24, SWIFT ; * tm move
 	db 28, HAZE
 	db 32, GIGA_DRAIN ; tm move
-	db 36, WING_ATTACK ; later gen move
-	db 41, WHIRLWIND ; egg move 
-	db 46, STEEL_WING ; later gen move
-	db 51, SUPER_FANG ; later gen move
-	db 55, POISON_JAB ; illegal move
-	db 60, HYPNOSIS ; * later gen move
-	db 65, NIGHTMARE ; * tm move
-	db 70, AIR_SLASH ; later gen move
+	db 35, WING_ATTACK ; later gen move
+	db 39, WHIRLWIND ; egg move 
+	db 43, STEEL_WING ; later gen move
+	db 47, SUPER_FANG ; later gen move
+	db 51, POISON_JAB ; illegal move
+	db 55, HEAT_WAVE
+	db 59, HYPNOSIS ; * later gen move
+	db 59, NIGHTMARE ; * tm move
+	db 64, AIR_SLASH ; later gen move
+	db 68, GUNK_SHOT
 	db 0 ; no more level-up moves
 
 OddishEvosAttacks:
@@ -828,7 +831,7 @@ GloomEvosAttacks:
 	db EVOLVE_ITEM, LEAF_STONE, VILEPLUME
 	db EVOLVE_ITEM, SUN_STONE, BELLOSSOM
 	db 0 ; no more evolutions
-	db 1, ACID
+	db 1, STUN_SPORE
 	db 1, MEGA_DRAIN
 	db 1, ENDURE ; tm move
 	db 1, FLAIL ; egg move
@@ -843,18 +846,20 @@ GloomEvosAttacks:
 	db 60, PETAL_DANCE
 	db 0 ; no more level-up moves
 
+
 VileplumeEvosAttacks:
 	db 0 ; no more evolutions
-	db 1, ACID
+	db 1, STUN_SPORE
 	db 1, MEGA_DRAIN
 	db 1, ENDURE
 	db 1, FLAIL
 	db 30, POISON_JAB ; illegal move
 	db 40, RAZOR_LEAF ; egg move
 	db 50, SLEEP_POWDER
-	db 60, MOONBLAST
-	db 70, SLUDGE_BOMB ; * later gen move
-	db 80, PETAL_DANCE
+	db 60, SEED_BOMB
+	db 70, MOONBLAST
+	db 80, SLUDGE_BOMB ; * later gen move
+	db 90, PETAL_DANCE
 	db 0 ; no more level-up moves
 
 ParasEvosAttacks:
@@ -909,10 +914,10 @@ VenonatEvosAttacks:
 	db 21, STUN_SPORE
 	db 24, SLUDGE ; illegal move
 	db 27, ZEN_HEADBUTT ; later gen move
-	db 30, SUPERSONIC
-	db 33, AGILITY ; later gen move
+	db 30, AGILITY
+	db 33, BATON_PASS; later gen move 
 	db 36, SLUDGE_BOMB ; later gen move
-	db 39, BATON_PASS ; egg move
+	db 39, SUPERSONIC 
 	db 42, SLEEP_POWDER
 	db 45, PSYCHIC_M
 	db 0 ; no more level-up moves
@@ -943,7 +948,7 @@ DiglettEvosAttacks:
 	db 6, SCRATCH
 	db 9, PURSUIT ; egg move
 	db 12, MAGNITUDE
-	db 15, FURY_ATTACK ; Fury Swipes replacement
+	db 15, CHARM ; Fury Swipes replacement
 	db 18, FAINT_ATTACK ; egg move
 	db 21, ANCIENTPOWER ; egg move
 	db 24, EARTH_POWER ; later gen move
@@ -959,7 +964,7 @@ DiglettEvosAttacks:
 
 DugtrioEvosAttacks:
 	db 0 ; no more evolutions
-	db 1, MAGNITUDE
+	db 1, CHARM
 	db 1, FAINT_ATTACK ; egg move
 	db 1, ANCIENTPOWER ; egg move
 	db 1, EARTH_POWER ; later gen move
@@ -984,16 +989,17 @@ MeowthEvosAttacks:
 	db 9, PAY_DAY
 	db 12, WATER_GUN ; gen 1 move
 	db 15, CHARM ; egg move
-	db 18, AMNESIA ; egg move
+	db 18, BITE 
 	db 21, SLASH
 	db 24, BUBBLEBEAM ; gen 1 move
-	db 27, BITE
+	db 27, AMNESIA
 	db 30, SCREECH
 	db 33, GUNK_SHOT ; later gen move
-	db 36, SEED_BOMB ; later gen move
-	db 39, SUBSTITUTE ; gen 1 move
-	db 42, SPITE ; egg move
-	db 45, FLAIL ; later gen move
+	db 36, DOUBLE_EDGE
+	db 39, SEED_BOMB ; later gen move
+	db 42, SUBSTITUTE ; gen 1 move
+	db 45, SPITE ; egg move
+	db 48, FLAIL ; later gen move
 	db 0 ; no more level-up moves
 
 PersianEvosAttacks:
@@ -1007,11 +1013,11 @@ PersianEvosAttacks:
 	db 36, SCREECH
 	db 39, IRON_TAIL ; tm move
 	db 42, GUNK_SHOT ; later gen move
-	db 46, SLASH
+	db 46, DOUBLE_EDGE
 	db 50, PLAY_ROUGH ; * later gen move
 	db 54, SPITE ; egg move
-	db 58, PETAL_DANCE ; * event move
-	db 62, SWIFT ; tm move
+	db 58, PETAL_DANCE ; * event move 
+	db 62, TRI_ATTACK ; illegal
 	db 66, DARK_PULSE ; * later gen move
 	db 70, HYPNOSIS ; * egg move
 	db 75, NASTY_PLOT ; * later gen move
@@ -1022,7 +1028,7 @@ PsyduckEvosAttacks:
 	db 0 ; no more evolutions
 	db 1, SCRATCH
 	db 3, TAIL_WHIP
-	db 6, BUBBLE ; illegal move
+	db 6, AQUA_JET 
 	db 9, CONFUSION
 	db 12, DISABLE
 	db 15, FUTURE_SIGHT ; egg move
@@ -1046,19 +1052,21 @@ GolduckEvosAttacks:
 	db 1, BUBBLEBEAM ; gen 1 move
 	db 36, CROSS_CHOP ; egg move
 	db 40, PETAL_DANCE ; event move
-	db 44, PSYCHIC_M ; * tm move
-	db 48, AQUA_JET ; * later gen move
+	db 44, TRI_ATTACK 
+	db 48, HYDRO_PUMP ; * later gen move 
 	db 52, NASTY_PLOT ; * later gen move
-	db 56, TRI_ATTACK ; event move 
-	db 61, MEDITATE ; * illegal move
-	db 65, WATERFALL ; * hm move
-	db 70, MEGA_KICK ; * gen 1 move
-	db 75, ZEN_HEADBUTT ; * later gen move
+	db 56, PSYCHIC_M 
+	db 61, ENCORE
+	db 65, WATERFALL ; 
+	db 70, MEDITATE ;
+	db 75, MEGA_KICK ; * gen 1 move
+	db 80, ZEN_HEADBUTT ; * later gen move
 	db 0 ; no more level-up moves
 
 MankeyEvosAttacks:
 	db EVOLVE_LEVEL, 28, PRIMEAPE
 	db 0 ; no more evolutions
+	db 1, RAGE
 	db 1, SCRATCH
 	db 3, LEER
 	db 6, DEFENSE_CURL ; later gen move
@@ -1079,7 +1087,7 @@ MankeyEvosAttacks:
 
 PrimeapeEvosAttacks:
 	db 0 ; no more evolutions
-	db 1, METRONOME ; gen 1 move
+	db 1, MEDITATE 
 	db 1, FORESIGHT ; egg move
 	db 1, ENDURE ; tm move
 	db 1, REVERSAL ; egg move
@@ -1103,12 +1111,12 @@ GrowlitheEvosAttacks:
 	db 3,ROAR
 	db 6,AGILITY
 	db 9,EMBER ; later gen move
-	db 12,HEADBUTT ; tm move
+	db 12,TAKE_DOWN ; tm move
 	db 15,LEER
-	db 18,DRAGON_RAGE ; gen 1 move
+	db 18,DOUBLE_KICK ; gen 1 move
 	db 21,FLAME_WHEEL
-	db 24,TAKE_DOWN
-	db 27,DOUBLE_KICK ; later gen move
+	db 24,HEADBUTT
+	db 27,DRAGON_RAGE ; later gen move 
 	db 30,DRAGONBREATH ; tm move
 	db 33,HEAT_WAVE ; later gen move
 	db 36,MORNING_SUN ; later gen move
@@ -1119,18 +1127,18 @@ GrowlitheEvosAttacks:
 
 ArcanineEvosAttacks:
 	db 0 ; no more evolutions
-	db 1,ROAR
-	db 1,LEER
-	db 1,HEADBUTT ; tm move
-	db 1,FLAME_WHEEL
-	db 20,DRAGON_RAGE ; tm move
-	db 30,TAKE_DOWN
+	db 1,BITE
+	db 5,ROAR
+	db 10,AGILITY ;
+	db 15,EMBER
+	db 20,TAKE_DOWN
+	db 30,DOUBLE_KICK
 	db 40,DRAGONBREATH ; tm move	
-	db 45,HEAT_WAVE ; later gen move
-	db 50,IRON_TAIL ; * later gen move
-	db 60,EXTREMESPEED ; *
-	db 70,OUTRAGE ; * later gen move
-	db 80,FLARE_BLITZ ; later gen move
+	db 50,HEAT_WAVE ; later gen move 
+	db 60,IRON_HEAD ; * later gen move
+	db 70,EXTREMESPEED ; *
+	db 80,OUTRAGE ; * later gen move
+	db 90,FLARE_BLITZ ; later gen move
 	db 0 ; no more level-up moves
 
 PoliwagEvosAttacks:
@@ -3208,21 +3216,21 @@ CrobatEvosAttacks:
 	db 1, CONFUSE_RAY
 	db 1, BITE
 	db 1, GUST ; egg move
-	db 24, SWIFT ; tm move
-	db 27, X_SCISSOR ; * later gen move
-	db 30, HAZE
-	db 33, WING_ATTACK ; later gen move
-	db 37, GIGA_DRAIN ; tm move
-	db 42, STEEL_WING ; later gen move
-	db 46, WHIRLWIND ; egg move
-	db 50, POISON_JAB ; illegal move 
-	db 53, HEAT_WAVE ; *
-	db 57, MEAN_LOOK ; *
-	db 61, SUPER_FANG ; later gen move
-	db 65, AIR_SLASH ; later gen move
-	db 70, HYPNOSIS ; later gen move
-	db 75, NASTY_PLOT ; * later gen move
-	db 80, SLUDGE_BOMB ; * tm move
+	db 25, SWIFT ; tm move
+	db 29, HAZE  ; * later gen move
+	db 33, GIGA_DRAIN 
+	db 37, WING_ATTACK ; later gen move 
+	db 41, X_SCISSOR ; tm move
+	db 45, WHIRLWIND  ; later gen move 
+	db 49, STEEL_WING ; egg move
+	db 53, POISON_JAB ; illegal move 
+	db 57, HEAT_WAVE ; *
+	db 61, MEAN_LOOK ; *
+	db 65, SUPER_FANG ; later gen move
+	db 69, AIR_SLASH ; later gen move
+	db 73, HYPNOSIS ; later gen move
+	db 76, NASTY_PLOT ; * later gen move
+	db 79, SLUDGE_BOMB ; * tm move
 	db 0 ; no more level-up moves
 
 ChinchouEvosAttacks:
@@ -3461,16 +3469,17 @@ AmpharosEvosAttacks:
 
 BellossomEvosAttacks:
 	db 0 ; no more evolutions
-	db 1, ACID
-	db 1, MEGA_DRAIN
+	db 1, STUN_SPORE
 	db 1, ENDURE
 	db 1, FLAIL
-	db 30, STUN_SPORE
-	db 40, RAZOR_LEAF ; egg move
-	db 50, SLEEP_POWDER
-	db 60, SWORDS_DANCE ; * later gen move
-	db 70, DOUBLE_EDGE ; * later gen move
-	db 80, SEED_BOMB ; * later gen move
+	db 1, MEGA_DRAIN
+	db 30, REFLECT
+	db 40, LEECH_SEED ; egg move
+	db 50, PETAL_DANCE
+	db 60, SLEEP_POWDER
+	db 70, SWORDS_DANCE ; * later gen move
+	db 80, DOUBLE_EDGE ; * later gen move
+	db 90, SEED_BOMB ; * later gen move
 	db 0 ; no more level-up moves
 
 MarillEvosAttacks:
