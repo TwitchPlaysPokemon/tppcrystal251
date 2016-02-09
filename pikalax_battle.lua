@@ -531,7 +531,7 @@ elseif aitable["command"] == "useitem2" then
 byte1 = 0xE0
 end
 
-if military_mode = 1 then
+if military_mode == 1 then
     if playertable["command"] == "move1" then
         byte1 = byte1 + 0x00 --useless lel
     elseif playertable["command"] == "move2" then
@@ -555,20 +555,39 @@ if military_mode = 1 then
     elseif playertable["command"] == "run" then
         byte1 = byte1 + 0x0F
     elseif playertable["command"] == "item" then
-        byte2 = tableLookup(itemTable, playertable["item"])
-        if playertable["poke"] != 0 then
-        byte1 = byte1 + playertable["poke"]
+        byte2 = tableLookup(itemTable, playertable["item"]) - 2
+        if playertable["poke"] ~= 0 then
+        byte1 = byte1 + playertable["poke"] + 3
         end
-        if playertable["move"] != 0 then
+        if playertable["move"] ~= 0 then
         byte3 = playertable["move"]
         end
     end
+end
+
+vba.print(byte1)
+vba.print(byte2)
+vba.print(byte3)
+bytes = (byte1 * 65536) + (byte2 * 256) + byte3
+
+return bytes
 end
 
 function commandstotables(t_type, command)
 local rettable = {}
 --do more stuff here
 return rettable
+end
+
+function tableLookup(tabletarget, matchingstring)
+vba.print(aitable)
+vba.print(playertable)
+for k,v in pairs(tabletarget) do 
+        if v == matchingstring then 
+            return k+1
+        end 
+    end
+return k+1
 end
 
 repeat
