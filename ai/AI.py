@@ -422,8 +422,10 @@ class AI(object):
         temp2 = temp2 * accmodifier * totalacc
 
         #0% chance of hitting
-        tempx = self._statsmultipliers[str(mondata[attacker]['boosts']['speed'])]/100
-        tempy = self._statsmultipliers[str(mondata[defender]['boosts']['speed'])]/100
+        # print mondata[attacker]['boosts']
+        # print mondata[defender]['boosts']
+        tempx = self._statsmultipliers[str(mondata[attacker]['boosts']['spd'])]/100
+        tempy = self._statsmultipliers[str(mondata[defender]['boosts']['spd'])]/100
         if mondata[attacker]['stats']['speed'] * tempx > mondata[defender]['stats']['speed'] * tempy:
             for tempx in range(0, len(mondata['enemypokemon']['substatus'])):
                 if 'underground' == mondata['enemypokemon']['substatus'][tempx]:
@@ -556,7 +558,7 @@ class AI(object):
             if mondata[mycurrent]['moves'][moveused]['effect'] == 'evasionup2':
                 mondata[mycurrent]['boosts']['eva'] = mondata[mycurrent]['boosts']['eva'] + 2
             if mondata[mycurrent]['moves'][moveused]['effect'] == 'speedup2':
-                mondata[mycurrent]['boosts']['speed'] = mondata[mycurrent]['boosts']['speed'] + 2
+                mondata[mycurrent]['boosts']['spd'] = mondata[mycurrent]['boosts']['spd'] + 2
             if mondata[mycurrent]['moves'][moveused]['effect'] == 'spatkup2':
                 mondata[mycurrent]['boosts']['satk'] = mondata[mycurrent]['boosts']['satk'] + 2
             if mondata[mycurrent]['moves'][moveused]['effect'] == 'spdefup2':
@@ -585,7 +587,7 @@ class AI(object):
                     mondata[traincurrent]['boosts']['atk'] = mondata[traincurrent]['boosts']['atk'] - 1
 
                 if (mondata[mycurrent]['moves'][moveused]['effect'] == 'speeddown2'):
-                    mondata[traincurrent]['boosts']['speed'] = mondata[traincurrent]['boosts']['speed'] - 2
+                    mondata[traincurrent]['boosts']['spd'] = mondata[traincurrent]['boosts']['spd'] - 2
                 if (mondata[mycurrent]['moves'][moveused]['effect'] == 'defensedown2'):
                     mondata[traincurrent]['boosts']['def'] = mondata[traincurrent]['boosts']['def'] - 2
                 if (mondata[mycurrent]['moves'][moveused]['effect'] == 'spdefdown2'):
@@ -616,7 +618,7 @@ class AI(object):
             if mondata[mycurrent]['moves'][moveused]['effect'] == 'curse' and ((mondata[mycurrent]['type'][1] != 'ghost') and (mondata[mycurrent]['type'][2] != 'ghost')):
                 mondata[mycurrent]['boosts']['atk'] = mondata[mycurrent]['boosts']['atk'] + 1
                 mondata[mycurrent]['boosts']['def'] = mondata[mycurrent]['boosts']['def'] + 1
-                mondata[mycurrent]['boosts']['speed'] = mondata[mycurrent]['boosts']['speed'] - 1
+                mondata[mycurrent]['boosts']['spd'] = mondata[mycurrent]['boosts']['spd'] - 1
             if mondata[mycurrent]['moves'][moveused]['effect'] == 'curse' and ((mondata[mycurrent]['type'][1] == 'ghost') or (mondata[mycurrent]['type'][2] == 'ghost')):
                 self.Damage[mycurrent][traincurrent][moveused]['selfdamage'] =  mondata[mycurrent]['stats']['hp'] / 2
                 mondata['cursed'] = True
@@ -691,14 +693,14 @@ class AI(object):
                 mondata[mycurrent]['boosts']['def'] = mondata[mycurrent]['boosts']['def'] + 1
             if mondata[mycurrent]['moves'][moveused]['effect'] == 'haze':
                 for stat in self.statNames:
-                    mondata[mycurrent]['boosts'][self.getStatNameWithSpeed(stat)] = 0
-                    mondata[traincurrent]['boosts'][self.getStatNameWithSpeed(stat)] = 0
+                    mondata[mycurrent]['boosts'][stat] = 0
+                    mondata[traincurrent]['boosts'][stat] = 0
                 mondata[leechseedused] = False
                 mondata[focusenergyused] = False
 
             #stats limiter
             for stat in self.statNames:
-                statName = self.getStatNameWithSpeed(stat)
+                statName = stat
                 #constrain each stat to +- 6
                 if mondata[mycurrent]['boosts'][statName] > 6:
                     mondata[mycurrent]['boosts'][statName] = 6
@@ -758,7 +760,7 @@ class AI(object):
                 if (mondata[mycurrent]['moves'][moveused]['effect'] == 'spdefdownhit'):
                     mondata[traincurrent]['boosts']['sdef'] = mondata[traincurrent]['boosts']['sdef'] - 1
                 if (mondata[mycurrent]['moves'][moveused]['effect'] == 'speeddownhit'):
-                    mondata[traincurrent]['boosts']['speed'] = mondata[traincurrent]['boosts']['speed'] - 1
+                    mondata[traincurrent]['boosts']['spd'] = mondata[traincurrent]['boosts']['spd'] - 1
                 if (mondata[mycurrent]['moves'][moveused]['effect'] == 'attackdownhit'):
                     mondata[traincurrent]['boosts']['atk'] = mondata[traincurrent]['boosts']['atk'] - 1
                 if (mondata[mycurrent]['moves'][moveused]['effect'] == 'defensedownhit'):
@@ -771,7 +773,7 @@ class AI(object):
                 mondata[mycurrent]['boosts']['def'] = mondata[mycurrent]['boosts']['def'] + 1
             if (mondata[mycurrent]['moves'][moveused]['effect'] == 'ancientpower'):
                 for stat in ["atk","def","satk","sdef","speed"]:
-                    mondata[mycurrent]['boosts']['speed'] += 1
+                    mondata[mycurrent]['boosts']['spd'] += 1
             if (mondata[mycurrent]['moves'][moveused]['effect'] == 'metalclaw'):
                 mondata[mycurrent]['boosts']['atk'] = mondata[mycurrent]['boosts']['atk'] + 1
 
@@ -781,7 +783,7 @@ class AI(object):
 
             #stats limiter
             for stat in self.statNames:
-                statName = self.getStatNameWithSpeed(stat)
+                statName = stat
                 #constrain each stat to +- 6
                 if mondata[mycurrent]['boosts'][statName] > 6:
                     mondata[mycurrent]['boosts'][statName] = 6
@@ -988,11 +990,11 @@ class AI(object):
             if self.triggered == 0:
                 mondata1[mycurrent]['boosts'] = {}
                 for stat in self.statNames:
-                    mondata1[mycurrent]['boosts'][self.getStatNameWithSpeed(stat)] = int(self.jsonlist['battleState']['enemypokemon']['stat levels'][stat])
+                    mondata1[mycurrent]['boosts'][stat] = int(self.jsonlist['battleState']['enemypokemon']['stat levels'][stat])
             if self.triggered > 0:
                 mondata1[mycurrent]['boosts'] = {}
                 for stat in self.statNames:
-                    mondata1[mycurrent]['boosts'][self.getStatNameWithSpeed(stat)] = 0
+                    mondata1[mycurrent]['boosts'][stat] = 0
                 mondata['enemypokemon']['substatus'] = {}
                 mondata['enemypokemon']['bound'] = 0
             mondata1[traincurrent]['status'] = self.jsonlist['playerParty']['party'][traincurrent-6]['status'].lower()
@@ -1001,7 +1003,7 @@ class AI(object):
             mondata1[traincurrent]['boosts']['def'] = int(self.jsonlist['battleState']['playerpokemon']['stat levels']['def'])
             mondata1[traincurrent]['boosts']['satk'] = int(self.jsonlist['battleState']['playerpokemon']['stat levels']['satk'])
             mondata1[traincurrent]['boosts']['sdef'] = int(self.jsonlist['battleState']['playerpokemon']['stat levels']['sdef'])
-            mondata1[traincurrent]['boosts']['speed'] = int(self.jsonlist['battleState']['playerpokemon']['stat levels']['spd'])
+            mondata1[traincurrent]['boosts']['spd'] = int(self.jsonlist['battleState']['playerpokemon']['stat levels']['spd'])
             mondata1[traincurrent]['boosts']['eva'] = int(self.jsonlist['battleState']['playerpokemon']['stat levels']['eva'])
             mondata1[traincurrent]['boosts']['acc'] = int(self.jsonlist['battleState']['playerpokemon']['stat levels']['acc'])
             self.TrainerDamage(mondata1, traincurrent, mycurrent)
@@ -1013,7 +1015,7 @@ class AI(object):
             if self.useitem > 0:
                 myhp = myhp - self.Damage[traincurrent][mycurrent][self.enemynumber]['damage']
                 if mondata['myitems'][x2] == 'xspeed':
-                    mondata1[mycurrent]['boosts']['speed'] = mondata1[mycurrent]['boosts']['speed'] + 1
+                    mondata1[mycurrent]['boosts']['spd'] = mondata1[mycurrent]['boosts']['spd'] + 1
                 if mondata['myitems'][x2] == 'xattack':
                     mondata1[mycurrent]['boosts']['atk'] = mondata1[mycurrent]['boosts']['atk'] + 1
                 if mondata['myitems'][x2] == 'xdefense':
@@ -1025,7 +1027,7 @@ class AI(object):
 
                 #stats limiter
                 for stat in self.statNames:
-                    statName = self.getStatNameWithSpeed(stat)
+                    statName = stat
                     #constrain each stat to +- 6
                     if mondata[mycurrent]['boosts'][statName] > 6:
                         mondata[mycurrent]['boosts'][statName] = 6
@@ -1042,8 +1044,8 @@ class AI(object):
             for x1 in range(0, numberofturns):
                 mondata1['painsplit'] = False
                 mondata1['lockon'] = False
-                tempx = self._statsmultipliers[str(mondata1[mycurrent]['boosts']['speed'])]/100
-                tempy = self._statsmultipliers[str(mondata1[traincurrent]['boosts']['speed'])]/100
+                tempx = self._statsmultipliers[str(mondata1[mycurrent]['boosts']['spd'])]/100
+                tempy = self._statsmultipliers[str(mondata1[traincurrent]['boosts']['spd'])]/100
                 
                 if (mondata1[mycurrent]['stats']['speed'] * tempx > mondata1[traincurrent]['stats']['speed'] * tempy) or (mondata1[mycurrent]['moves'][int(tempcombo[x1])]['effect'] in ('extremespeed', 'priorityhit', 'endure', 'protect')):
                     
@@ -1159,13 +1161,13 @@ class AI(object):
                     mondata1[mycurrent]['boosts']['def'] = int(self.jsonlist['battleState']['enemypokemon']['stat levels']['def'])
                     mondata1[mycurrent]['boosts']['satk'] = int(self.jsonlist['battleState']['enemypokemon']['stat levels']['satk'])
                     mondata1[mycurrent]['boosts']['sdef'] = int(self.jsonlist['battleState']['enemypokemon']['stat levels']['sdef'])
-                    mondata1[mycurrent]['boosts']['speed'] = int(self.jsonlist['battleState']['enemypokemon']['stat levels']['spd'])
+                    mondata1[mycurrent]['boosts']['spd'] = int(self.jsonlist['battleState']['enemypokemon']['stat levels']['spd'])
                     mondata1[mycurrent]['boosts']['eva'] = int(self.jsonlist['battleState']['enemypokemon']['stat levels']['eva'])
                     mondata1[mycurrent]['boosts']['acc'] = int(self.jsonlist['battleState']['enemypokemon']['stat levels']['acc'])
                 if self.triggered > 0:
                     mondata1[mycurrent]['boosts'] = {}
                     for stat in self.statNames:
-                        mondata1[mycurrent]['boosts'][self.getStatNameWithSpeed(stat)] = 0
+                        mondata1[mycurrent]['boosts'][stat] = 0
                     mondata['enemypokemon']['substatus'] = {}
                     mondata['enemypokemon']['bound'] = 0
                 mondata[traincurrent]['item'] = self.jsonlist['playerParty']['party'][traincurrent-6]['item'].lower().replace(' ', '').replace('-', '')
@@ -1175,7 +1177,7 @@ class AI(object):
                 mondata1[traincurrent]['boosts']['def'] = int(self.jsonlist['battleState']['playerpokemon']['stat levels']['def'])
                 mondata1[traincurrent]['boosts']['satk'] = int(self.jsonlist['battleState']['playerpokemon']['stat levels']['satk'])
                 mondata1[traincurrent]['boosts']['sdef'] = int(self.jsonlist['battleState']['playerpokemon']['stat levels']['sdef'])
-                mondata1[traincurrent]['boosts']['speed'] = int(self.jsonlist['battleState']['playerpokemon']['stat levels']['spd'])
+                mondata1[traincurrent]['boosts']['spd'] = int(self.jsonlist['battleState']['playerpokemon']['stat levels']['spd'])
                 mondata1[traincurrent]['boosts']['eva'] = int(self.jsonlist['battleState']['playerpokemon']['stat levels']['eva'])
                 mondata1[traincurrent]['boosts']['acc'] = int(self.jsonlist['battleState']['playerpokemon']['stat levels']['acc'])
                 self.TrainerDamage(mondata1, traincurrent, mycurrent)
@@ -1186,7 +1188,7 @@ class AI(object):
                 #am i using an item?
                 if self.useitem > 0:
                     if mondata['myitems'][x2] == 'xspeed':
-                        mondata1[mycurrent]['boosts']['speed'] = mondata1[mycurrent]['boosts']['speed'] + 1
+                        mondata1[mycurrent]['boosts']['spd'] = mondata1[mycurrent]['boosts']['spd'] + 1
                     if mondata['myitems'][x2] == 'xattack':
                         mondata1[mycurrent]['boosts']['atk'] = mondata1[mycurrent]['boosts']['atk'] + 1
                     if mondata['myitems'][x2] == 'xdefense':
@@ -1197,7 +1199,7 @@ class AI(object):
                         mondata1['focusenergyused'] = True
                     #stats limiter
                     for stat in self.statNames:
-                        statName = self.getStatNameWithSpeed(stat)
+                        statName = stat
                         #constrain each stat to +- 6
                         if mondata[mycurrent]['boosts'][statName] > 6:
                             mondata[mycurrent]['boosts'][statName] = 6
@@ -1213,8 +1215,8 @@ class AI(object):
                 for x1 in range(0, numberofturns):
                     mondata1['painsplit'] = False
                     mondata1['lockon'] = False
-                    tempx = self._statsmultipliers[str(mondata1[mycurrent]['boosts']['speed'])]/100
-                    tempy = self._statsmultipliers[str(mondata1[traincurrent]['boosts']['speed'])]/100
+                    tempx = self._statsmultipliers[str(mondata1[mycurrent]['boosts']['spd'])]/100
+                    tempy = self._statsmultipliers[str(mondata1[traincurrent]['boosts']['spd'])]/100
                     if (mondata1[mycurrent]['stats']['speed'] * tempx > mondata1[traincurrent]['stats']['speed'] * tempy) or (mondata1[mycurrent]['moves'][int(tempcombo[x1])]['effect'] in ('extremespeed', 'priorityhit', 'endure', 'protect')):
                         if myhp1 > 0:
                             mondata1 = self.Mychoice(mondata1, traincurrent, mycurrent, int(tempcombo[x1]))
@@ -1294,9 +1296,9 @@ class AI(object):
             tempx = (((myhp / self.mycurhp) - (trainhp / self.traincurhp)) * (1 - tempy)) + (((myhp1 / self.mycurhp) - (trainhp1 / self.traincurhp)) * tempy)
             tempx = tempx + 1
             if myhp > 0 :            
-                tempx = tempx * (1 + 0.1 * (mondata1[mycurrent]['boosts']['atk'] + mondata1[mycurrent]['boosts']['def'] + mondata1[mycurrent]['boosts']['satk'] + mondata1[mycurrent]['boosts']['sdef'] + mondata1[mycurrent]['boosts']['speed'] + mondata1[mycurrent]['boosts']['eva'] + mondata1[mycurrent]['boosts']['acc']))
+                tempx = tempx * (1 + 0.1 * (mondata1[mycurrent]['boosts']['atk'] + mondata1[mycurrent]['boosts']['def'] + mondata1[mycurrent]['boosts']['satk'] + mondata1[mycurrent]['boosts']['sdef'] + mondata1[mycurrent]['boosts']['spd'] + mondata1[mycurrent]['boosts']['eva'] + mondata1[mycurrent]['boosts']['acc']))
             if trainhp > 0:
-                tempx = tempx * (1 + -0.05 * (mondata1[traincurrent]['boosts']['atk'] + mondata1[mycurrent]['boosts']['def'] + mondata1[traincurrent]['boosts']['satk'] + mondata1[traincurrent]['boosts']['sdef'] + mondata1[traincurrent]['boosts']['speed'] + mondata1[traincurrent]['boosts']['eva'] + mondata1[traincurrent]['boosts']['acc']))
+                tempx = tempx * (1 + -0.05 * (mondata1[traincurrent]['boosts']['atk'] + mondata1[mycurrent]['boosts']['def'] + mondata1[traincurrent]['boosts']['satk'] + mondata1[traincurrent]['boosts']['sdef'] + mondata1[traincurrent]['boosts']['spd'] + mondata1[traincurrent]['boosts']['eva'] + mondata1[traincurrent]['boosts']['acc']))
             #print('Enemy Boosts: '+str(mondata[mycurrent]['boosts']))
             #print('Player Boosts: '+str(mondata[traincurrent]['boosts']))
             #print('enemy hp '+str(myhp)+' enemy starting hp '+str(self.mycurhp)+' player hp '+str(trainhp)+' player starting hp '+str(self.traincurhp))
@@ -1396,8 +1398,8 @@ class AI(object):
                         mondata2[mycurrent]['boosts'] = {}
                         mondata2[traincurrent]['boosts'] = {}
                         for stat in self.statNames:
-                            mondata2[mycurrent]['boosts'][self.getStatNameWithSpeed(stat)] = 0
-                            mondata2[traincurrent]['boosts'][self.getStatNameWithSpeed(stat)] = int(self.jsonlist['battleState']['playerpokemon']['stat levels'][stat])
+                            mondata2[mycurrent]['boosts'][stat] = 0
+                            mondata2[traincurrent]['boosts'][stat] = int(self.jsonlist['battleState']['playerpokemon']['stat levels'][stat])
                         self.Fight(mondata2, traincurrent, mycurrent, 4)
                     else:
                         self.difference[mycurrent]  = -10
@@ -1423,8 +1425,8 @@ class AI(object):
                     mondata2[mycurrent]['boosts'] = {}
                     mondata2[traincurrent]['boosts'] = {}
                     for stat in self.statNames:
-                        mondata2[mycurrent]['boosts'][self.getStatNameWithSpeed(stat)] = 0
-                        mondata2[traincurrent]['boosts'][self.getStatNameWithSpeed(stat)] = int(self.jsonlist['battleState']['playerpokemon']['stat levels'][stat])
+                        mondata2[mycurrent]['boosts'][stat] = 0
+                        mondata2[traincurrent]['boosts'][stat] = int(self.jsonlist['battleState']['playerpokemon']['stat levels'][stat])
                     self.Fight(mondata2, traincurrent, mycurrent, 4)
                 else:
                     self.difference[mycurrent]  = -10
@@ -1545,7 +1547,7 @@ class AI(object):
                     x1 = math.ceil(self.Damage[0][6][self.theaction]['damage'] / (self.Damage[0][6][self.theaction]['damage'] + self.Damage[0][6][tempx]['damage']))
                     if random.randint(0, 100) > x1:
                         return tempx
-       return None      
+        return None      
     
     #figure out best action to do in current battle
     def MainBattle(self, jsonlist):
