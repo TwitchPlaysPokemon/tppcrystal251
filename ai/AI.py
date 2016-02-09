@@ -1562,7 +1562,7 @@ class AI(object):
     #figure out best action to do in current battle
     def MainBattle(self, jsonlist):
 
-    self.jsonlist = jsonlist
+        self.jsonlist = jsonlist
     #setup everything
         if self.jsonlist['battleState']['enemy type'] == 'TRAINER':
             self.myparty = len(self.jsonlist['enemyParty']['party']) #ai's pokemon
