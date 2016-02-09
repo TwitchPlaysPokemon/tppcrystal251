@@ -9,6 +9,7 @@ ParseExternalAI:
 	ld [hli], a
 	ld [hl], a
 	ld a, BEESAFREE_SND_ASKENEMY
+.loop_back
 	ld hl, wMilitaryFlags
 	bit MILITARY_ON, [hl]
 	jr z, .okay
@@ -39,12 +40,24 @@ ParseExternalAI:
 	ld hl, EnemyMonMoves
 	add hl, bc
 	ld a, [hl]
+	and a
+	jr z, .Invalid
 	ld [CurEnemyMove], a
+	ld bc, EnemyMonPP - EnemyMonMoves
+	add hl, bc
+	ld a, [hl]
+	and $3f
+	jr z, .Invalid
+	ld a, [CurEnemyMove]
+	ld b, a
+	ld a, [EnemyDisabledMove]
+	cp b
+	jr z, .Invalid
 	ret
+.Invalid
+	ld a, BEESAFREE_SND_ASKENEMY | BEESAFREE_SND_INVALID
+	jr .loop_back
 
-MilitaryRepeatRequest:
-	ld a, BEESAFREE_SND_ASKENEMY | BEESAFREE_SND_ASKMILITARY
-	rst LUASerial
 Military:
 ; This is a dummy function until we can get a version that actually works.
 	ld a, [wMilitaryAndAIBattleAction]
@@ -68,16 +81,33 @@ Military:
 	ld hl, BattleMonMoves
 	add hl, bc
 	ld a, [hl]
+	jr z, .Invalid
 	ld [CurPlayerMove], a
+	and a
+	ld bc, BattleMonPP - BattleMonMoves
+	add hl, bc
+	ld a, [hl]
+	and $3f
+	jr z, .Invalid
+	ld a, [CurPlayerMove]
+	ld b, a
+	ld a, [DisabledMove]
+	cp b
+	jr z, .Invalid
 	xor a
 	ld [wd0ec], a
 	ret
+.Invalid
+	ld a, BEESAFREE_SND_ASKMILITARY | BEESAFREE_SND_INVALID
+	rst LUASerial
+	jr Military
 
 .SwitchOrItem
 	ld a, [wMilitaryItem]
 	and a
 	jr z, .Switch
 	ld [CurItem], a
+	; fix this
 	callba Function10629
 	ret
 
