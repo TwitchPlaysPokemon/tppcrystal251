@@ -1562,8 +1562,8 @@ class AI(object):
     #figure out best action to do in current battle
     def MainBattle(self, jsonlist):
 
-	self.jsonlist = jsonlist
-	#setup everything
+    self.jsonlist = jsonlist
+    #setup everything
         if self.jsonlist['battleState']['enemy type'] == 'TRAINER':
             self.myparty = len(self.jsonlist['enemyParty']['party']) #ai's pokemon
         else:
@@ -1599,8 +1599,8 @@ class AI(object):
         self.countercoat = {}
         self.countercoat['physical'] = {}
         self.countercoat['special'] = {}
-	
-	#alright, start computing
+    
+    #alright, start computing
 
         traincurrent = self.jsonlist['battleState']['playerpokemon']['party idx']+6
         mondata = self.parseMondataFromJsonlist()
@@ -1613,9 +1613,9 @@ class AI(object):
                 theaction2 = self.checkIfUsingItem()
                 if theaction2 != 20:
                     self.theaction = theaction2
-		potentialAction = self.ManualControl()
-		if potentialAction is not None:
-                	self.theaction = potentialAction
+        potentialAction = self.ManualControl()
+        if potentialAction is not None:
+                    self.theaction = potentialAction
             else:
                 self.theaction = self.ForcedSwitch(mondata, traincurrent)
         else:
@@ -1640,7 +1640,7 @@ def main():
 
     while True:
         print(Artificial.MainBattle(battle_state))
-	battle_state = Artificial.jsonlist
+    battle_state = Artificial.jsonlist
         #placeholder to prevent infinite looping
         input = raw_input('Action Above is best move (0-3 = moves, 4-9 = mon switch, 10-11 = use bag items) --- Press enter to continue')
 
