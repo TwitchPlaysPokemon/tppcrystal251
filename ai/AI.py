@@ -1445,10 +1445,14 @@ class AI(object):
         movepriority[2] = 20
         movepriority[3] = 20
         mondata['focusenergyused'] = False
+        mondata['painsplit'] = False
+        mondata['lockon'] = False
         mondata['defensecurlused'] = False
         mondata['leechseedused'] = False
         mondata['confused'] = False
         mondata['attract'] = False
+        mondata['cursed'] = False
+        mondata['identified'] = False
         mondata['myperishsong'] = 0
         mondata['trainperishsong'] = 0
         mondata[mycurrent]['boosts'] = {}
