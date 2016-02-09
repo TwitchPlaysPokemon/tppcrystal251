@@ -1277,7 +1277,7 @@ MachokeEvosAttacks:
 	db 49, SUBMISSION; egg move
 	db 53, THRASH ; event move
 	db 56, EARTHQUAKE ; * tm move
-	db 60, SIESMIC_TOSS
+	db 60, SEISMIC_TOSS
 	db 64, CROSS_CHOP
 	db 0 ; no more level-up moves
 
@@ -1422,7 +1422,7 @@ GravelerEvosAttacks:
 	db 38, DIG 
 	db 41, ROCK_SLIDE ; *
 	db 44, MEGA_KICK
-	db 47, IRON_DEFENCE ; * later gen move
+	db 47, IRON_DEFENSE ; * later gen move
 	db 51, EARTHQUAKE
 	db 55, EXPLOSION
 	db 60, DOUBLE_EDGE ; *
@@ -1430,7 +1430,7 @@ GravelerEvosAttacks:
 
 GolemEvosAttacks:
 	db 0 ; no more evolutions
-	db 1, IRON_DEFENCE
+	db 1, IRON_DEFENSE
 	db 1, MEGA_KICK ; later gen move
 	db 1, DIG ; tm move
 	db 1, ROCK_SLIDE ; egg move
