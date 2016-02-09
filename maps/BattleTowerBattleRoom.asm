@@ -98,8 +98,6 @@ UnknownScript_0x9f4c2: ; 0x9f4c2
 	pause 60
 	special Function8c092 ;pallete stuff
 	warpfacing $1, GROUP_BATTLE_TOWER_1F, MAP_BATTLE_TOWER_1F, $7, $7 ;warp downstairs
-	writebyte $4
-	special Function170687 ;load 0 into $be45
 	copybytetovar wcf64
 	loadfont
 	if_equal $2, Win1Match
@@ -111,6 +109,8 @@ UnknownScript_0x9f4c2: ; 0x9f4c2
 BTPrizeGiven:
 	writetext UnknownText_0x9ea49 ;thanks for visiting
 	waitbutton
+	writebyte $4
+	special Function170687 ;load 0 into $be45
 	closetext
 	end
 ; 0x9f4d9
@@ -124,67 +124,66 @@ Win1Match:
 Won1Text:
 	text "For winning once,"
 	line "your prize is"
-	cont $f0, "3000"
+	cont $f0, "3000."
 	done
 
 Win2Match:
-	writetext Won1Text
+	writetext Won2Text
 	givemoney 0, 8000
 	buttonsound
 	jump BTPrizeGiven
 
 Won2Text:
-	text "For winning once,"
+	text "For winning twice,"
 	line "your prize is"
-	cont $f0, "8000"
+	cont $f0, "8000."
 	done
 
 Win3Match:
-	writetext Won1Text
+	writetext Won3Text
 	givemoney 0, 15000
 	buttonsound
 	jump BTPrizeGiven
 
 Won3Text:
-	text "For winning once,"
+	text "For 3 wins,"
 	line "your prize is"
-	cont $f0, "15000"
+	cont $f0, "15000."
 	done
 
 Win4Match:
-	writetext Won1Text
+	writetext Won4Text
 	givemoney 0, 24000
 	buttonsound
 	jump BTPrizeGiven
 
 Won4Text:
-	text "For winning once,"
+	text "After 4 wins,"
 	line "your prize is"
-	cont $f0, "24000"
+	cont $f0, "24000."
 	done
 
 Win5Match:
-	writetext Won1Text
+	writetext Won5Text
 	givemoney 0, 35000
 	buttonsound
 	jump BTPrizeGiven
 
 Won5Text:
-	text "For winning once,"
+	text "With 5 wins,"
 	line "your prize is"
-	cont $f0, "35000"
+	cont $f0, "35000."
 	done
 
 Win6Match:
-	writetext Won1Text
+	writetext Won6Text
 	givemoney 0, 50000
 	buttonsound
 	jump BTPrizeGiven
 
 Won6Text:
-	text "For winning once,"
-	line "your prize is"
-	cont $f0, "50000"
+	text "6 wins gives"
+	line "you ", $f0, "50000."
 	done
 
 UnknownScript_0x9f4d9: ; 0x9f4d9

@@ -105,17 +105,23 @@ UnknownScript_0x1904ab: ; 0x1904ab
 FisherScript_0x1904ce: ; 0x1904ce
 	faceplayer
 	loadfont
-	checkevent EVENT_GOT_TM05_ROAR
-	iftrue UnknownScript_0x1904e3
 	writetext UnknownText_0x191133
-	buttonsound
-	verbosegiveitem TM_ROCK_SLIDE, 1
-	iffalse UnknownScript_0x1904e7
-	setevent EVENT_GOT_TM05_ROAR
-UnknownScript_0x1904e3: ; 0x1904e3
-	writetext UnknownText_0x19118c
 	waitbutton
-UnknownScript_0x1904e7: ; 0x1904e7
+	yesorno
+	iffalse FalseTutorQuit
+	writebyte 7
+	writetext UnknownText_0x19118c
+	special Function4925b
+	if_equal $0, AfterFalseTutor
+FalseTutorQuit:
+	writetext FalseTutorReject
+	waitbutton
+	closetext
+	end
+
+AfterFalseTutor:
+	writetext FalseTutorDone
+	waitbutton
 	closetext
 	end
 ; 0x1904e9
@@ -1088,24 +1094,35 @@ UnknownText_0x191105: ; 0x191105
 ; 0x191133
 
 UnknownText_0x191133: ; 0x191133
-	text "YEEEAAAAAAAAAHH!"
-	line "PEOPLE COWER WHEN"
+	text "Crush without"
+	para "breaking."
+	
+	para "Slice without"
+	line "cutting."
 
-	para "I ROCK! BUT YOU"
-	line "STOOD FIRM!"
+	para "Attack without"
+	line "damage."
 
-	para "YOU'RE AWESOME!"
-	line "TAKE THIS!"
+	para "Do you wish to"
+	line "study the art of"
+	cont "FALSE SWIPE?"
+
 	done
 ; 0x19118c
 
 UnknownText_0x19118c: ; 0x19118c
-	text "WOOOOOOOOOOAAA!"
-	line "IT'S ROCK SLIDE!"
+	text "Who is my student?"
+	done
 
-	para "EVEN #MON FLINCH"
-	line "BEFORE THE POWER"
-	cont "OF ROCK!!!"
+FalseTutorReject:
+	text "Very well<...>"
+	done
+
+FalseTutorDone:
+	text "teaching without"
+	para "knowing is the"
+	cont "greatest skill"
+	cont "of all."
 	done
 ; 0x1911c1
 

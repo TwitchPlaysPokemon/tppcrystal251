@@ -205,6 +205,6 @@ LavenderTown_MapEventHeader: ; 0x1ad8ac
 	person_event SPRITE_TEACHER, 19, 6, $5, 0, 1, -1, -1, 8 + PAL_OW_BLUE, 0, 0, TeacherScript_0x1ad6e7, -1
 	person_event SPRITE_GRAMPS, 16, 18, $7, 0, 0, -1, -1, 0, 0, 0, GrampsScript_0x1ad6ea, -1
 	person_event SPRITE_YOUNGSTER, 15, 10, $5, 0, 1, -1, -1, 8 + PAL_OW_GREEN, 0, 1, YoungsterScript_0x1ad6ed, -1
-	person_event SPRITE_TEACHER, 9, 18, 6, 0, 0, -1, NITE, 0, 0, 0, ObjectEvent, EVENT_SCARED_LASS
+	person_event SPRITE_TEACHER, 9, 18, 6, 0, 0, -1, NITE, 0, 0, 0, ScareLassScript, EVENT_SCARED_LASS
 ; 0x1ad927
 

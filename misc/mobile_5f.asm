@@ -498,9 +498,9 @@ MenuDataHeader_17d28f: ; 17d28f
 MenuData2_17d297: ; 17d297
 	db $a0 ; flags
 	db 3
-	db "Challenge@"
-	db "Explanation@"
-	db "Cancel@"
+	db "CHALLENGE@"
+	db "EXPLANATION@"
+	db "CANCEL@"
 ; 17d2b6
 
 Function17d2b6: ; 17d2b6

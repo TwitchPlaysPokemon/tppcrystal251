@@ -19,7 +19,7 @@ BlueScript_0x9aa26: ; 0x9aa26
 	waitbutton
 	closetext
 	winlosstext UnknownText_0x9abae, $0000
-	loadtrainer BLUE, 1
+	loadtrainer BLUE, 2
 	startbattle
 	returnafterbattle
 	setevent EVENT_BEAT_BLUE
@@ -45,7 +45,7 @@ BlueRematchScript:
 	waitbutton
 	closetext
 	winlosstext BlueRematchBeatenText, $0000
-	loadtrainer BLUE, 2
+	loadtrainer BLUE, 1
 	startbattle
 	returnafterbattle
 	setevent EVENT_BLUE_REMATCH

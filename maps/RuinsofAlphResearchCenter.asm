@@ -248,21 +248,21 @@ FossilRevivalGuyScript:
 	writetext Text_ReceiveRevivedPokemon
 	playsound SFX_CAUGHT_MON
 	waitsfx
-	givepoke AERODACTYL, 20
+	givepoke AERODACTYL, 35
 	jump .finish
 .omanyte
 	pokenamemem OMANYTE, 0
 	writetext Text_ReceiveRevivedPokemon
 	playsound SFX_CAUGHT_MON
 	waitsfx
-	givepoke OMANYTE, 20
+	givepoke OMANYTE, 24
 	jump .finish
 .kabuto
 	pokenamemem KABUTO, 0
 	writetext Text_ReceiveRevivedPokemon
 	playsound SFX_CAUGHT_MON
 	waitsfx
-	givepoke KABUTO, 20
+	givepoke KABUTO, 24
 .finish
 	if_equal 2, .PartyAndBoxFull
 	clearevent EVENT_LEFT_DOME_TO_BE_REVIVED
