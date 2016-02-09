@@ -501,8 +501,68 @@ end
 
 function tablestobytes(aitable, playertable)
 local bytes = 0x000000
---do stuff here
-return bytes
+local byte1 = 0x00
+local byte2 = 0x00
+local byte3 = 0x00
+
+if aitable["command"] == "move1" then 
+byte1 = 0x00
+elseif aitable["command"] == "move2" then
+byte1 = 0x10
+elseif aitable["command"] == "move3" then
+byte1 = 0x20
+elseif aitable["command"] == "move4" then
+byte1 = 0x30
+elseif aitable["command"] == "switch1" then
+byte1 = 0x40
+elseif aitable["command"] == "switch2" then
+byte1 = 0x50
+elseif aitable["command"] == "switch3" then
+byte1 = 0x60
+elseif aitable["command"] == "switch4" then
+byte1 = 0x70
+elseif aitable["command"] == "switch5" then
+byte1 = 0x80
+elseif aitable["command"] == "switch6" then
+byte1 = 0x90
+elseif aitable["command"] == "useitem1" then
+byte1 = 0xD0
+elseif aitable["command"] == "useitem2" then
+byte1 = 0xE0
+end
+
+if military_mode = 1 then
+    if playertable["command"] == "move1" then
+        byte1 = byte1 + 0x00 --useless lel
+    elseif playertable["command"] == "move2" then
+        byte1 = byte1 + 0x01
+    elseif playertable["command"] == "move3" then
+        byte1 = byte1 + 0x02
+    elseif playertable["command"] == "move4" then
+        byte1 = byte1 + 0x03
+    elseif playertable["command"] == "switch1" then
+        byte1 = byte1 + 0x04
+    elseif playertable["command"] == "switch2" then
+        byte1 = byte1 + 0x05
+    elseif playertable["command"] == "switch3" then
+        byte1 = byte1 + 0x06
+    elseif playertable["command"] == "switch4" then
+        byte1 = byte1 + 0x07
+    elseif playertable["command"] == "switch5" then
+        byte1 = byte1 + 0x08
+    elseif playertable["command"] == "switch6" then
+        byte1 = byte1 + 0x09
+    elseif playertable["command"] == "run" then
+        byte1 = byte1 + 0x0F
+    elseif playertable["command"] == "item" then
+        byte2 = tableLookup(itemTable, playertable["item"])
+        if playertable["poke"] != 0 then
+        byte1 = byte1 + playertable["poke"]
+        end
+        if playertable["move"] != 0 then
+        byte3 = playertable["move"]
+        end
+    end
 end
 
 function commandstotables(t_type, command)
