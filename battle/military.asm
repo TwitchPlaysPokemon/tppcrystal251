@@ -135,14 +135,13 @@ Military:
 	jr c, .UseMove
 	cp 10
 	jr c, .SwitchOrItem
-	; cp 13
-	; jr z, .Struggle
+	cp 13
+	jr z, .Struggle
 	cp 15
 	jp z, .Flee
-	; scf
-	; ret
+	jp .Invalid
 
-	and 3 ; debug
+	; and 3 ; debug
 .UseMove
 	push af
 	callba Function3e786
