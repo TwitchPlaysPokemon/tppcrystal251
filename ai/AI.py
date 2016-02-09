@@ -946,12 +946,10 @@ class AI(object):
                         combodata[tempx] = temptext3
                         tempx = tempx + 1
                         
-        print(len(combodata))
         self.mycurhp = self.hp[mycurrent]
         self.traincurhp = self.opponenthp[traincurrent]
         for x2 in range(0, len(combodata)):
             tempcombo = combodata[x2].split('_')
-            print(combodata[x2])
             mondata1 = mondata
             myhp = self.mycurhp
             trainhp = self.traincurhp        
@@ -1292,17 +1290,17 @@ class AI(object):
                     mondata1[traincurrent]['stats']['curhp'] = trainhp1
             tempy = (mondata[mycurrent]['moves'][int(tempcombo[0])]['acc'] / 100) * (mondata[mycurrent]['moves'][int(tempcombo[0])]['effectchance'] / 100)
             
-            print('Enemy current: '+str(mycurrent))
+            #print('Enemy current: '+str(mycurrent))
             tempx = (((myhp / self.mycurhp) - (trainhp / self.traincurhp)) * (1 - tempy)) + (((myhp1 / self.mycurhp) - (trainhp1 / self.traincurhp)) * tempy)
             tempx = tempx + 1
             if myhp > 0 :            
                 tempx = tempx * (1 + 0.1 * (mondata1[mycurrent]['boosts']['atk'] + mondata1[mycurrent]['boosts']['def'] + mondata1[mycurrent]['boosts']['satk'] + mondata1[mycurrent]['boosts']['sdef'] + mondata1[mycurrent]['boosts']['speed'] + mondata1[mycurrent]['boosts']['eva'] + mondata1[mycurrent]['boosts']['acc']))
             if trainhp > 0:
                 tempx = tempx * (1 + -0.05 * (mondata1[traincurrent]['boosts']['atk'] + mondata1[mycurrent]['boosts']['def'] + mondata1[traincurrent]['boosts']['satk'] + mondata1[traincurrent]['boosts']['sdef'] + mondata1[traincurrent]['boosts']['speed'] + mondata1[traincurrent]['boosts']['eva'] + mondata1[traincurrent]['boosts']['acc']))
-            print('Enemy Boosts: '+str(mondata[mycurrent]['boosts']))
-            print('Player Boosts: '+str(mondata[traincurrent]['boosts']))
-            print('enemy hp '+str(myhp)+' enemy starting hp '+str(self.mycurhp)+' player hp '+str(trainhp)+' player starting hp '+str(self.traincurhp))
-            print(tempx)
+            #print('Enemy Boosts: '+str(mondata[mycurrent]['boosts']))
+            #print('Player Boosts: '+str(mondata[traincurrent]['boosts']))
+            #print('enemy hp '+str(myhp)+' enemy starting hp '+str(self.mycurhp)+' player hp '+str(trainhp)+' player starting hp '+str(self.traincurhp))
+            #print(tempx)
             if self.useitem == 0:
                 if tempx >= self.difference[mycurrent][traincurrent] :
                     self.difference[mycurrent][traincurrent] = tempx
@@ -1316,11 +1314,11 @@ class AI(object):
             if self.useitem > 0:
                 if tempx >= self.differenceitems[mymons][self.itemused]:
                    self.differenceitems[mymons][self.itemused] = tempx
-            print('**********')
-            print(self.mybestmove['bestleaf'])
-            print(self.mybestmove[mycurrent])
-            print(self.difference[mycurrent][traincurrent])
-            print('**********')
+            #print('**********')
+            #print(self.mybestmove['bestleaf'])
+            #print(self.mybestmove[mycurrent])
+            #print(self.difference[mycurrent][traincurrent])
+            #print('**********')
         return(1)
     
     #compare all mons for best mon
@@ -1518,11 +1516,11 @@ class AI(object):
         if tempx != -1 and ('protect' not in (mondata['battleState']['enemypokemon']['substatus'])):
             for x1 in range(0, len(mondata['playerpokemon']['substatus'])):
                 if 'underground' == mondata['playerpokemon']['substatus'][x1]:
-                    self.theaction = tempx
+                    return tempx
                 if 'flying' == mondata['playerpokemon']['substatus'][x1]:
-                    self.theaction = tempx
+                    return tempx
                 if 'charged' == mondata['playerpokemon']['substatus'][x1]:
-                    self.theaction = tempx
+                    return tempx
           
         if self.theaction < 4 :            
             if mondata[0]['moves'][self.theaction]['effect'] == 'counter':
@@ -1533,7 +1531,7 @@ class AI(object):
                 if tempx > -1:
                     x1 = math.ceil(self.Damage[0][6][self.theaction]['damage'] / (self.Damage[0][6][self.theaction]['damage'] + self.Damage[0][6][tempx]['damage']))
                     if random.randint(0, 100) > x1:
-                        self.theaction = tempx
+                        return tempx
             if mondata[0]['moves'][self.theaction]['effect'] == 'mirrorcoat':
                 tempx = -1
                 for tempmove in range (0, len(self.jsonlist['battleState']['enemypokemon']['moves'])):
@@ -1542,9 +1540,8 @@ class AI(object):
                 if tempx > -1:
                     x1 = math.ceil(self.Damage[0][6][self.theaction]['damage'] / (self.Damage[0][6][self.theaction]['damage'] + self.Damage[0][6][tempx]['damage']))
                     if random.randint(0, 100) > x1:
-                        self.theaction = tempx
-        
-        print(self.theaction)      
+                        return tempx
+       return None      
     
     #figure out best action to do in current battle
     def MainBattle(self, jsonlist):
@@ -1600,7 +1597,9 @@ class AI(object):
                 theaction2 = self.items()
                 if theaction2 != 20:
                     self.theaction = theaction2
-                self.ManualControl()
+		potentialAction = self.ManualControl()
+		if potentialAction is not None:
+                	self.theaction = potentialAction
             if int(self.jsonlist['battleState']['requested action']) == 66:
                 self.theaction = self.ForcedSwitch(mondata, traincurrent)
         else:
@@ -1617,14 +1616,14 @@ class AI(object):
                 self.mybestmove[mycurrent] = random.randint(0, (len(self.jsonlist['battleState']['enemypokemon']['moves'])))
                 if tempy == len(mondata[0]['moves']):
                     break
-        return(self.theaction)
+        return self.theaction
     
 def main():
     Artificial = AI()
     battle_state = json.loads(open(JSON_FILE_PATH).read(), encoding="utf-8")
 
     while True:
-        print(Artificial.MainBattle(battle_state))
+        #print(Artificial.MainBattle(battle_state))
 	battle_state = Artificial.jsonlist
         #placeholder to prevent infinite looping
         input = raw_input('Action Above is best move (0-3 = moves, 4-9 = mon switch, 10-11 = use bag items) --- Press enter to continue')
