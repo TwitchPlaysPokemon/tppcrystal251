@@ -2,12 +2,12 @@
 
 dofile("constants.lua")
 
-EnemyDisabledMove = 0xc6f6
+EnemyDisableCount = 0xc67d
 EnemyMonMoves     = 0xd208
 EnemyMonPP        = 0xd20e
-PlayerDisabledMove = 0xc6f5
-PlayerMonMoves     = 0xc62e
-PlayerMonPP        = 0xc634
+PlayerDisableCount = 0xc675
+BattleMonMoves     = 0xc62e
+BattleMonPP        = 0xc634
 rLSB              = 0xfff1
 rLSC              = 0xfff2
 hMilitary        = 0xfff3
@@ -35,36 +35,37 @@ function refreshinterval(seconds)
 	return true
 end
 
+function GetUsableMoves(MovesPointer, PPPointer, DisabledMovePointer)
+	disabledMove = memory.readbyte(DisabledMovePointer)
+	if disabledMove ~= 0 then
+		disabledMoveIDX = AND(disabledMove, 0xf0) / 16
+	else
+		disabledMoveIDX = -1
+	end
+	usableMoves = {}
+	for t = 0, 3 do
+		tt = memory.readbyte(MovesPointer + t)
+		pp = AND(memory.readbyte(PPPointer + t), 0x3f) -- Upper two bits are the PP Up counters
+		if tt ~= 0 and t ~= disabledMoveIDX and pp >= 0 then
+			table.insert(usableMoves, t)
+		end
+	end
+	return usableMoves
+end
+
+function UseRandomMove(MovesPointer, PPPointer, DisabledMovePointer)
+	usableMoves = GetUsableMoves(MovesPointer, PPPointer, DisabledMovePointer)
+	if #usableMoves == 0 then
+		return 0
+	else
+		return usableMoves[math.random(#usableMoves)]
+	end
+end
+
 function checkLUASerial()
     if memory.readbyte(rLSC) == BEESAFREE_LSC_TRANSFERRING then
-        aiusablemoves = {}
-        playerusablemoves = {}
-        disai = memory.readbyte(EnemyDisabledMove)
-        displayer = memory.readbyte(PlayerDisabledMove)
-        for t = 0,3 do
-			ttai = memory.readbyte(EnemyMonMoves + t)
-			ppai = (memory.readbyte(EnemyMonPP + t)) and 0x3f -- Upper two bits are the PP Up counters
-			if ttai ~= 0 and ttai ~= disai and ppai >= 0 then
-				table.insert(aiusablemoves, t)
-			end
-		end
-        for t = 0,3 do
-			tt = memory.readbyte(PlayerMonMoves + t)
-			pp = (memory.readbyte(PlayerMonPP + t)) and 0x3f -- Upper two bits are the PP Up counters
-			if tt ~= 0 and tt ~= displayer and pp >= 0 then
-				table.insert(playerusablemoves, t)
-			end
-		end
-		out = 0
-        outplayer = 0
-        outai = 0
-		if #aiusablemoves ~= 0 then
-			outai = aiusablemoves[math.random(#aiusablemoves)]
-		end
-        if #playerusablemoves ~= 0 then
-			outplayer = playerusablemoves[math.random(#playerusablemoves)]
-		end
-        
+        outai = UseRandomMove(EnemyMonMoves, EnemyMonPP, EnemyDisableCount)
+        outplayer = UseRandomMove(BattleMonMoves, BattleMonPP, PlayerDisableCount)
         out = (outai * 16) + outplayer
         memory.writebyte(0xDFF8, out)
         memory.writebyte(0xDFF9, 0x00)

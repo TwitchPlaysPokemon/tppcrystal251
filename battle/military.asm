@@ -255,6 +255,8 @@ Military:
 Mil_AI_CheckPP:
 	ld b, 0
 	ld a, [de]
+	and a
+	jr z, .NoDisable
 	and $f0
 	swap a
 	ld c, a
@@ -273,6 +275,16 @@ Mil_AI_CheckPP:
 	or b
 	ld b, a
 	jr .loop
+
+.NoDisable
+	ld d, 4
+.loop2
+	ld a, [hl]
+	and $3f
+	or b
+	ld b, a
+	dec d
+	jr nz, .loop2
 .done
 	ld a, b
 	and a
