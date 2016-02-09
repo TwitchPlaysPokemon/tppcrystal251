@@ -569,7 +569,7 @@ ELSE
 	ld a, [hli]
 	ld h, [hl]
 	ld l, a
-	ld de, .Use
+	ld de, .ReturnFromMilitaryUse
 	push de
 	jp [hl]
 
@@ -589,14 +589,15 @@ ELSE
 	dbw X_SPECIAL,    Function38553
 	db $ff
 ENDC
-
+.ReturnFromMilitaryUse
 .DontUse:
-	and a
+	scf
 	ret
 
 .Use:
-	scf
+	and a
 	ret
+
 AIUpdateHUD: ; 38387
 	call UpdateEnemyMonInParty
 	callba UpdateEnemyHUD
