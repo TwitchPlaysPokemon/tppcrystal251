@@ -578,6 +578,7 @@ ELSE
 	jp [hl]
 
 .Switch
+	inc a
 	ld [wc718], a
 	jp AI_Switch
 
