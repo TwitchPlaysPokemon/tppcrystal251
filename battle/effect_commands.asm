@@ -10537,6 +10537,9 @@ BattleCommand6d: ; 37be8
 
 BattleCommand6e: ; 37bf4
 ; startrain
+	ld a, [Weather]
+	cp WEATHER_RAIN
+	jr z, FailedWeather
 	ld a, WEATHER_RAIN
 	ld [Weather], a
 	ld a, 5
@@ -10549,6 +10552,9 @@ BattleCommand6e: ; 37bf4
 
 BattleCommand6f: ; 37c07
 ; startsun
+	ld a, [Weather]
+	cp WEATHER_SUN
+	jr z, FailedWeather
 	ld a, WEATHER_SUN
 	ld [Weather], a
 	ld a, 5
@@ -10557,6 +10563,10 @@ BattleCommand6f: ; 37c07
 	ld hl, SunGotBrightText
 	jp StdBattleTextBox
 ; 37c1a
+
+FailedWeather:
+	call AnimateFailedMove
+	jp PrintButItFailed
 
 
 BattleCommand95: ; 37c1a
