@@ -24,16 +24,15 @@ ParseExternalAI:
 	ld a, [wMilitaryAndAIBattleAction]
 	and $f0
 	swap a
-	cp 4
+	cp $4
 	jr c, .UseMove
-	cp 10
+	cp $a
 	jr c, .Switch
-	jr z, .retry_request
-	cp 13
-	jr c, .UseItem
-	jr z, .Struggle
-	cp 15
+	; jr z, .retry_request
+	cp $f
 	jr z, .Flee
+	cp $d
+	jr nc, .UseItem
 	jp .Invalid
 
 	; and 3 ; debug
@@ -135,8 +134,8 @@ Military:
 	jr c, .UseMove
 	cp 10
 	jr c, .SwitchOrItem
-	cp 13
-	jr z, .Struggle
+	; cp 13
+	; jr z, .Struggle
 	cp 15
 	jp z, .Flee
 	jp .Invalid
@@ -255,6 +254,8 @@ Military:
 Mil_AI_CheckPP:
 	ld b, 0
 	ld a, [de]
+	and a
+	jr z, .NoDisable
 	and $f0
 	swap a
 	ld c, a
@@ -273,6 +274,16 @@ Mil_AI_CheckPP:
 	or b
 	ld b, a
 	jr .loop
+
+.NoDisable
+	ld d, 4
+.loop2
+	ld a, [hl]
+	and $3f
+	or b
+	ld b, a
+	dec d
+	jr nz, .loop2
 .done
 	ld a, b
 	and a

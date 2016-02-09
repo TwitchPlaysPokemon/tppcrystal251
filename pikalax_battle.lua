@@ -449,7 +449,7 @@ function readBattlestate(output_table, req) --read this ONLY when LUA Serial is 
 			local aicommand = transferStateToAIAndWait(raw_json)
 			vba.print("AI Response:", airesult)
             playercommand = 0
-            if military_mode = 1 then
+            if military_mode == 1 then
                 playercommand = get_player_command()
                 vba.print("Player Response:", playercommand)
             end
@@ -475,7 +475,14 @@ function readBattlestate(output_table, req) --read this ONLY when LUA Serial is 
 end
 
 function transferStateToAIAndWait(output_table)
-	next_move = http.request("http://localhost:12345/ai/"..JSON:encode_pretty(output_table))
+	repeat
+		next_move = http.request("http://localhost:12345/ai/"..JSON:encode_pretty(output_table))
+		delay_timer = 60
+		repeat
+			emu.frameadvance()
+			delay_timer = delay_timer - 1
+		until delay_timer == 0
+	until next_move ~= nil
 	return next_move
 end
 
@@ -544,7 +551,7 @@ elseif aitable["command"] == "useitem2" then
 byte1 = 0xE0
 end
 
-if military_mode = 1 then
+if military_mode == 1 then
     if playertable["command"] == "move1" then
         byte1 = byte1 + 0x00 --useless lel
     elseif playertable["command"] == "move2" then
@@ -569,10 +576,10 @@ if military_mode = 1 then
         byte1 = byte1 + 0x0F
     elseif playertable["command"] == "item" then
         byte2 = tableLookup(itemTable, playertable["item"])
-        if playertable["poke"] != 0 then
+        if playertable["poke"] ~= 0 then
         byte1 = byte1 + playertable["poke"]
         end
-        if playertable["move"] != 0 then
+        if playertable["move"] ~= 0 then
         byte3 = playertable["move"]
         end
     end
