@@ -1106,11 +1106,6 @@ class AI(object):
                         if mondata1['attract'] == True:
                             self.Damage[traincurrent][mycurrent][self.enemynumber]['damage'] = self.Damage[traincurrent][mycurrent][self.enemynumber]['damage'] / 2
                         myhp = myhp - self.Damage[traincurrent][mycurrent][self.enemynumber]['damage']
-                    mondata1[mycurrent]['stats']['curhp'] = myhp
-                    mondata1[traincurrent]['stats']['curhp'] = trainhp 
-                    mondata1 = self.endofturn(mondata1, traincurrent, mycurrent)
-                    myhp = mondata1[mycurrent]['stats']['curhp']
-                    trainhp = mondata1[traincurrent]['stats']['curhp']
                 
                 if mondata1[mycurrent]['stats']['speed'] * tempx < mondata1[traincurrent]['stats']['speed'] * tempy:
                     if trainhp > 0:
@@ -1131,11 +1126,6 @@ class AI(object):
                         myhp = myhp - self.Damage[mycurrent][traincurrent][int(tempcombo[x1])]['selfdamage']
                         if myhp > mondata1[mycurrent]['stats']['hp']:
                             myhp = mondata1[mycurrent]['stats']['hp']
-                    mondata1[mycurrent]['stats']['curhp'] = myhp
-                    mondata1[traincurrent]['stats']['curhp'] = trainhp 
-                    mondata1 = self.endofturn(mondata1, traincurrent, mycurrent)
-                    myhp = mondata1[mycurrent]['stats']['curhp']
-                    trainhp = mondata1[traincurrent]['stats']['curhp'] 
                 
                 if mondata1[mycurrent]['stats']['speed'] * tempx == mondata1[traincurrent]['stats']['speed'] * tempy:  
                     if myhp > 0:
@@ -1156,11 +1146,11 @@ class AI(object):
                             self.Damage[traincurrent][mycurrent][self.enemynumber]['damage'] = self.Damage[traincurrent][mycurrent][self.enemynumber]['damage'] / 2
                     myhp = myhp - self.Damage[traincurrent][mycurrent][self.enemynumber]['damage']
                     trainhp = trainhp - self.Damage[mycurrent][traincurrent][int(tempcombo[x1])]['damage']
-                    mondata1[mycurrent]['stats']['curhp'] = myhp
-                    mondata1[traincurrent]['stats']['curhp'] = trainhp 
-                    mondata1 = self.endofturn(mondata1, traincurrent, mycurrent)
-                    myhp = mondata1[mycurrent]['stats']['curhp']
-                    trainhp = mondata1[traincurrent]['stats']['curhp']
+                mondata1[mycurrent]['stats']['curhp'] = myhp
+                mondata1[traincurrent]['stats']['curhp'] = trainhp 
+                mondata1 = self.endofturn(mondata1, traincurrent, mycurrent)
+                myhp = mondata1[mycurrent]['stats']['curhp']
+                trainhp = mondata1[traincurrent]['stats']['curhp']
                     
                 if trainhp < 0:
                     trainhp = 0
@@ -1286,11 +1276,6 @@ class AI(object):
                             if mondata1['attract'] == True:
                                 self.Damage[traincurrent][mycurrent][self.enemynumber]['damage'] = self.Damage[traincurrent][mycurrent][self.enemynumber]['damage'] / 2
                             myhp1 = myhp1 - self.Damage[traincurrent][mycurrent][self.enemynumber]['damage']
-                        mondata1[mycurrent]['stats']['curhp'] = myhp
-                        mondata1[traincurrent]['stats']['curhp'] = trainhp 
-                        mondata1 = self.endofturn(mondata1, traincurrent, mycurrent)
-                        myhp1 = mondata1[mycurrent]['stats']['curhp']
-                        trainhp1 = mondata1[traincurrent]['stats']['curhp']
                         
                     if mondata1[mycurrent]['stats']['speed'] * tempx < mondata1[traincurrent]['stats']['speed'] * tempy:
                         if trainhp1 > 0:
@@ -1312,11 +1297,6 @@ class AI(object):
                             myhp1 = myhp1 - self.Damage[mycurrent][traincurrent][int(tempcombo[x1])]['selfdamage']
                             if myhp1 > mondata1[mycurrent]['stats']['hp']:
                                 myhp1 = mondata1[mycurrent]['stats']['hp']
-                        mondata1[mycurrent]['stats']['curhp'] = myhp
-                        mondata1[traincurrent]['stats']['curhp'] = trainhp 
-                        mondata1 = self.endofturn(mondata1, traincurrent, mycurrent)
-                        myhp1 = mondata1[mycurrent]['stats']['curhp']
-                        trainhp1 = mondata1[traincurrent]['stats']['curhp']
                         
                     if mondata1[mycurrent]['stats']['speed'] * tempx == mondata1[traincurrent]['stats']['speed'] * tempy:  
                         if myhp > 0:
@@ -1337,11 +1317,11 @@ class AI(object):
                                 self.Damage[traincurrent][mycurrent][self.enemynumber]['damage'] = self.Damage[traincurrent][mycurrent][self.enemynumber]['damage'] / 2
                         myhp = myhp - self.Damage[traincurrent][mycurrent][self.enemynumber]['damage']
                         trainhp = trainhp - self.Damage[mycurrent][traincurrent][int(tempcombo[x1])]['damage']
-                        mondata1[mycurrent]['stats']['curhp'] = myhp
-                        mondata1[traincurrent]['stats']['curhp'] = trainhp 
-                        mondata1 = self.endofturn(mondata1, traincurrent, mycurrent)
-                        myhp = mondata1[mycurrent]['stats']['curhp']
-                        trainhp = mondata1[traincurrent]['stats']['curhp']
+                    mondata1[mycurrent]['stats']['curhp'] = myhp
+                    mondata1[traincurrent]['stats']['curhp'] = trainhp 
+                    mondata1 = self.endofturn(mondata1, traincurrent, mycurrent)
+                    myhp = mondata1[mycurrent]['stats']['curhp']
+                    trainhp = mondata1[traincurrent]['stats']['curhp']
                         
                     if trainhp1 < 0:
                         trainhp1 = 0
