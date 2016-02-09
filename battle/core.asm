@@ -177,18 +177,8 @@ Function3c12f: ; 3c12f
 IF !DEF(BEESAFREE)
 	callba AIChooseMove
 ELSE
-	ld a, [Options]
-	push af
-	set 4, a
-	ld [Options], a
-	ld hl, .Waiting
-	call BattleTextBox
-	ld c, 4
-	call DelayFrames
-	pop af
-	ld [Options], a
+	call MilitaryWaiting
 	callba ParseExternalAI
-	call EmptyBattleTextBox
 	; jr .MilitarySkip
 ENDC
 
@@ -208,6 +198,9 @@ IF DEF(BEESAFREE)
 	bit MILITARY_ON, a
 	jr z, .call_battle_menu
 	callba Military
+	push af
+	call EmptyBattleTextBox
+	pop af
 	jr c, .quit
 	ld a, [BattleEnded]
 	and a
@@ -258,11 +251,6 @@ ENDC
 .quit
 	ret
 ; 3c1bf
-IF DEF(BEESAFREE)
-.Waiting
-	text "Waiting!"
-	done
-ENDC
 
 Function3c1bf: ; 3c1bf
 	ret
@@ -3055,6 +3043,18 @@ Function3d313: ; 3d313
 Function3d329: ; 3d329
 	call IsMobileBattle
 	jr z, .mobile
+IF DEF(BEESAFREE)
+	ld a, [wMilitaryFlags]
+	bit 0, a
+	jr z, .NormalMenu
+	call MilitaryWaiting
+	callba Military_SelectPokemon
+	push af
+	call EmptyBattleTextBox
+	pop af
+	ret
+.NormalMenu
+ENDC
 	callba PartyMenuSelect
 	ret
 
@@ -3062,6 +3062,24 @@ Function3d329: ; 3d329
 	callba Function100cb5
 	ret
 ; 3d33c
+
+IF DEF(BEESAFREE)
+MilitaryWaiting:
+	ld a, [Options]
+	push af
+	set 4, a
+	ld [Options], a
+	ld hl, .Waiting
+	call BattleTextBox
+	ld c, 4
+	call DelayFrames
+	pop af
+	ld [Options], a
+	ret
+.Waiting
+	text "Waiting!"
+	done
+ENDC
 
 PickPartyMonInBattle: ; 3d33c
 .loop
@@ -3909,6 +3927,9 @@ Function3d887: ; 3d887
 	ret
 ; 3d8b3
 
+Military_TryToFlee:
+	ld hl, BattleMonSpeed
+	ld de, EnemyMonSpeed
 Function3d8b3: ; 3d8b3
 	ld a, [BattleType]
 	cp $2
@@ -5527,12 +5548,12 @@ Function3e358: ; 3e358
 	jr nz, .asm_3e36b
 	ld hl, BattleText_0x80c0d
 	call StdBattleTextBox
-IF DEF(BEESAFREE)
+; IF DEF(BEESAFREE)
 	scf
 	ret
-ELSE
+; ELSE
 	jp Function3e299
-ENDC
+; ENDC
 
 .asm_3e36b
 	ld a, [wc730]
@@ -5545,23 +5566,23 @@ ENDC
 .asm_3e378
 	ld hl, BattleText_0x80c22
 	call StdBattleTextBox
-IF DEF(BEESAFREE)
+; IF DEF(BEESAFREE)
 	scf
 	ret
-ELSE
+; ELSE
 	jp Function3e299
-ENDC
+; ENDC
 
 .asm_3e381
 	call Function3d887
-IF DEF(BEESAFREE)
+; IF DEF(BEESAFREE)
 	jr nz, .okay
 	scf
 	ret
 .okay
-ELSE
+; ELSE
 	jp z, Function3e299
-ENDC
+; ENDC
 	ld a, [CurBattleMon]
 	ld [wc71a], a
 	ld a, $2

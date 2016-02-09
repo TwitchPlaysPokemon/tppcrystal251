@@ -264,7 +264,7 @@ FossilRevivalGuyScript:
 	waitsfx
 	givepoke KABUTO, 20
 .finish
-	iffalse .PartyAndBoxFull
+	if_equal 2, .PartyAndBoxFull
 	clearevent EVENT_LEFT_DOME_TO_BE_REVIVED
 	clearevent EVENT_LEFT_HELIX_TO_BE_REVIVED
 	clearevent EVENT_LEFT_AMBER_TO_BE_REVIVED

@@ -39,7 +39,8 @@ ParseExternalAI:
 	; and 3 ; debug
 .UseMove
 	push af
-	ld hl, BattleMonPP
+	ld hl, EnemyMonPP
+	ld de, EnemyDisableCount
 	call Mil_AI_CheckPP
 	pop bc
 	jr z, .Struggle
@@ -154,19 +155,19 @@ Military:
 	ld hl, BattleMonMoves
 	add hl, bc
 	ld a, [hl]
-	jr z, .Invalid
+	jp z, .Invalid
 	ld [CurPlayerMove], a
 	and a
 	ld bc, BattleMonPP - BattleMonMoves
 	add hl, bc
 	ld a, [hl]
 	and $3f
-	jr z, .Invalid
+	jp z, .Invalid
 	ld a, [CurPlayerMove]
 	ld b, a
 	ld a, [DisabledMove]
 	cp b
-	jr z, .Invalid
+	jp z, .Invalid
 .Struggle
 	xor a
 	ld [wd0ec], a
@@ -178,7 +179,7 @@ Military:
 	ld b, a
 	ld a, [PartyCount]
 	cp b
-	jr c, .Invalid
+	jp c, .Invalid
 	ld a, [wMilitaryItem]
 	and a
 	jr z, .Switch
@@ -195,7 +196,6 @@ Military:
 	call CheckItem
 	jr nc, .Invalid
 
-	; fix this
 	call Function1d6e
 	callba Function10629
 	ld a, 1
@@ -206,15 +206,46 @@ Military:
 .Switch
 	ld a, b
 	; fill this in later
+	ld [CurPartyMon], a
+	ld c, a
+	ld b, $0
+	ld hl, PartySpecies
+	add hl, bc
+	ld a, [hl]
+	ld [CurPartySpecies], a
+	ld a, [CurPartyMon]
+	ld hl, PartyMon1HP
+	ld bc, $30
+	call AddNTimes
+	ld a, [hli]
+	or [hl]
+	jr z, .Invalid
+	ld a, [CurPartyMon]
+	ld b, a
+	ld a, [CurBattleMon]
+	cp b
+	jr z, .Invalid
+	ld a, [wc730]
 	and a
+	jr nz, .Invalid
+	ld a, [EnemySubStatus5]
+	bit SUBSTATUS_CANT_RUN, a
+	jr nz, .Invalid
+	ld a, [CurBattleMon]
+	ld [wc71a], a
+	ld a, $2
+	ld [wd0ec], a
+	ld a, [CurPartyMon]
+	ld [CurBattleMon], a
+	callba Function3e3ad
 	ret
 
 .Flee
-	; fill this in later
-	scf
-	ret
-.FailFlee
+	callba Military_TryToFlee
+	ret c
+	ld a, [wd0ec]
 	and a
+	jr z, .Invalid
 	ret
 
 .Invalid
@@ -224,7 +255,7 @@ Military:
 
 Mil_AI_CheckPP:
 	ld b, 0
-	ld a, [EnemyDisableCount]
+	ld a, [de]
 	and $f0
 	swap a
 	ld c, a
@@ -248,3 +279,38 @@ Mil_AI_CheckPP:
 	and a
 	ret
 
+
+Military_SelectPokemon:
+	ld a, BEESAFREE_SND_ASKMILITARY
+.loop
+	rst LUASerial
+	ld a, [wMilitaryAndAIBattleAction]
+	and $f
+	cp 15
+	jr z, .Invalid
+	cp 10
+	jr nc, .Invalid
+	sub 4
+	jr c, .Invalid
+	ld b, a
+	ld a, [PartyCount]
+	cp b
+	jr c, .Invalid
+	ld a, b
+	ld [CurPartyMon], a
+	ld c, a
+	ld b, $0
+	ld hl, PartySpecies
+	add hl, bc
+	ld a, [hl]
+	ld [CurPartySpecies], a
+	and a
+	ret
+
+.cancel
+	scf
+	ret
+
+.Invalid
+	ld a, BEESAFREE_SND_ASKMILITARY | BEESAFREE_SND_INVALID
+	jr .loop
