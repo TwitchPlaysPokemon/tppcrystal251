@@ -1,7 +1,7 @@
 
 -- PikalaxALT's first attempt at lua to read battle state
 -- AKA readbattlestate_clean.lua
--- Version 0.4.0
+-- Version 0.5.0
 JSON = (loadfile "JSON.lua")()
 package.path = package.path..';./libs/lua/?.lua'
 package.cpath = package.cpath..';./libs/?.dll'
@@ -446,9 +446,22 @@ function readBattlestate(output_table, req) --read this ONLY when LUA Serial is 
 		output_table["bug contest"] = handleBugCatchingContest()
 		local raw_json = JSON:encode_pretty(output_table)
 		if ignore_serial ~= 1 then
-			local result = transferStateToAIAndWait(raw_json)
-			vba.print("AI Response:", result)
-			if result ~= nil then sendLUASerial(result) end -- the most important step
+			local aicommand = transferStateToAIAndWait(raw_json)
+			vba.print("AI Response:", airesult)
+            playercommand = 0
+            if military_mode = 1 then
+                playercommand = get_player_command()
+                vba.print("Player Response:", playercommand)
+            end
+            tablestobytes(commandstotables("ai", aicommand), commandstotables("player", playercommand))
+            
+            
+            
+			if aicommand ~= nil then sendLUASerial(aicommand) end -- the most important step
+            
+            
+            
+            
 		end
 		file = io.open("battlestate.json", "w+")
 		io.output(file)
@@ -467,7 +480,7 @@ function transferStateToAIAndWait(output_table)
 end
 
 function sendLUASerial(a, output_table, req)
-    memory.writebyterange(0xDFF8, 3, tablestobytes(commandstotables(0, transferStateToAIAndWait(readBattlestate(output_table, req))), commandstotables(1, readPlayerstate()))) --very long command
+    memory.writebyterange(0xDFF8, 3, tablestobytes(commandstotables(0, transferStateToAIAndWait(readBattlestate(output_table, req))), get_next_player_command())) --very long command
 	--memory.writebyte(rLSB, a)
 	memory.writebyte(rLSC, BEESAFREE_LSC_COMPLETED)
 end
@@ -531,7 +544,7 @@ elseif aitable["command"] == "useitem2" then
 byte1 = 0xE0
 end
 
-if military_mode == 1 then
+if military_mode = 1 then
     if playertable["command"] == "move1" then
         byte1 = byte1 + 0x00 --useless lel
     elseif playertable["command"] == "move2" then
@@ -555,28 +568,25 @@ if military_mode == 1 then
     elseif playertable["command"] == "run" then
         byte1 = byte1 + 0x0F
     elseif playertable["command"] == "item" then
-        byte2 = tableLookup(itemTable, playertable["item"]) - 2
-        if playertable["poke"] ~= 0 then
-        byte1 = byte1 + playertable["poke"] + 3
+        byte2 = tableLookup(itemTable, playertable["item"])
+        if playertable["poke"] != 0 then
+        byte1 = byte1 + playertable["poke"]
         end
-        if playertable["move"] ~= 0 then
+        if playertable["move"] != 0 then
         byte3 = playertable["move"]
         end
     end
 end
 
-vba.print(byte1)
-vba.print(byte2)
-vba.print(byte3)
 bytes = (byte1 * 65536) + (byte2 * 256) + byte3
 
 return bytes
 end
 
-function commandstotables(t_type, command)
-local rettable = {}
---do more stuff here
-return rettable
+function get_next_player_command()
+-- ask streamer's system for the next command in JSON table
+-- vba.print(playertable)
+-- return playertable
 end
 
 function tableLookup(tabletarget, matchingstring)

@@ -546,9 +546,13 @@ ELSE
 	swap a
 	and $f
 	cp $f
-	jr z, .DontUse
-	sub $d
-	jr c, .DontUse
+	jr z, .MilitaryDontUse
+	sub 4
+	jr c, .MilitaryDontUse
+	cp 6
+	jr c, .Switch
+	sub 9
+	jr c, .MilitaryDontUse
 	ld hl, wc650
 	and a
 	jr z, .okay
@@ -556,7 +560,7 @@ ELSE
 .okay
 	ld a, [hl]
 	and a
-	jr z, .DontUse
+	jr z, .MilitaryDontUse
 	push af
 	xor a
 	ld [hl], a
@@ -564,14 +568,19 @@ ELSE
 	ld de, 3
 	ld hl, .AI_Items
 	call IsInArray
-	jr nc, .DontUse
+	jr nc, .MilitaryDontUse
 	inc hl
 	ld a, [hli]
 	ld h, [hl]
 	ld l, a
-	ld de, .ReturnFromMilitaryUse
+	ld de, .MilitaryUse
 	push de
 	jp [hl]
+
+.Switch
+	inc a
+	ld [wc718], a
+	jp AI_Switch
 
 .AI_Items
 	dbw FULL_RESTORE, Function383b5
@@ -589,11 +598,11 @@ ELSE
 	dbw X_SPECIAL,    Function38553
 	db $ff
 ENDC
-.ReturnFromMilitaryUse
+.MilitaryUse
 .DontUse:
 	scf
 	ret
-
+.MilitaryDontUse
 .Use:
 	and a
 	ret
