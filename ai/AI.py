@@ -1451,6 +1451,8 @@ class AI(object):
         mondata['leechseedused'] = False
         mondata['confused'] = False
         mondata['attract'] = False
+        mondata['cursed'] = False
+        mondata['identified'] = False
         mondata['myperishsong'] = 0
         mondata['trainperishsong'] = 0
         mondata[mycurrent]['boosts'] = {}
