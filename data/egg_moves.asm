@@ -26,7 +26,7 @@ CharmanderEggMoves:
 	db RAGE
 	db MUD_SLAP
 	db COUNTER
-	db OUTRAGE
+	db DRAGONBREATH
 	db IRON_TAIL
 	db $ff
 
@@ -34,9 +34,7 @@ SquirtleEggMoves:
 	db MIST
 	db FORESIGHT
 	db FLAIL
-	db HAZE
 	db ROLLOUT
-	db OUTRAGE
 	db ROAR
 	db $ff
 
@@ -50,27 +48,27 @@ RattataEggMoves:
 	db TAKE_DOWN
 	db DEFENSE_CURL
 	db SWIFT
+	db FOCUS_ENERGY
 	db $ff
 
 SpearowEggMoves:
 	db SCARY_FACE
-	db QUICK_ATTACK
 	db WING_ATTACK
-	db HEAT_WAVE
 	db SWIFT
 	db $ff
 
 EkansEggMoves:
 	db DISABLE
 	db SPITE
+	db SCARY_FACE
 	db $ff
 
 SandshrewEggMoves:
-	db SUPER_FANG
+	db DOUBLE_EDGE
 	db SAFEGUARD
 	db COUNTER
 	db RAPID_SPIN
-	db ROLLOUT
+	db SAND_ATTACK
 	db $ff
 
 NidoranFEggMoves:
@@ -85,11 +83,8 @@ NidoranFEggMoves:
 
 NidoranMEggMoves:
 	db SUPERSONIC
-	db BODY_SLAM
 	db COUNTER
 	db SUPER_FANG
-	db DRILL_RUN
-	db OUTRAGE
 	db ROAR
 	db $ff
 
@@ -98,13 +93,12 @@ VulpixEggMoves:
 	db RAGE
 	db FLAIL
 	db SPITE
-	db REFLECT
 	db $ff
 
 ZubatEggMoves:
-	db GUNK_SHOT
 	db PURSUIT
 	db FLAIL
+	db ENDURE
 	db SCREECH
 	db $ff
 
@@ -515,17 +509,18 @@ CleffaEggMoves:
 	db PRESENT
 	db SPLASH
 	db MIMIC
-	db PLAY_ROUGH
+	db IRON_TAIL
+	db COUNTER
+	db REFLECT
 	db $ff
 
 IgglybuffEggMoves:
 	db PRESENT
 	db NIGHTMARE
-	db PAIN_SPLIT
-	db COUNTER
-	db ROLLOUT
-	db PETAL_DANCE
-	db FAINT_ATTACK
+	db SUBMISSION
+	db MIMIC
+	db PSYWAVE
+	db DISABLE
 	db $ff
 
 TogepiEggMoves:
