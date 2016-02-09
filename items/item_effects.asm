@@ -2581,6 +2581,7 @@ IF DEF(BEESAFREE)
 	jr z, .normal_menu
 	ld a, [wMilitaryPPRestoreMoveTarget]
 	ld [wcfa9], a
+	xor a ; force set z
 	jr .skip
 ENDC
 .normal_menu
