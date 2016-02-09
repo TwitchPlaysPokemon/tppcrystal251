@@ -611,12 +611,12 @@ LvlTables: ;0 = no adjustment feel free to change examples
 ; 3 = Route 29 Morning
 	db 0 ;0
 	db 0
-	db -4
+	db -2
 	db 0
 	db 0 ;4
 	db 0
-	db -4
-	db -4
+	db -2
+	db -2
 	db 0 ;8
 	db 0
 	db 3
@@ -630,11 +630,11 @@ LvlTables: ;0 = no adjustment feel free to change examples
 	db 0
 	db 0
 	db 0
-	db -4
+	db -2
 	db 0
 	db 0
-	db -4
-	db -4
+	db -2
+	db -2
 	db 0
 	db 3
 	db 0
@@ -648,11 +648,11 @@ LvlTables: ;0 = no adjustment feel free to change examples
 	db 0
 	db 0
 	db 0
-	db -4
+	db -2
 	db 0
 	db 0
-	db -4
-	db -4
+	db -2
+	db -2
 	db 0
 	db 0
 	db 0
@@ -665,12 +665,12 @@ LvlTables: ;0 = no adjustment feel free to change examples
 ; 6 = Route 46 Morning
 	db 0
 	db 0
-	db -2
-	db -4
+	db -1
+	db -1
 	db 0
-	db -2
-	db -4
-	db -4
+	db -1
+	db -1
+	db -1
 	db 1
 	db 0
 	db 1
@@ -683,13 +683,13 @@ LvlTables: ;0 = no adjustment feel free to change examples
 ; 7 = Route 46 Day
 	db 0
 	db 0
-	db -4
+	db -1
 	db 1
 	db 0
 	db 0
-	db -4
-	db -4
-	db -2
+	db -1
+	db -1
+	db -1
 	db 0
 	db 0
 	db 0
@@ -701,11 +701,11 @@ LvlTables: ;0 = no adjustment feel free to change examples
 ; 8 = Route 46 Night
 	db 0
 	db 0
-	db -4
+	db -1
 	db 1
 	db 0
-	db -4
-	db -4
+	db -1
+	db -1
 	db 0
 	db 0
 	db 0
@@ -717,14 +717,14 @@ LvlTables: ;0 = no adjustment feel free to change examples
 	db 1
 
 ; 9 = Route 30 Morning
-	db -2
+	db -1
 	db 0
 	db 0
-	db -4
+	db -1
 	db 0
 	db 0
-	db -4
-	db -4
+	db -1
+	db -1
 	db 0
 	db 2
 	db 2
@@ -737,11 +737,11 @@ LvlTables: ;0 = no adjustment feel free to change examples
 ; 10 = Route 30 Day
 	db 0
 	db 0
-	db -2
-	db -4
+	db -1
+	db -1
 	db 0
-	db -4
-	db -4
+	db -1
+	db -1
 	db 0
 	db 2
 	db 2
@@ -761,24 +761,24 @@ LvlTables: ;0 = no adjustment feel free to change examples
 	db 0
 	db 0
 	db 0
-	db -2
+	db -1
 	db 0
 	db 0
 	db 4
 	db 4
 	db 6
-	db -2
+	db -1
 	db 0
 
 ; 12 = Route 31 Morning
 	db 0
 	db 0
-	db -2
-	db -3
+	db -1
+	db -1
 	db 0
-	db -2
+	db -1
 	db 1
-	db -2
+	db -1
 	db 0
 	db 0
 	db 0
@@ -790,7 +790,7 @@ LvlTables: ;0 = no adjustment feel free to change examples
 
 ; 13 = Route 31 Day
 	db 0
-	db -3
+	db -1
 	db 0
 	db 0
 	db 0

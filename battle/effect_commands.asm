@@ -5718,7 +5718,7 @@ BattleCommand14: ; 35e5c
 	jr z, .asm_35ea4
 	; cp 3 ; sleep turns 1-3
 	; jr z, .asm_35ea4
-	; inc a ; 2-3 turns
+	 inc a ; "2-4" turns
 	ld [de], a
 	call UpdateOpponentInParty
 	call RefreshBattleHuds
@@ -6016,6 +6016,7 @@ BattleCommand_Burn: ; 35f2c
 	callba Function3dde9
 	ret
 
+
 .failed
 	push hl
 	call AnimateFailedMove
@@ -6055,7 +6056,9 @@ BattleCommand_Burn: ; 35f2c
 	ld a, BATTLE_VARS_STATUS_OPP
 	call GetBattleVarAddr
 	set BRN, [hl]
-	jp UpdateOpponentInParty
+	call UpdateOpponentInParty
+	ld hl, Function3ec76
+	jp CallBattleCore
 
 ; 35fff
 
@@ -7795,7 +7798,7 @@ BattleCommand24: ; 369b6
 	call GetBattleVarAddr
 	ld a, [hl] ;redundent?
 	cp EFFECT_TWINEEDLE
-	jr z, .asm_36a3f ;if twinneedle, load 1 more hit
+	jr z, .asm_36a3f ;if TWINEEDLE, load 1 more hit
 	cp EFFECT_DOUBLE_HIT
 	ld a, $1 ;if double hit, load 1 more hit and jump somewhere different
 	jr z, .asm_36a3a
@@ -7855,7 +7858,7 @@ BattleCommand24: ; 369b6
 	inc a
 	ld [bc], a
 	jr .asm_36a6b
-.asm_36a3f ;if twinneedle
+.asm_36a3f ;if TWINEEDLE
 	ld a, $1
 	jr .asm_36a3a
 

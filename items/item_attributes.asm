@@ -1387,7 +1387,7 @@ Item2Attributes:
 	dn 5, 5 ; heal menu
 
 ; GOLD BERRY
-	dw 10 ; price
+	dw 700 ; price
 	db HELD_BERRY ; effect
 	db 30 ; param
 	db CANT_SELECT

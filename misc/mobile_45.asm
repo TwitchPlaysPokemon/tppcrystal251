@@ -22769,7 +22769,7 @@ Function17024d: ; 17024d ;generate trainer and run fight
 	ld a, [InBattleTowerBattle] ;toggle "is in battle tower"
 	push af
 	or $1
-	ld [InBattleTowerBattle], a ;set but 1 of ???
+	ld [InBattleTowerBattle], a 
 	xor a
 	ld [wLinkMode], a
 	callba Function1060a2 ;mobile?
@@ -22794,8 +22794,15 @@ Function17024d: ; 17024d ;generate trainer and run fight
 	ld [hli], a
 	ld a, $50
 	ld [hl], a
+	jr SkipRepeatingWinStreak
 
 .asm_1702a9
+	ld a, $1
+	call GetSRAMBank
+	ld a, [$be46]
+	ld [wcf64], a ;load $be46 into win streak
+	call CloseSRAM
+SkipRepeatingWinStreak:
 	pop af
 	ld [InBattleTowerBattle], a ;reload options and other data set for battle tower fight
 	pop af

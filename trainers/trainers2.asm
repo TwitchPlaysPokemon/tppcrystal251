@@ -53,7 +53,7 @@ BillGroup:
 
 ProfElmGroup:
 	db "ELM@"
-	db (1 << TRAINERTYPE_MOVES)
+	db (1 << TRAINERTYPE_MOVES) | (1 << TRAINERTYPE_MAXXP)
 
 	; party
 	db 100, DONPHAN
@@ -97,7 +97,7 @@ ProfElmGroup:
 
 
 	db "ELM@"
-	db (1 << TRAINERTYPE_MOVES)
+	db (1 << TRAINERTYPE_MOVES) | (1 << TRAINERTYPE_MAXXP)
 
 	; party
 	db 100, DONPHAN
@@ -141,7 +141,7 @@ ProfElmGroup:
 
 
 	db "ELM@"
-	db (1 << TRAINERTYPE_MOVES)
+	db (1 << TRAINERTYPE_MOVES) | (1 << TRAINERTYPE_MAXXP)
 
 	; party
 	db 100, DONPHAN
@@ -227,7 +227,7 @@ tppPcGroup:
 
 GiovanniGroup:
 	db "GIOVANNI@"
-	db (1 << TRAINERTYPE_MOVES)
+	db (1 << TRAINERTYPE_MOVES) 
 
 	db 62, MURKROW
 		db FAINT_ATTACK
@@ -569,7 +569,7 @@ MistyRBGroup:
 		db RAPID_SPIN
 		db BUBBLE
 
-	db 22, STARMIE
+	db 21, STARMIE
 		db BUBBLEBEAM
 		db CONFUSION
 		db SWIFT
@@ -579,7 +579,7 @@ MistyRBGroup:
 
 BabaGroup:
 	db "BABA@"
-	db (1 << TRAINERTYPE_MOVES) | (1 << TRAINERTYPE_NICKNAME) | (1 << TRAINERTYPE_ITEM)
+	db (1 << TRAINERTYPE_MOVES) | (1 << TRAINERTYPE_NICKNAME) | (1 << TRAINERTYPE_ITEM) | (1 << TRAINERTYPE_MAXXP)
 
 	db 100, TYPHLOSION, LEFTOVERS, "BEST@"
 		db THUNDERPUNCH

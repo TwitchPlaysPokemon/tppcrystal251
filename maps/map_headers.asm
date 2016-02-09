@@ -496,9 +496,8 @@ MapGroup27:
 	map_header OlivineLighthouseElevator, $13, 3, OLIVINE_CITY, MUSIC_LIGHTHOUSE, 0, 1, 1
 	map_header PowerplantB1, 40, 7, POWER_PLANT, MUSIC_SILPH_CO, 1, 1, 1
 	map_header PowerplantB2, 30, 7, POWER_PLANT, MUSIC_SILPH_CO, 1, 1, 1
-
 	map_header EnteiRoom, 30, 7, CINNABAR_VOLCANO, MUSIC_MT_MOON, 1, 1, 1
-	map_header RaikouRoom, 30, 7, POWER_PLANT, MUSIC_SILPH_CO, 1, 1, 1
+	map_header RaikouRoom, 30, 7, RADIO_TOWER, MUSIC_SILPH_CO, 1, 1, 1
 	map_header SuicuneRoom, 30, 7, TOHJO_FALLS, MUSIC_UNION_CAVE, 1, 1, 1
 
 MapGroup28:

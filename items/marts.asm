@@ -368,7 +368,7 @@ Mart24: ; 161c2
 ; 161ce
 
 Mart25: ; 161ce
-	db 9 ; # items
+	db 10 ; # items
 	db FOCUS_BAND
 	db BRIGHTPOWDER
 	db BLACKBELT
@@ -379,6 +379,7 @@ Mart25: ; 161ce
 	db EXP_SHARE
 	db MIRACLEBERRY
 	db MYSTERYBERRY
+	db GOLD_BERRY
 	db $ff
 ; 161d5
 

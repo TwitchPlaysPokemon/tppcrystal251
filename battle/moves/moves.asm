@@ -22,7 +22,7 @@ ENDM
 	move ICE_PUNCH,    EFFECT_FREEZE_HIT,         75, PHYSICAL, ICE,      100, 15,  10 ;8
 	move THUNDERPUNCH, EFFECT_PARALYZE_HIT,       75, PHYSICAL, ELECTRIC, 100, 15,  10
 	move SCRATCH,      EFFECT_NORMAL_HIT,         40, PHYSICAL, NORMAL,   100, 35,   0
-	move FAIRY_WIND,   EFFECT_NORMAL_HIT,         40, SPECIAL,  FAIRY_T,   40, 15,   0 ; replacing Vicegrip
+	move FAIRY_WIND,   EFFECT_NORMAL_HIT,         40, SPECIAL,  FAIRY_T,  100, 15,   0 ; replacing Vicegrip
 	move FOCUS_BLAST,  EFFECT_SP_DEF_DOWN_HIT,   120, SPECIAL,  FIGHTING,  70,  5,  10 ; replacing Guillotine
 	move IRON_DEFENSE, EFFECT_DEFENSE_UP_2,        0, STATUS,   STEEL,    100, 15,   0 ; replaced Razor Wind
 	move SWORDS_DANCE, EFFECT_ATTACK_UP_2,         0, STATUS,   NORMAL,   100, 20,   0
@@ -183,7 +183,7 @@ ENDM
 	move STRUGGLE,     EFFECT_RECOIL_HIT,         50, PHYSICAL, NORMAL,   100,  1,   0 ; could create a new effect to make Struggle lose 1/4 HP per attack
 ; New to Gen 2
 	move SKETCH,       EFFECT_SKETCH,              0, STATUS,   NORMAL,   100,  1,   0
-	move WILD_CHARGE,  EFFECT_RECOIL_HIT,         90, PHYSICAL, ELECTRIC,  90, 15,   0 ; replacing Triple Kick 
+	move WILD_CHARGE,  EFFECT_RECOIL_HIT,         90, PHYSICAL, ELECTRIC, 100, 15,   0 ; replacing Triple Kick 
 	move THIEF,        EFFECT_THIEF,              60, PHYSICAL, DARK,     100, 25, 100 ;$a8
 	move X_SCISSOR,    EFFECT_NORMAL_HIT,         80, PHYSICAL, BUG,      100, 15,   0 ; replacing Spider Web
 	move MIND_READER,  EFFECT_LOCK_ON,             0, STATUS,   NORMAL,   100,  5,   0

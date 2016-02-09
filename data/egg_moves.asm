@@ -3,9 +3,6 @@ INCLUDE "includes.asm"
 
 SECTION "Egg Moves", ROMX, BANK[EGG_MOVES]
 
-; All instances of Charm, Steel Wing, Sweet Scent, and Lovely Kiss were
-; removed from egg move lists in Crystal, because they are also TMs.
-
 ; Staryu's egg moves were removed in Crystal, because Staryu is genderless
 ; and can only breed with Ditto.
 
@@ -21,23 +18,24 @@ BulbasaurEggMoves:
 	db SAFEGUARD
 	db AMNESIA
 	db OUTRAGE
+	db TAKE_DOWN
+	db ROAR
 	db $ff
 
 CharmanderEggMoves:
 	db RAGE
 	db MUD_SLAP
 	db COUNTER
-	db OUTRAGE
 	db DRAGONBREATH
+	db IRON_TAIL
 	db $ff
 
 SquirtleEggMoves:
 	db MIST
 	db FORESIGHT
 	db FLAIL
-	db HAZE
 	db ROLLOUT
-	db OUTRAGE
+	db ROAR
 	db $ff
 
 PidgeyEggMoves:
@@ -50,27 +48,27 @@ RattataEggMoves:
 	db TAKE_DOWN
 	db DEFENSE_CURL
 	db SWIFT
+	db FOCUS_ENERGY
 	db $ff
 
 SpearowEggMoves:
 	db SCARY_FACE
-	db QUICK_ATTACK
 	db WING_ATTACK
-	db HEAT_WAVE
 	db SWIFT
 	db $ff
 
 EkansEggMoves:
 	db DISABLE
 	db SPITE
+	db SCARY_FACE
 	db $ff
 
 SandshrewEggMoves:
-	db SUPER_FANG
+	db DOUBLE_EDGE
 	db SAFEGUARD
 	db COUNTER
 	db RAPID_SPIN
-	db ROLLOUT
+	db SAND_ATTACK
 	db $ff
 
 NidoranFEggMoves:
@@ -79,14 +77,15 @@ NidoranFEggMoves:
 	db TAKE_DOWN
 	db COUNTER
 	db DRILL_RUN
+	db OUTRAGE
+	db ROAR
 	db $ff
 
 NidoranMEggMoves:
 	db SUPERSONIC
-	db BODY_SLAM
 	db COUNTER
 	db SUPER_FANG
-	db DRILL_RUN
+	db ROAR
 	db $ff
 
 VulpixEggMoves:
@@ -94,18 +93,21 @@ VulpixEggMoves:
 	db RAGE
 	db FLAIL
 	db SPITE
-	db REFLECT
 	db $ff
 
 ZubatEggMoves:
-	db GUNK_SHOT
 	db PURSUIT
-	db HEAT_WAVE
+	db FLAIL
+	db ENDURE
+	db SCREECH
 	db $ff
 
 OddishEggMoves:
 	db SYNTHESIS
 	db MIMIC
+	db SEED_BOMB
+	db SAFEGUARD
+	db REFLECT
 	db $ff
 
 ParasEggMoves:
@@ -114,6 +116,8 @@ ParasEggMoves:
 	db FLAIL
 	db LIGHT_SCREEN
 	db PURSUIT
+	db SYNTHESIS
+	db DOUBLE_EDGE
 	db $ff
 
 VenonatEggMoves:
@@ -125,12 +129,16 @@ VenonatEggMoves:
 DiglettEggMoves:
 	db TRI_ATTACK
 	db TAKE_DOWN
+	db CHARM
 	db $ff
 
 MeowthEggMoves:
 	db DREAM_EATER
 	db NIGHTMARE
 	db MUD_SLAP
+	db IRON_TAIL
+	db SING
+	db SWIFT
 	db $ff
 
 PsyduckEggMoves:
@@ -138,50 +146,59 @@ PsyduckEggMoves:
 	db LIGHT_SCREEN
 	db CONFUSE_RAY
 	db SWIFT
+	db CHARM
+	db COUNTER
+	db SCREECH
 	db $ff
 
 MankeyEggMoves:
 	db COUNTER
-	db RAGE
 	db SPITE
+	db ENCORE
+	db IRON_TAIL
 	db $ff
 
 GrowlitheEggMoves:
 	db THRASH
-	db IRON_HEAD
+	db IRON_TAIL
 	db SAFEGUARD
 	db MUD_SLAP
-	db BODY_SLAM
+	db DOUBLE_EDGE
+	db CHARM
+	db REVERSAL
+	db ENDURE
 	db $ff
 
 PoliwagEggMoves:
 	db MIST
 	db SPLASH
-	db HAZE
+	db PSYWAVE
 	db ENDURE
+	db COUNTER
 	db $ff
 
 AbraEggMoves:
 	db ENCORE
 	db ENDURE
 	db FORESIGHT
+	db METRONOME
 	db $ff
 
 MachopEggMoves:
-	db LIGHT_SCREEN
-	db RAGE
+	db MEGA_KICK
+	db METRONOME
 	db $ff
 
 BellsproutEggMoves:
 	db DOUBLE_EDGE
 	db MIMIC
+	db REFLECT
 	db $ff
 
 TentacoolEggMoves:
-	db HAZE
-	db SAFEGUARD
 	db WATER_GUN
-	db SLUDGE
+	db ACID
+	db SCREECH
 	db $ff
 
 GeodudeEggMoves:
@@ -215,6 +232,8 @@ DoduoEggMoves:
 	db FLAIL
 	db ENDURE
 	db QUICK_ATTACK
+	db DOUBLE_EDGE
+	db BATON_PASS
 	db $ff
 
 SeelEggMoves:
@@ -229,6 +248,7 @@ GrimerEggMoves:
 	db MEAN_LOOK
 	db LICK
 	db SCARY_FACE
+	db MUD_SLAP
 	db $ff
 
 ShellderEggMoves:
@@ -236,6 +256,7 @@ ShellderEggMoves:
 	db POISON_JAB
 	db RAPID_SPIN
 	db SCREECH
+	db LICK
 	db $ff
 
 GastlyEggMoves:
@@ -243,6 +264,8 @@ GastlyEggMoves:
 	db METRONOME
 	db DISABLE
 	db SCARY_FACE
+	db COUNTER
+	db PAIN_SPLIT
 	db $ff
 
 OnixEggMoves:
@@ -250,11 +273,18 @@ OnixEggMoves:
 	db EXPLOSION
 	db IRON_TAIL
 	db TWISTER
+	db ROAR
+	db DOUBLE_EDGE
 	db $ff
 
 DrowzeeEggMoves:
 	db LIGHT_SCREEN
 	db COUNTER
+	db REFLECT
+	db DREAM_EATER
+	db AMNESIA
+	db SAFEGUARD
+	db BELLY_DRUM
 	db $ff
 
 KrabbyEggMoves:
@@ -265,10 +295,11 @@ KrabbyEggMoves:
 	db $ff
 
 ExeggcuteEggMoves:
-	db SELFDESTRUCT
 	db EXPLOSION
 	db NIGHTMARE
 	db ROLLOUT
+	db LIGHT_SCREEN
+	db RAGE
 	db $ff
 
 CuboneEggMoves:
@@ -276,6 +307,10 @@ CuboneEggMoves:
 	db BELLY_DRUM
 	db SCREECH
 	db IRON_TAIL
+	db OUTRAGE
+	db SING
+	db DOUBLE_EDGE
+	db RAGE
 	db $ff
 
 LickitungEggMoves:
@@ -297,22 +332,26 @@ RhyhornEggMoves:
 	db THRASH
 	db COUNTER
 	db SPITE
+	db TAKE_DOWN
 	db $ff
 
 ChanseyEggMoves:
 	db PRESENT
 	db LIGHT_SCREEN
 	db HEAL_BELL
+	db CHARM
+	db SWEET_KISS
+	db SAFEGUARD
 	db $ff
 
 TangelaEggMoves:
 	db REFLECT
 	db RAZOR_LEAF
-	db SEED_BOMB
+	db WRAP
+	db SLAM
 	db $ff
 
 KangaskhanEggMoves:
-	db FORESIGHT
 	db FOCUS_ENERGY
 	db SAFEGUARD
 	db DISABLE
@@ -460,21 +499,28 @@ PichuEggMoves:
 	db PRESENT
 	db DOUBLESLAP
 	db ROLLOUT
+	db FLAIL
+	db REVERSAL
+	db ENDURE
+	db AGILITY
 	db $ff
 
 CleffaEggMoves:
 	db PRESENT
 	db SPLASH
 	db MIMIC
-	db PLAY_ROUGH
+	db IRON_TAIL
+	db COUNTER
+	db REFLECT
 	db $ff
 
 IgglybuffEggMoves:
 	db PRESENT
 	db NIGHTMARE
-	db PAIN_SPLIT
-	db COUNTER
-	db ROLLOUT
+	db SUBMISSION
+	db MIMIC
+	db PSYWAVE
+	db DISABLE
 	db $ff
 
 TogepiEggMoves:
@@ -545,6 +591,7 @@ MurkrowEggMoves:
 	db WHIRLWIND
 	db MIRROR_MOVE
 	db SCREECH
+	db SPITE
 	db $ff
 
 MisdreavusEggMoves:
@@ -559,6 +606,8 @@ GirafarigEggMoves:
 	db FUTURE_SIGHT
 	db TAKE_DOWN
 	db SWIFT
+	db DOUBLE_EDGE
+	db MUD_SLAP
 	db $ff
 
 PinecoEggMoves:
@@ -573,12 +622,15 @@ DunsparceEggMoves:
 	db PURSUIT
 	db RAGE
 	db BODY_SLAM
+	db COUNTER
 	db $ff
 
 GligarEggMoves:
 	db COUNTER
 	db BATON_PASS
 	db AGILITY
+	db IRON_TAIL
+	db DOUBLE_EDGE
 	db $ff
 
 SnubbullEggMoves:
@@ -587,6 +639,7 @@ SnubbullEggMoves:
 	db TAKE_DOWN
 	db COUNTER
 	db PLAY_ROUGH
+	db METRONOME
 	db $ff
 
 QwilfishEggMoves:
@@ -651,6 +704,8 @@ RemoraidEggMoves:
 	db SCREECH
 	db MIND_READER
 	db SWIFT
+	db DOUBLE_EDGE
+	db MUD_SLAP
 	db $ff
 
 DelibirdEggMoves:
@@ -660,6 +715,10 @@ DelibirdEggMoves:
 	db SPLASH
 	db RAPID_SPIN
 	db ROLLOUT
+	db COUNTER
+	db DOUBLE_EDGE
+	db MEGA_KICK
+	db SEED_BOMB
 	db $ff
 
 MantineEggMoves:
@@ -669,9 +728,8 @@ MantineEggMoves:
 	db $ff
 
 SkarmoryEggMoves:
-	db PURSUIT
 	db MIMIC
-	db MUD_SLAP
+	db DOUBLE_EDGE
 	db $ff
 
 HoundourEggMoves:
@@ -679,6 +737,9 @@ HoundourEggMoves:
 	db REVERSAL
 	db FAINT_ATTACK
 	db SWIFT
+	db CHARM
+	db DOUBLE_EDGE
+	db MUD_SLAP
 	db $ff
 
 PhanpyEggMoves:
@@ -694,12 +755,16 @@ StantlerEggMoves:
 	db DISABLE
 	db LIGHT_SCREEN
 	db SWIFT
+	db DOUBLE_EDGE
 	db $ff
 
 TyrogueEggMoves:
 	db BODY_SLAM
 	db MUD_SLAP
 	db METRONOME
+	db POISON_JAB
+	db DIZZY_PUNCH
+	db AGILITY
 	db $ff
 
 SmoochumEggMoves:
@@ -720,6 +785,8 @@ MagbyEggMoves:
 	db BODY_SLAM
 	db MUD_SLAP
 	db SWIFT
+	db BELLY_DRUM
+	db THRASH
 	db $ff
 
 MiltankEggMoves:
@@ -733,6 +800,10 @@ LarvitarEggMoves:
 	db IRON_HEAD
 	db COUNTER
 	db MUD_SLAP
+	db DOUBLE_EDGE
+	db FOCUS_ENERGY
+	db MEGA_KICK
+	db SPITE
 	db $ff
 
 NoEggMoves:
