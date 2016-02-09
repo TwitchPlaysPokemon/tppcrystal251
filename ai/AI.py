@@ -100,6 +100,9 @@ class AI(object):
         
         with open(MOVES_FILE_PATH, 'r') as tempX:
             self._moves = tempX.read().split(' ')
+
+	self.statNames = ["atk","def","satk","sdef","spd","eva","acc"]
+	self.statNamesWithSpeed = ["atk","def","satk","sdef","spd","eva","acc"]
                     
     def DataKeeping (self) :
         mondata['weather'] = self.jsonlist['battleState']['weather'].lower().replace(' ', '')
@@ -1584,21 +1587,10 @@ class AI(object):
         mondata['myperishsong'] = 0
         mondata['trainperishsong'] = 0
         mondata[mycurrent]['boosts'] = {}
-        mondata[mycurrent]['boosts']['atk'] = int(self.jsonlist['battleState']['enemypokemon']['stat levels']['atk'])
-        mondata[mycurrent]['boosts']['def'] = int(self.jsonlist['battleState']['enemypokemon']['stat levels']['def'])
-        mondata[mycurrent]['boosts']['satk'] = int(self.jsonlist['battleState']['enemypokemon']['stat levels']['satk'])
-        mondata[mycurrent]['boosts']['sdef'] = int(self.jsonlist['battleState']['enemypokemon']['stat levels']['sdef'])
-        mondata[mycurrent]['boosts']['speed'] = int(self.jsonlist['battleState']['enemypokemon']['stat levels']['spd'])
-        mondata[mycurrent]['boosts']['eva'] = int(self.jsonlist['battleState']['enemypokemon']['stat levels']['eva'])
-        mondata[mycurrent]['boosts']['acc'] = int(self.jsonlist['battleState']['enemypokemon']['stat levels']['acc'])
         mondata[traincurrent]['boosts'] = {}
-        mondata[traincurrent]['boosts']['atk'] = int(self.jsonlist['battleState']['playerpokemon']['stat levels']['atk'])
-        mondata[traincurrent]['boosts']['def'] = int(self.jsonlist['battleState']['playerpokemon']['stat levels']['def'])
-        mondata[traincurrent]['boosts']['satk'] = int(self.jsonlist['battleState']['playerpokemon']['stat levels']['satk'])
-        mondata[traincurrent]['boosts']['sdef'] = int(self.jsonlist['battleState']['playerpokemon']['stat levels']['sdef'])
-        mondata[traincurrent]['boosts']['speed'] = int(self.jsonlist['battleState']['playerpokemon']['stat levels']['spd'])
-        mondata[traincurrent]['boosts']['eva'] = int(self.jsonlist['battleState']['playerpokemon']['stat levels']['eva'])
-        mondata[traincurrent]['boosts']['acc'] = int(self.jsonlist['battleState']['playerpokemon']['stat levels']['acc'])
+        for stat in self.statNames:    
+                mondata[mycurrent]['boosts'][stat] = int(self.jsonlist['battleState']['enemypokemon']['stat levels'][stat])
+                mondata[traincurrent]['boosts'][stat] = int(self.jsonlist['battleState']['playerpokemon']['stat levels'][stat])
         for tempmove in range (0, len(self.jsonlist['battleState']['enemypokemon']['moves'])):
             self.DamageDealt(mondata, mycurrent, traincurrent, tempmove)
             if self.Damage[mycurrent][traincurrent][tempmove]['damage'] / mondata[traincurrent]['stats']['curhp'] > 0.5 :
@@ -1721,13 +1713,13 @@ class AI(object):
                 if tempy == len(mondata[0]['moves']) :
                     break
         print (self.theaction)
-        input = raw_input('whatever')
         return(self.theaction)
     
 def main():
     Artificial = AI()
     while True:
         print(Artificial.MainBattle())
+        input = raw_input('whatever')
 
 
 if __name__ == '__main__':
