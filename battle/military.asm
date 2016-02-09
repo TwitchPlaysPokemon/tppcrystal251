@@ -137,8 +137,8 @@ Military:
 	jr c, .SwitchOrItem
 	; cp 13
 	; jr z, .Struggle
-	; cp 15
-	; jr nz, MilitaryRepeatRequest
+	cp 15
+	jp z, .Flee
 	; scf
 	; ret
 
