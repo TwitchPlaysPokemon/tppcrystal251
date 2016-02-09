@@ -81,7 +81,7 @@ WateredWeirdTreeScript:: ; 0x194053
 	setevent EVENT_FOUGHT_SUDOWOODO
 	if_equal $2, UnknownScript_0x19407b
 	disappear $4
-	variablesprite $4, $26
+	variablesprite SPRITE_WEIRD_TREE, SPRITE_TWIN
 	returnafterbattle
 	end
 ; 0x194079
@@ -95,7 +95,7 @@ UnknownScript_0x19407b: ; 0x19407b
 	returnafterbattle
 	applymovement $4, MovementData_0x19424b
 	disappear $4
-	variablesprite $4, $26
+	variablesprite SPRITE_WEIRD_TREE, SPRITE_TWIN
 	special Function14209
 	special Function14168
 	end
