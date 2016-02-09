@@ -58,45 +58,6 @@ class AI(object):
         self._statsmultipliers =  {'-6': 25, '-5':  28, '-4':  33, '-3':  40, '-2':  50, '-1': 66, '0':  100, '1':  150, '2':  200, '3':  250, '4': 300, '5': 350, '6': 400}
         self._accuracymultipliers = {'-6': 33, '-5':  36, '-4':  43, '-3':  50, '-2':  60, '-1': 75, '0':  100, '1':  133, '2':  166, '3':  200, '4': 233, '5': 266, '6': 300}
         self._critmultipliers = {'0':  0.0625, '1':  0.125, '2':  0.5, '3':  1, '4': 1, '5': 1, '6': 1}
-
-        self.jsonlist = json.loads(open(JSON_FILE_PATH).read(), encoding="utf-8")
-        if self.jsonlist['battleState']['enemy type'] == 'TRAINER':
-            self.myparty = len(self.jsonlist['enemyParty']['party']) #ai's pokemon
-        else:
-            self.myparty = 0
-        self.trainparty = len(self.jsonlist['playerParty']['party'])
-        self.triggered = 0
-        self.enemybestvcurrent = 0
-        self.difference = {}
-        for mymons in range(0, 6):
-            self.difference[mymons] = {}
-            for trainmons in range (6, 12):
-                self.difference[mymons][trainmons] = -10
-        
-        self.differenceitems = {}
-        for mymons in range(0, 6):
-            self.differenceitems[mymons] = {}
-            self.differenceitems[mymons][1] = -1
-            self.differenceitems[mymons][2] = -1
-                
-        self.Damage = {}
-        for x1 in range(0, 12):
-            self.Damage[x1] = {}
-            for x2 in range(0, 12):
-                self.Damage[x1][x2] = {}
-                for x3 in range(0, 4):
-                    self.Damage[x1][x2][x3] = {}
-                    
-        self.mybestmove = {}
-        self.permmondata = {}
-        self.enemybest = ''
-        self.opponenthp = {}
-        self.hp = {}
-        self.useitem = 0
-        self.theaction = 0
-        self.countercoat = {}
-        self.countercoat['physical'] = {}
-        self.countercoat['special'] = {}
         
         with open(MOVES_FILE_PATH, 'r') as tempX:
             self._moves = tempX.read().split(' ')
@@ -1586,7 +1547,48 @@ class AI(object):
         print(self.theaction)      
     
     #figure out best action to do in current battle
-    def MainBattle(self):
+    def MainBattle(self, jsonlist):
+
+	self.jsonlist = jsonlist
+	#setup everything
+        if self.jsonlist['battleState']['enemy type'] == 'TRAINER':
+            self.myparty = len(self.jsonlist['enemyParty']['party']) #ai's pokemon
+        else:
+            self.myparty = 0
+        self.trainparty = len(self.jsonlist['playerParty']['party'])
+        self.triggered = 0
+        self.enemybestvcurrent = 0
+        self.difference = {}
+        for mymons in range(0, 6):
+            self.difference[mymons] = {}
+            for trainmons in range (6, 12):
+                self.difference[mymons][trainmons] = -10
+        
+        self.differenceitems = {}
+        for mymons in range(0, 6):
+            self.differenceitems[mymons] = {1:-1,2:-1}
+                
+        self.Damage = {}
+        for x1 in range(0, 12):
+            self.Damage[x1] = {}
+            for x2 in range(0, 12):
+                self.Damage[x1][x2] = {}
+                for x3 in range(0, 4):
+                    self.Damage[x1][x2][x3] = {}
+                    
+        self.mybestmove = {}
+        self.permmondata = {}
+        self.enemybest = ''
+        self.opponenthp = {}
+        self.hp = {}
+        self.useitem = 0
+        self.theaction = 0
+        self.countercoat = {}
+        self.countercoat['physical'] = {}
+        self.countercoat['special'] = {}
+	
+	#alright, start computing
+
         traincurrent = self.jsonlist['battleState']['playerpokemon']['party idx']+6
         mondata = self.DataKeeping()
         if self.jsonlist['battleState']['enemy type'] == 'TRAINER':
@@ -1619,8 +1621,11 @@ class AI(object):
     
 def main():
     Artificial = AI()
+    battle_state = json.loads(open(JSON_FILE_PATH).read(), encoding="utf-8")
+
     while True:
-        print(Artificial.MainBattle())
+        print(Artificial.MainBattle(battle_state))
+	battle_state = Artificial.jsonlist
         #placeholder to prevent infinite looping
         input = raw_input('Action Above is best move (0-3 = moves, 4-9 = mon switch, 10-11 = use bag items) --- Press enter to continue')
 
