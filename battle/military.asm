@@ -21,8 +21,8 @@ ParseExternalAI:
 	swap a
 	cp 4
 	jr c, .UseMove
-	; cp 10
-	; jr c, .Switch
+	cp 10
+	jr c, .Switch
 	; jr z, .okay
 	; cp 13
 	; jr c, .UseItem
@@ -54,6 +54,19 @@ ParseExternalAI:
 	cp b
 	jr z, .Invalid
 	ret
+
+.Switch
+	sub 4
+	ld b, a
+	ld a, [wBattleMode]
+	dec a
+	jr z, .Invalid
+	ld a, [OTPartyCount]
+	cp b
+	jr c, .Invalid
+	; fill this in later
+	ret
+
 .Invalid
 	ld a, BEESAFREE_SND_ASKENEMY | BEESAFREE_SND_INVALID
 	jr .loop_back
@@ -97,6 +110,7 @@ Military:
 	xor a
 	ld [wd0ec], a
 	ret
+
 .Invalid
 	ld a, BEESAFREE_SND_ASKMILITARY | BEESAFREE_SND_INVALID
 	rst LUASerial
@@ -107,8 +121,22 @@ Military:
 	and a
 	jr z, .Switch
 	ld [CurItem], a
+
+	ld a, [wLinkMode]
+	and a
+	jr nz, .Invalid
+
+	ld a, [InBattleTowerBattle]
+	and a
+	jr nz, .Invalid
+	ld hl, NumItems
+	call CheckItem
+	jr nc, .Invalid
+
 	; fix this
+	call Function1d6e
 	callba Function10629
+	callba Function3e234
 	ret
 
 .Switch
