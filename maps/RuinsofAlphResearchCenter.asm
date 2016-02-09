@@ -264,6 +264,7 @@ FossilRevivalGuyScript:
 	waitsfx
 	givepoke KABUTO, 20
 .finish
+	iffalse .PartyAndBoxFull
 	clearevent EVENT_LEFT_DOME_TO_BE_REVIVED
 	clearevent EVENT_LEFT_HELIX_TO_BE_REVIVED
 	clearevent EVENT_LEFT_AMBER_TO_BE_REVIVED
@@ -277,7 +278,11 @@ FossilRevivalGuyScript:
 	waitbutton
 	closetext
 	end
-
+.PartyAndBoxFull
+	writetext Text_NoRoomForFossilMon
+	waitbutton
+	closetext
+	end
 MovementData_0x5926f: ; 0x5926f
 	step_up
 	step_up
@@ -587,6 +592,10 @@ Text_ComeBackWithAFossil:
 
 	para "here, and I'll"
 	line "revive it for you."
+	done
+Text_NoRoomForFossilMon:
+	text "You've no room for"
+	line "this."
 	done
 
 RuinsofAlphResearchCenter_MapEventHeader: ; 0x598d0

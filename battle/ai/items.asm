@@ -542,7 +542,7 @@ AI_Items: ; 39196
 	jp .Use
 
 ELSE
-	ld a, [wdff8]
+	ld a, [wMilitaryAndAIBattleAction]
 	swap a
 	and $f
 	cp $f
@@ -569,7 +569,7 @@ ELSE
 	ld a, [hli]
 	ld h, [hl]
 	ld l, a
-	ld de, .Use
+	ld de, .ReturnFromMilitaryUse
 	push de
 	jp [hl]
 
@@ -589,14 +589,15 @@ ELSE
 	dbw X_SPECIAL,    Function38553
 	db $ff
 ENDC
-
+.ReturnFromMilitaryUse
 .DontUse:
-	and a
+	scf
 	ret
 
 .Use:
-	scf
+	and a
 	ret
+
 AIUpdateHUD: ; 38387
 	call UpdateEnemyMonInParty
 	callba UpdateEnemyHUD
@@ -767,7 +768,7 @@ AI_Switch: ; 3846c
 	ld d, h
 	ld e, l
 	ld hl, EnemyMonStatus
-	ld bc, $0004
+	ld bc, $0004 ; Status, ???, HP
 	call CopyBytes
 	pop af
 	jr c, .asm_384a3

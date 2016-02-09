@@ -1875,7 +1875,7 @@ IF DEF(BEESAFREE)
 	ld a, [wMilitaryFlags]
 	bit 0, a
 	jr z, .normal_menu
-	ld a, [wdff8]
+	ld a, [wMilitaryAndAIBattleAction]
 	and $f
 	sub 4
 	ld [CurPartyMon], a
@@ -2579,7 +2579,7 @@ IF DEF(BEESAFREE)
 	ld a, [wMilitaryFlags]
 	bit MILITARY_ON, a
 	jr z, .normal_menu
-	ld a, [wdffa]
+	ld a, [wMilitaryPPRestoreMoveTarget]
 	ld [wcfa9], a
 	jr .skip
 ENDC

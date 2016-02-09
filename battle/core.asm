@@ -1034,6 +1034,9 @@ Function3c664: ; 3c664
 	xor a
 	ld [wc70f], a
 	call SetEnemyTurn
+	call Function309d
+	call Function3c543
+	jp c, Function3c0e5
 	callab Function38000
 	push af
 	call Function3c6cf
@@ -1052,9 +1055,6 @@ Function3c664: ; 3c664
 	call RefreshBattleHuds
 	pop af
 	jr c, .asm_3c6be
-	call Function309d
-	call Function3c543
-	jp c, Function3c0e5
 	call Function3c6de
 	call Function3d2e0
 	ret c
@@ -5578,52 +5578,52 @@ Function3e3ad: ; 3e3ad
 	ld [wPlayerIsSwitching], a
 	ld a, [wLinkMode]
 	and a
-	jr z, .asm_3e3c1
+	jr z, .SkipSerial
 	call Function1d6e
 	call Function3e8e4
 	call Function1c17
 
-.asm_3e3c1
+.SkipSerial
 	call Function3e7c1
 	ld a, [wLinkMode]
 	and a
-	jr nz, .asm_3e3cf
+	jr nz, .LinkCheck
 
-.asm_3e3ca
+.PlayerOnlySwitch
 	call BattleMonEntrance
 	and a
 	ret
 
-.asm_3e3cf
+.LinkCheck
 	ld a, [wBattleAction]
 	cp $e
-	jp z, .asm_3e3ca
+	jp z, .PlayerOnlySwitch
 	cp $d
-	jp z, .asm_3e3ca
+	jp z, .PlayerOnlySwitch
 	cp NUM_MOVES
-	jp c, .asm_3e3ca
+	jp c, .PlayerOnlySwitch
 	cp $f
-	jr nz, .asm_3e3e9
+	jr nz, .SwitchSwitch
 	call Function3c0e5
 	ret
 
-.asm_3e3e9
+.SwitchSwitch
 	ld a, [$ffcb]
 	cp $1
-	jr z, .asm_3e3f7
+	jr z, .Player1
 	call BattleMonEntrance
-	call Function3e3ff
+	call EnemyMonEntrance
 	and a
 	ret
 
-.asm_3e3f7
-	call Function3e3ff
+.Player1
+	call EnemyMonEntrance
 	call BattleMonEntrance
 	and a
 	ret
 ; 3e3ff
 
-Function3e3ff: ; 3e3ff
+EnemyMonEntrance: ; 3e3ff
 	callab AI_Switch
 	call SetEnemyTurn
 	jp SpikesDamage

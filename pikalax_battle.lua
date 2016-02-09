@@ -466,8 +466,8 @@ function transferStateToAIAndWait(output_table)
 	return next_move
 end
 
-function sendLUASerial(a)
-    memory.writebyterange(0xDFF8, 3, tablestobytes(commandstotables(0, transferStateToAIAndWait(readBattlestate())), commandstotables(1, readPlayerstate()))) --very long command
+function sendLUASerial(a, output_table, req)
+    memory.writebyterange(0xDFF8, 3, tablestobytes(commandstotables(0, transferStateToAIAndWait(readBattlestate(output_table, req))), commandstotables(1, readPlayerstate()))) --very long command
 	--memory.writebyte(rLSB, a)
 	memory.writebyte(rLSC, BEESAFREE_LSC_COMPLETED)
 end
@@ -487,8 +487,9 @@ function readPlayerstate() --loop read this for the overlay
 		output_table["pack"] = pack
 		if memory.readbyte(rLSC) == BEESAFREE_LSC_TRANSFERRING then
 			req = memory.readbyte(rLSB)
+			print(req)
 			if AND(req, BEESAFREE_SND_RESET) then
-				sendLUASerial(BEESAFREE_RES_RESET)
+				sendLUASerial(BEESAFREE_RES_RESET, output_table, req)
 			elseif AND(req, BEESAFREE_SND_ASKENEMY) ~= 0 then
 				readBattlestate(output_table, req)
 			end
@@ -500,7 +501,75 @@ end
 
 function tablestobytes(aitable, playertable)
 local bytes = 0x000000
---do stuff here
+local byte1 = 0x00
+local byte2 = 0x00
+local byte3 = 0x00
+
+if aitable["command"] == "move1" then 
+byte1 = 0x00
+elseif aitable["command"] == "move2" then
+byte1 = 0x10
+elseif aitable["command"] == "move3" then
+byte1 = 0x20
+elseif aitable["command"] == "move4" then
+byte1 = 0x30
+elseif aitable["command"] == "switch1" then
+byte1 = 0x40
+elseif aitable["command"] == "switch2" then
+byte1 = 0x50
+elseif aitable["command"] == "switch3" then
+byte1 = 0x60
+elseif aitable["command"] == "switch4" then
+byte1 = 0x70
+elseif aitable["command"] == "switch5" then
+byte1 = 0x80
+elseif aitable["command"] == "switch6" then
+byte1 = 0x90
+elseif aitable["command"] == "useitem1" then
+byte1 = 0xD0
+elseif aitable["command"] == "useitem2" then
+byte1 = 0xE0
+end
+
+if military_mode == 1 then
+    if playertable["command"] == "move1" then
+        byte1 = byte1 + 0x00 --useless lel
+    elseif playertable["command"] == "move2" then
+        byte1 = byte1 + 0x01
+    elseif playertable["command"] == "move3" then
+        byte1 = byte1 + 0x02
+    elseif playertable["command"] == "move4" then
+        byte1 = byte1 + 0x03
+    elseif playertable["command"] == "switch1" then
+        byte1 = byte1 + 0x04
+    elseif playertable["command"] == "switch2" then
+        byte1 = byte1 + 0x05
+    elseif playertable["command"] == "switch3" then
+        byte1 = byte1 + 0x06
+    elseif playertable["command"] == "switch4" then
+        byte1 = byte1 + 0x07
+    elseif playertable["command"] == "switch5" then
+        byte1 = byte1 + 0x08
+    elseif playertable["command"] == "switch6" then
+        byte1 = byte1 + 0x09
+    elseif playertable["command"] == "run" then
+        byte1 = byte1 + 0x0F
+    elseif playertable["command"] == "item" then
+        byte2 = tableLookup(itemTable, playertable["item"]) - 2
+        if playertable["poke"] ~= 0 then
+        byte1 = byte1 + playertable["poke"] + 3
+        end
+        if playertable["move"] ~= 0 then
+        byte3 = playertable["move"]
+        end
+    end
+end
+
+vba.print(byte1)
+vba.print(byte2)
+vba.print(byte3)
+bytes = (byte1 * 65536) + (byte2 * 256) + byte3
+
 return bytes
 end
 
@@ -508,6 +577,17 @@ function commandstotables(t_type, command)
 local rettable = {}
 --do more stuff here
 return rettable
+end
+
+function tableLookup(tabletarget, matchingstring)
+vba.print(aitable)
+vba.print(playertable)
+for k,v in pairs(tabletarget) do 
+        if v == matchingstring then 
+            return k+1
+        end 
+    end
+return k+1
 end
 
 repeat

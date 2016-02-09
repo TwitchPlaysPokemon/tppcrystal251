@@ -35948,6 +35948,8 @@ SECTION "bankD", ROMX, BANK[$D]
 
 INCLUDE "battle/effect_commands.asm"
 
+SECTION "bankD_2", ROMX
+
 Function3952d: ; 3952d
 	ld hl, RivalName
 	ld a, c ;trainer class
