@@ -208,6 +208,10 @@ IF DEF(BEESAFREE)
 	bit MILITARY_ON, a
 	jr z, .call_battle_menu
 	callba Military
+	jr c, .quit
+	ld a, [BattleEnded]
+	and a
+	jr nz, .quit
 	jr .return_from_military
 .call_battle_menu
 ENDC
@@ -215,7 +219,7 @@ ENDC
 	jr c, .quit
 	ld a, [BattleEnded]
 	and a
-	jr nz, .quit	
+	jr nz, .quit
 .asm_3c18a
 	call Function3c434
 	jr nz, .asm_3c179
@@ -234,7 +238,7 @@ ENDC
 	ld a, [wd232] ; roared/whirlwinded/teleported
 	and a
 	jr nz, .quit
-	
+
 	call Function3d2e0
 	jr c, .quit
 	ld a, [wd232]
@@ -831,8 +835,9 @@ Function3c543: ; 3c543
 	jr nz, .Stay
 
 IF DEF(BEESAFREE)
-	ld a, [wBattleAction]
-	cp $f
+	ld a, [wMilitaryAndAIBattleAction]
+	and $f0
+	cp $f0
 	jr z, .Flee
 ELSE
 	ld a, [TempEnemyMonSpecies]
@@ -4395,7 +4400,7 @@ SpikesDamage: ; 3dc23
 	ld a, [hli]
 	ld h, [hl]
 	ld l, a
-	jp [hl]	
+	jp [hl]
 
 DoneSpikes:
 	call Function3cc39
@@ -6811,7 +6816,7 @@ LoadEnemyMon: ; 3e8eb
 	and a
 	ret z
 
-; Update enemy nick	
+; Update enemy nick
 	ld bc, PKMN_NAME_LENGTH
 	ld a, [wBattleMode]
 	dec a

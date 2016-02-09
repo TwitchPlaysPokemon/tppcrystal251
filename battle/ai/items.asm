@@ -547,7 +547,11 @@ ELSE
 	and $f
 	cp $f
 	jr z, .MilitaryDontUse
-	sub $d
+	sub 4
+	jr c, .MilitaryDontUse
+	cp 6
+	jr c, .Switch
+	sub 9
 	jr c, .MilitaryDontUse
 	ld hl, wc650
 	and a
@@ -572,6 +576,10 @@ ELSE
 	ld de, .MilitaryUse
 	push de
 	jp [hl]
+
+.Switch
+	ld [wc718], a
+	jp AI_Switch
 
 .AI_Items
 	dbw FULL_RESTORE, Function383b5
