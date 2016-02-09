@@ -1629,7 +1629,7 @@ def main():
     battle_state = json.loads(open(JSON_FILE_PATH).read(), encoding="utf-8")
 
     while True:
-        #print(Artificial.MainBattle(battle_state))
+        print(Artificial.MainBattle(battle_state))
 	battle_state = Artificial.jsonlist
         #placeholder to prevent infinite looping
         input = raw_input('Action Above is best move (0-3 = moves, 4-9 = mon switch, 10-11 = use bag items) --- Press enter to continue')
