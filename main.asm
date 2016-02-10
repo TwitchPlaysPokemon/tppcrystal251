@@ -8161,7 +8161,7 @@ Functiond906: ; d906
 	ld a, $1
 	ld c, a ;get hp
 	ld b, 1 ;stat xp on
-	call Functione17b ; load stats in, put HP into in $ffb5 and $ffb6. 
+	predef Functione17b ; calc hp, put HP into in $ffb5 and $ffb6. 
 	ld a, [$ffb5] ;load hp
 	ld [de], a
 	inc de
@@ -36189,12 +36189,31 @@ TrainerType:
 	call AddNTimes
 	ld d, h
 	ld e, l
-	pop hl
+	push de
 	ld a, $ff
 	rept 10
 	ld [de], a
 	inc de
 	endr
+	ld a, [OTPartyCount]
+	dec a
+	ld hl, OTPartyMon1HP
+	ld bc, OTPartyMon2 - OTPartyMon1
+	call AddNTimes
+	ld d, h
+	ld e, l
+	pop hl ;stat xp start
+	ld b, 1
+	ld c, 1
+	predef Functione17b ; calc hp, put into in $ffb5 and $ffb6. 
+	ld a, [$ffb5] ;load hp
+	ld [de], a
+	inc de
+	ld a, [$ffb6]
+	ld [de], a
+	inc de
+	predef Functione167
+	pop hl
 .no_maxxp
 	ld a, [wdff5 + 1]
 	bit TRAINERTYPE_MOVES, a

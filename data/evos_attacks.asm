@@ -1706,56 +1706,59 @@ ShellderEvosAttacks:
 	db EVOLVE_ITEM, WATER_STONE, CLOYSTER
 	db 0 ; no more evolutions
 	db 1, TACKLE
-	db 3, WITHDRAW
+	db 1, WITHDRAW
+	db 3, LICK
 	db 6, SUPERSONIC
 	db 9, LEER
 	db 12, WATER_GUN
 	db 15, TAKE_DOWN ; gen 1 move
 	db 18, AURORA_BEAM
-	db 21, CLAMP
-	db 24, TOXIC ; tm move
+	db 21, TOXIC
+	db 24, CLAMP 
 	db 27, PROTECT
 	db 30, BARRIER
-	db 33, BUBBLEBEAM ; egg move
-	db 36, TWINEEDLE ; later gen move
+	db 33, TWINEEDLE
+	db 36, HYDRO_PUMP ; later gen move 
 	db 39, EXPLOSION ; later gen move
 	db 42, ICE_BEAM
-	db 45, HYDRO_PUMP ; later gen move
+	db 45, POISON_JAB ; later gen move
 	db 0 ; no more level-up moves
 
 CloysterEvosAttacks:
 	db 0 ; no more evolutions
-	db 1, WITHDRAW
-	db 1, SUPERSONIC
-	db 1, AURORA_BEAM
-	db 1, CLAMP
+	db 1, TACKLE
+	db 5, WITHDRAW
+	db 10, SUPERSONIC
+	db 15, WATER_GUN
+	db 20, SPIKE_CANNON
 	db 30, SPIKES
-	db 40, SPIKE_CANNON
+	db 40, CLAMP
 	db 50, ICE_BEAM
 	db 60, IRON_DEFENSE ; later gen move
 	db 70, EXPLOSION ; later gen move
 	db 80, HYDRO_PUMP ; later gen move
+	db 90, POISON_JAB
 	db 0 ; no more level-up moves
 
 GastlyEvosAttacks:
 	db EVOLVE_LEVEL, 25, HAUNTER
 	db 0 ; no more evolutions
-	db 1, THIEF ; tm move
+	db 1, LICK 
 	db 3, SPITE
 	db 6, SELFDESTRUCT ; later gen move
 	db 9, CONFUSE_RAY
-	db 12, LICK
+	db 12, SHADOW_CLAW
 	db 15, CURSE
 	db 18, DESTINY_BOND
-	db 21, SHADOW_CLAW
-	db 24, MEAN_LOOK
+	db 21, MEAN_LOOK
+	db 24, NIGHT_SHADE
 	db 27, EXPLOSION ; later gen move
 	db 30, DARK_PULSE ; later gen move
-	db 33, NIGHT_SHADE
-	db 36, HYPNOSIS
-	db 39, NIGHTMARE ; tm move
-	db 42, DREAM_EATER
-	db 45, SHADOW_BALL
+	db 33, SLUDGE_BOMB
+	db 36, SHADOW_BALL
+	db 39, HYPNOSIS ; tm move
+	db 42, NIGHTMARE
+	db 45, DREAM_EATER
 	db 0 ; no more level-up moves
 
 HaunterEvosAttacks:
@@ -1767,21 +1770,22 @@ HaunterEvosAttacks:
 	db 1, SHADOW_CLAW
 	db 29, EXPLOSION ; later gen move
 	db 32, DARK_PULSE ; later gen move
-	db 35, NIGHT_SHADE
+	db 35, PSYWAVE
+	db 38, NIGHTMARE
 	db 38, HYPNOSIS
-	db 42, NIGHTMARE
-	db 46, PSYWAVE ; * egg move
-	db 51, PERISH_SONG ; * egg move
-	db 55, PROTECT
-	db 60, SHADOW_BALL
+	db 42, SLUDGE_BOMB
+	db 46, PAIN_SPLIT
+	db 51, SHADOW_BALL 
+	db 55, PERISH_SONG
+	db 60, PROTECT
 	db 0 ; no more level-up moves
 
 GengarEvosAttacks:
 	db 0 ; no more evolutions
-	db 1, PSYWAVE ; egg move
+	db 1, NIGHTMARE 
 	db 1, HYPNOSIS
-	db 1, DARK_PULSE ; later gen move
-	db 1, NIGHT_SHADE
+	db 1, SLUDGE_BOMB 
+	db 1, PAIN_SPLIT
 	db 55, PERISH_SONG
 	db 60, DESTINY_BOND
 	db 65, FOCUS_BLAST ; * later gen move

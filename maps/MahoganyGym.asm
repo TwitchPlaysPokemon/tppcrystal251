@@ -309,9 +309,10 @@ PryceRematchTextBefore:
 	cont "fall easily."
 
 	text "No need for words."
-	line "A #MON battle is"
-	cont "the way for us to"
-	cont "communicate."
+
+	para "A #MON battle"
+	line "is the way for us"
+	cont "to communicate."
 	done
 
 PryceRematchBeatenText:

@@ -11,7 +11,7 @@ BrockScript_0x1a2864: ; 0x1a2864
 	loadfont
 	checkevent EVENT_BROCK_REMATCH
 	iftrue BrockAfterRematch
-	checkevent EVENT_FIRST_TIME_BABA
+	checkevent EVENT_SET_BY_OAK_AFTER_16_BADGES
 	iftrue BrockRematchScript
 	checkflag ENGINE_BOULDERBADGE
 	iftrue UnknownScript_0x1a2892

@@ -6888,12 +6888,12 @@ Rival2Group: ;not balanced yet
 
 	; party
 
-	db 54, SNEASEL
-	db 54, GOLBAT
-	db 55, PUPITAR
-	db 55, MAGNETON
-	db 56, ALAKAZAM
-	db 58, MEGANIUM
+	db 91, SNEASEL
+	db 91, GOLBAT
+	db 92, PUPITAR
+	db 92, MAGNETON
+	db 93, ALAKAZAM
+	db 95, MEGANIUM
 
 	db $ff ; end
 
@@ -8916,7 +8916,7 @@ CamperGroup:
 	db 0 ; normal
 
 	; party
-	db 37, SANDSLASH
+	db 84, SANDSLASH
 
 	db $ff ; end
 

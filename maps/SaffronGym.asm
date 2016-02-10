@@ -350,8 +350,8 @@ AfterGIveRestText:
 	text "TM44 grants REST"
 
 	para "By enetering a"
-	line "trance, a #MON fully"
-	cont "recovers."
+	line "trance, a #MON"
+	cont "fully recovers."
 
 	para "Although I failed"
 	line "to accurately pre-"

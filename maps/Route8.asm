@@ -298,8 +298,7 @@ WakeSnorlax8:
 	writecode VAR_BATTLETYPE, BATTLETYPE_FORCEITEM
 	loadpokedata SNORLAX, 85
 	startbattle
-	disappear $3
-	setevent EVENT_ROUTE_8_SNORLAX
+	disappear $8
 	returnafterbattle
 	end
 

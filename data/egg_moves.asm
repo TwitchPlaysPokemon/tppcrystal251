@@ -254,10 +254,8 @@ GrimerEggMoves:
 
 ShellderEggMoves:
 	db BUBBLEBEAM
-	db POISON_JAB
 	db RAPID_SPIN
 	db SCREECH
-	db LICK
 	db $ff
 
 GastlyEggMoves:
@@ -266,7 +264,6 @@ GastlyEggMoves:
 	db DISABLE
 	db SCARY_FACE
 	db COUNTER
-	db PAIN_SPLIT
 	db $ff
 
 OnixEggMoves:

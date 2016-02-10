@@ -408,7 +408,7 @@ TextBranchSecondMisty:
 
 	text "Too bad! Pests"
 	line "have to work"
-	cont "for thier"
+	cont "for their"
 	cont "badges!"
 
 	done

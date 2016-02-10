@@ -83,6 +83,7 @@ BlaineReject:
 	spriteface $2, $1
 	spriteface $2, $3
 	spriteface $2, $2
+	loadfont
 	writetext BlaineRejectText2
 	waitbutton
 	closetext
@@ -116,7 +117,7 @@ BlaineBeforeRematchText:
 
 	para "Thanks for brining"
 	line "these here, they"
-	cont "are the last "
+	cont "are the last"
 	cont "copies of the map"
 	cont "to MEW's only"
 	cont "known home."
@@ -218,12 +219,13 @@ UnknownText_0x1ab683: ; 0x1ab683
 UnknownText_0x1ab69d: ; 0x1ab69d
 	text "BLAINE: also"
 	line "take this."
+	done
 
 AfterFireBlastText:
 	text "It contains"
 	line "FIRE BLAST!"
 
-	text "Don't waste it"
+	para "Don't waste it"
 	line "on water types!"
 
 	para "I'm going to win"
