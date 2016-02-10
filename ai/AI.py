@@ -280,43 +280,16 @@ class AI(object):
         effmulti = self.getEff(move_used['type'].lower(), mondata[defender]['type'][1].lower(), temptext) * self.getEff(move_used['type'].lower(), mondata[defender]['type'][2].lower(), temptext)
         temp2 = effmulti*temp1
         
-        
-        #Item damage
-        if mondata[attacker]['item'] == 'blackbelt' and move_used['type'] == 'fighting':
-            temp2 = temp2 * 1.20
-        elif mondata[attacker]['item'] == 'blackglasses' and move_used['type'] == 'dark':
-            temp2 = temp2 * 1.20
-        elif mondata[attacker]['item'] == 'charcoal' and move_used['type'] == 'fire':
-            temp2 = temp2 * 1.20
-        elif mondata[attacker]['item'] == 'dragonfang' and move_used['type'] == 'dragon':
-            temp2 = temp2 * 1.20
-        elif mondata[attacker]['item'] == 'hardstone' and move_used['type'] == 'rock':
-            temp2 = temp2 * 1.20
-        elif mondata[attacker]['item'] == 'magnet' and move_used['type'] == 'electric':
-            temp2 = temp2 * 1.20
-        elif mondata[attacker]['item'] == 'metalcoat' and move_used['type'] == 'steel':
-            temp2 = temp2 * 1.20
-        elif mondata[attacker]['item'] == 'miracleseed' and move_used['type'] == 'grass':
-            temp2 = temp2 * 1.20
-        elif mondata[attacker]['item'] == 'mysticwater' and move_used['type'] == 'water':
-            temp2 = temp2 * 1.20
-        elif mondata[attacker]['item'] == 'nevermeltice' and move_used['type'] == 'ice':
-            temp2 = temp2 * 1.20
+        #lookup table for 1.2x type-boosting items
+        type_boost_item_dict = {'blackbelt':'fighting','blackglasses':'dark','charcoal':'fire','dragonfang':'dragon','hardstone':'rock','dragonfang':'dragon','hardstone':'rock','magnet':'electric','metalcoat':'steel','miracleseed':'grass','mysticwater':'water','nevermeltice':'ice','poisonbarb':'poison','sharpbeak':'flying','silkscarf':'normal','silverpowder':'bug','softsand':'ground','spelltag':'ghost'}
+        if mondata[attacker]['item'] in type_boost_item_dict:
+            if move_used['type'] == type_boost_item_dict[mondata[attacker]['item']]:
+                temp2 = temp2 * 1.20
         elif mondata[attacker]['item'] == 'pinkbow' and move_used['type'] == 'normal':
+            #special case: 1.1x instead of 1.2x (is this a typo?)
             temp2 = temp2 * 1.10
-        elif mondata[attacker]['item'] == 'poisonbarb' and move_used['type'] == 'poison':
-            temp2 = temp2 * 1.20
-        elif mondata[attacker]['item'] == 'sharpbeak' and move_used['type'] == 'flying':
-            temp2 = temp2 * 1.20
-        elif mondata[attacker]['item'] == 'silkscarf' and move_used['type'] == 'normal':
-            temp2 = temp2 * 1.20
-        elif mondata[attacker]['item'] == 'silverpowder' and move_used['type'] == 'bug':
-            temp2 = temp2 * 1.20
-        elif mondata[attacker]['item'] == 'softsand' and move_used['type'] == 'ground':
-            temp2 = temp2 * 1.20
-        elif mondata[attacker]['item'] == 'spelltag' and move_used['type'] == 'ghost':
-            temp2 = temp2 * 1.20
         elif mondata[attacker]['item'] == 'twistedspoon' and move_used['type'] == 'psychic' and move_used_effect != "futuresight":
+        #special case: doesn't affect futuresight
             temp2 = temp2 * 1.20
         
         if move_used_effect != "futuresight":
@@ -1555,8 +1528,8 @@ class AI(object):
     #figure out best action to do in current battle
     def MainBattle(self, jsonlist):
 
-	self.jsonlist = jsonlist
-	#setup everything
+        self.jsonlist = jsonlist
+        #setup everything
         if self.jsonlist['battleState']['enemy type'] == 'TRAINER':
             self.myparty = len(self.jsonlist['enemyParty']['party']) #ai's pokemon
         else:
