@@ -487,7 +487,7 @@ class AI(object):
             critmodifier = critmodifier + 2
         if move_used['name'].lower() in ('aeroblast', 'crabhammer', 'crosschop', 'drillrun', 'karatechop', 'razorleaf', 'shadowclaw', 'slash', 'skyattack'):
             critmodifier = critmodifier + 2
-        temp2 = temp2 + (temp2 * 1.5 * self._critmultipliers[str(critmodifier)])
+        temp2 = (temp2 - (temp2 * ( 1 - self._critmultipliers[str(critmodifier)]))) + (temp2 * 1.5 * self._critmultipliers[str(critmodifier)])
 
         if effmulti < 0.125:
             temp2 = 0
@@ -824,11 +824,11 @@ class AI(object):
 
         #rest counter
         if mondata[mycurrent]['status'] == 'slp1':
-            mondata[mycurrent]['status'] == 'none'
+            mondata[mycurrent]['status'] = 'none'
         if mondata[mycurrent]['status'] == 'slp2':
-            mondata[mycurrent]['status'] == 'slp1'
+            mondata[mycurrent]['status'] = 'slp1'
         if mondata[mycurrent]['status'] == 'slp3':
-            mondata[mycurrent]['status'] == 'slp2'
+            mondata[mycurrent]['status'] = 'slp2'
 
         #perish song
         if mondata['myperishsong'] == 1:
