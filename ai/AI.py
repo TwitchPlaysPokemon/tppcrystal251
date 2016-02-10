@@ -1387,13 +1387,13 @@ class AI(object):
                             mondata2[traincurrent]['boosts'][stat] = int(self.jsonlist['battleState']['playerpokemon']['stat levels'][stat])
                         self.Fight(mondata2, traincurrent, mycurrent, 4)
                     else:
-                        self.difference[mycurrent]  = -10
+                        self.difference[mycurrent][traincurrent]  = -10
                         self.mybestmove['bestleaf'] = '0_0_0_0_0'
-                        self.mybestmove[mycurrent] = -10
+                        self.mybestmove[mycurrent][traincurrent] = -10
             tempy = -9
             for tempx in range (0, self.myparty) :
-                if self.difference[tempx] > tempy:
-                    tempy = self.difference[tempx]
+                if self.difference[tempx][traincurrent] > tempy:
+                    tempy = self.difference[tempx][traincurrent]
                     if tempx != self.jsonlist['battleState']['enemypokemon']['party idx']:
                          self.theaction = tempx + 4
         return
@@ -1414,16 +1414,16 @@ class AI(object):
                         mondata2[traincurrent]['boosts'][stat] = int(self.jsonlist['battleState']['playerpokemon']['stat levels'][stat])
                     self.Fight(mondata2, traincurrent, mycurrent, 4)
                 else:
-                    self.difference[mycurrent]  = -10
+                    self.difference[mycurrent][traincurrent]  = -10
                     self.mybestmove['bestleaf'] = '0_0_0_0_0'
-                    self.mybestmove[mycurrent] = -10
+                    self.mybestmove[mycurrent][traincurrent] = -10
         tempy = -9
-        for tempx in range (0, self.myparty) :
-            if self.difference[tempx] > tempy:
-                tempy = self.difference[tempx]
+        for tempx in range (0, self.myparty):
+            if self.difference[tempx][traincurrent] > tempy:
+                tempy = self.difference[tempx][traincurrent]
                 if tempx != self.jsonlist['battleState']['enemypokemon']['party idx']:
                     theaction = tempx + 4
-        return(theaction)
+        return theaction 
 
     def WildBattle(self, mondata, mycurrent, traincurrent):
         movepriority = {}
@@ -1480,7 +1480,7 @@ class AI(object):
                 if mondata[mycurrent]['moves'][tempmove]['effect'] == 'paralyzehit' and mondata[mycurrent]['moves'][tempmove]['effectchance'] == 10:
                     movepriority[tempmove] = 9
                     continue
-                if mondata[mycurrent]['moves'][tempmove]['effect'] == 'freezehit' and  mondata['weather'] != 'sun':
+                if mondata[mycurrent]['moves'][tempmove]['effect'] == 'freezehit' and mondata['weather'] != 'sun':
                     movepriority[tempmove] = 10
                     continue
             if mondata[mycurrent]['moves'][tempmove]['effect'] in ('whirlwind', 'teleport'):
@@ -1493,11 +1493,10 @@ class AI(object):
                 tempy = movepriority[tempx]
                 theaction = tempx
 
-
         if theaction == 20:
             self.Fight(mondata, traincurrent, mycurrent, 4)
             theaction = self.mybestmove[mycurrent]
-        return(theaction)
+        return theaction 
 
     def ManualControl(self):
         tempx = -1
@@ -1576,7 +1575,7 @@ class AI(object):
         self.countercoat['physical'] = {}
         self.countercoat['special'] = {}
 
-    #alright, start computing
+        #alright, start computing
 
         traincurrent = self.jsonlist['battleState']['playerpokemon']['party idx']+6
         mondata = self.parseMondataFromJsonlist()
@@ -1618,7 +1617,7 @@ def main():
         print(Artificial.MainBattle(battle_state))
         battle_state = Artificial.jsonlist
         #placeholder to prevent infinite looping
-        input = raw_input('Action Above is best move (0-3 = moves, 4-9 = mon switch, 10-11 = use bag items) --- Press enter to continue')
+        input('Action Above is best move (0-3 = moves, 4-9 = mon switch, 10-11 = use bag items) --- Press enter to continue')
 
 
 if __name__ == '__main__':
