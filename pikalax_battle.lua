@@ -6,6 +6,7 @@ JSON = (loadfile "JSON.lua")()
 package.path = package.path..';./libs/lua/?.lua'
 package.cpath = package.cpath..';./libs/?.dll'
 local http = require("socket.http") -- i did this wrong did i
+http.TIMEOUT = 0.01
 dofile("battle_ram.lua")
 dofile("constants.lua")
 

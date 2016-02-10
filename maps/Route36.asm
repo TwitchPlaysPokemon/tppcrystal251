@@ -81,7 +81,7 @@ WateredWeirdTreeScript:: ; 0x194053
 	setevent EVENT_FOUGHT_SUDOWOODO
 	if_equal $2, UnknownScript_0x19407b
 	disappear $4
-	variablesprite $4, $26
+	variablesprite SPRITE_WEIRD_TREE, SPRITE_TWIN
 	returnafterbattle
 	end
 ; 0x194079
@@ -95,7 +95,7 @@ UnknownScript_0x19407b: ; 0x19407b
 	returnafterbattle
 	applymovement $4, MovementData_0x19424b
 	disappear $4
-	variablesprite $4, $26
+	variablesprite SPRITE_WEIRD_TREE, SPRITE_TWIN
 	special Function14209
 	special Function14168
 	end
@@ -776,7 +776,7 @@ Route36_MapEventHeader: ; 0x194a66
 
 	; people-events
 	db 9
-	person_event SPRITE_YOUNGSTER, 17, 24, $9, 0, 0, -1, -1, 8 + PAL_OW_BLUE, 2, 3, TrainerPsychicMark, -1
+	person_event SPRITE_YOUNGSTER, 16, 24, $9, 0, 0, -1, -1, 8 + PAL_OW_BLUE, 2, 3, TrainerPsychicMark, -1
 	person_event SPRITE_YOUNGSTER, 18, 35, $8, 0, 0, -1, -1, 8 + PAL_OW_BLUE, 2, 5, TrainerSchoolboyAlan1, -1
 	person_event SPRITE_WEIRD_TREE, 13, 39, $17, 0, 0, -1, -1, 0, 0, 0, WeirdTreeScript_0x19403c, EVENT_SUDOWOODO_ON_ROUTE_36
 	person_event SPRITE_LASS, 12, 55, $5, 0, 2, -1, -1, 0, 0, 0, LassScript_0x1940e0, -1
