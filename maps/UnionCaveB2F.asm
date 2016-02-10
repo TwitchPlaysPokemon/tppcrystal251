@@ -31,9 +31,9 @@ SurfScript_0x5a31f: ; 0x5a31f
 	loadpokedata LAPRAS, 45
 	startbattle
 	writebyte LAPRAS
-	disappear $7
 	special SpecialMonCheck
 	iffalse DontKillLapras
+	disappear $7
 	setflag ENGINE_UNION_CAVE_LAPRAS
 DontKillLapras:
 	returnafterbattle
