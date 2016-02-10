@@ -23,6 +23,24 @@ MOVES_FILE_PATH = os.path.join(SCRIPT_DIR, "AiMoves.txt")
 
 mondata = {}
 
+class Combogenerator:
+    def __init__(self,number=4):
+        self.arrlen = number
+        self.currplace = [0 for x in range(self.arrlen)]
+    def __iter__(self):
+        return self
+    def __next__(self):
+        return self.next(self.arrlen-1)
+    def next(self, placevalue):
+        self.currplace[placevalue] += 1
+        if self.currplace[placevalue] >= 4:
+            if placevalue == 0:
+                raise StopIteration()
+            else:
+                self.currplace[placevalue] = 0
+                self.next(placevalue-1)
+        return self.currplace[:]
+
 class AI(object):
     def __init__(self):
         self._Types = {"normal":  0, "fire":  1, "water":  2, "electric":  3, "grass":  4,
@@ -908,28 +926,10 @@ class AI(object):
     def Fight(self, mondata, traincurrent, mycurrent, numberofturns):
 
         #all possible move combos
-        temptext = ''
-        combodata = {}
-        tempx = 0
-        for x1 in range(0, (len(mondata[mycurrent]['moves']))):
-            temptext1 = str(x1)
-            for x2 in range(0, (len(mondata[mycurrent]['moves']))):
-                temptext2 = temptext1 + '_' + str(x2)
-                for x3 in range(0, (len(mondata[mycurrent]['moves']))):
-                    temptext3 = temptext2 + '_' + str(x3)
-                    if numberofturns == 4:
-                        for x4 in range(0, (len(mondata[mycurrent]['moves']))):
-                            temptext4 = temptext3 + '_' + str(x4)
-                            combodata[tempx] = temptext4
-                            tempx = tempx + 1
-                    else:
-                        combodata[tempx] = temptext3
-                        tempx = tempx + 1
 
         self.mycurhp = self.hp[mycurrent]
         self.traincurhp = self.opponenthp[traincurrent]
-        for x2 in range(0, len(combodata)):
-            tempcombo = combodata[x2].split('_')
+        for x2, tempcombo in enumerate(Combogenerator(4)):
             mondata1 = mondata
             myhp = self.mycurhp
             trainhp = self.traincurhp
@@ -1291,7 +1291,7 @@ class AI(object):
             if self.useitem == 0:
                 if tempx >= self.difference[mycurrent][traincurrent] :
                     self.difference[mycurrent][traincurrent] = tempx
-                    self.mybestmove['bestleaf'] = combodata[x2]
+                    self.mybestmove['bestleaf'] = "_".join([str(x) for x in tempcombo])
                     self.mybestmove[mycurrent] = int(tempcombo[0])
                 if self.difference[mycurrent][traincurrent] == -10:
                     if self.jsonlist['battleState']['enemy type'] == 'TRAINER':
