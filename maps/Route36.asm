@@ -101,11 +101,9 @@ UnknownScript_0x19407b: ; 0x19407b
 	end
 ; 0x19408c
 
-LassScript_0x19408c: ; 0x19408c
+LassScript_0x19408c:
 	faceplayer
 	loadfont
-	checkevent EVENT_GOT_SQUIRTBOTTLE
-	iftrue UnknownScript_0x1940b3
 	checkevent EVENT_SPOKE_TO_FLOWER_SHOP_GIRL_IN_FLOWER_SHOP
 	iftrue UnknownScript_0x1940b3
 	setevent EVENT_SPOKE_TO_FLOWER_SHOP_GIRL_AT_SUDOWOODO
@@ -114,24 +112,53 @@ LassScript_0x19408c: ; 0x19408c
 	closetext
 	clearevent EVENT_FLOWER_SHOP_LASS_IN_GOLDENROD_FLOWER_SHOP
 	checkcode VAR_FACING
-	if_equal $1, UnknownScript_0x1940ac
+	if_equal UP, UnknownScript_0x1940ac
 	applymovement $9, MovementData_0x19424e
 	disappear $9
 	end
-; 0x1940ac
 
-UnknownScript_0x1940ac: ; 0x1940ac
+UnknownScript_0x1940ac:
 	applymovement $9, MovementData_0x194258
 	disappear $9
 	end
-; 0x1940b3
 
-UnknownScript_0x1940b3: ; 0x1940b3
+UnknownScript_0x1940b3:
 	writetext UnknownText_0x1943ed
 	waitbutton
 	closetext
 	end
-; 0x1940b9
+
+; LassScript_0x19408c: ; 0x19408c
+	; faceplayer
+	; loadfont
+	; checkevent EVENT_GOT_SQUIRTBOTTLE
+	; iftrue UnknownScript_0x1940b3
+	; checkevent EVENT_SPOKE_TO_FLOWER_SHOP_GIRL_IN_FLOWER_SHOP
+	; iftrue UnknownScript_0x1940b3
+	; setevent EVENT_SPOKE_TO_FLOWER_SHOP_GIRL_AT_SUDOWOODO
+	; writetext UnknownText_0x1942f1
+	; waitbutton
+	; closetext
+	; clearevent EVENT_FLOWER_SHOP_LASS_IN_GOLDENROD_FLOWER_SHOP
+	; checkcode VAR_FACING
+	; if_equal $1, UnknownScript_0x1940ac
+	; applymovement $9, MovementData_0x19424e
+	; disappear $9
+	; end
+; ; 0x1940ac
+
+; UnknownScript_0x1940ac: ; 0x1940ac
+	; applymovement $9, MovementData_0x194258
+	; disappear $9
+	; end
+; ; 0x1940b3
+
+; UnknownScript_0x1940b3: ; 0x1940b3
+	; writetext UnknownText_0x1943ed
+	; waitbutton
+	; closetext
+	; end
+; ; 0x1940b9
 
 FisherScript_0x1940b9: ; 0x1940b9
 	faceplayer
