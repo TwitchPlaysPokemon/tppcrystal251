@@ -1,446 +1,144 @@
 {
     "battleState": {
-                             "enemy type": "TRAINER",
-                           "enemypokemon": {
-                                                    "charging": 0,
-                                                         "dvs": {
-                                                                    "atk": 13,
-                                                                    "def": 12,
-                                                                     "hp": 11,
-                                                                    "spc": 13,
-                                                                    "spd": 13
-                                                                },
-                                                "future sight": {
-                                                                     "count": 0,
-                                                                    "damage": 0
-                                                                },
-                                                      "gender": "♂",
-                                                   "happiness": 70,
-                                                          "hp": 192,
-                                                        "item": "NO ITEM",
-                                                   "last used": "None",
-                                                       "level": 64,
-                                                       "moves": [ {
-                                                                    "curpp": 30,
-                                                                    "maxpp": 30,
-                                                                     "name": "QUICK ATTACK",
-                                                                     "ppUp": 0
-                                                                }, {
-                                                                    "curpp": 10,
-                                                                    "maxpp": 15,
-                                                                     "name": "FUTURE SIGHT",
-                                                                     "ppUp": 0
-                                                                }, {
-                                                                    "curpp": 10,
-                                                                    "maxpp": 10,
-                                                                     "name": "CONFUSE RAY",
-                                                                     "ppUp": 0
-                                                                }, {
-                                                                    "curpp": 10,
-                                                                    "maxpp": 10,
-                                                                     "name": "PSYCHIC M",
-                                                                     "ppUp": 0
-                                                                } ],
-                                                   "party idx": 0,
-                                                "rage counter": 0,
-                                                     "screens": [],
-                                                     "species": "XATU",
-                                                 "stat levels": {
-                                                                     "acc": 0,
-                                                                     "atk": 0,
-                                                                     "def": 0,
-                                                                     "eva": 0,
-                                                                    "satk": 0,
-                                                                    "sdef": 0,
-                                                                     "spd": 0
-                                                                },
-                                                       "stats": {
-                                                                     "attack": 145,
-                                                                    "defense": 143,
-                                                                      "maxhp": 192,
-                                                                      "spatk": 170,
-                                                                      "spdef": 145,
-                                                                      "speed": 164
-                                                                },
-                                                      "status": "NONE",
-                                                   "subStatus": [],
-                                               "trapping move": 0,
-                                                       "turns": 0,
-                                                        "type": "PSYCHIC / FLYING",
-                                                  "wrap count": 0
-                                           },
-                          "playerpokemon": {
-                                                    "charging": 0,
-                                                         "dvs": {
-                                                                    "atk": 1,
-                                                                    "def": 13,
-                                                                     "hp": 15,
-                                                                    "spc": 5,
-                                                                    "spd": 7
-                                                                },
-                                                "future sight": {
-                                                                     "count": 0,
-                                                                    "damage": 0
-                                                                },
-                                                      "gender": "♀",
-                                                   "happiness": 241,
-                                                          "hp": 232,
-                                                        "item": "NO ITEM",
-                                                   "last used": "None",
-                                                       "level": 67,
-                                                       "moves": [ {
-                                                                    "curpp": 10,
-                                                                    "maxpp": 20,
-                                                                     "name": "PETAL DANCE",
-                                                                     "ppUp": 0
-                                                                }, {
-                                                                    "curpp": 10,
-                                                                    "maxpp": 5,
-                                                                     "name": "EARTH POWER",
-                                                                     "ppUp": 0
-                                                                }, {
-                                                                    "curpp": 10,
-                                                                    "maxpp": 10,
-                                                                     "name": "LEECH SEED",
-                                                                     "ppUp": 0
-                                                                }, {
-                                                                    "curpp": 10,
-                                                                    "maxpp": 20,
-                                                                     "name": "DRAGON PULSE",
-                                                                     "ppUp": 0
-                                                                } ],
-                                                   "party idx": 0,
-                                                "rage counter": 0,
-                                                     "screens": [],
-                                                     "species": "MEGANIUM",
-                                                 "stat levels": {
-                                                                     "acc": 0,
-                                                                     "atk": 0,
-                                                                     "def": 0,
-                                                                     "eva": 0,
-                                                                    "satk": 0,
-                                                                    "sdef": 0,
-                                                                     "spd": 0
-                                                                },
-                                                       "stats": {
-                                                                     "attack": 158,
-                                                                    "defense": 202,
-                                                                      "maxhp": 232,
-                                                                      "spatk": 163,
-                                                                      "spdef": 168,
-                                                                      "speed": 162
-                                                                },
-                                                      "status": "NONE",
-                                                   "subStatus": [],
-                                               "trapping move": 0,
-                                                       "turns": 0,
-                                                        "type": "GRASS",
-                                                  "wrap count": 0
-                                           },
-                       "requested action": 3,
-                          "trainer class": "WILL",
-                          "trainer items": {
-                                               "item1": "MAX POTION",
-                                               "item2": "NO ITEM"
-                                           },
-                                "weather": "Clear"
+                          "enemy type": "WILD",
+                        "enemypokemon": {
+                                                 "charging": 0,
+                                                      "dvs": {
+                                                                 "atk": 10,
+                                                                 "def": 2,
+                                                                  "hp": 3,
+                                                                 "spc": 3,
+                                                                 "spd": 1
+                                                             },
+                                             "future sight": {
+                                                                  "count": 0,
+                                                                 "damage": 0
+                                                             },
+                                                   "gender": "♂",
+                                                "happiness": 70,
+                                                       "hp": 160,
+                                                     "item": "NO ITEM",
+                                                "last used": "None",
+                                                    "level": 58,
+                                                    "moves": [ {
+                                                                 "curpp": 20,
+                                                                 "maxpp": 30,
+                                                                  "name": "SWORDS DANCE",
+                                                                  "ppUp": 0
+                                                             }, {
+                                                                 "curpp": 5,
+                                                                 "maxpp": 5,
+                                                                  "name": "HORN DRILL",
+                                                                  "ppUp": 0
+                                                             }, {
+                                                                 "curpp": 10,
+                                                                 "maxpp": 10,
+                                                                  "name": "MEGAHORN",
+                                                                  "ppUp": 0
+                                                             }, {
+                                                                 "curpp": 10,
+                                                                 "maxpp": 10,
+                                                                  "name": "DRILL RUN",
+                                                                  "ppUp": 0
+                                                             } ],
+                                             "rage counter": 0,
+                                                  "screens": [],
+                                                  "species": "RHYHORN",
+                                              "stat levels": {
+                                                                  "acc": 0,
+                                                                  "atk": 0,
+                                                                  "def": 0,
+                                                                  "eva": 0,
+                                                                 "satk": 0,
+                                                                 "sdef": 0,
+                                                                  "spd": 0
+                                                             },
+                                                    "stats": {
+                                                                  "attack": 103,
+                                                                 "defense": 115,
+                                                                   "maxhp": 160,
+                                                                   "spatk": 39,
+                                                                   "spdef": 39,
+                                                                   "speed": 34
+                                                             },
+                                                   "status": "NONE",
+                                                "subStatus": [],
+                                            "trapping move": 0,
+                                                    "turns": 0,
+                                                     "type": "GROUND / ROCK",
+                                               "wrap count": 0
+                                        },
+                       "playerpokemon": {
+                                                 "charging": 0,
+                                                      "dvs": {
+                                                                 "atk": 1,
+                                                                 "def": 13,
+                                                                  "hp": 15,
+                                                                 "spc": 5,
+                                                                 "spd": 7
+                                                             },
+                                             "future sight": {
+                                                                  "count": 0,
+                                                                 "damage": 0
+                                                             },
+                                                   "gender": "♀",
+                                                "happiness": 240,
+                                                       "hp": 232,
+                                                     "item": "NO ITEM",
+                                                "last used": "None",
+                                                    "level": 67,
+                                                    "moves": [ {
+                                                                 "curpp": 10,
+                                                                 "maxpp": 20,
+                                                                  "name": "PETAL DANCE",
+                                                                  "ppUp": 0
+                                                             }, {
+                                                                 "curpp": 10,
+                                                                 "maxpp": 5,
+                                                                  "name": "EARTH POWER",
+                                                                  "ppUp": 0
+                                                             }, {
+                                                                 "curpp": 10,
+                                                                 "maxpp": 10,
+                                                                  "name": "LEECH SEED",
+                                                                  "ppUp": 0
+                                                             }, {
+                                                                 "curpp": 10,
+                                                                 "maxpp": 20,
+                                                                  "name": "DRAGON PULSE",
+                                                                  "ppUp": 0
+                                                             } ],
+                                                "party idx": 0,
+                                             "rage counter": 0,
+                                                  "screens": [],
+                                                  "species": "MEGANIUM",
+                                              "stat levels": {
+                                                                  "acc": 0,
+                                                                  "atk": 0,
+                                                                  "def": 0,
+                                                                  "eva": 0,
+                                                                 "satk": 0,
+                                                                 "sdef": 0,
+                                                                  "spd": 0
+                                                             },
+                                                    "stats": {
+                                                                  "attack": 158,
+                                                                 "defense": 202,
+                                                                   "maxhp": 232,
+                                                                   "spatk": 163,
+                                                                   "spdef": 168,
+                                                                   "speed": 162
+                                                             },
+                                                   "status": "NONE",
+                                                "subStatus": [],
+                                            "trapping move": 0,
+                                                    "turns": 0,
+                                                     "type": "GRASS",
+                                               "wrap count": 0
+                                        },
+                             "weather": "Clear"
                    },
     "bug contest": [],
-     "enemyParty": {
-                       "length": 5,
-                         "mons": [ "XATU", "JYNX", "EXEGGUTOR", "SLOWBRO", "XATU" ],
-                        "party": [ {
-                                           "dvs": {
-                                                      "atk": 13,
-                                                      "def": 12,
-                                                       "hp": 11,
-                                                      "spc": 13,
-                                                      "spd": 13
-                                                  },
-                                           "exp": 262144,
-                                        "gender": "♂",
-                                     "happiness": 255,
-                                            "hp": 192,
-                                            "id": 33364,
-                                          "item": "NO ITEM",
-                                         "level": 64,
-                                         "moves": [ {
-                                                      "curpp": 30,
-                                                      "maxpp": 30,
-                                                       "name": "QUICK ATTACK",
-                                                       "ppUp": 0
-                                                  }, {
-                                                      "curpp": 10,
-                                                      "maxpp": 15,
-                                                       "name": "FUTURE SIGHT",
-                                                       "ppUp": 0
-                                                  }, {
-                                                      "curpp": 10,
-                                                      "maxpp": 10,
-                                                       "name": "CONFUSE RAY",
-                                                       "ppUp": 0
-                                                  }, {
-                                                      "curpp": 10,
-                                                      "maxpp": 10,
-                                                       "name": "PSYCHIC M",
-                                                       "ppUp": 0
-                                                  } ],
-                                      "nickname": "XATU",
-                                       "pokerus": {
-                                                       "count": "Uninfected",
-                                                      "strain": "None"
-                                                  },
-                                       "species": "XATU",
-                                       "statexp": {
-                                                      "atk": 17600,
-                                                      "def": 17600,
-                                                       "hp": 17600,
-                                                      "spc": 17600,
-                                                      "spd": 17600
-                                                  },
-                                         "stats": {
-                                                       "attack": 145,
-                                                      "defense": 143,
-                                                        "maxhp": 192,
-                                                        "spatk": 170,
-                                                        "spdef": 145,
-                                                        "speed": 164
-                                                  },
-                                        "status": "NONE"
-                                 }, {
-                                           "dvs": {
-                                                      "atk": 13,
-                                                      "def": 12,
-                                                       "hp": 11,
-                                                      "spc": 13,
-                                                      "spd": 13
-                                                  },
-                                           "exp": 287496,
-                                        "gender": "♀",
-                                     "happiness": 255,
-                                            "hp": 198,
-                                            "id": 33364,
-                                          "item": "NO ITEM",
-                                         "level": 66,
-                                         "moves": [ {
-                                                      "curpp": 10,
-                                                      "maxpp": 10,
-                                                       "name": "DOUBLESLAP",
-                                                       "ppUp": 0
-                                                  }, {
-                                                      "curpp": 10,
-                                                      "maxpp": 10,
-                                                       "name": "LOVELY KISS",
-                                                       "ppUp": 0
-                                                  }, {
-                                                      "curpp": 15,
-                                                      "maxpp": 15,
-                                                       "name": "ICE PUNCH",
-                                                       "ppUp": 0
-                                                  }, {
-                                                      "curpp": 10,
-                                                      "maxpp": 10,
-                                                       "name": "PSYCHIC M",
-                                                       "ppUp": 0
-                                                  } ],
-                                      "nickname": "JYNX",
-                                       "pokerus": {
-                                                       "count": "Uninfected",
-                                                      "strain": "None"
-                                                  },
-                                       "species": "JYNX",
-                                       "statexp": {
-                                                      "atk": 18400,
-                                                      "def": 18400,
-                                                       "hp": 18400,
-                                                      "spc": 18400,
-                                                      "spd": 18400
-                                                  },
-                                         "stats": {
-                                                       "attack": 110,
-                                                      "defense": 89,
-                                                        "maxhp": 198,
-                                                        "spatk": 196,
-                                                        "spdef": 170,
-                                                        "speed": 170
-                                                  },
-                                        "status": "NONE"
-                                 }, {
-                                           "dvs": {
-                                                      "atk": 13,
-                                                      "def": 12,
-                                                       "hp": 11,
-                                                      "spc": 13,
-                                                      "spd": 13
-                                                  },
-                                           "exp": 359370,
-                                        "gender": "♂",
-                                     "happiness": 255,
-                                            "hp": 238,
-                                            "id": 33364,
-                                          "item": "NO ITEM",
-                                         "level": 66,
-                                         "moves": [ {
-                                                      "curpp": 20,
-                                                      "maxpp": 20,
-                                                       "name": "REFLECT",
-                                                       "ppUp": 0
-                                                  }, {
-                                                      "curpp": 10,
-                                                      "maxpp": 10,
-                                                       "name": "LEECH SEED",
-                                                       "ppUp": 0
-                                                  }, {
-                                                      "curpp": 15,
-                                                      "maxpp": 20,
-                                                       "name": "SEED BOMB",
-                                                       "ppUp": 0
-                                                  }, {
-                                                      "curpp": 10,
-                                                      "maxpp": 10,
-                                                       "name": "PSYCHIC M",
-                                                       "ppUp": 0
-                                                  } ],
-                                      "nickname": "EXEGGUTOR",
-                                       "pokerus": {
-                                                       "count": "Uninfected",
-                                                      "strain": "None"
-                                                  },
-                                       "species": "EXEGGUTOR",
-                                       "statexp": {
-                                                      "atk": 18400,
-                                                      "def": 18400,
-                                                       "hp": 18400,
-                                                      "spc": 18400,
-                                                      "spd": 18400
-                                                  },
-                                         "stats": {
-                                                       "attack": 170,
-                                                      "defense": 155,
-                                                        "maxhp": 238,
-                                                        "spatk": 209,
-                                                        "spdef": 130,
-                                                        "speed": 117
-                                                  },
-                                        "status": "NONE"
-                                 }, {
-                                           "dvs": {
-                                                      "atk": 13,
-                                                      "def": 12,
-                                                       "hp": 11,
-                                                      "spc": 13,
-                                                      "spd": 13
-                                                  },
-                                           "exp": 287496,
-                                        "gender": "♂",
-                                     "happiness": 255,
-                                            "hp": 238,
-                                            "id": 33364,
-                                          "item": "NO ITEM",
-                                         "level": 66,
-                                         "moves": [ {
-                                                      "curpp": 10,
-                                                      "maxpp": 10,
-                                                       "name": "CURSE",
-                                                       "ppUp": 0
-                                                  }, {
-                                                      "curpp": 20,
-                                                      "maxpp": 20,
-                                                       "name": "AMNESIA",
-                                                       "ppUp": 0
-                                                  }, {
-                                                      "curpp": 15,
-                                                      "maxpp": 15,
-                                                       "name": "BODY SLAM",
-                                                       "ppUp": 0
-                                                  }, {
-                                                      "curpp": 10,
-                                                      "maxpp": 10,
-                                                       "name": "PSYCHIC M",
-                                                       "ppUp": 0
-                                                  } ],
-                                      "nickname": "SLOWBRO",
-                                       "pokerus": {
-                                                       "count": "Uninfected",
-                                                      "strain": "None"
-                                                  },
-                                       "species": "SLOWBRO",
-                                       "statexp": {
-                                                      "atk": 18400,
-                                                      "def": 18400,
-                                                       "hp": 18400,
-                                                      "spc": 18400,
-                                                      "spd": 18400
-                                                  },
-                                         "stats": {
-                                                       "attack": 143,
-                                                      "defense": 188,
-                                                        "maxhp": 238,
-                                                        "spatk": 176,
-                                                        "spdef": 150,
-                                                        "speed": 84
-                                                  },
-                                        "status": "NONE"
-                                 }, {
-                                           "dvs": {
-                                                      "atk": 13,
-                                                      "def": 12,
-                                                       "hp": 11,
-                                                      "spc": 13,
-                                                      "spd": 13
-                                                  },
-                                           "exp": 314432,
-                                        "gender": "♂",
-                                     "happiness": 255,
-                                            "hp": 204,
-                                            "id": 33364,
-                                          "item": "NO ITEM",
-                                         "level": 68,
-                                         "moves": [ {
-                                                      "curpp": 30,
-                                                      "maxpp": 30,
-                                                       "name": "QUICK ATTACK",
-                                                       "ppUp": 0
-                                                  }, {
-                                                      "curpp": 10,
-                                                      "maxpp": 15,
-                                                       "name": "FUTURE SIGHT",
-                                                       "ppUp": 0
-                                                  }, {
-                                                      "curpp": 10,
-                                                      "maxpp": 10,
-                                                       "name": "CONFUSE RAY",
-                                                       "ppUp": 0
-                                                  }, {
-                                                      "curpp": 10,
-                                                      "maxpp": 10,
-                                                       "name": "PSYCHIC M",
-                                                       "ppUp": 0
-                                                  } ],
-                                      "nickname": "XATU",
-                                       "pokerus": {
-                                                       "count": "Uninfected",
-                                                      "strain": "None"
-                                                  },
-                                       "species": "XATU",
-                                       "statexp": {
-                                                      "atk": 19200,
-                                                      "def": 19200,
-                                                       "hp": 19200,
-                                                      "spc": 19200,
-                                                      "spd": 19200
-                                                  },
-                                         "stats": {
-                                                       "attack": 154,
-                                                      "defense": 153,
-                                                        "maxhp": 204,
-                                                        "spatk": 181,
-                                                        "spdef": 154,
-                                                        "speed": 175
-                                                  },
-                                        "status": "NONE"
-                                 } ]
-                   },
            "pack": {
                        "balls": [],
                        "items": {
@@ -473,7 +171,7 @@
                                                   },
                                            "exp": 310684,
                                         "gender": "♀",
-                                     "happiness": 241,
+                                     "happiness": 240,
                                             "hp": 232,
                                             "id": 33364,
                                           "item": "NO ITEM",
@@ -531,7 +229,7 @@
                                                   },
                                            "exp": 265332,
                                         "gender": "♀",
-                                     "happiness": 217,
+                                     "happiness": 216,
                                             "hp": 167,
                                             "id": 33364,
                                           "item": "STICK",
@@ -589,7 +287,7 @@
                                                   },
                                            "exp": 263146,
                                         "gender": "♂",
-                                     "happiness": 239,
+                                     "happiness": 238,
                                             "hp": 245,
                                             "id": 33364,
                                           "item": "NO ITEM",
@@ -705,7 +403,7 @@
                                                   },
                                            "exp": 377921,
                                         "gender": "♀",
-                                     "happiness": 135,
+                                     "happiness": 133,
                                             "hp": 242,
                                             "id": 33364,
                                           "item": "NO ITEM",
@@ -763,7 +461,7 @@
                                                   },
                                            "exp": 368057,
                                         "gender": "♂",
-                                     "happiness": 108,
+                                     "happiness": 106,
                                             "hp": 176,
                                             "id": 33364,
                                           "item": "TERU-SAMA",
