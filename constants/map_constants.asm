@@ -116,7 +116,6 @@ MAP_N_A   EQU -1
 	mapgroup ROCK_TUNNEL_1F, 18, 15
 	mapgroup ROCK_TUNNEL_B1F, 18, 15
 	mapgroup VICTORY_ROAD, 36, 10
-	mapgroup MT_SILVER_RUINS, 24, 16
 
 	newgroup ; Ecruteak City
 	mapgroup ECRUTEAK_HOUSE, 9, 10
@@ -478,6 +477,7 @@ MAP_N_A   EQU -1
 	mapgroup TOHJO_FALLS_BACK_ROOM, 4, 5
 	mapgroup CELADON_DEPT_STORE_B1F, 4, 8
 	mapgroup SILVER_CAVE_DREAM_ROOM, 18, 10
+	mapgroup MT_SILVER_RUINS, 24, 16
 	mapgroup DUMMY_BLANK_MAP, 1, 1
 	
 
