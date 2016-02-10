@@ -127,8 +127,10 @@ SilverCaveRoom3_MapEventHeader: ; 0x18c644
 	db 0, 0
 
 	; warps
-	db 1
+	db 3
 	warp_def $21, $9, 2, GROUP_SILVER_CAVE_ROOM_2, MAP_SILVER_CAVE_ROOM_2
+	warp_def 7, 9, 1, GROUP_MTSILVERRUINS, MAP_MTSILVERRUINS
+	warp_def 7, 10, 2, GROUP_MTSILVERRUINS, MAP_MTSILVERRUINS
 
 	; xy triggers
 	db 0
