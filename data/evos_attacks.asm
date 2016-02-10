@@ -1491,11 +1491,11 @@ SlowpokeEvosAttacks:
 	db 9, FUTURE_SIGHT ; egg move
 	db 12, WATER_GUN
 	db 15, STOMP ; egg move
-	db 18, THUNDER_WAVE ; gen 1 move
-	db 21, CONFUSION
+	db 18, CONFUSION 
+	db 21, BUBBLEBEAM
 	db 24, CURSE
 	db 27, HEADBUTT
-	db 30, DISABLE
+	db 30, IRON_TAIL
 	db 34, ZEN_HEADBUTT ; later gen move
 	db 38, BUBBLEBEAM ; gen 1 move
 	db 42, TRI_ATTACK ; gen 1 move
@@ -1505,36 +1505,36 @@ SlowpokeEvosAttacks:
 
 SlowbroEvosAttacks:
 	db 0 ; no more evolutions
-	db 1, SAFEGUARD ; egg move
-	db 1, FUTURE_SIGHT
-	db 1, WATER_GUN
-	db 1, CONFUSION
+	db 1, HEADBUTT ; egg move
+	db 1, DISABLE
+	db 1, ZEN_HEADBUTT
+	db 1, BUBBLEBEAM
 	db 42, IRON_TAIL ; * tm move
 	db 46, AMNESIA ; *
 	db 51, TRI_ATTACK ; gen 1 move
 	db 55, BUBBLEBEAM ; gen 1 move
-	db 60, THUNDER_WAVE
+	db 60, IRON_DEFENSE
 	db 65, FLAMETHROWER ; * tutor move
-	db 70, ZEN_HEADBUTT ; later gen move
+	db 70, PSYCHIC_M ; later gen move
 	db 0 ; no more level-up moves
+
 
 MagnemiteEvosAttacks:
 	db EVOLVE_LEVEL,30,MAGNETON
 	db 0 ; no more evolutions
 	db 1, TACKLE
 	db 3, SCREECH
-	db 6, REFLECT
 	db 6, LIGHT_SCREEN
 	db 8, SPARK ; later gen move
 	db 10, SUPERSONIC
 	db 12, ROLLOUT ; tm move
-	db 15, THUNDER_WAVE
+	db 15, SONICBOOM
 	db 18, THUNDERSHOCK
-	db 21, SONICBOOM
-	db 25, SWIFT
+	db 21, SWIFT
+	db 25, IRON_HEAD
 	db 28, AGILITY ; event move
 	db 32, THUNDERBOLT ; tm move
-	db 36, SWAGGER ; tm move
+	db 36, REFLECT 
 	db 39, FLASH_CANNON ; later gen move
 	db 42, MIND_READER ; Lock-On replacement
 	db 45, ZAP_CANNON
@@ -1543,17 +1543,17 @@ MagnemiteEvosAttacks:
 
 MagnetonEvosAttacks:
 	db 0 ; no more evolutions
-	db 1, THUNDER_WAVE
+	db 1, SWIFT
 	db 1, AGILITY ; event move
-	db 1, SONICBOOM
+	db 1, IRON_HEAD
 	db 1, THUNDERSHOCK
-	db 31, IRON_HEAD ; *
-	db 34, SCREECH ; *
-	db 37, IRON_DEFENSE ; * later gen move
-	db 41, SWIFT
-	db 46, THUNDERBOLT ; tm move
+	db 31, IRON_DEFENSE  ; *
+	db 34, MIRROR_COAT ; *
+	db 37, REFLECT ; * later gen move
+	db 41, THUNDERBOLT
+	db 46, EXPLOSION 
 	db 51, TRI_ATTACK ; *
-	db 56, MIRROR_COAT
+	db 56, THUNDER
 	db 60, METAL_SOUND ; * later gen move
 	db 65, FLASH_CANNON ; later gen move
 	db 70, MIND_READER ; Lock-On replacement
@@ -3809,24 +3809,17 @@ MurkrowEvosAttacks:
 SlowkingEvosAttacks:
 	db 0 ; no more evolutions
 	db 1, TACKLE
-	db 4, GROWL
-	db 7, SAFEGUARD
-	db 10, WATER_GUN
-	db 13, FUTURE_SIGHT ; egg move
-	db 16, STOMP ; egg move
-	db 20, THUNDER_WAVE ; gen 1 move
-	db 23, CONFUSION
-	db 27, SWAGGER ; *
-	db 31, HEADBUTT
-	db 35, DISABLE
-	db 39, ZEN_HEADBUTT ; later gen move
-	db 43, BUBBLEBEAM ; gen 1 move
-	db 47, TRI_ATTACK ; gen 1 move
-	db 51, RAIN_DANCE ; tm move
-	db 55, BUBBLEBEAM
-	db 60, FOCUS_BLAST ; * later gen move
-	db 65, NASTY_PLOT ; * later gen move
-	db 70, PSYCHIC_M
+	db 5, GROWL
+	db 10, SAFEGUARD
+	db 15, WATER_GUN
+	db 20, FUTURE_SIGHT ; egg move
+	db 30, AMNESIA
+	db 40, IRON_DEFENSE ; gen 1 move
+	db 50, ZEN_HEADBUTT
+	db 60, BUBBLEBEAM ; *
+	db 70, TRI_ATTACK
+	db 80, NASTY_PLOT
+	db 90, PSYCHIC_M ; later gen move
 	db 0 ; no more level-up moves
 
 MisdreavusEvosAttacks:

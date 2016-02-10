@@ -215,10 +215,10 @@ PonytaEggMoves:
 
 SlowpokeEggMoves:
 	db BELLY_DRUM
-	db COUNTER
-	db IRON_DEFENSE
 	db MEGA_KICK
 	db SWIFT
+	db DISABLE
+	db LIGHT_SCREEN
 	db $ff
 
 FarfetchDEggMoves:
