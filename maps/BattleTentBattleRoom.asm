@@ -68,6 +68,7 @@ MapBattleTentBattleRoomBillScript1:
 	waitbutton
 	closetext
 	applymovement $2, MapBattleTentBattleRoomMovementData9
+	loadfont
 	verbosegiveitem HM_WHIRLPOOL, 1
 	iffalse BillStandingBy
 	writetext MapBattleTentBattleRoomBillText5
