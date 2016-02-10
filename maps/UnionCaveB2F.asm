@@ -28,7 +28,7 @@ UnknownScript_0x5a31c: ; 0x5a31c
 SurfScript_0x5a31f: ; 0x5a31f
 	faceplayer
 	cry LAPRAS
-	loadpokedata LAPRAS, 20
+	loadpokedata LAPRAS, 45
 	startbattle
 	writebyte LAPRAS
 	disappear $7
