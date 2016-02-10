@@ -85,6 +85,14 @@ UnknownText_0x18c63f: ; 0x18c63f
 	line $56
 	done
 ; 0x18c644
+
+UnknownText_MoreText1: ; 0x18c63c
+	text "start9"
+	done
+
+UnknownText_MoreText1: 
+	text "select"
+	done
 	
 RuinsEntranceSignScript:
 	jumptext RuinsEntranceText
@@ -92,9 +100,9 @@ RuinsEntranceSignScript:
 RuinsEntranceText:
 	text "There's a piece"
     line "of text here<...>"
-	para "A LOST PIECE OF"
-	line "THE WORLD, CAST"
-	cont "DOWN BY THE"
+	para "A PIECE OF THE"
+	line "WORLD IS MISSING,"
+	cont "CAST DOWN BY THE"
 	cont "ORIGINAL ONE."
 	para "BUT HOW CAN ONE"
 	line "CAST DOWN THAT"
