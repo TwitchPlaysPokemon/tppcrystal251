@@ -133,7 +133,7 @@ function getMonBattleState(pointer)
 	return mon
 end
 
-function getSubstatus(flags, counts, subhp, lockedmove)
+function getSubstatus(flags, counts, subhp, lockedmove, disablecount)
 	local subStatus = {}
 	substatus1 = memory.readbyte(flags + 0)
 	substatus2 = memory.readbyte(flags + 1)
@@ -185,6 +185,14 @@ function getSubstatus(flags, counts, subhp, lockedmove)
 	if (AND(substatus5, 0x20) ~= 0) then table.insert(subStatus, "lock on") end
 	if (AND(substatus5, 0x40) ~= 0) then table.insert(subStatus, "destiny bond") end
 	if (AND(substatus5, 0x80) ~= 0) then table.insert(subStatus, "trapped") end
+
+	disableCount = memory.readbyte(disablecount)
+	if disableCount ~= 0 then
+		Disabled = {}
+		Disabled["count"] = AND(disableCount, 0x0f)
+		Disabled["move idx"] = AND(disableCount, 0xf0) / 0x10
+		table.insert(subStatus, Disabled)
+	end
 	return subStatus
 end
 
@@ -228,7 +236,7 @@ end
 function getPlayerPokemonData()
 	playerMon = getMonBattleState(BattleMonSpecies)
 	if playerMon == nil then return end
-	playerMon["subStatus"] = getSubstatus(PlayerSubStatus1, PlayerRolloutCount, PlayerSubstituteHP, LastPlayerMon)
+	playerMon["subStatus"] = getSubstatus(PlayerSubStatus1, PlayerRolloutCount, PlayerSubstituteHP, LastPlayerMove, PlayerDisableCount)
 	playerMon["screens"] = getScreens(PlayerScreens, PlayerSafeguardCount)
 	playerMon["turns"] = memory.readbyte(PlayerTurnsTaken)
 	playerMon["stat levels"] = getStatLevels(PlayerAtkLevel)
@@ -253,7 +261,7 @@ end
 function getEnemyPokemonData()
 	enemyMon = getMonBattleState(EnemyMonSpecies)
 	if enemyMon == nil then return end
-	enemyMon["subStatus"] = getSubstatus(EnemySubStatus1, EnemyRolloutCount, EnemySubstituteHP, LastPlayerMove)
+	enemyMon["subStatus"] = getSubstatus(EnemySubStatus1, EnemyRolloutCount, EnemySubstituteHP, LastEnemyMove, EnemyDisableCount)
 	enemyMon["screens"] = getScreens(EnemyScreens, PlayerLightScreenCount)
 	enemyMon["turns"] = memory.readbyte(EnemyTurnsTaken)
 	enemyMon["stat levels"] = getStatLevels(EnemyAtkLevel)
