@@ -4,6 +4,7 @@
 from __future__ import division
 import math
 import random
+from flask import Flask
 import json
 import logging
 import os
@@ -20,6 +21,8 @@ import os
 SCRIPT_DIR = os.path.dirname(os.path.realpath(__file__))
 JSON_FILE_PATH = os.path.join(SCRIPT_DIR, "battlestate.json")
 MOVES_FILE_PATH = os.path.join(SCRIPT_DIR, "AiMoves.txt")
+
+app = Flask(__name__)
 
 mondata = {}
 
@@ -1608,16 +1611,24 @@ class AI(object):
                 if tempy == len(mondata[0]['moves']):
                     break
         return self.theaction
+        
+@app.route('/ai/<output_table>')   
+def calculatemove(output_table):
+    aiaction = Artificial.MainBattle(output_table)
+    print("This came from the LUA: ", output_table)
+    print("AI response: ", aiaction)
+    return aiaction
 
 def main():
     Artificial = AI()
-    battle_state = json.loads(open(JSON_FILE_PATH).read(), encoding="utf-8")
+    app.run()
+    #battle_state = json.loads(open(JSON_FILE_PATH).read(), encoding="utf-8")
 
-    while True:
-        print(Artificial.MainBattle(battle_state))
-        battle_state = Artificial.jsonlist
-        #placeholder to prevent infinite looping
-        input('Action Above is best move (0-3 = moves, 4-9 = mon switch, 10-11 = use bag items) --- Press enter to continue')
+    #while True:
+    #    print(Artificial.MainBattle(battle_state))
+    #    battle_state = Artificial.jsonlist
+    #    #placeholder to prevent infinite looping
+    #    input('Action Above is best move (0-3 = moves, 4-9 = mon switch, 10-11 = use bag items) --- Press enter to continue')
 
 
 if __name__ == '__main__':
