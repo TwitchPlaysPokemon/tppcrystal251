@@ -2147,21 +2147,23 @@ RhydonEvosAttacks:
 ChanseyEvosAttacks:
 	db EVOLVE_HAPPINESS, TR_ANYTIME, BLISSEY
 	db 0 ; no more evolutions
-	db 1, POUND
-	db 4, GROWL
-	db 8, DOUBLESLAP
-	db 11, TAIL_WHIP
+	db 1, HEADBUTT
+	db 1, GROWL
+	db 4, DOUBLESLAP
+	db 7, TAIL_WHIP
+	db 11, SING
 	db 14, DOUBLE_EDGE
 	db 17, METRONOME
-	db 20, SING
-	db 24, MINIMIZE
-	db 29, PSYWAVE ; gen 1 move
-	db 33, DEFENSE_CURL
-	db 36, ROLLOUT
-	db 40, SOFTBOILED
-	db 45, SEISMIC_TOSS ; later gen move
-	db 50, BUBBLEBEAM ; gen 1 move
-	db 55, TRI_ATTACK ; gen 1 move
+	db 20, DEFENSE_CURL
+	db 24, ROLLOUT
+	db 29, MINIMIZE 
+	db 32, BUBBLEBEAM
+	db 35, PSYWAVE ; gen 1 move
+	db 38, LIGHT_SCREEN
+	db 40, SOFTBOILED 
+	db 45, TRI_ATTACK ; later gen move 
+	db 50, SEISMIC_TOSS ; gen 1 move
+	db 55, SAFEGUARD ; gen 1 move
 	db 0 ; no more level-up moves
 
 TangelaEvosAttacks:
@@ -2992,7 +2994,7 @@ TyphlosionEvosAttacks:
 	db 40, IRON_TAIL ; tm move
 	db 44, HEAT_WAVE ; * later gen move
 	db 48, THRASH
-	db 52, SMOKESCREEN
+	db 52, ROAR
 	db 56, SUBMISSION ; egg move
 	db 61, FLAMETHROWER
 	db 65, SHARPEN ; * illegal move
@@ -4645,23 +4647,25 @@ MiltankEvosAttacks:
 
 BlisseyEvosAttacks:
 	db 0 ; no more evolutions
-	db 1, POUND
-	db 5, GROWL
-	db 10, DOUBLESLAP
-	db 15, TAIL_WHIP
-	db 20, DOUBLE_EDGE
-	db 25, IRON_TAIL ; * later gen move
-	db 30, SING
-	db 35, MINIMIZE
-	db 40, PSYWAVE ; gen 1 move
-	db 45, DEFENSE_CURL
-	db 50, ROLLOUT
-	db 55, COUNTER ; * later gen move
-	db 60, TRI_ATTACK ; gen 1 move
-	db 65, SOFTBOILED
-	db 70, LIGHT_SCREEN
-	db 75, BUBBLEBEAM ; gen 1 move	
-	db 80, METRONOME
+	db 1, HEADBUTT
+	db 1, GROWL
+	db 4, DOUBLESLAP
+	db 8, TAIL_WHIP
+	db 12, SWEET_KISS
+	db 16, DOUBLE_EDGE ; * later gen move
+	db 20, METRONOME
+	db 24, CHARM
+	db 28, MUD_SLAP ; gen 1 move
+	db 32, MEGA_KICK
+	db 37, PSYWAVE
+	db 42, REFLECT ; * later gen move
+	db 47, HYPER_BEAM ; gen 1 move
+	db 52, BIDE
+	db 57, HEAL_BELL
+	db 62, TRI_ATTACK ; gen 1 move	
+	db 67, SOFTBOILED
+	db 72, SEISMIC_TOSS
+	db 77, COUNTER
 	db 0 ; no more level-up moves
 
 RaikouEvosAttacks:
@@ -4720,53 +4724,55 @@ LarvitarEvosAttacks:
 	db EVOLVE_LEVEL, 30, PUPITAR
 	db 0 ; no more evolutions
 	db 1, SCRATCH ; illegal move
-	db 3, LEER
+	db 1, LEER
+	db 3, MUD_SLAP
 	db 6, SANDSTORM
 	db 9, PURSUIT ; egg move
 	db 12, ROCK_THROW ; illegal move
 	db 15, SCREECH
 	db 18, STOMP ; egg move
-	db 21, SCARY_FACE
-	db 24, BITE
-	db 27, IRON_TAIL ; later gen move
-	db 31, ROCK_SLIDE
-	db 35, IRON_DEFENSE ; later gen move
-	db 39, CRUNCH
-	db 42, THRASH
-	db 45, EARTHQUAKE
+	db 21, BITE
+	db 24, ROCK_POLISH
+	db 27, DIG ; later gen move
+	db 31, CRUNCH
+	db 34, IRON_TAIL
+	db 37, ROCK_SLIDE ; later gen move
+	db 40, IRON_DEFENSE
+	db 43, THRASH
+	db 46, EARTHQUAKE
 	db 0 ; no more level-up moves
 
 PupitarEvosAttacks:
 	db EVOLVE_LEVEL, 55, TYRANITAR
 	db 0 ; no more evolutions
-	db 1, ROCK_THROW ; illegal move
-	db 1, SCARY_FACE
-	db 1, BITE
-	db 1, IRON_TAIL ; later gen move
-	db 33, DIG ; * later gen move
+	db 1, BITE ; illegal move
+	db 1, ROCK_POLISH
+	db 1, ROCK_THROW
+	db 1, DIG ; later gen move
+	db 33, HEADBUTT ; * later gen move
 	db 38, IRON_DEFENSE ; later gen move
-	db 43, OUTRAGE ; * egg move
-	db 48, CRUNCH
-	db 52, ANCIENTPOWER ; * egg move
-	db 56, SANDSTORM
-	db 60, THRASH
+	db 43, ANCIENTPOWER ; * egg move
+	db 48, IRON_HEAD
+	db 52, OUTRAGE ; * egg move
+	db 56, THRASH
+	db 60, ROCK_SLIDE
 	db 65, EARTHQUAKE
 	db 0 ; no more level-up moves
 
 TyranitarEvosAttacks:
-	db 0 ; no more evolutions
+	db 0 ; no more evolutions IRON_TAIL
+	db 1, IRON_DEFENSE
 	db 1, OUTRAGE
-	db 1, DIG
-	db 1, SCARY_FACE
-	db 1, ROCK_SLIDE
-	db 58, CRUNCH
-	db 62, ROCK_POLISH
+	db 1, IRON_HEAD
+	db 1, ANCIENTPOWER
+	db 58, METAL_SOUND
+	db 62, DARK_PULSE
 	db 66, HYPER_BEAM
 	db 70, EARTHQUAKE
-	db 75, ANCIENTPOWER
-	db 80, METAL_SOUND ; * illegal move
+	db 75, ROCK_SLIDE
+	db 80, MEGA_KICK ; * illegal move
 	db 85, ROAR
-	db 90, DARK_PULSE ; * later gen move
+	db 90, CRUNCH ; * later gen move 
 	db 0 ; no more level-up moves
 
 LugiaEvosAttacks:

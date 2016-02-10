@@ -10429,7 +10429,7 @@ Function11485: ; 11485
 
 Function11490: ; 11490
 	ld a, $14
-	ld [wd46c], a
+	ld [wd46c], a ;load in bug catching timer
 	ld a, $0
 	ld [wd46d], a
 	call UpdateTime
@@ -15267,9 +15267,9 @@ Function13575: ; 13575
 
 Function135db: ; 135db
 	xor a
-	ld [wdf9c], a
+	ld [wdf9c], a ;clear contest mon
 	ld a, $14
-	ld [wdc79], a
+	ld [wdc79], a ;put 20 into number of spawns
 	callba Function11490
 	ret
 ; 135eb

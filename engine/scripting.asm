@@ -190,17 +190,17 @@ ENDC
 	dw Script_writepersonxy
 	dw Script_loademote
 	dw Script_showemote
-	dw Script_spriteface
+	dw Script_spriteface ;76
 	dw Script_follownotexact
-	dw Script_earthquake
-	dw Script_changemap
+	dw Script_earthquake ;78
+	dw Script_changemap 
 	dw Script_changeblock
 	dw Script_reloadmap
 	dw Script_reloadmappart
 	dw Script_writecmdqueue
 	dw Script_delcmdqueue
 	dw Script_playmusic
-	dw Script_playrammusic
+	dw Script_playrammusic ;80
 	dw Script_musicfadeout
 	dw Script_playmapmusic
 	dw Script_reloadmapmusic
@@ -208,7 +208,7 @@ ENDC
 	dw Script_playsound
 	dw Script_waitsfx
 	dw Script_warpsound
-	dw Script_specialsound
+	dw Script_specialsound ;88
 	dw Script_passtoengine
 	dw Script_newloadmap
 	dw Script_pause
@@ -216,7 +216,7 @@ ENDC
 	dw Script_priorityjump
 	dw Script_warpcheck
 	dw Script_ptpriorityjump
-	dw Script_return
+	dw Script_return ;90
 	dw Script_end
 	dw Script_reloadandreturn
 	dw Script_resetfuncs
@@ -224,7 +224,7 @@ ENDC
 	dw Script_elevator
 	dw Script_trade
 	dw Script_askforphonenumber
-	dw Script_phonecall
+	dw Script_phonecall ;98
 	dw Script_hangup
 	dw Script_describedecoration
 	dw Script_fruittree
@@ -232,7 +232,7 @@ ENDC
 	dw Script_checkphonecall
 	dw Script_verbosegiveitem
 	dw Script_verbosegiveitem2
-	dw Script_loadwilddata
+	dw Script_loadwilddata ;a0
 	dw Script_halloffame
 	dw Script_credits
 	dw Script_warpfacing
@@ -240,7 +240,7 @@ ENDC
 	dw Script_displaylocation
 	dw Script_trainerclassname
 	dw Script_name
-	dw Script_wait
+	dw Script_wait ;af
 	dw Script_unknown0xa9
 	dw Script_checkroammon
 ; 0x96e05

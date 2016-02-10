@@ -335,11 +335,6 @@ RhyhornEggMoves:
 
 ChanseyEggMoves:
 	db PRESENT
-	db LIGHT_SCREEN
-	db HEAL_BELL
-	db CHARM
-	db SWEET_KISS
-	db SAFEGUARD
 	db $ff
 
 TangelaEggMoves:
@@ -447,10 +442,10 @@ ChikoritaEggMoves:
 	db $ff
 
 CyndaquilEggMoves:
-	db FURY_ATTACK
 	db QUICK_ATTACK
 	db FORESIGHT
 	db HEADBUTT
+	db MEGA_KICK
 	db $ff
 
 TotodileEggMoves:
@@ -795,13 +790,11 @@ MiltankEggMoves:
 	db $ff
 
 LarvitarEggMoves:
-	db IRON_HEAD
 	db COUNTER
-	db MUD_SLAP
 	db DOUBLE_EDGE
 	db FOCUS_ENERGY
-	db MEGA_KICK
 	db SPITE
+	db SCARY_FACE
 	db $ff
 
 NoEggMoves:

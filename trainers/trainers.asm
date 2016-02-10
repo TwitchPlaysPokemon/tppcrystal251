@@ -871,7 +871,7 @@ Rival1Group:
 		db ICE_PUNCH
 		db DIG
 
-	db 62, CROBAT, KINGS_ROCK
+	db 65, GOLBAT, KINGS_ROCK
 		db SUPER_FANG
 		db POISON_JAB
 		db WING_ATTACK
@@ -917,7 +917,7 @@ Rival1Group:
 		db ICE_PUNCH
 		db DIG
 
-	db 62, CROBAT, KINGS_ROCK
+	db 65, GOLBAT, KINGS_ROCK
 		db SUPER_FANG
 		db POISON_JAB
 		db WING_ATTACK
@@ -963,7 +963,7 @@ Rival1Group:
 		db ICE_PUNCH
 		db DIG
 
-	db 62, CROBAT, KINGS_ROCK
+	db 65, GOLBAT, KINGS_ROCK
 		db SUPER_FANG
 		db POISON_JAB
 		db WING_ATTACK
@@ -6878,22 +6878,51 @@ SuperNerdGroup:
 ; ================================
 
 
-Rival2Group: ;not balanced yet
+Rival2Group: 
 ; ================================
 ; ================
 
 	; RIVAL2 (1)
 	db "?@"
-	db 0 ; normal
+	db (1 << TRAINERTYPE_MOVES) | (1 << TRAINERTYPE_ITEM)
 
 	; party
 
-	db 91, SNEASEL
-	db 91, GOLBAT
-	db 92, PUPITAR
-	db 92, MAGNETON
-	db 93, ALAKAZAM
-	db 95, MEGANIUM
+	db 91, SNEASEL, BRIGHTPOWDER
+		db QUICK_ATTACK
+		db SCREECH
+		db CRUNCH
+		db FURY_CUTTER
+
+	db 94, GOLBAT,LEFTOVERS
+		db TOXIC
+		db BITE
+		db CONFUSE_RAY
+		db AIR_SLASH
+
+	db 92, TYRANITAR, BLACKGLASSES
+		db ROCK_SLIDE
+		db PURSUIT
+		db ROAR
+		db ROCK_POLISH
+
+	db 92, MAGNETON, MAGNET
+		db THUNDER
+		db FLASH_CANNON
+		db THUNDER_WAVE
+		db EXPLOSION
+
+	db 93, BLISSEY, GOLD_BERRY
+		db TRI_ATTACK
+		db HEAL_BELL
+		db TOXIC
+		db SOFTBOILED
+
+	db 95, MEGANIUM, MIRACLE_SEED
+		db SEED_BOMB
+		db OUTRAGE
+		db SYNTHESIS
+		db SWORDS_DANCE
 
 	db $ff ; end
 
@@ -6901,16 +6930,45 @@ Rival2Group: ;not balanced yet
 
 	; RIVAL2 (2)
 	db "?@"
-	db 0 ; normal
+	db (1 << TRAINERTYPE_MOVES) | (1 << TRAINERTYPE_ITEM) ; normal
 
 	; party
 
-	db 54, SNEASEL
-	db 54, GOLBAT
-	db 55, PUPITAR
-	db 55, MAGNETON
-	db 56, ALAKAZAM
-	db 58, TYPHLOSION
+	db 91, SNEASEL, BRIGHTPOWDER
+		db QUICK_ATTACK
+		db SCREECH
+		db CRUNCH
+		db FURY_CUTTER
+
+	db 94, GOLBAT,LEFTOVERS
+		db TOXIC
+		db BITE
+		db CONFUSE_RAY
+		db AIR_SLASH
+
+	db 92, TYRANITAR, BLACKGLASSES
+		db ROCK_SLIDE
+		db PURSUIT
+		db ROAR
+		db ROCK_POLISH
+
+	db 92, MAGNETON, MAGNET
+		db THUNDER
+		db FLASH_CANNON
+		db THUNDER_WAVE
+		db EXPLOSION
+
+	db 93, BLISSEY, GOLD_BERRY
+		db TRI_ATTACK
+		db HEAL_BELL
+		db TOXIC
+		db SOFTBOILED
+
+	db 95, TYPHLOSION, CHARCOAL
+		db WILLOWISP
+		db HEAT_WAVE
+		db EARTHQUAKE
+		db ROAR
 
 	db $ff ; end
 
@@ -6918,16 +6976,45 @@ Rival2Group: ;not balanced yet
 
 	; RIVAL2 (3)
 	db "?@"
-	db 0 ; normal
+	db (1 << TRAINERTYPE_MOVES) | (1 << TRAINERTYPE_ITEM) ; normal
 
 	; party
 
-	db 54, SNEASEL
-	db 54, GOLBAT
-	db 55, PUPITAR
-	db 55, MAGNETON
-	db 56, ALAKAZAM
-	db 58, FERALIGATR
+	db 91, SNEASEL, BRIGHTPOWDER
+		db QUICK_ATTACK
+		db SCREECH
+		db CRUNCH
+		db FURY_CUTTER
+
+	db 94, GOLBAT,LEFTOVERS
+		db TOXIC
+		db BITE
+		db CONFUSE_RAY
+		db AIR_SLASH
+
+	db 92, TYRANITAR, BLACKGLASSES
+		db ROCK_SLIDE
+		db PURSUIT
+		db ROAR
+		db ROCK_POLISH
+
+	db 92, MAGNETON, MAGNET
+		db THUNDER
+		db FLASH_CANNON
+		db THUNDER_WAVE
+		db EXPLOSION
+
+	db 93, BLISSEY, GOLD_BERRY
+		db TRI_ATTACK
+		db HEAL_BELL
+		db TOXIC
+		db SOFTBOILED
+
+	db 95, FERALIGATR, MYSTIC_WATER
+		db SWORDS_DANCE
+		db WATERFALL
+		db OUTRAGE
+		db AQUA_JET
 
 	db $ff ; end
 
@@ -6935,45 +7022,45 @@ Rival2Group: ;not balanced yet
 
 	; RIVAL2 (4)
 	db "?@"
-	db (1 << TRAINERTYPE_MOVES)
+	db (1 << TRAINERTYPE_MOVES) | (1 << TRAINERTYPE_ITEM) | (1 << TRAINERTYPE_MAXXP)
 
 	; party
 
-	db 100, SNEASEL
-		db QUICK_ATTACK
-		db SCREECH
-		db FAINT_ATTACK
-		db FURY_CUTTER
+	db 100, SNEASEL, BLACKGLASSES
+		db IRON_TAIL
+		db ICE_PUNCH
+		db CRUNCH
+		db PURSUIT
 
-	db 100, CROBAT
-		db TOXIC
-		db BITE
+	db 100, CROBAT, KINGS_ROCK
+		db SLUDGE_BOMB
+		db NASTY_PLOT
 		db CONFUSE_RAY
-		db WING_ATTACK
+		db AIR_SLASH
 
-	db 100, MAGNETON
-		db THUNDER
-		db SONICBOOM
+	db 100, MAGNETON, MAGNET
+		db THUNDERBOLT
+		db FLASH_CANNON
 		db THUNDER_WAVE
-		db SWIFT
-
-	db 100, GENGAR
-		db MEAN_LOOK
-		db CURSE
-		db SHADOW_BALL
-		db CONFUSE_RAY
-
-	db 100, ALAKAZAM
-		db RECOVER
-		db FUTURE_SIGHT
-		db PSYCHIC_M
 		db REFLECT
 
-	db 100, MEGANIUM
-		db GIGA_DRAIN
-		db BODY_SLAM
-		db LIGHT_SCREEN
-		db SAFEGUARD
+	db 100, TYRANITAR, HARD_STONE
+		db CRUNCH
+		db CURSE
+		db ROCK_SLIDE
+		db FIRE_PUNCH
+
+	db 100, BLISSEY, LEFTOVERS
+		db REFLECT
+		db SOFTBOILED
+		db TOXIC
+		db SEISMIC_TOSS
+
+	db 100, MEGANIUM, GOLD_BERRY
+		db SOLARBEAM
+		db SYNTHESIS
+		db EARTH_POWER
+		db SUNNY_DAY
 
 	db $ff ; end
 
@@ -6981,45 +7068,45 @@ Rival2Group: ;not balanced yet
 
 	; RIVAL2 (5)
 	db "?@"
-	db (1 << TRAINERTYPE_MOVES)
+	db (1 << TRAINERTYPE_MOVES) | (1 << TRAINERTYPE_ITEM) | (1 << TRAINERTYPE_MAXXP)
 
 	; party
 
-	db 100, SNEASEL
-		db QUICK_ATTACK
-		db SCREECH
-		db FAINT_ATTACK
-		db FURY_CUTTER
+	db 100, SNEASEL, BLACKGLASSES
+		db IRON_TAIL
+		db ICE_PUNCH
+		db CRUNCH
+		db PURSUIT
 
-	db 100, CROBAT
-		db TOXIC
-		db BITE
+	db 100, CROBAT, KINGS_ROCK
+		db SLUDGE_BOMB
+		db NASTY_PLOT
 		db CONFUSE_RAY
-		db WING_ATTACK
+		db AIR_SLASH
 
-	db 100, MAGNETON
-		db THUNDER
-		db SONICBOOM
+	db 100, MAGNETON, MAGNET
+		db THUNDERBOLT
+		db FLASH_CANNON
 		db THUNDER_WAVE
-		db SWIFT
-
-	db 100, GENGAR
-		db MEAN_LOOK
-		db CURSE
-		db SHADOW_BALL
-		db CONFUSE_RAY
-
-	db 100, ALAKAZAM
-		db RECOVER
-		db FUTURE_SIGHT
-		db PSYCHIC_M
 		db REFLECT
 
-	db 100, TYPHLOSION
-		db SMOKESCREEN
-		db QUICK_ATTACK
+	db 100, TYRANITAR, HARD_STONE
+		db CRUNCH
+		db CURSE
+		db ROCK_SLIDE
+		db FIRE_PUNCH
+
+	db 100, BLISSEY, LEFTOVERS
+		db REFLECT
+		db SOFTBOILED
+		db TOXIC
+		db SEISMIC_TOSS
+
+	db 100, TYPHLOSION, CHARCOAL
+		db WILD_CHARGE
+		db EARTHQUAKE
 		db FIRE_BLAST
-		db SWIFT
+		db WILLOWISP
 
 	db $ff ; end
 
@@ -7027,45 +7114,45 @@ Rival2Group: ;not balanced yet
 
 	; RIVAL2 (6)
 	db "?@"
-	db (1 << TRAINERTYPE_MOVES)
+	db (1 << TRAINERTYPE_MOVES) | (1 << TRAINERTYPE_ITEM) | (1 << TRAINERTYPE_MAXXP)
 
 	; party
 
-	db 100, SNEASEL
-		db QUICK_ATTACK
-		db SCREECH
-		db FAINT_ATTACK
-		db FURY_CUTTER
+	db 100, SNEASEL, BLACKGLASSES
+		db IRON_TAIL
+		db ICE_PUNCH
+		db CRUNCH
+		db PURSUIT
 
-	db 100, CROBAT
-		db TOXIC
-		db BITE
+	db 100, CROBAT, KINGS_ROCK
+		db SLUDGE_BOMB
+		db NASTY_PLOT
 		db CONFUSE_RAY
-		db WING_ATTACK
+		db AIR_SLASH
 
-	db 100, MAGNETON
+	db 100, MAGNETON, MAGNET
 		db THUNDER
-		db SONICBOOM
+		db FLASH_CANNON
 		db THUNDER_WAVE
-		db SWIFT
-
-	db 100, GENGAR
-		db MEAN_LOOK
-		db CURSE
-		db SHADOW_BALL
-		db CONFUSE_RAY
-
-	db 100, ALAKAZAM
-		db RECOVER
-		db FUTURE_SIGHT
-		db PSYCHIC_M
 		db REFLECT
 
-	db 100, FERALIGATR
-		db SURF
+	db 100, TYRANITAR, HARD_STONE
+		db CRUNCH
+		db CURSE
+		db ROCK_SLIDE
+		db FIRE_PUNCH
+
+	db 100, BLISSEY, LEFTOVERS
+		db REFLECT
+		db SOFTBOILED
+		db TOXIC
+		db SEISMIC_TOSS
+
+	db 100, FERALIGATR, MYSTIC_WATER
+		db HYDRO_PUMP
 		db RAIN_DANCE
-		db SLASH
-		db SCREECH
+		db ICE_PUNCH
+		db OUTRAGE
 
 	db $ff ; end
 
