@@ -85,7 +85,35 @@ UnknownText_0x18c63f: ; 0x18c63f
 	line $56
 	done
 ; 0x18c644
+	
+RuinsEntranceSignScript:
+	jumptext RuinsEntranceText
 
+RuinsEntranceText:
+	text "There's a piece"
+    line "of text here<...>"
+	para "A LOST PIECE OF"
+	line "THE WORLD, CAST"
+	cont "DOWN BY THE"
+	cont "ORIGINAL ONE."
+	para "BUT HOW CAN ONE"
+	line "CAST DOWN THAT"
+	cont "WHICH DOES NOT"
+	cont "EXIST?"
+    para "<...>"
+	para "IT WAITS FOR A"
+	line "TAMER - IT WAITS"
+	cont "FOR YOU."
+    para "<...>"
+	para "GO FORTH AND"
+	line "CONFRONT THE"
+	cont "SLEEPING ONE,"
+	cont "FOR ITS NAME IS-"
+	para "<...>"
+	para "The statue appears"
+	line "to be broken off."
+    done
+	
 SilverCaveRoom3_MapEventHeader: ; 0x18c644
 	; filler
 	db 0, 0
@@ -98,7 +126,9 @@ SilverCaveRoom3_MapEventHeader: ; 0x18c644
 	db 0
 
 	; signposts
-	db 0
+	db 2
+	signpost 8, 8, $0, RuinsEntranceSignScript
+	signpost 8, 11, $0, RuinsEntranceSignScript
 
 	; people-events
 	db 1
