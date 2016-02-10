@@ -225,28 +225,29 @@ FarfetchDEggMoves:
 	db MIRROR_MOVE
 	db QUICK_ATTACK
 	db FLAIL
-	db HEAT_WAVE
+	db REFLECT
+	db FORESIGHT
 	db $ff
 
 DoduoEggMoves:
 	db FLAIL
 	db ENDURE
 	db QUICK_ATTACK
-	db DOUBLE_EDGE
 	db BATON_PASS
+	db MUD_SLAP
+	db SWIFT
 	db $ff
 
 SeelEggMoves:
 	db ENDURE
 	db FLAIL
-	db SLAM
 	db MIMIC
+	db DISABLE
+	db DOUBLE_EDGE
 	db $ff
 
 GrimerEggMoves:
 	db HAZE
-	db MEAN_LOOK
-	db LICK
 	db SCARY_FACE
 	db MUD_SLAP
 	db $ff
