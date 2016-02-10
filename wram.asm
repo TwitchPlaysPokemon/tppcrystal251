@@ -2650,6 +2650,8 @@ TC_ChaosRate:: ds 1
 TC_ChaosRateMod:: ds 1
 TC_FadeUpdateAddr:: ds 2
 TC_CreditsPos:: ds 1
+TC_CurStripWidth:: ds 1
+TC_CurStripSpeed:: ds 1
 
 SECTION "WRAM 6", WRAMX, BANK [6]
 
