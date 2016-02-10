@@ -1,16 +1,17 @@
 
 -- PikalaxALT's first attempt at lua to read battle state
 -- AKA readbattlestate_clean.lua
--- Version 0.5.0
+-- Version 0.6.0
 JSON = (loadfile "JSON.lua")()
 package.path = package.path..';./libs/lua/?.lua'
 package.cpath = package.cpath..';./libs/?.dll'
-local http = require("socket.http") -- i did this wrong did i
+local http = require("socket.http")
+http.TIMEOUT = 0.01
 dofile("battle_ram.lua")
 dofile("constants.lua")
 
 lastBattleState = 0
-military_mode = 0
+military_mode = 1
 ignore_serial = 0 -- please set this to 0 for normal use.
 
 function getBigDW(pointer)
@@ -476,8 +477,8 @@ end
 
 function transferStateToAIAndWait(output_table)
 	repeat
-		next_move = http.request("http://localhost:12345/ai/"..JSON:encode_pretty(output_table))
-		delay_timer = 60
+		next_move = http.request("http://localhost:5000/ai/"..JSON:encode_pretty(output_table))
+		delay_timer = 120
 		repeat
 			emu.frameadvance()
 			delay_timer = delay_timer - 1
@@ -591,9 +592,16 @@ return bytes
 end
 
 function get_next_player_command()
--- ask streamer's system for the next command in JSON table
--- vba.print(playertable)
--- return playertable
+repeat
+		player_next_move = http.request("http://localhost:5000/gbmode_inputs_ai")
+		delay_timer = 60
+		repeat
+			emu.frameadvance()
+			delay_timer = delay_timer - 1
+		until delay_timer == 0
+	until player_next_move ~= nil
+	vba.print("Player response:", player_next_move)
+    return player_next_move
 end
 
 function tableLookup(tabletarget, matchingstring)
