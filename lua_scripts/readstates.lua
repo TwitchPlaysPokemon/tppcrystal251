@@ -191,7 +191,7 @@ function getSubstatus(flags, counts, subhp, lockedmove, disablecount)
 		Disabled = {}
 		Disabled["count"] = AND(disableCount, 0x0f)
 		Disabled["move idx"] = AND(disableCount, 0xf0) / 0x10
-		table.insert(subStatus, Disabled)
+		subStatus["disabled"] = Disabled
 	end
 	return subStatus
 end
