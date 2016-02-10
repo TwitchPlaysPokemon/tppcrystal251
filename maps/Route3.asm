@@ -228,7 +228,7 @@ Route3_MapEventHeader: ; 0x1ae18a
 	db 0
 
 	; signposts
-	db 1
+	db 2
 	signpost 13, 49, $0, MapRoute3Signpost0Script
 	signpost  3, 48, $0, MapRoute3PokecenterSign
 

@@ -513,17 +513,19 @@ Function9693a: ; 9693a
 	jr nz, .nothing
 
 	ld hl, StatusFlags2
-	bit 2, [hl]
-	jr z, .asm_96951
+	bit 2, [hl] ; bug contest
+	jr z, .no_bug_contest
 
 	callba Function114a4
 	jr c, .bug_contest_over
-	callba Function1150c
-	jr c, .ssanne_arrived
 	xor a
 	ret
 
-.asm_96951
+.no_bug_contest
+	callba Function1150c
+	jr nc, .skip_ssanne
+	callba Function1151c
+.skip_ssanne
 	callba Function11452
 	callba Function114e7
 	callba CheckPhoneCall
@@ -538,9 +540,6 @@ Function9693a: ; 9693a
 	ld hl, UnknownScript_0x135f8
 	call CallScript
 	scf
-	ret
-.ssanne_arrived
-	callba Function1151c
 	ret
 ; 96970
 

@@ -48799,6 +48799,7 @@ CheckAnyFaintedMon: ; 507fb
 ; 50821
 
 UnknownScript_0x50821: ; 0x50821
+; Sacred Ash
 	special HealParty
 	reloadmappart
 	playsound SFX_WARP_TO

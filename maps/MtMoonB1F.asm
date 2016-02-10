@@ -170,6 +170,14 @@ UnknownText_0x742e0: ; 0x742e0
 	cont "greatest trainer."
 	done
 ; 0x74356
+MtMoonB1FSignpostScript:
+	jumptext MtMoon1Text14
+
+MtMoon1Text14:
+	text "Beware! ZUBAT is"
+	line "a blood sucker!"
+	done
+
 
 MtMoonB1F_MapEventHeader: ; 0x1ac4af 
 	; filler
@@ -189,7 +197,8 @@ MtMoonB1F_MapEventHeader: ; 0x1ac4af
 	db 0
 
 	; signposts
-	db 0
+	db 1
+	signpost 23, 15, $0, MtMoonB1FSignpostScript
 
 	; people-events
 	db 1

@@ -160,32 +160,32 @@ ENDC
 	dw Script_buttonsound
 	dw Script_pokepic
 	dw Script_closepokepic
-	dw Script_interpretmenu
-	dw Script_interpretmenu2 ;58
+	dw Script_interpretmenu ;58
+	dw Script_interpretmenu2
 	dw Script_loadpikachudata
 	dw Script_battlecheck
 	dw Script_loadtrainerdata
 	dw Script_loadpokedata
 	dw Script_loadtrainer
 	dw Script_startbattle
-	dw Script_returnafterbattle
-	dw Script_catchtutorial ;60
+	dw Script_returnafterbattle ;60
+	dw Script_catchtutorial
 	dw Script_trainertext
 	dw Script_trainerstatus
 	dw Script_winlosstext
 	dw Script_scripttalkafter
 	dw Script_talkaftercancel
 	dw Script_talkaftercheck
-	dw Script_setlasttalked
-	dw Script_applymovement ;68
+	dw Script_setlasttalked ;68
+	dw Script_applymovement
 	dw Script_applymovement2
 	dw Script_faceplayer
 	dw Script_faceperson
 	dw Script_variablesprite
 	dw Script_disappear
 	dw Script_appear
-	dw Script_follow
-	dw Script_stopfollow ;70
+	dw Script_follow ;70
+	dw Script_stopfollow
 	dw Script_moveperson
 	dw Script_writepersonxy
 	dw Script_loademote
@@ -193,7 +193,7 @@ ENDC
 	dw Script_spriteface ;76
 	dw Script_follownotexact
 	dw Script_earthquake ;78
-	dw Script_changemap 
+	dw Script_changemap
 	dw Script_changeblock
 	dw Script_reloadmap
 	dw Script_reloadmappart
@@ -3127,9 +3127,7 @@ Script_end: ; 0x97b74
 ; script command 0x91
 
 	call ExitScriptSubroutine
-	jr c, .asm_97b7a
-	ret
-.asm_97b7a
+	ret nc
 	xor a
 	ld [ScriptRunning], a
 	ld a, SCRIPT_OFF

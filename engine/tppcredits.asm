@@ -4,6 +4,7 @@ LOGO_DELAY      EQU 300
 LOGO_DELAY_POST EQU 300
 LOGO_CHAOS_MOD  EQU 12
 LOGO_CHAOS_LAST EQU 10
+MAIN_CHAOS_RATE EQU 20
 SCROLLER_DELAY  EQU 200
 C_TC_DRAW       EQU 0
 C_TC_TITLE      EQU 1
@@ -279,6 +280,14 @@ TPPCredits_MainSceneInit::
 	xor a
 	ld [rVBK], a
 	ld [TC_CreditsPos], a
+	xor a
+	ld hl, OBPals + 8 * 7
+	ld bc, 6
+	call ByteFill
+	ld a, $ff
+	ld [OBPals + 62], a
+	ld a, $7f
+	ld [OBPals + 63], a
 	
 TPPCredits_MainScene::
 	ld a, [TC_CreditsPos]
@@ -347,12 +356,25 @@ TC_Main_Draw::
 	ld l, a
 	ld de, Unkn1Pals
 	ld bc, 8 * 8
+	push hl
 	call CopyBytes
-	; TODO fade in
+	pop hl
+	ld a, [hli]
+	ld [TC_CurStripWidth], a
+	ld a, [hli]
+	ld [TC_CurStripSpeed], a
+	call EnableLCD
+	ld a, MAIN_CHAOS_RATE
+	ld [TC_ChaosRate], a
+	ld hl, UpdateCommandChaos_Main
+	ld a, l
+	ld [TC_FadeUpdateAddr], a
+	ld a, h
+	ld [TC_FadeUpdateAddr + 1], a
+	call RelativeFade
 	ld a, [TC_CreditsPos]
 	inc a
 	ld [TC_CreditsPos], a
-	call EnableLCD
 	jp TPPCredits_MainScene
 	
 TC_Main_Title:
@@ -439,9 +461,7 @@ UpdateCommandChaos_Logo:
 	jr z, .skipupdate
 	cp $ff
 	ret z ; every commands is updated
-	ld a, [hl]
-	dec a
-	ld [hl], a
+	dec [hl]
 	cp 8
 	jr nz, .skipupdate
 	xor a
@@ -450,6 +470,118 @@ UpdateCommandChaos_Logo:
 	inc de
 	add hl, bc
 	jr .updateloop
+	
+UpdateCommandChaos_Main:
+	call Random
+	ld a, [TC_ChaosTimer]
+	dec a
+	ld [TC_ChaosTimer], a
+	and a
+	jp nz, .skip
+	ld a, MAIN_CHAOS_RATE
+	ld [TC_ChaosTimer], a
+	ld de, TC_CommandChaosTable
+	ld hl, Sprites
+.seek
+	ld a, [de]
+	and a
+	jr nz, .skipseek
+	ld a, [hRandomAdd]
+	swap a
+	rrca
+	rrca
+	and $3 ; 0-3
+	ld c, a
+	inc a  ; 1-4
+	ld [de], a
+	ld a, [hRandomAdd]
+	and $3f ; 0-63
+	ld b, a
+	ld a, [hRandomSub]
+	and $f  ; 0-15
+	add b   ; 0-78
+	add 10
+	ld [hli], a ; start y position
+	bit 1, c
+	ld a, 168
+	jr nz, .reverse
+	xor a
+.reverse
+	ld [hli], a ; start x position
+	ld a, [hRandomAdd]
+	swap a
+	ld b, 0
+	rrca
+	rl b
+	rrca
+	rl b   ; 0-3
+	and $3 ; 0-3
+	add b  ; 0-6
+	add $70
+	ld [hli], a ; tile no.
+	ld a, 7     ; pal 7 bank 0 above bg
+	ld [hl], a  ; attributes
+	jr .skip
+.skipseek
+	cp $ff
+	jr z, .skip ; table is full now
+	inc de
+	ld bc, 4
+	add hl, bc
+	jr .seek
+.skip
+	ld de, TC_CommandChaosTable
+	ld hl, Sprites + 1
+	ld bc, 4
+.updateloop
+	ld a, [de]
+	and a
+	jr z, .skipupdate
+	cp $ff
+	jp z, StripTrick_Main ; every commands is updated
+	cp 3
+	jr c, .add
+	dec [hl]
+	jr z, .set0
+	cp 4
+	dec [hl]
+	jr z, .set0
+	jr .skipupdate
+.add
+	inc [hl]
+	cp 2
+	jr nz, .done
+	inc [hl]
+.done
+	ld a, 168
+	cp [hl]
+	jr c, .skipupdate
+.set0
+	xor a
+	ld [de], a
+.skipupdate
+	inc de
+	add hl, bc
+	jr .updateloop
+	
+StripTrick_Main:
+	ld c, 80
+	ld a, [TC_CurStripWidth]
+	add c
+	ld b, a
+	sub 81
+	ld [TC_CurStripWidth], a
+.wait
+	ld a, [rLY]
+	cp c
+	jr nz, .wait
+	ld a, b
+	ld [rSCY], a
+	inc c
+	ld a, 88
+	cp c
+	jr nz, .wait
+	ret
 	
 TC_DrawGraphic:
 	push bc
@@ -551,6 +683,93 @@ Fade2White:
 .skip3
 	or b
 	ld [hli], a
+	dec d
+	jr nz, .loop2
+	ld a, 1
+	ld [hCGBPalUpdate], a
+	ld a, [TC_FadeUpdateAddr]
+	ld l, a
+	ld a, [TC_FadeUpdateAddr + 1]
+	ld h, a
+	push de
+	call _hl_ ; calls an attached update function
+	pop de
+	dec e
+	jr nz, .loop
+	ret
+	
+RelativeFade:
+; fade from BGPals to Unkn1Pals
+	ld e, 32
+.loop
+	ld hl, BGPals
+	ld bc, Unkn1Pals
+	ld d, 32
+.loop2
+	push de
+	ld a, [hl]
+	and $1f
+	ld d, a
+	ld a, [bc]
+	and $1f
+	cp d
+	jr z, .skip
+	jr c, .dec
+	inc d
+	jr z, .skip
+.dec
+	dec d
+.skip
+	ld a, [hli]
+	ld e, a
+	ld a, [hld]
+	and $3
+	rept 3
+	sla e
+	rla
+	endr
+	ld e, a
+	push hl
+	ld a, [bc]
+	ld h, a
+	inc bc
+	ld a, [bc]
+	and $3
+	rept 3
+	sla h
+	rla
+	endr
+	cp e
+	jr z, .skip2
+	jr c, .dec2
+	inc e
+.dec2
+	dec e
+.skip2
+	pop hl
+	xor a
+	rept 3
+	srl e
+	rra
+	endr
+	or d
+	ld [hli], a
+	ld a, [hl]
+	and $7c
+	ld d, a
+	ld a, [bc]
+	and $7c
+	cp d
+	jr z, .skip3
+	jr c, .dec3
+	add $4
+.dec3
+	sub $4
+.skip3
+	or e
+	ld [hli], a
+	pop de
+	inc bc
 	dec d
 	jr nz, .loop2
 	ld a, 1
@@ -769,6 +988,8 @@ TPPCreditsBG1List:
 	dw TPPCreditsBG1Attrs
 	dw TPPCreditsBG1Tiles
 	dw TPPCreditsBG1Pals
+	db 55 ; strip initial pos
+	db 1  ; strip speed
 
 TPPCreditsBG1: INCBIN "gfx/credits/bg1.w120.2bpp.lz"
 TPPCreditsBG1End
@@ -834,6 +1055,8 @@ TPPCreditsBG3List:
 	dw TPPCreditsBG3Attrs
 	dw TPPCreditsBG3Tiles
 	dw TPPCreditsBG3Pals
+	db 44 ; strip initial pos
+	db 0  ; strip speed
 
 TPPCreditsBG3: INCBIN "gfx/credits/bg3.w96.2bpp.lz"
 TPPCreditsBG3End
