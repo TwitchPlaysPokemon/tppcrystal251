@@ -90,7 +90,7 @@ UnknownText_MoreText1: ; 0x18c63c
 	text "start9"
 	done
 
-UnknownText_MoreText1: 
+UnknownText_MoreText2: 
 	text "select"
 	done
 	
