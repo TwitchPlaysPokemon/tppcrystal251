@@ -116,7 +116,7 @@ MAP_N_A   EQU -1
 	mapgroup ROCK_TUNNEL_1F, 18, 15
 	mapgroup ROCK_TUNNEL_B1F, 18, 15
 	mapgroup VICTORY_ROAD, 36, 10
-	mapgroup MTSILVERRUINS, 24, 16
+	mapgroup MT_SILVER_RUINS, 24, 16
 
 	newgroup ; Ecruteak City
 	mapgroup ECRUTEAK_HOUSE, 9, 10
