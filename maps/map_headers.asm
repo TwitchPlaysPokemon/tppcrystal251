@@ -305,6 +305,8 @@ MapGroup15:
 	map_header FastShipB1F, $13, 3, FAST_SHIP, MUSIC_SS_AQUA, 0, 1, 1
 	map_header OlivinePortPassage, $1c, 3, OLIVINE_CITY, MUSIC_VIOLET_CITY, 0, 1, 1
 	map_header VermilionPortPassage, $1c, 3, VERMILION_CITY, MUSIC_VERMILION_CITY, 0, 1, 1
+	map_header MountMoonSquare, $3, 1, MT_MOON, MUSIC_MT_MOON_SQUARE, 0, 0, 1
+	map_header MountMoonGiftShop, $10, 3, MT_MOON, MUSIC_VIRIDIAN_CITY, 0, 1, 1
 	map_header TinTowerRoof, $17, 2, TIN_TOWER, MUSIC_TIN_TOWER, 0, 0, 1
 
 MapGroup16:
