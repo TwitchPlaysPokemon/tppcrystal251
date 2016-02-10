@@ -252,7 +252,7 @@ ClearBell: ; 0x98250
 	done
 
 BellsChimeSoul:
-	para "That bell's chime"
+	text "That bell's chime"
 	line "is indicative of"
 	cont "the bearer's soul."
 
@@ -262,7 +262,6 @@ BellsChimeSoul:
 	line "make it through"
 	cont "TIN TOWER."
 
-	;para "Please, do go on."
 	done
 ; 0x9837e
 

@@ -115,8 +115,8 @@ BlaineBeforeRematchText:
 
 	para "You got them back!"
 
-	para "Thanks for brining"
-	line "these here, they"
+	para "Thanks for getting"
+	line "those for me, they"
 	cont "are the last"
 	cont "copies of the map"
 	cont "to MEW's only"
@@ -148,7 +148,7 @@ BlaineAfterRematchText:
 	cont "known habitat of"
 	cont "MEW, as thanks."
 	
-	text "I'll never give"
+	para "I'll never give"
 	line "up until the day"
 	cont "I've rebuilt the"
 	cont "Cinnabar Gym!"

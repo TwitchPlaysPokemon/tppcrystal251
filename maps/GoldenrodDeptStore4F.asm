@@ -57,16 +57,17 @@ UnknownText_0x55f08: ; 0x55f08
 UnknownText_0x55f52: ; 0x55f52
 	text "They started"
 	line "selling ways to"
-	cont "evolve your #MON"
-	cont "just recently."
+	cont "evolve your"
+	cont "#MON just"
+	cont "recently."
 	done
 ; 0x55f74
 
 UnknownText_0x55f74: ; 0x55f74
-	text "Some #MON evolve"
-	line "by being traded"
-	cont "via a Game Link"
-	cont "cable."
+	text "Some #MON can"
+	line "evolve by being"
+	cont "traded via a Game"
+	cont "Link cable."
 
 	para "I know of four:"
 	line "MACHOKE, KADABRA,"

@@ -176,7 +176,7 @@ Function97d31:: ; 97d31
 
 .asm_97d31
 	call Random
-	cp 100 << 1 ;
+	cp 200 ;
 	jr nc, .asm_97d31 ;loop until < 200
 	srl a ; divide by 2
 	ld d, a 

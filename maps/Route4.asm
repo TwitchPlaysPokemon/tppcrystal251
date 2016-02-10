@@ -177,10 +177,11 @@ UnknownText_0x1ae369: ; 0x1ae369
 ; 0x1ae384
 
 UnknownText_0x1ae384: ; 0x1ae384
-	text "MT.MOON SQUARE"
+	text "MT.MOON."
 
-	para "Just go up the"
-	line "stairs."
+	para "The GIFT SHOP is"
+	line "on the other side"
+	cont "of the cave."
 	done
 ; 0x1ae3ab
 

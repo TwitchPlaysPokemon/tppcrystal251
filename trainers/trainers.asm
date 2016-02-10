@@ -7831,11 +7831,12 @@ BurglarGroup:
 	db 0 ; normal
 
 	; party
-	db 81, HOUNDOOM
-	db 82, WEEZING
-	db 83, MUK
-	db 84, ARCANINE
-	db 85, NINETALES
+	db 95, MURKROW
+	db 96, HOUNDOOM
+	db 96, WEEZING
+	db 96, MUK
+	db 96, ARCANINE
+	db 100, NINETALES
 
 	db $ff ; end
 
@@ -7846,13 +7847,12 @@ BurglarGroup:
 	db 0 ; normal
 
 	; party
-	db 95, MURKROW
-	db 96, HOUNDOOM
-	db 96, WEEZING
-	db 96, MUK
-	db 96, ARCANINE
-	db 100, NINETALES
-
+	
+	db 81, HOUNDOOM
+	db 82, WEEZING
+	db 83, MUK
+	db 84, ARCANINE
+	db 85, NINETALES
 	db $ff ; end
 
 ; ================

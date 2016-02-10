@@ -68,8 +68,8 @@ MapBattleTentBattleRoomBillScript1:
 	waitbutton
 	closetext
 	applymovement $2, MapBattleTentBattleRoomMovementData9
+	loadfont
 	verbosegiveitem HM_WHIRLPOOL, 1
-	iffalse BillStandingBy
 	writetext MapBattleTentBattleRoomBillText5
 	waitbutton
 	closetext
@@ -79,11 +79,6 @@ MapBattleTentBattleRoomBillScript1:
 	disappear $2
 	pause 15
 	end
-BillStandingBy:
-	writetext MapBattleTentBattleRoomBillText6
-	waitbutton
-	closetext
-	end
 
 MapBattleTentBattleRoomBillScript2:
 	faceplayer
@@ -91,7 +86,6 @@ MapBattleTentBattleRoomBillScript2:
 	writetext MapBattleTentBattleRoomBillText7
 	buttonsound
 	verbosegiveitem HM_WHIRLPOOL, 1
-	iffalse BillStandingBy
 	writetext MapBattleTentBattleRoomBillText5
 	waitbutton
 	closetext
@@ -218,28 +212,17 @@ MapBattleTentBattleRoomBillText5:
 	para "repairs in this"
 	line "room."
 	
-	para "I should get mov-"
-	line "ing. See you"
-	cont "around, <PLAY_G>!"
+	para "I'm going to"
+	line "chill in my"
+	cont "GARDEN for a"
+	cont "bit."
+
+	para "You should visit"
+	line "sometime, GRAMPS"
+	cont "could use the"
+	cont "company."
 	done
 
-MapBattleTentBattleRoomBillText6:
-	text "Oh? You have no"
-	line "room for this<...>"
-
-	para "That's fine. I'll"
-	line "hang out here for"
-
-	para "a bit to finish up"
-	line "some additional"
-	cont "repairs."
-
-	para "Make space in your"
-	line "ITEMS pocket,"
-
-	para "then come find me"
-	line "again."
-	done
 
 MapBattleTentBattleRoomBillText7:
 	text "Ah, <PLAY_G>!"

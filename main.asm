@@ -15578,54 +15578,54 @@ Unknown_13783: ; 13783
 
 Unknown_13799:
 	db BUG_CATCHER, DON
-	dbw KAKUNA,     415 ;
-	dbw METAPOD,    425 ;
-	dbw CATERPIE,   396 ;
+	dbw KAKUNA,     403 ;
+	dbw METAPOD,    413 ;
+	dbw CATERPIE,   384 ;
 Unknown_137a4:
 	db BUG_CATCHER, ED
-	dbw BUTTERFREE, 564 ;
-	dbw VENOMOTH,  708 ;
-	dbw LEDYBA,   479 ;
+	dbw BUTTERFREE, 548 ;
+	dbw VENOMOTH,  687 ;
+	dbw LEDYBA,   465 ;
 Unknown_137af:
 	db COOLTRAINERM, NICK
-	dbw SCYTHER,    640 ;
-	dbw YANMA,      633 ;
-	dbw PINSIR,     634 ;
+	dbw SCYTHER,    621 ;
+	dbw YANMA,      614 ;
+	dbw PINSIR,     615 ;
 Unknown_137ba:
 	db POKEFANM, WILLIAM
-	dbw SCIZOR,     688 ;
-	dbw LEDIAN,     616 ;
-	dbw VENONAT,    480 ;
+	dbw SCIZOR,     667 ;
+	dbw LEDIAN,     598 ;
+	dbw VENONAT,    465 ;
 Unknown_137c5:
 	db BUG_CATCHER, BUG_CATCHER_BENNY
-	dbw BEEDRILL,  719 ;
-	dbw SPINARAK,   417 ;
-	dbw CATERPIE,   385  ;
+	dbw BEEDRILL,  698 ;
+	dbw SPINARAK,   399 ;
+	dbw CATERPIE,   373  ;
 Unknown_137d0:
 	db CAMPER, BARRY
-	dbw HERACROSS,  657 ;
-	dbw VENONAT,    465 ;
-	dbw KAKUNA,     400 ;
+	dbw HERACROSS,  637 ;
+	dbw VENONAT,    454 ;
+	dbw KAKUNA,     388 ;
 Unknown_137db:
 	db PICNICKER, CINDY
-	dbw BUTTERFREE, 550 ;
-	dbw METAPOD,    405 ;
-	dbw CATERPIE,   380 ;
+	dbw BUTTERFREE, 534 ;
+	dbw METAPOD,    393 ;
+	dbw CATERPIE,   369 ;
 Unknown_137e6:
 	db BUG_CATCHER, JOSH
-	dbw PARASECT,   745 ;
-	dbw ARIADOS,    685 ; 
-	dbw METAPOD,    400 ;
+	dbw PARASECT,   723 ;
+	dbw ARIADOS,    665 ; 
+	dbw METAPOD,    388 ;
 Unknown_137f1:
 	db YOUNGSTER, SAMUEL
-	dbw WEEDLE,     395 ;
-	dbw HERACROSS,  644 ;
-	dbw CATERPIE,   382 ;
+	dbw WEEDLE,     383 ;
+	dbw HERACROSS,  625 ;
+	dbw CATERPIE,   371 ;
 Unknown_137fc:
 	db SCHOOLBOY, KIPP
-	dbw VENONAT,    470 ;
-	dbw PARAS,      497 ; 
-	dbw KAKUNA,     410 ;
+	dbw VENONAT,    456 ;
+	dbw PARAS,      482 ; 
+	dbw KAKUNA,     498 ;
 ; 13807
 
 Function13807: ; 13807
