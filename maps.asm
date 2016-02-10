@@ -650,11 +650,15 @@ INCLUDE "maps/EarlyGameKanto/SSAnne9.asm"
 INCLUDE "maps/EarlyGameKanto/SSAnne10.asm"
 
 SECTION "BillsGarden", ROMX
-INCLUDE "maps/BillsGarden.asm"SECTION "BillsGarden Blockdata", ROMX
+INCLUDE "maps/BillsGarden.asm"
+
+SECTION "BillsGarden Blockdata", ROMX
 BillsGarden_BlockData: INCBIN "maps/BillsGarden.blk"
 
 SECTION "PowerplantB1", ROMX
-INCLUDE "maps/PowerplantB1.asm"SECTION "PowerplantB1 Blockdata", ROMX
+INCLUDE "maps/PowerplantB1.asm"
+
+SECTION "PowerplantB1 Blockdata", ROMX
 PowerplantB1_BlockData: INCBIN "maps/PowerplantB1.blk"
 
 SECTION "PowerplantB2", ROMX
@@ -668,5 +672,7 @@ INCLUDE "maps/RaikouRoom.asm"
 INCLUDE "maps/SuicuneRoom.asm"
 
 SECTION "MtSilverRuins", ROMX
-INCLUDE "maps/MtSilverRuins.asm"SECTION "MtSilverRuins Blockdata", ROMX
+INCLUDE "maps/MtSilverRuins.asm"
+
+SECTION "MtSilverRuins Blockdata", ROMX
 MtSilverRuins_BlockData: INCBIN "maps/MtSilverRuins.blk"

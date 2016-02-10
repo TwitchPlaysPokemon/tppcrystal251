@@ -177,9 +177,13 @@ Function3c12f: ; 3c12f
 IF !DEF(BEESAFREE)
 	callba AIChooseMove
 ELSE
+	ld a, [BattleType]
+	cp BATTLETYPE_TUTORIAL
+	jr z, .skip_ai
 	call MilitaryWaiting
 	callba ParseExternalAI
 	; jr .MilitarySkip
+.skip_ai
 ENDC
 
 	call IsMobileBattle
@@ -196,6 +200,9 @@ ENDC
 IF DEF(BEESAFREE)
 	ld a, [wMilitaryFlags]
 	bit MILITARY_ON, a
+	jr z, .call_battle_menu
+	ld a, [BattleType]
+	cp BATTLETYPE_CONTEST
 	jr z, .call_battle_menu
 	callba Military
 	push af

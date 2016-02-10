@@ -185,15 +185,24 @@ Military:
 
 	ld a, [wLinkMode]
 	and a
-	jr nz, .Invalid
+	jp nz, .Invalid
+
+	ld a, [BattleType]
+	cp BATTLETYPE_CONTEST
+	jr z, .UseParkBall
 
 	ld a, [InBattleTowerBattle]
 	and a
-	jr nz, .Invalid
+	jp nz, .Invalid
 	ld hl, NumItems
 	call CheckItem
 	jr nc, .Invalid
+	jr .continue
 
+.UseParkBall
+	ld a, PARK_BALL
+	ld [CurItem], a
+.continue
 	call Function1d6e
 	callba Function10629
 	ld a, 1

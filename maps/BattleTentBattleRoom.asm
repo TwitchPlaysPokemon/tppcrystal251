@@ -31,7 +31,7 @@ MapBattleTentBattleRoomDoorScript:
 	dw .Script
 .Script
 	jumptext MapBattleTentBattleRoomDoorText
-	
+
 MapBattleTentBattleRoomBillScript1:
 	pause 15
 	showemote $0, 2, 15
@@ -108,7 +108,7 @@ MapBattleTentBattleRoomMovementData4:
 	step_left
 	turn_head_right
 	step_end
-	
+
 MapBattleTentBattleRoomMovementData5:
 	step_left
 	step_down
@@ -127,7 +127,7 @@ MapBattleTentBattleRoomMovementData7:
 	step_down
 	step_down
 	step_end
-	
+
 MapBattleTentBattleRoomMovementData3:
 	step_up
 	step_up
@@ -145,30 +145,30 @@ MapBattleTentBattleRoomMovementData9:
 	step_left
 	step_end
 
-	
+
 MapBattleTentBattleRoomBillText1:
 	text "Ah, <PLAY_G>!"
-	
+
 	para "Thank goodness"
 	line "you've come!"
 	done
-	
+
 MapBattleTentBattleRoomBillText2:
 	text "I was sent here to"
 	line "do some fixing up."
-	
+
 	para "The city plans to"
 	line "reopen this faci-"
 	cont "lity in the near"
 	cont "future."
-	
+
 	para "But while I was"
 	line "doing repairs in"
-	
+
 	para "here, the power"
 	line "cut, and the door"
 	cont "locked behind me!"
-	
+
 	para "It must have been"
 	line "you who turned the"
 
@@ -178,10 +178,10 @@ MapBattleTentBattleRoomBillText2:
 MapBattleTentBattleRoomBillText3:
 	text "Hey! While you're"
 	line "here<...>"
-	
+
 	para "How about a"
 	line "quick battle?"
-	
+
 	para "This is the BATTLE"
 	line "TENT, after all!"
 	done
@@ -194,7 +194,7 @@ MapBattleTentBattleRoomBillText4:
 	text "That was exhilira-"
 	line "ting. Thanks for"
 	cont "that."
-	
+
 	para "Here, let me give"
 	line "you this."
 
@@ -204,23 +204,27 @@ MapBattleTentBattleRoomBillText4:
 	para "no use for it my-"
 	line "self."
 	done
-	
+
 MapBattleTentBattleRoomBillText5:
 	text "I'm pretty much"
 	line "done with the"
-	
+
 	para "repairs in this"
 	line "room."
-	
-	para "I'm going to"
-	line "chill in my"
-	cont "GARDEN for a"
-	cont "bit."
 
 	para "You should visit"
 	line "sometime, GRAMPS"
 	cont "could use the"
 	cont "company."
+
+	para "All he does is"
+	line "watch the GARDEN<...>"
+
+	para "I should get mov-"
+	line "ing. See you"
+	cont "around, <PLAY_G>!"
+	done
+	
 	done
 
 
@@ -231,24 +235,24 @@ MapBattleTentBattleRoomBillText7:
 	line "found."
 	;cont "from me."
 	done
-	
+
 MapBattleTentBattleRoomDoorText:
 	text "It's locked<...>"
 	done
-	
+
 BattleTentBattleRoom_MapEventHeader:
 
 	db 0, 0
-	
+
 	db 3
 	warp_def $7, $5, 4, GROUP_BATTLE_TENT_RUINS, MAP_BATTLE_TENT_RUINS
 	warp_def $7, $6, 4, GROUP_BATTLE_TENT_RUINS, MAP_BATTLE_TENT_RUINS
 	warp_def $0, $6, 1, GROUP_BATTLE_TENT_PC_ROOM, MAP_BATTLE_TENT_PC_ROOM
-	
+
 	db 0
-	
+
 	db 1
 	signpost $0, $6, $6, MapBattleTentBattleRoomDoorScript
-	
+
 	db 1
 	person_event SPRITE_BILL, $9, $a, $7, 0, 0, -1, -1, 0, 0, 0, MapBattleTentBattleRoomBillScript2, EVENT_BILL_IN_BATTLE_TENT_BATTLE_ROOM
