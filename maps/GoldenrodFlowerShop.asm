@@ -8,44 +8,83 @@ GoldenrodFlowerShop_MapScriptHeader: ; 0x5535b
 
 TeacherScript_0x5535d: ; 0x5535d
 	checkevent EVENT_FOUGHT_SUDOWOODO
-	iftrue UnknownScript_0x5538f
+	iftrue .Lalala
 	checkevent EVENT_GOT_SQUIRTBOTTLE
-	iftrue UnknownScript_0x55399
-	checkflag ENGINE_PLAINBADGE
-	iftrue FlowerShopWithBadge
+	iftrue .GotSquirtbottle
 	checkevent EVENT_SPOKE_TO_FLOWER_SHOP_GIRL_AT_SUDOWOODO
-	iffalse UnknownScript_0x5539f
+	iffalse .HaventMetFloria
 	checkevent EVENT_SPOKE_TO_FLOWER_SHOP_GIRL_IN_FLOWER_SHOP
-	iffalse UnknownScript_0x5538f
-	jumptextfaceplayer UnknownText_0x55463
-
-FlowerShopWithBadge:
+	iffalse .Lalala
+	checkflag ENGINE_PLAINBADGE
+	iffalse .NoPlainBadge
 	faceplayer
 	loadfont
 	writetext UnknownText_0x554c2
 	buttonsound
-	verbosegiveitem SQUIRTBOTTLE, 1
+	verbosegiveitem SQUIRTBOTTLE
 	setevent EVENT_GOT_SQUIRTBOTTLE
 	closetext
 	setevent EVENT_FLOWER_SHOP_LASS_ON_ROUTE_36
 	clearevent EVENT_FLOWER_SHOP_LASS_IN_GOLDENROD_FLOWER_SHOP
 	end
-; 0x5538f
 
-UnknownScript_0x5538f: ; 0x5538f
-	spriteface $2, $2
+.Lalala:
+	spriteface $2, LEFT
 	loadfont
 	writetext UnknownText_0x5552e
 	waitbutton
 	closetext
 	end
-; 0x55399
 
-UnknownScript_0x55399: ; 0x55399
+.GotSquirtbottle:
 	jumptextfaceplayer UnknownText_0x5550d
-; 0x5539c
 
-;UnknownScript_0x5539c: ; 0x5539c
+.NoPlainBadge:
+	jumptextfaceplayer UnknownText_0x55463
+
+.HaventMetFloria:
+	jumptextfaceplayer UnknownText_0x553d4
+
+; TeacherScript_0x5535d: ; 0x5535d
+	; checkevent EVENT_FOUGHT_SUDOWOODO
+	; iftrue UnknownScript_0x5538f
+	; checkevent EVENT_GOT_SQUIRTBOTTLE
+	; iftrue UnknownScript_0x55399
+	; checkflag ENGINE_PLAINBADGE
+	; iftrue FlowerShopWithBadge
+	; checkevent EVENT_SPOKE_TO_FLOWER_SHOP_GIRL_AT_SUDOWOODO
+	; iffalse UnknownScript_0x5539f
+	; checkevent EVENT_SPOKE_TO_FLOWER_SHOP_GIRL_IN_FLOWER_SHOP
+	; iffalse UnknownScript_0x5538f
+	; jumptextfaceplayer UnknownText_0x55463
+
+; FlowerShopWithBadge:
+	; faceplayer
+	; loadfont
+	; writetext UnknownText_0x554c2
+	; buttonsound
+	; verbosegiveitem SQUIRTBOTTLE, 1
+	; setevent EVENT_GOT_SQUIRTBOTTLE
+	; closetext
+	; setevent EVENT_FLOWER_SHOP_LASS_ON_ROUTE_36
+	; clearevent EVENT_FLOWER_SHOP_LASS_IN_GOLDENROD_FLOWER_SHOP
+	; end
+; ; 0x5538f
+
+; UnknownScript_0x5538f: ; 0x5538f
+	; spriteface $2, $2
+	; loadfont
+	; writetext UnknownText_0x5552e
+	; waitbutton
+	; closetext
+	; end
+; ; 0x55399
+
+; UnknownScript_0x55399: ; 0x55399
+	; jumptextfaceplayer UnknownText_0x5550d
+; ; 0x5539c
+
+; ;UnknownScript_0x5539c: ; 0x5539c
 	
 ; 0x5539f
 
