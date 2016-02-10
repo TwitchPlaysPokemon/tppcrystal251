@@ -1,512 +1,241 @@
 {
     "battleState": {
-                          "enemy type": "WILD",
-                        "enemypokemon": {
-                                                 "charging": 0,
-                                                      "dvs": {
-                                                                 "atk": 10,
-                                                                 "def": 2,
-                                                                  "hp": 3,
-                                                                 "spc": 3,
-                                                                 "spd": 1
-                                                             },
-                                             "future sight": {
-                                                                  "count": 0,
-                                                                 "damage": 0
-                                                             },
-                                                   "gender": "♂",
-                                                "happiness": 70,
-                                                       "hp": 160,
-                                                     "item": "NO ITEM",
-                                                "last used": "None",
-                                                    "level": 58,
-                                                    "moves": [ {
-                                                                 "curpp": 20,
-                                                                 "maxpp": 30,
-                                                                  "name": "SWORDS DANCE",
-                                                                  "ppUp": 0
-                                                             }, {
-                                                                 "curpp": 5,
-                                                                 "maxpp": 5,
-                                                                  "name": "HORN DRILL",
-                                                                  "ppUp": 0
-                                                             }, {
-                                                                 "curpp": 10,
-                                                                 "maxpp": 10,
-                                                                  "name": "MEGAHORN",
-                                                                  "ppUp": 0
-                                                             }, {
-                                                                 "curpp": 10,
-                                                                 "maxpp": 10,
-                                                                  "name": "DRILL RUN",
-                                                                  "ppUp": 0
-                                                             } ],
-                                             "rage counter": 0,
-                                                  "screens": [],
-                                                  "species": "RHYHORN",
-                                              "stat levels": {
-                                                                  "acc": 0,
-                                                                  "atk": 0,
-                                                                  "def": 0,
-                                                                  "eva": 0,
-                                                                 "satk": 0,
-                                                                 "sdef": 0,
-                                                                  "spd": 0
-                                                             },
-                                                    "stats": {
-                                                                  "attack": 103,
-                                                                 "defense": 115,
-                                                                   "maxhp": 160,
-                                                                   "spatk": 39,
-                                                                   "spdef": 39,
-                                                                   "speed": 34
-                                                             },
-                                                   "status": "NONE",
-                                                "subStatus": [],
-                                            "trapping move": 0,
-                                                    "turns": 0,
-                                                     "type": "GROUND / ROCK",
-                                               "wrap count": 0
-                                        },
-                       "playerpokemon": {
-                                                 "charging": 0,
-                                                      "dvs": {
-                                                                 "atk": 1,
-                                                                 "def": 13,
-                                                                  "hp": 15,
-                                                                 "spc": 5,
-                                                                 "spd": 7
-                                                             },
-                                             "future sight": {
-                                                                  "count": 0,
-                                                                 "damage": 0
-                                                             },
-                                                   "gender": "♀",
-                                                "happiness": 240,
-                                                       "hp": 232,
-                                                     "item": "NO ITEM",
-                                                "last used": "None",
-                                                    "level": 67,
-                                                    "moves": [ {
-                                                                 "curpp": 10,
-                                                                 "maxpp": 20,
-                                                                  "name": "PETAL DANCE",
-                                                                  "ppUp": 0
-                                                             }, {
-                                                                 "curpp": 10,
-                                                                 "maxpp": 5,
-                                                                  "name": "EARTH POWER",
-                                                                  "ppUp": 0
-                                                             }, {
-                                                                 "curpp": 10,
-                                                                 "maxpp": 10,
-                                                                  "name": "LEECH SEED",
-                                                                  "ppUp": 0
-                                                             }, {
-                                                                 "curpp": 10,
-                                                                 "maxpp": 20,
-                                                                  "name": "DRAGON PULSE",
-                                                                  "ppUp": 0
-                                                             } ],
-                                                "party idx": 0,
-                                             "rage counter": 0,
-                                                  "screens": [],
-                                                  "species": "MEGANIUM",
-                                              "stat levels": {
-                                                                  "acc": 0,
-                                                                  "atk": 0,
-                                                                  "def": 0,
-                                                                  "eva": 0,
-                                                                 "satk": 0,
-                                                                 "sdef": 0,
-                                                                  "spd": 0
-                                                             },
-                                                    "stats": {
-                                                                  "attack": 158,
-                                                                 "defense": 202,
-                                                                   "maxhp": 232,
-                                                                   "spatk": 163,
-                                                                   "spdef": 168,
-                                                                   "speed": 162
-                                                             },
-                                                   "status": "NONE",
-                                                "subStatus": [],
-                                            "trapping move": 0,
-                                                    "turns": 0,
-                                                     "type": "GRASS",
-                                               "wrap count": 0
-                                        },
-                             "weather": "Clear"
+                             "enemy type": "TRAINER",
+                           "enemypokemon": {
+                                                    "charging": 0,
+                                                         "dvs": {
+                                                                    "atk": 13,
+                                                                    "def": 13,
+                                                                     "hp": 15,
+                                                                    "spc": 13,
+                                                                    "spd": 13
+                                                                },
+                                                "future sight": {
+                                                                     "count": 0,
+                                                                    "damage": 0
+                                                                },
+                                                      "gender": "♂",
+                                                   "happiness": 70,
+                                                          "hp": 11,
+                                                        "item": "NO ITEM",
+                                                   "last used": "GROWL",
+                                                       "level": 5,
+                                                       "moves": [ {
+                                                                    "curpp": 34,
+                                                                    "maxpp": 35,
+                                                                     "name": "TACKLE",
+                                                                     "ppUp": 0
+                                                                }, {
+                                                                    "curpp": 38,
+                                                                    "maxpp": 40,
+                                                                     "name": "GROWL",
+                                                                     "ppUp": 0
+                                                                } ],
+                                                   "party idx": 0,
+                                                "rage counter": 0,
+                                                     "screens": [],
+                                                     "species": "BULBASAUR",
+                                                 "stat levels": {
+                                                                     "acc": 0,
+                                                                     "atk": 0,
+                                                                     "def": -1,
+                                                                     "eva": 0,
+                                                                    "satk": 0,
+                                                                    "sdef": 0,
+                                                                     "spd": 0
+                                                                },
+                                                       "stats": {
+                                                                     "attack": 11,
+                                                                    "defense": 7,
+                                                                      "maxhp": 21,
+                                                                      "spatk": 12,
+                                                                      "spdef": 12,
+                                                                      "speed": 10
+                                                                },
+                                                      "status": "NONE",
+                                                   "subStatus": [],
+                                               "trapping move": 0,
+                                                       "turns": 3,
+                                                        "type": "GRASS / POISON",
+                                                  "wrap count": 0
+                                           },
+                          "playerpokemon": {
+                                                    "charging": 0,
+                                                         "dvs": {
+                                                                    "atk": 15,
+                                                                    "def": 10,
+                                                                     "hp": 10,
+                                                                    "spc": 8,
+                                                                    "spd": 9
+                                                                },
+                                                "future sight": {
+                                                                     "count": 0,
+                                                                    "damage": 0
+                                                                },
+                                                      "gender": "♂",
+                                                   "happiness": 70,
+                                                          "hp": 15,
+                                                        "item": "NO ITEM",
+                                                   "last used": "TACKLE",
+                                                       "level": 5,
+                                                       "moves": [ {
+                                                                    "curpp": 33,
+                                                                    "maxpp": 35,
+                                                                     "name": "TACKLE",
+                                                                     "ppUp": 0
+                                                                }, {
+                                                                    "curpp": 29,
+                                                                    "maxpp": 30,
+                                                                     "name": "TAIL WHIP",
+                                                                     "ppUp": 0
+                                                                } ],
+                                                   "party idx": 0,
+                                                "rage counter": 0,
+                                                     "screens": [],
+                                                     "species": "SQUIRTLE",
+                                                 "stat levels": {
+                                                                     "acc": 0,
+                                                                     "atk": -2,
+                                                                     "def": 0,
+                                                                     "eva": 0,
+                                                                    "satk": 0,
+                                                                    "sdef": 0,
+                                                                     "spd": 0
+                                                                },
+                                                       "stats": {
+                                                                     "attack": 5,
+                                                                    "defense": 12,
+                                                                      "maxhp": 20,
+                                                                      "spatk": 10,
+                                                                      "spdef": 12,
+                                                                      "speed": 10
+                                                                },
+                                                      "status": "NONE",
+                                                   "subStatus": [],
+                                               "trapping move": 0,
+                                                       "turns": 3,
+                                                        "type": "WATER",
+                                                  "wrap count": 0
+                                           },
+                       "requested action": 3,
+                          "trainer class": "BLUE_RB_F",
+                          "trainer items": {
+                                               "item1": "NO ITEM",
+                                               "item2": "NO ITEM"
+                                           },
+                                "weather": "Clear"
                    },
     "bug contest": [],
+     "enemyParty": {
+                       "length": 1,
+                         "mons": [ "BULBASAUR" ],
+                        "party": [ {
+                                           "dvs": {
+                                                      "atk": 13,
+                                                      "def": 13,
+                                                       "hp": 15,
+                                                      "spc": 13,
+                                                      "spd": 13
+                                                  },
+                                           "exp": 135,
+                                        "gender": "♂",
+                                     "happiness": 255,
+                                            "hp": 21,
+                                            "id": 38863,
+                                          "item": "NO ITEM",
+                                         "level": 5,
+                                         "moves": [ {
+                                                      "curpp": 34,
+                                                      "maxpp": 35,
+                                                       "name": "TACKLE",
+                                                       "ppUp": 0
+                                                  }, {
+                                                      "curpp": 38,
+                                                      "maxpp": 40,
+                                                       "name": "GROWL",
+                                                       "ppUp": 0
+                                                  } ],
+                                      "nickname": "BULBASAUR",
+                                       "pokerus": {
+                                                       "count": "Uninfected",
+                                                      "strain": "None"
+                                                  },
+                                       "species": "BULBASAUR",
+                                       "statexp": {
+                                                      "atk": 0,
+                                                      "def": 0,
+                                                       "hp": 0,
+                                                      "spc": 0,
+                                                      "spd": 0
+                                                  },
+                                         "stats": {
+                                                       "attack": 11,
+                                                      "defense": 11,
+                                                        "maxhp": 21,
+                                                        "spatk": 12,
+                                                        "spdef": 12,
+                                                        "speed": 10
+                                                  },
+                                        "status": "NONE"
+                                 } ]
+                   },
            "pack": {
                        "balls": [],
                        "items": {
-                                        "ANTIDOTE": 6,
-                                       "FULL HEAL": 1,
-                                       "GOLD LEAF": 1,
-                                           "HP UP": 1,
-                                       "ICE BERRY": 1,
-                                      "MAX ELIXER": 1,
-                                       "MAX REPEL": 2,
-                                      "METAL COAT": 1,
-                                    "NEVERMELTICE": 1,
-                                      "RARE CANDY": 1,
-                                           "REPEL": 13,
-                                      "SHARP BEAK": 1
+                                    "POTION": 1
                                 },
-                         "key": [ "DOME FOSSIL", "S.S.TICKET", "OLD ROD", "COIN CASE", "BICYCLE", "SQUIRTBOTTLE", "RED SCALE", "GOOD ROD", "BASEMENT KEY", "CARD KEY", "CLEAR BELL", "S.S.TICKET" ],
-                        "tmhm": [ "TM01", "TM02", "TM04", "TM11", "TM12", "TM14", "TM16", "TM17", "TM18", "TM23", "TM24", "TM26", "TM31", "TM33", "TM34", "TM35", "TM37", "TM39", "TM40", "TM41", "TM42", "TM43", "TM45", "TM46", "TM47", "TM48", "TM49", "TM50", "HM01", "HM02", "HM03", "HM04", "HM05", "HM07" ]
+                         "key": [],
+                        "tmhm": []
                    },
     "playerParty": {
-                       "length": 6,
-                         "mons": [ "MEGANIUM", "FARFETCH'D", "GRANBULL", "BLASTOISE", "TYRANITAR", "HITMONTOP" ],
+                       "length": 1,
+                         "mons": [ "SQUIRTLE" ],
                         "party": [ {
                                            "dvs": {
-                                                      "atk": 1,
-                                                      "def": 13,
-                                                       "hp": 15,
-                                                      "spc": 5,
-                                                      "spd": 7
-                                                  },
-                                           "exp": 310684,
-                                        "gender": "♀",
-                                     "happiness": 240,
-                                            "hp": 232,
-                                            "id": 33364,
-                                          "item": "NO ITEM",
-                                         "level": 67,
-                                         "moves": [ {
-                                                      "curpp": 10,
-                                                      "maxpp": 20,
-                                                       "name": "PETAL DANCE",
-                                                       "ppUp": 0
-                                                  }, {
-                                                      "curpp": 10,
-                                                      "maxpp": 5,
-                                                       "name": "EARTH POWER",
-                                                       "ppUp": 0
-                                                  }, {
-                                                      "curpp": 10,
-                                                      "maxpp": 10,
-                                                       "name": "LEECH SEED",
-                                                       "ppUp": 0
-                                                  }, {
-                                                      "curpp": 10,
-                                                      "maxpp": 20,
-                                                       "name": "DRAGON PULSE",
-                                                       "ppUp": 0
-                                                  } ],
-                                      "nickname": "MEGANIUM",
-                                       "pokerus": {
-                                                       "count": "Uninfected",
-                                                      "strain": "None"
-                                                  },
-                                       "species": "MEGANIUM",
-                                       "statexp": {
-                                                      "atk": 22124,
-                                                      "def": 21043,
-                                                       "hp": 29606,
-                                                      "spc": 19673,
-                                                      "spd": 19416
-                                                  },
-                                         "stats": {
-                                                       "attack": 141,
-                                                      "defense": 180,
-                                                        "maxhp": 232,
-                                                        "spatk": 145,
-                                                        "spdef": 168,
-                                                        "speed": 144
-                                                  },
-                                        "status": "NONE"
-                                 }, {
-                                           "dvs": {
-                                                      "atk": 4,
-                                                      "def": 15,
-                                                       "hp": 5,
-                                                      "spc": 5,
-                                                      "spd": 4
-                                                  },
-                                           "exp": 265332,
-                                        "gender": "♀",
-                                     "happiness": 216,
-                                            "hp": 167,
-                                            "id": 33364,
-                                          "item": "STICK",
-                                         "level": 64,
-                                         "moves": [ {
-                                                      "curpp": 15,
-                                                      "maxpp": 15,
-                                                       "name": "DOUBLE EDGE",
-                                                       "ppUp": 0
-                                                  }, {
-                                                      "curpp": 15,
-                                                      "maxpp": 15,
-                                                       "name": "FLY",
-                                                       "ppUp": 0
-                                                  }, {
-                                                      "curpp": 30,
-                                                      "maxpp": 30,
-                                                       "name": "CUT",
-                                                       "ppUp": 0
-                                                  }, {
-                                                      "curpp": 20,
-                                                      "maxpp": 30,
-                                                       "name": "SWORDS DANCE",
-                                                       "ppUp": 0
-                                                  } ],
-                                      "nickname": "FARFETCH'D",
-                                       "pokerus": {
-                                                       "count": "Uninfected",
-                                                      "strain": "None"
-                                                  },
-                                       "species": "FARFETCH'D",
-                                       "statexp": {
-                                                      "atk": 13399,
-                                                      "def": 13828,
-                                                       "hp": 16564,
-                                                      "spc": 12840,
-                                                      "spd": 13077
-                                                  },
-                                         "stats": {
-                                                       "attack": 111,
-                                                      "defense": 113,
-                                                        "maxhp": 167,
-                                                        "spatk": 103,
-                                                        "spdef": 108,
-                                                        "speed": 104
-                                                  },
-                                        "status": "NONE"
-                                 }, {
-                                           "dvs": {
                                                       "atk": 15,
-                                                      "def": 15,
-                                                       "hp": 14,
+                                                      "def": 10,
+                                                       "hp": 10,
                                                       "spc": 8,
                                                       "spd": 9
                                                   },
-                                           "exp": 263146,
+                                           "exp": 135,
                                         "gender": "♂",
-                                     "happiness": 238,
-                                            "hp": 245,
-                                            "id": 33364,
+                                     "happiness": 70,
+                                            "hp": 15,
+                                            "id": 38863,
                                           "item": "NO ITEM",
-                                         "level": 69,
+                                         "level": 5,
                                          "moves": [ {
-                                                      "curpp": 10,
-                                                      "maxpp": 10,
-                                                       "name": "DIZZY PUNCH",
+                                                      "curpp": 33,
+                                                      "maxpp": 35,
+                                                       "name": "TACKLE",
                                                        "ppUp": 0
                                                   }, {
-                                                      "curpp": 10,
-                                                      "maxpp": 15,
-                                                       "name": "OUTRAGE",
-                                                       "ppUp": 0
-                                                  }, {
-                                                      "curpp": 10,
-                                                      "maxpp": 10,
-                                                       "name": "EARTHQUAKE",
-                                                       "ppUp": 0
-                                                  }, {
-                                                      "curpp": 20,
-                                                      "maxpp": 20,
-                                                       "name": "THUNDER WAVE",
+                                                      "curpp": 29,
+                                                      "maxpp": 30,
+                                                       "name": "TAIL WHIP",
                                                        "ppUp": 0
                                                   } ],
-                                      "nickname": "GRANBULL",
+                                      "nickname": "BET-BOY",
                                        "pokerus": {
                                                        "count": "Uninfected",
                                                       "strain": "None"
                                                   },
-                                       "species": "GRANBULL",
+                                       "species": "SQUIRTLE",
                                        "statexp": {
-                                                      "atk": 17187,
-                                                      "def": 15755,
-                                                       "hp": 18781,
-                                                      "spc": 16249,
-                                                      "spd": 17387
+                                                      "atk": 0,
+                                                      "def": 0,
+                                                       "hp": 0,
+                                                      "spc": 0,
+                                                      "spd": 0
                                                   },
                                          "stats": {
-                                                       "attack": 214,
-                                                      "defense": 150,
-                                                        "maxhp": 245,
-                                                        "spatk": 120,
-                                                        "spdef": 120,
-                                                        "speed": 102
-                                                  },
-                                        "status": "NONE"
-                                 }, {
-                                           "dvs": {
-                                                      "atk": 8,
-                                                      "def": 10,
-                                                       "hp": 1,
-                                                      "spc": 5,
-                                                      "spd": 12
-                                                  },
-                                           "exp": 372854,
-                                        "gender": "♂",
-                                     "happiness": 255,
-                                            "hp": 223,
-                                            "id": 33364,
-                                          "item": "BITTER BERRY",
-                                         "level": 71,
-                                         "moves": [ {
-                                                      "curpp": 18,
-                                                      "maxpp": 18,
-                                                       "name": "WATERFALL",
-                                                       "ppUp": 1
-                                                  }, {
-                                                      "curpp": 15,
-                                                      "maxpp": 15,
-                                                       "name": "SURF",
-                                                       "ppUp": 0
-                                                  }, {
-                                                      "curpp": 5,
-                                                      "maxpp": 5,
-                                                       "name": "BLIZZARD",
-                                                       "ppUp": 0
-                                                  }, {
-                                                      "curpp": 15,
-                                                      "maxpp": 20,
-                                                       "name": "ZEN HEADBUTT",
-                                                       "ppUp": 0
-                                                  } ],
-                                      "nickname": "BLASTOISE",
-                                       "pokerus": {
-                                                       "count": "Uninfected",
-                                                      "strain": "None"
-                                                  },
-                                       "species": "BLASTOISE",
-                                       "statexp": {
-                                                      "atk": 33415,
-                                                      "def": 32189,
-                                                       "hp": 27430,
-                                                      "spc": 25113,
-                                                      "spd": 31478
-                                                  },
-                                         "stats": {
-                                                       "attack": 166,
-                                                      "defense": 192,
-                                                        "maxhp": 223,
-                                                        "spatk": 160,
-                                                        "spdef": 188,
-                                                        "speed": 164
-                                                  },
-                                        "status": "NONE"
-                                 }, {
-                                           "dvs": {
-                                                      "atk": 3,
-                                                      "def": 4,
-                                                       "hp": 10,
-                                                      "spc": 6,
-                                                      "spd": 3
-                                                  },
-                                           "exp": 377921,
-                                        "gender": "♀",
-                                     "happiness": 133,
-                                            "hp": 242,
-                                            "id": 33364,
-                                          "item": "NO ITEM",
-                                         "level": 67,
-                                         "moves": [ {
-                                                      "curpp": 15,
-                                                      "maxpp": 15,
-                                                       "name": "CRUNCH",
-                                                       "ppUp": 0
-                                                  }, {
-                                                      "curpp": 10,
-                                                      "maxpp": 10,
-                                                       "name": "ROCK SLIDE",
-                                                       "ppUp": 0
-                                                  }, {
-                                                      "curpp": 15,
-                                                      "maxpp": 15,
-                                                       "name": "ICE PUNCH",
-                                                       "ppUp": 0
-                                                  }, {
-                                                      "curpp": 10,
-                                                      "maxpp": 15,
-                                                       "name": "OUTRAGE",
-                                                       "ppUp": 0
-                                                  } ],
-                                      "nickname": "TYRANITAR",
-                                       "pokerus": {
-                                                       "count": "Uninfected",
-                                                      "strain": "None"
-                                                  },
-                                       "species": "TYRANITAR",
-                                       "statexp": {
-                                                      "atk": 6986,
-                                                      "def": 7043,
-                                                       "hp": 12133,
-                                                      "spc": 6969,
-                                                      "spd": 7196
-                                                  },
-                                         "stats": {
-                                                       "attack": 202,
-                                                      "defense": 171,
-                                                        "maxhp": 242,
-                                                        "spatk": 154,
-                                                        "spdef": 161,
-                                                        "speed": 104
-                                                  },
-                                        "status": "NONE"
-                                 }, {
-                                           "dvs": {
-                                                      "atk": 5,
-                                                      "def": 13,
-                                                       "hp": 14,
-                                                      "spc": 6,
-                                                      "spd": 7
-                                                  },
-                                           "exp": 368057,
-                                        "gender": "♂",
-                                     "happiness": 106,
-                                            "hp": 176,
-                                            "id": 33364,
-                                          "item": "TERU-SAMA",
-                                         "level": 71,
-                                         "moves": [ {
-                                                      "curpp": 10,
-                                                      "maxpp": 10,
-                                                       "name": "DRILL RUN",
-                                                       "ppUp": 0
-                                                  }, {
-                                                      "curpp": 40,
-                                                      "maxpp": 40,
-                                                       "name": "FORESIGHT",
-                                                       "ppUp": 0
-                                                  }, {
-                                                      "curpp": 20,
-                                                      "maxpp": 20,
-                                                       "name": "COUNTER",
-                                                       "ppUp": 0
-                                                  }, {
-                                                      "curpp": 10,
-                                                      "maxpp": 20,
-                                                       "name": "HI JUMP KICK",
-                                                       "ppUp": 0
-                                                  } ],
-                                      "nickname": "HITMONTOP",
-                                       "pokerus": {
-                                                       "count": "Uninfected",
-                                                      "strain": "None"
-                                                  },
-                                       "species": "HITMONTOP",
-                                       "statexp": {
-                                                      "atk": 963,
-                                                      "def": 923,
-                                                       "hp": 840,
-                                                      "spc": 1079,
-                                                      "spd": 896
-                                                  },
-                                         "stats": {
-                                                       "attack": 151,
-                                                      "defense": 162,
-                                                        "maxhp": 176,
-                                                        "spatk": 68,
-                                                        "spdef": 174,
-                                                        "speed": 118
+                                                       "attack": 11,
+                                                      "defense": 12,
+                                                        "maxhp": 20,
+                                                        "spatk": 10,
+                                                        "spdef": 12,
+                                                        "speed": 10
                                                   },
                                         "status": "NONE"
                                  } ]

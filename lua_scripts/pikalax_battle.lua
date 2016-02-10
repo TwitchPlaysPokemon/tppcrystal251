@@ -1,7 +1,7 @@
-
 -- PikalaxALT's first attempt at lua to read battle state
 -- AKA readbattlestate_clean.lua
--- Version 0.6.0
+-- Version 0.6.5
+
 JSON = (loadfile "JSON.lua")()
 package.path = package.path..';./libs/lua/?.lua'
 package.cpath = package.cpath..';./libs/?.dll'
@@ -478,7 +478,7 @@ end
 function transferStateToAIAndWait(output_table)
 	repeat
 		next_move = http.request("http://localhost:5000/ai/"..JSON:encode_pretty(output_table))
-		delay_timer = 120
+		delay_timer = 60
 		repeat
 			emu.frameadvance()
 			delay_timer = delay_timer - 1
@@ -488,7 +488,7 @@ function transferStateToAIAndWait(output_table)
 end
 
 function sendLUASerial(a, output_table, req)
-    memory.writebyterange(0xDFF8, 3, tablestobytes(commandstotables(0, transferStateToAIAndWait(readBattlestate(output_table, req))), get_next_player_command())) --very long command
+    memory.writebyterange(0xDFF8, 3, tablestobytes(transferStateToAIAndWait(readBattlestate(output_table, req))), get_next_player_command()) --very long command
 	--memory.writebyte(rLSB, a)
 	memory.writebyte(rLSC, BEESAFREE_LSC_COMPLETED)
 end

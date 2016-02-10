@@ -96,7 +96,7 @@ UnknownScript_0x6ab76: ; 0x6ab76
 	playsound SFX_EXIT_BUILDING
 	special Function8c084
 	waitsfx
-	warpfacing $2, GROUP_NATIONAL_PARK_BUG_CONTEST, MAP_NATIONAL_PARK_BUG_CONTEST, $21, $12
+	warpfacing LEFT, GROUP_NATIONAL_PARK_BUG_CONTEST, MAP_NATIONAL_PARK_BUG_CONTEST, $21, $12
 	end
 ; 0x6ab8c
 
@@ -901,7 +901,7 @@ UnknownText_0x6b910: ; 0x6b910
 	line "is full."
 
 	para "We'll hold on to"
-	line "your prize"
+	line "your prize."
 	;cont "only for today."
 
 	para "Please make room,"

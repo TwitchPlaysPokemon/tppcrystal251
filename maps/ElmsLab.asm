@@ -174,7 +174,7 @@ CyndaquilPokeBallScript: ; 0x78c73
 	checkcode VAR_PARTYCOUNT
 	if_not_equal 6, .okay
 	checkcode VAR_BOXSPACE
-	if_equal 20, ElmsLabNoRoomScript
+	if_equal 0, ElmsLabNoRoomScript
 .okay
 	spriteface $2, $0
 	refreshscreen $0
@@ -209,7 +209,7 @@ TotodilePokeBallScript: ; 0x78cb5
 	checkcode VAR_PARTYCOUNT
 	if_not_equal 6, .okay
 	checkcode VAR_BOXSPACE
-	if_equal 20, ElmsLabNoRoomScript
+	if_equal 0, ElmsLabNoRoomScript
 .okay
 	spriteface $2, $0
 	refreshscreen $0
@@ -242,7 +242,7 @@ ChikoritaPokeBallScript: ; 0x78cf1
 	checkcode VAR_PARTYCOUNT
 	if_not_equal 6, .okay
 	checkcode VAR_BOXSPACE
-	if_equal 20, ElmsLabNoRoomScript
+	if_equal 0, ElmsLabNoRoomScript
 .okay
 	spriteface $2, $0
 	refreshscreen $0

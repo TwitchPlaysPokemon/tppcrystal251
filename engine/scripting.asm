@@ -160,39 +160,39 @@ ENDC
 	dw Script_buttonsound
 	dw Script_pokepic
 	dw Script_closepokepic
-	dw Script_interpretmenu
-	dw Script_interpretmenu2 ;58
+	dw Script_interpretmenu ;58
+	dw Script_interpretmenu2
 	dw Script_loadpikachudata
 	dw Script_battlecheck
 	dw Script_loadtrainerdata
 	dw Script_loadpokedata
 	dw Script_loadtrainer
 	dw Script_startbattle
-	dw Script_returnafterbattle
-	dw Script_catchtutorial ;60
+	dw Script_returnafterbattle ;60
+	dw Script_catchtutorial
 	dw Script_trainertext
 	dw Script_trainerstatus
 	dw Script_winlosstext
 	dw Script_scripttalkafter
 	dw Script_talkaftercancel
 	dw Script_talkaftercheck
-	dw Script_setlasttalked
-	dw Script_applymovement ;68
+	dw Script_setlasttalked ;68
+	dw Script_applymovement
 	dw Script_applymovement2
 	dw Script_faceplayer
 	dw Script_faceperson
 	dw Script_variablesprite
 	dw Script_disappear
 	dw Script_appear
-	dw Script_follow
-	dw Script_stopfollow ;70
+	dw Script_follow ;70
+	dw Script_stopfollow
 	dw Script_moveperson
 	dw Script_writepersonxy
 	dw Script_loademote
 	dw Script_showemote
 	dw Script_spriteface
 	dw Script_follownotexact
-	dw Script_earthquake
+	dw Script_earthquake ;78
 	dw Script_changemap
 	dw Script_changeblock
 	dw Script_reloadmap
@@ -200,7 +200,7 @@ ENDC
 	dw Script_writecmdqueue
 	dw Script_delcmdqueue
 	dw Script_playmusic
-	dw Script_playrammusic
+	dw Script_playrammusic ;80
 	dw Script_musicfadeout
 	dw Script_playmapmusic
 	dw Script_reloadmapmusic
@@ -208,7 +208,7 @@ ENDC
 	dw Script_playsound
 	dw Script_waitsfx
 	dw Script_warpsound
-	dw Script_specialsound
+	dw Script_specialsound ;88
 	dw Script_passtoengine
 	dw Script_newloadmap
 	dw Script_pause
@@ -216,7 +216,7 @@ ENDC
 	dw Script_priorityjump
 	dw Script_warpcheck
 	dw Script_ptpriorityjump
-	dw Script_return
+	dw Script_return ;90
 	dw Script_end
 	dw Script_reloadandreturn
 	dw Script_resetfuncs
@@ -224,7 +224,7 @@ ENDC
 	dw Script_elevator
 	dw Script_trade
 	dw Script_askforphonenumber
-	dw Script_phonecall
+	dw Script_phonecall ;98
 	dw Script_hangup
 	dw Script_describedecoration
 	dw Script_fruittree
@@ -232,7 +232,7 @@ ENDC
 	dw Script_checkphonecall
 	dw Script_verbosegiveitem
 	dw Script_verbosegiveitem2
-	dw Script_loadwilddata
+	dw Script_loadwilddata ;a0
 	dw Script_halloffame
 	dw Script_credits
 	dw Script_warpfacing
@@ -3127,9 +3127,7 @@ Script_end: ; 0x97b74
 ; script command 0x91
 
 	call ExitScriptSubroutine
-	jr c, .asm_97b7a
-	ret
-.asm_97b7a
+	ret nc
 	xor a
 	ld [ScriptRunning], a
 	ld a, SCRIPT_OFF

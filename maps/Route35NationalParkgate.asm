@@ -102,7 +102,7 @@ OfficerScript_0x6a204: ; 0x6a204
 		;checkflag ENGINE_51
 		;iftrue UnknownScript_0x6a2c1
 	checkevent EVENT_NATIONAL_PARK_ROUTE_36_GATE_314 ;If holding amber, give amber
-	iffalse SkipAmber
+	iffalse SkipAmber35
 	writetext UnknownText_0x6b97f
 	buttonsound
 	verbosegiveitem OLD_AMBER, 1
@@ -110,7 +110,7 @@ OfficerScript_0x6a204: ; 0x6a204
 	clearevent EVENT_NATIONAL_PARK_ROUTE_36_GATE_314
 SkipAmber35:
 	checkevent EVENT_NATIONAL_PARK_ROUTE_36_GATE_315
-	iffalse SkipSun
+	iffalse SkipSun35
 	writetext UnknownText_0x6b97f
 	buttonsound
 	verbosegiveitem SUN_STONE, 1
@@ -118,7 +118,7 @@ SkipAmber35:
 	clearevent EVENT_NATIONAL_PARK_ROUTE_36_GATE_315
 SkipSun35:
 	checkevent EVENT_NATIONAL_PARK_ROUTE_36_GATE_316
-	iffalse SkipBalls
+	iffalse SkipBalls35
 	writetext UnknownText_0x6b97f
 	buttonsound
 	checkcode VAR_WEEKDAY
@@ -155,7 +155,7 @@ UnknownScript_0x6a234: ; 0x6a234
 	special Function8c084
 	waitsfx
 	special Function139a8
-	warpfacing $1, GROUP_NATIONAL_PARK_BUG_CONTEST, MAP_NATIONAL_PARK_BUG_CONTEST, $a, $2f
+	warpfacing UP, GROUP_NATIONAL_PARK_BUG_CONTEST, MAP_NATIONAL_PARK_BUG_CONTEST, $a, $2f
 	end
 ; 0x6a261
 

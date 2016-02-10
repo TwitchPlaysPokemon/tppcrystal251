@@ -12,18 +12,19 @@ BattleTentRuins_MapScriptHeader: ; -- Required
 ; <scripts go here>
 MapBattleTentRuinsTurnOnLights
 	; checkevent EVENT_RESTORED_POWER_TO_KANTO
-	; iffalse MapBattleTentRuinsDontChangeBackDoorTile
+	; iffalse .keep_door
 	; writecode VAR_TIMEOFDAY, 1
 	; loadvar wd846, %10000000
 	; special UpdateTimePals
 	; loadvar wd846, %00000000
-	checkevent EVENT_TURNED_ON_BATTLE_TENT_GENERATOR
-	iffalse MapBattleTentRuinsDontChangeBackDoorTile
-	changeblock $5, $0, $4
-	return
-
-MapBattleTentRuinsDontChangeBackDoorTile:
+	checkevent EVENT_RESTORED_POWER_TO_KANTO
+	iftrue .keep_stairs
 	changeblock $a, $7, $1
+.keep_stairs
+	checkevent EVENT_TURNED_ON_BATTLE_TENT_GENERATOR
+	iffalse .keep_door
+	changeblock $5, $0, $4
+.keep_door:
 	return
 
 MapBattleTentRuinsDoorScript:
