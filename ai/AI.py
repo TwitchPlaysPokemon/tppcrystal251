@@ -79,6 +79,7 @@ class AI(object):
         self._statsmultipliers =  {'-6': 25, '-5':  28, '-4':  33, '-3':  40, '-2':  50, '-1': 66, '0':  100, '1':  150, '2':  200, '3':  250, '4': 300, '5': 350, '6': 400}
         self._accuracymultipliers = {'-6': 33, '-5':  36, '-4':  43, '-3':  50, '-2':  60, '-1': 75, '0':  100, '1':  133, '2':  166, '3':  200, '4': 233, '5': 266, '6': 300}
         self._critmultipliers = {'0':  0.0625, '1':  0.125, '2':  0.5, '3':  1, '4': 1, '5': 1, '6': 1}
+        self._actualAction= {'0':  'move1', '1':  'move2', '2':  'move3', '3':  'move4', '4': 'switch1', '5': 'switch2', '6': 'switch3', '7':  'switch4', '8':  'switch5', '9':  'switch6', '10':  'useitem1', '11': 'useitem2'}
 
         with open(MOVES_FILE_PATH, 'r') as tempX:
             self._moves = tempX.read().split(' ')
@@ -1610,7 +1611,9 @@ class AI(object):
                 self.mybestmove[mycurrent] = random.randint(0, (len(self.jsonlist['battleState']['enemypokemon']['moves'])))
                 if tempy == len(mondata[0]['moves']):
                     break
-        return self.theaction
+        
+        temptext = self._actualAction[str(self.theaction)]
+        return temptext
         
 @app.route('/ai/<output_table>')   
 def calculatemove(output_table):
