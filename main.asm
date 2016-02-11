@@ -7999,23 +7999,47 @@ Functiond839: ; d839
 	ret
 ; d88c
 
-BadgeBoostStatXP:
-	; 1 badge 0680
-	;2 badges 0c00
-	;3 badges 1200
-	;4 badge 1400
-	;5 badge 2000
-	;6 badge 2600
-	;7 badge 3000
-	;8 badge 4000
-	;9 badge 5000
-	;10 badge 5400
-	;11 badge 5700
-	;12 badge 6200
-	;13 badge 6800
-	;14 badge 7200
-	;15 badge 7500
-	;16 badge 8000
+BadgeBoostStatXP: ;hl = stat xp given by badge boosts, no effect in egk
+	xor a
+	ld hl, StatusFlags ;if egk,stat xp = 0
+	bit 5, [hl]
+	ld h, a
+	ld l, a
+	ret z
+	push bc
+	ld hl, JohtoBadges
+	ld bc, 2 
+	call CountSetBits
+	ld c, a
+	ld b, 0
+	ld hl, BadgeStatXpTable
+	add hl, bc
+	ld a, [hl]
+	ld h, a
+	ld l, 0
+	pop bc
+	ret
+
+BadgeStatXpTable:
+	db 00
+	db 06
+	db 0b
+	db 10
+	db 12
+	db 15
+	db 20
+	db 25
+	db 30
+	db 40
+	db 44
+	db 47
+	db 53
+	db 60
+	db 65
+	db 70
+	db 80
+
+
 
 Functiond88c: ; d88c if montype is non-zero, load mon into enemy trainer. else laod mon into party if space. ret c if succsessful.
 ;species = curpartyspecies, $ffae = placed in slot
