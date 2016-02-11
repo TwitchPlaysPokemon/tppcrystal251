@@ -26,8 +26,9 @@ app = Flask(__name__)
 mondata = {}
 
 class Combogenerator:
-    def __init__(self,number=4):
-        self.arrlen = number
+    def __init__(self,turnsToLookAhead=4, numMoves=4):
+        self.arrlen = turnsToLookAhead
+        self.numMoves = numMoves
         self.currplace = [0 for x in range(self.arrlen)]
     def __iter__(self):
         return self
@@ -35,7 +36,7 @@ class Combogenerator:
         return self.next(self.arrlen-1)
     def next(self, placevalue):
         self.currplace[placevalue] += 1
-        if self.currplace[placevalue] >= 4:
+        if self.currplace[placevalue] >= self.numMoves:
             if placevalue == 0:
                 raise StopIteration()
             else:
@@ -932,7 +933,9 @@ class AI(object):
 
         self.mycurhp = self.hp[mycurrent]
         self.traincurhp = self.opponenthp[traincurrent]
-        for x2, tempcombo in enumerate(Combogenerator(4)):
+
+        #len(mondata[mycurrent]['moves']) = the number of moves the mon has
+        for x2, tempcombo in enumerate(Combogenerator(numberofturns, len(mondata[mycurrent]['moves']))):
             mondata1 = mondata
             myhp = self.mycurhp
             trainhp = self.traincurhp
@@ -1035,9 +1038,6 @@ class AI(object):
                 mondata1['lockon'] = False
                 tempx = self._statsmultipliers[str(mondata1[mycurrent]['boosts']['spd'])]/100
                 tempy = self._statsmultipliers[str(mondata1[traincurrent]['boosts']['spd'])]/100
-                print(mycurrent)
-                print(traincurrent)
-                print(int(tempcombo[x1]))
                 if (mondata1[mycurrent]['stats']['speed'] * tempx > mondata1[traincurrent]['stats']['speed'] * tempy) or (mondata1[mycurrent]['moves'][int(tempcombo[x1])]['effect'] in ('extremespeed', 'priorityhit', 'endure', 'protect')):
 
                     if myhp > 0:
