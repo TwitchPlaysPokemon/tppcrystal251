@@ -185,6 +185,7 @@ MapRadioTower5FSignpost0Script: ; 0x60100
 	waitsfx
 	closetext
 	changeblock 3, 0, $03
+	reloadmappart
 	setevent EVENT_000_STD
 	end
 ; 0x60103
