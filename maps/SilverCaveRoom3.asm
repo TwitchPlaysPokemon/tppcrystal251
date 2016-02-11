@@ -38,7 +38,7 @@ RedScript_0x18c603: ; 0x18c603
 	; pause 15
 	; special Function8c0ab
 	; pause 30
-	; special HealParty
+	special HealParty
 	; refreshscreen $0
 	; credits
 	playsound SFX_ENTER_DOOR

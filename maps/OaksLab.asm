@@ -80,19 +80,18 @@ RematchCheck:
 OakBeforeBattle:
 	text "To defeat all 16"
 	line "GYM LEADERS"
-	cont "without handicaps"
-	cont "is a rare feat."
+	para "without handicaps"
+	line "is a rare feat."
 
 	para "The ELITE FOUR"
 	line "saw your potential"
-	cont "and asked me to"
-	cont "test you."
+	para "and asked me to"
+	line "test you."
 
 	para "So far you have"
 	line "passed, but there"
-	cont "is one more"
-	cont "opponent you must"
-	cont "defeat."
+	para "is one more foe"
+	line "you must defeat."
 
 	para "Do not hold back."
 
@@ -105,8 +104,8 @@ OakAfterBattle:
 
 	para "The ELITE FOUR"
 	line "challenge you,"
-	cont "This time using"
-	cont "their strongest"
+	para "this time using"
+	line "their strongest"
 	cont "teams."
 
 	para "They await at"
@@ -128,7 +127,7 @@ OakAfterDefeatText:
 	line "await at INDIGO"
 	cont "PLATEAU."
 
-	para "Good luck."
+	para "Good luck!"
 	done
 
 OakAfterDefeat: ; 0x19b3ea
@@ -137,7 +136,7 @@ OakAfterDefeat: ; 0x19b3ea
 	iftrue SkipfterDefeatDexCheck
 	special ProfOaksPCBoot
 	special RateIntoScriptVar
-	if_equal 251, OakLabFullDex
+	if_equal 251, PGKOak_FullDex
 SkipfterDefeatDexCheck:
 	writetext OakAfterDefeatText
 	waitbutton
@@ -148,16 +147,16 @@ OakAfterE4:
 	writetext UnknownText_0x19b4a2
 	special ProfOaksPCBoot
 	special RateIntoScriptVar
-	if_equal 251, OakLabFullDex
+	if_equal 251, PGKOak_FullDex
 	writetext OakAfterE4Text
 	waitbutton
 	closetext
 	end
 
 OakAfterE4Text:
-	text "Keep it up, soon"
+	text "Keep it up! Soon"
 	para "you'll have caught"
-	cont "them all."
+	cont "them all!"
 	done
 
 OakAfterAll:
@@ -169,25 +168,32 @@ OakAfterAll:
 OakAfterAllText:
 	text "The path to"
 	line "MT.SILVER lies"
-	cont "NORTH of ROUTE 22."
+	cont "west of ROUTE 22."
 	done
 
 UnknownScript_0x19b3ea: ; 0x19b3ea
 	writetext UnknownText_0x19b4a2
 	waitbutton
 	checkevent EVENT_OAK_KNOWS_DEX_FULL
-	iftrue SkipDexCheck
+	iftrue .skip_dex_check
 	special ProfOaksPCBoot
 	special RateIntoScriptVar
-	if_equal 251, OakLabFullDex
-SkipDexCheck:
+	if_equal 251, PGKOak_FullDex
+.skip_dex_check
+	checkevent EVENT_SET_BY_OAK_AFTER_16_BADGES
+	iffalse .dont_mention_rematches
 	writetext UnknownText_0x19b4c8
+	waitbutton
+	closetext
+	end
+.dont_mention_rematches
+	writetext UnknownText_0x19b4c8_2
 	waitbutton
 	closetext
 	end
 ; 0x19b3f7
 
-OakLabFullDex:
+PGKOak_FullDex
 	checkevent EVENT_BEAT_ELITE_REMATCH
 	iftrue OakLabUnlock28
 	writetext OakDexButNotE4Text
@@ -205,8 +211,8 @@ OakDexButNotE4Text:
 
 	para "Remember to"
 	line "get a DIPLOMA"
-	cont "from CELADON as"
-	cont "proof of your"
+	para "from CELADON as"
+	line "proof of your"
 	cont "accomplishment."
 	done
 
@@ -273,16 +279,19 @@ MapOaksLabSignpost15Script: ; 0x19b424
 
 UnknownText_0x19b427: ; 0x19b427
 	text "OAK: Ah, <PLAY_G>!"
-	line "It's good of you"
+	line "Welcome home!"
 
-	para "to come all this"
-	line "way to KANTO."
+	para "You've been away"
+	line "for such a long"
+	cont "time."
 
 	para "What do you think"
 	line "of the trainers"
+	cont "around here?"
 
-	para "out here?"
-	line "Pretty tough, huh?"
+	para "You're not the"
+	line "only one who's"
+	cont "gotten stronger!"
 	done
 ; 0x19b4a2
 
@@ -297,10 +306,17 @@ UnknownText_0x19b4a2: ; 0x19b4a2
 UnknownText_0x19b4c8: ; 0x19b4c8
 	text "Come back once you"
 	line "defeat all 16 GYM"
-	cont "LEADER'S at thier"
-	cont "best."
+
+	para "LEADERs at their"
+	line "best."
 	done
 ; 0x19b4fc
+
+UnknownText_0x19b4c8_2: ; 0x19b4c8
+	text "Come back once you"
+	line "collect all 16 GYM"
+	cont "BADGES."
+	done
 
 UnknownText_0x19b4fc: ; 0x19b4fc
 	text "OAK: Wow! That's"
@@ -313,21 +329,25 @@ UnknownText_0x19b4fc: ; 0x19b4fc
 	para "I was right in my"
 	line "assessment of you."
 
-	para "Also, now you have"
-	line "proven a truly"
-	cont "remarkable TRAINER"
-	cont "the GYM LEADERS"
-	cont "are looking to"
-	cont "challenge you as"
-	cont "one of thier own."
+	para "Hmm<...>"
 
-	para "They will not"
-	line "hold back,"
-	cont "but if you manage"
-	cont "to defeat them all"
-	cont "come back and see"
-	cont "me."
+	para "Now that you have"
+	line "proven yourself as"
 
+	para "a truly remar-"
+	line "kable TRAINER<...>"
+
+	para "The GYM LEADERS"
+	line "may want to test"
+
+	para "again, no holds"
+	line "barred."
+
+	para "If you manage to"
+	line "defeat them all at"
+
+	para "their best, come"
+	line "back and see me."
 	done
 ; 0x19b6a2
 

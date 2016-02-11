@@ -3,6 +3,7 @@ import time
 import threading
 import random
 import sys
+import json
 from flask import Flask, request
 
 import AI
@@ -13,7 +14,7 @@ PORT = 5001
 logging.basicConfig(format='%(levelname)s %(asctime)s: %(message)s',
                     filename='ai_server.log',
                     datefmt='%Y/%m/%d %H:%M:%S',
-                    level=logging.WARNING)
+                    level=logging.INFO)
 logging.getLogger().addHandler(logging.StreamHandler())
 logger = logging.getLogger("AIServer")
 
@@ -49,6 +50,9 @@ def ai_invoke():
     # (it's easier on the lua-side this way)
     battle_state = request.get_json(force=True)
     logger.info("invoking AI... submitted JSON: %s" % battle_state)
+
+    if type(battle_state) == str:
+        battle_state = json.loads(battle_state)
     
     # reset global ai result variable and asynchronously invoke the ai.
     # Doesn't have to be a thread, could also be a greenlet or something,

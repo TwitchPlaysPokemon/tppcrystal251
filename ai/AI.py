@@ -1,12 +1,11 @@
-
 # TPP Crystal 251 AI v0.99 by Beesafree
 
 from __future__ import division
 import math
 import random
-from flask import Flask
 import json
 import os
+import sys
 
 # the program will give a response when called to from 0 to 11
 # 0-3 relate to move commands, 1 means use second move on json list (1 being it's index)
@@ -17,17 +16,20 @@ import os
 # Trainer Battles should be less than 9 seconds,
 # Trainer Battles where the opponent has an item are around 40 seconds
 
+if sys.version_info[0] == 2:
+		raise ValueError("""You are using Python 2 instead of Python 3.
+This program only works in Python 3.""")
+
 SCRIPT_DIR = os.path.dirname(os.path.realpath(__file__))
 JSON_FILE_PATH = os.path.join(SCRIPT_DIR, "battlestate.json")
 MOVES_FILE_PATH = os.path.join(SCRIPT_DIR, "AiMoves.txt")
 
-app = Flask(__name__)
-
 mondata = {}
 
 class Combogenerator:
-    def __init__(self,number=4):
-        self.arrlen = number
+    def __init__(self,turnsToLookAhead=4, numMoves=4):
+        self.arrlen = turnsToLookAhead
+        self.numMoves = numMoves
         self.currplace = [0 for x in range(self.arrlen)]
     def __iter__(self):
         return self
@@ -35,7 +37,7 @@ class Combogenerator:
         return self.next(self.arrlen-1)
     def next(self, placevalue):
         self.currplace[placevalue] += 1
-        if self.currplace[placevalue] >= 4:
+        if self.currplace[placevalue] >= self.numMoves:
             if placevalue == 0:
                 raise StopIteration()
             else:
@@ -151,8 +153,6 @@ class AI(object):
                             mondata[allmons]['moves'][moveset]['pp'] = int(templist[6])
                             mondata[allmons]['moves'][moveset]['effectchance'] = int(templist[7])
                             break
-                if 'disabled' in mondata[allmons]['substatus'] :
-                    mondata[allmons]['moves'][mondata[allmons]['substatus']['disabled']['move idx']]['curpp'] = 0
         self.permmondata = mondata
         for tempx in range(6, self.trainparty+6):
             self.opponenthp[tempx] = self.permmondata[tempx]['stats']['curhp']
@@ -197,9 +197,6 @@ class AI(object):
                         mondata[0]['moves'][moveset]['pp'] = int(templist[6])
                         mondata[0]['moves'][moveset]['effectchance'] = int(templist[7])
                         break
-            if 'disabled' in mondata[0]['substatus'] :
-                mondata[0]['moves'][mondata[0]['substatus']['disabled']['move idx']]['curpp'] = 0
-            
         return mondata
 
     #type1name = attacker, type2name = defender
@@ -495,7 +492,7 @@ class AI(object):
             critmodifier = critmodifier + 2
         if move_used['name'].lower() in ('aeroblast', 'crabhammer', 'crosschop', 'drillrun', 'karatechop', 'razorleaf', 'shadowclaw', 'slash', 'skyattack'):
             critmodifier = critmodifier + 2
-        temp2 = (temp2 - (temp2 * ( 1 - self._critmultipliers[str(critmodifier)]))) + (temp2 * 1.5 * self._critmultipliers[str(critmodifier)])
+        temp2 = (temp2 * ( 1 - self._critmultipliers[str(critmodifier)])) + (temp2 * 1.5 * self._critmultipliers[str(critmodifier)])
 
         if effmulti < 0.125:
             temp2 = 0
@@ -937,7 +934,9 @@ class AI(object):
 
         self.mycurhp = self.hp[mycurrent]
         self.traincurhp = self.opponenthp[traincurrent]
-        for x2, tempcombo in enumerate(Combogenerator(4)):
+
+        #len(mondata[mycurrent]['moves']) = the number of moves the mon has
+        for x2, tempcombo in enumerate(Combogenerator(numberofturns, len(mondata[mycurrent]['moves']))):
             mondata1 = mondata
             myhp = self.mycurhp
             trainhp = self.traincurhp
@@ -1028,11 +1027,18 @@ class AI(object):
 
             #figure out what happens if special effect doesnt work
             for x1 in range(0, numberofturns):
+                if self.jsonlist['battleState']['enemy type'] == 'WILD':
+                    if 'disabled' in mondata['enemypokemon']['substatus'] :
+                        mondata[0]['moves'][int(mondata['enemypokemon']['substatus']['disabled']['move idx'])]['curpp'] = 0
+                if self.jsonlist['battleState']['enemy type'] == 'TRAINER':
+                    if 'disabled' in mondata['enemypokemon']['substatus'] :
+                        mondata[self.jsonlist['battleState']['enemypokemon']['party idx']]['moves'][int(mondata['enemypokemon']['substatus']['disabled']['move idx'])]['curpp'] = 0
+                if 'disabled' in mondata['playerpokemon']['substatus'] :
+                    mondata[self.jsonlist['battleState']['playerpokemon']['party idx']+6]['moves'][int(mondata['playerpokemon']['substatus']['disabled']['move idx'])]['curpp'] = 0
                 mondata1['painsplit'] = False
                 mondata1['lockon'] = False
                 tempx = self._statsmultipliers[str(mondata1[mycurrent]['boosts']['spd'])]/100
                 tempy = self._statsmultipliers[str(mondata1[traincurrent]['boosts']['spd'])]/100
-
                 if (mondata1[mycurrent]['stats']['speed'] * tempx > mondata1[traincurrent]['stats']['speed'] * tempy) or (mondata1[mycurrent]['moves'][int(tempcombo[x1])]['effect'] in ('extremespeed', 'priorityhit', 'endure', 'protect')):
 
                     if myhp > 0:
@@ -1116,6 +1122,14 @@ class AI(object):
             if self.triggered > 0:
                 myhp1 = myhp1 - self.Damage[traincurrent][self.jsonlist['battleState']['enemypokemon']['party idx']][self.enemybestvcurrent]['damage']
             if mondata1[mycurrent]['moves'][int(tempcombo[0])]['effectchance'] > 0 or mondata1[mycurrent]['moves'][int(tempcombo[0])]['effectchance']:
+                if self.jsonlist['battleState']['enemy type'] == 'WILD':
+                    if 'disabled' in mondata['enemypokemon']['substatus'] :
+                        mondata[0]['moves'][int(mondata['enemypokemon']['substatus']['disabled']['move idx'])]['curpp'] = 0
+                if self.jsonlist['battleState']['enemy type'] == 'TRAINER':
+                    if 'disabled' in mondata['enemypokemon']['substatus'] :
+                        mondata[self.jsonlist['battleState']['enemypokemon']['party idx']]['moves'][int(mondata['enemypokemon']['substatus']['disabled']['move idx'])]['curpp'] = 0
+                if 'disabled' in mondata['playerpokemon']['substatus'] :
+                    mondata[self.jsonlist['battleState']['playerpokemon']['party idx']+6]['moves'][int(mondata['playerpokemon']['substatus']['disabled']['move idx'])]['curpp'] = 0
                 mondata1 = mondata
                 mondata1['focusenergyused'] = False
                 mondata1['defensecurlused'] = False
@@ -1300,7 +1314,9 @@ class AI(object):
             if trainhp > 0:
                 tempx = tempx * (1 + -0.05 * (mondata1[traincurrent]['boosts']['atk'] + mondata1[mycurrent]['boosts']['def'] + mondata1[traincurrent]['boosts']['satk'] + mondata1[traincurrent]['boosts']['sdef'] + mondata1[traincurrent]['boosts']['spd'] + mondata1[traincurrent]['boosts']['eva'] + mondata1[traincurrent]['boosts']['acc']))
             #print('Enemy Boosts: '+str(mondata[mycurrent]['boosts']))
+            #print(self.Damage[mycurrent][traincurrent][0]['damage'])
             #print('Player Boosts: '+str(mondata[traincurrent]['boosts']))
+            #print(self.Damage[traincurrent][mycurrent][self.enemynumber]['damage'])
             #print('enemy hp '+str(myhp)+' enemy starting hp '+str(self.mycurhp)+' player hp '+str(trainhp)+' player starting hp '+str(self.traincurhp))
             #print(tempx)
             if self.useitem == 0:
@@ -1625,21 +1641,12 @@ class AI(object):
         
         temptext = self._actualAction[str(self.theaction)]
         return temptext
-        
-@app.route('/ai/<output_table>')   
-def calculatemove(output_table):
-    aiaction = Artificial.MainBattle(output_table)
-    print("This came from the LUA: ", output_table)
-    print("AI response: ", aiaction)
-    return aiaction
 
 def main():
     Artificial = AI()
-    app.run()
-    #battle_state = json.loads(open(JSON_FILE_PATH).read(), encoding="utf-8")
+    battle_state = json.loads(open(JSON_FILE_PATH).read(), encoding="utf-8")
+    print(Artificial.MainBattle(battle_state))
 
-    #while True:
-    #    print(Artificial.MainBattle(battle_state))
     #    battle_state = Artificial.jsonlist
     #    #placeholder to prevent infinite looping
     #    input('Action Above is best move (0-3 = moves, 4-9 = mon switch, 10-11 = use bag items) --- Press enter to continue')

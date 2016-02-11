@@ -1,16 +1,12 @@
 -- Originally PikalaxALT's battlestate reader, made into an importable LUA file.
 -- AKA readbattlestate_clean.lua
--- Version 0.7.0
+-- Version 0.7.1
 
 JSON = (loadfile "JSON.lua")()
 package.path = package.path..';./libs/lua/?.lua'
 package.cpath = package.cpath..';./libs/?.dll'
 dofile("battle_ram.lua")
 dofile("constants.lua")
-
-lastBattleState = 0
-military_mode = 1
-ignore_serial = 0 -- please set this to 0 for normal use.
 
 function getBigDW(pointer)
 	-- There is no built-in for big-endian DWs, which are used extensively in battle structs.
@@ -70,10 +66,10 @@ function calcGender(dvs, species)
 	if species == 0 then return "None" end
 	baseGender = GRVal[species]
 	if (baseGender == 255) then return " " end
-	if (baseGender == 0)   then return "♂" end
-	if (baseGender == 254) then return "♀" end
+	if (baseGender == 0)   then return "M" end
+	if (baseGender == 254) then return "F" end
 	attPlusSpeed = dvs["atk"] * 16 + dvs["spd"]
-	if (baseGender < attPlusSpeed) then return "♂" else return "♀" end
+	if (baseGender < attPlusSpeed) then return "M" else return "F" end
 end
 
 function getMonType(pointer)
@@ -392,8 +388,9 @@ function readPlayerPack()
 	return pack
 end
 
-function readBattlestate(output_table, req) --read this ONLY when LUA Serial is called
+function readBattlestate(req) --read this ONLY when LUA Serial is called
 	battleState = {}
+    output_table = readPlayerstate()
 	battleState["requested action"] = req
 	battlemode = memory.readbyte(wBattleMode)
 	svbk = memory.readbyte(rSVBK)
@@ -411,9 +408,9 @@ function readBattlestate(output_table, req) --read this ONLY when LUA Serial is 
 		if battlemode == 0 then
 			vba.print("Not in battle")
 			memory.writebyte(wMilitaryMode, military_mode)
-			if (ignore_serial ~= 1) and (lastBattleState ~= 0) then
-				--transferStateToAIAndWait("Battle ended")
-			end
+			-- if (ignore_serial ~= 1) and (lastBattleState ~= 0) then
+				-- --transferStateToAIAndWait("Battle ended")
+			-- end
 		else
 			if battlemode == 2 then
 				battleState["enemy type"] = "TRAINER"
@@ -440,7 +437,6 @@ function readBattlestate(output_table, req) --read this ONLY when LUA Serial is 
 		local raw_json = JSON:encode(output_table)
         return raw_json
             
-		end
         else
         return -1
 	end
@@ -461,6 +457,7 @@ function readPlayerstate() --loop read this for the overlay
 		output_table["playerParty"] = playerParty
 		output_table["pack"] = pack
         return output_table
-		end
+    else
     return -1
+    end
 end

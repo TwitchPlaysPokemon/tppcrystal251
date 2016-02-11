@@ -8,7 +8,7 @@ ParseExternalAI:
 	ld [hli], a
 	ld [hli], a
 	ld [hl], a
-.retry_request
+; .retry_request
 	callba Function3e8d1
 	ld a, BEESAFREE_SND_ASKENEMY
 	jr z, .loop_back
@@ -19,7 +19,7 @@ ParseExternalAI:
 	jr z, .okay
 	or BEESAFREE_SND_ASKMILITARY
 .okay
-	ret z
+	; ret z
 	rst LUASerial
 	ld a, [wMilitaryAndAIBattleAction]
 	and $f0
