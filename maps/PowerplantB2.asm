@@ -38,9 +38,9 @@ PowerplantB2_MapEventHeader:
 	db 0, 0
 
 	; warps
-	db 1 ; 2
+	db 2
 	warp_def 31, 35, 2, GROUP_POWERPLANTB1, MAP_POWERPLANTB1
-	; warp_def 23, 19, 1, GROUP_RAIKOU_ROOM, MAP_RAIKOU_ROOM
+	warp_def 31, 5, 2, GROUP_ROUTE_10_NORTH, MAP_ROUTE_10_NORTH
 
 	; coord events
 	db 0
@@ -50,4 +50,4 @@ PowerplantB2_MapEventHeader:
 
 	; object events
 	db 1
-	person_event SPRITE_MOLTRES, 35, 9, $16, 0, 0, -1, -1, 8 + PAL_OW_BROWN, 0, 0, ZapdosScript1, EVENT_FOUGHT_ZAPDOS
+	person_event SPRITE_MOLTRES, 23, 23, $16, 0, 0, -1, -1, 8 + PAL_OW_BROWN, 0, 0, ZapdosScript1, EVENT_FOUGHT_ZAPDOS
