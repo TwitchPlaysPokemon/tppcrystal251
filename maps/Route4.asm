@@ -130,7 +130,7 @@ UnknownText_0x1ae258: ; 0x1ae258
 	para "first, then switch"
 	line "it right away."
 
-	para "But well, I suppose"
+	para "But well, I guess"
 	line "you know by now."
 	done
 ; 0x1ae2ce

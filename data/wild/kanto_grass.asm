@@ -2744,7 +2744,7 @@
 		db SLOWBRO ;2
 		db STEELIX ;1
 		
-	db GROUP_POWER_PLANT, MAP_POWER_PLANT
+	db GROUP_POWERPLANTB1, MAP_POWERPLANTB1
 	db $19
 	db 66
 	db $01
@@ -2782,7 +2782,62 @@
 		db ELECTABUZZ ;2
 		db ELECTABUZZ ;1
 		db AMPHAROS ;1
+;night
+		db VOLTORB ;20
+		db ELECTRODE ;20
+		db MAGNETON ;10
+		db MAGNETON ;10
+		db ELEKID ;5
+		db ELEKID ;5
+		db RAICHU ;5
+		db ELECTABUZZ ;5
+		db AMPHAROS ;4
+		db FLAAFFY ;4
+		db FLAAFFY ;3
+		db FLAAFFY ;3
+		db FLAAFFY ;2
+		db FLAAFFY ;2
+		db FLAAFFY ;1
+		db AMPHAROS ;1
 
+	db GROUP_POWERPLANTB2, MAP_POWERPLANTB2
+	db $19
+	db 68
+	db $01
+;morning
+		db VOLTORB ;20
+		db ELECTRODE ;20
+		db MAGNETON ;10
+		db MAGNETON ;10
+		db ELEKID ;5
+		db ELEKID ;5
+		db RAICHU ;5
+		db RAICHU ;5
+		db RAICHU ;4
+		db FLAAFFY ;4
+		db FLAAFFY ;3
+		db ELECTABUZZ ;3
+		db ELECTABUZZ ;2
+		db AMPHAROS ;2
+		db FLAAFFY ;1
+		db RAICHU ;1
+;day
+		db VOLTORB ;20
+		db ELECTRODE ;20
+		db MAGNETON ;10
+		db MAGNETON ;10
+		db ELEKID ;5
+		db ELEKID ;5
+		db RAICHU ;5
+		db RAICHU ;5
+		db FLAAFFY ;4
+		db ELECTABUZZ ;4
+		db ELECTABUZZ ;3
+		db ELECTABUZZ ;3
+		db ELECTABUZZ ;2
+		db ELECTABUZZ ;2
+		db ELECTABUZZ ;1
+		db AMPHAROS ;1
 ;night
 		db VOLTORB ;20
 		db ELECTRODE ;20

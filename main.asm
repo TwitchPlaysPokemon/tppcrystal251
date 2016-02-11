@@ -2985,7 +2985,7 @@ SpecialGiveShuckle: ; 7305
 
 	ld a, SHUCKLE
 	ld [CurPartySpecies], a
-	ld a, 15
+	ld a, 50
 	ld [CurPartyLevel], a
 	predef Functiond88c
 	jr nc, .NotGiven
@@ -7999,6 +7999,24 @@ Functiond839: ; d839
 	ret
 ; d88c
 
+BadgeBoostStatXP:
+	; 1 badge 0680
+	;2 badges 0c00
+	;3 badges 1200
+	;4 badge 1400
+	;5 badge 2000
+	;6 badge 2600
+	;7 badge 3000
+	;8 badge 4000
+	;9 badge 5000
+	;10 badge 5400
+	;11 badge 5700
+	;12 badge 6200
+	;13 badge 6800
+	;14 badge 7200
+	;15 badge 7500
+	;16 badge 8000
+
 Functiond88c: ; d88c if montype is non-zero, load mon into enemy trainer. else laod mon into party if space. ret c if succsessful.
 ;species = curpartyspecies, $ffae = placed in slot
 	ld de, PartyCount
@@ -8141,7 +8159,7 @@ Functiond906: ; d906
 	call TrainerStatExp ;load trainer stat xp into hl depending on level
 	jr .okay
 .yours
-	xor a
+	xor a ; BADGE BOOST XP HERE
 	ld l, a ;hl = stat xp to add
 	ld h, a
 .okay
@@ -8972,7 +8990,7 @@ Functionde6e: ; de6e
 	ld a, [$ffb6]
 	ld [de], a
 	inc de
-	xor a
+	xor a ;PUT STATXP HERE
 	ld b, $a
 .asm_dee5
 	ld [de], a
@@ -82758,7 +82776,8 @@ CheckBoxForEggs:
 BoxCheckWithC: ;as Functione366c, but using c instead of menu selection
 	ld a, [wCurBox]
 	ld b, a
-	ld a, c
+	ld a, c ;equal box to check
+	ld c, b
 	jr BoxSelectionJumpIn
 
 
@@ -82769,8 +82788,8 @@ Functione366c: ; e366c (38:766c) get MenuSelection box count, ret in
 BoxSelectionJumpIn:
 	dec a
 	cp c
-	jr z, .asm_e3697
-	ld c, a
+	jr z, .asm_e3697 ;if same as curbox, jump to fast check
+	ld c, a ;box no. -1
 	ld b, 0
 	ld hl, Unknown_e36a5
 	add hl, bc

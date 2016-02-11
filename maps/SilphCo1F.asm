@@ -16,7 +16,7 @@ OfficerScript_0x18abe8: ; 0x18abe8
 	writetext UnknownText_0x18ac36
 	buttonsound
 	checkmoney 0, 300000
-	iffalse Not300k
+	if_equal 2, Not300k
 	yesorno
 	iffalse DontBuyMasterBall
 	verbosegiveitem MASTER_BALL, 1

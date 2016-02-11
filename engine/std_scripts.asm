@@ -457,6 +457,7 @@ ContestResults_FirstPlaceScript: ; 0xbc31e
 	farwritetext UnknownText_0x1b0621 ; say what the player won
 	waitbutton
 	verbosegiveitem OLD_AMBER, 1
+	setevent EVENT_NATIONAL_PARK_ROUTE_36_GATE_313
 	iffalse UnknownScript_0xbc35f
 	jump UnknownScript_0xbc2b1
 ; 0xbc332
