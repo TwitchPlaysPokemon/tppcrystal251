@@ -82227,15 +82227,16 @@ Functione3180: ; e3180 (38:7180)
 .asm_e31ab
 	ld a, [CurPartySpecies]
 	cp ENTEI
-	ld a, 1
+	ld b, 1
 	jr z, .init
 	cp RAIKOU
-	ld a, 2
+	ld b, 2
 	jr z, .init
 	cp SUICUNE
 	jr nz, .next
-	ld a, 4
+	ld b, 4
 .init
+	ld a, b
 	ld [ScriptVar], a
 	callba InitRoamMons
 .next
