@@ -679,7 +679,8 @@ BillBoxSwitchCheck: ;from current box, return first box with space or 0 if entir
 	inc a
 .billboxloop
 	push af
-	callab Functione366c
+	ld c, a
+	callab BoxCheckWithC
 	cp MONS_PER_BOX
 	jr nz, .foundspace
 	pop af
@@ -691,6 +692,7 @@ BillBoxSwitchCheck: ;from current box, return first box with space or 0 if entir
 	ld c, a
 	ld a, [wCurBox]
 	cp c
+	ld a, c
 	jr nz, .billboxloop
 	xor a
 	ld [ScriptVar], a
@@ -698,6 +700,7 @@ BillBoxSwitchCheck: ;from current box, return first box with space or 0 if entir
 
 .foundspace
 	pop af
+	dec a
 	ld [ScriptVar], a
 	ld [EngineBuffer1], a
 	ret

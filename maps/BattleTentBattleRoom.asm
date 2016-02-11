@@ -217,9 +217,6 @@ MapBattleTentBattleRoomBillText5:
 	cont "could use the"
 	cont "company."
 
-	para "All he does is"
-	line "watch the GARDEN<...>"
-
 	para "I should get mov-"
 	line "ing. See you"
 	cont "around, <PLAY_G>!"

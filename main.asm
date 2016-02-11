@@ -36203,6 +36203,7 @@ TrainerType:
 	ld d, h
 	ld e, l
 	pop hl ;stat xp start
+	dec hl ;makes it not break?
 	ld b, 1
 	ld c, 1
 	predef Functione17b ; calc hp, put into in $ffb5 and $ffb6. 
@@ -83066,10 +83067,18 @@ CheckBoxForEggs:
 	ld hl, sBox + 1
 	jr .loop
 
+BoxCheckWithC: ;as Functione366c, but using c instead of menu selection
+	ld a, [wCurBox]
+	ld b, a
+	ld a, c
+	jr BoxSelectionJumpIn
+
+
 Functione366c: ; e366c (38:766c) get MenuSelection box count, ret in 
 	ld a, [wCurBox]
 	ld c, a
 	ld a, [MenuSelection]
+BoxSelectionJumpIn:
 	dec a
 	cp c
 	jr z, .asm_e3697

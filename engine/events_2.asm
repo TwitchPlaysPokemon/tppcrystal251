@@ -181,7 +181,7 @@ Function97d31:: ; 97d31
 	srl a ; divide by 2
 	ld d, a 
 	ld a, e ;0 if super tall grass
-	and a
+	cp $14
 	ld hl, ContestMonsTall
 	jr z, .supertall
 	ld hl, ContestMons
