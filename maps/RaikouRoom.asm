@@ -22,7 +22,7 @@ StaticRaikouCry:
 RaikouRoom_MapEventHeader:
 	db 0, 0
 	db 1
-	warp_def 5, 5, 3, GROUP_RADIO_TOWER_5F, MAP_RADIO_TOWER_5F
+	warp_def 0, 7, 3, GROUP_RADIO_TOWER_5F, MAP_RADIO_TOWER_5F
 
 	db 0
 	db 0
