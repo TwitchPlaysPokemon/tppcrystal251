@@ -19253,15 +19253,16 @@ DeleteBoxAddress:
 .loop
 	ld a, [hli]
 	cp ENTEI
-	ld a, 1
+	ld c, 1
 	jr z, .init
 	cp RAIKOU
-	ld a, 2
+	ld c, 2
 	jr z, .init
 	cp SUICUNE
 	jr nz, .next
-	ld a, 4
+	ld c, 4
 .init
+	ld a, c
 	ld [ScriptVar], a
 	callba InitRoamMons
 .next
