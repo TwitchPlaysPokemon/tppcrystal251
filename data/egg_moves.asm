@@ -215,48 +215,47 @@ PonytaEggMoves:
 
 SlowpokeEggMoves:
 	db BELLY_DRUM
-	db COUNTER
-	db IRON_DEFENSE
 	db MEGA_KICK
 	db SWIFT
+	db DISABLE
+	db LIGHT_SCREEN
 	db $ff
 
 FarfetchDEggMoves:
 	db MIRROR_MOVE
 	db QUICK_ATTACK
 	db FLAIL
-	db HEAT_WAVE
+	db REFLECT
+	db FORESIGHT
 	db $ff
 
 DoduoEggMoves:
 	db FLAIL
 	db ENDURE
 	db QUICK_ATTACK
-	db DOUBLE_EDGE
 	db BATON_PASS
+	db MUD_SLAP
+	db SWIFT
 	db $ff
 
 SeelEggMoves:
 	db ENDURE
 	db FLAIL
-	db SLAM
 	db MIMIC
+	db DISABLE
+	db DOUBLE_EDGE
 	db $ff
 
 GrimerEggMoves:
 	db HAZE
-	db MEAN_LOOK
-	db LICK
 	db SCARY_FACE
 	db MUD_SLAP
 	db $ff
 
 ShellderEggMoves:
 	db BUBBLEBEAM
-	db POISON_JAB
 	db RAPID_SPIN
 	db SCREECH
-	db LICK
 	db $ff
 
 GastlyEggMoves:
@@ -265,7 +264,6 @@ GastlyEggMoves:
 	db DISABLE
 	db SCARY_FACE
 	db COUNTER
-	db PAIN_SPLIT
 	db $ff
 
 OnixEggMoves:
@@ -337,11 +335,6 @@ RhyhornEggMoves:
 
 ChanseyEggMoves:
 	db PRESENT
-	db LIGHT_SCREEN
-	db HEAL_BELL
-	db CHARM
-	db SWEET_KISS
-	db SAFEGUARD
 	db $ff
 
 TangelaEggMoves:
@@ -449,10 +442,10 @@ ChikoritaEggMoves:
 	db $ff
 
 CyndaquilEggMoves:
-	db FURY_ATTACK
 	db QUICK_ATTACK
 	db FORESIGHT
 	db HEADBUTT
+	db MEGA_KICK
 	db $ff
 
 TotodileEggMoves:
@@ -797,13 +790,11 @@ MiltankEggMoves:
 	db $ff
 
 LarvitarEggMoves:
-	db IRON_HEAD
 	db COUNTER
-	db MUD_SLAP
 	db DOUBLE_EDGE
 	db FOCUS_ENERGY
-	db MEGA_KICK
 	db SPITE
+	db SCARY_FACE
 	db $ff
 
 NoEggMoves:

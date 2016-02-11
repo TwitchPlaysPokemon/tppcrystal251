@@ -190,7 +190,7 @@ ENDC
 	dw Script_writepersonxy
 	dw Script_loademote
 	dw Script_showemote
-	dw Script_spriteface
+	dw Script_spriteface ;76
 	dw Script_follownotexact
 	dw Script_earthquake ;78
 	dw Script_changemap
@@ -240,7 +240,7 @@ ENDC
 	dw Script_displaylocation
 	dw Script_trainerclassname
 	dw Script_name
-	dw Script_wait
+	dw Script_wait ;af
 	dw Script_unknown0xa9
 	dw Script_checkroammon
 ; 0x96e05

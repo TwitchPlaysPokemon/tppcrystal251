@@ -703,7 +703,7 @@ FirstPlaceQuestion:
 
 	para "however, you may"
 	line "choose to take a"
-	cont "different prize"
+	cont "different prize."
 
 	para "Do you want the"
 	line "SUN STONE?"
@@ -711,7 +711,7 @@ FirstPlaceQuestion:
 
 SunStoneChosenText:
 	text "Please accept"
-	line "your prize"
+	line "your prize."
 	done
 
 ContestAlreadyHolding
@@ -721,7 +721,7 @@ ContestAlreadyHolding
 	text "for you."
 
 	para "you'll have to take"
-	line "another prize"
+	line "another prize."
 	done
 
 BallsChosenText:
@@ -734,7 +734,7 @@ BallsChosenText:
 ContestSecondPrizeText:
 	text $52, ", the No.2"
 	line "finisher, wins"
-	cont "8 Apricorn Balls"
+	cont "8 Apricorn Balls."
 	done
 ; 0xbc3db
 

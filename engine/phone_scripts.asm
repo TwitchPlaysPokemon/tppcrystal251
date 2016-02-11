@@ -180,13 +180,15 @@ BillPhoneScript1: ; 0xbcfc5
 
 .full ; 0xbd002
 	farwritetext BillPhoneFullText
-	jump CheckForBoxes
+	end
+	;jump CheckForBoxes this allow the player to call bill and change boxes, mostly functional but glitches pokegear map graphics
 
 BillPhoneScript2: ; 0xbd007
 	farwritetext BillPhoneNewlyFullText
 CheckForBoxes:
 	special BillBoxSwitchCheck
 	if_equal 0, BillPhoneWholePCFull
+	buttonsound
 	farwritetext BillWantNextBox
 	yesorno
 	iffalse EndBillConversation

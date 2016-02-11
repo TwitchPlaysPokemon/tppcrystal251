@@ -89,7 +89,7 @@ ChuckReject:
 	end
 
 ChuckRejectText:
-	text "Hey, <PLAY-G>!"
+	text "Hey, <PLAY_G>!"
 	line "Good to see you"
 	cont "again!"
 

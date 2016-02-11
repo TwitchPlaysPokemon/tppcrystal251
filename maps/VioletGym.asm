@@ -91,8 +91,8 @@ FalknerRejectText:
 	cont "LEGENDARY BIRDS."
 
 	para "Once you have"
-	line "proven yourself to"
-	cont "them I will accept"
+	line "proven yourself"
+	cont "to them I will"
 	cont "accept your"
 	cont "challenge."
 	done
@@ -234,7 +234,8 @@ FalknerRematchTextBefore:
 
 	para "Long ago my dad"
 	line "caught the 3"
-	cont "ultimate bird #MON"
+	cont "ultimate bird"
+	cont "#MON."
 
 	para "You, who have"
 	line "matched this feat,"

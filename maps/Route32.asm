@@ -1079,10 +1079,10 @@ Bird_keeperPeterBeatenText: ; 0x1910b4
 ; 0x1910d4
 
 UnknownText_0x1910d4: ; 0x1910d4
-	text "I should train"
-	line "again at the GYM"
-	cont "in VIOLET CITY."
-	done
+	;text "I should train"
+	;line "again at the GYM"
+	;cont "in VIOLET CITY."
+;	done
 ; 0x191105
 
 ; possibly unused
@@ -1095,7 +1095,7 @@ UnknownText_0x191105: ; 0x191105
 
 UnknownText_0x191133: ; 0x191133
 	text "Crush without"
-	para "breaking."
+	line "breaking."
 	
 	para "Slice without"
 	line "cutting."
@@ -1119,8 +1119,8 @@ FalseTutorReject:
 	done
 
 FalseTutorDone:
-	text "teaching without"
-	para "knowing is the"
+	text "Teaching without"
+	line "knowing is the"
 	cont "greatest skill"
 	cont "of all."
 	done

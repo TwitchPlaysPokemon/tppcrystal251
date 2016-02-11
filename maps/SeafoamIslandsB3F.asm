@@ -10,7 +10,7 @@ ArticunoScript1:
 	cry ARTICUNO
 	waitbutton
 	closetext
-	loadpokedata ARTICUNO, 70
+	loadpokedata ARTICUNO, 95
 	writecode VAR_BATTLETYPE, BATTLETYPE_KANTOLEGEND
 	startbattle
 	writebyte ARTICUNO

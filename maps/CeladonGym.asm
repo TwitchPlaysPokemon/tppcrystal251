@@ -75,7 +75,14 @@ ErikaReject:
 	closetext
 	end
 	
+
 ErikaRejectNoGSBall:
+	writetext ErikaRejectNoGSBallText
+	waitbutton
+	closetext
+	end
+
+ErikaRejectNoGSBallText:
 	text "How are you?"
 
 	para "I'm worried about"

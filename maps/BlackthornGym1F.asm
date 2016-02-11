@@ -71,6 +71,19 @@ ClairMeetMeInDragonsDenScript:
 	domaptrigger GROUP_DRAGONS_DEN_B1F, MAP_DRAGONS_DEN_B1F, $1
 	end
 
+ClairRejectNoMtMoon:
+	writetext ClairRejectNoMtMoonText
+	waitbutton
+	closetext
+	end
+
+ClairReject:
+	writetext ClairRejectText
+	waitbutton
+	closetext
+	end
+
+
 UnknownScript_0x194e63: ; 0x194e63
 	writetext UnknownText_0x195162
 	waitbutton
@@ -241,7 +254,7 @@ ClairMeetMeInDragonsDenText:
 	line "there."
 	done
 
-ClairRejectNoMtMoon:
+ClairRejectNoMtMoonText:
 	text "Let me guess."
 
 	para "You want a rematch"
@@ -254,7 +267,7 @@ ClairRejectNoMtMoon:
 
 	done
 
-ClairReject:
+ClairRejectText:
 	text "Let me guess."
 
 	para "You want a rematch"

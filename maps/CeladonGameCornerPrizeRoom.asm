@@ -275,9 +275,10 @@ UnknownText_0x728e9: ; 0x728e9
 	para "PORYGON2 is a"
 	line "prize here."
 
-	para "That #MON is sup-"
-	line "-posed to be very"
-	cont "hard to find."
+	para "That #MON is"
+	line "supposed to be"
+	cont "very hard"
+	cont "to find."
 	done
 ; 0x7293e
 
