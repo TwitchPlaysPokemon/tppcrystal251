@@ -232,11 +232,11 @@ class AI(object):
             temptext2 = 'enemypokemon'
             temptext = 'playerpokemon'
         
-        if Debug_Code == 1 and attacker < 6:
-            print(move_used['name'])
-        
         move_used = mondata[attacker]['moves'][moveused]
         move_used_effect = move_used['effect']
+        
+        if Debug_Code == 1 and attacker < 6:
+            print(move_used['name'])
 
         #sleeptalk workaround
         if move_used_effect == 'sleeptalk' and mondata[attacker]['status'] in ('slp', 'slp1', 'slp2', 'slp3'):
