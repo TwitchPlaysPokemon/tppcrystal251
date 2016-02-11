@@ -49,7 +49,7 @@ UnknownScript_0x180053: ; 0x180053
 	checkflag ENGINE_INDIGO_PLATEAU_RIVAL_FIGHT
 	iftrue UnknownScript_0x18012b
 	checkevent EVENT_BEAT_INDIGO_RIVAL_AT_LEAST_ONCE
-	iffalse SkipDayCheck2
+	iffalse SkipDayCheck
 	checkcode VAR_WEEKDAY
 	if_equal SUNDAY, UnknownScript_0x18012b
 	if_equal TUESDAY, UnknownScript_0x18012b
