@@ -1074,7 +1074,23 @@ Function6182: ; 6182
 	ret z
 	ld [hWX], a
 	jr .asm_618e
-; 619c
+; ; 619c
+
+; Function6182: ; 6182
+; Nonworking code, attempt to make nidorino come in from the opposite side
+	; ld a, $87
+	; ld [hWX], a
+	; call DelayFrame
+	; ld a, $e4
+	; call DmgToCgbBGPals
+; .asm_618e
+	; call DelayFrame
+	; ld a, [hWX]
+	; add $8
+	; cp $f
+	; ret z
+	; ld [hWX], a
+	; jr .asm_618e
 
 Function619c: ; 619c
 	ld de, VTiles2
