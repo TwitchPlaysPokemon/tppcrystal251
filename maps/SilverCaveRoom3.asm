@@ -3,8 +3,16 @@ SilverCaveRoom3_MapScriptHeader: ; 0x18c601
 	db 0
 
 	; callback count
-	db 0
+	db 1
+	dbw 1, .AbeCheck
 ; 0x18c603
+.AbeCheck
+	checkevent EVENT_BEAT_AIIIAAB
+	iffalse .skipdoor
+	changeblock 9, 7, $42
+	changeblock 9, 8, $43
+.skipdoor
+	return
 
 RedScript_0x18c603: ; 0x18c603
 	special Functionc48f
@@ -33,14 +41,26 @@ RedScript_0x18c603: ; 0x18c603
 	; special HealParty
 	; refreshscreen $0
 	; credits
-	follow $2, $0 ; Player starts to follow Abe
+	playsound SFX_ENTER_DOOR
+	changeblock 9, 7, $42
+	changeblock 10, 7, $43
+	reloadmappart
+	waitsfx
+	pause 20
+	checkcode VAR_FACING
+	if_equal DOWN, .script2
+	spriteface $0, UP
 	applymovement $2, Movement_AbeSortaKindaLeadsPlayerIntoRuins ; Anarchy or RIOT
-	stopfollow
 	disappear $2
 	playsound SFX_EXIT_BUILDING
 	waitsfx
-	applymovement $0, Movement_PlayerEntersRuins
-	warpcheck
+	end
+.script2
+	applymovement $2, Movement_AbeSortaKindaLeadsPlayerIntoRuins2 ; Anarchy or RIOT
+	spriteface $0, UP
+	disappear $2
+	playsound SFX_EXIT_BUILDING
+	waitsfx
 	end
 ; 0x18c637
 
@@ -59,13 +79,36 @@ Movement_AbeSortaKindaLeadsPlayerIntoRuins:
 	half_step_right
 	half_step_down
 	half_step_left
-	step_up
 	half_step_up
 	half_step_up
 	half_step_up
 	half_step_up
 	step_right
-Movement_PlayerEntersRuins:
+	step_up
+	step_up
+	step_end
+Movement_AbeSortaKindaLeadsPlayerIntoRuins2:
+	step_right
+	step_up
+	half_step_right
+	half_step_left
+	half_step_down
+	step_sleep 16
+	half_step_down
+	step_down
+	half_step_right
+	step_left
+	half_step_up
+	half_step_right
+	half_step_down
+	half_step_left
+	half_step_up
+	half_step_up
+	half_step_up
+	half_step_up
+	step_right
+	step_up
+	step_up
 	step_up
 	step_end
 
