@@ -3311,7 +3311,7 @@ LassGroup:
 
 	db "ROBIN@"
 	db (1 << TRAINERTYPE_NICKNAME)
-	db 14, JIGGLYPUFF, "Jiggles@"
+	db 14, JIGGLYPUFF, "JIGGLES@"
 	db $ff
 
 	db "MIRIAM@"
@@ -3322,7 +3322,7 @@ LassGroup:
 	
 	db "IRIS@"
 	db (1 << TRAINERTYPE_NICKNAME)
-	db 14, CLEFAIRY, "Cleffles@"
+	db 14, CLEFAIRY, "CLEFFLES@"
 	db $ff
 
 	db "CRISSY@"
@@ -7589,8 +7589,8 @@ BikerGroup:
 	db (1 << TRAINERTYPE_NICKNAME)
 
 	; party
-	db 75, MAGMAR, "Smoker@"
-	db 75, SNORLAX, "Bellyfat@"
+	db 75, MAGMAR, "SMOKER@"
+	db 75, SNORLAX, "BELLYFAT@"
 
 	db $ff ; end
 
@@ -7601,7 +7601,7 @@ BikerGroup:
 	db (1 << TRAINERTYPE_NICKNAME)
 
 	; party
-	db 75, BEEDRILL, "Stinger@"
+	db 75, BEEDRILL, "STINGER@"
 
 	db $ff ; end
 
@@ -7612,8 +7612,8 @@ BikerGroup:
 	db (1 << TRAINERTYPE_NICKNAME)
 
 	; party
-	db 75, GRANBULL, "Hardteeth@"
-	db 75, TAUROS, "Bullride@"
+	db 75, GRANBULL, "HARDTEETH@"
+	db 75, TAUROS, "BULLRIDE@"
 
 	db $ff ; end
 
@@ -7624,7 +7624,7 @@ BikerGroup:
 	db (1 << TRAINERTYPE_NICKNAME)
 
 	; party
-	db 75, RATICATE, "Sharpfang@"
+	db 75, RATICATE, "SHARPFANG@"
 
 	db $ff ; end
 
@@ -8759,8 +8759,8 @@ PicnickerGroup:
 
 	db "KELSEY@"
 	db (1 << TRAINERTYPE_NICKNAME)
-	db 15, NIDORAN_M, "Needles@"
-	db 15, NIDORAN_F, "Princess@"
+	db 15, NIDORAN_M, "NEEDLES@"
+	db 15, NIDORAN_F, "PRINCESS@"
 	db $ff
 ; ================
 	db "NANCY@"
@@ -8771,9 +8771,9 @@ PicnickerGroup:
 
 	db "IZZY@"
 	db (1 << TRAINERTYPE_NICKNAME)
-	db 16, PIDGEY, "Hopsy@"
-	db 16, PIDGEY, "Pecksy@"
-	db 16, PIDGEY, "Flapsy@"
+	db 16, PIDGEY, "HOPSY@"
+	db 16, PIDGEY, "PECKSY@"
+	db 16, PIDGEY, "FLAPSY@"
 	db $ff
 ; ================================
 
@@ -9083,8 +9083,8 @@ CamperGroup:
 
 	db "FLINT@"
 	db (1 << TRAINERTYPE_NICKNAME | 1 << TRAINERTYPE_ITEM)
-	db 14, RATTATA, BERRY, "Ratman@"
-	db 14, EKANS, BERRY, "Python@"
+	db 14, RATTATA, BERRY, "RATMAN@"
+	db 14, EKANS, BERRY, "PYTHON@"
 	db $ff
 
 	db "RICKY@"
@@ -9861,7 +9861,7 @@ PokefanFGroup:
 	db (1 << TRAINERTYPE_NICKNAME)
 
 	; party
-	db 38, AMPHAROS, "Zappy@"
+	db 38, AMPHAROS, "ZAPPY@"
 
 	db $ff ; end
 

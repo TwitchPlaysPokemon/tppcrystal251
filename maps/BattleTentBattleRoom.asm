@@ -77,6 +77,7 @@ MapBattleTentBattleRoomBillScript1:
 	applymovement $2, MapBattleTentBattleRoomMovementData2
 	playsound SFX_EXIT_BUILDING
 	disappear $2
+	setevent EVENT_UNLOCKED_GARDEN
 	pause 15
 	end
 
