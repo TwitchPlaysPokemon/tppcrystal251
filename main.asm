@@ -126,7 +126,7 @@ NewGame: ; 5b6b
 	ld [wc2cc], a
 	call Function5ba7
 	call Function5b44
-	call Function5b8f
+	; call Function5b8f
 	call OakSpeech
 	call Function5d23
 	ld a, $1
@@ -147,17 +147,17 @@ NewGame: ; 5b6b
 	jp Function5e5d
 ; 5b8f
 
-Function5b8f: ; 5b8f
-	callba Function10632f
-	jr c, .asm_5b9e
-	callba SetPlayerGender
-	ret
+; Function5b8f: ; 5b8f
+	; callba Function10632f
+	; jr c, .asm_5b9e
+	; callba SetPlayerGender
+	; ret
 
-.asm_5b9e
-	ld c, $0
-	callba Function4802f
-	ret
-; 5ba7
+; .asm_5b9e
+	; ld c, $0
+	; callba Function4802f
+	; ret
+; ; 5ba7
 
 Function5ba7: ; 5ba7
 	xor a
@@ -739,14 +739,41 @@ OakSpeech: ; 0x5f99
 	call Function616a
 	ld hl, OakText5
 	call PrintText
+
+.SelectGender
 	call Function4b6
 	call ClearTileMap
+	call Function616a
+	ld hl, .Text_BoyOrGirl
+	call PrintText
+	ld hl, .MenuDataHeader
+	call LoadMenuDataHeader
+	call Function3200
+	call Function1d81
+	call Function1c17
+	ld a, [wcfa9]
+	dec a
+	ld [PlayerGender], a
 	xor a
 	ld [CurPartySpecies], a
+	call Function4b6
+	call ClearTileMap
 	callba DrawIntroPlayerPic
 	ld b, $1c
 	call GetSGBLayout
 	call Function616a
+	ld a, [PlayerGender]
+	and a
+	jr z, .ConfirmBoy
+	ld hl, .Text_ConfirmGirl
+	jr .got_gender
+.ConfirmBoy
+	ld hl, .Text_ConfirmBoy
+.got_gender
+	call PrintText
+	call YesNoBox
+	jr c, .SelectGender
+
 	ld hl, OakText6
 	call PrintText
 	call NamePlayer
@@ -786,6 +813,33 @@ OakSpeech: ; 0x5f99
 	ld hl, OakText7
 	call PrintText
 	ret
+
+.MenuDataHeader: ; 0x48dfc
+	db $40 ; flags
+	db 04, 06 ; start coords
+	db 09, 12 ; end coords
+	dw .MenuData2
+	db 1 ; default option
+; 0x48e04
+
+.MenuData2: ; 0x48e04
+	db $a1 ; flags
+	db 2 ; items
+	db "Boy@"
+	db "Girl@"
+; 0x48e0f
+
+.Text_BoyOrGirl: ; 0x48e0f
+	; Are you a boy? Or are you a girl?
+	text_jump UnknownText_0x1c0ca3
+	db "@"
+; 0x48e14
+.Text_ConfirmBoy
+	text_jump ConfirmBoyText
+	db "@"
+.Text_ConfirmGirl
+	text_jump ConfirmGirlText
+	db "@"
 
 OakText1: ; 0x6045
 	TX_FAR _OakText1
@@ -1020,7 +1074,23 @@ Function6182: ; 6182
 	ret z
 	ld [hWX], a
 	jr .asm_618e
-; 619c
+; ; 619c
+
+; Function6182: ; 6182
+; Nonworking code, attempt to make nidorino come in from the opposite side
+	; ld a, $87
+	; ld [hWX], a
+	; call DelayFrame
+	; ld a, $e4
+	; call DmgToCgbBGPals
+; .asm_618e
+	; call DelayFrame
+	; ld a, [hWX]
+	; add $8
+	; cp $f
+	; ret z
+	; ld [hWX], a
+	; jr .asm_618e
 
 Function619c: ; 619c
 	ld de, VTiles2
@@ -39956,97 +40026,97 @@ Function48d94: ; 48d94 (12:4d94)
 	ld [hl], a
 	ret
 
-SetPlayerGender: ; 48dcb (12:4dcb)
-	call Function48e14
-	call Function48e47
-	call Function48e64
-	call Function3200
-	call Function32f9
-	ld hl, UnknownText_0x48e0f
-	call PrintText
-	ld hl, MenuDataHeader_0x48dfc
-	call LoadMenuDataHeader
-	call Function3200
-	call Function1d81
-	call Function1c17
-	ld a, [wcfa9]
-	dec a
-	ld [PlayerGender], a
-	ld c, $a
-	call DelayFrames
-	ret
-; 48dfc (12:4dfc)
+; SetPlayerGender: ; 48dcb (12:4dcb)
+	; call Function48e14
+	; call Function48e47
+	; call Function48e64
+	; call Function3200
+	; call Function32f9
+	; ld hl, UnknownText_0x48e0f
+	; call PrintText
+	; ld hl, MenuDataHeader_0x48dfc
+	; call LoadMenuDataHeader
+	; call Function3200
+	; call Function1d81
+	; call Function1c17
+	; ld a, [wcfa9]
+	; dec a
+	; ld [PlayerGender], a
+	; ld c, $a
+	; call DelayFrames
+	; ret
+; ; 48dfc (12:4dfc)
 
-MenuDataHeader_0x48dfc: ; 0x48dfc
-	db $40 ; flags
-	db 04, 06 ; start coords
-	db 09, 12 ; end coords
-	dw MenuData2_0x48e04
-	db 1 ; default option
-; 0x48e04
+; MenuDataHeader_0x48dfc: ; 0x48dfc
+	; db $40 ; flags
+	; db 04, 06 ; start coords
+	; db 09, 12 ; end coords
+	; dw MenuData2_0x48e04
+	; db 1 ; default option
+; ; 0x48e04
 
-MenuData2_0x48e04: ; 0x48e04
-	db $a1 ; flags
-	db 2 ; items
-	db "Boy@"
-	db "Girl@"
-; 0x48e0f
+; MenuData2_0x48e04: ; 0x48e04
+	; db $a1 ; flags
+	; db 2 ; items
+	; db "Boy@"
+	; db "Girl@"
+; ; 0x48e0f
 
-UnknownText_0x48e0f: ; 0x48e0f
-	; Are you a boy? Or are you a girl?
-	text_jump UnknownText_0x1c0ca3
-	db "@"
-; 0x48e14
+; UnknownText_0x48e0f: ; 0x48e0f
+	; ; Are you a boy? Or are you a girl?
+	; text_jump UnknownText_0x1c0ca3
+	; db "@"
+; ; 0x48e14
 
-Function48e14: ; 48e14 (12:4e14)
-	ld a, $10
-	ld [MusicFade], a
-	ld a, $0
-	ld [MusicFadeIDLo], a
-	ld a, $0
-	ld [MusicFadeIDHi], a
-	ld c, $8
-	call DelayFrames
-	call WhiteBGMap
-	call Function48000
-	call Functione5f
-	hlcoord 0, 0
-	ld bc, SCREEN_HEIGHT * SCREEN_WIDTH
-	ld a, $0
-	call ByteFill
-	hlcoord 0, 0, AttrMap
-	ld bc, SCREEN_HEIGHT * SCREEN_WIDTH
-	xor a
-	call ByteFill
-	ret
+; Function48e14: ; 48e14 (12:4e14)
+	; ld a, $10
+	; ld [MusicFade], a
+	; ld a, $0
+	; ld [MusicFadeIDLo], a
+	; ld a, $0
+	; ld [MusicFadeIDHi], a
+	; ld c, $8
+	; call DelayFrames
+	; call WhiteBGMap
+	; call Function48000
+	; call Functione5f
+	; hlcoord 0, 0
+	; ld bc, SCREEN_HEIGHT * SCREEN_WIDTH
+	; ld a, $0
+	; call ByteFill
+	; hlcoord 0, 0, AttrMap
+	; ld bc, SCREEN_HEIGHT * SCREEN_WIDTH
+	; xor a
+	; call ByteFill
+	; ret
 
-Function48e47: ; 48e47 (12:4e47)
-	ld hl, Palette_48e5c
-	ld de, Unkn1Pals
-	ld bc, $8
-	ld a, $5
-	call FarCopyWRAM
-	callba Function96a4
-	ret
-; 48e5c (12:4e5c)
+; Function48e47: ; 48e47 (12:4e47)
+	; ld hl, Palette_48e5c
+	; ld de, Unkn1Pals
+	; ld bc, $8
+	; ld a, $5
+	; call FarCopyWRAM
+	; callba Function96a4
+	; ret
+; ; 48e5c (12:4e5c)
 
-Palette_48e5c: ; 48e5c
-	RGB 31, 31, 31
-	RGB 09, 30, 31
-	RGB 01, 11, 31
-	RGB 00, 00, 00
-; 48e64
+; Palette_48e5c: ; 48e5c
+	; RGB 31, 31, 31
+	; RGB 09, 30, 31
+	; RGB 01, 11, 31
+	; RGB 00, 00, 00
+; ; 48e64
 
-Function48e64: ; 48e64 (12:4e64)
-	ld de, GFX_48e71
-	ld hl, $9000
-	lb bc, BANK(GFX_48e71), 1
-	call Get2bpp
-	ret
-; 48e71 (12:4e71)
+; Function48e64: ; 48e64 (12:4e64)
+	; ld de, GFX_48e71
+	; ld hl, $9000
+	; lb bc, BANK(GFX_48e71), 1
+	; call Get2bpp
+	; ret
+; ; 48e71 (12:4e71)
 
-GFX_48e71: ; 48e71
-INCBIN "gfx/unknown/048e71.2bpp"
+; GFX_48e71: ; 48e71
+; INCBIN "gfx/unknown/048e71.2bpp"
 
 Function48e81: ; 48e81
 	ld hl, PackFGFXPointers

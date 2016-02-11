@@ -1,5 +1,5 @@
 _OakText6: ; 0x1c4000
-	text "Now, what did you"
+	text "And what did you"
 	line "say your name was?"
 	prompt
 ; 0x1c4026
