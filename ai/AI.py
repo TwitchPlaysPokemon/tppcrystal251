@@ -492,7 +492,7 @@ class AI(object):
             critmodifier = critmodifier + 2
         if move_used['name'].lower() in ('aeroblast', 'crabhammer', 'crosschop', 'drillrun', 'karatechop', 'razorleaf', 'shadowclaw', 'slash', 'skyattack'):
             critmodifier = critmodifier + 2
-        temp2 = (temp2 * ( 1 - self._critmultipliers[str(critmodifier)]))) + (temp2 * 1.5 * self._critmultipliers[str(critmodifier)])
+        temp2 = temp2 + (temp2 * 1.5 * self._critmultipliers[str(critmodifier)])
 
         if effmulti < 0.125:
             temp2 = 0
