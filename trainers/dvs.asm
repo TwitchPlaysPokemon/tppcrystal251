@@ -71,33 +71,33 @@ GetTrainerDVs: ; 270c4
 
 TrainerClassDVs: ; 270d6
 	;  Atk  Spd
-	;  Def  Spc
-	db $9A, $77 ; falkner
-	db $88, $88 ; bugsy
-	db $98, $88 ; whitney
-	db $98, $88 ; morty
-	db $98, $88 ; pryce
-	db $98, $88 ; jasmine
-	db $98, $88 ; chuck
-	db $7C, $DD ; clair
+	;  Def  Spc I tried to balance gyms to effective 69 total
+	db $FA, $F7 ; falkner
+	db $CC, $BA ; bugsy
+	db $7F, $DA ; whitney
+	db $CA, $FF ; morty
+	db $9E, $8F ; pryce
+	db $BF, $7A ; jasmine
+	db $FF, $97 ; chuck
+	db $D5, $CD ; clair
 	db $DD, $DD ; rival1
 	db $DD, $DD ; pokemon prof
 	db $DC, $DD ; will
 	db $DC, $DD ; cal
-	db $DC, $DD ; bruno
+	db $DD, $DC ; bruno
 	db $7F, $DF ; karen
-	db $DC, $DD ; koga
-	db $DC, $DD ; champion
-	db $98, $88 ; brock
-	db $78, $88 ; misty
-	db $98, $88 ; lt surge
+	db $BD, $DD ; koga
+	db $DD, $DD ; champion
+	db $AF, $8F ; brock
+	db $F8, $CD ; misty
+	db $AC, $FF ; lt surge
 	db $98, $88 ; scientist
-	db $78, $88 ; erika
+	db $7D, $9F ; erika
 	db $98, $88 ; youngster
 	db $98, $88 ; schoolboy
 	db $98, $88 ; bird keeper
 	db $58, $88 ; lass
-	db $98, $88 ; janine
+	db $CA, $FF ; janine
 	db $D8, $C8 ; cooltrainerm
 	db $7C, $C8 ; cooltrainerf
 	db $69, $C8 ; beauty
@@ -106,7 +106,7 @@ TrainerClassDVs: ; 270d6
 	db $98, $88 ; gentleman
 	db $98, $88 ; skier
 	db $68, $88 ; teacher
-	db $7D, $87 ; sabrina
+	db $78, $FF ; sabrina
 	db $98, $88 ; bug catcher
 	db $98, $88 ; fisher
 	db $98, $88 ; swimmerm
@@ -117,7 +117,7 @@ TrainerClassDVs: ; 270d6
 	db $98, $88 ; guitarist
 	db $A8, $88 ; hiker
 	db $98, $88 ; biker
-	db $98, $88 ; blaine
+	db $F8, $8F ; blaine
 	db $98, $88 ; burglar
 	db $98, $88 ; firebreather
 	db $98, $88 ; juggler
@@ -135,7 +135,7 @@ TrainerClassDVs: ; 270d6
 	db $68, $A8 ; twins
 	db $6D, $88 ; pokefanf
 	db $FD, $DE ; red
-	db $9D, $DD ; blue
+	db $DD, $DD ; blue
 	db $98, $88 ; officer
 	db $7E, $A8 ; gruntf
 	db $aa, $aa ; mysticalman
