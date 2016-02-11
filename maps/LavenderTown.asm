@@ -18,6 +18,7 @@ LavenderTown_MapScriptHeader: ; 0x1ad6db
 
 UnknownScript_0x1ad6e0: ; 0x1ad6e0
 	setflag ENGINE_FLYPOINT_LAVENDER
+	; dotrigger $0
 	return
 ; 0x1ad6e4
 
@@ -62,37 +63,41 @@ MapLavenderTownSignpost5Script: ; 0x1ad6ff
 ; 0x1ad702
 
 ScareLassScript:
-	dotrigger $1
-	checktime $4
-	iffalse NoLass
+	checknite
+	iffalse .skip
 	checkevent EVENT_LAVENDER_HAUNTER
-	iffalse NoLass
+	iffalse .skip
 	checkevent EVENT_CAUGHT_HAUNTER
-	iftrue NoLass
+	iftrue .skip
 	appear $6
 	playsound SFX_STRENGTH
-	applymovement $0, LassMove1
+	spriteface $0, UP
+	applymovement $0, ScaredLass_PlayerMovement1
 	applymovement $6, LassMove1
 	loadfont
 	writetext ScaredLassText
 	waitbutton
 	closetext
+	playsound SFX_RUN
+	spriteface $0, LEFT
 	applymovement $6, LassMove2
+	waitsfx
 	clearevent EVENT_LAVENDER_HAUNTER
 	disappear $6
-NoLass:
+.skip
+	dotrigger $1
 	end
 
+ScaredLass_PlayerMovement1:
+	fix_facing
+	big_step_down
+	remove_fixed_facing
+	step_end
 LassMove1:
 	big_step_down
 	step_end
 
 LassMove2:
-	big_step_left
-	big_step_left
-	big_step_left
-	big_step_left
-	big_step_left
 	big_step_left
 	big_step_left
 	big_step_left

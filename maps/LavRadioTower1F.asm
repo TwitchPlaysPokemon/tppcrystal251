@@ -60,6 +60,11 @@ GhostOfficerText:
 	done
 
 HaunterScript:
+	loadfont
+	writetext HaunterText
+	cry HAUNTER
+	waitbutton
+	closetext
 	loadpokedata HAUNTER, 75
 	startbattle
 	writebyte HAUNTER
@@ -70,6 +75,9 @@ HaunterScript:
 DontKillHaunter:
 	returnafterbattle
 	end
+HaunterText:
+	text "Hehehehe<...>"
+	done
 
 SuperNerdScript_0x7ee69: ; 0x7ee69
 	jumptextfaceplayer UnknownText_0x7ef90
@@ -358,6 +366,6 @@ LavRadioTower1F_MapEventHeader: ; 0x7f3b9
 	person_event SPRITE_SUPER_NERD, 7, 5, $2, 1, 1, -1, 2, 8 + PAL_OW_RED, 0, 0, SuperNerdScript_0x7ee69, -1
 	person_event SPRITE_GENTLEMAN, 5, 13, $7, 0, 0, -1, -1, 0, 0, 0, GentlemanScript_0x7ee6c, -1
 	person_event SPRITE_SUPER_NERD, 10, 18, $9, 0, 0, -1, 2, 0, 0, 0, SuperNerdScript_0x7eea2, -1
-	person_event SPRITE_GENGAR, 6, 10, $6, 0, 0, -1, 4, 0, 0, 0, HaunterScript, EVENT_LAVENDER_HAUNTER
+	person_event SPRITE_GENGAR, 6, 10, $16, 0, 0, -1, 4, 0, 0, 0, HaunterScript, EVENT_LAVENDER_HAUNTER
 ; 0x7f414
 

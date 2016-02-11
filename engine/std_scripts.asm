@@ -914,6 +914,7 @@ InitializeEventsScript: ; 0xbc3db
 	setevent EVENT_SIMON_IN_PEWTER_CITY
 	setevent EVENT_LAVENDER_HAUNTER
 	setevent EVENT_SCARED_LASS
+	setevent EVENT_ELM_IN_SILVER_CAVE_RUINS
 	return
 ; 0xbc574
 
