@@ -504,7 +504,7 @@ class AI(object):
             critmodifier = critmodifier + 2
         print(temp2)
         temp2 = (temp2 * ( 1 - self._critmultipliers[critmodifier])) + (temp2 * 1.5 * self._critmultipliers[critmodifier])
-        temp2 = (temp2 * ( 1 - self._critmultipliers[str(critmodifier)])) + (temp2 * 1.5 * self._critmultipliers[str(critmodifier)])
+        temp2 = (temp2 * ( 1 - self._critmultipliers[critmodifier])) + (temp2 * 1.5 * self._critmultipliers[critmodifier])
         
         if Debug_Code == 1 and attacker < 6:
             print('Damage after crit'+str(temp2))
