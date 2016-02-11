@@ -1581,6 +1581,9 @@ class AI(object):
                     x1 = math.ceil(self.Damage[0][6][self.theaction]['damage'] / (self.Damage[0][6][self.theaction]['damage'] + self.Damage[0][6][tempx]['damage']))
                     if random.randint(0, 100) > x1:
                         return tempx
+        for tempmove in range (0, len(self.jsonlist['battleState']['enemypokemon']['moves'])):
+            if self.Damage[0][6][tempmove]['damage'] > self.opponenthp[6] :
+                return tempmove
         return None
 
     #figure out best action to do in current battle
