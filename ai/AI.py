@@ -1551,7 +1551,7 @@ class AI(object):
     #figure out best action to do in current battle
     def MainBattle(self, jsonlist):
 
-        self.jsonlist = jsonlist
+        self.jsonlist = json.loads(jsonlist)
 
         #setup everything
         if self.jsonlist['battleState']['enemy type'] == 'TRAINER':
