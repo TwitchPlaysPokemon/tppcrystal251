@@ -8,7 +8,8 @@ RadioTower5F_MapScriptHeader: ; 0x60000
 	dw UnknownScript_0x60010, $0000
 
 	; callback count
-	db 0
+	db 1
+	dbw 1, OpenRaikouDoor
 ; 0x6000e
 
 UnknownScript_0x6000e: ; 0x6000e
@@ -22,6 +23,12 @@ UnknownScript_0x6000f: ; 0x6000f
 UnknownScript_0x60010: ; 0x60010
 	end
 ; 0x60011
+OpenRaikouDoor:
+	checkevent EVENT_OPENED_RAIKOU_DOOR
+	iffalse .skip_door
+	changeblock 3, 0, $03
+.skip_door
+	return
 
 UnknownScript_0x60011: ; 0x60011
 	spriteface $2, $1
@@ -170,7 +177,7 @@ ItemFragment_0x600fe: ; 0x600fe
 ; 0x60100
 
 MapRadioTower5FSignpost0Script: ; 0x60100
-	dw EVENT_000_STD, .script
+	dw EVENT_OPENED_RAIKOU_DOOR, .script
 .script
 	loadfont
 	checkevent EVENT_FOUGHT_SUICUNE
@@ -185,7 +192,8 @@ MapRadioTower5FSignpost0Script: ; 0x60100
 	waitsfx
 	closetext
 	changeblock 3, 0, $03
-	setevent EVENT_000_STD
+	reloadmappart
+	setevent EVENT_OPENED_RAIKOU_DOOR
 	end
 ; 0x60103
 

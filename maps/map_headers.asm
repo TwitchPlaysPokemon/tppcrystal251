@@ -499,8 +499,8 @@ MapGroup27:
 	map_header PowerplantB1, 40, 7, POWER_PLANT, MUSIC_SILPH_CO, 1, 1, 1
 	map_header PowerplantB2, 30, 7, POWER_PLANT, MUSIC_SILPH_CO, 1, 1, 1
 	map_header EnteiRoom, 30, 7, CINNABAR_VOLCANO, MUSIC_MT_MOON, 1, 1, 1
-	map_header RaikouRoom, 30, 7, RADIO_TOWER, MUSIC_SILPH_CO, 1, 1, 1
-	map_header SuicuneRoom, 30, 7, TOHJO_FALLS, MUSIC_UNION_CAVE, 1, 1, 1
+	map_header RaikouRoom, $1b, 7, RADIO_TOWER, 1<<7 | MUSIC_GOLDENROD_CITY, 1, 1, 1
+	map_header SuicuneRoom, 30, 7, TOHJO_FALLS, MUSIC_UNION_CAVE, 1, 2, 1
 
 MapGroup28:
 	map_header CinnabarVolcanoEntrance, 41, 4, CINNABAR_VOLCANO, MUSIC_MT_MOON, 1, 2, 1
@@ -514,7 +514,7 @@ MapGroup28:
 	map_header TohjoFallsBackRoom, $18, 4, TOHJO_FALLS, MUSIC_UNION_CAVE, 1, 2, 3
 	map_header CeladonDeptStoreB1F, $c, 3, CELADON_CITY, MUSIC_MART, 0, 1, 1
 	map_header SilverCaveDreamRoom, $18, 3, SILVER_CAVE, MUSIC_NONE, 1, 1, 3
-	map_header MtSilverRuins, $1a, 7, SILVER_CAVE, MUSIC_NONE, 1, 1, 16
+	map_header MtSilverRuins, $1a, 7, SILVER_CAVE, MUSIC_DRAGONS_DEN, 1, 1, 16
 	map_header DummyBlankMap, $c, 0, 0, MUSIC_NONE, 1, 4, 0
 
 MapGroup29:

@@ -63,53 +63,51 @@ function url_encode(str)
 end
 
 function transferStateToAIAndWait(raw_json)
-local respbody = {}
-local url = "http://localhost:5001/ai/"
-local body = {
-        method="POST", 
-        url="http://localhost:5001/ai/", 
-        headers = { ["Content-Type"] = "application/json", ["Content-Length"] = raw_json:len() }, source = ltn12.source.string(raw_json), sink = ltn12.sink.table(respbody)
-        }
-    repeat
-        next_move = http.request("http://localhost:5001/ai/raw_json=raw_json", raw_json)
-        delay_timer = 60
-        repeat
-            emu.frameadvance()
-            delay_timer = delay_timer - 1
-        until delay_timer == 0
-    until next_move ~= nil
-    return next_move
+  -- 1st: Invoke the ai with JSON data.
+  -- request-body must be a string, therefore encode
+  http.request("http://localhost:5001/ai_invoke/", JSON:encode(raw_json))
+  -- 2nd: Wait until the ai finished.
+  repeat
+    -- advance a frame inbetween each request.
+    -- could also advance multiple frames to not do 60 requests per second
+    emu.frameadvance()
+    -- this request returns either the next move,
+    -- or an empty string if the result isn't set yet.
+    next_move = http.request("http://localhost:5001/ai_retrieve/")
+  until next_move ~= ""
+  -- we got a result!
+  return next_move
 end
 
-function tablestobytes(aitable, playertable)
+function tablestobytes(airesponse, playertable)
 local bytes = 0x000000
 local byte1 = 0x00
 local byte2 = 0x00
 local byte3 = 0x00
 
-if aitable["command"] == "move1" then 
+if airesponse == "move1" then 
     byte1 = 0x00
-elseif aitable["command"] == "move2" then
+elseif airesponse == "move2" then
     byte1 = 0x10
-elseif aitable["command"] == "move3" then
+elseif airesponse == "move3" then
     byte1 = 0x20
-elseif aitable["command"] == "move4" then
+elseif airesponse == "move4" then
     byte1 = 0x30
-elseif aitable["command"] == "switch1" then
+elseif airesponse == "switch1" then
     byte1 = 0x40
-elseif aitable["command"] == "switch2" then
+elseif airesponse == "switch2" then
     byte1 = 0x50
-elseif aitable["command"] == "switch3" then
+elseif airesponse == "switch3" then
     byte1 = 0x60
-elseif aitable["command"] == "switch4" then
+elseif airesponse == "switch4" then
     byte1 = 0x70
-elseif aitable["command"] == "switch5" then
+elseif airesponse == "switch5" then
     byte1 = 0x80
-elseif aitable["command"] == "switch6" then
+elseif airesponse == "switch6" then
     byte1 = 0x90
-elseif aitable["command"] == "useitem1" then
+elseif airesponse == "useitem1" then
     byte1 = 0xD0
-elseif aitable["command"] == "useitem2" then
+elseif airesponse == "useitem2" then
     byte1 = 0xE0
 end
 
@@ -146,14 +144,32 @@ if military_mode == 1 then
         end
     end
 end
+bytes = (byte1 * 65536) + (byte2 * 256) + byte3
+return bytes
 end
 
 repeat
+    if memory.readbyte(rSVBK) == 1 then
+        if (memory.readbyte(0xD849)%2==1) then
+            memory.writebyte(0xD849, bit.lshift(memory.readbyte(0xD849), 1))
+        else
+            memory.writebyte(0xD849, bit.rshift(memory.readbyte(0xD849), 1))
+        end
+    end
     vba.print(readPlayerstate())
     if memory.readbyte(rLSC) == BEESAFREE_LSC_TRANSFERRING then
     battlestate = readBattlestate(memory.readbyte(rLSB))
     vba.print("BATTLESTATE:", battlestate)
     vba.print("Waiting on AI...")
-    vba.print("AI RESPONSE:", transferStateToAIAndWait(battlestate))
+    airesponse = transferStateToAIAndWait(battlestate)
+    vba.print("AI RESPONSE:", airesponse)
+    playerresponse = {}
+    if military_mode == 1 then
+    vba.print("Waiting on player...")
+    playerresponse = get_next_player_command()
+    vba.print("PLAYER RESPONSE:", get_next_player_command())
+    end
+    memory.writebyterange(0xD849, 3, tablestobytes(airesponse, playeresponse))
+    memory.writebyte(rLSC, BEESAFREE_LSC_COMPLETED)
     end
 until not refreshinterval(0.100)

@@ -432,8 +432,9 @@ SilverCaveRoom2_BlockData: ; 0xaf28b
 ; 0xaf399
 
 SilverCaveRoom3_BlockData: ; 0xaf399
-SilverCaveDreamRoom_BlockData:
 	INCBIN "maps/SilverCaveRoom3.blk"
+SilverCaveDreamRoom_BlockData:
+	INCBIN "maps/SilverCaveDreamRoom.blk"
 ; 0xaf44d
 
 MahoganyMart1F_BlockData: ; 0xaf885

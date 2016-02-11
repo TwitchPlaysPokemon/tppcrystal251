@@ -1,13 +1,13 @@
 SilverCaveDreamRoom_MapScriptHeader:
 	db 0 ; triggers
 	
-	db 1 ; callbacks
-	dbw 1, DeleteSilverCaveExit
+	db 0 ; callbacks
+	; dbw 1, DeleteSilverCaveExit
 	
-DeleteSilverCaveExit:
-	changeblock $9, $21, $2
-	changeblock $9, $23, $5
-	return
+; DeleteSilverCaveExit:
+	; changeblock $9, $21, $2
+	; changeblock $9, $23, $5
+	; return
 
 DreamBabaScript: ; 0x18c603
 	special Functionc48f
@@ -72,5 +72,5 @@ SilverCaveDreamRoom_MapEventHeader: ; 0x18c644
 
 	; people-events
 	db 1
-	person_event SPRITE_BABA, 14, 13, $7, 0, 0, -1, -1, 8 + PAL_OW_RED, 0, 0, DreamBabaScript, -1
+	person_event SPRITE_BABA, 14, 13, $7, 0, 0, -1, -1, 8 + PAL_OW_BLUE, 0, 0, DreamBabaScript, -1
 ; 0x18c65c

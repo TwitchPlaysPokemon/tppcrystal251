@@ -8,6 +8,8 @@ MtSilverRuins_MapScriptHeader:
 ; <scripts go here>
 
 MtSilverRuinsElmScript:
+	waitsfx
+	playmusic MUSIC_NONE
 	faceplayer
 	loadfont
 	writetext Text_MtSilverRuinsBird
@@ -15,27 +17,45 @@ MtSilverRuinsElmScript:
 	waitbutton
 	closetext
 	playsound SFX_RUN
+	checkcode VAR_FACING
+	if_equal DOWN, .PlayerAboveLookingDown
+	if_equal UP, .PlayerBelowLookingUp
+	if_equal LEFT, .PlayerToRightLookingLeft
+	spriteface $0, UP
+	applymovement $3, Movement_UnknownBirdFliesAway
+	disappear $3
+	waitsfx
+	moveperson $2, 20, 11
+	appear $2
+	applymovement $2, Movement_ElmWalksUpToPlayerOnLeft
+	spriteface $0, DOWN
+	jump .TehUrn
+.PlayerAboveLookingDown
+	spriteface $0, UP
+	applymovement $3, Movement_UnknownBirdFliesAway2
+	disappear $3
+	waitsfx
+	moveperson $2, 20, 10
+	appear $2
+	applymovement $2, Movement_ElmWalksUpToPlayerAbove
+	spriteface $0, LEFT
+	jump .TehUrn
+.PlayerBelowLookingUp
 	spriteface $0, UP
 	applymovement $3, Movement_UnknownBirdFliesAway
 	disappear $3
 	waitsfx
 	appear $2
-	checkcode VAR_FACING
-	if_equal DOWN, .PlayerAboveLookingDown
-	if_equal UP, .PlayerBelowLookingUp
-	if_equal LEFT, .PlayerToRightLookingLeft
-	applymovement $2, Movement_ElmWalksUpToPlayerOnLeft
-	spriteface $0, DOWN
-	jump .TehUrn
-.PlayerAboveLookingDown
-	applymovement $2, Movement_ElmWalksUpToPlayerAbove
-	spriteface $0, LEFT
-	jump .TehUrn
-.PlayerBelowLookingUp
 	applymovement $2, Movement_ElmWalksUpToPlayerBelow
 	spriteface $0, LEFT
 	jump .TehUrn
 .PlayerToRightLookingLeft
+	spriteface $0, UP
+	applymovement $3, Movement_UnknownBirdFliesAway
+	disappear $3
+	waitsfx
+	moveperson $2, 22, 11
+	appear $2
 	applymovement $2, Movement_ElmWalksUpToPlayerOnRight
 	spriteface $0, DOWN
 .TehUrn
@@ -50,23 +70,26 @@ MtSilverRuinsElmScript:
 	reloadmapmusic
 	reloadmap
 	setevent EVENT_BEAT_ELM
-	loadfont ElmText_MtSilverRuinsFinalBattleAfter_Part1
+	loadfont
+	writetext ElmText_MtSilverRuinsFinalBattleAfter_Part1
 	buttonsound
 	waitsfx
 	playmusic MUSIC_HALL_OF_FAME
-	loadfont ElmText_MtSilverRuinsFinalBattleAfter_Part2
+	writetext ElmText_MtSilverRuinsFinalBattleAfter_Part2
 	waitbutton
 	closetext
-	pause 15
-	special Function8c0ab
+	special Special_FadeToBlack
+	special Functiond91
 	special Functionc48f
 	pause 30
 	special HealParty
 	refreshscreen $0
 	credits
 	end
-
+Movement_UnknownBirdFliesAway2:
+	step_left
 Movement_ElmWalksUpToPlayerOnLeft:
+Movement_ElmWalksUpToPlayerOnRight:
 Movement_UnknownBirdFliesAway:
 	step_up
 	step_up
@@ -76,8 +99,6 @@ Movement_UnknownBirdFliesAway:
 	step_end
 
 Movement_ElmWalksUpToPlayerAbove:
-	step_up
-	step_up
 Movement_ElmWalksUpToPlayerBelow:
 	step_up
 	step_up
@@ -85,17 +106,6 @@ Movement_ElmWalksUpToPlayerBelow:
 	step_up
 	step_up
 	turn_head_right
-	step_end
-
-Movement_ElmWalksUpToPlayerOnRight:
-	step_up
-	step_up
-	step_up
-	step_up
-	step_up
-	step_right
-	step_right
-	turn_head_up
 	step_end
 
 ; <text goes here>
@@ -253,4 +263,4 @@ MtSilverRuins_MapEventHeader:
 	; object events
 	db 2
 	person_event SPRITE_ELM, 16, 24, $7, 0, 0, -1, -1, 0, 0, 0, ObjectEvent, EVENT_ELM_IN_SILVER_CAVE_RUINS
-	person_event SPRITE_MOLTRES, 10, 25, $3, 0, 0, -1, -1, 8 + PAL_OW_SILVER, 0, 0, MtSilverRuinsElmScript, EVENT_BIRD_IN_SILVER_CAVE_RUINS
+	person_event SPRITE_BIRD, 10, 25, $3, 0, 0, -1, -1, 8 + PAL_OW_SILVER, 0, 0, MtSilverRuinsElmScript, EVENT_BIRD_IN_SILVER_CAVE_RUINS
