@@ -202,7 +202,7 @@ repeat
     is_military_on = (value % 2 == 1) -- just in case you need to know the current status
     newvalue = bit.band(value, 254) + military_mode
     memory.writebyte(0xD849, newvalue)
-    vba.print(readPlayerstate())
+    -- vba.print(readPlayerstate())
     if memory.readbyte(rLSC) == BEESAFREE_LSC_TRANSFERRING then
     battlestate = readBattlestate(memory.readbyte(rLSB))
     vba.print("BATTLESTATE:", battlestate)

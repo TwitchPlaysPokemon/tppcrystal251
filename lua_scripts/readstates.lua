@@ -406,7 +406,7 @@ function readBattlestate(req) --read this ONLY when LUA Serial is called
 		--output_table["playerParty"] = playerParty
 		--output_table["pack"] = pack
 		if battlemode == 0 then
-			vba.print("Not in battle")
+			-- vba.print("Not in battle")
 			memory.writebyte(wMilitaryMode, military_mode)
 			-- if (ignore_serial ~= 1) and (lastBattleState ~= 0) then
 				-- --transferStateToAIAndWait("Battle ended")
@@ -417,8 +417,8 @@ function readBattlestate(req) --read this ONLY when LUA Serial is called
 				battleState["trainer class"] = getTrainerClass()
 				battleState["trainer items"] = getTrainerItems()
 				enemyParty = getTrainerParty(OTPartyCount)
-				vba.print("Enemy Party:")
-				vba.print(enemyParty)
+				-- vba.print("Enemy Party:")
+				-- vba.print(enemyParty)
 				output_table["enemyParty"] = enemyParty
 			elseif battlemode == 1 then 
 				battleState["enemy type"] = "WILD"
@@ -446,14 +446,14 @@ end
 function readPlayerstate() --loop read this for the overlay
 	svbk = memory.readbyte(rSVBK)
 	local output_table = {}
-	vba.print("WRAM bank: ", svbk)
+	-- vba.print("WRAM bank: ", svbk)
 	if svbk == 1 then
 		playerParty = getTrainerParty(PartyCount)
-		vba.print("Player Party:")
-		vba.print(playerParty)
+		-- vba.print("Player Party:")
+		-- vba.print(playerParty)
 		pack = readPlayerPack()
-		vba.print("Player Pack:")
-		vba.print(pack)
+		-- vba.print("Player Pack:")
+		-- vba.print(pack)
 		output_table["playerParty"] = playerParty
 		output_table["pack"] = pack
         return output_table
