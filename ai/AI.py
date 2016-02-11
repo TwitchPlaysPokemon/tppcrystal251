@@ -6,7 +6,6 @@ import math
 import random
 from flask import Flask
 import json
-import logging
 import os
 
 # the program will give a response when called to from 0 to 11
