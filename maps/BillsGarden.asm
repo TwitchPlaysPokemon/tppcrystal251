@@ -7,7 +7,7 @@ BillsGarden_MapScriptHeader:
 
 ; <scripts go here>
 MewScript_BillsGarden:
-	dw EVENT_GOT_RESEARCH_NOTES, .Script
+	dw EVENT_SAW_MEW_IN_GARDEN, .Script
 .Script
 	appear $2
 	checkcode VAR_FACING
@@ -25,7 +25,7 @@ MewScript_BillsGarden:
 	cry MEW
 	waitbutton
 	closetext
-	setevent EVENT_GOT_RESEARCH_NOTES
+	setevent EVENT_SAW_MEW_IN_GARDEN
 	playsound SFX_WARP_FROM
 	checkcode VAR_FACING
 	if_equal UP, .down2
@@ -63,6 +63,7 @@ Movement_MewFliesOff:
 	big_step_down
 	big_step_down
 	big_step_down
+	big_step_down
 	step_end
 ; <text goes here>
 MewText_BillsGarden:
@@ -83,7 +84,7 @@ BillsGarden_MapEventHeader:
 
 	; bg events
 	db 2
-	signpost 11, 22, $5, MewScript_BillsGarden
+	signpost 11, 22, $6, MewScript_BillsGarden
 	signpost 9, 6, $7, BillsGarden_HiddenMiracleBerry
 
 	; object events

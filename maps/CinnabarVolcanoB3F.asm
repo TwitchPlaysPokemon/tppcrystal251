@@ -5,7 +5,7 @@ CinnabarVolcanoB3F_MapScriptHeader:
 	; callbacks
 	db 2
 	dbw 1, CinnabarVolcanoB3F_CheckBlocks
-	dbw 2, SimonCheck_CinnabarVolcanoB3F1
+	dbw 4, SimonCheck_CinnabarVolcanoB3F1
 
 CinnabarVolcanoB3F_CheckBlocks:
 	checkevent EVENT_MOLTRES_BOULDER_1c
@@ -104,6 +104,8 @@ SimonScript1_CinnabarVolcanoB3F:
 	checkevent EVENT_GOT_RESEARCH_NOTES
 	iftrue SimonScript2_CinnabarVolcanoB3F
 	writetext SimonText1_CinnabarVolcanoB3F
+	playsound SFX_ITEM
+	waitsfx
 	setevent EVENT_GOT_RESEARCH_NOTES
 	waitbutton
 	closetext
@@ -128,10 +130,13 @@ SimonCheck_CinnabarVolcanoB3F1:
 	iffalse SimonCheck_CinnabarVolcanoB3FEnd
 	checkevent EVENT_BEAT_SIMON_6
 	iffalse SimonCheck_CinnabarVolcanoB3FEnd
+	checkevent EVENT_SAW_MEW_IN_GARDEN
+	iffalse SimonCheck_CinnabarVolcanoB3FEnd
 	appear $7
 	return
 	
 SimonCheck_CinnabarVolcanoB3FEnd:
+	disappear $7
 	return
 
 
@@ -200,10 +205,10 @@ SimonText1_CinnabarVolcanoB3F:
 
 	para "All I have left"
 	line "are these old"
-	cont "RESEARCH NOTES"
-	cont "I swiped from"
-	cont "BLAINE on the"
-	cont "way in."
+	para "RESEARCH NOTES"
+	line "I swiped from this"
+	para "old coot on the"
+	line "way in."
 
 	para "Take them back."
 	
