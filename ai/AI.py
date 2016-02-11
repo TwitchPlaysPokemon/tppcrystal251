@@ -151,8 +151,6 @@ class AI(object):
                             mondata[allmons]['moves'][moveset]['pp'] = int(templist[6])
                             mondata[allmons]['moves'][moveset]['effectchance'] = int(templist[7])
                             break
-                if 'disabled' in mondata[templocation]['substatus'] :
-                    mondata[allmons]['moves'][int(mondata[templocation]['substatus']['disabled']['move idx'])]['curpp'] = 0
         self.permmondata = mondata
         for tempx in range(6, self.trainparty+6):
             self.opponenthp[tempx] = self.permmondata[tempx]['stats']['curhp']
@@ -197,9 +195,6 @@ class AI(object):
                         mondata[0]['moves'][moveset]['pp'] = int(templist[6])
                         mondata[0]['moves'][moveset]['effectchance'] = int(templist[7])
                         break
-            if 'disabled' in mondata['enemypokemon']['substatus'] :
-                mondata[0]['moves'][int(mondata['enemypokemon']['substatus']['disabled']['move idx'])]['curpp'] = 0
-            
         return mondata
 
     #type1name = attacker, type2name = defender
@@ -1028,6 +1023,14 @@ class AI(object):
 
             #figure out what happens if special effect doesnt work
             for x1 in range(0, numberofturns):
+                if self.jsonlist['battleState']['enemy type'] == 'WILD':
+                    if 'disabled' in mondata['enemypokemon']['substatus'] :
+                        mondata[0]['moves'][int(mondata['enemypokemon']['substatus']['disabled']['move idx'])]['curpp'] = 0
+                if self.jsonlist['battleState']['enemy type'] == 'TRAINER':
+                    if 'disabled' in mondata['enemypokemon']['substatus'] :
+                        mondata[self.jsonlist['battleState']['enemypokemon']['party idx']]['moves'][int(mondata['enemypokemon']['substatus']['disabled']['move idx'])]['curpp'] = 0
+                if 'disabled' in mondata['playerpokemon']['substatus'] :
+                    mondata[self.jsonlist['battleState']['playerpokemon']['party idx']+6]['moves'][int(mondata['playerpokemon']['substatus']['disabled']['move idx'])]['curpp'] = 0
                 mondata1['painsplit'] = False
                 mondata1['lockon'] = False
                 tempx = self._statsmultipliers[str(mondata1[mycurrent]['boosts']['spd'])]/100
@@ -1116,6 +1119,14 @@ class AI(object):
             if self.triggered > 0:
                 myhp1 = myhp1 - self.Damage[traincurrent][self.jsonlist['battleState']['enemypokemon']['party idx']][self.enemybestvcurrent]['damage']
             if mondata1[mycurrent]['moves'][int(tempcombo[0])]['effectchance'] > 0 or mondata1[mycurrent]['moves'][int(tempcombo[0])]['effectchance']:
+                if self.jsonlist['battleState']['enemy type'] == 'WILD':
+                    if 'disabled' in mondata['enemypokemon']['substatus'] :
+                        mondata[0]['moves'][int(mondata['enemypokemon']['substatus']['disabled']['move idx'])]['curpp'] = 0
+                if self.jsonlist['battleState']['enemy type'] == 'TRAINER':
+                    if 'disabled' in mondata['enemypokemon']['substatus'] :
+                        mondata[self.jsonlist['battleState']['enemypokemon']['party idx']]['moves'][int(mondata['enemypokemon']['substatus']['disabled']['move idx'])]['curpp'] = 0
+                if 'disabled' in mondata['playerpokemon']['substatus'] :
+                    mondata[self.jsonlist['battleState']['playerpokemon']['party idx']+6]['moves'][int(mondata['playerpokemon']['substatus']['disabled']['move idx'])]['curpp'] = 0
                 mondata1 = mondata
                 mondata1['focusenergyused'] = False
                 mondata1['defensecurlused'] = False
