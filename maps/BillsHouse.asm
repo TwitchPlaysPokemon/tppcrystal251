@@ -183,7 +183,6 @@ UnknownScript_0x189697: ; 0x189697
 	writetext UnknownText_0x18982a
 	waitbutton
 	closetext
-	setevent EVENT_UNLOCKED_GARDEN
 	changeblock 3, 0, $33
 	end
 ; 0x1896a5
