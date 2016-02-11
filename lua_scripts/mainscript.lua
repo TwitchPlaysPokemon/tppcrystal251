@@ -144,6 +144,8 @@ if military_mode == 1 then
         end
     end
 end
+bytes = (byte1 * 65536) + (byte2 * 256) + byte3
+return bytes
 end
 
 repeat
