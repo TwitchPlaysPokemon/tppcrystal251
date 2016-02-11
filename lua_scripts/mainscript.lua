@@ -218,12 +218,10 @@ repeat
     vba.print("PLAYER RESPONSE:", playeresponse)
     end
     byte1, byte2, byte3 = tablestobytes(airesponse, playeresponse)
-    vba.print(byte1)
-    vba.print(byte2)
-    vba.print(byte3)
+    vba.print(string.format("%02x %02x %02x",byte1, byte2, byte3))
     memory.writebyte(0xDFF8, byte1)
-    memory.writebyte(0xDFF9, byte1)
-    memory.writebyte(0xDFFA, byte1)
+    memory.writebyte(0xDFF9, byte2)
+    memory.writebyte(0xDFFA, byte3)
     memory.writebyte(rLSC, BEESAFREE_LSC_COMPLETED)
     end
     end
