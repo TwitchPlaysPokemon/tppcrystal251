@@ -68,7 +68,7 @@ Text_MapCard:
 Text_DaisyBeforePokedex:
 	text "Hi, <PLAYER>!"
 	line "<GREEN> is out at"
-	cont "Grandpa's lab."
+	cont "the PROF's lab."
 	done
 
 Text_DaisyAfterMapCard:
