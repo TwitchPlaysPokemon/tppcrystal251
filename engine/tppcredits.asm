@@ -4,7 +4,7 @@ LOGO_DELAY      EQU 300
 LOGO_DELAY_POST EQU 300
 LOGO_CHAOS_MOD  EQU 12
 LOGO_CHAOS_LAST EQU 10
-MAIN_CHAOS_RATE EQU 20
+MAIN_CHAOS_RATE EQU 15
 SCROLLER_DELAY  EQU 200
 C_TC_DRAW       EQU 0
 C_TC_TITLE      EQU 1
@@ -187,7 +187,7 @@ TPPCredits_LogoScene::
 .loop_delay
 	push bc
 	call UpdateCommandChaos_Logo
-	call DelayFrame
+	call TC_DelayFrame
 	ld a, [TC_ChaosRateMod]
 	dec a
 	ld [TC_ChaosRateMod], a
@@ -209,7 +209,7 @@ TPPCredits_LogoScene::
 .loop_scroll2
 	push bc
 	call UpdateCommandChaos_Logo
-	call DelayFrame
+	call TC_DelayFrame
 	ld a, [TC_ChaosRateMod]
 	dec a
 	ld [TC_ChaosRateMod], a
@@ -233,7 +233,7 @@ TPPCredits_LogoScene::
 .loop_delay_post
 	push bc
 	call UpdateCommandChaos_Logo
-	call DelayFrame
+	call TC_DelayFrame
 	pop bc
 	dec bc
 	ld a, b
@@ -247,7 +247,7 @@ TPPCredits_LogoScene::
 	call Fade2White
 	
 TPPCredits_MainSceneInit::
-	call DelayFrame
+	call TC_DelayFrame
 	call DisableLCD
 	call DoubleSpeed
 	call ClearTileMap
@@ -261,6 +261,12 @@ TPPCredits_MainSceneInit::
 	ld [hBGMapAddress + 1], a
 	ld a, 1 ; don't let the other intterupts mess with our trick
 	ld [rIE], a
+	
+; copy commands
+	ld hl, CommandsGFX
+	ld de, VTiles0 + $700
+	ld bc, CommandsGFXEnd - CommandsGFX
+	call CopyBytes
 
 ; copy strips
 	ld hl, StripGFX
@@ -302,7 +308,7 @@ TPPCredits_MainScene::
 	jp JumpTable
 .end
 .todo
-	call DelayFrame
+	call TC_DelayFrame
 	jr .todo
 	
 TC_MainSceneFuncList:
@@ -352,36 +358,52 @@ TC_Main_Draw::
 	call DecodeWLE ; tile map
 	pop hl
 	ld a, [hli]
+	push hl
 	ld h, [hl]
 	ld l, a
 	ld de, Unkn1Pals
 	ld bc, 8 * 8
-	push hl
 	call CopyBytes
 	pop hl
+	inc hl
+	ld a, [hli]
+	ld [TC_CurBGSpeed], a
 	ld a, [hli]
 	ld [TC_CurStripWidth], a
-	ld a, [hli]
+	xor a
+	ld [TC_CurStripXPos], a
+	inc a
+	ld [TC_CurBGSpeedCount], a
+	ld a, $ff
 	ld [TC_CurStripSpeed], a
+	ld [TC_CurStripSpeedCount], a
+	push hl
 	call EnableLCD
 	ld a, MAIN_CHAOS_RATE
 	ld [TC_ChaosRate], a
-	ld hl, UpdateCommandChaos_Main
+	ld hl, UpdateCommandChaos_MainIn
 	ld a, l
 	ld [TC_FadeUpdateAddr], a
 	ld a, h
 	ld [TC_FadeUpdateAddr + 1], a
 	call RelativeFade
+	pop hl
+	ld a, [hl]
+	ld [TC_CurStripSpeed], a
+	ld a, 1
+	ld [TC_CurStripSpeedCount], a
 	ld a, [TC_CreditsPos]
 	inc a
 	ld [TC_CreditsPos], a
 	jp TPPCredits_MainScene
 	
 TC_Main_Title:
+	pop hl
+	call UpdateCommandChaos_Main
 	; TODO
-	ld a, [TC_CreditsPos]
-	inc a
-	ld [TC_CreditsPos], a
+	;ld a, [TC_CreditsPos]
+	;inc a
+	;ld [TC_CreditsPos], a
 	jp TPPCredits_MainScene
 	
 TC_Main_Subtitle:
@@ -471,6 +493,10 @@ UpdateCommandChaos_Logo:
 	add hl, bc
 	jr .updateloop
 	
+UpdateCommandChaos_MainIn:
+	ld a, [TC_CurStripWidth]
+	dec a
+	ld [TC_CurStripWidth], a
 UpdateCommandChaos_Main:
 	call Random
 	ld a, [TC_ChaosTimer]
@@ -555,7 +581,7 @@ UpdateCommandChaos_Main:
 .done
 	ld a, 168
 	cp [hl]
-	jr c, .skipupdate
+	jr nc, .skipupdate
 .set0
 	xor a
 	ld [de], a
@@ -565,22 +591,79 @@ UpdateCommandChaos_Main:
 	jr .updateloop
 	
 StripTrick_Main:
-	ld c, 80
+; update bg scrolling
+	ld a, [hSCX]
+	ld d, a
+	ld a, [TC_CurBGSpeed]
+	and a
+	jr z, .inc2bg
+	ld a, [TC_CurBGSpeedCount]
+	dec a
+	jr nz, .skipldbg
+	ld a, d
+	inc a
+	ld [hSCX], a
+	ld a, [TC_CurBGSpeed]
+.skipldbg
+	ld [TC_CurBGSpeedCount], a
+	jr .donemodbg
+.inc2bg
+	ld a, d
+	add 2
+	ld [hSCX], a
+.donemodbg
+; update strips
 	ld a, [TC_CurStripWidth]
-	add c
-	ld b, a
-	sub 81
-	ld [TC_CurStripWidth], a
+	ld c, a
+	ld b, 0
+	ld hl, StripBounds
+	add hl, bc
+	ld a, [TC_CurStripXPos]
+	cp [hl]
+	jr c, .nosub
+	sub [hl]
+.nosub
+	ld d, a
+	ld a, [TC_CurStripSpeed]
+	and a
+	jr z, .inc2
+	ld a, [TC_CurStripSpeedCount]
+	dec a
+	jr nz, .skipld
+	ld a, d
+	inc a
+	ld [TC_CurStripXPos], a
+	ld a, [TC_CurStripSpeed]
+.skipld
+	ld [TC_CurStripSpeedCount], a
+	jr .donemod
+.inc2
+	ld a, d
+	add 2
+	ld [TC_CurStripXPos], a
+.donemod
+	ld b, 80
 .wait
 	ld a, [rLY]
-	cp c
+	cp b
 	jr nz, .wait
-	ld a, b
+	ld a, c
 	ld [rSCY], a
-	inc c
-	ld a, 88
-	cp c
+	ld a, d
+	ld [rSCX], a
+	dec c
+	inc b
+	ld a, 89
+	cp b
 	jr nz, .wait
+.wait2
+	ld a, [rLY]
+	cp b
+	jr nz, .wait2
+	ld a, 48
+	ld [rSCY], a
+	xor a
+	ld [rSCX], a
 	ret
 	
 TC_DrawGraphic:
@@ -639,8 +722,8 @@ Fade2Black:
 	jr nz, .loop2
 	ld a, 1
 	ld [hCGBPalUpdate], a
-	call DelayFrame
-	call DelayFrame
+	call TC_DelayFrame
+	call TC_DelayFrame
 	dec e
 	jr nz, .loop
 	ret
@@ -693,6 +776,8 @@ Fade2White:
 	ld h, a
 	push de
 	call _hl_ ; calls an attached update function
+	call TC_DelayFrame
+	call PushOAMAtHBlank
 	pop de
 	dec e
 	jr nz, .loop
@@ -716,7 +801,7 @@ RelativeFade:
 	jr z, .skip
 	jr c, .dec
 	inc d
-	jr z, .skip
+	jr .skip
 .dec
 	dec d
 .skip
@@ -743,6 +828,7 @@ RelativeFade:
 	jr z, .skip2
 	jr c, .dec2
 	inc e
+	jr .skip2
 .dec2
 	dec e
 .skip2
@@ -760,9 +846,11 @@ RelativeFade:
 	ld a, [bc]
 	and $7c
 	cp d
+	ld a, d
 	jr z, .skip3
 	jr c, .dec3
 	add $4
+	jr .skip3
 .dec3
 	sub $4
 .skip3
@@ -780,9 +868,11 @@ RelativeFade:
 	ld h, a
 	push de
 	call _hl_ ; calls an attached update function
+	call TC_DelayFrame
+	call PushOAMAtHBlank
 	pop de
 	dec e
-	jr nz, .loop
+	jp nz, .loop
 	ret
 	
 DecodeWLE:
@@ -859,6 +949,30 @@ DecodeWLELoop:
 
 .end
 	pop hl
+	ret
+	
+PushOAMAtHBlank:
+; VBlank1 won't do PushOAM if it updated palettes
+	ld a, [rLY]
+	cp 144
+	jr c, .hblank
+	cp 150
+	jr nc, .hblank
+; we still have time to do this in VBlank (normal speed accounted)
+	jp hPushOAM
+.hblank
+	ld a, [rSTAT]
+	and $3
+	jr nz, .hblank ; wait until HBlank
+	jp hPushOAM
+	
+TC_DelayFrame:
+	call DelayFrame
+; VBlank1 auto-set normal interrupts so we need to disable this
+	xor a
+	ld [rIF], a
+	ld a, 1
+	ld [rIE], a
 	ret
 	
 TPPCreditsList:
@@ -988,6 +1102,7 @@ TPPCreditsBG1List:
 	dw TPPCreditsBG1Attrs
 	dw TPPCreditsBG1Tiles
 	dw TPPCreditsBG1Pals
+	db 5  ; scroll speed
 	db 55 ; strip initial pos
 	db 1  ; strip speed
 
@@ -1006,15 +1121,15 @@ TPPCreditsBG1Attrs:
 	db $50, $7f, $0e, $5f, $42, $7f, $0f, $5f, $5f, $43, $ff
 	
 TPPCreditsBG1Pals:
-	RGB 30, 30, 22 ; placeholder
-	RGB 24, 24, 19
-	RGB 23, 23, 20
+	RGB 02, 06, 12
+	RGB 02, 06, 12
+	RGB 02, 06, 12
 	RGB 31, 31, 31
 	
-	RGB 30, 30, 22 ; placeholder
-	RGB 24, 24, 19
-	RGB 23, 23, 20
-	RGB 19, 23, 21
+	RGB 26, 15, 07
+	RGB 00, 00, 00
+	RGB 00, 00, 00
+	RGB 21, 05, 03
 	
 	RGB 30, 30, 22
 	RGB 24, 24, 19
@@ -1055,6 +1170,7 @@ TPPCreditsBG3List:
 	dw TPPCreditsBG3Attrs
 	dw TPPCreditsBG3Tiles
 	dw TPPCreditsBG3Pals
+	db 0  ; scroll speed
 	db 44 ; strip initial pos
 	db 0  ; strip speed
 
@@ -1117,6 +1233,7 @@ TPPCreditsBG4: ; TODO
 TPPCreditsBG4End
 
 CommandsGFX: INCBIN "gfx/udlrab.2bpp"
+CommandsGFXEnd
 StripGFX: INCBIN "gfx/credits/strip.1bpp"
 StripGFXEnd
 StripTiles: INCBIN "gfx/credits/strip_map.wle"
