@@ -1,16 +1,12 @@
 -- Originally PikalaxALT's battlestate reader, made into an importable LUA file.
 -- AKA readbattlestate_clean.lua
--- Version 0.7.0
+-- Version 0.7.1
 
 JSON = (loadfile "JSON.lua")()
 package.path = package.path..';./libs/lua/?.lua'
 package.cpath = package.cpath..';./libs/?.dll'
 dofile("battle_ram.lua")
 dofile("constants.lua")
-
-lastBattleState = 0
-military_mode = 1
-ignore_serial = 0 -- please set this to 0 for normal use.
 
 function getBigDW(pointer)
 	-- There is no built-in for big-endian DWs, which are used extensively in battle structs.
@@ -392,8 +388,9 @@ function readPlayerPack()
 	return pack
 end
 
-function readBattlestate(output_table, req) --read this ONLY when LUA Serial is called
+function readBattlestate(req) --read this ONLY when LUA Serial is called
 	battleState = {}
+    output_table = readPlayerstate()
 	battleState["requested action"] = req
 	battlemode = memory.readbyte(wBattleMode)
 	svbk = memory.readbyte(rSVBK)
@@ -439,7 +436,7 @@ function readBattlestate(output_table, req) --read this ONLY when LUA Serial is 
 		output_table["bug contest"] = handleBugCatchingContest()
 		local raw_json = JSON:encode(output_table)
         return raw_json
-           
+            
         else
         return -1
 	end
@@ -460,6 +457,7 @@ function readPlayerstate() --loop read this for the overlay
 		output_table["playerParty"] = playerParty
 		output_table["pack"] = pack
         return output_table
-		end
+    else
     return -1
+    end
 end
