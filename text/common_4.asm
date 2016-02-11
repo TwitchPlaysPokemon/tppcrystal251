@@ -345,6 +345,15 @@ UnknownText_0x1c4719:: ; 0x1c4719
 	text_from_ram StringBuffer4
 	text "."
 	done
+
+MultipleGetItemText::
+	text $52, " received"
+	line "@"
+	deciram wd10c, $13
+	text " @"
+	text_from_ram StringBuffer4
+	text "S."
+	done
 ; 0x1c472c
 
 UnknownText_0x1c472c:: ; 0x1c472c

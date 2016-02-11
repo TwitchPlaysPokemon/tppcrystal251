@@ -563,13 +563,13 @@ Script_verbosegiveitem: ; 0x96f60
 ; script command 0x9e
 ; parameters:
 ;     item (ItemLabelByte)
-;     quantity (DecimalParam)
+;     quantity (DecimalParam) in wd10c after give item
 
 	call Script_giveitem
 	call CurItemName
 	ld de, StringBuffer1
 	ld a, $1
-	call Function976c8
+	call Function976c8 ;copy name into stringbuffer3
 	ld b, BANK(GiveItemScript)
 	ld de, GiveItemScript
 	jp ScriptCall
@@ -582,15 +582,26 @@ Function96f76: ; 96f76
 
 GiveItemScript: ; 96f77
 	callasm Function96f76
+	copybytetovar wd10c
+	if_greater_than 1, GiveMultipleItems
 	writetext ReceivedItemText
-	iffalse .Full
+	iffalse VerboseBagFull
 	waitsfx
 	specialsound
 	waitbutton
 	itemnotify
 	end
 
-.Full
+GiveMultipleItems:
+	writetext ReceivedMultipleItemText
+	iffalse VerboseBagFull
+	waitsfx
+	specialsound
+	waitbutton
+	itemnotify
+	end
+
+VerboseBagFull:
 	buttonsound
 	pocketisfull
 	end
@@ -598,6 +609,10 @@ GiveItemScript: ; 96f77
 
 ReceivedItemText: ; 96f89
 	text_jump UnknownText_0x1c4719
+	db "@"
+
+ReceivedMultipleItemText: ; 96f89
+	text_jump MultipleGetItemText
 	db "@"
 ; 96f8e
 
