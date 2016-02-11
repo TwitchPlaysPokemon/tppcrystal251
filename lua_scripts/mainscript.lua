@@ -27,6 +27,10 @@ BEESAFREE_SND_ASKITEM       = 0x02
 
 BEESAFREE_RES_RESET         = 0x00
 
+military_mode = 1 -- 0 for off, 1 for on
+lastBattleState = 0
+ignore_serial = 0 -- please set this to 0 for normal use.
+
 function refreshinterval(seconds)
 	-- Revo's function (liar, it's Timmy's function)
 	local lastupdate = os.time()
@@ -37,6 +41,33 @@ function refreshinterval(seconds)
 	until now - lastupdate >= seconds
 	lastupdate = now
 	return true
+end
+
+function GetUsableMoves(MovesPointer, PPPointer, DisabledMovePointer)
+	disabledMove = memory.readbyte(DisabledMovePointer)
+	if disabledMove ~= 0 then
+		disabledMoveIDX = AND(disabledMove, 0xf0) / 16
+	else
+		disabledMoveIDX = -1
+	end
+	usableMoves = {}
+	for t = 0, 3 do
+		tt = memory.readbyte(MovesPointer + t)
+		pp = AND(memory.readbyte(PPPointer + t), 0x3f) -- Upper two bits are the PP Up counters
+		if tt ~= 0 and t ~= disabledMoveIDX and pp >= 0 then
+			table.insert(usableMoves, t)
+		end
+	end
+	return usableMoves
+end
+
+function UseRandomMove(MovesPointer, PPPointer, DisabledMovePointer)
+	usableMoves = GetUsableMoves(MovesPointer, PPPointer, DisabledMovePointer)
+	if #usableMoves == 0 then
+		return 0
+	else
+		return usableMoves[math.random(#usableMoves)]
+	end
 end
 
 function get_next_player_command()
@@ -60,6 +91,22 @@ function url_encode(str)
     str = string.gsub (str, " ", "+")
   end
   return str	
+end
+
+function playernumtotable(num)
+playertable = {}
+
+if num == 0 then
+    playertable["command"] = "move1"
+elseif num == 1 then
+    playertable["command"] = "move2"
+elseif num == 2 then
+    playertable["command"] = "move3"
+elseif num == 3 then
+    playertable["command"] = "move4"
+end
+
+return playertable
 end
 
 function transferStateToAIAndWait(raw_json)
@@ -144,18 +191,17 @@ if military_mode == 1 then
         end
     end
 end
-bytes = (byte1 * 65536) + (byte2 * 256) + byte3
-return bytes
+--bytes = (byte1 * 65536) + (byte2 * 256) + byte3
+tablereturn = {byte1, byte2, byte3}
+return byte1, byte2, byte3
 end
 
 repeat
     if memory.readbyte(rSVBK) == 1 then
-        if (memory.readbyte(0xD849)%2==1) then
-            memory.writebyte(0xD849, bit.lshift(memory.readbyte(0xD849), 1))
-        else
-            memory.writebyte(0xD849, bit.rshift(memory.readbyte(0xD849), 1))
-        end
-    end
+    value = memory.readbyte(0xD849)
+    is_military_on = (value % 2 == 1) -- just in case you need to know the current status
+    newvalue = bit.band(value, 254) + military_mode
+    memory.writebyte(0xD849, newvalue)
     vba.print(readPlayerstate())
     if memory.readbyte(rLSC) == BEESAFREE_LSC_TRANSFERRING then
     battlestate = readBattlestate(memory.readbyte(rLSB))
@@ -166,10 +212,19 @@ repeat
     playerresponse = {}
     if military_mode == 1 then
     vba.print("Waiting on player...")
-    playerresponse = get_next_player_command()
-    vba.print("PLAYER RESPONSE:", get_next_player_command())
+    --playerresponse = get_next_player_command()
+    outplayer = UseRandomMove(BattleMonMoves, BattleMonPP, PlayerDisableCount)
+    playeresponse = playernumtotable(outplayer)
+    vba.print("PLAYER RESPONSE:", playeresponse)
     end
-    memory.writebyterange(0xD849, 3, tablestobytes(airesponse, playeresponse))
+    byte1, byte2, byte3 = tablestobytes(airesponse, playeresponse)
+    vba.print(byte1)
+    vba.print(byte2)
+    vba.print(byte3)
+    memory.writebyte(0xDFF8, byte1)
+    memory.writebyte(0xDFF9, byte1)
+    memory.writebyte(0xDFFA, byte1)
     memory.writebyte(rLSC, BEESAFREE_LSC_COMPLETED)
+    end
     end
 until not refreshinterval(0.100)
