@@ -14,7 +14,7 @@ PORT = 5001
 logging.basicConfig(format='%(levelname)s %(asctime)s: %(message)s',
                     filename='ai_server.log',
                     datefmt='%Y/%m/%d %H:%M:%S',
-                    level=logging.WARNING)
+                    level=logging.INFO)
 logging.getLogger().addHandler(logging.StreamHandler())
 logger = logging.getLogger("AIServer")
 

@@ -66,10 +66,10 @@ function calcGender(dvs, species)
 	if species == 0 then return "None" end
 	baseGender = GRVal[species]
 	if (baseGender == 255) then return " " end
-	if (baseGender == 0)   then return "♂" end
-	if (baseGender == 254) then return "♀" end
+	if (baseGender == 0)   then return "M" end
+	if (baseGender == 254) then return "F" end
 	attPlusSpeed = dvs["atk"] * 16 + dvs["spd"]
-	if (baseGender < attPlusSpeed) then return "♂" else return "♀" end
+	if (baseGender < attPlusSpeed) then return "M" else return "F" end
 end
 
 function getMonType(pointer)
@@ -408,9 +408,9 @@ function readBattlestate(req) --read this ONLY when LUA Serial is called
 		if battlemode == 0 then
 			vba.print("Not in battle")
 			memory.writebyte(wMilitaryMode, military_mode)
-			if (ignore_serial ~= 1) and (lastBattleState ~= 0) then
-				--transferStateToAIAndWait("Battle ended")
-			end
+			-- if (ignore_serial ~= 1) and (lastBattleState ~= 0) then
+				-- --transferStateToAIAndWait("Battle ended")
+			-- end
 		else
 			if battlemode == 2 then
 				battleState["enemy type"] = "TRAINER"
