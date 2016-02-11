@@ -38,9 +38,10 @@ CinnabarVolcanoB3F_Bld4_BlockData:
 	INCBIN "maps/CinnabarVolcanoB3F_Bld4.blk"
 TohjoFallsBackRoom_BlockData:
 EnteiRoom_BlockData:
-RaikouRoom_BlockData:
 SuicuneRoom_BlockData:
 	INCBIN "maps/TohjoFallsBackRoom.blk"
+RaikouRoom_BlockData:
+	INCBIN "maps/RaikouRoom.blk"
 BattleTentPCRoom_BlockData:
 	INCBIN "maps/BattleTentPCRoom.blk"
 CeladonDeptStoreB1F_BlockData:
