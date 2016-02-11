@@ -1314,7 +1314,9 @@ class AI(object):
             if trainhp > 0:
                 tempx = tempx * (1 + -0.05 * (mondata1[traincurrent]['boosts']['atk'] + mondata1[mycurrent]['boosts']['def'] + mondata1[traincurrent]['boosts']['satk'] + mondata1[traincurrent]['boosts']['sdef'] + mondata1[traincurrent]['boosts']['spd'] + mondata1[traincurrent]['boosts']['eva'] + mondata1[traincurrent]['boosts']['acc']))
             print('Enemy Boosts: '+str(mondata[mycurrent]['boosts']))
+            print(self.Damage[mycurrent][traincurrent][0]['damage]
             print('Player Boosts: '+str(mondata[traincurrent]['boosts']))
+            print(self.Damage[traincurrent][mycurrent][self.enemynumber]['damage'])
             print('enemy hp '+str(myhp)+' enemy starting hp '+str(self.mycurhp)+' player hp '+str(trainhp)+' player starting hp '+str(self.traincurhp))
             print(tempx)
             if self.useitem == 0:
