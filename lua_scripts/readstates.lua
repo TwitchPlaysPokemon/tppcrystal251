@@ -439,8 +439,7 @@ function readBattlestate(output_table, req) --read this ONLY when LUA Serial is 
 		output_table["bug contest"] = handleBugCatchingContest()
 		local raw_json = JSON:encode(output_table)
         return raw_json
-            
-		end
+           
         else
         return -1
 	end
