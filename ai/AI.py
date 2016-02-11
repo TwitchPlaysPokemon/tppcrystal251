@@ -1035,7 +1035,9 @@ class AI(object):
                 mondata1['lockon'] = False
                 tempx = self._statsmultipliers[str(mondata1[mycurrent]['boosts']['spd'])]/100
                 tempy = self._statsmultipliers[str(mondata1[traincurrent]['boosts']['spd'])]/100
-
+                print(mycurrent)
+                print(traincurrent)
+                print(int(tempcombo[x1]))
                 if (mondata1[mycurrent]['stats']['speed'] * tempx > mondata1[traincurrent]['stats']['speed'] * tempy) or (mondata1[mycurrent]['moves'][int(tempcombo[x1])]['effect'] in ('extremespeed', 'priorityhit', 'endure', 'protect')):
 
                     if myhp > 0:
@@ -1562,7 +1564,7 @@ class AI(object):
     #figure out best action to do in current battle
     def MainBattle(self, jsonlist):
 
-        self.jsonlist = json.loads(jsonlist)
+        self.jsonlist = jsonlist
 
         #setup everything
         if self.jsonlist['battleState']['enemy type'] == 'TRAINER':
