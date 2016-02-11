@@ -136,7 +136,7 @@ OakAfterDefeat: ; 0x19b3ea
 	iftrue SkipfterDefeatDexCheck
 	special ProfOaksPCBoot
 	special RateIntoScriptVar
-	if_equal 251, .full_dex
+	if_equal 251, PGKOak_FullDex
 SkipfterDefeatDexCheck:
 	writetext OakAfterDefeatText
 	waitbutton
@@ -147,7 +147,7 @@ OakAfterE4:
 	writetext UnknownText_0x19b4a2
 	special ProfOaksPCBoot
 	special RateIntoScriptVar
-	if_equal 251, .full_dex
+	if_equal 251, PGKOak_FullDex
 	writetext OakAfterE4Text
 	waitbutton
 	closetext
@@ -178,7 +178,7 @@ UnknownScript_0x19b3ea: ; 0x19b3ea
 	iftrue .skip_dex_check
 	special ProfOaksPCBoot
 	special RateIntoScriptVar
-	if_equal 251, .full_dex
+	if_equal 251, PGKOak_FullDex
 .skip_dex_check
 	checkevent EVENT_SET_BY_OAK_AFTER_16_BADGES
 	iffalse .dont_mention_rematches
@@ -193,7 +193,7 @@ UnknownScript_0x19b3ea: ; 0x19b3ea
 	end
 ; 0x19b3f7
 
-.full_dex
+PGKOak_FullDex
 	checkevent EVENT_BEAT_ELITE_REMATCH
 	iftrue OakLabUnlock28
 	writetext OakDexButNotE4Text
