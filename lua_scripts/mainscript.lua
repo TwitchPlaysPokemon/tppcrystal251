@@ -63,22 +63,20 @@ function url_encode(str)
 end
 
 function transferStateToAIAndWait(raw_json)
-local respbody = {}
-local url = "http://localhost:5001/ai/"
-local body = {
-        method="POST", 
-        url="http://localhost:5001/ai/", 
-        headers = { ["Content-Type"] = "application/json", ["Content-Length"] = raw_json:len() }, source = ltn12.source.string(raw_json), sink = ltn12.sink.table(respbody)
-        }
-    repeat
-        next_move = http.request("http://localhost:5001/ai/raw_json=raw_json", raw_json)
-        delay_timer = 60
-        repeat
-            emu.frameadvance()
-            delay_timer = delay_timer - 1
-        until delay_timer == 0
-    until next_move ~= nil
-    return next_move
+  -- 1st: Invoke the ai with JSON data.
+  -- request-body must be a string, therefore encode
+  http.request("http://localhost:5001/ai_invoke/", JSON:encode(raw_json))
+  -- 2nd: Wait until the ai finished.
+  repeat
+    -- advance a frame inbetween each request.
+    -- could also advance multiple frames to not do 60 requests per second
+    emu.frameadvance()
+    -- this request returns either the next move,
+    -- or an empty string if the result isn't set yet.
+    next_move = http.request("http://localhost:5001/ai_retrieve/")
+  until next_move ~= ""
+  -- we got a result!
+  return next_move
 end
 
 function tablestobytes(aitable, playertable)
