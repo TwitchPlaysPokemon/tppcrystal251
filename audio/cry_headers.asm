@@ -250,7 +250,7 @@ TyranitarCryHeader:   dw $2a, -$100,  $180
 LugiaCryHeader:       dw $3a,  $000,  $100
 HoOhCryHeader:        dw $41,  $000,  $180
 CelebiCryHeader:      dw $37,  $14a,  $111
-PhanceroCryHeader:    dw 0,    0,     0
+CryHeader252:         dw $18,  $11f,  $200
 CryHeader253:         dw 0,    0,     0
 CryHeader254:         dw 0,    0,     0
 CryHeader255:         dw 0,    0,     0
