@@ -492,7 +492,7 @@ class AI(object):
             critmodifier = critmodifier + 2
         if move_used['name'].lower() in ('aeroblast', 'crabhammer', 'crosschop', 'drillrun', 'karatechop', 'razorleaf', 'shadowclaw', 'slash', 'skyattack'):
             critmodifier = critmodifier + 2
-        temp2 = (temp2 - (temp2 * ( 1 - self._critmultipliers[str(critmodifier)]))) + (temp2 * 1.5 * self._critmultipliers[str(critmodifier)])
+        temp2 = (temp2 * ( 1 - self._critmultipliers[str(critmodifier)]))) + (temp2 * 1.5 * self._critmultipliers[str(critmodifier)])
 
         if effmulti < 0.125:
             temp2 = 0
@@ -1313,12 +1313,12 @@ class AI(object):
                 tempx = tempx * (1 + 0.1 * (mondata1[mycurrent]['boosts']['atk'] + mondata1[mycurrent]['boosts']['def'] + mondata1[mycurrent]['boosts']['satk'] + mondata1[mycurrent]['boosts']['sdef'] + mondata1[mycurrent]['boosts']['spd'] + mondata1[mycurrent]['boosts']['eva'] + mondata1[mycurrent]['boosts']['acc']))
             if trainhp > 0:
                 tempx = tempx * (1 + -0.05 * (mondata1[traincurrent]['boosts']['atk'] + mondata1[mycurrent]['boosts']['def'] + mondata1[traincurrent]['boosts']['satk'] + mondata1[traincurrent]['boosts']['sdef'] + mondata1[traincurrent]['boosts']['spd'] + mondata1[traincurrent]['boosts']['eva'] + mondata1[traincurrent]['boosts']['acc']))
-            print('Enemy Boosts: '+str(mondata[mycurrent]['boosts']))
-            print(self.Damage[mycurrent][traincurrent][0]['damage'])
-            print('Player Boosts: '+str(mondata[traincurrent]['boosts']))
-            print(self.Damage[traincurrent][mycurrent][self.enemynumber]['damage'])
-            print('enemy hp '+str(myhp)+' enemy starting hp '+str(self.mycurhp)+' player hp '+str(trainhp)+' player starting hp '+str(self.traincurhp))
-            print(tempx)
+            #print('Enemy Boosts: '+str(mondata[mycurrent]['boosts']))
+            #print(self.Damage[mycurrent][traincurrent][0]['damage'])
+            #print('Player Boosts: '+str(mondata[traincurrent]['boosts']))
+            #print(self.Damage[traincurrent][mycurrent][self.enemynumber]['damage'])
+            #print('enemy hp '+str(myhp)+' enemy starting hp '+str(self.mycurhp)+' player hp '+str(trainhp)+' player starting hp '+str(self.traincurhp))
+            #print(tempx)
             if self.useitem == 0:
                 if tempx >= self.difference[mycurrent][traincurrent] :
                     self.difference[mycurrent][traincurrent] = tempx
@@ -1332,11 +1332,11 @@ class AI(object):
             if self.useitem > 0:
                 if tempx >= self.differenceitems[mymons][self.itemused]:
                    self.differenceitems[mymons][self.itemused] = tempx
-            print('**********')
-            print(self.mybestmove['bestleaf'])
-            print(self.mybestmove[mycurrent])
-            print(self.difference[mycurrent][traincurrent])
-            print('**********')
+            #print('**********')
+            #print(self.mybestmove['bestleaf'])
+            #print(self.mybestmove[mycurrent])
+            #print(self.difference[mycurrent][traincurrent])
+            #print('**********')
         return(1)
 
     #compare all mons for best mon
