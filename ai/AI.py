@@ -1323,9 +1323,9 @@ class AI(object):
             #print('Enemy current: '+str(mycurrent))
             tempx = (((myhp / self.mycurhp) - (trainhp / self.traincurhp)) * (1 - tempy)) + (((myhp1 / self.mycurhp) - (trainhp1 / self.traincurhp)) * tempy)
             tempx = tempx + 1
-            if myhp > 0 :
+            if myhp/mondata1[mycurrent]['stats']['hp']  > 0.5 :
                 tempx = tempx * (1 + 0.1 * (mondata1[mycurrent]['boosts']['atk'] + mondata1[mycurrent]['boosts']['def'] + mondata1[mycurrent]['boosts']['satk'] + mondata1[mycurrent]['boosts']['sdef'] + mondata1[mycurrent]['boosts']['spd'] + mondata1[mycurrent]['boosts']['eva'] + mondata1[mycurrent]['boosts']['acc']))
-            if trainhp > 0:
+            if trainhp/mondata1[traincurrent]['stats']['hp'] > 0.5:
                 tempx = tempx * (1 + -0.05 * (mondata1[traincurrent]['boosts']['atk'] + mondata1[mycurrent]['boosts']['def'] + mondata1[traincurrent]['boosts']['satk'] + mondata1[traincurrent]['boosts']['sdef'] + mondata1[traincurrent]['boosts']['spd'] + mondata1[traincurrent]['boosts']['eva'] + mondata1[traincurrent]['boosts']['acc']))
             if Debug_Code == 1:
                 print("_".join([str(x) for x in tempcombo]))
