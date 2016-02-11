@@ -1330,11 +1330,11 @@ class AI(object):
             if self.useitem > 0:
                 if tempx >= self.differenceitems[mymons][self.itemused]:
                    self.differenceitems[mymons][self.itemused] = tempx
-            #print('**********')
-            #print(self.mybestmove['bestleaf'])
-            #print(self.mybestmove[mycurrent])
-            #print(self.difference[mycurrent][traincurrent])
-            #print('**********')
+            print('**********')
+            print(self.mybestmove['bestleaf'])
+            print(self.mybestmove[mycurrent])
+            print(self.difference[mycurrent][traincurrent])
+            print('**********')
         return(1)
 
     #compare all mons for best mon
