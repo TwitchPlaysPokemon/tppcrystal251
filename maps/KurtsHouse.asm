@@ -353,6 +353,7 @@ UnknownScript_0x18e34e: ; 0x18e34e
 	waitbutton
 	closetext
 	takeitem GS_BALL, 1
+	loadfont
 	writetext UnknownText_0x18e934
 	waitbutton
 	writetext UnknownText_0x18e949

@@ -101,6 +101,7 @@ BrockBeforeRematchText:
 
 BrockRematchBeatenText:
 	text "Ow ow ow ow ow"
+	done
 
 BrockAfterRematchText:
 	text "I've lost again…"
