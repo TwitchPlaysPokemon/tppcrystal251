@@ -151,8 +151,8 @@ class AI(object):
                             mondata[allmons]['moves'][moveset]['pp'] = int(templist[6])
                             mondata[allmons]['moves'][moveset]['effectchance'] = int(templist[7])
                             break
-                if 'disabled' in mondata[allmons]['substatus'] :
-                    mondata[allmons]['moves'][mondata[allmons]['substatus']['disabled']['move idx']]['curpp'] = 0
+                if 'disabled' in mondata[templocation]['substatus'] :
+                    mondata[allmons]['moves'][int(mondata[templocation]['substatus']['disabled']['move idx'])]['curpp'] = 0
         self.permmondata = mondata
         for tempx in range(6, self.trainparty+6):
             self.opponenthp[tempx] = self.permmondata[tempx]['stats']['curhp']
@@ -197,8 +197,8 @@ class AI(object):
                         mondata[0]['moves'][moveset]['pp'] = int(templist[6])
                         mondata[0]['moves'][moveset]['effectchance'] = int(templist[7])
                         break
-            if 'disabled' in mondata[0]['substatus'] :
-                mondata[0]['moves'][mondata[0]['substatus']['disabled']['move idx']]['curpp'] = 0
+            if 'disabled' in mondata['enemypokemon']['substatus'] :
+                mondata[0]['moves'][int(mondata['enemypokemon']['substatus']['disabled']['move idx'])]['curpp'] = 0
             
         return mondata
 
