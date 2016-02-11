@@ -1,4 +1,3 @@
-
 # TPP Crystal 251 AI v0.99 by Beesafree
 
 from __future__ import division
@@ -7,6 +6,7 @@ import random
 from flask import Flask
 import json
 import os
+import sys
 
 # the program will give a response when called to from 0 to 11
 # 0-3 relate to move commands, 1 means use second move on json list (1 being it's index)
@@ -16,6 +16,10 @@ import os
 # Wild Battles should produce a result in about 5 seconds,
 # Trainer Battles should be less than 9 seconds,
 # Trainer Battles where the opponent has an item are around 40 seconds
+
+if sys.version_info[0] == 2:
+		raise ValueError("""You are using Python 2 instead of Python 3.
+This program only works in Python 3.""")
 
 SCRIPT_DIR = os.path.dirname(os.path.realpath(__file__))
 JSON_FILE_PATH = os.path.join(SCRIPT_DIR, "battlestate.json")
