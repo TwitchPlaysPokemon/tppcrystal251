@@ -768,10 +768,17 @@ UnknownText_0x1c0c85: ; 1c0c85
 ; 1c0ca3
 
 UnknownText_0x1c0ca3: ; 1c0ca3
-	text "Are you a boy?"
-	line "Or are you a girl?"
+	text "Now, are you a boy"
+	line "or a girl?"
 	done
 ; 1c0cc6
+
+ConfirmBoyText:
+	text "So you're a boy?"
+	done
+ConfirmGirlText:
+	text "So you're a girl?"
+	done
 
 UnknownText_0x1c0cc6: ; 1c0cc6
 	text $5a, "'s"
