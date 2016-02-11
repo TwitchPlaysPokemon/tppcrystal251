@@ -19251,6 +19251,7 @@ DeleteBoxAddress:
 	inc hl
 	ld b, MONS_PER_BOX
 .loop
+	push bc
 	ld a, [hli]
 	cp ENTEI
 	ld c, 1
@@ -19266,6 +19267,7 @@ DeleteBoxAddress:
 	ld [ScriptVar], a
 	callba InitRoamMons
 .next
+	pop bc
 	dec b
 	jr nz, .loop
 	pop hl
