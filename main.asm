@@ -83140,7 +83140,8 @@ CheckBoxForEggs:
 BoxCheckWithC: ;as Functione366c, but using c instead of menu selection
 	ld a, [wCurBox]
 	ld b, a
-	ld a, c
+	ld a, c ;equal box to check
+	ld c, b
 	jr BoxSelectionJumpIn
 
 
@@ -83151,8 +83152,8 @@ Functione366c: ; e366c (38:766c) get MenuSelection box count, ret in
 BoxSelectionJumpIn:
 	dec a
 	cp c
-	jr z, .asm_e3697
-	ld c, a
+	jr z, .asm_e3697 ;if same as curbox, jump to fast check
+	ld c, a ;box no. -1
 	ld b, 0
 	ld hl, Unknown_e36a5
 	add hl, bc
