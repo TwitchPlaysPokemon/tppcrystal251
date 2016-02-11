@@ -199,7 +199,6 @@ MapGroup7:
 	map_header Route24, $3, 2, ROUTE_24, MUSIC_ROUTE_24, 0, 0, 14
 	map_header Route25, $3, 2, ROUTE_25, MUSIC_ROUTE_24, 0, 0, 14
 	map_header CeruleanCity, $3, 1, CERULEAN_CITY, MUSIC_CERULEAN_CITY, 0, 0, 14
-	map_header BillsGarden, $3, 5, ROUTE_25, MUSIC_ROUTE_24, 0, 0, 14
 
 MapGroup8:
 	map_header AzaleaPokeCenter1F, $7, 3, AZALEA_TOWN, MUSIC_POKEMON_CENTER, 0, 1, 1
@@ -485,7 +484,7 @@ MapGroup27:
 	map_header MewIslandB1, $27, 4, MEW_ISLAND, MUSIC_SILPH_CO, 1, 2, 1
 	map_header MewIslandF1, $27, 4, MEW_ISLAND, MUSIC_SILPH_CO, 1, 2, 1
 	map_header MewIslandF2, $27, 4, MEW_ISLAND, MUSIC_SILPH_CO, 1, 2, 1
-	map_header MewIslandPeak, $2, 4, MEW_ISLAND, MUSIC_INDIGO_PLATEAU, 0, 0, 1
+	map_header MewIslandPeak, $2, 2, MEW_ISLAND, MUSIC_INDIGO_PLATEAU, 0, 0, 1
 
 	map_header BattleTentRuins, $16, 7, BATTLE_TENT_RUINS, MUSIC_SILPH_CO, 1, 1, 1
 	map_header BattleTentBattleRoom, $16, 7, BATTLE_TENT_RUINS, MUSIC_SILPH_CO, 1, 1, 1
@@ -515,6 +514,7 @@ MapGroup28:
 	map_header CeladonDeptStoreB1F, $c, 3, CELADON_CITY, MUSIC_MART, 0, 1, 1
 	map_header SilverCaveDreamRoom, $18, 3, SILVER_CAVE, MUSIC_NONE, 1, 1, 3
 	map_header MtSilverRuins, $1a, 7, SILVER_CAVE, MUSIC_DRAGONS_DEN, 1, 1, 16
+	map_header BillsGarden, $3, 2, ROUTE_25, MUSIC_ROUTE_24, 0, 0, 14
 	map_header DummyBlankMap, $c, 0, 0, MUSIC_NONE, 1, 4, 0
 
 MapGroup29:

@@ -17,15 +17,14 @@ DreamBabaScript: ; 0x18c603
 	waitbutton
 	closetext
 	winlosstext BabaTextWinLoss, BabaTextWinLoss
-	setlasttalked $2
 	loadtrainer BABA, 1
 	writecode VAR_BATTLETYPE, BATTLETYPE_CANLOSE
 	startbattle
 	reloadmapmusic
 	reloadmap
-	iftrue DreamBabaLost
+	iftrue .DreamBabaLost
 	setevent EVENT_FIRST_TIME_BABA
-DreamBabaLost
+.DreamBabaLost
 	special Functionc48f
 	loadfont
 	writetext BabaTextAfter
