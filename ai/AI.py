@@ -1363,7 +1363,7 @@ class AI(object):
         if mondata['myitems'][1] != 'noitem' or mondata['myitems'][2] != 'noitem':
             for mymons in range(0, self.myparty):
                 for trainmons in range (6, self.trainparty+6):
-                    self.Fight(mondata, trainmons, mymons, 3)
+                    self.Fight(mondata, trainmons, mymons, 4)
             battlerating = {}
             for mymons in range(0, self.myparty):
                 tempx = 0
@@ -1393,7 +1393,7 @@ class AI(object):
                         if  mondata['myitems'][x2] != 'noitem':
                             self.useitem = x2
                             if mondata['myitems'][x2] in ['xspeed', 'xattack', 'xdefense', 'xspecial', 'direhit']:
-                                self.Fight(mondata, traincurrent, mycurrent, 4)
+                                self.Fight(mondata, traincurrent, mycurrent, 5)
                             if self.differenceitems[mymons][self.useitem] > self.difference[mycurrent][traincurrent]:
                                 tempaction = x2 + 9
                                 self.difference[mycurrent][traincurrent] = self.differenceitems[mymons][self.useitem]
@@ -1435,7 +1435,7 @@ class AI(object):
                         for stat in self.statNames:
                             mondata2[mycurrent]['boosts'][stat] = 0
                             mondata2[traincurrent]['boosts'][stat] = int(self.jsonlist['battleState']['playerpokemon']['stat levels'][stat])
-                        self.Fight(mondata2, traincurrent, mycurrent, 4)
+                        self.Fight(mondata2, traincurrent, mycurrent, 5)
                     else:
                         self.difference[mycurrent][traincurrent]  = -10
                         self.mybestmove['bestleaf'] = '0_0_0_0_0'
@@ -1462,7 +1462,7 @@ class AI(object):
                     for stat in self.statNames:
                         mondata2[mycurrent]['boosts'][stat] = 0
                         mondata2[traincurrent]['boosts'][stat] = int(self.jsonlist['battleState']['playerpokemon']['stat levels'][stat])
-                    self.Fight(mondata2, traincurrent, mycurrent, 4)
+                    self.Fight(mondata2, traincurrent, mycurrent, 5)
                 else:
                     self.difference[mycurrent][traincurrent]  = -10
                     self.mybestmove['bestleaf'] = '0_0_0_0_0'
@@ -1544,7 +1544,7 @@ class AI(object):
                 theaction = tempx
 
         if theaction == 20:
-            self.Fight(mondata, traincurrent, mycurrent, 4)
+            self.Fight(mondata, traincurrent, mycurrent, 5)
             theaction = self.mybestmove[mycurrent]
         return theaction 
 
@@ -1635,7 +1635,7 @@ class AI(object):
         if self.jsonlist['battleState']['enemy type'] == 'TRAINER':
             mycurrent = self.jsonlist['battleState']['enemypokemon']['party idx']
             if ('requested action' not in self.jsonlist['battleState']) or (int(self.jsonlist['battleState']['requested action']) != 66):
-                self.Fight(mondata, traincurrent, mycurrent, 4)
+                self.Fight(mondata, traincurrent, mycurrent, 5)
                 self.theaction = self.mybestmove[mycurrent]
                 self.OptionalSwitch(mondata, traincurrent)
                 theaction2 = self.checkIfUsingItem()
