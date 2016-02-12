@@ -3,22 +3,37 @@ GetTrainerDVs: ; 270c4
 
 	push hl
 	ld a, [OtherTrainerClass]
-	cp BABA
+	cp RED
 	jr nz, .okay
-	ld a, [EnemyMonSpecies]
-	cp GYARADOS
-	jr z, .dada
+	ld a, [OtherTrainerID]
+	and a
+	ld hl, .AbeDVs
+	jr z, .LoadHostDVs
+	dec a
+	ld hl, .RedDVs
+	jr z, .LoadHostDVs
 	ld a, [OtherTrainerClass]
 .okay
-	cp PSYCHIC_T
+	cp CAL
 	jr nz, .okay2
+	ld a, [OtherTrainerID]
+	cp 4
+	ld hl, .AJDVs
+	jr z, .LoadHostDVs
+	ld a, [OtherTrainerClass]
+.okay2
+	cp BABA
+	ld hl, .BabaDVs
+	jr z, .LoadHostDVs
+	cp PSYCHIC_T
+	jr nz, .okay3
 	ld a, [OtherTrainerID]
 	cp 1
 	jr z, .PsychicNathan
 	cp 11
 	jr z, .PsychicJared
 	ld a, [OtherTrainerClass]
-.okay2
+.okay3
 	dec a
 	ld c, a
 	ld b, 0
@@ -34,9 +49,16 @@ GetTrainerDVs: ; 270c4
 	pop hl
 	ret
 ; 270d6
-
-.dada
-	ld bc, $daaa
+	
+.LoadHostDVs
+	ld a, [CurPartyMon]
+	add a
+	ld c, a
+	ld b, 0
+	add hl, bc
+	ld a, [hli]
+	ld b, a
+	ld c, [hl]
 	pop hl
 	ret
 
@@ -68,6 +90,37 @@ GetTrainerDVs: ; 270c4
 	db $f9, $b2
 	db $1a, $38
 	db $21, $d2
+	
+.RedDVs
+	db $0E, $7A ; AA-j
+	db $CA, $7D ; AAAAAAAAAA
+	db $D0, $E4 ; OMASTAR
+	db $90, $A6 ; AATTVVV
+	db $03, $71 ; AIIIIIIRRR
+	db $AA, $64 ; aaabaaajss
+
+.AJDVs
+	db $89, $CF ; AAJRR  RRR
+	db $23, $80 ; KT
+	db $8A, $E4 ; AAAS RJ-1
+	db $F7, $6E ; AAAAAtttta
+	db $F8, $A0 ; BBBBBD
+
+.AbeDVs
+	db $52, $7C ; AAbbABCabb
+	db $EC, $E5 ;  RRRRIIIIH
+	db $82, $EE ; IIII--??(U
+	db $0C, $9F ; AAA--××<MN><MN><MN>
+	db $2D, $F3 ; (ssjj <MN>..,
+	db $D8, $D5 ; RRQPO:<PK><PK><PK><PK>
+
+.BabaDVs
+	db $94, $1D ; BEST
+	db $EF, $B0 ; DONG
+	db $46, $E8 ; EVER
+	db $EA, $AA ; DADA
+	db $4E, $2B ; ORGY
+	db $E8, $E5 ; DEKU
 
 TrainerClassDVs: ; 270d6
 	;  Atk  Spd
