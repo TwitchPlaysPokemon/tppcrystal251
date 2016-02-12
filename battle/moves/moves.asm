@@ -269,6 +269,6 @@ ENDM
 	move WHIRLPOOL,    EFFECT_BIND,               35, SPECIAL,  WATER,     85, 15,   0 ; EFFECT_BIND should last 4-5 turns, do 1/8 damage 
 	move DRILL_RUN,    EFFECT_NORMAL_HIT,         80, PHYSICAL, GROUND,    95, 10,   0 ; replacing Beat Up
 	; New to tppCrystal
-	move MOONBLAST,    EFFECT_SP_DEF_DOWN_HIT,    95, SPECIAL,  FAIRY_T,  100, 15,  30
+	move MOONBLAST,    EFFECT_SP_ATK_DOWN_HIT,    95, SPECIAL,  FAIRY_T,  100, 15,  30
 	move PLAY_ROUGH,   EFFECT_ATTACK_DOWN_HIT,    90, PHYSICAL, FAIRY_T,   90, 10,  10
 	move SHEER_COLD,   EFFECT_OHKO,                1, SPECIAL,  ICE,       30,  5,   0 ;fd

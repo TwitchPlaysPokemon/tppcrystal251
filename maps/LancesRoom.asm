@@ -188,6 +188,7 @@ OakAllowsRoute28:
 	writetext OakRematchText
 	buttonsound
 	writetext OakCongrats
+	setevent EVENT_ALLOWED_INTO_ROUTE_28
 	jump AfterOakTalk
 
 MaryKnowsYoureChamp:

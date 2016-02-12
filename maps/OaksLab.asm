@@ -82,6 +82,7 @@ RematchCheck:
 OakBeforeBattle:
 	text "To defeat all 16"
 	line "GYM LEADERS"
+
 	para "without handicaps"
 	line "is a rare feat."
 
