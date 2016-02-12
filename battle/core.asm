@@ -205,13 +205,11 @@ IF DEF(BEESAFREE)
 	cp BATTLETYPE_CONTEST
 	jr z, .call_battle_menu
 	callba Military
-	push af
-	call EmptyBattleTextBox
-	pop af
 	jr c, .quit
 	ld a, [BattleEnded]
 	and a
 	jr nz, .quit
+	call EmptyBattleTextBox
 	jr .return_from_military
 .call_battle_menu
 ENDC
