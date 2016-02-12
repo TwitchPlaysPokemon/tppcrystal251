@@ -18,7 +18,6 @@ MtSilverRuinsElmScript:
 	closetext
 	playsound SFX_RUN
 	checkcode VAR_FACING
-	if_equal DOWN, .PlayerAboveLookingDown
 	if_equal UP, .PlayerBelowLookingUp
 	if_equal LEFT, .PlayerToRightLookingLeft
 	spriteface $0, UP
@@ -29,16 +28,6 @@ MtSilverRuinsElmScript:
 	appear $2
 	applymovement $2, Movement_ElmWalksUpToPlayerOnLeft
 	spriteface $0, DOWN
-	jump .TehUrn
-.PlayerAboveLookingDown
-	spriteface $0, UP
-	applymovement $3, Movement_UnknownBirdFliesAway2
-	disappear $3
-	waitsfx
-	moveperson $2, 20, 10
-	appear $2
-	applymovement $2, Movement_ElmWalksUpToPlayerAbove
-	spriteface $0, LEFT
 	jump .TehUrn
 .PlayerBelowLookingUp
 	spriteface $0, UP
