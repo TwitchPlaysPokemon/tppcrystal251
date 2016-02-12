@@ -32,6 +32,7 @@ class Combogenerator:
         self.arrlen = turnsToLookAhead
         self.numMoves = numMoves
         self.currplace = [0 for x in range(self.arrlen)]
+        self.currplace[-1] = -1 # to counter the initial increment
     def __iter__(self):
         return self
     def __next__(self):
