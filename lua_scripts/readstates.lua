@@ -48,7 +48,7 @@ end
 function getMonStatus(pointer)
 	status = memory.readbyte(pointer)
 	if (AND(status, 0x7) ~= 0) then
-		return :SLP" --AND(status, 0x7)
+		return "SLP" --AND(status, 0x7)
 	elseif (AND(status, 0x08) ~= 0) then
 		return "PSN"
 	elseif (AND(status, 0x10) ~= 0) then
