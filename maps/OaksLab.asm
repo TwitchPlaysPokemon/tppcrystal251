@@ -67,6 +67,8 @@ RematchCheck:
 	checkevent EVENT_CLAIR_REMATCH
 	iffalse UnknownScript_0x19b3ea
 	writetext OakBeforeBattle
+	waitbutton
+	closetext
 	winlosstext OakDefeated, $0000
 	loadtrainer POKEMON_PROF, 1
 	startbattle

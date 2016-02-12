@@ -42,87 +42,95 @@ DailyRoamMonUpdate:
 	jr z, .Suicune
 	cp SATURDAY
 	jr z, .Raikou
-	xor a
+	ld a, [wRoamMon1Species]
 	call PutRoamMonInRoom
-	ld a, 1
+	ld a, [wRoamMon2Species]
 	call PutRoamMonInRoom
-	ld a, 2
-	call PutRoamMonInRoom
-	ret
-
-.Entei
-	xor a
-	call PutRoamMonInRoom
-	ld a, 1
-	call RestartRoamMonAsRoaming
-	ld a, 2
-	call RestartRoamMonAsRoaming
-	ret
-
-.Suicune
-	xor a
-	call RestartRoamMonAsRoaming
-	ld a, 1
-	call RestartRoamMonAsRoaming
-	ld a, 2
+	ld a, [wRoamMon3Species]
 	call PutRoamMonInRoom
 	ret
 
 .Raikou
-	xor a
-	call RestartRoamMonAsRoaming
-	ld a, 1
+	ld a, [wRoamMon1Species]
 	call PutRoamMonInRoom
-	ld a, 2
+	ld a, [wRoamMon2Species]
 	call RestartRoamMonAsRoaming
+	ld a, [wRoamMon3Species]
+	call RestartRoamMonAsRoaming
+	ret
+
+.Entei
+	ld a, [wRoamMon1Species]
+	call RestartRoamMonAsRoaming
+	ld a, [wRoamMon2Species]
+	call PutRoamMonInRoom
+	ld a, [wRoamMon3Species]
+	call RestartRoamMonAsRoaming
+	ret
+
+.Suicune
+	ld a, [wRoamMon1Species]
+	call RestartRoamMonAsRoaming
+	ld a, [wRoamMon2Species]
+	call RestartRoamMonAsRoaming
+	ld a, [wRoamMon3Species]
+	call PutRoamMonInRoom
 	ret
 
 PutRoamMonInRoom
 	call GetStaticRoamMonPointers
-	ret z
+	ret z ; Mon is not roaming, so do nothing to it.
+	; Load the static map group/number to RAM
 	ld a, b
 	ld [hli], a
-	ld a, c
-	ld [hl], a
+	ld [hl], c
+	; Ensure the sprite is visible in that room
 	ld b, 0
 	call EventFlagAction
 	ret
 
 RestartRoamMonAsRoaming
 	call GetStaticRoamMonPointers
-	ret z
+	ret z ; Mon is not roaming, so do nothing to it.
+	; Choose a random roam map and load it into RAM
 	push hl
 	call Function2a3cd
 	pop hl
 	ld a, b
 	ld [hli], a
-	ld a, c
-	ld [hli], a
+	ld [hl], c
+	; Hide the sprite in the static room
 	ld b, 1
 	call EventFlagAction
 	ret
 
 GetStaticRoamMonPointers
+	sub RAIKOU
 	ld l, a
-	ld h, 0
 	ld e, a
-	ld d, 0
+	ld h, 0
+	ld d, h
+	; 6 * a + .pointers
 	add hl, hl
 	add hl, de
 	ld de, .pointers
 	add hl, hl
 	add hl, de
+	; Load static map to BC
 	ld a, [hli]
 	ld b, a
 	ld a, [hli]
 	ld c, a
+	; Load event flag to DE
 	ld a, [hli]
 	ld e, a
 	ld a, [hli]
 	ld d, a
+	; Load pointer to roaming map in HL
 	ld a, [hli]
 	ld h, [hl]
 	ld l, a
+	; Check to see if roaming Pokemon is active
 	ld a, [hl]
 	cp $ff
 	ret
@@ -130,10 +138,10 @@ GetStaticRoamMonPointers
 .pointers
 roammonstaticdata: macro
 	map \1
-	dw \2, \3
+	dw \2, \3 ; event flag, pointer to current map location in memory
 endm
-	roammonstaticdata ENTEI_ROOM, EVENT_STATIC_ENTEI, wRoamMon2MapGroup
 	roammonstaticdata RAIKOU_ROOM, EVENT_STATIC_RAIKOU, wRoamMon1MapGroup
+	roammonstaticdata ENTEI_ROOM, EVENT_STATIC_ENTEI, wRoamMon2MapGroup
 	roammonstaticdata SUICUNE_ROOM, EVENT_STATIC_SUICUNE, wRoamMon3MapGroup
 
 
@@ -163,7 +171,7 @@ InitRoamMons:
 	jr .finish_raikou
 
 .raikou_room
-	ld a, 1
+	ld a, [wRoamMon1Species]
 	call PutRoamMonInRoom
 .finish_raikou
 	xor a
@@ -190,7 +198,7 @@ InitRoamMons:
 	jr .finish_entei
 
 .entei_room
-	xor a
+	ld a, [wRoamMon2Species]
 	call PutRoamMonInRoom
 .finish_entei
 	xor a
@@ -217,7 +225,7 @@ InitRoamMons:
 	jr .finish_suicune
 
 .suicune_room
-	ld a, 2
+	ld a, [wRoamMon3Species]
 	call PutRoamMonInRoom
 .finish_suicune
 	xor a

@@ -3485,9 +3485,15 @@ Function3d581: ; 3d581
 
 Function3d599: ; 3d599
 IF DEF(BEESAFREE)
+	call MilitaryWaiting
 	ld a, BEESAFREE_SND_ASKENEMY | BEESAFREE_SND_ASKMONTARGET
 .loopback
 	rst LUASerial
+	ld a, [wMilitaryAndAIBattleAction]
+	swap a
+	and $f
+	sub 4
+	jr c, .Invalid
 	ld b, a
 	ld a, [OTPartyCount]
 	cp b

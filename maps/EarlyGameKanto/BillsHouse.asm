@@ -60,6 +60,8 @@ BillsHouseRBBillScriptContinue:
 	waitbutton
 BillScriptRB_bag_full:
 	closetext
+	applymovement $2, Movement_ResetBill
+	moveperson $2, 6, 5
 	end
 
 BillsHouseRBBillScript:
@@ -124,6 +126,15 @@ Movement_BillExitsTeleporter:
 
 Movement_BillFinishesWalkToPlayer:
 	step_left
+	step_end
+
+Movement_ResetBill:
+	step_right
+	step_right
+	step_right
+	step_right
+	step_right
+	step_up
 	step_end
 
 _BillsHouseText_1e865:
