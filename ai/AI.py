@@ -1464,7 +1464,6 @@ class AI(object):
         mondata2['enemypokemon']['substatus'] = {}
         mondata2['enemypokemon']['screens'] = {}
         for switchindex in range (0,  self.myparty):
-            print(switchindex, self.jsonlist['battleState']['enemypokemon']['party idx'])
             if switchindex != self.jsonlist['battleState']['enemypokemon']['party idx']:
                 mycurrent = switchindex
                 if mondata2[mycurrent]['stats']['curhp'] > 0:
