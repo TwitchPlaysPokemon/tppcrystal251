@@ -25,7 +25,7 @@ JSON_FILE_PATH = os.path.join(SCRIPT_DIR, "battlestate.json")
 MOVES_FILE_PATH = os.path.join(SCRIPT_DIR, "AiMoves.txt")
 
 mondata = {}
-Debug_Code = 0
+Debug_Code = 1
 
 class Combogenerator:
     def __init__(self,turnsToLookAhead=4, numMoves=4):
