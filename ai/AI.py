@@ -345,7 +345,7 @@ class AI(object):
             tempaccuracy  = 50
 
         #Static Damage
-        if (move_used['name'] == 'seismictoss') or (move_used['name'] == 'nightshade'):
+        if (move_used['name'] == 'seismictoss') or (move_used['name'] == 'nightshade') or (move_used['name'] == 'psywave'):
             temp2 = mondata[attacker]['level']
         if move_used['name'] == 'dragonrage':
             temp2 = 40
@@ -536,7 +536,7 @@ class AI(object):
 
     def Mychoice (self, mondata, traincurrent, mycurrent, moveused):
         if mondata[mycurrent]['moves'][moveused]['curpp'] > 0:
-            if mondata[mycurrent]['moves'][moveused]['effect'] in ('normalhit', 'sleeptalk', 'metronome', 'bind', 'rollout', 'falseswipe', 'rampage', 'rapidspin', 'destinybond', 'hiddenpower', 'rage', 'return', 'superfang', 'triattack', 'pursuit', 'twister', 'thief', 'reversal', 'dreameater', 'extremespeed', 'furycutter', 'explosion' 'jumpkick', 'present', 'ohko', 'thunder', 'metalclaw', 'earthquake', 'hyperbeam', 'solarbeam', 'magnitude', 'fly', 'multihit', 'gust' 'doublehit', 'poisonhit', 'freezehit', 'skyattack', 'parlyzehit', 'payday', 'stomp', 'flinchhit', 'burnhit',  'recoilhit', 'twinneedle', 'spdefdownhit', 'confusehit', 'speeddownhit', 'attackdownhit', 'leechhit', 'alwayshit', 'accuracydownhit', 'steelwing', 'flamewheel', 'sacredfire', 'defensedownhit', 'ancientpower'):
+            if mondata[mycurrent]['moves'][moveused]['effect'] in ('normalhit', 'psywave', 'sleeptalk', 'metronome', 'bind', 'rollout', 'falseswipe', 'rampage', 'rapidspin', 'destinybond', 'hiddenpower', 'rage', 'return', 'superfang', 'triattack', 'pursuit', 'twister', 'thief', 'reversal', 'dreameater', 'extremespeed', 'furycutter', 'explosion' 'jumpkick', 'present', 'ohko', 'thunder', 'metalclaw', 'earthquake', 'hyperbeam', 'solarbeam', 'magnitude', 'fly', 'multihit', 'gust' 'doublehit', 'poisonhit', 'freezehit', 'skyattack', 'parlyzehit', 'payday', 'stomp', 'flinchhit', 'burnhit',  'recoilhit', 'twinneedle', 'spdefdownhit', 'confusehit', 'speeddownhit', 'attackdownhit', 'leechhit', 'alwayshit', 'accuracydownhit', 'steelwing', 'flamewheel', 'sacredfire', 'defensedownhit', 'ancientpower'):
                 self.DamageDealt(mondata, mycurrent, traincurrent, moveused)
             else:
                 if Debug_Code == 1:
