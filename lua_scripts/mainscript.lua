@@ -1,3 +1,5 @@
+--Crystal 251 Main Script v0.8--
+
 dofile("readstates.lua")
 dofile("battle_ram.lua")
 dofile("constants.lua")
@@ -184,7 +186,7 @@ if military_mode == 1 then
     elseif playertable["command"] == "item" then
         byte2 = tableLookup(itemTable, playertable["item"])
         if playertable["poke"] ~= 0 then
-        byte1 = byte1 + playertable["poke"]
+        byte1 = byte1 + playertable["poke"] + 3
         end
         if playertable["move"] ~= 0 then
         byte3 = playertable["move"]
@@ -202,27 +204,45 @@ repeat
     is_military_on = (value % 2 == 1) -- just in case you need to know the current status
     newvalue = bit.band(value, 254) + military_mode
     memory.writebyte(0xD849, newvalue)
-    -- vba.print(readPlayerstate())
+    vba.print(readPlayerstate())
     if memory.readbyte(rLSC) == BEESAFREE_LSC_TRANSFERRING then
+    vba.print("STATUS: ", memory.readbyte(0xFFF1))  
+    if (AND(memory.readbyte(rLSB), 0x04) ~= 0) then
     battlestate = readBattlestate(memory.readbyte(rLSB))
     vba.print("BATTLESTATE:", battlestate)
     vba.print("Waiting on AI...")
     airesponse = transferStateToAIAndWait(battlestate)
     vba.print("AI RESPONSE:", airesponse)
     playerresponse = {}
-    if military_mode == 1 then
+    end  
+    if military_mode == 1 and (AND(memory.readbyte(rLSB), 0x02) ~= 0) then
     vba.print("Waiting on player...")
-    --playerresponse = get_next_player_command()
+    --playerresponse = get_next_player_command() --uncomment this when you go to setup the Lua, streamer
+    --debug stuff below
+    debugplayerresponse = {}
+    debugplayerresponse["command"] = "switch3"
+    debugplayerresponse["item"] = "MAX ETHER"
+    debugplayerresponse["poke"] = 1
+    debugplayerresponse["move"] = 2
+    --debug above
     outplayer = UseRandomMove(BattleMonMoves, BattleMonPP, PlayerDisableCount)
-    playeresponse = playernumtotable(outplayer)
-    vba.print("PLAYER RESPONSE:", playeresponse)
+    playerresponse = playernumtotable(outplayer)
+    vba.print("PLAYER RESPONSE:", playerresponse)
+    else
+    vba.print("Invalid setup or military mode not enabled.")
     end
-    byte1, byte2, byte3 = tablestobytes(airesponse, playeresponse)
-    vba.print(string.format("%02x %02x %02x",byte1, byte2, byte3))
+    byte1, byte2, byte3 = tablestobytes(airesponse, playerresponse)
+    vba.print(byte1)
+    vba.print(byte2)
+    vba.print(byte3)
     memory.writebyte(0xDFF8, byte1)
     memory.writebyte(0xDFF9, byte2)
     memory.writebyte(0xDFFA, byte3)
     memory.writebyte(rLSC, BEESAFREE_LSC_COMPLETED)
+    else
+    vba.print("Waiting for LUA serial...")
     end
+    else
+    vba.print("Waiting for valid bank")
     end
 until not refreshinterval(0.100)
