@@ -8008,9 +8008,10 @@ BadgeBoostStatXP: ;hl = stat xp given by badge boosts, no effect in egk
 	ret z
 	push bc
 	ld hl, JohtoBadges
-	ld bc, 2 
+	ld b, 2 
+	push de
 	call CountSetBits
-	ld c, a
+	pop de
 	ld b, 0
 	ld hl, BadgeStatXpTable
 	add hl, bc
@@ -8021,23 +8022,23 @@ BadgeBoostStatXP: ;hl = stat xp given by badge boosts, no effect in egk
 	ret
 
 BadgeStatXpTable:
-	db 00
-	db 06
-	db 0b
-	db 10
-	db 12
-	db 15
-	db 20
-	db 25
-	db 30
-	db 40
-	db 44
-	db 47
-	db 53
-	db 60
-	db 65
-	db 70
-	db 80
+	db $00 ;0
+	db $06 
+	db $0b
+	db $10
+	db $14 ;4
+	db $18
+	db $20
+	db $28
+	db $30 ;8
+	db $40
+	db $46
+	db $4b
+	db $55 ;12
+	db $60
+	db $68
+	db $70
+	db $80
 
 
 
@@ -8183,9 +8184,7 @@ Functiond906: ; d906
 	call TrainerStatExp ;load trainer stat xp into hl depending on level
 	jr .okay
 .yours
-	xor a ; BADGE BOOST XP HERE
-	ld l, a ;hl = stat xp to add
-	ld h, a
+	call BadgeBoostStatXP
 .okay
 	ld b, 5 ;repeat 5 times (once a stat)
 .asm_d97a
@@ -9014,13 +9013,17 @@ Functionde6e: ; de6e
 	ld a, [$ffb6]
 	ld [de], a
 	inc de
-	xor a ;PUT STATXP HERE
-	ld b, $a
-.asm_dee5
+	call BadgeBoostStatXP
+	ld b, 5 ;repeat 5 times (once a stat)
+.statxploop
+	ld a, h
+	ld [de], a ;load in stat xp
+	inc de
+	ld a, l
 	ld [de], a
 	inc de
 	dec b
-	jr nz, .asm_dee5
+	jr nz, .statxploop 
 	ld hl, EnemyMonDVs
 	ld b, 2 + NUM_MOVES ; DVs and PP ; EnemyMonHappiness - EnemyMonDVs
 .asm_deef

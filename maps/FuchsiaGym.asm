@@ -71,8 +71,12 @@ JanineRematchScript:
 	returnafterbattle
 	setevent EVENT_JANINE_REMATCH
 	loadfont ;fallthrough
+	jump JanineJustAfterRematch
 
 JanineAfterRematch:
+	faceplayer
+	loadfont
+JanineJustAfterRematch:
 	writetext JanineAfterRematchText
 	waitbutton
 	closetext
