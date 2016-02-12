@@ -1,4 +1,4 @@
---Crystal 251 Main Script v0.8--
+--Crystal 251 Main Script v0.9--
 
 dofile("readstates.lua")
 dofile("battle_ram.lua")
@@ -204,18 +204,21 @@ repeat
     is_military_on = (value % 2 == 1) -- just in case you need to know the current status
     newvalue = bit.band(value, 254) + military_mode
     memory.writebyte(0xD849, newvalue)
-    vba.print(readPlayerstate())
+    --vba.print(readPlayerstate())
     if memory.readbyte(rLSC) == BEESAFREE_LSC_TRANSFERRING then
-    vba.print("STATUS: ", memory.readbyte(0xFFF1))  
-    if (AND(memory.readbyte(rLSB), 0x04) ~= 0) then
+    vba.print("STATUS: ", string.format("%02x", memory.readbyte(rLSB)))  
+    if (AND(memory.readbyte(rLSB), 0x02) ~= 0) then
+    vba.print("Querying AI")
     battlestate = readBattlestate(memory.readbyte(rLSB))
     vba.print("BATTLESTATE:", battlestate)
     vba.print("Waiting on AI...")
     airesponse = transferStateToAIAndWait(battlestate)
     vba.print("AI RESPONSE:", airesponse)
     playerresponse = {}
+    else
+    vba.print("No AI query")
     end  
-    if military_mode == 1 and (AND(memory.readbyte(rLSB), 0x02) ~= 0) then
+    if military_mode == 1 and (AND(memory.readbyte(rLSB), 0x01) ~= 0) then
     vba.print("Waiting on player...")
     --playerresponse = get_next_player_command() --uncomment this when you go to setup the Lua, streamer
     --debug stuff below
