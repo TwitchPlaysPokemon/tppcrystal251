@@ -345,7 +345,7 @@ class AI(object):
             tempaccuracy  = 50
 
         #Static Damage
-        if (move_used['effect'] == 'leveldamage'):
+        if (move_used['name'] == 'leveldamage'):
             temp2 = mondata[attacker]['level']
         if move_used['name'] == 'dragonrage':
             temp2 = 40
@@ -1588,6 +1588,13 @@ class AI(object):
         for tempmove in range (0, len(self.jsonlist['battleState']['enemypokemon']['moves'])):
             if self.Damage[0][6][tempmove]['damage'] > self.opponenthp[6] :
                 return tempmove
+        if self.Damage[0][6][self.enemynumber]['damage'] > self.myhp[0] :
+            tempx = 0
+            for tempmove in range (0, len(self.jsonlist['battleState']['enemypokemon']['moves'])):   
+                if self.Damage[0][6][tempmove]['damage'] > tempx :
+                    tempx = self.Damage[0][6][tempmove]['damage']
+                    tempy = tempmove
+            return tempy
         return None
 
     #figure out best action to do in current battle
@@ -1650,6 +1657,9 @@ class AI(object):
                     self.theaction = potentialAction
             else:
                 self.theaction = self.ForcedSwitch(mondata, traincurrent)
+                potentialAction = self.ManualControl()
+                if potentialAction is not None:
+                    self.theaction = potentialAction
         else:
             mycurrent = 0
             self.theaction = self.WildBattle(mondata, mycurrent, traincurrent)
