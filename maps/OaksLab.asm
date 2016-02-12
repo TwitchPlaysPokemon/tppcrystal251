@@ -230,6 +230,7 @@ UnknownScript_0x19b3f7: ; 0x19b3f7
 	writetext UnknownText_0x19b4fc
 	buttonsound
 	setevent EVENT_SET_BY_OAK_AFTER_16_BADGES
+	clearevent EVENT_MORTY_IS_AT_BACK_OF_GYM
 	jump UnknownScript_0x19b3ea
 ; 0x19b401
 
