@@ -78,8 +78,8 @@ class AI(object):
                         ]
 
         self._PokemonTypes = {"bulbasaur": ("grass", "poison"), "ivysaur": ("grass", "poison"), "venusaur": ("grass", "poison"), "charmander": ("fire", "none"), "charmeleon": ("fire", "none"), "charizard": ("fire", "flying"), "squirtle": ("water", "none"), "wartortle": ("water", "none"), "blastoise": ("water", "none"), "caterpie": ("bug", "none"), "metapod": ("bug", "none"), "butterfree": ("bug", "flying"), "weedle": ("bug", "poison"), "kakuna": ("bug", "poison"), "beedrill": ("bug", "poison"), "pidgey": ("normal", "flying"), "pidgeotto": ("normal", "flying"), "pidgeot": ("normal", "flying"), "rattata": ("normal", "none"), "raticate": ("normal", "none"), "spearow": ("normal", "flying"), "fearow": ("normal", "flying"), "ekans": ("poison", "none"), "arbok": ("poison", "none"), "pikachu": ("electric", "none"), "raichu": ("electric", "none"), "sandshrew": ("ground", "none"), "sandslash": ("ground", "none"), "nidoranf": ("poison", "none"), "nidorina": ("poison", "none"), "nidoqueen": ("poison", "ground"), "nidoranm": ("poison", "none"), "nidorino": ("poison", "none"), "nidoking": ("poison", "ground"), "clefairy": ("fairy", "none"), "clefable": ("fairy", "none"), "vulpix": ("fire", "none"), "ninetales": ("fire", "none"), "jigglypuff": ("normal", "fairy"), "wigglytuff": ("normal", "fairy"), "zubat": ("poison", "flying"), "golbat": ("poison", "flying"), "oddish": ("grass", "poison"), "gloom": ("grass", "poison"), "vileplume": ("grass", "poison"), "paras": ("bug", "grass"), "parasect": ("bug", "grass"), "venonat": ("bug", "poison"), "venomoth": ("bug", "poison"), "diglett": ("ground", "none"), "dugtrio": ("ground", "none"), "meowth": ("normal", "none"), "persian": ("normal", "none"), "psyduck": ("water", "none"), "golduck": ("water", "none"), "mankey": ("fighting", "none"), "primeape": ("fighting", "none"), "growlithe": ("fire", "none"), "arcanine": ("fire", "none"), "poliwag": ("water", "none"), "poliwhirl": ("water", "none"), "poliwrath": ("water", "fighting"), "abra": ("psychic", "none"), "kadabra": ("psychic", "none"), "alakazam": ("psychic", "none"), "machop": ("fighting", "none"), "machoke": ("fighting", "none"), "machamp": ("fighting", "none"), "bellsprout": ("grass", "poison"), "weepinbell": ("grass", "poison"), "victreebel": ("grass", "poison"), "tentacool": ("water", "poison"), "tentacruel": ("water", "poison"), "geodude": ("rock", "ground"), "graveler": ("rock", "ground"), "golem": ("rock", "ground"), "ponyta": ("fire", "none"), "rapidash": ("fire", "none"), "slowpoke": ("water", "psychic"), "slowbro": ("water", "psychic"), "magnemite": ("electric", "steel"), "magneton": ("electric", "steel"), "farfetch'd": ("normal", "flying"), "doduo": ("normal", "flying"), "dodrio": ("normal", "flying"), "seel": ("water", "none"), "dewgong": ("water", "ice"), "grimer": ("poison", "none"), "muk": ("poison", "none"), "shellder": ("water", "none"), "cloyster": ("water", "ice"), "gastly": ("ghost", "poison"), "haunter": ("ghost", "poison"), "gengar": ("ghost", "poison"), "onix": ("rock", "ground"), "drowzee": ("psychic", "none"), "hypno": ("psychic", "none"), "krabby": ("water", "none"), "kingler": ("water", "none"), "voltorb": ("electric", "none"), "electrode": ("electric", "none"), "exeggcute": ("grass", "psychic"), "exeggutor": ("grass", "psychic"), "cubone": ("ground", "none"), "marowak": ("ground", "none"), "hitmonlee": ("fighting", "none"), "hitmonchan": ("fighting", "none"), "lickitung": ("normal", "none"), "koffing": ("poison", "none"), "weezing": ("poison", "none"), "rhyhorn": ("ground", "rock"), "rhydon": ("ground", "rock"), "chansey": ("normal", "none"), "tangela": ("grass", "none"), "kangaskhan": ("normal", "none"), "horsea": ("water", "none"), "seadra": ("water", "none"), "goldeen": ("water", "none"), "seaking": ("water", "none"), "staryu": ("water", "none"), "starmie": ("water", "psychic"), "mr.mime": ("psychic", "fairy"), "scyther": ("bug", "flying"), "jynx": ("ice", "psychic"), "electabuzz": ("electric", "none"), "magmar": ("fire", "none"), "pinsir": ("bug", "none"), "tauros": ("normal", "none"), "magikarp": ("water", "none"), "gyarados": ("water", "flying"), "lapras": ("water", "ice"), "ditto": ("normal", "none"), "eevee": ("normal", "none"), "vaporeon": ("water", "none"), "jolteon": ("electric", "none"), "flareon": ("fire", "none"), "porygon": ("normal", "none"), "omanyte": ("rock", "water"), "omastar": ("rock", "water"), "kabuto": ("rock", "water"), "kabutops": ("rock", "water"), "aerodactyl": ("rock", "flying"), "snorlax": ("normal", "none"), "articuno": ("ice", "flying"), "zapdos": ("electric", "flying"), "moltres": ("fire", "flying"), "dratini": ("dragon", "none"), "dragonair": ("dragon", "none"), "dragonite": ("dragon", "flying"), "mewtwo": ("psychic", "none"), "mew": ("psychic", "none"), "chikorita": ("grass", "none"), "bayleef": ("grass", "none"), "meganium": ("grass", "none"), "cyndaquil": ("fire", "none"), "quilava": ("fire", "none"), "typhlosion": ("fire", "none"), "totodile": ("water", "none"), "croconaw": ("water", "none"), "feraligatr": ("water", "none"), "sentret": ("normal", "none"), "furret": ("normal", "none"), "hoothoot": ("normal", "flying"), "noctowl": ("normal", "flying"), "ledyba": ("bug", "flying"), "ledian": ("bug", "flying"), "spinarak": ("bug", "poison"), "ariados": ("bug", "poison"), "crobat": ("poison", "flying"), "chinchou": ("water", "electric"), "lanturn": ("water", "electric"), "pichu": ("electric", "none"), "cleffa": ("fairy", "none"), "igglybuff": ("normal", "fairy"), "togepi": ("fairy", "none"), "togetic": ("fairy", "flying"), "natu": ("psychic", "flying"), "xatu": ("psychic", "flying"), "mareep": ("electric", "none"), "flaaffy": ("electric", "none"), "ampharos": ("electric", "none"), "bellossom": ("grass", "none"), "marill": ("water", "fairy"), "azumarill": ("water", "fairy"), "sudowoodo": ("rock", "none"), "politoed": ("water", "none"), "hoppip": ("grass", "flying"), "skiploom": ("grass", "flying"), "jumpluff": ("grass", "flying"), "aipom": ("normal", "none"), "sunkern": ("grass", "none"), "sunflora": ("grass", "none"), "yanma": ("bug", "flying"), "wooper": ("water", "ground"), "quagsire": ("water", "ground"), "espeon": ("psychic", "none"), "umbreon": ("dark", "none"), "murkrow": ("dark", "flying"), "slowking": ("water", "psychic"), "misdreavus": ("ghost", "none"), "unown": ("psychic", "none"), "wobbuffet": ("psychic", "none"), "girafarig": ("normal", "psychic"), "pineco": ("bug", "none"), "forretress": ("bug", "steel"), "dunsparce": ("normal", "none"), "gligar": ("ground", "flying"), "steelix": ("steel", "ground"), "snubbull": ("fairy", "none"), "granbull": ("fairy", "none"), "qwilfish": ("water", "poison"), "scizor": ("bug", "steel"), "shuckle": ("bug", "rock"), "heracross": ("bug", "fighting"), "sneasel": ("dark", "ice"), "teddiursa": ("normal", "none"), "ursaring": ("normal", "none"), "slugma": ("fire", "none"), "magcargo": ("fire", "rock"), "swinub": ("ice", "ground"), "piloswine": ("ice", "ground"), "corsola": ("water", "rock"), "remoraid": ("water", "none"), "octillery": ("water", "none"), "delibird": ("ice", "flying"), "mantine": ("water", "flying"), "skarmory": ("steel", "flying"), "houndour": ("dark", "fire"), "houndoom": ("dark", "fire"), "kingdra": ("water", "dragon"), "phanpy": ("ground", "none"), "donphan": ("ground", "none"), "porygon2": ("normal", "none"), "stantler": ("normal", "none"), "smeargle": ("normal", "none"), "tyrogue": ("fighting", "none"), "hitmontop": ("fighting", "none"), "smoochum": ("ice", "psychic"), "elekid": ("electric", "none"), "magby": ("fire", "none"), "miltank": ("normal", "none"), "blissey": ("normal", "none"), "raikou": ("electric", "none"), "entei": ("fire", "none"), "suicune": ("water", "none"), "larvitar": ("rock", "ground"), "pupitar": ("rock", "ground"), "tyranitar": ("rock", "dark"), "lugia": ("psychic", "flying"), "ho-oh": ("fire", "flying"), "celebi": ("psychic", "grass") }
-        self._statsmultipliers =  {'-6': 25, '-5':  28, '-4':  33, '-3':  40, '-2':  50, '-1': 66, '0':  100, '1':  150, '2':  200, '3':  250, '4': 300, '5': 350, '6': 400}
-        self._accuracymultipliers = {'-6': 33, '-5':  36, '-4':  43, '-3':  50, '-2':  60, '-1': 75, '0':  100, '1':  133, '2':  166, '3':  200, '4': 233, '5': 266, '6': 300}
+        self._statsmultipliers =  [25, 28, 33, 40, 50, 66, 100, 150, 200, 250, 300, 350, 400]
+        self._accuracymultipliers = [33, 36, 43, 50, 60, 75, 100, 133, 166, 200, 233, 266, 300]
         self._critmultipliers = [0.0625, 0.125, 0.5, 1, 1, 1, 1]
         self._actualAction= {'0':  'move1', '1':  'move2', '2':  'move3', '3':  'move4', '4': 'switch1', '5': 'switch2', '6': 'switch3', '7':  'switch4', '8':  'switch5', '9':  'switch6', '10':  'useitem1', '11': 'useitem2'}
 
@@ -263,8 +263,6 @@ class AI(object):
             satkmodifier = satkmodifier * 2
         if mondata[attacker]['item'] == 'thickclub' and (mondata[attacker]['species'] == 'cubone' or mondata[attacker]['species'] == 'marowak'):
             atkmodifier = atkmodifier * 2
-        if mondata[attacker]['item'] == 'scopelens':
-            critmodifier = 1
 
         #Raw damage
         basebp = move_used['bp']
@@ -290,14 +288,14 @@ class AI(object):
         if move_used['category'] == 'status':
             basebp = 0
         elif move_used['category'] == "special":
-            tempx = self._statsmultipliers[str(mondata[attacker]['boosts']['satk'])]/100
-            tempy = self._statsmultipliers[str(mondata[defender]['boosts']['sdef'])]/100
+            tempx = self._statsmultipliers[mondata[attacker]['boosts']['satk']+6]/100
+            tempy = self._statsmultipliers[mondata[defender]['boosts']['sdef']+6]/100
             temp1 = ((((((2 * mondata[attacker]['level'] + 10) / 250) * (((mondata[attacker]['stats']['satk'] * satkmodifier) * tempx) / (mondata[defender]['stats']['sdef'] * tempy))  * basebp)+2) * 0.85)) * multiplier
             if 'lightscreen' in mondata[temptext]['screens']:
                 temp1 = temp1 / 2
         elif move_used['category'] == "physical":
-            tempx = self._statsmultipliers[str(mondata[attacker]['boosts']['atk'])]/100
-            tempy = self._statsmultipliers[str(mondata[defender]['boosts']['def'])]/100
+            tempx = self._statsmultipliers[mondata[attacker]['boosts']['atk']+6]/100
+            tempy = self._statsmultipliers[mondata[defender]['boosts']['def']+6]/100
             temp1 = ((((((2 * mondata[attacker]['level'] + 10) / 250) * (((mondata[attacker]['stats']['atk'] * atkmodifier) * tempx) / (mondata[defender]['stats']['def'] * tempy))  * basebp)+2) * 0.85)) * multiplier
             if 'reflect' in mondata[temptext]['screens']:
                 temp1 = temp1 / 2
@@ -395,9 +393,9 @@ class AI(object):
         if move_used_effect != 'alwayshit':
             if mondata[defender]['item'] == 'brightpowder':
                 accmodifier = accmodifier * 90.9090
-            tempx = self._accuracymultipliers[str(mondata[attacker]['boosts']['acc'])]/100
+            tempx = self._accuracymultipliers[mondata[attacker]['boosts']['acc']+6]/100
             tempy = mondata[defender]['boosts']['eva'] * -1
-            tempy = self._accuracymultipliers[str(tempy)]/100
+            tempy = self._accuracymultipliers[tempy+6]/100
             if tempaccuracy == 0:
                 totalacc = tempx * accmodifier * (move_used['acc']/100) * tempy
             if tempaccuracy > 0:
@@ -432,8 +430,8 @@ class AI(object):
         #0% chance of hitting
         # print mondata[attacker]['boosts']
         # print mondata[defender]['boosts']
-        tempx = self._statsmultipliers[str(mondata[attacker]['boosts']['spd'])]/100
-        tempy = self._statsmultipliers[str(mondata[defender]['boosts']['spd'])]/100
+        tempx = self._statsmultipliers[mondata[attacker]['boosts']['spd']+6]/100
+        tempy = self._statsmultipliers[mondata[defender]['boosts']['spd']+6]/100
         if mondata[attacker]['stats']['speed'] * tempx > mondata[defender]['stats']['speed'] * tempy:
             for tempx in range(0, len(mondata['enemypokemon']['substatus'])):
                 if 'underground' == mondata['enemypokemon']['substatus'][tempx]:
@@ -491,6 +489,8 @@ class AI(object):
             critmodifier = 2
         if mondata[attacker]['item'] == 'stick' and mondata[attacker]['species'] == "farfetch'd":
             critmodifier = 2
+        if mondata[attacker]['item'] == 'scopelens':
+            critmodifier = 1
         for tempx in range(0, len(mondata[temptext2]['substatus'])):
             if 'pumped' == mondata[temptext2]['substatus'][tempx]:
                 pumped = True
@@ -502,7 +502,6 @@ class AI(object):
             critmodifier = critmodifier + 2
         if move_used['name'].lower() in ('aeroblast', 'crabhammer', 'crosschop', 'drillrun', 'karatechop', 'razorleaf', 'shadowclaw', 'slash', 'skyattack'):
             critmodifier = critmodifier + 2
-        print(temp2)
         temp2 = (temp2 * ( 1 - self._critmultipliers[critmodifier])) + (temp2 * 1.5 * self._critmultipliers[critmodifier])
         temp2 = (temp2 * ( 1 - self._critmultipliers[critmodifier])) + (temp2 * 1.5 * self._critmultipliers[critmodifier])
         
@@ -1051,8 +1050,8 @@ class AI(object):
                     mondata[self.jsonlist['battleState']['playerpokemon']['party idx']+6]['moves'][int(mondata['playerpokemon']['substatus']['disabled']['move idx'])]['curpp'] = 0
                 mondata1['painsplit'] = False
                 mondata1['lockon'] = False
-                tempx = self._statsmultipliers[str(mondata1[mycurrent]['boosts']['spd'])]/100
-                tempy = self._statsmultipliers[str(mondata1[traincurrent]['boosts']['spd'])]/100
+                tempx = self._statsmultipliers[mondata1[mycurrent]['boosts']['spd']+6]/100
+                tempy = self._statsmultipliers[mondata1[traincurrent]['boosts']['spd']+6]/100
                 if (mondata1[mycurrent]['stats']['speed'] * tempx > mondata1[traincurrent]['stats']['speed'] * tempy) or (mondata1[mycurrent]['moves'][int(tempcombo[x1])]['effect'] in ('extremespeed', 'priorityhit', 'endure', 'protect')):
 
                     if myhp > 0:
@@ -1232,8 +1231,8 @@ class AI(object):
                 for x1 in range(0, numberofturns):
                     mondata1['painsplit'] = False
                     mondata1['lockon'] = False
-                    tempx = self._statsmultipliers[str(mondata1[mycurrent]['boosts']['spd'])]/100
-                    tempy = self._statsmultipliers[str(mondata1[traincurrent]['boosts']['spd'])]/100
+                    tempx = self._statsmultipliers[mondata1[mycurrent]['boosts']['spd']+6]/100
+                    tempy = self._statsmultipliers[mondata1[traincurrent]['boosts']['spd']+6]/100
                     if (mondata1[mycurrent]['stats']['speed'] * tempx > mondata1[traincurrent]['stats']['speed'] * tempy) or (mondata1[mycurrent]['moves'][int(tempcombo[x1])]['effect'] in ('extremespeed', 'priorityhit', 'endure', 'protect')):
                         if myhp1 > 0:
                             mondata1 = self.Mychoice(mondata1, traincurrent, mycurrent, int(tempcombo[x1]))
