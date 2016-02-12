@@ -9190,8 +9190,11 @@ Function3f85f: ; 3f85f
 
 Function3f998: ; 3f998
 	ld a, [BattleType]
+	cp BATTLETYPE_SUICUNE
+	jr z, .doge
 	cp BATTLETYPE_ROAMING
 	jr nz, .asm_3f9c4
+.doge
 	ld a, [wd0ee]
 	and $f
 	jr z, .asm_3f9af
@@ -9214,6 +9217,9 @@ Function3f998: ; 3f998
 	call GetRoamMonSpecies
 	ld a, [hl]
 	ld [hl], 0
+	call GetRoamMonEventFlag
+	ld b, 1
+	call EventFlagAction
 	ret
 .respawn
 	call GetRoamMonSpecies
@@ -9317,6 +9323,16 @@ GetRoamMonSpecies: ; 3fa31
 	ld hl, wRoamMon3Species
 	ret
 ; 3fa42
+GetRoamMonEventFlag:
+	ld a, [TempEnemyMonSpecies]
+	ld de, EVENT_STATIC_ENTEI
+	cp ENTEI
+	ret z
+	ld de, EVENT_STATIC_RAIKOU
+	cp RAIKOU
+	ret z
+	ld de, EVENT_STATIC_SUICUNE
+	ret
 
 Function3fa42: ; 3fa42
 	ld hl, wd276

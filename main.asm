@@ -36091,6 +36091,8 @@ SECTION "bankF", ROMX, BANK[$F]
 
 INCLUDE "battle/core.asm"
 
+SECTION "effect command pointers", ROMX
+
 INCLUDE "battle/effect_command_pointers.asm"
 CopyMirrorBattle:
 	ld hl, PartyCount
