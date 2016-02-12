@@ -1,4 +1,4 @@
-# TPP Crystal 251 AI v0.99 by Beesafree
+# TPP Crystal 251 AI v1.00 by Beesafree
 
 from __future__ import division
 import math
@@ -536,7 +536,7 @@ class AI(object):
 
     def Mychoice (self, mondata, traincurrent, mycurrent, moveused):
         if mondata[mycurrent]['moves'][moveused]['curpp'] > 0:
-            if mondata[mycurrent]['moves'][moveused]['effect'] in ('normalhit', 'leveldamage', 'sleeptalk', 'metronome', 'bind', 'rollout', 'falseswipe', 'rampage', 'rapidspin', 'destinybond', 'hiddenpower', 'rage', 'return', 'superfang', 'triattack', 'pursuit', 'twister', 'thief', 'reversal', 'dreameater', 'extremespeed', 'furycutter', 'explosion' 'jumpkick', 'present', 'ohko', 'thunder', 'metalclaw', 'earthquake', 'hyperbeam', 'solarbeam', 'magnitude', 'fly', 'multihit', 'gust' 'doublehit', 'poisonhit', 'freezehit', 'skyattack', 'parlyzehit', 'payday', 'stomp', 'flinchhit', 'burnhit',  'recoilhit', 'twinneedle', 'spdefdownhit', 'confusehit', 'speeddownhit', 'attackdownhit', 'leechhit', 'alwayshit', 'accuracydownhit', 'steelwing', 'flamewheel', 'sacredfire', 'defensedownhit', 'ancientpower'):
+            if mondata[mycurrent]['moves'][moveused]['effect'] in ('normalhit', 'priorityhit', 'leveldamage', 'sleeptalk', 'metronome', 'bind', 'rollout', 'falseswipe', 'rampage', 'rapidspin', 'destinybond', 'hiddenpower', 'rage', 'return', 'superfang', 'triattack', 'pursuit', 'twister', 'thief', 'reversal', 'dreameater', 'extremespeed', 'furycutter', 'explosion' 'jumpkick', 'present', 'ohko', 'thunder', 'metalclaw', 'earthquake', 'hyperbeam', 'solarbeam', 'magnitude', 'fly', 'multihit', 'gust' 'doublehit', 'poisonhit', 'freezehit', 'skyattack', 'parlyzehit', 'payday', 'stomp', 'flinchhit', 'burnhit',  'recoilhit', 'twinneedle', 'spdefdownhit', 'confusehit', 'speeddownhit', 'attackdownhit', 'leechhit', 'alwayshit', 'accuracydownhit', 'steelwing', 'flamewheel', 'sacredfire', 'defensedownhit', 'ancientpower'):
                 self.DamageDealt(mondata, mycurrent, traincurrent, moveused)
             else:
                 if Debug_Code == 1:
@@ -1336,7 +1336,7 @@ class AI(object):
             if Debug_Code == 1:
                 print("_".join([str(x) for x in tempcombo]))
                 print('Enemy Boosts: '+str(mondata[mycurrent]['boosts']))
-                print(self.Damage[mycurrent][traincurrent][0]['damage'])
+                print(self.Damage[mycurrent][traincurrent][tempcombo[0]]['damage'])
                 print('Player Boosts: '+str(mondata[traincurrent]['boosts']))
                 print(self.Damage[traincurrent][mycurrent][self.enemynumber]['damage'])
                 print('enemy hp '+str(myhp)+' enemy starting hp '+str(self.mycurhp)+' player hp '+str(trainhp)+' player starting hp '+str(self.traincurhp))
@@ -1588,7 +1588,7 @@ class AI(object):
         for tempmove in range (0, len(self.jsonlist['battleState']['enemypokemon']['moves'])):
             if self.Damage[0][6][tempmove]['damage'] > self.opponenthp[6] :
                 return tempmove
-        if self.Damage[6][0][self.enemynumber]['damage'] > self.myhp[0] :
+        if self.Damage[6][0][self.enemynumber]['damage'] > self.hp[0] :
             tempx = 0
             for tempmove in range (0, len(self.jsonlist['battleState']['enemypokemon']['moves'])):   
                 if self.Damage[0][6][tempmove]['damage'] > tempx :
