@@ -25,7 +25,7 @@ JSON_FILE_PATH = os.path.join(SCRIPT_DIR, "battlestate.json")
 MOVES_FILE_PATH = os.path.join(SCRIPT_DIR, "AiMoves.txt")
 
 mondata = {}
-Debug_Code = 1
+Debug_Code = 0
 
 class Combogenerator:
     def __init__(self,turnsToLookAhead=4, numMoves=4):
@@ -232,10 +232,10 @@ class AI(object):
         if attacker <= 5:
             temptext2 = 'enemypokemon'
             temptext = 'playerpokemon'
-        
+
         move_used = mondata[attacker]['moves'][moveused]
         move_used_effect = move_used['effect']
-        
+
         if Debug_Code == 1 and attacker < 6:
             print(move_used['name'])
 
@@ -482,7 +482,7 @@ class AI(object):
 
         if Debug_Code == 1 and attacker < 6:
             print('Damage before crit and after accuracy '+str(temp2))
-            
+
         #Crit modifiers
         critmodifier = 0
         pumped = False
@@ -505,7 +505,7 @@ class AI(object):
             critmodifier = critmodifier + 2
         temp2 = (temp2 * ( 1 - self._critmultipliers[critmodifier])) + (temp2 * 1.5 * self._critmultipliers[critmodifier])
         temp2 = (temp2 * ( 1 - self._critmultipliers[critmodifier])) + (temp2 * 1.5 * self._critmultipliers[critmodifier])
-        
+
         if Debug_Code == 1 and attacker < 6:
             print('Damage after crit'+str(temp2))
         if effmulti < 0.125:
@@ -1327,12 +1327,12 @@ class AI(object):
             #print('Enemy current: '+str(mycurrent))
             tempx = (((myhp / self.mycurhp) - (trainhp / self.traincurhp)) * (1 - tempy)) + (((myhp1 / self.mycurhp) - (trainhp1 / self.traincurhp)) * tempy)
             tempx = tempx + 1
-            
+
             if myhp/mondata1[mycurrent]['stats']['hp']  > 0.5 :
                 tempx = tempx * (1 + 0.1 * (mondata1[mycurrent]['boosts']['atk'] + mondata1[mycurrent]['boosts']['def'] + mondata1[mycurrent]['boosts']['satk'] + mondata1[mycurrent]['boosts']['sdef'] + mondata1[mycurrent]['boosts']['spd'] + mondata1[mycurrent]['boosts']['eva'] + mondata1[mycurrent]['boosts']['acc']))
             if trainhp/mondata1[traincurrent]['stats']['hp'] > 0.5:
                 tempx = tempx * (1 + -0.05 * (mondata1[traincurrent]['boosts']['atk'] + mondata1[mycurrent]['boosts']['def'] + mondata1[traincurrent]['boosts']['satk'] + mondata1[traincurrent]['boosts']['sdef'] + mondata1[traincurrent]['boosts']['spd'] + mondata1[traincurrent]['boosts']['eva'] + mondata1[traincurrent]['boosts']['acc']))
-            
+
             if Debug_Code == 1:
                 print("_".join([str(x) for x in tempcombo]))
                 print('Enemy Boosts: '+str(mondata[mycurrent]['boosts']))
@@ -1477,7 +1477,7 @@ class AI(object):
                 tempy = self.difference[tempx][traincurrent]
                 if tempx != self.jsonlist['battleState']['enemypokemon']['party idx']:
                     theaction = tempx + 4
-        return theaction 
+        return theaction
 
     def WildBattle(self, mondata, mycurrent, traincurrent):
         movepriority = {}
@@ -1550,9 +1550,10 @@ class AI(object):
         if theaction == 20:
             self.Fight(mondata, traincurrent, mycurrent, 5)
             theaction = self.mybestmove[mycurrent]
-        return theaction 
+        return theaction
 
     def ManualControl(self):
+
         tempx = -1
         for tempmove in range (0, len(self.jsonlist['battleState']['enemypokemon']['moves'])):
             if mondata[0]['moves'][tempmove]['effect'] in ('protect'):
@@ -1585,16 +1586,40 @@ class AI(object):
                     x1 = math.ceil(self.Damage[0][6][self.theaction]['damage'] / (self.Damage[0][6][self.theaction]['damage'] + self.Damage[0][6][tempx]['damage']))
                     if random.randint(0, 100) > x1:
                         return tempx
+        mondata[0]['boosts'] = {}
+        mondata[0]['boosts']['atk'] = int(self.jsonlist['battleState']['enemypokemon']['stat levels']['atk'])
+        mondata[0]['boosts']['def'] = int(self.jsonlist['battleState']['enemypokemon']['stat levels']['def'])
+        mondata[0]['boosts']['satk'] = int(self.jsonlist['battleState']['enemypokemon']['stat levels']['satk'])
+        mondata[0]['boosts']['sdef'] = int(self.jsonlist['battleState']['enemypokemon']['stat levels']['sdef'])
+        mondata[0]['boosts']['spd'] = int(self.jsonlist['battleState']['enemypokemon']['stat levels']['spd'])
+        mondata[0]['boosts']['eva'] = int(self.jsonlist['battleState']['enemypokemon']['stat levels']['eva'])
+        mondata[0]['boosts']['acc'] = int(self.jsonlist['battleState']['enemypokemon']['stat levels']['acc'])
+        mondata[6]['boosts'] = {}
+        mondata[6]['boosts']['atk'] = int(self.jsonlist['battleState']['playerpokemon']['stat levels']['atk'])
+        mondata[6]['boosts']['def'] = int(self.jsonlist['battleState']['playerpokemon']['stat levels']['def'])
+        mondata[6]['boosts']['satk'] = int(self.jsonlist['battleState']['playerpokemon']['stat levels']['satk'])
+        mondata[6]['boosts']['sdef'] = int(self.jsonlist['battleState']['playerpokemon']['stat levels']['sdef'])
+        mondata[6]['boosts']['spd'] = int(self.jsonlist['battleState']['playerpokemon']['stat levels']['spd'])
+        mondata[6]['boosts']['eva'] = int(self.jsonlist['battleState']['playerpokemon']['stat levels']['eva'])
+        mondata[6]['boosts']['acc'] = int(self.jsonlist['battleState']['playerpokemon']['stat levels']['acc'])
+        self.TrainerDamage(mondata, 6, 0)
         for tempmove in range (0, len(self.jsonlist['battleState']['enemypokemon']['moves'])):
+            self.DamageDealt(mondata, 0, 6, tempmove)
             if self.Damage[0][6][tempmove]['damage'] > self.opponenthp[6] :
                 return tempmove
         if self.Damage[6][0][self.enemynumber]['damage'] > self.hp[0] :
             tempx = 0
-            for tempmove in range (0, len(self.jsonlist['battleState']['enemypokemon']['moves'])):   
+            tempy = -1
+            for tempmove in range (0, len(self.jsonlist['battleState']['enemypokemon']['moves'])):
                 if self.Damage[0][6][tempmove]['damage'] > tempx :
                     tempx = self.Damage[0][6][tempmove]['damage']
                     tempy = tempmove
+            if Debug_Code == 1:
+                print('about to die - i need to attack, i will use: '+str(tempy))
             return tempy
+
+        if Debug_Code == 1:
+            print('in manual control')
         return None
 
     #figure out best action to do in current battle
@@ -1657,12 +1682,12 @@ class AI(object):
                     self.theaction = potentialAction
             else:
                 self.theaction = self.ForcedSwitch(mondata, traincurrent)
-                potentialAction = self.ManualControl()
-                if potentialAction is not None:
-                    self.theaction = potentialAction
         else:
             mycurrent = 0
             self.theaction = self.WildBattle(mondata, mycurrent, traincurrent)
+            potentialAction = self.ManualControl()
+            if potentialAction is not None:
+                self.theaction = potentialAction
         if self.theaction < 4:
             tempy = 0
             for tempx in range (0, len(mondata[0]['moves'])):
@@ -1674,7 +1699,7 @@ class AI(object):
                 self.mybestmove[mycurrent] = random.randint(0, (len(self.jsonlist['battleState']['enemypokemon']['moves'])))
                 if tempy == len(mondata[0]['moves']):
                     break
-        
+
         temptext = self._actualAction[str(self.theaction)]
         return temptext
 
