@@ -3485,10 +3485,34 @@ Function3d581: ; 3d581
 
 Function3d599: ; 3d599
 IF DEF(BEESAFREE)
+	call MilitaryWaiting
 	ld a, BEESAFREE_SND_ASKENEMY | BEESAFREE_SND_ASKMONTARGET
+.loopback
 	rst LUASerial
+	ld a, [wMilitaryAndAIBattleAction]
+	swap a
+	and $f
+	sub 4
+	jr c, .Invalid
 	ld b, a
-	ret
+	ld a, [OTPartyCount]
+	cp b
+	jr c, .Invalid
+	ld a, [CurOTMon]
+	cp b
+	jr z, .Invalid
+	push bc
+	ld a, b
+	ld bc, $30
+	ld hl, OTPartyMon1HP
+	call AddNTimes
+	ld a, [hli]
+	or [hl]
+	pop bc
+	ret nz
+.Invalid
+	ld a, BEESAFREE_SND_ASKENEMY | BEESAFREE_SND_ASKMONTARGET | BEESAFREE_SND_INVALID
+	jr .loopback
 ELSE
 	ld b, $ff
 	ld a, $1
@@ -9172,8 +9196,11 @@ Function3f85f: ; 3f85f
 
 Function3f998: ; 3f998
 	ld a, [BattleType]
+	cp BATTLETYPE_SUICUNE
+	jr z, .doge
 	cp BATTLETYPE_ROAMING
 	jr nz, .asm_3f9c4
+.doge
 	ld a, [wd0ee]
 	and $f
 	jr z, .asm_3f9af
@@ -9196,6 +9223,9 @@ Function3f998: ; 3f998
 	call GetRoamMonSpecies
 	ld a, [hl]
 	ld [hl], 0
+	call GetRoamMonEventFlag
+	ld b, 1
+	call EventFlagAction
 	ret
 .respawn
 	call GetRoamMonSpecies
@@ -9299,6 +9329,16 @@ GetRoamMonSpecies: ; 3fa31
 	ld hl, wRoamMon3Species
 	ret
 ; 3fa42
+GetRoamMonEventFlag:
+	ld a, [TempEnemyMonSpecies]
+	ld de, EVENT_STATIC_ENTEI
+	cp ENTEI
+	ret z
+	ld de, EVENT_STATIC_RAIKOU
+	cp RAIKOU
+	ret z
+	ld de, EVENT_STATIC_SUICUNE
+	ret
 
 Function3fa42: ; 3fa42
 	ld hl, wd276

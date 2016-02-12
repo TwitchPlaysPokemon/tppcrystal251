@@ -123,11 +123,11 @@ UnknownScript_0x1850d7: ; 0x1850d7
 	pause 20
 	loadpokedata SUICUNE, 0
 	special CheckPartyLevels
-	if_less_than 40, .level40
+	if_less_than 65, .level65
 	copyvartobyte CurPartyLevel
 	jump .startbattle
-.level40
-	loadvar CurPartyLevel, 40
+.level65
+	loadvar CurPartyLevel, 65
 .startbattle
 	writecode VAR_BATTLETYPE, BATTLETYPE_SUICUNE
 	startbattle
