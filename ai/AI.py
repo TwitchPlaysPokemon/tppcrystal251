@@ -1676,7 +1676,7 @@ class AI(object):
         mondata = self.parseMondataFromJsonlist()
         if self.jsonlist['battleState']['enemy type'] == 'TRAINER':
             mycurrent = self.jsonlist['battleState']['enemypokemon']['party idx']
-            if ('requested action' not in self.jsonlist['battleState']) or (int(self.jsonlist['battleState']['requested action']) != 66):
+            if ('requested action' not in self.jsonlist['battleState']) or not (int(self.jsonlist['battleState']['requested action']) & 0x40):
                 self.Fight(mondata, traincurrent, mycurrent, 5)
                 self.theaction = self.mybestmove[mycurrent]
                 self.OptionalSwitch(mondata, traincurrent)
