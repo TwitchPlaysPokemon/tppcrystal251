@@ -539,6 +539,8 @@ class AI(object):
             if mondata[mycurrent]['moves'][moveused]['effect'] in ('normalhit', 'sleeptalk', 'metronome', 'bind', 'rollout', 'falseswipe', 'rampage', 'rapidspin', 'destinybond', 'hiddenpower', 'rage', 'return', 'superfang', 'triattack', 'pursuit', 'twister', 'thief', 'reversal', 'dreameater', 'extremespeed', 'furycutter', 'explosion' 'jumpkick', 'present', 'ohko', 'thunder', 'metalclaw', 'earthquake', 'hyperbeam', 'solarbeam', 'magnitude', 'fly', 'multihit', 'gust' 'doublehit', 'poisonhit', 'freezehit', 'skyattack', 'parlyzehit', 'payday', 'stomp', 'flinchhit', 'burnhit',  'recoilhit', 'twinneedle', 'spdefdownhit', 'confusehit', 'speeddownhit', 'attackdownhit', 'leechhit', 'alwayshit', 'accuracydownhit', 'steelwing', 'flamewheel', 'sacredfire', 'defensedownhit', 'ancientpower'):
                 self.DamageDealt(mondata, mycurrent, traincurrent, moveused)
             else:
+                if Debug_Code == 1:
+                    print('Not an attack, setting to defaults')
                 self.Damage[mycurrent][traincurrent][moveused]['damage'] = -1
                 self.Damage[mycurrent][traincurrent][moveused]['selfdamage'] = 0
 
@@ -726,6 +728,8 @@ class AI(object):
                 if mondata[traincurrent]['boosts'][statName] < -6:
                     mondata[traincurrent]['boosts'][statName] = -6
         else:
+            if Debug_Code == 1:
+                print("No pp, Can't do anything with that")
             self.Damage[mycurrent][traincurrent][moveused]['damage'] = -1
             self.Damage[mycurrent][traincurrent][moveused]['selfdamage'] = 0
         return mondata
