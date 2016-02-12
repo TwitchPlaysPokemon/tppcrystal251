@@ -952,7 +952,13 @@ class AI(object):
 
         self.mycurhp = self.hp[mycurrent]
         self.traincurhp = self.opponenthp[traincurrent]
-
+        
+        #prevents an impossible case
+        if self.mycurhp == 0:
+            self.mycurhp = 1
+        if self.traincurhp == 0:
+            self.traincurhp = 1
+            
         #len(mondata[mycurrent]['moves']) = the number of moves the mon has
         for x2, tempcombo in enumerate(Combogenerator(numberofturns, len(mondata[mycurrent]['moves']))):
             mondata1 = mondata
