@@ -82252,10 +82252,10 @@ Functione3180: ; e3180 (38:7180)
 	call PlayCryHeader
 .asm_e31ab
 	ld a, [CurPartySpecies]
-	cp ENTEI
+	cp RAIKOU
 	ld b, 1
 	jr z, .init
-	cp RAIKOU
+	cp ENTEI
 	ld b, 2
 	jr z, .init
 	cp SUICUNE
