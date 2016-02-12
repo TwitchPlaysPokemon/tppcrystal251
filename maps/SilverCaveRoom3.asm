@@ -42,7 +42,7 @@ RedScript_0x18c603: ; 0x18c603
 	checkcode VAR_FACING
 	if_equal DOWN, .script2
 	if_equal RIGHT, .script3
-	if_equal UP, script4
+	if_equal UP, .script4
 	scall .abe_walks
 	applymovement $0, SilverCave3_PlayerTakes3StepsUp
 	warpcheck
