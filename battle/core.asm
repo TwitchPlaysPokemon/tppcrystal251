@@ -3486,9 +3486,27 @@ Function3d581: ; 3d581
 Function3d599: ; 3d599
 IF DEF(BEESAFREE)
 	ld a, BEESAFREE_SND_ASKENEMY | BEESAFREE_SND_ASKMONTARGET
+.loopback
 	rst LUASerial
 	ld b, a
-	ret
+	ld a, [OTPartyCount]
+	cp b
+	jr c, .Invalid
+	ld a, [CurOTMon]
+	cp b
+	jr z, .Invalid
+	push bc
+	ld a, b
+	ld bc, $30
+	ld hl, OTPartyMon1HP
+	call AddNTimes
+	ld a, [hli]
+	or [hl]
+	pop bc
+	ret nz
+.Invalid
+	ld a, BEESAFREE_SND_ASKENEMY | BEESAFREE_SND_ASKMONTARGET | BEESAFREE_SND_INVALID
+	jr .loopback
 ELSE
 	ld b, $ff
 	ld a, $1

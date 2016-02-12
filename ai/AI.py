@@ -96,7 +96,7 @@ class AI(object):
         return statName
 
     def parseMondataFromJsonlist (self):
-        mondata['weather'] = self.jsonlist['battleState']['weather'].lower().replace(' ', '')
+        mondata['weather'] = self.jsonlist['battleState']['weather'][0].lower().replace(' ', '')
         mondata['enemypokemon'] = {}
         mondata['playerpokemon'] = {}
         mondata['myitems'] = {}
@@ -977,7 +977,7 @@ class AI(object):
                 mondata1['trainperishsong'] = mondata1['playerpokemon']['substatus']['perishsong']
 
             #boosts
-            mondata1['weather'] = self.jsonlist['battleState']['weather'].lower().replace(' ', '')
+            mondata1['weather'] = self.jsonlist['battleState']['weather'][0].lower().replace(' ', '')
             mondata1['enemypokemon'] = {}
             mondata1['playerpokemon'] = {}
             mondata1['enemypokemon']['substatus'] = self.jsonlist['battleState']['enemypokemon']['subStatus']
@@ -1162,7 +1162,7 @@ class AI(object):
                     mondata1['trainperishsong'] = mondata1['playerpokemon']['substatus']['perishsong']
 
                 #boosts
-                mondata1['weather'] = self.jsonlist['battleState']['weather'].lower().replace(' ', '')
+                mondata1['weather'] = self.jsonlist['battleState']['weather'][0].lower().replace(' ', '')
                 mondata1['enemypokemon'] = {}
                 mondata1['playerpokemon'] = {}
                 mondata1['enemypokemon']['substatus'] = self.jsonlist['battleState']['enemypokemon']['subStatus']

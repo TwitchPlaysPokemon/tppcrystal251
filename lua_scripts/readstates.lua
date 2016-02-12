@@ -194,9 +194,15 @@ end
 
 function getWeather()
 	weather = memory.readbyte(0xc70a)
-	if weather >= 4 then return string.format("%s end", weatherTable[weather - 2]) end
-	if weather == 0 then return "Clear" end
-	return string.format("%s (%d turns left)", weatherTable[weather + 1], memory.readbyte(0xc70b))
+	outWeather = {}
+	if weather >= 4 then
+		outWeather[weatherTable[weather - 2]] = 0
+	elseif weather == 0 then
+		table.insert(outWeather, "Clear")
+	else
+		outWeather[weatherTable[weather + 1]] = memory.readbyte(0xc70b)
+	end
+	return outWeather
 end
 
 function getScreens(flags, counts)
