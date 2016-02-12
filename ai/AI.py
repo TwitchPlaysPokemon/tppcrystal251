@@ -345,7 +345,7 @@ class AI(object):
             tempaccuracy  = 50
 
         #Static Damage
-        if (move_used['name'] == 'leveldamage'):
+        if (move_used['effect'] == 'leveldamage'):
             temp2 = mondata[attacker]['level']
         if move_used['name'] == 'dragonrage':
             temp2 = 40
