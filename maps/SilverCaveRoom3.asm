@@ -32,15 +32,7 @@ RedScript_0x18c603: ; 0x18c603
 	writetext UnknownText_0x18c63f
 	waitbutton
 	closetext
-	; special Special_FadeToBlack
-	; special Functiond91
-	; disappear $2
-	; pause 15
-	; special Function8c0ab
-	; pause 30
 	special HealParty
-	; refreshscreen $0
-	; credits
 	playsound SFX_ENTER_DOOR
 	changeblock 9, 7, $42
 	changeblock 10, 7, $43
@@ -49,11 +41,21 @@ RedScript_0x18c603: ; 0x18c603
 	pause 20
 	checkcode VAR_FACING
 	if_equal DOWN, .script2
-	spriteface $0, UP
-	applymovement $2, Movement_AbeSortaKindaLeadsPlayerIntoRuins ; Anarchy or RIOT
-	disappear $2
-	playsound SFX_EXIT_BUILDING
-	waitsfx
+	if_equal RIGHT, .script3
+	if_equal UP, .script4
+	scall .abe_walks
+	applymovement $0, SilverCave3_PlayerTakes3StepsUp
+	warpcheck
+	end
+.script3
+	scall .abe_walks
+	applymovement $0, SilverCave3_PlayerStepsRightThen3Up
+	warpcheck
+	end
+.script4
+	scall .abe_walks
+	applymovement $0, SilverCave3_PlayerTakes4StepsUp
+	warpcheck
 	end
 .script2
 	applymovement $2, Movement_AbeSortaKindaLeadsPlayerIntoRuins2 ; Anarchy or RIOT
@@ -61,8 +63,17 @@ RedScript_0x18c603: ; 0x18c603
 	disappear $2
 	playsound SFX_EXIT_BUILDING
 	waitsfx
+	applymovement $0, SilverCave3_PlayerTakes2StepsUp
+	warpcheck
 	end
 ; 0x18c637
+.abe_walks
+	spriteface $0, UP
+	applymovement $2, Movement_AbeSortaKindaLeadsPlayerIntoRuins ; Anarchy or RIOT
+	disappear $2
+	playsound SFX_EXIT_BUILDING
+	waitsfx
+	end
 
 Movement_AbeSortaKindaLeadsPlayerIntoRuins:
 	step_up
@@ -106,8 +117,18 @@ Movement_AbeSortaKindaLeadsPlayerIntoRuins2:
 	half_step_up
 	half_step_up
 	half_step_up
+SilverCave3_PlayerStepsRightThen3Up:
 	step_right
 	step_up
+	step_up
+	step_up
+	step_end
+
+SilverCave3_PlayerTakes4StepsUp:
+	step_up
+SilverCave3_PlayerTakes3StepsUp:
+	step_up
+SilverCave3_PlayerTakes2StepsUp
 	step_up
 	step_up
 	step_end

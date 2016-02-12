@@ -5555,12 +5555,7 @@ Function3e358: ; 3e358
 	jr nz, .asm_3e36b
 	ld hl, BattleText_0x80c0d
 	call StdBattleTextBox
-; IF DEF(BEESAFREE)
-	scf
-	ret
-; ELSE
 	jp Function3e299
-; ENDC
 
 .asm_3e36b
 	ld a, [wc730]
@@ -6293,6 +6288,9 @@ Function3e7c1: ; 3e7c1
 	jr .asm_3e8bd
 
 .asm_3e84f
+IF DEF(BEESAFREE)
+	jr .asm_3e882
+ELSE
 	ld a, [wBattleMode]
 	dec a
 	jr nz, .asm_3e882
@@ -6321,7 +6319,7 @@ Function3e7c1: ; 3e7c1
 	ld a, c
 	ld [CurEnemyMoveNum], a
 	ld a, b
-
+ENDC
 .asm_3e87f
 	ld [CurEnemyMove], a
 

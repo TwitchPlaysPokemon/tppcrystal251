@@ -673,6 +673,10 @@ INCLUDE "maps/SuicuneRoom.asm"
 
 SECTION "MtSilverRuins", ROMX
 INCLUDE "maps/MtSilverRuins.asm"
+INCLUDE "maps/MtSilverRuinsB1.asm"
 
 SECTION "MtSilverRuins Blockdata", ROMX
 MtSilverRuins_BlockData: INCBIN "maps/MtSilverRuins.blk"
+
+SECTION "MtSilverRuinsB1 Blockdata", ROMX
+MtSilverRuinsB1_BlockData: INCBIN "maps/MtSilverRuinsB1.blk"

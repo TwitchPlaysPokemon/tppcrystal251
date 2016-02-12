@@ -18,7 +18,6 @@ MtSilverRuinsElmScript:
 	closetext
 	playsound SFX_RUN
 	checkcode VAR_FACING
-	if_equal DOWN, .PlayerAboveLookingDown
 	if_equal UP, .PlayerBelowLookingUp
 	if_equal LEFT, .PlayerToRightLookingLeft
 	spriteface $0, UP
@@ -29,16 +28,6 @@ MtSilverRuinsElmScript:
 	appear $2
 	applymovement $2, Movement_ElmWalksUpToPlayerOnLeft
 	spriteface $0, DOWN
-	jump .TehUrn
-.PlayerAboveLookingDown
-	spriteface $0, UP
-	applymovement $3, Movement_UnknownBirdFliesAway2
-	disappear $3
-	waitsfx
-	moveperson $2, 20, 10
-	appear $2
-	applymovement $2, Movement_ElmWalksUpToPlayerAbove
-	spriteface $0, LEFT
 	jump .TehUrn
 .PlayerBelowLookingUp
 	spriteface $0, UP
@@ -251,10 +240,24 @@ MtSilverRuins_MapEventHeader:
 	db 0, 0
 
 	; warps
-	db 2
+	db 16
 	warp_def 47, 27, 2, GROUP_SILVER_CAVE_ROOM_3, MAP_SILVER_CAVE_ROOM_3
 	warp_def 47, 28, 3, GROUP_SILVER_CAVE_ROOM_3, MAP_SILVER_CAVE_ROOM_3
-	; coord events
+	warp_def 43, 27, 1, GROUP_MT_SILVER_RUINS_B1, MAP_MT_SILVER_RUINS_B1
+	warp_def 43, 28, 2, GROUP_MT_SILVER_RUINS_B1, MAP_MT_SILVER_RUINS_B1
+	warp_def 44, 18, 3, GROUP_MT_SILVER_RUINS_B1, MAP_MT_SILVER_RUINS_B1
+	warp_def 36, 16, 4, GROUP_MT_SILVER_RUINS_B1, MAP_MT_SILVER_RUINS_B1
+	warp_def 32, 4, 5, GROUP_MT_SILVER_RUINS_B1, MAP_MT_SILVER_RUINS_B1
+	warp_def 26, 4, 6, GROUP_MT_SILVER_RUINS_B1, MAP_MT_SILVER_RUINS_B1
+	warp_def 24, 16, 7, GROUP_MT_SILVER_RUINS_B1, MAP_MT_SILVER_RUINS_B1
+	warp_def 32, 20, 8, GROUP_MT_SILVER_RUINS_B1, MAP_MT_SILVER_RUINS_B1
+	warp_def 26, 22, 9, GROUP_MT_SILVER_RUINS_B1, MAP_MT_SILVER_RUINS_B1
+	warp_def 28, 28, 10, GROUP_MT_SILVER_RUINS_B1, MAP_MT_SILVER_RUINS_B1
+	warp_def 16, 28, 11, GROUP_MT_SILVER_RUINS_B1, MAP_MT_SILVER_RUINS_B1
+	warp_def 4, 4, 12, GROUP_MT_SILVER_RUINS_B1, MAP_MT_SILVER_RUINS_B1
+	warp_def 1, 3, 13, GROUP_MT_SILVER_RUINS_B1, MAP_MT_SILVER_RUINS_B1 
+	warp_def 1, 4, 14, GROUP_MT_SILVER_RUINS_B1, MAP_MT_SILVER_RUINS_B1
+	; coord events 
 	db 0
 
 	; bg events

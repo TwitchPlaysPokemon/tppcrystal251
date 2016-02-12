@@ -477,6 +477,7 @@ MAP_N_A   EQU -1
 	mapgroup CELADON_DEPT_STORE_B1F, 4, 8
 	mapgroup SILVER_CAVE_DREAM_ROOM, 18, 10
 	mapgroup MT_SILVER_RUINS, 24, 16
+	mapgroup MT_SILVER_RUINS_B1, 16, 16
 	mapgroup BILLS_GARDEN, 20, 20
 	mapgroup DUMMY_BLANK_MAP, 1, 1
 	
