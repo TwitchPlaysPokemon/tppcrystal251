@@ -6293,6 +6293,9 @@ Function3e7c1: ; 3e7c1
 	jr .asm_3e8bd
 
 .asm_3e84f
+IF DEF(BEESAFREE)
+	jr .asm_3e882
+ELSE
 	ld a, [wBattleMode]
 	dec a
 	jr nz, .asm_3e882
@@ -6321,7 +6324,7 @@ Function3e7c1: ; 3e7c1
 	ld a, c
 	ld [CurEnemyMoveNum], a
 	ld a, b
-
+ENDC
 .asm_3e87f
 	ld [CurEnemyMove], a
 
