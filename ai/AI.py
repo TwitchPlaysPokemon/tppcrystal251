@@ -1405,7 +1405,7 @@ class AI(object):
                                 if self.Damage[traincurrent][mycurrent][self.enemynumber]['damage'] / self.hp[bestmonsindex[x1]] < 0.5:
                                     #and the item is a.....
 
-                                    amt_healed = {"potion":20,"superpotion":50,"hyperpotion":200,"maxpotion":99999,"fullrestore":99999}
+                                    healing_items = {"potion":20,"superpotion":50,"hyperpotion":200,"maxpotion":99999,"fullrestore":99999}
                                     item_name = mondata['myitems'][x2]
                                     if item_name in healing_items:
                                         #would the HP the item would heal be enough?
