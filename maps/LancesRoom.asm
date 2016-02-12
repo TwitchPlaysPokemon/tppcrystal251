@@ -76,6 +76,7 @@ LanceScript_0x180e7b: ; 0x180e7b
 	writetext UnknownText_0x181132
 	waitbutton
 	closetext
+AfterLanceFight:
 	playsound SFX_ENTER_DOOR
 	changeblock $4, $0, $b
 	reloadmappart
@@ -93,7 +94,6 @@ LanceScript_0x180e7b: ; 0x180e7b
 	writetext UnknownText_0x1811dd
 	waitbutton
 	closetext
-AfterLanceFight:
 	appear $4
 	applymovement $4, MovementData_0x180f46
 	follow $3, $4
@@ -217,7 +217,7 @@ LanceAfterRematch:
 	line "#MON make"
 	cont "quite a team."
 
-	para "As a Trainer,"
+	para "As a trainer,"
 	line "you will continue"
 	cont "to grow strong"
 	cont "with your #MON."
@@ -234,6 +234,7 @@ OakRematchText:
 	cont "amongst the best"
 	cont "#MON TRAINERS"
 	cont "in the world."
+	done
 
 OakCheckDexAtHoF:
 	text "May I ask how your"
@@ -269,7 +270,7 @@ OakCongrats:
 	cont "case, <PLAY_G>."
 
 	para "The gate there is"
-	line "NORTH of ROUTE 22."
+	line "west of ROUTE 22."
 
 	para "Just remember to"
 	line "get a DIPLOMA"
