@@ -5555,12 +5555,7 @@ Function3e358: ; 3e358
 	jr nz, .asm_3e36b
 	ld hl, BattleText_0x80c0d
 	call StdBattleTextBox
-; IF DEF(BEESAFREE)
-	scf
-	ret
-; ELSE
 	jp Function3e299
-; ENDC
 
 .asm_3e36b
 	ld a, [wc730]
