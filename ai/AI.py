@@ -1588,7 +1588,7 @@ class AI(object):
         for tempmove in range (0, len(self.jsonlist['battleState']['enemypokemon']['moves'])):
             if self.Damage[0][6][tempmove]['damage'] > self.opponenthp[6] :
                 return tempmove
-        if self.Damage[0][6][self.enemynumber]['damage'] > self.myhp[0] :
+        if self.Damage[6][0][self.enemynumber]['damage'] > self.myhp[0] :
             tempx = 0
             for tempmove in range (0, len(self.jsonlist['battleState']['enemypokemon']['moves'])):   
                 if self.Damage[0][6][tempmove]['damage'] > tempx :
