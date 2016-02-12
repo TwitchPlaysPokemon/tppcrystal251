@@ -25,7 +25,7 @@ JSON_FILE_PATH = os.path.join(SCRIPT_DIR, "battlestate.json")
 MOVES_FILE_PATH = os.path.join(SCRIPT_DIR, "AiMoves.txt")
 
 mondata = {}
-Debug_Code = 0
+Debug_Code = 1
 
 class Combogenerator:
     def __init__(self,turnsToLookAhead=4, numMoves=4):
@@ -96,7 +96,7 @@ class AI(object):
         return statName
 
     def parseMondataFromJsonlist (self):
-        mondata['weather'] = self.jsonlist['battleState']['weather'].lower().replace(' ', '')
+        mondata['weather'] = self.jsonlist['battleState']['weather'][0].lower().replace(' ', '')
         mondata['enemypokemon'] = {}
         mondata['playerpokemon'] = {}
         mondata['myitems'] = {}
@@ -983,7 +983,7 @@ class AI(object):
                 mondata1['trainperishsong'] = mondata1['playerpokemon']['substatus']['perishsong']
 
             #boosts
-            mondata1['weather'] = self.jsonlist['battleState']['weather'].lower().replace(' ', '')
+            mondata1['weather'] = self.jsonlist['battleState']['weather'][0].lower().replace(' ', '')
             mondata1['enemypokemon'] = {}
             mondata1['playerpokemon'] = {}
             mondata1['enemypokemon']['substatus'] = self.jsonlist['battleState']['enemypokemon']['subStatus']
@@ -1168,7 +1168,7 @@ class AI(object):
                     mondata1['trainperishsong'] = mondata1['playerpokemon']['substatus']['perishsong']
 
                 #boosts
-                mondata1['weather'] = self.jsonlist['battleState']['weather'].lower().replace(' ', '')
+                mondata1['weather'] = self.jsonlist['battleState']['weather'][0].lower().replace(' ', '')
                 mondata1['enemypokemon'] = {}
                 mondata1['playerpokemon'] = {}
                 mondata1['enemypokemon']['substatus'] = self.jsonlist['battleState']['enemypokemon']['subStatus']
@@ -1676,7 +1676,7 @@ class AI(object):
         mondata = self.parseMondataFromJsonlist()
         if self.jsonlist['battleState']['enemy type'] == 'TRAINER':
             mycurrent = self.jsonlist['battleState']['enemypokemon']['party idx']
-            if ('requested action' not in self.jsonlist['battleState']) or (int(self.jsonlist['battleState']['requested action']) != 66):
+            if ('requested action' not in self.jsonlist['battleState']) or not (int(self.jsonlist['battleState']['requested action']) & 0x40):
                 self.Fight(mondata, traincurrent, mycurrent, 5)
                 self.theaction = self.mybestmove[mycurrent]
                 self.OptionalSwitch(mondata, traincurrent)
