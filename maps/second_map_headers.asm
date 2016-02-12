@@ -768,4 +768,4 @@
 	map_header_2 SuicuneRoom, SUICUNE_ROOM, $9, NONE
 	
 	map_header_2 MtSilverRuins, MT_SILVER_RUINS, 0, NONE
-	map_header_2 MtSilverRuinsB1, MT_SILVER_RUINS_B1, 2, NONE
+	map_header_2 MtSilverRuinsB1, MT_SILVER_RUINS_B1, 9, NONE
