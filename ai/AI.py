@@ -819,16 +819,16 @@ class AI(object):
 
         #held healing
         if (mondata[traincurrent]['item'] == 'berry') and (mondata[traincurrent]['stats']['curhp'] < mondata[traincurrent]['stats']['hp'] * 0.33):
-            mondata[traincurrent]['stats']['curhp'] = mondata[defender]['stats']['curhp'] + 10
+            mondata[traincurrent]['stats']['curhp'] += 10
             mondata[traincurrent]['item'] = 'noitem'
         if (mondata[traincurrent]['item'] == 'goldberry') and (mondata[traincurrent]['stats']['curhp'] < mondata[traincurrent]['stats']['hp'] * 0.33):
-            mondata[traincurrent]['stats']['curhp'] = mondata[defender]['stats']['curhp'] + (mondata[traincurrent]['stats']['hp'] * 0.25)
+            mondata[traincurrent]['stats']['curhp'] += (mondata[traincurrent]['stats']['hp'] * 0.25)
             mondata[traincurrent]['item'] = 'noitem'
         if (mondata[mycurrent]['item'] == 'berry') and (mondata[mycurrent]['stats']['curhp'] < mondata[mycurrent]['stats']['hp'] * 0.33):
-            mondata[mycurrent]['stats']['curhp'] = mondata[defender]['stats']['curhp'] + 10
+            mondata[mycurrent]['stats']['curhp'] += 10
             mondata[mycurrent]['item'] = 'noitem'
         if (mondata[mycurrent]['item'] == 'goldberry') and (mondata[mycurrent]['stats']['curhp'] < mondata[mycurrent]['stats']['hp'] * 0.33):
-            mondata[mycurrent]['stats']['curhp'] = mondata[defender]['stats']['curhp'] + (mondata[mycurrent]['stats']['hp'] * 0.25)
+            mondata[mycurrent]['stats']['curhp'] += (mondata[mycurrent]['stats']['hp'] * 0.25)
             mondata[mycurrent]['item'] = 'noitem'
 
         #leftovers
