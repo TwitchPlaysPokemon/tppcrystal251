@@ -667,7 +667,7 @@ TeddiursaEggMoves:
 	db $ff
 
 SlugmaEggMoves:
-	db REFELCT
+	db REFLECT
 	db MUD_SLAP
 	db DEFENSE_CURL
 	db DOUBLE_EDGE
