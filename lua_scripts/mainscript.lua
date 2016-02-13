@@ -193,7 +193,7 @@ if military_mode == 1 then
     elseif playertable["command"] == "run" then
         byte1 = byte1 + 0x0F
     elseif playertable["command"] == "item" then
-        byte2 = tableLookup(itemTable, playertable["item"])
+        byte2 = playertable["item"]
         if playertable["poke"] ~= 0 then
         byte1 = byte1 + playertable["poke"] + 3
         end
