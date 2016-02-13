@@ -299,7 +299,7 @@ Mil_AI_CheckPP:
 .NoDisable
 	ld d, 4
 .loop2
-	ld a, [hl]
+	ld a, [hli]
 	and $3f
 	or b
 	ld b, a
