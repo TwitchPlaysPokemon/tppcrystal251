@@ -85,6 +85,7 @@ ParseExternalAI:
 
 	ld a, [PlayerSubStatus5]
 	bit SUBSTATUS_CANT_RUN, a
+	ld hl, EnemyMonType
 	call nz, Mil_AI_checkghost
 	jr nz, .Invalid
 
@@ -207,6 +208,7 @@ Military:
 	jr nz, .Invalid
 	ld a, [EnemySubStatus5]
 	bit SUBSTATUS_CANT_RUN, a
+	ld hl, BattleMonType
 	call nz, Mil_AI_checkghost
 	jr nz, .Invalid
 	ld a, [CurBattleMon]
@@ -263,10 +265,10 @@ Military:
 	jp Military
 
 Mil_AI_checkghost
-	ld a, [BattleMonType1]
+	ld a, [hli]
 	cp GHOST
 	ret z
-	ld a, [BattleMonType2]
+	ld a, [hl]
 	cp GHOST
 	ret
 
