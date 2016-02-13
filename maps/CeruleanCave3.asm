@@ -17,7 +17,7 @@ MewtwoScript:
 	pause 15
 	closetext
 	writecode VAR_BATTLETYPE, BATTLETYPE_KANTOLEGEND
-	loadpokedata MEWTWO, 100
+	loadpokedata MEWTWO, 99
 	startbattle
 	writebyte MEWTWO
 	special SpecialMonCheck

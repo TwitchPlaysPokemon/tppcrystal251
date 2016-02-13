@@ -248,7 +248,7 @@ FossilRevivalGuyScript:
 	writetext Text_ReceiveRevivedPokemon
 	playsound SFX_CAUGHT_MON
 	waitsfx
-	givepoke AERODACTYL, 35
+	givepoke AERODACTYL, 33
 	jump .finish
 .omanyte
 	pokenamemem OMANYTE, 0

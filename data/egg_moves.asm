@@ -401,17 +401,18 @@ EeveeEggMoves:
 	db $ff
 
 OmanyteEggMoves:
-	db AURORA_BEAM
 	db SLAM
 	db SUPERSONIC
 	db HAZE
+	db REFLECT
 	db $ff
 
 KabutoEggMoves:
-	db AURORA_BEAM
 	db RAPID_SPIN
 	db ENDURE
 	db FLAIL
+	db MUD_SLAP
+	db REFLECT
 	db $ff
 
 AerodactylEggMoves:
@@ -419,12 +420,15 @@ AerodactylEggMoves:
 	db PURSUIT
 	db FORESIGHT
 	db ROAR
+	db ROCK_POLISH
 	db $ff
 
 SnorlaxEggMoves:
 	db SELFDESTRUCT
 	db OUTRAGE
 	db DOUBLE_EDGE
+	db HARDEN
+	db FISSURE
 	db $ff
 
 DratiniEggMoves:
@@ -577,6 +581,7 @@ WooperEggMoves:
 	db SAFEGUARD
 	db SCARY_FACE
 	db ROLLOUT
+	db MIST
 	db $ff
 
 MurkrowEggMoves:

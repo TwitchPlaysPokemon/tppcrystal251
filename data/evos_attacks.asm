@@ -2642,35 +2642,35 @@ OmanyteEvosAttacks:
 	db EVOLVE_LEVEL, 40, OMASTAR
 	db 0 ; no more evolutions
 	db 1, WRAP
-	db 4, WITHDRAW
-	db 8, SPIKE_CANNON ; gen 1 move
-	db 12, ROCK_THROW ; event move
+	db 3, WITHDRAW
+	db 6, SPIKE_CANNON ; gen 1 move
+	db 9, ROCK_THROW ; event move
+	db 12, WATER_GUN
 	db 16, LEER
-	db 20, WATER_GUN
-	db 24, ICY_WIND ; tm move
-	db 28, ROCK_SLIDE ; tm move
-	db 32, PROTECT
-	db 37, BUBBLEBEAM ; egg move
-	db 41, ROCK_POLISH ; later gen move
-	db 45, ANCIENTPOWER
+	db 20, BITE
+	db 24, BUBBLEBEAM
+	db 28, ROLLOUT 
+	db 32, AURORA_BEAM
+	db 37, ROCK_POLISH ; egg move
+	db 41, HYDRO_PUMP 
+	db 45, ANCIENTPOWER 
 	db 50, EARTH_POWER ; later gen move
 	db 55, SPIKES ; egg move
-	db 60, HYDRO_PUMP
 	db 0 ; no more level-up moves
 
 OmastarEvosAttacks:
 	db 0 ; no more evolutions
-	db 1, BITE ; *
-	db 1, ROCK_SLIDE ; tm move
-	db 1, ICY_WIND ; tm move
-	db 1, SPIKE_CANNON
+	db 1, AURORA_BEAM
+	db 1, ROLLOUT ; tm move
+	db 1, ROCK_POLISH
+	db 1, BUBBLEBEAM
 	db 44, BIDE ; * later gen move
-	db 48, ROLLOUT ; *
+	db 48, ROCK_SLIDE ; *
 	db 52, IRON_DEFENSE ; * later gen move
-	db 56, BUBBLEBEAM ; egg move
+	db 56, WATERFALL ; egg move
 	db 60, SPIKES ; egg move
 	db 65, ANCIENTPOWER
-	db 70, EARTH_POWER ; later gen move
+	db 70, HORN_DRILL 
 	db 75, ROCK_POLISH ; later gen move
 	db 80, HYDRO_PUMP
 	db 0 ; no more level-up moves
@@ -2678,79 +2678,77 @@ OmastarEvosAttacks:
 KabutoEvosAttacks:
 	db EVOLVE_LEVEL,40,KABUTOPS
 	db 0 ; no more evolutions
-	db 1,SCRATCH
-	db 3,ABSORB
+	db 1,ABSORB
+	db 3,SCRATCH
 	db 6,HARDEN
 	db 9,LEER
 	db 12,ROCK_THROW ; event move
-	db 16,SAND_ATTACK
+	db 16,MEGA_DRAIN
 	db 20,AQUA_JET ; later gen move
-	db 24,ICY_WIND ; tm move
-	db 28,ROCK_SLIDE
-	db 32,MEGA_DRAIN
-	db 37,BUBBLEBEAM ; egg move
+	db 24,AURORA_BEAM ; tm move
+	db 28,ROLLOUT
+	db 32,GIGA_DRAIN 
+	db 37,HYDRO_PUMP ; egg move
 	db 41,ROCK_POLISH ; later gen move
-	db 45,ROLLOUT ; tm move
+	db 45,ANCIENTPOWER ; tm move
 	db 50,METAL_SOUND ; later gen move
-	db 55,GIGA_DRAIN ; later gen move
-	db 60,HYDRO_PUMP ; gen 1 move
 	db 0 ; no more level-up moves
 
 KabutopsEvosAttacks:
 	db 0 ; no more evolutions
-	db 1,MEGA_DRAIN
-	db 1,BUBBLEBEAM ; egg move
-	db 1,ICY_WIND ; tm move
-	db 1,ROCK_SLIDE
-	db 44,DIG ; * egg move
-	db 48,BUBBLEBEAM
+	db 1, AURORA_BEAM
+	db 1, ROLLOUT
+	db 1, GIGA_DRAIN
+	db 1, HYDRO_PUMP
+	db 44,DIG 
+	db 48,ANCIENTPOWER
 	db 52,IRON_DEFENSE ; * later gen move
-	db 56,METAL_SOUND
-	db 60,ANCIENTPOWER ; *
-	db 65,WATERFALL ; * hm move
+	db 56,X_SCISSOR
+	db 60,WATERFALL ; *
+	db 65,ROCK_SLIDE ; * hm move
 	db 70,ROCK_POLISH ; later gen move
 	db 75,SWORDS_DANCE ; * later gen move
-	db 80,ROCK_SLIDE
+	
 	db 0 ; no more level-up moves
 
 AerodactylEvosAttacks:
 	db 0 ; no more evolutions
-	db 1, WING_ATTACK
+	db 1, TWISTER
 	db 5, WHIRLWIND ; egg move
-	db 10, TWISTER ; later gen move
-	db 15, AGILITY
-	db 20, ROCK_THROW ; event move
-	db 25, SUPERSONIC
-	db 30, BITE
-	db 35, SCARY_FACE
-	db 40, ANCIENTPOWER
-	db 45, CRUNCH ; later gen move
-	db 50, SKY_ATTACK ; later gen move
-	db 55, STEEL_WING
-	db 60, ROCK_POLISH ; later gen move
-	db 65, ROCK_SLIDE
-	db 70, HYPER_BEAM
-	db 75, IRON_HEAD ; later gen move
-	db 80, WING_ATTACK
+	db 10, GUST
+	db 14, ANCIENTPOWER
+	db 18, SCARY_FACE
+	db 22, SUPERSONIC
+	db 26, ROCK_THROW
+	db 30, HYPER_BEAM
+	db 34, BITE
+	db 39, HEAT_WAVE ; later gen move
+	db 44, WING_ATTACK
+	db 50, STEEL_WING
+	db 56, CRUNCH; later gen move
+	db 62, SKY_ATTACK
+	db 68, ROCK_SLIDE
+	db 74, AGILITY
+	db 80, IRON_HEAD
 	db 0 ; no more level-up moves
 
 SnorlaxEvosAttacks:
 	db 0 ; no more evolutions
 	db 1, TACKLE
-	db 5, LICK ; later gen move
-	db 9, METRONOME ; later gen move
-	db 13, CHARM ; Munchlax later gen move
-	db 17, SLAM ; Mega Punch replacement
-	db 22, BUBBLEBEAM ; gen 1 move
-	db 26, DEFENSE_CURL
-	db 31, ROLLOUT
-	db 36, HEADBUTT
+	db 5, LICK 
+	db 9, METRONOME 
+	db 13, RAGE 
+	db 17, BUBBLEBEAM
+	db 22, DEFENSE_CURL
+	db 26, ROLLOUT
+	db 31, HYPER_BEAM
+	db 36, CHARM
 	db 41, AMNESIA
-	db 46, SEED_BOMB ; later gen move
-	db 51, HYPER_BEAM
-	db 55, HARDEN ; later gen move
-	db 60, ZEN_HEADBUTT ; later gen move
-	db 65, CRUNCH ; later gen move
+	db 46, SEED_BOMB
+	db 51, HEADBUTT
+	db 55, SWEET_KISS 
+	db 60, IRON_HEAD 
+	db 65, CRUNCH 
 	db 70, BODY_SLAM
 	db 75, REST
 	db 80, BELLY_DRUM
@@ -3725,34 +3723,34 @@ WooperEvosAttacks:
 	db 1, BUBBLE ; illegal move
 	db 4, TAIL_WHIP
 	db 8, MUD_SLAP ; later gen move
-	db 12, WATER_GUN
-	db 15, DOUBLE_KICK ; later gen move
+	db 12, DOUBLE_KICK
+	db 15, WATER_GUN 
 	db 18, SLAM
 	db 21, AMNESIA
-	db 24, DIG ; tm move
-	db 27, RECOVER ; later gen
-	db 30, SLUDGE_BOMB ; TM move
+	db 24, DIG 
+	db 27, BUBBLEBEAM 
+	db 30, IRON_TAIL
 	db 33, HAZE
-	db 36, BUBBLEBEAM ; illegal move
-	db 39, RAIN_DANCE
-	db 42, MIST
+	db 36, RECOVER
+	db 39, WATERFALL
+	db 42, RAIN_DANCE
 	db 45, EARTHQUAKE
 	db 0 ; no more level-up moves
 
 QuagsireEvosAttacks:
 	db 0 ; no more evolutions
-	db 1, MUD_SLAP ; later gen move
+	db 1, MUD_SLAP 
+	db 1, DOUBLE_KICK
 	db 1, WATER_GUN
-	db 1, DOUBLE_KICK ; later gen move
 	db 1, SLAM
 	db 23, AMNESIA
-	db 28, DIG ; tm move
-	db 32, RECOVER ; later gen
-	db 37, SLUDGE_BOMB ; TM move
+	db 28, DIG 
+	db 32, BUBBLEBEAM
+	db 37, IRON_TAIL 
 	db 42, HAZE
-	db 47, BUBBLEBEAM ; illegal move
-	db 52, RAIN_DANCE
-	db 57, MIST
+	db 47, EARTH_POWER
+	db 52, RECOVER
+	db 57, WATERFALL
 	db 61, MEGA_KICK ; * later gen move
 	db 65, EARTHQUAKE
 	db 70, BELLY_DRUM ; * event move

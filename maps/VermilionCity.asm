@@ -150,12 +150,8 @@ UnknownScript_0x1aa9ab: ; 0x1aa9ab
 	writecode VAR_BATTLETYPE, BATTLETYPE_FORCEITEM
 	loadpokedata SNORLAX, 85
 	startbattle
-	writebyte SNORLAX
-	special SpecialMonCheck
-	iffalse DontKillSnorlax
 	disappear $6
 	setevent EVENT_FOUGHT_SNORLAX
-DontKillSnorlax:
 	returnafterbattle
 	end
 ; 0x1aa9c2
