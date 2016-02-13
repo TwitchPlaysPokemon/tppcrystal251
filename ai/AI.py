@@ -1111,10 +1111,6 @@ class AI(object):
                 myhp = mondata1[mycurrent]['stats']['curhp']
                 trainhp = mondata1[traincurrent]['stats']['curhp']
 
-                if trainhp < 0:
-                    trainhp = 0
-                if myhp < 0:
-                    myhp = 0
                 mondata1[mycurrent]['stats']['curhp'] = myhp
                 mondata1[traincurrent]['stats']['curhp'] = trainhp
 
@@ -1300,10 +1296,6 @@ class AI(object):
                     myhp1 = mondata1[mycurrent]['stats']['curhp']
                     trainhp1 = mondata1[traincurrent]['stats']['curhp']
 
-                    if trainhp1 < 0:
-                        trainhp1 = 0
-                    if myhp1 < 0:
-                        myhp1 = 0
                     mondata1[mycurrent]['stats']['curhp'] = myhp1
                     mondata1[traincurrent]['stats']['curhp'] = trainhp1
             tempy = (mondata[mycurrent]['moves'][int(tempcombo[0])]['acc'] / 100) * (mondata[mycurrent]['moves'][int(tempcombo[0])]['effectchance'] / 100)
@@ -1574,7 +1566,6 @@ class AI(object):
         mondata[traincurrent]['boosts']['spd'] = int(self.jsonlist['battleState']['playerpokemon']['stat levels']['spd'])
         mondata[traincurrent]['boosts']['eva'] = int(self.jsonlist['battleState']['playerpokemon']['stat levels']['eva'])
         mondata[traincurrent]['boosts']['acc'] = int(self.jsonlist['battleState']['playerpokemon']['stat levels']['acc'])
-        self.TrainerDamage(mondata, traincurrent, mycurrent)
         
         tempx = -1
         for tempmove in range (0, len(self.jsonlist['battleState']['enemypokemon']['moves'])):
@@ -1611,6 +1602,7 @@ class AI(object):
             self.DamageDealt(mondata, mycurrent, traincurrent, tempmove)
             if self.Damage[mycurrent][traincurrent][tempmove]['damage'] > self.opponenthp[traincurrent]:
                 return tempmove
+        self.TrainerDamage(mondata, traincurrent, mycurrent)
         if self.Damage[traincurrent][mycurrent][self.enemynumber]['damage'] > self.hp[mycurrent]:
             tempx = 0
             tempy = -1
