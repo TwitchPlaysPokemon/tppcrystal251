@@ -775,7 +775,7 @@ class AI(object):
                         if (mondata[mycurrent]['moves'][moveused]['effect'] == 'triattack'):
                             mondata[traincurrent]['status'] = 'par'
             
-            if ((mondata[traincurrent]['type'][1] not in ('grass')) and (mondata[traincurrent]['type'][2] not in ('grass'))) and mondata[mycurrent]['moves'][moveused]['name'] in ('spore', 'poisonpowder', 'sleeppowder', 'stunspore'):
+            if ((mondata[traincurrent]['type'][1] in ('grass')) or (mondata[traincurrent]['type'][2] in ('grass'))) and mondata[mycurrent]['moves'][moveused]['name'] in ('spore', 'poisonpowder', 'sleeppowder', 'stunspore'):
                 mondata[traincurrent]['status'] = 'none'
             
             #lower enemy stats
@@ -1595,6 +1595,9 @@ class AI(object):
             if mondata[mycurrent]['moves'][tempmove]['effect'] in ('whirlwind', 'teleport'):
                 movepriority[tempmove] = 11
                 continue
+        for tempmove in range (0, len(self.jsonlist['battleState']['enemypokemon']['moves'])):
+            if ((mondata[traincurrent]['type'][1] in ('grass')) or (mondata[traincurrent]['type'][2] in ('grass'))) and mondata[mycurrent]['moves'][tempmove]['name'] in ('spore', 'poisonpowder', 'sleeppowder', 'stunspore'):
+                movepriority[tempmove] = 20
         theaction = 20
         for tempx in range(0, len(self.jsonlist['battleState']['enemypokemon']['moves'])):
             tempy = 20
