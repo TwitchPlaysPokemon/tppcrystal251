@@ -73,7 +73,6 @@ Movement_UnknownBirdFliesAway:
 	step_up
 	step_up
 	step_up
-	step_up
 	step_end
 
 ; <text goes here>
