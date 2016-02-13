@@ -1429,6 +1429,8 @@ class AI(object):
                             mondata2[traincurrent]['boosts'][stat] = int(self.jsonlist['battleState']['playerpokemon']['stat levels'][stat])
                         self.Fight(mondata2, traincurrent, mycurrent, 4)
                     else:
+                        self.mybestmove[mycurrent] = {}
+                        self.difference[mycurrent] = {}
                         self.difference[mycurrent][traincurrent]  = -10
                         self.mybestmove['bestleaf'] = '0_0_0_0_0'
                         self.mybestmove[mycurrent][traincurrent] = -10
@@ -1456,6 +1458,7 @@ class AI(object):
                         mondata2[traincurrent]['boosts'][stat] = int(self.jsonlist['battleState']['playerpokemon']['stat levels'][stat])
                     self.Fight(mondata2, traincurrent, mycurrent, 5)
                 else:
+                    self.difference[mycurrent] = {}
                     self.mybestmove[mycurrent] = {}
                     self.difference[mycurrent][traincurrent] = -10
                     self.mybestmove['bestleaf'] = '0_0_0_0_0'
