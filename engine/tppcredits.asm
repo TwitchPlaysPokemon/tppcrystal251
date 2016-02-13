@@ -269,6 +269,13 @@ TPPCredits_MainSceneInit::
 	ld de, VTiles0 + $c80
 	ld bc, CommandsGFXEnd - CommandsGFX
 	call CopyBytes
+	
+; copy underscore
+	ld hl, UnderscoreGFX
+	ld de, VTiles1 + $640
+	ld bc, UnderscoreGFXEnd - UnderscoreGFX
+	ld a, BANK(UnderscoreGFX)
+	call FarCopyBytesDouble
 
 ; copy strips
 	ld hl, StripGFX
@@ -318,6 +325,11 @@ TPPCredits_MainSceneInit::
 	ld hl, TC_Sprites + (32 * 4)
 	ld bc, 8 * 4
 	call ByteFill
+	
+	ld a, $20
+	ld [hBGMapAddress], a
+	ld a, $9a
+	ld [hBGMapAddress + 1], a
 	
 TPPCredits_MainScene::
 	ld a, [TC_CreditsPos]
@@ -408,6 +420,7 @@ TC_Main_Draw::
 	ld [TC_CurStripWidth], a
 	xor a
 	ld [TC_CurStripXPos], a
+	ld [TC_CurSubtitlePos], a
 	inc a
 	ld [TC_CurBGSpeedCount], a
 	ld [TC_CurSprSpeedCount], a
@@ -417,6 +430,7 @@ TC_Main_Draw::
 	ld [TC_CurStripSpeed], a
 	ld [TC_CurStripSpeedCount], a
 	push hl
+	call ClearCreditsBox_NoLCD
 	call EnableLCD
 	ld a, MAIN_CHAOS_RATE
 	ld [TC_ChaosRate], a
@@ -446,27 +460,181 @@ TC_Main_Draw::
 	
 TC_Main_Title:
 	pop hl
+	ld a, [hli]
+	ld e, a
+	ld a, [hli]
+	ld d, a
+	push hl
 	call InitTransitionIn1
+	ld a, 1
+	call DoScrollerTransition
+	ld b, SCROLLER_DELAY
+.loop_delay
+	push bc
 	call UpdateCommandChaos_Main
 	call TC_DelayFrame
-	; TODO
-	;ld a, [TC_CreditsPos]
-	;inc a
-	;ld [TC_CreditsPos], a
-	jp TPPCredits_MainScene
-	
-TC_Main_Subtitle:
-	; TODO
+	pop bc
+	dec b
+	jr nz, .loop_delay
+	pop hl
+	ld a, [hl]
+	cp C_TC_DRAW
+	jr z, .doout
+	cp C_TC_TITLE
+	jr nz, .skip
+	ld a, 4
+	call DoScrollerTransition
+	call ClearCreditsBox
+	jr .skip
+.doout
+	ld a, 4
+	call DoScrollerTransition
+	call ClearCreditsBox
+	ld hl, UpdateCommandChaos_Main
+	ld a, l
+	ld [TC_FadeUpdateAddr], a
+	ld a, h
+	ld [TC_FadeUpdateAddr + 1], a
+	call Fade2White
+.skip
+	xor a
+	ld [TC_CurSubtitlePos], a
 	ld a, [TC_CreditsPos]
 	inc a
 	ld [TC_CreditsPos], a
 	jp TPPCredits_MainScene
 	
-InitTransitionIn1:
+TC_Main_Subtitle:
+	pop hl
 	ld a, [hli]
-	ld h, [hl]
-	ld l, a
+	ld e, a
+	ld a, [hli]
+	ld d, a
+	push hl
+	ld a, [TC_CurSubtitlePos]
+	and a
+	jr nz, .bottom
+	call InitTransitionIn2
+	ld a, 2
+	jr .dotrans
+.bottom
+	call InitTransitionIn3
+	ld a, 3
+.dotrans
+	call DoScrollerTransition
+	ld b, SCROLLER_DELAY
+.loop_delay
+	push bc
+	call UpdateCommandChaos_Main
+	call TC_DelayFrame
+	pop bc
+	dec b
+	jr nz, .loop_delay
+	pop hl
+	ld a, [hl]
+	cp C_TC_DRAW
+	jr z, .doout
+	cp C_TC_TITLE
+	jr z, .dotitle
+	cp C_TC_SUBTITLE
+	jr nz, .skip
+	ld a, [TC_CurSubtitlePos]
+	inc a
+	ld [TC_CurSubtitlePos], a
+	cp 2
+	jr nz, .skip
+	xor a
+	ld [TC_CurSubtitlePos], a
+	ld a, 5
+	call DoScrollerTransition
+	ld a, $7f
+	ld hl, TileMap + SCREEN_WIDTH * 3
+	ld bc, SCREEN_WIDTH * 3
+	call ByteFill
+	call UpdateCreditsBox
+	jr .skip
+.doout
+	ld a, 4
+	call DoScrollerTransition
+	call ClearCreditsBox
+	ld hl, UpdateCommandChaos_Main
+	ld a, l
+	ld [TC_FadeUpdateAddr], a
+	ld a, h
+	ld [TC_FadeUpdateAddr + 1], a
+	call Fade2White
+	jr .skip
+.dotitle
+	ld a, 4
+	call DoScrollerTransition
+	call ClearCreditsBox
+.skip
+	ld a, [TC_CreditsPos]
+	inc a
+	ld [TC_CreditsPos], a
+	jp TPPCredits_MainScene
+	
+ClearCreditsBox_NoLCD:
+	ld a, $7f
+	ld hl, $9a40
+	ld bc, 32 * 5
+	call ByteFill
+	ld a, $7f
+	ld hl, TileMap + SCREEN_WIDTH
+	ld bc, SCREEN_WIDTH * 5
+	jp ByteFill
+	
+ClearCreditsBox:
+	ld a, $7f
+	ld hl, TileMap + SCREEN_WIDTH
+	ld bc, SCREEN_WIDTH * 5
+	call ByteFill
+	
+UpdateCreditsBox:
+	ld a, 1
+	ld [hBGMapMode], a
+	xor a
+	ld [hBGMapThird], a
+	call UpdateCommandChaos_Main
+	call TC_DelayFrame
+	xor a
+	ld [hBGMapMode], a
+	ret
+	
+InitTransitionIn1:
+	hlcoord 1, 1
+	call PlaceString 
 	; TODO
+	ret
+	
+InitTransitionIn2:
+	hlcoord 1, 3
+	call PlaceString 
+	; TODO
+	ret
+	
+InitTransitionIn3:
+	hlcoord 1, 5
+	call PlaceString 
+	; TODO
+	ret
+	
+DoScrollerTransition:
+; 1 = top row in
+; 2 = middle row in
+; 3 = bottom row in
+; 4 = all out
+; 5 = all except top out
+	ld [TC_ScrollerStateReq], a
+	call UpdateCreditsBox
+	ld a, [TC_ScrollerStateReq]
+	ld [TC_ScrollerState], a
+.loop
+	call UpdateCommandChaos_Main
+	call TC_DelayFrame
+	;ld a, [TC_ScrollerState]
+	;and a
+	;jr nz, .loop ; not done yet
 	ret
 	
 ClearCommandChaos:
@@ -626,6 +794,7 @@ UpdateCommandChaos_Main:
 	dec [hl]
 	jr z, .set0
 	cp 4
+	jr nz, .skipupdate
 	dec [hl]
 	jr z, .set0
 	jr .skipupdate
@@ -1107,6 +1276,7 @@ TPPCreditsList:
 	tc_subtitle		  .pioxys
 	tc_title		.music
 	tc_subtitle		  .pigu
+	tc_subtitle		  .gact
 	tc_title		.gameplay
 	tc_subtitle		  .lightning
 	tc_subtitle		  .adda
@@ -1114,20 +1284,19 @@ TPPCreditsList:
 	tc_subtitle		  .roy
 	tc_subtitle		  .danimg
 	tc_subtitle		  .koolboyman
+	tc_draw			TPPCreditsBG4List
 	tc_title		.ai
 	tc_subtitle		  .bee
-	tc_draw			TPPCreditsBG4List
 	tc_title		.testers
 	tc_subtitle		  .timmy
 	tc_subtitle		  .eraclito
 	tc_subtitle		  .chauzu
-	tc_title		.disasm
-	tc_subtitle		  .ii
-	tc_subtitle		  .pret
-	tc_subtitle		  .crystal
-	tc_title		.special
+	tc_subtitle		  .chef
+	tc_title		.misc
 	tc_subtitle		  .walle
+	tc_title		.special
 	tc_subtitle		  .ninten
+	tc_subtitle		  .pret
 	tc_subtitle		  .gf
 	tc_subtitle		  .twitch
 	tc_subtitle		  .you
@@ -1141,7 +1310,7 @@ TPPCreditsList:
 .gameplay	db "Gameplay & Map@"
 .ai			db "AI Design@"
 .testers	db "Testers@"
-.disasm		db "Original Disasm@"
+.misc		db "Misc.@"
 .special	db "Special Thanks@"
 	
 .streamer	db "TwitchPlaysPokemon@"
@@ -1161,14 +1330,14 @@ TPPCreditsList:
 .danimg		db "Danimg@"
 .bee		db "beesafree@"
 .timmy		db "TrainerTimmy@"
-.ii			db "iimarckus@"
 .pret		db "pret@"
-.crystal	db "Crystal<_>@"
 .walle		db "walle303@"
 .ninten		db "Nintendo@"
 .gf			db "Game Freak@"
 .twitch		db "Twitch@"
 .you		db "and You!@"
+.gact		db "GACT@"
+.chef		db "The<_>Chef1337@"
 
 TCText_Version:
 	db "Version ",_VERSION,"@"
@@ -1284,7 +1453,17 @@ TPPCreditsBG1Pals:
 	RGB 09, 11, 23
 	RGB 00, 00, 00
 
-TPPCreditsBG2List:	
+TPPCreditsBG2List:
+	; TODO
+	dw TPPCreditsBG1
+	dw TPPCreditsBG1Attrs
+	dw TPPCreditsBG1Tiles
+	dw TPPCreditsBG1Pals
+	dw TPPCreditsSpr2
+	db 1  ; scroll speed
+	db 15 ; sprite speed
+	db 37 ; strip initial pos
+	db 3  ; strip speed
 TPPCreditsBG2: ; TODO
 TPPCreditsSpr2: INCBIN "gfx/credits/spr2.w32.2bpp.lz"
 
@@ -1323,35 +1502,35 @@ TPPCreditsBG3Pals:
 	RGB 23, 23, 20
 	RGB 19, 23, 21
 	
-	RGB 11, 15, 11
-	RGB 10, 17, 10
+	RGB 18, 25, 10
 	RGB 11, 19, 10
-	RGB 18, 25, 10
+	RGB 10, 17, 10
+	RGB 11, 15, 11
 
-	RGB 00, 00, 00
-	RGB 12, 21, 10
+	RGB 18, 25, 10
 	RGB 29, 23, 17
-	RGB 18, 25, 10
+	RGB 12, 21, 10
+	RGB 00, 00, 00
 
-	RGB 29, 23, 18
-	RGB 29, 24, 18
-	RGB 28, 24, 19
 	RGB 27, 24, 19
-
-	RGB 27, 24, 20
-	RGB 26, 24, 20
-	RGB 26, 24, 21
+	RGB 28, 24, 19
+	RGB 29, 24, 18
+	RGB 29, 23, 18
+	
 	RGB 25, 24, 21
-
-	RGB 25, 25, 22
-	RGB 24, 25, 22
-	RGB 23, 25, 22
+	RGB 26, 24, 21
+	RGB 26, 24, 20
+	RGB 27, 24, 20
+	
 	RGB 22, 25, 23
+	RGB 23, 25, 22
+	RGB 24, 25, 22
+	RGB 25, 25, 22
 
-	RGB 22, 26, 24
-	RGB 20, 26, 25
-	RGB 19, 26, 26
 	RGB 18, 27, 26
+	RGB 19, 26, 26
+	RGB 20, 26, 25
+	RGB 22, 26, 24
 	
 	RGB 31, 31, 31
 	RGB 28, 25, 08
@@ -1364,11 +1543,23 @@ TPPCreditsBG3Pals:
 	RGB 00, 00, 00
 	
 TPPCreditsBG4List:
+	; TODO
+	dw TPPCreditsBG3
+	dw TPPCreditsBG3Attrs
+	dw TPPCreditsBG3Tiles
+	dw TPPCreditsBG3Pals
+	dw TPPCreditsSpr4
+	db 3  ; scroll speed
+	db 10 ; sprite speed
+	db 49 ; strip initial pos
+	db 0  ; strip speed
 TPPCreditsBG4: ; TODO
 TPPCreditsSpr4: INCBIN "gfx/credits/spr4.w32.2bpp.lz"
 
 CommandsGFX: INCBIN "gfx/udlrab.2bpp"
 CommandsGFXEnd
+UnderscoreGFX: INCBIN "gfx/credits/underscore.1bpp"
+UnderscoreGFXEnd
 StripGFX: INCBIN "gfx/credits/strip.1bpp"
 StripGFXEnd
 StripTiles: INCBIN "gfx/credits/strip_map.wle"

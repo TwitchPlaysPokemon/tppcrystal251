@@ -2645,6 +2645,8 @@ TC_Sprites:: ds 4 * 40
 TC_CommandChaosTable:: ds 40
 TC_CommandChaosTableEnd:: ds 1
 TC_ScrollEffectsTable:: ds 48
+TC_ScrollerState:: ds 1
+TC_ScrollerStateReq:: ds 1
 TC_CreditsTimer:: ds 1
 TC_ChaosTimer:: ds 1
 TC_ChaosRate:: ds 1
@@ -2660,6 +2662,7 @@ TC_CurStripWidth:: ds 1
 TC_CurStripSpeed:: ds 1
 TC_CurStripSpeedCount:: ds 1
 TC_CurStripXPos:: ds 1
+TC_CurSubtitlePos:: ds 1
 
 SECTION "WRAM 6", WRAMX, BANK [6]
 
