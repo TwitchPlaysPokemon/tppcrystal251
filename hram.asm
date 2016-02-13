@@ -1,4 +1,5 @@
 hPushOAM           EQU $ff80
+hPushOAMAddress    EQU $ff81
 
 hROMBankBackup     EQU $ff8a
 hBuffer            EQU $ff8b

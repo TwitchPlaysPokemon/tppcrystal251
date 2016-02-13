@@ -6,6 +6,8 @@ LOGO_CHAOS_MOD  EQU 12
 LOGO_CHAOS_LAST EQU 10
 MAIN_CHAOS_RATE EQU 15
 SCROLLER_DELAY  EQU 200
+SPRITE_X        EQU $7C
+SPRITE_Y        EQU $74
 C_TC_DRAW       EQU 0
 C_TC_TITLE      EQU 1
 C_TC_SUBTITLE   EQU 2
@@ -264,7 +266,7 @@ TPPCredits_MainSceneInit::
 	
 ; copy commands
 	ld hl, CommandsGFX
-	ld de, VTiles0 + $700
+	ld de, VTiles0 + $c80
 	ld bc, CommandsGFXEnd - CommandsGFX
 	call CopyBytes
 
@@ -294,6 +296,28 @@ TPPCredits_MainSceneInit::
 	ld [OBPals + 62], a
 	ld a, $7f
 	ld [OBPals + 63], a
+	
+; init pokepic sprites
+	ld hl, TC_Sprites + 3
+	ld bc, 4
+	ld d, 16
+	ld a, $80 ; pal 0 behind bg
+.loop
+	ld [hl], a
+	add hl, bc
+	dec d
+	jr nz, .loop
+	ld d, 16
+	inc a ; pal 1 behind bg
+.loop2
+	ld [hl], a
+	add hl, bc
+	dec d
+	jr nz, .loop2
+	xor a
+	ld hl, TC_Sprites + (32 * 4)
+	ld bc, 8 * 4
+	call ByteFill
 	
 TPPCredits_MainScene::
 	ld a, [TC_CreditsPos]
@@ -362,18 +386,33 @@ TC_Main_Draw::
 	ld h, [hl]
 	ld l, a
 	ld de, Unkn1Pals
-	ld bc, 8 * 8
+	ld bc, 8 * 10
 	call CopyBytes
 	pop hl
 	inc hl
 	ld a, [hli]
+	ld e, a
+	ld a, [hli]
+	ld d, a ; sprite lz pointer
+	push hl
+	ld h, d
+	ld l, e
+	ld de, VTiles0
+	call Decompress
+	pop hl
+	ld a, [hli]
 	ld [TC_CurBGSpeed], a
+	ld a, [hli]
+	ld [TC_CurSprSpeed], a
 	ld a, [hli]
 	ld [TC_CurStripWidth], a
 	xor a
 	ld [TC_CurStripXPos], a
 	inc a
 	ld [TC_CurBGSpeedCount], a
+	ld [TC_CurSprSpeedCount], a
+	ld a, 3
+	ld [TC_CurSprPos], a
 	ld a, $ff
 	ld [TC_CurStripSpeed], a
 	ld [TC_CurStripSpeedCount], a
@@ -392,6 +431,14 @@ TC_Main_Draw::
 	ld [TC_CurStripSpeed], a
 	ld a, 1
 	ld [TC_CurStripSpeedCount], a
+	ld b, 60
+.loop_delay
+	push bc
+	call UpdateCommandChaos_Main
+	call TC_DelayFrame
+	pop bc
+	dec b
+	jr nz, .loop_delay
 	ld a, [TC_CreditsPos]
 	inc a
 	ld [TC_CreditsPos], a
@@ -399,7 +446,9 @@ TC_Main_Draw::
 	
 TC_Main_Title:
 	pop hl
+	call InitTransitionIn1
 	call UpdateCommandChaos_Main
+	call TC_DelayFrame
 	; TODO
 	;ld a, [TC_CreditsPos]
 	;inc a
@@ -412,6 +461,13 @@ TC_Main_Subtitle:
 	inc a
 	ld [TC_CreditsPos], a
 	jp TPPCredits_MainScene
+	
+InitTransitionIn1:
+	ld a, [hli]
+	ld h, [hl]
+	ld l, a
+	; TODO
+	ret
 	
 ClearCommandChaos:
 	call ClearSprites
@@ -543,7 +599,7 @@ UpdateCommandChaos_Main:
 	rl b   ; 0-3
 	and $3 ; 0-3
 	add b  ; 0-6
-	add $70
+	add $c8
 	ld [hli], a ; tile no.
 	ld a, 7     ; pal 7 bank 0 above bg
 	ld [hl], a  ; attributes
@@ -564,7 +620,7 @@ UpdateCommandChaos_Main:
 	and a
 	jr z, .skipupdate
 	cp $ff
-	jp z, StripTrick_Main ; every commands is updated
+	jp z, UpdatePokepic ; every commands is updated
 	cp 3
 	jr c, .add
 	dec [hl]
@@ -590,7 +646,57 @@ UpdateCommandChaos_Main:
 	add hl, bc
 	jr .updateloop
 	
-StripTrick_Main:
+UpdatePokepic::
+	ld a, [TC_CurSprSpeedCount]
+	dec a
+	ld [TC_CurSprSpeedCount], a
+	jr nz, StripTrick_Main
+	ld a, [TC_CurSprSpeed]
+	ld [TC_CurSprSpeedCount], a
+	ld a, [TC_CurSprPos]
+	inc a
+	and $3
+	ld [TC_CurSprPos], a
+	add a ; 2
+	add a ; 4
+	add a ; 8
+	add a ; 16
+	ld b, a
+	add 64
+	ld c, a
+	ld hl, TC_Sprites
+	ld d, SPRITE_Y
+.loop
+	ld e, SPRITE_X
+.loop2
+	res 6, l
+	ld [hl], d
+	set 6, l
+	ld [hl], d
+	inc l
+	ld [hl], e
+	res 6, l
+	ld [hl], e
+	inc l
+	ld [hl], b
+	set 6, l
+	ld [hl], c
+	inc l
+	inc l
+	inc b
+	inc c
+	ld a, 8
+	add e
+	ld e, a
+	cp SPRITE_X + 32
+	jr nz, .loop2
+	ld a, 8
+	add d
+	ld d, a
+	cp SPRITE_Y + 32
+	jr nz, .loop
+	
+StripTrick_Main::
 ; update bg scrolling
 	ld a, [hSCX]
 	ld d, a
@@ -664,6 +770,11 @@ StripTrick_Main:
 	ld [rSCY], a
 	xor a
 	ld [rSCX], a
+	ld a, TC_Sprites >> 8
+	ld [hPushOAMAddress], a
+	call $ff80
+	ld a, Sprites >> 8
+	ld [hPushOAMAddress], a
 	ret
 	
 TC_DrawGraphic:
@@ -729,11 +840,11 @@ Fade2Black:
 	ret
 	
 Fade2White:
-; fade all BGPs until it's white
+; fade all BGPs and the first 2 OBPs until it's white
 	ld e, 32
 .loop
 	ld hl, BGPals
-	ld d, 32
+	ld d, 40
 .loop2
 	ld a, [hl]
 	and $1f
@@ -789,7 +900,7 @@ RelativeFade:
 .loop
 	ld hl, BGPals
 	ld bc, Unkn1Pals
-	ld d, 32
+	ld d, 40
 .loop2
 	push de
 	ld a, [hl]
@@ -1039,8 +1150,8 @@ TPPCreditsList:
 .pigu		db "Pigu@"
 .koolboyman	db "Koolboyman@"
 .lightning	db "LightningXCE@"
-.chaos		db "chaos_lord2@"
-.chauzu		db "Chauzu_VGC@"
+.chaos		db "chaos<_>lord2@"
+.chauzu		db "Chauzu<_>VGC@"
 .padz		db "padz@"
 .eraclito	db "Eraclito@"
 .pioxys		db "Pioxys@"
@@ -1052,7 +1163,7 @@ TPPCreditsList:
 .timmy		db "TrainerTimmy@"
 .ii			db "iimarckus@"
 .pret		db "pret@"
-.crystal	db "Crystal_@"
+.crystal	db "Crystal<_>@"
 .walle		db "walle303@"
 .ninten		db "Nintendo@"
 .gf			db "Game Freak@"
@@ -1102,12 +1213,14 @@ TPPCreditsBG1List:
 	dw TPPCreditsBG1Attrs
 	dw TPPCreditsBG1Tiles
 	dw TPPCreditsBG1Pals
+	dw TPPCreditsSpr1
 	db 5  ; scroll speed
+	db 12 ; sprite speed
 	db 55 ; strip initial pos
 	db 1  ; strip speed
 
 TPPCreditsBG1: INCBIN "gfx/credits/bg1.w120.2bpp.lz"
-TPPCreditsBG1End
+TPPCreditsSpr1: INCBIN "gfx/credits/spr1.w32.2bpp.lz"
 
 TPPCreditsBG1Tiles:
 	db $a2, $82, $6d, $80, $a3, $81, $6d, $80, $01
@@ -1160,22 +1273,34 @@ TPPCreditsBG1Pals:
 	RGB 11, 13, 15
 	RGB 11, 12, 15
 	RGB 10, 12, 15
+	
+	RGB 31, 31, 31
+	RGB 31, 31, 31
+	RGB 29, 27, 19
+	RGB 03, 05, 15
+
+	RGB 31, 31, 31
+	RGB 23, 20, 10
+	RGB 09, 11, 23
+	RGB 00, 00, 00
 
 TPPCreditsBG2List:	
 TPPCreditsBG2: ; TODO
-TPPCreditsBG2End
+TPPCreditsSpr2: INCBIN "gfx/credits/spr2.w32.2bpp.lz"
 
 TPPCreditsBG3List:
 	dw TPPCreditsBG3
 	dw TPPCreditsBG3Attrs
 	dw TPPCreditsBG3Tiles
 	dw TPPCreditsBG3Pals
+	dw TPPCreditsSpr3
 	db 0  ; scroll speed
+	db 8 ; sprite speed
 	db 44 ; strip initial pos
 	db 0  ; strip speed
 
 TPPCreditsBG3: INCBIN "gfx/credits/bg3.w96.2bpp.lz"
-TPPCreditsBG3End
+TPPCreditsSpr3: INCBIN "gfx/credits/spr3.w32.2bpp.lz"
 
 TPPCreditsBG3Tiles:
 	db $7f, $80, $5f, $42, $7f, $81, $5f, $5f, $5f
@@ -1228,9 +1353,19 @@ TPPCreditsBG3Pals:
 	RGB 19, 26, 26
 	RGB 18, 27, 26
 	
+	RGB 31, 31, 31
+	RGB 28, 25, 08
+	RGB 23, 09, 07
+	RGB 18, 03, 09
+
+	RGB 31, 31, 31
+	RGB 31, 31, 31
+	RGB 29, 10, 06
+	RGB 00, 00, 00
+	
 TPPCreditsBG4List:
 TPPCreditsBG4: ; TODO
-TPPCreditsBG4End
+TPPCreditsSpr4: INCBIN "gfx/credits/spr4.w32.2bpp.lz"
 
 CommandsGFX: INCBIN "gfx/udlrab.2bpp"
 CommandsGFXEnd

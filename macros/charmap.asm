@@ -139,6 +139,7 @@
 	charmap "<PK>",     $e1
 	charmap "<MN>",     $e2
 	charmap "-",        $e3
+	charmap "<_>",      $e4 ; used for some usernames in credits
 
 	charmap "?",        $e6
 	charmap "!",        $e7
