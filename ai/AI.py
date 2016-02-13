@@ -694,7 +694,10 @@ class AI(object):
                 mondata[mycurrent]['boosts']['atk'] = 6
             if (mondata[mycurrent]['moves'][moveused]['effect'] == 'healbell'):
                 for pkmNo in range(6):
-                    mondata[pkmNo]['status'] = 'none'
+                    try:
+                        mondata[pkmNo]['status'] = 'none'
+                    except KeyError:
+                        DoNothing = 1
             if mondata[mycurrent]['moves'][moveused]['effect'] == 'focusenergy':
                 mondata['focusenergyused'] = True
             if mondata[mycurrent]['moves'][moveused]['effect'] == 'defensecurl':
@@ -1570,7 +1573,7 @@ class AI(object):
         
         tempx = -1
         for tempmove in range (0, len(self.jsonlist['battleState']['enemypokemon']['moves'])):
-            if mondata[0]['moves'][tempmove]['effect'] in ('protect'):
+            if mondata[mycurrent]['moves'][tempmove]['effect'] in ('protect'):
                 tempx = tempmove
         if tempx != -1 and ('protect' not in (mondata['battleState']['enemypokemon']['substatus'])):
             if 'underground' in mondata['playerpokemon']['substatus'] or (isinstance(mondata['playerpokemon']['substatus'], dict) and 'underground' in mondata['playerpokemon']['substatus'].values()):
