@@ -1804,6 +1804,10 @@ class AI(object):
         
         #invalid action handling
         if (int(self.jsonlist['battleState']['requested action']) & 0x04):
+            if self.theaction > 11:
+                self.theaction = 0
+            if self.theaction < 0:
+                self.theaction = 0
             if self.theaction > 9:
                 while true:
                     if self._actualAction[str(self.theaction)] not in self.jsonlist['battleState']['history']:
@@ -1820,7 +1824,10 @@ class AI(object):
                 while true:
                     if self._actualAction[str(self.theaction)] not in self.jsonlist['battleState']['history']:
                         break
-                    self.theaction = random.randint(0, (len(self.jsonlist['battleState']['enemypokemon']['moves'])))
+                    self.theaction = random.randint(0, 4)
+                    if 'move1' in self.jsonlist['battleState']['history'] and 'move2' in self.jsonlist['battleState']['history'] and 'move3' in self.jsonlist['battleState']['history'] and 'move4' in self.jsonlist['battleState']['history']:
+                        self.theaction = 4
+                        break
             if self.theaction < 10 and self.theaction > 3:
                 while true:
                     if self._actualAction[str(self.theaction)] not in self.jsonlist['battleState']['history']:
