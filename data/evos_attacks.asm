@@ -4635,11 +4635,11 @@ MiltankEvosAttacks:
 	db 36, IRON_HEAD ; later gen move
 	db 41, BIDE
 	db 46, HEAL_BELL
-	db 50, DOUBLE_EDGE ; later gen move
+	db 50, MEGA_KICK
 	db 55, COUNTER ; *
 	db 60, MILK_DRINK
 	db 65, SEISMIC_TOSS ; egg move
-	db 70, MEGA_KICK ; event move
+	db 70,  DOUBLE_EDGE
 	db 0 ; no more level-up moves
 
 BlisseyEvosAttacks:

@@ -99,7 +99,7 @@ GiovanniText2:
 	text "WHAT?!"
 
 	para "How could this be?"
-	line "Those years of"
+	line "Those months of"
 	cont "training<...>"
 
 	para "Were they all for"
