@@ -450,8 +450,7 @@ MistyAfterRainDance:
 	line "water moves."
 
 	para "I'm sure you have" 
-	line "a good use"
-	cont "for it."
+	line "a good use for it."
 	done
 
 UnknownText_0x188782: ; 0x188782
