@@ -1793,8 +1793,11 @@ class AI(object):
                 if mondata[0]['moves'][tempx]['curpp'] == 0:
                     tempy = tempy + 1
             while True:
-                if mondata[0]['moves'][self.theaction]['curpp'] > 0:
-                    break
+                try:
+                    if mondata[0]['moves'][self.theaction]['curpp'] > 0:
+                        break
+                except KeyError:
+                    DoNothing = 1
                 self.theaction = random.randint(0, (len(self.jsonlist['battleState']['enemypokemon']['moves'])))
                 if tempy == len(mondata[0]['moves']):
                     break
