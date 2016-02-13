@@ -973,6 +973,7 @@ class AI(object):
             mondata1['confused'] = False
             mondata1['attract'] = False
             mondata1['cursed'] = False
+            mondata1['nightmare'] = False
             mondata1['identified'] = False
             mondata1['myperishsong'] = 0
             mondata1['trainperishsong'] = 0
@@ -1172,6 +1173,7 @@ class AI(object):
                 mondata1['confused'] = False
                 mondata1['attract'] = False
                 mondata1['cursed'] = False
+                mondata1['nightmare'] = False
                 mondata1['identified'] = False
                 if 'perishsong' in mondata1['enemypokemon']['substatus']:
                     mondata1['myperishsong'] = mondata1['enemypokemon']['substatus']['perishsong']
@@ -1545,6 +1547,7 @@ class AI(object):
         mondata['confused'] = False
         mondata['attract'] = False
         mondata['cursed'] = False
+        mondata['nightmare'] = False
         mondata['identified'] = False
         mondata['myperishsong'] = 0
         mondata['trainperishsong'] = 0
