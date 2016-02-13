@@ -1644,26 +1644,29 @@ class AI(object):
                 return tempx
             if 'charged' in mondata['playerpokemon']['substatus'] or (isinstance(mondata['playerpokemon']['substatus'], dict) and 'charged' in mondata['playerpokemon']['substatus'].values()):
                 return tempx
-
-        if self.theaction < 4:
-            if mondata[mycurrent]['moves'][self.theaction]['effect'] == 'counter':
-                tempx = -1
-                for tempmove in range (0, len(self.jsonlist['battleState']['enemypokemon']['moves'])):
-                    if mondata[mycurrent]['moves'][tempmove]['effect'] in ('mirrormove'):
-                        tempx = tempmove
-                if tempx > -1:
-                    x1 = math.ceil(self.Damage[mycurrent][traincurrent][self.theaction]['damage'] / (self.Damage[mycurrent][traincurrent][self.theaction]['damage'] + self.Damage[0][6][tempx]['damage']))
-                    if random.randint(0, 100) > x1:
-                        return tempx
-            if mondata[mycurrent]['moves'][self.theaction]['effect'] == 'mirrorcoat':
-                tempx = -1
-                for tempmove in range (0, len(self.jsonlist['battleState']['enemypokemon']['moves'])):
-                    if mondata[mycurrent]['moves'][tempmove]['effect'] in ('counter'):
-                        tempx = tempmove
-                if tempx > -1:
-                    x1 = math.ceil(self.Damage[mycurrent][traincurrent][self.theaction]['damage'] / (self.Damage[mycurrent][traincurrent][self.theaction]['damage'] + self.Damage[0][6][tempx]['damage']))
-                    if random.randint(0, 100) > x1:
-                        return tempx
+        
+        try:
+            if self.theaction < 4:
+                if mondata[mycurrent]['moves'][self.theaction]['effect'] == 'counter':
+                    tempx = -1
+                    for tempmove in range (0, len(self.jsonlist['battleState']['enemypokemon']['moves'])):
+                        if mondata[mycurrent]['moves'][tempmove]['effect'] in ('mirrormove'):
+                            tempx = tempmove
+                    if tempx > -1:
+                        x1 = math.ceil(self.Damage[mycurrent][traincurrent][self.theaction]['damage'] / (self.Damage[mycurrent][traincurrent][self.theaction]['damage'] + self.Damage[0][6][tempx]['damage']))
+                        if random.randint(0, 100) > x1:
+                            return tempx
+                if mondata[mycurrent]['moves'][self.theaction]['effect'] == 'mirrorcoat':
+                    tempx = -1
+                    for tempmove in range (0, len(self.jsonlist['battleState']['enemypokemon']['moves'])):
+                        if mondata[mycurrent]['moves'][tempmove]['effect'] in ('counter'):
+                            tempx = tempmove
+                    if tempx > -1:
+                        x1 = math.ceil(self.Damage[mycurrent][traincurrent][self.theaction]['damage'] / (self.Damage[mycurrent][traincurrent][self.theaction]['damage'] + self.Damage[0][6][tempx]['damage']))
+                        if random.randint(0, 100) > x1:
+                            return tempx
+        except KeyError:
+            DoNothing = 1
         
         #they are about to die
         for tempmove in range (0, len(self.jsonlist['battleState']['enemypokemon']['moves'])):
