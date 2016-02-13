@@ -161,7 +161,7 @@ AZURE_POS_Y equ 89
 	ld de, (AZURE_POS_Y << 8) + AZURE_POS_X
 	call PlaceHost
 ; clear the rest of sprites
-	ld hl, $d880
+	ld hl, TC_Sprites + $80
 	ld bc, $20
 	xor a
 	call ByteFill
@@ -349,7 +349,7 @@ Function10eea7: ; 10eea7
 .azureblink2
 	ld a, $c6
 .updateazure
-	ld [$d84a], a
+	ld [TC_Sprites + $4a], a
 	ret
 .rustblink0
 	ld a, $84
@@ -360,7 +360,7 @@ Function10eea7: ; 10eea7
 .rustblink2
 	ld a, $c2
 .updaterust
-	ld [$d80a], a
+	ld [TC_Sprites + $a], a
 	ret
 ; 10eece
 
@@ -493,7 +493,7 @@ AnimateTitleCrystal: ; 10ef32
 	push af
 	ld a, 5
 	ld [rSVBK], a
-	ld hl, $d801
+	ld hl, TC_Sprites + 1
 ; Move all 16 parts of Rust right by 2
 	ld c, 16
 .loop2
