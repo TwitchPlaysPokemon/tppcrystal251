@@ -354,7 +354,6 @@ HorseaEggMoves:
 	db FLAIL
 	db ENDURE
 	db SPLASH
-	db OUTRAGE
 	db $ff
 
 GoldeenEggMoves:
@@ -642,7 +641,6 @@ SnubbullEggMoves:
 QwilfishEggMoves:
 	db FLAIL
 	db ENDURE
-	db AQUA_JET
 	db SUPERSONIC
 	db ROLLOUT
 	db $ff
@@ -699,7 +697,6 @@ RemoraidEggMoves:
 	db MIND_READER
 	db SWIFT
 	db DOUBLE_EDGE
-	db MUD_SLAP
 	db $ff
 
 DelibirdEggMoves:
