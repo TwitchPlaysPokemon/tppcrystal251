@@ -122,10 +122,16 @@ function transferStateToAIAndWait(raw_json)
   repeat
     -- advance a frame inbetween each request.
     -- could also advance multiple frames to not do 60 requests per second
-    emu.frameadvance()
+	next_move = http.request("http://localhost:5001/ai_retrieve/")
+	if next_move == "" then
+		nframes = 15
+		repeat
+			emu.frameadvance()
+			nframes = nframes - 1
+		until nframes == 0
+	end
     -- this request returns either the next move,
     -- or an empty string if the result isn't set yet.
-    next_move = http.request("http://localhost:5001/ai_retrieve/")
   until next_move ~= ""
   -- we got a result!
   return next_move
