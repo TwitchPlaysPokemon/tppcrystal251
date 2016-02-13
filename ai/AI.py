@@ -1344,8 +1344,8 @@ class AI(object):
                     else:
                         self.mybestmove[mycurrent] = random.randint(0, (len(self.jsonlist['battleState']['enemypokemon']['moves'])))
             if self.useitem > 0:
-                if tempx >= self.differenceitems[mymons][self.itemused]:
-                   self.differenceitems[mymons][self.itemused] = tempx
+                if tempx >= self.differenceitems[mycurrent][self.itemused]:
+                   self.differenceitems[mycurrent][self.itemused] = tempx
             if Debug_Code == 1 or Debug_Code == 2:
                 print('**********')
                 print(self.mybestmove['bestleaf'])
