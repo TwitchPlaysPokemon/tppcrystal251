@@ -731,21 +731,23 @@ class AI(object):
 
     def specialeffect(self, mondata, traincurrent, mycurrent, moveused):
         #apply a status
+        
         if mondata[mycurrent]['moves'][moveused]['curpp'] > 0:
+            effmulti = self.getEff(mondata[mycurrent]['moves'][moveused]['type'].lower(), mondata[traincurrent]['type'][1].lower(), 'playerpokemon') * self.getEff(mondata[mycurrent]['moves'][moveused]['type'].lower(), mondata[traincurrent]['type'][2].lower(), 'playerpokemon')
             if 'safeguard' not in mondata['playerpokemon']['screens']:
-                if self.Damage[mycurrent][traincurrent][moveused]['damage'] > 0:
+                if effmulti > 0:
                     if mondata[traincurrent]['status'] == 'none':
-                        if (mondata[mycurrent]['moves'][moveused]['effect'] in ('paralyze', 'paralyzehit')) and mondata[traincurrent]['item'] != 'parlyzguard':
+                        if (mondata[mycurrent]['moves'][moveused]['effect'] in ('paralyze', 'paralyzehit')) and mondata[traincurrent]['item'] != 'parlyzguard' and ((mondata[traincurrent]['type'][1] not in ('electric')) and (mondata[traincurrent]['type'][2] not in ('electric'))):
                             mondata[traincurrent]['status'] = 'par'
                             if mondata[traincurrent]['item'] == 'miracleberry' or mondata[traincurrent]['item'] != 'przcureberry':
                                 mondata[traincurrent]['status'] = 'none'
                                 mondata[traincurrent]['item'] = 'noitem'
-                        if (mondata[mycurrent]['moves'][moveused]['effect'] in ('burn', 'burnhit')) and mondata[traincurrent]['item'] != 'burnguard':
+                        if (mondata[mycurrent]['moves'][moveused]['effect'] in ('burn', 'burnhit')) and mondata[traincurrent]['item'] != 'burnguard' and ((mondata[traincurrent]['type'][1] not in ('fire')) and (mondata[traincurrent]['type'][2] not in ('fire'))):
                             mondata[traincurrent]['status'] = 'brn'
                             if mondata[traincurrent]['item'] == 'miracleberry' or mondata[traincurrent]['item'] != 'iceberry':
                                 mondata[traincurrent]['status'] = 'none'
                                 mondata[traincurrent]['item'] = 'noitem'
-                        if (mondata[mycurrent]['moves'][moveused]['effect'] in ('poison', 'toxic', 'poisonhit', 'twineedle')) and mondata[traincurrent]['item'] != 'poisonguard':
+                        if (mondata[mycurrent]['moves'][moveused]['effect'] in ('poison', 'toxic', 'poisonhit', 'twineedle')) and mondata[traincurrent]['item'] != 'poisonguard' and ((mondata[traincurrent]['type'][1] not in ('poison', 'steel')) and (mondata[traincurrent]['type'][2] not in ('poison', 'steel'))):
                             mondata[traincurrent]['status'] = 'psn'
                             if mondata[traincurrent]['item'] == 'miracleberry' or mondata[traincurrent]['item'] != 'psncureberry':
                                 mondata[traincurrent]['status'] = 'none'
@@ -762,7 +764,10 @@ class AI(object):
                                 mondata[traincurrent]['item'] = 'noitem'
                         if (mondata[mycurrent]['moves'][moveused]['effect'] == 'triattack'):
                             mondata[traincurrent]['status'] = 'par'
-
+            
+            if ((mondata[traincurrent]['type'][1] not in ('grass')) and (mondata[traincurrent]['type'][2] not in ('grass'))) and mondata[mycurrent]['moves'][moveused]['name'] in ('spore', 'poisonpowder', 'sleeppowder', 'stunspore'):
+                mondata[traincurrent]['status'] = 'none'
+            
             #lower enemy stats
             misted = False
             if 'mist' in mondata['playerpokemon']['substatus'] or (isinstance(mondata['playerpokemon']['substatus'], dict) and 'mist' in mondata['playerpokemon']['substatus'].values()):
@@ -810,7 +815,13 @@ class AI(object):
         return (mondata)
 
     def endofturn(self, mondata, traincurrent, mycurrent):
-
+        
+        #Sandstorm
+        if mondata['weather'] == 'sandstorm' and ((mondata[mycurrent]['type'][1] not in ('ground', 'rock', 'steel')) and (mondata[mycurrent]['type'][2] not in ('ground', 'rock', 'steel'))):
+            mondata[mycurrent]['stats']['curhp'] = mondata[mycurrent]['stats']['curhp'] - (mondata[mycurrent]['stats']['hp'] * 0.0625)
+        if mondata['weather'] == 'sandstorm' and ((mondata[traincurrent]['type'][1] not in ('ground', 'rock', 'steel')) and (mondata[traincurrent]['type'][2] not in ('ground', 'rock', 'steel'))):
+            mondata[traincurrent]['stats']['curhp'] = mondata[traincurrent]['stats']['curhp'] - (mondata[traincurrent]['stats']['hp'] * 0.0625)
+            
         #status Damage
         if mondata[traincurrent]['status'] in ('brn', 'psn'):
             mondata[traincurrent]['stats']['curhp'] = mondata[traincurrent]['stats']['curhp'] - (mondata[traincurrent]['stats']['hp'] * 0.125)
@@ -1499,31 +1510,31 @@ class AI(object):
                 movepriority[tempmove] = 0
                 continue
             if mondata[traincurrent]['status'] == 'none':
-                if mondata[mycurrent]['moves'][tempmove]['effect'] == 'toxic':
+                if mondata[mycurrent]['moves'][tempmove]['effect'] == 'toxic' and ((mondata[traincurrent]['type'][1] not in ('poison', 'steel')) and (mondata[traincurrent]['type'][2] not in ('poison', 'steel'))):
                     movepriority[tempmove] = 1
                     continue
-                if mondata[mycurrent]['moves'][tempmove]['effect'] == 'poison':
+                if mondata[mycurrent]['moves'][tempmove]['effect'] == 'poison' and ((mondata[traincurrent]['type'][1] not in ('poison', 'steel')) and (mondata[traincurrent]['type'][2] not in ('poison', 'steel'))):
                     movepriority[tempmove] = 2
                     continue
-                if mondata[mycurrent]['moves'][tempmove]['effect'] in ('poisonhit', 'twineedle'):
+                if mondata[mycurrent]['moves'][tempmove]['effect'] in ('poisonhit', 'twineedle') and ((mondata[traincurrent]['type'][1] not in ('poison', 'steel')) and (mondata[traincurrent]['type'][2] not in ('poison', 'steel'))):
                     movepriority[tempmove] = 3
                     continue
-                if mondata[mycurrent]['moves'][tempmove]['effect'] == 'burn':
+                if mondata[mycurrent]['moves'][tempmove]['effect'] == 'burn' and ((mondata[traincurrent]['type'][1] not in ('fire')) and (mondata[traincurrent]['type'][2] not in ('fire'))):
                     movepriority[tempmove] = 4
                     continue
-                if mondata[mycurrent]['moves'][tempmove]['effect'] == 'burnhit':
+                if mondata[mycurrent]['moves'][tempmove]['effect'] == 'burnhit' and ((mondata[traincurrent]['type'][1] not in ('fire')) and (mondata[traincurrent]['type'][2] not in ('fire'))):
                     movepriority[tempmove] = 5
                     continue
-                if mondata[mycurrent]['moves'][tempmove]['name'] == 'paralyze':
+                if mondata[mycurrent]['moves'][tempmove]['effect'] == 'paralyze' and ((mondata[traincurrent]['type'][1] not in ('electric')) and (mondata[traincurrent]['type'][2] not in ('electric'))):
                     movepriority[tempmove] = 6
                     continue
-                if mondata[mycurrent]['moves'][tempmove]['name'] == 'zapcannon':
+                if mondata[mycurrent]['moves'][tempmove]['name'] == 'zapcannon' and ((mondata[traincurrent]['type'][1] not in ('electric')) and (mondata[traincurrent]['type'][2] not in ('electric'))):
                     movepriority[tempmove] = 7
                     continue
-                if mondata[mycurrent]['moves'][tempmove]['effect'] in ('paralyzehit', 'thunder') and mondata[mycurrent]['moves'][tempmove]['effectchance'] == 30:
+                if mondata[mycurrent]['moves'][tempmove]['effect'] in ('paralyzehit', 'thunder') and mondata[mycurrent]['moves'][tempmove]['effectchance'] == 30 and ((mondata[traincurrent]['type'][1] not in ('electric')) and (mondata[traincurrent]['type'][2] not in ('electric'))):
                     movepriority[tempmove] = 8
                     continue
-                if mondata[mycurrent]['moves'][tempmove]['effect'] == 'paralyzehit' and mondata[mycurrent]['moves'][tempmove]['effectchance'] == 10:
+                if mondata[mycurrent]['moves'][tempmove]['effect'] == 'paralyzehit' and mondata[mycurrent]['moves'][tempmove]['effectchance'] == 10 and ((mondata[traincurrent]['type'][1] not in ('electric')) and (mondata[traincurrent]['type'][2] not in ('electric'))):
                     movepriority[tempmove] = 9
                     continue
                 if mondata[mycurrent]['moves'][tempmove]['effect'] == 'freezehit' and mondata['weather'] != 'sun':
