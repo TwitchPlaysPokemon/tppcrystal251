@@ -92,7 +92,7 @@ class AI(object):
         return statName
 
     def parseMondataFromJsonlist (self):
-        mondata['weather'][0] = self.jsonlist['battleState']['weather'][0].lower().replace(' ', '')
+        mondata['weather'] = self.jsonlist['battleState']['weather'][0].lower().replace(' ', '')
         mondata['enemypokemon'] = {}
         mondata['playerpokemon'] = {}
         mondata['myitems'] = {}
