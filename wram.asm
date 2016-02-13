@@ -2641,6 +2641,7 @@ w5_d422:: ds $40
 
 SECTION "TPP Credits WRAM", WRAMX[$d500], BANK[5] 
 
+TC_Sprites:: ds 4 * 40
 TC_CommandChaosTable:: ds 40
 TC_CommandChaosTableEnd:: ds 1
 TC_ScrollEffectsTable:: ds 48
@@ -2652,6 +2653,9 @@ TC_FadeUpdateAddr:: ds 2
 TC_CreditsPos:: ds 1
 TC_CurBGSpeed:: ds 1
 TC_CurBGSpeedCount:: ds 1
+TC_CurSprSpeed:: ds 1
+TC_CurSprSpeedCount:: ds 1
+TC_CurSprPos:: ds 1
 TC_CurStripWidth:: ds 1
 TC_CurStripSpeed:: ds 1
 TC_CurStripSpeedCount:: ds 1

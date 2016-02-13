@@ -154,7 +154,7 @@ AZURE_POS_Y equ 89
 	push af
 	ld a, 5
 	ld [rSVBK], a
-	ld hl, $d800
+	ld hl, TC_Sprites
 	ld a, $80
 	ld de, (RUST_POS_Y << 8) + RUST_POS_X
 	call PlaceHost

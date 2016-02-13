@@ -1475,12 +1475,12 @@ TitleScreenTrick:
 	ld [rLYC], a
 	ld a, $40 ; use LYC interrupt
 	ld [rSTAT], a
-	ld a, $d8 ; hijack PushOAM to transfer from $d800 instead
-	ld [$ff81], a
+	ld a, TC_Sprites >> 8 ; hijack PushOAM to transfer from TC_Sprites instead
+	ld [hPushOAMAddress], a
 	halt
 	call $ff80
 	ld a, Sprites >> 8
-	ld [$ff81], a
+	ld [hPushOAMAddress], a
 	ld a, [DefaultFlypoint]
 	ld [LYOverrides+78], a
 	ld a, rSCX - rJOYP
