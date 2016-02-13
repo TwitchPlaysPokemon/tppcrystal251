@@ -1658,22 +1658,29 @@ class AI(object):
                     x1 = math.ceil(self.Damage[mycurrent][traincurrent][self.theaction]['damage'] / (self.Damage[mycurrent][traincurrent][self.theaction]['damage'] + self.Damage[0][6][tempx]['damage']))
                     if random.randint(0, 100) > x1:
                         return tempx
+        
+        #they are about to die
         for tempmove in range (0, len(self.jsonlist['battleState']['enemypokemon']['moves'])):
             self.DamageDealt(mondata, mycurrent, traincurrent, tempmove)
-            if self.Damage[mycurrent][traincurrent][tempmove]['damage'] > self.opponenthp[traincurrent]:
-                return tempmove
+            if mondata[mycurrent]['moves'][tempmove]['curpp'] > 0
+                if self.Damage[mycurrent][traincurrent][tempmove]['damage'] > self.opponenthp[traincurrent]:
+                    return tempmove
+        
+        #im about to die
         self.TrainerDamage(mondata, traincurrent, mycurrent)
         if self.Damage[traincurrent][mycurrent][self.enemynumber]['damage'] > self.jsonlist['battleState']['enemypokemon']['hp']:
             tempx = 0
             tempy = -1
             for tempmove in range (0, len(self.jsonlist['battleState']['enemypokemon']['moves'])):
-                if self.Damage[mycurrent][traincurrent][tempmove]['damage'] > tempx:
-                    tempx = self.Damage[mycurrent][traincurrent][tempmove]['damage']
-                    tempy = tempmove
+                if mondata[mycurrent]['moves'][tempmove]['curpp'] > 0
+                    if self.Damage[mycurrent][traincurrent][tempmove]['damage'] > tempx:
+                        tempx = self.Damage[mycurrent][traincurrent][tempmove]['damage']
+                        tempy = tempmove
             if Debug_Code == 1:
                 print('about to die - i need to attack, i will use: '+str(tempy))
             return tempy
         
+        #baton pass
         tempx = -1
         for tempmove in range (0, len(self.jsonlist['battleState']['enemypokemon']['moves'])):
             if mondata[mycurrent]['moves'][tempmove]['effect'] in ('batonpass'):
