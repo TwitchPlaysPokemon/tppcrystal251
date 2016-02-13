@@ -3,13 +3,13 @@ ParseExternalAI:
 	ld a, [wLinkMode]
 	and a
 	ret nz
+; Clear the array, just in case
 	ld hl, wMilitaryAndAIBattleAction
 	xor a
 	ld [hli], a
 	ld [hli], a
 	ld [hl], a
-; .retry_request
-	callba Function3e8d1
+	callba Function3e8d1 ; Check to see if the AI can even make a move
 	ld a, BEESAFREE_SND_ASKENEMY
 	jr z, .loop_back
 	xor a
@@ -17,9 +17,15 @@ ParseExternalAI:
 	ld hl, wMilitaryFlags
 	bit MILITARY_ON, [hl]
 	jr z, .okay
+	push af
+	callba Function3c410
+	pop bc
+	ld a, b
+	jr c, .okay
 	or BEESAFREE_SND_ASKMILITARY
 .okay
-	; ret z
+	and a
+	ret z
 	rst LUASerial
 	ld a, [wMilitaryAndAIBattleAction]
 	and $f0
@@ -28,14 +34,11 @@ ParseExternalAI:
 	jr c, .UseMove
 	cp $a
 	jr c, .Switch
-	; jr z, .retry_request
 	cp $f
 	jr z, .Flee
 	cp $d
 	jr nc, .UseItem
 	jp .Invalid
-
-	; and 3 ; debug
 .UseMove
 	push af
 	ld hl, EnemyMonPP
