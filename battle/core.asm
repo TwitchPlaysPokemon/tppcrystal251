@@ -3955,10 +3955,11 @@ Function3d887: ; 3d887
 	xor a
 	ret
 ; 3d8b3
-
+IF DEF(BEESAFREE)
 Military_TryToFlee:
 	ld hl, BattleMonSpeed
 	ld de, EnemyMonSpeed
+ENDC
 Function3d8b3: ; 3d8b3
 	ld a, [BattleType]
 	cp $2
@@ -5590,23 +5591,11 @@ Function3e358: ; 3e358
 .asm_3e378
 	ld hl, BattleText_0x80c22
 	call StdBattleTextBox
-; IF DEF(BEESAFREE)
-	scf
-	ret
-; ELSE
 	jp Function3e299
-; ENDC
 
 .asm_3e381
 	call Function3d887
-; IF DEF(BEESAFREE)
-	jr nz, .okay
-	scf
-	ret
-.okay
-; ELSE
 	jp z, Function3e299
-; ENDC
 	ld a, [CurBattleMon]
 	ld [wc71a], a
 	ld a, $2
