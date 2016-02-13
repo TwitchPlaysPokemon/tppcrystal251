@@ -369,7 +369,7 @@ class AI(object):
                 temp2 = temp2 * (2 ^ (mondata[temptext2]['substatus']['rollout']))
                 
         #special considerations for the ai's pokemon only
-        if attacker < 7:
+        if attacker < 6:
             if (move_used_effect == 'thief') and (mondata[defender]['item'] != 'noitem') and (mondata[attacker]['item'] == 'noitem'):
                 temp2 = temp2 * 2
                 mondata[attacker]['item'] = mondata[defender]['item']
@@ -1421,38 +1421,39 @@ class AI(object):
 
     def OptionalSwitch(self, mondata, traincurrent):
         mondata2 = self.permmondata
-        self.triggered = 1
-        self.HitMe = 1
         self.enemybestvcurrent = self.enemynumber
         mondata2['enemypokemon']['substatus'] = {}
         mondata2['enemypokemon']['screens'] = {}
+        potentialAction = 20
         trapped = False
         if 'trapped' in mondata['enemypokemon']['substatus'] or (isinstance(mondata['enemypokemon']['substatus'], dict) and 'trapped' in mondata['enemypokemon']['substatus'].values()):
             trapped = True
         if int(self.jsonlist['battleState']['enemypokemon']['wrap count']) == 0 and trapped == False:
             for switchindex in range (0,  self.myparty):
-                if switchindex != self.jsonlist['battleState']['enemypokemon']['party idx']:
-                    mycurrent = switchindex
-                    if mondata2[mycurrent]['stats']['curhp'] > 0:
-                        mondata2[mycurrent]['boosts'] = {}
-                        mondata2[traincurrent]['boosts'] = {}
-                        for stat in self.statNames:
-                            mondata2[mycurrent]['boosts'][stat] = 0
-                            mondata2[traincurrent]['boosts'][stat] = int(self.jsonlist['battleState']['playerpokemon']['stat levels'][stat])
-                        self.Fight(mondata2, traincurrent, mycurrent, 4)
-                    else:
-                        self.mybestmove[mycurrent] = {}
-                        self.difference[mycurrent] = {}
-                        self.difference[mycurrent][traincurrent]  = -10
-                        self.mybestmove['bestleaf'] = '0_0_0_0_0'
-                        self.mybestmove[mycurrent][traincurrent] = -10
+                self.HitMe = 1
+                if switchindex == self.jsonlist['battleState']['enemypokemon']['party idx']:
+                    self.HitMe = 0
+                mycurrent = switchindex
+                if mondata2[mycurrent]['stats']['curhp'] > 0:
+                    mondata2[mycurrent]['boosts'] = {}
+                    mondata2[traincurrent]['boosts'] = {}
+                    for stat in self.statNames:
+                        mondata2[mycurrent]['boosts'][stat] = 0
+                        mondata2[traincurrent]['boosts'][stat] = int(self.jsonlist['battleState']['playerpokemon']['stat levels'][stat])
+                    self.Fight(mondata2, traincurrent, mycurrent, 4)
+                else:
+                    self.mybestmove[mycurrent] = {}
+                    self.difference[mycurrent] = {}
+                    self.difference[mycurrent][traincurrent]  = -10
+                    self.mybestmove['bestleaf'] = '0_0_0_0_0'
+                    self.mybestmove[mycurrent][traincurrent] = -10
             tempy = 0.75
             for tempx in range (0, self.myparty):
                 if self.difference[tempx][traincurrent] > tempy:
                     tempy = self.difference[tempx][traincurrent]
                     if tempx != self.jsonlist['battleState']['enemypokemon']['party idx']:
-                         self.theaction = tempx + 4
-        return
+                         potentialAction = tempx + 4
+        return potentialAction
 
     def ForcedSwitch(self, mondata, traincurrent):
         mondata2 = self.permmondata
@@ -1624,7 +1625,15 @@ class AI(object):
             if Debug_Code == 1:
                 print('about to die - i need to attack, i will use: '+str(tempy))
             return tempy
-
+        
+        tempx = -1
+        for tempmove in range (0, len(self.jsonlist['battleState']['enemypokemon']['moves'])):
+            if mondata[mycurrent]['moves'][tempmove]['effect'] in ('batonpass'):
+                tempx = tempmove    
+        if tempx != -1 :
+            potentialAction = OptionalSwitch(self, mondata, traincurrent)
+            if potentialAction != 20:
+                return potentialAction
         if Debug_Code == 1:
             print('in manual control')
         return None
@@ -1683,10 +1692,14 @@ class AI(object):
                 self.theaction = self.mybestmove[mycurrent]
                 self.test1 = self.Damage[mycurrent][traincurrent][self.theaction]['damage']
                 self.test2 = self.Damage[traincurrent][mycurrent][self.enemynumber]['damage']
-                self.OptionalSwitch(mondata, traincurrent)
+                self.triggered = 1
+                theaction2 = self.OptionalSwitch(mondata, traincurrent)
+                if theaction2 != 20:
+                    self.theaction = theaction2
                 theaction2 = self.checkIfUsingItem()
                 if theaction2 != 20:
                     self.theaction = theaction2
+                self.triggered = 0
                 potentialAction = self.ManualControl()
                 if potentialAction is not None:
                     self.theaction = potentialAction
