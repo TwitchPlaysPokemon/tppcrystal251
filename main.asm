@@ -7999,23 +7999,48 @@ Functiond839: ; d839
 	ret
 ; d88c
 
-BadgeBoostStatXP:
-	; 1 badge 0680
-	;2 badges 0c00
-	;3 badges 1200
-	;4 badge 1400
-	;5 badge 2000
-	;6 badge 2600
-	;7 badge 3000
-	;8 badge 4000
-	;9 badge 5000
-	;10 badge 5400
-	;11 badge 5700
-	;12 badge 6200
-	;13 badge 6800
-	;14 badge 7200
-	;15 badge 7500
-	;16 badge 8000
+BadgeBoostStatXP: ;hl = stat xp given by badge boosts, no effect in egk
+	xor a
+	ld hl, StatusFlags ;if egk,stat xp = 0
+	bit 5, [hl]
+	ld h, a
+	ld l, a
+	ret z
+	push bc
+	ld hl, JohtoBadges
+	ld b, 2 
+	push de
+	call CountSetBits
+	pop de
+	ld b, 0
+	ld hl, BadgeStatXpTable
+	add hl, bc
+	ld a, [hl]
+	ld h, a
+	ld l, 0
+	pop bc
+	ret
+
+BadgeStatXpTable:
+	db $00 ;0
+	db $06 
+	db $0b
+	db $10
+	db $14 ;4
+	db $18
+	db $20
+	db $28
+	db $30 ;8
+	db $40
+	db $46
+	db $4b
+	db $55 ;12
+	db $60
+	db $68
+	db $70
+	db $80
+
+
 
 Functiond88c: ; d88c if montype is non-zero, load mon into enemy trainer. else laod mon into party if space. ret c if succsessful.
 ;species = curpartyspecies, $ffae = placed in slot
@@ -8159,9 +8184,7 @@ Functiond906: ; d906
 	call TrainerStatExp ;load trainer stat xp into hl depending on level
 	jr .okay
 .yours
-	xor a ; BADGE BOOST XP HERE
-	ld l, a ;hl = stat xp to add
-	ld h, a
+	call BadgeBoostStatXP
 .okay
 	ld b, 5 ;repeat 5 times (once a stat)
 .asm_d97a
@@ -8990,13 +9013,17 @@ Functionde6e: ; de6e
 	ld a, [$ffb6]
 	ld [de], a
 	inc de
-	xor a ;PUT STATXP HERE
-	ld b, $a
-.asm_dee5
+	call BadgeBoostStatXP
+	ld b, 5 ;repeat 5 times (once a stat)
+.statxploop
+	ld a, h
+	ld [de], a ;load in stat xp
+	inc de
+	ld a, l
 	ld [de], a
 	inc de
 	dec b
-	jr nz, .asm_dee5
+	jr nz, .statxploop 
 	ld hl, EnemyMonDVs
 	ld b, 2 + NUM_MOVES ; DVs and PP ; EnemyMonHappiness - EnemyMonDVs
 .asm_deef
@@ -9597,6 +9624,14 @@ GivePoke:: ; e277
 	ld a, [CurItem]
 	ld [sBoxMon1Item], a
 	call CloseSRAM
+	jr .asm_e2e1
+
+.patchJunkDataItems
+	call GetSRAMBank
+	ld a, 0
+	ld [sBoxMon1Item], a
+	call CloseSRAM
+	jr .asm_e2e1
 .asm_e2e1
 	ld a, [CurPartySpecies]
 	ld [wd265], a

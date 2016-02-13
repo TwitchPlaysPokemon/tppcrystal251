@@ -124,7 +124,7 @@ KarenBeforeRematchText:
 	para "Our battle should"
 	line "be a good one."
 
-	para "Let's Begin!"
+	para "Let's begin!"
 	done
 
 KarenAfterRematchText:

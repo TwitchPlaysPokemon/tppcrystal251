@@ -93,16 +93,22 @@ UnknownScript_0x99db5: ; 0x99db5
 ; 0x99db7
 
 MortyReject:
-	;checkevent EVENT_SET_WHEN_FOUGHT_HO_OH
-	;iftrue
-	;checkevent EVENT_FOUGHT_SUICUNE
-	;iffalse 
+	checkevent EVENT_FOUGHT_SUICUNE
+	iffalse MortyRejectSuicuneInTower
+	special SpecialBeastsCheck
+	iffalse MortyRejectTowerClosed
 	writetext MortyRejectTowerOpen
 	waitbutton
 	closetext
 	end
 
 MortyRejectSuicuneInTower:
+	writetext MortyRejectSuicuneInTowerText
+	waitbutton
+	closetext
+	end
+
+MortyRejectSuicuneInTowerText:
 	text "SUICUNE awaits,"
 	line "you shouldn't"
 	cont "waste time here."
@@ -110,14 +116,21 @@ MortyRejectSuicuneInTower:
 	done
 
 MortyRejectTowerClosed:
+	writetext MortyRejectTowerClosedText
+	waitbutton
+	closetext
+	end
+
+
+MortyRejectTowerClosedText:
 	text "The LEGENDARY"
 	line "BEASTS hold"
-	line "the secret to the"
+	cont "the secret to the"
 	cont "return of the"
 	cont "RAINBOW #MON."
 
 	para "Bring all 3"
-	cont "together and"
+	line "together and"
 	cont "something may"
 	cont "happen."
 	done
@@ -636,13 +649,14 @@ EcruteakGym_MapEventHeader: ; 0x9a4e9
 	signpost 15, 6, $0, MapEcruteakGymSignpost1Script
 
 	; people-events
-	db 7
-	person_event SPRITE_MORTY, 5, 9, $6, 0, 0, -1, -1, 8 + PAL_OW_BROWN, 0, 0, MortyScript_0x99d58, -1
+	db 8
+	person_event SPRITE_MORTY, 5, 9, $6, 0, 0, -1, -1, 8 + PAL_OW_BROWN, 0, 0, MortyScript_0x99d58, EVENT_SET_BY_OAK_AFTER_16_BADGES
 	person_event SPRITE_SAGE, 11, 6, $9, 0, 0, -1, -1, 8 + PAL_OW_BLUE, 2, 1, TrainerSageJeffrey, -1
 	person_event SPRITE_SAGE, 17, 7, $9, 0, 0, -1, -1, 8 + PAL_OW_BLUE, 2, 3, TrainerSagePing, -1
 	person_event SPRITE_GRANNY, 9, 11, $8, 0, 0, -1, -1, 8 + PAL_OW_BROWN, 2, 1, TrainerMediumMartha, -1
 	person_event SPRITE_GRANNY, 13, 11, $8, 0, 0, -1, -1, 8 + PAL_OW_BROWN, 2, 1, TrainerMediumGrace, -1
 	person_event SPRITE_GYM_GUY, 19, 11, $6, 0, 0, -1, -1, 8 + PAL_OW_RED, 0, 0, EcruteakGymGuyScript, -1
 	person_event SPRITE_GRAMPS, 18, 8, $6, 0, 0, -1, -1, 8 + PAL_OW_GREEN, 0, 0, ObjectEvent, EVENT_MORTY_RETURNED_TO_ECRUTEAK_GYM
+	person_event SPRITE_MORTY, 19, 9, $6, 0, 0, -1, -1, 8 + PAL_OW_BROWN, 0, 0, MortyScript_0x99d58, EVENT_MORTY_IS_AT_BACK_OF_GYM
 ; 0x9a5f9
 

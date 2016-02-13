@@ -723,7 +723,7 @@ BattleCommand02: ; 343db
 .obeylevel
 	; The maximum obedience level is constrained by owned badges:
 	ld hl, JohtoBadges
-	ld bc, 2 ; 8 Johto Badges + first 2 Kanto Badges
+	ld b, 2 ; 8 Johto Badges + first 2 Kanto Badges
 	call CountSetBits
 	cp 8
 	jr nc, .max_level

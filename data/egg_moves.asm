@@ -561,9 +561,8 @@ HoppipEggMoves:
 
 AipomEggMoves:
 	db COUNTER
-	db PURSUIT
-	db SPITE
 	db DEFENSE_CURL
+	db MEGA_KICK
 	db $ff
 
 YanmaEggMoves:
@@ -663,15 +662,12 @@ SneaselEggMoves:
 	db $ff
 
 TeddiursaEggMoves:
-	db TAKE_DOWN
-	db SEISMIC_TOSS
 	db COUNTER
-	db SEED_BOMB
 	db ROLLOUT
 	db $ff
 
 SlugmaEggMoves:
-	db HEAT_WAVE
+	db REFELCT
 	db MUD_SLAP
 	db DEFENSE_CURL
 	db DOUBLE_EDGE
@@ -702,7 +698,6 @@ RemoraidEggMoves:
 	db $ff
 
 DelibirdEggMoves:
-	db AURORA_BEAM
 	db QUICK_ATTACK
 	db FUTURE_SIGHT
 	db SPLASH
@@ -711,7 +706,7 @@ DelibirdEggMoves:
 	db COUNTER
 	db DOUBLE_EDGE
 	db MEGA_KICK
-	db SEED_BOMB
+	db SPIKES
 	db $ff
 
 MantineEggMoves:
@@ -726,7 +721,6 @@ SkarmoryEggMoves:
 	db $ff
 
 HoundourEggMoves:
-	db RAGE
 	db REVERSAL
 	db FAINT_ATTACK
 	db SWIFT

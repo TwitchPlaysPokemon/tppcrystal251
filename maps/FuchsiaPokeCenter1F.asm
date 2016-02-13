@@ -64,12 +64,16 @@ MovementData_0x196486: ; 0x196486
 ; 0x196494
 
 UnknownText_0x196494: ; 0x196494
-	text "Hey! You have a"
-	line "brand new kind of"
-	cont "#DEX."
+	text "Badges are proof"
+	line "of your skill as"
+	cont "a trainer."
 
-	para "Did PROF.OAK give"
-	line "that to you?"
+	para "This skill lets"
+	line "you command newly"
+	cont "caught #MON as"
+	cont "if they were"
+	cont "trained."
+	
 	done
 ; 0x1964dc
 

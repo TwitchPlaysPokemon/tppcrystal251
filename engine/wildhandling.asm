@@ -1501,8 +1501,8 @@ Function2a2ce: ; 2a2ce
 	jr z, .asm_2a30a ;if water jump and ret, otherwise fall through
 	call Function2a27f ;load current location into de
 	call Random
-	cp 100
-	jr nc, .asm_2a30a ;100 in 255 chance to jump (0-99)
+	cp 200
+	jr nc, .asm_2a30a 
 	and 7 ; cap at 7
 	jr z, .asm_2a30a ; if not 0 or a multiple of 8 continue otherwise jump
 	cp ROAM_SUICUNE
