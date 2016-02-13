@@ -116,7 +116,7 @@ MapGroup3:
 	map_header IlexForest, $1f, 4, ILEX_FOREST, MUSIC_UNION_CAVE, 0, 2, 1
 	map_header WarehouseEntrance, $8, 7, GOLDENROD_CITY, MUSIC_UNION_CAVE, 1, 1, 1
 	map_header UndergroundPathSwitchRoomEntrances, $f, 7, GOLDENROD_CITY, MUSIC_UNION_CAVE, 1, 1, 1
-	map_header GoldenrodDeptStoreB1F, $1c, 7, MUSIC_MART, MUSIC_GOLDENROD_CITY, 1, 1, 1
+	map_header GoldenrodDeptStoreB1F, $1c, 7, GOLDENROD_CITY, MUSIC_MART, 1, 1, 1
 	map_header UndergroundWarehouse, $1c, 7, GOLDENROD_CITY, MUSIC_UNION_CAVE, 1, 1, 1
 	map_header MountMortar1FOutside, $1e, 4, MT_MORTAR, MUSIC_UNION_CAVE, 1, 2, 9
 	map_header MountMortar1FInside, $1e, 4, MT_MORTAR, MUSIC_UNION_CAVE, 1, 2, 9
