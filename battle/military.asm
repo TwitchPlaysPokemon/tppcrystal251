@@ -82,6 +82,7 @@ ParseExternalAI:
 
 	ld a, [PlayerSubStatus5]
 	bit SUBSTATUS_CANT_RUN, a
+	call nz, Mil_AI_checkghost
 	jr nz, .Invalid
 
 	ld a, [wc731]
@@ -136,7 +137,7 @@ Military:
 	cp 4
 	jr c, .UseMove
 	cp 10
-	jr c, .SwitchOrItem
+	jr c, .Switch
 	cp 15
 	jp z, .Flee
 	jp .Invalid
@@ -172,7 +173,7 @@ Military:
 	and a
 	ret
 
-.SwitchOrItem
+.Switch
 	sub 4
 	ld b, a
 	ld a, [PartyCount]
@@ -203,6 +204,7 @@ Military:
 	jr nz, .Invalid
 	ld a, [EnemySubStatus5]
 	bit SUBSTATUS_CANT_RUN, a
+	call nz, Mil_AI_checkghost
 	jr nz, .Invalid
 	ld a, [CurBattleMon]
 	ld [wc71a], a
@@ -256,6 +258,14 @@ Military:
 	ld a, BEESAFREE_SND_ASKMILITARY | BEESAFREE_SND_INVALID
 	rst LUASerial
 	jp Military
+
+Mil_AI_checkghost
+	ld a, [BattleMonType1]
+	cp GHOST
+	ret z
+	ld a, [BattleMonType2]
+	cp GHOST
+	ret
 
 Mil_AI_CheckPP:
 	ld b, 0

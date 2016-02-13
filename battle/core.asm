@@ -3955,10 +3955,11 @@ Function3d887: ; 3d887
 	xor a
 	ret
 ; 3d8b3
-
+IF DEF(BEESAFREE)
 Military_TryToFlee:
 	ld hl, BattleMonSpeed
 	ld de, EnemyMonSpeed
+ENDC
 Function3d8b3: ; 3d8b3
 	ld a, [BattleType]
 	cp $2
