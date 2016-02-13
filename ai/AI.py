@@ -707,8 +707,8 @@ class AI(object):
                 for stat in self.statNames:
                     mondata[mycurrent]['boosts'][stat] = 0
                     mondata[traincurrent]['boosts'][stat] = 0
-                mondata[leechseedused] = False
-                mondata[focusenergyused] = False
+                mondata['leechseedused'] = False
+                mondata['focusenergyused'] = False
 
             #stats limiter
             for stat in self.statNames:
