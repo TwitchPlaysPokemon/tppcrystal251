@@ -1662,7 +1662,7 @@ class AI(object):
         #they are about to die
         for tempmove in range (0, len(self.jsonlist['battleState']['enemypokemon']['moves'])):
             self.DamageDealt(mondata, mycurrent, traincurrent, tempmove)
-            if mondata[mycurrent]['moves'][tempmove]['curpp'] > 0
+            if mondata[mycurrent]['moves'][tempmove]['curpp'] > 0:
                 if self.Damage[mycurrent][traincurrent][tempmove]['damage'] > self.opponenthp[traincurrent]:
                     return tempmove
         
@@ -1672,7 +1672,7 @@ class AI(object):
             tempx = 0
             tempy = -1
             for tempmove in range (0, len(self.jsonlist['battleState']['enemypokemon']['moves'])):
-                if mondata[mycurrent]['moves'][tempmove]['curpp'] > 0
+                if mondata[mycurrent]['moves'][tempmove]['curpp'] > 0:
                     if self.Damage[mycurrent][traincurrent][tempmove]['damage'] > tempx:
                         tempx = self.Damage[mycurrent][traincurrent][tempmove]['damage']
                         tempy = tempmove
