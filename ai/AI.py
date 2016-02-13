@@ -1708,7 +1708,7 @@ class AI(object):
     def MainBattle(self, jsonlist):
 
         self.jsonlist = jsonlist
-
+        
         #setup everything
         if self.jsonlist['battleState']['enemy type'] == 'TRAINER':
             self.myparty = len(self.jsonlist['enemyParty']['party']) #ai's pokemon
@@ -1801,6 +1801,32 @@ class AI(object):
                 self.theaction = random.randint(0, (len(self.jsonlist['battleState']['enemypokemon']['moves'])))
                 if tempy == len(mondata[0]['moves']):
                     break
+        
+        #invalid action handling
+        if (int(self.jsonlist['battleState']['requested action']) & 0x04):
+            if self.theaction > 9:
+                while true:
+                    if self._actualAction[str(self.theaction)] not in self.jsonlist['battleState']['history']:
+                        break
+                    if self.theaction == 10:
+                        tempx = 11
+                    if self.theaction == 11:
+                        tempx = 10
+                    if 'useitem1' in self.jsonlist['battleState']['history'] and 'useitem2' in self.jsonlist['battleState']['history']:
+                        self.theaction = 0
+                        break
+                    self.theaction = tempx
+            if self.theaction < 4:
+                while true:
+                    if self._actualAction[str(self.theaction)] not in self.jsonlist['battleState']['history']:
+                        break
+                    self.theaction = random.randint(0, (len(self.jsonlist['battleState']['enemypokemon']['moves'])))
+            if self.theaction < 10 and self.theaction > 3:
+                while true:
+                    if self._actualAction[str(self.theaction)] not in self.jsonlist['battleState']['history']:
+                        break
+                    self.theaction = random.randint(4, (len(self.myparty)))
+            
         
         temptext = self._actualAction[str(self.theaction)]
         return temptext
