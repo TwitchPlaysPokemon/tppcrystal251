@@ -1330,7 +1330,7 @@ class AI(object):
                 print(tempx)
                 print("mycurrent: {}\ntraincurrent: {}\nself.difference: {}".format(mycurrent, traincurrent, self.difference))
             if self.useitem == 0:
-                if tempx >= self.difference[mycurrent][traincurrent]:
+                if tempx > self.difference[mycurrent][traincurrent]:
                     self.difference[mycurrent][traincurrent] = tempx
                     self.mybestmove['bestleaf'] = "_".join([str(x) for x in tempcombo])
                     self.mybestmove[mycurrent] = int(tempcombo[0])
@@ -1353,6 +1353,10 @@ class AI(object):
     #compare all mons for best mon
     def checkIfUsingItem(self):
         if mondata['myitems'][1] != 'noitem' or mondata['myitems'][2] != 'noitem':
+            for mymons in range(0, 6):
+                self.difference[mymons] = {}
+                for trainmons in range (6, 12):
+                    self.difference[mymons][trainmons] = -10
             if Debug_Code == 1:
                 print('I have an item! Checking items')
             self.HitMe = 0
@@ -1438,7 +1442,7 @@ class AI(object):
                         self.difference[mycurrent][traincurrent]  = -10
                         self.mybestmove['bestleaf'] = '0_0_0_0_0'
                         self.mybestmove[mycurrent][traincurrent] = -10
-            tempy = -9
+            tempy = 0.75
             for tempx in range (0, self.myparty):
                 if self.difference[tempx][traincurrent] > tempy:
                     tempy = self.difference[tempx][traincurrent]
