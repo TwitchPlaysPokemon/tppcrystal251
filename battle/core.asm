@@ -3982,6 +3982,16 @@ Function3d8b3: ; 3d8b3
 	dec a
 	jp nz, .asm_3d992
 
+	push hl
+	ld hl, BattleMonType1
+	ld a, [hli]
+	cp GHOST
+	jr z, .TrappingImmune
+	ld a, [hl]
+	cp GHOST
+	jr z, .TrappingImmune
+	pop hl
+
 	ld a, [EnemySubStatus5]
 	bit SUBSTATUS_CANT_RUN, a
 	jp nz, .asm_3d98d
@@ -3989,7 +3999,11 @@ Function3d8b3: ; 3d8b3
 	ld a, [wc730]
 	and a
 	jp nz, .asm_3d98d
+	jr .DoneTrapTest
 
+.TrappingImmune
+	pop hl
+.DoneTrapTest
 	push hl
 	push de
 	ld a, [BattleMonItem]
@@ -5580,6 +5594,13 @@ Function3e358: ; 3e358
 	jp Function3e299
 
 .asm_3e36b
+	ld hl, BattleMonType1
+	ld a, [hli]
+	cp GHOST
+	jr z, .asm_3e381
+	ld a, [hl]
+	cp GHOST
+	jr z, .asm_3e381
 	ld a, [wc730]
 	and a
 	jr nz, .asm_3e378
