@@ -9624,6 +9624,14 @@ GivePoke:: ; e277
 	ld a, [CurItem]
 	ld [sBoxMon1Item], a
 	call CloseSRAM
+	jr .asm_e2e1
+
+.patchJunkDataItems
+	call GetSRAMBank
+	ld a, 0
+	ld [sBoxMon1Item], a
+	call CloseSRAM
+	jr .asm_e2e1
 .asm_e2e1
 	ld a, [CurPartySpecies]
 	ld [wd265], a
