@@ -118,11 +118,11 @@ KogeBeforeRematchText:
 
 KogaAfterRematchText:
 	text "Never have I met"
-	line "the likes of you"
+	line "the likes of you."
 
 	para "I must devote"
 	line "myself to my"
-	cont "training"
+	cont "training."
 
 	done
 

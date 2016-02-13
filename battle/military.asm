@@ -127,20 +127,20 @@ ParseExternalAI:
 
 
 Military:
-; This is a dummy function until we can get a version that actually works.
+; This actually works.
+	ld a, [wMilitaryItem]
+	and a
+	jp nz, .Item
 	ld a, [wMilitaryAndAIBattleAction]
 	and $f
 	cp 4
 	jr c, .UseMove
 	cp 10
 	jr c, .SwitchOrItem
-	; cp 13
-	; jr z, .Struggle
 	cp 15
 	jp z, .Flee
 	jp .Invalid
 
-	; and 3 ; debug
 .UseMove
 	push af
 	callba Function3e786
@@ -178,41 +178,7 @@ Military:
 	ld a, [PartyCount]
 	cp b
 	jp c, .Invalid
-	ld a, [wMilitaryItem]
-	and a
-	jr z, .Switch
-	ld [CurItem], a
-
-	ld a, [wLinkMode]
-	and a
-	jp nz, .Invalid
-
-	ld a, [BattleType]
-	cp BATTLETYPE_CONTEST
-	jr z, .UseParkBall
-
-	ld a, [InBattleTowerBattle]
-	and a
-	jp nz, .Invalid
-	ld hl, NumItems
-	call CheckItem
-	jr nc, .Invalid
-	jr .continue
-
-.UseParkBall
-	ld a, PARK_BALL
-	ld [CurItem], a
-.continue
-	call Function1d6e
-	callba Function10629
-	ld a, 1
-	ld [wd0ec], a
-	callba Function3e234
-	ret
-
-.Switch
 	ld a, b
-	; fill this in later
 	ld [CurPartyMon], a
 	ld c, a
 	ld b, $0
@@ -245,6 +211,37 @@ Military:
 	ld a, [CurPartyMon]
 	ld [CurBattleMon], a
 	callba Function3e3ad
+	ret
+
+.Item
+	ld [CurItem], a
+
+	ld a, [wLinkMode]
+	and a
+	jp nz, .Invalid
+
+	ld a, [InBattleTowerBattle]
+	and a
+	jp nz, .Invalid
+
+	ld a, [BattleType]
+	cp BATTLETYPE_CONTEST
+	jr z, .UseParkBall
+
+	ld hl, NumItems
+	call CheckItem
+	jr nc, .Invalid
+	jr .continue
+
+.UseParkBall
+	ld a, PARK_BALL
+	ld [CurItem], a
+.continue
+	call Function1d6e
+	callba Function10629
+	ld a, 1
+	ld [wd0ec], a
+	callba Function3e234
 	ret
 
 .Flee

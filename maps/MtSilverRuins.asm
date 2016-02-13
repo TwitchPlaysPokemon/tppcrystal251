@@ -18,32 +18,22 @@ MtSilverRuinsElmScript:
 	closetext
 	playsound SFX_RUN
 	checkcode VAR_FACING
-	if_equal UP, .PlayerBelowLookingUp
 	if_equal LEFT, .PlayerToRightLookingLeft
 	spriteface $0, UP
 	applymovement $3, Movement_UnknownBirdFliesAway
 	disappear $3
 	waitsfx
-	moveperson $2, 20, 11
+	moveperson $2, 20, 9
 	appear $2
 	applymovement $2, Movement_ElmWalksUpToPlayerOnLeft
 	spriteface $0, DOWN
-	jump .TehUrn
-.PlayerBelowLookingUp
-	spriteface $0, UP
-	applymovement $3, Movement_UnknownBirdFliesAway
-	disappear $3
-	waitsfx
-	appear $2
-	applymovement $2, Movement_ElmWalksUpToPlayerBelow
-	spriteface $0, LEFT
 	jump .TehUrn
 .PlayerToRightLookingLeft
 	spriteface $0, UP
 	applymovement $3, Movement_UnknownBirdFliesAway
 	disappear $3
 	waitsfx
-	moveperson $2, 22, 11
+	moveperson $2, 22, 9
 	appear $2
 	applymovement $2, Movement_ElmWalksUpToPlayerOnRight
 	spriteface $0, DOWN
@@ -75,8 +65,7 @@ MtSilverRuinsElmScript:
 	refreshscreen $0
 	credits
 	end
-Movement_UnknownBirdFliesAway2:
-	step_left
+
 Movement_ElmWalksUpToPlayerOnLeft:
 Movement_ElmWalksUpToPlayerOnRight:
 Movement_UnknownBirdFliesAway:
@@ -85,16 +74,6 @@ Movement_UnknownBirdFliesAway:
 	step_up
 	step_up
 	step_up
-	step_end
-
-Movement_ElmWalksUpToPlayerAbove:
-Movement_ElmWalksUpToPlayerBelow:
-	step_up
-	step_up
-	step_up
-	step_up
-	step_up
-	turn_head_right
 	step_end
 
 ; <text goes here>
@@ -265,5 +244,5 @@ MtSilverRuins_MapEventHeader:
 
 	; object events
 	db 2
-	person_event SPRITE_ELM, 16, 24, $7, 0, 0, -1, -1, 0, 0, 0, ObjectEvent, EVENT_ELM_IN_SILVER_CAVE_RUINS
-	person_event SPRITE_BIRD, 10, 25, $3, 0, 0, -1, -1, 8 + PAL_OW_SILVER, 0, 0, MtSilverRuinsElmScript, EVENT_BIRD_IN_SILVER_CAVE_RUINS
+	person_event SPRITE_ELM, 14, 24, $7, 0, 0, -1, -1, 0, 0, 0, ObjectEvent, EVENT_ELM_IN_SILVER_CAVE_RUINS
+	person_event SPRITE_BIRD, 8, 25, $3, 0, 0, -1, -1, 8 + PAL_OW_SILVER, 0, 0, MtSilverRuinsElmScript, EVENT_BIRD_IN_SILVER_CAVE_RUINS

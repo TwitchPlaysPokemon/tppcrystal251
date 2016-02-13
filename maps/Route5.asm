@@ -35,8 +35,11 @@ WakeSnorlax5:
 	writecode VAR_BATTLETYPE, BATTLETYPE_FORCEITEM
 	loadpokedata SNORLAX, 85
 	startbattle
+	writebyte SNORLAX
+	special SpecialMonCheck
+	iffalse .DontKillSnorlax
 	disappear $3
-	setevent EVENT_ROUTE_5_SNORLAX
+.DontKillSnorlax
 	returnafterbattle
 	end
 

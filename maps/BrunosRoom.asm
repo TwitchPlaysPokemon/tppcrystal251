@@ -122,15 +122,15 @@ MovementData_0x1809f9: ; 0x1809f9
 ; 0x1809fe
 
 BrunoBeforeRematchText:
-	text "Hello Again."
+	text "Hello again."
 	
 	para "As one of the"
 	line "ELITE FOUR, I will"
 	cont "stand up to your"
 	cont "challenge!"
 
-	para "It would disturb me"
-	line "for you to"
+	para "It would disturb"
+	line "me for you to"
 	cont "underestimate my"
 	cont "fighting #MON."
 

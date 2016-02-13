@@ -610,10 +610,10 @@ UnknownText_0x19452c: ; 0x19452c
 	text "That happens to be"
 	line "HYPER BEAM."
 
-	para "it's a very strong"
+	para "It's a very strong"
 	line "attack, but your"
-	cont "#MON needs a rest"
-	cont "afterwards."
+	cont "#MON needs a"
+	cont "rest afterwards."
 	done
 ; 0x1945b8
 
