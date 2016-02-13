@@ -27,7 +27,7 @@ Artificial = AI.AI()
 LastActions = []
 
 def calculate_next_move(battle_state):
-    global ai_result, Artificial
+    global ai_result, Artificial, LastActions
     if not (battle_state["battleState"]["requested action"] & 0x04):
         LastActions = []
     # invoke AI.
@@ -38,7 +38,10 @@ def calculate_next_move(battle_state):
     except Exception as e:
         logger.exception("The AI threw an exception with the following input: %s" % battle_state)
         # uh-oh! better fall back to "default ai"
-        next_move = random.choice(("move1", "move2", "move3", "move4"))
+        if battle_state["battleState"]["requested action"] & 0x40:
+            next_move = "switch{}".format(random.choice(range(6)) + 1)
+        else:
+            next_move = "move{}".format(random.choice(range(4)) + 1) # random.choice(("move1", "move2", "move3", "move4"))
     logger.info("calculated AI: %s" % next_move)
     LastActions.append(next_move)
     
