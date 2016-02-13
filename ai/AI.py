@@ -1772,6 +1772,18 @@ class AI(object):
             potentialAction = self.ManualControl()
             if potentialAction is not None:
                 self.theaction = potentialAction
+                
+        #disabled code
+        if self.jsonlist['battleState']['enemy type'] == 'WILD':
+            if 'disabled' in mondata['enemypokemon']['substatus']:
+                mondata[0]['moves'][int(mondata['enemypokemon']['substatus']['disabled']['move idx'])-1]['curpp'] = 0
+        if self.jsonlist['battleState']['enemy type'] == 'TRAINER':
+            if 'disabled' in mondata['enemypokemon']['substatus']:
+                mondata[self.jsonlist['battleState']['enemypokemon']['party idx']]['moves'][int(mondata['enemypokemon']['substatus']['disabled']['move idx'])-1]['curpp'] = 0
+        
+        #PP = 0 code
+        if self.theaction < 0:
+            self.theaction = 0
         if self.theaction < 4:
             tempy = 0
             for tempx in range (0, len(mondata[0]['moves'])):
@@ -1780,7 +1792,7 @@ class AI(object):
             while True:
                 if mondata[0]['moves'][self.theaction]['curpp'] > 0:
                     break
-                self.mybestmove[mycurrent] = random.randint(0, (len(self.jsonlist['battleState']['enemypokemon']['moves'])))
+                self.theaction = random.randint(0, (len(self.jsonlist['battleState']['enemypokemon']['moves'])))
                 if tempy == len(mondata[0]['moves']):
                     break
         
