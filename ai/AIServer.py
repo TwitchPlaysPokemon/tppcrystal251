@@ -24,19 +24,23 @@ logger = logging.getLogger("AIServer")
 ai_result = None
 # global handle to actual AI
 Artificial = AI.AI()
+LastActions = []
 
 def calculate_next_move(battle_state):
     global ai_result, Artificial
-    
+    if not (battle_state["battleState"]["requested action"] & 0x04):
+        LastActions = []
     # invoke AI.
     # catch exceptions and provide a fallback to not get the whole game stuck waiting on a move
     try:
+        battle_state["battleState"]["history"] = LastActions
         next_move = Artificial.MainBattle(battle_state)
     except Exception as e:
         logger.exception("The AI threw an exception with the following input: %s" % battle_state)
         # uh-oh! better fall back to "default ai"
         next_move = random.choice(("move1", "move2", "move3", "move4"))
     logger.info("calculated AI: %s" % next_move)
+    LastActions.append(next_move)
     
     # set global ai result variable. do this always last to avoid race-conditions.
     ai_result = next_move
