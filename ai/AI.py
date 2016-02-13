@@ -1067,12 +1067,12 @@ class AI(object):
             for x1 in range(0, numberofturns):
                 if self.jsonlist['battleState']['enemy type'] == 'WILD':
                     if 'disabled' in mondata['enemypokemon']['substatus']:
-                        mondata[0]['moves'][int(mondata['enemypokemon']['substatus']['disabled']['move idx'])]['curpp'] = 0
+                        mondata[0]['moves'][int(mondata['enemypokemon']['substatus']['disabled']['move idx'])+1]['curpp'] = 0
                 if self.jsonlist['battleState']['enemy type'] == 'TRAINER':
                     if 'disabled' in mondata['enemypokemon']['substatus']:
-                        mondata[self.jsonlist['battleState']['enemypokemon']['party idx']]['moves'][int(mondata['enemypokemon']['substatus']['disabled']['move idx'])]['curpp'] = 0
+                        mondata[self.jsonlist['battleState']['enemypokemon']['party idx']]['moves'][int(mondata['enemypokemon']['substatus']['disabled']['move idx'])+1]['curpp'] = 0
                 if 'disabled' in mondata['playerpokemon']['substatus']:
-                    mondata[self.jsonlist['battleState']['playerpokemon']['party idx']+6]['moves'][int(mondata['playerpokemon']['substatus']['disabled']['move idx'])]['curpp'] = 0
+                    mondata[self.jsonlist['battleState']['playerpokemon']['party idx']+6]['moves'][int(mondata['playerpokemon']['substatus']['disabled']['move idx'])+1]['curpp'] = 0
                 mondata1['painsplit'] = False
                 mondata1['lockon'] = False
                 tempx = self._statsmultipliers[mondata1[mycurrent]['boosts']['spd']+6]/100
@@ -1159,12 +1159,12 @@ class AI(object):
             if mondata1[mycurrent]['moves'][int(tempcombo[0])]['effectchance'] > 0 or mondata1[mycurrent]['moves'][int(tempcombo[0])]['effectchance']:
                 if self.jsonlist['battleState']['enemy type'] == 'WILD':
                     if 'disabled' in mondata['enemypokemon']['substatus']:
-                        mondata[0]['moves'][int(mondata['enemypokemon']['substatus']['disabled']['move idx'])]['curpp'] = 0
+                        mondata[0]['moves'][int(mondata['enemypokemon']['substatus']['disabled']['move idx'])+1]['curpp'] = 0
                 if self.jsonlist['battleState']['enemy type'] == 'TRAINER':
                     if 'disabled' in mondata['enemypokemon']['substatus']:
-                        mondata[self.jsonlist['battleState']['enemypokemon']['party idx']]['moves'][int(mondata['enemypokemon']['substatus']['disabled']['move idx'])]['curpp'] = 0
+                        mondata[self.jsonlist['battleState']['enemypokemon']['party idx']]['moves'][int(mondata['enemypokemon']['substatus']['disabled']['move idx'])+1]['curpp'] = 0
                 if 'disabled' in mondata['playerpokemon']['substatus']:
-                    mondata[self.jsonlist['battleState']['playerpokemon']['party idx']+6]['moves'][int(mondata['playerpokemon']['substatus']['disabled']['move idx'])]['curpp'] = 0
+                    mondata[self.jsonlist['battleState']['playerpokemon']['party idx']+6]['moves'][int(mondata['playerpokemon']['substatus']['disabled']['move idx'])+1]['curpp'] = 0
                 mondata1 = mondata
                 mondata1['focusenergyused'] = False
                 mondata1['defensecurlused'] = False
@@ -1666,6 +1666,14 @@ class AI(object):
                 if self.Damage[mycurrent][traincurrent][tempmove]['damage'] > self.opponenthp[traincurrent]:
                     return tempmove
         
+        #disabled move
+        if self.jsonlist['battleState']['enemy type'] == 'WILD':
+            if 'disabled' in mondata['enemypokemon']['substatus']:
+                mondata[0]['moves'][int(mondata['enemypokemon']['substatus']['disabled']['move idx'])+1]['curpp'] = 0
+        if self.jsonlist['battleState']['enemy type'] == 'TRAINER':
+            if 'disabled' in mondata['enemypokemon']['substatus']:
+                mondata[self.jsonlist['battleState']['enemypokemon']['party idx']]['moves'][int(mondata['enemypokemon']['substatus']['disabled']['move idx'])+1]['curpp'] = 0
+                
         #im about to die
         self.TrainerDamage(mondata, traincurrent, mycurrent)
         if self.Damage[traincurrent][mycurrent][self.enemynumber]['damage'] > self.jsonlist['battleState']['enemypokemon']['hp']:
