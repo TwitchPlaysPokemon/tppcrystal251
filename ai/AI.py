@@ -1455,14 +1455,15 @@ class AI(object):
                             if self.Damage[traincurrent][mycurrent][self.enemynumber]['damage'] > self.hp[bestmonsindex[x1]]:
                                 #and healing would allow you to continue fighting
                                 if self.Damage[traincurrent][mycurrent][self.enemynumber]['damage'] / self.hp[bestmonsindex[x1]] < 0.5:
-                                    #and the item is a.....
-
-                                    healing_items = {"potion":20,"superpotion":50,"hyperpotion":200,"maxpotion":99999,"fullrestore":99999}
-                                    item_name = mondata['myitems'][x2]
-                                    if item_name in healing_items:
-                                        #would the HP the item would heal be enough?
-                                        if healing_items[item_name] > self.Damage[traincurrent][mycurrent][self.enemynumber]['damage']:
-                                            return x2 + 9
+                                    #and im not at full hp
+                                    if self.hp[bestmonsindex[x1]]!= self.jsonlist['battleState']['enemypokemon']['stats']['maxhp']
+                                        #and the item is a.....
+                                        healing_items = {"potion":20,"superpotion":50,"hyperpotion":200,"maxpotion":99999,"fullrestore":99999}
+                                        item_name = mondata['myitems'][x2]
+                                        if item_name in healing_items:
+                                            #would the HP the item would heal be enough?
+                                            if healing_items[item_name] > self.Damage[traincurrent][mycurrent][self.enemynumber]['damage']:
+                                                return x2 + 9
         return 20
 
     def OptionalSwitch(self, mondata, traincurrent):
