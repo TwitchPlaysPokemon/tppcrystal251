@@ -230,41 +230,65 @@ function tablestobytes(airesponse, playertable)
 	end
 
 	if military_mode == 1 then
-		if playertable["command"] == "move1" then
-			byte1 = byte1 + 0x00 --useless lel
-		elseif playertable["command"] == "move2" then
-			byte1 = byte1 + 0x01
-		elseif playertable["command"] == "move3" then
-			byte1 = byte1 + 0x02
-		elseif playertable["command"] == "move4" then
-			byte1 = byte1 + 0x03
-		elseif playertable["command"] == "switch1" then
-			byte1 = byte1 + 0x04
-		elseif playertable["command"] == "switch2" then
-			byte1 = byte1 + 0x05
-		elseif playertable["command"] == "switch3" then
-			byte1 = byte1 + 0x06
-		elseif playertable["command"] == "switch4" then
-			byte1 = byte1 + 0x07
-		elseif playertable["command"] == "switch5" then
-			byte1 = byte1 + 0x08
-		elseif playertable["command"] == "switch6" then
-			byte1 = byte1 + 0x09
-		elseif playertable["command"] == "run" then
-			byte1 = byte1 + 0x0F
-		elseif playertable["command"] == "item" then
-			byte2 = AND(playertable["item"], 0xFF)
-			if playertable["poke"] ~= 0 then
-				byte1 = byte1 + ((playertable["poke"] - 1) % 6) + 4
-			end
-			if playertable["move"] ~= 0 then
-				byte3 = AND(playertable["move"], 0x03)
-			end
-		else
-			vba.print("Invalid table, was given:", playertable)
-		end
+		-- if playertable["command"] == "move1" then
+			-- byte1 = byte1 + 0x00 --useless lel
+		-- elseif playertable["command"] == "move2" then
+			-- byte1 = byte1 + 0x01
+		-- elseif playertable["command"] == "move3" then
+			-- byte1 = byte1 + 0x02
+		-- elseif playertable["command"] == "move4" then
+			-- byte1 = byte1 + 0x03
+		-- elseif playertable["command"] == "switch1" then
+			-- byte1 = byte1 + 0x04
+		-- elseif playertable["command"] == "switch2" then
+			-- byte1 = byte1 + 0x05
+		-- elseif playertable["command"] == "switch3" then
+			-- byte1 = byte1 + 0x06
+		-- elseif playertable["command"] == "switch4" then
+			-- byte1 = byte1 + 0x07
+		-- elseif playertable["command"] == "switch5" then
+			-- byte1 = byte1 + 0x08
+		-- elseif playertable["command"] == "switch6" then
+			-- byte1 = byte1 + 0x09
+		-- elseif playertable["command"] == "run" then
+			-- byte1 = byte1 + 0x0F
+		-- elseif playertable["command"] == "item" then
+			-- byte2 = AND(playertable["item"], 0xFF)
+			-- if playertable["poke"] ~= 0 then
+				-- byte1 = byte1 + ((playertable["poke"] - 1) % 6) + 4
+			-- end
+			-- if playertable["move"] ~= 0 then
+				-- byte3 = AND(playertable["move"], 0x03)
+			-- end
+		-- else
+			-- vba.print("Invalid table, was given:", playertable)
+		-- end
+		b1, byte2, byte3 = MilitaryCommandToBytes(playertable)
+		byte1 = byte1 + b1
 	end
 	--bytes = (byte1 * 65536) + (byte2 * 256) + byte3
 	tablereturn = {byte1, byte2, byte3}
+	return byte1, byte2, byte3
+end
+
+function MilitaryCommandToBytes(S)
+	byte1, byte2, byte3 = 0, 0, 0
+	if string.find(S, "move%d") then
+		byte1 = string.match(S, "move(%d)") - 1
+	elseif string.find(S, "switch%d") then
+		byte1 = string.match(S, "switch(%d)") + 3
+	elseif string.find(S, "item%d+") then
+		if string.find(S, "item%d+p%dm%d") then
+			byte2, byte1, byte3 = string.match(S, "item(%d+)p(%d)m(%d)")
+			byte1 = byte1 + 3
+		elseif string.find(S, "item%d+p%d") then
+			byte2, byte1 = string.match(S, "item(%d+)p(%d)")
+			byte1 = byte1 + 3
+		else
+			byte2 = string.match(S, "item(%d+)")
+		end
+	elseif string.find(S, "run") then
+		byte1 = 15
+	end
 	return byte1, byte2, byte3
 end
