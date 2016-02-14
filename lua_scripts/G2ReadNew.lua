@@ -1,4 +1,5 @@
 dofile("mainscript.lua")
+dofile("readstates.lua")
 
 local Title
 local Diploma
@@ -571,24 +572,108 @@ function read_new_playerstate()
 return json
 end
 
-while true do
-	if emu.framecount() % 30 == 1 then
+function transferStateToAIAndWait(raw_json)
+  -- 1st: Invoke the ai with JSON data.
+  -- request-body must be a string, therefore encode
+  http.request("http://127.0.0.1:5001/ai_invoke/", JSON:encode(raw_json))
+  -- 2nd: Wait until the ai finished.
+  repeat
+    -- advance a frame inbetween each request.
+    -- could also advance multiple frames to not do 60 requests per second
+	next_move = http.request("http://127.0.0.1:5001/ai_retrieve/")
+	if next_move == "" then
+		nframes = 15
+		repeat
+			emu.frameadvance()
+			nframes = nframes - 1
+		until nframes == 0
+	end
+    -- this request returns either the next move,
+    -- or an empty string if the result isn't set yet.
+  until next_move ~= nil
+  -- we got a result!
+  return next_move
+end
+
+function refreshinterval(seconds)
+	-- Revo's function (liar, it's Timmy's function)
+	local lastupdate = os.time()
+	local now
+	repeat
+		now = os.time()
+		emu.frameadvance()
+	until now - lastupdate >= seconds
+	lastupdate = now
+	return true
+end
+
+repeat
         if memory.readbyte(0xFF70) == 1 then
             json = read_new_playerstate()
             vba.print("JSON:", json)
 			http.request("http://127.0.0.1:5000/gen2_game_update", tostring(JSON:encode(json)))
             -- do battle stuff below
-            battlestate = readBattlestate(memory.readbyte(rLSB))
-            airesponse = transferStateToAIAndWait(battlestate)
-            vba.print("AI RESPONSE:", airesponse)
             
             
+            bank_wait = 0
+        value = memory.readbyte(0xD849)
+        is_military_on = (value % 2 == 1) -- just in case you need to know the current status
+        newvalue = bit.band(value, 254) + military_mode
+        memory.writebyte(0xD849, newvalue)
+        if memory.readbyte(rLSC) == BEESAFREE_LSC_TRANSFERRING then
+            lua_wait = 0
+            if (AND(memory.readbyte(rLSB), 0x02) ~= 0) then
+                battlestate = readBattlestate(memory.readbyte(rLSB))
+                if debug_mode == 1 then
+                    vba.print("[DEBUG] STATUS: ", string.format("%02x", memory.readbyte(rLSB)))  
+                    vba.print("[DEBUG] BATTLESTATE:", battlestate)
+                end
+                vba.print("Waiting on AI...")
+                airesponse = transferStateToAIAndWait(battlestate)
+                vba.print("AI RESPONSE:", airesponse)
+            else
+                vba.print("No AI request found.")
+            end  
+            if military_mode == 1 and (AND(memory.readbyte(rLSB), 0x01) ~= 0) then
+                vba.print("Waiting on player...")
+                --outplayer = UseRandomMove(BattleMonMoves, BattleMonPP, PlayerDisableCount)
+                playerresponse = get_next_player_command()
+                if debug_mode == 1 then
+                    vba.print("[DEBUG] PLAYER RESPONSE:", playerresponse)
+                end  
+            else
+                if military_mode ~= 1 and debug_mode == 1 then
+                    vba.print("[DEBUG] INFO: Military mode not enabled.")
+                elseif (AND(memory.readbyte(rLSB), 0x01) == 0) and military_mode == 1 then
+                    vba.print("ERROR: Invalid rLSB configuration.")
+                end
+            end
+            byte1, byte2, byte3 = tablestobytes(airesponse, playerresponse)
+            if debug_mode == 1 then
+                vba.print("[DEBUG] BYTES:", byte1, byte2, byte3)
+            end
+            memory.writebyte(0xDFF8, byte1)
+            memory.writebyte(0xDFF9, byte2)
+            memory.writebyte(0xDFFA, byte3)
+            memory.writebyte(rLSC, BEESAFREE_LSC_COMPLETED)
+        else
+                if lua_wait == 0 then
+                    vba.print("Waiting for LUA serial...")
+                    lua_wait = 1
+                end
+        end
+    else
+        if bank_wait == 0 then
+            vba.print("Waiting for valid bank")
+            bank_wait = 1
+        end
             
             
             
             
             -- do battle stuff above
 		end
+        updateclock()
 		--Gender
 		--0x00 = Male
 		--0x01 = Female
@@ -601,11 +686,9 @@ while true do
 		--0x10 = Burned
 		--0x20 = Frozen
 		--0x40 = Paralyzed
-	end
 	b, c, h = http.request("http://127.0.0.1:5000/gbmode_inputs")
 	if c == 200 then
 		local json = JSON:decode(b)
 		joypad.set(1, json)
 	end
-	emu.frameadvance()
-end
+until not refreshinterval(0.100)
