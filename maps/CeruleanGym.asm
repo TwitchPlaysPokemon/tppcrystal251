@@ -406,7 +406,7 @@ TextBranchSecondMisty:
 	line "won and had your"
 	cont "badge stolen?"
 
-	text "Too bad! Pests"
+	para "Too bad! Pests"
 	line "have to work"
 	cont "for their"
 	cont "badges!"
