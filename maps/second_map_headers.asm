@@ -658,7 +658,7 @@
 	map_header_2 ViridianNicknameSpeechHouseRB, VIRIDIAN_NICKNAME_SPEECH_HOUSE_RB, $0, NONE
 	map_header_2 ViridianTrainerSchoolRB, VIRIDIAN_TRAINER_SCHOOL_RB, $0, NONE
 	map_header_2 VictoryRoadGateRB, VICTORY_ROAD_GATE_RB, $0, NONE
-	map_header_2 DiglettsCaveRB, DIGLETTS_CAVE_RB, $0, NONE
+	map_header_2 DiglettsCaveRB, DIGLETTS_CAVE_RB, $9, NONE
 	map_header_2 Route2GateRB, ROUTE_2_GATE_RB, $0, NONE
 	map_header_2 Route2NuggetSpeechHouseRB, ROUTE_2_NUGGET_SPEECH_HOUSE_RB, $0, NONE
 	map_header_2 ViridianForestRB, VIRIDIAN_FOREST_RB, $2, NONE

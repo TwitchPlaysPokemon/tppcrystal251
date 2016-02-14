@@ -1,8 +1,5 @@
---G2Read Script v1.02--
-
 dofile("mainscript.lua")
-
-debug_mode = 0
+dofile("readstates.lua")
 
 local Title
 local Diploma
@@ -76,7 +73,7 @@ function ReadSeen(offset)
 		end
 		
 		offset = offset + 1
-	end	
+	end 
 end
 
 function ReadOwn(offset)
@@ -165,22 +162,22 @@ function ReadParty(offset)
 			PP2[CurrentPokemon] = bit.band(PP2[CurrentPokemon], 0x3F)
 			PP3[CurrentPokemon] = bit.band(PP3[CurrentPokemon], 0x3F)
 			PP4[CurrentPokemon] = bit.band(PP4[CurrentPokemon], 0x3F)
-			if PPVal[Move1[CurrentPokemon]] ~= nil then	
+			if PPVal[Move1[CurrentPokemon]] ~= nil then 
 				MAXPP1[CurrentPokemon] = PPVal[Move1[CurrentPokemon]] * (1.0 + (PPUp1[CurrentPokemon] * 0.2))
 			else
 				MAXPP1[CurrentPokemon] = 0
 			end
-			if PPVal[Move2[CurrentPokemon]] ~= nil then	
+			if PPVal[Move2[CurrentPokemon]] ~= nil then 
 				MAXPP2[CurrentPokemon] = PPVal[Move2[CurrentPokemon]] * (1.0 + (PPUp2[CurrentPokemon] * 0.2))
 			else
 				MAXPP2[CurrentPokemon] = 0
 			end
-			if PPVal[Move3[CurrentPokemon]] ~= nil then	
+			if PPVal[Move3[CurrentPokemon]] ~= nil then 
 				MAXPP3[CurrentPokemon] = PPVal[Move3[CurrentPokemon]] * (1.0 + (PPUp3[CurrentPokemon] * 0.2))
 			else
 				MAXPP3[CurrentPokemon] = 0
 			end
-			if PPVal[Move4[CurrentPokemon]] ~= nil then	
+			if PPVal[Move4[CurrentPokemon]] ~= nil then 
 				MAXPP4[CurrentPokemon] = PPVal[Move4[CurrentPokemon]] * (1.0 + (PPUp4[CurrentPokemon] * 0.2))
 			else
 				MAXPP4[CurrentPokemon] = 0
@@ -493,20 +490,136 @@ for i = 1, 251, 1 do
 	Pokedexdata[i] = 0
 end
 
-while true do
-	if emu.framecount() % 30 == 1 then
-    if memory.readbyte(0xFF70) == 1 then
-        bank_wait = 0
+
+local http = require("socket.http")
+http.TIMEOUT = 0.01
+JSON = (loadfile "JSON.lua")()
+
+function read_new_playerstate()
+    if memory.readdword(0x013C) == 0x41444C47 or memory.readdword(0x013C) == 0x41564C53 then --GS
+			ReadParty(0xDA22)
+			ReadSeen(0xDC04)
+			ReadOwn(0xDBE4)
+			CheckDex(0xDBE4)
+			ReadMoney(0xD573)
+			ReadBadge1(0xD57C)
+			ReadBadge2(0xD57D)
+			ReadTitle(0xC3C9)
+			ReadDiploma(0x9902)
+			MapID = (memory.readbyte(0xDA00) * 256) + memory.readbyte(0xDA01)
+
+			if LastCaptured ~= LastCaptured2 then
+				on_pokemon_capture(LastCaptured)
+				LastCaptured2 = LastCaptured
+			end
+		elseif memory.readdword(0x013C) == 0x42004C41 then --C
+			ReadParty(0xDCD7)
+			ReadSeen(0xDEB9)
+			ReadOwn(0xDE99)
+			CheckDex(0xDE99)
+			ReadMoney(0xD84E)
+			ReadBadge1(0xD857)
+			ReadBadge2(0xD858)
+			ReadTitle(0xC3C9)
+			ReadDiploma(0x9902)
+			MapID = (memory.readbyte(0xDCB5) * 256) + memory.readbyte(0xDCB6)
+
+			if LastCaptured ~= LastCaptured2 then
+				on_pokemon_capture(LastCaptured)
+				LastCaptured2 = LastCaptured
+			end
+		end
+        local json = {}
+
+		for i = 1, 8, 1 do
+			json[string.format("badge_j_%d", i)] = BadgeData1[i]
+		end
+
+		json["seen_pokemon"] = Seen
+		json["own_pokemon"] = Own
+		json["money"] = Money
+		json["last_captured"] = LastCaptured
+		json["pokemon"] = {}
+		json["map_id"] = MapID
+
+		for i = 1, 6, 1 do
+			json["pokemon"][i] = {}
+			--print(string.format("PKM%d = %d,  HP = %d, MAXHP = %d, Lvl = %d, Status = %d", i, ID[i], HP[i], MAXHP[i], Lvl[i], Status[i]))
+			json["pokemon"][i]["id"] = ID[i]
+			json["pokemon"][i]["hp"] = HP[i]
+			json["pokemon"][i]["maxhp"] = MAXHP[i]
+			json["pokemon"][i]["lvl"] = Lvl[i]
+			json["pokemon"][i]["status"] = Status[i]
+			json["pokemon"][i]["gender"] = Gender[i]
+			--print(string.format("Move1 = %d %d/%d, Move2 = %d %d/%d, Move3 = %d %d/%d, Move4 = %d %d/%d", Move1[i], PP1[i], MAXPP1[i], Move2[i], PP2[i], MAXPP2[i], Move3[i], PP3[i], MAXPP3[i], Move4[i], PP4[i], MAXPP4[i]))
+			json["pokemon"][i]["move_1"] = {}
+			json["pokemon"][i]["move_2"] = {}
+			json["pokemon"][i]["move_3"] = {}
+			json["pokemon"][i]["move_4"] = {}
+			json["pokemon"][i]["move_1"]["id"] = Move1[i]
+			json["pokemon"][i]["move_2"]["id"] = Move2[i]
+			json["pokemon"][i]["move_3"]["id"] = Move3[i]
+			json["pokemon"][i]["move_4"]["id"] = Move4[i]
+			json["pokemon"][i]["move_1"]["pp"] = PP1[i]
+			json["pokemon"][i]["move_2"]["pp"] = PP2[i]
+			json["pokemon"][i]["move_3"]["pp"] = PP3[i]
+			json["pokemon"][i]["move_4"]["pp"] = PP4[i]
+			json["pokemon"][i]["move_1"]["maxpp"] = MAXPP1[i]
+			json["pokemon"][i]["move_2"]["maxpp"] = MAXPP2[i]
+			json["pokemon"][i]["move_3"]["maxpp"] = MAXPP3[i]
+			json["pokemon"][i]["move_4"]["maxpp"] = MAXPP4[i]
+		end
+return json
+end
+
+function transferStateToAIAndWait(raw_json)
+  -- 1st: Invoke the ai with JSON data.
+  -- request-body must be a string, therefore encode
+  http.request("http://127.0.0.1:5001/ai_invoke/", JSON:encode(raw_json))
+  -- 2nd: Wait until the ai finished.
+  repeat
+    -- advance a frame inbetween each request.
+    -- could also advance multiple frames to not do 60 requests per second
+	next_move = http.request("http://127.0.0.1:5001/ai_retrieve/")
+	if next_move == "" then
+		nframes = 15
+		repeat
+			emu.frameadvance()
+			nframes = nframes - 1
+		until nframes == 0
+	end
+    -- this request returns either the next move,
+    -- or an empty string if the result isn't set yet.
+  until next_move ~= nil
+  -- we got a result!
+  return next_move
+end
+
+function refreshinterval(seconds)
+	-- Revo's function (liar, it's Timmy's function)
+	local lastupdate = os.time()
+	local now
+	repeat
+		now = os.time()
+		emu.frameadvance()
+	until now - lastupdate >= seconds
+	lastupdate = now
+	return true
+end
+
+repeat
+        if memory.readbyte(0xFF70) == 1 then
+            json = read_new_playerstate()
+            vba.print("JSON:", json)
+			http.request("http://127.0.0.1:5000/gen2_game_update", tostring(JSON:encode(json)))
+            -- do battle stuff below
+            
+            
+            bank_wait = 0
         value = memory.readbyte(0xD849)
         is_military_on = (value % 2 == 1) -- just in case you need to know the current status
         newvalue = bit.band(value, 254) + military_mode
         memory.writebyte(0xD849, newvalue)
-        -- do player state reading here
-        
-        
-        
-        
-        -- player state reading here
         if memory.readbyte(rLSC) == BEESAFREE_LSC_TRANSFERRING then
             lua_wait = 0
             if (AND(memory.readbyte(rLSB), 0x02) ~= 0) then
@@ -551,48 +664,16 @@ while true do
         end
     else
         if bank_wait == 0 then
-            vba.print("Waiting for valid bank, bank is currently", memory.readbyte(rSVBK))
+            vba.print("Waiting for valid bank")
             bank_wait = 1
         end
-		if memory.readdword(0x013C) == 0x54524F42 and memory.readbyte(0xFF70) == 1 then --BORT
-			ReadParty(0xDCD7)
-			ReadSeen(0xDEB9)
-			ReadOwn(0xDE99)
-			CheckDex(0xDE99)
-			ReadMoney(0xD84E)
-			ReadBadge1(0xD857)
-			ReadBadge2(0xD858)
-			ReadTitle(0xC3C9)
-			ReadDiploma(0x9902)
-			MapID = (memory.readbyte(0xDCB5) * 256) + memory.readbyte(0xDCB6)
-
-			if LastCaptured ~= LastCaptured2 then
-				on_pokemon_capture(LastCaptured)
-				LastCaptured2 = LastCaptured
-			end
+            
+            
+            
+            
+            -- do battle stuff above
 		end
-        end
-        
-        if debug_mode == 1 then
-            print(string.format("Diploma = %d", Diploma))
-            print(string.format("Title = %d", Title))
-            print(string.format("MapID = %d", MapID))
-            for i = 1, 8, 1 do
-                print(string.format("JBadge%d = %d", i, BadgeData1[i]))
-            end
-            for i = 1, 8, 1 do
-                print(string.format("KBadge%d = %d", i, BadgeData2[i]))
-            end
-            print(string.format("Seen = %d", Seen))
-            print(string.format("Own = %d", Own))
-            print(string.format("LastCaptured = %d", LastCaptured))
-            print(string.format("Money = %d", Money))
-            for i = 1, 6, 1 do
-                print(string.format("PKM%d = %d,  HP = %d, MAXHP = %d, Lvl = %d, Status = %d, Gender = %d", i, ID[i], HP[i], MAXHP[i], Lvl[i], Status[i], Gender[i]))
-                print(string.format("Move1 = %d %d/%d, Move2 = %d %d/%d, Move3 = %d %d/%d, Move4 = %d %d/%d", Move1[i], PP1[i], MAXPP1[i], Move2[i], PP2[i], MAXPP2[i], Move3[i], PP3[i], MAXPP3[i], Move4[i], PP4[i], MAXPP4[i]))
-            end
-        end
-
+        updateclock()
 		--Gender
 		--0x00 = Male
 		--0x01 = Female
@@ -605,6 +686,9 @@ while true do
 		--0x10 = Burned
 		--0x20 = Frozen
 		--0x40 = Paralyzed
+	b, c, h = http.request("http://127.0.0.1:5000/gbmode_inputs")
+	if c == 200 then
+		local json = JSON:decode(b)
+		joypad.set(1, json)
 	end
-	emu.frameadvance()
-end
+until not refreshinterval(0.100)

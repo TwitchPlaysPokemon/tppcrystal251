@@ -402,15 +402,16 @@ TextBranchFirstMisty
 	done
 
 TextBranchSecondMisty:
-	text "Oh you already"
-	line "won and had your"
-	cont "badge stolen?"
+	text "MISTY: You again!"
+	
+	para "What's that? Your"
+	line "badges were"
+	cont "stolen?"
 
-	text "Too bad! Pests"
-	line "have to work"
-	cont "for their"
-	cont "badges!"
-
+	para "If you want"
+	line "another, you'll"
+	cont "have to earn it,"
+	cont "you pest!"
 	done
 
 ; 0x18870c

@@ -513,9 +513,12 @@ class AI(object):
         if move_used_effect == 'jumpkick':
             self.Damage[attacker][defender][moveused]['selfdamage'] = temp2 / 2
         if move_used_effect == 'explosion':
-            self.Damage[attacker][defender][moveused]['selfdamage'] = 100000
+            self.Damage[attacker][defender][moveused]['selfdamage'] = mondata[attacker]['stats']['curhp'] + 3
         if move_used_effect == 'dreameater':
             self.Damage[attacker][defender][moveused]['selfdamage'] = temp2 / -2
+        if move_used_effect == 'explosion':
+            if temp2 > mondata[defender]['stats']['curhp']:
+                temp2 = mondata[attacker]['stats']['curhp'] + 3
         self.Damage[attacker][defender][moveused]['damage'] = temp2
         return 1
 
@@ -1390,8 +1393,8 @@ class AI(object):
                     else:
                         self.mybestmove[mycurrent] = random.randint(0, (len(self.jsonlist['battleState']['enemypokemon']['moves'])))
             if self.useitem > 0:
-                if tempx >= self.differenceitems[mycurrent][self.itemused]:
-                   self.differenceitems[mycurrent][self.itemused] = tempx
+                if tempx >= self.differenceitems[mycurrent][self.useitem]:
+                   self.differenceitems[mycurrent][self.useitem] = tempx
             if Debug_Code == 1 or Debug_Code == 2:
                 print('**********')
                 print(self.mybestmove['bestleaf'])
@@ -1455,14 +1458,15 @@ class AI(object):
                             if self.Damage[traincurrent][mycurrent][self.enemynumber]['damage'] > self.hp[bestmonsindex[x1]]:
                                 #and healing would allow you to continue fighting
                                 if self.Damage[traincurrent][mycurrent][self.enemynumber]['damage'] / self.hp[bestmonsindex[x1]] < 0.5:
-                                    #and the item is a.....
-
-                                    healing_items = {"potion":20,"superpotion":50,"hyperpotion":200,"maxpotion":99999,"fullrestore":99999}
-                                    item_name = mondata['myitems'][x2]
-                                    if item_name in healing_items:
-                                        #would the HP the item would heal be enough?
-                                        if healing_items[item_name] > self.Damage[traincurrent][mycurrent][self.enemynumber]['damage']:
-                                            return x2 + 9
+                                    #and im not at full hp
+                                    if self.hp[bestmonsindex[x1]]!= self.jsonlist['battleState']['enemypokemon']['stats']['maxhp']:
+                                        #and the item is a.....
+                                        healing_items = {"potion":20,"superpotion":50,"hyperpotion":200,"maxpotion":99999,"fullrestore":99999}
+                                        item_name = mondata['myitems'][x2]
+                                        if item_name in healing_items:
+                                            #would the HP the item would heal be enough?
+                                            if healing_items[item_name] > self.Damage[traincurrent][mycurrent][self.enemynumber]['damage']:
+                                                return x2 + 9
         return 20
 
     def OptionalSwitch(self, mondata, traincurrent):
@@ -1496,9 +1500,7 @@ class AI(object):
             if self.difference[self.jsonlist['battleState']['enemypokemon']['party idx']][traincurrent] < 0:
                 self.difference[self.jsonlist['battleState']['enemypokemon']['party idx']][traincurrent] = 0
             tempy = self.difference[self.jsonlist['battleState']['enemypokemon']['party idx']][traincurrent] + 1.5
-            print(self.jsonlist['battleState']['enemypokemon']['party idx'])
             for tempx in range (0, self.myparty):
-                print(self.difference[tempx][traincurrent])
                 if self.difference[tempx][traincurrent] > tempy:
                     tempy = self.difference[tempx][traincurrent]
                     if tempx != self.jsonlist['battleState']['enemypokemon']['party idx']:
@@ -1810,12 +1812,13 @@ class AI(object):
         
         #invalid action handling
         if (int(self.jsonlist['battleState']['requested action']) & 0x04):
+            Print('INVALID ACTION! Contact Beesafree with the logs')
             if self.theaction > 11:
                 self.theaction = 0
             if self.theaction < 0:
                 self.theaction = 0
             if self.theaction > 9:
-                while true:
+                while True:
                     if self._actualAction[str(self.theaction)] not in self.jsonlist['battleState']['history']:
                         break
                     if self.theaction == 10:
@@ -1827,7 +1830,7 @@ class AI(object):
                         break
                     self.theaction = tempx
             if self.theaction < 4:
-                while true:
+                while True:
                     if self._actualAction[str(self.theaction)] not in self.jsonlist['battleState']['history']:
                         break
                     self.theaction = random.randint(0, 4)
@@ -1835,7 +1838,7 @@ class AI(object):
                         self.theaction = 4
                         break
             if self.theaction < 10 and self.theaction > 3:
-                while true:
+                while True:
                     if self._actualAction[str(self.theaction)] not in self.jsonlist['battleState']['history']:
                         break
                     self.theaction = random.randint(4, (len(self.myparty)))

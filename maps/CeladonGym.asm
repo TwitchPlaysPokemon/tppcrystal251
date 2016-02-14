@@ -415,10 +415,13 @@ UnknownText_0x72e30: ; 0x72e30
 ; 0x72e53
 
 PicnickerTanyaSeenText: ; 0x72e53
-	text "SAFFRON GYM leader"
-	cont "SABRINA apparently"
-	cont "uses the very same"
-	cont "#MON as me!"
+	text "I used to train"
+	line "under SABRINA, the"
+	cont "SAFFRON CITY GYM"
+	cont "LEADER."
+
+	text "We have the same"
+	line "#MON!"
 	done
 ; 0x72e7f
 
