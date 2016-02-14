@@ -403,15 +403,13 @@ VioletGymGuyText: ; 0x688f9
 
 	para "FALKNER, the GYM"
 	line "LEADER, specia-"
+	cont "lizes in flying"
+	cont "type #MON."
 
-	para "lizes in the"
-	line "flying type."
-
-	para "The grass-type is"
-	line "weak against the"
-
-	para "flying-type. Keep"
-	line "this in mind."
+	para "If you have a team"
+	line "of GRASS-type #MON,"
+	cont "you better watch"
+	cont "out!"
 	done
 ; 0x689c8
 
