@@ -191,7 +191,7 @@ MapSproutTower3FSignpost5Script: ; 0x184a16
 ; 0x184a19
 
 ItemFragment_0x184a19: ; 0x184a19
-	db POTION, 1
+	db SUPER_POTION, 1
 ; 0x184a1b
 
 ItemFragment_0x184a1b: ; 0x184a1b
