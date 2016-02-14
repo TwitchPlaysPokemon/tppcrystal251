@@ -995,7 +995,7 @@ Function3c5fe: ; 3c5fe
 	call SetEnemyTurn
 	ld a, $1
 	ld [wc70f], a
-	callab Function38000
+	callab AI_SwitchOrTryItem
 	jr c, .asm_3c62f
 	call Function3c6de
 	call Function3d2e0
@@ -1035,7 +1035,7 @@ Function3c664: ; 3c664
 	call Function309d
 	call Function3c543
 	jp c, Function3c0e5
-	callab Function38000
+	callab AI_SwitchOrTryItem
 	push af
 	call Function3c6cf
 	pop bc
@@ -5758,15 +5758,10 @@ BattleMenu_Run: ; 3e489
 	ld a, $0
 	ld [wd266], a
 	ret c
-IF DEF(BEESAFREE)
-	and a
-	ret
-ELSE
 	ld a, [wd0ec]
 	and a
 	ret nz
 	jp BattleMenu
-ENDC
 ; 3e4a8
 
 CheckAmuletCoin: ; 3e4a8

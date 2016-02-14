@@ -42,9 +42,9 @@ end
 function getMoves(movePointer, ppPointer)
 	local moves = {}
 	for i = 0, 3 do
-        vba.print("Pointers:", string.format("%02x", movePointer), string.format("%02x", ppPointer))
+        -- vba.print("Pointers:", string.format("%02x", movePointer), string.format("%02x", ppPointer))
 		table.insert(moves, getMove(movePointer + i, ppPointer + i))
-        vba.print(moves)
+        -- vba.print(moves)
 	end
 	return moves
 end
@@ -107,7 +107,7 @@ function getDVs(pointer)
 end
 
 function getMonBattleState(pointer)
-    vba.print("POINTER:", string.format("%02x", pointer))
+    -- vba.print("POINTER:", string.format("%02x", pointer))
 	-- init
 	local mon = {}
 	local stats = {}
@@ -242,7 +242,7 @@ function getStatLevels(pointer)
 end
 
 function getPlayerPokemonData()
-    vba.print(BattleMonSpecies)
+    -- vba.print(BattleMonSpecies)
 	playerMon = getMonBattleState(BattleMonSpecies)
 	if playerMon == nil then return end
 	playerMon["subStatus"] = getSubstatus(PlayerSubStatus1, PlayerRolloutCount, PlayerSubstituteHP, LastPlayerMove, PlayerDisableCount)
@@ -268,7 +268,7 @@ function getPlayerPokemonData()
 end
 
 function getEnemyPokemonData()
-    vba.print(EnemyMonSpecies)
+    -- vba.print(EnemyMonSpecies)
 	enemyMon = getMonBattleState(EnemyMonSpecies)
 	if enemyMon == nil then return end
 	enemyMon["subStatus"] = getSubstatus(EnemySubStatus1, EnemyRolloutCount, EnemySubstituteHP, LastEnemyMove, EnemyDisableCount)
@@ -353,7 +353,7 @@ end
 
 function getTrainerParty(partycount_addr)
 	local trainerParty = {}
-    vba.print(string.format("%02x", partycount_addr))
+    -- vba.print(string.format("%02x", partycount_addr))
 	trainerParty["length"] = memory.readbyte(partycount_addr)
 	local mons = {}
 	local party = {}
@@ -424,7 +424,7 @@ function readBattlestate(req) --read this ONLY when LUA Serial is called
 			-- vba.print("Not in battle")
 			memory.writebyte(wMilitaryMode, military_mode)
 			-- if (ignore_serial ~= 1) and (lastBattleState ~= 0) then
-				-- --transferStateToAIAndWait("Battle ended")
+				--transferStateToAIAndWait("Battle ended")
 			-- end
 		else
 			if battlemode == 2 then
@@ -444,9 +444,9 @@ function readBattlestate(req) --read this ONLY when LUA Serial is called
 			--vba.print("Battle State:")
 			--vba.print(battleState)
 			output_table["battleState"] = battleState
-			if (ignore_serial ~= 1) and (lastBattleState == 0) then
+			-- if (ignore_serial ~= 1) and (lastBattleState == 0) then
 				--transferStateToAIAndWait("Battle started")
-			end
+			-- end
 		end
 		output_table["bug contest"] = handleBugCatchingContest()
 		local raw_json = JSON:encode(output_table)
@@ -463,8 +463,8 @@ function readPlayerstate() --loop read this for the overlay
 	local output_table = {}
 	-- vba.print("WRAM bank: ", svbk)
 	if svbk == 1 then
-        vba.print(string.format("%02x", PlaPartyCount))
-		playerParty = getTrainerParty(PlaPartyCount)
+        -- vba.print(string.format("%02x", PartyCount))
+		playerParty = getTrainerParty(PartyCount)
 		-- vba.print("Player Party:")
 		-- vba.print(playerParty)
 		pack = readPlayerPack()
@@ -474,6 +474,6 @@ function readPlayerstate() --loop read this for the overlay
 		output_table["pack"] = pack
         return output_table
     else
-    return -1
+		return -1
     end
 end
