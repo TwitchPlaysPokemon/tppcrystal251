@@ -402,15 +402,15 @@ function readBattlestate(req) --read this ONLY when LUA Serial is called
 	svbk = memory.readbyte(rSVBK)
 
 	if svbk == 1 then
-		--local output_table = {}
-		--playerParty = getTrainerParty(0xdcd7)
+		local output_table = {}
+		playerParty = getTrainerParty(0xdcd7)
 		--vba.print("Player Party:")
 		--vba.print(playerParty)
-		--pack = readPlayerPack()
+		pack = readPlayerPack()
 		--vba.print("Player Pack:")
 		--vba.print(pack)
-		--output_table["playerParty"] = playerParty
-		--output_table["pack"] = pack
+		output_table["playerParty"] = playerParty
+		output_table["pack"] = pack
 		if battlemode == 0 then
 			-- vba.print("Not in battle")
 			memory.writebyte(wMilitaryMode, military_mode)
