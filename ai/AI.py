@@ -1390,8 +1390,8 @@ class AI(object):
                     else:
                         self.mybestmove[mycurrent] = random.randint(0, (len(self.jsonlist['battleState']['enemypokemon']['moves'])))
             if self.useitem > 0:
-                if tempx >= self.differenceitems[mycurrent][self.itemused]:
-                   self.differenceitems[mycurrent][self.itemused] = tempx
+                if tempx >= self.differenceitems[mycurrent][self.useitem]:
+                   self.differenceitems[mycurrent][self.useitem] = tempx
             if Debug_Code == 1 or Debug_Code == 2:
                 print('**********')
                 print(self.mybestmove['bestleaf'])
@@ -1497,9 +1497,7 @@ class AI(object):
             if self.difference[self.jsonlist['battleState']['enemypokemon']['party idx']][traincurrent] < 0:
                 self.difference[self.jsonlist['battleState']['enemypokemon']['party idx']][traincurrent] = 0
             tempy = self.difference[self.jsonlist['battleState']['enemypokemon']['party idx']][traincurrent] + 1.5
-            print(self.jsonlist['battleState']['enemypokemon']['party idx'])
             for tempx in range (0, self.myparty):
-                print(self.difference[tempx][traincurrent])
                 if self.difference[tempx][traincurrent] > tempy:
                     tempy = self.difference[tempx][traincurrent]
                     if tempx != self.jsonlist['battleState']['enemypokemon']['party idx']:
@@ -1811,6 +1809,7 @@ class AI(object):
         
         #invalid action handling
         if (int(self.jsonlist['battleState']['requested action']) & 0x04):
+            Print('INVALID ACTION! Contact Beesafree with the logs')
             if self.theaction > 11:
                 self.theaction = 0
             if self.theaction < 0:
