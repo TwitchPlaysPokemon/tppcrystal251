@@ -572,27 +572,6 @@ function read_new_playerstate()
 	return json
 end
 
-function transferStateToAIAndWait(raw_json)
-  -- 1st: Invoke the ai with JSON data.
-  -- request-body must be a string, therefore encode
-  http.request("http://127.0.0.1:5001/ai_invoke/", JSON:encode(raw_json))
-  -- 2nd: Wait until the ai finished.
-  repeat
-    -- advance a frame inbetween each request.
-    -- could also advance multiple frames to not do 60 requests per second
-	next_move = http.request("http://127.0.0.1:5001/ai_retrieve/")
-	if (next_move == nil or next_move == "") then
-		for frame = 1, 15 do
-			emu.frameadvance()
-		end
-	end
-    -- this request returns either the next move,
-    -- or an empty string if the result isn't set yet.
-  until (next_move ~= nil and next_move ~= "")
-  -- we got a result!
-  return next_move
-end
-
 function refreshinterval(seconds)
 	-- Revo's function (liar, it's Timmy's function)
 	local lastupdate = os.time()
@@ -620,32 +599,7 @@ repeat
 	memory.writebyte(0xD849, newvalue)
 	if memory.readbyte(rLSC) == BEESAFREE_LSC_TRANSFERRING then
 		lua_wait = 0
-		if (AND(memory.readbyte(rLSB), 0x02) ~= 0) then
-			battlestate = readBattlestate(memory.readbyte(rLSB))
-			if debug_mode == 1 then
-				-- vba.print("[DEBUG] STATUS: ", string.format("%02x", memory.readbyte(rLSB)))  
-				-- vba.print("[DEBUG] BATTLESTATE:", battlestate)
-			end
-			vba.print("Waiting on AI...")
-			airesponse = transferStateToAIAndWait(battlestate)
-			vba.print("AI RESPONSE:", airesponse)
-		else
-			vba.print("No AI request found.")
-		end  
-		if military_mode == 1 and (AND(memory.readbyte(rLSB), 0x01) ~= 0) then
-			vba.print("Waiting on player...")
-			--outplayer = UseRandomMove(BattleMonMoves, BattleMonPP, PlayerDisableCount)
-			playerresponse = get_next_player_command()
-			if debug_mode == 1 then
-				vba.print("[DEBUG] PLAYER RESPONSE:", playerresponse)
-			end  
-		else
-			if military_mode ~= 1 and debug_mode == 1 then
-				vba.print("[DEBUG] INFO: Military mode not enabled.")
-			elseif (AND(memory.readbyte(rLSB), 0x01) == 0) and military_mode == 1 then
-				vba.print("ERROR: Invalid rLSB configuration.")
-			end
-		end
+		airesponse, playerresponse = GetCommandTables()
 		byte1, byte2, byte3 = tablestobytes(airesponse, playerresponse)
 		if debug_mode == 1 then
 			vba.print("[DEBUG] BYTES:", byte1, byte2, byte3)
