@@ -405,7 +405,7 @@ VioletGymGuyText: ; 0x688f9
 	line "LEADER, specia-"
 
 	para "lizes in the"
-	cont "flying type."
+	line "flying type."
 
 	para "The grass-type is"
 	line "weak against the"
