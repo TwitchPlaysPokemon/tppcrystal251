@@ -502,16 +502,16 @@ SandshrewEvosAttacks:
 	db 6, MUD_SLAP
 	db 9, POISON_STING
 	db 12, METAL_CLAW ; Fury Swipes replacement
-	db 15, FLAIL ; egg move
-	db 18, ENDURE ; later gen move 
-	db 21, MAGNITUDE ; later gen move
+	db 15, FLAIL 
+	db 18, ENDURE 
+	db 21, MAGNITUDE 
 	db 24, SLASH
 	db 27, FURY_CUTTER
-	db 30, SANDSTORM ; other gen move
-	db 33, DIG ; tm move 
-	db 36, POISON_JAB; later gen move
-	db 39, ROCK_SLIDE ; tm move
-	db 42, SUPER_FANG ; egg move
+	db 30, SANDSTORM 
+	db 33, DIG  
+	db 36, POISON_JAB
+	db 39, ROCK_SLIDE
+	db 42, SUPER_FANG 
 	db 45, EARTHQUAKE
 	db 0 ; no more level-up moves
 
