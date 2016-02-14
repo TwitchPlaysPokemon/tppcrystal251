@@ -79,10 +79,12 @@ end
 function get_next_player_command()
 	repeat
 		player_next_move = http.request("http://localhost:5000/gbmode_inputs_ai/")
-		for frame = 1, 15 do
-			emu.frameadvance()
+		if (player_next_move == nil or player_next_move == "") then
+			for frame = 1, 15 do
+				emu.frameadvance()
+			end
 		end
-	until player_next_move ~= nil
+	until (player_next_move ~= nil or player_next_move ~= "")
 	vba.print("Player response:", player_next_move)
     return player_next_move
 end

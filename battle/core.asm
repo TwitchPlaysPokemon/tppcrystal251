@@ -132,7 +132,7 @@ Function3c0e5: ; 3c0e5
 	and $c0
 	ld [wd0ee], a
 	ld hl, BattleText_0x807cf
-	call Function3d2e0
+	call MobileBattleErrorCheck
 	jr nc, .asm_3c115
 	ld hl, wcd2a
 	bit 4, [hl]
@@ -144,7 +144,7 @@ Function3c0e5: ; 3c0e5
 
 .asm_3c118
 	call Function3ceec
-	call Function3d2e0
+	call MobileBattleErrorCheck
 	jr c, .asm_3c126
 
 	ld de, SFX_RUN
@@ -227,17 +227,17 @@ ENDC
 	jr c, .quit
 	call Function3c314
 	jr c, .asm_3c19e
-	call Function3c5fe
+	call BattleTurn_EnemyFirst
 	jr .asm_3c1a1
 
 .asm_3c19e
-	call Function3c664
+	call BattleTurn_PlayerFirst
 .asm_3c1a1
 	ld a, [wd232] ; roared/whirlwinded/teleported
 	and a
 	jr nz, .quit
 
-	call Function3d2e0
+	call MobileBattleErrorCheck
 	jr c, .quit
 	ld a, [wd232]
 	and a
@@ -347,7 +347,7 @@ Function3c1d6: ; 3c1d6
 Function3c23c: ; 3c23c
 	call HasPlayerFainted
 	jr nz, .asm_3c24a
-	call Function3d14e
+	call BattleCore_HandlePlayerFaint
 	ld a, [BattleEnded]
 	and a
 	jr nz, .asm_3c25a
@@ -355,7 +355,7 @@ Function3c23c: ; 3c23c
 .asm_3c24a
 	call HasEnemyFainted
 	jr nz, .asm_3c258
-	call Function3cd55
+	call BattleCore_HandleEnemyFaint
 	ld a, [BattleEnded]
 	and a
 	jr nz, .asm_3c25a
@@ -372,7 +372,7 @@ Function3c23c: ; 3c23c
 Function3c25c: ; 3c25c
 	call HasEnemyFainted
 	jr nz, .asm_3c26a
-	call Function3cd55
+	call BattleCore_HandleEnemyFaint
 	ld a, [BattleEnded]
 	and a
 	jr nz, .asm_3c27a
@@ -380,7 +380,7 @@ Function3c25c: ; 3c25c
 .asm_3c26a
 	call HasPlayerFainted
 	jr nz, .asm_3c278
-	call Function3d14e
+	call BattleCore_HandlePlayerFaint
 	ld a, [BattleEnded]
 	and a
 	jr nz, .asm_3c27a
@@ -988,7 +988,7 @@ GetMoveEffect: ; 3c5ec
 	ret
 ; 3c5fe
 
-Function3c5fe: ; 3c5fe
+BattleTurn_EnemyFirst: ; 3c5fe
 	call Function309d
 	call Function3c543
 	jp c, Function3c0e5
@@ -996,31 +996,30 @@ Function3c5fe: ; 3c5fe
 	ld a, $1
 	ld [wc70f], a
 	callab AI_SwitchOrTryItem
-	jr c, .asm_3c62f
-	call Function3c6de
-	call Function3d2e0
+	jr c, .AI_SwitchedOrUsedItem
+	call BattleCore_EnemyTurn
+	call MobileBattleErrorCheck
 	ret c
 	ld a, [wd232]
 	and a
 	ret nz
 	call HasPlayerFainted
-	jp z, Function3d14e
+	jp z, BattleCore_HandlePlayerFaint
 	call HasEnemyFainted
-	jp z, Function3cd55
-
-.asm_3c62f
+	jp z, BattleCore_HandleEnemyFaint
+.AI_SwitchedOrUsedItem
 	call SetEnemyTurn
 	call RefreshBattleHuds
-	call Function3c6cf
-	call Function3d2e0
+	call BattleCore_PlayerTurn
+	call MobileBattleErrorCheck
 	ret c
 	ld a, [wd232]
 	and a
 	ret nz
 	call HasEnemyFainted
-	jp z, Function3cd55
+	jp z, BattleCore_HandleEnemyFaint
 	call HasPlayerFainted
-	jp z, Function3d14e
+	jp z, BattleCore_HandlePlayerFaint
 	call SetPlayerTurn
 	call RefreshBattleHuds
 	xor a
@@ -1028,7 +1027,7 @@ Function3c5fe: ; 3c5fe
 	ret
 ; 3c664
 
-Function3c664: ; 3c664
+BattleTurn_PlayerFirst: ; 3c664
 	xor a
 	ld [wc70f], a
 	call SetEnemyTurn
@@ -1037,32 +1036,32 @@ Function3c664: ; 3c664
 	jp c, Function3c0e5
 	callab AI_SwitchOrTryItem
 	push af
-	call Function3c6cf
+	call BattleCore_PlayerTurn
 	pop bc
 	ld a, [wd232]
 	and a
 	ret nz
-	call Function3d2e0
+	call MobileBattleErrorCheck
 	ret c
 	call HasEnemyFainted
-	jp z, Function3cd55
+	jp z, BattleCore_HandleEnemyFaint
 	call HasPlayerFainted
-	jp z, Function3d14e
+	jp z, BattleCore_HandlePlayerFaint
 	push bc
 	call SetPlayerTurn
 	call RefreshBattleHuds
 	pop af
 	jr c, .asm_3c6be
-	call Function3c6de
-	call Function3d2e0
+	call BattleCore_EnemyTurn
+	call MobileBattleErrorCheck
 	ret c
 	ld a, [wd232]
 	and a
 	ret nz
 	call HasPlayerFainted
-	jp z, Function3d14e
+	jp z, BattleCore_HandlePlayerFaint
 	call HasEnemyFainted
-	jp z, Function3cd55
+	jp z, BattleCore_HandleEnemyFaint
 
 .asm_3c6be
 	call SetEnemyTurn
@@ -1072,21 +1071,21 @@ Function3c664: ; 3c664
 	ret
 ; 3c6cf
 
-Function3c6cf: ; 3c6cf
+BattleCore_PlayerTurn: ; 3c6cf
 	call SetPlayerTurn
-	call Function3c6fe
+	call BattleCore_EndDestinyBondEffect
 	callab DoPlayerTurn
-	jp Function3c6ed
+	jp BattleCore_EndProtectEndureAndOppDestinyBondEffects
 ; 3c6de
 
-Function3c6de: ; 3c6de
+BattleCore_EnemyTurn: ; 3c6de
 	call SetEnemyTurn
-	call Function3c6fe
+	call BattleCore_EndDestinyBondEffect
 	callab DoEnemyTurn
-	jp Function3c6ed
+	jp BattleCore_EndProtectEndureAndOppDestinyBondEffects
 ; 3c6ed
 
-Function3c6ed: ; 3c6ed
+BattleCore_EndProtectEndureAndOppDestinyBondEffects: ; 3c6ed
 	ld a, BATTLE_VARS_SUBSTATUS1_OPP
 	call GetBattleVarAddr
 	res SUBSTATUS_PROTECT, [hl]
@@ -1097,7 +1096,7 @@ Function3c6ed: ; 3c6ed
 	ret
 ; 3c6fe
 
-Function3c6fe: ; 3c6fe
+BattleCore_EndDestinyBondEffect: ; 3c6fe
 	ld a, BATTLE_VARS_SUBSTATUS5
 	call GetBattleVarAddr
 	res SUBSTATUS_DESTINY_BOND, [hl]
@@ -2148,12 +2147,12 @@ Function3cd3c: ; 3cd3c
 	ret
 ; 3cd55
 
-Function3cd55: ; 3cd55
-	call Function3cf14
+BattleCore_HandleEnemyFaint: ; 3cd55
+	call BattleCore_EnemyFalled
 	ld hl, BattleMonHP
 	ld a, [hli]
 	or [hl]
-	call z, Function3cef1
+	call z, BattleCore_PlayerFalled
 	xor a
 	ld [wc6f7], a
 	call Function3ce01
@@ -2181,8 +2180,8 @@ Function3cd55: ; 3cd55
 	ret
 
 .asm_3cd8c
-	call Function3cf35
-	jp z, Function3cfa4
+	call BattleCore_CheckEnemyDefeated
+	jp z, BattleCore_WinBattle
 
 	ld hl, BattleMonHP
 	ld a, [hli]
@@ -2198,7 +2197,7 @@ Function3cd55: ; 3cd55
 
 .asm_3cda4
 	call Function3d227
-	call Function3d2e0
+	call MobileBattleErrorCheck
 	jp c, Function3c0e5
 
 	ld a, $1
@@ -2399,7 +2398,7 @@ Function3ceec: ; 3ceec
 	ret
 ; 3cef1
 
-Function3cef1: ; 3cef1
+BattleCore_PlayerFalled: ; 3cef1
 	call Function3ceec
 	call WaitSFX
 	ld a, $f0
@@ -2419,7 +2418,7 @@ Function3cef1: ; 3cef1
 	jp StdBattleTextBox
 ; 3cf14
 
-Function3cf14: ; 3cf14
+BattleCore_EnemyFalled: ; 3cf14
 	call WaitSFX
 	ld a, $0f
 	ld [CryTracks], a
@@ -2438,20 +2437,20 @@ Function3cf14: ; 3cf14
 	jp StdBattleTextBox
 ; 3cf35
 
-Function3cf35: ; 3cf35
+BattleCore_CheckEnemyDefeated: ; 3cf35
 	ld a, [OTPartyCount]
 	ld b, a
 	xor a
 	ld hl, OTPartyMon1HP
 	ld de, PartyMon2 - PartyMon1
-.asm_3cf40
+.loop
 	or [hl]
 	inc hl
 	or [hl]
 	dec hl
 	add hl, de
 	dec b
-	jr nz, .asm_3cf40
+	jr nz, .loop
 	and a
 	ret
 ; 3cf4a
@@ -2508,7 +2507,7 @@ EnemyPartyMonEntrance: ; 3cf78
 	ret
 ; 3cfa4
 
-Function3cfa4: ; 3cfa4
+BattleCore_WinBattle: ; 3cfa4
 	call Function3ceec
 	ld a, $1
 	ld [wc6fd], a
@@ -2809,12 +2808,12 @@ KantoGymLeaders:
 	db MISTY_RB
 	db $ff
 
-Function3d14e: ; 3d14e
-	call Function3cef1
+BattleCore_HandlePlayerFaint: ; 3d14e
+	call BattleCore_PlayerFalled
 	ld hl, EnemyMonHP
 	ld a, [hli]
 	or [hl]
-	call z, Function3cf14
+	call z, BattleCore_EnemyFalled
 	ld a, $1
 	ld [wc6f7], a
 	call Function3d1aa
@@ -2835,8 +2834,8 @@ Function3d14e: ; 3d14e
 	ret
 
 .asm_3d17f
-	call Function3cf35
-	jp z, Function3cfa4
+	call BattleCore_CheckEnemyDefeated
+	jp z, BattleCore_WinBattle
 
 .asm_3d185
 	call Function3d1f8
@@ -2847,7 +2846,7 @@ Function3d14e: ; 3d14e
 
 .asm_3d190
 	call Function3d227
-	call Function3d2e0
+	call MobileBattleErrorCheck
 	jp c, Function3c0e5
 	ld a, c
 	and a
@@ -2938,7 +2937,7 @@ Function3d227: ; 3d227
 .asm_3d241
 	xor a
 	ld [wd0ec], a
-	call Function3d2e0
+	call MobileBattleErrorCheck
 	jr c, .asm_3d251
 	ld hl, EnemyMonHP
 	ld a, [hli]
@@ -3005,7 +3004,7 @@ Function3d2b3: ; 3d2b3
 	jp SpikesDamage
 ; 3d2e0
 
-Function3d2e0: ; 3d2e0
+MobileBattleErrorCheck: ; 3d2e0
 	ld a, [wLinkMode]
 	cp $4
 	jr nz, .asm_3d2ef
@@ -3121,7 +3120,7 @@ ForcePickPartyMonInBattle: ; 3d362
 .pick
 	call PickPartyMonInBattle
 	ret nc
-	call Function3d2e0
+	call MobileBattleErrorCheck
 	ret c
 
 	ld de, SFX_WRONG
@@ -3145,7 +3144,7 @@ ForcePickSwitchMonInBattle: ; 3d380
 
 .pick
 	call ForcePickPartyMonInBattle
-	call Function3d2e0
+	call MobileBattleErrorCheck
 	ret c
 	call SwitchMonAlreadyOut
 	jr c, .pick
@@ -3216,7 +3215,7 @@ LostBattle: ; 3d38e
 
 .LostLinkBattle
 	call UpdateEnemyMonInParty
-	call Function3cf35
+	call BattleCore_CheckEnemyDefeated
 	jr nz, .asm_3d40a
 	ld hl, TiedAgainstText
 	ld a, [wd0ee]
@@ -3460,7 +3459,7 @@ Function3d557: ; 3d557
 	ld [wc730], a
 	hlcoord 18, 0
 	ld a, $8
-	call Function3d490
+	call Function3d490 ; would have liked to see a poof here
 	call EmptyBattleTextBox
 	jp Function1d6e
 ; 3d57a
@@ -4118,7 +4117,7 @@ Function3d8b3: ; 3d8b3
 	ld [CurPlayerMove], a
 	call Function3e8e4
 	call Function30b4
-	call Function3d2e0
+	call MobileBattleErrorCheck
 	jr c, .asm_3d9f5
 
 	; Got away safely
@@ -5521,13 +5520,13 @@ Function3e299:
 	jr .asm_3e2a8
 
 .asm_3e2c8
-	call Function3d2e0
+	call MobileBattleErrorCheck
 	jr c, .asm_3e2da
 	jr Function3e299
 
 .asm_3e2cf
 	call Function3e308
-	call Function3d2e0
+	call MobileBattleErrorCheck
 	jr c, .asm_3e2da
 	jp Function3e290
 
@@ -8963,7 +8962,7 @@ Function3f759: ; 3f759
 ; 3f77c
 
 Function3f77c: ; 3f77c
-	callba Function3d2e0
+	callba MobileBattleErrorCheck
 	jp c, Function3f80f
 	call Function3f830
 	jr nz, .asm_3f797

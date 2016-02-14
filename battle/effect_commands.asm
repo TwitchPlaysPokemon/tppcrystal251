@@ -10159,7 +10159,7 @@ BattleCommand67: ; 379c9
 	call BatonPass_LinkPlayerSwitch
 
 ; Mobile link battles handle entrances differently
-	callba Function3d2e0
+	callba MobileBattleErrorCheck
 	jp c, EndMoveEffect
 
 	ld hl, PassedBattleMonEntrance
@@ -10184,7 +10184,7 @@ BattleCommand67: ; 379c9
 	call BatonPass_LinkEnemySwitch
 
 ; Mobile link battles handle entrances differently
-	callba Function3d2e0
+	callba MobileBattleErrorCheck
 	jp c, EndMoveEffect
 
 ; Passed enemy PartyMon entrance

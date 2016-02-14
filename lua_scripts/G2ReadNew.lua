@@ -581,14 +581,14 @@ function transferStateToAIAndWait(raw_json)
     -- advance a frame inbetween each request.
     -- could also advance multiple frames to not do 60 requests per second
 	next_move = http.request("http://127.0.0.1:5001/ai_retrieve/")
-	if next_move == nil then
+	if (next_move == nil or next_move == "") then
 		for frame = 1, 15 do
 			emu.frameadvance()
 		end
 	end
     -- this request returns either the next move,
     -- or an empty string if the result isn't set yet.
-  until next_move ~= nil
+  until (next_move ~= nil and next_move ~= "")
   -- we got a result!
   return next_move
 end
