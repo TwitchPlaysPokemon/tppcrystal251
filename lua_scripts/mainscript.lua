@@ -268,3 +268,59 @@ function tablestobytes(airesponse, playertable)
 	tablereturn = {byte1, byte2, byte3}
 	return byte1, byte2, byte3
 end
+
+function command_to_table(playercommand)
+table_to_return = {}
+table_to_return["command"] = 0
+table_to_return["item"] = 0
+table_to_return["poke"] = 0
+table_to_return["move"] = 0
+
+if playercommand == "move1" then
+    table_to_return["command"] = "move1"
+elseif playercommand == "move2" then
+    table_to_return["command"] = "move2"
+elseif playercommand == "move3" then
+    table_to_return["command"] = "move3"
+elseif playercommand == "move4" then
+    table_to_return["command"] = "move4"
+elseif playercommand == "switch1" then
+    table_to_return["command"] = "switch1"
+elseif playercommand == "switch2" then
+    table_to_return["command"] = "switch2"
+elseif playercommand == "switch3" then
+    table_to_return["command"] = "switch3"
+elseif playercommand == "switch4" then
+    table_to_return["command"] = "switch4"
+elseif playercommand == "switch5" then
+    table_to_return["command"] = "switch5"
+elseif playercommand == "switch6" then
+    table_to_return["command"] = "switch6"
+elseif playercommand == "run" then
+    table_to_return["command"] = "run"
+else
+    a, b, c = string.match(playercommand, "item(%d+)p(%d)m(%d)")
+    if a ~= nil then
+        table_to_return["command"] = "item"
+        table_to_return["item"] = a
+        table_to_return["poke"] = b
+        table_to_return["move"] = c
+        return table_to_return
+    end
+    a, b = string.match(playercommand, "item(%d+)p(%d)")
+    if a ~= nil then
+        table_to_return["command"] = "item"
+        table_to_return["item"] = a
+        table_to_return["poke"] = b
+        return table_to_return
+    end
+    a = string.match(playercommand, "item(%d+)")
+    if a ~= nil then
+        table_to_return["command"] = "item"
+        table_to_return["item"] = a
+        return table_to_return
+    end
+    vba.print("Something went wrong. Here's the response I got:", playercommand)
+end
+return table_to_return
+end
