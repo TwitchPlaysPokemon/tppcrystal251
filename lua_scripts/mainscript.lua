@@ -1,8 +1,9 @@
---Crystal 251 Main Script v1.0--
+--Crystal 251 Main Script v1.01--
 
 dofile("readstates.lua")
 dofile("battle_ram.lua")
 dofile("constants.lua")
+dofile("fastclock.lua")
 package.path = package.path..';./libs/lua/?.lua'
 package.cpath = package.cpath..';./libs/?.dll'
 local http = require("socket.http")
@@ -214,26 +215,24 @@ repeat
         is_military_on = (value % 2 == 1) -- just in case you need to know the current status
         newvalue = bit.band(value, 254) + military_mode
         memory.writebyte(0xD849, newvalue)
-        --vba.print(readPlayerstate())
         if memory.readbyte(rLSC) == BEESAFREE_LSC_TRANSFERRING then
             lua_wait = 0
-            vba.print("STATUS: ", string.format("%02x", memory.readbyte(rLSB)))  
             if (AND(memory.readbyte(rLSB), 0x02) ~= 0) then
                 battlestate = readBattlestate(memory.readbyte(rLSB))
                 if debug_mode == 1 then
+                    vba.print("[DEBUG] STATUS: ", string.format("%02x", memory.readbyte(rLSB)))  
                     vba.print("[DEBUG] BATTLESTATE:", battlestate)
                 end
                 vba.print("Waiting on AI...")
                 airesponse = transferStateToAIAndWait(battlestate)
                 vba.print("AI RESPONSE:", airesponse)
-                playerresponse = {}
             else
                 vba.print("No AI request found.")
             end  
             if military_mode == 1 and (AND(memory.readbyte(rLSB), 0x01) ~= 0) then
                 vba.print("Waiting on player...")
-                outplayer = UseRandomMove(BattleMonMoves, BattleMonPP, PlayerDisableCount)
-                playerresponse = playernumtotable(outplayer)
+                --outplayer = UseRandomMove(BattleMonMoves, BattleMonPP, PlayerDisableCount)
+                playerresponse = get_next_player_command()
                 if debug_mode == 1 then
                     vba.print("[DEBUG] PLAYER RESPONSE:", playerresponse)
                 end  
@@ -264,4 +263,5 @@ repeat
             bank_wait = 1
         end
     end
+updateclock()
 until not refreshinterval(0.100)
