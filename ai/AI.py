@@ -1816,7 +1816,7 @@ class AI(object):
             if self.theaction < 0:
                 self.theaction = 0
             if self.theaction > 9:
-                while true:
+                while True:
                     if self._actualAction[str(self.theaction)] not in self.jsonlist['battleState']['history']:
                         break
                     if self.theaction == 10:
@@ -1828,7 +1828,7 @@ class AI(object):
                         break
                     self.theaction = tempx
             if self.theaction < 4:
-                while true:
+                while True:
                     if self._actualAction[str(self.theaction)] not in self.jsonlist['battleState']['history']:
                         break
                     self.theaction = random.randint(0, 4)
@@ -1836,7 +1836,7 @@ class AI(object):
                         self.theaction = 4
                         break
             if self.theaction < 10 and self.theaction > 3:
-                while true:
+                while True:
                     if self._actualAction[str(self.theaction)] not in self.jsonlist['battleState']['history']:
                         break
                     self.theaction = random.randint(4, (len(self.myparty)))
