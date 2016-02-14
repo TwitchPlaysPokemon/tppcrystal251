@@ -7,7 +7,7 @@ DarkCaveVioletEntrance_MapScriptHeader: ; 0x18c68c
 ; 0x18c68e
 
 ItemFragment_0x18c68e: ; 0x18c68e
-	db POTION, 1
+	db ULTRA_BALL, 1
 ; 0x18c690
 
 ItemFragment_0x18c690: ; 0x18c690
