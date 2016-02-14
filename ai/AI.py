@@ -1456,7 +1456,7 @@ class AI(object):
                                 #and healing would allow you to continue fighting
                                 if self.Damage[traincurrent][mycurrent][self.enemynumber]['damage'] / self.hp[bestmonsindex[x1]] < 0.5:
                                     #and im not at full hp
-                                    if self.hp[bestmonsindex[x1]]!= self.jsonlist['battleState']['enemypokemon']['stats']['maxhp']
+                                    if self.hp[bestmonsindex[x1]]!= self.jsonlist['battleState']['enemypokemon']['stats']['maxhp']:
                                         #and the item is a.....
                                         healing_items = {"potion":20,"superpotion":50,"hyperpotion":200,"maxpotion":99999,"fullrestore":99999}
                                         item_name = mondata['myitems'][x2]
