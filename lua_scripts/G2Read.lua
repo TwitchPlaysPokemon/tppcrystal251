@@ -1,3 +1,9 @@
+--G2Read Script v1.02--
+
+dofile("mainscript.lua")
+
+debug_mode = 0
+
 local Title
 local Diploma
 local ID = {}
@@ -489,7 +495,66 @@ end
 
 while true do
 	if emu.framecount() % 30 == 1 then
-		if memory.readdword(0x013C) == 0x54524F42 then --BORT
+    if memory.readbyte(0xFF70) == 1 then
+        bank_wait = 0
+        value = memory.readbyte(0xD849)
+        is_military_on = (value % 2 == 1) -- just in case you need to know the current status
+        newvalue = bit.band(value, 254) + military_mode
+        memory.writebyte(0xD849, newvalue)
+        -- do player state reading here
+        
+        
+        
+        
+        -- player state reading here
+        if memory.readbyte(rLSC) == BEESAFREE_LSC_TRANSFERRING then
+            lua_wait = 0
+            if (AND(memory.readbyte(rLSB), 0x02) ~= 0) then
+                battlestate = readBattlestate(memory.readbyte(rLSB))
+                if debug_mode == 1 then
+                    vba.print("[DEBUG] STATUS: ", string.format("%02x", memory.readbyte(rLSB)))  
+                    vba.print("[DEBUG] BATTLESTATE:", battlestate)
+                end
+                vba.print("Waiting on AI...")
+                airesponse = transferStateToAIAndWait(battlestate)
+                vba.print("AI RESPONSE:", airesponse)
+            else
+                vba.print("No AI request found.")
+            end  
+            if military_mode == 1 and (AND(memory.readbyte(rLSB), 0x01) ~= 0) then
+                vba.print("Waiting on player...")
+                --outplayer = UseRandomMove(BattleMonMoves, BattleMonPP, PlayerDisableCount)
+                playerresponse = get_next_player_command()
+                if debug_mode == 1 then
+                    vba.print("[DEBUG] PLAYER RESPONSE:", playerresponse)
+                end  
+            else
+                if military_mode ~= 1 and debug_mode == 1 then
+                    vba.print("[DEBUG] INFO: Military mode not enabled.")
+                elseif (AND(memory.readbyte(rLSB), 0x01) == 0) and military_mode == 1 then
+                    vba.print("ERROR: Invalid rLSB configuration.")
+                end
+            end
+            byte1, byte2, byte3 = tablestobytes(airesponse, playerresponse)
+            if debug_mode == 1 then
+                vba.print("[DEBUG] BYTES:", byte1, byte2, byte3)
+            end
+            memory.writebyte(0xDFF8, byte1)
+            memory.writebyte(0xDFF9, byte2)
+            memory.writebyte(0xDFFA, byte3)
+            memory.writebyte(rLSC, BEESAFREE_LSC_COMPLETED)
+        else
+                if lua_wait == 0 then
+                    vba.print("Waiting for LUA serial...")
+                    lua_wait = 1
+                end
+        end
+    else
+        if bank_wait == 0 then
+            vba.print("Waiting for valid bank, bank is currently", memory.readbyte(rSVBK))
+            bank_wait = 1
+        end
+		if memory.readdword(0x013C) == 0x54524F42 and memory.readbyte(0xFF70) == 1 then --BORT
 			ReadParty(0xDCD7)
 			ReadSeen(0xDEB9)
 			ReadOwn(0xDE99)
@@ -506,32 +571,27 @@ while true do
 				LastCaptured2 = LastCaptured
 			end
 		end
-
-		print(string.format("Diploma = %d", Diploma))
-
-		print(string.format("Title = %d", Title))
-
-		print(string.format("MapID = %d", MapID))
-
-		for i = 1, 8, 1 do
-			print(string.format("JBadge%d = %d", i, BadgeData1[i]))
-		end
-		for i = 1, 8, 1 do
-			print(string.format("KBadge%d = %d", i, BadgeData2[i]))
-		end
-
-		print(string.format("Seen = %d", Seen))
-
-		print(string.format("Own = %d", Own))
-
-		print(string.format("LastCaptured = %d", LastCaptured))
-
-		print(string.format("Money = %d", Money))
-
-		for i = 1, 6, 1 do
-			print(string.format("PKM%d = %d,  HP = %d, MAXHP = %d, Lvl = %d, Status = %d, Gender = %d", i, ID[i], HP[i], MAXHP[i], Lvl[i], Status[i], Gender[i]))
-			print(string.format("Move1 = %d %d/%d, Move2 = %d %d/%d, Move3 = %d %d/%d, Move4 = %d %d/%d", Move1[i], PP1[i], MAXPP1[i], Move2[i], PP2[i], MAXPP2[i], Move3[i], PP3[i], MAXPP3[i], Move4[i], PP4[i], MAXPP4[i]))
-		end
+        end
+        
+        if debug_mode == 1 then
+            print(string.format("Diploma = %d", Diploma))
+            print(string.format("Title = %d", Title))
+            print(string.format("MapID = %d", MapID))
+            for i = 1, 8, 1 do
+                print(string.format("JBadge%d = %d", i, BadgeData1[i]))
+            end
+            for i = 1, 8, 1 do
+                print(string.format("KBadge%d = %d", i, BadgeData2[i]))
+            end
+            print(string.format("Seen = %d", Seen))
+            print(string.format("Own = %d", Own))
+            print(string.format("LastCaptured = %d", LastCaptured))
+            print(string.format("Money = %d", Money))
+            for i = 1, 6, 1 do
+                print(string.format("PKM%d = %d,  HP = %d, MAXHP = %d, Lvl = %d, Status = %d, Gender = %d", i, ID[i], HP[i], MAXHP[i], Lvl[i], Status[i], Gender[i]))
+                print(string.format("Move1 = %d %d/%d, Move2 = %d %d/%d, Move3 = %d %d/%d, Move4 = %d %d/%d", Move1[i], PP1[i], MAXPP1[i], Move2[i], PP2[i], MAXPP2[i], Move3[i], PP3[i], MAXPP3[i], Move4[i], PP4[i], MAXPP4[i]))
+            end
+        end
 
 		--Gender
 		--0x00 = Male
