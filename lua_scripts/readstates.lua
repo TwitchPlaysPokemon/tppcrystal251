@@ -33,6 +33,8 @@ function getMove(movePointer, ppPointer)
 	tempPP = memory.readbyte(ppPointer)
 	move["curpp"] = AND(tempPP, 0x3f)
 	move["ppUp"] = (AND(tempPP, 0xc0)) / 0x40
+    --vba.print(move_idx)
+    --vba.print("MOVE ID:", string.format("%02x", PPVal[move_idx]))
 	move["maxpp"] = PPVal[move_idx] * (move["ppUp"] + 5) / 5
 	return move
 end
@@ -40,7 +42,9 @@ end
 function getMoves(movePointer, ppPointer)
 	local moves = {}
 	for i = 0, 3 do
+        vba.print("Pointers:", string.format("%02x", movePointer), string.format("%02x", ppPointer))
 		table.insert(moves, getMove(movePointer + i, ppPointer + i))
+        vba.print(moves)
 	end
 	return moves
 end
@@ -103,6 +107,7 @@ function getDVs(pointer)
 end
 
 function getMonBattleState(pointer)
+    vba.print("POINTER:", string.format("%02x", pointer))
 	-- init
 	local mon = {}
 	local stats = {}
@@ -111,6 +116,7 @@ function getMonBattleState(pointer)
 	if species_idx == 0 then return end
 	mon["species"] = speciesTable[species_idx]
 	mon["item"] = itemTable[memory.readbyte(pointer + 1) + 1]
+    --vba.print(1)
 	mon["moves"] = getMoves(pointer + 2, pointer + 8)
 	mon["dvs"] = getDVs(pointer + 6)
 	mon["happiness"] = memory.readbyte(pointer + 12)
@@ -236,6 +242,7 @@ function getStatLevels(pointer)
 end
 
 function getPlayerPokemonData()
+    vba.print(BattleMonSpecies)
 	playerMon = getMonBattleState(BattleMonSpecies)
 	if playerMon == nil then return end
 	playerMon["subStatus"] = getSubstatus(PlayerSubStatus1, PlayerRolloutCount, PlayerSubstituteHP, LastPlayerMove, PlayerDisableCount)
@@ -261,6 +268,7 @@ function getPlayerPokemonData()
 end
 
 function getEnemyPokemonData()
+    vba.print(EnemyMonSpecies)
 	enemyMon = getMonBattleState(EnemyMonSpecies)
 	if enemyMon == nil then return end
 	enemyMon["subStatus"] = getSubstatus(EnemySubStatus1, EnemyRolloutCount, EnemySubstituteHP, LastEnemyMove, EnemyDisableCount)
@@ -301,7 +309,8 @@ function readPartyStruct(struct_addr)
 	species_idx = memory.readbyte(mon_pointer + 0)
 	curr_mon["species"] = speciesTable[species_idx]
 	curr_mon["item"] = itemTable[memory.readbyte(mon_pointer + 1) + 1]
-	curr_mon["moves"] = getMoves(mon_pointer + 2, mon_pointer + 23)
+    --vba.print(1)
+	curr_mon["moves"] = getMoves(mon_pointer + 2, mon_pointer + 23) --what?
 	curr_mon["id"] = getBigDW(mon_pointer + 6)
 	curr_mon["exp"] = memory.readbyte(mon_pointer + 8) * 0x10000 + memory.readbyte(mon_pointer + 9) * 0x100 + memory.readbyte(mon_pointer + 10)
 	local statexp = {}
@@ -344,6 +353,7 @@ end
 
 function getTrainerParty(partycount_addr)
 	local trainerParty = {}
+    vba.print(string.format("%02x", partycount_addr))
 	trainerParty["length"] = memory.readbyte(partycount_addr)
 	local mons = {}
 	local party = {}
@@ -400,10 +410,9 @@ function readBattlestate(req) --read this ONLY when LUA Serial is called
 	battleState["requested action"] = req
 	battlemode = memory.readbyte(wBattleMode)
 	svbk = memory.readbyte(rSVBK)
-
 	if svbk == 1 then
 		local output_table = {}
-		playerParty = getTrainerParty(0xdcd7)
+		playerParty = getTrainerParty(0xDCD7)
 		--vba.print("Player Party:")
 		--vba.print(playerParty)
 		pack = readPlayerPack()
@@ -454,7 +463,8 @@ function readPlayerstate() --loop read this for the overlay
 	local output_table = {}
 	-- vba.print("WRAM bank: ", svbk)
 	if svbk == 1 then
-		playerParty = getTrainerParty(PartyCount)
+        vba.print(string.format("%02x", PlaPartyCount))
+		playerParty = getTrainerParty(PlaPartyCount)
 		-- vba.print("Player Party:")
 		-- vba.print(playerParty)
 		pack = readPlayerPack()
