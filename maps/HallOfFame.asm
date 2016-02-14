@@ -20,7 +20,7 @@ UnknownScript_0x181453: ; 0x181453
 ; 0x181454
 
 UnknownScript_0x181454: ; 0x181454
-	disappear $3
+	;disappear $3
 	follow $2, $0
 	applymovement $2, MovementData_0x181499
 	stopfollow
