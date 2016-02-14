@@ -513,9 +513,12 @@ class AI(object):
         if move_used_effect == 'jumpkick':
             self.Damage[attacker][defender][moveused]['selfdamage'] = temp2 / 2
         if move_used_effect == 'explosion':
-            self.Damage[attacker][defender][moveused]['selfdamage'] = 100000
+            self.Damage[attacker][defender][moveused]['selfdamage'] = mondata[attacker]['stats']['curhp'] + 3
         if move_used_effect == 'dreameater':
             self.Damage[attacker][defender][moveused]['selfdamage'] = temp2 / -2
+        if move_used_effect == 'explosion':
+            if temp2 > mondata[defender]['stats']['curhp']:
+                temp2 = mondata[attacker]['stats']['curhp'] + 3
         self.Damage[attacker][defender][moveused]['damage'] = temp2
         return 1
 
