@@ -196,7 +196,7 @@ _BillsHouseText_1e8cb:
 	text "That cruise ship,"
 	line "S.S.ANNE, is in"
 	cont "VERMILION CITY."
-	cont "Its passenger's"
+	cont "Its passengers"
 	cont "are all trainers!"
 
 	para "They invited me"

@@ -402,14 +402,13 @@ TextBranchFirstMisty
 	done
 
 TextBranchSecondMisty:
-	text "Oh you already"
+	text "Oh, you already"
 	line "won and had your"
 	cont "badge stolen?"
 
 	para "Too bad! Pests"
 	line "have to work"
-	cont "for their"
-	cont "badges!"
+	cont "for their badges!"
 
 	done
 
