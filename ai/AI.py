@@ -372,22 +372,6 @@ class AI(object):
                 temp2 = temp2 * 2
             if 'rollout' in mondata[temptext2]['substatus'] or (isinstance(mondata[temptext2]['substatus'], dict) and 'rollout' in mondata[temptext2]['substatus'].values()):
                 temp2 = temp2 * (2 ^ (mondata[temptext2]['substatus']['rollout']))
-                
-        #special considerations for the ai's pokemon only
-        if attacker < 6:
-            if (move_used_effect == 'thief') and (mondata[defender]['item'] != 'noitem') and (mondata[attacker]['item'] == 'noitem'):
-                temp2 = temp2 * 2
-                mondata[attacker]['item'] = mondata[defender]['item']
-                mondata[defender]['item'] = 'noitem'
-            if (move_used_effect == 'pursuit'):
-                if temp2 * 2 > mondata[defender]['stats']['curhp']:
-                    temp2 = temp2 * 2
-            if move_used['name'] == 'destinybond':
-                temp2 = mondata[defender]['stats']['curhp'] * (mondata[attacker]['stats']['curhp'] / mondata[attacker]['stats']['hp'])
-            if (move_used_effect == 'recoilhit'):
-                self.Damage[attacker][defender][moveused]['selfdamage'] = temp2 * 0.25
-            if (move_used_effect == 'leechhit'):
-                self.Damage[attacker][defender][moveused]['selfdamage'] = temp2 * -0.5
 
         if Debug_Code == 1 and attacker < 6:
             print('Damage before accuracy and after special cases '+str(temp2))
@@ -504,7 +488,23 @@ class AI(object):
             critmodifier = critmodifier + 2
         temp2 = (temp2 * ( 1 - self._critmultipliers[critmodifier])) + (temp2 * 1.5 * self._critmultipliers[critmodifier])
         temp2 = (temp2 * ( 1 - self._critmultipliers[critmodifier])) + (temp2 * 1.5 * self._critmultipliers[critmodifier])
-
+                
+        #special considerations for the ai's pokemon only
+        if attacker < 6:
+            if (move_used_effect == 'thief') and (mondata[defender]['item'] != 'noitem') and (mondata[attacker]['item'] == 'noitem'):
+                temp2 = temp2 * 2
+                mondata[attacker]['item'] = mondata[defender]['item']
+                mondata[defender]['item'] = 'noitem'
+            if (move_used_effect == 'pursuit'):
+                if temp2 * 2 > mondata[defender]['stats']['curhp']:
+                    temp2 = temp2 * 2
+            if move_used['name'] == 'destinybond':
+                temp2 = mondata[defender]['stats']['curhp'] * (mondata[attacker]['stats']['curhp'] / mondata[attacker]['stats']['hp'])
+            if (move_used_effect == 'recoilhit'):
+                self.Damage[attacker][defender][moveused]['selfdamage'] = temp2 * 0.25
+            if (move_used_effect == 'leechhit'):
+                self.Damage[attacker][defender][moveused]['selfdamage'] = temp2 * -0.5
+                
         if Debug_Code == 1 and attacker < 6:
             print('Damage after crit'+str(temp2))
         if effmulti < 0.125:
@@ -1556,14 +1556,15 @@ class AI(object):
         mondata[mycurrent]['boosts'] = {}
         mondata[traincurrent]['boosts'] = {}
         for stat in self.statNames:
-                mondata[mycurrent]['boosts'][stat] = int(self.jsonlist['battleState']['enemypokemon']['stat levels'][stat])
-                mondata[traincurrent]['boosts'][stat] = int(self.jsonlist['battleState']['playerpokemon']['stat levels'][stat])
+            mondata[mycurrent]['boosts'][stat] = int(self.jsonlist['battleState']['enemypokemon']['stat levels'][stat])
+            mondata[traincurrent]['boosts'][stat] = int(self.jsonlist['battleState']['playerpokemon']['stat levels'][stat])
         for tempmove in range (0, len(self.jsonlist['battleState']['enemypokemon']['moves'])):
+            effmulti = self.getEff(mondata[mycurrent]['moves'][tempmove]['type'].lower(), mondata[traincurrent]['type'][1].lower(), 'playerpokemon') * self.getEff(mondata[mycurrent]['moves'][tempmove]['type'].lower(), mondata[traincurrent]['type'][2].lower(), 'playerpokemon')
             self.DamageDealt(mondata, mycurrent, traincurrent, tempmove)
             if self.Damage[mycurrent][traincurrent][tempmove]['damage'] / mondata[traincurrent]['stats']['curhp'] > 0.5:
                 movepriority[tempmove] = 0
                 continue
-            if mondata[traincurrent]['status'] == 'none':
+            if mondata[traincurrent]['status'] == 'none' and effmulti > 0:
                 if mondata[mycurrent]['moves'][tempmove]['effect'] == 'toxic' and ((mondata[traincurrent]['type'][1] not in ('poison', 'steel')) and (mondata[traincurrent]['type'][2] not in ('poison', 'steel'))):
                     movepriority[tempmove] = 1
                     continue
