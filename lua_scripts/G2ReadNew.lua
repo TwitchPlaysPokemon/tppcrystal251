@@ -637,17 +637,6 @@ while true do
 		--0x10 = Burned
 		--0x20 = Frozen
 		--0x40 = Paralyzed
-	b, c, h = http.request("http://127.0.0.1:5000/gbmode_inputs/")
-	-- vba.print(b, c, h)
-	if c == 200 then
-		local json = JSON:decode(b)
-		-- vba.print(json)
-		if json["military_toggle"] ~= nil then
-			military_mode = 1 - military_mode
-			json["military_toggle"] = nil
-		end
-		joypad.set(1, json)
-	end
-	emu.frameadvance()
+	ReceiveButtonInput()
 	-- vba.print(joypad.get(1))
 end
