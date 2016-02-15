@@ -23,7 +23,7 @@ CeruleanCityRivalBattleLeftTrigger:
 
 CeruleanCityRivalBattleRightTrigger:
 	disappear $2
-	moveperson $2, 21, 3
+	moveperson $2, 21, 2
 	appear $2
 	scall CeruleanCityRivalBattle
 	spriteface $0, LEFT
@@ -680,8 +680,8 @@ CeruleanCityRB_MapEventHeader: ; 0x18445d
 
 	; xy triggers
 	db 2
-	xy_trigger 0,  8, 20, $0, CeruleanCityRivalBattleLeftTrigger, 0, 0
-	xy_trigger 0,  8, 21, $0, CeruleanCityRivalBattleRightTrigger, 0, 0
+	xy_trigger 0,  7, 20, $0, CeruleanCityRivalBattleLeftTrigger, 0, 0
+	xy_trigger 0,  7, 21, $0, CeruleanCityRivalBattleRightTrigger, 0, 0
 
 	; signposts
 	db 9
@@ -697,7 +697,7 @@ CeruleanCityRB_MapEventHeader: ; 0x18445d
 
 	; people-events
 	db 13
-	person_event SPRITE_EGK_RIVAL,  7, 24, $0, 0, 0, -1, -1, 0, 0, 0, ObjectEvent, EVENT_BEAT_RIVAL_IN_EGK_CERULEAN
+	person_event SPRITE_EGK_RIVAL,  6, 24, $0, 0, 0, -1, -1, 0, 0, 0, ObjectEvent, EVENT_BEAT_RIVAL_IN_EGK_CERULEAN
 	person_event SPRITE_SUPER_NERD, 24, 35, $6, 0, 0, -1, -1, 0, 0, 0, CeruleanCityRBSuperNerdScript, -1
 	person_event SPRITE_COOLTRAINER_M, 22, 19, $2, 1, 1, -1, -1, 0, 0, 0, CeruleanCityRBCooltrainerM1Script, -1
 	person_event SPRITE_COOLTRAINER_M, 25, 13, $4, 2, 0, -1, -1, 0, 0, 0, CeruleanCityRBCooltrainerM2Script, -1
