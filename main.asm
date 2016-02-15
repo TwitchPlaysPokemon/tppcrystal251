@@ -1876,6 +1876,8 @@ Function65d3: ; 65d3
 	ld [wcfa6], a
 	ld a, $20
 	ld [wcfa7], a
+
+; If we wanted to use Military to forget a move, we'd do it here.
 	call Function1bc9
 	push af
 	call Function30b4

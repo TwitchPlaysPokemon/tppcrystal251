@@ -1812,7 +1812,7 @@ class AI(object):
         
         #invalid action handling
         if (int(self.jsonlist['battleState']['requested action']) & 0x04):
-            Print('INVALID ACTION! Contact Beesafree with the logs')
+            print('INVALID ACTION! Contact Beesafree with the logs')
             if self.theaction > 11:
                 self.theaction = 0
             if self.theaction < 0:
