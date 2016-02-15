@@ -1,4 +1,4 @@
-# TPP Crystal 251 AI v1.1 by Beesafree
+# TPP Crystal 251 AI v1.00 by Beesafree
 
 from __future__ import division
 import math
@@ -411,6 +411,10 @@ class AI(object):
             accmodifier = accmodifier * 0.75
         if move_used_effect in ('hyperbeam', 'skyattack', 'solarbeam', 'fly') and mondata[attacker]['status'] == 'par':
             accmodifier = accmodifier * 0.75
+        if move_used_effect in ('hyperbeam', 'skyattack', 'solarbeam', 'fly') and ('confused' in mondata[temptext2]['substatus'] or (isinstance(mondata[temptext2]['substatus'], dict) and 'confused' in mondata[temptext2]['substatus'].values())):
+            accmodifier = accmodifier * 0.5
+        if move_used_effect in ('hyperbeam', 'skyattack', 'solarbeam', 'fly') and ('attract' in mondata[temptext2]['substatus'] or (isinstance(mondata[temptext2]['substatus'], dict) and 'attract' in mondata[temptext2]['substatus'].values())):
+            accmodifier = accmodifier * 0.5
         if 'confused' in mondata[temptext2]['substatus'] or (isinstance(mondata[temptext2]['substatus'], dict) and 'confused' in mondata[temptext2]['substatus'].values()):
             accmodifier = accmodifier * 0.5
             if temptext2 == 'playerpokemon':
@@ -1459,7 +1463,8 @@ class AI(object):
                     self.triggered = 1
                     if mymons == self.jsonlist['battleState']['enemypokemon']['party idx']:
                         self.triggered = 0
-                    self.Fight(mondata, trainmons, mymons, 4)
+                    if mondata[mymons]['stats']['curhp'] > 0:
+                        self.Fight(mondata, trainmons, mymons, 4)
             battlerating = {}
             for mymons in range(0, self.myparty):
                 tempx = 0
@@ -1476,8 +1481,12 @@ class AI(object):
                         tempx = mymons
                 bestmonsindex[x1] = tempx
                 battlerating[tempx] = 0
-
+            
             mycurrent = self.jsonlist['battleState']['enemypokemon']['party idx']
+            if self.theaction < 4:
+                temp1 = self.jsonlist['battleState']['enemypokemon']['party idx']
+            if self.theaction > 3:
+                temp1 = self.theaction - 4
             traincurrent = self.jsonlist['battleState']['playerpokemon']['party idx']+6
             self.TrainerDamage(mondata, traincurrent, mycurrent)
             self.triggered = 0
@@ -1490,9 +1499,9 @@ class AI(object):
                             self.useitem = x2
                             if mondata['myitems'][x2] in ['xspeed', 'xattack', 'xdefense', 'xspecial', 'direhit']:
                                 self.Fight(mondata, traincurrent, mycurrent, 5)
-                            if self.differenceitems[mymons][self.useitem] > self.difference[mycurrent][traincurrent]:
+                            if self.differenceitems[mymons][self.useitem] > self.difference[temp1][traincurrent]:
                                 tempaction = x2 + 9
-                                self.difference[mycurrent][traincurrent] = self.differenceitems[mymons][self.useitem]
+                                self.difference[temp1][traincurrent] = self.differenceitems[mymons][self.useitem]
                                 return(tempaction)
 
                             #and you are about to die
@@ -1540,7 +1549,9 @@ class AI(object):
                     self.mybestmove[mycurrent][traincurrent] = -10
             if self.difference[self.jsonlist['battleState']['enemypokemon']['party idx']][traincurrent] < 0:
                 self.difference[self.jsonlist['battleState']['enemypokemon']['party idx']][traincurrent] = 0
-            tempy = self.difference[self.jsonlist['battleState']['enemypokemon']['party idx']][traincurrent] + 1.5
+            mycurrent = self.jsonlist['battleState']['enemypokemon']['party idx']
+            tempy = self.difference[mycurrent][traincurrent] + 1.5 + (0.25 * (mondata[mycurrent]['boosts']['atk'] + mondata[mycurrent]['boosts']['def'] + mondata[mycurrent]['boosts']['satk'] + mondata[mycurrent]['boosts']['sdef'] + mondata[mycurrent]['boosts']['spd'] + mondata[mycurrent]['boosts']['eva'] + mondata[mycurrent]['boosts']['acc']))
+           
             for tempx in range (0, self.myparty):
                 if self.difference[tempx][traincurrent] > tempy:
                     tempy = self.difference[tempx][traincurrent]
