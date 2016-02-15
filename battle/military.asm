@@ -39,7 +39,7 @@ ParseExternalAI:
 	cp $a
 	jr c, .Switch
 	cp $f
-	jr z, .Flee
+	jp z, .Flee
 	cp $d
 	jr nc, .UseItem
 	jp .Invalid
@@ -86,6 +86,9 @@ ParseExternalAI:
 	ld a, [OTPartyCount]
 	cp b
 	jr c, .Invalid
+	ld a, [CurOTMon]
+	cp b
+	jr z, .Invalid
 
 	ld a, [PlayerSubStatus5]
 	bit SUBSTATUS_CANT_RUN, a
