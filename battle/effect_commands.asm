@@ -10948,7 +10948,10 @@ BattleCommand_Growth:
 	call BattleCommand0c
 	call BattleCommand70
 	call BattleCommand8c
+	ld a, 0
+	ld [FailedMessage], a
 	call BattleCommand73
+	call BattleCommand8c
 	ld a, 0
 	ld [FailedMessage], a
 	ret
@@ -10958,7 +10961,10 @@ BattleCommand_Growth:
 	call BattleCommand0c
 	call BattleCommand77
 	call BattleCommand8c
+	ld a, 0
+	ld [FailedMessage], a
 	call BattleCommand7a
+	call BattleCommand8c
 	ld a, 0
 	ld [FailedMessage], a
 	ret
