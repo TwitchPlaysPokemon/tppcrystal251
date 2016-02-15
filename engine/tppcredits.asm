@@ -1454,18 +1454,92 @@ TPPCreditsBG1Pals:
 	RGB 00, 00, 00
 
 TPPCreditsBG2List:
-	; TODO
-	dw TPPCreditsBG1
-	dw TPPCreditsBG1Attrs
-	dw TPPCreditsBG1Tiles
-	dw TPPCreditsBG1Pals
+	dw TPPCreditsBG2
+	dw TPPCreditsBG2Attrs
+	dw TPPCreditsBG2Tiles
+	dw TPPCreditsBG2Pals
 	dw TPPCreditsSpr2
 	db 1  ; scroll speed
 	db 15 ; sprite speed
 	db 37 ; strip initial pos
 	db 3  ; strip speed
-TPPCreditsBG2: ; TODO
+	
+TPPCreditsBG2: INCBIN "gfx/credits/bg2.w128.2bpp.lz"
 TPPCreditsSpr2: INCBIN "gfx/credits/spr2.w32.2bpp.lz"
+
+TPPCreditsBG2Tiles:
+	db $7f, $81, $5f, $42, $01, $82, $69, $80, $01, $82, $65, $80
+	db $01, $82, $69, $80, $01, $82, $65, $80, $01, $85, $64, $80
+	db $01, $83, $63, $80, $a2, $86, $64, $80, $a2, $84, $64, $80
+	db $01, $83, $63, $80, $a2, $86, $64, $80, $03, $86, $91, $92
+	db $62, $80, $a2, $88, $62, $80, $a5, $8a, $01, $80, $a4, $8f
+	db $62, $80, $a2, $88, $62, $80, $a5, $8a, $01, $80, $a2, $8f
+	db $b0, $93, $b0, $93, $a9, $a3, $62, $a3, $a4, $ac, $62, $a3
+	db $a8, $a4, $62, $a3, $a4, $ac, $63, $a3, $a3, $b0, $01, $a8
+	db $a3, $b3, $63, $a3, $a3, $b6, $63, $a3, $a3, $b0, $01, $a8
+	db $a3, $b3, $63, $a3, $a3, $b6, $63, $a3, $a2, $b9, $62, $a8
+	db $a3, $bb, $63, $a3, $a2, $be, $64, $a3, $a2, $b9, $62, $a8
+	db $a3, $bb, $63, $a3, $a2, $be, $62, $a3, $ff
+	
+TPPCreditsBG2Attrs:
+	db $7f, $0a, $82, $5e, $82, $5f, $44, $62, $0d, $6e, $0c
+	db $62, $0d, $6a, $0c, $64, $0e, $62, $0d, $6a, $0c, $64, $0e
+	db $62, $0d, $6e, $0c, $63, $0d, $6d, $0c, $63, $0d, $6a, $0c
+	db $62, $0e, $64, $0d, $6a, $0c, $62, $0e, $64, $0d, $69, $0c
+	db $01, $0f, $62, $0e, $63, $0f, $62, $0d, $65, $0f, $62, $0c
+	db $62, $0f, $62, $0e, $63, $0f, $62, $0d, $65, $0f, $62, $0c
+	db $63, $0f, $01, $0c, $6f, $0d, $01, $0c, $6e, $0f, $5f, $ff
+
+TPPCreditsBG2Pals:
+	RGB 03, 12, 06
+	RGB 03, 12, 06
+	RGB 03, 12, 06
+	RGB 31, 31, 31
+	
+	RGB 25, 15, 19
+	RGB 00, 00, 00
+	RGB 00, 00, 00
+	RGB 06, 15, 23
+	
+	RGB 13, 25, 29
+	RGB 13, 26, 29
+	RGB 14, 26, 29
+	RGB 15, 26, 28
+
+	RGB 16, 26, 28
+	RGB 16, 27, 28
+	RGB 17, 27, 28
+	RGB 17, 28, 27
+
+	RGB 18, 28, 27
+	RGB 14, 19, 15
+	RGB 11, 16, 11
+	RGB 18, 25, 09
+	
+	RGB 18, 28, 27
+	RGB 14, 19, 15
+	RGB 18, 25, 09
+	RGB 11, 18, 06
+	
+	RGB 18, 28, 27
+	RGB 14, 19, 15
+	RGB 11, 16, 11
+	RGB 11, 18, 06
+
+	RGB 14, 19, 15
+	RGB 11, 16, 11
+	RGB 18, 25, 09
+	RGB 11, 18, 06
+	
+	RGB 31, 31, 31
+	RGB 31, 31, 31
+	RGB 23, 07, 02
+	RGB 06, 02, 00
+
+	RGB 31, 31, 31
+	RGB 31, 09, 04
+	RGB 14, 05, 01
+	RGB 00, 00, 00
 
 TPPCreditsBG3List:
 	dw TPPCreditsBG3
