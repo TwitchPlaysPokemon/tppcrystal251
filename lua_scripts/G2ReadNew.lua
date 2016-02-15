@@ -139,6 +139,7 @@ function ReadParty(offset)
 		MAXPP4[i] = 0
 		Status[i] = 0
 		Gender[i] = 0
+		Nickname[i] = ""
 	end
 
 	PartyCount = memory.readbyte(offset)
@@ -223,6 +224,7 @@ function ReadParty(offset)
 			else
 				Gender[CurrentPokemon] = 0
 			end
+			Nickname[CurrentPokemon] = parseString(offset + 0x08 + (0x30 * 6) + (0x0b * (CurrentPokemon - 1)), 0x0b)
 		end
 	end
 end
@@ -568,6 +570,7 @@ function read_new_playerstate()
 		json["pokemon"][i]["move_2"]["maxpp"] = MAXPP2[i]
 		json["pokemon"][i]["move_3"]["maxpp"] = MAXPP3[i]
 		json["pokemon"][i]["move_4"]["maxpp"] = MAXPP4[i]
+		json["pokemon"][i]["nickname"] = Nickname[i]
 	end
 	return json
 end
