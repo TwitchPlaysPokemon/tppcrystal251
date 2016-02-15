@@ -77,6 +77,7 @@ function UseRandomMove(MovesPointer, PPPointer, DisabledMovePointer)
 end
 
 function transferStateToAIAndWait(raw_json)
+	next_move = nil
 	-- 1st: Invoke the ai with JSON data.
 	-- request-body must be a string, therefore encode
 	http.request("http://127.0.0.1:5001/ai_invoke/", JSON:encode(raw_json))
@@ -98,6 +99,7 @@ function transferStateToAIAndWait(raw_json)
 end
 
 function get_next_player_command()
+	player_next_move = nil
 	repeat
 		player_next_move = http.request("http://127.0.0.1:5000/gbmode_inputs_ai/")
 		if (player_next_move == nil or player_next_move == "") then
@@ -112,20 +114,23 @@ end
 
 function requestBothAIAndMilitary(raw_json)
 	http.request("http://127.0.0.1:5001/ai_invoke/", JSON:encode(raw_json))
+	next_move = nil
+	player_next_move = nil
 	repeat
 		-- If we already got the move, don't try to request it again.
-		if (next_move == nil or next_move == "") then
+		if ((next_move == nil) or (next_move == "")) then
 			next_move = http.request("http://127.0.0.1:5001/ai_retrieve/")
 		end
-		if (player_next_move == nil or player_next_move == "") then
+		if ((player_next_move == nil) or (player_next_move == "")) then
 			player_next_move = http.request("http://127.0.0.1:5000/gbmode_inputs_ai/")
 		end
-		if (player_next_move == nil or player_next_move == "" or next_move == nil or next_move == "") then
+		if ((player_next_move) == nil or (player_next_move == "") or (next_move == nil) or (next_move == "")) then
 			for frame = 1, 15 do
 				emu.frameadvance()
 			end
 		end
-	until (player_next_move ~= nil and player_next_move ~= "" and next_move ~= nil and next_move ~= "")
+	until ((player_next_move ~= nil) and (player_next_move ~= "") and (next_move ~= nil) and (next_move ~= ""))
+	vba.print("Enemy response:", next_move)
 	vba.print("Player response:", player_next_move)
 	return next_move, player_next_move
 end
