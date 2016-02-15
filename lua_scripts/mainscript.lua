@@ -99,7 +99,7 @@ end
 
 function get_next_player_command()
 	repeat
-		player_next_move = http.request("http://localhost:5000/gbmode_inputs_ai/")
+		player_next_move = http.request("http://127.0.0.1:5000/gbmode_inputs_ai/")
 		if (player_next_move == nil or player_next_move == "") then
 			for frame = 1, 15 do
 				emu.frameadvance()
@@ -118,14 +118,14 @@ function requestBothAIAndMilitary(raw_json)
 			next_move = http.request("http://127.0.0.1:5001/ai_retrieve/")
 		end
 		if (player_next_move == nil or player_next_move == "") then
-			player_next_move = http.request("http://localhost:5000/gbmode_inputs_ai/")
+			player_next_move = http.request("http://127.0.0.1:5000/gbmode_inputs_ai/")
 		end
-		if (player_next_move == nil or player_next_move == "") or (next_move == nil or next_move == "") then
+		if (player_next_move == nil or player_next_move == "" or next_move == nil or next_move == "") then
 			for frame = 1, 15 do
 				emu.frameadvance()
 			end
 		end
-	until (player_next_move ~= nil and player_next_move ~= "") and (next_move ~= nil and next_move ~= "")
+	until (player_next_move ~= nil and player_next_move ~= "" and next_move ~= nil and next_move ~= "")
 	vba.print("Player response:", player_next_move)
 	return next_move, player_next_move
 end
@@ -164,8 +164,8 @@ function GetCommandTables()
 			vba.print("[DEBUG] BATTLESTATE:", battlestate)
 		end
 		vba.print("Waiting on player and AI...")
-		playerresponse = requestBothAIAndMilitary(battlestate)
-		vba.print("[DEBUG] PLAYER RESPONSE:", playerresponse)
+		airesponse, playerresponse = requestBothAIAndMilitary(battlestate)
+		vba.print("AI RESPONSE:", airesponse)
 	end
 	return airesponse, playerresponse
 end
@@ -271,7 +271,6 @@ function tablestobytes(airesponse, playertable)
 	return byte1, byte2, byte3
 end
 
--- <<<<<<< HEAD
 function MilitaryCommandToBytes(S)
 	byte1, byte2, byte3 = 0, 0, 0
 	if string.find(S, "move%d") then
@@ -292,61 +291,60 @@ function MilitaryCommandToBytes(S)
 		byte1 = 15
 	end
 	return byte1, byte2, byte3
--- =======
 end
-function command_to_table(playercommand)
-table_to_return = {}
-table_to_return["command"] = 0
-table_to_return["item"] = 0
-table_to_return["poke"] = 0
-table_to_return["move"] = 0
 
-if playercommand == "move1" then
-    table_to_return["command"] = "move1"
-elseif playercommand == "move2" then
-    table_to_return["command"] = "move2"
-elseif playercommand == "move3" then
-    table_to_return["command"] = "move3"
-elseif playercommand == "move4" then
-    table_to_return["command"] = "move4"
-elseif playercommand == "switch1" then
-    table_to_return["command"] = "switch1"
-elseif playercommand == "switch2" then
-    table_to_return["command"] = "switch2"
-elseif playercommand == "switch3" then
-    table_to_return["command"] = "switch3"
-elseif playercommand == "switch4" then
-    table_to_return["command"] = "switch4"
-elseif playercommand == "switch5" then
-    table_to_return["command"] = "switch5"
-elseif playercommand == "switch6" then
-    table_to_return["command"] = "switch6"
-elseif playercommand == "run" then
-    table_to_return["command"] = "run"
-else
-    a, b, c = string.match(playercommand, "item(%d+)p(%d)m(%d)")
-    if a ~= nil then
-        table_to_return["command"] = "item"
-        table_to_return["item"] = a
-        table_to_return["poke"] = b
-        table_to_return["move"] = c
-        return table_to_return
-    end
-    a, b = string.match(playercommand, "item(%d+)p(%d)")
-    if a ~= nil then
-        table_to_return["command"] = "item"
-        table_to_return["item"] = a
-        table_to_return["poke"] = b
-        return table_to_return
-    end
-    a = string.match(playercommand, "item(%d+)")
-    if a ~= nil then
-        table_to_return["command"] = "item"
-        table_to_return["item"] = a
-        return table_to_return
-    end
-    vba.print("Something went wrong. Here's the response I got:", playercommand)
-end
-return table_to_return
--- >>>>>>> fe9edd858d12bfbb7930c173a8b105b279114b51
+function command_to_table(playercommand)
+	table_to_return = {}
+	table_to_return["command"] = 0
+	table_to_return["item"] = 0
+	table_to_return["poke"] = 0
+	table_to_return["move"] = 0
+
+	if playercommand == "move1" then
+		table_to_return["command"] = "move1"
+	elseif playercommand == "move2" then
+		table_to_return["command"] = "move2"
+	elseif playercommand == "move3" then
+		table_to_return["command"] = "move3"
+	elseif playercommand == "move4" then
+		table_to_return["command"] = "move4"
+	elseif playercommand == "switch1" then
+		table_to_return["command"] = "switch1"
+	elseif playercommand == "switch2" then
+		table_to_return["command"] = "switch2"
+	elseif playercommand == "switch3" then
+		table_to_return["command"] = "switch3"
+	elseif playercommand == "switch4" then
+		table_to_return["command"] = "switch4"
+	elseif playercommand == "switch5" then
+		table_to_return["command"] = "switch5"
+	elseif playercommand == "switch6" then
+		table_to_return["command"] = "switch6"
+	elseif playercommand == "run" then
+		table_to_return["command"] = "run"
+	else
+		a, b, c = string.match(playercommand, "item(%d+)p(%d)m(%d)")
+		if a ~= nil then
+			table_to_return["command"] = "item"
+			table_to_return["item"] = a
+			table_to_return["poke"] = b
+			table_to_return["move"] = c
+			return table_to_return
+		end
+		a, b = string.match(playercommand, "item(%d+)p(%d)")
+		if a ~= nil then
+			table_to_return["command"] = "item"
+			table_to_return["item"] = a
+			table_to_return["poke"] = b
+			return table_to_return
+		end
+		a = string.match(playercommand, "item(%d+)")
+		if a ~= nil then
+			table_to_return["command"] = "item"
+			table_to_return["item"] = a
+			return table_to_return
+		end
+		vba.print("Something went wrong. Here's the response I got:", playercommand)
+	end
+	return table_to_return
 end
