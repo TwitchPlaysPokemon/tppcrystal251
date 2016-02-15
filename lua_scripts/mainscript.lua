@@ -37,17 +37,17 @@ lua_wait = 0
 bank_wait = 0
 debug_mode = 0 --print EVERYTHING aside from basic info if 1, none if 0
 
-function refreshinterval(seconds)
-	-- Revo's function (liar, it's Timmy's function)
-	local lastupdate = os.time()
-	local now
-	repeat
-		now = os.time()
-		emu.frameadvance()
-	until now - lastupdate >= seconds
-	lastupdate = now
-	return true
-end
+-- function refreshinterval(seconds)
+	-- -- Revo's function (liar, it's Timmy's function)
+	-- local lastupdate = os.time()
+	-- local now
+	-- repeat
+		-- now = os.time()
+		-- emu.frameadvance()
+	-- until now - lastupdate >= seconds
+	-- lastupdate = now
+	-- return true
+-- end
 
 function GetUsableMoves(MovesPointer, PPPointer, DisabledMovePointer)
 	disabledMove = memory.readbyte(DisabledMovePointer)
