@@ -1,5 +1,5 @@
 dofile("mainscript.lua")
-dofile("readstates.lua")
+-- dofile("readstates.lua")
 
 local Title
 local Diploma
@@ -497,102 +497,79 @@ JSON = (loadfile "JSON.lua")()
 
 function read_new_playerstate()
     if memory.readdword(0x013C) == 0x41444C47 or memory.readdword(0x013C) == 0x41564C53 then --GS
-			ReadParty(0xDA22)
-			ReadSeen(0xDC04)
-			ReadOwn(0xDBE4)
-			CheckDex(0xDBE4)
-			ReadMoney(0xD573)
-			ReadBadge1(0xD57C)
-			ReadBadge2(0xD57D)
-			ReadTitle(0xC3C9)
-			ReadDiploma(0x9902)
-			MapID = (memory.readbyte(0xDA00) * 256) + memory.readbyte(0xDA01)
+		ReadParty(0xDA22)
+		ReadSeen(0xDC04)
+		ReadOwn(0xDBE4)
+		CheckDex(0xDBE4)
+		ReadMoney(0xD573)
+		ReadBadge1(0xD57C)
+		ReadBadge2(0xD57D)
+		ReadTitle(0xC3C9)
+		ReadDiploma(0x9902)
+		MapID = (memory.readbyte(0xDA00) * 256) + memory.readbyte(0xDA01)
 
-			if LastCaptured ~= LastCaptured2 then
-				on_pokemon_capture(LastCaptured)
-				LastCaptured2 = LastCaptured
-			end
-		elseif memory.readdword(0x013C) == 0x42004C41 then --C
-			ReadParty(0xDCD7)
-			ReadSeen(0xDEB9)
-			ReadOwn(0xDE99)
-			CheckDex(0xDE99)
-			ReadMoney(0xD84E)
-			ReadBadge1(0xD857)
-			ReadBadge2(0xD858)
-			ReadTitle(0xC3C9)
-			ReadDiploma(0x9902)
-			MapID = (memory.readbyte(0xDCB5) * 256) + memory.readbyte(0xDCB6)
-
-			if LastCaptured ~= LastCaptured2 then
-				on_pokemon_capture(LastCaptured)
-				LastCaptured2 = LastCaptured
-			end
+		if LastCaptured ~= LastCaptured2 then
+			on_pokemon_capture(LastCaptured)
+			LastCaptured2 = LastCaptured
 		end
-        local json = {}
+	elseif memory.readdword(0x013C) == 0x42004C41 then --C
+		ReadParty(0xDCD7)
+		ReadSeen(0xDEB9)
+		ReadOwn(0xDE99)
+		CheckDex(0xDE99)
+		ReadMoney(0xD84E)
+		ReadBadge1(0xD857)
+		ReadBadge2(0xD858)
+		ReadTitle(0xC3C9)
+		ReadDiploma(0x9902)
+		MapID = (memory.readbyte(0xDCB5) * 256) + memory.readbyte(0xDCB6)
 
-		for i = 1, 8, 1 do
-			json[string.format("badge_j_%d", i)] = BadgeData1[i]
+		if LastCaptured ~= LastCaptured2 then
+			on_pokemon_capture(LastCaptured)
+			LastCaptured2 = LastCaptured
 		end
-
-		json["seen_pokemon"] = Seen
-		json["own_pokemon"] = Own
-		json["money"] = Money
-		json["last_captured"] = LastCaptured
-		json["pokemon"] = {}
-		json["map_id"] = MapID
-
-		for i = 1, 6, 1 do
-			json["pokemon"][i] = {}
-			--print(string.format("PKM%d = %d,  HP = %d, MAXHP = %d, Lvl = %d, Status = %d", i, ID[i], HP[i], MAXHP[i], Lvl[i], Status[i]))
-			json["pokemon"][i]["id"] = ID[i]
-			json["pokemon"][i]["hp"] = HP[i]
-			json["pokemon"][i]["maxhp"] = MAXHP[i]
-			json["pokemon"][i]["lvl"] = Lvl[i]
-			json["pokemon"][i]["status"] = Status[i]
-			json["pokemon"][i]["gender"] = Gender[i]
-			--print(string.format("Move1 = %d %d/%d, Move2 = %d %d/%d, Move3 = %d %d/%d, Move4 = %d %d/%d", Move1[i], PP1[i], MAXPP1[i], Move2[i], PP2[i], MAXPP2[i], Move3[i], PP3[i], MAXPP3[i], Move4[i], PP4[i], MAXPP4[i]))
-			json["pokemon"][i]["move_1"] = {}
-			json["pokemon"][i]["move_2"] = {}
-			json["pokemon"][i]["move_3"] = {}
-			json["pokemon"][i]["move_4"] = {}
-			json["pokemon"][i]["move_1"]["id"] = Move1[i]
-			json["pokemon"][i]["move_2"]["id"] = Move2[i]
-			json["pokemon"][i]["move_3"]["id"] = Move3[i]
-			json["pokemon"][i]["move_4"]["id"] = Move4[i]
-			json["pokemon"][i]["move_1"]["pp"] = PP1[i]
-			json["pokemon"][i]["move_2"]["pp"] = PP2[i]
-			json["pokemon"][i]["move_3"]["pp"] = PP3[i]
-			json["pokemon"][i]["move_4"]["pp"] = PP4[i]
-			json["pokemon"][i]["move_1"]["maxpp"] = MAXPP1[i]
-			json["pokemon"][i]["move_2"]["maxpp"] = MAXPP2[i]
-			json["pokemon"][i]["move_3"]["maxpp"] = MAXPP3[i]
-			json["pokemon"][i]["move_4"]["maxpp"] = MAXPP4[i]
-		end
-return json
-end
-
-function transferStateToAIAndWait(raw_json)
-  -- 1st: Invoke the ai with JSON data.
-  -- request-body must be a string, therefore encode
-  http.request("http://127.0.0.1:5001/ai_invoke/", JSON:encode(raw_json))
-  -- 2nd: Wait until the ai finished.
-  repeat
-    -- advance a frame inbetween each request.
-    -- could also advance multiple frames to not do 60 requests per second
-	next_move = http.request("http://127.0.0.1:5001/ai_retrieve/")
-	if next_move == "" then
-		nframes = 15
-		repeat
-			emu.frameadvance()
-			nframes = nframes - 1
-		until nframes == 0
 	end
-    -- this request returns either the next move,
-    -- or an empty string if the result isn't set yet.
-  until next_move ~= nil
-  -- we got a result!
-  return next_move
+	local json = {}
+
+	for i = 1, 8, 1 do
+		json[string.format("badge_j_%d", i)] = BadgeData1[i]
+	end
+
+	json["seen_pokemon"] = Seen
+	json["own_pokemon"] = Own
+	json["money"] = Money
+	json["last_captured"] = LastCaptured
+	json["pokemon"] = {}
+	json["map_id"] = MapID
+
+	for i = 1, 6, 1 do
+		json["pokemon"][i] = {}
+		--print(string.format("PKM%d = %d,  HP = %d, MAXHP = %d, Lvl = %d, Status = %d", i, ID[i], HP[i], MAXHP[i], Lvl[i], Status[i]))
+		json["pokemon"][i]["id"] = ID[i]
+		json["pokemon"][i]["hp"] = HP[i]
+		json["pokemon"][i]["maxhp"] = MAXHP[i]
+		json["pokemon"][i]["lvl"] = Lvl[i]
+		json["pokemon"][i]["status"] = Status[i]
+		json["pokemon"][i]["gender"] = Gender[i]
+		--print(string.format("Move1 = %d %d/%d, Move2 = %d %d/%d, Move3 = %d %d/%d, Move4 = %d %d/%d", Move1[i], PP1[i], MAXPP1[i], Move2[i], PP2[i], MAXPP2[i], Move3[i], PP3[i], MAXPP3[i], Move4[i], PP4[i], MAXPP4[i]))
+		json["pokemon"][i]["move_1"] = {}
+		json["pokemon"][i]["move_2"] = {}
+		json["pokemon"][i]["move_3"] = {}
+		json["pokemon"][i]["move_4"] = {}
+		json["pokemon"][i]["move_1"]["id"] = Move1[i]
+		json["pokemon"][i]["move_2"]["id"] = Move2[i]
+		json["pokemon"][i]["move_3"]["id"] = Move3[i]
+		json["pokemon"][i]["move_4"]["id"] = Move4[i]
+		json["pokemon"][i]["move_1"]["pp"] = PP1[i]
+		json["pokemon"][i]["move_2"]["pp"] = PP2[i]
+		json["pokemon"][i]["move_3"]["pp"] = PP3[i]
+		json["pokemon"][i]["move_4"]["pp"] = PP4[i]
+		json["pokemon"][i]["move_1"]["maxpp"] = MAXPP1[i]
+		json["pokemon"][i]["move_2"]["maxpp"] = MAXPP2[i]
+		json["pokemon"][i]["move_3"]["maxpp"] = MAXPP3[i]
+		json["pokemon"][i]["move_4"]["maxpp"] = MAXPP4[i]
+	end
+	return json
 end
 
 function refreshinterval(seconds)
@@ -607,73 +584,43 @@ function refreshinterval(seconds)
 	return true
 end
 
-repeat
-        if memory.readbyte(0xFF70) == 1 then
-            json = read_new_playerstate()
-            vba.print("JSON:", json)
-			http.request("http://127.0.0.1:5000/gen2_game_update", tostring(JSON:encode(json)))
-            -- do battle stuff below
-            
-            
-            bank_wait = 0
-        value = memory.readbyte(0xD849)
-        is_military_on = (value % 2 == 1) -- just in case you need to know the current status
-        newvalue = bit.band(value, 254) + military_mode
-        memory.writebyte(0xD849, newvalue)
-        if memory.readbyte(rLSC) == BEESAFREE_LSC_TRANSFERRING then
-            lua_wait = 0
-            if (AND(memory.readbyte(rLSB), 0x02) ~= 0) then
-                battlestate = readBattlestate(memory.readbyte(rLSB))
-                if debug_mode == 1 then
-                    vba.print("[DEBUG] STATUS: ", string.format("%02x", memory.readbyte(rLSB)))  
-                    vba.print("[DEBUG] BATTLESTATE:", battlestate)
-                end
-                vba.print("Waiting on AI...")
-                airesponse = transferStateToAIAndWait(battlestate)
-                vba.print("AI RESPONSE:", airesponse)
-            else
-                vba.print("No AI request found.")
-            end  
-            if military_mode == 1 and (AND(memory.readbyte(rLSB), 0x01) ~= 0) then
-                vba.print("Waiting on player...")
-                --outplayer = UseRandomMove(BattleMonMoves, BattleMonPP, PlayerDisableCount)
-                playerresponse = get_next_player_command()
-                if debug_mode == 1 then
-                    vba.print("[DEBUG] PLAYER RESPONSE:", playerresponse)
-                end  
-            else
-                if military_mode ~= 1 and debug_mode == 1 then
-                    vba.print("[DEBUG] INFO: Military mode not enabled.")
-                elseif (AND(memory.readbyte(rLSB), 0x01) == 0) and military_mode == 1 then
-                    vba.print("ERROR: Invalid rLSB configuration.")
-                end
-            end
-            byte1, byte2, byte3 = tablestobytes(airesponse, playerresponse)
-            if debug_mode == 1 then
-                vba.print("[DEBUG] BYTES:", byte1, byte2, byte3)
-            end
-            memory.writebyte(0xDFF8, byte1)
-            memory.writebyte(0xDFF9, byte2)
-            memory.writebyte(0xDFFA, byte3)
-            memory.writebyte(rLSC, BEESAFREE_LSC_COMPLETED)
-        else
-                if lua_wait == 0 then
-                    vba.print("Waiting for LUA serial...")
-                    lua_wait = 1
-                end
-        end
+while true do
+	if memory.readbyte(0xFF70) == 1 then
+		-- Update the overlay
+		json = read_new_playerstate()
+		-- vba.print("JSON:", json)
+		http.request("http://127.0.0.1:5000/gen2_game_update/", tostring(JSON:encode(json)))
+		
+		
+		bank_wait = 0
+		value = memory.readbyte(0xD849)
+		is_military_on = (value % 2 == 1) -- just in case you need to know the current status
+		newvalue = bit.band(value, 254) + military_mode
+		memory.writebyte(0xD849, newvalue)
+		if memory.readbyte(rLSC) == BEESAFREE_LSC_TRANSFERRING then
+			lua_wait = 0
+			airesponse, playerresponse = GetCommandTables()
+			byte1, byte2, byte3 = tablestobytes(airesponse, playerresponse)
+			if debug_mode == 1 then
+				-- vba.print("[DEBUG] BYTES:", byte1, byte2, byte3)
+			end
+			memory.writebyte(0xDFF8, byte1)
+			memory.writebyte(0xDFF9, byte2)
+			memory.writebyte(0xDFFA, byte3)
+			memory.writebyte(rLSC, BEESAFREE_LSC_COMPLETED)
+		else
+			if lua_wait == 0 then
+				vba.print("Waiting for LUA serial...")
+				lua_wait = 1
+			end
+		end
     else
         if bank_wait == 0 then
             vba.print("Waiting for valid bank")
             bank_wait = 1
         end
-            
-            
-            
-            
-            -- do battle stuff above
-		end
-        updateclock()
+	end
+	updateclock()
 		--Gender
 		--0x00 = Male
 		--0x01 = Female
@@ -686,9 +633,13 @@ repeat
 		--0x10 = Burned
 		--0x20 = Frozen
 		--0x40 = Paralyzed
-	b, c, h = http.request("http://127.0.0.1:5000/gbmode_inputs")
+	b, c, h = http.request("http://127.0.0.1:5000/gbmode_inputs/")
+	-- vba.print(b, c, h)
 	if c == 200 then
 		local json = JSON:decode(b)
+		-- vba.print(json)
 		joypad.set(1, json)
 	end
-until not refreshinterval(0.100)
+	emu.frameadvance()
+	-- vba.print(joypad.get(1))
+end

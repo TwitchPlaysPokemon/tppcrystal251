@@ -26,7 +26,11 @@ ParseExternalAI:
 .okay
 	and a
 	ret z
+	push af
 	rst LUASerial
+	pop af
+	and BEESAFREE_SND_ASKENEMY
+	ret z
 	ld a, [wMilitaryAndAIBattleAction]
 	and $f0
 	swap a
@@ -260,8 +264,15 @@ Military:
 	ret
 
 .Invalid
+	ld a, [wMilitaryAndAIBattleAction]
+	and $f0
+	ld b, a
 	ld a, BEESAFREE_SND_ASKMILITARY | BEESAFREE_SND_INVALID
 	rst LUASerial
+	ld a, [wMilitaryAndAIBattleAction]
+	and $f
+	or b
+	ld [wMilitaryAndAIBattleAction], a
 	jp Military
 
 Mil_AI_checkghost

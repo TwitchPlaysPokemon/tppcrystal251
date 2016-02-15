@@ -39,9 +39,15 @@ def calculate_next_move(battle_state):
         logger.exception("The AI threw an exception with the following input: %s" % battle_state)
         # uh-oh! better fall back to "default ai"
         if battle_state["battleState"]["requested action"] & 0x40:
-            next_move = "switch{}".format(random.choice(range(len(battle_state["battleState"]["enemyParty"]))) + 1)
+            try:
+                next_move = "switch{}".format(random.choice(range(len(battle_state["battleState"]["enemyParty"]["party"]))) + 1)
+            except KeyError:
+                next_move = "switch{}".format(random.choice(range(6)) + 1)
         else:
-            next_move = "move{}".format(random.choice(range(len(battle_state["battleState"]["enemypokemon"]["moves"]))) + 1) # random.choice(("move1", "move2", "move3", "move4"))
+            try:
+                next_move = "move{}".format(random.choice(range(len(battle_state["battleState"]["enemypokemon"]["moves"]))) + 1)
+            except:
+                next_move = "move{}".format(random.choice(range(4)) + 1)
     logger.info("calculated AI: %s" % next_move)
     LastActions.append(next_move)
     

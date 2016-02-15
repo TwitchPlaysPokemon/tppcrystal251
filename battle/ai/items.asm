@@ -1,4 +1,4 @@
-Function38000: ; 38000
+AI_SwitchOrTryItem: ; 38000
 	and a
 
 	ld a, [wBattleMode]
@@ -738,20 +738,20 @@ AI_TrySwitch: ; 3844b
 	ld c, a
 	ld hl, OTPartyMon1HP
 	ld d, 0
-.asm_38454
+.loop
 	ld a, [hli]
 	ld b, a
 	ld a, [hld]
 	or b
-	jr z, .asm_3845b
+	jr z, .skip_fainted
 	inc d
-.asm_3845b
+.skip_fainted
 	push bc
 	ld bc, PartyMon2 - PartyMon1
 	add hl, bc
 	pop bc
 	dec c
-	jr nz, .asm_38454
+	jr nz, .loop
 
 	ld a, d
 	cp 2
