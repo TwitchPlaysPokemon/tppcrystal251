@@ -207,9 +207,9 @@ class AI(object):
 
     #type1name = attacker, type2name = defender
     def getEff(self, type1name, type2name, defenderindex):
-        if (type2name == 'none') or (type1name == 'u') or (type1name == 'none') or (type1name == ''):
+        if (type2name == 'none') or (temptype1 == 'curset') or (type1name == 'u') or (type1name == 'none') or (type1name == ''):
             return 1
-
+            
         type1 = self._Types[type1name]
         type2 = self._Types[type2name]
         tempx = self._tableTypeEffs[type1][type2]
@@ -559,8 +559,12 @@ class AI(object):
         if Debug_Code == 1:
             print ('inside TrainerDamage, variables in play - traincurrent: '+str(traincurrent)+' mycurrent: '+str(mycurrent))
             print('length of moves for this mon: '+str( len(self.jsonlist['playerParty']['party'][traincurrent-6]['moves'])))
+        
         for moveset in range (0, len(self.jsonlist['playerParty']['party'][traincurrent-6]['moves'])):
-            self.DamageDealt(mondata, traincurrent, mycurrent, moveset)
+            if mondata[traincurrent]['moves'][moveset]['curpp'] > 0:
+                self.DamageDealt(mondata, traincurrent, mycurrent, moveset)
+            else:
+                self.Damage[traincurrent][mycurrent][moveset]['damage'] = -1
         tempx = -3
         self.enemybest = ''
         self.enemynumber = -1
@@ -569,6 +573,7 @@ class AI(object):
                 tempx = self.Damage[traincurrent][mycurrent][moveset]['damage']
                 self.enemybest = mondata[traincurrent]['moves'][moveset]['name'].lower()
                 self.enemynumber = moveset
+        
         return(tempx)
 
     def Mychoice (self, mondata, traincurrent, mycurrent, moveused):
@@ -677,7 +682,9 @@ class AI(object):
                 mondata[traincurrent]['stats']['curhp'] = mondata[mycurrent]['stats']['curhp']
 
             #Guard
-            if (mondata[mycurrent]['moves'][moveused]['effect'] in ('protect', 'endure')) and ('protect' not in mondata['enemypokemon']['substatus']):
+            if mondata[mycurrent]['moves'][moveused]['effect'] == 'protect' and 'protect' not in mondata['enemypokemon']['substatus']:
+                self.Damage[mycurrent][traincurrent][moveused]['selfdamage'] = self.Damage[traincurrent][mycurrent][self.enemynumber]['damage'] * -1
+            if mondata[mycurrent]['moves'][moveused]['effect'] == 'endure' and 'endure' not in mondata['enemypokemon']['substatus']:
                 self.Damage[mycurrent][traincurrent][moveused]['selfdamage'] = self.Damage[traincurrent][mycurrent][self.enemynumber]['damage'] * -1
 
             #curse
@@ -1710,7 +1717,7 @@ class AI(object):
         for tempmove in range (0, len(self.jsonlist['battleState']['enemypokemon']['moves'])):
             if mondata[mycurrent]['moves'][tempmove]['effect'] in ('protect'):
                 tempx = tempmove
-        if tempx != -1 and ('protect' not in (mondata['battleState']['enemypokemon']['substatus'])):
+        if tempx != -1 and ('protect' not in (mondata['battlestate']['enemypokemon']['substatus'])):
             if 'underground' in mondata['playerpokemon']['substatus'] or (isinstance(mondata['playerpokemon']['substatus'], dict) and 'underground' in mondata['playerpokemon']['substatus'].values()):
                 return tempx
             if 'flying' in mondata['playerpokemon']['substatus'] or (isinstance(mondata['playerpokemon']['substatus'], dict) and 'flying' in mondata['playerpokemon']['substatus'].values()):
@@ -1739,7 +1746,7 @@ class AI(object):
                         if random.randint(0, 100) > x1:
                             return tempx
         except KeyError:
-            DoNothing = 1
+            Print('Key error countercoat')
         
         #disabled move
         if self.jsonlist['battleState']['enemy type'] == 'WILD':
