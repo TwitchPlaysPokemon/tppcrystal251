@@ -1,4 +1,4 @@
---Crystal 251 Main Script v1.01--
+--Crystal 251 Main Script v1.02--
 
 dofile("readstates.lua")
 dofile("battle_ram.lua")
@@ -140,7 +140,7 @@ function get_next_player_command()
 	repeat
 		ReceiveButtonInput()
 	until (player_next_move ~= nil and player_next_move ~= "")
-	vba.print("Player response:", player_next_move)
+	-- vba.print("Player response:", player_next_move)
     return player_next_move
 end
 
@@ -164,8 +164,10 @@ function requestBothAIAndMilitary(raw_json)
 			end
 		end
 	until ((player_next_move ~= nil) and (player_next_move ~= "") and (next_move ~= nil) and (next_move ~= ""))
-	vba.print("Enemy response:", next_move)
-	vba.print("Player response:", player_next_move)
+	if debug_mode == 1 then
+		vba.print("Enemy response:", next_move)
+		vba.print("Player response:", player_next_move)
+	end
 	return next_move, player_next_move
 end
 
@@ -182,29 +184,29 @@ function GetCommandTables()
 	if mil_ai_request == 0 then
 		return
 	elseif mil_ai_request == 1 then
-		vba.print("Waiting on player...")
+		if debug_mode == 1 then vba.print("Waiting on player...") end
 		playerresponse = get_next_player_command()
 		-- if debug_mode == 1 then
-		vba.print("[DEBUG] PLAYER RESPONSE:", playerresponse)
+		if debug_mode == 1 then vba.print("[DEBUG] PLAYER RESPONSE:", playerresponse) end
 		-- end
 	elseif mil_ai_request == 2 then
 		battlestate = readBattlestate(memory.readbyte(rLSB))
 		if debug_mode == 1 then
 			vba.print("[DEBUG] STATUS: ", string.format("%02x", memory.readbyte(rLSB)))
 			vba.print("[DEBUG] BATTLESTATE:", battlestate)
+			vba.print("Waiting on AI...")
 		end
-		vba.print("Waiting on AI...")
 		airesponse = transferStateToAIAndWait(battlestate)
-		vba.print("AI RESPONSE:", airesponse)
+		if debug_mode == 1 then vba.print("AI RESPONSE:", airesponse) end
 	else
 		battlestate = readBattlestate(memory.readbyte(rLSB))
 		if debug_mode == 1 then
 			vba.print("[DEBUG] STATUS: ", string.format("%02x", memory.readbyte(rLSB)))
 			vba.print("[DEBUG] BATTLESTATE:", battlestate)
+			vba.print("Waiting on player and AI...")
 		end
-		vba.print("Waiting on player and AI...")
 		airesponse, playerresponse = requestBothAIAndMilitary(battlestate)
-		vba.print("AI RESPONSE:", airesponse)
+		if debug_mode == 1 then vba.print("AI RESPONSE:", airesponse) end
 	end
 	return airesponse, playerresponse
 end
