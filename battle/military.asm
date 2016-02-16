@@ -359,6 +359,9 @@ Military_SelectPokemon:
 	sub 4
 	jr c, .Invalid
 	ld b, a
+	ld a, [wMilitaryItem]
+	and a
+	jr nz, .Invalid
 	ld a, [PartyCount]
 	cp b
 	jr c, .Invalid

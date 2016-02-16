@@ -225,7 +225,7 @@ function ReadParty(offset)
 			else
 				Gender[CurrentPokemon] = 0
 			end
-			Nickname[CurrentPokemon] = parseString(offset + 0x08 + (0x30 * 6) + (0x0b * (CurrentPokemon - 1)), 0x0b)
+			Nickname[CurrentPokemon] = parseString(offset + 0x08 + (0x3b * 6) + (0x0b * (CurrentPokemon - 1)), 0x0b)
 		end
 	end
 end
@@ -594,7 +594,8 @@ while true do
 		-- Update the overlay
 		json = read_new_playerstate()
 		-- vba.print("JSON:", json)
-		http.request("http://127.0.0.1:5000/gen2_game_update/", tostring(JSON:encode(json)))
+		http.request("http://127.0.0.1:5000/gen2_game_update", JSON:encode(json))
+		-- http.request("http://127.0.0.1:5000/gen2_game_update", tostring(JSON:encode(json)))
 		
 		
 		bank_wait = 0
