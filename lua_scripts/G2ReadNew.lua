@@ -536,6 +536,7 @@ function read_new_playerstate()
 
 	for i = 1, 8, 1 do
 		json[string.format("badge_j_%d", i)] = BadgeData1[i]
+		json[string.format("badge_k_%d", i)] = BadgeData2[i]
 	end
 
 	json["seen_pokemon"] = Seen
