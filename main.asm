@@ -46710,6 +46710,8 @@ Function4e711: ; 4e711
 ; 4e726
 
 Function4e726: ; 4e726
+	ld a, [wcf64]
+	push af
 	ld a, 3
 	ld [wcf64], a
 	call ClearJoypad
@@ -46726,10 +46728,14 @@ Function4e726: ; 4e726
 	dec c
 	dec c
 	jr nz, .asm_4e72c ;repeat 7 times
+	pop af
+	ld [wcf64], a
 	and a
 	ret
 
 .asm_4e73f
+	pop af
+	ld [wcf64], a
 	scf
 	ret
 ; 4e741
@@ -46778,11 +46784,11 @@ Function4e779: ; 4e779 evo cancelling
 	call DelayFrame
 	push bc
 	call Functiona57 ; update joypad data
-	ld a, [hJoyDown]
+	ld a, [hJoyPressed]
 	pop bc
 	and $2 ; if b, check if forced
 	jr nz, .asm_4e78c
-	ld a, [hJoyDown
+	ld a, [hJoyPressed]
 	and $1
 	jr z, .asm_4e787
 	ld hl, wcf64
