@@ -76,20 +76,39 @@ function UseRandomMove(MovesPointer, PPPointer, DisabledMovePointer)
 	end
 end
 
+function ReceiveButtonInput()
+	b, c, h = http.request("http://127.0.0.1:5000/gbmode_inputs")
+	-- vba.print(b, c, h)
+	if c == 200 then
+		local json = JSON:decode(b)
+		-- vba.print(json)
+		if json["military_toggle"] ~= nil then
+			military_mode = 1 - military_mode
+			json["military_toggle"] = nil
+		end
+		joypad.set(1, json)
+	end
+	emu.frameadvance()
+end
+
+function DelayFrames(nframes)
+	for frame = 1, nframes do
+		ReceiveButtonInput()
+	end
+end
+
 function transferStateToAIAndWait(raw_json)
 	next_move = nil
 	-- 1st: Invoke the ai with JSON data.
 	-- request-body must be a string, therefore encode
-	http.request("http://127.0.0.1:5001/ai_invoke/", JSON:encode(raw_json))
+	http.request("http://127.0.0.1:5001/ai_invoke", JSON:encode(raw_json))
 	-- 2nd: Wait until the ai finished.
 	repeat
 		-- advance a frame inbetween each request.
 		-- could also advance multiple frames to not do 60 requests per second
-		next_move = http.request("http://127.0.0.1:5001/ai_retrieve/")
+		next_move = http.request("http://127.0.0.1:5001/ai_retrieve")
 		if (next_move == nil or next_move == "") then
-			for frame = 1, 15 do
-				emu.frameadvance()
-			end
+			DelayFrames(15)
 		end
 	-- this request returns either the next move,
 	-- or an empty string if the result isn't set yet.
@@ -101,32 +120,28 @@ end
 function get_next_player_command()
 	player_next_move = nil
 	repeat
-		player_next_move = http.request("http://127.0.0.1:5000/gbmode_inputs_ai/")
-		if (player_next_move == nil or player_next_move == "") then
-			for frame = 1, 15 do
-				emu.frameadvance()
-			end
-		end
+		player_next_move = http.request("http://127.0.0.1:5000/gbmode_inputs_ai")
+		emu.frameadvance()
 	until (player_next_move ~= nil and player_next_move ~= "")
 	vba.print("Player response:", player_next_move)
     return player_next_move
 end
 
 function requestBothAIAndMilitary(raw_json)
-	http.request("http://127.0.0.1:5001/ai_invoke/", JSON:encode(raw_json))
+	http.request("http://127.0.0.1:5001/ai_invoke", JSON:encode(raw_json))
 	next_move = nil
 	player_next_move = nil
 	repeat
 		-- If we already got the move, don't try to request it again.
 		if ((next_move == nil) or (next_move == "")) then
-			next_move = http.request("http://127.0.0.1:5001/ai_retrieve/")
-		end
-		if ((player_next_move == nil) or (player_next_move == "")) then
-			player_next_move = http.request("http://127.0.0.1:5000/gbmode_inputs_ai/")
+			next_move = http.request("http://127.0.0.1:5001/ai_retrieve")
 		end
 		if ((player_next_move) == nil or (player_next_move == "") or (next_move == nil) or (next_move == "")) then
 			for frame = 1, 15 do
-				emu.frameadvance()
+				DelayFrames(1)
+				if ((player_next_move == nil) or (player_next_move == "")) then
+					player_next_move = http.request("http://127.0.0.1:5000/gbmode_inputs_ai")
+				end
 			end
 		end
 	until ((player_next_move ~= nil) and (player_next_move ~= "") and (next_move ~= nil) and (next_move ~= ""))
