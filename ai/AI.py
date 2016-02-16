@@ -1717,7 +1717,7 @@ class AI(object):
         for tempmove in range (0, len(self.jsonlist['battleState']['enemypokemon']['moves'])):
             if mondata[mycurrent]['moves'][tempmove]['effect'] in ('protect'):
                 tempx = tempmove
-        if tempx != -1 and ('protect' not in (mondata['battlestate']['enemypokemon']['substatus'])):
+        if tempx != -1 and ('protect' not in (mondata['enemypokemon']['substatus'])):
             if 'underground' in mondata['playerpokemon']['substatus'] or (isinstance(mondata['playerpokemon']['substatus'], dict) and 'underground' in mondata['playerpokemon']['substatus'].values()):
                 return tempx
             if 'flying' in mondata['playerpokemon']['substatus'] or (isinstance(mondata['playerpokemon']['substatus'], dict) and 'flying' in mondata['playerpokemon']['substatus'].values()):
