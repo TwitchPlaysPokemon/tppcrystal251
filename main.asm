@@ -46712,6 +46712,8 @@ Function4e711: ; 4e711
 ; 4e726
 
 Function4e726: ; 4e726
+	ld a, 3
+	ld [wcf64], a
 	call ClearJoypad
 	ld bc, $010e ;b = legnth of uncancelable flahes(starts at 1, 8 frames each), c = legnth of cancellable flashes(starts at 14, c frames each)
 .asm_4e72c
@@ -46777,21 +46779,32 @@ Function4e779: ; 4e779 evo cancelling
 .asm_4e779
 	call DelayFrame
 	push bc
-	call Functiona57 ;update joypad data
+	call Functiona57 ; update joypad data
 	ld a, [hJoyDown]
 	pop bc
-	and $2 ;if b, jump
+	and $2 ; if b, check if forced
 	jr nz, .asm_4e78c
+	ld a, [hJoyDown
+	and $1
+	jr z, .asm_4e787
+	ld hl, wcf64
+	ld a, [hl]
+	cp 3
+	jr z, .asm_4e787
+	inc [hl]
 .asm_4e787
 	dec c
-	jr nz, .asm_4e779 ;loop c times
+	jr nz, .asm_4e779 ; loop c times
 	and a
 	ret
 
 .asm_4e78c
 	ld a, [wd1e9]
 	and a
-	jr nz, .asm_4e787 ;if evo count = >1, loop, else ret C
+	jr nz, .asm_4e787 ; if forced to evolve, next frame
+	ld hl, wcf64
+	dec [hl]
+	jr nz, .asm_4e787
 	scf
 	ret
 ; 4e794

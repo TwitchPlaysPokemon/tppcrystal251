@@ -590,7 +590,7 @@ function refreshinterval(seconds)
 end
 
 function update_overlay(json)
-    http.request("http://127.0.0.1:5002/gen2_game_update", tostring(JSON:encode(json)))
+    http.request("http://127.0.0.1:5000/gen2_game_update", tostring(JSON:encode(json)))
 end
 
 		--Gender
