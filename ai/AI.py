@@ -207,7 +207,7 @@ class AI(object):
 
     #type1name = attacker, type2name = defender
     def getEff(self, type1name, type2name, defenderindex):
-        if (type2name == 'none') or (temptype1 == 'curset') or (type1name == 'u') or (type1name == 'none') or (type1name == ''):
+        if (type2name == 'none') or (type1name == 'curset') or (type1name == 'u') or (type1name == 'none') or (type1name == ''):
             return 1
             
         type1 = self._Types[type1name]
