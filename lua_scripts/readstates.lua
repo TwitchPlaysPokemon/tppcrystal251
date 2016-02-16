@@ -463,8 +463,8 @@ function readPlayerstate() --loop read this for the overlay
 	local output_table = {}
 	-- vba.print("WRAM bank: ", svbk)
 	if svbk == 1 then
-        -- vba.print(string.format("%02x", PartyCount))
-		playerParty = getTrainerParty(PartyCount)
+        -- vba.print(string.format("%02x", PlaPartyCount))
+		playerParty = getTrainerParty(PlaPartyCount)
 		-- vba.print("Player Party:")
 		-- vba.print(playerParty)
 		pack = readPlayerPack()

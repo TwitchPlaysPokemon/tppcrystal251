@@ -2479,7 +2479,7 @@ wdff5:: ds 2
 wdff7:: ds 1
 wMilitaryAndAIBattleAction:: ds 1 ; AI Control byte
 wMilitaryItem:: ds 1 ; AI Control (player item usage)
-wMilitaryPPRestoreMoveTarget:: ds 1 ; military mode on/off switch (FF is on, 00 is off)
+wMilitaryPPRestoreMoveTarget:: ds 1 ; 0-3
 
 
 SECTION "Pic Animations", WRAMX, BANK [2]

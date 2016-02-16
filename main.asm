@@ -2155,7 +2155,8 @@ _Divide:: ; 673e
 	ld [hDividend + 2], a
 	ld [hDividend + 3], a
 	ld a, e
-	ld [hDividend + 4], a ; I believe the remainder is stored here<...>
+	ld [hDividend + 4], a ; I believe the remainder is stored here...
+	ld [hDivisor], a ; and here too...
 	ld a, c
 	sub hDividend % $100
 	ld b, a
@@ -75704,7 +75705,7 @@ GetTreeScore: ; b8443
 	ld [hDivisor], a
 	ld b, 2
 	call Divide
-	ld a, [hQuotient + 2]
+	ld a, [hDivisor]
 	ret
 ; b84b3
 
