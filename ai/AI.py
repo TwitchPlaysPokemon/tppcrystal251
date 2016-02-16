@@ -1,4 +1,4 @@
-# TPP Crystal 251 AI v1.00 by Beesafree
+# TPP Crystal 251 AI v1.1 by Beesafree
 
 from __future__ import division
 import math
@@ -532,12 +532,13 @@ class AI(object):
         if move_used_effect == 'jumpkick':
             self.Damage[attacker][defender][moveused]['selfdamage'] = temp2 / 2
         if move_used_effect == 'explosion':
-            self.Damage[attacker][defender][moveused]['selfdamage'] = mondata[attacker]['stats']['curhp'] + 3
-        if move_used_effect == 'dreameater':
-            self.Damage[attacker][defender][moveused]['selfdamage'] = temp2 / -2
-        if move_used_effect == 'explosion':
+            self.Damage[attacker][defender][moveused]['selfdamage'] = mondata[attacker]['stats']['curhp'] * 1.5
             if temp2 > mondata[defender]['stats']['curhp']:
                 temp2 = mondata[attacker]['stats']['curhp'] + 3
+            if attacker > 5 and temp2 > mondata[defender]['stats']['curhp']:
+                temp2 = mondata[defender]['stats']['curhp'] / 2
+        if move_used_effect == 'dreameater':
+            self.Damage[attacker][defender][moveused]['selfdamage'] = temp2 / -2
         self.Damage[attacker][defender][moveused]['damage'] = temp2
         return 1
 
@@ -610,7 +611,7 @@ class AI(object):
 
             if mondata[mycurrent]['moves'][moveused]['effect'] == 'spatkup':
                 mondata[mycurrent]['boosts']['satk'] = mondata[mycurrent]['boosts']['satk'] + 1
-            if mondata[mycurrent]['moves'][moveused]['effect'] in ('attackup', 'rage'):
+            if mondata[mycurrent]['moves'][moveused]['effect'] == 'attackup':
                 mondata[mycurrent]['boosts']['atk'] = mondata[mycurrent]['boosts']['atk'] + 1
             if mondata[mycurrent]['moves'][moveused]['effect'] == 'evasionup':
                 mondata[mycurrent]['boosts']['eva'] = mondata[mycurrent]['boosts']['eva'] + 1
@@ -621,8 +622,11 @@ class AI(object):
                 if mondata['weather'] == 'sun':
                     mondata[mycurrent]['boosts']['satk'] = mondata[mycurrent]['boosts']['satk'] + 1
                     mondata[mycurrent]['boosts']['atk'] = mondata[mycurrent]['boosts']['atk'] + 1
+                    
+            effmulti = self.getEff(mondata[mycurrent]['moves'][moveused]['type'].lower(), mondata[traincurrent]['type'][1].lower(), 'playerpokemon') * self.getEff(mondata[mycurrent]['moves'][moveused]['type'].lower(), mondata[traincurrent]['type'][2].lower(), 'playerpokemon')
+            if mondata[mycurrent]['moves'][moveused]['effect'] == 'rage'  and effmulti > 0:
+                mondata[mycurrent]['boosts']['atk'] = mondata[mycurrent]['boosts']['atk'] + 1  
                 
-
             # stats down
             misted = False
             if 'mist' in mondata['playerpokemon']['substatus'] or (isinstance(mondata['playerpokemon']['substatus'], dict) and 'mist' in mondata['playerpokemon']['substatus'].values()):
@@ -674,6 +678,7 @@ class AI(object):
 
             #foresight
             if mondata[mycurrent]['moves'][moveused]['effect'] == 'foresight':
+                mondata[traincurrent]['boosts']['eva'] = 0
                 mondata['identified'] = True
 
 
@@ -824,15 +829,16 @@ class AI(object):
             if 'mist' in mondata['playerpokemon']['substatus'] or (isinstance(mondata['playerpokemon']['substatus'], dict) and 'mist' in mondata['playerpokemon']['substatus'].values()):
                 misted = True
             if misted == False:
-                if (mondata[mycurrent]['moves'][moveused]['effect'] == 'spdefdownhit'):
+                effmulti = self.getEff(mondata[mycurrent]['moves'][moveused]['type'].lower(), mondata[traincurrent]['type'][1].lower(), 'playerpokemon') * self.getEff(mondata[mycurrent]['moves'][moveused]['type'].lower(), mondata[traincurrent]['type'][2].lower(), 'playerpokemon')
+                if (mondata[mycurrent]['moves'][moveused]['effect'] == 'spdefdownhit') and effmulti > 0:
                     mondata[traincurrent]['boosts']['sdef'] = mondata[traincurrent]['boosts']['sdef'] - 1
-                if (mondata[mycurrent]['moves'][moveused]['effect'] == 'speeddownhit'):
+                if (mondata[mycurrent]['moves'][moveused]['effect'] == 'speeddownhit') and effmulti > 0:
                     mondata[traincurrent]['boosts']['spd'] = mondata[traincurrent]['boosts']['spd'] - 1
-                if (mondata[mycurrent]['moves'][moveused]['effect'] == 'attackdownhit'):
+                if (mondata[mycurrent]['moves'][moveused]['effect'] == 'attackdownhit') and effmulti > 0:
                     mondata[traincurrent]['boosts']['atk'] = mondata[traincurrent]['boosts']['atk'] - 1
-                if (mondata[mycurrent]['moves'][moveused]['effect'] == 'defensedownhit'):
+                if (mondata[mycurrent]['moves'][moveused]['effect'] == 'defensedownhit') and effmulti > 0:
                     mondata[traincurrent]['boosts']['def'] = mondata[traincurrent]['boosts']['def'] - 1
-                if (mondata[mycurrent]['moves'][moveused]['effect'] == 'accuracydownhit'):
+                if (mondata[mycurrent]['moves'][moveused]['effect'] == 'accuracydownhit') and effmulti > 0:
                     mondata[traincurrent]['boosts']['acc'] = mondata[traincurrent]['boosts']['acc'] - 1
 
             #raise own stats
@@ -1550,8 +1556,7 @@ class AI(object):
             if self.difference[self.jsonlist['battleState']['enemypokemon']['party idx']][traincurrent] < 0:
                 self.difference[self.jsonlist['battleState']['enemypokemon']['party idx']][traincurrent] = 0
             mycurrent = self.jsonlist['battleState']['enemypokemon']['party idx']
-            tempy = self.difference[mycurrent][traincurrent] + 1.5 + (0.25 * (mondata[mycurrent]['boosts']['atk'] + mondata[mycurrent]['boosts']['def'] + mondata[mycurrent]['boosts']['satk'] + mondata[mycurrent]['boosts']['sdef'] + mondata[mycurrent]['boosts']['spd'] + mondata[mycurrent]['boosts']['eva'] + mondata[mycurrent]['boosts']['acc']))
-           
+            tempy = self.difference[mycurrent][traincurrent] + 1.5
             for tempx in range (0, self.myparty):
                 if self.difference[tempx][traincurrent] > tempy:
                     tempy = self.difference[tempx][traincurrent]
