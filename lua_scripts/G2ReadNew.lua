@@ -589,15 +589,16 @@ function refreshinterval(seconds)
 	return true
 end
 
+function update_overlay(json)
+    http.request("http://127.0.0.1:5002/gen2_game_update", tostring(JSON:encode(json)))
+end
+
 while true do
 	if memory.readbyte(0xFF70) == 1 then
 		-- Update the overlay
 		json = read_new_playerstate()
 		-- vba.print("JSON:", json)
-		http.request("http://127.0.0.1:5000/gen2_game_update", JSON:encode(json))
-		-- http.request("http://127.0.0.1:5000/gen2_game_update", tostring(JSON:encode(json)))
-		
-		
+		update_overlay(json)
 		bank_wait = 0
 		value = memory.readbyte(0xD849)
 		is_military_on = (value % 2 == 1) -- just in case you need to know the current status
