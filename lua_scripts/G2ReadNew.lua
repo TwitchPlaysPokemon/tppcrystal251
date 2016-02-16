@@ -149,7 +149,7 @@ function ReadParty(offset)
 		for CurrentPokemon = 1, PartyCount, 1 do
 			ID[CurrentPokemon] = memory.readbyte(offset + CurrentPokemon)
 			-- ID[CurrentPokemon] = memory.readbyte(offset + 0x08 + ((CurrentPokemon - 1) * 0x30))
-			if ID[CurrentPokemon] -= 0xFD then -- it's not an egg
+			if ID[CurrentPokemon] ~= 0xFD then -- it's not an egg
 				Move1[CurrentPokemon] = memory.readbyte(offset + 0x08 + ((CurrentPokemon - 1) * 0x30) + 0x02)
 				Move2[CurrentPokemon] = memory.readbyte(offset + 0x08 + ((CurrentPokemon - 1) * 0x30) + 0x03)
 				Move3[CurrentPokemon] = memory.readbyte(offset + 0x08 + ((CurrentPokemon - 1) * 0x30) + 0x04)
