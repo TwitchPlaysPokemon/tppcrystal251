@@ -350,6 +350,13 @@ Mil_AI_CheckPP:
 
 
 Military_SelectPokemon:
+	hlcoord 0, 14
+	lb bc, 2, 18
+	call TextBox
+	ld hl, .Waiting
+	bccoord 1, 16
+	call Function13e5
+	
 	ld a, BEESAFREE_SND_ASKMILITARY
 .loop
 	rst LUASerial
@@ -386,6 +393,10 @@ Military_SelectPokemon:
 .Invalid
 	ld a, BEESAFREE_SND_ASKMILITARY | BEESAFREE_SND_INVALID
 	jr .loop
+
+.Waiting
+	text "Waiting!"
+	done
 
 MilItemCheck:
 	ld a, [CurItem]

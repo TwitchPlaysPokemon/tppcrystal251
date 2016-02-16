@@ -3051,11 +3051,11 @@ IF DEF(BEESAFREE)
 	ld a, [wMilitaryFlags]
 	bit 0, a
 	jr z, .NormalMenu
-	call MilitaryWaiting
+	; call MilitaryWaiting
 	callba Military_SelectPokemon
-	push af
-	call EmptyBattleTextBox
-	pop af
+	; push af
+	; call EmptyBattleTextBox
+	; pop af
 	ret
 .NormalMenu
 ENDC
