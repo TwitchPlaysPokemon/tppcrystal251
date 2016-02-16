@@ -269,9 +269,18 @@ class AI(object):
             atkmodifier = atkmodifier * 2
 
         #Raw damage
+        #basebp change
         basebp = move_used['bp']
         if move_used_effect == 'return':
             basebp = mondata[allmons]['stats']['happy'] / 2.5
+        if move_used_effect == 'furycutter':
+            if 'raging' in mondata['playerpokemon']['substatus']:
+                mondata['playerpokemon']['substatus']['raging'] = mondata['playerpokemon']['substatus']['raging'] + 1
+            if 'raging' not in mondata['playerpokemon']['substatus']:
+                mondata['playerpokemon']['substatus'].append(dict({'raging': 1}))
+            basebp = (basebp / 2) * ( 2 ^ mondata['playerpokemon']['substatus']['raging'])
+            if basebp > 160:
+                basebp = 160
         if move_used_effect == 'reversal':
             if mondata[attacker]['stats']['curhp'] / mondata[attacker]['stats']['hp'] > 0.71:
                 basebp = 20
@@ -285,10 +294,12 @@ class AI(object):
                 basebp = 150
             elif mondata[attacker]['stats']['curhp'] / mondata[attacker]['stats']['hp'] < 0.04:
                 basebp = 200
+        #stab
         if mondata[attacker]['type'][1].lower() == move_used['type'].lower():
             basebp = basebp*1.5
         elif mondata[attacker]['type'][2].lower() == move_used['type'].lower():
             basebp = basebp*1.5
+        #category and boosts
         if move_used['category'] == 'status':
             basebp = 0
         elif move_used['category'] == "special":
@@ -307,6 +318,7 @@ class AI(object):
                 temp1 = temp1 / 2
             if mondata[attacker]['status'] == 'brn':
                 temp1 = temp1 / 2
+        #Effectivity
         if Debug_Code == 1:
             print('move used type: '+move_used['type'].lower()+' enemy types: '+ mondata[defender]['type'][1].lower()+' / '+ mondata[defender]['type'][2].lower())
         effmulti = 1
@@ -314,9 +326,9 @@ class AI(object):
         temp2 = effmulti*temp1
         if Debug_Code == 1 and attacker < 6:
             print('Damage after calc '+str(temp2))
+            
         #compute 1.2x move-boosting items
         type_boost_item_dict = {'blackbelt':'fighting','blackglasses':'dark','charcoal':'fire','dragonfang':'dragon','hardstone':'rock','dragonfang':'dragon','hardstone':'rock','magnet':'electric','metalcoat':'steel','miracleseed':'grass','mysticwater':'water','nevermeltice':'ice','poisonbarb':'poison','sharpbeak':'flying','silkscarf':'normal','silverpowder':'bug','softsand':'ground','spelltag':'ghost','pinkbow':'fairy'}
-
         if mondata[attacker]['item'] in type_boost_item_dict:
             if move_used['type'] == type_boost_item_dict[mondata[attacker]['item']]:
                 temp2 = temp2 * 1.20
@@ -573,7 +585,8 @@ class AI(object):
                 self.Damage[mycurrent][traincurrent][moveused]['selfdamage'] = 0
 
             #Counter coat (otherwise known as a move that has way too much code and probably be never used anyways)
-            if mondata[mycurrent]['moves'][moveused]['effect'] == 'counter' or mondata[mycurrent]['moves'][moveused]['effect'] == 'mirrorcoat':
+            effmulti = self.getEff(mondata[mycurrent]['moves'][moveused]['type'].lower(), mondata[traincurrent]['type'][1].lower(), 'playerpokemon') * self.getEff(mondata[mycurrent]['moves'][moveused]['type'].lower(), mondata[traincurrent]['type'][2].lower(), 'playerpokemon')
+            if (mondata[mycurrent]['moves'][moveused]['effect'] == 'counter' or mondata[mycurrent]['moves'][moveused]['effect'] == 'mirrorcoat') and effmulti > 0:
                 tempx = 0
                 tempdamage = 0.00
                 for x1 in range (0, len(self.jsonlist['playerParty']['party'][traincurrent-6]['moves'])):
@@ -966,7 +979,7 @@ class AI(object):
             mondata[mycurrent]['stats']['curhp'] = mondata[mycurrent]['stats']['curhp'] - (mondata[mycurrent]['stats']['curhp'] * 0.25)
 
         #bound
-        if mondata['playerpokemon']['bound'] > 0 and self.triggered != 1:
+        if mondata['playerpokemon']['bound'] > 0 and self.triggered != 1 and mondata[mycurrent]['stats']['curhp'] > 0:
             mondata[traincurrent]['stats']['curhp'] = mondata[traincurrent]['stats']['curhp'] - (mondata[traincurrent]['stats']['hp'] * 0.125)
             mondata['playerpokemon']['bound'] = mondata['playerpokemon']['bound'] - 1
         if mondata['enemypokemon']['bound'] > 0:
@@ -1859,6 +1872,11 @@ class AI(object):
         else:
             mycurrent = 0
             self.theaction = self.WildBattle(mondata, mycurrent, traincurrent)
+            '''
+            print(self.Damage[mycurrent][traincurrent][0]['damage'])
+            print(self.Damage[mycurrent][traincurrent][1]['damage'])
+            print(self.Damage[mycurrent][traincurrent][2]['damage'])
+            print(self.Damage[mycurrent][traincurrent][3]['damage'])'''
             potentialAction = self.ManualControl()
             if potentialAction is not None:
                 self.theaction = potentialAction

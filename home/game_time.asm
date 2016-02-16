@@ -29,7 +29,7 @@ GameTimer:: ; 209e
 
 UpdateGameTimer:: ; 20ad
 ; Increment the game timer by one frame.
-; The game timer is capped at 999:59:59.00.
+; The game timer is capped at 9999:59:59.00.
 
 
 ; Don't update if game logic is paused.
@@ -104,19 +104,19 @@ UpdateGameTimer:: ; 20ad
 	inc hl
 
 
-; Cap the timer after 1000 hours.
+; Cap the timer after 10000 hours.
 	ld a, h
-	cp 1000 / $100
+	cp 10000 / $100
 	jr c, .ok
 
 	ld a, l
-	cp 1000 % $100
+	cp 10000 % $100
 	jr c, .ok
 
 	ld hl, GameTimeCap
 	set 0, [hl]
 
-	ld a, 59 ; 999:59:59.00
+	ld a, 59 ; 9999:59:59.00
 	ld [GameTimeMinutes], a
 	ld [GameTimeSeconds], a
 	ret

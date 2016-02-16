@@ -638,7 +638,7 @@ Function5f1c: ; 5f1c
 ; 5f40
 
 Function5f40: ; 5f40
-	ld de, $00a9
+	ld de, $00a8
 	add hl, de
 	call Function5f84
 	ret
@@ -682,7 +682,7 @@ Function5f6b: ; 5f6b
 
 Function5f84: ; 5f84
 	ld de, GameTimeHours
-	ld bc, $0203
+	ld bc, $0204
 	call PrintNum
 	ld [hl], $6d
 	inc hl
@@ -27631,22 +27631,20 @@ Function253f4: ; 253f4 (9:53f4)
 	ret
 
 Function25415: ; 25415 (9:5415)
-	hlcoord 11, 12
+	hlcoord 8, 13
 	ld de, GameTimeHours
 	ld bc, $204
 	call PrintNum
-	inc hl
+	ld a, $2e
+	ld [hli], a
 	ld de, GameTimeMinutes
 	ld bc, $8102
 	call PrintNum
-	ld a, [$ff9b]
-	and $1f
-	ret nz
-	hlcoord 15, 12
-	ld a, [hl]
-	xor $51
-	ld [hl], a
-	ret
+	ld a, $2e
+	ld [hli], a
+	ld de, GameTimeSeconds
+	ld bc, $8102
+	jp PrintNum
 
 Function25438: ; 25438 (9:5438)
 	ld a, [$ff9b]
@@ -55195,7 +55193,7 @@ Function86810: ; 86810
 	xor a
 	ld [hBGMapMode], a
 	hlcoord 0, 2
-	ld bc, $0809
+	ld bc, $080a
 	call TextBox
 	hlcoord 0, 12
 	ld bc, $0412
@@ -55216,13 +55214,18 @@ Function86810: ; 86810
 	hlcoord 1, 8
 	ld de, .PlayTime
 	call PlaceString
-	hlcoord 3, 9
+	hlcoord 1, 9
 	ld de, GameTimeHours
-	ld bc, $0203
+	ld bc, $0204
 	call PrintNum
 	ld [hl], $63
 	inc hl
 	ld de, GameTimeMinutes
+	ld bc, $8102
+	call PrintNum
+	ld [hl], $63
+	inc hl
+	ld de, GameTimeSeconds
 	ld bc, $8102
 	call PrintNum
 	call WaitBGMap
