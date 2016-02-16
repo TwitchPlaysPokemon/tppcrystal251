@@ -9606,6 +9606,8 @@ GivePoke:: ; e277
 	ld a, [CurPartySpecies]
 	ld [TempEnemyMonSpecies], a ;put species in enemy species
 	callab LoadEnemyMon ;place mon in enemy mon
+	ld a, [CurItem]
+	ld [EnemyMonItem], a
 	call Functionde6e ;load enemy mon into PC
 	jp nc, Functione3d4 ;if failed, ret b = 2
 	ld a, $2
@@ -9619,22 +9621,22 @@ GivePoke:: ; e277
 	push bc
 	push de
 	push af
-	ld a, [CurItem]
-	and a
-	jr z, .asm_e2e1
-	ld a, 1
-	call GetSRAMBank
-	ld a, [CurItem]
-	ld [sBoxMon1Item], a
-	call CloseSRAM
-	jr .asm_e2e1
+	; ld a, [CurItem]
+	; and a
+	; jr z, .asm_e2e1
+	; ld a, 1
+	; call GetSRAMBank
+	; ld a, [CurItem]
+	; ld [sBoxMon1Item], a
+	; call CloseSRAM
+	; ; jr .asm_e2e1
 
-.patchJunkDataItems
-	call GetSRAMBank
-	ld a, 0
-	ld [sBoxMon1Item], a
-	call CloseSRAM
-	jr .asm_e2e1
+; .patchJunkDataItems
+	; call GetSRAMBank
+	; ld a, 0
+	; ld [sBoxMon1Item], a
+	; call CloseSRAM
+	; jr .asm_e2e1
 .asm_e2e1
 	ld a, [CurPartySpecies]
 	ld [wd265], a
