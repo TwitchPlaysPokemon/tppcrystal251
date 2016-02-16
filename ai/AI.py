@@ -585,7 +585,8 @@ class AI(object):
                 self.Damage[mycurrent][traincurrent][moveused]['selfdamage'] = 0
 
             #Counter coat (otherwise known as a move that has way too much code and probably be never used anyways)
-            if mondata[mycurrent]['moves'][moveused]['effect'] == 'counter' or mondata[mycurrent]['moves'][moveused]['effect'] == 'mirrorcoat':
+            effmulti = self.getEff(mondata[mycurrent]['moves'][moveused]['type'].lower(), mondata[traincurrent]['type'][1].lower(), 'playerpokemon') * self.getEff(mondata[mycurrent]['moves'][moveused]['type'].lower(), mondata[traincurrent]['type'][2].lower(), 'playerpokemon')
+            if (mondata[mycurrent]['moves'][moveused]['effect'] == 'counter' or mondata[mycurrent]['moves'][moveused]['effect'] == 'mirrorcoat') and effmulti > 0:
                 tempx = 0
                 tempdamage = 0.00
                 for x1 in range (0, len(self.jsonlist['playerParty']['party'][traincurrent-6]['moves'])):
@@ -1871,6 +1872,11 @@ class AI(object):
         else:
             mycurrent = 0
             self.theaction = self.WildBattle(mondata, mycurrent, traincurrent)
+            '''
+            print(self.Damage[mycurrent][traincurrent][0]['damage'])
+            print(self.Damage[mycurrent][traincurrent][1]['damage'])
+            print(self.Damage[mycurrent][traincurrent][2]['damage'])
+            print(self.Damage[mycurrent][traincurrent][3]['damage'])'''
             potentialAction = self.ManualControl()
             if potentialAction is not None:
                 self.theaction = potentialAction
