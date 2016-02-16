@@ -9621,7 +9621,7 @@ GivePoke:: ; e277
 	push af
 	ld a, [CurItem]
 	and a
-	jr z, .asm_e2e1
+	jr z, .patchJunkDataItems
 	ld a, 1
 	call GetSRAMBank
 	ld a, [CurItem]
