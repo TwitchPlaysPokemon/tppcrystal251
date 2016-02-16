@@ -54,7 +54,7 @@ def calculate_next_move(battle_state):
     # set global ai result variable. do this always last to avoid race-conditions.
     ai_result = next_move
 
-@app.route('/ai_invoke/', methods=["GET", "POST"])   
+@app.route('/ai_invoke', methods=["GET", "POST"])   
 def ai_invoke():
     global ai_result
     
@@ -74,7 +74,7 @@ def ai_invoke():
     threading.Thread(target=calculate_next_move, args=(battle_state,)).start()
     return ""
     
-@app.route('/ai_retrieve/')   
+@app.route('/ai_retrieve')   
 def ai_retrieve():
     # if the ai finished, return it's result.
     # otherwise return an empty string

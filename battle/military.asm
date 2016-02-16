@@ -266,10 +266,13 @@ Military:
 .Flee
 	callba Military_TryToFlee
 	ret c
-	ld a, [wd0ec]
+	ld a, [wd266]
 	and a
-	jr z, .Invalid
+	ld a, 0
+	ld [wd266], a
+	jr nz, .Invalid
 	ret
+
 .InvalidItem
 	call WhiteBGMap
 	xor a
@@ -347,6 +350,13 @@ Mil_AI_CheckPP:
 
 
 Military_SelectPokemon:
+	hlcoord 0, 14
+	lb bc, 2, 18
+	call TextBox
+	ld hl, .Waiting
+	bccoord 1, 16
+	call Function13e5
+	
 	ld a, BEESAFREE_SND_ASKMILITARY
 .loop
 	rst LUASerial
@@ -359,6 +369,9 @@ Military_SelectPokemon:
 	sub 4
 	jr c, .Invalid
 	ld b, a
+	ld a, [wMilitaryItem]
+	and a
+	jr nz, .Invalid
 	ld a, [PartyCount]
 	cp b
 	jr c, .Invalid
@@ -380,6 +393,10 @@ Military_SelectPokemon:
 .Invalid
 	ld a, BEESAFREE_SND_ASKMILITARY | BEESAFREE_SND_INVALID
 	jr .loop
+
+.Waiting
+	text "Waiting!"
+	done
 
 MilItemCheck:
 	ld a, [CurItem]

@@ -1,4 +1,4 @@
---Crystal 251 Main Script v1.01--
+--Crystal 251 Main Script v1.02--
 
 dofile("readstates.lua")
 dofile("battle_ram.lua")
@@ -29,6 +29,7 @@ BEESAFREE_SND_ASKMOVE	   = 0x01
 BEESAFREE_SND_ASKITEM	   = 0x02
 
 BEESAFREE_RES_RESET		 = 0x00
+player_next_move = ""
 
 military_mode = 1 -- 0 for off, 1 for on
 lastBattleState = 0
@@ -76,8 +77,8 @@ function UseRandomMove(MovesPointer, PPPointer, DisabledMovePointer)
 	end
 end
 
-function ReceiveButtonInput()
-	b, c, h = http.request("http://127.0.0.1:5000/gbmode_inputs/")
+function ReceiveButtonInput_NoMil()
+	b, c, h = http.request("http://127.0.0.1:5000/gbmode_inputs")
 	-- vba.print(b, c, h)
 	if c == 200 then
 		local json = JSON:decode(b)
@@ -91,6 +92,22 @@ function ReceiveButtonInput()
 	emu.frameadvance()
 end
 
+function ReceiveButtonInput()
+	b, c, h = http.request("http://127.0.0.1:5000/gbmode_inputs")
+	-- vba.print(b, c, h)
+	if c == 200 then
+		local json = JSON:decode(b)
+		-- vba.print(json)
+		if json["military_toggle"] ~= nil then
+			military_mode = 1 - military_mode
+			json["military_toggle"] = nil
+		end
+		player_next_move = json["battle_command"]
+		joypad.set(1, json)
+	end
+	emu.frameadvance()
+end
+
 function DelayFrames(nframes)
 	for frame = 1, nframes do
 		ReceiveButtonInput()
@@ -98,15 +115,16 @@ function DelayFrames(nframes)
 end
 
 function transferStateToAIAndWait(raw_json)
+	player_next_move = ""
 	next_move = nil
 	-- 1st: Invoke the ai with JSON data.
 	-- request-body must be a string, therefore encode
-	http.request("http://127.0.0.1:5001/ai_invoke/", JSON:encode(raw_json))
+	http.request("http://127.0.0.1:5001/ai_invoke", JSON:encode(raw_json))
 	-- 2nd: Wait until the ai finished.
 	repeat
 		-- advance a frame inbetween each request.
 		-- could also advance multiple frames to not do 60 requests per second
-		next_move = http.request("http://127.0.0.1:5001/ai_retrieve/")
+		next_move = http.request("http://127.0.0.1:5001/ai_retrieve")
 		if (next_move == nil or next_move == "") then
 			DelayFrames(15)
 		end
@@ -118,35 +136,38 @@ function transferStateToAIAndWait(raw_json)
 end
 
 function get_next_player_command()
-	player_next_move = nil
+	player_next_move = ""
 	repeat
-		player_next_move = http.request("http://127.0.0.1:5000/gbmode_inputs_ai/")
-		emu.frameadvance()
+		ReceiveButtonInput()
 	until (player_next_move ~= nil and player_next_move ~= "")
-	vba.print("Player response:", player_next_move)
+	-- vba.print("Player response:", player_next_move)
     return player_next_move
 end
 
 function requestBothAIAndMilitary(raw_json)
-	http.request("http://127.0.0.1:5001/ai_invoke/", JSON:encode(raw_json))
+	player_next_move = ""
+	http.request("http://127.0.0.1:5001/ai_invoke", JSON:encode(raw_json))
 	next_move = nil
 	player_next_move = nil
 	repeat
 		-- If we already got the move, don't try to request it again.
 		if ((next_move == nil) or (next_move == "")) then
-			next_move = http.request("http://127.0.0.1:5001/ai_retrieve/")
+			next_move = http.request("http://127.0.0.1:5001/ai_retrieve")
 		end
 		if ((player_next_move) == nil or (player_next_move == "") or (next_move == nil) or (next_move == "")) then
 			for frame = 1, 15 do
-				DelayFrames(1)
 				if ((player_next_move == nil) or (player_next_move == "")) then
-					player_next_move = http.request("http://127.0.0.1:5000/gbmode_inputs_ai/")
+					ReceiveButtonInput()
+				else
+					ReceiveButtonInput_NoMil()
 				end
 			end
 		end
 	until ((player_next_move ~= nil) and (player_next_move ~= "") and (next_move ~= nil) and (next_move ~= ""))
-	vba.print("Enemy response:", next_move)
-	vba.print("Player response:", player_next_move)
+	if debug_mode == 1 then
+		vba.print("Enemy response:", next_move)
+		vba.print("Player response:", player_next_move)
+	end
 	return next_move, player_next_move
 end
 
@@ -163,29 +184,29 @@ function GetCommandTables()
 	if mil_ai_request == 0 then
 		return
 	elseif mil_ai_request == 1 then
-		vba.print("Waiting on player...")
+		if debug_mode == 1 then vba.print("Waiting on player...") end
 		playerresponse = get_next_player_command()
 		-- if debug_mode == 1 then
-		vba.print("[DEBUG] PLAYER RESPONSE:", playerresponse)
+		if debug_mode == 1 then vba.print("[DEBUG] PLAYER RESPONSE:", playerresponse) end
 		-- end
 	elseif mil_ai_request == 2 then
 		battlestate = readBattlestate(memory.readbyte(rLSB))
 		if debug_mode == 1 then
 			vba.print("[DEBUG] STATUS: ", string.format("%02x", memory.readbyte(rLSB)))
 			vba.print("[DEBUG] BATTLESTATE:", battlestate)
+			vba.print("Waiting on AI...")
 		end
-		vba.print("Waiting on AI...")
 		airesponse = transferStateToAIAndWait(battlestate)
-		vba.print("AI RESPONSE:", airesponse)
+		if debug_mode == 1 then vba.print("AI RESPONSE:", airesponse) end
 	else
 		battlestate = readBattlestate(memory.readbyte(rLSB))
 		if debug_mode == 1 then
 			vba.print("[DEBUG] STATUS: ", string.format("%02x", memory.readbyte(rLSB)))
 			vba.print("[DEBUG] BATTLESTATE:", battlestate)
+			vba.print("Waiting on player and AI...")
 		end
-		vba.print("Waiting on player and AI...")
 		airesponse, playerresponse = requestBothAIAndMilitary(battlestate)
-		vba.print("AI RESPONSE:", airesponse)
+		if debug_mode == 1 then vba.print("AI RESPONSE:", airesponse) end
 	end
 	return airesponse, playerresponse
 end

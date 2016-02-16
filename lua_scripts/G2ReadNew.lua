@@ -225,7 +225,7 @@ function ReadParty(offset)
 			else
 				Gender[CurrentPokemon] = 0
 			end
-			Nickname[CurrentPokemon] = parseString(offset + 0x08 + (0x30 * 6) + (0x0b * (CurrentPokemon - 1)), 0x0b)
+			Nickname[CurrentPokemon] = parseString(offset + 0x08 + (0x3b * 6) + (0x0b * (CurrentPokemon - 1)), 0x0b)
 		end
 	end
 end
@@ -589,43 +589,10 @@ function refreshinterval(seconds)
 	return true
 end
 
-while true do
-	if memory.readbyte(0xFF70) == 1 then
-		-- Update the overlay
-		json = read_new_playerstate()
-		-- vba.print("JSON:", json)
-		http.request("http://127.0.0.1:5000/gen2_game_update/", tostring(JSON:encode(json)))
-		
-		
-		bank_wait = 0
-		value = memory.readbyte(0xD849)
-		is_military_on = (value % 2 == 1) -- just in case you need to know the current status
-		newvalue = bit.band(value, 254) + military_mode
-		memory.writebyte(0xD849, newvalue)
-		if memory.readbyte(rLSC) == BEESAFREE_LSC_TRANSFERRING then
-			lua_wait = 0
-			airesponse, playerresponse = GetCommandTables()
-			byte1, byte2, byte3 = tablestobytes(airesponse, playerresponse)
-			if debug_mode == 1 then
-				-- vba.print("[DEBUG] BYTES:", byte1, byte2, byte3)
-			end
-			memory.writebyte(0xDFF8, byte1)
-			memory.writebyte(0xDFF9, byte2)
-			memory.writebyte(0xDFFA, byte3)
-			memory.writebyte(rLSC, BEESAFREE_LSC_COMPLETED)
-		else
-			if lua_wait == 0 then
-				vba.print("Waiting for LUA serial...")
-				lua_wait = 1
-			end
-		end
-    else
-        if bank_wait == 0 then
-            vba.print("Waiting for valid bank")
-            bank_wait = 1
-        end
-	end
-	updateclock()
+function update_overlay(json)
+    http.request("http://127.0.0.1:5002/gen2_game_update", tostring(JSON:encode(json)))
+end
+
 		--Gender
 		--0x00 = Male
 		--0x01 = Female
@@ -638,6 +605,48 @@ while true do
 		--0x10 = Burned
 		--0x20 = Frozen
 		--0x40 = Paralyzed
+
+while true do
+	if memory.readbyte(0xFF70) == 1 then
+		bank_wait = 0
+		-- Update the overlay
+		json = read_new_playerstate()
+		-- vba.print("JSON:", json)
+		update_overlay(json)
+
+		-- Military mode switch (incomplete)
+		value = memory.readbyte(0xD849)
+		is_military_on = (value % 2 == 1) -- just in case you need to know the current status
+		-- here we can update global variable military_mode
+		newvalue = bit.band(value, 254) + military_mode
+		memory.writebyte(0xD849, newvalue)
+
+		-- Military and AI command polling (player state is not updated during these frame delays)
+		if memory.readbyte(rLSC) == BEESAFREE_LSC_TRANSFERRING then
+			lua_wait = 0
+			airesponse, playerresponse = GetCommandTables()
+			byte1, byte2, byte3 = tablestobytes(airesponse, playerresponse)
+			if debug_mode == 1 then
+				vba.print("[DEBUG] BYTES:", byte1, byte2, byte3)
+			end
+			memory.writebyte(0xDFF8, byte1)
+			memory.writebyte(0xDFF9, byte2)
+			memory.writebyte(0xDFFA, byte3)
+			memory.writebyte(rLSC, BEESAFREE_LSC_COMPLETED)
+		else
+			if lua_wait == 0 then
+				if debug_mode == 1 then vba.print("Waiting for LUA serial...") end
+				lua_wait = 1
+			end
+		end
+    else
+        if bank_wait == 0 then
+            if debug_mode == 1 then vba.print("Waiting for valid bank") end
+            bank_wait = 1
+        end
+	end
+	-- RTC and Joypad
+	updateclock()
 	ReceiveButtonInput()
 	-- vba.print(joypad.get(1))
 end
