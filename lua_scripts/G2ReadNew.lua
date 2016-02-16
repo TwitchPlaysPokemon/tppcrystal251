@@ -147,83 +147,86 @@ function ReadParty(offset)
 
 	if PartyCount > 0 then
 		for CurrentPokemon = 1, PartyCount, 1 do
-			ID[CurrentPokemon] = memory.readbyte(offset + 0x08 + ((CurrentPokemon - 1) * 0x30))
-			Move1[CurrentPokemon] = memory.readbyte(offset + 0x08 + ((CurrentPokemon - 1) * 0x30) + 0x02)
-			Move2[CurrentPokemon] = memory.readbyte(offset + 0x08 + ((CurrentPokemon - 1) * 0x30) + 0x03)
-			Move3[CurrentPokemon] = memory.readbyte(offset + 0x08 + ((CurrentPokemon - 1) * 0x30) + 0x04)
-			Move4[CurrentPokemon] = memory.readbyte(offset + 0x08 + ((CurrentPokemon - 1) * 0x30) + 0x05)
-			PP1[CurrentPokemon] = memory.readbyte(offset + 0x08 + ((CurrentPokemon - 1) * 0x30) + 0x17)
-			PP2[CurrentPokemon] = memory.readbyte(offset + 0x08 + ((CurrentPokemon - 1) * 0x30) + 0x18)
-			PP3[CurrentPokemon] = memory.readbyte(offset + 0x08 + ((CurrentPokemon - 1) * 0x30) + 0x19)
-			PP4[CurrentPokemon] = memory.readbyte(offset + 0x08 + ((CurrentPokemon - 1) * 0x30) + 0x1A)
-			PPUp1[CurrentPokemon] = bit.rshift(bit.band(PP1[CurrentPokemon], 0xC0), 0x06)
-			PPUp2[CurrentPokemon] = bit.rshift(bit.band(PP2[CurrentPokemon], 0xC0), 0x06)
-			PPUp3[CurrentPokemon] = bit.rshift(bit.band(PP3[CurrentPokemon], 0xC0), 0x06)
-			PPUp4[CurrentPokemon] = bit.rshift(bit.band(PP4[CurrentPokemon], 0xC0), 0x06)
-			PP1[CurrentPokemon] = bit.band(PP1[CurrentPokemon], 0x3F)
-			PP2[CurrentPokemon] = bit.band(PP2[CurrentPokemon], 0x3F)
-			PP3[CurrentPokemon] = bit.band(PP3[CurrentPokemon], 0x3F)
-			PP4[CurrentPokemon] = bit.band(PP4[CurrentPokemon], 0x3F)
-			if PPVal[Move1[CurrentPokemon]] ~= nil then 
-				MAXPP1[CurrentPokemon] = PPVal[Move1[CurrentPokemon]] * (1.0 + (PPUp1[CurrentPokemon] * 0.2))
-			else
-				MAXPP1[CurrentPokemon] = 0
-			end
-			if PPVal[Move2[CurrentPokemon]] ~= nil then 
-				MAXPP2[CurrentPokemon] = PPVal[Move2[CurrentPokemon]] * (1.0 + (PPUp2[CurrentPokemon] * 0.2))
-			else
-				MAXPP2[CurrentPokemon] = 0
-			end
-			if PPVal[Move3[CurrentPokemon]] ~= nil then 
-				MAXPP3[CurrentPokemon] = PPVal[Move3[CurrentPokemon]] * (1.0 + (PPUp3[CurrentPokemon] * 0.2))
-			else
-				MAXPP3[CurrentPokemon] = 0
-			end
-			if PPVal[Move4[CurrentPokemon]] ~= nil then 
-				MAXPP4[CurrentPokemon] = PPVal[Move4[CurrentPokemon]] * (1.0 + (PPUp4[CurrentPokemon] * 0.2))
-			else
-				MAXPP4[CurrentPokemon] = 0
-			end
-			Lvl[CurrentPokemon] = memory.readbyte(offset + 0x08 + ((CurrentPokemon - 1) * 0x30) + 0x1F)
-			HP[CurrentPokemon] = (memory.readbyte(offset + 0x08 + ((CurrentPokemon - 1) * 0x30) + 0x22) * 256) + memory.readbyte(offset + 0x08 + ((CurrentPokemon - 1) * 0x30) + 0x23)
-			MAXHP[CurrentPokemon] = (memory.readbyte(offset + 0x08 + ((CurrentPokemon - 1) * 0x30) + 0x24) * 256) + memory.readbyte(offset + 0x08 + ((CurrentPokemon - 1) * 0x30) + 0x25)
-			Status[CurrentPokemon] = memory.readbyte(offset + 0x08 + ((CurrentPokemon - 1) * 0x30) + 0x20)
-			
-			if ID[CurrentPokemon] ~= 0x00 then
-				Gender[CurrentPokemon] = bit.rshift(memory.readbyte(offset + 0x08 + ((CurrentPokemon - 1) * 0x30) + 0x15), 0x04)
-				if GRVal[ID[CurrentPokemon]] == 0 then
-					Gender[CurrentPokemon] = 0
-				elseif GRVal[ID[CurrentPokemon]] == 31 then
-					if Gender[CurrentPokemon] <= 1 then
-						Gender[CurrentPokemon] = 1
-					else
-						Gender[CurrentPokemon] = 0
-					end
-				elseif GRVal[ID[CurrentPokemon]] == 63 then
-					if Gender[CurrentPokemon] <= 4 then
-						Gender[CurrentPokemon] = 1
-					else
-						Gender[CurrentPokemon] = 0
-					end
-				elseif GRVal[ID[CurrentPokemon]] == 127 then
-					if Gender[CurrentPokemon] <= 6 then
-						Gender[CurrentPokemon] = 1
-					else
-						Gender[CurrentPokemon] = 0
-					end
-				elseif GRVal[ID[CurrentPokemon]] == 191 then
-					if Gender[CurrentPokemon] <= 11 then
-						Gender[CurrentPokemon] = 1
-					else
-						Gender[CurrentPokemon] = 0
-					end
-				elseif GRVal[ID[CurrentPokemon]] == 254 then
-					Gender[CurrentPokemon] = 1
-				elseif GRVal[ID[CurrentPokemon]] == 255 then
-					Gender[CurrentPokemon] = 2
+			ID[CurrentPokemon] = memory.readbyte(offset + CurrentPokemon)
+			-- ID[CurrentPokemon] = memory.readbyte(offset + 0x08 + ((CurrentPokemon - 1) * 0x30))
+			if ID[CurrentPokemon] -= 0xFD then -- it's not an egg
+				Move1[CurrentPokemon] = memory.readbyte(offset + 0x08 + ((CurrentPokemon - 1) * 0x30) + 0x02)
+				Move2[CurrentPokemon] = memory.readbyte(offset + 0x08 + ((CurrentPokemon - 1) * 0x30) + 0x03)
+				Move3[CurrentPokemon] = memory.readbyte(offset + 0x08 + ((CurrentPokemon - 1) * 0x30) + 0x04)
+				Move4[CurrentPokemon] = memory.readbyte(offset + 0x08 + ((CurrentPokemon - 1) * 0x30) + 0x05)
+				PP1[CurrentPokemon] = memory.readbyte(offset + 0x08 + ((CurrentPokemon - 1) * 0x30) + 0x17)
+				PP2[CurrentPokemon] = memory.readbyte(offset + 0x08 + ((CurrentPokemon - 1) * 0x30) + 0x18)
+				PP3[CurrentPokemon] = memory.readbyte(offset + 0x08 + ((CurrentPokemon - 1) * 0x30) + 0x19)
+				PP4[CurrentPokemon] = memory.readbyte(offset + 0x08 + ((CurrentPokemon - 1) * 0x30) + 0x1A)
+				PPUp1[CurrentPokemon] = bit.rshift(bit.band(PP1[CurrentPokemon], 0xC0), 0x06)
+				PPUp2[CurrentPokemon] = bit.rshift(bit.band(PP2[CurrentPokemon], 0xC0), 0x06)
+				PPUp3[CurrentPokemon] = bit.rshift(bit.band(PP3[CurrentPokemon], 0xC0), 0x06)
+				PPUp4[CurrentPokemon] = bit.rshift(bit.band(PP4[CurrentPokemon], 0xC0), 0x06)
+				PP1[CurrentPokemon] = bit.band(PP1[CurrentPokemon], 0x3F)
+				PP2[CurrentPokemon] = bit.band(PP2[CurrentPokemon], 0x3F)
+				PP3[CurrentPokemon] = bit.band(PP3[CurrentPokemon], 0x3F)
+				PP4[CurrentPokemon] = bit.band(PP4[CurrentPokemon], 0x3F)
+				if PPVal[Move1[CurrentPokemon]] ~= nil then 
+					MAXPP1[CurrentPokemon] = PPVal[Move1[CurrentPokemon]] * (1.0 + (PPUp1[CurrentPokemon] * 0.2))
+				else
+					MAXPP1[CurrentPokemon] = 0
 				end
-			else
-				Gender[CurrentPokemon] = 0
+				if PPVal[Move2[CurrentPokemon]] ~= nil then 
+					MAXPP2[CurrentPokemon] = PPVal[Move2[CurrentPokemon]] * (1.0 + (PPUp2[CurrentPokemon] * 0.2))
+				else
+					MAXPP2[CurrentPokemon] = 0
+				end
+				if PPVal[Move3[CurrentPokemon]] ~= nil then 
+					MAXPP3[CurrentPokemon] = PPVal[Move3[CurrentPokemon]] * (1.0 + (PPUp3[CurrentPokemon] * 0.2))
+				else
+					MAXPP3[CurrentPokemon] = 0
+				end
+				if PPVal[Move4[CurrentPokemon]] ~= nil then 
+					MAXPP4[CurrentPokemon] = PPVal[Move4[CurrentPokemon]] * (1.0 + (PPUp4[CurrentPokemon] * 0.2))
+				else
+					MAXPP4[CurrentPokemon] = 0
+				end
+				Lvl[CurrentPokemon] = memory.readbyte(offset + 0x08 + ((CurrentPokemon - 1) * 0x30) + 0x1F)
+				HP[CurrentPokemon] = (memory.readbyte(offset + 0x08 + ((CurrentPokemon - 1) * 0x30) + 0x22) * 256) + memory.readbyte(offset + 0x08 + ((CurrentPokemon - 1) * 0x30) + 0x23)
+				MAXHP[CurrentPokemon] = (memory.readbyte(offset + 0x08 + ((CurrentPokemon - 1) * 0x30) + 0x24) * 256) + memory.readbyte(offset + 0x08 + ((CurrentPokemon - 1) * 0x30) + 0x25)
+				Status[CurrentPokemon] = memory.readbyte(offset + 0x08 + ((CurrentPokemon - 1) * 0x30) + 0x20)
+				
+				if ID[CurrentPokemon] ~= 0x00 then
+					Gender[CurrentPokemon] = bit.rshift(memory.readbyte(offset + 0x08 + ((CurrentPokemon - 1) * 0x30) + 0x15), 0x04)
+					if GRVal[ID[CurrentPokemon]] == 0 then
+						Gender[CurrentPokemon] = 0
+					elseif GRVal[ID[CurrentPokemon]] == 31 then
+						if Gender[CurrentPokemon] <= 1 then
+							Gender[CurrentPokemon] = 1
+						else
+							Gender[CurrentPokemon] = 0
+						end
+					elseif GRVal[ID[CurrentPokemon]] == 63 then
+						if Gender[CurrentPokemon] <= 4 then
+							Gender[CurrentPokemon] = 1
+						else
+							Gender[CurrentPokemon] = 0
+						end
+					elseif GRVal[ID[CurrentPokemon]] == 127 then
+						if Gender[CurrentPokemon] <= 6 then
+							Gender[CurrentPokemon] = 1
+						else
+							Gender[CurrentPokemon] = 0
+						end
+					elseif GRVal[ID[CurrentPokemon]] == 191 then
+						if Gender[CurrentPokemon] <= 11 then
+							Gender[CurrentPokemon] = 1
+						else
+							Gender[CurrentPokemon] = 0
+						end
+					elseif GRVal[ID[CurrentPokemon]] == 254 then
+						Gender[CurrentPokemon] = 1
+					elseif GRVal[ID[CurrentPokemon]] == 255 then
+						Gender[CurrentPokemon] = 2
+					end
+				else
+					Gender[CurrentPokemon] = 0
+				end
 			end
 			Nickname[CurrentPokemon] = parseString(offset + 0x08 + (0x3b * 6) + (0x0b * (CurrentPokemon - 1)), 0x0b)
 		end
