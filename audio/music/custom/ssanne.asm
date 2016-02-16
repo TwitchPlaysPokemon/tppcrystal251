@@ -397,7 +397,7 @@ Music_SSAnne_Ch2_L:
 	note F#, 3
 	note E_, 15
 ; Pat 6 Row 3
-	dutycycle $2
+	dutycycle $0
 	intensity $e8
 	vibrato $7, $12
 	note F#, 3
