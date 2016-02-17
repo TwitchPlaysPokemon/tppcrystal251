@@ -13,3 +13,8 @@
 *.blk  binary diff=hex
 *.dll  binary diff=hex
 
+# other files that were causing problems
+*.gbc  binary
+*.it   binary
+*.db   binary
+*.tilemap binary
