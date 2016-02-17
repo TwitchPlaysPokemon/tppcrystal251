@@ -6240,6 +6240,11 @@ Function3e7c1: ; 3e7c1
 	ld a, [wEnemyIsSwitching]
 	and a
 	ret nz
+IF DEF(BEESAFREE)
+	ld a, [wMilitaryAndAIBattleAction]
+	cp 4
+	ret nc
+ENDC
 	ld a, [wLinkMode]
 	and a
 	jr z, .asm_3e817

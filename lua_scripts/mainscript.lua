@@ -31,7 +31,7 @@ BEESAFREE_SND_ASKITEM	   = 0x02
 BEESAFREE_RES_RESET		 = 0x00
 player_next_move = ""
 
-military_mode = 1 -- 0 for off, 1 for on
+military_mode = 0 -- 0 for off, 1 for on
 lastBattleState = 0
 ignore_serial = 0 -- please set this to 0 for normal use.
 lua_wait = 0
@@ -80,7 +80,7 @@ end
 function ReceiveButtonInput_NoMil()
 	b, c, h = http.request("http://127.0.0.1:5000/gbmode_inputs")
 	-- vba.print(b, c, h)
-	if c == 200 then
+	if (c == 200) and (b ~= "") then
 		local json = JSON:decode(b)
 		-- vba.print(json)
 		if json["military_toggle"] ~= nil then
@@ -95,7 +95,7 @@ end
 function ReceiveButtonInput()
 	b, c, h = http.request("http://127.0.0.1:5000/gbmode_inputs")
 	-- vba.print(b, c, h)
-	if c == 200 then
+	if (c == 200) and (b ~= "") then
 		local json = JSON:decode(b)
 		-- vba.print(json)
 		if json["military_toggle"] ~= nil then
