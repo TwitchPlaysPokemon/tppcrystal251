@@ -420,15 +420,15 @@ class AI(object):
         if move_used_effect in ('hyperbeam', 'skyattack', 'solarbeam', 'fly'):
             if mondata[attacker]['status'] == 'par':
                 accmodifier = accmodifier * 0.75 #0.5x total combined with the 0.75x in the if-statement above
-            if ('confused' in mondata[temptext2]['substatus'] or (isinstance(mondata[temptext2]['substatus'], dict) and 'confused' in mondata[temptext2]['substatus'].values())):
+            if ('confused' in mondata[temptext2]['substatus'] or (isinstance(mondata[temptext2]['substatus'], dict) and 'confused' in mondata[temptext2]['substatus'].values())) or (attacker > 5 and mondata['confused'] == True):
                 accmodifier = accmodifier * 0.5
-            if('attract' in mondata[temptext2]['substatus'] or (isinstance(mondata[temptext2]['substatus'], dict) and 'attract' in mondata[temptext2]['substatus'].values())):
+            if('attract' in mondata[temptext2]['substatus'] or (isinstance(mondata[temptext2]['substatus'], dict) and 'attract' in mondata[temptext2]['substatus'].values())) or (attacker > 5 and mondata['attract'] == True):
                 accmodifier = accmodifier * 0.5
-        if 'confused' in mondata[temptext2]['substatus'] or (isinstance(mondata[temptext2]['substatus'], dict) and 'confused' in mondata[temptext2]['substatus'].values()):
+        if 'confused' in mondata[temptext2]['substatus'] or (isinstance(mondata[temptext2]['substatus'], dict) and 'confused' in mondata[temptext2]['substatus'].values()) or (attacker > 5 and mondata['confused'] == True):
             accmodifier = accmodifier * 0.5
             if temptext2 == 'playerpokemon':
                 mondata['confused'] = False
-        if 'attract' in mondata[temptext2]['substatus'] or (isinstance(mondata[temptext2]['substatus'], dict) and 'attract' in mondata[temptext2]['substatus'].values()):
+        if 'attract' in mondata[temptext2]['substatus'] or (isinstance(mondata[temptext2]['substatus'], dict) and 'attract' in mondata[temptext2]['substatus'].values()) or (attacker > 5 and mondata['attract'] == True):
             accmodifier = accmodifier * 0.5
             if temptext2 == 'playerpokemon':
                 mondata['attract'] = False
@@ -1468,15 +1468,15 @@ class AI(object):
                             self.useitem = x2
                             if mondata['myitems'][x2] in ['xspeed', 'xattack', 'xdefense', 'xspecial', 'direhit']:
                                 self.Fight(mondata, traincurrent, mycurrent, 5)
-                            if self.differenceitems[mymons][self.useitem] > self.difference[temp1][traincurrent]:
-                                tempaction = x2 + 9
-                                self.difference[temp1][traincurrent] = self.differenceitems[mymons][self.useitem]
-                                return(tempaction)
-
+                                if self.differenceitems[mymons][self.useitem] > self.difference[temp1][traincurrent]:
+                                    tempaction = x2 + 9
+                                    self.difference[temp1][traincurrent] = self.differenceitems[mymons][self.useitem]
+                                    return(tempaction)
+                            
                             #and you are about to die
                             if self.Damage[traincurrent][mycurrent][self.enemynumber]['damage'] > self.hp[bestmonsindex[x1]]:
                                 #and healing would allow you to continue fighting
-                                if self.Damage[traincurrent][mycurrent][self.enemynumber]['damage'] / self.hp[bestmonsindex[x1]] < 0.5:
+                                if self.Damage[traincurrent][mycurrent][self.enemynumber]['damage'] / self.jsonlist['battleState']['enemypokemon']['stats']['maxhp'] < 0.5:
                                     #and im not at full hp
                                     if self.hp[bestmonsindex[x1]]!= self.jsonlist['battleState']['enemypokemon']['stats']['maxhp']:
                                         #and the item is a.....
