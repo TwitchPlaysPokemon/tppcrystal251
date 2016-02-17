@@ -189,9 +189,13 @@ Military:
 .Switch
 	sub 4
 	ld b, a
+	ld a, [BattleType]
+	cp BATTLETYPE_CONTEST
+	jp z, .Invalid
 	ld a, [PartyCount]
 	cp b
 	jp c, .Invalid
+	jp z, .Invalid
 	ld a, b
 	ld [CurPartyMon], a
 	ld c, a
