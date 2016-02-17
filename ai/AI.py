@@ -278,7 +278,7 @@ class AI(object):
                 mondata['playerpokemon']['substatus']['raging'] = mondata['playerpokemon']['substatus']['raging'] + 1
             if 'raging' not in mondata['playerpokemon']['substatus']:
                 mondata['playerpokemon']['substatus'].append(dict({'raging': 1}))
-            basebp = (basebp / 2) * ( 2 ^ mondata['playerpokemon']['substatus']['raging'])
+            basebp = (basebp / 2) * ( 2 ** mondata['playerpokemon']['substatus']['raging'])
             if basebp > 160:
                 basebp = 160
         if move_used_effect == 'reversal':
@@ -387,7 +387,7 @@ class AI(object):
             if curled == True:
                 temp2 = temp2 * 2
             if 'rollout' in mondata[temptext2]['substatus'] or (isinstance(mondata[temptext2]['substatus'], dict) and 'rollout' in mondata[temptext2]['substatus'].values()):
-                temp2 = temp2 * (2 ^ (mondata[temptext2]['substatus']['rollout']))
+                temp2 = temp2 * (2 ** (mondata[temptext2]['substatus']['rollout']))
 
         if Debug_Code == 1 and attacker < 6:
             print('Damage before accuracy and after special cases '+str(temp2))
