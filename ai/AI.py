@@ -95,9 +95,9 @@ class AI(object):
         if isinstance(self.jsonlist['battleState']['weather'], dict):
             if "Rain" in self.jsonlist['battleState']['weather'] :
                 mondata['weather'] = 'rain'
-            if "Sun" in self.jsonlist['battleState']['weather'] :
+            elif "Sun" in self.jsonlist['battleState']['weather'] :
                 mondata['weather'] = 'sun'
-            if "Sandstorm" in self.jsonlist['battleState']['weather'] :
+            elif "Sandstorm" in self.jsonlist['battleState']['weather'] :
                 mondata['weather'] = 'sandstorm'
         else:
             mondata['weather'] =  'clear'
@@ -119,7 +119,7 @@ class AI(object):
             if (allmons <= 5):
                 templocation = 'enemyParty'
                 tempx = allmons
-            if (allmons >= 6):
+            else:
                 templocation = 'playerParty'
                 tempx = allmons - 6
             if (allmons+1 <= self.myparty) or ((allmons-5 <= self.trainparty) and (allmons > 5)):
@@ -219,7 +219,7 @@ class AI(object):
             identified = True
         if mondata['identified'] == True and defenderindex == 'playerpokemon':
             identified = True
-        if type2name == 'ghost' and (type1name == 'fighting' or type1name == 'normal') and identified == True:
+        if identified and type2name == 'ghost' and (type1name == 'fighting' or type1name == 'normal'):
             tempx = 1
         return tempx
 
@@ -256,7 +256,7 @@ class AI(object):
         multiplier = 1
         if move_used_effect == 'multihit':
             multiplier = 3
-        if move_used_effect in ('doublehit', 'twineedle'):
+        elif move_used_effect in ('doublehit', 'twineedle'):
             multiplier = 2
 
         #Raw Damage modifiers
@@ -265,7 +265,7 @@ class AI(object):
         if mondata[attacker]['item'] == 'lightball' and  mondata[attacker]['species'] == 'pikachu':
             atkmodifier = atkmodifier * 2
             satkmodifier = satkmodifier * 2
-        if mondata[attacker]['item'] == 'thickclub' and (mondata[attacker]['species'] == 'cubone' or mondata[attacker]['species'] == 'marowak'):
+        elif mondata[attacker]['item'] == 'thickclub' and (mondata[attacker]['species'] == 'cubone' or mondata[attacker]['species'] == 'marowak'):
             atkmodifier = atkmodifier * 2
 
         #Raw damage
@@ -358,24 +358,24 @@ class AI(object):
         tempaccuracy = 0
         if move_used['name'].lower() == 'thunder' and mondata['weather'] == 'rain':
             tempaccuracy  = 100
-        if move_used['name'].lower() == 'thunder' and mondata['weather'] == 'sun':
+        elif move_used['name'].lower() == 'thunder' and mondata['weather'] == 'sun':
             tempaccuracy  = 50
 
         #Static Damage
         if (move_used['effect'] == 'leveldamage'):
             temp2 = mondata[attacker]['level']
-        if move_used['name'] == 'dragonrage':
+        elif move_used['name'] == 'dragonrage':
             temp2 = 40
-        if move_used['name'] == 'sonicboom':
+        elif move_used['name'] == 'sonicboom':
             temp2 = 20
-        if move_used['name'] == 'superfang':
+        elif move_used['name'] == 'superfang':
             temp2 =  mondata[defender]['stats']['curhp'] / 2
 
         #Special cases
-        if move_used_effect in ('hyperbeam', 'skyattack'):
+        elif move_used_effect in ('hyperbeam', 'skyattack'):
             temp2 = temp2 / 2
         
-        if move_used_effect == 'falseswipe':
+        elif move_used_effect == 'falseswipe':
             if temp2 > mondata[defender]['stats']['curhp']:
                 temp2 = mondata[defender]['stats']['curhp'] - 1
 
@@ -385,7 +385,7 @@ class AI(object):
                 curled = True
             if (mondata['defensecurlused'] == True) and (attacker < 6):
                 curled = True
-            if curled == True:
+            if curled:
                 temp2 = temp2 * 2
             if 'rollout' in mondata[temptext2]['substatus'] or (isinstance(mondata[temptext2]['substatus'], dict) and 'rollout' in mondata[temptext2]['substatus'].values()):
                 temp2 = temp2 * (2 ** (mondata[temptext2]['substatus']['rollout']))
@@ -403,7 +403,7 @@ class AI(object):
             tempy = self._accuracymultipliers[tempy+6]/100
             if tempaccuracy == 0:
                 totalacc = tempx * accmodifier * (move_used['acc']/100) * tempy
-            if tempaccuracy > 0:
+            elif tempaccuracy > 0:
                 totalacc = tempx * accmodifier * (tempaccuracy/100) * tempy
 
         if move_used_effect == 'ohko':
@@ -422,12 +422,13 @@ class AI(object):
         accmodifier = 1
         if mondata[attacker]['status'] == 'par':
             accmodifier = accmodifier * 0.75
-        if move_used_effect in ('hyperbeam', 'skyattack', 'solarbeam', 'fly') and mondata[attacker]['status'] == 'par':
-            accmodifier = accmodifier * 0.75
-        if move_used_effect in ('hyperbeam', 'skyattack', 'solarbeam', 'fly') and ('confused' in mondata[temptext2]['substatus'] or (isinstance(mondata[temptext2]['substatus'], dict) and 'confused' in mondata[temptext2]['substatus'].values())):
-            accmodifier = accmodifier * 0.5
-        if move_used_effect in ('hyperbeam', 'skyattack', 'solarbeam', 'fly') and ('attract' in mondata[temptext2]['substatus'] or (isinstance(mondata[temptext2]['substatus'], dict) and 'attract' in mondata[temptext2]['substatus'].values())):
-            accmodifier = accmodifier * 0.5
+        if move_used_effect in ('hyperbeam', 'skyattack', 'solarbeam', 'fly'):
+            if mondata[attacker]['status'] == 'par':
+                accmodifier = accmodifier * 0.75 #0.5x total combined with the 0.75x in the if-statement above
+            if ('confused' in mondata[temptext2]['substatus'] or (isinstance(mondata[temptext2]['substatus'], dict) and 'confused' in mondata[temptext2]['substatus'].values())):
+                accmodifier = accmodifier * 0.5
+            if('attract' in mondata[temptext2]['substatus'] or (isinstance(mondata[temptext2]['substatus'], dict) and 'attract' in mondata[temptext2]['substatus'].values())):
+                accmodifier = accmodifier * 0.5
         if 'confused' in mondata[temptext2]['substatus'] or (isinstance(mondata[temptext2]['substatus'], dict) and 'confused' in mondata[temptext2]['substatus'].values()):
             accmodifier = accmodifier * 0.5
             if temptext2 == 'playerpokemon':
@@ -453,44 +454,44 @@ class AI(object):
             if 'underground' in mondata[temptext]['substatus'] or (isinstance(mondata[temptext]['substatus'], dict) and 'underground' in mondata[temptext]['substatus'].values()) or underground == 1:
                 if move_used['name'].lower() not in ('earthquake', 'magnitude', 'fissure'):
                     temp2 = 0
-                if move_used['name'].lower() in ('earthquake', 'magnitude', 'fissure'):
+                else:
                     temp2 = temp2 * 2
             if 'flying' in mondata[temptext]['substatus'] or (isinstance(mondata[temptext]['substatus'], dict) and 'flying' in mondata[temptext]['substatus'].values()) or flying == 1:
                 if move_used['name'].lower() not in ('thunder', 'twister', 'gust'):
                     temp2 = 0
-                if move_used['name'].lower() in ('thunder', 'twister', 'gust'):
+                else:
                     temp2 = temp2 * 2
         if mondata[attacker]['stats']['speed'] * tempx < mondata[defender]['stats']['speed'] * tempy:
             if self.enemybest in ('dig', 'fly'):
                 if 'underground' in mondata[temptext]['substatus'] or (isinstance(mondata[temptext]['substatus'], dict) and 'underground' in mondata[temptext]['substatus'].values()) or underground == 1:
                     if move_used['name'].lower() not in ('earthquake', 'magnitude', 'fissure'):
                         temp2 = 0
-                    if move_used['name'].lower() in ('earthquake', 'magnitude', 'fissure'):
+                    else:
                         temp2 = temp2 * 2
                 if 'flying' in mondata[temptext]['substatus'] or (isinstance(mondata[temptext]['substatus'], dict) and 'flying' in mondata[temptext]['substatus'].values()) or flying == 1:
                     if move_used['name'].lower() not in ('thunder', 'twister', 'gust'):
                         temp2 = 0
-                    if move_used['name'].lower() in ('thunder', 'twister', 'gust'):
+                    else:
                         temp2 = temp2 * 2
         if (mondata[attacker]['status'] == 'frz') and (move_used['name'].lower() not in ('flamewheel', 'sacredfire', 'flareblitz')):
             temp2 = temp2 * 0.2
-        if (mondata[attacker]['status'] in ('slp')) and (move_used['name'].lower() not in ('snore')):
+        elif (mondata[attacker]['status'] == 'slp') and (move_used['name'].lower() != 'snore'):
             temp2 = temp2 * 0.33
-        if (mondata[attacker]['status'] in ('slp2', 'slp1')) and (move_used['name'].lower() not in ('snore')):
+        elif (mondata[attacker]['status'] in ('slp2', 'slp1')) and (move_used['name'].lower() != 'snore'):
             temp2 = 0
-        if (move_used_effect in ('dreameater', 'snore')) and (mondata[defender]['status'] != 'slp'):
+        elif (move_used_effect in ('dreameater', 'snore')) and (mondata[defender]['status'] != 'slp'):
             temp2 = 0
 
-        templist = []
+        movelist = [mondata[defender]['moves'][move]['name'].lower() for move in mondata[defender]['moves']]
         #Dig and Fly aversion
-        for tempx in range (0, len(mondata[defender]['moves'])):
-            templist.append(mondata[defender]['moves'][tempx]['name'].lower())
-        if move_used['name'].lower() == 'dig' and ('earthquake', 'magnitude', 'fissure') in (templist):
+        if move_used['name'].lower() == 'dig':
+            if 'earthquake' in movelist or 'magnitude' in movelist or 'fissure' in movelist:
+                temp2 = temp2 / 4
+        elif move_used['name'].lower() == 'fly' and 'thunder' in movelist:
             temp2 = temp2 / 4
-        elif move_used['name'].lower() == 'fly' and ('thunder') in (templist):
-            temp2 = temp2 / 4
-        elif move_used['name'].lower() == 'fly' and ('twister', 'gust') in (templist):
-            temp2 = temp2 / 2
+        elif move_used['name'].lower() == 'fly':
+            if 'twister' in movelist or 'gust' in movelist:
+                temp2 = temp2 / 2
 
         if Debug_Code == 1 and attacker < 6:
             print('Damage before crit and after accuracy '+str(temp2))
@@ -523,16 +524,16 @@ class AI(object):
                 temp2 = temp2 * 2
                 mondata[attacker]['item'] = mondata[defender]['item']
                 mondata[defender]['item'] = 'noitem'
-            if (move_used_effect == 'pursuit'):
+            elif (move_used_effect == 'pursuit'):
                 if temp2 * 2 > mondata[defender]['stats']['curhp']:
                     temp2 = temp2 * 2
-            if move_used['name'] == 'destinybond':
+            elif move_used['name'] == 'destinybond':
                 temp2 = mondata[defender]['stats']['curhp'] * (mondata[attacker]['stats']['curhp'] / mondata[attacker]['stats']['hp'])
-            if (move_used_effect == 'recoilhit'):
+            elif (move_used_effect == 'recoilhit'):
                 self.Damage[attacker][defender][moveused]['selfdamage'] = temp2 * 0.25
-            if (move_used_effect == 'leechhit'):
+            elif (move_used_effect == 'leechhit'):
                 self.Damage[attacker][defender][moveused]['selfdamage'] = temp2 * -0.5
-            if move_used_effect in ('hyperbeam', 'skyattack', 'solarbeam'):
+            elif move_used_effect in ('hyperbeam', 'skyattack', 'solarbeam'):
                 temp2 = temp2 * 2
                 self.Damage[attacker][defender][moveused]['selfdamage'] = self.Damage[defender][attacker][self.enemynumber]['damage'] * 1.2
             if move_used['name'].lower() == 'solarbeam' and mondata['weather'] == 'sun':
@@ -544,13 +545,13 @@ class AI(object):
             temp2 = 0
         if move_used_effect == 'jumpkick':
             self.Damage[attacker][defender][moveused]['selfdamage'] = temp2 / 2
-        if move_used_effect == 'explosion':
+        elif move_used_effect == 'explosion':
             self.Damage[attacker][defender][moveused]['selfdamage'] = mondata[attacker]['stats']['curhp'] * 1.5
             if temp2 > mondata[defender]['stats']['curhp']:
                 temp2 = mondata[attacker]['stats']['curhp'] + 3
             if attacker > 5 and temp2 > mondata[defender]['stats']['curhp']:
                 temp2 = mondata[defender]['stats']['curhp'] / 2
-        if move_used_effect == 'dreameater':
+        elif move_used_effect == 'dreameater':
             self.Damage[attacker][defender][moveused]['selfdamage'] = temp2 / -2
         self.Damage[attacker][defender][moveused]['damage'] = temp2
         return 1
