@@ -278,7 +278,7 @@ class AI(object):
                 mondata['playerpokemon']['substatus']['raging'] = mondata['playerpokemon']['substatus']['raging'] + 1
                 basebp = (basebp / 2) * ( 2 ** mondata['playerpokemon']['substatus']['raging'])
             else:
-                if type(mondata) == list:
+                if type(mondata['playerpokemon']['substatus']) == list:
                     mondata['playerpokemon']['substatus'] = {str(i+1): x for i, x in enumerate(mondata['playerpokemon']['substatus'])}
                 mondata['playerpokemon']['substatus']['raging'] = 1
             if basebp > 160:
