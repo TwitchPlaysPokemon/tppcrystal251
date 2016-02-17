@@ -613,25 +613,25 @@ class AI(object):
             #stats up
             if mondata[mycurrent]['moves'][moveused]['effect'] == 'defenseup2':
                 mondata[mycurrent]['boosts']['def'] = mondata[mycurrent]['boosts']['def'] + 2
-            if mondata[mycurrent]['moves'][moveused]['effect'] == 'attackup2':
+            elif mondata[mycurrent]['moves'][moveused]['effect'] == 'attackup2':
                 mondata[mycurrent]['boosts']['atk'] = mondata[mycurrent]['boosts']['atk'] + 2
-            if mondata[mycurrent]['moves'][moveused]['effect'] == 'evasionup2':
+            elif mondata[mycurrent]['moves'][moveused]['effect'] == 'evasionup2':
                 mondata[mycurrent]['boosts']['eva'] = mondata[mycurrent]['boosts']['eva'] + 2
-            if mondata[mycurrent]['moves'][moveused]['effect'] == 'speedup2':
+            elif mondata[mycurrent]['moves'][moveused]['effect'] == 'speedup2':
                 mondata[mycurrent]['boosts']['spd'] = mondata[mycurrent]['boosts']['spd'] + 2
-            if mondata[mycurrent]['moves'][moveused]['effect'] == 'spatkup2':
+            elif mondata[mycurrent]['moves'][moveused]['effect'] == 'spatkup2':
                 mondata[mycurrent]['boosts']['satk'] = mondata[mycurrent]['boosts']['satk'] + 2
-            if mondata[mycurrent]['moves'][moveused]['effect'] == 'spdefup2':
+            elif mondata[mycurrent]['moves'][moveused]['effect'] == 'spdefup2':
                 mondata[mycurrent]['boosts']['sdef'] = mondata[mycurrent]['boosts']['sdef'] + 2
 
-            if mondata[mycurrent]['moves'][moveused]['effect'] == 'spatkup':
+            elif mondata[mycurrent]['moves'][moveused]['effect'] == 'spatkup':
                 mondata[mycurrent]['boosts']['satk'] = mondata[mycurrent]['boosts']['satk'] + 1
-            if mondata[mycurrent]['moves'][moveused]['effect'] == 'attackup':
+            elif mondata[mycurrent]['moves'][moveused]['effect'] == 'attackup':
                 mondata[mycurrent]['boosts']['atk'] = mondata[mycurrent]['boosts']['atk'] + 1
-            if mondata[mycurrent]['moves'][moveused]['effect'] == 'evasionup':
+            elif mondata[mycurrent]['moves'][moveused]['effect'] == 'evasionup':
                 mondata[mycurrent]['boosts']['eva'] = mondata[mycurrent]['boosts']['eva'] + 1
             
-            if mondata[mycurrent]['moves'][moveused]['effect'] == 'growth':
+            elif mondata[mycurrent]['moves'][moveused]['effect'] == 'growth':
                 mondata[mycurrent]['boosts']['satk'] = mondata[mycurrent]['boosts']['satk'] + 1
                 mondata[mycurrent]['boosts']['atk'] = mondata[mycurrent]['boosts']['atk'] + 1
                 if mondata['weather'] == 'sun':
