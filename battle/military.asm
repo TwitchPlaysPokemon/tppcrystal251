@@ -365,7 +365,7 @@ Military_SelectPokemon:
 	ld a, [wMilitaryAndAIBattleAction]
 	and $f
 	cp 15
-	jr z, .Invalid
+	jr z, .cancel
 	cp 10
 	jr nc, .Invalid
 	sub 4
