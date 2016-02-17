@@ -613,6 +613,15 @@ UnknownText_0x1c0a1c: ; 1c0a1c
 	text_from_ram StringBuffer3
 	text "!"
 	done
+
+MultipleGetItemBallText::
+	text $52, " found"
+	line "@"
+	deciram wd10c, $13
+	text " @"
+	text_from_ram StringBuffer3
+	text "S."
+	done
 ; 1c0a2c
 
 UnknownText_0x1c0a2c: ; 1c0a2c

@@ -12543,6 +12543,8 @@ UnknownScript_0x122ce:: ; 0x122ce
 	iffalse UnknownScript_0x122e3
 	disappear $fe
 	loadfont
+	copybytetovar wd10c
+	if_greater_than 1, .GetMultipleItems
 	writetext UnknownText_0x122ee
 	playsound SFX_ITEM
 	pause 60
@@ -12551,8 +12553,18 @@ UnknownScript_0x122ce:: ; 0x122ce
 	end
 ; 0x122e3
 
+.GetMultipleItems
+	writetext FoundMultipleText
+	playsound SFX_ITEM
+	pause 60
+	itemnotify
+	closetext
+	end
+
 UnknownScript_0x122e3: ; 0x122e3
 	loadfont
+	copybytetovar wd10c
+	if_greater_than 1, .DontGetMultipleItems
 	writetext UnknownText_0x122ee
 	waitbutton
 	writetext UnknownText_0x122f3
@@ -12561,11 +12573,24 @@ UnknownScript_0x122e3: ; 0x122e3
 	end
 ; 0x122ee
 
+.DontGetMultipleItems
+	writetext FoundMultipleText
+	waitbutton
+	writetext UnknownText_0x122f3
+	waitbutton
+	closetext
+	end
+
 UnknownText_0x122ee: ; 0x122ee
 	; found @ !
 	text_jump UnknownText_0x1c0a1c
 	db "@"
 ; 0x122f3
+
+FoundMultipleText:
+	;found # @S!
+	text_jump MultipleGetItemBallText
+	db "@"
 
 UnknownText_0x122f3: ; 0x122f3
 	; But   can't carry any more items.
