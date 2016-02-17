@@ -8345,7 +8345,7 @@ Functiond906: ; d906
 	ld a, [MonType]
 	cp $1
 	jr z, .okay2
-	ld b, 0
+	ld b, 1
 .okay2
 	call Functione167 ;fill rest of stats
 .asm_da45
