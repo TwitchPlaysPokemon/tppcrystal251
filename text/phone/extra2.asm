@@ -38,7 +38,7 @@ UnknownText_0xa40f8: ; 0xa40f8
 UnknownText_0xa4126: ; 0xa4126
 	text "This isn't the"
 	line "best, rather"
-	cont "the worst..."
+	cont "the worst<...>"
 	done
 ; 0xa4158
 

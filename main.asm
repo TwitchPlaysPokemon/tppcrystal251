@@ -638,7 +638,7 @@ Function5f1c: ; 5f1c
 ; 5f40
 
 Function5f40: ; 5f40
-	ld de, $00a9
+	ld de, $00a8
 	add hl, de
 	call Function5f84
 	ret
@@ -682,7 +682,7 @@ Function5f6b: ; 5f6b
 
 Function5f84: ; 5f84
 	ld de, GameTimeHours
-	ld bc, $0203
+	ld bc, $0204
 	call PrintNum
 	ld [hl], $6d
 	inc hl
@@ -1876,6 +1876,8 @@ Function65d3: ; 65d3
 	ld [wcfa6], a
 	ld a, $20
 	ld [wcfa7], a
+
+; If we wanted to use Military to forget a move, we'd do it here.
 	call Function1bc9
 	push af
 	call Function30b4
@@ -2153,7 +2155,8 @@ _Divide:: ; 673e
 	ld [hDividend + 2], a
 	ld [hDividend + 3], a
 	ld a, e
-	ld [hDividend + 4], a ; I believe the remainder is stored here<...>
+	ld [hDividend + 4], a ; I believe the remainder is stored here...
+	ld [hDivisor], a ; and here too...
 	ld a, c
 	sub hDividend % $100
 	ld b, a
@@ -9603,6 +9606,8 @@ GivePoke:: ; e277
 	ld a, [CurPartySpecies]
 	ld [TempEnemyMonSpecies], a ;put species in enemy species
 	callab LoadEnemyMon ;place mon in enemy mon
+	ld a, [CurItem]
+	ld [EnemyMonItem], a
 	call Functionde6e ;load enemy mon into PC
 	jp nc, Functione3d4 ;if failed, ret b = 2
 	ld a, $2
@@ -9616,22 +9621,22 @@ GivePoke:: ; e277
 	push bc
 	push de
 	push af
-	ld a, [CurItem]
-	and a
-	jr z, .asm_e2e1
-	ld a, 1
-	call GetSRAMBank
-	ld a, [CurItem]
-	ld [sBoxMon1Item], a
-	call CloseSRAM
-	jr .asm_e2e1
+	; ld a, [CurItem]
+	; and a
+	; jr z, .asm_e2e1
+	; ld a, 1
+	; call GetSRAMBank
+	; ld a, [CurItem]
+	; ld [sBoxMon1Item], a
+	; call CloseSRAM
+	; ; jr .asm_e2e1
 
-.patchJunkDataItems
-	call GetSRAMBank
-	ld a, 0
-	ld [sBoxMon1Item], a
-	call CloseSRAM
-	jr .asm_e2e1
+; .patchJunkDataItems
+	; call GetSRAMBank
+	; ld a, 0
+	; ld [sBoxMon1Item], a
+	; call CloseSRAM
+	; jr .asm_e2e1
 .asm_e2e1
 	ld a, [CurPartySpecies]
 	ld [wd265], a
@@ -10441,7 +10446,11 @@ Function113e9: ; 113e9
 ; 113fd
 
 .data_113fd
+IF DEF(BEESAFREE)
+	db 48, 24, 12, 6
+ELSE
 	db 20, 10, 5, 3
+ENDC
 ; 11401
 
 Function11401: ; 11401
@@ -10551,7 +10560,11 @@ Function11485: ; 11485
 ; 11490
 
 Function11490: ; 11490
-	ld a, $14
+IF DEF(BEESAFREE)
+	ld a, 48
+ELSE
+	ld a, 20
+ENDC
 	ld [wd46c], a ;load in bug catching timer
 	ld a, $0
 	ld [wd46d], a
@@ -27620,22 +27633,20 @@ Function253f4: ; 253f4 (9:53f4)
 	ret
 
 Function25415: ; 25415 (9:5415)
-	hlcoord 11, 12
+	hlcoord 8, 13
 	ld de, GameTimeHours
 	ld bc, $204
 	call PrintNum
-	inc hl
+	ld a, $2e
+	ld [hli], a
 	ld de, GameTimeMinutes
 	ld bc, $8102
 	call PrintNum
-	ld a, [$ff9b]
-	and $1f
-	ret nz
-	hlcoord 15, 12
-	ld a, [hl]
-	xor $51
-	ld [hl], a
-	ret
+	ld a, $2e
+	ld [hli], a
+	ld de, GameTimeSeconds
+	ld bc, $8102
+	jp PrintNum
 
 Function25438: ; 25438 (9:5438)
 	ld a, [$ff9b]
@@ -46701,6 +46712,10 @@ Function4e711: ; 4e711
 ; 4e726
 
 Function4e726: ; 4e726
+	ld a, [wcf64]
+	push af
+	ld a, 3
+	ld [wcf64], a
 	call ClearJoypad
 	ld bc, $010e ;b = legnth of uncancelable flahes(starts at 1, 8 frames each), c = legnth of cancellable flashes(starts at 14, c frames each)
 .asm_4e72c
@@ -46715,10 +46730,14 @@ Function4e726: ; 4e726
 	dec c
 	dec c
 	jr nz, .asm_4e72c ;repeat 7 times
+	pop af
+	ld [wcf64], a
 	and a
 	ret
 
 .asm_4e73f
+	pop af
+	ld [wcf64], a
 	scf
 	ret
 ; 4e741
@@ -46766,21 +46785,32 @@ Function4e779: ; 4e779 evo cancelling
 .asm_4e779
 	call DelayFrame
 	push bc
-	call Functiona57 ;update joypad data
-	ld a, [hJoyDown]
+	call Functiona57 ; update joypad data
+	ld a, [hJoyPressed]
 	pop bc
-	and $2 ;if b, jump
+	and $2 ; if b, check if forced
 	jr nz, .asm_4e78c
+	ld a, [hJoyPressed]
+	and $1
+	jr z, .asm_4e787
+	ld hl, wcf64
+	ld a, [hl]
+	cp 3
+	jr z, .asm_4e787
+	inc [hl]
 .asm_4e787
 	dec c
-	jr nz, .asm_4e779 ;loop c times
+	jr nz, .asm_4e779 ; loop c times
 	and a
 	ret
 
 .asm_4e78c
 	ld a, [wd1e9]
 	and a
-	jr nz, .asm_4e787 ;if evo count = >1, loop, else ret C
+	jr nz, .asm_4e787 ; if forced to evolve, next frame
+	ld hl, wcf64
+	dec [hl]
+	jr nz, .asm_4e787
 	scf
 	ret
 ; 4e794
@@ -55171,7 +55201,7 @@ Function86810: ; 86810
 	xor a
 	ld [hBGMapMode], a
 	hlcoord 0, 2
-	ld bc, $0809
+	ld bc, $080a
 	call TextBox
 	hlcoord 0, 12
 	ld bc, $0412
@@ -55192,13 +55222,18 @@ Function86810: ; 86810
 	hlcoord 1, 8
 	ld de, .PlayTime
 	call PlaceString
-	hlcoord 3, 9
+	hlcoord 1, 9
 	ld de, GameTimeHours
-	ld bc, $0203
+	ld bc, $0204
 	call PrintNum
 	ld [hl], $63
 	inc hl
 	ld de, GameTimeMinutes
+	ld bc, $8102
+	call PrintNum
+	ld [hl], $63
+	inc hl
+	ld de, GameTimeSeconds
 	ld bc, $8102
 	call PrintNum
 	call WaitBGMap
@@ -75702,7 +75737,7 @@ GetTreeScore: ; b8443
 	ld [hDivisor], a
 	ld b, 2
 	call Divide
-	ld a, [hQuotient + 2]
+	ld a, [hDivisor]
 	ret
 ; b84b3
 

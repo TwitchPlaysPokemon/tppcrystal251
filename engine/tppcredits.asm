@@ -1454,18 +1454,93 @@ TPPCreditsBG1Pals:
 	RGB 00, 00, 00
 
 TPPCreditsBG2List:
-	; TODO
-	dw TPPCreditsBG1
-	dw TPPCreditsBG1Attrs
-	dw TPPCreditsBG1Tiles
-	dw TPPCreditsBG1Pals
+	dw TPPCreditsBG2
+	dw TPPCreditsBG2Attrs
+	dw TPPCreditsBG2Tiles
+	dw TPPCreditsBG2Pals
 	dw TPPCreditsSpr2
 	db 1  ; scroll speed
 	db 15 ; sprite speed
 	db 37 ; strip initial pos
 	db 3  ; strip speed
-TPPCreditsBG2: ; TODO
+	
+TPPCreditsBG2: INCBIN "gfx/credits/bg2.w128.2bpp.lz"
 TPPCreditsSpr2: INCBIN "gfx/credits/spr2.w32.2bpp.lz"
+
+TPPCreditsBG2Tiles:
+	db $7f, $81, $5f, $42, $01, $82, $69, $80, $01, $82, $65, $80
+	db $01, $82, $69, $80, $01, $82, $65, $80, $01, $85, $64, $80
+	db $01, $83, $63, $80, $a2, $86, $64, $80, $a2, $84, $64, $80
+	db $01, $83, $63, $80, $a2, $86, $64, $80, $03, $86, $91, $92
+	db $62, $80, $a2, $88, $62, $80, $a5, $8a, $01, $80, $a4, $8f
+	db $62, $80, $a2, $88, $62, $80, $a5, $8a, $01, $80, $a2, $8f
+	db $b0, $93, $b0, $93, $b0, $c0, $b0, $c0
+	db $a9, $a3, $62, $a3, $a4, $ac, $62, $a3
+	db $a8, $a4, $62, $a3, $a4, $ac, $63, $a3, $a3, $b0, $01, $a8
+	db $a3, $b3, $63, $a3, $a3, $b6, $63, $a3, $a3, $b0, $01, $a8
+	db $a3, $b3, $63, $a3, $a3, $b6, $63, $a3, $a2, $b9, $62, $a8
+	db $a3, $bb, $63, $a3, $a2, $be, $64, $a3, $a2, $b9, $62, $a8
+	db $a3, $bb, $63, $a3, $a2, $be, $62, $a3, $ff
+	
+TPPCreditsBG2Attrs:
+	db $7f, $0a, $81, $5f, $81, $5f, $45, $62, $0d, $6e, $0c
+	db $62, $0d, $6a, $0c, $64, $0e, $62, $0d, $6a, $0c, $64, $0e
+	db $62, $0d, $6e, $0c, $63, $0d, $6d, $0c, $63, $0d, $6a, $0c
+	db $62, $0e, $64, $0d, $6a, $0c, $62, $0e, $64, $0d, $69, $0c
+	db $01, $0f, $62, $0e, $63, $0f, $62, $0d, $65, $0f, $62, $0c
+	db $62, $0f, $62, $0e, $63, $0f, $62, $0d, $65, $0f, $62, $0c
+	db $63, $0f, $01, $0c, $6f, $0f, $01, $0c, $6e, $0f, $5f, $ff
+
+TPPCreditsBG2Pals:
+	RGB 03, 12, 06
+	RGB 03, 12, 06
+	RGB 03, 12, 06
+	RGB 31, 31, 31
+	
+	RGB 25, 15, 19
+	RGB 00, 00, 00
+	RGB 00, 00, 00
+	RGB 06, 15, 23
+	
+	RGB 13, 25, 29
+	RGB 13, 26, 29
+	RGB 14, 26, 29
+	RGB 15, 26, 28
+
+	RGB 16, 26, 28
+	RGB 16, 27, 28
+	RGB 17, 27, 28
+	RGB 17, 28, 27
+
+	RGB 18, 28, 27
+	RGB 14, 19, 15
+	RGB 11, 16, 11
+	RGB 18, 25, 09
+	
+	RGB 18, 28, 27
+	RGB 14, 19, 15
+	RGB 18, 25, 09
+	RGB 11, 18, 06
+	
+	RGB 18, 28, 27
+	RGB 14, 19, 15
+	RGB 11, 16, 11
+	RGB 11, 18, 06
+
+	RGB 14, 19, 15
+	RGB 11, 16, 11
+	RGB 18, 25, 09
+	RGB 11, 18, 06
+	
+	RGB 31, 31, 31
+	RGB 31, 31, 31
+	RGB 23, 07, 02
+	RGB 06, 02, 00
+
+	RGB 31, 31, 31
+	RGB 31, 09, 04
+	RGB 14, 05, 01
+	RGB 00, 00, 00
 
 TPPCreditsBG3List:
 	dw TPPCreditsBG3
@@ -1492,15 +1567,15 @@ TPPCreditsBG3Attrs:
 	db $0c, $50, $7f, $0b, $5f, $42, $7f, $0a, $5f, $42, $ff
 
 TPPCreditsBG3Pals:
-	RGB 30, 30, 22 ; placeholder
-	RGB 24, 24, 19
-	RGB 23, 23, 20
+	RGB 12, 04, 05
+	RGB 12, 04, 05
+	RGB 12, 04, 05
 	RGB 31, 31, 31
 	
-	RGB 30, 30, 22 ; placeholder
-	RGB 24, 24, 19
-	RGB 23, 23, 20
-	RGB 19, 23, 21
+	RGB 12, 26, 18
+	RGB 00, 00, 00
+	RGB 00, 00, 00
+	RGB 10, 15, 04
 	
 	RGB 18, 25, 10
 	RGB 11, 19, 10
@@ -1543,18 +1618,87 @@ TPPCreditsBG3Pals:
 	RGB 00, 00, 00
 	
 TPPCreditsBG4List:
-	; TODO
-	dw TPPCreditsBG3
-	dw TPPCreditsBG3Attrs
-	dw TPPCreditsBG3Tiles
-	dw TPPCreditsBG3Pals
+	dw TPPCreditsBG4
+	dw TPPCreditsBG4Attrs
+	dw TPPCreditsBG4Tiles
+	dw TPPCreditsBG4Pals
 	dw TPPCreditsSpr4
 	db 3  ; scroll speed
 	db 10 ; sprite speed
 	db 49 ; strip initial pos
 	db 0  ; strip speed
-TPPCreditsBG4: ; TODO
+	
+TPPCreditsBG4: INCBIN "gfx/credits/bg4.w128.2bpp.lz"
 TPPCreditsSpr4: INCBIN "gfx/credits/spr4.w32.2bpp.lz"
+
+TPPCreditsBG4Tiles:
+	db $02, $80, $82, $62, $80, $03, $83, $80, $84, $65, $80, $01
+	db $85, $63, $80, $01, $86, $63, $80, $05, $87, $80, $88, $80
+	db $89, $62, $80, $01, $8a, $63, $80, $01, $8b, $62, $81, $01
+	db $8c, $64, $81, $05, $8d, $8e, $81, $a2, $a3, $62, $81, $01
+	db $8f, $68, $81, $01, $90, $72, $81, $a2, $a4, $66, $81, $03
+	db $91, $81, $92, $64, $81, $01, $8d, $63, $81, $05, $94, $93
+	db $81, $81, $94, $64, $81, $05, $95, $81, $96, $81, $a6, $a2
+	db $80, $07, $81, $90, $81, $97, $81, $81, $98, $67, $81, $01
+	db $99, $64, $81, $03, $9a, $81, $9b, $a3, $a7, $04, $81, $9c
+	db $81, $81, $a3, $aa, $03, $81, $81, $9d, $65, $81, $02, $9e
+	db $81, $a3, $ad, $06, $9f, $81, $81, $a0, $81, $a1, $bf, $b0
+	db $9f, $9f, $9f, $9f, $85, $ff
+	
+TPPCreditsBG4Attrs:
+	db $7f, $0a, $5f, $41, $81, $5f, $81, $5f, $81, $5f, $81, $5f
+	db $81, $5f, $5f, $5f, $5f, $43, $ff
+
+TPPCreditsBG4Pals:
+	RGB 08, 04, 12
+	RGB 08, 04, 12
+	RGB 08, 04, 12
+	RGB 31, 31, 31
+	
+	RGB 25, 25, 15
+	RGB 00, 00, 00
+	RGB 00, 00, 00
+	RGB 20, 25, 25
+	
+	RGB 31, 31, 31
+	RGB 31, 30, 15
+	RGB 04, 04, 10
+	RGB 03, 03, 07
+
+	RGB 26, 26, 29
+	RGB 31, 30, 15
+	RGB 05, 05, 14
+	RGB 03, 03, 07
+
+	RGB 22, 22, 27
+	RGB 31, 30, 15
+	RGB 06, 06, 16
+	RGB 03, 03, 07
+	
+	RGB 17, 17, 25
+	RGB 31, 30, 15
+	RGB 07, 07, 17
+	RGB 03, 03, 07
+	
+	RGB 05, 05, 23
+	RGB 31, 30, 15
+	RGB 08, 08, 20
+	RGB 03, 03, 07
+
+	RGB 05, 05, 23
+	RGB 31, 30, 15
+	RGB 09, 09, 24
+	RGB 03, 03, 07
+	
+	RGB 31, 31, 31
+	RGB 31, 31, 31
+	RGB 29, 27, 14
+	RGB 05, 14, 24
+
+	RGB 31, 31, 31
+	RGB 10, 19, 26
+	RGB 28, 09, 04
+	RGB 00, 00, 00
 
 CommandsGFX: INCBIN "gfx/udlrab.2bpp"
 CommandsGFXEnd

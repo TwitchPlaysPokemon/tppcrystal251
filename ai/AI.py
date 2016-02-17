@@ -1,4 +1,4 @@
-# TPP Crystal 251 AI v1.00 by Beesafree
+# TPP Crystal 251 AI v1.1 by Beesafree
 
 from __future__ import division
 import math
@@ -207,9 +207,9 @@ class AI(object):
 
     #type1name = attacker, type2name = defender
     def getEff(self, type1name, type2name, defenderindex):
-        if (type2name == 'none') or (type1name == 'u') or (type1name == 'none') or (type1name == ''):
+        if (type2name == 'none') or (type1name == 'curset') or (type1name == 'u') or (type1name == 'none') or (type1name == ''):
             return 1
-
+            
         type1 = self._Types[type1name]
         type2 = self._Types[type2name]
         tempx = self._tableTypeEffs[type1][type2]
@@ -226,7 +226,6 @@ class AI(object):
     def DamageDealt(self, mondata, attacker, defender, moveused):
         temp2 = 0
         temp1 = 0
-        critmodifier = 0
         #attacker is temptext2
         if attacker >= 6:
             temptext = 'enemypokemon'
@@ -270,9 +269,18 @@ class AI(object):
             atkmodifier = atkmodifier * 2
 
         #Raw damage
+        #basebp change
         basebp = move_used['bp']
         if move_used_effect == 'return':
             basebp = mondata[allmons]['stats']['happy'] / 2.5
+        if move_used_effect == 'furycutter':
+            if 'raging' in mondata['playerpokemon']['substatus']:
+                mondata['playerpokemon']['substatus']['raging'] = mondata['playerpokemon']['substatus']['raging'] + 1
+            if 'raging' not in mondata['playerpokemon']['substatus']:
+                mondata['playerpokemon']['substatus'].append(dict({'raging': 1}))
+            basebp = (basebp / 2) * ( 2 ^ mondata['playerpokemon']['substatus']['raging'])
+            if basebp > 160:
+                basebp = 160
         if move_used_effect == 'reversal':
             if mondata[attacker]['stats']['curhp'] / mondata[attacker]['stats']['hp'] > 0.71:
                 basebp = 20
@@ -286,15 +294,19 @@ class AI(object):
                 basebp = 150
             elif mondata[attacker]['stats']['curhp'] / mondata[attacker]['stats']['hp'] < 0.04:
                 basebp = 200
+        #stab
         if mondata[attacker]['type'][1].lower() == move_used['type'].lower():
             basebp = basebp*1.5
         elif mondata[attacker]['type'][2].lower() == move_used['type'].lower():
             basebp = basebp*1.5
+        #category and boosts
         if move_used['category'] == 'status':
             basebp = 0
         elif move_used['category'] == "special":
             tempx = self._statsmultipliers[mondata[attacker]['boosts']['satk']+6]/100
             tempy = self._statsmultipliers[mondata[defender]['boosts']['sdef']+6]/100
+            if mondata['weather'] == 'sandstorm' and (mondata[traincurrent]['type'][1].lower() == 'rock' or mondata[traincurrent]['type'][2].lower() == 'rock'):
+                tempy = tempy * 1.5
             temp1 = ((((((2 * mondata[attacker]['level'] + 10) / 250) * (((mondata[attacker]['stats']['satk'] * satkmodifier) * tempx) / (mondata[defender]['stats']['sdef'] * tempy))  * basebp)+2) * 0.85)) * multiplier
             if 'lightscreen' in mondata[temptext]['screens']:
                 temp1 = temp1 / 2
@@ -306,6 +318,7 @@ class AI(object):
                 temp1 = temp1 / 2
             if mondata[attacker]['status'] == 'brn':
                 temp1 = temp1 / 2
+        #Effectivity
         if Debug_Code == 1:
             print('move used type: '+move_used['type'].lower()+' enemy types: '+ mondata[defender]['type'][1].lower()+' / '+ mondata[defender]['type'][2].lower())
         effmulti = 1
@@ -313,9 +326,9 @@ class AI(object):
         temp2 = effmulti*temp1
         if Debug_Code == 1 and attacker < 6:
             print('Damage after calc '+str(temp2))
+            
         #compute 1.2x move-boosting items
         type_boost_item_dict = {'blackbelt':'fighting','blackglasses':'dark','charcoal':'fire','dragonfang':'dragon','hardstone':'rock','dragonfang':'dragon','hardstone':'rock','magnet':'electric','metalcoat':'steel','miracleseed':'grass','mysticwater':'water','nevermeltice':'ice','poisonbarb':'poison','sharpbeak':'flying','silkscarf':'normal','silverpowder':'bug','softsand':'ground','spelltag':'ghost','pinkbow':'fairy'}
-
         if mondata[attacker]['item'] in type_boost_item_dict:
             if move_used['type'] == type_boost_item_dict[mondata[attacker]['item']]:
                 temp2 = temp2 * 1.20
@@ -338,8 +351,8 @@ class AI(object):
         elif move_used['type'].lower() == 'fire' and mondata['weather'] == 'rain':
             temp2 = temp2 * 0.5
 
-        if move_used['name'].lower() == 'solarbeam' and mondata['weather'] == 'sun':
-            temp2 = temp2 * 2
+        if move_used['name'].lower() == 'solarbeam' and mondata['weather'] != 'sun':
+            temp2 = temp2 / 2
 
         tempaccuracy = 0
         if move_used['name'].lower() == 'thunder' and mondata['weather'] == 'rain':
@@ -358,6 +371,9 @@ class AI(object):
             temp2 =  mondata[defender]['stats']['curhp'] / 2
 
         #Special cases
+        if move_used_effect in ('hyperbeam', 'skyattack'):
+            temp2 = temp2 / 2
+        
         if move_used_effect == 'falseswipe':
             if temp2 > mondata[defender]['stats']['curhp']:
                 temp2 = mondata[defender]['stats']['curhp'] - 1
@@ -372,22 +388,6 @@ class AI(object):
                 temp2 = temp2 * 2
             if 'rollout' in mondata[temptext2]['substatus'] or (isinstance(mondata[temptext2]['substatus'], dict) and 'rollout' in mondata[temptext2]['substatus'].values()):
                 temp2 = temp2 * (2 ^ (mondata[temptext2]['substatus']['rollout']))
-                
-        #special considerations for the ai's pokemon only
-        if attacker < 6:
-            if (move_used_effect == 'thief') and (mondata[defender]['item'] != 'noitem') and (mondata[attacker]['item'] == 'noitem'):
-                temp2 = temp2 * 2
-                mondata[attacker]['item'] = mondata[defender]['item']
-                mondata[defender]['item'] = 'noitem'
-            if (move_used_effect == 'pursuit'):
-                if temp2 * 2 > mondata[defender]['stats']['curhp']:
-                    temp2 = temp2 * 2
-            if move_used['name'] == 'destinybond':
-                temp2 = mondata[defender]['stats']['curhp'] * (mondata[attacker]['stats']['curhp'] / mondata[attacker]['stats']['hp'])
-            if (move_used_effect == 'recoilhit'):
-                self.Damage[attacker][defender][moveused]['selfdamage'] = temp2 * 0.25
-            if (move_used_effect == 'leechhit'):
-                self.Damage[attacker][defender][moveused]['selfdamage'] = temp2 * -0.5
 
         if Debug_Code == 1 and attacker < 6:
             print('Damage before accuracy and after special cases '+str(temp2))
@@ -406,8 +406,11 @@ class AI(object):
                 totalacc = tempx * accmodifier * (tempaccuracy/100) * tempy
 
         if move_used_effect == 'ohko':
-            totalacc = ((mondata[attacker]['level'] - mondata[defender]['level']) + 30)/100
-            temp2 = mondata[defender]['stats']['curhp']
+            if mondata[attacker]['level'] > mondata[defender]['level']:
+                totalacc = ((mondata[attacker]['level'] - mondata[defender]['level']) + 30)/100
+                temp2 = mondata[defender]['stats']['curhp']
+            else:
+                temp2 = 0
 
         locked = False
         if 'lock on' in mondata[temptext]['substatus'] or (isinstance(mondata[temptext]['substatus'], dict) and 'lock on' in mondata[temptext]['substatus'].values()):
@@ -418,6 +421,12 @@ class AI(object):
         accmodifier = 1
         if mondata[attacker]['status'] == 'par':
             accmodifier = accmodifier * 0.75
+        if move_used_effect in ('hyperbeam', 'skyattack', 'solarbeam', 'fly') and mondata[attacker]['status'] == 'par':
+            accmodifier = accmodifier * 0.75
+        if move_used_effect in ('hyperbeam', 'skyattack', 'solarbeam', 'fly') and ('confused' in mondata[temptext2]['substatus'] or (isinstance(mondata[temptext2]['substatus'], dict) and 'confused' in mondata[temptext2]['substatus'].values())):
+            accmodifier = accmodifier * 0.5
+        if move_used_effect in ('hyperbeam', 'skyattack', 'solarbeam', 'fly') and ('attract' in mondata[temptext2]['substatus'] or (isinstance(mondata[temptext2]['substatus'], dict) and 'attract' in mondata[temptext2]['substatus'].values())):
+            accmodifier = accmodifier * 0.5
         if 'confused' in mondata[temptext2]['substatus'] or (isinstance(mondata[temptext2]['substatus'], dict) and 'confused' in mondata[temptext2]['substatus'].values()):
             accmodifier = accmodifier * 0.5
             if temptext2 == 'playerpokemon':
@@ -465,19 +474,19 @@ class AI(object):
         if (mondata[attacker]['status'] == 'frz') and (move_used['name'].lower() not in ('flamewheel', 'sacredfire', 'flareblitz')):
             temp2 = temp2 * 0.2
         if (mondata[attacker]['status'] in ('slp')) and (move_used['name'].lower() not in ('snore')):
-            temp2 = temp2 * 0.4
+            temp2 = temp2 * 0.33
         if (mondata[attacker]['status'] in ('slp2', 'slp1')) and (move_used['name'].lower() not in ('snore')):
             temp2 = 0
         if (move_used_effect in ('dreameater', 'snore')) and (mondata[defender]['status'] != 'slp'):
             temp2 = 0
 
-        templist = {}
+        templist = []
         #Dig and Fly aversion
         for tempx in range (0, len(mondata[defender]['moves'])):
-            templist[tempx] = mondata[defender]['moves'][tempx]['name'].lower()
+            templist.append(mondata[defender]['moves'][tempx]['name'].lower())
         if move_used['name'].lower() == 'dig' and ('earthquake', 'magnitude', 'fissure') in (templist):
             temp2 = temp2 / 4
-        if move_used['name'].lower() == 'fly' and ('thunder') in (templist):
+        elif move_used['name'].lower() == 'fly' and ('thunder') in (templist):
             temp2 = temp2 / 4
         elif move_used['name'].lower() == 'fly' and ('twister', 'gust') in (templist):
             temp2 = temp2 / 2
@@ -488,12 +497,12 @@ class AI(object):
         #Crit modifiers
         critmodifier = 0
         pumped = False
-        if mondata[attacker]['item'] == 'luckypunch' and mondata[attacker]['species'] == 'chansey':
-            critmodifier = 2
-        if mondata[attacker]['item'] == 'stick' and mondata[attacker]['species'] == "farfetch'd":
-            critmodifier = 2
         if mondata[attacker]['item'] == 'scopelens':
             critmodifier = 1 
+        elif mondata[attacker]['item'] == 'luckypunch' and mondata[attacker]['species'] == 'chansey':
+            critmodifier = 2
+        elif mondata[attacker]['item'] == 'stick' and mondata[attacker]['species'] == "farfetch'd":
+            critmodifier = 2
         if 'pumped' in mondata[temptext2]['substatus'] or (isinstance(mondata[temptext2]['substatus'], dict) and 'pumped' in mondata[temptext2]['substatus'].values()):
             pumped = True
         if (mondata['focusenergyused'] == True) and (attacker < 6):
@@ -504,16 +513,42 @@ class AI(object):
             critmodifier = critmodifier + 2
         temp2 = (temp2 * ( 1 - self._critmultipliers[critmodifier])) + (temp2 * 1.5 * self._critmultipliers[critmodifier])
         temp2 = (temp2 * ( 1 - self._critmultipliers[critmodifier])) + (temp2 * 1.5 * self._critmultipliers[critmodifier])
-
+                
+        self.Damage[attacker][defender][moveused]['selfdamage'] = 0
+        
+        #special considerations for the ai's pokemon only
+        if attacker < 6:
+            if (move_used_effect == 'thief') and (mondata[defender]['item'] != 'noitem') and (mondata[attacker]['item'] == 'noitem'):
+                temp2 = temp2 * 2
+                mondata[attacker]['item'] = mondata[defender]['item']
+                mondata[defender]['item'] = 'noitem'
+            if (move_used_effect == 'pursuit'):
+                if temp2 * 2 > mondata[defender]['stats']['curhp']:
+                    temp2 = temp2 * 2
+            if move_used['name'] == 'destinybond':
+                temp2 = mondata[defender]['stats']['curhp'] * (mondata[attacker]['stats']['curhp'] / mondata[attacker]['stats']['hp'])
+            if (move_used_effect == 'recoilhit'):
+                self.Damage[attacker][defender][moveused]['selfdamage'] = temp2 * 0.25
+            if (move_used_effect == 'leechhit'):
+                self.Damage[attacker][defender][moveused]['selfdamage'] = temp2 * -0.5
+            if move_used_effect in ('hyperbeam', 'skyattack', 'solarbeam'):
+                temp2 = temp2 * 2
+                self.Damage[attacker][defender][moveused]['selfdamage'] = self.Damage[defender][attacker][self.enemynumber]['damage'] * 1.2
+            if move_used['name'].lower() == 'solarbeam' and mondata['weather'] == 'sun':
+                self.Damage[attacker][defender][moveused]['selfdamage'] = 0
+                
         if Debug_Code == 1 and attacker < 6:
             print('Damage after crit'+str(temp2))
         if effmulti < 0.125:
             temp2 = 0
-        self.Damage[attacker][defender][moveused]['selfdamage'] = 0
         if move_used_effect == 'jumpkick':
             self.Damage[attacker][defender][moveused]['selfdamage'] = temp2 / 2
         if move_used_effect == 'explosion':
-            self.Damage[attacker][defender][moveused]['selfdamage'] = 100000
+            self.Damage[attacker][defender][moveused]['selfdamage'] = mondata[attacker]['stats']['curhp'] * 1.5
+            if temp2 > mondata[defender]['stats']['curhp']:
+                temp2 = mondata[attacker]['stats']['curhp'] + 3
+            if attacker > 5 and temp2 > mondata[defender]['stats']['curhp']:
+                temp2 = mondata[defender]['stats']['curhp'] / 2
         if move_used_effect == 'dreameater':
             self.Damage[attacker][defender][moveused]['selfdamage'] = temp2 / -2
         self.Damage[attacker][defender][moveused]['damage'] = temp2
@@ -524,8 +559,12 @@ class AI(object):
         if Debug_Code == 1:
             print ('inside TrainerDamage, variables in play - traincurrent: '+str(traincurrent)+' mycurrent: '+str(mycurrent))
             print('length of moves for this mon: '+str( len(self.jsonlist['playerParty']['party'][traincurrent-6]['moves'])))
+        
         for moveset in range (0, len(self.jsonlist['playerParty']['party'][traincurrent-6]['moves'])):
-            self.DamageDealt(mondata, traincurrent, mycurrent, moveset)
+            if mondata[traincurrent]['moves'][moveset]['curpp'] > 0:
+                self.DamageDealt(mondata, traincurrent, mycurrent, moveset)
+            else:
+                self.Damage[traincurrent][mycurrent][moveset]['damage'] = -1
         tempx = -3
         self.enemybest = ''
         self.enemynumber = -1
@@ -534,6 +573,7 @@ class AI(object):
                 tempx = self.Damage[traincurrent][mycurrent][moveset]['damage']
                 self.enemybest = mondata[traincurrent]['moves'][moveset]['name'].lower()
                 self.enemynumber = moveset
+        
         return(tempx)
 
     def Mychoice (self, mondata, traincurrent, mycurrent, moveused):
@@ -550,7 +590,8 @@ class AI(object):
                 self.Damage[mycurrent][traincurrent][moveused]['selfdamage'] = 0
 
             #Counter coat (otherwise known as a move that has way too much code and probably be never used anyways)
-            if mondata[mycurrent]['moves'][moveused]['effect'] == 'counter' or mondata[mycurrent]['moves'][moveused]['effect'] == 'mirrorcoat':
+            effmulti = self.getEff(mondata[mycurrent]['moves'][moveused]['type'].lower(), mondata[traincurrent]['type'][1].lower(), 'playerpokemon') * self.getEff(mondata[mycurrent]['moves'][moveused]['type'].lower(), mondata[traincurrent]['type'][2].lower(), 'playerpokemon')
+            if (mondata[mycurrent]['moves'][moveused]['effect'] == 'counter' or mondata[mycurrent]['moves'][moveused]['effect'] == 'mirrorcoat') and effmulti > 0:
                 tempx = 0
                 tempdamage = 0.00
                 for x1 in range (0, len(self.jsonlist['playerParty']['party'][traincurrent-6]['moves'])):
@@ -588,11 +629,22 @@ class AI(object):
 
             if mondata[mycurrent]['moves'][moveused]['effect'] == 'spatkup':
                 mondata[mycurrent]['boosts']['satk'] = mondata[mycurrent]['boosts']['satk'] + 1
-            if mondata[mycurrent]['moves'][moveused]['effect'] in ('attackup', 'rage'):
+            if mondata[mycurrent]['moves'][moveused]['effect'] == 'attackup':
                 mondata[mycurrent]['boosts']['atk'] = mondata[mycurrent]['boosts']['atk'] + 1
             if mondata[mycurrent]['moves'][moveused]['effect'] == 'evasionup':
                 mondata[mycurrent]['boosts']['eva'] = mondata[mycurrent]['boosts']['eva'] + 1
-
+            
+            if mondata[mycurrent]['moves'][moveused]['effect'] == 'growth':
+                mondata[mycurrent]['boosts']['satk'] = mondata[mycurrent]['boosts']['satk'] + 1
+                mondata[mycurrent]['boosts']['atk'] = mondata[mycurrent]['boosts']['atk'] + 1
+                if mondata['weather'] == 'sun':
+                    mondata[mycurrent]['boosts']['satk'] = mondata[mycurrent]['boosts']['satk'] + 1
+                    mondata[mycurrent]['boosts']['atk'] = mondata[mycurrent]['boosts']['atk'] + 1
+                    
+            effmulti = self.getEff(mondata[mycurrent]['moves'][moveused]['type'].lower(), mondata[traincurrent]['type'][1].lower(), 'playerpokemon') * self.getEff(mondata[mycurrent]['moves'][moveused]['type'].lower(), mondata[traincurrent]['type'][2].lower(), 'playerpokemon')
+            if mondata[mycurrent]['moves'][moveused]['effect'] == 'rage'  and effmulti > 0:
+                mondata[mycurrent]['boosts']['atk'] = mondata[mycurrent]['boosts']['atk'] + 1  
+                
             # stats down
             misted = False
             if 'mist' in mondata['playerpokemon']['substatus'] or (isinstance(mondata['playerpokemon']['substatus'], dict) and 'mist' in mondata['playerpokemon']['substatus'].values()):
@@ -630,7 +682,9 @@ class AI(object):
                 mondata[traincurrent]['stats']['curhp'] = mondata[mycurrent]['stats']['curhp']
 
             #Guard
-            if (mondata[mycurrent]['moves'][moveused]['effect'] in ('protect', 'endure')) and ('protect' not in mondata['enemypokemon']['substatus']):
+            if mondata[mycurrent]['moves'][moveused]['effect'] == 'protect' and 'protect' not in mondata['enemypokemon']['substatus']:
+                self.Damage[mycurrent][traincurrent][moveused]['selfdamage'] = self.Damage[traincurrent][mycurrent][self.enemynumber]['damage'] * -1
+            if mondata[mycurrent]['moves'][moveused]['effect'] == 'endure' and 'endure' not in mondata['enemypokemon']['substatus']:
                 self.Damage[mycurrent][traincurrent][moveused]['selfdamage'] = self.Damage[traincurrent][mycurrent][self.enemynumber]['damage'] * -1
 
             #curse
@@ -644,6 +698,7 @@ class AI(object):
 
             #foresight
             if mondata[mycurrent]['moves'][moveused]['effect'] == 'foresight':
+                mondata[traincurrent]['boosts']['eva'] = 0
                 mondata['identified'] = True
 
 
@@ -656,14 +711,23 @@ class AI(object):
                 mondata['weather'] = 'sandstorm'
 
             #Screens
-            if 'spikes' != mondata['enemypokemon']['screens']:
+            if 'spikes' not in mondata['enemypokemon']['screens'] or 'spikes2' not in mondata['enemypokemon']['screens']:
                 if mondata[mycurrent]['moves'][moveused]['effect'] == 'spikes':
                     tempy = 0
                     for tempx in range (6, self.trainparty):
                         if (mondata[tempx]['type'][1] != 'flying') and (mondata[tempx]['type'][2] != 'flying'):
-                            tempy = tempy + (mondata[tempx]['stats']['hp'] * 0.125)
+                            if 'spikes' in mondata['enemypokemon']['screens']:
+                                tempy = tempy + (mondata[tempx]['stats']['hp'] * 0.0416)
+                            elif 'spikes2' in mondata['enemypokemon']['screens']:
+                                tempy = tempy + (mondata[tempx]['stats']['hp'] * 0.084)
+                            else:
+                                tempy = tempy + (mondata[tempx]['stats']['hp'] * 0.125)
                     self.Damage[mycurrent][traincurrent][moveused]['damage'] = tempy
-                    mondata['enemypokemon']['screens'] += ['spikes']
+                    if 'spikes' in mondata['enemypokemon']['screens']:
+                        mondata['enemypokemon']['screens'] += ['spikes2']
+                        mondata['enemypokemon']['screens'].remove('spikes')
+                    elif 'spikes2' in mondata['enemypokemon']['screens']:
+                        mondata['enemypokemon']['screens'] += ['spikes']
             if  mondata[mycurrent]['moves'][moveused]['effect'] == 'reflect' and 'reflect' not in mondata['enemypokemon']['screens']:
                 mondata['enemypokemon']['screens'] += ['reflect']
             if mondata[mycurrent]['moves'][moveused]['effect'] == 'lightscreen' and 'lightscreen' not in mondata['enemypokemon']['screens']:
@@ -759,6 +823,8 @@ class AI(object):
                                 mondata[traincurrent]['item'] = 'noitem'
                         if (mondata[mycurrent]['moves'][moveused]['effect'] in ('poison', 'toxic', 'poisonhit', 'twineedle')) and mondata[traincurrent]['item'] != 'poisonguard' and ((mondata[traincurrent]['type'][1] not in ('poison', 'steel')) and (mondata[traincurrent]['type'][2] not in ('poison', 'steel'))):
                             mondata[traincurrent]['status'] = 'psn'
+                            if mondata[mycurrent]['moves'][moveused]['effect'] == 'toxic':
+                                mondata['playerpokemon']['substatus'].append(dict({'toxic': 1}))
                             if mondata[traincurrent]['item'] == 'miracleberry' or mondata[traincurrent]['item'] != 'psncureberry':
                                 mondata[traincurrent]['status'] = 'none'
                                 mondata[traincurrent]['item'] = 'noitem'
@@ -775,7 +841,7 @@ class AI(object):
                         if (mondata[mycurrent]['moves'][moveused]['effect'] == 'triattack'):
                             mondata[traincurrent]['status'] = 'par'
             
-            if ((mondata[traincurrent]['type'][1] not in ('grass')) and (mondata[traincurrent]['type'][2] not in ('grass'))) and mondata[mycurrent]['moves'][moveused]['name'] in ('spore', 'poisonpowder', 'sleeppowder', 'stunspore'):
+            if ((mondata[traincurrent]['type'][1] in ('grass')) or (mondata[traincurrent]['type'][2] in ('grass'))) and mondata[mycurrent]['moves'][moveused]['name'] in ('spore', 'poisonpowder', 'sleeppowder', 'stunspore'):
                 mondata[traincurrent]['status'] = 'none'
             
             #lower enemy stats
@@ -783,15 +849,16 @@ class AI(object):
             if 'mist' in mondata['playerpokemon']['substatus'] or (isinstance(mondata['playerpokemon']['substatus'], dict) and 'mist' in mondata['playerpokemon']['substatus'].values()):
                 misted = True
             if misted == False:
-                if (mondata[mycurrent]['moves'][moveused]['effect'] == 'spdefdownhit'):
+                effmulti = self.getEff(mondata[mycurrent]['moves'][moveused]['type'].lower(), mondata[traincurrent]['type'][1].lower(), 'playerpokemon') * self.getEff(mondata[mycurrent]['moves'][moveused]['type'].lower(), mondata[traincurrent]['type'][2].lower(), 'playerpokemon')
+                if (mondata[mycurrent]['moves'][moveused]['effect'] == 'spdefdownhit') and effmulti > 0:
                     mondata[traincurrent]['boosts']['sdef'] = mondata[traincurrent]['boosts']['sdef'] - 1
-                if (mondata[mycurrent]['moves'][moveused]['effect'] == 'speeddownhit'):
+                if (mondata[mycurrent]['moves'][moveused]['effect'] == 'speeddownhit') and effmulti > 0:
                     mondata[traincurrent]['boosts']['spd'] = mondata[traincurrent]['boosts']['spd'] - 1
-                if (mondata[mycurrent]['moves'][moveused]['effect'] == 'attackdownhit'):
+                if (mondata[mycurrent]['moves'][moveused]['effect'] == 'attackdownhit') and effmulti > 0:
                     mondata[traincurrent]['boosts']['atk'] = mondata[traincurrent]['boosts']['atk'] - 1
-                if (mondata[mycurrent]['moves'][moveused]['effect'] == 'defensedownhit'):
+                if (mondata[mycurrent]['moves'][moveused]['effect'] == 'defensedownhit') and effmulti > 0:
                     mondata[traincurrent]['boosts']['def'] = mondata[traincurrent]['boosts']['def'] - 1
-                if (mondata[mycurrent]['moves'][moveused]['effect'] == 'accuracydownhit'):
+                if (mondata[mycurrent]['moves'][moveused]['effect'] == 'accuracydownhit') and effmulti > 0:
                     mondata[traincurrent]['boosts']['acc'] = mondata[traincurrent]['boosts']['acc'] - 1
 
             #raise own stats
@@ -833,11 +900,17 @@ class AI(object):
             mondata[traincurrent]['stats']['curhp'] = mondata[traincurrent]['stats']['curhp'] - (mondata[traincurrent]['stats']['hp'] * 0.125)
             
         #status Damage
-        if mondata[traincurrent]['status'] in ('brn', 'psn'):
+        if mondata[traincurrent]['status'] in ('brn', 'psn') and 'toxic' not in mondata['playerpokemon']['substatus']:
             mondata[traincurrent]['stats']['curhp'] = mondata[traincurrent]['stats']['curhp'] - (mondata[traincurrent]['stats']['hp'] * 0.125)
-        if mondata[mycurrent]['status'] in ('brn', 'psn'):
+        if mondata[mycurrent]['status'] in ('brn', 'psn') and 'toxic' not in mondata['enemypokemon']['substatus']:
             mondata[mycurrent]['stats']['curhp'] = mondata[mycurrent]['stats']['curhp'] - (mondata[mycurrent]['stats']['hp'] * 0.125)
-
+        if mondata[traincurrent]['status'] == 'psn' and 'toxic' in mondata['playerpokemon']['substatus']:
+            mondata[traincurrent]['stats']['curhp'] = mondata[traincurrent]['stats']['curhp'] - (mondata[traincurrent]['stats']['hp'] * mondata['playerpokemon']['substatus']['toxic'] * 0.0625)
+            mondata['playerpokemon']['substatus']['toxic'] = mondata['playerpokemon']['substatus']['toxic'] + 1
+        if mondata[mycurrent]['status'] == 'psn' and 'toxic' in mondata['enemypokemon']['substatus']:
+            mondata[mycurrent]['stats']['curhp'] = mondata[mycurrent]['stats']['curhp'] - (mondata[mycurrent]['stats']['hp'] * mondata['enemypokemon']['substatus']['toxic'] * 0.0625)
+            mondata['enemypokemon']['substatus']['toxic'] = mondata['enemypokemon']['substatus']['toxic'] + 1
+        
         #held healing
         if (mondata[traincurrent]['item'] == 'berry') and (mondata[traincurrent]['stats']['curhp'] < mondata[traincurrent]['stats']['hp'] * 0.33):
             mondata[traincurrent]['stats']['curhp'] += 10
@@ -913,7 +986,7 @@ class AI(object):
             mondata[mycurrent]['stats']['curhp'] = mondata[mycurrent]['stats']['curhp'] - (mondata[mycurrent]['stats']['curhp'] * 0.25)
 
         #bound
-        if mondata['playerpokemon']['bound'] > 0:
+        if mondata['playerpokemon']['bound'] > 0 and self.triggered != 1 and mondata[mycurrent]['stats']['curhp'] > 0:
             mondata[traincurrent]['stats']['curhp'] = mondata[traincurrent]['stats']['curhp'] - (mondata[traincurrent]['stats']['hp'] * 0.125)
             mondata['playerpokemon']['bound'] = mondata['playerpokemon']['bound'] - 1
         if mondata['enemypokemon']['bound'] > 0:
@@ -1357,7 +1430,8 @@ class AI(object):
                     mondata1[mycurrent]['stats']['curhp'] = myhp1
                     mondata1[traincurrent]['stats']['curhp'] = trainhp1
             tempy = (mondata[mycurrent]['moves'][int(tempcombo[0])]['acc'] / 100) * (mondata[mycurrent]['moves'][int(tempcombo[0])]['effectchance'] / 100)
-
+            if mondata[mycurrent]['moves'][int(tempcombo[0])]['effect'] == 'toxic' and ((mondata[mycurrent]['type'][1] == 'poison') or (mondata[mycurrent]['type'][2] == 'poison')):
+                tempy = 1
             #print('Enemy current: '+str(mycurrent))
             if self.mycurhp != 0 and self.traincurhp != 0:
                 tempx = (((myhp / self.mycurhp) - (trainhp / self.traincurhp)) * (1 - tempy)) + (((myhp1 / self.mycurhp) - (trainhp1 / self.traincurhp)) * tempy)
@@ -1365,9 +1439,9 @@ class AI(object):
                 tempx = -5
             tempx = tempx + 1
 
-            if myhp/mondata1[mycurrent]['stats']['hp']  > 0.5:
+            if myhp/mondata1[mycurrent]['stats']['hp']  > 0.5 and trainhp < 0:
                 tempx = tempx * (1 + 0.1 * (mondata1[mycurrent]['boosts']['atk'] + mondata1[mycurrent]['boosts']['def'] + mondata1[mycurrent]['boosts']['satk'] + mondata1[mycurrent]['boosts']['sdef'] + mondata1[mycurrent]['boosts']['spd'] + mondata1[mycurrent]['boosts']['eva'] + mondata1[mycurrent]['boosts']['acc']))
-            if trainhp/mondata1[traincurrent]['stats']['hp'] > 0.5:
+            if trainhp/mondata1[traincurrent]['stats']['hp'] > 0.5 and myhp < 0:
                 tempx = tempx * (1 + -0.05 * (mondata1[traincurrent]['boosts']['atk'] + mondata1[mycurrent]['boosts']['def'] + mondata1[traincurrent]['boosts']['satk'] + mondata1[traincurrent]['boosts']['sdef'] + mondata1[traincurrent]['boosts']['spd'] + mondata1[traincurrent]['boosts']['eva'] + mondata1[traincurrent]['boosts']['acc']))
             
             if Debug_Code == 1 or Debug_Code == 2:
@@ -1390,8 +1464,8 @@ class AI(object):
                     else:
                         self.mybestmove[mycurrent] = random.randint(0, (len(self.jsonlist['battleState']['enemypokemon']['moves'])))
             if self.useitem > 0:
-                if tempx >= self.differenceitems[mycurrent][self.itemused]:
-                   self.differenceitems[mycurrent][self.itemused] = tempx
+                if tempx >= self.differenceitems[mycurrent][self.useitem]:
+                   self.differenceitems[mycurrent][self.useitem] = tempx
             if Debug_Code == 1 or Debug_Code == 2:
                 print('**********')
                 print(self.mybestmove['bestleaf'])
@@ -1415,7 +1489,8 @@ class AI(object):
                     self.triggered = 1
                     if mymons == self.jsonlist['battleState']['enemypokemon']['party idx']:
                         self.triggered = 0
-                    self.Fight(mondata, trainmons, mymons, 4)
+                    if mondata[mymons]['stats']['curhp'] > 0:
+                        self.Fight(mondata, trainmons, mymons, 4)
             battlerating = {}
             for mymons in range(0, self.myparty):
                 tempx = 0
@@ -1432,8 +1507,12 @@ class AI(object):
                         tempx = mymons
                 bestmonsindex[x1] = tempx
                 battlerating[tempx] = 0
-
+            
             mycurrent = self.jsonlist['battleState']['enemypokemon']['party idx']
+            if self.theaction < 4:
+                temp1 = self.jsonlist['battleState']['enemypokemon']['party idx']
+            if self.theaction > 3:
+                temp1 = self.theaction - 4
             traincurrent = self.jsonlist['battleState']['playerpokemon']['party idx']+6
             self.TrainerDamage(mondata, traincurrent, mycurrent)
             self.triggered = 0
@@ -1446,23 +1525,24 @@ class AI(object):
                             self.useitem = x2
                             if mondata['myitems'][x2] in ['xspeed', 'xattack', 'xdefense', 'xspecial', 'direhit']:
                                 self.Fight(mondata, traincurrent, mycurrent, 5)
-                            if self.differenceitems[mymons][self.useitem] > self.difference[mycurrent][traincurrent]:
+                            if self.differenceitems[mymons][self.useitem] > self.difference[temp1][traincurrent]:
                                 tempaction = x2 + 9
-                                self.difference[mycurrent][traincurrent] = self.differenceitems[mymons][self.useitem]
+                                self.difference[temp1][traincurrent] = self.differenceitems[mymons][self.useitem]
                                 return(tempaction)
 
                             #and you are about to die
                             if self.Damage[traincurrent][mycurrent][self.enemynumber]['damage'] > self.hp[bestmonsindex[x1]]:
                                 #and healing would allow you to continue fighting
                                 if self.Damage[traincurrent][mycurrent][self.enemynumber]['damage'] / self.hp[bestmonsindex[x1]] < 0.5:
-                                    #and the item is a.....
-
-                                    healing_items = {"potion":20,"superpotion":50,"hyperpotion":200,"maxpotion":99999,"fullrestore":99999}
-                                    item_name = mondata['myitems'][x2]
-                                    if item_name in healing_items:
-                                        #would the HP the item would heal be enough?
-                                        if healing_items[item_name] > self.Damage[traincurrent][mycurrent][self.enemynumber]['damage']:
-                                            return x2 + 9
+                                    #and im not at full hp
+                                    if self.hp[bestmonsindex[x1]]!= self.jsonlist['battleState']['enemypokemon']['stats']['maxhp']:
+                                        #and the item is a.....
+                                        healing_items = {"potion":20,"superpotion":50,"hyperpotion":200,"maxpotion":99999,"fullrestore":99999}
+                                        item_name = mondata['myitems'][x2]
+                                        if item_name in healing_items:
+                                            #would the HP the item would heal be enough?
+                                            if healing_items[item_name] > self.Damage[traincurrent][mycurrent][self.enemynumber]['damage']:
+                                                return x2 + 9
         return 20
 
     def OptionalSwitch(self, mondata, traincurrent):
@@ -1471,9 +1551,9 @@ class AI(object):
         mondata2['enemypokemon']['screens'] = {}
         potentialAction = 20
         trapped = False
-        if 'trapped' in mondata['enemypokemon']['substatus'] or (isinstance(mondata['enemypokemon']['substatus'], dict) and 'trapped' in mondata['enemypokemon']['substatus'].values()):
+        if ('trapped' in mondata['enemypokemon']['substatus']) or ((isinstance(mondata['enemypokemon']['substatus'], dict)) and 'trapped' in mondata['enemypokemon']['substatus'].values()):
             trapped = True
-        if int(self.jsonlist['battleState']['enemypokemon']['wrap count']) == 0 and trapped == False:
+        if (int(self.jsonlist['battleState']['enemypokemon']['wrap count']) == 0 and trapped == False) or (mondata[traincurrent]['type'][1].lower() == 'ghost' or mondata[traincurrent]['type'][2].lower() == 'ghost'):
             for switchindex in range (0, self.myparty):
                 self.HitMe = 1
                 if switchindex == self.jsonlist['battleState']['enemypokemon']['party idx']:
@@ -1495,10 +1575,9 @@ class AI(object):
                     self.mybestmove[mycurrent][traincurrent] = -10
             if self.difference[self.jsonlist['battleState']['enemypokemon']['party idx']][traincurrent] < 0:
                 self.difference[self.jsonlist['battleState']['enemypokemon']['party idx']][traincurrent] = 0
-            tempy = self.difference[self.jsonlist['battleState']['enemypokemon']['party idx']][traincurrent] + 1.5
-            print(self.jsonlist['battleState']['enemypokemon']['party idx'])
+            mycurrent = self.jsonlist['battleState']['enemypokemon']['party idx']
+            tempy = self.difference[mycurrent][traincurrent] + 1.5
             for tempx in range (0, self.myparty):
-                print(self.difference[tempx][traincurrent])
                 if self.difference[tempx][traincurrent] > tempy:
                     tempy = self.difference[tempx][traincurrent]
                     if tempx != self.jsonlist['battleState']['enemypokemon']['party idx']:
@@ -1554,14 +1633,15 @@ class AI(object):
         mondata[mycurrent]['boosts'] = {}
         mondata[traincurrent]['boosts'] = {}
         for stat in self.statNames:
-                mondata[mycurrent]['boosts'][stat] = int(self.jsonlist['battleState']['enemypokemon']['stat levels'][stat])
-                mondata[traincurrent]['boosts'][stat] = int(self.jsonlist['battleState']['playerpokemon']['stat levels'][stat])
+            mondata[mycurrent]['boosts'][stat] = int(self.jsonlist['battleState']['enemypokemon']['stat levels'][stat])
+            mondata[traincurrent]['boosts'][stat] = int(self.jsonlist['battleState']['playerpokemon']['stat levels'][stat])
         for tempmove in range (0, len(self.jsonlist['battleState']['enemypokemon']['moves'])):
+            effmulti = self.getEff(mondata[mycurrent]['moves'][tempmove]['type'].lower(), mondata[traincurrent]['type'][1].lower(), 'playerpokemon') * self.getEff(mondata[mycurrent]['moves'][tempmove]['type'].lower(), mondata[traincurrent]['type'][2].lower(), 'playerpokemon')
             self.DamageDealt(mondata, mycurrent, traincurrent, tempmove)
             if self.Damage[mycurrent][traincurrent][tempmove]['damage'] / mondata[traincurrent]['stats']['curhp'] > 0.5:
                 movepriority[tempmove] = 0
                 continue
-            if mondata[traincurrent]['status'] == 'none':
+            if mondata[traincurrent]['status'] == 'none' and effmulti > 0:
                 if mondata[mycurrent]['moves'][tempmove]['effect'] == 'toxic' and ((mondata[traincurrent]['type'][1] not in ('poison', 'steel')) and (mondata[traincurrent]['type'][2] not in ('poison', 'steel'))):
                     movepriority[tempmove] = 1
                     continue
@@ -1595,6 +1675,9 @@ class AI(object):
             if mondata[mycurrent]['moves'][tempmove]['effect'] in ('whirlwind', 'teleport'):
                 movepriority[tempmove] = 11
                 continue
+        for tempmove in range (0, len(self.jsonlist['battleState']['enemypokemon']['moves'])):
+            if ((mondata[traincurrent]['type'][1] in ('grass')) or (mondata[traincurrent]['type'][2] in ('grass'))) and mondata[mycurrent]['moves'][tempmove]['name'] in ('spore', 'poisonpowder', 'sleeppowder', 'stunspore'):
+                movepriority[tempmove] = 20
         theaction = 20
         for tempx in range(0, len(self.jsonlist['battleState']['enemypokemon']['moves'])):
             tempy = 20
@@ -1634,40 +1717,36 @@ class AI(object):
         for tempmove in range (0, len(self.jsonlist['battleState']['enemypokemon']['moves'])):
             if mondata[mycurrent]['moves'][tempmove]['effect'] in ('protect'):
                 tempx = tempmove
-        if tempx != -1 and ('protect' not in (mondata['battleState']['enemypokemon']['substatus'])):
+        if tempx != -1 and ('protect' not in (mondata['enemypokemon']['substatus'])):
             if 'underground' in mondata['playerpokemon']['substatus'] or (isinstance(mondata['playerpokemon']['substatus'], dict) and 'underground' in mondata['playerpokemon']['substatus'].values()):
                 return tempx
             if 'flying' in mondata['playerpokemon']['substatus'] or (isinstance(mondata['playerpokemon']['substatus'], dict) and 'flying' in mondata['playerpokemon']['substatus'].values()):
                 return tempx
             if 'charged' in mondata['playerpokemon']['substatus'] or (isinstance(mondata['playerpokemon']['substatus'], dict) and 'charged' in mondata['playerpokemon']['substatus'].values()):
                 return tempx
-
-        if self.theaction < 4:
-            if mondata[mycurrent]['moves'][self.theaction]['effect'] == 'counter':
-                tempx = -1
-                for tempmove in range (0, len(self.jsonlist['battleState']['enemypokemon']['moves'])):
-                    if mondata[mycurrent]['moves'][tempmove]['effect'] in ('mirrormove'):
-                        tempx = tempmove
-                if tempx > -1:
-                    x1 = math.ceil(self.Damage[mycurrent][traincurrent][self.theaction]['damage'] / (self.Damage[mycurrent][traincurrent][self.theaction]['damage'] + self.Damage[0][6][tempx]['damage']))
-                    if random.randint(0, 100) > x1:
-                        return tempx
-            if mondata[mycurrent]['moves'][self.theaction]['effect'] == 'mirrorcoat':
-                tempx = -1
-                for tempmove in range (0, len(self.jsonlist['battleState']['enemypokemon']['moves'])):
-                    if mondata[mycurrent]['moves'][tempmove]['effect'] in ('counter'):
-                        tempx = tempmove
-                if tempx > -1:
-                    x1 = math.ceil(self.Damage[mycurrent][traincurrent][self.theaction]['damage'] / (self.Damage[mycurrent][traincurrent][self.theaction]['damage'] + self.Damage[0][6][tempx]['damage']))
-                    if random.randint(0, 100) > x1:
-                        return tempx
         
-        #they are about to die
-        for tempmove in range (0, len(self.jsonlist['battleState']['enemypokemon']['moves'])):
-            self.DamageDealt(mondata, mycurrent, traincurrent, tempmove)
-            if mondata[mycurrent]['moves'][tempmove]['curpp'] > 0:
-                if self.Damage[mycurrent][traincurrent][tempmove]['damage'] > self.opponenthp[traincurrent]:
-                    return tempmove
+        try:
+            if self.theaction < 4:
+                if mondata[mycurrent]['moves'][self.theaction]['effect'] == 'counter':
+                    tempx = -1
+                    for tempmove in range (0, len(self.jsonlist['battleState']['enemypokemon']['moves'])):
+                        if mondata[mycurrent]['moves'][tempmove]['effect'] in ('mirrormove'):
+                            tempx = tempmove
+                    if tempx > -1:
+                        x1 = math.ceil(self.Damage[mycurrent][traincurrent][self.theaction]['damage'] / (self.Damage[mycurrent][traincurrent][self.theaction]['damage'] + self.Damage[0][6][tempx]['damage']))
+                        if random.randint(0, 100) > x1:
+                            return tempx
+                if mondata[mycurrent]['moves'][self.theaction]['effect'] == 'mirrorcoat':
+                    tempx = -1
+                    for tempmove in range (0, len(self.jsonlist['battleState']['enemypokemon']['moves'])):
+                        if mondata[mycurrent]['moves'][tempmove]['effect'] in ('counter'):
+                            tempx = tempmove
+                    if tempx > -1:
+                        x1 = math.ceil(self.Damage[mycurrent][traincurrent][self.theaction]['damage'] / (self.Damage[mycurrent][traincurrent][self.theaction]['damage'] + self.Damage[0][6][tempx]['damage']))
+                        if random.randint(0, 100) > x1:
+                            return tempx
+        except KeyError:
+            Print('Key error countercoat')
         
         #disabled move
         if self.jsonlist['battleState']['enemy type'] == 'WILD':
@@ -1676,13 +1755,40 @@ class AI(object):
         if self.jsonlist['battleState']['enemy type'] == 'TRAINER':
             if 'disabled' in mondata['enemypokemon']['substatus']:
                 mondata[self.jsonlist['battleState']['enemypokemon']['party idx']]['moves'][int(mondata['enemypokemon']['substatus']['disabled']['move idx'])-1]['curpp'] = 0
-                
+        
+        templist = []
+        #they are about to die can i save pp?
+        if self.theaction < 4:
+            if self.Damage[mycurrent][traincurrent][self.theaction]['damage'] > self.jsonlist['battleState']['playerpokemon']['hp']:
+                for tempmove in range (0, len(self.jsonlist['battleState']['enemypokemon']['moves'])):
+                    self.DamageDealt(mondata, mycurrent, traincurrent, tempmove)
+                    if mondata[mycurrent]['moves'][tempmove]['curpp'] > 0:
+                        if self.Damage[mycurrent][traincurrent][tempmove]['damage'] > self.jsonlist['battleState']['playerpokemon']['hp']:
+                            templist.append(tempmove)
+                temp1 = -1
+                tempx = self._statsmultipliers[mondata[mycurrent]['boosts']['spd']+6]/100
+                tempy = self._statsmultipliers[mondata[traincurrent]['boosts']['spd']+6]/100
+                if mondata[mycurrent]['status'] == 'par':
+                    tempx = tempx * 0.25
+                if mondata[traincurrent]['status'] == 'par':
+                    tempy = tempy * 0.25
+                for tempmove in templist:
+                    if mondata[mycurrent]['moves'][tempmove]['effect'] in ('priorityhit','extremespeed') and (mondata[mycurrent]['stats']['speed'] * tempx < mondata[traincurrent]['stats']['speed'] * tempy):
+                        tempy = tempmove
+                        temp1 = 20
+                if temp1 == -1:
+                    for tempmove in templist:
+                        if mondata[mycurrent]['moves'][tempmove]['curpp'] > temp1:
+                            temp1 = mondata[mycurrent]['moves'][tempmove]['curpp']
+                            tempy = tempmove
+                            
         #im about to die
         self.TrainerDamage(mondata, traincurrent, mycurrent)
         if self.Damage[traincurrent][mycurrent][self.enemynumber]['damage'] > self.jsonlist['battleState']['enemypokemon']['hp']:
             tempx = 0
             tempy = -1
             for tempmove in range (0, len(self.jsonlist['battleState']['enemypokemon']['moves'])):
+                self.DamageDealt(mondata, mycurrent, traincurrent, tempmove)
                 if mondata[mycurrent]['moves'][tempmove]['curpp'] > 0:
                     if self.Damage[mycurrent][traincurrent][tempmove]['damage'] > tempx:
                         tempx = self.Damage[mycurrent][traincurrent][tempmove]['damage']
@@ -1692,23 +1798,24 @@ class AI(object):
             return tempy
         
         #baton pass
-        tempx = -1
-        for tempmove in range (0, len(self.jsonlist['battleState']['enemypokemon']['moves'])):
-            if mondata[mycurrent]['moves'][tempmove]['effect'] in ('batonpass'):
-                tempx = tempmove    
-        if tempx != -1 :
-            potentialAction = OptionalSwitch(self, mondata, traincurrent)
-            if potentialAction != 20:
-                return potentialAction
-        if Debug_Code == 1:
-            print('in manual control')
+        if self.jsonlist['battleState']['enemy type'] == 'TRAINER':
+            tempx = -1
+            for tempmove in range (0, len(self.jsonlist['battleState']['enemypokemon']['moves'])):
+                if mondata[mycurrent]['moves'][tempmove]['effect'] in ('batonpass'):
+                    tempx = tempmove    
+            if tempx != -1 :
+                potentialAction = self.OptionalSwitch(self, mondata, traincurrent)
+                if potentialAction != 20:
+                    return potentialAction
+            if Debug_Code == 1:
+                print('in manual control')
         return None
 
     #figure out best action to do in current battle
     def MainBattle(self, jsonlist):
 
         self.jsonlist = jsonlist
-
+        
         #setup everything
         if self.jsonlist['battleState']['enemy type'] == 'TRAINER':
             self.myparty = len(self.jsonlist['enemyParty']['party']) #ai's pokemon
@@ -1772,6 +1879,11 @@ class AI(object):
         else:
             mycurrent = 0
             self.theaction = self.WildBattle(mondata, mycurrent, traincurrent)
+            '''
+            print(self.Damage[mycurrent][traincurrent][0]['damage'])
+            print(self.Damage[mycurrent][traincurrent][1]['damage'])
+            print(self.Damage[mycurrent][traincurrent][2]['damage'])
+            print(self.Damage[mycurrent][traincurrent][3]['damage'])'''
             potentialAction = self.ManualControl()
             if potentialAction is not None:
                 self.theaction = potentialAction
@@ -1801,6 +1913,40 @@ class AI(object):
                 self.theaction = random.randint(0, (len(self.jsonlist['battleState']['enemypokemon']['moves'])))
                 if tempy == len(mondata[0]['moves']):
                     break
+        
+        #invalid action handling
+        if (int(self.jsonlist['battleState']['requested action']) & 0x04):
+            print('INVALID ACTION! Contact Beesafree with the logs')
+            if self.theaction > 11:
+                self.theaction = 0
+            if self.theaction < 0:
+                self.theaction = 0
+            if self.theaction > 9:
+                while True:
+                    if self._actualAction[str(self.theaction)] not in self.jsonlist['battleState']['history']:
+                        break
+                    if self.theaction == 10:
+                        tempx = 11
+                    if self.theaction == 11:
+                        tempx = 10
+                    if 'useitem1' in self.jsonlist['battleState']['history'] and 'useitem2' in self.jsonlist['battleState']['history']:
+                        self.theaction = 0
+                        break
+                    self.theaction = tempx
+            if self.theaction < 4:
+                while True:
+                    if self._actualAction[str(self.theaction)] not in self.jsonlist['battleState']['history']:
+                        break
+                    self.theaction = random.randint(0, 4)
+                    if 'move1' in self.jsonlist['battleState']['history'] and 'move2' in self.jsonlist['battleState']['history'] and 'move3' in self.jsonlist['battleState']['history'] and 'move4' in self.jsonlist['battleState']['history']:
+                        self.theaction = 4
+                        break
+            if self.theaction < 10 and self.theaction > 3:
+                while True:
+                    if self._actualAction[str(self.theaction)] not in self.jsonlist['battleState']['history']:
+                        break
+                    self.theaction = random.randint(4, (len(self.myparty)))
+            
         
         temptext = self._actualAction[str(self.theaction)]
         return temptext

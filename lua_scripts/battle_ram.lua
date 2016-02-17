@@ -555,9 +555,9 @@ KeyItems = 0xD8BD -- MAX_KEY_ITEMS + 1 bytes
 NumBalls = 0xD8D7 -- 1 byte
 Balls = 0xD8D8 -- MAX_BALLS * 2 + 1 bytes
 
-PartyCount = 0xDCD7 -- 1 byte
-PartySpecies = 0xDCD8 -- 6 bytes
-PartyEnd = 0xDCDE -- 1 byte
+PlaPartyCount = 0xDCD7 -- 1 byte
+PlaPartySpecies = 0xDCD8 -- 6 bytes
+PlaPartyEnd = 0xDCDE -- 1 byte
 
 PartyMon1Species = 0xDCDF -- 1 byte
 PartyMon1Item = 0xDCE0 -- 1 byte

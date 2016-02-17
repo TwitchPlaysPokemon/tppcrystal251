@@ -34,9 +34,12 @@ BillEeveePC:
 	checkcode VAR_BOXSPACE
 	if_equal $0, UnknownScript_0x54c13
 	writetext BillsEeveePCText
+	buttonsound
+	waitsfx
+	writetext UnknownText_0x54dae
 	playsound SFX_CAUGHT_MON
 	waitsfx
-	givepoke EEVEE, 30, 0, 0
+	givepoke EEVEE, 30, GOLD_BERRY, 0
 	setevent EVENT_GOT_EEVEE
 	writetext UnknownText_0x54dc1
 	waitbutton

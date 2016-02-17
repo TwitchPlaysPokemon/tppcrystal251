@@ -70,37 +70,37 @@ PokeCenterNurseScript:
 	jump .ok
 
 .morn
-	checkevent EVENT_WELCOMED_TO_POKECOM_CENTER
-	iftrue .morn_comcenter
+	;checkevent EVENT_WELCOMED_TO_POKECOM_CENTER
+	;iftrue .morn_comcenter
 	farwritetext UnknownText_0x1b0000
 	buttonsound
 	jump .ok
-.morn_comcenter
-	farwritetext UnknownText_0x1b008a
-	buttonsound
-	jump .ok
+;.morn_comcenter
+;	farwritetext UnknownText_0x1b008a
+;	buttonsound
+;	jump .ok
 
 .day
-	checkevent EVENT_WELCOMED_TO_POKECOM_CENTER
-	iftrue .day_comcenter
+;	checkevent EVENT_WELCOMED_TO_POKECOM_CENTER
+;	iftrue .day_comcenter
 	farwritetext UnknownText_0x1b002b
 	buttonsound
 	jump .ok
-.day_comcenter
-	farwritetext UnknownText_0x1b00d6
-	buttonsound
-	jump .ok
+;.day_comcenter
+;	farwritetext UnknownText_0x1b00d6
+;	buttonsound
+;	jump .ok
 
 .nite
-	checkevent EVENT_WELCOMED_TO_POKECOM_CENTER
-	iftrue .nite_comcenter
+;	checkevent EVENT_WELCOMED_TO_POKECOM_CENTER
+;	iftrue .nite_comcenter
 	farwritetext UnknownText_0x1b004f
 	buttonsound
 	jump .ok
-.nite_comcenter
-	farwritetext UnknownText_0x1b011b
-	buttonsound
-	jump .ok
+;.nite_comcenter
+;	farwritetext UnknownText_0x1b011b
+;	buttonsound
+;	jump .ok
 
 .ok
 	; only do this once
@@ -156,20 +156,20 @@ PokeCenterNurseScript:
 
 .pokerus
 	; already cleared earlier in the script
-	checkevent EVENT_WELCOMED_TO_POKECOM_CENTER
-	iftrue .pokerus_comcenter
+	;checkevent EVENT_WELCOMED_TO_POKECOM_CENTER
+	;iftrue .pokerus_comcenter
 
 	farwritetext UnknownText_0x1b0241
 	waitbutton
 	closetext
-	jump .pokerus_done
+	;jump .pokerus_done
 
-.pokerus_comcenter
-	farwritetext UnknownText_0x1b02d6
-	waitbutton
-	closetext
+;.pokerus_comcenter
+;	farwritetext UnknownText_0x1b02d6
+;	waitbutton
+;	closetext
 
-.pokerus_done
+;.pokerus_done
 	setflag ENGINE_POKERUS
 	specialphonecall 1 ; elm calls about pokerus
 	end

@@ -11,18 +11,13 @@ hRTCSeconds = 0xff91
 -- Constants --
 
 stream_start = 1455310800.0 -- 12 Feb 2016, 2100 UTC
-last = 0
-ms = 0 -- os.time isn't accurate up to millisecond precision
+start_clock  = os.clock()
+start_time   = os.time() - stream_start
 
 -- Main Code 
 
 function updateclock()
-	tim = os.time()
-	if tim ~= last then
-		ms = 0
-		last = tim
-	else ms = ms + 1 end
-	diff = tim - stream_start + (ms / 60)
+	diff = os.clock() - start_clock + start_time
 	diff = diff * 12.0 / 5.0
 	t = math.floor(diff / 86400) % 7
 	memory.writebyte(hRTCDayLo, t)
