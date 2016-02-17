@@ -84,12 +84,6 @@ class AI(object):
             self._moves = tempX.read().split(' ')
 
         self.statNames = ["atk","def","satk","sdef","spd","eva","acc"]
-    def getStatNameWithSpeed(self, statName):
-        #converts between statNames that use "spd" and those that use "speed"
-        #this function shouldn't need to exist but it does
-        if statName == "spd":
-            return "speed"
-        return statName
 
     def parseMondataFromJsonlist (self):
         if isinstance(self.jsonlist['battleState']['weather'], dict):
