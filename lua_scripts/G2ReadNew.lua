@@ -615,11 +615,10 @@ while true do
 		bank_wait = 0
 		-- Update the overlay
 		OverlayFrameDelay = OverlayFrameDelay + 1
-		if OverlayFrameDelay == 60 then
+		if OverlayFrameDelay % 60 == 0 then
 			json = read_new_playerstate()
 			-- vba.print("JSON:", json)
 			update_overlay(json)
-			OverlayFrameDelay = 0
 		end
 
 		-- Military mode switch (incomplete)
