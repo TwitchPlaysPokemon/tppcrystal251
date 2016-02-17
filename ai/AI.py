@@ -278,7 +278,8 @@ class AI(object):
                 mondata['playerpokemon']['substatus']['raging'] = mondata['playerpokemon']['substatus']['raging'] + 1
                 basebp = (basebp / 2) * ( 2 ** mondata['playerpokemon']['substatus']['raging'])
             else:
-                mondata['playerpokemon']['substatus'] = {"{}".format(i+1): x for i, x in enumerate(mondata['playerpokemon']['substatus'])}
+                if type(mondata['playerpokemon']['substatus']) == list:
+                    mondata['playerpokemon']['substatus'] = {str(i+1): x for i, x in enumerate(mondata['playerpokemon']['substatus'])}
                 mondata['playerpokemon']['substatus']['raging'] = 1
             if basebp > 160:
                 basebp = 160
@@ -826,7 +827,9 @@ class AI(object):
                         if (mondata[mycurrent]['moves'][moveused]['effect'] in ('poison', 'toxic', 'poisonhit', 'twineedle')) and mondata[traincurrent]['item'] != 'poisonguard' and ((mondata[traincurrent]['type'][1] not in ('poison', 'steel')) and (mondata[traincurrent]['type'][2] not in ('poison', 'steel'))):
                             mondata[traincurrent]['status'] = 'psn'
                             if mondata[mycurrent]['moves'][moveused]['effect'] == 'toxic':
-                                mondata['playerpokemon']['substatus'].append({'toxic': 1})
+                                if type(mondata['playerpokemon']['substatus']) == list:
+                                    mondata['playerpokemon']['substatus'] = {str(i+1): x for i, x in enumerate(mondata['playerpokemon']['substatus'])}
+                                mondata['playerpokemon']['substatus']['toxic'] = 1
                             if mondata[traincurrent]['item'] == 'miracleberry' or mondata[traincurrent]['item'] != 'psncureberry':
                                 mondata[traincurrent]['status'] = 'none'
                                 mondata[traincurrent]['item'] = 'noitem'
