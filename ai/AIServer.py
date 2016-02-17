@@ -96,7 +96,6 @@ def ai_retrieve():
     return ai_result if ai_result else ""
 
 def main():
-    app.debug = True
     app.run(port=PORT)
 
 if __name__ == '__main__':
