@@ -825,7 +825,7 @@ class AI(object):
                         if (mondata[mycurrent]['moves'][moveused]['effect'] in ('poison', 'toxic', 'poisonhit', 'twineedle')) and mondata[traincurrent]['item'] != 'poisonguard' and ((mondata[traincurrent]['type'][1] not in ('poison', 'steel')) and (mondata[traincurrent]['type'][2] not in ('poison', 'steel'))):
                             mondata[traincurrent]['status'] = 'psn'
                             if mondata[mycurrent]['moves'][moveused]['effect'] == 'toxic':
-                                mondata['playerpokemon']['substatus'].append(dict({'toxic': 1}))
+                                mondata['playerpokemon']['substatus'].append({'toxic': 1})
                             if mondata[traincurrent]['item'] == 'miracleberry' or mondata[traincurrent]['item'] != 'psncureberry':
                                 mondata[traincurrent]['status'] = 'none'
                                 mondata[traincurrent]['item'] = 'noitem'
