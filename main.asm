@@ -12880,7 +12880,13 @@ UnknownScript_0x124c8:: ; 0x124c8
 	refreshscreen $0
 	callasm Function124fa
 UnknownScript_0x124ce: ; 0x124ce
+	callasm DetermineMoneyLostToBlackout
+	iffalse .WildBattlePanic
 	writetext UnknownText_0x124f5
+	jump .done_text
+.WildBattlePanic
+	writetext UnknownText_0x124f5_2
+.done_text
 	waitbutton
 	special Function8c084
 	pause 40
@@ -12891,7 +12897,6 @@ UnknownScript_0x124ce: ; 0x124ce
 .skip_egk_reset
 	checkflag ENGINE_BUG_CONTEST_TIMER
 	iftrue .script_64f2
-	callasm DetermineMoneyLostToBlackout
 	callasm Function12527
 	farscall UnknownScript_0x122c1
 	special Function97c28
@@ -12906,6 +12911,10 @@ UnknownText_0x124f5: ; 0x124f5
 	text_jump UnknownText_0x1c0a4e
 	db "@"
 ; 0x124fa
+
+UnknownText_0x124f5_2:
+	text_jump UnknownText_0x1c0a4e_2
+	db "@"
 
 Function124fa: ; 124fa
 	call ClearPalettes
@@ -12956,9 +12965,43 @@ DetermineMoneyLostToBlackout: ; 12513
 	ld a, b
 	ld [hMultiplicand + 2], a
 	call Multiply
+	ld de, $ffc3
+	ld hl, hProduct + 1
+	call .Copy
 	ld de, Money
-	ld bc, hProduct + 1
+	ld bc, $ffc3
+	push bc
+	push de
+	callba Function1600b
+	jr nc, .nonzero
+	ld hl, Money
+	ld de, $ffc3
+	call .Copy
+.nonzero
+	pop de
+	pop bc
 	callba Function15ffa
+	; ld hl, StringBuffer1
+	; lb bc, (1 << 5) | 3, 5
+	; call PrintNum
+	ld a, "@"
+	ld [hl], a
+	ld hl, $dff8
+	ld a, [hl]
+	and $1
+	ld [ScriptVar], a
+	xor a
+	ld [hl], a
+	ret
+.Copy
+	ld a, [hli]
+	ld [de], a
+	inc de
+	ld a, [hli]
+	ld [de], a
+	inc de
+	ld a, [hl]
+	ld [de], a
 	ret
 
 .BaseMoneys
