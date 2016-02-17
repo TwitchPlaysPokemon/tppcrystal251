@@ -106,6 +106,8 @@ ParseExternalAI:
 	ld a, [hli]
 	or [hl]
 	jr z, .Invalid
+	ld a, $1
+	ld [wEnemyIsSwitching], a
 	ret
 
 .UseItem
@@ -363,7 +365,7 @@ Military_SelectPokemon:
 	ld a, [wMilitaryAndAIBattleAction]
 	and $f
 	cp 15
-	jr z, .Invalid
+	jr z, .cancel
 	cp 10
 	jr nc, .Invalid
 	sub 4

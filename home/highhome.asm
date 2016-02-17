@@ -32,3 +32,29 @@ _LUASerial:
 	pop bc
 	ret
 ENDC
+
+BetBoy::
+	ld [$fffd], sp
+	ld sp, $fffd
+	push hl
+	push de
+	push bc
+	push af
+	call DisableLCD
+	ld de, Font
+	ld hl, VTiles1
+	ld bc, FontEnd - Font
+	ld a, BANK(Font)
+	ld [MBC3RomBank], a
+.loop
+	ld a, [de]
+	inc de
+	ld [hli], a
+	ld [hli], a
+	dec bc
+	ld a, c
+	or b
+	jr nz, .loop
+	ld a, BANK(_BetBoy)
+	ld [MBC3RomBank], a
+	jp _BetBoy
