@@ -201,9 +201,9 @@ IF DEF(BEESAFREE)
 	ld a, [wMilitaryFlags]
 	bit MILITARY_ON, a
 	jr z, .call_battle_menu
-	ld a, [BattleType]
-	cp BATTLETYPE_CONTEST
-	jr z, .call_battle_menu
+	; ld a, [BattleType]
+	; cp BATTLETYPE_CONTEST
+	; jr z, .call_battle_menu
 	callba Military
 	jr c, .quit
 	ld a, [BattleEnded]
