@@ -278,8 +278,8 @@ class AI(object):
                 mondata['playerpokemon']['substatus']['raging'] = mondata['playerpokemon']['substatus']['raging'] + 1
                 basebp = (basebp / 2) * ( 2 ** mondata['playerpokemon']['substatus']['raging'])
             else:
-                mondata['playerpokemon']['substatus'].append(dict({'raging': 1}))
-                basebp = (basebp / 2)
+                mondata['playerpokemon']['substatus'] = {"{}".format(i+1): x for i, x in enumerate(mondata['playerpokemon']['substatus'])}
+                mondata['playerpokemon']['substatus']['raging'] = 1
             if basebp > 160:
                 basebp = 160
         if move_used_effect == 'reversal':
