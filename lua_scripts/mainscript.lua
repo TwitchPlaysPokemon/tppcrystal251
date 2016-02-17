@@ -80,7 +80,7 @@ end
 function ReceiveButtonInput_NoMil()
 	b, c, h = http.request("http://127.0.0.1:5000/gbmode_inputs")
 	-- vba.print(b, c, h)
-	if c == 200 then
+	if (c == 200) and (b ~= "") then
 		local json = JSON:decode(b)
 		-- vba.print(json)
 		if json["military_toggle"] ~= nil then
@@ -95,7 +95,7 @@ end
 function ReceiveButtonInput()
 	b, c, h = http.request("http://127.0.0.1:5000/gbmode_inputs")
 	-- vba.print(b, c, h)
-	if c == 200 then
+	if (c == 200) and (b ~= "") then
 		local json = JSON:decode(b)
 		-- vba.print(json)
 		if json["military_toggle"] ~= nil then

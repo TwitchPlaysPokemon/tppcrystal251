@@ -12916,7 +12916,7 @@ UnknownScript_0x124ce: ; 0x124ce
 .skip_egk_reset
 	checkflag ENGINE_BUG_CONTEST_TIMER
 	iftrue .script_64f2
-	callasm HalveMoney
+	callasm DetermineMoneyLostToBlackout
 	callasm Function12527
 	farscall UnknownScript_0x122c1
 	special Function97c28
@@ -12948,23 +12948,66 @@ Function1250a: ; 1250a
 	ret
 ; 12513
 
-HalveMoney: ; 12513
-; Empty function...
-
-	callba Function1060c7
-; Halve the player's money.
-
-	ld hl, Money
+DetermineMoneyLostToBlackout: ; 12513
+	ld hl, Badges
+	ld b, 2
+	call CountSetBits
+	cp 8 + 1
+	jr c, .okay
+	ld c, 8
+.okay
+	ld b, 0
+	ld hl, .BaseMoneys
+	add hl, bc
 	ld a, [hl]
-	srl a
-	ld [hli], a
+	ld [hMultiplier], a
+	ld a, [PartyCount]
+	ld c, a
+	ld b, 0
+	ld hl, PartyMon1Level
+	ld de, $30
+.loop
 	ld a, [hl]
-	rra
-	ld [hli], a
-	ld a, [hl]
-	rra
-	ld [hl], a
+	cp b
+	jr c, .next
+	ld b, a
+.next
+	add hl, de
+	dec c
+	jr nz, .loop
+	xor a
+	ld [hMultiplicand], a
+	ld [hMultiplicand + 1], a
+	ld a, b
+	ld [hMultiplicand + 2], a
+	call Multiply
+	ld de, Money
+	ld bc, hProduct + 1
+	callba Function15ffa
 	ret
+
+.BaseMoneys
+	db 8
+	db 16
+	db 24
+	db 36
+	db 48
+	db 64
+	db 80
+	db 100
+	db 120
+
+	; ld hl, Money
+	; ld a, [hl]
+	; srl a
+	; ld [hli], a
+	; ld a, [hl]
+	; rra
+	; ld [hli], a
+	; ld a, [hl]
+	; rra
+	; ld [hl], a
+	; ret
 ; 12527
 
 Function12527: ; 12527

@@ -10,7 +10,7 @@ hRTCSeconds = 0xff91
 
 -- Constants --
 
-stream_start = 1455310800.0 -- 12 Feb 2016, 2100 UTC
+stream_start = 1455483600.0 -- 14 Feb 2016, 2100 UTC
 start_clock  = os.clock()
 start_time   = os.time() - stream_start
 
