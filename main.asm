@@ -86251,8 +86251,9 @@ SECTION "bank3E", ROMX, BANK[$3E]
 FontExtra:
 INCBIN "gfx/misc/font_extra.2bpp"
 
-Font:
+Font::
 INCBIN "gfx/misc/font.w128.1bpp"
+FontEnd::
 
 FontBattleExtra:
 INCBIN "gfx/misc/font_battle_extra.2bpp"

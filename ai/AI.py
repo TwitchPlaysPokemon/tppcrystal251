@@ -892,122 +892,88 @@ class AI(object):
 
     def endofturn(self, mondata, traincurrent, mycurrent):
         
-        #Sandstorm
-        if mondata['weather'] == 'sandstorm' and ((mondata[mycurrent]['type'][1] not in ('ground', 'rock', 'steel')) and (mondata[mycurrent]['type'][2] not in ('ground', 'rock', 'steel'))):
-            mondata[mycurrent]['stats']['curhp'] = mondata[mycurrent]['stats']['curhp'] - (mondata[mycurrent]['stats']['hp'] * 0.125)
-        if mondata['weather'] == 'sandstorm' and ((mondata[traincurrent]['type'][1] not in ('ground', 'rock', 'steel')) and (mondata[traincurrent]['type'][2] not in ('ground', 'rock', 'steel'))):
-            mondata[traincurrent]['stats']['curhp'] = mondata[traincurrent]['stats']['curhp'] - (mondata[traincurrent]['stats']['hp'] * 0.125)
-            
-        #status Damage
-        if mondata[traincurrent]['status'] in ('brn', 'psn') and 'toxic' not in mondata['playerpokemon']['substatus']:
-            mondata[traincurrent]['stats']['curhp'] = mondata[traincurrent]['stats']['curhp'] - (mondata[traincurrent]['stats']['hp'] * 0.125)
-        if mondata[mycurrent]['status'] in ('brn', 'psn') and 'toxic' not in mondata['enemypokemon']['substatus']:
-            mondata[mycurrent]['stats']['curhp'] = mondata[mycurrent]['stats']['curhp'] - (mondata[mycurrent]['stats']['hp'] * 0.125)
-        if mondata[traincurrent]['status'] == 'psn' and 'toxic' in mondata['playerpokemon']['substatus']:
-            mondata[traincurrent]['stats']['curhp'] = mondata[traincurrent]['stats']['curhp'] - (mondata[traincurrent]['stats']['hp'] * mondata['playerpokemon']['substatus']['toxic'] * 0.0625)
-            mondata['playerpokemon']['substatus']['toxic'] = mondata['playerpokemon']['substatus']['toxic'] + 1
-        if mondata[mycurrent]['status'] == 'psn' and 'toxic' in mondata['enemypokemon']['substatus']:
-            mondata[mycurrent]['stats']['curhp'] = mondata[mycurrent]['stats']['curhp'] - (mondata[mycurrent]['stats']['hp'] * mondata['enemypokemon']['substatus']['toxic'] * 0.0625)
-            mondata['enemypokemon']['substatus']['toxic'] = mondata['enemypokemon']['substatus']['toxic'] + 1
         
-        #held healing
-        if (mondata[traincurrent]['item'] == 'berry') and (mondata[traincurrent]['stats']['curhp'] < mondata[traincurrent]['stats']['hp'] * 0.33):
-            mondata[traincurrent]['stats']['curhp'] += 10
-            mondata[traincurrent]['item'] = 'noitem'
-        if (mondata[traincurrent]['item'] == 'goldberry') and (mondata[traincurrent]['stats']['curhp'] < mondata[traincurrent]['stats']['hp'] * 0.33):
-            mondata[traincurrent]['stats']['curhp'] += (mondata[traincurrent]['stats']['hp'] * 0.25)
-            mondata[traincurrent]['item'] = 'noitem'
-        if (mondata[mycurrent]['item'] == 'berry') and (mondata[mycurrent]['stats']['curhp'] < mondata[mycurrent]['stats']['hp'] * 0.33):
-            mondata[mycurrent]['stats']['curhp'] += 10
-            mondata[mycurrent]['item'] = 'noitem'
-        if (mondata[mycurrent]['item'] == 'goldberry') and (mondata[mycurrent]['stats']['curhp'] < mondata[mycurrent]['stats']['hp'] * 0.33):
-            mondata[mycurrent]['stats']['curhp'] += (mondata[mycurrent]['stats']['hp'] * 0.25)
-            mondata[mycurrent]['item'] = 'noitem'
-
-        #leftovers
-        if mondata[traincurrent]['item'] == 'leftovers':
-            mondata[traincurrent]['stats']['curhp'] = mondata[traincurrent]['stats']['curhp'] + (mondata[traincurrent]['stats']['hp'] * 0.0625)
-        if mondata[mycurrent]['item'] =='leftovers':
-            mondata[mycurrent]['stats']['curhp'] = mondata[mycurrent]['stats']['curhp'] + (mondata[mycurrent]['stats']['hp'] * 0.0625)
-
-        #rest counter
-        if mondata[mycurrent]['status'] == 'slp1':
-            mondata[mycurrent]['status'] = 'none'
-        if mondata[mycurrent]['status'] == 'slp2':
-            mondata[mycurrent]['status'] = 'slp1'
-        if mondata[mycurrent]['status'] == 'slp3':
-            mondata[mycurrent]['status'] = 'slp2'
-
         #perish song
         if mondata['myperishsong'] == 1:
             mondata[mycurrent]['stats']['curhp'] = 0
         if mondata['trainperishsong'] == 1:
             mondata[traincurrent]['stats']['curhp'] = 0
+        
+        if mondata['myperishsong'] > 0:   
+            mondata['myperishsong'] = mondata['myperishsong'] - 1
+        if mondata['trainperishsong'] > 0:
+            mondata['trainperishsong'] = mondata['trainperishsong'] - 1
+            
+        for temptext in ('enemypokemon', 'playerpokemon'):
+            if temptext == 'enemypokemon':
+                pkmindex = mycurrent
+            else:
+                pkmindex = traincurrent
+            
+            #Sandstorm
+            if mondata['weather'] == 'sandstorm' and ((mondata[pkmindex]['type'][1] not in ('ground', 'rock', 'steel')) and (mondata[pkmindex]['type'][2] not in ('ground', 'rock', 'steel'))):
+                mondata[pkmindex]['stats']['curhp'] = mondata[pkmindex]['stats']['curhp'] - (mondata[pkmindex]['stats']['hp'] * 0.125)
+                
+            #status Damage
+            if mondata[pkmindex]['status'] in ('brn', 'psn') and 'toxic' not in mondata[temptext]['substatus']:
+                mondata[pkmindex]['stats']['curhp'] = mondata[pkmindex]['stats']['curhp'] - (mondata[pkmindex]['stats']['hp'] * 0.125)
+            if mondata[pkmindex]['status'] == 'psn' and 'toxic' in mondata[temptext]['substatus']:
+                mondata[pkmindex]['stats']['curhp'] = mondata[pkmindex]['stats']['curhp'] - (mondata[pkmindex]['stats']['hp'] * mondata[temptext]['substatus']['toxic'] * 0.0625)
+                mondata[temptext]['substatus']['toxic'] = mondata[temptext]['substatus']['toxic'] + 1
+            
+            #held healing
+            if (mondata[pkmindex]['item'] == 'berry') and (mondata[pkmindex]['stats']['curhp'] < mondata[pkmindex]['stats']['hp'] * 0.33):
+                mondata[pkmindex]['stats']['curhp'] += 10
+                mondata[pkmindex]['item'] = 'noitem'
+            if (mondata[pkmindex]['item'] == 'goldberry') and (mondata[pkmindex]['stats']['curhp'] < mondata[pkmindex]['stats']['hp'] * 0.33):
+                mondata[pkmindex]['stats']['curhp'] += (mondata[pkmindex]['stats']['hp'] * 0.25)
+                mondata[pkmindex]['item'] = 'noitem'
 
-        mondata['myperishsong'] = mondata['myperishsong'] - 1
-        mondata['trainperishsong'] = mondata['trainperishsong'] - 1
+            #leftovers
+            if mondata[pkmindex]['item'] == 'leftovers':
+                mondata[pkmindex]['stats']['curhp'] = mondata[pkmindex]['stats']['curhp'] + (mondata[pkmindex]['stats']['hp'] * 0.0625)
 
-        if mondata['myperishsong'] < 0:
-            mondata['myperishsong'] = 0
-        if mondata['trainperishsong'] < 0:
-            mondata['trainperishsong'] = 0
+            #rest counter
+            if mondata[pkmindex]['status'] == 'slp1':
+                mondata[pkmindex]['status'] = 'none'
+            elif mondata[pkmindex]['status'] == 'slp2':
+                mondata[pkmindex]['status'] = 'slp1'
+            elif mondata[pkmindex]['status'] == 'slp3':
+                mondata[pkmindex]['status'] = 'slp2'
 
-        #nightmare
-        if mondata[traincurrent]['status'] == 'slp':
-            nightmared = False
-            if 'nightmare' in mondata['playerpokemon']['substatus'] or (isinstance(mondata['playerpokemon']['substatus'], dict) and 'nightmare' in mondata['playerpokemon']['substatus'].values()):
-                nightmared = True
-            if mondata['nightmare'] == True:
-                nightmared = True
-            if nightmared == True:
-                mondata[traincurrent]['stats']['curhp'] = mondata[traincurrent]['stats']['curhp'] - (mondata[traincurrent]['stats']['curhp'] * 0.25)
+            #nightmare
+            if mondata[pkmindex]['status'] in ('slp','slp1','slp2','slp3'):
+                nightmared = False
+                if 'nightmare' in mondata[temptext]['substatus'] or (isinstance(mondata[temptext]['substatus'], dict) and 'nightmare' in mondata[temptext]['substatus'].values()):
+                    nightmared = True
+                if mondata['nightmare'] == True and temptext == 'playerpokemon':
+                    nightmared = True
+                if nightmared == True:
+                    mondata[pkmindex]['stats']['curhp'] = mondata[pkmindex]['stats']['curhp'] - (mondata[pkmindex]['stats']['curhp'] * 0.25)
 
-        if mondata[mycurrent]['status'] == 'slp':
-            nightmared = False
-            if 'nightmare' in mondata['enemypokemon']['substatus'] or (isinstance(mondata['enemypokemon']['substatus'], dict) and 'nightmare' in mondata['enemypokemon']['substatus'].values()):
-                nightmared = True
-            if nightmared == True:
-                mondata[mycurrent]['stats']['curhp'] = mondata[mycurrent]['stats']['curhp'] - (mondata[mycurrent]['stats']['curhp'] * 0.25)
+            #curse (damaging)
+            cursed = False
+            if 'curse' in mondata[temptext]['substatus'] or (isinstance(mondata[temptext]['substatus'], dict) and 'curse' in mondata[temptext]['substatus'].values()):
+                cursed = True
+            if mondata['cursed'] == True and temptext == 'playerpokemon':
+                cursed = True
+            if cursed == True:
+                mondata[pkmindex]['stats']['curhp'] = mondata[pkmindex]['stats']['curhp'] - (mondata[pkmindex]['stats']['curhp'] * 0.25)
 
-        #curse (damaging)
-        cursed = False
-        if 'curse' in mondata['playerpokemon']['substatus'] or (isinstance(mondata['playerpokemon']['substatus'], dict) and 'curse' in mondata['playerpokemon']['substatus'].values()):
-            cursed = True
-        if mondata['cursed'] == True:
-            cursed = True
-        if cursed == True:
-            mondata[traincurrent]['stats']['curhp'] = mondata[traincurrent]['stats']['curhp'] - (mondata[traincurrent]['stats']['curhp'] * 0.25)
-
-        cursed = False
-        if 'curse' in mondata['enemypokemon']['substatus'] or (isinstance(mondata['enemypokemon']['substatus'], dict) and 'curse' in mondata['enemypokemon']['substatus'].values()):
-            cursed = True
-        if cursed == True:
-            mondata[mycurrent]['stats']['curhp'] = mondata[mycurrent]['stats']['curhp'] - (mondata[mycurrent]['stats']['curhp'] * 0.25)
-
-        #bound
-        if mondata['playerpokemon']['bound'] > 0 and self.triggered != 1 and mondata[mycurrent]['stats']['curhp'] > 0:
-            mondata[traincurrent]['stats']['curhp'] = mondata[traincurrent]['stats']['curhp'] - (mondata[traincurrent]['stats']['hp'] * 0.125)
-            mondata['playerpokemon']['bound'] = mondata['playerpokemon']['bound'] - 1
-        if mondata['enemypokemon']['bound'] > 0:
-            mondata[mycurrent]['stats']['curhp'] = mondata[mycurrent]['stats']['curhp'] - (mondata[mycurrent]['stats']['hp'] * 0.125)
-            mondata['enemypokemon']['bound'] = mondata['enemypokemon']['bound'] - 1
-
-        #leechseed
-        seeded = False
-        if 'seeded' in mondata['playerpokemon']['substatus'] or (isinstance(mondata['playerpokemon']['substatus'], dict) and 'seeded' in mondata['playerpokemon']['substatus'].values()):
-            seeded = True
-        if mondata['leechseedused'] == True:
-            seeded = True
-        if seeded == True:
-            mondata[traincurrent]['stats']['curhp'] = mondata[traincurrent]['stats']['curhp'] - (mondata[traincurrent]['stats']['hp'] * 0.125)
-            mondata[mycurrent]['stats']['curhp'] = mondata[mycurrent]['stats']['curhp'] + (mondata[traincurrent]['stats']['hp'] * 0.125)
-
-        seeded = False
-        if 'seeded' in mondata['enemypokemon']['substatus'] or (isinstance(mondata['enemypokemon']['substatus'], dict) and 'seeded' in mondata['enemypokemon']['substatus'].values()):
-            seeded = True
-        if seeded == True:
-            mondata[traincurrent]['stats']['curhp'] = mondata[traincurrent]['stats']['curhp'] + (mondata[mycurrent]['stats']['hp'] * 0.125)
-            mondata[mycurrent]['stats']['curhp'] = mondata[mycurrent]['stats']['curhp'] - (mondata[mycurrent]['stats']['hp'] * 0.125)
+            #bound
+            if mondata[temptext]['bound'] > 0 and self.triggered != 1 and mondata[pkmindex]['stats']['curhp'] > 0:
+                mondata[pkmindex]['stats']['curhp'] = mondata[pkmindex]['stats']['curhp'] - (mondata[pkmindex]['stats']['hp'] * 0.125)
+                mondata[temptext]['bound'] = mondata[temptext]['bound'] - 1
+                
+            #leechseed
+            seeded = False
+            if 'seeded' in mondata[temptext]['substatus'] or (isinstance(mondata[temptext]['substatus'], dict) and 'seeded' in mondata[temptext]['substatus'].values()):
+                seeded = True
+            if mondata['leechseedused'] == True and temptext == 'playerpokemon':
+                seeded = True
+            if seeded == True:
+                mondata[pkmindex]['stats']['curhp'] = mondata[pkmindex]['stats']['curhp'] - (mondata[pkmindex]['stats']['hp'] * 0.125)
+                mondata[pkmindex]['stats']['curhp'] = mondata[pkmindex]['stats']['curhp'] + (mondata[pkmindex]['stats']['hp'] * 0.125)
 
         mondata['painsplit'] = False
         mondata['lockon'] = False
@@ -1641,41 +1607,41 @@ class AI(object):
                 movepriority[tempmove] = 0
                 continue
             if mondata[traincurrent]['status'] == 'none' and effmulti > 0:
-                if mondata[mycurrent]['moves'][tempmove]['effect'] == 'toxic' and ((mondata[traincurrent]['type'][1] not in ('poison', 'steel')) and (mondata[traincurrent]['type'][2] not in ('poison', 'steel'))):
+                if mondata[mycurrent]['moves'][tempmove]['effect'] == 'toxic' and mondata[traincurrent]['item'] != 'poisonguard' and ((mondata[traincurrent]['type'][1] not in ('poison', 'steel')) and (mondata[traincurrent]['type'][2] not in ('poison', 'steel'))):
                     movepriority[tempmove] = 1
                     continue
-                if mondata[mycurrent]['moves'][tempmove]['effect'] == 'poison' and ((mondata[traincurrent]['type'][1] not in ('poison', 'steel')) and (mondata[traincurrent]['type'][2] not in ('poison', 'steel'))):
+                elif mondata[mycurrent]['moves'][tempmove]['effect'] == 'poison' and mondata[traincurrent]['item'] != 'poisonguard' and ((mondata[traincurrent]['type'][1] not in ('poison', 'steel')) and (mondata[traincurrent]['type'][2] not in ('poison', 'steel'))):
                     movepriority[tempmove] = 2
                     continue
-                if mondata[mycurrent]['moves'][tempmove]['effect'] in ('poisonhit', 'twineedle') and ((mondata[traincurrent]['type'][1] not in ('poison', 'steel')) and (mondata[traincurrent]['type'][2] not in ('poison', 'steel'))):
+                elif mondata[mycurrent]['moves'][tempmove]['effect'] in ('poisonhit', 'twineedle') and mondata[traincurrent]['item'] != 'poisonguard' and ((mondata[traincurrent]['type'][1] not in ('poison', 'steel')) and (mondata[traincurrent]['type'][2] not in ('poison', 'steel'))):
                     movepriority[tempmove] = 3
                     continue
-                if mondata[mycurrent]['moves'][tempmove]['effect'] == 'burn' and ((mondata[traincurrent]['type'][1] not in ('fire')) and (mondata[traincurrent]['type'][2] not in ('fire'))):
+                elif mondata[mycurrent]['moves'][tempmove]['effect'] == 'burn' and mondata[traincurrent]['item'] != 'burnguard' and ((mondata[traincurrent]['type'][1] !=('fire')) and (mondata[traincurrent]['type'][2] !=('fire'))):
                     movepriority[tempmove] = 4
                     continue
-                if mondata[mycurrent]['moves'][tempmove]['effect'] == 'burnhit' and ((mondata[traincurrent]['type'][1] not in ('fire')) and (mondata[traincurrent]['type'][2] not in ('fire'))):
+                elif mondata[mycurrent]['moves'][tempmove]['effect'] == 'burnhit' and mondata[traincurrent]['item'] != 'burnguard' and ((mondata[traincurrent]['type'][1] != ('fire')) and (mondata[traincurrent]['type'][2] != ('fire'))):
                     movepriority[tempmove] = 5
                     continue
-                if mondata[mycurrent]['moves'][tempmove]['effect'] == 'paralyze' and ((mondata[traincurrent]['type'][1] not in ('electric')) and (mondata[traincurrent]['type'][2] not in ('electric'))):
+                elif mondata[mycurrent]['moves'][tempmove]['effect'] == 'paralyze' and mondata[traincurrent]['item'] != 'parlyzguard' and ((mondata[traincurrent]['type'][1] != ('electric')) and (mondata[traincurrent]['type'][2] != ('electric'))):
                     movepriority[tempmove] = 6
                     continue
-                if mondata[mycurrent]['moves'][tempmove]['name'] == 'zapcannon' and ((mondata[traincurrent]['type'][1] not in ('electric')) and (mondata[traincurrent]['type'][2] not in ('electric'))):
+                elif mondata[mycurrent]['moves'][tempmove]['name'] == 'zapcannon' and mondata[traincurrent]['item'] != 'parlyzguard' and ((mondata[traincurrent]['type'][1] != ('electric')) and (mondata[traincurrent]['type'][2] != ('electric'))):
                     movepriority[tempmove] = 7
                     continue
-                if mondata[mycurrent]['moves'][tempmove]['effect'] in ('paralyzehit', 'thunder') and mondata[mycurrent]['moves'][tempmove]['effectchance'] == 30 and ((mondata[traincurrent]['type'][1] not in ('electric')) and (mondata[traincurrent]['type'][2] not in ('electric'))):
+                elif mondata[mycurrent]['moves'][tempmove]['effect'] in ('paralyzehit', 'thunder') and mondata[traincurrent]['item'] != 'parlyzguard' and mondata[mycurrent]['moves'][tempmove]['effectchance'] == 30 and ((mondata[traincurrent]['type'][1] != ('electric')) and (mondata[traincurrent]['type'][2] != ('electric'))):
                     movepriority[tempmove] = 8
                     continue
-                if mondata[mycurrent]['moves'][tempmove]['effect'] == 'paralyzehit' and mondata[mycurrent]['moves'][tempmove]['effectchance'] == 10 and ((mondata[traincurrent]['type'][1] not in ('electric')) and (mondata[traincurrent]['type'][2] not in ('electric'))):
+                elif mondata[mycurrent]['moves'][tempmove]['effect'] == 'paralyzehit' and mondata[mycurrent]['moves'][tempmove]['effectchance'] == 10 and mondata[traincurrent]['item'] != 'parlyzguard' and ((mondata[traincurrent]['type'][1] != ('electric')) and (mondata[traincurrent]['type'][2] != ('electric'))):
                     movepriority[tempmove] = 9
                     continue
-                if mondata[mycurrent]['moves'][tempmove]['effect'] == 'freezehit' and mondata['weather'] != 'sun':
+                elif mondata[mycurrent]['moves'][tempmove]['effect'] == 'freezehit' and mondata[traincurrent]['item'] != 'freezeguard' and mondata['weather'] != 'sun':
                     movepriority[tempmove] = 10
                     continue
             if mondata[mycurrent]['moves'][tempmove]['effect'] in ('whirlwind', 'teleport'):
                 movepriority[tempmove] = 11
                 continue
         for tempmove in range (0, len(self.jsonlist['battleState']['enemypokemon']['moves'])):
-            if ((mondata[traincurrent]['type'][1] in ('grass')) or (mondata[traincurrent]['type'][2] in ('grass'))) and mondata[mycurrent]['moves'][tempmove]['name'] in ('spore', 'poisonpowder', 'sleeppowder', 'stunspore'):
+            if ((mondata[traincurrent]['type'][1] == ('grass')) or (mondata[traincurrent]['type'][2] == ('grass'))) and mondata[mycurrent]['moves'][tempmove]['name'] in ('spore', 'poisonpowder', 'sleeppowder', 'stunspore'):
                 movepriority[tempmove] = 20
         theaction = 20
         for tempx in range(0, len(self.jsonlist['battleState']['enemypokemon']['moves'])):
@@ -1714,7 +1680,7 @@ class AI(object):
         
         tempx = -1
         for tempmove in range (0, len(self.jsonlist['battleState']['enemypokemon']['moves'])):
-            if mondata[mycurrent]['moves'][tempmove]['effect'] in ('protect'):
+            if mondata[mycurrent]['moves'][tempmove]['effect'] == ('protect'):
                 tempx = tempmove
         if tempx != -1 and ('protect' not in (mondata['enemypokemon']['substatus'])):
             if 'underground' in mondata['playerpokemon']['substatus'] or (isinstance(mondata['playerpokemon']['substatus'], dict) and 'underground' in mondata['playerpokemon']['substatus'].values()):
@@ -1729,7 +1695,7 @@ class AI(object):
                 if mondata[mycurrent]['moves'][self.theaction]['effect'] == 'counter':
                     tempx = -1
                     for tempmove in range (0, len(self.jsonlist['battleState']['enemypokemon']['moves'])):
-                        if mondata[mycurrent]['moves'][tempmove]['effect'] in ('mirrormove'):
+                        if mondata[mycurrent]['moves'][tempmove]['effect'] == ('mirrorcoat'):
                             tempx = tempmove
                     if tempx > -1:
                         x1 = math.ceil(self.Damage[mycurrent][traincurrent][self.theaction]['damage'] / (self.Damage[mycurrent][traincurrent][self.theaction]['damage'] + self.Damage[0][6][tempx]['damage']))
@@ -1738,7 +1704,7 @@ class AI(object):
                 if mondata[mycurrent]['moves'][self.theaction]['effect'] == 'mirrorcoat':
                     tempx = -1
                     for tempmove in range (0, len(self.jsonlist['battleState']['enemypokemon']['moves'])):
-                        if mondata[mycurrent]['moves'][tempmove]['effect'] in ('counter'):
+                        if mondata[mycurrent]['moves'][tempmove]['effect'] == ('counter'):
                             tempx = tempmove
                     if tempx > -1:
                         x1 = math.ceil(self.Damage[mycurrent][traincurrent][self.theaction]['damage'] / (self.Damage[mycurrent][traincurrent][self.theaction]['damage'] + self.Damage[0][6][tempx]['damage']))
@@ -1800,7 +1766,7 @@ class AI(object):
         if self.jsonlist['battleState']['enemy type'] == 'TRAINER':
             tempx = -1
             for tempmove in range (0, len(self.jsonlist['battleState']['enemypokemon']['moves'])):
-                if mondata[mycurrent]['moves'][tempmove]['effect'] in ('batonpass'):
+                if mondata[mycurrent]['moves'][tempmove]['effect'] == ('batonpass'):
                     tempx = tempmove    
             if tempx != -1 :
                 potentialAction = self.OptionalSwitch(self, mondata, traincurrent)

@@ -2,7 +2,7 @@
 
 SECTION "rst0",ROM0[0]
 	di
-	jp Start
+	jp BetBoy
 
 SECTION "rst8",ROM0[FarCall]
 	jp FarCall_hl
@@ -16,11 +16,13 @@ SECTION "luaserial",ROM0[LUASerial]
 	jp _LUASerial
 ELSE
 SECTION "rst18",ROM0[$18]
-	rst $38
+	di
+	jp BetBoy
 ENDC
 
 SECTION "rst20",ROM0[$20]
-	rst $38
+	di
+	jp BetBoy
 
 SECTION "rst28",ROM0[JumpTable]
 	push de
@@ -38,5 +40,6 @@ SECTION "rst28",ROM0[JumpTable]
 ; rst30 is midst rst28
 
 SECTION "rst38",ROM0[$38]
-	rst $38
+	di
+	jp BetBoy
 
