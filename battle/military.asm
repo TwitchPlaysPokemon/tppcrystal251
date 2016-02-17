@@ -106,6 +106,8 @@ ParseExternalAI:
 	ld a, [hli]
 	or [hl]
 	jr z, .Invalid
+	ld a, $1
+	ld [wEnemyIsSwitching], a
 	ret
 
 .UseItem
