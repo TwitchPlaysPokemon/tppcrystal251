@@ -276,9 +276,10 @@ class AI(object):
         if move_used_effect == 'furycutter':
             if 'raging' in mondata['playerpokemon']['substatus']:
                 mondata['playerpokemon']['substatus']['raging'] = mondata['playerpokemon']['substatus']['raging'] + 1
-            if 'raging' not in mondata['playerpokemon']['substatus']:
+                basebp = (basebp / 2) * ( 2 ** mondata['playerpokemon']['substatus']['raging'])
+            else:
                 mondata['playerpokemon']['substatus'].append(dict({'raging': 1}))
-            basebp = (basebp / 2) * ( 2 ** mondata['playerpokemon']['substatus']['raging'])
+                basebp = (basebp / 2)
             if basebp > 160:
                 basebp = 160
         if move_used_effect == 'reversal':
