@@ -172,6 +172,10 @@ _BetBoy::
 	ld hl, VTiles2
 	ld bc, BetBoyGFXEnd - BetBoyGFX
 	call CopyDouble
+	ld hl, VTiles2 + $7f0
+	ld bc, 16
+	xor a
+	call ByteFill
 	ld hl, VBGMap0
 	ld bc, (SCREEN_HEIGHT << 8) | SCREEN_WIDTH
 	ld de, 32

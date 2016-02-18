@@ -1277,6 +1277,7 @@ TPPCreditsList:
 	tc_title		.music
 	tc_subtitle		  .pigu
 	tc_subtitle		  .gact
+	tc_subtitle		  .frog
 	tc_title		.gameplay
 	tc_subtitle		  .lightning
 	tc_subtitle		  .adda
@@ -1338,6 +1339,7 @@ TPPCreditsList:
 .you		db "and You!@"
 .gact		db "GACT@"
 .chef		db "The<_>Chef1337@"
+.frog       db "FroggestSpirit@"
 
 TCText_Version:
 	db "Version ",_VERSION,"@"
@@ -1700,7 +1702,7 @@ TPPCreditsBG4Pals:
 	RGB 28, 09, 04
 	RGB 00, 00, 00
 
-CommandsGFX: INCBIN "gfx/udlrab.2bpp"
+CommandsGFX:: INCBIN "gfx/udlrab.2bpp"
 CommandsGFXEnd
 UnderscoreGFX: INCBIN "gfx/credits/underscore.1bpp"
 UnderscoreGFXEnd

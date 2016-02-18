@@ -27335,15 +27335,16 @@ TrainerCardPage1_WaitJoypad: ; 251d7 (9:51d7)
 	ld hl, StatusFlags
 	bit 5, [hl]
 	jr z, .kanto
+.johto
 	ld a, $2
 	ld [wcf63], a
 	ret
 ; 251e9 (9:51e9)
 
 .left: ; 251e9
-	ld a, [KantoBadges]
-	and a
-	ret z
+	ld hl, StatusFlags
+	bit 5, [hl]
+	jr nz, .johto
 .kanto
 	ld a, $4
 	ld [wcf63], a
@@ -27377,29 +27378,29 @@ TrainerCardPage2_WaitJoypad: ; 25221 (9:5221)
 	jr nz, .cancel
 	ld a, [hl]
 	and $20
-	jr nz, .asm_25235
+	jr nz, .left
 	ld a, [hl]
 	and $10
 	jr nz, .right
 	jr .dotrick
 
-.asm_25235
+.left
 	ld a, $0
 	ld [wcf63], a
 	jr .dotrick
 
 .right
-	ld a, [KantoBadges]
-	and a
-	jr z, .asm_25235
+	ld hl, StatusFlags
+	bit 6, [hl]
+	jr z, .left
 .kanto
 	ld a, $4
 	ld [wcf63], a
 	jr .dotrick
 
 .cancel
-	ld a, [KantoBadges]
-	and a
+	ld hl, StatusFlags
+	bit 6, [hl]
 	jr nz, .kanto
 	ld a, $6
 	ld [wcf63], a
@@ -27439,19 +27440,19 @@ TrainerCardPage3_WaitJoypad: ; 25279 (9:5279)
 	ld hl, $ffa9
 	ld a, [hl]
 	and $20
-	jr nz, .asm_2528d
+	jr nz, .left
 	ld a, [hl]
 	and $10
-	jr nz, .page_1
+	jr nz, .right
 	ld a, [hl]
 	and $1
 	jr nz, .quit
 	jr .dotrick
 
-.asm_2528d
+.left
 	ld hl, StatusFlags
 	bit 5, [hl]
-	jr z, .page_1
+	jr z, .right
 	ld a, $2
 	ld [wcf63], a
 	jr .dotrick
@@ -27460,7 +27461,7 @@ TrainerCardPage3_WaitJoypad: ; 25279 (9:5279)
 	; ld hl, StatusFlags
 	; bit 5, [hl]
 	; jr z, .dotrick
-.page_1
+.right
 	ld a, $0
 	ld [wcf63], a
 	jr .dotrick
@@ -35560,21 +35561,15 @@ Function2ee2f: ; 2ee2f
 	xor a
 	ld [$ffde], a
 	call DelayFrame
-	ld b, 6
-	ld hl, PartyMon1HP
-	ld de, PartyMon2 - PartyMon1 - 1
-.asm_2ee3d
-	ld a, [hli]
-	or [hl]
-	jr nz, .asm_2ee45
-	add hl, de
-	dec b
-	jr nz, .asm_2ee3d
-.asm_2ee45
-	ld de, PartyMon1Level - PartyMon1HP
-	add hl, de
-	ld a, [hl]
-	ld [BattleMonLevel], a
+	ld a, [OtherTrainerClass]
+	and a
+	jr z, .wild
+	call GetFirstEnemyTrainerLevel
+	jr .skip
+.wild
+	ld a, [CurPartyLevel]
+	ld [EnemyMonLevel], a
+.skip
 	predef Function8c20f
 	callba Function3ed9f
 	ld a, 1
@@ -35588,6 +35583,71 @@ Function2ee2f: ; 2ee2f
 	ld [$ffde], a
 	ret
 ; 2ee6c
+GetFirstEnemyTrainerLevel:
+    ld a, [OtherTrainerClass]
+	and a
+	ret z
+	cp CAL
+	jr z, .cal
+	cp TPPPC
+	jr nz, .proceed
+	ld a, [OtherTrainerID]
+	cp MIRROR
+	jr z, .MirrorBattle
+.not_cal2
+	ld a, [OtherTrainerClass]
+.proceed
+    dec a
+    ld e, a
+    ld d, 0
+    ld hl, TrainerGroups
+    add hl, de
+    add hl, de
+    add hl, de
+    ld a, BANK(TrainerGroups)
+    call GetFarByte2
+    ld b, a
+    ld a, BANK(TrainerGroups)
+    call GetFarHalfword
+	ld a, [OtherTrainerID]
+	dec a
+	jr z, .loop2
+	ld c, a
+.loop
+	ld a, b
+	call GetFarByte2
+	cp $ff
+	jr nz, .loop
+	dec c
+	jr nz, .loop
+.loop2
+	ld a, b
+	call GetFarByte2
+	cp $50
+	jr nz, .loop2
+	inc hl
+	ld a, b
+	call GetFarByte
+	ld [EnemyMonLevel], a
+	ret
+	
+.MirrorBattle
+	ld a, [PartyMon1Level]
+	ld [EnemyMonLevel], a
+	ret
+
+.cal
+	ld a, [OtherTrainerID]
+	cp CAL2
+	jr nz, .not_cal2
+	ld a, BANK(sMysteryGiftTrainer)
+	call GetSRAMBank
+	ld hl, sMysteryGiftTrainer
+	ld a, [hl]
+	ld [EnemyMonLevel], a
+	call CloseSRAM
+	ret
+
 
 PUSHS
 INCLUDE "misc/restoremusic.asm"
@@ -63168,8 +63228,51 @@ Jumptable_8c323: ; 8c323 (23:4323)
 	dw Function8c393
 
 Function8c365: ; 8c365 (23:4365)
+	ld hl, PartySpecies
+	ld c, 0
+	ld b, 6
+.loop
+	ld a, [hli]
+	cp $ff
+	jr z, .done
+	cp EGG
+	jr z, .next
+	set 6, c
+.next
+	srl c
+	dec b
+	jr .loop
+.done
+	ld a, b
+	and a
+	jr z, .done2
+.loop2
+	srl c
+	dec a
+	jr nz, .loop2
+.done2
+	ld b, 6
+	ld hl, PartyMon1HP
+	ld de, PartyMon2 - PartyMon1 - 1
+.asm_2ee3d
+	srl c
+	jr nc, .inc_loop
+	ld a, [hli]
+	or [hl]
+	jr nz, .asm_2ee45
+	jr .skip_inc
+.inc_loop
+	inc hl
+.skip_inc
+	add hl, de
+	dec b
+	jr nz, .asm_2ee3d
+.asm_2ee45
+	ld de, PartyMon1Level - (PartyMon1HP + 1)
+	add hl, de
+	ld a, [hl]
+	ld [BattleMonLevel], a
 	ld de, 0
-	ld a, [BattleMonLevel]
 	add 3
 	ld hl, EnemyMonLevel
 	cp [hl]
@@ -63281,6 +63384,7 @@ Function8c3e8: ; 8c3e8 (23:43e8)
 	ret
 
 Function8c408: ; 8c408 (23:4408)
+	call HostsBattleTransition
 	ld a, [wcf64]
 	cp $60
 	jr nc, .asm_8c413
@@ -63329,6 +63433,8 @@ Function8c43d: ; 8c43d (23:443d)
 	ret
 
 Function8c44f: ; 8c44f (23:444f)
+	call HostsBattleTransition
+	ret c
 	xor a
 	ld [hBGMapMode], a ; $ff00+$d4
 	ld a, [wcf64]
@@ -63365,6 +63471,36 @@ Function8c44f: ; 8c44f (23:444f)
 	ld [wcf63], a
 	ret
 ; 8c490 (23:4490)
+
+HostsBattleTransition:
+	ld a, [OtherTrainerClass]
+	cp RED
+	jr nz, .okay
+	ld a, [OtherTrainerID]
+	and a
+	jr z, .start
+	dec a
+	jr z, .start
+	jr .nocarry
+.okay
+	cp CAL
+	jr nz, .okay2
+	ld a, [OtherTrainerID]
+	cp 4
+	jr z, .start
+	jr .nocarry
+.okay2
+	cp BABA
+	jr nz, .nocarry
+.start
+	callba _HostsBattleTransition
+	ld a, $20
+	ld [wcf63], a
+	scf
+	ret
+.nocarry
+	xor a
+	ret
 
 Unknown_8c490: ; 8c490
 macro_8c490: MACRO
@@ -63470,6 +63606,8 @@ Function8c578: ; 8c578 (23:4578)
 	ret
 
 Function8c58f: ; 8c58f (23:458f)
+	call HostsBattleTransition
+	ret c
 	ld hl, wcf64
 	ld a, [hl]
 	and a
@@ -63521,189 +63659,10 @@ Function8c5b8: ; 8c5b8 (23:45b8)
 	ret
 
 Function8c5dc: ; 8c5dc (23:45dc)
-	ld a, [OtherTrainerClass]
-	and a ; Is this a trainer battle?
-	jp z, Function8c673 ; If not, we don't need to be here
-	xor a
-	ld [hBGMapMode], a ; $ff00+$d4
-	hlcoord 0, 0, AttrMap
-	ld bc, SCREEN_HEIGHT * SCREEN_WIDTH
-	inc b
-	inc c
-	jr .asm_8c5f4
-
-.asm_8c5f0
-	ld a, [hl]
-	or $7
-	ld [hli], a
-.asm_8c5f4
-	dec c
-	jr nz, .asm_8c5f0
-	dec b
-	jr nz, .asm_8c5f0
-	call Function8c6b1
-	hlcoord 2, 1
-	ld b, $10
-.asm_8c602
-	push hl
-	ld c, $2
-.asm_8c605
-	push hl
-	ld a, [de]
-	inc de
-.asm_8c608
-	and a
-	jr z, .asm_8c614
-	sla a
-	jr nc, .asm_8c611
-	ld [hl], $fe
-.asm_8c611
-	inc hl
-	jr .asm_8c608
-
-.asm_8c614
-	pop hl
-	push bc
-	ld bc, $8
-	add hl, bc
-	pop bc
-	dec c
-	jr nz, .asm_8c605
-	pop hl
-	push bc
-	ld bc, $14
-	add hl, bc
-	pop bc
-	dec b
-	jr nz, .asm_8c602
-	ld a, [hCGB] ; $ff00+$e6
-	and a
-	jr nz, .asm_8c639
-	ld a, $1
-	ld [hBGMapMode], a ; $ff00+$d4
-	call DelayFrame
-	call DelayFrame
-	jr Function8c673
-
-.asm_8c639
-	ld hl, Unknown_8c6a1
-	ld a, [TimeOfDayPal]
-	and 3
-	cp 3
-	jr nz, .asm_8c648
-	ld hl, Unknown_8c6a9
-.asm_8c648
-	ld a, [rSVBK] ; $ff00+$70
-	push af
-	ld a, $5
-	ld [rSVBK], a ; $ff00+$70
-	call Function8c677
-	push hl
-	ld de, Unkn1Pals + 8 * 7
-	ld bc, $8
-	call CopyBytes
-	pop hl
-	ld de, BGPals + 8 * 7
-	ld bc, $8
-	call CopyBytes
-	pop af
-	ld [rSVBK], a ; $ff00+$70
-	ld a, $1
-	ld [hCGBPalUpdate], a ; $ff00+$e5
-	call DelayFrame
-	call Function8cf4f
-Function8c673: ; 8c673 (23:4673)
-	call Function8c39c
+; moved to an another bank because we are running out of space
+	callba _Function8c5dc
 	ret
 
-Function8c677: ; 8c677 (23:4677)
-	ld de, Unkn1Pals + 8 * 7
-	call Function8c698
-	ld de, BGPals + 8 * 7
-	call Function8c698
-	ld de, Unkn2Pals + 8 * 6
-	call Function8c698
-	ld de, OBPals + 8 * 6
-	call Function8c698
-	ld de, Unkn2Pals + 8 * 7
-	call Function8c698
-	ld de, OBPals + 8 * 7
-Function8c698: ; 8c698 (23:4698)
-	push hl
-	ld bc, $8
-	call CopyBytes
-	pop hl
-	ret
-; 8c6a1 (23:46a1)
-
-Unknown_8c6a1: ; 8c6a1
-	RGB 31, 18, 29
-	RGB 31, 11, 15
-	RGB 31, 05, 05
-	RGB 07, 07, 07
-; 8c6a9
-
-Unknown_8c6a9: ; 8c6a9
-	RGB 31, 18, 29
-	RGB 31, 05, 05
-	RGB 31, 05, 05
-	RGB 31, 05, 05
-; 8c6b1
-
-Function8c6b1: ; 8c6b1 (23:46b1)
-	ld a, [OtherTrainerClass]
-	cp RED
-	jr nz, .notred
-	ld a, [OtherTrainerID]
-	cp DREAM_RED
-	jr z, .dreamred
-	ld a, [OtherTrainerClass]
-.notred
-	ld de, StartTrainerBattle_PokeballGraphic
-	ret
-
-.dreamred
-	ld a, [OtherTrainerClass]
-	ld de, HelixFossilMap
-	ret
-; 8c6b8 (23:46b8)
-
-StartTrainerBattle_PokeballGraphic: ; 8c6b8
-	db $03, $c0
-	db $0f, $f0
-	db $3c, $3c
-	db $30, $0c
-	db $60, $06
-	db $63, $c6
-	db $c6, $63
-	db $fc, $3f
-	db $fc, $3f
-	db $c6, $63
-	db $63, $c6
-	db $60, $06
-	db $30, $0c
-	db $3c, $3c
-	db $0f, $f0
-	db $03, $c0
-; 8c6d8
-
-HelixFossilMap:
-	db $07, $e0
-	db $18, $98
-	db $20, $84
-	db $20, $82
-	db $70, $82
-	db $4c, $85
-	db $82, $e9
-	db $81, $51
-	db $be, $69
-	db $c3, $ad
-	db $82, $8b
-	db $8e, $f1
-	db $93, $12
-	db $a6, $12
-	db $49, $94
-	db $30, $78
 Function8c6d8: ; 8c6d8
 	ld a, [rSVBK]
 	push af
@@ -63772,6 +63731,7 @@ Unknown_8c728: ; 8c728
 ; 8c768
 
 Function8c768: ; 8c768 (23:4768)
+	call HostsBattleTransition
 	callba Function5602
 	ld de, Unknown_8c792
 .asm_8c771
@@ -92788,7 +92748,6 @@ INCLUDE "battle/move_names.asm"
 INCLUDE "engine/landmarks.asm"
 SECTION "bank75", ROMX, BANK[$75]
 
-SECTION "Random Rockets", ROMX
 NUM_ROCKET_MONS EQUS "(.RocketMonsEnd - .RocketMons) / 2"
 SampleRandomRocket:
 	ld hl, OTPartyData
@@ -92898,6 +92857,7 @@ SampleRandomRocket:
 	db 21, GOLBAT
 .RocketMonsEnd
 
+INCLUDE "engine/hostsbattletransition.asm"
 
 IF DEF(MUSICPLYR)
 SECTION "Music Player", ROMX
@@ -93794,11 +93754,12 @@ FaintingCry:
 ; b contains species index
 	ld a, b
 	call LoadCryHeader
+	ret c
 	ld hl, CryPitch
 	ld a, [hli]
 	ld h, [hl]
 	ld l, a
-	ld bc, -$40
+	ld bc, -$140
 	add hl, bc
 	ld a, l
 	ld [CryPitch], a
@@ -93808,7 +93769,7 @@ FaintingCry:
 	ld a, [hli]
 	ld h, [hl]
 	ld l, a
-	ld bc, $40
+	ld bc, $60
 	add hl, bc
 	ld a, l
 	ld [CryLength], a
@@ -93817,4 +93778,5 @@ FaintingCry:
 	ld a, 1
 	ld [wc2bc], a
 	callba _PlayCryHeader
+	call WaitSFX
 	ret
