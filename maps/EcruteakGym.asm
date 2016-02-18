@@ -405,7 +405,7 @@ MortyAfterRematchText:
 	cont "different."
 	
 	para "But you seem to"
-	line "have something…"
+	line "have something<...>"
 	
 	para "Something more" 
 	line "than that<...>"

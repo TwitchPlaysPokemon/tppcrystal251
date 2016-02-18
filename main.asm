@@ -12880,7 +12880,13 @@ UnknownScript_0x124c8:: ; 0x124c8
 	refreshscreen $0
 	callasm Function124fa
 UnknownScript_0x124ce: ; 0x124ce
+	callasm DetermineMoneyLostToBlackout
+	iffalse .WildBattlePanic
 	writetext UnknownText_0x124f5
+	jump .done_text
+.WildBattlePanic
+	writetext UnknownText_0x124f5_2
+.done_text
 	waitbutton
 	special Function8c084
 	pause 40
@@ -12891,7 +12897,6 @@ UnknownScript_0x124ce: ; 0x124ce
 .skip_egk_reset
 	checkflag ENGINE_BUG_CONTEST_TIMER
 	iftrue .script_64f2
-	callasm HalveMoney
 	callasm Function12527
 	farscall UnknownScript_0x122c1
 	special Function97c28
@@ -12906,6 +12911,10 @@ UnknownText_0x124f5: ; 0x124f5
 	text_jump UnknownText_0x1c0a4e
 	db "@"
 ; 0x124fa
+
+UnknownText_0x124f5_2:
+	text_jump UnknownText_0x1c0a4e_2
+	db "@"
 
 Function124fa: ; 124fa
 	call ClearPalettes
@@ -12923,23 +12932,100 @@ Function1250a: ; 1250a
 	ret
 ; 12513
 
-HalveMoney: ; 12513
-; Empty function...
-
-	callba Function1060c7
-; Halve the player's money.
-
+DetermineMoneyLostToBlackout: ; 12513
+	ld hl, Badges
+	ld b, 2
+	call CountSetBits
+	cp 8 + 1
+	jr c, .okay
+	ld c, 8
+.okay
+	ld b, 0
+	ld hl, .BaseMoneys
+	add hl, bc
+	ld a, [hl]
+	ld [hMultiplier], a
+	ld a, [PartyCount]
+	ld c, a
+	ld b, 0
+	ld hl, PartyMon1Level
+	ld de, $30
+.loop
+	ld a, [hl]
+	cp b
+	jr c, .next
+	ld b, a
+.next
+	add hl, de
+	dec c
+	jr nz, .loop
+	xor a
+	ld [hMultiplicand], a
+	ld [hMultiplicand + 1], a
+	ld a, b
+	ld [hMultiplicand + 2], a
+	call Multiply
+	ld de, $ffc3
+	ld hl, hProduct + 1
+	call .Copy
+	ld de, Money
+	ld bc, $ffc3
+	push bc
+	push de
+	callba Function1600b
+	jr nc, .nonzero
 	ld hl, Money
+	ld de, $ffc3
+	call .Copy
+.nonzero
+	pop de
+	pop bc
+	callba Function15ffa
+	; ld hl, StringBuffer1
+	; lb bc, (1 << 5) | 3, 5
+	; call PrintNum
+	ld a, "@"
+	ld [hl], a
+	ld hl, $dff8
 	ld a, [hl]
-	srl a
-	ld [hli], a
-	ld a, [hl]
-	rra
-	ld [hli], a
-	ld a, [hl]
-	rra
+	and $1
+	ld [ScriptVar], a
+	xor a
 	ld [hl], a
 	ret
+.Copy
+	ld a, [hli]
+	ld [de], a
+	inc de
+	ld a, [hli]
+	ld [de], a
+	inc de
+	ld a, [hl]
+	ld [de], a
+	ret
+
+.BaseMoneys
+	db 8
+	db 16
+	db 24
+	db 36
+	db 48
+	db 64
+	db 80
+	db 100
+	db 120
+
+	; ld hl, Money
+	; ld a, [hl]
+	; srl a
+	; ld [hli], a
+	; ld a, [hl]
+	; rra
+	; ld [hli], a
+	; ld a, [hl]
+	; rra
+	; ld [hl], a
+	; ret
 ; 12527
 
 Function12527: ; 12527
@@ -35449,21 +35535,15 @@ Function2ee2f: ; 2ee2f
 	xor a
 	ld [$ffde], a
 	call DelayFrame
-	ld b, 6
-	ld hl, PartyMon1HP
-	ld de, PartyMon2 - PartyMon1 - 1
-.asm_2ee3d
-	ld a, [hli]
-	or [hl]
-	jr nz, .asm_2ee45
-	add hl, de
-	dec b
-	jr nz, .asm_2ee3d
-.asm_2ee45
-	ld de, PartyMon1Level - PartyMon1HP
-	add hl, de
-	ld a, [hl]
-	ld [BattleMonLevel], a
+	ld a, [OtherTrainerClass]
+	and a
+	jr z, .wild
+	call GetFirstEnemyTrainerLevel
+	jr .skip
+.wild
+	ld a, [CurPartyLevel]
+	ld [EnemyMonLevel], a
+.skip
 	predef Function8c20f
 	callba Function3ed9f
 	ld a, 1
@@ -35477,6 +35557,71 @@ Function2ee2f: ; 2ee2f
 	ld [$ffde], a
 	ret
 ; 2ee6c
+GetFirstEnemyTrainerLevel:
+    ld a, [OtherTrainerClass]
+	and a
+	ret z
+	cp CAL
+	jr z, .cal
+	cp TPPPC
+	jr nz, .proceed
+	ld a, [OtherTrainerID]
+	cp MIRROR
+	jr z, .MirrorBattle
+.not_cal2
+	ld a, [OtherTrainerClass]
+.proceed
+    dec a
+    ld e, a
+    ld d, 0
+    ld hl, TrainerGroups
+    add hl, de
+    add hl, de
+    add hl, de
+    ld a, BANK(TrainerGroups)
+    call GetFarByte2
+    ld b, a
+    ld a, BANK(TrainerGroups)
+    call GetFarHalfword
+	ld a, [OtherTrainerID]
+	dec a
+	jr z, .loop2
+	ld c, a
+.loop
+	ld a, b
+	call GetFarByte2
+	cp $ff
+	jr nz, .loop
+	dec c
+	jr nz, .loop
+.loop2
+	ld a, b
+	call GetFarByte2
+	cp $50
+	jr nz, .loop2
+	inc hl
+	ld a, b
+	call GetFarByte
+	ld [EnemyMonLevel], a
+	ret
+	
+.MirrorBattle
+	ld a, [PartyMon1Level]
+	ld [EnemyMonLevel], a
+	ret
+
+.cal
+	ld a, [OtherTrainerID]
+	cp CAL2
+	jr nz, .not_cal2
+	ld a, BANK(sMysteryGiftTrainer)
+	call GetSRAMBank
+	ld hl, sMysteryGiftTrainer
+	ld a, [hl]
+	ld [EnemyMonLevel], a
+	call CloseSRAM
+	ret
+
 
 PUSHS
 INCLUDE "misc/restoremusic.asm"
@@ -63057,8 +63202,51 @@ Jumptable_8c323: ; 8c323 (23:4323)
 	dw Function8c393
 
 Function8c365: ; 8c365 (23:4365)
+	ld hl, PartySpecies
+	ld c, 0
+	ld b, 6
+.loop
+	ld a, [hli]
+	cp $ff
+	jr z, .done
+	cp EGG
+	jr z, .next
+	set 6, c
+.next
+	srl c
+	dec b
+	jr .loop
+.done
+	ld a, b
+	and a
+	jr z, .done2
+.loop2
+	srl c
+	dec a
+	jr nz, .loop2
+.done2
+	ld b, 6
+	ld hl, PartyMon1HP
+	ld de, PartyMon2 - PartyMon1 - 1
+.asm_2ee3d
+	srl c
+	jr nc, .inc_loop
+	ld a, [hli]
+	or [hl]
+	jr nz, .asm_2ee45
+	jr .skip_inc
+.inc_loop
+	inc hl
+.skip_inc
+	add hl, de
+	dec b
+	jr nz, .asm_2ee3d
+.asm_2ee45
+	ld de, PartyMon1Level - (PartyMon1HP + 1)
+	add hl, de
+	ld a, [hl]
+	ld [BattleMonLevel], a
 	ld de, 0
-	ld a, [BattleMonLevel]
 	add 3
 	ld hl, EnemyMonLevel
 	cp [hl]
@@ -93736,3 +93924,34 @@ GoldBerryHP
 	ld b, a
 	ret
 
+SECTION "Fainting Cry", ROMX
+FaintingCry:
+; b contains species index
+	ld a, b
+	call LoadCryHeader
+	ret c
+	ld hl, CryPitch
+	ld a, [hli]
+	ld h, [hl]
+	ld l, a
+	ld bc, -$140
+	add hl, bc
+	ld a, l
+	ld [CryPitch], a
+	ld a, h
+	ld [CryPitch + 1], a
+	ld hl, CryLength
+	ld a, [hli]
+	ld h, [hl]
+	ld l, a
+	ld bc, $60
+	add hl, bc
+	ld a, l
+	ld [CryLength], a
+	ld a, h
+	ld [CryLength + 1], a
+	ld a, 1
+	ld [wc2bc], a
+	callba _PlayCryHeader
+	call WaitSFX
+	ret

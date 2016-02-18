@@ -404,7 +404,7 @@ UnknownText_0x1b086f: ; 0x1b086f
 
 UnknownText_0x1b088c: ; 0x1b088c
 	text "You're buying"
-	line "alot of coins…"
+	line "a lot of coins<...>"
 	
 	para "Are you trying"
 	line "to buy a prize"

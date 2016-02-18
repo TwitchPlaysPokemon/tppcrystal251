@@ -593,7 +593,7 @@ UnknownText_0x18e615: ; 0x18e615
 	para "a trainer like"
 	line "you."
 
-	para "Actually…"
+	para "Actually<...>"
 
 	para "I have a bunch in"
 	line "the back, so I can"

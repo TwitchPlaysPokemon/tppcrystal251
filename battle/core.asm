@@ -201,9 +201,9 @@ IF DEF(BEESAFREE)
 	ld a, [wMilitaryFlags]
 	bit MILITARY_ON, a
 	jr z, .call_battle_menu
-	ld a, [BattleType]
-	cp BATTLETYPE_CONTEST
-	jr z, .call_battle_menu
+	; ld a, [BattleType]
+	; cp BATTLETYPE_CONTEST
+	; jr z, .call_battle_menu
 	callba Military
 	jr c, .quit
 	ld a, [BattleEnded]
@@ -2404,8 +2404,8 @@ BattleCore_PlayerFalled: ; 3cef1
 	ld a, $f0
 	ld [CryTracks], a
 	ld a, [BattleMonSpecies]
-	call PlayStereoCry
-	call WaitSFX
+	ld b, a
+	callba FaintingCry
 	ld de, SFX_KINESIS
 	call PlaySFX
 	call Function3d43b
@@ -2423,8 +2423,8 @@ BattleCore_EnemyFalled: ; 3cf14
 	ld a, $0f
 	ld [CryTracks], a
 	ld a, [EnemyMonSpecies]
-	call PlayStereoCry
-	call WaitSFX
+	ld b, a
+	callba FaintingCry
 	ld de, SFX_KINESIS
 	call PlaySFX
 	call Function3d432
@@ -4100,6 +4100,9 @@ Function3d8b3: ; 3d8b3
 	ld a, $1
 	ld [wd266], a
 	call Function309d
+IF DEF(BEESAFREE)
+	call MilitaryWaiting
+ENDC
 	and a
 	ret
 
@@ -4555,8 +4558,8 @@ Function3dc5b: ; 3dc5b
 	ld a, $f0
 	ld [CryTracks], a
 	ld a, [BattleMonSpecies]
-	call PlayStereoCry
-	call WaitSFX
+	ld b, a
+	callba FaintingCry
 	ld de, SFX_KINESIS
 	call PlaySFX
 	call WaitSFX
@@ -4581,8 +4584,8 @@ Function3dc5b: ; 3dc5b
 	ld a, $0f
 	ld [CryTracks], a
 	ld a, [EnemyMonSpecies]
-	call PlayStereoCry
-	call WaitSFX
+	ld b, a
+	callba FaintingCry
 	ld de, SFX_KINESIS
 	call PlaySFX
 	call WaitSFX
@@ -6240,6 +6243,11 @@ Function3e7c1: ; 3e7c1
 	ld a, [wEnemyIsSwitching]
 	and a
 	ret nz
+IF DEF(BEESAFREE)
+	ld a, [wMilitaryAndAIBattleAction]
+	cp 4
+	ret nc
+ENDC
 	ld a, [wLinkMode]
 	and a
 	jr z, .asm_3e817
