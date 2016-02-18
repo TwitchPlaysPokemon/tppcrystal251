@@ -1719,7 +1719,7 @@ class AI(object):
                 if mondata[mycurrent]['moves'][tempmove]['effect'] == ('batonpass'):
                     tempx = tempmove    
             if tempx != -1 :
-                potentialAction = self.OptionalSwitch(self, mondata, traincurrent)
+                potentialAction = self.OptionalSwitch(mondata, traincurrent)
                 if potentialAction != 20:
                     return potentialAction
             if Debug_Code == 1:
@@ -1833,6 +1833,7 @@ class AI(object):
                 self.theaction = random.randint(mycurrent, (len(self.jsonlist['battleState']['enemypokemon']['moves'])))
                 if tempy == len(mondata[mycurrent]['moves']):
                     break
+        
         
         #invalid action handling
         if (int(self.jsonlist['battleState']['requested action']) & 0x04):
