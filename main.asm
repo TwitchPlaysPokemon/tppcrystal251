@@ -35535,21 +35535,15 @@ Function2ee2f: ; 2ee2f
 	xor a
 	ld [$ffde], a
 	call DelayFrame
-	ld b, 6
-	ld hl, PartyMon1HP
-	ld de, PartyMon2 - PartyMon1 - 1
-.asm_2ee3d
-	ld a, [hli]
-	or [hl]
-	jr nz, .asm_2ee45
-	add hl, de
-	dec b
-	jr nz, .asm_2ee3d
-.asm_2ee45
-	ld de, PartyMon1Level - PartyMon1HP
-	add hl, de
-	ld a, [hl]
-	ld [BattleMonLevel], a
+	ld a, [OtherTrainerClass]
+	and a
+	jr z, .wild
+	call GetFirstEnemyTrainerLevel
+	jr .skip
+.wild
+	ld a, [CurPartyLevel]
+	ld [EnemyMonLevel], a
+.skip
 	predef Function8c20f
 	callba Function3ed9f
 	ld a, 1
@@ -35563,6 +35557,71 @@ Function2ee2f: ; 2ee2f
 	ld [$ffde], a
 	ret
 ; 2ee6c
+GetFirstEnemyTrainerLevel:
+    ld a, [OtherTrainerClass]
+	and a
+	ret z
+	cp CAL
+	jr z, .cal
+	cp TPPPC
+	jr nz, .proceed
+	ld a, [OtherTrainerID]
+	cp MIRROR
+	jr z, .MirrorBattle
+.not_cal2
+	ld a, [OtherTrainerClass]
+.proceed
+    dec a
+    ld e, a
+    ld d, 0
+    ld hl, TrainerGroups
+    add hl, de
+    add hl, de
+    add hl, de
+    ld a, BANK(TrainerGroups)
+    call GetFarByte2
+    ld b, a
+    ld a, BANK(TrainerGroups)
+    call GetFarHalfword
+	ld a, [OtherTrainerID]
+	dec a
+	jr z, .loop2
+	ld c, a
+.loop
+	ld a, b
+	call GetFarByte2
+	cp $ff
+	jr nz, .loop
+	dec c
+	jr nz, .loop
+.loop2
+	ld a, b
+	call GetFarByte2
+	cp $50
+	jr nz, .loop2
+	inc hl
+	ld a, b
+	call GetFarByte
+	ld [EnemyMonLevel], a
+	ret
+	
+.MirrorBattle
+	ld a, [PartyMon1Level]
+	ld [EnemyMonLevel], a
+	ret
+
+.cal
+	ld a, [OtherTrainerID]
+	cp CAL2
+	jr nz, .not_cal2
+	ld a, BANK(sMysteryGiftTrainer)
+	call GetSRAMBank
+	ld hl, sMysteryGiftTrainer
+	ld a, [hl]
+	ld [EnemyMonLevel], a
+	call CloseSRAM
+	ret
+
 
 PUSHS
 INCLUDE "misc/restoremusic.asm"
@@ -63143,8 +63202,51 @@ Jumptable_8c323: ; 8c323 (23:4323)
 	dw Function8c393
 
 Function8c365: ; 8c365 (23:4365)
+	ld hl, PartySpecies
+	ld c, 0
+	ld b, 6
+.loop
+	ld a, [hli]
+	cp $ff
+	jr z, .done
+	cp EGG
+	jr z, .next
+	set 6, c
+.next
+	srl c
+	dec b
+	jr .loop
+.done
+	ld a, b
+	and a
+	jr z, .done2
+.loop2
+	srl c
+	dec a
+	jr nz, .loop2
+.done2
+	ld b, 6
+	ld hl, PartyMon1HP
+	ld de, PartyMon2 - PartyMon1 - 1
+.asm_2ee3d
+	srl c
+	jr nc, .inc_loop
+	ld a, [hli]
+	or [hl]
+	jr nz, .asm_2ee45
+	jr .skip_inc
+.inc_loop
+	inc hl
+.skip_inc
+	add hl, de
+	dec b
+	jr nz, .asm_2ee3d
+.asm_2ee45
+	ld de, PartyMon1Level - (PartyMon1HP + 1)
+	add hl, de
+	ld a, [hl]
+	ld [BattleMonLevel], a
 	ld de, 0
-	ld a, [BattleMonLevel]
 	add 3
 	ld hl, EnemyMonLevel
 	cp [hl]
@@ -93769,11 +93871,12 @@ FaintingCry:
 ; b contains species index
 	ld a, b
 	call LoadCryHeader
+	ret c
 	ld hl, CryPitch
 	ld a, [hli]
 	ld h, [hl]
 	ld l, a
-	ld bc, -$40
+	ld bc, -$140
 	add hl, bc
 	ld a, l
 	ld [CryPitch], a
@@ -93783,7 +93886,7 @@ FaintingCry:
 	ld a, [hli]
 	ld h, [hl]
 	ld l, a
-	ld bc, $40
+	ld bc, $60
 	add hl, bc
 	ld a, l
 	ld [CryLength], a
@@ -93792,4 +93895,5 @@ FaintingCry:
 	ld a, 1
 	ld [wc2bc], a
 	callba _PlayCryHeader
+	call WaitSFX
 	ret

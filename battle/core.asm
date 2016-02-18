@@ -2406,7 +2406,6 @@ BattleCore_PlayerFalled: ; 3cef1
 	ld a, [BattleMonSpecies]
 	ld b, a
 	callba FaintingCry
-	call WaitSFX
 	ld de, SFX_KINESIS
 	call PlaySFX
 	call Function3d43b
@@ -2426,7 +2425,6 @@ BattleCore_EnemyFalled: ; 3cf14
 	ld a, [EnemyMonSpecies]
 	ld b, a
 	callba FaintingCry
-	call WaitSFX
 	ld de, SFX_KINESIS
 	call PlaySFX
 	call Function3d432
@@ -4562,7 +4560,6 @@ Function3dc5b: ; 3dc5b
 	ld a, [BattleMonSpecies]
 	ld b, a
 	callba FaintingCry
-	call WaitSFX
 	ld de, SFX_KINESIS
 	call PlaySFX
 	call WaitSFX
@@ -4589,7 +4586,6 @@ Function3dc5b: ; 3dc5b
 	ld a, [EnemyMonSpecies]
 	ld b, a
 	callba FaintingCry
-	call WaitSFX
 	ld de, SFX_KINESIS
 	call PlaySFX
 	call WaitSFX
