@@ -2404,7 +2404,8 @@ BattleCore_PlayerFalled: ; 3cef1
 	ld a, $f0
 	ld [CryTracks], a
 	ld a, [BattleMonSpecies]
-	call PlayStereoCry
+	ld b, a
+	callba FaintingCry
 	call WaitSFX
 	ld de, SFX_KINESIS
 	call PlaySFX
@@ -2423,7 +2424,8 @@ BattleCore_EnemyFalled: ; 3cf14
 	ld a, $0f
 	ld [CryTracks], a
 	ld a, [EnemyMonSpecies]
-	call PlayStereoCry
+	ld b, a
+	callba FaintingCry
 	call WaitSFX
 	ld de, SFX_KINESIS
 	call PlaySFX
@@ -4100,6 +4102,9 @@ Function3d8b3: ; 3d8b3
 	ld a, $1
 	ld [wd266], a
 	call Function309d
+IF DEF(BEESAFREE)
+	call MilitaryWaiting
+ENDC
 	and a
 	ret
 
@@ -4555,7 +4560,8 @@ Function3dc5b: ; 3dc5b
 	ld a, $f0
 	ld [CryTracks], a
 	ld a, [BattleMonSpecies]
-	call PlayStereoCry
+	ld b, a
+	callba FaintingCry
 	call WaitSFX
 	ld de, SFX_KINESIS
 	call PlaySFX
@@ -4581,7 +4587,8 @@ Function3dc5b: ; 3dc5b
 	ld a, $0f
 	ld [CryTracks], a
 	ld a, [EnemyMonSpecies]
-	call PlayStereoCry
+	ld b, a
+	callba FaintingCry
 	call WaitSFX
 	ld de, SFX_KINESIS
 	call PlaySFX

@@ -189,9 +189,13 @@ Military:
 .Switch
 	sub 4
 	ld b, a
+	ld a, [BattleType]
+	cp BATTLETYPE_CONTEST
+	jp z, .Invalid
 	ld a, [PartyCount]
 	cp b
 	jp c, .Invalid
+	jp z, .Invalid
 	ld a, b
 	ld [CurPartyMon], a
 	ld c, a
@@ -352,12 +356,18 @@ Mil_AI_CheckPP:
 
 
 Military_SelectPokemon:
+	ld a, [Options]
+	push af
+	set 4, a
+	ld [Options], a
 	hlcoord 0, 14
 	lb bc, 2, 18
 	call TextBox
 	ld hl, .Waiting
 	bccoord 1, 16
 	call Function13e5
+	pop af
+	ld [Options], a
 	
 	ld a, BEESAFREE_SND_ASKMILITARY
 .loop

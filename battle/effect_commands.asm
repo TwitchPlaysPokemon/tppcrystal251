@@ -737,7 +737,7 @@ BattleCommand02: ; 343db
 	jr .got_level
 
 .max_level
-	ld a, MAX_LEVEL
+	ld a, MAX_LEVEL + 1
 .got_level
 	; ld c, 8
 	; call AddBadgeLevels ;for every set bit in b up to bit (c-1), add 10 to a

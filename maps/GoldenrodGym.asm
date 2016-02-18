@@ -331,7 +331,7 @@ WhitneyRematchBeatenText:
 WhitneyAfterRematchText:
 	text "You didn't"
 	line "have to play so"
-	cont "rough…"
+	cont "rough<...>"
 
 	para "I was surprised"
 	line "by how strong"
@@ -403,7 +403,7 @@ UnknownText_0x54302: ; 0x54302
 	text "It's BODY SLAM!"
 	line "It makes full use"
 
-	para "of a #MON's…"
+	para "of a #MON's"
 	line "presence."
 
 	para "Isn't it just per-"
