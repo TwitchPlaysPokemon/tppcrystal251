@@ -1589,14 +1589,18 @@ Script_returnafterbattle: ; 0x97459
 	ld hl, wd459
 	ld d, [hl]
 	ld [hl], $0
+	ld hl, $dff8
+	ld [hl], d
 	ld a, [wd0ee]
 	and $3f
 	cp $1
 	jr nz, .asm_97470 ; 0x97466 $8
-	ld b, BANK(UnknownScript_0x124c1)
+	ld b, BANK(UnknownScript_0x124c1) ; black out
 	ld hl, UnknownScript_0x124c1
 	jp ScriptJump
 .asm_97470
+	xor a
+	ld [hl], a
 	bit 0, d
 	jr z, .asm_9747c ; 0x97472 $8
 	callba Functionfcfec

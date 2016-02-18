@@ -69,6 +69,9 @@ UnknownScript_0x6ab47: ; 0x6ab47 run if enterng while contest is still on
 	spriteface $0, $1 ;point player up
 	loadfont
 	checkcode VAR_CONTESTTIME ;put time remaining in bug catching in munites into scriptvar
+IF DEF(BEESAFREE)
+	callasm BugContestFastClock
+ENDC
 	addvar $1 ;add 1 to it
 	RAM2MEM $0 ;fill a stringbuffer 1 and 3 with it?
 	writetext UnknownText_0x6b284

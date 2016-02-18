@@ -132,7 +132,7 @@ OddEgg1:
 	db 30, 20, 10, 0 ; PP
 	db 20 ; Happiness
 	db 0, 0, 0 ; Pokerus, Caught data
-	db 5 ; Level
+	db 1 ; Level
 	db 0, 0 ; Status
 	bigdw 0 ; HP
 	bigdw 17 ; Max HP
@@ -159,7 +159,7 @@ OddEgg2:
 	db 30, 20, 10, 0 ; PP
 	db 20 ; Happiness
 	db 0, 0, 0 ; Pokerus, Caught data
-	db 5 ; Level
+	db 1 ; Level
 	db 0, 0 ; Status
 	bigdw 0 ; HP
 	bigdw 17 ; Max HP
@@ -185,7 +185,7 @@ OddEgg2:
 	db 35, 20, 10, 0 ; PP
 	db 20 ; Happiness
 	db 0, 0, 0 ; Pokerus, Caught data
-	db 5 ; Level
+	db 1 ; Level
 	db 0, 0 ; Status
 	bigdw 0 ; HP
 	bigdw 20 ; Max HP
@@ -211,7 +211,7 @@ OddEgg2:
 	db 35, 20, 10, 0 ; PP
 	db 20 ; Happiness
 	db 0, 0, 0 ; Pokerus, Caught data
-	db 5 ; Level
+	db 1 ; Level
 	db 0, 0 ; Status
 	bigdw 0 ; HP
 	bigdw 20 ; Max HP
@@ -237,7 +237,7 @@ OddEgg2:
 	db 15, 20, 10, 0 ; PP
 	db 20 ; Happiness
 	db 0, 0, 0 ; Pokerus, Caught data
-	db 5 ; Level
+	db 1 ; Level
 	db 0, 0 ; Status
 	bigdw 0 ; HP
 	bigdw 24 ; Max HP
@@ -263,7 +263,7 @@ OddEgg2:
 	db 15, 20, 10, 0 ; PP
 	db 20 ; Happiness
 	db 0, 0, 0 ; Pokerus, Caught data
-	db 5 ; Level
+	db 1 ; Level
 	db 0, 0 ; Status
 	bigdw 0 ; HP
 	bigdw 24 ; Max HP
@@ -289,7 +289,7 @@ OddEgg2:
 	db 35, 30, 10, 0 ; PP
 	db 20 ; Happiness
 	db 0, 0, 0 ; Pokerus, Caught data
-	db 5 ; Level
+	db 1 ; Level
 	db 0, 0 ; Status
 	bigdw 0 ; HP
 	bigdw 19 ; Max HP
@@ -315,7 +315,7 @@ OddEgg2:
 	db 35, 30, 10, 0 ; PP
 	db 20 ; Happiness
 	db 0, 0, 0 ; Pokerus, Caught data
-	db 5 ; Level
+	db 1 ; Level
 	db 0, 0 ; Status
 	bigdw 0 ; HP
 	bigdw 19 ; Max HP
@@ -341,7 +341,7 @@ OddEgg2:
 	db 25, 10, 0, 0 ; PP
 	db 20 ; Happiness
 	db 0, 0, 0 ; Pokerus, Caught data
-	db 5 ; Level
+	db 1 ; Level
 	db 0, 0 ; Status
 	bigdw 0 ; HP
 	bigdw 19 ; Max HP
@@ -367,7 +367,7 @@ OddEgg2:
 	db 25, 10, 0, 0 ; PP
 	db 20 ; Happiness
 	db 0, 0, 0 ; Pokerus, Caught data
-	db 5 ; Level
+	db 1 ; Level
 	db 0, 0 ; Status
 	bigdw 0 ; HP
 	bigdw 19 ; Max HP
@@ -393,7 +393,7 @@ OddEgg2:
 	db 30, 30, 10, 0 ; PP
 	db 20 ; Happiness
 	db 0, 0, 0 ; Pokerus, Caught data
-	db 5 ; Level
+	db 1 ; Level
 	db 0, 0 ; Status
 	bigdw 0 ; HP
 	bigdw 19 ; Max HP
@@ -419,7 +419,7 @@ OddEgg2:
 	db 30, 30, 10, 0 ; PP
 	db 20 ; Happiness
 	db 0, 0, 0 ; Pokerus, Caught data
-	db 5 ; Level
+	db 1 ; Level
 	db 0, 0 ; Status
 	bigdw 0 ; HP
 	bigdw 19 ; Max HP
@@ -445,7 +445,7 @@ OddEgg2:
 	db 35, 10, 0, 0 ; PP
 	db 20 ; Happiness
 	db 0, 0, 0 ; Pokerus, Caught data
-	db 5 ; Level
+	db 1 ; Level
 	db 0, 0 ; Status
 	bigdw 0 ; HP
 	bigdw 18 ; Max HP
@@ -471,7 +471,7 @@ OddEgg2:
 	db 35, 10, 0, 0 ; PP
 	db 20 ; Happiness
 	db 0, 0, 0 ; Pokerus, Caught data
-	db 5 ; Level
+	db 1 ; Level
 	db 0, 0 ; Status
 	bigdw 0 ; HP
 	bigdw 18 ; Max HP

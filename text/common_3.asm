@@ -422,7 +422,7 @@ UnknownText_0x1c06de: ; 1c06de
 ; 1c06ed
 
 UnknownText_0x1c06ed: ; 1c06ed
-	text $52, " used an"
+	text "<PLAYER> used an"
 	line "ESCAPE ROPE."
 	done
 ; 1c0705
@@ -578,7 +578,7 @@ UnknownText_0x1c099a: ; 1c099a
 ; 1c09b2
 
 UnknownText_0x1c09b2: ; 1c09b2
-	text $52, " got on the"
+	text "<PLAYER> got on the"
 	line "@"
 	text_from_ram StringBuffer2
 	text "."
@@ -586,7 +586,7 @@ UnknownText_0x1c09b2: ; 1c09b2
 ; 1c09c7
 
 UnknownText_0x1c09c7: ; 1c09c7
-	text $52, " got off"
+	text "<PLAYER> got off"
 	line "the @"
 	text_from_ram StringBuffer2
 	text "."
@@ -608,7 +608,7 @@ UnknownText_0x1c0a05: ; 1c0a05
 ; 1c0a1c
 
 UnknownText_0x1c0a1c: ; 1c0a1c
-	text $52, " found"
+	text "<PLAYER> found"
 	line "@"
 	text_from_ram StringBuffer3
 	text "!"
@@ -616,20 +616,46 @@ UnknownText_0x1c0a1c: ; 1c0a1c
 ; 1c0a2c
 
 UnknownText_0x1c0a2c: ; 1c0a2c
-	text "But ", $52, " can't"
+	text "But ", "<PLAYER> can't"
 	line "carry any more"
 	cont "items."
 	done
 ; 1c0a4e
 
 UnknownText_0x1c0a4e: ; 1c0a4e
-	text $52, " is out of"
+	text "<PLAYER> is out of"
 	line "useable #MON!"
 
-	para $52, " whited"
+	para "<PLAYER> paid"
+	line "¥@"
+	deciram $ffc3, $35
+	text " to the"
+	cont "winner<...>"
+
+	para $56, " ", $56, " ", $56
+	line $56, " ", $56, " ", $56
+
+	para "<PLAYER> whited"
 	line "out!"
 	done
 ; 1c0a77
+
+UnknownText_0x1c0a4e_2: ; 1c0a4e
+	text "<PLAYER> is out of"
+	line "useable #MON!"
+
+	para "<PLAYER> panicked"
+	line "and dropped"
+	cont "¥@"
+	deciram $ffc3, $35
+	text "<...>"
+
+	para $56, " ", $56, " ", $56
+	line $56, " ", $56, " ", $56
+
+	para "<PLAYER> whited"
+	line "out!"
+	done
 
 UnknownText_0x1c0a77: ; 1c0a77
 	text "Yes! ITEMFINDER"
@@ -652,10 +678,10 @@ UnknownText_0x1c0acc: ; 1c0acc
 ; 1c0ada
 
 UnknownText_0x1c0ada: ; 1c0ada
-	text $52, " is out of"
+	text "<PLAYER> is out of"
 	line "useable #MON!"
 
-	para $52, " whited"
+	para "<PLAYER> whited"
 	line "out!"
 	prompt
 ; 1c0b03
@@ -674,7 +700,7 @@ UnknownText_0x1c0b1a: ; 1c0b1a
 ; 1c0b3b
 
 UnknownText_0x1c0b3b: ; 1c0b3b
-	text $52, " sprinkled"
+	text "<PLAYER> sprinkled"
 	line "water."
 
 	para "But nothing"
@@ -683,7 +709,7 @@ UnknownText_0x1c0b3b: ; 1c0b3b
 ; 1c0b65
 
 UnknownText_0x1c0b65: ; 1c0b65
-	text $52, "'s #MON"
+	text "<PLAYER>'s #MON"
 	line "were all healed!"
 	done
 ; 1c0b7f
@@ -724,7 +750,7 @@ UnknownText_0x1c0bd8: ; 1c0bd8
 ; 1c0bee
 
 UnknownText_0x1c0bee: ; 1c0bee
-	text "OAK: ", $52, "!"
+	text "OAK: ", "<PLAYER>!"
 	line "This isn't the"
 	cont "time to use that!"
 	prompt
@@ -1280,7 +1306,7 @@ UnknownText_0x1c1328: ; 1c1328
 ; 1c1353
 
 UnknownText_0x1c1353: ; 1c1353
-	text $52, " turned on"
+	text "<PLAYER> turned on"
 	line "the PC."
 	prompt
 ; 1c1368
@@ -1346,7 +1372,7 @@ _KrissPCCantDepositText:
 	prompt
 
 UnknownText_0x1c144d: ; 1c144d
-	text $52, " turned on"
+	text "<PLAYER> turned on"
 	line "the PC."
 	prompt
 ; 1c1462
@@ -1651,7 +1677,7 @@ UnknownText_0x1c1adf: ; 1c1adf
 ; 1c1b03
 
 UnknownText_0x1c1b03: ; 1c1b03
-	text "OAK: ", $52, "!"
+	text "OAK: ", "<PLAYER>!"
 	line "This isn't the"
 	cont "time to use that!"
 	done
