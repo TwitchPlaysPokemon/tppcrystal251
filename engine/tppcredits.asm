@@ -1702,7 +1702,7 @@ TPPCreditsBG4Pals:
 	RGB 28, 09, 04
 	RGB 00, 00, 00
 
-CommandsGFX: INCBIN "gfx/udlrab.2bpp"
+CommandsGFX:: INCBIN "gfx/udlrab.2bpp"
 CommandsGFXEnd
 UnderscoreGFX: INCBIN "gfx/credits/underscore.1bpp"
 UnderscoreGFXEnd
