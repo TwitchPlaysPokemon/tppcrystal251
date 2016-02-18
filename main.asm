@@ -63218,6 +63218,8 @@ Function8c43d: ; 8c43d (23:443d)
 	ret
 
 Function8c44f: ; 8c44f (23:444f)
+	call HostsBattleTransition
+	ret c
 	xor a
 	ld [hBGMapMode], a ; $ff00+$d4
 	ld a, [wcf64]
@@ -63254,6 +63256,36 @@ Function8c44f: ; 8c44f (23:444f)
 	ld [wcf63], a
 	ret
 ; 8c490 (23:4490)
+
+HostsBattleTransition:
+	ld a, [OtherTrainerClass]
+	cp RED
+	jr nz, .okay
+	ld a, [OtherTrainerID]
+	and a
+	jr z, .start
+	dec a
+	jr z, .start
+	jr .nocarry
+.okay
+	cp CAL
+	jr nz, .okay2
+	ld a, [OtherTrainerID]
+	cp 4
+	jr z, .start
+	jr .nocarry
+.okay2
+	cp BABA
+	jr nz, .nocarry
+.start
+	callba _HostsBattleTransition
+	ld a, $20
+	ld [wcf63], a
+	scf
+	ret
+.nocarry
+	xor a
+	ret
 
 Unknown_8c490: ; 8c490
 macro_8c490: MACRO
@@ -63359,6 +63391,8 @@ Function8c578: ; 8c578 (23:4578)
 	ret
 
 Function8c58f: ; 8c58f (23:458f)
+	call HostsBattleTransition
+	ret c
 	ld hl, wcf64
 	ld a, [hl]
 	and a
@@ -63544,16 +63578,29 @@ Function8c6b1: ; 8c6b1 (23:46b1)
 	cp RED
 	jr nz, .notred
 	ld a, [OtherTrainerID]
-	cp DREAM_RED
-	jr z, .dreamred
-	ld a, [OtherTrainerClass]
+	and a
+	ld de, StartTrainerBattle_AbeGraphic
+	jr z, .skip
+	dec a
+	ld de, StartTrainerBattle_RedGraphic
+	jr z, .skip
+	jr .notbaba
 .notred
+	cp CAL
+	jr nz, .notaj
+	ld a, [OtherTrainerID]
+	cp 4
+	ld de, StartTrainerBattle_AJGraphic
+	jr z, .skip
+	jr .notbaba
+.notaj
+	cp BABA
+	ld de, StartTrainerBattle_BabaGraphic
+	jr z, .skip
+.notbaba
 	ld de, StartTrainerBattle_PokeballGraphic
-	ret
-
-.dreamred
+.skip
 	ld a, [OtherTrainerClass]
-	ld de, HelixFossilMap
 	ret
 ; 8c6b8 (23:46b8)
 
@@ -63576,7 +63623,16 @@ StartTrainerBattle_PokeballGraphic: ; 8c6b8
 	db $03, $c0
 ; 8c6d8
 
-HelixFossilMap:
+StartTrainerBattle_AJGraphic:
+	; TODO
+
+StartTrainerBattle_BabaGraphic:
+	; TODO
+
+StartTrainerBattle_AbeGraphic:
+	; TODO
+
+StartTrainerBattle_RedGraphic:
 	db $07, $e0
 	db $18, $98
 	db $20, $84
@@ -63593,6 +63649,7 @@ HelixFossilMap:
 	db $a6, $12
 	db $49, $94
 	db $30, $78
+	
 Function8c6d8: ; 8c6d8
 	ld a, [rSVBK]
 	push af
@@ -92787,6 +92844,7 @@ SampleRandomRocket:
 	db 21, GOLBAT
 .RocketMonsEnd
 
+INCLUDE "engine/hostsbattletransition.asm"
 
 IF DEF(MUSICPLYR)
 SECTION "Music Player", ROMX

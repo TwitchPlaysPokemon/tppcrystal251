@@ -1277,6 +1277,7 @@ TPPCreditsList:
 	tc_title		.music
 	tc_subtitle		  .pigu
 	tc_subtitle		  .gact
+	tc_subtitle		  .frog
 	tc_title		.gameplay
 	tc_subtitle		  .lightning
 	tc_subtitle		  .adda
@@ -1338,6 +1339,7 @@ TPPCreditsList:
 .you		db "and You!@"
 .gact		db "GACT@"
 .chef		db "The<_>Chef1337@"
+.frog       db "FroggestSpirit@"
 
 TCText_Version:
 	db "Version ",_VERSION,"@"
