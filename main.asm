@@ -93764,3 +93764,32 @@ GoldBerryHP
 	ld b, a
 	ret
 
+SECTION "Fainting Cry", ROMX
+FaintingCry:
+; b contains species index
+	ld a, b
+	call LoadCryHeader
+	ld hl, CryPitch
+	ld a, [hli]
+	ld h, [hl]
+	ld l, a
+	ld bc, -$40
+	add hl, bc
+	ld a, l
+	ld [CryPitch], a
+	ld a, h
+	ld [CryPitch + 1], a
+	ld hl, CryLength
+	ld a, [hli]
+	ld h, [hl]
+	ld l, a
+	ld bc, $40
+	add hl, bc
+	ld a, l
+	ld [CryLength], a
+	ld a, h
+	ld [CryLength + 1], a
+	ld a, 1
+	ld [wc2bc], a
+	callba _PlayCryHeader
+	ret
