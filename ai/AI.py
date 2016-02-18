@@ -515,6 +515,7 @@ class AI(object):
                 self.Damage[attacker][defender][moveused]['selfdamage'] = temp2 * 0.25
             elif (move_used_effect == 'leechhit'):
                 self.Damage[attacker][defender][moveused]['selfdamage'] = temp2 * -0.25
+                healing = True
             elif move_used_effect in ('hyperbeam', 'skyattack', 'solarbeam'):
                 temp2 = temp2 * 2
                 self.Damage[attacker][defender][moveused]['selfdamage'] = self.Damage[defender][attacker][self.enemynumber]['damage'] * 1.2
@@ -564,6 +565,7 @@ class AI(object):
     
         if Debug_Code == 1:
             print(mondata[mycurrent]['moves'][moveused]['name'])
+        healing = False
         if mondata[mycurrent]['moves'][moveused]['curpp'] > 0:
             if mondata[mycurrent]['moves'][moveused]['effect'] in ('normalhit', 'priorityhit', 'leveldamage', 'sleeptalk', 'metronome', 'bind', 'rollout', 'falseswipe', 'rampage', 'rapidspin', 'destinybond', 'hiddenpower', 'rage', 'return', 'superfang', 'triattack', 'pursuit', 'twister', 'thief', 'reversal', 'dreameater', 'extremespeed', 'furycutter', 'explosion' 'jumpkick', 'present', 'ohko', 'thunder', 'metalclaw', 'earthquake', 'hyperbeam', 'solarbeam', 'magnitude', 'fly', 'multihit', 'gust' 'doublehit', 'poisonhit', 'freezehit', 'skyattack', 'parlyzehit', 'payday', 'stomp', 'flinchhit', 'burnhit',  'recoilhit', 'twinneedle', 'spdefdownhit', 'confusehit', 'speeddownhit', 'attackdownhit', 'leechhit', 'alwayshit', 'accuracydownhit', 'steelwing', 'flamewheel', 'sacredfire', 'defensedownhit', 'ancientpower'):
                 self.DamageDealt(mondata, mycurrent, traincurrent, moveused)
@@ -649,20 +651,29 @@ class AI(object):
                 #healing
                 if (mondata[mycurrent]['moves'][moveused]['effect'] == 'heal') and (mondata[mycurrent]['moves'][moveused]['name'] != 'rest'):
                     self.Damage[mycurrent][traincurrent][moveused]['selfdamage'] = mondata[mycurrent]['stats']['hp'] / -2
+                    healing = True
                 if (mondata[mycurrent]['moves'][moveused]['effect'] == 'heal') and (mondata[mycurrent]['moves'][moveused]['name'] == 'rest'):
                     self.Damage[mycurrent][traincurrent][moveused]['selfdamage'] = mondata[mycurrent]['stats']['hp'] * -1
                     mondata[mycurrent]['status'] = 'slp3'
+                    healing = True
                 if (mondata[mycurrent]['moves'][moveused]['effect'] in ('moonlight', 'synthesis', 'morningsun')) and (mondata['weather'] == 'sun'):
                     self.Damage[mycurrent][traincurrent][moveused]['selfdamage'] = mondata[mycurrent]['stats']['hp'] / -2
+                    healing = True
                 if (mondata[mycurrent]['moves'][moveused]['effect'] in ('moonlight', 'synthesis', 'morningsun')) and (mondata['weather'] in ('rain', 'sanstorm')):
                     self.Damage[mycurrent][traincurrent][moveused]['selfdamage'] = mondata[mycurrent]['stats']['hp'] / -8
+                    healing = True
                 if (mondata[mycurrent]['moves'][moveused]['effect'] in ('moonlight', 'synthesis', 'morningsun')) and (mondata['weather'] == 'clear'):
                     self.Damage[mycurrent][traincurrent][moveused]['selfdamage'] = mondata[mycurrent]['stats']['hp'] / -4
-                if mondata[mycurrent]['moves'][moveused]['effect'] == 'painsplit':
-                    mondata['painsplit'] = True
-                    mondata[mycurrent]['stats']['curhp'] = (mondata[mycurrent]['stats']['curhp'] + mondata[traincurrent]['stats']['curhp'])/2
-                    mondata[traincurrent]['stats']['curhp'] = mondata[mycurrent]['stats']['curhp']
+                    healing = True
+                
+                #if heal doesnt matter
+                if healing and self.jsonlist['enemyParty']['party'][mycurrent]['hp'] > self.jsonlist['enemyParty']['party'][mycurrent]['maxhp'] * 0.75:
+                    self.Damage[mycurrent][traincurrent][moveused]['selfdamage'] = 0
 
+                if mondata[mycurrent]['moves'][moveused]['effect'] == 'painsplit':
+                    self.Damage[mycurrent][traincurrent][moveused]['damage'] = mondata[traincurrent]['stats']['curhp'] - (mondata[mycurrent]['stats']['curhp'] + mondata[traincurrent]['stats']['curhp'])/2
+                    self.Damage[mycurrent][traincurrent][moveused]['selfdamage'] = mondata[mycurrent]['stats']['curhp'] - (mondata[mycurrent]['stats']['curhp'] + mondata[traincurrent]['stats']['curhp'])/2
+                
                 #Guard
                 if mondata[mycurrent]['moves'][moveused]['effect'] == 'protect' and 'protect' not in mondata['enemypokemon']['substatus']:
                     self.Damage[mycurrent][traincurrent][moveused]['selfdamage'] = self.Damage[traincurrent][mycurrent][self.enemynumber]['damage'] * -1
