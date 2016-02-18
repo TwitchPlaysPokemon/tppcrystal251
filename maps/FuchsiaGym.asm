@@ -348,8 +348,8 @@ JanineBeforeRematchText:
 ; 0x1960e6
 
 JanineRematchBeatenText:
-	text "…!!!"
-	line "So… So strong!"
+	text "<...>!!!"
+	line "So<...> So strong!"
 
 	done
 
@@ -358,7 +358,7 @@ JanineAfterRematchText:
 	line "your victory," 
 	
 	para "I'm disappointed"
-	line "that I lost…"
+	line "that I lost<...>"
 
 	para "I'll train with"
 	line "my father to be"

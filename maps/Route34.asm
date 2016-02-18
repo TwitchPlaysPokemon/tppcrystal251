@@ -603,7 +603,7 @@ WierdTutorText:
 
 TutorQuitText:
 	text "Well if you change"
-	line "your mind..."
+	line "your mind<...>"
 	done
 
 TutorTakeMoneyText:
@@ -611,12 +611,12 @@ TutorTakeMoneyText:
 	line "fast!"
 
 	para "Now to hold up"
-	line "your end..."
+	line "your end<...>"
 	done
 
 LightPocketsText:
 	text "Your pockets are"
-	line "suddenly lighter…"
+	line "suddenly lighter<...>"
 	done
 
 UnknownScript_0x782d2: ; 0x782d2

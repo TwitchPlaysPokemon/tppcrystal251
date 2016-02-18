@@ -323,7 +323,7 @@ PryceRematchBeatenText:
 	done
 
 PryceSilverWingText:
-	text "Yes, yes…"
+	text "Yes, yes<...>"
 	
 	para "It was an"
 	line "impressive match."
