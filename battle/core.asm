@@ -4100,6 +4100,9 @@ Function3d8b3: ; 3d8b3
 	ld a, $1
 	ld [wd266], a
 	call Function309d
+IF DEF(BEESAFREE)
+	call MilitaryWaiting
+ENDC
 	and a
 	ret
 

@@ -799,12 +799,12 @@ class AI(object):
                             if mondata[traincurrent]['item'] == 'miracleberry' or mondata[traincurrent]['item'] != 'przcureberry':
                                 mondata[traincurrent]['status'] = 'none'
                                 mondata[traincurrent]['item'] = 'noitem'
-                        if (mondata[mycurrent]['moves'][moveused]['effect'] in ('burn', 'burnhit')) and mondata[traincurrent]['item'] != 'burnguard' and ((mondata[traincurrent]['type'][1] not in ('fire')) and (mondata[traincurrent]['type'][2] not in ('fire'))):
+                        elif (mondata[mycurrent]['moves'][moveused]['effect'] in ('burn', 'burnhit')) and mondata[traincurrent]['item'] != 'burnguard' and ((mondata[traincurrent]['type'][1] not in ('fire')) and (mondata[traincurrent]['type'][2] not in ('fire'))):
                             mondata[traincurrent]['status'] = 'brn'
                             if mondata[traincurrent]['item'] == 'miracleberry' or mondata[traincurrent]['item'] != 'iceberry':
                                 mondata[traincurrent]['status'] = 'none'
                                 mondata[traincurrent]['item'] = 'noitem'
-                        if (mondata[mycurrent]['moves'][moveused]['effect'] in ('poison', 'toxic', 'poisonhit', 'twineedle')) and mondata[traincurrent]['item'] != 'poisonguard' and ((mondata[traincurrent]['type'][1] not in ('poison', 'steel')) and (mondata[traincurrent]['type'][2] not in ('poison', 'steel'))):
+                        elif (mondata[mycurrent]['moves'][moveused]['effect'] in ('poison', 'toxic', 'poisonhit', 'twineedle')) and mondata[traincurrent]['item'] != 'poisonguard' and ((mondata[traincurrent]['type'][1] not in ('poison', 'steel')) and (mondata[traincurrent]['type'][2] not in ('poison', 'steel'))):
                             mondata[traincurrent]['status'] = 'psn'
                             if mondata[mycurrent]['moves'][moveused]['effect'] == 'toxic':
                                 if type(mondata['playerpokemon']['substatus']) == list:
@@ -813,17 +813,17 @@ class AI(object):
                             if mondata[traincurrent]['item'] == 'miracleberry' or mondata[traincurrent]['item'] != 'psncureberry':
                                 mondata[traincurrent]['status'] = 'none'
                                 mondata[traincurrent]['item'] = 'noitem'
-                        if (mondata[mycurrent]['moves'][moveused]['effect'] in ('sleep')) and mondata[traincurrent]['item'] != 'sleepguard':
+                        elif (mondata[mycurrent]['moves'][moveused]['effect'] in ('sleep')) and mondata[traincurrent]['item'] != 'sleepguard':
                             mondata[traincurrent]['status'] = 'slp'
                             if mondata[traincurrent]['item'] == 'miracleberry' or mondata[traincurrent]['item'] != 'mintberry':
                                 mondata[traincurrent]['status'] = 'none'
                                 mondata[traincurrent]['item'] = 'noitem'
-                        if (mondata[mycurrent]['moves'][moveused]['effect'] in ('freezehit')) and mondata[traincurrent]['item'] != 'freezeguard' and  mondata['weather'] != 'sun':
+                        elif (mondata[mycurrent]['moves'][moveused]['effect'] in ('freezehit')) and mondata[traincurrent]['item'] != 'freezeguard' and  mondata['weather'] != 'sun':
                             mondata[traincurrent]['status'] = 'frz'
                             if mondata[traincurrent]['item'] == 'miracleberry' or mondata[traincurrent]['item'] != 'burntberry':
                                 mondata[traincurrent]['status'] = 'none'
                                 mondata[traincurrent]['item'] = 'noitem'
-                        if (mondata[mycurrent]['moves'][moveused]['effect'] == 'triattack'):
+                        elif (mondata[mycurrent]['moves'][moveused]['effect'] == 'triattack'):
                             mondata[traincurrent]['status'] = 'par'
             
             if ((mondata[traincurrent]['type'][1] in ('grass')) or (mondata[traincurrent]['type'][2] in ('grass'))) and mondata[mycurrent]['moves'][moveused]['name'] in ('spore', 'poisonpowder', 'sleeppowder', 'stunspore'):
@@ -835,27 +835,26 @@ class AI(object):
                 effmulti = self.getEff(mondata[mycurrent]['moves'][moveused]['type'].lower(), mondata[traincurrent]['type'][1].lower(), 'playerpokemon') * self.getEff(mondata[mycurrent]['moves'][moveused]['type'].lower(), mondata[traincurrent]['type'][2].lower(), 'playerpokemon')
                 if (mondata[mycurrent]['moves'][moveused]['effect'] == 'spdefdownhit') and effmulti > 0:
                     mondata[traincurrent]['boosts']['sdef'] = mondata[traincurrent]['boosts']['sdef'] - 1
-                if (mondata[mycurrent]['moves'][moveused]['effect'] == 'speeddownhit') and effmulti > 0:
+                elif (mondata[mycurrent]['moves'][moveused]['effect'] == 'speeddownhit') and effmulti > 0:
                     mondata[traincurrent]['boosts']['spd'] = mondata[traincurrent]['boosts']['spd'] - 1
-                if (mondata[mycurrent]['moves'][moveused]['effect'] == 'attackdownhit') and effmulti > 0:
+                elif (mondata[mycurrent]['moves'][moveused]['effect'] == 'attackdownhit') and effmulti > 0:
                     mondata[traincurrent]['boosts']['atk'] = mondata[traincurrent]['boosts']['atk'] - 1
-                if (mondata[mycurrent]['moves'][moveused]['effect'] == 'defensedownhit') and effmulti > 0:
+                elif (mondata[mycurrent]['moves'][moveused]['effect'] == 'defensedownhit') and effmulti > 0:
                     mondata[traincurrent]['boosts']['def'] = mondata[traincurrent]['boosts']['def'] - 1
-                if (mondata[mycurrent]['moves'][moveused]['effect'] == 'accuracydownhit') and effmulti > 0:
+                elif (mondata[mycurrent]['moves'][moveused]['effect'] == 'accuracydownhit') and effmulti > 0:
                     mondata[traincurrent]['boosts']['acc'] = mondata[traincurrent]['boosts']['acc'] - 1
 
             #raise own stats
             if (mondata[mycurrent]['moves'][moveused]['effect'] == 'steelwing'):
                 mondata[mycurrent]['boosts']['def'] = mondata[mycurrent]['boosts']['def'] + 1
-            if (mondata[mycurrent]['moves'][moveused]['effect'] == 'ancientpower'):
+            elif (mondata[mycurrent]['moves'][moveused]['effect'] == 'ancientpower'):
                 for stat in ["atk","def","satk","sdef","speed"]:
                     mondata[mycurrent]['boosts'][stat] += 1
-            if (mondata[mycurrent]['moves'][moveused]['effect'] == 'metalclaw'):
+            elif (mondata[mycurrent]['moves'][moveused]['effect'] == 'metalclaw'):
                 mondata[mycurrent]['boosts']['atk'] = mondata[mycurrent]['boosts']['atk'] + 1
 
             #apply substatus
-            if (mondata[mycurrent]['moves'][moveused]['name'] in ('confusehit', 'confuse')) and mondata[traincurrent]['item'] != 'confuseguard':
-                mondata['confused'] = True
+            mondata['confused'] = ((mondata[mycurrent]['moves'][moveused]['name'] in ('confusehit', 'confuse')) and mondata[traincurrent]['item'] != 'confuseguard')
 
             #stats limiter
             for stat in self.statNames:
