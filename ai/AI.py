@@ -514,7 +514,7 @@ class AI(object):
             elif (move_used_effect == 'recoilhit'):
                 self.Damage[attacker][defender][moveused]['selfdamage'] = temp2 * 0.25
             elif (move_used_effect == 'leechhit'):
-                self.Damage[attacker][defender][moveused]['selfdamage'] = temp2 * -0.5
+                self.Damage[attacker][defender][moveused]['selfdamage'] = temp2 * -0.25
             elif move_used_effect in ('hyperbeam', 'skyattack', 'solarbeam'):
                 temp2 = temp2 * 2
                 self.Damage[attacker][defender][moveused]['selfdamage'] = self.Damage[defender][attacker][self.enemynumber]['damage'] * 1.2
