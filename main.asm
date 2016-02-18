@@ -26595,7 +26595,7 @@ Function24d47: ; 24d47 draw a text box to hold mon options menu
 	ret
 ; 24d59
 
-Function24d59: ; 24d59 ;process monsubmenu, retern the cmmand to execute in a
+Function24d59: ; 24d59 ;process monsubmenu, return the command to execute in a
 .asm_24d59
 	ld a, $a0
 	ld [wcf91], a ;load 160 into ??
