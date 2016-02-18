@@ -370,7 +370,6 @@ class AI(object):
             if temp2 > mondata[defender]['stats']['curhp']:
                 temp2 = mondata[defender]['stats']['curhp'] - 1
 
-        curled = False
         if move_used_effect == 'rollout':
             curled = ((mondata[temptext2]['substatus'] or (isinstance(mondata[temptext2]['substatus'], dict) and 'curled' in mondata[temptext2]['substatus'].values())) or ((mondata['defensecurlused'] == True) and (attacker < 6)))
             if curled:
@@ -402,8 +401,8 @@ class AI(object):
             else:
                 temp2 = 0
 
-        locked = ('lock on' in mondata[temptext]['substatus'] or (isinstance(mondata[temptext]['substatus'], dict) and 'lock on' in mondata[temptext]['substatus'].values()))
-        if mondata['lockon'] == True or locked == True:
+        locked = ('lock on' in mondata[temptext]['substatus'] or (isinstance(mondata[temptext]['substatus'], dict) and 'lock on' in mondata[temptext]['substatus'].values())) or (mondata['lockon'] == True and attacker < 6)
+        if locked:
             totalacc = 1
 
         accmodifier = 1
@@ -492,7 +491,7 @@ class AI(object):
             critmodifier = 2
         elif mondata[attacker]['item'] == 'stick' and mondata[attacker]['species'] == "farfetch'd":
             critmodifier = 2
-        if pumped == True:
+        if pumped:
             critmodifier += 2
         if move_used['name'].lower() in ('aeroblast', 'crabhammer', 'crosschop', 'drillrun', 'karatechop', 'razorleaf', 'shadowclaw', 'slash', 'skyattack'):
             critmodifier += 2
@@ -766,19 +765,6 @@ class AI(object):
                         mondata[traincurrent]['boosts'][stat] = 0
                     mondata['leechseedused'] = False
                     mondata['focusenergyused'] = False
-
-                #stats limiter
-                for stat in self.statNames:
-                    statName = stat
-                    #constrain each stat to +- 6
-                    if mondata[mycurrent]['boosts'][statName] > 6:
-                        mondata[mycurrent]['boosts'][statName] = 6
-                    if mondata[mycurrent]['boosts'][statName] < -6:
-                        mondata[mycurrent]['boosts'][statName] = -6
-                    if mondata[traincurrent]['boosts'][statName] > 6:
-                        mondata[traincurrent]['boosts'][statName] = 6
-                    if mondata[traincurrent]['boosts'][statName] < -6:
-                        mondata[traincurrent]['boosts'][statName] = -6
             else:
                 if Debug_Code == 1:
                     print("I have a bad status, Can't do anything with that")
@@ -789,6 +775,18 @@ class AI(object):
                 print("No pp, Can't do anything with that")
             self.Damage[mycurrent][traincurrent][moveused]['damage'] = -1
             self.Damage[mycurrent][traincurrent][moveused]['selfdamage'] = 0
+        #stats limiter
+        for stat in self.statNames:
+            statName = stat
+            #constrain each stat to +- 6
+            if mondata[mycurrent]['boosts'][statName] > 6:
+                mondata[mycurrent]['boosts'][statName] = 6
+            if mondata[mycurrent]['boosts'][statName] < -6:
+                mondata[mycurrent]['boosts'][statName] = -6
+            if mondata[traincurrent]['boosts'][statName] > 6:
+                mondata[traincurrent]['boosts'][statName] = 6
+            if mondata[traincurrent]['boosts'][statName] < -6:
+                mondata[traincurrent]['boosts'][statName] = -6
         return mondata
 
     def specialeffect(self, mondata, traincurrent, mycurrent, moveused):
@@ -1880,7 +1878,7 @@ def main():
 
     #    battle_state = Artificial.jsonlist
     #placeholder to prevent infinite looping
-    input('Action Above is best move (0-3 = moves, 4-9 = mon switch, 10-11 = use bag items) --- Press enter to continue')
+    #input('Action Above is best move (0-3 = moves, 4-9 = mon switch, 10-11 = use bag items) --- Press enter to continue')
 
 
 if __name__ == '__main__':
