@@ -27310,15 +27310,16 @@ TrainerCardPage1_WaitJoypad: ; 251d7 (9:51d7)
 	ld hl, StatusFlags
 	bit 5, [hl]
 	jr z, .kanto
+.johto
 	ld a, $2
 	ld [wcf63], a
 	ret
 ; 251e9 (9:51e9)
 
 .left: ; 251e9
-	ld a, [KantoBadges]
-	and a
-	ret z
+	ld hl, StatusFlags
+	bit 5, [hl]
+	jr nz, .johto
 .kanto
 	ld a, $4
 	ld [wcf63], a
@@ -27352,29 +27353,29 @@ TrainerCardPage2_WaitJoypad: ; 25221 (9:5221)
 	jr nz, .cancel
 	ld a, [hl]
 	and $20
-	jr nz, .asm_25235
+	jr nz, .left
 	ld a, [hl]
 	and $10
 	jr nz, .right
 	jr .dotrick
 
-.asm_25235
+.left
 	ld a, $0
 	ld [wcf63], a
 	jr .dotrick
 
 .right
-	ld a, [KantoBadges]
-	and a
-	jr z, .asm_25235
+	ld hl, StatusFlags
+	bit 6, [hl]
+	jr z, .left
 .kanto
 	ld a, $4
 	ld [wcf63], a
 	jr .dotrick
 
 .cancel
-	ld a, [KantoBadges]
-	and a
+	ld hl, StatusFlags
+	bit 6, [hl]
 	jr nz, .kanto
 	ld a, $6
 	ld [wcf63], a
@@ -27414,19 +27415,19 @@ TrainerCardPage3_WaitJoypad: ; 25279 (9:5279)
 	ld hl, $ffa9
 	ld a, [hl]
 	and $20
-	jr nz, .asm_2528d
+	jr nz, .left
 	ld a, [hl]
 	and $10
-	jr nz, .page_1
+	jr nz, .right
 	ld a, [hl]
 	and $1
 	jr nz, .quit
 	jr .dotrick
 
-.asm_2528d
+.left
 	ld hl, StatusFlags
 	bit 5, [hl]
-	jr z, .page_1
+	jr z, .right
 	ld a, $2
 	ld [wcf63], a
 	jr .dotrick
@@ -27435,7 +27436,7 @@ TrainerCardPage3_WaitJoypad: ; 25279 (9:5279)
 	; ld hl, StatusFlags
 	; bit 5, [hl]
 	; jr z, .dotrick
-.page_1
+.right
 	ld a, $0
 	ld [wcf63], a
 	jr .dotrick
