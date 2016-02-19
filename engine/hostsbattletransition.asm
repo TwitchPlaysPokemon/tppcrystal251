@@ -323,10 +323,10 @@ Function8c6b1: ; 8c6b1 (23:46b1)
 	jr nz, .notred
 	ld a, [OtherTrainerID]
 	dec a
-	ld de, StartTrainerBattle_AbeGraphic
+	ld de, StartTrainerBattle_RedGraphic
 	jr z, .skip
 	dec a
-	ld de, StartTrainerBattle_RedGraphic
+	ld de, StartTrainerBattle_AbeGraphic
 	jr z, .skip
 	jr .notbaba
 .notred
