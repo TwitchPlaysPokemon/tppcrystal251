@@ -1,4 +1,4 @@
-NUM_POKEMON EQU 252
+NUM_POKEMON EQU 251
 
 	const_def
 	const MISSINGNO_
