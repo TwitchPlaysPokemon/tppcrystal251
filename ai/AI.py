@@ -652,22 +652,22 @@ class AI(object):
                         mondata[traincurrent]['boosts']['sdef'] = mondata[traincurrent]['boosts']['sdef'] - 2
 
                 #healing
-                if (mondata[mycurrent]['moves'][moveused]['effect'] == 'heal') and (mondata[mycurrent]['moves'][moveused]['name'] != 'rest'):
-                    self.Damage[mycurrent][traincurrent][moveused]['selfdamage'] = mondata[mycurrent]['stats']['hp'] / -4
+                #the variable healing is set to false at the beginning of the function, no need to set it here
+                if (mondata[mycurrent]['moves'][moveused]['effect'] == 'heal'):
                     healing = True
-                if (mondata[mycurrent]['moves'][moveused]['effect'] == 'heal') and (mondata[mycurrent]['moves'][moveused]['name'] == 'rest'):
-                    self.Damage[mycurrent][traincurrent][moveused]['selfdamage'] = mondata[mycurrent]['stats']['hp'] * -0.5
-                    mondata[mycurrent]['status'] = 'slp3'
+                    if (mondata[mycurrent]['moves'][moveused]['name'] == 'rest'):
+                        self.Damage[mycurrent][traincurrent][moveused]['selfdamage'] = mondata[mycurrent]['stats']['hp'] * -0.5
+                        mondata[mycurrent]['status'] = 'slp3'
+                    else:
+                        self.Damage[mycurrent][traincurrent][moveused]['selfdamage'] = mondata[mycurrent]['stats']['hp'] / -4
+                elif (mondata[mycurrent]['moves'][moveused]['effect'] in ('moonlight', 'synthesis', 'morningsun')):
                     healing = True
-                if (mondata[mycurrent]['moves'][moveused]['effect'] in ('moonlight', 'synthesis', 'morningsun')) and (mondata['weather'] == 'sun'):
-                    self.Damage[mycurrent][traincurrent][moveused]['selfdamage'] = mondata[mycurrent]['stats']['hp'] / -4
-                    healing = True
-                if (mondata[mycurrent]['moves'][moveused]['effect'] in ('moonlight', 'synthesis', 'morningsun')) and (mondata['weather'] in ('rain', 'sanstorm')):
-                    self.Damage[mycurrent][traincurrent][moveused]['selfdamage'] = mondata[mycurrent]['stats']['hp'] / -16
-                    healing = True
-                if (mondata[mycurrent]['moves'][moveused]['effect'] in ('moonlight', 'synthesis', 'morningsun')) and (mondata['weather'] == 'clear'):
-                    self.Damage[mycurrent][traincurrent][moveused]['selfdamage'] = mondata[mycurrent]['stats']['hp'] / -8
-                    healing = True
+                    if (mondata['weather'] == 'clear'):
+                        self.Damage[mycurrent][traincurrent][moveused]['selfdamage'] = mondata[mycurrent]['stats']['hp'] / -8
+                    elif (mondata['weather'] == 'sun'):
+                        self.Damage[mycurrent][traincurrent][moveused]['selfdamage'] = mondata[mycurrent]['stats']['hp'] / -4
+                    else: #rain, sandstorm
+                        self.Damage[mycurrent][traincurrent][moveused]['selfdamage'] = mondata[mycurrent]['stats']['hp'] / -16
                 
                 #if heal doesnt matter
                 if healing and self.jsonlist['enemyParty']['party'][mycurrent]['hp'] > self.jsonlist['enemyParty']['party'][mycurrent]['maxhp'] * 0.75:
@@ -684,26 +684,26 @@ class AI(object):
                     self.Damage[mycurrent][traincurrent][moveused]['selfdamage'] = self.Damage[traincurrent][mycurrent][self.enemynumber]['damage'] * -1
 
                 #curse
-                if mondata[mycurrent]['moves'][moveused]['effect'] == 'curse' and ((mondata[mycurrent]['type'][1] != 'ghost') and (mondata[mycurrent]['type'][2] != 'ghost')):
-                    mondata[mycurrent]['boosts']['atk'] = mondata[mycurrent]['boosts']['atk'] + 1
-                    mondata[mycurrent]['boosts']['def'] = mondata[mycurrent]['boosts']['def'] + 1
-                    mondata[mycurrent]['boosts']['spd'] = mondata[mycurrent]['boosts']['spd'] - 1
-                if mondata[mycurrent]['moves'][moveused]['effect'] == 'curse' and ((mondata[mycurrent]['type'][1] == 'ghost') or (mondata[mycurrent]['type'][2] == 'ghost')):
-                    self.Damage[mycurrent][traincurrent][moveused]['selfdamage'] =  mondata[mycurrent]['stats']['hp'] / 2
-                    mondata['cursed'] = True
+                if mondata[mycurrent]['moves'][moveused]['effect'] == 'curse':
+                    if ((mondata[mycurrent]['type'][1] != 'ghost') and (mondata[mycurrent]['type'][2] != 'ghost')):
+                        mondata[mycurrent]['boosts']['atk'] = mondata[mycurrent]['boosts']['atk'] + 1
+                        mondata[mycurrent]['boosts']['def'] = mondata[mycurrent]['boosts']['def'] + 1
+                        mondata[mycurrent]['boosts']['spd'] = mondata[mycurrent]['boosts']['spd'] - 1
+                    else:
+                        self.Damage[mycurrent][traincurrent][moveused]['selfdamage'] = mondata[mycurrent]['stats']['hp'] / 2
+                        mondata['cursed'] = True
 
                 #foresight
                 if mondata[mycurrent]['moves'][moveused]['effect'] == 'foresight':
                     mondata[traincurrent]['boosts']['eva'] = 0
                     mondata['identified'] = True
 
-
                 #Place Weather
-                if mondata[mycurrent]['moves'][moveused]['effect'] == 'sunnyday':
+                elif mondata[mycurrent]['moves'][moveused]['effect'] == 'sunnyday':
                     mondata['weather'] = 'sun'
-                if mondata[mycurrent]['moves'][moveused]['effect'] == 'raindance':
+                elif mondata[mycurrent]['moves'][moveused]['effect'] == 'raindance':
                     mondata['weather'] = 'rain'
-                if mondata[mycurrent]['moves'][moveused]['effect'] == 'sandstorm':
+                elif mondata[mycurrent]['moves'][moveused]['effect'] == 'sandstorm':
                     mondata['weather'] = 'sandstorm'
 
                 #Screens
@@ -725,56 +725,55 @@ class AI(object):
                                 mondata['enemypokemon']['screens'].remove('spikes')
                             elif 'spikes2' in mondata['enemypokemon']['screens']:
                                 mondata['enemypokemon']['screens'] += ['spikes']
-                if  mondata[mycurrent]['moves'][moveused]['effect'] == 'reflect' and 'reflect' not in mondata['enemypokemon']['screens']:
+                if mondata[mycurrent]['moves'][moveused]['effect'] == 'reflect' and 'reflect' not in mondata['enemypokemon']['screens']:
                     mondata['enemypokemon']['screens'] += ['reflect']
-                if mondata[mycurrent]['moves'][moveused]['effect'] == 'lightscreen' and 'lightscreen' not in mondata['enemypokemon']['screens']:
+                elif mondata[mycurrent]['moves'][moveused]['effect'] == 'lightscreen' and 'lightscreen' not in mondata['enemypokemon']['screens']:
                     mondata['enemypokemon']['screens'] += ['lightscreen']
-
 
                 #sub status
                 if (mondata[mycurrent]['moves'][moveused]['name'] == 'confuseray') and mondata[traincurrent]['item'] != 'confuseguard':
                     mondata['confused'] = True
-                if (mondata[mycurrent]['moves'][moveused]['name'] == 'swagger') and mondata[traincurrent]['item'] != 'confuseguard':
+                elif (mondata[mycurrent]['moves'][moveused]['name'] == 'swagger') and mondata[traincurrent]['item'] != 'confuseguard':
                     mondata['confused'] = True
                     mondata[traincurrent]['boosts']['atk'] = mondata[traincurrent]['boosts']['atk'] + 2
-                if (mondata[mycurrent]['moves'][moveused]['effect'] == 'attract') and (mondata[mycurrent]['gender'] != mondata[traincurrent]['gender']) and mondata[traincurrent]['gender'] != '':
+                elif (mondata[mycurrent]['moves'][moveused]['effect'] == 'attract') and (mondata[mycurrent]['gender'] != mondata[traincurrent]['gender']) and mondata[traincurrent]['gender'] != '':
                     mondata['attract'] = True
-                if (mondata[mycurrent]['moves'][moveused]['name'] == 'lockon'):
+                elif (mondata[mycurrent]['moves'][moveused]['name'] == 'lockon'):
                     mondata['lockon'] = True
 
                 #end of turn shit
-                if mondata[mycurrent]['moves'][moveused]['effect'] == 'bind':
+                elif mondata[mycurrent]['moves'][moveused]['effect'] == 'bind':
                     mondata['playerpokemon']['bound'] = 5
-                if (mondata[mycurrent]['moves'][moveused]['effect'] == 'nightmare') and (mondata[traincurrent]['status'] == 'slp'):
+                elif (mondata[mycurrent]['moves'][moveused]['effect'] == 'nightmare') and (mondata[traincurrent]['status'] == 'slp'):
                     mondata['nightmare'] = True
-                if mondata[mycurrent]['moves'][moveused]['effect'] == 'perishsong':
+                elif mondata[mycurrent]['moves'][moveused]['effect'] == 'perishsong':
                     if mondata['myperishsong'] == 0:
                         mondata['myperishsong'] = 4
                     if mondata['trainperishsong'] == 0:
                         mondata['trainperishsong'] = 4
-                if mondata[mycurrent]['moves'][moveused]['effect'] == 'leechseed':
+                elif mondata[mycurrent]['moves'][moveused]['effect'] == 'leechseed':
                     if (mondata[traincurrent]['type'][1] != 'grass') and (mondata[traincurrent]['type'][2] != 'grass'):
                         mondata['leechseedused'] = True
 
                 #other special effects
-                if mondata[mycurrent]['moves'][moveused]['effect'] == 'bide':
+                elif mondata[mycurrent]['moves'][moveused]['effect'] == 'bide':
                     if self.Damage[traincurrent][mycurrent][self.enemynumber]['damage'] * 3 < mondata[mycurrent]['stats']['curhp']:
                         self.Damage[mycurrent][traincurrent][moveused]['damage'] = self.Damage[traincurrent][mycurrent][self.enemynumber]['damage']
-                if mondata[mycurrent]['moves'][moveused]['effect'] == 'bellydrum':
+                elif mondata[mycurrent]['moves'][moveused]['effect'] == 'bellydrum':
                     self.Damage[mycurrent][traincurrent][moveused]['selfdamage'] = mondata[mycurrent]['stats']['hp'] / 2
                     mondata[mycurrent]['boosts']['atk'] = 6
-                if (mondata[mycurrent]['moves'][moveused]['effect'] == 'healbell'):
+                elif (mondata[mycurrent]['moves'][moveused]['effect'] == 'healbell'):
                     for pkmNo in range(6):
                         try:
                             mondata[pkmNo]['status'] = 'none'
                         except KeyError:
-                            DoNothing = 1
-                if mondata[mycurrent]['moves'][moveused]['effect'] == 'focusenergy':
+                            pass
+                elif mondata[mycurrent]['moves'][moveused]['effect'] == 'focusenergy':
                     mondata['focusenergyused'] = True
-                if mondata[mycurrent]['moves'][moveused]['effect'] == 'defensecurl':
+                elif mondata[mycurrent]['moves'][moveused]['effect'] == 'defensecurl':
                     mondata['defensecurlused'] = True
                     mondata[mycurrent]['boosts']['def'] = mondata[mycurrent]['boosts']['def'] + 1
-                if mondata[mycurrent]['moves'][moveused]['effect'] == 'haze':
+                elif mondata[mycurrent]['moves'][moveused]['effect'] == 'haze':
                     for stat in self.statNames:
                         mondata[mycurrent]['boosts'][stat] = 0
                         mondata[traincurrent]['boosts'][stat] = 0
