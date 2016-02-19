@@ -63033,6 +63033,8 @@ Function8c20f: ; 8c20f
 	ld [hl], $1
 .asm_8c22b
 	ld a, [wcf63]
+	bit 6, a
+	jr nz, .skiploadingblack
 	bit 7, a
 	jr nz, .asm_8c23a
 	call Function8c314
@@ -63054,6 +63056,7 @@ Function8c20f: ; 8c20f
 	ld [wcfc7], a
 	call DmgToCgbBGPals
 	call DelayFrame
+.skiploadingblack
 	xor a
 	ld [hLCDStatCustom], a
 	ld [$ffc7], a
@@ -63360,6 +63363,7 @@ Function8c3e8: ; 8c3e8 (23:43e8)
 
 Function8c408: ; 8c408 (23:4408)
 	call HostsBattleTransition
+	ret c
 	ld a, [wcf64]
 	cp $60
 	jr nc, .asm_8c413
@@ -63452,7 +63456,7 @@ HostsBattleTransition:
 	cp RED
 	jr nz, .okay
 	ld a, [OtherTrainerID]
-	and a
+	dec a
 	jr z, .start
 	dec a
 	jr z, .start
@@ -63469,7 +63473,7 @@ HostsBattleTransition:
 	jr nz, .nocarry
 .start
 	callba _HostsBattleTransition
-	ld a, $20
+	ld a, $40
 	ld [wcf63], a
 	scf
 	ret
@@ -63707,6 +63711,7 @@ Unknown_8c728: ; 8c728
 
 Function8c768: ; 8c768 (23:4768)
 	call HostsBattleTransition
+	ret c
 	callba Function5602
 	ld de, Unknown_8c792
 .asm_8c771
