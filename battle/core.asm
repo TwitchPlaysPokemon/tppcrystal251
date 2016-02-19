@@ -218,10 +218,10 @@ ENDC
 	ld a, [BattleEnded]
 	and a
 	jr nz, .quit
+.return_from_military
 .asm_3c18a
 	call Function3c434
 	jr nz, .asm_3c179
-.return_from_military
 
 	call Function3c300
 	jr c, .quit
@@ -669,7 +669,7 @@ Function3c434: ; 3c434
 .asm_3c449
 	ld a, [wd0ec]
 	cp $2
-	jr z, .asm_3c4ce
+	jp z, .asm_3c4ce
 	and a
 	jr nz, .asm_3c4b5
 	ld a, [PlayerSubStatus3]
@@ -679,7 +679,16 @@ Function3c434: ; 3c434
 	ld [wd235], a
 	inc a ; POUND
 	ld [FXAnimIDLo], a
+IF DEF(BEESAFREE)
+	ld a, [wMilitaryFlags]
+	bit MILITARY_ON, a
+	jr nz, .skip_move_menu
+ENDC
 	call Function3e4bc
+	jr .okay
+.skip_move_menu	
+	xor a
+.okay
 	push af
 	call Function30b4
 	call UpdateBattleHuds

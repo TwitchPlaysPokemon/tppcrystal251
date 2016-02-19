@@ -301,19 +301,20 @@ Function101c5: ; 101c5 (4:41c5)
 
 MenuDataHeader_0x10249: ; 0x10249
 	db $40 ; flags
-	db 01, 13 ; start coords
-	db 11, 19 ; end coords
+	db 01, 12 ; start coords
+	db 13, 19 ; end coords
 	dw MenuData2_0x10251
 	db 1 ; default option
 ; 0x10251
 
 MenuData2_0x10251: ; 0x10251
 	db $c0 ; flags
-	db 5 ; items
+	db 6 ; items
 	db "USE@"
 	db "GIVE@"
 	db "TOSS@"
 	db "SEL@"
+	db "DESEL@"
 	db "QUIT@"
 ; 0x1026a
 
@@ -321,13 +322,14 @@ Jumptable_1026a: ; 1026a
 	dw Function10311
 	dw Function103fd
 	dw Function10364
-	dw Function103c2
+	dw RegisterItem
+	dw DeselectItem
 	dw Function10492
 ; 10274
 
 MenuDataHeader_0x10274: ; 0x10274
 	db $40 ; flags
-	db 03, 13 ; start coords
+	db 03, 12 ; start coords
 	db 11, 19 ; end coords
 	dw MenuData2_0x1027c
 	db 1 ; default option
@@ -351,7 +353,7 @@ Jumptable_10291: ; 10291
 
 MenuDataHeader_0x10299: ; 0x10299
 	db $40 ; flags
-	db 07, 13 ; start coords
+	db 07, 12 ; start coords
 	db 11, 19 ; end coords
 	dw MenuData2_0x102a1
 	db 1 ; default option
@@ -371,7 +373,7 @@ Jumptable_102ac: ; 102ac
 
 MenuDataHeader_0x102b0: ; 0x102b0
 	db $40 ; flags
-	db 05, 13 ; start coords
+	db 03, 12 ; start coords
 	db 11, 19 ; end coords
 	dw MenuData2_0x102b8
 	db 1 ; default option
@@ -379,21 +381,23 @@ MenuDataHeader_0x102b0: ; 0x102b0
 
 MenuData2_0x102b8: ; 0x102b8
 	db $c0 ; flags
-	db 3 ; items
+	db 4 ; items
 	db "USE@"
 	db "SEL@"
+	db "DESEL@"
 	db "QUIT@"
 ; 0x102c7
 
 Jumptable_102c7: ; 102c7
 	dw Function10311
-	dw Function103c2
+	dw RegisterItem
+	dw DeselectItem
 	dw Function10492
 ; 102cd
 
 MenuDataHeader_0x102cd: ; 0x102cd
 	db $40 ; flags
-	db 03, 13 ; start coords
+	db 01, 12 ; start coords
 	db 11, 19 ; end coords
 	dw MenuData2_0x102d5
 	db 1 ; default option
@@ -401,23 +405,25 @@ MenuDataHeader_0x102cd: ; 0x102cd
 
 MenuData2_0x102d5: ; 0x102d5
 	db $c0 ; flags
-	db 4 ; items
+	db 5 ; items
 	db "GIVE@"
 	db "TOSS@"
 	db "SEL@"
+	db "DESEL@"
 	db "QUIT@"
 ; 0x102ea
 
 Jumptable_102ea: ; 102ea
 	dw Function103fd
 	dw Function10364
-	dw Function103c2
+	dw RegisterItem
+	dw DeselectItem
 	dw Function10492
 ; 102f2
 
 MenuDataHeader_0x102f2: ; 0x102f2
 	db $40 ; flags
-	db 05, 13 ; start coords
+	db 05, 12 ; start coords
 	db 11, 19 ; end coords
 	dw MenuData2_0x102fa
 	db 1 ; default option
@@ -546,11 +552,16 @@ Function1039d: ; 1039d
 	ret
 ; 103c2
 
-Function103c2: ; 103c2
+RegisterItem: ; 103c2
 	callba CheckSelectableItem
 	ld a, [wd142]
 	and a
 	jr nz, .asm_103f6
+	ld a, [CurItem]
+	ld b, a
+	ld a, [RegisteredItem]
+	cp b
+	jr z, .AlreadyRegistered
 	ld a, [wcf65]
 	rrca
 	rrca
@@ -575,6 +586,28 @@ Function103c2: ; 103c2
 	call Function10889
 	ret
 ; 103fd
+.AlreadyRegistered
+	ld hl, JumpText_AlreadyRegistered
+	call Function10889
+	ret
+
+DeselectItem:
+	call Function10a1d
+	ld a, [RegisteredItem]
+	ld b, a
+	ld a, [CurItem]
+	cp b
+	jr nz, .NotRegistered
+	xor a
+	ld [WhichRegisteredItem], a
+	ld [RegisteredItem], a
+	ld hl, JumpText_DeselectedItem
+	call Function10889
+	ret
+.NotRegistered
+	ld hl, JumpText_NotRegistered
+	call Function10889
+	ret
 
 Function103fd: ; 103fd
 	ld a, [PartyCount]
@@ -1665,6 +1698,17 @@ UnknownText_0x10b02: ; 0x10b02
 	text_jump UnknownText_0x1c0c45
 	db "@"
 ; 0x10b07
+JumpText_AlreadyRegistered:
+	text_jump Text_AlreadyRegistered
+	db "@"
+
+JumpText_DeselectedItem:
+	; Deselected the @.
+	text_jump Text_DeselectedItem
+	db "@"
+JumpText_NotRegistered:
+	text_jump Text_NotRegistered
+	db "@"
 
 UnknownText_0x10b07: ; 0x10b07
 	; Where should this be moved to?
