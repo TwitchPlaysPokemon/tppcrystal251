@@ -421,7 +421,7 @@ PrintMoveRelearnerText:
 	line "MOVE RELEARNER."
 
 	para "But you can call"
-	line "me OLDEN."
+	line "me HOLDEN."
 
 	para "I know all the"
 	line "moves that can be"
