@@ -1104,7 +1104,7 @@ UnknownText_0x78866: ; 0x78866
 
 	para "Fast!"
 
-	para "Like lightinig!"
+	para "Like lightning!"
 
 	para "For ¥5000 your"
 	line "#MON can too."
