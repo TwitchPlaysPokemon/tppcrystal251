@@ -2153,7 +2153,7 @@ wSSAnne2Trigger::                            ds 1
 wSSAnne3Trigger::                            ds 1
 wSSAnne5Trigger::                            ds 1
 wKrissHouse1FTrigger::                       ds 1
-wBlackthornCityTrigger::                     ds 1
+wHallwayOfFameTrigger::                     ds 1
 wLavenderTownTrigger::                       ds 1
 	ds 17
 

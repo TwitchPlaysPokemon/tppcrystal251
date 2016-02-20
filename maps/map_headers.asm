@@ -316,7 +316,7 @@ MapGroup16:
 	map_header BrunosRoom, $f, 3, INDIGO_PLATEAU, MUSIC_INDIGO_PLATEAU, 1, 1, 1
 	map_header KarensRoom, $f, 3, INDIGO_PLATEAU, MUSIC_INDIGO_PLATEAU, 1, 1, 1
 	map_header LancesRoom, $12, 3, INDIGO_PLATEAU, MUSIC_INDIGO_PLATEAU, 1, 1, 13
-	map_header HallOfFame, $1d, 3, INDIGO_PLATEAU, MUSIC_NEW_BARK_TOWN, 1, 1, 1
+	map_header HallOfFame, $1d, 3, INDIGO_PLATEAU, MUSIC_SLOW_PALLET, 1, 1, 1
     map_header HallwayOfFame, $12, 3, INDIGO_PLATEAU, MUSIC_INDIGO_PLATEAU, 1, 1, 13
 
 MapGroup17:

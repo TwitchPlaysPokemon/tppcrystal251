@@ -594,12 +594,13 @@ AfterTutor:
 	end
 
 WhoToTeachText:
-	text "Who should"
-	line "I teach?"
+	text "Who should I"
+	line "teach?"
 	done
 
-WierdTutorText:
-	db $0, $57
+WeirdTutorText:
+	text ""
+	done
 
 TutorQuitText:
 	text "Well if you change"
