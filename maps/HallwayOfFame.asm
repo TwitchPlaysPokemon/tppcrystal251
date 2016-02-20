@@ -317,7 +317,7 @@ AzureBeforeBattleText:
 	para "<PLAY_G>!"
 	line "I challenge you"
 	cont "as the #MON"
-	cont "CHAMPION!
+	cont "CHAMPION!"
 	done
 
 RustBeforeBattleText:
@@ -370,21 +370,21 @@ RustBeforeBattleText:
 	cont "in the world!"
 	done
 
-WinVsAzureText:
+WinVsChampAzureText:
 	text "D'aww<...> I'm not"
 	line "as good as you."
 	done
-LoseVsAzureText
+LoseVsChampAzureText
 	text "I like your effort… but it wasn't good enough. I hope you try harder next time!"
 	done
 
-LoseVsRustText:
+LoseVsChampRustText:
 	text "Haha!"
 	line "I knew I was good"
 	cont "enough for champ!"
 	done
 
-WinVsRustText:
+WinVsChampRustText:
 	text "Aw, man<...> this sucks."
 	line "Why did I gotta"
 	cont "lose to a chump"
@@ -398,7 +398,7 @@ AzurePostFightText:
 	para "You are a better"
 	line "trainer than I am."
 
-	para "OAK: "<GREEN>!"
+	para "OAK: <GREEN>!"
 	done
 
 RustPostFightText:
@@ -408,7 +408,7 @@ RustPostFightText:
 	cont "though I don't"
 	cont "like to admit it."
 
-	para "OAK: "<GREEN>!"
+	para "OAK: <GREEN>!"
 	done
 
 AzureBeforeRematchText:
@@ -425,14 +425,13 @@ LoseVsRematchRustText:
 
 AzurePostRematchText:
 RustPostRematchText:
-	text ""
+	text "a"
 	done
 
 OakToRivalAfterRemtachText:
-	text ""
+	text "a"
 	done
 
-; 0x1811dd
 
 
 UnknownText_0x18121b: ; 0x18121b
