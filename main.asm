@@ -4362,7 +4362,7 @@ _PrintNum:: ; c4c7
 	dec e
 	jr nz, .asm_c5ad
 	inc hl
-	ld [hl], $f2 ; XXX
+	ld [hl], "." ; XXX
 .asm_c5ad
 	call .AdvancePointer
 	call .PrintYen
@@ -21351,44 +21351,49 @@ Function15ffa:: ; 15ffa
 ; 1600b
 
 Function1600b:: ; 1600b
-	ld a, $3
+	ld a, 3
 Function1600d: ; 1600d
+; a: number of bytes
+; bc: start addr of amount (big-endian)
+; de: start addr of account (big-endian)
 	push hl
 	push de
 	push bc
 	ld h, b
 	ld l, c
-	ld c, $0
+	ld c, 0
 	ld b, a
-.asm_16015
+; Go to the end of both amounts
+.loop1
 	dec a
-	jr z, .asm_1601c
+	jr z, .done
 	inc de
 	inc hl
-	jr .asm_16015
-
-.asm_1601c
+	jr .loop1
+; Clear flags
+.done
 	and a
-.asm_1601d
+; Compare
+.loop2
 	ld a, [de]
 	sbc [hl]
-	jr z, .asm_16022
-	inc c
-.asm_16022
+	jr z, .okay
+	inc c ; c counts the number of bytes that are not equal
+.okay
 	dec de
 	dec hl
 	dec b
-	jr nz, .asm_1601d
-	jr c, .asm_1602d
-	ld a, c
+	jr nz, .loop2
+	jr c, .set_carry ; Clear z flag if set, and set the carry flag, if the amount is greater than the account.
+	ld a, c ; If c is zero, the two amounts are exactly equal.
 	and a
-	jr .asm_16031
+	jr .skip_carry
 
-.asm_1602d
-	ld a, $1
+.set_carry
+	ld a, 1
 	and a
 	scf
-.asm_16031
+.skip_carry
 	pop bc
 	pop de
 	pop hl
@@ -67801,6 +67806,20 @@ Function8e961: ; 8e961 (23:6961)
 	ld [hl], $0
 	ret
 
+Function8e961_2: ; 8e961 (23:6961)
+	ld a, [wd265]
+	call ReadMonMenuIcon
+	ld [CurIcon], a
+	xor a
+	call GetIconGFX
+	ld de, $2420
+	ld a, $0
+	call Function8cfd6
+	ld hl, $2
+	add hl, bc
+	ld [hl], $0
+	ret
+
 Function8e97d: ; 8e97d (23:697d)
 	ld a, [wd265]
 	call ReadMonMenuIcon
@@ -93760,3 +93779,6 @@ FaintingCry:
 	callba _PlayCryHeader
 	call WaitSFX
 	ret
+
+SECTION "Move Relearner", ROMX
+INCLUDE "event/move_relearner.asm"

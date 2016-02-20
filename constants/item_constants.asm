@@ -154,7 +154,7 @@
 	const DRAGON_SCALE
 	const BERSERK_GENE
 	const ITEM_99
-	const ITEM_9A
+	const X_SPDEF
 	const ITEM_9B
 	const SACRED_ASH
 	const HEAVY_BALL

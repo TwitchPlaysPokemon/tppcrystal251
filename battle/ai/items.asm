@@ -298,6 +298,7 @@ AI_Items: ; 39196
 	dbw X_DEFEND,     .XDefend
 	dbw X_SPEED,      .XSpeed
 	dbw X_SPECIAL,    .XSpecial
+	dbw X_SPDEF,      .XSpDef
 	db $ff
 ; 381be
 
@@ -515,6 +516,12 @@ AI_Items: ; 39196
 	jp .Use
 ; 3834d
 
+.XSpDef:
+	call .XItem
+	jp c, .DontUse
+	call AI_SpDef
+	jp .Use
+
 .XItem: ; 3834d (e:434d)
 	ld a, [EnemyTurnsTaken]
 	and a
@@ -596,6 +603,7 @@ ELSE
 	dbw X_DEFEND,     Function38547
 	dbw X_SPEED,      Function3854d
 	dbw X_SPECIAL,    Function38553
+	dbw X_SPDEF,      AI_SpDef
 	db $ff
 ENDC
 .MilitaryUse
@@ -826,12 +834,12 @@ AI_HealStatus: ; 384e0
 	ret
 ; 384f7
 
-Function384f7: ; 384f7
-	call AIUsedItemSound
-	ld hl, EnemySubStatus4
-	set SUBSTATUS_X_ACCURACY, [hl]
-	ld a, X_ACCURACY
-	jp Function38568
+; Function384f7: ; 384f7
+	; call AIUsedItemSound
+	; ld hl, EnemySubStatus4
+	; set SUBSTATUS_X_ACCURACY, [hl]
+	; jp Function38568
+
 ; 38504
 
 Function38504: ; 38504
@@ -897,7 +905,16 @@ Function3854d: ; 3854d
 Function38553: ; 38553
 	ld b, SP_ATTACK
 	ld a, X_SPECIAL
+	jr Function38557
 
+AI_SpDef:
+	ld b, SP_DEFENSE
+	ld a, X_SPDEF
+	jr Function38557
+
+Function384f7:
+	ld b, ACCURACY
+	ld a, X_ACCURACY
 Function38557:
 	ld [wd1f1], a
 	push bc
