@@ -94,6 +94,7 @@ AfterOakTalk:
 
 
 EGKRivalRematch:
+	loadfont
 	checkflag ENGINE_PLAYER_IS_FEMALE
 	iftrue .male_intro
 	writetext AzureBeforeRematchText
@@ -289,7 +290,8 @@ AzureBeforeBattleText:
 	line "good care of my"
 	cont "#MON."
 	
-	para "And now, here I am."
+	para "And now,"
+	line "here I am."
 	
 	para "I have risen up"
 	line "over those who"
@@ -491,7 +493,7 @@ HallwayOfFame_MapEventHeader: ; 0x1813f4
 
 	; people-events
 	db 2
-	person_event SPRITE_EGK_RIVAL, 9, 6, $7, 0, 0, -1, -1, 0, 0, 0, ObjectEvent, -1
-	person_event SPRITE_OAK, 15, 6, $7, 0, 0, -1, -1, 0, 0, 0, ObjectEvent, EVENT_MARY_AND_OAK_IN_LANCES_ROOM
+	person_event SPRITE_EGK_RIVAL, 7, 9, $7, 0, 0, -1, -1, 0, 0, 0, ObjectEvent, -1
+	person_event SPRITE_OAK, 13, 9, $7, 0, 0, -1, -1, 0, 0, 0, ObjectEvent, EVENT_MARY_AND_OAK_IN_LANCES_ROOM
 ; 0x181445
 
