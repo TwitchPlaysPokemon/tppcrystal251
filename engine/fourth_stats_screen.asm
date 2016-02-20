@@ -63,6 +63,7 @@ TN_PrintLocation:
 TN_PrintLV:
 	ld a, [TempMonCaughtLevel]
 	and $3f
+	jr z, .unknown
 	cp 1
 	jr z, .hatched
 	ld [Buffer2], a
@@ -77,12 +78,19 @@ TN_PrintLV:
 	ld de, .egg
 	hlcoord 1, 13
 	jp PlaceString
+.unknown
+	hlcoord 1, 13
+	ld de, .str_unknown
+	jp PlaceString
 	
 .metat
 	db "Met at Lv.@"
 	
 .egg
 	db "Hatched from EGG@"
+
+.str_unknown
+	db "Met in a trade@"
 
 TN_PrintCharacteristics:
 	ld hl, TempMonDVs
