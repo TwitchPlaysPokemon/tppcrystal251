@@ -167,7 +167,7 @@ ItemEffects: ; e73c
 	dw DragonScale
 	dw BerserkGene
 	dw Item99
-	dw Item9A
+	dw XSpDef
 	dw Item9B
 	dw SacredAsh
 	dw HeavyBall
@@ -2349,6 +2349,7 @@ XAttack:
 XDefend:
 XSpeed:
 XSpecial:
+XSpDef:
 XAccuracy: ; f4c5
 	call Functionf789
 
@@ -2383,10 +2384,11 @@ XAccuracy: ; f4c5
 ; f504
 
 Tablef504: ; f504
-	db X_ATTACK,  ATTACK
-	db X_DEFEND,  DEFENSE
-	db X_SPEED,   SPEED
-	db X_SPECIAL, SP_ATTACK
+	db X_ATTACK,   ATTACK
+	db X_DEFEND,   DEFENSE
+	db X_SPEED,    SPEED
+	db X_SPECIAL,  SP_ATTACK
+	db X_SPDEF,    SP_DEFENSE
 	db X_ACCURACY, ACCURACY
 ; f50c
 

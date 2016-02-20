@@ -298,6 +298,7 @@ AI_Items: ; 39196
 	dbw X_DEFEND,     .XDefend
 	dbw X_SPEED,      .XSpeed
 	dbw X_SPECIAL,    .XSpecial
+	dbw X_SPDEF,      .XSpDef
 	db $ff
 ; 381be
 
@@ -515,6 +516,12 @@ AI_Items: ; 39196
 	jp .Use
 ; 3834d
 
+.XSpDef:
+	call .XItem
+	jp c, .DontUse
+	call AI_SpDef
+	jp .Use
+
 .XItem: ; 3834d (e:434d)
 	ld a, [EnemyTurnsTaken]
 	and a
@@ -596,6 +603,7 @@ ELSE
 	dbw X_DEFEND,     Function38547
 	dbw X_SPEED,      Function3854d
 	dbw X_SPECIAL,    Function38553
+	dbw X_SPDEF,      AI_SpDef
 	db $ff
 ENDC
 .MilitaryUse
@@ -897,6 +905,11 @@ Function3854d: ; 3854d
 Function38553: ; 38553
 	ld b, SP_ATTACK
 	ld a, X_SPECIAL
+	jr Function38557
+
+AI_SpDef:
+	ld b, SP_DEFENSE
+	ld a, X_SPDEF
 	jr Function38557
 
 Function384f7:

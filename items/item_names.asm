@@ -151,7 +151,7 @@
 	db "DRAGON SCALE@"
 	db "BERSERK GENE@"
 	db "TERU-SAMA@"
-	db "TERU-SAMA@"
+	db "X SP. DEF@"
 	db "TERU-SAMA@"
 	db "SACRED ASH@"
 	db "HEAVY BALL@"
