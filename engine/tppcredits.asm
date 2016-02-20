@@ -117,7 +117,7 @@ TPPCredits_LogoSceneInit::
 	call FarDecompress
 	ld de, $d600
 	ld hl, VTiles1
-	lb bc, BANK(TPPCredits), $8B
+	lb bc, BANK(TPPCredits), $8C
 	call Request2bpp
 	
 ; Copy Twitch Plays
@@ -326,6 +326,8 @@ TPPCredits_MainSceneInit::
 	ld bc, 8 * 4
 	call ByteFill
 	
+	ld a, $ff
+	ld [TC_ScrollEffectsTable + 1], a
 	ld a, $20
 	ld [hBGMapAddress], a
 	ld a, $9a
@@ -465,7 +467,6 @@ TC_Main_Title:
 	ld a, [hli]
 	ld d, a
 	push hl
-	call InitTransitionIn1
 	ld a, 1
 	call DoScrollerTransition
 	ld b, SCROLLER_DELAY
@@ -514,11 +515,9 @@ TC_Main_Subtitle:
 	ld a, [TC_CurSubtitlePos]
 	and a
 	jr nz, .bottom
-	call InitTransitionIn2
 	ld a, 2
 	jr .dotrans
 .bottom
-	call InitTransitionIn3
 	ld a, 3
 .dotrans
 	call DoScrollerTransition
@@ -601,23 +600,67 @@ UpdateCreditsBox:
 	ld [hBGMapMode], a
 	ret
 	
-InitTransitionIn1:
-	hlcoord 1, 1
-	call PlaceString 
-	; TODO
+InitTransitionIn:
+	ld a, c
+	ld [hli], a
+	ld a, [de]
+	ld [hli], a
+	inc de
+	inc c
+	dec b
+	jr nz, InitTransitionIn
 	ret
+	
+InitTransitionIn1:
+; top row in
+	hlcoord 1, 1
+	call PlaceString
+	ld a, $ff
+	ld [TC_ScrollEffectsTable + 17], a
+	ld hl, TC_ScrollEffectsTable
+	ld de, TextTransitionIn1
+	lb bc, 8, 64
+	jp InitTransitionIn
 	
 InitTransitionIn2:
+; middle row in
 	hlcoord 1, 3
-	call PlaceString 
-	; TODO
-	ret
+	call PlaceString
+	ld a, $ff
+	ld [TC_ScrollEffectsTable + 33], a
+	ld hl, TC_ScrollEffectsTable + 16
+	ld de, TextTransitionIn2
+	lb bc, 8, 53
+	jp InitTransitionIn
 	
 InitTransitionIn3:
+; bottom row in
 	hlcoord 1, 5
-	call PlaceString 
-	; TODO
+	call PlaceString
+	ld hl, TC_ScrollEffectsTable + 32
+	ld de, TextTransitionIn3
+	lb bc, 8, 37
+	jp InitTransitionIn
+	
+InitTransitionOut:
+	xor a
+.loop
+	ld [hli], a
+	inc hl
+	inc a
+	dec b
+	jr nz, .loop
 	ret
+	
+InitTransitionOut1:
+	ld b, 24
+	ld hl, TC_ScrollEffectsTable
+	jp InitTransitionOut
+	
+InitTransitionOut2:
+	ld b, 16
+	ld hl, TC_ScrollEffectsTable + 16
+	jp InitTransitionOut
 	
 DoScrollerTransition:
 ; 1 = top row in
@@ -626,16 +669,26 @@ DoScrollerTransition:
 ; 4 = all out
 ; 5 = all except top out
 	ld [TC_ScrollerStateReq], a
+	dec a
+	ld hl, .functable
+	rst JumpTable
 	call UpdateCreditsBox
 	ld a, [TC_ScrollerStateReq]
 	ld [TC_ScrollerState], a
 .loop
 	call UpdateCommandChaos_Main
 	call TC_DelayFrame
-	;ld a, [TC_ScrollerState]
-	;and a
-	;jr nz, .loop ; not done yet
+	ld a, [TC_ScrollerState]
+	and a
+	jr nz, .loop ; not done yet
 	ret
+	
+.functable
+	dw InitTransitionIn1
+	dw InitTransitionIn2
+	dw InitTransitionIn3
+	dw InitTransitionOut1
+	dw InitTransitionOut2
 	
 ClearCommandChaos:
 	call ClearSprites
@@ -819,7 +872,7 @@ UpdatePokepic::
 	ld a, [TC_CurSprSpeedCount]
 	dec a
 	ld [TC_CurSprSpeedCount], a
-	jr nz, StripTrick_Main
+	jp nz, UpdateScroller
 	ld a, [TC_CurSprSpeed]
 	ld [TC_CurSprSpeedCount], a
 	ld a, [TC_CurSprPos]
@@ -865,7 +918,100 @@ UpdatePokepic::
 	cp SPRITE_Y + 32
 	jr nz, .loop
 	
-StripTrick_Main::
+UpdateScroller::
+	ld a, [TC_ScrollerState]
+	and a
+	jp z, StripTrick_Main
+	dec a
+	ld d, 0
+	ld hl, .functable
+	rst JumpTable
+	jp StripTrick_Main
+	
+.functable
+	dw .toprowin
+	dw .middlerowin
+	dw .bottomrowin
+	dw .allout
+	dw .allexcepttopout
+	
+.toprowin
+	ld hl, TC_ScrollEffectsTable
+	jr .doin
+	
+.middlerowin
+	ld hl, TC_ScrollEffectsTable + 16
+	jr .doin
+	
+.bottomrowin
+	ld hl, TC_ScrollEffectsTable + 32
+	jr .doin
+	
+.doin
+	ld c, 8
+	push hl
+.loopin
+	ld e, [hl]
+	dec e
+	push hl
+	ld hl, TextTransitionDelta
+	add hl, de
+	ld b, [hl]
+	pop hl
+	ld a, e
+	ld [hli], a
+	ld a, [hl]
+	sub b
+	ld [hli], a
+	dec c
+	jr nz, .loopin
+	pop hl
+	ld a, [hl]
+	and a
+	ret nz
+	xor a
+	ld [TC_ScrollerState], a
+	ret
+	
+.allout
+	ld hl, TC_ScrollEffectsTable
+	ld c, 24
+	jr .doout
+
+.allexcepttopout
+	ld hl, TC_ScrollEffectsTable + 16
+	ld c, 16
+	jr .doout
+	
+.doout
+	push hl
+.loopout
+	ld e, [hl]
+	push hl
+	ld hl, TextTransitionDelta
+	add hl, de
+	ld b, [hl]
+	pop hl
+	inc e
+	ld a, e
+	ld [hli], a
+	ld a, [hl]
+	cp $ff ; end marker
+	jr z, .skipout
+	add b
+	ld [hli], a
+	dec c
+	jr nz, .loopout
+.skipout
+	pop hl
+	ld a, [hl]
+	cp 64
+	ret nz
+	xor a
+	ld [TC_ScrollerState], a
+	ret
+	
+StripTrick_Main:
 ; update bg scrolling
 	ld a, [hSCX]
 	ld d, a
@@ -944,7 +1090,83 @@ StripTrick_Main::
 	call $ff80
 	ld a, Sprites >> 8
 	ld [hPushOAMAddress], a
-	ret
+	
+UpdateScroller2::
+	ld hl, TC_ScrollEffectsTable + 1
+	ld b, 96 
+	lb de, 135, 24
+.loop
+	ld a, [hli]
+	cp 144
+	jr nc, .done ; out of screen
+	cp b
+	jp c, .toolate
+	ld c, a
+.loop2
+	cp b
+	jr z, .notblank
+.wait2
+	ld a, [rLY]
+	cp b
+	jr nz, .wait2
+	ld a, 136
+	sub b
+	ld [rSCY], a
+	inc b
+	ld a, c
+	jr .loop2
+	
+.notblank
+	inc hl
+	inc d
+	ld a, d
+	and $7
+	jr nz, .skipinc8
+	ld a, d
+	add 8
+	ld d, a
+.skipinc8
+	ld a, [rLY]
+	cp b
+	jr nz, .skipinc8
+	ld a, d
+	sub b
+	ld [rSCY], a
+	ld a, b
+	cp 143
+	ret z ; we are at the last line now
+	inc b
+	dec e
+	jr nz, .loop
+	
+.done
+	ld a, b
+	cp 144
+	ret z ; we are at the last line now
+.wait3
+	ld a, [rLY]
+	cp b
+	jr nz, .wait3
+	ld a, 136
+	sub b
+	ld [rSCY], a
+	inc b
+	jr .done
+	
+.toolate
+	inc hl
+	inc d
+	ld a, d
+	and $7
+	jr nz, .skipinc82
+	ld a, d
+	add 8
+	ld d, a
+.skipinc82
+	inc b
+	dec e
+	jr z, .done
+	jp .loop
 	
 TC_DrawGraphic:
 	push bc
