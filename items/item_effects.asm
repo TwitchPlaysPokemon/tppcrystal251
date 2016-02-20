@@ -2299,12 +2299,12 @@ UnknownText_0xf47d: ; 0xf47d
 ; 0xf482
 
 
-XAccuracy: ; f482
-	ld hl, PlayerSubStatus4
-	bit SUBSTATUS_X_ACCURACY, [hl]
-	jp nz, WontHaveAnyEffect_NotUsedMessage
-	set SUBSTATUS_X_ACCURACY, [hl]
-	jp Functionf789
+; XAccuracy: ; f482
+	; ld hl, PlayerSubStatus4
+	; bit SUBSTATUS_X_ACCURACY, [hl]
+	; jp nz, WontHaveAnyEffect_NotUsedMessage
+	; set SUBSTATUS_X_ACCURACY, [hl]
+	; jp Functionf789
 ; f48f
 
 
@@ -2348,7 +2348,8 @@ DireHit: ; f4b8
 XAttack:
 XDefend:
 XSpeed:
-XSpecial: ; f4c5
+XSpecial:
+XAccuracy: ; f4c5
 	call Functionf789
 
 	ld a, [CurItem]
@@ -2386,6 +2387,7 @@ Tablef504: ; f504
 	db X_DEFEND,  DEFENSE
 	db X_SPEED,   SPEED
 	db X_SPECIAL, SP_ATTACK
+	db X_ACCURACY, ACCURACY
 ; f50c
 
 

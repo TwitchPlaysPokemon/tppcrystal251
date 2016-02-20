@@ -826,12 +826,12 @@ AI_HealStatus: ; 384e0
 	ret
 ; 384f7
 
-Function384f7: ; 384f7
-	call AIUsedItemSound
-	ld hl, EnemySubStatus4
-	set SUBSTATUS_X_ACCURACY, [hl]
-	ld a, X_ACCURACY
-	jp Function38568
+; Function384f7: ; 384f7
+	; call AIUsedItemSound
+	; ld hl, EnemySubStatus4
+	; set SUBSTATUS_X_ACCURACY, [hl]
+	; jp Function38568
+
 ; 38504
 
 Function38504: ; 38504
@@ -897,7 +897,11 @@ Function3854d: ; 3854d
 Function38553: ; 38553
 	ld b, SP_ATTACK
 	ld a, X_SPECIAL
+	jr Function38557
 
+Function384f7:
+	ld b, ACCURACY
+	ld a, X_ACCURACY
 Function38557:
 	ld [wd1f1], a
 	push bc
