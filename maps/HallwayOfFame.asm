@@ -24,7 +24,7 @@ RealChampScript: ; 0x180e74
 	applymovement $0, MovementToChamp
 	playmusic MUSIC_RIVAL_RB
 	loadfont
-	spriteface 2, 1
+	spriteface 2, LEFT
 	checkevent EVENT_OAK_DEFEATED
 	iftrue EGKRivalRematch
 	checkflag ENGINE_PLAYER_IS_FEMALE
@@ -69,8 +69,8 @@ OakAppears:
 	closetext
 	appear $3
 	applymovement $3, OakWalksUp
-	spriteface $0, $2
-	spriteface $2, $2
+	spriteface $0, DOWN
+	spriteface $2, DOWN
 	loadfont
 	checkevent EVENT_OAK_DEFEATED
 	iftrue CheckDexForMtSilver
@@ -78,17 +78,19 @@ OakAppears:
 	waitbutton
 	closetext
 	applymovement $3, OakWalkBackToPlayer
+	spriteface 0, LEFT
+	loadfont
 	writetext OakAfterRivalTalkToPlayer
 AfterOakTalk:
 	waitbutton
 	closetext
-	applymovement $2, OakRepositions
-	follow $2, $0
-	spriteface $3, $1
-	applymovement $2, OakWalksUp
+	applymovement $3, OakRepositions
+	follow $3, $0
+	spriteface $3, UP
+	applymovement $3, OakWalksUp
 	stopfollow
 	playsound SFX_EXIT_BUILDING
-	disappear $2
+	disappear $3
 	applymovement $0, MovementData_0x180f55
 	playsound SFX_EXIT_BUILDING
 	disappear $0
@@ -144,6 +146,7 @@ CheckDexForMtSilver:
 	waitbutton
 	closetext
 	applymovement $3, OakWalkBackToPlayer
+	spriteface 0, LEFT
 	loadfont
 	checkevent EVENT_ALLOWED_INTO_ROUTE_28
 	iftrue AfterOakTalk
@@ -255,8 +258,6 @@ MovementToChamp:
 	step_end
 
 OakWalksUp:
-	step_up
-	step_up
 	step_up
 	step_up
 	step_up
@@ -452,7 +453,7 @@ UnknownText_0x18121b: ; 0x18121b
 	
 	para "I came when I"
 	line "heard you beat"
-	cont "the Elite Four!"
+	cont "the ELITE FOUR!"
 	
 	para "But, when I got"
 	line "here, you had"
@@ -501,6 +502,6 @@ HallwayOfFame_MapEventHeader: ; 0x1813f4
 	; people-events
 	db 2
 	person_event SPRITE_EGK_RIVAL, 7, 9, $6, 0, 0, -1, -1, 0, 0, 0, ObjectEvent, -1
-	person_event SPRITE_OAK, 13, 9, $7, 0, 0, -1, -1, 0, 0, 0, ObjectEvent, EVENT_MARY_AND_OAK_IN_LANCES_ROOM
+	person_event SPRITE_OAK, 12, 9, $7, 0, 0, -1, -1, 0, 0, 0, ObjectEvent, EVENT_MARY_AND_OAK_IN_LANCES_ROOM
 ; 0x181445
 
