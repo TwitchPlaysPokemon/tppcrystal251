@@ -769,6 +769,9 @@
 	const BLUE_RB_5A
 	const BLUE_RB_5B
 	const BLUE_RB_5C
+	const BLUE_RB_6A
+	const BLUE_RB_6B
+	const BLUE_RB_6C
 
 	trainerclass BLUE_RB_F
 	trainerclass BROCK_RB

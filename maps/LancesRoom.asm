@@ -77,72 +77,25 @@ LanceScript_0x180e7b: ; 0x180e7b
 	waitbutton
 	closetext
 AfterLanceFight:
+	special RestartMapMusic
 	playsound SFX_ENTER_DOOR
 	changeblock $4, $0, $b
 	reloadmappart
 	closetext
 	setevent EVENT_LANCES_ROOM_ENTRANCE_CLOSED
-	musicfadeout MUSIC_BEAUTY_ENCOUNTER, $10
-	pause 30
-	showemote $0, $2, 15
-	spriteface $2, $0
-	pause 10
-	spriteface $0, $0
-	appear $3
-	applymovement $3, MovementData_0x180f41
-	loadfont
-	writetext UnknownText_0x1811dd
-	waitbutton
-	closetext
-	appear $4
-	applymovement $4, MovementData_0x180f46
-	follow $3, $4
-	applymovement $3, MovementData_0x180f49
-	stopfollow
-	spriteface $4, $1
-	spriteface $2, $2
-	loadfont
-	checkevent EVENT_OAK_DEFEATED
-	iftrue CheckDexForMtSilver
-	writetext UnknownText_0x18121b
-AfterOakTalk:
-	waitbutton
-	closetext
-	applymovement $3, MovementData_0x180f4c
-	spriteface $0, $2
-	loadfont
-	checkevent EVENT_OAK_DEFEATED
-	iftrue MaryKnowsYoureChamp
-	writetext UnknownText_0x18134b
-NoInterviewsEver:
-	waitbutton
-	closetext
-	applymovement $2, MovementData_0x180f4f
-	spriteface $0, $1
 	loadfont
 	writetext UnknownText_0x18137b
+	special HealParty
+	playsound SFX_POTION
+	waitsfx
+	buttonsound
+	writetext LanceAfterHeal
 	waitbutton
 	closetext
-	follow $2, $0
-	spriteface $3, $1
-	spriteface $4, $1
-	applymovement $2, MovementData_0x180f53
-	stopfollow
-	playsound SFX_EXIT_BUILDING
-	disappear $2
-	applymovement $0, MovementData_0x180f55
-	playsound SFX_EXIT_BUILDING
-	disappear $0
-	applymovement $3, MovementData_0x180f57
-	showemote $0, $3, 15
-	loadfont
-	writetext UnknownText_0x1813c5
-	pause 30
-	closetext
-	applymovement $3, MovementData_0x180f5b
+	applymovement $0, MovementData_0x180f53
 	special Function8c084
 	pause 15
-	warpfacing $1, GROUP_HALL_OF_FAME, MAP_HALL_OF_FAME, $4, $d
+	warpfacing $1, GROUP_HALLWAY_OF_FAME, MAP_HALLWAY_OF_FAME, $4, $d
 	end
 
 LanceRematch:
@@ -162,39 +115,6 @@ LanceRematch:
 	waitbutton
 	closetext
 	jump AfterLanceFight
-
-
-CheckDexForMtSilver:
-	checkevent EVENT_ALLOWED_INTO_ROUTE_28
-	iftrue AfterOakTalk
-	checkevent EVENT_OAK_KNOWS_DEX_FULL
-	iftrue OakAllowsRoute28
-	writetext OakRematchText
-	buttonsound
-	writetext OakCheckDexAtHoF
-	special ProfOaksPCBoot
-	special RateIntoScriptVar
-	if_less_than 251, DexNotFull
-	writetext OakFullDex
-	buttonsound
-	writetext OakCongrats
-	jump AfterOakTalk
-
-DexNotFull:
-	writetext OakDexNotFull
-	jump AfterOakTalk
-
-OakAllowsRoute28:
-	writetext OakRematchText
-	buttonsound
-	writetext OakCongrats
-	setevent EVENT_ALLOWED_INTO_ROUTE_28
-	jump AfterOakTalk
-
-MaryKnowsYoureChamp:
-	writetext MarySecondText
-	jump NoInterviewsEver
-; 0x180f33
 
 LanceBeforeRematchText:
 	text "There's no need"
@@ -225,78 +145,6 @@ LanceAfterRematch:
 
 	done
 
-OakRematchText:
-	text "PROF.OAK: Ah,"
-	line "<PLAY_G>!"
-
-	para "Congratulations"
-	line "on being able to"
-	cont "prove yourself"
-	cont "amongst the best"
-	cont "#MON TRAINERS"
-	cont "in the world."
-	done
-
-OakCheckDexAtHoF:
-	text "May I ask how your"
-	line "#DEX is coming"
-	cont "along?"
-
-	done
-
-OakFullDex: 
-	text "Wow!"
-	line "The #DEX is"
-	cont "complete!"
-
-OakCongrats:
-	text "You're a true"
-	line "#MON master!"
-
-	para "Tell you what,"
-	line "<PLAY_G>. I'll make"
-
-	para "arrangements so"
-	line "that you can go to"
-	cont "MT.SILVER."
-
-	para "It's too dangerous"
-	line "for your average"
-
-	para "trainer, so it's"
-	line "off limits. But"
-
-	para "we can make an"
-	line "exception in your"
-	cont "case, <PLAY_G>."
-
-	para "The gate there is"
-	line "west of ROUTE 22."
-
-	para "Just remember to"
-	line "get a DIPLOMA"
-	cont "from CELADON as"
-	cont "proof of your"
-	cont "accomplishment."
-
-	done
-
-OakDexNotFull:
-	text "It seems your"
-	line "adventure is not"
-	cont "over yet."
-
-	para "Once you fill the"
-	line "#DEX come see"
-	cont "me in my LAB."
-
-	done 
-
-MarySecondText:
-	text "MARY: Let's inter-"
-	line "view the CHAMPION!"
-	done
-
 MovementData_0x180f33: ; 0x180f33
 	step_up
 	step_up
@@ -318,72 +166,14 @@ MovementData_0x180f3c: ; 0x180f3c
 	step_up
 	turn_head_right
 	step_end
-; 0x180f41
 
-MovementData_0x180f41: ; 0x180f41
-	big_step_up
-	big_step_up
-	big_step_up
-	turn_head_down
-	step_end
-; 0x180f46
-
-MovementData_0x180f46: ; 0x180f46
-	step_up
-	step_up
-	step_end
-; 0x180f49
-
-MovementData_0x180f49: ; 0x180f49
-	step_left
-	turn_head_right
-	step_end
-; 0x180f4c
-
-MovementData_0x180f4c: ; 0x180f4c
-	big_step_up
-	turn_head_right
-	step_end
-; 0x180f4f
-
-MovementData_0x180f4f: ; 0x180f4f
-	step_up
-	step_left
-	turn_head_down
-	step_end
-; 0x180f53
 
 MovementData_0x180f53: ; 0x180f53
+	step_up
 	step_up
 	step_end
 ; 0x180f55
 
-MovementData_0x180f55: ; 0x180f55
-	step_up
-	step_end
-; 0x180f57
-
-MovementData_0x180f57: ; 0x180f57
-	step_up
-	step_right
-	turn_head_up
-	step_end
-; 0x180f5b
-
-MovementData_0x180f5b: ; 0x180f5b
-	big_step_right
-	big_step_right
-	big_step_left
-	big_step_left
-	big_step_left
-	big_step_right
-	big_step_right
-	big_step_right
-	big_step_left
-	big_step_left
-	turn_head_up
-	step_end
-; 0x180f67
 
 UnknownText_0x180f67: ; 0x180f67
 	text "LANCE: I've been"
@@ -405,12 +195,6 @@ UnknownText_0x180f67: ; 0x180f67
 
 	para "the stronger of"
 	line "the two of us."
-
-	para "As the most power-"
-	line "ful trainer and as"
-
-	para "the #MON LEAGUE"
-	line "CHAMPION<...>"
 
 	para "I, LANCE the drag-"
 	line "on master, accept"
@@ -436,6 +220,7 @@ UnknownText_0x1810a4: ; 0x1810a4
 	done
 ; 0x181132
 
+
 UnknownText_0x181132: ; 0x181132
 	text "<...>Whew."
 
@@ -454,74 +239,59 @@ UnknownText_0x181132: ; 0x181132
 
 	para "grow strong with"
 	line "your #MON."
+
+	para "You’re now the"
+	line "#MON LEAGUE"
+	cont "CHAMPION!"
+
+	para "…Or, you would"
+	line "have been, but you"
+	cont "have one more"
+	cont "challenge ahead."
+	
+	para "Their name is<...>"
+	line "<GREEN>"
 	done
+
+	
+LanceAzureTalk:
+	text "She beat the"
+	line "ELITE FOUR"
+	cont "before you."
+	
+	para "She is the #MON"
+	line "LEAGUE CHAMPION!"
+	done
+LanceRustTalk:
+	text "He beat the"
+	line "ELITE FOUR"
+	cont "before you."
+	
+	para "He is the #MON"
+	line "LEAGUE CHAMPION!"
+	done
+
 ; 0x1811dd
 
-UnknownText_0x1811dd: ; 0x1811dd
-	text "MARY: Oh, no!"
-	line "It's all over!"
-
-	para "PROF.OAK, if you"
-	line "weren't so slow<...>"
-	done
-; 0x18121b
-
-UnknownText_0x18121b: ; 0x18121b
-	text "PROF.OAK: Ah,"
-	line "<PLAY_G>!"
-
-	para "It's been a long"
-	line "while."
-
-	para "You certainly look"
-	line "more impressive."
-
-	para "Your conquest of"
-	line "the LEAGUE is just"
-	cont "fantastic!"
-
-	para "Your dedication,"
-	line "trust and love for"
-
-	para "your #MON made"
-	line "this happen."
-
-	para "Your #MON were"
-	line "outstanding too."
-
-	para "Because they be-"
-	line "lieved in you as a"
-
-	para "trainer, they per-"
-	line "severed."
-
-	para "Congratulations,"
-	line "<PLAY_G>!"
-	done
-; 0x18134b
-
-UnknownText_0x18134b: ; 0x18134b
-	text "MARY: Let's inter-"
-	line "view the brand new"
-	cont "CHAMPION!"
-	done
-; 0x18137b
-
 UnknownText_0x18137b: ; 0x18137b
-	text "LANCE: This is"
-	line "getting to be a"
-	cont "bit too noisy<...>"
+	text "Your final battle"
+	line "awaits, but first<...>"
+	done
 
-	para "<PLAY_G>, could you"
-	line "come with me?"
+LanceAfterHeal:
+	text "Your #MON are"
+	line "healed."
+	
+	para "Fight with your"
+	line "full power!"
 	done
 ; 0x1813c5
 
-UnknownText_0x1813c5: ; 0x1813c5
-	text "MARY: Oh, wait!"
-	line "We haven't done"
-	cont "the interview!"
-	done
+;UnknownText_0x1813c5: ; 0x1813c5
+;	text "MARY: Oh, wait!"
+;	line "We haven't done"
+;	cont "the interview!"
+;	done
 ; 0x1813f4
 
 ; Text_OakBeforeBattle:
@@ -580,8 +350,8 @@ LancesRoom_MapEventHeader: ; 0x1813f4
 	db 4
 	warp_def $17, $4, 3, GROUP_KARENS_ROOM, MAP_KARENS_ROOM
 	warp_def $17, $5, 4, GROUP_KARENS_ROOM, MAP_KARENS_ROOM
-	warp_def $1, $4, 1, GROUP_HALL_OF_FAME, MAP_HALL_OF_FAME
-	warp_def $1, $5, 2, GROUP_HALL_OF_FAME, MAP_HALL_OF_FAME
+	warp_def $1, $4, 1, GROUP_HALLWAY_OF_FAME, MAP_HALLWAY_OF_FAME
+	warp_def $1, $5, 2, GROUP_HALLWAY_OF_FAME, MAP_HALLWAY_OF_FAME
 
 	; xy triggers
 	db 2
@@ -592,9 +362,7 @@ LancesRoom_MapEventHeader: ; 0x1813f4
 	db 0
 
 	; people-events
-	db 3
+	db 1
 	person_event SPRITE_LANCE, 7, 9, $6, 0, 0, -1, -1, 0, 0, 0, LanceScript_0x180e7b, -1
-	person_event SPRITE_TEACHER, 11, 8, $7, 0, 0, -1, -1, 8 + PAL_OW_GREEN, 0, 0, ObjectEvent, EVENT_MARY_AND_OAK_IN_LANCES_ROOM
-	person_event SPRITE_OAK, 11, 8, $7, 0, 0, -1, -1, 0, 0, 0, ObjectEvent, EVENT_MARY_AND_OAK_IN_LANCES_ROOM
 ; 0x181445
 

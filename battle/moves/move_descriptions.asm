@@ -144,7 +144,7 @@
 	;dw ConstrictDescription rename the description pointer
 	dw FlashCannonDescription
 	dw AmnesiaDescription
-	dw KinesisDescription
+	dw WillOWispDescription
 	dw SoftboiledDescription
 	dw HiJumpKickDescription
 	dw GlareDescription
@@ -400,7 +400,7 @@ MegaKickDescription:
 
 RollingKickDescription:
 	db   "A fast, spinning"
-	next "kick.@"
+	next "kick. Can flinch@"
 
 SandAttackDescription:
 	db   "Reduces accuracy"
@@ -459,8 +459,8 @@ GunkShotDescription:
 	next "poison the target.@"
 
 TwineedleDescription:
-	db   "Jabs the foe twice"
-	next "using stingers.@"
+	db   "Jabs twice."
+	next "Can poison.@"
 
 PinMissileDescription:
 	db   "Fires pins that"
@@ -504,9 +504,6 @@ AcidDescription:
 
 EmberDescription:
 HeatWaveDescription:
-	db   "An attack that may"
-	next "inflict a burn.@"
-
 FlamethrowerDescription:
 	db   "An attack that may"
 	next "inflict a burn.@"
@@ -838,9 +835,9 @@ AmnesiaDescription:
 	db   "Sharply raises the"
 	next "user's SPCL.DEF.@"
 
-KinesisDescription:
-	db   "Reduces the foe's"
-	next "accuracy.@"
+;KinesisDescription:
+;	db   "Reduces the foe's"
+;	next "accuracy.@"
 
 SoftboiledDescription:
 	db   "Restores HP by 1/2"
@@ -1343,9 +1340,9 @@ DragonPulseDescription:
 	db   "Attacks foe with"
 	next "a shock wave.@"
 
-;WillOWispDescription:
-;	db   "An attack that"
-;	next "burns the foe.@"
+WillOWispDescription:
+	db   "An attack that"
+	next "burns the foe.@"
 
 MoonblastDescription:
 	db   "An attack that may"

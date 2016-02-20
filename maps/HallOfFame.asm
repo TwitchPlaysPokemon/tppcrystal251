@@ -109,100 +109,36 @@ MovementData_0x1814a4: ; 0x1814a4
 ; 0x1814a6
 
 UnknownText_0x1814a6: ; 0x1814a6
-	text "LANCE: It's been a"
-	line "long time since I"
-	cont "last came here."
 
-	para "This is where we"
-	line "honor the LEAGUE"
+	text "OAK: Er-hem!"
+	line "Congratulations"
+	cont "<PLAY_G>!"
 
-	para "CHAMPIONS for all"
-	line "eternity."
+	para "This floor is the"
+	line "#MON HALL OF"
+	cont "FAME!"
 
-	para "Their courageous"
-	line "#MON are also"
-	cont "inducted."
+	para "#MON LEAGUE"
+	line "champions are"
+	cont "honored for their"
+	cont "exploits here!"
 
-	para "Here today, we"
-	line "witnessed the rise"
+	para "Their #MON are"
+	line "also recorded in"
+	cont "the HALL OF FAME!"
 
-	para "of a new LEAGUE"
-	line "CHAMPION--a"
+	para "<PLAY_G>! You have"
+	line "endeavored hard"
+	cont "to become the new"
+	cont "LEAGUE champion!"
 
-	para "trainer who feels"
-	line "compassion for,"
-
-	para "and trust toward,"
-	line "all #MON."
-
-	para "A trainer who"
-	line "succeeded through"
-
-	para "perseverance and"
-	line "determination."
-
-	para "The new LEAGUE"
-	line "CHAMPION who has"
-
-	para "all the makings"
-	line "of greatness!"
-
-	para "<PLAY_G>, allow me"
-	line "to register you"
-
-	para "and your partners"
-	line "as CHAMPIONS!"
+	para "Congratulations,"
+	line "<PLAY_G>, you and"
+	cont "your #MON are"
+	cont "HALL OF FAMERs!"
 	done
-; 0x181678
 
-; ElmText1:
-	; text "ELM: Ah, <PLAY_G>!"
-	
-	; para "Before you do"
-	; line "that, I wanted to"
-	; cont "ask you something."
-	
-	; para "You have been all"
-	; line "over both JOHTO"
-	; cont "and KANTO."
-	
-	; para "You've caught every"
-	; line "#MON out there,"
 
-	;para "and defeated the"
-	;line "greatest trainers."
-
-	; para "That's why I want"
-	; line "to challenge you,"
-	; cont "<PLAY_G>."
-	
-	; para "To help me see"
-	; line "just how far away"
-	; cont "I really am."
-	; done
-
-; ElmText2:
-	; text "Well done!"
-	
-	; para "In all my life I"
-	; line "have never seen"
-	
-	; para "such an intense"
-	; line "battle, let alone"
-	
-	; para "participated in"
-	; line "one."
-	
-	; para "I have nothing"
-	; line "more to say."
-	
-	; para "<PLAY_G>!"
-	; line "Go forth and re-"
-	
-	; para "gister your #-"
-	; line "MON for all poste-"
-	; cont "rity!"
-	; done
 
 HallOfFame_MapEventHeader: ; 0x181678
 	; filler
@@ -210,8 +146,8 @@ HallOfFame_MapEventHeader: ; 0x181678
 
 	; warps
 	db 2
-	warp_def $d, $4, 3, GROUP_LANCES_ROOM, MAP_LANCES_ROOM
-	warp_def $d, $5, 4, GROUP_LANCES_ROOM, MAP_LANCES_ROOM
+	warp_def $d, $4, 3, GROUP_HALLWAY_OF_FAME, MAP_HALLWAY_OF_FAME
+	warp_def $d, $5, 4, GROUP_HALLWAY_OF_FAME, MAP_HALLWAY_OF_FAME
 
 	; xy triggers
 	db 0
@@ -222,7 +158,7 @@ HallOfFame_MapEventHeader: ; 0x181678
 	; people-events
 	; db 2
 	db 1
-	person_event SPRITE_LANCE, 16, 8, $7, 0, 0, -1, -1, 0, 0, 0, ObjectEvent, -1
+	person_event SPRITE_OAK, 16, 8, $7, 0, 0, -1, -1, 0, 0, 0, ObjectEvent, -1
 	; person_event SPRITE_ELM, 12, 8, $7, 0, 0, -1, -1, 0, 0, 0, ObjectEvent, EVENT_ELM_VISIBLE_IN_HALLOFFAME
 ; 0x181695
 

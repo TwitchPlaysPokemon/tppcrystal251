@@ -36,7 +36,7 @@ HoOhScript_0x77244: ; 0x77244
 	pause 15
 	closetext
 	writecode VAR_BATTLETYPE, BATTLETYPE_FORCEITEM
-	loadpokedata HO_OH, 99
+	loadpokedata HO_OH, 100
 	startbattle
 	writebyte HO_OH
 	special SpecialMonCheck
