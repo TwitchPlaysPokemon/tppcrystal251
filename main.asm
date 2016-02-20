@@ -8345,7 +8345,7 @@ Functiond906: ; d906
 	ld a, [MonType]
 	cp $1
 	jr z, .okay2
-	ld b, 0
+	ld b, 1
 .okay2
 	call Functione167 ;fill rest of stats
 .asm_da45
@@ -12543,6 +12543,8 @@ UnknownScript_0x122ce:: ; 0x122ce
 	iffalse UnknownScript_0x122e3
 	disappear $fe
 	loadfont
+	copybytetovar wd10c
+	if_greater_than 1, .GetMultipleItems
 	writetext UnknownText_0x122ee
 	playsound SFX_ITEM
 	pause 60
@@ -12551,8 +12553,18 @@ UnknownScript_0x122ce:: ; 0x122ce
 	end
 ; 0x122e3
 
+.GetMultipleItems
+	writetext FoundMultipleText
+	playsound SFX_ITEM
+	pause 60
+	itemnotify
+	closetext
+	end
+
 UnknownScript_0x122e3: ; 0x122e3
 	loadfont
+	copybytetovar wd10c
+	if_greater_than 1, .DontGetMultipleItems
 	writetext UnknownText_0x122ee
 	waitbutton
 	writetext UnknownText_0x122f3
@@ -12561,11 +12573,24 @@ UnknownScript_0x122e3: ; 0x122e3
 	end
 ; 0x122ee
 
+.DontGetMultipleItems
+	writetext FoundMultipleText
+	waitbutton
+	writetext UnknownText_0x122f3
+	waitbutton
+	closetext
+	end
+
 UnknownText_0x122ee: ; 0x122ee
 	; found @ !
 	text_jump UnknownText_0x1c0a1c
 	db "@"
 ; 0x122f3
+
+FoundMultipleText:
+	;found # @S!
+	text_jump MultipleGetItemBallText
+	db "@"
 
 UnknownText_0x122f3: ; 0x122f3
 	; But   can't carry any more items.
@@ -17875,7 +17900,7 @@ Group16Sprites: ; 145d2
 	db SPRITE_GRAMPS
 	db SPRITE_YOUNGSTER
 	db SPRITE_FISHER
-	db SPRITE_TEACHER
+	db SPRITE_EGK_RIVAL
 	db SPRITE_SUPER_NERD
 	db SPRITE_MACHOP
 	db SPRITE_BIKER
@@ -26575,7 +26600,7 @@ Function24d47: ; 24d47 draw a text box to hold mon options menu
 	ret
 ; 24d59
 
-Function24d59: ; 24d59 ;process monsubmenu, retern the cmmand to execute in a
+Function24d59: ; 24d59 ;process monsubmenu, return the command to execute in a
 .asm_24d59
 	ld a, $a0
 	ld [wcf91], a ;load 160 into ??

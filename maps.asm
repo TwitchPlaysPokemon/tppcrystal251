@@ -683,3 +683,6 @@ MtSilverRuinsB1_BlockData: INCBIN "maps/MtSilverRuinsB1.blk"
 
 SECTION "HallwayOfFame", ROMX
 INCLUDE "maps/HallwayOfFame.asm"
+
+SECTION "HallwayOfFame BlockData", ROMX
+HallwayOfFame_BlockData: INCBIN "maps/HallwayOfFame.blk"

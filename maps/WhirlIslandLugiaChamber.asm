@@ -36,7 +36,7 @@ LugiaScript_0x18c518: ; 0x18c518
 	pause 15
 	closetext
 	writecode VAR_BATTLETYPE, BATTLETYPE_FORCEITEM
-	loadpokedata LUGIA, 99
+	loadpokedata LUGIA, 100
 	startbattle
 	writebyte LUGIA
 	special SpecialMonCheck
