@@ -156,7 +156,14 @@ PlayCredits_109847:: ; 109847
 	lb bc, BANK(CopyrightGFX), $1d
 	call Request2bpp
 
+	ld a, [rSVBK]
+	push af
+	ld a, 1
+	ld [rSVBK], a
 	CheckEvent_a EVENT_BEAT_ELM
+	pop bc
+	ld a, b
+	ld [rSVBK], a
 	jr nz, .tpp
 	ld de, TheEndGFX
 	ld hl, $9400
