@@ -2721,8 +2721,8 @@ AerodactylEvosAttacks:
 	db 44, WING_ATTACK
 	db 50, STEEL_WING
 	db 56, CRUNCH; later gen move
-	db 62, SKY_ATTACK
-	db 68, ROCK_SLIDE
+	db 62, ROCK_SLIDE
+	db 68, SKY_ATTACK
 	db 74, AGILITY
 	db 80, IRON_HEAD
 	db 0 ; no more level-up moves
