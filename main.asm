@@ -67806,6 +67806,20 @@ Function8e961: ; 8e961 (23:6961)
 	ld [hl], $0
 	ret
 
+Function8e961_2: ; 8e961 (23:6961)
+	ld a, [wd265]
+	call ReadMonMenuIcon
+	ld [CurIcon], a
+	xor a
+	call GetIconGFX
+	ld de, $2420
+	ld a, $0
+	call Function8cfd6
+	ld hl, $2
+	add hl, bc
+	ld [hl], $0
+	ret
+
 Function8e97d: ; 8e97d (23:697d)
 	ld a, [wd265]
 	call ReadMonMenuIcon

@@ -55,6 +55,6 @@ GoldenrodNameRatersHouse_MapEventHeader: ; 0x55953
 	; people-events
 	db 2
 	person_event SPRITE_GENTLEMAN, 8, 6, $6, 0, 2, -1, -1, 0, 0, 0, GentlemanScript_0x5577c, -1
-	person_event SPRITE_GENTLEMAN, 8, 9, $6, 0, 2, -1, -1, 8 + PAL_OW_RED, 0, 0, MoveRelearnerScript, -1
+	person_event SPRITE_FISHER, 8, 9, $6, 0, 2, -1, -1, 8 + PAL_OW_RED, 0, 0, MoveRelearnerScript, -1
 ; 0x5597f
 
