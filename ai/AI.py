@@ -1672,18 +1672,20 @@ class AI(object):
                 print('about to die - i need to attack, i will use: '+str(tempy))
             return tempy
         
+        tempx = (int(self.jsonlist['battleState']['playerpokemon']['stat levels']['atk']) + int(self.jsonlist['battleState']['playerpokemon']['stat levels']['def']) + int(self.jsonlist['battleState']['playerpokemon']['stat levels']['satk']) + int(self.jsonlist['battleState']['playerpokemon']['stat levels']['sdef']) + int(self.jsonlist['battleState']['playerpokemon']['stat levels']['spd']) + int(self.jsonlist['battleState']['playerpokemon']['stat levels']['eva']) + int(self.jsonlist['battleState']['playerpokemon']['stat levels']['acc']))
         #baton pass
         if self.jsonlist['battleState']['enemy type'] == 'TRAINER':
-            tempx = -1
-            for tempmove in range (0, len(self.jsonlist['battleState']['enemypokemon']['moves'])):
-                if mondata[mycurrent]['moves'][tempmove]['effect'] == ('batonpass'):
-                    tempx = tempmove    
-            if tempx != -1 :
-                potentialAction = self.OptionalSwitch(mondata, traincurrent)
-                if potentialAction != 20:
-                    return potentialAction
-            if Debug_Code == 1:
-                print('in manual control')
+            if tempx > 0:
+                tempx = -1
+                for tempmove in range (0, len(self.jsonlist['battleState']['enemypokemon']['moves'])):
+                    if mondata[mycurrent]['moves'][tempmove]['effect'] == ('batonpass'):
+                        tempx = tempmove    
+                if tempx != -1 :
+                    potentialAction = self.OptionalSwitch(mondata, traincurrent)
+                    if potentialAction != 20:
+                        return potentialAction
+                if Debug_Code == 1:
+                    print('in manual control')
         return None
 
     #figure out best action to do in current battle
