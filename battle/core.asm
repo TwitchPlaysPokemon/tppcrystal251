@@ -2730,33 +2730,39 @@ Function3d0ea: ; 3d0ea
 	ld de, MUSIC_WILD_VICTORY
 	ld a, [wBattleMode]
 	dec a
-	jr nz, .asm_3d113
+	jr nz, .trainer
 	push de
 	call Function3ceaa
 	pop de
-	jr nz, .asm_3d11e
+	jr nz, .play_music
 	ld hl, wPayDayMoney
 	ld a, [hli]
 	or [hl]
-	jr nz, .asm_3d11e
+	jr nz, .play_music
 	ld a, [wc664]
 	and a
-	jr z, .asm_3d121
-	jr .asm_3d11e
+	jr z, .skip_music
+	jr .play_music
 
-.asm_3d113
+.trainer
 	ld de, MUSIC_GYM_VICTORY
 	call IsJohtoGymLeader
-	jr c, .asm_3d11e
+	jr c, .play_music
 	ld a, [OtherTrainerClass]
 	cp PROF_ELM
-	jr z, .asm_3d11e
+	jr z, .play_music
+	cp BLUE_RB
+	jr c, .normal_trainer_victory
+	ld a, [StatusFlags]
+	bit 5, a
+	jr z, .play_music
+.normal_trainer_victory
 	ld de, MUSIC_TRAINER_VICTORY
 
-.asm_3d11e
+.play_music
 	call PlayMusic
 
-.asm_3d121
+.skip_music
 	pop de
 	ret
 ; 3d123
