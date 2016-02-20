@@ -240,11 +240,11 @@ UnknownText_0x181132: ; 0x181132
 	para "grow strong with"
 	line "your #MON."
 
-	para "You’re now the"
+	para "You're now the"
 	line "#MON LEAGUE"
 	cont "CHAMPION!"
 
-	para "…Or, you would"
+	para "<...>Or, you would"
 	line "have been, but you"
 	cont "have one more"
 	cont "challenge ahead."
