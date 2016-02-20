@@ -990,10 +990,10 @@ class AI(object):
         mondata['identified'] = False
         mondata['myperishsong'] = 0
         mondata['trainperishsong'] = 0
-        if 'perishsong' in mondata['enemypokemon']['substatus']:
-            mondata['myperishsong'] = mondata['enemypokemon']['substatus']['perishsong']
-        if 'perishsong' in mondata['playerpokemon']['substatus']:
-            mondata['trainperishsong'] = mondata['playerpokemon']['substatus']['perishsong']
+        if 'perish song' in mondata['enemypokemon']['substatus']:
+            mondata['myperishsong'] = mondata['enemypokemon']['substatus']['perish song']
+        if 'perish song' in mondata['playerpokemon']['substatus']:
+            mondata['trainperishsong'] = mondata['playerpokemon']['substatus']['perish song']
 
         #boosts
         if isinstance(self.jsonlist['battleState']['weather'], dict):
