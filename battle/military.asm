@@ -17,6 +17,9 @@ ParseExternalAI:
 	ld hl, wMilitaryFlags
 	bit MILITARY_ON, [hl]
 	jr z, .okay
+	ld hl, PlayerSubStatus3
+	bit SUBSTATUS_BIDE, [hl]
+	jr nz, .okay
 	push af
 	callba Function3c410
 	pop bc

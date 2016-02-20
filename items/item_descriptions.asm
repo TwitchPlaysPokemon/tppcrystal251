@@ -185,7 +185,7 @@ ItemDescriptions:
 	dw DragonScaleDesc
 	dw BerserkGeneDesc
 	dw TeruSama18Desc
-	dw TeruSama19Desc
+	dw XSpDefDesc
 	dw TeruSama20Desc
 	dw SacredAshDesc
 	dw HeavyBallDesc
@@ -878,8 +878,9 @@ BerserkGeneDesc:
 TeruSama18Desc:
 	db   "?@"
 
-TeruSama19Desc:
-	db   "?@"
+XSpDefDesc:
+	db   "Raises SPECIAL"
+	next "DEFENSE. (1 BTL)@"
 
 TeruSama20Desc:
 	db   "?@"

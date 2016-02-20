@@ -1226,13 +1226,13 @@ Item2Attributes:
 	db ITEM
 	dn 0, 0 ; can't use
 
-; TERU-SAMA
-	dw $9999 ; price
+; X SP.DEF
+	dw 350 ; price
 	db NONE ; effect
 	db 0 ; param
-	db 0 ; can select + toss
+	db CANT_SELECT
 	db ITEM
-	dn 0, 0 ; can't use
+	dn 0, 6 ; ball
 
 ; TERU-SAMA
 	dw $9999 ; price

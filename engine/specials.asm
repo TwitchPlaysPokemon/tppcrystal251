@@ -197,6 +197,7 @@ SpecialsPointers:: ; c029
 	add_special BillBoxSwitchCheck
 	add_special BillBoxSwitch
 	add_special RateIntoScriptVar
+	add_special SpecialMoveRelearner
 	add_special SpecialNone
 ; c224
 
@@ -291,6 +292,9 @@ SpecialNameRater: ; c2b9
 	callba NameRater
 	ret
 ; c2c0
+SpecialMoveRelearner:
+	callba MoveRelearner
+	ret
 
 Functionc2c0: ; c2c0
 	call FadeToMenu
