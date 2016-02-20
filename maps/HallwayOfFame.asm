@@ -23,6 +23,8 @@ HallwayTrigger1: ; 0x180e3d
 RealChampScript: ; 0x180e74
 	applymovement $0, MovementToChamp
 	playmusic MUSIC_RIVAL_RB
+	loadfont
+	spriteface 2, 1
 	checkevent EVENT_OAK_DEFEATED
 	iftrue EGKRivalRematch
 	checkflag ENGINE_PLAYER_IS_FEMALE
@@ -46,15 +48,16 @@ RealChampScript: ; 0x180e74
 .charmander
 	loadtrainer BLUE_RB, BLUE_RB_5A
 .startbattle
-	winlosstext WinVsChampAzureText, LoseVsChampAzureText
+	winlosstext WinVsChampRustText, LoseVsChampRustText
 	checkflag ENGINE_PLAYER_IS_FEMALE
 	iftrue .got_rival_gender
 	loadvar OtherTrainerClass, BLUE_RB_F
-	winlosstext WinVsChampRustText, LoseVsChampRustText
+	winlosstext WinVsChampAzureText, LoseVsChampAzureText
 .got_rival_gender
 	writecode VAR_BATTLETYPE, BATTLETYPE_RIVAL_RB
 	startbattle
 	returnafterbattle
+	loadfont
 	checkflag ENGINE_PLAYER_IS_FEMALE
 	iftrue .male_postfight
 	writetext AzurePostFightText
@@ -62,6 +65,8 @@ RealChampScript: ; 0x180e74
 .male_postfight
 	writetext RustPostFightText
 OakAppears:
+	waitbutton
+	closetext
 	appear $3
 	applymovement $3, OakWalksUp
 	spriteface $0, $2
@@ -115,15 +120,16 @@ EGKRivalRematch:
 .charmander
 	loadtrainer BLUE_RB, BLUE_RB_6A
 .startbattle
-	winlosstext WinVsRematchAzureText, LoseVsRematchAzureText
+	winlosstext WinVsRematchRustText, LoseVsRematchRustText
 	checkflag ENGINE_PLAYER_IS_FEMALE
 	iftrue .got_rival_gender
 	loadvar OtherTrainerClass, BLUE_RB_F
-	winlosstext WinVsRematchRustText, LoseVsRematchRustText
+	winlosstext WinVsRematchAzureText, LoseVsRematchAzureText
 .got_rival_gender
 	writecode VAR_BATTLETYPE, BATTLETYPE_RIVAL_RB
 	startbattle
 	returnafterbattle
+	loadfont
 	checkflag ENGINE_PLAYER_IS_FEMALE
 	iftrue .male_postfight
 	writetext AzurePostRematchText
@@ -289,7 +295,8 @@ AzureBeforeBattleText:
 	line "good care of my"
 	cont "#MON."
 	
-	para "And now, here I am."
+	para "And now,"
+	line "here I am."
 	
 	para "I have risen up"
 	line "over those who"
@@ -385,9 +392,11 @@ LoseVsChampRustText:
 	done
 
 WinVsChampRustText:
-	text "Aw, man<...> this sucks."
-	line "Why did I gotta"
-	cont "lose to a chump"
+	text "Aw, man<...>"
+	line "this sucks."
+
+	para "Why did I gotta"
+	line "lose to a chump"
 	cont "like you?"
 	done
 
@@ -491,7 +500,7 @@ HallwayOfFame_MapEventHeader: ; 0x1813f4
 
 	; people-events
 	db 2
-	person_event SPRITE_EGK_RIVAL, 9, 6, $7, 0, 0, -1, -1, 0, 0, 0, ObjectEvent, -1
-	person_event SPRITE_OAK, 15, 6, $7, 0, 0, -1, -1, 0, 0, 0, ObjectEvent, EVENT_MARY_AND_OAK_IN_LANCES_ROOM
+	person_event SPRITE_EGK_RIVAL, 7, 9, $6, 0, 0, -1, -1, 0, 0, 0, ObjectEvent, -1
+	person_event SPRITE_OAK, 13, 9, $7, 0, 0, -1, -1, 0, 0, 0, ObjectEvent, EVENT_MARY_AND_OAK_IN_LANCES_ROOM
 ; 0x181445
 
