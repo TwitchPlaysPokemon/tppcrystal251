@@ -4752,10 +4752,10 @@ LarvitarEvosAttacks:
 	db 9, PURSUIT ; egg move
 	db 12, ROCK_THROW ; illegal move
 	db 15, SCREECH
-	db 18, STOMP ; egg move
+	db 18, STOMP
 	db 21, BITE
 	db 24, ROCK_POLISH
-	db 27, DIG ; later gen move
+	db 27, DIG 
 	db 31, CRUNCH
 	db 34, IRON_TAIL
 	db 37, ROCK_SLIDE ; later gen move

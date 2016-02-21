@@ -410,7 +410,7 @@ RivalRBGroup:
 	db $ff
 
 ; ================================
-	; Blackthorn City, Choose Charmander
+	; HoF 1 Choose Charmander
 	db "<GREEN>@"
 	db (1 << TRAINERTYPE_MOVES) | (1 << TRAINERTYPE_ITEM)
 
@@ -452,7 +452,7 @@ RivalRBGroup:
 
 	db $ff
 
-	; Blackthorn City, Choose Squirtle
+	; HoF 1
 	db "<GREEN>@"
 	db (1 << TRAINERTYPE_MOVES) | (1 << TRAINERTYPE_ITEM)
 
@@ -494,7 +494,7 @@ RivalRBGroup:
 
 	db $ff
 
-	; Blackthorn City, Choose Bulbasaur
+	; HOF 1
 	db "<GREEN>@"
 	db (1 << TRAINERTYPE_MOVES) | (1 << TRAINERTYPE_ITEM)
 
@@ -579,7 +579,7 @@ RivalRBGroup:
 
 	; lvl 100 rematch, Choose Squirtle
 	db "<GREEN>@"
-	db (1 << TRAINERTYPE_MOVES) | (1 << TRAINERTYPE_ITEM)
+	db (1 << TRAINERTYPE_MOVES) | (1 << TRAINERTYPE_ITEM) | (1 << TRAINERTYPE_MAXXP) 
 
 
 	db 100, PIDGEOT, SHARP_BEAK
@@ -622,7 +622,7 @@ RivalRBGroup:
 
 	; lvl 100 rematch, Choose Bulbasaur
 	db "<GREEN>@"
-	db (1 << TRAINERTYPE_MOVES) | (1 << TRAINERTYPE_ITEM)
+	db (1 << TRAINERTYPE_MOVES) | (1 << TRAINERTYPE_ITEM)  | (1 << TRAINERTYPE_MAXXP) 
 
 
 	db 100, PIDGEOT, SHARP_BEAK
