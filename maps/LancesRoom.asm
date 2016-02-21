@@ -83,15 +83,15 @@ AfterLanceFight:
 	reloadmappart
 	closetext
 	setevent EVENT_LANCES_ROOM_ENTRANCE_CLOSED
-	loadfont
-	writetext UnknownText_0x18137b
-	special HealParty
-	playsound SFX_POTION
-	waitsfx
-	buttonsound
-	writetext LanceAfterHeal
-	waitbutton
-	closetext
+	;loadfont
+	;writetext UnknownText_0x18137b
+	;special HealParty
+	;playsound SFX_POTION
+	;waitsfx
+	;buttonsound
+	;writetext LanceAfterHeal
+	;waitbutton
+	;closetext
 	applymovement $0, MovementData_0x180f53
 	special Function8c084
 	pause 15
