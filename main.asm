@@ -17506,7 +17506,7 @@ Group1Sprites: ; 146a1
 	db SPRITE_ROCKET
 	db SPRITE_SAILOR
 	db SPRITE_POKEFAN_F
-	db SPRITE_EKANS
+	db SPRITE_SWIMMER_GIRL
 	db SPRITE_TAUROS
 	db SPRITE_FRUIT_TREE
 	db SPRITE_ROCK ; 23
@@ -35729,9 +35729,9 @@ PlayBattleMusic: ; 2ee6c
 	jr z, .done
 	ld de, MUSIC_RIVAL_BATTLE_RB
 	cp BLUE_RB
-	jr z, .done
+	jr z, .egk_check
 	cp BLUE_RB_F
-	jr z, .done
+	jr z, .egk_check
 	ld de, MUSIC_KANTO_GYM_LEADER_BATTLE
 	callba IsKantoGymLeader
 	jr c, .done
@@ -35771,6 +35771,13 @@ PlayBattleMusic: ; 2ee6c
 	pop hl
 	ret
 ; 2ef18
+
+.egk_check
+	ld a, [StatusFlags]
+	bit 5, a
+	jr z, .done
+	ld de, MUSIC_CHAMPION_BATTLE_RB
+	jr .done
 
 ClearBattleRAM: ; 2ef18
 	xor a

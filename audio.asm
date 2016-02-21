@@ -186,3 +186,4 @@ SECTION "TPP Songs 2", ROMX
 INCLUDE "audio/music/custom/trainerbattle.asm"
 INCLUDE "audio/music/custom/ssanne.asm"
 INCLUDE "audio/music/custom/vsWCS.asm"
+INCLUDE "audio/music/custom/championRB.asm"

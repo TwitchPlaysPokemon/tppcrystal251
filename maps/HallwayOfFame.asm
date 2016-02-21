@@ -22,7 +22,6 @@ HallwayTrigger1: ; 0x180e3d
 
 RealChampScript: ; 0x180e74
 	applymovement $0, MovementToChamp
-	playmusic MUSIC_RIVAL_RB
 	loadfont
 	spriteface 2, LEFT
 	checkevent EVENT_OAK_DEFEATED
@@ -87,7 +86,7 @@ AfterOakTalk:
 	applymovement $3, OakRepositions
 	follow $3, $0
 	spriteface $3, UP
-	applymovement $3, OakWalksUp
+	applymovement $3, OakWalksUpMore
 	stopfollow
 	playsound SFX_EXIT_BUILDING
 	disappear $3
@@ -253,7 +252,6 @@ MovementToChamp:
 	step_up
 	step_up
 	step_up
-	step_up
 	turn_head_right
 	step_end
 
@@ -275,6 +273,15 @@ OakRepositions:
 	step_up
 	step_right
 	step_end
+    
+OakWalksUpMore:
+    step_up
+    step_up
+    step_up
+    step_up
+    step_up
+    step_up
+    step_end
 
 MovementData_0x180f55: ; 0x180f55
 	step_up
@@ -383,7 +390,13 @@ WinVsChampAzureText:
 	line "as good as you."
 	done
 LoseVsChampAzureText
-	text "I like your effort… but it wasn't good enough. I hope you try harder next time!"
+	text "I like your"
+    line "effort<...> but it"
+    cont "wasn't good"
+    cont "enough."
+    
+    para "I hope you try"
+    line "harder next time!"
 	done
 
 LoseVsChampRustText:
@@ -501,7 +514,7 @@ HallwayOfFame_MapEventHeader: ; 0x1813f4
 
 	; people-events
 	db 2
-	person_event SPRITE_EGK_RIVAL, 7, 9, $6, 0, 0, -1, -1, 0, 0, 0, ObjectEvent, -1
-	person_event SPRITE_OAK, 12, 9, $7, 0, 0, -1, -1, 0, 0, 0, ObjectEvent, EVENT_MARY_AND_OAK_IN_LANCES_ROOM
+	person_event SPRITE_EGK_RIVAL, 14, 9, $6, 0, 0, -1, -1, 0, 0, 0, ObjectEvent, -1
+	person_event SPRITE_OAK, 19, 9, $7, 0, 0, -1, -1, 0, 0, 0, ObjectEvent, EVENT_MARY_AND_OAK_IN_LANCES_ROOM
 ; 0x181445
 

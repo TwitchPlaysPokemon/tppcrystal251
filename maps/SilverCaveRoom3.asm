@@ -22,7 +22,7 @@ RedScript_0x18c603: ; 0x18c603
 	waitbutton
 	closetext
 	winlosstext UnknownText_0x18c63c, UnknownText_0x18c63c
-	loadtrainer RED, 2
+	loadtrainer RED, 1
 	startbattle
 	reloadmapmusic
 	returnafterbattle
