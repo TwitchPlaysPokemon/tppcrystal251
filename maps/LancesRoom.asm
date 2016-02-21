@@ -250,9 +250,17 @@ UnknownText_0x181132: ; 0x181132
 	cont "challenge ahead."
 	
 	para "Their name is<...>"
-	line "<GREEN>"
-	done
-
+    
+    para "<GREEN>!"
+    
+    para "They are now the"
+    line "#MON LEAGUE"
+    cont "CHAMPION!"
+    
+    para "Go now. Your"
+    line "final challenge"
+    cont "awaits you!"
+    done ; not sure if this is supposed to use below if gender
 	
 LanceAzureTalk:
 	text "She beat the"
