@@ -5,7 +5,7 @@ LOGO_DELAY_POST EQU 300
 LOGO_CHAOS_MOD  EQU 12
 LOGO_CHAOS_LAST EQU 10
 MAIN_CHAOS_RATE EQU 15
-SCROLLER_DELAY  EQU 200
+SCROLLER_DELAY  EQU 120
 SPRITE_X        EQU $7C
 SPRITE_Y        EQU $74
 C_TC_DRAW       EQU 0
@@ -29,6 +29,7 @@ ENDM
 
 TPPCredits::
 	call Fade2Black
+	call SoundRestart
 	;ld de, MUSIC_TPP_CREDITS
 	;call PlayMusic
 	xor a
@@ -423,6 +424,7 @@ TC_Main_Draw::
 	xor a
 	ld [TC_CurStripXPos], a
 	ld [TC_CurSubtitlePos], a
+	ld [TC_ScrollerState], a
 	inc a
 	ld [TC_CurBGSpeedCount], a
 	ld [TC_CurSprSpeedCount], a

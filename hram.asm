@@ -94,3 +94,5 @@ hMPTmp3		       EQU $fff6
 hTmpd              EQU $fff7
 hTmpe              EQU $fff8
 
+hFastMusicUpdate   EQU $fff9
+

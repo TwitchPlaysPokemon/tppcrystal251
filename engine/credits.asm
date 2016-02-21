@@ -520,9 +520,6 @@ ParseCredits: ; 1099aa
 	ret
 
 .tpp
-	xor a
-	ld [MusicFadeID], a
-	ld [MusicFadeIDHi], a
 	callba TPPCredits
 	ret
 

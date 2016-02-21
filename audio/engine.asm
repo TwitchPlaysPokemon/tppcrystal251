@@ -195,6 +195,9 @@ _UpdateSound:: ; e805c
 	add hl, bc
 	ld c, l
 	ld b, h
+	ld a, [hFastMusicUpdate]
+	bit 7, a
+	jr nz, .fastupdate
 	ld a, [CurChannel]
 	inc a
 	ld [CurChannel], a
@@ -212,6 +215,19 @@ _UpdateSound:: ; e805c
 	ld [rNR51], a
 	ret
 ; e8125
+
+.fastupdate
+; no sfx channel update, danger beep and fading
+	ld a, [CurChannel]
+	inc a
+	ld [CurChannel], a
+	cp a, $04
+	jp nz, .loop
+	ld a, [Volume]
+	ld [rNR50], a
+	ld a, [SoundOutput]
+	ld [rNR51], a
+	ret
 
 UpdateChannels: ; e8125
 	ld hl, .ChannelFnPtrs
