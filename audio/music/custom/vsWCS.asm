@@ -6,9 +6,9 @@ Music_VsWCS:
 Music_VsWCS_Ch1:
 ; Pat 0 Row 0
 	tempo $69
+	volume $77
 	dutycycle $2
 	notetype $c, $8c
-	stereopanning $f0
 	octave 2
 	note A#, 12
 	intensity $c1
@@ -326,7 +326,6 @@ Music_VsWCS_Ch2:
 ; Pat 0 Row 0
 	dutycycle $2
 	notetype $c, $8c
-	stereopanning $f
 	octave 2
 	note F_, 12
 	intensity $c1
@@ -699,7 +698,6 @@ Music_VsWCS_Ch2_L:
 
 Music_VsWCS_Ch3:
 	notetype $c, $16
-	stereopanning $ff
 	octave 4
 	note __, 16
 	note __, 16
