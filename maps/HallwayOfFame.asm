@@ -81,6 +81,8 @@ OakAppears:
 	loadfont
 	writetext OakAfterRivalTalkToPlayer
 AfterOakTalk:
+	buttonsound
+	writetext OakAboutToHoF
 	waitbutton
 	closetext
 	applymovement $3, OakRepositions
@@ -148,7 +150,7 @@ CheckDexForMtSilver:
 	spriteface 0, LEFT
 	loadfont
 	checkevent EVENT_ALLOWED_INTO_ROUTE_28
-	iftrue AfterOakTalk
+	iftrue OakAlreadyDoneEverythingText
 	checkevent EVENT_OAK_KNOWS_DEX_FULL
 	iftrue OakAllowsRoute28
 	writetext OakRematchText
@@ -174,6 +176,9 @@ OakAllowsRoute28:
 	jump AfterOakTalk
 ; 0x180f33
 
+OakAlreadyDoneEverythingText:
+	writetext OakRematchText
+	jump AfterOakTalk
 
 OakRematchText:
 	text "PROF.OAK: Ah,"
@@ -486,13 +491,13 @@ OakAfterRivalTalkToPlayer:
 	cont "#MON is"
 	cont "marvelous!"
 	
-	para "<PLAY_G>!"
-	line "Come with me!"
 	done
 ; 0x18134b
 
-
-; 0x18137b
+OakAboutToHoF:
+	text "<PLAY_G>!"
+	line "Come with me!"
+	done
 
 
 HallwayOfFame_MapEventHeader: ; 0x1813f4

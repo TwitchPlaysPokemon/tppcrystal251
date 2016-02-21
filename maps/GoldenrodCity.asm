@@ -53,7 +53,7 @@ PokefanMScript_0x198909: ; 0x198909
 	writetext UnknownText_0x199090 ;will cost coins
 	yesorno
 	iffalse UnknownScript_0x1989a0
-	checkcoins 2000
+	checkcoins 500
 	if_equal $2, UnknownScript_0x1989dd ;check for coins
 	writetext UnknownText_0x1990ce
 	loadmenudata MenuDataHeader_0x198967
@@ -125,7 +125,7 @@ UnknownScript_0x1989a0: ; 0x1989a0
 UnknownScript_0x1989a6: ; 0x1989a6
 	writetext UnknownText_0x19913a
 	buttonsound
-	takecoins 2000
+	takecoins 500
 	waitsfx
 	playsound SFX_TRANSACTION
 	special Function24b25 ;coin related
@@ -569,7 +569,7 @@ UnknownText_0x199042: ; 0x199042
 
 UnknownText_0x199090: ; 0x199090
 	text "It will cost you"
-	line "2000 coins. Okay?"
+	line "500 coins. Okay?"
 	done
 ; 0x1990b4
 

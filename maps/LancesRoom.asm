@@ -143,6 +143,8 @@ LanceAfterRematch:
 	cont "to grow strong"
 	cont "with your #MON."
 
+
+
 	done
 
 MovementData_0x180f33: ; 0x180f33

@@ -36475,7 +36475,7 @@ Function421f5: ; 421f5
 	jp z, .DontEvolve2
 	ld a, [hli]
 	cp TR_ANYTIME
-	jr z, .GoAheadAndEvolve
+	jp z, .GoAheadAndEvolve
 	cp TR_MORNDAY
 	jr z, .asm_422a4
 ; TR_NITE
@@ -36534,7 +36534,17 @@ Function421f5: ; 421f5
 	ld b, a
 	ld a, [TempMonItem]
 	cp b
-	jp nz, .DontEvolve
+	jp z, .GoAheadAndEvolve
+	ld a, EVERSTONE
+	cp b
+	jp z, .DontEvolve
+	ld a, b
+	push hl
+	ld [CurItem], a
+	ld hl, NumItems
+	call CheckItem
+	pop hl
+	jp nc, .DontEvolve
 	jr .GoAheadAndEvolve
 
 .level
