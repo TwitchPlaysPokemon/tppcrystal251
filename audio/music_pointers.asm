@@ -132,3 +132,5 @@
 	dba Music_TrainerBattleRB ; placeholder
 	dba Music_VsWCS ; placeholder
 	dba Music_SSAnne
+	dba Music_PalletTownSlow
+	dba Music_ChampionRB

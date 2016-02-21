@@ -594,13 +594,14 @@ MahoganyGym_MapEventHeader: ; 0x19a2df
 	signpost 15, 6, $0, MapMahoganyGymSignpost1Script
 
 	; people-events
-	db 7
-	person_event SPRITE_PRYCE, 7, 9, $6, 0, 0, -1, -1, 8 + PAL_OW_BROWN, 0, 0, PryceScript_0x199a9e, -1
+	db 8
+	person_event SPRITE_PRYCE, 7, 9, $6, 0, 0, -1, -1, 8 + PAL_OW_BROWN, 0, 0, PryceScript_0x199a9e, EVENT_SET_BY_OAK_AFTER_16_BADGES
 	person_event SPRITE_BUENA, 10, 8, $6, 0, 0, -1, -1, 8 + PAL_OW_RED, 2, 1, TrainerSkierRoxanne, -1
 	person_event SPRITE_ROCKER, 21, 4, $7, 0, 0, -1, -1, 8 + PAL_OW_BLUE, 2, 1, TrainerBoarderRonald, -1
 	person_event SPRITE_BUENA, 21, 13, $7, 0, 0, -1, -1, 8 + PAL_OW_RED, 2, 1, TrainerSkierClarissa, -1
 	person_event SPRITE_ROCKER, 13, 9, $6, 0, 0, -1, -1, 8 + PAL_OW_BLUE, 2, 1, TrainerBoarderBrad, -1
 	person_event SPRITE_ROCKER, 8, 6, $a, 0, 0, -1, -1, 8 + PAL_OW_BLUE, 2, 1, TrainerBoarderDouglas, -1
 	person_event SPRITE_GYM_GUY, 19, 11, $6, 0, 0, -1, -1, 8 + PAL_OW_RED, 0, 0, MahoganyGymGuyScript, -1
+	person_event SPRITE_PRYCE, 19, 9, $6, 0, 0, -1, -1, 8 + PAL_OW_BROWN, 0, 0, PryceScript_0x199a9e, EVENT_MORTY_IS_AT_BACK_OF_GYM
 ; 0x19a354
 

@@ -283,6 +283,7 @@ MAP_N_A   EQU -1
 	mapgroup KARENS_ROOM, 9, 5
 	mapgroup LANCES_ROOM, 12, 5
 	mapgroup HALL_OF_FAME, 7, 5
+    mapgroup HALLWAY_OF_FAME, 10, 5
 
 	newgroup ; Fuchsia City Roofs
 	mapgroup ROUTE_13, 9, 30

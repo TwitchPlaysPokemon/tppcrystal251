@@ -6,6 +6,7 @@ import random
 import json
 import os
 import sys
+import copy
 
 # the program will give a response when called to from 0 to 11
 # 0-3 relate to move commands, 1 means use second move on json list (1 being it's index)
@@ -95,6 +96,7 @@ class AI(object):
                 mondata['weather'] = 'sandstorm'
         else:
             mondata['weather'] =  'clear'
+            
         mondata['enemypokemon'] = {}
         mondata['playerpokemon'] = {}
         mondata['myitems'] = {}
@@ -108,8 +110,8 @@ class AI(object):
         mondata['playerpokemon']['bound'] = int(self.jsonlist['battleState']['playerpokemon']['wrap count'])
 
         if self.jsonlist['battleState']['enemy type'] == 'TRAINER':
-            mondata['myitems'][1] = self.jsonlist['battleState']['trainer items']['item1'].lower().replace(' ', '').replace('-', '')
-            mondata['myitems'][2] = self.jsonlist['battleState']['trainer items']['item2'].lower().replace(' ', '').replace('-', '')
+            mondata['myitems'][1] = self.jsonlist['battleState']['trainer items']['item1'].lower().replace(' ', '').replace('-', '').replace('.', '')
+            mondata['myitems'][2] = self.jsonlist['battleState']['trainer items']['item2'].lower().replace(' ', '').replace('-', '').replace('.', '')
 
         for allmons in range(0, 12):
             if (allmons <= 5):
@@ -155,12 +157,6 @@ class AI(object):
                             mondata[allmons]['moves'][moveset]['pp'] = int(templist[6])
                             mondata[allmons]['moves'][moveset]['effectchance'] = int(templist[7])
                             break
-        self.permmondata = mondata
-        for tempx in range(6, self.trainparty+6):
-            self.opponenthp[tempx] = self.permmondata[tempx]['stats']['curhp']
-        if self.jsonlist['battleState']['enemy type'] == 'TRAINER':
-            for tempx in range(0, self.myparty):
-                self.hp[tempx] = self.permmondata[tempx]['stats']['curhp']
         if self.jsonlist['battleState']['enemy type'] == 'WILD':
             self.hp[0] = int(self.jsonlist['battleState']['enemypokemon']['hp'])
             mondata[0] = {}
@@ -199,6 +195,31 @@ class AI(object):
                         mondata[0]['moves'][moveset]['pp'] = int(templist[6])
                         mondata[0]['moves'][moveset]['effectchance'] = int(templist[7])
                         break
+        mondata['painsplit'] = False
+        mondata['lockon'] = False
+        mondata['focusenergyused'] = False
+        mondata['defensecurlused'] = False
+        mondata['leechseedused'] = False
+        mondata['confused'] = False
+        mondata['attract'] = False
+        mondata['cursed'] = False
+        mondata['nightmare'] = False
+        mondata['identified'] = False
+        mondata['myperishsong'] = 0
+        mondata['trainperishsong'] = 0
+        mondata['lightscreen'] = False
+        mondata['spikes'] = 0
+        mondata['reflect'] = False
+        if 'perish song' in mondata['enemypokemon']['substatus']:
+            mondata['myperishsong'] = mondata['enemypokemon']['substatus']['perish song']
+        if 'perish song' in mondata['playerpokemon']['substatus']:
+            mondata['trainperishsong'] = mondata['playerpokemon']['substatus']['perish song']
+        self.permmondata = copy.deepcopy(mondata)
+        for tempx in range(6, self.trainparty+6):
+            self.opponenthp[tempx] = self.permmondata[tempx]['stats']['curhp']
+        if self.jsonlist['battleState']['enemy type'] == 'TRAINER':
+            for tempx in range(0, self.myparty):
+                self.hp[tempx] = self.permmondata[tempx]['stats']['curhp']
         return mondata
 
     #type1name = attacker, type2name = defender
@@ -266,13 +287,13 @@ class AI(object):
         if move_used_effect == 'return':
             basebp = mondata[attacker]['stats']['happy'] / 2.5
         if move_used_effect == 'furycutter':
-            if 'raging' in mondata['playerpokemon']['substatus']:
-                mondata['playerpokemon']['substatus']['raging'] = mondata['playerpokemon']['substatus']['raging'] + 1
-                basebp = (basebp / 2) * ( 2 ** mondata['playerpokemon']['substatus']['raging'])
+            if 'raging' in mondata[temptext2]['substatus']:
+                mondata[temptext2]['substatus']['raging'] = mondata[temptext2]['substatus']['raging'] + 1
+                basebp = (basebp / 2) * ( 2 ** mondata[temptext2]['substatus']['raging'])
             else:
-                if type(mondata['playerpokemon']['substatus']) == list:
-                    mondata['playerpokemon']['substatus'] = {str(i+1): x for i, x in enumerate(mondata['playerpokemon']['substatus'])}
-                mondata['playerpokemon']['substatus']['raging'] = 1
+                if type(mondata[temptext2]['substatus']) == list:
+                    mondata[temptext2]['substatus'] = {str(i+1): x for i, x in enumerate(mondata[temptext2]['substatus'])}
+                mondata[temptext2]['substatus']['raging'] = 1
             if basebp > 160:
                 basebp = 160
         if move_used_effect == 'reversal':
@@ -516,7 +537,7 @@ class AI(object):
                 if temp2 * 2 > mondata[defender]['stats']['curhp']:
                     temp2 = temp2 * 2
             elif move_used['name'] == 'destinybond':
-                temp2 = mondata[defender]['stats']['curhp'] * (mondata[attacker]['stats']['curhp'] / mondata[attacker]['stats']['hp'])
+                temp2 = mondata[defender]['stats']['curhp'] * (1 - (mondata[attacker]['stats']['curhp'] / mondata[attacker]['stats']['hp']))
             elif (move_used_effect == 'recoilhit'):
                 self.Damage[attacker][defender][moveused]['selfdamage'] = temp2 * 0.25
             elif (move_used_effect == 'leechhit'):
@@ -817,7 +838,6 @@ class AI(object):
 
     def specialeffect(self, mondata, traincurrent, mycurrent, moveused):
         #apply a status
-        
         if mondata[mycurrent]['moves'][moveused]['curpp'] > 0 and mondata[mycurrent]['status'] not in ('slp', 'frz', 'slp1', 'slp2', 'slp3'):
             effmulti = self.getEff(mondata[mycurrent]['moves'][moveused]['type'].lower(), mondata[traincurrent]['type'][1].lower(), 'playerpokemon') * self.getEff(mondata[mycurrent]['moves'][moveused]['type'].lower(), mondata[traincurrent]['type'][2].lower(), 'playerpokemon')
             if 'safeguard' not in mondata['playerpokemon']['screens']:
@@ -903,8 +923,6 @@ class AI(object):
         return (mondata)
 
     def endofturn(self, mondata, traincurrent, mycurrent):
-        
-        
         #perish song
         if mondata['myperishsong'] == 1:
             mondata[mycurrent]['stats']['curhp'] = 0
@@ -978,9 +996,28 @@ class AI(object):
         mondata['painsplit'] = False
         mondata['lockon'] = False
         return(mondata)
+        
+    def Reset(self, traincurrent, mycurrent):
+        mondata = {}
+        mondata = copy.deepcopy(self.permmondata)
 
+        #boosts
+        if self.triggered == 0:
+            mondata[mycurrent]['boosts'] = {}
+            for stat in self.statNames:
+                mondata[mycurrent]['boosts'][stat] = copy.deepcopy(self.jsonlist['battleState']['enemypokemon']['stat levels'][stat])
+        if self.triggered > 0:
+            mondata[mycurrent]['boosts'] = {}
+            for stat in self.statNames:
+                mondata[mycurrent]['boosts'][stat] = 0
+            mondata['enemypokemon']['substatus'] = {}
+            mondata['enemypokemon']['bound'] = 0
+        mondata[traincurrent]['boosts'] = {}
+        for stat in self.statNames:
+            mondata[traincurrent]['boosts'][stat] = copy.deepcopy(self.jsonlist['battleState']['playerpokemon']['stat levels'][stat])
+        return(mondata)
+        
     def Fight(self, mondata, traincurrent, mycurrent, numberofturns):
-
         if Debug_Code == 1:
             print('start of self.Fight')
         #all possible move combos
@@ -1001,77 +1038,11 @@ class AI(object):
             trainhp = self.traincurhp
             mondata1[mycurrent]['stats']['curhp'] = myhp
             mondata1[traincurrent]['stats']['curhp'] = trainhp
-
-            self.Damage[mycurrent][traincurrent][tempcombo[0]]['damage'] = 0
             
-            mondata1['painsplit'] = False
-            mondata1['lockon'] = False
-
-            mondata1['focusenergyused'] = False
-            mondata1['defensecurlused'] = False
-            mondata1['leechseedused'] = False
-            mondata1['confused'] = False
-            mondata1['attract'] = False
-            mondata1['cursed'] = False
-            mondata1['nightmare'] = False
-            mondata1['identified'] = False
-            mondata1['myperishsong'] = 0
-            mondata1['trainperishsong'] = 0
-            if 'perishsong' in mondata1['enemypokemon']['substatus']:
-                mondata1['myperishsong'] = mondata1['enemypokemon']['substatus']['perishsong']
-            if 'perishsong' in mondata1['playerpokemon']['substatus']:
-                mondata1['trainperishsong'] = mondata1['playerpokemon']['substatus']['perishsong']
-
-            #boosts
-            if isinstance(self.jsonlist['battleState']['weather'], dict):
-                if "Rain" in self.jsonlist['battleState']['weather'] :
-                    mondata['weather'] = 'rain'
-                if "Sun" in self.jsonlist['battleState']['weather'] :
-                    mondata['weather'] = 'sun'
-                if "Sandstorm" in self.jsonlist['battleState']['weather'] :
-                    mondata['weather'] = 'sandstorm'
-            else:
-                mondata['weather'] =  'clear'
-            mondata['weather'] = mondata['weather'].lower()
-            mondata1['enemypokemon'] = {}
-            mondata1['playerpokemon'] = {}
-            mondata1['enemypokemon']['substatus'] = {}
-            mondata1['enemypokemon']['screens'] = {}
-            mondata1['playerpokemon']['screens'] = {}
-            mondata1['lightscreen'] = False
-            mondata1['spikes'] = 0
-            mondata1['reflect'] = False
-            mondata1['playerpokemon']['substatus'] = self.jsonlist['battleState']['playerpokemon']['subStatus']
-            mondata1['enemypokemon']['screens'] = self.jsonlist['battleState']['enemypokemon']['screens']
-            mondata1['playerpokemon']['screens'] = self.jsonlist['battleState']['playerpokemon']['screens']
-            mondata1['enemypokemon']['bound'] = int(self.jsonlist['battleState']['enemypokemon']['wrap count'])
-            mondata1['playerpokemon']['bound'] = int(self.jsonlist['battleState']['playerpokemon']['wrap count'])
-            if self.jsonlist['battleState']['enemy type'] == 'TRAINER':
-                mondata1[mycurrent]['status'] = self.jsonlist['enemyParty']['party'][mycurrent]['status'].lower()
-            else:
-                mondata1[mycurrent]['status'] = self.jsonlist['battleState']['enemypokemon']['status'].lower()
-            if self.triggered == 0:
-                mondata1['enemypokemon']['substatus'] = self.jsonlist['battleState']['enemypokemon']['subStatus']
-                mondata1[mycurrent]['boosts'] = {}
-                for stat in self.statNames:
-                    mondata1[mycurrent]['boosts'][stat] = int(self.jsonlist['battleState']['enemypokemon']['stat levels'][stat])
-            if self.triggered > 0:
-                mondata1[mycurrent]['boosts'] = {}
-                for stat in self.statNames:
-                    mondata1[mycurrent]['boosts'][stat] = 0
-                mondata['enemypokemon']['substatus'] = {}
-                mondata['enemypokemon']['bound'] = 0
-            mondata1[traincurrent]['status'] = self.jsonlist['playerParty']['party'][traincurrent-6]['status'].lower()
-            mondata1[traincurrent]['boosts'] = {}
-            mondata1[traincurrent]['boosts']['atk'] = int(self.jsonlist['battleState']['playerpokemon']['stat levels']['atk'])
-            mondata1[traincurrent]['boosts']['def'] = int(self.jsonlist['battleState']['playerpokemon']['stat levels']['def'])
-            mondata1[traincurrent]['boosts']['satk'] = int(self.jsonlist['battleState']['playerpokemon']['stat levels']['satk'])
-            mondata1[traincurrent]['boosts']['sdef'] = int(self.jsonlist['battleState']['playerpokemon']['stat levels']['sdef'])
-            mondata1[traincurrent]['boosts']['spd'] = int(self.jsonlist['battleState']['playerpokemon']['stat levels']['spd'])
-            mondata1[traincurrent]['boosts']['eva'] = int(self.jsonlist['battleState']['playerpokemon']['stat levels']['eva'])
-            mondata1[traincurrent]['boosts']['acc'] = int(self.jsonlist['battleState']['playerpokemon']['stat levels']['acc'])
+            mondata1 = self.Reset(traincurrent, mycurrent)
+            self.Damage[mycurrent][traincurrent][tempcombo[0]]['damage'] = 0
             self.TrainerDamage(mondata1, traincurrent, mycurrent)
-
+            
             if self.HitMe > 0:
                 self.DamageDealt(mondata, traincurrent, mycurrent, self.enemynumber)
                 myhp = myhp - (self.Damage[traincurrent][self.jsonlist['battleState']['enemypokemon']['party idx']][self.enemynumber]['damage'] * 1.2)
@@ -1091,6 +1062,10 @@ class AI(object):
                     mondata1[mycurrent]['boosts']['def'] = mondata1[mycurrent]['boosts']['def'] + 1
                 if mondata1['myitems'][self.useitem] == 'xspecial':
                     mondata1[mycurrent]['boosts']['satk'] = mondata1[mycurrent]['boosts']['satk'] + 1
+                if mondata1['myitems'][self.useitem] == 'xspdef':
+                    mondata1[mycurrent]['boosts']['sdef'] = mondata1[mycurrent]['boosts']['sdef'] + 1
+                if mondata1['myitems'][self.useitem] == 'xaccuracy':
+                    mondata1[mycurrent]['boosts']['acc'] = mondata1[mycurrent]['boosts']['acc'] + 1
                 if mondata1['myitems'][self.useitem] == 'direhit':
                     mondata1['focusenergyused'] = True
 
@@ -1195,89 +1170,12 @@ class AI(object):
                     trainhp = 0
                     
             #do extra effect on first move
-
             myhp1 = self.mycurhp
             trainhp1 = self.traincurhp
             mondata1[mycurrent]['stats']['curhp'] = myhp1
             mondata1[traincurrent]['stats']['curhp'] = trainhp1
             if mondata1[mycurrent]['moves'][int(tempcombo[0])]['effectchance'] > 0 or mondata1[mycurrent]['moves'][int(tempcombo[0])]['effectchance']:
-                if self.jsonlist['battleState']['enemy type'] == 'WILD':
-                    if 'disabled' in mondata['enemypokemon']['substatus']:
-                        mondata[0]['moves'][int(mondata['enemypokemon']['substatus']['disabled']['move idx'])-1]['curpp'] = 0
-                if self.jsonlist['battleState']['enemy type'] == 'TRAINER':
-                    if 'disabled' in mondata['enemypokemon']['substatus']:
-                        mondata[self.jsonlist['battleState']['enemypokemon']['party idx']]['moves'][int(mondata['enemypokemon']['substatus']['disabled']['move idx'])-1]['curpp'] = 0
-                if 'disabled' in mondata['playerpokemon']['substatus']:
-                    mondata[self.jsonlist['battleState']['playerpokemon']['party idx']+6]['moves'][int(mondata['playerpokemon']['substatus']['disabled']['move idx'])-1]['curpp'] = 0
-                mondata1 = mondata
-                mondata1['focusenergyused'] = False
-                mondata1['defensecurlused'] = False
-                mondata1['leechseedused'] = False
-                mondata1['confused'] = False
-                mondata1['attract'] = False
-                mondata1['cursed'] = False
-                mondata1['nightmare'] = False
-                mondata1['identified'] = False
-                if 'perishsong' in mondata1['enemypokemon']['substatus']:
-                    mondata1['myperishsong'] = mondata1['enemypokemon']['substatus']['perishsong']
-                if 'perishsong' in mondata1['playerpokemon']['substatus']:
-                    mondata1['trainperishsong'] = mondata1['playerpokemon']['substatus']['perishsong']
-
-                #boosts
-                if isinstance(self.jsonlist['battleState']['weather'], dict):
-                    if "Rain" in self.jsonlist['battleState']['weather'] :
-                        mondata1['weather'] = 'rain'
-                    if "Sun" in self.jsonlist['battleState']['weather'] :
-                        mondata1['weather'] = 'sun'
-                    if "Sandstorm" in self.jsonlist['battleState']['weather'] :
-                        mondata1['weather'] = 'sandstorm'
-                else:
-                    mondata1['weather'] =  'clear'
-                mondata1['weather'] = mondata1['weather'].lower()
-                mondata1['enemypokemon'] = {}
-                mondata1['playerpokemon'] = {}
-                mondata1['lightscreen'] = False
-                mondata1['spikes'] = 0
-                mondata1['reflect'] = False
-                mondata1['enemypokemon']['screens'] = {}
-                mondata1['playerpokemon']['screens'] = {}
-                mondata1['enemypokemon']['substatus'] = {}
-                mondata1['playerpokemon']['substatus'] = self.jsonlist['battleState']['playerpokemon']['subStatus']
-                mondata1['enemypokemon']['screens'] = self.jsonlist['battleState']['enemypokemon']['screens']
-                mondata1['playerpokemon']['screens'] = self.jsonlist['battleState']['playerpokemon']['screens']
-                mondata1['enemypokemon']['bound'] = int(self.jsonlist['battleState']['enemypokemon']['wrap count'])
-                mondata1['playerpokemon']['bound'] = int(self.jsonlist['battleState']['playerpokemon']['wrap count'])
-                if self.jsonlist['battleState']['enemy type'] == 'TRAINER':
-                    mondata1[mycurrent]['status'] = self.jsonlist['enemyParty']['party'][mycurrent]['status'].lower()
-                else:
-                    mondata1[mycurrent]['status'] = self.jsonlist['battleState']['enemypokemon']['status'].lower()
-
-                if self.triggered == 0:
-                    mondata1['enemypokemon']['substatus'] = self.jsonlist['battleState']['enemypokemon']['subStatus']
-                    mondata1[mycurrent]['boosts'] = {}
-                    mondata1[mycurrent]['boosts']['atk'] = int(self.jsonlist['battleState']['enemypokemon']['stat levels']['atk'])
-                    mondata1[mycurrent]['boosts']['def'] = int(self.jsonlist['battleState']['enemypokemon']['stat levels']['def'])
-                    mondata1[mycurrent]['boosts']['satk'] = int(self.jsonlist['battleState']['enemypokemon']['stat levels']['satk'])
-                    mondata1[mycurrent]['boosts']['sdef'] = int(self.jsonlist['battleState']['enemypokemon']['stat levels']['sdef'])
-                    mondata1[mycurrent]['boosts']['spd'] = int(self.jsonlist['battleState']['enemypokemon']['stat levels']['spd'])
-                    mondata1[mycurrent]['boosts']['eva'] = int(self.jsonlist['battleState']['enemypokemon']['stat levels']['eva'])
-                    mondata1[mycurrent]['boosts']['acc'] = int(self.jsonlist['battleState']['enemypokemon']['stat levels']['acc'])
-                if self.triggered > 0:
-                    mondata1[mycurrent]['boosts'] = {}
-                    for stat in self.statNames:
-                        mondata1[mycurrent]['boosts'][stat] = 0
-                    mondata1['enemypokemon']['substatus'] = {}
-                    mondata1['enemypokemon']['bound'] = 0
-                mondata1[traincurrent]['item'] = self.jsonlist['playerParty']['party'][traincurrent-6]['item'].lower().replace(' ', '').replace('-', '')
-                mondata1[traincurrent]['status'] = self.jsonlist['playerParty']['party'][traincurrent-6]['status'].lower()
-                mondata1[traincurrent]['boosts'] = {}
-                mondata1[traincurrent]['boosts']['atk'] = int(self.jsonlist['battleState']['playerpokemon']['stat levels']['atk'])
-                mondata1[traincurrent]['boosts']['def'] = int(self.jsonlist['battleState']['playerpokemon']['stat levels']['def'])
-                mondata1[traincurrent]['boosts']['satk'] = int(self.jsonlist['battleState']['playerpokemon']['stat levels']['satk'])
-                mondata1[traincurrent]['boosts']['sdef'] = int(self.jsonlist['battleState']['playerpokemon']['stat levels']['sdef'])
-                mondata1[traincurrent]['boosts']['spd'] = int(self.jsonlist['battleState']['playerpokemon']['stat levels']['spd'])
-                mondata1[traincurrent]['boosts']['eva'] = int(self.jsonlist['battleState']['playerpokemon']['stat levels']['eva'])
-                mondata1[traincurrent]['boosts']['acc'] = int(self.jsonlist['battleState']['playerpokemon']['stat levels']['acc'])
+                mondata1 = self.Reset(traincurrent, mycurrent)
                 self.TrainerDamage(mondata1, traincurrent, mycurrent)
 
                 if self.HitMe > 0:
@@ -1316,6 +1214,14 @@ class AI(object):
                     myhp1 = myhp1 - self.Damage[traincurrent][mycurrent][self.enemynumber]['damage']
 
                 for x1 in range(0, numberofturns):
+                    if self.jsonlist['battleState']['enemy type'] == 'WILD':
+                        if 'disabled' in mondata['enemypokemon']['substatus']:
+                            mondata[0]['moves'][int(mondata['enemypokemon']['substatus']['disabled']['move idx'])-1]['curpp'] = 0
+                    if self.jsonlist['battleState']['enemy type'] == 'TRAINER':
+                        if 'disabled' in mondata['enemypokemon']['substatus']:
+                            mondata[self.jsonlist['battleState']['enemypokemon']['party idx']]['moves'][int(mondata['enemypokemon']['substatus']['disabled']['move idx'])-1]['curpp'] = 0
+                    if 'disabled' in mondata['playerpokemon']['substatus']:
+                        mondata[self.jsonlist['battleState']['playerpokemon']['party idx']+6]['moves'][int(mondata['playerpokemon']['substatus']['disabled']['move idx'])-1]['curpp'] = 0
                     mondata1['painsplit'] = False
                     mondata1['lockon'] = False
                     tempx = self._statsmultipliers[mondata1[mycurrent]['boosts']['spd']+6]/100
@@ -1573,34 +1479,7 @@ class AI(object):
         movepriority[1] = 20
         movepriority[2] = 20
         movepriority[3] = 20
-        mondata['focusenergyused'] = False
-        mondata['painsplit'] = False
-        mondata['lockon'] = False
-        mondata['defensecurlused'] = False
-        mondata['leechseedused'] = False
-        mondata['confused'] = False
-        mondata['attract'] = False
-        mondata['cursed'] = False
-        mondata['nightmare'] = False
-        mondata['identified'] = False
-        mondata['myperishsong'] = 0
-        mondata['trainperishsong'] = 0
-        mondata[mycurrent]['boosts'] = {}
-        mondata[mycurrent]['boosts']['atk'] = int(self.jsonlist['battleState']['enemypokemon']['stat levels']['atk'])
-        mondata[mycurrent]['boosts']['def'] = int(self.jsonlist['battleState']['enemypokemon']['stat levels']['def'])
-        mondata[mycurrent]['boosts']['satk'] = int(self.jsonlist['battleState']['enemypokemon']['stat levels']['satk'])
-        mondata[mycurrent]['boosts']['sdef'] = int(self.jsonlist['battleState']['enemypokemon']['stat levels']['sdef'])
-        mondata[mycurrent]['boosts']['spd'] = int(self.jsonlist['battleState']['enemypokemon']['stat levels']['spd'])
-        mondata[mycurrent]['boosts']['eva'] = int(self.jsonlist['battleState']['enemypokemon']['stat levels']['eva'])
-        mondata[mycurrent]['boosts']['acc'] = int(self.jsonlist['battleState']['enemypokemon']['stat levels']['acc'])
-        mondata[traincurrent]['boosts'] = {}
-        mondata[traincurrent]['boosts']['atk'] = int(self.jsonlist['battleState']['playerpokemon']['stat levels']['atk'])
-        mondata[traincurrent]['boosts']['def'] = int(self.jsonlist['battleState']['playerpokemon']['stat levels']['def'])
-        mondata[traincurrent]['boosts']['satk'] = int(self.jsonlist['battleState']['playerpokemon']['stat levels']['satk'])
-        mondata[traincurrent]['boosts']['sdef'] = int(self.jsonlist['battleState']['playerpokemon']['stat levels']['sdef'])
-        mondata[traincurrent]['boosts']['spd'] = int(self.jsonlist['battleState']['playerpokemon']['stat levels']['spd'])
-        mondata[traincurrent]['boosts']['eva'] = int(self.jsonlist['battleState']['playerpokemon']['stat levels']['eva'])
-        mondata[traincurrent]['boosts']['acc'] = int(self.jsonlist['battleState']['playerpokemon']['stat levels']['acc'])
+        mondata = self.Reset(traincurrent, mycurrent)
         self.TrainerDamage(mondata, traincurrent, mycurrent)
         for stat in self.statNames:
             mondata[mycurrent]['boosts'][stat] = int(self.jsonlist['battleState']['enemypokemon']['stat levels'][stat])
@@ -1667,22 +1546,8 @@ class AI(object):
         else:
             mycurrent = 0
         traincurrent = self.jsonlist['battleState']['playerpokemon']['party idx']+6
-        mondata[mycurrent]['boosts'] = {}
-        mondata[mycurrent]['boosts']['atk'] = int(self.jsonlist['battleState']['enemypokemon']['stat levels']['atk'])
-        mondata[mycurrent]['boosts']['def'] = int(self.jsonlist['battleState']['enemypokemon']['stat levels']['def'])
-        mondata[mycurrent]['boosts']['satk'] = int(self.jsonlist['battleState']['enemypokemon']['stat levels']['satk'])
-        mondata[mycurrent]['boosts']['sdef'] = int(self.jsonlist['battleState']['enemypokemon']['stat levels']['sdef'])
-        mondata[mycurrent]['boosts']['spd'] = int(self.jsonlist['battleState']['enemypokemon']['stat levels']['spd'])
-        mondata[mycurrent]['boosts']['eva'] = int(self.jsonlist['battleState']['enemypokemon']['stat levels']['eva'])
-        mondata[mycurrent]['boosts']['acc'] = int(self.jsonlist['battleState']['enemypokemon']['stat levels']['acc'])
-        mondata[traincurrent]['boosts'] = {}
-        mondata[traincurrent]['boosts']['atk'] = int(self.jsonlist['battleState']['playerpokemon']['stat levels']['atk'])
-        mondata[traincurrent]['boosts']['def'] = int(self.jsonlist['battleState']['playerpokemon']['stat levels']['def'])
-        mondata[traincurrent]['boosts']['satk'] = int(self.jsonlist['battleState']['playerpokemon']['stat levels']['satk'])
-        mondata[traincurrent]['boosts']['sdef'] = int(self.jsonlist['battleState']['playerpokemon']['stat levels']['sdef'])
-        mondata[traincurrent]['boosts']['spd'] = int(self.jsonlist['battleState']['playerpokemon']['stat levels']['spd'])
-        mondata[traincurrent]['boosts']['eva'] = int(self.jsonlist['battleState']['playerpokemon']['stat levels']['eva'])
-        mondata[traincurrent]['boosts']['acc'] = int(self.jsonlist['battleState']['playerpokemon']['stat levels']['acc'])
+        mondata = self.Reset(traincurrent, mycurrent)
+        self.TrainerDamage(mondata, traincurrent, mycurrent)
         
         tempx = -1
         for tempmove in range (0, len(self.jsonlist['battleState']['enemypokemon']['moves'])):
@@ -1765,7 +1630,6 @@ class AI(object):
                             tempy = tempmove
                            
         #im about to die
-        self.TrainerDamage(mondata, traincurrent, mycurrent)
         if self.Damage[traincurrent][mycurrent][self.enemynumber]['damage'] > self.jsonlist['battleState']['enemypokemon']['hp']:
             tempx = 0
             tempy = -1
@@ -1780,18 +1644,20 @@ class AI(object):
                 print('about to die - i need to attack, i will use: '+str(tempy))
             return tempy
         
+        tempx = (int(self.jsonlist['battleState']['playerpokemon']['stat levels']['atk']) + int(self.jsonlist['battleState']['playerpokemon']['stat levels']['def']) + int(self.jsonlist['battleState']['playerpokemon']['stat levels']['satk']) + int(self.jsonlist['battleState']['playerpokemon']['stat levels']['sdef']) + int(self.jsonlist['battleState']['playerpokemon']['stat levels']['spd']) + int(self.jsonlist['battleState']['playerpokemon']['stat levels']['eva']) + int(self.jsonlist['battleState']['playerpokemon']['stat levels']['acc']))
         #baton pass
         if self.jsonlist['battleState']['enemy type'] == 'TRAINER':
-            tempx = -1
-            for tempmove in range (0, len(self.jsonlist['battleState']['enemypokemon']['moves'])):
-                if mondata[mycurrent]['moves'][tempmove]['effect'] == ('batonpass'):
-                    tempx = tempmove    
-            if tempx != -1 :
-                potentialAction = self.OptionalSwitch(mondata, traincurrent)
-                if potentialAction != 20:
-                    return potentialAction
-            if Debug_Code == 1:
-                print('in manual control')
+            if tempx > 0:
+                tempx = -1
+                for tempmove in range (0, len(self.jsonlist['battleState']['enemypokemon']['moves'])):
+                    if mondata[mycurrent]['moves'][tempmove]['effect'] == ('batonpass'):
+                        tempx = tempmove    
+                if tempx != -1 :
+                    potentialAction = self.OptionalSwitch(mondata, traincurrent)
+                    if potentialAction != 20:
+                        return potentialAction
+                if Debug_Code == 1:
+                    print('in manual control')
         return None
 
     #figure out best action to do in current battle
