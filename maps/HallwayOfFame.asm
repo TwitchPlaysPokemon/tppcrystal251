@@ -501,7 +501,7 @@ HallwayOfFame_MapEventHeader: ; 0x1813f4
 
 	; people-events
 	db 2
-	person_event SPRITE_EGK_RIVAL, 7, 9, $6, 0, 0, -1, -1, 0, 0, 0, ObjectEvent, -1
+	person_event SPRITE_EGK_RIVAL, 9, 14, $6, 0, 0, -1, -1, 0, 0, 0, ObjectEvent, -1
 	person_event SPRITE_OAK, 12, 9, $7, 0, 0, -1, -1, 0, 0, 0, ObjectEvent, EVENT_MARY_AND_OAK_IN_LANCES_ROOM
 ; 0x181445
 
