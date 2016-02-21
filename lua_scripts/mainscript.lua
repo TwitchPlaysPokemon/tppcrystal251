@@ -31,7 +31,7 @@ BEESAFREE_SND_ASKITEM	   = 0x02
 BEESAFREE_RES_RESET		 = 0x00
 player_next_move = ""
 
-military_mode = 1 -- 0 for off, 1 for on
+military_mode = 0 -- 0 for off, 1 for on
 lastBattleState = 0
 ignore_serial = 0 -- please set this to 0 for normal use.
 lua_wait = 0

@@ -516,7 +516,7 @@ class AI(object):
                 if temp2 * 2 > mondata[defender]['stats']['curhp']:
                     temp2 = temp2 * 2
             elif move_used['name'] == 'destinybond':
-                temp2 = mondata[defender]['stats']['curhp'] * (mondata[attacker]['stats']['curhp'] / mondata[attacker]['stats']['hp'])
+                temp2 = mondata[defender]['stats']['curhp'] * (1 - (mondata[attacker]['stats']['curhp'] / mondata[attacker]['stats']['hp']))
             elif (move_used_effect == 'recoilhit'):
                 self.Damage[attacker][defender][moveused]['selfdamage'] = temp2 * 0.25
             elif (move_used_effect == 'leechhit'):

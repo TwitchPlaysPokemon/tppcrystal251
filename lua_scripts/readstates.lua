@@ -172,7 +172,7 @@ function getSubstatus(flags, counts, subhp, lockedmove, disablecount)
 	if (AND(substatus4, 0x04) ~= 0) then table.insert(subStatus, "pumped") end
 	if (AND(substatus4, 0x10) ~= 0) then subStatus["substitute"] = memory.readbyte(subhp) end
 	if (AND(substatus4, 0x20) ~= 0) then table.insert(subStatus, "recharge") end
-	if (AND(substatus4, 0x40) ~= 0) then subStatus["raging"] = memory.readbyte(counts + 6) end
+	if (AND(substatus4, 0x40) ~= 0) then table.insert(subStatus, "using rage") end
 	if (AND(substatus4, 0x80) ~= 0) then table.insert(subStatus, "seeded") end
 
 	-- substatus5
@@ -195,6 +195,7 @@ function getSubstatus(flags, counts, subhp, lockedmove, disablecount)
 		Disabled["move idx"] = AND(disableCount, 0xf0) / 0x10
 		subStatus["disabled"] = Disabled
 	end
+	subStatus["raging"] = memory.readbyte(counts + 6)
 	return subStatus
 end
 
