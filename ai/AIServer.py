@@ -39,14 +39,16 @@ previous_posted_message = ""
 def post_slack_errormsg(battle_state, traceback_last):
     #post the AI exception to slack
     global previous_posted_message
-    message = "The AI threw this exception with the posted input: ```{}```" .format(traceback_last)
-    if message == previous_posted_message:
+    
+    #don't post the same traceback twice; it'll get spammy
+    if traceback_last == previous_posted_message:
         return
-    previous_posted_message = message
+    previous_posted_message = traceback_last
 
+    message = "The AI threw this exception with the posted input: ```{}```" .format(traceback_last)
     arguments = {"token":slack_oauth,
                 "channels":"#aireview", #change this if need be
-                "content":str(battle_state), #content is what's inside the snippet
+                "content":json.dumps(battle_state), #content is what's inside the snippet
                 "as_user":"true",
                 "username":"@1hlixedbot",
                 "initial_comment": message,
