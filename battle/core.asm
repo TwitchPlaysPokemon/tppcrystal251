@@ -2755,7 +2755,7 @@ Function3d0ea: ; 3d0ea
 	jr c, .normal_trainer_victory
 	ld a, [StatusFlags]
 	bit 5, a
-	jr z, .play_music
+	jr nz, .play_music
 .normal_trainer_victory
 	ld de, MUSIC_TRAINER_VICTORY
 
