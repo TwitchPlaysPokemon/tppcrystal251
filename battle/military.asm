@@ -275,11 +275,11 @@ Military:
 .Flee
 	callba Military_TryToFlee
 	ret c
-	ld a, [wd266]
+	ld a, [wd0ec]
 	and a
 	ld a, 0
-	ld [wd266], a
-	jr nz, .Invalid
+	ld [wd0ec], a
+	jr z, .Invalid
 	ret
 
 .InvalidItem

@@ -3988,6 +3988,8 @@ Function3d8b3: ; 3d8b3
 	jp z, .asm_3d98d
 	cp BATTLETYPE_SUICUNE
 	jp z, .asm_3d98d
+	cp BATTLETYPE_ROAMING
+	jp z, .asm_3d98d
 
 	ld a, [wLinkMode]
 	and a
