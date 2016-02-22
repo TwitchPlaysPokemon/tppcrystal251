@@ -1007,7 +1007,6 @@ class AI(object):
             
         self.MonData['enemypokemon'] = {}
         self.MonData['playerpokemon'] = {}
-        self.MonData['myitems'] = {}
         self.MonData['enemypokemon']['screens'] = {}
         self.MonData['playerpokemon']['screens'] = {}
         self.MonData['enemypokemon']['substatus'] = copy.deepcopy(self.jsonlist['battleState']['enemypokemon']['subStatus'])
