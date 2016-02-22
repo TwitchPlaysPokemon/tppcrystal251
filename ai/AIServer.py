@@ -81,7 +81,7 @@ def calculate_next_move(battle_state):
         # uh-oh! better fall back to "default ai"
         next_move = get_backup_move(battle_state)
         
-        post_slack_errormsg(battle_state, e)
+        post_slack_errormsg(battle_state)
 
     logger.info("next move: %s" % next_move)
     LastActions.append(next_move)
