@@ -688,6 +688,12 @@ class AI(object):
                     self.Damage[mycurrent][traincurrent][moveused]['damage'] = self.MonData[traincurrent]['stats']['curhp'] - (self.MonData[mycurrent]['stats']['curhp'] + self.MonData[traincurrent]['stats']['curhp'])/2
                     self.Damage[mycurrent][traincurrent][moveused]['selfdamage'] = self.MonData[mycurrent]['stats']['curhp'] - (self.MonData[mycurrent]['stats']['curhp'] + self.MonData[traincurrent]['stats']['curhp'])/2
                 
+                #whirlwind
+                if self.MonData[mycurrent]['moves'][moveused]['effect'] == 'whirlwind':
+                    for stat in self.statNames:
+                        self.MonData[traincurrent]['boosts'][stat] = 0
+                    self.MonData['playerpokemon']['substatus'] = {}
+                
                 #Guard
                 if self.MonData[mycurrent]['moves'][moveused]['effect'] == 'protect' and 'protect' not in self.MonData['enemypokemon']['substatus']:
                     self.Damage[mycurrent][traincurrent][moveused]['selfdamage'] = self.Damage[traincurrent][mycurrent][self.enemynumber]['damage'] * -1
