@@ -800,16 +800,10 @@ class AI(object):
             self.Damage[mycurrent][traincurrent][moveused]['selfdamage'] = 0
         #stats limiter
         for stat in self.statNames:
-            statName = stat
-            #constrain each stat to +- 6
-            if self.MonData[mycurrent]['boosts'][statName] > 6:
-                self.MonData[mycurrent]['boosts'][statName] = 6
-            if self.MonData[mycurrent]['boosts'][statName] < -6:
-                self.MonData[mycurrent]['boosts'][statName] = -6
-            if self.MonData[traincurrent]['boosts'][statName] > 6:
-                self.MonData[traincurrent]['boosts'][statName] = 6
-            if self.MonData[traincurrent]['boosts'][statName] < -6:
-                self.MonData[traincurrent]['boosts'][statName] = -6
+            curStat = self.MonData[mycurrent]['boosts'][stat]
+            self.MonData[mycurrent]['boosts'][stat] = sign(curStat) * min(abs(curStat), 6)
+            curStat = self.MonData[traincurrent]['boosts'][stat]
+            self.MonData[traincurrent]['boosts'][stat] = sign(curStat) * min(abs(curStat), 6)
         return
 
     def specialeffect(self, traincurrent, mycurrent, moveused):
@@ -883,16 +877,11 @@ class AI(object):
 
             #stats limiter
             for stat in self.statNames:
-                statName = stat
                 #constrain each stat to +- 6
-                if self.MonData[mycurrent]['boosts'][statName] > 6:
-                    self.MonData[mycurrent]['boosts'][statName] = 6
-                if self.MonData[mycurrent]['boosts'][statName] < -6:
-                    self.MonData[mycurrent]['boosts'][statName] = -6
-                if self.MonData[traincurrent]['boosts'][statName] > 6:
-                    self.MonData[traincurrent]['boosts'][statName] = 6
-                if self.MonData[traincurrent]['boosts'][statName] < -6:
-                    self.MonData[traincurrent]['boosts'][statName] = -6
+                curStat = self.MonData[mycurrent]['boosts'][stat]
+                self.MonData[mycurrent]['boosts'][stat] = sign(curStat) * min(abs(curStat), 6)
+                curStat = self.MonData[traincurrent]['boosts'][stat]
+                self.MonData[traincurrent]['boosts'][stat] = sign(curStat) * min(abs(curStat), 6)
         else:
             self.Damage[mycurrent][traincurrent][moveused]['damage'] = -1
             self.Damage[mycurrent][traincurrent][moveused]['selfdamage'] = 0
@@ -1207,16 +1196,10 @@ class AI(object):
                         self.MonData['focusenergyused'] = True
                     #stats limiter
                     for stat in self.statNames:
-                        statName = stat
-                        #constrain each stat to +- 6
-                        if self.MonData[mycurrent]['boosts'][statName] > 6:
-                            self.MonData[mycurrent]['boosts'][statName] = 6
-                        if self.MonData[mycurrent]['boosts'][statName] < -6:
-                            self.MonData[mycurrent]['boosts'][statName] = -6
-                        if self.MonData[traincurrent]['boosts'][statName] > 6:
-                            self.MonData[traincurrent]['boosts'][statName] = 6
-                        if self.MonData[traincurrent]['boosts'][statName] < -6:
-                            self.MonData[traincurrent]['boosts'][statName] = -6
+                        curStat = self.MonData[mycurrent]['boosts'][stat]
+                        self.MonData[mycurrent]['boosts'][stat] = sign(curStat) * min(abs(curStat), 6)
+                        curStat = self.MonData[traincurrent]['boosts'][stat]
+                        self.MonData[traincurrent]['boosts'][stat] = sign(curStat) * min(abs(curStat), 6)
                     self.TrainerDamage(traincurrent, mycurrent)
                     myhp1 = myhp1 - self.Damage[traincurrent][mycurrent][self.enemynumber]['damage']
 
