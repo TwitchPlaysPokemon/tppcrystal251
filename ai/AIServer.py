@@ -35,11 +35,10 @@ slack_oauth = "xoxp-19319780978-19729075300-22424417394-bf36625f85"
 
 def post_slack_errormsg(battle_state):
     #post the AI exception to slack
-    #message = "The AI threw this exception with the posted input: ```{}```" .format(''.join(traceback.format_stack()))
-    message = "testing testing 123 but working this time"
+    message = "The AI threw this exception with the posted input: ```{}```" .format(''.join(traceback.format_stack()))
     arguments = {"token":slack_oauth,
                 "channels":"#aireview,#romdev", #change this if need be
-                "content":str(battle_state)*400, #content is what's inside the snippet
+                "content":str(battle_state), #content is what's inside the snippet
                 "as_user":"true",
                 "username":"@1hlixedbot",
                 "initial_comment": message,
