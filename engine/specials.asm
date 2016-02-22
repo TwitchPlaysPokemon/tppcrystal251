@@ -680,19 +680,25 @@ _CheckAlivePartyMon:
 
 BillBoxSwitchCheck: ;from current box, return first box with space or 0 if entire pc is full
 	ld a, [wCurBox]
-	inc a ;box number as shown
-	ld c, a
+	cp NUM_BOXES - 1
+	jr nz, .notbox14
+	ld a, -1
+.notbox14
+	inc a ;next box true count
 .billboxloop
+	inc a ;box number as shown of next box
+	ld c, a
 	push af
 	callab BoxCheckWithC
 	cp MONS_PER_BOX
 	jr nz, .foundspace
 	pop af
-	cp NUM_BOXES
+	dec a ;back to true box count
+	cp NUM_BOXES-1 ;if last box, set for box 1
 	jr nz, .notlastbox
-	ld a, 0
+	ld a, -1
 .notlastbox
-	inc a
+	inc a ;next box as true box count
 	ld c, a
 	ld a, [wCurBox]
 	cp c
@@ -704,7 +710,7 @@ BillBoxSwitchCheck: ;from current box, return first box with space or 0 if entir
 
 .foundspace
 	pop af
-	;dec a
+	dec a ;back to truecount
 	ld [ScriptVar], a
 	ld [EngineBuffer1], a
 	ret

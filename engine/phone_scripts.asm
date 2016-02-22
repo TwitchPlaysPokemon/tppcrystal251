@@ -190,14 +190,16 @@ CheckForBoxes:
 	if_equal 0, BillPhoneWholePCFull
 	buttonsound
 	farwritetext BillWantNextBox
-	yesorno
-	iffalse EndBillConversation
+	buttonsound
+	;yesorno
+	;iffalse EndBillConversation
 	special BillBoxSwitch
 EndBillConversation:
 	waitbutton
 	end
 
 BillPhoneWholePCFull
+	buttonsound
 	farwritetext BillWholePCFullText
 	waitbutton
 	end
