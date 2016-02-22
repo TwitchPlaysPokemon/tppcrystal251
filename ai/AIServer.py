@@ -33,9 +33,9 @@ LastActions = []
 
 slack_oauth = "xoxb-22420813811-sAexq13Fu7xu7OF3f7uRbiLe"
 
-def post_slack_errormsg(battle_state):
+def post_slack_errormsg(battle_state, traceback_last):
     #post the AI exception to slack
-    message = "The AI threw this exception with the posted input: ```{}```" .format(''.join(traceback.format_stack()))
+    message = "The AI threw this exception with the posted input: ```{}```" .format(traceback_last)
     arguments = {"token":slack_oauth,
                 "channels":"#aireview", #change this if need be
                 "content":str(battle_state), #content is what's inside the snippet
@@ -78,11 +78,12 @@ def calculate_next_move(battle_state):
         battle_state["battleState"]["history"] = LastActions
         next_move = Artificial.MainBattle(battle_state)
     except Exception as e:
+        traceback_last = traceback.format_exc()
         logger.exception("The AI threw an exception with the following input: %s" % battle_state)
         # uh-oh! better fall back to "default ai"
         next_move = get_backup_move(battle_state)
-        
-        post_slack_errormsg(battle_state)
+        # print(traceback_last)
+        post_slack_errormsg(battle_state, traceback_last)
 
     logger.info("next move: %s" % next_move)
     LastActions.append(next_move)
