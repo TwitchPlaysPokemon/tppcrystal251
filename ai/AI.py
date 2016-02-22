@@ -697,7 +697,7 @@ class AI(object):
                         self.Damage[mycurrent][traincurrent][moveused]['selfdamage'] = mondata[mycurrent]['stats']['hp'] / -16
                 
                 #if heal doesnt matter
-                if healing and self.jsonlist['enemyParty']['party'][mycurrent]['hp'] > self.jsonlist['enemyParty']['party'][mycurrent]['maxhp'] * 0.75:
+                if healing and mondata[mycurrent]['stats']['curhp'] < mondata[mycurrent]['stats']['hp'] * 0.75:
                     if self.Damage[traincurrent][mycurrent][self.enemynumber]['damage'] > -1 * self.Damage[mycurrent][traincurrent][moveused]['selfdamage']:
                         self.Damage[mycurrent][traincurrent][moveused]['selfdamage'] = 0
                     
@@ -1338,6 +1338,9 @@ class AI(object):
 
     #compare all mons for best mon
     def checkIfUsingItem(self):
+        mycurrent = self.jsonlist['battleState']['enemypokemon']['party idx']
+        traincurrent = self.jsonlist['battleState']['playerpokemon']['party idx']+6
+        mondata = self.Reset(traincurrent, mycurrent)
         if mondata['myitems'][1] != 'noitem' or mondata['myitems'][2] != 'noitem':
             for mymons in range(0, 6):
                 self.difference[mymons] = {}
@@ -1370,12 +1373,10 @@ class AI(object):
                 bestmonsindex[x1] = tempx
                 battlerating[tempx] = 0
             
-            mycurrent = self.jsonlist['battleState']['enemypokemon']['party idx']
             if self.theaction < 4:
                 temp1 = self.jsonlist['battleState']['enemypokemon']['party idx']
             if self.theaction > 3:
                 temp1 = self.theaction - 4
-            traincurrent = self.jsonlist['battleState']['playerpokemon']['party idx']+6
             self.TrainerDamage(mondata, traincurrent, mycurrent)
             self.triggered = 0
             for x1 in range (0, numberofviable):

@@ -2755,7 +2755,7 @@ Function3d0ea: ; 3d0ea
 	jr c, .normal_trainer_victory
 	ld a, [StatusFlags]
 	bit 5, a
-	jr z, .play_music
+	jr nz, .play_music
 .normal_trainer_victory
 	ld de, MUSIC_TRAINER_VICTORY
 
@@ -3987,6 +3987,8 @@ Function3d8b3: ; 3d8b3
 	cp BATTLETYPE_SHINY
 	jp z, .asm_3d98d
 	cp BATTLETYPE_SUICUNE
+	jp z, .asm_3d98d
+	cp BATTLETYPE_ROAMING
 	jp z, .asm_3d98d
 
 	ld a, [wLinkMode]
