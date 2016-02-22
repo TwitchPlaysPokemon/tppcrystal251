@@ -105,6 +105,7 @@ AfterOakTalk:
 	disappear $0
 	special Function8c084
 	pause 15
+	dotrigger $1
 	warpfacing $1, GROUP_HALL_OF_FAME, MAP_HALL_OF_FAME, $4, $d
 	end
 
