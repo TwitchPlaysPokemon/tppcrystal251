@@ -312,6 +312,12 @@ UnknownText_0x1b06d9: ; 0x1b06d9
 	para "for you."
 	line "Here you go!"
 	done
+
+DoYouWantToKeepTheBug:
+	text "Do you want to"
+	line "keep the caught"
+	cont "#MON?"
+	done
 ; 0x1b070d
 
 UnknownText_0x1b070d: ; 0x1b070d
