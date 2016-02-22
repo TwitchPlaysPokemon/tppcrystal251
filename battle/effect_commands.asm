@@ -4144,33 +4144,33 @@ BattleCommand62: ; 35612
 
 ; Selfdestruct and Explosion halve defense.
 	cp EFFECT_EXPLOSION
-	jr nz, .asm_35620
+	jr nz, .skip_kapow
 
 	srl c
-	jr nz, .asm_35620
+	jr nz, .skip_kapow
 	inc c
 
-.asm_35620
+.skip_kapow
 
 ; Variable-hit moves and Conversion can have a power of 0.
 	cp EFFECT_MULTI_HIT
-	jr z, .asm_3562b
+	jr z, .skip_zero_power_check
 
 	cp EFFECT_CONVERSION
-	jr z, .asm_3562b
+	jr z, .skip_zero_power_check
 
 ; No damage if move power is 0.
 	ld a, d
 	and a
 	ret z
 
-.asm_3562b
+.skip_zero_power_check
 ; Minimum defense value is 1.
 	ld a, c
 	and a
-	jr nz, .asm_35631
+	jr nz, .okay_zero_defense_check
 	ld c, 1
-.asm_35631
+.okay_zero_defense_check
 
 	xor a
 	ld hl, hDividend ;$ffb3

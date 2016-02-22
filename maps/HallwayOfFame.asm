@@ -22,8 +22,8 @@ HallwayTrigger1: ; 0x180e3d
 
 RealChampScript: ; 0x180e74
 	applymovement $0, MovementToChamp
-	loadfont
 	spriteface 2, LEFT
+	loadfont
 	checkevent EVENT_OAK_DEFEATED
 	iftrue EGKRivalRematch
 	checkflag ENGINE_PLAYER_IS_FEMALE
@@ -66,10 +66,16 @@ RealChampScript: ; 0x180e74
 OakAppears:
 	waitbutton
 	closetext
-	appear $3
-	applymovement $3, OakWalksUp
+	pause 15
+	playmusic MUSIC_SLOW_PALLET
+	loadfont
+	writetext HallwayOfFameOakText1
+	waitbutton
+	closetext
 	spriteface $0, DOWN
 	spriteface $2, DOWN
+	appear $3
+	applymovement $3, OakWalksUp
 	loadfont
 	checkevent EVENT_OAK_DEFEATED
 	iftrue CheckDexForMtSilver
@@ -308,8 +314,8 @@ AzureBeforeBattleText:
 	line "good care of my"
 	cont "#MON."
 	
-	para "And now,"
-	line "here I am."
+	para "And now, here I"
+	line "am."
 	
 	para "I have risen up"
 	line "over those who"
@@ -421,43 +427,44 @@ WinVsChampRustText:
 
 AzurePostFightText:
 	text "I guess I must"
-	line "concede:"
+	line "concede."
 	
 	para "You are a better"
 	line "trainer than I am."
-
-	para "OAK: <GREEN>!"
 	done
 
 RustPostFightText:
 	text "Darn it!"
 	line "I guess you're"
-	cont "the new champ,"
-	cont "though I don't"
-	cont "like to admit it."
+	cont "the new champ!"
+	para "Though I don't"
+	line "like to admit it."
+	done
 
-	para "OAK: <GREEN>!"
+HallwayOfFameOakText1:
+	text "OAK: <GREEN>!"
 	done
 
 AzureBeforeRematchText:
 RustBeforeRematchText:
-	text ""
+	text "Placeholder"
 	done
 
 WinVsRematchAzureText:
 LoseVsRematchAzureText:
 WinVsRematchRustText: 
 LoseVsRematchRustText:
-	text "as the simiarly name above, but for the rematch"
+	text "I have nothing to"
+	line "say here yet."
 	done
 
 AzurePostRematchText:
 RustPostRematchText:
-	text "a"
+	text "OLDEN"
 	done
 
 OakToRivalAfterRemtachText:
-	text "a"
+	text "OLDEN"
 	done
 
 
@@ -506,10 +513,10 @@ HallwayOfFame_MapEventHeader: ; 0x1813f4
 
 	; warps
 	db 4
-	warp_def 19, $5, 3, GROUP_LANCES_ROOM, MAP_LANCES_ROOM
-	warp_def 19, $6, 4, GROUP_LANCES_ROOM, MAP_LANCES_ROOM
-	warp_def $2, $5, 1, GROUP_HALL_OF_FAME, MAP_HALL_OF_FAME
-	warp_def $2, $6, 2, GROUP_HALL_OF_FAME, MAP_HALL_OF_FAME
+	warp_def 19, $4, 3, GROUP_LANCES_ROOM, MAP_LANCES_ROOM
+	warp_def 19, $5, 4, GROUP_LANCES_ROOM, MAP_LANCES_ROOM
+	warp_def $2, $4, 1, GROUP_HALL_OF_FAME, MAP_HALL_OF_FAME
+	warp_def $2, $5, 2, GROUP_HALL_OF_FAME, MAP_HALL_OF_FAME
 
 	; xy triggers
 	db 0

@@ -10,7 +10,7 @@ Music_PalletTownSlow:
 	dbw $02, Music_PalletTown_Ch3
 	
 Music_PalletTownSlow_Ch1:
-	tempo 141
+	tempo 250
 	jumpchannel Music_PalletTown_branch_f4b17
 
 Music_PalletTown_Ch1: ; f4b15
