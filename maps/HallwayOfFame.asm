@@ -66,10 +66,16 @@ RealChampScript: ; 0x180e74
 OakAppears:
 	waitbutton
 	closetext
-	appear $3
-	applymovement $3, OakWalksUp
+	pause 15
+	playmusic MUSIC_SLOW_PALLET
+	loadfont
+	writetext HallwayOfFameOakText1
+	waitbutton
+	closetext
 	spriteface $0, DOWN
 	spriteface $2, DOWN
+	appear $3
+	applymovement $3, OakWalksUp
 	loadfont
 	checkevent EVENT_OAK_DEFEATED
 	iftrue CheckDexForMtSilver
@@ -425,8 +431,6 @@ AzurePostFightText:
 	
 	para "You are a better"
 	line "trainer than I am."
-
-	para "OAK: <GREEN>!"
 	done
 
 RustPostFightText:
@@ -435,29 +439,32 @@ RustPostFightText:
 	cont "the new champ!"
 	para "Though I don't"
 	line "like to admit it."
+	done
 
-	para "OAK: <GREEN>!"
+HallwayOfFameOakText1:
+	text "OAK: <GREEN>!"
 	done
 
 AzureBeforeRematchText:
 RustBeforeRematchText:
-	text ""
+	text "Placeholder"
 	done
 
 WinVsRematchAzureText:
 LoseVsRematchAzureText:
 WinVsRematchRustText: 
 LoseVsRematchRustText:
-	text "as the simiarly name above, but for the rematch"
+	text "I have nothing to"
+	line "say here yet."
 	done
 
 AzurePostRematchText:
 RustPostRematchText:
-	text "a"
+	text "OLDEN"
 	done
 
 OakToRivalAfterRemtachText:
-	text "a"
+	text "OLDEN"
 	done
 
 
