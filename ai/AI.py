@@ -23,13 +23,12 @@ MOVES_FILE_PATH = os.path.join(SCRIPT_DIR, "AiMoves.txt")
 
 Debug_Code = 0
 
-
 def sign(x):
     if x == 0:
         return 0
     else:
         return 1 if x > 0 else -1
-
+        
 class Combogenerator:
     def __init__(self,turnsToLookAhead=4, numMoves=4):
         self.arrlen = turnsToLookAhead
@@ -1396,17 +1395,15 @@ class AI(object):
                             
                             #and you are about to die
                             if self.Damage[traincurrent][mycurrent][self.enemynumber]['damage'] > self.hp[bestmonsindex[x1]]:
-                                #and healing would allow you to continue fighting
-                                if self.Damage[traincurrent][mycurrent][self.enemynumber]['damage'] / self.jsonlist['battleState']['enemypokemon']['stats']['maxhp'] < 0.5:
-                                    #and im not at full hp
-                                    if self.hp[bestmonsindex[x1]]!= self.jsonlist['battleState']['enemypokemon']['stats']['maxhp']:
-                                        #and the item is a.....
-                                        healing_items = {"potion":20,"superpotion":50,"hyperpotion":200,"maxpotion":99999,"fullrestore":99999}
-                                        item_name = self.MonData['myitems'][x2]
-                                        if item_name in healing_items:
-                                            #would the HP the item would heal be enough?
-                                            if healing_items[item_name] > self.Damage[traincurrent][mycurrent][self.enemynumber]['damage']:
-                                                return x2 + 9
+                                #and im not at full hp
+                                if self.hp[bestmonsindex[x1]]!= self.jsonlist['battleState']['enemypokemon']['stats']['maxhp']:
+                                    #and the item is a.....
+                                    healing_items = {"potion":20,"superpotion":50,"hyperpotion":200,"maxpotion":99999,"fullrestore":99999}
+                                    item_name = self.MonData['myitems'][x2]
+                                    if item_name in healing_items:
+                                        #and healing would allow you to continue fighting (and not draw out the inevitable)
+                                        if self.Damage[traincurrent][mycurrent][self.enemynumber]['damage'] * 2 < min((self.jsonlist['battleState']['enemypokemon']['stats']['maxhp'] - self.jsonlist['battleState']['enemypokemon']['stats']['hp']), healing_items[item_name]):
+                                            return x2 + 9
         return 20
 
     def OptionalSwitch(self, traincurrent):
@@ -1560,28 +1557,26 @@ class AI(object):
             if 'charged' in self.MonData['playerpokemon']['substatus'] or (isinstance(self.MonData['playerpokemon']['substatus'], dict) and 'charged' in self.MonData['playerpokemon']['substatus'].values()):
                 return tempx
         
-        try:
-            if self.theaction < 4:
-                if self.MonData[mycurrent]['moves'][self.theaction]['effect'] == 'counter':
-                    tempx = -1
-                    for tempmove in range (0, len(self.jsonlist['battleState']['enemypokemon']['moves'])):
-                        if self.MonData[mycurrent]['moves'][tempmove]['effect'] == ('mirrorcoat'):
-                            tempx = tempmove
-                    if tempx > -1:
-                        x1 = math.ceil(self.Damage[mycurrent][traincurrent][self.theaction]['damage'] / (self.Damage[mycurrent][traincurrent][self.theaction]['damage'] + self.Damage[0][6][tempx]['damage']))
-                        if random.randint(0, 100) > x1:
-                            return tempx
-                if self.MonData[mycurrent]['moves'][self.theaction]['effect'] == 'mirrorcoat':
-                    tempx = -1
-                    for tempmove in range (0, len(self.jsonlist['battleState']['enemypokemon']['moves'])):
-                        if self.MonData[mycurrent]['moves'][tempmove]['effect'] == ('counter'):
-                            tempx = tempmove
-                    if tempx > -1:
-                        x1 = math.ceil(self.Damage[mycurrent][traincurrent][self.theaction]['damage'] / (self.Damage[mycurrent][traincurrent][self.theaction]['damage'] + self.Damage[0][6][tempx]['damage']))
-                        if random.randint(0, 100) > x1:
-                            return tempx
-        except KeyError:
-            print('Key error countercoat')
+        #counter or mirrorcoat, randomize based on effective damage of both
+        if self.theaction < 4:
+            if self.MonData[mycurrent]['moves'][self.theaction]['effect'] == 'counter':
+                tempx = -1
+                for tempmove in range (0, len(self.jsonlist['battleState']['enemypokemon']['moves'])):
+                    if self.MonData[mycurrent]['moves'][tempmove]['effect'] == ('mirrorcoat'):
+                        tempx = tempmove
+                if tempx > -1:
+                    x1 = math.ceil(self.Damage[mycurrent][traincurrent][self.theaction]['damage'] / (self.Damage[mycurrent][traincurrent][self.theaction]['damage'] + self.Damage[mycurrent][traincurrent][tempx]['damage']))
+                    if random.randint(0, 100) > x1:
+                        return tempx
+            elif self.MonData[mycurrent]['moves'][self.theaction]['effect'] == 'mirrorcoat':
+                tempx = -1
+                for tempmove in range (0, len(self.jsonlist['battleState']['enemypokemon']['moves'])):
+                    if self.MonData[mycurrent]['moves'][tempmove]['effect'] == ('counter'):
+                        tempx = tempmove
+                if tempx > -1:
+                    x1 = math.ceil(self.Damage[mycurrent][traincurrent][self.theaction]['damage'] / (self.Damage[mycurrent][traincurrent][self.theaction]['damage'] + self.Damage[mycurrent][traincurrent][tempx]['damage']))
+                    if random.randint(0, 100) > x1:
+                        return tempx
         
         #disabled move
         if self.jsonlist['battleState']['enemy type'] == 'WILD':
