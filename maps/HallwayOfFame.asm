@@ -67,6 +67,7 @@ OakAppears:
 	waitbutton
 	closetext
 	pause 15
+	appear $3
 	playmusic MUSIC_SLOW_PALLET
 	loadfont
 	writetext HallwayOfFameOakText1
@@ -74,7 +75,6 @@ OakAppears:
 	closetext
 	spriteface $0, DOWN
 	spriteface $2, DOWN
-	appear $3
 	applymovement $3, OakWalksUp
 	loadfont
 	checkevent EVENT_OAK_DEFEATED

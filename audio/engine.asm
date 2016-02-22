@@ -21,7 +21,11 @@ _SoundRestart:: ; e8000
 	jr nz, .not_hallway
 	ld a, [Channel1MusicID]
 	cp MUSIC_GYM_VICTORY
-	jr z, .finish
+	jr nz, .not_hallway
+	ld de, EVENT_MARY_AND_OAK_IN_LANCES_ROOM
+	ld b, 2
+	call EventFlagAction
+	jr nz, .finish
 .not_hallway
 	call MusicOff
 	ld hl, rNR50 ; channel control registers
