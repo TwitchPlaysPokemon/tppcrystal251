@@ -1496,7 +1496,7 @@ class AI(object):
         movepriority[2] = 20
         movepriority[3] = 20
         self.Reset(traincurrent, mycurrent)
-        self.TrainerDamage(self.MonData, traincurrent, mycurrent)
+        self.TrainerDamage(traincurrent, mycurrent)
         for stat in self.statNames:
             self.MonData[mycurrent]['boosts'][stat] = int(self.jsonlist['battleState']['enemypokemon']['stat levels'][stat])
             self.MonData[traincurrent]['boosts'][stat] = int(self.jsonlist['battleState']['playerpokemon']['stat levels'][stat])
