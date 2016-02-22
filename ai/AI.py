@@ -1166,7 +1166,7 @@ class AI(object):
                         if myhp > self.MonData[mycurrent]['stats']['hp']:
                             myhp = self.MonData[mycurrent]['stats']['hp']
                     if trainhp > 0:
-                        self.TrainerDamage(self.MonData, traincurrent, mycurrent)
+                        self.TrainerDamage(traincurrent, mycurrent)
                         myhp = myhp - self.Damage[traincurrent][mycurrent][self.enemynumber]['damage']
                     if speedtie == 1:
                         trainhp = trainhp - self.Damage[mycurrent][traincurrent][int(tempcombo[x1])]['damage']

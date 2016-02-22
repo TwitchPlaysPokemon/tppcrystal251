@@ -93800,7 +93800,7 @@ FaintingCry:
 	ld a, [hli]
 	ld h, [hl]
 	ld l, a
-	ld bc, -$140
+	ld bc, -$70
 	add hl, bc
 	ld a, l
 	ld [CryPitch], a
@@ -93810,7 +93810,7 @@ FaintingCry:
 	ld a, [hli]
 	ld h, [hl]
 	ld l, a
-	ld bc, $60
+	ld bc, $30
 	add hl, bc
 	ld a, l
 	ld [CryLength], a
