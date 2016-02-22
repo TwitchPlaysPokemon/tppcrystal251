@@ -33,9 +33,16 @@ LastActions = []
 
 slack_oauth = "xoxb-22420813811-sAexq13Fu7xu7OF3f7uRbiLe"
 
+#global previous_execption variable to cut down on spam
+previous_posted_message = ""
+
 def post_slack_errormsg(battle_state):
+    global previous_posted_message
     #post the AI exception to slack
     message = "The AI threw this exception with the posted input: ```{}```" .format(''.join(traceback.format_stack()))
+    if message == previous_posted_message:
+        return
+    previous_posted_message = message
     arguments = {"token":slack_oauth,
                 "channels":"#aireview", #change this if need be
                 "content":str(battle_state), #content is what's inside the snippet
