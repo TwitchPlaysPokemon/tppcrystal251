@@ -35,10 +35,11 @@ slack_oauth = "xoxp-19319780978-19729075300-22424417394-bf36625f85"
 
 def post_slack_errormsg(battle_state):
     #post the AI exception to slack
-    message = "The AI threw this exception with the posted input: ```{}```" .format(''.join(traceback.format_stack()))
+    #message = "The AI threw this exception with the posted input: ```{}```" .format(''.join(traceback.format_stack()))
+    message = "testing testing 123 but working this time"
     arguments = {"token":slack_oauth,
                 "channels":"#aireview,#romdev", #change this if need be
-                "content":str(battle_state), #content is what's inside the snippet
+                "content":str(battle_state)*400, #content is what's inside the snippet
                 "as_user":"true",
                 "username":"@1hlixedbot",
                 "initial_comment": message,
@@ -46,9 +47,10 @@ def post_slack_errormsg(battle_state):
                 "filetype": "javascript"}
 
     #send the request using urllib
-    fullurl = "https://slack.com/api/files.upload" + "?" + urllib.parse.urlencode(arguments)
-    request = urllib.request.Request(fullurl)
+    #fullurl = "https://slack.com/api/files.upload" + "?" + urllib.parse.urlencode(arguments)
+    request = urllib.request.Request("https://slack.com/api/files.upload",urllib.parse.urlencode(arguments).encode("utf-8"))
     response = urllib.request.urlopen(request)
+    logger.info("Posted error message to slack!")
     return response.read().decode("utf-8")
 
 def get_backup_move(battle_state):
