@@ -209,8 +209,7 @@ MovementData_0x1a88f7: ; 0x1a88f7
 
 OlivineRocketText1:
 	text "Hey! Move it, you"
-	line "stupid hunk of"
-	cont "metal!"
+	line "stupid beast!"
 	done
 
 OlivineRocketText2:
@@ -394,6 +393,6 @@ OlivineCity_MapEventHeader: ; 0x1a8cce
 	person_event SPRITE_OLIVINE_RIVAL, 15, 14, $6, 0, 0, -1, -1, 0, 0, 0, ObjectEvent, EVENT_SILVER_IN_OLIVINE_CITY
 	person_event SPRITE_ROCKET, 32, 32, $9, 0, 0, -1, -1, 0, 0, 0, OlivineRocket1Script, EVENT_CLEARED_ROCKET_HIDEOUT
 	person_event SPRITE_ROCKET, 33, 33, $7, 0, 0, -1, -1, 0, 0, 0, OlivineRocket2Script, EVENT_CLEARED_ROCKET_HIDEOUT
-	person_event SPRITE_EKANS, 32, 33, $16, 0, 0, -1, -1, 0, 0, 0, ObjectEvent, EVENT_CLEARED_ROCKET_HIDEOUT
+	person_event SPRITE_TAUROS, 32, 33, $16, 0, 0, -1, -1, 0, 0, 0, ObjectEvent, EVENT_CLEARED_ROCKET_HIDEOUT
 ; 0x1a8d72
 

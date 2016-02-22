@@ -1,8 +1,6 @@
 BlackthornCity_MapScriptHeader: ; 0x1a46d0
 	; trigger count
-	db 2
-	dw .Trigger0, 0
-	dw .Trigger1, 0
+	db 0
 
 	; callback count
 	db 2
@@ -12,17 +10,9 @@ BlackthornCity_MapScriptHeader: ; 0x1a46d0
 	dbw 5, UnknownScript_0x1a46d8
 
 	dbw 2, SantosCallback
-.Trigger0
-	priorityjump BlackthornRivalBattle
-	end
-.Trigger1
-	end
 
 UnknownScript_0x1a46d8: ; 0x1a46d8
-	checkevent EVENT_EGK_RIVAL_IN_BLACKTHORN
-	iffalse .false
 	setflag ENGINE_FLYPOINT_BLACKTHORN
-.false
 	return
 ; 0x1a46dc
 
@@ -35,81 +25,6 @@ SantosCallback:
 .SantosAppears
 	appear $9
 	return
-
-BlackthornRivalBattle:
-	special HealParty
-	applymovement $0, BlackthornPlayerMovement
-	playmusic MUSIC_RIVAL_RB
-	showemote $0, $b, 15
-	pause 15
-	loadfont
-	checkflag ENGINE_PLAYER_IS_FEMALE
-	iftrue .male_rival
-	writetext BlackthornEGKRivalText1F
-	waitbutton
-	closetext
-	applymovement $b, BlackthornEGKRivalMovement1
-	spriteface $0, LEFT
-	loadfont
-	writetext BlackthornEGKRivalText2F
-	waitbutton
-	closetext
-	scall .SelectBattle
-	winlosstext BlackthornEGKRivalWinTextF, BlackthornEGKRivalLossTextF
-	loadvar OtherTrainerClass, BLUE_RB_F
-	writecode VAR_BATTLETYPE, BATTLETYPE_RIVAL_RB
-	startbattle
-	returnafterbattle
-	special RestartMapMusic
-	loadfont
-	writetext BlackthornEGKRivalText3F
-	jump .finish_battle
-
-.male_rival
-	writetext BlackthornEGKRivalText1
-	waitbutton
-	closetext
-	applymovement $b, BlackthornEGKRivalMovement1
-	spriteface $0, LEFT
-	loadfont
-	writetext BlackthornEGKRivalText2
-	waitbutton
-	closetext
-	scall .SelectBattle
-	winlosstext BlackthornEGKRivalWinText, BlackthornEGKRivalLossText
-	writecode VAR_BATTLETYPE, BATTLETYPE_RIVAL_RB
-	startbattle
-	returnafterbattle
-	special RestartMapMusic
-	loadfont
-	writetext BlackthornEGKRivalText3
-.finish_battle
-	waitbutton
-	closetext
-	playmusic MUSIC_RIVAL_AFTER_RB
-	spriteface $0, DOWN
-	applymovement $b, BlackthornEGKRivalMovement2
-	disappear $b
-	special RestartMapMusic
-	dotrigger 1
-	setflag ENGINE_FLYPOINT_BLACKTHORN
-	end
-
-.SelectBattle
-	checkevent EVENT_GOT_CHARMANDER_FROM_OAK
-	iftrue .charmander
-	checkevent EVENT_GOT_SQUIRTLE_FROM_OAK
-	iftrue .squirtle
-	loadtrainer BLUE_RB, BLUE_RB_5C
-	end
-
-.charmander
-	loadtrainer BLUE_RB, BLUE_RB_5A
-	end
-
-.squirtle
-	loadtrainer BLUE_RB, BLUE_RB_5B
-	end
 
 SuperNerdScript_0x1a46e8: ; 0x1a46e8
 	faceplayer
@@ -438,236 +353,6 @@ UnknownText_0x1a4c03: ; 0x1a4c03
 	done
 ; 0x1a4c57
 
-BlackthornEGKRivalText1:
-	text "<GREEN>: Hunh?"
-	line "Hey, if it isn't"
-	cont "<PLAYER>!"
-	done
-
-BlackthornEGKRivalText2:
-	text "Have you been"
-	line "goofing off in"
-	cont "JOHTO all along?"
-
-	para "Ah, you've been"
-	line "collecting BADGES"
-	cont "here. Great!"
-
-	para "My rival should"
-	line "be strong to keep"
-	cont "me sharp!"
-
-	para "While working on"
-	line "#DEX, I looked"
-	para "all over for"
-	line "powerful #MON!"
-
-	para "Not only that, I"
-	line "assembled teams"
-	para "that would beat"
-	line "any #MON type!"
-
-	para "And now!"
-
-	para "I'm about to chal-"
-	line "lenge the #MON"
-	para "LEAGUE's ELITE"
-	line "FOUR!"
-
-	para "<PLAYER>! Do you"
-	line "know what that"
-	cont "means?"
-
-	para "I'll tell you!"
-
-	para "I'm primed to be-"
-	line "come the most"
-	para "powerful trainer"
-	line "in the world!"
-	done
-
-BlackthornEGKRivalWinText:
-	text "NO!"
-
-	para "That can't be!"
-	line "You beat my best!"
-
-	para "After all that"
-	line "work to collect"
-	cont "all the badges?"
-
-	para "My reign is over"
-	line "before it began?"
-	cont "It's not fair!"
-	done
-
-BlackthornEGKRivalLossText:
-	text "Hahaha!"
-	line "I won, I won!"
-
-	para "I'm too good for"
-	line "you, <PLAYER>!"
-
-	para "You did well to"
-	line "even reach me,"
-	cont "<GREEN>, the"
-	cont "#MON genius!"
-
-	para "Nice try, loser!"
-	line "Hahaha!"
-	done
-
-BlackthornEGKRivalText3:
-	text "Why?"
-	line "Why did I lose?"
-
-	para "I never made any"
-	line "mistakes raising"
-	cont "my #MON..."
-
-	para "Darn it! You may"
-	line "become the LEAGUE"
-	para "CHAMPION before"
-	line "me!"
-
-	para "Grr<...>"
-
-	para "No! I can't let"
-	line "this get me down!"
-
-	para "I should be happy."
-	line "Happy for you,"
-	cont "<PLAYER>."
-
-	para "No, seriously."
-	line "This whole time,"
-
-	para "you've been raising"
-	line "your #MON in a"
-	cont "way I never could."
-
-	para "You've grown,"
-	line "<PLAYER>."
-
-	para "For once, I'm the"
-	line "one who needs to"
-	cont "catch up to you."
-
-	para "Thanks for showing"
-	line "me that."
-
-	para "I need to heal my"
-	line "#MON."
-
-	para "<PLAYER>! Really!"
-	line "Smell ya later!"
-	done
-
-BlackthornEGKRivalText1F:
-	text "<PLAYER>? Is that"
-	line "really you?"
-	done
-
-BlackthornEGKRivalText2F:
-	text "It is! I can't be-"
-	line "lieve it! <PLAYER>!"
-
-	para "It's been so long"
-	line "since our battle"
-	cont "on the S.S. ANNE!"
-
-	para "Have you been rai-"
-	line "sing your #MON"
-	cont "well?"
-
-	para "I've taken really"
-	line "good care of mine."
-
-	para "They've grown real"
-	line "strong. We've been"
-	para "winning BADGES"
-	line "quite easily."
-
-	para "Oh? I see you've"
-	line "got 7 BADGES your-"
-	cont "self!"
-
-	para "That settles it."
-	line "<PLAYER>!"
-
-	para "I challenge you to"
-	line "a #MON battle!"
-
-	para "Let's show each-"
-	line "other just how"
-
-	para "much we've both"
-	line "grown!"
-	done
-
-BlackthornEGKRivalWinTextF:
-	text "Wow!"
-
-	para "<PLAYER>, you've"
-	line "gotten really good"
-	cont "at this."
-
-	para "Well done!"
-	done
-
-BlackthornEGKRivalLossTextF:
-	text "Huh, I guess I won"
-	line "this one."
-
-	para "Aww, don't feel"
-	line "too bad about it,"
-	cont "<PLAYER>."
-
-	para "It's not your"
-	line "fault you lost."
-
-	para "You put up a good"
-	line "fight and had fun"
-	cont "doing it!"
-
-	para "Isn't that what's"
-	line "important, in the"
-	cont "end?"
-	done
-
-BlackthornEGKRivalText3F:
-	text "Whew<...>"
-
-	para "Congratulations,"
-	line "<PLAYER>!"
-
-	para "You've grown up so"
-	line "much since I last"
-	cont "saw you."
-
-	para "<PLAYER>, you have"
-	line "come of age!"
-
-	para "You understand"
-	line "that your victory"
-
-	para "was not just your"
-	line "own doing!"
-
-	para "The bond you share"
-	line "with your #MON"
-	cont "is marvelous!"
-
-	para "Well, I need to"
-	line "rest up at the"
-	cont "#MON CENTER."
-
-	para "<PLAYER>, that was"
-	line "a lot of fun."
-
-	para "Promise me we'll"
-	line "battle again soon!"
-	done
 
 BlackthornCity_MapEventHeader: ; 0x1a4c57
 	; filler
@@ -698,7 +383,7 @@ BlackthornCity_MapEventHeader: ; 0x1a4c57
 	signpost 29, 22, $0, MapBlackthornCitySignpost6Script
 
 	; people-events
-	db 10
+	db 9
 	person_event SPRITE_SUPER_NERD, 16, 22, $6, 0, 0, -1, -1, 8 + PAL_OW_RED, 0, 0, SuperNerdScript_0x1a46e8, EVENT_GUY_BLOCKING_BLACKTHORN_GYM
 	person_event SPRITE_SUPER_NERD, 16, 23, $6, 0, 0, -1, -1, 8 + PAL_OW_RED, 0, 0, SuperNerdScript_0x1a46e8, EVENT_GUY_NOT_BLOCKING_BLACKTHORN_GYM
 	person_event SPRITE_GRAMPS, 6, 24, $6, 0, 0, -1, -1, 0, 0, 0, GrampsScript_0x1a4708, EVENT_GRAMPS_BLOCKING_DRAGONS_DEN
@@ -708,4 +393,3 @@ BlackthornCity_MapEventHeader: ; 0x1a4c57
 	person_event SPRITE_YOUNGSTER, 19, 17, $5, 0, 1, -1, -1, 0, 0, 0, YoungsterScript_0x1a4725, -1
 	person_event SPRITE_YOUNGSTER, 24, 26, $6, 0, 0, -1, -1, 0, 0, 0, SantosScript, EVENT_SANTOS_OF_SATURDAY
 	person_event SPRITE_COOLTRAINER_F, 23, 39, $7, 0, 0, -1, -1, 8 + PAL_OW_GREEN, 0, 0, CooltrainerFScript_0x1a4728, -1
-	person_event SPRITE_EGK_RIVAL, 15, 39, $7, 0, 0, -1, -1, 0, 0, 0, ObjectEvent, EVENT_EGK_RIVAL_IN_BLACKTHORN

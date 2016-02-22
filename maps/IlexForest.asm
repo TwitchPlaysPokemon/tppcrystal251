@@ -530,7 +530,7 @@ UnknownScript_0x6ee42: ; 0x6ee42
 	pause 20
 	clearflag ENGINE_HAVE_EXAMINED_GS_BALL
 	special Function4989a
-	loadpokedata CELEBI, 99
+	loadpokedata CELEBI, 100
 	startbattle
 	writebyte CELEBI
 	special SpecialMonCheck

@@ -218,10 +218,10 @@ ENDC
 	ld a, [BattleEnded]
 	and a
 	jr nz, .quit
+.return_from_military
 .asm_3c18a
 	call Function3c434
 	jr nz, .asm_3c179
-.return_from_military
 
 	call Function3c300
 	jr c, .quit
@@ -669,7 +669,7 @@ Function3c434: ; 3c434
 .asm_3c449
 	ld a, [wd0ec]
 	cp $2
-	jr z, .asm_3c4ce
+	jp z, .asm_3c4ce
 	and a
 	jr nz, .asm_3c4b5
 	ld a, [PlayerSubStatus3]
@@ -679,7 +679,16 @@ Function3c434: ; 3c434
 	ld [wd235], a
 	inc a ; POUND
 	ld [FXAnimIDLo], a
+IF DEF(BEESAFREE)
+	ld a, [wMilitaryFlags]
+	bit MILITARY_ON, a
+	jr nz, .skip_move_menu
+ENDC
 	call Function3e4bc
+	jr .okay
+.skip_move_menu	
+	xor a
+.okay
 	push af
 	call Function30b4
 	call UpdateBattleHuds
@@ -2721,33 +2730,39 @@ Function3d0ea: ; 3d0ea
 	ld de, MUSIC_WILD_VICTORY
 	ld a, [wBattleMode]
 	dec a
-	jr nz, .asm_3d113
+	jr nz, .trainer
 	push de
 	call Function3ceaa
 	pop de
-	jr nz, .asm_3d11e
+	jr nz, .play_music
 	ld hl, wPayDayMoney
 	ld a, [hli]
 	or [hl]
-	jr nz, .asm_3d11e
+	jr nz, .play_music
 	ld a, [wc664]
 	and a
-	jr z, .asm_3d121
-	jr .asm_3d11e
+	jr z, .skip_music
+	jr .play_music
 
-.asm_3d113
+.trainer
 	ld de, MUSIC_GYM_VICTORY
 	call IsJohtoGymLeader
-	jr c, .asm_3d11e
+	jr c, .play_music
 	ld a, [OtherTrainerClass]
 	cp PROF_ELM
-	jr z, .asm_3d11e
+	jr z, .play_music
+	cp BLUE_RB
+	jr c, .normal_trainer_victory
+	ld a, [StatusFlags]
+	bit 5, a
+	jr z, .play_music
+.normal_trainer_victory
 	ld de, MUSIC_TRAINER_VICTORY
 
-.asm_3d11e
+.play_music
 	call PlayMusic
 
-.asm_3d121
+.skip_music
 	pop de
 	ret
 ; 3d123

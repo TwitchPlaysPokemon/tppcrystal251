@@ -594,12 +594,13 @@ AfterTutor:
 	end
 
 WhoToTeachText:
-	text "Who should"
-	line "I teach?"
+	text "Who should I"
+	line "teach?"
 	done
 
-WierdTutorText:
-	db $0, $57
+WeirdTutorText:
+	text ""
+	done
 
 TutorQuitText:
 	text "Well if you change"
@@ -1104,7 +1105,7 @@ UnknownText_0x78866: ; 0x78866
 
 	para "Fast!"
 
-	para "Like lightinig!"
+	para "Like lightning!"
 
 	para "For ¥5000 your"
 	line "#MON can too."

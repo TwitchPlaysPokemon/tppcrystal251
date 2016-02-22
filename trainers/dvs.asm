@@ -6,11 +6,11 @@ GetTrainerDVs: ; 270c4
 	cp RED
 	jr nz, .okay
 	ld a, [OtherTrainerID]
-	and a
-	ld hl, .AbeDVs
-	jr z, .LoadHostDVs
 	dec a
 	ld hl, .RedDVs
+	jr z, .LoadHostDVs
+	dec a
+	ld hl, .AbeDVs
 	jr z, .LoadHostDVs
 	ld a, [OtherTrainerClass]
 .okay

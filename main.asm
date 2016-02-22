@@ -4362,7 +4362,7 @@ _PrintNum:: ; c4c7
 	dec e
 	jr nz, .asm_c5ad
 	inc hl
-	ld [hl], $f2 ; XXX
+	ld [hl], "." ; XXX
 .asm_c5ad
 	call .AdvancePointer
 	call .PrintYen
@@ -8345,7 +8345,7 @@ Functiond906: ; d906
 	ld a, [MonType]
 	cp $1
 	jr z, .okay2
-	ld b, 0
+	ld b, 1
 .okay2
 	call Functione167 ;fill rest of stats
 .asm_da45
@@ -12543,6 +12543,8 @@ UnknownScript_0x122ce:: ; 0x122ce
 	iffalse UnknownScript_0x122e3
 	disappear $fe
 	loadfont
+	copybytetovar wd10c
+	if_greater_than 1, .GetMultipleItems
 	writetext UnknownText_0x122ee
 	playsound SFX_ITEM
 	pause 60
@@ -12551,8 +12553,18 @@ UnknownScript_0x122ce:: ; 0x122ce
 	end
 ; 0x122e3
 
+.GetMultipleItems
+	writetext FoundMultipleText
+	playsound SFX_ITEM
+	pause 60
+	itemnotify
+	closetext
+	end
+
 UnknownScript_0x122e3: ; 0x122e3
 	loadfont
+	copybytetovar wd10c
+	if_greater_than 1, .DontGetMultipleItems
 	writetext UnknownText_0x122ee
 	waitbutton
 	writetext UnknownText_0x122f3
@@ -12561,11 +12573,24 @@ UnknownScript_0x122e3: ; 0x122e3
 	end
 ; 0x122ee
 
+.DontGetMultipleItems
+	writetext FoundMultipleText
+	waitbutton
+	writetext UnknownText_0x122f3
+	waitbutton
+	closetext
+	end
+
 UnknownText_0x122ee: ; 0x122ee
 	; found @ !
 	text_jump UnknownText_0x1c0a1c
 	db "@"
 ; 0x122f3
+
+FoundMultipleText:
+	;found # @S!
+	text_jump MultipleGetItemBallText
+	db "@"
 
 UnknownText_0x122f3: ; 0x122f3
 	; But   can't carry any more items.
@@ -17481,7 +17506,7 @@ Group1Sprites: ; 146a1
 	db SPRITE_ROCKET
 	db SPRITE_SAILOR
 	db SPRITE_POKEFAN_F
-	db SPRITE_EKANS
+	db SPRITE_SWIMMER_GIRL
 	db SPRITE_TAUROS
 	db SPRITE_FRUIT_TREE
 	db SPRITE_ROCK ; 23
@@ -17875,7 +17900,7 @@ Group16Sprites: ; 145d2
 	db SPRITE_GRAMPS
 	db SPRITE_YOUNGSTER
 	db SPRITE_FISHER
-	db SPRITE_TEACHER
+	db SPRITE_EGK_RIVAL
 	db SPRITE_SUPER_NERD
 	db SPRITE_MACHOP
 	db SPRITE_BIKER
@@ -21351,44 +21376,49 @@ Function15ffa:: ; 15ffa
 ; 1600b
 
 Function1600b:: ; 1600b
-	ld a, $3
+	ld a, 3
 Function1600d: ; 1600d
+; a: number of bytes
+; bc: start addr of amount (big-endian)
+; de: start addr of account (big-endian)
 	push hl
 	push de
 	push bc
 	ld h, b
 	ld l, c
-	ld c, $0
+	ld c, 0
 	ld b, a
-.asm_16015
+; Go to the end of both amounts
+.loop1
 	dec a
-	jr z, .asm_1601c
+	jr z, .done
 	inc de
 	inc hl
-	jr .asm_16015
-
-.asm_1601c
+	jr .loop1
+; Clear flags
+.done
 	and a
-.asm_1601d
+; Compare
+.loop2
 	ld a, [de]
 	sbc [hl]
-	jr z, .asm_16022
-	inc c
-.asm_16022
+	jr z, .okay
+	inc c ; c counts the number of bytes that are not equal
+.okay
 	dec de
 	dec hl
 	dec b
-	jr nz, .asm_1601d
-	jr c, .asm_1602d
-	ld a, c
+	jr nz, .loop2
+	jr c, .set_carry ; Clear z flag if set, and set the carry flag, if the amount is greater than the account.
+	ld a, c ; If c is zero, the two amounts are exactly equal.
 	and a
-	jr .asm_16031
+	jr .skip_carry
 
-.asm_1602d
-	ld a, $1
+.set_carry
+	ld a, 1
 	and a
 	scf
-.asm_16031
+.skip_carry
 	pop bc
 	pop de
 	pop hl
@@ -26570,7 +26600,7 @@ Function24d47: ; 24d47 draw a text box to hold mon options menu
 	ret
 ; 24d59
 
-Function24d59: ; 24d59 ;process monsubmenu, retern the cmmand to execute in a
+Function24d59: ; 24d59 ;process monsubmenu, return the command to execute in a
 .asm_24d59
 	ld a, $a0
 	ld [wcf91], a ;load 160 into ??
@@ -35699,9 +35729,9 @@ PlayBattleMusic: ; 2ee6c
 	jr z, .done
 	ld de, MUSIC_RIVAL_BATTLE_RB
 	cp BLUE_RB
-	jr z, .done
+	jr z, .egk_check
 	cp BLUE_RB_F
-	jr z, .done
+	jr z, .egk_check
 	ld de, MUSIC_KANTO_GYM_LEADER_BATTLE
 	callba IsKantoGymLeader
 	jr c, .done
@@ -35741,6 +35771,13 @@ PlayBattleMusic: ; 2ee6c
 	pop hl
 	ret
 ; 2ef18
+
+.egk_check
+	ld a, [StatusFlags]
+	bit 5, a
+	jr z, .done
+	ld de, MUSIC_CHAMPION_BATTLE_RB
+	jr .done
 
 ClearBattleRAM: ; 2ef18
 	xor a
@@ -36438,7 +36475,7 @@ Function421f5: ; 421f5
 	jp z, .DontEvolve2
 	ld a, [hli]
 	cp TR_ANYTIME
-	jr z, .GoAheadAndEvolve
+	jp z, .GoAheadAndEvolve
 	cp TR_MORNDAY
 	jr z, .asm_422a4
 ; TR_NITE
@@ -36497,7 +36534,17 @@ Function421f5: ; 421f5
 	ld b, a
 	ld a, [TempMonItem]
 	cp b
-	jp nz, .DontEvolve
+	jp z, .GoAheadAndEvolve
+	ld a, EVERSTONE
+	cp b
+	jp z, .DontEvolve
+	ld a, b
+	push hl
+	ld [CurItem], a
+	ld hl, NumItems
+	call CheckItem
+	pop hl
+	jp nc, .DontEvolve
 	jr .GoAheadAndEvolve
 
 .level
@@ -63033,6 +63080,8 @@ Function8c20f: ; 8c20f
 	ld [hl], $1
 .asm_8c22b
 	ld a, [wcf63]
+	bit 6, a
+	jr nz, .skiploadingblack
 	bit 7, a
 	jr nz, .asm_8c23a
 	call Function8c314
@@ -63054,6 +63103,7 @@ Function8c20f: ; 8c20f
 	ld [wcfc7], a
 	call DmgToCgbBGPals
 	call DelayFrame
+.skiploadingblack
 	xor a
 	ld [hLCDStatCustom], a
 	ld [$ffc7], a
@@ -63360,6 +63410,7 @@ Function8c3e8: ; 8c3e8 (23:43e8)
 
 Function8c408: ; 8c408 (23:4408)
 	call HostsBattleTransition
+	ret c
 	ld a, [wcf64]
 	cp $60
 	jr nc, .asm_8c413
@@ -63452,7 +63503,7 @@ HostsBattleTransition:
 	cp RED
 	jr nz, .okay
 	ld a, [OtherTrainerID]
-	and a
+	dec a
 	jr z, .start
 	dec a
 	jr z, .start
@@ -63469,7 +63520,7 @@ HostsBattleTransition:
 	jr nz, .nocarry
 .start
 	callba _HostsBattleTransition
-	ld a, $20
+	ld a, $40
 	ld [wcf63], a
 	scf
 	ret
@@ -63707,6 +63758,7 @@ Unknown_8c728: ; 8c728
 
 Function8c768: ; 8c768 (23:4768)
 	call HostsBattleTransition
+	ret c
 	callba Function5602
 	ld de, Unknown_8c792
 .asm_8c771
@@ -67783,6 +67835,20 @@ Unknown_8e95e: ; 8e95e
 ; 8e961
 
 Function8e961: ; 8e961 (23:6961)
+	ld a, [wd265]
+	call ReadMonMenuIcon
+	ld [CurIcon], a
+	xor a
+	call GetIconGFX
+	ld de, $2420
+	ld a, $0
+	call Function8cfd6
+	ld hl, $2
+	add hl, bc
+	ld [hl], $0
+	ret
+
+Function8e961_2: ; 8e961 (23:6961)
 	ld a, [wd265]
 	call ReadMonMenuIcon
 	ld [CurIcon], a
@@ -93755,3 +93821,6 @@ FaintingCry:
 	callba _PlayCryHeader
 	call WaitSFX
 	ret
+
+SECTION "Move Relearner", ROMX
+INCLUDE "event/move_relearner.asm"

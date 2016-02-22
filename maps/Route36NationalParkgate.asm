@@ -193,6 +193,7 @@ SkipBalls:
 	iffalse UnknownScript_0x6ac73
 	checkcode VAR_PARTYCOUNT
 	if_greater_than $1, UnknownScript_0x6ac41
+	special HealParty
 	special Function13a12
 	clearevent EVENT_NATIONAL_PARK_GATE_308 ;clear "has more then 1 mon in party" flag
 UnknownScript_0x6ac10: ; 0x6ac10
@@ -229,6 +230,7 @@ UnknownScript_0x6ac4d: ; 0x6ac4d
 	writetext UnknownText_0x6afb0 ;ask if first mon is OK
 	yesorno
 	iffalse UnknownScript_0x6ac79
+	special HealParty
 	special Function13a12 ;if lead is FNT then flag error, else hide party
 	iftrue UnknownScript_0x6ac7f
 	setevent EVENT_NATIONAL_PARK_GATE_308 ;set has more then 1 mon in party flag

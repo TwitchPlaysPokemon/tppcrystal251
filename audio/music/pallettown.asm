@@ -4,8 +4,18 @@ Music_PalletTown: ; f4b0c
 	dbw $02, Music_PalletTown_Ch3
 ; f4b15
 
+Music_PalletTownSlow:
+	dbw $80, Music_PalletTownSlow_Ch1
+	dbw $01, Music_PalletTown_Ch2
+	dbw $02, Music_PalletTown_Ch3
+	
+Music_PalletTownSlow_Ch1:
+	tempo 141
+	jumpchannel Music_PalletTown_branch_f4b17
+
 Music_PalletTown_Ch1: ; f4b15
 	tempo 188
+Music_PalletTown_branch_f4b17:
 	volume $77
 	vibrato $12, $24
 	tone $0001

@@ -139,6 +139,7 @@ SkipBalls35:
 	iffalse UnknownScript_0x6a2a3
 	checkcode VAR_PARTYCOUNT
 	if_greater_than $1, UnknownScript_0x6a271
+	special HealParty
 	special Function13a12
 	clearevent EVENT_NATIONAL_PARK_GATE_308
 UnknownScript_0x6a234: ; 0x6a234
@@ -240,6 +241,7 @@ UnknownScript_0x6a27d: ; 6a27d
 	writetext UnknownText_0x6a4c6
 	yesorno
 	iffalse UnknownScript_0x6a2a9
+	special HealParty
 	special Function13a12
 	iftrue UnknownScript_0x6a2af
 	setevent EVENT_NATIONAL_PARK_GATE_308

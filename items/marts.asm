@@ -145,10 +145,11 @@ Mart6: ; 16121
 ; 1612b
 
 Mart7: ; 1612b
-	db 7 ; # items goldenrod
+	db 8 ; # items goldenrod
 	db X_ATTACK
 	db X_SPEED
 	db X_SPECIAL
+	db X_SPDEF
 	db X_DEFEND
 	db DIRE_HIT
 	db GUARD_SPEC
@@ -413,7 +414,7 @@ Mart27: ; 161da
 ; 161e1
 
 Mart28: ; 161e1
-	db 7 ; # items
+	db 8 ; # items
 	db X_ACCURACY
 	db GUARD_SPEC
 	db DIRE_HIT
@@ -421,6 +422,7 @@ Mart28: ; 161e1
 	db X_DEFEND
 	db X_SPEED
 	db X_SPECIAL
+	db X_SPDEF
 	db $ff
 ; 161ea
 
@@ -461,7 +463,7 @@ Mart31: ; 161fd
 ; 16205
 
 Mart32: ; 16205
-	db 10 ; # items
+	db 11 ; # items
 	db FULL_RESTORE
 	db MAX_POTION
 	db HYPER_POTION
@@ -472,6 +474,7 @@ Mart32: ; 16205
 	db X_DEFEND
 	db X_SPEED
 	db X_SPECIAL
+	db X_SPDEF
 	db $ff
 ; 1620e
 

@@ -2721,8 +2721,8 @@ AerodactylEvosAttacks:
 	db 44, WING_ATTACK
 	db 50, STEEL_WING
 	db 56, CRUNCH; later gen move
-	db 62, SKY_ATTACK
-	db 68, ROCK_SLIDE
+	db 62, ROCK_SLIDE
+	db 68, SKY_ATTACK
 	db 74, AGILITY
 	db 80, IRON_HEAD
 	db 0 ; no more level-up moves
@@ -2751,56 +2751,65 @@ SnorlaxEvosAttacks:
 
 ArticunoEvosAttacks:
 	db 0 ; no more evolutions
-	db 1,ICE_BEAM
-	db 1,AIR_SLASH
-	db 1,REFLECT
-	db 1,LIGHT_SCREEN
-	db 96,BUBBLEBEAM
-	db 96,MIST
-	db 97,MUD_SLAP
-	db 97,ANCIENTPOWER
-	db 98,STEEL_WING
-	db 98,AGILITY
-	db 99,ICY_WIND
-	db 99,SHEER_COLD
-	db 100,MIND_READER
+	db 1, WHIRLWIND
+	db 1, POWDER_SNOW
+	db 5, MIST
+	db 10,GUST
+	db 20,MUD_SLAP
+	db 30,ICY_WIND
+	db 40,BUBBLEBEAM
+	db 50,ANCIENTPOWER
+	db 60,REFLECT
+	db 70,ICE_BEAM
+	db 80,STEEL_WING
+	db 90,AGILITY
+	db 96,LIGHT_SCREEN
+	db 97,AIR_SLASH
+	db 98,SHEER_COLD
+	db 99,MIND_READER
 	db 100,BLIZZARD
 	db 0 ; no more level-up moves
 
 ZapdosEvosAttacks:
 	db 0 ; no more evolutions
-	db 1,THUNDERBOLT
-	db 1,AIR_SLASH
-	db 1,THUNDER_WAVE
-	db 1,PROTECT
-	db 96,HEAT_WAVE
+	db 1, WHIRLWIND
+	db 1, THUNDERSHOCK
+	db 5, METAL_SOUND
+	db 10,PECK
+	db 20,MUD_SLAP
+	db 30,SPARK
+	db 40,SWIFT
+	db 50,ANCIENTPOWER
+	db 60,STEEL_WING
+	db 70,THUNDERBOLT
+	db 80,DRILL_PECK
+	db 90,AGILITY
 	db 96,LIGHT_SCREEN
-	db 97,MUD_SLAP
-	db 97,ANCIENTPOWER
-	db 98,STEEL_WING
-	db 98,AGILITY
-	db 99,WILD_CHARGE
-	db 99,DRILL_PECK
-	db 100,RAIN_DANCE
+	db 97,REFLECT
+	db 98,AIR_SLASH
+	db 99,RAIN_DANCE
 	db 100,THUNDER
 	db 0 ; no more level-up moves
 
 MoltresEvosAttacks:
 	db 0 ; no more evolutions
-	db 1,FLARE_BLITZ
-	db 1,AIR_SLASH
-	db 1,WILLOWISP
-	db 1,FIRE_SPIN
-	db 96,REFLECT
-	db 96,SAFEGUARD
-	db 97,MUD_SLAP
-	db 97,ANCIENTPOWER
-	db 98,STEEL_WING
-	db 98,AGILITY
-	db 99,FLAMETHROWER
-	db 99,SOLARBEAM
-	db 100,SUNNY_DAY
-	db 100,HEAT_WAVE
+	db 1, WHIRLWIND
+	db 1, EMBER
+	db 5, SAFEGUARD
+	db 10, PECK
+	db 20,MUD_SLAP
+	db 30,FIRE_SPIN
+	db 40,SWIFT
+	db 50,ANCIENTPOWER
+	db 60,STEEL_WING
+	db 70,HEAT_WAVE
+	db 80,REFLECT
+	db 90,AGILITY
+	db 96,LIGHT_SCREEN
+	db 97,AIR_SLASH
+	db 98,SOLARBEAM
+	db 99,SUNNY_DAY
+	db 100,FIRE_BLAST
 	db 0 ; no more level-up moves
 
 DratiniEvosAttacks:
@@ -2854,29 +2863,47 @@ DragoniteEvosAttacks:
 
 MewtwoEvosAttacks:
 	db 0 ; no more evolutions
-	db 1,RECOVER
-    db 1,SUBMISSION ; gen 1 � move
-    db 1,DISABLE
-    db 1,PSYCHIC ; later gen move
-    db 100,LIGHT_SCREEN ; gen 1 � move
-    db 100,REFLECT
-	db 100,FUTURE_SIGHT
-	db 100,SELFDESTRUCT ; gen 1 � move
-	db 100, METRONOME
+	db 1, PSYWAVE
+	db 1, DISABLE
+	db 5, AMNESIA
+	db 10,CONFUSION
+	db 20,SWIFT
+	db 30,FUTURE_SIGHT
+	db 40,REFLECT
+	db 50,PSYBEAM
+	db 60,SELFDESTRUCT
+	db 70,SUBMISSION
+	db 80,IRON_TAIL
+	db 85,TRI_ATTACK
+	db 90,LIGHT_SCREEN
+	db 95,PSYCHIC
+	db 100,RECOVER
 	db 0 ; no more level-up moves
 
 MewEvosAttacks:
 	db 0 ; no more evolutions
-	db 1,SUBMISSION
-    db 1,PSYCHIC
-    db 1,METRONOME
-    db 1,LOVELY_KISS
-    db 100,EXPLOSION
-    db 100,SKETCH
-	db 100,TRANSFORM
-	db 100,SOFTBOILED
-	db 100,NASTY_PLOT
-	db 100,BATON_PASS
+	db 1, PSYWAVE
+	db 1, METRONOME
+	db 5, ROAR
+	db 10,CONFUSION
+	db 15,TRANSFORM
+	db 20,SWIFT
+	db 25,COUNTER
+	db 30,FUTURE_SIGHT
+	db 35,ANCIENTPOWER
+	db 40,REFLECT
+	db 45,IRON_HEAD
+	db 50,NASTY_PLOT
+	db 55,BATON_PASS
+	db 60,DOUBLE_EDGE
+	db 65,AMNESIA 
+	db 70,EXPLOSION
+	db 75,SOFTBOILED
+	db 80,TRI_ATTACK
+	db 85,HORN_DRILL
+	db 90,SUBMISSION
+	db 95,PSYCHIC
+	db 100,SKETCH
 	db 0 ; no more level-up moves
 
 ChikoritaEvosAttacks:
@@ -4725,10 +4752,10 @@ LarvitarEvosAttacks:
 	db 9, PURSUIT ; egg move
 	db 12, ROCK_THROW ; illegal move
 	db 15, SCREECH
-	db 18, STOMP ; egg move
+	db 18, STOMP
 	db 21, BITE
 	db 24, ROCK_POLISH
-	db 27, DIG ; later gen move
+	db 27, DIG 
 	db 31, CRUNCH
 	db 34, IRON_TAIL
 	db 37, ROCK_SLIDE ; later gen move
@@ -4772,42 +4799,59 @@ TyranitarEvosAttacks:
 
 LugiaEvosAttacks:
 	db 0 ; no more evolutions
-	db 1,AEROBLAST
-	db 1,HYDRO_PUMP
-	db 1,SAFEGUARD
-	db 1,FUTURE_SIGHT
-	db 100,ANCIENTPOWER
-	db 100,LIGHT_SCREEN
-	db 100,REFLECT
-	db 100,RECOVER
-	db 100,IRON_TAIL
-	db 100,AIR_SLASH
-
+	db 1, WHIRLWIND
+	db 1, GUST
+	db 5, SAFEGUARD
+	db 10, CONFUSION
+	db 20, MUD_SLAP
+	db 30, LIGHT_SCREEN
+	db 40, FUTURE_SIGHT
+	db 50, ANCIENTPOWER
+	db 60, REFLECT
+	db 70, AIR_SLASH
+	db 80, IRON_HEAD
+	db 85, HYDRO_PUMP
+	db 90, RECOVER
+	db 95, PSYCHIC
+	db 100, AEROBLAST
 	db 0 ; no more level-up moves
 
 HoOhEvosAttacks:
 	db 0 ; no more evolutions
-	db 1,WING_ATTACK
-	db 1,SACRED_FIRE
-	db 1,RECOVER
-	db 1,REFLECT
-	db 100,ANCIENTPOWER
-	db 100,STEEL_WING
-	db 100,FUTURE_SIGHT
-	db 100,SAFEGUARD
-	db 100,LIGHT_SCREEN
+	db 1, WHIRLWIND
+	db 1, GUST
+	db 5, SAFEGUARD
+	db 10, EMBER
+	db 20, MUD_SLAP
+	db 30, LIGHT_SCREEN
+	db 40, FUTURE_SIGHT
+	db 50, ANCIENTPOWER
+	db 60, WING_ATTACK
+	db 70, HEAT_WAVE
+	db 80, IRON_HEAD
+	db 85, REFLECT
+	db 90, RECOVER
+	db 95, AIR_SLASH
+	db 100, SACRED_FIRE
+
 	db 0 ; no more level-up moves
 
 CelebiEvosAttacks:
 	db 0 ; no more evolutions
-	db 1,SEED_BOMB
-	db 1,HEAL_BELL
-    db 1,LEECH_SEED
-    db 1,METRONOME
-    db 100,PERISH_SONG
-    db 100,RECOVER
-    db 100,LIGHT_SCREEN
-	db 100,REFLECT
-	db 100,NASTY_PLOT
-	db 100,BATON_PASS
+	db 1, METRONOME
+	db 1, ABSORB
+	db 5, SAFEGUARD
+	db 10, CONFUSION
+	db 20, LEECH_SEED
+	db 30, LIGHT_SCREEN
+	db 40, FUTURE_SIGHT
+	db 50, ANCIENTPOWER
+	db 60, PERISH_SONG
+	db 70, RECOVER
+	db 75, REFLECT
+	db 80, BATON_PASS
+	db 85, NASTY_PLOT
+	db 90, HEAL_BELL
+	db 95, SEED_BOMB
+	db 100, PSYCHIC
 	db 0 ; no more level-up moves

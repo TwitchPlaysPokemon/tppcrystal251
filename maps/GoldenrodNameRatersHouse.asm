@@ -15,6 +15,15 @@ GentlemanScript_0x5577c: ; 0x5577c
 	end
 ; 0x55784
 
+MoveRelearnerScript:
+	faceplayer
+	loadfont
+	special SpecialMoveRelearner
+	waitbutton
+	closetext
+	end
+	
+
 MapGoldenrodNameRatersHouseSignpost1Script: ; 0x55784
 	jumpstd difficultbookshelf
 ; 0x55787
@@ -44,7 +53,8 @@ GoldenrodNameRatersHouse_MapEventHeader: ; 0x55953
 	signpost 1, 7, $0, MapGoldenrodNameRatersHouseSignpost2Script
 
 	; people-events
-	db 1
+	db 2
 	person_event SPRITE_GENTLEMAN, 8, 6, $6, 0, 2, -1, -1, 0, 0, 0, GentlemanScript_0x5577c, -1
+	person_event SPRITE_FISHER, 8, 9, $6, 0, 2, -1, -1, 8 + PAL_OW_RED, 0, 0, MoveRelearnerScript, -1
 ; 0x5597f
 

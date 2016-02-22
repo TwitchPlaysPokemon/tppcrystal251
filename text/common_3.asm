@@ -613,6 +613,15 @@ UnknownText_0x1c0a1c: ; 1c0a1c
 	text_from_ram StringBuffer3
 	text "!"
 	done
+
+MultipleGetItemBallText::
+	text $52, " found"
+	line "@"
+	deciram wd10c, $13
+	text " @"
+	text_from_ram StringBuffer3
+	text "S."
+	done
 ; 1c0a2c
 
 UnknownText_0x1c0a2c: ; 1c0a2c
@@ -775,6 +784,22 @@ UnknownText_0x1c0c45: ; 1c0c45
 	line "that item."
 	prompt
 ; 1c0c63
+Text_DeselectedItem:
+	text "Unregistered the"
+	line "@"
+	text_from_ram StringBuffer2
+	text "."
+	prompt
+
+Text_NotRegistered:
+	text "That item is not"
+	line "registered."
+	prompt
+
+Text_AlreadyRegistered:
+	text "That item is al-"
+	line "ready registered."
+	prompt
 
 UnknownText_0x1c0c63: ; 1c0c63
 	text "Where should this"
