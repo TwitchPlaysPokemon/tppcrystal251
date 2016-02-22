@@ -47,8 +47,6 @@ Function4b6:: ; 4b6
 .asm_4c2
 	ld hl, IncGradGBPalTable_13
 	ld b, 3
-; 4c7
-
 FadeOut:: ; 4c7
 	push de
 	ld a, [hli]

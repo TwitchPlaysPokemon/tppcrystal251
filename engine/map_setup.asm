@@ -466,12 +466,26 @@ Function1556d: ; 1556d
 	ret
 
 Function15574: ; 15574
-	ld e, 0
-	ld a, [MusicFadeIDLo]
-	ld d, 0
-	ld a, [MusicFadeIDHi]
+	 ld a, [MapGroup]
+	cp GROUP_HALLWAY_OF_FAME
+	jr nz, .not_hallway
+	ld a, [MapNumber]
+	cp MAP_HALLWAY_OF_FAME
+	jr nz, .not_hallway
+	ld a, [MusicPlaying]
+	cp MUSIC_GYM_VICTORY
+	jr nz, .not_hallway
+	ld [MusicFadeIDLo], a
+	xor a
+	ld [MusicFadeIDHi], a
+	ld [MusicFade], a
+.not_hallway
+	xor a
+	ld [MusicFadeIDLo], a
+	ld [MusicFadeIDHi], a
 	ld a, $4
 	ld [MusicFade], a
+.finish
 	call Function4b6
 	ret
 ; 15587

@@ -19,10 +19,9 @@ _SoundRestart:: ; e8000
 	ld a, [MapNumber]
 	cp MAP_HALLWAY_OF_FAME
 	jr nz, .not_hallway
-	ld a, [wd0ee]
-	and $3f
-	cp $1
-	jr nz, .finish
+	ld a, [Channel1MusicID]
+	cp MUSIC_GYM_VICTORY
+	jr z, .finish
 .not_hallway
 	call MusicOff
 	ld hl, rNR50 ; channel control registers
@@ -58,10 +57,10 @@ _SoundRestart:: ; e8000
 	ld a, e
 	or d
 	jr nz, .clearchannels
+.finish
 	ld a, $77 ; max
 	ld [Volume], a
 	call MusicOn
-.finish
 	pop af
 	pop bc
 	pop de
