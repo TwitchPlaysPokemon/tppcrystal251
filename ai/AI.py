@@ -1565,7 +1565,7 @@ class AI(object):
                     if self.MonData[mycurrent]['moves'][tempmove]['effect'] == ('mirrorcoat'):
                         tempx = tempmove
                 if tempx > -1:
-                    x1 = math.ceil(self.Damage[mycurrent][traincurrent][self.theaction]['damage'] / (self.Damage[mycurrent][traincurrent][self.theaction]['damage'] + self.Damage[mycurrent][traincurrent][tempx]['damage']))
+                    x1 = math.ceil(self.Damage[mycurrent][traincurrent][self.theaction]['damage'] / (self.Damage[mycurrent][traincurrent][self.theaction]['damage'] + self.Damage[mycurrent][traincurrent][tempx]['damage'])) * 100
                     if random.randint(0, 100) > x1:
                         return tempx
             elif self.MonData[mycurrent]['moves'][self.theaction]['effect'] == 'mirrorcoat':
@@ -1574,7 +1574,7 @@ class AI(object):
                     if self.MonData[mycurrent]['moves'][tempmove]['effect'] == ('counter'):
                         tempx = tempmove
                 if tempx > -1:
-                    x1 = math.ceil(self.Damage[mycurrent][traincurrent][self.theaction]['damage'] / (self.Damage[mycurrent][traincurrent][self.theaction]['damage'] + self.Damage[mycurrent][traincurrent][tempx]['damage']))
+                    x1 = math.ceil(self.Damage[mycurrent][traincurrent][self.theaction]['damage'] / (self.Damage[mycurrent][traincurrent][self.theaction]['damage'] + self.Damage[mycurrent][traincurrent][tempx]['damage'])) * 100
                     if random.randint(0, 100) > x1:
                         return tempx
         
