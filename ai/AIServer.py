@@ -31,13 +31,13 @@ ai_result = "move1"
 Artificial = AI.AI()
 LastActions = []
 
-slack_oauth = "xoxp-19319780978-19729075300-22424417394-bf36625f85"
+slack_oauth = "xoxb-22420813811-sAexq13Fu7xu7OF3f7uRbiLe"
 
 def post_slack_errormsg(battle_state):
     #post the AI exception to slack
     message = "The AI threw this exception with the posted input: ```{}```" .format(''.join(traceback.format_stack()))
     arguments = {"token":slack_oauth,
-                "channels":"#aireview,#romdev", #change this if need be
+                "channels":"#aireview", #change this if need be
                 "content":str(battle_state), #content is what's inside the snippet
                 "as_user":"true",
                 "username":"@1hlixedbot",
