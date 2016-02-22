@@ -23,6 +23,13 @@ MOVES_FILE_PATH = os.path.join(SCRIPT_DIR, "AiMoves.txt")
 
 Debug_Code = 0
 
+
+def sign(x):
+    if x == 0:
+        return 0
+    else:
+        return 1 if x > 0 else -1
+
 class Combogenerator:
     def __init__(self,turnsToLookAhead=4, numMoves=4):
         self.arrlen = turnsToLookAhead

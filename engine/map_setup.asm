@@ -477,6 +477,13 @@ Function15574: ; 15574
 ; 15587
 
 Function15587: ; 15587
+	ld a, [MapGroup]
+	cp GROUP_HALLWAY_OF_FAME
+	jr nz, .normal
+	ld a, [MapNumber]
+	cp MAP_HALLWAY_OF_FAME
+	ret z
+.normal
 	ld a, [PlayerState]
 	cp $1
 	jr nz, .asm_15596

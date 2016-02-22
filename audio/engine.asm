@@ -13,6 +13,17 @@ _SoundRestart:: ; e8000
 	push de
 	push bc
 	push af
+	ld a, [MapGroup]
+	cp GROUP_HALLWAY_OF_FAME
+	jr nz, .not_hallway
+	ld a, [MapNumber]
+	cp MAP_HALLWAY_OF_FAME
+	jr nz, .not_hallway
+	ld a, [wd0ee]
+	and $3f
+	cp $1
+	jr nz, .finish
+.not_hallway
 	call MusicOff
 	ld hl, rNR50 ; channel control registers
 	xor a
@@ -50,6 +61,7 @@ _SoundRestart:: ; e8000
 	ld a, $77 ; max
 	ld [Volume], a
 	call MusicOn
+.finish
 	pop af
 	pop bc
 	pop de
