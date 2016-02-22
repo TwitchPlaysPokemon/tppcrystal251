@@ -5,6 +5,8 @@ import random
 import sys
 import json
 from flask import Flask, request
+import urllib.request
+import traceback
 
 import AI
 from werkzeug.exceptions import BadRequest
@@ -28,6 +30,23 @@ ai_result = "move1"
 # global handle to actual AI
 Artificial = AI.AI()
 LastActions = []
+
+slack_oauth = "xoxp-19319780978-19729075300-22424417394-bf36625f85"
+
+def post_slack_errormsg(battle_state):
+    #post the AI exception to slack
+    message = "The AI threw an exception: ```{}``` with the following input: ```{}```".format(battle_state,''.join(traceback.format_stack()))
+    arguments = {"token":slack_oauth,
+                "channel":"#aireview", #change this if need be
+                "text":message,
+                "as_user":"false",
+                "username":"@1hlixedbot"}
+
+    #send the request using urllib
+    fullurl = "https://slack.com/api/chat.postMessage" + "?" + urllib.parse.urlencode(arguments)
+    request = urllib.request.Request(fullurl)
+    response = urllib.request.urlopen(request)
+    return response.read().decode("utf-8")
 
 def get_backup_move(battle_state):
     try:
@@ -58,6 +77,9 @@ def calculate_next_move(battle_state):
         logger.exception("The AI threw an exception with the following input: %s" % battle_state)
         # uh-oh! better fall back to "default ai"
         next_move = get_backup_move(battle_state)
+        
+        post_slack_errormsg(battle_state, e)
+
     logger.info("next move: %s" % next_move)
     LastActions.append(next_move)
     
