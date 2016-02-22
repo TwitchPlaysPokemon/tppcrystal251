@@ -1085,16 +1085,10 @@ class AI(object):
 
                 #stats limiter
                 for stat in self.statNames:
-                    statName = stat
-                    #constrain each stat to +- 6
-                    if self.MonData[mycurrent]['boosts'][statName] > 6:
-                        self.MonData[mycurrent]['boosts'][statName] = 6
-                    if self.MonData[mycurrent]['boosts'][statName] < -6:
-                        self.MonData[mycurrent]['boosts'][statName] = -6
-                    if self.MonData[traincurrent]['boosts'][statName] > 6:
-                        self.MonData[traincurrent]['boosts'][statName] = 6
-                    if self.MonData[traincurrent]['boosts'][statName] < -6:
-                        self.MonData[traincurrent]['boosts'][statName] = -6
+                    curStat = self.MonData[mycurrent]['boosts'][stat]
+                    self.MonData[mycurrent]['boosts'][stat] = sign(curStat) * min(abs(curStat), 6)
+                    curStat = self.MonData[traincurrent]['boosts'][stat]
+                    self.MonData[traincurrent]['boosts'][stat] = sign(curStat) * min(abs(curStat), 6)
                 self.TrainerDamage(traincurrent, mycurrent)
                 myhp = myhp - self.Damage[traincurrent][mycurrent][self.enemynumber]['damage']
 
