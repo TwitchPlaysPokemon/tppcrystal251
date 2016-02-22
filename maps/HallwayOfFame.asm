@@ -83,7 +83,8 @@ OakAppears:
 	waitbutton
 	closetext
 	applymovement $3, OakWalkBackToPlayer
-	spriteface 0, LEFT
+	spriteface $0, LEFT
+	spriteface $2, LEFT
 	loadfont
 	writetext OakAfterRivalTalkToPlayer
 AfterOakTalk:
@@ -93,12 +94,13 @@ AfterOakTalk:
 	closetext
 	applymovement $3, OakRepositions
 	follow $3, $0
-	spriteface $3, UP
+	spriteface $2, UP
 	applymovement $3, OakWalksUpMore
 	stopfollow
 	playsound SFX_EXIT_BUILDING
 	disappear $3
 	applymovement $0, MovementData_0x180f55
+	loadvar wMapMusic, MUSIC_SLOW_PALLET
 	playsound SFX_EXIT_BUILDING
 	disappear $0
 	special Function8c084

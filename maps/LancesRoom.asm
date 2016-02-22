@@ -82,6 +82,7 @@ AfterLanceFight:
 	reloadmappart
 	setevent EVENT_LANCES_ROOM_ENTRANCE_CLOSED
 	waitsfx
+	loadvar wMapMusic, MUSIC_INDIGO_PLATEAU
 	special RestartMapMusic
 	;loadfont
 	;writetext UnknownText_0x18137b
