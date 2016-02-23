@@ -1299,13 +1299,15 @@ class AI(object):
                     self.endofturn(traincurrent, mycurrent)
                     myhp1 = self.MonData[mycurrent]['stats']['curhp']
                     trainhp1 = self.MonData[traincurrent]['stats']['curhp']
-
                     self.MonData[mycurrent]['stats']['curhp'] = myhp1
                     self.MonData[traincurrent]['stats']['curhp'] = trainhp1
+                    if myhp1 < 0:
+                        myhp1 = 0
+                    if trainhp1 < 0:
+                        trainhp1 = 0
             tempy = (self.MonData[mycurrent]['moves'][int(tempcombo[0])]['acc'] / 100) * (self.MonData[mycurrent]['moves'][int(tempcombo[0])]['effectchance'] / 100)
             if self.MonData[mycurrent]['moves'][int(tempcombo[0])]['effect'] == 'toxic' and ((self.MonData[mycurrent]['type'][1] == 'poison') or (self.MonData[mycurrent]['type'][2] == 'poison')):
                 tempy = 1
-            #print('Enemy current: '+str(mycurrent))
             if self.mycurhp != 0 and self.traincurhp != 0:
                 tempx = (((myhp / self.mycurhp) - (trainhp / self.traincurhp)) * (1 - tempy)) + (((myhp1 / self.mycurhp) - (trainhp1 / self.traincurhp)) * tempy)
             else:
@@ -1602,6 +1604,13 @@ class AI(object):
         if self.jsonlist['battleState']['enemy type'] == 'TRAINER':
             if 'disabled' in self.MonData['enemypokemon']['substatus']:
                 self.MonData[self.jsonlist['battleState']['enemypokemon']['party idx']]['moves'][int(self.MonData['enemypokemon']['substatus']['disabled']['move idx'])-1]['curpp'] = 0
+        
+        #kill the enemy
+        for tempmove in range (0, len(self.jsonlist['battleState']['enemypokemon']['moves'])):
+            self.Mychoice(mycurrent, traincurrent, tempmove)
+            if self.Damage[mycurrent][traincurrent][tempmove]['damage'] > self.jsonlist['battleState']['playerpokemon']['hp']:
+                self.theaction = tempmove
+                break
         
         templist = []
         templist2 = []
