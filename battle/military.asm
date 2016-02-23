@@ -530,13 +530,13 @@ MilItemsWithNoSpecificTarget:
 	db -1
 
 LUASerial_AnimateSprites:
-	ld [rLSB], a
+	ld [hLSB], a
 	ld a, BEESAFREE_LSC_TRANSFERRING
-	ld [rLSC], a
+	ld [hLSC], a
 .loop
 	callba Function8cf62
-	ld a, [rLSC]
+	ld a, [hLSC]
 	and a ; BEESAFREE_LSC_COMPLETED
-	jr z, .loop
-	ld a, [rLSB]
+	jr nz, .loop
+	ld a, [hLSB]
 	ret
