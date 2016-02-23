@@ -476,6 +476,9 @@ class AI(object):
             temp2 = 0
         if (move_used_effect == 'dreameater') and (self.MonData[defender]['status'] != 'slp'):
             temp2 = 0
+        if (self.MonData[attacker]['status'] not in ('slp', 'slp2', 'slp1')) and (move_used['name'].lower() in ('snore', 'sleeptalk')):
+            temp2 = 0
+            
 
         movelist = [self.MonData[defender]['moves'][move]['name'].lower() for move in self.MonData[defender]['moves']]
         #Dig and Fly aversion
@@ -1643,7 +1646,7 @@ class AI(object):
             tempy = -1
             self.FinalChance = True
             for tempmove in range (0, len(self.jsonlist['battleState']['enemypokemon']['moves'])):
-                self.Mychoice(traincurrent, mycurrent, tempmove)
+                self.Mychoice(traincurrent, mycurrent,  tempmove)
                 if self.MonData[mycurrent]['moves'][tempmove]['curpp'] > 0:
                     if self.Damage[mycurrent][traincurrent][tempmove]['damage'] > tempx:
                         tempx = self.Damage[mycurrent][traincurrent][tempmove]['damage']
