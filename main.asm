@@ -12207,6 +12207,7 @@ Function1201b: ; 1201b (4:601b)
 	ld hl, $e
 	add hl, bc
 	ld [hl], a
+	call MailRandomizeCursor
 	ld hl, wcf63
 	inc [hl]
 	ret
@@ -12514,9 +12515,9 @@ Function121b2: ; 121b2
 String_121dd: ; 122dd
 	db "A B C D E F G H I J"
 	db "K L M N O P Q R S T"
-	db "U V W X Y Z, ? ! "
+	db "U V W X Y Z , ? !  "
 	db "1 2 3 4 5 6 7 8 9 0"
-	db "ゅ ょ ", $70, " ", $71, " é ♂ ♀ ¥ <...> ×"
+	db "<PK> <MN> <PO> <KE> é ♂ ♀ ¥ <...> ×"
 	db "lower  DEL   END   "
 ; 1224f
 
@@ -12525,9 +12526,36 @@ String_1224f: ; 1224f
 	db "k l m n o p q r s t"
 	db "u v w x y z   . - /"
 	db "'d 'l 'm 'r 's 't 'v & ( )"
-	db $72, " ", $73, " [ ] ' : ;      "
+	db "<``> <''> [ ] ' : ;      "
 	db "UPPER  DEL   END   "
 ; 122c1
+
+MailRandomizeCursor:
+.row_loop
+	call Random
+	and $7
+	cp 5
+	jr nc, .row_loop
+	ld hl, $d
+	add hl, bc
+	ld [hl], a
+	swap a
+	ld hl, $7
+	add hl, bc
+	ld [hl], a
+.col_loop
+	call Random
+	and $f
+	cp 9
+	jr nc, .col_loop
+	ld hl, $c
+	add hl, bc
+	ld [hl], a
+	swap a
+	ld hl, $6
+	add hl, bc
+	ld [hl], a
+	ret
 
 UnknownScript_0x122c1: ; 0x122c1
 	checkflag ENGINE_BUG_CONTEST_TIMER
