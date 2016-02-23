@@ -11,6 +11,14 @@ SPRITE_Y        EQU $74
 C_TC_DRAW       EQU 0
 C_TC_TITLE      EQU 1
 C_TC_SUBTITLE   EQU 2
+STRIP1_HUE_SPD  EQU 37
+STRIP2_HUE_SPD  EQU 23
+
+hsv_equ: MACRO
+\1_C1 EQU MUL(\2, \3)
+\1_C  EQU MUL(MUL(\2, \3), 31) >> 16
+\1_M  EQU MUL((\3 - MUL(\2, \3)), 31) >> 16
+ENDM
 
 tc_draw: MACRO
 	db C_TC_DRAW
@@ -25,6 +33,13 @@ ENDM
 tc_subtitle: MACRO
 	db C_TC_SUBTITLE
 	dw \1
+ENDM
+
+waitline: MACRO
+	ld [rLYC], a
+.wait\@
+	bit 2, [hl]
+	jr z, .wait\@
 ENDM
 
 TPPCredits::
@@ -341,14 +356,163 @@ TPPCredits_MainScene::
 	call AddNTimes
 	ld a, [hli]
 	cp $ff
-	jr z, .end
+	jr z, TPPCredits_ThanksSceneInit
 	push hl
 	ld hl, TC_MainSceneFuncList
 	jp JumpTable
-.end
-.todo
-	call TC_DelayFrame
-	jr .todo
+
+TPPCredits_ThanksSceneInit::
+	call DisableLCD
+	call ClearCommandChaos
+	ld hl, ThanksForWatchingGFX
+	ld de, VTiles1
+	ld a, 1
+	ld [rVBK], a
+	call Decompress
+	xor a
+	ld hl, VBGMap0
+	ld bc, 32 * 7
+	call ByteFill
+	; TODO attr map layout
+	xor a
+	ld [rVBK], a
+	ld hl, StripTiles
+	ld de, VBGMap0
+	call DecodeWLE
+	ld hl, VBGMap0 + 32 * 7
+	lb bc, 4, 20
+	ld a, $80
+.loop
+	push bc
+	push hl
+.loop2
+	ld [hli], a
+	inc a
+	dec c
+	jr nz, .loop2
+	pop hl
+	ld bc, 32
+	add hl, bc
+	pop bc
+	dec b
+	jr nz, .loop
+	; TODO palettes
+	xor a
+	ld [TC_Hue1], a
+	ld [TC_Hue2], a
+	ld a, 1
+	ld [TC_Hue1Count], a
+	ld [TC_Hue2Count], a
+	call EnableLCD
+	
+	hsv_equ STRIP1,  0.4, 1.0
+	hsv_equ STRIP2, 0.75, 0.8
+	
+TPPCredits_ThanksScene:
+	ld a, $90 ; vblank
+	ld hl, rSTAT
+	waitline
+; strip color update
+.strip1
+	ld a, [TC_Hue1Count]
+	dec a
+	ld [TC_Hue1Count], a
+	jr nz, .strip2
+	ld a, STRIP1_HUE_SPD
+	ld [TC_Hue1Count], a
+	ld a, [TC_Hue1]
+	inc a
+	cp 192
+	jr nz, .noxor1
+	xor a
+.noxor1
+	ld [TC_Hue1], a
+	and $3f
+	ld c, a
+	cp $20
+	jr c, .nosub1
+	ld a, $3f
+	sub c
+.nosub1
+	ld bc, STRIP1_C1
+	call TC_Multiply
+	ld b, STRIP1_C
+	ld c, a
+	ld a, [TC_Hue1]
+	call TC_GetTmpRGB
+	ld d, STRIP1_M
+	ld c, 0
+	ld a, $80
+	ld [rBGPI], a
+	ld a, h ; G
+	add d
+	ld b, a
+	rept 3
+	srl b
+	rr c
+	endr
+	ld a, e ; R
+	add d
+	or c
+	ld [rBGPD], a
+	ld a, l ; B
+	add d
+	rlca
+	rlca
+	or b
+	ld [rBGPD], a
+.strip2
+	ld a, [TC_Hue2Count]
+	dec a
+	ld [TC_Hue2Count], a
+	jr nz, .strip2
+	ld a, STRIP2_HUE_SPD
+	ld [TC_Hue2Count], a
+	ld a, [TC_Hue2]
+	inc a
+	cp 192
+	jr nz, .noxor2
+	xor a
+.noxor2
+	ld [TC_Hue2], a
+	and $3f
+	ld c, a
+	cp $20
+	jr c, .nosub2
+	ld a, $3f
+	sub c
+.nosub2
+	ld bc, STRIP2_C1
+	call TC_Multiply
+	ld b, STRIP2_C
+	ld c, a
+	ld a, [TC_Hue2]
+	call TC_GetTmpRGB
+	ld d, STRIP2_M
+	ld c, 0
+	ld a, $80
+	ld [rBGPI], a
+	ld a, h ; G
+	add d
+	ld b, a
+	rept 3
+	srl b
+	rr c
+	endr
+	ld a, e ; R
+	add d
+	or c
+	ld [rBGPD], a
+	ld a, l ; B
+	add d
+	rlca
+	rlca
+	or b
+	ld [rBGPD], a
+; command chaos update
+.commandchaos
+	; TODO
+	jp TPPCredits_ThanksScene
 	
 TC_MainSceneFuncList:
 	dw TC_Main_Draw
@@ -481,6 +645,8 @@ TC_Main_Title:
 	jr nz, .loop_delay
 	pop hl
 	ld a, [hl]
+	cp $ff
+	jr z, .doout
 	cp C_TC_DRAW
 	jr z, .doout
 	cp C_TC_TITLE
@@ -533,6 +699,8 @@ TC_Main_Subtitle:
 	jr nz, .loop_delay
 	pop hl
 	ld a, [hl]
+	cp $ff
+	jr z, .doout
 	cp C_TC_DRAW
 	jr z, .doout
 	cp C_TC_TITLE
@@ -1065,24 +1233,21 @@ StripTrick_Main:
 	add 2
 	ld [TC_CurStripXPos], a
 .donemod
-	ld b, 80
-.wait
-	ld a, [rLY]
-	cp b
-	jr nz, .wait
+	ld a, 80
+	ld hl, rSTAT
+.loop
+	ld b, a
+	waitline
 	ld a, c
 	ld [rSCY], a
 	ld a, d
 	ld [rSCX], a
 	dec c
 	inc b
-	ld a, 89
-	cp b
-	jr nz, .wait
-.wait2
-	ld a, [rLY]
-	cp b
-	jr nz, .wait2
+	ld a, b
+	cp 89
+	jr nz, .loop
+	waitline
 	ld a, 48
 	ld [rSCY], a
 	xor a
@@ -1477,6 +1642,88 @@ TC_DelayFrame:
 	ld [rIF], a
 	ld a, 1
 	ld [rIE], a
+	ret
+	
+TC_Multiply:
+	;ahl = a * bc ; a < 32
+	rlca
+	rlca
+	rlca
+	ld d, a
+	ld e, 5
+	ld hl, 0
+	ld a, l
+.loop
+	sla l
+	rl h
+	rla
+	sla d
+	jr nc, .skip
+	add hl, bc
+	adc 0
+.skip
+	dec e
+	jr nz, .loop
+	ret
+	
+TC_GetTmpRGB:
+; a = hue, b = C, c = X
+; e = R, h = G, l = B
+	swap a
+	rrca
+	and $7
+	ld hl, .huetable
+	ld e, a
+	ld d, 0
+	add hl, de
+	add hl, de
+	ld a, [hli]
+	ld h, [hl]
+	ld l, a
+	jp [hl]
+	
+.huetable
+	dw .cxo
+	dw .xco
+	dw .ocx
+	dw .oxc
+	dw .xoc
+	dw .cox
+	
+.cxo
+	ld e, b
+	ld h, c
+	ld l, 0
+	ret
+	
+.xco
+	ld e, c
+	ld h, b
+	ld l, 0
+	ret
+	
+.ocx
+	ld e, 0
+	ld h, b
+	ld l, c
+	ret
+	
+.oxc
+	ld e, 0
+	ld h, c
+	ld l, b
+	ret
+	
+.xoc
+	ld e, c
+	ld h, 0
+	ld l, b
+	ret
+	
+.cox
+	ld e, b
+	ld h, 0
+	ld l, c
 	ret
 	
 TPPCreditsList:
@@ -1933,4 +2180,4 @@ UnderscoreGFXEnd
 StripGFX: INCBIN "gfx/credits/strip.1bpp"
 StripGFXEnd
 StripTiles: INCBIN "gfx/credits/strip_map.wle"
-	
+ThanksForWatchingGFX: db $ff ; TODO
