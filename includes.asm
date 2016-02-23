@@ -2,8 +2,8 @@
 ; MUSICPLYR EQU 1
 
 ; please use 0.9 until we finish everything
-_VERSION EQUS "\"0.9.10\""
-_VERLEN  EQU  6 ; the length of version text
+_VERSION EQUS "\"0.9.9\""
+_VERLEN  EQU  5 ; the length of version text
 
 INCLUDE "version.asm"
 INCLUDE "contents.asm"
