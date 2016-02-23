@@ -589,7 +589,10 @@ class AI(object):
             if self.MonData[mycurrent]['status'] not in ('slp', 'frz', 'slp1', 'slp2', 'slp3'):
                 #Counter coat (otherwise known as a move that has way too much code and probably be never used anyways)
                 effmulti = self.getEff(self.MonData[mycurrent]['moves'][moveused]['type'].lower(), self.MonData[traincurrent]['type'][1].lower(), 'playerpokemon') * self.getEff(self.MonData[mycurrent]['moves'][moveused]['type'].lower(), self.MonData[traincurrent]['type'][2].lower(), 'playerpokemon')
+                print(self.MonData)
+                print(self.MonData[mycurrent]['moves'][moveused]['effect'])
                 if (self.MonData[mycurrent]['moves'][moveused]['effect'] == 'counter' or self.MonData[mycurrent]['moves'][moveused]['effect'] == 'mirrorcoat') and effmulti > 0:
+                    print('yo im in')
                     tempx = 0
                     tempdamage = 0.00
                     for x1 in range (0, len(self.jsonlist['playerParty']['party'][traincurrent-6]['moves'])):
@@ -608,8 +611,10 @@ class AI(object):
                     self.countercoat['special']['damage'] = tempdamage
                     if self.MonData[mycurrent]['moves'][moveused]['effect'] == 'counter':
                         self.Damage[mycurrent][traincurrent][moveused]['damage'] = 2 * (self.countercoat['physical']['damage'] * (self.countercoat['physical']['number of']/(self.countercoat['physical']['number of']+self.countercoat['special']['number of'])))
+                        print(self.Damage[mycurrent][traincurrent][moveused]['damage'])
                     if self.MonData[mycurrent]['moves'][moveused]['effect'] == 'mirrorcoat':
                         self.Damage[mycurrent][traincurrent][moveused]['damage'] = 2 * (self.countercoat['special']['damage'] * (self.countercoat['special']['number of']/(self.countercoat['physical']['number of']+self.countercoat['special']['number of'])))
+                        print(self.Damage[mycurrent][traincurrent][moveused]['damage'])
 
                 #stats up
                 if self.MonData[mycurrent]['moves'][moveused]['effect'] == 'defenseup2':
@@ -1563,24 +1568,30 @@ class AI(object):
         
         #counter or mirrorcoat, randomize based on effective damage of both
         if self.theaction < 4:
+            x2 = -1
             if self.MonData[mycurrent]['moves'][self.theaction]['effect'] == 'counter':
                 tempx = -1
                 for tempmove in range (0, len(self.jsonlist['battleState']['enemypokemon']['moves'])):
                     if self.MonData[mycurrent]['moves'][tempmove]['effect'] == ('mirrorcoat'):
                         tempx = tempmove
                 if tempx > -1:
-                    x1 = math.ceil(self.Damage[mycurrent][traincurrent][self.theaction]['damage'] / (self.Damage[mycurrent][traincurrent][self.theaction]['damage'] + self.Damage[mycurrent][traincurrent][tempx]['damage'])) * 100
-                    if random.randint(0, 100) > x1:
-                        return tempx
+                    x2 = self.Damage[mycurrent][traincurrent][self.theaction]['damage'] + self.Damage[mycurrent][traincurrent][tempx]['damage']
+                    if x2 > 0:
+                        x1 = math.ceil(self.Damage[mycurrent][traincurrent][self.theaction]['damage'] / x2) * 100
+                        if random.randint(0, 100) > x1:
+                            return tempx
             elif self.MonData[mycurrent]['moves'][self.theaction]['effect'] == 'mirrorcoat':
                 tempx = -1
                 for tempmove in range (0, len(self.jsonlist['battleState']['enemypokemon']['moves'])):
                     if self.MonData[mycurrent]['moves'][tempmove]['effect'] == ('counter'):
                         tempx = tempmove
                 if tempx > -1:
-                    x1 = math.ceil(self.Damage[mycurrent][traincurrent][self.theaction]['damage'] / (self.Damage[mycurrent][traincurrent][self.theaction]['damage'] + self.Damage[mycurrent][traincurrent][tempx]['damage'])) * 100
-                    if random.randint(0, 100) > x1:
-                        return tempx
+                    x2 = self.Damage[mycurrent][traincurrent][self.theaction]['damage'] + self.Damage[mycurrent][traincurrent][tempx]['damage']
+                    if x2 > 0:
+                        x1 = math.ceil(self.Damage[mycurrent][traincurrent][self.theaction]['damage'] / x2) * 100
+                        if random.randint(0, 100) > x1:
+                            return tempx
+                
         
         #disabled move
         if self.jsonlist['battleState']['enemy type'] == 'WILD':
@@ -1633,7 +1644,7 @@ class AI(object):
             tempy = -1
             self.FinalChance = True
             for tempmove in range (0, len(self.jsonlist['battleState']['enemypokemon']['moves'])):
-                self.DamageDealt(mycurrent, traincurrent, tempmove)
+                self.Mychoice(mycurrent, traincurrent, tempmove)
                 if self.MonData[mycurrent]['moves'][tempmove]['curpp'] > 0:
                     if self.Damage[mycurrent][traincurrent][tempmove]['damage'] > tempx:
                         tempx = self.Damage[mycurrent][traincurrent][tempmove]['damage']
