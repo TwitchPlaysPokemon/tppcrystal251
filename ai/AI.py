@@ -21,7 +21,7 @@ SCRIPT_DIR = os.path.dirname(os.path.realpath(__file__))
 JSON_FILE_PATH = os.path.join(SCRIPT_DIR, "battlestate.json")
 MOVES_FILE_PATH = os.path.join(SCRIPT_DIR, "AiMoves.txt")
 
-Debug_Code = 1
+Debug_Code = 0
 
 def sign(x):
     if x == 0:
