@@ -12514,7 +12514,7 @@ Function121b2: ; 121b2
 String_121dd: ; 122dd
 	db "A B C D E F G H I J"
 	db "K L M N O P Q R S T"
-	db "U V W X Y Z, ? !"
+	db "U V W X Y Z, ? ! "
 	db "1 2 3 4 5 6 7 8 9 0"
 	db "ゅ ょ ", $70, " ", $71, " é ♂ ♀ ¥ <...> ×"
 	db "lower  DEL   END   "
