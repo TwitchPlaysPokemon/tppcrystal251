@@ -21,7 +21,7 @@ SCRIPT_DIR = os.path.dirname(os.path.realpath(__file__))
 JSON_FILE_PATH = os.path.join(SCRIPT_DIR, "battlestate.json")
 MOVES_FILE_PATH = os.path.join(SCRIPT_DIR, "AiMoves.txt")
 
-Debug_Code = 0
+Debug_Code = 1
 
 def sign(x):
     if x == 0:
@@ -1549,6 +1549,7 @@ class AI(object):
         self.Reset(traincurrent, mycurrent)
         self.TrainerDamage(traincurrent, mycurrent)
         
+        #if we have protect and the enemy has a mon inside a two-turn move, protect yourself
         tempx = -1
         for tempmove in range (0, len(self.jsonlist['battleState']['enemypokemon']['moves'])):
             if self.MonData[mycurrent]['moves'][tempmove]['effect'] == ('protect'):
@@ -1561,18 +1562,23 @@ class AI(object):
             if 'charged' in self.MonData['playerpokemon']['substatus'] or (isinstance(self.MonData['playerpokemon']['substatus'], dict) and 'charged' in self.MonData['playerpokemon']['substatus'].values()):
                 return tempx
         
-        #counter or mirrorcoat, randomize based on effective damage of both
+        #if we chose to use either counter/mirrorcoat, and the mon has BOTH counter and mirrorcoat, 
+        #randomize the move used based on the effective damage of both
         if self.theaction < 4:
             if self.MonData[mycurrent]['moves'][self.theaction]['effect'] == 'counter':
+                #using counter, but check if we also have mirrorcoat available
                 tempx = -1
                 for tempmove in range (0, len(self.jsonlist['battleState']['enemypokemon']['moves'])):
                     if self.MonData[mycurrent]['moves'][tempmove]['effect'] == ('mirrorcoat'):
                         tempx = tempmove
                 if tempx > -1:
+                    print((self.Damage[mycurrent][traincurrent][self.theaction]['damage'] , self.Damage[mycurrent][traincurrent][tempx]['damage']))
+                    print(self.MonData[mycurrent]['moves'][self.theaction])
                     x1 = math.ceil(self.Damage[mycurrent][traincurrent][self.theaction]['damage'] / (self.Damage[mycurrent][traincurrent][self.theaction]['damage'] + self.Damage[mycurrent][traincurrent][tempx]['damage'])) * 100
                     if random.randint(0, 100) > x1:
                         return tempx
-            elif self.MonData[mycurrent]['moves'][self.theaction]['effect'] == 'mirrorcoat':
+            elif self.MonData[mycurrent]['moves'][self.theaction]['effect'] == 'mirrorcoat': 
+                #check if we also have counter available
                 tempx = -1
                 for tempmove in range (0, len(self.jsonlist['battleState']['enemypokemon']['moves'])):
                     if self.MonData[mycurrent]['moves'][tempmove]['effect'] == ('counter'):
@@ -1627,7 +1633,7 @@ class AI(object):
                             temp1 = self.MonData[mycurrent]['moves'][tempmove]['curpp']
                             tempy = tempmove
                            
-        #im about to die
+        #If i'm about to die, fire off an attack 
         if self.Damage[traincurrent][mycurrent][self.enemynumber]['damage'] > self.jsonlist['battleState']['enemypokemon']['hp']:
             tempx = 0
             tempy = -1
@@ -1642,10 +1648,10 @@ class AI(object):
                 print('about to die - i need to attack, i will use: '+str(tempy))
             return tempy
         
-        tempx = (int(self.jsonlist['battleState']['playerpokemon']['stat levels']['atk']) + int(self.jsonlist['battleState']['playerpokemon']['stat levels']['def']) + int(self.jsonlist['battleState']['playerpokemon']['stat levels']['satk']) + int(self.jsonlist['battleState']['playerpokemon']['stat levels']['sdef']) + int(self.jsonlist['battleState']['playerpokemon']['stat levels']['spd']) + int(self.jsonlist['battleState']['playerpokemon']['stat levels']['eva']) + int(self.jsonlist['battleState']['playerpokemon']['stat levels']['acc']))
+        statTotal = sum([int(self.jsonlist['battleState']['playerpokemon']['stat levels'][stat]) for stat in self.statNames])
         #baton pass
         if self.jsonlist['battleState']['enemy type'] == 'TRAINER':
-            if tempx > 0:
+            if statTotal > 0:
                 tempx = -1
                 for tempmove in range (0, len(self.jsonlist['battleState']['enemypokemon']['moves'])):
                     if self.MonData[mycurrent]['moves'][tempmove]['effect'] == ('batonpass'):
@@ -1732,7 +1738,7 @@ class AI(object):
             if potentialAction is not None:
                 self.theaction = potentialAction
                 
-        #disabled code
+        #Treat disabled moves as 0 pp
         if self.jsonlist['battleState']['enemy type'] == 'WILD':
             if 'disabled' in self.MonData['enemypokemon']['substatus']:
                 self.MonData[0]['moves'][int(self.MonData['enemypokemon']['substatus']['disabled']['move idx'])-1]['curpp'] = 0
