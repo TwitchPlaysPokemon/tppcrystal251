@@ -302,7 +302,7 @@ class AI(object):
         elif move_used['category'] == "special":
             tempx = self._statsmultipliers[self.MonData[attacker]['boosts']['satk']+6]/100
             tempy = self._statsmultipliers[self.MonData[defender]['boosts']['sdef']+6]/100
-            if self.MonData['weather'] == 'sandstorm' and (self.MonData[traincurrent]['type'][1].lower() == 'rock' or self.MonData[traincurrent]['type'][2].lower() == 'rock'):
+            if self.MonData['weather'] == 'sandstorm' and (self.MonData[defender]['type'][1].lower() == 'rock' or self.MonData[defender]['type'][2].lower() == 'rock'):
                 tempy = tempy * 1.5
             temp1 = ((((((2 * self.MonData[attacker]['level'] + 10) / 250) * (((self.MonData[attacker]['stats']['satk'] * satkmodifier) * tempx) / (self.MonData[defender]['stats']['sdef'] * tempy))  * basebp)+2) * 0.85)) * multiplier
             if 'lightscreen' in self.MonData[temptext]['screens'] or (attacker > 5 and self.MonData['reflect']):
