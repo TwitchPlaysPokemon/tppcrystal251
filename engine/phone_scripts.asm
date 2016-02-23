@@ -190,14 +190,16 @@ CheckForBoxes:
 	if_equal 0, BillPhoneWholePCFull
 	buttonsound
 	farwritetext BillWantNextBox
-	yesorno
-	iffalse EndBillConversation
+	buttonsound
+	;yesorno
+	;iffalse EndBillConversation
 	special BillBoxSwitch
 EndBillConversation:
 	waitbutton
 	end
 
 BillPhoneWholePCFull
+	buttonsound
 	farwritetext BillWholePCFullText
 	waitbutton
 	end
@@ -3136,9 +3138,6 @@ UnknownScript_0xbe675:: ; 0xbe675
 	applymovement2 MovementBuffer
 	writepersonxy $fe
 	faceperson $0, $fe
-	jump UnknownScript_0xbe68a
-; 0xbe68a
-
 UnknownScript_0xbe68a: ; 0xbe68a
 	loadfont
 	trainertext $0

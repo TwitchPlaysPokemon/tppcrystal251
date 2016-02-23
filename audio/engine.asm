@@ -13,6 +13,20 @@ _SoundRestart:: ; e8000
 	push de
 	push bc
 	push af
+	ld a, [MapGroup]
+	cp GROUP_HALLWAY_OF_FAME
+	jr nz, .not_hallway
+	ld a, [MapNumber]
+	cp MAP_HALLWAY_OF_FAME
+	jr nz, .not_hallway
+	ld a, [Channel1MusicID]
+	cp MUSIC_GYM_VICTORY
+	jr nz, .not_hallway
+	ld de, EVENT_MARY_AND_OAK_IN_LANCES_ROOM
+	ld b, 2
+	call EventFlagAction
+	jr nz, .finish
+.not_hallway
 	call MusicOff
 	ld hl, rNR50 ; channel control registers
 	xor a
@@ -47,6 +61,7 @@ _SoundRestart:: ; e8000
 	ld a, e
 	or d
 	jr nz, .clearchannels
+.finish
 	ld a, $77 ; max
 	ld [Volume], a
 	call MusicOn
@@ -195,6 +210,9 @@ _UpdateSound:: ; e805c
 	add hl, bc
 	ld c, l
 	ld b, h
+	ld a, [hFastMusicUpdate]
+	bit 7, a
+	jr nz, .fastupdate
 	ld a, [CurChannel]
 	inc a
 	ld [CurChannel], a
@@ -212,6 +230,19 @@ _UpdateSound:: ; e805c
 	ld [rNR51], a
 	ret
 ; e8125
+
+.fastupdate
+; no sfx channel update, danger beep and fading
+	ld a, [CurChannel]
+	inc a
+	ld [CurChannel], a
+	cp a, $04
+	jp nz, .loop
+	ld a, [Volume]
+	ld [rNR50], a
+	ld a, [SoundOutput]
+	ld [rNR51], a
+	ret
 
 UpdateChannels: ; e8125
 	ld hl, .ChannelFnPtrs

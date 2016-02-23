@@ -117,7 +117,7 @@ INCLUDE "maps/Route35Goldenrodgate.asm"
 INCLUDE "maps/Route35NationalParkgate.asm"
 INCLUDE "maps/Route36RuinsofAlphgate.asm"
 INCLUDE "maps/Route36NationalParkgate.asm"
-
+INCLUDE "maps/Route1112Gate.asm"
 
 SECTION "Map Scripts 6", ROMX
 

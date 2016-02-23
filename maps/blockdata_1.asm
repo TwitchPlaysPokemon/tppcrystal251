@@ -284,6 +284,7 @@ KrissHouse1F_BlockData: ; 0xab69b
 
 Route38EcruteakGate_BlockData: ; 0xab6af
 Route11GateRB_BlockData: ; 0xab6af
+Route1112Gate_BlockData: ; 0xab6af
 Route42EcruteakGate_BlockData:
 Route32RuinsofAlphGate_BlockData:
 IlexForestAzaleaGate_BlockData:

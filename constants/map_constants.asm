@@ -242,6 +242,7 @@ MAP_N_A   EQU -1
 	mapgroup ROUTE_6_SAFFRON_GATE, 4, 5
 	mapgroup ROUTE_6_UNDERGROUND_ENTRANCE, 4, 4
 	mapgroup MEWISLANDENTRANCE, 18, 10
+	mapgroup ROUTE_11_12_GATE, 4, 5
 
 	newgroup ; Pallet Town Roofs
 	mapgroup ROUTE_1, 18, 10
@@ -283,7 +284,7 @@ MAP_N_A   EQU -1
 	mapgroup KARENS_ROOM, 9, 5
 	mapgroup LANCES_ROOM, 12, 5
 	mapgroup HALL_OF_FAME, 7, 5
-    mapgroup HALLWAY_OF_FAME, 10, 5
+	mapgroup HALLWAY_OF_FAME, 10, 5
 
 	newgroup ; Fuchsia City Roofs
 	mapgroup ROUTE_13, 9, 30

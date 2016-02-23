@@ -17544,8 +17544,7 @@ Group3Sprites: ; 146fd
 	db SPRITE_FAMICOM
 	db SPRITE_POKEDEX
 	db SPRITE_WILL
-	; db SPRITE_KAREN
-	db SPRITE_PHARMACIST
+	db SPRITE_KAREN
 	db SPRITE_NURSE
 	db SPRITE_OLD_LINK_RECEPTIONIST
 	db SPRITE_GAMEBOY_KID
@@ -17612,8 +17611,7 @@ Group5Sprites: ; 146e6
 	db SPRITE_POKEFAN_M ;
 	db SPRITE_BLACK_BELT ;
 	db SPRITE_COOLTRAINER_F ;
-	; db SPRITE_FISHER
-	db SPRITE_EGK_RIVAL
+	db SPRITE_FISHER
 	db SPRITE_FRUIT_TREE ;
 	db SPRITE_POKE_BALL ; 23
 ; 146fd
@@ -17680,8 +17678,7 @@ Group8Sprites: ; 1465c
 	db SPRITE_NURSE
 	db SPRITE_OLD_LINK_RECEPTIONIST
 	db SPRITE_KURT_OUTSIDE
-	; db SPRITE_BIG_ONIX
-	db SPRITE_PHARMACIST
+	db SPRITE_BIG_ONIX
 	db SPRITE_SUDOWOODO
 	db SPRITE_BIG_SNORLAX
 	db SPRITE_GRAMPS
@@ -17782,6 +17779,7 @@ Group12Sprites: ; 145a4
 	db SPRITE_FAMICOM
 	db SPRITE_POKEDEX
 	db SPRITE_WILL
+	db SPRITE_KAREN
 	db SPRITE_PHARMACIST
 	db SPRITE_NURSE
 	db SPRITE_OLD_LINK_RECEPTIONIST
@@ -17797,10 +17795,9 @@ Group12Sprites: ; 145a4
 	db SPRITE_TEACHER
 	db SPRITE_SUPER_NERD
 	db SPRITE_BIG_SNORLAX
-	db SPRITE_BIKER
+	; db SPRITE_BIKER
 	db SPRITE_POKE_BALL
 	db SPRITE_FRUIT_TREE ; 23
-;	db SPRITE_KAREN
 ; 145bb
 
 Group13Sprites: ; 144ec
@@ -17835,7 +17832,7 @@ Group14Sprites: ; 1451a
 	db SPRITE_FAMICOM
 	db SPRITE_POKEDEX
 	db SPRITE_WILL
-	; db SPRITE_KAREN
+	db SPRITE_KAREN
 	db SPRITE_PHARMACIST
 	db SPRITE_NURSE
 	db SPRITE_OLD_LINK_RECEPTIONIST
@@ -17846,7 +17843,7 @@ Group14Sprites: ; 1451a
 	db SPRITE_TEACHER
 	db SPRITE_FISHER
 	db SPRITE_YOUNGSTER
-	db SPRITE_BLUE
+	; db SPRITE_BLUE
 	db SPRITE_GRAMPS
 	db SPRITE_BUG_CATCHER
 	db SPRITE_COOLTRAINER_F
@@ -18626,7 +18623,7 @@ Function14b85: ; 14b85
 Function14b89: ; 14b89 ask if save, if yes erase save and ret nc
 	ld a, [wcfcd]
 	and a
-	jr z, .asm_14ba8 ;if not talked to receptionist, skip to erase?
+	jr z, .asm_14ba8 ;don't ask if blank file
 	call Function14bcb ;if current playerid is the same as saved id, jump
 	jr z, .asm_14b9e
 	ld hl, UnknownText_0x15297 ;ask if can overwrite
@@ -18635,9 +18632,9 @@ Function14b89: ; 14b89 ask if save, if yes erase save and ret nc
 	jr .asm_14ba8 ;else erase save
 
 .asm_14b9e
-	ld hl, UnknownText_0x15292 ;ask if can overwrite
-	call Function14baf ;ask if want to save
-	jr nz, .asm_14bad
+	;ld hl, UnknownText_0x15292 ;ask if can overwrite
+	;call Function14baf ;ask if want to save
+	;jr nz, .asm_14bad
 	jr .asm_14bab ;ret nc
 
 .asm_14ba8
@@ -18661,9 +18658,9 @@ Function14baf: ; 14baf ask if want to save
 	ld a, [wcfa9] ;load cursor position
 	dec a
 	call Function1c17 ;unload menu
-	push af
+	;push af
 	;call Functiond90 does nothing
-	pop af
+	;pop af
 	and a
 	ret
 ; 14bcb
@@ -26662,7 +26659,7 @@ Function24db0: ; 24db0 ;put string for move whose listing is in a in stringbuffe
 	dec hl ;check if it's a move
 	ld a, [hli]
 	cp $1
-	jr z, .asm_24dc8 ;if it isn't, skip
+	jr z, .asm_24dc8 ;if it isn't, get it
 	inc hl
 	ld a, [hl]
 	ld [wd265], a
@@ -93800,7 +93797,7 @@ FaintingCry:
 	ld a, [hli]
 	ld h, [hl]
 	ld l, a
-	ld bc, -$140
+	ld bc, -$70
 	add hl, bc
 	ld a, l
 	ld [CryPitch], a
@@ -93810,7 +93807,7 @@ FaintingCry:
 	ld a, [hli]
 	ld h, [hl]
 	ld l, a
-	ld bc, $60
+	ld bc, $30
 	add hl, bc
 	ld a, l
 	ld [CryLength], a

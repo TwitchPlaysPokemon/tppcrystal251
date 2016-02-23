@@ -231,7 +231,9 @@ Route11_MapEventHeader: ; 0x68242
 	db 0, 0
 
 	; warps
-	db 0
+	db 2
+	warp_def 8, 35, 1, GROUP_ROUTE_11_12_GATE, MAP_ROUTE_11_12_GATE
+	warp_def 9, 35, 2, GROUP_ROUTE_11_12_GATE, MAP_ROUTE_11_12_GATE
 
 	; xy triggers
 	db 0

@@ -22,8 +22,8 @@ HallwayTrigger1: ; 0x180e3d
 
 RealChampScript: ; 0x180e74
 	applymovement $0, MovementToChamp
-	loadfont
 	spriteface 2, LEFT
+	loadfont
 	checkevent EVENT_OAK_DEFEATED
 	iftrue EGKRivalRematch
 	checkflag ENGINE_PLAYER_IS_FEMALE
@@ -66,10 +66,16 @@ RealChampScript: ; 0x180e74
 OakAppears:
 	waitbutton
 	closetext
+	pause 15
 	appear $3
-	applymovement $3, OakWalksUp
+	playmusic MUSIC_SLOW_PALLET
+	loadfont
+	writetext HallwayOfFameOakText1
+	waitbutton
+	closetext
 	spriteface $0, DOWN
 	spriteface $2, DOWN
+	applymovement $3, OakWalksUp
 	loadfont
 	checkevent EVENT_OAK_DEFEATED
 	iftrue CheckDexForMtSilver
@@ -77,7 +83,8 @@ OakAppears:
 	waitbutton
 	closetext
 	applymovement $3, OakWalkBackToPlayer
-	spriteface 0, LEFT
+	spriteface $0, LEFT
+	spriteface $2, LEFT
 	loadfont
 	writetext OakAfterRivalTalkToPlayer
 AfterOakTalk:
@@ -87,17 +94,20 @@ AfterOakTalk:
 	closetext
 	applymovement $3, OakRepositions
 	follow $3, $0
-	spriteface $3, UP
+	spriteface $2, UP
 	applymovement $3, OakWalksUpMore
 	stopfollow
 	playsound SFX_EXIT_BUILDING
 	disappear $3
 	applymovement $0, MovementData_0x180f55
-	playsound SFX_EXIT_BUILDING
-	disappear $0
-	special Function8c084
-	pause 15
-	warpfacing $1, GROUP_HALL_OF_FAME, MAP_HALL_OF_FAME, $4, $d
+	loadvar wMapMusic, MUSIC_SLOW_PALLET
+	warpcheck
+	; playsound SFX_EXIT_BUILDING
+	; disappear $0
+	; special Function8c084
+	; pause 15
+	; dotrigger $1
+	; warpfacing $1, GROUP_HALL_OF_FAME, MAP_HALL_OF_FAME, $4, $d
 	end
 
 
@@ -286,6 +296,7 @@ OakWalksUpMore:
     step_up
     step_up
     step_up
+    step_up
     step_end
 
 MovementData_0x180f55: ; 0x180f55
@@ -308,8 +319,8 @@ AzureBeforeBattleText:
 	line "good care of my"
 	cont "#MON."
 	
-	para "And now,"
-	line "here I am."
+	para "And now, here I"
+	line "am."
 	
 	para "I have risen up"
 	line "over those who"
@@ -421,43 +432,44 @@ WinVsChampRustText:
 
 AzurePostFightText:
 	text "I guess I must"
-	line "concede:"
+	line "concede."
 	
 	para "You are a better"
 	line "trainer than I am."
-
-	para "OAK: <GREEN>!"
 	done
 
 RustPostFightText:
 	text "Darn it!"
 	line "I guess you're"
-	cont "the new champ,"
-	cont "though I don't"
-	cont "like to admit it."
+	cont "the new champ!"
+	para "Though I don't"
+	line "like to admit it."
+	done
 
-	para "OAK: <GREEN>!"
+HallwayOfFameOakText1:
+	text "OAK: <GREEN>!"
 	done
 
 AzureBeforeRematchText:
 RustBeforeRematchText:
-	text ""
+	text "Placeholder"
 	done
 
 WinVsRematchAzureText:
 LoseVsRematchAzureText:
 WinVsRematchRustText: 
 LoseVsRematchRustText:
-	text "as the simiarly name above, but for the rematch"
+	text "I have nothing to"
+	line "say here yet."
 	done
 
 AzurePostRematchText:
 RustPostRematchText:
-	text "a"
+	text "OLDEN"
 	done
 
 OakToRivalAfterRemtachText:
-	text "a"
+	text "OLDEN"
 	done
 
 
@@ -506,10 +518,10 @@ HallwayOfFame_MapEventHeader: ; 0x1813f4
 
 	; warps
 	db 4
-	warp_def 19, $5, 3, GROUP_LANCES_ROOM, MAP_LANCES_ROOM
-	warp_def 19, $6, 4, GROUP_LANCES_ROOM, MAP_LANCES_ROOM
-	warp_def $2, $5, 1, GROUP_HALL_OF_FAME, MAP_HALL_OF_FAME
-	warp_def $2, $6, 2, GROUP_HALL_OF_FAME, MAP_HALL_OF_FAME
+	warp_def 19, $4, 3, GROUP_LANCES_ROOM, MAP_LANCES_ROOM
+	warp_def 19, $5, 4, GROUP_LANCES_ROOM, MAP_LANCES_ROOM
+	warp_def $2, $4, 1, GROUP_HALL_OF_FAME, MAP_HALL_OF_FAME
+	warp_def $2, $5, 2, GROUP_HALL_OF_FAME, MAP_HALL_OF_FAME
 
 	; xy triggers
 	db 0

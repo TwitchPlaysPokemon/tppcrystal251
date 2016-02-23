@@ -93,10 +93,9 @@ BillWholePCFullText:
 	done
 
 BillWantNextBox:
-	text "If you want I can"
-	line "swap to the next"
-	cont "BOX with space"
-	cont "for you."
+	text "I'll swap to the"
+	line "next BOX with"
+	cont "space for you."
 
-	para "Is that OK?"
+	para "However<...>"
 	done

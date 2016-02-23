@@ -23,6 +23,12 @@ MOVES_FILE_PATH = os.path.join(SCRIPT_DIR, "AiMoves.txt")
 
 Debug_Code = 0
 
+def sign(x):
+    if x == 0:
+        return 0
+    else:
+        return 1 if x > 0 else -1
+        
 class Combogenerator:
     def __init__(self,turnsToLookAhead=4, numMoves=4):
         self.arrlen = turnsToLookAhead
@@ -682,6 +688,12 @@ class AI(object):
                     self.Damage[mycurrent][traincurrent][moveused]['damage'] = self.MonData[traincurrent]['stats']['curhp'] - (self.MonData[mycurrent]['stats']['curhp'] + self.MonData[traincurrent]['stats']['curhp'])/2
                     self.Damage[mycurrent][traincurrent][moveused]['selfdamage'] = self.MonData[mycurrent]['stats']['curhp'] - (self.MonData[mycurrent]['stats']['curhp'] + self.MonData[traincurrent]['stats']['curhp'])/2
                 
+                #whirlwind
+                if self.MonData[mycurrent]['moves'][moveused]['effect'] == 'whirlwind':
+                    for stat in self.statNames:
+                        self.MonData[traincurrent]['boosts'][stat] = 0
+                    self.MonData['playerpokemon']['substatus'] = {}
+                
                 #Guard
                 if self.MonData[mycurrent]['moves'][moveused]['effect'] == 'protect' and 'protect' not in self.MonData['enemypokemon']['substatus']:
                     self.Damage[mycurrent][traincurrent][moveused]['selfdamage'] = self.Damage[traincurrent][mycurrent][self.enemynumber]['damage'] * -1
@@ -800,16 +812,10 @@ class AI(object):
             self.Damage[mycurrent][traincurrent][moveused]['selfdamage'] = 0
         #stats limiter
         for stat in self.statNames:
-            statName = stat
-            #constrain each stat to +- 6
-            if self.MonData[mycurrent]['boosts'][statName] > 6:
-                self.MonData[mycurrent]['boosts'][statName] = 6
-            if self.MonData[mycurrent]['boosts'][statName] < -6:
-                self.MonData[mycurrent]['boosts'][statName] = -6
-            if self.MonData[traincurrent]['boosts'][statName] > 6:
-                self.MonData[traincurrent]['boosts'][statName] = 6
-            if self.MonData[traincurrent]['boosts'][statName] < -6:
-                self.MonData[traincurrent]['boosts'][statName] = -6
+            curStat = self.MonData[mycurrent]['boosts'][stat]
+            self.MonData[mycurrent]['boosts'][stat] = sign(curStat) * min(abs(curStat), 6)
+            curStat = self.MonData[traincurrent]['boosts'][stat]
+            self.MonData[traincurrent]['boosts'][stat] = sign(curStat) * min(abs(curStat), 6)
         return
 
     def specialeffect(self, traincurrent, mycurrent, moveused):
@@ -883,16 +889,11 @@ class AI(object):
 
             #stats limiter
             for stat in self.statNames:
-                statName = stat
                 #constrain each stat to +- 6
-                if self.MonData[mycurrent]['boosts'][statName] > 6:
-                    self.MonData[mycurrent]['boosts'][statName] = 6
-                if self.MonData[mycurrent]['boosts'][statName] < -6:
-                    self.MonData[mycurrent]['boosts'][statName] = -6
-                if self.MonData[traincurrent]['boosts'][statName] > 6:
-                    self.MonData[traincurrent]['boosts'][statName] = 6
-                if self.MonData[traincurrent]['boosts'][statName] < -6:
-                    self.MonData[traincurrent]['boosts'][statName] = -6
+                curStat = self.MonData[mycurrent]['boosts'][stat]
+                self.MonData[mycurrent]['boosts'][stat] = sign(curStat) * min(abs(curStat), 6)
+                curStat = self.MonData[traincurrent]['boosts'][stat]
+                self.MonData[traincurrent]['boosts'][stat] = sign(curStat) * min(abs(curStat), 6)
         else:
             self.Damage[mycurrent][traincurrent][moveused]['damage'] = -1
             self.Damage[mycurrent][traincurrent][moveused]['selfdamage'] = 0
@@ -1007,7 +1008,6 @@ class AI(object):
             
         self.MonData['enemypokemon'] = {}
         self.MonData['playerpokemon'] = {}
-        self.MonData['myitems'] = {}
         self.MonData['enemypokemon']['screens'] = {}
         self.MonData['playerpokemon']['screens'] = {}
         self.MonData['enemypokemon']['substatus'] = copy.deepcopy(self.jsonlist['battleState']['enemypokemon']['subStatus'])
@@ -1085,16 +1085,10 @@ class AI(object):
 
                 #stats limiter
                 for stat in self.statNames:
-                    statName = stat
-                    #constrain each stat to +- 6
-                    if self.MonData[mycurrent]['boosts'][statName] > 6:
-                        self.MonData[mycurrent]['boosts'][statName] = 6
-                    if self.MonData[mycurrent]['boosts'][statName] < -6:
-                        self.MonData[mycurrent]['boosts'][statName] = -6
-                    if self.MonData[traincurrent]['boosts'][statName] > 6:
-                        self.MonData[traincurrent]['boosts'][statName] = 6
-                    if self.MonData[traincurrent]['boosts'][statName] < -6:
-                        self.MonData[traincurrent]['boosts'][statName] = -6
+                    curStat = self.MonData[mycurrent]['boosts'][stat]
+                    self.MonData[mycurrent]['boosts'][stat] = sign(curStat) * min(abs(curStat), 6)
+                    curStat = self.MonData[traincurrent]['boosts'][stat]
+                    self.MonData[traincurrent]['boosts'][stat] = sign(curStat) * min(abs(curStat), 6)
                 self.TrainerDamage(traincurrent, mycurrent)
                 myhp = myhp - self.Damage[traincurrent][mycurrent][self.enemynumber]['damage']
 
@@ -1214,16 +1208,10 @@ class AI(object):
                         self.MonData['focusenergyused'] = True
                     #stats limiter
                     for stat in self.statNames:
-                        statName = stat
-                        #constrain each stat to +- 6
-                        if self.MonData[mycurrent]['boosts'][statName] > 6:
-                            self.MonData[mycurrent]['boosts'][statName] = 6
-                        if self.MonData[mycurrent]['boosts'][statName] < -6:
-                            self.MonData[mycurrent]['boosts'][statName] = -6
-                        if self.MonData[traincurrent]['boosts'][statName] > 6:
-                            self.MonData[traincurrent]['boosts'][statName] = 6
-                        if self.MonData[traincurrent]['boosts'][statName] < -6:
-                            self.MonData[traincurrent]['boosts'][statName] = -6
+                        curStat = self.MonData[mycurrent]['boosts'][stat]
+                        self.MonData[mycurrent]['boosts'][stat] = sign(curStat) * min(abs(curStat), 6)
+                        curStat = self.MonData[traincurrent]['boosts'][stat]
+                        self.MonData[traincurrent]['boosts'][stat] = sign(curStat) * min(abs(curStat), 6)
                     self.TrainerDamage(traincurrent, mycurrent)
                     myhp1 = myhp1 - self.Damage[traincurrent][mycurrent][self.enemynumber]['damage']
 
@@ -1413,17 +1401,15 @@ class AI(object):
                             
                             #and you are about to die
                             if self.Damage[traincurrent][mycurrent][self.enemynumber]['damage'] > self.hp[bestmonsindex[x1]]:
-                                #and healing would allow you to continue fighting
-                                if self.Damage[traincurrent][mycurrent][self.enemynumber]['damage'] / self.jsonlist['battleState']['enemypokemon']['stats']['maxhp'] < 0.5:
-                                    #and im not at full hp
-                                    if self.hp[bestmonsindex[x1]]!= self.jsonlist['battleState']['enemypokemon']['stats']['maxhp']:
-                                        #and the item is a.....
-                                        healing_items = {"potion":20,"superpotion":50,"hyperpotion":200,"maxpotion":99999,"fullrestore":99999}
-                                        item_name = self.MonData['myitems'][x2]
-                                        if item_name in healing_items:
-                                            #would the HP the item would heal be enough?
-                                            if healing_items[item_name] > self.Damage[traincurrent][mycurrent][self.enemynumber]['damage']:
-                                                return x2 + 9
+                                #and im not at full hp
+                                if self.hp[bestmonsindex[x1]]!= self.jsonlist['battleState']['enemypokemon']['stats']['maxhp']:
+                                    #and the item is a.....
+                                    healing_items = {"potion":20,"superpotion":50,"hyperpotion":200,"maxpotion":99999,"fullrestore":99999}
+                                    item_name = self.MonData['myitems'][x2]
+                                    if item_name in healing_items:
+                                        #and healing would allow you to continue fighting (and not draw out the inevitable)
+                                        if self.Damage[traincurrent][mycurrent][self.enemynumber]['damage'] * 2 < min((self.jsonlist['battleState']['enemypokemon']['stats']['maxhp'] - self.jsonlist['battleState']['enemypokemon']['stats']['hp']), healing_items[item_name]):
+                                            return x2 + 9
         return 20
 
     def OptionalSwitch(self, traincurrent):
@@ -1577,28 +1563,26 @@ class AI(object):
             if 'charged' in self.MonData['playerpokemon']['substatus'] or (isinstance(self.MonData['playerpokemon']['substatus'], dict) and 'charged' in self.MonData['playerpokemon']['substatus'].values()):
                 return tempx
         
-        try:
-            if self.theaction < 4:
-                if self.MonData[mycurrent]['moves'][self.theaction]['effect'] == 'counter':
-                    tempx = -1
-                    for tempmove in range (0, len(self.jsonlist['battleState']['enemypokemon']['moves'])):
-                        if self.MonData[mycurrent]['moves'][tempmove]['effect'] == ('mirrorcoat'):
-                            tempx = tempmove
-                    if tempx > -1:
-                        x1 = math.ceil(self.Damage[mycurrent][traincurrent][self.theaction]['damage'] / (self.Damage[mycurrent][traincurrent][self.theaction]['damage'] + self.Damage[0][6][tempx]['damage']))
-                        if random.randint(0, 100) > x1:
-                            return tempx
-                if self.MonData[mycurrent]['moves'][self.theaction]['effect'] == 'mirrorcoat':
-                    tempx = -1
-                    for tempmove in range (0, len(self.jsonlist['battleState']['enemypokemon']['moves'])):
-                        if self.MonData[mycurrent]['moves'][tempmove]['effect'] == ('counter'):
-                            tempx = tempmove
-                    if tempx > -1:
-                        x1 = math.ceil(self.Damage[mycurrent][traincurrent][self.theaction]['damage'] / (self.Damage[mycurrent][traincurrent][self.theaction]['damage'] + self.Damage[0][6][tempx]['damage']))
-                        if random.randint(0, 100) > x1:
-                            return tempx
-        except KeyError:
-            print('Key error countercoat')
+        #counter or mirrorcoat, randomize based on effective damage of both
+        if self.theaction < 4:
+            if self.MonData[mycurrent]['moves'][self.theaction]['effect'] == 'counter':
+                tempx = -1
+                for tempmove in range (0, len(self.jsonlist['battleState']['enemypokemon']['moves'])):
+                    if self.MonData[mycurrent]['moves'][tempmove]['effect'] == ('mirrorcoat'):
+                        tempx = tempmove
+                if tempx > -1:
+                    x1 = math.ceil(self.Damage[mycurrent][traincurrent][self.theaction]['damage'] / (self.Damage[mycurrent][traincurrent][self.theaction]['damage'] + self.Damage[mycurrent][traincurrent][tempx]['damage'])) * 100
+                    if random.randint(0, 100) > x1:
+                        return tempx
+            elif self.MonData[mycurrent]['moves'][self.theaction]['effect'] == 'mirrorcoat':
+                tempx = -1
+                for tempmove in range (0, len(self.jsonlist['battleState']['enemypokemon']['moves'])):
+                    if self.MonData[mycurrent]['moves'][tempmove]['effect'] == ('counter'):
+                        tempx = tempmove
+                if tempx > -1:
+                    x1 = math.ceil(self.Damage[mycurrent][traincurrent][self.theaction]['damage'] / (self.Damage[mycurrent][traincurrent][self.theaction]['damage'] + self.Damage[mycurrent][traincurrent][tempx]['damage'])) * 100
+                    if random.randint(0, 100) > x1:
+                        return tempx
         
         #disabled move
         if self.jsonlist['battleState']['enemy type'] == 'WILD':

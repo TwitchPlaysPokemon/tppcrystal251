@@ -77,12 +77,13 @@ LanceScript_0x180e7b: ; 0x180e7b
 	waitbutton
 	closetext
 AfterLanceFight:
-	special RestartMapMusic
 	playsound SFX_ENTER_DOOR
 	changeblock $4, $0, $b
 	reloadmappart
-	closetext
 	setevent EVENT_LANCES_ROOM_ENTRANCE_CLOSED
+	waitsfx
+	loadvar wMapMusic, MUSIC_INDIGO_PLATEAU
+	special RestartMapMusic
 	;loadfont
 	;writetext UnknownText_0x18137b
 	;special HealParty
@@ -93,9 +94,7 @@ AfterLanceFight:
 	;waitbutton
 	;closetext
 	applymovement $0, MovementData_0x180f53
-	special Function8c084
-	pause 15
-	warpfacing $1, GROUP_HALLWAY_OF_FAME, MAP_HALLWAY_OF_FAME, $4, $13
+	warpcheck
 	end
 
 LanceRematch:
@@ -122,8 +121,8 @@ LanceBeforeRematchText:
 	
 	para "We will battle to"
 	line "determine who is"
-	cont "the stronger of"
-	cont "the two of us."
+	para "the stronger of"
+	line "the two of us."
 
 	para "I, LANCE, accept"
 	line "your challenge!"
@@ -140,8 +139,8 @@ LanceAfterRematch:
 
 	para "As a trainer,"
 	line "you will continue"
-	cont "to grow strong"
-	cont "with your #MON."
+	para "to grow strong"
+	line "with your #MON."
 
 
 
