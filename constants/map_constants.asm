@@ -242,6 +242,7 @@ MAP_N_A   EQU -1
 	mapgroup ROUTE_6_SAFFRON_GATE, 4, 5
 	mapgroup ROUTE_6_UNDERGROUND_ENTRANCE, 4, 4
 	mapgroup MEWISLANDENTRANCE, 18, 10
+	mapgroup ROUTE_11_12_GATE, 4, 5
 
 	newgroup ; Pallet Town Roofs
 	mapgroup ROUTE_1, 18, 10

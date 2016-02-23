@@ -74,6 +74,18 @@ LanceScript_0x180e7b: ; 0x180e7b
 	setevent EVENT_BEAT_CHAMPION_LANCE
 	loadfont
 	writetext UnknownText_0x181132
+	buttonsound
+	waitsfx
+	checkflag ENGINE_PLAYER_IS_FEMALE
+	iftrue .reveal_rust
+	writetext LanceAzureTalk
+	jump .LanceFinishesReveal
+.reveal_rust
+	writetext LanceRustTalk
+.LanceFinishesReveal
+	buttonsound
+	waitsfx
+	writetext LanceFinishReveal
 	waitbutton
 	closetext
 AfterLanceFight:
@@ -247,24 +259,20 @@ UnknownText_0x181132: ; 0x181132
 
 	para "<...>Or, you would"
 	line "have been, but you"
-	cont "have one more"
-	cont "challenge ahead."
-	
-	para "Their name is<...>"
+	para "have one more"
+	line "challenge ahead."
+	done
     
-    para "<GREEN>!"
-    
-    para "They are now the"
-    line "#MON LEAGUE"
-    cont "CHAMPION!"
-    
-    para "Go now. Your"
+LanceFinishReveal:
+    text "Go now. Your"
     line "final challenge"
     cont "awaits you!"
     done ; not sure if this is supposed to use below if gender
 	
 LanceAzureTalk:
-	text "She beat the"
+	text "Her name is<...>"
+	para "<GREEN>!"
+	para "She beat the"
 	line "ELITE FOUR"
 	cont "before you."
 	
@@ -272,7 +280,9 @@ LanceAzureTalk:
 	line "LEAGUE CHAMPION!"
 	done
 LanceRustTalk:
-	text "He beat the"
+	text "His name is<...>"
+	para "<GREEN>!"
+	para "He beat the"
 	line "ELITE FOUR"
 	cont "before you."
 	

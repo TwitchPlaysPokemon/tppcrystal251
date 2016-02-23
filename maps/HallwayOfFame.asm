@@ -101,12 +101,13 @@ AfterOakTalk:
 	disappear $3
 	applymovement $0, MovementData_0x180f55
 	loadvar wMapMusic, MUSIC_SLOW_PALLET
-	playsound SFX_EXIT_BUILDING
-	disappear $0
-	special Function8c084
-	pause 15
-	dotrigger $1
-	warpfacing $1, GROUP_HALL_OF_FAME, MAP_HALL_OF_FAME, $4, $d
+	warpcheck
+	; playsound SFX_EXIT_BUILDING
+	; disappear $0
+	; special Function8c084
+	; pause 15
+	; dotrigger $1
+	; warpfacing $1, GROUP_HALL_OF_FAME, MAP_HALL_OF_FAME, $4, $d
 	end
 
 

@@ -282,8 +282,10 @@ Route12_MapEventHeader: ; 0x1a72cf
 	db 0, 0
 
 	; warps
-	db 1
+	db 3
 	warp_def $21, $b, 1, GROUP_ROUTE_12_SUPER_ROD_HOUSE, MAP_ROUTE_12_SUPER_ROD_HOUSE
+	warp_def 26, 2, 3, GROUP_ROUTE_11_12_GATE, MAP_ROUTE_11_12_GATE
+	warp_def 27, 2, 4, GROUP_ROUTE_11_12_GATE, MAP_ROUTE_11_12_GATE
 
 	; xy triggers
 	db 0

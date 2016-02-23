@@ -274,13 +274,13 @@ Military:
 
 .Flee
 	callba Military_TryToFlee
+	ld a, $0
+	ld [wd266], a
 	ret c
 	ld a, [wd0ec]
 	and a
-	ld a, 0
-	ld [wd0ec], a
-	jr z, .Invalid
-	ret
+	ret nz
+	jr .Invalid
 
 .InvalidItem
 	call WhiteBGMap
