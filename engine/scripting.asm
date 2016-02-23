@@ -1604,18 +1604,23 @@ Script_returnafterbattle: ; 0x97459
 	bit 0, d
 	jr z, .asm_9747c ; 0x97472 $8
 	callba Functionfcfec
-	jr .asm_9748e ; 0x9747a $12
+	jr Script_reloadmap ; 0x9747a $12
 .asm_9747c
+	ld a, [MapGroup]
+	cp GROUP_HALLWAY_OF_FAME
+	jr nz, .not_azure
+	ld a, [MapNumber]
+	cp MAP_HALLWAY_OF_FAME
+	jr nz, .not_azure
+	ld a, MUSIC_GYM_VICTORY
+	ld [wMapMusic], a
+.not_azure
 	ld a, [wd0ee]
 	bit 7, a
-	jr z, .asm_9748e ; 0x97481 $b
+	jr z, Script_reloadmap ; 0x97481 $b
 	ld b, BANK(UnknownScript_0x90255)
 	ld de, UnknownScript_0x90255
 	callba Function97c4f
-.asm_9748e
-	jp Script_reloadmap
-; 0x97491
-
 Script_reloadmap: ; 0x97491
 ; script command 0x7b
 

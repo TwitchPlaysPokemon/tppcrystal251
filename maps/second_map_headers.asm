@@ -488,7 +488,7 @@
 	map_header_2 KarensRoom, KARENS_ROOM, $0, NONE ; 0x961d0
 	map_header_2 LancesRoom, LANCES_ROOM, $0, NONE ; 0x961dc
 	map_header_2 HallOfFame, HALL_OF_FAME, $0, NONE ; 0x961e8
-    map_header_2 HallwayOfFame, HALLWAY_OF_FAME, $0, NONE ; 0x961e8
+	map_header_2 HallwayOfFame, HALLWAY_OF_FAME, $0, NONE ; 0x961e8
 	map_header_2 FuchsiaMart, FUCHSIA_MART, $0, NONE ; 0x961f4
 	map_header_2 SafariZoneMainOffice, SAFARI_ZONE_MAIN_OFFICE, $0, NONE ; 0x96200
 	map_header_2 FuchsiaGym, FUCHSIA_GYM, $0, NONE ; 0x9620c

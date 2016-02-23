@@ -415,6 +415,9 @@ UnknownScript_0xbc2b6:
 	waitbutton
 	special Function13a31 ;reset party to normal
 UnknownScript_0xbc2c4:
+	farwritetext DoYouWantToKeepTheBug
+	yesorno
+	iffalse UnknownScript_0xbc2d4
 	special Function4d9e5 ;insert mon into party or into PC box in top slot. return 0 in scriptvar if mon went to party, 1 if they went to box and 2 if no mon was caught
 	if_equal $0, UnknownScript_0xbc2d4 ;if sent to party or no mon, skip box text
 	if_equal $2, UnknownScript_0xbc2d4 

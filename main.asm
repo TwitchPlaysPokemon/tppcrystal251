@@ -18626,7 +18626,7 @@ Function14b85: ; 14b85
 Function14b89: ; 14b89 ask if save, if yes erase save and ret nc
 	ld a, [wcfcd]
 	and a
-	jr z, .asm_14ba8 ;if not talked to receptionist, skip to erase?
+	jr z, .asm_14ba8 ;don't ask if blank file
 	call Function14bcb ;if current playerid is the same as saved id, jump
 	jr z, .asm_14b9e
 	ld hl, UnknownText_0x15297 ;ask if can overwrite
@@ -18635,9 +18635,9 @@ Function14b89: ; 14b89 ask if save, if yes erase save and ret nc
 	jr .asm_14ba8 ;else erase save
 
 .asm_14b9e
-	ld hl, UnknownText_0x15292 ;ask if can overwrite
-	call Function14baf ;ask if want to save
-	jr nz, .asm_14bad
+	;ld hl, UnknownText_0x15292 ;ask if can overwrite
+	;call Function14baf ;ask if want to save
+	;jr nz, .asm_14bad
 	jr .asm_14bab ;ret nc
 
 .asm_14ba8
@@ -18661,9 +18661,9 @@ Function14baf: ; 14baf ask if want to save
 	ld a, [wcfa9] ;load cursor position
 	dec a
 	call Function1c17 ;unload menu
-	push af
+	;push af
 	;call Functiond90 does nothing
-	pop af
+	;pop af
 	and a
 	ret
 ; 14bcb
@@ -26662,7 +26662,7 @@ Function24db0: ; 24db0 ;put string for move whose listing is in a in stringbuffe
 	dec hl ;check if it's a move
 	ld a, [hli]
 	cp $1
-	jr z, .asm_24dc8 ;if it isn't, skip
+	jr z, .asm_24dc8 ;if it isn't, get it
 	inc hl
 	ld a, [hl]
 	ld [wd265], a
@@ -36475,7 +36475,7 @@ Function421f5: ; 421f5
 	jp z, .DontEvolve2
 	ld a, [hli]
 	cp TR_ANYTIME
-	jr z, .GoAheadAndEvolve
+	jp z, .GoAheadAndEvolve
 	cp TR_MORNDAY
 	jr z, .asm_422a4
 ; TR_NITE
@@ -36534,7 +36534,17 @@ Function421f5: ; 421f5
 	ld b, a
 	ld a, [TempMonItem]
 	cp b
-	jp nz, .DontEvolve
+	jp z, .GoAheadAndEvolve
+	ld a, EVERSTONE
+	cp b
+	jp z, .DontEvolve
+	ld a, b
+	push hl
+	ld [CurItem], a
+	ld hl, NumItems
+	call CheckItem
+	pop hl
+	jp nc, .DontEvolve
 	jr .GoAheadAndEvolve
 
 .level
@@ -93790,7 +93800,7 @@ FaintingCry:
 	ld a, [hli]
 	ld h, [hl]
 	ld l, a
-	ld bc, -$140
+	ld bc, -$70
 	add hl, bc
 	ld a, l
 	ld [CryPitch], a
@@ -93800,7 +93810,7 @@ FaintingCry:
 	ld a, [hli]
 	ld h, [hl]
 	ld l, a
-	ld bc, $60
+	ld bc, $30
 	add hl, bc
 	ld a, l
 	ld [CryLength], a

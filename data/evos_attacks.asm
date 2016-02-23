@@ -2709,7 +2709,7 @@ KabutopsEvosAttacks:
 AerodactylEvosAttacks:
 	db 0 ; no more evolutions
 	db 1, TWISTER
-	db 5, WHIRLWIND ; egg move
+	db 5, WHIRLWIND 
 	db 10, GUST
 	db 14, ANCIENTPOWER
 	db 18, SCARY_FACE
@@ -2717,10 +2717,10 @@ AerodactylEvosAttacks:
 	db 26, ROCK_THROW
 	db 30, HYPER_BEAM
 	db 34, BITE
-	db 39, HEAT_WAVE ; later gen move
+	db 39, HEAT_WAVE 
 	db 44, WING_ATTACK
 	db 50, STEEL_WING
-	db 56, CRUNCH; later gen move
+	db 56, CRUNCH
 	db 62, ROCK_SLIDE
 	db 68, SKY_ATTACK
 	db 74, AGILITY
@@ -3999,18 +3999,18 @@ SteelixEvosAttacks:
 	db 8, WRAP ; Bind replacement
 	db 11, HARDEN
 	db 15, ROCK_THROW
-	db 18, EARTH_POWER ; * later gen move
-	db 22, METAL_SOUND ; * illegal move
-	db 26, DRAGONBREATH ; later gen move
+	db 18, EARTH_POWER
+	db 22, METAL_SOUND 
+	db 26, DRAGONBREATH 
 	db 31, SANDSTORM
-	db 35, IRON_HEAD ; * later gen move
-	db 40, SELFDESTRUCT ; gen 1 move
+	db 35, SELFDESTRUCT ; * later gen move
+	db 40, IRON_TAIL ; gen 1 move
 	db 44, SHARPEN ; event move
 	db 49, FISSURE ; * gen 1 move
 	db 53, DIG ; *
 	db 57, ROCK_SLIDE
 	db 61, SCREECH
-	db 65, IRON_TAIL ; * tm move
+	db 65, IRON_HEAD ; * tm move
 	db 70, ROCK_POLISH ; later gen move
 	db 75, CRUNCH ; *
 	db 80, EARTHQUAKE
@@ -4752,10 +4752,10 @@ LarvitarEvosAttacks:
 	db 9, PURSUIT ; egg move
 	db 12, ROCK_THROW ; illegal move
 	db 15, SCREECH
-	db 18, STOMP ; egg move
+	db 18, STOMP
 	db 21, BITE
 	db 24, ROCK_POLISH
-	db 27, DIG ; later gen move
+	db 27, DIG 
 	db 31, CRUNCH
 	db 34, IRON_TAIL
 	db 37, ROCK_SLIDE ; later gen move

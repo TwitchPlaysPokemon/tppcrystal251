@@ -5,6 +5,8 @@ import random
 import sys
 import json
 from flask import Flask, request
+import urllib.request
+import traceback
 
 import AI
 from werkzeug.exceptions import BadRequest
@@ -28,6 +30,37 @@ ai_result = "move1"
 # global handle to actual AI
 Artificial = AI.AI()
 LastActions = []
+
+slack_oauth = "xoxb-22420813811-sAexq13Fu7xu7OF3f7uRbiLe"
+
+#global previous_execption variable to cut down on spam
+previous_posted_message = ""
+
+def post_slack_errormsg(battle_state, traceback_last):
+    #post the AI exception to slack
+    global previous_posted_message
+    
+    #don't post the same traceback twice; it'll get spammy
+    if traceback_last == previous_posted_message:
+        return
+    previous_posted_message = traceback_last
+
+    message = "The AI threw this exception with the posted input: ```{}```" .format(traceback_last)
+    arguments = {"token":slack_oauth,
+                "channels":"#aireview", #change this if need be
+                "content":json.dumps(battle_state), #content is what's inside the snippet
+                "as_user":"true",
+                "username":"@1hlixedbot",
+                "initial_comment": message,
+                "filename": "[Log] AI crashlog.txt",
+                "filetype": "javascript"}
+
+    #send the request using urllib
+    #fullurl = "https://slack.com/api/files.upload" + "?" + urllib.parse.urlencode(arguments)
+    request = urllib.request.Request("https://slack.com/api/files.upload",urllib.parse.urlencode(arguments).encode("utf-8"))
+    response = urllib.request.urlopen(request)
+    logger.info("Posted error message to slack!")
+    return response.read().decode("utf-8")
 
 def get_backup_move(battle_state):
     try:
@@ -55,9 +88,13 @@ def calculate_next_move(battle_state):
         battle_state["battleState"]["history"] = LastActions
         next_move = Artificial.MainBattle(battle_state)
     except Exception as e:
+        traceback_last = traceback.format_exc()
         logger.exception("The AI threw an exception with the following input: %s" % battle_state)
         # uh-oh! better fall back to "default ai"
         next_move = get_backup_move(battle_state)
+        # print(traceback_last)
+        post_slack_errormsg(battle_state, traceback_last)
+
     logger.info("next move: %s" % next_move)
     LastActions.append(next_move)
     
