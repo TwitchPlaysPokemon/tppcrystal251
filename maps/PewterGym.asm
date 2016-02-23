@@ -104,7 +104,7 @@ BrockRematchBeatenText:
 	done
 
 BrockAfterRematchText:
-	text "I've lost again…"
+	text "I've lost again<...>"
 
 	para "You aren't"
 	line "adventuring around" 
@@ -175,12 +175,12 @@ UnknownText_0x1a28d0: ; 0x1a28d0
 	para "get a challenger"
 	line "from JOHTO-"
 
-	para "…"
+	para "<...>"
 
 	para "So you're from"
 	line "PALLET TOWN,"
 	cont "but lost your"
-	cont "BOULDERBADGE…"
+	cont "BOULDERBADGE<...>"
 
 	para "While I could"
 	line "simply replace it,"
@@ -194,9 +194,9 @@ UnknownText_0x1a28d0: ; 0x1a28d0
 ; 0x1a29bb
 
 UnknownText_0x1a29bb: ; 0x1a29bb
-	text "BROCK: Your #-"
-	line "MON's powerful at-"
-	cont "tacks overcame my"
+	text "BROCK: Your #MON's"
+	line "powerful attacks"
+	cont "overcame my"
 	cont "rock-hard defense<...>"
 
 	para "You're stronger"
