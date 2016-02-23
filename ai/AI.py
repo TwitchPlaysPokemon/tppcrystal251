@@ -508,7 +508,7 @@ class AI(object):
         temp2 = (temp2 * ( 1 - self._critmultipliers[critmodifier])) + (temp2 * 1.5 * self._critmultipliers[critmodifier])
                 
         self.Damage[attacker][defender][moveused]['selfdamage'] = 0
-        
+
         #special considerations for the ai's pokemon only
         if attacker < 6:
             if (move_used_effect == 'thief') and (self.MonData[defender]['item'] != 'noitem') and (self.MonData[attacker]['item'] == 'noitem'):
@@ -1008,19 +1008,17 @@ class AI(object):
             
         self.MonData['enemypokemon'] = {}
         self.MonData['playerpokemon'] = {}
-        self.MonData['enemypokemon']['screens'] = {}
-        self.MonData['playerpokemon']['screens'] = {}
         self.MonData['enemypokemon']['substatus'] = copy.deepcopy(self.jsonlist['battleState']['enemypokemon']['subStatus'])
         self.MonData['playerpokemon']['substatus'] = copy.deepcopy(self.jsonlist['battleState']['playerpokemon']['subStatus'])
         self.MonData['enemypokemon']['screens'] = copy.deepcopy(self.jsonlist['battleState']['enemypokemon']['screens'])
         self.MonData['playerpokemon']['screens'] = copy.deepcopy(self.jsonlist['battleState']['playerpokemon']['screens'])
-        self.MonData['enemypokemon']['bound'] = copy.deepcopy(int(self.jsonlist['battleState']['enemypokemon']['wrap count']))
-        self.MonData['playerpokemon']['bound'] = copy.deepcopy(int(self.jsonlist['battleState']['playerpokemon']['wrap count']))
+        self.MonData['enemypokemon']['bound'] = int(self.jsonlist['battleState']['enemypokemon']['wrap count'])
+        self.MonData['playerpokemon']['bound'] = int(self.jsonlist['battleState']['playerpokemon']['wrap count'])
         
         if self.triggered == 0:
             self.MonData[mycurrent]['boosts'] = {}
             for stat in self.statNames:
-                self.MonData[mycurrent]['boosts'][stat] = copy.deepcopy(self.jsonlist['battleState']['enemypokemon']['stat levels'][stat])
+                self.MonData[mycurrent]['boosts'][stat] = self.jsonlist['battleState']['enemypokemon']['stat levels'][stat]
         if self.triggered > 0:
             self.MonData[mycurrent]['boosts'] = {}
             for stat in self.statNames:
@@ -1029,7 +1027,7 @@ class AI(object):
             self.MonData['enemypokemon']['bound'] = 0
         self.MonData[traincurrent]['boosts'] = {}
         for stat in self.statNames:
-            self.MonData[traincurrent]['boosts'][stat] = copy.deepcopy(self.jsonlist['battleState']['playerpokemon']['stat levels'][stat])
+            self.MonData[traincurrent]['boosts'][stat] = self.jsonlist['battleState']['playerpokemon']['stat levels'][stat]
         return
         
     def Fight(self, traincurrent, mycurrent, numberofturns):
