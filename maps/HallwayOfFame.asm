@@ -295,6 +295,7 @@ OakWalksUpMore:
     step_up
     step_up
     step_up
+    step_up
     step_end
 
 MovementData_0x180f55: ; 0x180f55
