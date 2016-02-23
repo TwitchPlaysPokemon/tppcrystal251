@@ -345,11 +345,10 @@ UnknownText_0x1a4c03: ; 0x1a4c03
 	text "TRAINER TIPS"
 
 	para "A #MON holding"
-	line "a MIRACLEBERRY"
+	line "a LUM BERRY will"
 
-	para "will cure itself"
-	line "of any status"
-	cont "problem."
+	para "cure itself of any"
+	line "status problem."
 	done
 ; 0x1a4c57
 
