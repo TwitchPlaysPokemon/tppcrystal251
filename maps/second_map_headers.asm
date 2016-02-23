@@ -504,6 +504,7 @@
 	map_header_2 SoulHouse, SOUL_HOUSE, $0, NONE ; 0x9629c
 	map_header_2 LavRadioTower1F, LAV_RADIO_TOWER_1F, $0, NONE ; 0x962a8
 	map_header_2 Route8SaffronGate, ROUTE_8_SAFFRON_GATE, $0, NONE ; 0x962b4
+	map_header_2 Route1112Gate, ROUTE_11_12_GATE, $0, NONE ; 0x962b4
 	map_header_2 Route12SuperRodHouse, ROUTE_12_SUPER_ROD_HOUSE, $0, NONE ; 0x962c0
 	map_header_2 SilverCavePokeCenter1F, SILVER_CAVE_POKECENTER_1F, $0, NONE ; 0x962cc
 	map_header_2 Route28FamousSpeechHouse, ROUTE_28_FAMOUS_SPEECH_HOUSE, $0, NONE ; 0x962d8
