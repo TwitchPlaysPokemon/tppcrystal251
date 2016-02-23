@@ -553,6 +553,7 @@ class AI(object):
 
     #enemy's highest damage
     def TrainerDamage(self, traincurrent, mycurrent):
+        
         if Debug_Code == 1:
             print ('inside TrainerDamage, variables in play - traincurrent: '+str(traincurrent)+' mycurrent: '+str(mycurrent))
             print('length of moves for this mon: '+str( len(self.jsonlist['playerParty']['party'][traincurrent-6]['moves'])))
@@ -571,7 +572,7 @@ class AI(object):
                 self.enemybest = self.MonData[traincurrent]['moves'][moveset]['name'].lower()
                 self.enemynumber = moveset
         
-        return(tempx)
+        return
 
     def Mychoice (self, traincurrent, mycurrent, moveused):
     
@@ -589,10 +590,7 @@ class AI(object):
             if self.MonData[mycurrent]['status'] not in ('slp', 'frz', 'slp1', 'slp2', 'slp3'):
                 #Counter coat (otherwise known as a move that has way too much code and probably be never used anyways)
                 effmulti = self.getEff(self.MonData[mycurrent]['moves'][moveused]['type'].lower(), self.MonData[traincurrent]['type'][1].lower(), 'playerpokemon') * self.getEff(self.MonData[mycurrent]['moves'][moveused]['type'].lower(), self.MonData[traincurrent]['type'][2].lower(), 'playerpokemon')
-                print(self.MonData)
-                print(self.MonData[mycurrent]['moves'][moveused]['effect'])
                 if (self.MonData[mycurrent]['moves'][moveused]['effect'] == 'counter' or self.MonData[mycurrent]['moves'][moveused]['effect'] == 'mirrorcoat') and effmulti > 0:
-                    print('yo im in')
                     tempx = 0
                     tempdamage = 0.00
                     for x1 in range (0, len(self.jsonlist['playerParty']['party'][traincurrent-6]['moves'])):
@@ -611,10 +609,8 @@ class AI(object):
                     self.countercoat['special']['damage'] = tempdamage
                     if self.MonData[mycurrent]['moves'][moveused]['effect'] == 'counter':
                         self.Damage[mycurrent][traincurrent][moveused]['damage'] = 2 * (self.countercoat['physical']['damage'] * (self.countercoat['physical']['number of']/(self.countercoat['physical']['number of']+self.countercoat['special']['number of'])))
-                        print(self.Damage[mycurrent][traincurrent][moveused]['damage'])
                     if self.MonData[mycurrent]['moves'][moveused]['effect'] == 'mirrorcoat':
                         self.Damage[mycurrent][traincurrent][moveused]['damage'] = 2 * (self.countercoat['special']['damage'] * (self.countercoat['special']['number of']/(self.countercoat['physical']['number of']+self.countercoat['special']['number of'])))
-                        print(self.Damage[mycurrent][traincurrent][moveused]['damage'])
 
                 #stats up
                 if self.MonData[mycurrent]['moves'][moveused]['effect'] == 'defenseup2':
@@ -1058,9 +1054,9 @@ class AI(object):
             
             self.Reset(traincurrent, mycurrent)
             self.Damage[mycurrent][traincurrent][tempcombo[0]]['damage'] = 0
-            self.TrainerDamage(traincurrent, mycurrent)
             
             if self.HitMe > 0:
+                self.TrainerDamage(traincurrent, mycurrent)
                 self.DamageDealt(traincurrent, mycurrent, self.enemynumber)
                 myhp = myhp - (self.Damage[traincurrent][self.jsonlist['battleState']['enemypokemon']['party idx']][self.enemynumber]['damage'] * 1.2)
                 self.MonData[mycurrent]['stats']['curhp'] = myhp
@@ -1540,7 +1536,6 @@ class AI(object):
                 theaction = tempx
 
         if theaction == 20:
-            print('wild battle default to fight')
             self.Fight(traincurrent, mycurrent, 5)
             theaction = self.mybestmove[mycurrent]
         return theaction
@@ -1648,7 +1643,7 @@ class AI(object):
             tempy = -1
             self.FinalChance = True
             for tempmove in range (0, len(self.jsonlist['battleState']['enemypokemon']['moves'])):
-                self.Mychoice(mycurrent, traincurrent, tempmove)
+                self.Mychoice(traincurrent, mycurrent, tempmove)
                 if self.MonData[mycurrent]['moves'][tempmove]['curpp'] > 0:
                     if self.Damage[mycurrent][traincurrent][tempmove]['damage'] > tempx:
                         tempx = self.Damage[mycurrent][traincurrent][tempmove]['damage']
