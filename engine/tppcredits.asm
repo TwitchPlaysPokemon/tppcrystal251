@@ -14,10 +14,61 @@ C_TC_SUBTITLE   EQU 2
 STRIP1_HUE_SPD  EQU 37
 STRIP2_HUE_SPD  EQU 23
 
+HSV: MACRO
+; h = [0,360), s = [0,1], v = [0,1]
+_c  = MUL(\2,\3)
+_m  = \3 - _c
+_hi = DIV(\1,60.0)
+_ht = _hi % 2.0
+IF _ht < 1.0
+_x  = MUL(_c,_ht)
+ELSE
+_x  = MUL(_c,2-_ht)
+ENDC
+; I wish RGBDS has switch() for macro language...
+IF _hi < 1.0
+_r  = _c + _m
+_g  = _x + _m
+_b  = _m
+ELSE
+IF _hi < 2.0
+_r  = _x + _m
+_g  = _c + _m
+_b  = _m
+ELSE
+IF _hi < 3.0
+_r  = _m
+_g  = _c + _m
+_b  = _x + _m
+ELSE
+IF _hi < 4.0
+_r  = _m
+_g  = _x + _m
+_b  = _c + _m
+ELSE
+IF _hi < 5.0
+_r  = _x + _m
+_g  = _m
+_b  = _c + _m
+ELSE
+_r  = _c + _m
+_g  = _m
+_b  = _x + _m
+ENDC
+ENDC
+ENDC
+ENDC
+ENDC
+_r = MUL(_r,31.0) >> 16
+_g = MUL(_g,31.0) >> 16
+_b = MUL(_b,31.0) >> 16
+	dw (_b << 10) + (_g << 5) + _r
+ENDM
+
 hsv_equ: MACRO
 \1_C1 EQU MUL(\2, \3)
-\1_C  EQU MUL(MUL(\2, \3), 31) >> 16
-\1_M  EQU MUL((\3 - MUL(\2, \3)), 31) >> 16
+\1_C  EQU MUL(MUL(\2, \3), 31.0) >> 16
+\1_M  EQU MUL((\3 - MUL(\2, \3)), 31.0) >> 16
 ENDM
 
 tc_draw: MACRO
@@ -396,14 +447,33 @@ TPPCredits_ThanksSceneInit::
 	pop bc
 	dec b
 	jr nz, .loop
-	; TODO palettes
+	ld hl, Unkn1Pals
+	ld de, ThanksForWatchingPals
+	ld bc, 12
+	call CopyBytes
 	xor a
 	ld [TC_Hue1], a
 	ld [TC_Hue2], a
 	ld a, 1
 	ld [TC_Hue1Count], a
 	ld [TC_Hue2Count], a
+	ld e, 64
 	call EnableLCD
+.fadein
+	ld a, $90 ; vblank
+	ld hl, rSTAT
+	waitline
+	bit 0, e
+	ld b, $80
+	jr z, .even
+	ld b, $90
+.even
+	push de
+	call RelativeFade_VBlank
+	call StripTrick_Thanks
+	pop de
+	dec e
+	jr nz, .fadein
 	
 	hsv_equ STRIP1,  0.4, 1.0
 	hsv_equ STRIP2, 0.75, 0.8
@@ -461,11 +531,12 @@ TPPCredits_ThanksScene:
 	rlca
 	or b
 	ld [rBGPD], a
+	jr .commandchaos
 .strip2
 	ld a, [TC_Hue2Count]
 	dec a
 	ld [TC_Hue2Count], a
-	jr nz, .strip2
+	jr nz, .joy
 	ld a, STRIP2_HUE_SPD
 	ld [TC_Hue2Count], a
 	ld a, [TC_Hue2]
@@ -509,8 +580,34 @@ TPPCredits_ThanksScene:
 	rlca
 	or b
 	ld [rBGPD], a
+	jr .commandchaos
+	
+.joy
+; joypad update (rom release only)
+IF !DEF(BEESAFREE)
+	;TODO
+	jr .commandchaos
+
+; fade to white then reset the game	
+.exit
+	;TODO move all commands offscreen before fading
+.exitloop
+	call StripTrick_Thanks
+	jr nz, .exitloop
+	ld e, 32
+.exitloop2
+	;TODO
+	push de
+	call StripTrick_Thanks
+	pop de
+	dec e
+	jr nz, .exitloop2
+	jp Reset
+ENDC
+
 ; command chaos update
 .commandchaos
+	call StripTrick_Thanks
 	; TODO
 	jp TPPCredits_ThanksScene
 	
@@ -1335,6 +1432,10 @@ UpdateScroller2::
 	jr z, .done
 	jp .loop
 	
+StripTrick_Thanks:
+	; TODO
+	ret
+	
 TC_DrawGraphic:
 	push bc
 	push hl
@@ -1542,6 +1643,85 @@ RelativeFade:
 	pop de
 	dec e
 	jp nz, .loop
+	ret
+	
+RelativeFade_VBlank:
+; fade from Pals data to Unkn1Pals
+; by 1 value, 8 colors at a time
+	ld hl, Unkn1Pals
+	ld a, b
+	ld [rBGPI], a
+	ld d, 8
+.loop2
+	push de
+	ld a, [rBGPD]
+	and $1f
+	ld d, a
+	ld a, [hl]
+	and $1f
+	cp d
+	jr z, .skip
+	jr c, .dec
+	inc d
+	jr .skip
+.dec
+	dec d
+.skip
+	ld a, [rBGPD]
+	ld [rBGPI], a
+	ld e, a
+	ld a, [rBGPD]
+	and $3
+	rept 3
+	sla e
+	rla
+	endr
+	ld e, a
+	ld a, [hli]
+	ld c, a
+	ld a, [hl]
+	and $3
+	rept 3
+	sla c
+	rla
+	endr
+	cp e
+	jr z, .skip2
+	jr c, .dec2
+	inc e
+	jr .skip2
+.dec2
+	dec e
+.skip2
+	ld a, b
+	ld [rBGPI], a
+	xor a
+	rept 3
+	srl e
+	rra
+	endr
+	or d
+	ld [rBGPD], a
+	ld a, [rBGPD]
+	and $7c
+	ld d, a
+	ld a, [hli]
+	and $7c
+	cp d
+	ld a, d
+	jr z, .skip3
+	jr c, .dec3
+	add $4
+	jr .skip3
+.dec3
+	sub $4
+.skip3
+	or e
+	ld [rBGPD], a
+	pop de
+	inc b
+	dec d
+	jr nz, .loop2
 	ret
 	
 DecodeWLE:
@@ -2181,3 +2361,25 @@ StripGFX: INCBIN "gfx/credits/strip.1bpp"
 StripGFXEnd
 StripTiles: INCBIN "gfx/credits/strip_map.wle"
 ThanksForWatchingGFX: db $ff ; TODO
+
+ThanksForWatchingPals:
+	HSV 0.0,  0.4, 1.0 ; strip1
+	RGB 00, 00, 00
+	RGB 00, 00, 00
+	HSV 0.0, 0.75, 0.8 ; strip2
+	
+	RGB 31, 31, 31 ; placeholder
+	RGB 10, 19, 26
+	RGB 28, 09, 04
+	RGB 00, 00, 00
+	
+	RGB 31, 31, 31 ; placeholder
+	RGB 10, 19, 26
+	RGB 28, 09, 04
+	RGB 00, 00, 00
+	
+	RGB 31, 31, 31 ; placeholder
+	RGB 10, 19, 26
+	RGB 28, 09, 04
+	RGB 00, 00, 00
+	
