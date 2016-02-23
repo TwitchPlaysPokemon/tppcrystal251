@@ -308,8 +308,7 @@ UnknownText_0x1b06b7: ; 0x1b06b7
 UnknownText_0x1b06d9: ; 0x1b06d9
 	text "We'll return the"
 	line "#MON we kept"
-
-	para "for you."
+	cont "for you."
 	done
 
 DoYouWantToKeepTheBug:
