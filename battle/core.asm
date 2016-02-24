@@ -2308,39 +2308,50 @@ Function3ce01: ; 3ce01
 	and $c0
 	ld [wd0ee], a
 	call Function3ceaa
-	jr z, .asm_3ce72
-	ld hl, EnemyMonBaseStats
-	ld b, $7
-.asm_3ce6c
-	srl [hl]
-	inc hl
-	dec b
-	jr nz, .asm_3ce6c
-
-.asm_3ce72
-	ld hl, EnemyMonBaseStats
-	ld de, wc720
-	ld bc, $0007
-	call CopyBytes
-	xor a
-	ld [wc71f], a
-	call Function3ee3b
-	call Function3ceaa
-	ret z
 	ld a, [wAliveExperienceSharers]
 	push af
-	ld a, d
+	or d
 	ld [wAliveExperienceSharers], a
-	ld hl, wc720
-	ld de, EnemyMonBaseStats
-	ld bc, $0007
-	call CopyBytes
-	ld a, $1
+	xor a
 	ld [wc71f], a
 	call Function3ee3b
 	pop af
 	ld [wAliveExperienceSharers], a
 	ret
+
+	; jr z, .asm_3ce72
+	; ld hl, EnemyMonBaseStats
+	; ld b, $7
+; .asm_3ce6c
+	; srl [hl]
+	; inc hl
+	; dec b
+	; jr nz, .asm_3ce6c
+
+; .asm_3ce72
+	; ld hl, EnemyMonBaseStats
+	; ld de, wc720
+	; ld bc, $0007
+	; call CopyBytes
+	; xor a
+	; ld [wc71f], a
+	; call Function3ee3b
+	; call Function3ceaa
+	; ret z
+	; ld a, [wAliveExperienceSharers]
+	; push af
+	; ld a, d
+	; ld [wAliveExperienceSharers], a
+	; ld hl, wc720
+	; ld de, EnemyMonBaseStats
+	; ld bc, $0007
+	; call CopyBytes
+	; ld a, $1
+	; ld [wc71f], a
+	; call Function3ee3b
+	; pop af
+	; ld [wAliveExperienceSharers], a
+	; ret
 ; 3ceaa
 
 Function3ceaa: ; 3ceaa
@@ -7955,37 +7966,37 @@ Function3ee3b: ; 3ee3b
 .over255list
 	dw 261, 270, 306, 395, 608
 
-Function3f0d4: ; 3f0d4
-	ld a, [wAliveExperienceSharers]
-	ld b, a
-	ld c, $6
-	ld d, $0
-.asm_3f0dc
-	xor a
-	srl b
-	adc d
-	ld d, a
-	dec c
-	jr nz, .asm_3f0dc
-	cp $2
-	ret c
-	ld [wd265], a
-	ld hl, EnemyMonBaseStats
-	ld c, $7
-.asm_3f0ef
-	xor a
-	ld [hProduct], a
-	ld a, [hl]
-	ld [hMultiplicand], a
-	ld a, [wd265]
-	ld [hMultiplier], a
-	ld b, $2
-	call Divide
-	ld a, [$ffb6]
-	ld [hli], a
-	dec c
-	jr nz, .asm_3f0ef
-	ret
+; Function3f0d4: ; 3f0d4
+	; ld a, [wAliveExperienceSharers]
+	; ld b, a
+	; ld c, $6
+	; ld d, $0
+; .asm_3f0dc
+	; xor a
+	; srl b
+	; adc d
+	; ld d, a
+	; dec c
+	; jr nz, .asm_3f0dc
+	; cp $2
+	; ret c
+	; ld [wd265], a
+	; ld hl, EnemyMonBaseStats
+	; ld c, $7
+; .asm_3f0ef
+	; xor a
+	; ld [hProduct], a
+	; ld a, [hl]
+	; ld [hMultiplicand], a
+	; ld a, [wd265]
+	; ld [hMultiplier], a
+	; ld b, $2
+	; call Divide
+	; ld a, [$ffb6]
+	; ld [hli], a
+	; dec c
+	; jr nz, .asm_3f0ef
+	; ret
 ; 3f106
 
 DoubleExp: ; 3f106
