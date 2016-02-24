@@ -783,7 +783,7 @@ class AI(object):
                 #other special effects
                 elif self.MonData[mycurrent]['moves'][moveused]['effect'] == 'bide':
                     if self.Damage[traincurrent][mycurrent][self.enemynumber]['damage'] * 3 < self.MonData[mycurrent]['stats']['curhp']:
-                        self.Damage[mycurrent][traincurrent][moveused]['damage'] = self.Damage[traincurrent][mycurrent][self.enemynumber]['damage']
+                        self.Damage[mycurrent][traincurrent][moveused]['damage'] = self.Damage[traincurrent][mycurrent][self.enemynumber]['damage'] * 0.75
                 elif self.MonData[mycurrent]['moves'][moveused]['effect'] == 'bellydrum':
                     self.Damage[mycurrent][traincurrent][moveused]['selfdamage'] = self.MonData[mycurrent]['stats']['hp'] / 2
                     self.MonData[mycurrent]['boosts']['atk'] = 6
@@ -1512,7 +1512,7 @@ class AI(object):
                 elif self.MonData[mycurrent]['moves'][tempmove]['effect'] == 'burnhit' and self.MonData[traincurrent]['item'] != 'burnguard' and ((self.MonData[traincurrent]['type'][1] != ('fire')) and (self.MonData[traincurrent]['type'][2] != ('fire'))):
                     movepriority[tempmove] = 5
                     continue
-                elif self.MonData[mycurrent]['moves'][tempmove]['effect'] == 'paralyze' and self.MonData[traincurrent]['item'] != 'parlyzguard' and ((self.MonData[traincurrent]['type'][1] != ('electric')) and (self.MonData[traincurrent]['type'][2] != ('electric'))):
+                elif self.MonData[mycurrent]['moves'][tempmove]['effect'] in ('paralyze', 'triattack') and self.MonData[traincurrent]['item'] != 'parlyzguard' and ((self.MonData[traincurrent]['type'][1] != ('electric')) and (self.MonData[traincurrent]['type'][2] != ('electric'))):
                     movepriority[tempmove] = 6
                     continue
                 elif self.MonData[mycurrent]['moves'][tempmove]['name'] == 'zapcannon' and self.MonData[traincurrent]['item'] != 'parlyzguard' and ((self.MonData[traincurrent]['type'][1] != ('electric')) and (self.MonData[traincurrent]['type'][2] != ('electric'))):
