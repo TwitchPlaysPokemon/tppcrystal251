@@ -353,7 +353,7 @@ wc663::
 CurOTMon:: ; c663
 	ds 1
 
-wc664:: ds 1
+wAliveExperienceSharers:: ds 1
 TypeModifier:: ; c665
 ; >10: super-effective
 ;  10: normal
@@ -624,7 +624,7 @@ wc6fa:: ds 1
 AlreadyFailed:: ; c6fb
 	ds 1
 
-wc6fc:: ds 1
+wBattleParticipants:: ds 1
 wc6fd:: ds 1
 wc6fe:: ds 1
 wc6ff::
@@ -703,9 +703,9 @@ PlayerUsedMoves:: ; c712
 
 wc716:: ds 1
 wc717:: ds 1
-wc718:: ds 1
+wWhichEnemyMon:: ds 1
 wc719:: ds 1
-wc71a:: ds 1
+LastBattleMon:: ds 1
 LastPlayerMove:: ; c71b
 	ds 1
 LastEnemyMove:: ; c71c

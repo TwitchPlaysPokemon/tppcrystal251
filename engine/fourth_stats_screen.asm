@@ -66,6 +66,8 @@ TN_PrintLV:
 	jr z, .unknown
 	cp 1
 	jr z, .hatched
+	cp 63
+	jr z, .max
 	ld [Buffer2], a
 	ld de, .metat
 	hlcoord 1, 13
@@ -82,6 +84,10 @@ TN_PrintLV:
 	hlcoord 1, 13
 	ld de, .str_unknown
 	jp PlaceString
+.max
+	hlcoord 1, 13
+	ld de, .str_max
+	jp PlaceString
 	
 .metat
 	db "Met at Lv.@"
@@ -91,6 +97,9 @@ TN_PrintLV:
 
 .str_unknown
 	db "Met in a trade@"
+
+.str_max
+	db "Met at high level@"
 
 TN_PrintCharacteristics:
 	ld hl, TempMonDVs

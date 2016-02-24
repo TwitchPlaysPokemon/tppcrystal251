@@ -4001,7 +4001,7 @@ Function1019ee: ; 1019ee
 	ld a, $1
 
 .asm_101a1e
-	ld [$ffcb], a
+	ld [hLinkPlayer], a
 	ret
 ; 101a21
 
@@ -4015,12 +4015,12 @@ Function101a21: ; 101a21
 	ld a, $1
 	ld [wc2d7], a
 	callba Function3f4dd
-	callba Function3c000
+	callba BattleCore
 	callba Function3f759
 	xor a
 	ld [wc2d7], a
 	ld a, $ff
-	ld [$ffcb], a
+	ld [hLinkPlayer], a
 	pop af
 	ld [Options], a
 	ret

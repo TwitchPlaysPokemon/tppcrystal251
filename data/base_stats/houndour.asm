@@ -5,7 +5,7 @@
 
 	db DARK, FIRE
 	db 120 ; catch rate
-	db 114 ; base exp
+	db 66 ; base exp
 	db NO_ITEM ; item 1
 	db NO_ITEM ; item 2
 	db 127 ; gender
