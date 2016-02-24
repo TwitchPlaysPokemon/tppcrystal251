@@ -36508,13 +36508,13 @@ Function421f5: ; 421f5
 	ld a, [TimeOfDay]
 	cp NITE
 	jp nz, .DontEvolve
-	jr .GoAheadAndEvolve
+	jp .GoAheadAndEvolve
 
 .asm_422a4
 	ld a, [TimeOfDay]
 	cp NITE
 	jp z, .DontEvolve
-	jr .GoAheadAndEvolve
+	jp .GoAheadAndEvolve
 
 .trade
 	ld a, [wLinkMode]
@@ -36549,6 +36549,8 @@ Function421f5: ; 421f5
 	ld a, [wLinkMode]
 	and a
 	jp nz, .DontEvolve
+	xor a
+	ld [TempMonItem], a
 	jr .GoAheadAndEvolve
 
 .levelitem
@@ -36570,6 +36572,10 @@ Function421f5: ; 421f5
 	call CheckItem
 	pop hl
 	jp nc, .DontEvolve
+	ld hl, NumItems
+	ld a, 1
+	ld [wd10c], a
+	call TossItem
 	jr .GoAheadAndEvolve
 
 .level
