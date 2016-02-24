@@ -36549,8 +36549,6 @@ Function421f5: ; 421f5
 	ld a, [wLinkMode]
 	and a
 	jp nz, .DontEvolve
-	xor a
-	ld [TempMonItem], a
 	jr .GoAheadAndEvolve
 
 .levelitem
