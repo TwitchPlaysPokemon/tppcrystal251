@@ -5,7 +5,7 @@
 
 	db NORMAL, NORMAL
 	db 90 ; catch rate
-	db 116 ; base exp
+	db 145 ; base exp
 	db BERRY ; item 1
 	db GOLD_BERRY ; item 2
 	db 127 ; gender

@@ -6,7 +6,7 @@
 
 	db DARK, FLYING
 	db 30 ; catch rate
-	db 107 ; base exp
+	db 81 ; base exp
 	db NO_ITEM ; item 1
 	db NO_ITEM ; item 2
 	db 127 ; gender

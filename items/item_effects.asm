@@ -1650,7 +1650,7 @@ Functionf0d6: ; f0d6
 	ld a, [CurPartyMon]
 	ld c, a
 	ld d, 0
-	ld hl, wc6fc
+	ld hl, wBattleParticipants
 	ld b, CHECK_FLAG
 	predef FlagPredef
 	ld a, c
@@ -1659,7 +1659,7 @@ Functionf0d6: ; f0d6
 
 	ld a, [CurPartyMon]
 	ld c, a
-	ld hl, wc664
+	ld hl, wAliveExperienceSharers
 	ld b, SET_FLAG
 	predef FlagPredef
 

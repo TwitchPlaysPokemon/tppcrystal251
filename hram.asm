@@ -55,6 +55,8 @@ hMathBuffer        EQU $ffb8
 
 hLCDStatCustom     EQU $ffc6
 
+hLinkPlayer        EQU $ffcb
+
 hSerialSend        EQU $ffcd
 hSerialReceive     EQU $ffce
 

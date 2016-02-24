@@ -5,7 +5,7 @@
 
 	db WATER, FAIRY_T
 	db 75 ; catch rate
-	db 153 ; base exp
+	db 185 ; base exp
 	db NO_ITEM ; item 1
 	db NO_ITEM ; item 2
 	db 127 ; gender

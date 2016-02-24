@@ -7613,7 +7613,7 @@ BattleCommand23: ; 3680f
 	jr z, .asm_3689a ; 368b1 $e7
 	ld a, d
 	inc a
-	ld [wc718], a
+	ld [wWhichEnemyMon], a
 	callab Function3d4c3
 
 	ld hl, DraggedOutText
@@ -10189,7 +10189,7 @@ BattleCommand67: ; 379c9
 
 ; Passed enemy PartyMon entrance
 	xor a
-	ld [wc718], a
+	ld [wWhichEnemyMon], a
 	ld hl, Function3d517
 	call CallBattleCore
 	ld hl, Function3d57a

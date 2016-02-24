@@ -228,7 +228,7 @@ Military:
 	call nz, Mil_AI_checkghost
 	jp nz, .Invalid
 	ld a, [CurBattleMon]
-	ld [wc71a], a
+	ld [LastBattleMon], a
 	ld a, $2
 	ld [wd0ec], a
 	ld a, [CurPartyMon]

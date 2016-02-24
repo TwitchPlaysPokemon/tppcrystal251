@@ -1,4 +1,4 @@
-# TPP Crystal 251 AI v1.1 by Beesafree
+# TPP Crystal 251 AI v1.2 by Beesafree
 
 from __future__ import division
 import math
@@ -220,7 +220,6 @@ class AI(object):
 
     def DamageDealt(self, attacker, defender, moveused):
         temp2 = 0
-        temp1 = 0
         #attacker is temptext2
         if attacker >= 6:
             temptext = 'enemypokemon'
@@ -298,31 +297,27 @@ class AI(object):
             basebp = basebp*1.5
         #category and boosts
         if move_used['category'] == 'status':
-            basebp = 0
+            temp2 = 0
         elif move_used['category'] == "special":
             tempx = self._statsmultipliers[self.MonData[attacker]['boosts']['satk']+6]/100
             tempy = self._statsmultipliers[self.MonData[defender]['boosts']['sdef']+6]/100
             if self.MonData['weather'] == 'sandstorm' and (self.MonData[traincurrent]['type'][1].lower() == 'rock' or self.MonData[traincurrent]['type'][2].lower() == 'rock'):
                 tempy = tempy * 1.5
-            temp1 = ((((((2 * self.MonData[attacker]['level'] + 10) / 250) * (((self.MonData[attacker]['stats']['satk'] * satkmodifier) * tempx) / (self.MonData[defender]['stats']['sdef'] * tempy))  * basebp)+2) * 0.85)) * multiplier
+            temp2 = ((((((2 * self.MonData[attacker]['level'] + 10) / 250) * (((self.MonData[attacker]['stats']['satk'] * satkmodifier) * tempx) / (self.MonData[defender]['stats']['sdef'] * tempy))  * basebp)+2) * 0.85)) * multiplier
             if 'lightscreen' in self.MonData[temptext]['screens'] or (attacker > 5 and self.MonData['reflect']):
-                temp1 = temp1 / 2
+                temp2 = temp2 / 2
         elif move_used['category'] == "physical":
             tempx = self._statsmultipliers[self.MonData[attacker]['boosts']['atk']+6]/100
             tempy = self._statsmultipliers[self.MonData[defender]['boosts']['def']+6]/100
-            temp1 = ((((((2 * self.MonData[attacker]['level'] + 10) / 250) * (((self.MonData[attacker]['stats']['atk'] * atkmodifier) * tempx) / (self.MonData[defender]['stats']['def'] * tempy))  * basebp)+2) * 0.85)) * multiplier
+            temp2 = ((((((2 * self.MonData[attacker]['level'] + 10) / 250) * (((self.MonData[attacker]['stats']['atk'] * atkmodifier) * tempx) / (self.MonData[defender]['stats']['def'] * tempy))  * basebp)+2) * 0.85)) * multiplier
             if 'reflect' in self.MonData[temptext]['screens']or (attacker > 5 and self.MonData['reflect']):
-                temp1 = temp1 / 2
+                temp2 = temp2 / 2
             if self.MonData[attacker]['status'] == 'brn':
-                temp1 = temp1 / 2
+                temp2 = temp2 / 2
         #Effectivity
         if Debug_Code == 1:
             print('move used type: '+move_used['type'].lower()+' enemy types: '+ self.MonData[defender]['type'][1].lower()+' / '+ self.MonData[defender]['type'][2].lower())
-        effmulti = 1
-        effmulti = self.getEff(move_used['type'].lower(), self.MonData[defender]['type'][1].lower(), temptext) * self.getEff(move_used['type'].lower(), self.MonData[defender]['type'][2].lower(), temptext)
-        temp2 = effmulti*temp1
-        if Debug_Code == 1 and attacker < 6:
-            print('Damage after calc '+str(temp2))
+        
             
         #compute 1.2x move-boosting items
         type_boost_item_dict = {'blackbelt':'fighting','blackglasses':'dark','charcoal':'fire','dragonfang':'dragon','hardstone':'rock','dragonfang':'dragon','hardstone':'rock','magnet':'electric','metalcoat':'steel','miracleseed':'grass','mysticwater':'water','nevermeltice':'ice','poisonbarb':'poison','sharpbeak':'flying','silkscarf':'normal','silverpowder':'bug','softsand':'ground','spelltag':'ghost','pinkbow':'fairy'}
@@ -506,7 +501,14 @@ class AI(object):
             critmodifier += 2
         temp2 = (temp2 * ( 1 - self._critmultipliers[critmodifier])) + (temp2 * 1.5 * self._critmultipliers[critmodifier])
         temp2 = (temp2 * ( 1 - self._critmultipliers[critmodifier])) + (temp2 * 1.5 * self._critmultipliers[critmodifier])
-                
+        
+        #type effectiveness
+        effmulti = 1
+        effmulti = self.getEff(move_used['type'].lower(), self.MonData[defender]['type'][1].lower(), temptext) * self.getEff(move_used['type'].lower(), self.MonData[defender]['type'][2].lower(), temptext)
+        temp2 *= effmulti
+        if Debug_Code == 1 and attacker < 6:
+            print('Damage after calc '+str(temp2))
+            
         self.Damage[attacker][defender][moveused]['selfdamage'] = 0
         
         #special considerations for the ai's pokemon only
@@ -533,8 +535,6 @@ class AI(object):
                 
         if Debug_Code == 1 and attacker < 6:
             print('Damage after crit'+str(temp2))
-        if effmulti < 0.125:
-            temp2 = 0
         if move_used_effect == 'jumpkick':
             self.Damage[attacker][defender][moveused]['selfdamage'] = temp2 / 2
         elif move_used_effect == 'explosion':
@@ -587,29 +587,38 @@ class AI(object):
                 self.Damage[mycurrent][traincurrent][moveused]['damage'] = -1
                 self.Damage[mycurrent][traincurrent][moveused]['selfdamage'] = 0
             if self.MonData[mycurrent]['status'] not in ('slp', 'frz', 'slp1', 'slp2', 'slp3'):
-                #Counter coat (otherwise known as a move that has way too much code and probably be never used anyways)
                 effmulti = self.getEff(self.MonData[mycurrent]['moves'][moveused]['type'].lower(), self.MonData[traincurrent]['type'][1].lower(), 'playerpokemon') * self.getEff(self.MonData[mycurrent]['moves'][moveused]['type'].lower(), self.MonData[traincurrent]['type'][2].lower(), 'playerpokemon')
-                if (self.MonData[mycurrent]['moves'][moveused]['effect'] == 'counter' or self.MonData[mycurrent]['moves'][moveused]['effect'] == 'mirrorcoat') and effmulti > 0:
-                    tempx = 0
-                    tempdamage = 0.00
-                    for x1 in range (0, len(self.jsonlist['playerParty']['party'][traincurrent-6]['moves'])):
-                        if self.MonData[traincurrent]['moves'][x1]['category'] == 'physical':
-                            tempx = tempx + 1
-                            tempdamage = tempdamage + self.Damage[traincurrent][mycurrent][x1]['damage']
-                    self.countercoat['physical']['number of'] = tempx
-                    self.countercoat['physical']['damage'] = tempdamage
-                    tempx = 0
-                    tempdamage = 0.00
-                    for x1 in range (0, len(self.jsonlist['playerParty']['party'][traincurrent-6]['moves'])):
-                        if self.MonData[traincurrent]['moves'][x1]['category'] == 'special':
-                            tempx = tempx + 1
-                            tempdamage = tempdamage + self.Damage[traincurrent][mycurrent][x1]['damage']
-                    self.countercoat['special']['number of'] = tempx
-                    self.countercoat['special']['damage'] = tempdamage
-                    if self.MonData[mycurrent]['moves'][moveused]['effect'] == 'counter':
-                        self.Damage[mycurrent][traincurrent][moveused]['damage'] = 2 * (self.countercoat['physical']['damage'] * (self.countercoat['physical']['number of']/(self.countercoat['physical']['number of']+self.countercoat['special']['number of'])))
-                    if self.MonData[mycurrent]['moves'][moveused]['effect'] == 'mirrorcoat':
-                        self.Damage[mycurrent][traincurrent][moveused]['damage'] = 2 * (self.countercoat['special']['damage'] * (self.countercoat['special']['number of']/(self.countercoat['physical']['number of']+self.countercoat['special']['number of'])))
+                if effmulti > 0:
+                    if self.MonData[mycurrent]['moves'][moveused]['effect'] == 'bide':
+                        if self.Damage[traincurrent][mycurrent][self.enemynumber]['damage'] * 3 < self.MonData[mycurrent]['stats']['curhp']:
+                            self.Damage[mycurrent][traincurrent][moveused]['damage'] = self.Damage[traincurrent][mycurrent][self.enemynumber]['damage']  * 0.75
+                            
+                    #rage
+                    elif self.MonData[mycurrent]['moves'][moveused]['effect'] == 'rage':
+                        self.MonData[mycurrent]['boosts']['atk'] = self.MonData[mycurrent]['boosts']['atk'] + 1  
+                        
+                    #Counter coat (otherwise known as a move that has way too much code and probably be never used anyways)
+                    elif (self.MonData[mycurrent]['moves'][moveused]['effect'] == 'counter' or self.MonData[mycurrent]['moves'][moveused]['effect'] == 'mirrorcoat'):
+                        tempx = 0
+                        tempdamage = 0.00
+                        for x1 in range (0, len(self.jsonlist['playerParty']['party'][traincurrent-6]['moves'])):
+                            if self.MonData[traincurrent]['moves'][x1]['category'] == 'physical':
+                                tempx = tempx + 1
+                                tempdamage = tempdamage + self.Damage[traincurrent][mycurrent][x1]['damage']
+                        self.countercoat['physical']['number of'] = tempx
+                        self.countercoat['physical']['damage'] = tempdamage
+                        tempx = 0
+                        tempdamage = 0.00
+                        for x1 in range (0, len(self.jsonlist['playerParty']['party'][traincurrent-6]['moves'])):
+                            if self.MonData[traincurrent]['moves'][x1]['category'] == 'special':
+                                tempx = tempx + 1
+                                tempdamage = tempdamage + self.Damage[traincurrent][mycurrent][x1]['damage']
+                        self.countercoat['special']['number of'] = tempx
+                        self.countercoat['special']['damage'] = tempdamage
+                        if self.MonData[mycurrent]['moves'][moveused]['effect'] == 'counter':
+                            self.Damage[mycurrent][traincurrent][moveused]['damage'] = 2 * (self.countercoat['physical']['damage'] * (self.countercoat['physical']['number of']/(self.countercoat['physical']['number of']+self.countercoat['special']['number of'])))
+                        if self.MonData[mycurrent]['moves'][moveused]['effect'] == 'mirrorcoat':
+                            self.Damage[mycurrent][traincurrent][moveused]['damage'] = 2 * (self.countercoat['special']['damage'] * (self.countercoat['special']['number of']/(self.countercoat['physical']['number of']+self.countercoat['special']['number of'])))
 
                 #stats up
                 if self.MonData[mycurrent]['moves'][moveused]['effect'] == 'defenseup2':
@@ -638,10 +647,6 @@ class AI(object):
                     if self.MonData['weather'] == 'sun':
                         self.MonData[mycurrent]['boosts']['satk'] = self.MonData[mycurrent]['boosts']['satk'] + 1
                         self.MonData[mycurrent]['boosts']['atk'] = self.MonData[mycurrent]['boosts']['atk'] + 1
-                        
-                effmulti = self.getEff(self.MonData[mycurrent]['moves'][moveused]['type'].lower(), self.MonData[traincurrent]['type'][1].lower(), 'playerpokemon') * self.getEff(self.MonData[mycurrent]['moves'][moveused]['type'].lower(), self.MonData[traincurrent]['type'][2].lower(), 'playerpokemon')
-                if self.MonData[mycurrent]['moves'][moveused]['effect'] == 'rage'  and effmulti > 0:
-                    self.MonData[mycurrent]['boosts']['atk'] = self.MonData[mycurrent]['boosts']['atk'] + 1  
                     
                 # stats down
                 misted = ('mist' in self.MonData['playerpokemon']['substatus'] or (isinstance(self.MonData['playerpokemon']['substatus'], dict) and 'mist' in self.MonData['playerpokemon']['substatus'].values()))
@@ -771,9 +776,6 @@ class AI(object):
                         self.MonData['leechseedused'] = True
 
                 #other special effects
-                elif self.MonData[mycurrent]['moves'][moveused]['effect'] == 'bide':
-                    if self.Damage[traincurrent][mycurrent][self.enemynumber]['damage'] * 3 < self.MonData[mycurrent]['stats']['curhp']:
-                        self.Damage[mycurrent][traincurrent][moveused]['damage'] = self.Damage[traincurrent][mycurrent][self.enemynumber]['damage']
                 elif self.MonData[mycurrent]['moves'][moveused]['effect'] == 'bellydrum':
                     self.Damage[mycurrent][traincurrent][moveused]['selfdamage'] = self.MonData[mycurrent]['stats']['hp'] / 2
                     self.MonData[mycurrent]['boosts']['atk'] = 6
@@ -1402,7 +1404,7 @@ class AI(object):
                                     item_name = self.MonData['myitems'][x2]
                                     if item_name in healing_items:
                                         #and healing would allow you to continue fighting (and not draw out the inevitable)
-                                        if self.Damage[traincurrent][mycurrent][self.enemynumber]['damage'] * 2 < min((self.jsonlist['battleState']['enemypokemon']['stats']['maxhp'] - self.jsonlist['battleState']['enemypokemon']['stats']['hp']), healing_items[item_name]):
+                                        if self.Damage[traincurrent][mycurrent][self.enemynumber]['damage'] < min((self.jsonlist['battleState']['enemypokemon']['stats']['maxhp'] - self.jsonlist['battleState']['enemypokemon']['stats']['hp']), healing_items[item_name]):
                                             return x2 + 9
         return 20
 
@@ -1502,7 +1504,7 @@ class AI(object):
                 elif self.MonData[mycurrent]['moves'][tempmove]['effect'] == 'burnhit' and self.MonData[traincurrent]['item'] != 'burnguard' and ((self.MonData[traincurrent]['type'][1] != ('fire')) and (self.MonData[traincurrent]['type'][2] != ('fire'))):
                     movepriority[tempmove] = 5
                     continue
-                elif self.MonData[mycurrent]['moves'][tempmove]['effect'] == 'paralyze' and self.MonData[traincurrent]['item'] != 'parlyzguard' and ((self.MonData[traincurrent]['type'][1] != ('electric')) and (self.MonData[traincurrent]['type'][2] != ('electric'))):
+                elif self.MonData[mycurrent]['moves'][tempmove]['effect'] in ('paralyze', 'triattack') and self.MonData[traincurrent]['item'] != 'parlyzguard' and ((self.MonData[traincurrent]['type'][1] != ('electric')) and (self.MonData[traincurrent]['type'][2] != ('electric'))):
                     movepriority[tempmove] = 6
                     continue
                 elif self.MonData[mycurrent]['moves'][tempmove]['name'] == 'zapcannon' and self.MonData[traincurrent]['item'] != 'parlyzguard' and ((self.MonData[traincurrent]['type'][1] != ('electric')) and (self.MonData[traincurrent]['type'][2] != ('electric'))):
