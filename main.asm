@@ -83241,7 +83241,14 @@ Functione36f9: ; e36f9 (38:76f9)
 	done
 
 .AreYouReallySure
-	text "Are you sure?"
+    text "This action can-"
+    line "not be undone."
+
+    para "Are you absolutely"
+    line "positively sure"
+
+    para "you want to empty"
+    line "this entire box?"
 	done
 
 .NoYesBox:
