@@ -66,7 +66,7 @@
 	; sub 3
 	; call GetMilitaryActionSide
 	; jr z, .player
-	; ld [wc718], a
+	; ld [wWhichEnemyMon], a
 	; ld a, 1
 	; ld [wEnemyIsSwitching], a
 	; ret
