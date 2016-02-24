@@ -36549,8 +36549,6 @@ Function421f5: ; 421f5
 	ld a, [wLinkMode]
 	and a
 	jp nz, .DontEvolve
-	xor a
-	ld [TempMonItem], a
 	jr .GoAheadAndEvolve
 
 .levelitem
@@ -36561,7 +36559,7 @@ Function421f5: ; 421f5
 	ld b, a
 	ld a, [TempMonItem]
 	cp b
-	jp z, .GoAheadAndEvolve
+	jr z, .GoAheadAndEvolve_item
 	ld a, EVERSTONE
 	cp b
 	jp z, .DontEvolve
@@ -36572,10 +36570,16 @@ Function421f5: ; 421f5
 	call CheckItem
 	pop hl
 	jp nc, .DontEvolve
+	push hl
 	ld hl, NumItems
 	ld a, 1
 	ld [wd10c], a
 	call TossItem
+	pop hl
+	jr .GoAheadAndEvolve
+.GoAheadAndEvolve_item
+	xor a
+	ld [TempMonItem], a
 	jr .GoAheadAndEvolve
 
 .level
