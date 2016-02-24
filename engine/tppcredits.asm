@@ -1,4 +1,4 @@
-SECTION "TPPCredits", ROMX;, BANK[CREDITS]
+SECTION "TPPCredits", ROMX, BANK[$75]
 
 LOGO_DELAY      EQU 300
 LOGO_DELAY_POST EQU 300
@@ -11,8 +11,8 @@ SPRITE_Y        EQU $74
 C_TC_DRAW       EQU 0
 C_TC_TITLE      EQU 1
 C_TC_SUBTITLE   EQU 2
-STRIP1_HUE_SPD  EQU 37
-STRIP2_HUE_SPD  EQU 23
+STRIP1_HUE_SPD  EQU 251
+STRIP2_HUE_SPD  EQU 151
 
 HSV: MACRO
 ; h = [0,360), s = [0,1], v = [0,1]
@@ -87,6 +87,15 @@ tc_subtitle: MACRO
 ENDM
 
 waitline: MACRO
+	ld [rLYC], a
+.wait\@
+	bit 2, [hl]
+	jr z, .wait\@
+ENDM
+
+waitvblank: MACRO
+	ld hl, rSTAT
+	ld a, $90 ; vblank
 	ld [rLYC], a
 .wait\@
 	bit 2, [hl]
@@ -415,6 +424,7 @@ TPPCredits_MainScene::
 TPPCredits_ThanksSceneInit::
 	call DisableLCD
 	call ClearCommandChaos
+	call $ff80
 	ld hl, ThanksForWatchingGFX
 	ld de, VTiles1
 	ld a, 1
@@ -447,9 +457,9 @@ TPPCredits_ThanksSceneInit::
 	pop bc
 	dec b
 	jr nz, .loop
-	ld hl, Unkn1Pals
-	ld de, ThanksForWatchingPals
-	ld bc, 12
+	ld hl, ThanksForWatchingPals
+	ld de, Unkn1Pals
+	ld bc, 8 * 8
 	call CopyBytes
 	xor a
 	ld [TC_Hue1], a
@@ -458,15 +468,17 @@ TPPCredits_ThanksSceneInit::
 	ld [TC_Hue1Count], a
 	ld [TC_Hue2Count], a
 	ld e, 64
+; turn off all interrupts since we're going to use our own routine
+	di
 	call EnableLCD
 .fadein
-	ld a, $90 ; vblank
-	ld hl, rSTAT
-	waitline
+	waitvblank
 	bit 0, e
 	ld b, $80
+	ld hl, Unkn1Pals
 	jr z, .even
-	ld b, $90
+	ld b, $a0
+	ld hl, Unkn1Pals + (8 * 4)
 .even
 	push de
 	call RelativeFade_VBlank
@@ -479,9 +491,7 @@ TPPCredits_ThanksSceneInit::
 	hsv_equ STRIP2, 0.75, 0.8
 	
 TPPCredits_ThanksScene:
-	ld a, $90 ; vblank
-	ld hl, rSTAT
-	waitline
+	waitvblank
 ; strip color update
 .strip1
 	ld a, [TC_Hue1Count]
@@ -531,7 +541,7 @@ TPPCredits_ThanksScene:
 	rlca
 	or b
 	ld [rBGPD], a
-	jr .commandchaos
+	jr .joy
 .strip2
 	ld a, [TC_Hue2Count]
 	dec a
@@ -561,7 +571,7 @@ TPPCredits_ThanksScene:
 	call TC_GetTmpRGB
 	ld d, STRIP2_M
 	ld c, 0
-	ld a, $80
+	ld a, $86
 	ld [rBGPI], a
 	ld a, h ; G
 	add d
@@ -580,24 +590,51 @@ TPPCredits_ThanksScene:
 	rlca
 	or b
 	ld [rBGPD], a
-	jr .commandchaos
 	
 .joy
 ; joypad update (rom release only)
 IF !DEF(BEESAFREE)
-	;TODO
-	jr .commandchaos
+	ld a, BUTTONS
+	ld [rJOYP], a
+; 6 same reads because we want a stabilized input
+; so please don't remove duplicates
+	ld a, [rJOYP]
+	ld a, [rJOYP]
+	ld a, [rJOYP]
+	ld a, [rJOYP]
+	ld a, [rJOYP]
+	ld a, [rJOYP]
+	cpl
+	and $f
+	jr z, .done
 
-; fade to white then reset the game	
+; fade to white then reset the game
 .exit
-	;TODO move all commands offscreen before fading
-.exitloop
+	ld a, $ff
+	ld hl, Unkn1Pals
+	ld bc, 8 * 8
+	call ByteFill
+	call UpdateCommandChaos_Thanks
 	call StripTrick_Thanks
-	jr nz, .exitloop
-	ld e, 32
+.exitloop
+	waitvblank
+	call UpdateCommandChaos_Exit ; will carry when done
+	push af
+	call StripTrick_Thanks
+	pop af
+	jr nc, .exitloop
+	ld e, 64
 .exitloop2
-	;TODO
+	waitvblank
+	bit 0, e
+	ld b, $80
+	ld hl, Unkn1Pals
+	jr z, .even
+	ld b, $a0
+	ld hl, Unkn1Pals + (8 * 4)
+.even
 	push de
+	call RelativeFade_VBlank
 	call StripTrick_Thanks
 	pop de
 	dec e
@@ -605,10 +642,9 @@ IF !DEF(BEESAFREE)
 	jp Reset
 ENDC
 
-; command chaos update
-.commandchaos
+.done
+	call UpdateCommandChaos_Thanks
 	call StripTrick_Thanks
-	; TODO
 	jp TPPCredits_ThanksScene
 	
 TC_MainSceneFuncList:
@@ -1278,6 +1314,15 @@ UpdateScroller::
 	ld [TC_ScrollerState], a
 	ret
 	
+UpdateCommandChaos_Thanks:
+	;TODO
+	ret
+	
+UpdateCommandChaos_Exit:
+	;TODO
+	scf
+	ret
+	
 StripTrick_Main:
 ; update bg scrolling
 	ld a, [hSCX]
@@ -1647,11 +1692,10 @@ RelativeFade:
 	
 RelativeFade_VBlank:
 ; fade from Pals data to Unkn1Pals
-; by 1 value, 8 colors at a time
-	ld hl, Unkn1Pals
+; by 1 value, 16 colors at a time
 	ld a, b
 	ld [rBGPI], a
-	ld d, 8
+	ld d, 16
 .loop2
 	push de
 	ld a, [rBGPD]
@@ -1668,7 +1712,7 @@ RelativeFade_VBlank:
 	dec d
 .skip
 	ld a, [rBGPD]
-	ld [rBGPI], a
+	ld [rBGPD], a
 	ld e, a
 	ld a, [rBGPD]
 	and $3
@@ -1719,6 +1763,7 @@ RelativeFade_VBlank:
 	or e
 	ld [rBGPD], a
 	pop de
+	inc b
 	inc b
 	dec d
 	jr nz, .loop2
@@ -1917,7 +1962,6 @@ TPPCreditsList:
 	tc_subtitle		  .pikalax
 	tc_subtitle		  .pigu
 	tc_subtitle		  .koolboyman
-	tc_subtitle		  .lightning
 	tc_subtitle		  .chaos
 	tc_subtitle		  .chauzu
 	tc_subtitle		  .padz
@@ -2367,6 +2411,26 @@ ThanksForWatchingPals:
 	RGB 00, 00, 00
 	RGB 00, 00, 00
 	HSV 0.0, 0.75, 0.8 ; strip2
+	
+	RGB 31, 31, 31 ; placeholder
+	RGB 10, 19, 26
+	RGB 28, 09, 04
+	RGB 00, 00, 00
+	
+	RGB 31, 31, 31 ; placeholder
+	RGB 10, 19, 26
+	RGB 28, 09, 04
+	RGB 00, 00, 00
+	
+	RGB 31, 31, 31 ; placeholder
+	RGB 10, 19, 26
+	RGB 28, 09, 04
+	RGB 00, 00, 00
+	
+	RGB 31, 31, 31 ; placeholder
+	RGB 10, 19, 26
+	RGB 28, 09, 04
+	RGB 00, 00, 00
 	
 	RGB 31, 31, 31 ; placeholder
 	RGB 10, 19, 26
