@@ -3519,7 +3519,7 @@ CooltrainerMGroup:
 
 	; party
 	db 57, DRATINI, CHARCOAL
-	db 57, DRATINI, DRAGON_SCALE
+	db 57, DRATINI, DRAGON_FANG
 	db 59, DRAGONAIR, MINT_BERRY
 
 	db $ff ; end
@@ -3532,7 +3532,7 @@ CooltrainerMGroup:
 
 	; party
 	db 57, HORSEA, FOCUS_BAND
-	db 59, SEADRA, DRAGON_SCALE
+	db 59, SEADRA, DRAGON_FANG
 
 	db $ff ; end
 
