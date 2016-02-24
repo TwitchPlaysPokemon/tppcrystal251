@@ -4139,7 +4139,7 @@ PredefPointers:: ; 856b
 	add_predef PrintMoveDesc
 	add_predef UpdatePlayerHUD
 	add_predef FillBox
-	add_predef Function3d873
+	add_predef CheckAnyPartyMonAlive
 	add_predef UpdateEnemyHUD
 	add_predef StartBattle
 	add_predef FillInExpBar
@@ -29792,7 +29792,7 @@ Function2805d: ; 2805d
 	xor a
 	ld [wcf56], a
 	call Function87d
-	ld a, [$ffcb]
+	ld a, [hLinkPlayer]
 	cp $2
 	jr nz, .asm_28091
 	ld c, $3
@@ -29917,7 +29917,7 @@ Function2805d: ; 2805d
 	ld [wd103], a
 	ld de, MUSIC_NONE
 	call PlayMusic
-	ld a, [$ffcb]
+	ld a, [hLinkPlayer]
 	cp $2
 	ld c, 66
 	call z, DelayFrames
@@ -29934,7 +29934,7 @@ Function28177: ; 28177
 	ld a, [ScriptVar]
 	and a
 	jp z, Function283b2
-	ld a, [$ffcb]
+	ld a, [hLinkPlayer]
 	cp $2
 	jr nz, .asm_281ae
 	ld c, $3
@@ -30154,7 +30154,7 @@ Function28177: ; 28177
 	ld [wd103], a
 	ld de, MUSIC_NONE
 	call PlayMusic
-	ld a, [$ffcb]
+	ld a, [hLinkPlayer]
 	cp $2
 	ld c, 66
 	call z, DelayFrames
@@ -30877,7 +30877,7 @@ Function2879e: ; 2879e
 ; 287ab
 
 Function287ab: ; 287ab
-	ld a, [$ffcb]
+	ld a, [hLinkPlayer]
 	cp $2
 	ret z
 	ld hl, EnemyMonSpecies
@@ -31609,7 +31609,7 @@ Function28b87: ; 28b87
 	call Functione58
 	ld b, $8
 	call GetSGBLayout
-	ld a, [$ffcb]
+	ld a, [hLinkPlayer]
 	cp $1
 	jr z, .asm_28de4
 	predef Function28f24
@@ -33376,7 +33376,7 @@ Function29c92: ; 29c92
 	ld c, $3
 	call DelayFrames
 	ld a, $ff
-	ld [$ffcb], a
+	ld [hLinkPlayer], a
 	xor a
 	ld [rSB], a
 	ld [hSerialReceive], a
@@ -33402,7 +33402,7 @@ Function29c92: ; 29c92
 	ld c, $3
 	call DelayFrames
 	ld a, $ff
-	ld [$ffcb], a
+	ld [hLinkPlayer], a
 	ld a, [rIF]
 	push af
 	xor a
@@ -33470,13 +33470,13 @@ Function29d11: ; 29d11
 	ld a, $ff
 	ld [wcf5b], a
 .asm_29d39
-	ld a, [$ffcb]
+	ld a, [hLinkPlayer]
 	cp $2
 	jr z, .asm_29d79
 	cp $1
 	jr z, .asm_29d79
 	ld a, $ff
-	ld [$ffcb], a
+	ld [hLinkPlayer], a
 	ld a, $2
 	ld [rSB], a
 	xor a
@@ -33748,7 +33748,7 @@ Function29f04: ; 29f04
 	ld c, $3
 	call DelayFrames
 	ld a, $ff
-	ld [$ffcb], a
+	ld [hLinkPlayer], a
 	ld a, $2
 	ld [rSB], a
 	xor a
@@ -33786,7 +33786,7 @@ Function29f17: ; 29f17
 ; 29f47
 
 Function29f47: ; 29f47
-	ld a, [$ffcb]
+	ld a, [hLinkPlayer]
 	cp $1
 	ld a, $1
 	jr z, .asm_29f50
@@ -35816,7 +35816,7 @@ ClearBattleRAM: ; 2ef18
 	ld [wd0e4], a
 	ld [CriticalHit], a
 	ld [BattleMonSpecies], a
-	ld [wc664], a
+	ld [wAliveExperienceSharers], a
 	ld [CurBattleMon], a
 	ld [wd232], a
 	ld [TimeOfDayPal], a
@@ -48536,7 +48536,7 @@ Function5067b: ; 5067b
 	ld a, [PartyCount]
 	cp [hl]
 	jr nz, .asm_50682
-	predef Function3d873
+	predef CheckAnyPartyMonAlive
 	ld a, d
 	ld [ScriptVar], a
 	ret
@@ -93825,7 +93825,7 @@ FaintingCry:
 	ld a, [hli]
 	ld h, [hl]
 	ld l, a
-	ld bc, -$70
+	ld bc, -$38
 	add hl, bc
 	ld a, l
 	ld [CryPitch], a
@@ -93835,7 +93835,7 @@ FaintingCry:
 	ld a, [hli]
 	ld h, [hl]
 	ld l, a
-	ld bc, $30
+	ld bc, $18
 	add hl, bc
 	ld a, l
 	ld [CryLength], a

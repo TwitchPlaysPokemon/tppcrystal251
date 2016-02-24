@@ -286,8 +286,8 @@ UnknownScript_0x1a55c7: ; 0x1a55c7
 	end
 
 ReceivedSpearowMailText: ; 0x1a55cd
-	db "DARK CAVE leads",$4E
-	db "to another road@"
+	db   "DARK CAVE leads"
+	next "to another road@"
 
 YoungsterScript_0x1a55ed: ; 0x1a55ed
 	jumptextfaceplayer UnknownText_0x1a59d5

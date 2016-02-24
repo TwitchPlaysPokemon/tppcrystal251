@@ -1,11 +1,9 @@
-BattleCore:
-
 ; Core components of the battle engine.
 
-Function3c000: ; 3c000
+BattleCore: ; 3c000
 	xor a
-	ld [wc664], a
-	ld [wc6fc], a
+	ld [wAliveExperienceSharers], a
+	ld [wBattleParticipants], a
 	ld [wd0ec], a
 	ld [BattleEnded], a
 	inc a
@@ -13,64 +11,64 @@ Function3c000: ; 3c000
 	ld hl, OTPartyMon1HP
 	ld bc, OTPartyMon2 - (OTPartyMon1 + 1)
 	ld d, NUM_MOVES - 1
-.asm_3c019
+.LoopEnemyPartyMons
 	inc d
 	ld a, [hli]
 	or [hl]
-	jr nz, .asm_3c021
+	jr nz, .GotEnemyMon
 	add hl, bc
-	jr .asm_3c019
+	jr .LoopEnemyPartyMons
 
-.asm_3c021
+.GotEnemyMon
 	ld a, d
 	ld [wBattleAction], a
 	ld a, [wLinkMode]
 	and a
-	jr z, .asm_3c031
+	jr z, .skip_link
 
-	ld a, [$ffcb]
+	ld a, [hLinkPlayer]
 	cp $2
-	jr z, .asm_3c04c
+	jr z, .LinkPlayer2
 
-.asm_3c031
+.skip_link
 	ld a, [wBattleMode]
 	dec a
-	jr z, .asm_3c047
+	jr z, .wild
 	xor a
-	ld [wc718], a
+	ld [wWhichEnemyMon], a
 	call NewEnemyMonStatus
 	call ResetEnemyStatLevels
 	call BreakAttraction
-	call Function3d4e1
+	call EnemySwitch
 
-.asm_3c047
+.wild
 	ld c, 40
 	call DelayFrames
 
-.asm_3c04c
+.LinkPlayer2
 	call Function309d
-	call Function3d873
+	call CheckAnyPartyMonAlive
 	ld a, d
 	and a
 	jp z, LostBattle
 	call Function30b4
 	ld a, [BattleType]
-	cp $2
-	jp z, .asm_3c0e2
+	cp BATTLETYPE_DEBUG
+	jp z, .tutorial_debug
 	cp BATTLETYPE_TUTORIAL
-	jp z, .asm_3c0e2
+	jp z, .tutorial_debug
 	xor a
 	ld [CurPartyMon], a
-.asm_3c06b
-	call Function3d887
-	jr nz, .asm_3c076
+.LoopPlayerPartyMons
+	call CheckCurPartyMonFitToFight
+	jr nz, .GotPlayerMon
 	ld hl, CurPartyMon
 	inc [hl]
-	jr .asm_3c06b
+	jr .LoopPlayerPartyMons
 
-.asm_3c076
+.GotPlayerMon
 	ld a, [CurBattleMon]
-	ld [wc71a], a
+	ld [LastBattleMon], a
 	ld a, [CurPartyMon]
 	ld [CurBattleMon], a
 	inc a
@@ -83,7 +81,7 @@ Function3c000: ; 3c000
 	ld [TempBattleMonSpecies], a
 	hlcoord 1, 5
 	ld a, $9
-	call Function3d490
+	call SlideBattlePicOut
 	call Function309d
 	call Function3d57a
 	call Function3da0d
@@ -99,22 +97,22 @@ Function3c000: ; 3c000
 	ld a, [wLinkMode]
 	and a
 	jr z, .asm_3c0df
-	ld a, [$ffcb]
+	ld a, [hLinkPlayer]
 	cp $2
 	jr nz, .asm_3c0df
 	xor a
-	ld [wc718], a
+	ld [wWhichEnemyMon], a
 	call NewEnemyMonStatus
 	call ResetEnemyStatLevels
 	call BreakAttraction
-	call Function3d4e1
+	call EnemySwitch
 	call SetEnemyTurn
 	call SpikesDamage
 
 .asm_3c0df
 	jp Function3c12f
 
-.asm_3c0e2
+.tutorial_debug
 	jp BattleMenu
 ; 3c0e5
 
@@ -280,7 +278,7 @@ Function3c1c0: ; 3c1c0
 ; 3c1d6
 
 Function3c1d6: ; 3c1d6
-	ld a, [$ffcb]
+	ld a, [hLinkPlayer]
 	cp $1
 	jr z, .asm_3c1fe
 	call Function3c23c
@@ -395,7 +393,7 @@ Function3c25c: ; 3c25c
 ; 3c27c
 
 Function3c27c: ; 3c27c
-	ld a, [$ffcb]
+	ld a, [hLinkPlayer]
 	cp $1
 	jr z, .reverse
 
@@ -503,7 +501,7 @@ Function3c314: ; 3c314
 	ld a, [wd0ec]
 	cp $2
 	jr nz, .asm_3c34c
-	ld a, [$ffcb]
+	ld a, [hLinkPlayer]
 	cp $2
 	jr z, .asm_3c341
 	call BattleRandom
@@ -559,7 +557,7 @@ Function3c314: ; 3c314
 	jp Function3c3f3
 
 .asm_3c39f
-	ld a, [$ffcb]
+	ld a, [hLinkPlayer]
 	cp $2
 	jr z, .asm_3c3b5
 	call BattleRandom
@@ -589,7 +587,7 @@ Function3c314: ; 3c314
 	jp Function3c3f3
 
 .asm_3c3d8
-	ld a, [$ffcb]
+	ld a, [hLinkPlayer]
 	cp $2
 	jr z, .asm_3c3e9
 	call BattleRandom
@@ -762,7 +760,7 @@ ENDC
 ; 3c4df
 
 Function3c4df: ; 3c4df
-	ld a, [$ffcb]
+	ld a, [hLinkPlayer]
 	cp $1
 	jr z, .asm_3c4ea
 	call .asm_3c4ed
@@ -1267,7 +1265,7 @@ ResidualDamage: ; 3c716
 ; 3c801
 
 Function3c801: ; 3c801
-	ld a, [$ffcb]
+	ld a, [hLinkPlayer]
 	cp $1
 	jr z, .asm_3c813
 	call SetPlayerTurn
@@ -1335,7 +1333,7 @@ Function3c801: ; 3c801
 ; 3c874
 
 Function3c874: ; 3c874
-	ld a, [$ffcb]
+	ld a, [hLinkPlayer]
 	cp $1
 	jr z, .asm_3c886
 	call SetPlayerTurn
@@ -1402,7 +1400,7 @@ SwitchTurnCore: ; 3c8e4
 ; 3c8eb
 
 Function3c8eb: ; 3c8eb
-	ld a, [$ffcb]
+	ld a, [hLinkPlayer]
 	cp $1
 	jr z, .asm_3c8fd
 	call SetPlayerTurn
@@ -1449,7 +1447,7 @@ Function3c8eb: ; 3c8eb
 ; 3c93c
 
 Function3c93c: ; 3c93c
-	ld a, [$ffcb]
+	ld a, [hLinkPlayer]
 	cp $1
 	jr z, .asm_3c94e
 	call SetPlayerTurn
@@ -1587,7 +1585,7 @@ Function3c93c: ; 3c93c
 ; 3ca26
 
 Function3ca26: ; 3ca26
-	ld a, [$ffcb]
+	ld a, [hLinkPlayer]
 	cp $1
 	jr z, .asm_3ca38
 	call SetPlayerTurn
@@ -1645,7 +1643,7 @@ Function3ca26: ; 3ca26
 ; 3ca8f
 
 Function3ca8f: ; 3ca8f
-	ld a, [$ffcb]
+	ld a, [hLinkPlayer]
 	cp $1
 	jr z, .asm_3ca9a
 	call .asm_3ca9d
@@ -1703,7 +1701,7 @@ Function3ca8f: ; 3ca8f
 ; 3cafb
 
 Function3cafb: ; 3cafb
-	ld a, [$ffcb]
+	ld a, [hLinkPlayer]
 	cp $1
 	jr z, .asm_3cb06
 	call .asm_3cb09
@@ -1741,7 +1739,7 @@ Function3cafb: ; 3cafb
 ; 3cb36
 
 Function3cb36: ; 3cb36
-	ld a, [$ffcb]
+	ld a, [hLinkPlayer]
 	cp 1
 	jr z, .Both
 	call .CheckPlayer
@@ -1827,7 +1825,7 @@ HandleWeather: ; 3cb9e
 	cp WEATHER_SANDSTORM
 	ret nz
 
-	ld a, [$ffcb]
+	ld a, [hLinkPlayer]
 	cp 1
 	jr z, .enemy_first
 
@@ -2165,7 +2163,7 @@ BattleCore_HandleEnemyFaint: ; 3cd55
 	xor a
 	ld [wc6f7], a
 	call Function3ce01
-	call Function3d873
+	call CheckAnyPartyMonAlive
 	ld a, d
 	and a
 	jp z, LostBattle
@@ -2226,7 +2224,7 @@ BattleCore_HandleEnemyFaint: ; 3cd55
 ; 3cdca
 
 Function3cdca: ; 3cdca
-	ld a, [$ffcb]
+	ld a, [hLinkPlayer]
 	cp $1
 	jr z, .asm_3cde6
 	call ClearSprites
@@ -2297,7 +2295,7 @@ Function3ce01: ; 3ce01
 	call Function3d1aa
 
 .asm_3ce47
-	call Function3d873
+	call CheckAnyPartyMonAlive
 	ld a, d
 	and a
 	ret z
@@ -2329,10 +2327,10 @@ Function3ce01: ; 3ce01
 	call Function3ee3b
 	call Function3ceaa
 	ret z
-	ld a, [wc664]
+	ld a, [wAliveExperienceSharers]
 	push af
 	ld a, d
-	ld [wc664], a
+	ld [wAliveExperienceSharers], a
 	ld hl, wc720
 	ld de, EnemyMonBaseStats
 	ld bc, $0007
@@ -2341,7 +2339,7 @@ Function3ce01: ; 3ce01
 	ld [wc71f], a
 	call Function3ee3b
 	pop af
-	ld [wc664], a
+	ld [wAliveExperienceSharers], a
 	ret
 ; 3ceaa
 
@@ -2492,14 +2490,14 @@ Function3cf4a: ; 3cf4a
 EnemyPartyMonEntrance: ; 3cf78
 	push af
 	xor a
-	ld [wc718], a
+	ld [wWhichEnemyMon], a
 	call NewEnemyMonStatus
 	call ResetEnemyStatLevels
 	call BreakAttraction
 	pop af
 	and a
 	jr nz, .asm_3cf8f
-	call Function3d4e1
+	call EnemySwitch
 	jr .asm_3cf92
 
 .asm_3cf8f
@@ -2739,7 +2737,7 @@ Function3d0ea: ; 3d0ea
 	ld a, [hli]
 	or [hl]
 	jr nz, .play_music
-	ld a, [wc664]
+	ld a, [wAliveExperienceSharers]
 	and a
 	jr z, .skip_music
 	jr .play_music
@@ -2832,7 +2830,7 @@ BattleCore_HandlePlayerFaint: ; 3d14e
 	ld a, $1
 	ld [wc6f7], a
 	call Function3d1aa
-	call Function3d873
+	call CheckAnyPartyMonAlive
 	ld a, d
 	and a
 	jp z, LostBattle
@@ -2876,7 +2874,7 @@ BattleCore_HandlePlayerFaint: ; 3d14e
 Function3d1aa: ; 3d1aa
 	ld a, [CurBattleMon]
 	ld c, a
-	ld hl, wc664
+	ld hl, wAliveExperienceSharers
 	ld b, $0
 	predef FlagPredef
 	ld hl, EnemySubStatus3
@@ -2934,7 +2932,7 @@ Function3d1f8: ; 3d1f8
 	jr z, .asm_3d20a
 	ld hl, PartyMon1Speed
 	ld de, EnemyMonSpeed
-	jp Function3d8b3
+	jp BattleCore_TryToFlee
 ; 3d227
 
 Function3d227: ; 3d227
@@ -2975,7 +2973,7 @@ Function3d227: ; 3d227
 .asm_3d26c
 	call ClearSprites
 	ld a, [CurBattleMon]
-	ld [wc71a], a
+	ld [LastBattleMon], a
 	ld a, [CurPartyMon]
 	ld [CurBattleMon], a
 	call Function3d581
@@ -3003,7 +3001,7 @@ Function3d227: ; 3d227
 
 Function3d2b3: ; 3d2b3
 	ld a, [CurBattleMon]
-	ld [wc71a], a
+	ld [LastBattleMon], a
 	ld a, [CurPartyMon]
 	ld [CurBattleMon], a
 	call Function3d581
@@ -3107,7 +3105,7 @@ PickPartyMonInBattle: ; 3d33c
 	call Function3d313
 	call Function3d329
 	ret c
-	call Function3d887
+	call CheckCurPartyMonFitToFight
 	jr z, .loop
 	xor a
 	ret
@@ -3330,31 +3328,31 @@ Function3d444: ; 3d444
 	db "       @"
 ; 3d490
 
-Function3d490: ; 3d490
+SlideBattlePicOut: ; 3d490
 	ld [$ffaf], a
 	ld c, a
-.asm_3d493
+.row
 	push bc
 	push hl
 	ld b, $7
-.asm_3d497
+.column
 	push hl
-	call Function3d4ae
+	call .Slide
 	pop hl
 	ld de, SCREEN_WIDTH
 	add hl, de
 	dec b
-	jr nz, .asm_3d497
+	jr nz, .column
 	ld c, 2
 	call DelayFrames
 	pop hl
 	pop bc
 	dec c
-	jr nz, .asm_3d493
+	jr nz, .row
 	ret
 ; 3d4ae
 
-Function3d4ae: ; 3d4ae
+.Slide: ; 3d4ae
 	ld a, [$ffaf]
 	ld c, a
 	cp $8
@@ -3378,7 +3376,7 @@ Function3d4ae: ; 3d4ae
 
 Function3d4c3: ; 3d4c3
 	call Function3d557
-	ld a, [wc718]
+	ld a, [wWhichEnemyMon]
 	dec a
 	ld b, a
 	call Function3d6ca
@@ -3391,7 +3389,7 @@ Function3d4c3: ; 3d4c3
 	ret
 ; 3d4e1
 
-Function3d4e1: ; 3d4e1
+EnemySwitch: ; 3d4e1
 	call Function3d714
 	jr nc, Function3d517 ;jump if set mode
 	call Function3d557
@@ -3408,8 +3406,8 @@ Function3d4e1: ; 3d4e1
 	pop af
 	ret c
 	xor a
-	ld [wc664], a
-	ld [wc6fc], a
+	ld [wAliveExperienceSharers], a
+	ld [wBattleParticipants], a
 	ld [wd0ec], a
 	inc a
 	ld [wEnemyIsSwitching], a
@@ -3442,7 +3440,7 @@ Function3d533: ; 3d533
 	jr .asm_3d555
 
 .asm_3d541
-	ld a, [wc718]
+	ld a, [wWhichEnemyMon]
 	and a
 	jr z, .asm_3d54b
 	dec a
@@ -3474,24 +3472,24 @@ Function3d557: ; 3d557
 	ld [wc730], a
 	hlcoord 18, 0
 	ld a, $8
-	call Function3d490 ; would have liked to see a poof here
+	call SlideBattlePicOut ; would have liked to see a poof here
 	call EmptyBattleTextBox
 	jp Function1d6e
 ; 3d57a
 
 Function3d57a: ; 3d57a
 	xor a
-	ld [wc664], a
-	ld [wc6fc], a
+	ld [wAliveExperienceSharers], a
+	ld [wBattleParticipants], a
 Function3d581: ; 3d581
 	ld a, [CurBattleMon]
 	ld c, a
-	ld hl, wc664
+	ld hl, wAliveExperienceSharers
 	ld b, SET_FLAG
 	push bc
 	predef FlagPredef
 	pop bc
-	ld hl, wc6fc
+	ld hl, wBattleParticipants
 	predef_jump FlagPredef
 ; 3d599
 
@@ -3794,7 +3792,7 @@ Function3d74b: ; 3d74b
 	call PickSwitchMonInBattle
 	jr c, .asm_3d791
 	ld a, [CurBattleMon]
-	ld [wc71a], a
+	ld [LastBattleMon], a
 	ld a, [CurPartyMon]
 	ld [CurBattleMon], a
 	call ClearPalettes
@@ -3924,24 +3922,24 @@ ResetEnemyStatLevels: ; 3d867
 	ret
 ; 3d873
 
-Function3d873: ; 3d873
+CheckAnyPartyMonAlive: ; 3d873
 	ld a, [PartyCount]
 	ld e, a
 	xor a
 	ld hl, PartyMon1HP
 	ld bc, PartyMon2 - (PartyMon1 + 1)
-.asm_3d87e
+.loop
 	or [hl]
 	inc hl
 	or [hl]
 	add hl, bc
 	dec e
-	jr nz, .asm_3d87e
+	jr nz, .loop
 	ld d, a
 	ret
 ; 3d887
 
-Function3d887: ; 3d887
+CheckCurPartyMonFitToFight: ; 3d887
 	ld a, [CurPartyMon]
 	ld hl, PartyMon1HP
 	call GetPartyLocation
@@ -3950,7 +3948,7 @@ Function3d887: ; 3d887
 	ret nz
 	ld a, [wd264]
 	and a
-	jr nz, .asm_3d8b1
+	jr nz, .skip_text
 	ld hl, PartySpecies
 	ld a, [CurPartyMon]
 	ld c, a
@@ -3959,13 +3957,13 @@ Function3d887: ; 3d887
 	ld a, [hl]
 	cp EGG
 	ld hl, BattleText_0x80b26
-	jr z, .asm_3d8ae
+	jr z, .print_text
 	ld hl, BattleText_0x80b0b
 
-.asm_3d8ae
+.print_text
 	call StdBattleTextBox
 
-.asm_3d8b1
+.skip_text
 	xor a
 	ret
 ; 3d8b3
@@ -3974,7 +3972,7 @@ Military_TryToFlee:
 	ld hl, BattleMonSpeed
 	ld de, EnemyMonSpeed
 ENDC
-Function3d8b3: ; 3d8b3
+BattleCore_TryToFlee: ; 3d8b3
 	ld a, [BattleType]
 	cp $2
 	jp z, .asm_3d9a2
@@ -4328,7 +4326,7 @@ Function3dabd: ; 3dabd
 Function3db32: ; 3db32
 	call ClearSprites
 	ld a, [CurBattleMon]
-	ld [wc71a], a
+	ld [LastBattleMon], a
 	ld a, [CurPartyMon]
 	ld [CurBattleMon], a
 	call Function3d581
@@ -4547,7 +4545,7 @@ Function3dc5b: ; 3dc5b
 	and a
 	jr z, .asm_3dc7e
 	ld hl, DoEnemyTurn
-	ld a, [wc71a]
+	ld a, [LastBattleMon]
 	ld [CurBattleMon], a
 .asm_3dc7e
 	ld a, BANK(DoPlayerTurn)
@@ -4565,7 +4563,7 @@ Function3dc5b: ; 3dc5b
 	and a
 	jr z, .asm_3dcc0
 
-	ld a, [wc71a]
+	ld a, [LastBattleMon]
 	call Function399f
 	ld hl, BattleMonHP
 	ld a, [hli]
@@ -4583,9 +4581,9 @@ Function3dc5b: ; 3dc5b
 	ld de, SFX_FAINT
 	call PlaySFX
 	call WaitSFX
-	ld a, [wc71a]
+	ld a, [LastBattleMon]
 	ld c, a
-	ld hl, wc664
+	ld hl, wAliveExperienceSharers
 	ld b, $0
 	predef FlagPredef
 	call Function3d43b
@@ -4636,7 +4634,7 @@ Function3dce6: ; 3dce6
 ; 3dcf9
 
 Function3dcf9: ; 3dcf9
-	ld a, [$ffcb]
+	ld a, [hLinkPlayer]
 	cp $1
 	jr z, .asm_3dd17
 	call SetPlayerTurn
@@ -4892,7 +4890,7 @@ Function3de51: ; 3de51
 ; 3de97
 
 Function3de97: ; 3de97
-	ld a, [$ffcb]
+	ld a, [hLinkPlayer]
 	cp $1
 	jr z, .asm_3dea3
 	call Function3dea9
@@ -5634,10 +5632,10 @@ Function3e358: ; 3e358
 	jp Function3e299
 
 .asm_3e381
-	call Function3d887
+	call CheckCurPartyMonFitToFight
 	jp z, Function3e299
 	ld a, [CurBattleMon]
-	ld [wc71a], a
+	ld [LastBattleMon], a
 	ld a, $2
 	ld [wd0ec], a
 	call ClearPalettes
@@ -5687,7 +5685,7 @@ Function3e3ad: ; 3e3ad
 	ret
 
 .SwitchSwitch
-	ld a, [$ffcb]
+	ld a, [hLinkPlayer]
 	cp $1
 	jr z, .Player1
 	call BattleMonEntrance
@@ -5773,7 +5771,7 @@ BattleMenu_Run: ; 3e489
 	ld [wcfa9], a
 	ld hl, BattleMonSpeed
 	ld de, EnemyMonSpeed
-	call Function3d8b3
+	call BattleCore_TryToFlee
 	ld a, $0
 	ld [wd266], a
 	ret c
@@ -7591,7 +7589,7 @@ Function3ee3b: ; 3ee3b
 	or [hl]
 	jp z, .asm_3f0b9
 	push bc
-	ld hl, wc664
+	ld hl, wAliveExperienceSharers
 	ld a, [CurPartyMon]
 	ld c, a
 	ld b, $2
@@ -7659,6 +7657,19 @@ Function3ee3b: ; 3ee3b
 	ld [$ffb5], a
 	ld a, [EnemyMonBaseExp]
 	ld [$ffb6], a
+    cp 251
+    jr c, .okay
+    sub 251
+    ld c, a
+    ld b, 0
+    ld hl, .over255list
+    add hl, bc
+    add hl, bc
+    ld a, [hli]
+    ld [$ffb6], a
+    ld a, [hl]
+	ld [$ffb5], a
+.okay
 	ld a, [EnemyMonLevel]
 	ld [hMultiplier], a
 	call Multiply
@@ -7941,8 +7952,11 @@ Function3ee3b: ; 3ee3b
 	jp Function3d57a
 ; 3f0d4
 
+.over255list
+    dw 261, 270, 306, 395, 608
+
 Function3f0d4: ; 3f0d4
-	ld a, [wc664]
+	ld a, [wAliveExperienceSharers]
 	ld b, a
 	ld c, $6
 	ld d, $0
@@ -8619,7 +8633,7 @@ StartBattle: ; 3f4c1
 	ld a, [TimeOfDayPal]
 	push af
 	call Function3f4dd
-	call Function3c000
+	call BattleCore
 	call Function3f69e
 	pop af
 	ld [TimeOfDayPal], a
@@ -8628,7 +8642,7 @@ StartBattle: ; 3f4c1
 ; 3f4d9
 
 Function3f4d9: ; 3f4d9
-	call Function3c000
+	call BattleCore
 	ret
 ; 3f4dd
 
