@@ -67,6 +67,7 @@ OakAppears:
 	waitbutton
 	closetext
 	pause 15
+	appear $3
 	playmusic MUSIC_SLOW_PALLET
 	loadfont
 	writetext HallwayOfFameOakText1
@@ -74,7 +75,6 @@ OakAppears:
 	closetext
 	spriteface $0, DOWN
 	spriteface $2, DOWN
-	appear $3
 	applymovement $3, OakWalksUp
 	loadfont
 	checkevent EVENT_OAK_DEFEATED
@@ -83,7 +83,8 @@ OakAppears:
 	waitbutton
 	closetext
 	applymovement $3, OakWalkBackToPlayer
-	spriteface 0, LEFT
+	spriteface $0, LEFT
+	spriteface $2, LEFT
 	loadfont
 	writetext OakAfterRivalTalkToPlayer
 AfterOakTalk:
@@ -93,17 +94,20 @@ AfterOakTalk:
 	closetext
 	applymovement $3, OakRepositions
 	follow $3, $0
-	spriteface $3, UP
+	spriteface $2, UP
 	applymovement $3, OakWalksUpMore
 	stopfollow
 	playsound SFX_EXIT_BUILDING
 	disappear $3
 	applymovement $0, MovementData_0x180f55
-	playsound SFX_EXIT_BUILDING
-	disappear $0
-	special Function8c084
-	pause 15
-	warpfacing $1, GROUP_HALL_OF_FAME, MAP_HALL_OF_FAME, $4, $d
+	loadvar wMapMusic, MUSIC_SLOW_PALLET
+	warpcheck
+	; playsound SFX_EXIT_BUILDING
+	; disappear $0
+	; special Function8c084
+	; pause 15
+	; dotrigger $1
+	; warpfacing $1, GROUP_HALL_OF_FAME, MAP_HALL_OF_FAME, $4, $d
 	end
 
 
@@ -286,6 +290,7 @@ OakRepositions:
 	step_end
     
 OakWalksUpMore:
+    step_up
     step_up
     step_up
     step_up

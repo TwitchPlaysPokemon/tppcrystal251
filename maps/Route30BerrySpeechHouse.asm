@@ -34,7 +34,9 @@ UnknownText_0x196d82: ; 0x196d82
 
 	para "Well, my #MON"
 	line "got healthier by"
-	cont "eating a BERRY."
+
+	para "eating a SITRUS"
+	line "BERRY."
 
 	para "Here. I'll share"
 	line "one with you!"

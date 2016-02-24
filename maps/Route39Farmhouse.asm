@@ -114,7 +114,8 @@ UnknownText_0x9cf38: ; 0x9cf38
 	line "o' milk if'n I"
 
 	para "feed it lots o'"
-	line "BERRIES, I reckon."
+	line "ORAN BERRIES, I"
+	cont "reckon."
 	done
 ; 0x9cfe1
 

@@ -139,7 +139,7 @@ UnknownText_0x9cd2e: ; 0x9cd2e
 	text "MOOMOO is sick<...>"
 
 	para "She needs lots of"
-	line "BERRIES."
+	line "ORAN BERRIES."
 	done
 ; 0x9cd5a
 
@@ -165,14 +165,15 @@ UnknownText_0x9cd92: ; 0x9cd92
 ; 0x9cda2
 
 UnknownText_0x9cda2: ; 0x9cda2
-	text "Give a BERRY to"
-	line "MILTANK?"
+	text "Give an ORAN BERRY"
+	line "to MILTANK?"
 	done
 ; 0x9cdbc
 
 UnknownText_0x9cdbc: ; 0x9cdbc
-	text "<PLAYER> gave a"
-	line "BERRY to MILTANK."
+	text "<PLAYER> gave an"
+	line "ORAN BERRY to"
+	cont "MILTANK."
 	done
 ; 0x9cdd8
 
@@ -196,13 +197,13 @@ UnknownText_0x9ce1b: ; 0x9ce1b
 
 UnknownText_0x9ce3c: ; 0x9ce3c
 	text "<PLAYER> has no"
-	line "BERRIES<...>"
+	line "ORAN BERRIES<...>"
 	done
 ; 0x9ce4f
 
 UnknownText_0x9ce4f: ; 0x9ce4f
 	text "<PLAYER> wouldn't"
-	line "give a BERRY."
+	line "give a ORAN BERRY."
 
 	para "MILTANK looks sad."
 	done

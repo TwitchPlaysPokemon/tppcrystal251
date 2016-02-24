@@ -12207,6 +12207,7 @@ Function1201b: ; 1201b (4:601b)
 	ld hl, $e
 	add hl, bc
 	ld [hl], a
+	call MailRandomizeCursor
 	ld hl, wcf63
 	inc [hl]
 	ret
@@ -12514,9 +12515,9 @@ Function121b2: ; 121b2
 String_121dd: ; 122dd
 	db "A B C D E F G H I J"
 	db "K L M N O P Q R S T"
-	db "U V W X Y Z, ? !"
+	db "U V W X Y Z , ? !  "
 	db "1 2 3 4 5 6 7 8 9 0"
-	db "ゅ ょ ", $70, " ", $71, " é ♂ ♀ ¥ <...> ×"
+	db "<PK> <MN> <PO> <KE> é ♂ ♀ ¥ <...> ×"
 	db "lower  DEL   END   "
 ; 1224f
 
@@ -12525,9 +12526,36 @@ String_1224f: ; 1224f
 	db "k l m n o p q r s t"
 	db "u v w x y z   . - /"
 	db "'d 'l 'm 'r 's 't 'v & ( )"
-	db $72, " ", $73, " [ ] ' : ;      "
+	db "<``> <''> [ ] ' : ;      "
 	db "UPPER  DEL   END   "
 ; 122c1
+
+MailRandomizeCursor:
+.row_loop
+	call Random
+	and $7
+	cp 5
+	jr nc, .row_loop
+	ld hl, $d
+	add hl, bc
+	ld [hl], a
+	swap a
+	ld hl, $7
+	add hl, bc
+	ld [hl], a
+.col_loop
+	call Random
+	and $f
+	cp 9
+	jr nc, .col_loop
+	ld hl, $c
+	add hl, bc
+	ld [hl], a
+	swap a
+	ld hl, $6
+	add hl, bc
+	ld [hl], a
+	ret
 
 UnknownScript_0x122c1: ; 0x122c1
 	checkflag ENGINE_BUG_CONTEST_TIMER
@@ -17544,8 +17572,7 @@ Group3Sprites: ; 146fd
 	db SPRITE_FAMICOM
 	db SPRITE_POKEDEX
 	db SPRITE_WILL
-	; db SPRITE_KAREN
-	db SPRITE_PHARMACIST
+	db SPRITE_KAREN
 	db SPRITE_NURSE
 	db SPRITE_OLD_LINK_RECEPTIONIST
 	db SPRITE_GAMEBOY_KID
@@ -17612,8 +17639,7 @@ Group5Sprites: ; 146e6
 	db SPRITE_POKEFAN_M ;
 	db SPRITE_BLACK_BELT ;
 	db SPRITE_COOLTRAINER_F ;
-	; db SPRITE_FISHER
-	db SPRITE_EGK_RIVAL
+	db SPRITE_FISHER
 	db SPRITE_FRUIT_TREE ;
 	db SPRITE_POKE_BALL ; 23
 ; 146fd
@@ -17680,8 +17706,7 @@ Group8Sprites: ; 1465c
 	db SPRITE_NURSE
 	db SPRITE_OLD_LINK_RECEPTIONIST
 	db SPRITE_KURT_OUTSIDE
-	; db SPRITE_BIG_ONIX
-	db SPRITE_PHARMACIST
+	db SPRITE_BIG_ONIX
 	db SPRITE_SUDOWOODO
 	db SPRITE_BIG_SNORLAX
 	db SPRITE_GRAMPS
@@ -17782,6 +17807,7 @@ Group12Sprites: ; 145a4
 	db SPRITE_FAMICOM
 	db SPRITE_POKEDEX
 	db SPRITE_WILL
+	db SPRITE_KAREN
 	db SPRITE_PHARMACIST
 	db SPRITE_NURSE
 	db SPRITE_OLD_LINK_RECEPTIONIST
@@ -17797,10 +17823,9 @@ Group12Sprites: ; 145a4
 	db SPRITE_TEACHER
 	db SPRITE_SUPER_NERD
 	db SPRITE_BIG_SNORLAX
-	db SPRITE_BIKER
+	; db SPRITE_BIKER
 	db SPRITE_POKE_BALL
 	db SPRITE_FRUIT_TREE ; 23
-;	db SPRITE_KAREN
 ; 145bb
 
 Group13Sprites: ; 144ec
@@ -17835,7 +17860,7 @@ Group14Sprites: ; 1451a
 	db SPRITE_FAMICOM
 	db SPRITE_POKEDEX
 	db SPRITE_WILL
-	; db SPRITE_KAREN
+	db SPRITE_KAREN
 	db SPRITE_PHARMACIST
 	db SPRITE_NURSE
 	db SPRITE_OLD_LINK_RECEPTIONIST
@@ -17846,7 +17871,7 @@ Group14Sprites: ; 1451a
 	db SPRITE_TEACHER
 	db SPRITE_FISHER
 	db SPRITE_YOUNGSTER
-	db SPRITE_BLUE
+	; db SPRITE_BLUE
 	db SPRITE_GRAMPS
 	db SPRITE_BUG_CATCHER
 	db SPRITE_COOLTRAINER_F
@@ -36536,7 +36561,7 @@ Function421f5: ; 421f5
 	ld b, a
 	ld a, [TempMonItem]
 	cp b
-	jp z, .GoAheadAndEvolve
+	jr z, .GoAheadAndEvolve_item
 	ld a, EVERSTONE
 	cp b
 	jp z, .DontEvolve
@@ -36547,10 +36572,16 @@ Function421f5: ; 421f5
 	call CheckItem
 	pop hl
 	jp nc, .DontEvolve
+	push hl
 	ld hl, NumItems
 	ld a, 1
 	ld [wd10c], a
 	call TossItem
+	pop hl
+	jr .GoAheadAndEvolve
+.GoAheadAndEvolve_item
+	xor a
+	ld [TempMonItem], a
 	jr .GoAheadAndEvolve
 
 .level
@@ -83133,7 +83164,7 @@ Functione36f9: ; e36f9 (38:76f9)
 	ld e, a
 	push de
 	ld de, .PressTheButtons
-	call Functione37e3 ;show text at de
+	call Functione37e3
 	ld bc, 240
 .joy_loop
 	dec bc
@@ -83147,7 +83178,7 @@ Functione36f9: ; e36f9 (38:76f9)
 	jr nz, .joy_loop
 	ld hl, .AreYouSure
 	call Function1d4f
-	ld hl, .NoYesBox ;load no yes menu
+	ld hl, .NoYesBox
 	call LoadMenuDataHeader
 	call Function1d81
 	call Function1c07

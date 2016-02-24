@@ -276,6 +276,7 @@ MapGroup12:
 	map_header Route6SaffronGate, $8, 6, ROUTE_6, MUSIC_ROUTE_3, 0, 1, 1
 	map_header Route6UndergroundEntrance, $8, 6, ROUTE_6, MUSIC_ROUTE_3, 0, 1, 1
 	map_header MewIslandEntrance, $1, 2, MEW_ISLAND, MUSIC_INDIGO_PLATEAU, 0, 0, 1
+	map_header Route1112Gate, $8, 6, ROUTE_11, MUSIC_ROUTE_12, 0, 1, 1
 
 MapGroup13:
 	map_header Route1, $3, 2, ROUTE_1, MUSIC_ROUTE_1, 0, 0, 1
@@ -317,7 +318,7 @@ MapGroup16:
 	map_header KarensRoom, $f, 3, INDIGO_PLATEAU, MUSIC_INDIGO_PLATEAU, 1, 1, 1
 	map_header LancesRoom, $12, 3, INDIGO_PLATEAU, MUSIC_INDIGO_PLATEAU, 1, 1, 13
 	map_header HallOfFame, $1d, 3, INDIGO_PLATEAU, MUSIC_SLOW_PALLET, 1, 1, 1
-    map_header HallwayOfFame, $f, 3, INDIGO_PLATEAU, MUSIC_INDIGO_PLATEAU, 1, 1, 13
+	map_header HallwayOfFame, $f, 3, INDIGO_PLATEAU, MUSIC_INDIGO_PLATEAU, 1, 1, 1
 
 MapGroup17:
 	map_header Route13, $3, 2, ROUTE_13, MUSIC_ROUTE_12, 0, 0, 13

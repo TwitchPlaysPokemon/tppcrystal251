@@ -2663,6 +2663,10 @@ TC_CurStripSpeed:: ds 1
 TC_CurStripSpeedCount:: ds 1
 TC_CurStripXPos:: ds 1
 TC_CurSubtitlePos:: ds 1
+TC_Hue1:: ds 1
+TC_Hue2:: ds 1
+TC_Hue1Count:: ds 1
+TC_Hue2Count:: ds 1
 
 SECTION "WRAM 6", WRAMX, BANK [6]
 
