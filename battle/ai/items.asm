@@ -82,7 +82,7 @@ SwitchOften: ; 38045
 	ld a, [wc717]
 	and $f
 	inc a
-	ld [wc718], a
+	ld [wWhichEnemyMon], a
 	jp AI_TrySwitch
 ; 38083
 
@@ -117,7 +117,7 @@ SwitchRarely: ; 38083
 	ld a, [wc717]
 	and $f
 	inc a
-	ld [wc718], a
+	ld [wWhichEnemyMon], a
 	jp AI_TrySwitch
 ; 380c1
 
@@ -152,7 +152,7 @@ SwitchSometimes: ; 380c1
 	ld a, [wc717]
 	and $f
 	inc a
-	ld [wc718], a
+	ld [wWhichEnemyMon], a
 	jp AI_TrySwitch
 ; 380ff
 
@@ -586,7 +586,7 @@ ELSE
 
 .Switch
 	inc a
-	ld [wc718], a
+	ld [wWhichEnemyMon], a
 	jp AI_Switch
 
 .AI_Items
@@ -798,7 +798,7 @@ AI_Switch: ; 3846c
 	callab ResetEnemyStatLevels
 	ld hl, PlayerSubStatus1
 	res SUBSTATUS_IN_LOVE, [hl]
-	callba Function3d4e1
+	callba EnemySwitch
 	callba Function3d57a
 	xor a
 	ld [wd264], a

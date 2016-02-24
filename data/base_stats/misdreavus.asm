@@ -6,7 +6,7 @@
 
 	db GHOST, GHOST
 	db 45 ; catch rate
-	db 147 ; base exp
+	db 87 ; base exp
 	db NO_ITEM ; item 1
 	db SPELL_TAG ; item 2
 	db 127 ; gender

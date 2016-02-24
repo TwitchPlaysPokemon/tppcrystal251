@@ -5,7 +5,7 @@
 
 	db FAIRY_T, FAIRY_T
 	db 190 ; catch rate
-	db 63 ; base exp
+	db 60 ; base exp
 	db NO_ITEM ; item 1
 	db NO_ITEM ; item 2
 	db 191 ; gender

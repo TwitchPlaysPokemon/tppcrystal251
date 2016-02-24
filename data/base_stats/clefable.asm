@@ -5,7 +5,7 @@
 
 	db FAIRY_T, FAIRY_T
 	db 25 ; catch rate
-	db 129 ; base exp
+	db 213 ; base exp
 	db MYSTERYBERRY ; item 1
 	db MOON_STONE ; item 2
 	db 191 ; gender
