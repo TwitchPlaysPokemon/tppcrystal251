@@ -83127,7 +83127,7 @@ Functione36f9: ; e36f9 (38:76f9)
 	ld e, a
 	push de
 	ld de, .PressTheButtons
-	call Functione37e3
+	call Functione37e3 ;show text at de
 	ld bc, 240
 .joy_loop
 	dec bc
@@ -83141,7 +83141,7 @@ Functione36f9: ; e36f9 (38:76f9)
 	jr nz, .joy_loop
 	ld hl, .AreYouSure
 	call Function1d4f
-	ld hl, .NoYesBox
+	ld hl, .NoYesBox ;load no yes menu
 	call LoadMenuDataHeader
 	call Function1d81
 	call Function1c07
@@ -83150,6 +83150,10 @@ Functione36f9: ; e36f9 (38:76f9)
 	ld a, [wcfa9]
 	cp $1
 	jr z, .refused
+	ld hl, .AreYouReallySure
+	call Function1d4f
+	call YesNoBox
+	jr c, .refused
 	callba DeleteBox
 .refused
 	call Function1c07
@@ -83199,6 +83203,10 @@ Functione36f9: ; e36f9 (38:76f9)
 	cont "be recovered."
 
 	para "Proceed anyway?"
+	done
+
+.AreYouReallySure
+	text "Are you sure?"
 	done
 
 .NoYesBox:
