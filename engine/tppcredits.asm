@@ -1962,7 +1962,6 @@ TPPCreditsList:
 	tc_subtitle		  .pikalax
 	tc_subtitle		  .pigu
 	tc_subtitle		  .koolboyman
-	tc_subtitle		  .lightning
 	tc_subtitle		  .chaos
 	tc_subtitle		  .chauzu
 	tc_subtitle		  .padz
