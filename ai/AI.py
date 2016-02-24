@@ -400,7 +400,7 @@ class AI(object):
                 totalacc = tempx * accmodifier * (tempaccuracy/100) * tempy
 
         if move_used_effect == 'ohko':
-            if self.MonData[attacker]['level'] > self.MonData[defender]['level']:
+            if self.MonData[attacker]['level'] > self.MonData[defender]['level'] and effmulti > 0:
                 totalacc = ((self.MonData[attacker]['level'] - self.MonData[defender]['level']) + 30)/100
                 temp2 = self.MonData[defender]['stats']['curhp']
             else:
@@ -1412,7 +1412,7 @@ class AI(object):
                                     item_name = self.MonData['myitems'][x2]
                                     if item_name in healing_items:
                                         #and healing would allow you to continue fighting (and not draw out the inevitable)
-                                        if self.Damage[traincurrent][mycurrent][self.enemynumber]['damage'] * 2 < min((self.jsonlist['battleState']['enemypokemon']['stats']['maxhp'] - self.jsonlist['battleState']['enemypokemon']['stats']['hp']), healing_items[item_name]):
+                                        if self.Damage[traincurrent][mycurrent][self.enemynumber]['damage'] < min((self.jsonlist['battleState']['enemypokemon']['stats']['maxhp'] - self.jsonlist['battleState']['enemypokemon']['stats']['hp']), healing_items[item_name]):
                                             return x2 + 9
         return 20
 
