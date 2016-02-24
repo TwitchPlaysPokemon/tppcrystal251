@@ -7657,17 +7657,17 @@ Function3ee3b: ; 3ee3b
 	ld [$ffb5], a
 	ld a, [EnemyMonBaseExp]
 	ld [$ffb6], a
-    cp 251
-    jr c, .okay
-    sub 251
-    ld c, a
-    ld b, 0
-    ld hl, .over255list
-    add hl, bc
-    add hl, bc
-    ld a, [hli]
-    ld [$ffb6], a
-    ld a, [hl]
+	cp 251
+	jr c, .okay
+	sub 251
+	ld c, a
+	ld b, 0
+	ld hl, .over255list
+	add hl, bc
+	add hl, bc
+	ld a, [hli]
+	ld [$ffb6], a
+	ld a, [hl]
 	ld [$ffb5], a
 .okay
 	ld a, [EnemyMonLevel]
@@ -7953,7 +7953,7 @@ Function3ee3b: ; 3ee3b
 ; 3f0d4
 
 .over255list
-    dw 261, 270, 306, 395, 608
+	dw 261, 270, 306, 395, 608
 
 Function3f0d4: ; 3f0d4
 	ld a, [wAliveExperienceSharers]
