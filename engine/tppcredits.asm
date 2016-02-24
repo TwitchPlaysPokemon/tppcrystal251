@@ -437,6 +437,8 @@ TPPCredits_ThanksSceneInit::
 	; TODO attr map layout
 	xor a
 	ld [rVBK], a
+	ld a, $80
+	ld [hFastMusicUpdate], a
 	ld hl, StripTiles
 	ld de, VBGMap0
 	call DecodeWLE
@@ -639,6 +641,8 @@ IF !DEF(BEESAFREE)
 	pop de
 	dec e
 	jr nz, .exitloop2
+	xor a
+	ld [hFastMusicUpdate], a
 	jp Reset
 ENDC
 
@@ -1478,7 +1482,81 @@ UpdateScroller2::
 	jp .loop
 	
 StripTrick_Thanks:
+	ld b, 0
+	ld de, 55
+.loop1
 	; TODO
+	ld hl, StripBounds
+	add hl, de
+	ld a, [hl]
+	ld c, a
+	sub 80 ; middle
+	jr nc, .skipauc1
+	cp 0 - 80
+	jr z, .skipauc1
+.auc1
+	add c
+	jr nc, .auc1
+.skipauc1
+	ld c, a
+.skip01
+	; LYC polling won't work if the interrupts are disabled
+	ld a, [rLY]
+	cp b
+	jr nz, .skip01
+	ld a, c
+	ld [rSCX], a
+	ld a, e
+	sub b
+	ld [rSCY], a
+	dec e
+	inc b
+	ld a, b
+	cp 56
+	jr c, .loop1
+.wait56
+	ld a, [rLY]
+	cp b
+	jr nz, .wait56
+	xor a
+	ld [rSCX], a
+	ld [rSCY], a
+	callba _UpdateSound
+	ld a, [rLY]
+	ld b, 88
+	ld de, 0
+	cp b
+	jr c, .loop2
+	ld b, a
+.loop2
+	; TODO
+	ld hl, StripBounds
+	add hl, de
+	ld a, [hl]
+	ld c, a
+	sub 80 ; middle
+	jr nc, .skipauc2
+	cp 0 - 80
+	jr z, .skipauc2
+.auc2
+	add c
+	jr nc, .auc2
+.skipauc2
+	ld c, a
+.skip02
+	ld a, [rLY]
+	cp b
+	jr nz, .skip02
+	ld a, c
+	ld [rSCX], a
+	ld a, e
+	sub b
+	ld [rSCY], a
+	inc e
+	inc b
+	ld a, b
+	cp 144
+	jr c, .loop2
 	ret
 	
 TC_DrawGraphic:
