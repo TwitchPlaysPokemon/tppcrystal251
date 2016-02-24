@@ -374,7 +374,7 @@ Military_SelectPokemon:
 	
 	ld a, BEESAFREE_SND_ASKMILITARY
 .loop
-	rst LUASerial
+	call LUASerial_AnimateSprites
 	ld a, [wMilitaryAndAIBattleAction]
 	and $f
 	cp 15
@@ -529,3 +529,14 @@ MilItemsWithNoSpecificTarget:
 	db X_SPEED ; Use
 	db -1
 
+LUASerial_AnimateSprites:
+	ld [hLSB], a
+	ld a, BEESAFREE_LSC_TRANSFERRING
+	ld [hLSC], a
+.loop
+	callba Function8cf62
+	ld a, [hLSC]
+	and a ; BEESAFREE_LSC_COMPLETED
+	jr nz, .loop
+	ld a, [hLSB]
+	ret

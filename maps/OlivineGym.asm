@@ -163,7 +163,7 @@ JasmineRematchBeatenText:
 
 
 JasmineAfterRematchText:
-	text "…You're better"
+	text "<...>You're better"
 	line "than me."
 
 	para "This is hard to"
