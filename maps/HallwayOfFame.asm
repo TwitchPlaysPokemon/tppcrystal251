@@ -307,47 +307,45 @@ AzureBeforeBattleText:
 	text "Oh! <PLAY_G>!"
 	line "You're OK!"
 	
-	para "I always believed"
-	line "you escaped from"
-	cont "the SS ANNE!"
+	para "I'm so relieved"
+	line "that you escaped"
+	cont "from the SS ANNE!"
 	
-	para "I just knew you"
-	line "were strong enough"
-	cont "to survive!"
+	para "I knew you were"
+	line "strong enough to"
+	cont "survive!"
 
-	para "Well, I have taken"
-	line "good care of my"
-	cont "#MON."
+	para "I kept on training"
+	line "and taking care"
+	cont "of my #MON."
 	
-	para "And now, here I"
-	line "am."
+	para "And now<...>"
+	
+	para "Here I am!"
 	
 	para "I have risen up"
 	line "over those who"
 	cont "called themselves"
-	cont "the ELITE FOUR."
+	cont "the ELITE FOUR!"
 	
 	para "I'm the new"
 	line "CHAMPION!"
+	
+	para "<...>"
 
 	para "<PLAY_G>!"
-	line "I knew it would"
-	cont "come to this"
-	cont "one day."
 	
 	para "Do you know what"
-	line "this means,"
-	cont "<PLAY_G>?"
+	line "this means?"
 
 	para "It means we can"
-	line "have that fated"
-	cont "battle we were"
-	cont "always meant"
+	line "finally have"
+	cont "that battle we"
+	cont "were always meant"
 	cont "to have!"
 	
-	para "<PLAY_G>!"
-	line "I challenge you"
-	cont "as the #MON"
+	para "I challenge you"
+	line "as the #MON"
 	cont "CHAMPION!"
 	done
 
@@ -431,8 +429,8 @@ WinVsChampRustText:
 	done
 
 AzurePostFightText:
-	text "I guess I must"
-	line "concede."
+	text "<...>I guess I must"
+	line "concede<...>"
 	
 	para "You are a better"
 	line "trainer than I am."
