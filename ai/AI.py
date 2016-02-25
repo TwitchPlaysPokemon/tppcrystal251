@@ -364,7 +364,7 @@ class AI(object):
             damage /= 2
 
         #Static Damage
-        if (move_used['effect'] == 'leveldamage'):
+        if move_used['effect'] in ('psywave', 'leveldamage'):
             damage = self.MonData[attacker]['level']
         elif move_used['name'] == 'dragonrage':
             damage = 40
@@ -391,6 +391,7 @@ class AI(object):
             curled = False
         if Debug_Code == 1 and attacker < 6:
             print('Damage before accuracy and after special cases '+str(damage))
+            
         #Accuracy checks
         totalacc = 1
         accmodifier = 1
@@ -584,7 +585,7 @@ class AI(object):
             print(self.MonData[mycurrent]['moves'][moveused]['name'])
         healing = False
         if self.MonData[mycurrent]['moves'][moveused]['curpp'] > 0:
-            if self.MonData[mycurrent]['moves'][moveused]['effect'] in ('normalhit', 'priorityhit', 'leveldamage', 'sleeptalk', 'metronome', 'bind', 'rollout', 'falseswipe', 'rampage', 'rapidspin', 'destinybond', 'hiddenpower', 'rage', 'return', 'superfang', 'triattack', 'pursuit', 'twister', 'thief', 'reversal', 'dreameater', 'extremespeed', 'furycutter', 'explosion' 'jumpkick', 'present', 'ohko', 'thunder', 'metalclaw', 'earthquake', 'hyperbeam', 'solarbeam', 'magnitude', 'fly', 'multihit', 'gust' 'doublehit', 'poisonhit', 'freezehit', 'skyattack', 'parlyzehit', 'payday', 'stomp', 'flinchhit', 'burnhit', 'recoilhit', 'twinneedle', 'spdefdownhit', 'confusehit', 'speeddownhit', 'attackdownhit', 'leechhit', 'alwayshit', 'accuracydownhit', 'steelwing', 'flamewheel', 'sacredfire', 'defensedownhit', 'ancientpower'):
+            if self.MonData[mycurrent]['moves'][moveused]['effect'] in ('normalhit', 'priorityhit', 'leveldamage', 'sleeptalk', 'metronome', 'bind', 'rollout', 'falseswipe', 'rampage', 'rapidspin', 'destinybond', 'hiddenpower', 'rage', 'return', 'superfang', 'triattack', 'pursuit', 'twister', 'thief', 'reversal', 'dreameater', 'extremespeed', 'furycutter', 'explosion' 'jumpkick', 'present', 'ohko', 'thunder', 'metalclaw', 'earthquake', 'hyperbeam', 'solarbeam', 'magnitude', 'fly', 'multihit', 'gust' 'doublehit', 'poisonhit', 'freezehit', 'skyattack', 'parlyzehit', 'payday', 'stomp', 'flinchhit', 'burnhit', 'recoilhit', 'twinneedle', 'spdefdownhit', 'confusehit', 'speeddownhit', 'attackdownhit', 'leechhit', 'psywave', 'alwayshit', 'accuracydownhit', 'steelwing', 'flamewheel', 'sacredfire', 'defensedownhit', 'ancientpower'):
                 self.DamageDealt(mycurrent, traincurrent, moveused)
             else:
                 if Debug_Code == 1:
