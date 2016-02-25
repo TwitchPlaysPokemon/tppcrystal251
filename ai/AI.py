@@ -1591,7 +1591,7 @@ class AI(object):
                     if x2 > 0:
                         x1 = math.ceil(self.Damage[mycurrent][traincurrent][self.theaction]['damage'] / x2) * 100
                         if temptext == 'special':
-                            x1 -= 50
+                            x1 -= 66
                         if random.randint(0, 100) > x1:
                             return tempx
             elif self.MonData[mycurrent]['moves'][self.theaction]['effect'] == 'mirrorcoat':
@@ -1605,7 +1605,7 @@ class AI(object):
                     if x2 > 0:
                         x1 = math.ceil(self.Damage[mycurrent][traincurrent][self.theaction]['damage'] / x2) * 100
                         if temptext == 'physical':
-                            x1 -= 50
+                            x1 -= 66
                         if random.randint(0, 100) > x1:
                             return tempx
                 
@@ -1668,7 +1668,7 @@ class AI(object):
             tempy = -1
             self.FinalChance = True
             for tempmove in range(0, len(self.jsonlist['battleState']['enemypokemon']['moves'])):
-                self.Mychoice(traincurrent, mycurrent, tempmove)
+                self.DamageDealt(traincurrent, mycurrent, tempmove)
                 if self.MonData[mycurrent]['moves'][tempmove]['curpp'] > 0:
                     if self.Damage[mycurrent][traincurrent][tempmove]['damage'] > tempx:
                         tempx = self.Damage[mycurrent][traincurrent][tempmove]['damage']
