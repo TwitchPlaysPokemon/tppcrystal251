@@ -36508,13 +36508,13 @@ Function421f5: ; 421f5
 	ld a, [TimeOfDay]
 	cp NITE
 	jp nz, .DontEvolve
-	jr .GoAheadAndEvolve
+	jp .GoAheadAndEvolve
 
 .asm_422a4
 	ld a, [TimeOfDay]
 	cp NITE
 	jp z, .DontEvolve
-	jr .GoAheadAndEvolve
+	jp .GoAheadAndEvolve
 
 .trade
 	ld a, [wLinkMode]
@@ -36559,7 +36559,7 @@ Function421f5: ; 421f5
 	ld b, a
 	ld a, [TempMonItem]
 	cp b
-	jp z, .GoAheadAndEvolve
+	jr z, .GoAheadAndEvolve_item
 	ld a, EVERSTONE
 	cp b
 	jp z, .DontEvolve
@@ -36570,6 +36570,16 @@ Function421f5: ; 421f5
 	call CheckItem
 	pop hl
 	jp nc, .DontEvolve
+	push hl
+	ld hl, NumItems
+	ld a, 1
+	ld [wd10c], a
+	call TossItem
+	pop hl
+	jr .GoAheadAndEvolve
+.GoAheadAndEvolve_item
+	xor a
+	ld [TempMonItem], a
 	jr .GoAheadAndEvolve
 
 .level
@@ -45310,6 +45320,12 @@ Function4db53: ; 4db53 store data on caught mon at HL and HL+1
 	rrca
 	ld b, a ;put time into b
 	ld a, [CurPartyLevel] ;put level into b
+	; Pokemon caught above level 63 will bug out under the default scheme,
+	; making this check now necessary.
+	cp 64
+	jr c, .okay
+	ld a, 63
+.okay
 	or b
 	ld [hli], a ;store time and caught level at HL
 	ld a, [MapGroup] ;load current map
