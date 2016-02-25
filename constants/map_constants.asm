@@ -126,6 +126,7 @@ MAP_N_A   EQU -1
 	mapgroup ECRUTEAK_MART, 4, 6
 	mapgroup ECRUTEAK_GYM, 9, 5
 	mapgroup ECRUTEAK_ITEMFINDER_HOUSE, 4, 4
+	mapgroup ECRUTEAK_ELITE_FLOOR, 13, 11
 	mapgroup ECRUTEAK_CITY, 18, 20
 
 	newgroup ; Blackthron City

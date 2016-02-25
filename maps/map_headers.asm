@@ -160,6 +160,7 @@ MapGroup4:
 	map_header EcruteakMart, $c, 3, ECRUTEAK_CITY, MUSIC_MART, 0, 1, 1
 	map_header EcruteakGym, $17, 3, ECRUTEAK_CITY, MUSIC_GYM, 1, 1, 1
 	map_header EcruteakItemfinderHouse, $10, 3, ECRUTEAK_CITY, MUSIC_ECRUTEAK_CITY, 0, 1, 1
+	map_header EcruteakEliteFloor, $17, 3, ECRUTEAK_CITY, MUSIC_GYM, 1, 1, 1
 	map_header EcruteakCity, $1, 1, ECRUTEAK_CITY, MUSIC_ECRUTEAK_CITY, 0, 0, 1
 
 MapGroup5:
