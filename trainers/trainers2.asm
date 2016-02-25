@@ -537,7 +537,7 @@ RivalRBGroup:
 	db $ff
 	;lvl 100 rematch
 		db "<GREEN>@"
-	db (1 << TRAINERTYPE_MOVES) | (1 << TRAINERTYPE_ITEM) | (1 << TRAINERTYPE_MAXXP) 
+	db (1 << TRAINERTYPE_MOVES) | (1 << TRAINERTYPE_ITEM)  
 
 	db 100, PIDGEOT, SHARP_BEAK
 		db DOUBLE_EDGE
@@ -579,7 +579,7 @@ RivalRBGroup:
 
 	; lvl 100 rematch, Choose Squirtle
 	db "<GREEN>@"
-	db (1 << TRAINERTYPE_MOVES) | (1 << TRAINERTYPE_ITEM) | (1 << TRAINERTYPE_MAXXP) 
+	db (1 << TRAINERTYPE_MOVES) | (1 << TRAINERTYPE_ITEM) 
 
 
 	db 100, PIDGEOT, SHARP_BEAK
@@ -622,7 +622,7 @@ RivalRBGroup:
 
 	; lvl 100 rematch, Choose Bulbasaur
 	db "<GREEN>@"
-	db (1 << TRAINERTYPE_MOVES) | (1 << TRAINERTYPE_ITEM)  | (1 << TRAINERTYPE_MAXXP) 
+	db (1 << TRAINERTYPE_MOVES) | (1 << TRAINERTYPE_ITEM)  
 
 
 	db 100, PIDGEOT, SHARP_BEAK
