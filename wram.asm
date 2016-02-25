@@ -625,7 +625,7 @@ AlreadyFailed:: ; c6fb
 	ds 1
 
 wBattleParticipants:: ds 1
-wc6fd:: ds 1
+wc6fd:: ds 1 ; c6fd
 wc6fe:: ds 1
 wc6ff::
 PlayerScreens:: ; c6ff

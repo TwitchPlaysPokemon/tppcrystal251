@@ -3405,17 +3405,15 @@ EnemySwitch: ; 3d4e1
 	jr nc, Function3d517 ;jump if set mode
 	call Function3d557
 	call Function3d533
-	jr c, .asm_3d4f1
+	jr c, .already_chose_enemy_mon
 	call Function3d599
-.asm_3d4f1
+.already_chose_enemy_mon
 	call Function3d6ca
 	call Function3d74b
 	push af
 	call Function3d7a0
-	call Function3d7b8
-	call Function3d7c7
 	pop af
-	ret c
+	jr c, FinishEnemyMonEntrance
 	xor a
 	ld [wAliveExperienceSharers], a
 	ld [wBattleParticipants], a
@@ -3423,19 +3421,21 @@ EnemySwitch: ; 3d4e1
 	inc a
 	ld [wEnemyIsSwitching], a
 	call Function309d
-	jp Function3e3ad
+	call Function3e3ad
+	jr FinishEnemyMonEntrance
 ; 3d517
 
 Function3d517: ; 3d517
 	call Function3d557 ;reset battle vars
 	call Function3d533
-	jr c, .asm_3d522
+	jr c, .already_chose_enemy_mon
 	call Function3d599
-.asm_3d522
+.already_chose_enemy_mon
 	call Function3d6ca ;load mon to switch to
 	ld a, 1
 	ld [wEnemyIsSwitching], a
 	call Function3d7a0
+FinishEnemyMonEntrance
 	call Function3d7b8
 	jp Function3d7c7
 ; 3d533
@@ -4997,7 +4997,7 @@ Function3df1f: ; 3df1f
 	ret
 ; 3df2c
 
-Function3df2c: ; 3df2c
+ReloadBattleHUDs: ; 3df2c
 	push hl
 	push de
 	push bc
@@ -5501,7 +5501,7 @@ Function3e234: ; 3e234
 	ld a, $1
 	ld [wcfa9], a
 	call Function1c07
-	call Function3df2c
+	call ReloadBattleHUDs
 	call WaitBGMap
 	call Function309d
 	call Function1fbf
@@ -7701,20 +7701,20 @@ Function3ee3b: ; 3ee3b
 	jr z, .asm_3eee2
 
 .asm_3eedd
-	call DoubleExp
+	call BoostedExp
 	ld a, $1
 
 .asm_3eee2
 	ld [StringBuffer2 + 2], a
 	ld a, [wBattleMode]
 	dec a
-	call nz, DoubleExp
+	call nz, BoostedExp
 	push bc
 	ld a, PartyMon1Item - PartyMon1
 	call GetPartyParamLocation
 	ld a, [hl]
 	cp LUCKY_EGG
-	call z, DoubleExp
+	call z, BoostedExp
 	ld a, [$ffb6]
 	ld [StringBuffer2 + 1], a
 	ld a, [$ffb5]
@@ -7999,7 +7999,7 @@ Function3ee3b: ; 3ee3b
 	; ret
 ; 3f106
 
-DoubleExp: ; 3f106
+BoostedExp: ; 3f106
 	push bc
 	ld a, [$ffb5]
 	ld b, a
