@@ -45320,6 +45320,12 @@ Function4db53: ; 4db53 store data on caught mon at HL and HL+1
 	rrca
 	ld b, a ;put time into b
 	ld a, [CurPartyLevel] ;put level into b
+	; Pokemon caught above level 63 will bug out under the default scheme,
+	; making this check now necessary.
+	cp 64
+	jr c, .okay
+	ld a, 63
+.okay
 	or b
 	ld [hli], a ;store time and caught level at HL
 	ld a, [MapGroup] ;load current map

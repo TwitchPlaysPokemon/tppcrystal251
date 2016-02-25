@@ -686,3 +686,8 @@ INCLUDE "maps/HallwayOfFame.asm"
 
 SECTION "HallwayOfFame BlockData", ROMX
 HallwayOfFame_BlockData: INCBIN "maps/HallwayOfFame.blk"
+
+SECTION "EcruteakEliteFloor", ROMX
+INCLUDE "maps/EcruteakEliteFloor.asm"
+SECTION "EcruteakEliteFloor Blockdata", ROMX
+EcruteakEliteFloor_BlockData: INCBIN "maps/EcruteakEliteFloor.blk"

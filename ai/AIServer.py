@@ -47,7 +47,7 @@ def post_slack_errormsg(battle_state, traceback_last):
 
     message = "The AI threw this exception with the posted input: ```{}```" .format(traceback_last)
     arguments = {"token":slack_oauth,
-                "channels":"#aireview", #change this if need be
+                "channels":"#errordump",
                 "content":json.dumps(battle_state), #content is what's inside the snippet
                 "as_user":"true",
                 "username":"@1hlixedbot",

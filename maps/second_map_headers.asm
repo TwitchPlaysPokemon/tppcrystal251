@@ -389,6 +389,7 @@
 	map_header_2 EcruteakMart, ECRUTEAK_MART, $0, NONE ; 0x95cf0
 	map_header_2 EcruteakGym, ECRUTEAK_GYM, $0, NONE ; 0x95cfc
 	map_header_2 EcruteakItemfinderHouse, ECRUTEAK_ITEMFINDER_HOUSE, $0, NONE ; 0x95d08
+	map_header_2 EcruteakEliteFloor, ECRUTEAK_ELITE_FLOOR, $0, NONE
 	map_header_2 BlackthornGym1F, BLACKTHORN_GYM_1F, $0, NONE ; 0x95d14
 	map_header_2 BlackthornGym2F, BLACKTHORN_GYM_2F, $0, NONE ; 0x95d20
 	map_header_2 BlackthornDragonSpeechHouse, BLACKTHORN_DRAGON_SPEECH_HOUSE, $0, NONE ; 0x95d2c

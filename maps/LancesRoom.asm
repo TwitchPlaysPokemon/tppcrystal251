@@ -256,6 +256,8 @@ UnknownText_0x181132: ; 0x181132
 	para "You're now the"
 	line "#MON LEAGUE"
 	cont "CHAMPION!"
+	
+	para "<...>"
 
 	para "<...>Or, you would"
 	line "have been, but you"
