@@ -22,11 +22,11 @@ TN_PrintToD
 	jr z, .print
 	ld de, .nite
 .print
-	hlcoord 11, 9
+	hlcoord 8, 9
 	jp PlaceString
 	
 .caughtat
-	db "Caught at@"
+	db "Met at@"
 	
 .morn
 	db "morning@"
@@ -87,7 +87,10 @@ TN_PrintLV:
 .max
 	hlcoord 1, 13
 	ld de, .str_max
-	jp PlaceString
+	call PlaceString
+	hlcoord 14, 13
+	ld [hl], $35 ; "+"
+	ret
 	
 .metat
 	db "Met at Lv.@"
@@ -99,7 +102,7 @@ TN_PrintLV:
 	db "Met in a trade@"
 
 .str_max
-	db "Met at high level@"
+	db "Met at Lv. 63@"
 
 TN_PrintCharacteristics:
 	ld hl, TempMonDVs
