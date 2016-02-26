@@ -1,4 +1,4 @@
-{"pack": {"balls": [], "items": {"CALCIUM": 1, "FREEZE GUARD": 1, "CHARCOAL": 1, "WATER STONE": 3, "BITTER BERRY": 1, "PROTEIN": 1, "NUGGET": 2, "DRAGON FANG": 1, "BURNT BERRY": 1, "HYPER POTION": 1, "THUNDERSTONE": 5, "MAX ELIXER": 1, "ICE HEAL": 1, "SUN STONE": 1, "ICE BERRY": 1, "RARE CANDY": 2, "MAX REPEL": 1, "BERRY": 1, "MOON STONE": 1}, "tmhm": ["TM01", "TM04", "TM11", "TM12", "TM13", "TM15", "TM16", "TM18", "TM22", "TM23", "TM24", "TM26", "TM28", "TM31", "TM33", "TM34", "TM35", "TM37", "TM39", "TM43", "TM46", "TM47", "TM49", "HM01", "HM02", "HM03", "HM04", "HM05", "HM07"], "key": ["SQUIRTBOTTLE", "OLD ROD", "COIN CASE", "BICYCLE", "GOOD ROD", "BASEMENT KEY", "CARD KEY", "CLEAR BELL", "ITEMFINDER"]}, "battleState": {"enemy type": "TRAINER", "requested action": 3, "history": [], "enemypokemon": {"trapping move": 0, "stats": {"speed": 83, "defense": 113, "attack": 83, "maxhp": 347, "spdef": 115, "spatk": 83}, "stat levels": {"atk": 0, "sdef": 0, "def": 0, "acc": 0, "satk": 0, "eva": 0, "spd": 0}, "screens": [], "last used": "None", "dvs": {"atk": 13, "spc": 13, "def": 12, "hp": 11, "spd": 13}, "rage counter": 0, "future sight": {"damage": 0, "count": 0}, "happiness": 70, "charging": 0, "status": "NONE", "type": "PSYCHIC", "item": "NO ITEM", "species": "WOBBUFFET", "party idx": 0, "hp": 347, "gender": "M", "level": 63, "moves": [{"name": "COUNTER", "ppUp": 0, "curpp": 20, "maxpp": 20}, {"name": "MIRROR COAT", "ppUp": 0, "curpp": 20, "maxpp": 20}, {"name": "DESTINY BOND", "ppUp": 0, "curpp": 5, "maxpp": 5}, {"name": "ENCORE", "ppUp": 0, "curpp": 5, "maxpp": 5}], "subStatus": {"raging": 0}, "wrap count": 0, "turns": 0}, "weather": ["Clear"], "trainer items": {"item2": "GUARD SPEC.", "item1": "FULL RESTORE"}, "playerpokemon": {"trapping move": 0, "stats": {"speed": 302, "defense": 189, "attack": 256, "maxhp": 293, "spdef": 185, "spatk": 181}, "stat levels": {"atk": 0, "sdef": 0, "def": 0, "acc": 0, "satk": 0, "eva": 0, "spd": 0}, "screens": [], "last used": "None", "dvs": {"atk": 3, "spc": 8, "def": 7, "hp": 12, "spd": 4}, "rage counter": 0, "future sight": {"damage": 0, "count": 0}, "happiness": 255, "charging": 0, "status": "NONE", "type": "ROCK / FLYING", "item": "SURF MAIL", "species": "AERODACTYL", "party idx": 0, "hp": 235, "gender": "M", "level": 83, "moves": [{"name": "IRON HEAD", "ppUp": 0, "curpp": 2, "maxpp": 15}, {"name": "ROCK SLIDE", "ppUp": 0, "curpp": 9, "maxpp": 10}, {"name": "EARTHQUAKE", "ppUp": 0, "curpp": 3, "maxpp": 10}, {"name": "SKY ATTACK", "ppUp": 0, "curpp": 3, "maxpp": 5}], "subStatus": {"raging": 0}, "wrap count": 0, "turns": 0}, "trainer class": "WILL"}, "bug contest": [], "playerParty": {"length": 6, "party": [{"nickname": "JHH", "item": "SURF MAIL", "species": "AERODACTYL", "hp": 235, "statexp": {"atk": 47459, "spc": 44175, "def": 47314, "hp": 56144, "spd": 43229}, "gender": "M", "pokerus": {"strain": "None", "count": "Uninfected"}, "level": 83, "stats": {"speed": 269, "defense": 168, "attack": 228, "maxhp": 293, "spdef": 185, "spatk": 161}, "happiness": 255, "dvs": {"atk": 3, "spc": 8, "def": 7, "hp": 12, "spd": 4}, "id": 58192, "exp": 729426, "status": "NONE", "moves": [{"name": "IRON HEAD", "ppUp": 0, "curpp": 2, "maxpp": 15}, {"name": "ROCK SLIDE", "ppUp": 0, "curpp": 9, "maxpp": 10}, {"name": "EARTHQUAKE", "ppUp": 0, "curpp": 3, "maxpp": 10}, {"name": "SKY ATTACK", "ppUp": 0, "curpp": 3, "maxpp": 5}]}, {"nickname": "FOX,/!!!)u", "item": "AWAKENING", "species": "JOLTEON", "hp": 231, "statexp": {"atk": 23157, "spc": 23243, "def": 25186, "hp": 36379, "spd": 23167}, "gender": "M", "pokerus": {"strain": "None", "count": "Uninfected"}, "level": 79, "stats": {"speed": 254, "defense": 149, "attack": 171, "maxhp": 231, "spdef": 197, "spatk": 221}, "happiness": 255, "dvs": {"atk": 12, "spc": 8, "def": 2, "hp": 2, "spd": 9}, "id": 58192, "exp": 501177, "status": "NONE", "moves": [{"name": "BITE", "ppUp": 0, "curpp": 25, "maxpp": 25}, {"name": "THUNDER WAVE", "ppUp": 0, "curpp": 20, "maxpp": 20}, {"name": "THUNDER", "ppUp": 0, "curpp": 10, "maxpp": 10}, {"name": "THUNDERBOLT", "ppUp": 0, "curpp": 15, "maxpp": 15}]}, {"nickname": "---s\u00d7j\u00d7KKK", "item": "NUGGET", "species": "KINGDRA", "hp": 243, "statexp": {"atk": 26464, "spc": 24235, "def": 30533, "hp": 30151, "spd": 23235}, "gender": "F", "pokerus": {"strain": "None", "count": "Uninfected"}, "level": 76, "stats": {"speed": 185, "defense": 183, "attack": 185, "maxhp": 243, "spdef": 192, "spatk": 192}, "happiness": 255, "dvs": {"atk": 4, "spc": 9, "def": 1, "hp": 7, "spd": 15}, "id": 58192, "exp": 441853, "status": "NONE", "moves": [{"name": "HYDRO PUMP", "ppUp": 0, "curpp": 5, "maxpp": 5}, {"name": "WATERFALL", "ppUp": 0, "curpp": 15, "maxpp": 15}, {"name": "ICE BEAM", "ppUp": 0, "curpp": 10, "maxpp": 10}, {"name": "OUTRAGE", "ppUp": 0, "curpp": 10, "maxpp": 10}]}, {"nickname": "!L", "item": "GOLD LEAF", "species": "MILTANK", "hp": 261, "statexp": {"atk": 34009, "spc": 33727, "def": 33467, "hp": 41085, "spd": 32389}, "gender": "F", "pokerus": {"strain": "None", "count": "Uninfected"}, "level": 74, "stats": {"speed": 195, "defense": 208, "attack": 174, "maxhp": 261, "spdef": 144, "spatk": 100}, "happiness": 255, "dvs": {"atk": 12, "spc": 2, "def": 10, "hp": 0, "spd": 6}, "id": 58192, "exp": 520138, "status": "NONE", "moves": [{"name": "SURF", "ppUp": 0, "curpp": 15, "maxpp": 15}, {"name": "STRENGTH", "ppUp": 0, "curpp": 15, "maxpp": 15}, {"name": "MILK DRINK", "ppUp": 0, "curpp": 10, "maxpp": 10}, {"name": "DOUBLE EDGE", "ppUp": 0, "curpp": 15, "maxpp": 15}]}, {"nickname": "KENYA", "item": "FLOWER MAIL", "species": "NOCTOWL", "hp": 329, "statexp": {"atk": 27810, "spc": 26798, "def": 27608, "hp": 29544, "spd": 24652}, "gender": "F", "pokerus": {"strain": "None", "count": "Uninfected"}, "level": 86, "stats": {"speed": 179, "defense": 148, "attack": 169, "maxhp": 329, "spdef": 229, "spatk": 212}, "happiness": 255, "dvs": {"atk": 0, "spc": 14, "def": 13, "hp": 4, "spd": 12}, "id": 1001, "exp": 646795, "status": "NONE", "moves": [{"name": "HEAT WAVE", "ppUp": 0, "curpp": 10, "maxpp": 10}, {"name": "AIR SLASH", "ppUp": 0, "curpp": 15, "maxpp": 15}, {"name": "WING ATTACK", "ppUp": 0, "curpp": 34, "maxpp": 35}, {"name": "HYPER BEAM", "ppUp": 0, "curpp": 4, "maxpp": 5}]}, {"nickname": "ul:::ut\u00d7", "item": "MASTER BALL", "species": "VENUSAUR", "hp": 327, "statexp": {"atk": 62357, "spc": 58514, "def": 65535, "hp": 64599, "spd": 57393}, "gender": "M", "pokerus": {"strain": "None", "count": "Uninfected"}, "level": 91, "stats": {"speed": 207, "defense": 240, "attack": 227, "maxhp": 327, "spdef": 254, "spatk": 254}, "happiness": 255, "dvs": {"atk": 9, "spc": 7, "def": 15, "hp": 13, "spd": 2}, "id": 58192, "exp": 797843, "status": "NONE", "moves": [{"name": "FLASH", "ppUp": 0, "curpp": 20, "maxpp": 20}, {"name": "CUT", "ppUp": 0, "curpp": 30, "maxpp": 30}, {"name": "FURY CUTTER", "ppUp": 0, "curpp": 20, "maxpp": 20}, {"name": "PETAL DANCE", "ppUp": 0, "curpp": 10, "maxpp": 10}]}], "mons": ["AERODACTYL", "JOLTEON", "KINGDRA", "MILTANK", "NOCTOWL", "VENUSAUR"]}, "enemyParty": {"length": 5, "party": [{"nickname": "WOBBUFFET", "item": "NO ITEM", "species": "WOBBUFFET", "hp": 347, "statexp": {"atk": 17200, "spc": 17200, "def": 17200, "hp": 17200, "spd": 17200}, "gender": "M", "pokerus": {"strain": "None", "count": "Uninfected"}, "level": 63, "stats": {"speed": 83, "defense": 113, "attack": 83, "maxhp": 347, "spdef": 115, "spatk": 83}, "happiness": 255, "dvs": {"atk": 13, "spc": 13, "def": 12, "hp": 11, "spd": 13}, "id": 58192, "exp": 250047, "status": "NONE", "moves": [{"name": "COUNTER", "ppUp": 0, "curpp": 20, "maxpp": 20}, {"name": "MIRROR COAT", "ppUp": 0, "curpp": 20, "maxpp": 20}, {"name": "DESTINY BOND", "ppUp": 0, "curpp": 5, "maxpp": 5}, {"name": "ENCORE", "ppUp": 0, "curpp": 5, "maxpp": 5}]}, {"nickname": "JYNX", "item": "NO ITEM", "species": "JYNX", "hp": 192, "statexp": {"atk": 17600, "spc": 17600, "def": 17600, "hp": 17600, "spd": 17600}, "gender": "F", "pokerus": {"strain": "None", "count": "Uninfected"}, "level": 64, "stats": {"speed": 164, "defense": 86, "attack": 106, "maxhp": 192, "spdef": 164, "spatk": 189}, "happiness": 255, "dvs": {"atk": 13, "spc": 13, "def": 12, "hp": 11, "spd": 13}, "id": 58192, "exp": 262144, "status": "NONE", "moves": [{"name": "ZEN HEADBUTT", "ppUp": 0, "curpp": 15, "maxpp": 15}, {"name": "ICE PUNCH", "ppUp": 0, "curpp": 15, "maxpp": 15}, {"name": "MEDITATE", "ppUp": 0, "curpp": 40, "maxpp": 40}, {"name": "LOVELY KISS", "ppUp": 0, "curpp": 10, "maxpp": 10}]}, {"nickname": "EXEGGUTOR", "item": "NO ITEM", "species": "EXEGGUTOR", "hp": 234, "statexp": {"atk": 18000, "spc": 18000, "def": 18000, "hp": 18000, "spd": 18000}, "gender": "M", "pokerus": {"strain": "None", "count": "Uninfected"}, "level": 65, "stats": {"speed": 114, "defense": 152, "attack": 166, "maxhp": 234, "spdef": 127, "spatk": 205}, "happiness": 255, "dvs": {"atk": 13, "spc": 13, "def": 12, "hp": 11, "spd": 13}, "id": 58192, "exp": 343281, "status": "NONE", "moves": [{"name": "GIGA DRAIN", "ppUp": 0, "curpp": 10, "maxpp": 10}, {"name": "PSYWAVE", "ppUp": 0, "curpp": 15, "maxpp": 15}, {"name": "LEECH SEED", "ppUp": 0, "curpp": 10, "maxpp": 10}, {"name": "REFLECT", "ppUp": 0, "curpp": 20, "maxpp": 20}]}, {"nickname": "SLOWBRO", "item": "NO ITEM", "species": "SLOWBRO", "hp": 238, "statexp": {"atk": 18400, "spc": 18400, "def": 18400, "hp": 18400, "spd": 18400}, "gender": "M", "pokerus": {"strain": "None", "count": "Uninfected"}, "level": 66, "stats": {"speed": 84, "defense": 188, "attack": 143, "maxhp": 238, "spdef": 150, "spatk": 176}, "happiness": 255, "dvs": {"atk": 13, "spc": 13, "def": 12, "hp": 11, "spd": 13}, "id": 58192, "exp": 287496, "status": "NONE", "moves": [{"name": "WATERFALL", "ppUp": 0, "curpp": 15, "maxpp": 15}, {"name": "ZEN HEADBUTT", "ppUp": 0, "curpp": 15, "maxpp": 15}, {"name": "CURSE", "ppUp": 0, "curpp": 10, "maxpp": 10}, {"name": "DISABLE", "ppUp": 0, "curpp": 20, "maxpp": 20}]}, {"nickname": "XATU", "item": "NO ITEM", "species": "XATU", "hp": 201, "statexp": {"atk": 18800, "spc": 18800, "def": 18800, "hp": 18800, "spd": 18800}, "gender": "M", "pokerus": {"strain": "None", "count": "Uninfected"}, "level": 67, "stats": {"speed": 172, "defense": 151, "attack": 152, "maxhp": 201, "spdef": 152, "spatk": 179}, "happiness": 255, "dvs": {"atk": 13, "spc": 13, "def": 12, "hp": 11, "spd": 13}, "id": 58192, "exp": 300763, "status": "NONE", "moves": [{"name": "PSYCHIC", "ppUp": 0, "curpp": 10, "maxpp": 10}, {"name": "DRILL PECK", "ppUp": 0, "curpp": 20, "maxpp": 20}, {"name": "HEAT WAVE", "ppUp": 0, "curpp": 10, "maxpp": 10}, {"name": "HAZE", "ppUp": 0, "curpp": 30, "maxpp": 30}]}], "mons": ["WOBBUFFET", "JYNX", "EXEGGUTOR", "SLOWBRO", "XATU"]}}# TPP Crystal 251 AI v1.2 by Beesafree
+# TPP Crystal 251 AI v1.2 by Beesafree
 
 from __future__ import division
 import math
@@ -1662,34 +1662,38 @@ class AI(object):
                     if self.MonData[mycurrent]['moves'][tempmove]['curpp'] > 0:
                         if self.Damage[mycurrent][traincurrent][tempmove]['damage'] > self.jsonlist['battleState']['playerpokemon']['hp']:
                             templist.append(tempmove)
-                temp1 = -1
-                tempx = self._statsmultipliers[self.MonData[mycurrent]['boosts']['spd']+6]/100
-                tempy = self._statsmultipliers[self.MonData[traincurrent]['boosts']['spd']+6]/100
-                if self.MonData[mycurrent]['status'] == 'par':
-                    tempx = tempx * 0.25
-                if self.MonData[traincurrent]['status'] == 'par':
-                    tempy = tempy * 0.25
-                for tempmove in templist:
-                    if self.MonData[mycurrent]['moves'][tempmove]['effect'] in ('priorityhit','extremespeed') and (self.MonData[mycurrent]['stats']['speed'] * tempx < self.MonData[traincurrent]['stats']['speed'] * tempy):
-                        tempy = tempmove
-                        temp1 = 20
-                if temp1 == -1:
-                    #find most accurate
+                if len(templist) > 0:
+                    temp1 = -1
+                    tempx = self._statsmultipliers[self.MonData[mycurrent]['boosts']['spd']+6]/100
+                    tempy = self._statsmultipliers[self.MonData[traincurrent]['boosts']['spd']+6]/100
+                    if self.MonData[mycurrent]['status'] == 'par':
+                        tempx = tempx * 0.25
+                    if self.MonData[traincurrent]['status'] == 'par':
+                        tempy = tempy * 0.25
                     for tempmove in templist:
-                        if self.MonData[mycurrent]['moves'][tempmove]['acc'] > temp1:
-                            temp1 = self.MonData[mycurrent]['moves'][tempmove]['acc']
-                    #are there ties for most accurate?
-                    for tempmove in templist:
-                        if self.MonData[mycurrent]['moves'][tempmove]['acc'] == temp1:
-                            templist2.append(tempmove)
-                    temp1 = 0
-                    #find the most accurate move with highest pp (prioritizing accuracy)
-                    for tempmove in templist2:
-                        if self.MonData[mycurrent]['moves'][tempmove]['curpp'] > temp1:
-                            temp1 = self.MonData[mycurrent]['moves'][tempmove]['curpp']
-                            tempy = tempmove
-                    return tempy
-                          
+                        if self.MonData[mycurrent]['moves'][tempmove]['effect'] in ('priorityhit','extremespeed') and (self.MonData[mycurrent]['stats']['speed'] * tempx < self.MonData[traincurrent]['stats']['speed'] * tempy):
+                            x1 = tempmove
+                            temp1 = 20
+                    if temp1 == 20:
+                        return x1
+                    else:
+                        x1 = -1
+                        #find most accurate
+                        for tempmove in templist:
+                            if self.MonData[mycurrent]['moves'][tempmove]['acc'] > temp1:
+                                temp1 = self.MonData[mycurrent]['moves'][tempmove]['acc']
+                        #are there ties for most accurate?
+                        for tempmove in templist:
+                            if self.MonData[mycurrent]['moves'][tempmove]['acc'] == temp1:
+                                templist2.append(tempmove)
+                        temp1 = 0
+                        #find the most accurate move with highest pp (prioritizing accuracy)
+                        for tempmove in templist2:
+                            if self.MonData[mycurrent]['moves'][tempmove]['curpp'] > temp1:
+                                temp1 = self.MonData[mycurrent]['moves'][tempmove]['curpp']
+                                x1 = tempmove
+                        return x1
+                    
         #If i'm about to die, fire off an attack 
         self.TrainerDamage(traincurrent, mycurrent)
         if Debug_Code > 0:
@@ -1851,7 +1855,7 @@ class AI(object):
                         break
                     self.theaction = random.randint(4, self.myparty + 6)
            
-        temptext = self._actualAction[str(int(self.theaction))]
+        temptext = self._actualAction[str(self.theaction)]
         return temptext
 
 def main():
