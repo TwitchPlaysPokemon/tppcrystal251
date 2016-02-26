@@ -13,6 +13,9 @@ MewIslandSign_Text: ; 0x1aaa6f
 	line "illegible."
 	done
 
+Item_MewIslandEntrance:
+	db SACRED_ASH, 1
+
 MewIslandEntrance_MapEventHeader: 
 	; filler
 	db 0, 0
@@ -30,5 +33,6 @@ MewIslandEntrance_MapEventHeader:
 	signpost $F, $5, $0, MewIslandSign
 
 	; people-events
-	db 0
+	db 1
+	person_event SPRITE_POKE_BALL, 23, 19, $1, 0, 0, -1, -1, 0, 1, 0, Item_MewIslandEntrance, EVENT_MEW_ISLAND_OUTSIDE_ITEM
 	
