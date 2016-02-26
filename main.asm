@@ -45273,7 +45273,6 @@ Function4daa3: ; 4daa3
 	ld bc, PKMN_NAME_LENGTH
 	call CopyBytes
 	call CloseSRAM
-.asm_4db08
 	ld a, $1
 	call GetSRAMBank ;set to boxbank
 	ld a, [sBoxMon1Level] ;get mon level
@@ -45293,6 +45292,13 @@ Function4daa3: ; 4daa3
 	ld [wdf9c], a ;load zero into species var
 	ld a, $1
 	ld [ScriptVar], a ;load 1 into scriptvar
+	ret
+
+.asm_4db08
+	xor a
+	ld [wdf9c], a ;load zero into species var
+	ld a, $3
+	ld [ScriptVar], a ;load 3 into scriptvar
 	ret
 ; 4db35
 

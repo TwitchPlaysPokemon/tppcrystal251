@@ -316,6 +316,18 @@ DoYouWantToKeepTheBug:
 	line "keep the caught"
 	cont "#MON?"
 	done
+
+YouWantTheBugButPCIsFull:
+	text "Both your party"
+	line "and BOX are full,"
+	cont "we can't give you"
+	cont "the #MON."
+
+	para "We have to release"
+	line "it back into the"
+	cont "PARK."
+	done
+
 ; 0x1b070d
 
 UnknownText_0x1b070d: ; 0x1b070d
