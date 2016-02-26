@@ -3413,32 +3413,33 @@ BattleCommand12: ; 35250
 
 BattleCommanda2: ; 3527b
 ; ragedamage
-
-	ld a, [CurDamage]
-	ld h, a
-	ld b, a
-	ld a, [CurDamage + 1]
-	ld l, a
-	ld c, a
-	ld a, [hBattleTurn]
-	and a
-	ld a, [wc72b]
-	jr z, .asm_35290
-	ld a, [wc72c]
-.asm_35290
-	and a
-	jr z, .asm_3529a
-	dec a
-	add hl, bc
-	jr nc, .asm_35290
-	ld hl, $ffff
-.asm_3529a
-	ld a, h
-	ld [CurDamage], a
-	ld a, l
-	ld [CurDamage + 1], a
 	ret
-; 352a3
+
+	; ld a, [CurDamage]
+	; ld h, a
+	; ld b, a
+	; ld a, [CurDamage + 1]
+	; ld l, a
+	; ld c, a
+	; ld a, [hBattleTurn]
+	; and a
+	; ld a, [wc72b]
+	; jr z, .asm_35290
+	; ld a, [wc72c]
+; .asm_35290
+	; and a
+	; jr z, .asm_3529a
+	; dec a
+	; add hl, bc
+	; jr nc, .asm_35290
+	; ld hl, $ffff
+; .asm_3529a
+	; ld a, h
+	; ld [CurDamage], a
+	; ld a, l
+	; ld [CurDamage + 1], a
+	; ret
+; ; 352a3
 
 
 EndMoveEffect: ; 352a3
@@ -3875,6 +3876,7 @@ EnemyAttackDamage: ; 353f6
 
 BattleCommanda1: ; 35461
 ; beatup
+	ret
 
 ;	call ResetDamage
 ;	ld a, [hBattleTurn]
@@ -3890,13 +3892,13 @@ BattleCommanda1: ; 35461
 ;	ld [DefaultFlypoint], a
 ;	ld [wc72d], a
 ;	jr .asm_3548d
-.asm_35482
+; .asm_35482
 ;	ld a, [PlayerRolloutCount]
 ;	ld b, a
 ;	ld a, [PartyCount]
 ;	sub b
 ;	ld [DefaultFlypoint], a
-.asm_3548d
+; .asm_3548d
 ;	ld a, [DefaultFlypoint]
 ;	ld hl, PartyMonNicknames
 ;	call GetNick
@@ -3913,7 +3915,7 @@ BattleCommanda1: ; 35461
 ;	jr z, .asm_354b2
 ;	ld a, $20
 ;	call Function355bd
-.asm_354b2
+; .asm_354b2
 ;	ld a, [hl]
 ;	and a
 ;	jp nz, Function355b0
@@ -3945,7 +3947,7 @@ BattleCommanda1: ; 35461
 ;	ld d, a
 ;	ret
 
-.asm_354ef
+; .asm_354ef
 ;	ld a, [EnemySubStatus3]
 ;	bit SUBSTATUS_IN_LOOP, a
 ;	jr nz, .asm_35502
@@ -3956,13 +3958,13 @@ BattleCommanda1: ; 35461
 ;	ld [wc72d], a
 ;	jr .asm_3550d
 
-.asm_35502
+; .asm_35502
 ;	ld a, [EnemyRolloutCount]
 ;	ld b, a
 ;	ld a, [OTPartyCount]
 ;	sub b
 ;	ld [DefaultFlypoint], a
-.asm_3550d
+; .asm_3550d
 ;	ld a, [IsInBattle]
 ;	dec a
 ;	jr z, .asm_3556b
@@ -3985,14 +3987,14 @@ BattleCommanda1: ; 35461
 ;	call GetPokemonName
 ;	jr .asm_35544
 
-.asm_35532
+; .asm_35532
 ;	ld a, [DefaultFlypoint]
 ;	ld hl, OTPartyMonNicknames
 ;	ld bc, NAME_LENGTH
 ;	call AddNTimes
 ;	ld de, StringBuffer1
 ;	call CopyBytes
-.asm_35544
+; .asm_35544
 ;	ld a, $22
 ;	call Function355bd
 ;	ld a, [hli]
@@ -4007,7 +4009,7 @@ BattleCommanda1: ; 35461
 
 ;	ld a, $20
 ;	call Function355bd
-.asm_35560
+; .asm_35560
 ;	ld a, [hl]
 ;	and a
 ;	jr nz, Function355b0
@@ -4016,14 +4018,14 @@ BattleCommanda1: ; 35461
 ;	ld [wc72d], a
 ;	jr .asm_3557d
 
-.asm_3556b
+; .asm_3556b
 ;	ld a, [EnemyMonSpecies]
 ;	ld [wd265], a
 ;	call GetPokemonName
 ;	ld hl, BeatUpAttackText
 ;	call StdBattleTextBox
 ;	jp EnemyAttackDamage
-.asm_3557d
+; .asm_3557d
 ;	ld hl, BeatUpAttackText
 ;	call StdBattleTextBox
 ;	ld a, [BattleMonSpecies]
@@ -7371,7 +7373,7 @@ BattleCommand3e: ; 3671a
 .asm_36725
 	ld a, BATTLE_VARS_SUBSTATUS3
 	call GetBattleVarAddr
-	bit 1, [hl]
+	bit SUBSTATUS_RAMPAGE, [hl]
 	ret z
 	; Check remaining turns
 	ld a, [de]
@@ -7387,6 +7389,14 @@ BattleCommand3e: ; 3671a
 	call SwitchTurn
 	pop af
 	jr nz, .already_rampaging ; 3673f $b
+	ld a, [hBattleTurn]
+	and a
+	ld a, [BattleMonItem]
+	jr z, .got_item
+	ld a, [EnemyMonItem]
+.got_item
+	cp CONFUSEGUARD
+	jr z, .already_rampaging
 	; 2-3 turns of confusion
 	set SUBSTATUS_CONFUSED, [hl]
 	call BattleRandom
