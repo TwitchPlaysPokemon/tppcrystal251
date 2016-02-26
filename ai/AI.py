@@ -1406,7 +1406,7 @@ class AI(object):
                                     item_name = self.MonData['myitems'][x2]
                                     if item_name in healing_items:
                                         #and healing would allow you to continue fighting (and not draw out the inevitable)
-                                        if self.Damage[traincurrent][mycurrent][self.enemynumber]['damage'] < min((self.jsonlist['battleState']['enemypokemon']['stats']['maxhp'] - self.jsonlist['battleState']['enemypokemon']['stats']['hp']), healing_items[item_name]):
+                                        if self.Damage[traincurrent][mycurrent][self.enemynumber]['damage'] < min((self.jsonlist['battleState']['enemypokemon']['stats']['maxhp'] - self.jsonlist['battleState']['enemypokemon']['hp']), healing_items[item_name]):
                                             return x2 + 9
         return 20
 
