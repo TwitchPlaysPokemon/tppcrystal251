@@ -96,15 +96,15 @@ AfterLanceFight:
 	waitsfx
 	loadvar wMapMusic, MUSIC_INDIGO_PLATEAU
 	special RestartMapMusic
-	;loadfont
-	;writetext UnknownText_0x18137b
-	;special HealParty
-	;playsound SFX_POTION
-	;waitsfx
-	;buttonsound
-	;writetext LanceAfterHeal
-	;waitbutton
-	;closetext
+	loadfont
+	writetext UnknownText_0x18137b
+	special HealParty
+	playsound SFX_POTION
+	waitsfx
+	buttonsound
+	writetext LanceAfterHeal
+	waitbutton
+	closetext
 	applymovement $0, MovementData_0x180f53
 	warpcheck
 	end
