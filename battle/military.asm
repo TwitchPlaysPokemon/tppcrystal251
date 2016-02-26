@@ -293,7 +293,7 @@ Military:
 	ld a, $1
 	ld [wcfa9], a
 	call Function1c07
-	callba Function3df2c
+	callba ReloadBattleHUDs
 	call WaitBGMap
 	call Function309d
 	call Function1fbf

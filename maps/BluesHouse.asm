@@ -69,12 +69,14 @@ UnknownScript_0x19b12a: ; 0x19b12a
 ; 0x19b130
 
 UnknownText_0x19b130: ; 0x19b130
-	text "DAISY: Hi! My kid"
-	line "brother is the GYM"
-
-	para "LEADER in VIRIDIAN"
-	line "CITY."
-
+	text "DAISY: Hello! My"
+	line "family just moved"
+	cont "into town!"
+	
+	para "My kid brother"
+	line "is the GYM LEADER"
+	cont "in VIRIDIAN CITY."
+	
 	para "But he goes out"
 	line "of town so often,"
 

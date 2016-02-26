@@ -757,23 +757,23 @@ BattleAnim_Doubleslap_branch_c961b: ; c961b
 ; c962b
 
 ;BattleAnim_CometPunch: ; c962b
-	anim_1gfx ANIM_GFX_HIT
-	anim_jumpif $1, BattleAnim_CometPunch_branch_c9641
-	anim_sound $1, SFX_COMET_PUNCH
-	anim_obj $6, 144, 48, $0
-	anim_wait 6
-	anim_obj $1, 144, 48, $0
-	anim_wait 8
-	anim_ret
+	; anim_1gfx ANIM_GFX_HIT
+	; anim_jumpif $1, BattleAnim_CometPunch_branch_c9641
+	; anim_sound $1, SFX_COMET_PUNCH
+	; anim_obj $6, 144, 48, $0
+	; anim_wait 6
+	; anim_obj $1, 144, 48, $0
+	; anim_wait 8
+	; anim_ret
 ; c9641
 
-BattleAnim_CometPunch_branch_c9641: ; c9641
-	anim_sound $1, SFX_COMET_PUNCH
-	anim_obj $6, 120, 64, $0
-	anim_wait 6
-	anim_obj $1, 120, 64, $0
-	anim_wait 8
-	anim_ret
+; BattleAnim_CometPunch_branch_c9641: ; c9641
+	; anim_sound $1, SFX_COMET_PUNCH
+	; anim_obj $6, 120, 64, $0
+	; anim_wait 6
+	; anim_obj $1, 120, 64, $0
+	; anim_wait 8
+	; anim_ret
 ; c9651
 
 BattleAnim_Bide_branch_c9651: ; c9651
@@ -1592,10 +1592,7 @@ BattleAnim_SleepPowder: ; c9d35
 BattleAnim_Spore: ; c9d35
 BattleAnim_StunSpore: ; c9d35
 	anim_1gfx ANIM_GFX_POWDER
-BattleAnim_Poisonpowder_branch_c9d37: ; c9d37
-BattleAnim_SleepPowder_branch_c9d37: ; c9d37
-BattleAnim_Spore_branch_c9d37: ; c9d37
-BattleAnim_StunSpore_branch_c9d37: ; c9d37
+.loop
 	anim_sound $1, SFX_POWDER
 	anim_obj $26, 104, 16, $0
 	anim_wait 4
@@ -1611,7 +1608,7 @@ BattleAnim_StunSpore_branch_c9d37: ; c9d37
 	anim_sound $1, SFX_POWDER
 	anim_obj $26, 120, 16, $0
 	anim_wait 4
-	anim_loop $2, BattleAnim_Poisonpowder_branch_c9d37
+	anim_loop $2, .loop
 	anim_wait 96
 	anim_ret
 ; c9d6a
@@ -2492,8 +2489,16 @@ BattleAnim_HornDrill_branch_ca48b: ; ca48b
 	anim_ret
 ; ca4b4
 
-BattleAnim_PoisonSting: ; ca4b4
 BattleAnim_PoisonJab:
+	anim_2gfx ANIM_GFX_HIT, ANIM_GFX_POISON
+	anim_sound $1, SFX_MEGA_PUNCH
+	anim_obj $a, 136, 56, $43
+	anim_wait 32
+	anim_call BattleAnim_PoisonJab_branch_cbc15
+	anim_wait 64
+	anim_ret
+
+BattleAnim_PoisonSting: ; ca4b4
 	anim_2gfx ANIM_GFX_HORN, ANIM_GFX_HIT
 	anim_obj $60, 64, 92, $14
 	anim_wait 16
@@ -5201,6 +5206,8 @@ BattleAnim_TriAttack_branch_cbbdf: ; cbbdf
 BattleAnim_SludgeBomb_branch_cbc15: ; cbc15
 BattleAnim_Sludge_branch_cbc15: ; cbc15
 BattleAnim_Toxic_branch_cbc15: ; cbc15
+BattleAnim_PoisonJab_branch_cbc15:
+.loop
 	anim_sound $1, SFX_UNKNOWN_7F
 	anim_obj $1a, 132, 72, $0
 	anim_wait 8
@@ -5210,7 +5217,7 @@ BattleAnim_Toxic_branch_cbc15: ; cbc15
 	anim_sound $1, SFX_UNKNOWN_7F
 	anim_obj $1a, 148, 72, $0
 	anim_wait 8
-	anim_loop $5, BattleAnim_SludgeBomb_branch_cbc15
+	anim_loop $5, .loop
 	anim_ret
 ; cbc35
 
