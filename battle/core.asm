@@ -3403,6 +3403,7 @@ Function3d4c3: ; 3d4c3
 EnemySwitch: ; 3d4e1
 	call Function3d714
 	jr nc, Function3d517 ;jump if set mode
+	; SHIFT
 	call Function3d557
 	call Function3d533
 	jr c, .already_chose_enemy_mon

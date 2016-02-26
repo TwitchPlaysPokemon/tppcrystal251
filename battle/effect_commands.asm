@@ -7373,25 +7373,29 @@ BattleCommand3e: ; 3671a
 	call GetBattleVarAddr
 	bit 1, [hl]
 	ret z
+	; Check remaining turns
 	ld a, [de]
 	dec a
 	ld [de], a
-	jr nz, .asm_3674c ; 36730 $1a
-	res 1, [hl]
+	jr nz, .already_rampaging ; 36730 $1a
+	; We're done rampaging
+	res SUBSTATUS_RAMPAGE, [hl]
+	; Do we have Safeguard up?
 	call SwitchTurn
-	call Function37962
+	call Function37962 ; check safeguard
 	push af
 	call SwitchTurn
 	pop af
-	jr nz, .asm_3674c ; 3673f $b
-	set 7, [hl]
+	jr nz, .already_rampaging ; 3673f $b
+	; 2-3 turns of confusion
+	set SUBSTATUS_CONFUSED, [hl]
 	call BattleRandom
 	and $1
 	inc a
 	inc a
 	inc de
 	ld [de], a
-.asm_3674c
+.already_rampaging
 	ld b, $3d ; rampage
 	jp SkipToBattleCommand
 ; 36751
