@@ -178,6 +178,12 @@ MtMoon1Text14:
 	line "a blood sucker!"
 	done
 
+Item_MtMoonPGKB1F1:
+	db MOON_STONE, 1
+Item_MtMoonPGKB1F2:
+	db MAX_REVIVE, 1
+Item_MtMoonPGKB1F3:
+	db MAX_REPEL, 1
 
 MtMoonB1F_MapEventHeader: ; 0x1ac4af 
 	; filler
@@ -201,7 +207,9 @@ MtMoonB1F_MapEventHeader: ; 0x1ac4af
 	signpost 23, 15, $0, MtMoonB1FSignpostScript
 
 	; people-events
-	db 1
+	db 4
 	person_event SPRITE_SILVER, $23, $12, $6, 0, 0, -1, -1, 0, 0, 0, ObjectEvent, EVENT_SILVER_IN_MOUNT_MOON
-
+	person_event SPRITE_POKE_BALL,  6,  6, $1, 0, 0, -1, -1, 0, 1, 0, Item_MtMoonPGKB1F1,  EVENT_MT_MOON_PGK_B1F_1
+	person_event SPRITE_POKE_BALL, 27, 40, $1, 0, 0, -1, -1, 0, 1, 0, Item_MtMoonPGKB1F2, EVENT_MT_MOON_PGK_B1F_2
+	person_event SPRITE_POKE_BALL, 36,  9, $1, 0, 0, -1, -1, 0, 1, 0, Item_MtMoonPGKB1F3, EVENT_MT_MOON_PGK_B1F_3
 

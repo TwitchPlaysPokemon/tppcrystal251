@@ -161,6 +161,11 @@ SuperNerdMiguelAlreadyHaveItText:
 	para "I guess I'll keep"
 	line "this one."
 	done
+	
+Item_MtMoonPGKB3F1:
+	db HP_UP, 1
+Item_MtMoonPGKB3F2:
+	db CONFUSEGUARD, 1
 
 MtMoonB3F_MapEventHeader: ; 0x1ac4af 
 	; filler
@@ -179,7 +184,7 @@ MtMoonB3F_MapEventHeader: ; 0x1ac4af
 	db 0
 
 	; people-events
-	db 1
+	db 3
 	person_event SPRITE_SUPER_NERD, 12, 16, $9, 0, 0, -1, -1, 8 + PAL_OW_BLUE, 2, 1, TrainerSuperNerdMiguel, -1
-
-
+	person_event SPRITE_POKE_BALL, 25, 29, $1, 0, 0, -1, -1, 0, 1, 0, Item_MtMoonPGKB3F1, EVENT_MT_MOON_PGK_B3F_1
+	person_event SPRITE_POKE_BALL, 9, 33, $1, 0, 0, -1, -1, 0, 1, 0, Item_MtMoonPGKB3F2, EVENT_MT_MOON_PGK_B3F_2
