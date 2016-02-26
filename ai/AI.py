@@ -1603,6 +1603,30 @@ class AI(object):
             if 'charged' in self.MonData['playerpokemon']['substatus'] or (isinstance(self.MonData['playerpokemon']['substatus'], dict) and 'charged' in self.MonData['playerpokemon']['substatus'].values()):
                 return tempx
         
+        #If i'm about to die, fire off an attack 
+        self.TrainerDamage(traincurrent, mycurrent)
+        if Debug_Code > 0:
+            print('checking if i will die')
+            print('their damage: '+str(self.Damage[traincurrent][mycurrent][self.enemynumber]['damage'])+' my hp: '+str(self.jsonlist['battleState']['enemypokemon']['hp']))
+        if self.Damage[traincurrent][mycurrent][self.enemynumber]['damage'] > self.jsonlist['battleState']['enemypokemon']['hp']:
+            tempx = 0
+            x1 = -1
+            self.FinalChance = True
+            for tempmove in range(0, len(self.jsonlist['battleState']['enemypokemon']['moves'])):
+                self.DamageDealt(mycurrent, traincurrent, tempmove)
+                if self.MonData[mycurrent]['moves'][tempmove]['curpp'] > 0:
+                    if self.Damage[mycurrent][traincurrent][tempmove]['damage'] > tempx:
+                        tempx = self.Damage[mycurrent][traincurrent][tempmove]['damage']
+                        x1 = tempmove
+            tempx = self._statsmultipliers[self.MonData[mycurrent]['boosts']['spd']+6]/100
+            tempy = self._statsmultipliers[self.MonData[traincurrent]['boosts']['spd']+6]/100
+            for tempmove in templist:
+                if self.MonData[mycurrent]['moves'][tempmove]['effect'] in ('priorityhit','extremespeed') and (self.MonData[mycurrent]['stats']['speed'] * tempx < self.MonData[traincurrent]['stats']['speed'] * tempy):
+                    x1 = tempmove
+            if Debug_Code > 0:
+                print('about to die - i need to attack, i will use: '+str(x1))
+            return x1
+        
         #if we chose to use either counter/mirrorcoat, and the mon has BOTH counter and mirrorcoat, 
         #randomize the move used based on the effective damage of both
         if self.theaction < 4:
@@ -1693,30 +1717,6 @@ class AI(object):
                                 temp1 = self.MonData[mycurrent]['moves'][tempmove]['curpp']
                                 x1 = tempmove
                         return x1
-                    
-        #If i'm about to die, fire off an attack 
-        self.TrainerDamage(traincurrent, mycurrent)
-        if Debug_Code > 0:
-            print('checking if i will die')
-            print('their damage: '+str(self.Damage[traincurrent][mycurrent][self.enemynumber]['damage'])+' my hp: '+str(self.jsonlist['battleState']['enemypokemon']['hp']))
-        if self.Damage[traincurrent][mycurrent][self.enemynumber]['damage'] > self.jsonlist['battleState']['enemypokemon']['hp']:
-            tempx = 0
-            x1 = -1
-            self.FinalChance = True
-            for tempmove in range(0, len(self.jsonlist['battleState']['enemypokemon']['moves'])):
-                self.DamageDealt(mycurrent, traincurrent, tempmove)
-                if self.MonData[mycurrent]['moves'][tempmove]['curpp'] > 0:
-                    if self.Damage[mycurrent][traincurrent][tempmove]['damage'] > tempx:
-                        tempx = self.Damage[mycurrent][traincurrent][tempmove]['damage']
-                        x1 = tempmove
-            tempx = self._statsmultipliers[self.MonData[mycurrent]['boosts']['spd']+6]/100
-            tempy = self._statsmultipliers[self.MonData[traincurrent]['boosts']['spd']+6]/100
-            for tempmove in templist:
-                if self.MonData[mycurrent]['moves'][tempmove]['effect'] in ('priorityhit','extremespeed') and (self.MonData[mycurrent]['stats']['speed'] * tempx < self.MonData[traincurrent]['stats']['speed'] * tempy):
-                    x1 = tempmove
-            if Debug_Code > 0:
-                print('about to die - i need to attack, i will use: '+str(x1))
-            return x1
         
         return None
 
