@@ -83191,6 +83191,10 @@ Functione36f9: ; e36f9 (38:76f9)
 	ld a, [wcfa9]
 	cp $1
 	jr z, .refused
+	ld hl, .AreYouReallySure
+	call Function1d4f
+	call YesNoBox
+	jr c, .refused
 	callba DeleteBox
 .refused
 	call Function1c07
@@ -83240,6 +83244,17 @@ Functione36f9: ; e36f9 (38:76f9)
 	cont "be recovered."
 
 	para "Proceed anyway?"
+	done
+
+.AreYouReallySure
+    text "This action can-"
+    line "not be undone."
+
+    para "Are you absolutely"
+    line "positively sure"
+
+    para "you want to empty"
+    line "this entire box?"
 	done
 
 .NoYesBox:
