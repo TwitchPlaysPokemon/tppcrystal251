@@ -414,12 +414,11 @@ UnknownScript_0xbc2b6:
 	farwritetext UnknownText_0x1b06d9 ;say they return kept mon
 	waitbutton
 	special Function13a31 ;reset party to normal
-UnknownScript_0xbc2c4:
 	checkcode VAR_PARTYCOUNT
-	if_less_than $6, .CanTakeBug
+	if_less_than $6, UnknownScript_0xbc2c4
 	checkcode VAR_BOXSPACE
 	if_equal $0, PCIsFullToo
-.CanTakeBug
+UnknownScript_0xbc2c4:
 	farwritetext DoYouWantToKeepTheBug
 	yesorno
 	iffalse ClearContestMon
@@ -464,6 +463,7 @@ ClearContestMon:
 
 PCIsFullToo:
 	farwritetext YouWantTheBugButPCIsFull
+	waitbutton
 	jump UnknownScript_0xbc2d4
 
 ContestResults_FirstPlaceScript: ; 0xbc31e
