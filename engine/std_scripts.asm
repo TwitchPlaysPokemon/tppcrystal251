@@ -415,12 +415,18 @@ UnknownScript_0xbc2b6:
 	waitbutton
 	special Function13a31 ;reset party to normal
 UnknownScript_0xbc2c4:
+	checkcode VAR_PARTYCOUNT
+	if_less_than $6, .CanTakeBug
+	checkcode VAR_BOXSPACE
+	if_equal $0, PCIsFullToo
+.CanTakeBug
 	farwritetext DoYouWantToKeepTheBug
 	yesorno
-	iffalse UnknownScript_0xbc2d4
+	iffalse ClearContestMon
 	special Function4d9e5 ;insert mon into party or into PC box in top slot. return 0 in scriptvar if mon went to party, 1 if they went to box and 2 if no mon was caught
 	if_equal $0, UnknownScript_0xbc2d4 ;if sent to party or no mon, skip box text
 	if_equal $2, UnknownScript_0xbc2d4 
+	if_equal $3, PCIsFullToo
 	farwritetext UnknownText_0x1b070d ;sent to box text
 	waitbutton
 UnknownScript_0xbc2d4:
@@ -451,6 +457,14 @@ UnknownScript_0xbc2d4:
 	special PlayMapMusic
 	end
 ; 0xbc31e
+
+ClearContestMon:
+	loadvar wdf9c, 0
+	jump UnknownScript_0xbc2d4
+
+PCIsFullToo:
+	farwritetext YouWantTheBugButPCIsFull
+	jump UnknownScript_0xbc2d4
 
 ContestResults_FirstPlaceScript: ; 0xbc31e
 	setevent EVENT_000_STD ;set "player won" flag

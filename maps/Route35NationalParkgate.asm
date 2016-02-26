@@ -277,6 +277,9 @@ UnknownScript_0x6a2af: ; 0x6a2af
 
 UnknownScript_0x6a2b5: ; 0x6a2b5
 	writetext UnknownText_0x6a67c
+	yesorno
+	iftrue UnknownScript_0x6a27d
+	writetext RejectWithFullPC
 	waitbutton
 	closetext
 	end
@@ -490,7 +493,15 @@ UnknownText_0x6a67c: ; 0x6a67c
 	line "to put the bug"
 	cont "#MON you catch."
 
-	para "Please make room"
+	para "We will have to"
+	line "RELEASE whatever"
+	cont "you catch."
+
+	para "Is that OK?"
+	done
+
+RejectWithFullPC:
+	text "Please make room"
 	line "in your party or"
 
 	para "your PC BOX, then"
