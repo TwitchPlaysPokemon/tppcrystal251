@@ -1620,7 +1620,7 @@ class AI(object):
                         x1 = tempmove
             tempx = self._statsmultipliers[self.MonData[mycurrent]['boosts']['spd']+6]/100
             tempy = self._statsmultipliers[self.MonData[traincurrent]['boosts']['spd']+6]/100
-            for tempmove in templist:
+            for tempmove in range(0, len(self.jsonlist['battleState']['enemypokemon']['moves'])):
                 if self.MonData[mycurrent]['moves'][tempmove]['effect'] in ('priorityhit','extremespeed') and (self.MonData[mycurrent]['stats']['speed'] * tempx < self.MonData[traincurrent]['stats']['speed'] * tempy):
                     x1 = tempmove
             if Debug_Code > 0:
