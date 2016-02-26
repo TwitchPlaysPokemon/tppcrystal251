@@ -64,16 +64,33 @@ UnknownText_0x19aec0: ; 0x19aec0
 ; 0x19af81
 
 UnknownText_0x19af81: ; 0x19af81
-	text "I worry about"
-	line "AIIIAAB getting"
+	text "Oh hello."
+	
+	para "Oh, you used to"
+	line "live here?"
+	
+	para "So you were on"
+	line "board the S.S."
+	cont "Anne when it"
+	cont "crashed?"
+	
+	para "Thank goodness you"
+	line "you are safe and"
+	cont "sound."
 
-	para "hurt or sick, but"
-	line "he's a boy."
+	para "I worry that my"
+	line "son AIIIAAB might"
+	cont "get into trouble"
+	cont "too..."
 
-	para "I'm proud that he"
-	line "is doing what he"
-
-	para "wants to do."
+	para "He never has time"
+	line "to contact me"
+	cont "since he's always"
+	cont "busy training."
+	
+	para "You can look"
+	line "around the house"
+	cont "if you want."
 	done
 ; 0x19afe8
 
