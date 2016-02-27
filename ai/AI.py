@@ -1349,7 +1349,7 @@ class AI(object):
             if self.MonData[mycurrent]['moves'][int(tempcombo[0])]['effect'] == 'toxic' and ((self.MonData[mycurrent]['type'][1] == 'poison') or (self.MonData[mycurrent]['type'][2] == 'poison')):
                 tempy = 1
             if self.mycurhp != 0 and self.traincurhp != 0:
-                tempx = ((((myhp / self.mycurhp) - (trainhp / self.traincurhp) * 2) * (1 - tempy)) + (((myhp1 / self.mycurhp) - (trainhp1 / self.traincurhp) * 2) * tempy)) + 2
+                tempx = ((((myhp / self.mycurhp) - (trainhp / self.traincurhp) * 1.5) * (1 - tempy)) + (((myhp1 / self.mycurhp) - (trainhp1 / self.traincurhp) * 1.5) * tempy)) + 2
             else:
                 tempx = -5
             if Debug_Code == 1 or Debug_Code == 2:
@@ -1483,7 +1483,7 @@ class AI(object):
             if self.difference[self.jsonlist['battleState']['enemypokemon']['party idx']][traincurrent] < 0:
                 self.difference[self.jsonlist['battleState']['enemypokemon']['party idx']][traincurrent] = 0
             mycurrent = self.jsonlist['battleState']['enemypokemon']['party idx']
-            tempy = self.difference[mycurrent][traincurrent] + 2.5
+            tempy = self.difference[mycurrent][traincurrent] + 1.5
             for tempx in range(0, self.myparty):
                 if self.difference[tempx][traincurrent] > tempy:
                     tempy = self.difference[tempx][traincurrent]
