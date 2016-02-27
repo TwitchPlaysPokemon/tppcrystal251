@@ -38,6 +38,10 @@ UnknownScript_0x181454: ; 0x181454
 	pause 15
 	writebyte $2
 	special HealMachineAnim
+	checkevent EVENT_FIRST_TIME_HALL_OF_FAME
+	iftrue .SkipBillFlag
+	setevent EVENT_BILL_IN_GOLDENROD_BILLS_HOUSE
+.SkipBillFlag
 	setevent EVENT_FIRST_TIME_HALL_OF_FAME
 	setevent EVENT_GRAMPS_WITH_ABRA_IN_INDIGO_PLATEAU_POKECENTER
 	setevent EVENT_SILVER_IN_SPROUT_TOWER

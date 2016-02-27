@@ -78,6 +78,7 @@ MapBattleTentBattleRoomBillScript1:
 	playsound SFX_EXIT_BUILDING
 	disappear $2
 	setevent EVENT_UNLOCKED_GARDEN
+	clearevent EVENT_BILL_IN_GOLDENROD_BILLS_HOUSE
 	pause 15
 	end
 
@@ -102,6 +103,8 @@ MapBattleTentBattleRoomBillScript2:
 .done
 	playsound SFX_EXIT_BUILDING
 	disappear $2
+	setevent EVENT_UNLOCKED_GARDEN
+	clearevent EVENT_BILL_IN_GOLDENROD_BILLS_HOUSE
 	pause 15
 	end
 
