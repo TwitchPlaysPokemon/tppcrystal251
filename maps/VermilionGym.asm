@@ -450,11 +450,10 @@ GuitaristVincentBeatenText: ; 0x192437
 ; 0x19244b
 
 UnknownText_0x19244b: ; 0x19244b
-	text "If the GYM's traps"
-	line "were working, you"
-
-	para "would have been"
-	line "toast<...>"
+	text "Even if I didn't"
+	line "beat you, the"
+	cont "GYM's traps"
+	cont "surely will!"
 	done
 ; 0x192487
 
