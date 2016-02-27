@@ -583,10 +583,13 @@ class AI(object):
             elif (move_used_effect == 'leechhit'):
                 self.Damage[attacker][defender][moveused]['selfdamage'] = damage * -0.25
                 healing = True
-            elif self.enemybest in ('hyperbeam', 'skyattack', 'solarbeam'):
+            if move_used['name'].lower() == 'solarbeam':
+                if self.MonData['weather'] != 'sun':
+                    damage /= 2
+                else:
+                    damage += 1
+            if self.enemybest in ('hyperbeam', 'skyattack', 'solarbeam'):
                 damage *= 2
-            if move_used['name'].lower() == 'solarbeam' and self.MonData['weather'] != 'sun':
-                damage /= 2
                 
         if Debug_Code == 1 and attacker < 6:
             print('Damage after crit'+str(damage))
