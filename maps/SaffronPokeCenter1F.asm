@@ -45,7 +45,7 @@ YoungsterScript_0x18a4a0: ; 0x18a4a0
 UnknownText_0x18a4a3: ; 0x18a4a3
 	text "Have you heard"
 	line "about the KANTO"
-	cont "HELIX CHOIR?"
+	cont "CHOIR GROUP?"
 
 	para "They formed in"
 	line "inspiration to a"
