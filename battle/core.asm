@@ -7600,6 +7600,11 @@ Function3ee3b: ; 3ee3b
 	ld a, [hli]
 	or [hl]
 	jp z, .asm_3f0b9
+	ld hl, PartyMon1Level - PartyMon1
+	add hl, bc
+	ld a, [hl]
+	cp 100
+	jp nc, .asm_3f0b9
 	push bc
 	ld hl, wAliveExperienceSharers
 	ld a, [CurPartyMon]
