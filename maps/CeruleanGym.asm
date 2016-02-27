@@ -401,10 +401,8 @@ TextBranchFirstMisty
 	line "#MON are tough!"
 	done
 
-TextBranchSecondMisty:
-	text "MISTY: You again!"
-	
-	para "What's that? Your"
+TextBranchSecondMisty:	
+	text "What's that? Your"
 	line "badges were"
 	cont "stolen?"
 
