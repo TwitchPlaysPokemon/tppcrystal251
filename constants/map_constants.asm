@@ -302,7 +302,7 @@ MAP_N_A   EQU -1
 	mapgroup ROUTE_15_FUCHSIA_GATE, 4, 5
 
 	newgroup ; Lavender Town
-	mapgroup ROUTE_8, 9, 20
+	mapgroup ROUTE_8, 9, 21
 	mapgroup ROUTE_12, 27, 10
 	mapgroup ROUTE_10_SOUTH, 9, 10
 	mapgroup LAVENDER_TOWN, 9, 10
