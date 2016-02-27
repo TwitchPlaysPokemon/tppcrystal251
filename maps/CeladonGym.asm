@@ -420,7 +420,7 @@ PicnickerTanyaSeenText: ; 0x72e53
 	cont "SAFFRON CITY GYM"
 	cont "LEADER."
 
-	text "We have the same"
+	para "We have the same"
 	line "#MON!"
 	done
 ; 0x72e7f
