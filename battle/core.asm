@@ -3404,15 +3404,15 @@ EnemySwitch: ; 3d4e1
 	call Function3d714
 	jr nc, Function3d517 ;jump if set mode
 	; SHIFT
-	call Function3d557
-	call Function3d533
+	call Function3d557 ; Reset vars
+	call Function3d533 ; Is predetermined
 	jr c, .already_chose_enemy_mon
-	call Function3d599
+	call Function3d599 ; Find mon
 .already_chose_enemy_mon
-	call Function3d6ca
-	call Function3d74b
+	call Function3d6ca ; Load mon
+	call Function3d74b ; Offer switch
 	push af
-	call Function3d7a0
+	call Function3d7a0 ; Clear enemy box
 	pop af
 	jr c, FinishEnemyMonEntrance
 	xor a
@@ -3421,8 +3421,8 @@ EnemySwitch: ; 3d4e1
 	ld [wd0ec], a
 	inc a
 	ld [wEnemyIsSwitching], a
-	call Function309d
-	call Function3e3ad
+	call Function309d ; Tilemap switch
+	call Function3e3ad ; PlayerSwitch
 	jr FinishEnemyMonEntrance
 ; 3d517
 
