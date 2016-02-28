@@ -434,7 +434,7 @@ Functionc38d: ; c38d
 ; c39a
 
 Functionc39a: ; c39a
-	call Function31cf
+	call FarQueueScript
 	call FadeToMenu
 	ld hl, wd0e8
 	ld a, [hli]

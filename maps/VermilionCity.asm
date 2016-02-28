@@ -134,11 +134,20 @@ SuperNerdScript_0x1aa99b: ; 0x1aa99b
 
 BigSnorlaxScript_0x1aa99e: ; 0x1aa99e
 	loadfont
+	checkitem POKE_FLUTE
+	iftrue .FluteWakeSnorlax
 	special SpecialSnorlaxAwake
 	iftrue UnknownScript_0x1aa9ab
 	writetext UnknownText_0x1aab64
 	waitbutton
 	closetext
+	end
+.FluteWakeSnorlax
+	writetext SnorlaxVermWakeyWakeyPrompt
+	yesorno
+	iffalse .nope
+	farscall _PokefluteSnorlaxScript
+.nope
 	end
 ; 0x1aa9ab
 
@@ -277,6 +286,14 @@ UnknownText_0x1aab1a: ; 0x1aab1a
 	cont "#MON GYM."
 	done
 ; 0x1aab64
+SnorlaxVermWakeyWakeyPrompt:
+	text "SNORLAX is snoring"
+	line "peacefully<...>"
+
+	para "Play the #"
+	line "FLUTE?"
+	done
+
 
 UnknownText_0x1aab64: ; 0x1aab64
 	text "SNORLAX is snoring"

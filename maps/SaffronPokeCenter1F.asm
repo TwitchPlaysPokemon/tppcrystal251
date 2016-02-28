@@ -42,6 +42,62 @@ YoungsterScript_0x18a4a0: ; 0x18a4a0
 	jumptextfaceplayer UnknownText_0x18a6c5
 ; 0x18a4a3
 
+PokefanMScript_GiveFlute:
+	faceplayer
+	loadfont
+	checkevent EVENT_GOT_POKE_FLUTE
+	iftrue .GotFluteAlready
+	checkevent EVENT_RESTORED_POWER_TO_KANTO
+	iftrue .TryGiveFlute
+	writetext SnorlaxInTheWayText
+	waitbutton
+	closetext
+	end
+.TryGiveFlute
+	writetext TryGiveFluteText
+	waitbutton
+	verbosegiveitem POKE_FLUTE, 1
+	iffalse .NoRoomForItem
+.GotFluteAlready
+	writetext GotFluteAlreadyText
+	waitbutton
+.NoRoomForItem
+	closetext
+	end
+
+SnorlaxInTheWayText:
+	text "Have you seen the"
+	line "SNORLAX around"
+	cont "here?"
+
+	para "They've been cau-"
+	line "sing trouble for"
+	cont "the locals."
+	done
+
+TryGiveFluteText:
+	text "Have you seen the"
+	line "SNORLAX around"
+	cont "here?"
+
+	para "If you try playing"
+	line "this, they might"
+	cont "wake up."
+	done
+
+GotFluteAlreadyText:
+	text "That flute plays"
+	line "a sublime sound."
+
+	para "#MON hearing"
+	line "it will surely"
+	cont "wake up."
+
+	para "It's so effective,"
+	line "they play it non-"
+	cont "stop on the RADIO."
+	done
+
 UnknownText_0x18a4a3: ; 0x18a4a3
 	text "Have you heard"
 	line "about the KANTO"
@@ -49,8 +105,8 @@ UnknownText_0x18a4a3: ; 0x18a4a3
 
 	para "They formed in"
 	line "inspiration to a"
-	cont "famous trainer"
-	cont "and his journey."
+	para "famous trainer"
+	line "and his journey."
 
 	para "Nobody know where"
 	line "he is now, though."
@@ -127,10 +183,11 @@ SaffronPokeCenter1F_MapEventHeader: ; 0x18a722
 	db 0
 
 	; people-events
-	db 4
+	db 5
 	person_event SPRITE_NURSE, 5, 7, $6, 0, 0, -1, -1, 0, 0, 0, NurseScript_0x18a47d, -1
 	person_event SPRITE_TEACHER, 6, 11, $2, 1, 1, -1, -1, 8 + PAL_OW_GREEN, 0, 0, TeacherScript_0x18a480, -1
 	person_event SPRITE_FISHER, 10, 12, $8, 0, 0, -1, -1, 8 + PAL_OW_RED, 0, 0, FisherScript_0x18a48c, -1
 	person_event SPRITE_YOUNGSTER, 8, 5, $3, 0, 0, -1, -1, 8 + PAL_OW_BLUE, 0, 0, YoungsterScript_0x18a4a0, -1
+	person_event SPRITE_POKEFAN_M, 7, 9, $6, 0, 0, -1, -1 ,0, 0, 0, PokefanMScript_GiveFlute, -1
 ; 0x18a76b
 
