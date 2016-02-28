@@ -20,12 +20,22 @@ MapRoute5Signpost1Script: ; 0x1adb1f
 
 Snorlax5:
 	loadfont
+	checkitem POKE_FLUTE
+	iftrue .FluteWakeSnorlax
 	special SpecialSnorlaxAwake
 	iftrue WakeSnorlax5
 	writetext Snorlax5Text
 	waitbutton
 	closetext
 	end
+.FluteWakeSnorlax
+	writetext Snorlax5WakeyWakeyPrompt
+	yesorno
+	iffalse .nope
+	farscall _PokefluteSnorlaxScript
+.nope
+	end
+
 
 WakeSnorlax5:
 	writetext Snorlax5WakeText
@@ -65,6 +75,14 @@ UnknownText_0x1adb97: ; 0x1adb97
 
 	para "House for Sale<...>"
 	line "Nobody lives here."
+	done
+
+Snorlax5WakeyWakeyPrompt:
+	text "SNORLAX is snoring"
+	line "peacefully<...>"
+
+	para "Play the #"
+	line "FLUTE?"
 	done
 
 Snorlax5Text:

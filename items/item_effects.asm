@@ -2396,8 +2396,40 @@ Tablef504: ; f504
 PokeFlute: ; f50c
 	ld a, [wBattleMode]
 	and a
-	jr nz, .asm_f512
-.asm_f512
+	jr nz, .in_battle
+	; Add code for using the item while facing Snorlax
+	ld a, [MapGroup]
+	ld hl, .SnorlaxMapGroups
+	ld de, 2
+	call IsInArray
+	jr nc, .skip_snorlax
+	inc hl
+	ld a, [MapNumber]
+	cp [hl]
+	jr nz, .skip_snorlax
+	callba CheckFacingObject
+	jr nc, .skip_snorlax
+	ld a, [hConnectedMapWidth]
+	call Function1ae5
+	ld hl, $1
+	add hl, bc
+	ld a, [hl]
+	ld [$ffe0], a
+	call GetMapObject
+	ld a, [bc]
+	cp SPRITE_BIG_SNORLAX
+	jr nz, .skip_snorlax
+	ld hl, PokefluteSnorlaxScript
+	call QueueScript
+	ld a, $1
+	ret
+.SnorlaxMapGroups
+	map VERMILION_CITY
+	map ROUTE_5
+	map ROUTE_8
+	db -1
+
+.skip_snorlax
 
 	xor a
 	ld [wd002], a
@@ -2405,14 +2437,32 @@ PokeFlute: ; f50c
 	ld b, $ff ^ SLP
 
 	ld hl, PartyMon1Status
-	call .Functionf554
+	call .WakeUpEntireParty
+	ld a, [wd002]
+	and a
+	ld hl, UnknownText_0xf56c
+	jp z, PrintText
+	ld hl, UnknownText_0xf576
+	call PrintText
+	ld hl, UnknownText_0xf571
+	jp PrintText	
+	
+.in_battle
+
+	xor a
+	ld [wd002], a
+
+	ld b, $ff ^ SLP
+
+	ld hl, PartyMon1Status
+	call .WakeUpEntireParty
 
 	ld a, [wBattleMode]
 	cp WILD_BATTLE
-	jr z, .asm_f52b
+	jr z, .SkipOT
 	ld hl, OTPartyMon1Status
-	call .Functionf554
-.asm_f52b
+	call .WakeUpEntireParty
+.SkipOT
 
 	ld hl, BattleMonStatus
 	ld a, [hl]
@@ -2430,15 +2480,15 @@ PokeFlute: ; f50c
 	ld hl, UnknownText_0xf576
 	call PrintText
 
-	ld a, [Danger]
-	and $e0
-	jr nz, .asm_f54e
-.asm_f54e
+	; ld a, [Danger]
+	; and $e0
+	; jr nz, .asm_f54e
+; .asm_f54e
 	ld hl, UnknownText_0xf571
 	jp PrintText
 
 
-.Functionf554
+.WakeUpEntireParty
 	ld de, PartyMon2 - PartyMon1
 	ld c, PARTY_LENGTH
 
@@ -2458,6 +2508,31 @@ PokeFlute: ; f50c
 	jr nz, .loop
 	ret
 ; f56c
+PokefluteSnorlaxScript:
+	loadfont
+_PokefluteSnorlaxScript::
+	writetext UnknownText_0xf576
+	buttonsound
+	waitsfx
+	writetext Text_SnorlaxWokeUp
+	waitbutton
+	closetext
+	writecode VAR_BATTLETYPE, BATTLETYPE_FORCEITEM
+	loadpokedata SNORLAX, 85
+	startbattle
+	checkcode VAR_MAPGROUP
+	if_not_equal GROUP_VERMILION_CITY, .CheckKillSnorlax
+	checkcode VAR_MAPNUMBER
+	if_equal MAP_VERMILION_CITY, .KillSnorlax
+.CheckKillSnorlax
+	writebyte SNORLAX
+	special SpecialMonCheck
+	iffalse .DontKillSnorlax
+.KillSnorlax
+	disappear -2
+.DontKillSnorlax
+	returnafterbattle
+	end
 
 
 UnknownText_0xf56c: ; 0xf56c
@@ -2476,13 +2551,9 @@ UnknownText_0xf576: ; 0xf576
 	; played the # FLUTE.@ @
 	text_jump UnknownText_0x1c5c44
 	start_asm
-; 0xf57b
-
-
-Function_0xf57b: ; f57b
 	ld a, [wBattleMode]
 	and a
-	jr nz, .asm_f58c
+	jr nz, .skip_sfx
 
 	push de
 	ld de, SFX_POKEFLUTE
@@ -2490,9 +2561,12 @@ Function_0xf57b: ; f57b
 	call WaitSFX
 	pop de
 
-.asm_f58c
+.skip_sfx
 	jp Function13e0
 ; f58f
+Text_SnorlaxWokeUp:
+	text "SNORLAX woke up!"
+	done
 
 
 BlueCard: ; f58f
