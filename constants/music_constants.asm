@@ -121,4 +121,6 @@
 	const MUSIC_S_S_ANNE                     ; 74
 	const MUSIC_SLOW_PALLET                  ; 75
 	const MUSIC_CHAMPION_BATTLE_RB           ; 76
+	const MUSIC_HOOH_BATTLE                  ; 77
+	const MUSIC_LUGIA_BATTLE                 ; 78
 MUSIC_MAHOGANY_MART EQU $64
