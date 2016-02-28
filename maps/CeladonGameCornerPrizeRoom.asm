@@ -127,9 +127,9 @@ MenuDataHeader_0x72790: ; 0x72790
 MenuData2_0x72798: ; 0x72798
 	db $80 ; flags
 	db 4 ; items
-	db "Lefties 2000@"
-	db "Power up  50@"
-	db "PP-up    600@"
+	db "LEFTIES 2000@"
+	db "POWER UP  50@"
+	db "PP-UP    600@"
 	db "CANCEL@"
 ; 0x727c8
 
@@ -256,8 +256,8 @@ MenuData2_0x7287f: ; 0x7287f
 	db $80 ; flags
 	db 4 ; items
 	db "PORYGON2   5000@"
-	db "Lucky Egg  3000@"
-	db "SlowpokeTail300@"
+	db "LUCKY EGG  3000@"
+	db "SLOWPOKETAIL300@"
 	db "CANCEL@"
 ; 0x728b8
 
