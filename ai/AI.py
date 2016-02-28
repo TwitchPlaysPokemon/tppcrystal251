@@ -129,12 +129,13 @@ class AI(object):
                 self.MonData[allmons]['stats'] = {}
                 self.MonData[allmons]['stats']['happy'] = int(self.jsonlist[templocation]['party'][tempx]['happiness'])
                 self.MonData[allmons]['stats']['curhp'] = copy.deepcopy(int(self.jsonlist[templocation]['party'][tempx]['hp']))
+                #Since party members can't have stat boosts, no need to undo the calculations
                 self.MonData[allmons]['stats']['hp'] = int(self.jsonlist[templocation]['party'][tempx]['stats']['maxhp'])
                 self.MonData[allmons]['stats']['atk'] = int(self.jsonlist[templocation]['party'][tempx]['stats']['attack'])
                 self.MonData[allmons]['stats']['def'] = int(self.jsonlist[templocation]['party'][tempx]['stats']['defense'])
                 self.MonData[allmons]['stats']['satk'] = int(self.jsonlist[templocation]['party'][tempx]['stats']['spatk'])
                 self.MonData[allmons]['stats']['sdef'] = int(self.jsonlist[templocation]['party'][tempx]['stats']['spdef'])
-                self.MonData[allmons]['stats']['speed'] = int(self.jsonlist[templocation]['party'][tempx]['stats']['speed'])
+                self.MonData[allmons]['stats']['spd'] = int(self.jsonlist[templocation]['party'][tempx]['stats']['speed'])
                 self.MonData[allmons]['status'] = self.jsonlist[templocation]['party'][tempx]['status'].lower()
                 self.MonData[allmons]['level'] = int(self.jsonlist[templocation]['party'][tempx]['level'])
                 self.MonData[allmons]['item'] = self.jsonlist[templocation]['party'][tempx]['item'].lower().replace(' ', '').replace('-', '')
@@ -166,13 +167,17 @@ class AI(object):
                     self.MonData[allmons]['type'] = {}
                     self.MonData[allmons]['stats'] = {}
                     self.MonData[allmons]['stats']['happy'] = int(self.jsonlist['battleState']['enemypokemon']['happiness'])
-                    self.MonData[allmons]['stats']['curhp'] = copy.deepcopy(int(self.jsonlist['battleState']['enemypokemon']['hp']))
-                    self.MonData[allmons]['stats']['hp'] = int(self.jsonlist['battleState']['enemypokemon']['stats']['maxhp'])
-                    self.MonData[allmons]['stats']['atk'] = int(self.jsonlist['battleState']['enemypokemon']['stats']['attack'])
-                    self.MonData[allmons]['stats']['def'] = int(self.jsonlist['battleState']['enemypokemon']['stats']['defense'])
-                    self.MonData[allmons]['stats']['satk'] = int(self.jsonlist['battleState']['enemypokemon']['stats']['spatk'])
-                    self.MonData[allmons]['stats']['sdef'] = int(self.jsonlist['battleState']['enemypokemon']['stats']['spdef'])
-                    self.MonData[allmons]['stats']['speed'] = int(self.jsonlist['battleState']['enemypokemon']['stats']['speed'])
+                    self.MonData[allmons]['stats']['curhp'] = int(self.jsonlist['battleState']['enemypokemon']['hp'])
+                    self.MonData[allmons]['stats']['hp'] = int(self.jsonlist['battleState']['enemypokemon']['maxhp'])
+
+                    #compute base stats
+                    #stats in the JSON has each stat multiplier already multiplied, so we divide them to get the base stats
+                    fullStatNames = {'atk':'attack','def':'defense','satk':'spatk','sdef':'spdef','spd':'spd'} 
+                    for stat in self.statNames[:-2]: #don't use eva and acc
+                        self.MonData[allmons]['stats'][stat] = int(
+                            self.jsonlist['battleState']['enemypokemon']['stats'][fullStatNames[stat]] / 
+                            (self._statsmultipliers[self.jsonlist['battleState']['enemypokemon']['stat levels'][stat]+6]/100) )
+
                     self.MonData[allmons]['status'] = self.jsonlist['battleState']['enemypokemon']['status'].lower()
                     self.MonData[allmons]['level'] = int(self.jsonlist['battleState']['enemypokemon']['level'])
                     self.MonData[allmons]['item'] = self.jsonlist['battleState']['enemypokemon']['item'].lower().replace(' ', '').replace('-', '')
@@ -205,13 +210,16 @@ class AI(object):
             self.MonData[0]['type'] = {}
             self.MonData[0]['stats'] = {}
             self.MonData[0]['stats']['happy'] = int(self.jsonlist['battleState']['enemypokemon']['happiness'])
-            self.MonData[0]['stats']['curhp'] = copy.deepcopy(int(self.jsonlist['battleState']['enemypokemon']['hp']))
+            self.MonData[0]['stats']['curhp'] = int(self.jsonlist['battleState']['enemypokemon']['hp'])
             self.MonData[0]['stats']['hp'] = int(self.jsonlist['battleState']['enemypokemon']['stats']['maxhp'])
-            self.MonData[0]['stats']['atk'] = int(self.jsonlist['battleState']['enemypokemon']['stats']['attack'])
-            self.MonData[0]['stats']['def'] = int(self.jsonlist['battleState']['enemypokemon']['stats']['defense'])
-            self.MonData[0]['stats']['satk'] = int(self.jsonlist['battleState']['enemypokemon']['stats']['spatk'])
-            self.MonData[0]['stats']['sdef'] = int(self.jsonlist['battleState']['enemypokemon']['stats']['spdef'])
-            self.MonData[0]['stats']['speed'] = int(self.jsonlist['battleState']['enemypokemon']['stats']['speed'])
+            #compute base stats
+            #stats in the JSON has each stat multiplier already multiplied, so we divide them to get the base stats
+            fullStatNames = {'atk':'attack','def':'defense','satk':'spatk','sdef':'spdef','spd':'speed'}
+            for stat in self.statNames[:-2]: #don't use eva and acc
+                self.MonData[0]['stats'][stat] = int(
+                    self.jsonlist['battleState']['enemypokemon']['stats'][fullStatNames[stat]] / 
+                    (self._statsmultipliers[self.jsonlist['battleState']['enemypokemon']['stat levels'][stat]+6]/100) )
+
             self.MonData[0]['status'] = self.jsonlist['battleState']['enemypokemon']['status'].lower()
             self.MonData[0]['level'] = int(self.jsonlist['battleState']['enemypokemon']['level'])
             self.MonData[0]['item'] = self.jsonlist['battleState']['enemypokemon']['item'].lower().replace(' ', '').replace('-', '')
@@ -491,7 +499,7 @@ class AI(object):
             tempx = tempx * 0.25
         if self.MonData[defender]['status'] == 'par':
             tempy = tempy * 0.25
-        if self.MonData[attacker]['stats']['speed'] * tempx > self.MonData[defender]['stats']['speed'] * tempy:
+        if self.MonData[attacker]['stats']['spd'] * tempx > self.MonData[defender]['stats']['spd'] * tempy:
             if 'underground' in self.MonData[temptext]['substatus'] or (isinstance(self.MonData[temptext]['substatus'], dict) and 'underground' in self.MonData[temptext]['substatus'].values()):
                 if move_used['name'].lower() not in ('earthquake', 'magnitude', 'fissure'):
                     damage = 0
@@ -1160,7 +1168,7 @@ class AI(object):
                     tempx = tempx * 0.25
                 if self.MonData[traincurrent]['status'] == 'par':
                     tempy = tempy * 0.25
-                if (self.MonData[mycurrent]['stats']['speed'] * tempx > self.MonData[traincurrent]['stats']['speed'] * tempy) or (self.MonData[mycurrent]['moves'][int(tempcombo[x1])]['effect'] in ('extremespeed', 'priorityhit', 'endure', 'protect')):
+                if (self.MonData[mycurrent]['stats']['spd'] * tempx > self.MonData[traincurrent]['stats']['spd'] * tempy) or (self.MonData[mycurrent]['moves'][int(tempcombo[x1])]['effect'] in ('extremespeed', 'priorityhit', 'endure', 'protect')):
                     if myhp > 0:
                         self.Mychoice(traincurrent, mycurrent, int(tempcombo[x1]))
                         if self.MonData['painsplit']:
@@ -1180,7 +1188,7 @@ class AI(object):
                             self.Damage[traincurrent][mycurrent][self.enemynumber]['damage'] = self.Damage[traincurrent][mycurrent][self.enemynumber]['damage'] / 2
                         myhp = myhp - self.Damage[traincurrent][mycurrent][self.enemynumber]['damage']
 
-                if self.MonData[mycurrent]['stats']['speed'] * tempx < self.MonData[traincurrent]['stats']['speed'] * tempy:
+                if self.MonData[mycurrent]['stats']['spd'] * tempx < self.MonData[traincurrent]['stats']['spd'] * tempy:
                     if trainhp > 0:
                         self.TrainerDamage(traincurrent, mycurrent)
                         myhp = myhp - self.Damage[traincurrent][mycurrent][self.enemynumber]['damage']
@@ -1196,7 +1204,7 @@ class AI(object):
                         if myhp > self.MonData[mycurrent]['stats']['hp']:
                             myhp = self.MonData[mycurrent]['stats']['hp']
 
-                if self.MonData[mycurrent]['stats']['speed'] * tempx == self.MonData[traincurrent]['stats']['speed'] * tempy:
+                if self.MonData[mycurrent]['stats']['spd'] * tempx == self.MonData[traincurrent]['stats']['spd'] * tempy:
                     speedtie = 0
                     if myhp > 0:
                         speedtie = 1
@@ -1274,7 +1282,7 @@ class AI(object):
                         tempx = tempx * 0.25
                     if self.MonData[traincurrent]['status'] == 'par':
                         tempy = tempy * 0.25
-                    if (self.MonData[mycurrent]['stats']['speed'] * tempx > self.MonData[traincurrent]['stats']['speed'] * tempy) or (self.MonData[mycurrent]['moves'][int(tempcombo[x1])]['effect'] in ('extremespeed', 'priorityhit', 'endure', 'protect')):
+                    if (self.MonData[mycurrent]['stats']['spd'] * tempx > self.MonData[traincurrent]['stats']['spd'] * tempy) or (self.MonData[mycurrent]['moves'][int(tempcombo[x1])]['effect'] in ('extremespeed', 'priorityhit', 'endure', 'protect')):
                         if myhp1 > 0:
                             self.Mychoice(traincurrent, mycurrent, int(tempcombo[x1]))
                             if x1 == 0:
@@ -1294,7 +1302,7 @@ class AI(object):
                                 self.Damage[traincurrent][mycurrent][self.enemynumber]['damage'] = 0
                             myhp1 = myhp1 - self.Damage[traincurrent][mycurrent][self.enemynumber]['damage']
 
-                    if self.MonData[mycurrent]['stats']['speed'] * tempx < self.MonData[traincurrent]['stats']['speed'] * tempy:
+                    if self.MonData[mycurrent]['stats']['spd'] * tempx < self.MonData[traincurrent]['stats']['spd'] * tempy:
                         if trainhp1 > 0:
                             self.TrainerDamage(traincurrent, mycurrent)
                             myhp1 = myhp1 - self.Damage[traincurrent][mycurrent][self.enemynumber]['damage']
@@ -1312,7 +1320,7 @@ class AI(object):
                             if myhp1 > self.MonData[mycurrent]['stats']['hp']:
                                 myhp1 = self.MonData[mycurrent]['stats']['hp']
 
-                    if self.MonData[mycurrent]['stats']['speed'] * tempx == self.MonData[traincurrent]['stats']['speed'] * tempy:
+                    if self.MonData[mycurrent]['stats']['spd'] * tempx == self.MonData[traincurrent]['stats']['spd'] * tempy:
                         speedtie = 0
                         if myhp1 > 0:
                             speedtie = 1
@@ -1666,7 +1674,7 @@ class AI(object):
             tempx = self._statsmultipliers[self.MonData[mycurrent]['boosts']['spd']+6]/100
             tempy = self._statsmultipliers[self.MonData[traincurrent]['boosts']['spd']+6]/100
             for tempmove in range(0, len(self.jsonlist['battleState']['enemypokemon']['moves'])):
-                if self.MonData[mycurrent]['moves'][tempmove]['effect'] in ('priorityhit','extremespeed') and (self.MonData[mycurrent]['stats']['speed'] * tempx < self.MonData[traincurrent]['stats']['speed'] * tempy):
+                if self.MonData[mycurrent]['moves'][tempmove]['effect'] in ('priorityhit','extremespeed') and (self.MonData[mycurrent]['stats']['spd'] * tempx < self.MonData[traincurrent]['stats']['spd'] * tempy):
                     x1 = tempmove
             if Debug_Code > 0:
                 print('about to die - i need to attack, i will use: '+str(x1))
@@ -1740,7 +1748,7 @@ class AI(object):
                     if self.MonData[traincurrent]['status'] == 'par':
                         tempy = tempy * 0.25
                     for tempmove in templist:
-                        if self.MonData[mycurrent]['moves'][tempmove]['effect'] in ('priorityhit','extremespeed') and (self.MonData[mycurrent]['stats']['speed'] * tempx < self.MonData[traincurrent]['stats']['speed'] * tempy):
+                        if self.MonData[mycurrent]['moves'][tempmove]['effect'] in ('priorityhit','extremespeed') and (self.MonData[mycurrent]['stats']['spd'] * tempx < self.MonData[traincurrent]['stats']['spd'] * tempy):
                             x1 = tempmove
                             temp1 = 20
                     if temp1 == 20:
