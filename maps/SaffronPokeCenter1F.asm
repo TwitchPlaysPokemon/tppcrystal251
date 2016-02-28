@@ -58,6 +58,7 @@ PokefanMScript_GiveFlute:
 	waitbutton
 	verbosegiveitem POKE_FLUTE, 1
 	iffalse .NoRoomForItem
+	setevent EVENT_GOT_POKE_FLUTE
 .GotFluteAlready
 	writetext GotFluteAlreadyText
 	waitbutton

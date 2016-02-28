@@ -43,7 +43,13 @@ RocketHideout1_SimonScript1:
 	closetext
 	applymovement $2, MovementData_RocketHideout_Simon3
 	winlosstext Text_RocketHideout_SimonLoss, $0000
+	checkevent EVENT_BEAT_SIMON_6
+	iftrue .HardSimon
 	loadtrainer BURGLAR, SIMON_5
+	jump .LoadedSimon
+.HardSimon
+	loadtrainer BURGLAR, SIMON_6
+.LoadedSimon
 	startbattle
 	reloadmapmusic
 	returnafterbattle

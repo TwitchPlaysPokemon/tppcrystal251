@@ -566,6 +566,7 @@ SpecialSnorlaxAwake: ; 0xc43d
 	ld a, [wMapMusic]
 	cp MUSIC_POKE_FLUTE_CHANNEL
 	jr nz, .nope
+
 	jr .done
 
 	;ld a, [XCoord]
