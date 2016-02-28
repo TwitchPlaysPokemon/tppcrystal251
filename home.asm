@@ -471,11 +471,11 @@ CallPointerAt:: ; 31be
 ; 31cd
 
 
-Function31cd:: ; 31cd
+QueueScript:: ; 31cd
 ; Push pointer hl in the current bank to wd0e8.
 	ld a, [hROMBank]
 
-Function31cf:: ; 31cf
+FarQueueScript:: ; 31cf
 ; Push pointer a:hl to wd0e8.
 	ld [wd0e8], a
 	ld a, l

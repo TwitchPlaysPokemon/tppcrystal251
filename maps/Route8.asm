@@ -282,11 +282,20 @@ UnknownText_0x6c2b7: ; 0x6c2b7
 
 Snorlax8:
 	loadfont
+	checkitem POKE_FLUTE
+	iftrue .FluteWakeSnorlax
 	special SpecialSnorlaxAwake
 	iftrue WakeSnorlax8
 	writetext Snorlax8Text
 	waitbutton
 	closetext
+	end
+.FluteWakeSnorlax
+	writetext Snorlax8WakeyWakeyPrompt
+	yesorno
+	iffalse .nope
+	farscall _PokefluteSnorlaxScript
+.nope
 	end
 
 WakeSnorlax8:
@@ -304,6 +313,14 @@ WakeSnorlax8:
 .DontKillSnorlax
 	returnafterbattle
 	end
+
+Snorlax8WakeyWakeyPrompt:
+	text "SNORLAX is snoring"
+	line "peacefully<...>"
+
+	para "Play the #"
+	line "FLUTE?"
+	done
 
 Snorlax8Text:
 	text "SNORLAX is snoring"

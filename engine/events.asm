@@ -618,8 +618,6 @@ TryObjectEvent: ; 969b5
 	add hl, bc
 	ld a, [hl]
 	ld [$ffe0], a
-
-	ld a, [$ffe0]
 	call GetMapObject
 	ld hl, $0008
 	add hl, bc

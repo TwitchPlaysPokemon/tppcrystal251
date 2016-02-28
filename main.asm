@@ -4780,7 +4780,7 @@ Functionc79c: ; c79c (3:479c)
 
 Functionc7b2: ; c7b2 (3:47b2)
 	ld hl, UnknownScript_0xc7fe
-	call Function31cd
+	call QueueScript
 	ld a, $81
 	ret
 
@@ -4990,7 +4990,7 @@ Functionc8b5: ; c8b5
 
 Functionc8e0: ; c8e0
 	ld hl, UnknownScript_0xc8e6
-	jp Function31cd
+	jp QueueScript
 ; c8e6
 
 UnknownScript_0xc8e6: ; 0xc8e6 FLASH
@@ -5081,7 +5081,7 @@ Functionc95f: ; c95f (3:495f)
 	ld [Buffer2], a ; wd1eb (aliases: MovementType)
 	call GetPartyNick
 	ld hl, UnknownScript_0xc983
-	call Function31cd
+	call QueueScript
 	ld a, $81
 	ret
 
@@ -5330,7 +5330,7 @@ CheckVermilionPort:
 
 Functionca94: ; ca94
 	ld hl, UnknownScript_0xcaa3
-	call Function31cd
+	call QueueScript
 	ld a, $81
 	ret
 ; ca9d
@@ -5384,7 +5384,7 @@ Functioncae7: ; cae7
 	call Functioncb07
 	jr c, .asm_cb01
 	ld hl, UnknownScript_0xcb1c
-	call Function31cd
+	call QueueScript
 	ld a, $81
 	ret
 
@@ -5555,14 +5555,14 @@ Functioncbd8: ; cbd8
 	cp $2
 	jr nz, .asm_cbf7
 	ld hl, UnknownScript_0xcc35
-	call Function31cd
+	call QueueScript
 	ld a, $81
 	ret
 
 .asm_cbf7
 	callba Function8ae4e
 	ld hl, UnknownScript_0xcc2b
-	call Function31cd
+	call QueueScript
 	ld a, $81
 	ret
 ; cc06
@@ -5684,7 +5684,7 @@ Functioncc78: ; cc78
 Functioncc9c: ; cc9c
 	call GetPartyNick
 	ld hl, UnknownScript_0xccbb
-	call Function31cd
+	call QueueScript
 	ld a, $81
 	ret
 ; cca8
@@ -5771,7 +5771,7 @@ Functioncd06: ; cd06
 
 Functioncd09: ; cd09
 	ld hl, UnknownScript_0xcd29
-	call Function31cd
+	call QueueScript
 	ld a, $81
 	ret
 ; cd12
@@ -5924,7 +5924,7 @@ Functioncdb4: ; cdb4
 
 Functioncdca: ; cdca
 	ld hl, UnknownScript_0xce0b
-	call Function31cd
+	call QueueScript
 	ld a, $81
 	ret
 ; cdd3
@@ -6060,7 +6060,7 @@ Functionce86: ; ce86
 	call CheckHeadbuttTreeTile
 	jr nz, .no_tree
 	ld hl, HeadbuttFromMenuScript
-	call Function31cd
+	call QueueScript
 	ld a, $81
 	ret
 
@@ -6153,7 +6153,7 @@ Functioncef4: ; cef4
 	cp $18
 	jr nz, .no_rock
 	ld hl, RockSmashFromMenuScript
-	call Function31cd
+	call QueueScript
 	ld a, $81
 	ret
 
@@ -6332,7 +6332,7 @@ Functioncff4: ; cff4
 	ld a, $1
 	ld [wd1ef], a
 	ld hl, UnknownScript_0xd035
-	call Function31cd
+	call QueueScript
 	ld a, $81
 	ret
 ; d002
@@ -6341,7 +6341,7 @@ Functiond002: ; d002
 	ld a, $2
 	ld [wd1ef], a
 	ld hl, UnknownScript_0xd01e
-	call Function31cd
+	call QueueScript
 	ld a, $81
 	ret
 ; d010
@@ -6350,7 +6350,7 @@ Functiond010: ; d010
 	ld a, $0
 	ld [wd1ef], a
 	ld hl, UnknownScript_0xd027
-	call Function31cd
+	call QueueScript
 	ld a, $81
 	ret
 ; d01e
@@ -6496,7 +6496,7 @@ Functiond0bc: ; d0bc
 	ld hl, UnknownScript_0xd13e
 	ld de, UnknownScript_0xd14e
 	call Functiond119
-	call Function31cd
+	call QueueScript
 	ld a, [wMapMusic]
 	cp MUSIC_VICTORY_ROAD
 	jr z, .done
@@ -6533,7 +6533,7 @@ Functiond0bc: ; d0bc
 	ret
 
 .asm_d113
-	call Function31cd
+	call QueueScript
 	ld a, $1
 	ret
 ; d119
@@ -13173,7 +13173,7 @@ Function12580: ; 12580
 .asm_1258d
 	ld hl, UnknownScript_0x125ad
 .asm_12590
-	call Function31cd
+	call QueueScript
 	ld a, $1
 	ld [wd0ec], a
 	ret
@@ -13615,7 +13615,7 @@ StartMenu_Quit: ; 128f0
 	jr c, .asm_12903
 	ld a, BANK(UnknownScript_0x1360b)
 	ld hl, UnknownScript_0x1360b
-	call Function31cf
+	call FarQueueScript
 	ld a, 4
 	ret
 
@@ -48576,7 +48576,7 @@ PoisonWhiteOutText: ; 506b7
 
 Function506bc: ; 506bc
 	ld hl, UnknownScript_0x506c8
-	call Function31cd
+	call QueueScript
 	ld a, $1
 	ld [wd0ec], a
 	ret
@@ -48654,7 +48654,7 @@ UnknownText_0x5072b: ; 0x5072b
 
 _Squirtbottle: ; 50730
 	ld hl, UnknownScript_0x5073c
-	call Function31cd
+	call QueueScript
 	ld a, $1
 	ld [wd0ec], a
 	ret
@@ -48719,7 +48719,7 @@ _CardKey: ; 50779
 	cp 6
 	jr nz, .asm_507a9
 	ld hl, UnknownScript_0x507af
-	call Function31cd
+	call QueueScript
 	ld a, $1
 	ld [wd0ec], a
 	ret
@@ -48750,7 +48750,7 @@ _BasementKey: ; 507b4
 	cp 10
 	jr nz, .asm_507db
 	ld hl, UnknownScript_0x507e1
-	call Function31cd
+	call QueueScript
 	ld a, $1
 	ld [wd0ec], a
 	ret
@@ -48772,7 +48772,7 @@ _SacredAsh: ; 507e6
 	call CheckAnyFaintedMon
 	ret nc
 	ld hl, UnknownScript_0x50821
-	call Function31cd
+	call QueueScript
 	ld a, $1
 	ld [wd0ec], a
 	ret
