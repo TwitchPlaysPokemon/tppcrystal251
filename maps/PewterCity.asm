@@ -73,7 +73,13 @@ MapPewterCitySignpostDoor1Script: ; 0x18c02f
 	closetext
 	applymovement $7, MapPewterCityMovementData2
 	winlosstext MapPewterCitySimonLostText, $0000
+	checkevent EVENT_BEAT_SIMON_5
+	iftrue .HardSimon
+	loadtrainer BURGLAR, SIMON_5
+	jump .LoadedSimon
+.HardSimon
 	loadtrainer BURGLAR, SIMON_6
+.LoadedSimon
 	startbattle
 	reloadmapmusic
 	returnafterbattle
