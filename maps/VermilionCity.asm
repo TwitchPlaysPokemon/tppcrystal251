@@ -134,10 +134,10 @@ SuperNerdScript_0x1aa99b: ; 0x1aa99b
 
 BigSnorlaxScript_0x1aa99e: ; 0x1aa99e
 	loadfont
-	checkitem POKE_FLUTE
-	iftrue .FluteWakeSnorlax
 	special SpecialSnorlaxAwake
 	iftrue UnknownScript_0x1aa9ab
+	checkitem POKE_FLUTE
+	iftrue .FluteWakeSnorlax
 	writetext UnknownText_0x1aab64
 	waitbutton
 	closetext
@@ -147,7 +147,9 @@ BigSnorlaxScript_0x1aa99e: ; 0x1aa99e
 	yesorno
 	iffalse .nope
 	farscall _PokefluteSnorlaxScript
+	end
 .nope
+	closetext
 	end
 ; 0x1aa9ab
 

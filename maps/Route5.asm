@@ -20,10 +20,10 @@ MapRoute5Signpost1Script: ; 0x1adb1f
 
 Snorlax5:
 	loadfont
-	checkitem POKE_FLUTE
-	iftrue .FluteWakeSnorlax
 	special SpecialSnorlaxAwake
 	iftrue WakeSnorlax5
+	checkitem POKE_FLUTE
+	iftrue .FluteWakeSnorlax
 	writetext Snorlax5Text
 	waitbutton
 	closetext
@@ -33,7 +33,9 @@ Snorlax5:
 	yesorno
 	iffalse .nope
 	farscall _PokefluteSnorlaxScript
+	end
 .nope
+	closetext
 	end
 
 
