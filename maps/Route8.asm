@@ -282,10 +282,10 @@ UnknownText_0x6c2b7: ; 0x6c2b7
 
 Snorlax8:
 	loadfont
-	checkitem POKE_FLUTE
-	iftrue .FluteWakeSnorlax
 	special SpecialSnorlaxAwake
 	iftrue WakeSnorlax8
+	checkitem POKE_FLUTE
+	iftrue .FluteWakeSnorlax
 	writetext Snorlax8Text
 	waitbutton
 	closetext
@@ -295,7 +295,9 @@ Snorlax8:
 	yesorno
 	iffalse .nope
 	farscall _PokefluteSnorlaxScript
+	end
 .nope
+	closetext
 	end
 
 WakeSnorlax8:

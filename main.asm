@@ -19256,6 +19256,9 @@ Function15021: ; 15021 (5:5021)
 	ret
 
 EmptyBox:
+	ld a, [MenuSelection]
+	dec a
+	ld e, a
 	ld a, [wCurBox]
 	push af
 	ld a, e
@@ -83198,7 +83201,7 @@ Functione36f9: ; e36f9 (38:76f9)
 	cp $1
 	jr z, .refused
 	ld hl, .AreYouReallySure
-	call Function1d4f
+	call PrintText
 	call YesNoBox
 	jr c, .refused
 	callba DeleteBox

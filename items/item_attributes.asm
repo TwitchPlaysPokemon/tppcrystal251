@@ -442,13 +442,13 @@ Item2Attributes:
 	db KEY_ITEM
 	dn 6, 0 ; overworld
 
-; POKEFLUTE
+; # FLUTE
 	dw 0 ; price
 	db NONE ; effect
 	db 0 ; param
 	db CANT_TOSS
 	db KEY_ITEM
-	dn 6, 0 ;overworld
+	dn 6, 6 ; overworld
 
 ; EXP.SHARE
 	dw 3000 ; price

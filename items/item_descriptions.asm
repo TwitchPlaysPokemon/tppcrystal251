@@ -87,7 +87,7 @@ ItemDescriptions:
 	dw XSpecialDesc
 	dw CoinCaseDesc
 	dw ItemfinderDesc
-	dw PokefluteDesc
+	dw PokeFluteDesc
 	dw ExpShareDesc
 	dw OldRodDesc
 	dw GoodRodDesc
@@ -505,9 +505,10 @@ ItemfinderDesc:
 	db   "Checks for unseen"
 	next "items in the area.@"
 
-PokefluteDesc:
-	db   "Awakens sleeping@"
-	next "#MON@"
+
+PokeFluteDesc:
+	db   "Wakes up all"
+	next "sleeping #MON.@"
 
 ExpShareDesc:
 	db   "Shares battle EXP."

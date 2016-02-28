@@ -53,7 +53,7 @@
 	db "X SPECIAL@"
 	db "COIN CASE@"
 	db "ITEMFINDER@"
-	db "#FLUTE@"
+	db "# FLUTE@"
 	db "EXP.SHARE@"
 	db "OLD ROD@"
 	db "GOOD ROD@"

@@ -2416,17 +2416,20 @@ PokeFlute: ; f50c
 	ld a, [hl]
 	ld [$ffe0], a
 	call GetMapObject
-	ld a, [bc]
+	ld hl, $1
+	add hl, bc
+	ld a, [hl]
 	cp SPRITE_BIG_SNORLAX
 	jr nz, .skip_snorlax
 	ld hl, PokefluteSnorlaxScript
 	call QueueScript
 	ld a, $1
 	ret
+
 .SnorlaxMapGroups
-	map VERMILION_CITY
-	map ROUTE_5
-	map ROUTE_8
+	 map VERMILION_CITY
+	 map ROUTE_5
+	 map ROUTE_8
 	db -1
 
 .skip_snorlax
@@ -2440,12 +2443,16 @@ PokeFlute: ; f50c
 	call .WakeUpEntireParty
 	ld a, [wd002]
 	and a
-	ld hl, UnknownText_0xf56c
-	jp z, PrintText
-	ld hl, UnknownText_0xf576
-	call PrintText
-	ld hl, UnknownText_0xf571
-	jp PrintText	
+	ld hl, Script_CatchyTune
+	ld a, $0
+	jr z, .do_script
+	ld hl, Script_WokeAllPokemon
+	ld a, $1
+.do_script
+	push af
+	call QueueScript
+	pop af
+	ret
 	
 .in_battle
 
@@ -2496,10 +2503,10 @@ PokeFlute: ; f50c
 	ld a, [hl]
 	push af
 	and SLP
-	jr z, .asm_f564
+	jr z, .not_asleep
 	ld a, 1
 	ld [wd002], a
-.asm_f564
+.not_asleep
 	pop af
 	and b
 	ld [hl], a
@@ -2512,7 +2519,6 @@ PokefluteSnorlaxScript:
 	loadfont
 _PokefluteSnorlaxScript::
 	writetext UnknownText_0xf576
-	buttonsound
 	waitsfx
 	writetext Text_SnorlaxWokeUp
 	waitbutton
@@ -2523,17 +2529,34 @@ _PokefluteSnorlaxScript::
 	checkcode VAR_MAPGROUP
 	if_not_equal GROUP_VERMILION_CITY, .CheckKillSnorlax
 	checkcode VAR_MAPNUMBER
-	if_equal MAP_VERMILION_CITY, .KillSnorlax
+	if_equal MAP_VERMILION_CITY, .KillSnorlaxVerm
 .CheckKillSnorlax
 	writebyte SNORLAX
 	special SpecialMonCheck
 	iffalse .DontKillSnorlax
+	jump .KillSnorlax
+.KillSnorlaxVerm
+	setevent EVENT_FOUGHT_SNORLAX
 .KillSnorlax
 	disappear -2
 .DontKillSnorlax
 	returnafterbattle
 	end
 
+
+Script_WokeAllPokemon:
+	loadfont
+	writetext UnknownText_0xf576
+	waitsfx
+	writetext UnknownText_0xf571
+	closetext
+	end
+
+Script_CatchyTune:
+	loadfont
+	writetext UnknownText_0xf56c
+	closetext
+	end
 
 UnknownText_0xf56c: ; 0xf56c
 	; Played the # FLUTE. Now, that's a catchy tune!
@@ -2556,9 +2579,14 @@ UnknownText_0xf576: ; 0xf576
 	jr nz, .skip_sfx
 
 	push de
+	callba SaveMusic
+	ld de, MUSIC_NONE
+	call PlayMusic
+	call DelayFrame
 	ld de, SFX_POKEFLUTE
 	call WaitPlaySFX
 	call WaitSFX
+	callba RestoreMusic
 	pop de
 
 .skip_sfx
