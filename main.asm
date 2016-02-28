@@ -83172,10 +83172,6 @@ Functione36f9: ; e36f9 (38:76f9)
 	jr z, .AlreadyEmpty
 	call CheckBoxForEggs
 	jr c, .EggFound
-	ld a, [MenuSelection]
-	dec a
-	ld e, a
-	push de
 	ld de, .PressTheButtons
 	call Functione37e3
 	ld bc, 240
@@ -83195,7 +83191,6 @@ Functione36f9: ; e36f9 (38:76f9)
 	call LoadMenuDataHeader
 	call Function1d81
 	call Function1c07
-	pop de
 	jr c, .refused
 	ld a, [wcfa9]
 	cp $1
@@ -83218,7 +83213,6 @@ Functione36f9: ; e36f9 (38:76f9)
 	jr .wrong
 
 .TimeUp
-	pop de
 	ld de, .TimeUpString
 .wrong
 	call Functione37e3
