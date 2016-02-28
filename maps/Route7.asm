@@ -18,7 +18,7 @@ UnknownText_0x1ad388: ; 0x1ad388
 	text "What's this flyer?"
 
 	para "<...> Uncouth members"
-	line "of the HELIX CHOIR"
+	line "of the CHOIR GROUP"
 	cont "have been holding"
 
 	para "battles in the"

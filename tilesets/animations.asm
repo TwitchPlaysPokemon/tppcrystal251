@@ -933,6 +933,7 @@ SafariFountainAnim4: ; fc5eb
 	add a
 	add a
 	add a
+	add a, 4
 	ld e, a
 	ld d, 0
 	ld hl, SafariFountainFrames
