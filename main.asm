@@ -71224,15 +71224,15 @@ Function9164e: ; 9164e (24:564e)
 	inc [hl]
 .update
 UpdateRadioStation: ; 9166f (24:566f)
-	ld hl, wd958
+	ld hl, wd958 ;radio position?
 	ld d, [hl]
 	ld hl, Unknown_916ad
 .asm_91676
 	ld a, [hli]
 	cp $ff
-	jr z, .asm_91682
+	jr z, .asm_91682 ;if end of array, no radio
 	cp d
-	jr z, .asm_91686
+	jr z, .asm_91686 ; if match d, continue else loop
 	inc hl
 	inc hl
 	jr .asm_91676
@@ -71280,8 +71280,8 @@ Unknown_916ad: ; 916ad
 	dbw 58, TuneQuizShow
 	dbw 64, Function916fa
 	dbw 72, Function91709
-	dbw 78, Function91718
-	dbw 80, Function91727
+	dbw 78, Function91727
+	dbw 80, Function91718
 	db $ff
 ; 916c9
 
