@@ -98,11 +98,16 @@ AfterLanceFight:
 	special RestartMapMusic
 	loadfont
 	writetext UnknownText_0x18137b
+	yesorno
+	iffalse .SkipLanceHeal
 	special HealParty
 	playsound SFX_POTION
 	waitsfx
-	buttonsound
 	writetext LanceAfterHeal
+	jump .AfterLanceHeal
+.SkipLanceHeal
+	writetext LanceRefusedHealText
+.AfterLanceHeal
 	waitbutton
 	closetext
 	applymovement $0, MovementData_0x180f53
@@ -297,6 +302,21 @@ LanceRustTalk:
 UnknownText_0x18137b: ; 0x18137b
 	text "Your final battle"
 	line "awaits, but first<...>"
+
+	para "Your #MON are"
+	line "hurt. If you want,"
+
+	para "I can heal them"
+	line "for you before you"
+
+	para "take on this final"
+	line "challenge. Okay?"
+	done
+
+LanceRefusedHealText:
+	text "Well, if that's"
+	line "what you want,"
+	cont "then go for it!"
 	done
 
 LanceAfterHeal:

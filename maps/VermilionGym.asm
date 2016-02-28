@@ -450,11 +450,10 @@ GuitaristVincentBeatenText: ; 0x192437
 ; 0x19244b
 
 UnknownText_0x19244b: ; 0x19244b
-	text "If the GYM's traps"
-	line "were working, you"
-
-	para "would have been"
-	line "toast<...>"
+	text "Even if I didn't"
+	line "beat you, the"
+	cont "GYM's traps"
+	cont "surely will!"
 	done
 ; 0x192487
 
@@ -564,6 +563,8 @@ SampleVermilionTrashCan:
 	cp 38
 	jr nc, .loop
 	ld [w3_d800], a
+	xor a
+	ld [w3_d801], a
 	pop af
 	ld [rSVBK], a
 	ret
@@ -574,27 +575,46 @@ CheckVermilionTrashCan:
 	ld a, d
 	swap a
 	or e
+	push af
 	ld de, 3
 	call IsInArray
-	jr nc, .nope
-	inc hl
-	ld a, [hli]
-	ld h, [hl]
-	ld l, a
+	pop bc
+	jr nc, .nope_no_pop
 	ld a, [rSVBK]
 	push af
 	ld a, 3
 	ld [rSVBK], a
+	inc hl
+	ld a, [hli]
+	ld h, [hl]
+	ld l, a
 	ld a, [w3_d800]
-	ld b, a
+	ld de, 1
+	push bc
+	call IsInArray
+	pop bc
+	jr nc, .nope
+	ld a, [w3_d801]
+	and a
+	jr z, .set
+	cp b
+	jr z, .nope
 	pop af
 	ld [rSVBK], a
+	ld a, 2
+	jr .done
+
+.set
 	ld a, b
-	ld de, 1
-	call IsInArray
+	ld [w3_d801], a
+	pop af
+	ld [rSVBK], a
 	ld a, 1
-	jr c, .done
+	jr .done
 .nope
+	pop af
+	ld [rSVBK], a
+.nope_no_pop
 	xor a
 .done
 	ld [ScriptVar], a

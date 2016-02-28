@@ -2552,7 +2552,7 @@ wBTChoiceOfLvlGroup::
 
 w3_d800:: ; ds BG_MAP_WIDTH * SCREEN_HEIGHT ($240)
 	ds 1
-
+w3_d801::
 
 SECTION "WRAM 4", WRAMX[$d800], BANK[$4] ; seems like this bank is unused
 

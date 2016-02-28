@@ -331,8 +331,11 @@ UnknownScript_0x192a25: ; 0x192a25
 ; 0x192a2d
 
 LinkReceptionistScript_0x192a2d: ; 0x192a2d
+	checkevent EVENT_FIRST_TIME_HALL_OF_FAME
+	iftrue .SkipBillCheck
 	checkevent EVENT_BILL_IN_GOLDENROD_BILLS_HOUSE
 	iftrue UnknownScript_0x192a25
+.SkipBillCheck
 	checkflag ENGINE_TIME_CAPSULE
 	iftrue UnknownScript_0x192a25
 	special Function29cfa

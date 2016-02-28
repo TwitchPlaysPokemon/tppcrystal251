@@ -165,8 +165,7 @@ FruitTreeScript_0x6c06c: ; 0x6c06c
 
 BikerDwayneSeenText: ; 0x6c06e
 	text "We're the KANTO"
-	line "HELIX CHOIR"
-	cont "trainer group."
+	line "CHOIR trainers"
 
 	para "No JOHTO brat"
 	line "is taking us down!"
@@ -205,20 +204,20 @@ UnknownText_0x6c143: ; 0x6c143
 	line "UNDERGROUND<...>"
 
 	para "All I have left is"
-	line "the HELIX CHOIR."
+	line "the CHOIR GROUP."
 	done
 ; 0x6c167
 
 BikerZekeSeenText: ; 0x6c167
 	text "We're the KANTO"
-	line "HELIX CHOIR!"
+	line "CHOIR GROUP!"
 	
-	para "We praise it!"
+	para "We sing loudly!"
 	done
 ; 0x6c194
 
 BikerZekeBeatenText: ; 0x6c194
-	text "OMANYTE, no!"
+	text "Oh no!"
 	done
 ; 0x6c1a3
 
@@ -348,6 +347,6 @@ Route8_MapEventHeader: ; 0x6c2e1
 	person_event SPRITE_SUPER_NERD, 6, 27, $6, 0, 0, -1, -1, 8 + PAL_OW_BROWN, 2, 3, TrainerSupernerdSam, -1
 	person_event SPRITE_SUPER_NERD, 16, 35, $a, 0, 0, -1, -1, 8 + PAL_OW_BROWN, 2, 4, TrainerSupernerdTom, -1
 	person_event SPRITE_FRUIT_TREE, 9, 37, $1, 0, 0, -1, -1, 0, 0, 0, FruitTreeScript_0x6c06c, -1
-	person_event SPRITE_BIG_SNORLAX, 12, 38, $15, 0, 0, -1, -1, 0, 0, 0, Snorlax8, EVENT_ROUTE_8_SNORLAX
+	person_event SPRITE_BIG_SNORLAX, 12, 40, $15, 0, 0, -1, -1, 0, 0, 0, Snorlax8, EVENT_ROUTE_8_SNORLAX
 ; 0x6c349
 
