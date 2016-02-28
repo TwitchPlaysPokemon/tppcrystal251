@@ -1111,7 +1111,7 @@ class AI(object):
             self.mycurhp = 1
         if self.traincurhp == 0:
             self.traincurhp = 1
-            
+        
         #len(self.MonData[mycurrent]['moves']) = the number of moves the mon has
         for x2, tempcombo in enumerate(Combogenerator(numberofturns, len(self.MonData[mycurrent]['moves']))):
             myhp = self.mycurhp
@@ -1159,6 +1159,7 @@ class AI(object):
                 myhp = myhp - self.Damage[traincurrent][mycurrent][self.enemynumber]['damage']
 
             #figure out what happens if special effect doesnt work
+            bonusmulti = 1
             for x1 in range(0, numberofturns):
                 self.MonData['painsplit'] = False
                 self.MonData['lockon'] = False
@@ -1234,12 +1235,15 @@ class AI(object):
                     myhp = 0
                 if trainhp < 0:
                     trainhp = 0
+                if trainhp == 0:
+                    bonusmulti += 0.1
                     
             #do extra effect on first move
             myhp1 = self.mycurhp
             trainhp1 = self.traincurhp
             self.MonData[mycurrent]['stats']['curhp'] = myhp1
             self.MonData[traincurrent]['stats']['curhp'] = trainhp1
+            bonusmulti1 = 1
             if self.MonData[mycurrent]['moves'][int(tempcombo[0])]['effectchance'] > 0 or self.MonData[mycurrent]['moves'][int(tempcombo[0])]['effectchance']:
                 self.Reset(traincurrent, mycurrent)
                 self.TrainerDamage(traincurrent, mycurrent)
@@ -1353,11 +1357,13 @@ class AI(object):
                         myhp1 = 0
                     if trainhp1 < 0:
                         trainhp1 = 0
+                    if trainhp1 == 0:
+                        bonusmulti1 += 0.1
             tempy = (self.MonData[mycurrent]['moves'][int(tempcombo[0])]['acc'] / 100) * (self.MonData[mycurrent]['moves'][int(tempcombo[0])]['effectchance'] / 100)
             if self.MonData[mycurrent]['moves'][int(tempcombo[0])]['effect'] == 'toxic' and ((self.MonData[mycurrent]['type'][1] == 'poison') or (self.MonData[mycurrent]['type'][2] == 'poison')):
                 tempy = 1
             if self.mycurhp != 0 and self.traincurhp != 0:
-                tempx = ((((myhp / self.mycurhp) - (trainhp / self.traincurhp) * 1.5) * (1 - tempy)) + (((myhp1 / self.mycurhp) - (trainhp1 / self.traincurhp) * 1.5) * tempy)) + 2
+                tempx = (((((myhp / self.mycurhp) - (trainhp / self.traincurhp) * 1.5) * bonusmulti) * (1 - tempy)) + ((((myhp1 / self.mycurhp) - (trainhp1 / self.traincurhp) * 1.5) * tempy) * bonusmulti1)) + 2
             else:
                 tempx = -5
             if Debug_Code == 1 or Debug_Code == 2:
@@ -1491,7 +1497,7 @@ class AI(object):
             if self.difference[self.jsonlist['battleState']['enemypokemon']['party idx']][traincurrent] < 0:
                 self.difference[self.jsonlist['battleState']['enemypokemon']['party idx']][traincurrent] = 0
             mycurrent = self.jsonlist['battleState']['enemypokemon']['party idx']
-            tempy = self.difference[mycurrent][traincurrent] + 1.5
+            tempy = self.difference[mycurrent][traincurrent] + 2
             for tempx in range(0, self.myparty):
                 if self.difference[tempx][traincurrent] > tempy:
                     tempy = self.difference[tempx][traincurrent]
@@ -1655,7 +1661,7 @@ class AI(object):
                 return tempx
             if 'charged' in self.MonData['playerpokemon']['substatus'] or (isinstance(self.MonData['playerpokemon']['substatus'], dict) and 'charged' in self.MonData['playerpokemon']['substatus'].values()):
                 return tempx
-        
+        '''
         #If i'm about to die, fire off an attack 
         self.TrainerDamage(traincurrent, mycurrent)
         if Debug_Code > 0:
@@ -1678,7 +1684,7 @@ class AI(object):
                     x1 = tempmove
             if Debug_Code > 0:
                 print('about to die - i need to attack, i will use: '+str(x1))
-            return x1
+            return x1'''
         
         #if we chose to use either counter/mirrorcoat, and the mon has BOTH counter and mirrorcoat, 
         #randomize the move used based on the effective damage of both
@@ -1721,13 +1727,13 @@ class AI(object):
                             x1 = 50
                         if random.randint(0, 100) > x1:
                             return tempx
-        
+        '''
         #kill the enemy
         for tempmove in range(0, len(self.jsonlist['battleState']['enemypokemon']['moves'])):
             self.Mychoice(mycurrent, traincurrent, tempmove)
             if self.Damage[mycurrent][traincurrent][tempmove]['damage'] > self.jsonlist['battleState']['playerpokemon']['hp']:
                 self.theaction = tempmove
-                break
+                break'''
         
         templist = []
         templist2 = []
