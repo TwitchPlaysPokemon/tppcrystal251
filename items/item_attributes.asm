@@ -442,13 +442,13 @@ Item2Attributes:
 	db KEY_ITEM
 	dn 6, 0 ; overworld
 
-; TERU-SAMA
-	dw $9999 ; price
+; POKEFLUTE
+	dw 0 ; price
 	db NONE ; effect
 	db 0 ; param
-	db 0 ; can select + toss
-	db ITEM
-	dn 0, 0 ; can't use
+	db CANT_TOSS
+	db KEY_ITEM
+	dn 6, 0 ;overworld
 
 ; EXP.SHARE
 	dw 3000 ; price
