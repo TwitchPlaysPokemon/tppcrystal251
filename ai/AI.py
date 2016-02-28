@@ -168,11 +168,11 @@ class AI(object):
                     self.MonData[allmons]['stats'] = {}
                     self.MonData[allmons]['stats']['happy'] = int(self.jsonlist['battleState']['enemypokemon']['happiness'])
                     self.MonData[allmons]['stats']['curhp'] = int(self.jsonlist['battleState']['enemypokemon']['hp'])
-                    self.MonData[allmons]['stats']['hp'] = int(self.jsonlist['battleState']['enemypokemon']['maxhp'])
+                    self.MonData[allmons]['stats']['hp'] = int(self.jsonlist['battleState']['enemypokemon']['stats']['maxhp'])
 
                     #compute base stats
                     #stats in the JSON has each stat multiplier already multiplied, so we divide them to get the base stats
-                    fullStatNames = {'atk':'attack','def':'defense','satk':'spatk','sdef':'spdef','spd':'spd'} 
+                    fullStatNames = {'atk':'attack','def':'defense','satk':'spatk','sdef':'spdef','spd':'speed'} 
                     for stat in self.statNames[:-2]: #don't use eva and acc
                         self.MonData[allmons]['stats'][stat] = int(
                             self.jsonlist['battleState']['enemypokemon']['stats'][fullStatNames[stat]] / 
