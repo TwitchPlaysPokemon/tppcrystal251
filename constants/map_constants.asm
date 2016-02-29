@@ -300,6 +300,7 @@ MAP_N_A   EQU -1
 	mapgroup FUCHSIA_POKECENTER_1F, 4, 5
 	mapgroup SAFARI_ZONE_WARDENS_HOME, 4, 5
 	mapgroup ROUTE_15_FUCHSIA_GATE, 4, 5
+	mapgroup FUCHSIA_GYM_2, 13, 7
 
 	newgroup ; Lavender Town
 	mapgroup ROUTE_8, 9, 21

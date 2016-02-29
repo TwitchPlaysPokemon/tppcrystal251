@@ -12,6 +12,12 @@ FuchsiaCity_MapScriptHeader: ; 0x194b19
 
 UnknownScript_0x194b1e: ; 0x194b1e
 	setflag ENGINE_FLYPOINT_FUCHSIA
+	checkevent EVENT_SET_BY_OAK_AFTER_16_BADGES
+	iftrue UnknownScript_0x194b1e_2
+	warpmod 1, GROUP_FUCHSIA_GYM, MAP_FUCHSIA_GYM
+	return
+UnknownScript_0x194b1e_2: 
+	warpmod 1, GROUP_FUCHSIA_GYM_2, MAP_FUCHSIA_GYM_2
 	return
 ; 0x194b22
 
@@ -160,7 +166,7 @@ FuchsiaCity_MapEventHeader: ; 0x194d67
 	db 10
 	warp_def $d, $5, 2, GROUP_FUCHSIA_MART, MAP_FUCHSIA_MART
 	warp_def $d, $16, 1, GROUP_SAFARI_ZONE_MAIN_OFFICE, MAP_SAFARI_ZONE_MAIN_OFFICE
-	warp_def $1b, $8, 1, GROUP_FUCHSIA_GYM, MAP_FUCHSIA_GYM
+	warp_def $1b, $8, -1, 0, 0 ;Fuchsia Gym
 	warp_def $1b, $b, 1, GROUP_FUCHSIA_BILL_SPEECH_HOUSE, MAP_FUCHSIA_BILL_SPEECH_HOUSE
 	warp_def $1b, $13, 1, GROUP_FUCHSIA_POKECENTER_1F, MAP_FUCHSIA_POKECENTER_1F
 	warp_def $1b, $1b, 1, GROUP_SAFARI_ZONE_WARDENS_HOME, MAP_SAFARI_ZONE_WARDENS_HOME
