@@ -41,7 +41,7 @@ MapRedsHouse1FSignpost1Script: ; 0x19aebd
 ; 0x19aec0
 
 UnknownText_0x19aec0: ; 0x19aec0
-	text "Hi!"
+	text "Hello there."
 
 	para "AIIIAAB's been"
 	line "away for a long"
@@ -49,17 +49,16 @@ UnknownText_0x19aec0: ; 0x19aec0
 
 	para "He hasn't called"
 	line "either, so I have"
-
-	para "no idea where he"
-	line "is or what he's"
-	cont "been doing."
+	cont "no idea what he's"
+	cont "up to."
 
 	para "They say that no"
-	line "word is proof that"
-
-	para "he's doing fine,"
-	line "but I do worry"
-	cont "about him."
+	line "news is good news,"
+	cont "so I like to think"
+	cont "he's safe<...>"
+	
+	para "But I always do"
+	cont "worry about him."
 	done
 ; 0x19af81
 
@@ -69,22 +68,23 @@ UnknownText_0x19af81: ; 0x19af81
 	para "Oh, you used to"
 	line "live here?"
 	
-	para "So you were on"
+	para "<...>"
+	
+	para "You were on"
 	line "board the S.S."
-	cont "Anne when it"
+	cont "ANNE when it"
 	cont "crashed?"
 	
-	para "Thank goodness you"
-	line "you are safe and"
-	cont "sound."
+	para "Thank goodness"
+	line "you are safe."
 
 	para "I worry that my"
 	line "son AIIIAAB might"
 	cont "get into trouble"
-	cont "too..."
+	cont "too<...>"
 
 	para "He never has time"
-	line "to contact me"
+	line "to contact me,"
 	cont "since he's always"
 	cont "busy training."
 	
