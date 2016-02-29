@@ -37,10 +37,100 @@ EcruteakEliteFloor_MapScriptHeader:
 
 	; callbacks
 	db 0
+	
+MortyAfterRematch2:
+	writetext MortyAfterRematchText2
+	waitbutton
+	closetext
+	end
 
-; <scripts go here>
+MortyRematchScript2:
+	faceplayer
+	loadfont
+	checkevent EVENT_MORTY_REMATCH
+	iftrue MortyAfterRematch2
+	writetext MortyRematchTextBefore2
+	waitbutton
+	closetext
+	winlosstext MortyRematchBeatenText2, $0000
+	loadtrainer MORTY, 2
+	startbattle
+	returnafterbattle
+	setevent EVENT_MORTY_REMATCH
+	loadfont
+	jump MortyAfterRematch2
+	
+EcruteakGymGuy2Script: ; 0x99e39
+	faceplayer
+	loadfont
+	checkevent EVENT_MORTY_REMATCH
+	iftrue .EcruteakGymGuyWinScript
+	writetext EcruteakGymGuy2Text
+	waitbutton
+	closetext
+	end
 
-; <text goes here>
+.EcruteakGymGuyWinScript
+	writetext EcruteakGymGuy2WinText
+	waitbutton
+	closetext
+	end
+	
+MapEcruteakGym2Signpost1Script:
+	trainertotext MORTY, 1, $1
+	jumpstd gymstatue2
+	
+MortyRematchTextBefore2:
+	text "Welcome back,"
+	line "<PLAY_G>."
+
+	para "So the legend was"
+	line "true, and HO-OH"
+	cont "chose you<...>"
+
+	para "But that does not"
+	line "mean that I have"
+	cont "lost out on my"
+	cont "future."
+	
+	para "Show me the power"
+	line "I trained for!"
+	done
+
+MortyRematchBeatenText2:
+	text "How is this"
+	line "possible<...>"
+	done
+
+MortyAfterRematchText2:
+	text "Our potentials"
+	line "aren't so"
+	cont "different."
+	
+	para "But you seem to"
+	line "have something<...>"
+	
+	para "Something more" 
+	line "than that<...>"
+	done
+
+EcruteakGymGuy2Text:
+	text "MORTY has upgraded"
+	line "his floor to the"
+	cont "whole new level."
+	
+	para "He even called it"
+	line "THE ELITE FLOOR."
+	done
+
+EcruteakGymGuy2WinText:
+	text "Whew, <PLAYER>."
+	line "You did great!"
+
+	para "I was cowering in"
+	line "the corner out of"
+	cont "pure terror!"
+	done
 
 EcruteakEliteFloor_MapEventHeader:
 	; filler
@@ -67,10 +157,11 @@ efloorrow = 4
 
 	; bg events
 	db 2
-	signpost $17, $9, $0, MapEcruteakGymSignpost1Script
-	signpost $17, $c, $0, MapEcruteakGymSignpost1Script
+	signpost $17, $9, $0, MapEcruteakGym2Signpost1Script
+	signpost $17, $c, $0, MapEcruteakGym2Signpost1Script
 
 	; object events
-	db 1
-	person_event SPRITE_MORTY, 5, 15, $6, 0, 0, -1, -1, 8 + PAL_OW_BROWN, 0, 0, MortyScript_0x99d58, EVENT_SET_BY_OAK_AFTER_16_BADGES
+	db 2
+	person_event SPRITE_MORTY, 5, 15, $6, 0, 0, -1, -1, 8 + PAL_OW_BROWN, 0, 0, MortyScript_0x99d58, -1
+	person_event SPRITE_GYM_GUY, 27, 17, $6, 0, 0, -1, -1, 8 + PAL_OW_RED, 0, 0, EcruteakGymGuy2Script, -1
 

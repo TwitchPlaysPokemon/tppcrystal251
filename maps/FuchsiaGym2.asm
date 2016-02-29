@@ -3,8 +3,25 @@ FuchsiaGym2_MapScriptHeader:
 	db 0
 
 	; callbacks
-	db 0
+	db 1
 	
+	dbw 1, FuchsiaGym2Callback
+	
+FuchsiaGym2Callback:
+	checkevent EVENT_JANINE_REMATCH
+	iftrue .revealall
+	setevent EVENT_JANINE_INVISIBLE
+	setevent EVENT_FAKE_JANINE_1
+	setevent EVENT_FAKE_JANINE_2
+	return
+.revealall
+	clearevent EVENT_JANINE_INVISIBLE
+	clearevent EVENT_FAKE_JANINE_1
+	clearevent EVENT_FAKE_JANINE_2
+	return
+	
+InvisibleJanineSPScript:
+	dw EVENT_JANINE_INVISIBLE, InvisibleJanineScript
 InvisibleJanineScript:
 	checkevent EVENT_JANINE_REMATCH
 	iftrue JanineAfterRematch
@@ -13,7 +30,7 @@ JanineRematchScript:
 	writetext InvisibleTrainerFoundText
 	waitbutton
 	closetext
-	; TODO make her appear
+	appear $1
 	applymovement $1, MovementData_0x195f27_2
 	faceplayer
 	writetext JanineBeforeRematchText
@@ -28,7 +45,6 @@ JanineRematchScript:
 	jump JanineJustAfterRematch
 
 JanineAfterRematch:
-	;TODO make her appear
 	faceplayer
 	loadfont
 JanineJustAfterRematch:
@@ -37,15 +53,17 @@ JanineJustAfterRematch:
 	closetext
 	end
 	
+FakeJanine1SPScript:
+	dw EVENT_FAKE_JANINE_1, FakeJanine1Script
 FakeJanine1Script:
 	loadfont
 	checkevent EVENT_FAKE_JANINE_1
-	iftrue .revealed
-	setevent EVENT_FAKE_JANINE_1
+	iffalse .revealed
+	clearevent EVENT_FAKE_JANINE_1
 	writetext InvisibleTrainerFoundText
 	waitbutton
 	closetext
-	; TODO make her appear
+	appear $2
 	applymovement $2, MovementData_0x195f27_2
 .revealed
 	faceplayer
@@ -54,15 +72,17 @@ FakeJanine1Script:
 	closetext
 	end
 	
+FakeJanine2SPScript:
+	dw EVENT_FAKE_JANINE_2, FakeJanine2Script
 FakeJanine2Script:
 	loadfont
 	checkevent EVENT_FAKE_JANINE_2
-	iftrue .revealed
-	setevent EVENT_FAKE_JANINE_2
+	iffalse .revealed
+	clearevent EVENT_FAKE_JANINE_2
 	writetext InvisibleTrainerFoundText
 	waitbutton
 	closetext
-	; TODO make her appear
+	appear $3
 	applymovement $3, MovementData_0x195f27_2
 .revealed
 	faceplayer
@@ -86,6 +106,10 @@ FuchsiaGym2GuyScript:
 	waitbutton
 	closetext
 	end
+	
+MapFuchsiaGym2Signpost1Script:
+	trainertotext JANINE, 1, $1
+	jumpstd gymstatue2
 	
 MovementData_0x195f27_2:
 	turn_head_down
@@ -159,8 +183,8 @@ FuchsiaGym2GuyText: ; 0x196299
 	text "Yo, CHAMP!"
 
 	para "<...>yes. She is here,"
-	line "hiding in this"
-	cont "new invisible maze."
+	line "hiding in this new"
+	cont "invisible maze."
 	
 	para "Even herself is"
 	line "invisible!"
@@ -178,19 +202,24 @@ FuchsiaGym2_MapEventHeader:
 	db 0, 0
 
 	; warps
-	db 0
+	db 2
+	warp_def $19, $6, 3, GROUP_FUCHSIA_CITY, MAP_FUCHSIA_CITY
+	warp_def $19, $7, 3, GROUP_FUCHSIA_CITY, MAP_FUCHSIA_CITY
 
 	; coord events
 	db 0
 
 	; bg events
-	db 2
-	signpost 23, 5, $0, MapFuchsiaGymSignpost1Script
-	signpost 23, 8, $0, MapFuchsiaGymSignpost1Script
+	db 5
+	signpost 23, 5, $0, MapFuchsiaGym2Signpost1Script
+	signpost 23, 8, $0, MapFuchsiaGym2Signpost1Script
+	signpost 10, 8, $5, InvisibleJanineSPScript
+	signpost  6, 7, $5, FakeJanine1SPScript
+	signpost 19, 8, $5, FakeJanine2SPScript
 
 	; object events
 	db 4
-	person_event SPRITE_JANINE, 14, 12, $3, 0, 0, -1, -1, 8 + PAL_OW_BLUE, 0, 0, InvisibleJanineScript, -1
-	person_event SPRITE_FUCHSIA_GYM_1, 10, 11, $a, 0, 0, -1, -1, 8 + PAL_OW_BLUE, 0, 0, FakeJanine1Script, -1
-	person_event SPRITE_FUCHSIA_GYM_2, 23, 12, $a, 0, 0, -1, -1, 8 + PAL_OW_BLUE, 0, 0, FakeJanine2Script, -1
+	person_event SPRITE_JANINE, 14, 12, $3, 0, 0, -1, -1, 8 + PAL_OW_BLUE, 0, 0, InvisibleJanineScript, EVENT_JANINE_INVISIBLE
+	person_event SPRITE_FUCHSIA_GYM_1, 10, 11, $a, 0, 0, -1, -1, 8 + PAL_OW_BLUE, 0, 0, FakeJanine1Script, EVENT_FAKE_JANINE_1
+	person_event SPRITE_FUCHSIA_GYM_2, 23, 12, $a, 0, 0, -1, -1, 8 + PAL_OW_BLUE, 0, 0, FakeJanine2Script, EVENT_FAKE_JANINE_2
 	person_event SPRITE_GYM_GUY, 27, 13, $6, 0, 0, -1, -1, 8 + PAL_OW_BLUE, 0, 0, FuchsiaGym2GuyScript, -1
