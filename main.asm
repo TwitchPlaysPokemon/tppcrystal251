@@ -63556,6 +63556,10 @@ Function8c44f: ; 8c44f (23:444f)
 ; 8c490 (23:4490)
 
 HostsBattleTransition:
+	ld a, [rSVBK]
+	push af
+	ld a, 1
+	ld [rSVBK], a
 	ld a, [OtherTrainerClass]
 	cp RED
 	jr nz, .okay
@@ -63576,12 +63580,16 @@ HostsBattleTransition:
 	cp BABA
 	jr nz, .nocarry
 .start
+	pop af
+	ld [rSVBK], a
 	callba _HostsBattleTransition
 	ld a, $40
 	ld [wcf63], a
 	scf
 	ret
 .nocarry
+	pop af
+	ld [rSVBK], a
 	xor a
 	ret
 
