@@ -497,6 +497,7 @@
 	map_header_2 FuchsiaPokeCenter1F, FUCHSIA_POKECENTER_1F, $0, NONE ; 0x96224
 	map_header_2 SafariZoneWardensHome, SAFARI_ZONE_WARDENS_HOME, $0, NONE ; 0x9623c
 	map_header_2 Route15FuchsiaGate, ROUTE_15_FUCHSIA_GATE, $0, NONE ; 0x96248
+	map_header_2 FuchsiaGym2, FUCHSIA_GYM_2, 0, NONE
 	map_header_2 LavenderPokeCenter1F, LAVENDER_POKECENTER_1F, $0, NONE ; 0x96254
 	map_header_2 MrFujisHouse, MR_FUJIS_HOUSE, $0, NONE ; 0x9626c
 	map_header_2 LavenderTownSpeechHouse, LAVENDER_TOWN_SPEECH_HOUSE, $0, NONE ; 0x96278

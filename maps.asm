@@ -691,3 +691,8 @@ SECTION "EcruteakEliteFloor", ROMX
 INCLUDE "maps/EcruteakEliteFloor.asm"
 SECTION "EcruteakEliteFloor Blockdata", ROMX
 EcruteakEliteFloor_BlockData: INCBIN "maps/EcruteakEliteFloor.blk"
+
+SECTION "FuchsiaGym2", ROMX
+INCLUDE "maps/FuchsiaGym2.asm"
+SECTION "FuchsiaGym2 Blockdata", ROMX
+FuchsiaGym2_BlockData: INCBIN "maps/FuchsiaGym2.blk"

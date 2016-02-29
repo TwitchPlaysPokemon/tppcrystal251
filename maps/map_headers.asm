@@ -334,6 +334,7 @@ MapGroup17:
 	map_header FuchsiaPokeCenter1F, $7, 3, FUCHSIA_CITY, MUSIC_POKEMON_CENTER, 0, 1, 1
 	map_header SafariZoneWardensHome, $5, 3, FUCHSIA_CITY, MUSIC_CERULEAN_CITY, 0, 1, 1
 	map_header Route15FuchsiaGate, $8, 6, ROUTE_15, MUSIC_ROUTE_12, 0, 1, 1
+	map_header FuchsiaGym2, $a, 3, FUCHSIA_CITY, MUSIC_GYM, 1, 1, 1
 
 MapGroup18:
 	map_header Route8, $3, 2, ROUTE_8, MUSIC_ROUTE_3, 0, 0, 1
