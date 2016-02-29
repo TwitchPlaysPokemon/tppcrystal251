@@ -3,8 +3,11 @@ BillsGarden_MapScriptHeader:
 	db 0
 
 	; callbacks
-	db 0
-
+	db 1
+	dbw 5, .HideMew
+.HideMew
+	disappear $2
+	return
 ; <scripts go here>
 MewScript_BillsGarden:
 	dw EVENT_SAW_MEW_IN_GARDEN, .Script
