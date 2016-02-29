@@ -23,16 +23,17 @@ FuchsiaGym2Callback:
 InvisibleJanineSPScript:
 	dw EVENT_JANINE_INVISIBLE, InvisibleJanineScript
 InvisibleJanineScript:
+	setlasttalked $2
 	checkevent EVENT_JANINE_REMATCH
 	iftrue JanineAfterRematch
-JanineRematchScript:
 	loadfont
 	writetext InvisibleTrainerFoundText
 	waitbutton
 	closetext
-	appear $1
-	applymovement $1, MovementData_0x195f27_2
+	appear $2
+	applymovement $2, MovementData_0x195f27_2
 	faceplayer
+	loadfont
 	writetext JanineBeforeRematchText
 	waitbutton
 	closetext
@@ -41,6 +42,8 @@ JanineRematchScript:
 	startbattle
 	returnafterbattle
 	setevent EVENT_JANINE_REMATCH
+	appear $3
+	appear $4
 	loadfont ;fallthrough
 	jump JanineJustAfterRematch
 
@@ -56,17 +59,19 @@ JanineJustAfterRematch:
 FakeJanine1SPScript:
 	dw EVENT_FAKE_JANINE_1, FakeJanine1Script
 FakeJanine1Script:
-	loadfont
+	setlasttalked $3
 	checkevent EVENT_FAKE_JANINE_1
 	iffalse .revealed
 	clearevent EVENT_FAKE_JANINE_1
+	loadfont
 	writetext InvisibleTrainerFoundText
 	waitbutton
 	closetext
-	appear $2
-	applymovement $2, MovementData_0x195f27_2
+	appear $3
+	applymovement $3, MovementData_0x195f27_2
 .revealed
 	faceplayer
+	loadfont
 	writetext FakeJanine1Text
 	waitbutton
 	closetext
@@ -75,17 +80,19 @@ FakeJanine1Script:
 FakeJanine2SPScript:
 	dw EVENT_FAKE_JANINE_2, FakeJanine2Script
 FakeJanine2Script:
-	loadfont
+	setlasttalked $4
 	checkevent EVENT_FAKE_JANINE_2
 	iffalse .revealed
 	clearevent EVENT_FAKE_JANINE_2
+	loadfont
 	writetext InvisibleTrainerFoundText
 	waitbutton
 	closetext
-	appear $3
-	applymovement $3, MovementData_0x195f27_2
+	appear $4
+	applymovement $4, MovementData_0x195f27_2
 .revealed
 	faceplayer
+	loadfont
 	writetext FakeJanine2Text
 	waitbutton
 	closetext
