@@ -838,7 +838,7 @@ OaksParcelDesc:
 	next "PROF.OAK.@"
 
 PowerHerbDesc:
-	db   "Speeds up 2-turn@"
+	db   "Speeds up 2-turn"
 	next "moves. (HOLD)@"
 
 MetalCoatDesc:
