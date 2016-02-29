@@ -217,7 +217,7 @@ UnknownText_0x1ab683: ; 0x1ab683
 ; 0x1ab69d
 
 UnknownText_0x1ab69d: ; 0x1ab69d
-	text "BLAINE: also"
+	text "BLAINE: Also"
 	line "take this."
 	done
 

@@ -139,7 +139,7 @@
 	db "BERRY JUICE@"
 	db "SCOPE LENS@"
 	db "OAK'S PARCEL@"
-	db "TERU-SAMA@"
+	db "POWER HERB@"
 	db "METAL COAT@"
 	db "DRAGON FANG@"
 	db "TERU-SAMA@"

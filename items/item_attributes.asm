@@ -1122,7 +1122,7 @@ Item2Attributes:
 	db ITEM
 	dn 0, 0 ; can't use
 
-; OAKS_PARCEL
+; OAKS PARCEL
 	dw 0 ; price
 	db NONE ; effect
 	db 0 ; param
@@ -1130,11 +1130,11 @@ Item2Attributes:
 	db KEY_ITEM
 	dn 0, 0 ; can't use
 
-; TERU-SAMA
-	dw $9999 ; price
-	db NONE ; effect
+; POWER HERB
+	dw 500 ; price
+	db HELD_SKIP_CHARGE ; effect
 	db 0 ; param
-	db 0 ; can select + toss
+	db CANT_SELECT ; can select + toss
 	db ITEM
 	dn 0, 0 ; can't use
 

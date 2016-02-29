@@ -1578,7 +1578,7 @@ Function3c93c: ; 3c93c
 .asm_3ca14
 	call GetItemName
 	call SwitchTurnCore
-	call Function3ddc8
+	call ItemRecoveryAnim
 	call SwitchTurnCore
 	ld hl, BattleText_0x80899
 	jp StdBattleTextBox
@@ -4709,7 +4709,7 @@ Function3dd2f: ; 3dd2f
 	ret nc
 
 .asm_3dd66
-	call Function3ddc8
+	call ItemRecoveryAnim
 	ld a, [hli]
 	ld [Buffer2], a
 	ld a, [hl]
@@ -4775,7 +4775,7 @@ Function3ddac:
 	jp StdBattleTextBox
 ; 3ddc8
 
-Function3ddc8: ; 3ddc8
+ItemRecoveryAnim: ; 3ddc8
 	push hl
 	push de
 	push bc
@@ -4842,7 +4842,7 @@ Function3dde9: ; 3dde9
 	ld a, BANK(Function365fd)
 	rst FarCall
 	call SwitchTurnCore
-	call Function3ddc8
+	call ItemRecoveryAnim
 	call Function3ddac
 	ld a, $1
 	and a
@@ -4878,7 +4878,7 @@ Function3de51: ; 3de51
 	call GetBattleVarAddr
 	res SUBSTATUS_CONFUSED, [hl]
 	call GetItemName
-	call Function3ddc8
+	call ItemRecoveryAnim
 	ld hl, BattleText_0x80dab
 	call StdBattleTextBox
 	ld a, [hBattleTurn]
@@ -9858,3 +9858,36 @@ BattleStartMessage: ; 3fc8b
 
 	ret
 ; 3fd26
+
+ConsumeUsersItem:
+	ld a, BATTLE_VARS_SUBSTATUS3
+	call GetBattleVarAddr
+	ld a, (1 << SUBSTATUS_UNDERGROUND) | (1 << SUBSTATUS_FLYING)
+	and [hl]
+	res SUBSTATUS_CHARGED, [hl]
+	res SUBSTATUS_UNDERGROUND, [hl]
+	res SUBSTATUS_FLYING, [hl]
+	jr nz, .skip_anim
+	call SwitchTurn
+	call ItemRecoveryAnim
+	call SwitchTurn
+.skip_anim
+	ld a, [hBattleTurn]
+	and a
+	jr z, .PlayerItem
+	call Function3df1f
+	xor a
+	ld [bc], a
+	ld a, [wBattleMode]
+	dec a
+	ret z
+	xor a
+	ld [hl], a
+	ret
+.PlayerItem
+	call Function3df12
+	xor a
+	ld [bc], a
+	ld [hl], a
+	ret
+

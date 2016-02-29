@@ -173,7 +173,7 @@ ItemDescriptions:
 	dw BerryJuiceDesc
 	dw ScopeLensDesc
 	dw OaksParcelDesc
-	dw TeruSama13Desc
+	dw PowerHerbDesc
 	dw MetalCoatDesc
 	dw DragonFangDesc
 	dw TeruSama14Desc
@@ -837,8 +837,9 @@ OaksParcelDesc:
 	db   "A package for"
 	next "PROF.OAK.@"
 
-TeruSama13Desc:
-	db   "?@"
+PowerHerbDesc:
+	db   "Speeds up 2-turn"
+	next "moves. (HOLD)@"
 
 MetalCoatDesc:
 	db   "Powers up steel-"

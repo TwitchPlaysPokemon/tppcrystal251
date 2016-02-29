@@ -108,8 +108,7 @@ UnknownText_0x1c0272: ; 1c0272
 
 UnknownText_0x1c029c: ; 1c029c
 	text_from_ram StringBuffer1
-	text " gained@"
-	db "@"
+	text " gained@@"
 ; 1c02a9
 
 UnknownText_0x1c02a9: ; 1c02a9
@@ -130,25 +129,21 @@ UnknownText_0x1c02c9: ; 1c02c9
 ; 1c02df
 
 UnknownText_0x1c02df: ; 1c02df
-	text "Go! @"
-	db "@"
+	text "Go! @@"
 ; 1c02e6
 
 UnknownText_0x1c02e6: ; 1c02e6
-	text "Do it! @"
-	db "@"
+	text "Do it! @@"
 ; 1c02f0
 
 UnknownText_0x1c02f0: ; 1c02f0
 	text "Go for it,"
-	line "@"
-	db "@"
+	line "@@"
 ; 1c02fe
 
 UnknownText_0x1c02fe: ; 1c02fe
 	text "Your foe's weak!"
-	line "Get'm, @"
-	db "@"
+	line "Get'm, @@"
 ; 1c0317
 
 UnknownText_0x1c0317: ; 1c0317
@@ -159,26 +154,22 @@ UnknownText_0x1c0317: ; 1c0317
 
 UnknownText_0x1c031d: ; 1c031d
 	text_from_ram BattleMonNick
-	text ",@"
-	db "@"
+	text ",@@"
 ; 1c0324
 
 UnknownText_0x1c0324: ; 1c0324
 	text " that's"
-	line "enough! Come back!@"
-	db "@"
+	line "enough! Come back!@@"
 ; 1c0340
 
 UnknownText_0x1c0340: ; 1c0340
 	text " OK!"
-	line "Come back!@"
-	db "@"
+	line "Come back!@@"
 ; 1c0352
 
 UnknownText_0x1c0352: ; 1c0352
 	text " good!"
-	line "Come back!@"
-	db "@"
+	line "Come back!@@"
 ; 1c0366
 
 UnknownText_0x1c0366: ; 1c0366
@@ -876,8 +867,7 @@ UnknownText_0x1c0d06: ; 1c0d06
 ; 1c0d0e
 
 UnknownText_0x1c0d0e: ; 1c0d0e
-	text $5a, "@"
-	db "@"
+	text $5a, "@@"
 ; 1c0d12
 
 UnknownText_0x1c0d12: ; 1c0d12
@@ -915,28 +905,30 @@ UnknownText_0x1c0d6c: ; 1c0d6c
 	line "dug a hole!"
 	prompt
 ; 1c0d7a
+_PowerHerbText:
+	text $5a, "'s"
+	line "POWER HERB"
+	cont "activated!"
+	prompt
+	
 
 _ActorNameText: ; 1c0d7a
-	text $5a, "@"
-	db "@"
+	text $5a, "@@"
 ; 1c0d7e
 
 _UsedMove1Text: ; 1c0d7e
 	text ""
-	line "used @"
-	db "@"
+	line "used @@"
 ; 1c0d87
 
 _UsedMove2Text: ; 1c0d87
 	text ""
-	line "used @"
-	db "@"
+	line "used @@"
 ; 1c0d90
 
 _UsedInsteadText: ; 1c0d90
 	text "instead,", $55
-	db "@"
-	db "@"
+	db "@@"
 ; 1c0d9c
 
 _MoveNameText: ; 1c0d9c
@@ -975,8 +967,7 @@ _EndUsedMove5Text: ; 1c0dad
 
 UnknownText_0x1c0db0: ; 1c0db0
 	text "Huh?", $51
-	db "@"
-	db "@"
+	db "@@"
 ; 1c0db8
 
 UnknownText_0x1c0db8: ; 1c0db8
@@ -1207,8 +1198,7 @@ UnknownText_0x1c10fa: ; 1c10fa
 	line "who caught a", $55
 	db "@"
 	text_from_ram StringBuffer1
-	text "!@"
-	db "@"
+	text "!@@"
 ; 1c113f
 
 UnknownText_0x1c113f: ; 1c113f
@@ -1228,8 +1218,7 @@ UnknownText_0x1c1166: ; 1c1166
 	db "who caught a"
 	line "@"
 	text_from_ram StringBuffer1
-	text "!@"
-	db "@"
+	text "!@@"
 ; 1c1196
 
 UnknownText_0x1c1196: ; 1c1196
@@ -1249,8 +1238,7 @@ UnknownText_0x1c11b5: ; 1c11b5
 	db "who caught a"
 	line "@"
 	text_from_ram StringBuffer1
-	text "!@"
-	db "@"
+	text "!@@"
 ; 1c11e4
 
 UnknownText_0x1c11e4: ; 1c11e4
@@ -1850,8 +1838,7 @@ _OakText2: ; 1c1da4
 	text "This world is in-"
 	line "habited by crea-", $55
 	db "tures that we call", $55
-	db "#MON.@"
-	db "@"
+	db "#MON.@@"
 ; 1c1de2
 
 _OakText3: ; 1c1de2
