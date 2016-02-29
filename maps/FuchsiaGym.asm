@@ -7,10 +7,6 @@ FuchsiaGym_MapScriptHeader: ; 0x195db7
 ; 0x195db9
 
 JanineScript_0x195db9: ; 0x195db9
-	checkevent EVENT_JANINE_REMATCH
-	iftrue JanineAfterRematch
-	checkevent EVENT_SET_BY_OAK_AFTER_16_BADGES
-	iftrue JanineRematchScript
 	checkflag ENGINE_SOULBADGE
 	iftrue UnknownScript_0x195e00
 	applymovement $2, MovementData_0x195f27
@@ -58,29 +54,6 @@ UnknownScript_0x195e15: ; 0x195e15
 	closetext
 	end
 ; 0x195e1b
-
-JanineRematchScript:
-	faceplayer
-	loadfont
-	writetext JanineBeforeRematchText
-	waitbutton
-	closetext
-	winlosstext JanineRematchBeatenText, $0000
-	loadtrainer JANINE, 2
-	startbattle
-	returnafterbattle
-	setevent EVENT_JANINE_REMATCH
-	loadfont ;fallthrough
-	jump JanineJustAfterRematch
-
-JanineAfterRematch:
-	faceplayer
-	loadfont
-JanineJustAfterRematch:
-	writetext JanineAfterRematchText
-	waitbutton
-	closetext
-	end
 
 FuschiaGym1Script_0x195e1b: ; 0x195e1b
 	checkevent EVENT_BAT_LASS_ALICE
@@ -329,43 +302,6 @@ UnknownText_0x196074: ; 0x196074
 	para "I want to become"
 	line "better than both"
 	cont "Father and you!"
-	done
-
-JanineBeforeRematchText:
-	text "Fufufu!"
-
-	para "The essence of"
-	line "ninjas' moves"
-	cont "obtained by"
-	cont "training!"
-	
-	para "Feel the horror"
-	line "from the Poison"
-	cont "type #MON who've"
-	cont "mastered it."
-
-	done
-; 0x1960e6
-
-JanineRematchBeatenText:
-	text "<...>!!!"
-	line "So<...> So strong!"
-
-	done
-
-JanineAfterRematchText:
-	text "While I admire"
-	line "your victory," 
-	
-	para "I'm disappointed"
-	line "that I lost<...>"
-
-	para "I'll train with"
-	line "my father to be"
-	cont "better than before"
-	cont "and challenge you"
-	cont "again!"
-
 	done
 
 UnknownText_0x1960e6: ; 0x1960e6

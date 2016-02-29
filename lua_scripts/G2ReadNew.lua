@@ -439,7 +439,7 @@ end
 
 function on_pokemon_capture(PokemonID)
 	--PokemonID is the ID of the newly acquired Pokemon
-	print(string.format("WE JUST GOT %d!", speciesTable[PokemonID]))
+	print(string.format("WE JUST GOT %s!", speciesTable[PokemonID]))
 end
 
 

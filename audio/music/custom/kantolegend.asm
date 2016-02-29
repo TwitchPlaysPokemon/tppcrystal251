@@ -61,9 +61,9 @@ Music_KantoLegend_Ch1_L2:
 	loopchannel 4, Music_KantoLegend_Ch1_L2
 ; Pat 2 Row 0
 Music_KantoLegend_Ch1_L3:
-	note C_, 1
+	note E_, 1
 	note __, 1
-	note C_, 1
+	note E_, 1
 	note __, 5
 	loopchannel 7, Music_KantoLegend_Ch1_L3
 	note E_, 1
@@ -1269,8 +1269,6 @@ Music_KantoLegend_Ch3_L:
 	octave 5
 	note E_, 1
 	note __, 1
-	octave 3
-	note C_, 1
 	loopchannel 0, Music_KantoLegend_Ch3_L
 	
 Music_KantoLegend_Ch3_P1:
@@ -1434,4 +1432,4 @@ Music_KantoLegend_Ch3_P1:
 	octave 4
 	note E_, 1
 	note __, 1
-	loopchannel 0, Music_KantoLegend_Ch3_L
+	endchannel

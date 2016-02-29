@@ -194,10 +194,12 @@ UnknownText_0x1a28d0: ; 0x1a28d0
 ; 0x1a29bb
 
 UnknownText_0x1a29bb: ; 0x1a29bb
-	text "BROCK: Your #MON's"
-	line "powerful attacks"
-	cont "overcame my"
-	cont "rock-hard defense<...>"
+	text "BROCK: Your #-"
+	line "MON's powerful"
+
+	para "attacks overcame"
+	line "my rock-hard"
+	cont "defense<...>"
 
 	para "You're stronger"
 	line "than I expected<...>"

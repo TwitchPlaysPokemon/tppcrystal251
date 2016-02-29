@@ -7,13 +7,13 @@ PewterCity_MapScriptHeader: ; 0x18c000
 
 	; callbacks
 
-	dbw 5, UnknownScript_0x18c005
+	dbw 5, .Flypoint
 ; 0x18c005
 
-UnknownScript_0x18c005: ; 0x18c005
+.Flypoint: ; 0x18c005
 	setflag ENGINE_FLYPOINT_PEWTER
+	disappear $7
 	return
-; 0x18c009
 
 CooltrainerFScript_0x18c009: ; 0x18c009
 	jumptextfaceplayer UnknownText_0x18c042

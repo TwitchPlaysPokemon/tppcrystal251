@@ -29,11 +29,10 @@ Music_LugiaBattle_Ch1:
 	note E_, 2
 	note __, 6
 	note F#, 12
-	intensity $16
-	octave 5
+	octave 4
 	note E_, 1
 	note C#, 1
-	octave 4
+	octave 3
 	note F#, 1
 	note D#, 1
 ; Pat 2 Row 0
@@ -275,11 +274,10 @@ Music_LugiaBattle_Ch1_L:
 	note __, 6
 	dutycycle $3
 	note F#, 12
-	intensity $16
-	octave 5
+	octave 4
 	note E_, 1
 	note C#, 1
-	octave 4
+	octave 3
 	note F#, 1
 	note D#, 1
 	loopchannel 0, Music_LugiaBattle_Ch1_L
@@ -781,11 +779,11 @@ Music_LugiaBattle_Ch3_L8:
 	note D_, 4
 	note G_, 2
 	note __, 6
-	notetype $8, $23
+	notetype $8, $16
 	note G_, 2
 	note G_, 2
 	note G_, 2
-	notetype $c, $23
+	notetype $c, $16
 	note C_, 2
 	note __, 6
 	note C_, 2

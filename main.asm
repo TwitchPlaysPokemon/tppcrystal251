@@ -35711,6 +35711,13 @@ PlayBattleMusic: ; 2ee6c
 	ld a, [OtherTrainerClass]
 	and a
 	jr nz, .trainermusic
+	ld a, [wd22e]
+	cp HO_OH
+	ld de, MUSIC_HOOH_BATTLE
+	jp z, .done
+	cp LUGIA
+	ld de, MUSIC_LUGIA_BATTLE
+	jp z, .done
 	callba RegionCheck
 	ld a, e
 	and a
@@ -63549,6 +63556,10 @@ Function8c44f: ; 8c44f (23:444f)
 ; 8c490 (23:4490)
 
 HostsBattleTransition:
+	ld a, [rSVBK]
+	push af
+	ld a, 1
+	ld [rSVBK], a
 	ld a, [OtherTrainerClass]
 	cp RED
 	jr nz, .okay
@@ -63569,12 +63580,16 @@ HostsBattleTransition:
 	cp BABA
 	jr nz, .nocarry
 .start
+	pop af
+	ld [rSVBK], a
 	callba _HostsBattleTransition
 	ld a, $40
 	ld [wcf63], a
 	scf
 	ret
 .nocarry
+	pop af
+	ld [rSVBK], a
 	xor a
 	ret
 
@@ -83172,10 +83187,6 @@ Functione36f9: ; e36f9 (38:76f9)
 	jr z, .AlreadyEmpty
 	call CheckBoxForEggs
 	jr c, .EggFound
-	ld a, [MenuSelection]
-	dec a
-	ld e, a
-	push de
 	ld de, .PressTheButtons
 	call Functione37e3
 	ld bc, 240
@@ -83195,7 +83206,6 @@ Functione36f9: ; e36f9 (38:76f9)
 	call LoadMenuDataHeader
 	call Function1d81
 	call Function1c07
-	pop de
 	jr c, .refused
 	ld a, [wcfa9]
 	cp $1
@@ -83218,7 +83228,6 @@ Functione36f9: ; e36f9 (38:76f9)
 	jr .wrong
 
 .TimeUp
-	pop de
 	ld de, .TimeUpString
 .wrong
 	call Functione37e3

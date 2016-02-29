@@ -317,9 +317,9 @@ UnknownText_0x9ac27: ; 0x9ac27
 
 	para "I'm going to call"
 	line "CELADON and tell"
-	cont "them what they can"
-	cont "open the TM DEPOT"
-	cont "for you."
+	cont "them they can open"
+	cont "the TM DEPOT for"
+	cont "you."
 
 	para "Someday I'm going"
 	line "to beat you."
@@ -342,19 +342,18 @@ ViridianGymGuyText: ; 0x9acee
 	text "Yo, CHAMP!"
 
 	para "How's it going?"
-	line "Looks like you're"
-	cont "on a roll."
 
 	para "The GYM LEADER is"
 	line "a guy who battled"
-
-	para "the CHAMPION three"
+	cont "the CHAMPION three"
 	line "months ago."
 
 	para "He's no pushover."
 
 	para "Give it everything"
-	line "you've got!"
+	line "you've got,"
+	cont "because you're in"
+	cont "for a wild ride!"
 	done
 ; 0x9ada0
 
@@ -435,6 +434,7 @@ CoolSibsElanIdaSeenText2:
 	text "ELAN: All right,"
 	line "let's get this"
 	cont "fight started!"
+	
 	para "Come on!"
 	done
 
@@ -470,8 +470,8 @@ CooltrainerMBonitaSeenText:
 	line "room like that,"
 
 	para "doesn't it make"
-	line "you a little diz-"
-	cont "zy?"
+	line "you a little"
+	cont "dizzy?"
 	done
 
 CooltrainerMBonitaBeatenText:
@@ -481,8 +481,8 @@ CooltrainerMBonitaBeatenText:
 
 CooltrainerMBonitaText:
 	text "Looks like you've"
-	line "still got some en-"
-	cont "ergy left."
+	line "still got some"
+	cont "energy left."
 	done
 
 ViridianGym_MapEventHeader: ; 0x9ae04

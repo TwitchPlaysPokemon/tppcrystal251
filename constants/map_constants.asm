@@ -300,6 +300,7 @@ MAP_N_A   EQU -1
 	mapgroup FUCHSIA_POKECENTER_1F, 4, 5
 	mapgroup SAFARI_ZONE_WARDENS_HOME, 4, 5
 	mapgroup ROUTE_15_FUCHSIA_GATE, 4, 5
+	mapgroup FUCHSIA_GYM_2, 13, 7
 
 	newgroup ; Lavender Town
 	mapgroup ROUTE_8, 9, 21
@@ -469,8 +470,8 @@ MAP_N_A   EQU -1
 
 	newgroup
 	mapgroup CINNABAR_VOLCANO_ENTRANCE, 4, 5
-	mapgroup CINNABAR_VOLCANO_B1F, $12, $0c
-	mapgroup CINNABAR_VOLCANO_B2F, $12, $14
+	mapgroup CINNABAR_VOLCANO_B1F, 18, 12
+	mapgroup CINNABAR_VOLCANO_B2F, 18, 20
 	mapgroup CINNABAR_VOLCANO_B3F, 18, 20
 	mapgroup SEAFOAM_ISLANDS_ENTRANCE, 12, 5
 	mapgroup SEAFOAM_ISLANDS_B1F, 24, 24

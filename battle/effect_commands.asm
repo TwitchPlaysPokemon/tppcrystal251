@@ -4859,15 +4859,16 @@ Function359cd: ; 359cd
 
 BattleCommand43: ; 359d0
 ; snore
-	ld a, BATTLE_VARS_STATUS
-	call GetBattleVar
-	and SLP
-	ret nz
-	call ResetDamage
-	ld a, $1
-	ld [AttackMissed], a
-	call Function37354
-	jp EndMoveEffect
+	ret
+	; ld a, BATTLE_VARS_STATUS
+	; call GetBattleVar
+	; and SLP
+	; ret nz
+	; call ResetDamage
+	; ld a, $1
+	; ld [AttackMissed], a
+	; call Function37354
+	; jp EndMoveEffect
 ; 359e6
 
 
@@ -8078,7 +8079,6 @@ BattleCommand3a: ; 36b3a
 	jp SkipToBattleCommand
 ; 36b4d
 
-
 BattleCommand39: ; 36b4d
 ; charge
 
@@ -8151,12 +8151,24 @@ BattleCommand39: ; 36b4d
 	ld hl, .UsedText
 	call BattleTextBox
 
-	ld a, BATTLE_VARS_MOVE_EFFECT
-	call GetBattleVar
-	cp EFFECT_SKULL_BASH
-	ld b, $fe ; endturn
-	jp z, SkipToBattleCommand
-	jp EndMoveEffect
+	ld a, [hBattleTurn]
+	and a
+	ld hl, BattleMonItem
+	jr z, .got_item
+	ld hl, EnemyMonItem
+.got_item
+	ld a, [hl]
+	cp POWER_HERB
+
+	; ld a, BATTLE_VARS_MOVE_EFFECT
+	; call GetBattleVar
+	; cp EFFECT_SKULL_BASH
+	; ld b, $fe ; endturn
+	; jp z, SkipToBattleCommand
+	jp nz, EndMoveEffect
+	callba ConsumeUsersItem
+	ld hl, .PowerHerbText
+	jp BattleTextBox
 
 .UsedText
 	TX_FAR UnknownText_0x1c0d0e ; "[USER]"
@@ -8220,6 +8232,9 @@ BattleCommand39: ; 36b4d
 	TX_FAR UnknownText_0x1c0d6c
 	db "@"
 ; 36c2c
+.PowerHerbText
+	TX_FAR _PowerHerbText
+	db "@"
 
 
 BattleCommand3c: ; 36c2c
@@ -9574,6 +9589,7 @@ CheckSubstituteOpp: ; 37378
 
 
 BattleCommand1a: ; 37380
+; selfdestruct
 	callba Function10610d
 	ld a, $4
 	ld [wcfca], a
