@@ -8,14 +8,10 @@ PewterCity_MapScriptHeader: ; 0x18c000
 	; callbacks
 
 	dbw 5, .Flypoint
-	dbw 2, .SimonFix
 ; 0x18c005
 
 .Flypoint: ; 0x18c005
 	setflag ENGINE_FLYPOINT_PEWTER
-	return
-; 0x18c009
-.SimonFix
 	disappear $7
 	return
 
