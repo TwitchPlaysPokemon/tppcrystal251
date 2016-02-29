@@ -317,9 +317,9 @@ class AI(object):
         satkmodifier = 1
         if self.MonData[attacker]['item'] == 'lightball' and self.MonData[attacker]['species'] == 'pikachu':
             atkmodifier = atkmodifier * 2
-            satkmodifier = satkmodifier * 2
+            satkmodifier *= 2
         elif self.MonData[attacker]['item'] == 'thickclub' and (self.MonData[attacker]['species'] == 'cubone' or self.MonData[attacker]['species'] == 'marowak'):
-            atkmodifier = atkmodifier * 2
+            atkmodifier *= 2
 
         #Raw damage
         #basebp change
@@ -359,22 +359,26 @@ class AI(object):
         #category and boosts
         if move_used['category'] == 'status':
             damage = 0
-
+        
         #alright, compute the damage!
         elif move_used['category'] == "special":
             satkmodifier *= self._statsmultipliers[self.MonData[attacker]['boosts']['satk']+6]/100
             defmultiplier = self._statsmultipliers[self.MonData[defender]['boosts']['sdef']+6]/100
+            attack = min(self.MonData[attacker]['stats']['satk'] * satkmodifier, 999)
+            defense = min(self.MonData[defender]['stats']['sdef'] * defmultiplier, 999)
             #gen IV: rock-types' spdef goes up in sandstorm
             if self.MonData['weather'] == 'sandstorm' and (self.MonData[defender]['type'][1].lower() == 'rock' or self.MonData[defender]['type'][2].lower() == 'rock'):
-                defmultiplier = defmultiplier * 1.5
+                defense = defense * 1.5
             #compute damage
-            damage = ((((((2 * self.MonData[attacker]['level'] + 10) / 250) * ((self.MonData[attacker]['stats']['satk'] * satkmodifier) / (self.MonData[defender]['stats']['sdef'] * defmultiplier)) * basebp)+2) * 0.85)) * multiplier
+            damage = ((((((2 * self.MonData[attacker]['level'] + 10) / 250) * (attack / defense) * basebp)+2) * 0.85)) * multiplier
             if 'lightscreen' in self.MonData[temptext]['screens'] or (attacker > 5 and self.MonData['lightscreen']):
                 damage /= 2
         elif move_used['category'] == "physical":
             atkmodifier *= self._statsmultipliers[self.MonData[attacker]['boosts']['atk']+6]/100
             defmultiplier = self._statsmultipliers[self.MonData[defender]['boosts']['def']+6]/100
-            damage = ((((((2 * self.MonData[attacker]['level'] + 10) / 250) * ((self.MonData[attacker]['stats']['atk'] * atkmodifier) / (self.MonData[defender]['stats']['def'] * defmultiplier)) * basebp)+2) * 0.85)) * multiplier
+            attack = min(self.MonData[attacker]['stats']['atk'] * satkmodifier, 999)
+            defense = min(self.MonData[defender]['stats']['def'] * defmultiplier, 999)
+            damage = ((((((2 * self.MonData[attacker]['level'] + 10) / 250) * (attack / defense) * basebp)+2) * 0.85)) * multiplier
             if 'reflect' in self.MonData[temptext]['screens'] or (attacker > 5 and self.MonData['reflect']):
                 damage /= 2
             #burn reduces physical damage
@@ -493,13 +497,14 @@ class AI(object):
         damage *= accmodifier * totalacc
 
         #0% chance of hitting
-        tempx = self._statsmultipliers[self.MonData[attacker]['boosts']['spd']+6]/100
-        tempy = self._statsmultipliers[self.MonData[defender]['boosts']['spd']+6]/100
+        tempx = min(self.MonData[attacker]['stats']['spd'] * self._statsmultipliers[self.MonData[attacker]['boosts']['spd']+6]/100, 999)
+        tempy = min(self.MonData[defender]['stats']['spd'] * self._statsmultipliers[self.MonData[defender]['boosts']['spd']+6]/100, 999)
+      
         if self.MonData[attacker]['status'] == 'par':
             tempx = tempx * 0.25
         if self.MonData[defender]['status'] == 'par':
             tempy = tempy * 0.25
-        if self.MonData[attacker]['stats']['spd'] * tempx > self.MonData[defender]['stats']['spd'] * tempy:
+        if tempx > tempy:
             if 'underground' in self.MonData[temptext]['substatus'] or (isinstance(self.MonData[temptext]['substatus'], dict) and 'underground' in self.MonData[temptext]['substatus'].values()):
                 if move_used['name'].lower() not in ('earthquake', 'magnitude', 'fissure'):
                     damage = 0
@@ -1163,13 +1168,13 @@ class AI(object):
             for x1 in range(0, numberofturns):
                 self.MonData['painsplit'] = False
                 self.MonData['lockon'] = False
-                tempx = self._statsmultipliers[self.MonData[mycurrent]['boosts']['spd']+6]/100
-                tempy = self._statsmultipliers[self.MonData[traincurrent]['boosts']['spd']+6]/100
+                tempx = min(self.MonData[mycurrent]['stats']['spd'] * self._statsmultipliers[self.MonData[mycurrent]['boosts']['spd']+6]/100, 999)
+                tempy = min(self.MonData[traincurrent]['stats']['spd'] * self._statsmultipliers[self.MonData[traincurrent]['boosts']['spd']+6]/100, 999)
                 if self.MonData[mycurrent]['status'] == 'par':
                     tempx = tempx * 0.25
                 if self.MonData[traincurrent]['status'] == 'par':
                     tempy = tempy * 0.25
-                if (self.MonData[mycurrent]['stats']['spd'] * tempx > self.MonData[traincurrent]['stats']['spd'] * tempy) or (self.MonData[mycurrent]['moves'][int(tempcombo[x1])]['effect'] in ('extremespeed', 'priorityhit', 'endure', 'protect')):
+                if (tempx > tempy) or (self.MonData[mycurrent]['moves'][int(tempcombo[x1])]['effect'] in ('extremespeed', 'priorityhit', 'endure', 'protect')):
                     if myhp > 0:
                         self.Mychoice(traincurrent, mycurrent, int(tempcombo[x1]))
                         if self.MonData['painsplit']:
@@ -1189,7 +1194,7 @@ class AI(object):
                             self.Damage[traincurrent][mycurrent][self.enemynumber]['damage'] = self.Damage[traincurrent][mycurrent][self.enemynumber]['damage'] / 2
                         myhp = myhp - self.Damage[traincurrent][mycurrent][self.enemynumber]['damage']
 
-                if self.MonData[mycurrent]['stats']['spd'] * tempx < self.MonData[traincurrent]['stats']['spd'] * tempy:
+                if tempx < tempy:
                     if trainhp > 0:
                         self.TrainerDamage(traincurrent, mycurrent)
                         myhp = myhp - self.Damage[traincurrent][mycurrent][self.enemynumber]['damage']
@@ -1205,7 +1210,7 @@ class AI(object):
                         if myhp > self.MonData[mycurrent]['stats']['maxhp']:
                             myhp = self.MonData[mycurrent]['stats']['maxhp']
 
-                if self.MonData[mycurrent]['stats']['spd'] * tempx == self.MonData[traincurrent]['stats']['spd'] * tempy:
+                if tempx == tempy:
                     speedtie = 0
                     if myhp > 0:
                         speedtie = 1
@@ -1280,13 +1285,13 @@ class AI(object):
                 for x1 in range(0, numberofturns):
                     self.MonData['painsplit'] = False
                     self.MonData['lockon'] = False
-                    tempx = self._statsmultipliers[self.MonData[mycurrent]['boosts']['spd']+6]/100
-                    tempy = self._statsmultipliers[self.MonData[traincurrent]['boosts']['spd']+6]/100
+                    tempx = min(self.MonData[mycurrent]['stats']['spd'] * self._statsmultipliers[self.MonData[mycurrent]['boosts']['spd']+6]/100, 999)
+                    tempy = min(self.MonData[traincurrent]['stats']['spd'] * self._statsmultipliers[self.MonData[traincurrent]['boosts']['spd']+6]/100, 999)
                     if self.MonData[mycurrent]['status'] == 'par':
                         tempx = tempx * 0.25
                     if self.MonData[traincurrent]['status'] == 'par':
                         tempy = tempy * 0.25
-                    if (self.MonData[mycurrent]['stats']['spd'] * tempx > self.MonData[traincurrent]['stats']['spd'] * tempy) or (self.MonData[mycurrent]['moves'][int(tempcombo[x1])]['effect'] in ('extremespeed', 'priorityhit', 'endure', 'protect')):
+                    if (tempx > tempy) or (self.MonData[mycurrent]['moves'][int(tempcombo[x1])]['effect'] in ('extremespeed', 'priorityhit', 'endure', 'protect')):
                         if myhp1 > 0:
                             self.Mychoice(traincurrent, mycurrent, int(tempcombo[x1]))
                             if x1 == 0:
@@ -1306,7 +1311,7 @@ class AI(object):
                                 self.Damage[traincurrent][mycurrent][self.enemynumber]['damage'] = 0
                             myhp1 = myhp1 - self.Damage[traincurrent][mycurrent][self.enemynumber]['damage']
 
-                    if self.MonData[mycurrent]['stats']['spd'] * tempx < self.MonData[traincurrent]['stats']['spd'] * tempy:
+                    if tempx < tempy:
                         if trainhp1 > 0:
                             self.TrainerDamage(traincurrent, mycurrent)
                             myhp1 = myhp1 - self.Damage[traincurrent][mycurrent][self.enemynumber]['damage']
@@ -1324,7 +1329,7 @@ class AI(object):
                             if myhp1 > self.MonData[mycurrent]['stats']['maxhp']:
                                 myhp1 = self.MonData[mycurrent]['stats']['maxhp']
 
-                    if self.MonData[mycurrent]['stats']['spd'] * tempx == self.MonData[traincurrent]['stats']['spd'] * tempy:
+                    if tempx == tempy:
                         speedtie = 0
                         if myhp1 > 0:
                             speedtie = 1
