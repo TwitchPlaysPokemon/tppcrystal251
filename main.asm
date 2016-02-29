@@ -35711,6 +35711,13 @@ PlayBattleMusic: ; 2ee6c
 	ld a, [OtherTrainerClass]
 	and a
 	jr nz, .trainermusic
+	ld a, [wd22e]
+	cp HO_OH
+	ld de, MUSIC_HOOH_BATTLE
+	jp z, .done
+	cp LUGIA
+	ld de, MUSIC_LUGIA_BATTLE
+	jp z, .done
 	callba RegionCheck
 	ld a, e
 	and a
