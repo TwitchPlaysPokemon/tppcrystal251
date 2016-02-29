@@ -88,6 +88,7 @@ Music_HoOhBattle_Ch1_L:
 	soundinput $37
 	note D_, 1
 	intensity $c7
+	soundinput $00
 	note E_, 11
 	note D_, 2
 	note E_, 2
@@ -95,6 +96,7 @@ Music_HoOhBattle_Ch1_L:
 	soundinput $37
 	note D_, 1
 	intensity $c7
+	soundinput $00
 	note E_, 11
 	note D_, 2
 	note E_, 2
@@ -102,11 +104,13 @@ Music_HoOhBattle_Ch1_L:
 	soundinput $47
 	note G_, 1
 	intensity $c7
+	soundinput $00
 	note A_, 11
 	intensity $c8
 	soundinput $57
 	note A_, 1
 	intensity $c7
+	soundinput $00
 	note B_, 3
 	note E_, 12
 	note D_, 2
@@ -116,6 +120,7 @@ Music_HoOhBattle_Ch1_L:
 	soundinput $37
 	note D_, 1
 	intensity $c7
+	soundinput $00
 	note E_, 11
 	note F_, 2
 	note D_, 2
@@ -123,6 +128,7 @@ Music_HoOhBattle_Ch1_L:
 	soundinput $37
 	note D_, 1
 	intensity $c7
+	soundinput $00
 	note E_, 11
 	note D_, 2
 	note E_, 2
@@ -130,6 +136,7 @@ Music_HoOhBattle_Ch1_L:
 	soundinput $37
 	note D_, 1
 	intensity $c7
+	soundinput $00
 	note E_, 15
 	intensity $c2
 	octave 2
@@ -163,6 +170,7 @@ Music_HoOhBattle_Ch1_L:
 	soundinput $37
 	note D_, 1
 	intensity $c7
+	soundinput $00
 	note E_, 11
 	note D_, 2
 	note E_, 2
@@ -170,6 +178,7 @@ Music_HoOhBattle_Ch1_L:
 	soundinput $37
 	note D_, 1
 	intensity $c7
+	soundinput $00
 	note E_, 11
 	note D_, 2
 	note E_, 2
@@ -177,11 +186,13 @@ Music_HoOhBattle_Ch1_L:
 	soundinput $47
 	note G_, 1
 	intensity $c7
+	soundinput $00
 	note A_, 11
 	intensity $c8
 	soundinput $57
 	note A_, 1
 	intensity $c7
+	soundinput $00
 	note B_, 3
 	octave 4
 	note D_, 10
@@ -194,6 +205,7 @@ Music_HoOhBattle_Ch1_L:
 	soundinput $47
 	note F#, 1
 	intensity $c7
+	soundinput $00
 	note G#, 9
 	note B_, 2
 	note E_, 2
@@ -202,6 +214,7 @@ Music_HoOhBattle_Ch1_L:
 	soundinput $37
 	note D#, 1
 	intensity $c7
+	soundinput $00
 	note F_, 9
 	note A_, 2
 	note D_, 2
@@ -210,6 +223,7 @@ Music_HoOhBattle_Ch1_L:
 	soundinput $37
 	note D_, 1
 	intensity $c7
+	soundinput $00
 	note E_, 9
 	note E_, 2
 	note F_, 2
@@ -218,6 +232,7 @@ Music_HoOhBattle_Ch1_L:
 	soundinput $37
 	note D_, 1
 	intensity $c7
+	soundinput $00
 	note E_, 7
 	notetype $8, $b7
 	vibrato $7, $26
@@ -355,32 +370,36 @@ Music_HoOhBattle_Ch1_L:
 	intensity $c8
 	note A_, 2
 	intensity $c7
-	soundinput $67
+	soundinput $6f
 	note A_, 2
+	soundinput $00
 	note G_, 2
 	note A_, 2
 	intensity $c8
 	octave 3
 	note C_, 2
 	intensity $c7
-	soundinput $67
+	soundinput $6f
 	note C_, 2
 	octave 2
+	soundinput $00
 	note A_, 2
 	octave 3
 	note C_, 2
 	intensity $c8
 	note D_, 2
 	intensity $c7
-	soundinput $67
+	soundinput $6f
 	note D_, 2
+	soundinput $00
 	note C_, 2
 	note D_, 2
 	intensity $c8
 	note G_, 2
 	intensity $c7
-	soundinput $67
+	soundinput $6f
 	note G_, 2
+	soundinput $00
 	note E_, 2
 	note __, 16
 	note __, 14
@@ -390,17 +409,19 @@ Music_HoOhBattle_Ch1_L:
 	intensity $c8
 	note A_, 2
 	intensity $c7
-	soundinput $67
+	soundinput $6f
 	note A_, 2
+	soundinput $00
 	note G_, 2
 	note A_, 2
 	octave 3
 	intensity $c8
 	note C_, 2
 	intensity $c7
-	soundinput $67
+	soundinput $6f
 	note C_, 2
 	octave 2
+	soundinput $00
 	note A_, 2
 	octave 3
 	note C_, 2
@@ -414,8 +435,9 @@ Music_HoOhBattle_Ch1_L:
 	intensity $c8
 	note G_, 2
 	intensity $c7
-	soundinput $67
+	soundinput $6f
 	note G_, 2
+	soundinput $00
 	note E_, 2
 	note __, 16
 	note __, 14
@@ -457,6 +479,7 @@ Music_HoOhBattle_Ch1_L:
 	soundinput $47
 	note D_, 1
 	intensity $c7
+	soundinput $00
 	note E_, 3
 	note D_, 2
 	note E_, 2
@@ -470,6 +493,7 @@ Music_HoOhBattle_Ch1_L:
 	soundinput $47
 	note D_, 1
 	intensity $c7
+	soundinput $00
 	note E_, 3
 	note D_, 2
 	note E_, 2
@@ -927,7 +951,7 @@ Music_HoOhBattle_Ch3_L:
 	note B_, 2
 	octave 2
 	note E_, 2
-	loopchannel 69, Music_HoOhBattle_Ch3_L
+	loopchannel 93, Music_HoOhBattle_Ch3_L
 ; Pat 2 Row 0
 ; Pat 3 Row 0
 ; Pat 4 Row 0
