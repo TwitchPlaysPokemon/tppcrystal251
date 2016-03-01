@@ -146,10 +146,11 @@ function getSubstatus(flags, counts, subhp, lockedmove, disablecount)
 	-- substatus1
 	if (AND(substatus1, 0x01) ~= 0) then table.insert(subStatus, "nightmare") end
 	if (AND(substatus1, 0x02) ~= 0) then table.insert(subStatus, "curse") end
-	if (AND(substatus1, 0x04) ~= 0) then subStatus["protect"] = memory.readbyte(counts + 7) end
+	-- if (AND(substatus1, 0x04) ~= 0) then subStatus["protect"] = memory.readbyte(counts + 7) end
+	if (memory.readbyte(counts + 7) ~= 0) then subStatus["protect"] = memory.readbyte(counts + 7) end
 	if (AND(substatus1, 0x08) ~= 0) then table.insert(subStatus, "identified") end
 	if (AND(substatus1, 0x10) ~= 0) then subStatus["perish song"] = memory.readbyte(counts + 5) end
-	if (AND(substatus1, 0x20) ~= 0) then table.insert(subStatus, "endure") end
+	-- if (AND(substatus1, 0x20) ~= 0) then table.insert(subStatus, "endure") end
 	if (AND(substatus1, 0x40) ~= 0) then subStatus["rollout"] = memory.readbyte(counts + 0) end
 	if (AND(substatus1, 0x80) ~= 0) then table.insert(subStatus, "attract") end
 
