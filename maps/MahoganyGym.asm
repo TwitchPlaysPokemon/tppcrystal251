@@ -303,9 +303,9 @@ UnknownText_0x199b8d: ; 0x199b8d
 
 PryceRematchTextBefore:
 	text "You've had some"
-	line "hard times, but"
-	cont "my experience"
-	cont "means I will not"
+	line "hard times."
+	para "But my experience"
+	line "means I will not"
 	cont "fall easily."
 
 	text "No need for words."
@@ -344,8 +344,8 @@ PryceAfterSilverWingText:
 
 	para "Since then, you"
 	line "are the only"
-	cont "trainer I have"
-	cont "seen capable of"
+	para "trainer I have"
+	line "seen capable of"
 	cont "using this."
 
 	para "Please finish"
