@@ -687,8 +687,27 @@ class AI(object):
                         self.countercoat['special']['damage'] = tempdamage
                         if self.MonData[mycurrent]['moves'][moveused]['effect'] == 'counter':
                             self.Damage[mycurrent][traincurrent][moveused]['damage'] = 2 * (self.countercoat['physical']['damage'] * (self.countercoat['physical']['number of']/(self.countercoat['physical']['number of']+self.countercoat['special']['number of'])))
+                            if self.jsonlist['battleState']['playerpokemon']['last used'].replace(' ', '').lower().replace('-', '') == 'hyperbeam':
+                                self.Damage[mycurrent][traincurrent][moveused]['damage'] = 0
+                            tempx = -1
+                            for tempmove in range(0, len(self.MonData[mycurrent]['moves'])):
+                                if self.MonData[mycurrent]['moves'][tempmove]['effect'] == ('mirrorcoat'):
+                                    tempx = tempmove
+                            if tempx == -1 and self.countercoat['special']['number of'] > 0:
+                                if random.randint(0, 100) > 50:
+                                    self.Damage[mycurrent][traincurrent][moveused]['damage'] = 0
                         if self.MonData[mycurrent]['moves'][moveused]['effect'] == 'mirrorcoat':
                             self.Damage[mycurrent][traincurrent][moveused]['damage'] = 2 * (self.countercoat['special']['damage'] * (self.countercoat['special']['number of']/(self.countercoat['physical']['number of']+self.countercoat['special']['number of'])))
+                            if self.jsonlist['battleState']['playerpokemon']['last used'].replace(' ', '').lower().replace('-', '') == 'hyperbeam':
+                                self.Damage[mycurrent][traincurrent][moveused]['damage'] = 0
+                            tempx = -1
+                            for tempmove in range(0, len(self.MonData[mycurrent]['moves'])):
+                                if self.MonData[mycurrent]['moves'][tempmove]['effect'] == ('counter'):
+                                    tempx = tempmove
+                            if tempx == -1 and self.countercoat['physical']['number of'] > 0:
+                                if random.randint(0, 100) > 50:
+                                    self.Damage[mycurrent][traincurrent][moveused]['damage'] = 0
+                            
 
                 #stats up
                 if self.MonData[mycurrent]['moves'][moveused]['effect'] == 'defenseup2':
@@ -1364,7 +1383,7 @@ class AI(object):
             if self.MonData[mycurrent]['moves'][int(tempcombo[0])]['effect'] == 'toxic' and ((self.MonData[mycurrent]['type'][1] == 'poison') or (self.MonData[mycurrent]['type'][2] == 'poison')):
                 tempy = 1
             if self.mycurhp != 0 and self.traincurhp != 0:
-                tempx = (((((myhp / self.mycurhp) - (trainhp / self.traincurhp) * 1.5) * bonusmulti) * (1 - tempy)) + ((((myhp1 / self.mycurhp) - (trainhp1 / self.traincurhp) * 1.5) * tempy) * bonusmulti1)) + 2
+                tempx = (((((myhp / self.mycurhp) - (trainhp / self.traincurhp) * 2) * bonusmulti) * (1 - tempy)) + ((((myhp1 / self.mycurhp) - (trainhp1 / self.traincurhp) * 2) * tempy) * bonusmulti1)) + 2
             else:
                 tempx = -5
             if Debug_Code == 1 or Debug_Code == 2:
@@ -1466,7 +1485,7 @@ class AI(object):
                                     item_name = self.MonData['myitems'][x2]
                                     if item_name in healing_items:
                                         #and healing would allow you to continue fighting (and not draw out the inevitable)
-                                        if self.Damage[traincurrent][mycurrent][self.enemynumber]['damage'] < min((self.jsonlist['battleState']['enemypokemon']['stats']['maxhp'] - self.jsonlist['battleState']['enemypokemon']['hp']), healing_items[item_name]):
+                                        if self.Damage[traincurrent][mycurrent][self.enemynumber]['damage'] * 1.25 < min((self.jsonlist['battleState']['enemypokemon']['stats']['maxhp'] - self.jsonlist['battleState']['enemypokemon']['hp']), healing_items[item_name]):
                                             return x2 + 9
         return 20
 
@@ -1712,6 +1731,7 @@ class AI(object):
                             x1 = 50
                         if random.randint(0, 100) > x1:
                             return tempx
+                        
             elif self.MonData[mycurrent]['moves'][self.theaction]['effect'] == 'mirrorcoat':
                 #check if we also have counter available
                 tempx = -1
