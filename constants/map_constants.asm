@@ -420,6 +420,7 @@ MAP_N_A   EQU -1
 	mapgroup ROUTE_5_UNDERGROUND_ENTRANCE, 4, 4
 	mapgroup ROUTE_5_SAFFRON_CITY_GATE, 4, 5
 	mapgroup ROUTE_5_CLEANSE_TAG_SPEECH_HOUSE, 4, 4
+	mapgroup SAFFRON_GYM_2, 11, 7
 
 	newgroup
 	mapgroup ROUTE_30, 27, 10

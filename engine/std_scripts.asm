@@ -2454,8 +2454,8 @@ GymStatue1Script: ; 0xbcda0
 	mapnametotext $0
 	loadfont
 	farwritetext UnknownText_0x1b074e
-	checkflag ENGINE_EARLY_GAME_KANTO
-	iffalse .rival_won
+	special SpecialRegionCheck
+	iftrue .rival_won
 	waitbutton
 	closetext
 	end
@@ -2472,8 +2472,8 @@ GymStatue2Script: ; 0xbcdaa
 	loadfont
 	farwritetext UnknownText_0x1b074e
 	buttonsound
-	checkflag ENGINE_EARLY_GAME_KANTO
-	iffalse .rival_won
+	special SpecialRegionCheck
+	iftrue .rival_won
 	farwritetext UnknownText_0x1b075c
 	waitbutton
 	closetext

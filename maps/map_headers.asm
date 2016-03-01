@@ -454,6 +454,7 @@ MapGroup25:
 	map_header Route5UndergroundEntrance, $8, 6, ROUTE_5, MUSIC_ROUTE_3, 0, 1, 1
 	map_header Route5SaffronCityGate, $8, 6, ROUTE_5, MUSIC_VIRIDIAN_CITY, 0, 1, 1
 	map_header Route5CleanseTagSpeechHouse, $5, 3, ROUTE_5, MUSIC_VIRIDIAN_CITY, 0, 1, 1
+	map_header SaffronGym2, $1c, 3, SAFFRON_CITY, MUSIC_GYM, 1, 1, 1
 
 MapGroup26:
 	map_header Route30, $1, 2, ROUTE_30, MUSIC_ROUTE_30, 0, 0, 1

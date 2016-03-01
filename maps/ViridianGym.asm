@@ -39,7 +39,7 @@ BlueScript_0x9aa26: ; 0x9aa26
 
 
 BlueRematchScript:
-	special RateIntoScriptVar
+	checkcode VAR_DEXCAUGHT
 	if_less_than 151, BlueReject
 	writetext BlueRematchTextBefore
 	waitbutton

@@ -12,6 +12,12 @@ SaffronCity_MapScriptHeader: ; 0x199321
 
 UnknownScript_0x199326: ; 0x199326
 	setflag ENGINE_FLYPOINT_SAFFRON
+	checkevent EVENT_FIRST_TIME_BABA
+	iftrue .rematch
+	warpmod 1, GROUP_SAFFRON_GYM, MAP_SAFFRON_GYM
+	return
+.rematch
+	warpmod 2, GROUP_SAFFRON_GYM_2, MAP_SAFFRON_GYM_2
 	return
 ; 0x19932a
 
@@ -301,7 +307,7 @@ SaffronCity_MapEventHeader: ; 0x19989c
 	; warps
 	db 15
 	warp_def $3, $1a, 1, GROUP_FIGHTING_DOJO, MAP_FIGHTING_DOJO
-	warp_def $3, $22, 1, GROUP_SAFFRON_GYM, MAP_SAFFRON_GYM
+	warp_def $3, $22, -1, 0, 0 ;Saffron Gym
 	warp_def $b, $19, 2, GROUP_SAFFRON_MART, MAP_SAFFRON_MART
 	warp_def $1d, $9, 1, GROUP_SAFFRON_POKECENTER_1F, MAP_SAFFRON_POKECENTER_1F
 	warp_def $1d, $1b, 1, GROUP_MR_PSYCHICS_HOUSE, MAP_MR_PSYCHICS_HOUSE

@@ -24,6 +24,7 @@ MapRedsHouse2FBedScript:
 	special Function1060a2
 	playmusic MUSIC_HEAL
 	special HealParty
+	; blackoutmod GROUP_PALLET_TOWN, MAP_PALLET_TOWN
 	pause 60
 	checkevent EVENT_FIRST_TIME_BABA
 	iftrue .skip
@@ -47,7 +48,6 @@ RedsHouse2BedHealedFScript:
 	end
 
 MapRedsHouseBedWarpScript:
-	; blackoutmod GROUP_PALLET_TOWN, MAP_PALLET_TOWN
 	warp GROUP_DUMMY_BLANK_MAP, MAP_DUMMY_BLANK_MAP, 0, 0
 	end
 

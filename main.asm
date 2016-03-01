@@ -27821,8 +27821,24 @@ Function25448: ; 25448 (9:5448)
 	ld b, a
 	ld a, [hli]
 	ld c, a
+	push bc
+	push de
 	ld a, [hli]
+	ld e, a
+	ld a, [hli]
+	ld d, a
+	push hl
+	ld b, CHECK_FLAG
+	call EventFlagAction
+	ld a, c
+	and a
+	jr z, .norematch
+	ld a, 1
+.norematch
 	ld [wcf66], a
+	pop hl
+	pop de
+	pop bc
 	ld a, [wcf64]
 	add l
 	ld l, a
@@ -27834,7 +27850,7 @@ Function25448: ; 25448 (9:5448)
 	call Function2547b
 	pop hl
 .asm_25472
-	ld bc, $b
+	ld bc, $c
 	add hl, bc
 	pop bc
 	dec b
@@ -27902,41 +27918,50 @@ Unknown_254c9: ; 254c9
 ; Template OAM data for each badge on the trainer card.
 ; Format:
 
-	; y, x, palette
+	; y, x
+	; rematch event flag
 	; cycle 1: face tile, in1 tile, in2 tile, in3 tile
 	; cycle 2: face tile, in1 tile, in2 tile, in3 tile
 	dw JohtoBadges
 	; Zephyrbadge
-	db $68, $18, $00
+	db $68, $18
+	dw EVENT_FALKNER_REMATCH
 	db $00, $20, $24, $20 | $80
 	db $00, $20, $24, $20 | $80
 	; Hivebadge
-	db $68, $38, $00
+	db $68, $38
+	dw EVENT_BUGSY_REMATCH
 	db $04, $20, $24, $20 | $80
 	db $04, $20, $24, $20 | $80
 	; Plainbadge
-	db $68, $58, $00
+	db $68, $58
+	dw EVENT_WHITNEY_REMATCH
 	db $08, $20, $24, $20 | $80
 	db $08, $20, $24, $20 | $80
 	; Fogbadge
-	db $68, $78, $00
+	db $68, $78
+	dw EVENT_MORTY_REMATCH
 	db $0c, $20, $24, $20 | $80
 	db $0c, $20, $24, $20 | $80
 	; Mineralbadge
-	db $80, $58, $00
+	db $80, $58
+	dw EVENT_JASMINE_REMATCH
 	db $10, $20, $24, $20 | $80
 	db $10, $20, $24, $20 | $80
 	; Stormbadge
-	db $80, $38, $00
+	db $80, $38
+	dw EVENT_CHUCK_REMATCH
 	db $14, $20, $24, $20 | $80
 	db $14, $20, $24, $20 | $80
 	; Glacierbadge
-	db $80, $18, $00
+	db $80, $18
+	dw EVENT_PRYCE_REMATCH
 	db $18, $20, $24, $20 | $80
 	db $18, $20, $24, $20 | $80
 	; Risingbadge
 	; X-flips on alternate cycles.
-	db $80, $78, $00
+	db $80, $78
+	dw EVENT_CLAIR_REMATCH
 	db $1c, $20, $24, $20 | $80
 	db $1c | $80, $20, $24, $20 | $80
 ; 25523
@@ -27944,37 +27969,45 @@ Unknown_254c9: ; 254c9
 KantoBadgesOAM:
 	dw KantoBadges
 	; Boulderbadge
-	db $68, $18, $00
+	db $68, $18
+	dw EVENT_BROCK_REMATCH
 	db $00, $20, $24, $20 | $80
 	db $00, $20, $24, $20 | $80
 	; Cascadebadge
-	db $68, $38, $00
+	db $68, $38
+	dw EVENT_MISTY_REMATCH
 	db $04, $20, $24, $20 | $80
 	db $04, $20, $24, $20 | $80
 	; Thunderbadge
-	db $68, $58, $00
+	db $68, $58
+	dw EVENT_SURGE_REMATCH
 	db $08, $20, $24, $20 | $80
 	db $08, $20, $24, $20 | $80
 	; Rainbowbadge
-	db $68, $78, $00
+	db $68, $78
+	dw EVENT_ERIKA_REMATCH
 	db $0c, $20, $24, $20 | $80
 	db $0c, $20, $24, $20 | $80
 	; Soulbadge
 	; X-flips on alternate cycles.
-	db $80, $18, $00
+	db $80, $18
+	dw EVENT_SABRINA_REMATCH
 	db $10, $20, $24, $20 | $80
 	db $10 | $80, $20, $24, $20 | $80
 	; Marshbadge
-	db $80, $38, $00
+	db $80, $38
+	dw EVENT_JANINE_REMATCH
 	db $14, $20, $24, $20 | $80
 	db $14, $20, $24, $20 | $80
 	; Volcanobadge
-	db $80, $58, $00
+	db $80, $58
+	dw EVENT_BLAINE_REMATCH
 	db $18, $20, $24, $20 | $80
 	db $18, $20, $24, $20 | $80
 	; Earthbadge
 	; X-flips on alternate cycles.
-	db $80, $78, $00
+	db $80, $78
+	dw EVENT_BLUE_REMATCH
 	db $1c, $20, $24, $20 | $80
 	db $1c | $80, $20, $24, $20 | $80
 ; 25523
@@ -28084,13 +28117,6 @@ Rate: ; 0x26616
 	pop de
 	ret
 ; 0x26647
-
-RateIntoScriptVar: ;load mons caught into scriptvar
-	ld hl, PokedexCaught
-	ld b, EndPokedexCaught - PokedexCaught
-	call CountSetBits
-	ld [ScriptVar], a
-	ret
 
 ClearOakRatingBuffers: ; 0x26647
 	ld hl, StringBuffer3

@@ -578,6 +578,7 @@
 	map_header_2 Route5UndergroundEntrance, ROUTE_5_UNDERGROUND_ENTRANCE, $0, NONE ; 0x9662c
 	map_header_2 Route5SaffronCityGate, ROUTE_5_SAFFRON_CITY_GATE, $0, NONE ; 0x96638
 	map_header_2 Route5CleanseTagSpeechHouse, ROUTE_5_CLEANSE_TAG_SPEECH_HOUSE, $0, NONE ; 0x96644
+	map_header_2 SaffronGym2, SAFFRON_GYM_2, 0, NONE
 	map_header_2 CherrygroveMart, CHERRYGROVE_MART, $0, NONE ; 0x96650
 	map_header_2 CherrygrovePokeCenter1F, CHERRYGROVE_POKECENTER_1F, $0, NONE ; 0x9665c
 	map_header_2 CherrygroveGymSpeechHouse, CHERRYGROVE_GYM_SPEECH_HOUSE, $0, NONE ; 0x96668

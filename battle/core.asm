@@ -3409,6 +3409,7 @@ EnemySwitch: ; 3d4e1
 	jr c, .already_chose_enemy_mon
 	call Function3d599 ; Find mon
 .already_chose_enemy_mon
+	push bc
 	call Function3d6ca ; Load mon
 	call Function3d74b ; Offer switch
 	push af
@@ -3423,7 +3424,11 @@ EnemySwitch: ; 3d4e1
 	ld [wEnemyIsSwitching], a
 	call Function309d ; Tilemap switch
 	call Function3e3ad ; PlayerSwitch
-	jr FinishEnemyMonEntrance
+FinishEnemyMonEntrance
+	pop bc
+	call Function3d6ca ; Load mon
+	call Function3d7b8
+	jp Function3d7c7
 ; 3d517
 
 Function3d517: ; 3d517
@@ -3436,7 +3441,6 @@ Function3d517: ; 3d517
 	ld a, 1
 	ld [wEnemyIsSwitching], a
 	call Function3d7a0
-FinishEnemyMonEntrance
 	call Function3d7b8
 	jp Function3d7c7
 ; 3d533

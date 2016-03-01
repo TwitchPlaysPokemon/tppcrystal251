@@ -72,7 +72,7 @@ BoulderScript_MewIslandF1:
 	jumpstd strengthboulder
 	
 ItemFragment_MewIslandF1:
-	db CONFUSEGUARD, 1
+	db POWER_HERB, 1
 
 MewIslandF1_MapEventHeader: 
 	; filler

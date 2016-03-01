@@ -212,15 +212,18 @@ PremierBall:
 	ld a, [wBattleMode]
 	dec a
 	jp nz, Functionf7a0
+	ld a, [BattleType]
+	cp BATTLETYPE_TUTORIAL
+	jr z, .asm_e8c0
 
 	ld a, [PartyCount]
 	cp PARTY_LENGTH
 	jr nz, .asm_e8c0
 
-	ld a, $1
+	ld a, BANK(sBoxCount)
 	call GetSRAMBank
-	ld a, [$ad10]
-	cp 20
+	ld a, [sBoxCount]
+	cp MONS_PER_BOX
 	call CloseSRAM
 	jp z, Ball_BoxIsFullMessage
 
@@ -235,7 +238,6 @@ PremierBall:
 	res NO_TEXT_SCROLL, [hl]
 	ld hl, UsedItemText
 	call PrintText
-
 	ld a, [EnemyMonCatchRate]
 	ld b, a
 	ld a, [BattleType]
