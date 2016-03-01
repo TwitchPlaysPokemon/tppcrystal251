@@ -78,23 +78,34 @@ FalknerReject:
 	end
 
 FalknerRejectText:
-	text "ARTICUNO,"
+	text "ARTICUN<...>,"
 
-	para "ZAPDOS,"
+	para "ZAPDOS<...>"
 
-	para "MOLTRES,"
+	para "MOLTRES<...>"
 
-	para "if you want to"
-	line "fill the #DEX,"
-	cont "you will have to"
-	cont "tame these"
-	cont "LEGENDARY BIRDS."
+	para "These legendary"
+	line "bird #MON have"
+	cont "eluded even me."
 
-	para "Once you have"
-	line "proven yourself"
-	cont "to them I will"
-	cont "accept your"
-	cont "challenge."
+	para "You're on a quest"
+	line "to fill your #-"
+	cont "DEX, right?"
+
+	para "Perhaps you'll have"
+	line "better luck at"
+
+	para "taming these truly"
+	line "majestic creatures"
+	cont "than I."
+
+	para "Once you have done"
+	line "that, come back"
+	cont "here."
+
+	para "Come back and show"
+	line "me how high you"
+	cont "can soar!"
 	done
 
 UnknownScript_0x68412: ; 0x68412
@@ -234,13 +245,13 @@ FalknerRematchTextBefore:
 
 	para "Long ago my dad"
 	line "caught the 3"
-	cont "ultimate bird"
-	cont "#MON."
+	para "ultimate bird"
+	line "#MON."
 
 	para "You, who have"
 	line "matched this feat,"
-	cont "stand before me,"
-	cont "his legacy."
+	para "stand before me,"
+	line "his legacy."
 
 	para "Let me show you"
 	line "our true power!"
@@ -261,9 +272,9 @@ FalknerAfterRematchText:
 	
 	para "I'm going to train"
 	line "harder with my"
-	cont "#MON to become"
-	cont "the greatest Bird"
-	cont "Keeper of all!"
+	para "#MON to become"
+	line "the greatest BIRD"
+	cont "KEEPER of all!"
 
 	done
 	
@@ -311,10 +322,11 @@ UnknownText_0x68648: ; 0x68648
 	line "flying type"
 	cont "attack!"
 
-	para "While it needs"
-	line "to charge, it"
-	cont "crits often and"
-	cont "causes flinching."
+	para "It charges up a"
+	line "tremendous power,"
+
+	para "then focuses it"
+	line "all at the foe."
 
 	para "Use it to rule"
 	line "the skies!"
