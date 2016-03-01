@@ -106,20 +106,19 @@ FisherScript_0x1904ce: ; 0x1904ce
 	faceplayer
 	loadfont
 	writetext UnknownText_0x191133
-	waitbutton
 	yesorno
-	iffalse FalseTutorQuit
+	iffalse .quit
 	writebyte 7
 	writetext UnknownText_0x19118c
 	special Function4925b
-	if_equal $0, AfterFalseTutor
-FalseTutorQuit:
+	iffalse .done
+.quit
 	writetext FalseTutorReject
 	waitbutton
 	closetext
 	end
 
-AfterFalseTutor:
+.done
 	writetext FalseTutorDone
 	waitbutton
 	closetext
