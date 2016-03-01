@@ -70,13 +70,13 @@ BlueRejectText:
 
 	para "He was the only"
 	line "TRAINER who could"
-	cont "match me in"
-	cont "#MON battle."
+	para "match my power in"
+	line "battle."
 
 	para "If you think you"
-	line "are my equal,"
-	cont "match his greatest"
-	cont "feat."
+	line "are my equal, then"
+	para "conquer his grea-"
+	line "test feat!"
 
 	para "Catch 151 species"
 	line "of #MON!"
@@ -86,19 +86,21 @@ BlueRematchTextBefore:
 	text "You caught plenty"
 	line "of #MON I see."
 
-	para "Just as I"
-	line "expected!"
+	para "Just as I expec-"
+	line "ted!"
 	
-	para "This is what I,"
-	line "Kanto's top-level"
-	cont "Trainer,"
-	cont "can really do!"
+	para "Now!"
 
+	para "Let me show you"
+	line "the true power of"
+
+	para "the best of KANTO's"
+	line "best!"
 	done
 
 BlueRematchBeatenText:
-	text "You're the"
-	line "real deal"
+	text "You're the real"
+	line "deal!"
 	done
 
 BlueAfterRematchText:
@@ -112,11 +114,32 @@ BlueAfterRematchText:
 	para "You have to be"
 	line "more dedicated!"
 	
-	para "I'll call ahead"
-	line "and tell the"
-	cont "CERULEAN CAVE"
-	cont "GUARD you can"
-	cont "handle MEWTWO."
+	para "Legends tell of a"
+	line "truly powerful"
+
+	para "#MON deep within"
+	line "CERULEAN CAVE."
+
+	para "Most trainers are"
+	line "forbidden to enter"
+
+	para "because it is so"
+	line "dangerous."
+
+	para "Even I've had trou-"
+	line "ble against it."
+
+	para "But you've proven"
+	line "you can handle"
+	cont "yourself."
+
+	para "I'll call the"
+	line "guard there to let"
+	cont "you in."
+
+	para "You better not"
+	line "lose to that #-"
+	cont "MON, you hear?"
 	done
 
 ; 0x9aa51
