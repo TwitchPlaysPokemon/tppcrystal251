@@ -273,9 +273,9 @@ SurgeRematchTextBeforeChallenge:
 
 	para "Tell ya what, you"
 	line "prove youself on"
-	cont "the battlefield"
-	cont "and I'll give the"
-	cont "all clear."
+	cont "the battlefield,"
+	para "and I'll give the"
+	line "all-clear."
 
 	para "Ten-hut!"
 	done
@@ -292,8 +292,8 @@ SurgeAfterRematchText:
 	
 	para "I'll have to go"
 	line "back to camp and"
-	cont "brush up on my"
-	cont "training."
+	para "brush up on my"
+	line "training."
 
 	done
 

@@ -387,14 +387,17 @@ UnknownText_0x18ed0b: ; 0x18ed0b
 
 BugsyRematchTextBefore:
 	text "Nice to see you"
-	line "again! I saw you"
-	cont "win the BUG"
-	cont "CATCHING CONTEST."
+	line "again!"
+
+	para "I heard! You won"
+	line "the BUG CATCHING"
+	cont "CONTEST!"
 
 	para "I've been honing"
 	line "my knowledge of"
-	cont "bug #MON in the"
-	cont "meantime."
+
+	para "bug #MON in the"
+	line "meantime."
 
 	para "Let me demonstrate"
 	line "what I've learned!"
@@ -417,16 +420,23 @@ BugsyAfterRematchText:
 
 BugsyRejectText:
 	text "Hi, <PLAY_G>!"
+	line "Did you know?"
+
+	para "BUG CATCHING" 
+	line "CONTESTS are held"
+
+	para "every day at the"
+	line "NATIONAL PARK."
 	
-	para "We have "
-	line "BUG CATCHING" 
-	cont "CONTESTS every day"
-	cont "at NATIONAL PARK."
-	
-	para "I have won the"
-	line "CONTEST many" 
-	cont "times, so I won't"
-	cont "participate."
+	para "Of course, I'm a"
+	line "natural at that"
+	cont "kind of thing."
+
+	para "I've won so many"
+	line "times that the"
+
+	para "CONTEST OFFICIAL"
+	line "asked me to stop!"
 
 	para "But you should"
 	line "try it."

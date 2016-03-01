@@ -36000,6 +36000,9 @@ Function3957b: ; 3957b
 	ld a, [TrainerClass]
 	ld c, a
 	call Function39550
+	ld a, [InBattleTowerBattle]
+	bit 0, a
+	jr nz, .BattleTower
 	ld a, [TrainerClass]
 	dec a
 	ld hl, TrainerClassAttributes
@@ -36011,6 +36014,19 @@ Function3957b: ; 3957b
 	inc de
 	ld a, [hli]
 	ld [de], a
+	jr .finish
+
+.BattleTower
+	xor a
+	ld hl, wc650
+	ld [hli], a
+	ld [hl], a
+	ld a, [TrainerClass]
+	dec a
+	ld hl, TrainerClassAttributes + 2
+	ld bc, 7
+	call AddNTimes
+.finish
 	ld a, [hl]
 	ld [wc652], a
 	ret

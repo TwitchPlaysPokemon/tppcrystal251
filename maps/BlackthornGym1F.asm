@@ -261,9 +261,10 @@ ClairRejectNoMtMoonText:
 	line "with me?"
 
 	para "It'll have to be"
-	line "later, I'm"
-	cont "training with the"
-	cont "elders today."
+	line "later."
+
+	para "I'm training with"
+	line "the elders today."
 
 	done
 
@@ -273,16 +274,26 @@ ClairRejectText:
 	para "You want a rematch"
 	line "with me?"
 
-	para "Well there's"
-	line "someone else who's"
-	cont "been obsessed with"
-	cont "beating you in"
-	cont "DRAGON'S DEN"
-	cont "lately."
+	para "While I'd love to"
+	line "have another go"
+	cont "with you<...>"
 
-	para "He ran off to the"
-	line "ELITE FOUR to"
-	cont "wait for you."
+	para "There's this red-"
+	line "haired boy who's"
+
+	para "been training in"
+	line "the DRAGON'S DEN."
+
+	para "He keeps talking"
+	line "about how he needs"
+
+	para "to become stronger"
+	line "so he can stand up"
+	cont "to you."
+
+	para "He should be wai-"
+	line "ting for you at"
+	cont "INDIGO PLATEAU."
 
 	para "I'll get ready"
 	line "while you deal"

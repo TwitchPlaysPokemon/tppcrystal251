@@ -83,19 +83,39 @@ ErikaRejectNoGSBall:
 	end
 
 ErikaRejectNoGSBallText:
-	text "How are you?"
+	text "Oh, hello again."
 
-	para "I'm worried about"
-	line "BILL, he went to"
-	cont "fix something in"
-	cont "the BATTLE TENT,"
-	cont "but never left<...>"
+	para "Have you heard of"
+	line "BILL?"
 
-	para "A battle?"
-	line "I'm sorry but it"
-	cont "should wait until"
-	cont "we know BILL is"
-	cont "safe."
+	para "He's a #MANIAC."
+	line "He developed the"
+
+	para "#MON STORAGE"
+	line "SYSTEM!"
+
+	para "He stopped by"
+	line "earlier on his"
+
+	para "way to the old"
+	line "BATTLE TENT."
+
+	para "He said he had to"
+	line "fix something."
+
+	para "That was a few"
+	line "days ago<...>"
+
+	para "There are rumors"
+	line "about that place."
+
+	para "I'm worried that"
+	line "something may have"
+	cont "happened to him."
+
+	para "Could you go over"
+	line "there and check up"
+	cont "on him?"
 	done
 	
 ErikaRejectGSBall:
@@ -106,17 +126,15 @@ ErikaRejectGSBall:
 	para "A gold and silver"
 	line "#BALL<...>"
 
-	para "I heard of legends"
-	line "of a remarkable"
-	cont "Grass #MON that"
-	cont "resides in such"
-	cont "a BALL."
+	para "Legends connect"
+	line "that BALL to a"
 
-	para "You should take it"
-	line "to AZALEA TOWN and"
-	cont "ask KURT about how"
-	cont "to open it."
+	para "mythical grass-"
+	line "type #MON."
 
+	para "My friend KURT, in"
+	line "AZALEA TOWN, would"
+	cont "know more."
 	done
 
 ErikaRematchTextBefore:
@@ -135,7 +153,7 @@ ErikaRematchTextBefore:
 	line "a battle, would"
 	cont "you be so kind?"
 
-	para "Please do not"
+	para "Please, do not"
 	line "hold back."
 
 	done
@@ -152,9 +170,9 @@ ErikaAfterRematchText:
 
 	para "It would be an"
 	line "honour to battle"
-	cont "you again"
-	cont "sometime."
 
+	para "you again some-"
+	line "time."
 	done
 
 

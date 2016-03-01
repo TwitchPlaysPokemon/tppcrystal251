@@ -107,18 +107,18 @@ FisherScript_0x1904ce: ; 0x1904ce
 	loadfont
 	writetext UnknownText_0x191133
 	yesorno
-	iffalse .FalseTutorQuit
+	iffalse .quit
 	writebyte 7
 	writetext UnknownText_0x19118c
 	special Function4925b
-	iffalse AfterFalseTutor
-.FalseTutorQuit
+	iffalse .done
+.quit
 	writetext FalseTutorReject
 	waitbutton
 	closetext
 	end
 
-AfterFalseTutor:
+.done
 	writetext FalseTutorDone
 	waitbutton
 	closetext

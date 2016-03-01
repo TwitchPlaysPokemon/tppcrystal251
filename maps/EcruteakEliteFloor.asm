@@ -90,16 +90,17 @@ MortyRematchTextBefore2:
 
 	para "But that does not"
 	line "mean that I have"
-	cont "lost out on my"
-	cont "future."
+
+	para "lost out on my"
+	line "future."
 	
 	para "Show me the power"
-	line "I trained for!"
+	line "I trained to face!"
 	done
 
 MortyRematchBeatenText2:
 	text "How is this"
-	line "possible<...>"
+	line "possible<...>?"
 	done
 
 MortyAfterRematchText2:

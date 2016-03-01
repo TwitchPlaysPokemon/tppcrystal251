@@ -323,8 +323,8 @@ SwimmermCharlieBeatenText: ; 0x1a6952
 UnknownText_0x1a696e: ; 0x1a696e
 	text "Maybe letting out"
 	line "gases into the"
-	cont "ocean isn't"
-	cont "very smart..."
+	para "ocean isn't"
+	line "very smart<...>"
 	done
 ; 0x1a6999
 

@@ -189,7 +189,7 @@ UnknownText_0x6a00a: ; 0x6a00a
 UnknownText_0x6a09a: ; 0x6a09a
 	text "I feel bad for"
 	line "the guy at the"
-	cont "counter..."
+	cont "counter<...>"
 	
 	para "He let some"
 	line "girl borrow his"

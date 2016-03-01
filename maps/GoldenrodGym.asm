@@ -335,12 +335,12 @@ WhitneyAfterRematchText:
 
 	para "I was surprised"
 	line "by how strong"
-	cont "you were," 
+	cont "you were." 
 
 	para "When you have a"
 	line "chance, tell me"
-	cont "all about why"
-	cont "you're so strong!"
+	para "all about how you"
+	line "got so strong!"
 	done
 
 UnknownText_0x541a5: ; 0x541a5

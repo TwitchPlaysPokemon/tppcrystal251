@@ -122,25 +122,27 @@ MistyAfterRematch:
 MistyRematchTextBefore:
 	text "My dream was to"
 	line "go on a journey"
-	cont "and battle"
-	cont "powerful trainers."
+
+	para "and battle power-"
+	line "ful trainers."
 	
 	para "I made my dream"
-	line "come true,"
-	cont "and now<...>"
+	line "come true."
+
+	para "And now<...>"
 	
 	para "My next dream is"
 	line "to defeat you!"
 	done
 
 MistyRematchBeatenText:
-	text "First my date"
+	text "First my date,"
 	line "now my dreams<...>"
 	done
 
 MistyAfterRematchText:
 	text "You really are"
-	line "strong..."
+	line "strong<...>"
 	
 	para "I'll admit that"
 	line "you are skilled."
