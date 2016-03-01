@@ -138,7 +138,7 @@ OakAfterDefeat: ; 0x19b3ea
 	checkevent EVENT_OAK_KNOWS_DEX_FULL
 	iftrue SkipfterDefeatDexCheck
 	special ProfOaksPCBoot
-	special RateIntoScriptVar
+	checkcode VAR_DEXCAUGHT
 	if_equal 251, PGKOak_FullDex
 SkipfterDefeatDexCheck:
 	writetext OakAfterDefeatText
@@ -149,7 +149,7 @@ SkipfterDefeatDexCheck:
 OakAfterE4:
 	writetext UnknownText_0x19b4a2
 	special ProfOaksPCBoot
-	special RateIntoScriptVar
+	checkcode VAR_DEXCAUGHT
 	if_equal 251, PGKOak_FullDex
 	writetext OakAfterE4Text
 	waitbutton
@@ -180,7 +180,7 @@ UnknownScript_0x19b3ea: ; 0x19b3ea
 	checkevent EVENT_OAK_KNOWS_DEX_FULL
 	iftrue .skip_dex_check
 	special ProfOaksPCBoot
-	special RateIntoScriptVar
+	checkcode VAR_DEXCAUGHT
 	if_equal 251, PGKOak_FullDex
 .skip_dex_check
 	checkevent EVENT_SET_BY_OAK_AFTER_16_BADGES

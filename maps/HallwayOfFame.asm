@@ -167,7 +167,7 @@ CheckDexForMtSilver:
 	buttonsound
 	writetext OakCheckDexAtHoF
 	special ProfOaksPCBoot
-	special RateIntoScriptVar
+	checkcode VAR_DEXCAUGHT
 	if_less_than 251, DexNotFull
 	writetext OakFullDex
 	buttonsound

@@ -28085,13 +28085,6 @@ Rate: ; 0x26616
 	ret
 ; 0x26647
 
-RateIntoScriptVar: ;load mons caught into scriptvar
-	ld hl, PokedexCaught
-	ld b, EndPokedexCaught - PokedexCaught
-	call CountSetBits
-	ld [ScriptVar], a
-	ret
-
 ClearOakRatingBuffers: ; 0x26647
 	ld hl, StringBuffer3
 	ld de, DefaultFlypoint
