@@ -75,12 +75,17 @@ BrockRejectText:
 	line "in FOSSIL #MON?"
 
 	para "You should visit"
-	line "MT. MOON, there's"
-	cont "someone digging"
-	cont "for rare fossils"
-	cont "that can be used"
-	cont "to bring back"
-	cont "ancient #MON."
+	line "MT. MOON."
+
+	para "One of my friends"
+	line "is excavating for"
+	cont "fossils there."
+
+	para "They say a lab in"
+	line "JOHTO is able to"
+
+	para "restore these fos-"
+	line "sils to life."
 	done
 
 BrockBeforeRematchText:
@@ -88,8 +93,8 @@ BrockBeforeRematchText:
 
 	para "It has been some"
 	line "time since I was"
-	cont "able to go all"
-	cont "out like this."
+	para "able to go all"
+	line "out like this."
 
 	para "When it comes to"
 	line "rock #MON,"
@@ -100,15 +105,16 @@ BrockBeforeRematchText:
 	done
 
 BrockRematchBeatenText:
-	text "Ow ow ow ow ow"
+	text "Ah! What a solid"
+	line "battle!"
 	done
 
 BrockAfterRematchText:
 	text "I've lost again<...>"
 
-	para "You aren't"
-	line "adventuring around" 
-	cont "for nothing!"
+	para "Seems you've been"
+	line "making the most of"
+	cont "your adventure!"
 	done
 
 TrainerCamperJerry: ; 0x1a2898
@@ -179,15 +185,15 @@ UnknownText_0x1a28d0: ; 0x1a28d0
 
 	para "So you're from"
 	line "PALLET TOWN,"
-	cont "but lost your"
-	cont "BOULDERBADGE<...>"
+	para "but you lost your"
+	line "BOULDERBADGE<...>"
 
 	para "While I could"
 	line "simply replace it,"
-	cont "I want to see how"
-	cont "much you've grown"
-	cont "to become JOHTO's"
-	cont "CHAMPION."
+	para "I want to see how"
+	line "much you've grown"
+	para "to become JOHTO's"
+	line "CHAMPION."
 
 	para "Come on!"
 	done
