@@ -727,6 +727,8 @@ Function9289: ; 9289
 	ld a, $24
 	call Function9625
 	call Function9630
+	ld hl, RematchBadgePal
+	call Function9643
 	ld de, $d700
 	ld a, FALKNER
 	call Function976b
@@ -848,6 +850,10 @@ TrainerCardPal:
 	; Girl
 	RGB 25, 17, 20
 	RGB 26, 02, 19
+	
+RematchBadgePal:
+	RGB 31, 27, 20
+	RGB 31, 26, 07
 
 Function9373: ; 9373
 	ld de, Unkn1Pals
