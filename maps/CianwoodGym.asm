@@ -99,15 +99,19 @@ ChuckRejectText:
 
 	para "While my #MON"
 	line "rest up you should"
-	cont "see KIYO, he's"
-	cont "in MT.MORTAR,"
-	cont "training."
+
+	para "meet my student,"
+	line "KIYO."
+
+	para "He should be"
+	line "training within"
+	cont "MT. MORTAR."
 	
 	para "He's stong enough"
 	line "to give anyone a"
-	cont "work out!"
-	cont "WAHAHAHAHA!!!"
+	cont "workout!"
 
+	para "WAHAHAHAHA!!!"
 	done
 
 
@@ -322,9 +326,12 @@ ChuckRematchTextBefore:
 	para "I’m doing great!"
 	
 	para "I just finished"
-	line "training,"
+	line "training!"
+
+	para "So what brings you"
+	line "back here, huh?"
 	
-	para "do you want to"
+	para "Do you want to"
 	line "battle again?"
 	done
 
@@ -337,9 +344,9 @@ ChuckRematchBeatenText:
 
 ChuckAfterRematchText:
 	text "Wahaha!"
-	line "A battle with"
-	cont "you is never"
-	cont "boring!"
+
+	para "A battle with you"
+	line "is never boring!"
 	done
 
 UnknownText_0x9d7f6: ; 0x9d7f6
