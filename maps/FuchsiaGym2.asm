@@ -153,15 +153,19 @@ FakeJanine2Text:
 	
 JanineBeforeRematchText:
 	text "The essence of"
-	line "ninjas' moves"
-	cont "obtained by"
-	cont "training!"
-	
-	para "Feel the horror"
-	line "from the Poison"
-	cont "type #MON who've"
-	cont "mastered it."
+	line "a ninjas' moves<...>"
 
+	para "Honed and trained"
+	line "to perfection<...>"
+	
+	para "Prepare to expe-"
+	line "rience the horror"
+
+	para "of the poison-type"
+	line "#MON that have"
+
+	para "mastered these"
+	line "techniques!"
 	done
 ; 0x1960e6
 
@@ -178,10 +182,10 @@ JanineAfterRematchText:
 	para "I'm disappointed"
 	line "that I lost<...>"
 
-	para "I'll train with"
-	line "my father to be"
-	cont "better than before"
-	cont "and challenge you"
+	para "I'll train with my"
+	line "father to become"
+	para "better than before"
+	line "and challenge you"
 	cont "again!"
 
 	done
@@ -189,12 +193,17 @@ JanineAfterRematchText:
 FuchsiaGym2GuyText: ; 0x196299
 	text "Yo, CHAMP!"
 
-	para "<...>yes. She is here,"
-	line "hiding in this new"
-	cont "invisible maze."
+	para "Having a hard time"
+	line "finding JANINE?"
+
+	para "I assure you she's"
+	line "here somewhere,"
+
+	para "hiding in this new"
+	line "invisible maze."
 	
-	para "Even herself is"
-	line "invisible!"
+	para "She's even made"
+	line "herself invisible!"
 	done
 ; 0x196325
 
