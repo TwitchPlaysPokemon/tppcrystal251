@@ -140,7 +140,7 @@ MistyRematchBeatenText:
 
 MistyAfterRematchText:
 	text "You really are"
-	line "strong..."
+	line "strong<...>"
 	
 	para "I'll admit that"
 	line "you are skilled."
