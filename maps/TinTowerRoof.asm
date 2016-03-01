@@ -40,16 +40,14 @@ HoOhScript_0x77244: ; 0x77244
 	startbattle
 	writebyte HO_OH
 	special SpecialMonCheck
-	iffalse DontKillHoOh
+	iffalse .DontKillHoOh
 	setevent EVENT_FOUGHT_HO_OH
 	setevent EVENT_SET_WHEN_FOUGHT_HO_OH
 	disappear $2
+.DontKillHoOh
 	returnafterbattle
 	end
 ; 0x77260
-DontKillHoOh:
-	returnafterbattle
-	end
 
 UnknownText_0x77260: ; 0x77260
 	text "Shaoooh!"
