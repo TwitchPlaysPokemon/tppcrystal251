@@ -11,13 +11,13 @@ CooltrainerMScript_0x71670: ; 0x71670
 	loadfont
 	writetext UnknownText_0x716ce
 	checkcode VAR_DEXCAUGHT
-	if_equal $fb, UnknownScript_0x7167e
+	if_equal NUM_POKEMON, .GiveDiploma
 	waitbutton
 	closetext
 	end
 ; 0x7167e
 
-UnknownScript_0x7167e: ; 0x7167e
+.GiveDiploma
 	buttonsound
 	writetext UnknownText_0x71725
 	playsound SFX_DEX_FANFARE_230_PLUS
@@ -27,16 +27,14 @@ UnknownScript_0x7167e: ; 0x7167e
 	special Functionc49f
 	writetext UnknownText_0x71763
 	checkevent EVENT_ENABLE_DIPLOMA_PRINTING
-	iftrue Script_0x7167e_end
+	iftrue .skip_money
 	buttonsound
 	writetext Text_GiveMoneyMansion3F
-	waitbutton
-	closetext
-	setevent EVENT_ENABLE_DIPLOMA_PRINTING
 	givemoney 0, 300000
-	end
-	
-Script_0x7167e_end:
+	playsound SFX_TRANSACTION
+	waitsfx
+	setevent EVENT_ENABLE_DIPLOMA_PRINTING
+.skip_money:
 	waitbutton
 	closetext
 	end
