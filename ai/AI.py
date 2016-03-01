@@ -1236,12 +1236,10 @@ class AI(object):
 
                 self.MonData[mycurrent]['stats']['curhp'] = myhp
                 self.MonData[traincurrent]['stats']['curhp'] = trainhp
-                if myhp < 0:
-                    myhp = 0
-                if trainhp < 0:
-                    trainhp = 0
-                if trainhp == 0:
+                if trainhp <= 0:
                     bonusmulti += 0.1
+                    if x1 == 0:
+                        self.ShouldISwitch = False
                     
             #do extra effect on first move
             myhp1 = self.mycurhp
@@ -1358,12 +1356,10 @@ class AI(object):
                     trainhp1 = self.MonData[traincurrent]['stats']['curhp']
                     self.MonData[mycurrent]['stats']['curhp'] = myhp1
                     self.MonData[traincurrent]['stats']['curhp'] = trainhp1
-                    if myhp1 < 0:
-                        myhp1 = 0
-                    if trainhp1 < 0:
-                        trainhp1 = 0
-                    if trainhp1 == 0:
+                    if trainhp1 <= 0:
                         bonusmulti1 += 0.1
+                        if x1 == 0:
+                            self.ShouldISwitch = False
             tempy = (self.MonData[mycurrent]['moves'][int(tempcombo[0])]['acc'] / 100) * (self.MonData[mycurrent]['moves'][int(tempcombo[0])]['effectchance'] / 100)
             if self.MonData[mycurrent]['moves'][int(tempcombo[0])]['effect'] == 'toxic' and ((self.MonData[mycurrent]['type'][1] == 'poison') or (self.MonData[mycurrent]['type'][2] == 'poison')):
                 tempy = 1
@@ -1744,11 +1740,11 @@ class AI(object):
         templist2 = []
         #they are about to die can i save pp?
         if self.theaction < 4:
-            if self.Damage[mycurrent][traincurrent][self.theaction]['damage'] > self.jsonlist['battleState']['playerpokemon']['hp']:
+            if self.Damage[mycurrent][traincurrent][self.theaction]['damage'] > self.jsonlist['battleState']['playerpokemon']['hp'] * 1.1:
                 for tempmove in range(0, len(self.jsonlist['battleState']['enemypokemon']['moves'])):
                     self.DamageDealt(mycurrent, traincurrent, tempmove)
                     if self.MonData[mycurrent]['moves'][tempmove]['curpp'] > 0:
-                        if self.Damage[mycurrent][traincurrent][tempmove]['damage'] > self.jsonlist['battleState']['playerpokemon']['hp']:
+                        if self.Damage[mycurrent][traincurrent][tempmove]['damage'] > self.jsonlist['battleState']['playerpokemon']['hp'] * 1.1:
                             templist.append(tempmove)
                 if len(templist) > 0:
                     temp1 = -1
@@ -1783,7 +1779,27 @@ class AI(object):
                         return x1
         
         return None
-
+    
+    def StatsDownPrevention(self):
+        KillingBlow = False
+        if self.jsonlist['battleState']['enemy type'] == 'TRAINER':
+            mycurrent = self.jsonlist['battleState']['enemypokemon']['party idx']
+        else:
+            mycurrent = 0
+        traincurrent = self.jsonlist['battleState']['playerpokemon']['party idx']+6
+        self.Reset(traincurrent, mycurrent)
+        #if i can kill
+        for tempmove in range(0, len(self.jsonlist['battleState']['enemypokemon']['moves'])):
+            self.DamageDealt(mycurrent, traincurrent, tempmove)
+            if self.Damage[mycurrent][traincurrent][tempmove]['damage'] > self.jsonlist['battleState']['playerpokemon']['hp'] * 1.1:
+                KillingBlow = True
+        #then dont use stats down
+        if KillingBlow:
+            for tempmove in range(0, len(self.jsonlist['battleState']['enemypokemon']['moves'])):
+                if slef.MonData[mycuurent]['moves'][tempmove]['effect'] in ('accuracydown', 'defensedown', 'attackdown', 'speeddown2', 'defensedown2', 'spdefdown2'):
+                    slef.MonData[mycuurent]['moves'][tempmove]['curpp'] = 0
+        return
+            
     #figure out best action to do in current battle
     def MainBattle(self, jsonlist):
 
@@ -1828,20 +1844,24 @@ class AI(object):
         self.countercoat['special'] = {}
         self.MonData = {}
         self.FinalChance = True
-
+        self.ShouldISwitch = True
+        
         #alright, start computing
-
         traincurrent = self.jsonlist['battleState']['playerpokemon']['party idx']+6
         self.parseMondataFromJsonlist()
+        
+        self.StatsDownPrevention()
+        
         if self.jsonlist['battleState']['enemy type'] == 'TRAINER':
             mycurrent = self.jsonlist['battleState']['enemypokemon']['party idx']
             if ('requested action' not in self.jsonlist['battleState']) or not (int(self.jsonlist['battleState']['requested action']) & 0x40):
                 self.Fight(traincurrent, mycurrent, 5)
                 self.theaction = self.mybestmove[mycurrent]
                 self.triggered = 1
-                theaction2 = self.OptionalSwitch(traincurrent)
-                if theaction2 != 20:
-                    self.theaction = theaction2
+                if self.ShouldISwitch:
+                    theaction2 = self.OptionalSwitch(traincurrent)
+                    if theaction2 != 20:
+                        self.theaction = theaction2
                 theaction2 = self.checkIfUsingItem()
                 if theaction2 != 20:
                     self.theaction = theaction2
