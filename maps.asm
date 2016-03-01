@@ -696,3 +696,8 @@ SECTION "FuchsiaGym2", ROMX
 INCLUDE "maps/FuchsiaGym2.asm"
 SECTION "FuchsiaGym2 Blockdata", ROMX
 FuchsiaGym2_BlockData: INCBIN "maps/FuchsiaGym2.blk"
+
+SECTION "SaffronGym2", ROMX
+INCLUDE "maps/SaffronGym2.asm"
+SECTION "SaffronGym2 Blockdata", ROMX
+SaffronGym2_BlockData: INCBIN "maps/SaffronGym2.blk"
