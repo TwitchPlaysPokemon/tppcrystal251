@@ -1530,6 +1530,7 @@ class AI(object):
         self.triggered = 0
         self.MonData['enemypokemon']['substatus'] = {}
         self.MonData['enemypokemon']['screens'] = {}
+        theaction = 20
         for switchindex in range(0, self.myparty):
             mycurrent = switchindex
             if self.MonData[mycurrent]['stats']['curhp'] > 0:
@@ -1548,7 +1549,7 @@ class AI(object):
                 self.mybestmove[mycurrent][traincurrent] = -10
         tempy = -9
         for tempx in range(0, self.myparty):
-            if self.difference[tempx][traincurrent] > tempy:
+            if self.difference[tempx][traincurrent] > tempy and tempx != self.jsonlist['battleState']['enemypokemon']['party idx']:
                 tempy = self.difference[tempx][traincurrent]
                 theaction = tempx + 4
         return theaction
@@ -1628,6 +1629,11 @@ class AI(object):
         self.Reset(traincurrent, mycurrent)
         self.TrainerDamage(traincurrent, mycurrent)
         
+        if self.MonData['myperishsong'] == 1:
+            potentialAction = self.ForcedSwitch(traincurrent)
+            if potentialAction != 20:
+                return potentialAction
+            
         if self.jsonlist['battleState']['enemy type'] == 'TRAINER':
             #baton pass
             statTotal = sum([int(self.jsonlist['battleState']['enemypokemon']['stat levels'][stat]) for stat in self.statNames])
