@@ -18,7 +18,7 @@ CeruleanCave2_Item3:
 	db FULL_HEAL, 1
 	
 CeruleanCave2_Item4: 
-	db CONFUSEGUARD, 1
+	db PARLYZ_GUARD, 1
 
 CeruleanCave2_MapEventHeader: 
 	; filler
