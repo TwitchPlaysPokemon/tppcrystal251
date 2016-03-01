@@ -78,26 +78,35 @@ FalknerReject:
 	end
 
 FalknerRejectText:
-	text "ARTICUN<...>,"
+	text "ARTICUNO<...>,"
 
 	para "ZAPDOS<...>"
 
 	para "MOLTRES<...>"
 
-	para "These legendary"
-	line "bird #MON have"
-	cont "eluded even me."
+	para "Taming these"
+	line "legendary bird"
+
+	para "#MON has been"
+	line "the ultimate test"
+
+	para "of power in my"
+	line "family for gene-"
+	cont "rations."
 
 	para "You're on a quest"
 	line "to fill your #-"
 	cont "DEX, right?"
 
-	para "Perhaps you'll have"
-	line "better luck at"
+	para "Then you should"
+	line "take on this chal-"
+	cont "lenge yourself."
 
-	para "taming these truly"
-	line "majestic creatures"
-	cont "than I."
+	para "Go find the three"
+	line "legendary birds"
+
+	para "and catch them"
+	line "where they roost!"
 
 	para "Once you have done"
 	line "that, come back"
