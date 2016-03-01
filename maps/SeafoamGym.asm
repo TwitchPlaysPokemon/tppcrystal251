@@ -116,17 +116,17 @@ BlaineBeforeRematchText:
 	para "You got them back!"
 
 	para "Thanks for getting"
-	line "those for me, they"
-	cont "are the last"
-	cont "copies of the map"
-	cont "to MEW's only"
-	cont "known home."
+	line "those for me."
+	para "They are the last"
+	line "copies of the map"
+	para "to MEW's only"
+	line "known home."
 
 	para "But I heard you"
-	line "want to test"
-	cont "yourself against"
-	cont "the hottest"
-	cont "flames I have."
+	line "want to test your-"
+	cont "self against the"
+	para "the hottest flames"
+	line "I have."
 	
 	para "Let's get cookin'!"
 	done
@@ -143,15 +143,15 @@ BlaineAfterRematchText:
 
 	para "I'll take my NOTES"
 	line "back, but leave"
-	cont "you with a map to"
-	cont "GUYANA, the only"
-	cont "known habitat of"
-	cont "MEW, as thanks."
+	para "you with a map to"
+	line "GUYANA, the only"
+	para "known habitat of"
+	line "MEW, as thanks."
 	
 	para "I'll never give"
 	line "up until the day"
-	cont "I've rebuilt the"
-	cont "Cinnabar Gym!"
+	para "I've rebuilt the"
+	line "CINNABAR GYM!"
 	done
 
 SeafoamGymGuyScript: ; 0x1ab531
