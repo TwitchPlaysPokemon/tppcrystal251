@@ -292,14 +292,14 @@ Function1f8081:
 	ret
 
 .StatExps
+	dw 00000
+	dw 5000
 	dw 10000
 	dw 15000
 	dw 20000
 	dw 25000
 	dw 30000
 	dw 35000
-	dw 40000
-	dw 45000
 
 BattleTowerTrainers: ; 1f814e
 	db "HANSON@@@@", FISHER
