@@ -276,6 +276,12 @@ SpecialMapName:      db "SPECIAL@"
 BattleTentRuinsName: db "BATTLE TENT", $1f, "RUINS@"
 SSAnneName:          db "S.S. ANNE@"
 
+SpecialRegionCheck:
+	call RegionCheck
+	ld a, e
+	ld [ScriptVar], a
+	ret
+
 RegionCheck: ; 0x1caea1
 ; Checks if the player is in Kanto or Johto.
 ; If in Johto, returns 0 in e.

@@ -197,6 +197,7 @@ SpecialsPointers:: ; c029
 	add_special BillBoxSwitchCheck
 	add_special BillBoxSwitch
 	add_special SpecialMoveRelearner
+	add_special SpecialRegionCheck
 	add_special SpecialNone
 ; c224
 
