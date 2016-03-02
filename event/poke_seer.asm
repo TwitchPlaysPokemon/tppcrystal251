@@ -117,18 +117,18 @@ JudgePokemon:
 	call PrintText
 	call Functiona36
 	call GetDVTotal
-	push bc
+	; push bc
 	call JudgeDVTotal
 	ld hl, .Incidentally
 	call PrintText
 	call Functiona36
 	
-	pop bc
-	ld a, b
-	and a
-	jr z, .skip_maxdv
-	cp 75
-	jr z, .skip_maxdv
+	; pop bc
+	; ld a, b
+	; and a
+	; jr z, .skip_maxdv
+	; cp 75
+	; jr z, .skip_maxdv
 	call GetMaxDV
 	push bc
 	call InformMaxDVs
@@ -260,9 +260,7 @@ GetMaxDV:
 	ld a, [hli]
 	cp b
 	jr nz, .skip2
-	ld a, $10
-	or d
-	ld d, a
+	set 4, d
 .skip2
 	dec c
 	jr nz, .loop2
@@ -414,32 +412,19 @@ JudgeMaxDV:
 	done
 
 GetMinDV:
-	ld hl, wd002
-	ld b, 15
-	ld c, 5
-.loop
-	ld a, [hli]
-	cp b
-	jr nc, .skip
-	ld b, a
-.skip
-	dec c
-	jr nz, .loop
-	; We found the max value, now let's get which ones are equal.
+	; Find DVs equal to zero
 	ld hl, wd002
 	ld c, 5
 	ld d, 0
-.loop2
+.loop
 	srl d
 	ld a, [hli]
-	cp b
-	jr nz, .skip2
-	ld a, $10
-	or d
-	ld d, a
-.skip2
+	and a
+	jr nz, .skip
+	set 4, d
+.skip
 	dec c
-	jr nz, .loop2
+	jr nz, .loop
 	ret
 
 InformMinDVs:
@@ -532,7 +517,7 @@ InformMinDVs:
 	text "I'm afraid its"
 	line "@"
 	TX_RAM StringBuffer1
-	text "is pretty"
+	text " is pretty"
 	cont "bad, too<...>"
 	done
 

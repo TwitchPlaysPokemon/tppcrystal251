@@ -323,7 +323,7 @@ ChuckRematchTextBefore:
 	para "Oh, hey, sorry"
 	line "for shouting!"
 	
-	para "I’m doing great!"
+	para "I'm doing great!"
 	
 	para "I just finished"
 	line "training!"
