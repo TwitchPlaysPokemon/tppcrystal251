@@ -13,7 +13,14 @@ BlackthornCity_MapScriptHeader: ; 0x1a46d0
 
 UnknownScript_0x1a46d8: ; 0x1a46d8
 	setflag ENGINE_FLYPOINT_BLACKTHORN
+	checkevent EVENT_SET_BY_OAK_AFTER_16_BADGES
+	iftrue EliteFloorBlackthorn
+	warpmod 1, GROUP_BLACKTHORN_GYM_1F, MAP_BLACKTHORN_GYM_1F
 	return
+EliteFloorBlackthorn: 
+	warpmod 1, GROUP_BLACKTHORNGYMREMATCH1F, MAP_BLACKTHORNGYMREMATCH1F
+	return
+	
 ; 0x1a46dc
 
 SantosCallback:
@@ -359,7 +366,7 @@ BlackthornCity_MapEventHeader: ; 0x1a4c57
 
 	; warps
 	db 8
-	warp_def $b, $12, 1, GROUP_BLACKTHORN_GYM_1F, MAP_BLACKTHORN_GYM_1F
+	warp_def $b, $12, -1, 0, 0 ;Blackthorn Gym
 	warp_def $15, $d, 1, GROUP_BLACKTHORN_DRAGON_SPEECH_HOUSE, MAP_BLACKTHORN_DRAGON_SPEECH_HOUSE
 	warp_def $17, $1d, 1, GROUP_BLACKTHORN_DODRIO_TRADE_HOUSE, MAP_BLACKTHORN_DODRIO_TRADE_HOUSE
 	warp_def $1d, $f, 2, GROUP_BLACKTHORN_MART, MAP_BLACKTHORN_MART
