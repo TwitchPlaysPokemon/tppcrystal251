@@ -536,6 +536,7 @@ UnknownScript_0x6ee42: ; 0x6ee42
 	special SpecialMonCheck
 	iffalse Script_ReturnCelebiRelatedItems
 	returnafterbattle
+	special RestartMapMusic
 	pause 20
 	special Function49bf9
 	iffalse UnknownScript_0x6ee8e
@@ -559,6 +560,7 @@ Script_ReturnCelebiRelatedItems:
 	appear $8
 	setevent EVENT_LASS_IN_ILEX_FOREST_ROUTE_34_GATE
 	returnafterbattle
+	special RestartMapMusic
 	loadfont
 	writetext Text_ReturnCelebiRelatedItems
 	waitbutton

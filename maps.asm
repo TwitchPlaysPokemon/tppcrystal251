@@ -701,3 +701,13 @@ SECTION "SaffronGym2", ROMX
 INCLUDE "maps/SaffronGym2.asm"
 SECTION "SaffronGym2 Blockdata", ROMX
 SaffronGym2_BlockData: INCBIN "maps/SaffronGym2.blk"
+
+SECTION "BlackthornGymRematch1F", ROMX
+INCLUDE "maps/BlackthornGymRematch1F.asm"
+SECTION "BlackthornGymRematch1F Blockdata", ROMX
+BlackthornGymRematch1F_BlockData: INCBIN "maps/BlackthornGymRematch1F.blk"
+
+SECTION "BlackthornGymRematch2F", ROMX
+INCLUDE "maps/BlackthornGymRematch2F.asm"
+SECTION "BlackthornGymRematch2F Blockdata", ROMX
+BlackthornGymRematch2F_BlockData: INCBIN "maps/BlackthornGymRematch2F.blk"

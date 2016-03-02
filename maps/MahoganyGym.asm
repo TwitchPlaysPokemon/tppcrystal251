@@ -308,7 +308,7 @@ PryceRematchTextBefore:
 	line "means I will not"
 	cont "fall easily."
 
-	text "No need for words."
+	para "No need for words."
 
 	para "A #MON battle"
 	line "is the way for us"

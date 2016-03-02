@@ -166,6 +166,8 @@ MapGroup4:
 MapGroup5:
 	map_header BlackthornGym1F, $f, 3, BLACKTHORN_CITY, MUSIC_GYM, 1, 1, 1
 	map_header BlackthornGym2F, $f, 3, BLACKTHORN_CITY, MUSIC_GYM, 1, 1, 1
+	map_header BlackthornGymRematch1F, $f, 3, BLACKTHORN_CITY, MUSIC_GYM, 1, 1, 1
+	map_header BlackthornGymRematch2F, $f, 3, BLACKTHORN_CITY, MUSIC_GYM, 1, 1, 1
 	map_header BlackthornDragonSpeechHouse, $5, 3, BLACKTHORN_CITY, MUSIC_AZALEA_TOWN, 0, 1, 1
 	map_header BlackthornDodrioTradeHouse, $5, 3, BLACKTHORN_CITY, MUSIC_AZALEA_TOWN, 0, 1, 1
 	map_header BlackthornMart, $c, 3, BLACKTHORN_CITY, MUSIC_MART, 0, 1, 1
