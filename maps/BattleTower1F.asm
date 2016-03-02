@@ -125,20 +125,7 @@ UnknownScript_0x9e454: ; 0x9e454
 	end
 ; 0x9e47a
 
-UnknownScript_0x9e47a: ; 0x9e47a
-	givemoney 0, 80000
-		;writebyte $1c
-		;special Function170687 ;load 3 into be45
-		;writebyte $1b
-		;special Function170687 ;if bag full or item givable, scriptvar = item to give, else run bag is full
-		;if_equal $12, UnknownScript_0x9e498 ;bag is full
-		;itemtotext $0, $1
-		;giveitem $ff, $5 ;give 5 of the saved items
-		;writetext UnknownText_0x9eb7e ;give item text
-		;writebyte $1d
-		;special Function170687 ;save 4 into $be45
-	closetext
-	end
+	
 ; 0x9e498
 
 UnknownScript_0x9e498: ; 0x9e498
@@ -604,10 +591,10 @@ UnknownText_0x9ecb0: ; 0x9ecb0
 	done
 ; 0x9ed1e
 
-UnknownText_0x9ed1e: ; 0x9ed1e
-	text "Check the LEADER"
-	line "HONOR ROLL?"
-	done
+;UnknownText_0x9ed1e: ; 0x9ed1e
+;	text "Check the LEADER"
+;	line "HONOR ROLL?"
+;	done
 ; 0x9ed3c
 
 UnknownText_0x9ed3c: ; 0x9ed3c
@@ -833,6 +820,8 @@ UnknownText_0x9f35b: ; 0x9f35b
 	para "Don't let there be"
 	line "any fire #MON<...>"
 	done
+
+
 ; 0x9f3b4
 
 BattleTower1F_MapEventHeader: ; 0x9f3b4

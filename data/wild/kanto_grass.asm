@@ -2185,7 +2185,7 @@
 		db SUDOWOODO ;1
 	
 	db GROUP_MEWISLANDB1, MAP_MEWISLANDB1
-	db $19 ; encounter rates: morn/day/nite
+	db $0a ; encounter rates: morn/day/nite
 	db 78
 	db $01
 ;morning
@@ -2241,7 +2241,7 @@
 		db WIGGLYTUFF ;1
 		
 	db GROUP_MEWISLANDF1, MAP_MEWISLANDF1
-	db $19 ; encounter rates: morn/day/nite
+	db $0a ; encounter rates: morn/day/nite
 	db 78
 	db $01
 ;morning
@@ -2297,7 +2297,7 @@
 		db GRANBULL ;1
 
 	db GROUP_MEWISLANDF2, MAP_MEWISLANDF2
-	db $19 ; encounter rates: morn/day/nite
+	db $0a ; encounter rates: morn/day/nite
 	db 78
 	db $03
 ;morning
@@ -2353,7 +2353,7 @@
 		db NIDOQUEEN ;1
 
 	db GROUP_CINNABAR_VOLCANO_B1F, MAP_CINNABAR_VOLCANO_B1F
-	db $19
+	db $0a
 	db 68
 	db $02
 ;morning
@@ -2409,7 +2409,7 @@
 		db RHYHORN ;1
 	
 	db GROUP_CINNABAR_VOLCANO_B2F, MAP_CINNABAR_VOLCANO_B2F
-	db $19
+	db $0a
 	db 70
 	db $02
 ;morning
@@ -2465,7 +2465,7 @@
 		db HOUNDOUR ;1
 	
 	db GROUP_CINNABAR_VOLCANO_B3F, MAP_CINNABAR_VOLCANO_B3F
-	db $19
+	db $0a
 	db 72
 	db $03
 ;morning
@@ -2521,7 +2521,7 @@
 		db RHYDON ;1
 
 	db GROUP_SEAFOAM_ISLANDS_ENTRANCE, MAP_SEAFOAM_ISLANDS_ENTRANCE
-	db $19
+	db $0a
 	db 66
 	db $02
 ;morning
@@ -2577,7 +2577,7 @@
 		db STEELIX ;1
 	
 	db GROUP_SEAFOAM_ISLANDS_B1F, MAP_SEAFOAM_ISLANDS_B1F
-	db $19
+	db $0a
 	db 68
 	db $02
 ;morning
@@ -2633,7 +2633,7 @@
 		db GOLDUCK ;1
 	
 	db GROUP_SEAFOAM_ISLANDS_B2F, MAP_SEAFOAM_ISLANDS_B2F
-	db $19
+	db $0a
 	db 70
 	db $03
 ;morning
@@ -2689,7 +2689,7 @@
 		db SLOWBRO ;1
 
 	db GROUP_SEAFOAM_ISLANDS_B3F, MAP_SEAFOAM_ISLANDS_B3F
-	db $19
+	db $0a
 	db 72
 	db $03
 ;morning
@@ -2745,7 +2745,7 @@
 		db STEELIX ;1
 		
 	db GROUP_POWERPLANTB1, MAP_POWERPLANTB1
-	db $19
+	db $0a
 	db 66
 	db $01
 ;morning
@@ -2801,7 +2801,7 @@
 		db AMPHAROS ;1
 
 	db GROUP_POWERPLANTB2, MAP_POWERPLANTB2
-	db $19
+	db $0a
 	db 68
 	db $01
 ;morning

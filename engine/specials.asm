@@ -198,6 +198,8 @@ SpecialsPointers:: ; c029
 	add_special BillBoxSwitch
 	add_special SpecialMoveRelearner
 	add_special SpecialRegionCheck
+	add_special CalculateTowerWinnings
+	add_special CalculateTowerVictory
 	add_special SpecialNone
 ; c224
 
@@ -722,3 +724,63 @@ BillBoxSwitch:
 	ld e, a
 	callab Function14a83
 	ret
+
+CalculateTowerWinnings: ;NOTE, decs wcf64. calculate winnings of the battle tower based on # of wins and partycount, result is in hProduct
+	ld a, [wcf64]
+	dec a
+	ld [wcf64], a
+	ld c, a
+	ld b, 0
+	ld hl, BaseWinnings
+	add hl, bc
+	add hl, bc
+	xor a
+	ld [$ffb4], a
+	ld a, [hli]
+	ld [$ffb5], a
+	ld a, [hl]
+	ld [$ffb6], a
+	ld a, [PartyCount]
+	ld [hMultiplier] ,a
+	call Multiply
+GiveBattleTowerMoney:
+	ld de, Money
+	ld bc, $ffc3
+	ld hl, $ffb5
+	push bc
+	xor a
+	ld [bc], a
+	inc bc
+	ld a, [hli]
+	ld [bc], a
+	inc bc
+	ld a, [hl]
+	ld [bc], a
+	pop bc
+	callab Function15fd7
+	ret
+
+
+
+BaseWinnings:
+	bigdw 300
+	bigdw 1000
+	bigdw 2000
+	bigdw 4000
+	bigdw 7000
+	bigdw 10000
+	bigdw 15000
+
+CalculateTowerVictory:
+	ld hl, 25000
+	xor a
+	ld [$ffb4], a
+	ld a, h
+	ld [$ffb5], a
+	ld a, l
+	ld [$ffb6], a
+	ld a, [PartyCount]
+	ld [hMultiplier] ,a
+	call Multiply
+	jr GiveBattleTowerMoney
+

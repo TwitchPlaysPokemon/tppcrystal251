@@ -505,6 +505,7 @@ ItemfinderDesc:
 	db   "Checks for unseen"
 	next "items in the area.@"
 
+
 PokeFluteDesc:
 	db   "Wakes up all"
 	next "sleeping #MON.@"

@@ -98,15 +98,10 @@ UnknownScript_0x9f4c2: ; 0x9f4c2
 	pause 60
 	special Function8c092 ;pallete stuff
 	warpfacing $1, GROUP_BATTLE_TOWER_1F, MAP_BATTLE_TOWER_1F, $7, $7 ;warp downstairs
-	copybytetovar wcf64
+	special CalculateTowerWinnings
 	loadfont
-	if_equal $2, Win1Match
-	if_equal $3, Win2Match
-	if_equal $4, Win3Match
-	if_equal $5, Win4Match
-	if_equal $6, Win5Match
-	if_equal $7, Win6Match
-BTPrizeGiven:
+	writetext WonTowerMoneyText
+	buttonsound
 	writetext UnknownText_0x9ea49 ;thanks for visiting
 	waitbutton
 	writebyte $4
@@ -115,75 +110,14 @@ BTPrizeGiven:
 	end
 ; 0x9f4d9
 
-Win1Match:
-	writetext Won1Text
-	givemoney 0, 3000
-	buttonsound
-	jump BTPrizeGiven
-
-Won1Text:
-	text "For winning once,"
+WonTowerMoneyText:
+	text "For @"
+	deciram wcf64, $11
+	text " win(s),"
 	line "your prize is"
-	cont $f0, "3000."
-	done
-
-Win2Match:
-	writetext Won2Text
-	givemoney 0, 8000
-	buttonsound
-	jump BTPrizeGiven
-
-Won2Text:
-	text "For winning twice,"
-	line "your prize is"
-	cont $f0, "8000."
-	done
-
-Win3Match:
-	writetext Won3Text
-	givemoney 0, 15000
-	buttonsound
-	jump BTPrizeGiven
-
-Won3Text:
-	text "For 3 wins,"
-	line "your prize is"
-	cont $f0, "15000."
-	done
-
-Win4Match:
-	writetext Won4Text
-	givemoney 0, 24000
-	buttonsound
-	jump BTPrizeGiven
-
-Won4Text:
-	text "After 4 wins,"
-	line "your prize is"
-	cont $f0, "24000."
-	done
-
-Win5Match:
-	writetext Won5Text
-	givemoney 0, 35000
-	buttonsound
-	jump BTPrizeGiven
-
-Won5Text:
-	text "With 5 wins,"
-	line "your prize is"
-	cont $f0, "35000."
-	done
-
-Win6Match:
-	writetext Won6Text
-	givemoney 0, 50000
-	buttonsound
-	jump BTPrizeGiven
-
-Won6Text:
-	text "6 wins gives"
-	line "you ", $f0, "50000."
+	cont $f0, "@"
+	deciram $ffc3, $36
+	text "."
 	done
 
 UnknownScript_0x9f4d9: ; 0x9f4d9
@@ -191,9 +125,12 @@ UnknownScript_0x9f4d9: ; 0x9f4d9
 	special Function8c092
 	warpfacing $1, GROUP_BATTLE_TOWER_1F, MAP_BATTLE_TOWER_1F, $7, $7
 BattleTowerBattleRoomScript_0x9f4e4: ; 0x9f4e4
+	special CalculateTowerVictory
 	loadfont
-	writetext UnknownText_0x9eaef ;you get a prize for winning
-	jump UnknownScript_0x9e47a ;give 5 of the saved items
+	writetext WonTowerMoneyText 
+	waitbutton
+	closetext
+	end
 ; 0x9f4eb
 
 UnknownScript_0x9f4eb: ; 0x9f4eb
