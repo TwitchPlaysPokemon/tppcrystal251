@@ -1854,6 +1854,9 @@ class AI(object):
                 self.Fight(traincurrent, mycurrent, 5)
                 self.theaction = self.mybestmove[mycurrent]
                 self.triggered = 1
+                self.TrainerDamage(traincurrent, mycurrent)
+                if self.Damage[traincurrent][mycurrent][self.enemynumber]['damage'] * 1.25 < self.jsonlist['battleState']['enemypokemon']['hp']:
+                    self.ShouldISwitch = False
                 if self.ShouldISwitch:
                     theaction2 = self.OptionalSwitch(traincurrent)
                     if theaction2 != 20:
