@@ -69,7 +69,7 @@ UnknownScript_0x19893a: ; 0x19893a
 	writebyte $1 ;put 1 in scriptvar
 	writetext UnknownText_0x1991cf ;end dialoge?
 	special Function4925b
-	if_equal $0, UnknownScript_0x1989a6
+	iffalse UnknownScript_0x1989a6
 	jump UnknownScript_0x1989d7
 ; 0x198949
 
@@ -77,7 +77,7 @@ UnknownScript_0x198949: ; 0x198949
 	writebyte $2
 	writetext UnknownText_0x1991cf
 	special Function4925b ;teach move
-	if_equal $0, UnknownScript_0x1989a6 ;if done
+	iffalse UnknownScript_0x1989a6 ;if done
 	jump UnknownScript_0x1989d7 ;else quit
 ; 0x198958
 
@@ -85,7 +85,7 @@ UnknownScript_0x198958: ; 0x198958
 	writebyte $3
 	writetext UnknownText_0x1991cf
 	special Function4925b
-	if_equal $0, UnknownScript_0x1989a6
+	iffalse UnknownScript_0x1989a6
 	jump UnknownScript_0x1989d7
 ; 0x198967
 

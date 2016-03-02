@@ -578,7 +578,7 @@ TeachMoveThunder:
 TeachMove:
 	writetext WhoToTeachText
 	special Function4925b
-	if_equal $0, AfterTutor
+	iffalse AfterTutor
 	writetext TutorQuitText
 	waitbutton
 	closetext
