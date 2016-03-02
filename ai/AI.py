@@ -483,7 +483,7 @@ class AI(object):
                 accmodifier = accmodifier * 0.75 #not redundant; two-turn move means two rolls for PRZ
             if ('confused' in self.MonData[temptext2]['substatus'] or (isinstance(self.MonData[temptext2]['substatus'], dict) and 'confused' in self.MonData[temptext2]['substatus'].values())) or (attacker > 5 and self.MonData['confused'] == True):
                 accmodifier = accmodifier * 0.5
-            if('attract' in self.MonData[temptext2]['substatus'] or (isinstance(self.MonData[temptext2]['substatus'], dict) and 'attract' in self.MonData[temptext2]['substatus'].values())) or (attacker > 5 and self.MonData['attract'] == True):
+            if ('attract' in self.MonData[temptext2]['substatus'] or (isinstance(self.MonData[temptext2]['substatus'], dict) and 'attract' in self.MonData[temptext2]['substatus'].values())) or (attacker > 5 and self.MonData['attract'] == True):
                 accmodifier = accmodifier * 0.5
         if 'confused' in self.MonData[temptext2]['substatus'] or (isinstance(self.MonData[temptext2]['substatus'], dict) and 'confused' in self.MonData[temptext2]['substatus'].values()) or (attacker > 5 and self.MonData['confused'] == True):
             accmodifier = accmodifier * 0.5
@@ -1210,10 +1210,6 @@ class AI(object):
                             myhp = self.MonData[mycurrent]['stats']['maxhp']
                     if trainhp > 0:
                         self.TrainerDamage(traincurrent, mycurrent)
-                        if self.MonData['confused']:
-                            self.Damage[traincurrent][mycurrent][self.enemynumber]['damage'] = self.Damage[traincurrent][mycurrent][self.enemynumber]['damage'] / 2
-                        if self.MonData['attract']:
-                            self.Damage[traincurrent][mycurrent][self.enemynumber]['damage'] = self.Damage[traincurrent][mycurrent][self.enemynumber]['damage'] / 2
                         myhp = myhp - self.Damage[traincurrent][mycurrent][self.enemynumber]['damage']
 
                 if tempx < tempy:
