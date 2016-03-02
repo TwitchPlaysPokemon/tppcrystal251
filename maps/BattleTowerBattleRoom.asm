@@ -116,7 +116,8 @@ WonTowerMoneyText:
 	text " win(s),"
 	line "your prize is"
 	cont $f0, "@"
-	deciram $ffb4, $36
+	deciram $ffc3, $36
+	text "."
 	done
 
 UnknownScript_0x9f4d9: ; 0x9f4d9
@@ -127,6 +128,7 @@ BattleTowerBattleRoomScript_0x9f4e4: ; 0x9f4e4
 	special CalculateTowerVictory
 	loadfont
 	writetext WonTowerMoneyText 
+	waitbutton
 	closetext
 	end
 ; 0x9f4eb

@@ -746,9 +746,9 @@ CalculateTowerWinnings: ;NOTE, decs wcf64. calculate winnings of the battle towe
 GiveBattleTowerMoney:
 	ld de, Money
 	ld bc, $ffc3
-	ld hl, $ffb4
+	ld hl, $ffb5
 	push bc
-	ld a, [hli]
+	xor a
 	ld [bc], a
 	inc bc
 	ld a, [hli]
@@ -763,13 +763,13 @@ GiveBattleTowerMoney:
 
 
 BaseWinnings:
-	dw 300
-	dw 1000
-	dw 2000
-	dw 4000
-	dw 7000
-	dw 10000
-	dw 15000
+	bigdw 300
+	bigdw 1000
+	bigdw 2000
+	bigdw 4000
+	bigdw 7000
+	bigdw 10000
+	bigdw 15000
 
 CalculateTowerVictory:
 	ld hl, 25000
