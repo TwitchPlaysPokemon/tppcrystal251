@@ -1,4 +1,4 @@
-# TPP Crystal 251 AI v1.2 by Beesafree
+# TPP Crystal 251 AI v1.3 by Beesafree
 
 from __future__ import division
 import math
@@ -483,7 +483,7 @@ class AI(object):
                 accmodifier = accmodifier * 0.75 #not redundant; two-turn move means two rolls for PRZ
             if ('confused' in self.MonData[temptext2]['substatus'] or (isinstance(self.MonData[temptext2]['substatus'], dict) and 'confused' in self.MonData[temptext2]['substatus'].values())) or (attacker > 5 and self.MonData['confused'] == True):
                 accmodifier = accmodifier * 0.5
-            if('attract' in self.MonData[temptext2]['substatus'] or (isinstance(self.MonData[temptext2]['substatus'], dict) and 'attract' in self.MonData[temptext2]['substatus'].values())) or (attacker > 5 and self.MonData['attract'] == True):
+            if ('attract' in self.MonData[temptext2]['substatus'] or (isinstance(self.MonData[temptext2]['substatus'], dict) and 'attract' in self.MonData[temptext2]['substatus'].values())) or (attacker > 5 and self.MonData['attract'] == True):
                 accmodifier = accmodifier * 0.5
         if 'confused' in self.MonData[temptext2]['substatus'] or (isinstance(self.MonData[temptext2]['substatus'], dict) and 'confused' in self.MonData[temptext2]['substatus'].values()) or (attacker > 5 and self.MonData['confused'] == True):
             accmodifier = accmodifier * 0.5
@@ -773,10 +773,12 @@ class AI(object):
                         self.Damage[mycurrent][traincurrent][moveused]['selfdamage'] = self.MonData[mycurrent]['stats']['maxhp'] / -8
                 
                 #if heal doesnt matter
-                if healing and self.MonData[mycurrent]['stats']['curhp'] < self.MonData[mycurrent]['stats']['maxhp'] * 0.75:
-                    if self.Damage[traincurrent][mycurrent][self.enemynumber]['damage'] * 2 > self.MonData[mycurrent]['stats']['curhp']:
-                        if self.Damage[traincurrent][mycurrent][self.enemynumber]['damage'] * 1.25 > -1 * self.Damage[mycurrent][traincurrent][moveused]['selfdamage']:
-                            self.Damage[mycurrent][traincurrent][moveused]['selfdamage'] = 0
+                if healing and self.MonData[mycurrent]['stats']['curhp'] > self.MonData[mycurrent]['stats']['maxhp'] * 0.75:
+                    self.Damage[mycurrent][traincurrent][moveused]['selfdamage'] = 0
+                if self.Damage[traincurrent][mycurrent][self.enemynumber]['damage'] * 2 > self.MonData[mycurrent]['stats']['curhp']:
+                    self.Damage[mycurrent][traincurrent][moveused]['selfdamage'] = 0
+                if self.Damage[traincurrent][mycurrent][self.enemynumber]['damage'] * 1.25 > -1 * self.Damage[mycurrent][traincurrent][moveused]['selfdamage']:
+                    self.Damage[mycurrent][traincurrent][moveused]['selfdamage'] = 0
                     
 
                 if self.MonData[mycurrent]['moves'][moveused]['effect'] == 'painsplit':
@@ -1208,10 +1210,6 @@ class AI(object):
                             myhp = self.MonData[mycurrent]['stats']['maxhp']
                     if trainhp > 0:
                         self.TrainerDamage(traincurrent, mycurrent)
-                        if self.MonData['confused']:
-                            self.Damage[traincurrent][mycurrent][self.enemynumber]['damage'] = self.Damage[traincurrent][mycurrent][self.enemynumber]['damage'] / 2
-                        if self.MonData['attract']:
-                            self.Damage[traincurrent][mycurrent][self.enemynumber]['damage'] = self.Damage[traincurrent][mycurrent][self.enemynumber]['damage'] / 2
                         myhp = myhp - self.Damage[traincurrent][mycurrent][self.enemynumber]['damage']
 
                 if tempx < tempy:
@@ -1854,6 +1852,9 @@ class AI(object):
                 self.Fight(traincurrent, mycurrent, 5)
                 self.theaction = self.mybestmove[mycurrent]
                 self.triggered = 1
+                self.TrainerDamage(traincurrent, mycurrent)
+                if self.Damage[traincurrent][mycurrent][self.enemynumber]['damage'] * 1.25 < self.jsonlist['battleState']['enemypokemon']['hp']:
+                    self.ShouldISwitch = False
                 if self.ShouldISwitch:
                     theaction2 = self.OptionalSwitch(traincurrent)
                     if theaction2 != 20:

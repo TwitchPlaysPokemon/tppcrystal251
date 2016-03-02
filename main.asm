@@ -6918,8 +6918,8 @@ Functiond29c: ; d29c insert item curitem of quantity wd10c into bag hl, return c
 	jr .asm_d2fd
 
 .asm_d2e6
-	ld [hl], $63 ;load 99 into bag, then reduce the ammount to add by the amount added to the bag this way
-	sub $63
+	ld [hl], 99 ;load 99 into bag, then reduce the ammount to add by the amount added to the bag this way
+	sub 99
 	ld [wd10d], a
 	jr .asm_d2d2 ;loop
 .asm_d2ef
@@ -20770,11 +20770,11 @@ Function15ca3: ; 15ca3
 ; 15cb0
 
 .data_15cb0 ; 15cb0
-	 dwb Unknown_15cbf, 0
-	 dwb Unknown_15ccb, 0
-	 dwb Unknown_15cd7, 1
-	 dwb Unknown_15ce3, 0
-	 dwb Unknown_15cbf, 2
+	dwb Unknown_15cbf, 0
+	dwb Unknown_15ccb, 0
+	dwb Unknown_15cd7, 1
+	dwb Unknown_15ce3, 0
+	dwb Unknown_15cbf, 2
 ; 15cbf
 
 Unknown_15cbf: ; 15cbf
@@ -20834,6 +20834,7 @@ Function15cef: ; 15cef
 	jr z, .asm_15d6d
 	call Function15c91
 	jr c, .asm_15d68
+	jp z, .asm_15d79
 	call Function15d97
 	jr c, .asm_15d68
 	ld de, Money
@@ -20902,7 +20903,10 @@ Function15cef: ; 15cef
 ; 15d83
 
 Function15d83: ; 15d83
-	ld a, $63
+	; ld a, 99
+	call GetMaxYouCanBuy
+	and a
+	ret z
 	ld [wd10d], a
 	ld a, $0
 	call Function15c7d
@@ -20918,6 +20922,39 @@ Function15d97: ; 15d97
 	call YesNoBox
 	ret
 ; 15da5
+GetMaxYouCanBuy:
+	xor a
+	ld [$ffc3], a
+	ld [$ffc4], a
+	ld [$ffc5], a
+	callba GetItemPrice
+	ld b, -1
+.loop
+	ld a, [$ffc5]
+	add e
+	ld [$ffc5], a
+	ld a, [$ffc4]
+	adc d
+	ld [$ffc4], a
+	ld a, [$ffc3]
+	adc 0
+	ld [$ffc3], a
+	inc b
+	push de
+	push bc
+
+	ld bc, $ffc3
+	ld de, Money
+	callba Function1600b
+
+	pop bc
+	pop de
+	jr nc, .loop
+	ld a, b
+	cp 100
+	ret c
+	ld a, 99
+	ret
 
 Function15da5: ; 15da5
 	ld a, $1
@@ -20964,7 +21001,10 @@ Function15de2: ; 15de2
 	ld a, $0
 	call Function15c7d
 	call Function15df9
-	ld a, $63
+	; ld a, 99
+	call GetMaxYouCanBuy
+	and a
+	ret z
 	ld [wd10d], a
 	callba Function24fcf
 	call Function1c07
@@ -27042,16 +27082,17 @@ Function24fe1: ; 24fe1
 Function24ff9: ; 24ff9
 	ld a, $1
 	ld [wd10c], a
-.asm_24ffe
+.loop
 	call Function25072
 	call Function2500e
-	jr nc, .asm_24ffe
+	jr nc, .loop
 	cp $ff
-	jr nz, .asm_2500c
+	jr nz, .pressed_a
 	scf
 	ret
 
-.asm_2500c
+.pressed_a
+	ld a, 1
 	and a
 	ret
 ; 2500e
@@ -27059,31 +27100,31 @@ Function24ff9: ; 24ff9
 Function2500e: ; 2500e
 	call Function354b
 	bit 1, c
-	jr nz, .asm_2502b
+	jr nz, .b_button
 	bit 0, c
-	jr nz, .asm_2502f
+	jr nz, .a_button
 	bit 7, c
-	jr nz, .asm_25033
+	jr nz, .d_down
 	bit 6, c
-	jr nz, .asm_2503f
+	jr nz, .d_up
 	bit 5, c
-	jr nz, .asm_2504d
+	jr nz, .d_left
 	bit 4, c
-	jr nz, .asm_2505f
+	jr nz, .d_right
 	and a
 	ret
 
-.asm_2502b
+.b_button
 	ld a, $ff
 	scf
 	ret
 
-.asm_2502f
+.a_button
 	ld a, $0
 	scf
 	ret
 
-.asm_25033
+.d_down
 	ld hl, wd10c
 	dec [hl]
 	jr nz, .asm_2503d
@@ -27093,7 +27134,7 @@ Function2500e: ; 2500e
 	and a
 	ret
 
-.asm_2503f
+.d_up
 	ld hl, wd10c
 	inc [hl]
 	ld a, [wd10d]
@@ -27104,7 +27145,7 @@ Function2500e: ; 2500e
 	and a
 	ret
 
-.asm_2504d
+.d_left
 	ld a, [wd10c]
 	sub $a
 	jr c, .asm_25058
@@ -27118,7 +27159,7 @@ Function2500e: ; 2500e
 	and a
 	ret
 
-.asm_2505f
+.d_right
 	ld a, [wd10c]
 	add $a
 	ld b, a
