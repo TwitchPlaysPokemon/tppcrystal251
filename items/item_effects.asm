@@ -274,43 +274,52 @@ PremierBall:
 	ld a, b
 	jp z, .asm_e98e
 
-	ld a, b
 	ld [$ffb6], a
 
 	ld hl, EnemyMonHP
+	; Cur HP
 	ld b, [hl]
 	inc hl
 	ld c, [hl]
 	inc hl
+	; Max HP
 	ld d, [hl]
 	inc hl
 	ld e, [hl]
+	; Double Cur HP
 	sla c
 	rl b
 
+	; Multiply Max HP by 3
 	ld h, d
 	ld l, e
 	add hl, de
 	add hl, de
 	ld d, h
 	ld e, l
+.loop
 	ld a, d
 	and a
-	jr z, .asm_e940
+	jr z, .done_correcting_max_hp
 
+	; Divide top and bottom by 2 (4 in the original)
 	srl d
 	rr e
-	srl d
-	rr e
+	; srl d
+	; rr e
+	; srl b
+	; rr c
 	srl b
 	rr c
-	srl b
-	rr c
+	jr .loop
 
+.done_correcting_max_hp
+	; bc = max(bc, 1)
+	; assume bc < de, so at this point b == 0
 	ld a, c
 	and a
 	jr nz, .asm_e940
-	ld c, $1
+	inc c
 .asm_e940
 	ld b, e
 
