@@ -18,7 +18,7 @@ LavenderTown_MapScriptHeader: ; 0x1ad6db
 
 UnknownScript_0x1ad6e0: ; 0x1ad6e0
 	setflag ENGINE_FLYPOINT_LAVENDER
-	; dotrigger $0
+	dotrigger $0
 	return
 ; 0x1ad6e4
 
