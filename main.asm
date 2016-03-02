@@ -20834,7 +20834,7 @@ Function15cef: ; 15cef
 	jr z, .asm_15d6d
 	call Function15c91
 	jr c, .asm_15d68
-	jr z, .asm_15d79
+	jp z, .asm_15d79
 	call Function15d97
 	jr c, .asm_15d68
 	ld de, Money
@@ -20949,8 +20949,11 @@ GetMaxYouCanBuy:
 
 	pop bc
 	pop de
-	jr c, .loop
+	jr nc, .loop
 	ld a, b
+	cp 100
+	ret c
+	ld a, 99
 	ret
 
 Function15da5: ; 15da5
@@ -20998,7 +21001,10 @@ Function15de2: ; 15de2
 	ld a, $0
 	call Function15c7d
 	call Function15df9
-	ld a, $63
+	; ld a, 99
+	call GetMaxYouCanBuy
+	and a
+	ret z
 	ld [wd10d], a
 	callba Function24fcf
 	call Function1c07
@@ -27076,16 +27082,17 @@ Function24fe1: ; 24fe1
 Function24ff9: ; 24ff9
 	ld a, $1
 	ld [wd10c], a
-.asm_24ffe
+.loop
 	call Function25072
 	call Function2500e
-	jr nc, .asm_24ffe
+	jr nc, .loop
 	cp $ff
-	jr nz, .asm_2500c
+	jr nz, .pressed_a
 	scf
 	ret
 
-.asm_2500c
+.pressed_a
+	ld a, 1
 	and a
 	ret
 ; 2500e

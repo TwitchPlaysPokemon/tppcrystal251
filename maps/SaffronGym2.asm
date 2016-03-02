@@ -111,7 +111,7 @@ SabrinaAfterRematchText:
 	done
 	
 SaffronGym2GuyText:
-	text "Yo, CHAMP"
+	text "Yo, CHAMP!"
 
 	para "A trainer as"
 	line "skilled as you"
