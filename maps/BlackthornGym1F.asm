@@ -291,9 +291,11 @@ ClairRejectText:
 	line "so he can stand up"
 	cont "to you."
 
-	para "He should be wai-"
-	line "ting for you at"
-	cont "INDIGO PLATEAU."
+	para "I think I've seen"
+	line "him around INDIGO"
+	cont "PLATEAU a few"
+	cont "days during the"
+	cont "week."
 
 	para "I'll get ready"
 	line "while you deal"
