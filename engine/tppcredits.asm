@@ -344,7 +344,8 @@ TPPCredits_MainSceneInit::
 	ld hl, CommandsGFX
 	ld de, VTiles0 + $c80
 	ld bc, CommandsGFXEnd - CommandsGFX
-	call CopyBytes
+	ld a, BANK(CommandsGFX)
+	call FarCopyBytes
 	
 ; copy underscore
 	ld hl, UnderscoreGFX
@@ -429,12 +430,15 @@ TPPCredits_ThanksSceneInit::
 	ld de, VTiles1
 	ld a, 1
 	ld [rVBK], a
-	call Decompress
+	ld a, BANK(ThanksForWatchingGFX)
+	call FarDecompress
 	xor a
 	ld hl, VBGMap0
-	ld bc, 32 * 7
+	ld bc, 32 * 18
 	call ByteFill
-	; TODO attr map layout
+	ld hl, ThanksForWatchingAttrs
+	ld de, VBGMap0 + (32 * 7)
+	call DecodeWLE
 	xor a
 	ld [rVBK], a
 	ld a, $80
@@ -464,11 +468,20 @@ TPPCredits_ThanksSceneInit::
 	ld bc, 8 * 8
 	call CopyBytes
 	xor a
+	ld [TC_CreditsTimer], a
+	ld [TC_CurStripWidth], a
 	ld [TC_Hue1], a
 	ld [TC_Hue2], a
 	ld a, 1
 	ld [TC_Hue1Count], a
 	ld [TC_Hue2Count], a
+	ld [TC_CurStripWidthCount], a
+	ld [TC_CurStripWidth2Count], a
+	ld [TC_CurStripHorSizeCount], a
+	ld [TC_BidiStatus], a
+	ld a, 56
+	ld [TC_CurStripWidth2], a
+	ld [TC_CurStripHorSize], a
 	ld e, 64
 ; turn off all interrupts since we're going to use our own routine
 	di
@@ -673,7 +686,8 @@ TC_Main_Draw::
 	ld de, VTiles1
 	ld a, 1
 	ld [rVBK], a
-	call Decompress
+	ld a, BANK(TC_GFXBank)
+	call FarDecompress
 	pop hl
 	ld a, [hli]
 	ld e, a
@@ -714,7 +728,8 @@ TC_Main_Draw::
 	ld h, d
 	ld l, e
 	ld de, VTiles0
-	call Decompress
+	ld a, BANK(TC_GFXBank)
+	call FarDecompress
 	pop hl
 	ld a, [hli]
 	ld [TC_CurBGSpeed], a
@@ -1481,34 +1496,87 @@ UpdateScroller2::
 	jr z, .done
 	jp .loop
 	
-StripTrick_Thanks:
-	ld b, 0
-	ld de, 55
-.loop1
+StripTrick_Thanks_Common: MACRO
 	; TODO
+	push bc
+	push de
 	ld hl, StripBounds
 	add hl, de
+	ld b, [hl]
+	ld a, [TC_CreditsTimer]
+	sub b
+	jr nc, .nocpl\@
+	cpl
+	inc a
+.nocpl\@
+	ld l, a
+	ld h, 0
+	ld de, TC_QSTable
+	add hl, hl
+	add hl, de
+	ld a, [hli]
+	cpl
+	ld c, a
 	ld a, [hl]
+	ld l, b
+	cpl
+	ld b, a
+	ld a, l
+	ld [TC_CurStripBound], a
+	ld a, [TC_CreditsTimer]
+	ld h, 0
+	add l
+	rl h
+	ld l, a
+	add hl, hl
+	add hl, de
+	ld a, [hli]
+	ld h, [hl]
+	ld l, a
+	add hl, bc
+	inc l
+	jr nz, .skipinch\@
+	inc h
+.skipinch\@
+	pop de
+	ld b, h
+	ld a, [TC_CurStripBound]
 	ld c, a
-	sub 80 ; middle
-	jr nc, .skipauc1
-	cp 0 - 80
-	jr z, .skipauc1
-.auc1
-	add c
-	jr nc, .auc1
-.skipauc1
+	ld hl, StripMiddleModifiers
+	add hl, de
+	ld a, [hl]
+	add b
+	jr nc, .nosub\@
+	sub c
+	jr .skipcp\@
+.nosub\@
+	cp c
+	jr c, .skipcp\@
+	sub c
+.skipcp\@
+	pop bc
 	ld c, a
-.skip01
+.skip\@
 	; LYC polling won't work if the interrupts are disabled
 	ld a, [rLY]
 	cp b
-	jr nz, .skip01
+	jr nz, .skip\@
 	ld a, c
 	ld [rSCX], a
 	ld a, e
 	sub b
 	ld [rSCY], a
+ENDM
+	
+StripTrick_Thanks:
+	ld a, [TC_CreditsTimer]
+	inc a
+	ld [TC_CreditsTimer], a
+	;TODO
+	ld b, 0
+	ld de, 55
+.loop1
+	StripTrick_Thanks_Common
 	dec e
 	inc b
 	ld a, b
@@ -1530,28 +1598,7 @@ StripTrick_Thanks:
 	ld b, a
 .loop2
 	; TODO
-	ld hl, StripBounds
-	add hl, de
-	ld a, [hl]
-	ld c, a
-	sub 80 ; middle
-	jr nc, .skipauc2
-	cp 0 - 80
-	jr z, .skipauc2
-.auc2
-	add c
-	jr nc, .auc2
-.skipauc2
-	ld c, a
-.skip02
-	ld a, [rLY]
-	cp b
-	jr nz, .skip02
-	ld a, c
-	ld [rSCX], a
-	ld a, e
-	sub b
-	ld [rSCY], a
+	StripTrick_Thanks_Common
 	inc e
 	inc b
 	ld a, b
@@ -1948,12 +1995,11 @@ TC_DelayFrame:
 	ret
 	
 TC_Multiply:
-	;ahl = a * bc ; a < 32
-	rlca
+	;ahl = a * bc ; a < 64
 	rlca
 	rlca
 	ld d, a
-	ld e, 5
+	ld e, 6
 	ld hl, 0
 	ld a, l
 .loop
@@ -2150,6 +2196,15 @@ StripBounds:
 	db 188, 192, 196, 202, 206, 210, 216, 220
 	db 224, 230, 234, 238, 244, 248, 252,   0
 	
+StripMiddleModifiers:
+	db   0,   4,   0,   0,   0,  16,  10,  22
+	db  34,   8,  16,  24,  36,  44,  52,  64
+	db  72,   0,   6,  10,  14,  20,  24,  28
+	db  34,  38,  42,  46,  52,  56,  60,  66
+	db  70,  74,  80,  84,  88,  94,  98, 102
+	db 108, 112, 116, 122, 126, 130, 136, 140
+	db 144, 150, 154, 158, 164, 168, 172, 176
+	
 ; Tiles and attributes are encoded in WLE
 
 TPPCreditsBG1List:
@@ -2162,9 +2217,6 @@ TPPCreditsBG1List:
 	db 12 ; sprite speed
 	db 55 ; strip initial pos
 	db 1  ; strip speed
-
-TPPCreditsBG1: INCBIN "gfx/credits/bg1.w120.2bpp.lz"
-TPPCreditsSpr1: INCBIN "gfx/credits/spr1.w32.2bpp.lz"
 
 TPPCreditsBG1Tiles:
 	db $a2, $82, $6d, $80, $a3, $81, $6d, $80, $01
@@ -2238,9 +2290,6 @@ TPPCreditsBG2List:
 	db 15 ; sprite speed
 	db 37 ; strip initial pos
 	db 3  ; strip speed
-	
-TPPCreditsBG2: INCBIN "gfx/credits/bg2.w128.2bpp.lz"
-TPPCreditsSpr2: INCBIN "gfx/credits/spr2.w32.2bpp.lz"
 
 TPPCreditsBG2Tiles:
 	db $7f, $81, $5f, $42, $01, $82, $69, $80, $01, $82, $65, $80
@@ -2328,9 +2377,6 @@ TPPCreditsBG3List:
 	db 44 ; strip initial pos
 	db 0  ; strip speed
 
-TPPCreditsBG3: INCBIN "gfx/credits/bg3.w96.2bpp.lz"
-TPPCreditsSpr3: INCBIN "gfx/credits/spr3.w32.2bpp.lz"
-
 TPPCreditsBG3Tiles:
 	db $7f, $80, $5f, $42, $7f, $81, $5f, $5f, $5f
 	db $44, $66, $82, $01, $83, $67, $82, $01, $83
@@ -2402,9 +2448,6 @@ TPPCreditsBG4List:
 	db 10 ; sprite speed
 	db 49 ; strip initial pos
 	db 0  ; strip speed
-	
-TPPCreditsBG4: INCBIN "gfx/credits/bg4.w128.2bpp.lz"
-TPPCreditsSpr4: INCBIN "gfx/credits/spr4.w32.2bpp.lz"
 
 TPPCreditsBG4Tiles:
 	db $02, $80, $82, $62, $80, $03, $83, $80, $84, $65, $80, $01
@@ -2475,14 +2518,13 @@ TPPCreditsBG4Pals:
 	RGB 28, 09, 04
 	RGB 00, 00, 00
 
-CommandsGFX:: INCBIN "gfx/udlrab.2bpp"
-CommandsGFXEnd
-UnderscoreGFX: INCBIN "gfx/credits/underscore.1bpp"
-UnderscoreGFXEnd
-StripGFX: INCBIN "gfx/credits/strip.1bpp"
-StripGFXEnd
 StripTiles: INCBIN "gfx/credits/strip_map.wle"
-ThanksForWatchingGFX: db $ff ; TODO
+
+ThanksForWatchingAttrs:
+	db $67, $09, $63, $0a, $76, $09
+	db $67, $0b, $63, $0c, $76, $0b
+	db $67, $0d, $63, $0e, $76, $0d
+	db $74, $0f, $ff
 
 ThanksForWatchingPals:
 	HSV 0.0,  0.4, 1.0 ; strip1
@@ -2490,38 +2532,64 @@ ThanksForWatchingPals:
 	RGB 00, 00, 00
 	HSV 0.0, 0.75, 0.8 ; strip2
 	
-	RGB 31, 31, 31 ; placeholder
-	RGB 10, 19, 26
-	RGB 28, 09, 04
+	RGB 09, 15, 30
+	RGB 08, 14, 27
+	RGB 31, 03, 06
 	RGB 00, 00, 00
 	
-	RGB 31, 31, 31 ; placeholder
-	RGB 10, 19, 26
-	RGB 28, 09, 04
-	RGB 00, 00, 00
+	RGB 09, 15, 30
+	RGB 08, 14, 27
+	RGB 31, 03, 06
+	RGB 06, 06, 06
 	
-	RGB 31, 31, 31 ; placeholder
-	RGB 10, 19, 26
-	RGB 28, 09, 04
-	RGB 00, 00, 00
+	RGB 10, 16, 30
+	RGB 09, 15, 27
+	RGB 10, 16, 27
+	RGB 03, 03, 03
 	
-	RGB 31, 31, 31 ; placeholder
-	RGB 10, 19, 26
-	RGB 28, 09, 04
-	RGB 00, 00, 00
+	RGB 10, 16, 30
+	RGB 09, 15, 27
+	RGB 10, 16, 27
+	RGB 09, 09, 09
 	
-	RGB 31, 31, 31 ; placeholder
-	RGB 10, 19, 26
-	RGB 28, 09, 04
-	RGB 00, 00, 00
+	RGB 11, 17, 30
+	RGB 11, 17, 27
+	RGB 31, 03, 06
+	RGB 06, 06, 06
 	
-	RGB 31, 31, 31 ; placeholder
-	RGB 10, 19, 26
-	RGB 28, 09, 04
-	RGB 00, 00, 00
+	RGB 11, 17, 30
+	RGB 11, 17, 27
+	RGB 31, 03, 06
+	RGB 12, 12, 12
 	
-	RGB 31, 31, 31 ; placeholder
-	RGB 10, 19, 26
-	RGB 28, 09, 04
-	RGB 00, 00, 00
+	RGB 29, 28, 11
+	RGB 30, 24, 06
+	RGB 00, 07, 09
+	RGB 09, 00, 02
 	
+TC_QSTable:
+_qs = 0
+	rept 511
+	dw _qs * _qs / 4
+_qs = _qs + 1
+	endr
+	
+SECTION "TPPCreditsGFX", ROMX
+TC_GFXBank::
+
+TPPCreditsBG1: INCBIN "gfx/credits/bg1.w120.2bpp.lz"
+TPPCreditsSpr1: INCBIN "gfx/credits/spr1.w32.2bpp.lz"
+TPPCreditsBG2: INCBIN "gfx/credits/bg2.w128.2bpp.lz"
+TPPCreditsSpr2: INCBIN "gfx/credits/spr2.w32.2bpp.lz"
+TPPCreditsBG3: INCBIN "gfx/credits/bg3.w96.2bpp.lz"
+TPPCreditsSpr3: INCBIN "gfx/credits/spr3.w32.2bpp.lz"
+TPPCreditsBG4: INCBIN "gfx/credits/bg4.w128.2bpp.lz"
+TPPCreditsSpr4: INCBIN "gfx/credits/spr4.w32.2bpp.lz"
+
+CommandsGFX:: INCBIN "gfx/udlrab.2bpp"
+CommandsGFXEnd
+UnderscoreGFX: INCBIN "gfx/credits/underscore.1bpp"
+UnderscoreGFXEnd
+StripGFX: INCBIN "gfx/credits/strip.1bpp"
+StripGFXEnd
+ThanksForWatchingGFX: INCBIN "gfx/credits/thanks.w160.2bpp.lz"

@@ -2653,13 +2653,20 @@ TC_ChaosRate:: ds 1
 TC_ChaosRateMod:: ds 1
 TC_FadeUpdateAddr:: ds 2
 TC_CreditsPos:: ds 1
+TC_CurStripWidthCount::
 TC_CurBGSpeed:: ds 1
+TC_CurStripWidth2Count::
 TC_CurBGSpeedCount:: ds 1
+TC_CurStripHorSizeCount::
 TC_CurSprSpeed:: ds 1
+TC_BidiStatus::
 TC_CurSprSpeedCount:: ds 1
+TC_CurStripBound::
 TC_CurSprPos:: ds 1
 TC_CurStripWidth:: ds 1
+TC_CurStripWidth2::
 TC_CurStripSpeed:: ds 1
+TC_CurStripHorSize::
 TC_CurStripSpeedCount:: ds 1
 TC_CurStripXPos:: ds 1
 TC_CurSubtitlePos:: ds 1
