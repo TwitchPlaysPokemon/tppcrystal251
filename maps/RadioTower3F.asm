@@ -306,9 +306,10 @@ UnknownText_0x5e7e2: ; 0x5e7e2
 
 UnknownText_0x5e821: ; 0x5e821
 	text "It's RETURN."
-	line "The more the user"
-	cont "likes it's trainer"
-	cont "the stronger it is."
+
+	para "The more the user"
+	line "likes its trainer"
+	cont "the more it hurts."
 	
 	para "Unleash your"
 	line "annihilation of"

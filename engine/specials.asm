@@ -762,12 +762,12 @@ GiveBattleTowerMoney:
 
 BaseWinnings:
 	bigdw 300
-	bigdw 1000
-	bigdw 2000
-	bigdw 4000
-	bigdw 7000
-	bigdw 10000
-	bigdw 15000
+	bigdw 1300
+	bigdw 2800
+	bigdw 5000
+	bigdw 8000
+	bigdw 11000
+	bigdw 17000
 
 CalculateTowerVictory:
 	ld hl, 25000
