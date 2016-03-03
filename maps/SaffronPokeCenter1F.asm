@@ -104,13 +104,15 @@ UnknownText_0x18a4a3: ; 0x18a4a3
 	line "about the KANTO"
 	cont "CHOIR GROUP?"
 
-	para "They formed in"
-	line "inspiration to a"
+	para "They get their in-"
+	line "spiration from a"
+
 	para "famous trainer"
 	line "and his journey."
 
 	para "Nobody know where"
-	line "he is now, though."
+	line "that trainer is"
+	cont "now, though."
 	done
 ; 0x18a532
 

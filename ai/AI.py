@@ -1,4 +1,4 @@
-# TPP Crystal 251 AI v1.2 by Beesafree
+# TPP Crystal 251 AI v1.3 by Beesafree
 
 from __future__ import division
 import math
@@ -21,6 +21,7 @@ SCRIPT_DIR = os.path.dirname(os.path.realpath(__file__))
 JSON_FILE_PATH = os.path.join(SCRIPT_DIR, "battlestate.json")
 MOVES_FILE_PATH = os.path.join(SCRIPT_DIR, "AiMoves.txt")
 
+#0 is off, 1 is ALL debug, 2 is core debug, 3 is minimal debug
 Debug_Code = 0
 
 def sign(x):
@@ -483,7 +484,7 @@ class AI(object):
                 accmodifier = accmodifier * 0.75 #not redundant; two-turn move means two rolls for PRZ
             if ('confused' in self.MonData[temptext2]['substatus'] or (isinstance(self.MonData[temptext2]['substatus'], dict) and 'confused' in self.MonData[temptext2]['substatus'].values())) or (attacker > 5 and self.MonData['confused'] == True):
                 accmodifier = accmodifier * 0.5
-            if('attract' in self.MonData[temptext2]['substatus'] or (isinstance(self.MonData[temptext2]['substatus'], dict) and 'attract' in self.MonData[temptext2]['substatus'].values())) or (attacker > 5 and self.MonData['attract'] == True):
+            if ('attract' in self.MonData[temptext2]['substatus'] or (isinstance(self.MonData[temptext2]['substatus'], dict) and 'attract' in self.MonData[temptext2]['substatus'].values())) or (attacker > 5 and self.MonData['attract'] == True):
                 accmodifier = accmodifier * 0.5
         if 'confused' in self.MonData[temptext2]['substatus'] or (isinstance(self.MonData[temptext2]['substatus'], dict) and 'confused' in self.MonData[temptext2]['substatus'].values()) or (attacker > 5 and self.MonData['confused'] == True):
             accmodifier = accmodifier * 0.5
@@ -773,10 +774,12 @@ class AI(object):
                         self.Damage[mycurrent][traincurrent][moveused]['selfdamage'] = self.MonData[mycurrent]['stats']['maxhp'] / -8
                 
                 #if heal doesnt matter
-                if healing and self.MonData[mycurrent]['stats']['curhp'] < self.MonData[mycurrent]['stats']['maxhp'] * 0.75:
-                    if self.Damage[traincurrent][mycurrent][self.enemynumber]['damage'] * 2 > self.MonData[mycurrent]['stats']['curhp']:
-                        if self.Damage[traincurrent][mycurrent][self.enemynumber]['damage'] * 1.25 > -1 * self.Damage[mycurrent][traincurrent][moveused]['selfdamage']:
-                            self.Damage[mycurrent][traincurrent][moveused]['selfdamage'] = 0
+                if healing and self.MonData[mycurrent]['stats']['curhp'] > self.MonData[mycurrent]['stats']['maxhp'] * 0.75:
+                    self.Damage[mycurrent][traincurrent][moveused]['selfdamage'] = 0
+                if self.Damage[traincurrent][mycurrent][self.enemynumber]['damage'] * 2 > self.MonData[mycurrent]['stats']['curhp']:
+                    self.Damage[mycurrent][traincurrent][moveused]['selfdamage'] = 0
+                if self.Damage[traincurrent][mycurrent][self.enemynumber]['damage'] * 1.25 > -1 * self.Damage[mycurrent][traincurrent][moveused]['selfdamage']:
+                    self.Damage[mycurrent][traincurrent][moveused]['selfdamage'] = 0
                     
 
                 if self.MonData[mycurrent]['moves'][moveused]['effect'] == 'painsplit':
@@ -1208,10 +1211,6 @@ class AI(object):
                             myhp = self.MonData[mycurrent]['stats']['maxhp']
                     if trainhp > 0:
                         self.TrainerDamage(traincurrent, mycurrent)
-                        if self.MonData['confused']:
-                            self.Damage[traincurrent][mycurrent][self.enemynumber]['damage'] = self.Damage[traincurrent][mycurrent][self.enemynumber]['damage'] / 2
-                        if self.MonData['attract']:
-                            self.Damage[traincurrent][mycurrent][self.enemynumber]['damage'] = self.Damage[traincurrent][mycurrent][self.enemynumber]['damage'] / 2
                         myhp = myhp - self.Damage[traincurrent][mycurrent][self.enemynumber]['damage']
 
                 if tempx < tempy:
@@ -1383,6 +1382,8 @@ class AI(object):
             tempy = (self.MonData[mycurrent]['moves'][int(tempcombo[0])]['acc'] / 100) * (self.MonData[mycurrent]['moves'][int(tempcombo[0])]['effectchance'] / 100)
             if self.MonData[mycurrent]['moves'][int(tempcombo[0])]['effect'] == 'toxic' and ((self.MonData[mycurrent]['type'][1] == 'poison') or (self.MonData[mycurrent]['type'][2] == 'poison')):
                 tempy = 1
+            if tempy != 1:
+                tempy /= 2
             if self.mycurhp != 0 and self.traincurhp != 0:
                 tempx = (((((myhp / self.mycurhp) - (trainhp / self.traincurhp) * 2) * bonusmulti) * (1 - tempy)) + ((((myhp1 / self.mycurhp) - (trainhp1 / self.traincurhp) * 2) * tempy) * bonusmulti1)) + 2
             else:
@@ -1619,7 +1620,36 @@ class AI(object):
             self.Fight(traincurrent, mycurrent, 5)
             theaction = self.mybestmove[mycurrent]
         return theaction
-
+    
+    def LastMove(self):
+        if self.jsonlist['battleState']['enemy type'] == 'TRAINER':
+            mycurrent = self.jsonlist['battleState']['enemypokemon']['party idx']
+        else:
+            mycurrent = 0
+        traincurrent = self.jsonlist['battleState']['playerpokemon']['party idx']+6
+        self.TrainerDamage(traincurrent, mycurrent)
+        if Debug_Code > 0:
+            print('checking if i will die')
+            print('their damage: '+str(self.Damage[traincurrent][mycurrent][self.enemynumber]['damage'])+' my hp: '+str(self.jsonlist['battleState']['enemypokemon']['hp']))
+        if self.Damage[traincurrent][mycurrent][self.enemynumber]['damage'] > self.jsonlist['battleState']['enemypokemon']['hp']:
+            tempx = 0
+            x1 = -1
+            self.FinalChance = True
+            for tempmove in range(0, len(self.jsonlist['battleState']['enemypokemon']['moves'])):
+                self.DamageDealt(mycurrent, traincurrent, tempmove)
+                if self.MonData[mycurrent]['moves'][tempmove]['curpp'] > 0:
+                    if self.Damage[mycurrent][traincurrent][tempmove]['damage'] > tempx:
+                        tempx = self.Damage[mycurrent][traincurrent][tempmove]['damage']
+                        x1 = tempmove
+            tempx = self._statsmultipliers[self.MonData[mycurrent]['boosts']['spd']+6]/100
+            tempy = self._statsmultipliers[self.MonData[traincurrent]['boosts']['spd']+6]/100
+            for tempmove in range(0, len(self.jsonlist['battleState']['enemypokemon']['moves'])):
+                if self.MonData[mycurrent]['moves'][tempmove]['effect'] in ('priorityhit','extremespeed') and (self.MonData[mycurrent]['stats']['spd'] * tempx < self.MonData[traincurrent]['stats']['spd'] * tempy):
+                    x1 = tempmove
+            if Debug_Code > 0:
+                print('about to die - i need to attack, i will use: '+str(x1))
+            return x1
+        return
     def ManualControl(self):
         if self.jsonlist['battleState']['enemy type'] == 'TRAINER':
             mycurrent = self.jsonlist['battleState']['enemypokemon']['party idx']
@@ -1812,7 +1842,7 @@ class AI(object):
         for mymons in range(0, 6):
             self.difference[mymons] = {}
             for trainmons in range(6, 12):
-                self.difference[mymons][trainmons] = -10
+                self.difference[mymons][trainmons] = -100
 
         self.differenceitems = {}
         for mymons in range(0, 6):
@@ -1854,10 +1884,16 @@ class AI(object):
                 self.Fight(traincurrent, mycurrent, 5)
                 self.theaction = self.mybestmove[mycurrent]
                 self.triggered = 1
+                self.TrainerDamage(traincurrent, mycurrent)
+                if self.Damage[traincurrent][mycurrent][self.enemynumber]['damage'] * 1.25 < self.jsonlist['battleState']['enemypokemon']['hp']:
+                    self.ShouldISwitch = False
                 if self.ShouldISwitch:
                     theaction2 = self.OptionalSwitch(traincurrent)
                     if theaction2 != 20:
                         self.theaction = theaction2
+                potentialAction = self.LastMove()
+                if potentialAction is not None:
+                    self.theaction = potentialAction
                 theaction2 = self.checkIfUsingItem()
                 if theaction2 != 20:
                     self.theaction = theaction2

@@ -1,22 +1,22 @@
 sabrinawarp: MACRO
-	warp_def \1, \2, 1, GROUP_SAFFRON_GYM_2, MAP_SAFFRON_GYM_2
+	warp_def \1, \2, 1, GROUP_SAFFRON_GYM_2, MAP_SAFFRON_GYM_2 ; center
 IF \3 == -1
-	warp_def \1-1, \2, 4, GROUP_SAFFRON_GYM_2, MAP_SAFFRON_GYM_2
+	warp_def \1-1, \2, 4, GROUP_SAFFRON_GYM_2, MAP_SAFFRON_GYM_2 ; top
 ELSE
 	warp_def \1-1, \2, (\3*5)+1, GROUP_SAFFRON_GYM_2, MAP_SAFFRON_GYM_2
 ENDC
 IF \4 == -1
-	warp_def \1, \2-1, 4, GROUP_SAFFRON_GYM_2, MAP_SAFFRON_GYM_2
+	warp_def \1, \2-1, 4, GROUP_SAFFRON_GYM_2, MAP_SAFFRON_GYM_2 ; left
 ELSE
 	warp_def \1, \2-1, (\4*5)+1, GROUP_SAFFRON_GYM_2, MAP_SAFFRON_GYM_2
 ENDC
 IF \5 == -1
-	warp_def \1, \2+1, 4, GROUP_SAFFRON_GYM_2, MAP_SAFFRON_GYM_2
+	warp_def \1, \2+1, 4, GROUP_SAFFRON_GYM_2, MAP_SAFFRON_GYM_2 ; right
 ELSE
 	warp_def \1, \2+1, (\5*5)+1, GROUP_SAFFRON_GYM_2, MAP_SAFFRON_GYM_2
 ENDC
 IF \6 == -1
-	warp_def \1+1, \2, 4, GROUP_SAFFRON_GYM_2, MAP_SAFFRON_GYM_2
+	warp_def \1+1, \2, 4, GROUP_SAFFRON_GYM_2, MAP_SAFFRON_GYM_2 ; bottom
 ELSE
 	warp_def \1+1, \2, (\6*5)+1, GROUP_SAFFRON_GYM_2, MAP_SAFFRON_GYM_2
 ENDC
@@ -76,12 +76,13 @@ SabrinaBeforeRematchText:
 	
 	para "I know this"
 	line "because I train"
-	cont "Psychic #MON."
+	cont "psychic #MON."
 	
 	para "If I go all out I"
 	line "predict that you"
-	cont "will be defeated" 
-	cont "easily."
+
+	para "will be defeated" 
+	line "easily."
 	
 	para "Let us test my"
 	line "prediction and see"
@@ -104,14 +105,15 @@ SabrinaAfterRematchText:
 	
 	para "But I wanted to"
 	line "turn that future"
-	cont "on its head with"
-	cont "my conviction as"
-	cont "a Trainer."
+
+	para "on its head with"
+	line "my conviction as"
+	cont "a trainer."
 
 	done
 	
 SaffronGym2GuyText:
-	text "Yo, CHAMP"
+	text "Yo, CHAMP!"
 
 	para "A trainer as"
 	line "skilled as you"
@@ -138,25 +140,27 @@ SaffronGym2_MapEventHeader:
 	db 0, 0
 
 	; warps
-	db 66
-	warp_def $13, $6, 1, GROUP_SAFFRON_GYM_2, MAP_SAFFRON_GYM_2
-	warp_def $15, $6, 2, GROUP_SAFFRON_CITY, MAP_SAFFRON_CITY
-	warp_def $15, $7, 2, GROUP_SAFFRON_CITY, MAP_SAFFRON_CITY
-	warp_def $3, $6, 1, GROUP_SAFFRON_GYM_2, MAP_SAFFRON_GYM_2
-	warp_def $3, $7, 1, GROUP_SAFFRON_GYM_2, MAP_SAFFRON_GYM_2
-	sabrinawarp  7,  2,  8,  0,  5, -1
-	sabrinawarp  8,  5,  0,  9,  3, 11
-	sabrinawarp  7,  8, 11,  5,  0, 10
-	sabrinawarp  8, 11,  3,  5,  0,  7
-	sabrinawarp 10,  3,  0,  9, 11,  8
-	sabrinawarp 11,  6,  0, 12,  3, 10
-	sabrinawarp 10,  9,  0,  1, 10,  2
-	sabrinawarp 11, 12,  9,  0,  2, 10
-	sabrinawarp 13,  2,  2, 10,  5,  0
-	sabrinawarp 14,  5,  2,  0, 11,  8
-	sabrinawarp 13,  8,  9,  3,  0,  8
-	sabrinawarp 14, 11,  3,  5,  4,  0
-	warp_def $12, $6, 31, GROUP_SAFFRON_GYM_2, MAP_SAFFRON_GYM_2
+	db 5 + 12 * 5 + 1 ; 66
+	warp_def $13, $6, 1, GROUP_SAFFRON_GYM_2, MAP_SAFFRON_GYM_2 ; not teh urn
+	warp_def $15, $6, 2, GROUP_SAFFRON_CITY, MAP_SAFFRON_CITY ; door
+	warp_def $15, $7, 2, GROUP_SAFFRON_CITY, MAP_SAFFRON_CITY ; door
+	warp_def $3, $6, 1, GROUP_SAFFRON_GYM_2, MAP_SAFFRON_GYM_2 ; teh urn
+	warp_def $3, $7, 1, GROUP_SAFFRON_GYM_2, MAP_SAFFRON_GYM_2 ; teh return
+	; center y, x, up, left, right, down
+	; -1 is teh urn
+	sabrinawarp  7,  2,  8,  0,  5, -1 ;  1
+	sabrinawarp  8,  5,  0,  9,  3, 11 ;  2
+	sabrinawarp  7,  8, 11,  5,  0, 10 ;  3
+	sabrinawarp  8, 11,  3,  5,  0,  7 ;  4
+	sabrinawarp 10,  3,  0,  9, 11,  8 ;  5
+	sabrinawarp 11,  6,  0, 12,  3, 10 ;  6
+	sabrinawarp 10,  9,  0,  1, 10,  2 ;  7
+	sabrinawarp 11, 12,  9,  0,  2, 10 ;  8
+	sabrinawarp 13,  2,  2, 10,  5,  0 ;  9
+	sabrinawarp 14,  5,  2,  0, 11,  8 ; 10
+	sabrinawarp 13,  8,  9,  3,  0,  8 ; 11
+	sabrinawarp 14, 11,  3,  5,  4,  0 ; 12
+	warp_def $12, $6, 5 * 6 + 1, GROUP_SAFFRON_GYM_2, MAP_SAFFRON_GYM_2 ; teh start
 
 	; coord events
 	db 0
