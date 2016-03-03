@@ -13,19 +13,16 @@ BoulderTiles: ; 0x194e05
 	checkevent EVENT_BLACKTHORN_REMATCH_BOULDER_1
 	iffalse BoulderTileEnd
 	changeblock 6, 6, $3B
-BoulderTileEnd: ; 0x194e23
 	checkevent EVENT_BLACKTHORN_REMATCH_BOULDER_2
 	iffalse BoulderTileEnd
 	changeblock 8, 3, $3B
-BoulderTileEnd: ; 0x194e23
 	checkevent EVENT_BLACKTHORN_REMATCH_BOULDER_3
 	iffalse BoulderTileEnd
 	changeblock 6, 1, $3B
-BoulderTileEnd: ; 0x194e23
 	checkevent EVENT_BLACKTHORN_REMATCH_BOULDER_4
 	iffalse BoulderTileEnd
 	changeblock 1, 4, $3B
-BoulderTileEnd: ; 0x194e23
+BoulderTileEnd:
 	return
 
 ; <text goes here>
