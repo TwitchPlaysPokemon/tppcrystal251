@@ -18,13 +18,33 @@ CmdQueue_BlackthornRematch2FBoulder:
 	db 0, 0 ; filler
 	
 BlackthornRematch2F_BoulderTable: 
-	db 7, 3 ; warp, person
+	db 7, 2 ; warp, person
 	dw BlackthornRematch_Boulder1_Pushed	
+	db 8, 3 ; warp, person
+	dw BlackthornRematch_Boulder2_Pushed	
+	db 9, 4 ; warp, person
+	dw BlackthornRematch_Boulder3_Pushed	
+	db 10, 5 ; warp, person
+	dw BlackthornRematch_Boulder4_Pushed	
 	db $ff
 	
-
 BlackthornRematch_Boulder1_Pushed: ; 0x19573d
+	disappear 2
+	jump BlackthornRematch_PushedBoulder
+	end
+	
+BlackthornRematch_Boulder2_Pushed: ; 0x19573d
 	disappear 3
+	jump BlackthornRematch_PushedBoulder
+	end
+	
+BlackthornRematch_Boulder3_Pushed: ; 0x19573d
+	disappear 4
+	jump BlackthornRematch_PushedBoulder
+	end
+	
+BlackthornRematch_Boulder4_Pushed: ; 0x19573d
+	disappear 5
 	jump BlackthornRematch_PushedBoulder
 	end
 	

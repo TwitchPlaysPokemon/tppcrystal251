@@ -12,20 +12,18 @@ BlackthornGymRematch1F_MapScriptHeader:
 BoulderTiles: ; 0x194e05
 	checkevent EVENT_BLACKTHORN_REMATCH_BOULDER_1
 	iffalse BoulderTileEnd
-	changeblock 6, 6, $3B
+	changeblock 12, 12, $3B
 	checkevent EVENT_BLACKTHORN_REMATCH_BOULDER_2
 	iffalse BoulderTileEnd
-	changeblock 8, 3, $3B
+	changeblock 6, 16, $3B
 	checkevent EVENT_BLACKTHORN_REMATCH_BOULDER_3
 	iffalse BoulderTileEnd
-	changeblock 6, 1, $3B
+	changeblock 2, 12, $3B
 	checkevent EVENT_BLACKTHORN_REMATCH_BOULDER_4
 	iffalse BoulderTileEnd
-	changeblock 1, 4, $3B
+	changeblock 8, 2, $3B
 BoulderTileEnd:
 	return
-
-; <text goes here>
 
 BlackthornGymRematch1F_MapEventHeader:
 	; filler
@@ -43,9 +41,9 @@ BlackthornGymRematch1F_MapEventHeader:
 	warp_def $9, $f, 6, GROUP_BLACKTHORNGYMREMATCH2F, MAP_BLACKTHORNGYMREMATCH2F
 	
 	warp_def $d, $d, 9, GROUP_BLACKTHORNGYMREMATCH1F, MAP_BLACKTHORNGYMREMATCH1F
-	warp_def $11, $6, 10, GROUP_BLACKTHORNGYMREMATCH1F, MAP_BLACKTHORNGYMREMATCH1F
-	warp_def $d, $2, 11, GROUP_BLACKTHORNGYMREMATCH1F, MAP_BLACKTHORNGYMREMATCH1F
-	warp_def $3, $8, 12, GROUP_BLACKTHORNGYMREMATCH1F, MAP_BLACKTHORNGYMREMATCH1F
+	warp_def $11, $7, 10, GROUP_BLACKTHORNGYMREMATCH1F, MAP_BLACKTHORNGYMREMATCH1F
+	warp_def $d, $3, 11, GROUP_BLACKTHORNGYMREMATCH1F, MAP_BLACKTHORNGYMREMATCH1F
+	warp_def $3, $9, 12, GROUP_BLACKTHORNGYMREMATCH1F, MAP_BLACKTHORNGYMREMATCH1F
 
 	; coord events
 	db 0
