@@ -190,6 +190,8 @@ MapRadioTower5FSignpost0Script: ; 0x60100
 	writetext SwitchBehindPosterText
 	playsound SFX_PUSH_BUTTON
 	waitsfx
+	playsound SFX_ENTER_DOOR
+	waitsfx
 	closetext
 	changeblock 3, 0, $03
 	reloadmappart
