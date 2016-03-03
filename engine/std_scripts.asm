@@ -722,7 +722,7 @@ FirstPlaceQuestion:
 	line "finisher, has"
 	cont "wins a SUN STONE!"
 
-	para "however, you may"
+	para "However, you may"
 	line "choose to take a"
 	cont "different prize."
 
@@ -737,11 +737,14 @@ SunStoneChosenText:
 
 ContestAlreadyHolding
 	text "We are already"
-	line "holding a @"
-	text_from_ram StringBuffer4
-	text "for you."
+	line "holding a"
 
-	para "you'll have to take"
+	para "@"
+	text_from_ram StringBuffer4
+	text ""
+	line "for you."
+
+	para "You'll have to take"
 	line "another prize."
 	done
 

@@ -18,13 +18,33 @@ CmdQueue_BlackthornRematch2FBoulder:
 	db 0, 0 ; filler
 	
 BlackthornRematch2F_BoulderTable: 
-	db 7, 3 ; warp, person
+	db 7, 2 ; warp, person
 	dw BlackthornRematch_Boulder1_Pushed	
+	db 8, 3 ; warp, person
+	dw BlackthornRematch_Boulder2_Pushed	
+	db 9, 4 ; warp, person
+	dw BlackthornRematch_Boulder3_Pushed	
+	db 10, 5 ; warp, person
+	dw BlackthornRematch_Boulder4_Pushed	
 	db $ff
 	
-
 BlackthornRematch_Boulder1_Pushed: ; 0x19573d
+	disappear 2
+	jump BlackthornRematch_PushedBoulder
+	end
+	
+BlackthornRematch_Boulder2_Pushed: ; 0x19573d
 	disappear 3
+	jump BlackthornRematch_PushedBoulder
+	end
+	
+BlackthornRematch_Boulder3_Pushed: ; 0x19573d
+	disappear 4
+	jump BlackthornRematch_PushedBoulder
+	end
+	
+BlackthornRematch_Boulder4_Pushed: ; 0x19573d
+	disappear 5
 	jump BlackthornRematch_PushedBoulder
 	end
 	
@@ -70,9 +90,9 @@ BlackthornGymRematch2F_MapEventHeader:
 
 	; object events
 	db 5
-	person_event SPRITE_BOULDER, 25, 5, $19, 0, 0, -1, -1, 0, 0, 0, BoulderScriptRematch2F, EVENT_BLACKTHORN_REMATCH_BOULDER_1
-	person_event SPRITE_BOULDER, 23, 18, $19, 0, 0, -1, -1, 0, 0, 0, BoulderScriptRematch2F, EVENT_BLACKTHORN_REMATCH_BOULDER_2
-	person_event SPRITE_BOULDER, 8, 4, $19, 0, 0, -1, -1, 0, 0, 0, BoulderScriptRematch2F, EVENT_BLACKTHORN_REMATCH_BOULDER_3
+	person_event SPRITE_BOULDER, 23, 18, $19, 0, 0, -1, -1, 0, 0, 0, BoulderScriptRematch2F, EVENT_BLACKTHORN_REMATCH_BOULDER_1
+	person_event SPRITE_BOULDER, 25, 5, $19, 0, 0, -1, -1, 0, 0, 0, BoulderScriptRematch2F, EVENT_BLACKTHORN_REMATCH_BOULDER_2
+	person_event SPRITE_BOULDER, 22, 5, $19, 0, 0, -1, -1, 0, 0, 0, BoulderScriptRematch2F, EVENT_BLACKTHORN_REMATCH_BOULDER_3
 	person_event SPRITE_BOULDER, 8, 5, $19, 0, 0, -1, -1, 0, 0, 0, BoulderScriptRematch2F, EVENT_BLACKTHORN_REMATCH_BOULDER_4
-	person_event SPRITE_BOULDER, 22, 5, $19, 0, 0, -1, -1, 0, 0, 0, BoulderScriptRematch2F, EVENT_BLACKTHORN_REMATCH_BOULDER_5
+	person_event SPRITE_BOULDER, 8, 4, $19, 0, 0, -1, -1, 0, 0, 0, BoulderScriptRematch2F, EVENT_BLACKTHORN_REMATCH_BOULDER_5
 

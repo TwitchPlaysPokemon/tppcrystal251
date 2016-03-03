@@ -29,10 +29,6 @@ UnknownScript_0x194e23: ; 0x194e23
 ClairScript_0x194e24: ; 0x194e24
 	faceplayer
 	loadfont
-	checkevent EVENT_CLAIR_REMATCH
-	iftrue UnknownScript_0x194e69
-	checkevent EVENT_SET_BY_OAK_AFTER_16_BADGES
-	iftrue ClairMeetMeInDragonsDenScript
 	checkflag ENGINE_RISINGBADGE
 	iftrue UnknownScript_0x194e69
 	checkevent EVENT_BEAT_CLAIR
@@ -59,30 +55,6 @@ ClairScript_0x194e24: ; 0x194e24
 	clearevent EVENT_GRAMPS_NOT_BLOCKING_DRAGONS_DEN
 	end
 ; 0x194e63
-
-ClairMeetMeInDragonsDenScript:
-	checkevent EVENT_BEAT_RIVAL_IN_MT_MOON
-	iffalse ClairRejectNoMtMoon
-	checkevent EVENT_BEAT_INDIGO_RIVAL_AT_LEAST_ONCE
-	iffalse ClairReject
-	writetext ClairMeetMeInDragonsDenText
-	waitbutton
-	closetext
-	domaptrigger GROUP_DRAGONS_DEN_B1F, MAP_DRAGONS_DEN_B1F, $1
-	end
-
-ClairRejectNoMtMoon:
-	writetext ClairRejectNoMtMoonText
-	waitbutton
-	closetext
-	end
-
-ClairReject:
-	writetext ClairRejectText
-	waitbutton
-	closetext
-	end
-
 
 UnknownScript_0x194e63: ; 0x194e63
 	writetext UnknownText_0x195162
@@ -237,71 +209,6 @@ UnknownScript_0x194ef3: ; 0x194ef3
 	trainertotext CLAIR, 1, $1
 	jumpstd gymstatue2
 ; 0x194efa
-
-ClairMeetMeInDragonsDenText:
-	text "Let me guess."
-
-	para "You want a rematch"
-	line "with me?"
-
-	para "Fine. Meet me at"
-	line "the DRAGON SHIRNE."
-
-	para "You know where"
-	line "that is, right?"
-
-	para "I will meet you"
-	line "there."
-	done
-
-ClairRejectNoMtMoonText:
-	text "Let me guess."
-
-	para "You want a rematch"
-	line "with me?"
-
-	para "It'll have to be"
-	line "later."
-
-	para "I'm training with"
-	line "the elders today."
-
-	done
-
-ClairRejectText:
-	text "Let me guess."
-
-	para "You want a rematch"
-	line "with me?"
-
-	para "While I'd love to"
-	line "have another go"
-	cont "with you<...>"
-
-	para "There's this red-"
-	line "haired boy who's"
-
-	para "been training in"
-	line "the DRAGON'S DEN."
-
-	para "He keeps talking"
-	line "about how he needs"
-
-	para "to become stronger"
-	line "so he can stand up"
-	cont "to you."
-
-	para "I think I've seen"
-	line "him around INDIGO"
-	cont "PLATEAU a few"
-	cont "days during the"
-	cont "week."
-
-	para "I'll get ready"
-	line "while you deal"
-	cont "with that."
-
-	done
 
 UnknownText_0x194efa: ; 0x194efa
 	text "I am CLAIR."

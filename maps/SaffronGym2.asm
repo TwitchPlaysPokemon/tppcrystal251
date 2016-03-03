@@ -1,7 +1,7 @@
 sabrinawarp: MACRO
 	warp_def \1, \2, 1, GROUP_SAFFRON_GYM_2, MAP_SAFFRON_GYM_2 ; center
 IF \3 == -1
-	warp_def \1-1, \2, 4, GROUP_SAFFRON_GYM_2, MAP_SAFFRON_GYM_2 ; bottom
+	warp_def \1-1, \2, 4, GROUP_SAFFRON_GYM_2, MAP_SAFFRON_GYM_2 ; top
 ELSE
 	warp_def \1-1, \2, (\3*5)+1, GROUP_SAFFRON_GYM_2, MAP_SAFFRON_GYM_2
 ENDC
@@ -16,7 +16,7 @@ ELSE
 	warp_def \1, \2+1, (\5*5)+1, GROUP_SAFFRON_GYM_2, MAP_SAFFRON_GYM_2
 ENDC
 IF \6 == -1
-	warp_def \1+1, \2, 4, GROUP_SAFFRON_GYM_2, MAP_SAFFRON_GYM_2 ; top
+	warp_def \1+1, \2, 4, GROUP_SAFFRON_GYM_2, MAP_SAFFRON_GYM_2 ; bottom
 ELSE
 	warp_def \1+1, \2, (\6*5)+1, GROUP_SAFFRON_GYM_2, MAP_SAFFRON_GYM_2
 ENDC
@@ -146,21 +146,21 @@ SaffronGym2_MapEventHeader:
 	warp_def $15, $7, 2, GROUP_SAFFRON_CITY, MAP_SAFFRON_CITY ; door
 	warp_def $3, $6, 1, GROUP_SAFFRON_GYM_2, MAP_SAFFRON_GYM_2 ; teh urn
 	warp_def $3, $7, 1, GROUP_SAFFRON_GYM_2, MAP_SAFFRON_GYM_2 ; teh return
-	; center y, x, down, left, right, up
+	; center y, x, up, left, right, down
 	; -1 is teh urn
-	sabrinawarp  7,  2,  8,  0,  5, -1
-	sabrinawarp  8,  5,  0,  9,  3, 11
-	sabrinawarp  7,  8, 11,  5,  0, 10
-	sabrinawarp  8, 11,  3,  5,  0,  7
-	sabrinawarp 10,  3,  0,  9, 11,  8
-	sabrinawarp 11,  6,  0, 12,  3, 10
-	sabrinawarp 10,  9,  0,  1, 10,  2
-	sabrinawarp 11, 12,  9,  0,  2, 10
-	sabrinawarp 13,  2,  2, 10,  5,  0
-	sabrinawarp 14,  5,  2,  0, 11,  8
-	sabrinawarp 13,  8,  9,  3,  0,  8
-	sabrinawarp 14, 11,  3,  5,  4,  0
-	warp_def $12, $6, 31, GROUP_SAFFRON_GYM_2, MAP_SAFFRON_GYM_2
+	sabrinawarp  7,  2,  8,  0,  5, -1 ;  1
+	sabrinawarp  8,  5,  0,  9,  3, 11 ;  2
+	sabrinawarp  7,  8, 11,  5,  0, 10 ;  3
+	sabrinawarp  8, 11,  3,  5,  0,  7 ;  4
+	sabrinawarp 10,  3,  0,  9, 11,  8 ;  5
+	sabrinawarp 11,  6,  0, 12,  3, 10 ;  6
+	sabrinawarp 10,  9,  0,  1, 10,  2 ;  7
+	sabrinawarp 11, 12,  9,  0,  2, 10 ;  8
+	sabrinawarp 13,  2,  2, 10,  5,  0 ;  9
+	sabrinawarp 14,  5,  2,  0, 11,  8 ; 10
+	sabrinawarp 13,  8,  9,  3,  0,  8 ; 11
+	sabrinawarp 14, 11,  3,  5,  4,  0 ; 12
+	warp_def $12, $6, 5 * 6 + 1, GROUP_SAFFRON_GYM_2, MAP_SAFFRON_GYM_2 ; teh start
 
 	; coord events
 	db 0
