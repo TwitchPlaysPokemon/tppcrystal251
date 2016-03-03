@@ -58,8 +58,6 @@ MtSilverRuinsElmScript:
 	waitbutton
 	closetext
 	special Special_FadeToBlack
-	special Functiond91
-	special Functionc48f
 	pause 30
 	special HealParty
 	refreshscreen $0

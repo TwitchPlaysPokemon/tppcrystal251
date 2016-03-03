@@ -308,11 +308,11 @@ MovementData_0x180f55: ; 0x180f55
 AzureBeforeBattleText:
 	text "Oh! <PLAY_G>!"
 	line "You're OK!"
-	
+
 	para "I'm so relieved"
 	line "that you escaped"
 	cont "from the SS ANNE!"
-	
+
 	para "I knew you were"
 	line "strong enough to"
 	cont "survive!"
@@ -320,23 +320,23 @@ AzureBeforeBattleText:
 	para "I kept on training"
 	line "and taking care"
 	cont "of my #MON."
-	
+
 	para "And now<...>"
-	
+
 	para "Here I am!"
-	
+
 	para "I have risen up"
 	line "over those who"
 	cont "called themselves"
 	cont "the ELITE FOUR!"
-	
+
 	para "I'm the new"
 	line "CHAMPION!"
-	
+
 	para "<...>"
 
 	para "<PLAY_G>!"
-	
+
 	para "Do you know what"
 	line "this means?"
 
@@ -345,7 +345,7 @@ AzureBeforeBattleText:
 	cont "that battle we"
 	cont "were always meant"
 	cont "to have!"
-	
+
 	para "I challenge you"
 	line "as the #MON"
 	cont "CHAMPION!"
@@ -355,11 +355,11 @@ RustBeforeBattleText:
 	text "Hey! I was lookin'"
 	line "forward to seein"
 	cont "you, <PLAY_G>!"
-	
+
 	para "I always thought"
 	line "you made it off"
 	cont "the SS ANNE!"
-	
+
 	para "No rival of mine"
 	line "would be so weak"
 	cont "as to lose to TEAM"
@@ -367,7 +367,7 @@ RustBeforeBattleText:
 
 	para "Well now that"
 	line "you're here<...>"
-	
+
 	para "I just wanted to"
 	line "let you know"
 	cont "something."
@@ -377,25 +377,25 @@ RustBeforeBattleText:
 	cont "looked all over"
 	cont "for powerful"
 	cont "#MON!"
-	
+
 	para "Not only that, I"
 	line "assembled teams"
 	cont "that would beat"
 	cont "any #MON type!"
-	
+
 	para "Well guess what?!"
 	line "I am now the"
 	cont "#MON LEAGUE"
 	cont "CHAMPION!"
-	
+
 	para "<PLAY_G>!"
 	line "Do you know"
 	cont "what that means"
 	cont "for you?"
-	
+
 	para "Well!"
 	line "I'll tell you!"
-	
+
 	para "I am the most"
 	line "powerful trainer"
 	cont "in the world!"
@@ -433,7 +433,7 @@ WinVsChampRustText:
 AzurePostFightText:
 	text "<...>I guess I must"
 	line "concede<...>"
-	
+
 	para "You are a better"
 	line "trainer than I am."
 	done
@@ -594,7 +594,7 @@ OakToRivalAfterRemtachText:
 	para "the ELITE FOUR's"
 	line "ultimate chal-"
 	cont "lenge!"
-	
+
 	para "But, when I got"
 	line "here, you had"
 	cont "already lost!"
@@ -606,31 +606,32 @@ UnknownText_0x18121b: ; 0x18121b
 	text "PROF.OAK: I've"
 	line "heard what"
 	cont "happened!"
-	
+
 	para "I'm dissapointed!"
-	
+
 	para "I came when I"
 	line "heard you beat"
 	cont "the ELITE FOUR!"
-	
+
 	para "But, when I got"
 	line "here, you had"
 	cont "already lost!"
 	done
 
 OakAfterRivalTalkToPlayer:
-	
+
 	text "<PLAY_G>!"
 	line "You understand"
-	cont "that your victory"
-	cont "was not just your"
+
+	para "that your victory"
+	line "was not just your"
 	cont "own doing!"
-	
+
 	para "The bond you"
 	line "share with your"
-	cont "#MON is"
-	cont "marvelous!"
-	
+
+	para "#MON is"
+	line "marvelous!"
 	done
 ; 0x18134b
 
