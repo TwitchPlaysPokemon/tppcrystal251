@@ -24,7 +24,176 @@ BoulderTiles: ; 0x194e05
 	changeblock 8, 2, $3B
 BoulderTileEnd:
 	return
+	
+ClairTextScript:
+	faceplayer
+	loadfont
+	checkevent EVENT_CLAIR_REMATCH
+	iffalse ClairMeetMeInDragonsDenScript
+	writetext ClairFullyDefeatedText
+	waitbutton
+	closetext
+	end	
 
+ClairMeetMeInDragonsDenScript:
+	checkevent EVENT_BEAT_RIVAL_IN_MT_MOON
+	iffalse ClairRejectNoMtMoon
+	checkevent EVENT_BEAT_INDIGO_RIVAL_AT_LEAST_ONCE
+	iffalse ClairReject
+	writetext ClairMeetMeInDragonsDenText
+	waitbutton
+	closetext
+	domaptrigger GROUP_DRAGONS_DEN_B1F, MAP_DRAGONS_DEN_B1F, $1
+	end
+
+ClairRejectNoMtMoon:
+	writetext ClairRejectNoMtMoonText
+	waitbutton
+	closetext
+	end
+
+ClairReject:
+	writetext ClairRejectText
+	waitbutton
+	closetext
+	end
+	
+BlackthornGym2GuyScript:
+	faceplayer
+	loadfont
+	checkevent EVENT_CLAIR_REMATCH
+	iftrue .BlackthornGymGuyWinScript
+	writetext BlackthornGym2GuyText
+	waitbutton
+	closetext
+	end
+
+.BlackthornGymGuyWinScript
+	writetext BlackthornGym2GuyWinText
+	waitbutton
+	closetext
+	end
+	
+BlackthornGymRematchStatue: ; 0x194eea
+	checkflag ENGINE_RISINGBADGE
+	iftrue BlackthornGymRematchStatue2
+	jumpstd gymstatue1
+	
+BlackthornGymRematchStatue2: ; 0x194ef3
+	trainertotext CLAIR, 1, $1
+	jumpstd gymstatue2
+	
+ClairMeetMeInDragonsDenText:
+	text "Let me guess."
+
+	para "You want a rematch"
+	line "with me?"
+
+	para "Fine. Meet me at"
+	line "the DRAGON SHRINE."
+
+	para "You know where"
+	line "that is, right?"
+
+	para "I will meet you"
+	line "there."
+	done
+
+ClairRejectNoMtMoonText:
+	text "Let me guess."
+
+	para "You want a rematch"
+	line "with me?"
+
+	para "It'll have to be"
+	line "later."
+
+	para "I'm training with"
+	line "the elders today."
+
+	done
+
+ClairRejectText:
+	text "Let me guess."
+
+	para "You want a rematch"
+	line "with me?"
+
+	para "While I'd love to"
+	line "have another go"
+	cont "with you<...>"
+
+	para "There's this red-"
+	line "haired boy who's"
+
+	para "been training in"
+	line "the DRAGON'S DEN."
+
+	para "He keeps talking"
+	line "about how he needs"
+
+	para "to become stronger"
+	line "so he can stand up"
+	cont "to you."
+
+	para "I think I've seen"
+	line "him around INDIGO"
+	cont "PLATEAU a few"
+	cont "days during the"
+	cont "week."
+
+	para "I'll get ready"
+	line "while you deal"
+	cont "with that."
+
+	done
+	
+ClairFullyDefeatedText:
+	text "Thank you for the"
+	line "rematch."
+	
+	para "It's always been"
+	line "a dream of mine"
+	cont "to fight a trainer"
+	cont "as powerful as"
+	cont "you, <PLAY_G>."
+	
+	para "I could not have"
+	line "imagined a better"
+	cont "place than the"
+	cont "DRAGON SHRINE to"
+	cont "face such a worthy"
+	cont "opponent."
+
+	para "Good luck on"
+	line "your journey."
+
+	done
+
+BlackthornGym2GuyText:
+	text "Yo, CHAMP!"
+
+	para "Looks like CLAIR"
+	line "did some re-"
+	cont "modeling while you"
+	cont "were away!"
+
+	para "<...>I wonder when"
+	line "she found the"
+	cont "time to do this<...>"
+	done
+
+BlackthornGym2GuyWinText:
+	text "I heard the news!"
+	
+	para "I wish I could"
+	line "have seen the"
+	cont "battle!"
+	
+	para "Congratulations,"
+	cont "CHAMP!"
+	done
+	
 BlackthornGymRematch1F_MapEventHeader:
 	; filler
 	db 0, 0
@@ -49,8 +218,12 @@ BlackthornGymRematch1F_MapEventHeader:
 	db 0
 
 	; bg events
-	db 0
+	db 2
+	signpost 21, 3, $0, BlackthornGymRematchStatue
+	signpost 21, 6, $0, BlackthornGymRematchStatue
 
 	; object events
-	db 0
+	db 2
+	person_event SPRITE_CLAIR, 7, 8, $6, 0, 0, -1, -1, 8 + PAL_OW_BLUE, 0, 0, ClairTextScript, -1
+	person_event SPRITE_GYM_GUY, 25, 9, $6, 0, 0, -1, -1, 8 + PAL_OW_RED, 0, 0, BlackthornGym2GuyScript, -1
 
