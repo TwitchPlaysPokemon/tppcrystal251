@@ -393,8 +393,8 @@ BugContestResultsScript: ; bc274
 	buttonsound
 	waitsfx
 	givemoney 0 , 1000
-	;verbosegiveitem BERRY, 1
-	;iffalse UnknownScript_0xbc375
+		;verbosegiveitem BERRY, 1
+		;iffalse UnknownScript_0xbc375
 
 UnknownScript_0xbc2a9:
 	farwritetext UnknownText_0x1b06b7
