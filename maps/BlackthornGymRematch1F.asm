@@ -6,7 +6,7 @@ BlackthornGymRematch1F_MapScriptHeader:
 	db 1
 
 	; callback
-	dbw 1, BoulderTile
+	dbw 1, BoulderTiles
 
 ; <scripts go here>
 BoulderTiles: ; 0x194e05
