@@ -70,9 +70,9 @@ BlackthornGymRematch2F_MapEventHeader:
 
 	; object events
 	db 5
-	person_event SPRITE_BOULDER, 25, 5, $19, 0, 0, -1, -1, 0, 0, 0, BoulderScriptRematch2F, EVENT_BLACKTHORN_REMATCH_BOULDER_1
-	person_event SPRITE_BOULDER, 23, 18, $19, 0, 0, -1, -1, 0, 0, 0, BoulderScriptRematch2F, EVENT_BLACKTHORN_REMATCH_BOULDER_2
-	person_event SPRITE_BOULDER, 8, 4, $19, 0, 0, -1, -1, 0, 0, 0, BoulderScriptRematch2F, EVENT_BLACKTHORN_REMATCH_BOULDER_3
+	person_event SPRITE_BOULDER, 23, 18, $19, 0, 0, -1, -1, 0, 0, 0, BoulderScriptRematch2F, EVENT_BLACKTHORN_REMATCH_BOULDER_1
+	person_event SPRITE_BOULDER, 25, 5, $19, 0, 0, -1, -1, 0, 0, 0, BoulderScriptRematch2F, EVENT_BLACKTHORN_REMATCH_BOULDER_2
+	person_event SPRITE_BOULDER, 22, 5, $19, 0, 0, -1, -1, 0, 0, 0, BoulderScriptRematch2F, EVENT_BLACKTHORN_REMATCH_BOULDER_3
 	person_event SPRITE_BOULDER, 8, 5, $19, 0, 0, -1, -1, 0, 0, 0, BoulderScriptRematch2F, EVENT_BLACKTHORN_REMATCH_BOULDER_4
-	person_event SPRITE_BOULDER, 22, 5, $19, 0, 0, -1, -1, 0, 0, 0, BoulderScriptRematch2F, EVENT_BLACKTHORN_REMATCH_BOULDER_5
+	person_event SPRITE_BOULDER, 8, 4, $19, 0, 0, -1, -1, 0, 0, 0, BoulderScriptRematch2F, EVENT_BLACKTHORN_REMATCH_BOULDER_5
 
