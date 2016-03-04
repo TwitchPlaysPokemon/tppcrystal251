@@ -1824,8 +1824,8 @@ class AI(object):
         #then dont use stats down
         if KillingBlow:
             for tempmove in range(0, len(self.jsonlist['battleState']['enemypokemon']['moves'])):
-                if slef.MonData[mycuurent]['moves'][tempmove]['effect'] in ('accuracydown', 'defensedown', 'attackdown', 'speeddown2', 'defensedown2', 'spdefdown2'):
-                    slef.MonData[mycuurent]['moves'][tempmove]['curpp'] = 0
+                if self.MonData[mycurrent]['moves'][tempmove]['effect'] in ('accuracydown', 'defensedown', 'attackdown', 'speeddown2', 'defensedown2', 'spdefdown2'):
+                    self.MonData[mycurrent]['moves'][tempmove]['curpp'] = 0
         return
             
     #figure out best action to do in current battle

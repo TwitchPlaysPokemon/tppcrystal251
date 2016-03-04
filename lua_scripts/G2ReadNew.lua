@@ -38,82 +38,37 @@ local Nickname = {}
 
 OverlayFrameDelay = 0
 
+function ReadFlags(offset, nbytes)
+	local output = {}
+	for curbyteidx = 0, (nbytes - 1) do
+		cur_byte = memory.readbyte(offset + curbyteidx)
+		for curbit = 0, 7 do
+			output[curbyteidx * 8 + curbit + 1] = bit.band(cur_byte, bit.lshift(1, curbit)) ~= 0
+		end
+	end
+	return output
+end
+
+function CountFlags(offset, nbytes)
+	local total = 0
+	for curbyteidx = 0, (nbytes - 1) do
+		cur_byte = memory.readbyte(offset + curbyteidx)
+		for curbit = 0, 7 do
+			if bit.band(cur_byte, bit.lshift(1, curbit)) ~= 0 then
+				total = total + 1
+			end
+		end
+	end
+	return total
+end
+
+
 function ReadSeen(offset)
-	Seen = 0
-	for i = 1, 0x20, 1 do
-		if bit.band(memory.readbyte(offset), 0x01) == 0x01 then
-			Seen = Seen + 1
-		end
-
-		if bit.band(memory.readbyte(offset), 0x02) == 0x02 then
-			Seen = Seen + 1
-		end
-
-		if bit.band(memory.readbyte(offset), 0x04) == 0x04 then
-			Seen = Seen + 1
-		end
-
-		if bit.band(memory.readbyte(offset), 0x08) == 0x08 then
-			Seen = Seen + 1
-		end
-
-		if bit.band(memory.readbyte(offset), 0x10) == 0x10 then
-			Seen = Seen + 1
-		end
-
-		if bit.band(memory.readbyte(offset), 0x20) == 0x20 then
-			Seen = Seen + 1
-		end
-
-		if bit.band(memory.readbyte(offset), 0x40) == 0x40 then
-			Seen = Seen + 1
-		end
-
-		if bit.band(memory.readbyte(offset), 0x80) == 0x80 then
-			Seen = Seen + 1
-		end
-		
-		offset = offset + 1
-	end 
+	Seen = CountFlags(offset, 0x20)
 end
 
 function ReadOwn(offset)
-	Own = 0
-	for i = 1, 0x20, 1 do
-		if bit.band(memory.readbyte(offset), 0x01) == 0x01 then
-			Own = Own + 1
-		end
-
-		if bit.band(memory.readbyte(offset), 0x02) == 0x02 then
-			Own = Own + 1
-		end
-
-		if bit.band(memory.readbyte(offset), 0x04) == 0x04 then
-			Own = Own + 1
-		end
-
-		if bit.band(memory.readbyte(offset), 0x08) == 0x08 then
-			Own = Own + 1
-		end
-
-		if bit.band(memory.readbyte(offset), 0x10) == 0x10 then
-			Own = Own + 1
-		end
-
-		if bit.band(memory.readbyte(offset), 0x20) == 0x20 then
-			Own = Own + 1
-		end
-
-		if bit.band(memory.readbyte(offset), 0x40) == 0x40 then
-			Own = Own + 1
-		end
-
-		if bit.band(memory.readbyte(offset), 0x80) == 0x80 then
-			Own = Own + 1
-		end
-		
-		offset = offset + 1
-	end
+	Own = CountFlags(offset, 0x20)
 end
 
 function ReadParty(offset)
@@ -242,105 +197,11 @@ function ReadMoney(offset)
 end
 
 function ReadBadge1(offset)
-	badge = memory.readbyte(offset)
-	if bit.band(badge, 0x01) == 0x01 then
-		BadgeData1[1] = 0x01
-	else
-		BadgeData1[1] = 0x00
-	end
-
-	if bit.band(badge, 0x02) == 0x02 then
-		BadgeData1[2] = 0x01
-	else
-		BadgeData1[2] = 0x00
-	end
-
-	if bit.band(badge, 0x04) == 0x04 then
-		BadgeData1[3] = 0x01
-	else
-		BadgeData1[3] = 0x00
-	end
-
-	if bit.band(badge, 0x08) == 0x08 then
-		BadgeData1[4] = 0x01
-	else
-		BadgeData1[4] = 0x00
-	end
-
-	if bit.band(badge, 0x10) == 0x10 then
-		BadgeData1[5] = 0x01
-	else
-		BadgeData1[5] = 0x00
-	end
-
-	if bit.band(badge, 0x20) == 0x20 then
-		BadgeData1[6] = 0x01
-	else
-		BadgeData1[6] = 0x00
-	end
-
-	if bit.band(badge, 0x40) == 0x40 then
-		BadgeData1[7] = 0x01
-	else
-		BadgeData1[7] = 0x00
-	end
-
-	if bit.band(badge, 0x80) == 0x80 then
-		BadgeData1[8] = 0x01
-	else
-		BadgeData1[8] = 0x00
-	end
+	BadgeData1 = ReadFlags(offset, 1)
 end
 
 function ReadBadge2(offset)
-	badge = memory.readbyte(offset)
-	if bit.band(badge, 0x01) == 0x01 then
-		BadgeData2[1] = 0x01
-	else
-		BadgeData2[1] = 0x00
-	end
-
-	if bit.band(badge, 0x02) == 0x02 then
-		BadgeData2[2] = 0x01
-	else
-		BadgeData2[2] = 0x00
-	end
-
-	if bit.band(badge, 0x04) == 0x04 then
-		BadgeData2[3] = 0x01
-	else
-		BadgeData2[3] = 0x00
-	end
-
-	if bit.band(badge, 0x08) == 0x08 then
-		BadgeData2[4] = 0x01
-	else
-		BadgeData2[4] = 0x00
-	end
-
-	if bit.band(badge, 0x10) == 0x10 then
-		BadgeData2[5] = 0x01
-	else
-		BadgeData2[5] = 0x00
-	end
-
-	if bit.band(badge, 0x20) == 0x20 then
-		BadgeData2[6] = 0x01
-	else
-		BadgeData2[6] = 0x00
-	end
-
-	if bit.band(badge, 0x40) == 0x40 then
-		BadgeData2[7] = 0x01
-	else
-		BadgeData2[7] = 0x00
-	end
-
-	if bit.band(badge, 0x80) == 0x80 then
-		BadgeData2[8] = 0x01
-	else
-		BadgeData2[8] = 0x00
-	end
+	BadgeData2 = ReadFlags(offset, 1)
 end
 
 function ReadTitle(offset)
@@ -361,79 +222,17 @@ end
 
 function CheckDex(offset)
 	for i = 1, 0x20, 1 do
-		if bit.band(memory.readbyte(offset), 0x01) == 0x01 then
-			if Pokedexdata[((i - 1) * 8) + 1] == 0 then
-				Pokedexdata[((i - 1) * 8) + 1] = 1
-				if MapID ~= 0 then
-					LastCaptured = ((i - 1) * 8) + 1
+		cur_byte = memory.readbyte(offset + i - 1)
+		for cur_bit = 0, 7 do
+			if bit.band(cur_byte, bit.lshift(1, cur_bit)) ~= 0 then
+				if Pokedexdata[((i - 1) * 8 + 1 + cur_bit)] == 0 then
+					Pokedexdata[((i - 1) * 8 + 1 + cur_bit)] = 1
+					if MapID ~= 0 then
+						LastCaptured = ((i - 1) * 8) + 1 + cur_bit
+					end
 				end
 			end
 		end
-
-		if bit.band(memory.readbyte(offset), 0x02) == 0x02 then
-			if Pokedexdata[((i - 1) * 8) + 1 + 1] == 0 then
-				Pokedexdata[((i - 1) * 8) + 1 + 1] = 1
-				if MapID ~= 0 then
-					LastCaptured = ((i - 1) * 8) + 1 + 1
-				end
-			end
-		end
-
-		if bit.band(memory.readbyte(offset), 0x04) == 0x04 then
-			if Pokedexdata[((i - 1) * 8) + 1 + 2] == 0 then
-				Pokedexdata[((i - 1) * 8) + 1 + 2] = 1
-				if MapID ~= 0 then
-					LastCaptured = ((i - 1) * 8) + 1 + 2
-				end
-			end
-		end
-
-		if bit.band(memory.readbyte(offset), 0x08) == 0x08 then
-			if Pokedexdata[((i - 1) * 8) + 1 + 3] == 0 then
-				Pokedexdata[((i - 1) * 8) + 1 + 3] = 1
-				if MapID ~= 0 then
-					LastCaptured = ((i - 1) * 8) + 1 + 3
-				end
-			end
-		end
-
-		if bit.band(memory.readbyte(offset), 0x10) == 0x10 then
-			if Pokedexdata[((i - 1) * 8) + 1 + 4] == 0 then
-				Pokedexdata[((i - 1) * 8) + 1 + 4] = 1
-				if MapID ~= 0 then
-					LastCaptured = ((i - 1) * 8) + 1 + 4
-				end
-			end
-		end
-
-		if bit.band(memory.readbyte(offset), 0x20) == 0x20 then
-			if Pokedexdata[((i - 1) * 8) + 1 + 5] == 0 then
-				Pokedexdata[((i - 1) * 8) + 1 + 5] = 1
-				if MapID ~= 0 then
-					LastCaptured = ((i - 1) * 8) + 1 + 5
-				end
-			end
-		end
-
-		if bit.band(memory.readbyte(offset), 0x40) == 0x40 then
-			if Pokedexdata[((i - 1) * 8) + 1 + 6] == 0 then
-				Pokedexdata[((i - 1) * 8) + 1 + 6] = 1
-				if MapID ~= 0 then
-					LastCaptured = ((i - 1) * 8) + 1 + 6
-				end
-			end
-		end
-
-		if bit.band(memory.readbyte(offset), 0x80) == 0x80 then
-			if Pokedexdata[((i - 1) * 8) + 1 + 7] == 0 then
-				Pokedexdata[((i - 1) * 8) + 1 + 7] = 1
-				if MapID ~= 0 then
-					LastCaptured = ((i - 1) * 8) + 1 + 7
-				end
-			end
-		end
-		
-		offset = offset + 1
 	end
 end
 
