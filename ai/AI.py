@@ -1159,6 +1159,8 @@ class AI(object):
                 self.endofturn(traincurrent, mycurrent)
                 myhp = self.MonData[mycurrent]['stats']['curhp']
                 trainhp = self.MonData[traincurrent]['stats']['curhp']
+                if myhp > self.MonData[mycurrent]['stats']['maxhp']:
+                    myhp = self.MonData[mycurrent]['stats']['maxhp']
             #am i using an item?
             if self.useitem > 0:
                 myhp = myhp - self.Damage[traincurrent][mycurrent][self.enemynumber]['damage']
@@ -1822,8 +1824,8 @@ class AI(object):
         #then dont use stats down
         if KillingBlow:
             for tempmove in range(0, len(self.jsonlist['battleState']['enemypokemon']['moves'])):
-                if slef.MonData[mycuurent]['moves'][tempmove]['effect'] in ('accuracydown', 'defensedown', 'attackdown', 'speeddown2', 'defensedown2', 'spdefdown2'):
-                    slef.MonData[mycuurent]['moves'][tempmove]['curpp'] = 0
+                if self.MonData[mycurrent]['moves'][tempmove]['effect'] in ('accuracydown', 'defensedown', 'attackdown', 'speeddown2', 'defensedown2', 'spdefdown2'):
+                    self.MonData[mycurrent]['moves'][tempmove]['curpp'] = 0
         return
             
     #figure out best action to do in current battle

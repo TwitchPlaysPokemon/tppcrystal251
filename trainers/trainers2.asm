@@ -294,6 +294,18 @@ CoolSiblingsGroup:
 	db 91, STANTLER
 	db $ff
 
+	db "MING&LEE@"
+	db 0
+	db 100, DRAGONITE
+	db 100, KINGDRA
+	db $ff
+
+	db "MING&LEE@"
+	db 0
+	db 100, KINGDRA
+	db 100, DRAGONITE
+	db $ff
+
 ; ===========================
 ; =====================
 

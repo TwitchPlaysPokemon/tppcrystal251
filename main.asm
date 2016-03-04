@@ -12220,9 +12220,9 @@ Function1203a: ; 1203a (4:603a)
 	ld a, [hl]
 	and B_BUTTON
 	jr nz, .b
-	ld a, [hl]
-	and START
-	jr nz, .start
+	; ld a, [hl]
+	; and START
+	; jr nz, .start
 	ld a, [hl]
 	and SELECT
 	jr nz, .select

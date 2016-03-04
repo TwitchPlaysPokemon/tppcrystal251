@@ -193,6 +193,8 @@ MapRadioTower5FSignpost0Script: ; 0x60100
 	closetext
 	changeblock 3, 0, $03
 	reloadmappart
+	playsound SFX_ENTER_DOOR
+	waitsfx
 	setevent EVENT_OPENED_RAIKOU_DOOR
 	end
 ; 0x60103
