@@ -85,6 +85,163 @@ BlackthornGymRematchStatue: ; 0x194eea
 BlackthornGymRematchStatue2: ; 0x194ef3
 	trainertotext CLAIR, 1, $1
 	jumpstd gymstatue2
+	
+
+TrainerCooltrainermPaulRematch: ; 0x194e9a
+	; bit/flag number
+	dw $346
+
+	; trainer group && trainer id
+	db GymTrainerRematchGroup, PAUL
+
+	; text when seen
+	dw CooltrainermPaulSeenRematchText
+
+	; text when trainer beaten
+	dw CooltrainermPaulBeatenRematchText
+
+	; script when lost
+	dw $0000
+
+	; script when talk again
+	dw CooltrainermPaulRematchScript
+; 0x194ea6
+
+CooltrainermPaulRematchScript: ; 0x194ea6
+	talkaftercancel
+	loadfont
+	writetext CooltrainerPaulAfterRematch
+	waitbutton
+	closetext
+	end
+; 0x194eae
+
+TrainerCooltrainermMikeRematch: ; 0x194eae
+	; bit/flag number
+	dw $347
+
+	; trainer group && trainer id
+	db GymTrainerRematchGroup, MIKE
+
+	; text when seen
+	dw CooltrainermMikeSeenRematchText
+
+	; text when trainer beaten
+	dw CooltrainermMikeBeatenRematchText
+
+	; script when lost
+	dw $0000
+
+	; script when talk again
+	dw CooltrainermMikeRematchScript
+; 0x194eba
+
+CooltrainermMikeRematchScript: ; 0x194eba
+	talkaftercancel
+	loadfont
+	writetext CooltrainerMikeAfterRematch
+	waitbutton
+	closetext
+	end
+; 0x194ec2
+
+TrainerCooltrainerfLolaRematch: ; 0x194ec2
+	; bit/flag number
+	dw $348
+
+	; trainer group && trainer id
+	db GymTrainerRematchGroup, LOLA
+
+	; text when seen
+	dw CooltrainerfLolaSeenRematchText
+
+	; text when trainer beaten
+	dw CooltrainerfLolaBeatenRematchText
+
+	; script when lost
+	dw $0000
+
+	; script when talk again
+	dw CooltrainerfLolaRematchScript
+; 0x194ece
+
+CooltrainerfLolaRematchScript: ; 0x194ece
+	talkaftercancel
+	loadfont
+	writetext CooltrainerLolaAfterRematch
+	waitbutton
+	closetext
+	end
+; 0x194ed6
+
+
+CooltrainermPaulSeenRematchText: ; 0x195396
+	text "You've fought"
+	line "dragons before<...>"
+
+	para "But I'll show you"
+	line "their strength!"
+	done
+; 0x1953db
+
+CooltrainermPaulBeatenRematchText: ; 0x1953db
+	text "My dragon #MON"
+	line "lost? Again?"
+	done
+; 0x1953f1
+
+CooltrainerPaulAfterRematch: ; 0x1953f1
+	text "Hope you're ready"
+	line "to fight CLAIR"
+	cont "at her best!"
+	done
+; 0x19542f
+
+CooltrainermMikeSeenRematchText: ; 0x19542f
+	text "My chances of"
+	line "losing? Not even"
+	cont "a fraction of a"
+	cont "percent this time!"
+	done
+; 0x19545b
+
+CooltrainermMikeBeatenRematchText: ; 0x19545b
+	text "That's strange<...>"
+	line "What's this<...>"
+	done
+; 0x195467
+
+CooltrainerMikeAfterRematch: ; 0x195467
+	text "I guess I haven't"
+	line "strengthened my"
+	cont "weeknesses enough!"
+	done
+; 0x19549d
+
+CooltrainerfLolaSeenRematchText: ; 0x19549d
+	text "Dragons will always"
+	line "be sacred."
+
+	para "Their life energy"
+	line "flows through us"
+	cont "all!"
+	done
+; 0x19550a
+
+CooltrainerfLolaBeatenRematchText: ; 0x19550a
+	text "Ack! Again!"
+	done
+; 0x195516
+
+CooltrainerLolaAfterRematch: ; 0x195516
+	text "Dragons might be"
+	line "weak to dragon-"
+	cont "type moves<...>"
+	
+	para "But they still"
+	line "put up a fight!"
+	done
+; 0x195544
 
 ClairMeetMeInDragonsDenText:
 	text "Let me guess."
@@ -225,7 +382,10 @@ BlackthornGymRematch1F_MapEventHeader:
 	signpost 21, 6, $0, BlackthornGymRematchStatue
 
 	; object event
-	db 2
+	db 5
 	person_event SPRITE_CLAIR, 7, 8, $6, 0, 0, -1, -1, 8 + PAL_OW_BLUE, 0, 0, ClairTextScript, -1
 	person_event SPRITE_GYM_GUY, 25, 9, $6, 0, 0, -1, -1, 8 + PAL_OW_RED, 0, 0, BlackthornGym2GuyScript, -1
+	person_event SPRITE_COOLTRAINER_M, 10, 6, $6, 0, 0, -1, -1, 8 + PAL_OW_RED, 2, 3, TrainerCooltrainermMikeRematch, -1
+	person_event SPRITE_COOLTRAINER_M, 19, 14, $6, 0, 0, -1, -1, 8 + PAL_OW_RED, 2, 3, TrainerCooltrainermPaulRematch, -1
+	person_event SPRITE_COOLTRAINER_F, 6, 13, $6, 0, 0, -1, -1, 8 + PAL_OW_RED, 2, 1, TrainerCooltrainerfLolaRematch, -1
 
