@@ -1159,6 +1159,8 @@ class AI(object):
                 self.endofturn(traincurrent, mycurrent)
                 myhp = self.MonData[mycurrent]['stats']['curhp']
                 trainhp = self.MonData[traincurrent]['stats']['curhp']
+                if myhp > self.MonData[mycurrent]['stats']['maxhp']:
+                    myhp = self.MonData[mycurrent]['stats']['maxhp']
             #am i using an item?
             if self.useitem > 0:
                 myhp = myhp - self.Damage[traincurrent][mycurrent][self.enemynumber]['damage']
