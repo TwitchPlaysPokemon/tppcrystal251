@@ -30,6 +30,8 @@ local Own
 local Money
 local BadgeData1 = {}
 local BadgeData2 = {}
+local GymRematches1 = {}
+local GymRematches2 = {}
 local MapID
 local Pokedexdata = {}
 local LastCaptured
@@ -43,7 +45,11 @@ function ReadFlags(offset, nbytes)
 	for curbyteidx = 0, (nbytes - 1) do
 		cur_byte = memory.readbyte(offset + curbyteidx)
 		for curbit = 0, 7 do
-			output[curbyteidx * 8 + curbit + 1] = bit.band(cur_byte, bit.lshift(1, curbit)) ~= 0
+			if bit.band(cur_byte, bit.lshift(1, curbit)) ~= 0 then
+				output[curbyteidx * 8 + curbit + 1] = 1
+			else
+				output[curbyteidx * 8 + curbit + 1] = 0
+			end
 		end
 	end
 	return output
@@ -61,7 +67,6 @@ function CountFlags(offset, nbytes)
 	end
 	return total
 end
-
 
 function ReadSeen(offset)
 	Seen = CountFlags(offset, 0x20)
@@ -204,6 +209,14 @@ function ReadBadge2(offset)
 	BadgeData2 = ReadFlags(offset, 1)
 end
 
+function ReadRematch1(offset)
+	GymRematches1 = ReadFlags(offset, 1)
+end
+
+function ReadRematch2(offset)
+	GymRematches2 = ReadFlags(offset, 1)
+end
+
 function ReadTitle(offset)
 	if memory.readdword(offset) == 0x8D8E82ED then
 		Title = 1
@@ -266,6 +279,22 @@ BadgeData2[5] = 0
 BadgeData2[6] = 0
 BadgeData2[7] = 0
 BadgeData2[8] = 0
+GymRematches1[1] = 0
+GymRematches1[2] = 0
+GymRematches1[3] = 0
+GymRematches1[4] = 0
+GymRematches1[5] = 0
+GymRematches1[6] = 0
+GymRematches1[7] = 0
+GymRematches1[8] = 0
+GymRematches2[1] = 0
+GymRematches2[2] = 0
+GymRematches2[3] = 0
+GymRematches2[4] = 0
+GymRematches2[5] = 0
+GymRematches2[6] = 0
+GymRematches2[7] = 0
+GymRematches2[8] = 0
 for i = 1, 6, 1 do
 	ID[i] = 0
 	HP[i] = 0
@@ -327,6 +356,8 @@ function read_new_playerstate()
 		ReadBadge2(0xD858)
 		ReadTitle(0xC3C9)
 		ReadDiploma(0x9902)
+		ReadRematch1(0xDB34)
+		ReadRematch2(0xDB35)
 		MapID = (memory.readbyte(0xDCB5) * 256) + memory.readbyte(0xDCB6)
 
 		if LastCaptured ~= LastCaptured2 then
