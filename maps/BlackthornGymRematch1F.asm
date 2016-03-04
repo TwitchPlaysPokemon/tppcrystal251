@@ -92,7 +92,7 @@ TrainerCooltrainermPaulRematch: ; 0x194e9a
 	dw $346
 
 	; trainer group && trainer id
-	db GymTrainerRematchGroup, PAUL
+	db COOLTRAINERM, PAUL2
 
 	; text when seen
 	dw CooltrainermPaulSeenRematchText
@@ -121,7 +121,7 @@ TrainerCooltrainermMikeRematch: ; 0x194eae
 	dw $347
 
 	; trainer group && trainer id
-	db GymTrainerRematchGroup, MIKE
+	db COOLTRAINERM, MIKE2
 
 	; text when seen
 	dw CooltrainermMikeSeenRematchText
@@ -150,7 +150,7 @@ TrainerCooltrainerfLolaRematch: ; 0x194ec2
 	dw $348
 
 	; trainer group && trainer id
-	db GymTrainerRematchGroup, LOLA
+	db COOLTRAINERF, LOLA2
 
 	; text when seen
 	dw CooltrainerfLolaSeenRematchText

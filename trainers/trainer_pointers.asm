@@ -78,4 +78,3 @@ TrainerGroups: ; 0x39999
 	dba BrockRBGroup
 	dba MistyRBGroup
 	dba BabaGroup
-	dba GymTrainerRematchGroup

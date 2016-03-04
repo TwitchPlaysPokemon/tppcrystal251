@@ -58,10 +58,75 @@ BlackthornRematch_PushedBoulder:
 	closetext
 	end
 
+Trainer_CoolsibsMingLee1:
+	trainer EVENT_BLACKTHORN_REMATCH_TRAINER_4, COOL_SIBLINGS, MINGLEE1, CoolsibsMingLee1TextBefore, CoolsibsMingLee1TextWin, 0, .Script
+.Script
+	talkaftercancel
+	faceplayer
+	loadfont
+	writetext CoolsibsMingLee1TextAfter
+	waitbutton
+	closetext
+	end
+
+Trainer_CoolsibsMingLee2:
+	trainer EVENT_BLACKTHORN_REMATCH_TRAINER_4, COOL_SIBLINGS, MINGLEE2, CoolsibsMingLee2TextBefore, CoolsibsMingLee2TextWin, 0, .Script
+.Script
+	talkaftercancel
+	faceplayer
+	loadfont
+	writetext CoolsibsMingLee2TextAfter
+	waitbutton
+	closetext
+	end
+
 ; <text goes here>
 BlackthornRematch_PushBoulderText: ; 0x1958a5
 	text "The boulder fell"
 	line "through!"
+	done
+
+CoolsibsMingLee1TextBefore:
+	text "MING: CLAIR asked"
+	line "us to stop you, no"
+	cont "matter what!"
+	done
+
+CoolsibsMingLee2TextBefore:
+	text "LEE: If the GYM"
+	line "LEADER wants you"
+
+	para "out, there must be"
+	line "a good reason for"
+	cont "it."
+	done
+
+CoolsibsMingLee1TextWin:
+	text "MING: We failed?"
+
+	para "LEE: Is it because"
+	line "you're so strong?"
+	done
+
+CoolsibsMingLee2TextWin:
+	text "LEE: Is it because"
+	line "you're so strong?"
+
+	para "MING: We failed?"
+	done
+
+CoolsibsMingLee1TextAfter:
+	text "MING: I guess"
+	line "there's no stop-"
+	cont "ping you now<...>"
+	done
+
+CoolsibsMingLee2TextAfter:
+	text "LEE: That power<...>"
+
+	para "Could it be what"
+	line "CLAIR's been mis-"
+	cont "sing?"
 	done
 
 BlackthornGymRematch2F_MapEventHeader:
@@ -89,10 +154,12 @@ BlackthornGymRematch2F_MapEventHeader:
 	db 0
 
 	; object events
-	db 5
+	db 7
 	person_event SPRITE_BOULDER, 23, 18, $19, 0, 0, -1, -1, 0, 0, 0, BoulderScriptRematch2F, EVENT_BLACKTHORN_REMATCH_BOULDER_1
 	person_event SPRITE_BOULDER, 25, 5, $19, 0, 0, -1, -1, 0, 0, 0, BoulderScriptRematch2F, EVENT_BLACKTHORN_REMATCH_BOULDER_2
 	person_event SPRITE_BOULDER, 22, 5, $19, 0, 0, -1, -1, 0, 0, 0, BoulderScriptRematch2F, EVENT_BLACKTHORN_REMATCH_BOULDER_3
 	person_event SPRITE_BOULDER, 8, 5, $19, 0, 0, -1, -1, 0, 0, 0, BoulderScriptRematch2F, EVENT_BLACKTHORN_REMATCH_BOULDER_4
 	person_event SPRITE_BOULDER, 8, 4, $19, 0, 0, -1, -1, 0, 0, 0, BoulderScriptRematch2F, EVENT_BLACKTHORN_REMATCH_BOULDER_5
+	person_event SPRITE_COOLTRAINER_M, 21, 6, $6, 0, 0, -1, -1, 0, 2, 1, Trainer_CoolsibsMingLee1, -1
+	person_event SPRITE_COOLTRAINER_F, 21, 7, $6, 0, 0, -1, -1, 0, 2, 1, Trainer_CoolsibsMingLee2, -1
 

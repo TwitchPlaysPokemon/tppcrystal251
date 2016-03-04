@@ -294,6 +294,18 @@ CoolSiblingsGroup:
 	db 91, STANTLER
 	db $ff
 
+	db "MING&LEE@"
+	db 0
+	db 100, DRAGONITE
+	db 100, KINGDRA
+	db $ff
+
+	db "MING&LEE@"
+	db 0
+	db 100, KINGDRA
+	db 100, DRAGONITE
+	db $ff
+
 ; ===========================
 ; =====================
 
@@ -744,38 +756,3 @@ BabaGroup:
 		db METRONOME
 
 	db $ff
-
-GymTrainerRematchGroup:
-
-	; COOLTRAINERM (Rematch)
-	db "MIKE@"
-	db 0 ; normal
-
-	; party
-	db 100, STEELIX
-	db 100, AERODACTYL
-	db 100, TYPHLOSION
-
-	db $ff ; end
-	
-	; COOLTRAINERM (Rematch)
-	db "PAUL@"
-	db (1 << TRAINERTYPE_ITEM)
-
-	; party
-	db 100, KINGDRA, DRAGON_FANG
-	db 100, DRAGONITE, DRAGON_FANG
-	db 100, DRAGONAIR, MINT_BERRY
-
-	db $ff ; end
-	
-	; COOLTRAINERF (Rematch)
-	db "LOLA@"
-	db (1 << TRAINERTYPE_ITEM)
-
-	; party
-	db 100, NINETALES, CHARCOAL
-	db 100, MAGCARGO, BRIGHTPOWDER
-	db 100, CHARIZARD, BITTER_BERRY
-
-	db $ff ; end
