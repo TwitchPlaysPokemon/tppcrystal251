@@ -372,7 +372,7 @@ class AI(object):
                 defense = defense * 1.5
             #compute damage
             damage = ((((((2 * self.MonData[attacker]['level'] + 10) / 250) * (attack / defense) * basebp)+2) * 0.85)) * multiplier
-            if 'lightscreen' in self.MonData[temptext]['screens'] or (attacker > 5 and self.MonData['lightscreen']):
+            if ('lightscreen', 'light screen') in self.MonData[temptext]['screens'] or (attacker > 5 and self.MonData['lightscreen']):
                 damage /= 2
         elif move_used['category'] == "physical":
             atkmodifier *= self._statsmultipliers[self.MonData[attacker]['boosts']['atk']+6]/100
@@ -847,8 +847,12 @@ class AI(object):
                             self.MonData['spikes'] += 1
                 if self.MonData[mycurrent]['moves'][moveused]['effect'] == 'reflect':
                     self.MonData['reflect'] = True
+                    if 'reflect' in self.MonData['enemypokemon']['screens']:
+                        self.Damage[mycurrent][traincurrent][moveused]['damage'] = -500
                 elif self.MonData[mycurrent]['moves'][moveused]['effect'] == 'lightscreen':
                     self.MonData['lightscreen'] = True
+                    if ('lightscreen', 'light screen') in self.MonData['enemypokemon']['screens']:
+                        self.Damage[mycurrent][traincurrent][moveused]['damage'] = -500
 
                 #sub status
                 if (self.MonData[mycurrent]['moves'][moveused]['name'] == 'confuseray') and self.MonData[traincurrent]['item'] != 'confuseguard':
