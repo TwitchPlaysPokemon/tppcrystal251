@@ -389,7 +389,7 @@ class AI(object):
         if Debug_Code == 1:
             print('move used type: '+move_used['type'].lower()+' enemy types: '+ self.MonData[defender]['type'][1].lower()+' / '+ self.MonData[defender]['type'][2].lower())
         
-        effmulti = self.getEff(self.MonData[mycurrent]['moves'][moveused]['type'].lower(), self.MonData[traincurrent]['type'][1].lower(), 'playerpokemon') * self.getEff(self.MonData[mycurrent]['moves'][moveused]['type'].lower(), self.MonData[traincurrent]['type'][2].lower(), 'playerpokemon')
+        effmulti = self.getEff(self.MonData[attacker]['moves'][moveused]['type'].lower(), self.MonData[defender]['type'][1].lower(), 'playerpokemon') * self.getEff(self.MonData[attacker]['moves'][moveused]['type'].lower(), self.MonData[defender]['type'][2].lower(), 'playerpokemon')
         damage *= effmulti
             
         #compute 1.2x move-boosting items
