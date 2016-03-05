@@ -135,30 +135,30 @@
 	const ENGINE_TULLY_HAS_WATER_STONE
 	const ENGINE_TIFFANY_HAS_PINK_BOW
 	const ENGINE_WILTON_HAS_ITEM
-	const ENGINE_87
-	const ENGINE_88
-	const ENGINE_89
-	const ENGINE_8A
-	const ENGINE_8B
-	const ENGINE_8C
-	const ENGINE_8D
-	const ENGINE_8E
-	const ENGINE_8F
-	const ENGINE_90
-	const ENGINE_91
-	const ENGINE_92
-	const ENGINE_93
-	const ENGINE_94
-	const ENGINE_95
-	const ENGINE_96
-	const ENGINE_97
-	const ENGINE_98
-	const ENGINE_99
-	const ENGINE_9A
-	const ENGINE_9B
-	const ENGINE_9C
-	const ENGINE_9D
-	const ENGINE_9E
+	const ENGINE_87 ; phone rematches
+	const ENGINE_88 ; phone rematches
+	const ENGINE_89 ; phone rematches
+	const ENGINE_8A ; phone rematches
+	const ENGINE_8B ; phone rematches
+	const ENGINE_8C ; phone rematches
+	const ENGINE_8D ; phone rematches
+	const ENGINE_8E ; phone rematches
+	const ENGINE_8F ; phone rematches
+	const ENGINE_90 ; phone rematches
+	const ENGINE_91 ; phone rematches
+	const ENGINE_92 ; phone rematches
+	const ENGINE_93 ; phone rematches
+	const ENGINE_94 ; phone rematches
+	const ENGINE_95 ; phone rematches
+	const ENGINE_96 ; phone rematches
+	const ENGINE_97 ; phone rematches
+	const ENGINE_98 ; phone rematches
+	const ENGINE_99 ; phone rematches
+	const ENGINE_9A ; phone rematches
+	const ENGINE_9B ; phone rematches
+	const ENGINE_9C ; phone rematches
+	const ENGINE_9D ; phone rematches
+	const ENGINE_9E ; phone rematches
 	const ENGINE_KRIS_IN_CABLE_CLUB
 	const ENGINE_DUNSPARCE_SWARM
 	const ENGINE_YANMA_SWARM
