@@ -389,6 +389,8 @@ class AI(object):
         if Debug_Code == 1:
             print('move used type: '+move_used['type'].lower()+' enemy types: '+ self.MonData[defender]['type'][1].lower()+' / '+ self.MonData[defender]['type'][2].lower())
         
+        effmulti = self.getEff(self.MonData[mycurrent]['moves'][moveused]['type'].lower(), self.MonData[traincurrent]['type'][1].lower(), 'playerpokemon') * self.getEff(self.MonData[mycurrent]['moves'][moveused]['type'].lower(), self.MonData[traincurrent]['type'][2].lower(), 'playerpokemon')
+        damage *= effmulti
             
         #compute 1.2x move-boosting items
         type_boost_item_dict = {'blackbelt':'fighting','blackglasses':'dark','charcoal':'fire','dragonfang':'dragon','hardstone':'rock','dragonfang':'dragon','hardstone':'rock','magnet':'electric','metalcoat':'steel','miracleseed':'grass','mysticwater':'water','nevermeltice':'ice','poisonbarb':'poison','sharpbeak':'flying','silkscarf':'normal','silverpowder':'bug','softsand':'ground','spelltag':'ghost','pinkbow':'fairy'}
@@ -622,7 +624,7 @@ class AI(object):
         
         if self.FinalChance and move_used_effect in ('hyperbeam', 'skyattack', 'solarbeam', 'futuresight', 'metronome'):
             self.Damage[attacker][defender][moveused]['damage'] = 0
-            
+        
         if effmulti < 0.125:
             self.Damage[attacker][defender][moveused]['damage'] = -500
             
