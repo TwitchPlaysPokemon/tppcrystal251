@@ -97,6 +97,10 @@ ClairRematchScript:
 	reloadmapmusic
 	returnafterbattle
 	setevent EVENT_CLAIR_REMATCH
+	setevent EVENT_BLACKTHORN_REMATCH_TRAINER_1
+	setevent EVENT_BLACKTHORN_REMATCH_TRAINER_2
+	setevent EVENT_BLACKTHORN_REMATCH_TRAINER_3
+	setevent EVENT_BLACKTHORN_REMATCH_TRAINER_4
 	playmusic MUSIC_CLAIR
 	loadfont
 	writetext ClairRematchTextAfter
