@@ -350,20 +350,23 @@ PremierBall:
 ; benefit.
 	ld b, a
 	ld a, [EnemyMonStatus]
-	and 1 << FRZ | SLP
-	ld c, 10
-	jr nz, .addstatus
+	and (1 << FRZ) | SLP
+	jr z, .skip_double
+	ld a, b
+	sla a
+	jr .addstatus
+
+.skip_double
 	ld a, [EnemyMonStatus]
 	and a
-	ld c, 5
-	jr nz, .addstatus
-	ld c, 0
-.addstatus
 	ld a, b
-	add c
-	jr nc, .asm_e977
-	ld a, -1
-.asm_e977
+	jr z, .done_status
+	srl a
+	add b
+.addstatus
+	jr nc, .done_status
+	ld a, 255
+.done_status
 
 	ld d, a
 	push de
