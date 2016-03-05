@@ -1697,7 +1697,7 @@ class AI(object):
                             break
                     #if i CAN NOT deal damage, check if i have another mon to switch to
                     if tempx == 0:
-                        for tempmove in range(0, len(self.myparty)):
+                        for tempmove in range(0, self.myparty):
                             if self.MonData[mycurrent]['stats']['maxhp'] > 0:
                                 tempx += 1
                         #if i have another mon i can switch to check if the enemy is setting up - if he is, switch
