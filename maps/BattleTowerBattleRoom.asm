@@ -79,6 +79,7 @@ UnknownScript_0x9f483: ; 0x9f483
 	waitsfx
 	special Function8c084
 	special Reset
+
 UnknownScript_0x9f4a3: ; 0x9f4a3
 	writetext UnknownText_0x9efbf ;cancel your challenge?
 	yesorno
@@ -91,6 +92,10 @@ UnknownScript_0x9f4a3: ; 0x9f4a3
 	special Function8c084 ;pallette stuff
 	warpfacing $1, GROUP_BATTLE_TOWER_1F, MAP_BATTLE_TOWER_1F, $7, $7
 	loadfont
+	special CalculateTowerWinnings
+	loadfont
+	writetext WonTowerMoneyText
+	buttonsound
 	jump UnknownScript_0x9e4b0 ;exit
 ; 0x9f4c2
 
@@ -143,17 +148,17 @@ UnknownScript_0x9f4eb: ; 0x9f4eb
 	end
 ; 0x9f4f7
 
-UnknownScript_0x9f4f7: ; 0x9f4f7
-	writebyte $4
-	special Function170687
-	writebyte $6
-	special Function170687
-	loadfont
-	writetext UnknownText_0x9ea49
-	writetext UnknownText_0x9ec09
-	waitbutton
-	closetext
-	end
+;UnknownScript_0x9f4f7: ; 0x9f4f7
+;	writebyte $4
+;	special Function170687
+;	writebyte $6
+;	special Function170687
+;	loadfont
+;	writetext UnknownText_0x9ea49
+;	writetext UnknownText_0x9ec09
+;	waitbutton
+;	closetext
+;	end
 ; 0x9f50b
 
 

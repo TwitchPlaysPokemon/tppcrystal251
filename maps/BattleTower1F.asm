@@ -224,10 +224,10 @@ UnknownScript_0x9e515: ; 0x9e515
 	jump UnknownScript_0x9e44e
 ; 0x9e53b
 
-UnknownScript_0x9e53b: ; 0x9e53b
-	writetext UnknownText_0x9f076
-	waitbutton
-	jump UnknownScript_0x9e4b0
+;UnknownScript_0x9e53b: ; 0x9e53b
+;	writetext UnknownText_0x9f076
+;	waitbutton
+;	jump UnknownScript_0x9e4b0
 ; 0x9e542
 
 UnknownScript_0x9e542: ; 0x9e542
@@ -712,14 +712,14 @@ UnknownText_0x9f037: ; 0x9f037
 	done
 ; 0x9f076
 
-UnknownText_0x9f076: ; 0x9f076
-	text "You may enter only"
-	line "five BATTLE ROOMS"
-	cont "each day."
+;UnknownText_0x9f076: ; 0x9f076
+;	text "You may enter only"
+;	line "five BATTLE ROOMS"
+;	cont "each day."
 
-	para "Please come back"
-	line "tomorrow."
-	done
+;	para "Please come back"
+;	line "tomorrow."
+;	done
 ; 0x9f0c1
 
 UnknownText_0x9f0c1: ; 0x9f0c1
