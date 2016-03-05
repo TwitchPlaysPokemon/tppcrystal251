@@ -388,9 +388,6 @@ class AI(object):
         #Effectivity
         if Debug_Code == 1:
             print('move used type: '+move_used['type'].lower()+' enemy types: '+ self.MonData[defender]['type'][1].lower()+' / '+ self.MonData[defender]['type'][2].lower())
-        
-        effmulti = self.getEff(self.MonData[attacker]['moves'][moveused]['type'].lower(), self.MonData[defender]['type'][1].lower(), 'playerpokemon') * self.getEff(self.MonData[attacker]['moves'][moveused]['type'].lower(), self.MonData[defender]['type'][2].lower(), 'playerpokemon')
-        damage *= effmulti
             
         #compute 1.2x move-boosting items
         type_boost_item_dict = {'blackbelt':'fighting','blackglasses':'dark','charcoal':'fire','dragonfang':'dragon','hardstone':'rock','dragonfang':'dragon','hardstone':'rock','magnet':'electric','metalcoat':'steel','miracleseed':'grass','mysticwater':'water','nevermeltice':'ice','poisonbarb':'poison','sharpbeak':'flying','silkscarf':'normal','silverpowder':'bug','softsand':'ground','spelltag':'ghost','pinkbow':'fairy'}
@@ -467,6 +464,7 @@ class AI(object):
             elif tempaccuracy > 0:
                 totalacc = tempx * accmodifier * (tempaccuracy/100) * tempy
         
+        effmulti = self.getEff(self.MonData[attacker]['moves'][moveused]['type'].lower(), self.MonData[defender]['type'][1].lower(), 'playerpokemon') * self.getEff(self.MonData[attacker]['moves'][moveused]['type'].lower(), self.MonData[defender]['type'][2].lower(), 'playerpokemon')
         if move_used_effect == 'ohko':
             if effmulti > 0:
                 if self.MonData[attacker]['level'] >= self.MonData[defender]['level']:
