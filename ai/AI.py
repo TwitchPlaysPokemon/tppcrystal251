@@ -1652,6 +1652,7 @@ class AI(object):
                 print('about to die - i need to attack, i will use: '+str(x1))
             return x1
         return
+        
     def ManualControl(self):
         if self.jsonlist['battleState']['enemy type'] == 'TRAINER':
             mycurrent = self.jsonlist['battleState']['enemypokemon']['party idx']
@@ -1720,6 +1721,16 @@ class AI(object):
                 return tempx
             if 'charged' in self.MonData['playerpokemon']['substatus'] or (isinstance(self.MonData['playerpokemon']['substatus'], dict) and 'charged' in self.MonData['playerpokemon']['substatus'].values()):
                 return tempx
+        
+        if self.theaction < 4:
+            tempx = -1
+            if self.FinalChance:
+                for tempmove in range(0, len(self.jsonlist['battleState']['enemypokemon']['moves'])):
+                    if self.MonData[mycurrent]['moves'][tempmove]['effect'] == ('destinybond'):
+                        tempx = tempmove
+                if tempx != -1:
+                    return tempx
+            
         
         #if we chose to use either counter/mirrorcoat, and the mon has BOTH counter and mirrorcoat, 
         #randomize the move used based on the effective damage of both
@@ -1887,7 +1898,7 @@ class AI(object):
                 self.theaction = self.mybestmove[mycurrent]
                 self.triggered = 1
                 self.TrainerDamage(traincurrent, mycurrent)
-                if self.Damage[traincurrent][mycurrent][self.enemynumber]['damage'] * 1.25 < self.jsonlist['battleState']['enemypokemon']['hp']:
+                if self.Damage[traincurrent][mycurrent][self.enemynumber]['damage'] * 1.25 > self.jsonlist['battleState']['enemypokemon']['hp']:
                     self.ShouldISwitch = False
                 if self.ShouldISwitch:
                     theaction2 = self.OptionalSwitch(traincurrent)
