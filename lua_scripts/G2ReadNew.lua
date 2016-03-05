@@ -37,6 +37,7 @@ local Pokedexdata = {}
 local LastCaptured
 local LastCaptured2
 local Nickname = {}
+local PartyCount = 0
 
 OverlayFrameDelay = 0
 
@@ -379,6 +380,7 @@ function read_new_playerstate()
 	json["money"] = Money
 	json["last_captured"] = LastCaptured
 	json["pokemon"] = {}
+	json["partycount"] = PartyCount
 	json["map_id"] = MapID
 
 	for i = 1, 6, 1 do
