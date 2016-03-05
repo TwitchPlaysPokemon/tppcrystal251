@@ -4694,52 +4694,68 @@ BlisseyEvosAttacks:
 
 RaikouEvosAttacks:
 	db 0 ; no more evolutions
-	db 1, SPARK
-	db 1, LEER
-	db 1, BITE
 	db 1, ROAR
-	db 66, THUNDERBOLT
+	db 1, THUNDERSHOCK
+	db 5, SWIFT
+	db 11, MUD_SLAP
+	db 22, LIGHT_SCREEN
+	db 33, SPARK
+	db 44, BITE
+	db 51, LEER
+	db 56, HEADBUTT
+	db 61, WILD_CHARGE
+	db 66, IRON_TAIL
 	db 71, REFLECT
 	db 76, EXTREMESPEED
-	db 81, LIGHT_SCREEN
-	db 86, THUNDER
-	db 91, CRUNCH
+	db 81, THUNDERBOLT
+	db 86, CRUNCH
+	db 91, IRON_HEAD
 	db 96, DOUBLE_EDGE
-	db 100, IRON_HEAD
+	db 100,THUNDER
 	db 0 ; no more level-up moves
 
 EnteiEvosAttacks:
 	db 0 ; no more evolutions
-	db 1, FIRE_SPIN
-	db 1, LEER
-	db 1, BITE
 	db 1, ROAR
-	db 66, HEAT_WAVE
-	db 71, HEADBUTT
+	db 1, EMBER
+	db 5, SWIFT
+	db 11, MUD_SLAP
+	db 22, STOMP
+	db 33, FIRE_SPIN
+	db 44, BITE
+	db 51, LEER
+	db 56, HEADBUTT
+	db 61, HEAT_WAVE
+	db 66, IRON_TAIL
+	db 71, REFLECT
 	db 76, EXTREMESPEED
-	db 81, REFLECT
-	db 86, SACRED_FIRE
-	db 91, MUD_SLAP
+	db 81, FLAMETHROWER
+	db 86, WILLOWISP
+	db 91, IRON_HEAD
 	db 96, DOUBLE_EDGE
-	db 100, IRON_HEAD
+	db 100,SACRED_FIRE
 	db 0 ; no more level-up moves
 
 SuicuneEvosAttacks:
 	db 0 ; no more evolutions
-	db 1, AURORA_BEAM
-	db 1, LEER
-	db 1, BITE
-	db 1, BUBBLEBEAM
+	db 1, ROAR
+	db 1, BUBBLE
+	db 5, GUST
+	db 11, MUD_SLAP
+	db 22, BITE
+	db 33, WATER_GUN
+	db 44, SWIFT
+	db 51, REFLECT
+	db 56, AURORA_BEAM 
+	db 61, BUBBLEBEAM
 	db 66, MIST
-	db 71, SWIFT
+	db 71, LEER
 	db 76, EXTREMESPEED
-	db 81, REFLECT
-	db 86, AIR_SLASH
-	db 91, MIRROR_COAT
-	db 96, HYDRO_PUMP
-	db 100,SHEER_COLD
-	db 76, DOUBLE_EDGE
 	db 81, IRON_HEAD
+	db 86, HYDRO_PUMP
+	db 91, MIRROR_COAT
+	db 96, AIR_SLASH
+	db 100,SHEER_COLD
 	db 0 ; no more level-up moves
 
 LarvitarEvosAttacks:
