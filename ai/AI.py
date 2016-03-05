@@ -622,6 +622,10 @@ class AI(object):
         
         if self.FinalChance and move_used_effect in ('hyperbeam', 'skyattack', 'solarbeam', 'futuresight', 'metronome'):
             self.Damage[attacker][defender][moveused]['damage'] = 0
+            
+        if effmulti < 0.125:
+            self.Damage[attacker][defender][moveused]['damage'] = -500
+            
         return 1
 
     #enemy's highest damage
@@ -1860,7 +1864,7 @@ class AI(object):
         for mymons in range(0, 6):
             self.difference[mymons] = {}
             for trainmons in range(6, 12):
-                self.difference[mymons][trainmons] = -100
+                self.difference[mymons][trainmons] = -1000
 
         self.differenceitems = {}
         for mymons in range(0, 6):
