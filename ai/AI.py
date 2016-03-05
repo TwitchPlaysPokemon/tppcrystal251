@@ -464,13 +464,14 @@ class AI(object):
                 totalacc = tempx * accmodifier * (move_used['acc']/100) * tempy
             elif tempaccuracy > 0:
                 totalacc = tempx * accmodifier * (tempaccuracy/100) * tempy
-
+        
         if move_used_effect == 'ohko':
-            if self.MonData[attacker]['level'] > self.MonData[defender]['level']:
-                totalacc = ((self.MonData[attacker]['level'] - self.MonData[defender]['level']) + 30)/100
-                damage = self.MonData[defender]['stats']['curhp']
-            else:
-                damage = 0
+            if effmulti > 0:
+                if self.MonData[attacker]['level'] >= self.MonData[defender]['level']:
+                    totalacc = ((self.MonData[attacker]['level'] - self.MonData[defender]['level']) + 30)/100
+                    damage = self.MonData[defender]['stats']['curhp']
+                else:
+                    damage = 0
 
         locked = ('lock on' in self.MonData[temptext]['substatus'] or (isinstance(self.MonData[temptext]['substatus'], dict) and 'lock on' in self.MonData[temptext]['substatus'].values())) or (self.MonData['lockon'] == True and attacker < 6)
         if locked:
