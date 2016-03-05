@@ -84,6 +84,10 @@ UnknownScript_0x9f4a3: ; 0x9f4a3
 	writetext UnknownText_0x9efbf ;cancel your challenge?
 	yesorno
 	iffalse UnknownScript_0x9f477 ;if no back to loop, else quit out
+	special CalculateTowerWinningsOnQuit
+	loadfont
+	writetext WonTowerMoneyText
+	waitbutton
 	writebyte $4
 	special Function170687 ;load 0 into $be45
 	writebyte $6
@@ -92,10 +96,6 @@ UnknownScript_0x9f4a3: ; 0x9f4a3
 	special Function8c084 ;pallette stuff
 	warpfacing $1, GROUP_BATTLE_TOWER_1F, MAP_BATTLE_TOWER_1F, $7, $7
 	loadfont
-	special CalculateTowerWinnings
-	loadfont
-	writetext WonTowerMoneyText
-	buttonsound
 	jump UnknownScript_0x9e4b0 ;exit
 ; 0x9f4c2
 
