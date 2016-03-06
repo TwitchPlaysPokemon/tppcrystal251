@@ -79,10 +79,15 @@ UnknownScript_0x9f483: ; 0x9f483
 	waitsfx
 	special Function8c084
 	special Reset
+
 UnknownScript_0x9f4a3: ; 0x9f4a3
 	writetext UnknownText_0x9efbf ;cancel your challenge?
 	yesorno
 	iffalse UnknownScript_0x9f477 ;if no back to loop, else quit out
+	special CalculateTowerWinningsOnQuit
+	loadfont
+	writetext WonTowerMoneyText
+	waitbutton
 	writebyte $4
 	special Function170687 ;load 0 into $be45
 	writebyte $6
@@ -143,17 +148,17 @@ UnknownScript_0x9f4eb: ; 0x9f4eb
 	end
 ; 0x9f4f7
 
-UnknownScript_0x9f4f7: ; 0x9f4f7
-	writebyte $4
-	special Function170687
-	writebyte $6
-	special Function170687
-	loadfont
-	writetext UnknownText_0x9ea49
-	writetext UnknownText_0x9ec09
-	waitbutton
-	closetext
-	end
+;UnknownScript_0x9f4f7: ; 0x9f4f7
+;	writebyte $4
+;	special Function170687
+;	writebyte $6
+;	special Function170687
+;	loadfont
+;	writetext UnknownText_0x9ea49
+;	writetext UnknownText_0x9ec09
+;	waitbutton
+;	closetext
+;	end
 ; 0x9f50b
 
 

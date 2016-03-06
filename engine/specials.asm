@@ -199,6 +199,7 @@ SpecialsPointers:: ; c029
 	add_special SpecialMoveRelearner
 	add_special SpecialRegionCheck
 	add_special CalculateTowerWinnings
+	add_special CalculateTowerWinningsOnQuit
 	add_special CalculateTowerVictory
 	add_special SpecialNone
 ; c224
@@ -729,6 +730,7 @@ CalculateTowerWinnings: ;NOTE, decs wcf64. calculate winnings of the battle towe
 	ld a, [wcf64]
 	dec a
 	ld [wcf64], a
+CalculateTowerWinningsOnQuit:
 	ld c, a
 	ld b, 0
 	ld hl, BaseWinnings
