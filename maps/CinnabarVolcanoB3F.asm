@@ -5,7 +5,7 @@ CinnabarVolcanoB3F_MapScriptHeader:
 	; callbacks
 	db 2
 	dbw 1, CinnabarVolcanoB3F_CheckBlocks
-	dbw 4, SimonCheck_CinnabarVolcanoB3F1
+	dbw 5, SimonCheck_CinnabarVolcanoB3F1
 
 CinnabarVolcanoB3F_CheckBlocks:
 	checkevent EVENT_MOLTRES_BOULDER_1c

@@ -12220,9 +12220,9 @@ Function1203a: ; 1203a (4:603a)
 	ld a, [hl]
 	and B_BUTTON
 	jr nz, .b
-	ld a, [hl]
-	and START
-	jr nz, .start
+	; ld a, [hl]
+	; and START
+	; jr nz, .start
 	ld a, [hl]
 	and SELECT
 	jr nz, .select
@@ -16258,9 +16258,9 @@ Function13a12: ; 13a12
 	ld a, 1
 	ld [hli], a ;set party to 1
 	inc hl
-	ld a, [hl] ;get name of second mon in party
+	ld a, [hl] ;get species of second mon in party
 	ld [wdf9b], a ;load into var
-	ld [hl], $ff ;load fake end name in it's place'
+	ld [hl], $ff ;load fake end in it's place'
 	xor a ;return 0
 	ld [ScriptVar], a
 	ret
@@ -20929,7 +20929,12 @@ GetMaxYouCanBuy:
 	ld [$ffc5], a
 	callba GetItemPrice
 	ld b, -1
+	jr .start
 .loop
+	ld a, b
+	cp 99
+	jr nc, .done
+.start
 	ld a, [$ffc5]
 	add e
 	ld [$ffc5], a
@@ -20953,6 +20958,7 @@ GetMaxYouCanBuy:
 	ld a, b
 	cp 100
 	ret c
+.done
 	ld a, 99
 	ret
 

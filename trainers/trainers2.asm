@@ -294,6 +294,18 @@ CoolSiblingsGroup:
 	db 91, STANTLER
 	db $ff
 
+	db "MING&LEE@"
+	db 0
+	db 100, DRAGONITE
+	db 100, KINGDRA
+	db $ff
+
+	db "MING&LEE@"
+	db 0
+	db 100, KINGDRA
+	db 100, DRAGONITE
+	db $ff
+
 ; ===========================
 ; =====================
 
@@ -537,7 +549,7 @@ RivalRBGroup:
 	db $ff
 	;lvl 100 rematch
 		db "<GREEN>@"
-	db (1 << TRAINERTYPE_MOVES) | (1 << TRAINERTYPE_ITEM)  
+	db (1 << TRAINERTYPE_MOVES) | (1 << TRAINERTYPE_ITEM)  | (1 << TRAINERTYPE_MAXXP)
 
 	db 100, PIDGEOT, SHARP_BEAK
 		db DOUBLE_EDGE
@@ -579,7 +591,7 @@ RivalRBGroup:
 
 	; lvl 100 rematch, Choose Squirtle
 	db "<GREEN>@"
-	db (1 << TRAINERTYPE_MOVES) | (1 << TRAINERTYPE_ITEM) 
+	db (1 << TRAINERTYPE_MOVES) | (1 << TRAINERTYPE_ITEM) | (1 << TRAINERTYPE_MAXXP)
 
 
 	db 100, PIDGEOT, SHARP_BEAK
@@ -622,7 +634,7 @@ RivalRBGroup:
 
 	; lvl 100 rematch, Choose Bulbasaur
 	db "<GREEN>@"
-	db (1 << TRAINERTYPE_MOVES) | (1 << TRAINERTYPE_ITEM)  
+	db (1 << TRAINERTYPE_MOVES) | (1 << TRAINERTYPE_ITEM) | (1 << TRAINERTYPE_MAXXP)
 
 
 	db 100, PIDGEOT, SHARP_BEAK

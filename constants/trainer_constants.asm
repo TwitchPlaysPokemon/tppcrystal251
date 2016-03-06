@@ -231,6 +231,8 @@
 	const ALLEN
 	const DARIN
 	const BONITA
+	const MIKE2
+	const PAUL2
 
 	trainerclass COOLTRAINERF ; 1c
 	const GWEN
@@ -255,6 +257,7 @@
 	const REENA3
 	const CARA
 	const SALMA
+	const LOLA2
 
 	trainerclass BEAUTY ; 1d
 	const VICTORIA
@@ -752,6 +755,8 @@
 	const ELAN_IDA2
 	const ARA_BELLA1
 	const ARA_BELLA2
+	const MINGLEE1
+	const MINGLEE2
 
 	trainerclass BLUE_RB
 	const BLUE_RB_1A

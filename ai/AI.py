@@ -372,7 +372,7 @@ class AI(object):
                 defense = defense * 1.5
             #compute damage
             damage = ((((((2 * self.MonData[attacker]['level'] + 10) / 250) * (attack / defense) * basebp)+2) * 0.85)) * multiplier
-            if 'lightscreen' in self.MonData[temptext]['screens'] or (attacker > 5 and self.MonData['lightscreen']):
+            if ('lightscreen', 'light screen') in self.MonData[temptext]['screens'] or (attacker > 5 and self.MonData['lightscreen']):
                 damage /= 2
         elif move_used['category'] == "physical":
             atkmodifier *= self._statsmultipliers[self.MonData[attacker]['boosts']['atk']+6]/100
@@ -388,7 +388,6 @@ class AI(object):
         #Effectivity
         if Debug_Code == 1:
             print('move used type: '+move_used['type'].lower()+' enemy types: '+ self.MonData[defender]['type'][1].lower()+' / '+ self.MonData[defender]['type'][2].lower())
-        
             
         #compute 1.2x move-boosting items
         type_boost_item_dict = {'blackbelt':'fighting','blackglasses':'dark','charcoal':'fire','dragonfang':'dragon','hardstone':'rock','dragonfang':'dragon','hardstone':'rock','magnet':'electric','metalcoat':'steel','miracleseed':'grass','mysticwater':'water','nevermeltice':'ice','poisonbarb':'poison','sharpbeak':'flying','silkscarf':'normal','silverpowder':'bug','softsand':'ground','spelltag':'ghost','pinkbow':'fairy'}
@@ -464,13 +463,15 @@ class AI(object):
                 totalacc = tempx * accmodifier * (move_used['acc']/100) * tempy
             elif tempaccuracy > 0:
                 totalacc = tempx * accmodifier * (tempaccuracy/100) * tempy
-
+        
+        effmulti = self.getEff(self.MonData[attacker]['moves'][moveused]['type'].lower(), self.MonData[defender]['type'][1].lower(), 'playerpokemon') * self.getEff(self.MonData[attacker]['moves'][moveused]['type'].lower(), self.MonData[defender]['type'][2].lower(), 'playerpokemon')
         if move_used_effect == 'ohko':
-            if self.MonData[attacker]['level'] > self.MonData[defender]['level']:
-                totalacc = ((self.MonData[attacker]['level'] - self.MonData[defender]['level']) + 30)/100
-                damage = self.MonData[defender]['stats']['curhp']
-            else:
-                damage = 0
+            if effmulti > 0:
+                if self.MonData[attacker]['level'] >= self.MonData[defender]['level']:
+                    totalacc = ((self.MonData[attacker]['level'] - self.MonData[defender]['level']) + 30)/100
+                    damage = self.MonData[defender]['stats']['curhp']
+                else:
+                    damage = 0
 
         locked = ('lock on' in self.MonData[temptext]['substatus'] or (isinstance(self.MonData[temptext]['substatus'], dict) and 'lock on' in self.MonData[temptext]['substatus'].values())) or (self.MonData['lockon'] == True and attacker < 6)
         if locked:
@@ -531,13 +532,13 @@ class AI(object):
         if (self.MonData[attacker]['status'] == 'frz') and (move_used['name'].lower() not in ('flamewheel', 'sacredfire', 'flareblitz')):
             damage *= 0.2
             if attacker > 5:
-                damage = 0
+                damage *= 0.01
         elif (self.MonData[attacker]['status'] == 'slp') and (move_used['name'].lower() not in ('snore', 'sleeptalk')):
             damage *= 0.33
             if attacker > 5:
-                damage = 0
+                damage *= 0.01
         elif (self.MonData[attacker]['status'] in ('slp2', 'slp1')) and (move_used['name'].lower() not in ('snore', 'sleeptalk')):
-            damage = 0
+            damage *= 0.01
         if (move_used_effect == 'dreameater') and (self.MonData[defender]['status'] != 'slp'):
             damage = 0
         if (self.MonData[attacker]['status'] not in ('slp', 'slp2', 'slp1')) and (move_used['name'].lower() in ('snore', 'sleeptalk')):
@@ -621,6 +622,10 @@ class AI(object):
         
         if self.FinalChance and move_used_effect in ('hyperbeam', 'skyattack', 'solarbeam', 'futuresight', 'metronome'):
             self.Damage[attacker][defender][moveused]['damage'] = 0
+        
+        if effmulti < 0.125:
+            self.Damage[attacker][defender][moveused]['damage'] = -500
+            
         return 1
 
     #enemy's highest damage
@@ -668,7 +673,7 @@ class AI(object):
                     elif self.MonData[mycurrent]['moves'][moveused]['effect'] == 'rage':
                         self.MonData[mycurrent]['boosts']['atk'] = self.MonData[mycurrent]['boosts']['atk'] + 1 
                         
-                    #Counter coat (otherwise known as a move that has way too much code and probably be never used anyways)
+                    #Counter coat (otherwise known as a move that has way too much code and probably be never used anyways and cause far too many headaches)
                     elif (self.MonData[mycurrent]['moves'][moveused]['effect'] == 'counter' or self.MonData[mycurrent]['moves'][moveused]['effect'] == 'mirrorcoat'):
                         tempx = 0
                         tempdamage = 0.00
@@ -709,7 +714,9 @@ class AI(object):
                                 if random.randint(0, 100) > 50:
                                     self.Damage[mycurrent][traincurrent][moveused]['damage'] = 0
                             
-
+                if self.MonData[mycurrent]['moves'][moveused]['type'] == 'fire' and self.MonData[traincurrent]['status'] == 'frz':
+                    self.MonData[traincurrent]['status'] = 'none'
+                
                 #stats up
                 if self.MonData[mycurrent]['moves'][moveused]['effect'] == 'defenseup2':
                     self.MonData[mycurrent]['boosts']['def'] += 2
@@ -846,8 +853,12 @@ class AI(object):
                             self.MonData['spikes'] += 1
                 if self.MonData[mycurrent]['moves'][moveused]['effect'] == 'reflect':
                     self.MonData['reflect'] = True
+                    if 'reflect' in self.MonData['enemypokemon']['screens']:
+                        self.Damage[mycurrent][traincurrent][moveused]['damage'] = -500
                 elif self.MonData[mycurrent]['moves'][moveused]['effect'] == 'lightscreen':
                     self.MonData['lightscreen'] = True
+                    if ('lightscreen', 'light screen') in self.MonData['enemypokemon']['screens']:
+                        self.Damage[mycurrent][traincurrent][moveused]['damage'] = -500
 
                 #sub status
                 if (self.MonData[mycurrent]['moves'][moveused]['name'] == 'confuseray') and self.MonData[traincurrent]['item'] != 'confuseguard':
@@ -898,8 +909,6 @@ class AI(object):
             else:
                 if Debug_Code == 1:
                     print("I have a bad status, Can't do anything with that")
-                self.Damage[mycurrent][traincurrent][moveused]['damage'] = -1
-                self.Damage[mycurrent][traincurrent][moveused]['selfdamage'] = 0
         else:
             if Debug_Code == 1:
                 print("No pp, Can't do anything with that")
@@ -1133,7 +1142,7 @@ class AI(object):
         self.mybestmove[mycurrent] = 0
         self.mycurhp = self.hp[mycurrent]
         self.traincurhp = self.opponenthp[traincurrent]
-        
+        self.mybestmove[mycurrent] = random.randint(0, len(self.MonData[mycurrent]['moves']))
         #prevents an impossible case
         if self.mycurhp == 0:
             self.mycurhp = 1
@@ -1159,6 +1168,8 @@ class AI(object):
                 self.endofturn(traincurrent, mycurrent)
                 myhp = self.MonData[mycurrent]['stats']['curhp']
                 trainhp = self.MonData[traincurrent]['stats']['curhp']
+                if myhp > self.MonData[mycurrent]['stats']['maxhp']:
+                    myhp = self.MonData[mycurrent]['stats']['maxhp']
             #am i using an item?
             if self.useitem > 0:
                 myhp = myhp - self.Damage[traincurrent][mycurrent][self.enemynumber]['damage']
@@ -1191,6 +1202,8 @@ class AI(object):
             for x1 in range(0, numberofturns):
                 self.MonData['painsplit'] = False
                 self.MonData['lockon'] = False
+                if x1 == 2 and self.MonData[mycurrent]['status'] in ('frz', 'slp'):
+                    self.MonData[mycurrent]['status'] = 'none'
                 tempx = min(self.MonData[mycurrent]['stats']['spd'] * self._statsmultipliers[self.MonData[mycurrent]['boosts']['spd']+6]/100, 999)
                 tempy = min(self.MonData[traincurrent]['stats']['spd'] * self._statsmultipliers[self.MonData[traincurrent]['boosts']['spd']+6]/100, 999)
                 if self.MonData[mycurrent]['status'] == 'par':
@@ -1302,6 +1315,8 @@ class AI(object):
                 for x1 in range(0, numberofturns):
                     self.MonData['painsplit'] = False
                     self.MonData['lockon'] = False
+                    if x1 == 2 and self.MonData[mycurrent]['status'] in ('frz', 'slp'):
+                        self.MonData[mycurrent]['status'] = 'none'
                     tempx = min(self.MonData[mycurrent]['stats']['spd'] * self._statsmultipliers[self.MonData[mycurrent]['boosts']['spd']+6]/100, 999)
                     tempy = min(self.MonData[traincurrent]['stats']['spd'] * self._statsmultipliers[self.MonData[traincurrent]['boosts']['spd']+6]/100, 999)
                     if self.MonData[mycurrent]['status'] == 'par':
@@ -1402,6 +1417,8 @@ class AI(object):
                     self.difference[mycurrent][traincurrent] = tempx
                     self.mybestmove['bestleaf'] = "_".join([str(x) for x in tempcombo])
                     self.mybestmove[mycurrent] = int(tempcombo[0])
+                    if self.FirstFight:
+                        self.NoBetterChoice = False
                 if self.difference[mycurrent][traincurrent] == -10:
                     if self.jsonlist['battleState']['enemy type'] == 'TRAINER':
                         self.mybestmove[mycurrent] = random.randint(0, (len(self.jsonlist['enemyParty']['party'][mycurrent]['moves'])))
@@ -1649,7 +1666,9 @@ class AI(object):
             if Debug_Code > 0:
                 print('about to die - i need to attack, i will use: '+str(x1))
             return x1
+            self.NoBetterChoice = False
         return
+       
     def ManualControl(self):
         if self.jsonlist['battleState']['enemy type'] == 'TRAINER':
             mycurrent = self.jsonlist['battleState']['enemypokemon']['party idx']
@@ -1695,7 +1714,7 @@ class AI(object):
                             break
                     #if i CAN NOT deal damage, check if i have another mon to switch to
                     if tempx == 0:
-                        for tempmove in range(0, len(self.myparty)):
+                        for tempmove in range(0, self.myparty):
                             if self.MonData[mycurrent]['stats']['maxhp'] > 0:
                                 tempx += 1
                         #if i have another mon i can switch to check if the enemy is setting up - if he is, switch
@@ -1718,6 +1737,16 @@ class AI(object):
                 return tempx
             if 'charged' in self.MonData['playerpokemon']['substatus'] or (isinstance(self.MonData['playerpokemon']['substatus'], dict) and 'charged' in self.MonData['playerpokemon']['substatus'].values()):
                 return tempx
+        
+        if self.theaction < 4:
+            tempx = -1
+            if self.FinalChance:
+                for tempmove in range(0, len(self.jsonlist['battleState']['enemypokemon']['moves'])):
+                    if self.MonData[mycurrent]['moves'][tempmove]['effect'] == ('destinybond'):
+                        tempx = tempmove
+                if tempx != -1:
+                    return tempx
+            
         
         #if we chose to use either counter/mirrorcoat, and the mon has BOTH counter and mirrorcoat, 
         #randomize the move used based on the effective damage of both
@@ -1822,8 +1851,8 @@ class AI(object):
         #then dont use stats down
         if KillingBlow:
             for tempmove in range(0, len(self.jsonlist['battleState']['enemypokemon']['moves'])):
-                if slef.MonData[mycuurent]['moves'][tempmove]['effect'] in ('accuracydown', 'defensedown', 'attackdown', 'speeddown2', 'defensedown2', 'spdefdown2'):
-                    slef.MonData[mycuurent]['moves'][tempmove]['curpp'] = 0
+                if self.MonData[mycurrent]['moves'][tempmove]['effect'] in ('accuracydown', 'defensedown', 'attackdown', 'speeddown2', 'defensedown2', 'spdefdown2'):
+                    self.MonData[mycurrent]['moves'][tempmove]['curpp'] = 0
         return
             
     #figure out best action to do in current battle
@@ -1842,7 +1871,7 @@ class AI(object):
         for mymons in range(0, 6):
             self.difference[mymons] = {}
             for trainmons in range(6, 12):
-                self.difference[mymons][trainmons] = -100
+                self.difference[mymons][trainmons] = -1000
 
         self.differenceitems = {}
         for mymons in range(0, 6):
@@ -1871,6 +1900,8 @@ class AI(object):
         self.MonData = {}
         self.FinalChance = True
         self.ShouldISwitch = True
+        self.NoBetterChoice = True
+        self.FirstFight = True
         
         #alright, start computing
         traincurrent = self.jsonlist['battleState']['playerpokemon']['party idx']+6
@@ -1882,10 +1913,11 @@ class AI(object):
             mycurrent = self.jsonlist['battleState']['enemypokemon']['party idx']
             if ('requested action' not in self.jsonlist['battleState']) or not (int(self.jsonlist['battleState']['requested action']) & 0x40):
                 self.Fight(traincurrent, mycurrent, 5)
+                self.FirstFight = False
                 self.theaction = self.mybestmove[mycurrent]
                 self.triggered = 1
                 self.TrainerDamage(traincurrent, mycurrent)
-                if self.Damage[traincurrent][mycurrent][self.enemynumber]['damage'] * 1.25 < self.jsonlist['battleState']['enemypokemon']['hp']:
+                if self.Damage[traincurrent][mycurrent][self.enemynumber]['damage'] * 1.25 > self.jsonlist['battleState']['enemypokemon']['hp']:
                     self.ShouldISwitch = False
                 if self.ShouldISwitch:
                     theaction2 = self.OptionalSwitch(traincurrent)
@@ -1940,7 +1972,7 @@ class AI(object):
         
         #invalid action handling
         if (int(self.jsonlist['battleState']['requested action']) & 0x04):
-            print('INVALID ACTION! Contact Beesafree with the logs')
+            print('INVALID ACTION -ERROR-! Contact Beesafree with the logs')
             if self.theaction > 11:
                 self.theaction = 0
             if self.theaction < 0:
@@ -1970,7 +2002,9 @@ class AI(object):
                     if self._actualAction[str(self.theaction)] not in self.jsonlist['battleState']['history']:
                         break
                     self.theaction = random.randint(4, self.myparty + 6)
-           
+        
+        if self.NoBetterChoice:
+            print('random move used because of no better choice, this shouldnt happen -ERROR-')
         temptext = self._actualAction[str(self.theaction)]
         return temptext
 

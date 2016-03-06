@@ -350,20 +350,23 @@ PremierBall:
 ; benefit.
 	ld b, a
 	ld a, [EnemyMonStatus]
-	and 1 << FRZ | SLP
-	ld c, 10
-	jr nz, .addstatus
+	and (1 << FRZ) | SLP
+	jr z, .skip_double
+	ld a, b
+	sla a
+	jr .addstatus
+
+.skip_double
 	ld a, [EnemyMonStatus]
 	and a
-	ld c, 5
-	jr nz, .addstatus
-	ld c, 0
-.addstatus
 	ld a, b
-	add c
-	jr nc, .asm_e977
-	ld a, -1
-.asm_e977
+	jr z, .done_status
+	srl a
+	add b
+.addstatus
+	jr nc, .done_status
+	ld a, 255
+.done_status
 
 	ld d, a
 	push de
@@ -1228,27 +1231,27 @@ Iron:
 Carbos:
 Calcium: ; ee3d
 	ld b, $1
-	call Functionf1f9
+	call Functionf1f9 ;check if valid target, if not cancel
 
 	jp c, Functionee9f
 
 	call Functioneef5
-
-	call Functioneed9
+	 
+	call Functioneed9 ;bc = distance between correct stat xp for vitamin used and top of stat xp
 
 	ld a, PartyMon1StatExp - PartyMon1
 	call GetPartyParamLocation
 
 	add hl, bc
 	ld a, [hl]
-	cp 235
+	cp 240
 	jr nc, Functionee83
 
-	add 20
+	add 15
 	ld [hl], a
 	call Functionee8c
 
-	call Functioneed9
+	call Functioneed9 ;bc = distance between correct stat xp for vitamin used and top of stat xp
 
 	ld hl, Strings_eeab
 	add hl, bc
@@ -1317,17 +1320,17 @@ Strings_eeab: ; eeab
 ; eed9
 
 
-Functioneed9: ; eed9
+Functioneed9: ; eed9 c = distance between correct stat xp for vitamin used and top of stat xp
 	ld a, [CurItem]
 	ld hl, Table_eeeb
-.next
+.next ;loop till find item used, 
 	cp [hl]
 	inc hl
 	jr z, .asm_eee6
 	inc hl
 	jr .next
 
-.asm_eee6
+.asm_eee6 ;load in distance between correct stat xp and top of stat xp
 	ld a, [hl]
 	ld c, a
 	ld b, 0

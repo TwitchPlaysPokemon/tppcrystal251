@@ -3759,6 +3759,28 @@ CooltrainerMGroup:
 	db 92, SUDOWOODO
 	db $ff
 
+
+	; COOLTRAINERM (Rematch)
+	db "MIKE@"
+	db 0 ; normal
+
+	; party
+	db 100, STEELIX
+	db 100, AERODACTYL
+	db 100, TYPHLOSION
+
+	db $ff ; end
+	
+	; COOLTRAINERM (Rematch)
+	db "PAUL@"
+	db (1 << TRAINERTYPE_ITEM)
+
+	; party
+	db 100, KINGDRA, DRAGON_FANG
+	db 100, DRAGONITE, DRAGON_FANG
+	db 100, DRAGONAIR, MINT_BERRY
+
+	db $ff ; end
 ; ================
 ; ================================
 
@@ -4067,6 +4089,17 @@ CooltrainerFGroup:
 
 ; ================
 ; ================================
+	
+	; COOLTRAINERF (Rematch)
+	db "LOLA@"
+	db (1 << TRAINERTYPE_ITEM)
+
+	; party
+	db 100, NINETALES, CHARCOAL
+	db 100, MAGCARGO, BRIGHTPOWDER
+	db 100, CHARIZARD, BITTER_BERRY
+
+	db $ff ; end
 
 
 BeautyGroup:

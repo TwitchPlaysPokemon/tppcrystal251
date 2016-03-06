@@ -196,10 +196,12 @@ OakRematchText:
 
 	para "Congratulations"
 	line "on being able to"
-	cont "prove yourself"
-	cont "amongst the best"
-	cont "#MON TRAINERS"
-	cont "in the world."
+
+	para "prove yourself"
+	line "amongst the best"
+
+	para "#MON TRAINERS"
+	line "in the world."
 	done
 
 OakCheckDexAtHoF:
@@ -209,7 +211,7 @@ OakCheckDexAtHoF:
 
 	done
 
-OakFullDex: 
+OakFullDex:
 	text "Wow!"
 	line "The #DEX is"
 	cont "complete!"
@@ -240,8 +242,8 @@ OakCongrats:
 
 	para "Just remember to"
 	line "get a DIPLOMA"
-	cont "from CELADON as"
-	cont "proof of your"
+	para "from CELADON as"
+	line "proof of your"
 	cont "accomplishment."
 
 	done
@@ -255,7 +257,7 @@ OakDexNotFull:
 	line "#DEX come see"
 	cont "me in my LAB."
 
-	done 
+	done
 
 MovementToChamp:
 	step_up
@@ -288,7 +290,7 @@ OakRepositions:
 	step_up
 	step_right
 	step_end
-    
+
 OakWalksUpMore:
     step_up
     step_up
@@ -306,11 +308,11 @@ MovementData_0x180f55: ; 0x180f55
 AzureBeforeBattleText:
 	text "Oh! <PLAY_G>!"
 	line "You're OK!"
-	
+
 	para "I'm so relieved"
 	line "that you escaped"
 	cont "from the SS ANNE!"
-	
+
 	para "I knew you were"
 	line "strong enough to"
 	cont "survive!"
@@ -318,23 +320,23 @@ AzureBeforeBattleText:
 	para "I kept on training"
 	line "and taking care"
 	cont "of my #MON."
-	
+
 	para "And now<...>"
-	
+
 	para "Here I am!"
-	
+
 	para "I have risen up"
 	line "over those who"
 	cont "called themselves"
 	cont "the ELITE FOUR!"
-	
+
 	para "I'm the new"
 	line "CHAMPION!"
-	
+
 	para "<...>"
 
 	para "<PLAY_G>!"
-	
+
 	para "Do you know what"
 	line "this means?"
 
@@ -343,7 +345,7 @@ AzureBeforeBattleText:
 	cont "that battle we"
 	cont "were always meant"
 	cont "to have!"
-	
+
 	para "I challenge you"
 	line "as the #MON"
 	cont "CHAMPION!"
@@ -353,11 +355,11 @@ RustBeforeBattleText:
 	text "Hey! I was lookin'"
 	line "forward to seein"
 	cont "you, <PLAY_G>!"
-	
+
 	para "I always thought"
 	line "you made it off"
 	cont "the SS ANNE!"
-	
+
 	para "No rival of mine"
 	line "would be so weak"
 	cont "as to lose to TEAM"
@@ -365,7 +367,7 @@ RustBeforeBattleText:
 
 	para "Well now that"
 	line "you're here<...>"
-	
+
 	para "I just wanted to"
 	line "let you know"
 	cont "something."
@@ -375,25 +377,25 @@ RustBeforeBattleText:
 	cont "looked all over"
 	cont "for powerful"
 	cont "#MON!"
-	
+
 	para "Not only that, I"
 	line "assembled teams"
 	cont "that would beat"
 	cont "any #MON type!"
-	
+
 	para "Well guess what?!"
 	line "I am now the"
 	cont "#MON LEAGUE"
 	cont "CHAMPION!"
-	
+
 	para "<PLAY_G>!"
 	line "Do you know"
 	cont "what that means"
-	cont "for you?" 
-	
+	cont "for you?"
+
 	para "Well!"
 	line "I'll tell you!"
-	
+
 	para "I am the most"
 	line "powerful trainer"
 	cont "in the world!"
@@ -408,7 +410,7 @@ LoseVsChampAzureText
     line "effort<...> but it"
     cont "wasn't good"
     cont "enough."
-    
+
     para "I hope you try"
     line "harder next time!"
 	done
@@ -431,7 +433,7 @@ WinVsChampRustText:
 AzurePostFightText:
 	text "<...>I guess I must"
 	line "concede<...>"
-	
+
 	para "You are a better"
 	line "trainer than I am."
 	done
@@ -449,25 +451,153 @@ HallwayOfFameOakText1:
 	done
 
 AzureBeforeRematchText:
+	text "<PLAYER>! You made"
+	line "it back here!"
+
+	para "I've been working"
+	line "hard to raise my"
+
+	para "#MON since our"
+	line "last battle."
+
+	para "And now I've bea-"
+	line "ten the ELITE FOUR"
+	cont "at their best!"
+
+	para "Since you're here,"
+	line "that must mean you"
+	cont "beat them too!"
+
+	para "That's so awesome!"
+	line "Congratulations!"
+
+	para "Now, <PLAYER>!"
+
+	para "I challenge you to"
+	line "one more #MON"
+	cont "BATTLE!"
+
+	para "I want to see just"
+	line "how far the two of"
+	cont "us have come!"
+	done
+
 RustBeforeRematchText:
-	text "Placeholder"
+	text "<PLAYER>! Fancy"
+	line "seeing you back"
+	cont "here!"
+
+	para "While you were out"
+	line "dilly-dallying"
+	cont "with your #DEX<...>"
+
+	para "I've been keeping"
+	line "up with my #MON"
+	cont "training.!"
+
+	para "And now, I'm the"
+	line "#MON LEAGUE"
+	cont "CHAMPION!"
+
+	para "I've beaten the"
+	line "ELITE FOUR, even"
+	cont "at their best!"
+
+	para "<...> Wha?! Oh."
+
+	para "If you're here,"
+	line "that means you've"
+
+	para "beaten them too,"
+	line "huh?"
+
+	para "You want the title"
+	line "of CHAMPION?"
+
+	para "Then you'll have to"
+	line "win it from me!"
 	done
 
 WinVsRematchAzureText:
+	text "Wow, incredible!"
+
+	para "You're even stron-"
+	line "ger now than any-"
+	cont "one I've met!"
+	done
 LoseVsRematchAzureText:
-WinVsRematchRustText: 
+	text "Giggle<...>"
+
+	para "Seems I'm just a"
+	line "little better than"
+	cont "you, <PLAYER>."
+	done
+WinVsRematchRustText:
+	text "WHAT?!"
+
+	para "How could I have"
+	line "lost to you again?"
+	done
 LoseVsRematchRustText:
-	text "I have nothing to"
-	line "say here yet."
+	text "Ha!"
+
+	para "Seems you've been"
+	line "spending a little"
+
+	para "too much time with"
+	line "your #DEX, and"
+
+	para "not enough time"
+	line "raising your team!"
+
+	para "Smell ya later,"
+	line "<PLAYER>!"
 	done
 
 AzurePostRematchText:
+	text "Wow, <PLAYER>."
+	line "You're so strong"
+	cont "now<...>"
+
+	para "You probably could"
+	line "have beaten me"
+
+	para "with one hand tied"
+	line "behind your back<...>"
+	; Wow Deku OneHand
+	done
+
 RustPostRematchText:
-	text "OLDEN"
+	text "<......> <......> <......>"
+	line "<......> <......> <......>"
+
+	para "Arrgh! Why can I"
+	line "never beat you,"
+	cont "<PLAYER>?"
+
+	para "You're always one"
+	line "step ahead of me!"
+	cont "It's not fair!"
 	done
 
 OakToRivalAfterRemtachText:
-	text "OLDEN"
+	text "PROF.OAK: I've"
+	line "heard what just"
+	cont "happened!"
+
+	para "I'm disappointed"
+	line "all over again!"
+
+	para "I came when I"
+	line "heard you beat"
+
+	para "the ELITE FOUR's"
+	line "ultimate chal-"
+	cont "lenge!"
+
+	para "But, when I got"
+	line "here, you had"
+	cont "already lost!"
 	done
 
 
@@ -476,31 +606,32 @@ UnknownText_0x18121b: ; 0x18121b
 	text "PROF.OAK: I've"
 	line "heard what"
 	cont "happened!"
-	
+
 	para "I'm dissapointed!"
-	
+
 	para "I came when I"
 	line "heard you beat"
 	cont "the ELITE FOUR!"
-	
+
 	para "But, when I got"
 	line "here, you had"
 	cont "already lost!"
 	done
 
 OakAfterRivalTalkToPlayer:
-	
+
 	text "<PLAY_G>!"
 	line "You understand"
-	cont "that your victory"
-	cont "was not just your"
+
+	para "that your victory"
+	line "was not just your"
 	cont "own doing!"
-	
+
 	para "The bond you"
 	line "share with your"
-	cont "#MON is"
-	cont "marvelous!"
-	
+
+	para "#MON is"
+	line "marvelous!"
 	done
 ; 0x18134b
 

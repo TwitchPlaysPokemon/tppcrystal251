@@ -2669,26 +2669,29 @@ BattleCommand09: ; 34d32
 	ret nz
 
 .asm_34e6b
-	ld a, $e
+	ld a, 14
 	sub c
+	add b
+	sub 8
+	jr c, .bottom_out
+	cp 13
+	jr c, .valid
+	ld a, 12
+	jr .valid
+.bottom_out
+	xor a
+.valid
+	sla a
 	ld c, a
+	ld b, 0
 	xor a
 	ld [$ffb4], a
 	ld [$ffb5], a
 	ld a, [hl]
 	ld [$ffb6], a
 	push hl
-	ld d, $2
-
-.asm_34e7a
-	push bc
 	ld hl, .AccProb
-	dec b
-	sla b
-	ld c, b
-	ld b, 0
 	add hl, bc
-	pop bc
 	ld a, [hli]
 	ld [$ffb7], a
 	call Multiply
@@ -2706,9 +2709,6 @@ BattleCommand09: ; 34d32
 	ld [$ffb6], a
 
 .asm_34ea2
-	ld b, c
-	dec d
-	jr nz, .asm_34e7a
 
 	ld a, [$ffb5]
 	and a
@@ -2722,19 +2722,19 @@ BattleCommand09: ; 34d32
 	ret
 
 .AccProb
-	db  33, 100 ;  33% -6
-	db  36, 100 ;  36% -5
-	db  43, 100 ;  43% -4
-	db  50, 100 ;  50% -3
-	db  60, 100 ;  60% -2
-	db  75, 100 ;  75% -1
-	db   1,   1 ; 100%  0
-	db 133, 100 ; 133% +1
-	db 166, 100 ; 166% +2
-	db   2,   1 ; 200% +3
-	db 233, 100 ; 233% +4
-	db 133,  50 ; 266% +5
-	db   3,   1 ; 300% +6
+	db 1, 3 ;  33.33% -6
+	db 3, 8 ;  37.50% -5
+	db 3, 7 ;  42.86% -4
+	db 1, 2 ;  50%    -3
+	db 3, 5 ;  60%    -2
+	db 3, 4 ;  75%    -1
+	db 1, 1 ; 100%     0
+	db 4, 3 ; 133.33% +1
+	db 5, 3 ; 166.67% +2
+	db 2, 1 ; 200%    +3
+	db 7, 3 ; 233.33% +4
+	db 8, 3 ; 266.67% +5
+	db 3, 1 ; 300%    +6
 
 ; 34ecc
 
@@ -3594,40 +3594,26 @@ PlayerAttackDamage: ; 352e2
 Function3534d: ; 3534d
 ; Truncate 16-bit values hl and bc to 8-bit values b and c respectively.
 ; b = hl, c = bc
-
+.loop
 	ld a, h
 	or b
-	jr z, .asm_3536b
+	jr z, .done
 
 	srl b
 	rr c
-	srl b
-	rr c
+	srl h
+	rr l
 
 	ld a, c
 	or b
-	jr nz, .asm_3535e
+	jr nz, .check_hl
 	inc c
-
-.asm_3535e
-	srl h
-	rr l
-	srl h
-	rr l
-
+.check_hl
 	ld a, l
 	or h
-	jr nz, .asm_3536b
+	jr nz, .loop
 	inc l
-
-.asm_3536b
-	ld a, [wLinkMode]
-	cp 3
-	jr z, .done
-
-	ld a, h
-	or b
-	jr nz, Function3534d
+	jr .loop
 
 .done
 	ld b, l

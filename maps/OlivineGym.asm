@@ -170,7 +170,7 @@ JasmineAfterRematchText:
 	line "say<...>"
 	
 	para "But<...>"
-	line "Good luck"
+	line "Good luck."
 	done
 
 UnknownText_0x9c2bb: ; 0x9c2bb
@@ -206,7 +206,7 @@ UnknownText_0x9c354: ; 0x9c354
 
 UnknownText_0x9c393: ; 0x9c393
 	text "<PLAYER> received"
-	line "TM09."
+	line "TM09!"
 	done
 ; 0x9c3a5
 

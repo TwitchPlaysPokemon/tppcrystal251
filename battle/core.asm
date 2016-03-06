@@ -3093,6 +3093,7 @@ ENDC
 
 IF DEF(BEESAFREE)
 MilitaryWaiting:
+	call EmptyBattleTextBox
 	ld a, [Options]
 	push af
 	set 4, a

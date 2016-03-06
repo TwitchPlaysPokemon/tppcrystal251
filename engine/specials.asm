@@ -199,6 +199,7 @@ SpecialsPointers:: ; c029
 	add_special SpecialMoveRelearner
 	add_special SpecialRegionCheck
 	add_special CalculateTowerWinnings
+	add_special CalculateTowerWinningsOnQuit
 	add_special CalculateTowerVictory
 	add_special SpecialNone
 ; c224
@@ -729,6 +730,7 @@ CalculateTowerWinnings: ;NOTE, decs wcf64. calculate winnings of the battle towe
 	ld a, [wcf64]
 	dec a
 	ld [wcf64], a
+CalculateTowerWinningsOnQuit:
 	ld c, a
 	ld b, 0
 	ld hl, BaseWinnings
@@ -746,9 +748,9 @@ CalculateTowerWinnings: ;NOTE, decs wcf64. calculate winnings of the battle towe
 GiveBattleTowerMoney:
 	ld de, Money
 	ld bc, $ffc3
-	ld hl, $ffb5
+	ld hl, $ffb4
 	push bc
-	xor a
+	ld a, [hli]
 	ld [bc], a
 	inc bc
 	ld a, [hli]
@@ -760,16 +762,14 @@ GiveBattleTowerMoney:
 	callab Function15fd7
 	ret
 
-
-
 BaseWinnings:
 	bigdw 300
-	bigdw 1000
-	bigdw 2000
-	bigdw 4000
-	bigdw 7000
-	bigdw 10000
-	bigdw 15000
+	bigdw 1300
+	bigdw 2800
+	bigdw 5000
+	bigdw 8000
+	bigdw 11000
+	bigdw 17000
 
 CalculateTowerVictory:
 	ld hl, 25000
