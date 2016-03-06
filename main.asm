@@ -50829,7 +50829,7 @@ GetPlayerMovement: ; 8002d set movement data, ret 3 is in whirlpool, ret 5 is fo
 	ret
 ; 800b7
 
-CheckSpinning:
+CheckSpinning::
 	ld a, [StandingTile]
 	call IsSpinTile
 	jr z, .start_spin
