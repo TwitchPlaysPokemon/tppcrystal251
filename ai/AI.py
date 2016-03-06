@@ -532,13 +532,13 @@ class AI(object):
         if (self.MonData[attacker]['status'] == 'frz') and (move_used['name'].lower() not in ('flamewheel', 'sacredfire', 'flareblitz')):
             damage *= 0.2
             if attacker > 5:
-                damage = 0
+                damage *= 0.01
         elif (self.MonData[attacker]['status'] == 'slp') and (move_used['name'].lower() not in ('snore', 'sleeptalk')):
             damage *= 0.33
             if attacker > 5:
-                damage = 0
+                damage *= 0.01
         elif (self.MonData[attacker]['status'] in ('slp2', 'slp1')) and (move_used['name'].lower() not in ('snore', 'sleeptalk')):
-            damage = 0
+            damage *= 0.01
         if (move_used_effect == 'dreameater') and (self.MonData[defender]['status'] != 'slp'):
             damage = 0
         if (self.MonData[attacker]['status'] not in ('slp', 'slp2', 'slp1')) and (move_used['name'].lower() in ('snore', 'sleeptalk')):
@@ -673,7 +673,7 @@ class AI(object):
                     elif self.MonData[mycurrent]['moves'][moveused]['effect'] == 'rage':
                         self.MonData[mycurrent]['boosts']['atk'] = self.MonData[mycurrent]['boosts']['atk'] + 1 
                         
-                    #Counter coat (otherwise known as a move that has way too much code and probably be never used anyways)
+                    #Counter coat (otherwise known as a move that has way too much code and probably be never used anyways and cause far too many headaches)
                     elif (self.MonData[mycurrent]['moves'][moveused]['effect'] == 'counter' or self.MonData[mycurrent]['moves'][moveused]['effect'] == 'mirrorcoat'):
                         tempx = 0
                         tempdamage = 0.00
@@ -714,7 +714,9 @@ class AI(object):
                                 if random.randint(0, 100) > 50:
                                     self.Damage[mycurrent][traincurrent][moveused]['damage'] = 0
                             
-
+                if self.MonData[mycurrent]['moves'][moveused]['type'] == 'fire' and self.MonData[traincurrent]['status'] == 'frz':
+                    self.MonData[traincurrent]['status'] = 'none'
+                
                 #stats up
                 if self.MonData[mycurrent]['moves'][moveused]['effect'] == 'defenseup2':
                     self.MonData[mycurrent]['boosts']['def'] += 2
@@ -907,8 +909,6 @@ class AI(object):
             else:
                 if Debug_Code == 1:
                     print("I have a bad status, Can't do anything with that")
-                self.Damage[mycurrent][traincurrent][moveused]['damage'] = -1
-                self.Damage[mycurrent][traincurrent][moveused]['selfdamage'] = 0
         else:
             if Debug_Code == 1:
                 print("No pp, Can't do anything with that")
@@ -1142,7 +1142,7 @@ class AI(object):
         self.mybestmove[mycurrent] = 0
         self.mycurhp = self.hp[mycurrent]
         self.traincurhp = self.opponenthp[traincurrent]
-        
+        self.mybestmove[mycurrent] = random.randint(0, len(self.MonData[mycurrent]['moves']))
         #prevents an impossible case
         if self.mycurhp == 0:
             self.mycurhp = 1
@@ -1202,6 +1202,8 @@ class AI(object):
             for x1 in range(0, numberofturns):
                 self.MonData['painsplit'] = False
                 self.MonData['lockon'] = False
+                if x1 == 2 and self.MonData[mycurrent]['status'] in ('frz', 'slp'):
+                    self.MonData[mycurrent]['status'] = 'none'
                 tempx = min(self.MonData[mycurrent]['stats']['spd'] * self._statsmultipliers[self.MonData[mycurrent]['boosts']['spd']+6]/100, 999)
                 tempy = min(self.MonData[traincurrent]['stats']['spd'] * self._statsmultipliers[self.MonData[traincurrent]['boosts']['spd']+6]/100, 999)
                 if self.MonData[mycurrent]['status'] == 'par':
@@ -1313,6 +1315,8 @@ class AI(object):
                 for x1 in range(0, numberofturns):
                     self.MonData['painsplit'] = False
                     self.MonData['lockon'] = False
+                    if x1 == 2 and self.MonData[mycurrent]['status'] in ('frz', 'slp'):
+                        self.MonData[mycurrent]['status'] = 'none'
                     tempx = min(self.MonData[mycurrent]['stats']['spd'] * self._statsmultipliers[self.MonData[mycurrent]['boosts']['spd']+6]/100, 999)
                     tempy = min(self.MonData[traincurrent]['stats']['spd'] * self._statsmultipliers[self.MonData[traincurrent]['boosts']['spd']+6]/100, 999)
                     if self.MonData[mycurrent]['status'] == 'par':
@@ -1413,6 +1417,8 @@ class AI(object):
                     self.difference[mycurrent][traincurrent] = tempx
                     self.mybestmove['bestleaf'] = "_".join([str(x) for x in tempcombo])
                     self.mybestmove[mycurrent] = int(tempcombo[0])
+                    if self.FirstFight:
+                        self.NoBetterChoice = False
                 if self.difference[mycurrent][traincurrent] == -10:
                     if self.jsonlist['battleState']['enemy type'] == 'TRAINER':
                         self.mybestmove[mycurrent] = random.randint(0, (len(self.jsonlist['enemyParty']['party'][mycurrent]['moves'])))
@@ -1660,8 +1666,9 @@ class AI(object):
             if Debug_Code > 0:
                 print('about to die - i need to attack, i will use: '+str(x1))
             return x1
+            self.NoBetterChoice = False
         return
-        
+       
     def ManualControl(self):
         if self.jsonlist['battleState']['enemy type'] == 'TRAINER':
             mycurrent = self.jsonlist['battleState']['enemypokemon']['party idx']
@@ -1893,6 +1900,8 @@ class AI(object):
         self.MonData = {}
         self.FinalChance = True
         self.ShouldISwitch = True
+        self.NoBetterChoice = True
+        self.FirstFight = True
         
         #alright, start computing
         traincurrent = self.jsonlist['battleState']['playerpokemon']['party idx']+6
@@ -1904,6 +1913,7 @@ class AI(object):
             mycurrent = self.jsonlist['battleState']['enemypokemon']['party idx']
             if ('requested action' not in self.jsonlist['battleState']) or not (int(self.jsonlist['battleState']['requested action']) & 0x40):
                 self.Fight(traincurrent, mycurrent, 5)
+                self.FirstFight = False
                 self.theaction = self.mybestmove[mycurrent]
                 self.triggered = 1
                 self.TrainerDamage(traincurrent, mycurrent)
@@ -1962,7 +1972,7 @@ class AI(object):
         
         #invalid action handling
         if (int(self.jsonlist['battleState']['requested action']) & 0x04):
-            print('INVALID ACTION! Contact Beesafree with the logs')
+            print('INVALID ACTION -ERROR-! Contact Beesafree with the logs')
             if self.theaction > 11:
                 self.theaction = 0
             if self.theaction < 0:
@@ -1992,7 +2002,9 @@ class AI(object):
                     if self._actualAction[str(self.theaction)] not in self.jsonlist['battleState']['history']:
                         break
                     self.theaction = random.randint(4, self.myparty + 6)
-           
+        
+        if self.NoBetterChoice:
+            print('random move used because of no better choice, this shouldnt happen -ERROR-')
         temptext = self._actualAction[str(self.theaction)]
         return temptext
 
