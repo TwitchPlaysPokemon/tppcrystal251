@@ -93852,7 +93852,7 @@ INCLUDE "engine/fourth_stats_screen.asm"
 GBCOnlyGFX2:
 INCBIN "gfx/misc/gbc_only_2.w112.2bpp"
 
-CopyrightTPPGFX:
+CopyrightTPPGFX::
 INCBIN "gfx/misc/copyright_tpp.2bpp"
 
 CopyrightTPPGFXEnd
