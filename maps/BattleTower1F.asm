@@ -72,16 +72,25 @@ UnknownScript_0x9e3fc: ; 0x9e3fc
 	writetext UnknownText_0x9e5ea ;do you want a battle room
 	writebyte $1
 	special Function17d224  ; if exit then ret scriptvar = 4, else scriptvar = cursor pos -1
-	if_equal $1, UnknownScript_0x9e40f 
-	if_equal $2, UnknownScript_0x9e4a5 ;play help text
+	if_equal $1, .EasyMode 
+	if_equal $2, .HardMode
+	if_equal $3, UnknownScript_0x9e4a5 ;play help text
 	jump UnknownScript_0x9e4b0 ;else exit menu
 ; 0x9e40f
+
+.EasyMode
+	clearevent EVENT_TOWER_HARD_MODE
+	jump UnknownScript_0x9e40f
+
+.HardMode
+	setevent EVENT_TOWER_HARD_MODE
+	jump UnknownScript_0x9e40f
 
 UnknownScript_0x9e40f: ; 0x9e40f 
 	writebyte $1a
 	special Function170687 ;clear battle tower data?
-	;special Function170bd3 ;if can enter, scriptvar = 0, else scriptvar = 1
-	;if_not_equal $0, UnknownScript_0x9e4bb ;if fail, exit
+		;special Function170bd3 ;if can enter, scriptvar = 0, else scriptvar = 1
+		;if_not_equal $0, UnknownScript_0x9e4bb ;if fail, exit
 	writetext UnknownText_0x9ef1f ;ask if save
 	yesorno
 	iffalse UnknownScript_0x9e3fc ;return to top menu if no
@@ -91,9 +100,9 @@ UnknownScript_0x9e40f: ; 0x9e40f
 	dotrigger $1 ;set trigger to do nothing if quit
 	writebyte $1
 	special Function170687 ;set bit 1 of $be4f
-	;special Function1700b0 ;level selection menu and checks  should be fine to remove this
-	;if_equal $a, UnknownScript_0x9e3fc ;if b is pressed and cofirmed to want out, exit
-	;if_not_equal $0, UnknownScript_0x9e550 ;should be impossible (mobile stuff?)
+		;special Function1700b0 ;level selection menu and checks  should be fine to remove this
+		;if_equal $a, UnknownScript_0x9e3fc ;if b is pressed and cofirmed to want out, exit
+		;if_not_equal $0, UnknownScript_0x9e550 ;should be impossible (mobile stuff?)
 	writebyte $11
 	special Function170687 ;load 0 into aa8d
 	writetext UnknownText_0x9e60a ;to your battle room

@@ -731,9 +731,20 @@ CalculateTowerWinnings: ;NOTE, decs wcf64. calculate winnings of the battle towe
 	dec a
 	ld [wcf64], a
 CalculateTowerWinningsOnQuit:
+	ld a, [wcf64]
 	ld c, a
 	ld b, 0
+	push bc
+	ld de, EVENT_TOWER_HARD_MODE
+	ld b, CHECK_FLAG
+	call EventFlagAction
+	ld a, c
+	and a
 	ld hl, BaseWinnings
+	pop bc
+	jr z, .NoBonus
+	ld hl, BonusWinnings
+.NoBonus
 	add hl, bc
 	add hl, bc
 	xor a
@@ -762,6 +773,15 @@ GiveBattleTowerMoney:
 	callab Function15fd7
 	ret
 
+BonusWinnings:
+	bigdw 300
+	bigdw 2000
+	bigdw 4200
+	bigdw 7500
+	bigdw 12000
+	bigdw 17500
+	bigdw 25000
+
 BaseWinnings:
 	bigdw 300
 	bigdw 1300
@@ -772,7 +792,15 @@ BaseWinnings:
 	bigdw 17000
 
 CalculateTowerVictory:
+	ld de, EVENT_TOWER_HARD_MODE
+	ld b, CHECK_FLAG
+	call EventFlagAction
+	ld a, c
+	and a
 	ld hl, 25000
+	jr z, .NoBonus
+	ld hl, 37500
+.NoBonus
 	xor a
 	ld [$ffb4], a
 	ld a, h

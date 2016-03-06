@@ -1131,7 +1131,7 @@ Item2Attributes:
 	dn 0, 0 ; can't use
 
 ; POWER HERB
-	dw 500 ; price
+	dw 800 ; price
 	db HELD_SKIP_CHARGE ; effect
 	db 0 ; param
 	db CANT_SELECT ; can select + toss

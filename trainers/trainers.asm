@@ -1581,11 +1581,11 @@ ChampionGroup:
 		db SMOKESCREEN
 		db HYPER_BEAM
 
-	db 100, AERODACTYL
-		db FLY
-		db ROCK_SLIDE
-		db ROCK_POLISH
-		db HYPER_BEAM
+	db 100, MEWTWO
+		db PSYCHIC
+		db LIGHT_SCREEN
+		db SELFDESTRUCT
+		db SUBMISSION
 
 	db 100, CHARIZARD
 		db FIRE_PUNCH
@@ -8703,7 +8703,7 @@ PicnickerGroup:
 
 	; party
 
-	db 65, XATU
+	db 70, CLEFAIRY
 
 	db $ff ; end
 
@@ -8715,7 +8715,7 @@ PicnickerGroup:
 
 	; party
 
-	db 83, XATU
+	db 89, CLEFAIRY
 
 	db $ff ; end
 
@@ -8755,7 +8755,7 @@ PicnickerGroup:
 
 	; party
 
-	db 38, XATU, BERRY_JUICE
+	db 42, CLEFAIRY, BERRY_JUICE
 	
 	db $ff ; end
 
