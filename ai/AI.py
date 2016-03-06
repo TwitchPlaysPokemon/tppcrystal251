@@ -1484,16 +1484,19 @@ class AI(object):
             for x1 in range(0, numberofviable):
                 #if mon out is one of the best mons i have
                 if self.jsonlist['battleState']['enemypokemon']['party idx'] == bestmonsindex[x1]:
+                    tempaction = -1
                     for x2 in range(1, 3):
                         #and an item exists
                         if self.MonData['myitems'][x2] != 'noitem':
                             self.useitem = x2
-                            if self.MonData['myitems'][x2] in ['xspeed', 'xattack', 'xdefense', 'xspecial', 'direhit']:
-                                self.Fight(traincurrent, mycurrent, 5)
-                                if self.differenceitems[mymons][self.useitem] > self.difference[temp1][traincurrent]:
-                                    tempaction = x2 + 9
-                                    self.difference[temp1][traincurrent] = self.differenceitems[mymons][self.useitem]
-                                    return(tempaction)
+                            if self.Damage[traincurrent][mycurrent][self.enemynumber]['damage'] / 0.85 < self.jsonlist['battleState']['enemypokemon']['hp']:
+                                if self.MonData['myitems'][x2] in ['xspeed', 'xattack', 'xdefense', 'xspecial', 'direhit']:
+                                    self.Fight(traincurrent, mycurrent, 5)
+                                    if self.differenceitems[mymons][self.useitem] > self.difference[temp1][traincurrent]:
+                                        tempaction = x2 + 9
+                                        self.difference[temp1][traincurrent] = self.differenceitems[mymons][self.useitem]
+                                    if tempaction > -1:
+                                        return(tempaction)
                             
                             #and you are about to die
                             if self.Damage[traincurrent][mycurrent][self.enemynumber]['damage'] > self.hp[bestmonsindex[x1]]:
@@ -1648,7 +1651,7 @@ class AI(object):
         if Debug_Code > 0:
             print('checking if i will die')
             print('their damage: '+str(self.Damage[traincurrent][mycurrent][self.enemynumber]['damage'])+' my hp: '+str(self.jsonlist['battleState']['enemypokemon']['hp']))
-        if self.Damage[traincurrent][mycurrent][self.enemynumber]['damage'] > self.jsonlist['battleState']['enemypokemon']['hp']:
+        if self.Damage[traincurrent][mycurrent][self.enemynumber]['damage'] / 0.85 > self.jsonlist['battleState']['enemypokemon']['hp']:
             tempx = 0
             x1 = -1
             self.FinalChance = True
