@@ -1526,6 +1526,11 @@ class AI(object):
                     self.difference[mycurrent][traincurrent] = 0
                     self.MonData[mycurrent]['boosts'] = {}
                     self.MonData[traincurrent]['boosts'] = {}
+                    if 'attract' in self.MonData['playerpokemon']['substatus']:
+                        self.MonData['playerpokemon']['substatus'].remove('attract')
+                    if isinstance(self.MonData['playerpokemon']['substatus'], dict) and 'attract' in self.MonData['playerpokemon']['substatus'].values():
+                        del self.MonData['playerpokemon']['substatus']['attract']
+                        
                     for stat in self.statNames:
                         self.MonData[mycurrent]['boosts'][stat] = 0
                         self.MonData[traincurrent]['boosts'][stat] = int(self.jsonlist['battleState']['playerpokemon']['stat levels'][stat])
@@ -1668,6 +1673,8 @@ class AI(object):
                     x1 = tempmove
             if Debug_Code > 0:
                 print('about to die - i need to attack, i will use: '+str(x1))
+            if x1 == -1:
+                x1 = random.randint(0, len(self.MonData[mycurrent]['moves']))
             return x1
             self.NoBetterChoice = False
         return
