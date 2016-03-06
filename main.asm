@@ -20930,6 +20930,9 @@ GetMaxYouCanBuy:
 	callba GetItemPrice
 	ld b, -1
 .loop
+	ld a, b
+	cp 99
+	jr nc, .done
 	ld a, [$ffc5]
 	add e
 	ld [$ffc5], a
@@ -20953,6 +20956,7 @@ GetMaxYouCanBuy:
 	ld a, b
 	cp 100
 	ret c
+.done
 	ld a, 99
 	ret
 
