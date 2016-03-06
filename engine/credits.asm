@@ -150,6 +150,11 @@ PlayCredits_109847:: ; 109847
 	ld hl, $9200
 	lb bc, BANK(CreditsBorderGFX), $09
 	call Request2bpp
+	
+	ld de, CopyrightTPPGFX
+	ld hl, $9500
+	lb bc, BANK(CopyrightTPPGFX), $5
+	call Request2bpp
 
 	ld de, CopyrightGFX
 	ld hl, $9600
@@ -432,7 +437,7 @@ ParseCredits: ; 1099aa
 	jr .print
 	
 .copyright
-	hlcoord 2, 6
+	hlcoord 2, 4
 	jr .print
 	
 .staff
@@ -1328,8 +1333,10 @@ CreditsStrings:
 .PaadTesting:         db "    PAAD TESTING@"
 
 .Copyright:
+	; 2016 TPP
+	db $7f, $50, $51, $52, $7f, $7f, $7f, $53, $54
 	;    (C) 1  9  9  5 - 2  0  0  1     N  i  n  t  e  n  d  o
-	db   $60,$61,$62,$63,$64,$65,$66, $67, $68, $69, $6a, $6b, $6c
+	next $60,$61,$62,$63,$64,$65,$66, $67, $68, $69, $6a, $6b, $6c
 	;    (C) 1  9  9  5 - 2  0  0  1    C  r  e  a  t  u  r  e  s      i  n  c .
 	next $60,$61,$62,$63,$64,$65,$66, $6d, $6e, $6f, $70, $71, $72,  $7a, $7b, $7c
 	;    (C) 1  9  9  5 - 2  0  0  1  G   A   M   E   F   R   E   A   K     i  n  c .

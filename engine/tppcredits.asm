@@ -5,6 +5,7 @@ LOGO_DELAY_POST EQU 300
 LOGO_CHAOS_MOD  EQU 12
 LOGO_CHAOS_LAST EQU 10
 MAIN_CHAOS_RATE EQU 15
+THX_CHAOS_RATE  EQU 11
 SCROLLER_DELAY  EQU 120
 SPRITE_X        EQU $7C
 SPRITE_Y        EQU $74
@@ -13,6 +14,9 @@ C_TC_TITLE      EQU 1
 C_TC_SUBTITLE   EQU 2
 STRIP1_HUE_SPD  EQU 251
 STRIP2_HUE_SPD  EQU 151
+STRIP_VERT1_SPD EQU 17
+STRIP_VERT2_SPD EQU 19
+STRIP_HOR_SPD   EQU 101
 
 HSV: MACRO
 ; h = [0,360), s = [0,1], v = [0,1]
@@ -467,11 +471,18 @@ TPPCredits_ThanksSceneInit::
 	ld de, Unkn1Pals
 	ld bc, 8 * 8
 	call CopyBytes
+	ld a, DIV(47.0,55.0) % $100
+	ld [hProduct + 6], a
+	ld a, (DIV(47.0,55.0) >> 8) % $100
+	ld [hProduct + 7], a
 	xor a
 	ld [TC_CreditsTimer], a
 	ld [TC_CurStripWidth], a
 	ld [TC_Hue1], a
 	ld [TC_Hue2], a
+	ld [hProduct], a
+	ld [hProduct + 2], a
+	ld [hProduct + 3], a
 	ld a, 1
 	ld [TC_Hue1Count], a
 	ld [TC_Hue2Count], a
@@ -479,9 +490,15 @@ TPPCredits_ThanksSceneInit::
 	ld [TC_CurStripWidth2Count], a
 	ld [TC_CurStripHorSizeCount], a
 	ld [TC_BidiStatus], a
+	ld a, 47
+	ld [hProduct + 5], a
 	ld a, 56
-	ld [TC_CurStripWidth2], a
 	ld [TC_CurStripHorSize], a
+	ld a, $80
+	ld [hProduct + 1], a
+	ld [hProduct + 4], a
+	ld a, $ff
+	ld [TC_CurStripWidth2], a
 	ld e, 64
 ; turn off all interrupts since we're going to use our own routine
 	di
@@ -507,104 +524,7 @@ TPPCredits_ThanksSceneInit::
 	
 TPPCredits_ThanksScene:
 	waitvblank
-; strip color update
-.strip1
-	ld a, [TC_Hue1Count]
-	dec a
-	ld [TC_Hue1Count], a
-	jr nz, .strip2
-	ld a, STRIP1_HUE_SPD
-	ld [TC_Hue1Count], a
-	ld a, [TC_Hue1]
-	inc a
-	cp 192
-	jr nz, .noxor1
-	xor a
-.noxor1
-	ld [TC_Hue1], a
-	and $3f
-	ld c, a
-	cp $20
-	jr c, .nosub1
-	ld a, $3f
-	sub c
-.nosub1
-	ld bc, STRIP1_C1
-	call TC_Multiply
-	ld b, STRIP1_C
-	ld c, a
-	ld a, [TC_Hue1]
-	call TC_GetTmpRGB
-	ld d, STRIP1_M
-	ld c, 0
-	ld a, $80
-	ld [rBGPI], a
-	ld a, h ; G
-	add d
-	ld b, a
-	rept 3
-	srl b
-	rr c
-	endr
-	ld a, e ; R
-	add d
-	or c
-	ld [rBGPD], a
-	ld a, l ; B
-	add d
-	rlca
-	rlca
-	or b
-	ld [rBGPD], a
-	jr .joy
-.strip2
-	ld a, [TC_Hue2Count]
-	dec a
-	ld [TC_Hue2Count], a
-	jr nz, .joy
-	ld a, STRIP2_HUE_SPD
-	ld [TC_Hue2Count], a
-	ld a, [TC_Hue2]
-	inc a
-	cp 192
-	jr nz, .noxor2
-	xor a
-.noxor2
-	ld [TC_Hue2], a
-	and $3f
-	ld c, a
-	cp $20
-	jr c, .nosub2
-	ld a, $3f
-	sub c
-.nosub2
-	ld bc, STRIP2_C1
-	call TC_Multiply
-	ld b, STRIP2_C
-	ld c, a
-	ld a, [TC_Hue2]
-	call TC_GetTmpRGB
-	ld d, STRIP2_M
-	ld c, 0
-	ld a, $86
-	ld [rBGPI], a
-	ld a, h ; G
-	add d
-	ld b, a
-	rept 3
-	srl b
-	rr c
-	endr
-	ld a, e ; R
-	add d
-	or c
-	ld [rBGPD], a
-	ld a, l ; B
-	add d
-	rlca
-	rlca
-	or b
-	ld [rBGPD], a
+	call UpdateThanksSceneCounters
 	
 .joy
 ; joypad update (rom release only)
@@ -633,6 +553,7 @@ IF !DEF(BEESAFREE)
 	call StripTrick_Thanks
 .exitloop
 	waitvblank
+	call UpdateThanksSceneCounters
 	call UpdateCommandChaos_Exit ; will carry when done
 	push af
 	call StripTrick_Thanks
@@ -1083,6 +1004,7 @@ UpdateCommandChaos_Logo:
 	cp $ff
 	ret z ; every commands is updated
 	dec [hl]
+	ld a, [hl]
 	cp 8
 	jr nz, .skipupdate
 	xor a
@@ -1334,12 +1256,360 @@ UpdateScroller::
 	ret
 	
 UpdateCommandChaos_Thanks:
-	;TODO
+	call Random
+	ld a, [TC_ChaosTimer]
+	dec a
+	ld [TC_ChaosTimer], a
+	and a
+	jp nz, .skip
+	ld a, THX_CHAOS_RATE
+	ld [TC_ChaosTimer], a
+	ld de, TC_CommandChaosTable
+	ld hl, $fe00
+.seek
+	ld a, [de]
+	and a
+	jr nz, .skipseek
+	ld a, [hRandomSub]
+	rlca
+	jr c, .down
+	ld a, 1
+	ld [de], a
+	ld a, 160
+	ld [hl], a ; start y position
+	jr .donedir
+.down
+	ld a, 2
+	ld [de], a
+	ld a, 8
+	ld [hl], a ; start y position
+.donedir
+	inc l ; OAM HW bug prevention
+	ld a, [hRandomSub]
+	and $7f ; 0-127
+	ld b, a
+	ld a, [hRandomAdd]
+	and $1f ; 0-31
+	add b   ; 0-158
+	add 5
+	ld [hl], a ; start x position
+	inc l
+	ld a, [hRandomAdd]
+	swap a
+	ld b, 0
+	rrca
+	rl b
+	rrca
+	rl b   ; 0-3
+	and $3 ; 0-3
+	add b  ; 0-6
+	ld [hl], a ; tile no.
+	inc l
+	ld a, $8a ; pal 2 bank 1 behind bg
+	ld [hl], a ; attributes
+	jr .skip
+.skipseek
+	cp $ff
+	jr z, .skip ; table is full now
+	inc de
+	ld bc, 4
+	add hl, bc
+	jr .seek
+.skip
+	ld de, TC_CommandChaosTable
+	ld hl, $fe00
+	ld bc, 4
+.updateloop
+	ld a, [rLY]
+	cp $98
+	ret z ; too late
+	ld a, [de]
+	and a
+	jr z, .skipupdate
+	cp $ff
+	ret z ; every commands is updated
+	dec a
+	jr nz, .down2
+	dec [hl]
+	ld a, [hl]
+	cp 8
+	jr nz, .skipupdate
+	xor a
+	ld [de], a
+	jr .skipupdate
+.down2
+	inc [hl]
+	ld a, [hl]
+	cp 160
+	jr nz, .skipupdate
+	xor a
+	ld [de], a
+.skipupdate
+	inc de
+	add hl, bc
+	jr .updateloop
 	ret
 	
 UpdateCommandChaos_Exit:
-	;TODO
+	ld hl, TC_CommandChaosTable
+.checkloop
+	ld a, [hli]
+	cp $ff
+	jr z, .done
+	and a
+	jr nz, .notdoneyet
+	jr .checkloop
+.notdoneyet
+	ld de, TC_CommandChaosTable
+	ld hl, $fe00
+	ld bc, 4
+.updateloop
+	ld a, [rLY]
+	cp $98
+	ret z ; too late
+	ld a, [de]
+	and a
+	jr z, .skipupdate
+	cp $ff
+	jr z, .set0 ; every commands is updated
+	dec a
+	jr nz, .down2
+	dec [hl]
+	ld a, [hl]
+	cp 8
+	jr nz, .skipupdate
+	xor a
+	ld [de], a
+	jr .skipupdate
+.down2
+	inc [hl]
+	ld a, [hl]
+	cp 160
+	jr nz, .skipupdate
+	xor a
+	ld [de], a
+.skipupdate
+	inc de
+	add hl, bc
+	jr .updateloop
+.set0
+	xor a
+	ret
+.done
 	scf
+	ret
+	
+bidiop: MACRO
+	ld a, [\3]
+	dec a
+	jr nz, .skip\@
+	inc c
+	ld a, [\2]
+	bit \1, b
+	jr nz, .inc\@
+	dec a
+	jr nz, .done\@
+	set \1, b
+	jr .done\@
+.inc\@
+	inc a
+	ld [\2], a
+	cp $ff
+	jr nz, .done\@
+	res \1, b
+.done\@
+	ld [\2], a
+	ld a, \4
+.skip\@
+	ld [\3], a
+ENDM
+	
+UpdateThanksSceneCounters:
+	ld c, 0
+	ld a, [TC_BidiStatus]
+	ld b, a
+	bidiop 0, TC_CurStripWidth, TC_CurStripWidthCount, STRIP_VERT1_SPD
+	bidiop 1, TC_CurStripWidth2, TC_CurStripWidth2Count, STRIP_VERT2_SPD
+	ld a, [TC_CurStripHorSizeCount]
+	dec a
+	jr nz, .skiphor
+	ld a, [TC_CurStripHorSize]
+	bit 2, b
+	jr nz, .inchor
+	dec a
+	jr nz, .donehor
+	set 2, b
+	ld a, 1
+	jr .donehor
+.inchor
+	inc a
+	ld [TC_CurStripHorSize], a
+	cp $ff
+	jr nz, .donehor
+	res 2, b
+.donehor
+	ld [TC_CurStripHorSize], a
+	ld a, STRIP_HOR_SPD
+.skiphor
+	ld [TC_CurStripHorSizeCount], a
+	ld a, b
+	ld [TC_BidiStatus], a
+	ld a, c
+	and a
+	jr z, .strip1
+	ld a, [TC_CurStripWidth]
+	ld b, a
+	ld a, [TC_CurStripWidth2]
+	cp b
+	ld c, a
+	jr nc, .noadj
+	ld c, b
+	ld b, a
+.noadj
+	ld a, c
+	sub b
+	push bc
+	ld bc, DIV(47.0,14025.0)
+	call TC_Multiply2
+	ld a, l
+	ld [hProduct + 6], a
+	ld a, h
+	ld [hProduct + 7], a
+	pop bc
+	push bc
+	ld a, b
+	ld bc, DIV(47.0,255.0)
+	call TC_Multiply2
+	ld e, a
+	ld a, $80
+	add h
+	ld h, a
+	jr nc, .noinc1
+	inc e
+.noinc1
+	ld a, l
+	ld [hProduct], a
+	ld a, h
+	ld [hProduct + 1], a
+	ld a, e
+	ld [hProduct + 2], a
+	pop bc
+	ld a, c
+	ld bc, DIV(47.0,255.0)
+	call TC_Multiply2
+	ld e, a
+	ld a, $80
+	add h
+	ld h, a
+	jr nc, .noinc2
+	inc e
+.noinc2
+	ld a, l
+	ld [hProduct + 3], a
+	ld a, h
+	ld [hProduct + 4], a
+	ld a, e
+	ld [hProduct + 5], a
+	ret
+	
+; strip color update
+.strip1
+	ld a, [TC_Hue1Count]
+	dec a
+	ld [TC_Hue1Count], a
+	jr nz, .strip2
+	ld a, STRIP1_HUE_SPD
+	ld [TC_Hue1Count], a
+	ld a, [TC_Hue1]
+	inc a
+	cp 192
+	jr nz, .noxor1
+	xor a
+.noxor1
+	ld [TC_Hue1], a
+	and $3f
+	ld c, a
+	cp $20
+	jr c, .nosub1
+	ld a, $3f
+	sub c
+.nosub1
+	ld bc, STRIP1_C1
+	call TC_Multiply
+	ld b, STRIP1_C
+	ld c, a
+	ld a, [TC_Hue1]
+	call TC_GetTmpRGB
+	ld d, STRIP1_M
+	ld c, 0
+	ld a, $80
+	ld [rBGPI], a
+	ld a, h ; G
+	add d
+	ld b, a
+	rept 3
+	srl b
+	rr c
+	endr
+	ld a, e ; R
+	add d
+	or c
+	ld [rBGPD], a
+	ld a, l ; B
+	add d
+	rlca
+	rlca
+	or b
+	ld [rBGPD], a
+	ret
+.strip2
+	ld a, [TC_Hue2Count]
+	dec a
+	ld [TC_Hue2Count], a
+	ret nz
+	ld a, STRIP2_HUE_SPD
+	ld [TC_Hue2Count], a
+	ld a, [TC_Hue2]
+	inc a
+	cp 192
+	jr nz, .noxor2
+	xor a
+.noxor2
+	ld [TC_Hue2], a
+	and $3f
+	ld c, a
+	cp $20
+	jr c, .nosub2
+	ld a, $3f
+	sub c
+.nosub2
+	ld bc, STRIP2_C1
+	call TC_Multiply
+	ld b, STRIP2_C
+	ld c, a
+	ld a, [TC_Hue2]
+	call TC_GetTmpRGB
+	ld d, STRIP2_M
+	ld c, 0
+	ld a, $86
+	ld [rBGPI], a
+	ld a, h ; G
+	add d
+	ld b, a
+	rept 3
+	srl b
+	rr c
+	endr
+	ld a, e ; R
+	add d
+	or c
+	ld [rBGPD], a
+	ld a, l ; B
+	add d
+	rlca
+	rlca
+	or b
+	ld [rBGPD], a
 	ret
 	
 StripTrick_Main:
@@ -1367,13 +1637,13 @@ StripTrick_Main:
 ; update strips
 	ld a, [TC_CurStripWidth]
 	ld c, a
-	ld b, 0
-	ld hl, StripBounds
-	add hl, bc
+	inc a
+	add a
+	ld e, a
 	ld a, [TC_CurStripXPos]
-	cp [hl]
+	cp e
 	jr c, .nosub
-	sub [hl]
+	sub e
 .nosub
 	ld d, a
 	ld a, [TC_CurStripSpeed]
@@ -1497,12 +1767,13 @@ UpdateScroller2::
 	jp .loop
 	
 StripTrick_Thanks_Common: MACRO
-	; TODO
+	push hl
 	push bc
 	push de
-	ld hl, StripBounds
-	add hl, de
-	ld b, [hl]
+	ld a, e
+	inc a
+	add a
+	ld b, a
 	ld a, [TC_CreditsTimer]
 	sub b
 	jr nc, .nocpl\@
@@ -1521,8 +1792,6 @@ StripTrick_Thanks_Common: MACRO
 	ld l, b
 	cpl
 	ld b, a
-	ld a, l
-	ld [TC_CurStripBound], a
 	ld a, [TC_CreditsTimer]
 	ld h, 0
 	add l
@@ -1540,7 +1809,9 @@ StripTrick_Thanks_Common: MACRO
 .skipinch\@
 	pop de
 	ld b, h
-	ld a, [TC_CurStripBound]
+	ld a, e
+	inc a
+	add a
 	ld c, a
 	ld hl, StripMiddleModifiers
 	add hl, de
@@ -1554,6 +1825,20 @@ StripTrick_Thanks_Common: MACRO
 	jr c, .skipcp\@
 	sub c
 .skipcp\@
+	ld h, a
+	ld a, [hProduct + 9]
+	and a
+	jr z, .noinvert\@
+	ld a, e
+	inc a
+	add h
+	cp c
+	jr c, .nosub2\@
+	sub c
+	ld h, a
+.noinvert\@
+	ld a, h
+.nosub2\@
 	pop bc
 	ld c, a
 .skip\@
@@ -1566,22 +1851,54 @@ StripTrick_Thanks_Common: MACRO
 	ld a, e
 	sub b
 	ld [rSCY], a
+	pop hl
 ENDM
 	
 StripTrick_Thanks:
 	ld a, [TC_CreditsTimer]
 	inc a
 	ld [TC_CreditsTimer], a
-	;TODO
+	ld a, [TC_CurStripHorSize]
+	ld [hProduct + 8], a
+	xor a
+	ld [hProduct + 9], a
 	ld b, 0
-	ld de, 55
+	ld a, [hProduct + 3]
+	ld l, a
+	ld a, [hProduct + 4]
+	ld h, a
+	ld a, [hProduct + 5]
+	ld e, a
+	ld d, 0
 .loop1
+	ld a, [hProduct + 8]
+	dec a
+	ld [hProduct + 8], a
+	jr nz, .nochange1
+	ld a, [TC_CurStripHorSize]
+	ld [hProduct + 8], a
+	ld a, [hProduct + 9]
+	xor 1
+	ld [hProduct + 9], a
+.nochange1
 	StripTrick_Thanks_Common
+	ld a, [hProduct + 6]
+	ld c, a
+	ld a, l
+	sub c
+	ld l, a
+	ld a, [hProduct + 7]
+	ld c, a
+	ld a, h
+	sbc c
+	ld h, a
+	jr nc, .nodece
 	dec e
+.nodece
 	inc b
 	ld a, b
 	cp 56
-	jr c, .loop1
+	jp c, .loop1
 .wait56
 	ld a, [rLY]
 	cp b
@@ -1590,20 +1907,72 @@ StripTrick_Thanks:
 	ld [rSCX], a
 	ld [rSCY], a
 	callba _UpdateSound
+	ld a, [hProduct]
+	ld l, a
+	ld a, [hProduct + 1]
+	ld h, a
+	ld a, [hProduct + 2]
+	ld e, a
 	ld a, [rLY]
 	ld b, 88
-	ld de, 0
+.loop22
 	cp b
 	jr c, .loop2
-	ld b, a
-.loop2
-	; TODO
-	StripTrick_Thanks_Common
+	ld a, [hProduct + 6]
+	add l
+	ld l, a
+	ld a, [hProduct + 7]
+	adc h
+	ld h, a
+	jr nc, .noince
 	inc e
+.noince
+	ld a, [TC_CurStripHorSize]
+	add 2
+	ld c, a
+	ld a, [hProduct + 8]
+	inc a
+	ld [hProduct + 8], a
+	cp c
+	jr nz, .nochange2
+	ld a, 2
+	ld [hProduct + 8], a
+	ld a, [hProduct + 9]
+	xor 1
+	ld [hProduct + 9], a
+	inc b
+	ld a, [rLY]
+	inc a
+	jr .loop22
+.loop2
+	ld a, [TC_CurStripHorSize]
+	add 2
+	ld c, a
+	ld a, [hProduct + 8]
+	inc a
+	ld [hProduct + 8], a
+	cp c
+	jr nz, .nochange2
+	ld a, 2
+	ld [hProduct + 8], a
+	ld a, [hProduct + 9]
+	xor 1
+	ld [hProduct + 9], a
+.nochange2
+	StripTrick_Thanks_Common
+	ld a, [hProduct + 6]
+	add l
+	ld l, a
+	ld a, [hProduct + 7]
+	adc h
+	ld h, a
+	jr nc, .noince2
+	inc e
+.noince2
 	inc b
 	ld a, b
 	cp 144
-	jr c, .loop2
+	jp c, .loop2
 	ret
 	
 TC_DrawGraphic:
@@ -1995,11 +2364,31 @@ TC_DelayFrame:
 	ret
 	
 TC_Multiply:
-	;ahl = a * bc ; a < 64
+	;ahl = a * bc ; a < 32
+	rlca
 	rlca
 	rlca
 	ld d, a
-	ld e, 6
+	ld e, 5
+	ld hl, 0
+	ld a, l
+.loop
+	sla l
+	rl h
+	rla
+	sla d
+	jr nc, .skip
+	add hl, bc
+	adc 0
+.skip
+	dec e
+	jr nz, .loop
+	ret
+	
+TC_Multiply2:
+	;ahl = a * bc
+	ld d, a
+	ld e, 8
 	ld hl, 0
 	ld a, l
 .loop
@@ -2187,23 +2576,13 @@ TextTransitionIn3:
 ; initial position for bottom row transition in
 	db 144, 145, 147, 149, 151, 153, 155, 157
 	
-StripBounds:
-	db   2,   6,  10,  16,  20,  24,  30,  34
-	db  38,  44,  48,  52,  58,  62,  66,  72
-	db  76,  80,  86,  90,  94, 100, 104, 108
-	db 114, 118, 122, 126, 132, 136, 140, 146
-	db 150, 154, 160, 164, 168, 174, 178, 182
-	db 188, 192, 196, 202, 206, 210, 216, 220
-	db 224, 230, 234, 238, 244, 248, 252,   0
-	
 StripMiddleModifiers:
-	db   0,   4,   0,   0,   0,  16,  10,  22
-	db  34,   8,  16,  24,  36,  44,  52,  64
-	db  72,   0,   6,  10,  14,  20,  24,  28
-	db  34,  38,  42,  46,  52,  56,  60,  66
-	db  70,  74,  80,  84,  88,  94,  98, 102
-	db 108, 112, 116, 122, 126, 130, 136, 140
-	db 144, 150, 154, 158, 164, 168, 172, 176
+	db  0,  0,  4,  0,  0,  4,  4,  0
+	db 10,  0,  8, 16, 24,  4, 10, 16
+	db 22, 28, 34,  0,  4,  8, 12, 16
+	db 20, 24, 28, 32, 36, 40, 44, 48
+	db 52, 56, 60, 64, 68, 72, 76,  0
+	db  2,  4,  6,  8, 10, 12, 14, 16
 	
 ; Tiles and attributes are encoded in WLE
 
@@ -2215,7 +2594,7 @@ TPPCreditsBG1List:
 	dw TPPCreditsSpr1
 	db 5  ; scroll speed
 	db 12 ; sprite speed
-	db 55 ; strip initial pos
+	db 47 ; strip initial pos
 	db 1  ; strip speed
 
 TPPCreditsBG1Tiles:
@@ -2288,7 +2667,7 @@ TPPCreditsBG2List:
 	dw TPPCreditsSpr2
 	db 1  ; scroll speed
 	db 15 ; sprite speed
-	db 37 ; strip initial pos
+	db 35 ; strip initial pos
 	db 3  ; strip speed
 
 TPPCreditsBG2Tiles:
@@ -2374,7 +2753,7 @@ TPPCreditsBG3List:
 	dw TPPCreditsSpr3
 	db 0  ; scroll speed
 	db 8 ; sprite speed
-	db 44 ; strip initial pos
+	db 39 ; strip initial pos
 	db 0  ; strip speed
 
 TPPCreditsBG3Tiles:
@@ -2446,7 +2825,7 @@ TPPCreditsBG4List:
 	dw TPPCreditsSpr4
 	db 3  ; scroll speed
 	db 10 ; sprite speed
-	db 49 ; strip initial pos
+	db 44 ; strip initial pos
 	db 0  ; strip speed
 
 TPPCreditsBG4Tiles:
@@ -2569,7 +2948,7 @@ ThanksForWatchingPals:
 	
 TC_QSTable:
 _qs = 0
-	rept 511
+	rept 352 ; 96 * 255
 	dw _qs * _qs / 4
 _qs = _qs + 1
 	endr
