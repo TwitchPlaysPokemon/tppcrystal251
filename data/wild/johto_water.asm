@@ -1702,7 +1702,7 @@
 		db CORSOLA ;1
 	
 	db GROUP_ECRUTEAK_CITY, MAP_ECRUTEAK_CITY
-	db $05 ; encounter rate
+	db $19 ; encounter rate
 	db 35
 	db $00
 ;morning
