@@ -561,6 +561,9 @@ OWPlayerInput: ; 96974
 	callba Function80404 ;if player is on ice or sliding and has no-0 walking anim, ret c, else ret nc
 	jr c, .NoAction
 
+	callba CheckSpinning ; a = spinning. if on spin tile spin = c
+	jr nz, .NoAction
+
 	call CheckAPressOW ;process a 
 	jr c, .Action
 

@@ -50829,7 +50829,7 @@ GetPlayerMovement: ; 8002d set movement data, ret 3 is in whirlpool, ret 5 is fo
 	ret
 ; 800b7
 
-CheckSpinning:
+CheckSpinning::
 	ld a, [StandingTile]
 	call IsSpinTile
 	jr z, .start_spin
@@ -93852,7 +93852,7 @@ INCLUDE "engine/fourth_stats_screen.asm"
 GBCOnlyGFX2:
 INCBIN "gfx/misc/gbc_only_2.w112.2bpp"
 
-CopyrightTPPGFX:
+CopyrightTPPGFX::
 INCBIN "gfx/misc/copyright_tpp.2bpp"
 
 CopyrightTPPGFXEnd

@@ -41,8 +41,9 @@ def post_slack_errormsg(battle_state, traceback_last):
     global previous_posted_message
     
     #don't post the same traceback twice; it'll get spammy
-    if traceback_last == previous_posted_message:
-        return
+
+    #if traceback_last == previous_posted_message:
+    #    return
     previous_posted_message = traceback_last
 
     message = "The AI threw this exception with the posted input: ```{}```" .format(traceback_last)
@@ -56,7 +57,6 @@ def post_slack_errormsg(battle_state, traceback_last):
                 "filetype": "javascript"}
 
     #send the request using urllib
-    #fullurl = "https://slack.com/api/files.upload" + "?" + urllib.parse.urlencode(arguments)
     request = urllib.request.Request("https://slack.com/api/files.upload",urllib.parse.urlencode(arguments).encode("utf-8"))
     response = urllib.request.urlopen(request)
     logger.info("Posted error message to slack!")
