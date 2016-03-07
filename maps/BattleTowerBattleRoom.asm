@@ -33,6 +33,7 @@ UnknownScript_0x9f425: ; 0x9f425
 	storetext 1
 	buttonsound
 	closetext
+	setlasttalked $2
 	special Function170215 ;run battle, loop until done
 	special Function8c084 ;pallette stuff
 	reloadmap

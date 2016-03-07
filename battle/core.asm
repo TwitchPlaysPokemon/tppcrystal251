@@ -3094,6 +3094,9 @@ ENDC
 IF DEF(BEESAFREE)
 MilitaryWaiting:
 	call EmptyBattleTextBox
+	hlcoord 1, 13
+	lb bc, 4, 18
+	call ClearBox
 	ld a, [Options]
 	push af
 	set 4, a
@@ -8695,10 +8698,10 @@ Function3f4dd: ; 3f4dd
 	ld [hBGMapMode], a
 	call EmptyBattleTextBox
 	hlcoord 9, 7
-	ld bc, 5 << 8 + 11
+	lb bc, 5, 11
 	call ClearBox
 	hlcoord 1, 0
-	ld bc, 4 << 8 + 10
+	lb bc, 4, 10
 	call ClearBox
 	call ClearSprites
 	ld a, [wBattleMode]
