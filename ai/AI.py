@@ -473,7 +473,7 @@ class AI(object):
                 else:
                     damage = 0
 
-        locked = ('lock on' in self.MonData[temptext]['substatus'] or (isinstance(self.MonData[temptext]['substatus'], dict) and 'lock on' in self.MonData[temptext]['substatus'].values())) or (self.MonData['lockon'] == True and attacker < 6)
+        locked = ("lock on" in self.MonData[temptext]['substatus'] or (isinstance(self.MonData[temptext]['substatus'], dict) and "lock on" in self.MonData[temptext]['substatus'].values())) or (self.MonData['lockon'] == True and attacker < 6)
         if locked:
             totalacc = 1
 
@@ -870,7 +870,10 @@ class AI(object):
                     self.MonData['attract'] = True
                 elif (self.MonData[mycurrent]['moves'][moveused]['name'] == 'lockon'):
                     self.MonData['lockon'] = True
-
+                    if self.jsonlist['battleState']['enemypokemon']['last used'].replace(' ', '').lower().replace('-', '') == 'mindreader':
+                        self.MonData['lockon'] = False
+                        self.Damage[mycurrent][traincurrent][moveused]['damage'] = -500
+                        
                 #end of turn shit
                 elif self.MonData[mycurrent]['moves'][moveused]['effect'] == 'bind':
                     self.MonData['playerpokemon']['bound'] = 5
