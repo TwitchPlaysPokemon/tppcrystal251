@@ -168,7 +168,14 @@ EfloorGranny1Text:
 	line "puzzle to be this"
 	cont "hard<...>"
 	
-	para "Good luck!"
+	para "He once heard a"
+	line "story about a young"
+	cont "trainer who would"
+	cont "always jump ledges"
+	cont "on ROUTE 22."
+	
+	para "I wonder if that's"
+	line "why he did this?"
 	
 	done
 	
