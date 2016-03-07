@@ -60,6 +60,21 @@ MortyRematchScript2:
 	loadfont
 	jump MortyAfterRematch2
 	
+EfloorGrampsScript:
+	jumptextfaceplayer EfloorGrampsText
+	
+EfloorGranny1Script:
+	jumptextfaceplayer EfloorGranny1Text
+	
+EfloorGranny2Script:
+	jumptextfaceplayer EfloorGranny2Text
+	
+EfloorSage1Script:
+	jumptextfaceplayer EfloorSage1Text
+	
+EfloorSage2Script:
+	jumptextfaceplayer EfloorSage2Text
+	
 EcruteakGymGuy2Script: ; 0x99e39
 	faceplayer
 	loadfont
@@ -114,6 +129,56 @@ MortyAfterRematchText2:
 	para "Something more" 
 	line "than that<...>"
 	done
+	
+EfloorGrampsText:
+	text "I wish MORTY didn't"
+	line "know a story about"
+	para "AIIIAAB and"
+	line "ROUTE 22<...>"
+	done
+	
+EfloorGranny1Text:
+	text "Good to see you"
+	line "made it through"
+	para "the ELITE FLOOR"
+	line "until here."
+	
+	para "I don't get it why"
+	line "MORTY had an idea"
+	para "on rebuilding his"
+	line "puzzle to be"
+	cont "this hard<...>"
+	done
+	
+EfloorGranny2Text:
+	text "No matter how hard"
+	line "the obstacle you"
+	para "are facing, you"
+	line "can always get"
+	cont "over it!"
+	
+	para "Stay determined!" ;noundertalereferenceintendedplsdontkillme
+	done
+	
+EfloorSage1Text:
+	text "Hey! You have come"
+	line "to the wrong path!"
+	
+	para "There's nothing"
+	line "except a dead end"
+	cont "behind me."
+	done
+	
+EfloorSage2Text:
+	text "Don't tell me you"
+	line "have fallen into"
+	cont "this small trap."
+	
+	para "Try the other"
+	line "entrance and hope"
+	para "that MORTY won't"
+	line "fool you again."
+	done
 
 EcruteakGymGuy2Text:
 	text "MORTY has upgraded"
@@ -162,7 +227,11 @@ efloorrow = 4
 	signpost $17, $c, $0, MapEcruteakGym2Signpost1Script
 
 	; object events
-	db 2
+	db 7
 	person_event SPRITE_MORTY, 5, 15, $6, 0, 0, -1, -1, 8 + PAL_OW_BROWN, 0, 0, MortyScript_0x99d58, -1
 	person_event SPRITE_GYM_GUY, 27, 17, $6, 0, 0, -1, -1, 8 + PAL_OW_RED, 0, 0, EcruteakGymGuy2Script, -1
-
+	person_event SPRITE_SAGE, 12, 22, $6, 0, 0, -1, -1, 8 + PAL_OW_BLUE, 0, 0, EfloorSage1Script, -1
+	person_event SPRITE_SAGE, 21, 6, $9, 0, 0, -1, -1, 8 + PAL_OW_BLUE, 0, 0, EfloorSage2Script, -1
+	person_event SPRITE_GRANNY, 11, 15, $6, 0, 0, -1, -1, 8 + PAL_OW_BROWN, 0, 0, EfloorGranny1Script, -1
+	person_event SPRITE_GRANNY, 19, 18, $6, 0, 0, -1, -1, 8 + PAL_OW_BROWN, 0, 0, EfloorGranny2Script, -1
+	person_event SPRITE_GRAMPS, 15, 7, $6, 0, 0, -1, -1, 8 + PAL_OW_GREEN, 0, 0, EfloorGrampsScript, -1

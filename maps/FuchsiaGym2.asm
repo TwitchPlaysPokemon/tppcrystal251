@@ -236,6 +236,6 @@ FuchsiaGym2_MapEventHeader:
 	; object events
 	db 4
 	person_event SPRITE_JANINE, 14, 12, $3, 0, 0, -1, -1, 8 + PAL_OW_BLUE, 0, 0, InvisibleJanineScript, EVENT_JANINE_INVISIBLE
-	person_event SPRITE_FUCHSIA_GYM_1, 10, 11, $a, 0, 0, -1, -1, 8 + PAL_OW_BLUE, 0, 0, FakeJanine1Script, EVENT_FAKE_JANINE_1
-	person_event SPRITE_FUCHSIA_GYM_2, 23, 12, $a, 0, 0, -1, -1, 8 + PAL_OW_BLUE, 0, 0, FakeJanine2Script, EVENT_FAKE_JANINE_2
+	person_event SPRITE_LASS, 10, 11, $a, 0, 0, -1, -1, 8 + PAL_OW_BLUE, 0, 0, FakeJanine1Script, EVENT_FAKE_JANINE_1
+	person_event SPRITE_YOUNGSTER, 23, 12, $a, 0, 0, -1, -1, 8 + PAL_OW_BLUE, 0, 0, FakeJanine2Script, EVENT_FAKE_JANINE_2
 	person_event SPRITE_GYM_GUY, 27, 13, $6, 0, 0, -1, -1, 8 + PAL_OW_BLUE, 0, 0, FuchsiaGym2GuyScript, -1
