@@ -171,6 +171,17 @@ Function1f8081:
 	ld [hli], a
 	ld a, [hMultiplicand + 2]
 	ld [hli], a
+	ld de, EVENT_TOWER_HARD_MODE
+	ld b, CHECK_FLAG
+	call EventFlagAction
+	ld a, c
+	and a
+	jr z, .EasyStatXPTable
+	ld a, $ff
+	ld d, a
+	ld e, a
+	jr .StatXpInde
+.EasyStatXPTable
 	ld a, [wcf64]
 	ld e, a
 	ld d, 0
@@ -180,6 +191,7 @@ Function1f8081:
 	ld a, [hli]
 	ld d, [hl]
 	ld e, a
+.StatXpInde
 	ld c, 5
 	ld hl, TempMonStatExp
 .loop5
@@ -494,7 +506,7 @@ BattleTowerMons: ; 1f8450
 
 	db NINETALES ;30
 	db MIRACLEBERRY
-	db NASTY_PLOT, FIRE_BLAST, DARK_PULSE, DAZZLINGLEAM
+	db NASTY_PLOT, FIRE_BLAST, DARK_PULSE, WILLOWISP
 
 	db WIGGLYTUFF 
 	db FOCUS_BAND

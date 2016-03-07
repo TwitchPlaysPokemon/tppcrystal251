@@ -1581,11 +1581,11 @@ ChampionGroup:
 		db SMOKESCREEN
 		db HYPER_BEAM
 
-	db 100, AERODACTYL
-		db FLY
-		db ROCK_SLIDE
-		db ROCK_POLISH
-		db HYPER_BEAM
+	db 100, MEWTWO
+		db PSYCHIC
+		db LIGHT_SCREEN
+		db SELFDESTRUCT
+		db SUBMISSION
 
 	db 100, CHARIZARD
 		db FIRE_PUNCH
@@ -2556,8 +2556,7 @@ SchoolboyGroup:
 	db 0 ; normal
 
 	; party
-	db 17, TANGELA
-	db 17, YANMA
+	db 45, SUDOWOODO
 
 	db $ff ; end
 
@@ -2568,10 +2567,7 @@ SchoolboyGroup:
 	db 0 ; normal
 
 	; party
-	db 20, NATU
-	db 22, TANGELA
-	db 20, QUAGSIRE
-	db 25, YANMA
+	db 70, SUDOWOODO
 
 	db $ff ; end
 
@@ -2639,10 +2635,7 @@ SchoolboyGroup:
 	db 0 ; normal
 
 	; party
-	db 27, NATU
-	db 27, TANGELA
-	db 30, QUAGSIRE
-	db 30, YANMA
+	db 90, SUDOWOODO
 
 	db $ff ; end
 
@@ -2654,29 +2647,7 @@ SchoolboyGroup:
 
 	; party
 
-	db 35, XATU
-		db PECK
-		db NIGHT_SHADE
-		db SWIFT
-		db FUTURE_SIGHT
-
-	db 32, TANGELA
-		db POISONPOWDER
-		db VINE_WHIP
-		db WRAP
-		db MEGA_DRAIN
-
-	db 32, YANMA
-		db QUICK_ATTACK
-		db DOUBLE_TEAM
-		db SONICBOOM
-		db SUPERSONIC
-
-	db 35, QUAGSIRE
-		db TAIL_WHIP
-		db SURF
-		db AMNESIA
-		db EARTHQUAKE
+	db 100, SUDOWOODO
 
 	db $ff ; end
 
@@ -8703,7 +8674,7 @@ PicnickerGroup:
 
 	; party
 
-	db 65, XATU
+	db 70, CLEFAIRY
 
 	db $ff ; end
 
@@ -8715,7 +8686,7 @@ PicnickerGroup:
 
 	; party
 
-	db 83, XATU
+	db 89, CLEFAIRY
 
 	db $ff ; end
 
@@ -8755,7 +8726,7 @@ PicnickerGroup:
 
 	; party
 
-	db 38, XATU, BERRY_JUICE
+	db 42, CLEFAIRY, BERRY_JUICE
 	
 	db $ff ; end
 

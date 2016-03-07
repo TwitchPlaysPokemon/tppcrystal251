@@ -453,7 +453,7 @@ Function17d246: ; 17d246 ;init menu, if scriptvar = 5 then scriptvar = cursor po
 	cp $5
 	jr nz, .asm_17d25d ;if scriptvar is 5, load cursor position into scriptvar
 	ld a, [wcfa9]
-	cp $3
+	cp $4
 	ret z ;if cursor is over exit?, ret scriptvar = 4
 	jr c, .asm_17d25d ;else dec a and load into scriptvar
 	dec a
@@ -491,14 +491,15 @@ MenuData2_17d272: ; 17d272
 MenuDataHeader_17d28f: ; 17d28f
 	db $40 ; flags
 	db  0,  0 ; start coords
-	db  7, 14 ; end coords
+	db  9, 14 ; end coords
 	dw MenuData2_17d297
 	db 1 ; default option
 
 MenuData2_17d297: ; 17d297
 	db $a0 ; flags
-	db 3
-	db "CHALLENGE@"
+	db 4
+	db "NORMAL@"
+	db "HARD@"
 	db "EXPLANATION@"
 	db "CANCEL@"
 ; 17d2b6

@@ -372,7 +372,6 @@ Mart25: ; 161ce
 	db 10 ; # items
 	db FOCUS_BAND
 	db BRIGHTPOWDER
-	db BLACKBELT
 	db HARD_STONE
 	db NEVERMELTICE
 	db SHARP_BEAK
@@ -381,16 +380,18 @@ Mart25: ; 161ce
 	db MIRACLEBERRY
 	db MYSTERYBERRY
 	db GOLD_BERRY
+	db POWER_HERB
 	db $ff
 ; 161d5
 
 Mart26: ; 161d5
-	db 9 ; # items
+	db 10 ; # items
 	db LOVELY_MAIL
 	db SURF_MAIL
 	db POKE_DOLL
 	db BLACKGLASSES
 	db PINK_BOW
+	db BLACKBELT
 	db SPELL_TAG
 	db MAGNET
 	db LIGHT_BALL
