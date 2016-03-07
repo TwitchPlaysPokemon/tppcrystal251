@@ -99,7 +99,13 @@ MortyRematchTextBefore2:
 	text "Welcome back,"
 	line "<PLAY_G>."
 
-	para "So the legend was"
+	para "I see you were"
+	line "able to defeat"
+	cont "the ELITE FLOOR."
+	
+	para "Ha-Ha!"
+	
+	para "<...>So the legend was"
 	line "true, and HO-OH"
 	cont "chose you<...>"
 
@@ -131,38 +137,58 @@ MortyAfterRematchText2:
 	done
 	
 EfloorGrampsText:
-	text "I wish MORTY didn't"
-	line "know a story about"
-	para "AIIIAAB and"
-	line "ROUTE 22<...>"
+	text "A long time ago,"
+	line "I would listen to"
+	cont "a song that was"
+	cont "inspirational."
+	
+	para "I couldn't under-"
+	line "stand most of the"
+	cont "words, but they"
+	cont "kept saying to"
+	cont "DO YOUR BEST<...>"
+	
+	para "<...>But I can't"
+	line "remember the name"
+	cont "of that catchy"
+	cont "tune."
+	
+	para "<...>Maybe it was"
+	line "part of a"
+	cont "compilation?"
+	
 	done
 	
 EfloorGranny1Text:
-	text "Good to see you"
-	line "made it through"
-	para "the ELITE FLOOR"
-	line "until here."
 	
-	para "I don't get it why"
-	line "MORTY had an idea"
-	para "on rebuilding his"
-	line "puzzle to be"
-	cont "this hard<...>"
+	text "I don't know why"
+	line "MORTY had the idea"
+	
+	para "to rebuild his"
+	line "puzzle to be this"
+	cont "hard<...>"
+	
+	para "Good luck!"
+	
 	done
 	
 EfloorGranny2Text:
 	text "No matter how hard"
 	line "the obstacle you"
-	para "are facing, you"
-	line "can always get"
-	cont "over it!"
+	cont "are facing is<...>"
 	
-	para "Stay determined!" ;noundertalereferenceintendedplsdontkillme
+	para "You can always"
+	cont "overcome it!"
+	
+	para "Stay determined!"
 	done
 	
 EfloorSage1Text:
-	text "Hey! You have come"
-	line "to the wrong path!"
+	text "Oh hello!"
+	
+	para "Sorry to tell you,"
+	line "but this is the"
+	cont "wrong path<...>"
 	
 	para "There's nothing"
 	line "except a dead end"
@@ -170,23 +196,31 @@ EfloorSage1Text:
 	done
 	
 EfloorSage2Text:
-	text "Don't tell me you"
-	line "have fallen into"
-	cont "this small trap."
+	text "Ah-ha!"
+	
+	para "You have fallen"
+	line "into my trap!"
 	
 	para "Try the other"
 	line "entrance and hope"
-	para "that MORTY won't"
-	line "fool you again."
+	cont "that MORTY doesn't"
+	cont "fool you again."
 	done
 
 EcruteakGymGuy2Text:
-	text "MORTY has upgraded"
+	
+	text "Yo, Champ!"
+	
+	para "MORTY has upgraded"
 	line "his floor to the"
-	cont "whole new level."
+	cont "whole new level!"
 	
 	para "He even called it"
-	line "THE ELITE FLOOR."
+	line "THE ELITE FLOOR<...>"
+	
+	para "I really don't"
+	line "understand him"
+	cont "sometimes<...>"
 	done
 
 EcruteakGymGuy2WinText:
