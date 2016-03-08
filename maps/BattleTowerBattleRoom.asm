@@ -139,14 +139,14 @@ BattleTowerBattleRoomScript_0x9f4e4: ; 0x9f4e4
 	end
 ; 0x9f4eb
 
-UnknownScript_0x9f4eb: ; 0x9f4eb
-	writebyte $4
-	special Function170687
-	loadfont
-	writetext UnknownText_0x9f0c1
-	waitbutton
-	closetext
-	end
+;UnknownScript_0x9f4eb: ; 0x9f4eb
+;	writebyte $4
+;	special Function170687
+;	loadfont
+;	writetext UnknownText_0x9f0c1
+;	waitbutton
+;	closetext
+;	end
 ; 0x9f4f7
 
 ;UnknownScript_0x9f4f7: ; 0x9f4f7

@@ -387,8 +387,60 @@
 		db STEELIX ;2
 		db TYPHLOSION ;1
 
-;	db GROUP_TOHJO_FALLS, MAP_TOHJO_FALLS
-;	db $0f ; encounter rates: morn/day/nite
+	db GROUP_TOHJO_FALLS, MAP_TOHJO_FALLS
+	db $0f ; encounter rates: morn/day/nite
+	db 53
+	db $01
+		db ZUBAT ;20
+		db GEODUDE ;20
+		db GOLBAT ;10
+		db GRAVELER ;10
+		db WARTORTLE ;5
+		db CROBAT ;5
+		db MARILL ;5
+		db MARILL ;5
+		db AZUMARILL ;4
+		db PSYDUCK ;4
+		db PSYDUCK ;3
+		db GOLDUCK ;3
+		db WARTORTLE ;2
+		db WARTORTLE ;2
+		db AZUMARILL ;1
+		db WARTORTLE ;1
+;day
+		db GEODUDE ;20
+		db ZUBAT ;20
+		db PSYDUCK ;10
+		db GOLBAT ;10
+		db WARTORTLE ;5
+		db GRAVELER ;5
+		db GOLDUCK ;5
+		db GRAVELER ;5
+		db ZUBAT ;4
+		db CROBAT ;4
+		db WARTORTLE ;3
+		db PSYDUCK ;3
+		db WARTORTLE ;2
+		db PSYDUCK ;2
+		db GOLBAT ;1
+		db CROBAT ;1
+;night
+		db GEODUDE ;20
+		db WARTORTLE ;20
+		db GRAVELER ;10
+		db PSYDUCK ;10
+		db OCTILLERY ;5
+		db OCTILLERY ;5
+		db ZUBAT ;5
+		db MARILL ;5
+		db OCTILLERY ;4
+		db OCTILLERY ;4
+		db OCTILLERY ;3
+		db AZUMARILL ;3
+		db GOLDUCK ;2
+		db GOLDUCK ;2
+		db GOLBAT ;1
+		db CROBAT ;1
 
 	db GROUP_ROUTE_1, MAP_ROUTE_1
 	db $19 ; encounter rates: morn/day/nite
