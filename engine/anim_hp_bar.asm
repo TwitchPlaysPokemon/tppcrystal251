@@ -129,18 +129,22 @@ Functiond627: ; d627
 ; d6e2
 
 ShortAnim_UpdateVariables: ; d6e2
+	; Since we're guaranteed less than 48 HP, we only need a 1-byte comparison.
+	; If we're finished, set carry.
 	ld hl, wCurHPBarPixels
 	ld a, [wNewHPBarPixels]
 	cp [hl]
-	jr nz, .asm_d6ed
+	jr nz, .not_done_yet
 	scf
 	ret
 
-.asm_d6ed
+.not_done_yet
+	; Otherwise, add/subtract the pixel (c is 1 or -1), and recompute the HP
+	; value.
 	ld a, c
 	add [hl]
 	ld [hl], a
-	call Functiond839
+	call ShortAnim_UpdateHP
 	and a
 	ret
 ; d6f5
@@ -198,7 +202,7 @@ LongAnim_UpdateVariables: ; d6f5
 ShortHPBarAnim_UpdateTiles: ; d730
 	call HPBarAnim_UpdateHPRemaining
 	ld d, $6
-	ld a, [wd10a]
+	ld a, [wWhichHPBar]
 	and $1
 	ld b, a
 	ld a, [wCurHPBarPixels]
@@ -224,7 +228,7 @@ LongHPBarAnim_UpdateTiles: ; d749
 	call Functionc699
 	ld c, e
 	ld d, $6
-	ld a, [wd10a]
+	ld a, [wWhichHPBar]
 	and $1
 	ld b, a
 	push de
@@ -235,7 +239,7 @@ LongHPBarAnim_UpdateTiles: ; d749
 ; d771
 
 HPBarAnim_RedrawHPBar: ; d771
-	ld a, [wd10a]
+	ld a, [wWhichHPBar]
 	cp $2
 	jr nz, .asm_d780
 	ld a, 2 * SCREEN_WIDTH
@@ -250,7 +254,7 @@ HPBarAnim_RedrawHPBar: ; d771
 ; d784
 
 HPBarAnim_UpdateHPRemaining: ; d784
-	ld a, [wd10a]
+	ld a, [wWhichHPBar]
 	and a
 	ret z
 	cp $1
@@ -300,7 +304,7 @@ HPBarAnim_BGMapUpdate: ; d7c9
 	ret
 
 .cgb
-	ld a, [wd10a]
+	ld a, [wWhichHPBar]
 	and a
 	jr z, .asm_d829
 	cp $1
@@ -365,60 +369,67 @@ HPBarAnim_BGMapUpdate: ; d7c9
 	ret
 ; d839
 
-Functiond839: ; d839
+ShortAnim_UpdateHP: ; d839
 	ld a, [wHPBarAnimMaxHP]
 	ld c, a
-	ld b, $0
-	ld hl, $0
+	ld b, 0
+	ld hl, 0
+	; If our HP bar is full this frame, set cur HP equal to the max.
 	ld a, [wCurHPBarPixels]
 	cp $30
-	jr nc, .asm_d885
+	jr nc, .full_hp
+	; If our HP bar is empty this frame, set cur HP equal to 0.
 	and a
-	jr z, .asm_d880
+	jr z, .zero_hp
+	; hl = [wHPBarAnimMaxHP] * [wCurHPBarPixels]
 	call AddNTimes
-	ld b, $0
-.asm_d851
+	; b = hl / 48
+	; hl = hl - 48 * (b + 1)
+	ld b, 0
+.loop1
 	ld a, l
 	sub $30
 	ld l, a
 	ld a, h
 	sbc $0
 	ld h, a
-	jr c, .asm_d85e
+	jr c, .next
 	inc b
-	jr .asm_d851
+	jr .loop1
 
-.asm_d85e
+.next
+	; hl = hl + 128
 	push bc
 	ld bc, $80
 	add hl, bc
 	pop bc
+	; if hl >= 48: b = b + 1
 	ld a, l
 	sub $30
 	ld l, a
 	ld a, h
 	sbc $0
 	ld h, a
-	jr c, .asm_d86f
+	jr c, .okay
 	inc b
-.asm_d86f
+.okay
 	ld a, [wHPBarAnimLowValue]
 	cp b
-	jr nc, .asm_d87c
+	jr nc, .between_low_and_high
 	ld a, [wHPBarAnimHighValue]
 	cp b
-	jr c, .asm_d87c
+	jr c, .between_low_and_high
 	ld a, b
-.asm_d87c
+.between_low_and_high
 	ld [wHPBarAnimOldHP], a
 	ret
 
-.asm_d880
+.zero_hp
 	xor a
 	ld [wHPBarAnimOldHP], a
 	ret
 
-.asm_d885
+.full_hp
 	ld a, [wHPBarAnimMaxHP]
 	ld [wHPBarAnimOldHP], a
 	ret

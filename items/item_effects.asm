@@ -1842,8 +1842,8 @@ Functionf1db: ; f1db (3:71db)
 	ld bc, SCREEN_WIDTH * 2
 	call AddNTimes
 	ld a, $2
-	ld [wd10a], a
-	predef_jump Functionc6e0
+	ld [wWhichHPBar], a
+	predef_jump Predef_HPBarAnim
 
 Functionf1f9: ; f1f9 (3:71f9)
 	call Functionf20b

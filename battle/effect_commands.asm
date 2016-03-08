@@ -3324,7 +3324,7 @@ BattleCommand11: ; 351c0
 	ld a, 1
 
 .asm_351f2
-	ld [wd10a], a
+	ld [wWhichHPBar], a
 	ld a, [hld]
 	ld [Buffer1], a
 	ld a, [hld]
@@ -3341,7 +3341,7 @@ BattleCommand11: ; 351c0
 	ld [wd1ef], a
 	ld h, b
 	ld l, c
-	predef Functionc6e0
+	predef Predef_HPBarAnim
 	call RefreshBattleHuds
 
 	call SwitchTurn
@@ -4755,9 +4755,9 @@ BattleCommand42: ; 35926
 	ld de, EnemyMonMaxHP + 1
 	call .asm_3597d
 	ld a, $1
-	ld [wd10a], a
+	ld [wWhichHPBar], a
 	hlcoord 10, 9
-	predef Functionc6e0
+	predef Predef_HPBarAnim
 	ld hl, EnemyMonHP
 	ld a, [hli]
 	ld [wd1ed], a
@@ -4769,10 +4769,10 @@ BattleCommand42: ; 35926
 	ld [Buffer1], a
 	call Function359ac
 	xor a
-	ld [wd10a], a
+	ld [wWhichHPBar], a
 	call ResetDamage
 	hlcoord 2, 2
-	predef Functionc6e0
+	predef Predef_HPBarAnim
 	callba Function178000
 
 	ld hl, SharedPainText
@@ -5496,8 +5496,8 @@ Function35d1c: ; 35d1c
 	ld [wd1ee], a
 	hlcoord 2, 2
 	xor a
-	ld [wd10a], a
-	predef Functionc6e0
+	ld [wWhichHPBar], a
+	predef Predef_HPBarAnim
 .asm_35d7b
 	jp RefreshBattleHuds
 ; 35d7e
@@ -5555,8 +5555,8 @@ Function35d7e: ; 35d7e
 	ld [Buffer1], a
 	hlcoord 10, 9
 	ld a, $1
-	ld [wd10a], a
-	predef Functionc6e0
+	ld [wWhichHPBar], a
+	predef Predef_HPBarAnim
 .asm_35ddd
 	jp RefreshBattleHuds
 ; 35de0
@@ -6143,8 +6143,8 @@ Function36011: ; 36011
 	hlcoord 2, 2
 	xor a
 .asm_3607e
-	ld [wd10a], a
-	predef Functionc6e0
+	ld [wWhichHPBar], a
+	predef Predef_HPBarAnim
 	call RefreshBattleHuds
 	jp UpdateBattleMonInParty
 ; 3608c
@@ -8383,8 +8383,8 @@ BattleCommand27: ; 36cb2
 	hlcoord 2, 2
 	xor a
 .asm_36d0c
-	ld [wd10a], a
-	predef Functionc6e0
+	ld [wWhichHPBar], a
+	predef Predef_HPBarAnim
 	call RefreshBattleHuds
 	ld hl, RecoilText
 	jp StdBattleTextBox

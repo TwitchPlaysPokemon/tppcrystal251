@@ -1582,7 +1582,7 @@ ChampionGroup:
 		db HYPER_BEAM
 
 	db 100, MEWTWO
-		db PSYCHIC
+		db PSYCHIC_M
 		db LIGHT_SCREEN
 		db SELFDESTRUCT
 		db SUBMISSION
@@ -1783,7 +1783,7 @@ MistyGroup:
 
 	db 100, STARMIE, PARLYZ_GUARD
 		db SURF
-		db PSYCHIC
+		db PSYCHIC_M
 		db RECOVER
 		db THUNDER_WAVE
 
@@ -1877,7 +1877,7 @@ LtSurgeGroup:
 
 	db 100, ELECTABUZZ, BLACKBELT
 		db THUNDER
-		db PSYCHIC
+		db PSYCHIC_M
 		db CROSS_CHOP
 		db THUNDER_WAVE
 
