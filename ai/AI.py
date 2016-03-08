@@ -634,10 +634,26 @@ class AI(object):
         if Debug_Code == 1:
             print ('inside TrainerDamage, variables in play - traincurrent: '+str(traincurrent)+' mycurrent: '+str(mycurrent))
             print('length of moves for this mon: '+str( len(self.jsonlist['playerParty']['party'][traincurrent-6]['moves'])))
-        
+        statusMultiplier = 1
+        for moveset in range(0, len(self.jsonlist['playerParty']['party'][traincurrent-6]['moves'])):
+            if self.MonData[mycurrent]['status'] == 'none' and self.MonData[mycurrent]['item'] != 'sleepguard':
+                if ((self.MonData[mycurrent]['type'][1] not in ('grass')) and (self.MonData[mycurrent]['type'][2]  not in ('grass'))):
+                    if self.MonData[traincurrent]['moves'][moveset]['name'] == 'spore':
+                        statusMultiplier = 1.25
+                    if self.MonData[traincurrent]['moves'][moveset]['name'] == 'sleeppowder':
+                        statusMultiplier = 1.18
+                if self.MonData[traincurrent]['moves'][moveset]['effect'] == 'sleep' and self.MonData[traincurrent]['moves'][moveset]['name'] not in ('spore', 'sleeppowder'):
+                    statusMultiplier = (0.25 * self.MonData[traincurrent]['moves'][moveset]['acc']) + 1
+            if self.MonData[traincurrent]['moves'][moveset]['effect'] == 'toxic' and self.MonData[mycurrent]['item'] != 'poisonguard' and ((self.MonData[mycurrent]['type'][1] not in ('poison', 'steel')) and (self.MonData[mycurrent]['type'][2] not in ('poison', 'steel'))):
+                self.MonData[mycurrent]['status'] = 'psn'
+                if type(self.MonData['enemypokemon']['substatus']) == list:
+                    self.MonData['enemypokemon']['substatus'] = {str(i+1): x for i, x in enumerate(self.MonData['playerpokemon']['substatus'])}
+                self.MonData['enemypokemon']['substatus']['toxic'] = 1        
+                            
         for moveset in range(0, len(self.jsonlist['playerParty']['party'][traincurrent-6]['moves'])):
             if self.MonData[traincurrent]['moves'][moveset]['curpp'] > 0:
                 self.DamageDealt(traincurrent, mycurrent, moveset)
+                self.Damage[traincurrent][mycurrent][moveset]['damage'] *= statusMultiplier
             else:
                 self.Damage[traincurrent][mycurrent][moveset]['damage'] = -1
         tempx = -3
@@ -763,7 +779,6 @@ class AI(object):
                         self.MonData[traincurrent]['boosts']['sdef'] = self.MonData[traincurrent]['boosts']['sdef'] - 2
 
                 #healing
-                #the variable healing is set to false at the beginning of the function, no need to set it here
                 if (self.MonData[mycurrent]['moves'][moveused]['effect'] == 'heal'):
                     healing = True
                     if (self.MonData[mycurrent]['moves'][moveused]['name'] == 'rest'):
@@ -945,7 +960,6 @@ class AI(object):
                         elif (self.MonData[mycurrent]['moves'][moveused]['effect'] in ('poison', 'toxic', 'poisonhit', 'twineedle')) and self.MonData[traincurrent]['item'] != 'poisonguard' and ((self.MonData[traincurrent]['type'][1] not in ('poison', 'steel')) and (self.MonData[traincurrent]['type'][2] not in ('poison', 'steel'))):
                             self.MonData[traincurrent]['status'] = 'psn'
                             if self.MonData[mycurrent]['moves'][moveused]['effect'] == 'toxic':
-                                print('considering toxic')
                                 if type(self.MonData['playerpokemon']['substatus']) == list:
                                     self.MonData['playerpokemon']['substatus'] = {str(i+1): x for i, x in enumerate(self.MonData['playerpokemon']['substatus'])}
                                 self.MonData['playerpokemon']['substatus']['toxic'] = 1
@@ -1018,6 +1032,17 @@ class AI(object):
             self.MonData['myperishsong'] = self.MonData['myperishsong'] - 1
         if self.MonData['trainperishsong'] > 0:
             self.MonData['trainperishsong'] = self.MonData['trainperishsong'] - 1
+        
+        for moveset in range(0, len(self.jsonlist['playerParty']['party'][traincurrent-6]['moves'])):
+            if (self.MonData[traincurrent]['moves'][moveset]['effect'] == 'heal' and self.MonData[traincurrent]['moves'][moveset]['name'] != 'rest'):
+                self.MonData[traincurrent]['stats']['curhp'] = self.MonData[traincurrent]['stats']['curhp'] + (self.MonData[traincurrent]['stats']['maxhp'] * 0.25)
+            elif (self.MonData[traincurrent]['moves'][moveset]['effect'] in ('moonlight', 'synthesis', 'morningsun')):
+                if (self.MonData['weather'] == 'clear'):
+                    self.MonData[traincurrent]['stats']['curhp'] = self.MonData[traincurrent]['stats']['curhp'] + (self.MonData[traincurrent]['stats']['maxhp'] * 0.125)
+                elif (self.MonData['weather'] == 'sun'):
+                    self.MonData[traincurrent]['stats']['curhp'] = self.MonData[traincurrent]['stats']['curhp'] + (self.MonData[traincurrent]['stats']['maxhp'] * 0.25)
+                else: #rain, sandstorm
+                    self.MonData[traincurrent]['stats']['curhp'] = self.MonData[traincurrent]['stats']['curhp'] + (self.MonData[traincurrent]['stats']['maxhp'] * 0.0625)
             
         for temptext in ('enemypokemon', 'playerpokemon'):
             if temptext == 'enemypokemon':
