@@ -27,7 +27,7 @@ Functiond627: ; d627
 	call LongAnim_UpdateVariables
 	pop hl
 	pop bc
-	ret c
+	; ret c
 	push af
 	push bc
 	push hl
@@ -36,9 +36,9 @@ Functiond627: ; d627
 	pop hl
 	pop bc
 	pop af
-	jr .LongAnimLoop ; If we're here, carry is guaranteed not to be set
-	; jr nc, .LongAnimLoop
-	; ret
+	; jr .LongAnimLoop
+	jr nc, .LongAnimLoop
+	ret
 ; d65f
 
 .IsMaximumMoreThan48Pixels
@@ -172,7 +172,6 @@ LongAnim_UpdateVariables: ; d6f5
 	ld [wHPBarAnimOldHP], a
 	ld a, h
 	ld [wHPBarAnimOldHP + 1], a
-	push hl
 	push de
 	push bc
 	ld hl, wHPBarAnimMaxHP
@@ -186,13 +185,11 @@ LongAnim_UpdateVariables: ; d6f5
 	ld b, a
 	call Functionc699
 	ld a, e
-	ld hl, wCurHPBarPixels
-	cp [hl]
 	pop bc
 	pop de
-	pop hl
-	jr z, .loop
 	ld hl, wCurHPBarPixels
+	cp [hl]
+	jr z, .loop
 	ld [hl], a
 	and a
 	ret
