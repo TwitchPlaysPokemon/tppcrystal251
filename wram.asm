@@ -1594,6 +1594,7 @@ wd1ed:: ds 1
 wHPBarAnimNewHP::
 wd1ee:: ds 1
 wd1ef:: ds 1
+wHPBarTempHPPal::
 wd1f0:: ds 1
 wCurHPBarPixels::
 wd1f1:: ds 1

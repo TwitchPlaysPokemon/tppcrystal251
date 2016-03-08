@@ -201,13 +201,13 @@ LongAnim_UpdateVariables: ; d6f5
 
 ShortHPBarAnim_UpdateTiles: ; d730
 	call HPBarAnim_UpdateHPRemaining
-	ld d, $6
+	ld d, $6 ; HP bar length (tiles)
 	ld a, [wWhichHPBar]
 	and $1
-	ld b, a
+	ld b, a ; Bar end style
 	ld a, [wCurHPBarPixels]
-	ld e, a
-	ld c, a
+	ld e, a ; Num pixels
+	ld c, a ; safety check
 	push de
 	call HPBarAnim_RedrawHPBar
 	pop de
@@ -226,11 +226,11 @@ LongHPBarAnim_UpdateTiles: ; d749
 	ld a, [wHPBarAnimMaxHP + 1]
 	ld d, a
 	call Functionc699
-	ld c, e
-	ld d, $6
+	ld c, e ; safety check
+	ld d, $6 ; HP bar length (tiles)
 	ld a, [wWhichHPBar]
 	and $1
-	ld b, a
+	ld b, a ; Bar end style
 	push de
 	call HPBarAnim_RedrawHPBar
 	pop de
@@ -241,14 +241,15 @@ LongHPBarAnim_UpdateTiles: ; d749
 HPBarAnim_RedrawHPBar: ; d771
 	ld a, [wWhichHPBar]
 	cp $2
-	jr nz, .asm_d780
+	jr nz, .not_party_menu
+	; Draw HP bar below the HP amount
 	ld a, 2 * SCREEN_WIDTH
 	add l
 	ld l, a
 	ld a, 0
 	adc h
 	ld h, a
-.asm_d780
+.not_party_menu
 	call DrawHPBar
 	ret
 ; d784
@@ -258,16 +259,16 @@ HPBarAnim_UpdateHPRemaining: ; d784
 	and a
 	ret z
 	cp $1
-	jr z, .asm_d792
+	jr z, .battlemon
 	ld de, SCREEN_WIDTH + 2
-	jr .asm_d795
+	jr .update_hp_number
 
-.asm_d792
+.battlemon
 	ld de, SCREEN_WIDTH + 1
-.asm_d795
+.update_hp_number
 	push hl
 	add hl, de
-	ld a, $7f
+	ld a, " "
 	ld [hli], a
 	ld [hli], a
 	ld [hld], a
@@ -287,9 +288,9 @@ HPBarAnim_PaletteUpdate: ; d7b4
 	ld a, [hCGB]
 	and a
 	ret z
-	ld hl, wd1f0
+	ld hl, wHPBarTempHPPal
 	call SetHPPal
-	ld a, [wd1f0]
+	ld a, [wHPBarTempHPPal]
 	ld c, a
 	callba Function8c43
 	ret
@@ -306,29 +307,30 @@ HPBarAnim_BGMapUpdate: ; d7c9
 .cgb
 	ld a, [wWhichHPBar]
 	and a
-	jr z, .asm_d829
+	jr z, .enemy_hp_bar
 	cp $1
-	jr z, .asm_d82d
+	jr z, .player_hp_bar
+	; Party Menu
 	ld a, [CurPartyMon]
 	cp $3
-	jr nc, .asm_d7ea
+	jr nc, .bottom_half_of_screen
 	ld c, $0
-	jr .asm_d7ec
+	jr .got_third
 
-.asm_d7ea
+.bottom_half_of_screen
 	ld c, $1
-.asm_d7ec
+.got_third
 	push af
 	cp $2
-	jr z, .asm_d7ff
+	jr z, .skip_delay
 	cp $5
-	jr z, .asm_d7ff
+	jr z, .skip_delay
 	ld a, $2
 	ld [hBGMapMode], a
 	ld a, c
 	ld [hBGMapThird], a
 	call DelayFrame
-.asm_d7ff
+.skip_delay
 	ld a, $1
 	ld [hBGMapMode], a
 	ld a, c
@@ -336,12 +338,12 @@ HPBarAnim_BGMapUpdate: ; d7c9
 	call DelayFrame
 	pop af
 	cp $2
-	jr z, .asm_d813
+	jr z, .two_frames
 	cp $5
-	jr z, .asm_d813
+	jr z, .two_frames
 	ret
 
-.asm_d813
+.two_frames
 	inc c
 	ld a, $2
 	ld [hBGMapMode], a
@@ -355,13 +357,13 @@ HPBarAnim_BGMapUpdate: ; d7c9
 	call DelayFrame
 	ret
 
-.asm_d829
+.enemy_hp_bar
 	ld c, $0
-	jr .asm_d82f
+	jr .got_battle_third
 
-.asm_d82d
+.player_hp_bar
 	ld c, $1
-.asm_d82f
+.got_battle_third
 	call DelayFrame
 	ld a, c
 	ld [hBGMapThird], a
@@ -413,6 +415,7 @@ ShortAnim_UpdateHP: ; d839
 	jr c, .okay
 	inc b
 .okay
+	; min/max
 	ld a, [wHPBarAnimLowValue]
 	cp b
 	jr nc, .between_low_and_high
