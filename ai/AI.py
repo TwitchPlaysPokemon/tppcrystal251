@@ -1803,9 +1803,9 @@ class AI(object):
                     if self.MonData[mycurrent]['moves'][tempmove]['effect'] == ('destinybond'):
                         tempx = tempmove
                 if tempx != -1:
-                    return tempx
+                    if self.MonData[mycurrent]['moves'][tempx]['curpp'] > 0:
+                        return tempx
             
-        
         #if we chose to use either counter/mirrorcoat, and the mon has BOTH counter and mirrorcoat, 
         #randomize the move used based on the effective damage of both
         if self.theaction < 4:
@@ -1853,11 +1853,11 @@ class AI(object):
         templist2 = []
         #they are about to die can i save pp?
         if self.theaction < 4:
-            if self.Damage[mycurrent][traincurrent][self.theaction]['damage'] > self.jsonlist['battleState']['playerpokemon']['curhp'] * 1.1:
+            if self.Damage[mycurrent][traincurrent][self.theaction]['damage'] > self.jsonlist['battleState']['playerpokemon']['hp'] * 1.1:
                 for tempmove in range(0, len(self.jsonlist['battleState']['enemypokemon']['moves'])):
                     self.DamageDealt(mycurrent, traincurrent, tempmove)
                     if self.MonData[mycurrent]['moves'][tempmove]['curpp'] > 0:
-                        if self.Damage[mycurrent][traincurrent][tempmove]['damage'] > self.jsonlist['battleState']['playerpokemon']['curhp'] * 1.1:
+                        if self.Damage[mycurrent][traincurrent][tempmove]['damage'] > self.jsonlist['battleState']['playerpokemon']['hp'] * 1.1:
                             templist.append(tempmove)
                 if len(templist) > 0:
                     temp1 = -1
@@ -2020,7 +2020,7 @@ class AI(object):
                         break
                 except KeyError:
                     x1 += 1
-                print('Move had 0 pp? you should never see this error; this is a failsafe')
+                print('Move had 0 pp? you should never see this error; this is a failsafe -ERROR-')
                 self.theaction = random.randint(0, (len(self.jsonlist['battleState']['enemypokemon']['moves'])))
                 if tempy == len(self.MonData[mycurrent]['moves']):
                     break
