@@ -445,29 +445,38 @@ UnknownText_0x9e62f: ; 0x9e62f
 ; 0x9e886
 
 UnknownText_0x9e886: ; 0x9e886
-	db $0, "BATTLE TOWER is a", $4f
-	db "facility made for", $55
-	db "#MON battles.", $51
-	db "Countless #MON", $4f
-	db "trainers gather", $51
-	db "from all over to", $4f
-	db "hold battles in", $51
-	db "specially designed", $4f
-	db "BATTLE ROOMS.", $51
-	db "There are many", $4f
-	db "BATTLE ROOMS in", $55
-	db "the BATTLE TOWER.", $51
-	db "Each ROOM holds", $4f
-	db "seven trainers.", $51
-	db "Beat them all, and", $4f
-	db "win a prize.", $51
-	db "To interrupt a", $4f
-	db "session, you must", $51
-	db "SAVE. If not, you", $4f
-	db "won't be able to", $51
-	db "resume your ROOM", $4f
-	db "challenge.", $51
-	db $57
+	text "BATTLE TOWER is a"
+	line "facility made for"
+	
+	para "#MON battles"
+	line "where you can win"
+
+	para "fabulous cash"
+	line "prizes."
+
+	para "Inside you will be"
+	line "challenged by 7"
+	cont "trainers."
+
+	para "The more you win"
+	line "in a row, the"
+	cont "greater the prize!"
+
+	para "These opponents"
+	line "will use parties"
+
+	para "of similar level"
+	line "and size to yours."
+
+	para "To interrupt a"
+	line "session, you must"
+
+	para "SAVE. If not, you"
+	line "won't be able to"
+
+	para "resume your ROOM"
+	line "challenge."
+	done
 ; 0x9e9eb
 
 UnknownText_0x9e9eb: ; 0x9e9eb

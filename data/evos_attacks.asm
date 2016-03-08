@@ -2876,7 +2876,7 @@ MewtwoEvosAttacks:
 	db 80,IRON_TAIL
 	db 85,TRI_ATTACK
 	db 90,LIGHT_SCREEN
-	db 95,PSYCHIC
+	db 95,PSYCHIC_M
 	db 100,RECOVER
 	db 0 ; no more level-up moves
 
@@ -2902,7 +2902,7 @@ MewEvosAttacks:
 	db 80,TRI_ATTACK
 	db 85,HORN_DRILL
 	db 90,SUBMISSION
-	db 95,PSYCHIC
+	db 95,PSYCHIC_M
 	db 100,SKETCH
 	db 0 ; no more level-up moves
 
@@ -4828,7 +4828,7 @@ LugiaEvosAttacks:
 	db 80, IRON_HEAD
 	db 85, HYDRO_PUMP
 	db 90, RECOVER
-	db 95, PSYCHIC
+	db 95, PSYCHIC_M
 	db 100, AEROBLAST
 	db 0 ; no more level-up moves
 
@@ -4869,5 +4869,5 @@ CelebiEvosAttacks:
 	db 85, NASTY_PLOT
 	db 90, HEAL_BELL
 	db 95, SEED_BOMB
-	db 100, PSYCHIC
+	db 100, PSYCHIC_M
 	db 0 ; no more level-up moves
