@@ -1698,7 +1698,7 @@ class AI(object):
         self.TrainerDamage(traincurrent, mycurrent)
         if Debug_Code > 0:
             print('checking if i will die')
-            print('their damage: '+str(self.Damage[traincurrent][mycurrent][self.enemynumber]['damage'])+' my hp: '+str(self.jsonlist['battleState']['enemypokemon']['curhp']))
+            print('their damage: '+str(self.Damage[traincurrent][mycurrent][self.enemynumber]['damage'])+' my hp: '+str(self.jsonlist['battleState']['enemypokemon']['hp']))
         x1 = -1
         if self.MonData[traincurrent]['moves'][self.theaction]['effect'] in ('moonlight', 'synthesis', 'morningsun', 'heal'):
             if self.Damage[mycurrent][traincurrent][self.theaction]['selfdamage'] * -1 > self.Damage[traincurrent][mycurrent][self.enemynumber]['damage']:
@@ -2021,7 +2021,7 @@ class AI(object):
                 except KeyError:
                     x1 += 1
                 print('Move had 0 pp? you should never see this error; this is a failsafe')
-                self.theaction = random.randint(mycurrent, (len(self.jsonlist['battleState']['enemypokemon']['moves'])))
+                self.theaction = random.randint(0, (len(self.jsonlist['battleState']['enemypokemon']['moves'])))
                 if tempy == len(self.MonData[mycurrent]['moves']):
                     break
                 if x1 > 20: 
