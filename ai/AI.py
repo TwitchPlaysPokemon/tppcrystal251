@@ -1058,7 +1058,10 @@ class AI(object):
                         self.MonData[traincurrent]['stats']['curhp'] = self.MonData[traincurrent]['stats']['curhp'] + (self.MonData[traincurrent]['stats']['maxhp'] * 0.25 * statusMultiplier)
                     else: #rain, sandstorm
                         self.MonData[traincurrent]['stats']['curhp'] = self.MonData[traincurrent]['stats']['curhp'] + (self.MonData[traincurrent]['stats']['maxhp'] * 0.0625 * statusMultiplier)
-            
+
+        if self.MonData[traincurrent]['stats']['curhp'] > self.MonData[traincurrent]['stats']['maxhp']:
+            self.MonData[traincurrent]['stats']['curhp'] = self.MonData[traincurrent]['stats']['maxhp']
+        
         for temptext in ('enemypokemon', 'playerpokemon'):
             if temptext == 'enemypokemon':
                 pkmindex = mycurrent
