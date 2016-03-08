@@ -356,7 +356,10 @@ class AI(object):
                 basebp = 200
         
         if move_used_effect == 'hiddenpower':
-            basebp = math.floor(((5 * (math.floor(self.jsonlist['battleState'][temptext2]['dvs']['spc']/8) + math.floor(self.jsonlist['battleState'][temptext2]['dvs']['spd']/8) * 2 + math.floor(self.jsonlist['battleState'][temptext2]['dvs']['def']/8) * 4 + math.floor(self.jsonlist['battleState'][temptext2]['dvs']['atk']/8) * 8) + (self.jsonlist['battleState'][temptext2]['dvs']['spc'] % 4)) / 2) + 31)
+            #actual basebp code
+            '''basebp = math.floor(((5 * (math.floor(self.jsonlist['battleState'][temptext2]['dvs']['spc']/8) + math.floor(self.jsonlist['battleState'][temptext2]['dvs']['spd']/8) * 2 + math.floor(self.jsonlist['battleState'][temptext2]['dvs']['def']/8) * 4 + math.floor(self.jsonlist['battleState'][temptext2]['dvs']['atk']/8) * 8) + (self.jsonlist['battleState'][temptext2]['dvs']['spc'] % 4)) / 2) + 31)'''
+            #override bp code
+            basebp = 70
             tempx = 4 * (self.jsonlist['battleState'][temptext2]['dvs']['atk'] % 4) + (self.jsonlist['battleState'][temptext2]['dvs']['def'] % 4)
             move_used['type'] = self._HPTypes[tempx]      
         
@@ -1529,7 +1532,7 @@ class AI(object):
                         #and an item exists
                         if self.MonData['myitems'][x2] != 'noitem':
                             self.useitem = x2
-                            if self.Damage[traincurrent][mycurrent][self.enemynumber]['damage'] / 0.85 < self.jsonlist['battleState']['enemypokemon']['hp']:
+                            if self.Damage[traincurrent][mycurrent][self.enemynumber]['damage'] / 0.85 < self.jsonlist['battleState']['enemypokemon']['curhp']:
                                 if self.MonData['myitems'][x2] in ['xspeed', 'xattack', 'xdefense', 'xspecial', 'direhit']:
                                     self.Fight(traincurrent, mycurrent, 5)
                                     if self.differenceitems[mymons][self.useitem] > self.difference[temp1][traincurrent]:
@@ -1547,7 +1550,7 @@ class AI(object):
                                     item_name = self.MonData['myitems'][x2]
                                     if item_name in healing_items:
                                         #and healing would allow you to continue fighting (and not draw out the inevitable)
-                                        if self.Damage[traincurrent][mycurrent][self.enemynumber]['damage'] * 1.25 < min((self.jsonlist['battleState']['enemypokemon']['stats']['maxhp'] - self.jsonlist['battleState']['enemypokemon']['hp']), healing_items[item_name]):
+                                        if self.Damage[traincurrent][mycurrent][self.enemynumber]['damage'] * 1.25 < min((self.jsonlist['battleState']['enemypokemon']['stats']['maxhp'] - self.jsonlist['battleState']['enemypokemon']['curhp']), healing_items[item_name]):
                                             return x2 + 9
         return 20
 
@@ -1695,13 +1698,13 @@ class AI(object):
         self.TrainerDamage(traincurrent, mycurrent)
         if Debug_Code > 0:
             print('checking if i will die')
-            print('their damage: '+str(self.Damage[traincurrent][mycurrent][self.enemynumber]['damage'])+' my hp: '+str(self.jsonlist['battleState']['enemypokemon']['hp']))
+            print('their damage: '+str(self.Damage[traincurrent][mycurrent][self.enemynumber]['damage'])+' my hp: '+str(self.jsonlist['battleState']['enemypokemon']['curhp']))
         x1 = -1
         if self.MonData[traincurrent]['moves'][self.theaction]['effect'] in ('moonlight', 'synthesis', 'morningsun', 'heal'):
             if self.Damage[mycurrent][traincurrent][self.theaction]['selfdamage'] * -1 > self.Damage[traincurrent][mycurrent][self.enemynumber]['damage']:
                 x1 = 1
         if x1 == -1:
-            if self.Damage[traincurrent][mycurrent][self.enemynumber]['damage'] > self.jsonlist['battleState']['enemypokemon']['hp']:
+            if self.Damage[traincurrent][mycurrent][self.enemynumber]['damage'] > self.jsonlist['battleState']['enemypokemon']['curhp']:
                 tempx = 0
                 self.FinalChance = True
                 for tempmove in range(0, len(self.jsonlist['battleState']['enemypokemon']['moves'])):
@@ -1850,11 +1853,11 @@ class AI(object):
         templist2 = []
         #they are about to die can i save pp?
         if self.theaction < 4:
-            if self.Damage[mycurrent][traincurrent][self.theaction]['damage'] > self.jsonlist['battleState']['playerpokemon']['hp'] * 1.1:
+            if self.Damage[mycurrent][traincurrent][self.theaction]['damage'] > self.jsonlist['battleState']['playerpokemon']['curhp'] * 1.1:
                 for tempmove in range(0, len(self.jsonlist['battleState']['enemypokemon']['moves'])):
                     self.DamageDealt(mycurrent, traincurrent, tempmove)
                     if self.MonData[mycurrent]['moves'][tempmove]['curpp'] > 0:
-                        if self.Damage[mycurrent][traincurrent][tempmove]['damage'] > self.jsonlist['battleState']['playerpokemon']['hp'] * 1.1:
+                        if self.Damage[mycurrent][traincurrent][tempmove]['damage'] > self.jsonlist['battleState']['playerpokemon']['curhp'] * 1.1:
                             templist.append(tempmove)
                 if len(templist) > 0:
                     temp1 = -1
@@ -1901,7 +1904,7 @@ class AI(object):
         #if i can kill
         for tempmove in range(0, len(self.jsonlist['battleState']['enemypokemon']['moves'])):
             self.DamageDealt(mycurrent, traincurrent, tempmove)
-            if self.Damage[mycurrent][traincurrent][tempmove]['damage'] > self.jsonlist['battleState']['playerpokemon']['hp'] * 1.1:
+            if self.Damage[mycurrent][traincurrent][tempmove]['damage'] > self.jsonlist['battleState']['playerpokemon']['curhp'] * 1.1:
                 KillingBlow = True
         #then dont use stats down
         if KillingBlow:
@@ -1972,8 +1975,9 @@ class AI(object):
                 self.theaction = self.mybestmove[mycurrent]
                 self.triggered = 1
                 self.TrainerDamage(traincurrent, mycurrent)
-                if self.Damage[traincurrent][mycurrent][self.enemynumber]['damage'] * 1.25 > self.jsonlist['battleState']['enemypokemon']['hp']:
-                    self.ShouldISwitch = False
+                if self.Damage[traincurrent][mycurrent][self.enemynumber]['damage'] * 1.25 > self.jsonlist['battleState']['enemypokemon']['curhp']:
+                    if self.jsonlist['battleState']['enemypokemon']['curhp'] < self.jsonlist['battleState']['enemypokemon']['maxhp'] * 0.33:
+                        self.ShouldISwitch = False
                 if self.ShouldISwitch:
                     theaction2 = self.OptionalSwitch(traincurrent)
                     if theaction2 != 20:
