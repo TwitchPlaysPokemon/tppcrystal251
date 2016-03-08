@@ -1032,17 +1032,21 @@ class AI(object):
             self.MonData['myperishsong'] = self.MonData['myperishsong'] - 1
         if self.MonData['trainperishsong'] > 0:
             self.MonData['trainperishsong'] = self.MonData['trainperishsong'] - 1
-        
-        for moveset in range(0, len(self.jsonlist['playerParty']['party'][traincurrent-6]['moves'])):
-            if (self.MonData[traincurrent]['moves'][moveset]['effect'] == 'heal' and self.MonData[traincurrent]['moves'][moveset]['name'] != 'rest'):
-                self.MonData[traincurrent]['stats']['curhp'] = self.MonData[traincurrent]['stats']['curhp'] + (self.MonData[traincurrent]['stats']['maxhp'] * 0.25)
-            elif (self.MonData[traincurrent]['moves'][moveset]['effect'] in ('moonlight', 'synthesis', 'morningsun')):
-                if (self.MonData['weather'] == 'clear'):
-                    self.MonData[traincurrent]['stats']['curhp'] = self.MonData[traincurrent]['stats']['curhp'] + (self.MonData[traincurrent]['stats']['maxhp'] * 0.125)
-                elif (self.MonData['weather'] == 'sun'):
-                    self.MonData[traincurrent]['stats']['curhp'] = self.MonData[traincurrent]['stats']['curhp'] + (self.MonData[traincurrent]['stats']['maxhp'] * 0.25)
-                else: #rain, sandstorm
-                    self.MonData[traincurrent]['stats']['curhp'] = self.MonData[traincurrent]['stats']['curhp'] + (self.MonData[traincurrent]['stats']['maxhp'] * 0.0625)
+            
+        if self.MonData[traincurrent]['status'] not in ('frz', 'slp'):
+            statusMultiplier = 1
+            if self.MonData[traincurrent]['status'] == 'prz':
+                statusMultiplier = 0.75
+            for moveset in range(0, len(self.jsonlist['playerParty']['party'][traincurrent-6]['moves'])):
+                if (self.MonData[traincurrent]['moves'][moveset]['effect'] == 'heal' and self.MonData[traincurrent]['moves'][moveset]['name'] != 'rest'):
+                    self.MonData[traincurrent]['stats']['curhp'] = self.MonData[traincurrent]['stats']['curhp'] + (self.MonData[traincurrent]['stats']['maxhp'] * 0.25 * statusMultiplier)
+                elif (self.MonData[traincurrent]['moves'][moveset]['effect'] in ('moonlight', 'synthesis', 'morningsun')):
+                    if (self.MonData['weather'] == 'clear'):
+                        self.MonData[traincurrent]['stats']['curhp'] = self.MonData[traincurrent]['stats']['curhp'] + (self.MonData[traincurrent]['stats']['maxhp'] * 0.125 * statusMultiplier)
+                    elif (self.MonData['weather'] == 'sun'):
+                        self.MonData[traincurrent]['stats']['curhp'] = self.MonData[traincurrent]['stats']['curhp'] + (self.MonData[traincurrent]['stats']['maxhp'] * 0.25 * statusMultiplier)
+                    else: #rain, sandstorm
+                        self.MonData[traincurrent]['stats']['curhp'] = self.MonData[traincurrent]['stats']['curhp'] + (self.MonData[traincurrent]['stats']['maxhp'] * 0.0625 * statusMultiplier)
             
         for temptext in ('enemypokemon', 'playerpokemon'):
             if temptext == 'enemypokemon':
@@ -1684,27 +1688,31 @@ class AI(object):
         if Debug_Code > 0:
             print('checking if i will die')
             print('their damage: '+str(self.Damage[traincurrent][mycurrent][self.enemynumber]['damage'])+' my hp: '+str(self.jsonlist['battleState']['enemypokemon']['hp']))
-        if self.Damage[traincurrent][mycurrent][self.enemynumber]['damage'] / 0.85 > self.jsonlist['battleState']['enemypokemon']['hp']:
-            tempx = 0
-            x1 = -1
-            self.FinalChance = True
-            for tempmove in range(0, len(self.jsonlist['battleState']['enemypokemon']['moves'])):
-                self.DamageDealt(mycurrent, traincurrent, tempmove)
-                if self.MonData[mycurrent]['moves'][tempmove]['curpp'] > 0:
-                    if self.Damage[mycurrent][traincurrent][tempmove]['damage'] > tempx:
-                        tempx = self.Damage[mycurrent][traincurrent][tempmove]['damage']
+        x1 = -1
+        if self.MonData[traincurrent]['moves'][self.theaction]['effect'] in ('moonlight', 'synthesis', 'morningsun', 'heal'):
+            if self.Damage[mycurrent][traincurrent][self.theaction]['selfdamage'] * -1 > self.Damage[traincurrent][mycurrent][self.enemynumber]['damage']:
+                x1 = 1
+        if x1 == -1:
+            if self.Damage[traincurrent][mycurrent][self.enemynumber]['damage'] > self.jsonlist['battleState']['enemypokemon']['hp']:
+                tempx = 0
+                self.FinalChance = True
+                for tempmove in range(0, len(self.jsonlist['battleState']['enemypokemon']['moves'])):
+                    self.DamageDealt(mycurrent, traincurrent, tempmove)
+                    if self.MonData[mycurrent]['moves'][tempmove]['curpp'] > 0:
+                        if self.Damage[mycurrent][traincurrent][tempmove]['damage'] > tempx:
+                            tempx = self.Damage[mycurrent][traincurrent][tempmove]['damage']
+                            x1 = tempmove
+                tempx = self._statsmultipliers[self.MonData[mycurrent]['boosts']['spd']+6]/100
+                tempy = self._statsmultipliers[self.MonData[traincurrent]['boosts']['spd']+6]/100
+                for tempmove in range(0, len(self.jsonlist['battleState']['enemypokemon']['moves'])):
+                    if self.MonData[mycurrent]['moves'][tempmove]['effect'] in ('priorityhit','extremespeed') and (self.MonData[mycurrent]['stats']['spd'] * tempx < self.MonData[traincurrent]['stats']['spd'] * tempy):
                         x1 = tempmove
-            tempx = self._statsmultipliers[self.MonData[mycurrent]['boosts']['spd']+6]/100
-            tempy = self._statsmultipliers[self.MonData[traincurrent]['boosts']['spd']+6]/100
-            for tempmove in range(0, len(self.jsonlist['battleState']['enemypokemon']['moves'])):
-                if self.MonData[mycurrent]['moves'][tempmove]['effect'] in ('priorityhit','extremespeed') and (self.MonData[mycurrent]['stats']['spd'] * tempx < self.MonData[traincurrent]['stats']['spd'] * tempy):
-                    x1 = tempmove
-            if Debug_Code > 0:
-                print('about to die - i need to attack, i will use: '+str(x1))
-            if x1 == -1:
-                x1 = random.randint(0, len(self.MonData[mycurrent]['moves']))
-            return x1
-            self.NoBetterChoice = False
+                if Debug_Code > 0:
+                    print('about to die - i need to attack, i will use: '+str(x1))
+                if x1 == -1:
+                    x1 = random.randint(0, len(self.MonData[mycurrent]['moves']))
+                return x1
+                self.NoBetterChoice = False
         return
        
     def ManualControl(self):
@@ -1776,6 +1784,7 @@ class AI(object):
             if 'charged' in self.MonData['playerpokemon']['substatus'] or (isinstance(self.MonData['playerpokemon']['substatus'], dict) and 'charged' in self.MonData['playerpokemon']['substatus'].values()):
                 return tempx
         
+        #desitny bond override
         if self.theaction < 4:
             tempx = -1
             if self.FinalChance:
