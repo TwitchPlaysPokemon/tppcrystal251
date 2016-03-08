@@ -456,9 +456,9 @@ UnknownText_0x9e886: ; 0x9e886
 
 	para "Inside you will be"
 	line "challenged by 7"
-	cont "trainers,"
+	cont "trainers."
 
-	para "the more you win"
+	para "The more you win"
 	line "in a row, the"
 	cont "greater the prize!"
 
