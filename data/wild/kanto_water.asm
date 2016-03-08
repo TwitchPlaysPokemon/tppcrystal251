@@ -1,7 +1,61 @@
 ; Kanto Pokémon in water
 
-;	db GROUP_TOHJO_FALLS, MAP_TOHJO_FALLS
-;	db $0a ; encounter rate
+	db GROUP_TOHJO_FALLS, MAP_TOHJO_FALLS
+	db $0a ; encounter rate
+	db 53
+	db $01
+;morning
+		db GOLDEEN ;20
+		db ZUBAT ;20
+		db SEAKING ;10
+		db GOLBAT ;10
+		db WARTORTLE ;5
+		db OCTILLERY ;5
+		db OCTILLERY ;5
+		db CROBAT ;5
+		db MARILL ;4
+		db PSYDUCK ;4
+		db PSYDUCK ;3
+		db GOLDUCK ;3
+		db WARTORTLE ;2
+		db WARTORTLE ;2
+		db AZUMARILL ;1
+		db WARTORTLE ;1
+;day
+		db PSYDUCK ;20
+		db ZUBAT ;20
+		db GOLDUCK ;10
+		db GOLDEEN ;10
+		db WARTORTLE ;5
+		db GOLBAT ;5
+		db GOLBAT ;5
+		db CROBAT ;5
+		db SEAKING ;4
+		db MARILL ;4
+		db WARTORTLE ;3
+		db PSYDUCK ;3
+		db WARTORTLE ;2
+		db PSYDUCK ;2
+		db SEAKING ;1
+		db AZUMARILL ;1
+;night
+		db MARILL ;20
+		db WARTORTLE ;20
+		db AZUMARILL ;10
+		db PSYDUCK ;10
+		db AZUMARILL ;5
+		db OCTILLERY ;5
+		db OCTILLERY ;5
+		db OCTILLERY ;5
+		db OCTILLERY ;4
+		db GOLDEEN ;4
+		db GOLDEEN ;3
+		db SEAKING ;3
+		db GOLDUCK ;2
+		db GOLDUCK ;2
+		db GOLDUCK ;1
+		db OCTILLERY ;1
+
 
 ;	db GROUP_VERMILION_PORT, MAP_VERMILION_PORT
 ;	db $05 ; encounter rate
