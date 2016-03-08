@@ -33,6 +33,7 @@ UnknownScript_0x9f425: ; 0x9f425
 	storetext 1
 	buttonsound
 	closetext
+	setlasttalked $2
 	special Function170215 ;run battle, loop until done
 	special Function8c084 ;pallette stuff
 	reloadmap
@@ -46,15 +47,15 @@ UnknownScript_0x9f425: ; 0x9f425
 	applymovement $0, MovementData_0x9e5a7
 	loadfont
 	writetext UnknownText_0x9ee92 ;your mon will be healed
-	waitbutton
-	closetext
+	; waitbutton
+	; closetext
 	playmusic MUSIC_HEAL
-	special Function8c084 ;pallette stuff
-	special Function1047eb ;???
+	; special Function8c084 ;pallette stuff
+	special Function1047eb ; mobile
 	pause 60
-	special Function8c079 ;pallette stuff
+	; special Function8c079 ;pallette stuff
 	special RestartMapMusic
-	loadfont
+	; loadfont
 	writetext UnknownText_0x9eebc ;next opponent text
 	yesorno
 	iffalse UnknownScript_0x9f483 ;if not ready, else loop

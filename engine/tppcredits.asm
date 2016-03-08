@@ -467,6 +467,19 @@ TPPCredits_ThanksSceneInit::
 	pop bc
 	dec b
 	jr nz, .loop
+	ld b, 8
+	ld hl, VTiles2 + $700
+.loop3
+	ld a, $ff
+	ld [hli], a
+	xor a
+	ld [hli], a
+	dec b
+	jr nz, .loop3
+	ld a, $70
+	ld hl, VBGMap0 + $160
+	ld bc, 32 * 7
+	call ByteFill
 	ld hl, ThanksForWatchingPals
 	ld de, Unkn1Pals
 	ld bc, 8 * 8
@@ -2907,7 +2920,7 @@ ThanksForWatchingAttrs:
 
 ThanksForWatchingPals:
 	HSV 0.0,  0.4, 1.0 ; strip1
-	RGB 00, 00, 00
+	RGB 30, 24, 06
 	RGB 00, 00, 00
 	HSV 0.0, 0.75, 0.8 ; strip2
 	

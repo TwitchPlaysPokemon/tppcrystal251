@@ -3094,6 +3094,9 @@ ENDC
 IF DEF(BEESAFREE)
 MilitaryWaiting:
 	call EmptyBattleTextBox
+	hlcoord 1, 13
+	lb bc, 4, 18
+	call ClearBox
 	ld a, [Options]
 	push af
 	set 4, a
@@ -4125,10 +4128,15 @@ BattleCore_TryToFlee: ; 3d8b3
 	jr .asm_3d995
 
 .asm_3d992
+	; Uncomment these three lines for ROM/cart release.
+	; ld a, [InBattleTowerBattle]
+	; and a
+	; jr nz, .AskForfeitBattleTower
 	ld hl, BattleText_0x80b49
 
 .asm_3d995
 	call StdBattleTextBox
+.declined_forfeit
 	ld a, $1
 	ld [wd266], a
 	call Function309d
@@ -4194,6 +4202,20 @@ ENDC
 	scf
 	ret
 ; 3da0d
+
+; What follows is staged for ROM/cart release.
+
+; .AskForfeitBattleTower
+	; ld hl, .AskForfeitText
+	; call BattleTextBox
+	; call YesNoBox
+	; jr nc, .asm_3d9a2
+	; jp .declined_forfeit
+
+; .AskForfeitText:
+	; text "Forfeit your"
+	; line "challenge?"
+	; done
 
 Function3da0d: ; 3da0d
 	ld a, PartyMon1Species - PartyMon1
@@ -8695,10 +8717,10 @@ Function3f4dd: ; 3f4dd
 	ld [hBGMapMode], a
 	call EmptyBattleTextBox
 	hlcoord 9, 7
-	ld bc, 5 << 8 + 11
+	lb bc, 5, 11
 	call ClearBox
 	hlcoord 1, 0
-	ld bc, 4 << 8 + 10
+	lb bc, 4, 10
 	call ClearBox
 	call ClearSprites
 	ld a, [wBattleMode]

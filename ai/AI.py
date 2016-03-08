@@ -473,7 +473,7 @@ class AI(object):
                 else:
                     damage = 0
 
-        locked = ('lock on' in self.MonData[temptext]['substatus'] or (isinstance(self.MonData[temptext]['substatus'], dict) and 'lock on' in self.MonData[temptext]['substatus'].values())) or (self.MonData['lockon'] == True and attacker < 6)
+        locked = ("lock on" in self.MonData[temptext]['substatus'] or (isinstance(self.MonData[temptext]['substatus'], dict) and "lock on" in self.MonData[temptext]['substatus'].values())) or (self.MonData['lockon'] == True and attacker < 6)
         if locked:
             totalacc = 1
 
@@ -634,10 +634,26 @@ class AI(object):
         if Debug_Code == 1:
             print ('inside TrainerDamage, variables in play - traincurrent: '+str(traincurrent)+' mycurrent: '+str(mycurrent))
             print('length of moves for this mon: '+str( len(self.jsonlist['playerParty']['party'][traincurrent-6]['moves'])))
-        
+        statusMultiplier = 1
+        for moveset in range(0, len(self.jsonlist['playerParty']['party'][traincurrent-6]['moves'])):
+            if self.MonData[mycurrent]['status'] == 'none' and self.MonData[mycurrent]['item'] != 'sleepguard':
+                if ((self.MonData[mycurrent]['type'][1] not in ('grass')) and (self.MonData[mycurrent]['type'][2]  not in ('grass'))):
+                    if self.MonData[traincurrent]['moves'][moveset]['name'] == 'spore':
+                        statusMultiplier = 1.25
+                    if self.MonData[traincurrent]['moves'][moveset]['name'] == 'sleeppowder':
+                        statusMultiplier = 1.18
+                if self.MonData[traincurrent]['moves'][moveset]['effect'] == 'sleep' and self.MonData[traincurrent]['moves'][moveset]['name'] not in ('spore', 'sleeppowder'):
+                    statusMultiplier = (0.25 * self.MonData[traincurrent]['moves'][moveset]['acc']) + 1
+            if self.MonData[traincurrent]['moves'][moveset]['effect'] == 'toxic' and self.MonData[mycurrent]['item'] != 'poisonguard' and ((self.MonData[mycurrent]['type'][1] not in ('poison', 'steel')) and (self.MonData[mycurrent]['type'][2] not in ('poison', 'steel'))):
+                self.MonData[mycurrent]['status'] = 'psn'
+                if type(self.MonData['enemypokemon']['substatus']) == list:
+                    self.MonData['enemypokemon']['substatus'] = {str(i+1): x for i, x in enumerate(self.MonData['playerpokemon']['substatus'])}
+                self.MonData['enemypokemon']['substatus']['toxic'] = 1        
+                            
         for moveset in range(0, len(self.jsonlist['playerParty']['party'][traincurrent-6]['moves'])):
             if self.MonData[traincurrent]['moves'][moveset]['curpp'] > 0:
                 self.DamageDealt(traincurrent, mycurrent, moveset)
+                self.Damage[traincurrent][mycurrent][moveset]['damage'] *= statusMultiplier
             else:
                 self.Damage[traincurrent][mycurrent][moveset]['damage'] = -1
         tempx = -3
@@ -763,7 +779,6 @@ class AI(object):
                         self.MonData[traincurrent]['boosts']['sdef'] = self.MonData[traincurrent]['boosts']['sdef'] - 2
 
                 #healing
-                #the variable healing is set to false at the beginning of the function, no need to set it here
                 if (self.MonData[mycurrent]['moves'][moveused]['effect'] == 'heal'):
                     healing = True
                     if (self.MonData[mycurrent]['moves'][moveused]['name'] == 'rest'):
@@ -870,7 +885,10 @@ class AI(object):
                     self.MonData['attract'] = True
                 elif (self.MonData[mycurrent]['moves'][moveused]['name'] == 'lockon'):
                     self.MonData['lockon'] = True
-
+                    if self.jsonlist['battleState']['enemypokemon']['last used'].replace(' ', '').lower().replace('-', '') == 'mindreader':
+                        self.MonData['lockon'] = False
+                        self.Damage[mycurrent][traincurrent][moveused]['damage'] = -500
+                        
                 #end of turn shit
                 elif self.MonData[mycurrent]['moves'][moveused]['effect'] == 'bind':
                     self.MonData['playerpokemon']['bound'] = 5
@@ -942,7 +960,6 @@ class AI(object):
                         elif (self.MonData[mycurrent]['moves'][moveused]['effect'] in ('poison', 'toxic', 'poisonhit', 'twineedle')) and self.MonData[traincurrent]['item'] != 'poisonguard' and ((self.MonData[traincurrent]['type'][1] not in ('poison', 'steel')) and (self.MonData[traincurrent]['type'][2] not in ('poison', 'steel'))):
                             self.MonData[traincurrent]['status'] = 'psn'
                             if self.MonData[mycurrent]['moves'][moveused]['effect'] == 'toxic':
-                                print('considering toxic')
                                 if type(self.MonData['playerpokemon']['substatus']) == list:
                                     self.MonData['playerpokemon']['substatus'] = {str(i+1): x for i, x in enumerate(self.MonData['playerpokemon']['substatus'])}
                                 self.MonData['playerpokemon']['substatus']['toxic'] = 1
@@ -1015,6 +1032,17 @@ class AI(object):
             self.MonData['myperishsong'] = self.MonData['myperishsong'] - 1
         if self.MonData['trainperishsong'] > 0:
             self.MonData['trainperishsong'] = self.MonData['trainperishsong'] - 1
+        
+        for moveset in range(0, len(self.jsonlist['playerParty']['party'][traincurrent-6]['moves'])):
+            if (self.MonData[traincurrent]['moves'][moveset]['effect'] == 'heal' and self.MonData[traincurrent]['moves'][moveset]['name'] != 'rest'):
+                self.MonData[traincurrent]['stats']['curhp'] = self.MonData[traincurrent]['stats']['curhp'] + (self.MonData[traincurrent]['stats']['maxhp'] * 0.25)
+            elif (self.MonData[traincurrent]['moves'][moveset]['effect'] in ('moonlight', 'synthesis', 'morningsun')):
+                if (self.MonData['weather'] == 'clear'):
+                    self.MonData[traincurrent]['stats']['curhp'] = self.MonData[traincurrent]['stats']['curhp'] + (self.MonData[traincurrent]['stats']['maxhp'] * 0.125)
+                elif (self.MonData['weather'] == 'sun'):
+                    self.MonData[traincurrent]['stats']['curhp'] = self.MonData[traincurrent]['stats']['curhp'] + (self.MonData[traincurrent]['stats']['maxhp'] * 0.25)
+                else: #rain, sandstorm
+                    self.MonData[traincurrent]['stats']['curhp'] = self.MonData[traincurrent]['stats']['curhp'] + (self.MonData[traincurrent]['stats']['maxhp'] * 0.0625)
             
         for temptext in ('enemypokemon', 'playerpokemon'):
             if temptext == 'enemypokemon':
@@ -1526,6 +1554,11 @@ class AI(object):
                     self.difference[mycurrent][traincurrent] = 0
                     self.MonData[mycurrent]['boosts'] = {}
                     self.MonData[traincurrent]['boosts'] = {}
+                    if 'attract' in self.MonData['playerpokemon']['substatus']:
+                        self.MonData['playerpokemon']['substatus'].remove('attract')
+                    if isinstance(self.MonData['playerpokemon']['substatus'], dict) and 'attract' in self.MonData['playerpokemon']['substatus'].values():
+                        del self.MonData['playerpokemon']['substatus']['attract']
+                        
                     for stat in self.statNames:
                         self.MonData[mycurrent]['boosts'][stat] = 0
                         self.MonData[traincurrent]['boosts'][stat] = int(self.jsonlist['battleState']['playerpokemon']['stat levels'][stat])
@@ -1668,6 +1701,8 @@ class AI(object):
                     x1 = tempmove
             if Debug_Code > 0:
                 print('about to die - i need to attack, i will use: '+str(x1))
+            if x1 == -1:
+                x1 = random.randint(0, len(self.MonData[mycurrent]['moves']))
             return x1
             self.NoBetterChoice = False
         return

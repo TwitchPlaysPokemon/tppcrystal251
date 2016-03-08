@@ -264,6 +264,7 @@ PremierBall:
 	ld a, [hli]
 	ld h, [hl]
 	ld l, a
+	; call [hl]
 	ld de, .asm_e906
 	push de
 	jp [hl]
