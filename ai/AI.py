@@ -1678,8 +1678,9 @@ class AI(object):
             if self.MonData[mycurrent]['moves'][tempmove]['effect'] in ('whirlwind', 'teleport'):
                 movepriority[tempmove] = 11
                 continue
+            
         for tempmove in range(0, len(self.jsonlist['battleState']['enemypokemon']['moves'])):
-            if ((self.MonData[traincurrent]['type'][1] == ('grass')) or (self.MonData[traincurrent]['type'][2] == ('grass'))) and self.MonData[mycurrent]['moves'][tempmove]['name'] in ('spore', 'poisonpowder', 'sleeppowder', 'stunspore'):
+            if ((self.MonData[traincurrent]['type'][1] == 'grass') or (self.MonData[traincurrent]['type'][2] == 'grass')) and self.MonData[mycurrent]['moves'][tempmove]['name'] in ('spore', 'poisonpowder', 'sleeppowder', 'stunspore'):
                 movepriority[tempmove] = 20
         theaction = 20
         for tempx in range(0, len(self.jsonlist['battleState']['enemypokemon']['moves'])):
@@ -2004,6 +2005,9 @@ class AI(object):
         else:
             mycurrent = 0
             self.theaction = self.WildBattle(mycurrent, traincurrent)
+            potentialAction = self.LastMove()
+            if potentialAction is not None:
+                self.theaction = potentialAction
             potentialAction = self.ManualControl()
             if potentialAction is not None:
                 self.theaction = potentialAction
