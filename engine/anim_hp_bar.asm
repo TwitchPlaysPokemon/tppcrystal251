@@ -192,7 +192,7 @@ LongAnim_UpdateVariables: ; d6f5
 	pop bc
 	pop de
 	ld hl, wCurHPBarPixels
-	cp [hl]
+	cp [hl] ; Comment this line and the next one to revert HP bar speed.
 	jr z, .loop
 	ld [hl], a
 	and a
