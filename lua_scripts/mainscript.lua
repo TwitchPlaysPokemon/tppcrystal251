@@ -44,11 +44,20 @@ debug_mode = 0 --print EVERYTHING aside from basic info if 1, none if 0
 	-- local now
 	-- repeat
 		-- now = os.time()
-		-- emu.frameadvance()
+		-- DelayFrame()
 	-- until now - lastupdate >= seconds
 	-- lastupdate = now
 	-- return true
 -- end
+
+function DelayFrame()
+	if bit.band(memory.readbyte(0xFFFF), 0x01) ~= 0 then
+		emu.frameadvance()
+		return
+	end
+	while (memory.readbyte(0xFF44) <= 0x90) do
+	end
+end
 
 function GetUsableMoves(MovesPointer, PPPointer, DisabledMovePointer)
 	disabledMove = memory.readbyte(DisabledMovePointer)
@@ -89,7 +98,7 @@ function ReceiveButtonInput_NoMil()
 		end
 		joypad.set(1, json)
 	end
-	emu.frameadvance()
+	DelayFrame()
 end
 
 function ReceiveButtonInput()
@@ -105,7 +114,7 @@ function ReceiveButtonInput()
 		player_next_move = json["battle_command"]
 		joypad.set(1, json)
 	end
-	emu.frameadvance()
+	DelayFrame()
 end
 
 function DelayFrames(nframes)
