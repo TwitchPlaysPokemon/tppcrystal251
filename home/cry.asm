@@ -96,7 +96,7 @@ LoadCryHeader:: ; 37f3
 GetCryIndex:: ; 381e
 	and a
 	jr z, .no
-	cp NUM_POKEMON + 1
+	cp 252 + 1 ; mysterious bird in final room
 	jr nc, .no
 
 	dec a
