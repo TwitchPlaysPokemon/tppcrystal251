@@ -1,4 +1,3 @@
-; f2787
 BulbasaurCryHeader:   dw $0f,  $080,  $081
 IvysaurCryHeader:     dw $0f,  $020,  $100
 VenusaurCryHeader:    dw $0f,  $000,  $140

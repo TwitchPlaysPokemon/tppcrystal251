@@ -1370,19 +1370,7 @@ BattleCommand07: ; 346d2
 	call GetBattleVar
 	cp STRUGGLE
 	ret z
-	cp FUTURE_SIGHT
-	jr nz, .not_future_sight
-	ld hl, BattleMonLevel
-	ld a, [hBattleTurn]
-	and a
-	jr z, .got_level
-	ld hl, EnemyMonLevel
-.got_level
-	bit 7, [hl]
-	jr z, .asm_3473a
-	jr .stab
 
-.not_future_sight
 	ld hl, BattleMonType1
 	ld a, [hli]
 	ld b, a
@@ -1425,6 +1413,21 @@ BattleCommand07: ; 346d2
 	pop bc
 	pop de
 
+	ld a, BATTLE_VARS_MOVE_ANIM
+	call GetBattleVar ; preserves registers
+	cp FUTURE_SIGHT
+	jr nz, .not_future_sight
+	ld hl, BattleMonLevel
+	ld a, [hBattleTurn]
+	and a
+	jr z, .got_level
+	ld hl, EnemyMonLevel
+.got_level
+	bit 7, [hl]
+	jr z, .asm_3473a
+	jr .stab
+
+.not_future_sight
 	ld a, [wd265]
 	cp b
 	jr z, .stab
