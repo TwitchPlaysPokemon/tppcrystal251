@@ -145,7 +145,7 @@
 	const POWER_HERB ; NEW
 	const METAL_COAT
 	const DRAGON_FANG
-	const ITEM_91
+	const FRIEND_CHARM ; NEW
 	const LEFTOVERS
 	const ITEM_93
 	const ITEM_94

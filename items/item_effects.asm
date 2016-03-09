@@ -158,7 +158,7 @@ ItemEffects: ; e73c
 	dw Item8E
 	dw MetalCoat
 	dw DragonFang
-	dw Item91
+	dw FriendCharm
 	dw Leftovers
 	dw Item93
 	dw Item94
@@ -3064,7 +3064,7 @@ Item8D:
 Item8E:
 MetalCoat:
 DragonFang:
-Item91:
+FriendCharm:
 Leftovers:
 Item93:
 Item94:

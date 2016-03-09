@@ -176,7 +176,7 @@ ItemDescriptions:
 	dw PowerHerbDesc
 	dw MetalCoatDesc
 	dw DragonFangDesc
-	dw TeruSama14Desc
+	dw FriendCharmDesc
 	dw LeftoversDesc
 	dw TeruSama15Desc
 	dw TeruSama16Desc
@@ -850,8 +850,9 @@ DragonFangDesc:
 	db   "Powers up dragon-"
 	next "type moves. (HOLD)@"
 
-TeruSama14Desc:
-	db   "?@"
+FriendCharmDesc:
+	db   "Increases catch"
+	next "rate. (HOLD)@"
 
 LeftoversDesc:
 	db   "Restores HP during"

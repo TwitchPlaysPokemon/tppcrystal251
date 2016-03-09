@@ -428,7 +428,8 @@ Mart28: ; 161e1
 ; 161ea
 
 Mart29: ; 161ea
-	db 7 ; # items
+	db 8 ; # items
+	db FRIEND_CHARM
 	db ULTRA_BALL
 	db GREAT_BALL
 	db HYPER_POTION
