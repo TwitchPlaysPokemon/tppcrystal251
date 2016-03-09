@@ -12511,11 +12511,16 @@ UnknownScript_0x124c8:: ; 0x124c8
 	callasm Function124fa
 UnknownScript_0x124ce: ; 0x124ce
 	callasm DetermineMoneyLostToBlackout
+	iffalse .normal_text
+	callasm DetermineWildBattlePanic
 	iffalse .WildBattlePanic
-	writetext UnknownText_0x124f5
+	writetext UnknownText_0x124f5_3
 	jump .done_text
 .WildBattlePanic
 	writetext UnknownText_0x124f5_2
+	jump .done_text
+.normal_text
+	writetext UnknownText_0x124f5
 .done_text
 	waitbutton
 	special Function8c084
@@ -12536,9 +12541,13 @@ UnknownScript_0x124ce: ; 0x124ce
 	jumpstd bugcontestresultswarp
 ; 0x124f5
 
-UnknownText_0x124f5: ; 0x124f5
-	; is out of useable #MON!  whited out!
+UnknownText_0x124f5:
 	text_jump UnknownText_0x1c0a4e
+	db "@"
+
+UnknownText_0x124f5_3: ; 0x124f5
+	; is out of useable #MON!  whited out!
+	text_jump UnknownText_0x1c0a4e_3
 	db "@"
 ; 0x124fa
 
@@ -12563,6 +12572,15 @@ Function1250a: ; 1250a
 ; 12513
 
 DetermineMoneyLostToBlackout: ; 12513
+	; If you already have no money,
+	; do nothing here.
+	ld hl, Money
+	ld a, [hli]
+	or [hl]
+	inc hl
+	or [hl]
+	ld a, 0
+	jr z, .load
 	ld hl, Badges
 	ld b, 2
 	call CountSetBits
@@ -12611,18 +12629,11 @@ DetermineMoneyLostToBlackout: ; 12513
 	pop de
 	pop bc
 	callba Function15ffa
-	; ld hl, StringBuffer1
-	; lb bc, (1 << 5) | 3, 5
-	; call PrintNum
-	ld a, "@"
-	ld [hl], a
-	ld hl, $dff8
-	ld a, [hl]
-	and $1
+	ld a, 1
+.load
 	ld [ScriptVar], a
-	xor a
-	ld [hl], a
 	ret
+
 .Copy
 	ld a, [hli]
 	ld [de], a
@@ -12645,18 +12656,14 @@ DetermineMoneyLostToBlackout: ; 12513
 	db 100
 	db 120
 
-	; ld hl, Money
-	; ld a, [hl]
-	; srl a
-	; ld [hli], a
-	; ld a, [hl]
-	; rra
-	; ld [hli], a
-	; ld a, [hl]
-	; rra
-	; ld [hl], a
-	; ret
-; 12527
+DetermineWildBattlePanic:
+	ld hl, $dff8
+	ld a, [hl]
+	and $1
+	ld [ScriptVar], a
+	xor a
+	ld [hl], a
+	ret
 
 Function12527: ; 12527
 	ld a, [wdcb2]
