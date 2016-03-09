@@ -989,6 +989,7 @@ class AI(object):
             
             if ((self.MonData[traincurrent]['type'][1] in ('grass')) or (self.MonData[traincurrent]['type'][2] in ('grass'))) and self.MonData[mycurrent]['moves'][moveused]['name'] in ('spore', 'poisonpowder', 'sleeppowder', 'stunspore'):
                 self.MonData[traincurrent]['status'] = 'none'
+                self.Damage[mycurrent][traincurrent][moveused]['damage'] = -500
             
             #lower enemy stats
             misted = ('mist' in self.MonData['playerpokemon']['substatus'] or (isinstance(self.MonData['playerpokemon']['substatus'], dict) and 'mist' in self.MonData['playerpokemon']['substatus'].values()))
@@ -1572,7 +1573,10 @@ class AI(object):
                     if 'attract' in self.MonData['playerpokemon']['substatus']:
                         self.MonData['playerpokemon']['substatus'].remove('attract')
                     if isinstance(self.MonData['playerpokemon']['substatus'], dict) and 'attract' in self.MonData['playerpokemon']['substatus'].values():
-                        del self.MonData['playerpokemon']['substatus']['attract']
+                        for x1 in range(1, len(self.MonData['playerpokemon']['substatus'])):
+                            if self.MonData['playerpokemon']['substatus'][str(x1)] == 'attract':
+                                del self.MonData['playerpokemon']['substatus'][str(x1)]
+                                break
                         
                     for stat in self.statNames:
                         self.MonData[mycurrent]['boosts'][stat] = 0
@@ -1706,7 +1710,7 @@ class AI(object):
                     x1 = 1
             if x1 == -1:
                 if self.Damage[traincurrent][mycurrent][self.enemynumber]['damage'] > self.jsonlist['battleState']['enemypokemon']['hp']:
-                    tempx = 0
+                    tempx = -1000
                     self.FinalChance = True
                     for tempmove in range(0, len(self.jsonlist['battleState']['enemypokemon']['moves'])):
                         self.DamageDealt(mycurrent, traincurrent, tempmove)
@@ -1723,8 +1727,8 @@ class AI(object):
                         print('about to die - i need to attack, i will use: '+str(x1))
                     if x1 == -1:
                         x1 = random.randint(0, len(self.MonData[mycurrent]['moves']))
-                    return x1
                     self.NoBetterChoice = False
+                    return x1
         return
        
     def ManualControl(self):
@@ -1979,6 +1983,8 @@ class AI(object):
                 if self.Damage[traincurrent][mycurrent][self.enemynumber]['damage'] * 1.25 > self.jsonlist['battleState']['enemypokemon']['hp']:
                     if self.jsonlist['battleState']['enemypokemon']['hp'] < self.jsonlist['battleState']['enemypokemon']['stats']['maxhp'] * 0.33:
                         self.ShouldISwitch = False
+                if self.jsonlist['battleState']['playerpokemon']['turns'] > 0: 
+                    self.ShouldISwitch = False
                 if self.ShouldISwitch:
                     theaction2 = self.OptionalSwitch(traincurrent)
                     if theaction2 != 20:
