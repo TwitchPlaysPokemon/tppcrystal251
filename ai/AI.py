@@ -664,7 +664,7 @@ class AI(object):
                 self.Damage[traincurrent][mycurrent][moveset]['damage'] *= statusMultiplier
             else:
                 self.Damage[traincurrent][mycurrent][moveset]['damage'] = -1
-        tempx = -3
+        tempx = -3000
         self.enemybest = ''
         self.enemynumber = -1
         for moveset in range(0, len(self.MonData[traincurrent]['moves'])):
