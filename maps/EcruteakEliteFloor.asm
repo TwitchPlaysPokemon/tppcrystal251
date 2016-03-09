@@ -31,12 +31,44 @@ elitefloor: MACRO
 efloorrow = efloorrow + 2
 ENDM
 
+revealefloor: MACRO
+	changeblock 2, efloorrow, $40 + \1
+	changeblock 4, efloorrow, $40 + \2
+	changeblock 6, efloorrow, $40 + \3
+	changeblock 8, efloorrow, $40 + \4
+	changeblock 10, efloorrow, $40 + \5
+	changeblock 12, efloorrow, $40 + \6
+	changeblock 14, efloorrow, $40 + \7
+	changeblock 16, efloorrow, $40 + \8
+	changeblock 18, efloorrow, $40 + \9
+efloorrow = efloorrow + 2
+ENDM
+
 EcruteakEliteFloor_MapScriptHeader:
 	; triggers
 	db 0
 
 	; callbacks
-	db 0
+	db 1
+	
+	dbw 1, EcruteakEliteFloorCallback
+	
+EcruteakEliteFloorCallback:
+	checkevent EVENT_MORTY_REMATCH
+	iftrue .revealall
+	return
+.revealall
+efloorrow = 4
+	revealefloor 0,0,3,3,2,0,0,3,1
+	revealefloor 2,2,0,0,1,3,2,2,3
+	revealefloor 2,0,3,0,3,3,3,2,0
+	revealefloor 3,3,3,3,3,3,3,1,1
+	revealefloor 2,3,3,3,3,3,3,1,1
+	revealefloor 2,0,2,0,0,2,2,0,1
+	revealefloor 0,2,0,1,2,2,3,2,0
+	revealefloor 2,0,0,2,3,2,2,1,1
+	revealefloor 2,0,0,2,0,2,2,0,1
+	return
 
 MortyAfterRematch2:
 	writetext MortyAfterRematchText2
@@ -61,19 +93,125 @@ MortyRematchScript2:
 	jump MortyAfterRematch2
 
 EfloorGrampsScript:
-	jumptextfaceplayer EfloorGrampsText
+	faceplayer
+	loadfont
+	writetext EfloorGrampsText
+	waitbutton
+	closetext
+	playsound SFX_WALL_OPEN
+	changeblock 2, 10, $43
+	changeblock 4, 10, $43
+	changeblock 6, 10, $43
+	changeblock 8, 10, $43
+	changeblock 10, 10, $43
+	changeblock 12, 10, $43
+	changeblock 2, 12, $42
+	changeblock 4, 12, $43
+	changeblock 6, 12, $43
+	changeblock 8, 12, $43
+	changeblock 10, 12, $43
+	changeblock 12, 12, $43
+	changeblock 2, 14, $42
+	changeblock 4, 14, $40
+	changeblock 6, 14, $42
+	reloadmappart
+	end
 
 EfloorGranny1Script:
-	jumptextfaceplayer EfloorGranny1Text
+	faceplayer
+	loadfont
+	writetext EfloorGranny1Text
+	waitbutton
+	closetext
+	playsound SFX_WALL_OPEN
+	changeblock 2, 4, $40
+	changeblock 4, 4, $40
+	changeblock 2, 6, $42
+	changeblock 4, 6, $42
+	changeblock 6, 6, $40
+	changeblock 8, 6, $40
+	changeblock 10, 6, $41
+	changeblock 2, 8, $42
+	changeblock 4, 8, $40
+	changeblock 6, 8, $43
+	changeblock 8, 8, $40
+	reloadmappart
+	end
 
 EfloorGranny2Script:
-	jumptextfaceplayer EfloorGranny2Text
+	faceplayer
+	loadfont
+	writetext EfloorGranny2Text
+	waitbutton
+	closetext
+	playsound SFX_WALL_OPEN
+	changeblock 8, 14, $40
+	changeblock 10, 14, $40
+	changeblock 12, 14, $42
+	changeblock 14, 14, $42
+	changeblock 8, 16, $41
+	changeblock 10, 16, $42
+	changeblock 12, 16, $42
+	changeblock 14, 16, $43
+	changeblock 16, 16, $42
+	changeblock 18, 16, $40
+	changeblock 8, 18, $42
+	changeblock 10, 18, $43
+	changeblock 12, 18, $42
+	changeblock 14, 18, $42
+	changeblock 16, 18, $41
+	changeblock 18, 18, $41
+	reloadmappart
+	end
 
 EfloorSage1Script:
-	jumptextfaceplayer EfloorSage1Text
+	faceplayer
+	loadfont
+	writetext EfloorSage1Text
+	waitbutton
+	closetext
+	playsound SFX_WALL_OPEN
+	changeblock 16, 4, $43
+	changeblock 18, 4, $41
+	changeblock 16, 6, $42
+	changeblock 18, 6, $43
+	changeblock 16, 8, $42
+	changeblock 18, 8, $40
+	changeblock 14, 10, $43
+	changeblock 16, 10, $41
+	changeblock 18, 10, $41
+	changeblock 14, 12, $43
+	changeblock 16, 12, $41
+	changeblock 18, 12, $41
+	changeblock 16, 14, $40
+	changeblock 18, 14, $41
+	reloadmappart
+	end
 
 EfloorSage2Script:
-	jumptextfaceplayer EfloorSage2Text
+	faceplayer
+	loadfont
+	writetext EfloorSage2Text
+	waitbutton
+	closetext
+	playsound SFX_WALL_OPEN
+	changeblock 2, 16, $40
+	changeblock 4, 16, $42
+	changeblock 6, 16, $40
+	changeblock 2, 18, $42
+	changeblock 4, 18, $40
+	changeblock 6, 18, $40
+	changeblock 2, 20, $42
+	changeblock 4, 20, $40
+	changeblock 6, 20, $40
+	changeblock 8, 20, $42
+	changeblock 10, 20, $40
+	changeblock 12, 20, $42
+	changeblock 14, 20, $42
+	changeblock 16, 20, $40
+	changeblock 18, 20, $41
+	reloadmappart
+	end
 
 EcruteakGymGuy2Script: ; 0x99e39
 	faceplayer
