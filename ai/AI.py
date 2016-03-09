@@ -1,4 +1,4 @@
-# TPP Crystal 251 AI v1.3 by Beesafree
+# TPP Crystal 251 AI v1.4 by Beesafree
 
 from __future__ import division
 import math
@@ -656,10 +656,7 @@ class AI(object):
                 if self.MonData[traincurrent]['moves'][moveset]['effect'] == 'sleep' and self.MonData[traincurrent]['moves'][moveset]['name'] not in ('spore', 'sleeppowder'):
                     statusMultiplier = (0.25 * self.MonData[traincurrent]['moves'][moveset]['acc']) + 1
             if self.MonData[traincurrent]['moves'][moveset]['effect'] == 'toxic' and self.MonData[mycurrent]['item'] != 'poisonguard' and ((self.MonData[mycurrent]['type'][1] not in ('poison', 'steel')) and (self.MonData[mycurrent]['type'][2] not in ('poison', 'steel'))):
-                self.MonData[mycurrent]['status'] = 'psn'
-                if type(self.MonData['enemypokemon']['substatus']) == list:
-                    self.MonData['enemypokemon']['substatus'] = {str(i+1): x for i, x in enumerate(self.MonData['playerpokemon']['substatus'])}
-                self.MonData['enemypokemon']['substatus']['toxic'] = 1        
+                statusMultiplier = 1.25
                             
         for moveset in range(0, len(self.jsonlist['playerParty']['party'][traincurrent-6]['moves'])):
             if self.MonData[traincurrent]['moves'][moveset]['curpp'] > 0:
@@ -667,7 +664,7 @@ class AI(object):
                 self.Damage[traincurrent][mycurrent][moveset]['damage'] *= statusMultiplier
             else:
                 self.Damage[traincurrent][mycurrent][moveset]['damage'] = -1
-        tempx = -3
+        tempx = -3000
         self.enemybest = ''
         self.enemynumber = -1
         for moveset in range(0, len(self.MonData[traincurrent]['moves'])):
@@ -1703,30 +1700,31 @@ class AI(object):
             print('checking if i will die')
             print('their damage: '+str(self.Damage[traincurrent][mycurrent][self.enemynumber]['damage'])+' my hp: '+str(self.jsonlist['battleState']['enemypokemon']['hp']))
         x1 = -1
-        if self.MonData[traincurrent]['moves'][self.theaction]['effect'] in ('moonlight', 'synthesis', 'morningsun', 'heal'):
-            if self.Damage[mycurrent][traincurrent][self.theaction]['selfdamage'] * -1 > self.Damage[traincurrent][mycurrent][self.enemynumber]['damage']:
-                x1 = 1
-        if x1 == -1:
-            if self.Damage[traincurrent][mycurrent][self.enemynumber]['damage'] > self.jsonlist['battleState']['enemypokemon']['hp']:
-                tempx = 0
-                self.FinalChance = True
-                for tempmove in range(0, len(self.jsonlist['battleState']['enemypokemon']['moves'])):
-                    self.DamageDealt(mycurrent, traincurrent, tempmove)
-                    if self.MonData[mycurrent]['moves'][tempmove]['curpp'] > 0:
-                        if self.Damage[mycurrent][traincurrent][tempmove]['damage'] > tempx:
-                            tempx = self.Damage[mycurrent][traincurrent][tempmove]['damage']
+        if self.theaction < 4:
+            if self.MonData[traincurrent]['moves'][self.theaction]['effect'] in ('moonlight', 'synthesis', 'morningsun', 'heal'):
+                if self.Damage[mycurrent][traincurrent][self.theaction]['selfdamage'] * -1 > self.Damage[traincurrent][mycurrent][self.enemynumber]['damage']:
+                    x1 = 1
+            if x1 == -1:
+                if self.Damage[traincurrent][mycurrent][self.enemynumber]['damage'] > self.jsonlist['battleState']['enemypokemon']['hp']:
+                    tempx = 0
+                    self.FinalChance = True
+                    for tempmove in range(0, len(self.jsonlist['battleState']['enemypokemon']['moves'])):
+                        self.DamageDealt(mycurrent, traincurrent, tempmove)
+                        if self.MonData[mycurrent]['moves'][tempmove]['curpp'] > 0:
+                            if self.Damage[mycurrent][traincurrent][tempmove]['damage'] > tempx:
+                                tempx = self.Damage[mycurrent][traincurrent][tempmove]['damage']
+                                x1 = tempmove
+                    tempx = self._statsmultipliers[self.MonData[mycurrent]['boosts']['spd']+6]/100
+                    tempy = self._statsmultipliers[self.MonData[traincurrent]['boosts']['spd']+6]/100
+                    for tempmove in range(0, len(self.jsonlist['battleState']['enemypokemon']['moves'])):
+                        if self.MonData[mycurrent]['moves'][tempmove]['effect'] in ('priorityhit','extremespeed') and (self.MonData[mycurrent]['stats']['spd'] * tempx < self.MonData[traincurrent]['stats']['spd'] * tempy):
                             x1 = tempmove
-                tempx = self._statsmultipliers[self.MonData[mycurrent]['boosts']['spd']+6]/100
-                tempy = self._statsmultipliers[self.MonData[traincurrent]['boosts']['spd']+6]/100
-                for tempmove in range(0, len(self.jsonlist['battleState']['enemypokemon']['moves'])):
-                    if self.MonData[mycurrent]['moves'][tempmove]['effect'] in ('priorityhit','extremespeed') and (self.MonData[mycurrent]['stats']['spd'] * tempx < self.MonData[traincurrent]['stats']['spd'] * tempy):
-                        x1 = tempmove
-                if Debug_Code > 0:
-                    print('about to die - i need to attack, i will use: '+str(x1))
-                if x1 == -1:
-                    x1 = random.randint(0, len(self.MonData[mycurrent]['moves']))
-                return x1
-                self.NoBetterChoice = False
+                    if Debug_Code > 0:
+                        print('about to die - i need to attack, i will use: '+str(x1))
+                    if x1 == -1:
+                        x1 = random.randint(0, len(self.MonData[mycurrent]['moves']))
+                    return x1
+                    self.NoBetterChoice = False
         return
        
     def ManualControl(self):
