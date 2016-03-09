@@ -4130,7 +4130,7 @@ PredefPointers:: ; 856b
 	add_predef Functiondb3f ; $8
 	add_predef Functionde6e
 	add_predef GiveEgg
-	add_predef Functionc6e0
+	add_predef Predef_HPBarAnim
 	add_predef Functione167
 	add_predef Functione17b
 	add_predef CanLearnTMHMMove
@@ -4597,7 +4597,7 @@ Functionc699: ; c699
 	ret
 ; c6e0
 
-Functionc6e0: ; c6e0
+Predef_HPBarAnim: ; c6e0
 	call WaitBGMap
 	call Functiond627
 	call WaitBGMap
@@ -48741,7 +48741,7 @@ DrawPlayerHP: ; 50b0a
 DrawEnemyHP: ; 50b0e
 	ld a, $2
 DrawHP: ; 50b10
-	ld [wd10a], a
+	ld [wWhichHPBar], a
 	push hl
 	push bc
 	ld a, [MonType]

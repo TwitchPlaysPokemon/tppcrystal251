@@ -117,8 +117,8 @@ BlueAfterRematchText:
 	para "Legends tell of a"
 	line "truly powerful"
 
-	para "#MON deep within"
-	line "CERULEAN CAVE."
+	para "#MON deep with-"
+	line "in CERULEAN CAVE."
 
 	para "Most trainers are"
 	line "forbidden to enter"

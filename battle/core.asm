@@ -2148,8 +2148,8 @@ Function3cd3c: ; 3cd3c
 	xor a
 .ok
 	push bc
-	ld [wd10a], a
-	predef Functionc6e0
+	ld [wWhichHPBar], a
+	predef Predef_HPBarAnim
 	pop bc
 	ret
 ; 3cd55
@@ -4782,15 +4782,15 @@ Function3dd2f: ; 3dd2f
 	ld a, [wd1ee]
 	ld [de], a
 	ld a, [hBattleTurn]
-	ld [wd10a], a
+	ld [wWhichHPBar], a
 	and a
 	hlcoord 2, 2
 	jr z, .asm_3dda4
 	hlcoord 10, 9
 
 .asm_3dda4
-	ld [wd10a], a
-	predef Functionc6e0
+	ld [wWhichHPBar], a
+	predef Predef_HPBarAnim
 Function3ddac:
 	call RefreshBattleHuds
 	callab GetOpponentItem
@@ -5330,7 +5330,7 @@ DrawEnemyHUD: ; 3e043
 
 .asm_3e11a
 	xor a
-	ld [wd10a], a
+	ld [wWhichHPBar], a
 	hlcoord 2, 2
 	ld b, 0
 	call DrawHPBar

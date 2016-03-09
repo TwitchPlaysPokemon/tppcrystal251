@@ -137,12 +137,12 @@ UnknownScript_0x9e454: ; 0x9e454
 	
 ; 0x9e498
 
-UnknownScript_0x9e498: ; 0x9e498
-	writetext UnknownText_0x9eb94
-	waitbutton
-	closetext
-	end
-; 0x9e49e
+;UnknownScript_0x9e498: ; 0x9e498
+;	writetext UnknownText_0x9eb94
+;	waitbutton
+;	closetext
+;	end
+;; 0x9e49e
 
 UnknownScript_0x9e49e: ; 0x9e49e
 	writetext UnknownText_0x9ec3d ;do you want to hear about it
@@ -169,68 +169,68 @@ UnknownScript_0x9e4b6: ; 0x9e4b6
 	end
 ; 0x9e4bb
 
-UnknownScript_0x9e4bb: ; 0x9e4bb
-	waitbutton
-	closetext
-	end
+;UnknownScript_0x9e4bb: ; 0x9e4bb
+	;waitbutton
+	;closetext
+	;end
 ; 0x9e4be
 
 
-UnknownScript_0x9e4be: ; 0x9e4be
-	writetext UnknownText_0x9ef1f
-	yesorno
-	iffalse UnknownScript_0x9e3fc
-	special Function29e66
-	iffalse UnknownScript_0x9e3fc
-	writebyte $1
-	special Function170687
-	special Function1700ba
-	if_equal $a, UnknownScript_0x9e3fc
-	if_not_equal $0, UnknownScript_0x9e550
-	writetext UnknownText_0x9e9eb
-	spriteface $2, $2
-	writetext UnknownText_0x9ea1b
-	waitbutton
-	spriteface $2, $0
-	closetext
-	end
+;UnknownScript_0x9e4be: ; 0x9e4be
+;	writetext UnknownText_0x9ef1f
+;	yesorno
+;	iffalse UnknownScript_0x9e3fc
+;	special Function29e66
+;	iffalse UnknownScript_0x9e3fc
+;	writebyte $1
+;	special Function170687
+;	special Function1700ba
+;	if_equal $a, UnknownScript_0x9e3fc
+;	if_not_equal $0, UnknownScript_0x9e550
+;	writetext UnknownText_0x9e9eb
+;	spriteface $2, $2
+;	writetext UnknownText_0x9ea1b
+;	waitbutton
+;	spriteface $2, $0
+;	closetext
+;	end
 ; 0x9e4ea
 
-UnknownScript_0x9e4ea: ; 0x9e4ea unrunnable?
-	writebyte $18
-	special Function170687
-	if_not_equal $0, UnknownScript_0x9e542
-	writebyte $19
-	special Function170687
-	if_not_equal $0, UnknownScript_0x9e549
-	special Function170bd3
-	if_not_equal $0, UnknownScript_0x9e4bb
-	writebyte $5
-	special Function170687
-	if_equal $0, UnknownScript_0x9e512
-	writetext UnknownText_0x9ecb0
-	jump UnknownScript_0x9e515
+;UnknownScript_0x9e4ea: ; 0x9e4ea unrunnable?
+;	writebyte $18
+	;special Function170687
+	;if_not_equal $0, UnknownScript_0x9e542
+;	writebyte $19
+	;special Function170687
+;	if_not_equal $0, UnknownScript_0x9e549
+;	special Function170bd3
+;	if_not_equal $0, UnknownScript_0x9e4bb
+;	writebyte $5
+;	special Function170687
+;	if_equal $0, UnknownScript_0x9e512
+;	writetext UnknownText_0x9ecb0
+;	jump UnknownScript_0x9e515
 ; 0x9e512
 
-UnknownScript_0x9e512: ; 0x9e512
-	writetext UnknownText_0x9ec6d
-UnknownScript_0x9e515: ; 0x9e515
-	yesorno
-	iffalse UnknownScript_0x9e3fc
-	writetext UnknownText_0x9ef79
-	yesorno
-	iffalse UnknownScript_0x9e3fc
-	dotrigger $0
-	special Function29e66
-	iffalse UnknownScript_0x9e3fc
-	dotrigger $1
-	writebyte $6
-	special Function170687
-	writebyte $12
-	special Function170687
-	writetext UnknownText_0x9e60a
-	waitbutton
-	jump UnknownScript_0x9e44e
+;UnknownScript_0x9e512: ; 0x9e512
+;	writetext UnknownText_0x9ec6d
+;UnknownScript_0x9e515: ; 0x9e515
+;	yesorno
+;	iffalse UnknownScript_0x9e3fc
+;	writetext UnknownText_0x9ef79
+;	yesorno
+;	iffalse UnknownScript_0x9e3fc
+;	dotrigger $0
+;	special Function29e66
+;	iffalse UnknownScript_0x9e3fc
+;	dotrigger $1
+;	writebyte $6
+;	special Function170687
+;	writebyte $12
+;	special Function170687
+;	writetext UnknownText_0x9e60a
+;	waitbutton
+;	jump UnknownScript_0x9e44e
 ; 0x9e53b
 
 ;UnknownScript_0x9e53b: ; 0x9e53b
@@ -239,22 +239,22 @@ UnknownScript_0x9e515: ; 0x9e515
 ;	jump UnknownScript_0x9e4b0
 ; 0x9e542
 
-UnknownScript_0x9e542: ; 0x9e542
-	writetext UnknownText_0x9f1e5
-	waitbutton
-	jump UnknownScript_0x9e3fc
+;UnknownScript_0x9e542: ; 0x9e542
+;	writetext UnknownText_0x9f1e5
+;	waitbutton
+;	jump UnknownScript_0x9e3fc
 ; 0x9e549
 
-UnknownScript_0x9e549: ; 0x9e549
-	writetext UnknownText_0x9f217
-	waitbutton
-	jump UnknownScript_0x9e3fc
+;UnknownScript_0x9e549: ; 0x9e549
+;	writetext UnknownText_0x9f217
+;	waitbutton
+;	jump UnknownScript_0x9e3fc
 ; 0x9e550
 
-UnknownScript_0x9e550: ; 0x9e550
-	special Function17f53d
-	closetext
-	end
+;UnknownScript_0x9e550: ; 0x9e550
+;	special Function17f53d
+;	closetext
+;	end
 ; 0x9e555
 
 UnknownScript_0x9e555: ; 0x9e555
@@ -445,47 +445,56 @@ UnknownText_0x9e62f: ; 0x9e62f
 ; 0x9e886
 
 UnknownText_0x9e886: ; 0x9e886
-	db $0, "BATTLE TOWER is a", $4f
-	db "facility made for", $55
-	db "#MON battles.", $51
-	db "Countless #MON", $4f
-	db "trainers gather", $51
-	db "from all over to", $4f
-	db "hold battles in", $51
-	db "specially designed", $4f
-	db "BATTLE ROOMS.", $51
-	db "There are many", $4f
-	db "BATTLE ROOMS in", $55
-	db "the BATTLE TOWER.", $51
-	db "Each ROOM holds", $4f
-	db "seven trainers.", $51
-	db "Beat them all, and", $4f
-	db "win a prize.", $51
-	db "To interrupt a", $4f
-	db "session, you must", $51
-	db "SAVE. If not, you", $4f
-	db "won't be able to", $51
-	db "resume your ROOM", $4f
-	db "challenge.", $51
-	db $57
+	text "BATTLE TOWER is a"
+	line "facility made for"
+	
+	para "#MON battles"
+	line "where you can win"
+
+	para "fabulous cash"
+	line "prizes."
+
+	para "Inside you will be"
+	line "challenged by 7"
+	cont "trainers."
+
+	para "The more you win"
+	line "in a row, the"
+	cont "greater the prize!"
+
+	para "These opponents"
+	line "will use parties"
+
+	para "of similar level"
+	line "and size to yours."
+
+	para "To interrupt a"
+	line "session, you must"
+
+	para "SAVE. If not, you"
+	line "won't be able to"
+
+	para "resume your ROOM"
+	line "challenge."
+	done
 ; 0x9e9eb
 
-UnknownText_0x9e9eb: ; 0x9e9eb
-	db $0, "Received a list of", $4f
-	db "LEADERS on the", $55
-	db "HONOR ROLL.", $51
-	db $57
+;UnknownText_0x9e9eb: ; 0x9e9eb
+	;db $0, "Received a list of", $4f
+	;db "LEADERS on the", $55
+;	db "HONOR ROLL.", $51
+;	db $57
 ; 0x9ea1b
 
-UnknownText_0x9ea1b: ; 0x9ea1b
-	text "Please confirm on"
-	line "this monitor."
-	done
+;UnknownText_0x9ea1b: ; 0x9ea1b
+;	text "Please confirm on"
+;	line "this monitor."
+;	done
 ; 0x9ea3c
 
-UnknownText_0x9ea3c: ; 0x9ea3c
-	db $0, "Thank you!", $51
-	db $57
+;UnknownText_0x9ea3c: ; 0x9ea3c
+;	db $0, "Thank you!", $51
+;	db $57
 ; 0x9ea49
 
 UnknownText_0x9ea49: ; 0x9ea49
@@ -523,40 +532,40 @@ UnknownText_0x9eaef: ; 0x9eaef
 	;db $57
 ; 0x9eb45
 
-UnknownText_0x9eb45: ; 0x9eb45
-	text "Would you like to"
-	line "register your"
+;UnknownText_0x9eb45: ; 0x9eb45
+;	text "Would you like to"
+;	line "register your"
 
-	para "record with the"
-	line "CENTER?"
-	done
+;	para "record with the"
+;	line "CENTER?"
+;	done
 ; 0x9eb7e
 
-UnknownText_0x9eb7e: ; 0x9eb7e
-	db $0, "<PLAYER> got five", $4f
-	db "@"
-	text_from_ram StringBuffer4
-	db $0, "!@"
-	sound0x0F
-	text_waitsfx
-	db $50
+;UnknownText_0x9eb7e: ; 0x9eb7e
+;	db $0, "<PLAYER> got five", $4f
+;	db "@"
+;	text_from_ram StringBuffer4
+;	db $0, "!@"
+;	sound0x0F
+;	text_waitsfx
+;	db $50
 ; 0x9eb94
 
-UnknownText_0x9eb94: ; 0x9eb94
-	text "Oops, your PACK is"
-	line "stuffed full."
+;UnknownText_0x9eb94: ; 0x9eb94
+;	text "Oops, your PACK is"
+;	line "stuffed full."
 
-	para "Please make room"
-	line "and come back."
-	done
+;	para "Please make room"
+;	line "and come back."
+;	done
 ; 0x9ebd6
 
-UnknownText_0x9ebd6: ; 0x9ebd6
-	text "Your registration"
-	line "is complete."
+;UnknownText_0x9ebd6: ; 0x9ebd6
+;	text "Your registration"
+;	line "is complete."
 
-	para "Please come again!"
-	done
+;	para "Please come again!"
+;	done
 ; 0x9ec09
 
 UnknownText_0x9ec09: ; 0x9ec09
@@ -578,26 +587,26 @@ UnknownText_0x9ec3d: ; 0x9ec3d
 	done
 ; 0x9ec6d
 
-UnknownText_0x9ec6d: ; 0x9ec6d
-	text "Your record from"
-	line "the previous"
+;UnknownText_0x9ec6d: ; 0x9ec6d
+;	text "Your record from"
+;	line "the previous"
 
-	para "BATTLE ROOM can't"
-	line "be registered. OK?"
-	done
+;	para "BATTLE ROOM can't"
+;	line "be registered. OK?"
+;	done
 ; 0x9ecb0
 
-UnknownText_0x9ecb0: ; 0x9ecb0
-	text "Your record from"
-	line "the previous"
+;UnknownText_0x9ecb0: ; 0x9ecb0
+;	text "Your record from"
+;	line "the previous"
 
-	para "BATTLE ROOM can't"
-	line "be registered."
+;	para "BATTLE ROOM can't"
+;	line "be registered."
 
-	para "Also, the existing"
-	line "record will be"
-	cont "deleted. OK?"
-	done
+;	para "Also, the existing"
+;	line "record will be"
+;	cont "deleted. OK?"
+;	done
 ; 0x9ed1e
 
 ;UnknownText_0x9ed1e: ; 0x9ed1e
@@ -615,21 +624,35 @@ UnknownText_0x9ed3c: ; 0x9ed3c
 ; 0x9ed72
 
 UnknownText_0x9ed72: ; 0x9ed72
-	text "Three #MON may"
-	line "enter battles."
+	text "Opponents will use"
+	line "#MON whose"
 
-	para "All three must be"
-	line "different."
+	para "level matches your"
+	line "highest level"
+	cont "#MON."
 
-	para "The items they"
-	line "hold must also be"
-	cont "different."
+	para "They will also use"
+	line "the same number of"
+	cont "#MON as you."
 
-	para "Certain #MON"
-	line "may also have"
+	para "NORMAL MODE scales"
+	line "the stats of the"
 
-	para "level restrictions"
-	line "placed on them."
+	para "opposing party"
+	line "to the round"
+	cont "number, while"
+	
+	para "HARD MODE uses"
+	line "the strongest"
+
+	para "possible from"
+	line "the start."
+
+	para "The prize goes up"
+	line "if you use more"
+
+	para "#MON or are"
+	line "in HARD MODE."
 	done
 ; 0x9ee18
 
@@ -663,13 +686,13 @@ UnknownText_0x9eebc: ; 0x9eebc
 	done
 ; 0x9eee0
 
-UnknownText_0x9eee0: ; 0x9eee0
-	text "Your session will"
-	line "be SAVED before"
+;UnknownText_0x9eee0: ; 0x9eee0
+;	text "Your session will"
+;;	line "be SAVED before"
 
-	para "connecting with"
-	line "the CENTER."
-	done
+;	para "connecting with"
+;	line "the CENTER."
+;	done
 ; 0x9ef1f
 
 UnknownText_0x9ef1f: ; 0x9ef1f
@@ -687,13 +710,13 @@ UnknownText_0x9ef5e: ; 0x9ef5e
 	done
 ; 0x9ef79
 
-UnknownText_0x9ef79: ; 0x9ef79
-	text "Your record will"
-	line "be SAVED before"
+;UnknownText_0x9ef79: ; 0x9ef79
+;	text "Your record will"
+;	line "be SAVED before"
 
-	para "you go back into"
-	line "the previous ROOM."
-	done
+;	para "you go back into"
+;	line "the previous ROOM."
+;	done
 ; 0x9efbf
 
 UnknownText_0x9efbf: ; 0x9efbf
@@ -702,14 +725,14 @@ UnknownText_0x9efbf: ; 0x9efbf
 	done
 ; 0x9efe3
 
-UnknownText_0x9efe3: ; 0x9efe3
-	text "We have your"
-	line "previous record on"
+;UnknownText_0x9efe3: ; 0x9efe3
+;	text "We have your"
+;	line "previous record on"
 
-	para "file. Would you"
-	line "like to register"
-	cont "it at the CENTER?"
-	done
+;	para "file. Would you"
+;	line "like to register"
+;	cont "it at the CENTER?"
+;	done
 ; 0x9f037
 
 UnknownText_0x9f037: ; 0x9f037
@@ -731,59 +754,59 @@ UnknownText_0x9f037: ; 0x9f037
 ;	done
 ; 0x9f0c1
 
-UnknownText_0x9f0c1: ; 0x9f0c1
-	text "Sorry, but it's"
-	line "not possible to"
+;UnknownText_0x9f0c1: ; 0x9f0c1
+;	text "Sorry, but it's"
+;	line "not possible to"
 
-	para "register your"
-	line "current record at"
+;	para "register your"
+;	line "current record at"
 
-	para "the CENTER because"
-	line "too much time has"
+;	para "the CENTER because"
+;	line "too much time has"
 
-	para "elapsed since the"
-	line "start of your"
-	cont "challenge."
-	done
+;	para "elapsed since the"
+;	line "start of your"
+;	cont "challenge."
+;	done
 ; 0x9f151
 
 ; a dupe?
-UnknownText_0x9f151: ; 0x9f151
-	text "Sorry, but it's"
-	line "not possible to"
+;UnknownText_0x9f151: ; 0x9f151
+	;text "Sorry, but it's"
+	;line "not possible to"
 
-	para "register your most"
-	line "recent record at"
+	;para "register your most"
+	;line "recent record at"
 
-	para "the CENTER because"
-	line "too much time has"
-
-	para "elapsed since the"
-	line "start of your"
-	cont "challenge."
-	done
+	;para "the CENTER because"
+	;line "too much time has"
+;
+	;para "elapsed since the"
+	;line "start of your"
+	;cont "challenge."
+	;done
 ; 0x9f1e5
 
-UnknownText_0x9f1e5: ; 0x9f1e5
-	text "One or more of"
-	line "your #MON's"
-	cont "levels exceeds @"
-	deciram ScriptVar, $13
-	text "."
-	done
+;UnknownText_0x9f1e5: ; 0x9f1e5
+;	text "One or more of"
+;	line "your #MON's"
+;	cont "levels exceeds @"
+;	deciram ScriptVar, $13
+;	text "."
+;	done
 ; 0x9f217
 
-UnknownText_0x9f217: ; 0x9f217
-	text_from_ram wcd49
-	text " may not"
-	line "enter a BATTLE"
-	cont "ROOM under L70."
-
-	para "This BATTLE ROOM"
-	line "is for L@"
-	deciram ScriptVar, $13
-	text "."
-	done
+;UnknownText_0x9f217: ; 0x9f217
+;	text_from_ram wcd49
+;	text " may not"
+;	line "enter a BATTLE"
+;	cont "ROOM under L70."
+;
+;	para "This BATTLE ROOM"
+;	line "is for L@"
+;	deciram ScriptVar, $13
+;	text "."
+;	done
 ; 0x9f264
 
 UnknownText_0x9f264: ; 0x9f264

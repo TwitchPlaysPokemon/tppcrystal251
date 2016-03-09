@@ -142,7 +142,7 @@
 	db "POWER HERB@"
 	db "METAL COAT@"
 	db "DRAGON FANG@"
-	db "TERU-SAMA@"
+	db "FRIEND CHARM@"
 	db "LEFTOVERS@"
 	db "TERU-SAMA@"
 	db "TERU-SAMA@"

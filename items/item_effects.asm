@@ -158,7 +158,7 @@ ItemEffects: ; e73c
 	dw Item8E
 	dw MetalCoat
 	dw DragonFang
-	dw Item91
+	dw FriendCharm
 	dw Leftovers
 	dw Item93
 	dw Item94
@@ -1842,8 +1842,8 @@ Functionf1db: ; f1db (3:71db)
 	ld bc, SCREEN_WIDTH * 2
 	call AddNTimes
 	ld a, $2
-	ld [wd10a], a
-	predef_jump Functionc6e0
+	ld [wWhichHPBar], a
+	predef_jump Predef_HPBarAnim
 
 Functionf1f9: ; f1f9 (3:71f9)
 	call Functionf20b
@@ -3064,7 +3064,7 @@ Item8D:
 Item8E:
 MetalCoat:
 DragonFang:
-Item91:
+FriendCharm:
 Leftovers:
 Item93:
 Item94:

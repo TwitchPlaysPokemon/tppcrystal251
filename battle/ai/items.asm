@@ -735,9 +735,9 @@ Function38436: ; 38436
 	call Function38571
 	hlcoord 2, 2
 	xor a
-	ld [wd10a], a
+	ld [wWhichHPBar], a
 	call AIUsedItemSound
-	predef Functionc6e0
+	predef Predef_HPBarAnim
 	jp AIUpdateHUD
 
 

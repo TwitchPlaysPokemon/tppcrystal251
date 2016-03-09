@@ -342,7 +342,7 @@ Function8c1d: ; 8c1d
 ; 8c43
 
 Function8c43: ; 8c43
-	ld a, [wd10a]
+	ld a, [wWhichHPBar]
 	and a
 	jr z, .asm_8c52
 	cp $1

@@ -1394,7 +1394,7 @@ CurPartyMon:: ; d109
 ; 0-5
 	ds 1
 
-wd10a:: ds 1
+wWhichHPBar:: ds 1
 wd10b:: ds 1
 wd10c:: ds 1
 wd10d:: ds 1
@@ -1594,6 +1594,7 @@ wd1ed:: ds 1
 wHPBarAnimNewHP::
 wd1ee:: ds 1
 wd1ef:: ds 1
+wHPBarTempHPPal::
 wd1f0:: ds 1
 wCurHPBarPixels::
 wd1f1:: ds 1
@@ -1605,7 +1606,9 @@ wd1f4:: ds 1
 wHPBarAnimLowValue::
 wd1f5:: ds 1
 wHPBarAnimHighValue::
-wd1f6:: ds 4
+wd1f6:: ds 1
+wHPBarAnimRate::
+	ds 3
 
 LinkBattleRNs:: ; d1fa
 	ds 10
