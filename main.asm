@@ -13160,8 +13160,10 @@ StartMenu:: ; 125cd
 ; 128cb
 
 .IsMenuAccountOn ; 128cb
-	ld a, [Options2]
-	and 1
+	;ld a, [Options2]
+	;and 1
+	ld a, 0
+	and a
 	ret
 ; 128d1
 
@@ -83101,7 +83103,7 @@ StringOptions: ; e4241
 	db "        :", $22
 	db "PRINT SETTING", $22
 	db "        :", $22
-	db "MENU TOOLTIPS", $22
+	db "FAST HP BAR", $22
 	db "        :", $22
 	db "FRAME", $22
 	db "        :TYPE", $22
