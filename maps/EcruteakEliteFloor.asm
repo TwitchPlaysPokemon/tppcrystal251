@@ -312,7 +312,7 @@ EfloorGranny1Text:
 	cont "hard<...>"
 
 	para "He once heard a"
-	line "story about a young"
+	line "story about a"
 
 	para "trainer who would"
 	line "always jump ledges"
@@ -329,7 +329,7 @@ EfloorGranny2Text:
 	cont "are facing is<...>"
 
 	para "You can always"
-	cont "overcome it!"
+	line "overcome it!"
 
 	para "Stay determined!"
 	done
@@ -414,7 +414,7 @@ efloorrow = 4
 
 	; object events
 	db 7
-	person_event SPRITE_MORTY, 5, 15, $6, 0, 0, -1, -1, 8 + PAL_OW_BROWN, 0, 0, MortyScript_0x99d58, -1
+	person_event SPRITE_MORTY, 5, 15, $6, 0, 0, -1, -1, 8 + PAL_OW_BROWN, 0, 0, MortyRematchScript2, -1
 	person_event SPRITE_GYM_GUY, 27, 17, $6, 0, 0, -1, -1, 8 + PAL_OW_RED, 0, 0, EcruteakGymGuy2Script, -1
 	person_event SPRITE_SAGE, 12, 22, $6, 0, 0, -1, -1, 8 + PAL_OW_BLUE, 0, 0, EfloorSage1Script, -1
 	person_event SPRITE_SAGE, 21, 6, $9, 0, 0, -1, -1, 8 + PAL_OW_BLUE, 0, 0, EfloorSage2Script, -1
