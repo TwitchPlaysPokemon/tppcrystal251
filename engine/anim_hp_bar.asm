@@ -178,6 +178,12 @@ LongAnim_UpdateVariables: ; d6f5
 	ld [wHPBarAnimOldHP + 1], a
 	push de
 	push bc
+	ld a, [Options2]
+	and 1
+	jr z, .SlowHP
+	ld a, [wLinkMode]
+	and a
+	jr nz, .SlowHP
 	ld hl, wHPBarAnimMaxHP
 	ld a, [hli]
 	ld e, a
@@ -188,6 +194,7 @@ LongAnim_UpdateVariables: ; d6f5
 	ld a, [hli]
 	ld b, a
 	call Functionc699
+.SlowHP
 	ld a, e
 	pop bc
 	pop de
