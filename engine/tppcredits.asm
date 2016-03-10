@@ -6,7 +6,7 @@ LOGO_CHAOS_MOD  EQU 12
 LOGO_CHAOS_LAST EQU 10
 MAIN_CHAOS_RATE EQU 15
 THX_CHAOS_RATE  EQU 11
-SCROLLER_DELAY  EQU 120
+SCROLLER_DELAY  EQU 125
 SPRITE_X        EQU $7C
 SPRITE_Y        EQU $74
 C_TC_DRAW       EQU 0
@@ -1654,10 +1654,6 @@ StripTrick_Main:
 	add a
 	ld e, a
 	ld a, [TC_CurStripXPos]
-	cp e
-	jr c, .nosub
-	sub e
-.nosub
 	ld d, a
 	ld a, [TC_CurStripSpeed]
 	and a
@@ -1667,6 +1663,10 @@ StripTrick_Main:
 	jr nz, .skipld
 	ld a, d
 	inc a
+	cp e
+	jr c, .nosub
+	sub e
+.nosub
 	ld [TC_CurStripXPos], a
 	ld a, [TC_CurStripSpeed]
 .skipld
@@ -1675,6 +1675,10 @@ StripTrick_Main:
 .inc2
 	ld a, d
 	add 2
+	cp e
+	jr c, .nosub2
+	sub e
+.nosub2
 	ld [TC_CurStripXPos], a
 .donemod
 	ld a, 80
