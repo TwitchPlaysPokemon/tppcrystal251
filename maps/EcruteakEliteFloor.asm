@@ -329,7 +329,7 @@ EfloorGranny2Text:
 	cont "are facing is<...>"
 
 	para "You can always"
-	cont "overcome it!"
+	line "overcome it!"
 
 	para "Stay determined!"
 	done
