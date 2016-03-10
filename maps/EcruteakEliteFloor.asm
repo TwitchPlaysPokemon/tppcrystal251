@@ -312,7 +312,7 @@ EfloorGranny1Text:
 	cont "hard<...>"
 
 	para "He once heard a"
-	line "story about a young"
+	line "story about a"
 
 	para "trainer who would"
 	line "always jump ledges"
