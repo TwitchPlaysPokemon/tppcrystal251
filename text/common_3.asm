@@ -626,15 +626,6 @@ UnknownText_0x1c0a4e: ; 1c0a4e
 	text "<PLAYER> is out of"
 	line "useable #MON!"
 
-	para "<PLAYER> paid"
-	line "¥@"
-	deciram $ffc3, $35
-	text " to the"
-	cont "winner<...>"
-
-	para $56, " ", $56, " ", $56
-	line $56, " ", $56, " ", $56
-
 	para "<PLAYER> whited"
 	line "out!"
 	done
@@ -656,6 +647,24 @@ UnknownText_0x1c0a4e_2: ; 1c0a4e
 	para "<PLAYER> whited"
 	line "out!"
 	done
+
+UnknownText_0x1c0a4e_3: ; 1c0a4e
+	text "<PLAYER> is out of"
+	line "useable #MON!"
+
+	para "<PLAYER> paid"
+	line "¥@"
+	deciram $ffc3, $35
+	text " to the"
+	cont "winner<...>"
+
+	para $56, " ", $56, " ", $56
+	line $56, " ", $56, " ", $56
+
+	para "<PLAYER> whited"
+	line "out!"
+	done
+; 1c0a77
 
 UnknownText_0x1c0a77: ; 1c0a77
 	text "Yes! ITEMFINDER"

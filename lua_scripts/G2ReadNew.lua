@@ -420,7 +420,7 @@ function refreshinterval(seconds)
 	local now
 	repeat
 		now = os.time()
-		emu.frameadvance()
+		DelayFrame()
 	until now - lastupdate >= seconds
 	lastupdate = now
 	return true

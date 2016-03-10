@@ -58,6 +58,10 @@ EcruteakEliteFloorCallback:
 	iftrue .revealall
 	return
 .revealall
+	scall RevealWholeFloor
+	return
+
+RevealWholeFloor:
 efloorrow = 4
 	revealefloor 0,0,3,3,2,0,0,3,1
 	revealefloor 2,2,0,0,1,3,2,2,3
@@ -68,12 +72,6 @@ efloorrow = 4
 	revealefloor 0,2,0,1,2,2,3,2,0
 	revealefloor 2,0,0,2,3,2,2,1,1
 	revealefloor 2,0,0,2,0,2,2,0,1
-	return
-
-MortyAfterRematch2:
-	writetext MortyAfterRematchText2
-	waitbutton
-	closetext
 	end
 
 MortyRematchScript2:
@@ -89,8 +87,14 @@ MortyRematchScript2:
 	startbattle
 	returnafterbattle
 	setevent EVENT_MORTY_REMATCH
+	scall RevealWholeFloor
+	reloadmappart
 	loadfont
-	jump MortyAfterRematch2
+MortyAfterRematch2:
+	writetext MortyAfterRematchText2
+	waitbutton
+	closetext
+	end
 
 EfloorGrampsScript:
 	faceplayer
