@@ -646,6 +646,7 @@ class AI(object):
             print ('inside TrainerDamage, variables in play - traincurrent: '+str(traincurrent)+' mycurrent: '+str(mycurrent))
             print('length of moves for this mon: '+str( len(self.jsonlist['playerParty']['party'][traincurrent-6]['moves'])))
         statusMultiplier = 1
+        statusAdditive = 0
         for moveset in range(0, len(self.jsonlist['playerParty']['party'][traincurrent-6]['moves'])):
             if self.MonData[mycurrent]['status'] == 'none' and self.MonData[mycurrent]['item'] != 'sleepguard':
                 if ((self.MonData[mycurrent]['type'][1] not in ('grass')) and (self.MonData[mycurrent]['type'][2]  not in ('grass'))):
@@ -656,12 +657,13 @@ class AI(object):
                 if self.MonData[traincurrent]['moves'][moveset]['effect'] == 'sleep' and self.MonData[traincurrent]['moves'][moveset]['name'] not in ('spore', 'sleeppowder'):
                     statusMultiplier = (0.25 * self.MonData[traincurrent]['moves'][moveset]['acc']) + 1
             if self.MonData[traincurrent]['moves'][moveset]['effect'] == 'toxic' and self.MonData[mycurrent]['item'] != 'poisonguard' and ((self.MonData[mycurrent]['type'][1] not in ('poison', 'steel')) and (self.MonData[mycurrent]['type'][2] not in ('poison', 'steel'))):
-                statusMultiplier = 1.25
+                statusAdditive = self.MonData[mycurrent]['stats']['maxhp'] * 0.16
                             
         for moveset in range(0, len(self.jsonlist['playerParty']['party'][traincurrent-6]['moves'])):
             if self.MonData[traincurrent]['moves'][moveset]['curpp'] > 0:
                 self.DamageDealt(traincurrent, mycurrent, moveset)
                 self.Damage[traincurrent][mycurrent][moveset]['damage'] *= statusMultiplier
+                self.Damage[traincurrent][mycurrent][moveset]['damage'] += statusAdditive
             else:
                 self.Damage[traincurrent][mycurrent][moveset]['damage'] = -1
         tempx = -3000
@@ -1800,17 +1802,6 @@ class AI(object):
                 return tempx
             if 'charged' in self.MonData['playerpokemon']['substatus'] or (isinstance(self.MonData['playerpokemon']['substatus'], dict) and 'charged' in self.MonData['playerpokemon']['substatus'].values()):
                 return tempx
-        
-        #desitny bond override
-        if self.theaction < 4:
-            tempx = -1
-            if self.FinalChance:
-                for tempmove in range(0, len(self.jsonlist['battleState']['enemypokemon']['moves'])):
-                    if self.MonData[mycurrent]['moves'][tempmove]['effect'] == ('destinybond'):
-                        tempx = tempmove
-                if tempx != -1:
-                    if self.MonData[mycurrent]['moves'][tempx]['curpp'] > 0:
-                        return tempx
             
         #if we chose to use either counter/mirrorcoat, and the mon has BOTH counter and mirrorcoat, 
         #randomize the move used based on the effective damage of both
@@ -1897,6 +1888,17 @@ class AI(object):
                                 x1 = tempmove
                         return x1
         
+        #desitny bond override
+        if self.theaction < 4:
+            tempx = -1
+            if self.FinalChance:
+                for tempmove in range(0, len(self.jsonlist['battleState']['enemypokemon']['moves'])):
+                    if self.MonData[mycurrent]['moves'][tempmove]['effect'] == ('destinybond'):
+                        tempx = tempmove
+                if tempx != -1:
+                    if self.MonData[mycurrent]['moves'][tempx]['curpp'] > 0:
+                        return tempx
+                        
         return None
     
     def StatsDownPrevention(self):
@@ -1984,8 +1986,9 @@ class AI(object):
                 if self.Damage[traincurrent][mycurrent][self.enemynumber]['damage'] * 1.25 > self.jsonlist['battleState']['enemypokemon']['hp']:
                     if self.jsonlist['battleState']['enemypokemon']['hp'] < self.jsonlist['battleState']['enemypokemon']['stats']['maxhp'] * 0.33:
                         self.ShouldISwitch = False
-                if self.jsonlist['battleState']['playerpokemon']['turns'] > 0: 
-                    self.ShouldISwitch = False
+                if int(self.jsonlist['battleState']['playerpokemon']['turns']) > 0: 
+                    if 'toxic' not in self.MonData['enemypokemon']['substatus']:
+                        self.ShouldISwitch = False
                 if self.ShouldISwitch:
                     theaction2 = self.OptionalSwitch(traincurrent)
                     if theaction2 != 20:
