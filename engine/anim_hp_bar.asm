@@ -198,12 +198,8 @@ LongAnim_UpdateVariables: ; d6f5
 	ld a, e
 	pop bc
 	pop de
-	; Uncomment the lines below to implement the HP bar speed option
-	; ld hl, Options2
-	; bit 0, [hl]
 	ld hl, wCurHPBarPixels
-	; jr z, .load
-	cp [hl] ; Comment this line and the next one to revert HP bar speed.
+	cp [hl] 
 	jr z, .loop
 .load
 	ld [hl], a
