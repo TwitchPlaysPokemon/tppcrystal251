@@ -684,7 +684,7 @@ IF DEF(BEESAFREE)
 ENDC
 	call Function3e4bc
 	jr .okay
-.skip_move_menu	
+.skip_move_menu
 	xor a
 .okay
 	push af
@@ -4515,7 +4515,7 @@ SpikesDamage: ; 3dc23
 	ld hl, SpikesDamageJumptable
 	dec a
 	ld b, 0
-	ld c,a 
+	ld c,a
 	add hl, bc
 	add hl, bc
 	ld a, [hli]
@@ -6498,7 +6498,7 @@ LoadEnemyMon: ; 3e8eb
 
 	ld a, [OtherTrainerClass]
 	cp TPPPC
-	jr nz, .continueloading ;if not the PC, skip 
+	jr nz, .continueloading ;if not the PC, skip
 	ld a, [OtherTrainerID]
 	cp MIRROR ;if mirror (?) go to ?
 	jp z, Function3dabd

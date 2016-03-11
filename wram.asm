@@ -16,7 +16,7 @@ VBGMap1::
 
 SECTION "Stack", WRAM0
 wc000::
-	ds $ff 
+	ds $ff
 Stack::
 	ds 1
 
@@ -1104,7 +1104,7 @@ wcf81:: ds 1 ;menu header:  tile backup
 wcf82:: ds 1 ;start coords
 wcf83:: ds 1
 wcf84:: ds 1 ;end coords
-wcf85:: ds 1 
+wcf85:: ds 1
 wcf86:: ds 1 ;Vtiles location
 wcf87:: ds 1
 wcf88:: ds 2 ;default option (first byte)
@@ -1126,7 +1126,7 @@ wcfa4:: ds 1 ;max horizontal pos
 wcfa5:: ds 1 ; bit 6: animate sprites  bit 5: wrap around
 wcfa6:: ds 1
 wcfa7:: ds 1 ;back nyble = space between rows of cursor, front nyble is space between columns?
-wcfa8:: ds 1 ;which buttons exit loop 
+wcfa8:: ds 1 ;which buttons exit loop
 wcfa9:: ds 1 ;vertical cursor position
 wcfaa:: ds 1 ;horizontal cursor position
 wcfab:: ds 1 ;what the cursor covers up
@@ -1306,11 +1306,11 @@ WalkingY:: ; d046
 WalkingTile:: ; d047
 	ds 1
 
-wd048:: ds 3 
+wd048:: ds 3
 wd04b:: ds 2
 wd04d:: ds 1 ;zero if facing a trainer
 wd04e:: ds 2 ;0 or f0 skips ice check? walk in place anim
-wd050:: ds 10
+wd050:: ds 10 ;holds nickname when learning a move
 wd05a:: ds 12
 wd066:: ds 10
 wd070:: ds 3
@@ -1427,7 +1427,7 @@ wd14d:: ds 1
 wd14e:: ds 1
 wd14f:: ds 1
 wd150:: ds 1
-wd151:: ds 1 
+wd151:: ds 1
 wd152:: ds 1
 wd153:: ds 1
 
@@ -1894,7 +1894,7 @@ PlayerDirection:: ; d4de
 ; %10 left
 ; $11 right
 	ds 1
-	ds 2 
+	ds 2
 PlayerAction:: ; d4e1
 ; 1 standing
 ; 2 walking
@@ -2224,7 +2224,7 @@ BikeFlags:: ; dbf5
 ; bit 2: downhill
 	ds 1
 
-	ds 3 
+	ds 3
 
 wdbf9:: ds 2
 wdbfb:: ds 1 ;map warp count
@@ -2374,7 +2374,7 @@ PartySpecies:: ; dcd8
 	ds PARTY_LENGTH ; species of each Pokémon in party
 PartyEnd:: ; dcde
 	ds 1 ; legacy functions don't check PartyCount
-		 
+
 PartyMons::
 PartyMon1:: party_struct PartyMon1 ; dcdf
 PartyMon2:: party_struct PartyMon2 ; dd0f
@@ -2545,7 +2545,7 @@ w3_d090::
 
 w3_d100:: ; BattleTower OpponentTrainer-Data (length = 0xe0 = $a + $1 + 3*$3b + $24)
 BT_OTTrainer:: battle_tower_struct BT_OT
-; d1e0	
+; d1e0
 	ds $20
 ; d200
 BT_TrainerTextIndex:: ds 2
@@ -2650,7 +2650,7 @@ BattleAnimTemps:: ; d419
 	ds 1
 w5_d422:: ds $40
 
-SECTION "TPP Credits WRAM", WRAMX[$d500], BANK[5] 
+SECTION "TPP Credits WRAM", WRAMX[$d500], BANK[5]
 
 TC_Sprites:: ds 4 * 40
 TC_CommandChaosTable:: ds 40
