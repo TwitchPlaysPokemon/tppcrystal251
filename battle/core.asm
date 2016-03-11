@@ -3094,9 +3094,9 @@ ENDC
 IF DEF(BEESAFREE)
 MilitaryWaiting:
 	call EmptyBattleTextBox
-	hlcoord 1, 13
-	lb bc, 4, 18
-	call ClearBox
+	call UpdateBattleHuds
+	call EmptyBattleTextBox
+	call Function309d
 	ld a, [Options]
 	push af
 	set 4, a
