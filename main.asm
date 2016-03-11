@@ -1848,6 +1848,7 @@ LearnMove: ; if b = nz, cap new move's current pp to old pp (gen 5+ TM teaching)
 	jp c, .loop
 	ld hl, UnknownText_0x667a
 	call PrintText
+	pop bc
 	ld b, 0
 	ret
 
