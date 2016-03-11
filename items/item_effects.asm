@@ -3407,16 +3407,23 @@ Functionf8ec: ; f8ec ;get max pp of moveslot wcfa9 in move list based a, put res
 
 .asm_f915
 	call Functionf969 ;hl + moveslot no
-	jr .asm_f91d
+	jr CheckMoveMaxPPSkipBuffer
 
 .asm_f91a
-	call Functionf963 ;go down to correct party mon, then run f969
+	call Functionf963 ;go down to correct party mon, then run f969. hl = move slot
+	jr CheckMoveMaxPPSkipBuffer
 
-.asm_f91d
+CheckMoveMaxPP: ;check PP of move [de], montype holds if mon is wild or player, place result in wd265
+	ld a, [StringBuffer1 + 0]
+	push af
+	ld a, [StringBuffer1 + 1]
+	push af
+	ld h, d
+	ld l, e
+
+CheckMoveMaxPPSkipBuffer:
 	ld a, [hl] ;put the move in a
 	dec a
-
-
 	push hl
 	ld hl, Moves + MOVE_PP ;(move pp)
 	ld bc, MOVE_LENGTH

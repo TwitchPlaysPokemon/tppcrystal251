@@ -1728,69 +1728,96 @@ Function64db: ; 64db
 	ret
 ; 6508
 
-LearnMove: ; 6508
+LearnMove: ; if b = nz, cap new move's current pp to old pp (gen 5+ TM teaching). 
+	push bc ;store b
 	call Function309d
 	ld a, [CurPartyMon]
 	ld hl, PartyMonNicknames
-	call GetNick
+	call GetNick ;get mon nickname
 	ld hl, StringBuffer1
-	ld de, wd050
+	ld de, wd050 ;store nickname
 	ld bc, PKMN_NAME_LENGTH
 	call CopyBytes
 .loop
 	ld hl, PartyMon1Moves
 	ld bc, PartyMon2 - PartyMon1
 	ld a, [CurPartyMon]
-	call AddNTimes
+	call AddNTimes ;go down to correct mon
 	ld d, h
 	ld e, l
 	ld b, NUM_MOVES
 .next
 	ld a, [hl]
 	and a
-	jr z, .learn
+	jr z, .quicklearn ;check for empty slot, if so, jump to learn else continue
 	inc hl
 	dec b
 	jr nz, .next
 	push de
-	call Function65d3
+	call Function65d3 ;forget move
 	pop de
-	jp c, .cancel
-	push hl
+	jp c, .cancel ;if not forgetting, cancel
+	push hl 
 	push de
 	ld [wd265], a
 	ld b, a
 	ld a, [wBattleMode]
 	and a
-	jr z, .not_disabled
+	jr z, .not_disabled ;clear disabled moves
 	ld a, [DisabledMove]
 	cp b
 	jr nz, .not_disabled
 	xor a
 	ld [DisabledMove], a
 	ld [PlayerDisableCount], a
-.not_disabled
+.not_disabled 
 	call GetMoveName
-	ld hl, UnknownText_0x6684
+	ld hl, UnknownText_0x6684 
 	call PrintText
 	pop de
 	pop hl
+	jr .learn
+.quicklearn
+	pop af
+	ld a, 0 ;clear don't force renew if putting move into a empty slot
+	push af 
 .learn
 	ld a, [wd262]
 	ld [hl], a
-	ld bc, PartyMon1PP - PartyMon1Moves
-	add hl, bc
+	push de 
+	ld d, h
+	ld e, l
+	ld a, PARTYMON
+	ld [MonType], a
+	ld bc, PartyMon1PP - PartyMon1Moves ;start PP adjustment here
+	add hl, bc ;over current PP for the replaced move
 	push hl
-	push de
-	dec a
-	ld hl, Moves + MOVE_PP
-	ld bc, MOVE_LENGTH
-	call AddNTimes
-	ld a, BANK(Moves)
-	call GetFarByte
+	callab CheckMoveMaxPP ;put this move's max PP in wd265
+		;ld a, [wd262]
+		;dec a ;dec a to line up with correct move
+		;ld hl, Moves + MOVE_PP
+		;ld bc, MOVE_LENGTH
+		;call AddNTimes
+		;ld a, BANK(Moves)
+		;call GetFarByte ;get move pp, put in a
+		;push af ;stack: move base PP, location of PP to replace, start of correct mon moves, whether to force PP overwrite
+	pop hl 
 	pop de
-	pop hl
+	pop af
+	and a
+	ld a, [wd265] ;load in max PP of the new move
+	ld b, a
+	jp z, .FillPP
+	ld a, [hl]
+	and $3f ;filter PP
+	cp b
+	jr c, .DontFillPP
+.FillPP
+	ld a, [hl]
+	and $c0 ;preserve pp ups
+	or b ;load PP into PP slot
 	ld [hl], a
+.DontFillPP
 	ld a, [wBattleMode]
 	and a
 	jp z, .learned
@@ -34657,6 +34684,7 @@ Function2c867: ; 2c867
 .asm_2c88b
 	callab KnowsMove
 	jr c, .asm_2c8b6
+	ld b, 1
 	predef LearnMove
 	ld a, b
 	and a
@@ -35027,26 +35055,26 @@ Function2cafa: ; 2cafa
 	ret
 ; 2cb0c
 
-Function2cb0c: ; 2cb0c (b:4b0c)
-	call Function2c7a7
-	ld a, [wd265]
-	dec a
-	ld hl, TMsHMs ;location of TM pocket?
-	ld b, 0
-	ld c, a
-	add hl, bc
-	ld a, [hl] ;decrement item by 1?
-	and a
-	ret z
-	dec a
-	ld [hl], a
-	ret nz
-	ld a, [wd0e2]
-	and a
-	ret z
-	dec a
-	ld [wd0e2], a
-	ret
+;Function2cb0c: ; 2cb0c (b:4b0c)
+;	call Function2c7a7
+;	ld a, [wd265]
+;	dec a
+;	ld hl, TMsHMs ;location of TM pocket?
+;	ld b, 0
+;	ld c, a
+;	add hl, bc
+;	ld a, [hl] ;decrement item by 1?
+;	and a
+;	ret z
+;	dec a
+;	ld [hl], a
+;	ret nz
+;	ld a, [wd0e2]
+;	and a
+;	ret z
+;	dec a
+;	ld [wd0e2], a
+;	ret
 
 Function2cb2a: ; 2cb2a (b:4b2a)
 	ld b, $0
@@ -36539,6 +36567,7 @@ LearnLevelMoves: ; 42487
 	ld [wd265], a
 	call GetMoveName
 	call CopyName1
+	ld b, 0
 	predef LearnMove
 	pop hl
 	jr .find_move
@@ -39815,6 +39844,7 @@ Function492b9: ; 492b9
 .can_learn
 	callab KnowsMove
 	jr c, .didnt_learn
+	ld b, 0
 	predef LearnMove
 	ld a, b
 	and a

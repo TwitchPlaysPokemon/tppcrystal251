@@ -1310,7 +1310,7 @@ wd048:: ds 3
 wd04b:: ds 2
 wd04d:: ds 1 ;zero if facing a trainer
 wd04e:: ds 2 ;0 or f0 skips ice check? walk in place anim
-wd050:: ds 10
+wd050:: ds 10 ;holds nickname when learning a move
 wd05a:: ds 12
 wd066:: ds 10
 wd070:: ds 3

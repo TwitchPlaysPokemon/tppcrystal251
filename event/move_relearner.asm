@@ -53,6 +53,7 @@ MoveRelearner:
 	ld de, StringBuffer2
 	ld bc, StringBuffer2 - StringBuffer1
 	call CopyBytes
+	ld b, 0
 	predef LearnMove
 	ld a, b
 	and a
