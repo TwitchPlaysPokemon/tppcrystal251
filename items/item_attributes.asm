@@ -953,7 +953,7 @@ Item2Attributes:
 	db CANT_SELECT
 	db ITEM
 	dn 0, 0 ; can't use
-	
+
 ; CONFUSEGUARD
 	dw 5000 ; price
 	db HELD_PREVENT_CONFUSE ; effect

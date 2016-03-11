@@ -205,7 +205,7 @@ Function5bae: ; 5bae
 	ld hl, sBoxCount
 	call Function5ca1
 	call CloseSRAM
-	
+
 	ld hl, NumItems
 	call Function5ca1
 	ld hl, NumKeyItems
@@ -1292,7 +1292,7 @@ TitleScreenEntrance: ; 62bc
 	inc hl
 	dec c
 	jr nz, .baseloop
-	
+
 ; The rest is the offset from title timer
 
 	ld a, [DefaultFlypoint]
@@ -1313,7 +1313,7 @@ TitleScreenEntrance: ; 62bc
 	dec b
 	jr nz, .loop
 	callba AnimateTitleCrystal
-	
+
 	; wait until line 73 so it won't interfere with the title
 .loop2
 	ld a, [rLY]
@@ -1328,7 +1328,7 @@ TitleScreenEntrance: ; 62bc
 	inc [hl]
 	xor a
 	ld [hLCDStatCustom], a
-	
+
 ; Play the title screen music.
 
 	ld de, MUSIC_TITLE
@@ -1351,7 +1351,7 @@ TitleScreenTimer: ; 62f6
 	inc hl
 	ld [hl], d
 	xor a ; restore VBlank mode to get joypad inputs
-	ld [hVBlank], a	
+	ld [hVBlank], a
 	jp TitleScreenTrick
 ; 6304
 
@@ -1591,7 +1591,7 @@ Copyright: ; 63e2
 CopyrightString: ; 63fd
 	; 2016 TPP
 	db $7f, $80, $81, $82, $7f, $7f, $7f, $83, $84
-	
+
 	db $4e
 	; ©1995-2001 Nintendo
 	db $60, $61, $62, $63, $64, $65, $66
@@ -1728,7 +1728,7 @@ Function64db: ; 64db
 	ret
 ; 6508
 
-LearnMove: ; if b = nz, cap new move's current pp to old pp (gen 5+ TM teaching). 
+LearnMove: ; if b = nz, cap new move's current pp to old pp (gen 5+ TM teaching).
 	push bc ;store b
 	call Function309d
 	ld a, [CurPartyMon]
@@ -1757,7 +1757,7 @@ LearnMove: ; if b = nz, cap new move's current pp to old pp (gen 5+ TM teaching)
 	call Function65d3 ;forget move
 	pop de
 	jp c, .cancel ;if not forgetting, cancel
-	push hl 
+	push hl
 	push de
 	ld [wd265], a
 	ld b, a
@@ -1770,9 +1770,9 @@ LearnMove: ; if b = nz, cap new move's current pp to old pp (gen 5+ TM teaching)
 	xor a
 	ld [DisabledMove], a
 	ld [PlayerDisableCount], a
-.not_disabled 
+.not_disabled
 	call GetMoveName
-	ld hl, UnknownText_0x6684 
+	ld hl, UnknownText_0x6684
 	call PrintText
 	pop de
 	pop hl
@@ -1780,11 +1780,11 @@ LearnMove: ; if b = nz, cap new move's current pp to old pp (gen 5+ TM teaching)
 .quicklearn
 	pop af
 	ld a, 0 ;clear don't force renew if putting move into a empty slot
-	push af 
+	push af
 .learn
 	ld a, [wd262]
 	ld [hl], a
-	push de 
+	push de
 	ld d, h
 	ld e, l
 	ld a, PARTYMON
@@ -1801,7 +1801,7 @@ LearnMove: ; if b = nz, cap new move's current pp to old pp (gen 5+ TM teaching)
 		;ld a, BANK(Moves)
 		;call GetFarByte ;get move pp, put in a
 		;push af ;stack: move base PP, location of PP to replace, start of correct mon moves, whether to force PP overwrite
-	pop hl 
+	pop hl
 	pop de
 	pop af
 	and a
@@ -1926,7 +1926,7 @@ Function65d3: ; 65d3
 	pop bc
 	pop de
 	ld a, d
-	jr c, .asm_6660 
+	jr c, .asm_6660
 	pop hl
 	add hl, bc
 	and a
@@ -2211,7 +2211,7 @@ _Divide:: ; 673e
 .finished
 	pop hl
 	ret
-	
+
 .div0 ; OH SHI-
 	ld a, $ff
 	ld [hDividend], a
@@ -2536,7 +2536,7 @@ Function7041: ; 7041 ;if any object is in contact with de, ret c
 	jr z, .asm_7093 ;if zero, loop
 	ld hl, OBJECT_04
 	add hl, bc ; if [bc+4] bit 7 = 1, loop
-	bit 7, [hl] 
+	bit 7, [hl]
 	jr nz, .asm_7093
 	ld hl, OBJECT_PALETTE ;if bit 7 of bc + 6 = 0, check 1 spot?
 	add hl, bc
@@ -2548,10 +2548,10 @@ Function7041: ; 7041 ;if any object is in contact with de, ret c
 
 .asm_7063
 	ld hl, OBJECT_MAP_X
-	add hl, bc 
+	add hl, bc
 	ld a, [hl]
 	cp d
-	jr nz, .asm_707b 
+	jr nz, .asm_707b
 	ld hl, OBJECT_MAP_Y
 	add hl, bc
 	ld a, [hl]
@@ -3918,7 +3918,7 @@ Function8417:: ; 8417
 	jr nc, .asm_8437 ;if >= 13 return, otherwise continue
 	ld d, a
 	ld a, e
-	call GetMapObject 
+	call GetMapObject
 	ld hl, $0000
 	add hl, bc
 	ld a, [hl]
@@ -3936,14 +3936,14 @@ Function8417:: ; 8417
 Function8439: ; 8439
 	ld a, d
 	call Function1ae5 ;go down object structs d times, return the found location into bc
-	ld hl, OBJECT_MAP_X 
+	ld hl, OBJECT_MAP_X
 	add hl, bc
 	ld a, [hl] ;load x coordinate into b
 	ld hl, OBJECT_MAP_Y
 	add hl, bc
 	ld c, [hl] ;load y coordinate into c
 	ld b, a
-	push bc ; 
+	push bc ;
 	ld a, e
 	call Function1ae5
 	ld hl, OBJECT_MAP_X
@@ -4255,7 +4255,7 @@ _PrintNum:: ; c4c7
 ; Print c digits of the b-byte value at hl.
 ; Allows 2 to 7 digits. For 1-digit numbers, add
 ; the value to char "0" instead of calling PrintNum.
-; Some extra flags can be given in bits 5-7 of b. 
+; Some extra flags can be given in bits 5-7 of b.
 
 	push bc
 	bit 5, b
@@ -4418,12 +4418,12 @@ _PrintNum:: ; c4c7
 ; c5cb
 
 .PrintDigit: ; c5cb (3:45cb)
-	dec e 
+	dec e
 	jr nz, .ok
 	ld a, "0"
 	ld [$ffb3], a ;if no remaining flags, 0 this out
 .ok
-	ld c, 0 
+	ld c, 0
 .asm_c5d4
 	ld a, [$ffb7] ; b =first didgit of number to fill out
 	ld b, a
@@ -4555,7 +4555,7 @@ Functionc677: ; c677
 	call GetPartyParamLocation
 	ld d, h
 	ld e, l
-	ld hl, PartyMon1Status - PartyMon1Species 
+	ld hl, PartyMon1Status - PartyMon1Species
 	add hl, de
 	xor a
 	ld [hli], a
@@ -6822,7 +6822,7 @@ _CheckItem:: ; d244
 	ld a, [wd142]
 	dec a
 	ld hl, .data_d257
-	rst JumpTable 
+	rst JumpTable
 	ret
 
 .data_d257
@@ -7218,7 +7218,7 @@ GetTMHMNumber:: ; d407
 GetNumberedTMHM: ; d417
 ; Return the item id of a TM/HM by number c.
 
-	ld a, c 
+	ld a, c
 ; Skip any gaps.
 
 	cp ITEM_C3 - (TM01 - 1)
@@ -7616,7 +7616,7 @@ BadgeBoostStatXP: ;hl = stat xp given by badge boosts, no effect in egk
 	ret z
 	push bc
 	ld hl, JohtoBadges
-	ld b, 2 
+	ld b, 2
 	push de
 	call CountSetBits
 	pop de
@@ -7631,7 +7631,7 @@ BadgeBoostStatXP: ;hl = stat xp given by badge boosts, no effect in egk
 
 BadgeStatXpTable:
 	db $00 ;0
-	db $06 
+	db $06
 	db $0b
 	db $10
 	db $14 ;4
@@ -7655,7 +7655,7 @@ Functiond88c: ; d88c if montype is non-zero, load mon into enemy trainer. else l
 	ld de, PartyCount
 	ld a, [MonType]
 	and $f
-	jr z, .asm_d899 ;if montype first nyble is zero load into player party, else load into opposing trainer 
+	jr z, .asm_d899 ;if montype first nyble is zero load into player party, else load into opposing trainer
 	ld de, OTPartyCount
 .asm_d899
 	ld a, [de] ;if mons in party 6 or more, ret
@@ -7775,7 +7775,7 @@ Functiond906: ; d906
 	ld a, [CurPartyLevel]
 	ld d, a ;load level into d
 	callab Function50e47 ;get xp for level and growth rate
-	pop de 
+	pop de
 	ld a, [hMultiplicand]
 	ld [de], a ;load current XP into mon (takes 3 bytes)
 	inc de
@@ -7803,7 +7803,7 @@ Functiond906: ; d906
 	ld [de], a
 	inc de
 	dec b
-	jr nz, .asm_d97a 
+	jr nz, .asm_d97a
 	pop hl ;start of mon data
 	push hl
 	ld a, [MonType] ;if montype = z, jump and random dvs, else call trainer dvs and put in bc
@@ -7841,11 +7841,11 @@ Functiond906: ; d906
 	ld [de], a ;put DVs into the mon
 	inc de
 	push hl;start of mon data
-	push de; before PP 
+	push de; before PP
 	inc hl
 	inc hl ;move over mon moves
 	call FillPP ;fill pp slots
-	pop de 
+	pop de
 	pop hl ;start of mon data
 	inc de
 	inc de
@@ -7880,7 +7880,7 @@ Functiond906: ; d906
 	ld a, $1
 	ld c, a ;get hp
 	ld b, 1 ;stat xp on
-	predef Functione17b ; calc hp, put HP into in $ffb5 and $ffb6. 
+	predef Functione17b ; calc hp, put HP into in $ffb5 and $ffb6.
 	ld a, [$ffb5] ;load hp
 	ld [de], a
 	inc de
@@ -8631,7 +8631,7 @@ Functionde6e: ; de6e
 	ld [de], a
 	inc de
 	dec b
-	jr nz, .statxploop 
+	jr nz, .statxploop
 	ld hl, EnemyMonDVs
 	ld b, 2 + NUM_MOVES ; DVs and PP ; EnemyMonHappiness - EnemyMonDVs
 .asm_deef
@@ -8985,7 +8985,7 @@ Functione167: ; e167 fill stat block de for currently loaded base stats, with st
 	ld c, $0
 .asm_e169
 	inc c
-	call Functione17b 
+	call Functione17b
 	ld a, [$ffb5]
 	ld [de], a
 	inc de
@@ -9024,7 +9024,7 @@ Functione17b: ; e17b return stat c for mon species whose base stats are loaded o
 	and a
 	jr z, .asm_e1a5 ;if d = zero, skip and b = 0
 	add hl, bc ;move down to correct stat xp slot
-	push de 
+	push de
 	ld a, [hld] ;load stat xp and root it
 	ld e, a
 	ld d, [hl]
@@ -9034,7 +9034,7 @@ Functione17b: ; e17b return stat c for mon species whose base stats are loaded o
 	srl c ; c is normal again
 	pop hl ;hl = start of stat xp
 	push bc ; c is chosen stat, b is stat xp added
-	ld bc, $000b 
+	ld bc, $000b
 	add hl, bc ;over DVs
 	pop bc
 	ld a, c
@@ -9054,14 +9054,14 @@ Functione17b: ; e17b return stat c for mon species whose base stats are loaded o
 	and $1 ;bit 4 only(bit 1 of second dv), if 1, add 8. else add 0
 	add a
 	add a
-	add a 
+	add a
 	ld b, a ;load into b
 	ld a, [hli] ;load in again, move onto other dv byte
 	and $1 ;bit 0, if on add 4 tob
 	add a
 	add a
-	add b 
-	ld b, a 
+	add b
+	ld b, a
 	ld a, [hl] ;add bit 1
 	swap a ;if on, add 2
 	and $1
@@ -9096,7 +9096,7 @@ Functione17b: ; e17b return stat c for mon species whose base stats are loaded o
 	inc hl ;get special dv
 	ld a, [hl]
 	and $f
-.asm_e1fb ;dv = a, 
+.asm_e1fb ;dv = a,
 	ld d, $0
 	add e
 	ld e, a ;add dv to base stat
@@ -9427,7 +9427,7 @@ Functione41c: ; e41c (3:641c)
 	push af
 	set 4, [hl] ;set instatext
 	ld hl, UnknownText_0xe43a
-	call PrintText 
+	call PrintText
 	pop af
 	ld [Options], a
 	call Functione58
@@ -9589,7 +9589,7 @@ Functione538: ; check party mons, return carry if it finds a mon other then curr
 	ld de, PartyMon2 - PartyMon1 ;find size of pokemon
 	ld b, $0
 .asm_e540
-	ld a, [CurPartyMon] 
+	ld a, [CurPartyMon]
 	cp b
 	jr z, .asm_e54b ;if on current mon then jump, this avoid checking if current mon is not fnt
 	ld a, [hli]
@@ -9598,7 +9598,7 @@ Functione538: ; check party mons, return carry if it finds a mon other then curr
 	dec hl ;back to mon hp
 .asm_e54b
 	inc b
-	ld a, [PartyCount] 
+	ld a, [PartyCount]
 	cp b
 	jr z, .asm_e555 ;if party count = count, scf and jump out
 	add hl, de ;to next mon
@@ -10045,7 +10045,7 @@ Function113e9: ; 113e9
 	ld e, a
 	ld d, 0
 	ld hl, .data_113fd
-	add hl, de ;set 
+	add hl, de ;set
 	ld a, [hl]
 	jp Function1142e  ;load a into time until next call, and set last call to now
 ; 113fd
@@ -11025,7 +11025,7 @@ Jumptable_11977: ; 11977 (4:5977)
 	ld hl, $e
 	add hl, bc
 	ld [hl], a
-	
+
 	ld e, 4
 	call NamingScreen_IsTargetBox
 	jr nz, .loop1
@@ -11036,7 +11036,7 @@ Jumptable_11977: ; 11977 (4:5977)
 	cp e
 	jr nc, .loop1
 	ld e, a
-	
+
 	ld d, 9
 	call NamingScreen_IsTargetBox
 	jr nz, .loop2
@@ -11061,7 +11061,7 @@ Jumptable_11977: ; 11977 (4:5977)
 	ld a, e
 	ld [hli], a
 	ld [hl], d
-	
+
 	ld hl, wcf63
 	inc [hl]
 	ret
@@ -11149,7 +11149,7 @@ Jumptable_11977: ; 11977 (4:5977)
 	; ld a, [hl]
 	; and a
 	; jr z, .set_upper
-	
+
 ; .set_lower
 	ld de, NameInputLower
 	call NamingScreen_ApplyTextInputMode
@@ -12886,7 +12886,7 @@ StartMenu:: ; 125cd
 	ld h, [hl]
 	ld l, a
 	jp [hl]
-	
+
 .MenuReturns
 	dw .Reopen
 	dw .Exit
@@ -13057,7 +13057,7 @@ StartMenu:: ; 125cd
 	push de
 	ld a, [MenuSelection]
 	cp $ff
-	jr z, .none 
+	jr z, .none
 	call .GetMenuAccountTextPointer
 	inc hl
 	inc hl
@@ -13330,7 +13330,7 @@ Pokemenunoreload:
 	call WaitBGMap
 	call Function32f9 ; load regular palettes?
 	call DelayFrame
-	callba PartyMenuSelect ;make menu selection and set curpartymon and curspecies 
+	callba PartyMenuSelect ;make menu selection and set curpartymon and curspecies
 	jr c, PokeMenuReturn ; if cancelled or pressed B, back out
 	ld a, [$ffa9] ;handle select button to switch
 	bit 0, a
@@ -15323,7 +15323,7 @@ Function1369d: ; 1369d
 	ld a, [wd00a] ;third place trainer number (1 is player, 2 and up is NPC)
 	call Function13730
 	ld a, [wd00b] ;third place trainer mon
-	ld [wd265], a 
+	ld [wd265], a
 	call GetPokemonName
 	ld hl, UnknownText_0x13719 ;show third place text
 	call PrintText
@@ -15503,7 +15503,7 @@ Unknown_137db:
 Unknown_137e6:
 	db BUG_CATCHER, JOSH
 	dbw PARASECT,   723 ;
-	dbw ARIADOS,    665 ; 
+	dbw ARIADOS,    665 ;
 	dbw METAPOD,    388 ;
 Unknown_137f1:
 	db YOUNGSTER, SAMUEL
@@ -15513,7 +15513,7 @@ Unknown_137f1:
 Unknown_137fc:
 	db SCHOOLBOY, KIPP
 	dbw VENONAT,    456 ;
-	dbw PARAS,      482 ; 
+	dbw PARAS,      482 ;
 	dbw KAKUNA,     498 ;
 ; 13807
 
@@ -15578,7 +15578,7 @@ Function1383e: ; 1383e
 	jr .asm_1389f
 
 .asm_1386b
-	ld de, wd010 
+	ld de, wd010
 	ld hl, wd008 ;second place score
 	ld c, $2
 	call StringCmp
@@ -15606,11 +15606,11 @@ Function1383e: ; 1383e
 Function138a0: ; 138a0
 	ld de, wd00e
 	ld a, [de]
-	inc de 
+	inc de
 	ld [hli], a ;place [de] through [de+a] in hl through hl+3
 	ld a, [de]
 	inc de
-	ld [hli], a 
+	ld [hli], a
 	ld a, [de]
 	inc de
 	ld [hli], a
@@ -15802,9 +15802,9 @@ Function139a8: ; 139a8
 	inc hl
 	inc hl ;go to next slot
 	pop bc
-	dec c 
+	dec c
 	jr nz, .asm_139ad ;loop through whole table, clearing all flags
-	ld c, $5 
+	ld c, $5
 .asm_139c0
 	push bc
 .asm_139c1
@@ -16182,12 +16182,12 @@ GetTimeOfDay:: ; 14032
 
 	ld a, [hHours] ; hour
 	ld hl, TimesOfDay
-	
+
 .check
 ; if we're within the given time period,
 ; get the corresponding time of day
 
-	cp [hl] 
+	cp [hl]
 	jr c, .match
 ; else, get the next entry
 
@@ -16196,7 +16196,7 @@ GetTimeOfDay:: ; 14032
 ; try again
 
 	jr .check
-	
+
 .match
 ; get time of day
 
@@ -17087,7 +17087,7 @@ SpriteMons: ; 14495
 	db EGG
 ; 144b8
 
-	
+
 OutdoorSprites: ; 144b8
 ; Valid sprite IDs for each map group.
 
@@ -18125,7 +18125,7 @@ Function14a83: ; 14a83 (5:4a83) boxchangesave, saves with new active box e
 .asm_14ab0
 	pop de
 	ret
-	
+
 DeleteBox: ; 14a83 (5:4a83)
 	push de
 	ld hl, Text_DeleteBox
@@ -18317,7 +18317,7 @@ Function14bcb: ; 14bcb check if current playerid is the same as saved id
 	call CloseSRAM
 	ld a, [PlayerID]
 	cp b
-	ret nz 
+	ret nz
 	ld a, [PlayerID + 1]
 	cp c
 	ret
@@ -22114,7 +22114,7 @@ Function16798: ; 16798
 ; 167f1
 
 UnknownText_0x167f1: ; 0x167f1
-	; 
+	;
 	text_jump UnknownText_0x1bdaa7
 	db "@"
 ; 0x167f6
@@ -23345,7 +23345,7 @@ Function17090: ; 17090
 ; 170b0 (5:70b0)
 
 UnknownText_0x170b0: ; 0x170b0
-	; 
+	;
 	text_jump UnknownText_0x1c0db8
 	db "@"
 ; 0x170b5
@@ -24459,11 +24459,11 @@ Function24193: ; 24193
 ; 241a8
 
 Function241a8:: ; 241a8 ;place and update cursor, loop valid input is pressed
-	call Function24329 ;Place cursor in tilemap 
+	call Function24329 ;Place cursor in tilemap
 Function241ab:: ; 241ab
 	ld hl, wcfa6 ;reset bit 7 of ???
 	res 7, [hl]
-	ld a, [hBGMapMode] 
+	ld a, [hBGMapMode]
 	push af
 	call Function24216 ;update cursor, loop until valid input (depending on wcfa8)
 	pop af
@@ -24489,7 +24489,7 @@ Function241ba: ; 241ba
 ; 241d5
 
 Function241d5: ; 241d5
-	call Function24329 ;Place cursor in tilemap 
+	call Function24329 ;Place cursor in tilemap
 .asm_241d8
 	call Function2431a
 	callba Function10402d ; BUG: This function is in another bank.
@@ -24572,7 +24572,7 @@ Function24249: ; 24249 ;update joypad, possibly busyloop to wait. ret c if anyth
 ; 24259
 
 Function24259: ; 24259 update joypad,ret c if anything pressed in joylast
-	ld a, [wcfa5] ;a = ?? 
+	ld a, [wcfa5] ;a = ??
 	bit 6, a ;if bit 4 of tile backup was on?
 	jr z, .asm_24266 ;skip
 	callab Function8cf62 ;something sprite related
@@ -24684,11 +24684,11 @@ Function24270: ; 24270 process direction buttons, a = 0
 	ret
 
 .asm_242fa ;if right is pressed
-	ld hl, wcfaa 
+	ld hl, wcfaa
 	ld a, [wcfa4] ;(1)??
 	cp [hl] ;if horizontal cursor position is not equal to ??(max horizontal position?) inc it
 	jr z, .asm_24306
-	inc [hl] 
+	inc [hl]
 	xor a
 	ret
 
@@ -24722,7 +24722,7 @@ Function2431a: ; 2431a refresh cursor location
 	jr nz, Function24329
 	ld a, [wcfab]
 	ld [hl], a
-Function24329: ; 24329 Place cursor in tilemap 
+Function24329: ; 24329 Place cursor in tilemap
 	ld a, [wcfa1] ;load start coords +1/2
 	ld b, a
 	ld a, [wcfa2]
@@ -24738,7 +24738,7 @@ Function24329: ; 24329 Place cursor in tilemap
 	dec b
 	jr z, .asm_24348 ;a = c*(cursor -1)
 .asm_24344
-	add c 
+	add c
 	dec b
 	jr nz, .asm_24344
 .asm_24348
@@ -24746,7 +24746,7 @@ Function24329: ; 24329 Place cursor in tilemap
 	call AddNTimes ;add number of rows to go down
 	ld a, [wcfa7]
 	and $f ;load colomns difference into c
-	ld c, a 
+	ld c, a
 	ld a, [wcfaa] ;horizontal cursor position?
 	ld b, a
 	xor a
@@ -24757,7 +24757,7 @@ Function24329: ; 24329 Place cursor in tilemap
 	dec b
 	jr nz, .asm_2435b
 .asm_2435f
-	ld c, a 
+	ld c, a
 	add hl, bc ;add horizontal distance
 	ld a, [hl] ;load contents
 	cp $ed ;if already the cursor, skip
@@ -24773,38 +24773,38 @@ Function24329: ; 24329 Place cursor in tilemap
 ; 24374
 
 Function24374:: ; 24374 ;load current tile backup onto backup stack
-	ld a, [rSVBK] 
+	ld a, [rSVBK]
 	push af
 	ld a, $7
-	ld [rSVBK], a 
+	ld [rSVBK], a
 	ld hl, wcf71 ;load previous menu in stack into de
-	ld e, [hl] 
+	ld e, [hl]
 	inc hl
 	ld d, [hl]
 	push de ;holds previous menu in stack
 	ld b, $10
 	ld hl, wcf81 ;curmenudata
 .asm_24387
-	ld a, [hli] 
-	ld [de], a 
+	ld a, [hli]
+	ld [de], a
 	dec de ;load menu header into de backwards
 	dec b
-	jr nz, .asm_24387 
+	jr nz, .asm_24387
 	ld a, [wcf81] ;load first menu header tile backup into a
 	bit 6, a
 	jr nz, .asm_24398 ;if bit 6 is on or bit 7 is, load current tile data onto previous menu stack. set top of previous stack bit 0(?)
-	bit 7, a 
+	bit 7, a
 	jr z, .asm_243ae ;if bit 6 is off and bit 7 is off, skip. reset top of previous stack bit 0(?)
 .asm_24398
 	ld hl, wcf71 ;load the pointer
 	ld a, [hli] ; put the location there into hl
 	ld h, [hl]
 	ld l, a
-	set 0, [hl] ;set that bit 0 to 1 
+	set 0, [hl] ;set that bit 0 to 1
 	call Function1cfd ;hl = curmenu start location in tilemap
 	call Function243cd ;put tilemap to be taken up by menu into de (backwards)
 	call Function1d19 ;same as 1cfd but for AttrMap
-	call Function243cd 
+	call Function243cd
 	jr .asm_243b5
 
 .asm_243ae
@@ -24823,7 +24823,7 @@ Function24374:: ; 24374 ;load current tile backup onto backup stack
 	ld a, l
 	ld [de], a
 	dec de
-	ld hl, wcf71 ;load the "top" of the new entry tile data into wcf71, 
+	ld hl, wcf71 ;load the "top" of the new entry tile data into wcf71,
 	ld [hl], e
 	inc hl
 	ld [hl], d
@@ -24837,7 +24837,7 @@ Function24374:: ; 24374 ;load current tile backup onto backup stack
 Function243cd: ; 243cd ;move the current data in the area covered by the curmenu from grid hl into de backwards
 	call Function1c53 ;sub 1 set of menu coords from another, leave result in bc
 	inc b
-	inc c 
+	inc c
 	;call Function243e7 immediatly rets
 .asm_243d5
 	push bc
@@ -24864,7 +24864,7 @@ Function243e7: ; 243e7
 Function243e8:: ; 243e8 unload top menu on the stack
 	xor a
 	ld [hBGMapMode], a ;reset BG map mode
-	ld a, [rSVBK] 
+	ld a, [rSVBK]
 	push af
 	ld a, $7
 	ld [rSVBK], a ;switch to wram bank 7
@@ -24880,9 +24880,9 @@ Function243e8:: ; 243e8 unload top menu on the stack
 	ld a, [wcf81]
 	bit 0, a ;if tiles were loaded in, unload them
 	jr z, .asm_24411
-	ld d, h 
+	ld d, h
 	ld e, l
-	call Function1c23 ;fill tilemap and attrimap with menu data from hl using loaded menu data's coords 
+	call Function1c23 ;fill tilemap and attrimap with menu data from hl using loaded menu data's coords
 .asm_24411
 	call Function1c7e ;load contents of ((the contents of wcf71) +1) into hl
 	ld a, h
@@ -24957,7 +24957,7 @@ Function2446d:: ; 2446d fill rest of menu data?
 	ld a, [wcf83]
 	inc a
 	ld [hli], a
-	ld a, [wcf92] ;load ?? into max cursor position 
+	ld a, [wcf92] ;load ?? into max cursor position
 	ld [hli], a
 	ld a, $1
 	ld [hli], a ;load 1 into wcfa4 and 0 into wcfa5
@@ -24978,14 +24978,14 @@ Function2446d:: ; 2446d fill rest of menu data?
 	ld [hli], a ;wcfa7 = 32
 	ld a, $1
 	bit 0, b
-	jr nz, .asm_244a9 ;if bit 0 of b is on,exit on a only, else  exit on a or b. load it into wcfa8 
+	jr nz, .asm_244a9 ;if bit 0 of b is on,exit on a only, else  exit on a or b. load it into wcfa8
 	add $2
 .asm_244a9
 	ld [hli], a
 	ld a, [wcf88]
 	and a
 	jr z, .asm_244b7 ;if default option is 0 or is more then wcf92, then c = default option, else c = 1
-	ld c, a 
+	ld c, a
 	ld a, [wcf92]
 	cp c
 	jr nc, .asm_244b9
@@ -25983,7 +25983,7 @@ Function24af8: ; 24af8
 	ld hl, MenuDataHeader_0x24b15
 	ld de, $000b
 	call Function1e2e
-Function24b01: ; 24b01 
+Function24b01: ; 24b01
 	call Function1cbb ;put a textbox in menu area
 	call Function1cfd ;hl = curmenu start location in tilemap
 	ld de, $0015
@@ -26252,7 +26252,7 @@ MonMenuOptions: ; 24cd9
 
 Function24d19: ; 24d19 MonSubMenu load, process, then unload the mon sub menu. put selection in MenuSelection
 	xor a
-	ld [hBGMapMode], a 
+	ld [hBGMapMode], a
 	call Function24dd4 ;populate buffer 2 with curpartymon's menu options
 	callba Function8ea4a ;hl = wc314 + 96. load 2 into the third byte of each 16 byte blockif the first byte is equal to wcfa9, otherwise 0 if the first byte is not 0
 	ld hl, MenuDataHeader_0x24d3f
@@ -26278,7 +26278,7 @@ MenuDataHeader_0x24d3f: ; 24d3f
 Function24d47: ; 24d47 draw a text box to hold mon options menu
 	ld a, [Buffer1]
 	inc a
-	add a 
+	add a
 	ld b, a
 	ld a, [wcf84] ;sub items in menu +1*2 and add 1 to end y coord, put result in start y coord
 	sub b
@@ -26312,13 +26312,13 @@ Function24d59: ; 24d59 ;process monsubmenu, return the command to execute in a
 	ret
 
 .asm_24d84
-	ld a, [wcfa9] 
+	ld a, [wcfa9]
 	dec a
 	ld c, a
 	ld b, 0
 	ld hl, Buffer2
 	add hl, bc
-	ld a, [hl] 
+	ld a, [hl]
 	ret
 ; 24d91
 
@@ -26345,7 +26345,7 @@ Function24d91: ; 24d91 ;load menu options text into tilemap
 
 Function24db0: ; 24db0 ;put string for move whose listing is in a in stringbuffer 1
 	ld hl, MonMenuOptions + 1 ;move over listings
-	ld de, $0003 
+	ld de, $0003
 	call IsInArray ;put that move loc in hl
 	dec hl ;check if it's a move
 	ld a, [hli]
@@ -26377,7 +26377,7 @@ Function24dd4: ; 24dd4 ;populate buffer 2 with curpartymon's menu options
 	and a
 	jr nz, .asm_24e03 ;if in link battle, skip adding moves to list
 	ld a, PartyMon1Moves - PartyMon1 ;a = space till moves in party data
-	call GetPartyParamLocation 
+	call GetPartyParamLocation
 	ld d, h ;de = curpartymon's moves
 	ld e, l
 	ld c, NUM_MOVES
@@ -26391,7 +26391,7 @@ Function24dd4: ; 24dd4 ;populate buffer 2 with curpartymon's menu options
 	call Function24e52 ;get menu isting for out of battle move, put it in a. else ret nc
 	pop hl
 	jr nc, .asm_24dfd ;loop until succsessful
-	call Function24e83 ; load a into slot buffer1 in buffer 2, then inc buffer 1 
+	call Function24e83 ; load a into slot buffer1 in buffer 2, then inc buffer 1
 .asm_24dfd
 	pop de
 	inc de
@@ -26410,7 +26410,7 @@ Function24dd4: ; 24dd4 ;populate buffer 2 with curpartymon's menu options
 	jr nz, .asm_24e2f ;if in link battle branch
 	push hl
 	ld a, PartyMon1Item - PartyMon1
-	call GetPartyParamLocation 
+	call GetPartyParamLocation
 	ld d, [hl] ;put mon item in d
 	callba ItemIsMail ;check if it is mail, ret c if it is
 	pop hl
@@ -26462,7 +26462,7 @@ Function24e52: ; 24e52 get menu isting for out of battle move, else ret nc
 
 Function24e68: ; 24e68 ;clear buffer1 and 9 bytes of buffer2
 	xor a
-	ld [Buffer1], a 
+	ld [Buffer1], a
 	ld hl, Buffer2
 	ld bc, $0009
 	call ByteFill
@@ -26483,7 +26483,7 @@ Function24e83: ; 24e83
 	push hl
 	push de
 	push af
-	ld a, [Buffer1] ; load a into slot buffer1 in buffer 2, then inc buffer 1 
+	ld a, [Buffer1] ; load a into slot buffer1 in buffer 2, then inc buffer 1
 	ld e, a
 	inc a
 	ld [Buffer1], a
@@ -26491,7 +26491,7 @@ Function24e83: ; 24e83
 	ld hl, Buffer2
 	add hl, de
 	pop af
-	ld [hl], a 
+	ld [hl], a
 	pop de
 	pop hl
 	ret
@@ -26555,7 +26555,7 @@ LoadBattleMenu: ; 24ef2
 	call Function2039
 	ld a, [wcf88]
 	ld [wd0d2], a
-	call Function1c07 
+	call Function1c07
 	ret
 ; 24f0b
 
@@ -28294,7 +28294,7 @@ Function2695b: ; 2695b
 	ld hl, MenuDataHeader_0x269b5
 	call LoadMenuDataHeader
 	call Function1e5d
-	jr c, .asm_26977 
+	jr c, .asm_26977
 	call Function26a02
 .asm_26977
 	call Function1c07 ;unload top menu on menu stack
@@ -32662,7 +32662,7 @@ UnknownText_0x29732: ; 0x29732
 ; 0x29737
 
 UnknownText_0x29737: ; 0x29737
-	; 
+	;
 	text_jump UnknownText_0x1bc701
 	db "@"
 ; 0x2973c
@@ -33210,7 +33210,7 @@ Function29d11: ; 29d11
 ; 29d92
 
 Function29d92: ; 29d92 (5D8F)
-	ld a, $1 
+	ld a, $1
 	ld [wcf56], a ;(91)
 	ld hl, wcf5b
 	ld a, $3
@@ -33222,7 +33222,7 @@ Function29d92: ; 29d92 (5D8F)
 	ld [hVBlank], a ;(a1)
 	call DelayFrame
 	call DelayFrame
-	call Function29e0c 
+	call Function29e0c
 	xor a
 	ld [hVBlank], a
 	ld a, [ScriptVar]
@@ -33291,7 +33291,7 @@ Function29e0c: ; 29e0c
 	jr nz, .asm_29e2f
 	call Function29e47
 	call Function29e53
-	call Function29e3b 
+	call Function29e3b
 	jr nz, .asm_29e2f
 	call Function29e47
 	xor a
@@ -33821,7 +33821,7 @@ DudeBackpic: ; 2bbaa
 INCBIN "gfx/misc/dude.6x6.2bpp.lz"
 ; 2bcea
 
-SECTION "WildHandling", ROMX 
+SECTION "WildHandling", ROMX
 
 INCLUDE "engine/wildhandling.asm"
 
@@ -35351,7 +35351,7 @@ GetFirstEnemyTrainerLevel:
 	call GetFarByte
 	ld [EnemyMonLevel], a
 	ret
-	
+
 .MirrorBattle
 	ld a, [PartyMon1Level]
 	ld [EnemyMonLevel], a
@@ -35391,7 +35391,7 @@ PlayBattleMusic: ; 2ee6c
 	jp z, .done
 	cp BATTLETYPE_ROAMING
 	jp z, .done
-	
+
 	cp BATTLETYPE_KANTOLEGEND
 	ld de, MUSIC_KANTO_LEGEND
 	jp z, .done
@@ -35752,7 +35752,7 @@ ReadTrainerParty: ; 39771
 .next
 	ld a, [wdff5]
 	call GetFarByte2
-	cp $ff 
+	cp $ff
 	jr nz, .next
 	jr .skip_trainer
 
@@ -35786,7 +35786,7 @@ TrainerType:
 .species_okay
 	ld [CurPartySpecies], a ;load species in
 	ld a, OTPARTYMON ;load montype
-	ld [MonType], a 
+	ld [MonType], a
 	push hl
 	predef Functiond88c ;load in mon
 	pop hl
@@ -35809,7 +35809,7 @@ TrainerType:
 	ld a, [wdff5 + 1]
 	bit TRAINERTYPE_NICKNAME, a
 	jr z, .no_nick
-	
+
 	push hl
 	ld a, [OTPartyCount]
 	dec a
@@ -35879,7 +35879,7 @@ TrainerType:
 	dec hl ;makes it not break?
 	ld b, 1
 	ld c, 1
-	predef Functione17b ; calc hp, put into in $ffb5 and $ffb6. 
+	predef Functione17b ; calc hp, put into in $ffb5 and $ffb6.
 	ld a, [$ffb5] ;load hp
 	ld [de], a
 	inc de
@@ -35892,7 +35892,7 @@ TrainerType:
 	ld a, [wdff5 + 1]
 	bit TRAINERTYPE_MOVES, a
 	jp z, ._loop
-	
+
 	push hl
 	ld a, [OTPartyCount]
 	dec a
@@ -36068,7 +36068,7 @@ CopyMirrorBattle:
 	ld bc, PARTY_STRUCT_LENGTH
 	call CopyBytes
 	ret
-	
+
 ClearOTMons:
 	ld hl, OTPartyCount
 	xor a
@@ -36175,7 +36175,7 @@ Function421f5: ; 421f5
 	jp z, .level
 	cp EVOLVE_HAPPINESS
 	jr z, .happiness
-	
+
 	cp EVOLVE_LEVEL_ITEM
 	jp z, .levelitem
 ; EVOLVE_STAT
@@ -36591,7 +36591,7 @@ FillMoves: ; 424e1
 	dec a
 	add a ;(species -1)*2
 	rl b ;carry in b (if any)
-	ld c, a 
+	ld c, a
 	add hl, bc ;load that mon location into hl
 	ld a, [hli]
 	ld h, [hl]
@@ -36627,7 +36627,7 @@ FillMoves: ; 424e1
 	ld a, [de] ;if current move same as loaded move, return and try the next move
 	inc de
 	cp [hl]
-	jr z, .NextMove 
+	jr z, .NextMove
 	dec c ;else check next slot until all slots are checked
 	jr nz, .CheckRepeat
 	pop de ;reload move entry slot
@@ -36666,7 +36666,7 @@ FillMoves: ; 424e1
 	jr z, .NextMove ;if buffer is 0, check next move
 	push hl ;stack move loc
 	ld a, [hl] ;put move in a
-	ld hl, PartyMon1PP - PartyMon1Moves 
+	ld hl, PartyMon1PP - PartyMon1Moves
 	add hl, de ;move down to appropriate PP
 	push hl ;stack pp loc
 	dec a
@@ -36767,7 +36767,7 @@ IF DEF(BEESAFREE)
 
 	callba Function3e8d1
 	ret nz
-	
+
 	call ResetLUASerial
 	ld a, BEESAFREE_SND_ASKMOVE
 	rst LUASerial
@@ -36889,7 +36889,7 @@ ELSE
 	ld hl, Buffer1
 	ld de, EnemyMonMoves
 	ld c, EnemyMonMovesEnd - EnemyMonMoves
-	
+
 .DecrementNextScore
 	; If the enemy has no moves, this will infinite.
 	ld a, [de]
@@ -36910,7 +36910,7 @@ ELSE
 
 .PickLowestScoreMoves
 	ld a, c
-	
+
 .asm_44175
 	inc [hl]
 	dec hl
@@ -36920,15 +36920,15 @@ ELSE
 	ld hl, Buffer1
 	ld de, EnemyMonMoves
 	ld c, NUM_MOVES
-	
-; Give a score of 0 to a blank move	
+
+; Give a score of 0 to a blank move
 
 .asm_44184
 	ld a, [de]
 	and a
 	jr nz, .asm_44189
-	ld [hl], a 
-; Disregard the move if its score is not 1	
+	ld [hl], a
+; Disregard the move if its score is not 1
 
 .asm_44189
 	ld a, [hl]
@@ -36937,7 +36937,7 @@ ELSE
 	xor a
 	ld [hli], a
 	jr .asm_44193
-	
+
 .asm_44191
 	ld a, [de]
 	ld [hli], a
@@ -36945,7 +36945,7 @@ ELSE
 	inc de
 	dec c
 	jr nz, .asm_44184
-; Randomly choose one of the moves with a score of 1 	
+; Randomly choose one of the moves with a score of 1
 
 .ChooseMove
 	ld hl, Buffer1
@@ -36984,7 +36984,7 @@ ENDC
 	; bit 6, a
 	; jr nz, .item
 	; and $f
-	; jr z, .invalid	
+	; jr z, .invalid
 	; dec a
 	; cp NUM_MOVES
 	; jr nc, .invalid
@@ -37207,7 +37207,7 @@ String_44331: ; 44331
 
 ; 44355
 
-	
+
 ; 44378
 
 
@@ -43484,7 +43484,7 @@ Function4ae5e: ; 4ae5e
 	ld a, [hOAMUpdate]
 	push af
 	call Function1c07 ;unload top menu on menu stack
-	call Function1ad2 
+	call Function1ad2
 	xor a
 	ld [hOAMUpdate], a
 	call DelayFrame
@@ -44542,7 +44542,7 @@ FlagPredef: ; 4d7c1
 	dec b
 	jr z, .set ; 1
 	dec b
-	jr z, .check ; 2 
+	jr z, .check ; 2
 .reset
 	ld a, c
 	cpl
@@ -44868,7 +44868,7 @@ Function4d9d3: ; 4d9d3
 	ret
 ; 4d9e5
 
-Function4d9e5: ; 4d9e5 ;insert mon into party if space, otherwise into PC box in top slot. mon is in wdf9c (Contest mon). 
+Function4d9e5: ; 4d9e5 ;insert mon into party if space, otherwise into PC box in top slot. mon is in wdf9c (Contest mon).
 	;return 0 in scriptvar if mon went to party, 1 if they went to box and 2 if no mon was caught
 	ld a, [wdf9c] ;mon species
 	and a
@@ -44936,7 +44936,7 @@ Function4d9e5: ; 4d9e5 ;insert mon into party if space, otherwise into PC box in
 	ld hl, PartyMon1Level
 	call GetPartyLocation ;move down to correct mon slot
 	ld a, [hl]
-	ld [CurPartyLevel], a 
+	ld [CurPartyLevel], a
 	call Function4db49 ;store utility data
 	ld a, [PartyCount]
 	dec a
@@ -44966,7 +44966,7 @@ Function4daa3: ; 4daa3
 	ld [CurPartyMon], a ;use the top slot of the box
 	ld hl, wdf9c ;contest mon
 	ld de, wd018
-	ld bc, sBoxMon2 - sBoxMon1 
+	ld bc, sBoxMon2 - sBoxMon1
 	call CopyBytes ;copy mon from contestmon to place to enter box mon from
 	ld hl, PlayerName
 	ld de, wd00d
@@ -44994,7 +44994,7 @@ Function4daa3: ; 4daa3
 	ld a, [sBoxMon1Level] ;get mon level
 	ld [CurPartyLevel], a
 	call CloseSRAM
-	call Function4db83 ;store data on caught mon in first slot of box 
+	call Function4db83 ;store data on caught mon in first slot of box
 	ld a, $1
 	call GetSRAMBank
 	ld hl, sBoxMon1CaughtLocation
@@ -45069,7 +45069,7 @@ Function4db53: ; 4db53 store data on caught mon at HL and HL+1
 	ld a, [PlayerGender]
 	rrca
 	or b
-	ld [hl], a ;store them both in the mon 
+	ld [hl], a ;store them both in the mon
 	ret
 ; 4db83
 
@@ -47946,16 +47946,16 @@ PartyMenuSelect: ; 0x50457 make menu selection, ret c if cancelling, set curpart
 
 	call Function1bc9 ;place and update cursor, loop until allowed input is pressed, update joylsast
 	call Function1bee ;load white cursor into cursor location
-	ld a, [PartyCount] 
+	ld a, [PartyCount]
 	inc a
 	ld b, a
-	ld a, [wcfa9] 
+	ld a, [wcfa9]
 	cp b
 	jr z, .exitmenu ; CANCEL If vert menu selection = partycount+1, cancel
 	ld [wd0d8], a ;load selection into ??
-	ld a, [$ffa9] 
+	ld a, [$ffa9]
 	ld b, a
-	bit 1, b 
+	bit 1, b
 	jr nz, .exitmenu ; If b button pressed, exit
 	ld a, [wcfa9]
 	dec a
@@ -48329,7 +48329,7 @@ UnknownScript_0x506e9: ; 0x506e9
 ; 0x506ef
 
 Function506ef: ; 506ef probably sweet scent
-	callba Function97cfd 
+	callba Function97cfd
 	jr nc, .asm_5071e
 	ld hl, StatusFlags2 ;check bug catching timer
 	bit 2, [hl]
@@ -48344,7 +48344,7 @@ Function506ef: ; 506ef probably sweet scent
 
 .asm_50712
 	callba Function97d31
-.asm_50718 
+.asm_50718
 	ld a, $1
 	ld [ScriptVar], a
 	ret
@@ -48827,7 +48827,7 @@ DrawHP: ; 50b10
 	push hl
 	call DrawHPBar
 	pop hl
-; Print HP 
+; Print HP
 
 	ld bc, $0015 ; move (1,1)
 	add hl, bc
@@ -48911,50 +48911,50 @@ GetGender: ; 50bdd
 	ld a, [MonType]
 	and a
 	jr z, .PartyMon
-	
+
 ; 1: OTPartyMon
 
 	ld hl, OTPartyMon1DVs
 	dec a
 	jr z, .PartyMon
-	
+
 ; 2: sBoxMon
 
 	ld hl, sBoxMon1DVs
 	ld bc, sBoxMon2 - sBoxMon1
 	dec a
 	jr z, .sBoxMon
-	
+
 ; 3: Unknown
 
 	ld hl, TempMonDVs
 	dec a
 	jr z, .DVs
-	
+
 ; else: WildMon
 
 	ld hl, EnemyMonDVs
 	jr .DVs
-	
-	
+
+
 ; Get our place in the party/box.
 
-	
+
 .PartyMon
 .sBoxMon
 	ld a, [CurPartyMon]
 	call AddNTimes
-	
-	
+
+
 .DVs
-	
+
 ; sBoxMon data is read directly from SRAM.
 
 	ld a, [MonType]
 	cp BOXMON
 	ld a, 1
 	call z, GetSRAMBank
-	
+
 ; Attack DV
 
 	ld a, [hli]
@@ -48965,7 +48965,7 @@ GetGender: ; 50bdd
 	ld a, [hl]
 	and $f0
 	swap a
-	
+
 ; Put our DVs together.
 
 	or b
@@ -48975,8 +48975,8 @@ GetGender: ; 50bdd
 	ld a, [MonType]
 	cp BOXMON
 	call z, CloseSRAM
-	
-	
+
+
 ; We need the gender ratio to do anything with this.
 
 	push bc
@@ -48986,37 +48986,37 @@ GetGender: ; 50bdd
 	ld bc, BaseData1 - BaseData
 	call AddNTimes
 	pop bc
-	
+
 	ld a, BANK(BaseData)
 	call GetFarByte
-	
-	
+
+
 ; The higher the ratio, the more likely the monster is to be female.
 
-	
+
 	cp $ff
 	jr z, .Genderless
-	
+
 	and a
 	jr z, .Male
-	
+
 	cp $fe
 	jr z, .Female
-	
+
 ; Values below the ratio are male, and vice versa.
 
 	cp b
 	jr c, .Male
-	
+
 .Female
 	xor a
 	ret
-	
+
 .Male
 	ld a, 1
 	and a
 	ret
-	
+
 .Genderless
 	scf
 	ret
@@ -49687,7 +49687,7 @@ GetUnownLetter: ; 51040
 	srl a
 	or b
 	ld b, a
-	
+
 	; spd
 	ld a, [hl]
 	and %01100000
@@ -50171,7 +50171,7 @@ Function51322: ; 51322 copy full boxmon from CurPartySpecies, wd002(nickname),wd
 	call Function513cb ;place [CurPartySpecies] into slot [CurPartyMon] in list hl
 	ld a, [sBoxCount]
 	dec a
-	ld [wd265], a 
+	ld [wd265], a
 	ld hl, sBoxMonNicknames
 	ld bc, PKMN_NAME_LENGTH ;load nicknames location to copy new name into
 	ld de, wd002
@@ -50199,7 +50199,7 @@ Function51322: ; 51322 copy full boxmon from CurPartySpecies, wd002(nickname),wd
 	ld bc, NUM_MOVES
 	call CopyBytes
 	ld a, [CurPartyMon]
-	ld b, a ;store slot to add into into b 
+	ld b, a ;store slot to add into into b
 	callba Functiondcb6 ;store box mon moves and PP
 	jp CloseSRAM
 ; 5138b
@@ -50245,7 +50245,7 @@ Function513cb: ; 513cb ;place [CurPartySpecies] into slot [CurPartyMon] in list 
 	ld [hl], c ;load new mon in
 	inc hl ;go to next slot
 	inc c ;check if done, loop until ff
-	ld c, a 
+	ld c, a
 	jr nz, .asm_513d8
 	ret
 ; 513e0
@@ -50257,7 +50257,7 @@ Function513e0: ; 513e0 ;copy block of data bc long from hl into list wd265 long 
 	ld a, [wd265]
 	dec a ;a = slots to move down
 	call AddNTimes ; go down that many slots to "highlight" what will be the last slot in the list
-	push hl 
+	push hl
 	add hl, bc ;go back 1
 	ld d, h
 	ld e, l ;put 1 above into de (the current last slot)
@@ -50341,8 +50341,8 @@ DoPlayerMovement:: ; 80000 load input, set movement data and animation. c = what
 	ld [MovementAnimation], a ;set movement anim
 	xor a
 	ld [wd041], a ;load 0 into ??
-	call GetPlayerMovement ;set movement data, ret 3 is in whirlpool, ret 5 is forced movement, ret 4 if moving. 
-	ld c, a 
+	call GetPlayerMovement ;set movement data, ret 3 is in whirlpool, ret 5 is forced movement, ret 4 if moving.
+	ld c, a
 	ld a, [MovementAnimation] ;put animation into ??
 	ld [wc2de], a
 	ret
@@ -50361,7 +50361,7 @@ GetMovementInput: ; 80017 ret joydown in curinput, apply downhill
 	ret nz
 	ld a, c
 	or D_DOWN
-	ld [CurInput], a 
+	ld [CurInput], a
 	ret
 ; 8002d
 
@@ -50699,7 +50699,7 @@ TryStep: ; 8016b
 	call DoStep
 	scf
 	ret
-	
+
 .run
 	ld a, STEP_RUN
 	call DoStep
@@ -51155,7 +51155,7 @@ GetMovementAction: ; 802ec
 
 	jr .update
 
-.down 	add hl, de 
+.down 	add hl, de
 .up   	add hl, de
 .left 	add hl, de
 .right	add hl, de
@@ -51366,7 +51366,7 @@ Function80404:: ; 80404 if player is on ice or sliding and has no-0 walking anim
 	cp 0
 	jr z, .asm_80420 ;if walkinplace = 0 or f0, ret nc
 	cp $f0
-	jr z, .asm_80420 
+	jr z, .asm_80420
 	ld a, [StandingTile]
 	call CheckIceTile ;if not $23 or $2b, scf
 	jr nc, .asm_8041e ;ret c if ice
@@ -51410,27 +51410,27 @@ EngineFlagAction:: ; 80430
 	jr z, .ceiling
 	jr c, .read ; cp 0 can't set carry!
 	jr .invalid
-	
+
 ; There are only $a2 engine flags, so
 ; anything beyond that is invalid too.
 
-	
+
 .ceiling
 	ld a, e
 	cp NUM_ENGINE_FLAGS
 	jr c, .read
-	
+
 ; Invalid flags are treated as flag 00.
 
-	
+
 .invalid
 	xor a
 	ld e, a
 	ld d, a
-	
+
 ; Get this flag's location.
 
-	
+
 .read
 	ld hl, EngineFlags
 ; location
@@ -51440,7 +51440,7 @@ EngineFlagAction:: ; 80430
 ; bit
 
 	add hl, de
-	
+
 ; location
 
 	ld e, [hl]
@@ -51450,15 +51450,15 @@ EngineFlagAction:: ; 80430
 ; bit
 
 	ld c, [hl]
-	
+
 ; What are we doing with this flag?
 
-	
+
 	ld a, b
 	cp 1
 	jr c, .reset ; b = 0
 	jr z, .set   ; b = 1
-	
+
 ; Return the given flag in c.
 
 .check
@@ -51466,7 +51466,7 @@ EngineFlagAction:: ; 80430
 	and c
 	ld c, a
 	ret
-	
+
 ; Set the given flag.
 
 .set
@@ -51474,7 +51474,7 @@ EngineFlagAction:: ; 80430
 	or c
 	ld [de], a
 	ret
-	
+
 ; Reset the given flag.
 
 .reset
@@ -51510,8 +51510,8 @@ Function80648:: ; 80648 (20:4648)
 	ld b, [hl] ;oppcode
 	ld a, b
 	and $80
-	jr nz, .asm_80668 ;if $80, call de 
-	ld a, b 
+	jr nz, .asm_80668 ;if $80, call de
+	ld a, b
 	and $40 ;if $40, return stringbuffer with what's at location in it?
 	ret nz ;if 0 just return de
 	ld a, [de]
@@ -55363,7 +55363,7 @@ MenuDataHeader_0x8810d: ; 0x8810d
 	db 0, 0, -1, 0 ; XXX
 Function88116: ; 88116
 	call Function1cfd ;hl = curmenu start location in tilemap
-	ld de, $0015 
+	ld de, $0015
 	add hl, de
 	ld d, h
 	ld e, l
@@ -55751,11 +55751,11 @@ GetPlayerIcon: ; 8832c
 
 	ld de, ChrisSpriteGFX
 	ld b, BANK(ChrisSpriteGFX)
-	
+
 	ld a, [PlayerGender]
 	bit 0, a
 	ret z
-	
+
 ; Female
 
 	ld de, KrisSpriteGFX
@@ -60450,7 +60450,7 @@ MenuDataHeader_0x8aee4: ; 0x8aee4
 	db $40 ; flags
 	db 04, 04 ; start coords
 	db 09, 15 ; end coords
-	
+
 MenuDataHeader_0x8aee9: ; 0x8aee4
 	db $40 ; flags
 	db 04, 04 ; start coords
@@ -61158,7 +61158,7 @@ Function8b2e2: ; 8b2e2
 	ret
 ; 8b2e9
 
-Function8b2e9: ; 8b2e9 ;check if party has all different versions of what's pointed to by hl, if they don't ret c. made redundent 
+Function8b2e9: ; 8b2e9 ;check if party has all different versions of what's pointed to by hl, if they don't ret c. made redundent
 ;	ld de, PartyCount
 ;	ld a, [de]
 ;	inc de
@@ -61224,7 +61224,7 @@ Function8b322: ; 8b322
 ; 8b32a
 
 Function8b32a: ; 8b32a
-	;ld hl, PartyMon1Item ;removed 
+	;ld hl, PartyMon1Item ;removed
 	;call Function8b2e9 ;check if party has all different items, if they don't ret c
 	ret
 ; 8b331
@@ -62417,38 +62417,38 @@ _TimeOfDayPals:: ; 8c011
 	ld hl, wd846
 	bit 7, [hl]
 	jr nz, .dontchange
-	
+
 ; do we need to bother updating?
 
 	ld a, [TimeOfDay]
 	ld hl, CurTimeOfDay
 	cp [hl]
 	jr z, .dontchange
-	
+
 ; if so, the time of day has changed
 
 	ld a, [TimeOfDay]
 	ld [CurTimeOfDay], a
-	
+
 ; get palette id
 
 	call GetTimePalette
-	
+
 ; same palette as before?
 
 	ld hl, TimeOfDayPal
 	cp [hl]
 	jr z, .dontchange
-	
+
 ; update palette id
 
 	ld [TimeOfDayPal], a
-	
-	
+
+
 ; save bg palette 8
 
 	ld hl, Unkn1Pals + 8 * 7 ; Unkn1Pals + 7 pals
-	
+
 ; save wram bank
 
 	ld a, [rSVBK]
@@ -62457,7 +62457,7 @@ _TimeOfDayPals:: ; 8c011
 
 	ld a, 5
 	ld [rSVBK], a
-	
+
 ; push palette
 
 	ld c, 4 ; NUM_PAL_COLORS
@@ -62469,23 +62469,23 @@ _TimeOfDayPals:: ; 8c011
 	push de
 	dec c
 	jr nz, .push
-	
+
 ; restore wram bank
 
 	ld a, b
 	ld [rSVBK], a
-	
-	
+
+
 ; update sgb pals
 
 	ld b, $9
 	call GetSGBLayout
-	
-	
+
+
 ; restore bg palette 8
 
 	ld hl, wd03f ; last byte in Unkn1Pals
-	
+
 ; save wram bank
 
 	ld a, [rSVBK]
@@ -62494,7 +62494,7 @@ _TimeOfDayPals:: ; 8c011
 
 	ld a, 5
 	ld [rSVBK], a
-	
+
 ; pop palette
 
 	ld e, 4 ; NUM_PAL_COLORS
@@ -62506,22 +62506,22 @@ _TimeOfDayPals:: ; 8c011
 	dec hl
 	dec e
 	jr nz, .pop
-	
+
 ; restore wram bank
 
 	ld a, d
 	ld [rSVBK], a
-	
+
 ; update palettes
 
 	call _UpdateTimePals
 	call DelayFrame
-	
+
 ; successful change
 
 	scf
 	ret
-	
+
 .dontchange
 ; no change occurred
 
@@ -62748,13 +62748,13 @@ GetTimePalFade: ; 8c17c
 	ld a, [hCGB]
 	and a
 	jr nz, .cgb
-	
+
 ; else: dmg
 ; index
 
 	ld a, [TimeOfDayPal]
 	and %11 ; first 2 bits only, 0-3
-	
+
 ; get fade table
 
 	push bc
@@ -62767,13 +62767,13 @@ GetTimePalFade: ; 8c17c
 	ld h, [hl]
 	ld l, a
 	pop bc
-	
+
 ; get place in fade table
 
 	ld b, $0
 	add hl, bc
 	ret
-	
+
 .cgb
 	ld hl, .cgbfade
 	ld b, $0
@@ -62795,8 +62795,8 @@ GetTimePalFade: ; 8c17c
 	db %01000000, %01000000, %01000000
 	db %00000000, %00000000, %00000000
 .day
-	db %11111111, %11111111, %11111111	
-	db %11111110, %11111110, %11111110	
+	db %11111111, %11111111, %11111111
+	db %11111110, %11111110, %11111110
 	db %11111001, %11100100, %11100100
 	db %11100100, %11010000, %11010000
 	db %10010000, %10000000, %10000000
@@ -67704,7 +67704,7 @@ GetIconGFX: ; 8e9de
 	add 10
 	ld [wc3b7], a
 	ret
-	
+
 HeldItemIcons:
 INCBIN "gfx/icon/mail.2bpp"
 
@@ -67717,13 +67717,13 @@ GetIcon_de: ; 8ea17
 	ld l, e
 	ld h, d
 	jr GetIcon
-	
+
 GetIcon_a: ; 8ea1b
 ; Load icon graphics into VRAM starting from tile a.
 
 	ld l, a
 	ld h, 0
-	
+
 GetIcon: ; 8ea1e
 ; Load icon graphics into VRAM starting from tile hl.
 ; One tile is 16 bytes long.
@@ -67732,7 +67732,7 @@ GetIcon: ; 8ea1e
 	add hl, hl
 	add hl, hl
 	add hl, hl
-	
+
 	ld de, VTiles0
 	add hl, de
 	push hl
@@ -67750,7 +67750,7 @@ GetIcon: ; 8ea1e
 	ld e, a
 	ld d, [hl]
 	pop hl
-	
+
 	lb bc, BANK(Icons), 8
 	call GetGFXUnlessMobile
 	pop hl
@@ -68240,7 +68240,7 @@ Function9020d: ; 9020d (24:420d) ;place contect es bank into a and loc into hl
 	nop
 	nop
 	ld a, e
-	ld [wdbf9], a 
+	ld [wdbf9], a
 	and a
 	jr nz, .asm_9021d
 	ld a, BANK(Unknown_90233) ;if 0, use below, else use that number phone contact
@@ -70104,7 +70104,7 @@ Function9102f: ; 9102f (24:502f)
 	cp VERMILION_CITY
 	jr nz, .asm_91047
 	jr .inc_extra
-	
+
 .wrap_around
 	ld a, e
 	dec a
@@ -70535,7 +70535,7 @@ Function912b7: ; 912b7 (24:52b7)
 	hlcoord 1, 10
 	ld [hl], a
 	hlcoord 1, 4
-	ld a, [wc6d1] 
+	ld a, [wc6d1]
 	ld bc, $28
 	call AddNTimes
 	ld [hl], "▶"
@@ -70555,19 +70555,19 @@ Function912d8: ; 912d8 (24:52d8)
 	inc hl
 	dec b
 	jr nz, .asm_912df
-	ld a, [wc6d2] 
+	ld a, [wc6d2]
 	ld e, a
 	ld d, $0
 	ld hl, wPhoneList
 	add hl, de
 	xor a
-	ld [wc6d0], a 
+	ld [wc6d0], a
 .asm_912f8
 	ld a, [hli]
 	push hl
 	push af
 	hlcoord 2, 4
-	ld a, [wc6d0] 
+	ld a, [wc6d0]
 	ld bc, $28
 	call AddNTimes
 	ld d, h
@@ -70576,9 +70576,9 @@ Function912d8: ; 912d8 (24:52d8)
 	ld b, a
 	call Function90380
 	pop hl
-	ld a, [wc6d0] 
+	ld a, [wc6d0]
 	inc a
-	ld [wc6d0], a 
+	ld [wc6d0], a
 	cp $4
 	jr c, .asm_912f8
 	call Function912b7
@@ -70613,11 +70613,11 @@ Function9131e: ; 9131e
 
 Function91342: ; 91342 (24:5342)
 	ld hl, wPhoneList
-	ld a, [wc6d2] 
+	ld a, [wc6d2]
 	ld e, a
 	ld d, 0
 	add hl, de
-	ld a, [wc6d1] 
+	ld a, [wc6d1]
 	ld e, a
 	ld d, 0
 	add hl, de
@@ -70660,7 +70660,7 @@ Function91342: ; 91342 (24:5342)
 	call PlaceString
 	pop de
 	xor a
-	ld [wc6d4], a 
+	ld [wc6d4], a
 	call Function9141d
 	call WaitBGMap
 .asm_91398
@@ -70692,11 +70692,11 @@ Function91342: ; 91342 (24:5342)
 .asm_913c1
 	ld hl, 2
 	add hl, de
-	ld a, [wc6d4] 
+	ld a, [wc6d4]
 	inc a
 	cp [hl]
 	jr nc, .asm_91398
-	ld [wc6d4], a 
+	ld [wc6d4], a
 	call Function9141d
 	jr .asm_91398
 
@@ -70710,7 +70710,7 @@ Function91342: ; 91342 (24:5342)
 	ld a, [hJoyPressed]
 	and B_BUTTON
 	jr nz, Function913f1
-	ld a, [wc6d4] 
+	ld a, [wc6d4]
 	ld e, a
 	ld d, 0
 	add hl, de
@@ -70732,7 +70732,7 @@ Function913f9: ; 913f9
 	call Function1d4f
 	call YesNoBox
 	call Function1c07 ;unload top menu on menu stack
-	jr c, .asm_91419 
+	jr c, .asm_91419
 	call Function9131e
 	xor a
 	ld [hBGMapMode], a
@@ -70974,7 +70974,7 @@ UpdateRadioStation: ; 9166f (24:566f)
 	jp [hl]
 
 .asm_9168e
-	ld a, [wc6d9] 
+	ld a, [wc6d9]
 	and a
 	ret z
 	xor a
@@ -70987,9 +70987,9 @@ UpdateRadioStation: ; 9166f (24:566f)
 ; 916a1 (24:56a1)
 
 Function916a1: ; 916a1
-	ld [wc6d9], a 
+	ld [wc6d9], a
 	ld a, [hli]
-	ld [wc6da], a 
+	ld [wc6da], a
 	ld a, [hli]
 	ld [wc6db], a
 	ret
@@ -71119,8 +71119,8 @@ EVOLUTION_RADIO   EQU 10
 WHOS_THAT_MON_RADIO EQU $58
 Function91753: ; 91753 (24:5753)
 	xor a ; OAKS_POKEMON_TALK
-	ld [wd002], a 
-	ld [wd005], a 
+	ld [wd002], a
+	ld [wd005], a
 	ld a, BANK(PlayRadioShow)
 	ld hl, PlayRadioShow
 	call Function9187c
@@ -71129,9 +71129,9 @@ Function91753: ; 91753 (24:5753)
 
 Function91766: ; 91766 (24:5766)
 	ld a, POKEDEX_SHOW
-	ld [wd002], a 
+	ld [wd002], a
 	xor a
-	ld [wd005], a 
+	ld [wd005], a
 	ld a, BANK(PlayRadioShow)
 	ld hl, PlayRadioShow
 	call Function9187c
@@ -71140,9 +71140,9 @@ Function91766: ; 91766 (24:5766)
 
 Function9177b: ; 9177b (24:577b)
 	ld a, POKEMON_MUSIC
-	ld [wd002], a 
+	ld [wd002], a
 	xor a
-	ld [wd005], a 
+	ld [wd005], a
 	ld a, BANK(PlayRadioShow)
 	ld hl, PlayRadioShow
 	call Function9187c
@@ -71151,9 +71151,9 @@ Function9177b: ; 9177b (24:577b)
 
 Function91790: ; 91790 (24:5790)
 	ld a, LUCKY_CHANNEL
-	ld [wd002], a 
+	ld [wd002], a
 	xor a
-	ld [wd005], a 
+	ld [wd005], a
 	ld a, BANK(PlayRadioShow)
 	ld hl, PlayRadioShow
 	call Function9187c
@@ -71162,9 +71162,9 @@ Function91790: ; 91790 (24:5790)
 
 Function917a5: ; 917a5 (24:57a5)
 	ld a, BUENAS_PASSWORD
-	ld [wd002], a 
+	ld [wd002], a
 	xor a
-	ld [wd005], a 
+	ld [wd005], a
 	ld a, BANK(PlayRadioShow)
 	ld hl, PlayRadioShow
 	call Function9187c
@@ -71180,9 +71180,9 @@ BuenasPasswordName:    db "BUENA'S PASSWORD@"
 NotBuenasPasswordName: db "@"
 Function917d5: ; 917d5 (24:57d5)
 	ld a, UNOWN_RADIO
-	ld [wd002], a 
+	ld [wd002], a
 	xor a
-	ld [wd005], a 
+	ld [wd005], a
 	ld a, BANK(PlayRadioShow)
 	ld hl, PlayRadioShow
 	call Function9187c
@@ -71194,9 +71194,9 @@ Function917ea: ; 917ea (24:57ea)
 	bit 5, a
 	jr z, LoadStation_WhosThatPokemon
 	ld a, PLACES_AND_PEOPLE
-	ld [wd002], a 
+	ld [wd002], a
 	xor a
-	ld [wd005], a 
+	ld [wd005], a
 	ld a, BANK(PlayRadioShow)
 	ld hl, PlayRadioShow
 	call Function9187c
@@ -71205,9 +71205,9 @@ Function917ea: ; 917ea (24:57ea)
 
 Function917ff: ; 917ff (24:57ff)
 	ld a, LETS_ALL_SING
-	ld [wd002], a 
+	ld [wd002], a
 	xor a
-	ld [wd005], a 
+	ld [wd005], a
 	ld a, BANK(PlayRadioShow)
 	ld hl, PlayRadioShow
 	call Function9187c
@@ -71217,9 +71217,9 @@ Function917ff: ; 917ff (24:57ff)
 
 Function91814: ; 91814
 	ld a, ROCKET_RADIO
-	ld [wd002], a 
+	ld [wd002], a
 	xor a
-	ld [wd005], a 
+	ld [wd005], a
 	ld a, BANK(PlayRadioShow)
 	ld hl, PlayRadioShow
 	call Function9187c
@@ -71229,9 +71229,9 @@ Function91814: ; 91814
 
 Function91829: ; 91829 (24:5829)
 	ld a, POKE_FLUTE_RADIO
-	ld [wd002], a 
+	ld [wd002], a
 	xor a
-	ld [wd005], a 
+	ld [wd005], a
 	ld a, BANK(PlayRadioShow)
 	ld hl, PlayRadioShow
 	call Function9187c
@@ -71240,9 +71240,9 @@ Function91829: ; 91829 (24:5829)
 
 Function9183e: ; 9183e (24:583e)
 	ld a, EVOLUTION_RADIO
-	ld [wd002], a 
+	ld [wd002], a
 	xor a
-	ld [wd005], a 
+	ld [wd005], a
 	ld a, BANK(PlayRadioShow)
 	ld hl, PlayRadioShow
 	call Function9187c
@@ -71254,7 +71254,7 @@ LoadStation_WhosThatPokemon:
 	ld a, WHOS_THAT_MON_RADIO
 	ld [wd002], a
 	xor a
-	ld [wd005], a 
+	ld [wd005], a
 	ld a, BANK(PlayRadioShow)
 	ld hl, PlayRadioShow
 	call Function9187c
@@ -71267,7 +71267,7 @@ Function91853: ; 91853
 Function91854: ; 91854 (24:5854)
 	push de
 	ld a, e
-	ld [wc6dc], a 
+	ld [wc6dc], a
 	ld de, MUSIC_NONE
 	call PlayMusic
 	pop de
@@ -71279,7 +71279,7 @@ Function91854: ; 91854 (24:5854)
 Function91868: ; 91868 (24:5868)
 	push de
 	ld a, $fe
-	ld [wc6dc], a 
+	ld [wc6dc], a
 	ld de, MUSIC_NONE
 	call PlayMusic
 	pop de
@@ -71288,9 +71288,9 @@ Function91868: ; 91868 (24:5868)
 	ret
 
 Function9187c: ; 9187c (24:587c)
-	ld [wc6d9], a 
+	ld [wc6d9], a
 	ld a, l
-	ld [wc6da], a 
+	ld [wc6da], a
 	ld a, h
 	ld [wc6db], a
 	ret
@@ -71299,8 +71299,8 @@ NoRadioStation: ; 91888 (24:5888)
 	call NoRadioMusic
 	call NoRadioName
 	xor a
-	ld [wc6d9], a 
-	ld [wc6da], a 
+	ld [wc6d9], a
+	ld [wc6da], a
 	ld [wc6db], a
 	ld a, $1
 	ld [hBGMapMode], a ; $ff00+$d4
@@ -71310,7 +71310,7 @@ NoRadioMusic: ; 9189d (24:589d)
 	ld de, MUSIC_NONE
 	call PlayMusic
 	ld a, $ff
-	ld [wc6dc], a 
+	ld [wc6dc], a
 	ret
 
 NoRadioName: ; 918a9 (24:58a9)
@@ -71659,7 +71659,7 @@ Function91af3: ; 91af3
 	call GetSGBLayout
 	call Function32f9
 .asm_91b29
-	call Functiona57 
+	call Functiona57
 	ld hl, hJoyPressed
 	ld a, [hl]
 	and $2
@@ -71752,67 +71752,67 @@ Function91b73: ; 91b73
 TownMapBubble: ; 91bb5
 ; Draw the bubble containing the location text in the town map HUD
 
-	
+
 ; Top-left corner
 
 	hlcoord 1, 0
 	ld a, $30
 	ld [hli], a
-	
+
 ; Top row
 
 	ld bc, 16
 	ld a, " "
 	call ByteFill
-	
+
 ; Top-right corner
 
 	ld a, $31
 	ld [hl], a
 	hlcoord 1, 1
-	
-	
+
+
 ; Middle row
 
 	ld bc, 18
 	ld a, " "
 	call ByteFill
-	
-	
+
+
 ; Bottom-left corner
 
 	hlcoord 1, 2
 	ld a, $32
 	ld [hli], a
-	
+
 ; Bottom row
 
 	ld bc, 16
 	ld a, " "
 	call ByteFill
-	
+
 ; Bottom-right corner
 
 	ld a, $33
 	ld [hl], a
-	
-	
+
+
 ; Print "Where?"
 
 	hlcoord 2, 0
 	ld de, .Where
 	call PlaceString
-	
+
 ; Print the name of the default flypoint
 
 	call .Name
-	
+
 ; Up/down arrows
 
 	hlcoord 18, 1
-	ld [hl], $34	
+	ld [hl], $34
 	ret
-	
+
 .Where
 	db "Where?@"
 .Name
@@ -71825,9 +71825,9 @@ TownMapBubble: ; 91bb5
 	ld de, Flypoints
 	add hl, de
 	ld e, [hl]
-	
+
 	callba GetLandmarkName
-	
+
 	ld hl, TileMap + 2 + 20 ; (2,1)
 	ld de, StringBuffer1
 	call PlaceString
@@ -71932,43 +71932,43 @@ Function91c8f: ; 91c8f
 ; 91c90
 
 FlyMap: ; 91c90
-	
+
 	ld a, [MapGroup]
 	ld b, a
 	ld a, [MapNumber]
 	ld c, a
 	call GetWorldMapLocation
-	
+
 ; If we're not in a valid location, i.e. Pokecenter floor 2F,
 ; the backup map information is used
 
-	
+
 	cp SPECIAL_MAP
 	jr nz, .CheckRegion
-	
+
 	ld a, [BackupMapGroup]
 	ld b, a
 	ld a, [BackupMapNumber]
 	ld c, a
 	call GetWorldMapLocation
-	
+
 .CheckRegion
 ; The first 46 locations are part of Johto. The rest are in Kanto
 
 	cp KANTO_LANDMARK
 	jr nc, .KantoFlyMap
-	
+
 .JohtoFlyMap
 ; Note that .NoKanto should be modified in tandem with this branch
 
-	
+
 	push af
-	
+
 ; Start from New Bark Town
 
 	ld a, FLY_NEW_BARK
 	ld [DefaultFlypoint], a
-	
+
 ; Flypoints begin at New Bark Town...
 
 	ld [StartFlypoint], a
@@ -71976,7 +71976,7 @@ FlyMap: ; 91c90
 
 	ld a, FLY_MT_SILVER
 	ld [EndFlypoint], a
-	
+
 ; Fill out the map
 
 	call FillJohtoMap
@@ -71984,30 +71984,30 @@ FlyMap: ; 91c90
 	pop af
 	call TownMapPlayerIcon
 	ret
-	
+
 .KantoFlyMap
-	
+
 ; The event that there are no flypoints enabled in a map is not
 ; accounted for. As a result, if you attempt to select a flypoint
 ; when there are none enabled, the game will crash. Additionally,
 ; the flypoint selection has a default starting point that
 ; can be flown to even if none are enabled
 
-	
+
 ; To prevent both of these things from happening when the player
 ; enters Kanto, fly access is restricted until Indigo Plateau is
 ; visited and its flypoint enabled
 
-	
+
 	push af
 	ld c, SPAWN_INDIGO
 	call HasVisitedSpawn
 	and a
 	jr z, .NoKanto
-	
+
 ; Kanto's map is only loaded if we've visited Indigo Plateau
 
-	
+
 ; Flypoints begin at Pallet Town...
 
 	ld a, FLY_PALLET
@@ -72016,12 +72016,12 @@ FlyMap: ; 91c90
 
 	ld a, FLY_INDIGO
 	ld [EndFlypoint], a
-	
+
 ; Because Indigo Plateau is the first flypoint the player
 ; visits, it's made the default flypoint
 
 	ld [DefaultFlypoint], a
-	
+
 ; Fill out the map
 
 	call FillKantoMap
@@ -72029,16 +72029,16 @@ FlyMap: ; 91c90
 	pop af
 	call TownMapPlayerIcon
 	ret
-	
+
 .NoKanto
 ; If Indigo Plateau hasn't been visited, we use Johto's map instead
 
-	
+
 ; Start from New Bark Town
 
 	ld a, FLY_NEW_BARK
 	ld [DefaultFlypoint], a
-	
+
 ; Flypoints begin at New Bark Town...
 
 	ld [StartFlypoint], a
@@ -72046,25 +72046,25 @@ FlyMap: ; 91c90
 
 	ld a, FLY_MT_SILVER
 	ld [EndFlypoint], a
-	
+
 	call FillJohtoMap
-	
+
 	pop af
-	
+
 .MapHud
 	call TownMapBubble
 	call TownMapPals
-	
+
 	ld hl, VBGMap0 ; BG Map 0
 	call TownMapBGUpdate
-	
+
 	call TownMapMon
 	ld a, c
 	ld [wd003], a
 	ld a, b
 	ld [wd004], a
 	ret
-; 	
+;
 
 Function91d11: ; 91d11
 	ld a, [DefaultFlypoint]
@@ -72223,7 +72223,7 @@ String_91e16:
 
 Function91e1e: ; 91e1e
 	ld [wd003], a ;store a in ???
-	ld e, a 
+	ld e, a
 	callba Function2a01f ;fill tilemap with tiles from the locations of mon wd625
 	ld de, TileMap
 	ld hl, Sprites
@@ -72361,29 +72361,29 @@ TownMapBGUpdate: ; 91ee4
 	ld [hBGMapAddress], a
 	ld a, h
 	ld [$ffd7], a
-	
+
 ; Only update palettes on CGB
 
 	ld a, [hCGB]
 	and a
 	jr z, .tiles
-	
+
 ; BG Map mode 2 (palettes)
 
 	ld a, 2
 	ld [hBGMapMode], a
-	
+
 ; The BG Map is updated in thirds, so we wait
 ; 3 frames to update the whole screen's palettes.
 
 	ld c, 3
 	call DelayFrames
-	
+
 .tiles
 ; Update BG Map tiles
 
 	call WaitBGMap
-	
+
 ; Turn off BG Map update
 
 	xor a
@@ -72394,14 +72394,14 @@ TownMapBGUpdate: ; 91ee4
 FillJohtoMap: ; 91eff
 	ld de, JohtoMap
 	jr FillTownMap
-	
+
 FillKantoMap: ; 91f04
 	ld a, [StatusFlags]
 	bit 5, a
 	ld de, KantoMap
 	jr nz, FillTownMap
 	ld de, EGKMap
-	
+
 FillTownMap: ; 91f07
 	hlcoord 0, 0
 .loop
@@ -72425,19 +72425,19 @@ TownMapPals: ; 91f13
 
 	ld a, [hli]
 	push hl
-	
+
 ; HP/borders use palette 0
 
 	cp $60
 	jr nc, .pal0
-	
+
 ; The palette data is condensed to nybbles,
 ; least-significant first.
 
 	ld hl, TownMapPalMap
 	srl a
 	jr c, .odd
-	
+
 ; Even-numbered tile ids take the bottom nybble...
 
 	add l
@@ -72448,7 +72448,7 @@ TownMapPals: ; 91f13
 	ld a, [hl]
 	and %111
 	jr .update
-	
+
 .odd
 ; ...and odd ids take the top.
 
@@ -72461,10 +72461,10 @@ TownMapPals: ; 91f13
 	swap a
 	and %111
 	jr .update
-	
+
 .pal0
 	xor a
-	
+
 .update
 	pop hl
 	ld [de], a
@@ -72472,7 +72472,7 @@ TownMapPals: ; 91f13
 	dec bc
 	ld a, b
 	or c
-	jr nz, .loop 
+	jr nz, .loop
 	ret
 
 TownMapPalMap:
@@ -72483,7 +72483,7 @@ TownMapPalMap:
 ; 91f7b
 
 TownMapMon: ; 91f7b
-; Draw the FlyMon icon at town map location in 
+; Draw the FlyMon icon at town map location in
 ; Get FlyMon species
 
 	ld a, [CurPartyMon]
@@ -72493,18 +72493,18 @@ TownMapMon: ; 91f7b
 	add hl, de
 	ld a, [hl]
 	ld [wd265], a
-	
+
 ; Get FlyMon icon
 
 	ld e, 8 ; starting tile in VRAM
 	callba GetSpeciesIcon
-	
+
 ; Animation/palette
 
 	ld de, $0000
 	ld a, $0
 	call Function3b2a
-	
+
 	ld hl, 3
 	add hl, bc
 	ld [hl], 8
@@ -72518,15 +72518,15 @@ TownMapPlayerIcon: ; 91fa6
 ; Draw the player icon at town map location in a
 
 	push af
-	
+
 	callba GetPlayerIcon
-	
+
 ; Standing icon
 
 	ld hl, $8100
 	ld c, 4 ; # tiles
 	call Request2bpp
-	
+
 ; Walking icon
 
 	ld hl, $00c0
@@ -72537,7 +72537,7 @@ TownMapPlayerIcon: ; 91fa6
 	ld c, 4 ; # tiles
 	ld a, BANK(ChrisSpriteGFX) ; does nothing
 	call Request2bpp
-	
+
 ; Animation/palette
 
 	ld de, $0000
@@ -72549,17 +72549,17 @@ TownMapPlayerIcon: ; 91fa6
 .asm_91fd3
 	ld a, b
 	call Function3b2a
-	
+
 	ld hl, $0003
 	add hl, bc
 	ld [hl], $10
-	
+
 	pop af
 	ld e, a
 	push bc
 	callba GetLandmarkCoords
 	pop bc
-	
+
 	ld hl, 4
 	add hl, bc
 	ld [hl], e
@@ -75240,7 +75240,7 @@ treemon_map: macro
 	map \1
 	db  \2 ; treemon set
 endm
-	treemon_map ROUTE_26, 16 
+	treemon_map ROUTE_26, 16
 	treemon_map ROUTE_27, 16
 ;	treemon_map ROUTE_28, 0
 	treemon_map ROUTE_29, 1
@@ -75258,7 +75258,7 @@ endm
 	;treemon_map ROUTE_41, 0
 	treemon_map ROUTE_42, 13
 	treemon_map ROUTE_43, 14
-	treemon_map ROUTE_44, 15 
+	treemon_map ROUTE_44, 15
 	;treemon_map ROUTE_45, 0
 	;treemon_map ROUTE_46, 0
 	treemon_map NEW_BARK_TOWN, 0
@@ -75297,7 +75297,7 @@ GetTreeMons: ; b82d2
 	ld e, a
 	ld d, 0
 	ld hl, TreeMons ;find correct table, locatons are 2 bytes
-	add hl, de 
+	add hl, de
 	add hl, de
 	ld a, [hli] ;load into hl
 	ld h, [hl]
@@ -75328,7 +75328,7 @@ TreeMons: ; b82e8 ;what tables are assosiate with wwhat numbers
 	dw TreeMons13 ;14
 	dw TreeMons14 ;15
 	dw TreeMons15 ;16
-	
+
 ; Two tables each (normal, rare).
 ; Structure:
 ;	db  %, species, level
@@ -75342,7 +75342,7 @@ TreeMons1: ; 1 - Route 29, New Bark Town
 	db 10, PIDGEOTTO,	18
 	db 10, FEAROW,		20
 	db -1
-	
+
 TreeMons2: ; 2 - Route 30-31
 	db 40, PINECO,		15
 	db 20, LEDYBA,		15
@@ -75392,7 +75392,7 @@ TreeMons7: ;8 - Ilex Forest
 	db 10, BUTTERFREE,	22
 	db 10, BEEDRILL,	22
 	db -1
-	
+
 	db 50, METAPOD,		19
 	db 50, KAKUNA,		19
 	db -1
@@ -75400,37 +75400,37 @@ TreeMons8: ;9 - Route 35-37
 	db 75, PINECO,		24
 	db 25, TEDDIURSA,	24
 	db -1
-	
+
 	db 75, PIKACHU,		24
 	db 25, RAICHU,		28
 	db -1
-	
+
 TreeMons9: ;10 - Ecruteak City
 	db 100, PINECO,		35
 	db -1
-	
+
 	db 75, GASTLY,		24
 	db 24, HAUNTER,		28
 	db 1, GENGAR,		50
 	db -1
-	
+
 TreeMons10: ;11 - Route 38-39
 	db 75, PINECO, 		29
 	db 25, LEDIAN,		29
 	db -1
-	
+
 	db 75, MEOWTH,		27
 	db 25, PERSIAN,		31
 	db -1
-	
+
 TreeMons11: ;12 - Battle Tower
 	db 75, PINECO,		30
 	db 25, ARIADOS,		30
 	db -1
-	
+
 	db 75, EKANS,		28
 	db 25, ARBOK,		32
-	
+
 TreeMons12: ;13 - Route 42
 	db 50, PINECO,		29
 	db 30, TOGETIC,		27
@@ -75457,14 +75457,14 @@ TreeMons14: ;15 - Route 44
 	db 25, GOLBAT,		45
 	db 10, CROBAT,		52
 	db -1
-	
+
 TreeMons15: ;16 - Route 26-27
 	db 100, PINECO, 	48
 	db -1
 	db 75, EXEGGCUTE, 	45
 	db 25, EXEGGUTOR,	55
 	db -1
-	
+
 ; b83e5
 
 GetTreeMon: ; b83e5
@@ -82134,7 +82134,7 @@ Functione307c: ; e307c (38:707c)
 	ret
 
 Functione30fa: ; e30fa (38:70fa)
-	ld a, [wcb2b] 
+	ld a, [wcb2b]
 	ld hl, wcb2a
 	add [hl] ; add ??? and ???, make slot of mon being deposited
 	ld [CurPartyMon], a ;put it in curr party mon
@@ -82736,7 +82736,7 @@ BoxCheckWithC: ;as Functione366c, but using c instead of menu selection
 	jr BoxSelectionJumpIn
 
 
-Functione366c: ; e366c (38:766c) get MenuSelection box count, ret in 
+Functione366c: ; e366c (38:766c) get MenuSelection box count, ret in
 	ld a, [wCurBox]
 	ld c, a
 	ld a, [MenuSelection]
@@ -82955,7 +82955,7 @@ Functione36f9: ; e36f9 (38:76f9)
 
 .EggFoundString
 	db "Can't release EGG!@"
-	
+
 .AreYouSure
 	text "WARNING: You are"
 	line "about to release"
@@ -83972,7 +83972,7 @@ Unknown_e47ac: ; e47ac
 	RGB 26, 19, 02
 	RGB 26, 19, 00
 ;' e47cc
- 
+
 GameFreakLogo: ; e47cc
 INCBIN "gfx/splash/logo.1bpp"
 ; e48ac
@@ -88940,7 +88940,7 @@ Function1045b0: ; 1045b0 reset top 8 event flags, do callbacks 3 and 5, load ToD
 	ld a, $5
 	call Function263b ;search for callback 5, if any match run it
 Function1045c4: ; 1045c4
-	callba Function97df9 ;clear top 4 of command queue 
+	callba Function97df9 ;clear top 4 of command queue
 	ld a, $3
 	call Function263b ;search for callback 3, if any match run it
 	call Function2cff ;put first nyble of ToD data into ram
@@ -91073,39 +91073,39 @@ UsedMoveText: ; 105db9
 	ld a, [hBattleTurn]
 	and a
 	jr nz, .start
-	
+
 	ld a, [wPlayerMoveStruct + MOVE_ANIM]
 	call UpdateUsedMoves
-	
+
 .start
 	ld a, BATTLE_VARS_LAST_MOVE
 	call GetBattleVarAddr
 	ld d, h
 	ld e, l
-	
+
 	ld a, BATTLE_VARS_LAST_COUNTER_MOVE
 	call GetBattleVarAddr
-	
+
 	ld a, BATTLE_VARS_MOVE_ANIM
 	call GetBattleVar
 	ld [wd265], a
-	
+
 	push hl
 	callba Function34548
 	pop hl
 	jr nz, .grammar
-	
+
 	; update last move
 	ld a, [wd265]
 	ld [hl], a
 	ld [de], a
-	
+
 .grammar
 	call GetMoveGrammar
 ; wd265 now contains MoveGrammar
 
-	
-	
+
+
 ; everything except 'instead' made redundant in localization
 
 	; check obedience
@@ -91113,7 +91113,7 @@ UsedMoveText: ; 105db9
 	and a
 	ld hl, UsedMove2Text
 	ret nz
-	
+
 	; check move grammar
 	ld a, [wd265]
 	cp $3
@@ -91165,15 +91165,15 @@ GetUsedMoveTextEnder: ; 105e28
 ; get start address
 
 	ld hl, .endusedmovetexts
-	
+
 ; get move id
 
 	ld a, [wd265]
-	
+
 ; 2-byte pointer
 
 	add a
-	
+
 ; seek
 
 	push bc
@@ -91181,7 +91181,7 @@ GetUsedMoveTextEnder: ; 105e28
 	ld c, a
 	add hl, bc
 	pop bc
-	
+
 ; get pointer to usedmovetext ender
 
 	ld a, [hli]
@@ -91232,7 +91232,7 @@ GetMoveGrammar: ; 105e5c
 	ld a, [wd265]
 	ld c, a
 	ld b, $0
-	
+
 ; read grammar table
 
 	ld hl, MoveGrammar
@@ -91254,13 +91254,13 @@ GetMoveGrammar: ; 105e5c
 
 	inc b
 	jr .loop
-	
+
 .end
 ; wd265 now contains move grammar
 
 	ld a, b
 	ld [wd265], a
-	
+
 ; we're done
 
 	pop bc
@@ -91302,7 +91302,7 @@ MoveGrammar: ; 105e7a
 	;db GUNK_SHOT
 ;	db EXTREMESPEED
 	db 0 ; end set
-	
+
 ; 1
 
 ;	db RECOVER
@@ -91312,7 +91312,7 @@ MoveGrammar: ; 105e7a
 ;	db AMNESIA
 ;	db FLAIL
 	db 0 ; end set
-	
+
 ; 2
 
 ;	db MEDITATE
@@ -91324,7 +91324,7 @@ MoveGrammar: ; 105e7a
 ;	db STRUGGLE
 ;	db SCARY_FACE
 	db 0 ; end set
-	
+
 ; 3
 
 ;	db POUND
@@ -91367,7 +91367,7 @@ MoveGrammar: ; 105e7a
 ;	db ATTRACT
 ;	db ROCK_SMASH
 	db 0 ; end set
-	
+
 ; all other moves = 4
 
 	db $ff ; end
@@ -91386,7 +91386,7 @@ UpdateUsedMoves: ; 105ed0
 ; loop count
 
 	ld c, NUM_MOVES
-	
+
 .loop
 ; get move from the list
 
@@ -91403,7 +91403,7 @@ UpdateUsedMoves: ; 105ed0
 
 	dec c
 	jr nz, .loop
-	
+
 ; if the list is full and the move hasn't already been used
 ; shift the list back one byte, deleting the first move used
 ; this can occur with struggle or a new learned move
@@ -91428,7 +91428,7 @@ UpdateUsedMoves: ; 105ed0
 	ld a, b
 	ld [PlayerUsedMoves + 3], a
 	jr .quit
-	
+
 .add
 ; go back to the byte we just inced from
 
@@ -91436,7 +91436,7 @@ UpdateUsedMoves: ; 105ed0
 ; add the new move
 
 	ld [hl], b
-	
+
 .quit
 ; list updated
 
@@ -91541,7 +91541,7 @@ Function105f79: mobile ; 105f79
 .asm_105f8b ;If 07f = hProduct
 	;inc hl ;next location
 	;ld a, [hMultiplicand]
-	;cp [hl] 
+	;cp [hl]
 	;jr c, .asm_105f98 ;if a080 is higher then the score, jump, else return to a07f and continue
 	;dec hl
 .asm_105f92 ;if o7f < product
@@ -91567,7 +91567,7 @@ Function105f9f: mobile ; 105f9f
 .asm_105fae
 	;dec hl
 	;ld a, [$a071]
-	;cp [hl] 
+	;cp [hl]
 	;jr z, .asm_105fb9 ;if 71 > 6f
 	;jr c, .asm_105fc1
 	;jr .asm_105fc9
@@ -93297,7 +93297,7 @@ DudeAutoInput_A: ; 1de29f
 	db NO_INPUT, $ff ; end
 ; 1de2a5
 
-	
+
 DudeAutoInput_RightA: ; 1de2a5
 	db NO_INPUT, $08
 	db D_RIGHT,  $00
@@ -93306,7 +93306,7 @@ DudeAutoInput_RightA: ; 1de2a5
 	db NO_INPUT, $ff ; end
 ; 1de2af
 
-	
+
 DudeAutoInput_DownA: ; 1de2af
 	db NO_INPUT, $fe
 	db NO_INPUT, $fe

@@ -1237,7 +1237,7 @@ Calcium: ; ee3d
 	jp c, Functionee9f
 
 	call Functioneef5
-	 
+
 	call Functioneed9 ;bc = distance between correct stat xp for vitamin used and top of stat xp
 
 	ld a, PartyMon1StatExp - PartyMon1
@@ -1324,7 +1324,7 @@ Strings_eeab: ; eeab
 Functioneed9: ; eed9 c = distance between correct stat xp for vitamin used and top of stat xp
 	ld a, [CurItem]
 	ld hl, Table_eeeb
-.next ;loop till find item used, 
+.next ;loop till find item used,
 	cp [hl]
 	inc hl
 	jr z, .asm_eee6
@@ -2468,7 +2468,7 @@ PokeFlute: ; f50c
 	call QueueScript
 	pop af
 	ret
-	
+
 .in_battle
 
 	xor a
@@ -2827,7 +2827,7 @@ Functionf6a7: ; f6a7
 Functionf6af: ; f6af
 	xor a
 	ld hl, wcfa9
-	ld [hli], a 
+	ld [hli], a
 	ld [hl], a
 	ld b, NUM_MOVES
 .asm_f6b7
@@ -3314,7 +3314,7 @@ Functionf881: ; f881 ;apply PP ups after fully restoring PP
 	ld a, [hl] ;hl = mon PP
 	ld b, a
 	swap a
-	and $f 
+	and $f
 	srl a
 	srl a ;bit 6 and 7 of [hl] in bits 0 and 1 of c
 	ld c, a
@@ -3477,4 +3477,4 @@ Functionf969: ; f969
 	ret
 ; f971
 
-	
+
