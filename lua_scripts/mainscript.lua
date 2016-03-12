@@ -44,20 +44,11 @@ debug_mode = 0 --print EVERYTHING aside from basic info if 1, none if 0
 	-- local now
 	-- repeat
 		-- now = os.time()
-		-- DelayFrame()
+		-- emu.frameadvance()
 	-- until now - lastupdate >= seconds
 	-- lastupdate = now
 	-- return true
 -- end
-
-function DelayFrame()
-	if bit.band(memory.readbyte(0xFFFF), 0x01) ~= 0 then
-		emu.frameadvance()
-		return
-	end
-	while (memory.readbyte(0xFF44) <= 0x90) do
-	end
-end
 
 function GetUsableMoves(MovesPointer, PPPointer, DisabledMovePointer)
 	disabledMove = memory.readbyte(DisabledMovePointer)
@@ -98,7 +89,7 @@ function ReceiveButtonInput_NoMil()
 		end
 		joypad.set(1, json)
 	end
-	DelayFrame()
+	emu.frameadvance()
 end
 
 function ReceiveButtonInput()
@@ -114,10 +105,10 @@ function ReceiveButtonInput()
 		player_next_move = json["battle_command"]
 		joypad.set(1, json)
 	end
-	DelayFrame()
+	emu.frameadvance()
 end
 
-function DelayFrames(nframes)
+function emu.frameadvances(nframes)
 	for frame = 1, nframes do
 		ReceiveButtonInput()
 	end
@@ -135,7 +126,7 @@ function transferStateToAIAndWait(raw_json)
 		-- could also advance multiple frames to not do 60 requests per second
 		next_move = http.request("http://127.0.0.1:5001/ai_retrieve")
 		if (next_move == nil or next_move == "") then
-			DelayFrames(15)
+			emu.frameadvances(15)
 		end
 	-- this request returns either the next move,
 	-- or an empty string if the result isn't set yet.

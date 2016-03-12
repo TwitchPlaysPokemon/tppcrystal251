@@ -1,6 +1,6 @@
 ; Kanto Pokémon in water
 
-	db GROUP_TOHJO_FALLS, MAP_TOHJO_FALLS
+	map TOHJO_FALLS
 	db $0a ; encounter rate
 	db 53
 	db $01
@@ -57,13 +57,13 @@
 		db OCTILLERY ;1
 
 
-;	db GROUP_VERMILION_PORT, MAP_VERMILION_PORT
+;	map VERMILION_PORT
 ;	db $05 ; encounter rate
 
-;	db GROUP_ROUTE_4, MAP_ROUTE_4
+;	map ROUTE_4
 ;	db $0a ; encounter rate
 
-	db GROUP_ROUTE_6, MAP_ROUTE_6
+	map ROUTE_6
 	db $05 ; encounter rate
 	db 61
 	db $01
@@ -119,7 +119,7 @@
 		db POLIWHIRL ;1
 		db POLIWRATH ;1
 	
-	db GROUP_ROUTE_9, MAP_ROUTE_9
+	map ROUTE_9
 	db $0a ; encounter rate
 	db 60
 	db $02
@@ -175,7 +175,7 @@
 		db PIKACHU ;1
 		db PIKACHU ;1
 	
-	db GROUP_ROUTE_10_NORTH, MAP_ROUTE_10_NORTH
+	map ROUTE_10_NORTH
 	db $0a ; encounter rate
 	db 63
 	db $02
@@ -231,7 +231,7 @@
 		db PIKACHU ;1
 		db PIKACHU ;1
 
-	db GROUP_ROUTE_12, MAP_ROUTE_12
+	map ROUTE_12
 	db $0f ; encounter rate
 	db 62
 	db $00
@@ -287,7 +287,7 @@
 		db HAUNTER ;1
 		db KINGLER ;1
 
-	db GROUP_ROUTE_13, MAP_ROUTE_13
+	map ROUTE_13
 	db $0f ; encounter rate
 	db 61
 	db $00
@@ -343,7 +343,7 @@
 		db HAUNTER ;1
 		db KINGLER ;1
 	
-	db GROUP_ROUTE_19, MAP_ROUTE_19
+	map ROUTE_19
 	db $0f ; encounter rate
 	db 66
 	db $00
@@ -399,7 +399,7 @@
 		db SHELLDER ;1
 		db SHELLDER ;1
 
-	db GROUP_ROUTE_20, MAP_ROUTE_20
+	map ROUTE_20
 	db $0f ; encounter rate
 	db 66
 	db $00
@@ -455,7 +455,7 @@
 		db SHELLDER ;1
 		db KINGLER ;1
 
-	db GROUP_ROUTE_21, MAP_ROUTE_21
+	map ROUTE_21
 	db $0f ; encounter rate
 	db 65
 	db $00
@@ -511,7 +511,7 @@
 		db SEEL ;1
 		db VAPOREON ;1
 	
-	db GROUP_ROUTE_22, MAP_ROUTE_22
+	map ROUTE_22
 	db $05 ; encounter rate
 	db 58
 	db $02
@@ -567,7 +567,7 @@
 		db POLIWAG ;1
 		db POLIWAG ;1
 
-	db GROUP_ROUTE_24, MAP_ROUTE_24
+	map ROUTE_24
 	db $0a ; encounter rate
 	db 63
 	db $02
@@ -623,10 +623,10 @@
 		db SEAKING ;1
 		db SEAKING ;1
 
-;	db GROUP_ROUTE_25, MAP_ROUTE_25
+;	map ROUTE_25
 ;	db $0a ; encounter rate
 
-	db GROUP_ROUTE_26, MAP_ROUTE_26
+	map ROUTE_26
 	db $0f ; encounter rate
 	db 53
 	db $01
@@ -682,7 +682,7 @@
 		db GOLDUCK ;1
 		db QUAGSIRE ;1
 
-	db GROUP_ROUTE_27, MAP_ROUTE_27
+	map ROUTE_27
 	db $0f ; encounter rate
 	db 53
 	db $01
@@ -738,7 +738,7 @@
 		db GOLDUCK ;1
 		db QUAGSIRE ;1
 
-	db GROUP_ROUTE_28, MAP_ROUTE_28
+	map ROUTE_28
 	db $05 ; encounter rate
 	db 86
 	db $03
@@ -794,10 +794,10 @@
 		db FERALIGATR ;2
 		db AZUMARILL ;1
 
-;	db GROUP_PALLET_TOWN, MAP_PALLET_TOWN
+;	map PALLET_TOWN
 ;	db $0f ; encounter rate
 
-	db GROUP_VIRIDIAN_CITY, MAP_VIRIDIAN_CITY
+	map VIRIDIAN_CITY
 	db $02 ; encounter rate
 	db 63
 	db $03
@@ -853,7 +853,7 @@
 		db DELIBIRD ;2
 		db DELIBIRD ;1
 
-	db GROUP_CERULEAN_CITY, MAP_CERULEAN_CITY
+	map CERULEAN_CITY
 	db $05
 	db 63
 	db $02
@@ -909,7 +909,7 @@
 		db SEAKING ;1
 		db SEAKING ;1
 
-	db GROUP_VERMILION_CITY, MAP_VERMILION_CITY
+	map VERMILION_CITY
 	db $0f ; encounter rate
 	db 60
 	db $00
@@ -965,7 +965,7 @@
 		db SEADRA ;1
 		db HORSEA ;1
 
-	db GROUP_CELADON_CITY, MAP_CELADON_CITY
+	map CELADON_CITY
 	db $fe ; encounter rate
 	db 60
 	db $00
@@ -1023,7 +1023,7 @@
 		db GRIMER ;1
 
 	
-	db GROUP_FUCHSIA_CITY, MAP_FUCHSIA_CITY
+	map FUCHSIA_CITY
 	db $05 ; encounter rate
 	db 60
 	db $00
@@ -1079,7 +1079,7 @@
 		db OMANYTE ;1
 		db LAPRAS ;1
 
-	db GROUP_CINNABAR_ISLAND, MAP_CINNABAR_ISLAND
+	map CINNABAR_ISLAND
 	db $0f ; encounter rate
 	db 65
 	db $00
@@ -1135,7 +1135,7 @@
 		db KRABBY ;1
 		db GOLDUCK ;1
 
-;	db GROUP_SEAFOAM_ISLANDS_B1F, MAP_SEAFOAM_ISLANDS_B1F
+;	map SEAFOAM_ISLANDS_B1F
 ;	db $0f ; encounter rate
 ;	db 68
 ;	db $02
@@ -1191,7 +1191,7 @@
 ;		db SEEL ;1
 ;		db SEEL ;1
 	
-;	db GROUP_SEAFOAM_ISLANDS_B2F, MAP_SEAFOAM_ISLANDS_B2F
+;	map SEAFOAM_ISLANDS_B2F
 ;	db $0f ; encounter rate
 ;	db 70
 ;	db $02
@@ -1247,7 +1247,7 @@
 ;		db SEEL ;1
 ;		db SEEL ;1
 
-;	db GROUP_SEAFOAM_ISLANDS_B3F, MAP_SEAFOAM_ISLANDS_B3F
+;	map SEAFOAM_ISLANDS_B3F
 ;	db $0f ; encounter rate
 ;	db 72
 ;	db $02
@@ -1303,7 +1303,7 @@
 ;		db SEEL ;1
 ;		db SEEL ;1
 		
-	db GROUP_CERULEANCAVE1, MAP_CERULEANCAVE1
+	map CERULEANCAVE1
 	db $0f ; encounter rate
 	db 81
 	db $01
@@ -1359,7 +1359,7 @@
 		db GYARADOS ;1
 		db GYARADOS ;1
 
-	db GROUP_CERULEANCAVE3, MAP_CERULEANCAVE3
+	map CERULEANCAVE3
 	db $0f ; encounter rate
 	db 83
 	db $03
@@ -1415,7 +1415,7 @@
 		db POLIWRATH ;2
 		db POLIWRATH ;1
 
-	db GROUP_POWERPLANTB2, MAP_POWERPLANTB2
+	map POWERPLANTB2
 	db $19
 	db 68
 	db $01
@@ -1471,7 +1471,7 @@
 		db WOOPER ;1
 		db MAGNEMITE ;1
 
-	db GROUP_BILLS_GARDEN, MAP_BILLS_GARDEN
+	map BILLS_GARDEN
 	db $19
 	db 72
 	db $01
@@ -1527,7 +1527,7 @@
 		db CROCONAW ;1
 		db SQUIRTLE ;1
 
-	db GROUP_MEWISLANDENTRANCE, MAP_MEWISLANDENTRANCE
+	map MEWISLANDENTRANCE
 	db $19 ; encounter rates: morn/day/nite
 	db 76
 	db $01

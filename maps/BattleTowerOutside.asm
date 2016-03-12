@@ -37,28 +37,28 @@ MapBattleTowerOutsideSignpost0Script: ; 0x9f868
 	jumptext UnknownText_0x9fafc
 ; 0x9f86b
 
-UnknownText_0x9f86b: ; 0x9f86b
-	text "Wow, the BATTLE"
-	line "TOWER is huge! My"
+;UnknownText_0x9f86b: ; 0x9f86b
+;	text "Wow, the BATTLE"
+;	line "TOWER is huge! My"
 
-	para "neck is tired from"
-	line "looking up at it."
-	done
+;	para "neck is tired from"
+;	line "looking up at it."
+;	done
 ; 0x9f8b3
 
-UnknownText_0x9f8b3: ; 0x9f8b3
-	text "Wow, the BATTLE"
-	line "TOWER is huge!"
+;UnknownText_0x9f8b3: ; 0x9f8b3
+;	text "Wow, the BATTLE"
+;	line "TOWER is huge!"
 
-	para "Since there are a"
-	line "whole bunch of"
+;	para "Since there are a"
+;	line "whole bunch of"
 
-	para "trainers inside,"
-	line "there must also be"
+;	para "trainers inside,"
+;	line "there must also be"
 
-	para "a wide variety of"
-	line "#MON."
-	done
+;	para "a wide variety of"
+;	line "#MON."
+;	done
 ; 0x9f930
 
 UnknownText_0x9f930: ; 0x9f930
@@ -86,7 +86,7 @@ UnknownText_0x9f97b: ; 0x9f97b
 UnknownText_0x9f9db: ; 0x9f9db
 	text "Your opponents use"
 	line "the same number of"
-	cont "#MON as you"
+	cont "#MON as you."
 
 	para "I wonder how many"
 	line "#MON I should"
@@ -95,15 +95,15 @@ UnknownText_0x9f9db: ; 0x9f9db
 	done
 ; 0x9fa32
 
-UnknownText_0x9fa32: ; 0x9fa32
-	text "Ehehehe<...>"
-	line "I sneaked out of"
-	cont "work to come here."
+;UnknownText_0x9fa32: ; 0x9fa32
+	;text "Ehehehe<...>"
+	;line "I sneaked out of"
+;	cont "work to come here."
 
-	para "I'm never giving"
-	line "up until I become"
-	cont "a LEADER!"
-	done
+;	para "I'm never giving"
+;	line "up until I become"
+;	cont "a LEADER!"
+;	done
 ; 0x9fa8c
 
 UnknownText_0x9fa8c: ; 0x9fa8c
@@ -131,15 +131,15 @@ UnknownText_0x9fafc: ; 0x9fafc
 	done
 ; 0x9fb2f
 
-UnknownText_0x9fb2f: ; 0x9fb2f
-	text "The BATTLE TOWER's"
-	line "doors are closed<...>"
-	done
+;UnknownText_0x9fb2f: ; 0x9fb2f
+;	text "The BATTLE TOWER's"
+;	line "doors are closed<...>"
+;	done
 ; 0x9fb54
 
-UnknownText_0x9fb54: ; 0x9fb54
-	text "It's open!"
-	done
+;UnknownText_0x9fb54: ; 0x9fb54
+;	text "It's open!"
+;	done
 ; 0x9fb5f
 
 BattleTowerOutside_MapEventHeader: ; 0x9fb5f

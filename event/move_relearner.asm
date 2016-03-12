@@ -53,6 +53,7 @@ MoveRelearner:
 	ld de, StringBuffer2
 	ld bc, StringBuffer2 - StringBuffer1
 	call CopyBytes
+	ld b, 0
 	predef LearnMove
 	ld a, b
 	and a
@@ -90,7 +91,7 @@ MoveRelearner:
 	ld a, MOVERELEARNERTEXT_NOMOVESTOLEARN
 	call PrintMoveRelearnerText
 	ret
-	
+
 .cost_to_relearn
 	dt 1000
 
@@ -235,7 +236,7 @@ ChooseMoveToLearn:
 	ld [wd262], a
 	and a
 	ret
-	
+
 .carry
 	scf
 	ret
@@ -357,7 +358,7 @@ ChooseMoveToLearn:
 	db " BUG@"
 	db "GHST@"
 	db " STL@"
-	
+
 	db "TP10@"
 	db "TP11@"
 	db "TP12@"

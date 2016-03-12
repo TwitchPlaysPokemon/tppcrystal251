@@ -735,7 +735,9 @@ BabaPic:             INCBIN "gfx/trainers/kris_orig.7x7.2bpp.lz" ; Uncomment thi
 ; 1669d3
 
 
-; SECTION "Pics 19", ROMX, BANK[PICS_19]
+SECTION "SubstitutePics", ROMX
+SubstituteFrontPic:: INCBIN "gfx/battle/substitute-front.2bpp.lz"
+SubstituteBackPic::  INCBIN "gfx/battle/substitute-back.2bpp.lz"
 
 ; ; Seems to be an accidental copy of the previous bank
 

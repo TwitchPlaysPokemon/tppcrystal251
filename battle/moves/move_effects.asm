@@ -694,7 +694,7 @@ DefenseDownHit:
 	endmove
 
 Bubblebeam:
-Constrict: 
+Constrict:
 Bubble:
 IcyWind:
 SpeedDownHit:

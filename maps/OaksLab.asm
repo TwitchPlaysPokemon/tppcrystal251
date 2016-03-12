@@ -73,6 +73,7 @@ RematchCheck:
 	loadtrainer POKEMON_PROF, 1
 	startbattle
 	returnafterbattle
+	loadfont
 	writetext OakAfterBattle
 	setevent EVENT_OAK_DEFEATED
 	waitbutton
@@ -118,7 +119,7 @@ OakAfterBattle:
 
 OakDefeated:
 	text "Wow, I'm"
-	line "speachless!"
+	line "speechless!"
 
 	para "You are as good as"
 	line "they say you are."

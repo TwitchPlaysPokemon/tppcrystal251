@@ -1,9 +1,9 @@
 ; Johto Pokémon in water
 
-;	db GROUP_RUINS_OF_ALPH_OUTSIDE, MAP_RUINS_OF_ALPH_OUTSIDE
+;	map RUINS_OF_ALPH_OUTSIDE
 ;	db $05 ; encounter rate
 
-	db GROUP_UNION_CAVE_1F, MAP_UNION_CAVE_1F
+	map UNION_CAVE_1F
 	db $05 ; encounter rate
 	db 35
 	db $01
@@ -59,7 +59,7 @@
 		db QUAGSIRE ;1
 		db QUAGSIRE ;1
 	
-	db GROUP_UNION_CAVE_B1F, MAP_UNION_CAVE_B1F
+	map UNION_CAVE_B1F
 	db $05 ; encounter rate
 	db 35
 	db $01
@@ -115,7 +115,7 @@
 		db QUAGSIRE ;1
 		db QUAGSIRE ;1
 
-	db GROUP_UNION_CAVE_B2F, MAP_UNION_CAVE_B2F
+	map UNION_CAVE_B2F
 	db $05 ; encounter rate
 	db 35
 	db $01
@@ -171,7 +171,7 @@
 		db QUAGSIRE ;1
 		db QUAGSIRE ;1
 
-	db GROUP_SLOWPOKE_WELL_B1F, MAP_SLOWPOKE_WELL_B1F
+	map SLOWPOKE_WELL_B1F
 	db $05 ; encounter rate
 	db 37
 	db $00
@@ -227,7 +227,7 @@
 		db SLOWPOKE ;1
 		db SLOWPOKE ;1
 
-	db GROUP_SLOWPOKE_WELL_B2F, MAP_SLOWPOKE_WELL_B2F
+	map SLOWPOKE_WELL_B2F
 	db $05 ; encounter rate
 	db 39
 	db $00
@@ -283,13 +283,13 @@
 		db SLOWPOKE ;1
 		db SLOWPOKE ;1
 
-;	db GROUP_ILEX_FOREST, MAP_ILEX_FOREST
+;	map ILEX_FOREST
 ;	db $05 ; encounter rate
 ;	db 15,PSYDUCK
 ;	db 10,PSYDUCK
 ;	db 15,GOLDUCK
 
-	db GROUP_MOUNT_MORTAR_1F_OUTSIDE, MAP_MOUNT_MORTAR_1F_OUTSIDE
+	map MOUNT_MORTAR_1F_OUTSIDE
 	db $0a ; encounter rate
 	db 33
 	db $02
@@ -345,7 +345,7 @@
 		db POLITOED ;1
 		db POLITOED ;1
 
-	db GROUP_MOUNT_MORTAR_2F_INSIDE, MAP_MOUNT_MORTAR_2F_INSIDE
+	map MOUNT_MORTAR_2F_INSIDE
 	db $0a ; encounter rate
 	db 33
 	db $02
@@ -401,7 +401,7 @@
 		db POLITOED ;1
 		db POLITOED ;1
 
-	db GROUP_MOUNT_MORTAR_B1F, MAP_MOUNT_MORTAR_B1F
+	map MOUNT_MORTAR_B1F
 	db $0a ; encounter rate
 	db 33
 	db $02
@@ -457,7 +457,7 @@
 		db POLITOED ;1
 		db POLITOED ;1
 
-	db GROUP_WHIRL_ISLAND_SW, MAP_WHIRL_ISLAND_SW
+	map WHIRL_ISLAND_SW
 	db $0a ; encounter rate
 	db 73
 	db $02
@@ -513,7 +513,7 @@
 		db SEADRA ;1
 		db GOLDUCK ;1
 
-	db GROUP_WHIRL_ISLAND_B2F, MAP_WHIRL_ISLAND_B2F
+	map WHIRL_ISLAND_B2F
 	db $0a ; encounter rate
 	db 74
 	db $02
@@ -569,7 +569,7 @@
 		db SEADRA ;1
 		db GOLDUCK ;1
 
-	db GROUP_WHIRL_ISLAND_LUGIA_CHAMBER, MAP_WHIRL_ISLAND_LUGIA_CHAMBER
+	map WHIRL_ISLAND_LUGIA_CHAMBER
 	db $0a ; encounter rate
 	db 75
 	db $02
@@ -625,7 +625,7 @@
 		db SEADRA ;1
 		db GOLDUCK ;1
 
-	db GROUP_SILVER_CAVE_ROOM_2, MAP_SILVER_CAVE_ROOM_2
+	map SILVER_CAVE_ROOM_2
 	db $05 ; encounter rate
 	db 88
 	db $03
@@ -681,7 +681,7 @@
 		db STARMIE ;2
 		db STARMIE ;1
 
-	db GROUP_DARK_CAVE_VIOLET_ENTRANCE, MAP_DARK_CAVE_VIOLET_ENTRANCE
+	map DARK_CAVE_VIOLET_ENTRANCE
 	db $05 ; encounter rate
 	db 50
 	db $00
@@ -737,7 +737,7 @@
 		db SEEL ;1
 		db DEWGONG ;1
 
-	db GROUP_DARK_CAVE_BLACKTHORN_ENTRANCE, MAP_DARK_CAVE_BLACKTHORN_ENTRANCE
+	map DARK_CAVE_BLACKTHORN_ENTRANCE
 	db $05 ; encounter rate
 	db 48
 	db $00
@@ -793,7 +793,7 @@
 		db SEEL ;1
 		db DEWGONG ;1
 
-	db GROUP_DRAGONS_DEN_B1F, MAP_DRAGONS_DEN_B1F
+	map DRAGONS_DEN_B1F
 	db $0a ; encounter rate
 	db 53
 	db $00
@@ -849,7 +849,7 @@
 		db DRATINI ;1
 		db DRATINI ;1
 
-	db GROUP_OLIVINE_PORT, MAP_OLIVINE_PORT
+	map OLIVINE_PORT
 	db $05 ; encounter rate
 	db 35
 	db $02
@@ -905,7 +905,7 @@
 		db CORSOLA ;1
 		db CORSOLA ;1
 	
-	db GROUP_ROUTE_30, MAP_ROUTE_30
+	map ROUTE_30
 	db $05 ; encounter rate
 	db 35
 	db $03
@@ -961,7 +961,7 @@
 		db HOOTHOOT ;2
 		db OCTILLERY ;1
 		
-	db GROUP_ROUTE_31, MAP_ROUTE_31
+	map ROUTE_31
 	db $05 ; encounter rate
 	db 35
 	db $03
@@ -1017,7 +1017,7 @@
 		db HOOTHOOT ;2
 		db WOOPER ;1
 		
-	db GROUP_ROUTE_32, MAP_ROUTE_32
+	map ROUTE_32
 	db $0f ; encounter rate
 	db 35
 	db $02
@@ -1073,7 +1073,7 @@
 		db QUAGSIRE ;1
 		db OCTILLERY ;1
 		
-	db GROUP_ROUTE_34, MAP_ROUTE_34
+	map ROUTE_34
 	db $0f ; encounter rate
 	db 35
 	db $02
@@ -1129,7 +1129,7 @@
 		db DODRIO ;1
 		db DODRIO ;1
 
-	db GROUP_ROUTE_35, MAP_ROUTE_35
+	map ROUTE_35
 	db $0a ; encounter rate
 	db 35
 	db $02
@@ -1185,7 +1185,7 @@
 		db POLIWHIRL ;1
 		db POLITOED;1
 
-	db GROUP_ROUTE_40, MAP_ROUTE_40
+	map ROUTE_40
 	db $0f ; encounter rate
 	db 40
 	db $00
@@ -1241,7 +1241,7 @@
 		db SEADRA ;1
 		db SEADRA ;1
 
-	db GROUP_ROUTE_41, MAP_ROUTE_41
+	map ROUTE_41
 	db $0f ; encounter rate
 	db 40
 	db $00
@@ -1297,7 +1297,7 @@
 		db SEADRA ;1
 		db SEADRA ;1
 
-	db GROUP_ROUTE_42, MAP_ROUTE_42
+	map ROUTE_42
 	db $0a ; encounter rate
 	db 33
 	db $03
@@ -1353,7 +1353,7 @@
 		db SEAKING ;2
 		db POLITOED ;1
 
-	db GROUP_ROUTE_43, MAP_ROUTE_43
+	map ROUTE_43
 	db $05 ; encounter rate
 	db 33
 	db $02
@@ -1409,7 +1409,7 @@
 		db SEAKING ;1
 		db SEAKING ;1
 
-	db GROUP_ROUTE_44, MAP_ROUTE_44
+	map ROUTE_44
 	db $05 ; encounter rate
 	db 46
 	db $01
@@ -1465,7 +1465,7 @@
 		db PIDGEOTTO ;1
 		db PIDGEOTTO ;1
 
-	db GROUP_ROUTE_45, MAP_ROUTE_45
+	map ROUTE_45
 	db $05 ; encounter rate
 	db 48
 	db $02
@@ -1521,13 +1521,13 @@
 		db DEWGONG ;1
 		db CLOYSTER ;1
 
-;	db GROUP_NEW_BARK_TOWN, MAP_NEW_BARK_TOWN
+;	map NEW_BARK_TOWN
 ;	db $0f ; encounter rate
 ;	db 20,TENTACOOL
 ;	db 15,TENTACOOL
 ;	db 20,TENTACRUEL
 
-	db GROUP_CHERRYGROVE_CITY, MAP_CHERRYGROVE_CITY
+	map CHERRYGROVE_CITY
 	db $0f ; encounter rate
 	db 35
 	db $02
@@ -1583,13 +1583,13 @@
 		db CORSOLA ;1
 		db CORSOLA ;1
 
-;	db GROUP_VIOLET_CITY, MAP_VIOLET_CITY
+;	map VIOLET_CITY
 ;	db $05 ; encounter rate
 ;	db 20,POLIWAG
 ;	db 15,POLIWAG
 ;	db 20,POLIWHIRL
 
-	db GROUP_CIANWOOD_CITY, MAP_CIANWOOD_CITY
+	map CIANWOOD_CITY
 	db $0f ; encounter rate
 	db 40
 	db $02
@@ -1645,7 +1645,7 @@
 		db SEADRA ;1
 		db SEADRA ;1
 
-	db GROUP_OLIVINE_CITY, MAP_OLIVINE_CITY
+	map OLIVINE_CITY
 	db $05 ; encounter rate
 	db 35
 	db $02
@@ -1701,7 +1701,7 @@
 		db CORSOLA ;1
 		db CORSOLA ;1
 	
-	db GROUP_ECRUTEAK_CITY, MAP_ECRUTEAK_CITY
+	map ECRUTEAK_CITY
 	db $19 ; encounter rate
 	db 35
 	db $00
@@ -1757,7 +1757,7 @@
 		db FERALIGATR ;1
 		db GOLDUCK ;1
 
-	db GROUP_LAKE_OF_RAGE, MAP_LAKE_OF_RAGE
+	map LAKE_OF_RAGE
 	db $0f ; encounter rate
 	db 35
 	db $00
@@ -1813,7 +1813,7 @@
 		db OCTILLERY ;1
 		db XATU ;1
 
-	db GROUP_BLACKTHORN_CITY, MAP_BLACKTHORN_CITY
+	map BLACKTHORN_CITY
 	db $0a ; encounter rate
 	db 48
 	db $03
@@ -1869,7 +1869,7 @@
 		db SHELLDER ;2
 		db DEWGONG ;1
 
-	db GROUP_SILVER_CAVE_OUTSIDE, MAP_SILVER_CAVE_OUTSIDE
+	map SILVER_CAVE_OUTSIDE
 	db $05 ; encounter rate
 	db 86
 	db $03
