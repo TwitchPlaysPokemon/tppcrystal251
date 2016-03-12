@@ -73,6 +73,7 @@ RematchCheck:
 	loadtrainer POKEMON_PROF, 1
 	startbattle
 	returnafterbattle
+	loadfont
 	writetext OakAfterBattle
 	setevent EVENT_OAK_DEFEATED
 	waitbutton
