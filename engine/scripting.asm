@@ -1160,13 +1160,13 @@ Script_faceperson: ; 0x97248
 ;     person1 (SingleByteParam)
 ;     person2 (SingleByteParam)
 
-	call GetScriptByte 
+	call GetScriptByte
 	call Function971e3 ; if not zero or 254, dec a
-	cp $fe 
+	cp $fe
 	jr c, .asm_97254 ; 0x97250 $2 skip line if not 254
 	ld a, [$ffe0] ;if 254, load ???
-.asm_97254 
-	ld e, a 
+.asm_97254
+	ld e, a
 	call GetScriptByte
 	call Function971e3 ;if not zero or 254, dec a, else return z
 	cp $fe
@@ -2743,7 +2743,7 @@ Script_checkevent: ; 0x979a4
 ; parameters:
 ;     bit_number (MultiByteParam)
 
-	call GetScriptByte ;de = augment 
+	call GetScriptByte ;de = augment
 	ld e, a
 	call GetScriptByte
 	ld d, a
@@ -2752,7 +2752,7 @@ Script_checkevent: ; 0x979a4
 	ld a, c ;probably unneded
 	and a ;probably unneded
 	jr z, .asm_979b7 ; 0x979b3 $2 if bit is on, a = 1, else a is 0
-	ld a, $1 
+	ld a, $1
 .asm_979b7
 	ld [ScriptVar], a
 	ret

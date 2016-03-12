@@ -265,13 +265,13 @@ CopyName2:: ; 30d9
 ; 30e1
 
 IsInArray:: ; 30e1
-; Find value a for every de bytes in array hl. 
+; Find value a for every de bytes in array hl.
 ; Return index in b and carry if found. hl is exact location in array
 
 	ld b, 0 ;index of thing
 	ld c, a ;value to be found
 .loop
-	ld a, [hl] 
+	ld a, [hl]
 	cp $ff
 	jr z, .NotInArray
 	cp c
@@ -694,14 +694,14 @@ ClearPalettes:: ; 3317
 	ld a, [hCGB]
 	and a
 	jr nz, .cgb
-	
+
 ; DMG: just change palettes to 0 (white)
 	xor a
 	ld [rBGP], a
 	ld [rOBP0], a
 	ld [rOBP1], a
 	ret
-	
+
 .cgb
 	ld a, [rSVBK]
 	push af
@@ -734,11 +734,11 @@ GetSGBLayout:: ; 3340
 	ld a, [hCGB]
 	and a
 	jr nz, .cgb
-	
+
 	ld a, [hSGB]
 	and a
 	ret z
-	
+
 .cgb
 	predef_jump Function864c ; LoadSGBLayout
 ; 334e
@@ -1185,7 +1185,7 @@ Function354b:: ; 354b
 ; 3567
 
 
-Function3567:: ; 3567 
+Function3567:: ; 3567
 	ld a, [hROMBank]
 	push af
 
@@ -1207,7 +1207,7 @@ Function3574:: ; 3574 de = playerstruct. if a matching warp is found, run that w
 
 	ld l, a
 	push hl
-	call Function3599 ;find warp location that matches nextmap -4/4. ret c if succsessful 
+	call Function3599 ;find warp location that matches nextmap -4/4. ret c if succsessful
 	pop hl
 	jr nc, .asm_3597 ;skip if warp not found
 	ld d, a ;d = remaining loops - map warp count +1
@@ -1256,7 +1256,7 @@ Function35b0:: ; 35b0 ;find warp location that matches nextmap -4/4. ret c if su
 
 .loop
 	push af
-	ld a, [hl] 
+	ld a, [hl]
 	cp e
 	jr nz, .asm_35c8
 	inc hl
@@ -1765,7 +1765,7 @@ GetBaseData:: ; 3856
 	push af
 	ld a, BANK(BaseData) ;switch to correct bank
 	rst Bankswitch
-	
+
 ; Egg doesn't have BaseData
 	ld a, [CurSpecies] ;if egg, jump
 	cp EGG
@@ -1780,16 +1780,16 @@ GetBaseData:: ; 3856
 	ld bc, BaseData1 - BaseData0
 	call CopyBytes
 	jr .end
-	
+
 .egg
 ; ????
 	ld de, UnknownEggPic
-	
+
 ; Sprite dimensions
 	ld b, $55 ; 5x5
 	ld hl, BasePicSize
 	ld [hl], b
-	
+
 ; ????
 	ld hl, BasePadding
 	ld [hl], e
@@ -1800,12 +1800,12 @@ GetBaseData:: ; 3856
 	inc hl
 	ld [hl], d
 	jr .end
-	
+
 .end
 ; Replace Pokedex # with species
 	ld a, [CurSpecies]
 	ld [BaseDexNo], a
-	
+
 	pop af
 	rst Bankswitch
 	pop hl

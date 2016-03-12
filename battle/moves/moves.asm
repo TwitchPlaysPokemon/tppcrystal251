@@ -112,7 +112,7 @@ ENDM
 	move QUICK_ATTACK, EFFECT_PRIORITY_HIT,       40, PHYSICAL, NORMAL,   100, 30,   0
 	move RAGE,         EFFECT_RAGE,               20, PHYSICAL, NORMAL,   100, 20,   0 ; EFFECT_RAGE possibly make Rage attack boosts normal + attack boosts
 	move TELEPORT,     EFFECT_TELEPORT,            0, STATUS,   PSYCHIC,  100, 20,   0
-	move NIGHT_SHADE,  EFFECT_LEVEL_DAMAGE,        1, STATUS,   GHOST,    100, 15,   0 
+	move NIGHT_SHADE,  EFFECT_LEVEL_DAMAGE,        1, STATUS,   GHOST,    100, 15,   0
 	move MIMIC,        EFFECT_MIMIC,               0, STATUS,   NORMAL,   100, 10,   0 ; EFFECT_MIMIC possibly change so mimiced move has max pp instead of 5
 	move SCREECH,      EFFECT_DEFENSE_DOWN_2,      0, STATUS,   NORMAL,    85, 40,   0
 	move DOUBLE_TEAM,  EFFECT_EVASION_UP,          0, STATUS,   NORMAL,   100, 15,   0 ;$68
@@ -147,7 +147,7 @@ ENDM
 		;move CONSTRICT,    EFFECT_SPEED_DOWN_HIT,     10, PHYSICAL, NORMAL,   100, 35,  10
 	move AMNESIA,      EFFECT_SP_DEF_UP_2,         0, STATUS,   PSYCHIC,  100, 20,   0
 		;move KINESIS,      EFFECT_ACCURACY_DOWN,       0, STATUS,   PSYCHIC,   80, 15,   0 ;****** POSSIBLE REMOVAL
-	move WILLOWISP,	   EFFECT_BURN,                0, STATUS,   FIRE,      85, 15,   0		
+	move WILLOWISP,	   EFFECT_BURN,                0, STATUS,   FIRE,      85, 15,   0
 	move SOFTBOILED,   EFFECT_HEAL,                0, STATUS,   NORMAL,   100, 10,   0
 	move HI_JUMP_KICK, EFFECT_JUMP_KICK,         130, PHYSICAL, FIGHTING,  90, 10,   0 ; EFFECT_JUMP_KICK crash damage 50% ;$88
 	move GLARE,        EFFECT_PARALYZE,            0, STATUS,   NORMAL,   100, 30,   0
@@ -157,7 +157,7 @@ ENDM
 	move SEED_BOMB,    EFFECT_NORMAL_HIT,         80, PHYSICAL, GRASS,    100, 15,   0 ; replacing Barrage
 	move LEECH_LIFE,   EFFECT_LEECH_HIT,          35, PHYSICAL, BUG,      100, 15,   0 ; small buff to make useful early game
 	move LOVELY_KISS,  EFFECT_SLEEP,               0, STATUS,   NORMAL,    75, 10,   0
-	move SKY_ATTACK,   EFFECT_SKY_ATTACK,        140, PHYSICAL, FLYING,    90,  5,  30 ; EFFECT_SKY_ATTACK has a flinch effect, it has 30% chance to flinch 
+	move SKY_ATTACK,   EFFECT_SKY_ATTACK,        140, PHYSICAL, FLYING,    90,  5,  30 ; EFFECT_SKY_ATTACK has a flinch effect, it has 30% chance to flinch
 	move TRANSFORM,    EFFECT_TRANSFORM,           0, STATUS,   NORMAL,   100, 10,   0 ;$90
 	move BUBBLE,       EFFECT_SPEED_DOWN_HIT,     40, SPECIAL,  WATER,    100, 30,  10
 	move DIZZY_PUNCH,  EFFECT_CONFUSE_HIT,        70, PHYSICAL, FAIRY_T,  100, 10,  20 ; retconned to fairy type
@@ -166,7 +166,7 @@ ENDM
 	move FLASH,        EFFECT_ACCURACY_DOWN,       0, STATUS,   NORMAL,   100, 20,   0
 	move PSYWAVE,      EFFECT_PSYWAVE,             1, SPECIAL,  PSYCHIC,  100, 15,   0
 	move SPLASH,       EFFECT_SPLASH,              0, STATUS,   NORMAL,   100, 40,   0
-	move ACID_ARMOR,   EFFECT_DEFENSE_UP_2,        0, STATUS,   POISON,   100, 20,   0 
+	move ACID_ARMOR,   EFFECT_DEFENSE_UP_2,        0, STATUS,   POISON,   100, 20,   0
 	move CRABHAMMER,   EFFECT_NORMAL_HIT,        100, PHYSICAL, WATER,     90, 10,   0 ;$98
 	move EXPLOSION,    EFFECT_EXPLOSION,         250, PHYSICAL, NORMAL,   100,  5,   0
 	move POISON_JAB,   EFFECT_POISON_HIT,         80, PHYSICAL, POISON,   100, 20,  30 ; replaced Fury Swipes
@@ -174,7 +174,7 @@ ENDM
 	move REST,         EFFECT_HEAL,                0, STATUS,   PSYCHIC,  100, 10,   0
 	move ROCK_SLIDE,   EFFECT_FLINCH_HIT,         75, PHYSICAL, ROCK,      90, 10,  30
 	move HYPER_FANG,   EFFECT_FLINCH_HIT,         80, PHYSICAL, NORMAL,    90, 15,  10
-	move SHARPEN,      EFFECT_ATTACK_UP,           0, STATUS,   NORMAL,   100, 30,   0 
+	move SHARPEN,      EFFECT_ATTACK_UP,           0, STATUS,   NORMAL,   100, 30,   0
 	move CONVERSION,   EFFECT_CONVERSION,          0, STATUS,   NORMAL,   100, 30,   0 ;$a0
 	move TRI_ATTACK,   EFFECT_TRI_ATTACK,         80, SPECIAL,  NORMAL,   100, 10,  20
 	move SUPER_FANG,   EFFECT_SUPER_FANG,          1, PHYSICAL, NORMAL,    90, 10,   0
@@ -183,7 +183,7 @@ ENDM
 	move STRUGGLE,     EFFECT_RECOIL_HIT,         50, PHYSICAL, NORMAL,   100,  1,   0 ; could create a new effect to make Struggle lose 1/4 HP per attack
 ; New to Gen 2
 	move SKETCH,       EFFECT_SKETCH,              0, STATUS,   NORMAL,   100,  1,   0
-	move WILD_CHARGE,  EFFECT_RECOIL_HIT,         90, PHYSICAL, ELECTRIC, 100, 15,   0 ; replacing Triple Kick 
+	move WILD_CHARGE,  EFFECT_RECOIL_HIT,         90, PHYSICAL, ELECTRIC, 100, 15,   0 ; replacing Triple Kick
 	move THIEF,        EFFECT_THIEF,              60, PHYSICAL, DARK,     100, 25, 100 ;$a8
 	move X_SCISSOR,    EFFECT_NORMAL_HIT,         80, PHYSICAL, BUG,      100, 15,   0 ; replacing Spider Web
 	move MIND_READER,  EFFECT_LOCK_ON,             0, STATUS,   NORMAL,   100,  5,   0
@@ -191,7 +191,7 @@ ENDM
 	move FLAME_WHEEL,  EFFECT_FLAME_WHEEL,        60, PHYSICAL, FIRE,     100, 25,  10
 	move IRON_HEAD,    EFFECT_FLINCH_HIT,         80, PHYSICAL, STEEL,    100, 15,  30 ; replacing Snore
 	move CURSE,        EFFECT_CURSE,               0, STATUS,   CURSE_T,  100, 10,   0 ; EFFECT_CURSE can add that Curse deals damage even on turns the opponent is knocked out
-	move FLAIL,        EFFECT_REVERSAL,            1, PHYSICAL, NORMAL,   100, 15,   0 
+	move FLAIL,        EFFECT_REVERSAL,            1, PHYSICAL, NORMAL,   100, 15,   0
 	move CONVERSION2,  EFFECT_CONVERSION2,         0, STATUS,   NORMAL,   100, 30,   0 ; $b0
 	move AEROBLAST,    EFFECT_NORMAL_HIT,        100, SPECIAL,  FLYING,    95,  5,   0
 	move COTTON_SPORE, EFFECT_SPEED_DOWN_2,        0, STATUS,   GRASS,    100, 40,   0
@@ -199,7 +199,7 @@ ENDM
 	move SPITE,        EFFECT_SPITE,               0, STATUS,   GHOST,    100, 10,   0 ; EFFECT_SPITE changed to always remove 4 PP instead of 1-5
 	move POWDER_SNOW,  EFFECT_FREEZE_HIT,         40, SPECIAL,  ICE,      100, 25,  10
 	move PROTECT,      EFFECT_PROTECT,             0, STATUS,   NORMAL,   100, 10,   0
-	move MACH_PUNCH,   EFFECT_PRIORITY_HIT,       40, PHYSICAL, FIGHTING, 100, 30,   0 
+	move MACH_PUNCH,   EFFECT_PRIORITY_HIT,       40, PHYSICAL, FIGHTING, 100, 30,   0
 	move SCARY_FACE,   EFFECT_SPEED_DOWN_2,        0, STATUS,   NORMAL,   100, 10,   0 ;b8
 	move FAINT_ATTACK, EFFECT_ALWAYS_HIT,         60, PHYSICAL, DARK,     100, 20,   0
 	move SWEET_KISS,   EFFECT_CONFUSE,             0, STATUS,   FAIRY_T,   75, 10,   0
@@ -207,7 +207,7 @@ ENDM
 	move SLUDGE_BOMB,  EFFECT_POISON_HIT,         90, SPECIAL,  POISON,   100, 10,  30
 	move MUD_SLAP,     EFFECT_ACCURACY_DOWN_HIT,  20, SPECIAL,  GROUND,   100, 10, 100
 	move OCTAZOOKA,    EFFECT_ACCURACY_DOWN_HIT,  65, SPECIAL,  WATER,     85, 10,  50
-	move SPIKES,       EFFECT_SPIKES,              0, STATUS,   GROUND,   100, 20,   0 ; EFFECT_SPIKES could be made stackable; 1 layer does 1/8, 2 layers does 1/6, 3 layers does 1/4 
+	move SPIKES,       EFFECT_SPIKES,              0, STATUS,   GROUND,   100, 20,   0 ; EFFECT_SPIKES could be made stackable; 1 layer does 1/8, 2 layers does 1/6, 3 layers does 1/4
 	move ZAP_CANNON,   EFFECT_PARALYZE_HIT,      120, SPECIAL,  ELECTRIC,  50,  5, 100 ;$c0
 	move FORESIGHT,    EFFECT_FORESIGHT,           0, STATUS,   NORMAL,   100, 40,   0
 	move DESTINY_BOND, EFFECT_DESTINY_BOND,        0, STATUS,   GHOST,    100,  5,   0
@@ -215,7 +215,7 @@ ENDM
 	move ICY_WIND,     EFFECT_SPEED_DOWN_HIT,     55, SPECIAL,  ICE,       95, 15, 100
 	move AIR_SLASH,    EFFECT_FLINCH_HIT,         75, SPECIAL,  FLYING,    95, 15,  30 ; replacing Detect
 	move DARK_PULSE,   EFFECT_FLINCH_HIT,         80, SPECIAL,  DARK,     100, 15,  20 ; replacing Bone Rush
-	move EARTH_POWER,  EFFECT_SP_DEF_DOWN_HIT,    90, SPECIAL,  GROUND,   100, 10,  10 ; replacing Lock-On 
+	move EARTH_POWER,  EFFECT_SP_DEF_DOWN_HIT,    90, SPECIAL,  GROUND,   100, 10,  10 ; replacing Lock-On
 	move OUTRAGE,      EFFECT_RAMPAGE,           120, PHYSICAL, DRAGON,   100, 10,   0 ;$c8
 	move SANDSTORM,    EFFECT_SANDSTORM,           0, STATUS,   ROCK,     100, 10,   0 ; EFFECT_SANDSTORM could add a 50% sp def increase for Rock mons
 	move GIGA_DRAIN,   EFFECT_LEECH_HIT,          75, SPECIAL,  GRASS,    100, 10,   0
@@ -223,7 +223,7 @@ ENDM
 	move CHARM,        EFFECT_ATTACK_DOWN_2,       0, STATUS,   FAIRY_T,  100, 20,   0
 	move ROLLOUT,      EFFECT_ROLLOUT,            30, PHYSICAL, ROCK,      90, 20,   0
 	move FALSE_SWIPE,  EFFECT_FALSE_SWIPE,        40, PHYSICAL, NORMAL,   100, 40,   0
-	move SWAGGER,      EFFECT_SWAGGER,             0, STATUS,   NORMAL,    90, 15, 100 
+	move SWAGGER,      EFFECT_SWAGGER,             0, STATUS,   NORMAL,    90, 15, 100
 	move MILK_DRINK,   EFFECT_HEAL,                0, STATUS,   NORMAL,   100, 10,   0 ;$d0
 	move SPARK,        EFFECT_PARALYZE_HIT,       65, PHYSICAL, ELECTRIC, 100, 20,  30
 	move FURY_CUTTER,  EFFECT_FURY_CUTTER,        40, PHYSICAL, BUG,       95, 20,   0 ; EFFECT_FURY_CUTTER needs to somehow be capped at 160
@@ -231,7 +231,7 @@ ENDM
 	move MEAN_LOOK,    EFFECT_MEAN_LOOK,           0, STATUS,   NORMAL,   100,  5,   0
 	move ATTRACT,      EFFECT_ATTRACT,             0, STATUS,   NORMAL,   100, 15,   0
 	move SLEEP_TALK,   EFFECT_SLEEP_TALK,          0, STATUS,   NORMAL,   100, 10,   0
-	move HEAL_BELL,    EFFECT_HEAL_BELL,           0, STATUS,   NORMAL,   100,  5,   0 
+	move HEAL_BELL,    EFFECT_HEAL_BELL,           0, STATUS,   NORMAL,   100,  5,   0
 	move RETURN,       EFFECT_RETURN,              1, PHYSICAL, NORMAL,   100, 20,   0 ;d8
 	move PRESENT,      EFFECT_PRESENT,             1, PHYSICAL, NORMAL,    90, 15,   0
 	move DAZZLINGLEAM, EFFECT_NORMAL_HIT,         80, SPECIAL,  FAIRY_T,  100, 10,   0 ; replaced Frustration
@@ -239,7 +239,7 @@ ENDM
 	move PAIN_SPLIT,   EFFECT_PAIN_SPLIT,          0, STATUS,   NORMAL,   100, 20,   0
 	move SACRED_FIRE,  EFFECT_SACRED_FIRE,       100, PHYSICAL, FIRE,      95,  5,  50
 	move MAGNITUDE,    EFFECT_MAGNITUDE,           1, PHYSICAL, GROUND,   100, 30,   0
-	move DYNAMICPUNCH, EFFECT_CONFUSE_HIT,       100, PHYSICAL, FIGHTING,  50,  5, 100 
+	move DYNAMICPUNCH, EFFECT_CONFUSE_HIT,       100, PHYSICAL, FIGHTING,  50,  5, 100
 	move MEGAHORN,     EFFECT_NORMAL_HIT,        120, PHYSICAL, BUG,       85, 10,   0 ;e0
 	move DRAGONBREATH, EFFECT_PARALYZE_HIT,       60, SPECIAL,  DRAGON,   100, 20,  30
 	move BATON_PASS,   EFFECT_BATON_PASS,          0, STATUS,   NORMAL,   100, 40,   0
@@ -247,7 +247,7 @@ ENDM
 	move PURSUIT,      EFFECT_PURSUIT,            40, PHYSICAL, DARK,     100, 20,   0
 	move RAPID_SPIN,   EFFECT_RAPID_SPIN,         20, PHYSICAL, NORMAL,   100, 40,   0
 	move NASTY_PLOT,   EFFECT_SP_ATK_UP_2,         0, STATUS,   DARK,     100, 20,   0 ; replacing Sweet Scent
-	move IRON_TAIL,    EFFECT_DEFENSE_DOWN_HIT,  100, PHYSICAL, STEEL,     75, 15,  30 
+	move IRON_TAIL,    EFFECT_DEFENSE_DOWN_HIT,  100, PHYSICAL, STEEL,     75, 15,  30
 	move METAL_CLAW,   EFFECT_METAL_CLAW,         50, PHYSICAL, STEEL,     95, 35,  10 ;e8
 	move VITAL_THROW,  EFFECT_ALWAYS_HIT,         70, PHYSICAL, FIGHTING, 100, 10,   0
 	move MORNING_SUN,  EFFECT_MORNING_SUN,         0, STATUS,   NORMAL,   100,  5,   0
@@ -255,18 +255,18 @@ ENDM
 	move MOONLIGHT,    EFFECT_MOONLIGHT,           0, STATUS,   NORMAL,   100,  5,   0
 	move HIDDEN_POWER, EFFECT_HIDDEN_POWER,        1, SPECIAL,  NORMAL,   100, 15,   0
 	move CROSS_CHOP,   EFFECT_NORMAL_HIT,        100, PHYSICAL, FIGHTING,  80,  5,   0
-	move TWISTER,      EFFECT_TWISTER,            40, SPECIAL,  DRAGON,   100, 20,  20 
+	move TWISTER,      EFFECT_TWISTER,            40, SPECIAL,  DRAGON,   100, 20,  20
 	move RAIN_DANCE,   EFFECT_RAIN_DANCE,          0, STATUS,   WATER,     90,  5,   0 ;f0
 	move SUNNY_DAY,    EFFECT_SUNNY_DAY,           0, STATUS,   FIRE,      90,  5,   0
 	move CRUNCH,       EFFECT_DEFENSE_DOWN_HIT,   80, PHYSICAL, DARK,     100, 15,  20
-	move MIRROR_COAT,  EFFECT_MIRROR_COAT,         1, SPECIAL,  PSYCHIC,  100, 20,   0 
+	move MIRROR_COAT,  EFFECT_MIRROR_COAT,         1, SPECIAL,  PSYCHIC,  100, 20,   0
 	move SHADOW_CLAW,  EFFECT_NORMAL_HIT,         70, PHYSICAL, GHOST,    100, 15,   0 ; replaced Psych Up
 	move EXTREMESPEED, EFFECT_EXTREMESPEED,       80, PHYSICAL, NORMAL,   100,  5,   0 ; +2 priority now
 	move ANCIENTPOWER, EFFECT_ANCIENTPOWER,       60, SPECIAL,  ROCK,     100,  5,  10
 	move SHADOW_BALL,  EFFECT_SP_DEF_DOWN_HIT,    80, SPECIAL,  GHOST,    100, 15,  20 ;
 	move FUTURE_SIGHT, EFFECT_FUTURE_SIGHT,      120, SPECIAL,  PSYCHIC,  100, 10,   0 ; EFFECT_FUTURE_SIGHT now works as normal Psychic-type attack, gets stab and accounts for weaknesses f8
 	move ROCK_SMASH,   EFFECT_DEFENSE_DOWN_HIT,   40, PHYSICAL, FIGHTING, 100, 15,  50
-	move WHIRLPOOL,    EFFECT_BIND,               35, SPECIAL,  WATER,     85, 15,   0 ; EFFECT_BIND should last 4-5 turns, do 1/8 damage 
+	move WHIRLPOOL,    EFFECT_BIND,               35, SPECIAL,  WATER,     85, 15,   0 ; EFFECT_BIND should last 4-5 turns, do 1/8 damage
 	move DRILL_RUN,    EFFECT_NORMAL_HIT,         80, PHYSICAL, GROUND,    95, 10,   0 ; replacing Beat Up
 	; New to tppCrystal
 	move MOONBLAST,    EFFECT_SP_ATK_DOWN_HIT,    95, SPECIAL,  FAIRY_T,  100, 15,  30
