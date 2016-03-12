@@ -8599,7 +8599,7 @@ Function3f41c: ; 3f41c
 Function3f43d: ; 3f43d
 	ld a, [PlayerSubStatus4]
 	bit SUBSTATUS_SUBSTITUTE, a
-	ld hl, BattleAnimCmd_DD
+	ld hl, BattleAnimCmd_GetSubstitutePic
 	jr nz, Function3f46f
 
 Function3f447: ; 3f447
@@ -8635,7 +8635,7 @@ Function3f46f: ; 3f46f
 Function3f47c: ; 3f47c
 	ld a, [EnemySubStatus4]
 	bit SUBSTATUS_SUBSTITUTE, a
-	ld hl, BattleAnimCmd_DD
+	ld hl, BattleAnimCmd_GetSubstitutePic
 	jr nz, Function3f4b4
 
 Function3f486: ; 3f486

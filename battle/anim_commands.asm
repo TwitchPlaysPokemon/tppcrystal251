@@ -365,7 +365,7 @@ BattleAnimCommands:: ; cc2a4 (33:42a4)
 	dw BattleAnimCmd_DA
 	dw BattleAnimCmd_DB
 	dw BattleAnimCmd_DC
-	dw BattleAnimCmd_DD
+	dw BattleAnimCmd_GetSubstitutePic
 	dw BattleAnimCmd_DE
 	dw BattleAnimCmd_DF
 	dw BattleAnimCmd_E0
@@ -964,17 +964,14 @@ BattleAnimCmd_E8: ; cc622 (33:4622)
 	call Request2bpp
 	ret
 
-BattleAnimCmd_DD: ; cc640 (33:4640)
+BattleAnimCmd_GetSubstitutePic: ; cc640 (33:4640)
 
 	ld a, [rSVBK] ; $ff00+$70
 	push af
-	ld a, 1
+	ld a, 6
 	ld [rSVBK], a ; $ff00+$70
 	xor a
 	call GetSRAMBank
-
-GetSubstitutePic: ; cc64c
-
 	ld hl, $a000
 	ld bc, $310
 .loop
@@ -988,43 +985,24 @@ GetSubstitutePic: ; cc64c
 	ld a, [hBattleTurn] ; $ff00+$e4
 	and a
 	jr z, .player
-
-	ld hl, MonsterSpriteGFX
-	ld de, $a000 + $130
-	call CopyMonsterSpriteTile
-	ld hl, MonsterSpriteGFX + $10
-	ld de, $a000 + $1a0
-	call CopyMonsterSpriteTile
-	ld hl, MonsterSpriteGFX + $20
-	ld de, $a000 + $140
-	call CopyMonsterSpriteTile
-	ld hl, MonsterSpriteGFX + $30
-	ld de, $a000 + $1b0
-	call CopyMonsterSpriteTile
-
+	ld hl, SubstituteFrontPic
+	ld de, $d000
+	call Decompress
+	call .CopyPic
 	ld hl, $9000
-	ld de, $a000
-	lb bc, BANK(GetSubstitutePic), 7 * 7
+	ld de, sScratch
+	lb bc, BANK(BattleAnimCmd_GetSubstitutePic), 7 * 7
 	call Request2bpp
 	jr .done
 
 .player
-	ld hl, MonsterSpriteGFX + $40
-	ld de, $a000 + $100
-	call CopyMonsterSpriteTile
-	ld hl, MonsterSpriteGFX + $50
-	ld de, $a000 + $160
-	call CopyMonsterSpriteTile
-	ld hl, MonsterSpriteGFX + $60
-	ld de, $a000 + $110
-	call CopyMonsterSpriteTile
-	ld hl, MonsterSpriteGFX + $70
-	ld de, $a000 + $170
-	call CopyMonsterSpriteTile
-
+	ld hl, SubstituteBackPic
+	ld de, $d000
+	call Decompress
+	call .CopyPic
 	ld hl, $9310
-	ld de, $a000
-	lb bc, BANK(GetSubstitutePic), 6 * 6
+	ld de, sScratch
+	lb bc, BANK(BattleAnimCmd_GetSubstitutePic), 6 * 6
 	call Request2bpp
 
 .done
@@ -1033,11 +1011,68 @@ GetSubstitutePic: ; cc64c
 	ld [rSVBK], a ; $ff00+$70
 	ret
 
-CopyMonsterSpriteTile: ; cc6c6 (33:46c6)
+.CopyPic
+	ld b, 4
+.loop1
+	push bc
+	ld c, 4
+.loop2
+	push bc
+	call .GetTileOriginAndDestination
+	call .CopyTile
+	pop bc
+	dec c
+	jr nz, .loop2
+	pop bc
+	dec b
+	jr nz, .loop
+	ret
+
+.GetTileOriginAndDestination:
+	; hl = $d000 + $40 * (4-b) + $10 * (4-c)
+	; de = $a000 + $70 * (1 + 4-c) + $10 * (1 + 4-b)
+	ld a, 4
+	sub b
+	ld b, a
+	ld a, 4
+	sub c
+	ld c, a
+	push bc
+	push bc
+	ld a, c
+	inc a
+	ld bc, $70
+	ld hl, sScratch + $10
+	call AddNTimes
+	pop bc
+	ld c, b
+	ld b, 0
+	rr c
+	rr c
+	add hl, bc
+	ld d, h
+	ld e, l
+	pop bc
+	push bc
+	ld c, b
+	ld b, 0
+	rr c
+	rr c
+	ld hl, $d000
+	pop bc
+	swap c
+	ld b, 0
+	add hl, bc
+	ret
+
+.CopyTile ; cc6c6 (33:46c6)
 	ld bc, $10
 	ld a, BANK(MonsterSpriteGFX)
 	call FarCopyBytes
 	ret
+
+SubstituteFrontPic: INCBIN "gfx/misc/substitute-front.2bpp.lz"
+SubstituteBackPic:  INCBIN "gfx/misc/substitute-back.2bpp.lz"
 
 BattleAnimCmd_E2: ; cc6cf (33:46cf)
 	ld a, [rSVBK] ; $ff00+$70
