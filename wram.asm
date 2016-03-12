@@ -2123,7 +2123,7 @@ wTeamRocketBaseB1FTrigger::                  ds 1 ; d9b2
 wTeamRocketBaseB2FTrigger::                  ds 1 ; d9b3
 wTeamRocketBaseB3FTrigger::                  ds 1 ; d9b4
 wUndergroundPathSwitchRoomEntrancesTrigger:: ds 1 ; d9b5
-wSilverCaveRoom3Trigger::                    ds 1 ; d9b6
+wSilverCaveOutsideTrigger::                  ds 1 ; d9b6
 wVictoryRoadTrigger::                        ds 1 ; d9b7
 wDragonsDenB1FTrigger::                      ds 1 ; d9b8
 wDragonShrineTrigger::                       ds 1 ; d9b9

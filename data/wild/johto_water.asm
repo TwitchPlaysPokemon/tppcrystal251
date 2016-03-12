@@ -829,7 +829,7 @@
 		db DRAGONAIR ;3
 		db HORSEA ;2
 		db MAGIKARP ;2
-		db KINGDRA  ;1
+		db KINGDRA ;1
 		db GYARADOS ;1
 ;night
 		db MAGIKARP ;30
@@ -1723,7 +1723,7 @@
 		db GOLDUCK ;1
 		db FERALIGATR ;1
 ;day
-		db POLIWAG  ;30
+		db POLIWAG ;30
 		db PSYDUCK ;10
 		db AZUMARILL ;10
 		db POLIWHIRL ;10
@@ -1740,8 +1740,8 @@
 		db MARILL ;1
 		db MARILL ;1
 ;night
-		db PSYDUCK  ;30
-		db MARILL  ;10
+		db PSYDUCK ;30
+		db MARILL ;10
 		db AZUMARILL ;10
 		db MARILL ;10
 		db CORSOLA ;5
