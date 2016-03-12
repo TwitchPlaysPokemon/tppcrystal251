@@ -119,7 +119,7 @@ OakAfterBattle:
 
 OakDefeated:
 	text "Wow, I'm"
-	line "speachless!"
+	line "speechless!"
 
 	para "You are as good as"
 	line "they say you are."

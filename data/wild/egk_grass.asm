@@ -1,4 +1,4 @@
-	db GROUP_DIGLETTS_CAVE_RB, MAP_DIGLETTS_CAVE_RB
+	map DIGLETTS_CAVE_RB
 	db $0a
 	db 13
 	db $10
@@ -54,7 +54,7 @@
 		db DIGLETT ;1
 		db DIGLETT ;1
 
-	db GROUP_MT_MOON_B1F_RB, MAP_MT_MOON_B1F_RB
+	map MT_MOON_B1F_RB
 	db $0a
 	db 8
 	db $00
@@ -110,7 +110,7 @@
 		db CLEFAIRY ;1
 		db SANDSHREW ;1
 
-	db GROUP_MT_MOON_B2F_RB, MAP_MT_MOON_B2F_RB
+	map MT_MOON_B2F_RB
 	db $0a
 	db 8
 	db $00
@@ -166,7 +166,7 @@
 		db CLEFAIRY ;1
 		db GRIMER ;1
 
-	db GROUP_MT_MOON_B3F_RB, MAP_MT_MOON_B3F_RB
+	map MT_MOON_B3F_RB
 	db $0a
 	db 9
 	db $01
@@ -222,7 +222,7 @@
 		db RHYHORN ;1
 		db KOFFING ;1
 
-	db GROUP_ROUTE_1_RB, MAP_ROUTE_1_RB ;map is unchanged
+	map ROUTE_1_RB ;map is unchanged
 	db $19 ;encounter rate, unchanged exept there's 1 for all day
 	db 2 ;base level before variance (+0-4) and variance table
 	db $00 ;most significant nyble is level variance table, least significant is what % chance table to use.
@@ -278,7 +278,7 @@
 		db CUBONE ;1
 		db VULPIX ;1
 
-	db GROUP_ROUTE_2_RB, MAP_ROUTE_2_RB
+	map ROUTE_2_RB
 	db $19
 	db 3
 	db $03
@@ -334,7 +334,7 @@
 		db NIDORAN_M ;2
 		db NIDORAN_F ;1
 
-	db GROUP_ROUTE_3_RB, MAP_ROUTE_3_RB
+	map ROUTE_3_RB
 	db $19
 	db 8
 	db $02
@@ -390,7 +390,7 @@
 		db MANKEY ;1
 		db MANKEY ;1
 
-	db GROUP_ROUTE_4_RB, MAP_ROUTE_4_RB
+	map ROUTE_4_RB
 	db $19
 	db 8
 	db $0
@@ -446,7 +446,7 @@
 		db SPEAROW ;1
 		db RATTATA ;1
 
-	db GROUP_ROUTE_5_RB, MAP_ROUTE_5_RB
+	map ROUTE_5_RB
 	db $19
 	db 13
 	db $01
@@ -502,7 +502,7 @@
 		db PIDGEY ;1
 		db PIDGEY ;1
 
-	db GROUP_ROUTE_6_RB, MAP_ROUTE_6_RB
+	map ROUTE_6_RB
 	db $19
 	db 14
 	db $02
@@ -558,7 +558,7 @@
 		db ABRA ;1
 		db MANKEY ;1
 
-	db GROUP_ROUTE_11_RB, MAP_ROUTE_11_RB
+	map ROUTE_11_RB
 	db $19
 	db 15
 	db $02
@@ -614,7 +614,7 @@
 		db MAGNEMITE ;1
 		db MAGNEMITE ;1
 
-	db GROUP_ROUTE_22_RB, MAP_ROUTE_22_RB
+	map ROUTE_22_RB
 	db $19
 	db 2
 	db $02
@@ -670,7 +670,7 @@
 		db NIDORAN_M ;1
 		db POLIWAG ;1
 	
-	db GROUP_ROUTE_24_RB, MAP_ROUTE_24_RB
+	map ROUTE_24_RB
 	db $19
 	db 12
 	db $02
@@ -726,7 +726,7 @@
 		db KAKUNA ;1
 		db BELLSPROUT ;1
 
-	db GROUP_ROUTE_25_RB, MAP_ROUTE_25_RB
+	map ROUTE_25_RB
 	db $19
 	db 12
 	db $02
@@ -782,7 +782,7 @@
 		db WEEDLE ;1
 		db WEEDLE ;1
 
-	db GROUP_VIRIDIAN_FOREST_RB, MAP_VIRIDIAN_FOREST_RB 
+	map VIRIDIAN_FOREST_RB 
 	db $0a
 	db 3
 	db $f1

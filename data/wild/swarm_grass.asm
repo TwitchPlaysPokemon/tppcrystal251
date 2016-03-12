@@ -1,7 +1,7 @@
 ; swarms in grass
 
 ; Dunsparce swarm
-	db GROUP_DARK_CAVE_VIOLET_ENTRANCE, MAP_DARK_CAVE_VIOLET_ENTRANCE ;obviosly wrong, need to come back to this
+	map DARK_CAVE_VIOLET_ENTRANCE ;obviosly wrong, need to come back to this
 	db $19
 	db 25
 	db $00
@@ -58,7 +58,7 @@
 		db WOBBUFFET ;1
 
 ; Yanma swarm
-	db GROUP_ROUTE_35, MAP_ROUTE_35
+	map ROUTE_35
 	db $19 ; encounter rates: morn/day/nite
 	db 35
 	db $00

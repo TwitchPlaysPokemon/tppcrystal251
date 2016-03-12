@@ -1,6 +1,6 @@
 ; Johto Pokémon in grass
 
-	db GROUP_SPROUT_TOWER_2F, MAP_SPROUT_TOWER_2F ;MAP tells you what map this encounter table is for, should be pretty obvious. don't touch it
+	map SPROUT_TOWER_2F ;MAP tells you what map this encounter table is for, should be pretty obvious. don't touch it
 	db $05 ; encounter rates for all day Encounter rate out of 255, delete 2 of the 3 identical numbers and both commas
 	db 14 ;base level for the area before alteration. Use lower bound for random spread (for 2-6, use 2)
 	db $70 ;Tables to use. first is a $ for tech reasons Left number/letter is level alteration table. Right number is what %chance table to use. 0 = big 30, 1 = 2020, 2 = 2015, 3 = 1510
@@ -57,7 +57,7 @@
         db GOLBAT ;1
         db ODDISH ;1
 
-	db GROUP_SPROUT_TOWER_3F, MAP_SPROUT_TOWER_3F
+	map SPROUT_TOWER_3F
 	db $05
 	db 14
 	db $70 
@@ -113,7 +113,7 @@
         db GOLBAT ;1
         db ODDISH ;1
 
-;	db GROUP_TIN_TOWER_2F, MAP_TIN_TOWER_2F
+;	map TIN_TOWER_2F
 ;	db $05,$05,$05 ; encounter rates: morn/day/nite
 	; morn
 
@@ -121,7 +121,7 @@
 
 	; nite
 
-;	db GROUP_TIN_TOWER_3F, MAP_TIN_TOWER_3F
+;	map TIN_TOWER_3F
 ;	db $05,$05,$05 ; encounter rates: morn/day/nite
 	; morn
 
@@ -129,7 +129,7 @@
 
 	; nite
 
-;	db GROUP_TIN_TOWER_4F, MAP_TIN_TOWER_4F
+;	map TIN_TOWER_4F
 ;	db $05,$05,$05 ; encounter rates: morn/day/nite
 	; morn
 
@@ -137,16 +137,7 @@
 
 	; nite
 
-;	db GROUP_TIN_TOWER_5F, MAP_TIN_TOWER_5F
-;	db $05,$05,$05 ; encounter rates: morn/day/nite
-
-	; morn
-
-	; day
-
-	; nite
-
-;	db GROUP_TIN_TOWER_6F, MAP_TIN_TOWER_6F
+;	map TIN_TOWER_5F
 ;	db $05,$05,$05 ; encounter rates: morn/day/nite
 
 	; morn
@@ -155,7 +146,16 @@
 
 	; nite
 
-;	db GROUP_TIN_TOWER_7F, MAP_TIN_TOWER_7F
+;	map TIN_TOWER_6F
+;	db $05,$05,$05 ; encounter rates: morn/day/nite
+
+	; morn
+
+	; day
+
+	; nite
+
+;	map TIN_TOWER_7F
 ;	db $05,$05,$05 ; encounter rates: morn/day/nite
 	; morn
 
@@ -163,7 +163,7 @@
 
 	; nite
 
-;	db GROUP_TIN_TOWER_8F, MAP_TIN_TOWER_8F
+;	map TIN_TOWER_8F
 ;	db $05,$05,$05 ; encounter rates: morn/day/nite
 	; morn
 
@@ -171,7 +171,7 @@
 
 	; nite
 
-;	db GROUP_TIN_TOWER_9F, MAP_TIN_TOWER_9F
+;	map TIN_TOWER_9F
 ;	db $05,$05,$05 ; encounter rates: morn/day/nite
 	; morn
 
@@ -179,7 +179,7 @@
 
 	; nite
 
-	db GROUP_BURNED_TOWER_1F, MAP_BURNED_TOWER_1F
+	map BURNED_TOWER_1F
 	db $0a ; encounter rates: morn/day/nite
 	db 27
 	db $02
@@ -235,7 +235,7 @@
 		db HOUNDOOM ;1
 		db HOUNDOUR ;1
 
-	db GROUP_BURNED_TOWER_B1F, MAP_BURNED_TOWER_B1F
+	map BURNED_TOWER_B1F
 	db $0f ; encounter rates: morn/day/nite
 	db 28
 	db $02
@@ -291,7 +291,7 @@
 		db LARVITAR ;1
 		db HOUNDOOM ;1
 
-	db GROUP_NATIONAL_PARK, MAP_NATIONAL_PARK
+	map NATIONAL_PARK
 	db $19 ; encounter rates: morn/day/nite
 	db 24
 	db $03
@@ -347,7 +347,7 @@
 		db SCIZOR ;2
 		db SCYTHER ;1
 
-	db GROUP_RUINS_OF_ALPH_OUTSIDE, MAP_RUINS_OF_ALPH_OUTSIDE
+	map RUINS_OF_ALPH_OUTSIDE
 	db $0a ; encounter rates: morn/day/nite
 	db 33
 	db $03
@@ -403,7 +403,7 @@
 		db URSARING ;2
 		db URSARING ;1
 
-	db GROUP_RUINS_OF_ALPH_INNER_CHAMBER, MAP_RUINS_OF_ALPH_INNER_CHAMBER
+	map RUINS_OF_ALPH_INNER_CHAMBER
 	db $0f ; encounter rates: morn/day/nite
 	db 25
 	db $00
@@ -459,7 +459,7 @@
 		db UNOWN ;1
 		db UNOWN ;1
 
-	db GROUP_UNION_CAVE_1F, MAP_UNION_CAVE_1F
+	map UNION_CAVE_1F
 	db $0f ; encounter rates: morn/day/nite
 	db 18
 	db $01
@@ -515,7 +515,7 @@
 		db GLIGAR ;1
 		db SWINUB ;1
 
-	db GROUP_UNION_CAVE_B1F, MAP_UNION_CAVE_B1F
+	map UNION_CAVE_B1F
 	db $0f ; encounter rates: morn/day/nite
 	db 19
 	db $01
@@ -571,7 +571,7 @@
 		db GLIGAR ;1
 		db SWINUB ;1
 
-	db GROUP_UNION_CAVE_B2F, MAP_UNION_CAVE_B2F
+	map UNION_CAVE_B2F
 	db $0a ; encounter rates: morn/day/nite
 	db 38
 	db $03
@@ -627,7 +627,7 @@
 		db OCTILLERY ;2
 		db OCTILLERY ;1
 
-	db GROUP_SLOWPOKE_WELL_B1F, MAP_SLOWPOKE_WELL_B1F
+	map SLOWPOKE_WELL_B1F
 	db $05 ; encounter rates: morn/day/nite
 	db 20
 	db $00
@@ -683,7 +683,7 @@
 		db SPINARAK ;1
 		db SPINARAK ;1
 
-	db GROUP_SLOWPOKE_WELL_B2F, MAP_SLOWPOKE_WELL_B2F
+	map SLOWPOKE_WELL_B2F
 	db $05 ; encounter rates: morn/day/nite
 	db 38
 	db $00
@@ -739,7 +739,7 @@
 		db QUAGSIRE ;1
 		db SWINUB ;1
 
-	db GROUP_ILEX_FOREST, MAP_ILEX_FOREST
+	map ILEX_FOREST
 	db $0a ; encounter rates: morn/day/nite
 	db 22
 	db $01
@@ -795,7 +795,7 @@
 		db MISDREAVUS ;1
 		db MISDREAVUS ;1
 
-	db GROUP_MOUNT_MORTAR_1F_OUTSIDE, MAP_MOUNT_MORTAR_1F_OUTSIDE
+	map MOUNT_MORTAR_1F_OUTSIDE
 	db $0f ; encounter rates: morn/day/nite
 	db 30
 	db $02
@@ -851,7 +851,7 @@
 		db SWINUB ;1
 		db GRAVELER ;1
 
-	db GROUP_MOUNT_MORTAR_1F_INSIDE, MAP_MOUNT_MORTAR_1F_INSIDE
+	map MOUNT_MORTAR_1F_INSIDE
 	db $0f ; encounter rates: morn/day/nite
 	db 30
 	db $01
@@ -907,7 +907,7 @@
 		db SHUCKLE ;1
 		db GRAVELER ;1
 
-	db GROUP_MOUNT_MORTAR_2F_INSIDE, MAP_MOUNT_MORTAR_2F_INSIDE
+	map MOUNT_MORTAR_2F_INSIDE
 	db $0f ; encounter rates: morn/day/nite
 	db 53
 	db $01
@@ -963,7 +963,7 @@
 		db ONIX ;1
 		db POLITOED ;1
 
-	db GROUP_MOUNT_MORTAR_B1F, MAP_MOUNT_MORTAR_B1F
+	map MOUNT_MORTAR_B1F
 	db $0f ; encounter rates: morn/day/nite
 	db 34
 	db $01
@@ -1019,7 +1019,7 @@
 		db ONIX ;1
 		db POLITOED ;1
 
-	db GROUP_ICE_PATH_1F, MAP_ICE_PATH_1F
+	map ICE_PATH_1F
 	db $07 ; encounter rates: morn/day/nite
 	db 47
 	db $02
@@ -1075,7 +1075,7 @@
 		db SMOOCHUM ;1
 		db CROBAT ;1
 
-	db GROUP_ICE_PATH_B1F, MAP_ICE_PATH_B1F
+	map ICE_PATH_B1F
 	db $02 ; encounter rates: morn/day/nite
 	db 48
 	db $02
@@ -1131,16 +1131,16 @@
 		db SMOOCHUM ;1
 		db CROBAT ;1
 
-;	db GROUP_ICE_PATH_B2F_MAHOGANY_SIDE, MAP_ICE_PATH_B2F_MAHOGANY_SIDE
+;	map ICE_PATH_B2F_MAHOGANY_SIDE
 ;	db $05,$05,$05 ; encounter rates: morn/day/nite
 
-;	db GROUP_ICE_PATH_B2F_BLACKTHORN_SIDE, MAP_ICE_PATH_B2F_BLACKTHORN_SIDE
+;	map ICE_PATH_B2F_BLACKTHORN_SIDE
 ;	db $05,$05,$05 ; encounter rates: morn/day/nite
 
-;	db GROUP_ICE_PATH_B3F, MAP_ICE_PATH_B3F
+;	map ICE_PATH_B3F
 ;	db $05,$05,$05 ; encounter rates: morn/day/nite
 
-	db GROUP_WHIRL_ISLAND_NW, MAP_WHIRL_ISLAND_NW
+	map WHIRL_ISLAND_NW
 	db $0f ; encounter rates: morn/day/nite
 	db 73
 	db $02
@@ -1196,7 +1196,7 @@
 		db RHYDON ;1
 		db RHYDON ;1
 
-	db GROUP_WHIRL_ISLAND_NE, MAP_WHIRL_ISLAND_NE
+	map WHIRL_ISLAND_NE
 	db $0f ; encounter rates: morn/day/nite
 	db 73
 	db $02
@@ -1252,7 +1252,7 @@
 		db RHYDON ;1
 		db RHYDON ;1
 
-	db GROUP_WHIRL_ISLAND_SW, MAP_WHIRL_ISLAND_SW
+	map WHIRL_ISLAND_SW
 	db $0f ; encounter rates: morn/day/nite
 	db 73
 	db $02
@@ -1308,7 +1308,7 @@
 		db RHYDON ;1
 		db RHYDON ;1
 
-	db GROUP_WHIRL_ISLAND_CAVE, MAP_WHIRL_ISLAND_CAVE
+	map WHIRL_ISLAND_CAVE
 	db $0f ; encounter rates: morn/day/nite
 	db 73
 	db $02
@@ -1364,7 +1364,7 @@
 		db RHYDON ;1
 		db RHYDON ;1
 
-	db GROUP_WHIRL_ISLAND_SE, MAP_WHIRL_ISLAND_SE
+	map WHIRL_ISLAND_SE
 	db $0f ; encounter rates: morn/day/nite
 	db 73
 	db $02
@@ -1420,7 +1420,7 @@
 		db RHYDON ;1
 		db RHYDON ;1
 
-	db GROUP_WHIRL_ISLAND_B1F, MAP_WHIRL_ISLAND_B1F
+	map WHIRL_ISLAND_B1F
 	db $0f ; encounter rates: morn/day/nite
 	db 74
 	db $01
@@ -1476,7 +1476,7 @@
 		db GLIGAR ;1
 		db ONIX ;1
 
-	db GROUP_WHIRL_ISLAND_B2F, MAP_WHIRL_ISLAND_B2F
+	map WHIRL_ISLAND_B2F
 	db $0f ; encounter rates: morn/day/nite
 	db 75
 	db $03
@@ -1532,10 +1532,10 @@
 		db CORSOLA ;2
 		db CORSOLA ;1
 
-;	db GROUP_WHIRL_ISLAND_LUGIA_CHAMBER, MAP_WHIRL_ISLAND_LUGIA_CHAMBER
+;	map WHIRL_ISLAND_LUGIA_CHAMBER
 ;	db $0f,$0f,$0f ; encounter rates: morn/day/nite
 
-	db GROUP_SILVER_CAVE_ROOM_1, MAP_SILVER_CAVE_ROOM_1
+	map SILVER_CAVE_ROOM_1
 	db $0f ; encounter rates: morn/day/nite
 	db 88
 	db $03
@@ -1591,7 +1591,7 @@
 		db LARVITAR ;2
 		db LARVITAR ;1
 
-	db GROUP_SILVER_CAVE_ROOM_2, MAP_SILVER_CAVE_ROOM_2
+	map SILVER_CAVE_ROOM_2
 	db $0f ; encounter rates: morn/day/nite
 	db 88
 	db $03
@@ -1647,7 +1647,7 @@
 		db PUPITAR ;2
 		db PUPITAR ;1
 
-	db GROUP_SILVER_CAVE_ROOM_3, MAP_SILVER_CAVE_ROOM_3
+	map SILVER_CAVE_ROOM_3
 	db $0f ; encounter rates: morn/day/nite
 	db 88
 	db $03
@@ -1703,7 +1703,7 @@
 		db TYRANITAR ;2
 		db TYRANITAR ;1
 
-	db GROUP_SILVER_CAVE_ITEM_ROOMS, MAP_SILVER_CAVE_ITEM_ROOMS
+	map SILVER_CAVE_ITEM_ROOMS
 	db $0f ; encounter rates: morn/day/nite
 	db 88
 	db $03
@@ -1759,7 +1759,7 @@
 		db TYRANITAR ;2
 		db TYRANITAR ;1
 	
-	db GROUP_DARK_CAVE_VIOLET_ENTRANCE, MAP_DARK_CAVE_VIOLET_ENTRANCE
+	map DARK_CAVE_VIOLET_ENTRANCE
 	db $0a ; encounter rates: morn/day/nite
 	db 18
 	db $60
@@ -1815,7 +1815,7 @@
 		db QUAGSIRE ;1
 		db SPINARAK ;1
 
-	db GROUP_DARK_CAVE_BLACKTHORN_ENTRANCE, MAP_DARK_CAVE_BLACKTHORN_ENTRANCE
+	map DARK_CAVE_BLACKTHORN_ENTRANCE
 	db $0a ; encounter rates: morn/day/nite
 	db 49
 	db $e2
@@ -1871,7 +1871,7 @@
 		db DUNSPARCE ;1
 		db DUNSPARCE ;1
 
-	db GROUP_ROUTE_29, MAP_ROUTE_29
+	map ROUTE_29
 	db $19 ; encounter rates: morn/day/nite
 	db 16
 	db $20
@@ -1927,7 +1927,7 @@
 		db SPINARAK ;1
 		db SPINARAK ;1
 		
-	db GROUP_ROUTE_30, MAP_ROUTE_30
+	map ROUTE_30
 	db $19 ; encounter rates: morn/day/nite
 	db 16
 	db $41
@@ -1983,7 +1983,7 @@
 		db LEDYBA ;1
 		db HOOTHOOT ;1
 
-	db GROUP_ROUTE_31, MAP_ROUTE_31
+	map ROUTE_31
 	db $19 ; encounter rates: morn/day/nite
 	db 17
 	db $52
@@ -2039,7 +2039,7 @@
 		db NOCTOWL ;1
 		db CHIKORITA ;1
 
-	db GROUP_ROUTE_32, MAP_ROUTE_32
+	map ROUTE_32
 	db $19 ; encounter rates: morn/day/nite
 	db 18
 	db $91
@@ -2095,7 +2095,7 @@
 		db QUAGSIRE ;1
 		db TOTODILE ;1
 
-	db GROUP_ROUTE_33, MAP_ROUTE_33
+	map ROUTE_33
 	db $19 ; encounter rates: morn/day/nite
 	db 20
 	db $a1
@@ -2151,7 +2151,7 @@
 		db HOUNDOOM ;1
 		db NOCTOWL ;1
 
-	db GROUP_ROUTE_34, MAP_ROUTE_34
+	map ROUTE_34
 	db $19 ; encounter rates: morn/day/nite
 	db 23
 	db $03
@@ -2207,7 +2207,7 @@
 		db CLEFFA ;2
 		db SMOOCHUM ;1
 
-	db GROUP_ROUTE_35, MAP_ROUTE_35
+	map ROUTE_35
 	db $19 ; encounter rates: morn/day/nite
 	db 24
 	db $02
@@ -2263,7 +2263,7 @@
 		db NOCTOWL ;1
 		db POLIWHIRL ;1
 
-	db GROUP_ROUTE_36, MAP_ROUTE_36
+	map ROUTE_36
 	db $19 ; encounter rates: morn/day/nite
 	db 17
 	db $81
@@ -2319,7 +2319,7 @@
 		db MURKROW ;1
 		db WOOPER ;1
 
-	db GROUP_ROUTE_37, MAP_ROUTE_37
+	map ROUTE_37
 	db $19 ; encounter rates: morn/day/nite
 	db 27
 	db $b3
@@ -2375,7 +2375,7 @@
 		db SNEASEL ;2
 		db HOUNDOOM ;1
 
-	db GROUP_ROUTE_38, MAP_ROUTE_38
+	map ROUTE_38
 	db $19 ; encounter rates: morn/day/nite
 	db 28
 	db $d2
@@ -2431,7 +2431,7 @@
 		db AMPHAROS ;1
 		db TAUROS ;1
 
-	db GROUP_ROUTE_39, MAP_ROUTE_39
+	map ROUTE_39
 	db $05 ; encounter rates: morn/day/nite
 	db 30
 	db $02
@@ -2487,7 +2487,7 @@
 		db STANTLER ;1
 		db AMPHAROS ;1
 
-	db GROUP_ROUTE_42, MAP_ROUTE_42
+	map ROUTE_42
 	db $19 ; encounter rates: morn/day/nite
 	db 29
 	db $c3
@@ -2543,7 +2543,7 @@
 		db WOOPER ;2
 		db TYPHLOSION ;1
 
-	db GROUP_ROUTE_43, MAP_ROUTE_43
+	map ROUTE_43
 	db $19 ; encounter rates: morn/day/nite
 	db 30
 	db $01
@@ -2599,7 +2599,7 @@
 		db VENONAT ;1
 		db ARIADOS ;1
 
-	db GROUP_ROUTE_44, MAP_ROUTE_44
+	map ROUTE_44
 	db $19 ; encounter rates: morn/day/nite
 	db 46
 	db $03
@@ -2655,7 +2655,7 @@
 		db MURKROW ;2
 		db POLITOED ;1
 
-	db GROUP_ROUTE_45, MAP_ROUTE_45
+	map ROUTE_45
 	db $19 ; encounter rates: morn/day/nite
 	db 48
 	db $02
@@ -2711,7 +2711,7 @@
 		db URSARING ;1
 		db ARIADOS ;1
 
-	db GROUP_ROUTE_46, MAP_ROUTE_46
+	map ROUTE_46
 	db $19 ; encounter rates: morn/day/nite
 	db 17
 	db $30
@@ -2767,7 +2767,7 @@
 		db SKARMORY ;1
 		db SKARMORY ;1
 
-	db GROUP_SILVER_CAVE_OUTSIDE, MAP_SILVER_CAVE_OUTSIDE
+	map SILVER_CAVE_OUTSIDE
 	db $19 ; encounter rates: morn/day/nite
 	db 86
 	db $03
