@@ -6,7 +6,7 @@ LOGO_CHAOS_MOD  EQU 12
 LOGO_CHAOS_LAST EQU 10
 MAIN_CHAOS_RATE EQU 15
 THX_CHAOS_RATE  EQU 11
-SCROLLER_DELAY  EQU 125
+SCROLLER_DELAY  EQU 127
 SPRITE_X        EQU $7C
 SPRITE_Y        EQU $74
 C_TC_DRAW       EQU 0
@@ -109,8 +109,8 @@ ENDM
 TPPCredits::
 	call Fade2Black
 	call SoundRestart
-	;ld de, MUSIC_TPP_CREDITS
-	;call PlayMusic
+	ld de, MUSIC_TPP_CREDITS
+	call PlayMusic
 	xor a
 	ld [hLCDStatCustom], a
 	ld a, 1 ; VBlank1

@@ -136,3 +136,4 @@
 	dba Music_ChampionRB
 	dba Music_HoOhBattle
 	dba Music_LugiaBattle
+	dba Music_TPP_Credits
