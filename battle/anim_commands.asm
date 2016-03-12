@@ -965,7 +965,6 @@ BattleAnimCmd_E8: ; cc622 (33:4622)
 	ret
 
 BattleAnimCmd_GetSubstitutePic: ; cc640 (33:4640)
-
 	ld a, [rSVBK] ; $ff00+$70
 	push af
 	ld a, 6
@@ -986,8 +985,9 @@ BattleAnimCmd_GetSubstitutePic: ; cc640 (33:4640)
 	and a
 	jr z, .player
 	ld hl, SubstituteFrontPic
+	ld a, BANK(SubstituteFrontPic)
 	ld de, $d000
-	call Decompress
+	call FarDecompress
 	call .CopyPic
 	ld hl, $9000
 	ld de, sScratch
@@ -997,8 +997,9 @@ BattleAnimCmd_GetSubstitutePic: ; cc640 (33:4640)
 
 .player
 	ld hl, SubstituteBackPic
+	ld a, BANK(SubstituteBackPic)
 	ld de, $d000
-	call Decompress
+	call FarDecompress
 	call .CopyPic
 	ld hl, $9310
 	ld de, sScratch
@@ -1025,12 +1026,13 @@ BattleAnimCmd_GetSubstitutePic: ; cc640 (33:4640)
 	jr nz, .loop2
 	pop bc
 	dec b
-	jr nz, .loop
+	jr nz, .loop1
 	ret
 
 .GetTileOriginAndDestination:
 	; hl = $d000 + $40 * (4-b) + $10 * (4-c)
-	; de = $a000 + $70 * (1 + 4-c) + $10 * (1 + 4-b)
+	; de = $a000 + $70 * (1 + 4-c) + $10 * (2 + 4-b) if enemy
+	; de = $a000 + $60 * (1 + 4-c) + $10 * (1 + 4-b) if player
 	ld a, 4
 	sub b
 	ld b, a
@@ -1039,26 +1041,31 @@ BattleAnimCmd_GetSubstitutePic: ; cc640 (33:4640)
 	ld c, a
 	push bc
 	push bc
+	inc c
+	ld a, [hBattleTurn]
+	and a
 	ld a, c
-	inc a
+	ld bc, $60
+	ld hl, sScratch
+	jr z, .okay1
 	ld bc, $70
 	ld hl, sScratch + $10
+.okay1
 	call AddNTimes
 	pop bc
-	ld c, b
-	ld b, 0
-	rr c
-	rr c
-	add hl, bc
+	inc b
+	inc b
+	ld a, b
+	ld bc, $10
+	call AddNTimes
 	ld d, h
 	ld e, l
 	pop bc
 	push bc
-	ld c, b
-	ld b, 0
-	rr c
-	rr c
+	ld a, b
+	ld bc, $40
 	ld hl, $d000
+	call AddNTimes
 	pop bc
 	swap c
 	ld b, 0
@@ -1067,12 +1074,9 @@ BattleAnimCmd_GetSubstitutePic: ; cc640 (33:4640)
 
 .CopyTile ; cc6c6 (33:46c6)
 	ld bc, $10
-	ld a, BANK(MonsterSpriteGFX)
+	ld a, BANK(BattleAnimCmd_GetSubstitutePic)
 	call FarCopyBytes
 	ret
-
-SubstituteFrontPic: INCBIN "gfx/misc/substitute-front.2bpp.lz"
-SubstituteBackPic:  INCBIN "gfx/misc/substitute-back.2bpp.lz"
 
 BattleAnimCmd_E2: ; cc6cf (33:46cf)
 	ld a, [rSVBK] ; $ff00+$70
