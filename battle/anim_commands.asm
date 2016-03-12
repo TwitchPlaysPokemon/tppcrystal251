@@ -1054,7 +1054,11 @@ BattleAnimCmd_GetSubstitutePic: ; cc640 (33:4640)
 	call AddNTimes
 	pop bc
 	inc b
+	ld a, [hBattleTurn]
+	and a
+	jr nz, .okay2
 	inc b
+.okay2
 	ld a, b
 	ld bc, $10
 	call AddNTimes
