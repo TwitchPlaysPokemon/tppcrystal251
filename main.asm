@@ -13188,10 +13188,8 @@ StartMenu:: ; 125cd
 ; 128cb
 
 .IsMenuAccountOn ; 128cb
-	;ld a, [Options2]
-	;and 1
-	ld a, 0
-	and a
+	ld a, [Options2]
+	bit 1, a
 	ret
 ; 128d1
 
@@ -83078,7 +83076,9 @@ _OptionsMenu: ; e41d0
 	ld de, StringOptions
 	call PlaceString
 	xor a
+	ld [wcf61], a
 	ld [wcf63], a
+	ld [wcf64], a
 	ld c, $6 ;number of items on the menu minus 1 (for cancel)
 .asm_e41f3 ;this loop will display the settings of each option when the menu is opened
 	push bc
@@ -83134,16 +83134,41 @@ StringOptions: ; e4241
 	db "        :", $22
 	db "PRINT SETTING", $22
 	db "        :", $22
-	db "FAST HP BAR", $22
-	db "        :", $22
 	db "FRAME", $22
 	db "        :TYPE", $22
+	db "NEXT", $22
+	db " ", $22
 	db "EXIT@"
 ; e42d6
+
+StringOptions2:
+	db "MENU TOOLTIPS", $22
+	db "        :", $22
+	db "FAST HP BAR", $22
+	db "        :", $22
+	db "CLOCK FORMAT", $22
+	db "        :", $22
+	db "MEASURING UNIT", $22
+	db "        :", $22
+	db "SFX TEST", $22
+	db "        :", $22
+	db "MUSIC PLAYER", $22
+	;db " ", $22
+	db "     (COMING SOON)", $22
+	db "NEXT", $22
+	db " ", $22
+	db "EXIT@"
 
 GetOptionPointer: ; e42d6
 	ld a, [wcf63] ;load the cusror position to a
 	ld e, a ;copy it to de
+	ld a, [wcf64]
+	and a
+	jr z, .page1
+	ld a, 8
+	add e
+	ld e, a
+.page1
 	ld d, 0
 	ld hl, .Pointers
 	add hl, de
@@ -83160,8 +83185,17 @@ GetOptionPointer: ; e42d6
 	dw Options_BattleStyle
 	dw Options_Sound
 	dw Options_Print
-	dw Options_MenuAccount
 	dw Options_Frame
+	dw Options_Next
+	dw Options_Cancel
+	
+	dw Options_MenuAccount
+	dw Options_FastHP
+	dw Options_Clock
+	dw Options_Unit
+	dw Options_SFXTest
+	dw Options_MusicPlayer
+	dw Options_Next
 	dw Options_Cancel
 ; e42f5
 
@@ -83467,7 +83501,45 @@ GetPrinterSetting: ; e4491
 	ret
 ; e44c1
 
-Options_MenuAccount: ; e44c1
+Options_MenuAccount:
+	ld hl, Options2
+	ld a, [hJoyPressed]
+	bit 5, a
+	jr nz, .LeftPressed
+	bit 4, a
+	jr z, .NonePressed
+	bit 1, [hl]
+	jr nz, .ToggleOff
+	jr .ToggleOn
+
+.LeftPressed
+	bit 1, [hl]
+	jr z, .ToggleOn
+	jr .ToggleOff
+
+.NonePressed
+	bit 1, [hl]
+	jr nz, .ToggleOn
+.ToggleOff
+	res 1, [hl]
+	ld de, .Off
+	jr .Display
+
+.ToggleOn
+	set 1, [hl]
+	ld de, .On
+.Display
+	hlcoord 11, 3
+	call PlaceString
+	and a
+	ret
+
+.Off
+	db "OFF@"
+.On
+	db "ON @"
+
+Options_FastHP:
 	ld hl, Options2
 	ld a, [hJoyPressed]
 	bit 5, a
@@ -83495,17 +83567,176 @@ Options_MenuAccount: ; e44c1
 	set 0, [hl]
 	ld de, .On
 .Display
-	hlcoord 11, 13
+	hlcoord 11, 5
 	call PlaceString
 	and a
 	ret
-; e44f2
 
 .Off
 	db "OFF@"
 .On
 	db "ON @"
-; e44fa
+	
+Options_Clock:
+	ld hl, Options2
+	ld a, [hJoyPressed]
+	bit 5, a
+	jr nz, .LeftPressed
+	bit 4, a
+	jr z, .NonePressed
+	bit 2, [hl]
+	jr nz, .ToggleOff
+	jr .ToggleOn
+
+.LeftPressed
+	bit 2, [hl]
+	jr z, .ToggleOn
+	jr .ToggleOff
+
+.NonePressed
+	bit 2, [hl]
+	jr nz, .ToggleOn
+.ToggleOff
+	res 2, [hl]
+	ld de, .Off
+	jr .Display
+
+.ToggleOn
+	set 2, [hl]
+	ld de, .On
+.Display
+	hlcoord 11, 7
+	call PlaceString
+	and a
+	ret
+
+.Off
+	db "24-HOUR@"
+.On
+	db "12-HOUR@"
+	
+Options_Unit:
+	ld hl, Options2
+	ld a, [hJoyPressed]
+	bit 5, a
+	jr nz, .LeftPressed
+	bit 4, a
+	jr z, .NonePressed
+	bit 3, [hl]
+	jr nz, .ToggleOff
+	jr .ToggleOn
+
+.LeftPressed
+	bit 3, [hl]
+	jr z, .ToggleOn
+	jr .ToggleOff
+
+.NonePressed
+	bit 3, [hl]
+	jr nz, .ToggleOn
+.ToggleOff
+	res 3, [hl]
+	ld de, .Off
+	jr .Display
+
+.ToggleOn
+	set 3, [hl]
+	ld de, .On
+.Display
+	hlcoord 11, 9
+	call PlaceString
+	and a
+	ret
+
+.Off
+	db "METRIC@"
+.On
+	db "IMPERIAL@"
+	
+Options_SFXTest:
+	ld a, [hJoyPressed]
+	bit 5, a
+	jr nz, .LeftPressed
+	bit 4, a
+	jr nz, .RightPressed
+	bit 0, a
+	jr z, .Display
+	ld a, [wcf61]
+	ld e, a
+	ld d, 0
+	call PlaySFX
+	jr .Display
+
+.LeftPressed
+	ld a, [wcf61]
+	and a
+	jr nz, .not0
+	ld a, NUM_SFX
+.not0
+	dec a
+	ld [wcf61], a
+	jr .Display
+
+.RightPressed
+	ld a, [wcf61]
+	inc a
+	cp NUM_SFX
+	jr nz, .notmax
+	xor a
+.notmax
+	ld [wcf61], a
+	
+.Display
+	hlcoord 11, 11
+	ld de, wcf61
+	ld bc, $4103
+	call PrintNum
+	and a
+	ret
+	
+Options_MusicPlayer:
+	;ld a, [hJoyPressed]
+	;bit 0, a
+	;jr z, .NonePressed
+	;callba SaveMusic
+	;callba MusicPlayer
+	;callba RestoreMusic
+	
+.NonePressed
+	and a
+	ret
+	
+Options_Next:
+	ld hl, wcf64
+	ld a, [hJoyPressed]
+	bit 0, a
+	jr z, .NonePressed
+	bit 0, [hl]
+	jr nz, .ToggleOff
+	jr .ToggleOn
+
+.NonePressed
+	bit 0, [hl]
+	jr nz, .ToggleOn
+.ToggleOff
+	res 0, [hl]
+	ld de, StringOptions
+	jr .Display
+
+.ToggleOn
+	set 0, [hl]
+	ld de, StringOptions2
+.Display
+	push de
+	hlcoord 0, 0
+	ld b, $10
+	ld c, $12
+	call TextBox
+	pop de
+	hlcoord 2, 2
+	call PlaceString
+	and a
+	ret
 
 Options_Frame: ; e44fa
 	ld hl, TextBoxFrame
@@ -83533,7 +83764,7 @@ Options_Frame: ; e44fa
 
 Functione4512: ; e4512
 	ld a, [TextBoxFrame]
-	hlcoord 16, 15 ;where on the screen the number is drawn
+	hlcoord 16, 13 ;where on the screen the number is drawn
 	add "1"
 	ld [hl], a
 	call Functione5f
