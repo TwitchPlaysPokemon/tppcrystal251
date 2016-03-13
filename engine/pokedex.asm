@@ -1161,12 +1161,24 @@ Function407fd: ; 407fd
 	ld bc, $0012
 	ld a, $7f
 	call ByteFill
+	ld a, [Options2]
+	bit 3, a
+	jr z, .metric
 	hlcoord 9, 7
 	ld de, Unknown_40852
 	call Function40acd
 	hlcoord 9, 9
 	ld de, Unknown_4085c
 	call Function40acd
+	jr .done
+.metric
+	hlcoord 9, 7
+	ld de, Unknown_40852_2
+	call Function40acd
+	hlcoord 9, 9
+	ld de, Unknown_4085c_2
+	call Function40acd
+.done
 	hlcoord 0, 17
 	ld de, Unknown_40867
 	call Function40acd
@@ -1180,6 +1192,10 @@ Unknown_40852: ; 40852
 	db "HT  ?", $5e, "??", $5f, $ff ; HT  ?'??"
 Unknown_4085c: ; 4085c
 	db "WT   ???lb", $ff ; WT   ???lb
+Unknown_40852_2: ; 40852
+	db "HT   ???m", $ff ; HT   ???m"
+Unknown_4085c_2: ; 4085c
+	db "WT   ???kg", $ff ; WT   ???kg
 Unknown_40867: ; 40867
 	db $3b, " PAGE AREA CRY PRNT", $ff
 ; 4087c
@@ -2751,6 +2767,44 @@ Function4424d: ; 4424d
 	ld a, d
 	or e
 	jr z, .asm_442b0
+	ld a, [Options2]
+	bit 3, a
+	jr nz, .imperial
+	push hl
+	ld l, d
+	ld h, e
+	ld bc, -100
+	ld e, 0
+.inchloop
+	ld a, h
+	and a
+	jr nz, .inchloop2
+	ld a, l
+	cp 100
+	jr c, .inchdone
+.inchloop2
+	add hl, bc
+	inc e
+	jr .inchloop
+.inchdone
+	ld a, e
+	ld e, l
+	ld d, 0
+	ld hl, 0
+	ld bc, 12
+	call AddNTimes
+	add hl, de
+	ld b, h
+	ld c, l
+	ld de, 16646 ; 0.254 << 16
+	call Mul16
+	ld de, hTmpd
+	hlcoord 11, 7
+	ld bc, $0245
+	call PrintNum
+	pop hl
+	jr .asm_442b0
+.imperial
 	push hl
 	push de
 	ld hl, [sp+$0]
@@ -2775,6 +2829,19 @@ Function4424d: ; 4424d
 	ld a, e
 	or d
 	jr z, .asm_442cd
+	ld a, [Options2]
+	bit 3, a
+	jr nz, .imperial2
+	ld c, d
+	ld b, e
+	ld de, 29726 ; 0.45359237 << 16
+	call Mul16
+	ld de, hTmpd
+	hlcoord 11, 9
+	ld bc, $0245
+	call PrintNum
+	jr .asm_442cd
+.imperial2
 	push de
 	ld hl, [sp+$0]
 	ld d, h
@@ -2841,6 +2908,40 @@ Function4424d: ; 4424d
 	page "Please ensure the"
 	next "latest data pack"
 	next "is installed.@"
+	
+Mul16:
+	;[hTmpd][hTmpe]hl = bc * de
+	xor a
+	ld [hTmpd], a
+	ld [hTmpe], a
+	ld hl, 0
+	ld a, 16
+	ld [hProduct], a
+.loop
+	sla l
+	rl h
+	ld a, [hTmpe]
+	rla
+	ld [hTmpe], a
+	ld a, [hTmpd]
+	rla
+	ld [hTmpd], a
+	sla e
+	rl d
+	jr nc, .noadd
+	add hl, bc
+	ld a, [hTmpe]
+	adc 0
+	ld [hTmpe], a
+	ld a, [hTmpd]
+	adc 0
+	ld [hTmpd], a
+.noadd
+	ld a, [hProduct]
+	dec a
+	ld [hProduct], a
+	jr nz, .loop
+	ret
 	
 Function41a7f: ; 41a7f
 	xor a

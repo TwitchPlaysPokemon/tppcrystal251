@@ -804,8 +804,7 @@ GLOBAL PokedexEntries4
 	db BANK(PokedexEntries4)
 
 HeavyBallMultiplier:
-; subtract 20 from catch rate if weight < 102.4 kg
-; else add 0 to catch rate if weight < 204.8 kg
+; subtract 20 from catch rate if weight < 204.8 kg
 ; else add 20 to catch rate if weight < 307.2 kg
 ; else add 30 to catch rate if weight < 409.6 kg
 ; else add 40 to catch rate (never happens)
@@ -832,6 +831,7 @@ HeavyBallMultiplier:
 	inc hl
 	call GetFarHalfword
 
+	; convert from imperial to metric
 	srl h
 	rr l
 	ld b, h
@@ -867,7 +867,7 @@ HeavyBallMultiplier:
 
 .compare
 	ld c, a
-	cp 1024 >> 8 ; 102.4 kg
+	cp 2048 >> 8 ; 204.8 kg
 	jr c, .lightmon
 
 	ld hl, .WeightsTable
@@ -898,7 +898,6 @@ HeavyBallMultiplier:
 
 .WeightsTable
 ; weight factor, boost
-	db 2048 >> 8, 0
 	db 3072 >> 8, 20
 	db 4096 >> 8, 30
 	db 65280 >> 8, 40
