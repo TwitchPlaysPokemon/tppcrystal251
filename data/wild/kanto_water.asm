@@ -540,7 +540,7 @@
 		db POLIWRATH ;10
 		db POLIWAG ;5
 		db WEEZING ;5
-		db FEAROW  ;5
+		db FEAROW ;5
 		db SPEAROW ;6
 		db SPEAROW ;4
 		db WEEZING ;3
@@ -921,7 +921,7 @@
 		db TENTACOOL ;5
 		db HORSEA ;5
 		db MANTINE ;5
-		db MARILL  ;5
+		db MARILL ;5
 		db SEADRA ;4
 		db SEADRA ;4
 		db SEEL ;3

@@ -6,112 +6,112 @@
 	db $70 ;Tables to use. first is a $ for tech reasons Left number/letter is level alteration table. Right number is what %chance table to use. 0 = big 30, 1 = 2020, 2 = 2015, 3 = 1510
 	; The level alteration table hasn't been decided/coded yet, though 0 is for no alteration exept random variance
 ;morning Mons go here, make sure no semi-colons are where they shouldn't be (before mons), and that morning/day/night are after semi-colons
-        db BELLSPROUT ;30 level is no longer stored next to mon
-        db ZUBAT ;10
-        db HOUNDOUR ;10
-        db BELLSPROUT ;10
-        db SPINARAK;5
-        db MURKROW ;5
-        db SPINARAK  ;5
-        db BELLSPROUT ;5
-        db HOOTHOOT ;4
-        db WEEPINBELL ;4
-        db WEEPINBELL ;3
-        db BELLSPROUT ;3
-        db GOLBAT ;2
-        db BELLSPROUT ;2
-        db HOOTHOOT ;1
-        db ODDISH ;1
+		db BELLSPROUT ;30 level is no longer stored next to mon
+		db ZUBAT ;10
+		db HOUNDOUR ;10
+		db BELLSPROUT ;10
+		db SPINARAK;5
+		db MURKROW ;5
+		db SPINARAK ;5
+		db BELLSPROUT ;5
+		db HOOTHOOT ;4
+		db WEEPINBELL ;4
+		db WEEPINBELL ;3
+		db BELLSPROUT ;3
+		db GOLBAT ;2
+		db BELLSPROUT ;2
+		db HOOTHOOT ;1
+		db ODDISH ;1
 ;day
-        db BELLSPROUT ;30
-        db ZUBAT ;10
-        db SPINARAK ;10
-        db BELLSPROUT ;10
-        db HOOTHOOT ;5
-        db BELLSPROUT ;5
-        db MURKROW ;5
-        db BELLSPROUT ;5
-        db HOUNDOUR ;4
-        db WEEPINBELL ;4
-        db GOLBAT ;3
-        db WEEPINBELL ;3
-        db ZUBAT ;2
-        db SPINARAK ;2
-        db HOUNDOUR ;1
-        db ODDISH ;1
+		db BELLSPROUT ;30
+		db ZUBAT ;10
+		db SPINARAK ;10
+		db BELLSPROUT ;10
+		db HOOTHOOT ;5
+		db BELLSPROUT ;5
+		db MURKROW ;5
+		db BELLSPROUT ;5
+		db HOUNDOUR ;4
+		db WEEPINBELL ;4
+		db GOLBAT ;3
+		db WEEPINBELL ;3
+		db ZUBAT ;2
+		db SPINARAK ;2
+		db HOUNDOUR ;1
+		db ODDISH ;1
 ;night
-        db BELLSPROUT ;30
-        db MISDREAVUS ;10
-        db BELLSPROUT ;10
-        db MISDREAVUS  ;10
-        db ZUBAT ;5
-        db MISDREAVUS ;5
-        db SPINARAK ;5
-        db BELLSPROUT ;5
-        db WEEPINBELL ;4
-        db SPINARAK ;4
-        db WEEPINBELL ;3
-        db BELLSPROUT ;3
-        db HOUNDOUR ;2
-        db BELLSPROUT ;2
-        db GOLBAT ;1
-        db ODDISH ;1
+		db BELLSPROUT ;30
+		db MISDREAVUS ;10
+		db BELLSPROUT ;10
+		db MISDREAVUS ;10
+		db ZUBAT ;5
+		db MISDREAVUS ;5
+		db SPINARAK ;5
+		db BELLSPROUT ;5
+		db WEEPINBELL ;4
+		db SPINARAK ;4
+		db WEEPINBELL ;3
+		db BELLSPROUT ;3
+		db HOUNDOUR ;2
+		db BELLSPROUT ;2
+		db GOLBAT ;1
+		db ODDISH ;1
 
 	map SPROUT_TOWER_3F
 	db $05
 	db 14
 	db $70 
 ;morning Mons go here, make sure no semi-colons are where they shouldn't be (before mons), and that morning/day/night are after semi-colons
-        db BELLSPROUT ;30 level is no longer stored next to mons
-        db ZUBAT ;10
-        db HOUNDOUR ;10
-        db BELLSPROUT ;10
-        db SPINARAK;5
-        db MURKROW ;5
-        db SPINARAK  ;5
-        db BELLSPROUT ;5
-        db HOOTHOOT ;4
-        db WEEPINBELL ;4
-        db WEEPINBELL ;3
-        db BELLSPROUT ;3
-        db GOLBAT ;2
-        db BELLSPROUT ;2
-        db HOOTHOOT ;1
-        db ODDISH ;1
+		db BELLSPROUT ;30 level is no longer stored next to mons
+		db ZUBAT ;10
+		db HOUNDOUR ;10
+		db BELLSPROUT ;10
+		db SPINARAK;5
+		db MURKROW ;5
+		db SPINARAK ;5
+		db BELLSPROUT ;5
+		db HOOTHOOT ;4
+		db WEEPINBELL ;4
+		db WEEPINBELL ;3
+		db BELLSPROUT ;3
+		db GOLBAT ;2
+		db BELLSPROUT ;2
+		db HOOTHOOT ;1
+		db ODDISH ;1
 ;day
-        db BELLSPROUT ;30
-        db ZUBAT ;10
-        db SPINARAK ;10
-        db BELLSPROUT ;10
-        db HOOTHOOT ;5
-        db BELLSPROUT ;5
-        db MURKROW ;5
-        db BELLSPROUT ;5
-        db HOUNDOUR ;4
-        db WEEPINBELL ;4
-        db GOLBAT ;3
-        db WEEPINBELL ;3
-        db ZUBAT ;2
-        db SPINARAK ;2
-        db HOUNDOUR ;1
-        db ODDISH ;1
+		db BELLSPROUT ;30
+		db ZUBAT ;10
+		db SPINARAK ;10
+		db BELLSPROUT ;10
+		db HOOTHOOT ;5
+		db BELLSPROUT ;5
+		db MURKROW ;5
+		db BELLSPROUT ;5
+		db HOUNDOUR ;4
+		db WEEPINBELL ;4
+		db GOLBAT ;3
+		db WEEPINBELL ;3
+		db ZUBAT ;2
+		db SPINARAK ;2
+		db HOUNDOUR ;1
+		db ODDISH ;1
 ;night
-        db BELLSPROUT ;30
-        db MISDREAVUS ;10
-        db BELLSPROUT ;10
-        db MISDREAVUS  ;10
-        db ZUBAT ;5
-        db MISDREAVUS ;5
-        db SPINARAK ;5
-        db BELLSPROUT ;5
-        db WEEPINBELL ;4
-        db SPINARAK ;4
-        db WEEPINBELL ;3
-        db BELLSPROUT ;3
-        db HOUNDOUR ;2
-        db BELLSPROUT ;2
-        db GOLBAT ;1
-        db ODDISH ;1
+		db BELLSPROUT ;30
+		db MISDREAVUS ;10
+		db BELLSPROUT ;10
+		db MISDREAVUS ;10
+		db ZUBAT ;5
+		db MISDREAVUS ;5
+		db SPINARAK ;5
+		db BELLSPROUT ;5
+		db WEEPINBELL ;4
+		db SPINARAK ;4
+		db WEEPINBELL ;3
+		db BELLSPROUT ;3
+		db HOUNDOUR ;2
+		db BELLSPROUT ;2
+		db GOLBAT ;1
+		db ODDISH ;1
 
 ;	map TIN_TOWER_2F
 ;	db $05,$05,$05 ; encounter rates: morn/day/nite
@@ -464,7 +464,7 @@
 	db 18
 	db $01
 	; morn
-		db WOOPER  ;20
+		db WOOPER ;20
 		db SLUGMA ;20
 		db SHUCKLE ;10
 		db TYROGUE ;10
@@ -520,7 +520,7 @@
 	db 19
 	db $01
 	; morn
-		db WOOPER  ;20
+		db WOOPER ;20
 		db SLUGMA ;20
 		db SHUCKLE ;10
 		db TYROGUE ;10
@@ -1845,7 +1845,7 @@
 		db DUNSPARCE ;5
 		db WOBBUFFET ;5
 		db URSARING ;5
-		db LARVITAR  ;6
+		db LARVITAR ;6
 		db MAGCARGO ;4
 		db LARVITAR ;3
 		db TYRANITAR ;2
@@ -2033,7 +2033,7 @@
 		db MURKROW ;6
 		db MURKROW ;4
 		db SPINARAK ;3
-		db FLAAFFY  ;2
+		db FLAAFFY ;2
 		db SPINARAK ;2
 		db NOCTOWL ;1
 		db NOCTOWL ;1
@@ -2476,7 +2476,7 @@
 		db ODDISH ;10
 		db FLAAFFY ;10
 		db TAUROS ;5
-		db GLOOM  ;5
+		db GLOOM ;5
 		db PONYTA ;5
 		db ODDISH ;6
 		db STANTLER ;4
@@ -2519,7 +2519,7 @@
 		db WOOPER ;5
 		db MANKEY ;5
 		db SPEAROW ;5
-		db FEAROW  ;5
+		db FEAROW ;5
 		db SPEAROW ;5
 		db QUAGSIRE ;4
 		db TYPHLOSION ;3

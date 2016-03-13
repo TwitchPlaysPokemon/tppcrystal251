@@ -1,19 +1,58 @@
 SilverCaveOutside_MapScriptHeader: ; 0x1b2042
 	; trigger count
-	db 0
+	db 2
+	dw .Trigger0, 0
+	dw .Trigger1, 0
 
 	; callback count
 	db 1
 
 	; callbacks
 
-	dbw 5, UnknownScript_0x1b2047
+	dbw 5, .Flypoint
 ; 0x1b2047
+.Trigger0
+	end
+.Trigger1
+	end
 
-UnknownScript_0x1b2047: ; 0x1b2047
+.Flypoint: ; 0x1b2047
 	setflag ENGINE_FLYPOINT_SILVER_CAVE
+	disappear $3
 	return
 ; 0x1b204b
+
+MtSilverRedScript:
+	special Functionc48f
+	appear $3
+	spriteface $0, UP
+	playsound SFX_EXIT_BUILDING
+	follow $0, $3
+	applymovement $0, Movement_SilverCaveOutside_PlayerStepsDown
+	stopfollow
+	loadfont
+	writetext SilverCaveOutside_RedBeforeText
+	waitbutton
+	closetext
+	setlasttalked $3
+	winlosstext RedWinText, RedLossText
+	loadtrainer RED, 2
+	startbattle
+	returnafterbattle
+	loadfont
+	writetext SilverCaveOutside_RedAfterText
+	waitbutton
+	closetext
+	special Special_FadeToBlack
+	special Functiond91
+	disappear $3
+	pause 15
+	special Function8c0ab
+	pause 30
+	special RestartMapMusic
+	dotrigger $1
+	setevent EVENT_BEAT_RED
+	end
 
 SilverCaveOutsideCooltrainerMScript:
 	jumptextfaceplayer SilverCaveOutsideCooltrainerMText
@@ -25,6 +64,22 @@ MapSilverCaveOutsideSignpost0Script: ; 0x1b204b
 MapSilverCaveOutsideSignpost1Script: ; 0x1b204e
 	jumptext UnknownText_0x1b2054
 ; 0x1b2051
+Movement_SilverCaveOutside_PlayerStepsDown:
+	fix_facing
+	step_down
+	remove_fixed_facing
+	step_end
+
+SilverCaveOutside_RedBeforeText:
+SilverCaveOutside_RedAfterText:
+	text $56
+	line $56
+	done
+
+RedWinText:
+RedLossText:
+	text "start9"
+	done
 
 MapSilverCaveOutsideSignpostItem2: ; 0x1b2051
 	dw $00b8
@@ -60,7 +115,8 @@ SilverCaveOutside_MapEventHeader: ; 0x1b205f
 	warp_def $b, $12, 1, GROUP_SILVER_CAVE_ROOM_1, MAP_SILVER_CAVE_ROOM_1
 
 	; xy triggers
-	db 0
+	db 1
+	xy_trigger 0, 12, 18, 0, MtSilverRedScript, 0, 0
 
 	; signposts
 	db 3
@@ -69,7 +125,8 @@ SilverCaveOutside_MapEventHeader: ; 0x1b205f
 	signpost 25, 9, $7, MapSilverCaveOutsideSignpostItem2
 
 	; people-events
-	db 1
+	db 2
 	person_event SPRITE_COOLTRAINER_M, 16, 22, $6, 0, 0, -1, -1, 0, 0, 0, SilverCaveOutsideCooltrainerMScript, EVENT_ENABLE_DIPLOMA_PRINTING
+	person_event SPRITE_RED, 15, 22, $6, 0, 0, -1, -1, 0, 0, 0, ObjectEvent, EVENT_RED_IN_FRONT_OF_MT_SILVER
 ; 0x1b207e
 

@@ -76,7 +76,7 @@ ENDM
 	trigger_def TEAM_ROCKET_BASE_B2F,                   wTeamRocketBaseB2FTrigger
 	trigger_def TEAM_ROCKET_BASE_B3F,                   wTeamRocketBaseB3FTrigger
 	trigger_def UNDERGROUND_PATH_SWITCH_ROOM_ENTRANCES, wUndergroundPathSwitchRoomEntrancesTrigger
-	trigger_def SILVER_CAVE_ROOM_3,                     wSilverCaveRoom3Trigger
+	trigger_def SILVER_CAVE_OUTSIDE,                    wSilverCaveOutsideTrigger
 	trigger_def VICTORY_ROAD,                           wVictoryRoadTrigger
 	trigger_def DRAGONS_DEN_B1F,                        wDragonsDenB1FTrigger
 	trigger_def DRAGON_SHRINE,                          wDragonShrineTrigger

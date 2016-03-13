@@ -35428,7 +35428,7 @@ PlayBattleMusic: ; 2ee6c
 	cp POKEMON_PROF
 	jp z, .done
 	cp BABA
-	jr z, .done
+	jp z, .done
 	ld de, MUSIC_VS_WCS
 	cp PROF_ELM
 	jr z, .done
@@ -35447,7 +35447,7 @@ PlayBattleMusic: ; 2ee6c
 	cp EXECUTIVEF
 	jr z, .done
 	cp SCIENTIST
-	jr z, .done
+	jr z, .scientist
 	ld de, MUSIC_RIVAL_BATTLE_RB
 	cp BLUE_RB
 	jr z, .egk_check
@@ -35471,6 +35471,10 @@ PlayBattleMusic: ; 2ee6c
 	ld de, MUSIC_CHAMPION_BATTLE
 	jr .done
 
+.scientist
+	ld a, [InBattleTowerBattle]
+	bit 0, a
+	jr z, .done
 .othertrainer
 	ld a, [wLinkMode]
 	and a
@@ -75240,7 +75244,6 @@ treemon_map: macro
 endm
 	treemon_map ROUTE_26, 16
 	treemon_map ROUTE_27, 16
-;	treemon_map ROUTE_28, 0
 	treemon_map ROUTE_29, 1
 	treemon_map ROUTE_30, 2
 	treemon_map ROUTE_31, 2
@@ -75252,25 +75255,15 @@ endm
 	treemon_map ROUTE_37, 9
 	treemon_map ROUTE_38, 11
 	treemon_map ROUTE_39, 11
-	;treemon_map ROUTE_40, 0
-	;treemon_map ROUTE_41, 0
 	treemon_map ROUTE_42, 13
 	treemon_map ROUTE_43, 14
 	treemon_map ROUTE_44, 15
-	;treemon_map ROUTE_45, 0
-	;treemon_map ROUTE_46, 0
 	treemon_map NEW_BARK_TOWN, 0
-	;treemon_map CHERRYGROVE_CITY, 0
 	treemon_map VIOLET_CITY, 3
 	treemon_map AZALEA_TOWN, 5
-	;treemon_map CIANWOOD_CITY, 0
-	;treemon_map GOLDENROD_CITY, 0
-	;treemon_map OLIVINE_CITY, 0
 	treemon_map ECRUTEAK_CITY, 10
 	treemon_map MAHOGANY_TOWN, 14
 	treemon_map LAKE_OF_RAGE, 6
-	;treemon_map BLACKTHORN_CITY, 0
-	;treemon_map SILVER_CAVE_OUTSIDE, 0
 	treemon_map ILEX_FOREST, 8
 	treemon_map BATTLE_TOWER_OUTSIDE, 12 ;yes but the area with trees is the outside bit
 	db -1
@@ -93762,7 +93755,7 @@ INCLUDE "data/odd_eggs.asm"
 SECTION "bank7F", ROMX, BANK[$7F]
 
 SECTION "stadium2", ROMX[$8000-$220], BANK[$7F]
-IF DEF(CRYSTAL11)
+IF DEF(CRYSTAL11) | DEF(BEESAFREE)
 INCBIN "misc/stadium2_2.bin"
 
 ELSE
