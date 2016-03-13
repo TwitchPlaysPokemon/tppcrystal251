@@ -771,7 +771,7 @@ wc7e1:: ds 1
 wc7e2:: ds 1
 wc7e3:: ds 1
 wc7e4:: ds 1
-IF DEF(CRYSTAL11)
+IF DEF(CRYSTAL11) | DEF(BEESAFREE)
 wPokedexStatus::
 ENDC
 	ds 3
@@ -1069,7 +1069,7 @@ CurSpecies:: ; cf60
 wcf61:: ds 2
 wcf63:: ds 1
 wcf64:: ds 1 ;battle tower current wins?
-IF !DEF(CRYSTAL11)
+IF !(DEF(CRYSTAL11) | DEF(BEESAFREE))
 wPokedexStatus::
 ENDC
 wcf65:: ds 1 ;selection in tower level menu divided by 2

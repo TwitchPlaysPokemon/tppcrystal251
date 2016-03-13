@@ -35430,7 +35430,7 @@ PlayBattleMusic: ; 2ee6c
 	cp POKEMON_PROF
 	jp z, .done
 	cp BABA
-	jr z, .done
+	jp z, .done
 	ld de, MUSIC_VS_WCS
 	cp PROF_ELM
 	jr z, .done
@@ -35449,7 +35449,7 @@ PlayBattleMusic: ; 2ee6c
 	cp EXECUTIVEF
 	jr z, .done
 	cp SCIENTIST
-	jr z, .done
+	jr z, .scientist
 	ld de, MUSIC_RIVAL_BATTLE_RB
 	cp BLUE_RB
 	jr z, .egk_check
@@ -35473,6 +35473,10 @@ PlayBattleMusic: ; 2ee6c
 	ld de, MUSIC_CHAMPION_BATTLE
 	jr .done
 
+.scientist
+	ld a, [InBattleTowerBattle]
+	bit 0, a
+	jr z, .done
 .othertrainer
 	ld a, [wLinkMode]
 	and a
@@ -93520,7 +93524,7 @@ INCLUDE "data/odd_eggs.asm"
 SECTION "bank7F", ROMX, BANK[$7F]
 
 SECTION "stadium2", ROMX[$8000-$220], BANK[$7F]
-IF DEF(CRYSTAL11)
+IF DEF(CRYSTAL11) | DEF(BEESAFREE)
 INCBIN "misc/stadium2_2.bin"
 
 ELSE

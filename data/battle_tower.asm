@@ -20,13 +20,8 @@ Function1f8000: ; 1f8000 generatres mon and trainer and stores them in wram. ful
 	ld a, [hRandomAdd] ; load 2 random numbers and add them
 	add b
 	ld b, a
-IF DEF(CRYSTAL11)
-	and $7f ; if 1.1 use numbers 0-69, else use numbers 0-20
-	cp 70
-ELSE
-	and $1f
-	cp 21
-ENDC
+	and $7f
+	cp (BattleTowerTrainersEnd - BattleTowerTrainers) / 11
 	jr nc, .asm_1f8022 ; loop until good random number
 	ld b, a
 	ld a, $1
@@ -51,8 +46,8 @@ ENDC
 	ld hl, BattleTowerTrainers ; list of trainer names and classes
 	ld bc, 11
 	call AddNTimes ; go down to selected trainer
-		; ld bc, 11 no the copy is part of the next function
-		; call CopyBytes ; copy the data into BT_OTTrainer
+	; ld bc, 11 no the copy is part of the next function
+	; call CopyBytes ; copy the data into BT_OTTrainer
 	call Function1f8081 ; set-up trainer with random mons
 	pop af ; random number used for trainer
 	ld hl, BattleTowerTrainerData
@@ -384,11 +379,26 @@ BattleTowerTrainers: ; 1f814e
 	db "DYKSTRA@@@", SWIMMERF
 	db "EATON@@@@@", BIKER
 	db "WONG@@@@@@", FIREBREATHER
+	db "WALLE@@@@@", POKEMANIAC
+	db "PIKALAXALT", SUPER_NERD
+	db "REVO@@@@@@", FISHER
+	db "FELK@@@@@@", GENTLEMAN
+	db "STREAMER@@", SAGE
+	db "CHAOS LORD", POKEFANM
+	db "CHAUZU@@@@", SCHOOLBOY
+	db "LIGHTNING@", COOLTRAINERM
+	db "DEKU@@@@@@", YOUNGSTER
+	db "SONICK@@@@", BOARDER
+	db "ERACLITO@@", CAMPER
+	db "PIGDEVIL@@", BUG_CATCHER
+	db "BEESAFREE@", SCIENTIST
+	db "KOOLBOYMAN", BIRD_KEEPER
 ; 1f8450
+BattleTowerTrainersEnd:
 
 BattleTowerMons: ; 1f8450
 
-		db VENUSAUR
+	db VENUSAUR
 	db MIRACLE_SEED
 	db SEED_BOMB, SLEEP_POWDER, ANCIENTPOWER, SLUDGE
 
@@ -405,48 +415,48 @@ BattleTowerMons: ; 1f8450
 	db FLAMETHROWER, FLY, TOXIC, PROTECT
 
 	db BLASTOISE ;5
-		db LEFTOVERS
-		db HYDRO_PUMP, ZAP_CANNON, FLASH_CANNON, MIRROR_COAT
+	db LEFTOVERS
+	db HYDRO_PUMP, ZAP_CANNON, FLASH_CANNON, MIRROR_COAT
 
 	db BLASTOISE
-		db MYSTIC_WATER
-		db CURSE, AQUA_JET, WATERFALL, BODY_SLAM
+	db MYSTIC_WATER
+	db CURSE, AQUA_JET, WATERFALL, BODY_SLAM
 
 	db BUTTERFREE
-		db SHARP_BEAK
-		db BUG_BUZZ, GUST, SLEEP_POWDER, MORNING_SUN
+	db SHARP_BEAK
+	db BUG_BUZZ, GUST, SLEEP_POWDER, MORNING_SUN
 
 	db BUTTERFREE
-		db LEFTOVERS
-		db AIR_SLASH, PSYBEAM, STUN_SPORE, SUPERSONIC
+	db LEFTOVERS
+	db AIR_SLASH, PSYBEAM, STUN_SPORE, SUPERSONIC
 
 	db BEEDRILL
 	db SCOPE_LENS
-		db FOCUS_ENERGY, POISON_JAB, TWINEEDLE, DRILL_RUN
+	db FOCUS_ENERGY, POISON_JAB, TWINEEDLE, DRILL_RUN
 
 	db BEEDRILL ;10
-		db FOCUS_BAND
-		db HORN_DRILL, X_SCISSOR, DOUBLE_TEAM, BATON_PASS
+	db FOCUS_BAND
+	db HORN_DRILL, X_SCISSOR, DOUBLE_TEAM, BATON_PASS
 
 	db PIDGEOT
-		db SHARP_BEAK
-		db AIR_SLASH, DOUBLE_EDGE, HEAT_WAVE, AGILITY
+	db SHARP_BEAK
+	db AIR_SLASH, DOUBLE_EDGE, HEAT_WAVE, AGILITY
 
 	db PIDGEOT
-		db FOCUS_BAND
-		db SKY_ATTACK, SUBMISSION, MIRROR_MOVE, FAINT_ATTACK
+	db FOCUS_BAND
+	db SKY_ATTACK, SUBMISSION, MIRROR_MOVE, FAINT_ATTACK
 
 	db RATICATE
-		db POLKADOT_BOW
-		db HYPER_FANG, FLAME_WHEEL, SHARPEN, CRUNCH
+	db POLKADOT_BOW
+	db HYPER_FANG, FLAME_WHEEL, SHARPEN, CRUNCH
 
 	db FEAROW
-		db BRIGHTPOWDER
-		db AGILITY, SKY_ATTACK, TRI_ATTACK, MUD_SLAP
+	db BRIGHTPOWDER
+	db AGILITY, SKY_ATTACK, TRI_ATTACK, MUD_SLAP
 
 	db FEAROW ;15
-		db KINGS_ROCK
-		db DRILL_PECK, DRILL_RUN, TAKE_DOWN, PURSUIT
+	db KINGS_ROCK
+	db DRILL_PECK, DRILL_RUN, TAKE_DOWN, PURSUIT
 
 	db ARBOK
 	db POISON_BARB
