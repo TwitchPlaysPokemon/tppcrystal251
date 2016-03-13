@@ -390,7 +390,7 @@ BattleTowerTrainers: ; 1f814e
 	db "DEKU@@@@@@", YOUNGSTER
 	db "SONICK@@@@", BOARDER
 	db "ERACLITO@@", CAMPER
-	db "PIGDEVIL@@", BUG_CATCHER
+	db "PIGU@@@@@@", BUG_CATCHER
 	db "BEESAFREE@", SCIENTIST
 	db "KOOLBOYMAN", BIRD_KEEPER
 ; 1f8450
