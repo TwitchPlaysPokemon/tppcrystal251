@@ -831,7 +831,7 @@ HeavyBallMultiplier:
 	inc hl
 	inc hl
 	call GetFarHalfword
-
+; Weight is in lb, so we need to convert to kg.
 	srl h
 	rr l
 	ld b, h
