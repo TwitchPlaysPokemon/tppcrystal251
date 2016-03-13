@@ -1206,7 +1206,7 @@ GBPrinter:: ; cfd0
 Options2:: ; cfd1
 ; bit 0: fast hp bar off/on
 ; bit 1: menu account off/on
-; bit 2: 12/24-hour clock
+; bit 2: 24/12-hour clock
 ; bit 3: metric/imperial unit
 	ds 1
 

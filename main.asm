@@ -23944,7 +23944,12 @@ Function20000: ; 20000 (8:4000)
 	dec a
 	ld e, a
 	ld d, 0
+	ld a, [Options2]
+	bit 2, a
 	ld hl, Unknown_20015
+	jr z, .h24
+	ld hl, Unknown_20015_2
+.h24
 	add hl, de
 	add hl, de
 	add hl, de
@@ -23967,6 +23972,15 @@ Unknown_20015: ; 20015
 	db $18, $0f
 	dw wd1ef
 	db $3c, $12
+; 20021
+
+Unknown_20015_2: ; 20015
+	dw wd1ed
+	db $07, $04
+	dw wd1ee
+	db $18, $0c
+	dw wd1ef
+	db $3c, $0f
 ; 20021
 
 Function20021: ; 20021 (8:4021)
@@ -24143,7 +24157,12 @@ Function2011f: ; 2011f (8:411f)
 	ld b, a
 	ld a, [wd1ef]
 	ld c, a
+	ld a, [Options2]
+	bit 2, a
 	decoord 14, 8
+	jr z, .h24
+	decoord 11, 8
+.h24
 	callba Function1dd6bb
 	ld a, [Buffer2] ; wd1eb (aliases: MovementType)
 	lb de, $7f, $7f
@@ -41282,8 +41301,14 @@ Function49e27: ; 49e27
 	call Function6e3
 	and $80
 	jr nz, .asm_49e39
+	ld a, [Options2]
+	bit 2, a
 	hlcoord 0, 15
 	ld b, $1
+	jr z, .h24
+	hlcoord 0, 14
+	ld b, $2
+.h24
 	ld c, $12
 	call TextBox
 	ret
@@ -41303,12 +41328,24 @@ Function49e3d: ; 49e3d
 	call UpdateTime
 	call GetWeekday
 	ld b, a
+	ld a, [Options2]
+	bit 2, a
+	jr z, .h24
+	decoord 1, 15
+	call Function49e91
+	decoord 4, 16
+	ld a, [hHours]
+	ld c, a
+	callba Function90b3e
+	jr .skip
+.h24
 	decoord 1, 16
 	call Function49e91
 	hlcoord 11, 16
 	ld de, hHours
 	ld bc, $102
 	call PrintNum
+.skip
 	ld [hl], ":"
 	inc hl
 	ld de, hMinutes
@@ -69419,7 +69456,14 @@ Function90b3e: ; 90b3e (24:4b3e)
 	ld h, b
 	inc hl
 	pop bc
+	ld a, [Options2]
+	bit 2, a
+	jr z, .h24
+	call Function90b7f
+	jr .skip
+.h24
 	ld a, c
+.skip
 	ld [wd265], a
 	ld de, wd265
 	call Function90867
@@ -69968,22 +70012,44 @@ Function90f86: ; 90f86 (24:4f86)
 	ld b, a
 	ld a, [hMinutes] ; $ff00+$96
 	ld c, a
+	ld a, [Options2]
+	bit 2, a
+	jr z, .h24
+	decoord 4, 8
+	callba Function1dd6bb
+	hlcoord 9, 8
+	jr .skip
+.h24
 	decoord 6, 8
 	callba Function1dd6bb
 	hlcoord 11, 8
+.skip
 	ld [hl], ":"
 	inc hl
 	ld de, hSeconds
 	ld bc, $8102
 	call PrintNum
+	ld a, [Options2]
+	bit 2, a
+	jr z, .noampm
+	ld a, [hHours]
+	cp 12
+	ld de, .am
+	jr c, .notpm
+	ld de, .pm
+.notpm
+	inc hl
+	call PlaceString
+.noampm
 	ld hl, UnknownText_0x90faf
 	bccoord 6, 6
 	call Function13e5
 	ret
 ; 90fa8 (24:4fa8)
 
-String_90fa8: db "ごぜん@"
-String_90fac: db "ごご@"
+.am db "AM@"
+.pm db "PM@"
+
 UnknownText_0x90faf: ; 0x90faf
 	text_jump UnknownText_0x1c5821
 	db "@"
@@ -83070,25 +83136,10 @@ _OptionsMenu: ; e41d0
 	call PlaceString
 	xor a
 	ld [wcf61], a
-	ld [wcf63], a
 	ld [wcf64], a
-	ld c, $6 ;number of items on the menu minus 1 (for cancel)
-.asm_e41f3 ;this loop will display the settings of each option when the menu is opened
-	push bc
-	xor a
-	ld [$ffa9], a
-	call GetOptionPointer
-	pop bc
-	ld hl, wcf63
-	inc [hl]
-	dec c
-	jr nz, .asm_e41f3
-	call Functione4512
+	call OptionsMenu_LoadOptions
 	xor a
 	ld [wcf63], a
-	inc a
-	ld [hBGMapMode], a
-	call WaitBGMap
 	ld b, $8
 	call GetSGBLayout
 	call Function32f9
@@ -83116,6 +83167,28 @@ _OptionsMenu: ; e41d0
 	ret
 ; e4241
 
+OptionsMenu_LoadOptions:
+	xor a
+	ld [wcf63], a
+	ld [hJoyPressed], a
+	ld c, $6 ;number of items on the menu minus 1 (for cancel)
+.asm_e41f3 ;this loop will display the settings of each option when the menu is opened
+	push bc
+	xor a
+	ld [$ffa9], a
+	call GetOptionPointer
+	pop bc
+	ld hl, wcf63
+	inc [hl]
+	dec c
+	jr nz, .asm_e41f3
+	ld a, [wcf64]
+	and a
+	call z, Functione4512
+	ld a, 1
+	ld [hBGMapMode], a
+	jp WaitBGMap
+
 StringOptions: ; e4241
 	db "TEXT SPEED", $22
 	db "        :", $22
@@ -83141,13 +83214,13 @@ StringOptions2:
 	db "        :", $22
 	db "CLOCK FORMAT", $22
 	db "        :", $22
-	db "MEASURING UNIT", $22
+	db "MEASUREMENT UNIT", $22
 	db "        :", $22
 	db "SFX TEST", $22
 	db "        :", $22
 	db "MUSIC PLAYER", $22
 	;db " ", $22
-	db "     (COMING SOON)", $22
+	db "    (COMING SOON)", $22
 	db "NEXT", $22
 	db " ", $22
 	db "EXIT@"
@@ -83642,7 +83715,7 @@ Options_Unit:
 	ret
 
 .Off
-	db "METRIC@"
+	db "METRIC  @"
 .On
 	db "IMPERIAL@"
 	
@@ -83680,7 +83753,11 @@ Options_SFXTest:
 	ld [wcf61], a
 	
 .Display
-	hlcoord 11, 11
+	hlcoord 14, 11
+	ld a, " "
+	ld [hld], a
+	ld [hld], a
+	ld [hld], a
 	ld de, wcf61
 	ld bc, $4103
 	call PrintNum
@@ -83705,12 +83782,8 @@ Options_Next:
 	bit 0, a
 	jr z, .NonePressed
 	bit 0, [hl]
-	jr nz, .ToggleOff
-	jr .ToggleOn
+	jr z, .ToggleOn
 
-.NonePressed
-	bit 0, [hl]
-	jr nz, .ToggleOn
 .ToggleOff
 	res 0, [hl]
 	ld de, StringOptions
@@ -83728,6 +83801,10 @@ Options_Next:
 	pop de
 	hlcoord 2, 2
 	call PlaceString
+	call OptionsMenu_LoadOptions
+	ld a, 6
+	ld [wcf63], a
+.NonePressed
 	and a
 	ret
 
@@ -93290,8 +93367,23 @@ Function1dd6a9: ; 1dd6a9
 ; 1dd6bb
 
 Function1dd6bb: ; 1dd6bb (77:56bb)
-; print b:0c
-
+	ld a, [Options2]
+	bit 2, a
+	jr z, .h24
+	ld a, b
+	cp $c
+	push af
+	jr c, .asm_1dd6c7
+	jr z, .asm_1dd6cc
+	sub $c
+	jr .asm_1dd6cc
+.asm_1dd6c7
+	or a
+	jr nz, .asm_1dd6cc
+	ld a, $c
+.asm_1dd6cc
+	ld b, a
+.h24
 	push bc
 	ld hl, [sp+$1]
 	push de
@@ -93313,6 +93405,16 @@ Function1dd6bb: ; 1dd6bb (77:56bb)
 	ld bc, $8102
 	call PrintNum
 	pop bc
+	ld a, [Options2]
+	bit 2, a
+	ret z
+	ld de, String_1dd6fc
+	pop af
+ 	jr c, .asm_1dd6f7
+ 	ld de, String_1dd6ff
+.asm_1dd6f7
+ 	inc hl
+ 	call PlaceString
 	ret
 ; 1dd6fc (77:56fc)
 
