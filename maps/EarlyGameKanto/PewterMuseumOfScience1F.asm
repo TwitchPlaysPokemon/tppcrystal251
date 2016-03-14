@@ -113,7 +113,8 @@ PlayerStepsDown_PewterMuseumOfScience:
 
 PewterMuseumOfScience1FAerodactylFossilScript:
 	refreshscreen $0
-	pokepic AERODACTYL
+	; pokepic AERODACTYL
+	fossilpic 0
 	waitbutton
 	closepokepic
 	loadfont
@@ -124,7 +125,8 @@ PewterMuseumOfScience1FAerodactylFossilScript:
 
 PewterMuseumOfScience1FKabutopsFossilScript:
 	refreshscreen $0
-	pokepic KABUTOPS
+	; pokepic KABUTOPS
+	fossilpic 1
 	waitbutton
 	closepokepic
 	loadfont

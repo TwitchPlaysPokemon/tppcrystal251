@@ -25065,6 +25065,38 @@ Function244e3:: ; 244e3
 	ret
 ; 24528
 
+FossilPic:: ; 244e3
+	push bc
+	ld hl, MenuDataHeader_0x24547
+	call Function1d3c
+	call Function1cbb ;put a textbox in menu area
+	call Function1ad2
+	call Function321c
+	ld b, $1f
+	call GetSGBLayout
+	xor a
+	ld [hBGMapMode], a
+	ld a, [CurPartySpecies]
+	ld [CurSpecies], a
+	call GetBaseData
+	ld de, VTiles1
+	pop bc
+	callba GetFossilPic
+	ld a, [wcf82]
+	inc a
+	ld b, a
+	ld a, [wcf83]
+	inc a
+	ld c, a
+	call GetTileCoord
+	ld a, $80
+	ld [$ffad], a
+	ld bc, $0707
+	predef FillBox
+	call WaitBGMap
+	ret
+; 24528
+
 Function24528:: ; 24528
 	ld hl, MenuDataHeader_0x24547
 	call Function1d3c
@@ -49770,6 +49802,29 @@ Function5108b: ; 5108b
 	ret
 ; 510a5
 
+GetFossilPic:
+	ld a, [rSVBK]
+	push af
+	call .GetFossilPic
+	pop af
+	ld [rSVBK], a
+	ret
+
+.GetFossilPic
+	push de
+	ld a, 6
+	ld [rSVBK], a
+	ld hl, FossilPicPointers
+	add hl, bc
+	add hl, bc
+	ld a, [hli]
+	ld h, [hl]
+	ld l, a
+	ld a, BANK(AerodactylFossilPic)
+	ld b, 6
+	push bc
+	jr _FinishLoadingFrontpic
+
 _GetFrontpic: ; 510a5
 	push de
 	call GetBaseData
@@ -49781,6 +49836,7 @@ _GetFrontpic: ; 510a5
 	ld a, $6
 	ld [rSVBK], a
 	ld a, b
+_FinishLoadingFrontpic:
 	ld de, w6_d000 + $800
 	call FarDecompress
 	pop bc
@@ -49797,6 +49853,10 @@ _GetFrontpic: ; 510a5
 	pop hl
 	ret
 ; 510d7
+
+FossilPicPointers:
+	dw AerodactylFossilPic
+	dw KabutopsFossilPic
 
 GetFrontpicPointer: ; 510d7
 GLOBAL PicPointers, UnownPicPointers
