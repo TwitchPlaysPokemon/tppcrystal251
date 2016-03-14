@@ -83192,7 +83192,8 @@ StringOptions2:
 	db "SFX TEST", $22
 	db "        :", $22
 	db "MUSIC PLAYER", $22
-	db " ", $22
+	;db " ", $22
+	db "    (COMING SOON)", $22
 	db "NEXT", $22
 	db " ", $22
 	db "EXIT@"
@@ -83737,12 +83738,12 @@ Options_SFXTest:
 	ret
 	
 Options_MusicPlayer:
-	ld a, [hJoyPressed]
-	bit 0, a
-	jr z, .NonePressed
-	callba SaveMusic
-	callba MusicPlayer
-	callba RestoreMusic
+	;ld a, [hJoyPressed]
+	;bit 0, a
+	;jr z, .NonePressed
+	;callba SaveMusic
+	;callba MusicPlayer
+	;callba RestoreMusic
 	
 .NonePressed
 	and a
@@ -92953,8 +92954,8 @@ SampleRandomRocket:
 
 INCLUDE "engine/hostsbattletransition.asm"
 
-SECTION "Music Player", ROMX
-INCLUDE "misc/musicplayer.asm"
+;SECTION "Music Player", ROMX
+;INCLUDE "misc/musicplayer.asm"
 
 SECTION "bank76", ROMX, BANK[$76]
 
