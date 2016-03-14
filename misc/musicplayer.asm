@@ -116,13 +116,13 @@ MusicPlayer::
 	;ld de, 01
 	;call PlayMusic
 	;call WhiteBGMap
-	di
-	call DoubleSpeed
-	xor a
-	ld [rIF], a
-	ld a, $f
-	ld [rIE], a
-	ei
+	;di
+	;call DoubleSpeed
+	;xor a
+	;ld [rIF], a
+	;ld a, $f
+	;ld [rIE], a
+	;ei
 	call ClearTileMap
 	hlcoord 6, 5
 	ld de, LoadingText
@@ -150,7 +150,7 @@ MusicPlayer::
 	call ClearSprites
 
 	ld a, [rSVBK]
-	ld [hMPTmp], a
+	push af
 	ld a, 4
 	ld [rSVBK], a
 	
@@ -167,11 +167,7 @@ MusicPlayer::
 	ld [wSpecialWaveform], a
 	ld a, $ff
 	ld [wRenderedWaveform], a
-	
-	ld a, [rSVBK]
-	push af
-	ld a, 4
-	ld [rSVBK], a
+
 	xor a
 	ld hl, wMPNotes
 	ld bc, 256
@@ -285,11 +281,12 @@ MPlayerTilemap:
 .getsong ;get the current song
 	ld a, [wMapMusic]
 	jp .redraw
+	di ; we're going to use the custom vblank routine
 .loop
 	ld a, 4
 	ld [rSVBK], a
 	call UpdateVisualIntensity
-	call DelayFrame
+	call DelayFrame_MP
 	
 	call DrawChData
 	call DrawNotes
@@ -304,8 +301,6 @@ MPlayerTilemap:
 	jbutton SELECT, .select
 	jbutton START, .start
 	
-	ld a, 2
-	ld [hBGMapThird], a ; prioritize refreshing the note display
     jr .loop
 .left
     ld a, [wSongSelection]
@@ -346,12 +341,6 @@ MPlayerTilemap:
 .redraw	
     ld [wSongSelection], a
     
-    ; if this takes too long, don't let the user see
-    ; blank fields blink in
-	; disable copying the map during vblank
-	ld a, 2 ; VBlank2
-	ld [hVBlank], a
-    
 	ld a, " "
 	hlcoord 5, 2
 	ld bc, 3
@@ -367,30 +356,7 @@ MPlayerTilemap:
 	ld bc, $0103
 	;call PrintNum
 	call DrawSongInfo
-	hlcoord 16, 1
-	ld de, .daystring
-	ld a, [GBPrinter]
-	bit 2, a
-	jr nz, .nitemusic
-.drawtimestring
-	call PlaceString
 	
-	
-	ld a, 2 ; VBlank2
-	ld [hVBlank], a
-	
-	; refresh top two portions
-	xor a
-	ld [hBGMapThird], a
-	call DelayFrame
-	jp .loop
-.nitemusic
-	ld de, .nitestring
-	jr .drawtimestring
-.nitestring
-	db "Nite@"
-.daystring
-	db "    @"
 .a
 	ld a, [wSongSelection]
 	ld e, a
@@ -604,8 +570,7 @@ MPlayerTilemap:
 	ld a, $90
 	ld [hWY], a
     call ClearSprites
-    di
-    call NormalSpeed
+    ;call NormalSpeed
     xor a
     ld [rIF], a
     ld a, $f
@@ -1815,6 +1780,12 @@ NT_Right1Left1:
 	ld [de], a
 	inc de
 	endr
+	ret
+	
+DelayFrame_MP:
+; music player VBlank routine
+	; TODO
+	call Joypad
 	ret
 
 LoadingText:
