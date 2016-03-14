@@ -178,6 +178,10 @@ ELSE
 	ld a, [BattleType]
 	cp BATTLETYPE_TUTORIAL
 	jr z, .skip_ai
+	call EmptyBattleTextBox
+	call UpdateBattleHuds
+	call EmptyBattleTextBox
+	call Function309d
 	call MilitaryWaiting
 	callba ParseExternalAI
 	; jr .MilitarySkip
@@ -3093,10 +3097,6 @@ ENDC
 
 IF DEF(BEESAFREE)
 MilitaryWaiting:
-	call EmptyBattleTextBox
-	call UpdateBattleHuds
-	call EmptyBattleTextBox
-	call Function309d
 	ld a, [Options]
 	push af
 	set 4, a
