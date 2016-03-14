@@ -25076,9 +25076,6 @@ FossilPic:: ; 244e3
 	call GetSGBLayout
 	xor a
 	ld [hBGMapMode], a
-	ld a, [CurPartySpecies]
-	ld [CurSpecies], a
-	call GetBaseData
 	ld de, VTiles1
 	pop bc
 	callba GetFossilPic
@@ -25090,9 +25087,20 @@ FossilPic:: ; 244e3
 	ld c, a
 	call GetTileCoord
 	ld a, $80
-	ld [$ffad], a
-	ld bc, $0707
-	predef FillBox
+	ld de, $14
+	ld b, 7
+.loop
+	ld c, 7
+	push hl
+.loop2
+	ld [hli], a
+	inc a
+	dec c
+	jr nz, .loop2
+	pop hl
+	add hl, de
+	dec b
+	jr nz, .loop
 	call WaitBGMap
 	ret
 ; 24528
@@ -49743,7 +49751,7 @@ GetFossilPic:
 	ld h, [hl]
 	ld l, a
 	ld a, BANK(AerodactylFossilPic)
-	ld b, 6
+	ld b, 7
 	push bc
 	jr _FinishLoadingFrontpic
 
