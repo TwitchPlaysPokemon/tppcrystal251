@@ -41216,6 +41216,7 @@ Function49da4: ; 49da4
 	ret
 
 .asm_49db0
+IF !DEF(BEESAFREE)
 	ld a, [hCGB]
 	cp $1
 	ld a, $1
@@ -41226,29 +41227,11 @@ Function49da4: ; 49da4
 	cp $ff
 	call CloseSRAM
 	jr nz, .asm_49dd6
-	ld a, [StatusFlags]
-	bit 7, a
-	ld a, $1
-	jr z, .asm_49dd1
-	jr .asm_49dd1
-
-.asm_49dd1
-	jr .asm_49dd3
-
-.asm_49dd3
+ENDC
 	ld a, $1
 	ret
 
 .asm_49dd6
-	ld a, [StatusFlags]
-	bit 7, a
-	jr z, .asm_49ddf
-	jr .asm_49ddf
-
-.asm_49ddf
-	jr .asm_49de1
-
-.asm_49de1
 	ld a, $6
 	ret
 ; 49de4
