@@ -138,32 +138,8 @@ CalcMagikarpLength: ; fbbfc
 	ld e, l
 
 .done
-	; hl = de * 10
-	ld h, d
-	ld l, e
-	add hl, hl
-	add hl, hl
-	add hl, de
-	add hl, hl
-
-	; hl = hl / 254
-	ld de, -254
-	ld a, -1
-.div_254
-	inc a
-	add hl, de
-	jr c, .div_254
-
-	; d, e = hl / 12, hl % 12
-	ld d, 0
-.mod_12
-	cp 12
-	jr c, .ok
-	sub 12
-	inc d
-	jr .mod_12
-.ok
-	ld e, a
+; store the data in mm, no imperial conversion
+; Ralph's Magikarp will be 77.4cm if from vanila save
 
 	ld hl, MagikarpLength
 	ld [hl], d

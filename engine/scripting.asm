@@ -240,9 +240,10 @@ ENDC
 	dw Script_displaylocation
 	dw Script_trainerclassname
 	dw Script_name
-	dw Script_wait ;af
+	dw Script_wait ;a8
 	dw Script_unknown0xa9
 	dw Script_checkroammon
+	dw Script_checkunit
 ; 0x96e05
 
 StartScript: ; 0x96e05
@@ -3295,3 +3296,13 @@ Script_checkroammon:
 	ld [ScriptVar], a
 	ret
 
+Script_checkunit:
+	ld a, [Options2]
+	bit 3, a
+	ld a, 1
+	jr nz, .imperial
+	xor a
+.imperial
+	ld [ScriptVar], a
+	ret
+	

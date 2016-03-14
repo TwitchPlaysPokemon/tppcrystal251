@@ -469,13 +469,6 @@ MPlayerTilemap:
 	ld d, 0
 	callba PlayMusic2
 	hlcoord 16, 1
-	ld de, .daystring
-	ld a, [GBPrinter]
-	bit 2, a
-	jr z, .songEditordrawtimestring
-	ld de, .nitestring
-.songEditordrawtimestring
-	call PlaceString
 	xor a
 	ld [hBGMapThird], a
 	call DelayFrame

@@ -1073,3 +1073,9 @@ checkroammon: macro
 	db checkroammon_command
 	db \1
 	endm
+
+	enum checkunit_command
+checkunit: macro
+	db checkunit_command
+	endm
+	

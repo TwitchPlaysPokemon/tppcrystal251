@@ -82,3 +82,8 @@ current_day: macro
 	endm
 
 text_jump EQUS "TX_FAR"
+
+metricdex: macro
+	db $2f
+	dw \1
+	endm
