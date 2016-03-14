@@ -41090,9 +41090,6 @@ MainMenuText: ; 49d24
 	db "MYSTERY GIFT@"
 	db "MOBILE@"
 	db "MOBILE STUDIUM@"
-IF DEF(MUSICPLYR)
-	db "MUSIC PLAYER@"
-ENDC
 Jumptable_49d60: ; 0x49d60
 	dw MainMenu_Continue
 	dw MainMenu_NewGame
@@ -41101,10 +41098,6 @@ Jumptable_49d60: ; 0x49d60
 	dw MainMenu_Mobile
 	dw MainMenu_MobileStudium
 
-IF DEF(MUSICPLYR)
-	dw MainMenu_MusicPlayer
-
-ENDC
 ; 0x49d6c
 
 CONTINUE       EQU 0
@@ -41113,129 +41106,64 @@ OPTION         EQU 2
 MYSTERY_GIFT   EQU 3
 MOBILE         EQU 4
 MOBILE_STUDIUM EQU 5
-IF DEF(MUSICPLYR)
-MENU_MP        EQU 6
-ENDC
+
 MainMenuItems:
 NewGameMenu: ; 0x49d6c
-IF DEF(MUSICPLYR)
-	db 3
-ELSE
 	db 2
-ENDC
 	db NEW_GAME
 	db OPTION
-IF DEF(MUSICPLYR)
-	db MENU_MP
-ENDC
 	db $ff
 ContinueMenu: ; 0x49d70
-IF DEF(MUSICPLYR)
-	db 3
-ELSE
 	db 2
-ENDC
 	db CONTINUE
 	db OPTION
-IF DEF(MUSICPLYR)
-	db MENU_MP
-ENDC
 	db $ff
 MobileMysteryMenu: ; 0x49d75
-IF DEF(MUSICPLYR)
-	db 5
-ELSE
 	db 4
-ENDC
 	db CONTINUE
 	db OPTION
 	db MYSTERY_GIFT
 	db MOBILE
-IF DEF(MUSICPLYR)
-	db MENU_MP
-ENDC
 	db $ff
 MobileMenu: ; 0x49d7c
-IF DEF(MUSICPLYR)
-	db 4
-ELSE
 	db 3
-ENDC
 	db CONTINUE
 	db OPTION
 	db MOBILE
-IF DEF(MUSICPLYR)
-	db MENU_MP
-ENDC
 	db $ff
 MobileStudiumMenu: ; 0x49d82
-IF DEF(MUSICPLYR)
-	db 5
-ELSE
 	db 4
-ENDC
 	db CONTINUE
 	db OPTION
 	db MOBILE
 	db MOBILE_STUDIUM
-IF DEF(MUSICPLYR)
-	db MENU_MP
-ENDC
 	db $ff
 MysteryMobileStudiumMenu: ; 0x49d89
-IF DEF(MUSICPLYR)
-	db 6
-ELSE
 	db 5
-ENDC
 	db CONTINUE
 	db OPTION
 	db MYSTERY_GIFT
 	db MOBILE
 	db MOBILE_STUDIUM
-IF DEF(MUSICPLYR)
-	db MENU_MP
-ENDC
 	db $ff
 MysteryMenu: ; 0x49d91
-IF DEF(MUSICPLYR)
-	db 4
-ELSE
 	db 3
-ENDC
 	db CONTINUE
 	db OPTION
 	db MYSTERY_GIFT
-IF DEF(MUSICPLYR)
-	db MENU_MP
-ENDC
 	db $ff
 MysteryStudiumMenu: ; 0x49d97
-IF DEF(MUSICPLYR)
-	db 5
-ELSE
 	db 4
-ENDC
 	db CONTINUE
 	db OPTION
 	db MYSTERY_GIFT
 	db MOBILE_STUDIUM
-IF DEF(MUSICPLYR)
-	db MENU_MP
-ENDC
 	db $ff
 StudiumMenu: ; 0x49d9e
-IF DEF(MUSICPLYR)
-	db 4
-ELSE
 	db 3
-ENDC
 	db CONTINUE
 	db OPTION
 	db MOBILE_STUDIUM
-IF DEF(MUSICPLYR)
-	db MENU_MP
-ENDC
 	db $ff
 Function49da4: ; 49da4
 	nop
@@ -41452,12 +41380,6 @@ MainMenu_MysteryGift: ; 49ef5
 	ret
 ; 49efc
 
-IF DEF(MUSICPLYR)
-MainMenu_MusicPlayer:
-	callba MusicPlayer
-	ret
-
-ENDC
 MainMenu_Mobile: ; 49efc
 	call WhiteBGMap
 	ld a, MUSIC_MOBILE_ADAPTER_MENU
@@ -83262,8 +83184,7 @@ StringOptions2:
 	db "SFX TEST", $22
 	db "        :", $22
 	db "MUSIC PLAYER", $22
-	;db " ", $22
-	db "    (COMING SOON)", $22
+	db " ", $22
 	db "NEXT", $22
 	db " ", $22
 	db "EXIT@"
@@ -83808,12 +83729,12 @@ Options_SFXTest:
 	ret
 	
 Options_MusicPlayer:
-	;ld a, [hJoyPressed]
-	;bit 0, a
-	;jr z, .NonePressed
-	;callba SaveMusic
-	;callba MusicPlayer
-	;callba RestoreMusic
+	ld a, [hJoyPressed]
+	bit 0, a
+	jr z, .NonePressed
+	callba SaveMusic
+	callba MusicPlayer
+	callba RestoreMusic
 	
 .NonePressed
 	and a
@@ -93024,11 +92945,9 @@ SampleRandomRocket:
 
 INCLUDE "engine/hostsbattletransition.asm"
 
-IF DEF(MUSICPLYR)
 SECTION "Music Player", ROMX
 INCLUDE "misc/musicplayer.asm"
 
-ENDC
 SECTION "bank76", ROMX, BANK[$76]
 
 SECTION "bank77", ROMX, BANK[$77]
