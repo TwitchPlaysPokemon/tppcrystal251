@@ -738,6 +738,8 @@ BabaPic:             INCBIN "gfx/trainers/kris_orig.7x7.2bpp.lz" ; Uncomment thi
 SECTION "SubstitutePics", ROMX
 SubstituteFrontPic:: INCBIN "gfx/battle/substitute-front.2bpp.lz"
 SubstituteBackPic::  INCBIN "gfx/battle/substitute-back.2bpp.lz"
+AerodactylFossilPic:: INCBIN "gfx/pics/fossils/FossilA.2bpp.lz"
+KabutopsFossilPic:: INCBIN "gfx/pics/fossils/FossilK.2bpp.lz"
 
 ; ; Seems to be an accidental copy of the previous bank
 

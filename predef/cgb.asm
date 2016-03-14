@@ -65,6 +65,7 @@ Table8d7a: ; 8d7a
 	dw Function9578
 	dw Function9591
 	dw Function9542
+	dw CGB_FossilPicLayout
 ; 8db8
 
 Function8db8: ; 8db8
@@ -1028,6 +1029,7 @@ Function9499: ; 9499
 	ld a, [CurPartySpecies]
 	call Function97f9
 	call Function9643
+_FinishPokepicLayout:
 	ld de, $0014
 	ld hl, AttrMap
 	ld a, [wcf82]
@@ -1063,6 +1065,16 @@ Function9499: ; 9499
 	ld [hCGBPalUpdate], a
 	ret
 ; 94d0
+
+CGB_FossilPicLayout:
+	call Function91c8
+	ld hl, FossilPal
+	ld de, $d038
+	call Function9643
+	jr _FinishPokepicLayout
+
+FossilPal:
+INCLUDE "gfx/pics/fossils/normal.pal"
 
 Function94d0: ; 94d0
 	ld hl, PalPacket_9ba6 + 1
