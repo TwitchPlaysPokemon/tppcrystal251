@@ -2533,7 +2533,7 @@ TPPCreditsList:
 .programmer	db "Programmers@"
 .sprite		db "Sprite Artists@"
 .music		db "Music@"
-.gameplay	db "Gameplay & Map@"
+.gameplay	db "Gameplay & Maps@"
 .ai			db "AI Design@"
 .testers	db "Testers@"
 .misc		db "Misc.@"

@@ -172,38 +172,35 @@ ElmText_MtSilverRuinsFinalBattleAfter_Part1:
 	para "When I first met"
 	line "you in NEW BARK,"
 
-	para "I had no idea you"
-	line "were on a quest to"
+	para "I knew you had"
+	line "wanted to become"
+	cont "the best trainer<...>"
 
-	para "catch every #-"
-	line "MON in the region"
-
-	para "and become the"
-	line "very best, like no"
-	cont "one ever was."
-
-	para "To catch them was"
-	line "your real quest,"
-	cont "yes<...>"
+	para "To catch all"
+	line "species of #MON"
+	cont "was your quest"
+	cont "too - was it not?"
 
 	para "But to train them<...>"
-	line "That was your"
-
-	para "cause all along,"
-	line "wasn't it?"
+	
+	para "That was your"
+	line "cause all along."
 	done
 ElmText_MtSilverRuinsFinalBattleAfter_Part2:
-	text "You traveled a-"
-	line "cross the land,"
+	text "You've traveled"
+	line "across regions,"
 
-	para "searching far and"
-	line "wide."
+	para "searching - both"
+	line "far and wide."
 
 	para "And now, having"
 	line "battled with you,"
 
 	para "I see the power"
-	line "that's inside."
+	line "that you hold"
+	cont "inside."
+	
+	;POKEMON! Gotta Catch em-- oh wait
 
 	para "<PLAYER>!"
 
