@@ -33,7 +33,8 @@ RedScript_0x18c603: ; 0x18c603
 	waitbutton
 	closetext
 	special HealParty
-	playsound SFX_ENTER_DOOR
+	playsound SFX_STRENGTH
+	earthquake 80
 	changeblock 9, 7, $42
 	changeblock 10, 7, $43
 	reloadmappart
@@ -121,6 +122,9 @@ SilverCave3_PlayerStepsRightThen3Up:
 	step_right
 	step_up
 	step_up
+	step_sleep 16
+	half_step_down
+	step_sleep 48
 	step_up
 	step_end
 
@@ -130,6 +134,9 @@ SilverCave3_PlayerTakes3StepsUp:
 	step_up
 SilverCave3_PlayerTakes2StepsUp
 	step_up
+	step_sleep 16
+	half_step_down
+	step_sleep 48
 	step_up
 	step_end
 
