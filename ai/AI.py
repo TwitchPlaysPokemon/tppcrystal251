@@ -992,6 +992,8 @@ class AI(object):
             if ((self.MonData[traincurrent]['type'][1] in ('grass')) or (self.MonData[traincurrent]['type'][2] in ('grass'))) and self.MonData[mycurrent]['moves'][moveused]['name'] in ('spore', 'poisonpowder', 'sleeppowder', 'stunspore'):
                 self.MonData[traincurrent]['status'] = 'none'
                 self.Damage[mycurrent][traincurrent][moveused]['damage'] = -500
+            if ((self.MonData[traincurrent]['type'][1] in ('poison', 'steel')) and (self.MonData[traincurrent]['type'][2] in ('poison', 'steel'))) and self.MonData[mycurrent]['moves'][moveused]['name'] == 'toxic':
+                self.Damage[mycurrent][traincurrent][moveused]['damage'] = -500
             
             #lower enemy stats
             misted = ('mist' in self.MonData['playerpokemon']['substatus'] or (isinstance(self.MonData['playerpokemon']['substatus'], dict) and 'mist' in self.MonData['playerpokemon']['substatus'].values()))
