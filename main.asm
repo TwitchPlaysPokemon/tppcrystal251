@@ -82936,6 +82936,10 @@ Functione36f9: ; e36f9 (38:76f9)
 	and B_BUTTON | SELECT
 	cp B_BUTTON | SELECT
 	jr nz, .joy_loop
+	ld a, [Options]
+	push af
+	or $7 ; SUPER SLOW
+	ld [Options], a
 	ld hl, .AreYouSure
 	call Function1d4f
 	ld hl, .NoYesBox
@@ -82952,6 +82956,8 @@ Functione36f9: ; e36f9 (38:76f9)
 	jr c, .refused
 	callba DeleteBox
 .refused
+	pop af
+	ld [Options], a
 	call Function1c07
 	ret
 
