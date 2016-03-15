@@ -806,6 +806,10 @@ AlreadyAsleepText: ; 0x811c1
 	line "already asleep!"
 	prompt
 ; 0x811d5
+UserAlreadyAsleepText:
+	text $5a, "'s"
+	line "already asleep!"
+	prompt
 
 WasPoisonedText: ; 0x811d5
 	text $59

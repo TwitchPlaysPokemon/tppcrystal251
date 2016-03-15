@@ -37404,19 +37404,52 @@ Function44654:: ; 44654
 	push de
 	callba Function50000
 	ld a, $2
-	jr c, .asm_446c6
+	jp c, .pop_load
 	ld a, [CurPartyMon]
-	ld hl, PartyMon1Item
+	ld hl, PartyMon1Species
 	ld bc, PartyMon2 - PartyMon1
 	call AddNTimes
+	ld a, [hl]
+	cp NOCTOWL ; Kenya's species
+	jp nz, .not_kenya
+	ld c, l
+	ld b, h
+	ld hl, PartyMon1ID - PartyMon1
+	add hl, bc
+	ld a, [hli]
+	cp 01001 / $100
+	jp nz, .not_kenya
+	ld a, [hl]
+	cp 01001 % $100
+	jp nz, .not_kenya
+	push bc
+	ld a, [CurPartyMon]
+	ld hl, PartyMonOT
+	ld bc, NAME_LENGTH
+	call AddNTimes
+	pop bc
+	ld de, .OTName
+	call .CompareStrings
+	jr nz, .not_kenya
+	push bc
+	ld a, [CurPartyMon]
+	ld hl, PartyMonNicknames
+	ld bc, PKMN_NAME_LENGTH
+	call AddNTimes
+	pop bc
+	ld de, .Nickname
+	call .CompareStrings
+	jr nz, .not_kenya
+	ld hl, PartyMon1Item - PartyMon1
+	add hl, bc
 	ld d, [hl]
 	callba ItemIsMail
 	ld a, $3
-	jr nc, .asm_446c6
+	jr nc, .pop_load
 	ld a, $0
 	call GetSRAMBank
 	ld a, [CurPartyMon]
-	ld hl, $a600
+	ld hl, sPartyMail
 	ld bc, $002f
 	call AddNTimes
 	ld d, h
@@ -37425,41 +37458,57 @@ Function44654:: ; 44654
 	pop bc
 	ld a, $20
 	ld [wd265], a
-.asm_44691
+.loop
 	ld a, [de]
 	ld c, a
 	ld a, b
 	call GetFarByte
-	cp $50
-	jr z, .asm_446ab
+	cp "@"
+	jr z, .done
 	cp c
 	ld a, $0
-	jr nz, .asm_446c1
+	jr nz, .close_sram_load
 	inc hl
 	inc de
 	ld a, [wd265]
 	dec a
 	ld [wd265], a
-	jr nz, .asm_44691
-.asm_446ab
+	jr nz, .loop
+.done
 	callba Functione538
 	ld a, $4
-	jr c, .asm_446c1
+	jr c, .close_sram_load
 	xor a
 	ld [wd10b], a
 	callba Functione039
 	ld a, $1
-.asm_446c1
+.close_sram_load
 	call CloseSRAM
-	jr .asm_446c8
+	jr .load
 
-.asm_446c6
+.not_kenya
+	ld a, $5
+.pop_load
 	pop de
 	pop bc
-.asm_446c8
+.load
 	ld [ScriptVar], a
 	ret
 ; 446cc
+.CompareStrings
+	ld a, [de]
+	cp [hl]
+	ret nz
+	cp "@"
+	ret z
+	inc de
+	inc hl
+	jr .CompareStrings
+
+.OTName
+	db "RANDY@"
+.Nickname
+	db "KENYA@"
 
 Function446cc:: ; 446cc
 	ld a, [PartyCount]

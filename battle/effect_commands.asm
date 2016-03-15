@@ -9213,6 +9213,16 @@ BattleCommand2c: ; 3713e
 	cp REST
 	jr nz, .asm_37199
 	push hl
+	push bc
+	ld bc, EnemyMonStatus - EnemyMonMaxHP
+	add hl, bc
+	ld a, [hl]
+	pop bc
+	pop hl
+	and $7
+	jr nz, .already_asleep
+	xor a
+	push hl
 	push de
 	push af
 	call BattleCommandaa
@@ -9264,7 +9274,10 @@ BattleCommand2c: ; 3713e
 	ld hl, HPIsFullText
 	jp StdBattleTextBox
 ; 371cd
-
+.already_asleep
+	call AnimateFailedMove
+	ld hl, UserAlreadyAsleepText
+	jp StdBattleTextBox
 
 BattleCommand2d: ; 371cd
 ; transform
