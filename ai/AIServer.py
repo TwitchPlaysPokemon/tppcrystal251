@@ -31,17 +31,21 @@ ai_result = "move1"
 Artificial = AI.AI()
 LastActions = []
 
-slack_oauth = "xoxb-22420813811-sAexq13Fu7xu7OF3f7uRbiLe"
+slack_oauth = "" #insert slack oauth here
 
 #global previous_execption variable to cut down on spam
 previous_posted_message = ""
 
 def post_slack_errormsg(battle_state, traceback_last):
     #post the AI exception to slack
+    #To use, generate a slack oauth and paste it into the slack_oauth variable
     global previous_posted_message
+
+    if slack_oauth == "":
+        return
     
     #don't post the same traceback twice; it'll get spammy
-
+    #currently disabled since errors have their own channel
     #if traceback_last == previous_posted_message:
     #    return
     previous_posted_message = traceback_last
