@@ -1,4 +1,4 @@
-# TPP Crystal 251 AI v1.4 by Beesafree
+# TPP Crystal 251 AI v1.41 by Beesafree
 
 from __future__ import division
 import math
@@ -992,7 +992,7 @@ class AI(object):
             if ((self.MonData[traincurrent]['type'][1] in ('grass')) or (self.MonData[traincurrent]['type'][2] in ('grass'))) and self.MonData[mycurrent]['moves'][moveused]['name'] in ('spore', 'poisonpowder', 'sleeppowder', 'stunspore'):
                 self.MonData[traincurrent]['status'] = 'none'
                 self.Damage[mycurrent][traincurrent][moveused]['damage'] = -500
-            if ((self.MonData[traincurrent]['type'][1] in ('poison', 'steel')) and (self.MonData[traincurrent]['type'][2] in ('poison', 'steel'))) and self.MonData[mycurrent]['moves'][moveused]['name'] == 'toxic':
+            if (((self.MonData[traincurrent]['type'][1] in ('poison', 'steel')) and (self.MonData[traincurrent]['type'][2] in ('poison', 'steel'))) or self.MonData[traincurrent]['status'] != 'none') and self.MonData[mycurrent]['moves'][moveused]['name'] == 'toxic':
                 self.Damage[mycurrent][traincurrent][moveused]['damage'] = -500
             
             #lower enemy stats
@@ -1789,7 +1789,8 @@ class AI(object):
                             statTotal = sum([int(self.jsonlist['battleState']['playerpokemon']['stat levels'][stat]) for stat in self.statNames])
                             if statTotal > 0:
                                 tempx = self.ForcedSwitch(traincurrent)
-                                return tempx
+                                if tempx != 20:
+                                    return tempx
                         
                 
         #if we have protect and the enemy has a mon inside a two-turn move, protect yourself
