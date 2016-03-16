@@ -27661,21 +27661,21 @@ Unknown_254c9: ; 254c9
 	dw EVENT_MORTY_REMATCH
 	db $0c, $20, $24, $20 | $80
 	db $0c, $20, $24, $20 | $80
-	; Mineralbadge
-	db $80, $58
-	dw EVENT_JASMINE_REMATCH
-	db $10, $20, $24, $20 | $80
-	db $10, $20, $24, $20 | $80
-	; Stormbadge
-	db $80, $38
-	dw EVENT_CHUCK_REMATCH
-	db $14, $20, $24, $20 | $80
-	db $14, $20, $24, $20 | $80
 	; Glacierbadge
 	db $80, $18
 	dw EVENT_PRYCE_REMATCH
 	db $18, $20, $24, $20 | $80
 	db $18, $20, $24, $20 | $80
+	; Stormbadge
+	db $80, $38
+	dw EVENT_CHUCK_REMATCH
+	db $10, $20, $24, $20 | $80
+	db $10, $20, $24, $20 | $80
+	; Mineralbadge
+	db $80, $58
+	dw EVENT_JASMINE_REMATCH
+	db $14, $20, $24, $20 | $80
+	db $14, $20, $24, $20 | $80
 	; Risingbadge
 	; X-flips on alternate cycles.
 	db $80, $78
