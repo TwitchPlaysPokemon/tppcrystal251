@@ -1878,7 +1878,8 @@ HandleWeather: ; 3cb9e
 	ld de, ANIM_IN_SANDSTORM
 	call Function3ee17
 	call SwitchTurnCore
-	call GetEighthMaxHP
+	call GetSixteenthMaxHP
+	; call GetEighthMaxHP
 	call Function3cc3f
 
 	ld hl, SandstormHitsText
