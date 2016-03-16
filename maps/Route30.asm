@@ -365,8 +365,9 @@ YoungsterJoey1SeenText: ; 0x1a1849
 	done
 ; 0x1a18a2
 
+;we should modify this with rematches
 YoungsterJoey1BeatenText: ; 0x1a18a2
-	text "Ack! How could my!"
+	text "Ack! How could my"
 	line "RATTATA lose?!"
 	done
 ; 0x1a18c2
