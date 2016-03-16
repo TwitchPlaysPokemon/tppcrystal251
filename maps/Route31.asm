@@ -430,7 +430,7 @@ UnknownText_0x1a5896: ; 0x1a5896
 
 	para "It's nice to have"
 	line "others do the work"
-	cont "for you"
+	cont "for you."
 	done
 ; 0x1a5921
 
