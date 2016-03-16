@@ -5,8 +5,6 @@ Music_VsWCS:
 
 Music_VsWCS_Ch1:
 ; Pat 0 Row 0
-	tempo $69
-	volume $77
 	dutycycle $2
 	notetype $c, $8c
 	octave 2
@@ -324,6 +322,8 @@ Music_VsWCS_Ch1_L:
 
 Music_VsWCS_Ch2:
 ; Pat 0 Row 0
+	tempo $69
+	volume $77
 	dutycycle $2
 	notetype $c, $8c
 	octave 2
