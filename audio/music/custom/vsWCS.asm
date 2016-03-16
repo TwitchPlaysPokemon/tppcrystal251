@@ -1,6 +1,6 @@
 Music_VsWCS:
-	dbw $80, Music_VsWCS_Ch1
-	dbw $01, Music_VsWCS_Ch2
+	dbw $80, Music_VsWCS_Ch2
+	dbw $01, Music_VsWCS_Ch1
 	dbw $02, Music_VsWCS_Ch3
 
 Music_VsWCS_Ch1:
