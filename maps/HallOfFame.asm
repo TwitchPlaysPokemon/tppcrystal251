@@ -29,9 +29,6 @@ UnknownScript_0x181454: ; 0x181454
 	writetext UnknownText_0x1814a6
 	waitbutton
 	closetext
-	; checkevent EVENT_BEAT_OAK
-	; iftrue ElmBattleScript
-; ReturnAfterElmBattle:
 	spriteface $2, $1
 	applymovement $0, MovementData_0x1814a4
 	dotrigger $1
@@ -49,6 +46,7 @@ UnknownScript_0x181454: ; 0x181454
 	setevent EVENT_OLIVINE_PORT_NO_SERVICE_CROWD
 	clearevent EVENT_OLIVINE_PORT_IN_SERVICE_CROWD
 	domaptrigger GROUP_SPROUT_TOWER_3F, MAP_SPROUT_TOWER_3F, $1
+	domaptrigger GROUP_SILVER_CAVE_OUTSIDE, MAP_SILVER_CAVE_OUTSIDE, $0
 	special HealParty
 	checkevent EVENT_GOT_SS_TICKET_FROM_ELM
 	iftrue UnknownScript_0x181497
@@ -57,35 +55,6 @@ UnknownScript_0x181497: ; 0x181497
 	halloffame
 	end
 ; 0x181499
-
-; ElmBattleScript:
-	; showemote $0, $2, 15
-	; pause 15
-	; spriteface $0, $0
-	; spriteface $2, $0
-	; appear $3
-	; applymovement $3, MovementData_ElmWalksUp
-	; loadfont
-	; writetext ElmText1
-	; waitbutton
-	; closetext
-	; winlosstext ElmText2, $0000
-	; checkevent EVENT_GOT_CHIKORITA_FROM_ELM
-	; iftrue ElmFightsWithFeraligatr
-	; checkevent EVENT_GOT_CYNDAQUIL_FROM_ELM
-	; iftrue ElmFightsWithMeganium
-	; loadtrainer PROF_ELM, ELM_2
-	; jump StartElmBattle
-; ElmFightsWithFeraligatr:
-	; loadtrainer PROF_ELM, ELM_3
-	; jump StartElmBattle
-; ElmFightsWithMeganium:
-	; loadtrainer PROF_ELM, ELM_1
-; StartElmBattle:
-	; startbattle
-	; returnafterbattle
-	; setevent EVENT_BEAT_ELM
-	; jump ReturnAfterElmBattle
 
 MovementData_0x181499: ; 0x181499
 	step_up
@@ -100,12 +69,6 @@ MovementData_0x181499: ; 0x181499
 	turn_head_left
 	step_end
 ; 0x1814a4
-
-; MovementData_ElmWalksUp:
-	; step_up
-	; step_up
-	; step_up
-	; step_end
 
 MovementData_0x1814a4: ; 0x1814a4
 	slow_step_up
