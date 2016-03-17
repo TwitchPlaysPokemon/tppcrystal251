@@ -1,3 +1,4 @@
+IF !DEF(BEESAFREE)
 AI_Basic: ; 38591
 ; Don't do anything redundant:
 ;  -Using status-only moves if the player can't be statused
@@ -2892,160 +2893,6 @@ AI_Smart_Thunder: ; 39225
 	ret
 ; 39233
 
-
-AICompareSpeed: ; 39233
-; Return carry if enemy is faster than player.
-
-	push bc
-	ld a, [EnemyMonSpeed + 1]
-	ld b, a
-	ld a, [BattleMonSpeed + 1]
-	cp b
-	ld a, [EnemyMonSpeed]
-	ld b, a
-	ld a, [BattleMonSpeed]
-	sbc b
-	pop bc
-	ret
-; 39246
-
-
-AICheckPlayerMaxHP: ; 39246
-	push hl
-	push de
-	push bc
-	ld de, BattleMonHP
-	ld hl, BattleMonMaxHP
-	jr AICheckMaxHP
-; 39251
-
-
-AICheckEnemyMaxHP: ; 39251
-	push hl
-	push de
-	push bc
-	ld de, EnemyMonHP
-	ld hl, EnemyMonMaxHP
-	; fallthrough
-; 3925a
-
-
-AICheckMaxHP: ; 3925a
-; Return carry if hp at de matches max hp at hl.
-
-	ld a, [de]
-	inc de
-	cp [hl]
-	jr nz, .asm_39269
-
-	inc hl
-	ld a, [de]
-	cp [hl]
-	jr nz, .asm_39269
-
-	pop bc
-	pop de
-	pop hl
-	scf
-	ret
-
-.asm_39269
-	pop bc
-	pop de
-	pop hl
-	and a
-	ret
-; 3926e
-
-
-AICheckPlayerHalfHP: ; 3926e
-	push hl
-	ld hl, BattleMonHP
-	ld b, [hl]
-	inc hl
-	ld c, [hl]
-	sla c
-	rl b
-	inc hl
-	inc hl
-	ld a, [hld]
-	cp c
-	ld a, [hl]
-	sbc b
-	pop hl
-	ret
-; 39281
-
-
-AICheckEnemyHalfHP: ; 39281
-	push hl
-	push de
-	push bc
-	ld hl, EnemyMonHP
-	ld b, [hl]
-	inc hl
-	ld c, [hl]
-	sla c
-	rl b
-	inc hl
-	inc hl
-	ld a, [hld]
-	cp c
-	ld a, [hl]
-	sbc b
-	pop bc
-	pop de
-	pop hl
-	ret
-; 39298
-
-
-AICheckEnemyQuarterHP: ; 39298
-	push hl
-	push de
-	push bc
-	ld hl, EnemyMonHP
-	ld b, [hl]
-	inc hl
-	ld c, [hl]
-	sla c
-	rl b
-	sla c
-	rl b
-	inc hl
-	inc hl
-	ld a, [hld]
-	cp c
-	ld a, [hl]
-	sbc b
-	pop bc
-	pop de
-	pop hl
-	ret
-; 392b3
-
-
-AICheckPlayerQuarterHP: ; 392b3
-	push hl
-	ld hl, BattleMonHP
-	ld b, [hl]
-	inc hl
-	ld c, [hl]
-	sla c
-	rl b
-	sla c
-	rl b
-	inc hl
-	inc hl
-	ld a, [hld]
-	cp c
-	ld a, [hl]
-	sbc b
-	pop hl
-	ret
-; 392ca
-
-
 AIHasMoveEffect: ; 392ca
 ; Return carry if the enemy has move b.
 
@@ -3609,4 +3456,157 @@ AI_50_50: ; 39527
 	ret
 ; 3952d
 
+ENDC
+
+AICompareSpeed: ; 39233
+; Return carry if enemy is faster than player.
+
+	push bc
+	ld a, [EnemyMonSpeed + 1]
+	ld b, a
+	ld a, [BattleMonSpeed + 1]
+	cp b
+	ld a, [EnemyMonSpeed]
+	ld b, a
+	ld a, [BattleMonSpeed]
+	sbc b
+	pop bc
+	ret
+; 39246
+
+
+AICheckPlayerMaxHP: ; 39246
+	push hl
+	push de
+	push bc
+	ld de, BattleMonHP
+	ld hl, BattleMonMaxHP
+	jr AICheckMaxHP
+; 39251
+
+
+AICheckEnemyMaxHP: ; 39251
+	push hl
+	push de
+	push bc
+	ld de, EnemyMonHP
+	ld hl, EnemyMonMaxHP
+	; fallthrough
+; 3925a
+
+
+AICheckMaxHP: ; 3925a
+; Return carry if hp at de matches max hp at hl.
+
+	ld a, [de]
+	inc de
+	cp [hl]
+	jr nz, .asm_39269
+
+	inc hl
+	ld a, [de]
+	cp [hl]
+	jr nz, .asm_39269
+
+	pop bc
+	pop de
+	pop hl
+	scf
+	ret
+
+.asm_39269
+	pop bc
+	pop de
+	pop hl
+	and a
+	ret
+; 3926e
+
+
+AICheckPlayerHalfHP: ; 3926e
+	push hl
+	ld hl, BattleMonHP
+	ld b, [hl]
+	inc hl
+	ld c, [hl]
+	sla c
+	rl b
+	inc hl
+	inc hl
+	ld a, [hld]
+	cp c
+	ld a, [hl]
+	sbc b
+	pop hl
+	ret
+; 39281
+
+
+AICheckEnemyHalfHP: ; 39281
+	push hl
+	push de
+	push bc
+	ld hl, EnemyMonHP
+	ld b, [hl]
+	inc hl
+	ld c, [hl]
+	sla c
+	rl b
+	inc hl
+	inc hl
+	ld a, [hld]
+	cp c
+	ld a, [hl]
+	sbc b
+	pop bc
+	pop de
+	pop hl
+	ret
+; 39298
+
+
+AICheckEnemyQuarterHP: ; 39298
+	push hl
+	push de
+	push bc
+	ld hl, EnemyMonHP
+	ld b, [hl]
+	inc hl
+	ld c, [hl]
+	sla c
+	rl b
+	sla c
+	rl b
+	inc hl
+	inc hl
+	ld a, [hld]
+	cp c
+	ld a, [hl]
+	sbc b
+	pop bc
+	pop de
+	pop hl
+	ret
+; 392b3
+
+
+AICheckPlayerQuarterHP: ; 392b3
+	push hl
+	ld hl, BattleMonHP
+	ld b, [hl]
+	inc hl
+	ld c, [hl]
+	sla c
+	rl b
+	sla c
+	rl b
+	inc hl
+	inc hl
+	ld a, [hld]
+	cp c
+	ld a, [hl]
+	sbc b
+	pop hl
+	ret
+; 392ca
 
