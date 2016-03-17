@@ -3,7 +3,7 @@
 dofile("readstates.lua")
 dofile("battle_ram.lua")
 dofile("constants.lua")
-dofile("fastclock.lua")
+
 package.path = package.path..';./libs/lua/?.lua'
 package.cpath = package.cpath..';./libs/?.dll'
 local http = require("socket.http")
@@ -31,24 +31,24 @@ BEESAFREE_SND_ASKITEM	   = 0x02
 BEESAFREE_RES_RESET		 = 0x00
 player_next_move = ""
 
-military_mode = 1 -- 0 for off, 1 for on
+military_mode = 0 -- setting this to 1 is useless, it was for the Twitch build, please do not reenable this.
 lastBattleState = 0
 ignore_serial = 0 -- please set this to 0 for normal use.
 lua_wait = 0
 bank_wait = 0
 debug_mode = 0 --print EVERYTHING aside from basic info if 1, none if 0
 
--- function refreshinterval(seconds)
-	-- -- Revo's function (liar, it's Timmy's function)
-	-- local lastupdate = os.time()
-	-- local now
-	-- repeat
-		-- now = os.time()
-		-- emu.frameadvance()
-	-- until now - lastupdate >= seconds
-	-- lastupdate = now
-	-- return true
--- end
+function refreshinterval(seconds)
+	--Revo's function (liar, it's Timmy's function)
+	local lastupdate = os.time()
+	local now
+	repeat
+		now = os.time()
+		emu.frameadvance()
+	until now - lastupdate >= seconds
+	lastupdate = now
+	return true
+end
 
 function GetUsableMoves(MovesPointer, PPPointer, DisabledMovePointer)
 	disabledMove = memory.readbyte(DisabledMovePointer)
@@ -77,40 +77,40 @@ function UseRandomMove(MovesPointer, PPPointer, DisabledMovePointer)
 	end
 end
 
-function ReceiveButtonInput_NoMil()
-	b, c, h = http.request("http://127.0.0.1:5000/gbmode_inputs")
+--function ReceiveButtonInput_NoMil()
+	-- b, c, h = http.request("http://127.0.0.1:5000/gbmode_inputs")
 	-- vba.print(b, c, h)
-	if (c == 200) and (b ~= "") then
-		local json = JSON:decode(b)
+	-- if (c == 200) and (b ~= "") then
+		-- local json = JSON:decode(b)
 		-- vba.print(json)
-		if json["military_toggle"] ~= nil then
-			military_mode = 1 - military_mode
-			json["military_toggle"] = nil
-		end
-		joypad.set(1, json)
-	end
-	emu.frameadvance()
-end
+		-- if json["military_toggle"] ~= nil then
+			-- military_mode = 1 - military_mode
+			-- json["military_toggle"] = nil
+		-- end
+		-- joypad.set(1, json)
+	-- end
+	-- emu.frameadvance()
+-- end
 
-function ReceiveButtonInput()
-	b, c, h = http.request("http://127.0.0.1:5000/gbmode_inputs")
+-- function ReceiveButtonInput()
+	-- b, c, h = http.request("http://127.0.0.1:5000/gbmode_inputs")
 	-- vba.print(b, c, h)
-	if (c == 200) and (b ~= "") then
-		local json = JSON:decode(b)
+	-- if (c == 200) and (b ~= "") then
+		-- local json = JSON:decode(b)
 		-- vba.print(json)
-		if json["military_toggle"] ~= nil then
-			military_mode = 1 - military_mode
-			json["military_toggle"] = nil
-		end
-		player_next_move = json["battle_command"]
-		joypad.set(1, json)
-	end
-	emu.frameadvance()
-end
+		-- if json["military_toggle"] ~= nil then
+			-- military_mode = 1 - military_mode
+			-- json["military_toggle"] = nil
+		-- end
+		-- player_next_move = json["battle_command"]
+		-- joypad.set(1, json)
+	-- end
+	-- emu.frameadvance()
+-- end
 
 function emu.frameadvances(nframes)
 	for frame = 1, nframes do
-		ReceiveButtonInput()
+		--ReceiveButtonInput() no twitch plays plz
 	end
 end
 
@@ -135,41 +135,41 @@ function transferStateToAIAndWait(raw_json)
 	return next_move
 end
 
-function get_next_player_command()
-	player_next_move = ""
-	repeat
-		ReceiveButtonInput()
-	until (player_next_move ~= nil and player_next_move ~= "")
+-- function get_next_player_command()
+	-- player_next_move = ""
+	-- repeat
+		-- ReceiveButtonInput()
+	-- until (player_next_move ~= nil and player_next_move ~= "")
 	-- vba.print("Player response:", player_next_move)
-    return player_next_move
-end
+    -- return player_next_move
+-- end
 
-function requestBothAIAndMilitary(raw_json)
-	player_next_move = ""
-	http.request("http://127.0.0.1:5001/ai_invoke", JSON:encode(raw_json))
-	next_move = nil
-	player_next_move = nil
-	repeat
+-- function requestBothAIAndMilitary(raw_json)
+	-- player_next_move = ""
+	-- http.request("http://127.0.0.1:5001/ai_invoke", JSON:encode(raw_json))
+	-- next_move = nil
+	-- player_next_move = nil
+	-- repeat
 		-- If we already got the move, don't try to request it again.
-		if ((next_move == nil) or (next_move == "")) then
-			next_move = http.request("http://127.0.0.1:5001/ai_retrieve")
-		end
-		if ((player_next_move) == nil or (player_next_move == "") or (next_move == nil) or (next_move == "")) then
-			for frame = 1, 15 do
-				if ((player_next_move == nil) or (player_next_move == "")) then
-					ReceiveButtonInput()
-				else
-					ReceiveButtonInput_NoMil()
-				end
-			end
-		end
-	until ((player_next_move ~= nil) and (player_next_move ~= "") and (next_move ~= nil) and (next_move ~= ""))
-	if debug_mode == 1 then
-		vba.print("Enemy response:", next_move)
-		vba.print("Player response:", player_next_move)
-	end
-	return next_move, player_next_move
-end
+		-- if ((next_move == nil) or (next_move == "")) then
+			-- next_move = http.request("http://127.0.0.1:5001/ai_retrieve")
+		-- end
+		-- if ((player_next_move) == nil or (player_next_move == "") or (next_move == nil) or (next_move == "")) then
+			-- for frame = 1, 15 do
+				-- if ((player_next_move == nil) or (player_next_move == "")) then
+					-- ReceiveButtonInput()
+				-- else
+					-- ReceiveButtonInput_NoMil()
+				-- end
+			-- end
+		-- end
+	-- until ((player_next_move ~= nil) and (player_next_move ~= "") and (next_move ~= nil) and (next_move ~= ""))
+	-- if debug_mode == 1 then
+		-- vba.print("Enemy response:", next_move)
+		-- vba.print("Player response:", player_next_move)
+	-- end
+	-- return next_move, player_next_move
+-- end
 
 function GetCommandTables()
 	-- Ask whether we care about military mode
@@ -389,3 +389,56 @@ function command_to_table(playercommand)
 	end
 	return table_to_return
 end
+
+repeat
+if (math.random(500)) == 1 then
+    vba.print("Waiting for baba") --easter egg
+end
+if memory.readbyte(0xFF70) == 1 then
+		bank_wait = 0
+		-- Update the overlay - no, don't actually, the run's over
+		--OverlayFrameDelay = OverlayFrameDelay + 1
+		--if OverlayFrameDelay % 60 == 0 then
+			--json = read_new_playerstate()
+			-- vba.print("JSON:", json)
+			--update_overlay(json)
+		--end
+
+		-- Military mode switch (incomplete)
+		value = memory.readbyte(0xD849)
+		is_military_on = (value % 2 == 1) -- just in case you need to know the current status
+		-- here we can update global variable military_mode
+		newvalue = bit.band(value, 254) + military_mode
+		memory.writebyte(0xD849, newvalue)
+
+		-- Military and AI command polling (player state is not updated during these frame delays)
+		if memory.readbyte(rLSC) == BEESAFREE_LSC_TRANSFERRING then
+			lua_wait = 0
+            vba.print("Waiting on AI...")
+			airesponse, playerresponse = GetCommandTables()
+            if debug_mode == 1 then
+                vba.print("AI response received, response is:", airesponse)
+            else
+                vba.print("AI response received")
+            end
+			byte1, byte2, byte3 = tablestobytes(airesponse, playerresponse)
+			if debug_mode == 1 then
+				vba.print("[DEBUG] BYTES:", byte1, byte2, byte3)
+			end
+			memory.writebyte(0xDFF8, byte1)
+			memory.writebyte(0xDFF9, byte2)
+			memory.writebyte(0xDFFA, byte3)
+			memory.writebyte(rLSC, BEESAFREE_LSC_COMPLETED)
+		else
+			if lua_wait == 0 then
+				vba.print("Waiting for LUA serial...")
+				lua_wait = 1
+			end
+		end
+    else
+        if bank_wait == 0 then
+            vba.print("Waiting for valid bank")
+            bank_wait = 1
+        end
+	end
+until not refreshinterval(0.100)

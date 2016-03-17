@@ -11,6 +11,8 @@ import traceback
 import AI
 from werkzeug.exceptions import BadRequest
 
+show_move = 0 # set to 1 if you're a dirty rotten cheater
+
 app = Flask(__name__)
 PORT = 5001
 # setup a logger that logs to stdout and file
@@ -99,7 +101,10 @@ def calculate_next_move(battle_state):
         # print(traceback_last)
         post_slack_errormsg(battle_state, traceback_last)
 
-    logger.info("next move: %s" % next_move)
+    if show_move == 1:
+        logger.info("next move: %s" % next_move)
+    else:
+        logger.info("AI move received")
     LastActions.append(next_move)
     
     # set global ai result variable. do this always last to avoid race-conditions.
