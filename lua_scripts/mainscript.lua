@@ -437,7 +437,7 @@ if memory.readbyte(0xFF70) == 1 then
 		end
     else
         if bank_wait == 0 then
-            vba.print("Waiting for valid bank")
+            vba.print("Waiting for valid bank, current bank is", memory.readbyte(rSVBK))
             bank_wait = 1
         end
 	end
