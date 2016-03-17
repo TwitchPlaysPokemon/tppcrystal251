@@ -967,6 +967,7 @@ Rampage:
 	checkdestinybond
 	buildopponentrage
 	kingsrock
+	rampagemiss
 	endmove
 
 Whirlwind:

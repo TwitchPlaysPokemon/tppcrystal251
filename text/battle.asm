@@ -485,6 +485,13 @@ BecameConfusedText: ; 0x80d97
 	line "became confused!"
 	prompt
 ; 0x80dab
+FatigueConfusedText: ; 0x80d97
+	text $5a
+	line "became confused"
+	cont "due to fatigue!"
+	prompt
+; 0x80dab
+
 
 BattleText_0x80dab: ; 0x80dab
 	text "A @"

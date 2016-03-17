@@ -9919,3 +9919,50 @@ ConsumeUsersItem:
 	ld [hl], a
 	ret
 
+RampageConfusion:
+	push de
+	ld a, BATTLE_VARS_SUBSTATUS3
+	call GetBattleVarAddr
+	res SUBSTATUS_RAMPAGE, [hl]
+	callba SwitchTurn
+	callba Function37962 ; check safeguard
+	push af
+	callba SwitchTurn
+	pop af
+	ret nz
+	callba GetOpponentItem
+	ld a, b
+	cp HELD_PREVENT_CONFUSE
+	ret z
+	; 2-3 turns of confusion
+	ld a, BATTLE_VARS_SUBSTATUS3
+	call GetBattleVarAddr
+	set SUBSTATUS_CONFUSED, [hl]
+	call BattleRandom
+	and $1
+	inc a
+	inc a
+	pop de
+	inc de
+	ld [de], a
+	ld a, ANIM_CONFUSED % $100
+	ld [FXAnimIDLo], a
+	ld a, ANIM_CONFUSED / $100
+	ld [FXAnimIDHi], a
+	xor a
+	ld [wcfca], a
+	callba Function37e47
+
+	ld hl, FatigueConfusedText
+	call StdBattleTextBox
+
+	callba GetOpponentItem
+	ld a, b
+	cp HELD_HEAL_STATUS
+	jr z, .heal_confusion
+	cp HELD_HEAL_CONFUSION
+	jr nz, .skip_heal
+.heal_confusion
+	call Function3de51
+.skip_heal
+	ret

@@ -183,6 +183,7 @@ endm
 	command burn
 	command growth
 	command cleanupfuturesight
+	command rampagemiss
 
 	enum_start -1, -1
 	command endmove
