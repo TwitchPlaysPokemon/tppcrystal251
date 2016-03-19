@@ -3433,7 +3433,7 @@ AI_Status: ; 39453
 	cp POISON
 	jr z, .immune
 
-	ld a [wEnemyMoveStruct]
+	ld a, [wEnemyMoveStruct]
 	cp POISONPOWDER
 	jr z, .powdercheck
 
@@ -3457,6 +3457,7 @@ AI_Status: ; 39453
 	jr .checkmove
 
 .powderimmunity
+	ld a, [wEnemyMoveStruct]
 	cp SPORE
 	jr z, .powdercheck
 	cp SLEEP_POWDER
