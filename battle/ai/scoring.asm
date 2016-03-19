@@ -66,6 +66,7 @@ AI_Basic: ; 38591
 	db EFFECT_TOXIC
 	db EFFECT_POISON
 	db EFFECT_PARALYZE
+	db EFFECT_BURN
 	db $ff
 ; 385e0
 
@@ -338,7 +339,7 @@ AI_Smart: ; 386be
 	dbw EFFECT_RAZOR_WIND,       AI_Smart_RazorWind
 	dbw EFFECT_SUPER_FANG,       AI_Smart_SuperFang
 	dbw EFFECT_BIND,             AI_Smart_Bind
-	dbw EFFECT_FLARE_BLITZ,      AI_Smart_Unused2B
+	;dbw EFFECT_FLARE_BLITZ,      AI_Smart_Unused2B
 	dbw EFFECT_CONFUSE,          AI_Smart_Confuse
 	dbw EFFECT_SP_DEF_UP_2,      AI_Smart_SpDefenseUp2
 	dbw EFFECT_REFLECT,          AI_Smart_Reflect
@@ -356,17 +357,19 @@ AI_Smart: ; 386be
 	dbw EFFECT_SNORE,            AI_Smart_Snore
 	dbw EFFECT_CONVERSION2,      AI_Smart_Conversion2
 	dbw EFFECT_LOCK_ON,          AI_Smart_LockOn
-	dbw EFFECT_DEFROST_OPPONENT, AI_Smart_DefrostOpponent
+;	dbw EFFECT_DEFROST_OPPONENT, AI_Smart_DefrostOpponent
 	dbw EFFECT_SLEEP_TALK,       AI_Smart_SleepTalk
 	dbw EFFECT_DESTINY_BOND,     AI_Smart_DestinyBond
 	dbw EFFECT_REVERSAL,         AI_Smart_Reversal
 	dbw EFFECT_SPITE,            AI_Smart_Spite
 	dbw EFFECT_HEAL_BELL,        AI_Smart_HealBell
 	dbw EFFECT_PRIORITY_HIT,     AI_Smart_PriorityHit
-	dbw EFFECT_THIEF,            AI_Smart_Thief
+;	dbw EFFECT_THIEF,            AI_Smart_Thief
 	dbw EFFECT_MEAN_LOOK,        AI_Smart_MeanLook
 	dbw EFFECT_NIGHTMARE,        AI_Smart_Nightmare
 	dbw EFFECT_FLAME_WHEEL,      AI_Smart_FlameWheel
+	dbw EFFECT_SACRED_FIRE,		 AI_Smart_FlameWheel
+	dbw EFFECT_FLARE_BLITZ,		AI_Smart_FlameWheel
 	dbw EFFECT_CURSE,            AI_Smart_Curse
 	dbw EFFECT_PROTECT,          AI_Smart_Protect
 	dbw EFFECT_FORESIGHT,        AI_Smart_Foresight
@@ -397,6 +400,7 @@ AI_Smart: ; 386be
 	dbw EFFECT_FUTURE_SIGHT,     AI_Smart_FutureSight
 	dbw EFFECT_GUST,             AI_Smart_Gust
 	dbw EFFECT_STOMP,            AI_Smart_Stomp
+	dbw EFFECT_BODY_SLAM,		AI_Smart_Stomp
 	dbw EFFECT_SOLARBEAM,        AI_Smart_Solarbeam
 	dbw EFFECT_THUNDER,          AI_Smart_Thunder
 	dbw EFFECT_FLY,              AI_Smart_Fly
@@ -1471,17 +1475,17 @@ AI_Smart_Counter: ; 38bf1
 
 AI_Smart_Encore: ; 38c3b
 	call AICompareSpeed
-	jr nc, .asm_38c81
+	jr nc, .asm_38c81 ;if slower,???
 
 	ld a, [LastPlayerMove]
 	and a
-	jp z, AIDiscourageMove
+	jp z, AIDiscourageMove ;if no last move, don't use
 
-	call AIGetEnemyMove
+	call AIGetEnemyMove ;load in move that would be encored
 
 	ld a, [wEnemyMoveStruct + MOVE_POWER]
 	and a
-	jr z, .asm_38c68
+	jr z, .asm_38c68 ;if move has no power, skip to checking for encore moves
 
 	push hl
 	ld a, [wEnemyMoveStruct + MOVE_TYPE]
@@ -1492,11 +1496,11 @@ AI_Smart_Encore: ; 38c3b
 	pop hl
 	ld a, [wd265]
 	cp $a
-	jr nc, .asm_38c68
+	jr nc, .asm_38c68 ;jump if not NVE or No effect
 
 	and a
-	ret nz
-	jr .asm_38c78
+	ret nz ;if not no effect, no change to encouragement
+	jr .asm_38c78 ;else 69 in 256 chance to ret, else encourage 2 and ret
 
 .asm_38c68
 	push hl
@@ -1505,12 +1509,12 @@ AI_Smart_Encore: ; 38c3b
 	ld de, 1
 	call IsInArray
 	pop hl
-	jr nc, .asm_38c81
+	jr nc, .asm_38c81 ;if not an encore move, discourage 3 and ret, else fall through
 
 .asm_38c78
 	call Random
 	cp $46
-	ret c
+	ret c ; 69 in 256 chance to ret, else encourage 2 and ret
 	dec [hl]
 	dec [hl]
 	ret
@@ -1548,10 +1552,57 @@ AI_Smart_Encore: ; 38c3b
 	;db TRIPLE_KICK
 	;db SPIDER_WEB
 	db MIND_READER
-	db FLAME_WHEEL
-	db AEROBLAST
 	db COTTON_SPORE
-	db POWDER_SNOW
+	db IRON_DEFENSE
+	db SAND_ATTACK
+	db TAIL_WHIP
+	db GROWL
+	db SUPERSONIC
+	db STUN_SPORE
+	db TOXIC
+	db RECOVER
+	db HARDEN
+	db SMOKESCREEN
+	db DOUBLE_TEAM
+	db MINIMIZE
+	db WITHDRAW
+	db CONFUSE_RAY
+	db DEFENSE_CURL
+	db BARRIER
+	db LIGHT_SCREEN
+	db METAL_SOUND
+	db AMNESIA
+	db WILLOWISP
+	db SOFTBOILED
+	db GLARE
+	db ROCK_POLISH
+	db FLASH
+	db CURSE
+	db CONVERSION2
+	db SPITE
+	db PROTECT
+	db SCARY_FACE
+	db SWEET_KISS
+	db BELLY_DRUM
+	db SPIKES
+	db FORESIGHT
+	db PERISH_SONG
+	db ENDURE
+	db CHARM
+	db SWAGGER
+	db MILK_DRINK
+	db MEAN_LOOK
+	db ATTRACT
+	db HEAL_BELL
+	db SAFEGUARD
+	db PAIN_SPLIT
+	db NASTY_PLOT
+	db REFLECT
+	db SYNTHESIS
+	db MOONLIGHT
+	db RAIN_DANCE
+	db SUNNY_DAY
+	db FUTURE_SIGHT
 	db $ff
 ; 38ca4
 
@@ -1601,17 +1652,17 @@ AI_Smart_SleepTalk: ; 38cba
 ; 38ccb
 
 
-AI_Smart_DefrostOpponent: ; 38ccb
+;AI_Smart_DefrostOpponent: ; 38ccb
 ; Greatly encourage this move if enemy is frozen.
 ; No move has EFFECT_DEFROST_OPPONENT, so this layer is unused.
 
-	ld a, [EnemyMonStatus]
-	and $20
-	ret z
-	dec [hl]
-	dec [hl]
-	dec [hl]
-	ret
+;	ld a, [EnemyMonStatus]
+;	and $20
+;	ret z
+;	dec [hl]
+;	dec [hl]
+;	dec [hl]
+;	ret
 ; 38cd5
 
 
@@ -1782,13 +1833,13 @@ AI_Smart_PriorityHit: ; 38d5a
 ; 38d93
 
 
-AI_Smart_Thief: ; 38d93
+;AI_Smart_Thief: ; 38d93
 ; Don't use Thief unless it's the only move available.
 
-	ld a, [hl]
-	add $1e
-	ld [hl], a
-	ret
+;	ld a, [hl]
+;	add $1e
+;	ld [hl], a
+;	ret
 ; 38d98
 
 
@@ -2632,6 +2683,7 @@ SunnyDayMoves: ; 39134
 	db SACRED_FIRE
 	db MORNING_SUN
 	db SYNTHESIS
+	db FLARE_BLITZ
 	db $ff
 ; 3913d
 
@@ -2857,6 +2909,9 @@ AI_Smart_Solarbeam: ; 3920b
 	jr z, .asm_3921e
 
 	cp WEATHER_RAIN
+	ret nz
+
+	cp WEATHER_SANDSTORM
 	ret nz
 
 	call Random
@@ -3117,14 +3172,13 @@ AIHasMoveInArray: ; 392e6
 UsefulMoves: ; 39301
 ; Moves that are usable all-around.
 	db DOUBLE_EDGE
-	db SING
 	db FLAMETHROWER
 	db HYDRO_PUMP
 	db SURF
 	db ICE_BEAM
 	db BLIZZARD
 	db HYPER_BEAM
-	db SLEEP_POWDER
+	db HI_JUMP_KICK
 	db THUNDERBOLT
 	db THUNDER
 	db EARTHQUAKE
@@ -3135,6 +3189,53 @@ UsefulMoves: ; 39301
 	db FIRE_BLAST
 	db SOFTBOILED
 	db SUPER_FANG
+	db GUNK_SHOT
+	db ZEN_HEADBUTT
+	db FIRE_PUNCH
+	db ICE_PUNCH
+	db THUNDERPUNCH
+	db FOCUS_BLAST
+	db BUG_BUZZ
+	db MEGA_KICK
+	db FLARE_BLITZ
+	db BODY_SLAM
+	db THRASH
+	db HEAT_WAVE
+	db PETAL_DANCE
+	db MINIMIZE
+	db CONFUSE_RAY
+	db WATERFALL
+	db FLASH_CANNON
+	db SEED_BOMB
+	db LOVELY_KISS
+	db DIZZY_PUNCH
+	db CRABHAMMER
+	db POISON_JAB
+	db BONEMERANG
+	db ROCK_SLIDE
+	db TRI_ATTACK
+	db WILD_CHARGE
+	db X_SCISSOR
+	db IRON_HEAD
+	db AEROBLAST
+	db SLUDGE_BOMB
+	db AIR_SLASH
+	db DARK_PULSE
+	db EARTH_POWER
+	db OUTRAGE
+	db GIGA_DRAIN
+	db MILK_DRINK
+	db DAZZLINGLEAM
+	db MEGAHORN
+	db IRON_TAIL
+	db CROSS_CHOP
+	db CRUNCH
+	db SHADOW_CLAW
+	db EXTREMESPEED
+	db SHADOW_BALL
+	db DRILL_RUN
+	db MOONBLAST
+	db PLAY_ROUGH
 	db $ff
 ; 39315
 
@@ -3199,7 +3300,6 @@ AI_Opportunist: ; 39315
 	db STRING_SHOT
 	db MEDITATE
 	db AGILITY
-	db RAGE
 	db MIMIC
 	db SCREECH
 	db HARDEN
@@ -3218,7 +3318,10 @@ AI_Opportunist: ; 39315
 	db SHARPEN
 	db CONVERSION
 	db SUBSTITUTE
-	db FLAME_WHEEL
+	db METAL_SOUND
+	db IRON_DEFENSE
+	db ROCK_POLISH
+	db NASTY_PLOT
 	db $ff
 ; 39369
 
@@ -3445,14 +3548,34 @@ AI_Status: ; 39453
 	cp EFFECT_POISON
 	jr z, .poisonimmunity
 	cp EFFECT_SLEEP
-	jr z, .typeimmunity
+	jr z, .powderimmunity
 	cp EFFECT_PARALYZE
-	jr z, .typeimmunity
+	jr z, .przimmunity
+	cp EFFECT_BURN
+	jr z, .brnimmunity
 
 	ld a, [wEnemyMoveStruct + MOVE_POWER]
 	and a
 	jr z, .checkmove
 
+	jr .typeimmunity
+
+.przimmunity
+	ld a, [BattleMonType1]
+	cp ELECTRIC
+	jr z, .immune
+	ld a, [BattleMonType2]
+	cp ELECTRIC
+	jr z, .immune
+	jr .powderimmunity
+
+.brnimmunity
+	ld a, [BattleMonType1]
+	cp FIRE
+	jr z, .immune
+	ld a, [BattleMonType2]
+	cp FIRE
+	jr z, .immune
 	jr .typeimmunity
 
 .poisonimmunity
@@ -3462,6 +3585,10 @@ AI_Status: ; 39453
 	ld a, [BattleMonType2]
 	cp POISON
 	jr z, .immune
+
+	ld a [wEnemyMoveStruct]
+	cp POISONPOWDER
+	jr z, .powdercheck
 
 .typeimmunity
 	push hl
@@ -3481,6 +3608,25 @@ AI_Status: ; 39453
 .immune
 	call AIDiscourageMove
 	jr .checkmove
+
+.powderimmunity
+	cp SPORE
+	jr z, .powdercheck
+	cp SLEEP_POWDER
+	jr z, .powdercheck
+	cp STUN_SPORE
+	jr z, .powdercheck
+	jr .typeimmunity
+
+.powdercheck
+	ld a, [BattleMonType1]
+	cp GRASS
+	jr z, .immune
+	ld a, [BattleMonType2]
+	cp GRASS
+	jr z, .immune
+	jr .typeimmunity
+	
 ; 394a9
 
 

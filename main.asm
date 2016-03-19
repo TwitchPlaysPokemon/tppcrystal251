@@ -34353,6 +34353,8 @@ AI_Redundant: ; 2c41a
 .Spikes: ; 2c4e3
 	ld a, [PlayerScreens]
 	bit SCREENS_SPIKES, a
+	ret z
+	bit SCREENS_SPIKES2, a
 	ret
 
 .Foresight: ; 2c4e9
