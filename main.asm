@@ -36819,33 +36819,8 @@ SECTION "bank11", ROMX, BANK[$11]
 
 INCLUDE "engine/fruit_trees.asm"
 
+IF !DEF(BEESAFREE)
 AIChooseMove:
-IF DEF(BEESAFREE)
-; In link battle, the player chooses moves, not the AI.
-
-	ld a, [wLinkMode]
-	and a
-	ret nz
-; No use picking a move if there's no choice.
-
-	callba Function3e8d1
-	ret nz
-
-	call ResetLUASerial
-	ld a, BEESAFREE_SND_ASKMOVE
-	rst LUASerial
-	ld hl, EnemyMonMoves
-	ld c, a
-	ld b, 0
-	add hl, bc
-	ld a, [hl]
-	ld [CurEnemyMove], a
-	ld a, c
-	ld [CurEnemyMoveNum], a
-	ret
-	ret
-
-ELSE
 ; Wildmons attack at random.
 
 	ld a, [wBattleMode]
@@ -36944,7 +36919,7 @@ ELSE
 	ld h, [hl]
 	ld l, a
 	ld a, BANK(AIScoring)
-	call FarCall_hl
+	rst FarCall
 	jr .CheckLayer
 ; Decrement the scores of all moves one by one until one reaches 0.
 
@@ -37025,143 +37000,7 @@ ELSE
 	ld [CurEnemyMoveNum], a
 	ret
 
-ENDC
 ; 441af
-
-; AIWaitMove:
-	; callba Function3e8d1
-	; ret nz
-	; callba EmptyBattleTextBox
-	; ld hl, .waiting
-	; call StdBattleTextBox
-; .loop
-	; ld a, [$ffee]
-	; and a
-	; jr nz, .selected
-	; call DelayFrame
-	; jr .loop
-
-; .selected
-	; bit 7, a
-	; jr nz, .switch
-	; bit 6, a
-	; jr nz, .item
-	; and $f
-	; jr z, .invalid
-	; dec a
-	; cp NUM_MOVES
-	; jr nc, .invalid
-	; ld c, a
-	; ld b, 0
-	; ld hl, EnemyMonMoves
-	; add hl, bc
-	; ld a, [hl]
-	; and a
-	; jr z, .invalid
-	; ld hl, EnemyMonPP
-	; add hl, bc
-	; ld a, [hl]
-	; and $3f
-	; jr z, .invalid
-	; ld a, [EnemyDisabledMove]
-	; and a
-	; jr z, .not_disabled
-	; dec a
-	; cp c
-	; jr z, .invalid
-; .not_disabled
-	; ld hl, EnemyMonMoves
-	; add hl, bc
-	; ld a, [hl]
-	; ld [CurEnemyMove], a
-	; ld a, c
-	; ld [CurEnemyMoveNum], a
-	; ret
-
-; .invalid
-	; call AIChooseMove
-	; jr .loop
-
-; .switch
-	; ld hl, PlayerSubStatus5
-	; bit SUBSTATUS_CANT_RUN, [hl]
-	; jr nz, .invalid
-	; and $f
-	; jr z, .invalid
-	; dec a
-	; cp PARTY_LENGTH
-	; jr nc, .invalid
-	; ld hl, CurOTMon
-	; cp [hl]
-	; jr z, .invalid
-	; push af
-	; ld bc, $30
-	; ld hl, OTPartyMon1HP
-	; call AddNTimes
-	; ld a, [hli]
-	; ld b, a
-	; ld a, [hld]
-	; or b
-	; pop bc
-	; jr z, .invalid
-	; callba AI_Switch
-	; ret
-
-; .item
-	; and $f
-	; jr z, .invalid
-	; push af
-	; dec a
-	; cp 2
-	; jr nc, .invalid
-	; ld hl, wc650
-	; and a
-	; jr z, .ok
-	; inc hl
-; .ok
-	; ld a, [hl]
-	; and a
-	; pop bc
-	; jr z, .invalid
-	; push bc
-	; ld a, [TrainerClass]
-	; dec a
-	; ld hl, TrainerClassAttributes
-	; ld bc, 7
-	; call AddNTimes
-	; pop af
-	; dec a
-	; ld c, a
-	; ld b, 0
-	; add hl, bc
-	; ld a, [hl]
-	; and a
-	; jr z, .invalid
-	; ld c, a
-	; ld hl, AI_Items
-; .item_loop
-	; ld a, BANK(AI_Items)
-	; call GetFarByte
-	; inc hl
-	; cp c
-	; jr z, .got_item
-	; inc hl
-	; inc hl
-	; jr .item_loop
-
-; .got_item
-	; ld a, [hli]
-	; ld h, [hl]
-	; ld l, a
-	; ld a, BANK(AI_Items)
-	; rst FarCall
-	; jr c, .invalid
-	; callba AI_Used_Item
-	; ret
-
-; .waiting:
-	; db "Waiting...@"
-; ; 441af
 
 AIScoringPointers: ; 441af
        dw AI_Basic
@@ -37181,6 +37020,7 @@ AIScoringPointers: ; 441af
        dw AI_None
        dw AI_None
 ; 441cf
+ENDC
 
 Function441cf: ; 441cf
 	ld hl, Unknown_441fc

@@ -207,7 +207,7 @@ CooltrainermMikeSeenRematchText: ; 0x19542f
 
 CooltrainermMikeBeatenRematchText: ; 0x19545b
 	text "That's strange<...>"
-	line "What's this<...>"
+	line "What's this<...>?"
 	done
 ; 0x195467
 
@@ -219,8 +219,8 @@ CooltrainerMikeAfterRematch: ; 0x195467
 ; 0x19549d
 
 CooltrainerfLolaSeenRematchText: ; 0x19549d
-	text "Dragons will always"
-	line "be sacred."
+	text "Dragons will"
+	line "always be sacred."
 
 	para "Their life energy"
 	line "flows through us"
