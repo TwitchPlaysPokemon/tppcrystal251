@@ -29668,6 +29668,74 @@ Function2805d: ; 2805d
 	cp $2
 	ld c, 66
 	call z, DelayFrames
+
+GoodMoveCheck: 
+	push af
+	push bc
+	push de
+	push hl
+	
+	ld a, [OverworldMap + $8]
+	cp $1 ;Is it TPP or not? If true, we can skip the checks.
+	jr z, .endCompatibleMoveCheck
+	
+	ld hl, OverworldMap + $1b ;Get move from linked
+	ld de, TPPNewMoves ;Moves that will end the trade
+	ld c, $4 ;Total moves per Pokemon
+	ld a, [OverworldMap + $b] ;Linked party size
+	push af
+
+;a: Disqualifying move
+;b: Move to compare
+.checkLinkedMoveGroup
+	ld a, [hli] ;a: Move of linked Pokemon
+	ld b, a ;b: Move of linked Pokemon
+
+.checkLinkedMoveGroupLoop
+	ld a, [de]
+	cp $ff
+	jr z, .endLinkedMoveGroup
+	cp b
+	jr z, .badMoveLink
+	inc de ;Increase move to check
+	jr .checkLinkedMoveGroupLoop
+	
+	
+.endLinkedMoveGroup
+	ld de, TPPNewMoves ;Moves that will end the trade
+	dec c ; Decrease the checks
+	ld a, c
+	cp $0 ;Check if it's the end
+	jr nz, .checkLinkedMoveGroup ;Continue with loop
+	ld c, $4
+	pop af ;Get party size
+	dec a ;Decrease by 1
+	cp $0 
+	jr z, .endCompatibleMoveCheck ;If it's the end, then end the checks
+	
+;We're not at the end so let's continue the check
+	push af
+	ld de, $0028
+	add hl, de
+	ld de, TPPNewMoves
+	jr .checkLinkedMoveGroup
+	
+.badMoveLink
+	pop af
+	pop de
+	pop bc
+	pop af
+	ld hl, StringMoveIncompatible ;Finish this part (just tell the player that the pokemon can't be traded)
+	call PrintText
+	pop hl
+	ret
+	
+.endCompatibleMoveCheck
+	pop hl
+	pop de
+	pop bc
+	pop af
+	
 	ld de, MUSIC_ROUTE_30
 	call PlayMusic
 	jp Function287e3
@@ -31462,6 +31530,19 @@ String28ebd: ; 28ebd
 String28ece: ; 28ece
 	db   "Too bad! The trade"
 	next "was canceled!@"
+	
+StringMoveIncompatible: ; 0x4d3fe
+	text_jump StringMoveIncompatibleText
+	db "@"
+	
+StringMoveIncompatibleText: ; 28ece
+	db   "Your friend has a"
+	next "#MON with a"	
+	cont "move that is"
+	cont "incompatible with"
+	cont "this game."
+	done
+	
 Function28eef: ; 28eef
 	ld d, h
 	ld e, l
@@ -33022,6 +33103,40 @@ TradeBallGFX:   INCBIN "gfx/trade/ball.2bpp"
 
 TradePoofGFX:   INCBIN "gfx/trade/poof.2bpp"
 
+TPPNewMoves:
+	db POISON_JAB
+	db FLASH_CANNON
+	db ZEN_HEADBUTT
+	db AIR_SLASH
+	db BUG_BUZZ
+	db DRILL_RUN
+	db DAZZLINGLEAM
+	db SHADOW_CLAW
+	db ZEN_HEADBUTT
+	db IRON_DEFENSE
+	db DARK_PULSE
+	db HEAT_WAVE
+	db X_SCISSOR
+	db SEED_BOMB
+	db GUNK_SHOT
+	db FAIRY_WIND
+	db NASTY_PLOT
+	db IRON_HEAD
+	db METAL_SOUND
+	db WILD_CHARGE
+	db DRAGON_PULSE
+	db MOONBLAST
+	db PLAY_ROUGH
+	db SHEER_COLD
+	db WILLOWISP
+	db EARTH_POWER
+	db FOCUS_BLAST
+	db AQUA_JET
+	db FLARE_BLITZ
+	db ROCK_POLISH
+	db NASTY_PLOT
+	db $ff
+
 Function29bfb: ; 29bfb
 	ld hl, PartySpecies
 	ld b, PARTY_LENGTH
@@ -33056,6 +33171,26 @@ Function29bfb: ; 29bfb
 	ld c, NUM_MOVES
 .asm_29c30
 	ld a, [hli]
+	
+	push bc
+	push hl
+	push af
+	ld hl, TPPNewMoves
+	ld b, a
+	
+.goodMoveInRedLoop
+	ld a, [hli]
+	cp $ff
+	jr z, .goodMoveInRedLoopExit
+	cp b
+	jr z, .badMovePop
+	jr .goodMoveInRedLoop
+
+.goodMoveInRedLoopExit	
+	pop af
+	pop hl
+	pop bc
+
 	cp STRUGGLE + 1
 	jr nc, .asm_29c4c
 	dec c
@@ -33072,6 +33207,11 @@ Function29bfb: ; 29bfb
 	call GetPokemonName
 	ld a, $1
 	jr .asm_29c63
+	
+.badMovePop
+	pop af
+	pop hl
+	pop bc
 
 .asm_29c4c
 	push bc
