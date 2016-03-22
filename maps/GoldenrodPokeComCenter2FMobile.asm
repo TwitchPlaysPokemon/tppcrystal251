@@ -17,109 +17,12 @@ ScientistScript_0x625d4: ; 0x625d4
 ScientistScript_0x625d7: ; 0x625d7
 	jumptextfaceplayer UnknownText_0x62795
 ; 0x625da
-
-MapGoldenrodPokeComCenter2FMobileSignpost0Script: ; 0x625da
-	loadfont
-	writetext UnknownText_0x627ee
-	waitbutton
-UnknownScript_0x625df: ; 0x625df
-	reloadmappart
-	loadmenudata MenuDataHeader_0x62602
-	interpretmenu2
-	writebackup
-	if_equal $1, UnknownScript_0x625f0
-	if_equal $2, UnknownScript_0x625f8
-	jump UnknownScript_0x62600
-; 0x625f0
-
-UnknownScript_0x625f0: ; 0x625f0
-	loadfont
-	writetext UnknownText_0x62828
-	waitbutton
-	jump UnknownScript_0x625df
-; 0x625f8
-
-UnknownScript_0x625f8: ; 0x625f8
-	loadfont
-	writetext UnknownText_0x628f4
-	waitbutton
-	jump UnknownScript_0x625df
-; 0x62600
-
-UnknownScript_0x62600: ; 0x62600
-	closetext
-	end
-; 0x62602
-
-
-MenuDataHeader_0x62602: ; 0x62602
-	db $40 ; flags
-	db 00, 00 ; start coords
-	db 08, 15 ; end coords
-	dw MenuData2_0x6260a
-	db 1 ; default option
-; 0x6260a
-
-MenuData2_0x6260a: ; 0x6260a
-	db $80 ; flags
-	db 3 ; items
-	db "# つうしん クラブ@" ; # COM CLUB
-	db "モバイルセンター@" ; MOBILE CENTER
-	db "やめる@" ; QUIT
-; 0x62624
-
-
-MapGoldenrodPokeComCenter2FMobileSignpost1Script: ; 0x62624
-	loadfont
-	writetext UnknownText_0x62989
-	waitbutton
-UnknownScript_0x62629: ; 0x62629
-	reloadmappart
-	loadmenudata MenuDataHeader_0x6264c
-	interpretmenu2
-	writebackup
-	if_equal $1, UnknownScript_0x6263a
-	if_equal $2, UnknownScript_0x62642
-	jump UnknownScript_0x6264a
-; 0x6263a
-
-UnknownScript_0x6263a: ; 0x6263a
-	loadfont
-	writetext UnknownText_0x629ae
-	waitbutton
-	jump UnknownScript_0x62629
-; 0x62642
-
-UnknownScript_0x62642: ; 0x62642
-	loadfont
-	writetext UnknownText_0x62a5a
-	waitbutton
-	jump UnknownScript_0x62629
-; 0x6264a
-
-UnknownScript_0x6264a: ; 0x6264a
-	closetext
-	end
-; 0x6264c
-
-
-MenuDataHeader_0x6264c: ; 0x6264c
-	db $40 ; flags
-	db 00, 00 ; start coords
-	db 08, 15 ; end coords
-	dw MenuData2_0x62654
-	db 1 ; default option
-; 0x62654
-
-MenuData2_0x62654: ; 0x62654
-	db $80 ; flags
-	db 3 ; items
-	db "でんわ",$1f,"つかうとき@" ; Use phone
-	db "でんわ",$4a,"つながらないとき@" ; Don't use phone
-	db "やめる@" ; QUIT
-; 0x62673
-
-
+MapGoldenrodPokeComCenter2FMobileSignpost0Script: ; 0x62671
+	jumptext UnknownText_0x62b26
+; 0x62674
+MapGoldenrodPokeComCenter2FMobileSignpost1Script: ; 0x62671
+	jumptext UnknownText_0x62b26
+; 0x62674
 MapGoldenrodPokeComCenter2FMobileSignpost2Script: ; 0x62671
 	jumptext UnknownText_0x62b26
 ; 0x62674
@@ -143,8 +46,8 @@ UnknownText_0x626f9: ; 0x626f9
 	text "When you linked"
 	line "with someone by"
 
-	para "mobile phone for"
-	line "the first time,"
+	para "wireless for the"
+	line "first time,"
 
 	para "weren't you"
 	line "impressed?"
@@ -164,6 +67,10 @@ UnknownText_0x62795: ; 0x62795
 	para "facility thanks to"
 	line "advances in wire-"
 	cont "less technology."
+	
+	para "If the signal goes"
+	line "out, it could"
+	cont "cause riots!"
 	done
 ; 0x627ee
 

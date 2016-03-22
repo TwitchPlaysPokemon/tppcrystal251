@@ -645,8 +645,8 @@ GoldenrodCity_MapEventHeader: ; 0x1991d1
 	warp_def $f, $5, 1, GROUP_RADIO_TOWER_1F, MAP_RADIO_TOWER_1F
 	warp_def $1, $13, 3, GROUP_ROUTE_35_GOLDENROD_GATE, MAP_ROUTE_35_GOLDENROD_GATE
 	warp_def $5, $9, 8, GROUP_UNDERGROUND_PATH_SWITCH_ROOM_ENTRANCES, MAP_UNDERGROUND_PATH_SWITCH_ROOM_ENTRANCES
-	warp_def $1d, $b, 5, GROUP_UNDERGROUND_PATH_SWITCH_ROOM_ENTRANCES, MAP_UNDERGROUND_PATH_SWITCH_ROOM_ENTRANCES
-	warp_def $1b, $f, 1, GROUP_GOLDENROD_POKECENTER_1F, MAP_GOLDENROD_POKECENTER_1F
+	warp_def $1d, $9, 5, GROUP_UNDERGROUND_PATH_SWITCH_ROOM_ENTRANCES, MAP_UNDERGROUND_PATH_SWITCH_ROOM_ENTRANCES
+	warp_def $1b, $e, 1, GROUP_GOLDENROD_POKECENTER_1F, MAP_GOLDENROD_POKECENTER_1F
 
 	; xy triggers
 	db 0
@@ -662,8 +662,8 @@ GoldenrodCity_MapEventHeader: ; 0x1991d1
 	signpost 22, 16, $0, MapGoldenrodCitySignpost6Script
 	signpost 7, 12, $0, MapGoldenrodCitySignpost7Script
 	signpost 6, 8, $0, MapGoldenrodCitySignpost8Script
-	signpost 30, 12, $0, MapGoldenrodCitySignpost9Script
-	signpost 27, 16, $1, MapGoldenrodCitySignpost10Script
+	signpost 30, 10, $0, MapGoldenrodCitySignpost9Script
+	signpost 27, 17, $1, MapGoldenrodCitySignpost10Script
 	signpost 6, 30, $0, MapGoldenrodCitySignpost11Script
 
 	; people-events
