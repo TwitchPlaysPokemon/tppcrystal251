@@ -86724,6 +86724,32 @@ Functionfb57e: ; fb57e
 	jr z, .asm_fb5d9
 	cp MAGNETON
 	jr z, .asm_fb5d9
+	cp CLEFFA
+	jr z, .asm_fb5d9
+	cp CLEFAIRY
+	jr z, .asm_fb5d9
+	cp CLEFABLE
+	jr z, .asm_fb5d9
+	cp IGGLYBUFF
+	jr z, .asm_fb5d9
+	cp JIGGLYPUFF
+	jr z, .asm_fb5d9
+	cp WIGGLYTUFF
+	jr z, .asm_fb5d9
+	cp MR__MIME
+	jr z, .asm_fb5d9
+	cp TOGEPI
+	jr z, .asm_fb5d9
+	cp TOGETIC
+	jr z, .asm_fb5d9
+	cp MARILL
+	jr z, .asm_fb5d9
+	cp AZUMARILL
+	jr z, .asm_fb5d9
+	cp SNUBBULL
+	jr z, .asm_fb5d9
+	cp GRANBULL
+	jr z, .asm_fb5d9
 	ld [CurSpecies], a
 	call GetBaseData
 	ld hl, wcbea
