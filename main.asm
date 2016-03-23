@@ -29668,6 +29668,74 @@ Function2805d: ; 2805d
 	cp $2
 	ld c, 66
 	call z, DelayFrames
+
+GoodMoveCheck: 
+	push af
+	push bc
+	push de
+	push hl
+	
+	ld a, [OverworldMap + $8]
+	cp $1 ;Is it TPP or not? If true, we can skip the checks.
+	jr z, .endCompatibleMoveCheck
+	
+	ld hl, OverworldMap + $1b ;Get move from linked
+	ld de, TPPNewMoves ;Moves that will end the trade
+	ld c, $4 ;Total moves per Pokemon
+	ld a, [OverworldMap + $b] ;Linked party size
+	push af
+
+;a: Disqualifying move
+;b: Move to compare
+.checkLinkedMoveGroup
+	ld a, [hli] ;a: Move of linked Pokemon
+	ld b, a ;b: Move of linked Pokemon
+
+.checkLinkedMoveGroupLoop
+	ld a, [de]
+	cp $ff
+	jr z, .endLinkedMoveGroup
+	cp b
+	jr z, .badMoveLink
+	inc de ;Increase move to check
+	jr .checkLinkedMoveGroupLoop
+	
+	
+.endLinkedMoveGroup
+	ld de, TPPNewMoves ;Moves that will end the trade
+	dec c ; Decrease the checks
+	ld a, c
+	cp $0 ;Check if it's the end
+	jr nz, .checkLinkedMoveGroup ;Continue with loop
+	ld c, $4
+	pop af ;Get party size
+	dec a ;Decrease by 1
+	cp $0 
+	jr z, .endCompatibleMoveCheck ;If it's the end, then end the checks
+	
+;We're not at the end so let's continue the check
+	push af
+	ld de, $0028
+	add hl, de
+	ld de, TPPNewMoves
+	jr .checkLinkedMoveGroup
+	
+.badMoveLink
+	pop af
+	pop de
+	pop bc
+	pop af
+	ld hl, StringMoveIncompatible ;Finish this part (just tell the player that the pokemon can't be traded)
+	call PrintText
+	pop hl
+	ret
+	
+.endCompatibleMoveCheck
+	pop hl
+	pop de
+	pop bc
+	pop af
+	
 	ld de, MUSIC_ROUTE_30
 	call PlayMusic
 	jp Function287e3
@@ -30209,9 +30277,9 @@ Function284f6: ; 284f6
 	ld [de], a
 	inc de
 	ld a, [bc]
-	cp $51
+	cp MAGNEMITE
 	jr z, .asm_28528
-	cp $52
+	cp MAGNETON
 	jr nz, .asm_28530
 .asm_28528
 	ld a, $17
@@ -31462,6 +31530,19 @@ String28ebd: ; 28ebd
 String28ece: ; 28ece
 	db   "Too bad! The trade"
 	next "was canceled!@"
+	
+StringMoveIncompatible: ; 0x4d3fe
+	text_jump StringMoveIncompatibleText
+	db "@"
+	
+StringMoveIncompatibleText: ; 28ece
+	db   "Your friend has a"
+	next "#MON with a"	
+	cont "move that is"
+	cont "incompatible with"
+	cont "this game."
+	done
+	
 Function28eef: ; 28eef
 	ld d, h
 	ld e, l
@@ -33022,6 +33103,40 @@ TradeBallGFX:   INCBIN "gfx/trade/ball.2bpp"
 
 TradePoofGFX:   INCBIN "gfx/trade/poof.2bpp"
 
+TPPNewMoves:
+	db POISON_JAB
+	db FLASH_CANNON
+	db ZEN_HEADBUTT
+	db AIR_SLASH
+	db BUG_BUZZ
+	db DRILL_RUN
+	db DAZZLINGLEAM
+	db SHADOW_CLAW
+	db ZEN_HEADBUTT
+	db IRON_DEFENSE
+	db DARK_PULSE
+	db HEAT_WAVE
+	db X_SCISSOR
+	db SEED_BOMB
+	db GUNK_SHOT
+	db FAIRY_WIND
+	db NASTY_PLOT
+	db IRON_HEAD
+	db METAL_SOUND
+	db WILD_CHARGE
+	db DRAGON_PULSE
+	db MOONBLAST
+	db PLAY_ROUGH
+	db SHEER_COLD
+	db WILLOWISP
+	db EARTH_POWER
+	db FOCUS_BLAST
+	db AQUA_JET
+	db FLARE_BLITZ
+	db ROCK_POLISH
+	db NASTY_PLOT
+	db $ff
+
 Function29bfb: ; 29bfb
 	ld hl, PartySpecies
 	ld b, PARTY_LENGTH
@@ -33056,6 +33171,26 @@ Function29bfb: ; 29bfb
 	ld c, NUM_MOVES
 .asm_29c30
 	ld a, [hli]
+	
+	push bc
+	push hl
+	push af
+	ld hl, TPPNewMoves
+	ld b, a
+	
+.goodMoveInRedLoop
+	ld a, [hli]
+	cp $ff
+	jr z, .goodMoveInRedLoopExit
+	cp b
+	jr z, .badMovePop
+	jr .goodMoveInRedLoop
+
+.goodMoveInRedLoopExit	
+	pop af
+	pop hl
+	pop bc
+
 	cp STRUGGLE + 1
 	jr nc, .asm_29c4c
 	dec c
@@ -33072,6 +33207,11 @@ Function29bfb: ; 29bfb
 	call GetPokemonName
 	ld a, $1
 	jr .asm_29c63
+	
+.badMovePop
+	pop af
+	pop hl
+	pop bc
 
 .asm_29c4c
 	push bc
@@ -86562,7 +86702,7 @@ Functionfb57e: ; fb57e
 	cp EGG
 	jr z, .asm_fb59c
 	cp [hl]
-	jr nz, .asm_fb5db
+	jp nz, Asm_fb5db
 .asm_fb59c
 	ld b, h
 	ld c, l
@@ -86570,10 +86710,10 @@ Functionfb57e: ; fb57e
 	add hl, bc
 	ld a, [hl]
 	cp 101
-	jr nc, .asm_fb5db
+	jp nc, Asm_fb5db
 	ld a, [wLinkMode]
 	cp $1
-	jr nz, .asm_fb5d9
+	jp nz, SkipTypeCheck
 	ld hl, OTPartySpecies
 	ld a, [wd003]
 	ld c, a
@@ -86583,9 +86723,63 @@ Functionfb57e: ; fb57e
 	; Magnemite and Magneton's types changed
 	; from Electric to Electric/Steel.
 	cp MAGNEMITE
-	jr z, .asm_fb5d9
+	jp z, SkipTypeCheck
 	cp MAGNETON
-	jr z, .asm_fb5d9
+	jp z, SkipTypeCheck
+	
+	;Fairies
+	cp CLEFAIRY
+	jp z, SkipTypeCheck
+	cp CLEFABLE
+	jp z, SkipTypeCheck
+	cp JIGGLYPUFF
+	jp z, SkipTypeCheck
+	cp WIGGLYTUFF
+	jp z, SkipTypeCheck
+	cp MR__MIME
+	jp z, SkipTypeCheck
+	cp TOGEPI
+	jp z, SkipTypeCheck
+	cp TOGETIC
+	jp z, SkipTypeCheck
+	cp MARILL
+	jp z, SkipTypeCheck
+	cp AZUMARILL
+	jp z, SkipTypeCheck
+	
+	;Brown type changes
+	;Gas
+	cp KOFFING
+	jp z, SkipTypeCheck
+	cp WEEZING
+	jp z, SkipTypeCheck
+	cp GASTLY
+	jp z, SkipTypeCheck
+	cp HAUNTER
+	jp z, SkipTypeCheck
+	cp GENGAR
+	jp z, SkipTypeCheck
+	
+	;Wood (Retconned in Prism)
+	cp BELLSPROUT
+	jp z, SkipTypeCheck
+	cp WEEPINBELL
+	jp z, SkipTypeCheck
+	cp VICTREEBEL
+	jp z, SkipTypeCheck
+	cp EXEGGCUTE
+	jp z, SkipTypeCheck
+	cp EXEGGUTOR
+	jp z, SkipTypeCheck
+	
+	;Abnormal
+	cp PORYGON
+	jp z, SkipTypeCheck
+	cp PORYGON2
+	jp z, SkipTypeCheck
+	cp DITTO
+	jp z, SkipTypeCheck
+	
 	ld [CurSpecies], a
 	call GetBaseData
 	ld hl, wcbea
@@ -86593,16 +86787,16 @@ Functionfb57e: ; fb57e
 	add hl, bc
 	ld a, [BaseType1]
 	cp [hl]
-	jr nz, .asm_fb5db
+	jp nz, Asm_fb5db
 	inc hl
 	ld a, [BaseType2]
 	cp [hl]
-	jr nz, .asm_fb5db
-.asm_fb5d9
+	jp nz, Asm_fb5db
+SkipTypeCheck:
 	and a
 	ret
 
-.asm_fb5db
+Asm_fb5db:
 	scf
 	ret
 ; fb5dd
@@ -86963,7 +87157,7 @@ Functionfb908: ; fb908
 	ret
 ; fb91c
 
-Unknown_fb91c: ; fb91c
+Unknown_fb91c: ; fb91c (Modified to also support Pokemon Brown)
 	db RHYDON
 	db KANGASKHAN
 	db NIDORAN_M
@@ -86994,8 +87188,8 @@ Unknown_fb91c: ; fb91c
 	db BLASTOISE
 	db PINSIR
 	db TANGELA
-	db SCIZOR
-	db SHUCKLE
+	db CHIKORITA ;1F
+	db BAYLEEF ; 20
 	db GROWLITHE
 	db ONIX
 	db FEAROW
@@ -87013,26 +87207,26 @@ Unknown_fb91c: ; fb91c
 	db PSYDUCK
 	db DROWZEE
 	db GOLEM
-	db HERACROSS
+	db $0 ;$32 (Cranidos)
 	db MAGMAR
-	db HO_OH
+	db PUPITAR ;$34
 	db ELECTABUZZ
 	db MAGNETON
 	db KOFFING
-	db SNEASEL
+	db CYNDAQUIL ;$38
 	db MANKEY
 	db SEEL
 	db DIGLETT
 	db TAUROS
-	db TEDDIURSA
-	db URSARING
-	db SLUGMA
+	db QUILAVA ;$3D
+	db TYPHLOSION ;$3E
+	db TOTODILE ;$3F
 	db FARFETCH_D
 	db VENONAT
 	db DRAGONITE
-	db MAGCARGO
-	db SWINUB
-	db PILOSWINE
+	db CROCONAW ;$43
+	db FERALIGATR  ;$44
+	db HOUNDOUR ;$45
 	db DODUO
 	db POLIWAG
 	db JYNX
@@ -87042,23 +87236,23 @@ Unknown_fb91c: ; fb91c
 	db DITTO
 	db MEOWTH
 	db KRABBY
-	db CORSOLA
-	db REMORAID
-	db OCTILLERY
+	db HOUNDOOM ;$4F
+	db HERACROSS ;$50
+	db YANMA ;$51
 	db VULPIX
 	db NINETALES
 	db PIKACHU
 	db RAICHU
-	db DELIBIRD
-	db MANTINE
+	db $0 ;$56 (Rampardos)
+	db SNEASEL ;$57
 	db DRATINI
 	db DRAGONAIR
 	db KABUTO
 	db KABUTOPS
 	db HORSEA
 	db SEADRA
-	db SKARMORY
-	db HOUNDOUR
+	db SPINARAK ;$5E
+	db ARIADOS ;$5F
 	db SANDSHREW
 	db SANDSLASH
 	db OMANYTE
@@ -87078,38 +87272,38 @@ Unknown_fb91c: ; fb91c
 	db WEEDLE
 	db KAKUNA
 	db BEEDRILL
-	db HOUNDOOM
+	db RAIKOU ;$73
 	db DODRIO
 	db PRIMEAPE
 	db DUGTRIO
 	db VENOMOTH
 	db DEWGONG
-	db KINGDRA
-	db PHANPY
+	db CHINCHOU ;$79
+	db LANTURN ;$7A
 	db CATERPIE
 	db METAPOD
 	db BUTTERFREE
 	db MACHAMP
-	db DONPHAN
+	db SWINUB ;$7F
 	db GOLDUCK
 	db HYPNO
 	db GOLBAT
 	db MEWTWO
 	db SNORLAX
 	db MAGIKARP
-	db PORYGON2
-	db STANTLER
+	db PILOSWINE ;$86
+	db TYROGUE ;$87
 	db MUK
-	db SMEARGLE
+	db SUICUNE ;$89
 	db KINGLER
 	db CLOYSTER
-	db TYROGUE
+	db TYROGUE ;$8C
 	db ELECTRODE
 	db CLEFABLE
 	db WEEZING
 	db PERSIAN
 	db MAROWAK
-	db HITMONTOP
+	db TYROGUE ;$92
 	db HAUNTER
 	db ABRA
 	db ALAKAZAM
@@ -87119,13 +87313,13 @@ Unknown_fb91c: ; fb91c
 	db BULBASAUR
 	db VENUSAUR
 	db TENTACRUEL
-	db SMOOCHUM
+	db NATU ;$9C
 	db GOLDEEN
 	db SEAKING
-	db ELEKID
-	db MAGBY
-	db MILTANK
-	db BLISSEY
+	db XATU ;$9F
+	db MAREEP ;$A0
+	db FLAAFFY ;$A1
+	db ENTEI ;$A2
 	db PONYTA
 	db RAPIDASH
 	db RATTATA
@@ -87135,87 +87329,87 @@ Unknown_fb91c: ; fb91c
 	db GEODUDE
 	db PORYGON
 	db AERODACTYL
-	db RAIKOU
+	db GLIGAR ;$AC
 	db MAGNEMITE
-	db ENTEI
-	db SUICUNE
+	db MARILL ;$AE
+	db AZUMARILL ;$AF
 	db CHARMANDER
 	db SQUIRTLE
 	db CHARMELEON
 	db WARTORTLE
 	db CHARIZARD
-	db LARVITAR
-	db PUPITAR
-	db TYRANITAR
-	db LUGIA
+	db MURKROW ;$B5
+	db $0 ;$B6 (Ghost)
+	db MISDREAVUS
+	db LARVITAR ;$B8
 	db ODDISH
 	db GLOOM
 	db VILEPLUME
 	db BELLSPROUT
 	db WEEPINBELL
 	db VICTREEBEL
-	db CHIKORITA
-	db BAYLEEF
-	db MEGANIUM
-	db CYNDAQUIL
-	db QUILAVA
-	db TYPHLOSION
-	db TOTODILE
-	db CROCONAW
-	db FERALIGATR
-	db SENTRET
-	db FURRET
-	db HOOTHOOT
-	db NOCTOWL
-	db LEDYBA
-	db LEDIAN
-	db SPINARAK
-	db ARIADOS
-	db CROBAT
-	db CHINCHOU
-	db LANTURN
-	db PICHU
-	db CLEFFA
-	db IGGLYBUFF
+	db PHANPY
+	db DONPHAN
 	db TOGEPI
 	db TOGETIC
-	db NATU
-	db XATU
-	db MAREEP
-	db FLAAFFY
-	db AMPHAROS
-	db BELLOSSOM
-	db MARILL
-	db AZUMARILL
-	db SUDOWOODO
-	db POLITOED
-	db HOPPIP
-	db SKIPLOOM
-	db JUMPLUFF
-	db AIPOM
-	db SUNKERN
-	db SUNFLORA
-	db YANMA
 	db WOOPER
 	db QUAGSIRE
 	db ESPEON
 	db UMBREON
-	db MURKROW
+	db EEVEE
+	db EEVEE
+	db EEVEE ;I had copies of pokemon that evolved into different species in Brown. Lazy I know.
+	db TYRANITAR
+	db CROBAT
+	db AMPHAROS
+	db LUGIA
+	db HO_OH
+	db $0 ;Magnezone
+	db POLITOED
+	db $0 ;Ryperior
+	db BLISSEY
+	db $0 ;Tangrowth
+	db KINGDRA
+	db PORYGON2
+	db $0 ;PorygonZ
+	db $0 ;Honchkrow
+	db $0 ;Mismagius
+	db $0 ;Leafeon
+	db $0 ;Glaceon
+	db $0 ;Electivire
+	db $0 ;Magmortar
+	db $0 ;Mamoswine
+	db $0 ;Yanmega
+	db HITMONTOP
 	db SLOWKING
-	db MISDREAVUS
-	db UNOWN
-	db WOBBUFFET
-	db GIRAFARIG
-	db PINECO
-	db FORRETRESS
-	db DUNSPARCE
-	db GLIGAR
+	db $0 ;Togekiss
 	db STEELIX
-	db SNUBBULL
-	db GRANBULL
-	db QWILFISH
-	db WOBBUFFET
-	db WOBBUFFET
+	db $0 ;Gliscor
+	db SCIZOR
+	db $0 ;Weavile
+	db MEGANIUM
+	db $0 ;Sylveon
+	db $0 ;Empty
+	db $0 ;Empty
+	db $0 ;Empty
+	db $0 ;Empty
+	db $0 ;Empty
+	db $0 ;Empty
+	db $0 ;Empty
+	db $0 ;Empty
+	db $0 ;Empty
+	db $0 ;Empty
+	db $0 ;Empty
+	db $0 ;Empty
+	db $0 ;Empty
+	db $0 ;Empty
+	db $0 ;Empty
+	db $0 ;Empty
+	db $0 ;Empty
+	db $0 ;Empty
+	db $0 ;Empty
+	db $0 ;Empty
+	db $0 ;Empty
 ; fba18
 
 Functionfba18: ; fba18

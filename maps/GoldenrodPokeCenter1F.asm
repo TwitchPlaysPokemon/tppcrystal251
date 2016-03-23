@@ -1,92 +1,49 @@
-GoldenrodPokeCenter1F_MapScriptHeader: ; 0x60f8f
+GoldenrodPokeCenter1F_MapScriptHeader:
 	; trigger count
 	db 0
 
 	; callback count
 	db 0
-; 0x60f91
 
-NurseScript_0x60f91: ; 0x60f91
+NurseScript_PCC:
 	jumpstd pokecenternurse
-; 0x60f94
+	
+GameboyKidScript_PCC1:
+	jumptextfaceplayer PccText1
 
-UnknownScript_0x60f94: ; 0x60f94
-	;writebyte $b
-	;special Function170687
-	;if_equal $b, UnknownScript_0x60f9e
-	end
-; 0x60f9e
+GameboyKidScript_PCC2:
+	jumptextfaceplayer PccText2
 
-UnknownScript_0x60f9e: ; 0x60f9e
-	;checkevent EVENT_GOT_GS_BALL_FROM_POKECOM_CENTER
-	;iftrue UnknownScript_0x60fd8
-	;playsound SFX_EXIT_BUILDING
-	;moveperson $3, $0, $7
-	;disappear $3
-	;appear $3
-	;playmusic MUSIC_SHOW_ME_AROUND
-	;applymovement $3, MovementData_0x6105a
-	;spriteface $0, $1
-	;loadfont
-	;writetext UnknownText_0x622f0
-	;waitbutton
-	;verbosegiveitem GS_BALL, 1
-	;setevent EVENT_GOT_GS_BALL_FROM_POKECOM_CENTER
-	;setevent EVENT_CAN_GIVE_GS_BALL_TO_KURT
-	;writetext UnknownText_0x62359
-	;waitbutton
-	;closetext
-	;applymovement $3, MovementData_0x61060
-	;special RestartMapMusic
-	;disappear $3
-	;playsound SFX_EXIT_BUILDING
-UnknownScript_0x60fd8: ; 0x60fd8
-	end
-; 0x60fd9
+GrannyTextScript_PCC:
+	jumptextfaceplayer PccText3
 
-UnknownScript_0x60fd9: ; 0x60fd9
-	;writebyte $b
-	;special Function170687
-	;if_equal $b, UnknownScript_0x60fe3
-	end
-; 0x60fe3
+LassScript_PCC:
+	jumptextfaceplayer PccText4
 
-UnknownScript_0x60fe3: ; 0x60fe3
-;	checkevent EVENT_GOT_GS_BALL_FROM_POKECOM_CENTER
-	;iftrue UnknownScript_0x6101d
-	;playsound SFX_EXIT_BUILDING
-;	moveperson $3, $0, $7
-;	disappear $3
-;	appear $3
-;	playmusic MUSIC_SHOW_ME_AROUND
-;	applymovement $3, MovementData_0x61065
-;	spriteface $0, $1
-;	loadfont
-;	writetext UnknownText_0x622f0
-;	waitbutton
-;	verbosegiveitem GS_BALL, 1
-;	setevent EVENT_GOT_GS_BALL_FROM_POKECOM_CENTER
-;	setevent EVENT_CAN_GIVE_GS_BALL_TO_KURT
-;	writetext UnknownText_0x62359
-;	waitbutton
-;	closetext
-;	applymovement $3, MovementData_0x6106c
-;;	special RestartMapMusic
-;	disappear $3
-;	playsound SFX_EXIT_BUILDING
-UnknownScript_0x6101d: ; 0x6101d
-	end
-; 0x6101e
+YoungsterScript_PCC:
+	jumptextfaceplayer PccText5
 
-GameboyKidScript_0x6101e: ; 0x6101e
-	jumptextfaceplayer UnknownText_0x62105
-; 0x61021
+GreenHairScript_PCC:
+	jumptextfaceplayer PccText6
 
-LassScript_0x61021: ; 0x61021
-	jumptextfaceplayer UnknownText_0x62260
-; 0x61024
+CoolTrainerFScript_PCC:
+	jumptextfaceplayer PccText7
 
-PokefanFScript_0x61024: ; 0x61024
+TeacherScript_PCC:
+	jumptextfaceplayer PccText8
+
+YoungsterScript2_PCC:
+	jumptextfaceplayer PccText9
+
+PCCDirectorySignScript:
+	jumptextfaceplayer PccText10
+	
+	
+LinkStationNurseScript:
+	jumptextfaceplayer UnknownText_0x61072
+
+
+PokefanFScript_PCC:
 	faceplayer
 	loadfont
 	writetext UnknownText_0x623fb
@@ -123,193 +80,23 @@ UnknownScript_0x61051: ; 0x61051
 	end
 ; 0x6105a
 
-;MovementData_0x6105a: ; 0x6105a
-	;step_up
-	;step_right
-	;step_right
-	;step_right
-	;turn_head_down
-	;step_end
-; 0x61060
+UnknownText_0x61072: ; 0x61072
+	text "Hello! Welcome to"
+	line "#COM CENTER"
+	cont "TRADE CORNER."
 
-;MovementData_0x61060: ; 0x61060
-	;step_left
-	;step_left
-	;step_left
-	;step_down
-	;step_end
-; 0x61065
-
-;MovementData_0x61065: ; 0x61065
-	;step_up
-	;step_right
-	;step_right
-;	step_right
-	;step_right
-;	turn_head_down
-;	step_end
-; 0x6106c
-
-;MovementData_0x6106c: ; 0x6106c
-	;step_left
-	;step_left
-	;step_left
-	;step_left
-	;step_down
-	;step_end
-; 0x61072
-
-; unused
-;UnknownText_0x61072: ; 0x61072
-	;text "Hello! Welcome to"
-	;line "#COM CENTER"
-	;cont "TRADE CORNER."
-
-	;para "You can trade"
-	;line "#MON with other"
-	;cont "people far away."
-	;done
-; 0x610ce
-
-;UnknownText_0x610ce: ; 0x610ce
-	;text "To make a trade,"
-;	line "we must hold your"
-;	cont "#MON."
-
-;	para "Would you like to"
-;	line "trade?"
-;	done
-; 0x61111
-
-;UnknownText_0x61111: ; 0x61111
-;	text "What kind of"
-;	line "#MON do you"
-;	cont "want in return?"
-;	done
-; 0x6113b
-
-;UnknownText_0x6113b: ; 0x6113b
-	;text "Fine. We will try"
-;	line "to trade your"
-
-	;para "@"
-	;text_from_ram StringBuffer3
-	;text " for"
-	;line "@"
-	;text_from_ram StringBuffer4
-	;text "."
-
-	;para "We'll have to hold"
-	;line "your #MON"
-	;cont "during the trade."
-
-	;para "Please wait while"
-	;line "we prepare the"
-	;cont "room for it."
-	;done
-; 0x611c9
-
-;UnknownText_0x611c9: ; 0x611c9
-	;text "Fine. We will try"
-	;line "to trade your"
-
-	;para "@"
-	;text_from_ram StringBuffer3
-	;text " for a"
-	;line "#MON that you"
-	;cont "have never seen."
-
-	;para "We'll have to hold"
-	;line "your #MON"
-	;cont "during the trade."
-
-	;para "Please wait while"
-	;line "we prepare the"
-	;cont "room for it."
-	;done
-; 0x61271
-
-;UnknownText_0x61271: ; 0x61271
-	;text "Your trade #MON"
-	;line "has been received."
-
-	;para "It will take time"
-	;line "to find a trade"
-
-	;para "partner. Please"
-	;line "come back later."
-	;done
-; 0x612d8
-
-;UnknownText_0x612d8: ; 0x612d8
-	;text "Oh? You have only"
-	;line "one #MON in"
-	;cont "your party. "
-
-	;para "Please come back"
-	;line "once you've in-"
-	;cont "creased the size"
-	;cont "of your party."
-	;done
-; 0x61344
+	para "You can receive"
+	line "special #MON"
+	
+	para "if you have a"
+	line "SPECIAL CODE."
+	done
 
 ;UnknownText_0x61344: ; 0x61344
 	;text "We hope to see you"
 	;line "again."
 	;done
 ; 0x6135f
-
-;UnknownText_0x6135f: ; 0x6135f
-	;text "Communication"
-	;line "error<...>"
-	;done
-; 0x61375
-
-;UnknownText_0x61375: ; 0x61375
-	;text "If we accept that"
-	;line "#MON, what will"
-	;cont "you battle with?"
-	;done
-; 0x613a9
-
-;UnknownText_0x613a9: ; 0x613a9
-	;text "Sorry. We can't"
-	;line "accept an EGG."
-	;done
-; 0x613c8
-
-;UnknownText_0x613c8: ; 0x613c8
-	;text "Sorry, but your"
-	;line "#MON appears to"
-
-	;para "be abnormal. We"
-	;line "can't accept it."
-	;done
-; 0x61409
-
-;UnknownText_0x61409: ; 0x61409
-	;text "Oh? Aren't we"
-	;line "already holding a"
-	;cont "#MON of yours?"
-	;done
-; 0x61438
-
-;UnknownText_0x61438: ; 0x61438
-	;text "We'll check the"
-	;line "rooms."
-
-	;para "Please wait."
-	;done
-; 0x6145c
-
-;UnknownText_0x6145c: ; 0x6145c
-	;text "Thank you for your"
-	;line "patience."
-
-	;para "A trade partner"
-	;line "has been found."
-	;done
-; 0x6149a
 
 ;UnknownText_0x6149a: ; 0x6149a
 	;text "It's your new"
@@ -333,65 +120,6 @@ UnknownScript_0x61051: ; 0x61051
 	;done
 ; 0x61544
 
-;UnknownText_0x61544: ; 0x61544
-	;text "It's unfortunate,"
-	;line "but no one has"
-
-	;para "come forward as a"
-	;line "trade partner."
-
-	;para "Would you like"
-	;line "your #MON back?"
-	;done
-; 0x615a5
-
-;UnknownText_0x615a5: ; 0x615a5
-	;text "We have returned"
-	;line "your #MON."
-	;done
-; 0x615c2
-
-;UnknownText_0x615c2: ; 0x615c2
-	;text "It's unfortunate,"
-	;line "but no one has"
-
-	;para "come forward as a"
-	;line "trade partner."
-
-	;para "We've held your"
-	;line "#MON for a long"
-
-	;para "time. As a result,"
-	;line "it is very lonely."
-
-	;para "Sorry, but we must"
-	;line "return it to you."
-	;done
-; 0x6166e
-
-;UnknownText_0x6166e: ; 0x6166e
-	;text "We hope to see you"
-	;line "again."
-	;done
-; 0x61689
-
-;UnknownText_0x61689: ; 0x61689
-	;text "Fine. We will"
-	;line "continue to hold"
-	;cont "your #MON."
-	;done
-; 0x616b4
-
-;UnknownText_0x616b4: ; 0x616b4
-	;text "Oh? You left your"
-	;line "#MON with us"
-	;cont "only recently."
-
-	;para "Please come back"
-	;line "later."
-	;done
-; 0x616fb
-
 ;UnknownText_0x616fb: ; 0x616fb
 	;text "We'll SAVE before"
 	;line "connecting to the"
@@ -399,330 +127,107 @@ UnknownScript_0x61051: ; 0x61051
 	;done
 ; 0x61727
 
-;UnknownText_0x61727: ; 0x61727
-;	text "Which #MON do"
-;	line "you want to trade?"
-;	done
-; 0x61749
-
-;UnknownText_0x61749: ; 0x61749
-;	text "Sorry, but we must"
-;	line "cancel the trade."
-;	done
-; 0x6176f
-
-;UnknownText_0x6176f: ; 0x6176f
-;	text "Oh!"
-
-;	para "I see you have an"
-;	line "EGG TICKET!"
-
-;	para "It's a coupon that"
-;	line "special people can"
-
-;	para "redeem for a"
-;	line "special #MON!"
-;	done
-; 0x617d2
-
-;UnknownText_0x617d2: ; 0x617d2
-;	text "Let me give you a"
-;	line "quick briefing."
-
-;	para "Trades held at the"
-;	line "TRADE CORNER are"
-
-;	para "between two"
-;	line "trainers who don't"
-
-;	para "know each other's"
-;	line "identity."
-
-;	para "As a result, it"
-;	line "may take time."
-
-;	para "However, an ODD"
-;	line "EGG is available"
-;	cont "just for you."
-
-;	para "It will be sent to"
-;	line "you right away."
-
-;	para "Please choose one"
-;	line "of the rooms in"
-
-;	para "the CENTER."
-;	line "An ODD EGG will be"
-
-;	para "sent from the"
-;	line "chosen room."
-;	done
-; 0x6191f
-
-;UnknownText_0x6191f: ; 0x6191f
-;	text "Please wait a"
-;	line "moment."
-;	done
-; 0x61936
-
-;UnknownText_0x61936: ; 0x61936
-;	text "Thank you for"
-;	line "waiting."
-
-;	para "We received your"
-;	line "ODD EGG."
-
-;	para "Here it is!"
-
-;	para "Please raise it"
-	;line "with loving care."
-;	done
-; 0x61996
-
-;UnknownText_0x61996: ; 0x61996
-;	text "I'm awfully sorry."
-
-;	para "The EGG TICKET"
-;	line "exchange service"
-;	cont "isn't running now."
-;	done
-; 0x619db
-
 ;UnknownText_0x619db: ; 0x619db
 	;text "It's a #MON"
 ;	line "NEWS MACHINE."
 ;	done
 ; 0x619f5
 
-;UnknownText_0x619f5: ; 0x619f5
-;	text "What would you"
-;	line "like to do?"
-;	done
-; 0x61a11
+PccText5: ; 0x61c89
+	text "Whoa, this #MON"
+	line "CENTER is huge."
 
-;UnknownText_0x61a11: ; 0x61a11
-;	text "#MON NEWS is"
-;	line "news compiled from"
+	para "They just built"
+	line "this place. They"
 
-;	para "the SAVE files of"
-;	line "#MON trainers."
-
-;	para "When reading the"
-;	line "NEWS, your SAVE"
-
-;	para "file may be sent"
-;	line "out."
-
-;	para "The SAVE file data"
-;	line "will contain your"
-
-;	para "adventure log and"
-;	line "mobile profile."
-
-;	para "Your phone number"
-;	line "will not be sent."
-
-;	para "The contents of"
-;	line "the NEWS will vary"
-
-;	para "depending on the"
-;	line "SAVE files sent by"
-
-;	para "you and the other"
-;	line "#MON trainers."
-
-;	para "You might even be"
-;	line "in the NEWS!"
-;	done
-; 0x61b7c
-
-;UnknownText_0x61b7c: ; 0x61b7c
-;	text "Would you like to"
-;	line "get the NEWS?"
-;	done
-; 0x61b9d
-
-;UnknownText_0x61b9d: ; 0x61b9d
-;	text "Reading the latest"
-;	line "NEWS<...> Please wait."
-;	done
-; 0x61bc4
-
-;UnknownText_0x61bc4: ; 0x61bc4
-;	text "There is no old"
-;	line "NEWS…<...>
-
-; 0x61bdb
-
-;UnknownText_0x61bdb: ; 0x61bdb
-;	text "The NEWS data is"
-;	line "corrupted."
-
-;	para "Please download"
-;	line "the NEWS again."
-;	done
-; 0x61c18
-
-;UnknownText_0x61c18: ; 0x61c18
-;	text "We're making"
-;	line "preparations."
-
-;	para "Please come back"
-;	line "later."
-;	done
-; 0x61c4b
-
-;UnknownText_0x61c4b: ; 0x61c4b
-;	text "We will SAVE your"
-;	line "progress before"
-
-;	para "starting the NEWS"
-;	line "MACHINE."
-;	done
-; 0x61c89
-
-;UnknownText_0x61c89: ; 0x61c89
-;	text "Whoa, this #MON"
-;	line "CENTER is huge."
-
-;	para "They just built"
-;	line "this place. They"
-
-;	para "installed lots of"
-;	line "new machines too."
-;	done
+	para "installed lots of"
+	line "new machines too."
+	done
 ; 0x61cef
 
-;UnknownText_0x61cef: ; 0x61cef
-;	text "I thought up a fun"
-;	line "new thing for the"
-;	cont "TRADE CORNER!"
+PccText7: ; 0x61cef
+	text "I thought up a fun"
+	line "new thing for the"
+	cont "TRADE CORNER!"
 
-;	para "I make a PIDGEY"
-;	line "hold MAIL, then"
+	para "I make a NOCTOWL"
+	line "hold MAIL, then"
 
-;	para "put it up for"
-;	line "trade for another"
-;	cont "one!"
+	para "put it up for"
+	line "trade for another"
+	cont "one!"
 
-;	para "If everyone did"
-;	line "that, MAIL could"
+	para "If everyone did"
+	line "that, MAIL could"
 
-;	para "be traded with all"
-;	line "sorts of people!"
+	para "be traded with all"
+	line "sorts of people!"
 
-;	para "I call it PIDGEY"
-;	line "MAIL!"
+	para "I call it NOCTOWL"
+	line "MAIL!"
 
-;	para "If it becomes"
-;	line "popular, I might"
+	para "If it becomes"
+	line "popular, I might"
 
-;	para "make lots of new"
-;	line "friends!"
-;	done
+	para "make lots of new"
+	line "friends!"
+	done
 ; 0x61dfd
 
-;UnknownText_0x61dfd: ; 0x61dfd
-;	text "They said you can"
-;	line "trade #MON with"
+PccText8: ; 0x61f48
+	text "The #COM CENTER"
+	line "will link with all"
 
-;	para "total strangers up"
-;	line "here."
+	para "#MON CENTERS in"
+	line "a wireless net."
 
-;	para "But they're still"
-;	line "adjusting things."
-;	done
-; 0x61e5c
+	para "That must mean"
+	line "I'll be able to"
 
-;UnknownText_0x61e5c: ; 0x61e5c
-;	text "Some girl I don't"
-;	line "know sent me her"
+	para "link with all"
+	line "sorts of people."
+	done
 
-;	para "HOPPIP."
-;	line "You should trade"
+PccText9: ; 0x61f48
+	text "I'm waiting for"
+	line "my friend to"
+	cont "connect!"
 
-;	para "for a #MON that"
-;	line "you want."
-;	done
-; 0x61eb2
+	para "It's crazy that"
+	line "people from all"
 
-;UnknownText_0x61eb2: ; 0x61eb2
-;	text "I received a"
-;	line "female HOPPIP, but"
-;	cont "its named STANLEY!"
-
-;	para "That's my dad's"
-;	line "name!"
-;	done
-; 0x61efa
-
-;UnknownText_0x61efa: ; 0x61efa
-;	text "What is the NEWS"
-;	line "MACHINE?"
-;
-;	para "Does it get news"
-;	line "from a wider area"
-;	cont "than the radio?"
-;	done
-; 0x61f48
-
-;UnknownText_0x61f48: ; 0x61f48
-;	text "The #COM CENTER"
-;	line "will link with all"
-
-;	para "#MON CENTERS in"
-;	line "a wireless net."
-
-;	para "That must mean"
-;	line "I'll be able to"
-
-;	para "link with all"
-;	line "sorts of people."
-;	done
+	para "over the world"
+	line "can play together!"
+	
+	done
 ; 0x61fc9
 
-;UnknownText_0x61fc9: ; 0x61fc9
-;	text "The machines here"
-;	line "can't be used yet."
+PccText2: ; 0x61fc9
+	text "The machines here"
+	line "can't be used yet."
 
-;	para "Still, it's nice"
-;	line "coming to a trendy"
+	para "Still, it's nice"
+	line "coming to a trendy"
 
-;	para "place before other"
-;	line "people."
-;	done
+	para "place before other"
+	line "people."
+	done
 ; 0x6202c
 
-;UnknownText_0x6202c: ; 0x6202c
-;	text "My friend was in"
-;	line "the NEWS a while"
+UnknownText_0x620a1: ; 0x620a1
+	text "If I get in the"
+	line "NEWS and become"
 
-;	para "back. I was really"
-;;	line "surprised!"
-;	done
-; 0x6206d
+	para "famous, I bet I'll"
+	line "be adored."
 
-;UnknownText_0x6206d: ; 0x6206d
-;	text "I get anxious if I"
-;	line "don't check out"
-;	cont "the latest NEWS!"
-;	done
-; 0x620a1
-
-;UnknownText_0x620a1: ; 0x620a1
-;	text "If I get in the"
-;	line "NEWS and become"
-
-;	para "famous, I bet I'll"
-;	line "be adored."
-
-;	para "I wonder how I"
-;	line "could get in the"
-;	cont "NEWS?"
-;	done
+	para "I wonder how I"
+	line "could get in the"
+	cont "NEWS?"
+	done
 ; 0x62105
 
-UnknownText_0x62105: ; 0x62105
+PccText1: ; 0x62105
 	text "In all #MON"
 	line "CENTERS,"
 
@@ -734,36 +239,36 @@ UnknownText_0x62105: ; 0x62105
 	done
 ; 0x62173
 
-;UnknownText_0x62173: ; 0x62173
-	;text "I came over here"
-	;line "when I got word"
+PccText6: ; 0x62173
+	text "I came over here"
+	line "when I got word"
 
-	;para "that GOLDENROD's"
-;	line "#MON CENTER has"
+	para "that GOLDENROD's"
+	line "#MON CENTER has"
 
-	;para "new machines that"
-	;line "no one's ever seen"
-	;cont "before."
+	para "new machines that"
+	line "no one's ever seen"
+	cont "before."
 
-	;para "But it looks like"
-	;line "they're still busy"
+	para "But it looks like"
+	line "they're still busy"
 
-	;para "with all their"
-;	line "preparations<...>"
-	;done
+	para "with all their"
+	line "preparations<...>"
+	done
 
 ; 0x62222
 
-;UnknownText_0x62222: ; 0x62222
-	;text "Just seeing all"
-;	line "these new things"
+PccText3: ; 0x62222
+	text "Just seeing all"
+	line "these new things"
 
-;	para "here makes me feel"
-;	line "younger!"
-;	done
+	para "here makes me feel"
+	line "younger!"
+	done
 ; 0x62260
 
-UnknownText_0x62260: ; 0x62260
+PccText4: ; 0x62260
 	text "You just came"
 	line "from training your"
 	cont "#MON too?"
@@ -779,49 +284,29 @@ UnknownText_0x62260: ; 0x62260
 	line "scared when I"
 	cont "go near a PC."
 	done
-; 0x622f0
 
-;UnknownText_0x622f0: ; 0x622f0
-	;text "<PLAYER>, isn't it?"
+PccText10: ; 0x62370
+	text "#COM CENTER"
+	line "1F INFORMATION"
 
-	;para "Congratulations!"
+	para "Left:"
+	line "ADMINISTRATION"
 
-	;para "As a special deal,"
-	;line "a GS BALL has been"
-	;cont "sent just for you!"
+	para "Center:"
+	line "#MON CENTER"
 
-	;para "Please accept it!"
-	;done
-; 0x62359
-
-;UnknownText_0x62359: ; 0x62359
-	;text "Please do come"
-	;line "again!"
-	;done
-; 0x62370
-
-;UnknownText_0x62370: ; 0x62370
-	;text "#COM CENTER"
-	;line "1F INFORMATION"
-
-	;para "Left:"
-	;line "ADMINISTRATION"
-
-	;para "Center:"
-	;line "TRADE CORNER"
-
-	;para "Right:"
-	;line "#MON NEWS"
-	;done
+	para "Right:"
+	line "#TRADE CORNER"
+	done
 ; 0x623c7
 
-;UnknownText_0x623c7: ; 0x623c7
-	;text "It's a #MON"
-	;line "NEWS MACHINE!"
+UnknownText_0x623c7: ; 0x623c7
+	text "It's a massive"
+	line "computer!"
 
-	;para "It's not in"
-	;line "operation yet<...>"
-	;done
+	para "It looks very"
+	line "complicated<...>"
+	done
 ; 0x623fb
 
 UnknownText_0x623fb: ; 0x623fb
@@ -879,31 +364,52 @@ UnknownText_0x62549: ; 0x62549
 	done
 ; 0x62564
 
+SentretCryScript_PCC: ; 0x1a9f46
+	loadfont
+	writetext SentretCry_PCC
+	cry SENTRET
+	waitbutton
+	closetext
+	end
+	
+SentretCry_PCC: ; 0x62549
+	text "SENTRET: Nyeut!"
+	done
+
 GoldenrodPokeCenter1F_MapEventHeader: ; 0x62564
 	; filler
 	db 0, 0
 
 	; warps
-	db 3
-	warp_def $7, $3, 15, GROUP_GOLDENROD_CITY, MAP_GOLDENROD_CITY
-	warp_def $7, $4, 15, GROUP_GOLDENROD_CITY, MAP_GOLDENROD_CITY
-	;warp_def $6, $0, 1, GROUP_GOLDENROD_POKECOM_CENTER_2F_MOBILE, MAP_GOLDENROD_POKECOM_CENTER_2F_MOBILE
-	warp_def $7, $0, 1, GROUP_POKECENTER_2F, MAP_POKECENTER_2F
+	db 4
+	warp_def $f, $7, 15, GROUP_GOLDENROD_CITY, MAP_GOLDENROD_CITY
+	warp_def $f, $6, 15, GROUP_GOLDENROD_CITY, MAP_GOLDENROD_CITY
+	warp_def $6, $0, 1, GROUP_GOLDENROD_POKECOM_CENTER_2F_MOBILE, MAP_GOLDENROD_POKECOM_CENTER_2F_MOBILE
+	warp_def $f, $0, 1, GROUP_POKECENTER_2F, MAP_POKECENTER_2F
 
 	; xy triggers
-	db 2
-	xy_trigger 0, $7, $3, $0, UnknownScript_0x60f94, $0, $0
-	xy_trigger 0, $7, $4, $0, UnknownScript_0x60fd9, $0, $0
+	db 0
+	;xy_trigger 0, $f, $6, $0, UnknownScript_0x60f94, $0, $0
+	;xy_trigger 0, $f, $7, $0, UnknownScript_0x60fd9, $0, $0
 
 	; signposts
-	db 0
+	db 1
+	signpost 9, 2, $0, PCCDirectorySignScript
 
 	; people-events
-	db 5
-	person_event SPRITE_NURSE, 5, 7, $6, 0, 0, -1, -1, 0, 0, 0, NurseScript_0x60f91, -1
-	person_event SPRITE_LINK_RECEPTIONIST, 12, 20, $6, 0, 0, -1, -1, 8 + PAL_OW_BLUE, 0, 0, ObjectEvent, -1
-	person_event SPRITE_GAMEBOY_KID, 5, 10, $6, 0, 0, -1, -1, 8 + PAL_OW_GREEN, 0, 0, GameboyKidScript_0x6101e, -1
-	person_event SPRITE_LASS, 8, 5, $5, 0, 1, -1, -1, 0, 0, 0, LassScript_0x61021, -1
-	person_event SPRITE_POKEFAN_F, 9, 11, $6, 0, 0, -1, -1, 8 + PAL_OW_BROWN, 0, 0, PokefanFScript_0x61024, -1
+	db 13
+	person_event SPRITE_NURSE, 11, 11, $6, 0, 0, -1, -1, 0, 0, 0, NurseScript_PCC, -1
+	person_event SPRITE_LINK_RECEPTIONIST, 12, 20, $6, 0, 0, -1, -1, 8 + PAL_OW_BLUE, 0, 0, LinkStationNurseScript, -1
+	person_event SPRITE_GAMEBOY_KID, 16, 14, $6, 0, 0, -1, -1, 8 + PAL_OW_RED, 0, 0, GameboyKidScript_PCC2, -1
+	person_event SPRITE_GAMEBOY_KID, 16, 15, $6, 0, 0, -1, -1, 8 + PAL_OW_GREEN, 0, 0, GameboyKidScript_PCC1, -1
+	person_event SPRITE_RHYDON, 13, 8, $16, 0, 0, -1, -1, 8 + PAL_OW_BROWN, 0, 0, SentretCryScript_PCC, -1
+	person_event SPRITE_LASS, 13, 9, $6, 0, 0, -1, -1, 0, 0, 0, LassScript_PCC, -1
+	person_event SPRITE_COOLTRAINER_F, 16, 8, $5, 0, 1, -1, -1, 0, 0, 0, CoolTrainerFScript_PCC, -1
+	person_event SPRITE_GRAMPS, 13, 25, $2, 0, 1, -1, -1, 0, 0, 0, GrannyTextScript_PCC, -1
+	person_event SPRITE_POKEFAN_F, 18, 22, $6, 0, 0, -1, -1, 8 + PAL_OW_BROWN, 0, 0, PokefanFScript_PCC, -1
+	person_event SPRITE_YOUNGSTER, 17, 12, $2, 2, 0, -1, -1, 8 + PAL_OW_BLUE, 0, 0, YoungsterScript_PCC, -1
+	person_event SPRITE_SILVER, 10, 25, $2, 1, 1, -1, -1, 8 + PAL_OW_GREEN, 0, 0, GreenHairScript_PCC, -1
+	person_event SPRITE_TEACHER, 17, 31, $2, 0, 0, -1, -1, 8 + PAL_OW_RED, 0, 0, TeacherScript_PCC, -1
+	person_event SPRITE_YOUNGSTER, 12, 34, $8, 0, 0, -1, -1, 0, 0, 0, YoungsterScript2_PCC, -1
 ; 0x625cf
 
