@@ -34493,7 +34493,7 @@ AI_Redundant: ; 2c41a
 .Spikes: ; 2c4e3
 	ld a, [PlayerScreens]
 	and $3
-    ret
+	ret
 
 .Foresight: ; 2c4e9
 	ld a, [PlayerSubStatus1]
