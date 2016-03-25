@@ -34492,10 +34492,8 @@ AI_Redundant: ; 2c41a
 
 .Spikes: ; 2c4e3
 	ld a, [PlayerScreens]
-	bit SCREENS_SPIKES, a
-	ret z
-	bit SCREENS_SPIKES2, a
-	ret
+	and $3
+    ret
 
 .Foresight: ; 2c4e9
 	ld a, [PlayerSubStatus1]
@@ -34549,8 +34547,8 @@ AI_Redundant: ; 2c41a
 	ret
 
 .FutureSight: ; 2c533
-	ld a, [EnemyScreens]
-	bit 5, a
+	ld a, [wc71e]
+	and a
 	ret
 
 .Heal:
