@@ -1079,3 +1079,8 @@ checkunit: macro
 	db checkunit_command
 	endm
 	
+	enum fossilpic_command
+fossilpic: macro
+	db fossilpic_command
+	db \1
+	endm

@@ -133,6 +133,7 @@ UnknownScript_0x1a173e: ; 0x1a173e
 ; 0x1a174b
 
 UnknownScript_0x1a174b: ; 0x1a174b
+	winlosstext YoungsterJoey5BeatenText, $0000
 	loadtrainer YOUNGSTER, JOEY5
 	startbattle
 	returnafterbattle
@@ -365,11 +366,16 @@ YoungsterJoey1SeenText: ; 0x1a1849
 	done
 ; 0x1a18a2
 
+;we should modify this with rematches
 YoungsterJoey1BeatenText: ; 0x1a18a2
-	text "Ack! How could my!"
+	text "Ack! How could my"
 	line "RATTATA lose?!"
 	done
 ; 0x1a18c2
+YoungsterJoey5BeatenText:
+	text "No way! Even after"
+	line "it evolved?!"
+	done
 
 UnknownText_0x1a18c2: ; 0x1a18c2
 	text "Do I have to have"

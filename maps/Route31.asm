@@ -242,6 +242,7 @@ UnknownScript_0x1a5584: ; 0x1a5584
 	if_equal $2, UnknownScript_0x1a55c1
 	if_equal $3, UnknownScript_0x1a55bb
 	if_equal $4, UnknownScript_0x1a55c7
+	if_equal $5, NotKenyaScript
 	writetext UnknownText_0x1a5790
 	buttonsound
 	writetext UnknownText_0x1a57ba
@@ -257,6 +258,12 @@ UnknownScript_0x1a55b3: ; 0x1a55b3
 	closetext
 	end
 ; 0x1a55b5
+
+NotKenyaScript:
+	writetext NotKenyaText
+	waitbutton
+	closetext
+	end
 
 UnknownScript_0x1a55b5: ; 0x1a55b5
 	writetext UnknownText_0x1a5921
@@ -416,14 +423,14 @@ UnknownText_0x1a5896: ; 0x1a5896
 
 	para "It lets a doll"
 	line "fight for a"
-	cont "#MON, stopping"
-	cont "it from being hit" 
-	cont "by status or"
-	cont "being KO'd."
+	para "#MON, stopping"
+	line "it from being hit" 
+	para "by status or"
+	line "being KO'd."
 
 	para "It's nice to have"
 	line "others do the work"
-	cont "for you"
+	cont "for you."
 	done
 ; 0x1a5921
 
@@ -456,6 +463,12 @@ UnknownText_0x1a5991: ; 0x1a5991
 	line "to use in battle?"
 	done
 ; 0x1a59d5
+
+NotKenyaText:
+	text "That doesn't look"
+	line "like the right"
+	cont "#MON."
+	done
 
 UnknownText_0x1a59d5: ; 0x1a59d5
 	text "I found a good"

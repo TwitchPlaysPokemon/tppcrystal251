@@ -244,6 +244,7 @@ ENDC
 	dw Script_unknown0xa9
 	dw Script_checkroammon
 	dw Script_checkunit
+	dw Script_fossilpic
 ; 0x96e05
 
 StartScript: ; 0x96e05
@@ -511,6 +512,13 @@ Script_pokepic: ; 0x96f16
 	ld [ScriptVar], a
 	ret
 ; 0x96f29
+
+Script_fossilpic:
+	call GetScriptByte
+	ld c, a
+	ld b, 0
+	callba FossilPic
+	ret
 
 Script_closepokepic: ; 0x96f29
 ; script command 0x57

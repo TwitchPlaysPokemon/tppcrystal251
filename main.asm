@@ -25065,6 +25065,46 @@ Function244e3:: ; 244e3
 	ret
 ; 24528
 
+FossilPic:: ; 244e3
+	push bc
+	ld hl, MenuDataHeader_0x24547
+	call Function1d3c
+	call Function1cbb ;put a textbox in menu area
+	call Function1ad2
+	call Function321c
+	ld b, $1f
+	call GetSGBLayout
+	xor a
+	ld [hBGMapMode], a
+	ld de, VTiles1
+	pop bc
+	callba GetFossilPic
+	ld a, [wcf82]
+	inc a
+	ld b, a
+	ld a, [wcf83]
+	inc a
+	ld c, a
+	call GetTileCoord
+	ld a, $80
+	ld de, $14
+	ld b, 7
+.loop
+	ld c, 7
+	push hl
+.loop2
+	ld [hli], a
+	inc a
+	dec c
+	jr nz, .loop2
+	pop hl
+	add hl, de
+	dec b
+	jr nz, .loop
+	call WaitBGMap
+	ret
+; 24528
+
 Function24528:: ; 24528
 	ld hl, MenuDataHeader_0x24547
 	call Function1d3c
@@ -27621,21 +27661,21 @@ Unknown_254c9: ; 254c9
 	dw EVENT_MORTY_REMATCH
 	db $0c, $20, $24, $20 | $80
 	db $0c, $20, $24, $20 | $80
-	; Mineralbadge
-	db $80, $58
-	dw EVENT_JASMINE_REMATCH
-	db $10, $20, $24, $20 | $80
-	db $10, $20, $24, $20 | $80
-	; Stormbadge
-	db $80, $38
-	dw EVENT_CHUCK_REMATCH
-	db $14, $20, $24, $20 | $80
-	db $14, $20, $24, $20 | $80
 	; Glacierbadge
 	db $80, $18
 	dw EVENT_PRYCE_REMATCH
 	db $18, $20, $24, $20 | $80
 	db $18, $20, $24, $20 | $80
+	; Stormbadge
+	db $80, $38
+	dw EVENT_CHUCK_REMATCH
+	db $10, $20, $24, $20 | $80
+	db $10, $20, $24, $20 | $80
+	; Mineralbadge
+	db $80, $58
+	dw EVENT_JASMINE_REMATCH
+	db $14, $20, $24, $20 | $80
+	db $14, $20, $24, $20 | $80
 	; Risingbadge
 	; X-flips on alternate cycles.
 	db $80, $78
@@ -29628,6 +29668,74 @@ Function2805d: ; 2805d
 	cp $2
 	ld c, 66
 	call z, DelayFrames
+
+GoodMoveCheck: 
+	push af
+	push bc
+	push de
+	push hl
+	
+	ld a, [OverworldMap + $8]
+	cp $1 ;Is it TPP or not? If true, we can skip the checks.
+	jr z, .endCompatibleMoveCheck
+	
+	ld hl, OverworldMap + $1b ;Get move from linked
+	ld de, TPPNewMoves ;Moves that will end the trade
+	ld c, $4 ;Total moves per Pokemon
+	ld a, [OverworldMap + $b] ;Linked party size
+	push af
+
+;a: Disqualifying move
+;b: Move to compare
+.checkLinkedMoveGroup
+	ld a, [hli] ;a: Move of linked Pokemon
+	ld b, a ;b: Move of linked Pokemon
+
+.checkLinkedMoveGroupLoop
+	ld a, [de]
+	cp $ff
+	jr z, .endLinkedMoveGroup
+	cp b
+	jr z, .badMoveLink
+	inc de ;Increase move to check
+	jr .checkLinkedMoveGroupLoop
+	
+	
+.endLinkedMoveGroup
+	ld de, TPPNewMoves ;Moves that will end the trade
+	dec c ; Decrease the checks
+	ld a, c
+	cp $0 ;Check if it's the end
+	jr nz, .checkLinkedMoveGroup ;Continue with loop
+	ld c, $4
+	pop af ;Get party size
+	dec a ;Decrease by 1
+	cp $0 
+	jr z, .endCompatibleMoveCheck ;If it's the end, then end the checks
+	
+;We're not at the end so let's continue the check
+	push af
+	ld de, $0028
+	add hl, de
+	ld de, TPPNewMoves
+	jr .checkLinkedMoveGroup
+	
+.badMoveLink
+	pop af
+	pop de
+	pop bc
+	pop af
+	ld hl, StringMoveIncompatible ;Finish this part (just tell the player that the pokemon can't be traded)
+	call PrintText
+	pop hl
+	ret
+	
+.endCompatibleMoveCheck
+	pop hl
+	pop de
+	pop bc
+	pop af
+	
 	ld de, MUSIC_ROUTE_30
 	call PlayMusic
 	jp Function287e3
@@ -30169,9 +30277,9 @@ Function284f6: ; 284f6
 	ld [de], a
 	inc de
 	ld a, [bc]
-	cp $51
+	cp MAGNEMITE
 	jr z, .asm_28528
-	cp $52
+	cp MAGNETON
 	jr nz, .asm_28530
 .asm_28528
 	ld a, $17
@@ -31422,6 +31530,19 @@ String28ebd: ; 28ebd
 String28ece: ; 28ece
 	db   "Too bad! The trade"
 	next "was canceled!@"
+	
+StringMoveIncompatible: ; 0x4d3fe
+	text_jump StringMoveIncompatibleText
+	db "@"
+	
+StringMoveIncompatibleText: ; 28ece
+	db   "Your friend has a"
+	next "#MON with a"	
+	cont "move that is"
+	cont "incompatible with"
+	cont "this game."
+	done
+	
 Function28eef: ; 28eef
 	ld d, h
 	ld e, l
@@ -32982,6 +33103,40 @@ TradeBallGFX:   INCBIN "gfx/trade/ball.2bpp"
 
 TradePoofGFX:   INCBIN "gfx/trade/poof.2bpp"
 
+TPPNewMoves:
+	db POISON_JAB
+	db FLASH_CANNON
+	db ZEN_HEADBUTT
+	db AIR_SLASH
+	db BUG_BUZZ
+	db DRILL_RUN
+	db DAZZLINGLEAM
+	db SHADOW_CLAW
+	db ZEN_HEADBUTT
+	db IRON_DEFENSE
+	db DARK_PULSE
+	db HEAT_WAVE
+	db X_SCISSOR
+	db SEED_BOMB
+	db GUNK_SHOT
+	db FAIRY_WIND
+	db NASTY_PLOT
+	db IRON_HEAD
+	db METAL_SOUND
+	db WILD_CHARGE
+	db DRAGON_PULSE
+	db MOONBLAST
+	db PLAY_ROUGH
+	db SHEER_COLD
+	db WILLOWISP
+	db EARTH_POWER
+	db FOCUS_BLAST
+	db AQUA_JET
+	db FLARE_BLITZ
+	db ROCK_POLISH
+	db NASTY_PLOT
+	db $ff
+
 Function29bfb: ; 29bfb
 	ld hl, PartySpecies
 	ld b, PARTY_LENGTH
@@ -33016,6 +33171,26 @@ Function29bfb: ; 29bfb
 	ld c, NUM_MOVES
 .asm_29c30
 	ld a, [hli]
+	
+	push bc
+	push hl
+	push af
+	ld hl, TPPNewMoves
+	ld b, a
+	
+.goodMoveInRedLoop
+	ld a, [hli]
+	cp $ff
+	jr z, .goodMoveInRedLoopExit
+	cp b
+	jr z, .badMovePop
+	jr .goodMoveInRedLoop
+
+.goodMoveInRedLoopExit	
+	pop af
+	pop hl
+	pop bc
+
 	cp STRUGGLE + 1
 	jr nc, .asm_29c4c
 	dec c
@@ -33032,6 +33207,11 @@ Function29bfb: ; 29bfb
 	call GetPokemonName
 	ld a, $1
 	jr .asm_29c63
+	
+.badMovePop
+	pop af
+	pop hl
+	pop bc
 
 .asm_29c4c
 	push bc
@@ -34312,7 +34492,7 @@ AI_Redundant: ; 2c41a
 
 .Spikes: ; 2c4e3
 	ld a, [PlayerScreens]
-	bit SCREENS_SPIKES, a
+	and $3
 	ret
 
 .Foresight: ; 2c4e9
@@ -34367,8 +34547,8 @@ AI_Redundant: ; 2c41a
 	ret
 
 .FutureSight: ; 2c533
-	ld a, [EnemyScreens]
-	bit 5, a
+	ld a, [wc71e]
+	and a
 	ret
 
 .Heal:
@@ -36777,33 +36957,8 @@ SECTION "bank11", ROMX, BANK[$11]
 
 INCLUDE "engine/fruit_trees.asm"
 
+IF !DEF(BEESAFREE)
 AIChooseMove:
-IF DEF(BEESAFREE)
-; In link battle, the player chooses moves, not the AI.
-
-	ld a, [wLinkMode]
-	and a
-	ret nz
-; No use picking a move if there's no choice.
-
-	callba Function3e8d1
-	ret nz
-
-	call ResetLUASerial
-	ld a, BEESAFREE_SND_ASKMOVE
-	rst LUASerial
-	ld hl, EnemyMonMoves
-	ld c, a
-	ld b, 0
-	add hl, bc
-	ld a, [hl]
-	ld [CurEnemyMove], a
-	ld a, c
-	ld [CurEnemyMoveNum], a
-	ret
-	ret
-
-ELSE
 ; Wildmons attack at random.
 
 	ld a, [wBattleMode]
@@ -36902,7 +37057,7 @@ ELSE
 	ld h, [hl]
 	ld l, a
 	ld a, BANK(AIScoring)
-	call FarCall_hl
+	rst FarCall
 	jr .CheckLayer
 ; Decrement the scores of all moves one by one until one reaches 0.
 
@@ -36983,143 +37138,7 @@ ELSE
 	ld [CurEnemyMoveNum], a
 	ret
 
-ENDC
 ; 441af
-
-; AIWaitMove:
-	; callba Function3e8d1
-	; ret nz
-	; callba EmptyBattleTextBox
-	; ld hl, .waiting
-	; call StdBattleTextBox
-; .loop
-	; ld a, [$ffee]
-	; and a
-	; jr nz, .selected
-	; call DelayFrame
-	; jr .loop
-
-; .selected
-	; bit 7, a
-	; jr nz, .switch
-	; bit 6, a
-	; jr nz, .item
-	; and $f
-	; jr z, .invalid
-	; dec a
-	; cp NUM_MOVES
-	; jr nc, .invalid
-	; ld c, a
-	; ld b, 0
-	; ld hl, EnemyMonMoves
-	; add hl, bc
-	; ld a, [hl]
-	; and a
-	; jr z, .invalid
-	; ld hl, EnemyMonPP
-	; add hl, bc
-	; ld a, [hl]
-	; and $3f
-	; jr z, .invalid
-	; ld a, [EnemyDisabledMove]
-	; and a
-	; jr z, .not_disabled
-	; dec a
-	; cp c
-	; jr z, .invalid
-; .not_disabled
-	; ld hl, EnemyMonMoves
-	; add hl, bc
-	; ld a, [hl]
-	; ld [CurEnemyMove], a
-	; ld a, c
-	; ld [CurEnemyMoveNum], a
-	; ret
-
-; .invalid
-	; call AIChooseMove
-	; jr .loop
-
-; .switch
-	; ld hl, PlayerSubStatus5
-	; bit SUBSTATUS_CANT_RUN, [hl]
-	; jr nz, .invalid
-	; and $f
-	; jr z, .invalid
-	; dec a
-	; cp PARTY_LENGTH
-	; jr nc, .invalid
-	; ld hl, CurOTMon
-	; cp [hl]
-	; jr z, .invalid
-	; push af
-	; ld bc, $30
-	; ld hl, OTPartyMon1HP
-	; call AddNTimes
-	; ld a, [hli]
-	; ld b, a
-	; ld a, [hld]
-	; or b
-	; pop bc
-	; jr z, .invalid
-	; callba AI_Switch
-	; ret
-
-; .item
-	; and $f
-	; jr z, .invalid
-	; push af
-	; dec a
-	; cp 2
-	; jr nc, .invalid
-	; ld hl, wc650
-	; and a
-	; jr z, .ok
-	; inc hl
-; .ok
-	; ld a, [hl]
-	; and a
-	; pop bc
-	; jr z, .invalid
-	; push bc
-	; ld a, [TrainerClass]
-	; dec a
-	; ld hl, TrainerClassAttributes
-	; ld bc, 7
-	; call AddNTimes
-	; pop af
-	; dec a
-	; ld c, a
-	; ld b, 0
-	; add hl, bc
-	; ld a, [hl]
-	; and a
-	; jr z, .invalid
-	; ld c, a
-	; ld hl, AI_Items
-; .item_loop
-	; ld a, BANK(AI_Items)
-	; call GetFarByte
-	; inc hl
-	; cp c
-	; jr z, .got_item
-	; inc hl
-	; inc hl
-	; jr .item_loop
-
-; .got_item
-	; ld a, [hli]
-	; ld h, [hl]
-	; ld l, a
-	; ld a, BANK(AI_Items)
-	; rst FarCall
-	; jr c, .invalid
-	; callba AI_Used_Item
-	; ret
-
-; .waiting:
-	; db "Waiting...@"
-; ; 441af
 
 AIScoringPointers: ; 441af
        dw AI_Basic
@@ -37139,6 +37158,7 @@ AIScoringPointers: ; 441af
        dw AI_None
        dw AI_None
 ; 441cf
+ENDC
 
 Function441cf: ; 441cf
 	ld hl, Unknown_441fc
@@ -37364,19 +37384,52 @@ Function44654:: ; 44654
 	push de
 	callba Function50000
 	ld a, $2
-	jr c, .asm_446c6
+	jp c, .pop_load
 	ld a, [CurPartyMon]
-	ld hl, PartyMon1Item
+	ld hl, PartyMon1Species
 	ld bc, PartyMon2 - PartyMon1
 	call AddNTimes
+	ld a, [hl]
+	cp NOCTOWL ; Kenya's species
+	jp nz, .not_kenya
+	ld c, l
+	ld b, h
+	ld hl, PartyMon1ID - PartyMon1
+	add hl, bc
+	ld a, [hli]
+	cp 01001 / $100
+	jp nz, .not_kenya
+	ld a, [hl]
+	cp 01001 % $100
+	jp nz, .not_kenya
+	push bc
+	ld a, [CurPartyMon]
+	ld hl, PartyMonOT
+	ld bc, NAME_LENGTH
+	call AddNTimes
+	pop bc
+	ld de, .OTName
+	call .CompareStrings
+	jr nz, .not_kenya
+	push bc
+	ld a, [CurPartyMon]
+	ld hl, PartyMonNicknames
+	ld bc, PKMN_NAME_LENGTH
+	call AddNTimes
+	pop bc
+	ld de, .Nickname
+	call .CompareStrings
+	jr nz, .not_kenya
+	ld hl, PartyMon1Item - PartyMon1
+	add hl, bc
 	ld d, [hl]
 	callba ItemIsMail
 	ld a, $3
-	jr nc, .asm_446c6
+	jr nc, .pop_load
 	ld a, $0
 	call GetSRAMBank
 	ld a, [CurPartyMon]
-	ld hl, $a600
+	ld hl, sPartyMail
 	ld bc, $002f
 	call AddNTimes
 	ld d, h
@@ -37385,41 +37438,57 @@ Function44654:: ; 44654
 	pop bc
 	ld a, $20
 	ld [wd265], a
-.asm_44691
+.loop
 	ld a, [de]
 	ld c, a
 	ld a, b
 	call GetFarByte
-	cp $50
-	jr z, .asm_446ab
+	cp "@"
+	jr z, .done
 	cp c
 	ld a, $0
-	jr nz, .asm_446c1
+	jr nz, .close_sram_load
 	inc hl
 	inc de
 	ld a, [wd265]
 	dec a
 	ld [wd265], a
-	jr nz, .asm_44691
-.asm_446ab
+	jr nz, .loop
+.done
 	callba Functione538
 	ld a, $4
-	jr c, .asm_446c1
+	jr c, .close_sram_load
 	xor a
 	ld [wd10b], a
 	callba Functione039
 	ld a, $1
-.asm_446c1
+.close_sram_load
 	call CloseSRAM
-	jr .asm_446c8
+	jr .load
 
-.asm_446c6
+.not_kenya
+	ld a, $5
+.pop_load
 	pop de
 	pop bc
-.asm_446c8
+.load
 	ld [ScriptVar], a
 	ret
 ; 446cc
+.CompareStrings
+	ld a, [de]
+	cp [hl]
+	ret nz
+	cp "@"
+	ret z
+	inc de
+	inc hl
+	jr .CompareStrings
+
+.OTName
+	db "RANDY@"
+.Nickname
+	db "KENYA@"
 
 Function446cc:: ; 446cc
 	ld a, [PartyCount]
@@ -49692,6 +49761,29 @@ Function5108b: ; 5108b
 	ret
 ; 510a5
 
+GetFossilPic:
+	ld a, [rSVBK]
+	push af
+	call .GetFossilPic
+	pop af
+	ld [rSVBK], a
+	ret
+
+.GetFossilPic
+	push de
+	ld a, 6
+	ld [rSVBK], a
+	ld hl, FossilPicPointers
+	add hl, bc
+	add hl, bc
+	ld a, [hli]
+	ld h, [hl]
+	ld l, a
+	ld a, BANK(AerodactylFossilPic)
+	ld b, 7
+	push bc
+	jr _FinishLoadingFrontpic
+
 _GetFrontpic: ; 510a5
 	push de
 	call GetBaseData
@@ -49703,6 +49795,7 @@ _GetFrontpic: ; 510a5
 	ld a, $6
 	ld [rSVBK], a
 	ld a, b
+_FinishLoadingFrontpic:
 	ld de, w6_d000 + $800
 	call FarDecompress
 	pop bc
@@ -49719,6 +49812,10 @@ _GetFrontpic: ; 510a5
 	pop hl
 	ret
 ; 510d7
+
+FossilPicPointers:
+	dw AerodactylFossilPic
+	dw KabutopsFossilPic
 
 GetFrontpicPointer: ; 510d7
 GLOBAL PicPointers, UnownPicPointers
@@ -82868,6 +82965,10 @@ Functione36f9: ; e36f9 (38:76f9)
 	and B_BUTTON | SELECT
 	cp B_BUTTON | SELECT
 	jr nz, .joy_loop
+	ld a, [Options]
+	push af
+	or $7 ; SUPER SLOW
+	ld [Options], a
 	ld hl, .AreYouSure
 	call Function1d4f
 	ld hl, .NoYesBox
@@ -82884,6 +82985,8 @@ Functione36f9: ; e36f9 (38:76f9)
 	jr c, .refused
 	callba DeleteBox
 .refused
+	pop af
+	ld [Options], a
 	call Function1c07
 	ret
 
@@ -86596,7 +86699,7 @@ Functionfb57e: ; fb57e
 	cp EGG
 	jr z, .asm_fb59c
 	cp [hl]
-	jr nz, .asm_fb5db
+	jp nz, Asm_fb5db
 .asm_fb59c
 	ld b, h
 	ld c, l
@@ -86604,10 +86707,10 @@ Functionfb57e: ; fb57e
 	add hl, bc
 	ld a, [hl]
 	cp 101
-	jr nc, .asm_fb5db
+	jp nc, Asm_fb5db
 	ld a, [wLinkMode]
 	cp $1
-	jr nz, .asm_fb5d9
+	jp nz, SkipTypeCheck
 	ld hl, OTPartySpecies
 	ld a, [wd003]
 	ld c, a
@@ -86617,9 +86720,63 @@ Functionfb57e: ; fb57e
 	; Magnemite and Magneton's types changed
 	; from Electric to Electric/Steel.
 	cp MAGNEMITE
-	jr z, .asm_fb5d9
+	jp z, SkipTypeCheck
 	cp MAGNETON
-	jr z, .asm_fb5d9
+	jp z, SkipTypeCheck
+	
+	;Fairies
+	cp CLEFAIRY
+	jp z, SkipTypeCheck
+	cp CLEFABLE
+	jp z, SkipTypeCheck
+	cp JIGGLYPUFF
+	jp z, SkipTypeCheck
+	cp WIGGLYTUFF
+	jp z, SkipTypeCheck
+	cp MR__MIME
+	jp z, SkipTypeCheck
+	cp TOGEPI
+	jp z, SkipTypeCheck
+	cp TOGETIC
+	jp z, SkipTypeCheck
+	cp MARILL
+	jp z, SkipTypeCheck
+	cp AZUMARILL
+	jp z, SkipTypeCheck
+	
+	;Brown type changes
+	;Gas
+	cp KOFFING
+	jp z, SkipTypeCheck
+	cp WEEZING
+	jp z, SkipTypeCheck
+	cp GASTLY
+	jp z, SkipTypeCheck
+	cp HAUNTER
+	jp z, SkipTypeCheck
+	cp GENGAR
+	jp z, SkipTypeCheck
+	
+	;Wood (Retconned in Prism)
+	cp BELLSPROUT
+	jp z, SkipTypeCheck
+	cp WEEPINBELL
+	jp z, SkipTypeCheck
+	cp VICTREEBEL
+	jp z, SkipTypeCheck
+	cp EXEGGCUTE
+	jp z, SkipTypeCheck
+	cp EXEGGUTOR
+	jp z, SkipTypeCheck
+	
+	;Abnormal
+	cp PORYGON
+	jp z, SkipTypeCheck
+	cp PORYGON2
+	jp z, SkipTypeCheck
+	cp DITTO
+	jp z, SkipTypeCheck
+	
 	ld [CurSpecies], a
 	call GetBaseData
 	ld hl, wcbea
@@ -86627,16 +86784,16 @@ Functionfb57e: ; fb57e
 	add hl, bc
 	ld a, [BaseType1]
 	cp [hl]
-	jr nz, .asm_fb5db
+	jp nz, Asm_fb5db
 	inc hl
 	ld a, [BaseType2]
 	cp [hl]
-	jr nz, .asm_fb5db
-.asm_fb5d9
+	jp nz, Asm_fb5db
+SkipTypeCheck:
 	and a
 	ret
 
-.asm_fb5db
+Asm_fb5db:
 	scf
 	ret
 ; fb5dd
@@ -86997,7 +87154,7 @@ Functionfb908: ; fb908
 	ret
 ; fb91c
 
-Unknown_fb91c: ; fb91c
+Unknown_fb91c: ; fb91c (Modified to also support Pokemon Brown)
 	db RHYDON
 	db KANGASKHAN
 	db NIDORAN_M
@@ -87028,8 +87185,8 @@ Unknown_fb91c: ; fb91c
 	db BLASTOISE
 	db PINSIR
 	db TANGELA
-	db SCIZOR
-	db SHUCKLE
+	db CHIKORITA ;1F
+	db BAYLEEF ; 20
 	db GROWLITHE
 	db ONIX
 	db FEAROW
@@ -87047,26 +87204,26 @@ Unknown_fb91c: ; fb91c
 	db PSYDUCK
 	db DROWZEE
 	db GOLEM
-	db HERACROSS
+	db $0 ;$32 (Cranidos)
 	db MAGMAR
-	db HO_OH
+	db PUPITAR ;$34
 	db ELECTABUZZ
 	db MAGNETON
 	db KOFFING
-	db SNEASEL
+	db CYNDAQUIL ;$38
 	db MANKEY
 	db SEEL
 	db DIGLETT
 	db TAUROS
-	db TEDDIURSA
-	db URSARING
-	db SLUGMA
+	db QUILAVA ;$3D
+	db TYPHLOSION ;$3E
+	db TOTODILE ;$3F
 	db FARFETCH_D
 	db VENONAT
 	db DRAGONITE
-	db MAGCARGO
-	db SWINUB
-	db PILOSWINE
+	db CROCONAW ;$43
+	db FERALIGATR  ;$44
+	db HOUNDOUR ;$45
 	db DODUO
 	db POLIWAG
 	db JYNX
@@ -87076,23 +87233,23 @@ Unknown_fb91c: ; fb91c
 	db DITTO
 	db MEOWTH
 	db KRABBY
-	db CORSOLA
-	db REMORAID
-	db OCTILLERY
+	db HOUNDOOM ;$4F
+	db HERACROSS ;$50
+	db YANMA ;$51
 	db VULPIX
 	db NINETALES
 	db PIKACHU
 	db RAICHU
-	db DELIBIRD
-	db MANTINE
+	db $0 ;$56 (Rampardos)
+	db SNEASEL ;$57
 	db DRATINI
 	db DRAGONAIR
 	db KABUTO
 	db KABUTOPS
 	db HORSEA
 	db SEADRA
-	db SKARMORY
-	db HOUNDOUR
+	db SPINARAK ;$5E
+	db ARIADOS ;$5F
 	db SANDSHREW
 	db SANDSLASH
 	db OMANYTE
@@ -87112,38 +87269,38 @@ Unknown_fb91c: ; fb91c
 	db WEEDLE
 	db KAKUNA
 	db BEEDRILL
-	db HOUNDOOM
+	db RAIKOU ;$73
 	db DODRIO
 	db PRIMEAPE
 	db DUGTRIO
 	db VENOMOTH
 	db DEWGONG
-	db KINGDRA
-	db PHANPY
+	db CHINCHOU ;$79
+	db LANTURN ;$7A
 	db CATERPIE
 	db METAPOD
 	db BUTTERFREE
 	db MACHAMP
-	db DONPHAN
+	db SWINUB ;$7F
 	db GOLDUCK
 	db HYPNO
 	db GOLBAT
 	db MEWTWO
 	db SNORLAX
 	db MAGIKARP
-	db PORYGON2
-	db STANTLER
+	db PILOSWINE ;$86
+	db TYROGUE ;$87
 	db MUK
-	db SMEARGLE
+	db SUICUNE ;$89
 	db KINGLER
 	db CLOYSTER
-	db TYROGUE
+	db TYROGUE ;$8C
 	db ELECTRODE
 	db CLEFABLE
 	db WEEZING
 	db PERSIAN
 	db MAROWAK
-	db HITMONTOP
+	db TYROGUE ;$92
 	db HAUNTER
 	db ABRA
 	db ALAKAZAM
@@ -87153,13 +87310,13 @@ Unknown_fb91c: ; fb91c
 	db BULBASAUR
 	db VENUSAUR
 	db TENTACRUEL
-	db SMOOCHUM
+	db NATU ;$9C
 	db GOLDEEN
 	db SEAKING
-	db ELEKID
-	db MAGBY
-	db MILTANK
-	db BLISSEY
+	db XATU ;$9F
+	db MAREEP ;$A0
+	db FLAAFFY ;$A1
+	db ENTEI ;$A2
 	db PONYTA
 	db RAPIDASH
 	db RATTATA
@@ -87169,87 +87326,87 @@ Unknown_fb91c: ; fb91c
 	db GEODUDE
 	db PORYGON
 	db AERODACTYL
-	db RAIKOU
+	db GLIGAR ;$AC
 	db MAGNEMITE
-	db ENTEI
-	db SUICUNE
+	db MARILL ;$AE
+	db AZUMARILL ;$AF
 	db CHARMANDER
 	db SQUIRTLE
 	db CHARMELEON
 	db WARTORTLE
 	db CHARIZARD
-	db LARVITAR
-	db PUPITAR
-	db TYRANITAR
-	db LUGIA
+	db MURKROW ;$B5
+	db $0 ;$B6 (Ghost)
+	db MISDREAVUS
+	db LARVITAR ;$B8
 	db ODDISH
 	db GLOOM
 	db VILEPLUME
 	db BELLSPROUT
 	db WEEPINBELL
 	db VICTREEBEL
-	db CHIKORITA
-	db BAYLEEF
-	db MEGANIUM
-	db CYNDAQUIL
-	db QUILAVA
-	db TYPHLOSION
-	db TOTODILE
-	db CROCONAW
-	db FERALIGATR
-	db SENTRET
-	db FURRET
-	db HOOTHOOT
-	db NOCTOWL
-	db LEDYBA
-	db LEDIAN
-	db SPINARAK
-	db ARIADOS
-	db CROBAT
-	db CHINCHOU
-	db LANTURN
-	db PICHU
-	db CLEFFA
-	db IGGLYBUFF
+	db PHANPY
+	db DONPHAN
 	db TOGEPI
 	db TOGETIC
-	db NATU
-	db XATU
-	db MAREEP
-	db FLAAFFY
-	db AMPHAROS
-	db BELLOSSOM
-	db MARILL
-	db AZUMARILL
-	db SUDOWOODO
-	db POLITOED
-	db HOPPIP
-	db SKIPLOOM
-	db JUMPLUFF
-	db AIPOM
-	db SUNKERN
-	db SUNFLORA
-	db YANMA
 	db WOOPER
 	db QUAGSIRE
 	db ESPEON
 	db UMBREON
-	db MURKROW
+	db EEVEE
+	db EEVEE
+	db EEVEE ;I had copies of pokemon that evolved into different species in Brown. Lazy I know.
+	db TYRANITAR
+	db CROBAT
+	db AMPHAROS
+	db LUGIA
+	db HO_OH
+	db $0 ;Magnezone
+	db POLITOED
+	db $0 ;Ryperior
+	db BLISSEY
+	db $0 ;Tangrowth
+	db KINGDRA
+	db PORYGON2
+	db $0 ;PorygonZ
+	db $0 ;Honchkrow
+	db $0 ;Mismagius
+	db $0 ;Leafeon
+	db $0 ;Glaceon
+	db $0 ;Electivire
+	db $0 ;Magmortar
+	db $0 ;Mamoswine
+	db $0 ;Yanmega
+	db HITMONTOP
 	db SLOWKING
-	db MISDREAVUS
-	db UNOWN
-	db WOBBUFFET
-	db GIRAFARIG
-	db PINECO
-	db FORRETRESS
-	db DUNSPARCE
-	db GLIGAR
+	db $0 ;Togekiss
 	db STEELIX
-	db SNUBBULL
-	db GRANBULL
-	db QWILFISH
-	db WOBBUFFET
-	db WOBBUFFET
+	db $0 ;Gliscor
+	db SCIZOR
+	db $0 ;Weavile
+	db MEGANIUM
+	db $0 ;Sylveon
+	db $0 ;Empty
+	db $0 ;Empty
+	db $0 ;Empty
+	db $0 ;Empty
+	db $0 ;Empty
+	db $0 ;Empty
+	db $0 ;Empty
+	db $0 ;Empty
+	db $0 ;Empty
+	db $0 ;Empty
+	db $0 ;Empty
+	db $0 ;Empty
+	db $0 ;Empty
+	db $0 ;Empty
+	db $0 ;Empty
+	db $0 ;Empty
+	db $0 ;Empty
+	db $0 ;Empty
+	db $0 ;Empty
+	db $0 ;Empty
+	db $0 ;Empty
 ; fba18
 
 Functionfba18: ; fba18
@@ -92961,8 +93118,6 @@ SampleRandomRocket:
 .RocketMonsEnd
 
 INCLUDE "engine/hostsbattletransition.asm"
-
-SECTION "Music Player", ROMX
 INCLUDE "misc/musicplayer.asm"
 
 SECTION "bank76", ROMX, BANK[$76]

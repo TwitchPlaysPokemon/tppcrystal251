@@ -3,16 +3,7 @@ SilverCaveRoom3_MapScriptHeader: ; 0x18c601
 	db 0
 
 	; callback count
-	db 1
-	dbw 1, .AbeCheck
-; 0x18c603
-.AbeCheck
-	checkevent EVENT_BEAT_AIIIAAB
-	iffalse .skipdoor
-	changeblock 9, 7, $42
-	changeblock 9, 8, $43
-.skipdoor
-	return
+	db 0
 
 RedScript_0x18c603: ; 0x18c603
 	special Functionc48f
@@ -27,13 +18,16 @@ RedScript_0x18c603: ; 0x18c603
 	reloadmapmusic
 	returnafterbattle
 	setevent EVENT_BEAT_AIIIAAB
+	setevent EVENT_ELM_IN_SILVER_CAVE_RUINS
+	clearevent EVENT_BIRD_IN_SILVER_CAVE_RUINS
 	special Functionc48f
 	loadfont
 	writetext UnknownText_0x18c63f
 	waitbutton
 	closetext
 	special HealParty
-	playsound SFX_ENTER_DOOR
+	playsound SFX_STRENGTH
+	earthquake 80
 	changeblock 9, 7, $42
 	changeblock 10, 7, $43
 	reloadmappart
@@ -121,6 +115,9 @@ SilverCave3_PlayerStepsRightThen3Up:
 	step_right
 	step_up
 	step_up
+	step_sleep 16
+	half_step_down
+	step_sleep 48
 	step_up
 	step_end
 
@@ -130,6 +127,9 @@ SilverCave3_PlayerTakes3StepsUp:
 	step_up
 SilverCave3_PlayerTakes2StepsUp
 	step_up
+	step_sleep 16
+	half_step_down
+	step_sleep 48
 	step_up
 	step_end
 

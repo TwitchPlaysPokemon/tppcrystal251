@@ -32,7 +32,7 @@ ENDM
 	spawn UNION_CAVE,   ROUTE_32,                   11, 74
 	spawn AZALEA,       AZALEA_TOWN,                15, 10
 	spawn CIANWOOD,     CIANWOOD_CITY,              23, 44
-	spawn GOLDENROD,    GOLDENROD_CITY,             15, 28
+	spawn GOLDENROD,    GOLDENROD_CITY,             14, 28
 	spawn OLIVINE,      OLIVINE_CITY,               13, 22
 	spawn ECRUTEAK,     ECRUTEAK_CITY,              23, 28
 	spawn MAHOGANY,     MAHOGANY_TOWN,              15, 14 ; 24

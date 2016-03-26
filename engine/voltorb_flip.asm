@@ -1199,7 +1199,7 @@ VoltorbFlip_CheckSquare:
 	ret
 
 .MultiplierText
-	text "x@"
+	text "×@"
 	deciram wVoltorbFlipMultiplier, $11
 	text "! Won @"
 	deciram wVoltorbFlipPayout, $24

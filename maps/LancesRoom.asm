@@ -96,10 +96,15 @@ AfterLanceFight:
 	waitsfx
 	loadvar wMapMusic, MUSIC_INDIGO_PLATEAU
 	special RestartMapMusic
+	checkevent EVENT_OAK_DEFEATED
+	iftrue .SkipLanceAskHeal
 	loadfont
 	writetext UnknownText_0x18137b
-	yesorno
+	loadmenudata LancesRoomNoYesBoxMenuDataHeader
+	interpretmenu2
+	writebackup
 	iffalse .SkipLanceHeal
+	if_equal 1, .SkipLanceHeal
 	special HealParty
 	playsound SFX_POTION
 	waitsfx
@@ -110,9 +115,25 @@ AfterLanceFight:
 .AfterLanceHeal
 	waitbutton
 	closetext
+.SkipLanceAskHeal
 	applymovement $0, MovementData_0x180f53
 	warpcheck
 	end
+
+LancesRoomNoYesBoxMenuDataHeader: ; 1e1d
+	db $40 ; tile backup
+	db 5, 10 ; start coords
+	db 9, 15 ; end coords
+	dw .MenuData2
+	db 1 ; default option
+; 1e25
+
+.MenuData2 ; 1e25
+	db $c0 ; flags
+	db 2
+	db "NO@"
+	db "YES@"
+; 1e2e
 
 LanceRematch:
 	writetext LanceBeforeRematchText

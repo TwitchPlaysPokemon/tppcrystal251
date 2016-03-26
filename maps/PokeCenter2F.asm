@@ -77,6 +77,7 @@ UnknownScript_0x192895: ; 0x192895
 ; 0x19289d
 
 LinkReceptionistScript_0x19289d: ; 0x19289d
+	loadvar (PlayerName + 8), $1 ;D485
 	checkevent EVENT_GAVE_MYSTERY_EGG_TO_ELM
 	iffalse UnknownScript_0x19288d
 	loadfont
@@ -190,6 +191,7 @@ UnknownScript_0x19294a: ; 0x19294a
 ; 0x192952
 
 LinkReceptionistScript_0x192952: ; 0x192952
+	loadvar (PlayerName + 8), $1 ;D485
 	checkevent EVENT_GAVE_MYSTERY_EGG_TO_ELM
 	iffalse UnknownScript_0x192895
 	loadfont
@@ -331,6 +333,7 @@ UnknownScript_0x192a25: ; 0x192a25
 ; 0x192a2d
 
 LinkReceptionistScript_0x192a2d: ; 0x192a2d
+	loadvar (PlayerName + 8), $1 ;D485
 	checkevent EVENT_FIRST_TIME_HALL_OF_FAME
 	iftrue .SkipBillCheck
 	checkevent EVENT_BILL_IN_GOLDENROD_BILLS_HOUSE
