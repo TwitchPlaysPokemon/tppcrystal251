@@ -184,7 +184,7 @@ BlastoiseEvosAttacks:
 	db 49, ICE_PUNCH ; tm move
 	db 53, AQUA_JET ; later gen move
 	db 58, ROAR ; *
-	db 63, SEISMIC_TOSS ;  gen 1 move
+	db 63, MEGA_KICK ;  gen 1 move
 	db 68, COUNTER ; *
 	db 74, HYDRO_PUMP
 	db 80, ZAP_CANNON ; * event

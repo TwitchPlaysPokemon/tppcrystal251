@@ -47,7 +47,6 @@ SquirtleEggMoves:
 	db ROAR
 	db DEFENSE_CURL
 	db ENDURE
-	db MEGA_KICK
 	db DOUBLE_EDGE
 	db MIMIC
 	db MUD_SLAP
@@ -67,12 +66,17 @@ RattataEggMoves:
 	db DEFENSE_CURL
 	db SWIFT
 	db FOCUS_ENERGY
+	db MIMIC
 	db $ff
 
 SpearowEggMoves:
 	db SCARY_FACE
 	db WING_ATTACK
 	db SWIFT
+	db MIMIC
+	db BIDE
+	db MIRROR MOVE
+	db RAGE
 	db $ff
 
 EkansEggMoves:
