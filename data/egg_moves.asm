@@ -59,6 +59,7 @@ PidgeyEggMoves:
 	db SWIFT
 	db PECK
 	db MIMIC
+	db BIDE
 	db $ff
 
 RattataEggMoves:
