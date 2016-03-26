@@ -2186,15 +2186,15 @@
 	db $03
 ;morning
 		db PINSIR ;15
-		db STANTLER ;10
-		db STANTLER ;10
+		db VENUSAUR ;10
+		db VENUSAUR ;10
 		db VICTREEBEL ;10
 		db VICTREEBEL ;10
 		db SUDOWOODO ;5
 		db SUDOWOODO ;5
 		db VENOMOTH ;5
-		db VENUSAUR ;5
-		db VENUSAUR ;5
+		db STANTLER ;5
+		db STANTLER ;5
 		db LICKITUNG ;5
 		db LICKITUNG ;5
 		db PARASECT ;4
@@ -2219,7 +2219,7 @@
 		db PARASECT ;2
 		db PARASECT ;1
 ;night
-		db VENUSAUR ;15
+		db STANTLER ;15
 		db VENOMOTH ;10
 		db VENOMOTH ;10
 		db PARASECT ;10

@@ -20,6 +20,8 @@ BulbasaurEggMoves:
 	db OUTRAGE
 	db TAKE_DOWN
 	db ROAR
+	db MIMIC
+	db REFLECT
 	db $ff
 
 CharmanderEggMoves:
@@ -28,6 +30,13 @@ CharmanderEggMoves:
 	db COUNTER
 	db DRAGONBREATH
 	db IRON_TAIL
+	db SUBMISSION
+	db REFLECT
+	db MEGA_KICK
+	db FISSURE
+	db DOUBLE_EDGE
+	db HEAT_WAVE
+	db SWIFT
 	db $ff
 
 SquirtleEggMoves:
@@ -36,6 +45,12 @@ SquirtleEggMoves:
 	db FLAIL
 	db ROLLOUT
 	db ROAR
+	db DEFENSE_CURL
+	db ENDURE
+	db MEGA_KICK
+	db DOUBLE_EDGE
+	db MIMIC
+	db MUD_SLAP
 	db $ff
 
 PidgeyEggMoves:
