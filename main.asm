@@ -29668,8 +29668,22 @@ Function2805d: ; 2805d
 	cp $2
 	ld c, 66
 	call z, DelayFrames
+	call GoodMoveCheck
+	jr nc, .moveFailure
+	
+	ld de, MUSIC_ROUTE_30
+	call PlayMusic
+	jp Function287e3
+; 28177
 
-GoodMoveCheck: 
+.moveFailure
+	ld hl, StringMoveIncompatible ;Finish this part (just tell the player that the pokemon can't be traded)
+	call PrintText
+	ret
+
+;c: Success
+;nc: Failure
+GoodMoveCheck:
 	push af
 	push bc
 	push de
@@ -29722,12 +29736,11 @@ GoodMoveCheck:
 	
 .badMoveLink
 	pop af
+	pop hl
 	pop de
 	pop bc
 	pop af
-	ld hl, StringMoveIncompatible ;Finish this part (just tell the player that the pokemon can't be traded)
-	call PrintText
-	pop hl
+	xor a ; Failure (nc)
 	ret
 	
 .endCompatibleMoveCheck
@@ -29735,11 +29748,65 @@ GoodMoveCheck:
 	pop de
 	pop bc
 	pop af
+	scf ;Success! (c)
+	ret
 	
-	ld de, MUSIC_ROUTE_30
-	call PlayMusic
-	jp Function287e3
-; 28177
+	
+;;;;
+GoodItemCheck:
+	push af
+	push bc
+	push de
+	push hl
+	
+	ld a, [OverworldMap + $8]
+	cp $1 ;Is it TPP or not? If true, we can skip the checks.
+	jr z, .endCompatibleItemCheck
+	
+	ld hl, PartyMon1 + $1 ;Get item from your party
+	ld de, TPPNewItems ;Items that will end the trade
+	ld a, [PartyCount] ;Linked party size
+	ld c, a
+	
+.checkItemLoop
+	ld a, [de]
+	cp $ff
+	jr z, .checkItemLoopExit ;End of new item list
+	ld b, a
+	ld a, [hl]
+	cp b
+	jr z, .badItemLink
+	inc de
+	jr .checkItemLoop
+
+.checkItemLoopExit
+	dec c
+	ld a, c
+	cp $0 ;Check if it's the end
+	jr z, .endCompatibleItemCheck ;End of Pokemon to check
+	
+;Not the end
+	ld de, $0030
+	add hl, de
+	ld de, TPPNewItems
+	jr .checkItemLoop
+	
+.badItemLink
+	pop hl
+	pop de
+	pop bc
+	pop af
+	xor a ; Failure (nc)
+	ret
+	
+.endCompatibleItemCheck
+	pop hl
+	pop de
+	pop bc
+	pop af
+	scf ;Success! (c)
+	ret
+;;;;
 
 Function28177: ; 28177
 	call Function28426
@@ -30023,10 +30090,26 @@ Function28177: ; 28177
 	jp Function28b22
 
 .asm_283a9
+	call GoodMoveCheck
+	jr nc, .moveFailure
+	
+	call GoodItemCheck
+	jr nc, .itemFailure
+	
 	ld de, MUSIC_ROUTE_30
 	call PlayMusic
 	jp Function287e3
 ; 283b2
+
+.moveFailure
+	ld hl, StringMoveIncompatible ;Finish this part (just tell the player that the pokemon can't be traded)
+	call PrintText
+	ret
+	
+.itemFailure
+	ld hl, StringMoveIncompatible ;Finish this part (just tell the player that the pokemon can't be traded)
+	call PrintText
+	ret
 
 Function283b2: ; 283b2
 	ld de, UnknownText_0x283ed
@@ -33102,6 +33185,18 @@ TradeGameBoyLZ: INCBIN "gfx/trade/game_boy.2bpp.lz"
 TradeBallGFX:   INCBIN "gfx/trade/ball.2bpp"
 
 TradePoofGFX:   INCBIN "gfx/trade/poof.2bpp"
+
+TPPNewItems:
+	db PREMIER_BALL
+	db POISON_GUARD
+	db BURN_GUARD
+	db FREEZE_GUARD
+	db SLEEP_GUARD
+	db PARLYZ_GUARD
+	db CONFUSEGUARD
+	db POWER_HERB
+	db FRIEND_CHARM
+	db $ff
 
 TPPNewMoves:
 	db POISON_JAB
