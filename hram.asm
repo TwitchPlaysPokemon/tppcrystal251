@@ -76,6 +76,7 @@ hBGMapUpdate       EQU $ffdb
 
 hTileAnimFrame     EQU $ffdf
 
+hLastTalked        EQU $ffe0
 hRandom            EQU $ffe1
 hRandomAdd         EQU $ffe1
 hRandomSub         EQU $ffe2

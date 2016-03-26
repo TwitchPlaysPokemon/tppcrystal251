@@ -231,7 +231,7 @@ PccText1: ; 0x62105
 	text "In all #MON"
 	line "CENTERS,"
 
-	para "There is a PC"
+	para "there is a PC"
 	line "on both floors."
 
 	para "Feels like a big"
