@@ -428,9 +428,9 @@ VioletGymGuyText: ; 0x688f9
 	cont "type #MON."
 
 	para "If you have a team"
-	line "of GRASS-type #MON,"
-	cont "you better watch"
-	cont "out!"
+	line "of GRASS-type,"
+	cont "#MON you better"
+	cont "watch out!"
 	done
 ; 0x689c8
 

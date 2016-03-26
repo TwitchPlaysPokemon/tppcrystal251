@@ -51,12 +51,14 @@ SquirtleEggMoves:
 	db DOUBLE_EDGE
 	db MIMIC
 	db MUD_SLAP
+	db BIDE
 	db $ff
 
 PidgeyEggMoves:
 	db FORESIGHT
 	db SWIFT
 	db PECK
+	db MIMIC
 	db $ff
 
 RattataEggMoves:

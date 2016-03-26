@@ -209,6 +209,7 @@ MetapodEvosAttacks:
 
 ButterfreeEvosAttacks:
 	db 0 ; no more evolutions
+	db 1,REFLECT
 	db 1,TACKLE
 	db 1,STRING_SHOT
 	db 1,HARDEN
@@ -252,6 +253,8 @@ KakunaEvosAttacks:
 
 BeedrillEvosAttacks:
 	db 0 ; no more evolutions
+	db 1,DOUBLE_EDGE
+	db 1,REFLECT
 	db 1,STRING_SHOT
 	db 1,HARDEN
 	db 1, POISON_STING
