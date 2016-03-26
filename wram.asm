@@ -2570,7 +2570,7 @@ w3_d801::
 
 SECTION "WRAM 4", WRAMX[$d800], BANK[$4] ; seems like this bank is unused
 
-wMPNotes:: ds 4*256
+wMPTileMapBackup:: ds 20 * 18
 wMPFlags:: ds 1
 wSongSelection:: ds 2
 wNumNoteLines:: ds 1

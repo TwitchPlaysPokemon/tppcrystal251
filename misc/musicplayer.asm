@@ -4,6 +4,8 @@ NUMSONGS EQU 252
 
 MusicTestGFX:
 INCBIN "gfx/misc/music_test.2bpp"
+MusicTestOAMGFX:
+INCBIN "gfx/misc/music_test_oam.2bpp"
 NarrowFontGFX:
 INCBIN "gfx/misc/font_narrow.w64.1bpp"
 MPPals:
@@ -123,6 +125,13 @@ MusicPlayer::
 	;ld a, $f
 	;ld [rIE], a
 	;ei
+	ld a, [rSVBK]
+	push af
+	ld a, 4
+	ld [rSVBK], a
+	copy TileMap, wMPTileMapBackup, TileMapEnd - TileMap
+	pop af
+	ld [rSVBK], a
 	call ClearTileMap
 	hlcoord 6, 5
 	ld de, LoadingText
@@ -134,12 +143,17 @@ MusicPlayer::
 	ld b, BANK(MusicTestGFX) ;load the gfx
 	ld c, 128
 	ld de, MusicTestGFX
-	ld hl, $8800
+	ld hl, VTiles1
 	ld a, 1
 	ld [rVBK], a
 	call Request2bpp
 	xor a
-	ld [rVBK], a   
+	ld [rVBK], a
+	ld b, BANK(MusicTestOAMGFX) ;load the gfx
+	ld c, 9
+	ld de, MusicTestOAMGFX
+	ld hl, VTiles0
+	call Request2bpp
 
     call DelayFrame
 	call MPLoadPalette
@@ -158,6 +172,7 @@ MusicPlayer::
 	
 	xor a
 	ld [hBGMapUpdate], a
+	ld [wSongSelection], a
 	ld [wNumNoteLines], a
 	ld [wChLastNotes], a
 	ld [wChLastNotes+1], a
@@ -170,11 +185,6 @@ MusicPlayer::
 	ld a, $ff
 	ld [wRenderedWaveform], a
 
-	xor a
-	ld hl, wMPNotes
-	ld bc, 256
-	call ByteFill
-
 MPlayerTilemap:
 
 	copy NoteOAM, Sprites + 4, NoteOAMEnd - NoteOAM
@@ -183,12 +193,12 @@ MPlayerTilemap:
 	ld a, [rLCDC]
 	ld [hMPTmp3], a	
 	call DisableLCD
-	ld a, $73
+	ld a, $63
 	ld [rLCDC], a
 	xor a
 	ld d, a
 	ld bc, 32*12
-	ld hl, $9800
+	ld hl, VBGMap0
 .loopi
 	ld a, d
 	ld [hli], a
@@ -197,7 +207,7 @@ MPlayerTilemap:
 	ld a, b
 	or c
 	jr nz, .loopi
-	ld hl, $9c00
+	ld hl, VBGMap1
 	ld de, MPTilemap
 	ld b, (MPTilemapEnd - MPTilemap)/20
 .mptilemaploop
@@ -214,17 +224,17 @@ MPlayerTilemap:
 	pop bc
 	dec b
 	jr nz, .mptilemaploop
-	fill 0, $8000, $1000
+	fill 0, VTiles1, $1000
 	ld a, 1
 	ld [rVBK], a
-	ld hl, $9800
+	ld hl, VBGMap0
 	ld bc, 256
 	call ByteFill
-	fill 9, $9900, 128
-	fill 8, $9c00, 192
-	fill 0, $8000, $800
+	fill 9, VBGMap0 + $100, 128
+	fill 8, VBGMap1, 192
+	fill 0, VTiles2, $800
 	ld a, 10 ; ch1
-	ld hl, $9c80
+	ld hl, VBGMap1 + $80
 	ld [hli], a
 	ld [hli], a
 	ld [hli], a
@@ -246,7 +256,7 @@ MPlayerTilemap:
 	ld [hli], a
 	ld [hli], a
 	ld [hli], a
-	ld hl, $9ca0
+	ld hl, VBGMap1 + $a0
 	inc a ; mpname
 	rept 8
 	ld [hli], a
@@ -255,7 +265,7 @@ MPlayerTilemap:
 	ld [hli], a
 	ld [hli], a
 	ld [hli], a
-	ld hl, $9cb0
+	ld hl, VBGMap1 + $b0
 	ld a, 10
 	ld [hli], a
 	inc a
@@ -281,7 +291,6 @@ MPlayerTilemap:
 .getsong ;get the current song
 	ld a, [wMapMusic]
 	jp .redraw
-	di ; we're going to use the custom vblank routine
 .loop
 	call UpdateVisualIntensity
 	call DelayFrame_MP
@@ -352,6 +361,7 @@ MPlayerTilemap:
 	ld bc, $0103
 	;call PrintNum
 	call DrawSongInfo
+	jp .loop
 	
 .a
 	ld a, [wSongSelection]
@@ -552,6 +562,49 @@ MPlayerTilemap:
 .exit
 	ld hl, Options2
 	res 7, [hl]
+	call DisableLCD
+	; get the font gfx back
+	ld hl, Font
+	ld de, VTiles1
+	ld bc, FontEnd - Font
+	ld a, BANK(Font)
+	call FarCopyBytesDouble
+	; get the option screen back
+	ld a, 5
+	ld [rSVBK], a
+	copy Unkn1Pals, BGPals, $80
+	call ForceUpdateCGBPals
+	ld a, 4
+	ld [rSVBK], a
+	copy wMPTileMapBackup, TileMap, TileMapEnd - TileMap
+	ld hl, wMPTileMapBackup
+	ld de, VBGMap0
+	ld b, 18
+.exloop
+	ld c, 20
+.exloop2
+	ld a, [hli]
+	ld [de], a
+	inc de
+	dec c
+	jr nz, .exloop2
+	push hl
+	ld hl, 12
+	add hl, de
+	ld d, h
+	ld e, l
+	pop hl
+	dec b
+	jr nz, .exloop
+	ld a, 1
+	ld [rVBK], a
+	fill 7, VBGMap0, 32 * 18
+	xor a
+	ld [rVBK], a
+	call Functione5f
+    call ClearSprites
+    ;call NormalSpeed
+	call EnableLCD
     xor a
     ld [hVBlank], a ; VBlank0
     ld a, [hMPTmp]
@@ -560,8 +613,6 @@ MPlayerTilemap:
     ld [rLCDC], a
 	ld a, $90
 	ld [hWY], a
-    call ClearSprites
-    ;call NormalSpeed
     xor a
     ld [rIF], a
     ld a, $f
@@ -932,15 +983,6 @@ DrawNotes:
     call DrawNote
     call CheckForVolumeBarReset
     ret
-    
-.copynotes
-    ld bc, 4
-    ld hl, wMPNotes
-    call AddNTimes
-    ld d, h
-    ld e, l
-    ld hl, wWaveformTmp
-    jp CopyBytes
 
 CheckEndedNote:
 ; Check that the current channel is actually playing a note.
@@ -1776,6 +1818,7 @@ NT_Right1Left1:
 DelayFrame_MP:
 ; music player VBlank routine
 	; TODO
+	call DelayFrame
 	call Joypad
 	ret
 
@@ -1799,14 +1842,14 @@ db  0,1,2,3,4,5,6,0,1,2,3,4,5,6,0,1,2,3,4,5
 MPKeymapEnd
     
 NoteOAM:
-    db $68,$a0,$f0,$08
-    db $5c,$a0,$f1,$08
-	db $50,$a0,$f2,$08
-	db $44,$a0,$f3,$08
-	db $38,$a0,$f4,$08
-	db $2c,$a0,$f5,$08
-	db $20,$a0,$f6,$08
-	db $14,$a0,$f7,$08
+    db $68,$a0,$00,$00
+    db $5c,$a0,$01,$00
+	db $50,$a0,$02,$00
+	db $44,$a0,$03,$00
+	db $38,$a0,$04,$00
+	db $2c,$a0,$05,$00
+	db $20,$a0,$06,$00
+	db $14,$a0,$07,$00
 NoteOAMEnd
 	
 Additional:
