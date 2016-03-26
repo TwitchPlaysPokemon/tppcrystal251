@@ -93118,9 +93118,9 @@ SampleRandomRocket:
 .RocketMonsEnd
 
 INCLUDE "engine/hostsbattletransition.asm"
-INCLUDE "misc/musicplayer.asm"
 
 SECTION "bank76", ROMX, BANK[$76]
+INCLUDE "misc/musicplayer.asm"
 
 SECTION "bank77", ROMX, BANK[$77]
 UnownFont: ; 1dc000

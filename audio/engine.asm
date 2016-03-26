@@ -298,6 +298,15 @@ UpdateChannels: ; e8125
 	ld [rNR13], a
 	ld a, [wc295]
 	ld [rNR14], a
+	ld a, [Options2]
+	bit 7, a ; music player active?
+	jr z, .asm_e8175
+	; if music player is active, WRAM bank must be 4
+	ld a, [wc294]
+	ld [wC1Freq], a
+	ld a, [wc295]
+	and $7
+	ld [wC1Freq+1], a
 .asm_e8175
 	bit 0, [hl]
 	ret z
@@ -317,6 +326,11 @@ UpdateChannels: ; e8125
 	ld [rNR11], a
 	ld a, [wc294]
 	ld [rNR13], a
+	ld a, [Options2]
+	bit 7, a
+	ret z
+	ld a, [wc294]
+	ld [wC1Freq], a
 	ret
 .ch1rest
 	ld a, [rNR52]
@@ -337,6 +351,22 @@ UpdateChannels: ; e8125
 	ld a, [wc295]
 	or a, $80
 	ld [rNR14], a
+	ld a, [Options2]
+	bit 7, a
+	ret z
+	ld a, [wc293]
+	swap a
+	and $f
+	ld [wC1Vol], a
+	ld a, [wc293]
+	and $7
+	add a ; mp timer is called at 128Hz so we need to double this
+	ld [wC1VolSub], a
+	ld a, [wc294]
+	ld [wC1Freq], a
+	ld a, [wc295]
+	and $7
+	ld [wC1Freq+1], a
 	ret
 
 .Channel2
@@ -363,6 +393,14 @@ UpdateChannels: ; e8125
 	ld [rNR23], a
 	ld a, [wc295]
 	ld [rNR24], a
+	ld a, [Options2]
+	bit 7, a
+	ret z
+	ld a, [wc294]
+	ld [wC2Freq], a
+	ld a, [wc295]
+	and $7
+	ld [wC2Freq+1], a
 	ret
 .asm_e81e6
 	ld a, [wc292]
@@ -373,6 +411,11 @@ UpdateChannels: ; e8125
 	ld [rNR21], a
 	ld a, [wc294]
 	ld [rNR23], a
+	ld a, [Options2]
+	bit 7, a
+	ret z
+	ld a, [wc294]
+	ld [wC2Freq], a
 	ret
 .ch2rest
 	ld a, [rNR52]
@@ -393,6 +436,22 @@ UpdateChannels: ; e8125
 	ld a, [wc295]
 	or a, $80 ; initial (restart)
 	ld [rNR24], a
+	ld a, [Options2]
+	bit 7, a
+	ret z
+	ld a, [wc293]
+	swap a
+	and $f
+	ld [wC2Vol], a
+	ld a, [wc293]
+	and $7
+	add a
+	ld [wC2VolSub], a
+	ld a, [wc294]
+	ld [wC2Freq], a
+	ld a, [wc295]
+	and $7
+	ld [wC2Freq+1], a
 	ret
 
 .Channel3
@@ -411,10 +470,23 @@ UpdateChannels: ; e8125
 	ld [rNR33], a
 	ld a, [wc295]
 	ld [rNR34], a
+	ld a, [Options2]
+	bit 7, a
+	ret z
+	ld a, [wc294]
+	ld [wC3Freq], a
+	ld a, [wc295]
+	and $7
+	ld [wC3Freq+1], a
 	ret
 .asm_e823a
 	ld a, [wc294]
 	ld [rNR33], a
+	ld a, [Options2]
+	bit 7, a
+	ret z
+	ld a, [wc294]
+	ld [wC3Freq], a
 	ret
 .ch3rest
 	ld a, [rNR52]
@@ -436,6 +508,14 @@ UpdateChannels: ; e8125
 	ld a, [wc295]
 	or a, $80
 	ld [rNR34], a
+	ld a, [Options2]
+	bit 7, a
+	ret z
+	ld a, [wc294]
+	ld [wC3Freq], a
+	ld a, [wc295]
+	and $7
+	ld [wC3Freq+1], a
 	ret
 .asm_e8268
 	push hl
@@ -489,12 +569,36 @@ UpdateChannels: ; e8125
 	ld [$ff3e], a
 	ld a, [hli]
 	ld [$ff3f], a
+	ld a, [Options2]
+	bit 7, a
+	jr z, .skipwavecopy
+	ld hl, wMPFlags
+	set 0, [hl] ; wave copy occurred
 .skipwavecopy
 	pop hl
 	ld a, [wc293]
 	and a, $f0
 	sla a
 	ld [rNR32], a
+	ld a, [Options2]
+	bit 7, a
+	ret z
+	ld a, [wc293]
+	swap a
+	and $3
+	jr z, .vol0
+	cp 2
+	jr z, .vol2
+	jr c, .vol1
+	ld a, $3
+	jr .vol0
+.vol2
+	ld a, $7
+	jr .vol0
+.vol1
+	ld a, $f
+.vol0
+	ld [wC3Vol], a
 	ret
 
 .Channel4
@@ -526,6 +630,17 @@ UpdateChannels: ; e8125
 	ld [rNR43], a
 	ld a, $80
 	ld [rNR44], a
+	ld a, [Options2]
+	bit 7, a
+	ret z
+	ld a, [wc293]
+	swap a
+	and $f
+	ld [wC4Vol], a
+	ld a, [wc293]
+	and $7
+	add a
+	ld [wC4VolSub], a
 	ret
 ; e82e7
 
@@ -1448,6 +1563,11 @@ MusicF1: ; e8780
 	ld [hli], a
 	dec e
 	jr nz, .loop
+	ld a, [Options2]
+	bit 7, a ; is music player active?
+	ret z
+	ld hl, wMPFlags
+	set 0, [hl] ; wave copy occurred
 	ret
 
 MusicF2: ; e8780

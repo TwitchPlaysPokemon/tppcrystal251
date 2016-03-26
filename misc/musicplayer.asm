@@ -113,8 +113,8 @@ MPLoadPalette:
 	ret
 
 MusicPlayer::
-	;ld de, 01
-	;call PlayMusic
+	ld de, MUSIC_NONE
+	call PlayMusic
 	;call WhiteBGMap
 	;di
 	;call DoubleSpeed
@@ -149,8 +149,10 @@ MusicPlayer::
 
 	call ClearSprites
 
+	ld hl, Options2
+	set 7, [hl]
 	ld a, [rSVBK]
-	push af
+	ld [hMPTmp], a
 	ld a, 4
 	ld [rSVBK], a
 	
@@ -172,8 +174,6 @@ MusicPlayer::
 	ld hl, wMPNotes
 	ld bc, 256
 	call ByteFill
-	pop af
-	ld [rSVBK], a
 
 MPlayerTilemap:
 
@@ -283,8 +283,6 @@ MPlayerTilemap:
 	jp .redraw
 	di ; we're going to use the custom vblank routine
 .loop
-	ld a, 4
-	ld [rSVBK], a
 	call UpdateVisualIntensity
 	call DelayFrame_MP
 	
@@ -334,8 +332,6 @@ MPlayerTilemap:
     jr .redraw
 .select
     xor a
-    ld a, [hMPTmp]
-    ld [rSVBK], a
     call SongSelector
     jp MPlayerTilemap
 .redraw	
@@ -554,6 +550,8 @@ MPlayerTilemap:
 	ret
 
 .exit
+	ld hl, Options2
+	res 7, [hl]
     xor a
     ld [hVBlank], a ; VBlank0
     ld a, [hMPTmp]
