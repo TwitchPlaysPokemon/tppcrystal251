@@ -181,7 +181,7 @@ UnknownScript_0x56d0c: ; 0x56d0c
 ; 0x56d26
 
 UnknownScript_0x56d26: ; 0x56d26 NEEDS NEW MONS
-	checkcoins 100
+	checkcoins 2000
 	if_equal $2, UnknownScript_0x56cb1
 	checkcode VAR_PARTYCOUNT
 	if_equal $6, GCSlot1PC  ;if party is ful, can't carry more
@@ -195,7 +195,7 @@ UnknownScript_0x56d26: ; 0x56d26 NEEDS NEW MONS
 	writebyte PORYGON
 	special Functionc230
 	givepoke PORYGON, 30, 0, 0
-	takecoins 100
+	takecoins 2000
 	jump UnknownScript_0x56d0c
 
 GCSlot1PC:
@@ -211,12 +211,12 @@ GCSlot1PC:
 	writebyte PORYGON
 	special Functionc230
 	givepoke PORYGON, 30, 0, 0
-	takecoins 100
+	takecoins 2000
 	jump UnknownScript_0x56d0c
 ; 0x56d54
 
 UnknownScript_0x56d54: ; 0x56d54
-	checkcoins 800
+	checkcoins 2000
 	if_equal $2, UnknownScript_0x56cb1
 	checkcode VAR_PARTYCOUNT
 	if_equal $6, GCSlot2PC
@@ -230,7 +230,7 @@ UnknownScript_0x56d54: ; 0x56d54
 	writebyte LAPRAS
 	special Functionc230
 	givepoke LAPRAS, 30, 0, 0
-	takecoins 800
+	takecoins 2000
 	jump UnknownScript_0x56d0c
 ; 0x56d82
 
@@ -247,7 +247,7 @@ GCSlot2PC:
 	writebyte LAPRAS
 	special Functionc230
 	givepoke LAPRAS, 30, 0, 0
-	takecoins 100
+	takecoins 2000
 	jump UnknownScript_0x56d0c
 
 UnknownScript_0x56d82: ; 0x56d82
@@ -281,7 +281,7 @@ GCSlot3PC:
 	waitbutton
 	writebyte GRIMER
 	special Functionc230
-	givepoke ABRA, 30, 0, 0
+	givepoke GRIMER, 30, 0, 0
 	takecoins 500
 	jump UnknownScript_0x56d0c
 
@@ -463,8 +463,8 @@ UnknownText_0x56ebd: ; 0x56ebd
 
 GCSentToPCText:
 	text "We have sent the"
-	line "#MON to Bills PC."
-	cont "for you"
+	line "#MON to Bill's"
+	cont "PC for you."
 	done
 
 UnknownText_0x56ecb: ; 0x56ecb
@@ -544,8 +544,9 @@ UnknownText_0x57097: ; 0x57097
 ; 0x570b1
 
 UnknownText_0x570b1: ; 0x570b1
-	text "I taught ZAP CANNON"
-	line "to my #MON."
+	text "I taught ZAP"
+	line "CANNON to my"
+	cont "#MON."
 
 	para "It was hard to get"
 	line "enough coins for"

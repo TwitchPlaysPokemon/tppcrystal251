@@ -1,23 +1,23 @@
 NameRater: ; fb6ed
-	ld hl, UnknownText_0xfb80f
+	ld hl, UnknownText_0xfb80f ;would you like me to rate names?
 	call PrintText
 	call YesNoBox
-	jp c, .asm_fb77e
-	ld hl, UnknownText_0xfb814
+	jp c, .asm_fb77e ;if no, exit
+	ld hl, UnknownText_0xfb814 ;which mon should I rate
 	call PrintText
-	callba Function50000
+	callba Function50000 ;call party menu
 	jr c, .asm_fb77e
 	ld a, [CurPartySpecies]
 	cp EGG
-	jr z, .asm_fb783
+	jr z, .asm_fb783 ;can't name eggs
 	call GetCurNick
 	call Functionfb78a
-	jr c, .asm_fb779
-	ld hl, UnknownText_0xfb819
+	jr c, .asm_fb779 ;what a great name
+	ld hl, UnknownText_0xfb819 ;want a better name
 	call PrintText
 	call YesNoBox
 	jr c, .asm_fb77e
-	ld hl, UnknownText_0xfb81e
+	ld hl, UnknownText_0xfb81e ;what name?
 	call PrintText
 	xor a
 	ld [MonType], a
@@ -58,14 +58,14 @@ NameRater: ; fb6ed
 	jr .asm_fb786
 
 .asm_fb77e
-	ld hl, UnknownText_0xfb828
+	ld hl, UnknownText_0xfb828 ;come back again
 	jr .asm_fb786
 
 .asm_fb783
 	ld hl, UnknownText_0xfb832
 
 .asm_fb786
-	call PrintText
+	call PrintText ;exit
 	ret
 ; fb78a
 
@@ -73,21 +73,21 @@ Functionfb78a: ; fb78a
 	ld hl, PartyMonOT
 	ld bc, NAME_LENGTH
 	ld a, [CurPartyMon]
-	call AddNTimes
-	ld de, PlayerName
+	call AddNTimes ;hl = party trainer name
+	ld de, PlayerName ;de = player name
 	ld c, NAME_LENGTH
-	call .asm_fb7b1
+	call .asm_fb7b1 ;compare c chars, ret c if different
 	jr c, .asm_fb7bc
-	ld hl, PartyMon1ID
+	ld hl, PartyMon1ID ;do the same as above for ID
 	ld bc, PartyMon2 - PartyMon1
 	ld a, [CurPartyMon]
 	call AddNTimes
 	ld de, PlayerID
 	ld c, $2
-.asm_fb7b1
+.asm_fb7b1 ;if any chars are different, ret c, else continue
 	ld a, [de]
 	cp [hl]
-	jr nz, .asm_fb7bc
+	jr nz, .asm_fb7bc 
 	inc hl
 	inc de
 	dec c
