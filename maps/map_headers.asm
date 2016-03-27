@@ -200,7 +200,7 @@ MapGroup7:
 	map_header Route9, $3, 2, ROUTE_9, MUSIC_ROUTE_3, 0, 0, 14
 	map_header Route10North, $3, 2, ROUTE_10, MUSIC_ROUTE_3, 0, 0, 14
 	map_header Route24, $3, 2, ROUTE_24, MUSIC_ROUTE_24, 0, 0, 14
-	map_header Route25, $3, 2, ROUTE_25, MUSIC_ROUTE_24, 0, 0, 14
+	map_header Route25, 3, 2, ROUTE_25, MUSIC_ROUTE_24, 0, 0, 14
 	map_header CeruleanCity, $3, 1, CERULEAN_CITY, MUSIC_CERULEAN_CITY, 0, 0, 14
 
 MapGroup8:
@@ -522,7 +522,7 @@ MapGroup28:
 	map_header SilverCaveDreamRoom, $18, 3, SILVER_CAVE, MUSIC_NONE, 1, 1, 3
 	map_header MtSilverRuins, $1a, 3, SILVER_CAVE, MUSIC_DRAGONS_DEN, 1, 1, 16
 	map_header MtSilverRuinsB1, 24, 3, SILVER_CAVE, MUSIC_DRAGONS_DEN, 1, 2, 16
-	map_header BillsGarden, $3, 2, ROUTE_25, MUSIC_ROUTE_2, 0, 0, 14
+	map_header BillsGarden, 3, 2, ROUTE_25, MUSIC_ROUTE_2, 0, 0, 14
 	map_header DummyBlankMap, $c, 0, 0, MUSIC_NONE, 1, 4, 1
 
 MapGroup29:

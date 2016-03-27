@@ -87,6 +87,7 @@ CeruleanCityRBSuperNerdScript:
 	jumptextfaceplayer _CeruleanCityText3
 
 CeruleanCityRBCooltrainerM1Script:
+	faceplayer
 	loadfont
 	checkevent EVENT_CERULEAN_CITY_RB_STOPPED_ROBBERY
 	iftrue .after

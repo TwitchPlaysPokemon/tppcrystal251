@@ -16,12 +16,12 @@ ClerkScript_0x19680a: ; 0x19680a
 CooltrainerMScript_0x19681d: ; 0x19681d
 	faceplayer
 	loadfont
-	checkevent EVENT_GAVE_MYSTERY_EGG_TO_ELM
-	iftrue UnknownScript_0x19682b
-	writetext UnknownText_0x196834
-	waitbutton
-	closetext
-	end
+	;checkevent EVENT_GAVE_MYSTERY_EGG_TO_ELM
+	;iftrue UnknownScript_0x19682b
+	;writetext UnknownText_0x196834
+	;waitbutton
+	;closetext
+	;end
 ; 0x19682b
 
 UnknownScript_0x19682b: ; 0x19682b

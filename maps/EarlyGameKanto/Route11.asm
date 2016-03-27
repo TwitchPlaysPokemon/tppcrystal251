@@ -247,7 +247,7 @@ _Route11BattleText9:
 	para $56, " ", $56, " ", $56
 	line $56, " ", $56, " ", $56
 
-	para "Come on, sng with"
+	para "Come on, sing with"
 	line "me!"
 	done
 
