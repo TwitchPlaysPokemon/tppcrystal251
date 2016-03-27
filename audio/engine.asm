@@ -283,6 +283,14 @@ UpdateChannels: ; e8125
 	;
 	ld a, [SoundInput]
 	ld [rNR10], a
+	ld a, [Options2]
+	bit 7, a ; music player active?
+	jr z, .asm_e8159
+	; if music player is active, WRAM bank must be 4
+	ld a, [SoundInput]
+	swap a
+	and 7
+	ld [wNR10Sub], a
 .asm_e8159
 	bit 5, [hl] ; rest
 	jr nz, .ch1rest
@@ -299,9 +307,8 @@ UpdateChannels: ; e8125
 	ld a, [wc295]
 	ld [rNR14], a
 	ld a, [Options2]
-	bit 7, a ; music player active?
+	bit 7, a
 	jr z, .asm_e8175
-	; if music player is active, WRAM bank must be 4
 	ld a, [wc294]
 	ld [wC1Freq], a
 	ld a, [wc295]
@@ -3364,5 +3371,25 @@ ClearChannel: ; e8ffe
 	ld [hli], a ; rNR13, rNR23, rNR33, rNR43 ; frequency lo = 0
 	ld a, $80
 	ld [hli], a ; rNR14, rNR24, rNR34, rNR44 ; restart sound (freq hi = 0)
+; clear mp data too
+	ld a, [Options2]
+	bit 7, a
+	ret z
+	push hl
+	push bc
+	ld bc, $eb
+	add hl, bc
+	ld a, l
+	and 3
+	add a
+	ld c, a
+	ld b, 0
+	ld hl, wC1Vol
+	add hl, bc
+	xor a
+	ld [hli], a
+	ld [hl], a
+	pop bc
+	pop hl
 	ret
 ; e900a

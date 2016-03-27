@@ -170,18 +170,7 @@ MusicPlayer::
 	ld a, 4
 	ld [rSVBK], a
 	
-	xor a
-	ld [hBGMapUpdate], a
-	ld [wSongSelection], a
-	ld [wNumNoteLines], a
-	ld [wChLastNotes], a
-	ld [wChLastNotes+1], a
-	ld [wChLastNotes+2], a
-	ld [wChannelSelectorSwitches], a
-	ld [wChannelSelectorSwitches+1], a
-	ld [wChannelSelectorSwitches+2], a
-	ld [wChannelSelectorSwitches+3], a
-	ld [wSpecialWaveform], a
+	fill 0, wSongSelection, wMPInitClearEnd - wSongSelection
 	ld a, $ff
 	ld [wRenderedWaveform], a
 
@@ -279,10 +268,15 @@ MPlayerTilemap:
 	ld a, $60
 	ld [hWY], a
 	ld [rWY], a
+	di
+	ld a, $10 ; VBlank
+	ld [rSTAT], a
+	xor a
+	ld [rIF], a
+	ld a, 2 ; LCD
+	ld [rIE], a
+	ei
 	call EnableLCD
-
-	ld a, 2
-	ld [hVBlank], a
 	
 	ld a, [wSongSelection]
 	and a ;let's see if a song is currently selected
@@ -364,10 +358,13 @@ MPlayerTilemap:
 	jp .loop
 	
 .a
+	fill 0, wC1Vol, wC1Freq - wC1Vol
+	ld de, MUSIC_NONE
+	call PlayMusic
 	ld a, [wSongSelection]
 	ld e, a
 	ld d, 0
-	callba PlayMusic2
+	call PlayMusic
 	ld hl, wChLastNotes
 	xor a
 	ld [hli], a
@@ -390,7 +387,7 @@ MPlayerTilemap:
 	
 .songEditorLoop
 	call UpdateVisualIntensity
-	call DelayFrame
+	call DelayFrame_MP
 	
 	call DrawChData
 	call DrawNotes
@@ -607,17 +604,20 @@ MPlayerTilemap:
 	call EnableLCD
     xor a
     ld [hVBlank], a ; VBlank0
-    ld a, [hMPTmp]
-    ld [rSVBK], a
 	ld a, [hMPTmp3]
     ld [rLCDC], a
 	ld a, $90
 	ld [hWY], a
+	di
+	ld a, 8 ; normal HBlank int
+	ld [rSTAT], a
     xor a
     ld [rIF], a
     ld a, $f
     ld [rIE], a
     ei
+    ld a, [hMPTmp]
+    ld [rSVBK], a
     ret
 
 .ChangingPitchleft
@@ -1079,7 +1079,6 @@ DrawNote:
     
 DrawChangedNote:    
     ld [hl], b
-    call SetVisualIntensity
     ; spillover
 
 DrawNewNote:
@@ -1167,130 +1166,118 @@ CheckForVolumeBarReset:
     ld [hl], a
     ret
 
-SetVisualIntensity:
-    ld a,[wTmpCh]
-    ld hl, Channel1Pitch
-    ld bc, Channel2 - Channel1
-    call AddNTimes
-    ld a, [hl]
-    cp a, 0
-    jr z, .skip
-    ld a,[wTmpCh]
-    ld hl, Channel1Intensity
-    ld bc, Channel2 - Channel1
-    push af
-    call AddNTimes
-    pop af
-    cp a, 2
-    jr z, .wavChannel
-    ld a, [hl]
-    ld e, a
-    swap a
-    and $0F
-    ld d, a
-    
-    ld a, [wTmpCh]
-    ld hl, wC1Vol
-    ld bc, 2
-    call AddNTimes
-    ld a, d
-    ldi [hl], a
-    ld a, e
-    and $0F
-    ld e, a
-    swap a
-    or e
-    and $F7
-    ld [hl], a
-    ret
-.wavChannel
-    ld a, [hl]
-    and $F0
-    cp a, $10
-    jr z, .full
-    cp a, $20
-    jr z, .half
-    cp a, $30
-    jr z, .quarter
-    xor a
-    jr .setWavVol
-.full
-    ld a, $f
-    jr .setWavVol
-.half
-    ld a, $7
-    jr .setWavVol
-.quarter
-    ld a, $3
-.setWavVol
-    ld hl, wC3Vol
-    ld [hl], a
-    ret
-.skip
-    ld a, [wTmpCh]
-    ld hl, wC1Vol
-    ld bc, 2
-    call AddNTimes
-    xor a
-    ld [hli], a
-    ld [hl], a
-    ret
 UpdateVisualIntensity:
-    ld c, 4
     ld hl, wVolTimer
     ld a, [hl]
-    sub a, 60
+    add 32
     ld [hl], a
-    ret nc
-.timerup
-    add a, 64
-    ldi [hl], a
+.loop
+	push hl
+; update NR10 freq mod
+	ld a, [wNR10Sub]
+	and a
+	jr z, .nofreqmod
+	dec a
+	ld [wNR10Sub], a
+	jr nz, .nofreqmod
+	ld a, [SoundInput]
+	ld d, a
+	swap a
+	and 7
+	ld [wNR10Sub], a
+	ld a, 7
+	and d
+	ld e, a
+	ld a, [wC1Freq]
+	ld l, a
+	ld c, a
+	ld a, [wC1Freq + 1]
+	ld h, a
+	ld b, a
+	ld a, e
+	and a
+	jr z, .skipshift
+.shiftloop
+	srl b
+	rr c
+	dec e
+	jr nz, .shiftloop
+.skipshift
+	bit 3, d
+	jr z, .inc
+	ld a, c
+	cpl
+	ld c, a
+	ld a, b
+	cpl
+	ld b, a
+	inc c
+	jr nz, .noincb
+	inc b
+.noincb
+	add hl, bc
+	ld a, h
+	cp 2048 / $100
+	jr c, .noovf
+	ld hl, 0
+	jr .noovf
+.inc
+	add hl, bc
+	jr nc, .noovf
+	ld hl, 2047
+.noovf
+	ld a, l
+	ld [wC1Freq], a
+	ld a, h
+	ld [wC1Freq + 1], a
+.nofreqmod
+	ld hl, wC1Vol
+	ld e, 4
 .updateChannels
     inc hl
-    ld a, [hld]
-    ld b, a
-    and $7F
-    jr z, .nextChannel
-    ld a, b
-    dec a
-    ld b, a
-    and $0F
-    jr z, .changeEnvelope
-    inc hl
-    jr .doneCh
-.changeEnvelope
-    ld a, b
-    swap a
-    or b
-    and $F7
-    ld b, a
     ld a, [hl]
-    bit 7, b
-    jr nz, .increase
-    dec a
-    bit 7, a
-    jr z, .doneInc
-    xor a
-    jr .doneInc
-.increase
-    inc a
-    bit 4, a
-    jr z, .doneInc
-    ld a, $0F
-.doneInc
-    ld [hli], a
-.doneCh
-    ld a, b
-    ld [hld], a
+	and a
+    jr z, .nextChannel2
+	dec a
+	ld [hl], a
+    jr nz, .nextChannel2
+	push hl
+	ld a, 4
+	sub e
+	ld hl, Channel1Intensity
+	ld bc, Channel2 - Channel1
+	call AddNTimes
+	ld a, [hl]
+	pop hl
+    ld b, a
+	and 7
+	add a
+	ld [hld], a
+	bit 3, b
+	jr nz, .inc2
+	ld a, [hl]
+	and a
+	jr z, .nextChannel
+	dec [hl]
+	jr .nextChannel
+.inc2
+	ld a, [hl]
+	cp $f
+	jr z, .nextChannel
+	inc [hl]
 .nextChannel
     inc hl
+.nextChannel2
     inc hl
-    dec c
-    ret z
-    ld a, c
-    cp a, 2
-    jr z, .nextChannel
-    jr .updateChannels
+    dec e
+    jr nz, .updateChannels
+	pop hl
+	ld a, [hl]
+    sub 15
+    ld [hl], a
+	cp 15
+	jp nc, .loop
+	ret
  
 AddNoteToOld:
     push hl
@@ -1817,9 +1804,24 @@ NT_Right1Left1:
 	
 DelayFrame_MP:
 ; music player VBlank routine
+	halt
 	; TODO
-	call DelayFrame
+; visual intensities
+	ld a, [wC1Vol]
+	add $e8
+	ld [VBGMap1 + $b0], a
+	ld a, [wC2Vol]
+	add $e8
+	ld [VBGMap1 + $b1], a
+	ld a, [wC3Vol]
+	add $e8
+	ld [VBGMap1 + $b2], a
+	ld a, [wC4Vol]
+	add $e8
+	ld [VBGMap1 + $b3], a
+; all vblank copies done
 	call Joypad
+	callba _UpdateSound
 	ret
 
 LoadingText:

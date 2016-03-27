@@ -2573,10 +2573,11 @@ SECTION "WRAM 4", WRAMX[$d800], BANK[$4] ; seems like this bank is unused
 wMPTileMapBackup:: ds 20 * 18
 wMPFlags:: ds 1
 wSongSelection:: ds 2
-wNumNoteLines:: ds 1
-wTmpCh:: ds 1
-wChLastNotes:: ds 3
+wNumNoteLines:: ds 1 ;
+wTmpCh:: ds 1 ;
+wChLastNotes:: ds 3 ;
 wVolTimer:: ds 1
+wNR10Sub:: ds 1
 wC1Vol:: ds 1
 wC1VolSub:: ds 1
 wC2Vol:: ds 1
@@ -2588,19 +2589,20 @@ wC4VolSub:: ds 1
 wC1Freq:: ds 2
 wC2Freq:: ds 2
 wC3Freq:: ds 2
-wNoteEnded:: ds 3
-wSelectorTop:: ds 1
-wSelectorCur:: ds 1
+wNoteEnded:: ds 3 ;
+wSelectorTop:: ds 1 ;
+wSelectorCur:: ds 1 ;
 wChannelSelector:: ds 1
-wChannelSelectorSwitches:: ds 8
-wNoiseHit:: ds 1
-wTranspositionInterval:: ds 1
-wChangingPitch:: ds 1
-wTmp:: ds 1
+wChannelSelectorSwitches:: ds 8 ;
+wNoiseHit:: ds 1 ;
+wTranspositionInterval:: ds 1 ;
+wChangingPitch:: ds 1 ;
+wTmp:: ds 1 ;
 
-wRenderedWaveform:: ds 1
-wSpecialWaveform:: ds 1
-wWaveformTmp:: ds 16
+wRenderedWaveform:: ds 1 ;
+wSpecialWaveform:: ds 1 ;
+wWaveformTmp:: ds 16 * 4
+wMPInitClearEnd::
 
 SECTION "GBC Video", WRAMX, BANK [5]
 
