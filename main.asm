@@ -20079,9 +20079,21 @@ VendingMachine: ; 15ac4
 ; 15aee
 
 Unknown_15aee: ; 15aee
-	db $05, $05, $96, $00, $04, $f4, $01, $11, $f4, $01, $26, $f4, $01, $27, $b0, $04, $ff
+	db 5
+	dbw POKE_BALL,     150
+	dbw GREAT_BALL,    500
+	dbw SUPER_POTION,  500
+	dbw FULL_HEAL,     500
+	dbw REVIVE,       1200
+	db -1
 Unknown_15aff: ; 15aff
-	db $05, $10, $e8, $03, $0e, $d0, $07, $26, $f4, $01, $02, $e8, $03, $1b, $78, $1e, $ff
+	db 5
+	dbw HYPER_POTION, 1000
+	dbw FULL_RESTORE, 2000
+	dbw FULL_HEAL,     500
+	dbw ULTRA_BALL,   1000
+	dbw PROTEIN,      7800
+	db -1
 ; 15b10
 
 Function15b10: ; 15b10
@@ -20359,6 +20371,10 @@ Function15c7d: ; 15c7d
 ; 15c91
 
 Function15c91: ; 15c91
+	callba CheckItemPocket
+	ld a, [wd142]
+	cp TM_HM
+	jr z, .okay
 	call Function15ca3
 	inc hl
 	inc hl
@@ -20369,6 +20385,25 @@ Function15c91: ; 15c91
 	jp z, Function15da5
 	jp Function15de2
 ; 15ca3
+.okay
+	ld hl, NumItems
+	call CheckItem
+	jr c, .already_have_tmhm
+	ld a, 1
+	ld [wd10d], a
+	and a
+	ret
+.already_have_tmhm
+	push af
+	ld hl, .already_have_txt
+	call PrintText
+	call Functiona36
+	pop af
+	ret
+.already_have_txt
+	text "You can't carry"
+	line "any more."
+	done
 
 Function15ca3: ; 15ca3
 	ld a, [EngineBuffer1]
