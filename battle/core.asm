@@ -5483,6 +5483,8 @@ BattleMenu_Pack: ; 3e1c7
 	call DoItemEffect
 
 .asm_3e209
+	xor a
+	ld [LastEnemyCounterMove], a
 	call Function3e234
 	ret
 

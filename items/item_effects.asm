@@ -1525,7 +1525,7 @@ Functionefda: ; efda (3:6fda)
 	ret
 
 Functionf009: ; f009 (3:7009)
-	call Functionf2a6
+	call Functionf2a6 ;ret c if mon is the mon out in battle, else ret nc
 	jr nc, .asm_f01c
 	ld a, [PlayerSubStatus3]
 	bit 7, a
@@ -1539,8 +1539,8 @@ Functionf009: ; f009 (3:7009)
 	and a
 	ret
 
-Functionf01e: ; f01e (3:701e)
-	call Functionf2a6
+Functionf01e: ; f01e (3:701e) heal battlemon HP if needed
+	call Functionf2a6 ;ret c if mon is the mon out in battle, else ret nc
 	ret nc
 	ld a, PartyMon1HP - PartyMon1
 	call GetPartyParamLocation
@@ -1551,7 +1551,7 @@ Functionf01e: ; f01e (3:701e)
 	ret
 
 Functionf030: ; f030 (3:7030)
-	call Functionf2a6
+	call Functionf2a6 ;ret c if mon is the mon out in battle, else ret nc
 	ret nc
 	xor a
 	ld [BattleMonStatus], a
@@ -1806,24 +1806,24 @@ Functionf192: ; f192
 
 Functionf1a9: ; f1a9 (3:71a9)
 	ld b, 1
-	call Functionf1f9
+	call Functionf1f9 ;select mon
 	ld a, 2
 	ret c
 
-	call Functionf30d
+	call Functionf30d ;if fainted
 	ld a, 1
 	ret z
 
-	call Functionf31b
+	call Functionf31b ;if full hp
 	ld a, 1
 	ret nc
 
 	xor a
 	ld [Danger], a
-	call Functionf395
-	call Functionf2d1
-	call Functionf01e
-	call Functionf1db
+	call Functionf395 ;load heal amount into de
+	call Functionf2d1 ;apply healing de to mon, load result into wd1ee. a = high bit of max hp - after healed current
+	call Functionf01e ;heal battlemon HP if needed
+	call Functionf1db ;sound and graphics
 	ld a, $f5
 	ld [PartyMenuActionText], a
 	call Functionf279
@@ -1955,8 +1955,8 @@ Functionf2a2: ; f2a2 (3:72a2)
 	call ClearPalettes
 	ret
 
-Functionf2a6: ; f2a6 (3:72a6)
-	ld a, [wBattleMode]
+Functionf2a6: ; f2a6 (3:72a6) ;ret c if mon is the mon out in battle, else ret nc
+	ld a, [wBattleMode] ;skip if not in battle
 	and a
 	ret z
 	ld a, [CurPartyMon]
@@ -1964,7 +1964,7 @@ Functionf2a6: ; f2a6 (3:72a6)
 	ld hl, CurBattleMon
 	cp [hl]
 	pop hl
-	jr nz, .asm_f2b8
+	jr nz, .asm_f2b8  ;ret c if mon is out, else ret nc
 	scf
 	ret
 .asm_f2b8
@@ -1978,41 +1978,41 @@ Functionf2ba: ; f2ba (3:72ba)
 	jr asm_f2c6
 
 Functionf2c3: ; f2c3 (3:72c3)
-	call Functionf36f
+	call Functionf36f ;load buffers into de
 asm_f2c6: ; f2c6 (3:72c6)
 	ld a, PartyMon1HP - PartyMon1
-	call GetPartyParamLocation
-	ld [hl], d
+	call GetPartyParamLocation ;hl = mon HP
+	ld [hl], d ;load buffered number in as cur HP
 	inc hl
 	ld [hl], e
-	jp Functionf328
+	jp Functionf328 ;store hp in wd1ee and wd1ef
 
-Functionf2d1: ; f2d1 (3:72d1)
+Functionf2d1: ; f2d1 (3:72d1) apply healing de to mon, load result into wd1ee. a = high bit of max hp - after healed current
 	ld a, PartyMon1HP + 1 - PartyMon1
-	call GetPartyParamLocation
+	call GetPartyParamLocation ;hl = HP lower byte
 	ld a, [hl]
 	add e
 	ld [hld], a
 	ld a, [hl]
 	adc d
-	ld [hl], a
-	jr c, .asm_f2f5
-	call Functionf328
+	ld [hl], a ;add amount to heal to hp
+	jr c, .asm_f2f5 ;if second carres, branch
+	call Functionf328 ;store hp in wd1ee and wd1ef
 	ld a, PartyMon1HP + 1 - PartyMon1
 	call GetPartyParamLocation
 	ld d, h
 	ld e, l
-	ld a, PartyMon1MaxHP + 1 - PartyMon1
+	ld a, PartyMon1MaxHP + 1 - PartyMon1 ;cur hp in [de], max hp in [hl]
 	call GetPartyParamLocation
 	ld a, [de]
 	sub [hl]
 	dec de
 	dec hl
-	ld a, [de]
+	ld a, [de] ;overrides the first result?
 	sbc [hl]
-	jr c, .asm_f2f8
+	jr c, .asm_f2f8 ;skip branch
 .asm_f2f5
-	call Functionf2c3
+	call Functionf2c3 ;load buffers into hp and wd1ee
 .asm_f2f8
 	ret
 
@@ -2143,17 +2143,17 @@ Functionf395: ; f395 (3:7395)
 .next
 	ld a, [hli]
 	cp -1
-	jr z, .asm_f3a9
+	jr z, .asm_f3a9 ;if at end of table, jump
 	cp d
-	jr z, .done
-	inc hl
+	jr z, .done ;if item matches, done
+	inc hl ;else loop
 	inc hl
 	jr .next
 
 .asm_f3a9
 	scf
 .done
-	ld e, [hl]
+	ld e, [hl] ;load heal amount into de
 	inc hl
 	ld d, [hl]
 	pop hl

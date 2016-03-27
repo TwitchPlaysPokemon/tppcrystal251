@@ -47337,7 +47337,7 @@ INCLUDE "event/poke_seer.asm"
 SECTION "bank14", ROMX, BANK[$14]
 
 Function50000: ; 50000
-	call Function2ed3
+	call Function2ed3 ; disables overworld sprite updating?
 	xor a
 	ld [PartyMenuActionText], a
 	call WhiteBGMap
@@ -73355,10 +73355,10 @@ Function929f6: ; 929f6 (24:69f6)
 
 Function92a04: ; 92a04 (24:6a04)
 	ld a, d
-	cp 9999 / $100
+	cp MAX_COINS / $100
 	jr c, .asm_92a10
 	ld a, e
-	cp 9999 % $100
+	cp MAX_COINS % $100
 	jr c, .asm_92a10
 	scf
 	ret
@@ -74634,7 +74634,6 @@ Function93124: ; 93124 (24:7124)
 	ld a, [hl]
 	ld [wc711], a
 	ld d, a
-	callba Function105fe3
 	ret
 
 .data_93145
@@ -78412,14 +78411,14 @@ Functione081b: ; e081b
 
 Functione0833: ; e0833
 	ld a, [Coins]
-	cp 9999 / $100
+	cp MAX_COINS / $100
 	jr c, .asm_e0847
 	jr z, .asm_e083e
 	jr .asm_e0845
 
 .asm_e083e
 	ld a, [Coins + 1]
-	cp 9999 % $100
+	cp MAX_COINS % $100
 	jr c, .asm_e0847
 .asm_e0845
 	scf

@@ -262,6 +262,30 @@ FishGroup17Header:
 	dw FishGroup17_Old
 	dw FishGroup17_Good
 	dw FishGroup17_Super
+
+FishGroup18Header:
+	;db $80 ; 50%
+	dw FishGroup18_Old
+	dw FishGroup18_Good
+	dw FishGroup18_Super
+
+FishGroup19Header:
+	;db $80 ; 50%
+	dw FishGroup19_Old
+	dw FishGroup19_Good
+	dw FishGroup19_Super
+
+FishGroup20Header:
+	;db $80 ; 50%
+	dw FishGroup20_Old
+	dw FishGroup20_Good
+	dw FishGroup20_Super
+
+FishGroup21Header:
+	;db $80 ; 50%
+	dw FishGroup21_Old
+	dw FishGroup21_Good
+	dw FishGroup21_Super
 	
 ;to set fishing mons, first you have to make/edit a group, then assign that group to an area in maps/map_headers.asm (last number). group 0 is used to represent no fishing mons
 ;each group is split into rods, but each table can be any legnth
