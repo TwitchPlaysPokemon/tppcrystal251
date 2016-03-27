@@ -254,7 +254,7 @@
 	connection north, ROUTE_25, Route25, 0, 0, 13, ROUTE_24
 	connection south, CERULEAN_CITY, CeruleanCity, -3, 3, 16, ROUTE_24
 
-	map_header_2 Route25, ROUTE_25, $2c, SOUTH ; 0x956e4
+	map_header_2 Route25, ROUTE_25, 44, SOUTH
 	connection south, ROUTE_24, Route24, 0, 0, 10, ROUTE_25
 
 	map_header_2 Route3, ROUTE_3, $2c, WEST | EAST ; 0x956fc
@@ -766,7 +766,7 @@
 	map_header_2 SSAnne9, S_S_ANNE_9, $c, NONE
 	map_header_2 SSAnne10, S_S_ANNE_10, $c, NONE
 
-	map_header_2 BillsGarden, BILLS_GARDEN, $2c, NONE
+	map_header_2 BillsGarden, BILLS_GARDEN, 44, NONE
 
 	map_header_2 PowerplantB1, POWERPLANTB1, 46, NONE
 	map_header_2 PowerplantB2, POWERPLANTB2, $1d, NONE
