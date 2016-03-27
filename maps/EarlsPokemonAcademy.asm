@@ -325,8 +325,8 @@ UnknownText_0x68f80: ; 0x68f80
 
 	para "It's important to"
 	line "remember that"
-	cont "electric #MON are"
-	cont "immune to PRZ."
+	cont "electric #MON"
+	cont "are immune to PRZ."
 
 	para "It remains after"
 	line "battle, so use"

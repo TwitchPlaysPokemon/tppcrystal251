@@ -184,7 +184,7 @@ BlastoiseEvosAttacks:
 	db 49, ICE_PUNCH ; tm move
 	db 53, AQUA_JET ; later gen move
 	db 58, ROAR ; *
-	db 63, SEISMIC_TOSS ;  gen 1 move
+	db 63, MEGA_KICK ;  gen 1 move
 	db 68, COUNTER ; *
 	db 74, HYDRO_PUMP
 	db 80, ZAP_CANNON ; * event
@@ -209,6 +209,7 @@ MetapodEvosAttacks:
 
 ButterfreeEvosAttacks:
 	db 0 ; no more evolutions
+	db 1,REFLECT
 	db 1,TACKLE
 	db 1,STRING_SHOT
 	db 1,HARDEN
@@ -252,6 +253,8 @@ KakunaEvosAttacks:
 
 BeedrillEvosAttacks:
 	db 0 ; no more evolutions
+	db 1,DOUBLE_EDGE
+	db 1,REFLECT
 	db 1,STRING_SHOT
 	db 1,HARDEN
 	db 1, POISON_STING
