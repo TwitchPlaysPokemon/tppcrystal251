@@ -75,7 +75,7 @@ SpearowEggMoves:
 	db SWIFT
 	db MIMIC
 	db BIDE
-	db MIRROR MOVE
+	db MIRROR_MOVE
 	db RAGE
 	db $ff
 
