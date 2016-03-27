@@ -20390,15 +20390,21 @@ Function15c91: ; 15c91
 	call CheckItem
 	jr c, .already_have_tmhm
 	ld a, 1
-	ld [wd10d], a
+	ld [wd10c], a
+	callba GetItemPrice
+	xor a
+	ld [$ffc3], a
+	ld a, d
+	ld [$ffc4], a
+	ld a, e
+	ld [$ffc5], a
 	and a
 	ret
 .already_have_tmhm
-	push af
 	ld hl, .already_have_txt
 	call PrintText
 	call Functiona36
-	pop af
+	scf
 	ret
 .already_have_txt
 	text "You can't carry"
