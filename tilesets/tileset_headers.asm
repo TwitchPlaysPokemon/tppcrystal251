@@ -341,6 +341,14 @@ Tileset42: ; SS Anne
 	dw Tileset42Anim
 	dw $0000
 	dw Tileset42PalMap
+	
+Tileset43: ; Powerplant Caves
+	dbw BANK(Tileset30GFX), Tileset30GFX
+	dbw BANK(Tileset30Meta), Tileset30Meta
+	dbw BANK(Tileset30Coll), Tileset30Coll
+	dw Tileset30Anim
+	dw $0000
+	dw Tileset43PalMap
 
 ; 0x4d7c1
 
