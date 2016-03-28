@@ -971,8 +971,8 @@ UnknownText_0x6dc1a: ; 0x6dc1a
 	line "case if you use"
 	cont "a RARE CANDY."
 
-	para "ONIX doesn't evol-"
-	line "-ve by levelling"
+	para "ONIX doesn't"
+	line "evolve by leveling"
 	cont "up alone, though."
 	done
 ; 0x6dcb0
