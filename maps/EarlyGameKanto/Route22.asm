@@ -35,6 +35,7 @@ Route22RBRivalBattleTriggerTop:
 	end
 
 Route22RBRivalBattle:
+	setlasttalked $2
 	loadfont
 	checkflag ENGINE_PLAYER_IS_FEMALE
 	iftrue .male_rival_1

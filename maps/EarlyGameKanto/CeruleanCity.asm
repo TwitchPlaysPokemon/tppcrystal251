@@ -35,6 +35,7 @@ CeruleanCityRivalBattleRightTrigger:
 	end
 
 CeruleanCityRivalBattle:
+	setlasttalked $2
 	playmusic MUSIC_RIVAL_RB
 	applymovement $2, Movement_CeruleanRivalEnters
 	loadfont
