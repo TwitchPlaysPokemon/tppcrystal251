@@ -218,8 +218,8 @@ UnknownText_0x6c52a: ; 0x6c52a
 ; 0x6c549
 
 UnknownText_0x6c549: ; 0x6c549
-	text "What took you,"
-	line "<PLAY_G>?"
+	text "What took you so"
+	line "long, <PLAY_G>?"
 
 	para "Just as I thought,"
 	line "that strange radio"

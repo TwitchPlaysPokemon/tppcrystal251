@@ -754,8 +754,8 @@ UnknownText_0x6d5d8: ; 0x6d5d8
 	text "LANCE: That did"
 	line "it. We defeated"
 
-	para "all the ROCKETS"
-	line "here."
+	para "all of the"
+	line "ROCKETS here."
 
 	para "But I'm concerned"
 	line "about the young"
@@ -791,8 +791,8 @@ UnknownText_0x6d6cf: ; 0x6d6cf
 	para "We have no choice."
 	line "We have to make"
 
-	para "all the ELECTRODE"
-	line "faint."
+	para "all of the"
+	line "ELECTRODE faint."
 
 	para "That should stop"
 	line "this machine from"
