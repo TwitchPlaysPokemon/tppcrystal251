@@ -536,8 +536,8 @@ UnknownText_0x1a6ec2: ; 0x1a6ec2
 	cont "dive underwater."
 
 	para "You can't find"
-	line "them in JOHTO,"
-	cont "though."
+	line "them in this"
+	cont "ocean though."
 	done
 ; 0x1a6f12
 
