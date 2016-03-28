@@ -65,7 +65,6 @@ JugglerIrwin1Script: ; 0x19c8cf
 	iftrue UnknownScript_0x19c8ec
 	writetext UnknownText_0x19cd5a ;have defeted text
 	buttonsound
-	buttonsound
 	setevent EVENT_ROUTE_35_281
 	scall UnknownScript_0x19c903 ;ask for number
 	jump UnknownScript_0x19c8ef

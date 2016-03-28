@@ -513,7 +513,7 @@ LassDana1SeenText: ; 0x1a207d
 
 LassDana1BeatenText: ; 0x1a20c8
 	text "Down to my"
-	line "last 100<...>"
+	line "last ¥100<...>"
 	done
 ; 0x1a20ec
 
