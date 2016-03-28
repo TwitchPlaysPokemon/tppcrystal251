@@ -478,15 +478,14 @@ UnknownText_0x1a1f86: ; 0x1a1f86
 ; 0x1a1fc5
 
 SchoolboyChad1SeenText: ; 0x1a1fc5
-	text "EEVEE is common"
+	text "EEVEE are common"
 	line "in this area!"
 
-	para "I have heard"
-	line "you can find"
-	cont "some rare"
+	para "I heard you can"
+	line "find some rare"
 	
 	para "EEVEE evolutions"
-	line "here as well!"
+	line "here too!"
 	done
 ; 0x1a1fee
 
@@ -513,7 +512,7 @@ LassDana1SeenText: ; 0x1a207d
 
 LassDana1BeatenText: ; 0x1a20c8
 	text "Down to my"
-	line "last 100<...>"
+	line "last ¥100<...>"
 	done
 ; 0x1a20ec
 
@@ -521,9 +520,9 @@ UnknownText_0x1a20ec: ; 0x1a20ec
 	text "There is a certain"
 	line "honor involved in"
 
-	para "betting it all"
-	line "on the roll"
-	cont "of a dice."
+	para "betting it all on"
+	line "the roll of a"
+	cont "dice."
 	done
 ; 0x1a2130
 
@@ -567,8 +566,8 @@ SailorHarryBeatenText: ; 0x1a21f0
 
 UnknownText_0x1a220c: ; 0x1a220c
 	text "I wonder how"
-	line "useful CUT"
-	cont "will be at sea<...>"
+	line "useful CUT will"
+	cont "be at sea<...>"
 	done
 ; 0x1a224c
 
