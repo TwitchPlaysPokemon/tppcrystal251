@@ -63,6 +63,7 @@ UnknownScript_0x6cfac: ; 0x6cfac
 	spriteface $0, $0
 	showemote $0, $0, 15
 	applymovement $0, MovementData_0x6d21f
+	special SaveMusic
 	playmusic MUSIC_ROCKET_ENCOUNTER
 	applymovement $3, MovementData_0x6d224
 	spriteface $0, $1
