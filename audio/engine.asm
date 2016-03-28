@@ -323,6 +323,14 @@ UpdateChannels: ; e8125
 	and a, $3f ; sound length
 	or d
 	ld [rNR11], a
+	ld a, [Options2]
+	bit 7, a
+	ret z
+	ld a, [wc292]
+	rlca
+	rlca
+	and 3
+	ld [wC1Duty], a
 	ret
 .asm_e8184
 	ld a, [wc292]
@@ -336,6 +344,11 @@ UpdateChannels: ; e8125
 	ld a, [Options2]
 	bit 7, a
 	ret z
+	ld a, [wc292]
+	rlca
+	rlca
+	and 3
+	ld [wC1Duty], a
 	ld a, [wc294]
 	ld [wC1Freq], a
 	ret
@@ -361,6 +374,11 @@ UpdateChannels: ; e8125
 	ld a, [Options2]
 	bit 7, a
 	ret z
+	ld a, [wc292]
+	rlca
+	rlca
+	and 3
+	ld [wC1Duty], a
 	ld a, [wc293]
 	swap a
 	and $f
@@ -394,6 +412,14 @@ UpdateChannels: ; e8125
 	and a, $3f ; sound length
 	or d
 	ld [rNR21], a
+	ld a, [Options2]
+	bit 7, a
+	ret z
+	ld a, [wc292]
+	rlca
+	rlca
+	and 3
+	ld [wC2Duty], a
 	ret
 .asm_e81db ; unused
 	ld a, [wc294]
@@ -421,6 +447,11 @@ UpdateChannels: ; e8125
 	ld a, [Options2]
 	bit 7, a
 	ret z
+	ld a, [wc292]
+	rlca
+	rlca
+	and 3
+	ld [wC2Duty], a
 	ld a, [wc294]
 	ld [wC2Freq], a
 	ret
@@ -446,6 +477,11 @@ UpdateChannels: ; e8125
 	ld a, [Options2]
 	bit 7, a
 	ret z
+	ld a, [wc292]
+	rlca
+	rlca
+	and 3
+	ld [wC2Duty], a
 	ld a, [wc293]
 	swap a
 	and $f
@@ -544,43 +580,15 @@ UpdateChannels: ; e8125
 	ld de, WaveSamples
 	add hl, de
 	; load wavepattern into $ff30-$ff3f
-	ld a, [hli]
-	ld [$ff30], a
-	ld a, [hli]
-	ld [$ff31], a
-	ld a, [hli]
-	ld [$ff32], a
-	ld a, [hli]
-	ld [$ff33], a
-	ld a, [hli]
-	ld [$ff34], a
-	ld a, [hli]
-	ld [$ff35], a
-	ld a, [hli]
-	ld [$ff36], a
-	ld a, [hli]
-	ld [$ff37], a
-	ld a, [hli]
-	ld [$ff38], a
-	ld a, [hli]
-	ld [$ff39], a
-	ld a, [hli]
-	ld [$ff3a], a
-	ld a, [hli]
-	ld [$ff3b], a
-	ld a, [hli]
-	ld [$ff3c], a
-	ld a, [hli]
-	ld [$ff3d], a
-	ld a, [hli]
-	ld [$ff3e], a
-	ld a, [hli]
-	ld [$ff3f], a
 	ld a, [Options2]
 	bit 7, a
-	jr z, .skipwavecopy
-	ld hl, wMPFlags
-	set 0, [hl] ; wave copy occurred
+	jr nz, .mpcopy
+_w_ = $ff30
+	rept 16
+	ld a, [hli]
+	ld [_w_], a
+_w_ = _w_ + 1
+	endr
 .skipwavecopy
 	pop hl
 	ld a, [wc293]
@@ -607,6 +615,17 @@ UpdateChannels: ; e8125
 .vol0
 	ld [wC3Vol], a
 	ret
+.mpcopy
+_w_ = 0
+	rept 16
+	ld a, [hli]
+	ld [$ff30 + _w_], a
+	ld [wWaveformTmp + _w_], a
+_w_ = _w_ + 1
+	endr
+	ld hl, wMPFlags
+	set 0, [hl] ; wave copy occurred
+	jp .skipwavecopy
 
 .Channel4
 .Channel8
@@ -1563,16 +1582,24 @@ MusicF1: ; e8780
 ; params: 16
 	xor a
 	ld [rNR30], a
-	ld e, 16
-	ld hl, $ff30
-.loop
-	call GetMusicByte
-	ld [hli], a
-	dec e
-	jr nz, .loop
 	ld a, [Options2]
 	bit 7, a ; is music player active?
-	ret z
+	jr nz, .mpcopy
+_w_ = $ff30
+	rept 16
+	call GetMusicByte
+	ld [_w_], a
+_w_ = _w_ + 1
+	endr
+	ret
+.mpcopy
+_w_ = 0
+	rept 16
+	call GetMusicByte
+	ld [$ff30 + _w_], a
+	ld [wWaveformTmp + _w_], a
+_w_ = _w_ + 1
+	endr
 	ld hl, wMPFlags
 	set 0, [hl] ; wave copy occurred
 	ret

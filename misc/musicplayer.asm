@@ -170,9 +170,9 @@ MusicPlayer::
 	ld a, 4
 	ld [rSVBK], a
 	
-	fill 0, wSongSelection, wMPInitClearEnd - wSongSelection
-	ld a, $ff
-	ld [wRenderedWaveform], a
+	fill 0, wMPFlags, wMPInitClearEnd - wMPFlags
+	ld hl, wMPFlags
+	set 0, [hl]
 
 MPlayerTilemap:
 
@@ -287,10 +287,9 @@ MPlayerTilemap:
 	jp .redraw
 .loop
 	call UpdateVisualIntensity
-	call DelayFrame_MP
-	
 	call DrawChData
 	call DrawNotes
+	call DelayFrame_MP
 	
 	call GetJoypad
 	jbutton B_BUTTON, .exit
@@ -340,25 +339,28 @@ MPlayerTilemap:
 .redraw	
     ld [wSongSelection], a
     
-	ld a, " "
-	hlcoord 5, 2
-	ld bc, 3
-	call ByteFill
-	hlcoord 0, 3
-	ld bc, 60
-	call ByteFill
-	hlcoord 0, 8
-	ld bc, 90
-	call ByteFill
-	hlcoord 5, 2
-	ld de, wSongSelection
-	ld bc, $0103
+	; old function had more than one VBlank printing, slowing down the music
+	;ld a, " "
+	;hlcoord 5, 2
+	;ld bc, 3
+	;call ByteFill
+	;hlcoord 0, 3
+	;ld bc, 60
+	;call ByteFill
+	;hlcoord 0, 8
+	;ld bc, 90
+	;call ByteFill
+	;hlcoord 5, 2
+	;ld de, wSongSelection
+	;ld bc, $0103
 	;call PrintNum
-	call DrawSongInfo
+	;call DrawSongInfo
 	jp .loop
 	
 .a
-	fill 0, wC1Vol, wC1Freq - wC1Vol
+	fill 0, wC1Vol, wMPInitClearEnd - wC1Vol
+	ld hl, wMPFlags
+	set 0, [hl]
 	ld de, MUSIC_NONE
 	call PlayMusic
 	ld a, [wSongSelection]
@@ -387,10 +389,9 @@ MPlayerTilemap:
 	
 .songEditorLoop
 	call UpdateVisualIntensity
-	call DelayFrame_MP
-	
 	call DrawChData
 	call DrawNotes
+	call DelayFrame_MP
 	
 	ld a, [wChangingPitch]
 	and a
@@ -680,13 +681,9 @@ MPlayerTilemap:
 	jp .songEditorLoop
     
 DrawChData:
-    ld a, [wSpecialWaveform]
-    and a
-    jr z, .notspecial
-    call RenderSpecialWaveform
-    xor a
-    ld [wSpecialWaveform], a
-.notspecial
+    ld a, [wMPFlags]
+	bit 0, a
+    call nz, RenderWaveform
     
 	ld a, 0
 	hlcoord 0, 14
@@ -887,86 +884,89 @@ CheckLR:
 	ret
 
 RenderWaveform:
-; TBD
-;	ld a, [$c293]
-;	and a, $0f ; only 0-9 are valid
-;	ld b, a
-;	ld a, [wRenderedWaveform]
-;	cp b
-;	ret z
-;	ld a, b
-	ld [wRenderedWaveform], a
-	
-	
-RenderSpecialWaveform:
+	fill 0, wWaveformTmpGFX, 64
 
-	ld hl, TempMon
-	ld bc, 32
-	xor a
-	call ByteFill
-
-    ld hl, TempMon
+    ld hl, wWaveformTmpGFX
     ld de, wWaveformTmp
-    ld b, 1
+    ld bc, $1080
 
 .drawloop
-    ld a, [de]
-    push de
-    
-    swap a
-    and $0f
-    xor $0f
-    sra a
-    sla a
-    ld c, a
-    add l
-    ld l, a
-    jr nc, .nc
-    inc h
-.nc
-    ld a, b
-    and $7
-    ld d, a
-    ; c = row
-    ; b = (d) = column
-    ld a, $01
-.rotatea
-    rrc a
-    dec d
-    jr nz, .rotatea
-    or [hl]
-    ld [hli], a
-    ld [hl], a
-    
-    pop de
-    inc de
-    inc b
-    ld a, b
-    cp $11
-    jr z, .done
-    cp $9
-    jr nc, .secondtile
-    ld hl, TempMon
-    jr .drawloop
-.secondtile
-    ld hl, TempMon+16
-    jr .drawloop
+	ld a, [de]
+	inc de
+	push de
+	push hl
+	ld d, 8
+	ld e, a
+	swap a
+	rrca
+	cpl
+	and 7
+	jr z, .draw
+.seek
+	inc hl
+	inc hl
+	dec d
+	dec a
+	jr nz, .seek
+.draw
+	ld a, [hl]
+	or c
+	ld [hli], a
+	ld a, [hl]
+	or c
+	ld [hli], a
+	dec d
+	jr z, .done
+.drawl
+	ld a, [hl]
+	or c
+	ld [hli], a
+	inc hl
+	dec d
+	jr nz, .drawl
 .done
-	ld hl, $9400
-	ld a, [wRenderedWaveform]
-	sla a
-	sla a
-	sla a
-	sla a
-	sla a
-	ld l, a
-	jr nc, .gothl
-    inc h
-.gothl
-	ld b, 0
-	ld c, 2
-	ld de, TempMon
-	call Request2bpp
+	pop hl
+	push hl
+	srl c
+	ld d, 8
+	ld a, e
+	rrca
+	cpl
+	and 7
+	jr z, .draw2
+.seek2
+	inc hl
+	inc hl
+	dec d
+	dec a
+	jr nz, .seek2
+.draw2
+	ld a, [hl]
+	or c
+	ld [hli], a
+	ld a, [hl]
+	or c
+	ld [hli], a
+	dec d
+	jr z, .done2
+.drawl2
+	ld a, [hl]
+	or c
+	ld [hli], a
+	inc hl
+	dec d
+	jr nz, .drawl2
+.done2
+	pop hl
+	srl c
+	jr nc, .nonewblock
+	ld de, $10
+	add hl, de
+	ld c, $80
+.nonewblock
+	pop de
+	dec b
+	jr nz, .drawloop
 	ret
 
 DrawNotes:
@@ -1128,7 +1128,7 @@ WriteBlankNote:
     ld c, a
 
 WriteNotePitch:
-    ld hl, wWaveformTmp ; recycle
+    ld hl, wToBeDeleted
     ld a, [wTmpCh]
     ld e, a
     ld d, 0
@@ -1806,6 +1806,13 @@ DelayFrame_MP:
 ; music player VBlank routine
 	halt
 	; TODO
+; ch1-2 duty
+	ld a, [wC1Duty]
+	add $cc
+	ld [VBGMap1 + $82], a
+	ld a, [wC2Duty]
+	add $cc
+	ld [VBGMap1 + $85], a
 ; visual intensities
 	ld a, [wC1Vol]
 	add $e8
@@ -1819,6 +1826,28 @@ DelayFrame_MP:
 	ld a, [wC4Vol]
 	add $e8
 	ld [VBGMap1 + $b3], a
+; wave gfx copy if requested
+	ld a, [wMPFlags]
+	bit 0, a
+	jr z, .nowavecpy
+	ld a, 4
+	ld [Requested2bpp], a
+	ld a, wWaveformTmpGFX % $100
+	ld [Requested2bppSource], a
+	ld a, wWaveformTmpGFX / $100
+	ld [Requested2bppSource + 1], a
+	ld a, $a0
+	ld [Requested2bppDest], a
+	ld a, $8b
+	ld [Requested2bppDest + 1], a
+	ld a, 1
+	ld [rVBK], a
+	call _Serve2bppRequest
+	xor a
+	ld [rVBK], a
+	ld hl, wMPFlags
+	res 0, [hl]
+.nowavecpy
 ; all vblank copies done
 	call Joypad
 	callba _UpdateSound

@@ -2589,6 +2589,8 @@ wC4VolSub:: ds 1
 wC1Freq:: ds 2
 wC2Freq:: ds 2
 wC3Freq:: ds 2
+wC1Duty:: ds 1
+wC2Duty:: ds 1
 wNoteEnded:: ds 3 ;
 wSelectorTop:: ds 1 ;
 wSelectorCur:: ds 1 ;
@@ -2598,10 +2600,12 @@ wNoiseHit:: ds 1 ;
 wTranspositionInterval:: ds 1 ;
 wChangingPitch:: ds 1 ;
 wTmp:: ds 1 ;
+wToBeDeleted:: ds 3 ;
 
 wRenderedWaveform:: ds 1 ;
 wSpecialWaveform:: ds 1 ;
-wWaveformTmp:: ds 16 * 4
+wWaveformTmp:: ds 16
+wWaveformTmpGFX:: ds 16 * 4
 wMPInitClearEnd::
 
 SECTION "GBC Video", WRAMX, BANK [5]
