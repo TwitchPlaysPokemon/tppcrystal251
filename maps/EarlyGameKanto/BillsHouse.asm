@@ -55,13 +55,18 @@ BillsHouseRBBillScriptGiveTicket
 	iffalse BillScriptRB_bag_full
 	setevent EVENT_RECEIVED_S_S_TICKET_RB
 	clearevent EVENT_CERULEAN_RB_ROCKET_1
-BillsHouseRBBillScriptContinue:
 	writetext _BillsHouseText_1e8cb
 	waitbutton
 BillScriptRB_bag_full:
 	closetext
 	applymovement $2, Movement_ResetBill
 	moveperson $2, 6, 5
+	end
+
+BillsHouseRBBillScriptContinue:
+	writetext _BillsHouseText_1e8cb
+	waitbutton
+	closetext
 	end
 
 BillsHouseRBBillScript:

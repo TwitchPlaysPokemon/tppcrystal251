@@ -10272,7 +10272,7 @@ GruntFGroup:
 
 	db $ff ; end
 
-	db "Grunt@" ; 6
+	db "GRUNT@" ; 6
 	db 0
 	db 11, SANDSHREW
 	db 11, RATTATA

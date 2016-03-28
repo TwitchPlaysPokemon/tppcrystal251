@@ -99,8 +99,8 @@ ItemFragment_0x5b279: ; 0x5b279
 
 Bird_keeperTheoSeenText: ; 0x5b27b
 	text "I am a collector"
-	line "of rare bird-"
-	cont "type #MON."
+	line "of rare bird-type"
+	cont "#MON."
 	done
 ; 0x5b2c4
 

@@ -417,10 +417,10 @@ UnknownText_0xa4c8c: ; 0xa4c8c
 	text "I know! Let's keep"
 	line "in touch."
 
-	para "I will get better"
+	para "I will have better"
 	line "luck next time!"
 
-	para "Boys gives me"
+	para "People give me"
 	line "items often,"
 
 	para "so I would be fine"
@@ -433,7 +433,7 @@ UnknownText_0xa4c8c: ; 0xa4c8c
 
 UnknownText_0xa4d36: ; 0xa4d36
 	text "I'll share my"
-	line "gifts with you."
+	line "gifts with you!"
 
 	para "Let me get your"
 	line "phone number."
@@ -443,15 +443,14 @@ UnknownText_0xa4d36: ; 0xa4d36
 UnknownText_0xa4d72: ; 0xa4d72
 	text "Great! I'll keep"
 	line "in touch if I get"
-
-	para "get anything good."
-	line "I can share a bit."
-
-	para "I need the boys"
-	line "contribution to"
+	cont "anything good."
 	
-	para "keep up my current"
-	line "gambling life."
+	para "I hope I get more"
+	line "items soon!"
+	
+	para "It will help keep"
+	line "up my current"
+	cont "gambling habits<...>"
 	done
 ; 0xa4dcd
 

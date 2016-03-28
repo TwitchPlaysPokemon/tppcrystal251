@@ -12,11 +12,11 @@ EcruteakCity_MapScriptHeader: ; 0x1a4000
 
 UnknownScript_0x1a4005: ; 0x1a4005
 	setflag ENGINE_FLYPOINT_ECRUTEAK
-	checkevent EVENT_SET_WHEN_FOUGHT_HO_OH
-	iftrue EliteFloor
+	checkevent EVENT_FOUGHT_HO_OH
+	iftrue .EliteFloor
 	warpmod 1, GROUP_ECRUTEAK_GYM, MAP_ECRUTEAK_GYM
 	return
-EliteFloor: 
+.EliteFloor: 
 	warpmod 1, GROUP_ECRUTEAK_ELITE_FLOOR, MAP_ECRUTEAK_ELITE_FLOOR
 	return
 ; 0x1a4009

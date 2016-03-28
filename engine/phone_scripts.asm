@@ -3148,7 +3148,36 @@ UnknownScript_0xbe68a: ; 0xbe68a
 	returnafterbattle
 	trainerstatus SET_FLAG
 	loadvar wd04d, $ff
-
+	callasm TrainerSeenTalk_StopSpinning
 UnknownScript_0xbe698:
 	scripttalkafter
 ; 0xbe699
+TrainerSeenTalk_StopSpinning:
+	; Load map object pointer into bc
+	ld a, [hLastTalked]
+	call GetMapObject
+	; Save the map object pointer, and load the object struct pointer into bc
+	ld hl, 0
+	add hl, bc
+	ld a, [hl]
+	push bc
+	call Function1ae5
+	; Get the direction facing
+	ld hl, 8
+	add hl, bc
+	ld a, [hl]
+	; Convert it to a stand/face movement type
+	and $c
+	srl a
+	srl a
+	add 6
+	; Stop the spinning
+	ld hl, 3
+	add hl, bc
+	ld [hl], a
+	; Make sure the person don't start spinning again until the player reloads the map.
+	pop bc
+	ld hl, 4
+	add hl, bc
+	ld [hl], a
+	ret

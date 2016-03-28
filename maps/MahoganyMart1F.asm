@@ -75,12 +75,12 @@ UnknownScript_0x6c38f: ; 0x6c38f
 	writetext UnknownText_0x6c52a
 	pause 15
 	closetext
-	playsound SFX_TACKLE
+	playsound SFX_HYPER_BEAM
 	applymovement $5, MovementData_0x6c3f6
 	applymovement $3, MovementData_0x6c3fb
+	waitsfx
 	pause 15
 	disappear $5
-	pause 15
 	applymovement $4, MovementData_0x6c407
 	loadfont
 	writetext UnknownText_0x6c549
@@ -123,6 +123,21 @@ GrannyScript_0x6c3ee: ; 0x6c3ee
 
 MovementData_0x6c3f6: ; 0x6c3f6
 	fix_facing
+	turn_head_up
+	step_sleep 4
+	turn_head_right 
+	step_sleep 4
+	turn_head_down
+	step_sleep 4
+	turn_head_left
+	step_sleep 4
+	turn_head_up
+	step_sleep 4
+	turn_head_right 
+	step_sleep 4
+	turn_head_down
+	step_sleep 4
+	turn_head_left
 	big_step_left
 	big_step_right
 	remove_fixed_facing
@@ -218,8 +233,8 @@ UnknownText_0x6c52a: ; 0x6c52a
 ; 0x6c549
 
 UnknownText_0x6c549: ; 0x6c549
-	text "What took you,"
-	line "<PLAY_G>?"
+	text "What took you so"
+	line "long, <PLAY_G>?"
 
 	para "Just as I thought,"
 	line "that strange radio"

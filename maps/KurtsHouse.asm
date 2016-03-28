@@ -248,7 +248,7 @@ KurtGaveBalls:
 
 KurtGivesBallsText:
 	text "And here's the"
-	line "BALLS I made"
+	line "balls I made"
 	cont "earlier."
 	done
 

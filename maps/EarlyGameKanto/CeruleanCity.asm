@@ -35,6 +35,7 @@ CeruleanCityRivalBattleRightTrigger:
 	end
 
 CeruleanCityRivalBattle:
+	setlasttalked $2
 	playmusic MUSIC_RIVAL_RB
 	applymovement $2, Movement_CeruleanRivalEnters
 	loadfont
@@ -87,6 +88,7 @@ CeruleanCityRBSuperNerdScript:
 	jumptextfaceplayer _CeruleanCityText3
 
 CeruleanCityRBCooltrainerM1Script:
+	faceplayer
 	loadfont
 	checkevent EVENT_CERULEAN_CITY_RB_STOPPED_ROBBERY
 	iftrue .after

@@ -10092,48 +10092,48 @@ BattleCommand9a:
 ; mirrorcoat
 
 	ld a, 1
-	ld [AttackMissed], a
+	ld [AttackMissed], a ;set attack missed in case of early ret
 
-	ld a, BATTLE_VARS_LAST_COUNTER_MOVE_OPP
+	ld a, BATTLE_VARS_LAST_COUNTER_MOVE_OPP 
 	call GetBattleVar
 	and a
-	ret z
+	ret z ;return if no move used
 
 	ld b, a
 	callab GetMoveEffect
 	ld a, b
-	cp EFFECT_MIRROR_COAT
+	cp EFFECT_MIRROR_COAT ;if that move is mirror coat, exit
 	ret z
 
 	call BattleCommanda3
 	ld a, [wd265]
 	and a
-	ret z
+	ret z ;if immune, ret
 
-	call Function36abf
+	call Function36abf ;ret if user goes first
 	ret z
 
 	ld a, BATTLE_VARS_LAST_COUNTER_MOVE_OPP
 	call GetBattleVar
 	dec a
 	ld de, StringBuffer1
-	call GetMoveData
+	call GetMoveData ;put move data into stringbuffer
 
-	ld a, [StringBuffer1 + 2]
+	ld a, [StringBuffer1 + 2] ;if 0 power, ret
 	and a
 	ret z
 
-	ld a, [StringBuffer1 + 3]
+	ld a, [StringBuffer1 + 3] ;if physical, scf and ret
 	bit 6, a
 	jr z, .physical
 
-	ld hl, CurDamage
+	ld hl, CurDamage ;ret if 0 damage taken
 	ld a, [hli]
 	or [hl]
 	ret z
 
 	ld a, [hl]
-	add a
+	add a  ;load double damage into hl
 	ld [hld], a
 	ld a, [hl]
 	adc a
@@ -10145,7 +10145,7 @@ BattleCommand9a:
 .capped
 
 	xor a
-	ld [AttackMissed], a
+	ld [AttackMissed], a ;don't miss
 	ret
 
 .physical

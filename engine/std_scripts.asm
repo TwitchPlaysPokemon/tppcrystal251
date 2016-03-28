@@ -2533,10 +2533,10 @@ UnknownScript_0xbcde4: ; 0xbcde4
 ; 0xbcdf7
 
 UnknownScript_0xbcdf7: ; 0xbcdf7
-	checkcoins 4949
-	if_equal $0, UnknownScript_0xbce46
 	checkmoney $0, 1000
 	if_equal $2, UnknownScript_0xbce3f
+	checkcoins 4949
+	if_equal $0, UnknownScript_0xbce46
 	givecoins 50
 	takemoney $0, 1000
 	waitsfx
@@ -2547,10 +2547,10 @@ UnknownScript_0xbcdf7: ; 0xbcdf7
 ; 0xbce1b
 
 UnknownScript_0xbce1b: ; 0xbce1b
-	checkcoins 4499
-	if_equal $0, UnknownScript_0xbce46
 	checkmoney $0, 10000
 	if_equal $2, UnknownScript_0xbce3f
+	checkcoins 4499
+	if_equal $0, UnknownScript_0xbce46
 	givecoins 500
 	takemoney $0, 10000
 	waitsfx

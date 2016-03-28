@@ -22,20 +22,20 @@ TN_PrintToD
 	jr z, .print
 	ld de, .nite
 .print
-	hlcoord 8, 9
+	hlcoord 5, 9
 	jp PlaceString
 	
 .caughtat
-	db "Met at@"
+	db "Met@"
 	
 .morn
-	db "morning@"
+	db "in the morning@"
 	
 .day
-	db "day@"
+	db "during the day@"
 	
 .nite
-	db "night@"
+	db "at night@"
 	
 TN_PrintLocation:
 	ld de, .unknown

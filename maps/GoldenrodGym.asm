@@ -448,7 +448,7 @@ LassBridgetSeenText: ; 0x54411
 	line "on both normal"
 	cont "and fairy types."
 
-	para "I prefer faries"
+	para "I prefer fairies"
 	line "personally!"
 	done
 ; 0x5445f

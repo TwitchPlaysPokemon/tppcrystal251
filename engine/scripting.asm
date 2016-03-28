@@ -1091,7 +1091,7 @@ Script_setlasttalked: ; 0x971ea
 
 	call GetScriptByte
 	call Function971e3
-	ld [$ffe0], a
+	ld [hLastTalked], a
 	ret
 ; 0x971f3
 
@@ -1138,7 +1138,7 @@ Script_applymovement2: ; 0x97228
 ; parameters:
 ;     data (MovementPointerLabelParam)
 
-	ld a, [$ffe0]
+	ld a, [hLastTalked]
 	ld c, a
 	jp Function971fa
 ; 0x9722e
@@ -1146,18 +1146,18 @@ Script_applymovement2: ; 0x97228
 Script_faceplayer: ; 0x9722e
 ; script command 0x6b
 
-	ld a, [$ffe0]
+	ld a, [hLastTalked]
 	and a
 	ret z
 	ld d, $0
-	ld a, [$ffe0]
+	ld a, [hLastTalked]
 	ld e, a
 	callba Function8417
 	ld a, d
 	add a
 	add a
 	ld e, a
-	ld a, [$ffe0]
+	ld a, [hLastTalked]
 	ld d, a
 	call Function9728b
 	ret
@@ -1173,14 +1173,14 @@ Script_faceperson: ; 0x97248
 	call Function971e3 ; if not zero or 254, dec a
 	cp $fe
 	jr c, .asm_97254 ; 0x97250 $2 skip line if not 254
-	ld a, [$ffe0] ;if 254, load ???
+	ld a, [hLastTalked] ;if 254, load ???
 .asm_97254
 	ld e, a
 	call GetScriptByte
 	call Function971e3 ;if not zero or 254, dec a, else return z
 	cp $fe
 	jr nz, .asm_97261 ; If not 254, skip line
-	ld a, [$ffe0]
+	ld a, [hLastTalked]
 .asm_97261
 	ld d, a
 	push de ;e = fist augment, d = second augment
@@ -1206,7 +1206,7 @@ Script_spriteface: ; 0x97274
 	call Function971e3 ;if not zero or 254, dec a
 	cp $fe ;254
 	jr nz, .asm_97280 ; 0x9727c $2
-	ld a, [$ffe0] ;If 254 load ???
+	ld a, [hLastTalked] ;If 254 load ???
 .asm_97280
 	ld d, a
 	call GetScriptByte
@@ -1302,7 +1302,7 @@ Script_disappear: ; 0x972ee
 	call Function971e3
 	cp $fe
 	jr nz, .asm_972fa ; 0x972f6 $2
-	ld a, [$ffe0]
+	ld a, [hLastTalked]
 .asm_972fa
 	call Function199f
 	ld a, [$ffaf]
@@ -1385,7 +1385,7 @@ Script_writepersonxy: ; 0x9735b
 	call Function971e3
 	cp $fe
 	jr nz, .asm_97367 ; 0x97363 $2
-	ld a, [$ffe0]
+	ld a, [hLastTalked]
 .asm_97367
 	ld b, a
 	callba Function80a1
@@ -1436,7 +1436,7 @@ Script_showemote: ; 0x97396
 	call Function971e3
 	cp $fe
 	jr z, .asm_973a8 ; 0x973a4 $2
-	ld [$ffe0], a
+	ld [hLastTalked], a
 .asm_973a8
 	call GetScriptByte
 	ld [ScriptDelay], a
