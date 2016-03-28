@@ -503,7 +503,7 @@ MapGroup27:
 	map_header BattleTentPCRoom, $16, 7, BATTLE_TENT_RUINS, MUSIC_SILPH_CO, 1, 2, 1
 	map_header OlivineLighthouseElevator, $13, 3, OLIVINE_CITY, MUSIC_LIGHTHOUSE, 0, 1, 1
 	map_header PowerplantB1, 40, 7, POWER_PLANT, MUSIC_SILPH_CO, 1, 1, 1
-	map_header PowerplantB2, 30, 7, POWER_PLANT, MUSIC_SILPH_CO, 1, 1, 1
+	map_header PowerplantB2, 43, 7, POWER_PLANT, MUSIC_SILPH_CO, 1, 2, 1
 	map_header EnteiRoom, 30, 7, CINNABAR_VOLCANO, MUSIC_MT_MOON, 1, 1, 1
 	map_header RaikouRoom, $c, 7, RADIO_TOWER, 1<<7 | MUSIC_GOLDENROD_CITY, 1, 1, 1
 	map_header SuicuneRoom, 30, 7, TOHJO_FALLS, MUSIC_UNION_CAVE, 1, 2, 1

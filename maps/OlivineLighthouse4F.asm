@@ -106,10 +106,9 @@ LassConnie1BeatenText: ; 0x5b62b
 ; 0x5b63c
 
 UnknownText_0x5b63c: ; 0x5b63c
-	text "DELIBIRD lives"
-	line "in the north"
-	cont "due to the"
-	cont "colder climate!"
+	text "DELIBIRD lives in"
+	line "the north due to"
+	cont "colder climates!"
 	done
 ; 0x5b6c0
 

@@ -150,6 +150,7 @@ UnknownScript_0x9e49e: ; 0x9e49e
 	iffalse UnknownScript_0x9e4a8 ;skip help text
 UnknownScript_0x9e4a5: ; 0x9e4a5
 	writetext UnknownText_0x9e886 ;help text
+	waitbutton
 UnknownScript_0x9e4a8: ; 0x9e4a8
 	writebyte $1
 	special Function170687 ;set bit 1 of $be4f

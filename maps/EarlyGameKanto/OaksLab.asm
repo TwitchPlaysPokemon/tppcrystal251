@@ -277,6 +277,7 @@ OaksLab_RivalBattleTriggerRight:
 	spriteface $0, LEFT
 	jump OaksLab_RivalFinishesLeaving
 OaksLab_RivalBattleIntroScript:
+	setlasttalked $6
 	playmusic MUSIC_RIVAL_RB
 	spriteface $6, DOWN
 	spriteface $2, DOWN

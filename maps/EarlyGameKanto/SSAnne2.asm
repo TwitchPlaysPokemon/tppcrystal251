@@ -40,6 +40,7 @@ SSAnne2RivalBattleTriggerRight:
 	end
 
 DoRivalBattleSSAnne:
+	setlasttalked $3
 	loadfont
 	checkflag ENGINE_PLAYER_IS_FEMALE
 	iftrue .malerival1

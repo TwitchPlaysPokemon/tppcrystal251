@@ -369,7 +369,7 @@ UnknownText_0x199cb3: ; 0x199cb3
 	para "With your strong"
 	line "will, I know you"
 
-	para "will overcome all"
+	para "will overcome"
 	line "life's obstacles."
 
 	para "You are worthy of"
