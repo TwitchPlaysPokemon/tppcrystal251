@@ -391,7 +391,7 @@ MortyRematchTextBefore:
 	cont "future."
 	
 	para "Show me the power"
-	line "I trained for!"
+	line "I've trained for!"
 	done
 
 MortyRematchBeatenText:
@@ -536,7 +536,7 @@ UnknownText_0x9a318: ; 0x9a318
 	para "He changes what"
 	line "#MON he uses"
 	cont "depending on the"
-	cont "opponents skill."
+	cont "opponent's skill."
 	done
 ; 0x9a33e
 
@@ -561,7 +561,7 @@ UnknownText_0x9a38a: ; 0x9a38a
 	line "defeat you<...>"
 
 	para "How will I ever"
-	line "defeat Morty?"
+	line "defeat MORTY?"
 	done
 ; 0x9a3e8
 
