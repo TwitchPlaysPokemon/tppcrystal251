@@ -498,7 +498,7 @@ XSpecialDesc:
 	next "ATTACK. (1 BTL)@"
 
 CoinCaseDesc:
-	db   "Holds up to 9,999"
+	db   "Holds up to 50,000"
 	next "game coins.@"
 
 ItemfinderDesc:
