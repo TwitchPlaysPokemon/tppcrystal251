@@ -381,7 +381,7 @@ UnknownText_0x74bce: ; 0x74bce
 ; 0x74bf4
 
 UnknownText_0x74bf4: ; 0x74bf4
-	text "QUILFISH are easy"
+	text "QWILFISH are easy"
 	line "to catch here."
 
 	para "They're kind of"
