@@ -463,7 +463,7 @@ UnknownText_0x704bb: ; 0x704bb
 	para "red GYARADOS in"
 	line "the LAKE<...>"
 
-	para "Oh No!"
+	para "Oh no!"
 
 	para "It's attacking"
 	line "that old man!"
@@ -522,11 +522,11 @@ CooltrainermAaronSeenText: ; 0x70632
 	text "If a trainer spots"
 	line "another trainer,"
 
-	para "he has to make a"
-	line "challenge."
+	para "they have to make"
+	line "a challenge."
 
 	para "That is our"
-	line "destiny."
+	line "destiny!"
 	done
 ; 0x70688
 
@@ -592,8 +592,9 @@ MeetWesleyText:
 
 WesleyGivesGiftText:
 	text "Pleased to meet"
-	line "you. Please take a"
-	cont "souvenir."
+	line "you."
+	para "Please take a"
+	line "souvenir."
 	done
 
 WesleyGaveGiftText:
@@ -616,7 +617,8 @@ WesleyWednesdayText:
 WesleyNotWednesdayText:
 	text "WESLEY: Today's"
 	line "not Wednesday."
-	cont "That's too bad."
+	
+	para "That's too bad."
 	done
 
 UnknownText_0x708d7: ; 0x708d7

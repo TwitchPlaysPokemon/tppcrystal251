@@ -468,8 +468,8 @@ PokemaniacBenSeenText: ; 0x19d26a
 	para "That's why I"
 	line "started--and why"
 
-	para "I'll keep on col-"
-	line "lecting #MON!"
+	para "I'll keep on"
+	line "collecting!"
 	done
 ; 0x19d2b4
 
@@ -484,8 +484,9 @@ UnknownText_0x19d2d2: ; 0x19d2d2
 	line "like besides"
 	cont "#MON?"
 
-	para "MARY on the radio."
-	line "I bet she's cute!"
+	para "MARY on the"
+	line "radio! I bet"
+	cont "she's cute!"
 	done
 ; 0x19d319
 
@@ -516,14 +517,15 @@ PokemaniacRonSeenText: ; 0x19d386
 	line "made fun of my"
 	cont "cute bug #MON!"
 
-	para "Darn it! My #-"
-	line "MON's great!"
+	para "I'll show him!"
+	line "My #MON's"
+	cont "great!"
 	done
 ; 0x19d3d6
 
 PokemaniacRonBeatenText: ; 0x19d3d6
 	text "My VENOMOTH did"
-	line "pretty right on!"
+	line "pretty great!"
 	done
 ; 0x19d3f8
 
@@ -534,9 +536,12 @@ UnknownText_0x19d3f8: ; 0x19d3f8
 	para "different types"
 	line "of #MON."
 
-	para "#MON isn't just"
-	line "about having the"
-	cont "most powerful one."
+	para "Being a good "
+	line "trainer isn't"
+	
+	para "just about having"
+	line "the most powerful"
+	cont "ones."
 	done
 ; 0x19d461
 
@@ -544,12 +549,9 @@ FisherMarvinSeenText: ; 0x19d461
 	text "This forest is"
 	line "full of bugs!"
 
-	para "I keep riling them"
-	line "in while they are"
-	cont "eating fishes!"
-
-	para "I've only got one"
-	line "big haul today<...>"
+	para "I keep reeling in"
+	line "#MON trying to"
+	cont "eat them!"
 	done
 ; 0x19d4b0
 
@@ -567,7 +569,7 @@ UnknownText_0x19d4d3: ; 0x19d4d3
 	line "#MON."
 
 	para "It's much more"
-	line "effective than a"
+	line "effective than an"
 	cont "ULTRA BALL."
 	done
 ; 0x19d535
@@ -575,7 +577,7 @@ UnknownText_0x19d4d3: ; 0x19d4d3
 CamperSpencerSeenText: ; 0x19d535
 	text "I can do so much"
 	line "with my #MON--"
-	cont "it's super-fun!"
+	cont "they're super-fun!"
 	done
 ; 0x19d565
 
@@ -598,7 +600,7 @@ PicnickerTiffany3SeenText: ; 0x19d5c1
 	text "Are you going to"
 	line "LAKE OF RAGE too?"
 
-	para "Let's play for a "
+	para "Let's play for a"
 	line "little while!"
 	done
 ; 0x19d604
@@ -618,8 +620,7 @@ UnknownText_0x19d618: ; 0x19d618
 
 UnknownText_0x19d64b: ; 0x19d64b
 	text "Isn't my CLEFAIRY"
-	line "just the most"
-	cont "adorable thing?"
+	line "just the cutest?"
 	done
 ; 0x19d67b
 
