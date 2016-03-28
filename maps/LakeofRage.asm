@@ -133,7 +133,17 @@ SuperNerdScript_0x700a2: ; 0x700a2
 ; 0x700a5
 
 CooltrainerFScript_0x700a5: ; 0x700a5
-	jumptextfaceplayer UnknownText_0x704bb
+	faceplayer
+	loadfont
+	writetext UnknownText_0x704bb
+	checkevent EVENT_RED_GYARADOS
+	iftrue .finished_event
+	buttonsound
+	writetext UnknownText_0x704bb_2
+.finished_event
+	waitbutton
+	closetext
+	end
 ; 0x700a8
 
 MapLakeofRageSignpost0Script: ; 0x700a8
@@ -462,8 +472,10 @@ UnknownText_0x704bb: ; 0x704bb
 
 	para "red GYARADOS in"
 	line "the LAKE<...>"
+	done
 
-	para "Oh no!"
+UnknownText_0x704bb_2:
+	text "Oh no!"
 
 	para "It's attacking"
 	line "that old man!"
