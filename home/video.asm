@@ -296,6 +296,8 @@ Serve1bppRequest:: ; 170a
 	cp 146
 	ret nc
 
+_Serve1bppRequest::
+	
 ; Copy [Requested1bpp] 1bpp tiles from [Requested1bppSource] to [Requested1bppDest]
 
 	ld [hSPBuffer], sp

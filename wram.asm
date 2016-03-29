@@ -2595,6 +2595,7 @@ wNoteEnded:: ds 3 ;
 wSelectorTop:: ds 1 ;
 wSelectorCur:: ds 1 ;
 wChannelSelector:: ds 1
+wMutedChannels:: ds 1
 wChannelSelectorSwitches:: ds 8 ;
 wNoiseHit:: ds 1 ;
 wTranspositionInterval:: ds 1 ;
@@ -2606,6 +2607,8 @@ wRenderedWaveform:: ds 1 ;
 wSpecialWaveform:: ds 1 ;
 wWaveformTmp:: ds 16
 wWaveformTmpGFX:: ds 16 * 4
+wSelectorChars:: ds 5
+wSelectorGFX:: ds 16 * 2
 wMPInitClearEnd::
 
 SECTION "GBC Video", WRAMX, BANK [5]

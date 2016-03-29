@@ -164,6 +164,8 @@ _BetBoy::
 	xor a
 	ld [rSCX], a
 	ld [rSCY], a
+	ld [rWX], a
+	ld [rWY], a
 	ld [rIF], a
 	ld [rIE], a
 	ld a, $61

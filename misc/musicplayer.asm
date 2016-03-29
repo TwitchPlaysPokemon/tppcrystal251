@@ -1,7 +1,5 @@
 ;Written by Sanqui, v2 by Pigu
 
-NUMSONGS EQU 252
-
 MusicTestGFX:
 INCBIN "gfx/misc/music_test.2bpp"
 MusicTestOAMGFX:
@@ -138,7 +136,7 @@ MusicPlayer::
 	call PlaceString
 	xor a
 	ld [hBGMapThird], a
-	call DelayFrame
+	call DelayFrame_MP
 	
 	ld b, BANK(MusicTestGFX) ;load the gfx
 	ld c, 128
@@ -155,7 +153,7 @@ MusicPlayer::
 	ld hl, VTiles0
 	call Request2bpp
 
-    call DelayFrame
+    call DelayFrame_MP
 	call MPLoadPalette
 	ld hl, rLCDC
 	set 7, [hl]
@@ -177,7 +175,7 @@ MusicPlayer::
 MPlayerTilemap:
 
 	copy NoteOAM, Sprites + 4, NoteOAMEnd - NoteOAM
-	call DelayFrame
+	call DelayFrame_MP
 
 	ld a, [rLCDC]
 	ld [hMPTmp3], a	
@@ -283,7 +281,7 @@ MPlayerTilemap:
 	jr z, .getsong
 	jp .redraw
 .getsong ;get the current song
-	ld a, [wMapMusic]
+	ld a, 1
 	jp .redraw
 .loop
 	call UpdateVisualIntensity
@@ -305,14 +303,13 @@ MPlayerTilemap:
 .left
     ld a, [wSongSelection]
     dec a
-    cp a, $0
     jr nz, .redraw
-    ld a, NUMSONGS-1
+    ld a, NUM_MUSIC-1
     jr .redraw
 .right
     ld a, [wSongSelection]
     inc a
-    cp a, NUMSONGS
+    cp a, NUM_MUSIC
     jr nz, .redraw
     ld a, 1
     jr .redraw
@@ -320,15 +317,14 @@ MPlayerTilemap:
     ld a, [wSongSelection]
     sub a, 10
 	jr z, .zerofix
-    cp a, NUMSONGS
-    jr c, .redraw
+    jr nc, .redraw
 .zerofix
-    ld a, NUMSONGS-1
+    ld a, NUM_MUSIC-1
     jr .redraw
 .up
     ld a, [wSongSelection]
     add a, 10
-    cp a, NUMSONGS
+    cp a, NUM_MUSIC
     jr c, .redraw
     ld a, 1
     jr .redraw
@@ -351,10 +347,26 @@ MPlayerTilemap:
 	;ld bc, 90
 	;call ByteFill
 	;hlcoord 5, 2
-	;ld de, wSongSelection
-	;ld bc, $0103
-	;call PrintNum
+	ld hl, wSelectorChars + 4
+	ld [hl], "@"
+	dec hl
+	ld [hl], " "
+	dec hl
+	ld [hl], " "
+	dec hl
+	ld [hl], " "
+	dec hl
+	ld [hl], $e5
+	inc hl
+	ld de, wSongSelection
+	ld bc, $0103
+	call PrintNum
+	ld hl, wSelectorChars
+	ld de, wSelectorGFX
+	call RenderNarrowText
 	;call DrawSongInfo
+	ld hl, wMPFlags
+	set 1, [hl] ; song info redraw occurred
 	jp .loop
 	
 .a
@@ -475,7 +487,7 @@ MPlayerTilemap:
 	hlcoord 16, 1
 	xor a
 	ld [hBGMapThird], a
-	call DelayFrame
+	call DelayFrame_MP
 	jp .songEditorLoop
 .changePitch
     ld a, 1
@@ -485,7 +497,7 @@ MPlayerTilemap:
 	ld [hl], a
 	xor a
 	ld [hBGMapThird], a
-	call DelayFrame
+	call DelayFrame_MP
 	jp .songEditorLoop
 	
 .songEditorup
@@ -638,7 +650,7 @@ MPlayerTilemap:
     jr nz, .nonzero
 	xor a
 	ld [hBGMapThird], a
-	call DelayFrame
+	call DelayFrame_MP
 	jp .songEditorLoop
     
 .nonzero
@@ -652,7 +664,7 @@ MPlayerTilemap:
 	call PrintNum
 	xor a
 	ld [hBGMapThird], a
-	call DelayFrame
+	call DelayFrame_MP
 	jp .songEditorLoop
 .negative
     xor $ff
@@ -666,7 +678,7 @@ MPlayerTilemap:
 	call PrintNum
 	xor a
 	ld [hBGMapThird], a
-	call DelayFrame
+	call DelayFrame_MP
 	jp .songEditorLoop
 	
 .ChangingPitchb
@@ -677,7 +689,7 @@ MPlayerTilemap:
 	ld [hl], a
 	xor a
 	ld [hBGMapThird], a
-	call DelayFrame
+	call DelayFrame_MP
 	jp .songEditorLoop
     
 DrawChData:
@@ -1485,14 +1497,14 @@ SongSelector:
     cp 8
     jr nc, .noOverflow
     ld b, a
-    ld a, NUMSONGS - 1
+    ld a, NUM_MUSIC - 1
     add b
 .noOverflow
     sub 7
     ld [wSongSelection], a
     call UpdateSelectorNames
 .loop
-    call DelayFrame
+    call DelayFrame_MP
 	call GetJoypad
 	jbutton A_BUTTON, .a
 	jbutton B_BUTTON, .exit
@@ -1503,9 +1515,9 @@ SongSelector:
     jr .loop
 .a
     ld a, [wSongSelection]
-    cp NUMSONGS - 7
+    cp NUM_MUSIC - 7
     jr c, .noOverflow2
-    sub NUMSONGS - 8
+    sub NUM_MUSIC - 8
     jr .finish
 .noOverflow2
     add 7
@@ -1518,7 +1530,7 @@ SongSelector:
 .down
     ld a, [wSongSelection]
     inc a
-    cp NUMSONGS
+    cp NUM_MUSIC
     jr c, .noOverflowD
     ld a, 1
 .noOverflowD
@@ -1530,7 +1542,7 @@ SongSelector:
     dec a
     cp 0
     jr nz, .noOverflowU
-    ld a, NUMSONGS - 1
+    ld a, NUM_MUSIC - 1
 .noOverflowU
     ld [wSongSelection], a
     call UpdateSelectorNames
@@ -1539,7 +1551,7 @@ SongSelector:
     ld a, [wSongSelection]
     sub 10
     jr nc, .noOverflowL
-    ld a, NUMSONGS - 1
+    ld a, NUM_MUSIC - 1
 .noOverflowL
     ld [wSongSelection], a
     call UpdateSelectorNames
@@ -1547,7 +1559,7 @@ SongSelector:
 .right
     ld a, [wSongSelection]
     add 10
-    cp NUMSONGS
+    cp NUM_MUSIC
     jr c, .noOverflowR
     ld a, 1
 .noOverflowR
@@ -1584,7 +1596,7 @@ UpdateSelectorNames:
     inc b
     inc c
     ld a, c
-    cp NUMSONGS
+    cp NUM_MUSIC
     jr c, .noOverflow
     ld c, 1
     ld de, SongInfo
@@ -1700,14 +1712,20 @@ RenderNarrowText:
 	add hl, bc
 	pop bc
 	push hl
-	push af
+	ld hl, .RenderNarrowTextTable
+	add a
+	ld e, a
+	ld d, 0
+	add hl, de
+	ld a, [hli]
+	ld h, [hl]
+	ld l, a
 	ld a, [hTmpd]
 	ld d, a
 	ld a, [hTmpe]
 	ld e, a
-	pop af
-	ld hl, RenderNarrowTextTable
-	rst JumpTable
+	jp [hl]
+.return
 	ld a, d
 	ld [hTmpd], a
 	ld a, e
@@ -1721,16 +1739,16 @@ RenderNarrowText:
 	ld a, $bf-$80
 	jp .process
 	
-RenderNarrowTextTable:
-	dw NT_Right0Left0
-	dw NT_Right0Left1
-	dw NT_Right1Left0
-	dw NT_Right1Left1
+.RenderNarrowTextTable
+	dw .NT_Right0Left0
+	dw .NT_Right0Left1
+	dw .NT_Right1Left0
+	dw .NT_Right1Left1
 	
 ; hl = right
 ; bc = left
 	
-NT_Right0Left0:
+.NT_Right0Left0
 	pop hl
 	rept 8
 	push de
@@ -1746,9 +1764,9 @@ NT_Right0Left0:
 	ld [de], a
 	inc de
 	endr
-	ret
+	jp .return
 	
-NT_Right0Left1:
+.NT_Right0Left1
 	pop hl
 	rept 8
 	push de
@@ -1765,9 +1783,9 @@ NT_Right0Left1:
 	ld [de], a
 	inc de
 	endr
-	ret
+	jp .return
 	
-NT_Right1Left0:
+.NT_Right1Left0
 	pop hl
 	rept 8
 	push de
@@ -1782,9 +1800,9 @@ NT_Right1Left0:
 	ld [de], a
 	inc de
 	endr
-	ret
+	jp .return
 	
-NT_Right1Left1:
+.NT_Right1Left1
 	pop hl
 	rept 8
 	push de
@@ -1800,7 +1818,7 @@ NT_Right1Left1:
 	ld [de], a
 	inc de
 	endr
-	ret
+	jp .return
 	
 DelayFrame_MP:
 ; music player VBlank routine
@@ -1813,6 +1831,10 @@ DelayFrame_MP:
 	ld a, [wC2Duty]
 	add $cc
 	ld [VBGMap1 + $85], a
+; ch4 noise set
+	ld a, [MusicNoiseSampleSet]
+	add $da
+	ld [VBGMap1 + $91], a
 ; visual intensities
 	ld a, [wC1Vol]
 	add $e8
@@ -1826,6 +1848,15 @@ DelayFrame_MP:
 	ld a, [wC4Vol]
 	add $e8
 	ld [VBGMap1 + $b3], a
+	ld a, [wMutedChannels]
+	ld hl, VBGMap1 + $b0
+	rept 4
+	rrca
+	jr nc, .no\@
+	ld [hl], $f9
+.no\@
+	inc hl
+	endr
 ; wave gfx copy if requested
 	ld a, [wMPFlags]
 	bit 0, a
@@ -1848,6 +1879,27 @@ DelayFrame_MP:
 	ld hl, wMPFlags
 	res 0, [hl]
 .nowavecpy
+	ld a, [wMPFlags]
+	bit 1, a
+	jr z, .noinfocpy
+	ld a, 2
+	ld [Requested1bpp], a
+	ld a, wSelectorGFX % $100
+	ld [Requested1bppSource], a
+	ld a, wSelectorGFX / $100
+	ld [Requested1bppSource + 1], a
+	ld a, $60
+	ld [Requested1bppDest], a
+	ld a, $8e
+	ld [Requested1bppDest + 1], a
+	ld a, 1
+	ld [rVBK], a
+	call _Serve1bppRequest
+	xor a
+	ld [rVBK], a
+	ld hl, wMPFlags
+	res 1, [hl]
+.noinfocpy
 ; all vblank copies done
 	call Joypad
 	callba _UpdateSound
