@@ -3,19 +3,13 @@ BattleTentGenerator_MapScriptHeader:
 	db 0
 
 	; callbacks
-	db 1
-	
+	db 2
+
 	dbw 1, MapBattleTentGeneratorSwitchScript5
+	dbw 2, RocketHideout_TurnOnLights
 
 ; <scripts go here>
 MapBattleTentGeneratorSwitchScript5:
-	; checkevent EVENT_RESTORED_POWER_TO_KANTO
-	; iffalse MapBattleTentGeneratorSwitchScript6
-	; writecode VAR_TIMEOFDAY, 1
-	; loadvar wd846, %10000000
-	; special UpdateTimePals
-	; loadvar wd846, %00000000
-; MapBattleTentGeneratorSwitchScript6:
 	checkevent EVENT_TURNED_ON_BATTLE_TENT_GENERATOR
 	iffalse MapBattleTentGeneratorSwitchScript8
 	changeblock $a, $b, $7
@@ -49,10 +43,10 @@ MapBattleTentGeneratorSwitchScript7:
 MapBattleTentGeneratorSwitchScript3:
 	writetext MapBattleTentGeneratorSwitchText3
 	jump MapBattleTentGeneratorSwitchScript2
-	
+
 MapBattleTentGeneratorSwitchScript4:
 	jumptext MapBattleTentGeneratorSwitchText4
-	
+
 MapBattleTentGeneratorRandomPCScript1:
 	checkevent EVENT_RESTORED_POWER_TO_KANTO
 	iffalse MapBattleTentGeneratorSwitchScript4
@@ -64,27 +58,27 @@ MapBattleTentGeneratorSwitchText1:
 	text "BATTLE TENT"
 	line "GENERATOR"
 	cont "CONTROL PANEL"
-	
+
 	para "GENERATOR STATUS:"
 	line "OFFLINE"
-	
+
 	para "TURN ON GENERATOR?"
 	done
-	
+
 MapBattleTentGeneratorSwitchText2:
 	text "BATTLE TENT"
 	line "GENERATOR"
 	cont "STARTUP OKAY"
-	
+
 	para "ADMIN ACCESS"
 	line "DOOR UNLOCKED"
 	done
-	
+
 MapBattleTentGeneratorSwitchText3:
 	text "BATTLE TENT"
 	line "GENERATOR"
 	cont "CONTROL PANEL"
-	
+
 	para "GENERATOR STATUS:"
 	line "NORMAL"
 	done
@@ -93,16 +87,16 @@ MapBattleTentGeneratorSwitchText4:
 	text $56, " ", $56, " ", $56
 	line "It won't turn on."
 	done
-	
+
 MapBattleTentGeneratorRandomPCText:
 	text "Various letters"
 	line "and numbers appear"
 	cont "on the screen."
-	
+
 	para "It's impossible to"
 	line "decipher."
 	done
-	
+
 BattleTentGenerator_MapEventHeader:
 	; filler
 	db 0, 0

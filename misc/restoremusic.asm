@@ -7,20 +7,21 @@ SaveMusic::
 	push bc
 	push af
 
-	ld bc, wMapMusic - MusicPlaying
-	ld hl, MusicPlaying
-	ld de, $d000
+	ld a, [rSVBK]
+	push af
 	ld a, $4
-	di
 	ld [rSVBK], a
-	ld a, [$d000]
+
+	ld de, $d000
+	ld a, [de]
 	and a
 	jr nz, .skip
+	ld bc, wMapMusic - MusicPlaying
+	ld hl, MusicPlaying
 	call CopyBytes
 .skip
-	ld a, $1
+	pop af
 	ld [rSVBK], a
-	ei
 
 	pop af
 	pop bc
@@ -33,41 +34,45 @@ RestoreMusic::
 	push de
 	push bc
 	push af
-	ld de, MUSIC_NONE
-	call PlayMusic
-	call DelayFrame
-	
-	ld bc, wMapMusic - MusicPlaying
-	ld de, MusicPlaying
-	ld hl, $d000
+
+	ld a, [rSVBK]
+	push af
 	ld a, $4
-	di
 	ld [rSVBK], a
+
+	ld hl, $d000
 	ld a, [hl]
 	and a
 	jr nz, .copy
-	call .done
+	ld a, 1
+	ld [rSVBK], a
 	call PlayMapMusic
-	ret
+	jr .done
 
 .copy
-	call CopyBytes
+	ld de, MUSIC_NONE
+	call PlayMusic
+	call DelayFrame
+
 	ld hl, $d000
+	ld bc, wMapMusic - MusicPlaying
+	ld de, MusicPlaying
+	call CopyBytes
 	xor a
-	ld [hl], a
-	
+	ld [$d000], a
+
 .done
-	ld a, $1
+	pop af
 	ld [rSVBK], a
-	ei
-	
+
 	pop af
 	pop bc
 	pop de
 	pop hl
 	ret
 
-InitializeMusic::
+DeleteSavedMusic::
+	push af
 	ld a, [rSVBK]
 	push af
 
@@ -78,17 +83,5 @@ InitializeMusic::
 
 	pop af
 	ld [rSVBK], a
-	ret
-
-DeleteSavedMusic::
-	push af
-	ld a, $4
-	di
-	ld [rSVBK], a
-	xor a
-	ld [$d000], a
-	ld a, $1
-	ld [rSVBK], a
-	ei
 	pop af
 	ret
