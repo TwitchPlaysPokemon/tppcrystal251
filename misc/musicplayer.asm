@@ -136,7 +136,7 @@ MusicPlayer::
 	call PlaceString
 	xor a
 	ld [hBGMapThird], a
-	call DelayFrame_MP
+	call DelayFrame
 	
 	ld b, BANK(MusicTestGFX) ;load the gfx
 	ld c, 128
@@ -153,7 +153,7 @@ MusicPlayer::
 	ld hl, VTiles0
 	call Request2bpp
 
-    call DelayFrame_MP
+    call DelayFrame
 	call MPLoadPalette
 	ld hl, rLCDC
 	set 7, [hl]
@@ -169,13 +169,18 @@ MusicPlayer::
 	ld [rSVBK], a
 	
 	fill 0, wMPFlags, wMPInitClearEnd - wMPFlags
+	ld a, $a0
+	ld [wNoteTile], a
+	ld a, $80
+	ld [wNoteMask], a
 	ld hl, wMPFlags
 	set 0, [hl]
+	set 2, [hl]
 
 MPlayerTilemap:
 
 	copy NoteOAM, Sprites + 4, NoteOAMEnd - NoteOAM
-	call DelayFrame_MP
+	call DelayFrame
 
 	ld a, [rLCDC]
 	ld [hMPTmp3], a	
@@ -284,8 +289,10 @@ MPlayerTilemap:
 	ld a, 1
 	jp .redraw
 .loop
+	ld a, [wMPFlags]
+	bit 0, a
+    call nz, RenderWaveform
 	call UpdateVisualIntensity
-	call DrawChData
 	call DrawNotes
 	call DelayFrame_MP
 	
@@ -379,16 +386,7 @@ MPlayerTilemap:
 	ld e, a
 	ld d, 0
 	call PlayMusic
-	ld hl, wChLastNotes
-	xor a
-	ld [hli], a
-	ld [hli], a
-	ld [hl], a
-	inc a
-	ld hl, wNoteEnded
-	ld [hli], a
-	ld [hli], a
-	ld [hl], a
+	fill $ff, wChLastNotes, 6
 	jp .loop
 
 .start
@@ -400,8 +398,10 @@ MPlayerTilemap:
 	jp .songEditorLoop
 	
 .songEditorLoop
+	ld a, [wMPFlags]
+	bit 0, a
+    call nz, RenderWaveform
 	call UpdateVisualIntensity
-	call DrawChData
 	call DrawNotes
 	call DelayFrame_MP
 	
@@ -580,6 +580,9 @@ MPlayerTilemap:
 	ld a, BANK(Font)
 	call FarCopyBytesDouble
 	; get the option screen back
+	xor a
+	ld [hSCX], a
+	ld [rSCX], a
 	ld a, 5
 	ld [rSVBK], a
 	copy Unkn1Pals, BGPals, $80
@@ -691,209 +694,6 @@ MPlayerTilemap:
 	ld [hBGMapThird], a
 	call DelayFrame_MP
 	jp .songEditorLoop
-    
-DrawChData:
-    ld a, [wMPFlags]
-	bit 0, a
-    call nz, RenderWaveform
-    
-	ld a, 0
-	hlcoord 0, 14
-.ch
-	ld [wTmpCh], a
-	call .Draw
-	inc a
-	ld de, 2
-	add hl, de
-	cp 3
-	jr c, .ch
-	
-	ld [wTmpCh], a
-	call CheckLR
-	hlcoord $10, $0f
-	srl b
-	call c, .placehit
-	inc hl
-	srl b
-	call c, .placehit
-	jr .nextch4
-
-.placehit
-	; Ch4 handling goes here.
-	ld a, [wNoiseHit]
-	and a
-	jr nz, .hit
-	ld a, " "
-    jr .pickedhitchar
-.hit
-    ld a, $cf
-.pickedhitchar
-    ld [hl], a
-	ret
-	
-.nextch4
-    xor a
-    ld [wNoiseHit], a
-	hlcoord $13, $e
-	ld a, [MusicNoiseSampleSet]
-	add $f6
-	ld [hl], a
-	hlcoord 16, 16
-	ld a, [wC4Vol]
-	and $f
-	cp 8
-	jr c, .okc4
-
-	push af
-	ld a, $cf
-	ld [hli], a
-	ld [hld], a
-	pop af
-	ld de, -20
-	add hl, de
-
-.okc4
-	and 7
-	add $c7
-	ld [hli], a
-	ld [hld], a
-	ret
-
-.Draw
-	push af
-	push hl
-	call GetOctaveAddr
-	ld d, [hl]
-	ld a, $fe
-	sub d
-	pop hl
-	inc hl
-	inc hl
-	ld [hli], a
-
-	push hl
-	dec hl
-	dec hl
-	dec hl
-	ld a, $c7
-	ld de, 20
-	add hl, de
-	ld [hli], a
-	ld [hld], a
-	add hl, de
-	ld [hli], a
-	ld [hld], a
-
-	push hl
-	call CheckChannelOn
-	pop hl
-	ld a, 0
-	jr c, .isNotPlaying2
-
-	push hl
-	call GetPitchAddr
-	ld a, [hl]
-	and a
-	pop hl
-	ld a, 0
-	jr z, .isNotPlaying2
-
-	push hl
-	call GetIntensityAddr
-	ld a, [hl]
-	pop hl
-.isNotPlaying2
-	call CheckLR
-	and $f
-	cp 8
-	jr c, .ok
-
-	push af
-	ld a, $cf
-	ld c, b
-	srl c
-	jr nc, .skipL
-	ld [hl], a
-.skipL
-	inc hl
-	srl c
-	jr nc, .skipR
-	ld [hl], a
-.skipR
-	dec hl
-	pop af
-	ld de, -20
-	add hl, de
-
-.ok
-	and 7
-	add $c7
-	srl b
-	jr nc, .skipL2
-	ld [hl], a
-.skipL2
-	inc hl
-	srl b
-	jr nc, .skipR2
-	ld [hl], a
-.skipR2
-	dec hl
-    ld a, [wTmpCh]
-    cp 2
-    jr nz, .notch3
-    hlcoord $c, $f
-    ; pick the waveform
-    ld a, [Channel3+$0f]
-    and $0f
-    sla a
-    add $40
-    ld [hli], a
-    inc a
-    ld [hl], a
-	jr .donewaveform
-.notch3
-	ld hl, Channel1DutyCycle
-	ld bc, Channel2 - Channel1
-    call AddNTimes
-	ld a, [hl]
-	swap a
-	rrca
-	and $6
-	ld e, a
-	hlcoord $2, $f
-	ld a, [wTmpCh]
-	ld bc, 5
-    call AddNTimes
-	ld a, e
-	add $cc
-	ld [hl], a
-.donewaveform
-	pop hl
-	pop af
-	ret
-	
-CheckLR:
-	push af
-	push hl
-	ld a, [wTmpCh]
-	ld hl, Channel1Tracks
-	ld bc, Channel2 - Channel1
-	call AddNTimes
-	ld a, [hl]
-	ld b, 0
-	and $f0
-	jr z, .noL
-	inc b
-.noL
-	ld a, [hl]
-	and $0f
-	jr z, .noR
-	inc b
-	inc b
-.noR
-	pop hl
-	pop af
-	ret
 
 RenderWaveform:
 	fill 0, wWaveformTmpGFX, 64
@@ -985,198 +785,130 @@ DrawNotes:
     ld a, 0
     ld [wTmpCh], a
     call DrawNote
-    call CheckForVolumeBarReset
     ld a, 1
     ld [wTmpCh], a
     call DrawNote
-    call CheckForVolumeBarReset
     ld a, 2
     ld [wTmpCh], a
-    call DrawNote
-    call CheckForVolumeBarReset
-    ret
-
-CheckEndedNote:
-; Check that the current channel is actually playing a note.
-
-; Rests count as ends.
-	call GetIntensityAddr
-	ld a, [hl]
-	and a
-	jr z, NoteEnded
-
-CheckNoteDuration:
-	ld a, [wTmpCh]
-	ld bc, Channel2 - Channel1
-
-; Note duration
-	ld hl, Channel1NoteDuration
-	call AddNTimes
-	ld a, [hl]
-	cp 2
-	jr c, NoteEnded
-
-CheckChannelOn:
-; Channel on/off flag
-	ld a, [wTmpCh]
-	ld bc, Channel2 - Channel1
-	ld hl, Channel1Flags
-	call AddNTimes
-	bit 0, [hl]
-	jr z, NoteEnded
-
-; Rest flag
-; Note flags are wiped after each
-; note is read, so this is pointless.
-	ld a, [wTmpCh]
-	ld hl, Channel1NoteFlags
-	call AddNTimes
-	bit 5, [hl]
-	jr nz, NoteEnded
-	
-; Do an IO check too if the note's envelope is 0
-; and not ramping up since the game handles rest
-; notes by temporarily write 0 to hi nibble of NRx2
-	ld a, [wTmpCh]
-	cp 2
-	jr nz, .notch3 ; NR32 does something different
-	ld a, [rNR32]
-	and $60
-	jr z, NoteEnded ; 0% volume
-	jr .still_going
-.notch3
-	ld bc, 5
-	ld hl, rNR12
-	call AddNTimes
-	ld a, [hl]
-	ld b, a
-	and $f0
-	jr nz, .still_going
-	ld a, b
-	bit 3, a
-	jr z, NoteEnded ; ramping down
-	and $7
-	jr z, NoteEnded ; no ramping
-
-.still_going
-	and a
-	ret
-
-NoteEnded:
-	scf
-	ret
+    jp DrawNote
 
 DrawNote:
-    call CheckChannelOn
-    jp c, WriteBlankNote
-    call GetPitchAddr
-    ld a, [hl]
-    and a
-    jp z, WriteBlankNote ; rest
-    inc hl
-    ld a, [hld] ; octave
-    ld c, 14
-    call SimpleMultiply
-    add [hl] ; pitch
-    ld b, a
-    ld hl, wChLastNotes
-    ld a, [wTmpCh]
-    ld e, a
-    ld d, 0
-    add hl, de
-    ld a, [hl]
-    cp b
-    jp z, DrawLongerNote
-    jp DrawChangedNote
-    
-DrawChangedNote:    
-    ld [hl], b
-    ; spillover
-
-DrawNewNote:
-    call GetPitchAddr
-    push hl
-    inc hl
-    ld a, [hl]
-    xor $0f ; why are lower octaves higher.
-    sub $8
-    ld bc, 28
-    ld hl, 08
-    call AddNTimes
-    ld b, l
-    pop hl
-    ld a, [hl]
-    dec a
-    ld hl, Pitchels
-    ld e, a
-    ld d, 0
-    add hl, de
-    ld a, [hl]
-    add b
-    ld c, a
-    jp WriteNotePitch
-
-DrawLongerNote:
-    ld a,[wTmpCh]
-    ld hl, Channel1Intensity
-    ld bc, Channel2 - Channel1
-    call AddNTimes
-    ld a, [hl]
-    and $0f
-    cp $9
-    jr nc, .fadingUp
-    call CheckEndedNote
-    jp c, WriteBlankNote
-    jr .notFadingUp
-
-.fadingUp
-    call CheckNoteDuration
-    jp c, WriteBlankNote
-.notFadingUp
-    jp DrawNewNote
-    
-WriteBlankNote:
-    xor a
-    ld c, a
-
-WriteNotePitch:
-    ld hl, wToBeDeleted
-    ld a, [wTmpCh]
-    ld e, a
-    ld d, 0
-    add hl, de
-    ld a, c
-    ld [hl], a
-    ret
-
-CheckForVolumeBarReset:
-    call CheckNoteDuration
-    jr c, .noteEnded ; not a new note, but this note just ended!
-    ld hl, wNoteEnded
-    ld a, [wTmpCh]
-    ld e, a
-    ld d, 0
-    add hl, de
-    ld a, [hl]
-    and a
-    ret z ; also not a new note
-    xor a ; new note!
-    ld [hl], a
-    ret
-
-.noteEnded
-    ld hl, wNoteEnded
-    ld a, [wTmpCh]
-    ld e, a
-    ld d, 0
-    add hl, de
-    ld a, 1
-    ld [hl], a
-    ld hl, wChLastNotes
-    add hl, de
-    xor a
-    ld [hl], a
-    ret
+	ld a, [wMutedChannels]
+	ld b, a
+	ld a, [wTmpCh]
+	and a
+	jr z, .skipshift
+.shiftloop
+	srl b
+	dec a
+	jr nz, .shiftloop
+.skipshift
+	srl b
+	jr c, .nonote
+	ld a, [wTmpCh]
+	add a
+	ld c, a
+	ld b, 0
+	ld hl, wC1Vol
+	add hl, bc
+	ld a, [hl]
+	and a
+	jr z, .nonote
+; get the note from tone frequency
+; e = ⌊96.5-12*log₂(k/Freq("C1")/(2048-[wCxFreq]))⌋
+;   = ⌊96.5-12*(log₂(k/Freq("C1"))-log₂(2048-[wCxFreq]))⌋
+; k = 131072 when wTmpCh != 2
+; k =  65536 when wTmpCh =  2
+; Freq("C1") is 32.7032Hz in A440
+	ld hl, wC1Freq
+	add hl, bc
+	ld a, [hli]
+	cpl
+	ld c, a
+	ld a, [hl]
+	cpl
+	ld b, a ; -1-[wCxFreq]
+	ld hl, 2049
+	add hl, bc ; 2048-[wCxFreq]
+	ld a, h
+	and a
+	ld a, l
+	jr nz, .skip0check
+	cp 1
+	jr z, .logshiftdone
+	jr c, .nonote
+.skip0check
+	ld bc, 0
+	ld d, c
+.logshiftloop
+	srl h
+	rr l
+	rr c
+	inc d
+	ld a, h
+	and a
+	jr nz, .logshiftloop
+	ld a, l
+	cp 1
+	jr nz, .logshiftloop
+.logshiftdone
+	ld hl, LogTable
+	add hl, bc
+	ld a, [hl]
+	cpl
+	ld e, a
+	ld a, d
+	cpl
+	ld d, a ; -1-log₂(2048-[wCxFreq])
+	ld a, [wTmpCh]
+	cp 2
+	ld hl, $bf8 ; log₂(65536/Freq("C1"))+1
+	jr z, .ch3
+	ld hl, $cf8 ; log₂(131072/Freq("C1"))+1
+.ch3
+	add hl, de ; log₂(k/Freq("C1"))-log₂(2048-[wCxFreq])
+	ld b, h
+	ld c, l
+	add hl, hl
+	add hl, bc
+	add hl, hl
+	add hl, hl ; 12*(log₂(k/Freq("C1"))-log₂(2048-[wCxFreq]))
+	ld a, h
+	cpl
+	ld b, a
+	ld a, l
+	cpl
+	ld c, a ; -1-12*(log₂(k/Freq("C1"))-log₂(2048-[wCxFreq]))
+	ld hl, $6180 ; 97.5
+	add hl, bc
+	ld e, h ; ⌊96.5-12*(log₂(k/Freq("C1"))-log₂(2048-[wCxFreq]))⌋
+	ld a, [wTmpCh]
+	add a
+	ld c, a
+	ld b, 0
+	ld hl, wChLastNotes
+	add hl, bc
+	ld a, e
+	srl a
+	srl a
+	and $fe
+	ld [hli], a
+	ld a, e
+	and 7
+	sla a
+	ld [hli], a
+	ret
+.nonote
+	ld a, [wTmpCh]
+	add a
+	ld c, a
+	ld b, 0
+	ld hl, wChLastNotes
+	add hl, bc
+	ld a, $ff
+	ld [hli], a
+	ld [hl], a
+	ret
 
 UpdateVisualIntensity:
     ld hl, wVolTimer
@@ -1289,75 +1021,6 @@ UpdateVisualIntensity:
     ld [hl], a
 	cp 15
 	jp nc, .loop
-	ret
- 
-AddNoteToOld:
-    push hl
-    ld a, [wNumNoteLines]
-    add a
-    add a
-    ld c, a
-    ld b, 0
-    ld hl, Sprites+12
-    add hl, bc
-    push hl
-    pop de
-    pop hl
-    ld a, [hli]
-    ld [de], a
-    inc de
-    ld a, [hli]
-    ld [de], a
-    inc de
-    ld a, [hli]
-    ld [de], a
-    inc de
-    ld a, [hl]
-    ld [de], a
-    
-    ld a, [wNumNoteLines]
-    inc a
-    cp $25
-    jr z, .startover
-    ld [wNumNoteLines], a
-    ret
-.startover
-    xor a
-    ld [wNumNoteLines], a
-    ret
-
-Pitchels:
-    db 1, 3, 5, 7, 9, 13, 15, 17, 19, 21, 23, 25, 27
-
-GetPitchAddr:
-    ld a, [wTmpCh]
-    add a
-    ld hl, PitchAddrs
-    ld c, a
-    ld b, 0
-    add hl, bc
-    ld a, [hli]
-    ld h, [hl]
-    ld l, a
-    ret
-
-PitchAddrs:
-    dw Channel1Pitch
-    dw $c145
-    dw $c177
-
-GetOctaveAddr:
-	ld a, [wTmpCh]
-	ld hl, Channel1Octave
-	ld bc, Channel2 - Channel1
-	call AddNTimes
-	ret
-
-GetIntensityAddr:
-	ld a, [wTmpCh]
-	ld hl, wC1Vol
-	ld bc, 2
-	call AddNTimes
 	ret
 
 GetSongInfo:
@@ -1824,6 +1487,91 @@ DelayFrame_MP:
 ; music player VBlank routine
 	halt
 	; TODO
+	ld a, [hSCX]
+	ld [rSCX], a
+	ld a, [wNoteTile]
+	ld c, a
+	ld b, 0
+	sla c
+	rl b
+; note display clear if requested
+	ld a, [wMPFlags]
+	bit 2, a
+	jr z, .noclear
+	push bc
+	ld hl, VTiles2
+	add hl, bc
+	ld bc, $1f0
+	xor a
+	call .clr
+	ld de, $f000
+	add hl, de
+	call .clr
+	ld a, 1
+	ld [rVBK], a
+	xor a
+	call .clr
+	ld [rVBK], a
+	ld hl, wMPFlags
+	res 2, [hl]
+	set 3, [hl]
+	pop bc
+; note display draw
+.noclear
+; ch1
+	ld a, [wChLastNotes]
+	cp $ff
+	jr z, .drawch2
+	call .getidx
+	ld a, [wChLastNotes + 1]
+	ld e, a
+	ld d, 0
+	add hl, de
+	ld a, [wNoteMask]
+	or [hl]
+	ld [hli], a
+	ld a, [wNoteMask]
+	or [hl]
+	ld [hl], a
+	xor a
+	ld [rVBK], a
+.drawch2
+	ld a, [wChLastNotes + 2]
+	cp $ff
+	jr z, .drawch3
+	call .getidx
+	ld a, [wChLastNotes + 3]
+	ld e, a
+	ld d, 0
+	add hl, de
+	ld a, [wNoteMask]
+	or [hl]
+	and [hl]
+	ld [hli], a
+	ld a, [wNoteMask]
+	or [hl]
+	ld [hl], a
+	xor a
+	ld [rVBK], a
+.drawch3
+	ld a, [wChLastNotes + 4]
+	cp $ff
+	jr z, .drawduty
+	call .getidx
+	ld a, [wChLastNotes + 5]
+	ld e, a
+	ld d, 0
+	add hl, de
+	ld a, [wNoteMask]
+	or [hl]
+	ld [hli], a
+	ld a, [wNoteMask]
+	or [hl]
+	and [hl]
+	ld [hl], a
+	xor a
+	ld [rVBK], a
+.drawduty
 ; ch1-2 duty
 	ld a, [wC1Duty]
 	add $cc
@@ -1861,6 +1609,8 @@ DelayFrame_MP:
 	ld a, [wMPFlags]
 	bit 0, a
 	jr z, .nowavecpy
+	bit 3, a
+	jr nz, .noinfocpy
 	ld a, 4
 	ld [Requested2bpp], a
 	ld a, wWaveformTmpGFX % $100
@@ -1901,26 +1651,92 @@ DelayFrame_MP:
 	res 1, [hl]
 .noinfocpy
 ; all vblank copies done
+	ld hl, wMPFlags
+	res 3, [hl]
+	ld a, [hSCX]
+	inc a
+	ld [hSCX], a
+	ld a, [wNoteMask]
+	rrca
+	jr nc, .noc
+	ld a, [wNoteTile]
+	add $8
+	ld [wNoteTile], a
+	set 2, [hl]
+	ld a, $80
+.noc
+	ld [wNoteMask], a
 	call Joypad
 	callba _UpdateSound
 	ret
+.clr
+	rept 4
+	rept 16
+	ld [hli], a
+	endr
+	add hl, bc
+	endr
+	ret
+.getidx
+	cp $10
+	jr nc, .getidx2
+	cp $8
+	jr nc, .getidx1
+	add $90
+	add b
+	ld h, a
+	ld l, c
+	ret
+.getidx1
+	add $80
+	add b
+	ld h, a
+	ld l, c
+	ret
+.getidx2
+	add $80
+	add b
+	ld h, a
+	ld l, c
+	ld a, 1
+	ld [rVBK], a
+	ret
+	
+LogTable:
+; ⌊log₂(1+(x/256))*256⌋
+	db   0,   1,   2,   4,   5,   7,   8,   9,  11,  12,  14,  15,  16,  18,  19,  21
+	db  22,  23,  25,  26,  27,  29,  30,  31,  33,  34,  35,  37,  38,  39,  40,  42
+	db  43,  44,  46,  47,  48,  49,  51,  52,  53,  54,  56,  57,  58,  59,  61,  62
+	db  63,  64,  65,  67,  68,  69,  70,  71,  73,  74,  75,  76,  77,  78,  80,  81
+	db  82,  83,  84,  85,  87,  88,  89,  90,  91,  92,  93,  94,  96,  97,  98,  99
+	db 100, 101, 102, 103, 104, 105, 106, 108, 109, 110, 111, 112, 113, 114, 115, 116
+	db 117, 118, 119, 120, 121, 122, 123, 124, 125, 126, 127, 128, 129, 131, 132, 133
+	db 134, 135, 136, 137, 138, 139, 140, 140, 141, 142, 143, 144, 145, 146, 147, 148
+	db 149, 150, 151, 152, 153, 154, 155, 156, 157, 158, 159, 160, 161, 162, 162, 163
+	db 164, 165, 166, 167, 168, 169, 170, 171, 172, 173, 173, 174, 175, 176, 177, 178
+	db 179, 180, 181, 181, 182, 183, 184, 185, 186, 187, 188, 188, 189, 190, 191, 192
+	db 193, 194, 194, 195, 196, 197, 198, 199, 200, 200, 201, 202, 203, 204, 205, 205
+	db 206, 207, 208, 209, 209, 210, 211, 212, 213, 214, 214, 215, 216, 217, 218, 218
+	db 219, 220, 221, 222, 222, 223, 224, 225, 225, 226, 227, 228, 229, 229, 230, 231
+	db 232, 232, 233, 234, 235, 235, 236, 237, 238, 239, 239, 240, 241, 242, 242, 243
+	db 244, 245, 245, 246, 247, 247, 248, 249, 250, 250, 251, 252, 253, 253, 254, 255
 
 LoadingText:
     db "LOADING<...>@"
 
 ; ┌─┐│└┘
 MPTilemap:
-db $c0,$c1,$c2,$c3,$8f,$80,$81,$82,$83,$84,$85,$86,$87,$88,$89,$8a,$8b,$8c,$8d,$8e
-db $c4,$c5,$c6,$c7,$8f,$90,$91,$92,$93,$94,$95,$96,$97,$98,$99,$9a,$9b,$9c,$9d,$9e
-db $c8,$c9,$ca,$cb,$8f,$a0,$a1,$a2,$a3,$a4,$a5,$a6,$a7,$a8,$a9,$aa,$ab,$ac,$ad,$ae
-db $ff,$ff,$ff,$ff,$ff,$ff,$ff,$ff,$ff,$ff,$b0,$b1,$b2,$b3,$b4,$b5,$b6,$b7,$b8,$b9
-db $9f,$db,$ff,$9f,$dc,$ff,$9f,$dd,$ba,$bb,$bc,$bd,$ff,$9f,$de,$be,$fa,$ff,$ff,$fb
-db $e0,$e1,$e2,$e3,$e4,$cb,$e5,$dc,$e6,$e7,$af,$be,$bf,$d8,$d9,$ff,$ff,$ff,$ff,$ff
+	db $c0,$c1,$c2,$c3,$8f,$80,$81,$82,$83,$84,$85,$86,$87,$88,$89,$8a,$8b,$8c,$8d,$8e
+	db $c4,$c5,$c6,$c7,$8f,$90,$91,$92,$93,$94,$95,$96,$97,$98,$99,$9a,$9b,$9c,$9d,$9e
+	db $c8,$c9,$ca,$cb,$8f,$a0,$a1,$a2,$a3,$a4,$a5,$a6,$a7,$a8,$a9,$aa,$ab,$ac,$ad,$ae
+	db $ff,$ff,$ff,$ff,$ff,$ff,$ff,$ff,$ff,$ff,$b0,$b1,$b2,$b3,$b4,$b5,$b6,$b7,$b8,$b9
+	db $9f,$db,$ff,$9f,$dc,$ff,$9f,$dd,$ba,$bb,$bc,$bd,$ff,$9f,$de,$be,$fa,$ff,$ff,$fb
+	db $e0,$e1,$e2,$e3,$e4,$cb,$e5,$dc,$e6,$e7,$af,$be,$bf,$d8,$d9,$ff,$ff,$ff,$ff,$ff
 
 MPTilemapEnd
 
 MPKeymap:
-db  0,1,2,3,4,5,6,0,1,2,3,4,5,6,0,1,2,3,4,5
+	db  0,1,2,3,4,5,6,0,1,2,3,4,5,6,0,1,2,3,4,5
 
 MPKeymapEnd
     

@@ -2575,7 +2575,9 @@ wMPFlags:: ds 1
 wSongSelection:: ds 2
 wNumNoteLines:: ds 1 ;
 wTmpCh:: ds 1 ;
-wChLastNotes:: ds 3 ;
+wChLastNotes:: ds 6
+wNoteTile:: ds 1
+wNoteMask:: ds 1
 wVolTimer:: ds 1
 wNR10Sub:: ds 1
 wC1Vol:: ds 1
@@ -2601,7 +2603,6 @@ wNoiseHit:: ds 1 ;
 wTranspositionInterval:: ds 1 ;
 wChangingPitch:: ds 1 ;
 wTmp:: ds 1 ;
-wToBeDeleted:: ds 3 ;
 
 wRenderedWaveform:: ds 1 ;
 wSpecialWaveform:: ds 1 ;
