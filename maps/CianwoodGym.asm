@@ -367,7 +367,7 @@ UnknownText_0x9d835: ; 0x9d835
 
 UnknownText_0x9d84d: ; 0x9d84d
 	text "STORMBADGE lets"
-	line "your #MON Fly"
+	line "your #MON FLY"
 
 	para "when you're not in"
 	line "a battle."
@@ -436,8 +436,8 @@ BlackbeltLaoBeatenText: ; 0x9da50
 
 UnknownText_0x9da61: ; 0x9da61
 	text "Fighting #MON"
-	line "are afraid of psy-"
-	cont "chics<...>"
+	line "are afraid of"
+	cont "psychics<...>"
 	done
 ; 0x9da8a
 
