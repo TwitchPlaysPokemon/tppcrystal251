@@ -249,7 +249,7 @@ UndergroundWarehouse_BurglarSimonText2:
 	para "But all I found"
 	line "was junk."
 	
-	para "Oh, well. One man's"
+	para "Oh well. One man's"
 	line "trash, another's"
 	cont "treasure."
 	done
