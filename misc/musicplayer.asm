@@ -8,77 +8,77 @@ NarrowFontGFX:
 INCBIN "gfx/misc/font_narrow.w64.1bpp"
 MPPals:
 	RGB 5, 6, 8
-    RGB 0, 0, 0
-    RGB 0, 0, 0
-    RGB 31, 31, 31
+	RGB 0, 0, 0
+	RGB 0, 0, 0
 	RGB 31, 31, 31
-    RGB 7, 31, 7
-    RGB 7, 7, 31
-    RGB 31, 7, 7
+	RGB 31, 31, 31
+	RGB 7, 31, 7
+	RGB 7, 7, 31
+	RGB 31, 7, 7
 	RGB 8, 3, 3
-    RGB 31, 7, 7
+	RGB 31, 7, 7
 	RGB 0, 0, 0
 	RGB 31, 27, 27
-    RGB 3, 3, 8
-    RGB 7, 7, 31
-    RGB 0, 0, 0
-	RGB 27, 27, 31
-    RGB 3, 8, 3
-    RGB 7, 31, 7
+	RGB 3, 3, 8
+	RGB 7, 7, 31
 	RGB 0, 0, 0
-    RGB 27, 31, 27
-    RGB 8, 8, 3
-    RGB 31, 31, 7
+	RGB 27, 27, 31
+	RGB 3, 8, 3
+	RGB 7, 31, 7
+	RGB 0, 0, 0
+	RGB 27, 31, 27
+	RGB 8, 8, 3
+	RGB 31, 31, 7
 	RGB 0, 0, 0
 	RGB 31, 31, 27
 	RGB 2, 2, 3
-    RGB 0, 0, 0
+	RGB 0, 0, 0
 	RGB 0, 0, 0
 	RGB 31, 30, 5
 	RGB 30, 5, 12
-    RGB 0, 0, 0
+	RGB 0, 0, 0
 	RGB 0, 0, 0
 	RGB 0, 0, 0
 MPPalsEnd
 NotePals:
-    RGB 31, 31, 31
-    RGB 31, 31, 31
-    RGB 31, 31, 31
-    RGB 0, 0, 0
+	RGB 31, 31, 31
+	RGB 31, 31, 31
+	RGB 31, 31, 31
+	RGB 0, 0, 0
 NotePalsEnd
 
 placestring_: MACRO
-    hlcoord \1, \2
-    ld de, \3
-    call PlaceString
-    ENDM
+	hlcoord \1, \2
+	ld de, \3
+	call PlaceString
+	ENDM
 
 jbutton: MACRO
 	ld a, [hJoyPressed]
 	and \1
 	jp nz, \2 ; TODO jx
-    ENDM
+	ENDM
 
 printbit: MACRO
-    ld hl, \1
-    bit \2, [hl]
-    decoord \3, \4
-    jr z, .notset\@
-    ld a, \5
-    ld [de], a
-    jr .end\@
+	ld hl, \1
+	bit \2, [hl]
+	decoord \3, \4
+	jr z, .notset\@
+	ld a, \5
+	ld [de], a
+	jr .end\@
 .notset\@
-    ld a, \6
-    ld [de], a
+	ld a, \6
+	ld [de], a
 .end\@
-    inc de
-    ENDM
+	inc de
+	ENDM
 
 textbox: MACRO
-    hlcoord \1, \2
-    ld bc, ( (\4-\2) << 8) + (\3-\1)
-    call TextBox
-    ENDM
+	hlcoord \1, \2
+	ld bc, ( (\4-\2) << 8) + (\3-\1)
+	call TextBox
+	ENDM
 	
 copy: MACRO
 	ld hl, \1
@@ -153,7 +153,7 @@ MusicPlayer::
 	ld hl, VTiles0
 	call Request2bpp
 
-    call DelayFrame
+	call DelayFrame
 	call MPLoadPalette
 	ld hl, rLCDC
 	set 7, [hl]
@@ -291,7 +291,7 @@ MPlayerTilemap:
 .loop
 	ld a, [wMPFlags]
 	bit 0, a
-    call nz, RenderWaveform
+	call nz, RenderWaveform
 	call UpdateVisualIntensity
 	call DrawNotes
 	call DelayFrame_MP
@@ -306,42 +306,42 @@ MPlayerTilemap:
 	jbutton SELECT, .select
 	jbutton START, .start
 	
-    jr .loop
+	jr .loop
 .left
-    ld a, [wSongSelection]
-    dec a
-    jr nz, .redraw
-    ld a, NUM_MUSIC-1
-    jr .redraw
+	ld a, [wSongSelection]
+	dec a
+	jr nz, .redraw
+	ld a, NUM_MUSIC-1
+	jr .redraw
 .right
-    ld a, [wSongSelection]
-    inc a
-    cp a, NUM_MUSIC
-    jr nz, .redraw
-    ld a, 1
-    jr .redraw
+	ld a, [wSongSelection]
+	inc a
+	cp a, NUM_MUSIC
+	jr nz, .redraw
+	ld a, 1
+	jr .redraw
 .down
-    ld a, [wSongSelection]
-    sub a, 10
+	ld a, [wSongSelection]
+	sub a, 10
 	jr z, .zerofix
-    jr nc, .redraw
+	jr nc, .redraw
 .zerofix
-    ld a, NUM_MUSIC-1
-    jr .redraw
+	ld a, NUM_MUSIC-1
+	jr .redraw
 .up
-    ld a, [wSongSelection]
-    add a, 10
-    cp a, NUM_MUSIC
-    jr c, .redraw
-    ld a, 1
-    jr .redraw
+	ld a, [wSongSelection]
+	add a, 10
+	cp a, NUM_MUSIC
+	jr c, .redraw
+	ld a, 1
+	jr .redraw
 .select
-    xor a
-    call SongSelector
-    jp MPlayerTilemap
+	xor a
+	call SongSelector
+	jp MPlayerTilemap
 .redraw	
-    ld [wSongSelection], a
-    
+	ld [wSongSelection], a
+	
 	fill " ", wMusicNameChars, wMusicInfoCharsEnd - wMusicNameChars
 	fill 0, wMusicNameGFX, wMusicInfoGFXEnd - wMusicNameGFX
 	ld hl, wSelectorChars + 4
@@ -390,7 +390,7 @@ MPlayerTilemap:
 .songEditorLoop
 	ld a, [wMPFlags]
 	bit 0, a
-    call nz, RenderWaveform
+	call nz, RenderWaveform
 	call UpdateVisualIntensity
 	call DrawNotes
 	call DelayFrame_MP
@@ -464,7 +464,7 @@ MPlayerTilemap:
 	ld a, [hl]
 	xor 1
 	ld [hl], a
-    
+	
 	jp .songEditorLoop
 .niteToggle
 	ld a, [GBPrinter]
@@ -480,8 +480,8 @@ MPlayerTilemap:
 	call DelayFrame_MP
 	jp .songEditorLoop
 .changePitch
-    ld a, 1
-    ld [wChangingPitch], a
+	ld a, 1
+	ld [wChangingPitch], a
 	hlcoord 16, 2
 	ld a, $ec
 	ld [hl], a
@@ -491,42 +491,42 @@ MPlayerTilemap:
 	jp .songEditorLoop
 	
 .songEditorup
-    ld a, [wChannelSelector]
-    cp 2
-    jp nz, .songEditorLoop
-    ld a, [Channel3+$0f]
-    dec a
-    ld b, a
-    and $0f
-    cp $0f
-    jr z, .waveunderflow
-    ld a, b
-    jr .changed
+	ld a, [wChannelSelector]
+	cp 2
+	jp nz, .songEditorLoop
+	ld a, [Channel3+$0f]
+	dec a
+	ld b, a
+	and $0f
+	cp $0f
+	jr z, .waveunderflow
+	ld a, b
+	jr .changed
 .songEditordown
-    ld a, [wChannelSelector]
-    cp 2
-    jp nz, .songEditorLoop
-    ld a, [Channel3+$0f]
-    inc a
-    ld b, a
-    and $0f
-    jr z, .waveoverflow
-    ld a, b
-    jr .changed
+	ld a, [wChannelSelector]
+	cp 2
+	jp nz, .songEditorLoop
+	ld a, [Channel3+$0f]
+	inc a
+	ld b, a
+	and $0f
+	jr z, .waveoverflow
+	ld a, b
+	jr .changed
 .waveunderflow
-    ld a, [Channel3+$0f]
-    and $f0
-    add $e
-    jr .changed
+	ld a, [Channel3+$0f]
+	and $f0
+	add $e
+	jr .changed
 .waveoverflow
-    ld a, [Channel3+$0f]
-    and $f0
+	ld a, [Channel3+$0f]
+	and $f0
 .changed
-    ld [Channel3+$0f], a
-    ld [$c293], a
+	ld [Channel3+$0f], a
+	ld [$c293], a
 	jp .songEditorLoop
-    
-    
+	
+	
 
 .songEditorselect
 .songEditorb
@@ -605,65 +605,65 @@ MPlayerTilemap:
 	xor a
 	ld [rVBK], a
 	call Functione5f
-    call ClearSprites
-    ;call NormalSpeed
+	call ClearSprites
+	;call NormalSpeed
 	call EnableLCD
-    xor a
-    ld [hVBlank], a ; VBlank0
+	xor a
+	ld [hVBlank], a ; VBlank0
 	ld a, [hMPTmp3]
-    ld [rLCDC], a
+	ld [rLCDC], a
 	ld a, $90
 	ld [hWY], a
 	di
 	ld a, 8 ; normal HBlank int
 	ld [rSTAT], a
-    xor a
-    ld [rIF], a
-    ld a, $f
-    ld [rIE], a
-    ei
-    ld a, [hMPTmp]
-    ld [rSVBK], a
-    ret
+	xor a
+	ld [rIF], a
+	ld a, $f
+	ld [rIE], a
+	ei
+	ld a, [hMPTmp]
+	ld [rSVBK], a
+	ret
 
 .ChangingPitchleft
-    ld a, [wTranspositionInterval]
-    dec a
-    jr .ChangingPitchChangePitch
+	ld a, [wTranspositionInterval]
+	dec a
+	jr .ChangingPitchChangePitch
 .ChangingPitchright
-    ld a, [wTranspositionInterval]
-    inc a
+	ld a, [wTranspositionInterval]
+	inc a
 .ChangingPitchChangePitch
-    ld [wTranspositionInterval], a
-    ld de, EmptyPitch
+	ld [wTranspositionInterval], a
+	ld de, EmptyPitch
 	hlcoord 17, 2
 	call PlaceString
 	ld a, [wTranspositionInterval]
-    and a
-    jr nz, .nonzero
+	and a
+	jr nz, .nonzero
 	xor a
 	ld [hBGMapThird], a
 	call DelayFrame_MP
 	jp .songEditorLoop
-    
+	
 .nonzero
-    bit 7, a
-    jr nz, .negative
+	bit 7, a
+	jr nz, .negative
 	hlcoord 17, 2
 	ld a, $c5
 	ld [hl], a
 	ld bc, $0103
-    ld de, wTranspositionInterval
+	ld de, wTranspositionInterval
 	call PrintNum
 	xor a
 	ld [hBGMapThird], a
 	call DelayFrame_MP
 	jp .songEditorLoop
 .negative
-    xor $ff
-    inc a
-    ld de, wTmp
-    ld [de], a
+	xor $ff
+	inc a
+	ld de, wTmp
+	ld [de], a
 	hlcoord 17, 2
 	ld a, "-"
 	ld [hl], a
@@ -675,8 +675,8 @@ MPlayerTilemap:
 	jp .songEditorLoop
 	
 .ChangingPitchb
-    xor a
-    ld [wChangingPitch], a
+	xor a
+	ld [wChangingPitch], a
 	hlcoord 16, 2
 	ld a, $ed
 	ld [hl], a
@@ -688,9 +688,9 @@ MPlayerTilemap:
 RenderWaveform:
 	fill 0, wWaveformTmpGFX, 64
 
-    ld hl, wWaveformTmpGFX
-    ld de, wWaveformTmp
-    ld bc, $1080
+	ld hl, wWaveformTmpGFX
+	ld de, wWaveformTmp
+	ld bc, $1080
 
 .drawloop
 	ld a, [de]
@@ -772,15 +772,15 @@ RenderWaveform:
 	ret
 
 DrawNotes:
-    ld a, 0
-    ld [wTmpCh], a
-    call DrawNote
-    ld a, 1
-    ld [wTmpCh], a
-    call DrawNote
-    ld a, 2
-    ld [wTmpCh], a
-    jp DrawNote
+	ld a, 0
+	ld [wTmpCh], a
+	call DrawNote
+	ld a, 1
+	ld [wTmpCh], a
+	call DrawNote
+	ld a, 2
+	ld [wTmpCh], a
+	jp DrawNote
 
 DrawNote:
 	ld a, [wMutedChannels]
@@ -901,10 +901,10 @@ DrawNote:
 	ret
 
 UpdateVisualIntensity:
-    ld hl, wVolTimer
-    ld a, [hl]
-    add 32
-    ld [hl], a
+	ld hl, wVolTimer
+	ld a, [hl]
+	add 32
+	ld [hl], a
 .loop
 	push hl
 ; update NR10 freq mod
@@ -968,13 +968,13 @@ UpdateVisualIntensity:
 	ld hl, wC1Vol
 	ld e, 4
 .updateChannels
-    inc hl
-    ld a, [hl]
+	inc hl
+	ld a, [hl]
 	and a
-    jr z, .nextChannel2
+	jr z, .nextChannel2
 	dec a
 	ld [hl], a
-    jr nz, .nextChannel2
+	jr nz, .nextChannel2
 	push hl
 	ld a, 4
 	sub e
@@ -983,7 +983,7 @@ UpdateVisualIntensity:
 	call AddNTimes
 	ld a, [hl]
 	pop hl
-    ld b, a
+	ld b, a
 	and 7
 	add a
 	ld [hld], a
@@ -1000,22 +1000,22 @@ UpdateVisualIntensity:
 	jr z, .nextChannel
 	inc [hl]
 .nextChannel
-    inc hl
+	inc hl
 .nextChannel2
-    inc hl
-    dec e
-    jr nz, .updateChannels
+	inc hl
+	dec e
+	jr nz, .updateChannels
 	pop hl
 	ld a, [hl]
-    sub 15
-    ld [hl], a
+	sub 15
+	ld [hl], a
 	cp 15
 	jp nc, .loop
 	ret
 
 GetSongInfo:
 	dec a
-    cp NUM_MUSIC - 1
+	cp NUM_MUSIC - 1
 	jr nc, .noname
 	ld c, a
 	ld b, 0
@@ -1029,77 +1029,77 @@ GetSongInfo:
 	xor a
 	ret
 .noname
-    scf
-    ret
+	scf
+	ret
 
 DrawSongInfo:
-    ld a, [wSongSelection]
-    call GetSongInfo
-    jr c, .skip ; no data
-    
-    ld a, [hli]
+	ld a, [wSongSelection]
+	call GetSongInfo
+	jr c, .skip ; no data
+	
+	ld a, [hli]
 	ld d, [hl]
 	ld e, a
 	push hl
-    ld hl, wMusicNameChars
+	ld hl, wMusicNameChars
 	ld bc, wMusicNameGFX
 	ld a, 30
-    call PlaceString_MP
+	call PlaceString_MP
 	pop de
 	inc de
 	push de
 	ld hl, Origin - 2
 	call GetSongInfo2
-    ld hl, wMusicOriginChars
+	ld hl, wMusicOriginChars
 	ld bc, wMusicOriginGFX
 	ld a, 30
-    call PlaceString_MP
+	call PlaceString_MP
 	pop de
-    inc de
+	inc de
 	push de
 	ld hl, Artist - 2
 	call GetSongInfo2
-    ld hl, wMusicComposerChars
+	ld hl, wMusicComposerChars
 	ld bc, wMusicComposerGFX
 	ld a, 30
-    call PlaceString_MP
+	call PlaceString_MP
 	pop de
-    inc de
+	inc de
 	ld a, [de]
 	and a
 	jr z, .skip
 	ld hl, Artist - 2
 	call GetSongInfo2
-    ld hl, wMusicAdditionalChars
+	ld hl, wMusicAdditionalChars
 	ld bc, wMusicAdditionalGFX
 	ld a, 20
-    call PlaceString_MP
+	call PlaceString_MP
 	ld hl, wMPFlags
 	set 6, [hl]
 .skip
 	ld hl, wMPFlags
 	set 7, [hl]
-    ret
+	ret
 
 GetSongInfo2:
-    ld a, [de]
-    ld b, a
+	ld a, [de]
+	ld b, a
 .loop
 	inc hl
 	inc hl
-    ld a, [hli]
-    cp -1
-    jr z, .noname
-    cp b
-    jr nz, .loop
-    ld a, [hli]
+	ld a, [hli]
+	cp -1
+	jr z, .noname
+	cp b
+	jr nz, .loop
+	ld a, [hli]
 	ld d, [hl]
 	ld e, a
-    ret
+	ret
 .noname
 	ld de, BlankName
-    ret
-    
+	ret
+	
 PER_PAGE EQU 15
 
 SongSelector:
@@ -1111,26 +1111,26 @@ SongSelector:
 	hlcoord 0, 0
 	ld bc, 340
 	call ByteFill
-    call ClearSprites
-    hlcoord 0, 0
-    ld de, MusicListText
-    call PlaceString
-    textbox 0, 1, $12, $10
-    hlcoord 0, 9
-    ld [hl], $eb
-    ld a, [wSongSelection]
-    ld [wSelectorTop], a ; backup, in case of B button
-    cp 8
-    jr nc, .noOverflow
-    ld b, a
-    ld a, NUM_MUSIC - 1
-    add b
+	call ClearSprites
+	hlcoord 0, 0
+	ld de, MusicListText
+	call PlaceString
+	textbox 0, 1, $12, $10
+	hlcoord 0, 9
+	ld [hl], $eb
+	ld a, [wSongSelection]
+	ld [wSelectorTop], a ; backup, in case of B button
+	cp 8
+	jr nc, .noOverflow
+	ld b, a
+	ld a, NUM_MUSIC - 1
+	add b
 .noOverflow
-    sub 7
-    ld [wSongSelection], a
-    call UpdateSelectorNames
+	sub 7
+	ld [wSongSelection], a
+	call UpdateSelectorNames
 .loop
-    call DelayFrame_MP
+	call DelayFrame_MP
 	call GetJoypad
 	jbutton A_BUTTON, .a
 	jbutton B_BUTTON, .exit
@@ -1138,150 +1138,150 @@ SongSelector:
 	jbutton D_UP, .up
 	jbutton D_LEFT, .left
 	jbutton D_RIGHT, .right
-    jr .loop
+	jr .loop
 .a
-    ld a, [wSongSelection]
-    cp NUM_MUSIC - 7
-    jr c, .noOverflow2
-    sub NUM_MUSIC - 8
-    jr .finish
+	ld a, [wSongSelection]
+	cp NUM_MUSIC - 7
+	jr c, .noOverflow2
+	sub NUM_MUSIC - 8
+	jr .finish
 .noOverflow2
-    add 7
+	add 7
 .finish
-    ld [wSongSelection], a
-    ld e, a
-    ld d, 0
-    callba PlayMusic2
-    ret
+	ld [wSongSelection], a
+	ld e, a
+	ld d, 0
+	callba PlayMusic2
+	ret
 .down
-    ld a, [wSongSelection]
-    inc a
-    cp NUM_MUSIC
-    jr c, .noOverflowD
-    ld a, 1
+	ld a, [wSongSelection]
+	inc a
+	cp NUM_MUSIC
+	jr c, .noOverflowD
+	ld a, 1
 .noOverflowD
-    ld [wSongSelection], a
-    call UpdateSelectorNames
-    jr .loop
+	ld [wSongSelection], a
+	call UpdateSelectorNames
+	jr .loop
 .up
-    ld a, [wSongSelection]
-    dec a
-    cp 0
-    jr nz, .noOverflowU
-    ld a, NUM_MUSIC - 1
+	ld a, [wSongSelection]
+	dec a
+	cp 0
+	jr nz, .noOverflowU
+	ld a, NUM_MUSIC - 1
 .noOverflowU
-    ld [wSongSelection], a
-    call UpdateSelectorNames
-    jr .loop
+	ld [wSongSelection], a
+	call UpdateSelectorNames
+	jr .loop
 .left
-    ld a, [wSongSelection]
-    sub 10
-    jr nc, .noOverflowL
-    ld a, NUM_MUSIC - 1
+	ld a, [wSongSelection]
+	sub 10
+	jr nc, .noOverflowL
+	ld a, NUM_MUSIC - 1
 .noOverflowL
-    ld [wSongSelection], a
-    call UpdateSelectorNames
-    jp .loop
+	ld [wSongSelection], a
+	call UpdateSelectorNames
+	jp .loop
 .right
-    ld a, [wSongSelection]
-    add 10
-    cp NUM_MUSIC
-    jr c, .noOverflowR
-    ld a, 1
+	ld a, [wSongSelection]
+	add 10
+	cp NUM_MUSIC
+	jr c, .noOverflowR
+	ld a, 1
 .noOverflowR
-    ld [wSongSelection], a
-    call UpdateSelectorNames
-    jp .loop
+	ld [wSongSelection], a
+	call UpdateSelectorNames
+	jp .loop
 .exit
-    ld a, [wSelectorTop]
-    ld [wSongSelection], a
-    ret
+	ld a, [wSelectorTop]
+	ld [wSongSelection], a
+	ret
 
 UpdateSelectorNames:
-    call GetSongInfo
-    ld a, [wSongSelection]
-    ld c, a
-    ld b, 0
-    push hl
-    pop de
+	call GetSongInfo
+	ld a, [wSongSelection]
+	ld c, a
+	ld b, 0
+	push hl
+	pop de
 .loop
-    hlcoord 1, 2
-    ld a, c
-    ld [wSelectorCur], a
-    push bc
-    ld a, b
-    ld bc, $0014
-    call AddNTimes
-    call MPLPlaceString
-    inc de
-    inc de
-    inc de
-    inc de
-    pop bc
-    inc b
-    inc c
-    ld a, c
-    cp NUM_MUSIC
-    jr c, .noOverflow
-    ld c, 1
-    ld de, SongInfo
+	hlcoord 1, 2
+	ld a, c
+	ld [wSelectorCur], a
+	push bc
+	ld a, b
+	ld bc, $0014
+	call AddNTimes
+	call MPLPlaceString
+	inc de
+	inc de
+	inc de
+	inc de
+	pop bc
+	inc b
+	inc c
+	ld a, c
+	cp NUM_MUSIC
+	jr c, .noOverflow
+	ld c, 1
+	ld de, SongInfo
 .noOverflow
-    ld a, b
-    cp PER_PAGE
-    jr nz, .loop
-    ret
-    
+	ld a, b
+	cp PER_PAGE
+	jr nz, .loop
+	ret
+	
 MPLPlaceString:
-    push hl
-    ld a, " "
-    ld hl, StringBuffer2
-    ld bc, 3
-    call ByteFill
-    ld hl, StringBuffer2
-    push de
-    ld de, wSelectorCur
-    ld bc, $103
-    call PrintNum
-    pop de
-    ld [hl], "│"
-    inc hl
-    ld b, 0
+	push hl
+	ld a, " "
+	ld hl, StringBuffer2
+	ld bc, 3
+	call ByteFill
+	ld hl, StringBuffer2
+	push de
+	ld de, wSelectorCur
+	ld bc, $103
+	call PrintNum
+	pop de
+	ld [hl], "│"
+	inc hl
+	ld b, 0
 .loop
-    ld a, [de]
-    ld [hl], a
-    cp "@"
-    jr nz, .next
-    ld [hl], " "
-    dec de
+	ld a, [de]
+	ld [hl], a
+	cp "@"
+	jr nz, .next
+	ld [hl], " "
+	dec de
 .next
-    inc hl
-    inc de
-    inc b
-    ld a, b
-    cp 14
-    jr c, .loop
-    ld a, [de]
-    cp "@"
-    jr nz, .notend
-    ld [hl], a
-    jr .last
+	inc hl
+	inc de
+	inc b
+	ld a, b
+	cp 14
+	jr c, .loop
+	ld a, [de]
+	cp "@"
+	jr nz, .notend
+	ld [hl], a
+	jr .last
 .notend
-    dec hl
-    ld [hl], "<...>"
-    inc hl
-    ld [hl], "@"
+	dec hl
+	ld [hl], "<...>"
+	inc hl
+	ld [hl], "@"
 .loop2
-    inc de
-    ld a, [de]
-    cp "@"
-    jr nz, .loop2
+	inc de
+	ld a, [de]
+	cp "@"
+	jr nz, .loop2
 .last
-    pop hl
-    push de
-    ld de, StringBuffer2
-    call PlaceString
-    pop de
-    ret
+	pop hl
+	push de
+	ld de, StringBuffer2
+	call PlaceString
+	pop de
+	ret
 	
 PlaceString_MP:
 	push bc
@@ -1709,7 +1709,7 @@ LogTable:
 	db 244, 245, 245, 246, 247, 247, 248, 249, 250, 250, 251, 252, 253, 253, 254, 255
 
 LoadingText:
-    db "LOADING<...>@"
+	db "LOADING<...>@"
 
 ; ┌─┐│└┘
 MPTilemap:
@@ -1726,10 +1726,10 @@ MPKeymap:
 	db  0,1,2,3,4,5,6,0,1,2,3,4,5,6,0,1,2,3,4,5
 
 MPKeymapEnd
-    
+	
 NoteOAM:
-    db $68,$a0,$00,$00
-    db $5c,$a0,$01,$00
+	db $68,$a0,$00,$00
+	db $5c,$a0,$01,$00
 	db $50,$a0,$02,$00
 	db $44,$a0,$03,$00
 	db $38,$a0,$04,$00
@@ -1755,109 +1755,109 @@ ENDM
 BlankName:
 	db " @"
 SongInfo:
-    info ._01, 22, 1, 12
-    info ._02, 3, 1, 0
-    info ._03, 3, 1, 0
-    info ._04, 3, 1, 0
-    info ._05, 3, 8, 0
-    info ._06, 3, 1, 0
-    info ._07, 3, 1, 0
-    info ._08, 3, 1, 0
-    info ._09, 3, 1, 0
-    info ._0a, 3, 1, 0
-    info ._0b, 3, 8, 0
-    info ._0c, 3, 8, 0
-    info ._0d, 3, 1, 0
-    info ._0e, 3, $18, 0
-    info ._0f, 3, $18, 0
-    info ._10, 3, 1, 0
-    info ._11, 3, 1, 0
-    info ._12, 3, 8, 0
-    info ._13, 3, 1, 0
-    info ._14, 3, 1, 0
-    info ._15, 3, 1, 0
-    info ._16, 3, 1, 0
-    info ._17, 3, 1, 0
-    info ._18, 3, 1, 0
-    info ._19, 3, 1, 0
-    info ._1a, 3, 1, 0
-    info ._1b, 3, 1, 0
-    info ._1c, 3, 1, 0
-    info ._1d, 3, 1, 0
-    info ._1e, 3, 1, 0
-    info ._1f, 3, 1, 0
-    info ._20, 3, 1, 0
-    info ._21, 3, 8, 0
-    info ._22, 3, 1, 0
-    info ._23, 3, 8, 0
-    info ._24, 3, 8, 0
-    info ._25, 3, 8, 0
-    info ._26, 3, 1, 0
-    info ._27, 3, 8, 0
-    info ._28, 3, 1, 0
-    info ._29, 3, 1, 0
-    info ._2a, 3, 1, 0
-    info ._2b, 3, 1, 0
-    info ._2c, 3, 8, 0
-    info ._2d, 3, 8, 0
-    info ._2e, 3, 1, 0
-    info ._2f, 3, 1, 0
-    info ._30, 3, 1, 0
-    info ._31, 3, 1, 0
-    info ._32, 3, 1, 0
-    info ._33, 3, 1, 0
-    info ._34, 3, 1, 0
-    info ._35, 3, 1, 0
-    info ._36, 3, 8, 0
-    info ._37, 3, 1, 0
-    info ._38, 3, 1, 0
-    info ._39, 3, 8, 0
-    info ._3a, 3, 8, 0
-    info ._3b, 3, 8, 0
-    info ._3c, 3, $18, 0
-    info ._3d, 3, 1, 0
-    info ._3e, 3, 1, 0
-    info ._3f, 3, 1, 0
-    info ._40, 3, 1, 0
-    info ._41, 3, 1, 0
-    info ._42, 3, 1, 0
-    info ._43, 3, 1, 0
-    info ._44, 3, 1, 0
-    info ._45, 3, 1, 0
-    info ._46, 3, 1, 0
-    info ._47, 3, 1, 0
-    info ._48, 3, 1, 0
-    info ._49, 3, 1, 0
-    info ._4a, 3, 1, 0
-    info ._4b, 3, 1, 0
-    info ._4c, 3, 1, 0
-    info ._4d, 3, 1, 0
-    info ._4e, 3, 1, 0
-    info ._4f, 3, 1, 0
-    info ._50, 3, 1, 0
-    info ._51, 3, 1, 0
-    info ._52, 22, 12, 0
-    info ._53, 22, 1, 12
-    info ._54, 3, 1, 0
-    info ._55, 3, 1, 0
-    info ._56, 3, 8, 0
-    info ._57, 3, 8, 0
-    info ._58, 3, 8, 0
-    info ._59, 3, 1, 0
-    info ._5a, 3, 1, 0
-    info ._5b, 3, 1, 0
-    info ._5c, 3, 8, 0
-    info ._5d, 4, 9, 0
-    info ._5e, 4, 9, 0
-    info ._5f, 4, 9, 0
-    info ._60, 4, 9, 0
-    info ._61, 4, 9, 0
-    info ._62, 4, 1, 0
-    info ._63, 4, 9, 0
-    info ._64, 4, 1, 0
-    info ._65, 4, 9, 0
-    info ._66, 4, 1, 0
-    info ._67, 1, 1, 2
+	info ._01, 22, 1, 12
+	info ._02, 3, 1, 0
+	info ._03, 3, 1, 0
+	info ._04, 3, 1, 0
+	info ._05, 3, 8, 0
+	info ._06, 3, 1, 0
+	info ._07, 3, 1, 0
+	info ._08, 3, 1, 0
+	info ._09, 3, 1, 0
+	info ._0a, 3, 1, 0
+	info ._0b, 3, 8, 0
+	info ._0c, 3, 8, 0
+	info ._0d, 3, 1, 0
+	info ._0e, 3, $18, 0
+	info ._0f, 3, $18, 0
+	info ._10, 3, 1, 0
+	info ._11, 3, 1, 0
+	info ._12, 3, 8, 0
+	info ._13, 3, 1, 0
+	info ._14, 3, 1, 0
+	info ._15, 3, 1, 0
+	info ._16, 3, 1, 0
+	info ._17, 3, 1, 0
+	info ._18, 3, 1, 0
+	info ._19, 3, 1, 0
+	info ._1a, 3, 1, 0
+	info ._1b, 3, 1, 0
+	info ._1c, 3, 1, 0
+	info ._1d, 3, 1, 0
+	info ._1e, 3, 1, 0
+	info ._1f, 3, 1, 0
+	info ._20, 3, 1, 0
+	info ._21, 3, 8, 0
+	info ._22, 3, 1, 0
+	info ._23, 3, 8, 0
+	info ._24, 3, 8, 0
+	info ._25, 3, 8, 0
+	info ._26, 3, 1, 0
+	info ._27, 3, 8, 0
+	info ._28, 3, 1, 0
+	info ._29, 3, 1, 0
+	info ._2a, 3, 1, 0
+	info ._2b, 3, 1, 0
+	info ._2c, 3, 8, 0
+	info ._2d, 3, 8, 0
+	info ._2e, 3, 1, 0
+	info ._2f, 3, 1, 0
+	info ._30, 3, 1, 0
+	info ._31, 3, 1, 0
+	info ._32, 3, 1, 0
+	info ._33, 3, 1, 0
+	info ._34, 3, 1, 0
+	info ._35, 3, 1, 0
+	info ._36, 3, 8, 0
+	info ._37, 3, 1, 0
+	info ._38, 3, 1, 0
+	info ._39, 3, 8, 0
+	info ._3a, 3, 8, 0
+	info ._3b, 3, 8, 0
+	info ._3c, 3, $18, 0
+	info ._3d, 3, 1, 0
+	info ._3e, 3, 1, 0
+	info ._3f, 3, 1, 0
+	info ._40, 3, 1, 0
+	info ._41, 3, 1, 0
+	info ._42, 3, 1, 0
+	info ._43, 3, 1, 0
+	info ._44, 3, 1, 0
+	info ._45, 3, 1, 0
+	info ._46, 3, 1, 0
+	info ._47, 3, 1, 0
+	info ._48, 3, 1, 0
+	info ._49, 3, 1, 0
+	info ._4a, 3, 1, 0
+	info ._4b, 3, 1, 0
+	info ._4c, 3, 1, 0
+	info ._4d, 3, 1, 0
+	info ._4e, 3, 1, 0
+	info ._4f, 3, 1, 0
+	info ._50, 3, 1, 0
+	info ._51, 3, 1, 0
+	info ._52, 22, 12, 0
+	info ._53, 22, 1, 12
+	info ._54, 3, 1, 0
+	info ._55, 3, 1, 0
+	info ._56, 3, 8, 0
+	info ._57, 3, 8, 0
+	info ._58, 3, 8, 0
+	info ._59, 3, 1, 0
+	info ._5a, 3, 1, 0
+	info ._5b, 3, 1, 0
+	info ._5c, 3, 8, 0
+	info ._5d, 4, 9, 0
+	info ._5e, 4, 9, 0
+	info ._5f, 4, 9, 0
+	info ._60, 4, 9, 0
+	info ._61, 4, 9, 0
+	info ._62, 4, 1, 0
+	info ._63, 4, 9, 0
+	info ._64, 4, 1, 0
+	info ._65, 4, 9, 0
+	info ._66, 4, 1, 0
+	info ._67, 1, 1, 2
 	info ._68, 7, 1, 2
 	info ._69, 7, 1, 2
 	info ._6a, 7, 8, 2
