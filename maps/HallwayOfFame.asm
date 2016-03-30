@@ -581,9 +581,8 @@ RustPostRematchText:
 	done
 
 OakToRivalAfterRemtachText:
-	text "PROF.OAK: I've"
-	line "heard what just"
-	cont "happened!"
+	text "PROF.OAK: I just"
+	line "heard the news."
 
 	para "I'm disappointed"
 	line "all over again!"
@@ -598,16 +597,22 @@ OakToRivalAfterRemtachText:
 	para "But, when I got"
 	line "here, you had"
 	cont "already lost!"
+
+	para "Didn't I tell you"
+	line "before?"
+
+	para "If you don't treat"
+	line "your #MON with"
+	cont "trust and love,"
+
+	para "how can you pre-"
+	line "vail?"
 	done
 
-
-
 UnknownText_0x18121b: ; 0x18121b
-	text "PROF.OAK: I've"
-	line "heard what"
-	cont "happened!"
-
-	para "I'm dissapointed!"
+	text "PROF.OAK: I just"
+	line "heard the news."
+	cont "I'm disappointed!"
 
 	para "I came when I"
 	line "heard you beat"
@@ -616,22 +621,34 @@ UnknownText_0x18121b: ; 0x18121b
 	para "But, when I got"
 	line "here, you had"
 	cont "already lost!"
+
+	para "<GREEN>! Do you"
+	line "understand why"
+	cont "you lost?"
+
+	para "You have forgotten"
+	line "to treat your"
+
+	para "#MON with"
+	line "trust and love!"
+
+	para "Without them, you"
+	line "will never become"
+	cont "a champ again!"
 	done
 
 OakAfterRivalTalkToPlayer:
 
-	text "<PLAY_G>!"
-	line "You understand"
+	text "OAK: <PLAY_G>!"
+	para "You understand"
+	line "that your victory"
 
-	para "that your victory"
-	line "was not just your"
-	cont "own doing!"
+	para "was not just your"
+	line "own doing!"
 
-	para "The bond you"
-	line "share with your"
-
-	para "#MON is"
-	line "marvelous!"
+	para "The bond you share"
+	line "with your #MON"
+	cont "is marvelous!"
 	done
 ; 0x18134b
 

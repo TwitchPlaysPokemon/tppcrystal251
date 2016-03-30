@@ -98,4 +98,23 @@ BillWantNextBox:
 	cont "space for you."
 
 	para "However<...>"
+	prompt
+
+BillThankYouText:
+	text "Thank you for"
+	line "using the PC"
+	cont "STORAGE SYSTEM!"
 	done
+
+BillCallMeToSwitch:
+	text "Okay, I'll leave"
+	line "it alone."
+
+	para "Call me back if"
+	line "you change your"
+	cont "mind."
+
+	para "You can also"
+	line "change boxes your-"
+	cont "self via PC."
+	prompt

@@ -723,7 +723,7 @@ BillBoxSwitchCheck: ;from current box, return first box with space or 0 if entir
 BillBoxSwitch:
 	ld a, [EngineBuffer1]
 	ld e, a
-	callab Function14a83
+	callab Special_BillChangeBox
 	ret
 
 CalculateTowerWinnings: ;NOTE, decs wcf64. calculate winnings of the battle tower based on # of wins and partycount, result is in hProduct

@@ -18096,6 +18096,10 @@ Function14a58: ; 14a58
 	ret
 ; 14a83
 
+Special_BillChangeBox:
+	push de
+	jr SaveAndChangeBox
+
 Function14a83: ; 14a83 (5:4a83) boxchangesave, saves with new active box e
 	push de
 	ld hl, UnknownText_0x152a1
@@ -18104,7 +18108,12 @@ Function14a83: ; 14a83 (5:4a83) boxchangesave, saves with new active box e
 	call Function1c07 ;unload menu
 	jr c, .asm_14ab0
 	call Function14b89
-	jr c, .asm_14ab0
+	jr nc, SaveAndChangeBox
+.asm_14ab0
+	pop de
+	ret
+
+SaveAndChangeBox:
 	call Function14b54
 	call Function14c99
 	call Function14e0c
@@ -18115,10 +18124,6 @@ Function14a83: ; 14a83 (5:4a83) boxchangesave, saves with new active box e
 	call Function14be6
 	call Function14b5a
 	and a
-	ret
-
-.asm_14ab0
-	pop de
 	ret
 
 DeleteBox: ; 14a83 (5:4a83)
