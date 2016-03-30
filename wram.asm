@@ -2578,6 +2578,7 @@ wTmpCh:: ds 1 ;
 wChLastNotes:: ds 6
 wNoteTile:: ds 1
 wNoteMask:: ds 1
+wInfoDrawState:: ds 1
 wVolTimer:: ds 1
 wNR10Sub:: ds 1
 wC1Vol:: ds 1

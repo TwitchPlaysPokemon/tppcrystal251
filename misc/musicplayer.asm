@@ -169,6 +169,7 @@ MusicPlayer::
 	ld [rSVBK], a
 	
 	fill 0, wMPFlags, wMPInitClearEnd - wMPFlags
+	fill $ff, wChLastNotes, 6
 	ld a, $a0
 	ld [wNoteTile], a
 	ld a, $80
@@ -344,26 +345,27 @@ MPlayerTilemap:
 	
 	fill " ", wMusicNameChars, wMusicInfoCharsEnd - wMusicNameChars
 	fill 0, wMusicNameGFX, wMusicInfoGFXEnd - wMusicNameGFX
+	xor a
+	ld [wInfoDrawState], a ; reset info draw queue
 	ld hl, wSelectorChars + 4
-	ld [hl], "@"
-	dec hl
-	ld [hl], " "
-	dec hl
-	ld [hl], " "
-	dec hl
-	ld [hl], " "
-	dec hl
-	ld [hl], $e5
-	inc hl
+	ld a, "@"
+	ld [hld], a
+	ld a, " "
+	ld [hld], a
+	ld [hld], a
+	ld [hld], a
+	ld a, $e5
+	ld [hli], a
 	ld de, wSongSelection
 	ld bc, $0103
 	call PrintNum
 	ld hl, wSelectorChars
 	ld de, wSelectorGFX
 	call RenderNarrowText
-	call DrawSongInfo
 	ld hl, wMPFlags
 	set 1, [hl] ; song info redraw occurred
+	res 6, [hl] ; reset leftover additional draw queue
+	call DrawSongInfo
 	jp .loop
 	
 .a
@@ -1035,16 +1037,19 @@ GetSongInfo:
 DrawSongInfo:
 	ld a, [wSongSelection]
 	call GetSongInfo
-	jr c, .skip ; no data
+	ret c ; no data
 	
 	ld a, [hli]
 	ld d, [hl]
 	ld e, a
 	push hl
+	ld hl, wMPFlags
+	set 7, [hl]
 	ld hl, wMusicNameChars
 	ld bc, wMusicNameGFX
 	ld a, 30
 	call PlaceString_MP
+	call DelayFrame_MP
 	pop de
 	inc de
 	push de
@@ -1067,7 +1072,7 @@ DrawSongInfo:
 	inc de
 	ld a, [de]
 	and a
-	jr z, .skip
+	ret z
 	ld hl, Artist - 2
 	call GetSongInfo2
 	ld hl, wMusicAdditionalChars
@@ -1076,9 +1081,6 @@ DrawSongInfo:
 	call PlaceString_MP
 	ld hl, wMPFlags
 	set 6, [hl]
-.skip
-	ld hl, wMPFlags
-	set 7, [hl]
 	ret
 
 GetSongInfo2:
@@ -1286,6 +1288,7 @@ MPLPlaceString:
 PlaceString_MP:
 	push bc
 	push hl
+	inc a
 	ld b, a
 .loop
 	ld a, [de]
@@ -1297,6 +1300,7 @@ PlaceString_MP:
 	jr z, .toolong
 	jr .loop
 .toolong
+	dec hl
 	dec hl
 	dec hl
 	ld [hl], "."
@@ -1594,10 +1598,10 @@ DelayFrame_MP:
 	endr
 ; wave gfx copy if requested
 	ld a, [wMPFlags]
+	bit 3, a
+	jr nz, .no1bppcpy
 	bit 0, a
 	jr z, .nowavecpy
-	bit 3, a
-	jr nz, .noinfocpy
 	ld a, 4
 	ld [Requested2bpp], a
 	ld a, wWaveformTmpGFX % $100
@@ -1615,7 +1619,9 @@ DelayFrame_MP:
 	ld [rVBK], a
 	ld hl, wMPFlags
 	res 0, [hl]
+	jr .no1bppcpy
 .nowavecpy
+; selector cursor copy
 	ld a, [wMPFlags]
 	bit 1, a
 	jr z, .noinfocpy
@@ -1636,7 +1642,15 @@ DelayFrame_MP:
 	ld [rVBK], a
 	ld hl, wMPFlags
 	res 1, [hl]
+	jr .no1bppcpy
 .noinfocpy
+	ld a, [wMPFlags]
+	bit 7, a
+	jr z, .no1bppcpy
+	ld a, [wInfoDrawState]
+	ld hl, DrawSongInfo@VBlank
+	rst JumpTable
+.no1bppcpy
 ; all vblank copies done
 	ld hl, wMPFlags
 	res 3, [hl]
@@ -1689,6 +1703,163 @@ DelayFrame_MP:
 	ld [rVBK], a
 	ret
 	
+DrawSongInfo@VBlank:
+	dw .name
+	dw .name2
+	dw .composer
+	dw .composer2
+	dw .origin
+	dw .origin2
+	dw .additional
+	dw .additional2
+	
+.name
+	ld a, 8
+	ld [Requested1bpp], a
+	ld a, wMusicNameGFX % $100
+	ld [Requested1bppSource], a
+	ld a, wMusicNameGFX / $100
+	ld [Requested1bppSource + 1], a
+	xor a
+	ld [Requested1bppDest], a
+	ld a, $89
+	ld [Requested1bppDest + 1], a
+	jp .done
+	
+.name2
+	ld a, 7
+	ld [Requested1bpp], a
+	ld a, (wMusicNameGFX + 64) % $100
+	ld [Requested1bppSource], a
+	ld a, (wMusicNameGFX + 64) / $100
+	ld [Requested1bppSource + 1], a
+	ld a, $80
+	ld [Requested1bppDest], a
+	ld a, $89
+	ld [Requested1bppDest + 1], a
+	jp .done
+
+.composer
+	ld a, 8
+	ld [Requested1bpp], a
+	ld a, wMusicComposerGFX % $100
+	ld [Requested1bppSource], a
+	ld a, wMusicComposerGFX / $100
+	ld [Requested1bppSource + 1], a
+	xor a
+	ld [Requested1bppDest], a
+	ld a, $8a
+	ld [Requested1bppDest + 1], a
+	jp .done
+	
+.composer2
+	ld a, 7
+	ld [Requested1bpp], a
+	ld a, (wMusicComposerGFX + 64) % $100
+	ld [Requested1bppSource], a
+	ld a, (wMusicComposerGFX + 64) / $100
+	ld [Requested1bppSource + 1], a
+	ld a, $80
+	ld [Requested1bppDest], a
+	ld a, $8a
+	ld [Requested1bppDest + 1], a
+	jp .done
+
+.origin
+	ld a, 8
+	ld [Requested1bpp], a
+	ld a, wMusicOriginGFX % $100
+	ld [Requested1bppSource], a
+	ld a, wMusicOriginGFX / $100
+	ld [Requested1bppSource + 1], a
+	xor a
+	ld [Requested1bppDest], a
+	ld a, $88
+	ld [Requested1bppDest + 1], a
+	jp .done
+	
+.origin2
+	ld a, 7
+	ld [Requested1bpp], a
+	ld a, (wMusicOriginGFX + 64) % $100
+	ld [Requested1bppSource], a
+	ld a, (wMusicOriginGFX + 64) / $100
+	ld [Requested1bppSource + 1], a
+	ld a, $80
+	ld [Requested1bppDest], a
+	ld a, $88
+	ld [Requested1bppDest + 1], a
+	ld hl, wMPFlags
+	bit 6, [hl]
+	jr nz, .origin22
+	ld hl, VBGMap1 + $60
+	ld a, $ff
+	rept 10
+	ld [hli], a
+	endr
+	jp .done
+.origin22
+	ld hl, VBGMap1 + $60
+	ld a, $d0 ; ad
+	ld [hli], a
+	ld a, $d1 ; di
+	ld [hli], a
+	ld a, $d2 ; ti
+	ld [hli], a
+	ld a, $d3 ; on
+	ld [hli], a
+	ld a, $d4 ; al
+	ld [hli], a
+	ld a, $d5 ;  c
+	ld [hli], a
+	ld a, $d6 ; re
+	ld [hli], a
+	ld a, $d1 ; di
+	ld [hli], a
+	ld a, $d7 ; ts
+	ld [hli], a
+	ld a, $8f ; :
+	ld [hl], a
+	jp .done
+
+.additional
+	ld a, 5
+	ld [Requested1bpp], a
+	ld a, wMusicAdditionalGFX % $100
+	ld [Requested1bppSource], a
+	ld a, wMusicAdditionalGFX / $100
+	ld [Requested1bppSource + 1], a
+	xor a
+	ld [Requested1bppDest], a
+	ld a, $8b
+	ld [Requested1bppDest + 1], a
+	jp .done
+	
+.additional2
+	ld a, 5
+	ld [Requested1bpp], a
+	ld a, (wMusicAdditionalGFX + 40) % $100
+	ld [Requested1bppSource], a
+	ld a, (wMusicAdditionalGFX + 40) / $100
+	ld [Requested1bppSource + 1], a
+	ld a, $50
+	ld [Requested1bppDest], a
+	ld a, $8b
+	ld [Requested1bppDest + 1], a
+	ld hl, wMPFlags
+	res 7, [hl]
+
+.done
+	ld a, 1
+	ld [rVBK], a
+	call _Serve1bppRequest
+	xor a
+	ld [rVBK], a
+	ld a, [wInfoDrawState]
+	inc a
+	ld [wInfoDrawState], a
+	ret
+	
 LogTable:
 ; ⌊log₂(1+(x/256))*256⌋
 	db   0,   1,   2,   4,   5,   7,   8,   9,  11,  12,  14,  15,  16,  18,  19,  21
@@ -1737,10 +1908,6 @@ NoteOAM:
 	db $20,$a0,$06,$00
 	db $14,$a0,$07,$00
 NoteOAMEnd
-	
-Additional:
-	db $d0,$d1,$d2,$d3,$d4,$d5,$d6,$d1,$d7,$8f
-AdditionalEnd
 
 EmptyPitch: db "   @"
 
@@ -1870,7 +2037,7 @@ SongInfo:
 	info ._71, 1, 1, 0
 	info ._72, 1, 1, 0
 	info ._73, 8, 10, 12
-	info ._74, 5, 9, 1
+	info ._74, 5, 9, 12
 	info ._75, 3, 1, 0
 	info ._76, 1, 1, 0
 	info ._77, 7, 8, 12
@@ -2063,7 +2230,7 @@ Artist:
 ._06 db "Danny-E 33@"
 ._07 db "Go Ichinose@"
 ._08 db "Morikazu Aoki@"
-._09 db "Shota Kageyama"
+._09 db "Shota Kageyama@"
 ._10 db "Church of the Helix Choir@"
 ._11 db "Pigu@"
 ._12 db "Pigu, GACT@"
