@@ -1726,9 +1726,9 @@ LoadingText:
 
 ; ┌─┐│└┘
 MPTilemap:
-	db $c0,$c1,$c2,$c3,$8f,$80,$81,$82,$83,$84,$85,$86,$87,$88,$89,$8a,$8b,$8c,$8d,$8e
 	db $c4,$c5,$c6,$c7,$8f,$90,$91,$92,$93,$94,$95,$96,$97,$98,$99,$9a,$9b,$9c,$9d,$9e
 	db $c8,$c9,$ca,$cb,$8f,$a0,$a1,$a2,$a3,$a4,$a5,$a6,$a7,$a8,$a9,$aa,$ab,$ac,$ad,$ae
+	db $c0,$c1,$c2,$c3,$8f,$80,$81,$82,$83,$84,$85,$86,$87,$88,$89,$8a,$8b,$8c,$8d,$8e
 	db $ff,$ff,$ff,$ff,$ff,$ff,$ff,$ff,$ff,$ff,$b0,$b1,$b2,$b3,$b4,$b5,$b6,$b7,$b8,$b9
 	db $9f,$db,$ff,$9f,$dc,$ff,$9f,$dd,$ba,$bb,$bc,$bd,$ff,$9f,$de,$be,$fa,$ff,$ff,$fb
 	db $e0,$e1,$e2,$e3,$e4,$cb,$e5,$dc,$e6,$e7,$af,$be,$bf,$d8,$d9,$ff,$ff,$ff,$ff,$ff
@@ -1763,13 +1763,13 @@ MusicListText:
 BlankName:
 	db " @"
 SongInfo:
-    db "Title Screen@", 4, 1, 0
+    db "Title Screen@", 22, 1, 12
     db "Route 1@", 3, 1, 0
     db "Route 3@", 3, 1, 0
     db "Route 11@", 3, 1, 0
     db "Magnet Train@", 3, 8, 0
     db "Vs. Kanto Gym Leader@", 3, 1, 0
-    db "Vs. Kanto Trainer@", 3, 1, 2
+    db "Vs. Kanto Trainer@", 3, 1, 0
     db "Vs. Kanto Wild@", 3, 1, 0
     db "Pokémon Center@", 3, 1, 0
     db "Spotted! Hiker@", 3, 1, 0
@@ -1799,7 +1799,7 @@ SongInfo:
     db "Evolution@", 3, 1, 0
     db "National Park@", 3, 8, 0
     db "Credits@", 3, 8, 0
-    db "Lazor Gator@", 20, 40, 0
+    db "Azalea Town@", 3, 8, 0
     db "Cherrygrove City@", 3, 1, 0
     db "Spotted! Kimono Girl@", 3, 8, 0
     db "Union Cave@", 3, 1, 0
@@ -1844,8 +1844,8 @@ SongInfo:
     db "Victory Road@", 3, 1, 0
     db "Pokémon Lullaby@", 3, 1, 0
     db "Pokémon March@", 3, 1, 0
-    db "Opening 1@", 3, $18, 0
-    db "Opening 2@", 3, 1, 0
+    db "Opening 1@", 22, 12, 0
+    db "Opening 2@", 22, 1, 12
     db "Load Game@", 3, 1, 0
     db "Ruins of Alph Inside@", 3, 1, 0
     db "Team Rocket@", 3, 8, 0
@@ -1865,174 +1865,45 @@ SongInfo:
     db "Vs. Suicune@", 4, 1, 0
     db "Battle Tower Lobby@", 4, 9, 0
     db "Mobile Center@", 4, 1, 0
-    db "Opening@",  1, 1, 0
-    db "Opening@", 2, 1, 0
-    db "Title Screen@",  1, 1, 0
-    db "Introduction@",  1, 1, 0
-    db "Pallet Town@",  1, 1, 0
-    db "Professor Oak@",  1, 1, 0
-    db "Oak's Lab@",  1, 1, 0
-    db "Rival Appears@",  1, 1, 0
-    db "Rival Departure@",  1, 1, 0
-    db "Route 1@",  1, 1, 0
-    db "Viridian City@",  1, 1, 0
-    db "Pokémon Center@",  1, 1, 0
-    db "Heal Pokémon@",  1, 1, 0
-    db "Viridian Forest@",  1, 1, 0
-    db "Follow Me!@",  1, 1, 0
-    db "Gym@",  1, 1, 0
-    db "Jigglypuff Sings@",  1, 1, 0
-    db "Route 3@",  1, 1, 0
-    db "Mt. Moon@",  1, 1, 0
-    db "Jessie and James@", 2, 1, 0
-    db "Cerulean City@",  1, 1, 0
-    db "Vermilion City@",  1, 1, 0
-    db "S.S. Anne@",  1, 1, 0
-    db "Route 11@",  1, 1, 0
-    db "Lavender Town@",  1, 1, 0
-    db "Pokémon Tower@",  1, 1, 0
-    db "Celadon City@",  1, 1, 0
-    db "Game Corner@",  1, 1, 0
-    db "Rocket Hideout@",  1, 1, 0
-    db "Bicycle@",  1, 1, 0
-    db "Evolution@",  1, 1, 0
-    db "Surfing Pikachu@", 2, 1, 0
-    db "Silph Co.@",  1, 1, 0
-    db "Surfing@",  1, 1, 0
-    db "Cinnabar Island@",  1, 1, 0
-    db "Cinnabar Mansion@",  1, 1, 0
-    db "Indigo Plateau@",  1, 1, 0
-    db "Hall of Fame@",  1, 1, 0
-    db "Credits@",  1, 1, 0
-    db "Spotted! Boy@",  1, 1, 0
-    db "Spotted! Girl@",  1, 1, 0
-    db "Spotted! Rocket@",  1, 1, 0
-    db "Vs. Wild@",  1, 1, 0
-    db "Vs. Trainer@",  1, 1, 0
-    db "Vs. Gym Leader@",  1, 1, 0
-    db "Vs. Champion@",  1, 1, 0
-    db "Victory! Wild@",  1, 1, 0
-    db "Victory! Trainer@",  1, 1, 0
-    db "Victory! Champion@",  1, 1, 0
-    db "Unused@",  1, 1, 0
-    db "Unused@", 2, 1, 0
-    db "Route 103@", 5, 1, 2
-    db "Vs. Frontier Brain@", 5, 1, 2
-    db "Vs. Wild@", 6, 1, 2
-    db "Vs. Trainer@", 6, 1, 2
-    db "Defeated Wild@", 6, 1, 2
-    db "Defeated Trainer@", 6, 1, 2
-    db "Jubilife City@", 6, 1, 2
-    db "Route 201@", 6, 1, 2
-    db "Route 203@", 6, 1, 2
-    db "Route 205@", 6, 1, 2
-    db "Route 206@", 6, 1, 2
-    db "Route 209@", 6, 1, 2
-    db "Route 210@", 6, 1, 2
-    db "Eterna Forest@", 6, 1, 2
-    db "PokéRadar@", 6, 1, 2
-    db "Poffins@", 6, 1, 2
-    db "Cerulean City@", 7, 1, 2
-    db "Cinnabar Island@", 7, 1, 2
-    db "Cinnabar Island     GSC Remix@", 1, 1, 2
-    db "Route 24@", 7, 1, 2
-    db "Shop@", 7, 8, 2
-    db "Pokéathlon Finals@", 7, $0a, 2
-    db "Vs. Johto Trainer   GS Kanto Style Remix@", 3, 1, 2
-    db "Vs. Kanto Gym LeaderRemix@", 1, 1, 2
-    db "Vs. Naljo Wild@", 11, 3, 2
-    db "Vs. Naljo Gym Leader@", 11, 4, 2
-    db "Vs. Pallet Patrol@", 11, 5, 2
-	db "Title Screen@", 12, 6, 7
-	db "Duel Theme 1@", 12, 6, 7
-	db "Duel Theme 2@", 12, 6, 7
-	db "Duel Theme 3@", 12, 6, 7
-	db "Pause Menu@", 12, 6, 7
-	db "PC/Main Menu@", 12, 6, 7
-	db "Deck Machine@", 12, 6, 7
-	db "Card Pop@", 12, 6, 7
-	db "Overworld@", 12, 6, 7
-	db "Pokemon Dome@", 12, 6, 7
-	db "Challenge Hall@", 12, 6, 7
-	db "Club 1@", 12, 6, 7
-	db "Club 2@", 12, 6, 7
-	db "Club 3@", 12, 6, 7
-	db "Ronald@", 12, 6, 7
-	db "Imakuni@", 12, 6, 7
-	db "Hall Of Honor@", 12, 6, 7
-	db "Credits@", 12, 6, 7
-	db "Match Start 1@", 12, 6, 7
-	db "Match Start 2@", 12, 6, 7
-	db "Match Start 3@", 12, 6, 7
-	db "Match Victory@", 12, 6, 7
-	db "Match Loss@", 12, 6, 7
-	db "Dark Diddly@", 12, 6, 7
-	db "Booster Pack@", 12, 6, 7
-	db "Medal@", 12, 6, 7
-	db "Titlescreen@", 13, 6, 7
-	db "Here Comes GR@", 13, 6, 7
-	db "GR Overworld@", 13, 6, 7
-	db "Fort 1@", 13, 6, 7
-	db "Fort 2@", 13, 6, 7
-	db "Fort 3@", 13, 6, 7
-	db "Fort 4@", 13, 6, 7
-	db "GR Castle@", 13, 6, 7
-	db "GR Challenge Cup@", 13, 6, 7
-	db "Game Corner@", 13, 6, 7
-	db "GR Blimp@", 13, 6, 7
-	db "GR Duel Theme 1@", 13, 6, 7
-	db "GR Duel Theme 2@", 13, 6, 7
-	db "GR Duel Theme 3@", 13, 6, 7
-	db "Ishihara@", 13, 6, 7
-	db "Imakuni 2@", 13, 6, 7
-	db "Credits@", 13, 6, 7
-	db "Diddly 1@", 13, 6, 7
-	db "Diddly 2@", 13, 6, 7
-	db "Diddly 3@", 13, 6, 7
-	db "Diddly 4@", 13, 6, 7
-	db "Diddly 5@", 13, 6, 7
-	db "Diddly 6@", 13, 6, 7
-	db "Red Field Theme@"                         , 14, 8, 0
-	db "Catch 'Em & Evolution Mode in Red Field@" , 14, 8, 0
-	db "Hurry Up! Red Field@"                     , 14, 8, 0
-	db "Pokedex@"                                 , 14, 8, 0
-	db "Gengar Stage - Gastly in the Graveyard@"  , 14, 8, 0
-	db "Gengar Stage - Haunter in the Graveyard@" , 14, 8, 0
-	db "Gengar Stage - Gengar in the Graveyard@"  , 14, 8, 0
-	db "Blue Field Theme@"                        , 14, 8, 0
-	db "Catch 'Em & Evolution Mode in Blue Field@", 14, 8, 0
-	db "Hurry up! Blue Field@"                    , 14, 8, 0
-	db "Hi-Score Screen@"                         , 14, 8, 0
-	db "Game Over@"                               , 14, 8, 0
-	db "Diglett Stage - Whack the Digletts@"      , 14, 8, 0
-	db "Praise the Helix@"           , 20,40, 0
-	db "Bloody Sunday@"                              , 20,40, 0
-	db "All Terrain Victory@"                            , 20,40, 0
-	db "Godslayers@"                            , 20,40, 0
-	db "Helix in Aeternum@"                                 , 20,40, 0
-	db "Bringing Zexy Back@"                            , 20,40, 0
-	db "Rick Gastly@"                            , 20,40, 0
-	db "RotLK (Album Remix)@"                             , 21,40, 0
-	db "Ledge of Tomorrow@"                              , 21,40, 0
+    db "Cerulean City@", 1, 1, 2
+	db "Cinnabar Island@", 7, 1, 2
+	db "Route 24@", 7, 1, 2
+	db "Shop@", 7, 8, 2
+	db "Team Rocket Hideout@", 1, 1, 0
+	db "Silph Company@", 1, 1, 0
+	db "Mewtwo Battle@", 10, 10, 13
+	db "Game Corner@", 6, $18, 2
+	db "Rise of the Leech King@", 21, 11, 12
+	db "Rival's Theme@", 1, 1, 0
+	db "Rival's Theme (Cut)@", 1, 1, 0
+	db "Trainer Battle@", 1, 1, 0
+	db "Pokémon WCS Final Battle@", 8, 10, 12
+	db "Oceanic Museum@", 5, 9, 1
+	db "Pallet Town (Slow)@", 3, 1, 0
+	db "Champion Battle@", 1, 1, 0
+	db "Ho-Oh Battle@", 7, 8, 12
+	db "Lugia Battle@", 7, 8, 12
+	db "251 (Short Version)@", 22, 12, 0
     db -1
 	
 Origin:
-	db 01, "Pokémon Red@"
+	db 01, "Pokémon Red & Blue@"
 	db 02, "Pokémon Yellow@"
-	db 03, "Pokémon Gold@"
+	db 03, "Pokémon Gold & Silver@"
 	db 04, "Pokémon Crystal@"
-	db 05, "Pokémon Emerald@"
-	db 06, "Pokémon Platinum@"
-	db 07, "Pokémon HeartGold@"
-	db 08, "Pokémon Black@"
-	db 09, "Pokémon Black 2@"
-	db 10, "Pokémon X and Y@"
+	db 05, "Pokémon Ruby & Sapphire@"
+	db 06, "Pokémon Diamond & Pearl@"
+	db 07, "Pokémon HeartGold & SoulSilver@"
+	db 08, "Pokémon Black & White@"
+	db 09, "Pokémon Black 2 & White 2@"
+	db 10, "Pokémon X & Y@"
 	db 11, "Pokémon Prism@"
 	db 12, "Pokémon TCG@"
 	db 13, "Pokémon TCG 2@"
 	db 14, "Pokémon Pinball@"
 	db 20, "Tales of TPP Deluxe@"
 	db 21, "Dream Red@"
+	db 22, "Pokémon Crystal Anniversary@"
 	db -1
 	
 Artist:
@@ -2046,7 +1917,8 @@ Artist:
 	db $08, "Go Ichinose@"
 	db $09, "Morikazu Aoki@"
 	db $0a, "Shota Kageyama"
-	db $18, "Junichi Masuda,     Go Ichinose@"
-	db 40, "Church of the Helix Choir@"
-	db $09, "@"
+	db $0b, "Church of the Helix Choir@"
+	db $0c, "Pigu@"
+	db $0d, "Pigu, GACT@"
+	db $18, "Junichi Masuda, Go Ichinose@"
 	db -1

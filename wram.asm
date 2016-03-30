@@ -2608,8 +2608,17 @@ wRenderedWaveform:: ds 1 ;
 wSpecialWaveform:: ds 1 ;
 wWaveformTmp:: ds 16
 wWaveformTmpGFX:: ds 16 * 4
-wSelectorChars:: ds 5
-wSelectorGFX:: ds 16 * 2
+
+narrowds: MACRO
+\1Chars:: ds \2 + 1
+\1GFX:: ds ((\2 + 1) / 2) * 16
+ENDM
+
+narrowds wSelector, 4
+narrowds wMusicName, 15
+narrowds wMusicComposer, 15
+narrowds wMusicOrigin, 15
+narrowds wMusicAdditional, 10
 wMPInitClearEnd::
 
 SECTION "GBC Video", WRAMX, BANK [5]
