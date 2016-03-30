@@ -29,24 +29,42 @@ MapBattleTentRuinsDoorScript:
 
 MapBattleTentRuinsMonitorScript:
 	checkevent EVENT_TURNED_ON_BATTLE_TENT_GENERATOR
+	iftrue MapBattleTentRuinsMonitorScript3
+	checkevent EVENT_RESTORED_POWER_TO_KANTO
 	iftrue MapBattleTentRuinsMonitorScript2
 	jumptext MapBattleTentRuinsMonitorText1
 
 MapBattleTentRuinsMonitorScript2:
 	jumptext MapBattleTentRuinsMonitorText2
 
+MapBattleTentRuinsMonitorScript3:
+	jumptext MapBattleTentRuinsMonitorText3
+
 
 ; <text goes here>
 MapBattleTentRuinsDoorText:
 	text "It's locked<...>"
 	done
-
+	
 MapBattleTentRuinsMonitorText1:
-	text "The monitor is"
-	line "blank", $56
+	text "SYSTEM OFFLINE<...>"
+	
+	para "REASON:"
+	line "POWER OUTAGE"
+	
 	done
+	
 MapBattleTentRuinsMonitorText2:
-	text "SYSTEM OFFLINE", $56
+	text "LOCKDOWN INITIATED"
+	
+	para "REASON:"
+	line "GENERATOR FAILURE"
+	
+	done
+	
+MapBattleTentRuinsMonitorText3:
+	text "SYSTEM STATUS:"
+	line "NORMAL"
 	done
 
 BattleTentRuins_MapEventHeader: ; -- Required
