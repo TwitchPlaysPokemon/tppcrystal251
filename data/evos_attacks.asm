@@ -561,7 +561,7 @@ NidoranFEvosAttacks:
 NidorinaEvosAttacks:
 	db EVOLVE_ITEM, MOON_STONE, NIDOQUEEN
 	db 0 ; no more evolutions
-	db 1,  ; egg move
+	db 1, PURSUIT ; egg move
 	db 1, DOUBLE_KICK
 	db 1, TAIL_WHIP
 	db 1, POISON_STING

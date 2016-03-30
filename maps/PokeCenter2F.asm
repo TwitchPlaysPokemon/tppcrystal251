@@ -340,7 +340,7 @@ LinkReceptionistScript_0x192a2d: ; 0x192a2d
 	iftrue UnknownScript_0x192a25
 .SkipBillCheck
 	checkflag ENGINE_TIME_CAPSULE
-	iftrue UnknownScript_0x192a25
+	iffalse UnknownScript_0x192a25
 	special Function29cfa
 	faceplayer
 	loadfont

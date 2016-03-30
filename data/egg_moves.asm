@@ -83,6 +83,10 @@ EkansEggMoves:
 	db DISABLE
 	db SPITE
 	db SCARY_FACE
+	db HEADBUTT
+	db RAGE
+	db BIDE
+	db MIMIC
 	db $ff
 
 SandshrewEggMoves:
@@ -91,6 +95,11 @@ SandshrewEggMoves:
 	db COUNTER
 	db RAPID_SPIN
 	db SAND_ATTACK
+	db HEADBUTT
+	db IRON_TAIL
+	db BIDE
+	db MIMIC
+	db SUBMISSION
 	db $ff
 
 NidoranFEggMoves:
@@ -101,6 +110,16 @@ NidoranFEggMoves:
 	db DRILL_RUN
 	db OUTRAGE
 	db ROAR
+	db BIDE
+	db MIMIC
+	db MEGA_KICK
+	db MUD_SLAP
+	db FISSURE
+	db REFLECT
+	db HORN_DRILL
+	db DEFENSE_CURL
+	db SUBMISSION
+	db DOUBLE_EDGE
 	db $ff
 
 NidoranMEggMoves:
@@ -108,6 +127,16 @@ NidoranMEggMoves:
 	db COUNTER
 	db SUPER_FANG
 	db ROAR
+	db BIDE
+	db MIMIC
+	db MEGA_KICK
+	db MUD_SLAP
+	db FISSURE
+	db REFLECT
+	db HORN_DRILL
+	db DEFENSE_CURL
+	db SUBMISSION
+	db DOUBLE_EDGE
 	db $ff
 
 VulpixEggMoves:
@@ -122,6 +151,10 @@ ZubatEggMoves:
 	db FLAIL
 	db ENDURE
 	db SCREECH
+	db DOUBLE_EDGE
+	db RAGE
+	db MIMIC
+	db BIDE
 	db $ff
 
 OddishEggMoves:
@@ -521,6 +554,15 @@ PichuEggMoves:
 	db REVERSAL
 	db ENDURE
 	db AGILITY
+	db DEFENSE_CURL
+	db HEADBUTT
+	db RAGE
+	db MIMIC
+	db REFLECT
+	db SUBMISSION
+	db MEGA_KICK
+	db MUD_SLAP
+	db DOUBLE_EDGE
 	db $ff
 
 CleffaEggMoves:
@@ -530,6 +572,18 @@ CleffaEggMoves:
 	db IRON_TAIL
 	db COUNTER
 	db REFLECT
+	db ROLLOUT
+	db SCARY_FACE
+	db BIDE
+	db SUBMISSION
+	db MEGA_KICK
+	db MUD_SLAP
+	db DEFENSE_CURL
+	db SAFEGUARD
+	db AMNESIA
+	db DREAM_EATER
+	db NIGHTMARE
+	db PSYWAVE
 	db $ff
 
 IgglybuffEggMoves:
@@ -539,6 +593,13 @@ IgglybuffEggMoves:
 	db MIMIC
 	db PSYWAVE
 	db DISABLE
+	db BIDE
+	db BUBBLEBEAM
+	db HEADBUTT
+	db SCARY_FACE
+	db DREAM_EATER
+	db MUD_SLAP
+	db SAFEGUARD
 	db $ff
 
 TogepiEggMoves:
