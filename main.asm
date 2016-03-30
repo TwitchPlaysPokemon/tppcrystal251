@@ -30069,6 +30069,12 @@ Function28177: ; 28177
 	ld de, wd26b
 	ld bc, $000b
 	call CopyBytes
+	
+	ld a, [OverworldMap + $8]
+	cp $1 ;Is it TPP or not? If not, then don't battle
+	jp nz, BattleCheck
+
+LinkOK:
 	ld de, OTPartyCount
 	ld bc, $0008
 	call CopyBytes
@@ -30155,6 +30161,14 @@ Function28177: ; 28177
 	ret
 	
 .itemFailure
+	ld hl, StringMoveIncompatible ;Finish this part (just tell the player that the pokemon can't be traded)
+	call PrintText
+	ret
+
+BattleCheck: ;If mode is battle & linked game isn't TPP, then cancel.
+	ld a, [wLinkMode]
+	cp $3
+	jp nz, LinkOK
 	ld hl, StringMoveIncompatible ;Finish this part (just tell the player that the pokemon can't be traded)
 	call PrintText
 	ret
