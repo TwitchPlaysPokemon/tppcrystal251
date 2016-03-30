@@ -27687,36 +27687,43 @@ Unknown_254c9: ; 254c9
 	dw EVENT_FALKNER_REMATCH
 	db $00, $20, $24, $20 | $80
 	db $00, $20, $24, $20 | $80
+
 	; Hivebadge
 	db $68, $38
 	dw EVENT_BUGSY_REMATCH
 	db $04, $20, $24, $20 | $80
 	db $04, $20, $24, $20 | $80
+
 	; Plainbadge
 	db $68, $58
 	dw EVENT_WHITNEY_REMATCH
 	db $08, $20, $24, $20 | $80
 	db $08, $20, $24, $20 | $80
+
 	; Fogbadge
 	db $68, $78
 	dw EVENT_MORTY_REMATCH
 	db $0c, $20, $24, $20 | $80
 	db $0c, $20, $24, $20 | $80
-	; Glacierbadge
-	db $80, $18
-	dw EVENT_PRYCE_REMATCH
-	db $18, $20, $24, $20 | $80
-	db $18, $20, $24, $20 | $80
-	; Stormbadge
-	db $80, $38
-	dw EVENT_CHUCK_REMATCH
-	db $10, $20, $24, $20 | $80
-	db $10, $20, $24, $20 | $80
+
 	; Mineralbadge
 	db $80, $58
 	dw EVENT_JASMINE_REMATCH
 	db $14, $20, $24, $20 | $80
 	db $14, $20, $24, $20 | $80
+
+	; Stormbadge
+	db $80, $38
+	dw EVENT_CHUCK_REMATCH
+	db $10, $20, $24, $20 | $80
+	db $10, $20, $24, $20 | $80
+
+	; Glacierbadge
+	db $80, $18
+	dw EVENT_PRYCE_REMATCH
+	db $18, $20, $24, $20 | $80
+	db $18, $20, $24, $20 | $80
+
 	; Risingbadge
 	; X-flips on alternate cycles.
 	db $80, $78
@@ -30062,6 +30069,12 @@ Function28177: ; 28177
 	ld de, wd26b
 	ld bc, $000b
 	call CopyBytes
+	
+	ld a, [OverworldMap + $8]
+	cp $1 ;Is it TPP or not? If not, then don't battle
+	jp nz, BattleCheck
+
+LinkOK:
 	ld de, OTPartyCount
 	ld bc, $0008
 	call CopyBytes
@@ -30148,6 +30161,14 @@ Function28177: ; 28177
 	ret
 	
 .itemFailure
+	ld hl, StringMoveIncompatible ;Finish this part (just tell the player that the pokemon can't be traded)
+	call PrintText
+	ret
+
+BattleCheck: ;If mode is battle & linked game isn't TPP, then cancel.
+	ld a, [wLinkMode]
+	cp $3
+	jp nz, LinkOK
 	ld hl, StringMoveIncompatible ;Finish this part (just tell the player that the pokemon can't be traded)
 	call PrintText
 	ret
@@ -40424,43 +40445,64 @@ Palette_49501: ; 49501
 ; 49541
 
 Function49541: ; 49541
-	ld a, $5
+	ld hl, .pointers
+	ld a, [TimeOfDayPal]
+	dec a
+	ld e, a
+	ld d, 0
+	add hl, de
+	add hl, de
+	ld a, [hli]
+	ld h, [hl]
+	ld l, a
 	ld de, Unkn1Pals
-	ld hl, Palette_49550
 	ld bc, $0040
+	ld a, $5
 	call FarCopyWRAM
 	ret
 ; 49550
 
+.pointers
+	dw Palette_49550
+	dw Palette_49550_2
+
+Palette_49550_2:
 Palette_49550: ; 49550
 	RGB 30, 28, 26
 	RGB 19, 19, 19
 	RGB 13, 13, 13
 	RGB 07, 07, 07
+
 	RGB 30, 28, 26
 	RGB 31, 19, 24
 	RGB 30, 10, 06
 	RGB 07, 07, 07
+
 	RGB 18, 24, 09
 	RGB 15, 20, 01
 	RGB 09, 13, 00
 	RGB 07, 07, 07
+
 	RGB 30, 28, 26
 	RGB 15, 16, 31
 	RGB 09, 09, 31
 	RGB 07, 07, 07
+
 	RGB 30, 28, 26
 	RGB 31, 31, 07
 	RGB 31, 16, 01
 	RGB 07, 07, 07
+
 	RGB 26, 24, 17
 	RGB 21, 17, 07
 	RGB 16, 13, 03
 	RGB 07, 07, 07
+
 	RGB 05, 05, 16
 	RGB 08, 19, 28
 	RGB 00, 00, 00
 	RGB 31, 31, 31
+
 	RGB 31, 31, 16
 	RGB 31, 31, 16
 	RGB 14, 09, 00
@@ -41213,7 +41255,7 @@ INCBIN "gfx/unknown/049c0c.2bpp"
 ; 49cdc
 
 MainMenu: ; 49cdc
-	callab InitializeMusic
+	callba DeleteSavedMusic
 	xor a
 	ld [wc2d7], a
 	call Function49ed0
@@ -41534,7 +41576,11 @@ Function49ed0: ; 49ed0
 ; 49ee0
 
 MainMenu_NewGame: ; 49ee0
+IF DEF(APRILFOOLS)
+	rst $38
+ELSE
 	callba NewGame
+ENDC
 	ret
 ; 49ee7
 

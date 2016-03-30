@@ -3,19 +3,9 @@ RocketHideout4_MapScriptHeader:
 	db 0
 
 	; callbacks
-	db 0
-	; dbw 1, RocketHideout4_TurnOnLights
+	db 1
+	dbw 1, RocketHideout_TurnOnLights
 
-
-RocketHideout4_TurnOnLights:
-	checkevent EVENT_RESTORED_POWER_TO_KANTO
-	iffalse RocketHideout4_DontTurnOnLights
-	writecode VAR_TIMEOFDAY, 1
-	loadvar wd846, %10000000
-	special UpdateTimePals
-	loadvar wd846, %00000000
-RocketHideout4_DontTurnOnLights:
-	return	
 ; <scripts go here>
 
 ; <text goes here>

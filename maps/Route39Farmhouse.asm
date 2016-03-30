@@ -177,11 +177,13 @@ UnknownText_0x9d0f6: ; 0x9d0f6
 ; 0x9d156
 
 UnknownText_0x9d156: ; 0x9d156
-	text "You fixed our"
-	line "MILTANK, hon. Now"
+	text "Our MILTANK seem"
+	line "to be doing much"
+	cont "better!"
 
-	para "it gives MOOMOO"
-	line "MILK again."
+	para "Looks like we'll"
+	line "have MOOMOO MILK"
+	cont "again soon."
 
 	para "Here's somethin'"
 	line "fer your trouble."
@@ -199,15 +201,16 @@ UnknownText_0x9d1c7: ; 0x9d1c7
 	line "DAZZLINGLEAM."
 
 	para "It's a strong"
-	line "FAIRY type attack"
+	line "FAIRY type attack."
 
-	para "Whitney bought a"
+	para "WHITNEY bought a"
 	line "ton of 'em, and"
 
-	para "she loves MOOMOO"
-	line "so she'll not mind"
-	cont "mind if we hand ya"
-	cont "one."
+	para "gave them to us"
+	line "for our MOOMOO."
+	
+	line "She won't mind if"
+	cont "if we give ya one."
 	done
 ; 0x9d242
 

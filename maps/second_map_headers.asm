@@ -769,7 +769,7 @@
 	map_header_2 BillsGarden, BILLS_GARDEN, 44, NONE
 
 	map_header_2 PowerplantB1, POWERPLANTB1, 46, NONE
-	map_header_2 PowerplantB2, POWERPLANTB2, $1d, NONE
+	map_header_2 PowerplantB2, POWERPLANTB2, 29, NONE
 	map_header_2 EnteiRoom, ENTEI_ROOM, $9, NONE
 	map_header_2 RaikouRoom, RAIKOU_ROOM, $24, NONE
 	map_header_2 SuicuneRoom, SUICUNE_ROOM, $9, NONE

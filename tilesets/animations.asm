@@ -212,6 +212,7 @@ TilesetAnimfc1af: ; 0xfc1af
 Tileset24Anim: ; 0xfc1e7
 Tileset30Anim: ; 0xfc1e7
 Tileset39Anim: ; 0xfc1e7
+Tileset43Anim: ; 0xfc1e7
 ;	   param, function
 	dw $9140, WriteTileToBuffer
 	dw NULL,  Functionfc71e

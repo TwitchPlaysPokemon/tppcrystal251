@@ -578,20 +578,16 @@ Script_verbosegiveitem: ; 0x96f60
 	ld de, StringBuffer1
 	ld a, $1
 	call Function976c8 ;copy name into stringbuffer3
+	ld a, [wd10c]
+	cp 2
 	ld b, BANK(GiveItemScript)
 	ld de, GiveItemScript
+	jp c, ScriptCall
+	ld de, GiveMultipleItems
 	jp ScriptCall
 ; 0x96f76
 
-
-Function96f76: ; 96f76
-	ret
-; 96f77
-
 GiveItemScript: ; 96f77
-	callasm Function96f76
-	copybytetovar wd10c
-	if_greater_than 1, GiveMultipleItems
 	writetext ReceivedItemText
 	iffalse VerboseBagFull
 	waitsfx
@@ -652,8 +648,12 @@ Script_verbosegiveitem2: ; 0x96f8e
 	ld de, StringBuffer1
 	ld a, $1
 	call Function976c8
+	ld a, [wd10c]
+	cp 2
 	ld b, BANK(GiveItemScript)
 	ld de, GiveItemScript
+	jp c, ScriptCall
+	ld de, GiveMultipleItems
 	jp ScriptCall
 ; 0x96fc6
 

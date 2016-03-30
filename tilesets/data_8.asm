@@ -32,3 +32,10 @@ Tileset42Meta:
 INCBIN "tilesets/42_metatiles.bin"
 Tileset42Coll:
 INCBIN "tilesets/42_collision.bin"
+
+Tileset43GFX:
+INCBIN "gfx/tilesets/43.2bpp.lz"
+Tileset43Meta:
+INCBIN "tilesets/43_metatiles.bin"
+Tileset43Coll:
+INCBIN "tilesets/43_collision.bin"

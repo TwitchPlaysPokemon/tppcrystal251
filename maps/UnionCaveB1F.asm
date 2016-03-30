@@ -215,13 +215,14 @@ PokemaniacCalvinSeenText: ; 0x5a1b0
 ; 0x5a217
 
 PokemaniacCalvinBeatenText: ; 0x5a217
-	text "Got predicted!"
+	text "Bah! You predicted"
+	cont "my moves!"
 	done
 ; 0x5a230
 
 UnknownText_0x5a230: ; 0x5a230
 	text "I caught my HITMO-"
-	line "-NCHAN downstairs."
+	line "NCHAN downstairs."
 
 	para "They are common"
 	line "during the day!"

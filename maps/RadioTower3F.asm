@@ -387,7 +387,7 @@ UnknownText_0x5e9d0: ; 0x5e9d0
 	line "past our men in"
 	cont "the UNDERGROUND?"
 
-	para "How could you?"
+	para "How could you<...>"
 	done
 ; 0x5ea14
 
@@ -411,9 +411,9 @@ UnknownText_0x5ea61: ; 0x5ea61
 	text "Tactics is a big"
 	line "part of #MON."
 
-	para "For me it all st-"
-	line "-arted with using"
-	cont "Smog on a grass"
+	para "For me it all"
+	line "started with using"
+	cont "SMOG on a grass"
 	cont "-type #MON."
 	done
 ; 0x5eaa4

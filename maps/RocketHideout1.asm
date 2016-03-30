@@ -6,20 +6,15 @@ RocketHideout1_MapScriptHeader:
 	dw RocketHideout1_Trigger2, $0000
 
 	; callbacks
-	db 0
-	
-	; dbw 1, RocketHideout1_TurnOnLights
-	
+	db 1
+	dbw 2, RocketHideout_TurnOnLights
 
 ; <scripts go here>
-RocketHideout1_TurnOnLights:
-	checkevent EVENT_RESTORED_POWER_TO_KANTO
-	iffalse RocketHideout1_DontTurnOnLights
-	writecode VAR_TIMEOFDAY, 1
-	loadvar wd846, %10000000
-	special UpdateTimePals
-	loadvar wd846, %00000000
-RocketHideout1_DontTurnOnLights:
+RocketHideout_TurnOnLights:
+	checkevent EVENT_TURNED_ON_BATTLE_TENT_GENERATOR
+	iffalse .KeepLightsOff
+	loadvar TimeOfDayPal, 1
+.KeepLightsOff
 	return
 
 RocketHideout1_Trigger1:

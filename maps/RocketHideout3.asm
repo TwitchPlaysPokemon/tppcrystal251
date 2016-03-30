@@ -1,24 +1,11 @@
 RocketHideout3_MapScriptHeader:
 	; triggers
-	db 1
-	dw RocketHideout3_MapTrigger1, $0000
+	db 0
 
 	; callbacks
-	db 0
-	; dbw 1, RocketHideout3_TurnOnLights
+	db 1
+	dbw 1, RocketHideout_TurnOnLights
 
-RocketHideout3_MapTrigger1: 
-	end
-
-RocketHideout3_TurnOnLights:
-	checkevent EVENT_RESTORED_POWER_TO_KANTO
-	iffalse RocketHideout3_DontTurnOnLights
-	writecode VAR_TIMEOFDAY, 1
-	loadvar wd846, %10000000
-	special UpdateTimePals
-	loadvar wd846, %00000000
-RocketHideout3_DontTurnOnLights:
-	return	
 
 ; <scripts go here>
 

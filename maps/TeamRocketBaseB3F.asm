@@ -95,6 +95,7 @@ UnknownScript_0x6e052: ; 0x6e052
 UnknownScript_0x6e056: ; 0x6e056
 	pause 30
 	showemote $0, $3, 15
+	special SaveMusic
 	playmusic MUSIC_ROCKET_ENCOUNTER
 	spriteface $3, $0
 	loadfont

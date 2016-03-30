@@ -75,7 +75,7 @@ UnknownText_0x7b48f: ; 0x7b48f
 	line "SWORDS DANCE."
 
 	para "It builds attack"
-	line "very fast."
+	line "very quickly,"
 
 	para "but allows other"
 	line "#MON to switch"
