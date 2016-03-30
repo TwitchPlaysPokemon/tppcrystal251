@@ -2611,12 +2611,12 @@ wWaveformTmpGFX:: ds 16 * 4
 wSelectorChars:: ds 5
 wSelectorGFX:: ds 8 * 4
 wMusicNameChars:: ds 31
-wMusicComposeChars:: ds 31
+wMusicComposerChars:: ds 31
 wMusicOriginChars:: ds 31
 wMusicAdditionalChars:: ds 21
 wMusicInfoCharsEnd::
 wMusicNameGFX:: ds 8 * 15
-wMusicComposeGFX:: ds 8 * 15
+wMusicComposerGFX:: ds 8 * 15
 wMusicOriginGFX:: ds 8 * 15
 wMusicAdditionalGFX:: ds 8 * 10
 wMusicInfoGFXEnd::

@@ -1014,8 +1014,8 @@ UpdateVisualIntensity:
 	ret
 
 GetSongInfo:
-    ld a, [wSongSelection]
-    cp NUM_MUSIC
+	dec a
+    cp NUM_MUSIC - 1
 	jr nc, .noname
 	ld c, a
 	ld b, 0
@@ -1035,34 +1035,53 @@ GetSongInfo:
 DrawSongInfo:
     ld a, [wSongSelection]
     call GetSongInfo
-    ret c ; no data
+    jr c, .skip ; no data
     
-    push hl
-    pop de
-    ;hlcoord 0, 4
-	hlcoord 0, 10
-    call PlaceString
+    ld a, [hli]
+	ld d, [hl]
+	ld e, a
+	push hl
+    ld hl, wMusicNameChars
+	ld bc, wMusicNameGFX
+	ld a, 30
+    call PlaceString_MP
+	pop de
 	inc de
 	push de
-	call GetSongOrigin
-    hlcoord 0, 11
-    call PlaceString
+	ld hl, Origin - 2
+	call GetSongInfo2
+    ld hl, wMusicOriginChars
+	ld bc, wMusicOriginGFX
+	ld a, 30
+    call PlaceString_MP
 	pop de
     inc de
-	;push de
-	;call GetSongArtist
-    ;hlcoord 0, 8
-    ;call PlaceString
-	;pop de
+	push de
+	ld hl, Artist - 2
+	call GetSongInfo2
+    ld hl, wMusicComposerChars
+	ld bc, wMusicComposerGFX
+	ld a, 30
+    call PlaceString_MP
+	pop de
     inc de
-	;push de
-	;call GetSongArtist2
-    ;hlcoord 0, 11
-    ;call PlaceString
-	;pop de
+	ld a, [de]
+	and a
+	jr z, .skip
+	ld hl, Artist - 2
+	call GetSongInfo2
+    ld hl, wMusicAdditionalChars
+	ld bc, wMusicAdditionalGFX
+	ld a, 20
+    call PlaceString_MP
+	ld hl, wMPFlags
+	set 6, [hl]
+.skip
+	ld hl, wMPFlags
+	set 7, [hl]
     ret
 
-GetSongOrigin:
+GetSongInfo2:
     ld a, [de]
     ld b, a
 .loop
@@ -1177,7 +1196,6 @@ SongSelector:
     ld a, [wSelectorTop]
     ld [wSongSelection], a
     ret
-    
 
 UpdateSelectorNames:
     call GetSongInfo
@@ -1265,7 +1283,32 @@ MPLPlaceString:
     pop de
     ret
 	
-RenderNarrowText:
+PlaceString_MP:
+	push bc
+	push hl
+	ld b, a
+.loop
+	ld a, [de]
+	inc de
+	cp "@"
+	jr z, .done
+	ld [hli], a
+	dec b
+	jr z, .toolong
+	jr .loop
+.toolong
+	dec hl
+	dec hl
+	ld [hl], "."
+	inc hl
+	ld [hl], "."
+	inc hl
+.done
+	ld [hl], "@"
+	pop hl
+	pop de
+	
+RenderNarrowText::
 ; render 1bpp graphics of a narrow text of hl to de
 ; only work with character $7f-$ff
 	ld b, 0 ; left/right indicator
