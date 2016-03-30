@@ -342,18 +342,8 @@ MPlayerTilemap:
 .redraw	
     ld [wSongSelection], a
     
-	; old function had more than one VBlank printing, slowing down the music
-	;ld a, " "
-	;hlcoord 5, 2
-	;ld bc, 3
-	;call ByteFill
-	;hlcoord 0, 3
-	;ld bc, 60
-	;call ByteFill
-	;hlcoord 0, 8
-	;ld bc, 90
-	;call ByteFill
-	;hlcoord 5, 2
+	fill " ", wMusicNameChars, wMusicInfoCharsEnd - wMusicNameChars
+	fill 0, wMusicNameGFX, wMusicInfoGFXEnd - wMusicNameGFX
 	ld hl, wSelectorChars + 4
 	ld [hl], "@"
 	dec hl
@@ -371,7 +361,7 @@ MPlayerTilemap:
 	ld hl, wSelectorChars
 	ld de, wSelectorGFX
 	call RenderNarrowText
-	;call DrawSongInfo
+	call DrawSongInfo
 	ld hl, wMPFlags
 	set 1, [hl] ; song info redraw occurred
 	jp .loop
@@ -1025,30 +1015,19 @@ UpdateVisualIntensity:
 
 GetSongInfo:
     ld a, [wSongSelection]
-    ld b, a
-	ld c, 0
-    ld hl, SongInfo
-.loop
-	ld a, [hl]
-    cp -1
-    jr z, .noname
-	inc c
-    ld a, c
-    cp b
-    jr z, .found
-.loop2
-    ld a, [hli]
-	cp "@"
-	jr z, .nextline
-    jr .loop2
-.found
-    xor a
-    ret
-.nextline
-	inc hl
-	inc hl
-	inc hl
-	jr .loop
+    cp NUM_MUSIC
+	jr nc, .noname
+	ld c, a
+	ld b, 0
+	ld l, c
+	ld h, b
+	add hl, hl ; x2
+	add hl, hl ; x4
+	add hl, bc ; x5
+	ld bc, SongInfo
+	add hl, bc
+	xor a
+	ret
 .noname
     scf
     ret
@@ -1086,52 +1065,17 @@ DrawSongInfo:
 GetSongOrigin:
     ld a, [de]
     ld b, a
-    ld hl, Origin
 .loop
+	inc hl
+	inc hl
     ld a, [hli]
     cp -1
     jr z, .noname
     cp b
     jr nz, .loop
-    push hl
-    pop de
-    ret
-.noname
-	ld de, BlankName
-    ret
-
-GetSongArtist:
-    ld a, [de]
-    ld b, a
-    ld hl, Artist
-.loop
     ld a, [hli]
-    cp -1
-    jr z, .noname
-    cp b
-    jr nz, .loop
-    push hl
-    pop de
-    ret
-.noname
-	ld de, BlankName
-    ret
-
-GetSongArtist2:
-    ld a, [de]
-    ld b, a
-    ld hl, Artist
-.loop
-    ld a, [hli]
-    cp -1
-    jr z, .noname
-    cp b
-    jr nz, .loop
-    push hl
-	ld de, Additional
-	hlcoord 0, 10
-    call PlaceString
-    pop de
+	ld d, [hl]
+	ld e, a
     ret
 .noname
 	ld de, BlankName
@@ -1759,166 +1703,325 @@ EmptyPitch: db "   @"
 
 MusicListText:
 	db $d8,$d9
+	
+info: MACRO
+	dw \1
+	db \2, \3, \4
+ENDM
 
 BlankName:
 	db " @"
 SongInfo:
-    db "Title Screen@", 22, 1, 12
-    db "Route 1@", 3, 1, 0
-    db "Route 3@", 3, 1, 0
-    db "Route 11@", 3, 1, 0
-    db "Magnet Train@", 3, 8, 0
-    db "Vs. Kanto Gym Leader@", 3, 1, 0
-    db "Vs. Kanto Trainer@", 3, 1, 0
-    db "Vs. Kanto Wild@", 3, 1, 0
-    db "Pokémon Center@", 3, 1, 0
-    db "Spotted! Hiker@", 3, 1, 0
-    db "Spotted! Girl 1@", 3, 8, 0
-    db "Spotted! Boy 1@", 3, 8, 0
-    db "Heal Pokémon@", 3, 1, 0
-    db "Lavender Town@", 3, $18, 0
-    db "Viridian Forest@", 3, $18, 0
-    db "Kanto Cave@", 3, 1, 0
-    db "Follow Me!@", 3, 1, 0
-    db "Game Corner@", 3, 8, 0
-    db "Bicycle@", 3, 1, 0
-    db "Hall of Fame@", 3, 1, 0
-    db "Viridian City@", 3, 1, 0
-    db "Celadon City@", 3, 1, 0
-    db "Victory! Trainer@", 3, 1, 0
-    db "Victory! Wild@", 3, 1, 0
-    db "Victory! Champion@", 3, 1, 0
-    db "Mt. Moon@", 3, 1, 0
-    db "Gym@", 3, 1, 0
-    db "Pallet Town@", 3, 1, 0
-    db "Oak's Lab@", 3, 1, 0
-    db "Professor Oak@", 3, 1, 0
-    db "Rival Appears@", 3, 1, 0
-    db "Rival Departure@", 3, 1, 0
-    db "Surfing@", 3, 8, 0
-    db "Evolution@", 3, 1, 0
-    db "National Park@", 3, 8, 0
-    db "Credits@", 3, 8, 0
-    db "Azalea Town@", 3, 8, 0
-    db "Cherrygrove City@", 3, 1, 0
-    db "Spotted! Kimono Girl@", 3, 8, 0
-    db "Union Cave@", 3, 1, 0
-    db "Vs. Johto Wild@", 3, 1, 0
-    db "Vs. Johto Trainer@", 3, 1, 0
-    db "Route 30@", 3, 1, 0
-    db "Ecruteak City@", 3, 8, 0
-    db "Violet City@", 3, 8, 0
-    db "Vs. Johto Gym Leader@", 3, 1, 0
-    db "Vs. Champion@", 3, 1, 0
-    db "Vs. Rival@", 3, 1, 0
-    db "Vs. Rocket Grunt@", 3, 1, 0
-    db "Elm's Lab@", 3, 1, 0
-    db "Dark Cave@", 3, 1, 0
-    db "Route 29@", 3, 1, 0
-    db "Route 34@", 3, 1, 0
-    db "S.S. Aqua@", 3, 8, 0
-    db "Spotted! Boy 2@", 3, 1, 0
-    db "Spotted! Girl 2@", 3, 1, 0
-    db "Spotted! Team Rocket@", 3, 8, 0
-    db "Spotted! Suspicious@", 3, 8, 0
-    db "Spotted! Sage@", 3, 8, 0
-    db "New Bark Town@", 3, $18, 0
-    db "Goldenrod City@", 3, 1, 0
-    db "Vermilion City@", 3, 1, 0
-    db "Pokémon Channel@", 3, 1, 0
-    db "PokéFlute@", 3, 1, 0
-    db "Tin Tower@", 3, 1, 0
-    db "Sprout Tower@", 3, 1, 0
-    db "Burned Tower@", 3, 1, 0
-    db "Olivine Lighthouse@", 3, 1, 0
-    db "Route 42@", 3, 1, 0
-    db "Indigo Plateau@", 3, 1, 0
-    db "Route 38@", 3, 1, 0
-    db "Rocket Hideout@", 3, 1, 0
-    db "Dragon's Den@", 3, 1, 0
-    db "Vs. Johto Wild Night@", 3, 1, 0
-    db "Unown Radio@", 3, 1, 0
-    db "Captured Pokémon@", 3, 1, 0
-    db "Route 26@", 3, 1, 0
-    db "Mom@", 3, 1, 0
-    db "Victory Road@", 3, 1, 0
-    db "Pokémon Lullaby@", 3, 1, 0
-    db "Pokémon March@", 3, 1, 0
-    db "Opening 1@", 22, 12, 0
-    db "Opening 2@", 22, 1, 12
-    db "Load Game@", 3, 1, 0
-    db "Ruins of Alph Inside@", 3, 1, 0
-    db "Team Rocket@", 3, 8, 0
-    db "Dancing Hall@", 3, 8, 0
-    db "Bug Contest Ranking@", 3, 8, 0
-    db "Bug Contest@", 3, 1, 0
-    db "Rocket Radio@", 3, 1, 0
-    db "GameBoy Printer@", 3, 1, 0
-    db "Post Credits@", 3, 8, 0
-    db "Clair@", 4, 9, 0
-    db "Mobile Adapter Menu@", 4, 9, 0
-    db "Mobile Adapter@", 4, 9, 0
-    db "Buena's Password@", 4, 9, 0
-    db "Eusine@", 4, 9, 0
-    db "Opening@", 4, 1, 0
-    db "Battle Tower@", 4, 9, 0
-    db "Vs. Suicune@", 4, 1, 0
-    db "Battle Tower Lobby@", 4, 9, 0
-    db "Mobile Center@", 4, 1, 0
-    db "Cerulean City@", 1, 1, 2
-	db "Cinnabar Island@", 7, 1, 2
-	db "Route 24@", 7, 1, 2
-	db "Shop@", 7, 8, 2
-	db "Team Rocket Hideout@", 1, 1, 0
-	db "Silph Company@", 1, 1, 0
-	db "Mewtwo Battle@", 10, 10, 13
-	db "Game Corner@", 6, $18, 2
-	db "Rise of the Leech King@", 21, 11, 12
-	db "Rival's Theme@", 1, 1, 0
-	db "Rival's Theme (Cut)@", 1, 1, 0
-	db "Trainer Battle@", 1, 1, 0
-	db "Pokémon WCS Final Battle@", 8, 10, 12
-	db "Oceanic Museum@", 5, 9, 1
-	db "Pallet Town (Slow)@", 3, 1, 0
-	db "Champion Battle@", 1, 1, 0
-	db "Ho-Oh Battle@", 7, 8, 12
-	db "Lugia Battle@", 7, 8, 12
-	db "251 (Short Version)@", 22, 12, 0
-    db -1
+    info ._01, 22, 1, 12
+    info ._02, 3, 1, 0
+    info ._03, 3, 1, 0
+    info ._04, 3, 1, 0
+    info ._05, 3, 8, 0
+    info ._06, 3, 1, 0
+    info ._07, 3, 1, 0
+    info ._08, 3, 1, 0
+    info ._09, 3, 1, 0
+    info ._0a, 3, 1, 0
+    info ._0b, 3, 8, 0
+    info ._0c, 3, 8, 0
+    info ._0d, 3, 1, 0
+    info ._0e, 3, $18, 0
+    info ._0f, 3, $18, 0
+    info ._10, 3, 1, 0
+    info ._11, 3, 1, 0
+    info ._12, 3, 8, 0
+    info ._13, 3, 1, 0
+    info ._14, 3, 1, 0
+    info ._15, 3, 1, 0
+    info ._16, 3, 1, 0
+    info ._17, 3, 1, 0
+    info ._18, 3, 1, 0
+    info ._19, 3, 1, 0
+    info ._1a, 3, 1, 0
+    info ._1b, 3, 1, 0
+    info ._1c, 3, 1, 0
+    info ._1d, 3, 1, 0
+    info ._1e, 3, 1, 0
+    info ._1f, 3, 1, 0
+    info ._20, 3, 1, 0
+    info ._21, 3, 8, 0
+    info ._22, 3, 1, 0
+    info ._23, 3, 8, 0
+    info ._24, 3, 8, 0
+    info ._25, 3, 8, 0
+    info ._26, 3, 1, 0
+    info ._27, 3, 8, 0
+    info ._28, 3, 1, 0
+    info ._29, 3, 1, 0
+    info ._2a, 3, 1, 0
+    info ._2b, 3, 1, 0
+    info ._2c, 3, 8, 0
+    info ._2d, 3, 8, 0
+    info ._2e, 3, 1, 0
+    info ._2f, 3, 1, 0
+    info ._30, 3, 1, 0
+    info ._31, 3, 1, 0
+    info ._32, 3, 1, 0
+    info ._33, 3, 1, 0
+    info ._34, 3, 1, 0
+    info ._35, 3, 1, 0
+    info ._36, 3, 8, 0
+    info ._37, 3, 1, 0
+    info ._38, 3, 1, 0
+    info ._39, 3, 8, 0
+    info ._3a, 3, 8, 0
+    info ._3b, 3, 8, 0
+    info ._3c, 3, $18, 0
+    info ._3d, 3, 1, 0
+    info ._3e, 3, 1, 0
+    info ._3f, 3, 1, 0
+    info ._40, 3, 1, 0
+    info ._41, 3, 1, 0
+    info ._42, 3, 1, 0
+    info ._43, 3, 1, 0
+    info ._44, 3, 1, 0
+    info ._45, 3, 1, 0
+    info ._46, 3, 1, 0
+    info ._47, 3, 1, 0
+    info ._48, 3, 1, 0
+    info ._49, 3, 1, 0
+    info ._4a, 3, 1, 0
+    info ._4b, 3, 1, 0
+    info ._4c, 3, 1, 0
+    info ._4d, 3, 1, 0
+    info ._4e, 3, 1, 0
+    info ._4f, 3, 1, 0
+    info ._50, 3, 1, 0
+    info ._51, 3, 1, 0
+    info ._52, 22, 12, 0
+    info ._53, 22, 1, 12
+    info ._54, 3, 1, 0
+    info ._55, 3, 1, 0
+    info ._56, 3, 8, 0
+    info ._57, 3, 8, 0
+    info ._58, 3, 8, 0
+    info ._59, 3, 1, 0
+    info ._5a, 3, 1, 0
+    info ._5b, 3, 1, 0
+    info ._5c, 3, 8, 0
+    info ._5d, 4, 9, 0
+    info ._5e, 4, 9, 0
+    info ._5f, 4, 9, 0
+    info ._60, 4, 9, 0
+    info ._61, 4, 9, 0
+    info ._62, 4, 1, 0
+    info ._63, 4, 9, 0
+    info ._64, 4, 1, 0
+    info ._65, 4, 9, 0
+    info ._66, 4, 1, 0
+    info ._67, 1, 1, 2
+	info ._68, 7, 1, 2
+	info ._69, 7, 1, 2
+	info ._6a, 7, 8, 2
+	info ._6b, 1, 1, 0
+	info ._6c, 1, 1, 0
+	info ._6d, 10, 10, 13
+	info ._6e, 6, $18, 2
+	info ._6f, 21, 11, 12
+	info ._70, 1, 1, 0
+	info ._71, 1, 1, 0
+	info ._72, 1, 1, 0
+	info ._73, 8, 10, 12
+	info ._74, 5, 9, 1
+	info ._75, 3, 1, 0
+	info ._76, 1, 1, 0
+	info ._77, 7, 8, 12
+	info ._78, 7, 8, 12
+	info ._79, 22, 12, 0
+	
+._01 db "Title Screen@"
+._02 db "Route 1@"
+._03 db "Route 3@"
+._04 db "Route 11@"
+._05 db "Magnet Train@"
+._06 db "Vs. Kanto Gym Leader@"
+._07 db "Vs. Kanto Trainer@"
+._08 db "Vs. Kanto Wild@"
+._09 db "Pokémon Center@"
+._0a db "Spotted! Hiker@"
+._0b db "Spotted! Girl 1@"
+._0c db "Spotted! Boy 1@"
+._0d db "Heal Pokémon@"
+._0e db "Lavender Town@"
+._0f db "Viridian Forest@"
+._10 db "Kanto Cave@"
+._11 db "Follow Me!@"
+._12 db "Game Corner@"
+._13 db "Bicycle@"
+._14 db "Hall of Fame@"
+._15 db "Viridian City@"
+._16 db "Celadon City@"
+._17 db "Victory! Trainer@"
+._18 db "Victory! Wild@"
+._19 db "Victory! Champion@"
+._1a db "Mt. Moon@"
+._1b db "Gym@"
+._1c db "Pallet Town@"
+._1d db "Oak's Lab@"
+._1e db "Professor Oak@"
+._1f db "Rival Appears@"
+._20 db "Rival Departure@"
+._21 db "Surfing@"
+._22 db "Evolution@"
+._23 db "National Park@"
+._24 db "Credits@"
+._25 db "Azalea Town@"
+._26 db "Cherrygrove City@"
+._27 db "Spotted! Kimono Girl@"
+._28 db "Union Cave@"
+._29 db "Vs. Johto Wild@"
+._2a db "Vs. Johto Trainer@"
+._2b db "Route 30@"
+._2c db "Ecruteak City@"
+._2d db "Violet City@"
+._2e db "Vs. Johto Gym Leader@"
+._2f db "Vs. Champion@"
+._30 db "Vs. Rival@"
+._31 db "Vs. Rocket Grunt@"
+._32 db "Elm's Lab@"
+._33 db "Dark Cave@"
+._34 db "Route 29@"
+._35 db "Route 34@"
+._36 db "S.S. Aqua@"
+._37 db "Spotted! Boy 2@"
+._38 db "Spotted! Girl 2@"
+._39 db "Spotted! Team Rocket@"
+._3a db "Spotted! Suspicious@"
+._3b db "Spotted! Sage@"
+._3c db "New Bark Town@"
+._3d db "Goldenrod City@"
+._3e db "Vermilion City@"
+._3f db "Pokémon Channel@"
+._40 db "PokéFlute@"
+._41 db "Tin Tower@"
+._42 db "Sprout Tower@"
+._43 db "Burned Tower@"
+._44 db "Olivine Lighthouse@"
+._45 db "Route 42@"
+._46 db "Indigo Plateau@"
+._47 db "Route 38@"
+._48 db "Rocket Hideout@"
+._49 db "Dragon's Den@"
+._4a db "Vs. Johto Wild Night@"
+._4b db "Unown Radio@"
+._4c db "Captured Pokémon@"
+._4d db "Route 26@"
+._4e db "Mom@"
+._4f db "Victory Road@"
+._50 db "Pokémon Lullaby@"
+._51 db "Pokémon March@"
+._52 db "Opening 1@"
+._53 db "Opening 2@"
+._54 db "Load Game@"
+._55 db "Ruins of Alph Inside@"
+._56 db "Team Rocket@"
+._57 db "Dancing Hall@"
+._58 db "Bug Contest Ranking@"
+._59 db "Bug Contest@"
+._5a db "Rocket Radio@"
+._5b db "GameBoy Printer@"
+._5c db "Post Credits@"
+._5d db "Clair@"
+._5e db "Mobile Adapter Menu@"
+._5f db "Mobile Adapter@"
+._60 db "Buena's Password@"
+._61 db "Eusine@"
+._62 db "Opening@"
+._63 db "Battle Tower@"
+._64 db "Vs. Suicune@"
+._65 db "Battle Tower Lobby@"
+._66 db "Mobile Center@"
+._67 db "Cerulean City@"
+._68 db "Cinnabar Island@"
+._69 db "Route 24@"
+._6a db "Shop@"
+._6b db "Team Rocket Hideout@"
+._6c db "Silph Company@"
+._6d db "Mewtwo Battle@"
+._6e db "Game Corner@"
+._6f db "Rise of the Leech King@"
+._70 db "Rival's Theme@"
+._71 db "Rival's Theme (Cut)@"
+._72 db "Trainer Battle@"
+._73 db "Pokémon WCS Final Battle@"
+._74 db "Oceanic Museum@"
+._75 db "Pallet Town (Slow)@"
+._76 db "Champion Battle@"
+._77 db "Ho-Oh Battle@"
+._78 db "Lugia Battle@"
+._79 db "251 (Short Version)@"
 	
 Origin:
-	db 01, "Pokémon Red & Blue@"
-	db 02, "Pokémon Yellow@"
-	db 03, "Pokémon Gold & Silver@"
-	db 04, "Pokémon Crystal@"
-	db 05, "Pokémon Ruby & Sapphire@"
-	db 06, "Pokémon Diamond & Pearl@"
-	db 07, "Pokémon HeartGold & SoulSilver@"
-	db 08, "Pokémon Black & White@"
-	db 09, "Pokémon Black 2 & White 2@"
-	db 10, "Pokémon X & Y@"
-	db 11, "Pokémon Prism@"
-	db 12, "Pokémon TCG@"
-	db 13, "Pokémon TCG 2@"
-	db 14, "Pokémon Pinball@"
-	db 20, "Tales of TPP Deluxe@"
-	db 21, "Dream Red@"
-	db 22, "Pokémon Crystal Anniversary@"
+	dbw 01, ._00
+	dbw 02, ._01
+	dbw 03, ._02
+	dbw 04, ._03
+	dbw 05, ._04
+	dbw 06, ._05
+	dbw 07, ._06
+	dbw 08, ._07
+	dbw 09, ._08
+	dbw 10, ._09
+	dbw 11, ._10
+	dbw 12, ._11
+	dbw 13, ._12
+	dbw 14, ._13
+	dbw 20, ._14
+	dbw 21, ._15
+	dbw 22, ._16
 	db -1
 	
+._00 db "Pokémon Red & Blue@"
+._01 db "Pokémon Yellow@"
+._02 db "Pokémon Gold & Silver@"
+._03 db "Pokémon Crystal@"
+._04 db "Pokémon Ruby & Sapphire@"
+._05 db "Pokémon Diamond & Pearl@"
+._06 db "Pokémon HeartGold & SoulSilver@"
+._07 db "Pokémon Black & White@"
+._08 db "Pokémon Black 2 & White 2@"
+._09 db "Pokémon X & Y@"
+._10 db "Pokémon Prism@"
+._11 db "Pokémon TCG@"
+._12 db "Pokémon TCG 2@"
+._13 db "Pokémon Pinball@"
+._14 db "Tales of TPP Deluxe@"
+._15 db "Dream Red@"
+._16 db "Pokémon Crystal Anniversary@"
+	
 Artist:
-	db $01, "Junichi Masuda@"
-	db $02, "FroggestSpirit@"
-	db $03, "LevusBevus@"
-	db $04, "GRonnoc@"
-	db $05, "Cat333Pokémon@"
-	db $06, "Ichiro Shimakura@"
-	db $07, "Danny-E 33@"
-	db $08, "Go Ichinose@"
-	db $09, "Morikazu Aoki@"
-	db $0a, "Shota Kageyama"
-	db $0b, "Church of the Helix Choir@"
-	db $0c, "Pigu@"
-	db $0d, "Pigu, GACT@"
-	db $18, "Junichi Masuda, Go Ichinose@"
+	dbw $01, ._00
+	dbw $02, ._01
+	dbw $03, ._02
+	dbw $04, ._03
+	dbw $05, ._04
+	dbw $06, ._05
+	dbw $07, ._06
+	dbw $08, ._07
+	dbw $09, ._08
+	dbw $0a, ._09
+	dbw $0b, ._10
+	dbw $0c, ._11
+	dbw $0d, ._12
+	dbw $18, ._13
 	db -1
+	
+._00 db "Junichi Masuda@"
+._01 db "FroggestSpirit@"
+._02 db "LevusBevus@"
+._03 db "GRonnoc@"
+._04 db "Cat333Pokémon@"
+._05 db "Ichiro Shimakura@"
+._06 db "Danny-E 33@"
+._07 db "Go Ichinose@"
+._08 db "Morikazu Aoki@"
+._09 db "Shota Kageyama"
+._10 db "Church of the Helix Choir@"
+._11 db "Pigu@"
+._12 db "Pigu, GACT@"
+._13 db "Junichi Masuda, Go Ichinose@"
