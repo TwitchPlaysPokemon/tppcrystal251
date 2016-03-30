@@ -4864,7 +4864,7 @@ UnknownScript_0xc7fe: ; c7fe
 	reloadmappart
 	special UpdateTimePals
 UnknownScript_0xc802: ; 0xc802 CUT
-	callasm Functioncd12
+	callasm Functioncd1d
 	writetext UnknownText_0xc7c4
 	closetext
 	copybytetovar wd1ef
@@ -5023,7 +5023,7 @@ Functionc8e0: ; c8e0
 
 UnknownScript_0xc8e6: ; 0xc8e6 FLASH
 	reloadmappart
-	callasm Functioncd12
+	callasm Functioncd1d
 	copybytetovar wd1ef
 	cry $0000
 	special UpdateTimePals
@@ -5129,7 +5129,7 @@ Functionc97a: ; c97a (3:497a)
 UnknownScript_0xc983: ; c983
 	special UpdateTimePals
 UsedSurfScript: ; c986 SURF
-	callasm Functioncd12
+	callasm Functioncd1d
 	writetext UsedSurfText ; "used SURF!"
 	waitbutton
 	closetext
@@ -5373,7 +5373,7 @@ UnknownScript_0xcaa3: ; 0xcaa3 FLY
 	reloadmappart
 	callasm HideSprites
 	special UpdateTimePals
-	callasm Functioncd12
+	callasm Functioncd1d
 	scall FieldMovePokepicScript
 	callasm Function8caed
 	farscall UnknownScript_0x122c1
@@ -5442,7 +5442,7 @@ UnknownScript_0xcb1c: ; 0xcb1c
 	reloadmappart
 	special UpdateTimePals
 UnknownScript_0xcb20: ; 0xcb20 WATERFALL
-	callasm Functioncd12
+	callasm Functioncd1d
 	writetext UnknownText_0xcb51
 	waitbutton
 	closetext
@@ -5638,7 +5638,7 @@ UnknownScript_0xcc2b: ; 0xcc2b
 UnknownScript_0xcc35: ; 0xcc35 DIG
 	reloadmappart
 	special UpdateTimePals
-	callasm Functioncd12
+	callasm Functioncd1d
 	writetext UnknownText_0xcc1c
 	waitbutton
 	closetext
@@ -5807,13 +5807,10 @@ Functioncd09: ; cd09
 Functioncd12: ; cd12
 	ld hl, BikeFlags
 	set 0, [hl]
+Functioncd1d: ; cd1d
 	ld a, [CurPartyMon]
 	ld e, a
 	ld d, 0
-	; fallthrough
-; cd1d
-
-Functioncd1d: ; cd1d
 	ld hl, PartySpecies
 	add hl, de
 	ld a, [hl]
@@ -6003,7 +6000,7 @@ UnknownScript_0xce0b: ; 0xce0b
 	reloadmappart
 	special UpdateTimePals
 UnknownScript_0xce0f: ; 0xce0f WHIRLPOOL
-	callasm Functioncd12
+	callasm Functioncd1d
 	writetext UnknownText_0xcdd9
 	closetext
 	scall FieldMovePokepicScript
@@ -6114,7 +6111,7 @@ HeadbuttFromMenuScript: ; 0xcea7
 	reloadmappart
 	special UpdateTimePals
 HeadbuttScript: ; 0xceab HEADBUTT
-	callasm Functioncd12
+	callasm Functioncd1d
 	writetext UnknownText_0xce9d
 	closetext
 	scall FieldMovePokepicScript
@@ -6217,7 +6214,7 @@ RockSmashFromMenuScript: ; 0xcf2e
 	reloadmappart
 	special UpdateTimePals
 RockSmashScript: ; cf32 ROCK SMASH
-	callasm Functioncd12
+	callasm Functioncd1d
 	writetext UnknownText_0xcf58
 	closetext
 	scall FieldMovePokepicScript
@@ -48496,7 +48493,7 @@ Function506bc: ; 506bc
 UnknownScript_0x506c8: ; 0x506c8 SWEET SCENT
 	reloadmappart
 	special UpdateTimePals
-	callasm Functioncd12
+	callasm Functioncd1d
 	writetext UnknownText_0x50726
 	waitbutton
 	closetext
