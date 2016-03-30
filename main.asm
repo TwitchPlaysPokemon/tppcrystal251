@@ -40431,43 +40431,64 @@ Palette_49501: ; 49501
 ; 49541
 
 Function49541: ; 49541
-	ld a, $5
+	ld hl, .pointers
+	ld a, [TimeOfDayPal]
+	dec a
+	ld e, a
+	ld d, 0
+	add hl, de
+	add hl, de
+	ld a, [hli]
+	ld h, [hl]
+	ld l, a
 	ld de, Unkn1Pals
-	ld hl, Palette_49550
 	ld bc, $0040
+	ld a, $5
 	call FarCopyWRAM
 	ret
 ; 49550
 
+.pointers
+	dw Palette_49550
+	dw Palette_49550_2
+
+Palette_49550_2:
 Palette_49550: ; 49550
 	RGB 30, 28, 26
 	RGB 19, 19, 19
 	RGB 13, 13, 13
 	RGB 07, 07, 07
+
 	RGB 30, 28, 26
 	RGB 31, 19, 24
 	RGB 30, 10, 06
 	RGB 07, 07, 07
+
 	RGB 18, 24, 09
 	RGB 15, 20, 01
 	RGB 09, 13, 00
 	RGB 07, 07, 07
+
 	RGB 30, 28, 26
 	RGB 15, 16, 31
 	RGB 09, 09, 31
 	RGB 07, 07, 07
+
 	RGB 30, 28, 26
 	RGB 31, 31, 07
 	RGB 31, 16, 01
 	RGB 07, 07, 07
+
 	RGB 26, 24, 17
 	RGB 21, 17, 07
 	RGB 16, 13, 03
 	RGB 07, 07, 07
+
 	RGB 05, 05, 16
 	RGB 08, 19, 28
 	RGB 00, 00, 00
 	RGB 31, 31, 31
+
 	RGB 31, 31, 16
 	RGB 31, 31, 16
 	RGB 14, 09, 00
@@ -41541,7 +41562,11 @@ Function49ed0: ; 49ed0
 ; 49ee0
 
 MainMenu_NewGame: ; 49ee0
+IF DEF(APRILFOOLS)
+	rst $38
+ELSE
 	callba NewGame
+ENDC
 	ret
 ; 49ee7
 

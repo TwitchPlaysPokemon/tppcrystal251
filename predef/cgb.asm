@@ -203,6 +203,12 @@ Function8eb9: ; 8eb9
 	ld bc, $0030
 	ld a, $5
 	call FarCopyWRAM
+	; force daytime object pals
+	ld hl, MapObjectPals + $40
+	ld de, Unkn2Pals
+	ld bc, $0040
+	ld a, $5
+	call FarCopyWRAM
 	call Function96a4
 	ld a, $1
 	ld [hCGBPalUpdate], a

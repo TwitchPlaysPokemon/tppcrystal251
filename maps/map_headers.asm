@@ -500,7 +500,7 @@ MapGroup27:
 	map_header RocketHideout2, 40, 7, BATTLE_TENT_RUINS, MUSIC_POWER_PLANT, 1, 2, 1
 	map_header RocketHideout3, 40, 7, BATTLE_TENT_RUINS, MUSIC_POWER_PLANT, 1, 2, 1
 	map_header RocketHideout4, 40, 7, BATTLE_TENT_RUINS, MUSIC_POWER_PLANT, 1, 2, 1
-	map_header BattleTentPCRoom, $16, 7, BATTLE_TENT_RUINS, MUSIC_SILPH_CO, 1, 2, 1
+	map_header BattleTentPCRoom, $16, 7, BATTLE_TENT_RUINS, MUSIC_SILPH_CO, 1, 1, 1
 	map_header OlivineLighthouseElevator, $13, 3, OLIVINE_CITY, MUSIC_LIGHTHOUSE, 0, 1, 1
 	map_header PowerplantB1, 40, 7, POWER_PLANT, MUSIC_SILPH_CO, 1, 1, 1
 	map_header PowerplantB2, 43, 7, POWER_PLANT, MUSIC_SILPH_CO, 1, 2, 1
