@@ -164,13 +164,13 @@ PewterGymGuyScript: ; 0x1a28ac
 ; 0x1a28c0
 
 MapPewterGymSignpost1Script: ; 0x1a28c0
+	trainertotext BROCK, 1, $1
 	checkflag ENGINE_BOULDERBADGE
 	iftrue UnknownScript_0x1a28c9
 	jumpstd gymstatue1
 ; 0x1a28c9
 
 UnknownScript_0x1a28c9: ; 0x1a28c9
-	trainertotext BROCK, 1, $1
 	jumpstd gymstatue2
 ; 0x1a28d0
 

@@ -322,13 +322,13 @@ TwinsJoandzoe2Script: ; 0x72b10
 ; 0x72b18
 
 MapCeladonGymSignpost1Script: ; 0x72b18
+	trainertotext ERIKA, 1, $1
 	checkflag ENGINE_RAINBOWBADGE
 	iftrue UnknownScript_0x72b21
 	jumpstd gymstatue1
 ; 0x72b21
 
 UnknownScript_0x72b21: ; 0x72b21
-	trainertotext ERIKA, 1, $1
 	jumpstd gymstatue2
 ; 0x72b28
 

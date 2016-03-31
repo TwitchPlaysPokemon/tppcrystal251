@@ -486,7 +486,7 @@ PokefanmColinSeenText: ; 0x76329
 PokefanmColinBeatenText: ; 0x7634c
 	text "SON: Dad, what"
 	line "will I get for"
-	cont "christmas?"
+	cont "Christmas?"
 	done
 ; 0x7635b
 

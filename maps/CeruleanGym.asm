@@ -288,13 +288,13 @@ MapCeruleanGymSignpost2Script: ; 0x1884c6
 ; 0x1884d3
 
 UnknownScript_0x1884d3: ; 0x1884d3
+	trainertotext MISTY, 1, $1
 	checkflag ENGINE_CASCADEBADGE
 	iftrue UnknownScript_0x1884dc
 	jumpstd gymstatue1
 ; 0x1884dc
 
 UnknownScript_0x1884dc: ; 0x1884dc
-	trainertotext MISTY, 1, $1
 	jumpstd gymstatue2
 ; 0x1884e3
 

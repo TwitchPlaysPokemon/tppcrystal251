@@ -265,13 +265,13 @@ ViridianGymGuyScript: ; 0x9aa57
 ; 0x9aa6b
 
 MapViridianGymSignpost1Script: ; 0x9aa6b
+	trainertotext BLUE, 1, $1
 	checkflag ENGINE_EARTHBADGE
 	iftrue UnknownScript_0x9aa74
 	jumpstd gymstatue1
 ; 0x9aa74
 
 UnknownScript_0x9aa74: ; 0x9aa74
-	trainertotext BLUE, 1, $1
 	jumpstd gymstatue2
 ; 0x9aa7b
 

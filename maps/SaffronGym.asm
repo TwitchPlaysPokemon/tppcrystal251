@@ -189,13 +189,13 @@ SaffronGymGuyScript: ; 0x189cbb
 ; 0x189ccf
 
 MapSaffronGymSignpost0Script: ; 0x189ccf
+	trainertotext SABRINA, 1, $1
 	checkflag ENGINE_MARSHBADGE
 	iftrue UnknownScript_0x189cd8
 	jumpstd gymstatue1
 ; 0x189cd8
 
 UnknownScript_0x189cd8: ; 0x189cd8
-	trainertotext SABRINA, 1, $1
 	jumpstd gymstatue2
 ; 0x189cdf
 

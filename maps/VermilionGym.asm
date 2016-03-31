@@ -211,13 +211,13 @@ MapVermilionGymTrashcanScript:
 	end
 
 MapVermilionGymSignpost16Script: ; 0x192132
+	trainertotext LT_SURGE, 1, $1
 	checkflag ENGINE_THUNDERBADGE
 	iftrue UnknownScript_0x19213b
 	jumpstd gymstatue1
 ; 0x19213b
 
 UnknownScript_0x19213b: ; 0x19213b
-	trainertotext LT_SURGE, 1, $1
 	jumpstd gymstatue2
 ; 0x192142
 
