@@ -2535,7 +2535,7 @@ UnknownScript_0xbcde4: ; 0xbcde4
 UnknownScript_0xbcdf7: ; 0xbcdf7
 	checkmoney $0, 1000
 	if_equal $2, UnknownScript_0xbce3f
-	checkcoins 4949
+	checkcoins 49949
 	if_equal $0, UnknownScript_0xbce46
 	givecoins 50
 	takemoney $0, 1000
@@ -2549,7 +2549,7 @@ UnknownScript_0xbcdf7: ; 0xbcdf7
 UnknownScript_0xbce1b: ; 0xbce1b
 	checkmoney $0, 10000
 	if_equal $2, UnknownScript_0xbce3f
-	checkcoins 4499
+	checkcoins 49499
 	if_equal $0, UnknownScript_0xbce46
 	givecoins 500
 	takemoney $0, 10000
