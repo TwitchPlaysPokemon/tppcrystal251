@@ -1,3 +1,8 @@
+IF DEF(APRILFOOLS)
+rept 256
+	db "OLDEN@@@@@"
+endr
+ELSE
  	db "BULBASAUR@"
  	db "IVYSAUR@@@"
  	db "VENUSAUR@@"
@@ -254,3 +259,4 @@
  	db "?????@@@@@"
  	db "?????@@@@@"
  	db "?????@@@@@"
+ENDC

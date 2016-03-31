@@ -30,6 +30,11 @@ SSAnne7CaptainScript:
 	writetext _SSAnne7Text_61932
 	waitbutton
 	closetext
+IF DEF(APRILFOOLS)
+	callasm AFD_DeleteSaveFile
+	refreshscreen $0
+	credits
+ELSE
 	follow $2, $0
 	applymovement $2, Movement_CaptainReturnsToHisPost
 	stopfollow
@@ -54,6 +59,7 @@ SSAnne7CaptainScript:
 	disappear $2
 	appear $3
 	domaptrigger GROUP_S_S_ANNE_1, MAP_S_S_ANNE_1, 1
+ENDC
 	end
 
 .rubbed_back
@@ -108,6 +114,12 @@ SSAnne7CaptainScript:
 	playmapmusic
 .end
 	end
+
+IF DEF(APRILFOOLS)
+AFD_DeleteSaveFile:
+	callba Function4cf1f
+	ret
+ENDC
 
 SSAnne7TrashcanScript:
 	jumptext _SSAnne7Text2
@@ -177,6 +189,14 @@ _SSAnne7Text_61932:
 	para "Now that I'm not"
 	line "sick any more, I"
 	cont "guess it's time."
+IF DEF(APRILFOOLS)
+	para "This is the end of"
+	line "the demo."
+
+	para "We hope you en-"
+	line "joyed the game so"
+	cont "far!"
+ENDC
 	done
 
 SSAnne7Text_CaptainSetsSail1:
