@@ -41308,7 +41308,11 @@ MenuData2_0x49d1c: ; 49d1c
 MainMenuText: ; 49d24
 	db "CONTINUE@"
 	db "NEW GAME@"
+IF DEF(APRILFOOLS)
+	db "OLDEN@"
+ELSE
 	db "OPTION@"
+ENDC
 	db "MYSTERY GIFT@"
 	db "MOBILE@"
 	db "MOBILE STUDIUM@"
@@ -41583,11 +41587,7 @@ Function49ed0: ; 49ed0
 ; 49ee0
 
 MainMenu_NewGame: ; 49ee0
-IF DEF(APRILFOOLS)
-	rst $38
-ELSE
 	callba NewGame
-ENDC
 	ret
 ; 49ee7
 
