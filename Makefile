@@ -66,14 +66,14 @@ clean:
 	rm -f $(roms) $(all_obj) $(roms:.gbc=.map) $(roms:.gbc=.sym)
 
 %.asm: ;
+%.o: %.asm $$(%_dep)
+	rgbasm -o $@ $<
 %_ai.o: %.asm $$(%_dep)
 	rgbasm -D BEESAFREE -o $@ $<
 %11.o: %.asm $$(%_dep)
 	rgbasm -D CRYSTAL11 -o $@ $<
 %_afd.o: %.asm $$(%_dep)
 	rgbasm -D APRILFOOLS -o $@ $<
-%.o: %.asm $$(%_dep)
-	rgbasm -o $@ $<
 
 pokecrystal11.gbc: $(crystal11_obj)
 	rgblink -n $*.sym -m $*.map -o $@ $^
