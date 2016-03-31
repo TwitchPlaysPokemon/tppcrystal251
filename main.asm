@@ -43895,7 +43895,7 @@ TileCollisionTable:: ; 4ce1f
 	db $00, $00, $00, $00, $00, $00, $00, $0f
 ; 4cf1f
 
-Function4cf1f: ; 4cf1f
+Function4cf1f:: ; 4cf1f
 	ld a, $0
 	call Function4cf34
 	ld a, $1
