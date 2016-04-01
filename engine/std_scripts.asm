@@ -389,12 +389,17 @@ BugContestResultsScript: ; bc274
 	if_equal 1, ContestResults_FirstPlaceScript
 	if_equal 2, ContestResults_SecondPlaceScript
 	if_equal 3, ContestResults_ThirdPlaceScript
+	copybytetovar wContestMonSpecies
+	iffalse .SkipPrize
 	farwritetext UnknownText_0x1b0681
 	buttonsound
-	waitsfx
+	;waitsfx
 	givemoney 0 , 1000
-		;verbosegiveitem BERRY, 1
-		;iffalse UnknownScript_0xbc375
+	jump UnknownScript_0xbc2a9
+
+.SkipPrize
+	farwritetext NoPrizeForLazyPeople
+	buttonsound
 
 UnknownScript_0xbc2a9:
 	farwritetext UnknownText_0x1b06b7
