@@ -58,7 +58,7 @@
 		db GLIGAR ;2
 		db QUAGSIRE ;1
 		db QUAGSIRE ;1
-	
+
 	map UNION_CAVE_B1F
 	db $05 ; encounter rate
 	db 35
@@ -904,7 +904,7 @@
 		db CORSOLA ;1
 		db CORSOLA ;1
 		db CORSOLA ;1
-	
+
 	map ROUTE_30
 	db $05 ; encounter rate
 	db 35
@@ -960,7 +960,7 @@
 		db SQUIRTLE ;3
 		db HOOTHOOT ;2
 		db OCTILLERY ;1
-		
+
 	map ROUTE_31
 	db $05 ; encounter rate
 	db 35
@@ -1016,7 +1016,7 @@
 		db NOCTOWL ;3
 		db HOOTHOOT ;2
 		db WOOPER ;1
-		
+
 	map ROUTE_32
 	db $0f ; encounter rate
 	db 35
@@ -1072,7 +1072,7 @@
 		db QUAGSIRE ;1
 		db QUAGSIRE ;1
 		db OCTILLERY ;1
-		
+
 	map ROUTE_34
 	db $0f ; encounter rate
 	db 35
@@ -1700,7 +1700,7 @@
 		db CORSOLA ;1
 		db CORSOLA ;1
 		db CORSOLA ;1
-	
+
 	map ECRUTEAK_CITY
 	db $19 ; encounter rate
 	db 35

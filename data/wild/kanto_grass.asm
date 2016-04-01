@@ -2,7 +2,7 @@
 	;map ROUTE_1_RB
 	;db $19 ; encounter rates: morn/day/nite
 	;db 02
-	;db $00		
+	;db $00
 		;db PIDGEY ;30
 		;db VULPIX ;10
 		;db RATTATA ;10
@@ -57,7 +57,7 @@
 	;map ROUTE_22_RB
 	;db $19 ; encounter rates: morn/day/nite
 	;db 02
-	;db $03	
+	;db $03
 		;db MANKEY ;20
 		;db JIGGLYPUFF;15
 		;db KOFFING;10
@@ -91,7 +91,7 @@
 		;db IGGLYBUFF;1
 		;db KOFFING;1
 		;db KOFFING;1
-;nite 
+;nite
 		;db ODDISH;20
 		;db RATTATA;15
 		;db KOFFING;10
@@ -107,12 +107,12 @@
 		;db ODDISH;2
 		;db ODDISH;1
 		;db IGGLYBUFF;1
-		;db NIDORAN_F;1	
+		;db NIDORAN_F;1
 
 ;map ROUTE_2_RB
 	;db $19 ; encounter rates: morn/day/nite
 	;db 02
-	;db $03	
+	;db $03
 	;	db VULPIX ;20
 		;db PIDGEY;15
 		;db POLIWAG ;10
@@ -497,7 +497,7 @@
 		db PERSIAN ;2
 		db PERSIAN ;1
 		db PERSIAN ;1
-	
+
 	map ROUTE_2_NORTH
 	db $19 ; encounter rates: morn/day/nite
 	db 60
@@ -609,7 +609,7 @@
 		db WEEDLE ;1
 		db WEEDLE ;1
 		db WEEDLE ;1
-		
+
 	map ROUTE_3
 	db $19 ; encounter rates: morn/day/nite
 	db 64
@@ -1563,7 +1563,7 @@
 		db POLIWAG ;1
 		db POLIWHIRL ;1
 		db POLIWHIRL ;1
-	
+
 	map ROUTE_24
 	db $19 ; encounter rates: morn/day/nite
 	db 63
@@ -1731,7 +1731,7 @@
 		db POLIWRATH ;1
 		db POLIWRATH ;1
 		db POLIWRATH ;1
-	
+
 	map ROUTE_27
 	db $19 ; encounter rates: morn/day/nite
 	db 52
@@ -1843,7 +1843,7 @@
 		db VENUSAUR ;3
 		db VENUSAUR ;2
 		db MEGANIUM ;1
-	
+
 	map VIRIDIAN_FOREST
 	db $0a ; encounter rates: morn/day/nite
 	db 56
@@ -1899,7 +1899,7 @@
 		db PICHU ;1
 		db PICHU ;1
 		db PIKACHU ;1
-	
+
 	map MT_MOON_B1F
 	db $0a ; encounter rates: morn/day/nite
 	db 62
@@ -2067,7 +2067,7 @@
 		db DROWZEE ;3
 		db CLEFFA ;2
 		db CLEFFA ;1
-	
+
 	map CERULEANCAVE1
 	db $0a ; encounter rates: morn/day/nite
 	db 81
@@ -2291,7 +2291,7 @@
 		db SUDOWOODO ;3
 		db SUDOWOODO ;2
 		db SUDOWOODO ;1
-	
+
 	map MEWISLANDB1
 	db $0a ; encounter rates: morn/day/nite
 	db 78
@@ -2347,7 +2347,7 @@
 		db HERACROSS ;2
 		db HERACROSS ;1
 		db WIGGLYTUFF ;1
-		
+
 	map MEWISLANDF1
 	db $0a ; encounter rates: morn/day/nite
 	db 78
@@ -2515,7 +2515,7 @@
 		db CHARMANDER ;1
 		db HOUNDOOM ;1
 		db RHYHORN ;1
-	
+
 	map CINNABAR_VOLCANO_B2F
 	db $0a
 	db 70
@@ -2571,7 +2571,7 @@
 		db RHYDON ;1
 		db RHYDON ;1
 		db HOUNDOUR ;1
-	
+
 	map CINNABAR_VOLCANO_B3F
 	db $0a
 	db 72
@@ -2683,7 +2683,7 @@
 		db GOLBAT ;1
 		db ZUBAT ;1
 		db STEELIX ;1
-	
+
 	map SEAFOAM_ISLANDS_B1F
 	db $0a
 	db 68
@@ -2739,7 +2739,7 @@
 		db STEELIX ;1
 		db KABUTOPS ;1
 		db GOLDUCK ;1
-	
+
 	map SEAFOAM_ISLANDS_B2F
 	db $0a
 	db 70
@@ -2851,7 +2851,7 @@
 		db PSYDUCK ;3
 		db SLOWBRO ;2
 		db STEELIX ;1
-		
+
 	map POWERPLANTB1
 	db $0a
 	db 66

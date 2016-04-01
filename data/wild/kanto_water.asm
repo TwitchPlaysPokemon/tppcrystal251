@@ -118,7 +118,7 @@
 		db POLIWRATH ;2
 		db POLIWHIRL ;1
 		db POLIWRATH ;1
-	
+
 	map ROUTE_9
 	db $0a ; encounter rate
 	db 60
@@ -174,7 +174,7 @@
 		db PIKACHU ;1
 		db PIKACHU ;1
 		db PIKACHU ;1
-	
+
 	map ROUTE_10_NORTH
 	db $0a ; encounter rate
 	db 63
@@ -342,7 +342,7 @@
 		db HAUNTER ;2
 		db HAUNTER ;1
 		db KINGLER ;1
-	
+
 	map ROUTE_19
 	db $0f ; encounter rate
 	db 66
@@ -510,7 +510,7 @@
 		db PSYDUCK ;2
 		db SEEL ;1
 		db VAPOREON ;1
-	
+
 	map ROUTE_22
 	db $05 ; encounter rate
 	db 58
@@ -1022,7 +1022,7 @@
 		db GRIMER ;1
 		db GRIMER ;1
 
-	
+
 	map FUCHSIA_CITY
 	db $05 ; encounter rate
 	db 60
@@ -1190,7 +1190,7 @@
 ;		db SEEL ;1
 ;		db SEEL ;1
 ;		db SEEL ;1
-	
+
 ;	map SEAFOAM_ISLANDS_B2F
 ;	db $0f ; encounter rate
 ;	db 70
@@ -1302,7 +1302,7 @@
 ;		db SEEL ;1
 ;		db SEEL ;1
 ;		db SEEL ;1
-		
+
 	map CERULEANCAVE1
 	db $0f ; encounter rate
 	db 81
@@ -1582,5 +1582,5 @@
 		db MANTINE ;2
 		db OMASTAR ;1
 		db KINGDRA ;1
-	
+
 	db $ff ; end

@@ -29725,7 +29725,7 @@ Function2805d: ; 2805d
 	call z, DelayFrames
 	call GoodMoveCheck
 	jr nc, .moveFailure
-	
+
 	ld de, MUSIC_ROUTE_30
 	call PlayMusic
 	jp Function287e3
@@ -29743,11 +29743,11 @@ GoodMoveCheck:
 	push bc
 	push de
 	push hl
-	
+
 	ld a, [OverworldMap + $8]
 	cp $1 ;Is it TPP or not? If true, we can skip the checks.
 	jr z, .endCompatibleMoveCheck
-	
+
 	ld hl, OverworldMap + $1b ;Get move from linked
 	ld de, TPPNewMoves ;Moves that will end the trade
 	ld c, $4 ;Total moves per Pokemon
@@ -29768,8 +29768,8 @@ GoodMoveCheck:
 	jr z, .badMoveLink
 	inc de ;Increase move to check
 	jr .checkLinkedMoveGroupLoop
-	
-	
+
+
 .endLinkedMoveGroup
 	ld de, TPPNewMoves ;Moves that will end the trade
 	dec c ; Decrease the checks
@@ -29779,16 +29779,16 @@ GoodMoveCheck:
 	ld c, $4
 	pop af ;Get party size
 	dec a ;Decrease by 1
-	cp $0 
+	cp $0
 	jr z, .endCompatibleMoveCheck ;If it's the end, then end the checks
-	
+
 ;We're not at the end so let's continue the check
 	push af
 	ld de, $0028
 	add hl, de
 	ld de, TPPNewMoves
 	jr .checkLinkedMoveGroup
-	
+
 .badMoveLink
 	pop af
 	pop hl
@@ -29797,7 +29797,7 @@ GoodMoveCheck:
 	pop af
 	xor a ; Failure (nc)
 	ret
-	
+
 .endCompatibleMoveCheck
 	pop hl
 	pop de
@@ -29805,24 +29805,24 @@ GoodMoveCheck:
 	pop af
 	scf ;Success! (c)
 	ret
-	
-	
+
+
 ;;;;
 GoodItemCheck:
 	push af
 	push bc
 	push de
 	push hl
-	
+
 	ld a, [OverworldMap + $8]
 	cp $1 ;Is it TPP or not? If true, we can skip the checks.
 	jr z, .endCompatibleItemCheck
-	
+
 	ld hl, PartyMon1 + $1 ;Get item from your party
 	ld de, TPPNewItems ;Items that will end the trade
 	ld a, [PartyCount] ;Linked party size
 	ld c, a
-	
+
 .checkItemLoop
 	ld a, [de]
 	cp $ff
@@ -29839,13 +29839,13 @@ GoodItemCheck:
 	ld a, c
 	cp $0 ;Check if it's the end
 	jr z, .endCompatibleItemCheck ;End of Pokemon to check
-	
+
 ;Not the end
 	ld de, $0030
 	add hl, de
 	ld de, TPPNewItems
 	jr .checkItemLoop
-	
+
 .badItemLink
 	pop hl
 	pop de
@@ -29853,7 +29853,7 @@ GoodItemCheck:
 	pop af
 	xor a ; Failure (nc)
 	ret
-	
+
 .endCompatibleItemCheck
 	pop hl
 	pop de
@@ -30076,7 +30076,7 @@ Function28177: ; 28177
 	ld de, wd26b
 	ld bc, $000b
 	call CopyBytes
-	
+
 	ld a, [OverworldMap + $8]
 	cp $1 ;Is it TPP or not? If not, then don't battle
 	jp nz, BattleCheck
@@ -30153,10 +30153,10 @@ LinkOK:
 .asm_283a9
 	call GoodMoveCheck
 	jr nc, .moveFailure
-	
+
 	call GoodItemCheck
 	jr nc, .itemFailure
-	
+
 	ld de, MUSIC_ROUTE_30
 	call PlayMusic
 	jp Function287e3
@@ -30166,7 +30166,7 @@ LinkOK:
 	ld hl, StringMoveIncompatible ;Finish this part (just tell the player that the pokemon can't be traded)
 	call PrintText
 	ret
-	
+
 .itemFailure
 	ld hl, StringMoveIncompatible ;Finish this part (just tell the player that the pokemon can't be traded)
 	call PrintText
@@ -31682,19 +31682,19 @@ String28ebd: ; 28ebd
 String28ece: ; 28ece
 	db   "Too bad! The trade"
 	next "was canceled!@"
-	
+
 StringMoveIncompatible: ; 0x4d3fe
 	text_jump StringMoveIncompatibleText
 	db "@"
-	
+
 StringMoveIncompatibleText: ; 28ece
 	db   "Your friend has a"
-	next "#MON with a"	
+	next "#MON with a"
 	cont "move that is"
 	cont "incompatible with"
 	cont "this game."
 	done
-	
+
 Function28eef: ; 28eef
 	ld d, h
 	ld e, l
@@ -33335,13 +33335,13 @@ Function29bfb: ; 29bfb
 	ld c, NUM_MOVES
 .asm_29c30
 	ld a, [hli]
-	
+
 	push bc
 	push hl
 	push af
 	ld hl, TPPNewMoves
 	ld b, a
-	
+
 .goodMoveInRedLoop
 	ld a, [hli]
 	cp $ff
@@ -33350,7 +33350,7 @@ Function29bfb: ; 29bfb
 	jr z, .badMovePop
 	jr .goodMoveInRedLoop
 
-.goodMoveInRedLoopExit	
+.goodMoveInRedLoopExit
 	pop af
 	pop hl
 	pop bc
@@ -33371,7 +33371,7 @@ Function29bfb: ; 29bfb
 	call GetPokemonName
 	ld a, $1
 	jr .asm_29c63
-	
+
 .badMovePop
 	pop af
 	pop hl
@@ -83468,7 +83468,7 @@ GetOptionPointer: ; e42d6
 	dw Options_Frame
 	dw Options_Next
 	dw Options_Cancel
-	
+
 	dw Options_MenuAccount
 	dw Options_FastHP
 	dw Options_Clock
@@ -83486,7 +83486,7 @@ Options_TextSpeed: ; e42f5
 	jr nz, .LeftPressed
 	bit 4, a
 	jr z, .NonePressed ;right pressed
-	ld a, c 
+	ld a, c
 	cp $2
 	jr c, .Increase
 	ld c, $ff
@@ -83856,7 +83856,7 @@ Options_FastHP:
 	db "OFF@"
 .On
 	db "ON @"
-	
+
 Options_Clock:
 	ld hl, Options2
 	ld a, [hJoyPressed]
@@ -83894,7 +83894,7 @@ Options_Clock:
 	db "24-HOUR@"
 .On
 	db "12-HOUR@"
-	
+
 Options_Unit:
 	ld hl, Options2
 	ld a, [hJoyPressed]
@@ -83932,7 +83932,7 @@ Options_Unit:
 	db "METRIC  @"
 .On
 	db "IMPERIAL@"
-	
+
 Options_SFXTest:
 	ld a, [hJoyPressed]
 	bit 5, a
@@ -83965,7 +83965,7 @@ Options_SFXTest:
 	xor a
 .notmax
 	ld [wcf61], a
-	
+
 .Display
 	hlcoord 14, 11
 	ld a, " "
@@ -83977,7 +83977,7 @@ Options_SFXTest:
 	call PrintNum
 	and a
 	ret
-	
+
 Options_MusicPlayer:
 	;ld a, [hJoyPressed]
 	;bit 0, a
@@ -83985,11 +83985,11 @@ Options_MusicPlayer:
 	;callba SaveMusic
 	;callba MusicPlayer
 	;callba RestoreMusic
-	
+
 .NonePressed
 	and a
 	ret
-	
+
 Options_Next:
 	ld hl, wcf64
 	ld a, [hJoyPressed]
@@ -86930,7 +86930,7 @@ Functionfb57e: ; fb57e
 	jp z, SkipTypeCheck
 	cp MAGNETON
 	jp z, SkipTypeCheck
-	
+
 	;Fairies
 	cp CLEFAIRY
 	jp z, SkipTypeCheck
@@ -86950,7 +86950,7 @@ Functionfb57e: ; fb57e
 	jp z, SkipTypeCheck
 	cp AZUMARILL
 	jp z, SkipTypeCheck
-	
+
 	;Brown type changes
 	;Gas
 	cp KOFFING
@@ -86963,7 +86963,7 @@ Functionfb57e: ; fb57e
 	jp z, SkipTypeCheck
 	cp GENGAR
 	jp z, SkipTypeCheck
-	
+
 	;Wood (Retconned in Prism)
 	cp BELLSPROUT
 	jp z, SkipTypeCheck
@@ -86975,7 +86975,7 @@ Functionfb57e: ; fb57e
 	jp z, SkipTypeCheck
 	cp EXEGGUTOR
 	jp z, SkipTypeCheck
-	
+
 	;Abnormal
 	cp PORYGON
 	jp z, SkipTypeCheck
@@ -86983,7 +86983,7 @@ Functionfb57e: ; fb57e
 	jp z, SkipTypeCheck
 	cp DITTO
 	jp z, SkipTypeCheck
-	
+
 	ld [CurSpecies], a
 	call GetBaseData
 	ld hl, wcbea
