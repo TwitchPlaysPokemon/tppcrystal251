@@ -124,7 +124,7 @@ GeneratorTextSuccess:
 	text "The generator"
 	line "roared to life."
 	
-	para "STARUP SEQUENCE:"
+	para "START-UP SEQUENCE:"
 	line "CONTINUING"
 	done
 	
@@ -132,7 +132,7 @@ GeneratorTextFail:
 	text "The generator"
 	line "failed to start."
 	
-	para "STARUP SEQUENCE:"
+	para "START-UP SEQUENCE:"
 	line "FAILURE"
 	
 	para "POWER ORDER BROKEN"
