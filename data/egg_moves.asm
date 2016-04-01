@@ -163,6 +163,8 @@ OddishEggMoves:
 	db SEED_BOMB
 	db SAFEGUARD
 	db REFLECT
+	db DOUBLE_EDGE
+	db BIDE
 	db $ff
 
 ParasEggMoves:

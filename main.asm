@@ -83455,13 +83455,13 @@ GetOptionPointer: ; e42d6
 ; e42f5
 
 Options_TextSpeed: ; e42f5
-	call GetTextSpeed
+	call GetTextSpeed ;c = option number, d and e = other options
 	ld a, [hJoyPressed]
 	bit 5, a
 	jr nz, .LeftPressed
 	bit 4, a
-	jr z, .NonePressed
-	ld a, c ;right pressed
+	jr z, .NonePressed ;right pressed
+	ld a, c 
 	cp $2
 	jr c, .Increase
 	ld c, $ff
@@ -83514,22 +83514,22 @@ Options_TextSpeed: ; e42f5
 GetTextSpeed: ; e4346
 	ld a, [Options] ;This converts the number of frames, to 0,1,2 representing speed
 	and 7
-	cp 5 ;5 frames of delay is slow
+	cp 3 ;5 frames of delay is slow
 	jr z, .slow
-	cp 1 ;1 frame of delay is fast
+	cp 0 ;1 frame of delay is fast
 	jr z, .fast
 	ld c, 1 ;set it to mid if not one of the above
-	lb de, 1, 5
+	lb de, 0, 3
 	ret
 
 .slow
 	ld c, 2
-	lb de, 3, 1
+	lb de, 1, 0
 	ret
 
 .fast
 	ld c, 0
-	lb de, 5, 3
+	lb de, 3, 1
 	ret
 ; e4365
 
