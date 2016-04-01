@@ -1,6 +1,6 @@
 	db VAPOREON ; 134
 
-	db  130, 65,  70,  75, 110,  95    
+	db  130, 65,  70,  75, 110,  95
 	;   hp  atk  def  spd  sat  sdf
 
 	db WATER, WATER

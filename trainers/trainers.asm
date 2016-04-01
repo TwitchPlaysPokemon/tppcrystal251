@@ -465,7 +465,7 @@ JasmineGroup:
 		db FLASH_CANNON
 		db MIND_READER
 		db METAL_SOUND
-		
+
 	db 57, SCIZOR, SCOPE_LENS
 		db METAL_CLAW
 		db SLASH
@@ -912,7 +912,7 @@ Rival1Group:
 		db ROCK_SLIDE
 		db FLAMETHROWER
 		db ROCK_POLISH
-		
+
 	db 66, MEGANIUM, MIRACLE_SEED
 		db GIGA_DRAIN
 		db EARTH_POWER
@@ -958,7 +958,7 @@ Rival1Group:
 		db ROCK_SLIDE
 		db FLAMETHROWER
 		db ROCK_POLISH
-		
+
 	db 66, TYPHLOSION, CHARCOAL
 		db SHARPEN
 		db FLAME_WHEEL
@@ -1004,7 +1004,7 @@ Rival1Group:
 		db ROCK_SLIDE
 		db FLAMETHROWER
 		db ROCK_POLISH
-		
+
 	db 66, FERALIGATR, MYSTIC_WATER
 		db SWORDS_DANCE
 		db AQUA_JET
@@ -1131,7 +1131,7 @@ WillGroup:
 		db BODY_SLAM
 		db FIRE_PUNCH
 		db MEDITATE
-		
+
 	db 100, CLEFABLE
 		db MOONBLAST
 		db METRONOME
@@ -1267,7 +1267,7 @@ BrunoGroup:
 		db DOUBLE_KICK
 		db FOCUS_ENERGY
 		db FORESIGHT
-		
+
 	db 69, RHYDON
 		db DRILL_RUN
 		db ROCK_SLIDE
@@ -1293,13 +1293,13 @@ BrunoGroup:
 		db ROCK_SLIDE
 		db MEGAHORN
 		db SCARY_FACE
-	
+
 	db 100, HITMONTOP
 		db ROLLING_KICK
 		db MACH_PUNCH
 		db DRILL_RUN
 		db PROTECT
-	
+
 	db 100, HITMONLEE
 		db HI_JUMP_KICK
 		db DOUBLE_KICK
@@ -1317,7 +1317,7 @@ BrunoGroup:
 		db EARTHQUAKE
 		db ROCK_SLIDE
 		db IRON_DEFENSE
-	
+
 	db 100, MACHAMP
 		db DYNAMICPUNCH
 		db ROCK_SLIDE
@@ -1730,7 +1730,7 @@ MistyGroup:
 		db EARTHQUAKE
 		db AMNESIA
 		db RAIN_DANCE
-		
+
 	db 86, LAPRAS, MYSTIC_WATER
 		db SURF
 		db BLIZZARD
@@ -1742,7 +1742,7 @@ MistyGroup:
 		db DRAGON_PULSE
 		db HAZE
 		db IRON_HEAD
-	
+
 	db 88, STARMIE, GOLD_BERRY
 		db SURF
 		db PSYCHIC_M
@@ -1983,7 +1983,7 @@ ScientistGroup:
 		db ZAP_CANNON
 		db ATTRACT
 		db SWAGGER
-		
+
 	db $ff ; end
 
 ; ================
@@ -2033,7 +2033,7 @@ ErikaGroup:
 		db SLUDGE_BOMB
 		db SUNNY_DAY
 		db SYNTHESIS
-		
+
 	db 79, SUNFLORA, SOFT_SAND
 		db GIGA_DRAIN
 		db EARTH_POWER
@@ -2373,7 +2373,7 @@ SchoolboyGroup:
 		db SLUDGE_BOMB
 		db BODY_SLAM
 		db BITE
-		
+
 	db 30, PINSIR
 		db TACKLE
 		db MEGAHORN
@@ -2446,7 +2446,7 @@ SchoolboyGroup:
 
 	; SCHOOLBOY (7)
 	db "DUDLEY@"
-	db (1 << TRAINERTYPE_ITEM) ; normal	
+	db (1 << TRAINERTYPE_ITEM) ; normal
 
 	; party
 	db 80, ODDISH, FOCUS_BAND
@@ -2737,7 +2737,7 @@ BirdKeeperGroup:
 	db 45, SPEAROW
 	db 45, DODUO
 	db 45, NATU
-	
+
 	db $ff ; end
 
 ; ================
@@ -2752,7 +2752,7 @@ BirdKeeperGroup:
 		db DREAM_EATER
 		db NIGHTMARE
 		db NONE
-	
+
 	db $ff ; end
 
 ; ================
@@ -3063,7 +3063,7 @@ LassGroup:
 	db 74, SKIPLOOM
 	db 74, WEEPINBELL
 	db 74, BAYLEEF
-	
+
 	db $ff ; end
 
 ; ================
@@ -3272,7 +3272,7 @@ LassGroup:
 		db 0
 		db 0
 		db 0
-	
+
 	db 100, BLISSEY
 		db METRONOME
 		db 0
@@ -3309,7 +3309,7 @@ LassGroup:
 	db 11, ODDISH
 	db 11, BELLSPROUT
 	db $ff
-	
+
 	db "IRIS@"
 	db (1 << TRAINERTYPE_NICKNAME)
 	db 14, CLEFAIRY, "CLEFFLES@"
@@ -3369,7 +3369,7 @@ JanineGroup:
 	; party
 
 	db 79, TENTACRUEL, GOLD_BERRY
-		db SURF 
+		db SURF
 		db MIRROR_COAT
 		db RAPID_SPIN
 		db SPIKES
@@ -3385,7 +3385,7 @@ JanineGroup:
 		db WING_ATTACK
 		db SCREECH
 		db CONFUSE_RAY
-		
+
 	db 81, WEEZING, POISON_BARB
 		db SLUDGE_BOMB
 		db FIRE_BLAST
@@ -3397,14 +3397,14 @@ JanineGroup:
 		db CRUNCH
 		db WRAP
 		db GLARE
-		
+
 	db 82, VENOMOTH, SILVERPOWDER
 		db SLUDGE_BOMB
 		db BUG_BUZZ
 		db PSYCHIC_M
 		db DOUBLE_TEAM
 
-	db $ff ; end 
+	db $ff ; end
 
 	; JANINE (2)
 	db "JANINE@"
@@ -3429,7 +3429,7 @@ JanineGroup:
 		db TOXIC
 		db AIR_SLASH
 		db WHIRLWIND
-		
+
 	db 100, MUK, LEFTOVERS
 		db SLUDGE_BOMB
 		db MINIMIZE
@@ -3544,10 +3544,10 @@ CooltrainerMGroup:
 
 	db 96, VICTREEBEL
 	db 97, KINGLER
-	db 98, FLAREON	
+	db 98, FLAREON
 	db 99, SNORLAX
 	db 100, MACHAMP
-	
+
 	db $ff ; end
 
 ; ================
@@ -3741,7 +3741,7 @@ CooltrainerMGroup:
 	db 100, TYPHLOSION
 
 	db $ff ; end
-	
+
 	; COOLTRAINERM (Rematch)
 	db "PAUL@"
 	db (1 << TRAINERTYPE_ITEM)
@@ -3770,7 +3770,7 @@ CooltrainerFGroup:
 	db 53, VAPOREON
 	db 53, JOLTEON
 	db 53, ESPEON
-	db 53, UMBREON	
+	db 53, UMBREON
 
 	db $ff ; end
 
@@ -4035,7 +4035,7 @@ CooltrainerFGroup:
 	db 96, NIDORINO
 	db 98, NIDOKING
 	db 98, NIDOQUEEN
-	
+
 	db $ff ; end
 
 ; ================
@@ -4060,7 +4060,7 @@ CooltrainerFGroup:
 
 ; ================
 ; ================================
-	
+
 	; COOLTRAINERF (Rematch)
 	db "LOLA@"
 	db (1 << TRAINERTYPE_ITEM)
@@ -4498,7 +4498,7 @@ GruntMGroup:
 	db 27, GASTLY, FOCUS_BAND
 	db 28, DUNSPARCE, LEFTOVERS
 	db 30, SNEASEL, KINGS_ROCK
-	
+
 
 	db $ff ; end
 
@@ -4548,7 +4548,7 @@ GruntMGroup:
 	db 0 ; normal
 
 	; party
-	db 50, TANGELA 
+	db 50, TANGELA
 	db 50, MARILL
 	db 50, FLAAFFY
 	db 50, PERSIAN
@@ -4605,7 +4605,7 @@ GruntMGroup:
 	; party
 	db 53, AZUMARILL, LEFTOVERS
 	db 56, MAROWAK, THICK_CLUB
-	
+
 
 	db $ff ; end
 
@@ -6013,7 +6013,7 @@ SwimmerMGroup:
 	; party
 	db 47, PIDGEOT
 	db 47, QUAGSIRE
-	
+
 	db $ff ; end
 
 ; ================
@@ -6275,7 +6275,7 @@ SwimmerFGroup:
 
 	; party
 	db 47, CORSOLA
-	
+
 	db $ff ; end
 
 ; ================
@@ -6497,7 +6497,7 @@ SailorGroup:
 		db FLAMETHROWER
 		db PSYCHIC_M
 		db ICE_BEAM
-	
+
 	db 48, KRABBY
 		db CRABHAMMER
 		db FISSURE
@@ -6901,7 +6901,7 @@ SuperNerdGroup:
 ; ================================
 
 
-Rival2Group: 
+Rival2Group:
 ; ================================
 ; ================
 
@@ -7291,7 +7291,7 @@ HikerGroup:
 	; party
 	db 25,STANTLER
 	db 26,CYNDAQUIL
-	
+
 	db $ff ; end
 
 ; ================
@@ -7701,7 +7701,7 @@ BlaineGroup:
 		db EXTREMESPEED
 		db WILLOWISP
 
-	db $ff ; end 
+	db $ff ; end
 
 		; BLAINE (2)
 	db "BLAINE@"
@@ -7870,7 +7870,7 @@ BurglarGroup:
 	db (1 << TRAINERTYPE_MOVES) | ( 1 << TRAINERTYPE_ITEM) | (1 << TRAINERTYPE_MAXXP)
 
 	; party
-	
+
 	db 100, HOUNDOOM, BLACKGLASSES
 		db NASTY_PLOT
 		db DARK_PULSE
@@ -8046,7 +8046,7 @@ JugglerGroup:
 	db 29, SHELLDER
 	db 29, NIDORAN_M
 	db 29, PIKACHU
-	
+
 	db $ff ; end
 
 ; ================
@@ -8096,7 +8096,7 @@ JugglerGroup:
 ;	db 0 ; normal
 ;
 	; party
-;	
+;
 ;	db 29, ABRA
 ;	db 29, NIDORAN_M
 ;	db 29, SHELLDER
@@ -8286,7 +8286,7 @@ ExecutiveMGroup:
 	db (1 << TRAINERTYPE_ITEM)
 
 	; party
-	
+
 	db 50, MURKROW, BERSERK_GENE
 	db 52, MR__MIME, GOLD_BERRY
 	db 54, LICKITUNG, BERSERK_GENE
@@ -8400,7 +8400,7 @@ PsychicGroup:
 
 	; party
 
-	db 29, WOBBUFFET 
+	db 29, WOBBUFFET
 	db 31, NATU
 	db 33, HYPNO
 
@@ -8727,7 +8727,7 @@ PicnickerGroup:
 	; party
 
 	db 42, CLEFAIRY, BERRY_JUICE
-	
+
 	db $ff ; end
 
 ; ================
@@ -9107,7 +9107,7 @@ CamperGroup:
 	db 0 ; normal
 
 	; party
-	
+
 	db 57, JUMPLUFF
 	db 57, TAUROS
 	db 57, SUDOWOODO
@@ -9227,7 +9227,7 @@ SageGroup:
 		db SLEEP_POWDER
 		db GROWTH
 		db SWAGGER
-	
+
 	db $ff ; end
 
 ; ================
@@ -9277,7 +9277,7 @@ SageGroup:
 		db BITE
 		db SPITE
 		db PROTECT
-		
+
 	db $ff ; end
 
 ; ================
@@ -9379,7 +9379,7 @@ MediumGroup:
 
 	; party
 	db 38, UMBREON, LEFTOVERS
-	
+
 	db $ff ; end
 
 ; ================
@@ -9785,7 +9785,7 @@ TwinsGroup:
 	; TWINS (2)
 	db "ANN & ANNE@"
 	db 0 ; normal
-	
+
 	; party
 	db 31, TEDDIURSA
 	db 31, PHANPY
@@ -9797,7 +9797,7 @@ TwinsGroup:
 	; TWINS (3)
 	db "ANN & ANNE@"
 	db 0 ; normal
-	
+
 	; party
 	db 31, PHANPY
 	db 31, TEDDIURSA
@@ -9887,7 +9887,7 @@ TwinsGroup:
 
 	db 60, DRAGONAIR
 	db 60, SEADRA
-	
+
 	db $ff ; end
 
 ; ================
@@ -10027,31 +10027,31 @@ RedGroup:
 	db (1 << TRAINERTYPE_MOVES) | (1 << TRAINERTYPE_NICKNAME) | (1 << TRAINERTYPE_MAXXP)
 
 	; party
-	
+
 	db 100, ZAPDOS, "AA-j@"
 		db THUNDERSHOCK
 		db DRILL_PECK
 		db TAKE_DOWN
 		db THUNDER
-		
+
 	db 100, NIDOKING, "AAAAAAAAAA@"
 		db SURF
 		db POISON_STING
 		db STRENGTH
 		db FURY_ATTACK
-		
+
 	db 100, OMASTAR, "OMASTAR@"
 		db HYDRO_PUMP
 		db WITHDRAW
 		db SURF
 		db HORN_ATTACK
-		
+
 	db 100, VENOMOTH, "AATTVVV@"
 		db DISABLE
 		db POISONPOWDER
 		db LEECH_LIFE
 		db STUN_SPORE
-		
+
 	db 100, LAPRAS, "AIIIIIIRRR@"
 		db MIST
 		db BODY_SLAM
@@ -10135,25 +10135,25 @@ BlueGroup:
 		db MIRROR_MOVE
 		db DRILL_PECK
 		db FURY_ATTACK
-	
+
 	db 100, KINGLER , SCOPE_LENS
 		db STOMP
 		db HARDEN
 		db FISSURE
 		db CRABHAMMER
-	
+
 	db 100, TAUROS, LEFTOVERS
 		db RAGE
 		db TAKE_DOWN
 		db TAIL_WHIP
 		db LEER
-	
+
 	db 100, PARASECT , SCOPE_LENS
 		db LEECH_LIFE
 		db SPORE
 		db SLASH
 		db GROWTH
-	
+
 	db 100, VAPOREON, GOLD_BERRY
 		db BLIZZARD
 		db HAZE

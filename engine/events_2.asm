@@ -117,7 +117,7 @@ Function97cc0:: ; 97cc0
 .asm_97ce2
 	ld a, 1
 	and a
-	ret 
+	ret
 
 .asm_97ce6
 	ld a, BANK(RockSmashBattleScript)
@@ -153,7 +153,7 @@ Function97cfd:: ; 97cfd if encounters are on(?) , is on encounter enabled tile (
 
 .asm_97d17
 	ld a, [StandingTile]
-	call CheckIceTile ;if not $23 or $2b, scf 
+	call CheckIceTile ;if not $23 or $2b, scf
 	jr z, .asm_97d21
 	scf
 	ret
@@ -179,7 +179,7 @@ Function97d31:: ; 97d31
 	cp 200 ;
 	jr nc, .asm_97d31 ;loop until < 200
 	srl a ; divide by 2
-	ld d, a 
+	ld d, a
 	ld a, e ;0 if super tall grass
 	cp $14
 	ld hl, ContestMonsTall
@@ -202,7 +202,7 @@ Function97d31:: ; 97d31
 	ld [wd22e], a  ;load species into a var, max variance into a
 
 ; Min level
-	ld a, [hli] 
+	ld a, [hli]
 	ld d, a
 
 ; Max level
@@ -232,11 +232,11 @@ Function97d31:: ; 97d31
 ; 97d64
 
 Function97d64: ; 97d64
-	ld a, [StandingTile] 
+	ld a, [StandingTile]
 	call CheckSuperTallGrassTile ;if standing tile is $14 then ret zero, otherwise cp $1c
 	ld e, a
 	push de
-	ld b, $66 
+	ld b, $66
 	jr z, .asm_97d70 ;if exactly $14 or $1c then b = %66, otherwise b = %33. b = encounter rate
 	ld b, $33
 
@@ -254,7 +254,7 @@ Function97d64: ; 97d64
 ; 97d87
 
 
-ContestMons: ; 97d87 
+ContestMons: ; 97d87
 	;   %, species,   min, max
 	db 15, LEDYBA,      23, 27
 	db 11, CATERPIE,    23, 27
@@ -271,7 +271,7 @@ ContestMons: ; 97d87
 	db 3, KAKUNA,      24, 28
 	db -1, VENOMOTH,   90, 100
 
-ContestMonsTall: ; 97d87 
+ContestMonsTall: ; 97d87
 	;   %, species,   min, max
 	db 15, CATERPIE,    23, 27
 	db 15, WEEDLE,      23, 27
@@ -340,7 +340,7 @@ Function97db5: ; 97db5
 	ret
 ; 97df9
 
-Function97df9:: ; 97df9 clear top 4 of command queue 
+Function97df9:: ; 97df9 clear top 4 of command queue
 	ld hl, wd6de
 	ld de, $0006
 	ld c, $4
@@ -555,7 +555,7 @@ Function97ecd: ; 97ecd set SCY depending on [bc+1]-1 and [bc+2], and dec [bc+1]
 	ld [hSCY], a
 	ret
 
-.asm_97eee 
+.asm_97eee
 	ld hl, $0004
 	add hl, bc
 	ld a, [hl]
@@ -594,7 +594,7 @@ Function97f1b: ; 97f1b
 	jr z, Function97f2c ;if 0, load 127 into wd173 and 0 into bc+5
 	call Function97eb1 ;else dec bc+5 and wd173 = bc +3
 
-	ld hl, $0003 
+	ld hl, $0003
 	add hl, bc
 	ld a, [hl]
 	ld [wd173], a
@@ -613,7 +613,7 @@ Function97f2c: ; 97f2c
 Function97f38: ; 97f38 ;a = spritedirection
 	push bc
 	ld bc, PlayerStruct
-	call GetSpriteDirection 
+	call GetSpriteDirection
 	and a
 	pop bc
 	ret

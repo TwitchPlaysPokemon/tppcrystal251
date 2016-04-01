@@ -488,7 +488,7 @@ MAP_N_A   EQU -1
 	mapgroup MT_SILVER_RUINS_B1, 16, 16
 	mapgroup BILLS_GARDEN, 20, 20
 	mapgroup DUMMY_BLANK_MAP, 1, 1
-	
+
 
 	newgroup ; Pallet Town RB
 	mapgroup ROUTE_1_RB, 18, 10

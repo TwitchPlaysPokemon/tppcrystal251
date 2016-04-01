@@ -187,7 +187,7 @@ MapRoute9Signpost0Script: ; 0x1aaf9f
 MapRoute9SignpostItem1: ; 0x1aafa2
 	dw $00f2
 	db ETHER
-	
+
 ; 0x1aafa5
 
 CamperDeanSeenText: ; 0x1aafa5
@@ -267,7 +267,7 @@ PicnickerEdnaSeenText: ; 0x1ab127
 PicnickerEdnaBeatenText: ; 0x1ab151
 	text "WEEZING helps with"
 	line "keeping it clean."
-	
+
 	para "It sucks all"
 	line "the litter up!"
 	done

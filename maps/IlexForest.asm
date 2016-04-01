@@ -468,13 +468,13 @@ ItemFragment_0x6ee16: ; 0x6ee16
 MapIlexForestSignpostItem1: ; 0x6ee18
 	dw $0088
 	db ETHER
-	
+
 ; 0x6ee1b
 
 MapIlexForestSignpostItem2: ; 0x6ee1b
 	dw $0089
 	db HYPER_POTION
-	
+
 ; 0x6ee1e
 
 MapIlexForestSignpostItem3: ; 0x6ee1e
@@ -942,7 +942,7 @@ UnknownText_0x6f21b: ; 0x6f21b
 	text "What am I doing?"
 
 	para "I'm shaking trees"
-	line "using" 
+	line "using"
 	cont "ZEN HEADBUTT."
 
 	para "It's fun. Here,"

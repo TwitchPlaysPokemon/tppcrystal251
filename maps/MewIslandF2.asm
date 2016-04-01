@@ -2,13 +2,13 @@ MewIslandF2_MapScriptHeader:
 	; trigger count
 	db 0
 
-	; callback count 
+	; callback count
 	db 0
-	
+
 ItemFragment_MewIslandF2:
 	db MAX_REVIVE, 1
 
-MewIslandF2_MapEventHeader: 
+MewIslandF2_MapEventHeader:
 	; filler
 	db 0, 0
 
@@ -42,4 +42,3 @@ MewIslandF2_MapEventHeader:
 	; people-events
 	db 1
 	person_event SPRITE_POKE_BALL, 18, 8, $1, 0, 0, -1, -1, 0, 1, 0, ItemFragment_MewIslandF2, MEW_ISLAND_F2_ITEM
-	

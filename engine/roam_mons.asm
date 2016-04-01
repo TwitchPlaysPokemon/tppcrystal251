@@ -15,7 +15,7 @@ CheckPartyLevels:
 .next
 	add hl, de
 	jr .loop
-	
+
 .done
 	ld c, 10
 	call SimpleDivide

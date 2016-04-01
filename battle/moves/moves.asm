@@ -41,7 +41,7 @@ ENDM
 	move SAND_ATTACK,  EFFECT_ACCURACY_DOWN,       0, STATUS,   GROUND,   100, 15,   0
 	move HEADBUTT,     EFFECT_FLINCH_HIT,         70, PHYSICAL, NORMAL,   100, 15,  30
 	move HORN_ATTACK,  EFFECT_NORMAL_HIT,         65, PHYSICAL, NORMAL,   100, 25,   0
-	move FURY_ATTACK,  EFFECT_MULTI_HIT,          15, PHYSICAL, NORMAL,    85, 20,   0 
+	move FURY_ATTACK,  EFFECT_MULTI_HIT,          15, PHYSICAL, NORMAL,    85, 20,   0
 	move HORN_DRILL,   EFFECT_OHKO,                1, PHYSICAL, NORMAL,    30,  5,   0 ;$20
 	move TACKLE,       EFFECT_NORMAL_HIT,         50, PHYSICAL, NORMAL,   100, 35,   0
 	move BODY_SLAM,    EFFECT_BODY_SLAM,          85, PHYSICAL, NORMAL,   100, 15,  30 ; always hits and deals double damage to mini targets
@@ -52,7 +52,7 @@ ENDM
 	move TAIL_WHIP,    EFFECT_DEFENSE_DOWN,        0, STATUS,   NORMAL,   100, 30,   0
 	move POISON_STING, EFFECT_POISON_HIT,         15, PHYSICAL, POISON,   100, 35,  30 ;$28
 	move TWINEEDLE,    EFFECT_TWINEEDLE,          25, PHYSICAL, BUG,      100, 20,  20
-	move PIN_MISSILE,  EFFECT_MULTI_HIT,          25, PHYSICAL, BUG,       95, 20,   0 
+	move PIN_MISSILE,  EFFECT_MULTI_HIT,          25, PHYSICAL, BUG,       95, 20,   0
 	move LEER,         EFFECT_DEFENSE_DOWN,        0, STATUS,   NORMAL,   100, 30,   0
 	move BITE,         EFFECT_FLINCH_HIT,         60, PHYSICAL, DARK,     100, 25,  30
 	move GROWL,        EFFECT_ATTACK_DOWN,         0, STATUS,   NORMAL,   100, 40,   0
@@ -141,8 +141,8 @@ ENDM
 	move CLAMP,        EFFECT_BIND,               35, PHYSICAL, WATER,     85, 15,   0 ; EFFECT_BIND lasts 4-5 turns, does 1/8 damage $80
 	move SWIFT,        EFFECT_ALWAYS_HIT,         60, SPECIAL,  NORMAL,   100, 20,   0
 	move AQUA_JET,     EFFECT_PRIORITY_HIT,       40, PHYSICAL, WATER,    100, 20,   0 ; replacing Skull Bash
-	move SPIKE_CANNON, EFFECT_MULTI_HIT,          20, PHYSICAL, NORMAL,   100, 15,   0 
-	move FLASH_CANNON, EFFECT_SP_DEF_DOWN_HIT,    80, SPECIAL,  STEEL,    100, 10,  10 
+	move SPIKE_CANNON, EFFECT_MULTI_HIT,          20, PHYSICAL, NORMAL,   100, 15,   0
+	move FLASH_CANNON, EFFECT_SP_DEF_DOWN_HIT,    80, SPECIAL,  STEEL,    100, 10,  10
 	move AMNESIA,      EFFECT_SP_DEF_UP_2,         0, STATUS,   PSYCHIC,  100, 20,   0
 	move WILLOWISP,	   EFFECT_BURN,                0, STATUS,   FIRE,      85, 15,   0
 	move SOFTBOILED,   EFFECT_HEAL,                0, STATUS,   NORMAL,   100, 10,   0

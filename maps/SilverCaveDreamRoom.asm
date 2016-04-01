@@ -1,9 +1,9 @@
 SilverCaveDreamRoom_MapScriptHeader:
 	db 0 ; triggers
-	
+
 	db 0 ; callbacks
 	; dbw 1, DeleteSilverCaveExit
-	
+
 ; DeleteSilverCaveExit:
 	; changeblock $9, $21, $2
 	; changeblock $9, $23, $5
@@ -55,7 +55,7 @@ BabaTextAfter: ; 0x18c63f
 	line $56
 	done
 ; 0x18c644
-	
+
 SilverCaveDreamRoom_MapEventHeader: ; 0x18c644
 	; filler
 	db 0, 0

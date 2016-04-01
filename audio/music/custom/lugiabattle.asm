@@ -281,7 +281,7 @@ Music_LugiaBattle_Ch1_L:
 	note F#, 1
 	note D#, 1
 	loopchannel 0, Music_LugiaBattle_Ch1_L
-	
+
 Music_LugiaBattle_Ch2:
 ; Pat 0 Row 8
 	dutycycle $3
@@ -566,7 +566,7 @@ Music_LugiaBattle_Ch2_L2:
 	note __, 6
 	note C#, 16
 	loopchannel 0, Music_LugiaBattle_Ch2_L
-	
+
 Music_LugiaBattle_Ch3:
 ; Pat 0 Row 4
 	notetype $c, $23

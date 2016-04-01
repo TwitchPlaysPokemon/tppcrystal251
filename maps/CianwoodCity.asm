@@ -157,13 +157,13 @@ RockScript_0x1a00d1: ; 0x1a00d1
 MapCianwoodCitySignpostItem6: ; 0x1a00d4
 	dw $00b2
 	db SOFT_SAND
-	
+
 ; 0x1a00d7
 
 MapCianwoodCitySignpostItem7: ; 0x1a00d7
 	dw $00b3
 	db MAX_ETHER
-	
+
 ; 0x1a00da
 
 MovementData_0x1a00da: ; 0x1a00da

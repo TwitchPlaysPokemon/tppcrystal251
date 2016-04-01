@@ -84,7 +84,7 @@ RedLossText:
 MapSilverCaveOutsideSignpostItem2: ; 0x1b2051
 	dw $00b8
 	db FULL_RESTORE
-	
+
 ; 0x1b2054
 SilverCaveOutsideCooltrainerMText:
 	text "The #MON in"

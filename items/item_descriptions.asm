@@ -1024,31 +1024,31 @@ MewMailDesc:
 DomeFossilDesc:
 	db   "A fossil of an"
 	next "ancient #MON.@"
-	
+
 HelixFossilDesc:
 	db   "A fossil of an"
 	next "ancient #MON.@"
-	
+
 OldAmberDesc:
 	db   "A stone containing"
 	next "#MON genes.@"
-	
+
 PoisonGuardDesc:
 	db	 "(HOLD) User can't"
 	next "get poisoned.@"
-	
+
 BurnGuardDesc:
 	db	 "(HOLD) User can't"
 	next "get burned.@"
-	
+
 FreezeGuardDesc:
 	db	 "(HOLD) User can't"
 	next "get frozen.@"
-	
+
 SleepGuardDesc:
 	db	 "(HOLD) User can't"
 	next "fall asleep.@"
-	
+
 ParlyzGuardDesc:
 	db	 "(HOLD) User can't"
 	next "get paralyzed.@"

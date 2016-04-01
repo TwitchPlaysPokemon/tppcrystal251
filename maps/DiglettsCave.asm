@@ -13,7 +13,7 @@ PokefanMScript_0x74002: ; 0x74002
 MapDiglettsCaveSignpostItem0: ; 0x74005
 	dw $00e4
 	db MAX_REVIVE
-	
+
 ; 0x74008
 
 UnknownText_0x74008: ; 0x74008

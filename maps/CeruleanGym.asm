@@ -55,7 +55,7 @@ UnknownScript_0x1883de: ; 0x1883de
 	pause 15
 	end
 ; 0x188432
-; 
+;
 MistyScript_0x188432: ; 0x188432
 	faceplayer
 	loadfont
@@ -125,12 +125,12 @@ MistyRematchTextBefore:
 
 	para "and battle power-"
 	line "ful trainers."
-	
+
 	para "I made my dream"
 	line "come true."
 
 	para "And now<...>"
-	
+
 	para "My next dream is"
 	line "to defeat you!"
 	done
@@ -143,7 +143,7 @@ MistyRematchBeatenText:
 MistyAfterRematchText:
 	text "You really are"
 	line "strong<...>"
-	
+
 	para "I'll admit that"
 	line "you are skilled."
 	done
@@ -264,7 +264,7 @@ CeruleanGymGuyScript: ; 0x1884a2
 MapCeruleanGymSignpostItem0: ; 0x1884b6
 	dw $00fb
 	db MACHINE_PART
-	
+
 ; 0x1884b9
 
 MapCeruleanGymSignpost1Script: ; 0x1884b9
@@ -403,7 +403,7 @@ TextBranchFirstMisty
 	line "#MON are tough!"
 	done
 
-TextBranchSecondMisty:	
+TextBranchSecondMisty:
 	text "What's that? Your"
 	line "badges were"
 	cont "stolen?"
@@ -438,7 +438,7 @@ MistyBeforeRainDance:
 	text "Here is another"
 	line "memento from"
 	cont "this battle."
-	
+
 	para "Take it!"
 
 	done
@@ -450,7 +450,7 @@ MistyAfterRainDance:
 	para "It powers up"
 	line "water moves."
 
-	para "I'm sure you have" 
+	para "I'm sure you have"
 	line "a good use for it."
 	done
 

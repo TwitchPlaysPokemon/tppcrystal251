@@ -31,17 +31,17 @@ FarCall_hl:: ; 2d63
 ReturnFarCall:: ; 2d6e
 ; We want to retain the contents of f.
 ; To do this, we can pop to bc instead of af.
-	
+
 	ld a, b
 	ld [PredefAddress + 2], a
 	ld a, c
 	ld [PredefAddress + 3], a
-	
+
 ; Restore the working bank.
 	pop bc
 	ld a, b
 	rst Bankswitch
-	
+
 	ld a, [PredefAddress + 2]
 	ld b, a
 	ld a, [PredefAddress + 3]

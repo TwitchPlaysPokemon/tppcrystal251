@@ -12,7 +12,7 @@ ReceptionistScript_0x7ee63: ; 0x7ee63
 	iftrue NotGhostReceptionist
 	checktime $4
 	iffalse NotGhostReceptionist
-	loadfont 
+	loadfont
 	writetext GhostReceptionistText
 	waitbutton
 	closetext
@@ -34,13 +34,13 @@ GhostReceptionistText:
 	line "catching it?"
 	done
 
-OfficerScript_0x7ee66: ; 0x7ee66 
+OfficerScript_0x7ee66: ; 0x7ee66
 	faceplayer
 	checkevent EVENT_LAVENDER_HAUNTER
 	iftrue NotGhostOfficer
 	checktime $4
 	iffalse NotGhostOfficer
-	loadfont 
+	loadfont
 	writetext GhostOfficerText
 	waitbutton
 	closetext

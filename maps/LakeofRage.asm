@@ -330,19 +330,19 @@ ItemFragment_0x7014a: ; 0x7014a
 MapLakeofRageSignpostItem2: ; 0x7014c
 	dw $00b5
 	db FULL_RESTORE
-	
+
 ; 0x7014f
 
 MapLakeofRageSignpostItem3: ; 0x7014f
 	dw $00b6
 	db RARE_CANDY
-	
+
 ; 0x70152
 
 MapLakeofRageSignpostItem4: ; 0x70152
 	dw $00b7
 	db MAX_POTION
-	
+
 ; 0x70155
 
 MovementData_0x70155: ; 0x70155
@@ -580,11 +580,11 @@ UnknownText_0x70752: ; 0x70752
 	text "Come to think of"
 	line "it, I've seen a"
 	cont "pink BUTTERFREE<...>"
-	
+
 	para "Also, I caught"
 	line "my FORRETRESS"
 	cont "right here."
-	
+
 	para "Try headbutting"
 	line "trees if you"
 	cont "want one!"
@@ -629,7 +629,7 @@ WesleyWednesdayText:
 WesleyNotWednesdayText:
 	text "WESLEY: Today's"
 	line "not Wednesday."
-	
+
 	para "That's too bad."
 	done
 

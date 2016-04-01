@@ -99,7 +99,7 @@ ItemFragment_0x7de88: ; 0x7de88
 MapMountMortar1FInsideSignpostItem0: ; 0x7de8a
 	dw $0091
 	db MAX_REPEL
-	
+
 ; 0x7de8d
 
 PokemaniacMillerSeenText: ; 0x7de8d

@@ -399,12 +399,12 @@
 	dbw BANK(SlowkingBackpic)     - $36, SlowkingBackpic
 	dbw BANK(MisdreavusFrontpic)  - $36, MisdreavusFrontpic
 	dbw BANK(MisdreavusBackpic)   - $36, MisdreavusBackpic
-	
+
 	; Unown pics have their own table. See UnownPicPointers
-	
+
 	dbw $ff, $ffff
 	dbw $ff, $ffff
-	
+
 	dbw BANK(WobbuffetFrontpic)   - $36, WobbuffetFrontpic
 	dbw BANK(WobbuffetBackpic)    - $36, WobbuffetBackpic
 	dbw BANK(GirafarigFrontpic)   - $36, GirafarigFrontpic

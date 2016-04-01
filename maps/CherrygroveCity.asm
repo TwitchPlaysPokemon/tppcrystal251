@@ -735,21 +735,21 @@ Text_GuideGentHasRunningShoes2:
 	line "have these, as a"
 	cont "gift from me."
 	done
-	
+
 Text_GuideGentHasRunningShoes3:
 	text "<PLAY_G> put on the"
 	line "RUNNING SHOES!"
-	
+
 	para "Those are"
 	line "RUNNING SHOES."
-	
+
 	para "They came with"
 	line "instructions."
-	
+
 	para "Hold down the B"
 	line "button and race"
 	cont "like the wind!"
-	
+
 	para "Should be an asset"
 	line "for a TRAINER like"
 	cont "yourself!"

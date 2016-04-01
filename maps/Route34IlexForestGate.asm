@@ -103,7 +103,7 @@ UnknownText_0x62d9d: ; 0x62d9d
 	line "#MON don't love"
 	cont "you."
 	para "Try using this TM."
-	
+
 	done
 ; 0x62df6
 

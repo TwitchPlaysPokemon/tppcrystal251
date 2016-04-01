@@ -18,7 +18,7 @@ CinnabarVolcanoB3F_CheckBlocks:
 	iftrue CinnabarVolcanoB3F_CheckBlocks_1_2_3_Not4
 	changemap CinnabarVolcanoB3F_Bld1234_BlockData
 	return
-	
+
 CinnabarVolcanoB3F_CheckBlocks_1_2_3_Not4:
 	changemap CinnabarVolcanoB3F_Bld123_BlockData
 	return
@@ -28,7 +28,7 @@ CinnabarVolcanoB3F_CheckBlocks_1_2_Not3:
 	iftrue CinnabarVolcanoB3F_CheckBlocks_1_2_Not3_Not4
 	changemap CinnabarVolcanoB3F_Bld124_BlockData
 	return
-	
+
 CinnabarVolcanoB3F_CheckBlocks_1_2_Not3_Not4:
 	changemap CinnabarVolcanoB3F_Bld12_BlockData
 	return
@@ -40,7 +40,7 @@ CinnabarVolcanoB3F_CheckBlocks_1_Not2:
 	iftrue CinnabarVolcanoB3F_CheckBlocks_1_Not2_3_Not4
 	changemap CinnabarVolcanoB3F_Bld134_BlockData
 	return
-	
+
 CinnabarVolcanoB3F_CheckBlocks_1_Not2_3_Not4:
 	changemap CinnabarVolcanoB3F_Bld13_BlockData
 	return
@@ -50,11 +50,11 @@ CinnabarVolcanoB3F_CheckBlocks_1_Not2_Not3:
 	iftrue CinnabarVolcanoB3F_CheckBlocks_1_Not2_Not3_Not4
 	changemap CinnabarVolcanoB3F_Bld14_BlockData
 	return
-	
+
 CinnabarVolcanoB3F_CheckBlocks_1_Not2_Not3_Not4:
 	changemap CinnabarVolcanoB3F_Bld1_BlockData
 	return
-	
+
 CinnabarVolcanoB3F_CheckBlocks_Not1:
 	checkevent EVENT_MOLTRES_BOULDER_2c
 	iftrue CinnabarVolcanoB3F_CheckBlocks_Not1_Not2
@@ -64,7 +64,7 @@ CinnabarVolcanoB3F_CheckBlocks_Not1:
 	iftrue CinnabarVolcanoB3F_CheckBlocks_Not1_2_3_Not4
 	changemap CinnabarVolcanoB3F_Bld234_BlockData
 	return
-	
+
 CinnabarVolcanoB3F_CheckBlocks_Not1_2_3_Not4:
 	changemap CinnabarVolcanoB3F_Bld23_BlockData
 	return
@@ -74,7 +74,7 @@ CinnabarVolcanoB3F_CheckBlocks_Not1_2_Not3:
 	iftrue CinnabarVolcanoB3F_CheckBlocks_Not1_2_Not3_Not4
 	changemap CinnabarVolcanoB3F_Bld24_BlockData
 	return
-	
+
 CinnabarVolcanoB3F_CheckBlocks_Not1_2_Not3_Not4:
 	changemap CinnabarVolcanoB3F_Bld2_BlockData
 	return
@@ -86,7 +86,7 @@ CinnabarVolcanoB3F_CheckBlocks_Not1_Not2:
 	iftrue CinnabarVolcanoB3F_CheckBlocks_Not1_Not2_3_Not4
 	changemap CinnabarVolcanoB3F_Bld34_BlockData
 	return
-	
+
 CinnabarVolcanoB3F_CheckBlocks_Not1_Not2_3_Not4:
 	changemap CinnabarVolcanoB3F_Bld3_BlockData
 	return
@@ -134,7 +134,7 @@ SimonCheck_CinnabarVolcanoB3F1:
 	iffalse SimonCheck_CinnabarVolcanoB3FEnd
 	appear $7
 	return
-	
+
 SimonCheck_CinnabarVolcanoB3FEnd:
 	disappear $7
 	return
@@ -162,11 +162,11 @@ DontKillMoltres:
 
 BoulderScript_CinnabarVolcanoB3F:
 	jumptext BoulderText_CinnabarVolcanoB3F
-	
+
 BoulderText_CinnabarVolcanoB3F:
 	text "The boulder is"
 	line "blocking the lava"
-	
+
 	para "flow. Better not"
 	line "touch it!"
 	done
@@ -174,32 +174,32 @@ BoulderText_CinnabarVolcanoB3F:
 MoltresText1:
 	text "Gyaoooh!"
 	done
-	
+
 SimonText1_CinnabarVolcanoB3F:
 	text "Man, it's hot down"
 	line "here."
-	
+
 	para "Oh, it's you"
 	line "again."
-	
+
 	para "Remember that ab-"
 	line "andoned building"
-	
+
 	para "I mentioned ear-"
 	line "lier?"
-	
+
 	para "It was on this"
 	line "very island."
-	
+
 	para "I like to believe"
 	line "my parter made it"
-	
+
 	para "out before the"
 	line "volcano blew."
-	
+
 	para "But there's no"
 	line "trace of the"
-	
+
 	para "mansion, and no"
 	line "trace of him."
 
@@ -211,7 +211,7 @@ SimonText1_CinnabarVolcanoB3F:
 	line "way in."
 
 	para "Take them back."
-	
+
 	para "Just take them."
 
 	para "<PLAY_G> was"

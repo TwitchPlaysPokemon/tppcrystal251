@@ -14,7 +14,7 @@ OlivineLighthouse1F_Trigger1:
 
 OlivineLighthouse1F_Trigger2:
 	end
-	
+
 OlivineLighthouse1F_ElevatorDoorScript:
 	checkevent EVENT_TALKED_TO_JASMINE_ABOUT_AMPHY
 	iffalse OlivineLighthouse1F_ElevatorDoorScriptReturn
@@ -36,7 +36,7 @@ OlivineLighthouse1F_BurglarSimonScript1a:
 	spriteface $4, $2
 	spriteface $0, $3
 	jump OlivineLighthouse1F_BurglarSimonScript2
-	
+
 OlivineLighthouse1F_BurglarSimonScript1b:
 	moveperson $4, 16, 13
 	appear $4
@@ -92,14 +92,14 @@ OlivineLighthouse1F_PlayerMovement1:
 	step_up
 	turn_head_right
 	step_end
-	
+
 OlivineLighthouse1F_BurglarSimonMovement2:
 	big_step_left
 	big_step_left
 	big_step_down
 	big_step_left
 	step_end
-	
+
 OlivineLighthouse1F_BurglarSimonMovement3:
 	big_step_down
 	big_step_left
@@ -120,12 +120,12 @@ PokefanFScript_0x5ae6a: ; 0x5ae6a
 OlivineLighthouse1F_BurglarSimonText1:
 	text "Hey, I remember"
 	line "you!"
-	
+
 	para "You did a number"
 	line "on me back in"
 	cont "AZALEA TOWN."
 	done
-	
+
 OlivineLighthouse1F_BurglarSimonTextLoss:
 	text "Too much!"
 	done
@@ -133,17 +133,17 @@ OlivineLighthouse1F_BurglarSimonTextLoss:
 OlivineLighthouse1F_BurglarSimonText2:
 	text "While searching"
 	line "for my partner,"
-	
+
 	para "I did some looting"
 	line "solo."
-	
+
 	para "I'm no good at it,"
 	line "though."
-	
+
 	para "All I've found was"
 	line "this garbage."
 	done
-	
+
 OlivineLighthouse1F_BurglarSimonText3:
 	text "Au revoir!"
 	done

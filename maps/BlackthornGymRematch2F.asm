@@ -2,52 +2,52 @@ BlackthornGymRematch2F_MapScriptHeader:
 	; triggers
 	db 0
 
-	; callback count 
+	; callback count
 	db 1
 	dbw 3, BlackthornRematch2FBoulder_CheckIfOverWarp
 
 BoulderScriptRematch2F: ; 0x19575e
 	jumpstd strengthboulder
 
-BlackthornRematch2FBoulder_CheckIfOverWarp: 
+BlackthornRematch2FBoulder_CheckIfOverWarp:
 	writecmdqueue CmdQueue_BlackthornRematch2FBoulder
 	return
-	
-CmdQueue_BlackthornRematch2FBoulder: 
+
+CmdQueue_BlackthornRematch2FBoulder:
 	dbw 2, BlackthornRematch2F_BoulderTable ; check if any stones are sitting on a warp
 	db 0, 0 ; filler
-	
-BlackthornRematch2F_BoulderTable: 
+
+BlackthornRematch2F_BoulderTable:
 	db 7, 2 ; warp, person
-	dw BlackthornRematch_Boulder1_Pushed	
+	dw BlackthornRematch_Boulder1_Pushed
 	db 8, 3 ; warp, person
-	dw BlackthornRematch_Boulder2_Pushed	
+	dw BlackthornRematch_Boulder2_Pushed
 	db 9, 4 ; warp, person
-	dw BlackthornRematch_Boulder3_Pushed	
+	dw BlackthornRematch_Boulder3_Pushed
 	db 10, 5 ; warp, person
-	dw BlackthornRematch_Boulder4_Pushed	
+	dw BlackthornRematch_Boulder4_Pushed
 	db $ff
-	
+
 BlackthornRematch_Boulder1_Pushed: ; 0x19573d
 	disappear 2
 	jump BlackthornRematch_PushedBoulder
 	end
-	
+
 BlackthornRematch_Boulder2_Pushed: ; 0x19573d
 	disappear 3
 	jump BlackthornRematch_PushedBoulder
 	end
-	
+
 BlackthornRematch_Boulder3_Pushed: ; 0x19573d
 	disappear 4
 	jump BlackthornRematch_PushedBoulder
 	end
-	
+
 BlackthornRematch_Boulder4_Pushed: ; 0x19573d
 	disappear 5
 	jump BlackthornRematch_PushedBoulder
 	end
-	
+
 BlackthornRematch_PushedBoulder:
 	pause 30
 	playsound SFX_STRENGTH
@@ -141,7 +141,7 @@ BlackthornGymRematch2F_MapEventHeader:
 	warp_def $9, $3, 6, GROUP_BLACKTHORNGYMREMATCH1F, MAP_BLACKTHORNGYMREMATCH1F
 	warp_def $3, $d, 7, GROUP_BLACKTHORNGYMREMATCH1F, MAP_BLACKTHORNGYMREMATCH1F
 	warp_def $9, $f, 8, GROUP_BLACKTHORNGYMREMATCH1F, MAP_BLACKTHORNGYMREMATCH1F
-	
+
 	warp_def $d, $c, 9, GROUP_BLACKTHORNGYMREMATCH1F, MAP_BLACKTHORNGYMREMATCH1F
 	warp_def $11, $6, 10, GROUP_BLACKTHORNGYMREMATCH1F, MAP_BLACKTHORNGYMREMATCH1F
 	warp_def $d, $2, 11, GROUP_BLACKTHORNGYMREMATCH1F, MAP_BLACKTHORNGYMREMATCH1F

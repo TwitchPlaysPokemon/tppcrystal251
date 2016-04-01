@@ -43,9 +43,7 @@ pics.o
 
 beesafree_obj := $(crystal_obj:.o=_ai.o)
 
-aprilfools_obj := $(crystal_obj:.o=_afd.o)
-
-all_obj := $(sort $(crystal_obj) $(crystal11_obj) $(beesafree_obj) $(aprilfools_obj))
+all_obj := $(sort $(crystal_obj) $(crystal11_obj) $(beesafree_obj))
 
 # object dependencies
 deps := $(crystal_obj:.o=)
@@ -60,7 +58,6 @@ all: $(roms)
 crystal: pokecrystal.gbc
 crystal11: pokecrystal11.gbc
 beesafree: pokecrystal_ai.gbc
-aprilfools: pokecrystal_afd.gbc
 
 clean:
 	rm -f $(roms) $(all_obj) $(roms:.gbc=.map) $(roms:.gbc=.sym)
@@ -72,8 +69,6 @@ clean:
 	rgbasm -D BEESAFREE -o $@ $<
 %11.o: %.asm $$(%_dep)
 	rgbasm -D CRYSTAL11 -o $@ $<
-%_afd.o: %.asm $$(%_dep)
-	rgbasm -D APRILFOOLS -o $@ $<
 
 pokecrystal11.gbc: $(crystal11_obj)
 	rgblink -n $*.sym -m $*.map -o $@ $^
@@ -84,10 +79,6 @@ pokecrystal.gbc: $(crystal_obj)
 	rgbfix -Cjv -i BORT -k 01 -l 0x33 -m 0x10 -p 0 -r 3 -t TPPCRYSTAL $@
 
 pokecrystal_ai.gbc: $(beesafree_obj)
-	rgblink -n $*.sym -m $*.map -o $@ $^
-	rgbfix -Cjv -i BORT -k 01 -l 0x33 -m 0x10 -n 1 -p 0 -r 3 -t TPPCRYSTAL $@
-
-pokecrystal_afd.gbc: $(aprilfools_obj)
 	rgblink -n $*.sym -m $*.map -o $@ $^
 	rgbfix -Cjv -i BORT -k 01 -l 0x33 -m 0x10 -n 1 -p 0 -r 3 -t TPPCRYSTAL $@
 

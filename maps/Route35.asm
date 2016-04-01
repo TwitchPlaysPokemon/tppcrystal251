@@ -82,7 +82,7 @@ UnknownScript_0x19c8ef: ; 0x19c8ef
 ; 0x19c903
 
 UnknownScript_0x19c903: ; 0x19c903
-	jumpstd asknumber1m 
+	jumpstd asknumber1m
 	end
 ; 0x19c907
 

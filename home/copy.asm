@@ -224,7 +224,7 @@ Request2bpp:: ; eba
 	push af
 
 	ld a, $8
-	ld [$ffd3], a 
+	ld [$ffd3], a
 	ld a, [wLinkMode]
 	cp $4
 	jr nz, .asm_edc ;if link battle4 and ??? = 0, ?? = 6. else ?? = 8

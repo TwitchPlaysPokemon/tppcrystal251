@@ -85,7 +85,7 @@ BlackthornGymRematchStatue: ; 0x194eea
 BlackthornGymRematchStatue2: ; 0x194ef3
 	trainertotext CLAIR, 1, $1
 	jumpstd gymstatue2
-	
+
 
 TrainerCooltrainermPaulRematch: ; 0x194e9a
 	; bit/flag number
@@ -237,7 +237,7 @@ CooltrainerLolaAfterRematch: ; 0x195516
 	text "Dragons might be"
 	line "weak to dragon-"
 	cont "type moves<...>"
-	
+
 	para "But they still"
 	line "put up a fight!"
 	done

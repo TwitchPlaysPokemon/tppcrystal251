@@ -79,7 +79,7 @@ ItemFragment_0x609ae: ; 0x609ae
 MapOlivineLighthouse5FSignpostItem0: ; 0x609b0
 	dw $0085
 	db HYPER_POTION
-	
+
 ; 0x609b3
 
 SailorErnestSeenText: ; 0x609b3

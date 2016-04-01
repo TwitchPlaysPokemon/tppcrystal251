@@ -13,7 +13,7 @@ MapRoute28Signpost0Script: ; 0x1a540d
 MapRoute28SignpostItem1: ; 0x1a5410
 	dw $00a3
 	db RARE_CANDY
-	
+
 ; 0x1a5413
 
 UnknownText_0x1a5413: ; 0x1a5413

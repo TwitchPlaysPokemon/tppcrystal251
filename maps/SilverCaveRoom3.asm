@@ -154,10 +154,10 @@ UnknownText_MoreText1: ; 0x18c63c
 	text "start9"
 	done
 
-UnknownText_MoreText2: 
+UnknownText_MoreText2:
 	text "select"
 	done
-	
+
 RuinsEntranceSignScript:
 	jumptext RuinsEntranceText
 
@@ -185,7 +185,7 @@ RuinsEntranceText:
 	para "The statue appears"
 	line "to be broken off."
     done
-	
+
 SilverCaveRoom3_MapEventHeader: ; 0x18c644
 	; filler
 	db 0, 0

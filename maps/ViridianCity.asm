@@ -160,7 +160,7 @@ GrampsText_IntroCatchingVideo:
 	para "Feast your eyes on"
 	line "my TEACHY TV!"
 	done
-	
+
 GrampsText_AfterCatchingVideo:
 	text "There! Now wasn't"
 	line "that enlightening?"
@@ -223,7 +223,7 @@ UnknownText_0x1a9daa: ; 0x1a9daa
 	para "I have heard that"
 	line "there are celeb-"
 	cont "-rities here!"
-	
+
 	para "You can see them"
 	line "hanging out by"
 	cont "the pond!"

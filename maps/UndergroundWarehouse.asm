@@ -1,7 +1,7 @@
 UndergroundWarehouse_MapScriptHeader: ; 0x7d94b
 	; trigger count
 	db 2
-	
+
 	dw UndergroundWarehouse_MapTrigger1, $0000
 	dw UndergroundWarehouse_MapTrigger2, $0000
 
@@ -16,7 +16,7 @@ UndergroundWarehouse_MapScriptHeader: ; 0x7d94b
 UndergroundWarehouse_MapTrigger1:
 	priorityjump UndergroundWarehouse_BurglarSimonScript1
 	end
-	
+
 UndergroundWarehouse_MapTrigger2:
 	end
 
@@ -73,18 +73,18 @@ UndergroundWarehouse_BurglarSimonScript2b:
 	playmapmusic
 	dotrigger $1
 	end
-	
+
 UndergroundWarehouse_BurglarSimonMovement1a:
 	big_step_right
 UndergroundWarehouse_BurglarSimonMovement1:
 	big_step_down
 	step_end
-	
+
 UndergroundWarehouse_BurglarSimonMovement2:
 	big_step_left
 	big_step_down
 	step_end
-	
+
 UnknownScript_0x7d950: ; 0x7d950
 	clearevent EVENT_SWITCH_1
 	clearevent EVENT_SWITCH_2
@@ -228,32 +228,32 @@ ItemFragment_0x7d9e8: ; 0x7d9e8
 
 UndergroundWarehouse_BurglarSimonText1:
 	text "Hey!"
-	
+
 	para "Quit sticking your"
 	line "nose where it don't"
 	cont "belong!"
 	done
-	
+
 UndergroundWarehouse_BurglarSimonTextLoss:
 	text "Aw, shucks."
 	done
-	
+
 UndergroundWarehouse_BurglarSimonText2:
 	text "When I heard TEAM"
 	line "ROCKET was raiding"
-	
+
 	para "this place, I knew"
 	line "there'd be loot"
 	cont "galore!"
-	
+
 	para "But all I found"
 	line "was junk."
-	
+
 	para "Oh well. One man's"
 	line "trash, another's"
 	cont "treasure."
 	done
-	
+
 UndergroundWarehouse_BurglarSimonText3:
 	text "See ya!"
 	done

@@ -83,10 +83,10 @@ Function184a:: ; 184a
 	ret
 ; 1852
 
-Function1852:: ; 1852 
+Function1852:: ; 1852
 	ld a, [StandingTile] ; load tile on
 	call GetTileCollision; a is 1 if water, 0 if land
-	sub 1 
+	sub 1
 	ret z ; if water then return 0, otherwise clear flags first then return 255
 	and a
 	ret
@@ -100,7 +100,7 @@ GetTileCollision:: ; 185d
 	push hl
 
 	ld hl, TileCollisionTable ;0 if land, 1 if water
-	ld e, a 
+	ld e, a
 	ld d, 0 ; 0 d
 	add hl, de ; add a and the tile
 
@@ -236,9 +236,9 @@ Function18de:: ; 18de
 	call GetMapObject ;get object location and put it in bc
 	ld hl, $0000
 	add hl, bc
-	ld a, [hl] ;place first byte in a 
+	ld a, [hl] ;place first byte in a
 	cp $ff ;if 255, cancel
-	jr z, .asm_18f3 
+	jr z, .asm_18f3
 	ld [hConnectedMapWidth], a
 	call Function1ae5
 	and a

@@ -4,7 +4,7 @@ OlivineLighthouse6F_MapScriptHeader: ; 0x60b8f
 
 	; callback count
 	db 1
-	
+
 	dbw 1, OlivineLighthouse6F_ElevatorDoorScript
 ; 0x60b91
 

@@ -740,13 +740,13 @@ ItemFragment_0x7832b: ; 0x7832b
 MapRoute34SignpostItem3: ; 0x7832d
 	dw $00a7
 	db RARE_CANDY
-	
+
 ; 0x78330
 
 MapRoute34SignpostItem4: ; 0x78330
 	dw $00a8
 	db LUCKY_PUNCH
-	
+
 RandomEggScript:
 	checkevent EVENT_BULBASAUR_EGG
 	iffalse RandomEggScriptMain
@@ -781,35 +781,35 @@ RandomEggRandomizer:
 	if_equal $3, GiveChikoritaEgg
 	if_equal $4, GiveCyndaquilEgg
 	jump GiveTotodileEgg
-	
+
 GiveBulbasaurEgg:
 	checkevent EVENT_BULBASAUR_EGG
 	iftrue RandomEggRandomizer
 	setevent EVENT_BULBASAUR_EGG
 	giveegg BULBASAUR, 1
 	jump GotEgg
-	
+
 GiveCharmanderEgg:
 	checkevent EVENT_CHARMANDER_EGG
 	iftrue RandomEggRandomizer
 	setevent EVENT_CHARMANDER_EGG
 	giveegg CHARMANDER, 1
 	jump GotEgg
-	
+
 GiveSquirtleEgg:
 	checkevent EVENT_SQUIRTLE_EGG
 	iftrue RandomEggRandomizer
 	setevent EVENT_SQUIRTLE_EGG
 	giveegg SQUIRTLE, 1
 	jump GotEgg
-	
+
 GiveChikoritaEgg:
 	checkevent EVENT_CHIKORITA_EGG
 	iftrue RandomEggRandomizer
 	setevent EVENT_CHIKORITA_EGG
 	giveegg CHIKORITA, 1
 	jump GotEgg
-	
+
 GiveCyndaquilEgg:
 	checkevent EVENT_CYNDAQUIL_EGG
 	iftrue RandomEggRandomizer
@@ -859,7 +859,7 @@ MovementData_0x78337: ; 0x78337
 YoungsterSamuelSeenText: ; 0x7833d
 	text "I went to"
 	line "KANTO once!"
-	
+
 	para "My strategy is to"
 	line "combine #MON"
 	cont "from both regions!"
@@ -897,11 +897,11 @@ UnknownText_0x783d8: ; 0x783d8
 YoungsterIanSeenText: ; 0x78425
 	text "I'm the best in my"
 	line "class at #MON."
-	
+
 	para "I make use of"
 	line "STAT-ENHANCING"
 	cont "items."
-	
+
 	para "They make my"
 	line "#MON even more"
 	cont "powerful!"
@@ -917,9 +917,9 @@ YoungsterIanBeatenText: ; 0x78447
 
 UnknownText_0x78469: ; 0x78469
 	text "LUCKY PUNCH<...>"
-	
+
 	para "METAL POWDER<...>"
-	
+
 	para "They make CHANSEY"
 	line "and DITTO even"
 	cont "more powerful."
@@ -977,7 +977,7 @@ UnknownText_0x785b8: ; 0x785b8
 	text "Maybe it is time"
 	line "for my CHIKORITA"
 	cont "to evolve<...>"
-	
+
 	para "It is so cute"
 	line "so I have been"
 	cont "putting it off<...>"
@@ -1028,11 +1028,11 @@ PokefanmBrandonBeatenText: ; 0x786e1
 	text "DAD: I'll bring"
 	line "my own #MON"
 	cont "next time<...>"
-	
+
 	para "SON: But these"
 	line "aren't my #MON,"
 	cont "DAD<...>"
-	
+
 	para "DAD: <...>"
 	done
 ; 0x786fc
@@ -1041,10 +1041,10 @@ UnknownText_0x786fc: ; 0x786fc
 	text "<...>"
 
 	para "<...><...>"
-	
+
 	para "I happen to like"
 	line "cute baby #MON!"
-	
+
 	para "It's nothing to"
 	line "be ashamed about!"
 	done
@@ -1205,12 +1205,12 @@ EggApproach_Text: ; 0x78a52
 
 	para "Want to take it?"
 	done
-	
+
 FreeSpace_Text: ; 0x78a52
 	text "You've no room for"
 	line "this."
 	done
-	
+
 FoundEgg_Text: ; 0x631ae
 	text "<PLAYER> found"
 	line "an EGG!"
@@ -1254,6 +1254,6 @@ Route34_MapEventHeader: ; 0x78a7c
 	person_event SPRITE_COOLTRAINER_F, 52, 7, $9, 0, 0, -1, -1, 8 + PAL_OW_RED, 2, 3, TrainerCooltrainerfJenn, -1
 	person_event SPRITE_COOLTRAINER_F, 55, 10, $7, 0, 0, -1, -1, 8 + PAL_OW_RED, 2, 2, TrainerCooltrainerfKate, -1
 	person_event SPRITE_POKE_BALL, 34, 11, $1, 0, 0, -1, -1, 0, 1, 0, ItemFragment_0x7832b, EVENT_ITEM_ROUTE_34_NUGGET
-	person_event SPRITE_EGG, $18, $11, $16, 2, 2, -1, -1, 0, 0, 0, RandomEggScript, EVENT_RANDOM_EGG 
+	person_event SPRITE_EGG, $18, $11, $16, 2, 2, -1, -1, 0, 0, 0, RandomEggScript, EVENT_RANDOM_EGG
 ; 0x78b5d
 

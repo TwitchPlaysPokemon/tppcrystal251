@@ -1,9 +1,9 @@
 VermilionCity_MapScriptHeader: ; 0x1aa97a
 	; trigger count
 	db 3
-	
+
 	; triggers
-	
+
 	dw VermilionCityTrigger1, $0000
 	dw VermilionCityTrigger2, $0000
 	dw VermilionCityTrigger3, $0000
@@ -19,7 +19,7 @@ VermilionCity_MapScriptHeader: ; 0x1aa97a
 VermilionCityTrigger1:
 	priorityjump VermilionCitySimonScript1
 	end
-	
+
 VermilionCityTrigger2:
 	end
 
@@ -88,7 +88,7 @@ VermilionCitySimonMovement1a:
 	big_step_down
 	turn_head_right
 	step_end
-	
+
 VermilionCitySimonMovement2a:
 	big_step_up
 VermilionCitySimonMovement2:
@@ -241,7 +241,7 @@ MapVermilionCitySignpost6Script: ; 0x1aaa0f
 MapVermilionCitySignpostItem7: ; 0x1aaa12
 	dw $00fc
 	db FULL_HEAL
-	
+
 ; 0x1aaa15
 
 UnknownText_0x1aaa15: ; 0x1aaa15
@@ -321,22 +321,22 @@ VermilionCitySimonText1:
 	line "me all the way"
 	cont "out here, huh?"
 	done
-	
+
 VermilionCitySimonLossText:
 	text "Arrgh!"
 	done
-	
+
 VermilionCitySimonText2:
 	text "Ah, well, it can't"
 	line "be helped."
-	
+
 	para "Here, you can have"
 	line "this. I think it"
-	
+
 	para "suits me better,"
 	line "but whatever."
 	done
-	
+
 VermilionCitySimonText3:
 	text "Buh-bye!"
 	done

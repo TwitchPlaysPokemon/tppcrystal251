@@ -42,7 +42,7 @@ UnknownScript_0x6ab20: ; 0x6ab20
 	return
 ; 0x6ab23
 
-UnknownScript_0x6ab23: ; 0x6ab23 
+UnknownScript_0x6ab23: ; 0x6ab23
 	checkevent EVENT_JUMPSTD_0016_2D2 ;if bit is on, a = 1, else a is 0
 	iftrue UnknownScript_0x6ab46
 		;checkcode VAR_WEEKDAY ;load weekday
@@ -86,7 +86,7 @@ ENDC
 	disappear $2
 	appear $d
 	applymovement $0, MovementData_0x6add1 ;move player into place?
-	pause 15 
+	pause 15
 	special Function8c0ab ;something to do with palletes
 	jumpstd bugcontestresults ;jump to BugContestResultsScript
 ; 0x6ab76
@@ -208,7 +208,7 @@ UnknownScript_0x6ac10: ; 0x6ac10
 	writetext UnknownText_0x6aecc
 	waitbutton
 	closetext
-	setflag ENGINE_BUG_CONTEST_TIMER 
+	setflag ENGINE_BUG_CONTEST_TIMER
 	special Function135db ;put 20 in some variables and store current time in wdc35
 	spriteface $0, $2
 	playsound SFX_EXIT_BUILDING

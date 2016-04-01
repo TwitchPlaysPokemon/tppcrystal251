@@ -83,7 +83,7 @@ ItemFragment_0x7e248: ; 0x7e248
 MapMountMortarB1FSignpostItem0: ; 0x7e24a
 	dw $0093
 	db MAX_REVIVE
-	
+
 ; 0x7e24d
 
 UnknownText_0x7e24d: ; 0x7e24d

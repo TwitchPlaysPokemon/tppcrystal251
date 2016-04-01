@@ -2,9 +2,9 @@ MewIslandEntranceDock_MapScriptHeader:
 	; trigger count
 	db 0
 
-	; callback count 
+	; callback count
 	db 0
-	
+
 MewIslandDockSailorWalk: ; 0x74ef8
 	step_down
 	step_down
@@ -30,23 +30,23 @@ SailorScript_MewIslandPort:
 	pause 15
 	warp GROUP_VERMILION_PORT, MAP_VERMILION_PORT, $F, $D
 	end
-	
+
 SailorScript_MewIslandChoseNo:
 	writetext MewSailorReturnNoText
 	waitbutton
 	closetext
 	end
-	
+
 MewSailorReturnNoText:
 	text "OK then."
 	done
-	
+
 MewSailorReturnText:
 	text "Want to return"
 	line "to VERMILION?"
 	done
-	
-MewIslandEntranceDock_MapEventHeader: 
+
+MewIslandEntranceDock_MapEventHeader:
 	; filler
 	db 0, 0
 
@@ -62,4 +62,4 @@ MewIslandEntranceDock_MapEventHeader:
 	; people-events
 	db 1
 	person_event SPRITE_SAILOR, 20, 11, $7, 0, 0, -1, -1, 0, 0, 0, SailorScript_MewIslandPort, -1
-	
+

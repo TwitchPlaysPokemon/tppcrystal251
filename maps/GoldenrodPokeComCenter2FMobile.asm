@@ -67,7 +67,7 @@ UnknownText_0x62795: ; 0x62795
 	para "facility thanks to"
 	line "advances in wire-"
 	cont "less technology."
-	
+
 	para "If the signal goes"
 	line "out, it could"
 	cont "cause riots!"

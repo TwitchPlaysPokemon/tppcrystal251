@@ -48,7 +48,7 @@ ENDC
     rst LUASerial
     ENDC
     ret
-    
+
 PewterPokecenterTrueCreditsScript:
     loadfont
     writetext _PewterPokeCenterDebugTrueCredits
@@ -98,28 +98,28 @@ _PewterCityPokecenterGuyText: ; 0x1a2f75
 _PewterPokeCenterDebugLUAText:
     text "LUA serial?"
     done
-    
+
 _PewterPokeCenterDebugLUAText2:
     text "Waiting<...>"
     done
-    
+
 _PewterPokeCenterDebugLUAText3:
     text "What's that,"
     line "soldier? This"
     cont "isn't a MILITARY"
     cont "game?"
-    
+
     para "I'll have you know"
     line "I was in the front"
     cont "lines. LT.SURGE"
     cont "was my CO!"
     done
-    
+
 _PewterPokeCenterDebugTrueCredits:
     text "Initiate true"
     line "credits?"
     done
-    
+
 PewterPokeCenter1FRB_MapEventHeader: ; 0x1a2ff4
 	; filler
 	db 0, 0

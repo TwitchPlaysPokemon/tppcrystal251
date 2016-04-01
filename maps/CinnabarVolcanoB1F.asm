@@ -3,59 +3,59 @@ CinnabarVolcanoB1F_MapScriptHeader:
 	db 0
 	; callback count
 	db 1
-	
+
 	; callbacks
 	dbw 3, WriteCommandQueue_CinnabarVolcanoB1F
 
 
-	
-	
+
+
 WriteCommandQueue_CinnabarVolcanoB1F:
 	writecmdqueue CmdQueue_CinnabarVolcanoB1F
 	return
-	
+
 CmdQueue_CinnabarVolcanoB1F:
 	dbw 2, StoneTable_CinnabarVolcanoB1F
 	db 0, 0 ; filler
-	
+
 StoneTable_CinnabarVolcanoB1F:
 	db 4, 2
 	dw Boulder1Down_CinnabarVolcanoB1F
-	
+
 	db 5, 3
 	dw Boulder2Down_CinnabarVolcanoB1F
-	
+
 	db 2, 4
 	dw Boulder3Down_CinnabarVolcanoB1F
-	
+
 	db 3, 5
 	dw Boulder4Down_CinnabarVolcanoB1F
-	
+
 	db $ff
 
 Boulder1Down_CinnabarVolcanoB1F:
 	disappear 2
 	clearevent EVENT_MOLTRES_BOULDER_1b
 	jump PushedDownHoleScript_CinnabarVolcanoB1F
-	
+
 Boulder2Down_CinnabarVolcanoB1F:
 	disappear 3
 	clearevent EVENT_MOLTRES_BOULDER_2b
 	jump PushedDownHoleScript_CinnabarVolcanoB1F
-	
+
 Boulder3Down_CinnabarVolcanoB1F:
 	disappear 4
 	clearevent EVENT_MOLTRES_BOULDER_3b
 	jump PushedDownHoleScript_CinnabarVolcanoB1F
-	
+
 Boulder4Down_CinnabarVolcanoB1F:
 	disappear 5
 	clearevent EVENT_MOLTRES_BOULDER_4b
 	jump PushedDownHoleScript_CinnabarVolcanoB1F
-	
+
 BoulderScript_CinnabarVolcanoB1F:
 	jumpstd strengthboulder
-	
+
 PushedDownHoleScript_CinnabarVolcanoB1F
 	pause 30
 	scall PushedDownHoleSoundScript_CinnabarVolcanoB1F
@@ -64,17 +64,17 @@ PushedDownHoleScript_CinnabarVolcanoB1F
 	waitbutton
 	closetext
 	end
-	
+
 PushedDownHoleSoundScript_CinnabarVolcanoB1F:
 	playsound SFX_STRENGTH
 	earthquake 80
 	end
-	
+
 PushedDownHoleText_CinnabarVolcanoB1F:
 	text "The boulder fell"
 	line "through!"
 	done
-	
+
 CinnabarVolcanoB1F_MapEventHeader:
 	; filler
 	db 0, 0

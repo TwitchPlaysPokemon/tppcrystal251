@@ -120,7 +120,7 @@ KarenBeforeRematchText:
 
 	para "You've assembled a"
 	line "charming team."
-	
+
 	para "Our battle should"
 	line "be a good one."
 

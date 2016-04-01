@@ -19,7 +19,7 @@ Function1c30:: ; 0x1c30
 	jr nz, .asm_1c35 ; 0x1c44 $ef
 	ret
 
-Function1c47:: ; 0x1c47 put 16 bytes in and before(and including) hl into cur menu in reverse order 
+Function1c47:: ; 0x1c47 put 16 bytes in and before(and including) hl into cur menu in reverse order
 	ld b, $10
 	ld de, wcf81
 .asm_1c4c
@@ -31,7 +31,7 @@ Function1c47:: ; 0x1c47 put 16 bytes in and before(and including) hl into cur me
 	ret
 
 Function1c53:: ; 0x1c53  get size of loaded menu, put in bc
-	ld a, [wcf82] 
+	ld a, [wcf82]
 	ld b, a
 	ld a, [wcf84]
 	sub b
@@ -179,8 +179,8 @@ GetTileCoord:: ; 1d05
 	add hl, hl
 	add hl, bc
 	add hl, hl
-	add hl, hl 
-	ld c, a 
+	add hl, hl
+	ld c, a
 	xor a
 	ld b, a
 	add hl, bc ; add original c to get right colomn
@@ -210,7 +210,7 @@ GetAttrCoord:: ; 1d21
 	add hl, hl ;(hl = 0b * 20(screen width in tiles)
 	ld c, a
 	xor a
-	ld b, a 
+	ld b, a
 	add hl, bc ;add original c
 	ld bc, AttrMap
 	add hl, bc ;go to that slot in attrimap

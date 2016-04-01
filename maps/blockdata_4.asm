@@ -86,6 +86,6 @@ SSAnne8_BlockData:
 SSAnne9_BlockData:
 SSAnne10_BlockData:
 	INCBIN "maps/SSAnne9.blk"
-	
+
 GoldenrodPokeCenter1F_BlockData:
 	INCBIN "maps/GoldenrodPokeCenter1F.blk"

@@ -409,7 +409,7 @@ CooltrainerfLolaSeenText: ; 0x19549d
 
 	para "My #MON might"
 	line "not be dragon-type"
-	
+
 	para "but don't"
 	line "underestimate it!"
 	done
@@ -424,7 +424,7 @@ UnknownText_0x195516: ; 0x195516
 	text "Dragons are weak"
 	line "against dragon-"
 	cont "type moves."
-	
+
 	para "If you want to"
 	line "beat CLAIR,"
 	cont "remember that!"

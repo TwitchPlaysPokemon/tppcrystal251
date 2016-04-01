@@ -1,4 +1,4 @@
-	dw NormalHit ;assosiate with moveeffect 
+	dw NormalHit ;assosiate with moveeffect
 	dw DoSleep
 	dw PoisonHit
 	dw LeechHit
@@ -156,4 +156,3 @@
 	dw Fly
 	dw DefenseCurl
 	dw Extremespeed
-	

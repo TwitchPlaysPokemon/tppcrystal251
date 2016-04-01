@@ -274,11 +274,11 @@ FalknerRematchBeatenText:
 
 FalknerAfterRematchText:
 	text "A defeat is a"
-	line "defeat." 
-	
+	line "defeat."
+
 	para "You are strong"
 	line "indeed."
-	
+
 	para "I'm going to train"
 	line "harder with my"
 	para "#MON to become"
@@ -286,7 +286,7 @@ FalknerAfterRematchText:
 	cont "KEEPER of all!"
 
 	done
-	
+
 UnknownText_0x6854a: ; 0x6854a
 	text "<...>Darn! My dad's"
 	line "cherished bird"
@@ -404,7 +404,7 @@ UnknownText_0x688c7: ; 0x688c7
 	text "Bird #MON are"
 	line "more common in the"
 	cont "KANTO region!"
-	
+
 	para "You usually only"
 	line "see HOOTHOOT"
 	cont "around here<...>"

@@ -538,7 +538,7 @@ UnknownText_0x19d3f8: ; 0x19d3f8
 
 	para "Being a good "
 	line "trainer isn't"
-	
+
 	para "just about having"
 	line "the most powerful"
 	cont "ones."

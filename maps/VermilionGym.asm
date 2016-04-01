@@ -188,7 +188,7 @@ MapVermilionGymTrashcanScript:
 	waitbutton
 	closetext
 	end
-	
+
 .second_switch
 	setevent EVENT_VERMILION_DOOR_2
 	writetext Text_FoundSecondSwitch
@@ -197,7 +197,7 @@ MapVermilionGymTrashcanScript:
 	waitbutton
 	closetext
 	end
-	
+
 .reset_switches
 	loadfont
 	writetext UnknownText_0x19261e
@@ -253,11 +253,11 @@ TextBranchNoSurgeChallenge2:
 SurgeRematchTextBefore:
 	text "What's up?"
 	line "I'm doing great!"
-	
+
 	para "Hey, you!"
 	line "Battle me again!"
 	cont "What do you say?"
-	
+
 	done
 
 SurgeRematchTextBeforeChallenge:
@@ -288,8 +288,8 @@ SurgeRematchBeatenText:
 
 SurgeAfterRematchText:
 	text "You are very"
-	line "strong!" 
-	
+	line "strong!"
+
 	para "I'll have to go"
 	line "back to camp and"
 	para "brush up on my"
@@ -299,8 +299,8 @@ SurgeAfterRematchText:
 
 SurgeAfterRematchTextChallenge:
 	text "You are very"
-	line "strong!" 
-	
+	line "strong!"
+
 	para "You should be able"
 	line "to handle GUYANA"
 	cont "no problem!"
@@ -382,7 +382,7 @@ SurgeLastText:
 	line "CHARGE."
 
 	para "An electrifying"
-	line "strike for brave" 
+	line "strike for brave"
 	cont "electric #MON."
 
 	para "It's good for"

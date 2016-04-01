@@ -45,23 +45,23 @@ MapBattleTentRuinsMonitorScript3:
 MapBattleTentRuinsDoorText:
 	text "It's locked<...>"
 	done
-	
+
 MapBattleTentRuinsMonitorText1:
 	text "SYSTEM OFFLINE<...>"
-	
+
 	para "REASON:"
 	line "POWER OUTAGE"
-	
+
 	done
-	
+
 MapBattleTentRuinsMonitorText2:
 	text "LOCKDOWN INITIATED"
-	
+
 	para "REASON:"
 	line "GENERATOR FAILURE"
-	
+
 	done
-	
+
 MapBattleTentRuinsMonitorText3:
 	text "SYSTEM STATUS:"
 	line "NORMAL"

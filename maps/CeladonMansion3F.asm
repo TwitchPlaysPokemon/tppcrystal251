@@ -131,7 +131,7 @@ UnknownText_0x71763: ; 0x71763
 	para "You should go show"
 	line "it off."
 	done
-	
+
 Text_GiveMoneyMansion3F:
 	text "And here."
 	line "¥300,000, from me."

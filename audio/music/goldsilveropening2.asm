@@ -222,4 +222,3 @@ Music_GoldSilverOpening2_Ch4_L4:
 	note F#, 16
 	note B_, 4
 	endchannel
-	

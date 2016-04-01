@@ -166,7 +166,7 @@ MapCeruleanCitySignpost7Script: ; 0x1840b6
 MapCeruleanCitySignpostItem8: ; 0x1840b9
 	dw $00fa
 	db BERSERK_GENE
-	
+
 ; 0x1840bc
 
 UnknownText_0x1840bc: ; 0x1840bc
@@ -253,7 +253,7 @@ UnknownText_0x1842a9: ; 0x1842a9
 
 CooltrainerMText_BlocksCeruleanCave:
 	text "I'm very sorry."
-	
+
 	para "This cave is too"
 	line "dangerous for"
 	cont "ordinary citizens."

@@ -43,7 +43,7 @@ MapCinnabarIslandSignpost0Script: ; 0x1ac9ca
 MapCinnabarIslandSignpostItem3: ; 0x1ac9cd
 	dw $00fe
 	db RARE_CANDY
-	
+
 ; 0x1ac9d0
 
 MapCinnabarIslandSignpost4Script:
@@ -150,7 +150,7 @@ EnteiCaveSign: ; 0x1accc2
     para "But it is too"
     line "charred to read."
     done
-	
+
 CinnabarIsland_MapEventHeader: ; 0x1accf4
 	; filler
 	db 0, 0

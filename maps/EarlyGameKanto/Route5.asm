@@ -31,5 +31,5 @@ Route5RB_MapEventHeader:
 	db 2
 	signpost 17, 17, $0, MapRoute5RBSignpost0Script
 	signpost 11, 10, $0, MapRoute5RBSignpost1Script
-	
+
 	db 0

@@ -54,7 +54,7 @@ VictoryRoadGateRB_OfficerScriptAndTriggerContinue:
 VictoryRoadGateRB_PlayerStepsDown:
 	step_down
 	step_end
-	
+
 _Route22GateText_1e704:
 	text "Only truly skilled"
 	line "trainers are"

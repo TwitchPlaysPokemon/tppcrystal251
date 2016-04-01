@@ -72,11 +72,11 @@ UnknownText_0x19b130: ; 0x19b130
 	text "DAISY: Hello! My"
 	line "family just moved"
 	cont "into town!"
-	
+
 	para "My kid brother"
 	line "is the GYM LEADER"
 	cont "in VIRIDIAN CITY."
-	
+
 	para "But he goes out"
 	line "of town so often,"
 

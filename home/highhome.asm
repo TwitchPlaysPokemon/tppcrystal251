@@ -8,7 +8,7 @@ ResetLUASerial::
 	cp BEESAFREE_RES_RESET
 	jr nz, ResetLUASerial
 	ret
-	
+
 _LUASerial:
 	; Send a to an external AI computer and store the response in a
 	; set the wram bank to 1 so the script can read battle data correctly

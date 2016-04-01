@@ -117,11 +117,11 @@ TPPCredits::
 	ld [hVBlank], a
 	ld a, $70
 	ld [hSCY], a
-	
+
 TPPCredits_LogoSceneInit::
-	
+
 ; clear the bottom attributes
-	
+
 	xor a
 	ld hl, AttrMap
 	ld bc, AttrMapEnd - AttrMap
@@ -132,7 +132,7 @@ TPPCredits_LogoSceneInit::
 	ld [hBGMapMode], a
 	ld c, 4
 	call DelayFrames
-	
+
 ; prepare logo attributes
 
 ; lines 3-4
@@ -160,7 +160,7 @@ TPPCredits_LogoSceneInit::
 	ld bc, SCREEN_WIDTH * 2
 	ld a, $e
 	call ByteFill
-	
+
 ; TWITCH PLAYS
 	ld hl, AttrMap + 1
 	ld bc, $0011
@@ -172,14 +172,14 @@ TPPCredits_LogoSceneInit::
 	ld bc, $000d ; length of version text
 	ld a, $9
 	call ByteFill
-	
+
 	ld a, $98
 	ld [hBGMapAddress + 1], a
 	ld c, 4
 	call DelayFrames
-	
+
 ; clear the bottom tiles
-	
+
 	ld a, $9a
 	ld [hBGMapAddress + 1], a
 	call ClearTileMap
@@ -187,7 +187,7 @@ TPPCredits_LogoSceneInit::
 	ld [hBGMapAddress + 1], a
 	xor a
 	ld [hBGMapMode], a
-	
+
 ; Decompress and copy logo
 	ld a, 1
 	ld [rVBK], a
@@ -199,13 +199,13 @@ TPPCredits_LogoSceneInit::
 	ld hl, VTiles1
 	lb bc, BANK(TPPCredits), $8C
 	call Request2bpp
-	
+
 ; Copy Twitch Plays
 	ld de, TitleTPPGFX
 	ld hl, VTiles2 + $100
 	lb bc, BANK(TitleTPPGFX), $9
 	call Request2bpp
-	
+
 ; Copy udlrab
 	ld de, CommandsGFX
 	ld hl, VTiles0
@@ -213,13 +213,13 @@ TPPCredits_LogoSceneInit::
 	call Request2bpp
 	xor a
 	ld [rVBK], a
-	
+
 ; Draw Pokemon logo
 	hlcoord 0, 1
 	lb bc, 7, 20
 	ld a, $80
 	call TC_DrawGraphic
-	
+
 ; Draw Twitch Plays
 	hlcoord 1, 0
 	lb bc, 1, 5
@@ -229,7 +229,7 @@ TPPCredits_LogoSceneInit::
 	lb bc, 1, 4
 	ld a, $15
 	call TC_DrawGraphic
-	
+
 ; Draw texts
 	hlcoord 11 - _VERLEN, 8
 	ld de, TCText_Version
@@ -243,7 +243,7 @@ TPPCredits_LogoSceneInit::
 	call DelayFrames
 	xor a
 	ld [hBGMapMode], a
-	
+
 ; Update palette colors
 	ld hl, TitleScreenPalettes
 	ld de, Unkn1Pals
@@ -257,7 +257,7 @@ TPPCredits_LogoSceneInit::
 	call FarCopyBytes
 	ld a, 1
 	ld [hCGBPalUpdate], a
-	
+
 TPPCredits_LogoScene::
 	call ClearCommandChaos
 	ld a, LOGO_CHAOS_MOD
@@ -327,7 +327,7 @@ TPPCredits_LogoScene::
 	ld a, h
 	ld [TC_FadeUpdateAddr + 1], a
 	call Fade2White
-	
+
 TPPCredits_MainSceneInit::
 	call TC_DelayFrame
 	call DisableLCD
@@ -343,14 +343,14 @@ TPPCredits_MainSceneInit::
 	ld [hBGMapAddress + 1], a
 	ld a, 1 ; don't let the other intterupts mess with our trick
 	ld [rIE], a
-	
+
 ; copy commands
 	ld hl, CommandsGFX
 	ld de, VTiles0 + $c80
 	ld bc, CommandsGFXEnd - CommandsGFX
 	ld a, BANK(CommandsGFX)
 	call FarCopyBytes
-	
+
 ; copy underscore
 	ld hl, UnderscoreGFX
 	ld de, VTiles1 + $640
@@ -384,7 +384,7 @@ TPPCredits_MainSceneInit::
 	ld [OBPals + 62], a
 	ld a, $7f
 	ld [OBPals + 63], a
-	
+
 ; init pokepic sprites
 	ld hl, TC_Sprites + 3
 	ld bc, 4
@@ -406,14 +406,14 @@ TPPCredits_MainSceneInit::
 	ld hl, TC_Sprites + (32 * 4)
 	ld bc, 8 * 4
 	call ByteFill
-	
+
 	ld a, $ff
 	ld [TC_ScrollEffectsTable + 1], a
 	ld a, $20
 	ld [hBGMapAddress], a
 	ld a, $9a
 	ld [hBGMapAddress + 1], a
-	
+
 TPPCredits_MainScene::
 	ld a, [TC_CreditsPos]
 	ld hl, TPPCreditsList
@@ -531,14 +531,14 @@ TPPCredits_ThanksSceneInit::
 	pop de
 	dec e
 	jr nz, .fadein
-	
+
 	hsv_equ STRIP1,  0.4, 1.0
 	hsv_equ STRIP2, 0.75, 0.8
-	
+
 TPPCredits_ThanksScene:
 	waitvblank
 	call UpdateThanksSceneCounters
-	
+
 .joy
 ; joypad update (rom release only)
 IF !DEF(BEESAFREE)
@@ -597,12 +597,12 @@ ENDC
 	call UpdateCommandChaos_Thanks
 	call StripTrick_Thanks
 	jp TPPCredits_ThanksScene
-	
+
 TC_MainSceneFuncList:
 	dw TC_Main_Draw
 	dw TC_Main_Title
 	dw TC_Main_Subtitle
-	
+
 TC_Main_Draw::
 	call DisableLCD
 	call ClearCommandChaos
@@ -711,7 +711,7 @@ TC_Main_Draw::
 	inc a
 	ld [TC_CreditsPos], a
 	jp TPPCredits_MainScene
-	
+
 TC_Main_Title:
 	pop hl
 	ld a, [hli]
@@ -758,7 +758,7 @@ TC_Main_Title:
 	inc a
 	ld [TC_CreditsPos], a
 	jp TPPCredits_MainScene
-	
+
 TC_Main_Subtitle:
 	pop hl
 	ld a, [hli]
@@ -828,7 +828,7 @@ TC_Main_Subtitle:
 	inc a
 	ld [TC_CreditsPos], a
 	jp TPPCredits_MainScene
-	
+
 ClearCreditsBox_NoLCD:
 	ld a, $7f
 	ld hl, $9a40
@@ -838,13 +838,13 @@ ClearCreditsBox_NoLCD:
 	ld hl, TileMap + SCREEN_WIDTH
 	ld bc, SCREEN_WIDTH * 5
 	jp ByteFill
-	
+
 ClearCreditsBox:
 	ld a, $7f
 	ld hl, TileMap + SCREEN_WIDTH
 	ld bc, SCREEN_WIDTH * 5
 	call ByteFill
-	
+
 UpdateCreditsBox:
 	ld a, 1
 	ld [hBGMapMode], a
@@ -855,7 +855,7 @@ UpdateCreditsBox:
 	xor a
 	ld [hBGMapMode], a
 	ret
-	
+
 InitTransitionIn:
 	ld a, c
 	ld [hli], a
@@ -866,7 +866,7 @@ InitTransitionIn:
 	dec b
 	jr nz, InitTransitionIn
 	ret
-	
+
 InitTransitionIn1:
 ; top row in
 	hlcoord 1, 1
@@ -877,7 +877,7 @@ InitTransitionIn1:
 	ld de, TextTransitionIn1
 	lb bc, 8, 64
 	jp InitTransitionIn
-	
+
 InitTransitionIn2:
 ; middle row in
 	hlcoord 1, 3
@@ -888,7 +888,7 @@ InitTransitionIn2:
 	ld de, TextTransitionIn2
 	lb bc, 8, 53
 	jp InitTransitionIn
-	
+
 InitTransitionIn3:
 ; bottom row in
 	hlcoord 1, 5
@@ -897,7 +897,7 @@ InitTransitionIn3:
 	ld de, TextTransitionIn3
 	lb bc, 8, 37
 	jp InitTransitionIn
-	
+
 InitTransitionOut:
 	xor a
 .loop
@@ -907,17 +907,17 @@ InitTransitionOut:
 	dec b
 	jr nz, .loop
 	ret
-	
+
 InitTransitionOut1:
 	ld b, 24
 	ld hl, TC_ScrollEffectsTable
 	jp InitTransitionOut
-	
+
 InitTransitionOut2:
 	ld b, 16
 	ld hl, TC_ScrollEffectsTable + 16
 	jp InitTransitionOut
-	
+
 DoScrollerTransition:
 ; 1 = top row in
 ; 2 = middle row in
@@ -938,14 +938,14 @@ DoScrollerTransition:
 	and a
 	jr nz, .loop ; not done yet
 	ret
-	
+
 .functable
 	dw InitTransitionIn1
 	dw InitTransitionIn2
 	dw InitTransitionIn3
 	dw InitTransitionOut1
 	dw InitTransitionOut2
-	
+
 ClearCommandChaos:
 	call ClearSprites
 	xor a
@@ -957,7 +957,7 @@ ClearCommandChaos:
 	ld a, 1
 	ld [TC_ChaosTimer], a
 	ret
-	
+
 UpdateCommandChaos_Logo:
 ; VBlank1 didn't cover RNG function so this needs to be manually called
 	call Random
@@ -1026,7 +1026,7 @@ UpdateCommandChaos_Logo:
 	inc de
 	add hl, bc
 	jr .updateloop
-	
+
 UpdateCommandChaos_MainIn:
 	ld a, [TC_CurStripWidth]
 	dec a
@@ -1124,7 +1124,7 @@ UpdateCommandChaos_Main:
 	inc de
 	add hl, bc
 	jr .updateloop
-	
+
 UpdatePokepic::
 	ld a, [TC_CurSprSpeedCount]
 	dec a
@@ -1174,7 +1174,7 @@ UpdatePokepic::
 	ld d, a
 	cp SPRITE_Y + 32
 	jr nz, .loop
-	
+
 UpdateScroller::
 	ld a, [TC_ScrollerState]
 	and a
@@ -1184,26 +1184,26 @@ UpdateScroller::
 	ld hl, .functable
 	rst JumpTable
 	jp StripTrick_Main
-	
+
 .functable
 	dw .toprowin
 	dw .middlerowin
 	dw .bottomrowin
 	dw .allout
 	dw .allexcepttopout
-	
+
 .toprowin
 	ld hl, TC_ScrollEffectsTable
 	jr .doin
-	
+
 .middlerowin
 	ld hl, TC_ScrollEffectsTable + 16
 	jr .doin
-	
+
 .bottomrowin
 	ld hl, TC_ScrollEffectsTable + 32
 	jr .doin
-	
+
 .doin
 	ld c, 8
 	push hl
@@ -1229,7 +1229,7 @@ UpdateScroller::
 	xor a
 	ld [TC_ScrollerState], a
 	ret
-	
+
 .allout
 	ld hl, TC_ScrollEffectsTable
 	ld c, 24
@@ -1239,7 +1239,7 @@ UpdateScroller::
 	ld hl, TC_ScrollEffectsTable + 16
 	ld c, 16
 	jr .doout
-	
+
 .doout
 	push hl
 .loopout
@@ -1267,7 +1267,7 @@ UpdateScroller::
 	xor a
 	ld [TC_ScrollerState], a
 	ret
-	
+
 UpdateCommandChaos_Thanks:
 	call Random
 	ld a, [TC_ChaosTimer]
@@ -1362,7 +1362,7 @@ UpdateCommandChaos_Thanks:
 	add hl, bc
 	jr .updateloop
 	ret
-	
+
 UpdateCommandChaos_Exit:
 	ld hl, TC_CommandChaosTable
 .checkloop
@@ -1411,7 +1411,7 @@ UpdateCommandChaos_Exit:
 .done
 	scf
 	ret
-	
+
 bidiop: MACRO
 	ld a, [\3]
 	dec a
@@ -1436,7 +1436,7 @@ bidiop: MACRO
 .skip\@
 	ld [\3], a
 ENDM
-	
+
 UpdateThanksSceneCounters:
 	ld c, 0
 	ld a, [TC_BidiStatus]
@@ -1524,7 +1524,7 @@ UpdateThanksSceneCounters:
 	ld a, e
 	ld [hProduct + 5], a
 	ret
-	
+
 ; strip color update
 .strip1
 	ld a, [TC_Hue1Count]
@@ -1624,7 +1624,7 @@ UpdateThanksSceneCounters:
 	or b
 	ld [rBGPD], a
 	ret
-	
+
 StripTrick_Main:
 ; update bg scrolling
 	ld a, [hSCX]
@@ -1705,10 +1705,10 @@ StripTrick_Main:
 	call $ff80
 	ld a, Sprites >> 8
 	ld [hPushOAMAddress], a
-	
+
 UpdateScroller2::
 	ld hl, TC_ScrollEffectsTable + 1
-	ld b, 96 
+	ld b, 96
 	lb de, 135, 24
 .loop
 	ld a, [hli]
@@ -1730,7 +1730,7 @@ UpdateScroller2::
 	inc b
 	ld a, c
 	jr .loop2
-	
+
 .notblank
 	inc hl
 	inc d
@@ -1753,7 +1753,7 @@ UpdateScroller2::
 	inc b
 	dec e
 	jr nz, .loop
-	
+
 .done
 	ld a, b
 	cp 144
@@ -1767,7 +1767,7 @@ UpdateScroller2::
 	ld [rSCY], a
 	inc b
 	jr .done
-	
+
 .toolate
 	inc hl
 	inc d
@@ -1782,7 +1782,7 @@ UpdateScroller2::
 	dec e
 	jr z, .done
 	jp .loop
-	
+
 StripTrick_Thanks_Common: MACRO
 	push hl
 	push bc
@@ -1870,7 +1870,7 @@ StripTrick_Thanks_Common: MACRO
 	ld [rSCY], a
 	pop hl
 ENDM
-	
+
 StripTrick_Thanks:
 	ld a, [TC_CreditsTimer]
 	inc a
@@ -1991,7 +1991,7 @@ StripTrick_Thanks:
 	cp 144
 	jp c, .loop2
 	ret
-	
+
 TC_DrawGraphic:
 	push bc
 	push hl
@@ -2007,7 +2007,7 @@ TC_DrawGraphic:
 	dec b
 	jr nz, TC_DrawGraphic
 	ret
-	
+
 Fade2Black:
 ; fade all BGPs until it's pitch black
 	ld e, 32
@@ -2053,7 +2053,7 @@ Fade2Black:
 	dec e
 	jr nz, .loop
 	ret
-	
+
 Fade2White:
 ; fade all BGPs and the first 2 OBPs until it's white
 	ld e, 32
@@ -2108,7 +2108,7 @@ Fade2White:
 	dec e
 	jr nz, .loop
 	ret
-	
+
 RelativeFade:
 ; fade from BGPals to Unkn1Pals
 	ld e, 32
@@ -2200,7 +2200,7 @@ RelativeFade:
 	dec e
 	jp nz, .loop
 	ret
-	
+
 RelativeFade_VBlank:
 ; fade from Pals data to Unkn1Pals
 ; by 1 value, 16 colors at a time
@@ -2279,7 +2279,7 @@ RelativeFade_VBlank:
 	dec d
 	jr nz, .loop2
 	ret
-	
+
 DecodeWLE:
 ; Walle Length Encoding decoder
 	ld c, 0
@@ -2293,13 +2293,13 @@ DecodeWLELoop:
 	push hl
 	ld hl, .functable
 	jp JumpTable
-	
+
 .functable
 	dw .literal
 	dw .repeat
 	dw .increment
 	dw .end
-	
+
 .literal
 	pop hl
 	ld a, [hli]
@@ -2355,7 +2355,7 @@ DecodeWLELoop:
 .end
 	pop hl
 	ret
-	
+
 PushOAMAtHBlank:
 ; VBlank1 won't do PushOAM if it updated palettes
 	ld a, [rLY]
@@ -2370,7 +2370,7 @@ PushOAMAtHBlank:
 	and $3
 	jr nz, .hblank ; wait until HBlank
 	jp hPushOAM
-	
+
 TC_DelayFrame:
 	call DelayFrame
 ; VBlank1 auto-set normal interrupts so we need to disable this
@@ -2379,7 +2379,7 @@ TC_DelayFrame:
 	ld a, 1
 	ld [rIE], a
 	ret
-	
+
 TC_Multiply:
 	;ahl = a * bc ; a < 32
 	rlca
@@ -2401,7 +2401,7 @@ TC_Multiply:
 	dec e
 	jr nz, .loop
 	ret
-	
+
 TC_Multiply2:
 	;ahl = a * bc
 	ld d, a
@@ -2420,7 +2420,7 @@ TC_Multiply2:
 	dec e
 	jr nz, .loop
 	ret
-	
+
 TC_GetTmpRGB:
 ; a = hue, b = C, c = X
 ; e = R, h = G, l = B
@@ -2436,7 +2436,7 @@ TC_GetTmpRGB:
 	ld h, [hl]
 	ld l, a
 	jp [hl]
-	
+
 .huetable
 	dw .cxo
 	dw .xco
@@ -2444,43 +2444,43 @@ TC_GetTmpRGB:
 	dw .oxc
 	dw .xoc
 	dw .cox
-	
+
 .cxo
 	ld e, b
 	ld h, c
 	ld l, 0
 	ret
-	
+
 .xco
 	ld e, c
 	ld h, b
 	ld l, 0
 	ret
-	
+
 .ocx
 	ld e, 0
 	ld h, b
 	ld l, c
 	ret
-	
+
 .oxc
 	ld e, 0
 	ld h, c
 	ld l, b
 	ret
-	
+
 .xoc
 	ld e, c
 	ld h, 0
 	ld l, b
 	ret
-	
+
 .cox
 	ld e, b
 	ld h, 0
 	ld l, c
 	ret
-	
+
 TPPCreditsList:
 	tc_draw			TPPCreditsBG1List
 	tc_title		.director
@@ -2527,7 +2527,7 @@ TPPCreditsList:
 	tc_subtitle		  .twitch
 	tc_subtitle		  .you
 	db $ff
-	
+
 .director	db "Director@"
 .projman	db "Project Manager@"
 .programmer	db "Programmers@"
@@ -2538,7 +2538,7 @@ TPPCreditsList:
 .testers	db "Testers@"
 .misc		db "Misc.@"
 .special	db "Special Thanks@"
-	
+
 .streamer	db "TwitchPlaysPokemon@"
 .revo		db "ProjectRevoTPP@"
 .pikalax	db "PikalaxALT@"
@@ -2568,7 +2568,7 @@ TPPCreditsList:
 
 TCText_Version:
 	db "Version ",_VERSION,"@"
-	
+
 TCText_Credits:
 	db "-- Credits --@"
 
@@ -2580,19 +2580,19 @@ TextTransitionDelta:
 	db 1, 1, 1, 1, 1, 2, 1, 1, 2, 1, 1, 2, 1, 2, 1, 2
 	db 1, 2, 1, 2, 1, 2, 2, 1, 2, 2, 1, 2, 2, 2, 2, 2
 	db 1, 2, 2, 2, 2, 2, 2, 2, 2, 2, 3, 2, 2, 2, 2, 3
-	
+
 TextTransitionIn1:
 ; initial position for top row transition in
 	db 144, 146, 149, 151, 154, 156, 159, 162
-	
+
 TextTransitionIn2:
 ; initial position for middle row transition in
 	db 144, 147, 149, 151, 154, 156, 158, 161
-	
+
 TextTransitionIn3:
 ; initial position for bottom row transition in
 	db 144, 145, 147, 149, 151, 153, 155, 157
-	
+
 StripMiddleModifiers:
 	db  0,  0,  4,  0,  0,  4,  4,  0
 	db 10,  0,  8, 16, 24,  4, 10, 16
@@ -2600,7 +2600,7 @@ StripMiddleModifiers:
 	db 20, 24, 28, 32, 36, 40, 44, 48
 	db 52, 56, 60, 64, 68, 72, 76,  0
 	db  2,  4,  6,  8, 10, 12, 14, 16
-	
+
 ; Tiles and attributes are encoded in WLE
 
 TPPCreditsBG1List:
@@ -2620,22 +2620,22 @@ TPPCreditsBG1Tiles:
 	db $69, $99, $a7, $94, $62, $99, $7f, $9b, $5f
 	db $42, $70, $9c, $50, $70, $9d, $50, $70, $9c
 	db $50, $70, $9d, $50, $70, $99, $50, $ff
-	
+
 TPPCreditsBG1Attrs:
 	db $70, $0a, $50, $7f, $0b, $5f, $42, $70, $0c, $50, $70, $0d
 	db $50, $7f, $0e, $5f, $42, $7f, $0f, $5f, $5f, $43, $ff
-	
+
 TPPCreditsBG1Pals:
 	RGB 02, 06, 12
 	RGB 02, 06, 12
 	RGB 02, 06, 12
 	RGB 31, 31, 31
-	
+
 	RGB 26, 15, 07
 	RGB 00, 00, 00
 	RGB 00, 00, 00
 	RGB 21, 05, 03
-	
+
 	RGB 30, 30, 22
 	RGB 24, 24, 19
 	RGB 23, 23, 20
@@ -2665,7 +2665,7 @@ TPPCreditsBG1Pals:
 	RGB 11, 13, 15
 	RGB 11, 12, 15
 	RGB 10, 12, 15
-	
+
 	RGB 31, 31, 31
 	RGB 31, 31, 31
 	RGB 29, 27, 19
@@ -2701,7 +2701,7 @@ TPPCreditsBG2Tiles:
 	db $a3, $b3, $63, $a3, $a3, $b6, $63, $a3, $a2, $b9, $62, $a8
 	db $a3, $bb, $63, $a3, $a2, $be, $64, $a3, $a2, $b9, $62, $a8
 	db $a3, $bb, $63, $a3, $a2, $be, $62, $a3, $ff
-	
+
 TPPCreditsBG2Attrs:
 	db $7f, $0a, $81, $5f, $81, $5f, $45, $62, $0d, $6e, $0c
 	db $62, $0d, $6a, $0c, $64, $0e, $62, $0d, $6a, $0c, $64, $0e
@@ -2716,12 +2716,12 @@ TPPCreditsBG2Pals:
 	RGB 03, 12, 06
 	RGB 03, 12, 06
 	RGB 31, 31, 31
-	
+
 	RGB 25, 15, 19
 	RGB 00, 00, 00
 	RGB 00, 00, 00
 	RGB 06, 15, 23
-	
+
 	RGB 13, 25, 29
 	RGB 13, 26, 29
 	RGB 14, 26, 29
@@ -2736,12 +2736,12 @@ TPPCreditsBG2Pals:
 	RGB 14, 19, 15
 	RGB 11, 16, 11
 	RGB 18, 25, 09
-	
+
 	RGB 18, 28, 27
 	RGB 14, 19, 15
 	RGB 18, 25, 09
 	RGB 11, 18, 06
-	
+
 	RGB 18, 28, 27
 	RGB 14, 19, 15
 	RGB 11, 16, 11
@@ -2751,7 +2751,7 @@ TPPCreditsBG2Pals:
 	RGB 11, 16, 11
 	RGB 18, 25, 09
 	RGB 11, 18, 06
-	
+
 	RGB 31, 31, 31
 	RGB 31, 31, 31
 	RGB 23, 07, 02
@@ -2778,7 +2778,7 @@ TPPCreditsBG3Tiles:
 	db $44, $66, $82, $01, $83, $67, $82, $01, $83
 	db $67, $82, $01, $83, $67, $82, $02, $83, $82
 	db $b0, $84, $b0, $84, $bf, $94, $9f, $82, $ff
-	
+
 TPPCreditsBG3Attrs:
 	db $7f, $0f, $5f, $5f, $43, $70, $0e, $50, $70, $0d, $50, $70
 	db $0c, $50, $7f, $0b, $5f, $42, $7f, $0a, $5f, $42, $ff
@@ -2788,12 +2788,12 @@ TPPCreditsBG3Pals:
 	RGB 12, 04, 05
 	RGB 12, 04, 05
 	RGB 31, 31, 31
-	
+
 	RGB 12, 26, 18
 	RGB 00, 00, 00
 	RGB 00, 00, 00
 	RGB 10, 15, 04
-	
+
 	RGB 18, 25, 10
 	RGB 11, 19, 10
 	RGB 10, 17, 10
@@ -2808,12 +2808,12 @@ TPPCreditsBG3Pals:
 	RGB 28, 24, 19
 	RGB 29, 24, 18
 	RGB 29, 23, 18
-	
+
 	RGB 25, 24, 21
 	RGB 26, 24, 21
 	RGB 26, 24, 20
 	RGB 27, 24, 20
-	
+
 	RGB 22, 25, 23
 	RGB 23, 25, 22
 	RGB 24, 25, 22
@@ -2823,7 +2823,7 @@ TPPCreditsBG3Pals:
 	RGB 19, 26, 26
 	RGB 20, 26, 25
 	RGB 22, 26, 24
-	
+
 	RGB 31, 31, 31
 	RGB 28, 25, 08
 	RGB 23, 09, 07
@@ -2833,7 +2833,7 @@ TPPCreditsBG3Pals:
 	RGB 31, 31, 31
 	RGB 29, 10, 06
 	RGB 00, 00, 00
-	
+
 TPPCreditsBG4List:
 	dw TPPCreditsBG4
 	dw TPPCreditsBG4Attrs
@@ -2858,7 +2858,7 @@ TPPCreditsBG4Tiles:
 	db $81, $81, $a3, $aa, $03, $81, $81, $9d, $65, $81, $02, $9e
 	db $81, $a3, $ad, $06, $9f, $81, $81, $a0, $81, $a1, $bf, $b0
 	db $9f, $9f, $9f, $9f, $85, $ff
-	
+
 TPPCreditsBG4Attrs:
 	db $7f, $0a, $5f, $41, $81, $5f, $81, $5f, $81, $5f, $81, $5f
 	db $81, $5f, $5f, $5f, $5f, $43, $ff
@@ -2868,12 +2868,12 @@ TPPCreditsBG4Pals:
 	RGB 08, 04, 12
 	RGB 08, 04, 12
 	RGB 31, 31, 31
-	
+
 	RGB 25, 25, 15
 	RGB 00, 00, 00
 	RGB 00, 00, 00
 	RGB 20, 25, 25
-	
+
 	RGB 31, 31, 31
 	RGB 31, 30, 15
 	RGB 04, 04, 10
@@ -2888,12 +2888,12 @@ TPPCreditsBG4Pals:
 	RGB 31, 30, 15
 	RGB 06, 06, 16
 	RGB 03, 03, 07
-	
+
 	RGB 17, 17, 25
 	RGB 31, 30, 15
 	RGB 07, 07, 17
 	RGB 03, 03, 07
-	
+
 	RGB 05, 05, 23
 	RGB 31, 30, 15
 	RGB 08, 08, 20
@@ -2903,7 +2903,7 @@ TPPCreditsBG4Pals:
 	RGB 31, 30, 15
 	RGB 09, 09, 24
 	RGB 03, 03, 07
-	
+
 	RGB 31, 31, 31
 	RGB 31, 31, 31
 	RGB 29, 27, 14
@@ -2927,49 +2927,49 @@ ThanksForWatchingPals:
 	RGB 30, 24, 06
 	RGB 00, 00, 00
 	HSV 0.0, 0.75, 0.8 ; strip2
-	
+
 	RGB 09, 15, 30
 	RGB 08, 14, 27
 	RGB 31, 03, 06
 	RGB 00, 00, 00
-	
+
 	RGB 09, 15, 30
 	RGB 08, 14, 27
 	RGB 31, 03, 06
 	RGB 06, 06, 06
-	
+
 	RGB 10, 16, 30
 	RGB 09, 15, 27
 	RGB 10, 16, 27
 	RGB 03, 03, 03
-	
+
 	RGB 10, 16, 30
 	RGB 09, 15, 27
 	RGB 10, 16, 27
 	RGB 09, 09, 09
-	
+
 	RGB 11, 17, 30
 	RGB 11, 17, 27
 	RGB 31, 03, 06
 	RGB 06, 06, 06
-	
+
 	RGB 11, 17, 30
 	RGB 11, 17, 27
 	RGB 31, 03, 06
 	RGB 12, 12, 12
-	
+
 	RGB 29, 28, 11
 	RGB 30, 24, 06
 	RGB 00, 07, 09
 	RGB 09, 00, 02
-	
+
 TC_QSTable:
 _qs = 0
 	rept 352 ; 96 * 255
 	dw _qs * _qs / 4
 _qs = _qs + 1
 	endr
-	
+
 SECTION "TPPCreditsGFX", ROMX
 TC_GFXBank::
 

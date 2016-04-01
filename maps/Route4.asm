@@ -104,7 +104,7 @@ ItemFragment_0x1ae20f: ; 0x1ae20f
 MapRoute4SignpostItem1: ; 0x1ae211
 	dw $00f1
 	db ULTRA_BALL
-	
+
 ; 0x1ae214
 
 Bird_keeperHankSeenText: ; 0x1ae214

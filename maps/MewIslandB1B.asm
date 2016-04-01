@@ -2,10 +2,10 @@ MewIslandB1B_MapScriptHeader:
 	; trigger count
 	db 0
 
-	; callback count 
+	; callback count
 	db 0
 
-MewIslandB1B_MapEventHeader: 
+MewIslandB1B_MapEventHeader:
 	; filler
 	db 0, 0
 
@@ -25,4 +25,4 @@ MewIslandB1B_MapEventHeader:
 
 	; people-events
 	db 0
-	
+

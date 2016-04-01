@@ -70,7 +70,7 @@ NuggetBridgeRBTrainer1:
 	waitbutton
 	closetext
 	end
-  
+
 Route24RBRocketBattleTrigger:
 	setlasttalked $2
 	spriteface $0, RIGHT

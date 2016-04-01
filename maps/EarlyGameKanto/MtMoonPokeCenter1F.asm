@@ -22,7 +22,7 @@ FisherScript1_MtMoonPokeCenter1FRB:
 	if_equal 2, .NotEnoughMoney
 	checkcode VAR_PARTYCOUNT
 	if_not_equal $6, .give_karp
-	checkcode VAR_BOXSPACE 
+	checkcode VAR_BOXSPACE
 	if_equal $0, .BoxAndPartyAreFull
 .give_karp
 	takemoney $0, 500
@@ -59,42 +59,42 @@ FisherScript1_MtMoonPokeCenter1FRB:
 
 FisherText1_MtMoonPokeCenter1FRB:
 	text "Hey, you!"
-	
+
 	para "Listen up, this is"
 	line "the deal of a"
 	cont "lifetime here."
-	
+
 	para "What I have here"
 	line "is a super-rare"
 	cont "#MON!"
-	
+
 	para "And for only ¥500,"
 	line "it can be yours!"
-	
+
 	para "Don't you want"
 	line "this #MON?"
 	done
-	
+
 FisherText2_MtMoonPokeCenter1FRB:
 	text "Then here you go!"
-	
+
 	para "<PLAY_G> received"
 	line "a MAGIKARP!"
 	done
-	
+
 FisherText3_MtMoonPokeCenter1FRB:
 	text "Well, that's it."
 	line "No refunds."
 	done
-	
+
 FisherText4_MtMoonPokeCenter1FRB:
 	text "Are you sure?"
 	line "You're missing out."
 	done
-	
+
 FisherText5_MtMoonPokeCenter1FRB:
 	text "WHAT?!"
-	
+
 	para "You have no room"
 	line "in your party"
 	cont "or PC box!"
@@ -104,7 +104,7 @@ FisherText6_MtMoonPokeCenter1FRB:
 	text "Your party is"
 	line "full, so I sent"
 	cont "it to the PC!"
-	
+
 	para "<PLAY_G> received"
 	line "a MAGIKARP!"
 	done

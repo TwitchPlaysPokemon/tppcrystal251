@@ -123,7 +123,7 @@ UnknownText_0x5b2df: ; 0x5b2df
 
 SailorTerrellSeenText: ; 0x5b333
 	text "Finally ashore!"
-	
+
 	para "I am giving my"
 	line "dogs a walk."
 	done

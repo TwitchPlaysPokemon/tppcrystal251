@@ -13,7 +13,7 @@ ItemFragment_0x7e646: ; 0x7e646
 MapIcePathB2FBlackthornSideSignpostItem0: ; 0x7e648
 	dw $0096
 	db ICE_HEAL
-	
+
 ; 0x7e64b
 
 IcePathB2FBlackthornSide_MapEventHeader: ; 0x7e64b

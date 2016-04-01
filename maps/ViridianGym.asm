@@ -88,7 +88,7 @@ BlueRematchTextBefore:
 
 	para "Just as I expec-"
 	line "ted!"
-	
+
 	para "Now!"
 
 	para "Let me show you"
@@ -107,13 +107,13 @@ BlueAfterRematchText:
 	text "You're tough,"
 	line "I'll give you"
 	cont "that."
-	
+
 	para "But there's always"
 	line "someone better."
-	
+
 	para "You have to be"
 	line "more dedicated!"
-	
+
 	para "Legends tell of a"
 	line "truly powerful"
 
@@ -444,7 +444,7 @@ CoolSibsAraBella2Text:
 	line "shouldn't say that"
 	cont "about yourself!"
 	done
-	
+
 CoolSibsElanIdaSeenText1:
 	text "IDA: I'm IDA! Next"
 	line "to me is ELAN!"
@@ -457,7 +457,7 @@ CoolSibsElanIdaSeenText2:
 	text "ELAN: All right,"
 	line "let's get this"
 	cont "fight started!"
-	
+
 	para "Come on!"
 	done
 

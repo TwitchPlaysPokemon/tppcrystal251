@@ -60,7 +60,7 @@ UnknownText_0x18ac36: ; 0x18ac36
 	cont "upstairs."
 
 	para "But<...>"
-	
+
 	para "I got a few MASTER"
 	line "BALLS I swiped"
 	cont "off the shipment."

@@ -702,7 +702,7 @@ Music_CeruleanGSC_Loop3:
 	note G#, 1
 	note __, 1
 	note G#, 2
-	
+
 	note __, 2
 	octave 2
 	note G#, 2

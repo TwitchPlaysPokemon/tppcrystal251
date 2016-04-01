@@ -1,8 +1,3 @@
-IF DEF(APRILFOOLS)
-rept 254
-	db "OLDEN@"
-endr
-ELSE
  	db "POUND@"
  	db "KARATE CHOP@"
  	db "DOUBLESLAP@"
@@ -257,4 +252,3 @@ ELSE
  	db "MOONBLAST@"
  	db "PLAY ROUGH@"
  	db "SHEER COLD@"
-ENDC

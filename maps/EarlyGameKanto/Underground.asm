@@ -9,13 +9,13 @@ UndergroundRB_MapScriptHeader: ; 0x74391
 MapUndergroundRBSignpostItem0: ; 0x74393
 	dw EVENT_SIGNPOST_ITEM_IN_UNDERGROUND_1
 	db FULL_RESTORE
-	
+
 ; 0x74396
 
 MapUndergroundRBSignpostItem1: ; 0x74396
 	dw EVENT_SIGNPOST_ITEM_IN_UNDERGROUND_2
 	db X_SPECIAL
-	
+
 ; 0x74399
 
 UndergroundRB_MapEventHeader: ; 0x74399

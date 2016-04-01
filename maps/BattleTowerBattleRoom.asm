@@ -136,7 +136,7 @@ UnknownScript_0x9f4d9: ; 0x9f4d9
 BattleTowerBattleRoomScript_0x9f4e4: ; 0x9f4e4
 	special CalculateTowerVictory
 	loadfont
-	writetext WonTowerMoneyText 
+	writetext WonTowerMoneyText
 	waitbutton
 	closetext
 	end

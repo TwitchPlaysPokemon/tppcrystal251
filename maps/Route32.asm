@@ -694,13 +694,13 @@ MapRoute32Signpost3Script: ; 0x190780
 MapRoute32SignpostItem4: ; 0x190783
 	dw $00a5
 	db ULTRA_BALL
-	
+
 ; 0x190786
 
 MapRoute32SignpostItem5: ; 0x190786
 	dw $00a6
 	db HYPER_POTION
-	
+
 ; 0x190789
 
 MovementData_0x190789: ; 0x190789
@@ -945,7 +945,7 @@ UnknownText_0x190c37: ; 0x190c37
 FisherHenrySeenText: ; 0x190dcf
 	text "I was surfing"
 	line "around in the"
-	
+
 	para "lake just now"
 	line "when I found"
 	cont "this rare #MON!"
@@ -964,7 +964,7 @@ UnknownText_0x190df2: ; 0x190df2
 
 	para "If you want to"
 	line "catch them all,"
-	
+
 	para "fish and surf in"
 	line "various places!"
 	done
@@ -1095,7 +1095,7 @@ UnknownText_0x191105: ; 0x191105
 UnknownText_0x191133: ; 0x191133
 	text "Crush without"
 	line "breaking."
-	
+
 	para "Slice without"
 	line "cutting."
 

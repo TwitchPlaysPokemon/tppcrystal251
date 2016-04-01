@@ -121,7 +121,7 @@ StartMap: ; 96724
 	xor a
 	ld [ScriptRunning], a
 	ld hl, MapStatus ; 0 out 62 after mapstatus
-	ld bc, $3e 
+	ld bc, $3e
 	call ByteFill
 	callba Function113e5 ;set time until next phone call to 20 minutes
 	call ClearJoypad
@@ -452,7 +452,7 @@ Function968d8: ; 968d8
 
 Function968e4: ; 968e4
 	call Function966d6 ;check bit 5 of scriptflags3
-	ret z 
+	ret z
 	call Function2f3e ;do nothing
 	ret
 ; 968ec
@@ -564,7 +564,7 @@ OWPlayerInput: ; 96974
 	callba CheckSpinning ; a = spinning. if on spin tile spin = c
 	jr nz, .NoAction
 
-	call CheckAPressOW ;process a 
+	call CheckAPressOW ;process a
 	jr c, .Action
 
 	call CheckMenuOW ;process start and select

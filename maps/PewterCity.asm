@@ -44,7 +44,7 @@ MapPewterCitySignpost1Script: ; 0x18c02c
 
 MapPewterCitySignpost2Script:
 	jumptext UnknownText_0x18c25e
-	
+
 MapPewterCitySignpostDoor2Script:
 	jumptext MuseumDoorText
 
@@ -133,23 +133,23 @@ MapPewterCityMovementData1:
 	big_step_down
 	fast_jump_step_down
 	step_end
-	
+
 MapPewterCityMovementData2:
 	big_step_left
 	big_step_left
 	big_step_left
 	step_end
-	
+
 MapPewterCityMovementData3:
 	big_step_down
 	step_end
-	
+
 MapPewterCityMovementData4:
 	big_step_down
 	big_step_left
 	big_step_left
 	step_end
-	
+
 MapPewterCityMovementData5:
 	big_step_left
 	big_step_left
@@ -266,37 +266,37 @@ UnknownText_0x18wLinkMode: ; 0x18wLinkMode
 
 MapPewterCitySimonText1:
 	text "You again?!"
-	
+
 	para "Listen, you. This"
 	line "better be the last"
 	cont "I see of you."
-	
+
 	para "Capice?"
 	done
-	
+
 MapPewterCitySimonLostText:
 	text "H-how? Why can I"
 	line "never beat you?"
 	done
-	
+
 MapPewterCitySimonText2:
 	text "Arrgh!"
-	
+
 	para "Thanks to you, my"
 	line "clean getaway is"
 	cont "ruined!"
-	
+
 	para "Sigh<...> A loss is a"
 	line "loss, though."
-	
+
 	para "And to the winner"
 	line "go the spoils."
-	
+
 	para "Besides, I doubt"
 	line "I'll have much use"
 	cont "for this anyway."
 	done
-	
+
 MapPewterCitySimonText3:
 	text "Toodles!"
 	done

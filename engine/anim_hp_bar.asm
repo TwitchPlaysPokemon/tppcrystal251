@@ -199,7 +199,7 @@ LongAnim_UpdateVariables: ; d6f5
 	pop bc
 	pop de
 	ld hl, wCurHPBarPixels
-	cp [hl] 
+	cp [hl]
 	jr z, .loop
 .load
 	ld [hl], a

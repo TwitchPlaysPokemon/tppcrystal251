@@ -424,7 +424,7 @@ UnknownText_0x1a5896: ; 0x1a5896
 	para "It lets a doll"
 	line "fight for a"
 	para "#MON, stopping"
-	line "it from being hit" 
+	line "it from being hit"
 	para "by status or"
 	line "being KO'd."
 

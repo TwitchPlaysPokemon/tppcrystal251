@@ -111,7 +111,7 @@ FruitTreeScript_0x1a8425: ; 0x1a8425
 MapVioletCitySignpostItem6: ; 0x1a8427
 	dw $00b0
 	db HYPER_POTION
-	
+
 ; 0x1a842a
 
 MovementData_0x1a842a: ; 0x1a842a

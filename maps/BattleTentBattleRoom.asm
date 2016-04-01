@@ -225,7 +225,7 @@ MapBattleTentBattleRoomBillText5:
 	line "ing. See you"
 	cont "around, <PLAY_G>!"
 	done
-	
+
 	done
 
 

@@ -2,18 +2,18 @@ MewIslandEntranceUnderground_MapScriptHeader:
 	; trigger count
 	db 0
 
-	; callback count 
+	; callback count
 	db 0
-	
+
 MewIslandEntranceSign: ; 0x1aa9fd
 	jumptext MewIslandEntranceSign_Text
-	
+
 MewIslandEntranceSign_Text: ; 0x1aaa6f
 	text "This sign is"
 	line "illegible."
 	done
 
-MewIslandEntranceUnderground_MapEventHeader: 
+MewIslandEntranceUnderground_MapEventHeader:
 	; filler
 	db 0, 0
 
@@ -33,4 +33,4 @@ MewIslandEntranceUnderground_MapEventHeader:
 
 	; people-events
 	db 0
-	
+

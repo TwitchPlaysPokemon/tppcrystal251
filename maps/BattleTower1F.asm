@@ -72,7 +72,7 @@ UnknownScript_0x9e3fc: ; 0x9e3fc
 	writetext UnknownText_0x9e5ea ;do you want a battle room
 	writebyte $1
 	special Function17d224  ; if exit then ret scriptvar = 4, else scriptvar = cursor pos -1
-	if_equal $1, .EasyMode 
+	if_equal $1, .EasyMode
 	if_equal $2, .HardMode
 	if_equal $3, UnknownScript_0x9e4a5 ;play help text
 	jump UnknownScript_0x9e4b0 ;else exit menu
@@ -86,7 +86,7 @@ UnknownScript_0x9e3fc: ; 0x9e3fc
 	setevent EVENT_TOWER_HARD_MODE
 	jump UnknownScript_0x9e40f
 
-UnknownScript_0x9e40f: ; 0x9e40f 
+UnknownScript_0x9e40f: ; 0x9e40f
 	writebyte $1a
 	special Function170687 ;clear battle tower data?
 		;special Function170bd3 ;if can enter, scriptvar = 0, else scriptvar = 1
@@ -134,7 +134,7 @@ UnknownScript_0x9e454: ; 0x9e454
 	end
 ; 0x9e47a
 
-	
+
 ; 0x9e498
 
 ;UnknownScript_0x9e498: ; 0x9e498
@@ -448,7 +448,7 @@ UnknownText_0x9e62f: ; 0x9e62f
 UnknownText_0x9e886: ; 0x9e886
 	text "BATTLE TOWER is a"
 	line "facility made for"
-	
+
 	para "#MON battles"
 	line "where you can win"
 
@@ -642,7 +642,7 @@ UnknownText_0x9ed72: ; 0x9ed72
 	para "opposing party"
 	line "to the round"
 	cont "number, while"
-	
+
 	para "HARD MODE uses"
 	line "the strongest"
 

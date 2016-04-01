@@ -22,7 +22,7 @@ MoveRelearnerScript:
 	waitbutton
 	closetext
 	end
-	
+
 
 MapGoldenrodNameRatersHouseSignpost1Script: ; 0x55784
 	jumpstd difficultbookshelf

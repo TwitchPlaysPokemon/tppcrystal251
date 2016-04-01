@@ -2712,7 +2712,7 @@ Function44355: ; 44355
 	pop hl
 	ret
 
-	
+
 Function4424d: ; 4424d
 	call GetPokemonName
 	hlcoord 9, 3
@@ -2908,7 +2908,7 @@ Function4424d: ; 4424d
 	page "Please ensure the"
 	next "latest data pack"
 	next "is installed.@"
-	
+
 Mul16:
 	;[hTmpd][hTmpe]hl = bc * de
 	xor a
@@ -2942,7 +2942,7 @@ Mul16:
 	ld [hProduct], a
 	jr nz, .loop
 	ret
-	
+
 Function41a7f: ; 41a7f
 	xor a
 	ld [hBGMapMode], a

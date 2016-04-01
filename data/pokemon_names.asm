@@ -1,8 +1,3 @@
-IF DEF(APRILFOOLS)
-rept 256
-	db "OLDEN@@@@@"
-endr
-ELSE
  	db "BULBASAUR@"
  	db "IVYSAUR@@@"
  	db "VENUSAUR@@"
@@ -259,4 +254,3 @@ ELSE
  	db "?????@@@@@"
  	db "?????@@@@@"
  	db "?????@@@@@"
-ENDC

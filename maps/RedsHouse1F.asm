@@ -56,7 +56,7 @@ UnknownText_0x19aec0: ; 0x19aec0
 	line "news is good news,"
 	cont "so I like to think"
 	cont "he's safe<...>"
-	
+
 	para "But I always do"
 	line "worry about him."
 	done
@@ -64,17 +64,17 @@ UnknownText_0x19aec0: ; 0x19aec0
 
 UnknownText_0x19af81: ; 0x19af81
 	text "Oh hello."
-	
+
 	para "Oh, you used to"
 	line "live here?"
-	
+
 	para "<...>"
-	
+
 	para "You were on"
 	line "board the S.S."
 	cont "ANNE when it"
 	cont "crashed?"
-	
+
 	para "Thank goodness"
 	line "you are safe."
 
@@ -87,7 +87,7 @@ UnknownText_0x19af81: ; 0x19af81
 	line "to contact me,"
 	cont "since he's always"
 	cont "busy training."
-	
+
 	para "You can look"
 	line "around the house"
 	cont "if you want."

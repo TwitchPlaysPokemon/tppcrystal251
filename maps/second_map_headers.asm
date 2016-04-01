@@ -593,27 +593,27 @@
 	map_header_2 Route30BerrySpeechHouse, ROUTE_30_BERRY_SPEECH_HOUSE, $0, NONE ; 0x9668c
 	map_header_2 MrPokemonsHouse, MR_POKEMONS_HOUSE, $0, NONE ; 0x96698
 	map_header_2 Route31VioletGate, ROUTE_31_VIOLET_GATE, $0, NONE ; 0x966a4
-	
+
 	map_header_2 ViridianForest, VIRIDIAN_FOREST, $2, NONE ;Start of custom
-	map_header_2 ViridianForestNorth, VIRIDIAN_FOREST_GATE_NORTH, $A, NONE 
-	map_header_2 ViridianForestSouth, VIRIDIAN_FOREST_GATE_SOUTH, $A, NONE 
-	map_header_2 MtMoonB1F, MT_MOON_B1F, $3, NONE 
-	map_header_2 MtMoonB2F, MT_MOON_B2F, $3, NONE 
+	map_header_2 ViridianForestNorth, VIRIDIAN_FOREST_GATE_NORTH, $A, NONE
+	map_header_2 ViridianForestSouth, VIRIDIAN_FOREST_GATE_SOUTH, $A, NONE
+	map_header_2 MtMoonB1F, MT_MOON_B1F, $3, NONE
+	map_header_2 MtMoonB2F, MT_MOON_B2F, $3, NONE
 	map_header_2 MtMoonB3F, MT_MOON_B3F, $3, NONE
 	map_header_2 MtMoonPokeCenter1F, MOUNT_MOON_POKECENTER_1F, $0, NONE
-	map_header_2 CeruleanCave1, CERULEANCAVE1, $7D, NONE 
-	map_header_2 CeruleanCave2, CERULEANCAVE2, $7D, NONE 
+	map_header_2 CeruleanCave1, CERULEANCAVE1, $7D, NONE
+	map_header_2 CeruleanCave2, CERULEANCAVE2, $7D, NONE
 	map_header_2 CeruleanCave3, CERULEANCAVE3, $7D, NONE
-	
-    map_header_2 MewIslandEntrance, MEWISLANDENTRANCE, $35, NONE 
-	map_header_2 MewIslandEntranceUnderground, MEWISLANDUNDERGROUND, $0, NONE 
+
+    map_header_2 MewIslandEntrance, MEWISLANDENTRANCE, $35, NONE
+	map_header_2 MewIslandEntranceUnderground, MEWISLANDUNDERGROUND, $0, NONE
 	map_header_2 MewIslandEntranceDock, MEWISLANDENTRANCEDOCK, $a, NONE
-	map_header_2 MewIslandB1B, MEWISLANDB1B, $3, NONE 
-	map_header_2 MewIslandB1, MEWISLANDB1, $3, NONE 
-	map_header_2 MewIslandF1, MEWISLANDF1, $3, NONE 
+	map_header_2 MewIslandB1B, MEWISLANDB1B, $3, NONE
+	map_header_2 MewIslandB1, MEWISLANDB1, $3, NONE
+	map_header_2 MewIslandF1, MEWISLANDF1, $3, NONE
 	map_header_2 MewIslandF2, MEWISLANDF2, $3, NONE
-	map_header_2 MewIslandPeak, MEWISLANDPEAK, $35, NONE 
-	
+	map_header_2 MewIslandPeak, MEWISLANDPEAK, $35, NONE
+
 	map_header_2 BattleTentRuins, BATTLE_TENT_RUINS, 0, NONE
 	map_header_2 BattleTentBattleRoom, BATTLE_TENT_BATTLE_ROOM, 0, NONE
 	map_header_2 BattleTentGenerator, BATTLE_TENT_GENERATOR, 0, NONE
@@ -623,7 +623,7 @@
 	map_header_2 RocketHideout4, ROCKET_HIDEOUT_4, 46, NONE
 	map_header_2 OlivineLighthouseElevator, OLIVINE_LIGHTHOUSE_ELEVATOR, 0, NONE
 	map_header_2 BattleTentPCRoom, BATTLE_TENT_PC_ROOM, 0, NONE
-	
+
 	map_header_2 CinnabarVolcanoEntrance, CINNABAR_VOLCANO_ENTRANCE, $9, NONE
 	map_header_2 CinnabarVolcanoB1F, CINNABAR_VOLCANO_B1F, $9, NONE
 	map_header_2 CinnabarVolcanoB2F, CINNABAR_VOLCANO_B2F, $9, NONE
@@ -632,7 +632,7 @@
 	map_header_2 SeafoamIslandsB1F, SEAFOAM_ISLANDS_B1F, $9, NONE
 	map_header_2 SeafoamIslandsB2F, SEAFOAM_ISLANDS_B2F, $9, NONE
 	map_header_2 SeafoamIslandsB3F, SEAFOAM_ISLANDS_B3F, $9, NONE
-	
+
 	map_header_2 TohjoFallsBackRoom, TOHJO_FALLS_BACK_ROOM, $9, NONE ; 0x95b94
 	map_header_2 CeladonDeptStoreB1F, CELADON_DEPT_STORE_B1F, $0, NONE
 	map_header_2 SilverCaveDreamRoom, SILVER_CAVE_DREAM_ROOM, $9, NONE ; 0x95b40
@@ -777,6 +777,6 @@
 	map_header_2 EnteiRoom, ENTEI_ROOM, $9, NONE
 	map_header_2 RaikouRoom, RAIKOU_ROOM, $24, NONE
 	map_header_2 SuicuneRoom, SUICUNE_ROOM, $9, NONE
-	
+
 	map_header_2 MtSilverRuins, MT_SILVER_RUINS, 0, NONE
 	map_header_2 MtSilverRuinsB1, MT_SILVER_RUINS_B1, 9, NONE

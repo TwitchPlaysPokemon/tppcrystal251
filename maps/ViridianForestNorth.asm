@@ -14,13 +14,13 @@ Office_ViridianNorth_Text: ; 0x19763a
 	text "VIRIDIAN FOREST"
 	line "has many trees"
 	cont "that form a maze."
-	
+
 	para "People get lost"
 	line "easily here."
 	done
 ; 0x197661
 
-ViridianForestNorth_MapEventHeader: ; 0x1ac4af 
+ViridianForestNorth_MapEventHeader: ; 0x1ac4af
 	; filler
 	db 0, 0
 

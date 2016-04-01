@@ -158,7 +158,7 @@ ENDM
 	landmark  64, 152, CinnabarVolcanoName
 	landmark  60, 136, Route21Name
 	landmark  44,  84, Route22Name
-	landmark  92, 108, MewIslandName 
+	landmark  92, 108, MewIslandName
 	landmark  36,  68, VictoryRoadName
 	landmark  36,  60, Route23Name
 	landmark  36,  52, IndigoPlateauName

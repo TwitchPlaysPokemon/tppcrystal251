@@ -4,7 +4,7 @@ PowerplantB2_MapScriptHeader:
 
 	; callbacks
 	db 1
-	
+
 	dbw 1, PowerplantB2SetBlocksScript
 
 ; <scripts go here>
@@ -51,13 +51,13 @@ PowerplantB2SetBlocksScript
 	;gate
 	changeblock 18, 24, $4d
 	return
-	
+
 PowerplantB2SetBlocksFalseScript
 ;only change blocks based on if we have generators active, only need to check in order and check 3 as 4 sets other flag
 	checkevent EVENT_ZAPDOS_GENERATOR_1_ON
 	iftrue PowerPlantB2Generator1BlockScript
 	return
-	
+
 PowerPlantB2Generator1BlockScript
 	changeblock 36, 14, $56
 	changeblock 38, 14, $55
@@ -111,47 +111,47 @@ DontKillZapdos:
 ZapdosText1:
 	text "ZAPDOS: Bizaaah!"
 	done
-	
+
 GeneratorTextOnline:
 	text "The generator"
 	line "hums loudly."
-	
+
 	para "Better not touch"
 	line "anything<...>"
 	done
-	
+
 GeneratorTextSuccess:
 	text "The generator"
 	line "roared to life."
-	
+
 	para "START-UP SEQUENCE:"
 	line "CONTINUING"
 	done
-	
+
 GeneratorTextFail:
 	text "The generator"
 	line "failed to start."
-	
+
 	para "START-UP SEQUENCE:"
 	line "FAILURE"
-	
+
 	para "POWER ORDER BROKEN"
-	
+
 	para "ALL GENERATORS"
 	line "SHUTTING DOWN<...>"
 	done
-	
+
 GeneratorTextCompleted:
 	text "SECURITY OVERRIDE"
 	line "ACTIVATED."
-	
+
 	para "ACCESS GRANTED."
 	done
-	
+
 GeneratorOnScript:
 	jumptext GeneratorTextOnline
 	end
-	
+
 ;generator right
 ZapdosCaveGenerator1Script:
 	checkevent EVENT_ZAPDOS_GENERATOR_1_ON
@@ -233,7 +233,7 @@ ZapdosCaveGenerator2Script:
 	setevent EVENT_ZAPDOS_GENERATOR_2_ON
 	jumptext GeneratorTextSuccess
 	end
-	
+
 ;generator bottom
 ZapdosCaveGenerator4Script:
 	checkevent EVENT_ZAPDOS_GENERATOR_4_ON
@@ -340,7 +340,7 @@ PowerplantB2_MapEventHeader:
 	signpost 15, 0, $0, ZapdosCaveGenerator2Script
 	signpost 1, 18, $0, ZapdosCaveGenerator3Script
 	signpost 33, 23, $0, ZapdosCaveGenerator4Script
-	
+
 	; object events
 	db 1
 	person_event SPRITE_MOLTRES, 23, 23, $16, 0, 0, -1, -1, 8 + PAL_OW_BROWN, 0, 0, ZapdosScript1, EVENT_FOUGHT_ZAPDOS

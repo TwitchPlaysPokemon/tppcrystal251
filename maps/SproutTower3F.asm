@@ -376,7 +376,7 @@ UnknownText_0x184ea4: ; 0x184ea4
 	text "Legend has it that"
 	line "a VICTREEBEL lives"
 	cont "in this tower."
-	
+
 	para "It is waiting for"
 	line "somebody worthy to"
 	cont "appear before it."

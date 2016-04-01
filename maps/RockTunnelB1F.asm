@@ -21,7 +21,7 @@ ItemFragment_0x7440d: ; 0x7440d
 MapRockTunnelB1FSignpostItem0: ; 0x7440f
 	dw $00e9
 	db MAX_POTION
-	
+
 ; 0x74412
 
 RockTunnelB1F_MapEventHeader: ; 0x74412

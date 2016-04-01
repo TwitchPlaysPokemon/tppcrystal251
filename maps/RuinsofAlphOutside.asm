@@ -269,9 +269,9 @@ UnknownText_0x58250: ; 0x58250
 
 PsychicNathanSeenText: ; 0x582eb
 	text "<...>strange place."
-	
+
 	para "<...>strange #MON."
-	
+
 	para "<...>caught one."
 	done
 ; 0x5830b

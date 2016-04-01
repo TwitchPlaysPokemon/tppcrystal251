@@ -128,7 +128,7 @@ WillBeforerematchText:
 	para "I have observed"
 	line "your battle"
 	cont "techniques."
-	
+
 	para "I'm ready for you!"
 
 	para "All right."
@@ -140,7 +140,7 @@ WillBeforerematchText:
 WillAfterRematchText:
 	text "I've expended all"
 	line "my power."
-	
+
 	para "I have no regrets"
 	line "about losing"
 	cont "this way."

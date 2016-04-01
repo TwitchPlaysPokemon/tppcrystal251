@@ -79,7 +79,7 @@ textbox: MACRO
     ld bc, ( (\4-\2) << 8) + (\3-\1)
     call TextBox
     ENDM
-	
+
 copy: MACRO
 	ld hl, \1
 	ld de, \2
@@ -100,7 +100,7 @@ MPLoadPalette:
 
 	ld a, 5
 	ld [rSVBK], a
-	
+
 	copy MPPals, BGPals, MPPalsEnd-MPPals
 	copy NotePals, OBPals, NotePalsEnd-NotePals
 
@@ -130,7 +130,7 @@ MusicPlayer::
 	xor a
 	ld [hBGMapThird], a
 	call DelayFrame
-	
+
 	ld b, BANK(MusicTestGFX) ;load the gfx
 	ld c, 128
 	ld de, MusicTestGFX
@@ -139,7 +139,7 @@ MusicPlayer::
 	ld [rVBK], a
 	call Request2bpp
 	xor a
-	ld [rVBK], a   
+	ld [rVBK], a
 
     call DelayFrame
 	call MPLoadPalette
@@ -153,7 +153,7 @@ MusicPlayer::
 	push af
 	ld a, 4
 	ld [rSVBK], a
-	
+
 	xor a
 	ld [hBGMapUpdate], a
 	ld [wNumNoteLines], a
@@ -181,7 +181,7 @@ MPlayerTilemap:
 	call DelayFrame
 
 	ld a, [rLCDC]
-	ld [hMPTmp3], a	
+	ld [hMPTmp3], a
 	call DisableLCD
 	ld a, $73
 	ld [rLCDC], a
@@ -273,7 +273,7 @@ MPlayerTilemap:
 
 	ld a, 2
 	ld [hVBlank], a
-	
+
 	ld a, [wSongSelection]
 	and a ;let's see if a song is currently selected
 	jr z, .getsong
@@ -287,10 +287,10 @@ MPlayerTilemap:
 	ld [rSVBK], a
 	call UpdateVisualIntensity
 	call DelayFrame_MP
-	
+
 	call DrawChData
 	call DrawNotes
-	
+
 	call GetJoypad
 	jbutton B_BUTTON, .exit
 	jbutton D_LEFT, .left
@@ -300,7 +300,7 @@ MPlayerTilemap:
 	jbutton A_BUTTON, .a
 	jbutton SELECT, .select
 	jbutton START, .start
-	
+
     jr .loop
 .left
     ld a, [wSongSelection]
@@ -338,9 +338,9 @@ MPlayerTilemap:
     ld [rSVBK], a
     call SongSelector
     jp MPlayerTilemap
-.redraw	
+.redraw
     ld [wSongSelection], a
-    
+
 	ld a, " "
 	hlcoord 5, 2
 	ld bc, 3
@@ -356,7 +356,7 @@ MPlayerTilemap:
 	ld bc, $0103
 	;call PrintNum
 	call DrawSongInfo
-	
+
 .a
 	ld a, [wSongSelection]
 	ld e, a
@@ -381,14 +381,14 @@ MPlayerTilemap:
 	ld a, $ee
 	ld [hl], a
 	jp .songEditorLoop
-	
+
 .songEditorLoop
 	call UpdateVisualIntensity
 	call DelayFrame
-	
+
 	call DrawChData
 	call DrawNotes
-	
+
 	ld a, [wChangingPitch]
 	and a
 	jr nz, .changingPitch
@@ -400,7 +400,7 @@ MPlayerTilemap:
 	jbutton D_UP, .songEditorup
 	jbutton D_DOWN, .songEditordown
 	jbutton SELECT, .songEditorselect
-	
+
 	ld a, 2
 	ld [hBGMapThird], a ; prioritize refreshing the note display
 	jr .songEditorLoop
@@ -413,7 +413,7 @@ MPlayerTilemap:
 	ld a, 2
 	ld [hBGMapThird], a ; prioritize refreshing the note display
 	jr .songEditorLoop
-	
+
 
 .songEditorleft
 	call .channelSelectorloadhl
@@ -458,7 +458,7 @@ MPlayerTilemap:
 	ld a, [hl]
 	xor 1
 	ld [hl], a
-    
+
 	jp .songEditorLoop
 .niteToggle
 	ld a, [GBPrinter]
@@ -490,7 +490,7 @@ MPlayerTilemap:
 	ld [hBGMapThird], a
 	call DelayFrame
 	jp .songEditorLoop
-	
+
 .songEditorup
     ld a, [wChannelSelector]
     cp 2
@@ -526,8 +526,8 @@ MPlayerTilemap:
     ld [Channel3+$0f], a
     ld [$c293], a
 	jp .songEditorLoop
-    
-    
+
+
 
 .songEditorselect
 .songEditorb
@@ -597,7 +597,7 @@ MPlayerTilemap:
 	ld [hBGMapThird], a
 	call DelayFrame
 	jp .songEditorLoop
-    
+
 .nonzero
     bit 7, a
     jr nz, .negative
@@ -625,7 +625,7 @@ MPlayerTilemap:
 	ld [hBGMapThird], a
 	call DelayFrame
 	jp .songEditorLoop
-	
+
 .ChangingPitchb
     xor a
     ld [wChangingPitch], a
@@ -636,7 +636,7 @@ MPlayerTilemap:
 	ld [hBGMapThird], a
 	call DelayFrame
 	jp .songEditorLoop
-    
+
 DrawChData:
     ld a, [wSpecialWaveform]
     and a
@@ -645,7 +645,7 @@ DrawChData:
     xor a
     ld [wSpecialWaveform], a
 .notspecial
-    
+
 	ld a, 0
 	hlcoord 0, 14
 .ch
@@ -656,7 +656,7 @@ DrawChData:
 	add hl, de
 	cp 3
 	jr c, .ch
-	
+
 	ld [wTmpCh], a
 	call CheckLR
 	hlcoord $10, $0f
@@ -679,7 +679,7 @@ DrawChData:
 .pickedhitchar
     ld [hl], a
 	ret
-	
+
 .nextch4
     xor a
     ld [wNoiseHit], a
@@ -820,7 +820,7 @@ DrawChData:
 	pop hl
 	pop af
 	ret
-	
+
 CheckLR:
 	push af
 	push hl
@@ -854,8 +854,8 @@ RenderWaveform:
 ;	ret z
 ;	ld a, b
 	ld [wRenderedWaveform], a
-	
-	
+
+
 RenderSpecialWaveform:
 
 	ld hl, TempMon
@@ -870,7 +870,7 @@ RenderSpecialWaveform:
 .drawloop
     ld a, [de]
     push de
-    
+
     swap a
     and $0f
     xor $0f
@@ -895,7 +895,7 @@ RenderSpecialWaveform:
     or [hl]
     ld [hli], a
     ld [hl], a
-    
+
     pop de
     inc de
     inc b
@@ -941,7 +941,7 @@ DrawNotes:
     call DrawNote
     call CheckForVolumeBarReset
     ret
-    
+
 .copynotes
     ld bc, 4
     ld hl, wMPNotes
@@ -988,7 +988,7 @@ CheckChannelOn:
 	call AddNTimes
 	bit 5, [hl]
 	jr nz, NoteEnded
-	
+
 ; Do an IO check too if the note's envelope is 0
 ; and not ramping up since the game handles rest
 ; notes by temporarily write 0 to hi nibble of NRx2
@@ -1043,8 +1043,8 @@ DrawNote:
     cp b
     jp z, DrawLongerNote
     jp DrawChangedNote
-    
-DrawChangedNote:    
+
+DrawChangedNote:
     ld [hl], b
     call SetVisualIntensity
     ; spillover
@@ -1090,7 +1090,7 @@ DrawLongerNote:
     jp c, WriteBlankNote
 .notFadingUp
     jp DrawNewNote
-    
+
 WriteBlankNote:
     xor a
     ld c, a
@@ -1155,7 +1155,7 @@ SetVisualIntensity:
     swap a
     and $0F
     ld d, a
-    
+
     ld a, [wTmpCh]
     ld hl, wC1Vol
     ld bc, 2
@@ -1258,7 +1258,7 @@ UpdateVisualIntensity:
     cp a, 2
     jr z, .nextChannel
     jr .updateChannels
- 
+
 AddNoteToOld:
     push hl
     ld a, [wNumNoteLines]
@@ -1282,7 +1282,7 @@ AddNoteToOld:
     inc de
     ld a, [hl]
     ld [de], a
-    
+
     ld a, [wNumNoteLines]
     inc a
     cp $25
@@ -1362,7 +1362,7 @@ DrawSongInfo:
     ld a, [wSongSelection]
     call GetSongInfo
     ret c ; no data
-    
+
     push hl
     pop de
     ;hlcoord 0, 4
@@ -1441,7 +1441,7 @@ GetSongArtist2:
 .noname
 	ld de, BlankName
     ret
-    
+
 PER_PAGE EQU 15
 
 SongSelector:
@@ -1538,7 +1538,7 @@ SongSelector:
     ld a, [wSelectorTop]
     ld [wSongSelection], a
     ret
-    
+
 
 UpdateSelectorNames:
     call GetSongInfo
@@ -1573,7 +1573,7 @@ UpdateSelectorNames:
     cp PER_PAGE
     jr nz, .loop
     ret
-    
+
 MPLPlaceString:
     push hl
     ld a, " "
@@ -1625,7 +1625,7 @@ MPLPlaceString:
     call PlaceString
     pop de
     ret
-	
+
 RenderNarrowText:
 ; render 1bpp graphics of a narrow text of hl to de
 ; only work with character $7f-$ff
@@ -1700,16 +1700,16 @@ RenderNarrowText:
 	ret z
 	ld a, $bf-$80
 	jp .process
-	
+
 RenderNarrowTextTable:
 	dw NT_Right0Left0
 	dw NT_Right0Left1
 	dw NT_Right1Left0
 	dw NT_Right1Left1
-	
+
 ; hl = right
 ; bc = left
-	
+
 NT_Right0Left0:
 	pop hl
 	rept 8
@@ -1727,7 +1727,7 @@ NT_Right0Left0:
 	inc de
 	endr
 	ret
-	
+
 NT_Right0Left1:
 	pop hl
 	rept 8
@@ -1746,7 +1746,7 @@ NT_Right0Left1:
 	inc de
 	endr
 	ret
-	
+
 NT_Right1Left0:
 	pop hl
 	rept 8
@@ -1763,7 +1763,7 @@ NT_Right1Left0:
 	inc de
 	endr
 	ret
-	
+
 NT_Right1Left1:
 	pop hl
 	rept 8
@@ -1781,7 +1781,7 @@ NT_Right1Left1:
 	inc de
 	endr
 	ret
-	
+
 DelayFrame_MP:
 ; music player VBlank routine
 	; TODO
@@ -1806,7 +1806,7 @@ MPKeymap:
 db  0,1,2,3,4,5,6,0,1,2,3,4,5,6,0,1,2,3,4,5
 
 MPKeymapEnd
-    
+
 NoteOAM:
     db $68,$a0,$f0,$08
     db $5c,$a0,$f1,$08
@@ -1817,7 +1817,7 @@ NoteOAM:
 	db $20,$a0,$f6,$08
 	db $14,$a0,$f7,$08
 NoteOAMEnd
-	
+
 Additional:
 	db $d0,$d1,$d2,$d3,$d4,$d5,$d6,$d1,$d7,$8f
 AdditionalEnd
@@ -2082,7 +2082,7 @@ SongInfo:
 	db "RotLK (Album Remix)@"                             , 21,40, 0
 	db "Ledge of Tomorrow@"                              , 21,40, 0
     db -1
-	
+
 Origin:
 	db 01, "Pokémon Red@"
 	db 02, "Pokémon Yellow@"
@@ -2101,7 +2101,7 @@ Origin:
 	db 20, "Tales of TPP Deluxe@"
 	db 21, "Dream Red@"
 	db -1
-	
+
 Artist:
 	db $01, "Junichi Masuda@"
 	db $02, "FroggestSpirit@"

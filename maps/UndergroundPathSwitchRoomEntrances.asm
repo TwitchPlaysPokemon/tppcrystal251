@@ -754,13 +754,13 @@ ItemFragment_0x7ce7f: ; 0x7ce7f
 MapUndergroundPathSwitchRoomEntrancesSignpostItem4: ; 0x7ce81
 	dw $008e
 	db MAX_POTION
-	
+
 ; 0x7ce84
 
 MapUndergroundPathSwitchRoomEntrancesSignpostItem5: ; 0x7ce84
 	dw $008f
 	db REVIVE
-	
+
 ; 0x7ce87
 
 MovementData_0x7ce87: ; 0x7ce87

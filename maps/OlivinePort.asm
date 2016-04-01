@@ -252,7 +252,7 @@ CooltrainerFScript_0x74a22: ; 0x74a22
 MapOlivinePortSignpostItem0: ; 0x74a2d
 	dw $00ea
 	db PROTEIN
-	
+
 ; 0x74a30
 
 MovementData_0x74a30: ; 0x74a30

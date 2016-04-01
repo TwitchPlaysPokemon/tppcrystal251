@@ -29,7 +29,7 @@ _ViridianForestEntranceText2: ; 8a8ab (22:68ab)
 	done
 
 
-ViridianForestSouthRB_MapEventHeader: ; 0x1ac4af 
+ViridianForestSouthRB_MapEventHeader: ; 0x1ac4af
 	; filler
 	db 0, 0
 

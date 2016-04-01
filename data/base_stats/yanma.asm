@@ -3,7 +3,7 @@
 	db  70,  65,  60,  95,  105,  50 ; BST 390 > 445
 	;   hp  atk  def  spd  sat  sdf
 ;	db  65,  65,  45,  95,  75,  45 old stats
-	
+
 	db BUG, FLYING
 	db 75 ; catch rate
 	db 78 ; base exp

@@ -23,7 +23,7 @@ GBCOnlyScreen: ; 4ea82
 	ld hl, VTiles2
 	lb bc, BANK(GBCOnlyGFX), $54
 	call Get2bpp
-	
+
 	ld de, GBCOnlyGFX2
 	ld hl, VTiles0
 	lb bc, BANK(GBCOnlyGFX2), $54
@@ -276,7 +276,7 @@ _BetBoy::
 	halt
 .forever
 	jr .forever
-	
+
 pwh: MACRO
 	and $f
 	cp $a
@@ -288,7 +288,7 @@ pwh: MACRO
 .print\@
 	ld [hli], a
 ENDM
-	
+
 PrintWordHex:
 	ld a, b
 	swap a
@@ -301,7 +301,7 @@ PrintWordHex:
 	ld a, c
 	pwh
 	ret
-	
+
 CopyDouble:
 	ld a, [de]
 	inc de

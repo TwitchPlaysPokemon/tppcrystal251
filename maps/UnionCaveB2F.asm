@@ -166,7 +166,7 @@ UnknownText_0x5a3f0: ; 0x5a3f0
 CooltrainerfGwenSeenText: ; 0x5a444
 	text "What is your-"
 	line "favorite #MON?"
-	
+
 	para "Mine is EEVEE!"
 	done
 ; 0x5a467

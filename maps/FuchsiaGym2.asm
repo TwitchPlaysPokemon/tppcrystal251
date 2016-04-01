@@ -4,9 +4,9 @@ FuchsiaGym2_MapScriptHeader:
 
 	; callbacks
 	db 1
-	
+
 	dbw 1, FuchsiaGym2Callback
-	
+
 FuchsiaGym2Callback:
 	checkevent EVENT_JANINE_REMATCH
 	iftrue .revealall
@@ -19,7 +19,7 @@ FuchsiaGym2Callback:
 	clearevent EVENT_FAKE_JANINE_1
 	clearevent EVENT_FAKE_JANINE_2
 	return
-	
+
 InvisibleJanineSPScript:
 	dw EVENT_JANINE_INVISIBLE, InvisibleJanineScript
 InvisibleJanineScript:
@@ -55,7 +55,7 @@ JanineJustAfterRematch:
 	waitbutton
 	closetext
 	end
-	
+
 FakeJanine1SPScript:
 	dw EVENT_FAKE_JANINE_1, FakeJanine1Script
 FakeJanine1Script:
@@ -76,7 +76,7 @@ FakeJanine1Script:
 	waitbutton
 	closetext
 	end
-	
+
 FakeJanine2SPScript:
 	dw EVENT_FAKE_JANINE_2, FakeJanine2Script
 FakeJanine2Script:
@@ -97,7 +97,7 @@ FakeJanine2Script:
 	waitbutton
 	closetext
 	end
-	
+
 FuchsiaGym2GuyScript:
 	faceplayer
 	loadfont
@@ -113,11 +113,11 @@ FuchsiaGym2GuyScript:
 	waitbutton
 	closetext
 	end
-	
+
 MapFuchsiaGym2Signpost1Script:
 	trainertotext JANINE, 1, $1
 	jumpstd gymstatue2
-	
+
 MovementData_0x195f27_2:
 	turn_head_down
 	turn_head_left
@@ -133,14 +133,14 @@ MovementData_0x195f27_2:
 	turn_head_right
 	turn_head_down
 	step_end
-	
+
 InvisibleTrainerFoundText:
 	text "Fufufu!"
-	
+
 	para "You have finally"
 	line "found me!"
 	done
-	
+
 FakeJanine1Text:
 	text "Anyways, I'm not"
 	line "JANINE<...>"
@@ -150,14 +150,14 @@ FakeJanine2Text:
 	text "Your LEADER is in"
 	line "the another room<...>"
 	done
-	
+
 JanineBeforeRematchText:
 	text "The essence of"
 	line "a ninjas' moves<...>"
 
 	para "Honed and trained"
 	line "to perfection<...>"
-	
+
 	para "Prepare to expe-"
 	line "rience the horror"
 
@@ -177,8 +177,8 @@ JanineRematchBeatenText:
 
 JanineAfterRematchText:
 	text "While I admire"
-	line "your victory," 
-	
+	line "your victory,"
+
 	para "I'm disappointed"
 	line "that I lost<...>"
 
@@ -189,7 +189,7 @@ JanineAfterRematchText:
 	cont "again!"
 
 	done
-	
+
 FuchsiaGym2GuyText: ; 0x196299
 	text "Yo, CHAMP!"
 
@@ -201,7 +201,7 @@ FuchsiaGym2GuyText: ; 0x196299
 
 	para "hiding in this new"
 	line "invisible maze."
-	
+
 	para "She's even made"
 	line "herself invisible!"
 	done
@@ -211,7 +211,7 @@ FuchsiaGym2GuyWinText: ; 0x196325
 	text "That was a great"
 	line "battle, trainer!"
 	done
-; 0x196353	
+; 0x196353
 
 FuchsiaGym2_MapEventHeader:
 	; filler

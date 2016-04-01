@@ -100,7 +100,7 @@ MapCeladonCitySignpost6Script: ; 0x1a9f77
 MapCeladonCitySignpostItem7: ; 0x1a9f7a
 	dw $00fd
 	db PP_UP
-	
+
 ; 0x1a9f7d
 
 UnknownText_0x1a9f7d: ; 0x1a9f7d
@@ -138,7 +138,7 @@ UnknownText_0x1aa043: ; 0x1aa043
 
 	para "Looks like I've"
 	line "overdone it<...>"
-	
+
 	para "I can't get out"
 	line "of my house now!"
 	done
@@ -260,21 +260,21 @@ UnknownText_0x1aa3e5: ; 0x1aa3e5
 
 UnknownText_0x1aa418: ; 0x1aa418
 	text "ATTENTION"
-	
+
 	para "The BATTLE TENT"
 	line "is closed until"
 	cont "further notice."
-	
+
 	para "Please visit our"
 	line "new facility, the"
-	
+
 	para "BATTLE TOWER,"
 	line "located in JOHTO."
 	done
-	
+
 MapCeladonCityDoorAjarText:
 	text $56, "?"
-	
+
 	para "The door is ajar."
 	line "Someone's inside!"
 	done

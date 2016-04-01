@@ -161,7 +161,7 @@ Mart8: ; 16134
 	db 10 ; # items
 	db FIRE_STONE
 	db THUNDERSTONE
-	db WATER_STONE 
+	db WATER_STONE
 	db LEAF_STONE
 	db DRAGON_SCALE
 	db PROTEIN
@@ -403,7 +403,7 @@ Mart27: ; 161da
 	db 10 ; # items
 	db FIRE_STONE
 	db THUNDERSTONE
-	db WATER_STONE 
+	db WATER_STONE
 	db LEAF_STONE
 	db MOON_STONE
 	db HP_UP

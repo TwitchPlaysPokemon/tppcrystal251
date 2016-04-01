@@ -335,13 +335,13 @@ ViridianForest_BlockData:
 ViridianForestRB_BlockData:
 	INCBIN "maps/ViridianForest.blk"
 
-ViridianForestNorth_BlockData: 
-ViridianForestNorthRB_BlockData: 
+ViridianForestNorth_BlockData:
+ViridianForestNorthRB_BlockData:
 	INCBIN "maps/ViridianForestNorth.blk"
-ViridianForestSouth_BlockData: 
-ViridianForestSouthRB_BlockData: 
+ViridianForestSouth_BlockData:
+ViridianForestSouthRB_BlockData:
 	INCBIN "maps/ViridianForestSouth.blk"
-	
+
 MtMoonB1F_BlockData:
 MtMoonB1FRB_BlockData:
 	INCBIN "maps/MtMoonB1F.blk"
@@ -351,14 +351,14 @@ MtMoonB2FRB_BlockData:
 MtMoonB3F_BlockData:
 MtMoonB3FRB_BlockData:
 	INCBIN "maps/MtMoonB3F.blk"
-	
+
 CeruleanCave1_BlockData:
 	INCBIN "maps/CeruleanCave1.blk"
 CeruleanCave2_BlockData:
 	INCBIN "maps/CeruleanCave2.blk"
 CeruleanCave3_BlockData:
 	INCBIN "maps/CeruleanCave3.blk"
-	
+
 MewIslandEntrance_BlockData:
 	INCBIN "maps/MewIslandEntrance.blk"
 MewIslandB1B_BlockData:
@@ -373,7 +373,7 @@ MewIslandF2_BlockData:
 	INCBIN "maps/MewIslandF2.blk"
 MewIslandPeak_BlockData:
 	INCBIN "maps/MewIslandPeak.blk"
-	
+
 BattleTentRuins_BlockData:
 	INCBIN "maps/BattleTentRuins.blk"
 BattleTentBattleRoom_BlockData:

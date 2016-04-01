@@ -860,7 +860,7 @@ _OaksLabRivalWaitingText:
 
 _OaksLabRivalWaitingTextF:
 	text "<GREEN>: Oh,"
-	line "there you are!" 
+	line "there you are!"
 	cont "Are we getting"
 	cont "#MON now?"
 	done

@@ -145,13 +145,13 @@ RockScript_0x185cc2: ; 0x185cc2
 MapBurnedTower1FSignpostItem0: ; 0x185cc5
 	dw $0080
 	db ETHER
-	
+
 ; 0x185cc8
 
 MapBurnedTower1FSignpostItem1: ; 0x185cc8
 	dw $00ff
 	db ULTRA_BALL
-	
+
 ; 0x185ccb
 
 ItemFragment_0x185ccb: ; 0x185ccb

@@ -1256,7 +1256,7 @@ Music_VsWCS_Ch3_L18:
 	note __, 6
 	loopchannel 4, Music_VsWCS_Ch3_L18
 	loopchannel 0, Music_VsWCS_Ch3_L
-	
+
 Music_VsWCS_Ch3_P1:
 	octave 3
 	note C_, 1

@@ -274,7 +274,7 @@ UnknownText_0x19ec7e: ; 0x19ec7e
 	text "I caught these"
 	line "#MON in"
 	cont "freshwater."
-	
+
 	para "Different types"
 	line "of #MON appear"
 	cont "depending on"

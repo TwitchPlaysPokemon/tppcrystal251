@@ -317,14 +317,14 @@ PryceRematchTextBefore:
 
 PryceRematchBeatenText:
 	text "Hmm."
-	
+
 	para "Seems as if my"
 	line "luck has run out."
 	done
 
 PryceSilverWingText:
 	text "Yes, yes<...>"
-	
+
 	para "It was an"
 	line "impressive match."
 
@@ -337,7 +337,7 @@ PryceAfterSilverWingText:
 	text "I found this at"
 	line "the end of my"
 	cont "adventures."
-	
+
 	para "But my time had"
 	line "come to settle"
 	cont "down."

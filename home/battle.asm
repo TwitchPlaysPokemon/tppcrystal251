@@ -166,7 +166,7 @@ GetBattleVarAddr:: ; 39e7
 	and a
 	jr z, .getvar
 	inc hl
-	
+
 .getvar
 ; var id
 	ld a, [hl]
@@ -180,9 +180,9 @@ GetBattleVarAddr:: ; 39e7
 	ld a, [hli]
 	ld h, [hl]
 	ld l, a
-	
+
 	ld a, [hl]
-	
+
 	pop bc
 	ret
 

@@ -9,7 +9,7 @@ BattleCommand56: ; 37683
 .asm_3768e
 
 ; Fails if 3 layers of spikes are already down!
-	
+
 	ld a, [hl]
 	and $03
 	cp 3

@@ -49,7 +49,7 @@ DisableLCD:: ; 568
 	ld [rIF], a
 	ld a, [rIE]
 	ld b, a
-	
+
 ; Disable VBlank
 	res 0, a ; vblank
 	ld [rIE], a

@@ -1525,7 +1525,7 @@ Music_TitleScreen_Ch1_P1:
 	note A_, 2
 	note A#, 2
 	endchannel
-	
+
 Music_TitleScreen_Ch2_P1:
 	octave 2
 	note G_, 2
@@ -1569,7 +1569,7 @@ Music_TitleScreen_Ch2_P1:
 	note A_, 2
 	note A#, 2
 	endchannel
-	
+
 Music_TitleScreen_Ch2_P2:
 	stereopanning $ff
 	octave 3

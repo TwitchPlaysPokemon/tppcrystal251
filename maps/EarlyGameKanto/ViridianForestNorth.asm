@@ -34,7 +34,7 @@ _ViridianForestExitText2: ; 8a75d (22:675d)
 
 
 
-ViridianForestNorthRB_MapEventHeader: ; 0x1ac4af 
+ViridianForestNorthRB_MapEventHeader: ; 0x1ac4af
 	; filler
 	db 0, 0
 

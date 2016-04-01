@@ -432,7 +432,7 @@ UnknownScript_0xbc2c4:
 .SkipBugQuestion
 	special Function4d9e5 ;insert mon into party or into PC box in top slot. return 0 in scriptvar if mon went to party, 1 if they went to box and 2 if no mon was caught
 	if_equal $0, UnknownScript_0xbc2d4 ;if sent to party or no mon, skip box text
-	if_equal $2, UnknownScript_0xbc2d4 
+	if_equal $2, UnknownScript_0xbc2d4
 	if_equal $3, PCIsFullToo
 	farwritetext UnknownText_0x1b070d ;sent to box text
 	waitbutton
@@ -506,7 +506,7 @@ ContestAlreadyHoldingSun:
 	writetext ContestAlreadyHolding
 	waitbutton
 	jump ContestChooseBall
-	
+
 ContestResults_SecondPlaceScript: ; 0xbc332 prize script for balls
 		;itemtotext EVERSTONE, $1
 	writetext ContestSecondPrizeText
@@ -623,7 +623,7 @@ ContestFullBag:
 	buttonsound
 	writetext BagFullPrizeText
 	waitbutton
-	givemoney 0 , 8000 
+	givemoney 0 , 8000
 	jump UnknownScript_0xbc2b1
 
 ContestBallFlagClear:
@@ -633,7 +633,7 @@ ContestBallFlagClear:
 ContestResults_ThirdPlaceScript: ; 0xbc343
 	writetext ContestThirdPlaceText
 	waitbutton
-	givemoney 0 , 4000 
+	givemoney 0 , 4000
 	jump UnknownScript_0xbc2b1
 ; 0xbc354
 
@@ -1693,7 +1693,7 @@ UnknownScript_0xbc983: ; 0xbc983
 
 RematchMScript: ; 0xbc98a
 	checkcode VAR_CALLERID
-	if_equal PHONE_SCHOOLBOY_JACK, UnknownScript_0xbc9d0  
+	if_equal PHONE_SCHOOLBOY_JACK, UnknownScript_0xbc9d0
 	if_equal PHONE_SAILOR_HUEY, UnknownScript_0xbc9d7
 	if_equal PHONE_COOLTRAINERM_GAVEN, UnknownScript_0xbc9de
 	if_equal PHONE_BIRDKEEPER_JOSE, UnknownScript_0xbc9e5

@@ -23,11 +23,11 @@ Function1b35:: ; 1b35
 Function1b3f:: ; 1b3f load a into movementbuffer + default flypoint+1
 	push hl
 	push de
-	ld hl, wd002 
+	ld hl, wd002
 	ld e, [hl]
 	inc [hl]
 	ld d, 0
-	ld hl, MovementBuffer 
+	ld hl, MovementBuffer
 	add hl, de
 	ld [hl], a
 	pop de
@@ -171,7 +171,7 @@ Function1bdd:: ; 1bdd a = back nyble of JoyLast and front nyble of joy pressed
 ; 1bee
 
 Function1bee:: ; 1bee load white cursor into cursor location
-	ld hl, wcfac 
+	ld hl, wcfac
 	ld a, [hli]
 	ld h, [hl]
 	ld l, a
@@ -211,7 +211,7 @@ Function1c17:: ; 0x1c17
 	pop af
 	ret
 
-Function1c23:: ; 0x1c23 fill tilemap and attrimap with menu data from de using loaded menu data's coords 
+Function1c23:: ; 0x1c23 fill tilemap and attrimap with menu data from de using loaded menu data's coords
 	call Function1cfd ;hl = curmenu start location in tilemap
 	call Function1c30 ;fill attrimap with (de in reverse order) equal to the size of menu coords
 	call Function1d19 ;hl = menu start location in attrimap

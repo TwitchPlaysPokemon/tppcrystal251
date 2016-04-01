@@ -13,13 +13,13 @@ ItemFragment_0x185aa9: ; 0x185aa9
 MapTinTower5FSignpostItem0: ; 0x185aab
 	dw $007e
 	db FULL_RESTORE
-	
+
 ; 0x185aae
 
 MapTinTower5FSignpostItem1: ; 0x185aae
 	dw $007f
 	db CARBOS
-	
+
 ; 0x185ab1
 
 TinTower5F_MapEventHeader: ; 0x185ab1

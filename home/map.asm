@@ -270,11 +270,11 @@ Function2266:: ; 2266  if warp location found, ret c with c = warp count + 1 - l
 	jr .asm_2296 ;else, done
 
 .asm_2289
-	pop hl 
+	pop hl
 	ld a, $5 ; hl+5
 	add l
 	ld l, a
-	jr nc, .asm_2291 
+	jr nc, .asm_2291
 	inc h
 
 .asm_2291
@@ -421,7 +421,7 @@ Function2336:: ; 2336 load map warp, triggers, signs and object data into ram
 	call Function23f1 ;add xy triggers to ram
 	call Function2408 ;add sign data to ram
 	pop af
-	and a ;if a is not zero, ret, else refresh object data 
+	and a ;if a is not zero, ret, else refresh object data
 	ret nz
 	call Function241f ;refresh object data
 	ret
@@ -646,7 +646,7 @@ Function2471:: ; 2471 ;empty object structs
 	ld hl, ObjectStruct1
 	ld bc, 40 * 12
 	xor a
-	call ByteFill 
+	call ByteFill
 	ld hl, ObjectStruct1
 	ld de, 40
 	ld c, $c
@@ -1031,7 +1031,7 @@ Function2674:: ; 2674 run script
 	push af
 	set 1, [hl] ;set scriptflag 1
 	callba Function96c56 ;scriptmode = 1
-	callba ScriptEvents 
+	callba ScriptEvents
 	pop af
 	ld [ScriptFlags], a
 	pop af
@@ -2070,7 +2070,7 @@ GetMapHeaderMember:: ; 0x2c04
 ; bc = data from the current map's header
 ; (e.g., de = $0003 would return a pointer to the secondary map header) 08 is fish encounter group
 
-	ld a, [MapGroup] 
+	ld a, [MapGroup]
 	ld b, a
 	ld a, [MapNumber]
 	ld c, a
@@ -2079,14 +2079,14 @@ GetMapHeaderMember:: ; 0x2c04
 GetAnyMapHeaderMember:: ; 0x2c0c
 	; bankswitch
 	ld a, [hROMBank]
-	push af ;puts current bank on the stack 
+	push af ;puts current bank on the stack
 	ld a, BANK(MapGroupPointers)
 	rst Bankswitch
 
-	call GetAnyMapHeaderPointer 
+	call GetAnyMapHeaderPointer
 	add hl, de ;go to the correct slot
 	ld c, [hl] ;load the something into bc
-	inc hl 
+	inc hl
 	ld b, [hl]
 
 	; bankswitch back
@@ -2322,7 +2322,7 @@ Function2d05:: ; 2d05
 	ret
 ; 2d0d
 
-Function2d0d:: ; 2d0d 
+Function2d0d:: ; 2d0d
 	push hl
 	push bc
 	ld de, $0007
@@ -2338,7 +2338,7 @@ Function2d19:: ; 2d19 ;put fish group into a
 	push hl
 	push bc
 	ld de, $0008
-	call GetMapHeaderMember 
+	call GetMapHeaderMember
 	ld a, c
 	pop bc
 	pop hl
