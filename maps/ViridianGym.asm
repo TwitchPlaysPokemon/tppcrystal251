@@ -368,15 +368,15 @@ ViridianGymGuyText: ; 0x9acee
 
 	para "The GYM LEADER is"
 	line "a guy who battled"
-	cont "the CHAMPION three"
+	para "the CHAMPION three"
 	line "months ago."
 
 	para "He's no pushover."
 
 	para "Give it everything"
 	line "you've got,"
-	cont "because you're in"
-	cont "for a wild ride!"
+	para "because you're in"
+	line "for a wild ride!"
 	done
 ; 0x9ada0
 
