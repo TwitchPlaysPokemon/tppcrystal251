@@ -1,4 +1,4 @@
-; Johto Pokémon in water
+; Johto Pokï¿½mon in water
 
 ;	map RUINS_OF_ALPH_OUTSIDE
 ;	db $05 ; encounter rate

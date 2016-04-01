@@ -351,7 +351,7 @@ PrintLetterDelay:: ; 313d
 	ld a, 1
 
 .updatedelay
-	ld [TextDelayFrames], a 
+	ld [TextDelayFrames], a
 
 .checkjoypad
 	call GetJoypad
