@@ -41308,11 +41308,7 @@ MenuData2_0x49d1c: ; 49d1c
 MainMenuText: ; 49d24
 	db "CONTINUE@"
 	db "NEW GAME@"
-IF DEF(APRILFOOLS)
-	db "OLDEN@"
-ELSE
 	db "OPTION@"
-ENDC
 	db "MYSTERY GIFT@"
 	db "MOBILE@"
 	db "MOBILE STUDIUM@"
@@ -55922,17 +55918,10 @@ MenuData2_0x882be: ; 882be
 	db 5 ; items
 	db "NEW NAME@"
 Unknown_882c9: ; 882c9
-IF DEF(APRILFOOLS)
-	db "OLDEN@"
-	db "OLDEN@"
-	db "OLDEN@"
-	db "OLDEN@"
-ELSE
 	db "RUST@"
 	db "CARMINE@"
 	db "DUSTIN@"
 	db "EVAN@"
-ENDC
 	db 2 ; displacement
 	db " NAME @" ; title
 ; 882e5
@@ -55951,17 +55940,10 @@ MenuData2_0x882ee: ; 882ee
 	db 5 ; items
 	db "NEW NAME@"
 Unknown_882f9: ; 882f9
-IF DEF(APRILFOOLS)
-	db "OLDEN@"
-	db "OLDEN@"
-	db "OLDEN@"
-	db "OLDEN@"
-ELSE
 	db "AZURE@"
 	db "CELESTE@"
 	db "DAPHNE@"
 	db "AURORA@"
-ENDC
 	db 2 ; displacement
 	db " NAME @" ; title
 ; 88318
@@ -77083,11 +77065,7 @@ Functioncbce5: ; cbce5
 ; cbd2e
 
 TheEndGFX:: ; cbd2e
-IF DEF(APRILFOOLS)
-INCBIN "gfx/credits/aprilfools.w64.2bpp"
-ELSE
 INCBIN "gfx/credits/theend.w64.2bpp"
-ENDC
 ; cbe2e
 
 TehUrnGFX::

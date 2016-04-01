@@ -167,28 +167,6 @@ TypeNames: ; 5097b
 	dw Dark
 	dw Fairy
 
-IF DEF(APRILFOOLS)
-Normal:     db "OLDEN@"
-Fighting:   db "OLDEN@"
-Flying:     db "OLDEN@"
-Poison:     db "OLDEN@"
-CurseType:  db "OLDEN@"
-Fire:       db "OLDEN@"
-Water:      db "OLDEN@"
-Grass:      db "OLDEN@"
-Electric:   db "OLDEN@"
-Psychic:    db "OLDEN@"
-Ice:        db "OLDEN@"
-Ground:     db "OLDEN@"
-Rock:       db "OLDEN@"
-Bird:       db "OLDEN@"
-Bug:        db "OLDEN@"
-Ghost:      db "OLDEN@"
-Steel:      db "OLDEN@"
-Dragon:     db "OLDEN@"
-Dark:       db "OLDEN@"
-Fairy:      db "OLDEN@"
-ELSE
 Normal:     db "NORMAL@"
 Fighting:   db "FIGHTING@"
 Flying:     db "FLYING@"
@@ -209,7 +187,6 @@ Steel:      db "STEEL@"
 Dragon:     db "DRAGON@"
 Dark:       db "DARK@"
 Fairy:      db "FAIRY@"
-ENDC
 
 SubTypeNames:
 	dw PhysicalST
