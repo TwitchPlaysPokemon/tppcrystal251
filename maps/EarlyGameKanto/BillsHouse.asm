@@ -76,7 +76,18 @@ BillsHouseRBBillScript:
 	iffalse .init_event
 	checkevent EVENT_RECEIVED_S_S_TICKET_RB
 	iftrue BillsHouseRBBillScriptContinue
-	jump BillsHouseRBBillScriptGiveTicket
+	writetext _BillThankYouText
+	buttonsound
+	verbosegiveitem S_S_TICKET
+	iffalse .bag_full
+	setevent EVENT_RECEIVED_S_S_TICKET_RB
+	clearevent EVENT_CERULEAN_RB_ROCKET_1
+	writetext _BillsHouseText_1e8cb
+	waitbutton
+.bag_full
+	closetext
+	end
+
 
 .init_event
 	writetext _BillsHouseText_1e865

@@ -28,7 +28,7 @@ ViridianForestNorth_MapEventHeader: ; 0x1ac4af
 	db 3
 	warp_def $07, $04, 3, GROUP_VIRIDIAN_FOREST, MAP_VIRIDIAN_FOREST
 	warp_def $07, $05, 3, GROUP_VIRIDIAN_FOREST, MAP_VIRIDIAN_FOREST
-	warp_def $00, $05, 6, GROUP_ROUTE_2, MAP_ROUTE_2
+	warp_def $00, $05, 5, GROUP_ROUTE_2_NORTH, MAP_ROUTE_2_NORTH
 
 	; xy triggers
 	db 0

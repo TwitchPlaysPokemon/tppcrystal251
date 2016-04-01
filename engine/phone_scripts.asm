@@ -188,14 +188,20 @@ BillPhoneScript2: ; 0xbd007
 CheckForBoxes:
 	special BillBoxSwitchCheck
 	if_equal 0, BillPhoneWholePCFull
-	buttonsound
 	farwritetext BillWantNextBox
-	buttonsound
-	;yesorno
-	;iffalse EndBillConversation
+	farwritetext UnknownText_0x1c462a
+	yesorno
+	iffalse .refused
+	farwritetext UnknownText_0x1c45a3
+	yesorno
+	iffalse .refused
 	special BillBoxSwitch
-EndBillConversation:
-	waitbutton
+	jump .hang_up
+
+.refused
+	farwritetext BillCallMeToSwitch
+.hang_up
+	farwritetext BillThankYouText
 	end
 
 BillPhoneWholePCFull

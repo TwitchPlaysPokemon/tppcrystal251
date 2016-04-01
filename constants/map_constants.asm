@@ -263,6 +263,7 @@ MAP_N_A   EQU -1
 	mapgroup PEWTER_MART, 4, 6
 	mapgroup PEWTER_POKECENTER_1F, 4, 5
 	mapgroup PEWTER_SNOOZE_SPEECH_HOUSE, 4, 4
+	mapgroup ROUTE_2_NORTH, 18, 10
 
 	newgroup ; Ports and Ship
 	mapgroup OLIVINE_PORT, 18, 10
@@ -379,7 +380,7 @@ MAP_N_A   EQU -1
 	mapgroup BATTLE_TOWER_OUTSIDE, 14, 10
 
 	newgroup ; Viridian City
-	mapgroup ROUTE_2, 36, 10
+	mapgroup ROUTE_2_SOUTH, 18, 10
 	mapgroup ROUTE_22, 9, 20
 	mapgroup VIRIDIAN_CITY, 18, 20
 	mapgroup VIRIDIAN_GYM, 23, 7

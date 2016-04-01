@@ -55,8 +55,8 @@ Route2NuggetSpeechHouse_MapEventHeader: ; 0x9b933
 
 	; warps
 	db 2
-	warp_def $7, $2, 1, GROUP_ROUTE_2, MAP_ROUTE_2
-	warp_def $7, $3, 1, GROUP_ROUTE_2, MAP_ROUTE_2
+	warp_def $7, $2, 1, GROUP_ROUTE_2_NORTH, MAP_ROUTE_2_NORTH
+	warp_def $7, $3, 1, GROUP_ROUTE_2_NORTH, MAP_ROUTE_2_NORTH
 
 	; xy triggers
 	db 0

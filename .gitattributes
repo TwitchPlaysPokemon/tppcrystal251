@@ -19,3 +19,4 @@
 *.it   binary
 *.db   binary
 *.tilemap binary
+*.ips binary

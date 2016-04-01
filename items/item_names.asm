@@ -1,3 +1,8 @@
+IF DEF(APRILFOOLS)
+rept 256
+	db "OLDEN@"
+endr
+ELSE
 	db "MASTER BALL@"
 	db "ULTRA BALL@"
 	db "BRIGHTPOWDER@"
@@ -254,3 +259,4 @@
 	db "TERU-SAMA@"
 	db "TERU-SAMA@"
 	db "?@"
+ENDC

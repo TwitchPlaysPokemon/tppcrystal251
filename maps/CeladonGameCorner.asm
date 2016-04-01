@@ -62,7 +62,7 @@ FisherScript_0x72144: ; 0x72144
 	buttonsound
 	checkitem COIN_CASE
 	iffalse UnknownScript_0x7217b
-	checkcoins 9998
+	checkcoins MAX_COINS - 1
 	if_equal $0, UnknownScript_0x72184
 	stringtotext .coinname, $1
 	scall .UnknownScript_0x72172

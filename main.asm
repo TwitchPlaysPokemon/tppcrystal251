@@ -917,11 +917,16 @@ NamePlayer: ; 0x6074
 .asm_60cf
 	call InitName
 	ret
-
+IF DEF(APRILFOOLS)
+.Chris
+.Kris
+	db "OLDEN@@@@@@"
+ELSE
 .Chris
 	db "RUST@@@@@@@"
 .Kris
 	db "AZURE@@@@@@"
+ENDC
 ; 60e9
 
 NameRivalRB: ; 0x6074
@@ -4864,7 +4869,7 @@ UnknownScript_0xc7fe: ; c7fe
 	reloadmappart
 	special UpdateTimePals
 UnknownScript_0xc802: ; 0xc802 CUT
-	callasm Functioncd12
+	callasm Functioncd1d
 	writetext UnknownText_0xc7c4
 	closetext
 	copybytetovar wd1ef
@@ -5023,7 +5028,7 @@ Functionc8e0: ; c8e0
 
 UnknownScript_0xc8e6: ; 0xc8e6 FLASH
 	reloadmappart
-	callasm Functioncd12
+	callasm Functioncd1d
 	copybytetovar wd1ef
 	cry $0000
 	special UpdateTimePals
@@ -5129,7 +5134,7 @@ Functionc97a: ; c97a (3:497a)
 UnknownScript_0xc983: ; c983
 	special UpdateTimePals
 UsedSurfScript: ; c986 SURF
-	callasm Functioncd12
+	callasm Functioncd1d
 	writetext UsedSurfText ; "used SURF!"
 	waitbutton
 	closetext
@@ -5373,7 +5378,7 @@ UnknownScript_0xcaa3: ; 0xcaa3 FLY
 	reloadmappart
 	callasm HideSprites
 	special UpdateTimePals
-	callasm Functioncd12
+	callasm Functioncd1d
 	scall FieldMovePokepicScript
 	callasm Function8caed
 	farscall UnknownScript_0x122c1
@@ -5442,7 +5447,7 @@ UnknownScript_0xcb1c: ; 0xcb1c
 	reloadmappart
 	special UpdateTimePals
 UnknownScript_0xcb20: ; 0xcb20 WATERFALL
-	callasm Functioncd12
+	callasm Functioncd1d
 	writetext UnknownText_0xcb51
 	waitbutton
 	closetext
@@ -5638,7 +5643,7 @@ UnknownScript_0xcc2b: ; 0xcc2b
 UnknownScript_0xcc35: ; 0xcc35 DIG
 	reloadmappart
 	special UpdateTimePals
-	callasm Functioncd12
+	callasm Functioncd1d
 	writetext UnknownText_0xcc1c
 	waitbutton
 	closetext
@@ -5807,13 +5812,10 @@ Functioncd09: ; cd09
 Functioncd12: ; cd12
 	ld hl, BikeFlags
 	set 0, [hl]
+Functioncd1d: ; cd1d
 	ld a, [CurPartyMon]
 	ld e, a
 	ld d, 0
-	; fallthrough
-; cd1d
-
-Functioncd1d: ; cd1d
 	ld hl, PartySpecies
 	add hl, de
 	ld a, [hl]
@@ -6003,7 +6005,7 @@ UnknownScript_0xce0b: ; 0xce0b
 	reloadmappart
 	special UpdateTimePals
 UnknownScript_0xce0f: ; 0xce0f WHIRLPOOL
-	callasm Functioncd12
+	callasm Functioncd1d
 	writetext UnknownText_0xcdd9
 	closetext
 	scall FieldMovePokepicScript
@@ -6114,7 +6116,7 @@ HeadbuttFromMenuScript: ; 0xcea7
 	reloadmappart
 	special UpdateTimePals
 HeadbuttScript: ; 0xceab HEADBUTT
-	callasm Functioncd12
+	callasm Functioncd1d
 	writetext UnknownText_0xce9d
 	closetext
 	scall FieldMovePokepicScript
@@ -6217,7 +6219,7 @@ RockSmashFromMenuScript: ; 0xcf2e
 	reloadmappart
 	special UpdateTimePals
 RockSmashScript: ; cf32 ROCK SMASH
-	callasm Functioncd12
+	callasm Functioncd1d
 	writetext UnknownText_0xcf58
 	closetext
 	scall FieldMovePokepicScript
@@ -18099,6 +18101,10 @@ Function14a58: ; 14a58
 	ret
 ; 14a83
 
+Special_BillChangeBox:
+	push de
+	jr SaveAndChangeBox
+
 Function14a83: ; 14a83 (5:4a83) boxchangesave, saves with new active box e
 	push de
 	ld hl, UnknownText_0x152a1
@@ -18107,7 +18113,12 @@ Function14a83: ; 14a83 (5:4a83) boxchangesave, saves with new active box e
 	call Function1c07 ;unload menu
 	jr c, .asm_14ab0
 	call Function14b89
-	jr c, .asm_14ab0
+	jr nc, SaveAndChangeBox
+.asm_14ab0
+	pop de
+	ret
+
+SaveAndChangeBox:
 	call Function14b54
 	call Function14c99
 	call Function14e0c
@@ -18118,10 +18129,6 @@ Function14a83: ; 14a83 (5:4a83) boxchangesave, saves with new active box e
 	call Function14be6
 	call Function14b5a
 	and a
-	ret
-
-.asm_14ab0
-	pop de
 	ret
 
 DeleteBox: ; 14a83 (5:4a83)
@@ -41301,7 +41308,11 @@ MenuData2_0x49d1c: ; 49d1c
 MainMenuText: ; 49d24
 	db "CONTINUE@"
 	db "NEW GAME@"
+IF DEF(APRILFOOLS)
+	db "OLDEN@"
+ELSE
 	db "OPTION@"
+ENDC
 	db "MYSTERY GIFT@"
 	db "MOBILE@"
 	db "MOBILE STUDIUM@"
@@ -41576,11 +41587,7 @@ Function49ed0: ; 49ed0
 ; 49ee0
 
 MainMenu_NewGame: ; 49ee0
-IF DEF(APRILFOOLS)
-	rst $38
-ELSE
 	callba NewGame
-ENDC
 	ret
 ; 49ee7
 
@@ -43888,7 +43895,7 @@ TileCollisionTable:: ; 4ce1f
 	db $00, $00, $00, $00, $00, $00, $00, $0f
 ; 4cf1f
 
-Function4cf1f: ; 4cf1f
+Function4cf1f:: ; 4cf1f
 	ld a, $0
 	call Function4cf34
 	ld a, $1
@@ -48496,7 +48503,7 @@ Function506bc: ; 506bc
 UnknownScript_0x506c8: ; 0x506c8 SWEET SCENT
 	reloadmappart
 	special UpdateTimePals
-	callasm Functioncd12
+	callasm Functioncd1d
 	writetext UnknownText_0x50726
 	waitbutton
 	closetext
@@ -55915,10 +55922,17 @@ MenuData2_0x882be: ; 882be
 	db 5 ; items
 	db "NEW NAME@"
 Unknown_882c9: ; 882c9
+IF DEF(APRILFOOLS)
+	db "OLDEN@"
+	db "OLDEN@"
+	db "OLDEN@"
+	db "OLDEN@"
+ELSE
 	db "RUST@"
 	db "CARMINE@"
 	db "DUSTIN@"
 	db "EVAN@"
+ENDC
 	db 2 ; displacement
 	db " NAME @" ; title
 ; 882e5
@@ -55937,10 +55951,17 @@ MenuData2_0x882ee: ; 882ee
 	db 5 ; items
 	db "NEW NAME@"
 Unknown_882f9: ; 882f9
+IF DEF(APRILFOOLS)
+	db "OLDEN@"
+	db "OLDEN@"
+	db "OLDEN@"
+	db "OLDEN@"
+ELSE
 	db "AZURE@"
 	db "CELESTE@"
 	db "DAPHNE@"
 	db "AURORA@"
+ENDC
 	db 2 ; displacement
 	db " NAME @" ; title
 ; 88318
@@ -77062,7 +77083,11 @@ Functioncbce5: ; cbce5
 ; cbd2e
 
 TheEndGFX:: ; cbd2e
+IF DEF(APRILFOOLS)
+INCBIN "gfx/credits/aprilfools.w64.2bpp"
+ELSE
 INCBIN "gfx/credits/theend.w64.2bpp"
+ENDC
 ; cbe2e
 
 TehUrnGFX::

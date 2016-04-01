@@ -26,9 +26,11 @@ SaffronCity_BlockData: ; 0xa86ba
 	INCBIN "maps/SaffronCity.blk"
 ; 0xa8822
 
-Route2_BlockData: ; 0xa8822
+Route2North_BlockData: ; 0xa8822
 Route2RB_BlockData: ; 0xa8822
-	INCBIN "maps/Route2.blk"
+	INCBIN "maps/Route2North.blk"
+Route2South_BlockData:
+	INCBIN "maps/Route2South.blk"
 ; 0xa8930
 
 ElmsHouse_BlockData: ; 0xa8930

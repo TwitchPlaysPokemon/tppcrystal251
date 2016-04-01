@@ -221,13 +221,13 @@ FuchsiaGymGuyScript: ; 0x195f03
 ; 0x195f17
 
 MapFuchsiaGymSignpost1Script: ; 0x195f17
+	trainertotext JANINE, 1, $1
 	checkflag ENGINE_SOULBADGE
 	iftrue UnknownScript_0x195f20
 	jumpstd gymstatue1
 ; 0x195f20
 
 UnknownScript_0x195f20: ; 0x195f20
-	trainertotext JANINE, 1, $1
 	jumpstd gymstatue2
 ; 0x195f27
 

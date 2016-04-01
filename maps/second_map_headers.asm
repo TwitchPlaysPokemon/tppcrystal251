@@ -132,15 +132,19 @@
 	connection east, ROUTE_45, Route45, -3, 33, 12, ROUTE_46
 
 	map_header_2 PewterCity, PEWTER_CITY, $f, SOUTH | EAST ; 0x9527c
-	connection south, ROUTE_2, Route2, 5, 0, 10, PEWTER_CITY
+	connection south, ROUTE_2_NORTH, Route2North, 5, 0, 10, PEWTER_CITY
 	connection east, ROUTE_3, Route3, 5, 0, 9, PEWTER_CITY
 
-	map_header_2 Route2, ROUTE_2, $f, NORTH | SOUTH ; 0x952a0
-	connection north, PEWTER_CITY, PewterCity, -3, 2, 16, ROUTE_2
-	connection south, VIRIDIAN_CITY, ViridianCity, -3, 2, 16, ROUTE_2
+	map_header_2 Route2North, ROUTE_2_NORTH, $f, NORTH | SOUTH ; 0x952a0
+	connection north, PEWTER_CITY, PewterCity, -3, 2, 16, ROUTE_2_NORTH
+	connection south, ROUTE_2_SOUTH, Route2South, 0, 0, 10, ROUTE_2_NORTH
+
+	map_header_2 Route2South, ROUTE_2_SOUTH, $f, NORTH | SOUTH ; 0x952a0
+	connection north, ROUTE_2_NORTH, Route2North, 0, 0, 10, ROUTE_2_SOUTH
+	connection south, VIRIDIAN_CITY, ViridianCity, -3, 2, 16, ROUTE_2_SOUTH
 
 	map_header_2 ViridianCity, VIRIDIAN_CITY, $f, NORTH | SOUTH | WEST ; 0x952c4
-	connection north, ROUTE_2, Route2, 5, 0, 10, VIRIDIAN_CITY
+	connection north, ROUTE_2_SOUTH, Route2South, 5, 0, 10, VIRIDIAN_CITY
 	connection south, ROUTE_1, Route1, 10, 0, 10, VIRIDIAN_CITY
 	connection west, ROUTE_22, Route22, 4, 0, 9, VIRIDIAN_CITY
 

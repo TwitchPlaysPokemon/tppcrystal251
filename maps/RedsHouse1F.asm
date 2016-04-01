@@ -58,7 +58,7 @@ UnknownText_0x19aec0: ; 0x19aec0
 	cont "he's safe<...>"
 	
 	para "But I always do"
-	cont "worry about him."
+	line "worry about him."
 	done
 ; 0x19af81
 
