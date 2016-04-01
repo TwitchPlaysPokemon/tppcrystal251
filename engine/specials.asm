@@ -775,21 +775,21 @@ GiveBattleTowerMoney:
 
 BonusWinnings:
 	bigdw 300
-	bigdw 2000
-	bigdw 4200
-	bigdw 7500
-	bigdw 12000
-	bigdw 17500
-	bigdw 25000
+	bigdw 1500
+	bigdw 3600
+	bigdw 6000
+	bigdw 10500
+	bigdw 15000
+	bigdw 22500
 
 BaseWinnings:
 	bigdw 300
-	bigdw 1300
-	bigdw 2800
-	bigdw 5000
-	bigdw 8000
-	bigdw 11000
-	bigdw 17000
+	bigdw 1000
+	bigdw 2400
+	bigdw 4000
+	bigdw 7000
+	bigdw 10000
+	bigdw 15000
 
 CalculateTowerVictory:
 	ld de, EVENT_TOWER_HARD_MODE
