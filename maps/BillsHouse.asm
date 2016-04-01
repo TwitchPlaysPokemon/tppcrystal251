@@ -319,6 +319,18 @@ UnknownText_0x18982a: ; 0x18982a
 
 	para "too big for little"
 	line "old me. Hohohoho!"
+	
+	para "I can barely take"
+	line "care of all of"
+	cont "the flowers!"
+	
+	para "Come to think of"
+	line "it<...>"
+	
+	para "Some new kinds"
+	line "just sprung up!"
+	
+	para "I wonder why<...>"
 	done
 ; 0x189891
 
