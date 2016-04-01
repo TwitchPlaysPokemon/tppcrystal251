@@ -293,9 +293,16 @@ UnknownText_0x1b065b: ; 0x1b065b
 ; 0x1b0681
 
 UnknownText_0x1b0681: ; 0x1b0681
-	text "Everyone else gets"
-	line $f0, "1000 as a con-"
-	cont "solation prize!"
+	text "Everyone else who"
+	line "caught a #MON"
+	cont "gets ", $f0, "1000 as a"
+	cont "consolation prize!"
+	done
+
+NoPrizeForLazyPeople:
+	text "Only those who"
+	line "catch a #MON"
+	cont "recieve prizes."
 	done
 ; 0x1b06b7
 

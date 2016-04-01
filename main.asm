@@ -83456,7 +83456,7 @@ Options_TextSpeed: ; e42f5
 	jr nz, .LeftPressed
 	bit 4, a
 	jr z, .NonePressed ;right pressed
-	ld a, c 
+	ld a, c
 	cp $2
 	jr c, .Increase
 	ld c, $ff
