@@ -31,10 +31,10 @@ Route2Gate_MapEventHeader: ; 0x9b9ca
 
 	; warps
 	db 4
-	warp_def $0, $4, 3, GROUP_ROUTE_2, MAP_ROUTE_2
-	warp_def $0, $5, 4, GROUP_ROUTE_2, MAP_ROUTE_2
-	warp_def $7, $4, 2, GROUP_ROUTE_2, MAP_ROUTE_2
-	warp_def $7, $5, 2, GROUP_ROUTE_2, MAP_ROUTE_2
+	warp_def $0, $4, 2, GROUP_ROUTE_2_NORTH, MAP_ROUTE_2_NORTH
+	warp_def $0, $5, 3, GROUP_ROUTE_2_NORTH, MAP_ROUTE_2_NORTH
+	warp_def $7, $4, 1, GROUP_ROUTE_2_SOUTH, MAP_ROUTE_2_SOUTH
+	warp_def $7, $5, 1, GROUP_ROUTE_2_SOUTH, MAP_ROUTE_2_SOUTH
 
 	; xy triggers
 	db 0

@@ -297,6 +297,7 @@ MapGroup14:
 	map_header PewterMart, $c, 3, PEWTER_CITY, MUSIC_MART, 0, 1, 1
 	map_header PewterPokeCenter1F, $7, 3, PEWTER_CITY, MUSIC_POKEMON_CENTER, 0, 1, 1
 	map_header PewterSnoozeSpeechHouse, $5, 3, PEWTER_CITY, MUSIC_VIRIDIAN_CITY, 0, 1, 1
+	map_header Route2North, $3, 2, ROUTE_2, MUSIC_ROUTE_1, 0, 0, 1
 
 MapGroup15:
 	map_header OlivinePort, $9, 2, OLIVINE_CITY, MUSIC_VIOLET_CITY, 0, 0, 2
@@ -413,7 +414,7 @@ MapGroup22:
 	map_header BattleTowerOutside, $4, 2, BATTLE_TOWER, MUSIC_BATTLE_TOWER_THEME, 0, 0, 1
 
 MapGroup23:
-	map_header Route2, $3, 2, ROUTE_2, MUSIC_ROUTE_1, 0, 0, 1
+	map_header Route2South, $3, 2, ROUTE_2, MUSIC_ROUTE_1, 0, 0, 1
 	map_header Route22, $3, 2, ROUTE_22, MUSIC_ROUTE_3, 0, 0, 13
 	map_header ViridianCity, $3, 1, VIRIDIAN_CITY, MUSIC_VIRIDIAN_CITY, 0, 0, 1
 	map_header ViridianGym, $11, 3, VIRIDIAN_CITY, MUSIC_GYM, 1, 1, 1
