@@ -492,7 +492,7 @@ Music_SinnohGameCorner_Ch1_loop:
 	note G#, 1
 	note A#, 2
 	note G#, 1
-	
+
 	dutycycle 0
 	intensity $C4
 	octave 1
@@ -507,7 +507,7 @@ Music_SinnohGameCorner_Ch1_loop:
 	note D_, 2
 	note F_, 2
 	note D_, 2
-	
+
 	octave 1
 	note D#, 2
 	note A#, 2
@@ -520,7 +520,7 @@ Music_SinnohGameCorner_Ch1_loop:
 	note D_, 2
 	note F_, 2
 	note D_, 2
-	
+
 	note __, 16
 	note __, 16
 	note __, 16
@@ -798,7 +798,7 @@ Music_SinnohGameCorner_Ch2_loop:
 	note E_, 2
 	octave 1
 	note G#, 2
-	
+
 	intensity $59
 	octave 2
 	note F#, 2
@@ -819,7 +819,7 @@ Music_SinnohGameCorner_Ch2_loop:
 	note D_, 2
 	intensity $C4
 	note E_, 2
-	
+
 	intensity $59
 	note E_, 2
 	intensity $C4
@@ -837,7 +837,7 @@ Music_SinnohGameCorner_Ch2_loop:
 	note B_, 2
 	intensity $C4
 	note A_, 2
-	
+
 	intensity $59
 	note D_, 2
 	intensity $C4
@@ -857,7 +857,7 @@ Music_SinnohGameCorner_Ch2_loop:
 	intensity $C4
 	note F#, 1
 	note B_, 2
-	
+
 	intensity $59
 	note B_, 2
 	intensity $C4
@@ -873,7 +873,7 @@ Music_SinnohGameCorner_Ch2_loop:
 	note D_, 2
 	intensity $59
 	note D_, 2
-	
+
 	note C#, 4
 	intensity $C4
 	octave 2
@@ -897,7 +897,7 @@ Music_SinnohGameCorner_Ch2_loop:
 	octave 3
 	note C_, 1
 	note D_, 2
-	
+
 	intensity $59
 	note E_, 3
 	intensity $C4
@@ -921,7 +921,7 @@ Music_SinnohGameCorner_Ch2_loop:
 	intensity $C4
 	octave 2
 	note F#, 2
-	
+
 	intensity $59
 	note B_, 2
 	intensity $C4
@@ -943,7 +943,7 @@ Music_SinnohGameCorner_Ch2_loop:
 	intensity $C4
 	octave 2
 	note A_, 1
-	
+
 	intensity $59
 	note A_, 2
 	octave 3
@@ -955,7 +955,7 @@ Music_SinnohGameCorner_Ch2_loop:
 	intensity $C4
 	note F#, 4
 	note D#, 2
-	
+
 	note E_, 2
 	note D#, 2
 	note C#, 2
@@ -965,7 +965,7 @@ Music_SinnohGameCorner_Ch2_loop:
 	note D#, 2
 	octave 2
 	note A#, 2
-	
+
 	stereopanning $f0
 	octave 1
 	note D#, 2
@@ -1005,7 +1005,7 @@ Music_SinnohGameCorner_Ch2_loop:
 	octave 3
 	note E_, 2
 	note F#, 2
-	
+
 	notetype $6, $94
 	dutycycle 2
 	stereopanning $f0

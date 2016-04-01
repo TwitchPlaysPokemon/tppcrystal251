@@ -830,7 +830,7 @@ Music_SSAnne_Ch3_L:
 	octave 2
 	note C#, 2
 	loopchannel 0, Music_SSAnne_Ch3_L
-	
+
 Music_SSAnne_Ch4:
 	notetype $c
 	togglenoise $3

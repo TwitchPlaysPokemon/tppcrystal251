@@ -251,4 +251,3 @@
 	db MEWTWO
 	db MEW
 	db CELEBI
-	

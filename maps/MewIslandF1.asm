@@ -1,20 +1,20 @@
-MewIslandF1_MapScriptHeader: 
+MewIslandF1_MapScriptHeader:
 	; trigger count
 	db 0
 
-	; callback count 
+	; callback count
 	db 1
 	dbw 3, Boulder_CheckIfOverWarp
-	
-Boulder_CheckIfOverWarp: 
+
+Boulder_CheckIfOverWarp:
 	writecmdqueue CmdQueue_MewIslandBoulder
 	return
-	
-CmdQueue_MewIslandBoulder: 
+
+CmdQueue_MewIslandBoulder:
 	dbw 2, MewIsland_BoulderTable ; check if any stones are sitting on a warp
 	db 0, 0 ; filler
-	
-MewIsland_BoulderTable: 
+
+MewIsland_BoulderTable:
 	db 13, 2 ; warp, person
 	dw RemoveBoulder_Wrong
 
@@ -23,18 +23,18 @@ MewIsland_BoulderTable:
 
 	db 15, 2 ; warp, person
 	dw RemoveBoulder_Wrong
-	
+
 	db 16, 2 ; warp, person
 	dw RemoveBoulder_Wrong
-	
+
 	db 28, 2 ; warp, person
 	dw RemoveBoulder_Wrong
-	
+
 	db 33, 2 ; warp, person
 	dw RemoveBoulder_Right
 
 	db $ff ; end
-	
+
 RemoveBoulder_Wrong:
 	disappear 2
 	pause 30
@@ -42,7 +42,7 @@ RemoveBoulder_Wrong:
 	earthquake 80
 	clearevent MEW_ISLAND_DAMMED
 	end
-	
+
 RemoveBoulder_Right:
 	disappear 2
 	pause 30
@@ -54,27 +54,27 @@ RemoveBoulder_Right:
 	closetext
 	setevent MEW_ISLAND_DAMMED
 	end
-	
+
 MewIslandSignF1_Text: ; 0x78a52
 	text "Be careful of"
 	line "holes!"
 	done
-	
+
 MewIsland_RightBoulder:
 	text "Maybe that dammed"
 	line "up the water?"
 	done
-	
+
 MewIslandF1Sign:
 	jumptext MewIslandSignF1_Text
-	
+
 BoulderScript_MewIslandF1:
 	jumpstd strengthboulder
-	
+
 ItemFragment_MewIslandF1:
 	db POWER_HERB, 1
 
-MewIslandF1_MapEventHeader: 
+MewIslandF1_MapEventHeader:
 	; filler
 	db 0, 0
 
@@ -112,7 +112,7 @@ MewIslandF1_MapEventHeader:
 	warp_def 13, 27, 5, GROUP_MEWISLANDB1B, MAP_MEWISLANDB1B
 	warp_def 14, 27, 6, GROUP_MEWISLANDB1B, MAP_MEWISLANDB1B
 	warp_def 15, 18, 3, GROUP_MEWISLANDB1, MAP_MEWISLANDB1
-	
+
 	; xy triggers
 	db 0
 
@@ -124,4 +124,3 @@ MewIslandF1_MapEventHeader:
 	db 2
 	person_event SPRITE_BOULDER, 8, 22, $19, 0, 0, -1, -1, 0, 0, 0, BoulderScript_MewIslandF1, MEW_ISLAND_DAMMED
     person_event SPRITE_POKE_BALL, 13, 24, $1, 0, 0, -1, -1, 0, 1, 0, ItemFragment_MewIslandF1, MEW_ISLAND_F1_ITEM
-	

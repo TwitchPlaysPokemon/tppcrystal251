@@ -496,7 +496,7 @@ HoothootEggMoves:
 LedybaEggMoves:
 	db SCREECH
 	db MIMIC
-	db SWIFT	
+	db SWIFT
 	db $ff
 
 SpinarakEggMoves:

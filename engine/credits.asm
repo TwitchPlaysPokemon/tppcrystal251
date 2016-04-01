@@ -150,7 +150,7 @@ PlayCredits_109847:: ; 109847
 	ld hl, $9200
 	lb bc, BANK(CreditsBorderGFX), $09
 	call Request2bpp
-	
+
 	ld de, CopyrightTPPGFX
 	ld hl, $9500
 	lb bc, BANK(CopyrightTPPGFX), $5
@@ -368,17 +368,17 @@ ParseCredits: ; 1099aa
 	ld hl, wcf63
 	bit 7, [hl]
 	jp nz, .done
-	
+
 ; Wait until the timer has run out to parse the next command.
 	ld hl, CreditsTimer
 	ld a, [hl]
 	and a
 	jr z, .parse
-	
+
 ; One tick has passed.
 	dec [hl]
 	jp .done
-	
+
 .parse
 ; First, let's clear the current text display,
 ; starting from line 5.
@@ -388,12 +388,12 @@ ParseCredits: ; 1099aa
 	ld bc, 20 * 12
 	ld a, " "
 	call ByteFill
-	
+
 ; Then read the script.
-	
+
 .loop
 	call .get
-	
+
 ; Commands:
 	cp CREDITS_END
 	jp z, .end
@@ -409,9 +409,9 @@ ParseCredits: ; 1099aa
 	jr z, .wait2
 	cp CREDITS_THEEND
 	jr z, .theend
-	
+
 ; If it's not a command, it's a string identifier.
-	
+
 	push af
 	ld e, a
 	ld d, 0
@@ -422,27 +422,27 @@ ParseCredits: ; 1099aa
 	ld d, [hl]
 	ld e, a
 	pop af
-	
+
 ; Strings spanning multiple lines have special cases.
-	
+
 	cp COPYRIGHT
 	jr z, .copyright
-	
+
 	cp STAFF
 	jr c, .staff
-	
+
 ; The rest start from line 6.
 
 	hlcoord 0, 6
 	jr .print
-	
+
 .copyright
 	hlcoord 2, 4
 	jr .print
-	
+
 .staff
 	hlcoord 0, 6
-	
+
 .print
 ; Print strings spaced every two lines.
 	call .get
@@ -450,12 +450,12 @@ ParseCredits: ; 1099aa
 	call AddNTimes
 	call PlaceString
 	jr .loop
-	
+
 .theend
 ; Display "The End" graphic.
 	call Function109c11
 	jr .loop
-	
+
 .scene
 ; Update the scene number and corresponding palette.
 	call .get
@@ -465,13 +465,13 @@ ParseCredits: ; 1099aa
 	call GetCreditsPalette
 	call Function32f9 ; update hw pal registers
 	jr .loop
-	
+
 .clear
 ; Clear the banner.
 	ld a, $ff
 	ld [wcf64], a ; frame
 	jr .loop
-	
+
 .music
 ; Play the credits music.
 	ld de, MUSIC_CREDITS
@@ -482,29 +482,29 @@ ParseCredits: ; 1099aa
 	pop de
 	call PlayMusic
 	jp .loop
-	
+
 .wait2
 ; Wait for some amount of ticks.
 	call .get
 	ld [CreditsTimer], a
 	jr .done
-	
+
 .wait
 ; Wait for some amount of ticks, and do something else.
 	call .get
 	ld [CreditsTimer], a
-	
+
 	xor a
 	ld [$ffd5], a
 	ld a, 1
 	ld [$ffd4], a
-	
+
 .done
 	jp Function109951
-	
+
 .end
 ; Stop execution.
-	
+
 	ld hl, wcf63
 	set 7, [hl]
 	ld a, $20
@@ -538,7 +538,7 @@ ParseCredits: ; 1099aa
 	ld d, a
 	ld hl, CreditsScript
 	add hl, de
-	
+
 	inc de
 	ld a, e
 	ld [CreditsPos], a
@@ -641,13 +641,13 @@ Function109b1d: ; 109b1d (42:5b1d)
 
 GetCreditsPalette: ; 109b2c
 	call .GetPalAddress
-	
+
 	push hl
 	ld a, 0
 	call .UpdatePals
 	pop hl
 	ret
-	
+
 .GetPalAddress
 ; Each set of palette data is 24 bytes long.
 	ld a, [wcf65] ; scene
@@ -662,10 +662,10 @@ GetCreditsPalette: ; 109b2c
 	add hl, de ; * 3
 	add hl, de
 	ret
-	
+
 .UpdatePals
 ; Update the first three colors in both palette buffers.
-	
+
 	push af
 	push hl
 	add Unkn1Pals % $100
@@ -675,7 +675,7 @@ GetCreditsPalette: ; 109b2c
 	ld d, a
 	ld bc, 24
 	call CopyBytes
-	
+
 	pop hl
 	pop af
 	add BGPals % $100

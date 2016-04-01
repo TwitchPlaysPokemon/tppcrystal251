@@ -6,32 +6,32 @@ SSAnne6Gentleman1Script:
 	checkevent EVENT_ROCKET_TAKEOVER_OF_SS_ANNE
 	iftrue SSAnne6CookingUpTroubleScript
 	jumptextfaceplayer _SSAnne6Text1
-	
+
 SSAnne6Gentleman2Script:
 	checkevent EVENT_ROCKET_TAKEOVER_OF_SS_ANNE
 	iftrue SSAnne6CookingUpTroubleScript
 	jumptextfaceplayer _SSAnne6Text2
-	
+
 SSAnne6Gentleman3Script:
 	checkevent EVENT_ROCKET_TAKEOVER_OF_SS_ANNE
 	iftrue SSAnne6CookingUpTroubleScript
 	jumptextfaceplayer _SSAnne6Text3
-	
+
 SSAnne6Gentleman4Script:
 	checkevent EVENT_ROCKET_TAKEOVER_OF_SS_ANNE
 	iftrue SSAnne6CookingUpTroubleScript
 	jumptextfaceplayer _SSAnne6Text4
-	
+
 SSAnne6Gentleman5Script:
 	checkevent EVENT_ROCKET_TAKEOVER_OF_SS_ANNE
 	iftrue SSAnne6CookingUpTroubleScript
 	jumptextfaceplayer _SSAnne6Text5
-	
+
 SSAnne6Gentleman6Script:
 	checkevent EVENT_ROCKET_TAKEOVER_OF_SS_ANNE
 	iftrue SSAnne6CookingUpTroubleScript
 	jumptextfaceplayer _SSAnne6Text6
-	
+
 SSAnne6Gentleman7Script:
 	checkevent EVENT_ROCKET_TAKEOVER_OF_SS_ANNE
 	iftrue SSAnne6CookingUpTroubleScript
@@ -62,7 +62,7 @@ SSAnne6Gentleman7Script:
 	waitbutton
 	closetext
 	end
-	
+
 SSAnne6CookingUpTroubleScript:
 	jumptextfaceplayer _SSAnne6Text_CookingUpTrouble
 

@@ -371,7 +371,7 @@ Military_SelectPokemon:
 	call Function13e5
 	pop af
 	ld [Options], a
-	
+
 	ld a, BEESAFREE_SND_ASKMILITARY
 .loop
 	call LUASerial_AnimateSprites
@@ -460,7 +460,7 @@ MilItemCheck:
 .Valid
 	xor a
 	ret
-	
+
 
 MilItemsRequiringMonAndMove:
 	db ETHER ; Select Pokemon and move

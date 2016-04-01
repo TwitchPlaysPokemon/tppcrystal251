@@ -1,15 +1,15 @@
 CinnabarVolcanoB2F_MapScriptHeader:
 	; map trigger count
 	db 0
-	
+
 	; callback count
 	db 1
 
 	; callbacks
 	dbw 3, WriteCommandQueue_CinnabarVolcanoB2F
-	
 
-	
+
+
 WriteCommandQueue_CinnabarVolcanoB2F:
 	writecmdqueue CmdQueue_CinnabarVolcanoB2F
 	return
@@ -73,7 +73,7 @@ PushedDownHoleSoundScript_CinnabarVolcanoB2F:
 PushedDownHoleText_CinnabarVolcanoB2F:
 	text "The boulder fell"
 	line "through."
-	
+
 	para "The immense heat"
 	line "has diminished!"
 	done

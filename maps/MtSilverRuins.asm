@@ -182,7 +182,7 @@ ElmText_MtSilverRuinsFinalBattleAfter_Part1:
 	cont "too - was it not?"
 
 	para "But to train them<...>"
-	
+
 	para "That was your"
 	line "cause all along."
 	done
@@ -199,7 +199,7 @@ ElmText_MtSilverRuinsFinalBattleAfter_Part2:
 	para "I see the power"
 	line "that you hold"
 	cont "inside."
-	
+
 	;POKEMON! Gotta Catch em-- oh wait
 
 	para "<PLAYER>!"
@@ -228,9 +228,9 @@ MtSilverRuins_MapEventHeader:
 	warp_def 28, 28, 10, GROUP_MT_SILVER_RUINS_B1, MAP_MT_SILVER_RUINS_B1
 	warp_def 16, 28, 11, GROUP_MT_SILVER_RUINS_B1, MAP_MT_SILVER_RUINS_B1
 	warp_def 4, 4, 12, GROUP_MT_SILVER_RUINS_B1, MAP_MT_SILVER_RUINS_B1
-	warp_def 1, 3, 13, GROUP_MT_SILVER_RUINS_B1, MAP_MT_SILVER_RUINS_B1 
+	warp_def 1, 3, 13, GROUP_MT_SILVER_RUINS_B1, MAP_MT_SILVER_RUINS_B1
 	warp_def 1, 4, 14, GROUP_MT_SILVER_RUINS_B1, MAP_MT_SILVER_RUINS_B1
-	; coord events 
+	; coord events
 	db 0
 
 	; bg events

@@ -1,6 +1,6 @@
 CeladonDeptStoreB1F_MapScriptHeader:
 	db 0
-	
+
 	db 0
 
 ClerkScript_Depot1:
@@ -47,7 +47,7 @@ ClerkScript_Depot6:
 
 MapCeladonDeptStoreB1FSignpost0Script:
 	jumptext MapCeladonDeptStoreB1FSignpost0Text
-	
+
 MapCeladonDeptStoreB1FSignpost1Script:
 	jumpstd elevatorbutton
 

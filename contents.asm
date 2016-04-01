@@ -133,4 +133,3 @@ CRIES                     EQU $3C
 MISC_CRYSTAL              EQU $5E
 
 TPP_SONGS				  EQU $7A
- 

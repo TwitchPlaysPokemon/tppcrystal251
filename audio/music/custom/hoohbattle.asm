@@ -506,7 +506,7 @@ Music_HoOhBattle_Ch1_L:
 	intensity $c7
 	note A#, 16
 	loopchannel 0, Music_HoOhBattle_Ch1_L
-	
+
 Music_HoOhBattle_Ch2:
 ; Pat 0 Row 0
 	dutycycle $3
@@ -937,7 +937,7 @@ Music_HoOhBattle_Ch2_L:
 	intensity $c7
 	note F_, 16
 	loopchannel 0, Music_HoOhBattle_Ch2_L
-	
+
 Music_HoOhBattle_Ch3:
 ; Pat 0 Row 0
 	notetype $c, $16

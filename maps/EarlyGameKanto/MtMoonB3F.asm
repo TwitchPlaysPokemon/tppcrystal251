@@ -230,7 +230,7 @@ _MtMoon3AfterBattleText5:
 	cont "people came."
 	done
 
-MtMoonB3FRB_MapEventHeader: ; 0x1ac4af 
+MtMoonB3FRB_MapEventHeader: ; 0x1ac4af
 	; filler
 	db 0, 0
 

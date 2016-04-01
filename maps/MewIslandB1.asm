@@ -2,7 +2,7 @@ MewIslandB1_MapScriptHeader:
 	; trigger count
 	db 0
 
-	; callback count 
+	; callback count
 	db 1
 	dbw 1, MewIslandB1_CheckBlocks
 
@@ -11,11 +11,11 @@ MewIslandB1_CheckBlocks:
 	iftrue MewIslandB1_DamUp
 	disappear 2
 	return
-	
+
 MewIslandB1_DamUp:
 	changemap MewIslandB1Dammed_BlockData
 	return
-	
+
 BoulderScript_MewIslandB1:
 	jumptext MewIslandB1_BoulderText
 
@@ -23,9 +23,9 @@ MewIslandB1_BoulderText:
 	text "Moving this would"
 	line "be very unwise."
 	done
-	
-	
-MewIslandB1_MapEventHeader: 
+
+
+MewIslandB1_MapEventHeader:
 	; filler
 	db 0, 0
 
@@ -45,4 +45,4 @@ MewIslandB1_MapEventHeader:
 	; people-events
 	db 1
 	person_event SPRITE_BOULDER, 19, 22, $19, 0, 0, -1, -1, 0, 0, 0, BoulderScript_MewIslandB1, 0
-	
+

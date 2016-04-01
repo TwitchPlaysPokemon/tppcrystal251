@@ -125,7 +125,7 @@ MovementData_0x6c3f6: ; 0x6c3f6
 	fix_facing
 	turn_head_up
 	step_sleep 4
-	turn_head_right 
+	turn_head_right
 	step_sleep 4
 	turn_head_down
 	step_sleep 4
@@ -133,7 +133,7 @@ MovementData_0x6c3f6: ; 0x6c3f6
 	step_sleep 4
 	turn_head_up
 	step_sleep 4
-	turn_head_right 
+	turn_head_right
 	step_sleep 4
 	turn_head_down
 	step_sleep 4

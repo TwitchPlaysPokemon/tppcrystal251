@@ -155,7 +155,7 @@ JasmineRematchTextBefore:
 	para "<...>Um<...> Do you want a"
 	line "rematch?"
 	done
-	
+
 JasmineRematchBeatenText:
 	text "True to your"
 	line "reputation<...>"
@@ -168,7 +168,7 @@ JasmineAfterRematchText:
 
 	para "This is hard to"
 	line "say<...>"
-	
+
 	para "But<...>"
 	line "Good luck."
 	done

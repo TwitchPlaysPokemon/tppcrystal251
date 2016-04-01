@@ -29,7 +29,7 @@ RockScript_0x18c696: ; 0x18c696
 MapDarkCaveVioletEntranceSignpostItem0: ; 0x18c699
 	dw $009d
 	db ELIXER
-	
+
 ; 0x18c69c
 
 DarkCaveVioletEntrance_MapEventHeader: ; 0x18c69c

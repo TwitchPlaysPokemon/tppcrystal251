@@ -15,7 +15,7 @@ FisherScript1_MtMoon:
 
 FisherText1_MtMoon:
 	text "Hey, you!"
-	
+
 	para "Wanna buy a"
 	line "MAGIKARP? No?"
 

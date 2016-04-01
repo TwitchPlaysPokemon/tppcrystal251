@@ -211,7 +211,7 @@ UnknownText_0x6c143: ; 0x6c143
 BikerZekeSeenText: ; 0x6c167
 	text "We're the KANTO"
 	line "CHOIR GROUP!"
-	
+
 	para "We sing loudly!"
 	done
 ; 0x6c194
@@ -224,7 +224,7 @@ BikerZekeBeatenText: ; 0x6c194
 UnknownText_0x6c1a3: ; 0x6c1a3
 	text "We do this for"
 	line "freedom!"
-	
+
 	para "This isn't a riot."
 	done
 ; 0x6c1d0

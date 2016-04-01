@@ -234,7 +234,7 @@ FruitTreeScript_0x19812f: ; 0x19812f
 MapAzaleaTownSignpostItem8: ; 0x198131
 	dw $00b1
 	db FULL_HEAL
-	
+
 ; 0x198134
 
 MovementData_0x198134: ; 0x198134

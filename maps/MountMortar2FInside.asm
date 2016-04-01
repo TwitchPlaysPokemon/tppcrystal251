@@ -62,7 +62,7 @@ ItemFragment_0x7e0e8: ; 0x7e0e8
 MapMountMortar2FInsideSignpostItem0: ; 0x7e0ea
 	dw $0092
 	db FULL_RESTORE
-	
+
 ; 0x7e0ed
 
 SupernerdHughSeenText: ; 0x7e0ed

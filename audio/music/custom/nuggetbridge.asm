@@ -474,7 +474,7 @@ Music_NuggetBridge_Bar7:
 	octave 4
 	note D_, 1
 	intensity $15
-	endchannel 
+	endchannel
 Music_NuggetBridge_Bar8:
 	stereopanning $ff
 	octave 2
@@ -487,7 +487,7 @@ Music_NuggetBridge_Bar8:
 	octave 4
 	note E_, 1
 	intensity $15
-	endchannel 
+	endchannel
 Music_NuggetBridge_Bar9:
 	stereopanning $ff
 	octave 1
@@ -500,7 +500,7 @@ Music_NuggetBridge_Bar9:
 	octave 4
 	note F#, 1
 	intensity $15
-	endchannel 
+	endchannel
 Music_NuggetBridge_Bar10:
 	stereopanning $ff
 	octave 2
@@ -513,7 +513,7 @@ Music_NuggetBridge_Bar10:
 	octave 4
 	note B_, 1
 	intensity $15
-	endchannel 
+	endchannel
 Music_NuggetBridge_Bar11:
 	stereopanning $ff
 	octave 1
@@ -527,7 +527,7 @@ Music_NuggetBridge_Bar11:
 	octave 5
 	note D_, 1
 	intensity $15
-	endchannel 
+	endchannel
 Music_NuggetBridge_Bar12:
 	stereopanning $ff
 	octave 2
@@ -541,7 +541,7 @@ Music_NuggetBridge_Bar12:
 	octave 5
 	note E_, 1
 	intensity $15
-	endchannel 
+	endchannel
 
 Music_NuggetBridge_Ch4:
 	notetype 4

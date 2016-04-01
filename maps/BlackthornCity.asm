@@ -17,10 +17,10 @@ UnknownScript_0x1a46d8: ; 0x1a46d8
 	iftrue EliteFloorBlackthorn
 	warpmod 1, GROUP_BLACKTHORN_GYM_1F, MAP_BLACKTHORN_GYM_1F
 	return
-EliteFloorBlackthorn: 
+EliteFloorBlackthorn:
 	warpmod 1, GROUP_BLACKTHORNGYMREMATCH1F, MAP_BLACKTHORNGYMREMATCH1F
 	return
-	
+
 ; 0x1a46dc
 
 SantosCallback:

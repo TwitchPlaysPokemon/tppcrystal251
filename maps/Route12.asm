@@ -151,7 +151,7 @@ ItemFragment_0x1a700d: ; 0x1a700d
 MapRoute12SignpostItem2: ; 0x1a700f
 	dw $00f3
 	db ELIXER
-	
+
 ; 0x1a7012
 
 FisherMartinSeenText: ; 0x1a7012

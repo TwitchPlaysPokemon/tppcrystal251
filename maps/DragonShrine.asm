@@ -639,7 +639,7 @@ UnknownText_0x18d840: ; 0x18d840
 
 	para "A legend who"
 	line "became the best."
-	
+
 	para "What will become"
 	line "of your destiny?"
 	done

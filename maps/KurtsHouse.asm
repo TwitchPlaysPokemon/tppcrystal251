@@ -203,7 +203,7 @@ UnknownScript_0x18e293: ; 0x18e293
 	setevent EVENT_KURT_HAS_LOVE_BALL
 	jump KurtBagFull
 ; 0x18e299
-	
+
 
 ;UnknownScript_0x18e299: ; 0x18e299
 ;	setevent EVENT_000_STD
@@ -472,7 +472,7 @@ TwinScript_0x18e42e: ; 0x18e42e
 	faceplayer
 UnknownScript_0x18e42f: ; 0x18e42f
 	loadfont
-	
+
 	writetext UnknownText_0x18eab2
 	waitbutton
 	closetext

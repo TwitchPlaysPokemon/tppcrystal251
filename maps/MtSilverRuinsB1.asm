@@ -31,7 +31,7 @@ MtSilverRuinsB1_MapEventHeader:
 	warp_def 5, 11, 14, GROUP_MT_SILVER_RUINS, MAP_MT_SILVER_RUINS
 	warp_def 2, 10, 15, GROUP_MT_SILVER_RUINS, MAP_MT_SILVER_RUINS
 	warp_def 2, 11, 16, GROUP_MT_SILVER_RUINS, MAP_MT_SILVER_RUINS
-	
+
 	; coord events
 	db 0
 

@@ -228,7 +228,7 @@ callchannel: macro
 endchannel: macro
 	db $ff
 	endm
-	
+
 customwave: macro
 	db $f1
 	dw \1

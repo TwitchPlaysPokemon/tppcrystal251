@@ -1,9 +1,9 @@
 VermilionCityRB_MapScriptHeader: ; 0x1aa97a
 	; trigger count
 	db 3
-	
+
 	; triggers
-	
+
 	dw .Trigger0, 0
 	dw .Trigger1, 0
 	dw .Trigger2, 0

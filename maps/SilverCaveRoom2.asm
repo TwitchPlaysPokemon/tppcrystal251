@@ -21,7 +21,7 @@ ItemFragment_0x18c5b6: ; 0x18c5b6
 MapSilverCaveRoom2SignpostItem0: ; 0x18c5b8
 	dw $009c
 	db MAX_POTION
-	
+
 ; 0x18c5bb
 
 SilverCaveRoom2_MapEventHeader: ; 0x18c5bb

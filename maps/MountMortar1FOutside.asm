@@ -17,7 +17,7 @@ ItemFragment_0x7ddf8: ; 0x7ddf8
 MapMountMortar1FOutsideSignpostItem0: ; 0x7ddfa
 	dw $0090
 	db HYPER_POTION
-	
+
 ; 0x7ddfd
 
 MountMortar1FOutside_MapEventHeader: ; 0x7ddfd

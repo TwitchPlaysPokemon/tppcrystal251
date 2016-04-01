@@ -166,7 +166,7 @@ MapRoute13Signpost2Script: ; 0x1a249c
 MapRoute13SignpostItem3: ; 0x1a249f
 	dw $00f4
 	db CALCIUM
-	
+
 ; 0x1a24a2
 
 PokefanmAlexSeenText: ; 0x1a24a2
@@ -178,7 +178,7 @@ PokefanmAlexSeenText: ; 0x1a24a2
 PokefanmAlexBeatenText: ; 0x1a24c2
 	text "DAD: How<...> How dare"
 	line "you mock royalty!"
-	
+
 	para "SON: Dad, please!"
 	line "Stop<...>"
 	done
@@ -202,7 +202,7 @@ PokefanmJoshuaSeenText: ; 0x1a250f
 PokefanmJoshuaBeatenText: ; 0x1a2542
 	text "DAD: Five feet"
 	line "under<...>"
-	
+
 	para "SON: Good job<...>"
 	done
 ; 0x1a254f

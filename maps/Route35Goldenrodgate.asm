@@ -190,13 +190,13 @@ UnknownText_0x6a09a: ; 0x6a09a
 	text "I feel bad for"
 	line "the guy at the"
 	cont "counter<...>"
-	
+
 	para "He let some"
 	line "girl borrow his"
-	
+
 	para "number one mail"
 	line "carrier, and she"
-	
+
 	para "never gave it"
 	line "back. I wonder"
 	cont "where it's at now."

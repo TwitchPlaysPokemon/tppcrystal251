@@ -550,7 +550,7 @@ Music_TPP_Credits_Ch1_L2:
 	octave 4
 	note C_, 16
 	endchannel
-	
+
 Music_TPP_Credits_Ch1_P1:
 	octave 3
 	note B_, 2
@@ -576,7 +576,7 @@ Music_TPP_Credits_Ch1_P1:
 	note B_, 2
 	note A_, 2
 	endchannel
-	
+
 Music_TPP_Credits_Ch1_P2:
 ; Pat 12 Row 0
 	octave 3
@@ -709,7 +709,7 @@ Music_TPP_Credits_Ch1_P2:
 	note F#, 2
 	note B_, 10
 	endchannel
-	
+
 Music_TPP_Credits_Ch1_P3:
 	octave 3
 	note C_, 2
@@ -746,7 +746,7 @@ Music_TPP_Credits_Ch1_P3:
 	note D#, 2
 	note G_, 2
 	endchannel
-	
+
 Music_TPP_Credits_Ch2:
 ; Pat 0 Row 0
 	dutycycle $0
@@ -1117,7 +1117,7 @@ Music_TPP_Credits_Ch2:
 	octave 5
 	note C_, 16
 	endchannel
-	
+
 Music_TPP_Credits_Ch2_P1:
 	octave 4
 	note F#, 4
@@ -1149,7 +1149,7 @@ Music_TPP_Credits_Ch2_P1:
 	note D_, 2
 	note C#, 4
 	endchannel
-	
+
 Music_TPP_Credits_Ch2_P2:
 ; Pat 12 Row 0
 	note D_, 2
@@ -1232,7 +1232,7 @@ Music_TPP_Credits_Ch2_P2:
 	note F#, 2
 	note E_, 10
 	endchannel
-	
+
 Music_TPP_Credits_Ch3:
 ; Pat 0 Row 0
 	notetype $c, $33
@@ -2065,7 +2065,7 @@ Music_TPP_Credits_Ch3_L4:
 	intensity $33
 	note C_, 10
 	endchannel
-	
+
 Music_TPP_Credits_Ch3_P1:
 	intensity $13
 	octave 2
@@ -2090,7 +2090,7 @@ Music_TPP_Credits_Ch3_P1:
 	octave 1
 	note B_, 2
 	endchannel
-	
+
 Music_TPP_Credits_Ch3_P2:
 	intensity $13
 	octave 2
@@ -2160,7 +2160,7 @@ Music_TPP_Credits_Ch3_P2:
 	note G_, 2
 	note D_, 2
 	endchannel
-	
+
 Music_TPP_Credits_Ch4:
 ; Pat 0 Row 56
 	notetype $c
@@ -2490,7 +2490,7 @@ Music_TPP_Credits_Ch4_L5:
 	notetype $c
 	note F#, 16
 	endchannel
-	
+
 Music_TPP_Credits_Ch4_P1:
 	note B_, 1
 	note E_, 1
@@ -2525,7 +2525,7 @@ Music_TPP_Credits_Ch4_P1:
 	note E_, 1
 	note G#, 1
 	endchannel
-	
+
 Music_TPP_Credits_Ch4_P2:
 ; Pat 12 Row 0
 	note B_, 2
@@ -2636,4 +2636,3 @@ Music_TPP_Credits_Ch4_P3:
 	note F_, 1
 	note G#, 1
 	endchannel
-	

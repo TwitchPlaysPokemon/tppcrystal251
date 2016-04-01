@@ -259,7 +259,7 @@ SwimmermRandallSeenText: ; 0x1a62b4
 	text "I work as a mover!"
 
 	para "I need a break."
-	
+
 	para "Want a battle"
 	line "by this cliff?"
 	done

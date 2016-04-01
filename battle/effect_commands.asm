@@ -711,7 +711,7 @@ BattleCommand02:
 		;bit 3, [hl]
 		;ld a, 50
 		;jr nz, .getlevel
-	
+
 		; hivebadge
 		;bit 1, [hl]
 		;ld a, 30
@@ -1731,7 +1731,7 @@ Function348de:
 
 .doubledown
 	call Function34931
-	
+
 
 Function34931:
 	ld a, [wc716]
@@ -2328,7 +2328,7 @@ BattleCommand09:
 
 .NotToxic
 
-	
+
 
 	call .StatModifiers
 
@@ -2931,7 +2931,7 @@ BattleCommand0e:
 	bit SUBSTATUS_SUBSTITUTE, a
 	ret nz ;if sub up, ret
 
-.ignoresub	
+.ignoresub
 	ld de, PlayerDamageTaken + 1
 	ld a, [hBattleTurn]
 	and a
@@ -10094,7 +10094,7 @@ BattleCommand9a:
 	ld a, 1
 	ld [AttackMissed], a ;set attack missed in case of early ret
 
-	ld a, BATTLE_VARS_LAST_COUNTER_MOVE_OPP 
+	ld a, BATTLE_VARS_LAST_COUNTER_MOVE_OPP
 	call GetBattleVar
 	and a
 	ret z ;return if no move used

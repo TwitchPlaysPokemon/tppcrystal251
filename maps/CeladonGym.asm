@@ -74,7 +74,7 @@ ErikaReject:
 	waitbutton
 	closetext
 	end
-	
+
 
 ErikaRejectNoGSBall:
 	writetext ErikaRejectNoGSBallText
@@ -117,7 +117,7 @@ ErikaRejectNoGSBallText:
 	line "there and check up"
 	cont "on him?"
 	done
-	
+
 ErikaRejectGSBall:
 	text "Oh, what an"
 	line "unusual item you"
@@ -146,7 +146,7 @@ ErikaRematchTextBefore:
 	cont "just now."
 
 	para "She's excited to"
-	line "meet you. Do you" 
+	line "meet you. Do you"
 	cont "know each other?"
 
 	para "She seems to want"
@@ -157,10 +157,10 @@ ErikaRematchTextBefore:
 	line "hold back."
 
 	done
-	
+
 
 ErikaRematchBeatenText:
-	text "We concede" 
+	text "We concede"
 	line "defeat."
 	done
 

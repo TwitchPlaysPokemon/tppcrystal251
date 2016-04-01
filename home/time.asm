@@ -88,7 +88,7 @@ FixDays:: ; 5e8
 ; reset dh (bit 8)
 	res 0, a
 	ld [hRTCDayHi], a ; DH
-	
+
 ; mod 140
 ; mod twice since bit 8 (DH) was set
 	ld a, [hRTCDayLo] ; DL
@@ -99,7 +99,7 @@ FixDays:: ; 5e8
 	sub 140
 	jr nc, .modl
 	add 140
-	
+
 ; update dl
 	ld [hRTCDayLo], a ; DL
 
@@ -112,19 +112,19 @@ FixDays:: ; 5e8
 	ld a, [hRTCDayLo] ; DL
 	cp 140
 	jr c, .quit
-	
+
 ; mod 140
 .mod
 	sub 140
 	jr nc, .mod
 	add 140
-	
+
 ; update dl
 	ld [hRTCDayLo], a ; DL
-	
+
 ; unknown output
 	ld a, $20 ; %100000
-	
+
 .set
 ; update clock with modded day value
 	push af
@@ -132,7 +132,7 @@ FixDays:: ; 5e8
 	pop af
 	scf
 	ret
-	
+
 .quit
 	xor a
 	ret
@@ -154,7 +154,7 @@ FixTime:: ; 61d
 	add 60
 .updatesec
 	ld [hSeconds], a
-	
+
 ; minute
 	ccf ; carry is set, so turn it off
 	ld a, [hRTCMinutes] ; M
@@ -166,7 +166,7 @@ FixTime:: ; 61d
 	add 60
 .updatemin
 	ld [hMinutes], a
-	
+
 ; hour
 	ccf ; carry is set, so turn it off
 	ld a, [hRTCHours] ; H
@@ -178,7 +178,7 @@ FixTime:: ; 61d
 	add 24
 .updatehr
 	ld [hHours], a
-	
+
 ; day
 	ccf ; carry is set, so turn it off
 	ld a, [hRTCDayLo] ; DL
@@ -236,21 +236,21 @@ SetClock:: ; 691
 ; enable clock r/w
 	ld a, SRAM_ENABLE
 	ld [MBC3SRamEnable], a
-	
+
 ; set clock data
 ; stored 'backwards' in hram
 
 	call LatchClock
 	ld hl, MBC3SRamBank
 	ld de, MBC3RTC
-	
+
 ; seems to be a halt check that got partially commented out
 ; this block is totally pointless
 	ld [hl], RTC_DH
 	ld a, [de]
 	bit 6, a ; halt
 	ld [de], a
-	
+
 ; seconds
 	ld [hl], RTC_S
 	ld a, [hRTCSeconds]
@@ -272,7 +272,7 @@ SetClock:: ; 691
 	ld a, [hRTCDayHi]
 	res 6, a ; make sure timer is active
 	ld [de], a
-	
+
 ; cleanup
 	call CloseSRAM ; unlatch clock, disable clock r/w
 	ret

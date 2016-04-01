@@ -135,13 +135,13 @@ BikerGlennScript: ; 0x1ad0fa
 MapRoute17SignpostItem0: ; 0x1ad102
 	dw $00f6
 	db MAX_ETHER
-	
+
 ; 0x1ad105
 
 MapRoute17SignpostItem1: ; 0x1ad105
 	dw $00f7
 	db MAX_ELIXER
-	
+
 ; 0x1ad108
 
 BikerRileySeenText: ; 0x1ad108
@@ -164,9 +164,9 @@ UnknownText_0x1ad13b: ; 0x1ad13b
 BikerJoelSeenText: ; 0x1ad15c
 	text "You know what my"
 	line "blood type is?"
-	
+
 	para "BEE positive!"
-	
+
 	para "<...>heh."
 	done
 ; 0x1ad178
@@ -181,7 +181,7 @@ UnknownText_0x1ad196: ; 0x1ad196
 	text "This grass is"
 	line "swarming of"
 	cont "BEEDRILL!"
-	
+
 	para "The water is a"
 	line "safe spot, though."
 	done
@@ -191,7 +191,7 @@ BikerGlennSeenText: ; 0x1ad1e0
 	text "Beauty is in"
 	line "the eyes of the"
 	cont "beeholder!"
-	
+
 	para "<...>heh."
 	done
 ; 0x1ad203
@@ -210,9 +210,9 @@ UnknownText_0x1ad225: ; 0x1ad225
 BikerCharlesSeenText: ; 0x1ad25c
 	text "I made it! I can't"
 	line "beelieve it!"
-	
+
 	para "<...>"
-	
+
 	para "Ok, that bee pun"
 	line "didn't wing it."
 	done
@@ -227,7 +227,7 @@ BikerCharlesBeatenText: ; 0x1ad27a
 UnknownText_0x1ad293: ; 0x1ad293
 	text "This time of year"
 	line "is horrible."
-	
+
 	para "The puns helps"
 	line "us cope with it."
 	done

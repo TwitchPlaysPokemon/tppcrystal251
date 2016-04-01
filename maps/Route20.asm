@@ -183,7 +183,7 @@ UnknownText_0x1acec2: ; 0x1acec2
 KnownText_0x1acec2:
 	text "What does this"
 	line "sign say?"
-	
+
 	para "DANGER! FAST"
 	line "CURRENTS WITHIN"
 	done

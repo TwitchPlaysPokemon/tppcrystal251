@@ -107,7 +107,7 @@ BlaineRejectText2:
 	line "would be unwise"
 	cont "to interupt his"
 	cont "frenzy."
-	
+
 	done
 
 BlaineBeforeRematchText:
@@ -127,19 +127,19 @@ BlaineBeforeRematchText:
 	cont "self against the"
 	para "the hottest flames"
 	line "I have."
-	
+
 	para "Let's get cookin'!"
 	done
 
 BlaineRematchBeatenText:
-	text "How could this be!" 
-	
+	text "How could this be!"
+
 	para "My spirit has not"
 	line "been defeated!"
 	done
 
 BlaineAfterRematchText:
-	text "I burnt out<...>" 
+	text "I burnt out<...>"
 
 	para "I'll take my NOTES"
 	line "back, but leave"
@@ -147,7 +147,7 @@ BlaineAfterRematchText:
 	line "GUYANA, the only"
 	para "known habitat of"
 	line "MEW, as thanks."
-	
+
 	para "I'll never give"
 	line "up until the day"
 	para "I've rebuilt the"

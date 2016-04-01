@@ -457,7 +457,7 @@ ItemFragment_0x19e29c: ; 0x19e29c
 MapRoute45SignpostItem1: ; 0x19e29e
 	dw $00af
 	db PP_UP
-	
+
 ; 0x19e2a1
 
 HikerErikSeenText: ; 0x19e2a1

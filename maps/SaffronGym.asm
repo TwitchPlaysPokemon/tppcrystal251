@@ -217,7 +217,7 @@ SabrinaRejectText:
 	line "repeating, I"
 	cont "cannot battle like"
 	cont "this."
-	
+
 	para "You must accept"
 	line "her challenge."
 

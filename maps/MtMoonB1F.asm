@@ -185,7 +185,7 @@ Item_MtMoonPGKB1F2:
 Item_MtMoonPGKB1F3:
 	db MAX_REPEL, 1
 
-MtMoonB1F_MapEventHeader: ; 0x1ac4af 
+MtMoonB1F_MapEventHeader: ; 0x1ac4af
 	; filler
 	db 0, 0
 

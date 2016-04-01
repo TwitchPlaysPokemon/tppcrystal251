@@ -310,7 +310,7 @@ UnknownText_0x5e821: ; 0x5e821
 	para "The more the user"
 	line "likes its trainer"
 	cont "the more it hurts."
-	
+
 	para "Unleash your"
 	line "annihilation of"
 	cont "LOOOVE!!"

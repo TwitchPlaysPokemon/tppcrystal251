@@ -168,7 +168,7 @@ FruitTreeScript_0x1a8e0d: ; 0x1a8e0d
 MapRoute37SignpostItem1: ; 0x1a8e0f
 	dw $00a9
 	db ETHER
-	
+
 ; 0x1a8e12
 
 TwinsAnnandanne1SeenText: ; 0x1a8e12

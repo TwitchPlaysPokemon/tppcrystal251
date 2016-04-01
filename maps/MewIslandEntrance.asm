@@ -2,12 +2,12 @@ MewIslandEntrance_MapScriptHeader:
 	; trigger count
 	db 0
 
-	; callback count 
+	; callback count
 	db 0
-	
+
 MewIslandSign:
 	jumptext MewIslandSign_Text
-	
+
 MewIslandSign_Text: ; 0x1aaa6f
 	text "This sign is"
 	line "illegible."
@@ -16,7 +16,7 @@ MewIslandSign_Text: ; 0x1aaa6f
 Item_MewIslandEntrance:
 	db SACRED_ASH, 1
 
-MewIslandEntrance_MapEventHeader: 
+MewIslandEntrance_MapEventHeader:
 	; filler
 	db 0, 0
 
@@ -29,10 +29,10 @@ MewIslandEntrance_MapEventHeader:
 	db 0
 
 	; signposts
-	db 1 
+	db 1
 	signpost $F, $5, $0, MewIslandSign
 
 	; people-events
 	db 1
 	person_event SPRITE_POKE_BALL, 23, 19, $1, 0, 0, -1, -1, 0, 1, 0, Item_MewIslandEntrance, EVENT_MEW_ISLAND_OUTSIDE_ITEM
-	
+

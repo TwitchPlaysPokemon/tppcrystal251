@@ -206,7 +206,7 @@ SailorHuey1SeenText: ; 0x5b07a
 	text "I have come to"
 	line "recharge our"
 	cont "ship's batteries"
-	
+
 	para "ahead of our"
 	line "next journey!"
 	done

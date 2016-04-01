@@ -444,7 +444,7 @@ UpdateChannels: ; e8125
 	; don't do anything if the intensity is $xf
 	; this is useful for custom wave samples
 	cp $f
-	jr z, .skipwavecopy 
+	jr z, .skipwavecopy
 	ld l, a
 	ld h, $00
 	; hl << 4
@@ -2426,62 +2426,62 @@ _PlayCryHeader:: ; e8b79
 ; Play cry de using parameters:
 ;	CryPitch
 ;	CryLength
-	
+
 	call MusicOff
-	
+
 ; Overload the music id with the cry id
 	ld hl, MusicID
 	ld [hl], e
 	inc hl
 	ld [hl], d
-	
+
 ; 3-byte pointers (bank, address)
 	ld hl, Cries
 	add hl, de
 	add hl, de
 	add hl, de
-	
+
 	ld a, [hli]
 	ld [MusicBank], a
-	
+
 	ld e, [hl]
 	inc hl
 	ld d, [hl]
-	
+
 ; Read the cry's sound header
 	call LoadMusicByte
 	; Top 2 bits contain the number of channels
 	rlca
 	rlca
 	and a, 3
-	
+
 ; For each channel:
 	inc a
 .loop
 	push af
 	call LoadChannel
-	
+
 	ld hl, Channel1Flags - Channel1
 	add hl, bc
 	set 5, [hl]
-	
+
 	ld hl, Channel1Flags2 - Channel1
 	add hl, bc
 	set 4, [hl]
-	
+
 	ld hl, Channel1CryPitch - Channel1
 	add hl, bc
 	ld a, [CryPitch]
 	ld [hli], a
 	ld a, [CryPitch + 1]
 	ld [hl], a
-	
+
 ; No tempo for channel 4
 	ld a, [CurChannel]
 	and a, 3
 	cp 3
 	jr nc, .start
-	
+
 ; Tempo is effectively length
 	ld hl, Channel1Tempo - Channel1
 	add hl, bc
@@ -2494,14 +2494,14 @@ _PlayCryHeader:: ; e8b79
 	ld a, [wc2bc]
 	and a
 	jr z, .next
-	
+
 ; Stereo only: Play cry from the monster's side.
 ; This only applies in-battle.
-	
+
 	ld a, [Options]
 	bit 5, a ; stereo
 	jr z, .next
-	
+
 ; [Tracks] &= [CryTracks]
 	ld hl, Channel1Tracks - Channel1
 	add hl, bc
@@ -2511,23 +2511,23 @@ _PlayCryHeader:: ; e8b79
 	ld hl, Channel1Tracks - Channel1
 	add hl, bc
 	ld [hl], a
-	
+
 .next
 	pop af
 	dec a
 	jr nz, .loop
-	
-	
+
+
 ; Cries play at max volume, so we save the current volume for later.
 	ld a, [LastVolume]
 	and a
 	jr nz, .end
-	
+
 	ld a, [Volume]
 	ld [LastVolume], a
 	ld a, $77
 	ld [Volume], a
-	
+
 .end
 	ld a, 1 ; stop playing music
 	ld [SFXPriority], a
@@ -2640,24 +2640,24 @@ PlayStereoSFX:: ; e8ca6
 ; play sfx de
 
 	call MusicOff
-	
+
 ; standard procedure if stereo's off
 	ld a, [Options]
 	bit 5, a
 	jp z, _PlaySFX
-	
+
 ; else, let's go ahead with this
 	ld hl, MusicID
 	ld [hl], e
 	inc hl
 	ld [hl], d
-	
+
 ; get sfx ptr
 	ld hl, SFX
 	add hl, de
 	add hl, de
 	add hl, de
-	
+
 ; bank
 	ld a, [hli]
 	ld [MusicBank], a
@@ -2665,22 +2665,22 @@ PlayStereoSFX:: ; e8ca6
 	ld e, [hl]
 	inc hl
 	ld d, [hl]
-	
+
 ; bit 2-3
 	call LoadMusicByte
 	rlca
 	rlca
 	and 3 ; ch1-4
 	inc a
-	
+
 .loop
 	push af
 	call LoadChannel
-	
+
 	ld hl, Channel1Flags - Channel1
 	add hl, bc
 	set 3, [hl]
-	
+
 	push de
 	; get tracks for this channel
 	ld a, [CurChannel]
@@ -2692,47 +2692,47 @@ PlayStereoSFX:: ; e8ca6
 	ld a, [hl]
 	ld hl, wc2bc
 	and [hl]
-	
+
 	ld hl, Channel1Tracks - Channel1
 	add hl, bc
 	ld [hl], a
-	
+
 	ld hl, $0030 ; $c131 - Channel1
 	add hl, bc
 	ld [hl], a
-	
+
 	ld a, [CryTracks]
 	cp 2 ; ch 1-2
 	jr c, .asm_e8d0c
-	
+
 ; ch3-4
 	ld a, [wc2be]
-	
+
 	ld hl, $002e ; $c12f - Channel1
 	add hl, bc
 	ld [hl], a
-	
+
 	ld hl, $002f ; $c130 - Channel1
 	add hl, bc
 	ld [hl], a
-	
+
 	ld hl, Channel1Flags2 - Channel1
 	add hl, bc
 	set 7, [hl]
-	
+
 .asm_e8d0c
 	pop de
-	
+
 ; turn channel on
 	ld hl, Channel1Flags - Channel1
 	add hl, bc
 	set 0, [hl] ; on
-	
+
 ; done?
 	pop af
 	dec a
 	jr nz, .loop
-	
+
 ; we're done
 	call MusicOn
 	ret

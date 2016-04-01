@@ -41,7 +41,7 @@ ClearTileMap:: ; fc8
 	ld a, " "
 	ld bc, TileMapEnd - TileMap
 	call ByteFill
-	
+
 	; Update the BG Map.
 	ld a, [rLCDC]
 	bit 7, a
@@ -68,7 +68,7 @@ TextBox:: ; fe8
 	call TextBoxBorder ;make an empty text box
 	pop hl
 	pop bc
-	jr TextBoxPalette ;set pallette 
+	jr TextBoxPalette ;set pallette
 ; ff1
 
 
@@ -204,14 +204,14 @@ PlaceNextChar:: ; 1079 de = char to place, hl = place to put it
 	ld c, l; put coords in bc
 	pop hl ;if single char, go back 1 more?
 	ret
-	pop de 
+	pop de
 
 NextChar:: ; 1083
 	inc de
 	jp PlaceNextChar
 
 CheckDict:: ; 1087
-dict: macro ;if 0, and a, else check 
+dict: macro ;if 0, and a, else check
 if \1 == 0
 	and a
 else
@@ -259,11 +259,11 @@ endm
 	dict $3f, Char3F
 	dict $14, Char14
 	cp $e4 ; handakuten
-	jr z, .place 
+	jr z, .place
 	cp $e5 ; dakuten
 	jr z, .place
 
-	jr .nope 
+	jr .nope
 	ld b, a
 	call Diacritic
 	jp NextChar
@@ -728,7 +728,7 @@ Function13f6:: ; 13f6 perform text command a, text in hl destination in bc
 	pop hl
 
 	; jp de
-	push de 
+	push de
 	ret
 ; 1410
 
@@ -767,7 +767,7 @@ Text_00:: ; 143e
 	ld e, l
 	ld h, b ;into bc
 	ld l, c
-	call PlaceString 
+	call PlaceString
 	ld h, d
 	ld l, e
 	inc hl

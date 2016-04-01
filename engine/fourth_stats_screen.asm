@@ -24,19 +24,19 @@ TN_PrintToD
 .print
 	hlcoord 5, 9
 	jp PlaceString
-	
+
 .caughtat
 	db "Met@"
-	
+
 .morn
 	db "in the morning@"
-	
+
 .day
 	db "during the day@"
-	
+
 .nite
 	db "at night@"
-	
+
 TN_PrintLocation:
 	ld de, .unknown
 	ld a, [TempMonCaughtLocation]
@@ -53,13 +53,13 @@ TN_PrintLocation:
 .print
 	hlcoord 1, 11
 	jp PlaceString
-	
+
 .unknown
 	db "Unknown Location@"
-	
+
 .event
 	db "Event #MON@"
-	
+
 TN_PrintLV:
 	ld a, [TempMonCaughtLevel]
 	and $3f
@@ -88,10 +88,10 @@ TN_PrintLV:
 	hlcoord 11, 13
 	ld [hl], $35
 	ret
-	
+
 .metat
 	db "Met at ", $6e, "@"
-	
+
 .egg
 	db "Hatched from EGG@"
 
@@ -200,7 +200,7 @@ TN_PrintCharacteristics:
 .done
 	pop de
 	ret
-	
+
 
 Characteristics:
 	dw Chara_HP0, Chara_HP1, Chara_HP2, Chara_HP3, Chara_HP4

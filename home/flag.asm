@@ -59,16 +59,16 @@ FlagAction:: ; 0x2e76
 
 	; implement a decoder (and c will leave the correct byte with only the correct flag set (if it is set))
 	ld c, 1
-	rrca 
-	jr nc, .one 
-	rlc c 
+	rrca
+	jr nc, .one
+	rlc c
 .one
 	rrca
-	jr nc, .two 
-	rlc c 
+	jr nc, .two
+	rlc c
 	rlc c
 .two
-	rrca 
+	rrca
 	jr nc, .three
 	swap c
 .three

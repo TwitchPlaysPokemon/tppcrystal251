@@ -6,11 +6,11 @@ FishAction: ; 92402
 	push af
 	push bc
 	push hl
-	
+
 ; Get the fishing group for this map.
 	ld b, e ;rod into b
 	call GetFishGroupHeader ;e = d-1, d = 0, a = d. if d = 11 or 12 then if swarm flag is on then special case
-	
+
 	ld hl, FishGroupHeaders
 	; go down to correct table. encounter chance no longer needed
 	;add hl, de
@@ -23,9 +23,9 @@ FishAction: ; 92402
 	; pointer to super rod data
 	add hl, de
 	add hl, de
-	
+
 	call Fish ;load mon into d and level into e. 0 in both if fail to fish
-	
+
 	pop hl
 	pop bc
 	pop af
@@ -57,25 +57,25 @@ Fish: ; 9241a
 	ld a, [hli] ;load table location into hl
 	ld h, [hl]
 	ld l, a
-	
+
 ; Encounter chance for this monster:
 	call Random
-	
+
 .CheckEncounter
 	cp [hl] ;if equal or less then % to encounter, jump ahead, otherwise go to next mon
 	jr z, .ReadMon
 	jr c, .ReadMon
-	
+
 ; Next monster...
 	inc hl
 	inc hl
 	inc hl
 	jr .CheckEncounter
-	
+
 .ReadMon
 ; We're done with the encounter chance
 	inc hl ;onto mon
-	
+
 ; Species 0 triggers a read from a time-based encounter table.
 	ld a, [hli]
 	ld d, a
@@ -88,11 +88,11 @@ Fish: ; 9241a
 	callab AddVariance ;add level variance
 	ld e, b
 	ret
-	
+
 .NoBite
 	ld de, 0
 	ret
-	
+
 .TimeEncounter
 
 ; The level byte is repurposed as the index for the new table.
@@ -111,7 +111,7 @@ Fish: ; 9241a
 	jr c, .TimeSpecies
 	inc hl
 	inc hl
-	
+
 .TimeSpecies
 	ld d, [hl]
 	inc hl
@@ -129,27 +129,27 @@ GetFishGroupHeader: ; 9245b
 	bit 2, [hl] ; check bit 2 of dialybits skip check for groups 11 and 12 unless flag is on(possibly related to quilfish swarm?)
 	pop hl
 	jr z, .end
-	
+
 ; Groups 11 and 12 have special attributes.
 	ld a, d
 	cp 11
 	jr z, .group11
 	cp 12
 	jr z, .group12
-	
+
 .end
 	dec d
 	ld e, d
 	ld d, 0
 	ret
-	
+
 .group11
 	ld a, [wdfce] ;if ? is 1 then use table 6 instead (something to do with quilfish swarm)
 	cp 1
 	jr nz, .end
 	ld d, 6
 	jr .end
-	
+
 .group12
 	ld a, [wdfce] ; if ? is 2 then use table 7 instead
 	cp 2
@@ -238,7 +238,7 @@ FishGroup13Header: ; 924dc
 	dw FishGroup13_Old
 	dw FishGroup13_Good
 	dw FishGroup13_Super
-	
+
 FishGroup14Header:
 	;db $80 ; 50%
 	dw FishGroup14_Old
@@ -286,7 +286,7 @@ FishGroup21Header:
 	dw FishGroup21_Old
 	dw FishGroup21_Good
 	dw FishGroup21_Super
-	
+
 ;to set fishing mons, first you have to make/edit a group, then assign that group to an area in maps/map_headers.asm (last number). group 0 is used to represent no fishing mons
 ;each group is split into rods, but each table can be any legnth
 ;first number is chance out of 255, currently in hex (noted by the $) but a decimal number can be entered too. This number is not individual chance, but culumulative chance of getting that far
@@ -332,7 +332,7 @@ FishGroup1_Super: ; 924f8
 	db 200, $0,    9
 	db 238, $0,    10
 	db $ff, $0,    11
-	
+
 FishGroup2: ; Johto Seawater
 FishGroup2_Old: ; 92504
 	db 125, REMORAID,    15
@@ -525,7 +525,7 @@ FishGroup10_Super: ; 92621
 	db 102, CORSOLA,    90
 	db 140, STARMIE,    90
 	db 179, VAPOREON,    90
-	db 218, GYARADOS,    90 
+	db 218, GYARADOS,    90
 	db $ff, LAPRAS,     90
 
 FishGroup11: ; swarm route
@@ -559,7 +559,7 @@ FishGroup12_Super: ; 92663
 	db $b2, $0,         7
 	db $e6, MAGIKARP,   40
 	db $ff, REMORAID,   40
-	
+
 FishGroup13: ; Kanto freshwater
 FishGroup13_Old:
 	db 125, MAGIKARP,    15
@@ -577,7 +577,7 @@ FishGroup13_Good:
 	db 215, GRIMER,    40
 	db 241, $0,    49
 	db $ff, $0,         50
-FishGroup13_Super: 
+FishGroup13_Super:
 	db 75, GYARADOS,    80
 	db 101, SEAKING,    75
 	db 139, POLIWRATH,    80
@@ -586,14 +586,14 @@ FishGroup13_Super:
 	db $ff, $0,    51
 
 FishGroup14: ; Kanto seawater
-FishGroup14_Old: 
+FishGroup14_Old:
 	db 75, MAGIKARP,    15
 	db 139, TENTACOOL,    15
 	db 165, SHELLDER,    15
 	db 191, SEEL,    15
 	db 204, $0,    52
 	db $ff, $0,    53
-FishGroup14_Good: 
+FishGroup14_Good:
 	db 88, TENTACOOL,    40
 	db 126, TENTACRUEL,    45
 	db 152, SHELLDER,    40
@@ -608,13 +608,13 @@ FishGroup14_Super:
 	db $ff, $0,    57
 
 FishGroup15: ; Seafoam outside
-FishGroup15_Old: 
+FishGroup15_Old:
 	db 51, SHELLDER,    15
 	db 77, $0,    58
 	db 141, $0,    59
 	db 179, $0,    60
 	db $ff, $0,    61
-FishGroup15_Good: 
+FishGroup15_Good:
 	db 51, SHELLDER,    40
 	db 77, $0,    62
 	db 166, $0,    63
@@ -628,22 +628,22 @@ FishGroup15_Super:
 	db $ff, $0,    69
 
 FishGroup16: ; Celadon Pond
-FishGroup16_Old: 
+FishGroup16_Old:
 	db $ff, GRIMER,    15
-FishGroup16_Good: 
+FishGroup16_Good:
 	db 200, GRIMER,    40
 	db $ff, MUK,        50
 FishGroup16_Super:
 	db 164, GRIMER,    70
 	db $ff, MUK,    80
-	
+
 FishGroup17: ; Cerulean Gym
-FishGroup17_Old: 
+FishGroup17_Old:
 	db 125, STARYU,    15
 	db 188, GOLDEEN,    15
 	db 248, TENTACOOL,    15
 	db $ff, TOGEPI,    15
-FishGroup17_Good: 
+FishGroup17_Good:
 	db 75, STARYU,    40
 	db 125, STARMIE,    45
 	db 150, SEAKING,    45
@@ -658,12 +658,12 @@ FishGroup17_Super:
 	db 200, CLOYSTER,    80
 	db 248, TENTACRUEL,    75
 	db $ff, TOGEPI,    60
-	
+
 FishGroup18: ; Slowpoke Well
-FishGroup18_Old: 
+FishGroup18_Old:
 	db 240,    SLOWPOKE,    15
 	db $ff, SLOWKING,    15
-FishGroup18_Good: 
+FishGroup18_Good:
 	db 200, SLOWPOKE,    45
 	db 228, SLOWBRO,    40
 	db $ff, SLOWKING,    40
@@ -673,7 +673,7 @@ FishGroup18_Super:
 	db $ff, SLOWKING,    80
 
 FishGroup19: ; EGK Freshwater
-FishGroup19_Old: 
+FishGroup19_Old:
 	db 75,    MAGIKARP,    15
 	db 125,    GOLDEEN,    15
 	db 175,    PSYDUCK,    15
@@ -687,7 +687,7 @@ FishGroup19_Super:
 	dw $ff, MAGIKARP,    5
 
 FishGroup20: ; EGK Seawater
-FishGroup20_Old: 
+FishGroup20_Old:
 	db 63,    MAGIKARP,    15
 	db 101,    TENTACOOL,    15
 	db 126,    KRABBY,    15
@@ -700,7 +700,7 @@ FishGroup20_Super:
 	dw $ff, MAGIKARP,    5
 
 FishGroup21: ; EGK Misty Gym
-FishGroup21_Old: 
+FishGroup21_Old:
 	db 75,    MAGIKARP,    15
 	db 100,    SEEL,    15
 	db 150,    KRABBY,    15
@@ -742,7 +742,7 @@ TimeFishGroups: ; 9266f
 ; 7 - Johto Freshwater Good Rod 5%
 	db WOOPER,     40 ; nite
 	db CROCONAW,   40 ; day
-; 8 - Johto Freshwater Super Rod 5% 
+; 8 - Johto Freshwater Super Rod 5%
 	db POLIWHIRL,   65 ; nite
 	db TOTODILE,   50 ; day
 ; 9 - Johto Freshwater Super Rod 10%

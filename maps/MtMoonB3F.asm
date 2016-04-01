@@ -5,7 +5,7 @@ MtMoonB3F_MapScriptHeader: ; 0x1ac2ba
 	; callback count
 	db 0
 
-TrainerSuperNerdMiguel: 
+TrainerSuperNerdMiguel:
 	; bit/flag number
 	dw EVENT_BEAT_SUPER_NERD_MIGUEL
 
@@ -116,7 +116,7 @@ SuperNerdMiguelFirstFossilText:
 	para "found many more"
 	line "just like it."
 	done
-	
+
 SuperNerdMiguelFoundNothingText:
 	text "Ah, good to see"
 	line "you again!"
@@ -157,17 +157,17 @@ SuperNerdMiguelText:
 SuperNerdMiguelAlreadyHaveItText:
 	text "Oh? You already"
 	line "one of those."
-	
+
 	para "I guess I'll keep"
 	line "this one."
 	done
-	
+
 Item_MtMoonPGKB3F1:
 	db HP_UP, 1
 Item_MtMoonPGKB3F2:
 	db CONFUSEGUARD, 1
 
-MtMoonB3F_MapEventHeader: ; 0x1ac4af 
+MtMoonB3F_MapEventHeader: ; 0x1ac4af
 	; filler
 	db 0, 0
 

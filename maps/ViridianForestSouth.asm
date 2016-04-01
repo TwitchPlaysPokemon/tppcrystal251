@@ -18,7 +18,7 @@ Office_ViridianSouth_Text: ; 0x19763a
 	done
 ; 0x197661
 
-ViridianForestSouth_MapEventHeader: ; 0x1ac4af 
+ViridianForestSouth_MapEventHeader: ; 0x1ac4af
 	; filler
 	db 0, 0
 

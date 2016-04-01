@@ -3,38 +3,38 @@ _TitleScreen: ; 10ed67
 	call WhiteBGMap
 	call ClearSprites
 	call ClearTileMap
-	
+
 ; Turn BG Map update off
 	xor a
 	ld [hBGMapMode], a
-	
+
 ; Reset timing variables
 	ld hl, wcf63
 	ld [hli], a ; cf63 ; Scene?
 	ld [hli], a ; cf64
 	ld [hli], a ; cf65 ; Timer lo
 	ld [hl], a  ; cf66 ; Timer hi
-	
+
 ; Turn LCD off
 	call DisableLCD
-	
-	
+
+
 ; VRAM bank 1
 	ld a, 1
 	ld [rVBK], a
-	
-	
+
+
 ; Decompress running Suicune gfx
 	ld hl, TitleSuicuneGFX
 	ld de, VTiles1
 	call Decompress
-	
+
 ; Clear screen palettes
 	ld hl, VBGMap0
 	ld bc, $0280
 	xor a
 	call ByteFill
-	
+
 
 ; Fill tile palettes:
 
@@ -76,7 +76,7 @@ _TitleScreen: ; 10ed67
 	ld bc, $0040 ; 2 rows
 	ld a, 6
 	call ByteFill
-	
+
 ; TWITCH PLAYS
 	ld hl, $9841
 	ld bc, $0011
@@ -88,67 +88,67 @@ _TitleScreen: ; 10ed67
 	ld bc, $000d ; length of version text
 	ld a, 1
 	call ByteFill
-	
+
 ; Ground tiles
 	ld hl, $9a80
 	ld bc, $80
 	xor a
 	call ByteFill
-	
+
 ; Back to VRAM bank 0
 	ld a, $0
 	ld [rVBK], a
-	
-	
+
+
 ; Decompress logo
 	ld hl, TitleLogoGFX
 	ld de, VTiles1
 	call Decompress
-	
+
 ; Decompress background crystal
 	ld hl, TitleCrystalGFX
 	ld de, VTiles0
 	call Decompress
-	
+
 ; Copy 2016 TPP
 	ld a, BANK(CopyrightTPPGFX)
 	ld bc, CopyrightTPPGFXEnd-CopyrightTPPGFX
 	ld de, $9190
 	ld hl, CopyrightTPPGFX
 	call FarCopyBytes
-	
+
 ; Copy Twitch Plays
 	ld bc, TitleTPPGFXEnd-TitleTPPGFX
 	ld de, $9200
 	ld hl, TitleTPPGFX
 	call CopyBytes
-	
+
 ; Copy ground
 	ld bc, TitleGroundGFXEnd-TitleGroundGFX
 	ld de, $9300
 	ld hl, TitleGroundGFX
 	call CopyBytes
-	
+
 ; Clear screen tiles
 	ld hl, VBGMap0
 	ld bc, $0800
 	ld a, $7f
 	call ByteFill
-	
-	
+
+
 ; Draw Pokemon logo
 	hlcoord 0, 3
 	lb bc, 7, 20
 	ld d, $80
 	ld e, $14
 	call DrawTitleGraphic
-	
+
 ; pos are modified by 72 for scrolling in
 RUST_POS_X equ 54 - 72
 RUST_POS_Y equ 89
 AZURE_POS_X equ 92 + 72
 AZURE_POS_Y equ 89
-	
+
 ; Draw hosts silhouette
 	ld a, [rSVBK]
 	push af
@@ -167,7 +167,7 @@ AZURE_POS_Y equ 89
 	call ByteFill
 	pop af
 	ld [rSVBK], a
-	
+
 ; Draw Twitch Plays
 	hlcoord 1, 2
 	lb bc, 1, 5
@@ -179,7 +179,7 @@ AZURE_POS_Y equ 89
 	ld d, $25
 	ld e, $10
 	call DrawTitleGraphic
-	
+
 ; Draw ground
 	ld hl, $9a80
 	ld d, $30
@@ -204,7 +204,7 @@ AZURE_POS_Y equ 89
 	jr nz, .gloop
 	ld a, $38 - 36
 	ld [hMPTmp], a
-	
+
 ; Draw copyright text
 	; GAME FREAK
 	ld hl, $9c00
@@ -218,40 +218,40 @@ AZURE_POS_Y equ 89
 	ld d, $19
 	ld e, $10
 	call DrawTitleGraphic
-	
+
 ; Initialize background crystal
 	call Function10ef06
-	
+
 ; Save WRAM bank
 	ld a, [rSVBK]
 	push af
 ; WRAM bank 5
 	ld a, 5
 	ld [rSVBK], a
-	
+
 ; Update palette colors
 	ld hl, TitleScreenPalettes
 	ld de, Unkn1Pals
 	ld bc, $0080
 	call CopyBytes
-	
+
 	ld hl, TitleScreenPalettes
 	ld de, BGPals
 	ld bc, $0080
 	call CopyBytes
-	
+
 ; Restore WRAM bank
 	pop af
 	ld [rSVBK], a
-	
-	
+
+
 ; LY/SCX trickery starts here
-	
+
 	ld a, [rSVBK]
 	push af
 	ld a, 5 ; BANK(LYOverrides)
 	ld [rSVBK], a
-	
+
 ; Make alternating lines come in from opposite sides
 
 ; ( This part is actually totally pointless, you can't
@@ -267,33 +267,33 @@ AZURE_POS_Y equ 89
 	inc hl
 	dec b
 	jr nz, .loop
-	
+
 ; Make sure the rest of the buffer is empty
 	ld hl, LYOverrides + 80
 	xor a
 	ld bc, LYOverridesEnd - (LYOverrides + 80)
 	call ByteFill
-	
+
 ; Let LCD Stat know we're messing around with SCX
 	ld a, rSCX - rJOYP
 	ld [hLCDStatCustom], a
-	
+
 	pop af
 	ld [rSVBK], a
-	
+
 ; Use VBlank1 to fix artifacts on twitch plays
 	ld a, 1
-	ld [hVBlank], a	
-	
+	ld [hVBlank], a
+
 ; Reset audio
 	call ChannelsOff
 	call EnableLCD
-	
+
 ; Set sprite size to 8x16
 	ld a, [rLCDC]
 	set 2, a
 	ld [rLCDC], a
-	
+
 	ld a, +112
 	ld [hSCX], a
 	ld a, 8
@@ -302,21 +302,21 @@ AZURE_POS_Y equ 89
 	ld [hWX], a
 	ld a, -112
 	ld [hWY], a
-	
+
 	ld a, $1
 	ld [hCGBPalUpdate], a
-	
+
 ; Update BG Map 0 (bank 0)
 	ld [hBGMapMode], a
-	
+
 	xor a
 	ld [DefaultFlypoint], a
-	
+
 ; Play starting sound effect
 	call SFXChannelsOff
 	ld de, SFX_TITLE_SCREEN_ENTRANCE
 	call PlaySFX
-	
+
 	ret
 ; 10eea7
 
@@ -472,7 +472,7 @@ AnimateTitleCrystal: ; 10ef32
 	ld a, [hl]
 	cp 6 + 16
 	ret z
-	
+
 ; Move all 30 parts of the crystal down by 2
 	ld c, 30
 .loop
@@ -484,7 +484,7 @@ AnimateTitleCrystal: ; 10ef32
 	inc hl
 	dec c
 	jr nz, .loop
-	
+
 ; Move the ground up by 1
 	ld a, [hMPTmp]
 	inc a
@@ -505,7 +505,7 @@ AnimateTitleCrystal: ; 10ef32
 	inc hl
 	dec c
 	jr nz, .loop2
-	
+
 ; Move all 16 parts of Azure left by 2
 	ld c, 16
 .loop3
@@ -582,78 +582,78 @@ TitleScreenPalettes::
 	RGB 00, 01, 05
 	RGB 00, 02, 08
 	RGB 31, 31, 31
-	
+
 	RGB 00, 00, 00
 	RGB 31, 31, 31
 	RGB 09, 00, 14
 	RGB 31, 01, 13
-	
+
 	RGB 00, 00, 00
 	RGB 07, 07, 07
 	RGB 31, 31, 31
 	RGB 02, 03, 30
-	
+
 	RGB 00, 00, 00
 	RGB 13, 13, 13
 	RGB 31, 31, 18
 	RGB 02, 03, 30
-	
+
 	RGB 00, 00, 00
 	RGB 19, 19, 19
 	RGB 29, 28, 12
 	RGB 02, 03, 30
-	
+
 	RGB 00, 00, 00
 	RGB 25, 25, 25
 	RGB 28, 25, 06
 	RGB 02, 03, 30
-	
+
 	RGB 00, 00, 00
 	RGB 31, 31, 31
 	RGB 26, 21, 00
 	RGB 02, 03, 30
-	
+
 	RGB 00, 02, 08
 	RGB 11, 11, 19
 	RGB 31, 31, 31
 	RGB 31, 31, 31
-	
+
 ; OBJ
 	RGB 00, 00, 00
 	RGB 10, 00, 15
 	RGB 17, 05, 22
 	RGB 19, 09, 31
-	
+
 	RGB 31, 31, 31
 	RGB 00, 00, 00
 	RGB 31, 31, 31
 	RGB 15, 08, 31
-	
+
 	RGB 31, 31, 31
 	RGB 00, 00, 00
 	RGB 00, 00, 00
 	RGB 31, 31, 31
-	
+
 	RGB 31, 31, 31
 	RGB 00, 00, 00
 	RGB 00, 00, 00
 	RGB 00, 00, 00
-	
+
 	RGB 31, 31, 31
 	RGB 00, 00, 00
 	RGB 00, 00, 00
 	RGB 00, 00, 00
-	
+
 	RGB 31, 31, 31
 	RGB 00, 00, 00
 	RGB 00, 00, 00
 	RGB 00, 00, 00
-	
+
 	RGB 31, 31, 31
 	RGB 00, 00, 00
 	RGB 00, 00, 00
 	RGB 00, 00, 00
-	
+
 	RGB 31, 31, 31
 	RGB 00, 00, 00
 	RGB 00, 00, 00

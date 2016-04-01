@@ -46,7 +46,7 @@ MortyScript_0x99d58: ; 0x99d58
 	domaptrigger GROUP_ECRUTEAK_HOUSE, MAP_ECRUTEAK_HOUSE, $1
 	setevent EVENT_SAGE_IN_ECRUTEAK_HOUSE
 	setevent EVENT_SAGE_IN_ECRUTEAK_HOUSE_2
-UnknownScript_0x99d8c: ; 0x99d8c	
+UnknownScript_0x99d8c: ; 0x99d8c
 	checkevent EVENT_GOT_TM30_SHADOW_BALL
 	iftrue UnknownScript_0x99db1
 	setevent EVENT_BEAT_SAGE_JEFFREY
@@ -137,7 +137,7 @@ MortyRejectTowerClosedText:
 
 MortyRejectTowerOpen:
 	text "It landed!"
-	
+
 	para "You must go meet"
 	line "the LEGANDARY"
 	cont "RAINBOW #MON."
@@ -389,7 +389,7 @@ MortyRematchTextBefore:
 	line "mean that I have"
 	cont "lost out on my"
 	cont "future."
-	
+
 	para "Show me the power"
 	line "I've trained for!"
 	done
@@ -403,11 +403,11 @@ MortyAfterRematchText:
 	text "Our potentials"
 	line "aren't so"
 	cont "different."
-	
+
 	para "But you seem to"
 	line "have something<...>"
-	
-	para "Something more" 
+
+	para "Something more"
 	line "than that<...>"
 	done
 
@@ -532,7 +532,7 @@ MediumMarthaBeatenText: ; 0x9a309
 
 UnknownText_0x9a318: ; 0x9a318
 	text "MORTY is powerful."
-	
+
 	para "He changes what"
 	line "#MON he uses"
 	cont "depending on the"
@@ -575,7 +575,7 @@ EcruteakGymGuyText: ; 0x9a3e8
 
 	para "a lot of dark-"
 	line "type trainers."
-	
+
 	done
 ; 0x9a452
 

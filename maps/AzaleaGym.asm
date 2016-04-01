@@ -11,10 +11,10 @@ AzaleaGym_MapScriptHeader: ; 0x18ec1c
 AzaleaGym_Trigger1:
 	priorityjump AzaleaGym_BurglarSimonScript1
 	end
-	
+
 AzaleaGym_Trigger2:
 	end
-	
+
 AzaleaGym_BurglarSimonScript1:
 	pause 60
 	moveperson $9, 5, 15
@@ -57,18 +57,18 @@ AzaleaGym_BurglarSimonScript1:
 	setevent EVENT_BEAT_SIMON_1
 	dotrigger $1
 	end
-	
+
 AzaleaGym_BurglarSimonMovement1:
 	big_step_down
 	big_step_down
 	big_step_down
 	step_end
-	
+
 AzaleaGym_BurglarSimonMovement2:
 	big_step_right
 	big_step_down
 	step_end
-	
+
 
 BugsyScript_0x18ec1e: ; 0x18ec1e
 	faceplayer
@@ -336,31 +336,31 @@ UnknownScript_0x18ed04: ; 0x18ed04
 
 AzaleaGym_BurglarSimonText1:
 	text $56, " ", $56, " ", $56
-	
+
 	para $56, " I'm looking for"
 	line "my partner."
-	
+
 	para "Have you seen him?"
 	done
-	
+
 AzaleaGym_BurglarSimonTextLoss:
 	text "Yowch!"
 	done
-	
+
 AzaleaGym_BurglarSimonText2:
 	text "My partner and I"
 	line "were separated"
-	
+
 	para "while exploring"
 	line "an abandoned buil-"
-	
+
 	para "ding over in"
 	line "KANTO."
-	
+
 	para "I meant to give"
 	line "him this."
 	done
-	
+
 AzaleaGym_BurglarSimonText3:
 	text "I wonder where my"
 	line "partner went."
@@ -405,7 +405,7 @@ BugsyRematchTextBefore:
 
 BugsyRematchBeatenText:
 	text "Aw, that's the"
-	line "end of it<...>"	
+	line "end of it<...>"
 	done
 
 BugsyAfterRematchText:
@@ -422,12 +422,12 @@ BugsyRejectText:
 	text "Hi, <PLAY_G>!"
 	line "Did you know?"
 
-	para "BUG CATCHING" 
+	para "BUG CATCHING"
 	line "CONTESTS are held"
 
 	para "every day at the"
 	line "NATIONAL PARK."
-	
+
 	para "Of course, I'm a"
 	line "natural at that"
 	cont "kind of thing."
@@ -440,10 +440,10 @@ BugsyRejectText:
 
 	para "But you should"
 	line "try it."
-	
+
 	para "I'm sure you"
 	line "can win!"
-	
+
 	done
 
 

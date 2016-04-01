@@ -72,19 +72,19 @@ MapViridianForestRBHiddenPotion:
 
 MapViridianForestRBSignpost0Script:
 	jumptext ViridianForestRBSignpostText1
-	
+
 MapViridianForestRBSignpost1Script:
 	jumptext ViridianForestRBSignpostText2
-	
+
 MapViridianForestRBSignpost2Script:
 	jumptext ViridianForestRBSignpostText3
-	
+
 MapViridianForestRBSignpost3Script:
 	jumptext ViridianForestRBSignpostText4
-	
+
 MapViridianForestRBSignpost4Script:
 	jumptext ViridianForestRBSignpostText5
-	
+
 MapViridianForestRBSignpost5Script:
 	jumptext ViridianForestRBSignpostText6
 
@@ -186,7 +186,7 @@ ViridianForestRBSignpostText1:
 	para "Weaken #MON"
 	line "before attempting"
 	cont "capture!"
-	
+
 	para "When healthy,"
 	line "they may escape!"
 	done
@@ -196,7 +196,7 @@ ViridianForestRBSignpostText2:
 	line "ANTIDOTE! Get it"
 	cont "at #MON MARTs!"
 	done
-	
+
 ViridianForestRBSignpostText3:
 	text "TRAINER TIPS"
 
@@ -214,7 +214,7 @@ ViridianForestRBSignpostText4:
 	cont "your #DEX"
 	cont "evaluated!"
 	done
-	
+
 ViridianForestRBSignpostText5:
 	text "TRAINER TIPS"
 
@@ -224,14 +224,14 @@ ViridianForestRBSignpostText5:
 	cont "Catch only wild"
 	cont "#MON!"
 	done
-	
+
 ViridianForestRBSignpostText6:
 	text "LEAVING"
 	line "VIRIDIAN FOREST"
 	cont "PEWTER CITY AHEAD"
 	done
 
-ViridianForestRB_MapEventHeader: ; 0x1ac4af 
+ViridianForestRB_MapEventHeader: ; 0x1ac4af
 	; filler
 	db 0, 0
 

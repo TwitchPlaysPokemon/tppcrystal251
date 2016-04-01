@@ -49,7 +49,7 @@ SabrinaAfterRematch:
 	waitbutton
 	closetext
 	end
-	
+
 SaffronGym2GuyScript:
 	faceplayer
 	loadfont
@@ -65,31 +65,31 @@ SaffronGym2GuyScript:
 	waitbutton
 	closetext
 	end
-	
+
 MapSaffronGym2Signpost0Script: ; 0x189ccf
 	trainertotext SABRINA, 1, $1
 	jumpstd gymstatue2
-	
+
 SabrinaBeforeRematchText:
 	text "I can sense great"
 	line "ambition in you."
-	
+
 	para "I know this"
 	line "because I train"
 	cont "psychic #MON."
-	
+
 	para "If I go all out I"
 	line "predict that you"
 
-	para "will be defeated" 
+	para "will be defeated"
 	line "easily."
-	
+
 	para "Let us test my"
 	line "prediction and see"
 	cont "if I am right."
 
 	para "Shall we?"
-	
+
 	done
 
 SabrinaRematchBeatenText:
@@ -99,10 +99,10 @@ SabrinaRematchBeatenText:
 
 SabrinaAfterRematchText:
 	text "Your victory<...>"
-	
+
 	para "It's exactly as I"
 	line "foresaw actually."
-	
+
 	para "But I wanted to"
 	line "turn that future"
 
@@ -111,7 +111,7 @@ SabrinaAfterRematchText:
 	cont "a trainer."
 
 	done
-	
+
 SaffronGym2GuyText:
 	text "Yo, CHAMP!"
 

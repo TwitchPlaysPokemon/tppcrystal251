@@ -283,7 +283,7 @@ Palette8f52: ; 8f52
 	RGB 17, 31, 31
 	RGB 17, 31, 31
 	RGB 00, 00, 00
-	
+
 	RGB 31, 31, 31
 	RGB 30, 24, 16
 	RGB 30, 22, 12
@@ -296,7 +296,7 @@ Unknown_8f6a: ; 8f6a
 	RGB 21, 31, 14
 
 	RGB 17, 31, 31
-	
+
 	RGB 30, 24, 16
 ; 8f70
 
@@ -719,7 +719,7 @@ Function9289: ; 9289
 	ld [hli], a
 	dec c
 	jr nz, .loop
-	
+
 	ld de, Unkn1Pals
 	xor a ; Rust
 	call Function976b
@@ -857,7 +857,7 @@ TrainerCardPal:
 	; Girl
 	RGB 25, 17, 20
 	RGB 26, 02, 19
-	
+
 RematchBadgePal:
 	RGB 31, 27, 20
 	RGB 31, 26, 07

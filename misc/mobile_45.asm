@@ -8634,11 +8634,11 @@ Function118125: ; 118125
 	cp [hl] ;if wcf66 != 3?, loop
 	jr nz, .asm_11813e
 	xor a
-	ld [Unkn1Pals], a 
+	ld [Unkn1Pals], a
 	pop af
 	ld [rSVBK], a
 	call Function118452 ;0 into variables,wc300 into scriptvar and end double speed
-	call Function118180 
+	call Function118180
 	call Function222a ;setup a map
 	ret
 ; 118180
@@ -8987,7 +8987,7 @@ Function118452: ; 118452 ;0 into variables,wc300 into scriptvar and end double s
 	ret
 ; 118473
 
-Function118473: ; 118473 
+Function118473: ; 118473
 	ld a, [wcd65]
 	and a
 	ret z ;if ??? = 0, ret
@@ -9141,7 +9141,7 @@ Jumptable_11855c: ; 11855c
 	dw Function119cab ;if wc31a is zero, load $80 into wcd50
 	dw Function119cb8 ;dec wcd50, if zero set wcf66 to 0
 	dw Function119cc3 ;if b pressed, load b button text
-	dw Function119cdf ;load yes/no menu and drop 1 command down. 
+	dw Function119cdf ;load yes/no menu and drop 1 command down.
 	dw Function119cec ;handle yes/no menu ret a = 1, c if continuing, ret c and wcd300 = 10 and wcf66 is either wcd47 or wcd33 if yes is chosen, based on wcd46, ret nc and load wcd46 into wcf66 if no or b is pressed
 	dw Function119c97 ;a run if species fails, set text to species only for higher level and and wc31a = 1 and inc wcf66
 	dw Function119cab ;if wc31a is zero, load $80 into wcd50
@@ -9717,11 +9717,11 @@ Function118922: ; 118922 ;display initial level menu text
 	ld a, [wcd38] ;if ?? = 0 say check battle room list (mobile?), else say what level do you want to challenge
 	and a
 	jr nz, .asm_11892d
-	ld hl, UnknownText_0x11aba5 
+	ld hl, UnknownText_0x11aba5
 	jr .asm_118930
 
 .asm_11892d
-	ld hl, UnknownText_0x11abcb 
+	ld hl, UnknownText_0x11abcb
 
 .asm_118930
 	call Function11a9c0 ;load hl into wc31b and 1 into wc31a
@@ -9756,7 +9756,7 @@ Function118936: ;set-up level menu
 	ld hl, Strings_119d0c ;If beat HoF
 	ld a, $b
 
-.asm_118970 
+.asm_118970
 	ld [wcd4a], a
 	ld a, l
 	ld [wcd4b], a
@@ -9800,7 +9800,7 @@ Function118982: ;handle level selection menu, process inputs and if a is pressed
 	jr z, .asm_1189c4 ;if end of string, end loop
 	cp $7f
 	jr z, .asm_1189c2 ;if text border, end loop and load in end of string
-	ld [bc], a 
+	ld [bc], a
 	inc bc
 	jr .asm_1189b5
 
@@ -9811,7 +9811,7 @@ Function118982: ;handle level selection menu, process inputs and if a is pressed
 	ld [bc], a ;load end of string
 	pop af
 	ld [rSVBK], a
-	hlcoord 13, 9 
+	hlcoord 13, 9
 	call PlaceString ;place string in menu
 	ld hl, hJoyPressed
 	ld a, [hl]
@@ -12475,7 +12475,7 @@ Function119cc3: ; 119cc3 load b button text
 	call Function11a9c0 ;load hl into wc31b and 1 into wc31a
 	call Function119e2e ; inc wcf66
 
-Function119cdf: ;load yes/no menu and drop 1 command down 
+Function119cdf: ;load yes/no menu and drop 1 command down
 	ld a, [wc31a]
 	and a
 	ret nz ;when wc31a = 0 again
@@ -12599,7 +12599,7 @@ Function119dd1: ; 119dd1 (46:5dd1) check species reqs, if failed ret c and 10 in
 	cp LUGIA
 	jr c, .asm_119e02 ;else if between lugia and end of dex, reject
 	cp NUM_POKEMON + 1
-	jr nc, .asm_119e02 
+	jr nc, .asm_119e02
 .asm_119dfd
 	ld a, [hl]
 	cp 70
@@ -13192,7 +13192,7 @@ Function11a207: ; 11a207 load a yes no menu and 0 into wcd44 and inc wcd3c
 	call PlaceString
 	hlcoord 15, 8
 	ld a, $ed
-	ld [hl], a 
+	ld [hl], a
 	xor a
 	ld [wcd44], a
 	jp Function11a5b0 ;inc wcd3c
@@ -14026,7 +14026,7 @@ Function11a90f: ; 11a90f fill wc320 with battle tower text, when done inc wc31a 
 	jr z, .asm_11a941 ;if B, move to secondary loop
 	ld [de], a ;else enter char and loop
 	inc de
-	jr .asm_11a92c 
+	jr .asm_11a92c
 
 .asm_11a941
 	ld a, [hli]
@@ -14037,8 +14037,8 @@ Function11a90f: ; 11a90f fill wc320 with battle tower text, when done inc wc31a 
 	ld a, [bc]
 	inc bc
 	cp $50 ;if bc = end of line, go back to top loop, else add to de and loop
-	jr z, .asm_11a92c 
-	ld [de], a 
+	jr z, .asm_11a92c
+	ld [de], a
 	inc de
 	jr .asm_11a945
 
@@ -14068,7 +14068,7 @@ Function11a971: ; 11a971 ;load text wc31b into wc31d char by char
 	ld a, [hJoyDown]
 	and a
 	jr nz, .asm_11a97f ;if anything pressed, start
-	ld a, [hl] 
+	ld a, [hl]
 	and a
 	jr z, .asm_11a97f ;if frame delay is 0, start
 	dec [hl] ;else dec it and ret
@@ -14083,7 +14083,7 @@ Function11a971: ; 11a971 ;load text wc31b into wc31d char by char
 	ld e, a
 	ld a, [wc31c]
 	ld d, a
-	ld a, [de] 
+	ld a, [de]
 	inc de
 	ld [hli], a ;load "c320"'s contents into wcd8d
 	ld a, e
@@ -22716,7 +22716,7 @@ Function17020c: ; 17020c
 Function170215: ; 170215 ;run battle, loop until done
 	xor a
 	ld [wcf63], a
-	call Function17022c 
+	call Function17022c
 	ret
 ; 17021d
 
@@ -22735,7 +22735,7 @@ Function17021e: ; 17021e
 
 Function17022c: ; 17022c ;run battle, loop until done
 .asm_17022c
-	call Function17023a 
+	call Function17023a
 	call DelayFrame
 	ld a, [wcf63]
 	cp $1
@@ -22769,7 +22769,7 @@ Function17024d: ; 17024d ;generate trainer and run fight
 	ld a, [InBattleTowerBattle] ;toggle "is in battle tower"
 	push af
 	or $1
-	ld [InBattleTowerBattle], a 
+	ld [InBattleTowerBattle], a
 	xor a
 	ld [wLinkMode], a
 	callba Function1060a2 ;mobile?
@@ -24375,11 +24375,11 @@ Function170c8b: ; 170c8b
 
 Function170c98: ; 170c98 check if moves are valid and remove others
 	ld c, $3
-	ld hl, $c608 + 13 ;first move of first mon 
+	ld hl, $c608 + 13 ;first move of first mon
 .asm_170c9d
 	push hl
 	ld a, [hl]
-	cp $fc 
+	cp $fc
 	jr c, .asm_170ca6 ;if move >= 252, replace with pound
 	ld a, $1
 	ld [hl], a

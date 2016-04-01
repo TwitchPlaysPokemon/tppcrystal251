@@ -99,7 +99,7 @@ BrockBeforeRematchText:
 	para "When it comes to"
 	line "rock #MON,"
 	cont "I'm the best!"
-	 
+
 	para "Come on!"
 
 	done

@@ -121,13 +121,13 @@ _HostsBattleTransition::
 	ld a, VBGMap0 / $100
 	ld [hBGMapAddress + 1], a ; switch tillemap update back to main map
 	jp ClearTileMap
-	
+
 DelayFrameWithCC:
 	ld a, [hSCY]
 	add 5 ; command chaos speed
 	ld [hSCY], a
 	jp DelayFrame
-	
+
 FillCommandChaos:
 	xor a
 	ld [hBGMapMode], a
@@ -156,7 +156,7 @@ FillCommandChaos:
 	ld [hBGMapMode], a
 	ld c, 4
 	jp DelayFrames
-	
+
 Fade2WhiteBT:
 ; the same as the one in tpp credits but with slower speed,
 ; update all palettes and no update function attaching
@@ -219,7 +219,7 @@ CommandChaosPals:
 	RGB 07, 07, 07
 	RGB 31, 31, 31
 CommandChaosPalsEnd
-	
+
 _Function8c5dc:
 	ld a, [OtherTrainerClass]
 	and a ; Is this a trainer battle?
@@ -316,7 +316,7 @@ Function8c673: ; 8c673 (23:4673)
 	ld hl, wcf63
 	inc [hl]
 	ret
-	
+
 Function8c6b1: ; 8c6b1 (23:46b1)
 	ld a, [OtherTrainerClass]
 	cp RED
@@ -458,7 +458,7 @@ StartTrainerBattle_RedGraphic:
 	bigdw %1010011000010010
 	bigdw %0100100110010100
 	bigdw %0011000001111000
-	
+
 Unknown_8c6a1: ; 8c6a1
 	RGB 31, 18, 29
 	RGB 31, 11, 15

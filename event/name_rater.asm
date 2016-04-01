@@ -87,7 +87,7 @@ Functionfb78a: ; fb78a
 .asm_fb7b1 ;if any chars are different, ret c, else continue
 	ld a, [de]
 	cp [hl]
-	jr nz, .asm_fb7bc 
+	jr nz, .asm_fb7bc
 	inc hl
 	inc de
 	dec c

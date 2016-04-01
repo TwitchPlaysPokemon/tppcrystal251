@@ -308,7 +308,7 @@ MapSetupCommands: ; 15440
 	dbw BANK(Function289d), Function289d
 	dbw BANK(Function2879), Function2879
 	dbw BANK(Function1047cf), Function1047cf
-	dbw BANK(LoadTilesetHeader), LoadTilesetHeader 
+	dbw BANK(LoadTilesetHeader), LoadTilesetHeader
 	dbw BANK(Function104750), Function104750 ;16
 	dbw BANK(Function1047eb), Function1047eb
 	dbw BANK(Function29ff8), Function29ff8

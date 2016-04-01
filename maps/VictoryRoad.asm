@@ -123,13 +123,13 @@ ItemFragment_0x74531: ; 0x74531
 MapVictoryRoadSignpostItem0: ; 0x74533
 	dw $009e
 	db MAX_POTION
-	
+
 ; 0x74536
 
 MapVictoryRoadSignpostItem1: ; 0x74536
 	dw $009f
 	db FULL_HEAL
-	
+
 ; 0x74539
 
 MovementData_0x74539: ; 0x74539

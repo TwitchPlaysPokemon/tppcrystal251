@@ -321,7 +321,7 @@ FruitTreeScript_0x1a17f9: ; 0x1a17f9
 MapRoute30SignpostItem4: ; 0x1a17fb
 	dw $00a4
 	db SUPER_POTION
-	
+
 ; 0x1a17fe
 
 MovementData_0x1a17fe: ; 0x1a17fe

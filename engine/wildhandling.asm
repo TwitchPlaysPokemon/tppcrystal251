@@ -1502,7 +1502,7 @@ Function2a2ce: ; 2a2ce
 	call Function2a27f ;load current location into de
 	call Random
 	cp 200
-	jr nc, .asm_2a30a 
+	jr nc, .asm_2a30a
 	and 7 ; cap at 7
 	jr z, .asm_2a30a ; if not 0 or a multiple of 8 continue otherwise jump
 	cp ROAM_SUICUNE

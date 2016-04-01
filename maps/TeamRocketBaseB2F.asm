@@ -380,7 +380,7 @@ UnknownScript_0x6d184: ; 0x6d184
 MapTeamRocketBaseB2FSignpostPtr1: ; 0x6d1d7
 	dw $0300
 	dw MapTeamRocketBaseB2FSignpost1Script
-	
+
 ; 0x6d1db
 
 MapTeamRocketBaseB2FSignpost1Script: ; 0x6d1db
@@ -429,7 +429,7 @@ ItemFragment_0x6d20d: ; 0x6d20d
 MapTeamRocketBaseB2FSignpostItem22: ; 0x6d20f
 	dw $0087
 	db FULL_HEAL
-	
+
 ; 0x6d212
 
 MovementData_0x6d212: ; 0x6d212

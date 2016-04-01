@@ -208,7 +208,7 @@ UnknownText_0x9d1c7: ; 0x9d1c7
 
 	para "gave them to us"
 	line "for our MOOMOO."
-	
+
 	para "She won't mind if"
 	line "if we give ya one."
 	done

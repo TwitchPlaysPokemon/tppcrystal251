@@ -293,7 +293,7 @@ Tileset36: ; 0x4d7b2
 	dw Tileset36Anim
 	dw $0000
 	dw Tileset36PalMap
-	
+
 Tileset37: ;Viridian Forest
 	dbw BANK(Tileset37GFX), Tileset37GFX
 	dbw BANK(Tileset37Meta), Tileset37Meta
@@ -301,7 +301,7 @@ Tileset37: ;Viridian Forest
 	dw Tileset37Anim
 	dw $0000
 	dw Tileset37PalMap
-	
+
 Tileset38: ;Kanto Route Gates
 	dbw BANK(Tileset38GFX), Tileset38GFX
 	dbw BANK(Tileset38Meta), Tileset38Meta
@@ -309,7 +309,7 @@ Tileset38: ;Kanto Route Gates
 	dw Tileset38Anim
 	dw $0000
 	dw Tileset38PalMap
-	
+
 Tileset39: ;Kanto Caves
 	dbw BANK(Tileset39GFX), Tileset39GFX
 	dbw BANK(Tileset39Meta), Tileset39Meta
@@ -317,7 +317,7 @@ Tileset39: ;Kanto Caves
 	dw Tileset39Anim
 	dw $0000
 	dw Tileset39PalMap
-	
+
 Tileset40: ;Kanto Office
 	dbw BANK(Tileset40GFX), Tileset40GFX
 	dbw BANK(Tileset40Meta), Tileset40Meta
@@ -341,7 +341,7 @@ Tileset42: ; SS Anne
 	dw Tileset42Anim
 	dw $0000
 	dw Tileset42PalMap
-	
+
 Tileset43: ; Powerplant Caves
 	dbw BANK(Tileset43GFX), Tileset43GFX
 	dbw BANK(Tileset43Meta), Tileset43Meta

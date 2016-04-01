@@ -629,7 +629,7 @@ ItemFragment_0x6cac8: ; 0x6cac8
 MapTeamRocketBaseB1FSignpostItem8: ; 0x6caca
 	dw $0086
 	db REVIVE
-	
+
 ; 0x6cacd
 
 SecurityCameraMovement1: ; 0x6cacd
@@ -847,7 +847,7 @@ MapTeamRocketBaseB1F_DontTurnCamerasBackOnText:
 
 	para "Pressed the"
 	line "button", $56
-	
+
 	para "But nothing"
 	line "happened!"
 	done

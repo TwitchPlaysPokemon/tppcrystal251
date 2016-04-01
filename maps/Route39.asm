@@ -263,7 +263,7 @@ FruitTreeScript_0x1a5bf4: ; 0x1a5bf4
 MapRoute39SignpostItem3: ; 0x1a5bf6
 	dw $00aa
 	db NUGGET
-	
+
 ; 0x1a5bf9
 
 UnknownText_0x1a5bf9: ; 0x1a5bf9
@@ -301,13 +301,13 @@ UnknownText_0x1a5c4d: ; 0x1a5c4d
 PokefanmDerek1SeenText: ; 0x1a5ca5
 	text "I work at the"
 	line "local farm here!"
-	
+
 	para "My son likes to"
 	line "come around and"
 	cont "watch me work."
-	
+
 	para "I know!"
-	
+
 	para "I'll impress him"
 	line "a bit by battling!"
 	done
@@ -316,7 +316,7 @@ PokefanmDerek1SeenText: ; 0x1a5ca5
 PokefanmDerek1BeatenText: ; 0x1a5cd4
 	text "SON: Dad, how"
 	line "could you lose!?"
-	
+
 	para "DAD: <...>"
 	done
 ; 0x1a5cf8

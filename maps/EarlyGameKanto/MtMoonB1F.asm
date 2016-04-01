@@ -218,7 +218,7 @@ _MtMoon1Text14:
 	line "a blood sucker!"
 	done
 
-MtMoonB1FRB_MapEventHeader: ; 0x1ac4af 
+MtMoonB1FRB_MapEventHeader: ; 0x1ac4af
 	; filler
 	db 0, 0
 

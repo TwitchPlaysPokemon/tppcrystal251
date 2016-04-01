@@ -106,7 +106,7 @@ ChuckRejectText:
 	para "He should be"
 	line "training within"
 	cont "MT. MORTAR."
-	
+
 	para "He's stong enough"
 	line "to give anyone a"
 	cont "workout!"
@@ -322,15 +322,15 @@ ChuckRematchTextBefore:
 
 	para "Oh, hey, sorry"
 	line "for shouting!"
-	
+
 	para "I'm doing great!"
-	
+
 	para "I just finished"
 	line "training!"
 
 	para "So what brings you"
 	line "back here, huh?"
-	
+
 	para "Do you want to"
 	line "battle again?"
 	done
@@ -458,11 +458,11 @@ UnknownText_0x9dac0: ; 0x9dac0
 	line "use BLACKBELT"
 	cont "to increase our"
 	cont "#MON power!"
-	
+
 	para "CHUCK, our gym"
 	line "leader, is an"
 	cont "exception."
-	
+
 	para "He is strong"
 	line "enough as is!"
 	done

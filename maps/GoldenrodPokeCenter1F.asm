@@ -7,7 +7,7 @@ GoldenrodPokeCenter1F_MapScriptHeader:
 
 NurseScript_PCC:
 	jumpstd pokecenternurse
-	
+
 GameboyKidScript_PCC1:
 	jumptextfaceplayer PccText1
 
@@ -37,8 +37,8 @@ YoungsterScript2_PCC:
 
 PCCDirectorySignScript:
 	jumptextfaceplayer PccText10
-	
-	
+
+
 LinkStationNurseScript:
 	jumptextfaceplayer UnknownText_0x61072
 
@@ -87,7 +87,7 @@ UnknownText_0x61072: ; 0x61072
 
 	para "You can receive"
 	line "special #MON"
-	
+
 	para "if you have a"
 	line "SPECIAL CODE."
 	done
@@ -198,7 +198,7 @@ PccText9: ; 0x61f48
 
 	para "over the world"
 	line "can play together!"
-	
+
 	done
 ; 0x61fc9
 
@@ -371,7 +371,7 @@ SentretCryScript_PCC: ; 0x1a9f46
 	waitbutton
 	closetext
 	end
-	
+
 SentretCry_PCC: ; 0x62549
 	text "SENTRET: Nyeut!"
 	done

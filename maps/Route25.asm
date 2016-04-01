@@ -316,7 +316,7 @@ ItemFragment_0x19efe3: ; 0x19efe3
 MapRoute25SignpostItem1: ; 0x19efe5
 	dw $00f8
 	db HYPER_POTION
-	
+
 ; 0x19efe8
 
 MovementData_0x19efe8: ; 0x19efe8
@@ -468,7 +468,7 @@ LassLauraSeenText: ; 0x19f27f
 
 LassLauraBeatenText: ; 0x19f299
 	text "No!"
-	
+
 	para "My cute babies <...>"
 	done
 ; 0x19f2a6

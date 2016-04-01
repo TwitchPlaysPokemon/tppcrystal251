@@ -16,7 +16,7 @@ UnknownScript_0x1a4005: ; 0x1a4005
 	iftrue .EliteFloor
 	warpmod 1, GROUP_ECRUTEAK_GYM, MAP_ECRUTEAK_GYM
 	return
-.EliteFloor: 
+.EliteFloor:
 	warpmod 1, GROUP_ECRUTEAK_ELITE_FLOOR, MAP_ECRUTEAK_ELITE_FLOOR
 	return
 ; 0x1a4009
@@ -108,7 +108,7 @@ MapEcruteakCitySignpost6Script: ; 0x1a4052
 MapEcruteakCitySignpostItem7: ; 0x1a4055
 	dw $00b4
 	db HYPER_POTION
-	
+
 ; 0x1a4058
 
 ;UnusedMissingDaughterText: ; 0x1a4058

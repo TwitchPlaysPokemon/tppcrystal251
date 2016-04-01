@@ -919,7 +919,7 @@ _PowerHerbText:
 	line "POWER HERB"
 	cont "activated!"
 	prompt
-	
+
 
 _ActorNameText: ; 1c0d7a
 	text $5a, "@@"

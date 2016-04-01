@@ -838,7 +838,7 @@ Music_Leech_Ch2_C6:
 	note E_, 1
 	note G#, 1
 	endchannel
-	
+
 Music_Leech_Ch2_C12:
 	note G#, 1
 	note E_, 1
@@ -900,7 +900,7 @@ Music_Leech_Ch2_C12:
 	octave 4
 	note D#, 1
 	endchannel
-	
+
 Music_Leech_Ch2_C13:
 	note C#, 1
 	note E_, 1

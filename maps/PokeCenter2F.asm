@@ -1167,7 +1167,7 @@ PokeCenter2F_MapEventHeader: ; 0x19337f
 	warp_def $0, $9, 1, GROUP_COLOSSEUM, MAP_COLOSSEUM
 	warp_def $2, $d, 1, GROUP_TIME_CAPSULE, MAP_TIME_CAPSULE
 	;warp_def $0, $6, 1, GROUP_MOBILE_TRADE_ROOM_MOBILE, MAP_MOBILE_TRADE_ROOM_MOBILE
-	
+
 
 	; xy triggers
 	db 0

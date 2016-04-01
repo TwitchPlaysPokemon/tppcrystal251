@@ -101,7 +101,7 @@ CeruleanCityRBCooltrainerM1Script:
 	waitbutton
 	closetext
 	end
-	
+
 CeruleanCityRBCooltrainerM2Script:
 	jumptextfaceplayer _CeruleanCityText5
 
@@ -400,7 +400,7 @@ _CeruleanCityText_1966dF:
 	text "Wow, your #MON"
 	line "have grown strong!"
 	done
-	
+
 _CeruleanCityText_1966d:
 	text "Hey! Take it easy!"
 	line "You won already!"

@@ -288,7 +288,7 @@ FruitTreeScript_0x1a9351: ; 0x1a9351
 MapRoute42SignpostItem4: ; 0x1a9353
 	dw $00ad
 	db MAX_POTION
-	
+
 ; 0x1a9356
 
 MovementData_0x1a9356: ; 0x1a9356

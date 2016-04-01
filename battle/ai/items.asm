@@ -24,7 +24,7 @@ IF !DEF(BEESAFREE)
 	cp GHOST
 	jr nz, DontSwitch
 .NotTrapped
-	
+
 	ld a, [wc731]
 	and a
 	jr nz, DontSwitch

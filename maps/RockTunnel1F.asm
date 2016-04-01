@@ -17,13 +17,13 @@ ItemFragment_0x743b7: ; 0x743b7
 MapRockTunnel1FSignpostItem0: ; 0x743b9
 	dw $00e7
 	db X_ACCURACY
-	
+
 ; 0x743bc
 
 MapRockTunnel1FSignpostItem1: ; 0x743bc
 	dw $00e8
 	db ELIXER
-	
+
 ; 0x743bf
 
 RockTunnel1F_MapEventHeader: ; 0x743bf

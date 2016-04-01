@@ -1331,7 +1331,7 @@ FairyWindDescription:
 NastyPlotDescription:
 	db   "Sharply raises the"
 	next "user's SPCL.ATK.@"
-	
+
 MetalSoundDescription:
 	db   "Sharply reduces"
 	next "foe's SPCL.DEF.@"

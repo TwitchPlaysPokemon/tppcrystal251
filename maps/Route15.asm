@@ -346,6 +346,6 @@ Route15_MapEventHeader: ; 0x1aa90a
 	person_event SPRITE_YOUNGSTER, 14, 31, $6, 0, 0, -1, -1, 8 + PAL_OW_BLUE, 2, 3, TrainerSchoolboyBilly, -1
 	person_event SPRITE_TEACHER, 16, 34, $7, 0, 0, -1, -1, 8 + PAL_OW_RED, 2, 4, TrainerTeacherColette, -1
 	person_event SPRITE_TEACHER, 14, 24, $a, 0, 0, -1, -1, 8 + PAL_OW_RED, 2, 3, TrainerTeacherHillary, -1
-	person_event SPRITE_POKE_BALL, 9, 16, $1, 0, 0, -1, -1, 0, 1, 0, ItemFragment_0x1aa5e4, EVENT_ITEM_ROUTE_15_PP_UP    
+	person_event SPRITE_POKE_BALL, 9, 16, $1, 0, 0, -1, -1, 0, 1, 0, ItemFragment_0x1aa5e4, EVENT_ITEM_ROUTE_15_PP_UP
 ; 0x1aa97a
 

@@ -5,7 +5,7 @@ MtMoonB2F_MapScriptHeader: ; 0x1ac2ba
 	; callback count
 	db 0
 
-MtMoonB2F_MapEventHeader: ; 0x1ac4af 
+MtMoonB2F_MapEventHeader: ; 0x1ac4af
 	; filler
 	db 0, 0
 
@@ -19,7 +19,7 @@ MtMoonB2F_MapEventHeader: ; 0x1ac4af
 	warp_def $1b, $0d, 3, GROUP_MT_MOON_B3F, MAP_MT_MOON_B3F
 	warp_def $03, $17, 4, GROUP_MT_MOON_B3F, MAP_MT_MOON_B3F
 	warp_def $03, $1b, 1, GROUP_ROUTE_4, MAP_ROUTE_4
-	
+
 	; xy triggers
 	db 0
 

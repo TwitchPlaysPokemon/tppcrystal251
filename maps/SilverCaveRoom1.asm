@@ -25,13 +25,13 @@ ItemFragment_0x18c55a: ; 0x18c55a
 MapSilverCaveRoom1SignpostItem0: ; 0x18c55c
 	dw $009a
 	db DIRE_HIT
-	
+
 ; 0x18c55f
 
 MapSilverCaveRoom1SignpostItem1: ; 0x18c55f
 	dw $009b
 	db ULTRA_BALL
-	
+
 ; 0x18c562
 
 SilverCaveRoom1_MapEventHeader: ; 0x18c562

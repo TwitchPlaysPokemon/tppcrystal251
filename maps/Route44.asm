@@ -465,7 +465,7 @@ ItemFragment_0x19da46: ; 0x19da46
 MapRoute44SignpostItem2: ; 0x19da48
 	dw $00ae
 	db ELIXER
-	
+
 ; 0x19da4b
 
 FisherWilton1SeenText: ; 0x19da4b

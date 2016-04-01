@@ -138,7 +138,7 @@
 	; ld hl, EnemyDisabledMove
 	; jr MilitaryGotAddr
 
-; ;Set the move that's going to be used	
+; ;Set the move that's going to be used
 ; MilitarySetMove:
 	; push af
 	; call GetMilitaryActionSide
@@ -151,7 +151,7 @@
 	; ld [CurPlayerMove], a
 	; ret
 
-; ;Checks if you have enough PP for this move and that it isn't disabled. If all checks out then use it. 
+; ;Checks if you have enough PP for this move and that it isn't disabled. If all checks out then use it.
 ; MilitaryGetMove:
 	; call MilitaryGetPPAddr
 	; call MilitaryUnitWidthArrayOffset
@@ -165,7 +165,7 @@
 	; jp z, MilitaryPlayerLoop ;return to the loop if the move index is 0
 
 	; ld b, a
-	; call MilitaryGetDisabledMove 
+	; call MilitaryGetDisabledMove
 	; ld a, [hl]
 	; cp b
 	; jp z, MilitaryPlayerLoop ;return to the loop if disabled
@@ -175,7 +175,7 @@
 	; call MilitarySetMove
 	; jp ChangeMilitaryActionSide
 
-; ;Switches checking from player or enemy. 
+; ;Switches checking from player or enemy.
 ; ChangeMilitaryActionSide:
 	; call GetMilitaryActionSide
 	; jr nz, .endSegment

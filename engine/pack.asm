@@ -1717,7 +1717,7 @@ UnknownText_0x10b07: ; 0x10b07
 ; 0x10b0c
 
 UnknownText_0x10b0c: ; 0x10b0c
-	; 
+	;
 	text_jump UnknownText_0x1c0c83
 	db "@"
 ; 0x10b11

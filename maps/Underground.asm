@@ -9,13 +9,13 @@ Underground_MapScriptHeader: ; 0x74391
 MapUndergroundSignpostItem0: ; 0x74393
 	dw $00e5
 	db FULL_RESTORE
-	
+
 ; 0x74396
 
 MapUndergroundSignpostItem1: ; 0x74396
 	dw $00e6
 	db X_SPECIAL
-	
+
 ; 0x74399
 
 Underground_MapEventHeader: ; 0x74399

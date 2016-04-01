@@ -321,10 +321,10 @@ ScientistRichBeatenText: ; 0x5efa3
 UnknownText_0x5efcb: ; 0x5efcb
 	text "I helped create"
 	line "the BERSERK GENE."
-	
+
 	para "I regret it to"
 	line "this day<...>"
-	
+
 	para "We did horrible"
 	line "things<...>"
 	done

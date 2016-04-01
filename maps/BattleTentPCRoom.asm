@@ -1,8 +1,8 @@
 BattleTentPCRoom_MapScriptHeader:
 	db 0
-	
+
 	db 0
-	
+
 LeaguePCScript:
 	loadfont
 	playsound SFX_BOOT_PC
@@ -18,7 +18,7 @@ tppPcEndBattle:
 	pause 15
 	closetext
 	end
-	
+
 tppPcUltimateTeamBattle:
 	writetext tppPcHealText
 	special HealParty
@@ -30,7 +30,7 @@ tppPcUltimateTeamBattle:
 	closetext
 	loadtrainer TPPPC, ULTIMATE
 	jump tppPcStartBattle
-	
+
 tppPcMirrorBattle:
 	writetext tppPcHealText
 	special HealParty
@@ -47,7 +47,7 @@ tppPcStartBattle:
 	returnafterbattle
 	loadfont
 	jump tppPcEndBattle
-	
+
 tppPc_Options_Header: ; 0x56478
 	db $40 ; flags
 	db 02, 02 ; start coords
@@ -62,7 +62,7 @@ tppPc_Options: ; 0x56480
 	db "ULTIMATE TEAM@"
 	db "YOUR OWN TEAM@"
 	db "CANCEL@"
-	
+
 tppPcIntroText:
 	text "<PLAY_G> turned"
 	line "on the PC!"
@@ -84,7 +84,7 @@ tppPcIntroText:
 	para "Please make your"
 	line "selection."
 	done
-	
+
 tppPcHealText:
 	text "Before we begin,"
 	line "we will restore"
@@ -119,17 +119,17 @@ tppPcLogOffText:
 
 	para "Good bye!"
 	done
-	
+
 BattleTentPCRoom_MapEventHeader:
 	db 0, 0
-	
+
 	db 2
 	warp_def 7, 3, 3, GROUP_BATTLE_TENT_BATTLE_ROOM, MAP_BATTLE_TENT_BATTLE_ROOM
 	warp_def 7, 4, 3, GROUP_BATTLE_TENT_BATTLE_ROOM, MAP_BATTLE_TENT_BATTLE_ROOM
-	
+
 	db 0
-	
+
 	db 1
 	signpost 2, 3, 1, LeaguePCScript
-	
+
 	db 0

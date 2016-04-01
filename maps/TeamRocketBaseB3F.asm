@@ -251,7 +251,7 @@ ScientistMitchScript: ; 0x6e0e9
 MapTeamRocketBaseB3FSignpostPtr1: ; 0x6e0f1
 	dw $0303
 	dw MapTeamRocketBaseB3FSignpost1Script
-	
+
 ; 0x6e0f5
 
 MapTeamRocketBaseB3FSignpost1Script: ; 0x6e0f5

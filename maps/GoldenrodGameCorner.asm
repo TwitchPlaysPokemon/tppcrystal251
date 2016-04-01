@@ -161,7 +161,7 @@ MenuData2_0x56cd1: ; 0x56cd1
 ; 0x56d01
 
 
-ReceptionistScript_0x56d01: ; 0x56d01 
+ReceptionistScript_0x56d01: ; 0x56d01
 	faceplayer
 	loadfont
 	writetext UnknownText_0x56e50
@@ -514,10 +514,10 @@ UnknownText_0x56f9e: ; 0x56f9e
 UnknownText_0x56ff4: ; 0x56ff4
 	text "I just got 777"
 	line "on the slots!"
-	
+
 	para "I'm going to"
 	line "share the payout"
-	
+
 	para "with all my"
 	line "friends!"
 	done
@@ -574,7 +574,7 @@ UnknownText_0x5710d: ; 0x5710d
 UnknownText_0x5718a: ; 0x5718a
 	text "The floor is alw-"
 	line "-ays covered in"
-	
+
 	para "salt for some"
 	line "reason<...>"
 	done

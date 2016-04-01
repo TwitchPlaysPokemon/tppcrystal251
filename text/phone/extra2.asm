@@ -444,10 +444,10 @@ UnknownText_0xa4d72: ; 0xa4d72
 	text "Great! I'll keep"
 	line "in touch if I get"
 	cont "anything good."
-	
+
 	para "I hope I get more"
 	line "items soon!"
-	
+
 	para "It will help keep"
 	line "up my current"
 	cont "gambling habits<...>"

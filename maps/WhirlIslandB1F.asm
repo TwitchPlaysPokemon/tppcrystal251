@@ -33,19 +33,19 @@ BoulderScript_0x18c41a: ; 0x18c41a
 MapWhirlIslandB1FSignpostItem0: ; 0x18c41d
 	dw $0097
 	db RARE_CANDY
-	
+
 ; 0x18c420
 
 MapWhirlIslandB1FSignpostItem1: ; 0x18c420
 	dw $0098
 	db ULTRA_BALL
-	
+
 ; 0x18c423
 
 MapWhirlIslandB1FSignpostItem2: ; 0x18c423
 	dw $0099
 	db FULL_RESTORE
-	
+
 ; 0x18c426
 
 WhirlIslandB1F_MapEventHeader: ; 0x18c426

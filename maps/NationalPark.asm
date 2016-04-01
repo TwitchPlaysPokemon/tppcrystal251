@@ -402,7 +402,7 @@ ItemFragment_0x5c1ce: ; 0x5c1ce
 MapNationalParkSignpostItem2: ; 0x5c1d0
 	dw $0084
 	db FULL_HEAL
-	
+
 ; 0x5c1d3
 
 UnknownText_0x5c1d3: ; 0x5c1d3

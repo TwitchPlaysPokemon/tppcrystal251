@@ -50,9 +50,9 @@ EcruteakEliteFloor_MapScriptHeader:
 
 	; callbacks
 	db 1
-	
+
 	dbw 1, EcruteakEliteFloorCallback
-	
+
 EcruteakEliteFloorCallback:
 	checkevent EVENT_MORTY_REMATCH
 	iftrue .revealall
@@ -274,7 +274,7 @@ MortyAfterRematchText2:
 	para "But you seem to"
 	line "have something<...>"
 
-	para "Something more" 
+	para "Something more"
 	line "than that<...>"
 	done
 

@@ -133,7 +133,7 @@ FruitTreeScript_0x68055: ; 0x68055
 MapRoute11SignpostItem1: ; 0x68057
 	dw $00f5
 	db REVIVE
-	
+
 ; 0x6805a
 
 YoungsterOwenSeenText: ; 0x6805a

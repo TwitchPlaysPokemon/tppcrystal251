@@ -669,7 +669,7 @@
 		db NIDORAN_F ;1
 		db NIDORAN_M ;1
 		db POLIWAG ;1
-	
+
 	map ROUTE_24_RB
 	db $19
 	db 12
@@ -782,7 +782,7 @@
 		db WEEDLE ;1
 		db WEEDLE ;1
 
-	map VIRIDIAN_FOREST_RB 
+	map VIRIDIAN_FOREST_RB
 	db $0a
 	db 3
 	db $f1

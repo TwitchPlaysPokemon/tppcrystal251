@@ -45,7 +45,7 @@ LugiaScript_0x18c518: ; 0x18c518
 	disappear $2
 	returnafterbattle
 	end
-	
+
 DontKillLugia:
 	returnafterbattle
 	end

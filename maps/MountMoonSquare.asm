@@ -84,7 +84,7 @@ UnknownScript_0x77117: ; 0x77117
 MapMountMoonSquareSignpostItem0: ; 0x77118
 	dw $00ec
 	db MOON_STONE
-	
+
 ; 0x7711b
 
 MapMountMoonSquareSignpost1Script: ; 0x7711b

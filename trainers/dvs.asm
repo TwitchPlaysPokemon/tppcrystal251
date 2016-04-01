@@ -49,7 +49,7 @@ GetTrainerDVs: ; 270c4
 	pop hl
 	ret
 ; 270d6
-	
+
 .LoadHostDVs
 	ld a, [CurPartyMon]
 	add a
@@ -90,7 +90,7 @@ GetTrainerDVs: ; 270c4
 	db $f9, $b2
 	db $1a, $38
 	db $21, $d2
-	
+
 .RedDVs
 	db $0E, $7A ; AA-j
 	db $CA, $7D ; AAAAAAAAAA

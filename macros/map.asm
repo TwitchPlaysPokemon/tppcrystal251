@@ -26,7 +26,7 @@ person_event: macro
 	;$6 = stand still facing down
 	;$7 = facing up
 	;$8 = left
-	;$9 = right 
+	;$9 = right
 	;$3 = look around
 	;$4 = random walk y
 	;$5 = random walk x
@@ -40,7 +40,7 @@ person_event: macro
 	db \6 ; clock_hour
 	;-1 indicates no time dependence, otherwise time appears
 	db \7 ; clock_daytime
-	dn \8, \9 ; color_function ;if bit 3 is set, the palette used is given by bits 0-2; otherwise, the default palette is used 
+	dn \8, \9 ; color_function ;if bit 3 is set, the palette used is given by bits 0-2; otherwise, the default palette is used
 	shift
 	db \9 ; sight_range
 	shift

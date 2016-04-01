@@ -41,7 +41,7 @@ HiddenPowerDamage: ; fbced
 ;	srl a
 ;	srl a
 ;	srl a
-;	or b 
+;	or b
 ;
 ; Multiply by 5
 ;;	ld b, a ; b has the HP number
@@ -60,7 +60,7 @@ HiddenPowerDamage: ; fbced
 ;	add 31
 ;
 ;	ld d, a ;power is stored in D, to lock to 70
-	
+
 
 ; Type:
 

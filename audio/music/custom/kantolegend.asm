@@ -495,7 +495,7 @@ Music_KantoLegend_Ch1_L10:
 	intensity $c5
 	note G_, 9
 	loopchannel 0, Music_KantoLegend_Ch1_L
-	
+
 Music_KantoLegend_Ch2:
 ; Pat 0 Row 0
 	dutycycle $1
@@ -638,7 +638,7 @@ Music_KantoLegend_Ch2_L:
 ; Pat 15 Row 0
 	callchannel Music_KantoLegend_Ch2_P_Em
 	loopchannel 0, Music_KantoLegend_Ch2_L
-	
+
 Music_KantoLegend_Ch2_P_C:
 	octave 1
 	note C_, 2
@@ -666,7 +666,7 @@ Music_KantoLegend_Ch2_P_C:
 	note G_, 2
 	note F_, 2
 	endchannel
-	
+
 Music_KantoLegend_Ch2_P_C2:
 	octave 1
 	note C_, 2
@@ -694,7 +694,7 @@ Music_KantoLegend_Ch2_P_C2:
 	note G_, 2
 	note F#, 2
 	endchannel
-	
+
 Music_KantoLegend_Ch2_P_C#:
 	note C#, 2
 	octave 2
@@ -721,7 +721,7 @@ Music_KantoLegend_Ch2_P_C#:
 	note G#, 2
 	note F#, 2
 	endchannel
-	
+
 Music_KantoLegend_Ch2_P_Dm:
 	octave 1
 	note D_, 2
@@ -749,7 +749,7 @@ Music_KantoLegend_Ch2_P_Dm:
 	note A_, 2
 	note G_, 2
 	endchannel
-	
+
 Music_KantoLegend_Ch2_P_Em:
 	octave 1
 	note E_, 2
@@ -801,7 +801,7 @@ Music_KantoLegend_Ch2_P_Em:
 	note B_, 2
 	note A_, 2
 	endchannel
-	
+
 Music_KantoLegend_Ch3:
 ; Pat 0 Row 0
 	notetype $c, $14
@@ -1270,7 +1270,7 @@ Music_KantoLegend_Ch3_L:
 	note E_, 1
 	note __, 1
 	loopchannel 0, Music_KantoLegend_Ch3_L
-	
+
 Music_KantoLegend_Ch3_P1:
 	octave 3
 	note C_, 1

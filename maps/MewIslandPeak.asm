@@ -2,13 +2,13 @@ MewIslandPeak_MapScriptHeader:
 	; trigger count
 	db 0
 
-	; callback count 
+	; callback count
 	db 0
-	
-MewText: 
+
+MewText:
 	text "Mew!"
 	done
-	
+
 MewScript:
 	faceplayer
 	loadfont
@@ -28,7 +28,7 @@ DontKillMew:
 	returnafterbattle
 	end
 
-MewIslandPeak_MapEventHeader: 
+MewIslandPeak_MapEventHeader:
 	; filler
 	db 0, 0
 

@@ -16,7 +16,7 @@ UnknownScript_0x194b1e: ; 0x194b1e
 	iftrue UnknownScript_0x194b1e_2
 	warpmod 1, GROUP_FUCHSIA_GYM, MAP_FUCHSIA_GYM
 	return
-UnknownScript_0x194b1e_2: 
+UnknownScript_0x194b1e_2:
 	warpmod 1, GROUP_FUCHSIA_GYM_2, MAP_FUCHSIA_GYM_2
 	return
 ; 0x194b22

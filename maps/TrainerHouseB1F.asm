@@ -187,7 +187,7 @@ UnknownText_0x9b587: ; 0x9b587
 ADJNNW_Text_1:
 	text "brightbastart"
 	done
-	
+
 ADJNNW_Text_2:
 	text "start9"
 	done

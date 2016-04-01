@@ -269,9 +269,9 @@ Function1ea6:: ; 1ea6 c = menu y dimension, x end coord = start x coord + (numbe
 	ld a, [wcf83]
 	ld c, a
 	ld a, [wcf85]
-	sub c 
+	sub c
 	ld c, a ;c = menu y dimension
-	ld a, [wcf92] 
+	ld a, [wcf92]
 	add a
 	inc a
 	ld b, a
@@ -289,7 +289,7 @@ Function1ebd:: ; 1ebd set number of options based on dex and wd95e
 	ld a, [wcf76] ;if don't own dex, skip, else loop legnth depends on wd95e
 	and a
 	jr z, .asm_1ed3
-	ld b, a 
+	ld b, a
 	ld c, $ff
 .asm_1ecc
 	ld a, [hli] ;if thing pointed at by ?? is $FF
@@ -302,7 +302,7 @@ Function1ebd:: ; 1ebd set number of options based on dex and wd95e
 	ld d, h ;load final location into de and final number into number of vertical options
 	ld e, l
 	ld a, [hl]
-	ld [wcf92], a 
+	ld [wcf92], a
 	ret
 ; 1eda
 
@@ -330,7 +330,7 @@ Function1eda:: ; 1eda until [de] is $ff, load [de] into menu selection and run w
 ; 1efb
 
 Function1efb:: ; 1efb ;run the function pointed to by the pointer at hl
-	ld a, [hli] 
+	ld a, [hli]
 	ld h, [hl]
 	ld l, a
 	jp [hl]
@@ -375,7 +375,7 @@ Function1f2a:: ; 1f2a
 	bit 1, a
 	jr nz, .asm_1f6d ;if b or start, load bit 2 anf ff into menuselection. then ret c
 	bit 3, a
-	jr nz, .asm_1f6d 
+	jr nz, .asm_1f6d
 	bit 4, a
 	jr nz, .asm_1f44 ;if right, load bit 4
 	bit 5, a
@@ -407,7 +407,7 @@ Function1f2a:: ; 1f2a
 	ld a, [hl]
 	ld [MenuSelection], a ;load the contents into menu selection
 	ld a, [wcfa9]
-	ld [wcf88], a ;place cursor position in default option 
+	ld [wcf88], a ;place cursor position in default option
 	and a
 	ret
 
@@ -515,12 +515,12 @@ Function1ff0:: ; 1ff0
 	ret
 ; 1ff8
 
-Function1ff8:: ; 1ff8 
+Function1ff8:: ; 1ff8
 	push af
 	and $3
-	jr z, .asm_2007 
+	jr z, .asm_2007
 	ld hl, wcf81
-	bit 3, [hl] 
+	bit 3, [hl]
 	jr nz, .asm_2007
 	call PlayClickSFX ;else play sound
 
@@ -530,7 +530,7 @@ Function1ff8:: ; 1ff8
 ; 2009
 
 
-PlayClickSFX:: ; 2009 
+PlayClickSFX:: ; 2009
 	push de
 	ld de, SFX_READ_TEXT_2
 	call PlaySFX

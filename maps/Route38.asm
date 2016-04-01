@@ -483,7 +483,7 @@ SchoolboyChad1SeenText: ; 0x1a1fc5
 
 	para "I heard you can"
 	line "find some rare"
-	
+
 	para "EEVEE evolutions"
 	line "here too!"
 	done
@@ -593,7 +593,7 @@ UnknownText_0x1a229a: ; 0x1a229a
 
 	para "they only sell a"
 	line "bottle at a time."
-	
+
 	para "Thankfully I have"
 	line "my own MILTANK!"
 	done

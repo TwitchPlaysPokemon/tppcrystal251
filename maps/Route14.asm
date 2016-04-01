@@ -136,7 +136,7 @@ Bird_keeperRoyBeatenText: ; 0x1ad581
 	text "I only lost"
 	line "because of"
 	cont "horrible luck!"
-	
+
 	para "I'm actually"
 	line "better than you!"
 	done

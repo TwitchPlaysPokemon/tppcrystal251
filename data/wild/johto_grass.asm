@@ -60,7 +60,7 @@
 	map SPROUT_TOWER_3F
 	db $05
 	db 14
-	db $70 
+	db $70
 ;morning Mons go here, make sure no semi-colons are where they shouldn't be (before mons), and that morning/day/night are after semi-colons
 		db BELLSPROUT ;30 level is no longer stored next to mons
 		db ZUBAT ;10
@@ -1758,7 +1758,7 @@
 		db TYRANITAR ;3
 		db TYRANITAR ;2
 		db TYRANITAR ;1
-	
+
 	map DARK_CAVE_VIOLET_ENTRANCE
 	db $0a ; encounter rates: morn/day/nite
 	db 18
@@ -1926,7 +1926,7 @@
 		db SPINARAK ;2
 		db SPINARAK ;1
 		db SPINARAK ;1
-		
+
 	map ROUTE_30
 	db $19 ; encounter rates: morn/day/nite
 	db 16

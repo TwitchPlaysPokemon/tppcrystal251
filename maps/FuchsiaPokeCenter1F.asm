@@ -73,7 +73,7 @@ UnknownText_0x196494: ; 0x196494
 	cont "caught #MON as"
 	cont "if they were"
 	cont "trained."
-	
+
 	done
 ; 0x1964dc
 

@@ -89,7 +89,7 @@ PrintType: ; 50953
 	push bc
 	call PlaceString
 	pop bc
-	
+
 	push hl
 	ld a, c
 	cp 3
@@ -109,7 +109,7 @@ PrintType: ; 50953
 	ld d, 0
 	add hl, de
 	pop de
-	
+
 	jp PlaceString
 .notamove
 	pop hl

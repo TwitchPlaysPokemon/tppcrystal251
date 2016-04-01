@@ -119,7 +119,7 @@ ItemFragment_0x5c947: ; 0x5c947
 MapNationalParkBugContestSignpostItem2: ; 0x5c949
 	dw $0084
 	db FULL_HEAL
-	
+
 ; 0x5c94c
 
 UnknownText_0x5c94c: ; 0x5c94c

@@ -208,7 +208,7 @@ SuperNerdScript_0x74ee6: ; 0x74ee6
 MapVermilionPortSignpostItem0: ; 0x74eee
 	dw $00eb
 	db IRON
-	
+
 ; 0x74ef1
 
 MovementData_0x74ef1: ; 0x74ef1
@@ -385,9 +385,9 @@ SailorScript_MewIslandAskSkip:
 	pause 15
 	warp GROUP_MEWISLANDENTRANCEDOCK, MAP_MEWISLANDENTRANCEDOCK, $7, $f
 	end
-	
+
 SailorScript_ChoseNo:
-	writetext MewSailorNoText 
+	writetext MewSailorNoText
 	waitbutton
 	closetext
 	end
@@ -412,16 +412,16 @@ MewSailorChallengeText:
 	cont "clear before we"
 	cont "can leave."
 	done
-	
-MewSailorYesText:	
+
+MewSailorYesText:
 	text "Good, follow me."
 	done
-	
-MewSailorNoText:	
+
+MewSailorNoText:
 	text "Fair enough."
 	done
-	
-MewSailorAskText:	
+
+MewSailorAskText:
 	text "Want me to take"
 	line "you to MEW'S"
 	cont "ISLAND?"
@@ -436,7 +436,7 @@ MewSailorLostMapText:
 	line "to it got eaten"
 	cont "by a MAGIKARP<...>"
 	done
-	
+
 MewSailorIntroduceText:
 	text "You managed to"
 	line "beat SURGE?"

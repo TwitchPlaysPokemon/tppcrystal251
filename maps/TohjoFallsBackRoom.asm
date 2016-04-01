@@ -1,18 +1,18 @@
 TohjoFallsBackRoom_MapScriptHeader:
 	db 2
-	
+
 	dw TohjoFallsBackRoom_Trigger1, $0000
 	dw TohjoFallsBackRoom_Trigger2, $0000
-	
+
 	db 0
-	
+
 TohjoFallsBackRoom_Trigger1:
 	priorityjump GiovanniScript1
 	end
 
 TohjoFallsBackRoom_Trigger2:
 	end
-	
+
 GiovanniScript1:
 	showemote $0, $2, 15
 	pause 15
@@ -40,13 +40,13 @@ GiovanniScript1:
 	dotrigger $1
 	playmapmusic
 	end
-	
+
 MovementData_Giovanni1:
 	step_down
 MovementData_Giovanni2:
 	step_down
 	step_end
-	
+
 MovementData_PlayerTFBR:
 	step_left
 	turn_head_right
@@ -126,16 +126,16 @@ GiovanniText4:
 
 	para "May we meet again."
 	done
-	
+
 TohjoFallsBackRoom_MapEventHeader:
 	db 0, 0
-	
+
 	db 1
 	warp_def 5, 5, 3, GROUP_TOHJO_FALLS, MAP_TOHJO_FALLS
-	
+
 	db 0
-	
+
 	db 0
-	
+
 	db 1
 	person_event SPRITE_GIOVANNI, 6, 9, $7, 0, 0, $ff, $ff, 0, 0, 0, ObjectEvent, EVENT_BEAT_GIOVANNI

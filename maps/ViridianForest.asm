@@ -108,25 +108,25 @@ FruitTreeScript_0x1ac306: ; 0x1ac306
 MapRoute2SignpostItem2: ; 0x1ac308
 	dw $00ed
 	db MAX_ETHER
-	
+
 ; 0x1ac30b
 
 MapRoute2SignpostItem3: ; 0x1ac30b
 	dw $00ee
 	db FULL_HEAL
-	
+
 ; 0x1ac30e
 
 MapRoute2SignpostItem4: ; 0x1ac30e
 	dw $00ef
 	db FULL_RESTORE
-	
+
 ; 0x1ac311
 
 MapRoute2SignpostItem5: ; 0x1ac311
 	dw $00f0
 	db REVIVE
-	
+
 ; 0x1ac314
 
 Bug_catcherRobSeenText: ; 0x1ac314
@@ -198,7 +198,7 @@ ViridianForestSignpostText1:
 	para "Weaken #MON"
 	line "before attempting"
 	cont "capture!"
-	
+
 	para "When healthy,"
 	line "they may escape!"
 	done
@@ -208,7 +208,7 @@ ViridianForestSignpostText2:
 	line "ANTIDOTE! Get it"
 	cont "at #MON MARTs!"
 	done
-	
+
 ViridianForestSignpostText3:
 	text "TRAINER TIPS"
 
@@ -226,7 +226,7 @@ ViridianForestSignpostText4:
 	cont "your #DEX"
 	cont "evaluated!"
 	done
-	
+
 ViridianForestSignpostText5:
 	text "TRAINER TIPS"
 
@@ -236,7 +236,7 @@ ViridianForestSignpostText5:
 	cont "Catch only wild"
 	cont "#MON!"
 	done
-	
+
 ViridianForestSignpostText6:
 	text "LEAVING"
 	line "VIRIDIAN FOREST"
@@ -245,23 +245,23 @@ ViridianForestSignpostText6:
 
 MapViridianForestSignpost0Script:
 	jumptext ViridianForestSignpostText1
-	
+
 MapViridianForestSignpost1Script:
 	jumptext ViridianForestSignpostText2
-	
+
 MapViridianForestSignpost2Script:
 	jumptext ViridianForestSignpostText3
-	
+
 MapViridianForestSignpost3Script:
 	jumptext ViridianForestSignpostText4
-	
+
 MapViridianForestSignpost4Script:
 	jumptext ViridianForestSignpostText5
-	
+
 MapViridianForestSignpost5Script:
 	jumptext ViridianForestSignpostText6
 
-ViridianForest_MapEventHeader: ; 0x1ac4af 
+ViridianForest_MapEventHeader: ; 0x1ac4af
 	; filler
 	db 0, 0
 
@@ -293,7 +293,7 @@ ViridianForest_MapEventHeader: ; 0x1ac4af
 	person_event SPRITE_BUG_CATCHER, $1A, $7, $8, 0, 0, -1, -1, 8 + PAL_OW_BROWN, 2, 5, TrainerBug_catcherRob, -1
 	person_event SPRITE_BUG_CATCHER, $D, $16, $1f, 0, 0, -1, -1, 8 + PAL_OW_BROWN, 2, 3, TrainerBug_catcherEd, -1
 	person_event SPRITE_BUG_CATCHER, $2b, $1D, $9, 0, 0, -1, -1, 8 + PAL_OW_BROWN, 2, 3, TrainerBug_catcherDoug, -1
-	
+
 	person_event SPRITE_POKE_BALL, 46, 6, $1, 0, 0, -1, -1, 0, 1, 0, ItemFragment_0x1ac2fe, EVENT_ITEM_ROUTE_2_DIRE_HIT
 	person_event SPRITE_POKE_BALL, 33, 16, $1, 0, 0, -1, -1, 0, 1, 0, ItemFragment_0x1ac300, EVENT_ITEM_ROUTE_2_MAX_POTION
 	person_event SPRITE_FRUIT_TREE, 6, 35, $1, 0, 0, -1, -1, 0, 0, 0, FruitTreeScript_0x1ac306, -1

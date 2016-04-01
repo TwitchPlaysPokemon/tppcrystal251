@@ -21,7 +21,7 @@ ItemFragment_0x7e5a8: ; 0x7e5a8
 MapIcePathB2FMahoganySideSignpostItem0: ; 0x7e5aa
 	dw $0095
 	db CARBOS
-	
+
 ; 0x7e5ad
 
 UnknownText_0x7e5ad: ; 0x7e5ad

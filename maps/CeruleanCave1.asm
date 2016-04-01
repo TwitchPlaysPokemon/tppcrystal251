@@ -5,19 +5,19 @@ CeruleanCave1_MapScriptHeader: ; 0x1ac2ba
 	; callback count
 	db 0
 
-CeruleanCave1_Item1: 
+CeruleanCave1_Item1:
 	db FULL_RESTORE, 1
-	
-CeruleanCave1_Item2: 
+
+CeruleanCave1_Item2:
 	db SCOPE_LENS, 1
-	
-CeruleanCave1_Item3: 
+
+CeruleanCave1_Item3:
 	db NUGGET, 1
-	
+
 CeruleanCave1_BoulderScript: ; 0x7de79
 	jumpstd strengthboulder
-		
-CeruleanCave1_MapEventHeader: ; 0x1ac4af 
+
+CeruleanCave1_MapEventHeader: ; 0x1ac4af
 	; filler
 	db 0, 0
 

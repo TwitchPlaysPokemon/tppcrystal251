@@ -1,5 +1,5 @@
 PlayRadioShow: ; b8612
-	ld a, [wd002] 
+	ld a, [wd002]
 	cp 8
 	jr nc, .ok
 	ld a, [StatusFlags2]
@@ -9,9 +9,9 @@ PlayRadioShow: ; b8612
 	and a
 	jr nz, .ok
 	ld a, 7
-	ld [wd002], a 
+	ld [wd002], a
 .ok
-	ld a, [wd002] 
+	ld a, [wd002]
 	ld e, a
 	ld d, 0
 	ld hl, Jumptable_b863a
@@ -241,7 +241,7 @@ Functionb8762: ; b8762 (2e:4762)
 	inc hl
 	inc hl; move to first slot in wilds table
 	inc hl
-	
+
 .not3
 	call Random
 	and 3
@@ -266,7 +266,7 @@ Functionb8762: ; b8762 (2e:4762)
 	ld [wd265], a ;load mon into a variable to fetch name
 	ld [CurPartySpecies], a ; add it into the party?
 	call GetPokemonName ;Put the name of the pokemon into string buffer
-	ld hl, StringBuffer1 
+	ld hl, StringBuffer1
 	ld de, wd050 ;where name is
 	ld bc, $b ;13
 	call CopyBytes ;put mon name in a variable(and a little more?)
@@ -2060,7 +2060,7 @@ UnknownText_0xb91d2: ; 0xb91d2
 ; 0xb91d7
 
 UnknownText_0xb91d7: ; 0xb91d7
-	; 
+	;
 	text_jump UnknownText_0x1bcf99
 	db "@"
 ; 0xb91dc

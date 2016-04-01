@@ -319,7 +319,7 @@ WhitneyRematchTextBefore:
 	para "I'm ready for a"
 	line "rematch."
 
-	para "Tee-hee! I won't" 
+	para "Tee-hee! I won't"
 	line "cry this time if I"
 	cont "lose. Promise!"
 	done
@@ -335,7 +335,7 @@ WhitneyAfterRematchText:
 
 	para "I was surprised"
 	line "by how strong"
-	cont "you were." 
+	cont "you were."
 
 	para "When you have a"
 	line "chance, tell me"
@@ -522,7 +522,7 @@ BeautySamanthaOWText: ; 0x5460b
 	text "Whitney focuses on"
 	line "normal and fairy"
 	cont "type #MON."
-	
+
 	para "That is what makes"
 	line "her so scary."
 	done
@@ -535,9 +535,9 @@ GoldenrodGymGuyText: ; 0x5463a
 	para "This GYM is home"
 	line "to normal-type"
 	cont "#MON trainers!"
-	
+
 	para "Also<...> Uhm<...>"
-	
+
 	para "It feels like I"
 	line "forgot something"
 	cont "important<...>"

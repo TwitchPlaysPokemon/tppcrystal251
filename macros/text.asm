@@ -44,7 +44,7 @@ start_asm: macro
 
 deciram: macro
 	db 9
-	dw \1 
+	dw \1
 	db \2 ;first nyble is bytes, second is digits
 	endm
 

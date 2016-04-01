@@ -21,7 +21,7 @@ ItemFragment_0x185a5c: ; 0x185a5c
 MapTinTower4FSignpostItem0: ; 0x185a5e
 	dw $007d
 	db MAX_POTION
-	
+
 ; 0x185a61
 
 TinTower4F_MapEventHeader: ; 0x185a61

@@ -110,7 +110,7 @@ KogeBeforeRematchText:
 
 	para "My skill will be"
 	line "hard to overcome!"
-	
+
 	para "Let me show you"
 	line "what I mean!"
 

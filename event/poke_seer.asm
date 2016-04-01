@@ -122,7 +122,7 @@ JudgePokemon:
 	ld hl, .Incidentally
 	call PrintText
 	call Functiona36
-	
+
 	; pop bc
 	; ld a, b
 	; and a

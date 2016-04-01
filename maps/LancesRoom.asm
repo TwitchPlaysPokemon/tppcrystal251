@@ -156,7 +156,7 @@ LanceRematch:
 LanceBeforeRematchText:
 	text "There's no need"
 	line "for words now."
-	
+
 	para "We will battle to"
 	line "determine who is"
 	para "the stronger of"
@@ -170,7 +170,7 @@ LanceBeforeRematchText:
 LanceAfterRematch:
 	text "Just as I"
 	line "expected."
-	
+
 	para "You and your"
 	line "#MON make"
 	cont "quite a team."
@@ -282,7 +282,7 @@ UnknownText_0x181132: ; 0x181132
 	para "You're now the"
 	line "#MON LEAGUE"
 	cont "CHAMPION!"
-	
+
 	para "<...>"
 
 	para "<...>Or, you would"
@@ -290,20 +290,20 @@ UnknownText_0x181132: ; 0x181132
 	para "have one more"
 	line "challenge ahead."
 	done
-    
+
 LanceFinishReveal:
     text "Go now. Your"
     line "final challenge"
     cont "awaits you!"
     done ; not sure if this is supposed to use below if gender
-	
+
 LanceAzureTalk:
 	text "Her name is<...>"
 	para "<GREEN>!"
 	para "She beat the"
 	line "ELITE FOUR"
 	cont "before you."
-	
+
 	para "She is the #MON"
 	line "LEAGUE CHAMPION!"
 	done
@@ -313,7 +313,7 @@ LanceRustTalk:
 	para "He beat the"
 	line "ELITE FOUR"
 	cont "before you."
-	
+
 	para "He is the #MON"
 	line "LEAGUE CHAMPION!"
 	done
@@ -343,7 +343,7 @@ LanceRefusedHealText:
 LanceAfterHeal:
 	text "Your #MON are"
 	line "healed."
-	
+
 	para "Fight with your"
 	line "full power!"
 	done
@@ -393,7 +393,7 @@ LanceAfterHeal:
 	; para "the strength that"
 	; line "got you this far."
 	; done
-	
+
 ; OakBeatenText:
 	; text "Excellent!"
 
