@@ -523,7 +523,7 @@ UnknownText_0x5c4f3: ; 0x5c4f3
 
 	para "For example<...>"
 
-	para "You can use TM's,"
+	para "You can use TMs,"
 	line "breed for egg"
 	cont "moves<...>"
 
