@@ -498,7 +498,63 @@
 		db PERSIAN ;1
 		db PERSIAN ;1
 	
-	map ROUTE_2
+	map ROUTE_2_NORTH
+	db $19 ; encounter rates: morn/day/nite
+	db 60
+	db $02
+;morning
+		db NIDORAN_M ;20
+		db VULPIX ;15
+		db VULPIX ;10
+		db NIDORINO ;10
+		db NIDORINA ;10
+		db NIDORAN_M ;5
+		db CHARMANDER ;5
+		db NIDORAN_F ;5
+		db NIDORAN_F ;6
+		db NIDORAN_F ;4
+		db CHARMANDER ;3
+		db CHARMANDER ;2
+		db NINETALES ;2
+		db NINETALES ;1
+		db CATERPIE ;1
+		db WEEDLE ;1
+;day
+		db NIDORAN_F ;20
+		db NIDORAN_M ;15
+		db VULPIX ;10
+		db VULPIX ;10
+		db CHARMANDER ;10
+		db NIDORAN_F ;5
+		db NIDORINO ;5
+		db NIDORINA ;5
+		db CHARMANDER ;6
+		db CHARMANDER ;4
+		db CATERPIE ;3
+		db WEEDLE ;2
+		db NINETALES ;2
+		db WEEDLE ;1
+		db WEEDLE ;1
+		db CATERPIE ;1
+;night
+		db RATTATA ;20
+		db CHARMANDER ;15
+		db NIDORAN_F ;10
+		db NIDORAN_M ;10
+		db RATICATE ;10
+		db VULPIX ;5
+		db NIDORINA ;5
+		db NIDORINO	;5
+		db CATERPIE ;6
+		db CATERPIE ;4
+		db WEEDLE ;3
+		db WEEDLE ;2
+		db WEEDLE ;2
+		db WEEDLE ;1
+		db WEEDLE ;1
+		db WEEDLE ;1
+
+	map ROUTE_2_SOUTH
 	db $19 ; encounter rates: morn/day/nite
 	db 60
 	db $02
