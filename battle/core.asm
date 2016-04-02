@@ -4130,9 +4130,9 @@ BattleCore_TryToFlee: ; 3d8b3
 
 .asm_3d992
 	; Uncomment these three lines for ROM/cart release.
-	; ld a, [InBattleTowerBattle]
-	; and a
-	; jr nz, .AskForfeitBattleTower
+	ld a, [InBattleTowerBattle]
+	and a
+	jr nz, .AskForfeitBattleTower
 	ld hl, BattleText_0x80b49
 
 .asm_3d995
