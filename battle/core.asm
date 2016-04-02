@@ -4206,17 +4206,17 @@ ENDC
 
 ; What follows is staged for ROM/cart release.
 
-; .AskForfeitBattleTower
-	; ld hl, .AskForfeitText
-	; call BattleTextBox
-	; call YesNoBox
-	; jr nc, .asm_3d9a2
-	; jp .declined_forfeit
+.AskForfeitBattleTower
+	 ld hl, .AskForfeitText
+	 call BattleTextBox
+	 call YesNoBox
+	 jr nc, .asm_3d9a2
+	 jp .declined_forfeit
 
-; .AskForfeitText:
-	; text "Forfeit your"
-	; line "challenge?"
-	; done
+.AskForfeitText:
+	 text "Forfeit your"
+	 line "challenge?"
+	 done
 
 Function3da0d: ; 3da0d
 	ld a, PartyMon1Species - PartyMon1
