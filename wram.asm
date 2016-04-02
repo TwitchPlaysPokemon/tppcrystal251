@@ -2572,7 +2572,9 @@ SECTION "WRAM 4", WRAMX[$d800], BANK[$4] ; seems like this bank is unused
 
 wMPTileMapBackup:: ds 20 * 18
 wMPFlags:: ds 1
-wSongSelection:: ds 2
+wSongSelection:: ds 1
+wSelectionState:: ds 1
+wChannelSelectorOAM:: ds 4
 wNumNoteLines:: ds 1 ;
 wTmpCh:: ds 1 ;
 wChLastNotes:: ds 6

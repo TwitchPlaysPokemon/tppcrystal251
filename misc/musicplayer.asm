@@ -178,9 +178,8 @@ MusicPlayer::
 	set 0, [hl]
 	set 2, [hl]
 
-MPlayerTilemap:
-
-	copy NoteOAM, Sprites + 4, NoteOAMEnd - NoteOAM
+	copy NoteOAM, Sprites, NoteOAMEnd - NoteOAM
+	copy NoteOAM, wChannelSelectorOAM, 4
 	call DelayFrame
 
 	ld a, [rLCDC]
@@ -298,6 +297,9 @@ MPlayerTilemap:
 	call DelayFrame_MP
 	
 	call GetJoypad
+	ld a, [wSelectionState]
+	and a
+	jp nz, .songEditor
 	jbutton B_BUTTON, .exit
 	jbutton D_LEFT, .left
 	jbutton D_RIGHT, .right
@@ -339,7 +341,7 @@ MPlayerTilemap:
 .select
 	xor a
 	call SongSelector
-	jp MPlayerTilemap
+	jp .loop
 .redraw	
 	ld [wSongSelection], a
 	
@@ -382,184 +384,11 @@ MPlayerTilemap:
 	jp .loop
 
 .start
-	xor a
-	ld [wChannelSelector], a
-	hlcoord 0, 12
-	ld a, $ee
-	ld [hl], a
-	jp .songEditorLoop
-	
-.songEditorLoop
-	ld a, [wMPFlags]
-	bit 0, a
-	call nz, RenderWaveform
-	call UpdateVisualIntensity
-	call DrawNotes
-	call DelayFrame_MP
-	
-	ld a, [wChangingPitch]
-	and a
-	jr nz, .changingPitch
-	call GetJoypad
-	jbutton D_LEFT, .songEditorleft
-	jbutton D_RIGHT, .songEditorright
-	jbutton A_BUTTON, .songEditora
-	jbutton B_BUTTON, .songEditorb
-	jbutton D_UP, .songEditorup
-	jbutton D_DOWN, .songEditordown
-	jbutton SELECT, .songEditorselect
-	
-	ld a, 2
-	ld [hBGMapThird], a ; prioritize refreshing the note display
-	jr .songEditorLoop
-.changingPitch
-	call GetJoypad
-	jbutton D_LEFT, .ChangingPitchleft
-	jbutton D_RIGHT, .ChangingPitchright
-	jbutton A_BUTTON, .ChangingPitchb
-	jbutton B_BUTTON, .ChangingPitchb
-	ld a, 2
-	ld [hBGMapThird], a ; prioritize refreshing the note display
-	jr .songEditorLoop
-	
-
-.songEditorleft
-	call .channelSelectorloadhl
-	ld a, $7f
-	ld [hl], a
-	ld a, [wChannelSelector]
-	dec a
-	cp -1
-	jr nz, .noOverflow
-	ld a, 5
-.noOverflow
-	ld [wChannelSelector], a
-	call .channelSelectorloadhl
-	ld [hl], a
-	jp .songEditorLoop
-
-.songEditorright
-	call .channelSelectorloadhl
-	ld a, $7f
-	ld [hl], a
-	ld a, [wChannelSelector]
-	inc a
-	cp 6
-	jr nz, .noOverflow2
-	xor a
-.noOverflow2
-	ld [wChannelSelector], a
-	call .channelSelectorloadhl
-	ld [hl], a
-	jp .songEditorLoop
-
-.songEditora
-	ld a, [wChannelSelector]
-	cp 4
-	jr z, .niteToggle
-	cp 5
-	jr z, .changePitch
-	ld c, a
-	ld b, 0
-	ld hl, wChannelSelectorSwitches
-	add hl, bc
-	ld a, [hl]
-	xor 1
-	ld [hl], a
-	
-	jp .songEditorLoop
-.niteToggle
-	ld a, [GBPrinter]
-	xor 4
-	ld [GBPrinter], a
-	ld a, [wSongSelection]
-	ld e, a
-	ld d, 0
-	callba PlayMusic2
-	hlcoord 16, 1
-	xor a
-	ld [hBGMapThird], a
-	call DelayFrame_MP
-	jp .songEditorLoop
-.changePitch
 	ld a, 1
-	ld [wChangingPitch], a
-	hlcoord 16, 2
-	ld a, $ec
-	ld [hl], a
-	xor a
-	ld [hBGMapThird], a
-	call DelayFrame_MP
-	jp .songEditorLoop
-	
-.songEditorup
-	ld a, [wChannelSelector]
-	cp 2
-	jp nz, .songEditorLoop
-	ld a, [Channel3+$0f]
-	dec a
-	ld b, a
-	and $0f
-	cp $0f
-	jr z, .waveunderflow
-	ld a, b
-	jr .changed
-.songEditordown
-	ld a, [wChannelSelector]
-	cp 2
-	jp nz, .songEditorLoop
-	ld a, [Channel3+$0f]
-	inc a
-	ld b, a
-	and $0f
-	jr z, .waveoverflow
-	ld a, b
-	jr .changed
-.waveunderflow
-	ld a, [Channel3+$0f]
-	and $f0
-	add $e
-	jr .changed
-.waveoverflow
-	ld a, [Channel3+$0f]
-	and $f0
-.changed
-	ld [Channel3+$0f], a
-	ld [$c293], a
-	jp .songEditorLoop
-	
-	
-
-.songEditorselect
-.songEditorb
-	call .channelSelectorloadhl
-	ld a, $7f
-	ld [hl], a
-	jp .loop
-
-.channelSelectorloadhl
-	ld a, [wChannelSelector]
-	cp 4
-	jr z, .channelSelectorloadhlnite
-	cp 5
-	jr z, .channelSelectorloadhlpitch
-	ld c, 5
-	call SimpleMultiply
-	hlcoord 0, 12
-	add l
-	ld l, a
-	ld a, $ee
-	ret nc
-	inc h
-	ret
-.channelSelectorloadhlnite
-	hlcoord 15, 1
-	ld a, $ed
-	ret
-.channelSelectorloadhlpitch
-	hlcoord 16, 2
-	ld a, $ed
-	ret
+	ld [wSelectionState], a
+	ld b, -1
+	ld hl, wChannelSelectorOAM
+	jp .movecursor
 
 .exit
 	ld hl, Options2
@@ -628,64 +457,82 @@ MPlayerTilemap:
 	ld [rSVBK], a
 	ret
 
-.ChangingPitchleft
-	ld a, [wTranspositionInterval]
+.songEditor
+	jbutton D_LEFT, .songEditorleft
+	jbutton D_RIGHT, .songEditorright
+	jbutton A_BUTTON, .songEditora
+	jbutton B_BUTTON, .songEditorb
+	jbutton START, .songEditorstart
+	jp .loop
+
+.songEditorleft
+	ld hl, wChannelSelectorOAM + 1
+	ld a, [wChannelSelector]
 	dec a
-	jr .ChangingPitchChangePitch
-.ChangingPitchright
-	ld a, [wTranspositionInterval]
+	cp -1
+	jr nz, .noOverflow
+	ld a, 3
+	ld [wChannelSelector], a
+	ld b, 4
+	jr .movecursor
+.noOverflow
+	ld [wChannelSelector], a
+	ld b, -1
+	jr .movecursor
+
+.songEditorright
+	ld hl, wChannelSelectorOAM + 1
+	ld a, [wChannelSelector]
 	inc a
-.ChangingPitchChangePitch
-	ld [wTranspositionInterval], a
-	ld de, EmptyPitch
-	hlcoord 17, 2
-	call PlaceString
-	ld a, [wTranspositionInterval]
+	cp 4
+	jr nz, .noOverflow2
+	xor a
+	ld [wChannelSelector], a
+	ld b, -4
+	jr .movecursor
+.noOverflow2
+	ld [wChannelSelector], a
+	ld b, 1
+	ld hl, wChannelSelectorOAM + 1
+	jr .movecursor
+
+.songEditora
+	ld a, [wChannelSelector]
+	ld c, 1
 	and a
-	jr nz, .nonzero
+	jr z, .noshift
+.shiftloop
+	sla c
+	dec a
+	jr nz, .shiftloop
+.noshift
+	ld a, [wMutedChannels]
+	xor c
+	ld [wMutedChannels], a
+	jp .loop
+
+.songEditorstart
+.songEditorb
 	xor a
-	ld [hBGMapThird], a
-	call DelayFrame_MP
-	jp .songEditorLoop
-	
-.nonzero
-	bit 7, a
-	jr nz, .negative
-	hlcoord 17, 2
-	ld a, $c5
+	ld [wSelectionState], a
+	ld b, 1
+	ld hl, wChannelSelectorOAM
+	jr .movecursor
+
+.movecursor
+	ld c, 8
+.movecursorloop
+	push bc
+	push hl
+	ld a, [hl]
+	add b
 	ld [hl], a
-	ld bc, $0103
-	ld de, wTranspositionInterval
-	call PrintNum
-	xor a
-	ld [hBGMapThird], a
 	call DelayFrame_MP
-	jp .songEditorLoop
-.negative
-	xor $ff
-	inc a
-	ld de, wTmp
-	ld [de], a
-	hlcoord 17, 2
-	ld a, "-"
-	ld [hl], a
-	ld bc, $0103
-	call PrintNum
-	xor a
-	ld [hBGMapThird], a
-	call DelayFrame_MP
-	jp .songEditorLoop
-	
-.ChangingPitchb
-	xor a
-	ld [wChangingPitch], a
-	hlcoord 16, 2
-	ld a, $ed
-	ld [hl], a
-	xor a
-	ld [hBGMapThird], a
-	call DelayFrame_MP
-	jp .songEditorLoop
+	pop hl
+	pop bc
+	dec c
+	jr nz, .movecursorloop
+	jp .loop
 
 RenderWaveform:
 	fill 0, wWaveformTmpGFX, 64
@@ -1596,6 +1443,12 @@ DelayFrame_MP:
 .no\@
 	inc hl
 	endr
+_w_ = 0
+	rept 4
+	ld a, [wChannelSelectorOAM + _w_]
+	ld [$fe00 + _w_], a
+_w_ = _w_ + 1
+	endr
 ; wave gfx copy if requested
 	ld a, [wMPFlags]
 	bit 3, a
@@ -1670,6 +1523,7 @@ DelayFrame_MP:
 	call Joypad
 	callba _UpdateSound
 	ret
+	
 .clr
 	rept 4
 	rept 16
@@ -1899,6 +1753,7 @@ MPKeymap:
 MPKeymapEnd
 	
 NoteOAM:
+	db $a0,$88,$08,$00
 	db $68,$a0,$00,$00
 	db $5c,$a0,$01,$00
 	db $50,$a0,$02,$00
