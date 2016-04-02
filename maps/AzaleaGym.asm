@@ -413,9 +413,8 @@ BugsyAfterRematchText:
 	line "passion for"
 	cont "training."
 
-	para "I need to do"
-	line "some more"
-	cont "research."
+	para "Do I need to do"
+	line "more research?"
 	done
 
 BugsyRejectText:
