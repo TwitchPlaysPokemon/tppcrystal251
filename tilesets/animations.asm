@@ -883,14 +883,14 @@ AnimateKantoFlowerTile: ; fc56d
 ; fc58c
 
 .Frames: ; fc58c
-	INCBIN "gfx/tilesets/flower/dmg_1.2bpp"
-	INCBIN "gfx/tilesets/flower/cgb_1.2bpp"
-	INCBIN "gfx/tilesets/flower/dmg_2.2bpp"
-	INCBIN "gfx/tilesets/flower/cgb_2.2bpp"
-	INCBIN "gfx/tilesets/flower/dmg_1.2bpp"
-	INCBIN "gfx/tilesets/flower/cgb_1.2bpp"
-	INCBIN "gfx/tilesets/flower/dmg_2.2bpp"
-	INCBIN "gfx/tilesets/flower/cgb_2.2bpp"
+	INCBIN "gfx/tilesets/kanto_flowers/dmg_1.2bpp"
+	INCBIN "gfx/tilesets/kanto_flowers/cgb_1.2bpp"
+	INCBIN "gfx/tilesets/kanto_flowers/dmg_2.2bpp"
+	INCBIN "gfx/tilesets/kanto_flowers/cgb_2.2bpp"
+	INCBIN "gfx/tilesets/kanto_flowers/dmg_3.2bpp"
+	INCBIN "gfx/tilesets/kanto_flowers/cgb_3.2bpp"
+	INCBIN "gfx/tilesets/kanto_flowers/dmg_4.2bpp"
+	INCBIN "gfx/tilesets/kanto_flowers/cgb_4.2bpp"
 ; fc5cc
 
 SafariFountainAnim1: ; fc5cc
