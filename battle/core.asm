@@ -4130,9 +4130,9 @@ BattleCore_TryToFlee: ; 3d8b3
 
 .asm_3d992
 	; Uncomment these three lines for ROM/cart release.
-	; ld a, [InBattleTowerBattle]
-	; and a
-	; jr nz, .AskForfeitBattleTower
+	ld a, [InBattleTowerBattle]
+	and a
+	jr nz, .AskForfeitBattleTower
 	ld hl, BattleText_0x80b49
 
 .asm_3d995
@@ -4206,17 +4206,17 @@ ENDC
 
 ; What follows is staged for ROM/cart release.
 
-; .AskForfeitBattleTower
-	; ld hl, .AskForfeitText
-	; call BattleTextBox
-	; call YesNoBox
-	; jr nc, .asm_3d9a2
-	; jp .declined_forfeit
+.AskForfeitBattleTower
+	 ld hl, .AskForfeitText
+	 call BattleTextBox
+	 call YesNoBox
+	 jr nc, .asm_3d9a2
+	 jp .declined_forfeit
 
-; .AskForfeitText:
-	; text "Forfeit your"
-	; line "challenge?"
-	; done
+.AskForfeitText:
+	 text "Forfeit your"
+	 line "challenge?"
+	 done
 
 Function3da0d: ; 3da0d
 	ld a, PartyMon1Species - PartyMon1
