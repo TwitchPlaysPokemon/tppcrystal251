@@ -64,7 +64,7 @@ BlueReject:
 	end
 
 BlueRejectText:
-	text "3 months ago<..>"
+	text "3 months ago<...>"
 
 	para "I had a RIVAL."
 
@@ -340,8 +340,8 @@ UnknownText_0x9ac27: ; 0x9ac27
 
 	para "I'm going to call"
 	line "CELADON and tell"
-	cont "them they can open"
-	cont "the TM DEPOT for"
+	para "them they can open"
+	line "the TM DEPOT for"
 	cont "you."
 
 	para "Someday I'm going"

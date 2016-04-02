@@ -141,7 +141,7 @@ ErikaRematchTextBefore:
 	text "What wonderful"
 	line "timing."
 
-	para "This unusal"
+	para "This unusual"
 	line "#MON appeared"
 	cont "just now."
 
