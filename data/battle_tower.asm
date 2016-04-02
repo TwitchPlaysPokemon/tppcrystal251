@@ -386,7 +386,7 @@ BattleTowerTrainers: ; 1f814e
 	db "STREAMER@@", SAGE
 	db "CHAOS LORD", POKEFANM
 	db "CHAUZU@@@@", SCHOOLBOY
-	db "LIGHT@@@@@", BIRD_KEEPER
+	db "LIGHTS@@@@", BIRD_KEEPER
 	db "DEKU@@@@@@", YOUNGSTER
 	db "SONICK@@@@", BOARDER
 	db "ERACLITO@@", CAMPER
