@@ -200,8 +200,8 @@ CooltrainerPaulAfterRematch: ; 0x1953f1
 CooltrainermMikeSeenRematchText: ; 0x19542f
 	text "My chances of"
 	line "losing? Not even"
-	cont "a fraction of a"
-	cont "percent this time!"
+	para "a fraction of a"
+	line "percent this time!"
 	done
 ; 0x19545b
 
@@ -214,7 +214,7 @@ CooltrainermMikeBeatenRematchText: ; 0x19545b
 CooltrainerMikeAfterRematch: ; 0x195467
 	text "I guess I haven't"
 	line "strengthened my"
-	cont "weeknesses enough!"
+	cont "weaknesses enough!"
 	done
 ; 0x19549d
 

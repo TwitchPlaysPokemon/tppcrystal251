@@ -9931,11 +9931,15 @@ RampageConfusion:
 	push af
 	callba SwitchTurn
 	pop af
+	pop de
 	ret nz
+	push de
 	callba GetOpponentItem
 	ld a, b
 	cp HELD_PREVENT_CONFUSE
+	pop de
 	ret z
+	push de
 	; 2-3 turns of confusion
 	ld a, BATTLE_VARS_SUBSTATUS3
 	call GetBattleVarAddr
