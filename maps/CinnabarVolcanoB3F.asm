@@ -192,7 +192,7 @@ SimonText1_CinnabarVolcanoB3F:
 	line "very island."
 
 	para "I like to believe"
-	line "my parter made it"
+	line "my partner made it"
 
 	para "out before the"
 	line "volcano blew."
@@ -247,5 +247,5 @@ CinnabarVolcanoB3F_MapEventHeader:
     person_event SPRITE_BOULDER, 30, 34, $19, 0, 0, -1, -1, 0, 0, 0, BoulderScript_CinnabarVolcanoB3F, EVENT_MOLTRES_BOULDER_2c
     person_event SPRITE_BOULDER, 18, 18, $19, 0, 0, -1, -1, 0, 0, 0, BoulderScript_CinnabarVolcanoB3F, EVENT_MOLTRES_BOULDER_3c
 	person_event SPRITE_BOULDER, 17, 32, $19, 0, 0, -1, -1, 0, 0, 0, BoulderScript_CinnabarVolcanoB3F, EVENT_MOLTRES_BOULDER_4c
-	person_event SPRITE_PHARMACIST, 9, 14, $6, 0, 0, -1, -1, 8 + PAL_OW_GREEN, 0, 0, SimonScript1_CinnabarVolcanoB3F, EVENT_SIMON_IN_VOLCANO
+	person_event SPRITE_PHARMACIST, 9, 12, $6, 0, 0, -1, -1, 8 + PAL_OW_GREEN, 0, 0, SimonScript1_CinnabarVolcanoB3F, EVENT_SIMON_IN_VOLCANO
 
