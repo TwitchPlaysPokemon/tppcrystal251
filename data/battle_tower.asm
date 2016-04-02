@@ -380,19 +380,19 @@ BattleTowerTrainers: ; 1f814e
 	db "EATON@@@@@", BIKER
 	db "WONG@@@@@@", FIREBREATHER
 	db "WALLE@@@@@", POKEMANIAC
-	db "PIKALAXALT", SUPER_NERD
+	db "PIKALAX@@@", SUPER_NERD
 	db "REVO@@@@@@", FISHER
 	db "FELK@@@@@@", GENTLEMAN
 	db "STREAMER@@", SAGE
 	db "CHAOS LORD", POKEFANM
 	db "CHAUZU@@@@", SCHOOLBOY
-	db "LIGHTNING@", COOLTRAINERM
+	db "LIGHT@@@@@", BIRD_KEEPER
 	db "DEKU@@@@@@", YOUNGSTER
 	db "SONICK@@@@", BOARDER
 	db "ERACLITO@@", CAMPER
 	db "PIGU@@@@@@", BUG_CATCHER
-	db "BEESAFREE@", SCIENTIST
-	db "KOOLBOYMAN", BIRD_KEEPER
+	db "BEESA@@@@@", SCIENTIST
+	db "KBMAN@@@@@", COOLTRAINERM
 ; 1f8450
 BattleTowerTrainersEnd:
 

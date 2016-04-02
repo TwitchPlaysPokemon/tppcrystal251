@@ -577,6 +577,7 @@ TeachMoveThunder:
 
 TeachMove:
 	writetext WhoToTeachText
+	waitbutton
 	special Function4925b
 	iffalse AfterTutor
 	writetext TutorQuitText
@@ -607,6 +608,11 @@ TutorQuitText:
 	line "your mind<...>"
 	done
 
+TutorPoorText:
+	text "You don't have"
+	line "enough money!"
+	done
+
 TutorTakeMoneyText:
 	text "Great, they learn"
 	line "fast!"
@@ -625,7 +631,7 @@ UnknownScript_0x782d2: ; 0x782d2
 	yesorno
 	iffalse TutorQuit
 	checkmoney 0, 5000
-	if_equal 2, TutorQuit
+	if_equal 2, TutorPoor
 	jump TeachMoveFire
 
 TutorQuit:
@@ -634,6 +640,11 @@ TutorQuit:
 	closetext
 	end
 ; 0x782d8
+TutorPoor:
+	writetext TutorPoorText
+	waitbutton
+	closetext
+	end
 
 TrainerCooltrainerfJenn: ; 0x782d8
 	; bit/flag number
@@ -671,7 +682,7 @@ UnknownScript_0x782f2: ; 0x782f2
 	yesorno
 	iffalse TutorQuit
 	checkmoney 0, 5000
-	if_equal 2, TutorQuit
+	if_equal 2, TutorPoor
 	jump TeachMoveThunder
 ; 0x782f8
 
@@ -713,7 +724,7 @@ UnknownScript_0x78319: ; 0x78319
 	yesorno
 	iffalse TutorQuit
 	checkmoney 0, 5000
-	if_equal 2, TutorQuit
+	if_equal 2, TutorPoor
 	jump TeachMoveIce
 ; 0x7831f
 

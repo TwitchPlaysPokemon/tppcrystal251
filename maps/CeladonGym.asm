@@ -141,7 +141,7 @@ ErikaRematchTextBefore:
 	text "What wonderful"
 	line "timing."
 
-	para "This unusal"
+	para "This unusual"
 	line "#MON appeared"
 	cont "just now."
 
@@ -169,7 +169,7 @@ ErikaAfterRematchText:
 	line "even stronger."
 
 	para "It would be an"
-	line "honour to battle"
+	line "honor to battle"
 
 	para "you again some-"
 	line "time."

@@ -120,20 +120,18 @@ AfterLanceFight:
 	warpcheck
 	end
 
-LancesRoomNoYesBoxMenuDataHeader: ; 1e1d
-	db $40 ; tile backup
-	db 5, 10 ; start coords
-	db 9, 15 ; end coords
+LancesRoomNoYesBoxMenuDataHeader:
+	db $00 ; flags
+	db 07, 14 ; start coords
+	db 11, 19 ; end coords
 	dw .MenuData2
 	db 1 ; default option
-; 1e25
 
-.MenuData2 ; 1e25
+.MenuData2
 	db $c0 ; flags
-	db 2
+	db 2 ; items
 	db "NO@"
 	db "YES@"
-; 1e2e
 
 LanceRematch:
 	writetext LanceBeforeRematchText

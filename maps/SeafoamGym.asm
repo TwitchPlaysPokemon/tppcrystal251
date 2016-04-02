@@ -105,8 +105,8 @@ BlaineRejectText:
 BlaineRejectText2:
 	text "You decide it"
 	line "would be unwise"
-	cont "to interupt his"
-	cont "frenzy."
+	para "to interrupt his"
+	line "frenzy."
 
 	done
 

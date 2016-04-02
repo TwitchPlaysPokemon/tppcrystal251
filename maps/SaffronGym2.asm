@@ -101,7 +101,7 @@ SabrinaAfterRematchText:
 	text "Your victory<...>"
 
 	para "It's exactly as I"
-	line "foresaw actually."
+	line "foresaw, actually."
 
 	para "But I wanted to"
 	line "turn that future"

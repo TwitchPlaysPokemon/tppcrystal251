@@ -8,8 +8,8 @@ CeladonDeptStore1F_MapScriptHeader: ; 0x709de
 ; 0x709e0
 
 AddStairsToTMDepot:
-	checkcode VAR_BADGES
-	if_not_equal 16, .no_stairs
+	checkflag ENGINE_EARTHBADGE
+	iffalse .no_stairs
 	changeblock $6, $0, $1
 .no_stairs
 	return
@@ -28,8 +28,8 @@ TeacherScript_0x709e6: ; 0x709e6
 
 MapCeladonDeptStore1FSignpost0Script: ; 0x709e9
 	loadfont
-	checkcode VAR_BADGES
-	if_not_equal 16, .skip_depot
+	checkflag ENGINE_EARTHBADGE
+	iffalse .skip_depot
 	writetext UnknownText_0x70aea
 	buttonsound
 .skip_depot

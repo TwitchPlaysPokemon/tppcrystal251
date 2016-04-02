@@ -60,7 +60,7 @@ Tileset03Anim: ; 0xfc01b
 	dw NULL,  TileAnimationPalette
 	; dw NULL,  SafariFountainAnim3
 	dw NULL,  WaitTileAnimation
-	dw NULL,  AnimateFlowerTile
+	dw NULL,  AnimateKantoFlowerTile
 	dw NULL,  WaitTileAnimation
 	dw NULL,  WaitTileAnimation
 	dw NULL,  NextTileFrame8
@@ -836,7 +836,7 @@ AnimateFlowerTile: ; fc56d
 	swap a ; << 4 (16 bytes)
 	ld e, a
 	ld d, 0
-	ld hl, FlowerTileFrames
+	ld hl, .Frames
 	add hl, de
 	ld sp, hl
 
@@ -845,13 +845,53 @@ AnimateFlowerTile: ; fc56d
 	jp WriteTile
 ; fc58c
 
-FlowerTileFrames: ; fc58c
+.Frames: ; fc58c
 	INCBIN "gfx/tilesets/flower/dmg_1.2bpp"
 	INCBIN "gfx/tilesets/flower/cgb_1.2bpp"
 	INCBIN "gfx/tilesets/flower/dmg_2.2bpp"
 	INCBIN "gfx/tilesets/flower/cgb_2.2bpp"
 ; fc5cc
 
+AnimateKantoFlowerTile: ; fc56d
+; No parameters.
+
+; Save sp in bc (see WriteTile).
+	ld hl, [sp+0]
+	ld b, h
+	ld c, l
+
+; Alternate tile graphic every other frame
+	ld a, [TileAnimationTimer]
+	and $6
+	ld e, a
+
+; CGB has different color mappings for flowers.
+	ld a, [hCGB]
+	and 1
+
+	add e
+	swap a ; << 4 (16 bytes)
+	ld e, a
+	ld d, 0
+	ld hl, .Frames
+	add hl, de
+	ld sp, hl
+
+	ld hl, VTiles2 + $30 ; tile 4
+
+	jp WriteTile
+; fc58c
+
+.Frames: ; fc58c
+	INCBIN "gfx/tilesets/kanto_flowers/dmg_1.2bpp"
+	INCBIN "gfx/tilesets/kanto_flowers/cgb_1.2bpp"
+	INCBIN "gfx/tilesets/kanto_flowers/dmg_2.2bpp"
+	INCBIN "gfx/tilesets/kanto_flowers/cgb_2.2bpp"
+	INCBIN "gfx/tilesets/kanto_flowers/dmg_3.2bpp"
+	INCBIN "gfx/tilesets/kanto_flowers/cgb_3.2bpp"
+	INCBIN "gfx/tilesets/kanto_flowers/dmg_4.2bpp"
+	INCBIN "gfx/tilesets/kanto_flowers/cgb_4.2bpp"
+; fc5cc
 
 SafariFountainAnim1: ; fc5cc
 ; Splash in the bottom-right corner of the fountain.

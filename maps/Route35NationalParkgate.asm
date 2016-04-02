@@ -68,9 +68,6 @@ UnknownScript_0x6a1d1: ; 0x6a1d1 run if enterng while contest is on
 	spriteface $2, $3
 	loadfont
 	checkcode VAR_CONTESTTIME
-IF DEF(BEESAFREE)
-	callasm BugContestFastClock
-ENDC
 	addvar $1
 	RAM2MEM $0
 	writetext UnknownText_0x6a79a
@@ -622,13 +619,3 @@ Route35NationalParkgate_MapEventHeader: ; 0x6a9d2
 	person_event SPRITE_YOUNGSTER, 9, 10, $2, 1, 1, -1, -1, 8 + PAL_OW_RED, 0, 0, YoungsterScript_0x6a2d8, EVENT_ROUTE35_NATIONALPARK_GATE_YOUNGSTER
 	person_event SPRITE_OFFICER, 7, 4, $9, 0, 0, -1, -1, 8 + PAL_OW_GREEN, 0, 0, OfficerScript_0x6a204, EVENT_NATIONALPARK_ROUTE35_GATE_OFFICER_2
 ; 0x6aa18
-
-BugContestFastClock:
-	ld a, [ScriptVar]
-	ld c, 5
-	call SimpleMultiply
-	ld c, 12
-	call SimpleDivide
-	ld a, b
-	ld [ScriptVar], a
-	ret

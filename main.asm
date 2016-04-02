@@ -10053,11 +10053,7 @@ Function113e9: ; 113e9
 ; 113fd
 
 .data_113fd
-IF DEF(BEESAFREE)
-	db 48, 24, 12, 6
-ELSE
 	db 20, 10, 5, 3
-ENDC
 ; 11401
 
 Function11401: ; 11401
@@ -10167,11 +10163,7 @@ Function11485: ; 11485
 ; 11490
 
 Function11490: ; 11490
-IF DEF(BEESAFREE)
-	ld a, 48
-ELSE
 	ld a, 20
-ENDC
 	ld [wd46c], a ;load in bug catching timer
 	ld a, $0
 	ld [wd46d], a
