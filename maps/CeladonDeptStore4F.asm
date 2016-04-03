@@ -32,8 +32,9 @@ MapCeladonDeptStore4FSignpost1Script: ; 0x70f1e
 
 UnknownText_0x70f21: ; 0x70f21
 	text "Some gifts can be"
-	line "given to #MON to"
-	cont "up thier power."
+	line "given to #MON"
+	para "to increase"
+	line "thier damage."
 	done
 ; 0x70f55
 

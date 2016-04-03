@@ -47,7 +47,7 @@ UnknownText_0x71023: ; 0x71023
 	line "stores move things"
 	cont "around."
 
-	text "They just put"
+	para "They just put"
 	line "stones with"
 	cont "vitamins for some"
 	cont "reason<...>"

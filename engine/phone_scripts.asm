@@ -189,6 +189,7 @@ CheckForBoxes:
 	special BillBoxSwitchCheck
 	if_equal 0, BillPhoneWholePCFull
 	farwritetext BillWantNextBox
+	buttonsound
 	farwritetext UnknownText_0x1c462a
 	yesorno
 	iffalse .refused

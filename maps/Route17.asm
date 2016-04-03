@@ -189,7 +189,7 @@ UnknownText_0x1ad196: ; 0x1ad196
 
 BikerGlennSeenText: ; 0x1ad1e0
 	text "Beauty is in"
-	line "the eyes of the"
+	line "the eye of the"
 	cont "beeholder!"
 
 	para "<...>heh."
@@ -228,7 +228,7 @@ UnknownText_0x1ad293: ; 0x1ad293
 	text "This time of year"
 	line "is horrible."
 
-	para "The puns helps"
+	para "The puns help"
 	line "us cope with it."
 	done
 ; 0x1ad2c5
