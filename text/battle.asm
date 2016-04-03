@@ -9,7 +9,7 @@ BattleText_0x80730: ; 0x80730
 WildPokemonAppearedText: ; 0x80746
 	text "Wild @"
 	text_from_ram EnemyMonNick
-	text ""can
+	text ""
 	line "appeared!"
 	prompt
 ; 0x8075c
