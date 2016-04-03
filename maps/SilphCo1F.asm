@@ -70,7 +70,7 @@ UnknownText_0x18ac36: ; 0x18ac36
 	cont "for a<...>"
 	
 	para "small fee"
-	line "of ¥300,000."
+	line "of ", $f0, "300,000."
 	done
 ; 0x18aca8
 
