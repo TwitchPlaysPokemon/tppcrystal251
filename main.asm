@@ -30069,6 +30069,7 @@ Function28177: ; 28177
 	ld bc, $000b
 	call CopyBytes
 
+BattleTest:
 	ld a, [OverworldMap + $8]
 	cp $1 ;Is it TPP or not? If not, then don't battle
 	jp nz, BattleCheck
@@ -31690,7 +31691,7 @@ StringMoveIncompatibleText: ; 28ece
 Function28eef: ; 28eef
 	ld d, h
 	ld e, l
-	;callba Function16d6ca
+	callba Function16d6ca
 	ret
 ; 28ef8
 
