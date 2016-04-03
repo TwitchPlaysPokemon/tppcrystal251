@@ -277,8 +277,8 @@ UnknownText_0x728e9: ; 0x728e9
 
 	para "That #MON is"
 	line "supposed to be"
-	cont "very hard"
-	cont "to find."
+	cont "really hard to"
+	cont "find."
 	done
 ; 0x7293e
 

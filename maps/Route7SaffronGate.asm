@@ -30,7 +30,7 @@ UnknownText_0x7352c: ; 0x7352c
 	cont "the POWER PLANT?"
 
 	para "It's located in"
-	line "the East, close to"
+	line "the east, close to"
 	cont "LAVENDER TOWN."
 	done
 ; 0x73592
@@ -40,8 +40,8 @@ UnknownText_0x73592: ; 0x73592
 	line "PATH has been"
 	cont "closed down."
 
-	para "It's the HELIX"
-	line "CHOIR extremists"
+	para "The CHOIR GROUP"
+	line "extremists are"
 	cont "at it again!"
 
 	done
