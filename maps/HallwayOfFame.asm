@@ -173,6 +173,7 @@ CheckDexForMtSilver:
 	playsound SFX_DEX_FANFARE_230_PLUS
 	waitsfx
 	writetext OakCongrats
+	setevent EVENT_ALLOWED_INTO_ROUTE_28
 	jump AfterOakTalk
 
 DexNotFull:
