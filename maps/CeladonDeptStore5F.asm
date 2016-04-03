@@ -47,28 +47,29 @@ UnknownText_0x71023: ; 0x71023
 	line "stores move things"
 	cont "around."
 
-	text "They just put"
+	para "They just put"
 	line "stones with"
-	cont "vitamins for some"
-	cont "reason<...>"
+
+	para "vitamins for some"
+	line "reason<...>"
 	done
 ; 0x71072
 
 UnknownText_0x71072: ; 0x71072
 	text "I want PP UP, so I"
 	line "can raise the PP"
+	cont "of moves."
 
-	para "of moves. But you"
-	line "have to gamble"
-	cont "for it<...>"
+	para "But they're only"
+	line "available as pri-"
+	cont "zes from the GAME"
+	cont "CORNER<...>"
 	done
 ; 0x710b6
 
 UnknownText_0x710b6: ; 0x710b6
-	text "For some reason"
-	line "they say FIRE"
-	cont "STONES sell very"
-	cont "well."
+	text "FIRE STONES sell"
+	line "very well here."
 
 	para "I wonder why<...>"
 	done
