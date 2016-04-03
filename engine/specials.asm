@@ -201,6 +201,7 @@ SpecialsPointers:: ; c029
 	add_special CalculateTowerWinnings
 	add_special CalculateTowerWinningsOnQuit
 	add_special CalculateTowerVictory
+	add_special Special_CheckRematches
 	add_special SpecialNone
 ; c224
 
@@ -821,3 +822,9 @@ CalculateTowerVictory:
 	call Multiply
 	jr GiveBattleTowerMoney
 
+Special_CheckRematches:
+	ld hl, EventFlags + (EVENT_FALKNER_REMATCH >> 3)
+	ld b, 2
+	call CountSetBits
+	ld [ScriptVar], a
+	ret
