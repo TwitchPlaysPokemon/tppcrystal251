@@ -115,6 +115,8 @@ TPPCredits::
 	ld [hLCDStatCustom], a
 	ld a, 1 ; VBlank1
 	ld [hVBlank], a
+	ld a, $40 ; LYC interrupt
+	ld [rSTAT], a
 	ld a, $70
 	ld [hSCY], a
 
@@ -540,8 +542,7 @@ TPPCredits_ThanksScene:
 	call UpdateThanksSceneCounters
 
 .joy
-; joypad update (rom release only)
-IF !DEF(BEESAFREE)
+; joypad update
 	ld a, BUTTONS
 	ld [rJOYP], a
 ; 6 same reads because we want a stabilized input
@@ -591,7 +592,6 @@ IF !DEF(BEESAFREE)
 	xor a
 	ld [hFastMusicUpdate], a
 	jp Reset
-ENDC
 
 .done
 	call UpdateCommandChaos_Thanks
@@ -1681,6 +1681,13 @@ StripTrick_Main:
 .nosub2
 	ld [TC_CurStripXPos], a
 .donemod
+	ld a, 3
+	ld [rIE], a
+	ld a, 79
+	ld [rLYC], a
+	halt ; halt the cpu until line 79
+	ld a, 1
+	ld [rIE], a
 	ld a, 80
 	ld hl, rSTAT
 .loop
