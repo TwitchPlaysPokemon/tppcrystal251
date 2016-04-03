@@ -170,7 +170,8 @@ CheckDexForMtSilver:
 	checkcode VAR_DEXCAUGHT
 	if_less_than 251, DexNotFull
 	writetext OakFullDex
-	buttonsound
+	playsound SFX_DEX_FANFARE_230_PLUS
+	waitsfx
 	writetext OakCongrats
 	jump AfterOakTalk
 
@@ -215,6 +216,7 @@ OakFullDex:
 	text "Wow!"
 	line "The #DEX is"
 	cont "complete!"
+	done
 
 OakCongrats:
 	text "You're a true"
