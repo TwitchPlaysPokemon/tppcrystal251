@@ -95,14 +95,23 @@ UnknownText_0x70dc7: ; 0x70dc7
 
 UnknownText_0x70e61: ; 0x70e61
 	text "This store used"
-	line "to sell TMs,"
+	;line "to sell TMs,"
+	line "to sell TMs."
 
-	para "some say they"
-	line "still do, but"
 
-	para "they only open to"
-	line "the best trainers"
-	cont "in KANTO."
+	para "I heard they're"
+	line "opening up a new"
+
+	;para "they only open to"
+	;line "the best trainers"
+	;cont "in KANTO."
+
+	para "TM DEPOT down-"
+	line "stairs."
+
+	para "I wonder if they'll"
+	line "let me in<...>"
+
 	done
 ; 0x70e85
 

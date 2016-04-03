@@ -250,7 +250,7 @@ UnknownText_0x1a2662: ; 0x1a2662
 	text "Bugs aren't birds."
 
 	para "Tons more fun"
-	cont "to groom though!"
+	line "to groom though!"
 	done
 ; 0x1a2686
 

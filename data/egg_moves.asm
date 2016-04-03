@@ -181,6 +181,11 @@ VenonatEggMoves:
 	db SCREECH
 	db MIMIC
 	db SWIFT
+	db DOUBLE_EDGE
+	db BIDE
+	db REFLECT
+	db PSYWAVE
+	db SCREECH
 	db $ff
 
 DiglettEggMoves:

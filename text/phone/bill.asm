@@ -69,7 +69,7 @@ BillPhoneFullText: ; 0x1b45ed
 
 	para $14, ", your BOX"
 	line "is full!"
-	done
+	prompt
 
 BillPhoneNewlyFullText: ; 0x1b4652
 	text "Hi, ", $14, "?"
@@ -81,7 +81,7 @@ BillPhoneNewlyFullText: ; 0x1b4652
 	para "That last #MON"
 	line "you sent filled"
 	cont "your BOX up."
-	done
+	prompt
 
 BillWholePCFullText:
 	text "Wow, you filled"

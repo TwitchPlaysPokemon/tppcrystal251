@@ -167,7 +167,7 @@ BikerJoelSeenText: ; 0x1ad15c
 
 	para "BEE positive!"
 
-	para "<...>heh."
+	para "<...> Heh."
 	done
 ; 0x1ad178
 
@@ -190,9 +190,9 @@ UnknownText_0x1ad196: ; 0x1ad196
 BikerGlennSeenText: ; 0x1ad1e0
 	text "Beauty is in"
 	line "the eye of the"
-	cont "beeholder!"
+	cont "bee-holder!"
 
-	para "<...>heh."
+	para "<...> Heh."
 	done
 ; 0x1ad203
 
@@ -209,7 +209,7 @@ UnknownText_0x1ad225: ; 0x1ad225
 
 BikerCharlesSeenText: ; 0x1ad25c
 	text "I made it! I can't"
-	line "beelieve it!"
+	line "bee-lieve it!"
 
 	para "<...>"
 

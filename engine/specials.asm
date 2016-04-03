@@ -201,6 +201,7 @@ SpecialsPointers:: ; c029
 	add_special CalculateTowerWinnings
 	add_special CalculateTowerWinningsOnQuit
 	add_special CalculateTowerVictory
+	add_special Special_CheckRematches
 	add_special SpecialNone
 ; c224
 
@@ -714,16 +715,25 @@ BillBoxSwitchCheck: ;from current box, return first box with space or 0 if entir
 
 .foundspace
 	pop af
-	dec a ;back to truecount
+	dec a ; back to truecount
 	ld [ScriptVar], a
 	ld [EngineBuffer1], a
 	ret
 
-
 BillBoxSwitch:
+	ld hl, wc608
+	ld de, $d000
+	ld bc, $1e0
+	ld a, $6
+	call FarCopyWRAM
 	ld a, [EngineBuffer1]
 	ld e, a
-	callab Special_BillChangeBox
+	callba Special_BillChangeBox
+	ld de, wc608
+	ld hl, $d000
+	ld bc, $1e0
+	ld a, $6
+	call FarCopyWRAM
 	ret
 
 CalculateTowerWinnings: ;NOTE, decs wcf64. calculate winnings of the battle tower based on # of wins and partycount, result is in hProduct
@@ -812,3 +822,9 @@ CalculateTowerVictory:
 	call Multiply
 	jr GiveBattleTowerMoney
 
+Special_CheckRematches:
+	ld hl, EventFlags + (EVENT_FALKNER_REMATCH >> 3)
+	ld b, 2
+	call CountSetBits
+	ld [ScriptVar], a
+	ret

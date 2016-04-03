@@ -34,38 +34,8 @@ UnknownScript_0x19b3dd: ; 0x19b3dd
 ; 0x19b3ea
 
 RematchCheck:
-	checkevent EVENT_BROCK_REMATCH
-	iffalse UnknownScript_0x19b3ea
-	checkevent EVENT_MISTY_REMATCH
-	iffalse UnknownScript_0x19b3ea
-	checkevent EVENT_SURGE_REMATCH
-	iffalse UnknownScript_0x19b3ea
-	checkevent EVENT_ERIKA_REMATCH
-	iffalse UnknownScript_0x19b3ea
-	checkevent EVENT_JANINE_REMATCH
-	iffalse UnknownScript_0x19b3ea
-	checkevent EVENT_SABRINA_REMATCH
-	iffalse UnknownScript_0x19b3ea
-	checkevent EVENT_BLAINE_REMATCH
-	iffalse UnknownScript_0x19b3ea
-	checkevent EVENT_BLUE_REMATCH
-	iffalse UnknownScript_0x19b3ea
-	checkevent EVENT_FALKNER_REMATCH
-	iffalse UnknownScript_0x19b3ea
-	checkevent EVENT_BUGSY_REMATCH
-	iffalse UnknownScript_0x19b3ea
-	checkevent EVENT_WHITNEY_REMATCH
-	iffalse UnknownScript_0x19b3ea
-	checkevent EVENT_MORTY_REMATCH
-	iffalse UnknownScript_0x19b3ea
-	checkevent EVENT_PRYCE_REMATCH
-	iffalse UnknownScript_0x19b3ea
-	checkevent EVENT_CHUCK_REMATCH
-	iffalse UnknownScript_0x19b3ea
-	checkevent EVENT_JASMINE_REMATCH
-	iffalse UnknownScript_0x19b3ea
-	checkevent EVENT_CLAIR_REMATCH
-	iffalse UnknownScript_0x19b3ea
+	special Special_CheckRematches
+	if_less_than 16, UnknownScript_0x19b3ea
 	writetext OakBeforeBattle
 	waitbutton
 	closetext
@@ -135,9 +105,10 @@ OakAfterDefeatText:
 	done
 
 OakAfterDefeat: ; 0x19b3ea
-	writetext UnknownText_0x19b4a2
 	checkevent EVENT_OAK_KNOWS_DEX_FULL
 	iftrue SkipfterDefeatDexCheck
+	writetext UnknownText_0x19b4a2
+	waitbutton
 	special ProfOaksPCBoot
 	checkcode VAR_DEXCAUGHT
 	if_equal 251, PGKOak_FullDex
@@ -149,6 +120,7 @@ SkipfterDefeatDexCheck:
 
 OakAfterE4:
 	writetext UnknownText_0x19b4a2
+	waitbutton
 	special ProfOaksPCBoot
 	checkcode VAR_DEXCAUGHT
 	if_equal 251, PGKOak_FullDex
@@ -176,10 +148,10 @@ OakAfterAllText:
 	done
 
 UnknownScript_0x19b3ea: ; 0x19b3ea
-	writetext UnknownText_0x19b4a2
-	waitbutton
 	checkevent EVENT_OAK_KNOWS_DEX_FULL
 	iftrue .skip_dex_check
+	writetext UnknownText_0x19b4a2
+	waitbutton
 	special ProfOaksPCBoot
 	checkcode VAR_DEXCAUGHT
 	if_equal 251, PGKOak_FullDex

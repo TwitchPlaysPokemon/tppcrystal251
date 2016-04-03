@@ -121,7 +121,7 @@ OddEgg1:
 	db NO_ITEM
 	db THUNDERSHOCK, CHARM, DIZZY_PUNCH, NONE
 	dw 02048 ; OT ID
-	dt 125 ; Exp
+	dt 0 ; Exp
 	; Stat exp
 	bigdw 0
 	bigdw 0
@@ -148,7 +148,7 @@ OddEgg2:
 	db NO_ITEM
 	db THUNDERSHOCK, CHARM, DIZZY_PUNCH, NONE
 	dw 00256 ; OT ID
-	dt 125 ; Exp
+	dt 0 ; Exp
 	; Stat exp
 	bigdw 0
 	bigdw 0
@@ -174,7 +174,7 @@ OddEgg2:
 	db NO_ITEM
 	db POUND, CHARM, DIZZY_PUNCH, NONE
 	dw 04096 ; OT ID
-	dt 125 ; Exp
+	dt 0 ; Exp
 	; Stat exp
 	bigdw 0
 	bigdw 0
@@ -200,7 +200,7 @@ OddEgg2:
 	db NO_ITEM
 	db POUND, CHARM, DIZZY_PUNCH, NONE
 	dw 00768 ; OT ID
-	dt 125 ; Exp
+	dt 0 ; Exp
 	; Stat exp
 	bigdw 0
 	bigdw 0
@@ -226,7 +226,7 @@ OddEgg2:
 	db NO_ITEM
 	db SING, CHARM, DIZZY_PUNCH, NONE
 	dw 04096 ; OT ID
-	dt 125 ; Exp
+	dt 0 ; Exp
 	; Stat exp
 	bigdw 0
 	bigdw 0
@@ -252,7 +252,7 @@ OddEgg2:
 	db NO_ITEM
 	db SING, CHARM, DIZZY_PUNCH, NONE
 	dw 00768 ; OT ID
-	dt 125 ; Exp
+	dt 0 ; Exp
 	; Stat exp
 	bigdw 0
 	bigdw 0
@@ -278,7 +278,7 @@ OddEgg2:
 	db NO_ITEM
 	db POUND, LICK, DIZZY_PUNCH, NONE
 	dw 03584 ; OT ID
-	dt 125 ; Exp
+	dt 0 ; Exp
 	; Stat exp
 	bigdw 0
 	bigdw 0
@@ -304,7 +304,7 @@ OddEgg2:
 	db NO_ITEM
 	db POUND, LICK, DIZZY_PUNCH, NONE
 	dw 00512 ; OT ID
-	dt 125 ; Exp
+	dt 0 ; Exp
 	; Stat exp
 	bigdw 0
 	bigdw 0
@@ -330,7 +330,7 @@ OddEgg2:
 	db NO_ITEM
 	db EMBER, DIZZY_PUNCH, NONE, NONE
 	dw 02560 ; OT ID
-	dt 125 ; Exp
+	dt 0 ; Exp
 	; Stat exp
 	bigdw 0
 	bigdw 0
@@ -356,7 +356,7 @@ OddEgg2:
 	db NO_ITEM
 	db EMBER, DIZZY_PUNCH, NONE, NONE
 	dw 00512 ; OT ID
-	dt 125 ; Exp
+	dt 0 ; Exp
 	; Stat exp
 	bigdw 0
 	bigdw 0
@@ -382,7 +382,7 @@ OddEgg2:
 	db NO_ITEM
 	db QUICK_ATTACK, LEER, DIZZY_PUNCH, NONE
 	dw 03072 ; OT ID
-	dt 125 ; Exp
+	dt 0 ; Exp
 	; Stat exp
 	bigdw 0
 	bigdw 0
@@ -408,7 +408,7 @@ OddEgg2:
 	db NO_ITEM
 	db QUICK_ATTACK, LEER, DIZZY_PUNCH, NONE
 	dw 00512 ; OT ID
-	dt 125 ; Exp
+	dt 0 ; Exp
 	; Stat exp
 	bigdw 0
 	bigdw 0
@@ -434,7 +434,7 @@ OddEgg2:
 	db NO_ITEM
 	db TACKLE, DIZZY_PUNCH, NONE, NONE
 	dw 02560 ; OT ID
-	dt 125 ; Exp
+	dt 0 ; Exp
 	; Stat exp
 	bigdw 0
 	bigdw 0
@@ -460,7 +460,7 @@ OddEgg2:
 	db NO_ITEM
 	db TACKLE, DIZZY_PUNCH, NONE, NONE
 	dw 00256 ; OT ID
-	dt 125 ; Exp
+	dt 0 ; Exp
 	; Stat exp
 	bigdw 0
 	bigdw 0
