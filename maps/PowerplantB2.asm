@@ -329,7 +329,7 @@ PowerplantB2_MapEventHeader:
 	; warps
 	db 2
 	warp_def 31, 35, 2, GROUP_POWERPLANTB1, MAP_POWERPLANTB1
-	warp_def 31, 5, 2, GROUP_ROUTE_10_NORTH, MAP_ROUTE_10_NORTH
+	warp_def 31, 5, 3, GROUP_ROUTE_10_NORTH, MAP_ROUTE_10_NORTH
 
 	; coord events
 	db 0

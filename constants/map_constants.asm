@@ -164,7 +164,6 @@ MAP_N_A   EQU -1
 	mapgroup BILLS_HOUSE, 4, 4
 	mapgroup ROUTE_4, 9, 20
 	mapgroup ROUTE_9, 9, 30
-	mapgroup ROUTE_10_NORTH, 9, 10
 	mapgroup ROUTE_24, 9, 10
 	mapgroup ROUTE_25, 9, 30
 	mapgroup CERULEAN_CITY, 18, 20
