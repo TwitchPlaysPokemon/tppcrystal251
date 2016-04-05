@@ -721,8 +721,19 @@ Function9289: ; 9289
 	jr nz, .loop
 
 	ld de, Unkn1Pals
-	xor a ; Rust
-	call Function976b
+	
+	push de
+	push af
+	ld hl, BackpicPalletes
+	ld a, [PlayerPalette]
+	sla a
+	sla a
+	ld e, a
+	ld d, 0
+	add hl, de
+	pop af
+	pop de
+	
 	call Function9643
 	ld a, $1 ; Azure (same as Falkner)
 	call Function976b
@@ -807,13 +818,9 @@ Function9289: ; 9289
 	call ByteFill
 	hlcoord 14, 1, AttrMap
 	ld bc, $0705
-	ld a, [PlayerGender]
-	and a
+	
 	ld a, 0
-	jr z, .asm_92f6
-	ld a, 1
 
-.asm_92f6
 	call Function9663
 	hlcoord 18, 1, AttrMap
 	ld [hl], $1

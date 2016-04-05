@@ -647,7 +647,7 @@ UnknownText_0x18d840: ; 0x18d840
 
 UnknownText_0x18d8b1: ; 0x18d8b1
 	text "You know young"
-	line "Master LANCE?"
+	line "MASTER LANCE?"
 
 	para "He looks so much"
 	line "like our MASTER"
