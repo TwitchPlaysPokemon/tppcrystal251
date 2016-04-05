@@ -22,15 +22,15 @@ BugCatcherScript_0x18e04a: ; 0x18e04a
 ; 0x18e04d
 
 UnknownText_0x18e04d: ; 0x18e04d
-	text "There's no MASTER"
-	line "BALL here. #"
+	text "There are no ULTRA"
+	line "BALLS here<...>"
 
-	para "BALLS will have"
-	line "to do."
+	para "#BALLS will"
+	line "have to do."
 
 	para "I wish KURT would"
 	line "make me some of"
-	cont "his custom BALLS."
+	cont "his custom BALLS!"
 	done
 ; 0x18e0b6
 
