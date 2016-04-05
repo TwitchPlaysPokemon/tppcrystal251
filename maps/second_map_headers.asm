@@ -19,7 +19,7 @@
 	map_header_2 CianwoodCity, CIANWOOD_CITY, $35, EAST ; 0x94e74
 	connection east, ROUTE_41, Route41, 0, 0, 27, CIANWOOD_CITY
 
-	map_header_2 GoldenrodCity, GOLDENROD_CITY, $35, NORTH | SOUTH ; 0x94e8c
+	map_header_2 GoldenrodCity, GOLDENROD_CITY, 53, NORTH | SOUTH
 	connection north, ROUTE_35, Route35, 5, 0, 10, GOLDENROD_CITY
 	connection south, ROUTE_34, Route34, 5, 0, 10, GOLDENROD_CITY
 
@@ -454,6 +454,7 @@
 	map_header_2 GoldenrodDeptStoreRoof, GOLDENROD_DEPT_STORE_ROOF, $24, NONE ; 0x95fcc
 	map_header_2 GoldenrodGameCorner, GOLDENROD_GAME_CORNER, $0, NONE ; 0x95fd8
 	map_header_2 GoldenrodPokeCenter1F, GOLDENROD_POKECENTER_1F, $0, NONE ; 0x95fe4
+	map_header_2 GoldenrodBoutique, GOLDENROD_BOUTIQUE, 0, NONE
 	map_header_2 GoldenrodPokeComCenter2FMobile, GOLDENROD_POKECOM_CENTER_2F_MOBILE, $0, NONE ; 0x95ff0
 	map_header_2 IlexForestAzaleaGate, ILEX_FOREST_AZALEA_GATE, $0, NONE ; 0x95ffc
 	map_header_2 Route34IlexForestGate, ROUTE_34_ILEX_FOREST_GATE, $0, NONE ; 0x96008

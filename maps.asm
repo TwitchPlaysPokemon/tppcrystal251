@@ -711,3 +711,8 @@ SECTION "BlackthornGymRematch2F", ROMX
 INCLUDE "maps/BlackthornGymRematch2F.asm"
 SECTION "BlackthornGymRematch2F Blockdata", ROMX
 BlackthornGymRematch2F_BlockData: INCBIN "maps/BlackthornGymRematch2F.blk"
+
+SECTION "GoldenrodBoutique", ROMX
+INCLUDE "maps/GoldenrodBoutique.asm"
+SECTION "GoldenrodBoutique Blockdata", ROMX
+GoldenrodBoutique_BlockData: INCBIN "maps/GoldenrodBoutique.blk"
