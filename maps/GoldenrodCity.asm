@@ -298,12 +298,15 @@ MapGoldenrodCitySignpost9Script: ; 0x198a56
 ; 0x198a59
 
 MapGoldenrodCitySignpost10Script: ; 0x198a59
-	jumpstd pokecentersign
+	jumptext UnknownText_0x199004
 ; 0x198a5c
 
 MapGoldenrodCitySignpost11Script: ; 0x198a5c
 	jumptext UnknownText_0x199022
 ; 0x198a5f
+
+MapGoldenrodCitySignpost12Script: 
+	jumptext BoutiqueSignText
 
 ;MovementData_0x198a5f: ; 0x198a5f
 ;	step_right
@@ -543,15 +546,20 @@ UnknownText_0x198fee: ; 0x198fee
 	done
 ; 0x199004
 
-;UnknownText_0x199004: ; 0x199004
-;	text "For Mobile Tips!"
-;	line "#COM CENTER"
-;	done
-; 0x199022
+UnknownText_0x199004:
+	text "Heal Your #MON!"
+	line "#COM CENTER"
+	done
 
 UnknownText_0x199022: ; 0x199022
 	text "Blooming Beautiful"
 	line "FLOWER SHOP"
+	done
+	
+; 0x199042
+BoutiqueSignText: ; 0x199022
+	text "Stay fresh!"
+	line "GOLDENROD BOUTIQUE"
 	done
 ; 0x199042
 
@@ -631,7 +639,7 @@ GoldenrodCity_MapEventHeader: ; 0x1991d1
 	db 0, 0
 
 	; warps
-	db 15
+	db 16
 	warp_def $7, $18, 1, GROUP_GOLDENROD_GYM, MAP_GOLDENROD_GYM
 	warp_def $1d, $1d, 1, GROUP_GOLDENROD_BIKE_SHOP, MAP_GOLDENROD_BIKE_SHOP
 	warp_def $15, $1f, 1, GROUP_GOLDENROD_HAPPINESS_RATER, MAP_GOLDENROD_HAPPINESS_RATER
@@ -647,12 +655,13 @@ GoldenrodCity_MapEventHeader: ; 0x1991d1
 	warp_def $5, $9, 8, GROUP_UNDERGROUND_PATH_SWITCH_ROOM_ENTRANCES, MAP_UNDERGROUND_PATH_SWITCH_ROOM_ENTRANCES
 	warp_def $1d, $9, 5, GROUP_UNDERGROUND_PATH_SWITCH_ROOM_ENTRANCES, MAP_UNDERGROUND_PATH_SWITCH_ROOM_ENTRANCES
 	warp_def $1b, $e, 1, GROUP_GOLDENROD_POKECENTER_1F, MAP_GOLDENROD_POKECENTER_1F
+	warp_def 15, 25, 1, GROUP_GOLDENROD_BOUTIQUE, MAP_GOLDENROD_BOUTIQUE
 
 	; xy triggers
 	db 0
 
 	; signposts
-	db 12
+	db 14
 	signpost 14, 10, $0, MapGoldenrodCitySignpost0Script
 	signpost 17, 4, $0, MapGoldenrodCitySignpost1Script
 	signpost 27, 26, $0, MapGoldenrodCitySignpost2Script
@@ -664,7 +673,9 @@ GoldenrodCity_MapEventHeader: ; 0x1991d1
 	signpost 6, 8, $0, MapGoldenrodCitySignpost8Script
 	signpost 30, 10, $0, MapGoldenrodCitySignpost9Script
 	signpost 27, 17, $1, MapGoldenrodCitySignpost10Script
+	signpost 27, 16, $1, MapGoldenrodCitySignpost10Script
 	signpost 6, 30, $0, MapGoldenrodCitySignpost11Script
+	signpost 15, 26, $0, MapGoldenrodCitySignpost12Script
 
 	; people-events
 	db 15
