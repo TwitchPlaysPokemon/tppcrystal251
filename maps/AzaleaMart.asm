@@ -25,7 +25,7 @@ UnknownText_0x18e04d: ; 0x18e04d
 	text "There are no ULTRA"
 	line "BALLS here<...>"
 
-	para "#BALLS will"
+	para "# BALLS will"
 	line "have to do."
 
 	para "I wish KURT would"
