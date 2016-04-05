@@ -30161,17 +30161,36 @@ LinkOK:
 	ret
 
 .itemFailure
-	ld hl, StringMoveIncompatible ;Finish this part (just tell the player that the pokemon can't be traded)
-	call PrintText
-	ret
+	hlcoord 0, 12
+	ld b, $4
+	ld c, $12
+	ld d, h
+	ld e, l
+	callba Function4d35b
+	ld hl, StringItemIncompatible
+	bccoord 1, 14
+	jp Function13e5
 
 BattleCheck: ;If mode is battle & linked game isn't TPP, then cancel.
 	ld a, [wLinkMode]
 	cp $3
 	jp nz, LinkOK
-	ld hl, StringMoveIncompatible ;Finish this part (just tell the player that the pokemon can't be traded)
+	ld hl, StringItemIncompatible ;Finish this part (just tell the player that the pokemon can't be traded)
 	call PrintText
 	ret
+	
+StringItemIncompatible: ; 0x4d3fe
+	text_jump UnknownText_0x1c4183
+	db "@"
+
+_StringItemIncompatible: ; 28ece
+	db   "A #mon in your"
+	next "party is holding"
+	cont "an item that"
+	cont "can't be traded"
+	cont "over."
+	done
+
 
 Function283b2: ; 283b2
 	ld de, UnknownText_0x283ed
