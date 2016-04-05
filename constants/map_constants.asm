@@ -164,7 +164,6 @@ MAP_N_A   EQU -1
 	mapgroup BILLS_HOUSE, 4, 4
 	mapgroup ROUTE_4, 9, 20
 	mapgroup ROUTE_9, 9, 30
-	mapgroup ROUTE_10_NORTH, 13, 13
 	mapgroup ROUTE_24, 9, 10
 	mapgroup ROUTE_25, 9, 30
 	mapgroup CERULEAN_CITY, 18, 20
@@ -227,7 +226,6 @@ MAP_N_A   EQU -1
 	mapgroup GOLDENROD_GAME_CORNER, 7, 10
 	mapgroup GOLDENROD_POKECENTER_1F, 8, 16
 	mapgroup GOLDENROD_POKECOM_CENTER_2F_MOBILE, 16, 16
-	mapgroup GOLDENROD_BOUTIQUE, 4, 6
 	mapgroup ILEX_FOREST_AZALEA_GATE, 4, 5
 	mapgroup ROUTE_34_ILEX_FOREST_GATE, 4, 5
 	mapgroup DAY_CARE, 4, 5
