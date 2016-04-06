@@ -413,8 +413,9 @@ UnknownText_0x5ea61: ; 0x5ea61
 
 	para "For me it all"
 	line "started with using"
-	cont "SMOG on a grass"
-	cont "-type #MON."
+
+	para "SMOG on a Grass-"
+	line "type #MON."
 	done
 ; 0x5eaa4
 
