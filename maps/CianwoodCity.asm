@@ -458,7 +458,7 @@ CianwoodCity_MapEventHeader: ; 0x1a0772
 	person_event SPRITE_ROCK, 31, 14, $18, 0, 0, -1, -1, 0, 0, 0, RockScript_0x1a00d1, -1
 	person_event SPRITE_ROCK, 23, 8, $18, 0, 0, -1, -1, 0, 0, 0, RockScript_0x1a00d1, -1
 	person_event SPRITE_POKEFAN_F, 50, 14, $5, 0, 1, -1, -1, 0, 0, 0, PokefanFScript_0x1a0084, -1
-	person_event SPRITE_SUPER_NERD, 25, 15, $7, 0, 0, -1, -1, 8 + PAL_OW_BLUE, 0, 0, ObjectEvent, EVENT_EUSINE_IN_CIANWOOD_CITY
+	person_event SPRITE_AZALEA_ROCKET, 25, 15, $7, 0, 0, -1, -1, 8 + PAL_OW_BLUE, 0, 0, ObjectEvent, EVENT_EUSINE_IN_CIANWOOD_CITY
 	person_event SPRITE_SUICUNE, 18, 14, $1, 0, 0, -1, -1, 8 + PAL_OW_BLUE, 0, 0, ObjectEvent, EVENT_SAW_SUICUNE_AT_CIANWOOD_CITY
 ; 0x1a0867
 

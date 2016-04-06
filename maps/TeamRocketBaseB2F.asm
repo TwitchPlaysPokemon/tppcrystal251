@@ -374,6 +374,7 @@ UnknownScript_0x6d184: ; 0x6d184
 	setevent EVENT_SECURITY_CAMERA_3
 	setevent EVENT_SECURITY_CAMERA_4
 	setevent EVENT_SECURITY_CAMERA_5
+	variablesprite SPRITE_AZALEA_ROCKET, SPRITE_SUPER_NERD
 	end
 ; 0x6d1d7
 
