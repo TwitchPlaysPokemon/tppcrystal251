@@ -419,12 +419,18 @@ Continue: ; 5d65
 	ld a, [wd4b5]
 	cp $1
 	jr z, .asm_5dd7
+	cp $2
+	jr z, .after_red
 	ld a, $f2
 	ld [$ff9f], a
 	jp Function5e5d
 
 .asm_5dd6
 	ret
+
+.after_red
+	call Function5de2
+	jp Function5e5d
 
 .asm_5dd7
 	ld a, $e ; SPAWN_NEW_BARK
@@ -436,8 +442,6 @@ Continue: ; 5d65
 Function5de2: ; 5de2
 	ld a, $1a ; SPAWN_MT_SILVER
 	ld [wd001], a
-; 5de7
-
 Function5de7: ; 5de7
 	xor a
 	ld [wd4b5], a
@@ -54854,6 +54858,7 @@ BeatRed_Credits:: ; 86455
 	call Function2ed3
 	ld a, $2
 	ld [wd4b5], a
+	callba Function14b85
 	ld a, [StatusFlags]
 	ld b, a
 	callba PlayCredits_109847

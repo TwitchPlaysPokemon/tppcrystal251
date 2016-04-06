@@ -9943,6 +9943,10 @@ RampageConfusion:
 	; 2-3 turns of confusion
 	ld a, BATTLE_VARS_SUBSTATUS3
 	call GetBattleVarAddr
+	bit SUBSTATUS_CONFUSED, [hl]
+	pop de
+	ret nz
+	push de
 	set SUBSTATUS_CONFUSED, [hl]
 	call BattleRandom
 	and $1

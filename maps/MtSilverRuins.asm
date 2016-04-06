@@ -57,7 +57,6 @@ MtSilverRuinsElmScript:
 	writetext ElmText_MtSilverRuinsFinalBattleAfter_Part2
 	waitbutton
 	closetext
-	special Special_FadeToBlack
 	pause 30
 	special HealParty
 	refreshscreen $0
