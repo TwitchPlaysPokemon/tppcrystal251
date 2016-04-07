@@ -9,6 +9,8 @@ VioletGym_MapScriptHeader: ; 0x683c0
 FalknerScript_0x683c2: ; 0x683c2
 	faceplayer
 	loadfont
+	checkevent EVENT_BEAT_ELM
+	iftrue FalknerPostgameRematchScript
 	checkevent EVENT_FALKNER_REMATCH
 	iftrue FalknerAfterRematch
 	checkevent EVENT_SET_BY_OAK_AFTER_16_BADGES
@@ -66,8 +68,6 @@ FalknerRematchScript:
 	loadfont
 
 FalknerAfterRematch:
-	checkevent EVENT_BEAT_ELM
-	iftrue FalknerPostgameRematchScript
 	writetext FalknerAfterRematchText
 	waitbutton
 	closetext
