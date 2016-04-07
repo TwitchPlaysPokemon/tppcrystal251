@@ -8,8 +8,8 @@ NarrowFontGFX:
 INCBIN "gfx/misc/font_narrow.w64.1bpp"
 MPPals:
 	RGB 5, 6, 8
-	RGB 0, 0, 0
-	RGB 0, 0, 0
+	RGB 6, 10, 12
+	RGB 6, 14, 12
 	RGB 31, 31, 31
 	RGB 31, 31, 31
 	RGB 7, 31, 7
@@ -233,6 +233,29 @@ MusicPlayer::
 	pop bc
 	dec b
 	jr nz, .mptilemap2loop
+	xor a
+	ld b, 14
+	ld de, 13
+.borderloop
+	ld [hl], $fc
+	inc hl
+	ld c, 18
+.borderloop2
+	ld [hli], a
+	inc a
+	dec c
+	jr nz, .borderloop2
+	ld [hl], $fc
+	add hl, de
+	dec b
+	jr nz, .borderloop
+	ld [hl], $fd
+	inc hl
+	ld bc, 18
+	ld a, $fb
+	call ByteFill
+	ld a, $fd
+	ld [VBGMap1 + $233], a
 	fill 0, VTiles1, $1000
 	ld a, 1
 	ld [rVBK], a
@@ -241,7 +264,7 @@ MusicPlayer::
 	call ByteFill
 	fill 9, VBGMap0 + $100, 128
 	fill 8, VBGMap0 + $180, 128
-	fill 8, VBGMap1, 192
+	fill 8, VBGMap1, 96
 	fill 0, VTiles2, $800
 	ld a, 10 ; ch1
 	ld hl, VBGMap1
@@ -276,7 +299,7 @@ MusicPlayer::
 	ld [hli], a
 	ld [hli], a
 	ld hl, VBGMap1 + $30
-	ld a, 10
+	ld a, 10 ; visual intensities
 	ld [hli], a
 	inc a
 	ld [hli], a
@@ -284,6 +307,32 @@ MusicPlayer::
 	ld [hli], a
 	inc a
 	ld [hli], a
+	xor a
+	ld b, 14
+	ld de, 13
+	ld hl, VBGMap1 + $60
+.border2loop
+	ld [hl], $8
+	inc hl
+	ld c, 18
+.border2loop2
+	ld [hli], a
+	dec c
+	jr nz, .border2loop2
+	ld [hl], $8
+	add hl, de
+	dec b
+	jr nz, .border2loop
+	ld bc, 20
+	ld a, $8
+	call ByteFill
+	ld a, $28 ; xflip
+	ld [VBGMap1 + $4c], a
+	ld [VBGMap1 + $53], a
+	ld a, $48 ; yflip
+	ld [VBGMap1 + $220], a
+	ld a, $68 ; xyflip
+	ld [VBGMap1 + $233], a
 	xor a
 	ld [rVBK], a
 	ld [hSCX], a
@@ -294,7 +343,7 @@ MusicPlayer::
 	di
 	ld a, rSCX % $100
 	ld [hLCDStatCustom], a
-	ld a, $60
+	ld a, $5f
 	ld [rLYC], a
 	ld a, $50 ; VBlank + LYC
 	ld [rSTAT], a
@@ -972,36 +1021,9 @@ GetSongInfo2:
 .noname
 	ld de, BlankName
 	ret
-	
-PER_PAGE EQU 15
 
 SongSelector:
-	ld bc, MPKeymapEnd-MPKeymap
-	ld hl, MPKeymap
-	decoord 0, 17
-	call CopyBytes
-	ld a, " "
-	hlcoord 0, 0
-	ld bc, 340
-	call ByteFill
-	call ClearSprites
-	hlcoord 0, 0
-	ld de, MusicListText
-	call PlaceString
-	textbox 0, 1, $12, $10
-	hlcoord 0, 9
-	ld [hl], $eb
-	ld a, [wSongSelection]
-	ld [wSelectorTop], a ; backup, in case of B button
-	cp 8
-	jr nc, .noOverflow
-	ld b, a
-	ld a, NUM_MUSIC - 1
-	add b
-.noOverflow
-	sub 7
-	ld [wSongSelection], a
-	call UpdateSelectorNames
+	; TODO finish transition in
 .loop
 	call DelayFrame_MP
 	call GetJoypad
@@ -1013,18 +1035,12 @@ SongSelector:
 	jbutton D_RIGHT, .right
 	jr .loop
 .a
+	ld de, MUSIC_NONE
+	call PlayMusic
 	ld a, [wSongSelection]
-	cp NUM_MUSIC - 7
-	jr c, .noOverflow2
-	sub NUM_MUSIC - 8
-	jr .finish
-.noOverflow2
-	add 7
-.finish
-	ld [wSongSelection], a
 	ld e, a
 	ld d, 0
-	callba PlayMusic2
+	call PlayMusic
 	ret
 .down
 	ld a, [wSongSelection]
@@ -1048,7 +1064,7 @@ SongSelector:
 	jr .loop
 .left
 	ld a, [wSongSelection]
-	sub 10
+	sub 14
 	jr nc, .noOverflowL
 	ld a, NUM_MUSIC - 1
 .noOverflowL
@@ -1057,7 +1073,7 @@ SongSelector:
 	jp .loop
 .right
 	ld a, [wSongSelection]
-	add 10
+	add 14
 	cp NUM_MUSIC
 	jr c, .noOverflowR
 	ld a, 1
@@ -1069,91 +1085,9 @@ SongSelector:
 	ld a, [wSelectorTop]
 	ld [wSongSelection], a
 	ret
-
-UpdateSelectorNames:
-	call GetSongInfo
-	ld a, [wSongSelection]
-	ld c, a
-	ld b, 0
-	push hl
-	pop de
-.loop
-	hlcoord 1, 2
-	ld a, c
-	ld [wSelectorCur], a
-	push bc
-	ld a, b
-	ld bc, $0014
-	call AddNTimes
-	call MPLPlaceString
-	inc de
-	inc de
-	inc de
-	inc de
-	pop bc
-	inc b
-	inc c
-	ld a, c
-	cp NUM_MUSIC
-	jr c, .noOverflow
-	ld c, 1
-	ld de, SongInfo
-.noOverflow
-	ld a, b
-	cp PER_PAGE
-	jr nz, .loop
-	ret
 	
-MPLPlaceString:
-	push hl
-	ld a, " "
-	ld hl, StringBuffer2
-	ld bc, 3
-	call ByteFill
-	ld hl, StringBuffer2
-	push de
-	ld de, wSelectorCur
-	ld bc, $103
-	call PrintNum
-	pop de
-	ld [hl], "│"
-	inc hl
-	ld b, 0
-.loop
-	ld a, [de]
-	ld [hl], a
-	cp "@"
-	jr nz, .next
-	ld [hl], " "
-	dec de
-.next
-	inc hl
-	inc de
-	inc b
-	ld a, b
-	cp 14
-	jr c, .loop
-	ld a, [de]
-	cp "@"
-	jr nz, .notend
-	ld [hl], a
-	jr .last
-.notend
-	dec hl
-	ld [hl], "<...>"
-	inc hl
-	ld [hl], "@"
-.loop2
-	inc de
-	ld a, [de]
-	cp "@"
-	jr nz, .loop2
-.last
-	pop hl
-	push de
-	ld de, StringBuffer2
-	call PlaceString
-	pop de
+UpdateSelectorNames:
+	; TODO
 	ret
 	
 PlaceString_MP:
@@ -1777,8 +1711,9 @@ MPTilemap:
 MPTilemapEnd
 	
 MPTilemap2:
-	db $9f,$db,$ff,$9f,$dc,$ff,$9f,$dd,$ba,$bb,$bc,$bd,$ff,$9f,$de,$be,$fa,$ff,$ff,$fb
+	db $9f,$db,$ff,$9f,$dc,$ff,$9f,$dd,$ba,$bb,$bc,$bd,$ff,$9f,$de,$be,$fa,$ff,$ff,$ff
 	db $e0,$e1,$e2,$e3,$e4,$cb,$e5,$dc,$e6,$e7,$af,$be,$bf,$d8,$d9,$ff,$ff,$ff,$ff,$ff
+	db $fd,$fb,$fb,$fb,$fb,$fb,$fe,$e0,$e1,$e2,$d8,$d9,$fe,$fb,$fb,$fb,$fb,$fb,$fb,$fd
 MPTilemap2End
 
 MPKeymap:
