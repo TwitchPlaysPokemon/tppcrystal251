@@ -9,11 +9,11 @@ SaveMusic::
 
 	ld bc, wMapMusic - MusicPlaying
 	ld hl, MusicPlaying
-	ld de, $d000
+	ld de, SoundEngineBackup
 	ld a, $4
 	di
 	ld [rSVBK], a
-	ld a, [$d000]
+	ld a, [SoundEngineBackup]
 	and a
 	jr nz, .skip
 	call CopyBytes
@@ -39,7 +39,7 @@ RestoreMusic::
 	
 	ld bc, wMapMusic - MusicPlaying
 	ld de, MusicPlaying
-	ld hl, $d000
+	ld hl, SoundEngineBackup
 	ld a, $4
 	di
 	ld [rSVBK], a
@@ -52,9 +52,8 @@ RestoreMusic::
 
 .copy
 	call CopyBytes
-	ld hl, $d000
 	xor a
-	ld [hl], a
+	ld [SoundEngineBackup], a
 	
 .done
 	ld a, $1
@@ -74,7 +73,7 @@ InitializeMusic::
 	ld a, $4
 	ld [rSVBK], a
 	xor a
-	ld [$d000], a
+	ld [SoundEngineBackup], a
 
 	pop af
 	ld [rSVBK], a
@@ -86,7 +85,7 @@ DeleteSavedMusic::
 	di
 	ld [rSVBK], a
 	xor a
-	ld [$d000], a
+	ld [SoundEngineBackup], a
 	ld a, $1
 	ld [rSVBK], a
 	ei

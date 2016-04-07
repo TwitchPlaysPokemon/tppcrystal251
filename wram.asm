@@ -2568,7 +2568,12 @@ w3_d800:: ; ds BG_MAP_WIDTH * SCREEN_HEIGHT ($240)
 	ds 1
 w3_d801::
 
-SECTION "WRAM 4", WRAMX[$d800], BANK[$4] ; seems like this bank is unused
+; $4:d100 is used as LYOverrides in music player
+; since LCD doesn't check for current WRAM bank
+SECTION "WRAM 4 RM", WRAMX[$d200], BANK[$4]
+SoundEngineBackup::
+
+SECTION "WRAM 4 MP", WRAMX[$d800], BANK[$4] ; seems like this bank is unused
 
 wMPTileMapBackup:: ds 20 * 18
 wMPFlags:: ds 1

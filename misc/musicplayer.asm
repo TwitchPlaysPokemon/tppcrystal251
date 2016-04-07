@@ -199,9 +199,9 @@ MusicPlayer::
 	ld a, b
 	or c
 	jr nz, .loopi
-	ld hl, VBGMap1
+	ld hl, VBGMap0 + $180
 	ld de, MPTilemap
-	ld b, (MPTilemapEnd - MPTilemap)/20
+	ld b, (MPTilemapEnd - MPTilemap) / 20
 .mptilemaploop
 	push bc
 	ld c, 20
@@ -216,6 +216,23 @@ MusicPlayer::
 	pop bc
 	dec b
 	jr nz, .mptilemaploop
+	ld hl, VBGMap1
+	ld de, MPTilemap2
+	ld b, (MPTilemap2End - MPTilemap2) / 20
+.mptilemap2loop
+	push bc
+	ld c, 20
+.mptilemap2loop2
+	ld a, [de]
+	ld [hli], a
+	inc de
+	dec c
+	jr nz, .mptilemap2loop2
+	ld bc, 12
+	add hl, bc
+	pop bc
+	dec b
+	jr nz, .mptilemap2loop
 	fill 0, VTiles1, $1000
 	ld a, 1
 	ld [rVBK], a
@@ -223,10 +240,11 @@ MusicPlayer::
 	ld bc, 256
 	call ByteFill
 	fill 9, VBGMap0 + $100, 128
+	fill 8, VBGMap0 + $180, 128
 	fill 8, VBGMap1, 192
 	fill 0, VTiles2, $800
 	ld a, 10 ; ch1
-	ld hl, VBGMap1 + $80
+	ld hl, VBGMap1
 	ld [hli], a
 	ld [hli], a
 	ld [hli], a
@@ -248,7 +266,7 @@ MusicPlayer::
 	ld [hli], a
 	ld [hli], a
 	ld [hli], a
-	ld hl, VBGMap1 + $a0
+	ld hl, VBGMap1 + $20
 	inc a ; mpname
 	rept 8
 	ld [hli], a
@@ -257,7 +275,7 @@ MusicPlayer::
 	ld [hli], a
 	ld [hli], a
 	ld [hli], a
-	ld hl, VBGMap1 + $b0
+	ld hl, VBGMap1 + $30
 	ld a, 10
 	ld [hli], a
 	inc a
@@ -268,11 +286,17 @@ MusicPlayer::
 	ld [hli], a
 	xor a
 	ld [rVBK], a
-	ld a, $60
+	ld [hSCX], a
+	ld a, $80
 	ld [hWY], a
 	ld [rWY], a
+	fill 0, LYOverrides, LYOverridesEnd - LYOverrides + 1
 	di
-	ld a, $10 ; VBlank
+	ld a, rSCX % $100
+	ld [hLCDStatCustom], a
+	ld a, $60
+	ld [rLYC], a
+	ld a, $50 ; VBlank + LYC
 	ld [rSTAT], a
 	xor a
 	ld [rIF], a
@@ -1323,8 +1347,15 @@ RenderNarrowText::
 	
 DelayFrame_MP:
 ; music player VBlank routine
+	ld a, [rLY]
+	cp $90
+	jr nc, .toolate
+	cp $60
+	jr nc, .overline
+.toolate
 	halt
-	; TODO
+.overline
+	halt
 	ld a, [hSCX]
 	ld [rSCX], a
 	ld a, [wNoteTile]
@@ -1413,29 +1444,29 @@ DelayFrame_MP:
 ; ch1-2 duty
 	ld a, [wC1Duty]
 	add $cc
-	ld [VBGMap1 + $82], a
+	ld [VBGMap1 + $2], a
 	ld a, [wC2Duty]
 	add $cc
-	ld [VBGMap1 + $85], a
+	ld [VBGMap1 + $5], a
 ; ch4 noise set
 	ld a, [MusicNoiseSampleSet]
 	add $da
-	ld [VBGMap1 + $91], a
+	ld [VBGMap1 + $11], a
 ; visual intensities
 	ld a, [wC1Vol]
 	add $e8
-	ld [VBGMap1 + $b0], a
+	ld [VBGMap1 + $30], a
 	ld a, [wC2Vol]
 	add $e8
-	ld [VBGMap1 + $b1], a
+	ld [VBGMap1 + $31], a
 	ld a, [wC3Vol]
 	add $e8
-	ld [VBGMap1 + $b2], a
+	ld [VBGMap1 + $32], a
 	ld a, [wC4Vol]
 	add $e8
-	ld [VBGMap1 + $b3], a
+	ld [VBGMap1 + $33], a
 	ld a, [wMutedChannels]
-	ld hl, VBGMap1 + $b0
+	ld hl, VBGMap1 + $30
 	rept 4
 	rrca
 	jr nc, .no\@
@@ -1510,6 +1541,7 @@ _w_ = _w_ + 1
 	ld a, [hSCX]
 	inc a
 	ld [hSCX], a
+	ld [LYOverrides + $90], a ; in case very long operation happened
 	ld a, [wNoteMask]
 	rrca
 	jr nc, .noc
@@ -1646,14 +1678,14 @@ DrawSongInfo@VBlank:
 	ld hl, wMPFlags
 	bit 6, [hl]
 	jr nz, .origin22
-	ld hl, VBGMap1 + $60
+	ld hl, VBGMap0 + $1e0
 	ld a, $ff
 	rept 10
 	ld [hli], a
 	endr
 	jp .done
 .origin22
-	ld hl, VBGMap1 + $60
+	ld hl, VBGMap0 + $1e0
 	ld a, $d0 ; ad
 	ld [hli], a
 	ld a, $d1 ; di
@@ -1742,10 +1774,12 @@ MPTilemap:
 	db $c8,$c9,$ca,$cb,$8f,$a0,$a1,$a2,$a3,$a4,$a5,$a6,$a7,$a8,$a9,$aa,$ab,$ac,$ad,$ae
 	db $c0,$c1,$c2,$c3,$8f,$80,$81,$82,$83,$84,$85,$86,$87,$88,$89,$8a,$8b,$8c,$8d,$8e
 	db $ff,$ff,$ff,$ff,$ff,$ff,$ff,$ff,$ff,$ff,$b0,$b1,$b2,$b3,$b4,$b5,$b6,$b7,$b8,$b9
+MPTilemapEnd
+	
+MPTilemap2:
 	db $9f,$db,$ff,$9f,$dc,$ff,$9f,$dd,$ba,$bb,$bc,$bd,$ff,$9f,$de,$be,$fa,$ff,$ff,$fb
 	db $e0,$e1,$e2,$e3,$e4,$cb,$e5,$dc,$e6,$e7,$af,$be,$bf,$d8,$d9,$ff,$ff,$ff,$ff,$ff
-
-MPTilemapEnd
+MPTilemap2End
 
 MPKeymap:
 	db  0,1,2,3,4,5,6,0,1,2,3,4,5,6,0,1,2,3,4,5
