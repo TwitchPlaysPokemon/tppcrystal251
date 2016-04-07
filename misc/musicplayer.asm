@@ -727,11 +727,11 @@ DrawNote:
 	and a
 	jr z, .nonote
 ; get the note from tone frequency
-; e = ⌊96.5-12*log₂(k/Freq("C1")/(2048-[wCxFreq]))⌋
-;   = ⌊96.5-12*(log₂(k/Freq("C1"))-log₂(2048-[wCxFreq]))⌋
+; e = ⌊96.5-12*log₂(k/Freq("C2")/(2048-[wCxFreq]))⌋
+;   = ⌊96.5-12*(log₂(k/Freq("C2"))-log₂(2048-[wCxFreq]))⌋
 ; k = 131072 when wTmpCh != 2
 ; k =  65536 when wTmpCh =  2
-; Freq("C1") is 32.7032Hz in A440
+; Freq("C2") is 65.4064Hz in A440
 	ld hl, wC1Freq
 	add hl, bc
 	ld a, [hli]
@@ -774,26 +774,26 @@ DrawNote:
 	ld d, a ; -1-log₂(2048-[wCxFreq])
 	ld a, [wTmpCh]
 	cp 2
-	ld hl, $bf8 ; log₂(65536/Freq("C1"))+1
+	ld hl, $af8 ; log₂(65536/Freq("C2"))+1
 	jr z, .ch3
-	ld hl, $cf8 ; log₂(131072/Freq("C1"))+1
+	ld hl, $bf8 ; log₂(131072/Freq("C2"))+1
 .ch3
-	add hl, de ; log₂(k/Freq("C1"))-log₂(2048-[wCxFreq])
+	add hl, de ; log₂(k/Freq("C2"))-log₂(2048-[wCxFreq])
 	ld b, h
 	ld c, l
 	add hl, hl
 	add hl, bc
 	add hl, hl
-	add hl, hl ; 12*(log₂(k/Freq("C1"))-log₂(2048-[wCxFreq]))
+	add hl, hl ; 12*(log₂(k/Freq("C2"))-log₂(2048-[wCxFreq]))
 	ld a, h
 	cpl
 	ld b, a
 	ld a, l
 	cpl
-	ld c, a ; -1-12*(log₂(k/Freq("C1"))-log₂(2048-[wCxFreq]))
+	ld c, a ; -1-12*(log₂(k/Freq("C2"))-log₂(2048-[wCxFreq]))
 	ld hl, $6180 ; 97.5
 	add hl, bc
-	ld e, h ; ⌊96.5-12*(log₂(k/Freq("C1"))-log₂(2048-[wCxFreq]))⌋
+	ld e, h ; ⌊96.5-12*(log₂(k/Freq("C2"))-log₂(2048-[wCxFreq]))⌋
 	ld a, [wTmpCh]
 	add a
 	ld c, a
@@ -1284,7 +1284,7 @@ DelayFrame_MP:
 	ld a, [rLY]
 	cp $90
 	jr nc, .toolate
-	cp $60
+	cp $5f
 	jr nc, .overline
 .toolate
 	halt
