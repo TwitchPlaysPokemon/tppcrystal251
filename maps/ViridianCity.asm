@@ -218,16 +218,13 @@ UnknownText_0x1a9d86: ; 0x1a9d86
 ; 0x1a9daa
 
 UnknownText_0x1a9daa: ; 0x1a9daa
-	text "Wow!"
+	text "I've heard that"
+	line "celebrities hang"
+	cont "out by the pond."
 
-	para "I have heard that"
-	line "there are celeb-"
-	cont "-rities here!"
-
-	para "You can see them"
-	line "hanging out by"
-	cont "the pond!"
-
+	para "What kind of"
+	line "celebrities are"
+	cont "they, I wonder?"
 	done
 ; 0x1a9def
 

@@ -438,7 +438,7 @@ UnknownText_0x1a1a1c: ; 0x1a1a1c
 	cont "bug #MON!"
 
 	para "They vary depen-"
-	line "-ding on the time"
+	line "ding on the time"
 	cont "of the day!"
 	done
 ; 0x1a1a6a

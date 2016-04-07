@@ -6989,7 +6989,6 @@ BattleCommand3e:
 	jr nz, .already_rampaging
 	; We're done rampaging
 	res SUBSTATUS_RAMPAGE, [hl]
-	; Do we have Safeguard up?
 .already_rampaging
 	ld b, $3d ; rampage
 	jp SkipToBattleCommand

@@ -219,7 +219,7 @@ PicnickerHeidiSeenText: ; 0x1ab03f
 	line "the POWER PLANT!"
 
 	para "It was electri-"
-	line "-fying! Heh."
+	line "fying! Heh."
 	done
 ; 0x1ab074
 

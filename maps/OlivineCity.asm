@@ -391,8 +391,8 @@ OlivineCity_MapEventHeader: ; 0x1a8cce
 	person_event SPRITE_STANDING_YOUNGSTER, 17, 24, $3, 0, 0, -1, -1, 8 + PAL_OW_RED, 0, 0, StandingYoungsterScript_0x1a88a6, -1
 	person_event SPRITE_SAILOR, 25, 21, $2, 1, 1, -1, -1, 0, 0, 0, SailorScript_0x1a88ba, -1
 	person_event SPRITE_OLIVINE_RIVAL, 15, 14, $6, 0, 0, -1, -1, 0, 0, 0, ObjectEvent, EVENT_SILVER_IN_OLIVINE_CITY
-	person_event SPRITE_ROCKET, 32, 32, $9, 0, 0, -1, -1, 0, 0, 0, OlivineRocket1Script, EVENT_CLEARED_ROCKET_HIDEOUT
-	person_event SPRITE_ROCKET, 33, 33, $7, 0, 0, -1, -1, 0, 0, 0, OlivineRocket2Script, EVENT_CLEARED_ROCKET_HIDEOUT
+	person_event SPRITE_AZALEA_ROCKET, 32, 32, $9, 0, 0, -1, -1, 0, 0, 0, OlivineRocket1Script, EVENT_CLEARED_ROCKET_HIDEOUT
+	person_event SPRITE_AZALEA_ROCKET, 33, 33, $7, 0, 0, -1, -1, 0, 0, 0, OlivineRocket2Script, EVENT_CLEARED_ROCKET_HIDEOUT
 	person_event SPRITE_TAUROS, 32, 33, $16, 0, 0, -1, -1, 0, 0, 0, ObjectEvent, EVENT_CLEARED_ROCKET_HIDEOUT
 ; 0x1a8d72
 

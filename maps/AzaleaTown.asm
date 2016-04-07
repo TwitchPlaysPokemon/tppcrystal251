@@ -103,6 +103,7 @@ UnknownScript_0x198091: ; 0x198091
 	applymovement $b, MovementData_0x198144
 	playsound SFX_EXIT_BUILDING
 	disappear $b
+	variablesprite SPRITE_AZALEA_ROCKET, SPRITE_ROCKET
 	dotrigger $0
 	waitsfx
 	playmapmusic

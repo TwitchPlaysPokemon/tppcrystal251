@@ -524,9 +524,10 @@ FisherRaymondBeatenText: ; 0x705f7
 
 UnknownText_0x70611: ; 0x70611
 	text "With this FERA-"
-	line "-LIGATR, I can"
-	cont "head to the"
-	cont "Battle Tower!"
+	line "LIGATR, I can"
+
+	para "take on the"
+	line "BATTLE TOWER!"
 	done
 ; 0x70632
 

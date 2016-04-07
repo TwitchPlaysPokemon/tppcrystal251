@@ -572,8 +572,8 @@ UnknownText_0x5710d: ; 0x5710d
 ; 0x5718a
 
 UnknownText_0x5718a: ; 0x5718a
-	text "The floor is alw-"
-	line "-ays covered in"
+	text "The floor is al-"
+	line "ways covered in"
 
 	para "salt for some"
 	line "reason<...>"

@@ -693,6 +693,9 @@ variablesprite: macro
 IF \1 >= SPRITE_VARS
 	db \1 - SPRITE_VARS
 ELSE
+IF \1 >= $10
+	fail "invalid id"
+ENDC
 	db \1 ; variable-sprite ID
 ENDC
 	db \2 ; sprite

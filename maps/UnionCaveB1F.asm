@@ -221,11 +221,13 @@ PokemaniacCalvinBeatenText: ; 0x5a217
 ; 0x5a230
 
 UnknownText_0x5a230: ; 0x5a230
-	text "I caught my HITMO-"
-	line "NCHAN downstairs."
+	text "I caught my"
+	line "HITMONCHAN down-"
+	cont "stairs."
 
-	para "They are common"
-	line "during the day!"
+	para "They train down"
+	line "there from dawn to"
+	cont "dusk."
 	done
 ; 0x5a28e
 
