@@ -169,7 +169,7 @@ MusicPlayer::
 	ld [rSVBK], a
 	
 	fill 0, wMPFlags, wMPInitClearEnd - wMPFlags
-	fill $ff, wChLastNotes, 6
+	fill $ff, wChLastNotes, 9
 	ld a, $a0
 	ld [wNoteTile], a
 	ld a, $80
@@ -187,18 +187,13 @@ MusicPlayer::
 	call DisableLCD
 	ld a, $63
 	ld [rLCDC], a
-	xor a
-	ld d, a
-	ld bc, 32*12
+	ld d, $80
+	ld bc, 32 * 8
 	ld hl, VBGMap0
-.loopi
-	ld a, d
-	ld [hli], a
-	inc d
-	dec bc
-	ld a, b
-	or c
-	jr nz, .loopi
+	call FillInc
+	ld d, 0
+	ld bc, 32 * 4
+	call FillInc
 	ld hl, VBGMap0 + $180
 	ld de, MPTilemap
 	ld b, (MPTilemapEnd - MPTilemap) / 20
@@ -233,7 +228,7 @@ MusicPlayer::
 	pop bc
 	dec b
 	jr nz, .mptilemap2loop
-	xor a
+	ld a, $80
 	ld b, 14
 	ld de, 13
 .borderloop
@@ -314,7 +309,11 @@ MusicPlayer::
 .border2loop
 	ld [hl], $8
 	inc hl
-	ld c, 18
+	ld [hl], $4
+	inc hl
+	ld [hl], $4
+	inc hl
+	ld c, 16
 .border2loop2
 	ld [hli], a
 	dec c
@@ -362,12 +361,7 @@ MusicPlayer::
 	ld a, 1
 	jp .redraw
 .loop
-	ld a, [wMPFlags]
-	bit 0, a
-	call nz, RenderWaveform
-	call UpdateVisualIntensity
-	call DrawNotes
-	call DelayFrame_MP
+	call UpdateDataAndDelayFrame
 	
 	call GetJoypad
 	ld a, [wSelectionState]
@@ -453,7 +447,7 @@ MusicPlayer::
 	ld e, a
 	ld d, 0
 	call PlayMusic
-	fill $ff, wChLastNotes, 6
+	fill $ff, wChLastNotes, 9
 	jp .loop
 
 .start
@@ -546,7 +540,7 @@ MusicPlayer::
 	jr nz, .noOverflow
 	ld a, 3
 	ld [wChannelSelector], a
-	ld b, 4
+	ld b, 3
 	jr .movecursor
 .noOverflow
 	ld [wChannelSelector], a
@@ -561,7 +555,7 @@ MusicPlayer::
 	jr nz, .noOverflow2
 	xor a
 	ld [wChannelSelector], a
-	ld b, -4
+	ld b, -3
 	jr .movecursor
 .noOverflow2
 	ld [wChannelSelector], a
@@ -600,12 +594,22 @@ MusicPlayer::
 	ld a, [hl]
 	add b
 	ld [hl], a
-	call DelayFrame_MP
+	call UpdateDataAndDelayFrame
 	pop hl
 	pop bc
 	dec c
 	jr nz, .movecursorloop
 	jp .loop
+	
+FillInc:
+	ld a, d
+	ld [hli], a
+	inc d
+	dec bc
+	ld a, b
+	or c
+	jr nz, FillInc
+	ret
 
 RenderWaveform:
 	fill 0, wWaveformTmpGFX, 64
@@ -716,7 +720,7 @@ DrawNote:
 	jr nz, .shiftloop
 .skipshift
 	srl b
-	jr c, .nonote
+	jp c, .nonote
 	ld a, [wTmpCh]
 	add a
 	ld c, a
@@ -795,12 +799,14 @@ DrawNote:
 	add hl, bc
 	ld e, h ; ⌊96.5-12*(log₂(k/Freq("C2"))-log₂(2048-[wCxFreq]))⌋
 	ld a, [wTmpCh]
-	add a
 	ld c, a
 	ld b, 0
 	ld hl, wChLastNotes
 	add hl, bc
+	add hl, bc
+	add hl, bc
 	ld a, e
+	ld [hli], a
 	srl a
 	srl a
 	and $fe
@@ -812,10 +818,11 @@ DrawNote:
 	ret
 .nonote
 	ld a, [wTmpCh]
-	add a
 	ld c, a
 	ld b, 0
 	ld hl, wChLastNotes
+	add hl, bc
+	add hl, bc
 	add hl, bc
 	ld a, $ff
 	ld [hli], a
@@ -969,7 +976,7 @@ DrawSongInfo:
 	ld bc, wMusicNameGFX
 	ld a, 30
 	call PlaceString_MP
-	call DelayFrame_MP
+	call UpdateDataAndDelayFrame
 	pop de
 	inc de
 	push de
@@ -1023,9 +1030,137 @@ GetSongInfo2:
 	ret
 
 SongSelector:
+	call UpdateDataAndDelayFrame
+	ld a, $ff
+	ld [wDrawMask], a
+.traninloop
+	ld a, [wDrawMask]
+	inc a
+	ld [wDrawMask], a
+	ld [hSCY], a
+	cp $80
+	jp z, .tranindone
+	ld b, a
+	ld c, a
+	ld a, $80
+	sub b
+	ld [hWY], a
+	ld a, $5f
+	sub b
+	jr nc, .noclrint
+	ld a, $10 ; vblank only
+	ld [rSTAT], a
+	xor a
+	ld [LYOverrides + $90], a
+.noclrint
+	ld [rLYC], a
+	ld d, NUM_MUSIC
+	ld a, c
+	and 7
+	jr nz, .nonewline
+	ld a, c
+	add a
+	swap a
+	sub 7
+	ld b, a
+	ld a, [wSongSelection]
+	jr c, .dec
+	add b
+	cp d
+	jr c, .noovf
+	sub d
+	inc a
+	jr .noovf
+.dec
+	add b
+	dec a
+	cp d
+	jr c, .noovf2
+	add d
+	jr .noovf
+.noovf2
+	inc a
+.noovf
+	push af
+	ld hl, [sp + 1]
+	ld d, h
+	ld e, l
+	ld hl, wMusicListChars + 4
+	ld a, "@"
+	ld [hld], a
+	ld a, ":"
+	ld [hld], a
+	ld a, " "
+	ld [hld], a
+	ld [hld], a
+	ld [hl], a
+	ld bc, $0103
+	call PrintNum
+	ld hl, wMusicListChars
+	ld de, wMusicListGFX
+	call RenderNarrowText
+	fill 0, wMusicListGFX + 16, 128
+	pop af
+	call GetSongInfo
+	jr c, .nonewline
+	ld a, [hli]
+	ld d, [hl]
+	ld e, a
+	ld hl, wMusicListChars + 4
+	ld bc, wMusicListGFX + 16
+	ld a, 32
+	call PlaceString_MP
+.nonewline
+; calculate the copy address
+	ld a, [wDrawMask]
+	sub 8
+	jr c, .nolinecopy
+	cp $70
+	jr nc, .nolinecopy
+	and 7
+	ld e, a
+	ld d, 0
+	ld hl, wMusicListGFX
+	add hl, de
+	ld a, l
+	ld [wLineCopySrc], a
+	ld a, h
+	ld [wLineCopySrc + 1], a
+	sla e
+	ld a, [wDrawMask]
+	sub 8
+	and $f8
+	ld l, a
+	ld h, d ; x8
+	add a
+	swap a
+	ld c, a
+	ld b, h
+	add hl, bc ; x9
+	add hl, hl ; x18
+	add hl, hl ; x36
+	add hl, hl ; x72
+	add hl, hl ; x144
+	add hl, hl ; x288
+	add hl, de
+	ld bc, VTiles1
+	add hl, bc
+	ld a, l
+	ld [wLineCopyDest], a
+	ld a, h
+	ld [wLineCopyDest + 1], a
+.nolinecopy
+	ld a, [wMPFlags]
+	bit 0, a
+	call nz, RenderWaveform
+	call UpdateVisualIntensity
+	call DrawNotes
+	call DelayFrame_MP2
+	jp .traninloop
+.tranindone
 	; TODO finish transition in
 .loop
-	call DelayFrame_MP
+	;call DelayFrame_MP3
 	call GetJoypad
 	jbutton A_BUTTON, .a
 	jbutton B_BUTTON, .exit
@@ -1041,7 +1176,7 @@ SongSelector:
 	ld e, a
 	ld d, 0
 	call PlayMusic
-	ret
+	jp .tranout
 .down
 	ld a, [wSongSelection]
 	inc a
@@ -1084,6 +1219,10 @@ SongSelector:
 .exit
 	ld a, [wSelectorTop]
 	ld [wSongSelection], a
+	ret
+	
+.tranout
+	; TODO
 	ret
 	
 UpdateSelectorNames:
@@ -1279,7 +1418,14 @@ RenderNarrowText::
 	endr
 	jp .return
 	
-DelayFrame_MP:
+UpdateDataAndDelayFrame:
+	ld a, [wMPFlags]
+	bit 0, a
+	call nz, RenderWaveform
+	call UpdateVisualIntensity
+	call DrawNotes
+	
+DelayFrame_MP::
 ; music player VBlank routine
 	ld a, [rLY]
 	cp $90
@@ -1302,18 +1448,18 @@ DelayFrame_MP:
 	bit 2, a
 	jr z, .noclear
 	push bc
-	ld hl, VTiles2
+	ld hl, VTiles1
 	add hl, bc
 	ld bc, $1f0
 	xor a
-	call .clr
-	ld de, $f000
+	call ClearRow
+	call ClearRow
+	ld de, $f800
 	add hl, de
-	call .clr
 	ld a, 1
 	ld [rVBK], a
 	xor a
-	call .clr
+	call ClearRow
 	ld [rVBK], a
 	ld hl, wMPFlags
 	res 2, [hl]
@@ -1322,11 +1468,11 @@ DelayFrame_MP:
 ; note display draw
 .noclear
 ; ch1
-	ld a, [wChLastNotes]
+	ld a, [wChLastNotes + 1]
 	cp $ff
 	jr z, .drawch2
-	call .getidx
-	ld a, [wChLastNotes + 1]
+	call Getidx
+	ld a, [wChLastNotes + 2]
 	ld e, a
 	ld d, 0
 	add hl, de
@@ -1339,11 +1485,11 @@ DelayFrame_MP:
 	xor a
 	ld [rVBK], a
 .drawch2
-	ld a, [wChLastNotes + 2]
+	ld a, [wChLastNotes + 4]
 	cp $ff
 	jr z, .drawch3
-	call .getidx
-	ld a, [wChLastNotes + 3]
+	call Getidx
+	ld a, [wChLastNotes + 5]
 	ld e, a
 	ld d, 0
 	add hl, de
@@ -1357,11 +1503,11 @@ DelayFrame_MP:
 	xor a
 	ld [rVBK], a
 .drawch3
-	ld a, [wChLastNotes + 4]
+	ld a, [wChLastNotes + 7]
 	cp $ff
 	jr z, .drawduty
-	call .getidx
-	ld a, [wChLastNotes + 5]
+	call Getidx
+	ld a, [wChLastNotes + 8]
 	ld e, a
 	ld d, 0
 	add hl, de
@@ -1375,6 +1521,100 @@ DelayFrame_MP:
 	xor a
 	ld [rVBK], a
 .drawduty
+	call DelayFrame_MPCommon
+	ld a, [wMutedChannels]
+	ld hl, VBGMap1 + $30
+	rept 4
+	rrca
+	jr nc, .no\@
+	ld [hl], $f9
+.no\@
+	inc hl
+	endr
+_w_ = 0
+	rept 4
+	ld a, [wChannelSelectorOAM + _w_]
+	ld [$fe00 + _w_], a
+_w_ = _w_ + 1
+	endr
+; wave gfx copy if requested
+	ld a, [wMPFlags]
+	bit 3, a
+	jr nz, DelayFrame_MPPost
+	bit 0, a
+	jr z, .nowavecpy
+	ld a, 4
+	ld [Requested2bpp], a
+	ld a, wWaveformTmpGFX % $100
+	ld [Requested2bppSource], a
+	ld a, wWaveformTmpGFX / $100
+	ld [Requested2bppSource + 1], a
+	ld a, $a0
+	ld [Requested2bppDest], a
+	ld a, $8b
+	ld [Requested2bppDest + 1], a
+	ld a, 1
+	ld [rVBK], a
+	call _Serve2bppRequest
+	xor a
+	ld [rVBK], a
+	ld hl, wMPFlags
+	res 0, [hl]
+	jr DelayFrame_MPPost
+.nowavecpy
+; selector cursor copy
+	ld a, [wMPFlags]
+	bit 1, a
+	jr z, .noinfocpy
+	ld a, 2
+	ld [Requested1bpp], a
+	ld a, wSelectorGFX % $100
+	ld [Requested1bppSource], a
+	ld a, wSelectorGFX / $100
+	ld [Requested1bppSource + 1], a
+	ld a, $60
+	ld [Requested1bppDest], a
+	ld a, $8e
+	ld [Requested1bppDest + 1], a
+	ld a, 1
+	ld [rVBK], a
+	call _Serve1bppRequest
+	xor a
+	ld [rVBK], a
+	ld hl, wMPFlags
+	res 1, [hl]
+	jr DelayFrame_MPPost
+.noinfocpy
+	ld a, [wMPFlags]
+	bit 7, a
+	jr z, DelayFrame_MPPost
+	ld a, [wInfoDrawState]
+	ld hl, DrawSongInfo@VBlank
+	rst JumpTable
+
+DelayFrame_MPPost:
+; all vblank copies done
+	ld hl, wMPFlags
+	res 3, [hl]
+	ld a, [hSCX]
+	inc a
+	ld [hSCX], a
+	ld [LYOverrides + $90], a ; in case very long operation happened
+	ld a, [wNoteMask]
+	rrca
+	jr nc, .noc
+	ld a, [wNoteTile]
+	add $8
+	ld [wNoteTile], a
+	set 2, [hl]
+	ld a, $80
+.noc
+	ld [wNoteMask], a
+	call Joypad
+	callba _UpdateSound
+	ret
+	
+DelayFrame_MPCommon:
 ; ch1-2 duty
 	ld a, [wC1Duty]
 	add $cc
@@ -1399,25 +1639,231 @@ DelayFrame_MP:
 	ld a, [wC4Vol]
 	add $e8
 	ld [VBGMap1 + $33], a
-	ld a, [wMutedChannels]
-	ld hl, VBGMap1 + $30
-	rept 4
-	rrca
-	jr nc, .no\@
-	ld [hl], $f9
-.no\@
-	inc hl
-	endr
-_w_ = 0
-	rept 4
-	ld a, [wChannelSelectorOAM + _w_]
-	ld [$fe00 + _w_], a
-_w_ = _w_ + 1
-	endr
+	ret
+	
+DelayFrame_MP2Restart:
+	call DelayFrame_MPPost
+DelayFrame_MP2:
+; music list transition in VBlank routine
+	ld a, [rLYC]
+	ld b, a
+	and a
+	jr z, .overline
+	ld a, [rLY]
+	cp $90
+	jr nc, .toolate
+	cp b
+	jr nc, .overline
+.toolate
+	halt
+.overline
+	halt
+	ld a, b
+	and a
+	jr z, .noscroll
+	ld a, [hSCX]
+.noscroll
+	ld [rSCX], a
+	ld a, [hSCY]
+	ld [rSCY], a
+	ld a, [hWY]
+	ld [rWY], a
+	ld a, [wNoteTile]
+	ld c, a
+	ld b, 0
+	sla c
+	rl b
+; note display clear if requested
+	ld a, [wMPFlags]
+	bit 2, a
+	jr z, .noclear
+	ld a, [wDrawMask]
+	cp $60
+	jr nc, .noclear
+	push bc
+	ld hl, VTiles1
+	add hl, bc
+	ld bc, $1f0
+	ld a, [wDrawMask]
+	and a
+	jr nz, .clear1
+	xor a
+	call ClearRow
+	call ClearRow
+	ld de, $f800
+	add hl, de
+	ld a, 1
+	ld [rVBK], a
+	xor a
+	call ClearRow
+	jr .cleardone
+.clear1
+	dec a
+	call PartialClear
+	jr c, .clear1e
+.clear1d
+	ld de, $800
+	add hl, de
+.clear1e
+	ld a, [wDrawMask]
+	sub 33
+	jr nc, .clear2
+	xor a
+	call ClearRow
+	ld de, $f800
+	add hl, de
+	ld a, 1
+	ld [rVBK], a
+	xor a
+	call ClearRow
+	jr .cleardone
+.clear2
+	call PartialClear
+	ld a, 1
+	ld [rVBK], a
+	jr nc, .clear2d
+	ld de, $f800
+	add hl, de
+.clear2d
+	ld a, [wDrawMask]
+	sub 65
+	jr nc, .clear3
+	xor a
+	call ClearRow
+	jr .cleardone
+.clear3
+	call PartialClear
+.cleardone
+	ld [rVBK], a
+	ld hl, wMPFlags
+	res 2, [hl]
+	set 3, [hl]
+	pop bc
+; note display draw
+.noclear
+; ch1
+	ld a, [wDrawMask]
+	ld e, a
+	ld a, [wChLastNotes]
+	cp e
+	jr c, .drawch2
+	ld a, [wChLastNotes + 1]
+	cp $ff
+	jr z, .drawch2
+	call Getidx
+	ld a, [wChLastNotes + 2]
+	ld e, a
+	ld d, 0
+	add hl, de
+	ld a, [wNoteMask]
+	or [hl]
+	ld [hli], a
+	ld a, [wNoteMask]
+	or [hl]
+	ld [hl], a
+	xor a
+	ld [rVBK], a
+.drawch2
+	ld a, [wDrawMask]
+	ld e, a
+	ld a, [wChLastNotes + 3]
+	cp e
+	jr c, .drawch3
+	ld a, [wChLastNotes + 4]
+	cp $ff
+	jr z, .drawch3
+	call Getidx
+	jr c, .drawch3
+	ld a, [wChLastNotes + 5]
+	ld e, a
+	ld d, 0
+	add hl, de
+	ld a, [wNoteMask]
+	or [hl]
+	and [hl]
+	ld [hli], a
+	ld a, [wNoteMask]
+	or [hl]
+	ld [hl], a
+	xor a
+	ld [rVBK], a
+.drawch3
+	ld a, [wDrawMask]
+	ld e, a
+	ld a, [wChLastNotes + 6]
+	cp e
+	jr c, .drawduty
+	ld a, [wChLastNotes + 7]
+	cp $ff
+	jr z, .drawduty
+	call Getidx
+	jr c, .drawduty
+	ld a, [wChLastNotes + 8]
+	ld e, a
+	ld d, 0
+	add hl, de
+	ld a, [wNoteMask]
+	or [hl]
+	ld [hli], a
+	ld a, [wNoteMask]
+	or [hl]
+	and [hl]
+	ld [hl], a
+	xor a
+	ld [rVBK], a
+.drawduty
+	call DelayFrame_MPCommon
+	ld a, [wDrawMask]
+	ld b, a
+	ld a, $68
+	sub b
+	jr c, .zero1
+	ld [$fe04], a
+	ld b, 12
+	sub b
+	jr c, .zero2
+	ld [$fe08], a
+	sub b
+	jr c, .zero3
+	ld [$fe0c], a
+	sub b
+	jr c, .zero4
+	ld [$fe10], a
+	sub b
+	jr c, .zero5
+	ld [$fe14], a
+	sub b
+	jr c, .zero6
+	ld [$fe18], a
+	sub b
+	jr c, .zero7
+	ld [$fe1c], a
+	sub b
+	jr c, .zero8
+	ld [$fe20], a
+	jr .doneduty
+.zero1
+	xor a
+	ld [$fe04], a
+.zero2
+	ld [$fe08], a
+.zero3
+	ld [$fe0c], a
+.zero4
+	ld [$fe10], a
+.zero5
+	ld [$fe14], a
+.zero6
+	ld [$fe18], a
+.zero7
+	ld [$fe1c], a
+.zero8
+	ld [$fe20], a
+.doneduty
 ; wave gfx copy if requested
 	ld a, [wMPFlags]
 	bit 3, a
-	jr nz, .no1bppcpy
+	jp nz, DelayFrame_MP2Restart
 	bit 0, a
 	jr z, .nowavecpy
 	ld a, 4
@@ -1437,60 +1883,42 @@ _w_ = _w_ + 1
 	ld [rVBK], a
 	ld hl, wMPFlags
 	res 0, [hl]
-	jr .no1bppcpy
+	;jp DelayFrame_MP2Restart
 .nowavecpy
-; selector cursor copy
-	ld a, [wMPFlags]
-	bit 1, a
-	jr z, .noinfocpy
-	ld a, 2
-	ld [Requested1bpp], a
-	ld a, wSelectorGFX % $100
-	ld [Requested1bppSource], a
-	ld a, wSelectorGFX / $100
-	ld [Requested1bppSource + 1], a
-	ld a, $60
-	ld [Requested1bppDest], a
-	ld a, $8e
-	ld [Requested1bppDest + 1], a
-	ld a, 1
-	ld [rVBK], a
-	call _Serve1bppRequest
-	xor a
-	ld [rVBK], a
-	ld hl, wMPFlags
-	res 1, [hl]
-	jr .no1bppcpy
-.noinfocpy
-	ld a, [wMPFlags]
-	bit 7, a
-	jr z, .no1bppcpy
-	ld a, [wInfoDrawState]
-	ld hl, DrawSongInfo@VBlank
-	rst JumpTable
+; music list copy
+	ld a, [wDrawMask]
+	cp 8
+	jp c, .no1bppcpy
+	cp $78
+	jp nc, .no1bppcpy
+	ld [hSPBuffer], sp
+	ld a, [wLineCopySrc]
+	ld l, a
+	ld a, [wLineCopySrc + 1]
+	ld h, a
+	ld sp, hl
+	ld a, [wLineCopyDest]
+	ld l, a
+	ld a, [wLineCopyDest + 1]
+	ld h, a
+	ld bc, 15
+	rept 18
+	pop af
+	ld [hli], a
+	ld [hl], a
+	add hl, bc
+	add sp, 6
+	endr
+	ld a, [hSPBuffer]
+	ld l, a
+	ld a, [hSPBuffer + 1]
+	ld h, a
+	ld sp, hl
 .no1bppcpy
 ; all vblank copies done
-	ld hl, wMPFlags
-	res 3, [hl]
-	ld a, [hSCX]
-	inc a
-	ld [hSCX], a
-	ld [LYOverrides + $90], a ; in case very long operation happened
-	ld a, [wNoteMask]
-	rrca
-	jr nc, .noc
-	ld a, [wNoteTile]
-	add $8
-	ld [wNoteTile], a
-	set 2, [hl]
-	ld a, $80
-.noc
-	ld [wNoteMask], a
-	call Joypad
-	callba _UpdateSound
-	ret
+	jp DelayFrame_MPPost
 	
-.clr
+ClearRow:
 	rept 4
 	rept 16
 	ld [hli], a
@@ -1498,18 +1926,44 @@ _w_ = _w_ + 1
 	add hl, bc
 	endr
 	ret
-.getidx
+	
+PartialClear:
+	inc a
+	ld d, 32
+	cp d
+	ret nc
+	ld e, 8
+.loop1
+	and a
+	jr z, .loop2
+	inc hl
+	inc hl
+	dec d
+	dec a
+	dec e
+	jr nz, .loop1
+	add hl, bc
+	ld e, 8
+	jr .loop1
+.loop2
+	ld [hli], a
+	ld [hli], a
+	dec d
+	jr z, .done
+	dec e
+	jr nz, .loop2
+	add hl, bc
+	ld e, 8
+	jr .loop2
+.done
+	add hl, bc
+	scf
+	ret
+	
+Getidx:
 	cp $10
 	jr nc, .getidx2
-	cp $8
-	jr nc, .getidx1
-	add $90
-	add b
-	ld h, a
-	ld l, c
-	ret
-.getidx1
-	add $80
+	add $88
 	add b
 	ld h, a
 	ld l, c

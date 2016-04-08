@@ -2582,9 +2582,12 @@ wSelectionState:: ds 1
 wChannelSelectorOAM:: ds 4
 wNumNoteLines:: ds 1 ;
 wTmpCh:: ds 1 ;
-wChLastNotes:: ds 6
+wChLastNotes:: ds 9
 wNoteTile:: ds 1
 wNoteMask:: ds 1
+wDrawMask:: ds 1
+wLineCopySrc:: ds 2
+wLineCopyDest:: ds 2
 wInfoDrawState:: ds 1
 wVolTimer:: ds 1
 wNR10Sub:: ds 1
@@ -2618,11 +2621,13 @@ wWaveformTmp:: ds 16
 wWaveformTmpGFX:: ds 16 * 4
 wSelectorChars:: ds 5
 wSelectorGFX:: ds 8 * 4
+wMusicListChars:: ; reused
 wMusicNameChars:: ds 31
 wMusicComposerChars:: ds 31
 wMusicOriginChars:: ds 31
 wMusicAdditionalChars:: ds 21
 wMusicInfoCharsEnd::
+wMusicListGFX:: ; reused
 wMusicNameGFX:: ds 8 * 15
 wMusicComposerGFX:: ds 8 * 15
 wMusicOriginGFX:: ds 8 * 15

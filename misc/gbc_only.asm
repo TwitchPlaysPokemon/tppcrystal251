@@ -164,10 +164,11 @@ _BetBoy::
 	xor a
 	ld [rSCX], a
 	ld [rSCY], a
-	ld [rWX], a
-	ld [rWY], a
 	ld [rIF], a
 	ld [rIE], a
+	ld a, $ff
+	ld [rWX], a
+	ld [rWY], a
 	ld a, $61
 	ld [rLCDC], a
 	ld de, BetBoyGFX
