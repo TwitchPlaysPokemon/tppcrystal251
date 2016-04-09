@@ -20,6 +20,8 @@ UnknownScript_0x5400b: ; 0x5400b
 
 WhitneyScript_0x5400c: ; 0x5400c
 	faceplayer
+	checkevent EVENT_BEAT_ELM
+	iftrue WhitneyPostgameRematchScript
 	checkevent EVENT_WHITNEY_REMATCH
 	iftrue WhitneyAfterRematch
 	checkevent EVENT_SET_BY_OAK_AFTER_16_BADGES
@@ -561,15 +563,56 @@ GoldenrodGymGuyWinText: ; 0x546a7
 	line "about them, but"
 
 	para "fighting-type"
-	line "moves are not the"
-
-	para "best against them."
-	line "Sorry about that."
+	line "moves aren't the"
+	cont "best against them."
 
 	para "Poison would do"
-	line "wonders, though."
+	line "wonders, though!"
 	done
-; 0x546dd
+	
+WhitneyPostgameRematchScript:
+    writetext WhitneyPostgameRematchText
+    yesorno
+    iffalse .return
+    closetext
+    loadtrainer WHITNEY, 2
+    winlosstext WhitneyPostgameBeatenText, 0
+    startbattle
+    returnafterbattle
+    loadfont
+    writetext WhitneyPostgameAfterText
+    waitbutton
+.return
+    closetext
+    end
+	
+WhitneyPostgameRematchText:
+	text "Hey you!"
+
+	para "What are you"
+	line "doing back here?"
+
+	para "You wanna battle"
+	line "again?"
+
+	done
+	
+WhitneyPostgameBeatenText:
+	text "<...>Sniff<...>"
+	done
+	
+WhitneyPostgameAfterText:
+
+	text "<...>Snivel, hic<...>"
+
+	para "I promised myself"
+	line "I wouldn't cry"
+	cont "this time<...>"
+	
+	para "It's a pleasure"
+	line "battling you!"
+
+	done
 
 GoldenrodGym_MapEventHeader: ; 0x546dd
 	; filler
