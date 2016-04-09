@@ -29728,10 +29728,37 @@ Function2805d: ; 2805d
 ; 28177
 
 .moveFailure
-	ld hl, StringMoveIncompatible ;Finish this part (just tell the player that the pokemon can't be traded)
-	call PrintText
-	ret
-
+	hlcoord 0, 12
+	ld b, $4
+	ld c, $12
+	ld d, h
+	ld e, l
+	callba Function4d35b
+	ld hl, StringMoveIncompatible
+	bccoord 1, 14
+	call Function13e5
+	ld c, $40
+	jp DelayFrames
+	
+GoodMoveCheckYourTeam:
+	push af
+	push bc
+	push de
+	push hl
+	
+	ld a, 1
+	ld [wcc62], a ;Setting your team flag
+	
+	ld a, [OverworldMap + $8]
+	cp $1 ;Is it TPP or not? If true, we can skip the checks.
+	jp z, EndCompatibleMoveCheck
+	
+	ld hl, PartyMon1Moves ;Get move
+	ld de, TPPNewMoves ;Moves that will end the trade
+	ld c, $4 ;Total moves per Pokemon
+	ld a, [PartyCount] ;Your party size
+	jp MoveCheckProcess
+	
 ;c: Success
 ;nc: Failure
 GoodMoveCheck:
@@ -29739,15 +29766,20 @@ GoodMoveCheck:
 	push bc
 	push de
 	push hl
+	
+	ld a, 0
+	ld [wcc62], a ;Setting linked team flag
 
 	ld a, [OverworldMap + $8]
 	cp $1 ;Is it TPP or not? If true, we can skip the checks.
-	jr z, .endCompatibleMoveCheck
+	jp z, EndCompatibleMoveCheck
 
-	ld hl, OverworldMap + $1b ;Get move from linked
+	ld hl, OverworldMap + $17 ;Get move from linked
+	
 	ld de, TPPNewMoves ;Moves that will end the trade
 	ld c, $4 ;Total moves per Pokemon
 	ld a, [OverworldMap + $b] ;Linked party size
+MoveCheckProcess: 
 	push af
 
 ;a: Disqualifying move
@@ -29765,7 +29797,6 @@ GoodMoveCheck:
 	inc de ;Increase move to check
 	jr .checkLinkedMoveGroupLoop
 
-
 .endLinkedMoveGroup
 	ld de, TPPNewMoves ;Moves that will end the trade
 	dec c ; Decrease the checks
@@ -29776,17 +29807,36 @@ GoodMoveCheck:
 	pop af ;Get party size
 	dec a ;Decrease by 1
 	cp $0
-	jr z, .endCompatibleMoveCheck ;If it's the end, then end the checks
+	jp z, EndCompatibleMoveCheck ;If it's the end, then end the checks
 
 ;We're not at the end so let's continue the check
 	push af
-	ld de, $0028
+	ld de, $002c
 	add hl, de
 	ld de, TPPNewMoves
 	jr .checkLinkedMoveGroup
 
 .badMoveLink
+	ld a, b
+	ld [wcc60], a ;Storing bad move
+	ld hl, OverworldMap + $b
+	ld a, [wcc62]
+	cp $0
+	jr z, .linkedTeam
+	ld hl, PartySpecies
+	
+.linkedTeam
 	pop af
+	ld c, a
+	ld a, 6
+	sub c
+	
+	ld d, 0
+	ld e, a
+	add hl, de
+	ld a, [hl]
+	ld [wcc61], a ;Storing pokemon name
+	
 	pop hl
 	pop de
 	pop bc
@@ -29794,7 +29844,7 @@ GoodMoveCheck:
 	xor a ; Failure (nc)
 	ret
 
-.endCompatibleMoveCheck
+EndCompatibleMoveCheck:
 	pop hl
 	pop de
 	pop bc
@@ -29802,8 +29852,6 @@ GoodMoveCheck:
 	scf ;Success! (c)
 	ret
 
-
-;;;;
 GoodItemCheck:
 	push af
 	push bc
@@ -30150,6 +30198,9 @@ LinkOK:
 .asm_283a9
 	call GoodMoveCheck
 	jr nc, .moveFailure
+	
+	call GoodMoveCheckYourTeam
+	jr nc, .moveFailureYou
 
 	call GoodItemCheck
 	jr nc, .itemFailure
@@ -30160,9 +30211,50 @@ LinkOK:
 ; 283b2
 
 .moveFailure
-	ld hl, StringMoveIncompatible ;Finish this part (just tell the player that the pokemon can't be traded)
-	call PrintText
-	ret
+	ld a, [wcc61]
+	ld [wd265], a
+	call GetPokemonName
+	ld hl, StringBuffer1
+	ld de, StringBuffer3
+	ld bc, $000b
+	call CopyBytes
+
+	hlcoord 0, 12
+	ld b, $4
+	ld c, $12
+	ld d, h
+	ld e, l
+	callba Function4d35b
+	ld hl, StringMoveIncompatible
+	bccoord 1, 14
+	call Function13e5
+	ld c, $40
+	jp DelayFrames
+	
+.moveFailureYou
+	ld a, [wcc61]
+	ld [wd265], a
+	call GetPokemonName
+	ld hl, StringBuffer1
+	ld de, StringBuffer3
+	ld bc, $000b
+	call CopyBytes
+	
+	ld a, [wcc60]
+	ld [wd265], a
+	call GetMoveName
+
+	hlcoord 0, 12
+	ld b, $4
+	ld c, $12
+	ld d, h
+	ld e, l
+	callba Function4d35b
+	ld hl, StringMoveIncompatibleYou
+	bccoord 1, 14
+	call Function13e5
+	ld c, $40
+	jp DelayFrames
 
 .itemFailure
 	hlcoord 0, 12
@@ -30173,26 +30265,46 @@ LinkOK:
 	callba Function4d35b
 	ld hl, StringItemIncompatible
 	bccoord 1, 14
-	jp Function13e5
+	call Function13e5
+	ld c, $40
+	jp DelayFrames
 
 BattleCheck: ;If mode is battle & linked game isn't TPP, then cancel.
 	ld a, [wLinkMode]
 	cp $3
 	jp nz, LinkOK
-	ld hl, StringItemIncompatible ;Finish this part (just tell the player that the pokemon can't be traded)
-	call PrintText
-	ret
 	
-StringItemIncompatible: ; 0x4d3fe
-	text_jump UnknownText_0x1c4183
+	hlcoord 0, 12
+	ld b, $4
+	ld c, $12
+	ld d, h
+	ld e, l
+	callba Function4d35b
+	ld hl, StringCantBattle
+	bccoord 1, 14
+	ld c, $40
+	call DelayFrames
+	jp Function13e5
+	
+StringCantBattle: ; 0x4d3fe
+	text_jump StringCantBattleText
 	db "@"
 
-_StringItemIncompatible: ; 28ece
-	db   "A #mon in your"
+StringCantBattleText: ; 28ece
+	text "A TPP game can"
+	next "only battle with"
+	cont "another TPP game."
+	done
+	
+StringItemIncompatible: ; 0x4d3fe
+	text_jump StringItemIncompatibleText
+	db "@"
+
+StringItemIncompatibleText: ; 28ece
+	text "A #mon in your"
 	next "party is holding"
-	cont "an item that"
-	cont "can't be traded"
-	cont "over."
+	cont "an item that is"
+	cont "a TPP exclusive."
 	done
 
 
@@ -31698,17 +31810,36 @@ String28ebd: ; 28ebd
 String28ece: ; 28ece
 	db   "Too bad! The trade"
 	next "was canceled!@"
-
+	
 StringMoveIncompatible: ; 0x4d3fe
 	text_jump StringMoveIncompatibleText
 	db "@"
-
+	
 StringMoveIncompatibleText: ; 28ece
-	db   "Your friend has a"
-	next "#MON with a"
-	cont "move that is"
-	cont "incompatible with"
-	cont "this game."
+	text "Your friend's"
+	line "@"
+	text_from_ram StringBuffer3
+	text ""
+	cont "knows a move"
+	cont "that can't be"
+	cont "traded over"
+	done
+
+StringMoveIncompatibleYou: ; 0x4d3fe
+	text_jump StringMoveIncompatibleYouText
+	db "@"
+
+StringMoveIncompatibleYouText: ; 28ece
+	text "@"
+	text_from_ram StringBuffer3
+	text ""
+	line "knows the move"
+	cont "@"
+	text_from_ram StringBuffer1
+	text ""
+	cont "which can't be"
+	cont "traded over to"
+	cont "an official game."
 	done
 
 Function28eef: ; 28eef
