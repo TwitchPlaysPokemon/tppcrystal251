@@ -721,7 +721,7 @@ Function9289: ; 9289
 	jr nz, .loop
 
 	ld de, Unkn1Pals
-	
+
 	push de
 	push af
 	ld hl, BackpicPalletes
@@ -733,7 +733,7 @@ Function9289: ; 9289
 	add hl, de
 	pop af
 	pop de
-	
+
 	call Function9643
 	ld a, $1 ; Azure (same as Falkner)
 	call Function976b
@@ -818,7 +818,7 @@ Function9289: ; 9289
 	call ByteFill
 	hlcoord 14, 1, AttrMap
 	ld bc, $0705
-	
+
 	ld a, 0
 
 	call Function9663

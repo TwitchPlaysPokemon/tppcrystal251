@@ -305,7 +305,7 @@ MapGoldenrodCitySignpost11Script: ; 0x198a5c
 	jumptext UnknownText_0x199022
 ; 0x198a5f
 
-MapGoldenrodCitySignpost12Script: 
+MapGoldenrodCitySignpost12Script:
 	jumptext BoutiqueSignText
 
 ;MovementData_0x198a5f: ; 0x198a5f
@@ -555,7 +555,7 @@ UnknownText_0x199022: ; 0x199022
 	text "Blooming Beautiful"
 	line "FLOWER SHOP"
 	done
-	
+
 ; 0x199042
 BoutiqueSignText: ; 0x199022
 	text "Stay fresh!"

@@ -30178,7 +30178,7 @@ BattleCheck: ;If mode is battle & linked game isn't TPP, then cancel.
 	ld hl, StringItemIncompatible ;Finish this part (just tell the player that the pokemon can't be traded)
 	call PrintText
 	ret
-	
+
 StringItemIncompatible: ; 0x4d3fe
 	text_jump UnknownText_0x1c4183
 	db "@"

@@ -38,104 +38,104 @@ BoutiqueStylistScript:
 	if_equal $4, BoutiqueStylistScriptDone
 	if_equal $5, BoutiqueStylistScriptDone
 	end
-	
+
 BoutiqueStylistScriptDone:
 	writetext BoutiqueStylistTextExit
 	waitbutton
 	closetext
 	;showemote $0, $0, 15
 	end
-	
+
 BoutiqueStylistText1:
 	text "Welcome to the"
 	line "BOUTIQUE!"
-	
+
 	para "You seem like you"
 	line "want to change"
 	cont "your STYLE!"
-	
+
 	para "Would you like to"
 	line "change your STYLE?"
 	done
-	
+
 BoutiqueStylistText2:
 	text "Great! To change"
 	line "your STYLE, it'll"
 	cont "cost ", $f0, "500, OK?"
 	done
 
-BoutiqueStylistText3:	
+BoutiqueStylistText3:
 	text "Let's get started!"
-	
+
 	para "What is your"
 	line "favorite color?"
 	done
 	;change it
 
-BoutiqueStylistText4:		
+BoutiqueStylistText4:
 	para "Voila! All done!"
 	done
 
-BoutiqueStylistTextExit:	
+BoutiqueStylistTextExit:
 	text "Make sure to come"
 	line "back if you want"
-	
+
 	para "to change your"
 	line "STYLE again!"
 	done
-	
+
 BoutiqueStylistScriptNoMoney:
 	buttonsound
 	writetext BoutiqueStylistTextNoMoney
 	waitbutton
 	closetext
 	end
-	
-BoutiqueStylistTextNoMoney:	
+
+BoutiqueStylistTextNoMoney:
 	text "You don't seem to"
 	line "have enough money!"
-	
+
 	para "Come back when"
 	line "you get some!"
 	done
-	
+
 BoutiqueStylistNoTalkScript:
 	end
-	
+
 	;branch to move the player around
 
 BoutiqueCooltrainerMText:
 	text "This place is"
 	line "amazing!"
-	
+
 	para "I just wish the"
 	line "wait wasn't so"
 	cont "long<...>"
 	done
-	
+
 BoutiqueCooltrainerM2Text:
 	text "I'm waiting for"
 	line "my friend to"
 	cont "get here!"
-	
+
 	para "We're going to"
 	line "have matching"
 	cont "STYLES!"
 	done
-	
+
 BoutiqueCooltrainerFText:
 	text "There are so many"
 	line "different STYLE"
 	cont "options!"
-	
+
 	para "I wonder which"
 	line "looks the cutest<...>"
 	done
-	
+
 BoutiqueRockerText:
 	text "I'm getting my"
 	line "hair dyed!"
-	
+
 	para "Gotta keep"
 	line "looking fresh!"
 	done

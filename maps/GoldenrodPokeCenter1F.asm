@@ -90,11 +90,11 @@ UnknownText_0x61072: ; 0x61072
 
 	para "if you have a"
 	line "SPECIAL CODE."
-	
+
 	para "<...>Oh. But it looks"
 	line "like our system"
 	cont "isn't running yet<...>"
-	
+
 	para "Please come back"
 	line "later!"
 	done

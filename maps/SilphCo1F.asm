@@ -68,7 +68,7 @@ UnknownText_0x18ac36: ; 0x18ac36
 	para "I think I can"
 	line "let one vanish"
 	cont "for a<...>"
-	
+
 	para "small fee"
 	line "of ", $f0, "300,000."
 	done
