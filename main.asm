@@ -30282,9 +30282,9 @@ BattleCheck: ;If mode is battle & linked game isn't TPP, then cancel.
 	callba Function4d35b
 	ld hl, StringCantBattle
 	bccoord 1, 14
+	call Function13e5
 	ld c, $40
-	call DelayFrames
-	jp Function13e5
+	jp DelayFrames
 	
 StringCantBattle: ; 0x4d3fe
 	text_jump StringCantBattleText
