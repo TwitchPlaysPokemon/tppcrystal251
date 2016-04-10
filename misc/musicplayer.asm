@@ -1918,6 +1918,198 @@ DelayFrame_MP2:
 ; all vblank copies done
 	jp DelayFrame_MPPost
 	
+DelayFrame_MP3:
+; music list VBlank routine
+	ld a, [rLYC]
+	ld b, a
+	and a
+	jr z, .overline
+	ld a, [rLY]
+	cp $90
+	jr nc, .toolate
+	cp b
+	jr nc, .overline
+.toolate
+	halt
+.overline
+	halt
+	xor a
+	ld [rSCY], a
+	ld [LYOverrides + $90], a
+	call DelayFrame_MPCommon
+.doneduty
+; wave gfx copy if requested
+	ld a, [wMPFlags]
+	bit 0, a
+	jr z, .nowavecpy
+	ld a, [wInfoDrawState]
+	cp 2
+	jr c, .nowavecpy
+	ld a, 4
+	ld [Requested2bpp], a
+	ld a, wWaveformTmpGFX % $100
+	ld [Requested2bppSource], a
+	ld a, wWaveformTmpGFX / $100
+	ld [Requested2bppSource + 1], a
+	ld a, $a0
+	ld [Requested2bppDest], a
+	ld a, $8b
+	ld [Requested2bppDest + 1], a
+	ld a, 1
+	ld [rVBK], a
+	call _Serve2bppRequest
+	xor a
+	ld [rVBK], a
+	ld hl, wMPFlags
+	res 0, [hl]
+.nowavecpy
+; music list copy
+	ld a, [wDrawMask]
+	cp 8
+	jp c, .no1bppcpy
+	cp $78
+	jp nc, .no1bppcpy
+	ld [hSPBuffer], sp
+	ld a, [wLineCopySrc]
+	ld l, a
+	ld a, [wLineCopySrc + 1]
+	ld h, a
+	ld sp, hl
+	ld a, [wLineCopyDest]
+	ld l, a
+	ld a, [wLineCopyDest + 1]
+	ld h, a
+	ld bc, 15
+	rept 18
+	pop af
+	ld [hli], a
+	ld [hl], a
+	add hl, bc
+	add sp, 6
+	endr
+	ld a, [hSPBuffer]
+	ld l, a
+	ld a, [hSPBuffer + 1]
+	ld h, a
+	ld sp, hl
+.no1bppcpy
+	ld a, [wInfoDrawState]
+	ld hl, .states
+	rst JumpTable
+; all vblank copies done
+	call Joypad
+	ld b, 24
+.wait24
+	ld a, [rLY]
+	cp b
+	jr nz, .wait24
+	ld a, [hSCY]
+	ld [rSCY], a
+	callba _UpdateSound
+	ret
+
+.states
+	dw .init1
+	dw .init2
+	dw .normal1
+	dw .normal2
+	dw .up
+	dw .down
+	dw .page
+	dw .exit
+	
+.init1
+	; TODO
+	ld hl, wInfoDrawState
+	inc [hl]
+	ret
+	
+.init2
+	; TODO
+	ld a, 1
+	ld [rVBK], a
+	ld a, $48 ; yflip
+	ld [VBGMap1], a
+	ld a, $68 ; xyflip
+	ld [VBGMap1 + $13], a
+	xor a
+	ld [rVBK], a
+	ld hl, VTiles2 + $7f0
+	call .fill16
+	ld hl, VBGMap0 + $3e1
+	ld a, $7f
+	call .fill18
+	ld hl, VBGMap1 + $1
+	ld a, $fb
+	call .fill18
+	inc a
+_w_ = VBGMap0 + $60
+	rept 29
+	ld [_w_], a
+	ld [_w_ + $13], a
+_w_ = _w_ + $20
+	endr
+	inc a
+	ld [VBGMap1], a
+	ld [VBGMap1 + $13], a
+	ld a, $88
+	ld [rWY], a
+	ld hl, wInfoDrawState
+	inc [hl]
+	ret
+	
+.fill18
+	ld [hli], a
+	ld [hli], a
+.fill16
+	rept 16
+	ld [hli], a
+	endr
+	ret
+	
+.normal
+	; TODO
+	jp .blinkcursor
+	
+.up
+	; TODO
+	jp .blinkcursor
+	
+.down
+	; TODO
+	jp .blinkcursor
+	
+.page
+	; TODO
+	jp .blinkcursor
+	
+.exit
+	; TODO
+	ret
+	
+.blinkcursor
+	ld b, 16
+	ld a, [$fe01]
+	cp 8
+	ld c, 8
+	ld a, $9
+	jr nz, .blinkodd
+	ld c, 16
+	ld a, $a
+.blinkodd
+	ld [$fe02], a
+	inc a
+	ld [$fe2a], a
+	ld a, c
+_w_ = $fe01
+	rept 10
+	ld [_w_], a
+	add b
+_w_ = _w_ + 4
+	endr
+	ret
+	
+	
 ClearRow:
 	rept 4
 	rept 16
