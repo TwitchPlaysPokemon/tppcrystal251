@@ -9,6 +9,8 @@ MahoganyGym_MapScriptHeader: ; 0x199a9c
 PryceScript_0x199a9e: ; 0x199a9e
 	faceplayer
 	loadfont
+	checkevent EVENT_BEAT_ELM
+	iftrue PrycePostgameRematchScript
 	checkevent EVENT_PRYCE_REMATCH
 	iftrue PryceAfterRematch
 	checkevent EVENT_SET_BY_OAK_AFTER_16_BADGES
@@ -304,6 +306,7 @@ UnknownText_0x199b8d: ; 0x199b8d
 PryceRematchTextBefore:
 	text "You've had some"
 	line "hard times."
+	
 	para "But my experience"
 	line "means I will not"
 	cont "fall easily."
@@ -344,6 +347,7 @@ PryceAfterSilverWingText:
 
 	para "Since then, you"
 	line "are the only"
+	
 	para "trainer I have"
 	line "seen capable of"
 	cont "using this."
@@ -358,7 +362,7 @@ PryceAfterRematchText:
 	line "to overcome"
 	cont "anything."
 
-	para "Even LUGIA."
+	para "Even LUGIA<...>"
 
 	done
 
@@ -576,6 +580,55 @@ MahoganyGymGuyWinText: ; 0x19a275
 	done
 ; 0x19a2df
 
+PrycePostgameRematchScript:
+    writetext PrycePostgameRematchText
+    yesorno
+    iffalse .return
+    closetext
+    loadtrainer PRYCE, 2
+    winlosstext PrycePostgameBeatenText, 0
+    startbattle
+    returnafterbattle
+    loadfont
+    writetext PrycePostgameAfterText
+    waitbutton
+.return
+    closetext
+    end
+	
+PrycePostgameRematchText:
+	text "Hello, <PLAY_G>."
+
+	para "I see you've"
+	line "beaten quite a"
+	
+	para "few experienced"
+	line "trainers<...>"
+
+	para "Would you like to"
+	line "battle again?"
+
+	done
+	
+PrycePostgameBeatenText:
+	text "Hmph<...>"
+	
+	para "I guess I'm still"
+	line "not lucky enough."
+	done
+	
+PrycePostgameAfterText:
+
+	text "You didn't win"
+	line "due to luck<...> no."
+
+	para "You're a very"
+	line "skilled trainer."
+	
+	para "Nothing can stand"
+	line "in your way!"
+	done
+	
 MahoganyGym_MapEventHeader: ; 0x19a2df
 	; filler
 	db 0, 0

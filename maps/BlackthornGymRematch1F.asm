@@ -31,6 +31,8 @@ BoulderTiles: ; 0x194e05
 ClairTextScript:
 	faceplayer
 	loadfont
+	checkevent EVENT_BEAT_ELM
+	iftrue ClairPostgameRematchScript
 	checkevent EVENT_CLAIR_REMATCH
 	iffalse ClairMeetMeInDragonsDenScript
 	writetext ClairFullyDefeatedText
@@ -319,8 +321,10 @@ ClairFullyDefeatedText:
 
 	para "I could not have"
 	line "imagined a better"
+	
 	para "place than the"
 	line "DRAGON SHRINE to"
+	
 	para "face such a worthy"
 	line "opponent."
 
@@ -351,6 +355,53 @@ BlackthornGym2GuyWinText:
 
 	para "Congratulations,"
 	cont "CHAMP!"
+	done
+	
+ClairPostgameRematchScript:
+    writetext ClairPostgameRematchText
+    yesorno
+    iffalse .return
+    closetext
+    loadtrainer CLAIR, 2
+    winlosstext ClairPostgameBeatenText, 0
+    startbattle
+    returnafterbattle
+    loadfont
+    writetext ClairPostgameAfterText
+    waitbutton
+.return
+    closetext
+    end
+	
+ClairPostgameRematchText:
+	text "Welcome, <PLAY_G>."
+
+	para "It may not be"
+	line "the DRAGON'S DEN<...>"
+
+	para "But do you wish to"
+	line "face me here?"
+
+	done
+	
+ClairPostgameBeatenText:
+	text "<...>"
+	
+	para "And yet again,"
+	line "I've been bested."
+	done
+	
+ClairPostgameAfterText:
+
+	text "You truly are a"
+	line "one-of-a-kind"
+	cont "trainer."
+
+	para "I must continue"
+	line "my own training."
+	
+	para "Stay strong,"
+	line "<PLAY_G>."
 	done
 
 BlackthornGymRematch1F_MapEventHeader:

@@ -9,6 +9,8 @@ CianwoodGym_MapScriptHeader: ; 0x9d60d
 ChuckScript_0x9d60f: ; 0x9d60f
 	faceplayer
 	loadfont
+	checkevent EVENT_BEAT_ELM
+	iftrue ChuckPostgameRematchScript
 	checkevent EVENT_CHUCK_REMATCH
 	iftrue ChuckAfterRematch
 	checkevent EVENT_SET_BY_OAK_AFTER_16_BADGES
@@ -343,7 +345,7 @@ ChuckRematchBeatenText:
 	done
 
 ChuckAfterRematchText:
-	text "Wahaha!"
+	text "WAHAHA!"
 
 	para "A battle with you"
 	line "is never boring!"
@@ -486,6 +488,49 @@ UnknownText_0x9db14: ; 0x9db14
 	cont "shattered<...>"
 	done
 ; 0x9db3e
+
+ChuckPostgameRematchScript:
+    writetext ChuckPostgameRematchText
+    yesorno
+    iffalse .return
+    closetext
+    loadtrainer CHUCK, 2
+    winlosstext ChuckPostgameBeatenText, 0
+    startbattle
+    returnafterbattle
+    loadfont
+    writetext ChuckPostgameAfterText
+    waitbutton
+.return
+    closetext
+    end
+	
+ChuckPostgameRematchText:
+	text "WAHAHA!"
+
+	para "I knew you'd be"
+	line "coming back here!"
+
+	para "You want to"
+	line "battle again?"
+
+	done
+	
+ChuckPostgameBeatenText:
+	text "WHA?! No way!"
+	
+	para "You beat me again!"
+	done
+	
+ChuckPostgameAfterText:
+
+	text "I guess a loss"
+	line "is a loss!"
+	
+	para "I'll have to keep"
+	line "training! WAHAHA!"
+
+	done
 
 CianwoodGym_MapEventHeader: ; 0x9db3e
 	; filler

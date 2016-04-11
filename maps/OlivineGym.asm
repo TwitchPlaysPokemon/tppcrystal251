@@ -9,6 +9,8 @@ OlivineGym_MapScriptHeader: ; 0x9c12d
 JasmineScript_0x9c12f: ; 0x9c12f
 	faceplayer
 	loadfont
+	checkevent EVENT_BEAT_ELM
+	iftrue JasminePostgameRematchScript
 	checkevent EVENT_JASMINE_REMATCH
 	iftrue JasmineAfterRematch
 	checkevent EVENT_SET_BY_OAK_AFTER_16_BADGES
@@ -259,6 +261,49 @@ OlivineGymGuyPreText: ; 0x9c4a8
 	cont "sionate."
 	done
 ; 0x9c526
+
+JasminePostgameRematchScript:
+    writetext JasminePostgameRematchText
+    yesorno
+    iffalse .return
+    closetext
+    loadtrainer JASMINE, 2
+    winlosstext JasminePostgameBeatenText, 0
+    startbattle
+    returnafterbattle
+    loadfont
+    writetext JasminePostgameAfterText
+    waitbutton
+.return
+    closetext
+    end
+	
+JasminePostgameRematchText:
+	text "<...>Oh! Hi!"
+
+	para "<...>You want to"
+	line "battle me again?"
+
+	done
+	
+JasminePostgameBeatenText:
+	text "<...>Awe<...>"
+	
+	para "You're still so"
+	line "much better<...>"
+	done
+	
+JasminePostgameAfterText:
+
+	text "<...>Um<...>"
+
+	para "Thank you again"
+	line "for battling with"
+	cont "me<...>"
+	
+	para "<...>I really enjoyed"
+	line "it!"
+	done
 
 OlivineGym_MapEventHeader: ; 0x9c526
 	; filler
