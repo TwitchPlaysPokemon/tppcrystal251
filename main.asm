@@ -22618,7 +22618,7 @@ Function16a3b: ; 16a3b
 	jr z, .asm_16ab6
 	inc a
 .asm_16ab6
-	ld [wDittoInDaycare], a
+	ld [wDittoInDaycare], a ;set slot with mother or ditto. 0 if slot 1 else 1
 	and a
 	ld a, [wBreedMon1Species]
 	jr z, .asm_16ac2
@@ -23400,11 +23400,10 @@ UnknownText_0x170b5: ; 0x170b5
 
 Function170bf: ; 170bf
 	call Function17197 ;ret mon whose moves to inherit from in hl and the other in de
-	ld a, 1
-	push af ;holds branch settings
+	ld a,[wDittoInDaycare] ;set that we are on mon 1
+	set 7, a
+	ld [wDittoInDaycare], a
 	push de ;hold other mon's move loc
-	ld a, 0
-	push af ;holds branch settings
 	ld d, h
 	ld e, l ;store in de
 	ld b, NUM_MOVES ;for each move
@@ -23421,7 +23420,7 @@ Function170bf: ; 170bf
 	inc hl
 	dec c
 	jr nz, .asm_170cf ;loop
-	call Function170e4 ;ret c if move matches an egg move
+	call Function170e4 ;ret c if move matches a move to be passed on
 	jr nc, .asm_170df
 	call Function17169
 .asm_170df
@@ -23429,9 +23428,11 @@ Function170bf: ; 170bf
 	dec b
 	jr nz, .asm_170c6
 .noMove
-	pop af
-	and a
+	ld a,[wDittoInDaycare] ;if mon 1, loop for mon 2, else done
+	bit 7, a
 	ret z
+	res 7, a
+	ld [wDittoInDaycare], a
 	pop de
 	ld b, NUM_MOVES
 	jr .asm_170c6
@@ -23462,15 +23463,18 @@ GLOBAL EggMoves
 	jr .asm_170f6
 
 .asm_17107
-	call Function1720b
+	call Function1720b ;if mon 1 is ditto, ret hl = breedmon1 moves, else ret breedmon2
+	ld a, [wDittoInDaycare]
+	bit 7, a
+	jp z, .asm_17166
 	ld b, NUM_MOVES
 .asm_1710c
 	ld a, [de]
 	cp [hl]
-	jr z, .asm_17116
+	jr z, .asm_17116 
 	inc hl
 	dec b
-	jr z, .asm_17146
+	jr z, .asm_17166
 	jr .asm_1710c
 
 .asm_17116
@@ -23492,7 +23496,7 @@ GLOBAL EggMoves
 	ld a, BANK(EvosAttacks)
 	call GetFarByte
 	and a
-	jr z, .asm_17146
+	jr z, .asm_17166
 	inc hl
 	ld a, BANK(EvosAttacks)
 	call GetFarByte
@@ -23503,22 +23507,22 @@ GLOBAL EggMoves
 	inc hl
 	jr .asm_17130
 
-.asm_17146
-	ld hl, TMHMMoves
-.asm_17149
-	ld a, BANK(TMHMMoves)
-	call GetFarByte2
-	and a
-	jr z, .asm_17166
-	ld b, a
-	ld a, [de]
-	cp b
-	jr nz, .asm_17149
-	ld [wd262], a
-	predef CanLearnTMHMMove
-	ld a, c
-	and a
-	jr z, .asm_17166
+;.asm_17146
+	;ld hl, TMHMMoves
+;.asm_17149
+	;ld a, BANK(TMHMMoves)
+	;call GetFarByte2
+	;and a
+	;jr z, .asm_17166
+	;ld b, a
+	;ld a, [de]
+	;cp b
+	;jr nz, .asm_17149
+	;ld [wd262], a
+	;predef CanLearnTMHMMove
+	;ld a, c
+	;and a
+	;jr z, .asm_17166
 .asm_17163
 	pop bc
 	scf
@@ -23573,7 +23577,7 @@ Function17197: ; 17197 ;ret mon whose moves to inherit from in hl and the other 
 	ld a, [wBreedMon2Species]
 	cp DITTO
 	jr z, .asm_171d7 ;if mon 2 is ditto, branch
-	ld a, [wDittoInDaycare] ;if ditto is in daycare(?), ret with mon 1, else ret with mon 2
+	ld a, [wDittoInDaycare] ;if ditto or mother is in slot 1, ret with mon 1, else ret with mon 2
 	and a
 	ret z 
 	ld hl, wBreedMon1Moves
@@ -23625,7 +23629,7 @@ Function17197: ; 17197 ;ret mon whose moves to inherit from in hl and the other 
 	ret
 ; 1720b
 
-Function1720b: ; 1720b
+Function1720b: ; 1720b if mon 1 is ditto, ret hl = breedmon1 moves, else red breedmon2
 	ld hl, wBreedMon1Moves
 	ld a, [wBreedMon1Species]
 	cp DITTO
@@ -23633,8 +23637,8 @@ Function1720b: ; 1720b
 	ld a, [wBreedMon2Species]
 	cp DITTO
 	jr z, .asm_17220
-	ld a, [wDittoInDaycare]
-	and a
+	ld a, [wDittoInDaycare] ;ret mon 1 id slot 1 is mother or ditto, else ret slot 2
+	and 1
 	ret z
 .asm_17220
 	ld hl, wBreedMon2Moves
