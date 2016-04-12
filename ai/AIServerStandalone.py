@@ -9,7 +9,6 @@ import json
 import logging
 import threading
 import random
-from json.decoder import JSONDecodeError
 
 import AI
 from AIServer import calculate_next_move, get_backup_move
@@ -42,7 +41,7 @@ class AIServer(BaseHTTPRequestHandler):
         
         try:
             battle_state = self.get_json()
-        except JSONDecodeError:
+        except ValueError:
             logger.exception("ai_invoke got called with nothing, or something not json-decodable.")
             battle_state = {}
         logger.info("invoking AI... submitted JSON: %s" % battle_state)
