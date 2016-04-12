@@ -198,7 +198,7 @@ MapGroup7:
 	map_header BillsHouse, $5, 3, ROUTE_25, MUSIC_CERULEAN_CITY, 0, 1, 1
 	map_header Route4, $3, 2, ROUTE_4, MUSIC_ROUTE_3, 0, 0, 1
 	map_header Route9, $3, 2, ROUTE_9, MUSIC_ROUTE_3, 0, 0, 14
-	map_header Route10North, $3, 2, ROUTE_10, MUSIC_ROUTE_3, 0, 0, 14
+	map_header Route10North, 3, 2, ROUTE_10, MUSIC_ROUTE_3, 0, 0, 14
 	map_header Route24, $3, 2, ROUTE_24, MUSIC_ROUTE_24, 0, 0, 14
 	map_header Route25, 3, 2, ROUTE_25, MUSIC_ROUTE_24, 0, 0, 14
 	map_header CeruleanCity, $3, 1, CERULEAN_CITY, MUSIC_CERULEAN_CITY, 0, 0, 14

@@ -120,11 +120,11 @@ PokefanmAllanSeenText: ; 0x1ada4f
 ; 0x1ada79
 
 PokefanmAllanBeatenText: ; 0x1ada79
-	text "Dad: BELLSPROUT,"
-	line "no<...>"
+	text "Dad: BELLSPROUT!"
+	line "No!!"
 
-	para "Son: It's embar-"
-	line "-rassing, dad<...>"
+	para "Son: How embar-"
+	line "rassing, Dad<...>"
 	done
 ; 0x1ada88
 

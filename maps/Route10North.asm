@@ -32,17 +32,18 @@ Route10North_MapEventHeader: ; 0x1b2099
 	db 0, 0
 
 	; warps
-	db 2
-	warp_def $1, $b, 1, GROUP_ROUTE_10_POKECENTER_1F, MAP_ROUTE_10_POKECENTER_1F
-	warp_def $9, $3, 1, GROUP_POWER_PLANT, MAP_POWER_PLANT
+	db 3
+	warp_def 1, 9, 1, GROUP_ROUTE_10_POKECENTER_1F, MAP_ROUTE_10_POKECENTER_1F
+	warp_def 17, 9, 1, GROUP_POWER_PLANT, MAP_POWER_PLANT
+	warp_def 9, 8, 2, GROUP_POWERPLANTB2, MAP_POWERPLANTB2
 
 	; xy triggers
 	db 0
 
 	; signposts
 	db 2
-	signpost 11, 5, $0, MapRoute10NorthSignpost0Script
-	signpost 1, 12, $0, MapRoute10NorthSignpost1Script
+	signpost 19, 11, 0, MapRoute10NorthSignpost0Script
+	signpost 1, 10, 0, MapRoute10NorthSignpost1Script
 
 	; people-events
 	db 0 ; 1

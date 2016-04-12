@@ -1,15 +1,9 @@
+BackpicPalletes:	INCLUDE "gfx/trainers/Backpic.pal"
 
 TrainerPalettes: ; b0ce
-
-PlayerPalette: ; b0ce
-; The player's palette
 	RGB 25, 18, 12
 	RGB 22, 09, 05
 
-KrisPalette: ; b0d0
-; Apparently Kris uses Falkner's palette
-;	RGB 27, 17, 14
-;	RGB 07, 05, 31
 
 FalknerPalette:      INCLUDE "gfx/trainers/000.pal"
 WhitneyPalette:      INCLUDE "gfx/trainers/001.pal"

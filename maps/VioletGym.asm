@@ -9,6 +9,8 @@ VioletGym_MapScriptHeader: ; 0x683c0
 FalknerScript_0x683c2: ; 0x683c2
 	faceplayer
 	loadfont
+	checkevent EVENT_BEAT_ELM
+	iftrue FalknerPostgameRematchScript
 	checkevent EVENT_FALKNER_REMATCH
 	iftrue FalknerAfterRematch
 	checkevent EVENT_SET_BY_OAK_AFTER_16_BADGES
@@ -77,6 +79,22 @@ FalknerReject:
 	closetext
 	end
 
+FalknerPostgameRematchScript:
+    writetext FalknerPostgameRematchText
+    yesorno
+    iffalse .return
+    closetext
+    loadtrainer FALKNER, 2
+    winlosstext FalknerPostgameBeatenText, 0
+    startbattle
+    returnafterbattle
+    loadfont
+    writetext FalknerPostgameAfterText
+    waitbutton
+.return
+    closetext
+    end
+	
 FalknerRejectText:
 	text "ARTICUNO<...>,"
 
@@ -252,10 +270,11 @@ UnknownText_0x68473: ; 0x68473
 FalknerRematchTextBefore:
 	text "Welcome back."
 
-	para "Long ago my dad"
-	line "caught the 3"
-	para "ultimate bird"
-	line "#MON."
+	para "Long ago, my"
+	line "father tamed the"
+	
+	para "three ultimate bird"
+	line "bird #MON."
 
 	para "You, who have"
 	line "matched this feat,"
@@ -284,6 +303,37 @@ FalknerAfterRematchText:
 	para "#MON to become"
 	line "the greatest BIRD"
 	cont "KEEPER of all!"
+
+	done
+
+FalknerPostgameRematchText:
+	text "Hello again."
+
+	para "You've been"
+	line "training, I see<...>"
+
+	para "Do you wish to"
+	line "battle again?"
+
+	done
+	
+FalknerPostgameBeatenText:
+	text "My bird #MON<...>"
+	
+	para "We still aren't"
+	line "strong enough."
+	done
+	
+FalknerPostgameAfterText:
+
+	text "Your power is"
+	line "truly fantastic!"
+
+	para "It's no surprise"
+	line "you were able to"
+	
+	para "tame even the"
+	line "legendary #MON<...>"
 
 	done
 

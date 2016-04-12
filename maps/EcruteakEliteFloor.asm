@@ -77,6 +77,8 @@ efloorrow = 4
 MortyRematchScript2:
 	faceplayer
 	loadfont
+	checkevent EVENT_BEAT_ELM
+	iftrue MortyPostgameRematchScript
 	checkevent EVENT_MORTY_REMATCH
 	iftrue MortyAfterRematch2
 	writetext MortyRematchTextBefore2
@@ -382,6 +384,52 @@ EcruteakGymGuy2WinText:
 	para "I was cowering in"
 	line "the corner out of"
 	cont "pure terror!"
+	done
+	
+MortyPostgameRematchScript:
+    writetext MortyPostgameRematchText
+    yesorno
+    iffalse .return
+    closetext
+    loadtrainer MORTY, 2
+    winlosstext MortyPostgameBeatenText, 0
+    startbattle
+    returnafterbattle
+    loadfont
+    writetext MortyPostgameAfterText
+    waitbutton
+.return
+    closetext
+    end
+	
+MortyPostgameRematchText:
+	text "Ah-ha! Welcome"
+	line "back!"
+
+	para "Couldn't get"
+	line "enough of my maze?"
+
+	para "Hm? You want to"
+	line "battle again?"
+
+	done
+	
+MortyPostgameBeatenText:
+	text "Bah!"
+	
+	para "Yet again, I"
+	line "admit defeat."
+	done
+	
+MortyPostgameAfterText:
+	text "You're a special"
+	line "trainer, that's"
+	cont "for sure."
+	
+	para "Thank you for"
+	line "that exciting"
+	cont "battle!"
+
 	done
 
 EcruteakEliteFloor_MapEventHeader:

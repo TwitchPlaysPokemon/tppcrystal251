@@ -86,10 +86,17 @@ UnknownText_0x61072: ; 0x61072
 	cont "TRADE CORNER."
 
 	para "You can receive"
-	line "special #MON"
+	line "unique #MON"
 
 	para "if you have a"
 	line "SPECIAL CODE."
+	
+	para "<...>Oh. But it looks"
+	line "like our system"
+	cont "isn't running yet<...>"
+	
+	para "Please come back"
+	line "later!"
 	done
 
 ;UnknownText_0x61344: ; 0x61344

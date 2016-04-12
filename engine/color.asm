@@ -799,17 +799,17 @@ Function973a: ; 973a
 Function974b: ; 974b
 	and a
 	jp nz, Function97f9
-	ld a, [wd45b]
-	bit 2, a
-	jr nz, .asm_9760
-	ld a, [PlayerGender]
-	and a
-	jr z, .asm_9760
-	ld hl, KrisPalette
-	ret
-
-.asm_9760
-	ld hl, PlayerPalette
+	push de
+	push af
+	ld hl, BackpicPalletes
+	ld a, [PlayerPalette]
+	sla a
+	sla a
+	ld e, a
+	ld d, 0
+	add hl, de
+	pop af
+	pop de
 	ret
 ; 9764
 

@@ -73,6 +73,8 @@ AzaleaGym_BurglarSimonMovement2:
 BugsyScript_0x18ec1e: ; 0x18ec1e
 	faceplayer
 	loadfont
+	checkevent EVENT_BEAT_ELM
+	iftrue BugsyPostgameRematchScript
 	checkevent EVENT_BUGSY_REMATCH
 	iftrue BugsyAfterRematch
 	checkevent EVENT_SET_BY_OAK_AFTER_16_BADGES
@@ -334,6 +336,22 @@ UnknownScript_0x18ed04: ; 0x18ed04
 	jumpstd gymstatue2
 ; 0x18ed0b
 
+BugsyPostgameRematchScript:
+    writetext BugsyPostgameRematchText
+    yesorno
+    iffalse .return
+    closetext
+    loadtrainer BUGSY, 2
+    winlosstext BugsyPostgameBeatenText, 0
+    startbattle
+    returnafterbattle
+    loadfont
+    writetext BugsyPostgameAfterText
+    waitbutton
+.return
+    closetext
+    end
+	
 AzaleaGym_BurglarSimonText1:
 	text $56, " ", $56, " ", $56
 
@@ -362,8 +380,8 @@ AzaleaGym_BurglarSimonText2:
 	done
 
 AzaleaGym_BurglarSimonText3:
-	text "I wonder where my"
-	line "partner went."
+	text "I really wonder"
+	line "where he went<...>"
 	done
 
 UnknownText_0x18ed0b: ; 0x18ed0b
@@ -656,6 +674,34 @@ AzaleaGymGuyWinText: ; 0x18f359
 	cont "#MON is bright!"
 	done
 ; 0x18f3cc
+
+BugsyPostgameRematchText:
+	text "Hi there!"
+
+	para "I've been studying"
+	line "more bug tactics!"
+	
+	para "Want to battle"
+	line "each other again?"
+
+	done
+	
+BugsyPostgameBeatenText:
+	text "Awe man!"
+	
+	para "I must have been"
+	line "studying wrong<...>"
+	done
+	
+BugsyPostgameAfterText:
+
+	text "You still know"
+	line "so much more<...>"
+	
+	para "Some day, you"
+	line "should teach me!"
+
+	done
 
 AzaleaGym_MapEventHeader: ; 0x18f3cc
 	; filler

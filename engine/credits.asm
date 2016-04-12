@@ -165,7 +165,8 @@ PlayCredits_109847:: ; 109847
 	push af
 	ld a, 1
 	ld [rSVBK], a
-	CheckEvent_a EVENT_BEAT_ELM
+	ld a, [wd4b5]
+	dec a
 	pop bc
 	ld a, b
 	ld [rSVBK], a
@@ -513,7 +514,8 @@ ParseCredits: ; 1099aa
 	push af
 	ld a, 1
 	ld [rSVBK], a
-	CheckEvent_a EVENT_BEAT_ELM
+	ld a, [wd4b5]
+	dec a
 	pop bc
 	ld a, b
 	ld [rSVBK], a
