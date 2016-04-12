@@ -24,6 +24,8 @@ VermilionGymDoorsScript:
 SurgeScript_0x1920a5: ; 0x1920a5
 	faceplayer
 	loadfont
+	checkevent EVENT_BEAT_ELM
+	iftrue SurgePostgameRematchScript
 	checkevent EVENT_SURGE_REMATCH
 	iftrue SurgeAfterRematch
 	checkevent EVENT_SET_BY_OAK_AFTER_16_BADGES
@@ -274,6 +276,7 @@ SurgeRematchTextBeforeChallenge:
 	para "Tell ya what, you"
 	line "prove youself on"
 	cont "the battlefield,"
+	
 	para "and I'll give the"
 	line "all-clear."
 
@@ -511,6 +514,51 @@ UnknownText_0x19261e: ; 0x19261e
 	done
 ; 0x19263d
 
+SurgePostgameRematchScript:
+    writetext SurgePostgameRematchText
+    yesorno
+    iffalse .return
+    closetext
+    loadtrainer LT_SURGE, 2
+    winlosstext SurgePostgameBeatenText, 0
+    startbattle
+    returnafterbattle
+    loadfont
+    writetext SurgePostgameAfterText
+    waitbutton
+.return
+    closetext
+    end
+	
+SurgePostgameRematchText:
+	text "Hey, kid!"
+
+	para "You still out"
+	line "training, yeah?"
+
+	para "Wanna go again?"
+	done
+	
+SurgePostgameBeatenText:
+	text "Woah, shocking!"
+	done
+	
+SurgePostgameAfterText:
+
+	text "You are one"
+	line "tough tyke!"
+	
+	para "I have no choice"
+	line "but to admit my"
+	cont "defeat<...> again."
+	
+	para "I should have you"
+	line "come to training"
+	
+	para "camp to train my"
+	line "crew!"
+	done
+	
 VermilionGym_MapEventHeader: ; 0x19263d
 	; filler
 	db 0, 0

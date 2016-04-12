@@ -32,6 +32,8 @@ SaffronGym2_MapScriptHeader:
 SabrinaRematchScript:
 	faceplayer
 	loadfont
+	checkevent EVENT_BEAT_ELM
+	iftrue SabrinaPostgameRematchScript
 	checkevent EVENT_SABRINA_REMATCH
 	iftrue SabrinaAfterRematch
 	writetext SabrinaBeforeRematchText
@@ -135,6 +137,52 @@ SaffronGym2GuyWinText:
 	line "fantastic battle!"
 	done
 
+SabrinaPostgameRematchScript:
+    writetext SabrinaPostgameRematchText
+    yesorno
+    iffalse .return
+    closetext
+    loadtrainer SABRINA, 2
+    winlosstext SabrinaPostgameBeatenText, 0
+    startbattle
+    returnafterbattle
+    loadfont
+    writetext SabrinaPostgameAfterText
+    waitbutton
+.return
+    closetext
+    end
+	
+SabrinaPostgameRematchText:
+	text "<PLAYER>."
+
+	para "I knew you would"
+	line "return here."
+
+	para "You are wishing to"
+	line "battle again?"
+
+	done
+	
+SabrinaPostgameBeatenText:
+	text "<...>"
+	
+	para "I still cannot"
+	line "read you clearly<...>"
+	done
+	
+SabrinaPostgameAfterText:
+
+	text "<...>I knew the out-"
+	line "come of this battle."
+
+	para "I simply wanted to"
+	line "test my skills."
+	
+	para "Thank you. I hope"
+	line "you return soon."
+
+	done
 SaffronGym2_MapEventHeader:
 	; filler
 	db 0, 0
