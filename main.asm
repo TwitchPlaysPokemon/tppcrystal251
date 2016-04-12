@@ -22570,12 +22570,12 @@ Function16a3b: ; 16a3b
 	ld a, [wDaycareMan]
 	bit 0, a
 	ret z
-	callab Function16e1d
+	callab Function16e1d ;find egg comatability
 	ld a, [wd265]
 	and a
 	ret z
 	inc a
-	ret z
+	ret z ;if 0 or ff, ret
 	ld hl, wDaycareMan
 	set 5, [hl]
 .asm_16a59
@@ -22650,8 +22650,8 @@ Function16a3b: ; 16a3b
 	ld de, wEggMonMoves
 	xor a
 	ld [Buffer1], a
-	predef FillMoves
-	callba Function170bf
+	predef FillMoves ;fill in basic moves
+	callba Function170bf ;fill in egg moves
 	ld hl, wEggMonID
 	ld a, [PlayerID]
 	ld [hli], a
@@ -23030,9 +23030,9 @@ UnknownText_0x16e18: ; 0x16e18
 ; 0x16e1d
 
 Function16e1d: ; 16e1d
-	call Function16ed6
+	call Function16ed6 ;check compatability, ret c if yes
 	ld c, $0
-	jp nc, .asm_16eb7
+	jp nc, .asm_16eb7 ;ret 0 if not compatible
 	ld a, [wBreedMon1Species]
 	ld [CurPartySpecies], a
 	ld a, [wBreedMon1DVs]
@@ -23042,9 +23042,9 @@ Function16e1d: ; 16e1d
 	ld a, $3
 	ld [MonType], a
 	predef GetGender
-	jr c, .asm_16e70
+	jr c, .asm_16e70 ;if genderless, skip
 	ld b, $1
-	jr nz, .asm_16e48
+	jr nz, .asm_16e48 ;if male, b = 1, else b = 2
 	inc b
 .asm_16e48
 	push bc
@@ -23064,45 +23064,45 @@ Function16e1d: ; 16e1d
 	inc a
 .asm_16e6d
 	cp b
-	jr nz, .asm_16e89
+	jr nz, .asm_16e89 ;if genders not the same, skip
 .asm_16e70
 	ld c, $0
 	ld a, [wBreedMon1Species]
 	cp DITTO
-	jr z, .asm_16e82
+	jr z, .asm_16e82 ;if ditto, allow
 	ld a, [wBreedMon2Species]
 	cp DITTO
-	jr nz, .asm_16eb7
+	jr nz, .asm_16eb7 ;If not ditto, reject
 	jr .asm_16e89
 
 .asm_16e82
 	ld a, [wBreedMon2Species]
 	cp DITTO
-	jr z, .asm_16eb7
+	jr z, .asm_16eb7 ;if both ditto, reject
 .asm_16e89
 	call Function16ebc
 	ld c, $ff
-	jp z, .asm_16eb7
+	jp z, .asm_16eb7 ;if most DV' are the same,pass FF
 	ld a, [wBreedMon2Species]
 	ld b, a
 	ld a, [wBreedMon1Species]
 	cp b
 	ld c, $fe
-	jr z, .asm_16e9f
+	jr z, .asm_16e9f ;if species is the same, fe, else 80
 	ld c, $80
 .asm_16e9f
 	ld a, [wBreedMon1ID]
 	ld b, a
 	ld a, [wBreedMon2ID]
 	cp b
-	jr nz, .asm_16eb7
+	jr nz, .asm_16eb7 
 	ld a, [wBreedMon1ID + 1]
 	ld b, a
 	ld a, [wBreedMon2ID + 1]
 	cp b
 	jr nz, .asm_16eb7
 	ld a, c
-	sub $4d
+	sub $4d ;reduce rate if same trainer ID
 	ld c, a
 .asm_16eb7
 	ld a, c
@@ -23127,13 +23127,13 @@ Function16ebc: ; 16ebc (5:6ebc)
 	ret
 ; 16ed6
 
-Function16ed6: ; 16ed6
+Function16ed6: ; 16ed6 ret c if compatible
 	ld a, [wBreedMon2Species]
 	ld [CurSpecies], a
 	call GetBaseData
 	ld a, [BaseEggGroups]
 	cp $ff
-	jr z, .asm_16f3a
+	jr z, .asm_16f3a ;if no egg for either mon,ret nc
 	ld a, [wBreedMon1Species]
 	ld [CurSpecies], a
 	call GetBaseData
@@ -23141,20 +23141,20 @@ Function16ed6: ; 16ed6
 	cp $ff
 	jr z, .asm_16f3a
 	ld a, [wBreedMon2Species]
-	cp DITTO
+	cp DITTO ;If ditto, compatible
 	jr z, .asm_16f3c
 	ld [CurSpecies], a
 	call GetBaseData
 	ld a, [BaseEggGroups]
-	push af
-	and $f
+	push af ;push egg group
+	and $f ;front nyble into b
 	ld b, a
 	pop af
-	and $f0
+	and $f0 ;back nyble into c
 	swap a
 	ld c, a
 	ld a, [wBreedMon1Species]
-	cp DITTO
+	cp DITTO ;If ditto, compatible
 	jr z, .asm_16f3c
 	ld [CurSpecies], a
 	push bc
@@ -23167,7 +23167,7 @@ Function16ed6: ; 16ed6
 	pop af
 	and $f0
 	swap a
-	ld e, a
+	ld e, a ;mon 1's groups are in bc, mon 2's are in de
 	ld a, d
 	cp b
 	jr z, .asm_16f3c
@@ -23395,38 +23395,48 @@ UnknownText_0x170b5: ; 0x170b5
 ; 0x170ba
 
 Function170bf: ; 170bf
-	call Function17197
+	call Function17197 ;ret mon whose moves to inherit from in hl and the other in de
+	ld a, 1
+	push af ;holds branch settings
+	push de ;hold other mon's move loc
+	ld a, 0
+	push af ;holds branch settings
 	ld d, h
-	ld e, l
-	ld b, NUM_MOVES
+	ld e, l ;store in de
+	ld b, NUM_MOVES ;for each move
 .asm_170c6
-	ld a, [de]
+	ld a, [de] ;place move into a
 	and a
-	jr z, .asm_170e3
+	jr z, .noMove ;if no move, done
 	ld hl, wEggMonMoves
-	ld c, NUM_MOVES
+	ld c, NUM_MOVES ;for each move
 .asm_170cf
 	ld a, [de]
 	cp [hl]
-	jr z, .asm_170df
+	jr z, .asm_170df ;if move matches existing move, skip
 	inc hl
 	dec c
-	jr nz, .asm_170cf
-	call Function170e4
+	jr nz, .asm_170cf ;loop
+	call Function170e4 ;ret c if move matches an egg move
 	jr nc, .asm_170df
 	call Function17169
 .asm_170df
 	inc de
 	dec b
 	jr nz, .asm_170c6
-.asm_170e3
-	ret
+.noMove
+	pop af
+	and a
+	ret z
+	pop de
+	ld b, NUM_MOVES
+	jr .asm_170c6
 ; 170e4
 
 Function170e4: ; 170e4
 GLOBAL EggMoves
 	push bc
-	ld a, [wEggMonSpecies]
+	ld a, [wEggMonSpecies] ;get the location of the egg moves
 	dec a
 	ld c, a
 	ld b, 0
@@ -23439,12 +23449,12 @@ GLOBAL EggMoves
 	ld a, BANK(EggMoves)
 	call GetFarByte
 	cp $ff
-	jr z, .asm_17107
-	ld b, a
-	ld a, [de]
+	jr z, .asm_17107 ;if FF, jump
+	ld b, a ;else compare to the move being checked
+	ld a, [de] 
 	cp b
-	jr z, .asm_17163
-	inc hl
+	jr z, .asm_17163 ;if a match, ret c
+	inc hl ;move to next slot
 	jr .asm_170f6
 
 .asm_17107
@@ -23526,10 +23536,10 @@ Function17169: ; 17169
 .asm_17172
 	ld a, [hli]
 	and a
-	jr z, .asm_17187
+	jr z, .asm_17187 ;if empty slot, insert
 	dec c
-	jr nz, .asm_17172
-	ld de, wEggMonMoves
+	jr nz, .asm_17172 ;test all 4 slots
+	ld de, wEggMonMoves ;if none empty, move all other moves up 1, inserting moe in last slot
 	ld hl, wEggMonMoves + 1
 	ld a, [hli]
 	ld [de], a
@@ -23550,23 +23560,25 @@ Function17169: ; 17169
 	ret
 ; 17197
 
-Function17197: ; 17197
+Function17197: ; 17197 ;ret mon whose moves to inherit from in hl and the other in de
 	ld hl, wBreedMon2Moves
+	ld de, wBreedMon1Moves
 	ld a, [wBreedMon1Species]
 	cp DITTO
-	jr z, .asm_171b1
+	jr z, .asm_171b1 ;if mon 1 is ditto, skip
 	ld a, [wBreedMon2Species]
 	cp DITTO
-	jr z, .asm_171d7
-	ld a, [wDittoInDaycare]
+	jr z, .asm_171d7 ;if mon 2 is ditto, branch
+	ld a, [wDittoInDaycare] ;if ditto is in daycare(?), ret with mon 1, else ret with mon 2
 	and a
-	ret z
+	ret z 
 	ld hl, wBreedMon1Moves
+	ld de, wBreedMon2Moves
 	ret
 
 .asm_171b1
 	ld a, [CurPartySpecies]
-	push af
+	push af ;store cur secies
 	ld a, [wBreedMon2Species]
 	ld [CurPartySpecies], a
 	ld a, [wBreedMon2DVs]
@@ -23575,8 +23587,8 @@ Function17197: ; 17197
 	ld [TempMonDVs + 1], a
 	ld a, $3
 	ld [MonType], a
-	predef GetGender
-	jr c, .asm_171fb
+	predef GetGender ;get mon 2 gender
+	jr c, .asm_171fb ;if genderless or male, ret mon 2, else ret mon 1
 	jr nz, .asm_171fb
 	jr .asm_17203
 
@@ -23596,12 +23608,14 @@ Function17197: ; 17197
 	jr nz, .asm_17203
 .asm_171fb
 	ld hl, wBreedMon2Moves
+	ld de, wBreedMon1Moves
 	pop af
 	ld [CurPartySpecies], a
 	ret
 
 .asm_17203
 	ld hl, wBreedMon1Moves
+	ld de, wBreedMon2Moves
 	pop af
 	ld [CurPartySpecies], a
 	ret
