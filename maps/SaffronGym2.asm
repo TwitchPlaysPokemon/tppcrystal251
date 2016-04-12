@@ -161,7 +161,6 @@ SabrinaPostgameRematchText:
 
 	para "You are wishing to"
 	line "battle again?"
-
 	done
 	
 SabrinaPostgameBeatenText:
@@ -181,8 +180,8 @@ SabrinaPostgameAfterText:
 	
 	para "Thank you. I hope"
 	line "you return soon."
-
 	done
+	
 SaffronGym2_MapEventHeader:
 	; filler
 	db 0, 0

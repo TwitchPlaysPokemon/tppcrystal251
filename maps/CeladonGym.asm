@@ -9,6 +9,8 @@ CeladonGym_MapScriptHeader: ; 0x72a68
 ErikaScript_0x72a6a: ; 0x72a6a
 	faceplayer
 	loadfont
+	checkevent EVENT_BEAT_ELM
+	iftrue ErikaPostgameRematchScript
 	checkevent EVENT_ERIKA_REMATCH
 	iftrue ErikaAfterRematch
 	checkevent EVENT_SET_BY_OAK_AFTER_16_BADGES
@@ -509,6 +511,60 @@ UnknownText_0x72fc0: ; 0x72fc0
 	done
 ; 0x72fdf
 
+ErikaPostgameRematchScript:
+    writetext ErikaPostgameRematchText
+    yesorno
+    iffalse .return
+    closetext
+    loadtrainer ERIKA, 2
+    winlosstext ErikaPostgameBeatenText, 0
+    startbattle
+    returnafterbattle
+    loadfont
+    writetext ErikaPostgameAfterText
+    waitbutton
+.return
+    closetext
+    end
+	
+ErikaPostgameRematchText:
+	text "<...>"
+
+	para "<...>Yawn<...>"
+	
+	para "Oh! <PLAYER>!"
+	
+	para "I'm so sorry about"
+	line "that! I must have"
+	cont "dozed off!"
+
+	para "What's that? You"
+	line "want to battle?"
+	done
+	
+ErikaPostgameBeatenText:
+	text "Amazing battle!"
+	
+	para "Maybe I'm not"
+	line "fully awake yet<...>"
+	done
+	
+ErikaPostgameAfterText:
+	text "<...>Yawn<...>"
+
+	para "Congrats again,"
+	line "<PLAYER>!"
+	
+	para "You continue to"
+	line "show your power."
+	
+	para "Now if you'll"
+	line "excuse me<...>"
+	
+	para "I'm going to take"
+	line "a nice nap<...>"
+	done
+	
 CeladonGym_MapEventHeader: ; 0x72fdf
 	; filler
 	db 0, 0

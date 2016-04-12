@@ -24,6 +24,8 @@ InvisibleJanineSPScript:
 	dw EVENT_JANINE_INVISIBLE, InvisibleJanineScript
 InvisibleJanineScript:
 	setlasttalked $2
+	checkevent EVENT_BEAT_ELM
+	iftrue JaninePostgameRematchScript
 	checkevent EVENT_JANINE_REMATCH
 	iftrue JanineAfterRematch
 	loadfont
@@ -148,7 +150,7 @@ FakeJanine1Text:
 
 FakeJanine2Text:
 	text "Your LEADER is in"
-	line "the another room<...>"
+	line "another room<...>"
 	done
 
 JanineBeforeRematchText:
@@ -184,10 +186,10 @@ JanineAfterRematchText:
 
 	para "I'll train with my"
 	line "father to become"
+	
 	para "better than before"
 	line "and challenge you"
 	cont "again!"
-
 	done
 
 FuchsiaGym2GuyText: ; 0x196299
@@ -212,6 +214,50 @@ FuchsiaGym2GuyWinText: ; 0x196325
 	line "battle, trainer!"
 	done
 ; 0x196353
+
+JaninePostgameRematchScript:
+    writetext JaninePostgameRematchText
+    yesorno
+    iffalse .return
+    closetext
+    loadtrainer JANINE, 2
+    winlosstext JaninePostgameBeatenText, 0
+    startbattle
+    returnafterbattle
+    loadfont
+    writetext JaninePostgameAfterText
+    waitbutton
+.return
+    closetext
+    end
+	
+JaninePostgameRematchText:
+	text "I suppose it's"
+	line "a bit easier"
+	cont "finding me now."
+
+	para "Let's keep this"
+	line "talking short."
+
+	para "Do you want to"
+	line "battle again?"
+	done
+	
+JaninePostgameBeatenText:
+	text "<...>!!!"
+	
+	para "Still! So strong!!"
+	done
+	
+JaninePostgameAfterText:
+	text "And again, I lose."
+
+	para "You have truly"
+	line "honed your skills!"
+	
+	para "I can only hope to"
+	line "be that precise!"
+	done
 
 FuchsiaGym2_MapEventHeader:
 	; filler
