@@ -45,6 +45,10 @@ NotePals:
 	RGB 31, 31, 31
 	RGB 31, 31, 31
 	RGB 0, 0, 0
+	RGB 31, 31, 31
+	RGB 31, 30, 5
+	RGB 31, 25, 7
+	RGB 31, 31, 31
 NotePalsEnd
 
 placestring_: MACRO
@@ -148,7 +152,7 @@ MusicPlayer::
 	xor a
 	ld [rVBK], a
 	ld b, BANK(MusicTestOAMGFX) ;load the gfx
-	ld c, 9
+	ld c, 12
 	ld de, MusicTestOAMGFX
 	ld hl, VTiles0
 	call Request2bpp
@@ -1150,17 +1154,23 @@ SongSelector:
 	ld a, h
 	ld [wLineCopyDest + 1], a
 .nolinecopy
-	ld a, [wMPFlags]
-	bit 0, a
-	call nz, RenderWaveform
-	call UpdateVisualIntensity
-	call DrawNotes
+	call UpdateData
 	call DelayFrame_MP2
 	jp .traninloop
 .tranindone
-	; TODO finish transition in
+	copy SongSelectorOAM, Sprites, SongSelectorOAMEnd - SongSelectorOAM
+	xor a
+	ld [wInfoDrawState], a
+	ld [hSCY], a
+.traninlast
+	call UpdateData
+	call DelayFrame_MP3
+	ld a, [wInfoDrawState]
+	cp 8
+	jr c, .traninlast
 .loop
-	;call DelayFrame_MP3
+	call UpdateData
+	call DelayFrame_MP3
 	call GetJoypad
 	jbutton A_BUTTON, .a
 	jbutton B_BUTTON, .exit
@@ -1417,6 +1427,13 @@ RenderNarrowText::
 	inc de
 	endr
 	jp .return
+	
+UpdateData:
+	ld a, [wMPFlags]
+	bit 0, a
+	call nz, RenderWaveform
+	call UpdateVisualIntensity
+	jp DrawNotes
 	
 UpdateDataAndDelayFrame:
 	ld a, [wMPFlags]
@@ -1936,15 +1953,14 @@ DelayFrame_MP3:
 	xor a
 	ld [rSCY], a
 	ld [LYOverrides + $90], a
-	call DelayFrame_MPCommon
 .doneduty
 ; wave gfx copy if requested
 	ld a, [wMPFlags]
 	bit 0, a
-	jr z, .nowavecpy
+	jr z, .no1bppcpy
 	ld a, [wInfoDrawState]
-	cp 2
-	jr c, .nowavecpy
+	cp 8
+	jr c, .no1bppcpy
 	ld a, 4
 	ld [Requested2bpp], a
 	ld a, wWaveformTmpGFX % $100
@@ -1962,36 +1978,6 @@ DelayFrame_MP3:
 	ld [rVBK], a
 	ld hl, wMPFlags
 	res 0, [hl]
-.nowavecpy
-; music list copy
-	ld a, [wDrawMask]
-	cp 8
-	jp c, .no1bppcpy
-	cp $78
-	jp nc, .no1bppcpy
-	ld [hSPBuffer], sp
-	ld a, [wLineCopySrc]
-	ld l, a
-	ld a, [wLineCopySrc + 1]
-	ld h, a
-	ld sp, hl
-	ld a, [wLineCopyDest]
-	ld l, a
-	ld a, [wLineCopyDest + 1]
-	ld h, a
-	ld bc, 15
-	rept 18
-	pop af
-	ld [hli], a
-	ld [hl], a
-	add hl, bc
-	add sp, 6
-	endr
-	ld a, [hSPBuffer]
-	ld l, a
-	ld a, [hSPBuffer + 1]
-	ld h, a
-	ld sp, hl
 .no1bppcpy
 	ld a, [wInfoDrawState]
 	ld hl, .states
@@ -2011,45 +1997,178 @@ DelayFrame_MP3:
 .states
 	dw .init1
 	dw .init2
-	dw .normal1
-	dw .normal2
+	dw .init3
+	dw .init4
+	dw .init5
+	dw .init6
+	dw .init7
+	dw .init8
+	dw .normal
 	dw .up
 	dw .down
 	dw .page
 	dw .exit
 	
 .init1
-	; TODO
+	xor a
+	ld [rWY], a
+	ld hl, VBGMap0 + $61
+	jr .init1_2
+	
+.init2
+	ld hl, VBGMap0 + $221
+	jr .init1_2
+	
+.init1_2
+	ld a, 1
+	ld [rVBK], a
+	ld de, 14
+	ld c, e
+.init1_2loop
+	ld a, 4
+	ld [hli], a
+	ld [hli], a
+	xor a
+	call .fill16
+	add hl, de
+	dec c
+	jp nz, .init1_2loop
+	xor a
+	ld [rVBK], a
+	call DelayFrame_MPCommon
 	ld hl, wInfoDrawState
 	inc [hl]
 	ret
 	
-.init2
-	; TODO
+.init3
+	call DelayFrame_MPCommon
 	ld a, 1
 	ld [rVBK], a
-	ld a, $48 ; yflip
-	ld [VBGMap1], a
-	ld a, $68 ; xyflip
-	ld [VBGMap1 + $13], a
+	ld de, VBGMap0
+	ld hl, VBGMap1
+	ld c, 3
+	call .transscreen
 	xor a
 	ld [rVBK], a
+	ld de, VBGMap0
+	ld hl, VBGMap1
+	ld c, 3
+	call .transscreen
+	ld hl, wInfoDrawState
+	inc [hl]
+	ret
+	
+.init4
+	call DelayFrame_MPCommon
+	ld hl, VBGMap0 + $61
+	ld de, VBGMap0 + $221
+	ld c, 5
+	ld a, $80
+	jp .init4loop
+	
+.init5
+	call DelayFrame_MPCommon
+	ld hl, VBGMap0 + $101
+	ld de, VBGMap0 + $2c1
+	ld c, 5
+	ld a, $da
+	jp .init4loop
+	
+.init6
+	call DelayFrame_MPCommon
+	ld hl, VBGMap0 + $1a1
+	ld de, VBGMap0 + $361
+	ld c, 4
+	ld a, $34
+	
+.init4loop
+	rept 18
+	ld [hli], a
+	ld [de], a
+	inc de
+	inc a
+	endr
+	push bc
+	ld bc, 14
+	add hl, bc
+	push hl
+	ld h, d
+	ld l, e
+	add hl, bc
+	ld d, h
+	ld e, l
+	pop hl
+	pop bc
+	dec c
+	jp nz, .init4loop
+	ld hl, wInfoDrawState
+	inc [hl]
+	ret
+	
+.transscreen
+	ld [hSPBuffer], sp
+	ld sp, hl
+	ld h, d
+	ld l, e
+.transscreenloop
+	rept 10
+	pop de
+	ld a, e
+	ld [hli], a
+	ld a, d
+	ld [hli], a
+	endr
+	ld de, 12
+	add hl, de
+	add sp, 12
+	dec c
+	jp nz, .transscreenloop
+	ld a, [hSPBuffer]
+	ld l, a
+	ld a, [hSPBuffer + 1]
+	ld h, a
+	ld sp, hl
+	ret
+	
+.init7
+	call DelayFrame_MPCommon
+	xor a
 	ld hl, VTiles2 + $7f0
 	call .fill16
-	ld hl, VBGMap0 + $3e1
+	ld hl, VBGMap0 + $3e2
+	ld a, 1
+	ld [rVBK], a
+	ld a, $4
+	ld [hld], a
+	ld [hl], a
+	xor a
+	ld [rVBK], a
 	ld a, $7f
 	call .fill18
+	ld a, $fc
+	call .fillborder
+	ld hl, wInfoDrawState
+	inc [hl]
+	ret
+	
+.init8
+	call hPushOAM
+	ld a, 1
+	ld [rVBK], a
+	ld hl, VBGMap1
+	ld a, $48 ; yflip
+	ld [hli], a
+	ld a, $8
+	call .fill18
+	ld a, $68 ; xyflip
+	ld [hl], a
+	call .fillborder
+	xor a
+	ld [rVBK], a
 	ld hl, VBGMap1 + $1
 	ld a, $fb
 	call .fill18
-	inc a
-_w_ = VBGMap0 + $60
-	rept 29
-	ld [_w_], a
-	ld [_w_ + $13], a
-_w_ = _w_ + $20
-	endr
-	inc a
+	ld a, $fd
 	ld [VBGMap1], a
 	ld [VBGMap1 + $13], a
 	ld a, $88
@@ -2064,6 +2183,15 @@ _w_ = _w_ + $20
 .fill16
 	rept 16
 	ld [hli], a
+	endr
+	ret
+	
+.fillborder
+_w_ = $9860
+	rept 29
+	ld [_w_], a
+	ld [_w_ + $13], a
+_w_ = _w_ + $20
 	endr
 	ret
 	
@@ -2084,6 +2212,7 @@ _w_ = _w_ + $20
 	jp .blinkcursor
 	
 .exit
+	call hPushOAM
 	; TODO
 	ret
 	
@@ -2099,7 +2228,7 @@ _w_ = _w_ + $20
 .blinkodd
 	ld [$fe02], a
 	inc a
-	ld [$fe2a], a
+	ld [$fe26], a
 	ld a, c
 _w_ = $fe01
 	rept 10
@@ -2107,6 +2236,32 @@ _w_ = $fe01
 	add b
 _w_ = _w_ + 4
 	endr
+	
+.mpcommon
+; ch1-2 duty
+	ld a, [wC1Duty]
+	add $cc
+	ld [VBGMap0 + $2], a
+	ld a, [wC2Duty]
+	add $cc
+	ld [VBGMap0 + $5], a
+; ch4 noise set
+	ld a, [MusicNoiseSampleSet]
+	add $da
+	ld [VBGMap0 + $11], a
+; visual intensities
+	ld a, [wC1Vol]
+	add $e8
+	ld [VBGMap0 + $30], a
+	ld a, [wC2Vol]
+	add $e8
+	ld [VBGMap0 + $31], a
+	ld a, [wC3Vol]
+	add $e8
+	ld [VBGMap0 + $32], a
+	ld a, [wC4Vol]
+	add $e8
+	ld [VBGMap0 + $33], a
 	ret
 	
 	
@@ -2378,6 +2533,19 @@ NoteOAM:
 	db $20,$a0,$06,$00
 	db $14,$a0,$07,$00
 NoteOAMEnd
+
+SongSelectorOAM:
+	db $58,$08,$09,$01
+	db $58,$18,$0a,$01
+	db $58,$28,$0a,$01
+	db $58,$38,$0a,$01
+	db $58,$48,$0a,$01
+	db $58,$58,$0a,$01
+	db $58,$68,$0a,$01
+	db $58,$78,$0a,$01
+	db $58,$88,$0a,$01
+	db $58,$98,$0a,$01
+SongSelectorOAMEnd
 
 EmptyPitch: db "   @"
 
