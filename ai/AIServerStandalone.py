@@ -12,6 +12,7 @@ import random
 from json.decoder import JSONDecodeError
 
 import AI
+from AIServer import calculate_next_move, get_backup_move
 
 show_move = 1 # set to 1 if you're a dirty rotten cheater
 PORT = 5001
@@ -27,44 +28,6 @@ ai_result = "move1"
 Artificial = AI.AI()
 LastActions = []
 
-def calculate_next_move(battle_state):
-    # invoke AI.
-    # catch exceptions and provide a fallback to not get the whole game stuck waiting on a move
-    global ai_result, LastActions, Artificial
-    try:
-        if not (battle_state["battleState"]["requested action"] & 0x04):
-            LastActions = []
-        battle_state["battleState"]["history"] = LastActions
-        next_move = Artificial.MainBattle(battle_state)
-    except Exception as e:
-        logger.exception("The AI threw an exception with the following input: %s" % battle_state)
-        # uh-oh! better fall back to "default ai"
-        next_move = get_backup_move(battle_state)
-
-    if show_move == 1:
-        logger.info("next move: %s" % next_move)
-    else:
-        logger.info("AI move received")
-    LastActions.append(next_move)
-    
-    # set global ai result variable. do this always last to avoid race-conditions.
-    ai_result = next_move
-
-def get_backup_move(battle_state):
-    try:
-        if battle_state["battleState"]["requested action"] & 0x40:
-            try:
-                return "switch%d" % random.randint(1, len(battle_state["battleState"]["enemyParty"]["party"]))
-            except KeyError:
-                return "switch%d" % random.randint(1, 6)
-        else:
-            try:
-                return "move%d" % random.randint(1, len(battle_state["battleState"]["enemypokemon"]["moves"]))
-            except KeyError:
-                return "move%d" % random.randint(1, 4)
-    except KeyError:
-        # the whole battle_state is fucked
-        return "move%d" % random.randint(1, 4)
 
 class AIServer(BaseHTTPRequestHandler):
     def get_json(self):
@@ -95,25 +58,12 @@ class AIServer(BaseHTTPRequestHandler):
             self.send_response(404)
             self.end_headers()
             return
-        global ai_result
-        self.send_response(200)
-        self.end_headers()
-
-        try:
-            battle_state = self.get_json()
-        except JSONDecodeError:
-            logger.exception("ai_invoke got called with nothing, or something not json-decodable: %s" % request)
-            battle_state = {}
-        logger.info("invoking AI... submitted JSON: %s" % battle_state)
-
-        # reset global ai result variable and asynchronously invoke the ai.
-        # Doesn't have to be a thread, could also be a greenlet or something,
-        # But a thread is easy, in the stdlib and works fine here.
-        ai_result = None
-        threading.Thread(target=calculate_next_move, args=(battle_state,)).start()
+        self.ai_invoke()
 
     def do_GET(self):
         if self.path == "/ai_retrieve":
+            self.send_response(200)
+            self.end_headers()
             if ai_result:
                 self.wfile.write(ai_result.encode())
         elif self.path == "/ai_invoke":
@@ -122,8 +72,6 @@ class AIServer(BaseHTTPRequestHandler):
             self.send_response(404)
             self.end_headers()
             return
-        self.send_response(200)
-        self.end_headers()
 
 
 if __name__ == "__main__":
