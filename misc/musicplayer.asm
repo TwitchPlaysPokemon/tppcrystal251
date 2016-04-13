@@ -62,6 +62,12 @@ jbutton: MACRO
 	and \1
 	jp nz, \2 ; TODO jx
 	ENDM
+	
+jbuttond: MACRO
+	ld a, [hJoyDown]
+	and \1
+	jp nz, \2 ; TODO jx
+	ENDM
 
 printbit: MACRO
 	ld hl, \1
@@ -1148,10 +1154,10 @@ SongSelector:
 	call GetJoypad
 	jbutton A_BUTTON, .a
 	jbutton B_BUTTON, .exit
-	jbutton D_DOWN, .down
-	jbutton D_UP, .up
-	jbutton D_LEFT, .left
-	jbutton D_RIGHT, .right
+	jbuttond D_DOWN, .down
+	jbuttond D_UP, .up
+	jbuttond D_LEFT, .left
+	jbuttond D_RIGHT, .right
 	jr .loop
 .a
 	ld de, MUSIC_NONE
@@ -1170,18 +1176,24 @@ SongSelector:
 .noOverflowD
 	ld [wSongSelection], a
 	call UpdateSelectorNames
-	call RedrawSelector_Cursor
+	ld a, $a
+	ld [wInfoDrawState], a
+	ld b, 1
+	call RedrawSelector_UpDown
 	jr .loop
 .up
 	ld a, [wSongSelection]
 	dec a
-	cp 0
+	and a
 	jr nz, .noOverflowU
 	ld a, NUM_MUSIC - 1
 .noOverflowU
 	ld [wSongSelection], a
 	call UpdateSelectorNames
-	call RedrawSelector_Cursor
+	ld a, $9
+	ld [wInfoDrawState], a
+	ld b, 0
+	call RedrawSelector_UpDown
 	jp .loop
 .left
 	ld a, [wSongSelection]
@@ -1270,8 +1282,74 @@ UpdateSelectorNames:
 	call UpdateData
 	jp DelayFrame_MP3
 	
-RedrawSelector_Cursor:
-	; TODO
+RedrawSelector_UpDown:
+	ld a, b
+	and a
+	ld a, 1
+	jr z, .up
+	ld a, 14
+.up
+	push bc
+	call DrawSongSelectorItem
+	pop bc
+	ld a, [hSCY] ; x8
+	add a ; x16
+	swap a ; x1
+	and $f
+	call Mul144
+	add hl, hl ; 288
+	ld de, VTiles1
+	add hl, de
+	ld a, b
+	and a
+	jr nz, .loop
+	ld a, [hSCY]
+	and a
+	jr z, .special
+	ld de, $feee
+	add hl, de
+	jr .loop
+.special
+	ld hl, VTiles1 + $eae
+.loop
+	push hl
+	push bc
+	ld a, b
+	and a
+	jr z, .up2
+	ld a, [wInfoDrawState2]
+	ld e, a
+	ld d, 0
+	ld bc, wMusicListGFX - 1
+	jr .done
+.up2
+	ld a, [wInfoDrawState2]
+	cpl
+	ld e, a
+	ld d, $ff
+	inc de
+	ld bc, wMusicListGFX + 6
+.done
+	add hl, de
+	add hl, de
+	ld a, l
+	ld [wLineCopyDest], a
+	ld a, h
+	ld [wLineCopyDest + 1], a
+	ld h, b
+	ld l, c
+	add hl, de
+	ld a, l
+	ld [wLineCopySrc], a
+	ld a, h
+	ld [wLineCopySrc + 1], a
+	call UpdateData
+	call DelayFrame_MP3
+	pop bc
+	pop hl
+	ld a, [wInfoDrawState2]
+	cp $ff
+	jr nz, .loop
 	ret
 	
 RedrawSelector_Page:
@@ -1283,29 +1361,18 @@ RedrawSelector_Page:
 	call nc, DrawSongSelectorItem
 	ld a, [wInfoDrawState2]
 	ld b, a
-	ld a, [hSCY] ;x8
-	add a ;x16
-	swap a ;x1
-	add a ;x2
+	ld a, [hSCY] ; x8
+	rrca ; x4
+	rrca ; x2
+	and $3e
 	add b
 	cp 28
 	jr c, .noadj
 	sub 28
 .noadj
-	ld l, a
-	ld h, 0
-	ld c, l
-	ld b, h
-	add hl, hl ; x2
-	add hl, hl ; x4
-	add hl, hl ; x8
-	add hl, bc ; x9
-	add hl, hl ; x18
-	add hl, hl ; x36
-	add hl, hl ; x72
-	add hl, hl ; x144
-	ld bc, VTiles1
-	add hl, bc
+	call Mul144
+	ld de, VTiles1
+	add hl, de
 	ld a, l
 	ld [wLineCopyDest], a
 	ld a, h
@@ -1315,6 +1382,21 @@ RedrawSelector_Page:
 	ld a, [wInfoDrawState2]
 	cp $ff
 	jr nz, RedrawSelector_Page
+	ret
+	
+Mul144:
+	ld l, a
+	ld h, 0
+	ld e, l
+	ld d, h
+	add hl, hl ; x2
+	add hl, hl ; x4
+	add hl, hl ; x8
+	add hl, de ; x9
+	add hl, hl ; x18
+	add hl, hl ; x36
+	add hl, hl ; x72
+	add hl, hl ; x144
 	ret
 	
 PlaceString_MP:
@@ -1972,6 +2054,12 @@ DelayFrame_MP2:
 	jp c, .no1bppcpy
 	cp $78
 	jp nc, .no1bppcpy
+	call Serve1bppLine
+.no1bppcpy
+; all vblank copies done
+	jp DelayFrame_MPPost
+	
+Serve1bppLine:
 	ld [hSPBuffer], sp
 	ld a, [wLineCopySrc]
 	ld l, a
@@ -1995,24 +2083,10 @@ DelayFrame_MP2:
 	ld a, [hSPBuffer + 1]
 	ld h, a
 	ld sp, hl
-.no1bppcpy
-; all vblank copies done
-	jp DelayFrame_MPPost
+	ret
 	
 DelayFrame_MP3:
 ; music list VBlank routine
-	ld a, [rLYC]
-	ld b, a
-	and a
-	jr z, .overline
-	ld a, [rLY]
-	cp $90
-	jr nc, .toolate
-	cp b
-	jr nc, .overline
-.toolate
-	halt
-.overline
 	halt
 	xor a
 	ld [rSCY], a
@@ -2267,12 +2341,28 @@ _w_ = _w_ + $20
 	ret
 	
 .up
-	; TODO
-	jp .blinkcursor
+	ld a, [hSCY]
+	dec a
+	cp $ff
+	jr nz, .updown
+	ld a, $6f
+	jr .updown
 	
 .down
-	; TODO
-	jp .blinkcursor
+	ld a, [hSCY]
+	inc a
+	cp $70
+	jr c, .updown
+	xor a
+	
+.updown
+	ld [hSCY], a
+	call Serve1bppLine
+	ld a, [wInfoDrawState2]
+	inc a
+	cp 8
+	jr nz, .notdoneyet
+	jr .done
 	
 .page
 	ld a, 9
@@ -2299,11 +2389,12 @@ _w_ = _w_ + $20
 	ld a, [wInfoDrawState2]
 	inc a
 	cp 28
-	jr nz, .pagenotdoneyet
-	ld a, 8
+	jr nz, .notdoneyet
+.done
+	ld a, $8
 	ld [wInfoDrawState], a
 	ld a, $ff
-.pagenotdoneyet
+.notdoneyet
 	ld [wInfoDrawState2], a
 	jp .blinkcursor
 	
