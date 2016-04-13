@@ -2589,6 +2589,7 @@ wDrawMask:: ds 1
 wLineCopySrc:: ds 2
 wLineCopyDest:: ds 2
 wInfoDrawState:: ds 1
+wInfoDrawState2:: ds 1
 wVolTimer:: ds 1
 wNR10Sub:: ds 1
 wC1Vol:: ds 1
