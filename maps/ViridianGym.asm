@@ -390,7 +390,7 @@ ViridianGymGuyWinText: ; 0x9ada0
 
 	para "That was an"
 	line "inspirational"
-	cont "battle!
+	cont "battle!"
 	
 	para "it brought tears"
 	line "to my eyes!"
