@@ -16,6 +16,8 @@ UnknownScript_0x1ab4fa: ; 0x1ab4fa
 BlaineScript_0x1ab4fb: ; 0x1ab4fb
 	faceplayer
 	loadfont
+	checkevent EVENT_BEAT_ELM
+	iftrue BlainePostgameRematchScript
 	checkevent EVENT_BLAINE_REMATCH
 	iftrue BlaineAfterRematch
 	checkevent EVENT_SET_BY_OAK_AFTER_16_BADGES
@@ -100,11 +102,17 @@ BlaineRejectText:
 
 	para "How could this"
 	line "have happened!?"
+	
+	para "Once the CINNABAR"
+	line "VOLCANO erupted<...>"
+	
+	para "No<...> no<...> no!"
 	done
 
 BlaineRejectText2:
 	text "You decide it"
 	line "would be unwise"
+	
 	para "to interrupt his"
 	line "frenzy."
 
@@ -143,13 +151,16 @@ BlaineAfterRematchText:
 
 	para "I'll take my NOTES"
 	line "back, but leave"
+	
 	para "you with a map to"
 	line "GUYANA, the only"
+	
 	para "known habitat of"
 	line "MEW, as thanks."
 
 	para "I'll never give"
 	line "up until the day"
+	
 	para "I've rebuilt the"
 	line "CINNABAR GYM!"
 	done
@@ -282,6 +293,46 @@ SeafoamGymGuyWinText2: ; 0x1ab806
 	done
 ; 0x1ab865
 
+BlainePostgameRematchScript:
+    writetext BlainePostgameRematchText
+    yesorno
+    iffalse .return
+    closetext
+    loadtrainer BLAINE, 2
+    winlosstext BlainePostgameBeatenText, 0
+    startbattle
+    returnafterbattle
+    loadfont
+    writetext BlainePostgameAfterText
+    waitbutton
+.return
+    closetext
+    end
+
+BlainePostgameRematchText:
+	text "BLAINE: Woah!"
+	
+	para "I didn't think I'd"
+	line "see you back in my"
+	cont"<...>GYM"
+	
+	para "Oh? You want to"
+	line "battle again?"
+	done
+
+BlainePostgameBeatenText:
+	text "No! It can't be!"
+	done
+
+BlainePostgameAfterText:
+	text "BLAINE: Your #-"
+	line "MON are super hot!"
+
+	para "I guess I'm just a"
+	line "smoldering ember"
+	cont "without my GYM<...>"
+	done
+	
 SeafoamGym_MapEventHeader: ; 0x1ab865
 	; filler
 	db 0, 0

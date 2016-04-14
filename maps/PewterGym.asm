@@ -9,6 +9,8 @@ PewterGym_MapScriptHeader: ; 0x1a2862
 BrockScript_0x1a2864: ; 0x1a2864
 	faceplayer
 	loadfont
+	checkevent EVENT_BEAT_ELM
+	iftrue BrockPostgameRematchScript
 	checkevent EVENT_BROCK_REMATCH
 	iftrue BrockAfterRematch
 	checkevent EVENT_SET_BY_OAK_AFTER_16_BADGES
@@ -185,13 +187,16 @@ UnknownText_0x1a28d0: ; 0x1a28d0
 
 	para "So you're from"
 	line "PALLET TOWN,"
+	
 	para "but you lost your"
 	line "BOULDERBADGE<...>"
 
 	para "While I could"
 	line "simply replace it,"
+	
 	para "I want to see how"
 	line "much you've grown"
+	
 	para "to become JOHTO's"
 	line "CHAMPION."
 
@@ -300,7 +305,7 @@ PewterGymGuyText: ; 0x1a2c6e
 ; 0x1a2d07
 
 PewterGymGuyWinText: ; 0x1a2d07
-	text "Yo! CHAMP in"
+	text "Yo! CHAMP in the"
 	line "making! That GYM"
 
 	para "didn't give you"
@@ -310,9 +315,52 @@ PewterGymGuyWinText: ; 0x1a2d07
 	line "charge was really"
 
 	para "inspiring. I mean"
-	line "that seriously."
+	line "that, seriously!"
 	done
 ; 0x1a2d88
+
+BrockPostgameRematchScript:
+    writetext BrockPostgameRematchText
+    yesorno
+    iffalse .return
+    closetext
+    loadtrainer BROCK, 2
+    winlosstext BrockPostgameBeatenText, 0
+    startbattle
+    returnafterbattle
+    loadfont
+    writetext BrockPostgameAfterText
+    waitbutton
+.return
+    closetext
+    end
+
+BrockPostgameRematchText:
+	text "BROCK: <PLAY_G>!"
+	
+	para "Still making your"
+	line "rounds in KANTO?"
+	
+	para "What's that?"
+	
+	para "You came back to"
+	line "battle me again?"
+	done
+
+BrockPostgameBeatenText:
+	text "No! My defense"
+	line "wasn't enough!"
+	done
+
+BrockPostgameAfterText:
+	text "I guess there's a"
+	line "reason you are"
+	cont "JOHTO'S CHAMPION."
+
+	para "You have my"
+	line "respect, that's"
+	cont "for sure!"
+	done
 
 PewterGym_MapEventHeader: ; 0x1a2d88
 	; filler

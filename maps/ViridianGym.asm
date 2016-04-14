@@ -9,6 +9,8 @@ ViridianGym_MapScriptHeader: ; 0x9aa24
 BlueScript_0x9aa26: ; 0x9aa26
 	faceplayer
 	loadfont
+	checkevent EVENT_BEAT_ELM
+	iftrue BluePostgameRematchScript
 	checkevent EVENT_BLUE_REMATCH
 	iftrue BlueAfterRematch
 	checkevent EVENT_SET_BY_OAK_AFTER_16_BADGES
@@ -36,7 +38,6 @@ BlueScript_0x9aa26: ; 0x9aa26
 	waitbutton
 	closetext
 	end
-
 
 BlueRematchScript:
 	checkcode VAR_DEXCAUGHT
@@ -340,6 +341,7 @@ UnknownText_0x9ac27: ; 0x9ac27
 
 	para "I'm going to call"
 	line "CELADON and tell"
+	
 	para "them they can open"
 	line "the TM DEPOT for"
 	cont "you."
@@ -368,6 +370,7 @@ ViridianGymGuyText: ; 0x9acee
 
 	para "The GYM LEADER is"
 	line "a guy who battled"
+	
 	para "the CHAMPION three"
 	line "months ago."
 
@@ -375,20 +378,22 @@ ViridianGymGuyText: ; 0x9acee
 
 	para "Give it everything"
 	line "you've got,"
+	
 	para "because you're in"
 	line "for a wild ride!"
 	done
 ; 0x9ada0
 
 ViridianGymGuyWinText: ; 0x9ada0
-	text "Man, you are truly"
+	text "Man, you are really"
 	line "tough<...>"
 
 	para "That was an"
 	line "inspirational"
-
-	para "battle. It brought"
-	line "tears to my eyes."
+	cont "battle!
+	
+	para "it brought tears"
+	line "to my eyes!"
 	done
 ; 0x9ae04
 
@@ -508,6 +513,49 @@ CooltrainerMBonitaText:
 	cont "energy left."
 	done
 
+BluePostgameRematchScript:
+    writetext BluePostgameRematchText
+    yesorno
+    iffalse .return
+    closetext
+    loadtrainer BLUE, 2
+    winlosstext CooltrainerFSalmaBeatenText, 0
+    startbattle
+    returnafterbattle
+    loadfont
+    writetext BluePostgameAfterText
+    waitbutton
+.return
+    closetext
+    end
+
+BluePostgameRematchText:
+	text "BLUE: Yo CHAMP."
+	
+	para "What are you doing"
+	line "back here?"
+	
+	para "Couldn't get"
+	line "enough of my wild"
+	cont "GYM maze? Haha!"
+	
+	para "<...>Oh! You want"
+	line "a rematch?"
+	done
+
+BluePostgameAfterText:
+	text "BLUE: Well, what"
+	line "can I say?"
+
+	para "You're stronger"
+	line "than I've ever"
+	cont "been."
+
+	para "I can see now why"
+	line "you're still the"
+	cont "CHAMPION!"
+	done
+	
 ViridianGym_MapEventHeader: ; 0x9ae04
 	; filler
 	db 0, 0

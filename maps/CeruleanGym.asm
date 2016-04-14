@@ -59,6 +59,8 @@ UnknownScript_0x1883de: ; 0x1883de
 MistyScript_0x188432: ; 0x188432
 	faceplayer
 	loadfont
+	checkevent EVENT_BEAT_ELM
+	iftrue MistyPostgameRematchScript
 	checkevent EVENT_MISTY_REMATCH
 	iftrue MistyAfterRematch
 	checkevent EVENT_SET_BY_OAK_AFTER_16_BADGES
@@ -155,8 +157,7 @@ GiveRainBranch:
 	waitbutton
 	closetext
 	end
-
-
+	
 TrainerSwimmerfDiana: ; 0x188466
 	; bit/flag number
 	dw $3f9
@@ -553,6 +554,51 @@ CeruleanGymGuyWinText: ; 0x1889fa
 	cont "great battle!"
 	done
 ; 0x188a51
+
+MistyPostgameRematchScript:
+    writetext MistyPostgameRematchText
+    yesorno
+    iffalse .return
+    closetext
+    loadtrainer MISTY, 2
+    winlosstext MistyPostgameBeatenText, 0
+    startbattle
+    returnafterbattle
+    loadfont
+    writetext MistyPostgameAfterText
+    waitbutton
+.return
+    closetext
+    end
+
+MistyPostgameRematchText:
+	text "Oh, look, if it"
+	line "isn't the pest!"
+
+	para "Ha! What?"
+
+	para "You came back to"
+	line "battle again?"
+	done
+
+MistyPostgameBeatenText:
+	text "No way!"
+	
+	para "You beat me AGAIN!"
+	done
+
+MistyPostgameAfterText:
+	text "Oh you little"
+	line "pest<...>"
+
+	para "I can never win"
+	line "against you, huh?"
+	
+	para "Hmph."
+	
+	para "<...>You are pretty"
+	line "good<...>"
+	done
 
 CeruleanGym_MapEventHeader: ; 0x188a51
 	; filler
