@@ -71,7 +71,7 @@ BrockReject:
 	end
 
 BrockRejectText:
-	text "<PLAY_G>?"
+	text "BROCK: <PLAY_G>?"
 
 	para "Are you interested"
 	line "in FOSSIL #MON?"
@@ -91,7 +91,8 @@ BrockRejectText:
 	done
 
 BrockBeforeRematchText:
-	text "So, you're here."
+	text "BROCK: So, you're"
+	line "here."
 
 	para "It has been some"
 	line "time since I was"
@@ -112,7 +113,8 @@ BrockRematchBeatenText:
 	done
 
 BrockAfterRematchText:
-	text "I've lost again<...>"
+	text "BROCK: I've lost"
+	line "again<...>"
 
 	para "Seems you've been"
 	line "making the most of"
@@ -353,9 +355,11 @@ BrockPostgameBeatenText:
 	done
 
 BrockPostgameAfterText:
-	text "I guess there's a"
-	line "reason you are"
-	cont "JOHTO'S CHAMPION."
+	text "BROCK: I guess"
+	line "there's a reason"
+	
+	line "you are JOHTO'S"
+	cont "CHAMPION."
 
 	para "You have my"
 	line "respect, that's"

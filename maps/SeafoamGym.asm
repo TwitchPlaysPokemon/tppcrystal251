@@ -92,7 +92,8 @@ BlaineReject:
 	end
 
 BlaineRejectText:
-	text "My RESEARCH NOTES!"
+	text "BLAINE: My"
+	cont "RESEARCH NOTES!"
 
 	para "They're gone!"
 
@@ -119,20 +120,24 @@ BlaineRejectText2:
 	done
 
 BlaineBeforeRematchText:
-	text "MY RESEARCH NOTES!"
+	text "BLAINE: <...>!"
+	line "My RESEARCH NOTES!"
 
 	para "You got them back!"
 
 	para "Thanks for getting"
 	line "those for me."
+	
 	para "They are the last"
 	line "copies of the map"
+	
 	para "to MEW's only"
 	line "known home."
 
 	para "But I heard you"
 	line "want to test your-"
 	cont "self against the"
+	
 	para "the hottest flames"
 	line "I have."
 
@@ -147,7 +152,8 @@ BlaineRematchBeatenText:
 	done
 
 BlaineAfterRematchText:
-	text "I burnt out<...>"
+	text "BLAINE: I burnt"
+	cont "myself out<...>"
 
 	para "I'll take my NOTES"
 	line "back, but leave"

@@ -65,7 +65,8 @@ BlueReject:
 	end
 
 BlueRejectText:
-	text "3 months ago<...>"
+	text "BLUE: 3 months"
+	line "ago<...>"
 
 	para "I had a RIVAL."
 
@@ -84,8 +85,9 @@ BlueRejectText:
 	done
 
 BlueRematchTextBefore:
-	text "You caught plenty"
-	line "of #MON I see."
+	text "BLUE: You caught"
+	line "plenty of #MON"
+	cont "I see<...>"
 
 	para "Just as I expec-"
 	line "ted!"
@@ -100,12 +102,12 @@ BlueRematchTextBefore:
 	done
 
 BlueRematchBeatenText:
-	text "You're the real"
-	line "deal!"
+	text "BLUE: You're the"
+	line "real deal!"
 	done
 
 BlueAfterRematchText:
-	text "You're tough,"
+	text "BLUE: You're tough,"
 	line "I'll give you"
 	cont "that."
 
