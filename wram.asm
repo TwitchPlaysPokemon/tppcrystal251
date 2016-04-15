@@ -2582,7 +2582,6 @@ wSelectionState:: ds 1
 wChannelSelector:: ds 1
 wMutedChannels:: ds 1
 wChannelSelectorOAM:: ds 4
-wNumNoteLines:: ds 1 ;
 wTmpCh:: ds 1 ;
 wChLastNotes:: ds 9
 wNoteTile:: ds 1
@@ -2613,17 +2612,7 @@ wC2Freq:: ds 2
 wC3Freq:: ds 2
 wC1Duty:: ds 1
 wC2Duty:: ds 1
-wNoteEnded:: ds 3 ;
-wSelectorTop:: ds 1 ;
-wSelectorCur:: ds 1 ;
-wChannelSelectorSwitches:: ds 8 ;
-wNoiseHit:: ds 1 ;
-wTranspositionInterval:: ds 1 ;
-wChangingPitch:: ds 1 ;
-wTmp:: ds 1 ;
 
-wRenderedWaveform:: ds 1 ;
-wSpecialWaveform:: ds 1 ;
 wWaveformTmp:: ds 16
 wWaveformTmpGFX:: ds 16 * 4
 wSelectorChars:: ds 5
