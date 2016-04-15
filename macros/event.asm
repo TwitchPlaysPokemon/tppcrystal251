@@ -1077,6 +1077,11 @@ checkroammon: macro
 	db \1
 	endm
 
+	enum checkunit_command
+checkunit: macro
+	db checkunit_command
+	endm
+	
 	enum fossilpic_command
 fossilpic: macro
 	db fossilpic_command

@@ -2866,8 +2866,28 @@ Function4424d: ; 4424d
 	ld [hl], $56
 	inc hl
 	ld [hl], $57
-	pop de
-	inc de
+	pop hl
+	inc hl
+	pop af
+	push af
+	call GetFarByte
+	cp $2f
+	jr nz, .nometric
+	ld a, [Options2]
+	bit 3, a
+	jr z, .metricdex
+	inc hl
+	inc hl
+	inc hl
+	jr .nometric
+.metricdex
+	pop af
+	push af
+	inc hl
+	call GetFarHalfword
+.nometric
+	ld d, h
+	ld e, l
 	pop af
 	hlcoord 2, 11
 	push af

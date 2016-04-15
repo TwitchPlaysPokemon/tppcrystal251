@@ -12,7 +12,7 @@ SaveMusic::
 	ld a, $4
 	ld [rSVBK], a
 
-	ld de, $d000
+	ld de, SoundEngineBackup
 	ld a, [de]
 	and a
 	jr nz, .skip
@@ -40,7 +40,7 @@ RestoreMusic::
 	ld a, $4
 	ld [rSVBK], a
 
-	ld hl, $d000
+	ld hl, SoundEngineBackup
 	ld a, [hl]
 	and a
 	jr nz, .copy
@@ -54,12 +54,12 @@ RestoreMusic::
 	call PlayMusic
 	call DelayFrame
 
-	ld hl, $d000
+	ld hl, SoundEngineBackup
 	ld bc, wMapMusic - MusicPlaying
 	ld de, MusicPlaying
 	call CopyBytes
 	xor a
-	ld [$d000], a
+	ld [SoundEngineBackup], a
 
 .done
 	pop af
@@ -79,7 +79,7 @@ DeleteSavedMusic::
 	ld a, $4
 	ld [rSVBK], a
 	xor a
-	ld [$d000], a
+	ld [SoundEngineBackup], a
 
 	pop af
 	ld [rSVBK], a

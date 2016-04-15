@@ -15,6 +15,10 @@ SageScript_0x184501: ; 0x184501
 ; 0x184504
 
 GrannyScript_0x184504: ; 0x184504
+	checkunit
+	iftrue .imperial
+	jumptextfaceplayer UnknownText_0x184649_Metric
+.imperial
 	jumptextfaceplayer UnknownText_0x184649
 ; 0x184507
 
@@ -103,6 +107,16 @@ UnknownText_0x18460a: ; 0x18460a
 UnknownText_0x184649: ; 0x184649
 	text "A BELLSPROUT over"
 	line "100 feet tall<...>"
+
+	para "People say that it"
+	line "became the center"
+	cont "pillar here."
+	done
+; 0x18469d
+
+UnknownText_0x184649_Metric: ; 0x184649
+	text "A BELLSPROUT over"
+	line "30 meters tall<...>"
 
 	para "People say that it"
 	line "became the center"

@@ -124,4 +124,5 @@
 	const MUSIC_HOOH_BATTLE                  ; 77
 	const MUSIC_LUGIA_BATTLE                 ; 78
 	const MUSIC_TPP_CREDITS                  ; 79
+NUM_MUSIC EQU const_value
 MUSIC_MAHOGANY_MART EQU $64

@@ -233,7 +233,13 @@ FisherWilton1Script: ; 0x19d92e
 	iftrue UnknownScript_0x19d8eb
 	checkevent EVENT_ROUTE_44_297
 	iftrue UnknownScript_0x19d957
+	checkunit
+	iftrue .imperial
+	writetext UnknownText_0x19daa8_Metric
+	jump .skip
+.imperial
 	writetext UnknownText_0x19daa8
+.skip
 	buttonsound
 	setevent EVENT_ROUTE_44_297
 	scall UnknownScript_0x19d8df
@@ -490,6 +496,16 @@ UnknownText_0x19daa8: ; 0x19daa8
 
 	para "I swear it must've"
 	line "been 16 feet long!"
+	done
+; 0x19daf7
+
+UnknownText_0x19daa8_Metric: ; 0x19daa8
+	text "That POLIWAG that"
+	line "got away<...>"
+	cont "It was huge."
+
+	para "I swear it must've"
+	line "been 5 meters long"
 	done
 ; 0x19daf7
 

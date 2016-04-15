@@ -2569,14 +2569,33 @@ w3_d800:: ; ds BG_MAP_WIDTH * SCREEN_HEIGHT ($240)
 	ds 1
 w3_d801::
 
-SECTION "WRAM 4", WRAMX[$d800], BANK[$4] ; seems like this bank is unused
+; $4:d100 is used as LYOverrides in music player
+; since LCD doesn't check for current WRAM bank
+SECTION "WRAM 4 RM", WRAMX[$d200], BANK[$4]
+SoundEngineBackup::
 
-wMPNotes:: ds 4*256
-wSongSelection:: ds 2
-wNumNoteLines:: ds 1
-wTmpCh:: ds 1
-wChLastNotes:: ds 3
+SECTION "WRAM 4 MP", WRAMX[$d800], BANK[$4] ; seems like this bank is unused
+
+wMPTileMapBackup:: ds 20 * 18
+wMPFlags:: ds 1
+wSongSelection:: ds 1
+wSelectionState:: ds 1
+wChannelSelector:: ds 1
+wMutedChannels:: ds 1
+wChannelSelectorOAM:: ds 4
+wTmpCh:: ds 1 ;
+wChLastNotes:: ds 9
+wNoteTile:: ds 1
+wNoteMask:: ds 1
+wDrawMask:: ds 1
+wTmpVBlankFunc:: ; reused
+wLineCopySrc:: ds 2
+wLineCopyDest:: ds 2
+wInfoDrawState:: ds 1
+wListDrawState:: ds 1
+wListDrawState2:: ds 1
 wVolTimer:: ds 1
+wNR10Sub:: ds 1
 wC1Vol:: ds 1
 wC1VolSub:: ds 1
 wC2Vol:: ds 1
@@ -2585,19 +2604,33 @@ wC3Vol:: ds 1
 wC3VolSub:: ds 1
 wC4Vol:: ds 1
 wC4VolSub:: ds 1
-wNoteEnded:: ds 3
-wSelectorTop:: ds 1
-wSelectorCur:: ds 1
-wChannelSelector:: ds 1
-wChannelSelectorSwitches:: ds 8
-wNoiseHit:: ds 1
-wTranspositionInterval:: ds 1
-wChangingPitch:: ds 1
-wTmp:: ds 1
+wC1VolTile:: ds 1
+wC2VolTile:: ds 1
+wC3VolTile:: ds 1
+wC4VolTile:: ds 1
+wC1Freq:: ds 2
+wC2Freq:: ds 2
+wC3Freq:: ds 2
+wC1Duty:: ds 1
+wC2Duty:: ds 1
 
-wRenderedWaveform:: ds 1
-wSpecialWaveform:: ds 1
 wWaveformTmp:: ds 16
+wWaveformTmpGFX:: ds 16 * 4
+wSelectorChars:: ds 5
+wSelectorGFX:: ds 8 * 4
+wMusicListChars:: ; reused
+wMusicNameChars:: ds 31
+wMusicComposerChars:: ds 31
+wMusicOriginChars:: ds 31
+wMusicAdditionalChars:: ds 21
+wMusicInfoCharsEnd::
+wMusicListGFX:: ; reused
+wMusicNameGFX:: ds 8 * 15
+wMusicComposerGFX:: ds 8 * 15
+wMusicOriginGFX:: ds 8 * 15
+wMusicAdditionalGFX:: ds 8 * 10
+wMusicInfoGFXEnd::
+wMPInitClearEnd::
 
 SECTION "GBC Video", WRAMX, BANK [5]
 

@@ -310,9 +310,9 @@ Function5ca6: ; 5ca6
 
 Function5cd3: ; 5cd3
 	ld hl, wdfe8
-	ld a, $3
+	ld a, 1000 / $100
 	ld [hli], a
-	ld a, $6
+	ld a, 1000 % $100
 	ld [hli], a
 	ld de, .Ralph
 	call CopyName2
@@ -83559,8 +83559,7 @@ StringOptions2:
 	db "SFX TEST", $22
 	db "        :", $22
 	db "MUSIC PLAYER", $22
-	;db " ", $22
-	db "    (COMING SOON)", $22
+	db " ", $22
 	db "NEXT", $22
 	db " ", $22
 	db "EXIT@"
@@ -84105,13 +84104,13 @@ Options_SFXTest:
 	ret
 
 Options_MusicPlayer:
-	;ld a, [hJoyPressed]
-	;bit 0, a
-	;jr z, .NonePressed
-	;callba SaveMusic
-	;callba MusicPlayer
-	;callba RestoreMusic
-
+	ld a, [hJoyPressed]
+	bit 0, a
+	jr z, .NonePressed
+	callba SaveMusic
+	callba MusicPlayer
+	callba RestoreMusic
+	
 .NonePressed
 	and a
 	ret
@@ -87931,7 +87930,84 @@ INCBIN "gfx/unknown/0fbbbb.2bpp"
 ; fbbdb
 
 Functionfbbdb: ; fbbdb
+	ld a, [Options2]
+	bit 3, a
+	jr nz, .imperial
+	ld hl, StringBuffer1
+	ld de, Buffer1
+	ld bc, $4204
+	call PrintNum
+	dec hl
+	ld a, [hl]
+	ld [hl], "."
+	inc hl
+	ld [hl], a
+	inc hl
+	ld [hl], "c"
+	inc hl
+	ld [hl], "m"
+	inc hl
+	ld [hl], "@"
+	ret
+.imperial
 	call Functionfbbae
+	ld a, [Buffer1]
+	ld b, a
+	ld a, [Buffer2]
+	ld c, a
+	ld de, 2580 ; (1/25.4) << 16
+	xor a
+	ld [hTmpd], a
+	ld [hTmpe], a
+	ld hl, 0
+	ld a, 16
+	ld [hProduct], a
+.loop
+	sla l
+	rl h
+	ld a, [hTmpe]
+	rla
+	ld [hTmpe], a
+	ld a, [hTmpd]
+	rla
+	ld [hTmpd], a
+	sla e
+	rl d
+	jr nc, .noadd
+	add hl, bc
+	ld a, [hTmpe]
+	adc 0
+	ld [hTmpe], a
+	ld a, [hTmpd]
+	adc 0
+	ld [hTmpd], a
+.noadd
+	ld a, [hProduct]
+	dec a
+	ld [hProduct], a
+	jr nz, .loop
+	ld a, [hTmpd]
+	ld h, a
+	ld a, [hTmpe]
+	ld l, a
+	ld bc, -12
+	ld e, 0
+.inchloop
+	ld a, h
+	and a
+	jr nz, .inchloop2
+	ld a, l
+	cp 12
+	jr c, .inchdone
+.inchloop2
+	add hl, bc
+	inc e
+	jr .inchloop
+.inchdone
+	ld a, e
+	ld [Buffer1], a
+	ld a, l
+	ld [Buffer2], a
 	ld hl, StringBuffer1
 	ld de, Buffer1
 	ld bc, $4102
@@ -93375,10 +93451,8 @@ SampleRandomRocket:
 
 INCLUDE "engine/hostsbattletransition.asm"
 
-;SECTION "Music Player", ROMX
-;INCLUDE "misc/musicplayer.asm"
-
 SECTION "bank76", ROMX, BANK[$76]
+INCLUDE "misc/musicplayer.asm"
 
 SECTION "bank77", ROMX, BANK[$77]
 UnownFont: ; 1dc000

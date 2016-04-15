@@ -283,6 +283,14 @@ UpdateChannels: ; e8125
 	;
 	ld a, [SoundInput]
 	ld [rNR10], a
+	ld a, [Options2]
+	bit 7, a ; music player active?
+	jr z, .asm_e8159
+	; if music player is active, WRAM bank must be 4
+	ld a, [SoundInput]
+	swap a
+	and 7
+	ld [wNR10Sub], a
 .asm_e8159
 	bit 5, [hl] ; rest
 	jr nz, .ch1rest
@@ -298,6 +306,14 @@ UpdateChannels: ; e8125
 	ld [rNR13], a
 	ld a, [wc295]
 	ld [rNR14], a
+	ld a, [Options2]
+	bit 7, a
+	jr z, .asm_e8175
+	ld a, [wc294]
+	ld [wC1Freq], a
+	ld a, [wc295]
+	and $7
+	ld [wC1Freq+1], a
 .asm_e8175
 	bit 0, [hl]
 	ret z
@@ -307,6 +323,14 @@ UpdateChannels: ; e8125
 	and a, $3f ; sound length
 	or d
 	ld [rNR11], a
+	ld a, [Options2]
+	bit 7, a
+	ret z
+	ld a, [wc292]
+	rlca
+	rlca
+	and 3
+	ld [wC1Duty], a
 	ret
 .asm_e8184
 	ld a, [wc292]
@@ -317,6 +341,16 @@ UpdateChannels: ; e8125
 	ld [rNR11], a
 	ld a, [wc294]
 	ld [rNR13], a
+	ld a, [Options2]
+	bit 7, a
+	ret z
+	ld a, [wc292]
+	rlca
+	rlca
+	and 3
+	ld [wC1Duty], a
+	ld a, [wc294]
+	ld [wC1Freq], a
 	ret
 .ch1rest
 	ld a, [rNR52]
@@ -337,6 +371,27 @@ UpdateChannels: ; e8125
 	ld a, [wc295]
 	or a, $80
 	ld [rNR14], a
+	ld a, [Options2]
+	bit 7, a
+	ret z
+	ld a, [wc292]
+	rlca
+	rlca
+	and 3
+	ld [wC1Duty], a
+	ld a, [wc293]
+	swap a
+	and $f
+	ld [wC1Vol], a
+	ld a, [wc293]
+	and $7
+	add a ; mp timer is called at 128Hz so we need to double this
+	ld [wC1VolSub], a
+	ld a, [wc294]
+	ld [wC1Freq], a
+	ld a, [wc295]
+	and $7
+	ld [wC1Freq+1], a
 	ret
 
 .Channel2
@@ -357,12 +412,28 @@ UpdateChannels: ; e8125
 	and a, $3f ; sound length
 	or d
 	ld [rNR21], a
+	ld a, [Options2]
+	bit 7, a
+	ret z
+	ld a, [wc292]
+	rlca
+	rlca
+	and 3
+	ld [wC2Duty], a
 	ret
 .asm_e81db ; unused
 	ld a, [wc294]
 	ld [rNR23], a
 	ld a, [wc295]
 	ld [rNR24], a
+	ld a, [Options2]
+	bit 7, a
+	ret z
+	ld a, [wc294]
+	ld [wC2Freq], a
+	ld a, [wc295]
+	and $7
+	ld [wC2Freq+1], a
 	ret
 .asm_e81e6
 	ld a, [wc292]
@@ -373,6 +444,16 @@ UpdateChannels: ; e8125
 	ld [rNR21], a
 	ld a, [wc294]
 	ld [rNR23], a
+	ld a, [Options2]
+	bit 7, a
+	ret z
+	ld a, [wc292]
+	rlca
+	rlca
+	and 3
+	ld [wC2Duty], a
+	ld a, [wc294]
+	ld [wC2Freq], a
 	ret
 .ch2rest
 	ld a, [rNR52]
@@ -393,6 +474,27 @@ UpdateChannels: ; e8125
 	ld a, [wc295]
 	or a, $80 ; initial (restart)
 	ld [rNR24], a
+	ld a, [Options2]
+	bit 7, a
+	ret z
+	ld a, [wc292]
+	rlca
+	rlca
+	and 3
+	ld [wC2Duty], a
+	ld a, [wc293]
+	swap a
+	and $f
+	ld [wC2Vol], a
+	ld a, [wc293]
+	and $7
+	add a
+	ld [wC2VolSub], a
+	ld a, [wc294]
+	ld [wC2Freq], a
+	ld a, [wc295]
+	and $7
+	ld [wC2Freq+1], a
 	ret
 
 .Channel3
@@ -411,10 +513,23 @@ UpdateChannels: ; e8125
 	ld [rNR33], a
 	ld a, [wc295]
 	ld [rNR34], a
+	ld a, [Options2]
+	bit 7, a
+	ret z
+	ld a, [wc294]
+	ld [wC3Freq], a
+	ld a, [wc295]
+	and $7
+	ld [wC3Freq+1], a
 	ret
 .asm_e823a
 	ld a, [wc294]
 	ld [rNR33], a
+	ld a, [Options2]
+	bit 7, a
+	ret z
+	ld a, [wc294]
+	ld [wC3Freq], a
 	ret
 .ch3rest
 	ld a, [rNR52]
@@ -436,6 +551,14 @@ UpdateChannels: ; e8125
 	ld a, [wc295]
 	or a, $80
 	ld [rNR34], a
+	ld a, [Options2]
+	bit 7, a
+	ret z
+	ld a, [wc294]
+	ld [wC3Freq], a
+	ld a, [wc295]
+	and $7
+	ld [wC3Freq+1], a
 	ret
 .asm_e8268
 	push hl
@@ -457,45 +580,52 @@ UpdateChannels: ; e8125
 	ld de, WaveSamples
 	add hl, de
 	; load wavepattern into $ff30-$ff3f
+	ld a, [Options2]
+	bit 7, a
+	jr nz, .mpcopy
+_w_ = $ff30
+	rept 16
 	ld a, [hli]
-	ld [$ff30], a
-	ld a, [hli]
-	ld [$ff31], a
-	ld a, [hli]
-	ld [$ff32], a
-	ld a, [hli]
-	ld [$ff33], a
-	ld a, [hli]
-	ld [$ff34], a
-	ld a, [hli]
-	ld [$ff35], a
-	ld a, [hli]
-	ld [$ff36], a
-	ld a, [hli]
-	ld [$ff37], a
-	ld a, [hli]
-	ld [$ff38], a
-	ld a, [hli]
-	ld [$ff39], a
-	ld a, [hli]
-	ld [$ff3a], a
-	ld a, [hli]
-	ld [$ff3b], a
-	ld a, [hli]
-	ld [$ff3c], a
-	ld a, [hli]
-	ld [$ff3d], a
-	ld a, [hli]
-	ld [$ff3e], a
-	ld a, [hli]
-	ld [$ff3f], a
+	ld [_w_], a
+_w_ = _w_ + 1
+	endr
 .skipwavecopy
 	pop hl
 	ld a, [wc293]
 	and a, $f0
 	sla a
 	ld [rNR32], a
+	ld a, [Options2]
+	bit 7, a
+	ret z
+	ld a, [wc293]
+	swap a
+	and $3
+	jr z, .vol0
+	cp 2
+	jr z, .vol2
+	jr c, .vol1
+	ld a, $3
+	jr .vol0
+.vol2
+	ld a, $7
+	jr .vol0
+.vol1
+	ld a, $f
+.vol0
+	ld [wC3Vol], a
 	ret
+.mpcopy
+_w_ = 0
+	rept 16
+	ld a, [hli]
+	ld [$ff30 + _w_], a
+	ld [wWaveformTmp + _w_], a
+_w_ = _w_ + 1
+	endr
+	ld hl, wMPFlags
+	set 0, [hl] ; wave copy occurred
+	jp .skipwavecopy
 
 .Channel4
 .Channel8
@@ -526,6 +656,17 @@ UpdateChannels: ; e8125
 	ld [rNR43], a
 	ld a, $80
 	ld [rNR44], a
+	ld a, [Options2]
+	bit 7, a
+	ret z
+	ld a, [wc293]
+	swap a
+	and $f
+	ld [wC4Vol], a
+	ld a, [wc293]
+	and $7
+	add a
+	ld [wC4VolSub], a
 	ret
 ; e82e7
 
@@ -1178,6 +1319,23 @@ ParseMusic: ; e85e1
 	ld a, [CurMusicByte]
 	and a, $0f
 	call SetNoteDuration
+	; mute check (music player only)
+	ld a, [Options2]
+	bit 7, a
+	jr z, .notmp
+	ld a, [wMutedChannels]
+	ld e, a
+	ld a, [CurChannel]
+	and a
+	jr z, .skipshift
+.shiftloop
+	srl e
+	dec a
+	jr nz, .shiftloop
+.skipshift
+	srl e
+	jr c, .rest
+.notmp
 	; get note pitch (top nybble)
 	ld a, [CurMusicByte]
 	swap a
@@ -1321,6 +1479,14 @@ GetNoiseSample: ; e86c5
 	ld a, [CurMusicByte]
 	and a, $0f
 	call SetNoteDuration
+	; mute check (music player only)
+	ld a, [Options2]
+	bit 7, a
+	jr z, .notmp
+	ld a, [wMutedChannels]
+	bit 3, a
+	ret nz
+.notmp
 	; check current channel
 	ld a, [CurChannel]
 	bit 2, a ; are we in a sfx channel?
@@ -1441,13 +1607,26 @@ MusicF1: ; e8780
 ; params: 16
 	xor a
 	ld [rNR30], a
-	ld e, 16
-	ld hl, $ff30
-.loop
+	ld a, [Options2]
+	bit 7, a ; is music player active?
+	jr nz, .mpcopy
+_w_ = $ff30
+	rept 16
 	call GetMusicByte
-	ld [hli], a
-	dec e
-	jr nz, .loop
+	ld [_w_], a
+_w_ = _w_ + 1
+	endr
+	ret
+.mpcopy
+_w_ = 0
+	rept 16
+	call GetMusicByte
+	ld [$ff30 + _w_], a
+	ld [wWaveformTmp + _w_], a
+_w_ = _w_ + 1
+	endr
+	ld hl, wMPFlags
+	set 0, [hl] ; wave copy occurred
 	ret
 
 MusicF2: ; e8780
@@ -3244,5 +3423,25 @@ ClearChannel: ; e8ffe
 	ld [hli], a ; rNR13, rNR23, rNR33, rNR43 ; frequency lo = 0
 	ld a, $80
 	ld [hli], a ; rNR14, rNR24, rNR34, rNR44 ; restart sound (freq hi = 0)
+; clear mp data too
+	ld a, [Options2]
+	bit 7, a
+	ret z
+	push hl
+	push bc
+	ld bc, $eb
+	add hl, bc
+	ld a, l
+	and 3
+	add a
+	ld c, a
+	ld b, 0
+	ld hl, wC1Vol
+	add hl, bc
+	xor a
+	ld [hli], a
+	ld [hl], a
+	pop bc
+	pop hl
 	ret
 ; e900a
