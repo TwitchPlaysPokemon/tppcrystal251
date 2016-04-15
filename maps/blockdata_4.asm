@@ -89,6 +89,12 @@ SSAnne10_BlockData:
 
 GoldenrodPokeCenter1F_BlockData:
 	INCBIN "maps/GoldenrodPokeCenter1F.blk"
-	
+
+SECTION "Vermilion Gym Rematch Blockdata", ROMX
 VermilionGym2_BlockData:
-	INCBIN "maps/VermilionGym2.blk"
+VermilionGym2Red_BlockData:
+	INCBIN "maps/VermilionGym2Red.blk"
+VermilionGym2Blue_BlockData:
+	INCBIN "maps/VermilionGym2Blue.blk"
+VermilionGym2Off_BlockData:
+	INCBIN "maps/VermilionGym2Off.blk"

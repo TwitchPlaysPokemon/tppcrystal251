@@ -227,6 +227,8 @@ INCLUDE "maps/DanceTheatre.asm"
 INCLUDE "maps/EcruteakMart.asm"
 INCLUDE "maps/EcruteakGym.asm"
 INCLUDE "maps/EcruteakItemfinderHouse.asm"
+
+SECTION "Map Scripts 11 Overflow (?)", ROMX
 INCLUDE "maps/ViridianGym.asm"
 INCLUDE "maps/ViridianNicknameSpeechHouse.asm"
 INCLUDE "maps/TrainerHouse1F.asm"
@@ -356,7 +358,6 @@ INCLUDE "maps/VermilionMagnetTrainSpeechHouse.asm"
 INCLUDE "maps/VermilionMart.asm"
 INCLUDE "maps/VermilionHouseDiglettsCaveSpeechHouse.asm"
 INCLUDE "maps/VermilionGym.asm"
-INCLUDE "maps/VermilionGym2.asm"
 INCLUDE "maps/Route6SaffronGate.asm"
 INCLUDE "maps/Route6UndergroundEntrance.asm"
 INCLUDE "maps/PokeCenter2F.asm"
@@ -365,9 +366,9 @@ INCLUDE "maps/Colosseum.asm"
 INCLUDE "maps/TimeCapsule.asm"
 INCLUDE "maps/Route2NuggetSpeechHouse.asm"
 INCLUDE "maps/Route2Gate.asm"
-	;INCLUDE "maps/MobileTradeRoomMobile.asm"
-	;INCLUDE "maps/MobileBattleRoom.asm"
 
+SECTION "Vermilion Gym Rematch Scripts", ROMX
+INCLUDE "maps/VermilionGym2.asm"
 
 SECTION "Map Scripts 18", ROMX
 
@@ -465,6 +466,9 @@ INCLUDE "maps/Route46.asm"
 INCLUDE "maps/ViridianCity.asm"
 INCLUDE "maps/CeladonCity.asm"
 INCLUDE "maps/Route15.asm"
+
+SECTION "Map Scripts 23 Overflow (?)", ROMX
+
 INCLUDE "maps/VermilionCity.asm"
 INCLUDE "maps/Route9.asm"
 INCLUDE "maps/CinnabarPokeCenter1F.asm"

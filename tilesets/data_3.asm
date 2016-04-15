@@ -34,6 +34,11 @@ Tileset12Coll: ; 0x22431
 INCBIN "tilesets/12_collision.bin"
 ; 0x22531
 
+; todo
+Tileset31Meta: ; 0x23891
+INCBIN "tilesets/31_metatiles.bin"
+; 0x23b11
+
 Tileset14GFX: ; 0x22531
 INCBIN "gfx/tilesets/14.2bpp.lz"
 ; 0x22af1
@@ -45,9 +50,4 @@ INCBIN "tilesets/14_metatiles.bin"
 Tileset14Coll: ; 0x22ef1
 INCBIN "tilesets/14_collision.bin"
 ; 0x22ff1
-
-; todo
-Tileset31Meta: ; 0x23891
-INCBIN "tilesets/31_metatiles.bin"
-; 0x23b11
 
