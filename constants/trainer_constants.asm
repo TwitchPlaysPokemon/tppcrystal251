@@ -555,9 +555,9 @@
 	const IRWIN1
 	const FRITZ
 	const HORTON
-	const IRWIN2
-	const IRWIN3
-	const IRWIN4
+	; const IRWIN2
+	; const IRWIN3
+	; const IRWIN4
 	const HORTON2
 
 	trainerclass BLACKBELT_T ; 32
