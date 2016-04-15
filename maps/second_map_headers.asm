@@ -464,7 +464,8 @@
 	map_header_2 VermilionMagnetTrainSpeechHouse, VERMILION_MAGNET_TRAIN_SPEECH_HOUSE, $0, NONE ; 0x96050
 	map_header_2 VermilionMart, VERMILION_MART, $0, NONE ; 0x9605c
 	map_header_2 VermilionHouseDiglettsCaveSpeechHouse, VERMILION_HOUSE_DIGLETTS_CAVE_SPEECH_HOUSE, $0, NONE ; 0x96068
-	map_header_2 VermilionGym, VERMILION_GYM, $0, NONE ; 0x96074
+	map_header_2 VermilionGym, VERMILION_GYM, 0, NONE
+	map_header_2 VermilionGym2, VERMILION_GYM2, 0, NONE
 	map_header_2 Route6SaffronGate, ROUTE_6_SAFFRON_GATE, $0, NONE ; 0x96080
 	map_header_2 Route6UndergroundEntrance, ROUTE_6_UNDERGROUND_ENTRANCE, $0, NONE ; 0x9608c
 	map_header_2 RedsHouse1F, REDS_HOUSE_1F, $0, NONE ; 0x96098

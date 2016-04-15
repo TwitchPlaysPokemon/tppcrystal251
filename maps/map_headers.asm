@@ -275,7 +275,8 @@ MapGroup12:
 	map_header VermilionMagnetTrainSpeechHouse, $5, 3, VERMILION_CITY, MUSIC_VERMILION_CITY, 0, 1, 1
 	map_header VermilionMart, $c, 3, VERMILION_CITY, MUSIC_MART, 0, 1, 1
 	map_header VermilionHouseDiglettsCaveSpeechHouse, $5, 3, VERMILION_CITY, MUSIC_VERMILION_CITY, 0, 1, 1
-	map_header VermilionGym, $e, 3, VERMILION_CITY, MUSIC_GYM, 1, 1, 1
+	map_header VermilionGym, 14, 3, VERMILION_CITY, MUSIC_GYM, 1, 1, 1
+	map_header VermilionGym2, 14, 3, VERMILION_CITY, MUSIC_GYM, 1, 1, 1
 	map_header Route6SaffronGate, $8, 6, ROUTE_6, MUSIC_ROUTE_3, 0, 1, 1
 	map_header Route6UndergroundEntrance, $8, 6, ROUTE_6, MUSIC_ROUTE_3, 0, 1, 1
 	map_header MewIslandEntrance, $1, 2, MEW_ISLAND, MUSIC_INDIGO_PLATEAU, 0, 0, 1

@@ -89,3 +89,6 @@ SSAnne10_BlockData:
 
 GoldenrodPokeCenter1F_BlockData:
 	INCBIN "maps/GoldenrodPokeCenter1F.blk"
+	
+VermilionGym2_BlockData:
+	INCBIN "maps/VermilionGym2.blk"
