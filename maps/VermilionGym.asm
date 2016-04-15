@@ -288,8 +288,8 @@ UnknownText_0x192291: ; 0x192291
 	done
 
 SurgeLastText:
-	text "That's WILD"
-	line "CHARGE."
+	text "SURGE: That's"
+	line "WILD CHARGE."
 
 	para "An electrifying"
 	line "strike for brave"

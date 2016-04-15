@@ -122,11 +122,12 @@ MistyAfterRematch:
 	end
 
 MistyRematchTextBefore:
-	text "My dream was to"
-	line "go on a journey"
-
-	para "and battle power-"
-	line "ful trainers."
+	text "MISTY: My dream"
+	line "was to go on a"
+	
+	para "great journey"
+	line "and battle power-"
+	cont "ful trainers."
 
 	para "I made my dream"
 	line "come true."
@@ -143,11 +144,12 @@ MistyRematchBeatenText:
 	done
 
 MistyAfterRematchText:
-	text "You really are"
+	text "MISTY: I guess"
+	line "you are really"
 	line "strong<...>"
 
-	para "I'll admit that"
-	line "you are skilled."
+	para "I'll admit<...>"
+	line "you've got skills."
 	done
 
 GiveRainBranch:
@@ -411,8 +413,7 @@ TextBranchSecondMisty:
 
 	para "If you want"
 	line "another, you'll"
-	cont "have to earn it,"
-	cont "you pest!"
+	cont "have to earn it!"
 	done
 
 ; 0x18870c
@@ -436,9 +437,9 @@ UnknownText_0x188768: ; 0x188768
 ; 0x188782
 
 MistyBeforeRainDance:
-	text "Here is another"
-	line "memento from"
-	cont "this battle."
+	text "MISTY: Here is"
+	line "another memento"
+	cont "from this battle."
 
 	para "Take it!"
 

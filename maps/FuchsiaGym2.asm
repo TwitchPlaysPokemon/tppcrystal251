@@ -154,8 +154,9 @@ FakeJanine2Text:
 	done
 
 JanineBeforeRematchText:
-	text "The essence of"
-	line "a ninjas' moves<...>"
+	text "JANINE: The true"
+	line "essence of a"
+	cont "ninja's moves<...>"
 
 	para "Honed and trained"
 	line "to perfection<...>"
@@ -178,8 +179,9 @@ JanineRematchBeatenText:
 	done
 
 JanineAfterRematchText:
-	text "While I admire"
-	line "your victory,"
+	text "JANINE: While I do"
+	line "admire your"
+	cont "victory,"
 
 	para "I'm disappointed"
 	line "that I lost<...>"
@@ -232,8 +234,8 @@ JaninePostgameRematchScript:
     end
 	
 JaninePostgameRematchText:
-	text "I suppose it's"
-	line "a bit easier"
+	text "JANINE: I suppose"
+	line "it's a bit easier"
 	cont "finding me now."
 
 	para "Let's keep this"
@@ -250,10 +252,11 @@ JaninePostgameBeatenText:
 	done
 	
 JaninePostgameAfterText:
-	text "And again, I lose."
+	text "JANINE: And again,"
+	cont "I lose."
 
 	para "You have truly"
-	line "honed your skills!"
+	line "honed your skills."
 	
 	para "I can only hope to"
 	line "be that precise!"
