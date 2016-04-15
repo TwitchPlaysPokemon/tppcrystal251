@@ -42,7 +42,18 @@ MtSilverRuinsElmScript:
 	writetext ElmText_MtSilverRuinsFinalBattleIntro
 	waitbutton
 	closetext
+	checkevent EVENT_GOT_CYNDAQUIL_FROM_ELM
+	iftrue .LoadMeganiumTeam
+	checkevent EVENT_GOT_TOTODILE_FROM_ELM
+	iftrue .LoadTyphlosionTeam
+	loadtrainer PROF_ELM, 3
+	jump .StartBattle
+.LoadTyphlosionTeam
+	loadtrainer PROF_ELM, 2
+	jump .StartBattle
+.LoadMeganiumTeam
 	loadtrainer PROF_ELM, 1
+.StartBattle
 	winlosstext ElmWinText_MtSilverRuins, ElmLossText_MtSilverRuins
 	writecode VAR_BATTLETYPE, BATTLETYPE_CANLOSE
 	startbattle
