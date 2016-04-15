@@ -51,7 +51,7 @@ VermilionGymRematch_SwitchTrigger0:
 	end
 
 Trainer_JugglerHorton2:
-	trainer EVENT_BEAT_HORTON_2, JUGGLER, HORTON2, JugglerHorton2BeforeText, JugglerHorton2AfterText, 0, .Script
+	trainer EVENT_BEAT_HORTON_2, JUGGLER, HORTON2, JugglerHorton2BeforeText, JugglerHorton2WinText, 0, .Script
 .Script:
 	talkaftercancel
 	loadfont
@@ -61,7 +61,7 @@ Trainer_JugglerHorton2:
 	end
 
 Trainer_GentlemanGregory2:
-	trainer EVENT_BEAT_GREGORY_2, GENTLEMAN, GREGORY2, GentlemanGregory2BeforeText, GentlemanGregory2AfterText, 0, .Script
+	trainer EVENT_BEAT_GREGORY_2, GENTLEMAN, GREGORY2, GentlemanGregory2BeforeText, GentlemanGregory2WinText, 0, .Script
 .Script:
 	talkaftercancel
 	loadfont
@@ -71,7 +71,7 @@ Trainer_GentlemanGregory2:
 	end
 
 Trainer_GuitaristVincent2:
-	trainer EVENT_BEAT_VINCENT_2, GUITARIST, VINCENT2, GuitaristVincent2BeforeText, GuitaristVincent2AfterText, 0, .Script
+	trainer EVENT_BEAT_VINCENT_2, GUITARIST, VINCENT2, GuitaristVincent2BeforeText, GuitaristVincent2WinText, 0, .Script
 .Script:
 	talkaftercancel
 	loadfont
@@ -81,7 +81,7 @@ Trainer_GuitaristVincent2:
 	end
 
 Trainer_CooltrainerMChase:
-	trainer EVENT_BEAT_CHASE, COOLTRAINERM, CHASE, CooltrainerMChaseBeforeText, CooltrainerMChaseAfterText, 0, .Script
+	trainer EVENT_BEAT_CHASE, COOLTRAINERM, CHASE, CooltrainerMChaseBeforeText, CooltrainerMChaseWinText, 0, .Script
 .Script:
 	talkaftercancel
 	loadfont
@@ -91,7 +91,7 @@ Trainer_CooltrainerMChase:
 	end
 
 Trainer_SchoolboyBrett:
-	trainer EVENT_BEAT_BRETT, SCHOOLBOY, BRETT, SchoolboyBrettBeforeText, SchoolboyBrettAfterText, 0, .Script
+	trainer EVENT_BEAT_BRETT, SCHOOLBOY, BRETT, SchoolboyBrettBeforeText, SchoolboyBrettWinText, 0, .Script
 .Script:
 	talkaftercancel
 	loadfont
