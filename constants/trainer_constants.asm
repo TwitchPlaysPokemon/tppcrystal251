@@ -153,6 +153,7 @@
 	const ALAN5
 	const CHAD4
 	const CHAD5
+	const BRETT
 
 	trainerclass BIRD_KEEPER ; 18
 	const ROD
@@ -233,6 +234,7 @@
 	const BONITA
 	const MIKE2
 	const PAUL2
+	const CHASE
 
 	trainerclass COOLTRAINERF ; 1c
 	const GWEN
@@ -311,6 +313,7 @@
 	const THOMAS_RB
 	const BROOKS_RB
 	const LAMAR_RB
+	const GREGORY2
 
 	trainerclass SKIER ; 21
 	const ROXANNE
@@ -482,6 +485,7 @@
 	const VINCENT
 	const BERNIE_RB
 	const BRAXTON_RB
+	const VINCENT2
 
 	trainerclass HIKER ; 2c
 	const ANTHONY1
@@ -554,6 +558,7 @@
 	const IRWIN2
 	const IRWIN3
 	const IRWIN4
+	const HORTON2
 
 	trainerclass BLACKBELT_T ; 32
 	const KENJI1

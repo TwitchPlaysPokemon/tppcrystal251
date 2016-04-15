@@ -3218,8 +3218,8 @@ SongInfo:
 	info ._70, 1, 1, 0
 	info ._71, 1, 1, 0
 	info ._72, 1, 1, 0
-	info ._73, 8, 10, 12
-	info ._74, 5, 9, 12
+	info ._73, 8, 10, 14
+	info ._74, 5, 9, 14
 	info ._75, 3, 1, 0
 	info ._76, 1, 1, 0
 	info ._77, 7, 8, 12
@@ -3400,7 +3400,8 @@ Artist:
 	dbw $0b, ._10
 	dbw $0c, ._11
 	dbw $0d, ._12
-	dbw $18, ._13
+	dbw $0e, ._13
+	dbw $18, ._14
 	db -1
 
 ._00 db "Junichi Masuda@"
@@ -3416,4 +3417,5 @@ Artist:
 ._10 db "Church of the Helix Choir@"
 ._11 db "Pigu@"
 ._12 db "Pigu, GACT@"
-._13 db "Junichi Masuda, Go Ichinose@"
+._13 db "Pigu, PikalaxALT@"
+._14 db "Junichi Masuda, Go Ichinose@"

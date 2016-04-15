@@ -2683,6 +2683,30 @@ SchoolboyGroup:
 
 	db $ff ; end
 
+	db "BRETT@"
+	db (1 << TRAINERTYPE_MOVES) | ( 1 << TRAINERTYPE_ITEM) | (1 << TRAINERTYPE_MAXXP)
+
+	; party
+
+	db 100, PICHU, FOCUS_BAND
+		db THUNDERBOLT
+		db IRON_TAIL
+		db SING
+		db SWEET_KISS
+
+	db 100, MAREEP, FOCUS_BAND
+		db SPARK
+		db HEADBUTT
+		db COTTON_SPORE
+		db CONFUSE_RAY
+
+	db 100, ELEKID, FOCUS_BAND
+		db THUNDERPUNCH
+		db MEGA_KICK
+		db CROSS_CHOP
+		db MEDITATE
+
+	db $ff ; end
 ; ================
 ; ================================
 
@@ -3752,6 +3776,40 @@ CooltrainerMGroup:
 	db 100, DRAGONAIR, MINT_BERRY
 
 	db $ff ; end
+
+	db "CHASE@"
+	db (1 << TRAINERTYPE_MOVES) | (1 << TRAINERTYPE_MAXXP)
+	; party
+	db 100, PORYGON2
+		db THUNDERBOLT
+		db ICE_BEAM
+		db 0
+		db 0
+	
+	db 100, RAPIDASH
+		db WILD_CHARGE
+		db FLAME_WHEEL
+		db 0
+		db 0
+	db 100, MISDREAVUS
+		db THUNDERBOLT
+		db SHADOW_BALL
+		db 0
+		db 0
+	
+	db 100, TAUROS
+		db WILD_CHARGE
+		db STOMP
+		db 0
+		db 0
+		
+	db 100, LAPRAS
+		db THUNDER
+		db SURF
+		db RAIN_DANCE
+		db SHEER_COLD
+	db $ff ; end
+
 ; ================
 ; ================================
 
@@ -5037,6 +5095,28 @@ GentlemanGroup:
 	db 17, GROWLITHE
 	db 17, PONYTA
 	db $ff
+
+	db "GREGORY@"
+	db (1 << TRAINERTYPE_MOVES) | ( 1 << TRAINERTYPE_ITEM) | (1 << TRAINERTYPE_MAXXP)
+	; party
+	db 100, FLAAFFY, FOCUS_BAND
+		db THUNDERPUNCH
+		db FIRE_PUNCH
+		db CONFUSE_RAY
+		db THUNDER_WAVE
+	db 100, PIKACHU, LIGHT_BALL
+		db THUNDERBOLT
+		db SURF
+		db FLY
+		db DIG
+		
+	db 100, AMPHAROS, DRAGON_SCALE
+		db THUNDER
+		db DRAGON_PULSE
+		db FLASH_CANNON
+		db HYPER_BEAM
+	db $ff ; end
+
 ; ================
 ; ================================
 
@@ -7226,6 +7306,32 @@ GuitaristGroup:
 	db 21, MAGNEMITE
 	db $ff
 
+	db "VINCENT@"
+	db (1 << TRAINERTYPE_MOVES) | ( 1 << TRAINERTYPE_ITEM) | (1 << TRAINERTYPE_MAXXP)
+	; party
+	db 100, MAGNEMITE, FOCUS_BAND
+		db WILD_CHARGE
+		db IRON_HEAD
+		db LIGHT_SCREEN
+		db AGILITY
+	db 100, MAGNEMITE, FOCUS_BAND
+		db THUNDERBOLT
+		db SWIFT
+		db REFLECT
+		db THUNDER_WAVE
+		
+	db 100, MAGNEMITE, FOCUS_BAND
+		db THUNDER
+		db FLASH_CANNON
+		db RAIN_DANCE
+		db EXPLOSION
+	db 100, MAGNETON, LEFTOVERS
+		db ZAP_CANNON
+		db MIND_READER
+		db METAL_SOUND
+		db IRON_DEFENSE
+	db $ff ; end
+
 ; ================
 ; ================================
 
@@ -8123,6 +8229,21 @@ JugglerGroup:
 ;
 ; ================
 ; ================================
+
+	; team #5
+	db "HORTON@"
+	db (1 << TRAINERTYPE_MAXXP)
+
+	; party
+
+	db 100, VOLTORB
+	db 100, VOLTORB
+	db 100, VOLTORB
+	db 100, VOLTORB
+	db 100, VOLTORB
+	db 100, VOLTORB
+
+	db $ff ; end
 
 
 BlackbeltGroup:

@@ -361,9 +361,9 @@ GuitaristVincentBeatenText: ; 0x192437
 
 UnknownText_0x19244b: ; 0x19244b
 	text "Even if I didn't"
-	line "beat you, the"
-	cont "GYM's traps"
-	cont "surely will!"
+	line "beat you here,"
+	para "the GYM's traps"
+	line "surely will!"
 	done
 ; 0x192487
 

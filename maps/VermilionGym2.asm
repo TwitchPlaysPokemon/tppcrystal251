@@ -50,6 +50,56 @@ VermilionGymRematch_SwitchTrigger0:
 	dotrigger $1
 	end
 
+Trainer_JugglerHorton2:
+	trainer EVENT_BEAT_HORTON_2, JUGGLER, HORTON2, JugglerHorton2BeforeText, JugglerHorton2AfterText, 0, .Script
+.Script:
+	talkaftercancel
+	loadfont
+	writetext JugglerHorton2AfterText
+	waitbutton
+	closetext
+	end
+
+Trainer_GentlemanGregory2:
+	trainer EVENT_BEAT_GREGORY_2, GENTLEMAN, GREGORY2, GentlemanGregory2BeforeText, GentlemanGregory2AfterText, 0, .Script
+.Script:
+	talkaftercancel
+	loadfont
+	writetext GentlemanGregory2AfterText
+	waitbutton
+	closetext
+	end
+
+Trainer_GuitaristVincent2:
+	trainer EVENT_BEAT_VINCENT_2, GUITARIST, VINCENT2, GuitaristVincent2BeforeText, GuitaristVincent2AfterText, 0, .Script
+.Script:
+	talkaftercancel
+	loadfont
+	writetext GuitaristVincent2AfterText
+	waitbutton
+	closetext
+	end
+
+Trainer_CooltrainerMChase:
+	trainer EVENT_BEAT_CHASE, COOLTRAINERM, CHASE, CooltrainerMChaseBeforeText, CooltrainerMChaseAfterText, 0, .Script
+.Script:
+	talkaftercancel
+	loadfont
+	writetext CooltrainerMChaseAfterText
+	waitbutton
+	closetext
+	end
+
+Trainer_SchoolboyBrett:
+	trainer EVENT_BEAT_BRETT, SCHOOLBOY, BRETT, SchoolboyBrettBeforeText, SchoolboyBrettAfterText, 0, .Script
+.Script:
+	talkaftercancel
+	loadfont
+	writetext SchoolboyBrettAfterText
+	waitbutton
+	closetext
+	end
+
 SurgeRematchScript:
 	faceplayer
 	loadfont
@@ -71,6 +121,11 @@ SurgeRematchScript:
 	startbattle
 	returnafterbattle
 	setevent EVENT_SURGE_REMATCH
+	setevent EVENT_BEAT_VINCENT_2
+	setevent EVENT_BEAT_GREGORY_2
+	setevent EVENT_BEAT_HORTON_2
+	setevent EVENT_BEAT_CHASE
+	setevent EVENT_BEAT_BRETT
 	dotrigger $2
 	changemap VermilionGym2Off_BlockData
 	loadfont
@@ -231,6 +286,119 @@ VermilionGymGuyWonRematchText:
 	cont "after that battle!"
 	done
 
+SchoolboyBrettBeforeText:
+	text "LT.SURGE taught me"
+	line "and my #MON a"
+
+	para "whole bunch of"
+	line "electric-type"
+	cont "moves."
+
+	para "Can you help me"
+	line "practice them?"
+	done
+
+SchoolboyBrettWinText:
+	text "That didn't seem"
+	line "right", $75
+	done
+
+SchoolboyBrettAfterText:
+	text "I still have a lot"
+	line "to learn about"
+	cont "electric #MON."
+	done
+
+JugglerHorton2BeforeText:
+	text "If you're gonna go"
+	line "down, do so with"
+	cont "honor."
+
+	para "That's LT.SURGE's"
+	line "motto!"
+	done
+
+JugglerHorton2WinText:
+	text "KAPOW!!"
+	done
+
+JugglerHorton2AfterText:
+	text "It's fun to go out"
+	line "with a bang."
+
+	para "But how can you"
+	line "win if your own"
+
+	para "#MON also"
+	line "faints?"
+	done
+
+CooltrainerMChaseBeforeText:
+	text "The air in this"
+	line "GYM is tense and"
+	cont "charged!"
+	done
+
+CooltrainerMChaseWinText:
+	text "THUNDER detonates"
+	line "with a BOOM!!"
+	done
+
+CooltrainerMChaseAfterText:
+	text "It seems that my"
+	line "physical condition"
+	cont "is not so good."
+	done
+
+GentlemanGregory2BeforeText:
+	text "You're here for a"
+	line "rematch with"
+	cont "LT.SURGE?"
+
+	para "Not if I can help"
+	line "it!"
+	done
+
+GentlemanGregory2WinText:
+	text "Sorry I failed you"
+	line "again, LT.SURGE,"
+	cont "sir!"
+	done
+
+GentlemanGregory2AfterText:
+	text "When I was still"
+	line "in the army, LT."
+
+	para "SURGE saved my"
+	line "life."
+	done
+
+GuitaristVincent2BeforeText: ; 0x1923e8
+	text "LT.SURGE recog-"
+	line "nized my potential"
+
+	para "with electric"
+	line "#MON."
+
+	para "Think you can beat"
+	line "me?"
+	done
+; 0x192437
+
+GuitaristVincent2WinText: ; 0x192437
+	text "Ooh, how shocking!"
+	done
+; 0x19244b
+
+GuitaristVincent2AfterText: ; 0x19244b
+	text "Even if I didn't"
+	line "beat you here,"
+
+	para "the GYM's traps"
+	line "surely will!"
+	done
+; 0x192487
+
 VermilionGym2_MapEventHeader:
 	db 0, 0
 ; warps
@@ -260,9 +428,9 @@ VermilionGym2_MapEventHeader:
 ; people events
 	db 7
 	person_event SPRITE_SURGE, 5, 17, $6, 0, 0, -1, -1, 0, 0, 0, SurgeRematchScript, -1
-	person_event SPRITE_GENTLEMAN, 8, 8, $6, 0, 0, -1, -1, 0, 0, 0, ObjectEvent, -1
-	person_event SPRITE_ROCKER, 30, 5, $7, 0, 0, -1, -1, 0, 0, 0, ObjectEvent, -1
-	person_event SPRITE_FISHER, 29, 23, $8, 0, 0, -1, -1, 0, 0, 0, ObjectEvent, -1
-	person_event SPRITE_SUPER_NERD, 21, 14, $a, 0, 0, -1, -1, 0, 0, 0, ObjectEvent, -1
-	person_event SPRITE_COOLTRAINER_M, 8, 24, $6, 0, 0, -1, -1, 0, 0, 0, ObjectEvent, -1
+	person_event SPRITE_GENTLEMAN, 8, 8, $6, 0, 0, -1, -1, 0, 2, 2, Trainer_GentlemanGregory2, -1
+	person_event SPRITE_ROCKER, 30, 5, $7, 0, 0, -1, -1, 0, 2, 1, Trainer_GuitaristVincent2, -1
+	person_event SPRITE_YOUNGSTER, 29, 23, $8, 0, 0, -1, -1, 0, 2, 3, Trainer_SchoolboyBrett, -1
+	person_event SPRITE_SUPER_NERD, 21, 14, $a, 0, 0, -1, -1, 0, 2, 1, Trainer_JugglerHorton2, -1
+	person_event SPRITE_COOLTRAINER_M, 8, 24, $6, 0, 0, -1, -1, 0, 2, 2, Trainer_CooltrainerMChase, -1
 	person_event SPRITE_GYM_GUY, 29, 14, $6, 0, 0, -1, -1, 0, 0, 0, VermilionGymGuyRematchScript, -1
