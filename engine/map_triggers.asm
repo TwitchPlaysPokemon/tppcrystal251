@@ -117,5 +117,6 @@ ENDM
 	trigger_def KRISS_HOUSE_1F,                         wKrissHouse1FTrigger
 	trigger_def HALLWAY_OF_FAME,                        wHallwayOfFameTrigger
 	trigger_def LAVENDER_TOWN,                          wLavenderTownTrigger
+	trigger_def VERMILION_GYM_2,                        wVermilionGym2Trigger
 	db $ff
 ; 4d15b

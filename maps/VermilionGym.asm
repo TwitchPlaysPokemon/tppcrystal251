@@ -24,12 +24,6 @@ VermilionGymDoorsScript:
 SurgeScript_0x1920a5: ; 0x1920a5
 	faceplayer
 	loadfont
-	checkevent EVENT_BEAT_ELM
-	iftrue SurgePostgameRematchScript
-	checkevent EVENT_SURGE_REMATCH
-	iftrue SurgeAfterRematch
-	checkevent EVENT_SET_BY_OAK_AFTER_16_BADGES
-	iftrue SurgeRematchScript
 	checkflag ENGINE_THUNDERBADGE
 	iftrue UnknownScript_0x1920d9
 	writetext UnknownText_0x192142
@@ -222,93 +216,6 @@ MapVermilionGymSignpost16Script: ; 0x192132
 UnknownScript_0x19213b: ; 0x19213b
 	jumpstd gymstatue2
 ; 0x192142
-
-SurgeRematchScript:
-	checkevent EVENT_MEW_ISLAND_SURGE_CHALLENGE
-	iftrue TextBranchSurgeChallenge
-	writetext SurgeRematchTextBefore
-	jump TextBranchNoSurgeChallenge
-TextBranchSurgeChallenge:
-	writetext SurgeRematchTextBeforeChallenge
-TextBranchNoSurgeChallenge:
-	waitbutton
-	closetext
-	winlosstext SurgeRematchBeatenText, $0000
-	loadtrainer LT_SURGE, 2
-	startbattle
-	returnafterbattle
-	setevent EVENT_SURGE_REMATCH
-	loadfont ;fallthrough
-
-SurgeAfterRematch:
-	checkevent EVENT_MEW_ISLAND_SURGE_CHALLENGE
-	iftrue TextBranchSurgeChallenge2
-	writetext SurgeAfterRematchText
-	jump TextBranchNoSurgeChallenge2
-TextBranchSurgeChallenge2:
-	writetext SurgeAfterRematchTextChallenge
-TextBranchNoSurgeChallenge2:
-	waitbutton
-	closetext
-	end
-
-SurgeRematchTextBefore:
-	text "What's up?"
-	line "I'm doing great!"
-
-	para "Hey, you!"
-	line "Battle me again!"
-	cont "What do you say?"
-
-	done
-
-SurgeRematchTextBeforeChallenge:
-	text "What's up?"
-	line "I'm doing great!"
-
-	para "You want to go"
-	line "chasing MEW?"
-
-	para "That's no place for"
-	line "kids to just go"
-	cont "wandering around!"
-
-	para "Tell ya what, you"
-	line "prove youself on"
-	cont "the battlefield,"
-	
-	para "and I'll give the"
-	line "all-clear."
-
-	para "Ten-hut!"
-	done
-
-
-SurgeRematchBeatenText:
-	text "Arrrgh!"
-	line "You are strong!"
-	done
-
-SurgeAfterRematchText:
-	text "You are very"
-	line "strong!"
-
-	para "I'll have to go"
-	line "back to camp and"
-	para "brush up on my"
-	line "training."
-
-	done
-
-SurgeAfterRematchTextChallenge:
-	text "You are very"
-	line "strong!"
-
-	para "You should be able"
-	line "to handle GUYANA"
-	cont "no problem!"
-
-	done
 
 Text_FoundSwitch:
 	text "A switch beneath"
@@ -514,51 +421,6 @@ UnknownText_0x19261e: ; 0x19261e
 	done
 ; 0x19263d
 
-SurgePostgameRematchScript:
-    writetext SurgePostgameRematchText
-    yesorno
-    iffalse .return
-    closetext
-    loadtrainer LT_SURGE, 2
-    winlosstext SurgePostgameBeatenText, 0
-    startbattle
-    returnafterbattle
-    loadfont
-    writetext SurgePostgameAfterText
-    waitbutton
-.return
-    closetext
-    end
-	
-SurgePostgameRematchText:
-	text "Hey, kid!"
-
-	para "You still out"
-	line "training, yeah?"
-
-	para "Wanna go again?"
-	done
-	
-SurgePostgameBeatenText:
-	text "Woah, shocking!"
-	done
-	
-SurgePostgameAfterText:
-
-	text "You are one"
-	line "tough tyke!"
-	
-	para "I have no choice"
-	line "but to admit my"
-	cont "defeat<...> again."
-	
-	para "I should have you"
-	line "come to training"
-	
-	para "camp to train my"
-	line "crew!"
-	done
-	
 VermilionGym_MapEventHeader: ; 0x19263d
 	; filler
 	db 0, 0

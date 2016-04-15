@@ -26,6 +26,20 @@ VermilionCityTrigger2:
 VermilionCityTrigger3:
 	end
 
+UnknownScript_0x1aa97f: ; 0x1aa97f
+	checkevent EVENT_BEAT_SIMON_4
+	iffalse .false
+	setflag ENGINE_FLYPOINT_VERMILION
+.false
+	checkevent EVENT_SET_BY_OAK_AFTER_16_BADGES
+	iffalse .no_rematch
+	warpmod 1, GROUP_VERMILION_GYM_2, MAP_VERMILION_GYM_2
+	return
+.no_rematch
+	warpmod 1, GROUP_VERMILION_GYM, MAP_VERMILION_GYM
+	return
+; 0x1aa983
+
 VermilionCitySimonScript1:
 	showemote $0, $8, 15
 	pause 15
@@ -97,20 +111,6 @@ VermilionCitySimonMovement2:
 	big_step_up
 	big_step_up
 	step_end
-
-UnknownScript_0x1aa97f: ; 0x1aa97f
-	checkevent EVENT_BEAT_SIMON_4
-	iffalse .false
-	setflag ENGINE_FLYPOINT_VERMILION
-.false
-	checkevent EVENT_MEW_ISLAND_SURGE_CHALLENGE
-	iffalse .no_rematch
-	warpmod 7, GROUP_VERMILION_GYM_2, MAP_VERMILION_GYM_2
-	return
-.no_rematch
-	warpmod 7, GROUP_VERMILION_GYM, MAP_VERMILION_GYM
-	return
-; 0x1aa983
 
 TeacherScript_0x1aa983: ; 0x1aa983
 	jumptextfaceplayer UnknownText_0x1aaa15
