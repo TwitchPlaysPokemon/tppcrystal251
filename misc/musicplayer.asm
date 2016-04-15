@@ -422,15 +422,65 @@ MusicPlayer::
 .redraw	
 	ld [wSongSelection], a
 	
-	fill " ", wMusicNameChars, wMusicInfoCharsEnd - wMusicNameChars
-	fill 0, wMusicNameGFX, wMusicInfoGFXEnd - wMusicNameGFX
 	xor a
 	ld [wInfoDrawState], a ; reset info draw queue
 	call DrawSelectorNum
 	ld hl, wMPFlags
 	set 1, [hl] ; song info redraw occurred
 	res 6, [hl] ; reset leftover additional draw queue
-	call DrawSongInfo
+	
+; draw song info
+	fill " ", wMusicNameChars, wMusicInfoCharsEnd - wMusicNameChars
+	fill 0, wMusicNameGFX, wMusicInfoGFXEnd - wMusicNameGFX
+	ld a, [wSongSelection]
+	call GetSongInfo
+	jp c, .loop ; no data
+	
+	ld a, [hli]
+	ld d, [hl]
+	ld e, a
+	push hl
+	push de
+	call UpdateDataAndDelayFrame
+	ld hl, wMPFlags
+	set 7, [hl]
+	pop de
+	ld hl, wMusicNameChars
+	ld bc, wMusicNameGFX
+	ld a, 30
+	call PlaceString_MP
+	pop de
+	inc de
+	push de
+	ld hl, Origin - 2
+	call GetSongInfo2
+	ld hl, wMusicOriginChars
+	ld bc, wMusicOriginGFX
+	ld a, 30
+	call PlaceString_MP
+	call UpdateDataAndDelayFrame
+	pop de
+	inc de
+	push de
+	ld hl, Artist - 2
+	call GetSongInfo2
+	ld hl, wMusicComposerChars
+	ld bc, wMusicComposerGFX
+	ld a, 30
+	call PlaceString_MP
+	pop de
+	inc de
+	ld a, [de]
+	and a
+	jp z, .loop
+	ld hl, Artist - 2
+	call GetSongInfo2
+	ld hl, wMusicAdditionalChars
+	ld bc, wMusicAdditionalGFX
+	ld a, 20
+	call PlaceString_MP
+	ld hl, wMPFlags
+	set 6, [hl]
 	jp .loop
 	
 .a
@@ -513,6 +563,7 @@ MusicPlayer::
 	ld [rSTAT], a
 	xor a
 	ld [rIF], a
+	ld [hLCDStatCustom], a
 	ld a, $f
 	ld [rIE], a
 	ei
@@ -971,6 +1022,40 @@ UpdateVisualIntensity:
 	ld [hl], a
 	cp 15
 	jp nc, .loop
+	ld a, [wMutedChannels]
+	ld b, a
+	ld hl, wC1VolTile
+	ld c, $e8
+	ld a, [wC1Vol]
+	add c
+	ld [hl], a
+	srl b
+	jr nc, .no1
+	ld [hl], $f9
+.no1
+	inc hl
+	ld a, [wC2Vol]
+	add c
+	ld [hl], a
+	srl b
+	jr nc, .no2
+	ld [hl], $f9
+.no2
+	inc hl
+	ld a, [wC3Vol]
+	add c
+	ld [hl], a
+	srl b
+	jr nc, .no3
+	ld [hl], $f9
+.no3
+	inc hl
+	ld a, [wC4Vol]
+	add c
+	ld [hl], a
+	srl b
+	ret nc
+	ld [hl], $f9
 	ret
 
 GetSongInfo:
@@ -990,55 +1075,6 @@ GetSongInfo:
 	ret
 .noname
 	scf
-	ret
-
-DrawSongInfo:
-	ld a, [wSongSelection]
-	call GetSongInfo
-	ret c ; no data
-	
-	ld a, [hli]
-	ld d, [hl]
-	ld e, a
-	push hl
-	ld hl, wMPFlags
-	set 7, [hl]
-	ld hl, wMusicNameChars
-	ld bc, wMusicNameGFX
-	ld a, 30
-	call PlaceString_MP
-	call UpdateDataAndDelayFrame
-	pop de
-	inc de
-	push de
-	ld hl, Origin - 2
-	call GetSongInfo2
-	ld hl, wMusicOriginChars
-	ld bc, wMusicOriginGFX
-	ld a, 30
-	call PlaceString_MP
-	pop de
-	inc de
-	push de
-	ld hl, Artist - 2
-	call GetSongInfo2
-	ld hl, wMusicComposerChars
-	ld bc, wMusicComposerGFX
-	ld a, 30
-	call PlaceString_MP
-	pop de
-	inc de
-	ld a, [de]
-	and a
-	ret z
-	ld hl, Artist - 2
-	call GetSongInfo2
-	ld hl, wMusicAdditionalChars
-	ld bc, wMusicAdditionalGFX
-	ld a, 20
-	call PlaceString_MP
-	ld hl, wMPFlags
-	set 6, [hl]
 	ret
 
 GetSongInfo2:
@@ -1102,7 +1138,7 @@ SongSelector:
 	and 7
 	ld e, a
 	ld d, 0
-	ld hl, wMusicListGFX
+	ld hl, wMusicListGFX - 1
 	add hl, de
 	ld a, l
 	ld [wLineCopySrc], a
@@ -1138,19 +1174,17 @@ SongSelector:
 .tranindone
 	copy SongSelectorOAM, Sprites, SongSelectorOAMEnd - SongSelectorOAM
 	xor a
-	ld [wInfoDrawState], a
+	ld [wListDrawState], a
 	ld [hSCY], a
 .traninlast
-	call UpdateData
-	call DelayFrame_MP3
-	ld a, [wInfoDrawState]
+	call UpdateDataAndDelayFrame3
+	ld a, [wListDrawState]
 	cp 8
 	jr c, .traninlast
 	ld a, $ff
-	ld a, [wInfoDrawState2]
+	ld a, [wListDrawState2]
 .loop
-	call UpdateData
-	call DelayFrame_MP3
+	call UpdateDataAndDelayFrame3
 	call GetJoypad
 	jbutton A_BUTTON, .a
 	jbutton B_BUTTON, .exit
@@ -1177,7 +1211,7 @@ SongSelector:
 	ld [wSongSelection], a
 	call UpdateSelectorNames
 	ld a, $a
-	ld [wInfoDrawState], a
+	ld [wListDrawState], a
 	ld b, 1
 	call RedrawSelector_UpDown
 	jr .loop
@@ -1191,7 +1225,7 @@ SongSelector:
 	ld [wSongSelection], a
 	call UpdateSelectorNames
 	ld a, $9
-	ld [wInfoDrawState], a
+	ld [wListDrawState], a
 	ld b, 0
 	call RedrawSelector_UpDown
 	jp .loop
@@ -1219,7 +1253,93 @@ SongSelector:
 	call RedrawSelector_Page
 	jp .loop
 .exit
-	; TODO
+	ld a, $c
+	ld [wListDrawState], a
+	copy NoteOAM, Sprites, NoteOAMEnd - NoteOAM
+	ld hl, Sprites + 5
+	ld bc, 4
+	ld e, 8
+	ld a, $a8
+.sprloop
+	ld [hl], a
+	add hl, bc
+	dec e
+	jr nz, .sprloop
+	xor a
+	ld [Sprites + $24], a
+	fill " ", wMusicNameChars, wMusicInfoCharsEnd - wMusicNameChars
+	fill 0, wMusicNameGFX, wMusicInfoGFXEnd - wMusicNameGFX
+	ld a, [wSongSelection]
+	call GetSongInfo
+	jp c, .nodata
+	
+	ld a, [hli]
+	ld d, [hl]
+	ld e, a
+	push hl
+	push de
+	call UpdateDataAndDelayFrame3
+	ld hl, wMPFlags
+	set 7, [hl]
+	pop de
+	ld hl, wMusicNameChars
+	ld bc, wMusicNameGFX
+	ld a, 30
+	call PlaceString_MP
+	call UpdateDataAndDelayFrame3
+	pop de
+	inc de
+	push de
+	ld hl, Origin - 2
+	call GetSongInfo2
+	ld hl, wMusicOriginChars
+	ld bc, wMusicOriginGFX
+	ld a, 30
+	call PlaceString_MP
+	call UpdateDataAndDelayFrame3
+	pop de
+	inc de
+	push de
+	ld hl, Artist - 2
+	call GetSongInfo2
+	ld hl, wMusicComposerChars
+	ld bc, wMusicComposerGFX
+	ld a, 30
+	call PlaceString_MP
+	call UpdateDataAndDelayFrame3
+	pop de
+	inc de
+	ld a, [de]
+	and a
+	jr z, .nodata
+	ld hl, Artist - 2
+	call GetSongInfo2
+	ld hl, wMusicAdditionalChars
+	ld bc, wMusicAdditionalGFX
+	ld a, 20
+	call PlaceString_MP
+	ld hl, wMPFlags
+	set 6, [hl]
+.nodata
+	ld hl, wMPFlags
+	res 7, [hl] ; already handled in transition out
+	xor a
+	ld [hSCX], a
+	ld [wInfoDrawState], a
+	ld [wChannelSelector], a
+.lastloop
+	call UpdateDataAndDelayFrame3
+	ld a, [wListDrawState]
+	cp $ff
+	jr nz, .lastloop
+	ld a, $a0
+	ld [wNoteTile], a
+	ld a, $80
+	ld [wNoteMask], a
+	ld a, $5f
+	ld [rLYC], a
+	ld a, $50 ; VBlank + LYC
+	ld [rSTAT], a
 	ret
 	
 DrawSongSelectorItem:
@@ -1277,8 +1397,9 @@ DrawSongSelectorItem:
 	
 UpdateSelectorNames:
 	ld a, $80
-	ld [wInfoDrawState2], a
+	ld [wListDrawState2], a
 	call DrawSelectorNum
+UpdateDataAndDelayFrame3:
 	call UpdateData
 	jp DelayFrame_MP3
 	
@@ -1317,13 +1438,13 @@ RedrawSelector_UpDown:
 	ld a, b
 	and a
 	jr z, .up2
-	ld a, [wInfoDrawState2]
+	ld a, [wListDrawState2]
 	ld e, a
 	ld d, 0
 	ld bc, wMusicListGFX - 1
 	jr .done
 .up2
-	ld a, [wInfoDrawState2]
+	ld a, [wListDrawState2]
 	cpl
 	ld e, a
 	ld d, $ff
@@ -1343,23 +1464,22 @@ RedrawSelector_UpDown:
 	ld [wLineCopySrc], a
 	ld a, h
 	ld [wLineCopySrc + 1], a
-	call UpdateData
-	call DelayFrame_MP3
+	call UpdateDataAndDelayFrame3
 	pop bc
 	pop hl
-	ld a, [wInfoDrawState2]
+	ld a, [wListDrawState2]
 	cp $ff
 	jr nz, .loop
 	ret
 	
 RedrawSelector_Page:
 	ld a, $b
-	ld [wInfoDrawState], a
-	ld a, [wInfoDrawState2]
+	ld [wListDrawState], a
+	ld a, [wListDrawState2]
 	srl a
 	inc a
 	call nc, DrawSongSelectorItem
-	ld a, [wInfoDrawState2]
+	ld a, [wListDrawState2]
 	ld b, a
 	ld a, [hSCY] ; x8
 	rrca ; x4
@@ -1377,9 +1497,8 @@ RedrawSelector_Page:
 	ld [wLineCopyDest], a
 	ld a, h
 	ld [wLineCopyDest + 1], a
-	call UpdateData
-	call DelayFrame_MP3
-	ld a, [wInfoDrawState2]
+	call UpdateDataAndDelayFrame3
+	ld a, [wListDrawState2]
 	cp $ff
 	jr nz, RedrawSelector_Page
 	ret
@@ -1596,11 +1715,7 @@ UpdateData:
 	jp DrawNotes
 	
 UpdateDataAndDelayFrame:
-	ld a, [wMPFlags]
-	bit 0, a
-	call nz, RenderWaveform
-	call UpdateVisualIntensity
-	call DrawNotes
+	call UpdateData
 	
 DelayFrame_MP::
 ; music player VBlank routine
@@ -1699,15 +1814,6 @@ DelayFrame_MP::
 	ld [rVBK], a
 .drawduty
 	call DelayFrame_MPCommon
-	ld a, [wMutedChannels]
-	ld hl, VBGMap1 + $30
-	rept 4
-	rrca
-	jr nc, .no\@
-	ld [hl], $f9
-.no\@
-	inc hl
-	endr
 _w_ = 0
 	rept 4
 	ld a, [wChannelSelectorOAM + _w_]
@@ -1802,6 +1908,15 @@ DelayFrame_MPCommon:
 	ld a, [wC4Vol]
 	add $e8
 	ld [VBGMap1 + $33], a
+	ld a, [wMutedChannels]
+	ld hl, VBGMap1 + $30
+	rept 4
+	rrca
+	jr nc, .no\@
+	ld [hl], $f9
+.no\@
+	inc hl
+	endr
 	ret
 	
 DelayFrame_MP2Restart:
@@ -2046,7 +2161,7 @@ DelayFrame_MP2:
 	ld [rVBK], a
 	ld hl, wMPFlags
 	res 0, [hl]
-	;jp DelayFrame_MP2Restart
+	jp DelayFrame_MP2Restart
 .nowavecpy
 ; music list copy
 	ld a, [wDrawMask]
@@ -2096,7 +2211,7 @@ DelayFrame_MP3:
 	ld a, [wMPFlags]
 	bit 0, a
 	jr z, .nowavecpy
-	ld a, [wInfoDrawState2]
+	ld a, [wListDrawState2]
 	bit 7, a
 	jr z, .nowavecpy
 	ld a, 4
@@ -2118,13 +2233,13 @@ DelayFrame_MP3:
 	res 0, [hl]
 .nowavecpy
 ; selector cursor copy
-	ld a, [wInfoDrawState2]
+	ld a, [wListDrawState2]
 	cp $80
 	jr nz, .no1bppcpy
 	call DrawSelectorNum@VBlank
-	ld [wInfoDrawState2], a
+	ld [wListDrawState2], a
 .no1bppcpy
-	ld a, [wInfoDrawState]
+	ld a, [wListDrawState]
 	ld hl, .states
 	rst JumpTable
 ; all vblank copies done
@@ -2152,23 +2267,35 @@ DelayFrame_MP3:
 	dw .up
 	dw .down
 	dw .page
-	dw .exit
+	dw .exit1
+	dw .exit2
+	dw .exit3
+	dw .exit4
+	dw .exit5
+	dw .exit6
+	dw .exit7
+	dw .exit8
+	dw .exit9
+	dw .exit10
+	dw .exit11
+	dw .exit12
 	
 .init1
 	xor a
 	ld [rWY], a
 	ld hl, VBGMap0 + $61
+	ld c, 14
 	jr .init1_2
 	
 .init2
 	ld hl, VBGMap0 + $221
+	ld c, 15
 	jr .init1_2
 	
 .init1_2
 	ld a, 1
 	ld [rVBK], a
 	ld de, 14
-	ld c, e
 .init1_2loop
 	ld a, 4
 	ld [hli], a
@@ -2181,7 +2308,7 @@ DelayFrame_MP3:
 	xor a
 	ld [rVBK], a
 	call DelayFrame_MPCommon
-	ld hl, wInfoDrawState
+	ld hl, wListDrawState
 	inc [hl]
 	ret
 	
@@ -2199,7 +2326,7 @@ DelayFrame_MP3:
 	ld hl, VBGMap1
 	ld c, 3
 	call .transscreen
-	ld hl, wInfoDrawState
+	ld hl, wListDrawState
 	inc [hl]
 	ret
 	
@@ -2246,7 +2373,7 @@ DelayFrame_MP3:
 	pop bc
 	dec c
 	jp nz, .init4loop
-	ld hl, wInfoDrawState
+	ld hl, wListDrawState
 	inc [hl]
 	ret
 	
@@ -2280,19 +2407,12 @@ DelayFrame_MP3:
 	xor a
 	ld hl, VTiles2 + $7f0
 	call .fill16
-	ld hl, VBGMap0 + $3e2
-	ld a, 1
-	ld [rVBK], a
-	ld a, $4
-	ld [hld], a
-	ld [hl], a
-	xor a
-	ld [rVBK], a
+	ld hl, VBGMap0 + $3e1
 	ld a, $7f
 	call .fill18
 	ld a, $fc
 	call .fillborder
-	ld hl, wInfoDrawState
+	ld hl, wListDrawState
 	inc [hl]
 	ret
 	
@@ -2318,10 +2438,13 @@ DelayFrame_MP3:
 	ld [VBGMap1 + $13], a
 	ld a, $88
 	ld [rWY], a
-	ld hl, wInfoDrawState
+	ld hl, wListDrawState
 	inc [hl]
 	ret
 	
+.fill20
+	ld [hli], a
+	ld [hli], a
 .fill18
 	ld [hli], a
 	ld [hli], a
@@ -2358,7 +2481,7 @@ _w_ = _w_ + $20
 .updown
 	ld [hSCY], a
 	call Serve1bppLine
-	ld a, [wInfoDrawState2]
+	ld a, [wListDrawState2]
 	inc a
 	cp 8
 	jr nz, .notdoneyet
@@ -2367,7 +2490,7 @@ _w_ = _w_ + $20
 .page
 	ld a, 9
 	ld [Requested1bpp], a
-	ld a, [wInfoDrawState2]
+	ld a, [wListDrawState2]
 	srl a
 	jr c, .pageodd
 	ld a, wMusicListGFX % $100
@@ -2386,21 +2509,267 @@ _w_ = _w_ + $20
 	ld a, [wLineCopyDest + 1]
 	ld [Requested1bppDest + 1], a
 	call _Serve1bppRequest
-	ld a, [wInfoDrawState2]
+	ld a, [wListDrawState2]
 	inc a
 	cp 28
 	jr nz, .notdoneyet
 .done
 	ld a, $8
-	ld [wInfoDrawState], a
+	ld [wListDrawState], a
 	ld a, $ff
 .notdoneyet
-	ld [wInfoDrawState2], a
+	ld [wListDrawState2], a
 	jp .blinkcursor
 	
-.exit
+.exit1
+	call .mpcommon
 	call hPushOAM
-	; TODO
+	ld a, [hSCY]
+	ld b, a
+	add a
+	swap a
+	add b
+	add a
+	add $80
+	ld hl, VBGMap1 + $61
+	ld de, 14
+	ld c, 7
+	
+.exit1_2
+	call .fillinc18
+	cp $7c
+	jr nz, .exit1_2_
+	ld a, $80
+.exit1_2_
+	add hl, de
+	dec c
+	jr nz, .exit1_2
+	ld hl, wListDrawState
+	inc [hl]
+	ret
+	
+.exit2
+	call .mpcommon
+	ld a, [hSCY]
+	ld b, a
+	add a
+	swap a
+	add b
+	add a
+	cp $7e
+	jr c, .exit2a
+	add 4
+.exit2a
+	add $fe
+	ld hl, VBGMap1 + $141
+	ld de, 14
+	ld c, 7
+	jr .exit1_2
+	
+.fillinc20
+	ld [hli], a
+	inc a
+	ld [hli], a
+	inc a
+.fillinc18
+	rept 18
+	ld [hli], a
+	inc a
+	endr
+	ret
+	
+.exit3
+	call .mpcommon
+	ld a, 1
+	ld [rVBK], a
+	ld de, VBGMap1
+	ld hl, VBGMap0
+	ld c, 2
+	call .transscreen
+	xor a
+	ld [rVBK], a
+	ld de, VBGMap1
+	ld hl, VBGMap0
+	ld c, 2
+	call .transscreen
+	xor a
+	ld [rWY], a
+	ld [hSCY], a
+	ld hl, wListDrawState
+	inc [hl]
+	ret
+	
+.exit4
+	ld hl, VBGMap0
+	ld bc, 12
+	ld e, 6
+	ld a, $80
+	
+.exit4_5
+	call .fillinc20
+	add hl, bc
+	add c
+	dec e
+	jr nz, .exit4_5
+	call DelayFrame_MPCommon
+	ld hl, wListDrawState
+	inc [hl]
+	ret
+	
+.exit5
+	ld hl, VBGMap0 + $c0
+	ld bc, 12
+	ld e, 2
+	ld a, $40
+.exit5l
+	call .fillinc20
+	add hl, bc
+	add c
+	dec e
+	jr nz, .exit5l
+	ld e, 4
+	xor a
+	jr .exit4_5
+	
+.exit6
+	ld a, 1
+	ld [rVBK], a
+	ld hl, VBGMap0
+	ld bc, 12
+	ld e, 8
+	ld a, 1
+
+.exit6_7
+	call .fill20
+	add hl, bc
+	dec e
+	jr nz, .exit6_7
+	xor a
+	ld [rVBK], a
+	call DelayFrame_MPCommon
+	ld hl, wListDrawState
+	inc [hl]
+	ret
+
+.exit7
+	ld a, 1
+	ld [rVBK], a
+	ld hl, VBGMap0 + $100
+	ld bc, 12
+	ld e, 4
+	ld a, 9
+.exit7l
+	call .fill20
+	add hl, bc
+	dec e
+	jr nz, .exit7l
+	ld e, 4
+	ld a, 8
+	jr .exit6_7
+	
+.exit8
+	ld e, 64
+	ld bc, VTiles1
+	
+.exit8_9
+	ld a, [rWY]
+	add a
+	swap a
+	and $f
+	ld h, a
+	ld a, [rWY]
+	and $7
+	ld l, a
+	add hl, hl
+	add hl, bc
+	ld bc, 14
+	xor a
+	rept 32
+	ld [hli], a
+	ld [hli], a
+	add hl, bc
+	endr
+	xor a
+	ld [rVBK], a
+	call DelayFrame_MPCommon
+	ld a, [rWY]
+	inc a
+	ld [rWY], a
+	cp e
+	ret c
+	ld hl, wListDrawState
+	inc [hl]
+	ret
+	
+.exit9
+	ld a, 1
+	ld [rVBK], a
+	ld e, 96
+	ld bc, VTiles0
+	jp .exit8_9
+	
+.exit10
+	ld [hSPBuffer], sp
+	ld sp, MPTilemap
+	ld hl, VBGMap0 + $180
+	ld c, 4
+.exit10l
+	rept 10
+	pop de
+	ld a, e
+	ld [hli], a
+	ld a, d
+	ld [hli], a
+	endr
+	ld de, 12
+	add hl, de
+	dec c
+	jp nz, .exit10l
+	ld a, [hSPBuffer]
+	ld l, a
+	ld a, [hSPBuffer + 1]
+	ld h, a
+	ld sp, hl
+	ld hl, wListDrawState
+	inc [hl]
+	ret
+	
+.exit11
+	call DelayFrame_MPCommon
+	ld a, [wInfoDrawState]
+	ld hl, DrawSongInfo@VBlank
+	rst JumpTable
+	ld hl, rWY
+	inc [hl]
+	ld a, [wInfoDrawState]
+	inc a
+	ld [wInfoDrawState], a
+	cp 8
+	ret c
+	ld hl, wListDrawState
+	inc [hl]
+	ret
+	
+.exit12
+	ld a, [rWY]
+	inc a
+	ld [rWY], a
+	cp 120
+	ret c
+	cp 128
+	jr nc, .exitdone
+	ld a, [$fe05]
+	dec a
+_w_ = $fe05
+	rept 8
+	ld [_w_], a
+_w_ = _w_ + 4
+	endr
+	ret
+	
+.exitdone
+	ld a, $ff
+	ld [wListDrawState], a
 	ret
 	
 .blinkcursor
@@ -2437,17 +2806,13 @@ _w_ = _w_ + 4
 	add $da
 	ld [VBGMap0 + $11], a
 ; visual intensities
-	ld a, [wC1Vol]
-	add $e8
+	ld a, [wC1VolTile]
 	ld [VBGMap0 + $30], a
-	ld a, [wC2Vol]
-	add $e8
+	ld a, [wC2VolTile]
 	ld [VBGMap0 + $31], a
-	ld a, [wC3Vol]
-	add $e8
+	ld a, [wC3VolTile]
 	ld [VBGMap0 + $32], a
-	ld a, [wC4Vol]
-	add $e8
+	ld a, [wC4VolTile]
 	ld [VBGMap0 + $33], a
 	ret
 	

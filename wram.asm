@@ -2579,6 +2579,8 @@ wMPTileMapBackup:: ds 20 * 18
 wMPFlags:: ds 1
 wSongSelection:: ds 1
 wSelectionState:: ds 1
+wChannelSelector:: ds 1
+wMutedChannels:: ds 1
 wChannelSelectorOAM:: ds 4
 wNumNoteLines:: ds 1 ;
 wTmpCh:: ds 1 ;
@@ -2586,10 +2588,12 @@ wChLastNotes:: ds 9
 wNoteTile:: ds 1
 wNoteMask:: ds 1
 wDrawMask:: ds 1
+wTmpVBlankFunc:: ; reused
 wLineCopySrc:: ds 2
 wLineCopyDest:: ds 2
 wInfoDrawState:: ds 1
-wInfoDrawState2:: ds 1
+wListDrawState:: ds 1
+wListDrawState2:: ds 1
 wVolTimer:: ds 1
 wNR10Sub:: ds 1
 wC1Vol:: ds 1
@@ -2600,6 +2604,10 @@ wC3Vol:: ds 1
 wC3VolSub:: ds 1
 wC4Vol:: ds 1
 wC4VolSub:: ds 1
+wC1VolTile:: ds 1
+wC2VolTile:: ds 1
+wC3VolTile:: ds 1
+wC4VolTile:: ds 1
 wC1Freq:: ds 2
 wC2Freq:: ds 2
 wC3Freq:: ds 2
@@ -2608,8 +2616,6 @@ wC2Duty:: ds 1
 wNoteEnded:: ds 3 ;
 wSelectorTop:: ds 1 ;
 wSelectorCur:: ds 1 ;
-wChannelSelector:: ds 1
-wMutedChannels:: ds 1
 wChannelSelectorSwitches:: ds 8 ;
 wNoiseHit:: ds 1 ;
 wTranspositionInterval:: ds 1 ;
