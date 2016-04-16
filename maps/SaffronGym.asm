@@ -287,7 +287,7 @@ UnknownText_0x189ead: ; 0x189ead
 	done
 
 AfterGIveRestText:
-	text "TM44 grants REST"
+	text "TM44 grants REST."
 
 	para "By enetering a"
 	line "trance, a #MON"
@@ -404,7 +404,7 @@ UnknownText_0x18a1b3: ; 0x18a1b3
 ; 0x18a201
 
 SaffronGymGuyText: ; 0x18a201
-	text "Yo, CHAMP"
+	text "Yo, CHAMP!"
 
 	para "A trainer as"
 	line "skilled as you"
