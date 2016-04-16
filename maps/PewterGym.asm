@@ -291,12 +291,14 @@ UnknownText_0x1a2c0f: ; 0x1a2c0f
 ; 0x1a2c6e
 
 PewterGymGuyText: ; 0x1a2c6e
-	text "Yo! CHAMP. You're"
-	line "really rocking."
-	cont "Are you battling"
+	text "Yo, CHAMP!"
 
-	para "the GYM LEADERS of"
-	line "KANTO?"
+	para "You're really"
+	line "rocking."
+
+	para "Are you battling"
+	line "the GYM LEADERS of"
+	cont "KANTO?"
 
 	para "They're strong and"
 	line "dedicated people,"
@@ -307,11 +309,11 @@ PewterGymGuyText: ; 0x1a2c6e
 ; 0x1a2d07
 
 PewterGymGuyWinText: ; 0x1a2d07
-	text "Yo! CHAMP in the"
-	line "making! That GYM"
+	text "Yo, CHAMP!"
 
-	para "didn't give you"
-	line "much trouble."
+	para "That GYM didn't"
+	line "give you much"
+	cont "trouble."
 
 	para "The way you took"
 	line "charge was really"

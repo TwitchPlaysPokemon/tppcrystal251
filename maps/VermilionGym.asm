@@ -386,13 +386,14 @@ UnknownText_0x1924d6: ; 0x1924d6
 ; 0x192517
 
 VermilionGymGuyText: ; 0x192517
-	text "Yo! CHAMP"
+	text "Yo, CHAMP!"
 	line "Your luck ran out."
 
 	para "LT.SURGE is very"
-	line "cautious. He has"
-	cont "traps set all over"
-	cont "the GYM."
+	line "cautious."
+
+	para "He has traps set"
+	line "all over the GYM."
 
 	para "To get through you"
 	line "need to find both"
