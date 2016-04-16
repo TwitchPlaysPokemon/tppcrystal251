@@ -251,8 +251,8 @@ UnknownText_0x6c219: ; 0x6c219
 SupernerdTomSeenText: ; 0x6c23d
 	text "Ghosts are common"
 	line "here since the"
-	cont "#MON TOWER"
-	cont "closed."
+	para "#MON TOWER"
+	line "was closed."
 	done
 ; 0x6c25d
 
@@ -262,7 +262,7 @@ SupernerdTomBeatenText: ; 0x6c25d
 ; 0x6c27e
 
 UnknownText_0x6c27e: ; 0x6c27e
-	text "Rumours say ghosts"
+	text "Rumors say ghosts"
 	line "still live in the"
 	cont "RADIO TOWER<...>"
 	done
