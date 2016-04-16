@@ -27848,7 +27848,7 @@ LoadBadgeNumberIcons_EarlyGameKanto:
 	dec a
 	jr nz, .loop
 	ld de, LeaderGFX3
-	ld hl, $95c0
+	ld hl, $9520
 	lb bc, BANK(LeaderGFX3), 9
 	call Request2bpp
 	ld de, LeaderGFX3 + $90
