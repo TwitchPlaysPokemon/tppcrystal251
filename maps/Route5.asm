@@ -3,8 +3,15 @@ Route5_MapScriptHeader: ; 0x1adb17
 	db 0
 
 	; callback count
-	db 0
+	db 1
+	dbw 1, .SnorlaxCheck
 ; 0x1adb19
+.SnorlaxCheck
+	checkevent EVENT_ROUTE_5_SNORLAX
+	iftrue .skip
+	changeblock 8, 12, $B8
+.skip
+	return
 
 PokefanMScript_0x1adb19: ; 0x1adb19
 	jumptextfaceplayer UnknownText_0x1adb22
@@ -38,7 +45,6 @@ Snorlax5:
 	closetext
 	end
 
-
 WakeSnorlax5:
 	writetext Snorlax5WakeText
 	pause 15
@@ -51,6 +57,7 @@ WakeSnorlax5:
 	special SpecialMonCheck
 	iffalse .DontKillSnorlax
 	disappear $3
+	changeblock 8, 12, $1a
 .DontKillSnorlax
 	returnafterbattle
 	end
