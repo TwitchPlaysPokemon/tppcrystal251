@@ -9034,8 +9034,12 @@ Functione17b: ; e17b return stat c for mon species whose base stats are loaded o
 	ld a, [hld] ;load stat xp and root it
 	ld e, a
 	ld d, [hl]
+	ld l, c
+	push hl
 	callba GetSquareRoot ;b = result
+	pop hl
 	pop de
+	ld c, l
 .asm_e1a5
 	srl c ; c is normal again
 	pop hl ;hl = start of stat xp
@@ -16114,36 +16118,76 @@ Function13b71: ; 13b71
 ; 13b87
 
 GetSquareRoot: ; 13b87
-; Return the square root of de in b.
-; Rather than calculating the result, we take the index of the
-; first value in a table of squares that isn't lower than de.
-
-	ld hl, Squares
-	ld b, 0
-.loop
-; Make sure we don't go past the end of the table.
-
-	inc b
+; b = min(⌈√de⌉,255)
+	ld a, d
+	or e
+	jr z, .zero
+	ld hl, 0
+	ld bc, 1 << 14
+.loop1
 	ld a, b
-	cp $ff
-	ret z
-; Iterate over the table until b**2 >= de.
-
-	ld a, [hli]
-	sub e
-	ld a, [hli]
-	sbc d
-	jr c, .loop
+	cp d
+	jr c, .loop2
+	jr nz, .gt1
+	ld a, c
+	cp e
+	jr c, .loop2
+.gt1
+	srl b
+	rr c
+	srl b
+	rr c
+	jr .loop1
+.loop2
+	push hl
+	add hl, bc
+	ld a, h
+	cp d
+	jr c, .lt2
+	jr nz, .gt2
+	ld a, e
+	cp l
+	jr nc, .lt2
+.gt2
+	pop hl
+	srl h
+	rr l
+	jr .check0
+.lt2
+	ld a, e
+	sub l
+	ld e, a
+	ld a, d
+	sbc h
+	ld d, a
+	pop hl
+	srl h
+	rr l
+	add hl, bc
+.check0
+	srl b
+	rr c
+	srl b
+	rr c
+	ld a, b
+	or c
+	jr nz, .loop2
+	ld a, d
+	or e
+	jr z, .noadd
+	inc hl
+.noadd
+	ld a, h
+	and a
+	jr nz, .ld255
+	ld b, l
 	ret
-
-Squares: ; 13b98
-root	set 1
-	rept $ff
-	dw root*root
-
-root	set root+1
-	endr
-; 13d96
+.ld255
+	ld b, $ff
+	ret
+.zero
+	ld b, 0
+	ret
 
 SECTION "bank5", ROMX, BANK[$5]
 
