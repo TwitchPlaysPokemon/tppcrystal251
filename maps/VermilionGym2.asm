@@ -31,22 +31,20 @@ VermilionGym2_MapScriptHeader:
 VermilionGymRematch_SwitchTrigger1:
 	playsound SFX_PUSH_BUTTON
 	waitsfx
+	playsound SFX_THUNDER
 	refreshscreen $0
 	changemap VermilionGym2Red_BlockData
 	closetext
-	playsound SFX_WALL_OPEN
-	waitsfx
 	dotrigger $0
 	end
 
 VermilionGymRematch_SwitchTrigger0:
 	playsound SFX_PUSH_BUTTON
 	waitsfx
+	playsound SFX_THUNDER
 	refreshscreen $0
 	changemap VermilionGym2Blue_BlockData
 	closetext
-	playsound SFX_WALL_OPEN
-	waitsfx
 	dotrigger $1
 	end
 
