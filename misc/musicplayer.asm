@@ -813,13 +813,14 @@ DrawNote:
 	ld hl, wC1Freq
 	add hl, bc
 	ld a, [hli]
-	cpl
 	ld c, a
-	ld a, [hl]
-	cpl
-	ld b, a ; -1-[wCxFreq]
-	ld hl, 2049
-	add hl, bc ; 2048-[wCxFreq]
+	ld b, [hl] ; [wCxFreq]
+	ld a, 2048 % $100
+	sub c
+	ld l, a
+	ld a, 2048 / $100
+	sbc b
+	ld h, a ; 2048-[wCxFreq]
 	ld a, h
 	and a
 	ld a, l
@@ -844,34 +845,32 @@ DrawNote:
 .logshiftdone
 	ld hl, LogTable
 	add hl, bc
-	ld a, [hl]
-	cpl
-	ld e, a
-	ld a, d
-	cpl
-	ld d, a ; -1-log₂(2048-[wCxFreq])
+	ld e, [hl] ; log₂(2048-[wCxFreq])
 	ld a, [wTmpCh]
 	cp 2
-	ld hl, $af8 ; log₂(65536/Freq("C2"))+1
+	ld hl, $af7 ; log₂(65536/Freq("C2"))
 	jr z, .ch3
-	ld hl, $bf8 ; log₂(131072/Freq("C2"))+1
+	ld hl, $bf7 ; log₂(131072/Freq("C2"))
 .ch3
-	add hl, de ; log₂(k/Freq("C2"))-log₂(2048-[wCxFreq])
+	ld a, l
+	sub e
+	ld l, a
+	ld a, h
+	sbc d
+	ld h, a ; log₂(k/Freq("C2"))-log₂(2048-[wCxFreq])
 	ld b, h
 	ld c, l
 	add hl, hl
 	add hl, bc
 	add hl, hl
 	add hl, hl ; 12*(log₂(k/Freq("C2"))-log₂(2048-[wCxFreq]))
-	ld a, h
-	cpl
-	ld b, a
-	ld a, l
-	cpl
-	ld c, a ; -1-12*(log₂(k/Freq("C2"))-log₂(2048-[wCxFreq]))
-	ld hl, $6180 ; 97.5
-	add hl, bc
-	ld e, h ; ⌊96.5-12*(log₂(k/Freq("C2"))-log₂(2048-[wCxFreq]))⌋
+	ld b, h
+	ld c, l ; 12*(log₂(k/Freq("C2"))-log₂(2048-[wCxFreq]))
+	ld a, $80
+	sub l
+	ld a, $60 ; 96.5
+	sbc h
+	ld e, a ; ⌊96.5-12*(log₂(k/Freq("C2"))-log₂(2048-[wCxFreq]))⌋
 	ld a, [wTmpCh]
 	ld c, a
 	ld b, 0

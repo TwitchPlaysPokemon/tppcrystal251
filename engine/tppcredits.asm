@@ -1810,12 +1810,9 @@ StripTrick_Thanks_Common: MACRO
 	add hl, hl
 	add hl, de
 	ld a, [hli]
-	cpl
 	ld c, a
-	ld a, [hl]
+	ld b, [hl]
 	ld l, b
-	cpl
-	ld b, a
 	ld a, [TC_CreditsTimer]
 	ld h, 0
 	add l
@@ -1826,11 +1823,12 @@ StripTrick_Thanks_Common: MACRO
 	ld a, [hli]
 	ld h, [hl]
 	ld l, a
-	add hl, bc
-	inc l
-	jr nz, .skipinch\@
-	inc h
-.skipinch\@
+	ld a, l
+	sub c
+	ld l, a
+	ld a, h
+	sbc b
+	ld h, a
 	pop de
 	ld b, h
 	ld a, e
