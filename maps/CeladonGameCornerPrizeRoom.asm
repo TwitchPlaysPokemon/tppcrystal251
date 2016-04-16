@@ -197,7 +197,7 @@ UnknownScript_0x7281b: ; 0x7281b
 	giveitem LUCKY_EGG, $1
 	iffalse UnknownScript_0x7277e
 	takecoins 3000
-	jump UnknownScript_0x7276d
+	jump UnknownScript_0x7276d_2
 
 
 ;CGCSlot2PC:
@@ -225,7 +225,13 @@ UnknownScript_0x72849: ; 0x72849
 	giveitem SLOWPOKETAIL, $1
 	iffalse UnknownScript_0x7277e
 	takecoins 300
-	jump UnknownScript_0x7276d
+
+UnknownScript_0x7276d_2: ; 0x7276d
+	waitsfx
+	playsound SFX_TRANSACTION
+	writetext UnknownText_0x729ad
+	waitbutton
+	jump UnknownScript_0x727d3
 
 CGCSlot3PC:
 ;	checkcode VAR_BOXSPACE
@@ -277,8 +283,8 @@ UnknownText_0x728e9: ; 0x728e9
 
 	para "That #MON is"
 	line "supposed to be"
-	cont "really hard to"
-	cont "find."
+	para "really hard to"
+	line "find."
 	done
 ; 0x7293e
 
