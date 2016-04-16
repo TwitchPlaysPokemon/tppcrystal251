@@ -180,7 +180,7 @@ MapVermilionGymRematchStatuesScript:
 ; 0x192142
 
 SurgeRematchTextBefore:
-	text "What's up?"
+	text "SURGE: What's up?"
 	line "I'm doing great!"
 
 	para "Hey, you!"
@@ -189,7 +189,7 @@ SurgeRematchTextBefore:
 	done
 
 SurgeRematchTextBeforeChallenge:
-	text "What's up?"
+	text "SURGE: What's up?"
 	line "I'm doing great!"
 
 	para "You want to go"
@@ -216,19 +216,20 @@ SurgeRematchBeatenText:
 	done
 
 SurgeAfterRematchText:
-	text "You are very"
-	line "strong!"
+	text "SURGE: You are way"
+	line "too strong!"
 
 	para "I'll have to go"
 	line "back to camp and"
+	
 	para "brush up on my"
 	line "training."
 
 	done
 
 SurgeAfterRematchTextChallenge:
-	text "You are very"
-	line "strong!"
+	text "SURGE: You are"
+	line "really strong!"
 
 	para "You should be able"
 	line "to handle GUYANA"
@@ -237,7 +238,7 @@ SurgeAfterRematchTextChallenge:
 	done
 
 SurgePostgameRematchText:
-	text "Hey, kid!"
+	text "SURGE: Hey, kid!"
 
 	para "You still out"
 	line "training, yeah?"
@@ -250,7 +251,7 @@ SurgePostgameBeatenText:
 	done
 
 SurgePostgameAfterText:
-	text "You are one"
+	text "SURGE: You are one"
 	line "tough tyke!"
 
 	para "I have no choice"

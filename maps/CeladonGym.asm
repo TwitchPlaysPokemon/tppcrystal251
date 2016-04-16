@@ -85,7 +85,8 @@ ErikaRejectNoGSBall:
 	end
 
 ErikaRejectNoGSBallText:
-	text "Oh, hello again."
+	text "ERIKA: Oh, hello"
+	line "again."
 
 	para "Have you heard of"
 	line "BILL?"
@@ -121,7 +122,7 @@ ErikaRejectNoGSBallText:
 	done
 
 ErikaRejectGSBall:
-	text "Oh, what an"
+	text "ERIKA: Oh, what an"
 	line "unusual item you"
 	cont "have."
 
@@ -140,8 +141,8 @@ ErikaRejectGSBall:
 	done
 
 ErikaRematchTextBefore:
-	text "What wonderful"
-	line "timing."
+	text "ERIKA: What wonder-"
+	line "ful timing."
 
 	para "This unusual"
 	line "#MON appeared"
@@ -167,8 +168,8 @@ ErikaRematchBeatenText:
 	done
 
 ErikaAfterRematchText:
-	text "You have grown"
-	line "even stronger."
+	text "ERIKA: You have"
+	line "grown stronger<...>"
 
 	para "It would be an"
 	line "honor to battle"
@@ -530,7 +531,7 @@ ErikaPostgameRematchScript:
 ErikaPostgameRematchText:
 	text "<...>"
 
-	para "<...>Yawn<...>"
+	para "ERIKA: <...>Yawn<...>"
 	
 	para "Oh! <PLAYER>!"
 	
@@ -550,7 +551,7 @@ ErikaPostgameBeatenText:
 	done
 	
 ErikaPostgameAfterText:
-	text "<...>Yawn<...>"
+	text "ERIKA: <...>Yawn<...>"
 
 	para "Congrats again,"
 	line "<PLAYER>!"

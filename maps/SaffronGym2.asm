@@ -73,8 +73,9 @@ MapSaffronGym2Signpost0Script: ; 0x189ccf
 	jumpstd gymstatue2
 
 SabrinaBeforeRematchText:
-	text "I can sense great"
-	line "ambition in you."
+	text "SABRINA: I can"
+	line "sense great"
+	cont "ambition in you."
 
 	para "I know this"
 	line "because I train"
@@ -100,7 +101,8 @@ SabrinaRematchBeatenText:
 	done
 
 SabrinaAfterRematchText:
-	text "Your victory<...>"
+	text "SABRINA: <...>"
+	line "Your victory<...>"
 
 	para "It's exactly as I"
 	line "foresaw, actually."
@@ -154,7 +156,7 @@ SabrinaPostgameRematchScript:
     end
 	
 SabrinaPostgameRematchText:
-	text "<PLAYER>."
+	text "SABRINA: <PLAYER>."
 
 	para "I knew you would"
 	line "return here."
@@ -172,8 +174,9 @@ SabrinaPostgameBeatenText:
 	
 SabrinaPostgameAfterText:
 
-	text "<...>I knew the out-"
-	line "come of this battle."
+	text "SABRINA: <...>I knew"
+	line "the outcome of"
+	cont "this battle."
 
 	para "I simply wanted to"
 	line "test my skills."
