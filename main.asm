@@ -12600,6 +12600,8 @@ Function1250a: ; 1250a
 DetermineMoneyLostToBlackout: ; 12513
 	; If you already have no money,
 	; do nothing here.
+	xor a
+	ld [wSpinning], a
 	ld hl, Money
 	ld a, [hli]
 	or [hl]
