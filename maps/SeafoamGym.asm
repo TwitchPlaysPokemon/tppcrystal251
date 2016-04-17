@@ -79,7 +79,7 @@ BlaineReject:
 	writetext BlaineRejectText
 	waitbutton
 	closetext
-	apply_movement $2, BlaineHeatedRage
+	applymovement $2, BlaineHeatedRage
 	loadfont
 	writetext BlaineRejectText2
 	waitbutton
