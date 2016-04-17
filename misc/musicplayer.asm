@@ -436,6 +436,7 @@ MusicPlayer::
 	call UpdateDataAndDelayFrame
 	ld hl, wMPFlags
 	set 7, [hl]
+	res 6, [hl]
 	pop de
 	ld hl, wMusicNameChars
 	ld bc, wMusicNameGFX
@@ -1090,12 +1091,16 @@ GetSongInfo2:
 
 SongSelector:
 	call UpdateDataAndDelayFrame
-	ld a, $ff
+	ld a, [wMPFlags]
+	bit 7, a
+	jr nz, SongSelector ; wait until info draw is finished
+	ld a, [wNoteMask]
+	cp $80
+	jr z, SongSelector ; don't attempt to init on note display clear
+	xor a
 	ld [wDrawMask], a
 .traninloop
 	ld a, [wDrawMask]
-	inc a
-	ld [wDrawMask], a
 	ld [hSCY], a
 	cp $80
 	jp z, .tranindone
@@ -1186,6 +1191,9 @@ SongSelector:
 	jbuttond D_RIGHT, .right
 	jr .loop
 .a
+	fill 0, wC1Vol, wMPInitClearEnd - wC1Vol
+	ld hl, wMPFlags
+	set 0, [hl]
 	ld de, MUSIC_NONE
 	call PlayMusic
 	ld a, [wSongSelection]
@@ -1273,6 +1281,7 @@ SongSelector:
 	call UpdateDataAndDelayFrame3
 	ld hl, wMPFlags
 	set 7, [hl]
+	res 6, [hl]
 	pop de
 	ld hl, wMusicNameChars
 	ld bc, wMusicNameGFX
@@ -1313,8 +1322,6 @@ SongSelector:
 	ld hl, wMPFlags
 	set 6, [hl]
 .nodata
-	ld hl, wMPFlags
-	res 7, [hl] ; already handled in transition out
 	xor a
 	ld [hSCX], a
 	ld [wInfoDrawState], a
@@ -1324,6 +1331,8 @@ SongSelector:
 	ld a, [wListDrawState]
 	cp $ff
 	jr nz, .lastloop
+	xor a
+	ld [hSCY], a
 	ld a, $a0
 	ld [wNoteTile], a
 	ld a, $80
@@ -2164,6 +2173,9 @@ DelayFrame_MP2:
 	call Serve1bppLine
 .no1bppcpy
 ; all vblank copies done
+	ld a, [wDrawMask]
+	inc a
+	ld [wDrawMask], a
 	jp DelayFrame_MPPost
 
 Serve1bppLine:
@@ -2733,11 +2745,9 @@ _w_ = _w_ + $20
 	rst JumpTable
 	ld hl, rWY
 	inc [hl]
-	ld a, [wInfoDrawState]
-	inc a
-	ld [wInfoDrawState], a
-	cp 8
-	ret c
+	ld a, [wMPFlags]
+	bit 7, a
+	ret nz
 	ld hl, wListDrawState
 	inc [hl]
 	ret
