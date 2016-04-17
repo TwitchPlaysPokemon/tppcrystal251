@@ -387,8 +387,8 @@ ViridianGymGuyText: ; 0x9acee
 ; 0x9ada0
 
 ViridianGymGuyWinText: ; 0x9ada0
-	text "Man, you are really"
-	line "tough<...>"
+	text "Man, you are"
+	line "really tough<...>"
 
 	para "That was an"
 	line "inspirational"

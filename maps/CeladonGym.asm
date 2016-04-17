@@ -141,18 +141,18 @@ ErikaRejectGSBall:
 	done
 
 ErikaRematchTextBefore:
-	text "ERIKA: What wonder-"
-	line "ful timing."
+	text "ERIKA: What won-"
+	line "derful timing."
 
 	para "This unusual"
 	line "#MON appeared"
 	cont "just now."
 
-	para "She's excited to"
+	para "It's excited to"
 	line "meet you. Do you"
 	cont "know each other?"
 
-	para "She seems to want"
+	para "It seems to want"
 	line "a battle, would"
 	cont "you be so kind?"
 

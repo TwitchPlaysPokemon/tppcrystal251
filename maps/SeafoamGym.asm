@@ -79,21 +79,25 @@ BlaineReject:
 	writetext BlaineRejectText
 	waitbutton
 	closetext
-	spriteface $2, $3
-	spriteface $2, $1
-	spriteface $2, $2
-	spriteface $2, $1
-	spriteface $2, $3
-	spriteface $2, $2
+	apply_movement $2, BlaineHeatedRage
 	loadfont
 	writetext BlaineRejectText2
 	waitbutton
 	closetext
 	end
 
+BlaineHeatedRage:
+	half_step_right
+	half_step_up
+	half_step_left
+	half_step_up
+	half_step_right
+	half_step_left
+	step_end
+
 BlaineRejectText:
 	text "BLAINE: My"
-	cont "RESEARCH NOTES!"
+	line "RESEARCH NOTES!"
 
 	para "They're gone!"
 
@@ -115,8 +119,7 @@ BlaineRejectText2:
 	line "would be unwise"
 	
 	para "to interrupt his"
-	line "frenzy."
-
+	line "heated frenzy."
 	done
 
 BlaineBeforeRematchText:
@@ -183,7 +186,26 @@ SeafoamGymGuyScript: ; 0x1ab531
 	end
 
 .TalkedToSeafoamGymGuyScript
+	checkevent EVENT_SET_BY_OAK_AFTER_16_BADGES
+	iffalse .skip_notes_check
+	checkevent EVENT_SAW_MEW_IN_GARDEN
+	iffalse .tell_about_garden
+	checkevent EVENT_GOT_RESEARCH_NOTES
+	iffalse .just_steamed
+.skip_notes_check
 	writetext SeafoamGymGuyWinText2
+	waitbutton
+	closetext
+	end
+
+.just_steamed
+	writetext SeafoamGymGuySteamedText
+	waitbutton
+	closetext
+	end
+
+.tell_about_garden
+	writetext SeafoamGymGuyGardenText
 	waitbutton
 	closetext
 	end
@@ -299,6 +321,44 @@ SeafoamGymGuyWinText2: ; 0x1ab806
 	done
 ; 0x1ab865
 
+SeafoamGymGuySteamedText:
+	text "Boy, BLAINE sure"
+	line "seems steamed<...>"
+
+	para "He needs to chill"
+	line "for a bit."
+	done
+
+SeafoamGymGuyGardenText:
+	text "Boy, BLAINE sure"
+	line "seems steamed<...>"
+
+	para "Oh! Hey, CHAMP!"
+
+	para "Listen, I heard"
+	line "this weird rumor."
+
+	para "You know BILL? The"
+	line "#MANIAC?"
+
+	para "He used to live up"
+	line "at the cape on"
+	cont "ROUTE 25."
+
+	para "People say there's"
+	line "a GARDEN up there"
+
+	para "where BILL would"
+	line "keep his rare"
+	cont "#MON."
+
+	para "If you're working"
+	line "on a #DEX, you"
+
+	para "might want to"
+	line "check it out."
+	done
+
 BlainePostgameRematchScript:
     writetext BlainePostgameRematchText
     yesorno
@@ -319,8 +379,9 @@ BlainePostgameRematchText:
 	text "BLAINE: Woah!"
 	
 	para "I didn't think I'd"
-	line "see you back in my"
-	cont"<...>GYM"
+	line "see you back here"
+	para "in my<...>"
+	line "<...> my GYM."
 	
 	para "Oh? You want to"
 	line "battle again?"
