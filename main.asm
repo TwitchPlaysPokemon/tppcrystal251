@@ -27824,12 +27824,12 @@ KantoBadgesOAM:
 	; Soulbadge
 	; X-flips on alternate cycles.
 	db $80, $18
-	dw EVENT_SABRINA_REMATCH
+	dw EVENT_JANINE_REMATCH
 	db $10, $20, $24, $20 | $80
 	db $10 | $80, $20, $24, $20 | $80
 	; Marshbadge
 	db $80, $38
-	dw EVENT_JANINE_REMATCH
+	dw EVENT_SABRINA_REMATCH
 	db $14, $20, $24, $20 | $80
 	db $14, $20, $24, $20 | $80
 	; Volcanobadge

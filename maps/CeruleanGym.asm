@@ -146,7 +146,7 @@ MistyRematchBeatenText:
 MistyAfterRematchText:
 	text "MISTY: I guess"
 	line "you are really"
-	line "strong<...>"
+	cont "strong<...>"
 
 	para "I'll admit<...>"
 	line "you've got skills."

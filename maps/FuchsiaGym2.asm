@@ -5,7 +5,7 @@ FuchsiaGym2_MapScriptHeader:
 	; callbacks
 	db 1
 
-	dbw 1, FuchsiaGym2Callback
+	dbw 5, FuchsiaGym2Callback
 
 FuchsiaGym2Callback:
 	checkevent EVENT_JANINE_REMATCH
@@ -64,7 +64,7 @@ FakeJanine1Script:
 	setlasttalked $3
 	checkevent EVENT_FAKE_JANINE_1
 	iffalse .revealed
-	clearevent EVENT_FAKE_JANINE_1
+	; clearevent EVENT_FAKE_JANINE_1
 	loadfont
 	writetext InvisibleTrainerFoundText
 	waitbutton
@@ -85,7 +85,7 @@ FakeJanine2Script:
 	setlasttalked $4
 	checkevent EVENT_FAKE_JANINE_2
 	iffalse .revealed
-	clearevent EVENT_FAKE_JANINE_2
+	; clearevent EVENT_FAKE_JANINE_2
 	loadfont
 	writetext InvisibleTrainerFoundText
 	waitbutton
