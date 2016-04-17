@@ -190,7 +190,7 @@ SeafoamGymGuyScript: ; 0x1ab531
 	iffalse .skip_notes_check
 	checkevent EVENT_SAW_MEW_IN_GARDEN
 	iffalse .tell_about_garden
-	checkevent EVENT_GOT_RESEARCH_NOTES
+	checkevent EVENT_BLAINE_REMATCH
 	iffalse .just_steamed
 .skip_notes_check
 	writetext SeafoamGymGuyWinText2
