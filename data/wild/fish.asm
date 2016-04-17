@@ -309,8 +309,8 @@ FishGroup1_Old: ; 924e3
 	db $ff, $0,    0
 FishGroup1_Good: ; 924ec
 	db 75, REMORAID,    40
-	db 120, OCTILLERY,    45
 	db 113, AZUMARILL,    45
+	db 120, OCTILLERY,    45
 	db 125, CROCONAW,    45
 	db 138, WOOPER,    40
 	db 150, MARILL,    40

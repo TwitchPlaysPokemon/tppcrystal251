@@ -1508,6 +1508,7 @@ SlowpokeEvosAttacks:
 
 SlowbroEvosAttacks:
 	db 0 ; no more evolutions
+	db 1, SUBMISSION
 	db 1, HEADBUTT ; egg move
 	db 1, DISABLE
 	db 1, ZEN_HEADBUTT
@@ -1546,6 +1547,9 @@ MagnemiteEvosAttacks:
 
 MagnetonEvosAttacks:
 	db 0 ; no more evolutions
+	db 1, BIDE
+	db 1, MIMIC
+	db 1, LIGHT_SCREEN
 	db 1, SWIFT
 	db 1, AGILITY ; event move
 	db 1, IRON_HEAD
@@ -1785,6 +1789,7 @@ HaunterEvosAttacks:
 
 GengarEvosAttacks:
 	db 0 ; no more evolutions
+	db 1, MEGA_KICK
 	db 1, NIGHTMARE
 	db 1, HYPNOSIS
 	db 1, SLUDGE_BOMB
@@ -1825,34 +1830,34 @@ DrowzeeEvosAttacks:
 	db 0 ; no more evolutions
 	db 1, POUND
 	db 3, METRONOME
-	db 6, ACID ; illegal move
-	db 9, SWAGGER ; tm move
+	db 6, ACID 
+	db 9, MEDITATE 
 	db 12, FUTURE_SIGHT
-	db 15, TRI_ATTACK ; gen 1 move
-	db 18, NASTY_PLOT ; later gen move
-	db 21, CONFUSION
-	db 24, HEADBUTT
-	db 27, DISABLE
-	db 30, SEISMIC_TOSS ; later gen move
-	db 33, PSYBEAM
-	db 36, HYPNOSIS
-	db 39, NIGHTMARE ; tm move
-	db 42, MEDITATE ; gen 1 move
-	db 45, ZEN_HEADBUTT ; later gen move
+	db 15, CONFUSION  
+	db 18, HEADBUTT
+	db 21, NASTY_PLOT
+	db 24, DISABLE 
+	db 27, PSYBEAM 
+	db 30, PSYWAVE
+	db 33, TRI_ATTACK
+	db 36, ZEN_HEADBUTT
+	db 39, HYPNOSIS
+	db 42, NIGHTMARE 
+	db 45, DREAM_EATER
 	db 0 ; no more level-up moves
 
 HypnoEvosAttacks:
 	db 0 ; no more evolutions
 	db 1, METRONOME
 	db 1, HEADBUTT
-	db 1, NASTY_PLOT ; later gen move
+	db 1, NASTY_PLOT
 	db 1, CONFUSION
 	db 30, THUNDER_WAVE ; * later gen move
 	db 33, HEADBUTT
 	db 37, DISABLE
 	db 42, PSYBEAM
 	db 46, BARRIER ; * egg move
-	db 51, SEISMIC_TOSS ; later gen move
+	db 51, PSYWAVE
 	db 55, HYPNOSIS
 	db 60, DAZZLINGLEAM ; * later gen move
 	db 65, NASTY_PLOT
@@ -1920,11 +1925,12 @@ VoltorbEvosAttacks:
 
 ElectrodeEvosAttacks:
 	db 0 ; no more evolutions
+	db 1, REFLECT
 	db 1, SWIFT
 	db 1, AGILITY ; event move
 	db 1, SELFDESTRUCT
 	db 1, THUNDERSHOCK ; illegal move
-	db 33, ROLLOUT
+	db 33, HEADBUTT
 	db 37, LIGHT_SCREEN
 	db 41, EXPLOSION
 	db 46, THUNDERBOLT
@@ -4852,7 +4858,6 @@ HoOhEvosAttacks:
 	db 90, RECOVER
 	db 95, AIR_SLASH
 	db 100, SACRED_FIRE
-
 	db 0 ; no more level-up moves
 
 CelebiEvosAttacks:
