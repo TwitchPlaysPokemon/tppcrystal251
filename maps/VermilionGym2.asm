@@ -264,7 +264,7 @@ SurgePostgameAfterText:
 	done
 
 VermilionGymGuyRematchText:
-	text "Yo, champ!"
+	text "Yo, CHAMP!"
 
 	para "LT.SURGE has amped"
 	line "up his game!"
