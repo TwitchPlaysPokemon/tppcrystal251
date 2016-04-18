@@ -280,6 +280,17 @@ MortyAfterRematchText2:
 	line "than that<...>"
 	done
 
+EfloorGrampsBeforeText:
+	text "I enjoy picnics."
+
+	para "They make me feel"
+	line "so good."
+	done
+
+EfloorGrampsWinText:
+	text "It's not my way?"
+	done
+
 EfloorGrampsText:
 	text "A long time ago,"
 	line "I would listen to"
@@ -296,6 +307,7 @@ EfloorGrampsText:
 
 	para "<...>But I can't"
 	line "remember the name"
+
 	para "of that catchy"
 	line "tune."
 
@@ -304,8 +316,16 @@ EfloorGrampsText:
 	cont "compilation?"
 	done
 
-EfloorGranny1Text:
+EfloorGranny1BeforeText:
+	text "How do I get out"
+	line "of here?"
+	done
 
+EfloorGranny1WinText:
+	text "Aiiiyuhh!!"
+	done
+
+EfloorGranny1Text:
 	text "I don't know why"
 	line "MORTY had the idea"
 
@@ -316,13 +336,27 @@ EfloorGranny1Text:
 	para "He once heard a"
 	line "story about a"
 
-	para "trainer who would"
+	para "TRAINER who would"
 	line "always jump ledges"
 	cont "on ROUTE 22."
 
 	para "I wonder if that's"
 	line "why he did this?"
+	done
 
+EfloorGranny2BeforeText:
+	text "Take a deep"
+	line "breath, child."
+
+	para "Let the spirits of"
+	line "the departed guide"
+	cont "your thoughts."
+	done
+
+EfloorGranny2WinText:
+	text "The voices in your"
+	line "head are quite"
+	cont "strong, child."
 	done
 
 EfloorGranny2Text:
@@ -336,7 +370,7 @@ EfloorGranny2Text:
 	para "Stay determined!"
 	done
 
-EfloorSage1Text:
+EfloorSage1BeforeText:
 	text "Oh hello!"
 
 	para "Sorry to tell you,"
@@ -348,13 +382,34 @@ EfloorSage1Text:
 	cont "behind me."
 	done
 
-EfloorSage2Text:
+EfloorSage1WinText:
+	text "Your training's on"
+	line "the right path."
+	done
+
+EfloorSage1Text:
+	text "When you take a"
+	line "wrong turn,"
+
+	para "you can always"
+	line "turn back and try"
+	cont "again."
+	done
+
+EfloorSage2BeforeText:
 	text "Ah-ha!"
 
 	para "You have fallen"
 	line "into my trap!"
+	done
 
-	para "Try the other"
+EfloorSage2WinText:
+	text "You escaped my"
+	line "trap?!"
+	done
+
+EfloorSage2Text:
+	text "Try the other"
 	line "entrance and hope"
 
 	para "that MORTY doesn't"
@@ -362,7 +417,6 @@ EfloorSage2Text:
 	done
 
 EcruteakGymGuy2Text:
-
 	text "Yo, Champ!"
 
 	para "MORTY has upgraded"
