@@ -395,13 +395,15 @@ SailorScript_ChoseNo:
 MewSailorNoSurgeText:
 	text "Oh, those RESEARCH"
 	line "NOTES have a map"
-	cont "in them that leads"
-	cont "stright there."
+	
+	para "in them that leads"
+	cont "straight there."
 
 	para "GUYANA is very"
-	line "dangerous though,"
-	cont "the wild #MON"
-	cont "give even GYM"
+	line "dangerous though<...>"
+	
+	para "The wild #MON"
+	line "give even GYM"
 	cont "LEADERS trouble."
 	done
 
@@ -423,8 +425,7 @@ MewSailorNoText:
 
 MewSailorAskText:
 	text "Want me to take"
-	line "you to MEW'S"
-	cont "ISLAND?"
+	line "you to GUYANA?"
 	done
 
 MewSailorLostMapText:

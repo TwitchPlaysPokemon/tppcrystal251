@@ -156,7 +156,7 @@ BlaineRematchBeatenText:
 
 BlaineAfterRematchText:
 	text "BLAINE: I burnt"
-	cont "myself out<...>"
+	line "myself out<...>"
 
 	para "I'll take my NOTES"
 	line "back, but leave"
