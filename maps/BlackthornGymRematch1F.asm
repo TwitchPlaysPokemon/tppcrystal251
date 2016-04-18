@@ -354,7 +354,7 @@ BlackthornGym2GuyWinText:
 	cont "battle!"
 
 	para "Congratulations,"
-	cont "CHAMP!"
+	line "CHAMP!"
 	done
 	
 ClairPostgameRematchScript:

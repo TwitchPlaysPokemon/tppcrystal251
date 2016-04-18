@@ -96,7 +96,7 @@ FalknerPostgameRematchScript:
     end
 	
 FalknerRejectText:
-	text "ARTICUNO<...>,"
+	text "ARTICUNO<...>"
 
 	para "ZAPDOS<...>"
 

@@ -1414,6 +1414,7 @@ KarenGroup:
 		db BITE
 		db SWORDS_DANCE
 		db BATON_PASS
+	db $ff
 
 ; ================
 ; ================================
