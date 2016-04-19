@@ -49,7 +49,7 @@ EcruteakEliteFloor_MapScriptHeader:
 	db 0
 
 	; callbacks
-	db 1
+	db 0
 
 	dbw 1, EcruteakEliteFloorCallback
 
@@ -89,8 +89,11 @@ MortyRematchScript2:
 	startbattle
 	returnafterbattle
 	setevent EVENT_MORTY_REMATCH
+	refreshscreen 0
+	special Function8c084
 	scall RevealWholeFloor
 	reloadmappart
+	special Function8c079
 	loadfont
 MortyAfterRematch2:
 	writetext MortyAfterRematchText2
@@ -104,7 +107,9 @@ EfloorGrampsScript:
 	writetext EfloorGrampsText
 	waitbutton
 	closetext
-	playsound SFX_WALL_OPEN
+	playsound SFX_FLASH
+	refreshscreen 0
+	special Function8c084
 	changeblock 2, 10, $43
 	changeblock 4, 10, $43
 	changeblock 6, 10, $43
@@ -121,6 +126,7 @@ EfloorGrampsScript:
 	changeblock 4, 14, $40
 	changeblock 6, 14, $42
 	reloadmappart
+	special Function8c079
 	end
 
 EfloorGranny1Script:
@@ -129,7 +135,9 @@ EfloorGranny1Script:
 	writetext EfloorGranny1Text
 	waitbutton
 	closetext
-	playsound SFX_WALL_OPEN
+	playsound SFX_FLASH
+	refreshscreen 0
+	special Function8c084
 	changeblock 2, 4, $40
 	changeblock 4, 4, $40
 	changeblock 2, 6, $42
@@ -142,6 +150,7 @@ EfloorGranny1Script:
 	changeblock 6, 8, $43
 	changeblock 8, 8, $40
 	reloadmappart
+	special Function8c079
 	end
 
 EfloorGranny2Script:
@@ -150,7 +159,9 @@ EfloorGranny2Script:
 	writetext EfloorGranny2Text
 	waitbutton
 	closetext
-	playsound SFX_WALL_OPEN
+	playsound SFX_FLASH
+	refreshscreen 0
+	special Function8c084
 	changeblock 8, 14, $40
 	changeblock 10, 14, $40
 	changeblock 12, 14, $42
@@ -168,6 +179,7 @@ EfloorGranny2Script:
 	changeblock 16, 18, $41
 	changeblock 18, 18, $41
 	reloadmappart
+	special Function8c079
 	end
 
 EfloorSage1Script:
@@ -176,7 +188,9 @@ EfloorSage1Script:
 	writetext EfloorSage1Text
 	waitbutton
 	closetext
-	playsound SFX_WALL_OPEN
+	playsound SFX_FLASH
+	refreshscreen 0
+	special Function8c084
 	changeblock 16, 4, $43
 	changeblock 18, 4, $41
 	changeblock 16, 6, $42
@@ -192,6 +206,7 @@ EfloorSage1Script:
 	changeblock 16, 14, $40
 	changeblock 18, 14, $41
 	reloadmappart
+	special Function8c079
 	end
 
 EfloorSage2Script:
@@ -200,7 +215,9 @@ EfloorSage2Script:
 	writetext EfloorSage2Text
 	waitbutton
 	closetext
-	playsound SFX_WALL_OPEN
+	playsound SFX_FLASH
+	refreshscreen 0
+	special Function8c084
 	changeblock 2, 16, $40
 	changeblock 4, 16, $42
 	changeblock 6, 16, $40
@@ -217,6 +234,7 @@ EfloorSage2Script:
 	changeblock 16, 20, $40
 	changeblock 18, 20, $41
 	reloadmappart
+	special Function8c079
 	end
 
 EcruteakGymGuy2Script: ; 0x99e39
