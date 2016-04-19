@@ -1138,9 +1138,6 @@ UnknownText_0xedc9: ; 0xedc9
 	; Gotcha! @ was caught!@ @
 	text_jump UnknownText_0x1c5b17
 	start_asm
-; 0xedce
-
-Functionedce: ; edce
 	call WaitSFX
 	push bc
 	ld de, MUSIC_NONE

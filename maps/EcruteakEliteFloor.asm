@@ -72,6 +72,11 @@ efloorrow = 4
 	revealefloor 0,2,0,1,2,2,3,2,0
 	revealefloor 2,0,0,2,3,2,2,1,1
 	revealefloor 2,0,0,2,0,2,2,0,1
+	setevent 0
+	setevent 1
+	setevent 2
+	setevent 3
+	setevent 4
 	end
 
 MortyRematchScript2:
@@ -101,12 +106,15 @@ MortyAfterRematch2:
 	closetext
 	end
 
-EfloorGrampsScript:
-	faceplayer
+Trainer_SageZeke:
+	trainer EVENT_ELITE_FLOOR_ZEKE, SAGE, ZEKE_SAGE, SageZekeBeforeText, SageZekeWinText, 0, .Script
+.Script
 	loadfont
-	writetext EfloorGrampsText
+	writetext SageZekeText
 	waitbutton
 	closetext
+	checkevent 0
+	iftrue .finish
 	playsound SFX_FLASH
 	refreshscreen 0
 	special Function8c084
@@ -127,14 +135,18 @@ EfloorGrampsScript:
 	changeblock 6, 14, $42
 	reloadmappart
 	special Function8c079
+.finish
 	end
 
-EfloorGranny1Script:
-	faceplayer
+Trainer_MediumMartha2:
+	trainer EVENT_ELITE_FLOOR_MARTHA, MEDIUM, MARTHA2, MediumMartha2BeforeText, MediumMartha2WinText, 0, .Script
+.Script
 	loadfont
-	writetext EfloorGranny1Text
+	writetext MediumMartha2Text
 	waitbutton
 	closetext
+	checkevent 1
+	iftrue .finish
 	playsound SFX_FLASH
 	refreshscreen 0
 	special Function8c084
@@ -151,14 +163,18 @@ EfloorGranny1Script:
 	changeblock 8, 8, $40
 	reloadmappart
 	special Function8c079
+.finish
 	end
 
-EfloorGranny2Script:
-	faceplayer
+Trainer_MediumGrace2:
+	trainer EVENT_ELITE_FLOOR_GRACE, MEDIUM, GRACE2, MediumGrace2BeforeText, MediumGrace2WinText, 0, .Script
+.Script
 	loadfont
-	writetext EfloorGranny2Text
+	writetext MediumGrace2Text
 	waitbutton
 	closetext
+	checkevent 2
+	iftrue .finish
 	playsound SFX_FLASH
 	refreshscreen 0
 	special Function8c084
@@ -180,14 +196,18 @@ EfloorGranny2Script:
 	changeblock 18, 18, $41
 	reloadmappart
 	special Function8c079
+.finish
 	end
 
-EfloorSage1Script:
-	faceplayer
+Trainer_SageJeffrey2:
+	trainer EVENT_ELITE_FLOOR_JEFFREY, SAGE, JEFFREY2, SageJeffrey2BeforeText, SageJeffrey2WinText, 0, .Script
+.Script
 	loadfont
-	writetext EfloorSage1Text
+	writetext SageJeffrey2Text
 	waitbutton
 	closetext
+	checkevent 3
+	iftrue .finish
 	playsound SFX_FLASH
 	refreshscreen 0
 	special Function8c084
@@ -207,14 +227,19 @@ EfloorSage1Script:
 	changeblock 18, 14, $41
 	reloadmappart
 	special Function8c079
+	setevent 4
+.finish
 	end
 
-EfloorSage2Script:
-	faceplayer
+Trainer_SagePing2:
+	trainer EVENT_ELITE_FLOOR_PING, SAGE, PING2, SagePing2BeforeText, SagePing2WinText, 0, .Script
+.Script
 	loadfont
-	writetext EfloorSage2Text
+	writetext SagePing2Text
 	waitbutton
 	closetext
+	checkevent 4
+	iftrue .finish
 	playsound SFX_FLASH
 	refreshscreen 0
 	special Function8c084
@@ -235,6 +260,7 @@ EfloorSage2Script:
 	changeblock 18, 20, $41
 	reloadmappart
 	special Function8c079
+.finish
 	end
 
 EcruteakGymGuy2Script: ; 0x99e39
@@ -298,18 +324,18 @@ MortyAfterRematchText2:
 	line "than that<...>"
 	done
 
-EfloorGrampsBeforeText:
+SageZekeBeforeText:
 	text "I enjoy picnics."
 
 	para "They make me feel"
 	line "so good."
 	done
 
-EfloorGrampsWinText:
+SageZekeWinText:
 	text "It's not my way?"
 	done
 
-EfloorGrampsText:
+SageZekeText:
 	text "A long time ago,"
 	line "I would listen to"
 
@@ -334,16 +360,16 @@ EfloorGrampsText:
 	cont "compilation?"
 	done
 
-EfloorGranny1BeforeText:
+MediumMartha2BeforeText:
 	text "How do I get out"
 	line "of here?"
 	done
 
-EfloorGranny1WinText:
+MediumMartha2WinText:
 	text "Aiiiyuhh!!"
 	done
 
-EfloorGranny1Text:
+MediumMartha2Text:
 	text "I don't know why"
 	line "MORTY had the idea"
 
@@ -362,7 +388,7 @@ EfloorGranny1Text:
 	line "why he did this?"
 	done
 
-EfloorGranny2BeforeText:
+MediumGrace2BeforeText:
 	text "Take a deep"
 	line "breath, child."
 
@@ -371,13 +397,13 @@ EfloorGranny2BeforeText:
 	cont "your thoughts."
 	done
 
-EfloorGranny2WinText:
+MediumGrace2WinText:
 	text "The voices in your"
 	line "head are quite"
 	cont "strong, child."
 	done
 
-EfloorGranny2Text:
+MediumGrace2Text:
 	text "No matter how hard"
 	line "the obstacle you"
 	cont "are facing is<...>"
@@ -388,7 +414,7 @@ EfloorGranny2Text:
 	para "Stay determined!"
 	done
 
-EfloorSage1BeforeText:
+SageJeffrey2BeforeText:
 	text "Oh hello!"
 
 	para "Sorry to tell you,"
@@ -400,12 +426,12 @@ EfloorSage1BeforeText:
 	cont "behind me."
 	done
 
-EfloorSage1WinText:
+SageJeffrey2WinText:
 	text "Your training's on"
 	line "the right path."
 	done
 
-EfloorSage1Text:
+SageJeffrey2Text:
 	text "When you take a"
 	line "wrong turn,"
 
@@ -414,19 +440,19 @@ EfloorSage1Text:
 	cont "again."
 	done
 
-EfloorSage2BeforeText:
+SagePing2BeforeText:
 	text "Ah-ha!"
 
 	para "You have fallen"
 	line "into my trap!"
 	done
 
-EfloorSage2WinText:
+SagePing2WinText:
 	text "You escaped my"
 	line "trap?!"
 	done
 
-EfloorSage2Text:
+SagePing2Text:
 	text "Try the other"
 	line "entrance and hope"
 
@@ -536,8 +562,8 @@ efloorrow = 4
 	db 7
 	person_event SPRITE_MORTY, 5, 15, $6, 0, 0, -1, -1, 8 + PAL_OW_BROWN, 0, 0, MortyRematchScript2, -1
 	person_event SPRITE_GYM_GUY, 27, 17, $6, 0, 0, -1, -1, 8 + PAL_OW_RED, 0, 0, EcruteakGymGuy2Script, -1
-	person_event SPRITE_SAGE, 12, 22, $6, 0, 0, -1, -1, 8 + PAL_OW_BLUE, 0, 0, EfloorSage1Script, -1
-	person_event SPRITE_SAGE, 21, 6, $9, 0, 0, -1, -1, 8 + PAL_OW_BLUE, 0, 0, EfloorSage2Script, -1
-	person_event SPRITE_GRANNY, 11, 15, $6, 0, 0, -1, -1, 8 + PAL_OW_BROWN, 0, 0, EfloorGranny1Script, -1
-	person_event SPRITE_GRANNY, 19, 18, $6, 0, 0, -1, -1, 8 + PAL_OW_BROWN, 0, 0, EfloorGranny2Script, -1
-	person_event SPRITE_GRAMPS, 15, 7, $6, 0, 0, -1, -1, 8 + PAL_OW_GREEN, 0, 0, EfloorGrampsScript, -1
+	person_event SPRITE_SAGE, 12, 22, $6, 0, 0, -1, -1, 8 + PAL_OW_BLUE, 2, 1, Trainer_SageJeffrey2, -1
+	person_event SPRITE_SAGE, 21, 6, $9, 0, 0, -1, -1, 8 + PAL_OW_BLUE, 2, 1, Trainer_SagePing2, -1
+	person_event SPRITE_GRANNY, 11, 15, $6, 0, 0, -1, -1, 8 + PAL_OW_BROWN, 2, 1, Trainer_MediumMartha2, -1
+	person_event SPRITE_GRANNY, 19, 18, $6, 0, 0, -1, -1, 8 + PAL_OW_BROWN, 2, 1, Trainer_MediumGrace2, -1
+	person_event SPRITE_GRAMPS, 15, 7, $6, 0, 0, -1, -1, 8 + PAL_OW_GREEN, 2, 1, Trainer_SageZeke, -1

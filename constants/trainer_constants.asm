@@ -664,6 +664,9 @@
 	const GAKU
 	const MASA
 	const KOJI
+	const ZEKE_SAGE
+	const JEFFREY2
+	const PING2
 
 	trainerclass MEDIUM ; 39
 	const MARTHA
@@ -673,6 +676,8 @@
 	const ETHEL
 	const REBECCA
 	const DORIS
+	const MARTHA2
+	const GRACE2
 
 	trainerclass BOARDER ; 3a
 	const RONALD

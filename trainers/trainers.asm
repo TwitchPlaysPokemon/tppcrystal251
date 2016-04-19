@@ -3786,7 +3786,7 @@ CooltrainerMGroup:
 		db ICE_BEAM
 		db 0
 		db 0
-	
+
 	db 100, RAPIDASH
 		db WILD_CHARGE
 		db FLAME_WHEEL
@@ -3797,13 +3797,13 @@ CooltrainerMGroup:
 		db SHADOW_BALL
 		db 0
 		db 0
-	
+
 	db 100, TAUROS
 		db WILD_CHARGE
 		db STOMP
 		db 0
 		db 0
-		
+
 	db 100, LAPRAS
 		db THUNDER
 		db SURF
@@ -5110,7 +5110,7 @@ GentlemanGroup:
 		db SURF
 		db FLY
 		db DIG
-		
+
 	db 100, AMPHAROS, DRAGON_SCALE
 		db THUNDER
 		db DRAGON_PULSE
@@ -7320,7 +7320,7 @@ GuitaristGroup:
 		db SWIFT
 		db REFLECT
 		db THUNDER_WAVE
-		
+
 	db 100, MAGNEMITE, FOCUS_BAND
 		db THUNDER
 		db FLASH_CANNON
@@ -9490,6 +9490,89 @@ SageGroup:
 ; ================
 ; ================================
 
+	db "ZEKE@"
+
+	db (1 << TRAINERTYPE_MOVES) | (1 << TRAINERTYPE_MAXXP)
+	; party
+	db 100, KAKUNA
+		db HARDEN
+		db 
+		db 
+		db 
+
+	db 100, HITMONLEE
+		db HI_JUMP_KICK
+		db THIEF
+		db CURSE
+		db METRONOME
+
+	db 100, HAUNTER
+		db NIGHT_SHADE
+		db DREAM_EATER
+		db HYPNOSIS
+		db CURSE
+	db 100, AMPHAROS
+		db ZAP_CANNON
+		db DYNAMICPUNCH
+		db SWIFT
+		db FLASH
+
+	db 100, VAPOREON
+		db WATERFALL
+		db AURORA_BEAM
+		db ACID_ARMOR
+		db REST
+
+	db 100, TYPHLOSION
+		db SHADOW_CLAW
+		db FLAME_WHEEL
+		db SWAGGER
+		db DOUBLE_TEAM
+	db $ff ; end
+
+	db "JEFFREY@"
+	db (1 << TRAINERTYPE_MOVES) | (1 << TRAINERTYPE_MAXXP)
+	; party
+	db 100, LARVITAR
+		db EARTHQUAKE
+		db ROCK_SLIDE
+		db BITE
+		db ROCK_POLISH
+	
+	db 100, PUPITAR
+		db DIG
+		db IRON_DEFENSE
+		db TOXIC
+		db CURSE
+		
+	db 100, TYRANITAR
+		db DARK_PULSE
+		db FLAMETHROWER
+		db HYPER_BEAM
+		db METAL_SOUND
+	db $ff ; end
+
+	db "PING@"
+	db (1 << TRAINERTYPE_MOVES) | (1 << TRAINERTYPE_MAXXP)
+	; party
+	db 100, HOUNDOUR
+		db DARK_PULSE
+		db FLAMETHROWER
+		db PURSUIT
+		db DESTINY_BOND
+		
+	db 100, VILEPLUME
+		db POISON_JAB
+		db SEED_BOMB
+		db STRING_SHOT
+		db CURSE
+	db 100, GYARADOS
+		db WATERFALL
+		db CRUNCH
+		db RAIN_DANCE
+		db THUNDER_WAVE
+	db $ff ; end
+
 
 MediumGroup:
 ; ================================
@@ -9574,6 +9657,48 @@ MediumGroup:
 
 	db $ff ; end
 
+	db "MARTHA@"
+	db (1 << TRAINERTYPE_MOVES) | ( 1 << TRAINERTYPE_ITEM) | (1 << TRAINERTYPE_MAXXP)
+	; party
+	db 100, GASTLY, POLKADOT_BOW
+		db EXPLOSION
+		db 0
+		db 0
+		db 0
+
+	db 100, GASTLY, FOCUS_BAND
+		db MEAN_LOOK
+		db CURSE
+		db CONFUSE_RAY
+		db NIGHT_SHADE
+
+	db 100, GASTLY, GOLD_BERRY
+		db DREAM_EATER
+		db NIGHTMARE
+		db HYPNOSIS
+		db SPITE
+	db 100, GASTLY, LEFTOVERS
+		db DESTINY_BOND
+		db SHADOW_CLAW
+		db WILLOWISP
+		db ATTRACT
+
+	db 100, GASTLY, QUICK_CLAW
+		db SHADOW_BALL
+		db SLUDGE_BOMB
+		db THUNDERBOLT
+		db DAZZLINGLEAM
+	db $ff ; end
+
+	db "GRACE@"
+	db (1 << TRAINERTYPE_MOVES) | ( 1 << TRAINERTYPE_ITEM) | (1 << TRAINERTYPE_MAXXP)
+	; party
+	db 100, MAROWAK, THICK_CLUB
+		db BONEMERANG
+		db PLAY_ROUGH
+		db IRON_HEAD
+		db COUNTER
+	db $ff ; end
 ; ================
 ; ================================
 
