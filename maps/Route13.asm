@@ -217,8 +217,8 @@ PokefanmJoshuaBeatenText: ; 0x1a2542
 ; 0x1a254f
 
 .metric
-	text "DAD: One meter and"
-	line "a half under<...>"
+	text "DAD: A meter and a"
+	line "half under<...>"
 
 	para "SON: Good job<...>"
 	done
