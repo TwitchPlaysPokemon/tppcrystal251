@@ -641,7 +641,7 @@ CooltrainerNotBettingText: ; 0x56ff4
 	line "favorite machine!"
 
 	para "I really wanted to"
-	line "use it<...>
+	line "use it<...>"
 	
 	para "But betting isn't"
 	line "available right"
