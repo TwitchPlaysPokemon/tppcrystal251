@@ -635,12 +635,15 @@ GoldenrodVoltorbFlipNoCoinCaseText:
 	done
 
 CooltrainerNotBettingText: ; 0x56ff4
-	text "Awe man<...>"
+	text "Aww man<...>"
 
 	para "This is my"
 	line "favorite machine!"
 
-	para "<...>but betting isn't"
+	para "I really wanted to"
+	line "use it<...>
+	
+	para "But betting isn't"
 	line "available right"
 	cont "now<...>"
 	done
