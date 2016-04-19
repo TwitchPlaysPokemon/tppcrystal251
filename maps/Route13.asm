@@ -200,12 +200,28 @@ PokefanmJoshuaSeenText: ; 0x1a250f
 ; 0x1a2542
 
 PokefanmJoshuaBeatenText: ; 0x1a2542
+	start_asm
+	ld a, [Options2]
+	bit 3, a
+	ld hl, .imperial
+	ret nz
+	ld hl, .metric
+	ret
+
+.imperial
 	text "DAD: Five feet"
 	line "under<...>"
 
 	para "SON: Good job<...>"
 	done
 ; 0x1a254f
+
+.metric
+	text "DAD: One meter and"
+	line "a half under<...>"
+
+	para "SON: Good job<...>"
+	done
 
 UnknownText_0x1a254f: ; 0x1a254f
 	text "We're buying some"
