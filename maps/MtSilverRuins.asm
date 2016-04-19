@@ -7,6 +7,29 @@ MtSilverRuins_MapScriptHeader:
 
 ; <scripts go here>
 
+SilverCaveRuins_MissingnoFill:
+	lb de, 14 + 4, 4 + 4
+	ld b, 6
+.loop1
+	push de
+	ld c, 7
+.loop2
+	push de
+	call Function2a66
+	ld a, [ScriptVar]
+	ld [hl], a
+	pop de
+	inc d
+	inc d
+	dec c
+	jr nz, .loop2
+	pop de
+	inc e
+	inc e
+	dec b
+	jr nz, .loop1
+	jp Function2879
+
 MtSilverRuinsElmScript:
 	waitsfx
 	playmusic MUSIC_NONE
@@ -21,42 +44,8 @@ MtSilverRuinsElmScript:
 	refreshscreen 0
 	special Function8c084
 	;change tiles to missingno
-	changeblock 16, 0, $6d
-	changeblock 18, 0, $6d
-	changeblock 20, 0, $6d
-	changeblock 22, 0, $6d
-	changeblock 24, 0, $6d
-	changeblock 26, 0, $6d
-	changeblock 16, 2, $6d
-	changeblock 18, 2, $6d
-	changeblock 20, 2, $6d
-	changeblock 22, 2, $6d
-	changeblock 24, 2, $6d
-	changeblock 26, 2, $6d
-	changeblock 16, 4, $6d
-	changeblock 18, 4, $6d
-	changeblock 20, 4, $6d
-	changeblock 22, 4, $6d
-	changeblock 24, 4, $6d
-	changeblock 26, 4, $6d
-	changeblock 16, 6, $6d
-	changeblock 18, 6, $6d
-	changeblock 20, 6, $6d
-	changeblock 22, 6, $6d
-	changeblock 24, 6, $6d
-	changeblock 26, 6, $6d
-	changeblock 16, 8, $6d
-	changeblock 18, 8, $6d
-	changeblock 20, 8, $6d
-	changeblock 22, 8, $6d
-	changeblock 24, 8, $6d
-	changeblock 26, 8, $6d
-	changeblock 16, 10, $6d
-	changeblock 18, 10, $6d
-	changeblock 20, 10, $6d
-	changeblock 22, 10, $6d
-	changeblock 24, 10, $6d
-	changeblock 26, 10, $6d
+	writebyte $6d
+	callasm SilverCaveRuins_MissingnoFill
 	reloadmappart
 	closetext
 	special Function8c079
@@ -65,20 +54,21 @@ MtSilverRuinsElmScript:
 	checkcode VAR_FACING
 	if_equal RIGHT, .LookAroundRight
 	spriteface $0, UP
-	pause 15	
+	pause 15
 	spriteface $0, DOWN
-	pause 15	
+	pause 15
 	spriteface $0, RIGHT
-	pause 30	
+	pause 30
 	spriteface $0, LEFT
-	jump .ContinueEffects	
+	jump .ContinueEffects
+
 .LookAroundRight
 	spriteface $0, UP
-	pause 15	
+	pause 15
 	spriteface $0, DOWN
-	pause 15	
+	pause 15
 	spriteface $0, LEFT
-	pause 30	
+	pause 30
 	spriteface $0, RIGHT
 .ContinueEffects
 	pause 15
@@ -97,58 +87,19 @@ MtSilverRuinsElmScript:
 	earthquake 10
 	refreshscreen 0
 	special Function8c084
-	changeblock 14, 0, $72
-	changeblock 16, 0, $72
-	changeblock 18, 0, $72
-	changeblock 20, 0, $72
-	changeblock 22, 0, $72
-	changeblock 24, 0, $72
-	changeblock 26, 0, $72
-	changeblock 14, 2, $72
-	changeblock 16, 2, $72
-	changeblock 18, 2, $72
-	changeblock 20, 2, $72
-	changeblock 22, 2, $72
-	changeblock 24, 2, $72
-	changeblock 26, 2, $72
-	changeblock 14, 4, $72
-	changeblock 16, 4, $72
-	changeblock 18, 4, $72
-	changeblock 20, 4, $72
-	changeblock 22, 4, $72
-	changeblock 24, 4, $72
-	changeblock 26, 4, $72
-	changeblock 14, 6, $72
-	changeblock 16, 6, $72
-	changeblock 18, 6, $72
-	changeblock 20, 6, $72
-	changeblock 22, 6, $72
-	changeblock 24, 6, $72
-	changeblock 26, 6, $72
-	changeblock 14, 8, $72
-	changeblock 16, 8, $72
-	changeblock 18, 8, $72
-	changeblock 20, 8, $72
-	changeblock 22, 8, $72
-	changeblock 24, 8, $72
-	changeblock 26, 8, $72
-	changeblock 14, 10, $72
-	changeblock 16, 10, $72
-	changeblock 18, 10, $72
-	changeblock 20, 10, $72
-	changeblock 22, 10, $72
-	changeblock 24, 10, $72
-	changeblock 26, 10, $72
+	writebyte $72
+	callasm SilverCaveRuins_MissingnoFill
 	reloadmappart
 	closetext
 	special Function8c079
 	pause 30
 	spriteface $0, UP
-	pause 20	
+	pause 20
 	spriteface $0, DOWN
 	pause 20
 	applymovement $0, Movement_WalkLeftToCenter
 	jump .ShowArena
+
 .ChangeBlocksFacingRight
 	spriteface $0, DOWN
 	applymovement $3, Movement_BirdToCenter
@@ -156,59 +107,19 @@ MtSilverRuinsElmScript:
 	earthquake 10
 	refreshscreen 0
 	special Function8c084
-	changeblock 14, 0, $72
-	changeblock 16, 0, $72
-	changeblock 18, 0, $72
-	changeblock 20, 0, $72
-	changeblock 22, 0, $72
-	changeblock 24, 0, $72
-	changeblock 26, 0, $72
-	changeblock 14, 2, $72
-	changeblock 16, 2, $72
-	changeblock 18, 2, $72
-	changeblock 20, 2, $72
-	changeblock 22, 2, $72
-	changeblock 24, 2, $72
-	changeblock 26, 2, $72
-	changeblock 14, 4, $72
-	changeblock 16, 4, $72
-	changeblock 18, 4, $72
-	changeblock 20, 4, $72
-	changeblock 22, 4, $72
-	changeblock 24, 4, $72
-	changeblock 26, 4, $72
-	changeblock 14, 6, $72
-	changeblock 16, 6, $72
-	changeblock 18, 6, $72
-	changeblock 20, 6, $72
-	changeblock 22, 6, $72
-	changeblock 24, 6, $72
-	changeblock 26, 6, $72
-	changeblock 14, 8, $72
-	changeblock 16, 8, $72
-	changeblock 18, 8, $72
-	changeblock 20, 8, $72
-	changeblock 22, 8, $72
-	changeblock 24, 8, $72
-	changeblock 26, 8, $72
-	changeblock 14, 10, $72
-	changeblock 16, 10, $72
-	changeblock 18, 10, $72
-	changeblock 20, 10, $72
-	changeblock 22, 10, $72
-	changeblock 24, 10, $72
-	changeblock 26, 10, $72
+	writebyte $72
+	callasm SilverCaveRuins_MissingnoFill
 	reloadmappart
 	closetext
 	special Function8c079
 	pause 30
 	spriteface $0, UP
-	pause 20	
+	pause 20
 	spriteface $0, DOWN
 	pause 50
 	applymovement $0, Movement_WalkToCenter
 ;at this point, we are at the same point regardless of initial location
-.ShowArena	
+.ShowArena
 	spriteface $0, RIGHT
 	pause 10
 ;ball
@@ -260,7 +171,7 @@ MtSilverRuinsElmScript:
 	closetext
 	pause 10
 	spriteface $2, UP
-	pause 30 
+	pause 30
 	showemote $0, $2, 10
 	spriteface $2, LEFT
 	loadfont
@@ -273,9 +184,11 @@ MtSilverRuinsElmScript:
 	iftrue .LoadTyphlosionTeam
 	loadtrainer PROF_ELM, 3
 	jump .StartBattle
+
 .LoadTyphlosionTeam
 	loadtrainer PROF_ELM, 2
 	jump .StartBattle
+
 .LoadMeganiumTeam
 	loadtrainer PROF_ELM, 1
 .StartBattle
@@ -313,7 +226,7 @@ Movement_UnknownBirdFliesAway:
 	step_up
 	step_up
 	step_end
-	
+
 Movement_BirdToCenter:
 	fast_jump_step_down
 	jump_step_down
@@ -340,13 +253,13 @@ MovementSurprisedPlayer:
 	step_sleep 40
 	slow_step_right
 	step_end
-	
-	
+
+
 ; <text goes here>
 Text_MtSilverRuinsBird:
 	text "Gyaaa!"
 	done
-	
+
 ElmText_ShoutPlayerName:
 	text "<PLAYER>!"
 	done
@@ -367,16 +280,16 @@ ElmText_MtSilverRuinsFinalBattleIntro
 	text "<PLAYER>, I didn't"
 	line "expect to see you"
 	cont "here<...>"
-	
+
 	para "I felt a small"
 	line "EARTHQUAKE while"
-	
+
 	para "I was outside"
 	line "doing research and"
-	
+
 	para "came to check it"
 	line "out<...>"
-	
+
 	para "It seems I might"
 	line "have interrupted"
 	cont "a very rare event<...>"
@@ -393,10 +306,10 @@ ElmText_MtSilverRuinsFinalBattleIntro
 
 	para "But this is a good"
 	line "place for it too,"
-	
+
 	para "as our mysterious"
 	line "friend seems to"
-	
+
 	para "have set up an"
 	line "area for us<...>"
 	done
