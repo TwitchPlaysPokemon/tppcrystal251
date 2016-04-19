@@ -342,6 +342,16 @@ CooltrainerMScript_0x56e07: ; 0x56e07
 	end
 ; 0x56e12
 
+CooltrainerMBrokenScript: ; 0x56e07
+	faceplayer
+	loadfont
+	writetext CooltrainerNotBettingText
+	waitbutton
+	closetext
+	spriteface 15, $2
+	end
+; 0x56e12
+
 PokefanFScript_0x56e12: ; 0x56e12
 	faceplayer
 	loadfont
@@ -624,6 +634,16 @@ GoldenrodVoltorbFlipNoCoinCaseText:
 	line "COIN CASE to play."
 	done
 
+CooltrainerNotBettingText: ; 0x56ff4
+	text "Awe man<...>"
+
+	para "This is my"
+	line "favorite machine!"
+
+	para "<...>but betting isn't"
+	line "available right"
+	cont "now<...>"
+	done
 GoldenrodGameCorner_MapEventHeader: ; 0x571db
 	; filler
 	db 0, 0
@@ -671,7 +691,7 @@ GoldenrodGameCorner_MapEventHeader: ; 0x571db
 	signpost 1, 12, $4, MapGoldenrodGameCornerSignpost30Script
 
 	; people-events
-	db 13
+	db 14
 	person_event SPRITE_CLERK, 6, 7, $6, 0, 0, -1, -1, 8 + PAL_OW_RED, 0, 0, ClerkScript_0x56c25, -1
 	person_event SPRITE_RECEPTIONIST, 6, 20, $6, 0, 0, -1, -1, 8 + PAL_OW_RED, 0, 0, ReceptionistScript_0x56c28, -1
 	person_event SPRITE_RECEPTIONIST, 6, 22, $6, 0, 0, -1, -1, 8 + PAL_OW_RED, 0, 0, ReceptionistScript_0x56d01, -1
@@ -685,6 +705,7 @@ GoldenrodGameCorner_MapEventHeader: ; 0x571db
 	person_event SPRITE_POKEFAN_M, 13, 6, $2, 1, 1, -1, -1, 8 + PAL_OW_BROWN, 0, 0, PokefanMScript_0x56e2b, -1
 	person_event SPRITE_POKEFAN_M, 14, 21, $9, 0, 0, -1, -1, 8 + PAL_OW_RED, 0, 0, PokefanMScript_0x56c1a, EVENT_POKEFAN_M_IN_GOLDENROD_GAME_CORNER
 	person_event SPRITE_GENTLEMAN, 5, 14, $9, 0, 0, -1, -1, 8 + PAL_OW_GREEN, 0, 0, GoldenrodVoltorbFlipGuyScript, -1
+	person_event SPRITE_COOLTRAINER_M, 15, 18, $8, 0, 0, -1, -1, 8 + PAL_OW_RED, 0, 0, CooltrainerMBrokenScript, -1
 ; 0x57322
 
 
