@@ -9496,9 +9496,9 @@ SageGroup:
 	; party
 	db 100, KAKUNA
 		db HARDEN
-		db 
-		db 
-		db 
+		db 0
+		db 0
+		db 0
 
 	db 100, HITMONLEE
 		db HI_JUMP_KICK
