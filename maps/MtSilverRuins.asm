@@ -47,7 +47,6 @@ MtSilverRuinsElmScript:
 	writebyte $6d
 	callasm SilverCaveRuins_MissingnoFill
 	reloadmappart
-	closetext
 	special Function8c079
 	;look around
 	pause 15
@@ -90,7 +89,6 @@ MtSilverRuinsElmScript:
 	writebyte $72
 	callasm SilverCaveRuins_MissingnoFill
 	reloadmappart
-	closetext
 	special Function8c079
 	pause 30
 	spriteface $0, UP

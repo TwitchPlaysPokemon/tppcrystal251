@@ -76063,7 +76063,7 @@ GetTreeScore: ; b8443
 	ld [hDivisor], a
 	ld b, 2
 	call Divide
-	ld a, [hQuotient + 2]
+	ld a, [hDivisor]
 	ret
 ; b849d
 

@@ -210,8 +210,7 @@ OakCheckDexAtHoF:
 	text "May I ask how your"
 	line "#DEX is coming"
 	cont "along?"
-
-	done
+	prompt
 
 OakFullDex:
 	text "Wow!"
