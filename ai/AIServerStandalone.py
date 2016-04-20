@@ -72,7 +72,10 @@ class AIServer(BaseHTTPRequestHandler):
             self.end_headers()
             return
 
-
 if __name__ == "__main__":
     httpd = socketserver.TCPServer(("localhost", PORT), AIServer)
-    httpd.serve_forever()
+    print("Serving on port {}".format(PORT))
+    try:
+        httpd.serve_forever()
+    except KeyboardInterrupt:
+        print("Shutting down...")
