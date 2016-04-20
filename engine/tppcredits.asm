@@ -2519,11 +2519,15 @@ TPPCreditsList:
 	tc_title		.ai
 	tc_subtitle		  .bee
 	tc_title		.testers
-	tc_subtitle		  .timmy
-	tc_subtitle		  .eraclito
-	tc_subtitle		  .chauzu
 	tc_subtitle		  .chef
+	tc_subtitle		  .boom
+	tc_subtitle		  .dead
+	tc_subtitle		  .hlix
+	tc_subtitle		  .chauzu
+	tc_subtitle		  .eraclito
+	tc_subtitle		  .timmy
 	tc_title		.misc
+	tc_subtitle		  .asdf
 	tc_subtitle		  .walle
 	tc_title		.special
 	tc_subtitle		  .ninten
@@ -2570,6 +2574,10 @@ TPPCreditsList:
 .gact		db "GACT@"
 .chef		db "The<_>Chef1337@"
 .frog       db "FroggestSpirit@"
+.hlix		db "1hlixed@"
+.dead       db "Deadinsky66@"
+.boom       db "BoombaFunk@"
+.asdf       db "asdf14396@"
 
 TCText_Version:
 	db "Version ",_VERSION,"@"
