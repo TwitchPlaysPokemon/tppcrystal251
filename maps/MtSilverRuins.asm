@@ -8,27 +8,10 @@ MtSilverRuins_MapScriptHeader:
 ; <scripts go here>
 
 SilverCaveRuins_MissingnoFill:
-	lb de, 14 + 4, 4 + 4
-	ld b, 6
-.loop1
-	push de
-	ld c, 7
-.loop2
-	push de
-	call Function2a66
+	ld hl, OverworldMap
+	ld bc, 1300
 	ld a, [ScriptVar]
-	ld [hl], a
-	pop de
-	inc d
-	inc d
-	dec c
-	jr nz, .loop2
-	pop de
-	inc e
-	inc e
-	dec b
-	jr nz, .loop1
-	jp Function2879
+	jp ByteFill
 
 MtSilverRuinsElmScript:
 	waitsfx
@@ -47,6 +30,7 @@ MtSilverRuinsElmScript:
 	writebyte $6d
 	callasm SilverCaveRuins_MissingnoFill
 	reloadmappart
+	closetext
 	special Function8c079
 	;look around
 	pause 15
@@ -89,6 +73,7 @@ MtSilverRuinsElmScript:
 	writebyte $72
 	callasm SilverCaveRuins_MissingnoFill
 	reloadmappart
+	closetext
 	special Function8c079
 	pause 30
 	spriteface $0, UP
