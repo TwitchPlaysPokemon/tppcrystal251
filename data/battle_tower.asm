@@ -1,4 +1,4 @@
-NUM_BATTLE_TOWER_MONS EQU 255
+; NUM_BATTLE_TOWER_MONS EQU 256 (byte constant, uncomment and add check back if it drops below 256)
 Function1f8000: ; 1f8000 generatres mon and trainer and stores them in wram. full structure is, from BT_OTTrainer, 11 bytes of trainer data (name and class), 177 bytes for 3 mons and 36 bytes of ????
 	ld a, [rSVBK] ; changes have removed the mons in "battle" and inputted directly into OTPartyMons instead
 	push af
@@ -121,8 +121,9 @@ Function1f8081:
 	pop hl
 .loop3
 	call Random
-	cp NUM_BATTLE_TOWER_MONS ;loop until less then battle tower mons, put number into c
-	jr nc, .loop3
+; check removed since the amount of battle tower mons is now 256 exactly
+;	cp NUM_BATTLE_TOWER_MONS ;loop until less then battle tower mons, put number into c
+;	jr nc, .loop3
 	ld c, a
 	push hl ;end of tempmon
 	ld hl, wd002
