@@ -397,7 +397,7 @@ MewSailorNoSurgeText:
 	line "NOTES have a map"
 	
 	para "in them that leads"
-	cont "straight there."
+	line "straight there."
 
 	para "GUYANA is very"
 	line "dangerous though<...>"
@@ -409,10 +409,11 @@ MewSailorNoSurgeText:
 
 MewSailorChallengeText:
 	text "I'll need my old"
-	line "superior SURGE to"
-	cont "give you the all"
-	cont "clear before we"
-	cont "can leave."
+	line "superior LT.SURGE"
+
+	para "to give you the"
+	line "all clear before"
+	cont "we can leave."
 	done
 
 MewSailorYesText:

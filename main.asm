@@ -55074,6 +55074,7 @@ BeatRed_Credits:: ; 86455
 	ld [wd4b5], a
 	callba Function14b85
 	ld a, [StatusFlags]
+	res 6, a
 	ld b, a
 	callba PlayCredits_109847
 	ret

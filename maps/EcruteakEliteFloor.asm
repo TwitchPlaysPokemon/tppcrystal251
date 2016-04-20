@@ -55,10 +55,9 @@ EcruteakEliteFloor_MapScriptHeader:
 
 EcruteakEliteFloorCallback:
 	checkevent EVENT_MORTY_REMATCH
-	iftrue .revealall
-	return
-.revealall
+	iffalse .no_reveal
 	scall RevealWholeFloor
+.no_reveal
 	return
 
 RevealWholeFloor:
@@ -291,7 +290,7 @@ MortyRematchTextBefore2:
 	line "able to defeat"
 	cont "the ELITE FLOOR."
 
-	para "Ha-Ha!"
+	para "Haha!"
 
 	para "<...>So the legend was"
 	line "true, and HO-OH"
@@ -461,10 +460,10 @@ SagePing2Text:
 	done
 
 EcruteakGymGuy2Text:
-	text "Yo, Champ!"
+	text "Yo, CHAMP!"
 
 	para "MORTY has upgraded"
-	line "his floor to the"
+	line "his floor to a"
 	cont "whole new level!"
 
 	para "He even called it"

@@ -496,7 +496,7 @@ RustBeforeRematchText:
 
 	para "I've been keeping"
 	line "up with my #MON"
-	cont "training.!"
+	cont "training!"
 
 	para "And now, I'm the"
 	line "#MON LEAGUE"
@@ -506,7 +506,8 @@ RustBeforeRematchText:
 	line "ELITE FOUR, even"
 	cont "at their best!"
 
-	para "<...> Wha?! Oh."
+	para $56, " ",$56, " ",$56
+	line "Wha?! Oh."
 
 	para "If you're here,"
 	line "that means you've"

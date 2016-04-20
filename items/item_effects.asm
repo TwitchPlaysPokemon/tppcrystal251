@@ -533,7 +533,12 @@ PremierBall:
 	ld hl, UnknownText_0xedc9
 	call PrintText
 
-	callba Function3ee3b
+	xor a
+	ld hl, Sprites
+	ld bc, $a0
+	call ByteFill
+
+	callba CatchPkmn_GiveExperience
 	ld a, [EnemyMonLevel]
 	ld [CurPartyLevel], a
 	pop af

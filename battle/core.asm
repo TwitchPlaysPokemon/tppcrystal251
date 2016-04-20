@@ -2312,6 +2312,7 @@ Function3ce01: ; 3ce01
 	ld a, [wd0ee]
 	and $c0
 	ld [wd0ee], a
+CatchPkmn_GiveExperience:
 	call Function3ceaa
 	ld a, [wAliveExperienceSharers]
 	push af
@@ -4009,6 +4010,13 @@ BattleCore_TryToFlee: ; 3d8b3
 	jp z, .asm_3d98d
 	cp BATTLETYPE_ROAMING
 	jp z, .asm_3d98d
+	; Ho-oh, Lugia, and Snorlax have FORCEITEM
+	cp BATTLETYPE_FORCEITEM
+	jr nz, .try_flee
+	ld a, [EnemyMonSpecies]
+	cp SNORLAX
+	jp nz, .asm_3d98d
+.try_flee
 
 	ld a, [wLinkMode]
 	and a

@@ -273,7 +273,7 @@ FalknerRematchTextBefore:
 	para "Long ago, my"
 	line "father tamed the"
 	
-	para "three ultimate bird"
+	para "three ultimate"
 	line "bird #MON."
 
 	para "You, who have"
