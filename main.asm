@@ -19805,30 +19805,41 @@ UnknownText_0x158c7: ; 0x158c7
 ; 0x158cc
 
 Function158cc: ; 0x158cc
+	callba CheckItemPocket
+	ld a, [wd142]
+	cp TM_HM
+	jr z, .nope
 	ld a, [wc2ce]
 	push af
 	ld a, $0
 	ld [wc2ce], a
 	callba CheckItemMenu
 	ld a, [wd142]
-	ld hl, Jumptable_158e7
+	ld hl, .Jumptable
 	rst JumpTable
 	pop af
 	ld [wc2ce], a
 	ret
 ; 0x158e7
 
-Jumptable_158e7: ; 0x158e7
+.Jumptable: ; 0x158e7
 	dw .jump2
-	dw .jump1
-	dw .jump1
-	dw .jump1
+	dw .nope
+	dw .nope
+	dw .nope
 	dw .jump2
 	dw .jump2
 	dw .jump2
 
-.jump1:
+.nope:
+	ld hl, .NopeText
+	call PrintText
 	ret
+
+.NopeText:
+	text "Can't deposit that"
+	line "in the PC!"
+	prompt
 
 .jump2:
 	ld a, [Buffer1]
