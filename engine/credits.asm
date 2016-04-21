@@ -152,7 +152,7 @@ PlayCredits_109847:: ; 109847
 	call Request2bpp
 
 	ld de, CopyrightTPPGFX
-	ld hl, $9500
+	ld hl, $8da0
 	lb bc, BANK(CopyrightTPPGFX), $5
 	call Request2bpp
 
@@ -1336,7 +1336,7 @@ CreditsStrings:
 
 .Copyright:
 	; 2016 TPP
-	db $7f, $50, $51, $52, $7f, $7f, $7f, $53, $54
+	db $7f, $da, $db, $dc, $7f, $7f, $7f, $dd, $de
 	;    (C) 1  9  9  5 - 2  0  0  1     N  i  n  t  e  n  d  o
 	next $60,$61,$62,$63,$64,$65,$66, $67, $68, $69, $6a, $6b, $6c
 	;    (C) 1  9  9  5 - 2  0  0  1    C  r  e  a  t  u  r  e  s      i  n  c .

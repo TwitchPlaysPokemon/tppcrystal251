@@ -3425,6 +3425,6 @@ Artist:
 ._09 db "Shota Kageyama@"
 ._10 db "Church of the Helix Choir@"
 ._11 db "Pigu@"
-._12 db "Pigu, GACT@"
+._12 db "GACT, Pigu@"
 ._13 db "Pigu, PikalaxALT@"
 ._14 db "Junichi Masuda, Go Ichinose@"
