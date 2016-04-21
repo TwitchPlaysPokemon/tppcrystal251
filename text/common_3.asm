@@ -1618,6 +1618,15 @@ _OakRating18: ; 1c1932
 	done
 ; 1c196b
 
+_OakRatingNearlyThere:
+	text "Wow! This #DEX"
+	line "is very nearly"
+	cont "complete!"
+
+	para "You've surpassed"
+	line "me by far!"
+	done
+
 _OakRating19: ; 1c196b
 	text "Whoa! A perfect"
 	line "#DEX! I've"

@@ -28058,6 +28058,9 @@ OakRatings: ; 0x2667f
 	db 248
 	dw SFX_DEX_FANFARE_230_PLUS
 	dw OakRating18
+	db 250
+	dw SFX_DEX_FANFARE_230_PLUS
+	dw OakRatingNearlyThere
 	db 251
 	dw SFX_DEX_FANFARE_230_PLUS
 	dw OakRating19
@@ -28124,6 +28127,9 @@ OakRating17:
 	db "@"
 OakRating18:
 	TX_FAR _OakRating18
+	db "@"
+OakRatingNearlyThere:
+	TX_FAR _OakRatingNearlyThere
 	db "@"
 OakRating19:
 	TX_FAR _OakRating19
@@ -55632,7 +55638,7 @@ Function86810: ; 86810
 	ld bc, $8102
 	call PrintNum
 	call WaitBGMap
-	callba Function26601
+	callba Function26601 ; Rate Dex
 	ret
 ; 868ed
 
