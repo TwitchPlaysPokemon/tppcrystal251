@@ -6,7 +6,7 @@ LOGO_CHAOS_MOD  EQU 12
 LOGO_CHAOS_LAST EQU 10
 MAIN_CHAOS_RATE EQU 15
 THX_CHAOS_RATE  EQU 11
-SCROLLER_DELAY  EQU 127
+SCROLLER_DELAY  EQU 109
 SPRITE_X        EQU $7C
 SPRITE_Y        EQU $74
 C_TC_DRAW       EQU 0
@@ -1811,8 +1811,9 @@ StripTrick_Thanks_Common: MACRO
 	add hl, de
 	ld a, [hli]
 	ld c, a
-	ld b, [hl]
+	ld a, [hl]
 	ld l, b
+	ld b, a
 	ld a, [TC_CreditsTimer]
 	ld h, 0
 	add l
@@ -2500,10 +2501,10 @@ TPPCreditsList:
 	tc_subtitle		  .chaos
 	tc_subtitle		  .chauzu
 	tc_subtitle		  .padz
-	tc_draw			TPPCreditsBG3List
 	tc_title		.sprite
 	tc_subtitle		  .eraclito
 	tc_subtitle		  .pioxys
+	tc_draw			TPPCreditsBG3List
 	tc_title		.music
 	tc_subtitle		  .pigu
 	tc_subtitle		  .gact
@@ -2515,9 +2516,9 @@ TPPCreditsList:
 	tc_subtitle		  .roy
 	tc_subtitle		  .danimg
 	tc_subtitle		  .koolboyman
-	tc_draw			TPPCreditsBG4List
 	tc_title		.ai
 	tc_subtitle		  .bee
+	tc_draw			TPPCreditsBG4List
 	tc_title		.testers
 	tc_subtitle		  .chef
 	tc_subtitle		  .boom

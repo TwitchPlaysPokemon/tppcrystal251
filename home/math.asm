@@ -2,11 +2,13 @@ AddNTimes:: ; 0x30fe
 ; Add bc * a to hl.
 	and a
 	ret z
-.loop
+	srl a
+	jr nc, .noadd
 	add hl, bc
-	dec a
-	jr nz, .loop
-	ret
+.noadd
+	sla c
+	rl b
+	jr AddNTimes
 ; 0x3105
 
 SimpleMultiply:: ; 3105
