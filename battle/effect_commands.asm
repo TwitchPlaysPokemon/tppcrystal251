@@ -1237,9 +1237,13 @@ BattleCommand05:
 	ld hl, .Chances
 	ld b, 0
 	add hl, bc
+	ld a, [hl]
+	cp $ff
+	jr z, .crit
 	call BattleRandom
 	cp [hl]
 	ret nc
+.crit
 	ld a, 1
 	ld [CriticalHit], a
 	ret
