@@ -33,15 +33,30 @@ TeacherScript_PCC:
 	jumptextfaceplayer PccText8
 
 YoungsterScript2_PCC:
-	jumptextfaceplayer PccText9
+	faceplayer
+	loadfont
+	writetext PccText9
+	waitbutton
+	closetext
+	spriteface 14, $2
+	end
 
 PCCDirectorySignScript:
-	jumptextfaceplayer PccText10
+	loadfont
+	writetext PccText10
+	waitbutton
+	closetext
+	end
 
+PCCMachineSignScript:
+	loadfont
+	writetext UnknownText_0x623c7
+	waitbutton
+	closetext
+	end
 
 LinkStationNurseScript:
 	jumptextfaceplayer UnknownText_0x61072
-
 
 PokefanFScript_PCC:
 	faceplayer
@@ -134,12 +149,6 @@ UnknownText_0x61072: ; 0x61072
 	;done
 ; 0x61727
 
-;UnknownText_0x619db: ; 0x619db
-	;text "It's a #MON"
-;	line "NEWS MACHINE."
-;	done
-; 0x619f5
-
 PccText5: ; 0x61c89
 	text "Whoa, this #MON"
 	line "CENTER is huge."
@@ -170,8 +179,8 @@ PccText7: ; 0x61cef
 	para "be traded with all"
 	line "sorts of people!"
 
-	para "I call it NOCTOWL"
-	line "MAIL!"
+	para "I call it<...>"
+	line "NOCTOWL MAIL!"
 
 	para "If it becomes"
 	line "popular, I might"
@@ -400,8 +409,25 @@ GoldenrodPokeCenter1F_MapEventHeader: ; 0x62564
 	;xy_trigger 0, $f, $7, $0, UnknownScript_0x60fd9, $0, $0
 
 	; signposts
-	db 1
+	db 18
 	signpost 9, 2, $0, PCCDirectorySignScript
+	signpost 4, 24, $0, PCCMachineSignScript
+	signpost 5, 24, $0, PCCMachineSignScript
+	signpost 6, 24, $0, PCCMachineSignScript
+	signpost 7, 24, $0, PCCMachineSignScript
+	signpost 8, 24, $0, PCCMachineSignScript
+	signpost 9, 24, $0, PCCMachineSignScript
+	signpost 10, 24, $0, PCCMachineSignScript
+	signpost 11, 25, $0, PCCMachineSignScript
+	signpost 11, 26, $0, PCCMachineSignScript
+	signpost 11, 27, $0, PCCMachineSignScript
+	signpost 11, 28, $0, PCCMachineSignScript
+	signpost 4, 29, $0, PCCMachineSignScript
+	signpost 5, 29, $0, PCCMachineSignScript
+	signpost 6, 29, $0, PCCMachineSignScript
+	signpost 7, 29, $0, PCCMachineSignScript
+	signpost 8, 29, $0, PCCMachineSignScript
+	signpost 9, 29, $0, PCCMachineSignScript
 
 	; people-events
 	db 13
@@ -411,12 +437,12 @@ GoldenrodPokeCenter1F_MapEventHeader: ; 0x62564
 	person_event SPRITE_GAMEBOY_KID, 16, 15, $6, 0, 0, -1, -1, 8 + PAL_OW_GREEN, 0, 0, GameboyKidScript_PCC1, -1
 	person_event SPRITE_RHYDON, 13, 8, $16, 0, 0, -1, -1, 8 + PAL_OW_BROWN, 0, 0, SentretCryScript_PCC, -1
 	person_event SPRITE_LASS, 13, 9, $6, 0, 0, -1, -1, 0, 0, 0, LassScript_PCC, -1
-	person_event SPRITE_COOLTRAINER_F, 16, 8, $5, 0, 1, -1, -1, 0, 0, 0, CoolTrainerFScript_PCC, -1
+	person_event SPRITE_COOLTRAINER_F, 16, 8, $5, 0, 1,  -1, -1, 0, 0, 0, CoolTrainerFScript_PCC, -1
 	person_event SPRITE_GRAMPS, 13, 25, $2, 0, 1, -1, -1, 0, 0, 0, GrannyTextScript_PCC, -1
 	person_event SPRITE_POKEFAN_F, 18, 22, $6, 0, 0, -1, -1, 8 + PAL_OW_BROWN, 0, 0, PokefanFScript_PCC, -1
 	person_event SPRITE_YOUNGSTER, 17, 12, $2, 2, 0, -1, -1, 8 + PAL_OW_BLUE, 0, 0, YoungsterScript_PCC, -1
 	person_event SPRITE_SILVER, 10, 25, $2, 1, 1, -1, -1, 8 + PAL_OW_GREEN, 0, 0, GreenHairScript_PCC, -1
-	person_event SPRITE_TEACHER, 17, 31, $2, 0, 0, -1, -1, 8 + PAL_OW_RED, 0, 0, TeacherScript_PCC, -1
-	person_event SPRITE_YOUNGSTER, 12, 34, $8, 0, 0, -1, -1, 0, 0, 0, YoungsterScript2_PCC, -1
+	person_event SPRITE_TEACHER, 17, 31, $2, 0, 0, -1, -1, 8 + PAL_OW_YELLOW, 0, 0, TeacherScript_PCC, -1
+	person_event SPRITE_YOUNGSTER, 14, 34, $8, 0, 0, -1, -1, 0, 0, 0, YoungsterScript2_PCC, -1
 ; 0x625cf
 

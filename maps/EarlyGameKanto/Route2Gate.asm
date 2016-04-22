@@ -46,6 +46,6 @@ Route2GateRB_MapEventHeader: ; 0x9b9ca
 
 	; people-events
 	db 1
-	person_event SPRITE_SCIENTIST, 8, 10, $4, 2, 0, -1, -1, 8 + PAL_OW_PINK, 0, 0, Route2GateRBScientistScript, -1
+	person_event SPRITE_SCIENTIST, 8, 10, $4, 2, 0, -1, -1, 8 + PAL_OW_RED, 0, 0, Route2GateRBScientistScript, -1
 ; 0x9b9f1
 

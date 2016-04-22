@@ -271,7 +271,7 @@ BurnedTowerB1F_MapEventHeader: ; 0x1863de
 	; people-events
 	db 9
 	person_event SPRITE_BOULDER, 12, 21, $19, 0, 0, -1, -1, 0, 0, 0, BoulderScript_0x186233, -1
-	person_event SPRITE_RAIKOU, 7, 11, $16, 0, 0, -1, -1, 8 + PAL_OW_BROWN, 0, 0, ObjectEvent, EVENT_DOGS_IN_BURNED_TOWER
+	person_event SPRITE_RAIKOU, 7, 11, $16, 0, 0, -1, -1, 8 + PAL_OW_YELLOW, 0, 0, ObjectEvent, EVENT_DOGS_IN_BURNED_TOWER
 	person_event SPRITE_ENTEI, 7, 16, $16, 0, 0, -1, -1, 8 + PAL_OW_RED, 0, 0, ObjectEvent, EVENT_DOGS_IN_BURNED_TOWER
 	person_event SPRITE_SUICUNE, 8, 14, $16, 0, 0, -1, -1, 8 + PAL_OW_BLUE, 0, 0, ObjectEvent, EVENT_DOGS_IN_BURNED_TOWER
 	person_event SPRITE_RAIKOU, 7, 11, $6, 0, 0, -1, -1, 8 + PAL_OW_SILVER, 0, 0, ObjectEvent, EVENT_DOGS_IN_BURNED_TOWER_2

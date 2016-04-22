@@ -27,4 +27,4 @@ RaikouRoom_MapEventHeader:
 	db 0
 	db 0
 	db 1
-	person_event SPRITE_RAIKOU, 7, 9, $6, 0, 0, -1, -1, 8 + PAL_OW_BROWN, 0, 0, StaticRaikouScript, EVENT_STATIC_RAIKOU
+	person_event SPRITE_RAIKOU, 7, 9, $6, 0, 0, -1, -1, 8 + PAL_OW_YELLOW, 0, 0, StaticRaikouScript, EVENT_STATIC_RAIKOU
