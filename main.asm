@@ -417,10 +417,12 @@ Continue: ; 5d65
 	callba Function105091
 	callba Function140ae
 	ld a, [wd4b5]
-	cp $1
-	jr z, .asm_5dd7
-	cp $2
-	jr z, .after_red
+	; cp $1
+	; jr z, .asm_5dd7
+	; cp $2
+	; jr z, .after_red
+	and a
+	jr nz, .asm_5dd7
 	ld a, $f2
 	ld [$ff9f], a
 	jp Function5e5d
@@ -428,9 +430,9 @@ Continue: ; 5d65
 .asm_5dd6
 	ret
 
-.after_red
-	call Function5de2
-	jp Function5e5d
+; .after_red
+	; call Function5de2
+	; jp Function5e5d
 
 .asm_5dd7
 	ld a, $e ; SPAWN_NEW_BARK
