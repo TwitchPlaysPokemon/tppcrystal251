@@ -432,4 +432,4 @@ MtSilverRuins_MapEventHeader:
 	; object events
 	db 2
 	person_event SPRITE_ELM, 16, 26, $7, 0, 0, -1, -1, 0, 0, 0, ObjectEvent, EVENT_ELM_IN_SILVER_CAVE_RUINS
-	person_event SPRITE_BIRD, 8, 25, $3, 0, 0, -1, -1, 8 + PAL_OW_SILVER, 0, 0, MtSilverRuinsElmScript, EVENT_ELM_IN_SILVER_CAVE_RUINS
+	person_event SPRITE_BIRD, 8, 25, $3, 0, 0, -1, -1, 8 + PAL_OW_SILVER, 0, 0, MtSilverRuinsElmScript, -1
