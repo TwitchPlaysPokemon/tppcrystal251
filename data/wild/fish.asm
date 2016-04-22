@@ -360,15 +360,15 @@ FishGroup2_Super: ; 92519
 
 FishGroup3: ; Lake of Rage
 FishGroup3_Old: ; 92525
-	db $ff, PSYDUCK,   15
+	db $ff, MAGIKARP,   15
 FishGroup3_Good: ; 9252e
-	db 150, GOLDUCK,    40
+	db 150, MAGIKARP,    40
 	db 201, GYARADOS,    50
 	db 227, STARMIE,    45
 	db 240, SEAKING,    45
 	db $ff, $0,         16
 FishGroup3_Super: ; 9253a
-	db 25, GOLDUCK,    70
+	db 25, MAGIKARP,    70
 	db 70, GYARADOS,    80
 	db 85, STARMIE,    75
 	db 95, SEAKING,    75
@@ -458,7 +458,7 @@ FishGroup7_Super: ; 925be
 
 FishGroup8: ; Dark Cave
 FishGroup8_Old: ; 925ca
-	db 126, MAGIKARP,    15
+	db 126, PSYDUCK,    15
 	db 152, WOOPER,    15
 	db 178, CORSOLA,    15
 	db 191, SEEL,    15
@@ -466,7 +466,7 @@ FishGroup8_Old: ; 925ca
 	db 230, $0,    32
 	db $ff, $0,    33
 FishGroup8_Good: ; 925d3
-	db 76, MAGIKARP,    40
+	db 76, GOLDUCK,    40
 	db 113, CORSOLA,    45
 	db 139, QUAGSIRE,    45
 	db 166, SEEL,    40
