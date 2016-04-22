@@ -3509,9 +3509,7 @@ ThickClubBoost:
 ; it's holding a Thick Club, double it.
 	push bc
 	push de
-	ld b, CUBONE
-	ld c, MAROWAK
-	ld d, THICK_CLUB
+	ld de, ThickClubBoostTable
 	call SpeciesItemBoost
 	pop de
 	pop bc
@@ -3524,9 +3522,7 @@ LightBallBoost:
 ; holding a Light Ball, double it.
 	push bc
 	push de
-	ld b, PIKACHU
-	ld c, PIKACHU
-	ld d, LIGHT_BALL
+	ld de, LightBallBoostTable
 	call SpeciesItemBoost
 	pop de
 	pop bc
@@ -3535,13 +3531,20 @@ LightBallBoost:
 SpeciesItemBoost:
 ; Return in hl the stat value at hl.
 
-; If the attacking monster is species b or c and
-; it's holding item d, double it.
+; Check the species value in the array starting at de.
+; Then check the item value.
 
 	ld a, [hli]
 	ld l, [hl]
 	ld h, a
 
+.loop
+	ld a, [de]
+	cp $ff
+	ret z
+
+	inc de
+	ld b, a
 	push hl
 	ld a, PartyMon1Species - PartyMon1
 	call BattlePartyAttr
@@ -3555,22 +3558,31 @@ SpeciesItemBoost:
 	pop hl
 
 	cp b
-	jr z, .GetItem
-	cp c
-	ret nz
+	jr nz, .next
 
 .GetItem
 	push hl
 	call GetUserItem
-	ld a, [hl]
+	ld a, [de]
+	cp [hl]
 	pop hl
-	cp d
-	ret nz
+	jr z, .done
+.next
+	inc de
+	jr .loop
 
 ; Double the stat
+.done
 	sla l
 	rl h
 	ret
+
+ThickClubBoostTable:
+	db CUBONE, THICK_CLUB
+	db MAROWAK, THICK_CLUB
+LightBallBoostTable:
+	db PIKACHU, LIGHT_BALL
+	db $ff
 
 EnemyAttackDamage:
 	call ResetDamage
