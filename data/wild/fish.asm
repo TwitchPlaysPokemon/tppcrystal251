@@ -458,7 +458,7 @@ FishGroup7_Super: ; 925be
 
 FishGroup8: ; Dark Cave
 FishGroup8_Old: ; 925ca
-	db 126, MAGIKARP,    15
+	db 126, PSYDUCK,    15
 	db 152, WOOPER,    15
 	db 178, CORSOLA,    15
 	db 191, SEEL,    15
@@ -466,7 +466,7 @@ FishGroup8_Old: ; 925ca
 	db 230, $0,    32
 	db $ff, $0,    33
 FishGroup8_Good: ; 925d3
-	db 76, MAGIKARP,    40
+	db 76, GOLDUCK,    40
 	db 113, CORSOLA,    45
 	db 139, QUAGSIRE,    45
 	db 166, SEEL,    40

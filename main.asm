@@ -19805,30 +19805,41 @@ UnknownText_0x158c7: ; 0x158c7
 ; 0x158cc
 
 Function158cc: ; 0x158cc
+	callba CheckItemPocket
+	ld a, [wd142]
+	cp TM_HM
+	jr z, .nope
 	ld a, [wc2ce]
 	push af
 	ld a, $0
 	ld [wc2ce], a
 	callba CheckItemMenu
 	ld a, [wd142]
-	ld hl, Jumptable_158e7
+	ld hl, .Jumptable
 	rst JumpTable
 	pop af
 	ld [wc2ce], a
 	ret
 ; 0x158e7
 
-Jumptable_158e7: ; 0x158e7
+.Jumptable: ; 0x158e7
 	dw .jump2
-	dw .jump1
-	dw .jump1
-	dw .jump1
+	dw .nope
+	dw .nope
+	dw .nope
 	dw .jump2
 	dw .jump2
 	dw .jump2
 
-.jump1:
+.nope:
+	ld hl, .NopeText
+	call PrintText
 	ret
+
+.NopeText:
+	text "Can't deposit that"
+	line "in the PC!"
+	prompt
 
 .jump2:
 	ld a, [Buffer1]
@@ -28058,6 +28069,9 @@ OakRatings: ; 0x2667f
 	db 248
 	dw SFX_DEX_FANFARE_230_PLUS
 	dw OakRating18
+	db 250
+	dw SFX_DEX_FANFARE_230_PLUS
+	dw OakRatingNearlyThere
 	db 251
 	dw SFX_DEX_FANFARE_230_PLUS
 	dw OakRating19
@@ -28124,6 +28138,9 @@ OakRating17:
 	db "@"
 OakRating18:
 	TX_FAR _OakRating18
+	db "@"
+OakRatingNearlyThere:
+	TX_FAR _OakRatingNearlyThere
 	db "@"
 OakRating19:
 	TX_FAR _OakRating19
@@ -55074,6 +55091,7 @@ BeatRed_Credits:: ; 86455
 	ld [wd4b5], a
 	callba Function14b85
 	ld a, [StatusFlags]
+	res 6, a
 	ld b, a
 	callba PlayCredits_109847
 	ret
@@ -55631,7 +55649,7 @@ Function86810: ; 86810
 	ld bc, $8102
 	call PrintNum
 	call WaitBGMap
-	callba Function26601
+	callba Function26601 ; Rate Dex
 	ret
 ; 868ed
 
@@ -76062,7 +76080,7 @@ GetTreeScore: ; b8443
 	ld [hDivisor], a
 	ld b, 2
 	call Divide
-	ld a, [hQuotient + 2]
+	ld a, [hDivisor]
 	ret
 ; b849d
 

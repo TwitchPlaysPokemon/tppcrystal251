@@ -8,27 +8,10 @@ MtSilverRuins_MapScriptHeader:
 ; <scripts go here>
 
 SilverCaveRuins_MissingnoFill:
-	lb de, 14 + 4, 4 + 4
-	ld b, 6
-.loop1
-	push de
-	ld c, 7
-.loop2
-	push de
-	call Function2a66
+	ld hl, OverworldMap
+	ld bc, 1300
 	ld a, [ScriptVar]
-	ld [hl], a
-	pop de
-	inc d
-	inc d
-	dec c
-	jr nz, .loop2
-	pop de
-	inc e
-	inc e
-	dec b
-	jr nz, .loop1
-	jp Function2879
+	jp ByteFill
 
 MtSilverRuinsElmScript:
 	waitsfx
@@ -449,4 +432,4 @@ MtSilverRuins_MapEventHeader:
 	; object events
 	db 2
 	person_event SPRITE_ELM, 16, 26, $7, 0, 0, -1, -1, 0, 0, 0, ObjectEvent, EVENT_ELM_IN_SILVER_CAVE_RUINS
-	person_event SPRITE_BIRD, 8, 25, $3, 0, 0, -1, -1, 8 + PAL_OW_SILVER, 0, 0, MtSilverRuinsElmScript, EVENT_ELM_IN_SILVER_CAVE_RUINS
+	person_event SPRITE_BIRD, 8, 25, $3, 0, 0, -1, -1, 8 + PAL_OW_SILVER, 0, 0, MtSilverRuinsElmScript, -1

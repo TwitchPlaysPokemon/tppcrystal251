@@ -1762,13 +1762,13 @@
 	db 35
 	db $00
 ;morning
-		db MAGIKARP ;30
-		db MAGIKARP ;10
+		db SLOWPOKE ;30
+		db GYARADOS ;10
 		db AZUMARILL ;10
 		db STARYU ;10
 		db GYARADOS ;5
 		db STARYU ;5
-		db MAGIKARP ;5
+		db POLIWAG ;5
 		db STARYU ;5
 		db STARMIE ;4
 		db FERALIGATR ;4
@@ -1779,12 +1779,12 @@
 		db STARMIE ;1
 		db XATU ;1
 ;day
-		db MAGIKARP ;30
-		db MAGIKARP ;10
+		db WOOPER ;30
+		db GOLDUCK ;10
 		db STARYU ;10
-		db MARILL ;10
+		db GYARADOS ;10
 		db GYARADOS ;5
-		db MAGIKARP ;5
+		db POLIWAG ;5
 		db OCTILLERY ;5
 		db OCTILLERY ;5
 		db STARMIE ;4
@@ -1796,12 +1796,12 @@
 		db FERALIGATR ;1
 		db XATU ;1
 ;night
-		db MAGIKARP ;30
-		db MAGIKARP ;10
+		db SLOWPOKE ;30
+		db GOLDUCK ;10
 		db MARILL ;10
 		db AZUMARILL ;10
 		db GYARADOS ;5
-		db MAGIKARP;5
+		db POLIWAG;5
 		db FERALIGATR ;5
 		db FERALIGATR ;5
 		db STARYU ;4

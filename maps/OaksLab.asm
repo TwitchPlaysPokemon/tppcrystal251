@@ -131,7 +131,7 @@ OakAfterE4:
 
 OakAfterE4Text:
 	text "Keep it up! Soon"
-	para "you'll have caught"
+	line "you'll have caught"
 	cont "them all!"
 	done
 

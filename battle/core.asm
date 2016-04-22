@@ -2312,6 +2312,7 @@ Function3ce01: ; 3ce01
 	ld a, [wd0ee]
 	and $c0
 	ld [wd0ee], a
+CatchPkmn_GiveExperience:
 	call Function3ceaa
 	ld a, [wAliveExperienceSharers]
 	push af
@@ -4009,6 +4010,13 @@ BattleCore_TryToFlee: ; 3d8b3
 	jp z, .asm_3d98d
 	cp BATTLETYPE_ROAMING
 	jp z, .asm_3d98d
+	; Ho-oh, Lugia, and Snorlax have FORCEITEM
+	cp BATTLETYPE_FORCEITEM
+	jr nz, .try_flee
+	ld a, [EnemyMonSpecies]
+	cp SNORLAX
+	jp nz, .asm_3d98d
+.try_flee
 
 	ld a, [wLinkMode]
 	and a
@@ -9894,14 +9902,14 @@ ConsumeUsersItem:
 	call GetBattleVarAddr
 	ld a, (1 << SUBSTATUS_UNDERGROUND) | (1 << SUBSTATUS_FLYING)
 	and [hl]
+	jr nz, .skip_anim
+	call SwitchTurnCore
+	call ItemRecoveryAnim
+	call SwitchTurnCore
+.skip_anim
 	res SUBSTATUS_CHARGED, [hl]
 	res SUBSTATUS_UNDERGROUND, [hl]
 	res SUBSTATUS_FLYING, [hl]
-	jr nz, .skip_anim
-	call SwitchTurn
-	call ItemRecoveryAnim
-	call SwitchTurn
-.skip_anim
 	ld a, [hBattleTurn]
 	and a
 	jr z, .PlayerItem

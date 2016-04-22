@@ -21,24 +21,30 @@ MapGoldenrodPokeComCenter2FMobileSignpost0Script: ; 0x62671
 	jumptext UnknownText_0x62b26
 ; 0x62674
 MapGoldenrodPokeComCenter2FMobileSignpost1Script: ; 0x62671
-	jumptext UnknownText_0x62b26
+	jumptext PCC_OfficePCText
 ; 0x62674
 MapGoldenrodPokeComCenter2FMobileSignpost2Script: ; 0x62671
-	jumptext UnknownText_0x62b26
+	jumptext PCC_OfficePCText2
 ; 0x62674
 
 UnknownText_0x62674: ; 0x62674
-	text "#COM CENTER and"
-	line "MOBILE CENTER were"
+	text "The #COM CENTER"
+	line "was built to"
 
-	para "built to satisfy"
-	line "demands for trades"
+	para "satisfy demands"
+	line "for trainers to"
 
-	para "and battles with"
-	line "trainers far away"
+	para "interact with"
+	line "others far away."
 
-	para "and with total"
-	line "strangers."
+	para "It even lets total"
+	line "strangers have fun"
+	cont "together!"
+	
+	para "I wonder if we can"
+	line "make some sort of"
+	cont "game using it<...>"
+	
 	done
 ; 0x626f9
 
@@ -49,14 +55,12 @@ UnknownText_0x626f9: ; 0x626f9
 	para "wireless for the"
 	line "first time,"
 
-	para "weren't you"
+	para "were you not"
 	line "impressed?"
 
 	para "When my first try"
-	line "worked, I was so"
-
-	para "impressed that I"
-	line "got the shakes!"
+	line "worked, I got"
+	cont "the shakes!"
 	done
 ; 0x62795
 
@@ -101,7 +105,28 @@ UnknownText_0x62b26: ; 0x62b26
 
 	para $56, " ", $56, " ", $56
 	done
-; 0x62c32
+
+PCC_OfficePCText: ; 0x62b26
+	text "The screen is"
+	line "filled with lots"
+	cont "of code!"
+
+	para "Better not touch"
+	line "it<...>"
+	done
+
+PCC_OfficePCText2: ; 0x62b26
+	text "There's a video"
+	line "playing on the"
+	
+	para "monitor with a"
+	line "long chat box next"
+	cont "to it."
+
+	para "The words keep"
+	line "moving too fast"
+	cont "to read!"
+	done
 
 GoldenrodPokeComCenter2FMobile_MapEventHeader: ; 0x62c32
 	; filler

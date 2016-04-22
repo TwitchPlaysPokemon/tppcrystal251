@@ -86,7 +86,7 @@ UnknownScript_0x180c1c: ; 0x180c1c
 
 KarenRematch:
 	checkevent EVENT_BEAT_ELITE_4_KAREN
-	iftrue UnknownScript_0x180c1c
+	iftrue KarenAfterRematch
 	writetext KarenBeforeRematchText
 	waitbutton
 	closetext

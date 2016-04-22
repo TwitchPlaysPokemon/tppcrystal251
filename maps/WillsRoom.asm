@@ -86,7 +86,7 @@ UnknownScript_0x180526: ; 0x180526
 
 WillRematch:
 	checkevent EVENT_BEAT_ELITE_4_WILL
-	iftrue UnknownScript_0x180526
+	iftrue WillAfterRematch
 	writetext WillBeforerematchText
 	waitbutton
 	closetext
