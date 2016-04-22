@@ -7716,12 +7716,6 @@ BattleCommand39:
 .got_item
 	ld a, [hl]
 	cp POWER_HERB
-
-	; ld a, BATTLE_VARS_MOVE_EFFECT
-	; call GetBattleVar
-	; cp EFFECT_SKULL_BASH
-	; ld b, $fe ; endturn
-	; jp z, SkipToBattleCommand
 	jp nz, EndMoveEffect
 	callba ConsumeUsersItem
 	ld hl, .PowerHerbText

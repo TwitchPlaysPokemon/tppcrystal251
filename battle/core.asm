@@ -9902,14 +9902,14 @@ ConsumeUsersItem:
 	call GetBattleVarAddr
 	ld a, (1 << SUBSTATUS_UNDERGROUND) | (1 << SUBSTATUS_FLYING)
 	and [hl]
+	jr nz, .skip_anim
+	call SwitchTurnCore
+	call ItemRecoveryAnim
+	call SwitchTurnCore
+.skip_anim
 	res SUBSTATUS_CHARGED, [hl]
 	res SUBSTATUS_UNDERGROUND, [hl]
 	res SUBSTATUS_FLYING, [hl]
-	jr nz, .skip_anim
-	call SwitchTurn
-	call ItemRecoveryAnim
-	call SwitchTurn
-.skip_anim
 	ld a, [hBattleTurn]
 	and a
 	jr z, .PlayerItem
