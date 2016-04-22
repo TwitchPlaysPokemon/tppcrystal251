@@ -360,15 +360,15 @@ FishGroup2_Super: ; 92519
 
 FishGroup3: ; Lake of Rage
 FishGroup3_Old: ; 92525
-	db $ff, MAGIKARP,   15
+	db $ff, PSYDUCK,   15
 FishGroup3_Good: ; 9252e
-	db 150, MAGIKARP,    40
+	db 150, GOLDUCK,    40
 	db 201, GYARADOS,    50
 	db 227, STARMIE,    45
 	db 240, SEAKING,    45
 	db $ff, $0,         16
 FishGroup3_Super: ; 9253a
-	db 25, MAGIKARP,    70
+	db 25, GOLDUCK,    70
 	db 70, GYARADOS,    80
 	db 85, STARMIE,    75
 	db 95, SEAKING,    75
