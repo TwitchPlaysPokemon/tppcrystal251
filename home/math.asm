@@ -1,14 +1,19 @@
 AddNTimes:: ; 0x30fe
 ; Add bc * a to hl.
+	push bc
+.loop
 	and a
-	ret z
+	jr z, .done
 	srl a
 	jr nc, .noadd
 	add hl, bc
 .noadd
 	sla c
 	rl b
-	jr AddNTimes
+	jr .loop
+.done
+	pop bc
+	ret
 ; 0x3105
 
 SimpleMultiply:: ; 3105
