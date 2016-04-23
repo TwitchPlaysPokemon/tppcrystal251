@@ -5,19 +5,7 @@ BattleTentBattleRoom_MapScriptHeader:
 	dw MapBattleTentBattleRoom_Trigger1, $0000
 	dw MapBattleTentBattleRoom_Trigger2, $0000
 
-	db 1
-	dbw 5, BattleTentBattleRoom_TurnOnLights
-
-
-BattleTentBattleRoom_TurnOnLights:
-	checkevent EVENT_RESTORED_POWER_TO_KANTO
-	iffalse BattleTentBattleRoom_DontTurnOnLights
-	writecode VAR_TIMEOFDAY, 1
-	loadvar wd846, %10000000
-	special UpdateTimePals
-	loadvar wd846, %00000000
-BattleTentBattleRoom_DontTurnOnLights:
-	return
+	db 0
 
 MapBattleTentBattleRoom_Trigger1:
 	priorityjump MapBattleTentBattleRoomBillScript1
