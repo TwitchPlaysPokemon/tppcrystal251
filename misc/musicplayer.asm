@@ -2166,6 +2166,10 @@ DelayFrame_MP2:
 .nowavecpy
 ; music list copy
 	ld a, [wDrawMask]
+	and a
+	jr z, .exit1
+	dec a
+	jr z, .exit2
 	cp 8
 	jp c, .no1bppcpy
 	cp $78
@@ -2177,6 +2181,26 @@ DelayFrame_MP2:
 	inc a
 	ld [wDrawMask], a
 	jp DelayFrame_MPPost
+	
+.exit1
+	ld a, $80
+	ld hl, VBGMap1 + $61
+	ld de, 14
+	ld c, 7
+
+.exit1_2
+	call FillInc18
+	add hl, de
+	dec c
+	jr nz, .exit1_2
+	jr .no1bppcpy
+
+.exit2
+	ld a, $fe
+	ld hl, VBGMap1 + $141
+	ld de, 14
+	ld c, 7
+	jr .exit1_2
 
 Serve1bppLine:
 	ld [hSPBuffer], sp
@@ -2540,7 +2564,7 @@ _w_ = _w_ + $20
 	ld c, 7
 
 .exit1_2
-	call .fillinc18
+	call FillInc18
 	cp $7c
 	jr nz, .exit1_2_
 	ld a, $80
@@ -2570,18 +2594,6 @@ _w_ = _w_ + $20
 	ld c, 7
 	jr .exit1_2
 
-.fillinc20
-	ld [hli], a
-	inc a
-	ld [hli], a
-	inc a
-.fillinc18
-	rept 18
-	ld [hli], a
-	inc a
-	endr
-	ret
-
 .exit3
 	call .mpcommon
 	ld a, 1
@@ -2610,7 +2622,7 @@ _w_ = _w_ + $20
 	ld a, $80
 
 .exit4_5
-	call .fillinc20
+	call FillInc20
 	add hl, bc
 	add c
 	dec e
@@ -2626,7 +2638,7 @@ _w_ = _w_ + $20
 	ld e, 2
 	ld a, $40
 .exit5l
-	call .fillinc20
+	call FillInc20
 	add hl, bc
 	add c
 	dec e
@@ -2816,6 +2828,18 @@ _w_ = _w_ + 4
 	ld [VBGMap0 + $32], a
 	ld a, [wC4VolTile]
 	ld [VBGMap0 + $33], a
+	ret
+	
+FillInc20:
+	ld [hli], a
+	inc a
+	ld [hli], a
+	inc a
+FillInc18:
+	rept 18
+	ld [hli], a
+	inc a
+	endr
 	ret
 
 ClearRow:
