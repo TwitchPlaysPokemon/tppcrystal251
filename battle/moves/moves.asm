@@ -202,7 +202,7 @@ ENDM
 	move SLUDGE_BOMB,  EFFECT_POISON_HIT,         90, SPECIAL,  POISON,   100, 10,  30
 	move MUD_SLAP,     EFFECT_ACCURACY_DOWN_HIT,  20, SPECIAL,  GROUND,   100, 10, 100
 	move OCTAZOOKA,    EFFECT_ACCURACY_DOWN_HIT,  65, SPECIAL,  WATER,     85, 10,  50
-	move SPIKES,       EFFECT_SPIKES,              0, STATUS,   GROUND,   100, 20,   0 ; EFFECT_SPIKES could be made stackable; 1 layer does 1/8, 2 layers does 1/6, 3 layers does 1/4
+	move SPIKES,       EFFECT_SPIKES,              0, STATUS,   GROUND,   100, 20,   0 ; EFFECT_SPIKES made stackable; 1 layer does 1/8, 2 layers does 1/6, 3 layers does 1/4
 	move ZAP_CANNON,   EFFECT_PARALYZE_HIT,      120, SPECIAL,  ELECTRIC,  50,  5, 100 ;$c0
 	move FORESIGHT,    EFFECT_FORESIGHT,           0, STATUS,   NORMAL,   100, 40,   0
 	move DESTINY_BOND, EFFECT_DESTINY_BOND,        0, STATUS,   GHOST,    100,  5,   0
