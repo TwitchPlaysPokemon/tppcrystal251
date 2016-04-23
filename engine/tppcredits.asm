@@ -6,7 +6,7 @@ LOGO_CHAOS_MOD  EQU 12
 LOGO_CHAOS_LAST EQU 10
 MAIN_CHAOS_RATE EQU 15
 THX_CHAOS_RATE  EQU 11
-SCROLLER_DELAY  EQU 109
+SCROLLER_DELAY  EQU 111
 SPRITE_X        EQU $7C
 SPRITE_Y        EQU $74
 C_TC_DRAW       EQU 0
@@ -2518,12 +2518,12 @@ TPPCreditsList:
 	tc_subtitle		  .koolboyman
 	tc_title		.ai
 	tc_subtitle		  .bee
+	tc_subtitle		  .hlix
 	tc_draw			TPPCreditsBG4List
 	tc_title		.testers
 	tc_subtitle		  .chef
 	tc_subtitle		  .boom
 	tc_subtitle		  .dead
-	tc_subtitle		  .hlix
 	tc_subtitle		  .chauzu
 	tc_subtitle		  .eraclito
 	tc_subtitle		  .timmy
