@@ -60,9 +60,12 @@ Text_DaisyExplainMapCard:
 	done
 
 Text_MapCard:
-	text "It looks to be for"
-	line "the #GEAR."
-	cont "This is useful!"
+	text "It looks like a"
+	line "CARD for the #-"
+	cont "GEAR."
+
+	para "Perhaps this will"
+	line "be usefule?"
 	done
 
 Text_DaisyBeforePokedex:
