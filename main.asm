@@ -88953,6 +88953,9 @@ Functionfcfec:: ; fcfec
 	ret nc
 	call Functionfd0c3
 	ret nc
+	ld a, [StatusFlags]
+	bit 5, a
+	ret z
 	ld b, BANK(UnknownScript_0xfd00f)
 	ld de, UnknownScript_0xfd00f
 	callba Function97c4f
