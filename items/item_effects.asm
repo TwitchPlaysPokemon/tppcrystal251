@@ -225,7 +225,7 @@ PremierBall:
 	ld a, [sBoxCount]
 	cp MONS_PER_BOX
 	call CloseSRAM
-	jp z, Ball_BoxIsFullMessage
+	jp nc, Ball_BoxIsFullMessage
 
 .asm_e8c0
 	xor a
