@@ -4,16 +4,97 @@
 		<meta charset="utf-8">
 		<link rel="icon" type="image/x-icon" href=http://cdn.bulbagarden.net/upload/thumb/e/e7/Twitch_Plays_Pok%C3%A9mon_logo.png/150px-Twitch_Plays_Pok%C3%A9mon_logo.png>
 	</head>
-	<body>
-		<h1>TwitchPlaysPok&eacute;mon Anniversary Crystal 251</h1>
-		<h2>Downloads</h2>
-		<p>This title contains three releases.  Click the link for the
-		<br>
-		release you wish to download.
-		<br><br>
-		<a href="files/pokecrystal.ips">Standalone, based on Crystal 1.0</a><br>
-		<a href="files/pokecrystal11.ips">Standalone, based on Crystal 1.1 (Revision A)</a><br>
-		<a href="files/pokecrystal_ai.zip">AI build + dependencies</a>
+	<body style="background-color:#E0E0E0;font-family:verdana;">
+		<p><font size=0>
+		This page is under construction.  There will be frequent updates to this page and the information it contains.  Please excuse our appearance!
+		</font></p>
+		<h1 id="top_level">TwitchPlaysPok&eacute;mon Anniversary Crystal 251</h1>
+		<p>
+		Holy Bird Jesus! After months of waiting, it's finally out! This page is<br>
+		where you can download <b>TwitchPlaysPok&eacute;mon Anniversary Crystal 251,</b><br>
+		which was played on stream between February 14 and March 14, 2016.<br><br>
+		You will find three links in the Downloads section.  Two of them are<br>
+		.ips files.  These are based on vanilla Crystal and Crystal Rev.A,<br>
+		respectively, and can be applied to a clean copy of vanilla Crystal<br>
+		using the normal methods.  These patches do not interface with the<br>
+		advanced external AI we showcased on the stream.</p>
+		<p>
+		The third file is a .zip archive, pokecrystal_ai.zip.  When unzipped,<br>
+		you will find a patch file, an emulator package, and a bunch of Python<br>
+		and Lua script files.  This is a minimal directory structure for run-<br>
+		ning the AI along with the game.</p>
+		<p>
+		In the following sections, we will explain how to set up the ROMs and run<br>
+		the AI.
 		</p>
+		<h2 id="contents">Contents</h2>
+		<ol>
+		<li><a href="#downloads">Downloads</a></li>
+		<li><a href="#setup">Setup Instructions</a>
+		<ol type="a">
+		<li><a href="#patching">Patching the ROM</a></li>
+		<li><a href="#ai-setup">Setting Up the AI</a></li>
+		<li><a href="#ai-run">Running the AI</a></li>
+		</ol></li>
+		</ol>
+		<h2 id="downloads">Downloads</h2>
+		<p>This title contains three releases.  Click the link for the release you wish to download.</p>
+		<ul>
+		<li><a href="files/pokecrystal.ips">Standalone, based on Crystal 1.0</a></li>
+		<li><a href="files/pokecrystal11.ips">Standalone, based on Crystal 1.1 (Revision A)</a></li>
+		<li><a href="files/pokecrystal_ai.zip">AI build + dependencies</a></li>
+		</ul>
+		<h2 id="setup">Setup Instructions</h2>
+		<h3 id="patching">Patching the ROM</h3>
+		<ol>
+		<li>Obtain a clean copy of Pok&eacute;mon Crystal (MD5: 9f2922b235a5eeb78d65594e82ef5dde).<br>
+		Due to legal issues, we are unable to provide you with this ROM ourselves.<br>
+		However, there are other websites which care little for these issues.<br>
+		You can also dump a physical copy of the game.</li>
+		<li>Create a backup copy of this ROM.  You'll need this to apply bugfix patches.</li>
+		<li>Download <a href="http://fusoya.eludevisibility.org/lips/">Lunar IPS</a>.</li>
+		<li>Unzip and launch Lunar IPS.</li>
+		<li>Click "Apply IPS Patch".</li>
+		<li>Browse to where you downloaded the Crystal 251 IPS file, select it, and click "OK".</li>
+		<li>Browse to where you saved the clean cipy of Pok&eacute;mon Crystal, select it, and click "OK".</li>
+		</ol>
+		<h3 id="ai-setup">Setting Up the AI</h3>
+		<ol>
+		<li>Download <a href="http://python.org/downloads/release/python-351/">Python 3</a> for Windows.</li>
+		<li>Run the installer.  Opt to install for all users if you know what you're doing.</li>
+		<li>Open a Command Prompt window and run "pip install --upgrade pip".<br>
+		You may get a massive OSError; ignore it.</li>
+		<blockquote>NOTE: To open Command Prompt, hold the Win key and press "R".<br>
+		In the window that pops up, type "cmd" and hit Enter/Return.</blockquote>
+		<li>OPTIONAL: In the same Command Prompt window, run "pip install flask".</li>
+		<li>Download the "AI build + dependencies" pack from the link above.</li>
+		<li>Extract the files from the ZIP archive.</li>
+		<li>Patch the ROM using the included .ips file.</li>
+		</ol>
+		<h3 id="ai-run">Running the AI</h3>
+		<ol>
+		<li>Open a Command Prompt window, and navigate to the directory "ai" in the extracted zip file.</li>
+		<blockquote>
+		To do this, type "cd" and hit the spacebar.  In Windows Explorer, copy the path from the address bar.<br>
+		If the address does not start with "C:\", type "/d" in the command prompt window, then hit the spacebar.<br>
+		Now, paste the copied path into the command prompt window, and hit Enter/Return.
+		</blockquote>
+		<li>If you ran step 4 of <b>Installing Python</b>, type "python AIServer.py" and hit Enter/Return.<br>
+		Otherwise, type "python AIServerStandalone.py" and hit Enter/Return.</li>
+		<li>Launch the emulator, VBA-RR-243/VBA-RR-243.exe.</li>
+		<li>Open the newly-patched ROM.</li>
+		<li>In the emulator, click on Tools > Lua Scripting > New Lua Script Window...</li>
+		<li>Click the button that says Browse...</li>
+		<li>If you haven't touched anything in VBA's directory settings, click <u>O</u>pen.<br>
+		Otherwise, you'll have to navigate to VBA-RR-243/lua first.</li>
+		<li>Click Run.</li>
+		<li>Play the game!</li>
+		</ol>
+	<br>
+	<br>
+	<p><font size=0>
+	This page was written by PikalaxALT.  The files hosted here are a collaboration by the TwitchPlaysPok&eacute;mon Development Team and are based on products by Nintendo, Game Freak, Creatures Inc, and the Pok&eacute;mon Company.<br>
+	&copy;1995-2016 All Rights Reserved.
+	</font></p>
 	</body>
 </html>
