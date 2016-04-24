@@ -761,18 +761,18 @@ Text_GuideGentHasRunningShoes3:
 Text_GuideGentExplainsWhatHappened:
 	text "Are you alright,"
 	line "child?"
-
-	para "That was quite"
-	line "scary, what hap-"
-	cont "pened there."
-
-	para "I saw the whole"
-	line "thing!"
+	
+	para "<...>"
+	
+	para "You were aboard"
+	line "the S.S.ANNE when"
+	cont "it crashed?"
 
 	para "In all my years"
 	line "I've never seen"
-	cont "such a grand ship"
-	cont "meet such a grim"
+	
+	para "such a grand ship"
+	line "meet such a grim"
 	cont "fate."
 
 	para "You seem mostly"
@@ -794,7 +794,7 @@ Text_GuideGentForcesPlayerToHealParty:
 
 	para "Oh, my apologies."
 	line "I never told you"
-	cont "where <``>here<''> is!"
+	cont "where <''>here<''> is!"
 
 	para "You've made land"
 	line "in CHERRYGROVE"
@@ -802,6 +802,7 @@ Text_GuideGentForcesPlayerToHealParty:
 
 	para "This is our local"
 	line "#MON CENTER."
+	
 	para "The NURSE inside"
 	line "will fix you right"
 	cont "up."
