@@ -4,3 +4,6 @@
 [submodule "crowdmap"]
 	path = crowdmap
 	url = https://github.com/yenatch/crowdmap
+[submodule "cmdpack"]
+	path = cmdpack
+	url = https://github.com/Tatsh/cmdpack
