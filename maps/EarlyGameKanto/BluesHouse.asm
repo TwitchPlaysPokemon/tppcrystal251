@@ -39,8 +39,9 @@ TownMapScript_EGKBluesHouse:
 	jumptext Text_MapCard
 
 Text_DaisyGiveTownMap:
-	text "Grandpa asked you"
-	line "to run an errand?"
+	text "PROF. OAK asked"
+	line "you to run an"
+	cont "errand for him?"
 
 	para "Here, this will"
 	line "help you!"
@@ -65,7 +66,7 @@ Text_MapCard:
 	cont "GEAR."
 
 	para "Perhaps this will"
-	line "be usefule?"
+	line "be useful?"
 	done
 
 Text_DaisyBeforePokedex:

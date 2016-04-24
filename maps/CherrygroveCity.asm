@@ -511,7 +511,7 @@ UnknownText_0x19c1e3: ; 0x19c1e3
 	line "to see you again!"
 
 	para "Since you're back"
-	line "here, can if I"
+	line "here, care if I"
 	cont "show you around?"
 	done
 ; 0x19c26f
