@@ -9,7 +9,6 @@ import json
 import logging
 import threading
 import random
-import traceback
 import AI
 
 show_move = 0 # set to 1 if you're a dirty rotten cheater
@@ -26,35 +25,6 @@ ai_result = None
 Artificial = AI.AI()
 LastActions = []
 
-def post_slack_errormsg(battle_state, traceback_last):
-    #post the AI exception to slack
-    #To use, generate a slack oauth and paste it into the slack_oauth variable
-    global previous_posted_message
-
-    if slack_oauth == "":
-        return
-    
-    #don't post the same traceback twice; it'll get spammy
-    #currently disabled since errors have their own channel
-    #if traceback_last == previous_posted_message:
-    #    return
-    previous_posted_message = traceback_last
-
-    message = "The AI threw this exception with the posted input: ```{}```" .format(traceback_last)
-    arguments = {"token":slack_oauth,
-                "channels":"#errordump",
-                "content":json.dumps(battle_state), #content is what's inside the snippet
-                "as_user":"true",
-                "username":"@1hlixedbot",
-                "initial_comment": message,
-                "filename": "[Log] AI crashlog.txt",
-                "filetype": "javascript"}
-
-    #send the request using urllib
-    request = urllib.request.Request("https://slack.com/api/files.upload",urllib.parse.urlencode(arguments).encode("utf-8"))
-    response = urllib.request.urlopen(request)
-    logger.info("Posted error message to slack!")
-    return response.read().decode("utf-8")
 
 def get_backup_move(battle_state):
     try:
@@ -81,13 +51,10 @@ def calculate_next_move(battle_state):
             LastActions = []
         battle_state["battleState"]["history"] = LastActions
         next_move = Artificial.MainBattle(battle_state)
-    except Exception as e:
-        traceback_last = traceback.format_exc()
+    except Exception:
         logger.exception("The AI threw an exception with the following input: %s" % battle_state)
         # uh-oh! better fall back to "default ai"
         next_move = get_backup_move(battle_state)
-        # print(traceback_last)
-        post_slack_errormsg(battle_state, traceback_last)
 
     if show_move == 1:
         logger.info("next move: %s" % next_move)
