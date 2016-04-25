@@ -11029,43 +11029,6 @@ Jumptable_11977: ; 11977 (4:5977)
 	ld hl, $e
 	add hl, bc
 	ld [hl], a
-
-	ld e, 4
-	call NamingScreen_IsTargetBox
-	jr nz, .loop1
-	inc e
-.loop1
-	call Random
-	and 7
-	cp e
-	jr nc, .loop1
-	ld e, a
-
-	ld d, 9
-	call NamingScreen_IsTargetBox
-	jr nz, .loop2
-	inc d
-.loop2
-	call Random
-	and 15
-	cp d
-	jr nc, .loop2
-	ld d, a
-
-	ld hl, $c
-	add hl, bc
-	ld a, d
-	ld [hli], a
-	ld [hl], e
-
-	swap d
-	swap e
-	ld hl, $6
-	add hl, bc
-	ld a, e
-	ld [hli], a
-	ld [hl], d
-
 	ld hl, wcf63
 	inc [hl]
 	ret
@@ -11078,9 +11041,9 @@ Jumptable_11977: ; 11977 (4:5977)
 	ld a, [hl]
 	and B_BUTTON
 	jr nz, .b
-	; ld a, [hl]
-	; and START
-	; jr nz, .start
+	ld a, [hl]
+	and START
+	jr nz, .start
 	ld a, [hl]
 	and SELECT
 	jr nz, .select
@@ -11097,6 +11060,8 @@ Jumptable_11977: ; 11977 (4:5977)
 	call NamingScreen_GetLastCharacer
 	call NamingScreen_TryAddCharacer
 	ret nc
+	
+.start
 	ld hl, wc6d5
 	ld c, [hl]
 	inc hl
@@ -11111,22 +11076,6 @@ Jumptable_11977: ; 11977 (4:5977)
 	ret nz
 	inc [hl]
 	ret
-
-; .start
-	; ld a, [wc6da]
-	; xor 1
-	; ld [wc6da], a
-	; jr z, .restore_mode
-	; call .set_upper
-	; hlcoord 1, 16
-	; ld de, .upper_str
-	; call PlaceString
-	; ret
-; .restore_mode
-	; ld a, [wcf64]
-	; and a
-	; jr z, .set_upper
-	; jr .set_lower
 
 .b
 	call NamingScreen_DeleteCharacter
@@ -41560,63 +41509,81 @@ MOBILE         EQU 4
 MOBILE_STUDIUM EQU 5
 
 MainMenuItems:
+
 NewGameMenu: ; 0x49d6c
 	db 2
 	db NEW_GAME
 	db OPTION
-	db $ff
+	db -1
+
 ContinueMenu: ; 0x49d70
-	db 2
-	db CONTINUE
-	db OPTION
-	db $ff
-MobileMysteryMenu: ; 0x49d75
-	db 4
-	db CONTINUE
-	db OPTION
-	db MYSTERY_GIFT
-	db MOBILE
-	db $ff
-MobileMenu: ; 0x49d7c
 	db 3
 	db CONTINUE
+	db NEW_GAME
 	db OPTION
-	db MOBILE
-	db $ff
-MobileStudiumMenu: ; 0x49d82
-	db 4
-	db CONTINUE
-	db OPTION
-	db MOBILE
-	db MOBILE_STUDIUM
-	db $ff
-MysteryMobileStudiumMenu: ; 0x49d89
+	db -1
+
+MobileMysteryMenu: ; 0x49d75
 	db 5
 	db CONTINUE
+	db NEW_GAME
+	db OPTION
+	db MYSTERY_GIFT
+	db MOBILE
+	db -1
+
+MobileMenu: ; 0x49d7c
+	db 4
+	db CONTINUE
+	db NEW_GAME
+	db OPTION
+	db MOBILE
+	db -1
+
+MobileStudiumMenu: ; 0x49d82
+	db 5
+	db CONTINUE
+	db NEW_GAME
+	db OPTION
+	db MOBILE
+	db MOBILE_STUDIUM
+	db -1
+
+MysteryMobileStudiumMenu: ; 0x49d89
+	db 6
+	db CONTINUE
+	db NEW_GAME
 	db OPTION
 	db MYSTERY_GIFT
 	db MOBILE
 	db MOBILE_STUDIUM
-	db $ff
+	db -1
+
 MysteryMenu: ; 0x49d91
-	db 3
-	db CONTINUE
-	db OPTION
-	db MYSTERY_GIFT
-	db $ff
-MysteryStudiumMenu: ; 0x49d97
 	db 4
 	db CONTINUE
+	db NEW_GAME
+	db OPTION
+	db MYSTERY_GIFT
+	db -1
+
+MysteryStudiumMenu: ; 0x49d97
+	db 5
+	db CONTINUE
+	db NEW_GAME
 	db OPTION
 	db MYSTERY_GIFT
 	db MOBILE_STUDIUM
-	db $ff
+	db -1
+
 StudiumMenu: ; 0x49d9e
-	db 3
+	db 4
 	db CONTINUE
+	db NEW_GAME
 	db OPTION
 	db MOBILE_STUDIUM
-	db $ff
+	db -1
+	
 Function49da4: ; 49da4
 	nop
 	nop
