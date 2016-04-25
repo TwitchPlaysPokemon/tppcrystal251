@@ -1,6 +1,5 @@
 	db BEEDRILL ; 015
 
-
 	db 105, 100, 80, 85, 60, 95
 	;   hp  atk  def  spd  sat  sdf
 
