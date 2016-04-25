@@ -218,6 +218,8 @@ FuchsiaGym2GuyWinText: ; 0x196325
 ; 0x196353
 
 JaninePostgameRematchScript:
+	faceplayer
+	loadfont
     writetext JaninePostgameRematchText
     yesorno
     iffalse .return
