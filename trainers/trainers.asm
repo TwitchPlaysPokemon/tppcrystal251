@@ -8434,6 +8434,7 @@ ExecutiveMGroup:
 
 	db "EXECUTIVE@" ; 5
 	db (1 << TRAINERTYPE_NICKNAME)
+	db 15, RATICATE, "GILGAMESH@"
 	db $ff
 ; ================================
 
