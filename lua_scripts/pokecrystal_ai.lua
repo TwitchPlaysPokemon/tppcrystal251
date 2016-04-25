@@ -124,7 +124,7 @@ repeat
 	if (math.random(500)) == 1 then
 		vba.print("Waiting for baba") -- ayy you found teh easter egg
 	end
-	if memory.readbyte(0xFF70) == 1 then
+	if bit.band(memory.readbyte(rSVBK), 0x07) == 1 then
 		bank_wait = 0
 
 		-- AI command polling (player state is not updated during these frame delays)
@@ -153,7 +153,7 @@ repeat
 		end
     else
         if bank_wait == 0 then
-            vba.print("Waiting for valid bank, current bank is", memory.readbyte(rSVBK))
+            vba.print("Waiting for valid bank, current bank is: "..bit.band(memory.readbyte(rSVBK), 0x07))
             bank_wait = 1
         end
 	end

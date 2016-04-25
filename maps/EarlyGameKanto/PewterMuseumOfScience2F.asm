@@ -37,7 +37,7 @@ _Museum2FText2:
 	para "The 1st anniver-"
 	line "sary run started!"
 
-	para "I bought an iPad"
+	para "I bought a tablet"
 	line "to watch it!"
 	done
 

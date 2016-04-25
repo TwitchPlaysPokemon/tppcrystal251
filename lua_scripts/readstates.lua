@@ -411,7 +411,7 @@ function readBattlestate(req) --read this ONLY when LUA Serial is called
     output_table = readPlayerstate()
 	battleState["requested action"] = req
 	battlemode = memory.readbyte(wBattleMode)
-	svbk = memory.readbyte(rSVBK)
+	svbk = bit.band(memory.readbyte(rSVBK), 0x07)
 	if svbk == 1 then
 		local output_table = {}
 		playerParty = getTrainerParty(0xDCD7)
@@ -461,7 +461,7 @@ function readBattlestate(req) --read this ONLY when LUA Serial is called
 end
 
 function readPlayerstate() --loop read this for the overlay
-	svbk = memory.readbyte(rSVBK)
+	svbk = bit.band(memory.readbyte(rSVBK), 0x07)
 	local output_table = {}
 	-- vba.print("WRAM bank: ", svbk)
 	if svbk == 1 then

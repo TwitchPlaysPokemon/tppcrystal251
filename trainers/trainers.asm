@@ -8425,16 +8425,16 @@ ExecutiveMGroup:
 	; party
 	db 39, PSYDUCK, GOLD_BERRY
 	db 41, EXEGGCUTE, MIRACLEBERRY
-	db 43, HOUNDOOM, KINGS_ROCK
-	db 46, URSARING, LEFTOVERS
+	db 41, HOUNDOOM, KINGS_ROCK
+	db 43, URSARING, LEFTOVERS
 
 	db $ff ; end
 
 ; ================
 
 	db "EXECUTIVE@" ; 5
-	db (1 << TRAINERTYPE_ITEM)
-	db 16, RATICATE, GOLD_BERRY
+	db (1 << TRAINERTYPE_NICKNAME)
+	db 15, RATICATE, "GILGAMESH@"
 	db $ff
 ; ================================
 
@@ -9580,11 +9580,14 @@ MediumGroup:
 
 	; MEDIUM (1)
 	db "MARTHA@"
-	db (1 << TRAINERTYPE_ITEM)
-
+	db (1 << TRAINERTYPE_MOVES) | ( 1 << TRAINERTYPE_ITEM)
+	
 	; party
-	db 38, UMBREON, LEFTOVERS
-
+	db 36, UMBREON, LEFTOVERS
+		db PURSUIT
+		db MOONLIGHT
+		db TACKLE
+		db SAND_ATTACK
 	db $ff ; end
 
 ; ================
@@ -9595,7 +9598,7 @@ MediumGroup:
 
 	; party
 	db 32, MURKROW
-	db 37, MURKROW
+	db 35, MURKROW
 
 	db $ff ; end
 

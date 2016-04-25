@@ -9,7 +9,6 @@ import json
 import logging
 import threading
 import random
-
 import AI
 
 show_move = 0 # set to 1 if you're a dirty rotten cheater
@@ -25,6 +24,7 @@ ai_result = None
 # global handle to actual AI
 Artificial = AI.AI()
 LastActions = []
+
 
 def get_backup_move(battle_state):
     try:
@@ -51,13 +51,10 @@ def calculate_next_move(battle_state):
             LastActions = []
         battle_state["battleState"]["history"] = LastActions
         next_move = Artificial.MainBattle(battle_state)
-    except Exception as e:
-        traceback_last = traceback.format_exc()
+    except Exception:
         logger.exception("The AI threw an exception with the following input: %s" % battle_state)
         # uh-oh! better fall back to "default ai"
         next_move = get_backup_move(battle_state)
-        # print(traceback_last)
-        post_slack_errormsg(battle_state, traceback_last)
 
     if show_move == 1:
         logger.info("next move: %s" % next_move)

@@ -771,7 +771,7 @@ _OaksLabDeliverParcelText1:
 	line "something for me?"
 
 	para "<PLAYER> delivered"
-	line "OAK's PARCEL."
+	line "OAK'S PARCEL."
 	done
 
 _OaksLabDeliverParcelText2:
