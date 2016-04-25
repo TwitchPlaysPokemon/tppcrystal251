@@ -58,7 +58,7 @@ all: $(roms)
 crystal: pokecrystal.gbc
 crystal11: pokecrystal11.gbc
 beesafree: pokecrystal_ai.gbc
-patches: pokecrystal.ips pokecrystal11.ips pokecrystal_ai.ips
+patches: uips pokecrystal.ips pokecrystal11.ips pokecrystal_ai.ips
 uips:
 	cd cmdpack/src; \
 	gcc -Wall -o uips uips.c; \

@@ -319,6 +319,8 @@ PrintLetterDelay:: ; 313d
 	ld a, [Options]
 	bit NO_TEXT_SCROLL, a
 	ret nz
+	and %111
+	ret z
 
 ; non-scrolling text?
 	ld a, [TextBoxFrame + 1]

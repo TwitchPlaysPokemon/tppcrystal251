@@ -83705,20 +83705,20 @@ Options_TextSpeed: ; e42f5
 	dw .Slow
 
 .Fast
-	db "FAST@"
+	db "INST@"
 .Mid
-	db "MID @"
+	db "FAST@"
 .Slow
-	db "SLOW@"
+	db "DEF @"
 ; e4346
 
 GetTextSpeed: ; e4346
 	ld a, [Options] ;This converts the number of frames, to 0,1,2 representing speed
 	and 7
-	cp 3 ;5 frames of delay is slow
-	jr z, .slow
-	cp 0 ;1 frame of delay is fast
+	; cp 0 ;instatext
 	jr z, .fast
+	cp 3 ;3 frames of delay is slow
+	jr z, .slow
 	ld c, 1 ;set it to mid if not one of the above
 	lb de, 0, 3
 	ret
