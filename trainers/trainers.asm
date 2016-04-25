@@ -9580,10 +9580,10 @@ MediumGroup:
 
 	; MEDIUM (1)
 	db "MARTHA@"
-	db (1 << TRAINERTYPE_ITEM)
+	db 0 ; normal
 
 	; party
-	db 38, UMBREON, LEFTOVERS
+	db 36, UMBREON
 
 	db $ff ; end
 
@@ -9591,11 +9591,10 @@ MediumGroup:
 
 	; MEDIUM (2)
 	db "GRACE@"
-	db 0 ; normal
+	db (1 << TRAINERTYPE_ITEM)
 
 	; party
 	db 32, MURKROW
-	db 37, MURKROW
 
 	db $ff ; end
 
