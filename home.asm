@@ -309,9 +309,9 @@ PrintLetterDelay:: ; 313d
 ; Wait before printing the next letter.
 
 ; The text speed setting in Options is actually a frame count:
-; 	fast: 1 frame
-; 	mid:  3 frames
-; 	slow: 5 frames
+; 	fast: 0 frame
+; 	mid:  1 frames
+; 	slow: 3 frames
 
 ; TextBoxFrame + 1[!0] and A or B override text speed with a one-frame delay.
 ; Options[4] and TextBoxFrame + 1[!1] disable the delay.
@@ -319,6 +319,8 @@ PrintLetterDelay:: ; 313d
 	ld a, [Options]
 	bit NO_TEXT_SCROLL, a
 	ret nz
+	and %111
+	ret z
 
 ; non-scrolling text?
 	ld a, [TextBoxFrame + 1]

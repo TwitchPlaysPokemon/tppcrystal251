@@ -2521,9 +2521,9 @@ BattleCommand09:
 	ld a, [PlayerEvaLevel]
 	ld c, a
 
-.asm_34e60
+.asm_34e60 ;hl holds move acc (in %), b holds uses accuracy level and a and c holds opposing evade level
 	cp b
-	jr c, .asm_34e6b
+	jr c, .asm_34e6b ;if evade higher then accuracy, check for ID'D status
 
 	ld a, BATTLE_VARS_SUBSTATUS1_OPP
 	call GetBattleVar
@@ -2531,7 +2531,7 @@ BattleCommand09:
 	ret nz
 
 .asm_34e6b
-	ld a, 14
+	ld a, 14 ;check evade - acc, cap in either direction if needed
 	sub c
 	add b
 	sub 8
@@ -2543,13 +2543,13 @@ BattleCommand09:
 .bottom_out
 	xor a
 .valid
-	sla a
-	ld c, a
+	sla a ;multiply level by 2
+	ld c, a ;store in c
 	ld b, 0
 	xor a
 	ld [$ffb4], a
 	ld [$ffb5], a
-	ld a, [hl]
+	ld a, [hl] ;place base accuracy
 	ld [$ffb6], a
 	push hl
 	ld hl, .AccProb
@@ -4168,7 +4168,7 @@ TypeBoostItems:
 	db HELD_ELECTRIC_BOOST, ELECTRIC ; Magnet
 	db HELD_PSYCHIC_BOOST,  PSYCHIC  ; Twistedspoon
 	db HELD_ICE_BOOST,      ICE      ; Nevermeltice
-	db HELD_DRAGON_BOOST,   DRAGON   ; Dragon Scale
+	db HELD_DRAGON_BOOST,   DRAGON   ; Dragon fang
 	db HELD_DARK_BOOST,     DARK     ; Blackglasses
 	db HELD_STEEL_BOOST,    STEEL    ; Metal Coat
 	db HELD_FAIRY_BOOST,	FAIRY_T  ; Pink Bow
@@ -8569,6 +8569,8 @@ BattleCommand1e:
 .ok
 
 	add a
+	add a
+	add [hl]
 	ld hl, wPayDayMoney + 2
 	add [hl]
 	ld [hld], a
