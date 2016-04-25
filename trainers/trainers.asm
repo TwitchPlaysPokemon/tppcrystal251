@@ -9580,21 +9580,25 @@ MediumGroup:
 
 	; MEDIUM (1)
 	db "MARTHA@"
-	db 0 ; normal
-
+	db (1 << TRAINERTYPE_MOVES) | ( 1 << TRAINERTYPE_ITEM)
+	
 	; party
-	db 36, UMBREON
-
+	db 36, UMBREON, LEFTOVERS
+		db PURSUIT
+		db MOONLIGHT
+		db TACKLE
+		db SAND_ATTACK
 	db $ff ; end
 
 ; ================
 
 	; MEDIUM (2)
 	db "GRACE@"
-	db (1 << TRAINERTYPE_ITEM)
+	db 0 ; normal
 
 	; party
 	db 32, MURKROW
+	db 35, MURKROW
 
 	db $ff ; end
 
