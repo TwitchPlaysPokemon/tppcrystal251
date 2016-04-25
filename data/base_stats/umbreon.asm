@@ -4,7 +4,6 @@
 	;   hp  atk  def  spd  sat  sdf
 ;	db  95,  65, 110,  65,  60, 130 old stats
 
-
 	db DARK, DARK
 	db 45 ; catch rate
 	db 184 ; base exp
