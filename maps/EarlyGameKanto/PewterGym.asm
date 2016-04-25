@@ -26,6 +26,7 @@ PewterGymRB_BrockScript:
 	playsound SFX_GET_BADGE
 	waitsfx
 	setflag ENGINE_BOULDERBADGE
+	setevent EVENT_RIVAL_ROUTE_22_RB
 	domaptrigger GROUP_ROUTE_22_RB, MAP_ROUTE_22_RB, 0
 	writetext PewterGymRB_BrockCongratsText
 	waitbutton
