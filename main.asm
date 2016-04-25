@@ -83709,7 +83709,7 @@ Options_TextSpeed: ; e42f5
 .Mid
 	db "FAST@"
 .Slow
-	db "DEF @"
+	db "NORM@"
 ; e4346
 
 GetTextSpeed: ; e4346
