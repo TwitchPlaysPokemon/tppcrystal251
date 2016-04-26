@@ -258,12 +258,12 @@ class AI(object):
         #Treat disabled moves as 0 pp
         if self.jsonlist['battleState']['enemy type'] == 'WILD':
             if 'disabled' in self.MonData['enemypokemon']['substatus']:
-                self.MonData[0]['moves'][int(self.MonData['enemypokemon']['substatus']['disabled']['move idx'])]['curpp'] = 0
+                self.MonData[0]['moves'][int(self.MonData['enemypokemon']['substatus']['disabled']['move idx']-1)]['curpp'] = 0
         if self.jsonlist['battleState']['enemy type'] == 'TRAINER':
             if 'disabled' in self.MonData['enemypokemon']['substatus']:
-                self.MonData[self.jsonlist['battleState']['enemypokemon']['party idx']]['moves'][int(self.MonData['enemypokemon']['substatus']['disabled']['move idx'])]['curpp'] = 0
+                self.MonData[self.jsonlist['battleState']['enemypokemon']['party idx']]['moves'][int(self.MonData['enemypokemon']['substatus']['disabled']['move idx']-1)]['curpp'] = 0
         if 'disabled' in self.MonData['playerpokemon']['substatus']:
-                self.MonData[self.jsonlist['battleState']['playerpokemon']['party idx']+6]['moves'][int(self.MonData['playerpokemon']['substatus']['disabled']['move idx'])]['curpp'] = 0
+                self.MonData[self.jsonlist['battleState']['playerpokemon']['party idx']+6]['moves'][int(self.MonData['playerpokemon']['substatus']['disabled']['move idx']-1)]['curpp'] = 0
         return
 
     #type1name = attacker, type2name = defender
