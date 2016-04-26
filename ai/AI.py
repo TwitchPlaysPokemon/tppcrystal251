@@ -29,7 +29,7 @@ def sign(x):
         return 0
     else:
         return 1 if x > 0 else -1
-        
+
 class Combogenerator:
     def __init__(self,turnsToLookAhead=4, numMoves=4):
         self.arrlen = turnsToLookAhead
@@ -80,9 +80,9 @@ class AI(object):
                         [1, 0.5,  1,  1,  1,  1,  2, 0.5,  1,  1,  1,  1,  1,  1,  2,  2, 0.5,  1], # FAR
                         [1,  1,  1,  1,  1,  1,  1,  1,  1,  1,  1,  1,  1,  1,  1,  1,  1,  1], # U
                         ]
-        
+
         self._HPTypes = ["fighting", "flying", "poison", "ground", "rock", "bug", "ghost", "steel", "fire", "water", "grass", "electric", "psychic", "ice", "dragon", "dark"]
-        
+
         self._PokemonTypes = {"bulbasaur": ("grass", "poison"), "ivysaur": ("grass", "poison"), "venusaur": ("grass", "poison"), "charmander": ("fire", "none"), "charmeleon": ("fire", "none"), "charizard": ("fire", "flying"), "squirtle": ("water", "none"), "wartortle": ("water", "none"), "blastoise": ("water", "none"), "caterpie": ("bug", "none"), "metapod": ("bug", "none"), "butterfree": ("bug", "flying"), "weedle": ("bug", "poison"), "kakuna": ("bug", "poison"), "beedrill": ("bug", "poison"), "pidgey": ("normal", "flying"), "pidgeotto": ("normal", "flying"), "pidgeot": ("normal", "flying"), "rattata": ("normal", "none"), "raticate": ("normal", "none"), "spearow": ("normal", "flying"), "fearow": ("normal", "flying"), "ekans": ("poison", "none"), "arbok": ("poison", "none"), "pikachu": ("electric", "none"), "raichu": ("electric", "none"), "sandshrew": ("ground", "none"), "sandslash": ("ground", "none"), "nidoranf": ("poison", "none"), "nidorina": ("poison", "none"), "nidoqueen": ("poison", "ground"), "nidoranm": ("poison", "none"), "nidorino": ("poison", "none"), "nidoking": ("poison", "ground"), "clefairy": ("fairy", "none"), "clefable": ("fairy", "none"), "vulpix": ("fire", "none"), "ninetales": ("fire", "none"), "jigglypuff": ("normal", "fairy"), "wigglytuff": ("normal", "fairy"), "zubat": ("poison", "flying"), "golbat": ("poison", "flying"), "oddish": ("grass", "poison"), "gloom": ("grass", "poison"), "vileplume": ("grass", "poison"), "paras": ("bug", "grass"), "parasect": ("bug", "grass"), "venonat": ("bug", "poison"), "venomoth": ("bug", "poison"), "diglett": ("ground", "none"), "dugtrio": ("ground", "none"), "meowth": ("normal", "none"), "persian": ("normal", "none"), "psyduck": ("water", "none"), "golduck": ("water", "none"), "mankey": ("fighting", "none"), "primeape": ("fighting", "none"), "growlithe": ("fire", "none"), "arcanine": ("fire", "none"), "poliwag": ("water", "none"), "poliwhirl": ("water", "none"), "poliwrath": ("water", "fighting"), "abra": ("psychic", "none"), "kadabra": ("psychic", "none"), "alakazam": ("psychic", "none"), "machop": ("fighting", "none"), "machoke": ("fighting", "none"), "machamp": ("fighting", "none"), "bellsprout": ("grass", "poison"), "weepinbell": ("grass", "poison"), "victreebel": ("grass", "poison"), "tentacool": ("water", "poison"), "tentacruel": ("water", "poison"), "geodude": ("rock", "ground"), "graveler": ("rock", "ground"), "golem": ("rock", "ground"), "ponyta": ("fire", "none"), "rapidash": ("fire", "none"), "slowpoke": ("water", "psychic"), "slowbro": ("water", "psychic"), "magnemite": ("electric", "steel"), "magneton": ("electric", "steel"), "farfetch'd": ("normal", "flying"), "doduo": ("normal", "flying"), "dodrio": ("normal", "flying"), "seel": ("water", "none"), "dewgong": ("water", "ice"), "grimer": ("poison", "none"), "muk": ("poison", "none"), "shellder": ("water", "none"), "cloyster": ("water", "ice"), "gastly": ("ghost", "poison"), "haunter": ("ghost", "poison"), "gengar": ("ghost", "poison"), "onix": ("rock", "ground"), "drowzee": ("psychic", "none"), "hypno": ("psychic", "none"), "krabby": ("water", "none"), "kingler": ("water", "none"), "voltorb": ("electric", "none"), "electrode": ("electric", "none"), "exeggcute": ("grass", "psychic"), "exeggutor": ("grass", "psychic"), "cubone": ("ground", "none"), "marowak": ("ground", "none"), "hitmonlee": ("fighting", "none"), "hitmonchan": ("fighting", "none"), "lickitung": ("normal", "none"), "koffing": ("poison", "none"), "weezing": ("poison", "none"), "rhyhorn": ("ground", "rock"), "rhydon": ("ground", "rock"), "chansey": ("normal", "none"), "tangela": ("grass", "none"), "kangaskhan": ("normal", "none"), "horsea": ("water", "none"), "seadra": ("water", "none"), "goldeen": ("water", "none"), "seaking": ("water", "none"), "staryu": ("water", "none"), "starmie": ("water", "psychic"), "mr.mime": ("psychic", "fairy"), "scyther": ("bug", "flying"), "jynx": ("ice", "psychic"), "electabuzz": ("electric", "none"), "magmar": ("fire", "none"), "pinsir": ("bug", "none"), "tauros": ("normal", "none"), "magikarp": ("water", "none"), "gyarados": ("water", "flying"), "lapras": ("water", "ice"), "ditto": ("normal", "none"), "eevee": ("normal", "none"), "vaporeon": ("water", "none"), "jolteon": ("electric", "none"), "flareon": ("fire", "none"), "porygon": ("normal", "none"), "omanyte": ("rock", "water"), "omastar": ("rock", "water"), "kabuto": ("rock", "water"), "kabutops": ("rock", "water"), "aerodactyl": ("rock", "flying"), "snorlax": ("normal", "none"), "articuno": ("ice", "flying"), "zapdos": ("electric", "flying"), "moltres": ("fire", "flying"), "dratini": ("dragon", "none"), "dragonair": ("dragon", "none"), "dragonite": ("dragon", "flying"), "mewtwo": ("psychic", "none"), "mew": ("psychic", "none"), "chikorita": ("grass", "none"), "bayleef": ("grass", "none"), "meganium": ("grass", "none"), "cyndaquil": ("fire", "none"), "quilava": ("fire", "none"), "typhlosion": ("fire", "none"), "totodile": ("water", "none"), "croconaw": ("water", "none"), "feraligatr": ("water", "none"), "sentret": ("normal", "none"), "furret": ("normal", "none"), "hoothoot": ("normal", "flying"), "noctowl": ("normal", "flying"), "ledyba": ("bug", "flying"), "ledian": ("bug", "flying"), "spinarak": ("bug", "poison"), "ariados": ("bug", "poison"), "crobat": ("poison", "flying"), "chinchou": ("water", "electric"), "lanturn": ("water", "electric"), "pichu": ("electric", "none"), "cleffa": ("fairy", "none"), "igglybuff": ("normal", "fairy"), "togepi": ("fairy", "none"), "togetic": ("fairy", "flying"), "natu": ("psychic", "flying"), "xatu": ("psychic", "flying"), "mareep": ("electric", "none"), "flaaffy": ("electric", "none"), "ampharos": ("electric", "none"), "bellossom": ("grass", "none"), "marill": ("water", "fairy"), "azumarill": ("water", "fairy"), "sudowoodo": ("rock", "none"), "politoed": ("water", "none"), "hoppip": ("grass", "flying"), "skiploom": ("grass", "flying"), "jumpluff": ("grass", "flying"), "aipom": ("normal", "none"), "sunkern": ("grass", "none"), "sunflora": ("grass", "none"), "yanma": ("bug", "flying"), "wooper": ("water", "ground"), "quagsire": ("water", "ground"), "espeon": ("psychic", "none"), "umbreon": ("dark", "none"), "murkrow": ("dark", "flying"), "slowking": ("water", "psychic"), "misdreavus": ("ghost", "none"), "unown": ("psychic", "none"), "wobbuffet": ("psychic", "none"), "girafarig": ("normal", "psychic"), "pineco": ("bug", "none"), "forretress": ("bug", "steel"), "dunsparce": ("normal", "none"), "gligar": ("ground", "flying"), "steelix": ("steel", "ground"), "snubbull": ("fairy", "none"), "granbull": ("fairy", "none"), "qwilfish": ("water", "poison"), "scizor": ("bug", "steel"), "shuckle": ("bug", "rock"), "heracross": ("bug", "fighting"), "sneasel": ("dark", "ice"), "teddiursa": ("normal", "none"), "ursaring": ("normal", "none"), "slugma": ("fire", "none"), "magcargo": ("fire", "rock"), "swinub": ("ice", "ground"), "piloswine": ("ice", "ground"), "corsola": ("water", "rock"), "remoraid": ("water", "none"), "octillery": ("water", "none"), "delibird": ("ice", "flying"), "mantine": ("water", "flying"), "skarmory": ("steel", "flying"), "houndour": ("dark", "fire"), "houndoom": ("dark", "fire"), "kingdra": ("water", "dragon"), "phanpy": ("ground", "none"), "donphan": ("ground", "none"), "porygon2": ("normal", "none"), "stantler": ("normal", "none"), "smeargle": ("normal", "none"), "tyrogue": ("fighting", "none"), "hitmontop": ("fighting", "none"), "smoochum": ("ice", "psychic"), "elekid": ("electric", "none"), "magby": ("fire", "none"), "miltank": ("normal", "none"), "blissey": ("normal", "none"), "raikou": ("electric", "none"), "entei": ("fire", "none"), "suicune": ("water", "none"), "larvitar": ("rock", "ground"), "pupitar": ("rock", "ground"), "tyranitar": ("rock", "dark"), "lugia": ("psychic", "flying"), "ho-oh": ("fire", "flying"), "celebi": ("psychic", "grass") }
         self._statsmultipliers = [25, 28, 33, 40, 50, 66, 100, 150, 200, 250, 300, 350, 400]
         self._accuracymultipliers = [33, 36, 43, 50, 60, 75, 100, 133, 166, 200, 233, 266, 300]
@@ -104,7 +104,7 @@ class AI(object):
                 self.MonData['weather'] = 'sandstorm'
         else:
             self.MonData['weather'] = 'clear'
-            
+
         self.MonData['enemypokemon'] = {}
         self.MonData['playerpokemon'] = {}
         self.MonData['myitems'] = {}
@@ -206,7 +206,7 @@ class AI(object):
                                 self.MonData[allmons]['moves'][moveset]['pp'] = int(templist[6])
                                 self.MonData[allmons]['moves'][moveset]['effectchance'] = int(templist[7])
                                 break
-                    
+
         if self.jsonlist['battleState']['enemy type'] == 'WILD':
             self.hp[0] = int(self.jsonlist['battleState']['enemypokemon']['hp'])
             self.MonData[0] = {}
@@ -254,7 +254,7 @@ class AI(object):
         if self.jsonlist['battleState']['enemy type'] == 'TRAINER':
             for tempx in range(self.myparty):
                 self.hp[tempx] = self.PermMonData[tempx]['stats']['curhp']
-                
+
         #Treat disabled moves as 0 pp
         if self.jsonlist['battleState']['enemy type'] == 'WILD':
             if 'disabled' in self.MonData['enemypokemon']['substatus']:
@@ -270,11 +270,11 @@ class AI(object):
     def getEff(self, type1name, type2name, defenderindex):
         if (type2name == 'none') or (type1name == 'curset') or (type1name == 'u') or (type1name == 'none') or (type1name == ''):
             return 1
-            
+
         type1 = self._Types[type1name]
         type2 = self._Types[type2name]
         tempx = self._tableTypeEffs[type1][type2]
-        
+
         identified = (('identified' in self.MonData[defenderindex]['substatus'] or (isinstance(self.MonData[defenderindex]['substatus'], dict) and 'identified' in self.MonData[defenderindex]['substatus'].values())) or (self.MonData['identified'] == True and defenderindex == 'playerpokemon'))
         if identified and type2name == 'ghost' and (type1name == 'fighting' or type1name == 'normal'):
             tempx = 1
@@ -289,7 +289,7 @@ class AI(object):
         if attacker <= 5:
             temptext2 = 'enemypokemon'
             temptext = 'playerpokemon'
-            
+
         if Debug_Code == 1:
             print(moveused)
         move_used = self.MonData[attacker]['moves'][moveused]
@@ -354,7 +354,7 @@ class AI(object):
                 basebp = 150
             elif self.MonData[attacker]['stats']['curhp'] / self.MonData[attacker]['stats']['maxhp'] < 0.04:
                 basebp = 200
-        
+
         if move_used_effect == 'hiddenpower':
             #actual basebp code
             '''basebp = math.floor(((5 * (math.floor(self.jsonlist['battleState'][temptext2]['dvs']['spc']/8) + math.floor(self.jsonlist['battleState'][temptext2]['dvs']['spd']/8) * 2 + math.floor(self.jsonlist['battleState'][temptext2]['dvs']['def']/8) * 4 + math.floor(self.jsonlist['battleState'][temptext2]['dvs']['atk']/8) * 8) + (self.jsonlist['battleState'][temptext2]['dvs']['spc'] % 4)) / 2) + 31)'''
@@ -362,7 +362,7 @@ class AI(object):
             basebp = 70
             tempx = 4 * (self.jsonlist['battleState'][temptext2]['dvs']['atk'] % 4) + (self.jsonlist['battleState'][temptext2]['dvs']['def'] % 4)
             move_used['type'] = self._HPTypes[tempx]      
-        
+
         #stab
         if self.MonData[attacker]['type'][1].lower() == move_used['type'].lower():
             basebp = basebp*1.5
@@ -371,7 +371,7 @@ class AI(object):
         #category and boosts
         if move_used['category'] == 'status':
             damage = 0
-        
+
         #alright, compute the damage!
         elif move_used['category'] == "special":
             satkmodifier *= self._statsmultipliers[self.MonData[attacker]['boosts']['satk']+6]/100
@@ -399,7 +399,7 @@ class AI(object):
         #Effectivity
         if Debug_Code == 1:
             print('move used type: '+move_used['type'].lower()+' enemy types: '+ self.MonData[defender]['type'][1].lower()+' / '+ self.MonData[defender]['type'][2].lower())
-            
+
         #compute 1.2x move-boosting items
         type_boost_item_dict = {'blackbelt':'fighting','blackglasses':'dark','charcoal':'fire','dragonfang':'dragon','hardstone':'rock','dragonfang':'dragon','hardstone':'rock','magnet':'electric','metalcoat':'steel','miracleseed':'grass','mysticwater':'water','nevermeltice':'ice','poisonbarb':'poison','sharpbeak':'flying','silkscarf':'normal','silverpowder':'bug','softsand':'ground','spelltag':'ghost','pinkbow':'fairy'}
         if self.MonData[attacker]['item'] in type_boost_item_dict:
@@ -425,7 +425,7 @@ class AI(object):
             #thunder's accuracy goes down in sun
             if move_used['name'].lower() == 'thunder':
                 tempaccuracy = 50
-                
+
         elif self.MonData['weather'] == 'rain':
             if move_used['type'].lower() == 'fire':
                 damage *= 0.5
@@ -460,7 +460,7 @@ class AI(object):
             curled = False
         if Debug_Code == 1 and attacker < 6:
             print('Damage before accuracy and after special cases '+str(damage))
-            
+
         #Accuracy checks
         totalacc = 1
         accmodifier = 1
@@ -474,7 +474,7 @@ class AI(object):
                 totalacc = tempx * accmodifier * (move_used['acc']/100) * tempy
             elif tempaccuracy > 0:
                 totalacc = tempx * accmodifier * (tempaccuracy/100) * tempy
-        
+
         effmulti = self.getEff(self.MonData[attacker]['moves'][moveused]['type'].lower(), self.MonData[defender]['type'][1].lower(), 'playerpokemon') * self.getEff(self.MonData[attacker]['moves'][moveused]['type'].lower(), self.MonData[defender]['type'][2].lower(), 'playerpokemon')
         if move_used_effect == 'ohko':
             if effmulti > 0:
@@ -512,7 +512,7 @@ class AI(object):
         #0% chance of hitting
         tempx = min(self.MonData[attacker]['stats']['spd'] * self._statsmultipliers[self.MonData[attacker]['boosts']['spd']+6]/100, 999)
         tempy = min(self.MonData[defender]['stats']['spd'] * self._statsmultipliers[self.MonData[defender]['boosts']['spd']+6]/100, 999)
-      
+
         if self.MonData[attacker]['status'] == 'par':
             tempx = tempx * 0.25
         if self.MonData[defender]['status'] == 'par':
@@ -554,7 +554,7 @@ class AI(object):
             damage = 0
         if (self.MonData[attacker]['status'] not in ('slp', 'slp2', 'slp1')) and (move_used['name'].lower() in ('snore', 'sleeptalk')):
             damage = 0
-            
+
 
         movelist = [self.MonData[defender]['moves'][move]['name'].lower() for move in self.MonData[defender]['moves']]
         #Dig and Fly aversion
@@ -585,12 +585,12 @@ class AI(object):
             critmodifier += 2
         damage = (damage * ( 1 - self._critmultipliers[critmodifier])) + (damage * 1.5 * self._critmultipliers[critmodifier])
         damage = (damage * ( 1 - self._critmultipliers[critmodifier])) + (damage * 1.5 * self._critmultipliers[critmodifier])
-        
+
         #type effectiveness
         damage *= self.getEff(move_used['type'].lower(), self.MonData[defender]['type'][1].lower(), temptext) * self.getEff(move_used['type'].lower(), self.MonData[defender]['type'][2].lower(), temptext)
         if Debug_Code == 1 and attacker < 6:
             print('Damage after calc '+str(damage))
-            
+
         self.Damage[attacker][defender][moveused]['selfdamage'] = 0
 
         #special considerations for the ai's pokemon only
@@ -616,7 +616,7 @@ class AI(object):
                     damage += 1
             if self.enemybest in ('hyperbeam', 'skyattack', 'solarbeam'):
                 damage *= 2
-                
+
         if Debug_Code == 1 and attacker < 6:
             print('Damage after crit'+str(damage))
         if move_used_effect == 'jumpkick':
@@ -630,18 +630,18 @@ class AI(object):
         elif move_used_effect == 'dreameater':
             self.Damage[attacker][defender][moveused]['selfdamage'] = damage / -2
         self.Damage[attacker][defender][moveused]['damage'] = damage
-        
+
         if self.FinalChance and move_used_effect in ('hyperbeam', 'skyattack', 'solarbeam', 'futuresight', 'metronome'):
             self.Damage[attacker][defender][moveused]['damage'] = 0
-        
+
         if effmulti < 0.125:
             self.Damage[attacker][defender][moveused]['damage'] = -500
-            
+
         return 1
 
     #enemy's highest damage
     def TrainerDamage(self, traincurrent, mycurrent):
-        
+
         if Debug_Code == 1:
             print ('inside TrainerDamage, variables in play - traincurrent: '+str(traincurrent)+' mycurrent: '+str(mycurrent))
             print('length of moves for this mon: '+str( len(self.jsonlist['playerParty']['party'][traincurrent-6]['moves'])))
@@ -658,7 +658,7 @@ class AI(object):
                     statusMultiplier = (0.25 * self.MonData[traincurrent]['moves'][moveset]['acc']) + 1
             if self.MonData[traincurrent]['moves'][moveset]['effect'] == 'toxic' and self.MonData[mycurrent]['item'] != 'poisonguard' and ((self.MonData[mycurrent]['type'][1] not in ('poison', 'steel')) and (self.MonData[mycurrent]['type'][2] not in ('poison', 'steel'))):
                 statusAdditive = self.MonData[mycurrent]['stats']['maxhp'] * 0.16
-                            
+
         for moveset in range(len(self.jsonlist['playerParty']['party'][traincurrent-6]['moves'])):
             if self.MonData[traincurrent]['moves'][moveset]['curpp'] > 0:
                 self.DamageDealt(traincurrent, mycurrent, moveset)
@@ -676,7 +676,7 @@ class AI(object):
                 self.enemynumber = moveset
 
     def Mychoice (self, traincurrent, mycurrent, moveused):
-    
+
         if Debug_Code == 1:
             print(self.MonData[mycurrent]['moves'][moveused]['name'])
         healing = False
@@ -694,11 +694,11 @@ class AI(object):
                     if self.MonData[mycurrent]['moves'][moveused]['effect'] == 'bide':
                         if self.Damage[traincurrent][mycurrent][self.enemynumber]['damage'] * 3 < self.MonData[mycurrent]['stats']['curhp']:
                             self.Damage[mycurrent][traincurrent][moveused]['damage'] = self.Damage[traincurrent][mycurrent][self.enemynumber]['damage'] * 0.75
-                            
+
                     #rage
                     elif self.MonData[mycurrent]['moves'][moveused]['effect'] == 'rage':
                         self.MonData[mycurrent]['boosts']['atk'] = self.MonData[mycurrent]['boosts']['atk'] + 1 
-                        
+
                     #Counter coat (otherwise known as a move that has way too much code and probably be never used anyways and cause far too many headaches)
                     elif (self.MonData[mycurrent]['moves'][moveused]['effect'] == 'counter' or self.MonData[mycurrent]['moves'][moveused]['effect'] == 'mirrorcoat'):
                         tempx = 0
@@ -739,10 +739,10 @@ class AI(object):
                             if tempx == -1 and self.countercoat['physical']['number of'] > 0:
                                 if random.randint(0, 100) > 50:
                                     self.Damage[mycurrent][traincurrent][moveused]['damage'] = 0
-                            
+
                 if self.MonData[mycurrent]['moves'][moveused]['type'] == 'fire' and self.MonData[traincurrent]['status'] == 'frz':
                     self.MonData[traincurrent]['status'] = 'none'
-                
+
                 #stats up
                 if self.MonData[mycurrent]['moves'][moveused]['effect'] == 'defenseup2':
                     self.MonData[mycurrent]['boosts']['def'] += 2
@@ -763,14 +763,14 @@ class AI(object):
                     self.MonData[mycurrent]['boosts']['atk'] += 1
                 elif self.MonData[mycurrent]['moves'][moveused]['effect'] == 'evasionup':
                     self.MonData[mycurrent]['boosts']['eva'] += 1
-                
+
                 elif self.MonData[mycurrent]['moves'][moveused]['effect'] == 'growth':
                     self.MonData[mycurrent]['boosts']['satk'] += 1
                     self.MonData[mycurrent]['boosts']['atk'] += 1
                     if self.MonData['weather'] == 'sun':
                         self.MonData[mycurrent]['boosts']['satk'] += 1
                         self.MonData[mycurrent]['boosts']['atk'] += 1
-                    
+
                 # stats down
                 misted = ('mist' in self.MonData['playerpokemon']['substatus'] or (isinstance(self.MonData['playerpokemon']['substatus'], dict) and 'mist' in self.MonData['playerpokemon']['substatus'].values()))
                 if not misted:
@@ -804,7 +804,7 @@ class AI(object):
                         self.Damage[mycurrent][traincurrent][moveused]['selfdamage'] = self.MonData[mycurrent]['stats']['maxhp'] / -2
                     else: #rain, sandstorm
                         self.Damage[mycurrent][traincurrent][moveused]['selfdamage'] = self.MonData[mycurrent]['stats']['maxhp'] / -8
-                
+
                 #if heal doesnt matter
                 if healing and self.MonData[mycurrent]['stats']['curhp'] > self.MonData[mycurrent]['stats']['maxhp'] * 0.75:
                     self.Damage[mycurrent][traincurrent][moveused]['selfdamage'] = 0
@@ -812,18 +812,18 @@ class AI(object):
                     self.Damage[mycurrent][traincurrent][moveused]['selfdamage'] = 0
                 if self.Damage[traincurrent][mycurrent][self.enemynumber]['damage'] * 1.25 > -1 * self.Damage[mycurrent][traincurrent][moveused]['selfdamage']:
                     self.Damage[mycurrent][traincurrent][moveused]['selfdamage'] = 0
-                    
+
 
                 if self.MonData[mycurrent]['moves'][moveused]['effect'] == 'painsplit':
                     self.Damage[mycurrent][traincurrent][moveused]['damage'] = self.MonData[traincurrent]['stats']['curhp'] - (self.MonData[mycurrent]['stats']['curhp'] + self.MonData[traincurrent]['stats']['curhp'])/2
                     self.Damage[mycurrent][traincurrent][moveused]['selfdamage'] = self.MonData[mycurrent]['stats']['curhp'] - (self.MonData[mycurrent]['stats']['curhp'] + self.MonData[traincurrent]['stats']['curhp'])/2
-                
+
                 #whirlwind
                 if self.MonData[mycurrent]['moves'][moveused]['effect'] == 'whirlwind':
                     for stat in self.statNames:
                         self.MonData[traincurrent]['boosts'][stat] = 0
                     self.MonData['playerpokemon']['substatus'] = {}
-                
+
                 #Guard
                 if self.MonData[mycurrent]['moves'][moveused]['effect'] == 'protect' and self.jsonlist['battleState']['enemypokemon']['last used'].replace(' ', '').lower().replace('-', '') not in ('protect', 'endure'):
                     self.Damage[mycurrent][traincurrent][moveused]['selfdamage'] = self.Damage[traincurrent][mycurrent][self.enemynumber]['damage'] * -1
@@ -898,7 +898,7 @@ class AI(object):
                     if self.jsonlist['battleState']['enemypokemon']['last used'].replace(' ', '').lower().replace('-', '') == 'mindreader':
                         self.MonData['lockon'] = False
                         self.Damage[mycurrent][traincurrent][moveused]['damage'] = -500
-                        
+
                 #end of turn shit
                 elif self.MonData[mycurrent]['moves'][moveused]['effect'] == 'bind':
                     self.MonData['playerpokemon']['bound'] = 5
@@ -988,13 +988,13 @@ class AI(object):
                                 self.MonData[traincurrent]['item'] = 'noitem'
                         elif (self.MonData[mycurrent]['moves'][moveused]['effect'] == 'triattack'):
                             self.MonData[traincurrent]['status'] = 'par'
-            
+
             if ((self.MonData[traincurrent]['type'][1] in ('grass')) or (self.MonData[traincurrent]['type'][2] in ('grass'))) and self.MonData[mycurrent]['moves'][moveused]['name'] in ('spore', 'poisonpowder', 'sleeppowder', 'stunspore'):
                 self.MonData[traincurrent]['status'] = 'none'
                 self.Damage[mycurrent][traincurrent][moveused]['damage'] = -500
             if (((self.MonData[traincurrent]['type'][1] in ('poison', 'steel')) and (self.MonData[traincurrent]['type'][2] in ('poison', 'steel'))) or self.MonData[traincurrent]['status'] != 'none') and self.MonData[mycurrent]['moves'][moveused]['name'] == 'toxic':
                 self.Damage[mycurrent][traincurrent][moveused]['damage'] = -500
-            
+
             #lower enemy stats
             misted = ('mist' in self.MonData['playerpokemon']['substatus'] or (isinstance(self.MonData['playerpokemon']['substatus'], dict) and 'mist' in self.MonData['playerpokemon']['substatus'].values()))
             if not misted:
@@ -1040,12 +1040,12 @@ class AI(object):
             self.MonData[mycurrent]['stats']['curhp'] = 0
         if self.MonData['trainperishsong'] == 1:
             self.MonData[traincurrent]['stats']['curhp'] = 0
-        
+
         if self.MonData['myperishsong'] > 0:  
             self.MonData['myperishsong'] = self.MonData['myperishsong'] - 1
         if self.MonData['trainperishsong'] > 0:
             self.MonData['trainperishsong'] = self.MonData['trainperishsong'] - 1
-            
+
         if self.MonData[traincurrent]['status'] not in ('frz', 'slp'):
             statusMultiplier = 1
             if self.MonData[traincurrent]['status'] == 'prz':
@@ -1063,24 +1063,24 @@ class AI(object):
 
         if self.MonData[traincurrent]['stats']['curhp'] > self.MonData[traincurrent]['stats']['maxhp']:
             self.MonData[traincurrent]['stats']['curhp'] = self.MonData[traincurrent]['stats']['maxhp']
-        
+
         for temptext in ('enemypokemon', 'playerpokemon'):
             if temptext == 'enemypokemon':
                 pkmindex = mycurrent
             else:
                 pkmindex = traincurrent
-            
+
             #Sandstorm
             if self.MonData['weather'] == 'sandstorm' and ((self.MonData[pkmindex]['type'][1] not in ('ground', 'rock', 'steel')) and (self.MonData[pkmindex]['type'][2] not in ('ground', 'rock', 'steel'))):
                 self.MonData[pkmindex]['stats']['curhp'] = self.MonData[pkmindex]['stats']['curhp'] - (self.MonData[pkmindex]['stats']['maxhp'] * 0.125)
-                
+
             #status Damage
             if self.MonData[pkmindex]['status'] in ('brn', 'psn') and 'toxic' not in self.MonData[temptext]['substatus']:
                 self.MonData[pkmindex]['stats']['curhp'] = self.MonData[pkmindex]['stats']['curhp'] - (self.MonData[pkmindex]['stats']['maxhp'] * 0.125)
             if self.MonData[pkmindex]['status'] == 'psn' and 'toxic' in self.MonData[temptext]['substatus']:
                 self.MonData[pkmindex]['stats']['curhp'] = self.MonData[pkmindex]['stats']['curhp'] - (self.MonData[pkmindex]['stats']['maxhp'] * self.MonData[temptext]['substatus']['toxic'] * 0.0625)
                 self.MonData[temptext]['substatus']['toxic'] = self.MonData[temptext]['substatus']['toxic'] + 1
-            
+
             #held healing
             if (self.MonData[pkmindex]['item'] == 'berry') and (self.MonData[pkmindex]['stats']['curhp'] < self.MonData[pkmindex]['stats']['maxhp'] * 0.33):
                 self.MonData[pkmindex]['stats']['curhp'] += 10
@@ -1116,7 +1116,7 @@ class AI(object):
             if self.MonData[temptext]['bound'] > 0 and self.triggered != 1 and self.MonData[pkmindex]['stats']['curhp'] > 0:
                 self.MonData[pkmindex]['stats']['curhp'] = self.MonData[pkmindex]['stats']['curhp'] - (self.MonData[pkmindex]['stats']['maxhp'] * 0.125)
                 self.MonData[temptext]['bound'] = self.MonData[temptext]['bound'] - 1
-                
+
             #leechseed
             seeded = (('seeded' in self.MonData[temptext]['substatus'] or (isinstance(self.MonData[temptext]['substatus'], dict) and 'seeded' in self.MonData[temptext]['substatus'].values())) or (self.MonData['leechseedused'] == True and temptext == 'playerpokemon'))
             if seeded:
@@ -1126,7 +1126,7 @@ class AI(object):
         self.MonData['painsplit'] = False
         self.MonData['lockon'] = False
         return
-        
+
     def Reset(self, traincurrent, mycurrent):
         self.MonData['painsplit'] = False
         self.MonData['lockon'] = False
@@ -1147,7 +1147,7 @@ class AI(object):
             self.MonData['myperishsong'] = copy.deepcopy(self.MonData['enemypokemon']['substatus']['perish song'])
         if 'perish song' in self.MonData['playerpokemon']['substatus']:
             self.MonData['trainperishsong'] = copy.deepcopy(self.MonData['playerpokemon']['substatus']['perish song'])
-            
+
         #boosts
         if isinstance(self.jsonlist['battleState']['weather'], dict):
             if "Rain" in self.jsonlist['battleState']['weather'] :
@@ -1158,7 +1158,7 @@ class AI(object):
                 self.MonData['weather'] = 'sandstorm'
         else:
             self.MonData['weather'] = 'clear'
-            
+
         self.MonData['enemypokemon'] = {}
         self.MonData['playerpokemon'] = {}
         self.MonData['enemypokemon']['substatus'] = copy.deepcopy(self.jsonlist['battleState']['enemypokemon']['subStatus'])
@@ -1167,7 +1167,7 @@ class AI(object):
         self.MonData['playerpokemon']['screens'] = copy.deepcopy(self.jsonlist['battleState']['playerpokemon']['screens'])
         self.MonData['enemypokemon']['bound'] = int(self.jsonlist['battleState']['enemypokemon']['wrap count'])
         self.MonData['playerpokemon']['bound'] = int(self.jsonlist['battleState']['playerpokemon']['wrap count'])
-        
+
         if self.triggered == 0:
             self.MonData[mycurrent]['boosts'] = {}
             for stat in self.statNames:
@@ -1182,7 +1182,7 @@ class AI(object):
         for stat in self.statNames:
             self.MonData[traincurrent]['boosts'][stat] = self.jsonlist['battleState']['playerpokemon']['stat levels'][stat]
         return
-        
+
     def Fight(self, traincurrent, mycurrent, numberofturns):
         if Debug_Code == 1:
             print('start of self.Fight')
@@ -1196,18 +1196,18 @@ class AI(object):
             self.mycurhp = 1
         if self.traincurhp == 0:
             self.traincurhp = 1
-        
+
         #len(self.MonData[mycurrent]['moves']) = the number of moves the mon has
         for x2, tempcombo in enumerate(Combogenerator(numberofturns, len(self.MonData[mycurrent]['moves']))):
             myhp = self.mycurhp
             trainhp = self.traincurhp
             self.MonData[mycurrent]['stats']['curhp'] = myhp
             self.MonData[traincurrent]['stats']['curhp'] = trainhp
-            
+
             self.Reset(traincurrent, mycurrent)
             self.TrainerDamage(traincurrent, mycurrent)
             self.Damage[mycurrent][traincurrent][tempcombo[0]]['damage'] = 0
-            
+
             if self.HitMe > 0:
                 self.DamageDealt(traincurrent, mycurrent, self.enemynumber)
                 myhp = myhp - (self.Damage[traincurrent][self.jsonlist['battleState']['enemypokemon']['party idx']][self.enemynumber]['damage'] * 1.2)
@@ -1320,7 +1320,7 @@ class AI(object):
                     bonusmulti += 0.1
                     if x1 == 0:
                         self.ShouldISwitch = False
-                    
+
             #do extra effect on first move
             myhp1 = self.mycurhp
             trainhp1 = self.traincurhp
@@ -1522,7 +1522,7 @@ class AI(object):
                         tempx = mymons
                 bestmonsindex[x1] = tempx
                 battlerating[tempx] = 0
-            
+
             if self.theaction < 4:
                 temp1 = self.jsonlist['battleState']['enemypokemon']['party idx']
             if self.theaction > 3:
@@ -1545,7 +1545,7 @@ class AI(object):
                                         self.difference[temp1][traincurrent] = self.differenceitems[mymons][self.useitem]
                                     if tempaction > -1:
                                         return(tempaction)
-                            
+
                             #and you are about to die
                             if self.Damage[traincurrent][mycurrent][self.enemynumber]['damage'] > self.hp[bestmonsindex[x1]]:
                                 #and im not at full hp
@@ -1581,7 +1581,7 @@ class AI(object):
                             if self.MonData['playerpokemon']['substatus'][str(x1)] == 'attract':
                                 del self.MonData['playerpokemon']['substatus'][str(x1)]
                                 break
-                        
+
                     for stat in self.statNames:
                         self.MonData[mycurrent]['boosts'][stat] = 0
                         self.MonData[traincurrent]['boosts'][stat] = int(self.jsonlist['battleState']['playerpokemon']['stat levels'][stat])
@@ -1682,7 +1682,7 @@ class AI(object):
             if self.MonData[mycurrent]['moves'][tempmove]['effect'] in ('whirlwind', 'teleport'):
                 movepriority[tempmove] = 11
                 continue
-            
+
         for tempmove in range(len(self.jsonlist['battleState']['enemypokemon']['moves'])):
             if ((self.MonData[traincurrent]['type'][1] == 'grass') or (self.MonData[traincurrent]['type'][2] == 'grass')) and self.MonData[mycurrent]['moves'][tempmove]['name'] in ('spore', 'poisonpowder', 'sleeppowder', 'stunspore'):
                 movepriority[tempmove] = 20
@@ -1697,7 +1697,7 @@ class AI(object):
             self.Fight(traincurrent, mycurrent, 5)
             theaction = self.mybestmove[mycurrent]
         return theaction
-    
+
     def LastMove(self):
         if self.jsonlist['battleState']['enemy type'] == 'TRAINER':
             mycurrent = self.jsonlist['battleState']['enemypokemon']['party idx']
@@ -1735,7 +1735,7 @@ class AI(object):
                     self.NoBetterChoice = False
                     return x1
         return
-       
+
     def ManualControl(self):
         if self.jsonlist['battleState']['enemy type'] == 'TRAINER':
             mycurrent = self.jsonlist['battleState']['enemypokemon']['party idx']
@@ -1744,12 +1744,12 @@ class AI(object):
         traincurrent = self.jsonlist['battleState']['playerpokemon']['party idx']+6
         self.Reset(traincurrent, mycurrent)
         self.TrainerDamage(traincurrent, mycurrent)
-        
+
         if self.MonData['myperishsong'] == 1:
             potentialAction = self.ForcedSwitch(traincurrent)
             if potentialAction != 20:
                 return potentialAction
-            
+
         if self.jsonlist['battleState']['enemy type'] == 'TRAINER':
             #baton pass
             statTotal = sum([int(self.jsonlist['battleState']['enemypokemon']['stat levels'][stat]) for stat in self.statNames])
@@ -1791,8 +1791,8 @@ class AI(object):
                                 tempx = self.ForcedSwitch(traincurrent)
                                 if tempx != 20:
                                     return tempx
-                        
-                
+
+
         #if we have protect and the enemy has a mon inside a two-turn move, protect yourself
         tempx = -1
         for tempmove in range(len(self.jsonlist['battleState']['enemypokemon']['moves'])):
@@ -1805,7 +1805,7 @@ class AI(object):
                 return tempx
             if 'charged' in self.MonData['playerpokemon']['substatus'] or (isinstance(self.MonData['playerpokemon']['substatus'], dict) and 'charged' in self.MonData['playerpokemon']['substatus'].values()):
                 return tempx
-            
+
         #if we chose to use either counter/mirrorcoat, and the mon has BOTH counter and mirrorcoat, 
         #randomize the move used based on the effective damage of both
         if self.theaction < 4:
@@ -1831,7 +1831,7 @@ class AI(object):
                             x1 = 50
                         if random.randint(0, 100) > x1:
                             return tempx
-                        
+
             elif self.MonData[mycurrent]['moves'][self.theaction]['effect'] == 'mirrorcoat':
                 #check if we also have counter available
                 tempx = -1
@@ -1848,7 +1848,7 @@ class AI(object):
                             x1 = 50
                         if random.randint(0, 100) > x1:
                             return tempx
-        
+
         templist = []
         templist2 = []
         #they are about to die can i save pp?
@@ -1890,7 +1890,7 @@ class AI(object):
                                 temp1 = self.MonData[mycurrent]['moves'][tempmove]['curpp']
                                 x1 = tempmove
                         return x1
-        
+
         #desitny bond override
         if self.theaction < 4:
             tempx = -1
@@ -1901,9 +1901,9 @@ class AI(object):
                 if tempx != -1:
                     if self.MonData[mycurrent]['moves'][tempx]['curpp'] > 0:
                         return tempx
-                        
+
         return None
-    
+
     def StatsDownPrevention(self):
         KillingBlow = False
         if self.jsonlist['battleState']['enemy type'] == 'TRAINER':
@@ -1923,7 +1923,7 @@ class AI(object):
                 if self.MonData[mycurrent]['moves'][tempmove]['effect'] in ('accuracydown', 'defensedown', 'attackdown', 'speeddown2', 'defensedown2', 'spdefdown2'):
                     self.MonData[mycurrent]['moves'][tempmove]['curpp'] = 0
         return
-            
+
     #figure out best action to do in current battle
     def MainBattle(self, jsonlist):
 
@@ -1971,13 +1971,13 @@ class AI(object):
         self.ShouldISwitch = True
         self.NoBetterChoice = True
         self.FirstFight = True
-        
+
         #alright, start computing
         traincurrent = self.jsonlist['battleState']['playerpokemon']['party idx']+6
         self.parseMondataFromJsonlist()
-        
+
         self.StatsDownPrevention()
-        
+
         if self.jsonlist['battleState']['enemy type'] == 'TRAINER':
             mycurrent = self.jsonlist['battleState']['enemypokemon']['party idx']
             if ('requested action' not in self.jsonlist['battleState']) or not (int(self.jsonlist['battleState']['requested action']) & 0x40):
@@ -2017,7 +2017,7 @@ class AI(object):
             potentialAction = self.ManualControl()
             if potentialAction is not None:
                 self.theaction = potentialAction
-        
+
         if self.jsonlist['battleState']['enemy type'] == 'TRAINER':
             mycurrent = self.jsonlist['battleState']['enemypokemon']['party idx']
         else:
@@ -2045,7 +2045,7 @@ class AI(object):
                     print('key error x20, ending infinite loop')
                     self.theaction = 0
                     break
-        
+
         #invalid action handling
         if (int(self.jsonlist['battleState']['requested action']) & 0x04):
             print('INVALID ACTION -ERROR-! Contact Beesafree with the logs')
@@ -2078,7 +2078,7 @@ class AI(object):
                     if self._actualAction[str(self.theaction)] not in self.jsonlist['battleState']['history']:
                         break
                     self.theaction = random.randint(4, self.myparty + 6)
-        
+
         if self.NoBetterChoice:
             print('random move used because of no better choice, this shouldnt happen -ERROR-')
         temptext = self._actualAction[str(self.theaction)]

@@ -48,11 +48,9 @@ ParseExternalAI:
 	jp .Invalid
 .UseMove
 	push af
-	ld hl, EnemyMonPP
-	ld de, EnemyDisableCount
-	call Mil_AI_CheckPP
+	call AI_CheckPP
 	pop bc
-	jr z, .Struggle
+	ret z
 	ld a, b
 	ld [CurEnemyMoveNum], a
 	ld c, a
@@ -73,11 +71,6 @@ ParseExternalAI:
 	ld a, [EnemyDisabledMove]
 	cp b
 	jr z, .Invalid
-	ret
-
-.Struggle
-	ld a, STRUGGLE
-	ld [CurEnemyMove], a
 	ret
 
 .Switch
@@ -319,44 +312,47 @@ Mil_AI_checkghost
 	cp GHOST
 	ret
 
-Mil_AI_CheckPP:
-	ld b, 0
-	ld a, [de]
+AI_CheckPP:
+	ld a, STRUGGLE
+	ld [CurEnemyMove], a
+	ld a, [EnemyDisableCount]
 	and a
-	jr z, .NoDisable
-	and $f0
-	swap a
-	ld c, a
-	ld d, 5
-	dec hl
-.loop
-	inc hl
-	dec d
-	jr z, .done
-	ld a, 4
-	sub d
-	cp c
-	jr z, .loop
-	ld a, [hl]
-	and $3f
-	or b
-	ld b, a
-	jr .loop
+	ld hl, EnemyMonPP
+	jr nz, .check_disabled
 
-.NoDisable
-	ld d, 4
-.loop2
 	ld a, [hli]
+	or [hl]
+	inc hl
+	or [hl]
+	inc hl
+	or [hl]
 	and $3f
-	or b
-	ld b, a
-	dec d
-	jr nz, .loop2
-.done
-	ld a, b
-	and a
+	ret nz
+	xor a
 	ret
 
+.check_disabled
+	swap a
+	and $f
+	ld b, a
+	ld d, $5
+	xor a
+.disable_loop
+	dec d
+	jr z, .done
+	ld c, [hl]
+	inc hl
+	dec b
+	jr z, .disable_loop
+	or c
+	jr .disable_loop
+
+.done
+	and $3f
+	ret nz
+	xor a
+	ret
+; 3e7c1
 
 Military_SelectPokemon:
 	ld a, [Options]

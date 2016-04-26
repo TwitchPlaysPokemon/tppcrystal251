@@ -6292,7 +6292,7 @@ Function3e786: ; 3e786
 	jr .asm_3e7a7
 
 .asm_3e7b2
-	and a
+	and $3f
 	ret nz
 
 .asm_3e7b4
