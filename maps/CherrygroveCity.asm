@@ -794,7 +794,7 @@ Text_GuideGentForcesPlayerToHealParty:
 
 	para "Oh, my apologies."
 	line "I never told you"
-	cont "where <''>here<''> is!"
+	cont "where <``>here<''> is!"
 
 	para "You've made land"
 	line "in CHERRYGROVE"

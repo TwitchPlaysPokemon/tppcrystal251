@@ -612,8 +612,8 @@ UnknownText_0x19452c: ; 0x19452c
 
 	para "It's a very strong"
 	line "attack, but your"
-	cont "#MON needs a"
-	cont "rest afterwards."
+	para "#MON needs a"
+	line "rest afterwards."
 	done
 ; 0x1945b8
 

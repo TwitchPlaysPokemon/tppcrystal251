@@ -4,7 +4,7 @@ RocketHideout3_MapScriptHeader:
 
 	; callbacks
 	db 1
-	dbw 1, RocketHideout_TurnOnLights
+	dbw 2, RocketHideout_TurnOnLights
 
 
 ; <scripts go here>

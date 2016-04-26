@@ -182,7 +182,7 @@ SSAnee5Sailor2Battle:
 .Script
 	talkaftercancel
 	loadfont
-	writetext _SSAnne5AfterBattleText1
+	writetext _SSAnne5AfterBattleText2
 	waitbutton
 	closetext
 	end

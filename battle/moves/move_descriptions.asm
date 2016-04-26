@@ -400,7 +400,7 @@ MegaKickDescription:
 
 RollingKickDescription:
 	db   "A fast, spinning"
-	next "kick. Can flinch@"
+	next "kick. Can flinch.@"
 
 SandAttackDescription:
 	db   "Reduces accuracy"
