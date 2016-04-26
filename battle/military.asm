@@ -46,11 +46,21 @@ ParseExternalAI:
 	cp $d
 	jr nc, .UseItem
 	jp .Invalid
+
 .UseMove
 	push af
 	call AI_CheckPP
 	pop bc
 	ret z
+	ld a, [EnemyDisableCount]
+	and a
+	jr z, .skip_disable
+	swap a
+	and $f
+	dec a
+	cp b
+	jr z, .Invalid
+.skip_disable
 	ld a, b
 	ld [CurEnemyMoveNum], a
 	ld c, a
@@ -65,11 +75,7 @@ ParseExternalAI:
 	add hl, bc
 	ld a, [hl]
 	and $3f
-	jr z, .Invalid
-	ld a, [CurEnemyMove]
-	ld b, a
-	ld a, [EnemyDisabledMove]
-	cp b
+	ret z
 	jr z, .Invalid
 	ret
 
@@ -128,9 +134,7 @@ ParseExternalAI:
 
 	ld a, [wc731]
 	and a
-	jr nz, .Invalid
-	ret
-
+	ret z
 .Invalid
 	ld a, BEESAFREE_SND_ASKENEMY | BEESAFREE_SND_INVALID
 	jp .loop_back

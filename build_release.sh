@@ -1,6 +1,6 @@
 filesdir=/cygdrive/d/tppcrystal251/files
 vbasrcdir=/cygdrive/c/Users/Scott/Downloads/vba-rerecording-svn480-win32
-version=1.1.1
+version=1.1.2
 tmpdir=/tmp/crystal251
 
 # Do not modify anything below this line.
@@ -17,11 +17,15 @@ mkdir $tmpdir/AI
 mkdir $tmpdir/VBA-RR-243
 mkdir $tmpdir/VBA-RR-243/lua
 
+# Remove the old zip file
+rm -f $filesdir/*
+
 # Build the IPS files
 make patches
 
 # Copy the standalone patch to the webpage files directory
 cp pokecrystal11.ips $filesdir/annicrystal_$version.ips
+cp changelog.txt $filesdir/
 
 # Copy the AI patch to the temporary directory
 cp pokecrystal_ai.ips $tmpdir/annicrystal_aI_$version.ips

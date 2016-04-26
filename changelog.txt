@@ -1,0 +1,30 @@
+Version 1.1.2
+* Grammar fixes
+* Nerf the Raticate on the Rocket Executive in Mt Moon
+* Nerf trainers in Morty's Gym
+* Nerf an Executive in the Mahogany Base
+* Revert random naming screen cursor initialization
+* Restore start button functionality on the naming screen
+* Restore NEW GAME option if you already have a save file
+* Fix bug where pressing A or B in instant text speed mode would slow the text down
+* Fix a glitch where dex entries that differ between metric and imperial units would be loaded incorrectly in radio programs
+* Fix rival not despawning on Route 22 if you've already beaten Brock
+* Fix some color-related glitches when talking to Whitney or Janine for rematches
+* Fix Unown words in Ruins of Alph sourcing the wrong tiles
+* Fix fourth stats screen displaying the wrong caught time-of-day
+* The lights in the Battle Tent Generator Room now turn on as soon as you activate the generator
+* Lights in the abandoned Rocket Hideout now behave correctly
+* Possible fix for a glitch in the external AI where a foe with no usable moves would freeze the game
+* Fix incorrect text pointer on SS Anne
+
+Version 1.1.1
+* Grammar fixes
+* Fixed some crashes with the AI server scripts
+* Remove faulty callback in the Battle Tent Battle Room
+* Remove product placement from the Pewter Museum of Science
+* Fix Pokegear clock not updating in AI build
+* You can no longer receive phone calls prior to actually getting the phone card.
+* Updated title from "CRYSTAL ANNIVERSARY" to "ANNIVERSARY CRYSTAL"
+
+Version 1.1.0
+* Initial release

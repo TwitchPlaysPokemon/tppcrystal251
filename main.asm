@@ -88920,8 +88920,8 @@ Functionfcfec:: ; fcfec
 	ret nc
 	call Functionfd0c3
 	ret nc
-	ld a, [StatusFlags]
-	bit 5, a
+	ld a, [wd957] ; Pokegear flags
+	bit 2, a ; Phone card
 	ret z
 	ld b, BANK(UnknownScript_0xfd00f)
 	ld de, UnknownScript_0xfd00f

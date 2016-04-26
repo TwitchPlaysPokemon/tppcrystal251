@@ -170,7 +170,7 @@ PokeCenterNurseScript:
 ;	closetext
 
 ;.pokerus_done
-	checkflag ENGINE_EARLY_GAME_KANTO
+	checkflag ENGINE_PHONE_CARD
 	iffalse .skip
 	setflag ENGINE_POKERUS
 	specialphonecall 1 ; elm calls about pokerus
