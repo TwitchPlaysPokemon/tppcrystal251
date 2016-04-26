@@ -16,6 +16,7 @@ Version 1.1.2
 * Lights in the abandoned Rocket Hideout now behave correctly
 * Possible fix for a glitch in the external AI where a foe with no usable moves would freeze the game
 * Fix incorrect text pointer on SS Anne
+* Fix Azure/Rust standing in Cerulean City, waiting for the player, in full view of the player
 
 Version 1.1.1
 * Grammar fixes

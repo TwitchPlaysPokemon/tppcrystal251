@@ -1,6 +1,6 @@
 filesdir=/cygdrive/d/tppcrystal251/files
 vbasrcdir=/cygdrive/c/Users/Scott/Downloads/vba-rerecording-svn480-win32
-vbasrcname=VBA_VS2015_V72XR.exe
+vbasrcname=VBA_VS2015_V72XR
 vbatarget=VBA-RR-243
 version=1.1.2
 tmpdir=/tmp/crystal251
