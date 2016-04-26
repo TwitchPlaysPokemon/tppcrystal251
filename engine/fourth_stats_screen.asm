@@ -37,7 +37,7 @@ TN_PrintToD
 	db "at night@"
 
 .unknown
-	db "at unknown time@"
+	db "at unkwn time@"
 
 TN_PrintLocation:
 	ld de, .unknown
