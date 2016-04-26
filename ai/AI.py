@@ -175,10 +175,10 @@ class AI(object):
 
                     #compute base stats
                     #stats in the JSON has each stat multiplier already multiplied, so we divide them to get the base stats
-                    fullStatNames = {'atk':'attack','def':'defense','satk':'spatk','sdef':'spdef','spd':'speed'} 
+                    fullStatNames = {'atk':'attack','def':'defense','satk':'spatk','sdef':'spdef','spd':'speed'}
                     for stat in self.statNames[:-2]: #don't use eva and acc
                         self.MonData[allmons]['stats'][stat] = int(
-                            self.jsonlist['battleState']['enemypokemon']['stats'][fullStatNames[stat]] / 
+                            self.jsonlist['battleState']['enemypokemon']['stats'][fullStatNames[stat]] /
                             (self._statsmultipliers[self.jsonlist['battleState']['enemypokemon']['stat levels'][stat]+6]/100) )
 
                     self.MonData[allmons]['status'] = self.jsonlist['battleState']['enemypokemon']['status'].lower()
@@ -220,7 +220,7 @@ class AI(object):
             fullStatNames = {'atk':'attack','def':'defense','satk':'spatk','sdef':'spdef','spd':'speed'}
             for stat in self.statNames[:-2]: #don't use eva and acc
                 self.MonData[0]['stats'][stat] = int(
-                    self.jsonlist['battleState']['enemypokemon']['stats'][fullStatNames[stat]] / 
+                    self.jsonlist['battleState']['enemypokemon']['stats'][fullStatNames[stat]] /
                     (self._statsmultipliers[self.jsonlist['battleState']['enemypokemon']['stat levels'][stat]+6]/100) )
 
             self.MonData[0]['status'] = self.jsonlist['battleState']['enemypokemon']['status'].lower()
@@ -361,7 +361,7 @@ class AI(object):
             #override bp code
             basebp = 70
             tempx = 4 * (self.jsonlist['battleState'][temptext2]['dvs']['atk'] % 4) + (self.jsonlist['battleState'][temptext2]['dvs']['def'] % 4)
-            move_used['type'] = self._HPTypes[tempx]      
+            move_used['type'] = self._HPTypes[tempx]
 
         #stab
         if self.MonData[attacker]['type'][1].lower() == move_used['type'].lower():
@@ -445,7 +445,7 @@ class AI(object):
         elif move_used['name'] == 'superfang':
             damage = self.MonData[defender]['stats']['curhp'] / 2
 
-        #Special cases        
+        #Special cases
         elif move_used_effect == 'falseswipe':
             if damage > self.MonData[defender]['stats']['curhp']:
                 damage = self.MonData[defender]['stats']['curhp'] - 1
@@ -574,7 +574,7 @@ class AI(object):
         critmodifier = 0
         pumped = (('pumped' in self.MonData[temptext2]['substatus'] or (isinstance(self.MonData[temptext2]['substatus'], dict) and 'pumped' in self.MonData[temptext2]['substatus'].values())) or ((self.MonData['focusenergyused'] == True) and (attacker < 6)))
         if self.MonData[attacker]['item'] == 'scopelens':
-            critmodifier = 1 
+            critmodifier = 1
         elif self.MonData[attacker]['item'] == 'luckypunch' and self.MonData[attacker]['species'] == 'chansey':
             critmodifier = 2
         elif self.MonData[attacker]['item'] == 'stick' and self.MonData[attacker]['species'] == "farfetch'd":
@@ -696,7 +696,7 @@ class AI(object):
 
                     #rage
                     elif self.MonData[mycurrent]['moves'][moveused]['effect'] == 'rage':
-                        self.MonData[mycurrent]['boosts']['atk'] = self.MonData[mycurrent]['boosts']['atk'] + 1 
+                        self.MonData[mycurrent]['boosts']['atk'] = self.MonData[mycurrent]['boosts']['atk'] + 1
 
                     #Counter coat (otherwise known as a move that has way too much code and probably be never used anyways and cause far too many headaches)
                     elif (self.MonData[mycurrent]['moves'][moveused]['effect'] == 'counter' or self.MonData[mycurrent]['moves'][moveused]['effect'] == 'mirrorcoat'):
@@ -1040,7 +1040,7 @@ class AI(object):
         if self.MonData['trainperishsong'] == 1:
             self.MonData[traincurrent]['stats']['curhp'] = 0
 
-        if self.MonData['myperishsong'] > 0:  
+        if self.MonData['myperishsong'] > 0:
             self.MonData['myperishsong'] = self.MonData['myperishsong'] - 1
         if self.MonData['trainperishsong'] > 0:
             self.MonData['trainperishsong'] = self.MonData['trainperishsong'] - 1
@@ -1755,7 +1755,7 @@ class AI(object):
                 tempx = -1
                 for tempmove in range(0, len(self.jsonlist['battleState']['enemypokemon']['moves'])):
                     if self.MonData[mycurrent]['moves'][tempmove]['effect'] == ('batonpass'):
-                        tempx = tempmove    
+                        tempx = tempmove
                 if tempx != -1 :
                     potentialAction = self.OptionalSwitch(traincurrent)
                     if potentialAction != 20:
@@ -1804,7 +1804,7 @@ class AI(object):
             if 'charged' in self.MonData['playerpokemon']['substatus'] or (isinstance(self.MonData['playerpokemon']['substatus'], dict) and 'charged' in self.MonData['playerpokemon']['substatus'].values()):
                 return tempx
 
-        #if we chose to use either counter/mirrorcoat, and the mon has BOTH counter and mirrorcoat, 
+        #if we chose to use either counter/mirrorcoat, and the mon has BOTH counter and mirrorcoat,
         #randomize the move used based on the effective damage of both
         if self.theaction < 4:
             x2 = -1
@@ -1987,7 +1987,7 @@ class AI(object):
                 if self.Damage[traincurrent][mycurrent][self.enemynumber]['damage'] * 1.25 > self.jsonlist['battleState']['enemypokemon']['hp']:
                     if self.jsonlist['battleState']['enemypokemon']['hp'] < self.jsonlist['battleState']['enemypokemon']['stats']['maxhp'] * 0.33:
                         self.ShouldISwitch = False
-                if int(self.jsonlist['battleState']['playerpokemon']['turns']) > 0: 
+                if int(self.jsonlist['battleState']['playerpokemon']['turns']) > 0:
                     if 'toxic' not in self.MonData['enemypokemon']['substatus']:
                         self.ShouldISwitch = False
                 if self.ShouldISwitch:
@@ -2039,7 +2039,7 @@ class AI(object):
                 self.theaction = random.randint(0, (len(self.jsonlist['battleState']['enemypokemon']['moves'])))
                 if tempy == len(self.MonData[mycurrent]['moves']):
                     break
-                if x1 > 20: 
+                if x1 > 20:
                     print('key error x20, ending infinite loop')
                     self.theaction = 0
                     break
