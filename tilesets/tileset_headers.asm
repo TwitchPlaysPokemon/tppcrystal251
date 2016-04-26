@@ -350,5 +350,13 @@ Tileset43: ; Powerplant Caves
 	dw $0000
 	dw Tileset43PalMap
 
+Tileset44: ; Mt Silver Ruins
+	dbw BANK(Tileset44GFX), Tileset44GFX
+	dbw BANK(Tileset44Meta), Tileset44Meta
+	dbw BANK(Tileset44Coll), Tileset44Coll
+	dw Tileset26Anim
+	dw $0000
+	dw Tileset44PalMap
+
 ; 0x4d7c1
 

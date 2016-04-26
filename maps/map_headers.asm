@@ -522,7 +522,7 @@ MapGroup28:
 	map_header TohjoFallsBackRoom, $18, 4, TOHJO_FALLS, MUSIC_UNION_CAVE, 1, 2, 3
 	map_header CeladonDeptStoreB1F, $c, 3, CELADON_CITY, MUSIC_MART, 0, 1, 1
 	map_header SilverCaveDreamRoom, $18, 3, SILVER_CAVE, MUSIC_NONE, 1, 1, 3
-	map_header MtSilverRuins, $1a, 3, SILVER_CAVE, MUSIC_DRAGONS_DEN, 1, 1, 16
+	map_header MtSilverRuins, 44, 3, SILVER_CAVE, MUSIC_DRAGONS_DEN, 1, 1, 16
 	map_header MtSilverRuinsB1, 24, 3, SILVER_CAVE, MUSIC_DRAGONS_DEN, 1, 2, 16
 	map_header BillsGarden, 3, 2, ROUTE_25, MUSIC_ROUTE_2, 0, 0, 14
 	map_header DummyBlankMap, $c, 0, 0, MUSIC_NONE, 1, 4, 1

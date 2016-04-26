@@ -39,3 +39,6 @@ Tileset43Meta:
 INCBIN "tilesets/43_metatiles.bin"
 Tileset43Coll:
 INCBIN "tilesets/43_collision.bin"
+
+Tileset44Meta:
+INCBIN "tilesets/44_metatiles.bin"
