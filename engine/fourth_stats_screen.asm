@@ -37,7 +37,7 @@ TN_PrintToD
 	db "at night@"
 
 .unknown
-	db "at unkn time@"
+	db "at unknown time@"
 
 TN_PrintLocation:
 	ld de, .unknown
@@ -98,7 +98,7 @@ TN_PrintLV:
 	db "Hatched from EGG@"
 
 .str_unknown
-	db "Met in a trade@"
+	db "Given in a trade@"
 
 .str_max
 	db "Met at ", $6e, "63@"
