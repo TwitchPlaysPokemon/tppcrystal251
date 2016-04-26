@@ -571,6 +571,7 @@ GoldenrodGymGuyWinText: ; 0x546a7
 	done
 	
 WhitneyPostgameRematchScript:
+	loadfont
     writetext WhitneyPostgameRematchText
     yesorno
     iffalse .return
