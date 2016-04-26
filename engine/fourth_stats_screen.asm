@@ -9,13 +9,12 @@ TN_PrintToD
 	hlcoord 1, 9
 	call PlaceString
 	ld a, [TempMonCaughtTime]
-	ld l, 0
-	sla a
-	rl l
-	sla a
-	rl l
-	ld a, 2
-	cp l
+	and $c0
+	ld de, .unknown
+	jr z, .print
+	rlca
+	rlca
+	cp 1
 	ld de, .morn
 	jr c, .print
 	ld de, .day
@@ -36,6 +35,9 @@ TN_PrintToD
 
 .nite
 	db "at night@"
+
+.unknown
+	db "at unkn time@"
 
 TN_PrintLocation:
 	ld de, .unknown
