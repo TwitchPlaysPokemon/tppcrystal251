@@ -38,9 +38,17 @@ GyaradosIcon:     INCBIN "gfx/icon/gyarados.2bpp" ; 0x8fd0d
 SlowpokeIcon:     INCBIN "gfx/icon/slowpoke.2bpp" ; 0x8fd8d
 SudowoodoIcon:    INCBIN "gfx/icon/sudowoodo.2bpp" ; 0x8fe0d
 BigmonIcon:       INCBIN "gfx/icon/bigmon.2bpp" ; 0x8fe8d
-EeveeIcon:        INCBIN "gfx/icon/eevee.2bpp" ; 0x8fe8d
-VaporeonIcon:     INCBIN "gfx/icon/vaporeon.2bpp" ; 0x8fe8d
-JolteonIcon:      INCBIN "gfx/icon/jolteon.2bpp" ; 0x8fe8d
-FlareonIcon:      INCBIN "gfx/icon/flareon.2bpp" ; 0x8fe8d
-EspeonIcon:       INCBIN "gfx/icon/espeon.2bpp" ; 0x8fe8d
-UmbreonIcon:      INCBIN "gfx/icon/umbreon.2bpp" ; 0x8fe8d
+EeveeIcon:        INCBIN "gfx/icon/eevee.2bpp"
+VaporeonIcon:     INCBIN "gfx/icon/vaporeon.2bpp"
+JolteonIcon:      INCBIN "gfx/icon/jolteon.2bpp"
+FlareonIcon:      INCBIN "gfx/icon/flareon.2bpp"
+EspeonIcon:       INCBIN "gfx/icon/espeon.2bpp"
+UmbreonIcon:      INCBIN "gfx/icon/umbreon.2bpp"
+IvysaurIcon:      INCBIN "gfx/icon/ivysaur.2bpp"
+VenusaurIcon:     INCBIN "gfx/icon/venusaur.2bpp"
+CharmeleonIcon:   INCBIN "gfx/icon/charmeleon.2bpp"
+CharizardIcon:    INCBIN "gfx/icon/charizard.2bpp"
+WartortleIcon:    INCBIN "gfx/icon/wartortle.2bpp"
+BlastoiseIcon:    INCBIN "gfx/icon/blastoise.2bpp"
+GastlyIcon:       INCBIN "gfx/icon/gastly.2bpp"
+HaunterIcon:      INCBIN "gfx/icon/haunter.2bpp"

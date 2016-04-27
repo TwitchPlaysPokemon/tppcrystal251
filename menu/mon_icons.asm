@@ -15,14 +15,14 @@ ReadMonMenuIcon: ; 8eab3
 
 MonMenuIcons: ; 8eac4
 	db ICON_BULBASAUR    ; BULBASAUR
-	db ICON_BULBASAUR    ; IVYSAUR
-	db ICON_BULBASAUR    ; VENUSAUR
+	db ICON_IVYSAUR      ; IVYSAUR
+	db ICON_VENUSAUR     ; VENUSAUR
 	db ICON_CHARMANDER   ; CHARMANDER
-	db ICON_CHARMANDER   ; CHARMELEON
-	db ICON_BIGMON       ; CHARIZARD
+	db ICON_CHARMELEON   ; CHARMELEON
+	db ICON_CHARIZARD    ; CHARIZARD
 	db ICON_SQUIRTLE     ; SQUIRTLE
-	db ICON_SQUIRTLE     ; WARTORTLE
-	db ICON_SQUIRTLE     ; BLASTOISE
+	db ICON_WARTORTLE    ; WARTORTLE
+	db ICON_BLASTOISE    ; BLASTOISE
 	db ICON_CATERPILLAR  ; CATERPIE
 	db ICON_CATERPILLAR  ; METAPOD
 	db ICON_MOTH         ; BUTTERFREE
@@ -105,8 +105,8 @@ MonMenuIcons: ; 8eac4
 	db ICON_BLOB         ; MUK
 	db ICON_SHELL        ; SHELLDER
 	db ICON_SHELL        ; CLOYSTER
-	db ICON_GHOST        ; GASTLY
-	db ICON_GHOST        ; HAUNTER
+	db ICON_GASTLY       ; GASTLY
+	db ICON_HAUNTER        ; HAUNTER
 	db ICON_GHOST        ; GENGAR
 	db ICON_SERPENT      ; ONIX
 	db ICON_HUMANSHAPE   ; DROWZEE
@@ -312,3 +312,11 @@ IconPointers:
 	dw FlareonIcon
 	dw EspeonIcon
 	dw UmbreonIcon
+	dw IvysaurIcon
+	dw VenusaurIcon
+	dw CharmeleonIcon
+	dw CharizardIcon
+	dw WartortleIcon
+	dw BlastoiseIcon
+	dw GastlyIcon
+	dw HaunterIcon
