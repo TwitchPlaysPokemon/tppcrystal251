@@ -62,7 +62,7 @@ SSAnne8GentlemanScript:
 	jumptextfaceplayer _SSAnne8Text11
 
 SSAnne8RareCandy:
-	db TM_ROCK_SMASH, 1
+	db RARE_CANDY, 1
 
 _SSAnne8Text8:
 	text "WIGGLYTUFF: Puup"
