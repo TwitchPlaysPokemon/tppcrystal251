@@ -5,6 +5,10 @@ GoldenrodBoutique_MapScriptHeader:
 	; callback count
 	db 0
 
+SetPlayerPal:
+	ld a, [ScriptVar]
+	ld [wd45b], a
+	
 BoutiqueCooltrainerMScript:
 	jumptextfaceplayer BoutiqueCooltrainerMText
 
@@ -72,8 +76,8 @@ BoutiqueStylistScriptMadeSelection:
 	pause 03
 	spriteface $0, RIGHT
 	pause 03
-	ld a, 1
-	ld [PlayerPalette], a	
+	writebyte $03
+	callasm SetPlayerPal
 	spriteface $0, DOWN
 	pause 03
 	spriteface $0, LEFT
