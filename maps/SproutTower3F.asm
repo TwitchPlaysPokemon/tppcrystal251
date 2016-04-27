@@ -75,7 +75,7 @@ SageLiScript: ; 0x1849a6
 	loadfont
 	writetext UnknownText_0x184cc2
 	buttonsound
-	verbosegiveitem HM_FLASH, 1
+	verbosegiveitem HM_FLY, 1
 	setevent EVENT_GOT_HM05_FLASH
 	setevent EVENT_BEAT_SAGE_LI
 	checkevent EVENT_GOT_TOGEPI_EGG_FROM_ELMS_AIDE
@@ -308,15 +308,15 @@ UnknownText_0x184cc2: ; 0x184cc2
 	para "no problem using"
 	line "this move."
 
-	para "Take this FLASH"
+	para "Take this FLY"
 	line "HM."
 	done
 ; 0x184d13
 
 UnknownText_0x184d13: ; 0x184d13
-	text "FLASH illuminates"
-	line "even the darkest"
-	cont "of all places."
+	text "FLY can carry you"
+	line "to any town you"
+	cont "have visted."
 
 	para "But to use it out"
 	line "of battle, you"

@@ -8568,16 +8568,22 @@ BattleCommand1e:
 	ld a, [EnemyMonLevel]
 .ok
 
-	add a
-	add a
-	add [hl]
+	ld c, a
+	ld b, 0
+	ld hl, 0
+	add hl, bc
+	add hl, hl
+	add hl, bc
+	ld c, l
+	ld b, h
 	ld hl, wPayDayMoney + 2
+	ld a, c
 	add [hl]
 	ld [hld], a
+	ld a, b
+	adc [hl]
+	ld [hld], a
 	jr nc, .done
-	inc [hl]
-	dec hl
-	jr nz, .done
 	inc [hl]
 .done
 	ld hl, CoinsScatteredText
