@@ -84,7 +84,9 @@ PokefanFScript_0x1a0084: ; 0x1a0084
 	loadfont
 	checkevent EVENT_GOT_HM02_FLY
 	iftrue UnknownScript_0x1a00ad
-	writetext UnknownText_0x1a00f1
+	checkitem HM_FLY
+	iftrue FlashBranch1
+	writetext FlashText1
 	buttonsound
 	checkevent EVENT_BEAT_CHUCK
 	iftrue UnknownScript_0x1a009c
@@ -92,12 +94,11 @@ PokefanFScript_0x1a0084: ; 0x1a0084
 	waitbutton
 	closetext
 	end
-; 0x1a009c
 
 UnknownScript_0x1a009c: ; 0x1a009c
 	writetext UnknownText_0x1a01e3
 	buttonsound
-	verbosegiveitem HM_FLASH, 1
+	verbosegiveitem HM_FLY, 1
 	iffalse UnknownScript_0x1a00b1
 	setevent EVENT_GOT_HM02_FLY
 	writetext UnknownText_0x1a021d
@@ -109,22 +110,27 @@ UnknownScript_0x1a00b1: ; 0x1a00b1
 	closetext
 	end
 ; 0x1a00b3
-CianwoodRockSmashManiac:
-	faceplayer
-	loadfont
-	checkevent EVENT_GOT_TM08_ROCK_SMASH
-	iftrue .after_smash
-	writetext RockSmashManiacBeforeText
+
+FlashBranch1:
+	writetext UnknownText_0x1a00f1
 	buttonsound
-	verbosegiveitem TM_ROCK_SMASH, 1
-	iffalse .cancel
-	setevent EVENT_GOT_TM08_ROCK_SMASH
-.after_smash
-	writetext RockSmashManiacAfterText
+	checkevent EVENT_BEAT_CHUCK
+	iftrue FlashBranch2
+	writetext FlashText2
 	waitbutton
-.cancel
 	closetext
 	end
+
+FlashBranch2: ; 0x1a009c
+	writetext UnknownText_0x1a01e3
+	buttonsound
+	verbosegiveitem HM_FLASH, 1
+	iffalse UnknownScript_0x1a00b1
+	setevent EVENT_GOT_HM02_FLY
+	writetext FlashText3
+	buttonsound
+	jump UnknownScript_0x1a00ad ; 0x1a00ad
+
 
 StandingYoungsterScript_0x1a00b3: ; 0x1a00b3
 	jumptextfaceplayer UnknownText_0x1a02df
@@ -217,55 +223,6 @@ MovementData_0x1a00ec: ; 0x1a00ec
 	step_end
 ; 0x1a00f1
 
-RockSmashManiacBeforeText:
-	text "Woohoo!"
-
-	para "I hear people call"
-	line "me the ROCK SMASH"
-
-	para "guy, but I find"
-	line "that sort of de-"
-	cont "grading."
-
-	para "I think I deserve"
-	line "a bit more res-"
-	cont "pect, like maybe"
-
-	para "the ROCK SMASH"
-	line "DUDE."
-
-	para "Woohoo!"
-
-	para "Anyways, your"
-	line "#MON look"
-	cont "pretty strong."
-
-	para "I like that!"
-	line "Here, take this"
-	cont "TM!"
-	done
-
-RockSmashManiacAfterText:
-	text "That TM contains"
-	line "ROCK SMASH."
-
-	para "If you come across"
-	line "large boulders"
-
-	para "that block your"
-	line "path<...>"
-
-	para "Well, use that TM"
-	line "move and smash"
-
-	para "them right out of"
-	line "your way!"
-
-	para "Yes, sir! Smash"
-	line "rocks aside, I"
-	cont "say! Woohoo!"
-	done
-
 UnknownText_0x1a00f1: ; 0x1a00f1
 	text "You crossed the"
 	line "sea to get here?"
@@ -279,11 +236,38 @@ UnknownText_0x1a00f1: ; 0x1a00f1
 	para "#MON knew how"
 	line "to FLY<...>"
 	done
+
+FlashText1: ; 0x1a00f1
+	text "You crossed the"
+	line "sea to get here?"
+
+	para "Have you seen"
+	line "DARK CAVE?"
+
+	para "It would be much"
+	line "easier to explore"
+
+	para "if your #MON"
+	line "knew FLASH<...>"
+	done
 ; 0x1a0163
 
 UnknownText_0x1a0163: ; 0x1a0163
 	text "But you can't use"
 	line "FLY without this"
+	cont "city's GYM BADGE."
+
+	para "If you beat the"
+	line "GYM LEADER here,"
+	cont "come see me."
+
+	para "I'll have a nice"
+	line "gift for you."
+	done
+
+FlashText2: ; 0x1a0163
+	text "But you can't use"
+	line "FLASH without this"
 	cont "city's GYM BADGE."
 
 	para "If you beat the"
@@ -313,6 +297,15 @@ UnknownText_0x1a021d: ; 0x1a021d
 
 	para "to anywhere you "
 	line "have visited."
+	done
+
+FlashText3: ; 0x1a021d
+	text "Teach FLASH to"
+	line "your #MON."
+
+	para "You will be able"
+	line "to see in dark"
+	cont "caves"
 	done
 ; 0x1a0277
 
@@ -512,7 +505,7 @@ CianwoodCity_MapEventHeader: ; 0x1a0772
 	signpost 29, 5, $7, MapCianwoodCitySignpostItem7
 
 	; people-events
-	db 13
+	db 12
 	person_event SPRITE_STANDING_YOUNGSTER, 41, 25, $3, 0, 0, -1, -1, 8 + PAL_OW_GREEN, 0, 0, StandingYoungsterScript_0x1a00b3, -1
 	person_event SPRITE_POKEFAN_M, 37, 21, $5, 0, 1, -1, -1, 0, 0, 0, PokefanMScript_0x1a00b6, -1
 	person_event SPRITE_LASS, 46, 18, $4, 2, 0, -1, -1, 0, 0, 0, LassScript_0x1a00b9, -1
@@ -525,6 +518,5 @@ CianwoodCity_MapEventHeader: ; 0x1a0772
 	person_event SPRITE_POKEFAN_F, 50, 14, $5, 0, 1, -1, -1, 0, 0, 0, PokefanFScript_0x1a0084, -1
 	person_event SPRITE_AZALEA_ROCKET, 25, 15, $7, 0, 0, -1, -1, 8 + PAL_OW_BLUE, 0, 0, ObjectEvent, EVENT_EUSINE_IN_CIANWOOD_CITY
 	person_event SPRITE_SUICUNE, 18, 14, $1, 0, 0, -1, -1, 8 + PAL_OW_BLUE, 0, 0, ObjectEvent, EVENT_SAW_SUICUNE_AT_CIANWOOD_CITY
-	person_event SPRITE_SCIENTIST, 37, 17, $3, 2, 2, -1, -1, 0, 0, 0, CianwoodRockSmashManiac, -1
 ; 0x1a0867
 

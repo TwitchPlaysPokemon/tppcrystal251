@@ -8573,6 +8573,7 @@ BattleCommand1e:
 	ld hl, 0
 	add hl, bc
 	add hl, hl
+	add hl, hl
 	add hl, bc
 	ld c, l
 	ld b, h
