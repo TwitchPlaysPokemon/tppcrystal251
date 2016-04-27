@@ -18,6 +18,9 @@ Version 1.1.2
 * Fix incorrect text pointer on SS Anne
 * Fix Azure/Rust standing in Cerulean City, waiting for the player, in full view of the player
 * Dummied out useless branching TM mart
+* Custom party menu icons
+* Raikou's overworld sprite is yellow now
+* Fix a bug where the stock AI would favor stat-lowering moves while the player has Mist up
 
 Version 1.1.1
 * Grammar fixes
