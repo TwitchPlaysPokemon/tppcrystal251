@@ -803,7 +803,7 @@ Route36_MapEventHeader: ; 0x194a66
 
 	; people-events
 	db 9
-	person_event SPRITE_YOUNGSTER, 17, 24, $9, 0, 0, -1, -1, 8 + PAL_OW_BLUE, 2, 3, TrainerPsychicMark, -1
+	person_event SPRITE_YOUNGSTER, 16, 24, $9, 0, 0, -1, -1, 8 + PAL_OW_BLUE, 2, 3, TrainerPsychicMark, -1
 	person_event SPRITE_YOUNGSTER, 18, 35, $8, 0, 0, -1, -1, 8 + PAL_OW_BLUE, 2, 5, TrainerSchoolboyAlan1, -1
 	person_event SPRITE_WEIRD_TREE, 13, 39, $17, 0, 0, -1, -1, 0, 0, 0, WeirdTreeScript_0x19403c, EVENT_SUDOWOODO_ON_ROUTE_36
 	person_event SPRITE_LASS, 12, 55, $5, 0, 2, -1, -1, 0, 0, 0, LassScript_0x1940e0, -1
