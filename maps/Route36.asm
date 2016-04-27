@@ -163,7 +163,7 @@ UnknownScript_0x1940b3:
 FisherScript_0x1940b9: ; 0x1940b9
 	faceplayer
 	loadfont
-	checkevent EVENT_GOT_TM08_ROCK_SMASH
+	checkevent EVENT_GOT_TM15_HYPER_BEAM
 	iftrue UnknownScript_0x1940da
 	checkevent EVENT_FOUGHT_SUDOWOODO
 	iftrue UnknownScript_0x1940cd
@@ -178,7 +178,7 @@ UnknownScript_0x1940cd: ; 0x1940cd
 	buttonsound
 	verbosegiveitem TM_HYPER_BEAM, 1
 	iffalse UnknownScript_0x1940de
-	setevent EVENT_GOT_TM08_ROCK_SMASH
+	setevent EVENT_GOT_TM15_HYPER_BEAM
 UnknownScript_0x1940da: ; 0x1940da
 	writetext UnknownText_0x19452c
 	waitbutton
