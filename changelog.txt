@@ -21,6 +21,8 @@ Version 1.1.2
 * Custom party menu icons
 * Raikou's overworld sprite is yellow now
 * Fix a bug where the stock AI would favor stat-lowering moves while the player has Mist up
+* Fix a bug where wild Moltres, Articuno, Zapdos, Mewtwo, and Mew are not forced to hold their respective items when encountered
+* Wild Meowth now has a 25% chance of holding an Amulet Coin
 
 Version 1.1.1
 * Grammar fixes

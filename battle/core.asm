@@ -6550,10 +6550,9 @@ LoadEnemyMon: ; 3e8eb
 ; Used for Ho-Oh, Lugia and Snorlax encounters
 	ld a, [BattleType]
 	cp BATTLETYPE_FORCEITEM
-	ld a, [BaseItems]
-	jr z, .UpdateItem
+	jr z, .ForceItem1
 	cp BATTLETYPE_KANTOLEGEND
-	jr z, .UpdateItem
+	jr z, .ForceItem1
 
 ; Failing that, it's all up to chance
 ;  Effective chances:
@@ -6570,10 +6569,12 @@ LoadEnemyMon: ; 3e8eb
 ; From there, an 8% chance for Item2
 	call BattleRandom
 	cp $14 ; 8% of 25% = 2% Item2
-	ld a, [BaseItems]
-	jr nc, .UpdateItem
-	ld a, [BaseItems+1]
+	jr nc, .ForceItem1
+	ld a, [BaseItems + 1]
+	jr .UpdateItem
 
+.ForceItem1:
+	ld a, [BaseItems]
 .UpdateItem
 	ld [EnemyMonItem], a ;put item on mon
 
