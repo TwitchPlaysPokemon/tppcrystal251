@@ -305,6 +305,9 @@ MapGoldenrodCitySignpost11Script: ; 0x198a5c
 	jumptext UnknownText_0x199022
 ; 0x198a5f
 
+MapGoldenrodCitySignpost12Script:
+  	jumptext BoutiqueSignText
+	
 ;MovementData_0x198a5f: ; 0x198a5f
 ;	step_right
 ;	step_right
@@ -626,12 +629,17 @@ UnknownText_0x1991cf: ; 0x1991cf
 	db $0, $57
 ; 0x1991d1
 
+BoutiqueSignText:
+	text "Stay fresh!"
+	line "GOLDENROD BOUTIQUE"
+	done
+	
 GoldenrodCity_MapEventHeader: ; 0x1991d1
 	; filler
 	db 0, 0
 
 	; warps
-	db 15
+	db 16
 	warp_def $7, $18, 1, GROUP_GOLDENROD_GYM, MAP_GOLDENROD_GYM
 	warp_def $1d, $1d, 1, GROUP_GOLDENROD_BIKE_SHOP, MAP_GOLDENROD_BIKE_SHOP
 	warp_def $15, $1f, 1, GROUP_GOLDENROD_HAPPINESS_RATER, MAP_GOLDENROD_HAPPINESS_RATER
@@ -647,12 +655,13 @@ GoldenrodCity_MapEventHeader: ; 0x1991d1
 	warp_def $5, $9, 8, GROUP_UNDERGROUND_PATH_SWITCH_ROOM_ENTRANCES, MAP_UNDERGROUND_PATH_SWITCH_ROOM_ENTRANCES
 	warp_def $1d, $9, 5, GROUP_UNDERGROUND_PATH_SWITCH_ROOM_ENTRANCES, MAP_UNDERGROUND_PATH_SWITCH_ROOM_ENTRANCES
 	warp_def $1b, $e, 1, GROUP_GOLDENROD_POKECENTER_1F, MAP_GOLDENROD_POKECENTER_1F
+	warp_def 15, 25, 1, GROUP_GOLDENROD_BOUTIQUE, MAP_GOLDENROD_BOUTIQUE
 
 	; xy triggers
 	db 0
 
 	; signposts
-	db 12
+	db 13
 	signpost 14, 10, $0, MapGoldenrodCitySignpost0Script
 	signpost 17, 4, $0, MapGoldenrodCitySignpost1Script
 	signpost 27, 26, $0, MapGoldenrodCitySignpost2Script
@@ -665,6 +674,7 @@ GoldenrodCity_MapEventHeader: ; 0x1991d1
 	signpost 30, 10, $0, MapGoldenrodCitySignpost9Script
 	signpost 27, 17, $1, MapGoldenrodCitySignpost10Script
 	signpost 6, 30, $0, MapGoldenrodCitySignpost11Script
+	signpost 15, 23, $0, MapGoldenrodCitySignpost12Script
 
 	; people-events
 	db 15
