@@ -413,6 +413,7 @@ MapGroup22:
 	map_header BattleTowerHallway, $16, 3, BATTLE_TOWER, MUSIC_BATTLE_TOWER_THEME, 1, 1, 1
 	map_header Route40BattleTowerGate, $8, 6, BATTLE_TOWER, MUSIC_ROUTE_36, 0, 1, 1
 	map_header BattleTowerOutside, $4, 2, BATTLE_TOWER, MUSIC_BATTLE_TOWER_THEME, 0, 0, 1
+	map_header CianwoodRockSmashSpeechHouse, $5, 3, CIANWOOD_CITY, MUSIC_ECRUTEAK_CITY, 0, 1, 1
 
 MapGroup23:
 	map_header Route2South, $3, 2, ROUTE_2, MUSIC_ROUTE_1, 0, 0, 1

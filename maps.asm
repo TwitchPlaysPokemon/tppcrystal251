@@ -260,7 +260,7 @@ INCLUDE "maps/BattleTowerElevator.asm"
 INCLUDE "maps/BattleTowerHallway.asm"
 INCLUDE "maps/Route40BattleTowerGate.asm"
 INCLUDE "maps/BattleTowerOutside.asm"
-
+INCLUDE "maps/CianwoodRockSmashSpeechHouse.asm"
 
 SECTION "Map Scripts 13", ROMX
 
