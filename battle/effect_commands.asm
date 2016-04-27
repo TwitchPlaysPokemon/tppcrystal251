@@ -4180,55 +4180,69 @@ BattleCommand3f:
 	ld hl, BattleMonLevel
 	ld a, [hBattleTurn]
 	and a
-	jr z, .asm_35731
+	jr z, .got_level
 	ld hl, EnemyMonLevel
 
-.asm_35731
+.got_level
 	ld a, BATTLE_VARS_MOVE_EFFECT
 	call GetBattleVar
 	cp EFFECT_LEVEL_DAMAGE
 	ld b, [hl]
 	ld a, 0
-	jr z, .asm_3578c
+	jr z, .load_damage
 
 	ld a, BATTLE_VARS_MOVE_EFFECT
 	call GetBattleVar
 	cp EFFECT_PSYWAVE
-	jr z, .asm_35758
+	jr z, .psywave
 
 	cp EFFECT_SUPER_FANG
-	jr z, .asm_3576b
+	jr z, .super_fang
 
 	cp EFFECT_REVERSAL
-	jr z, .asm_35792
+	jr z, .reversal
 
 	ld a, BATTLE_VARS_MOVE_POWER
 	call GetBattleVar
 	ld b, a
-	ld a, $0
-	jr .asm_3578c
+	ld a, 0
+	jr .load_damage
 
-.asm_35758
+.psywave
+	; ld a, b
+	; srl a
+	; add b
+	; ld b, a
+
+; If the Pokemon is at level 1, always do 1 HP damage.
+; This prevents a softlock here.
 	ld a, b
-	srl a
-	add b
-	ld b, a
-.asm_3575d
+	cp 2
+	jr nc, .sample_psywave
+	ld b, 1
+	ld a, 0
+	jr .load_damage
+; Get a random number between 0 and the level
+.sample_psywave
 	call BattleRandom
 	and a
-	jr z, .asm_3575d
+	jr z, .sample_psywave
 	cp b
-	jr nc, .asm_3575d
+	jr nc, .sample_psywave
+; Add 0.5 * level to get a number between (0.5 * level) and (1.5 * level)
+	srl b
+	add b
 	ld b, a
-	ld a, $0
-	jr .asm_3578c
-.asm_3576b
+	ld a, 0
+	jr .load_damage
+
+.super_fang
 	ld hl, EnemyMonHP
 	ld a, [hBattleTurn]
 	and a
-	jr z, .asm_35776
+	jr z, .got_hp
 	ld hl, BattleMonHP
-.asm_35776
+.got_hp
 	ld a, [hli]
 	srl a
 	ld b, a
@@ -4238,24 +4252,25 @@ BattleCommand3f:
 	ld a, b
 	pop bc
 	and a
-	jr nz, .asm_3578c
+	jr nz, .load_damage
 	or b
-	ld a, $0
-	jr nz, .asm_3578c
-	ld b, $1
-	jr .asm_3578c
-.asm_3578c
+	ld a, 0
+	jr nz, .load_damage
+	ld b, 1
+	; jr .load_damage ; Redundant
+.load_damage
 	ld hl, CurDamage
 	ld [hli], a
 	ld [hl], b
 	ret
-.asm_35792
+
+.reversal
 	ld hl, BattleMonHP
 	ld a, [hBattleTurn]
 	and a
-	jr z, .asm_3579d
+	jr z, .got_hp2
 	ld hl, EnemyMonHP
-.asm_3579d
+.got_hp2
 	xor a
 	ld [$ffb3], a
 	ld [$ffb4], a
