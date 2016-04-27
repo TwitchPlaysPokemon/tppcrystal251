@@ -23,7 +23,7 @@ mkdir $tmpdir/$vbatarget/lua
 rm -f $filesdir/*
 
 # Build the IPS files
-make patches
+make -j16 patches
 
 # Copy the standalone patch to the webpage files directory
 cp pokecrystal11.ips $filesdir/annicrystal_$version.ips
