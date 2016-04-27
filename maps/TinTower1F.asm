@@ -592,7 +592,7 @@ TinTower1F_MapEventHeader: ; 0x18598c
 	; people-events
 	db 10
 	person_event SPRITE_SUICUNE, 13, 13, $1, 0, 0, -1, -1, 8 + PAL_OW_BLUE, 0, 0, ObjectEvent, EVENT_SUICUNE_IN_TIN_TOWER_1F
-	person_event SPRITE_RAIKOU, 13, 11, $1, 0, 0, -1, -1, 8 + PAL_OW_BROWN, 0, 0, ObjectEvent, EVENT_RAIKOU_IN_TIN_TOWER_1F
+	person_event SPRITE_RAIKOU, 13, 11, $1, 0, 0, -1, -1, 8 + PAL_OW_YELLOW, 0, 0, ObjectEvent, EVENT_RAIKOU_IN_TIN_TOWER_1F
 	person_event SPRITE_ENTEI, 13, 16, $1, 0, 0, -1, -1, 8 + PAL_OW_RED, 0, 0, ObjectEvent, EVENT_ENTEI_IN_TIN_TOWER_1F
 	person_event SPRITE_SUPER_NERD, 7, 12, $3, 0, 0, -1, -1, 8 + PAL_OW_BLUE, 0, 0, SuperNerdScript_0x1851c8, EVENT_EUSINE_IN_TIN_TOWER_1F
 	person_event SPRITE_SAGE, 13, 9, $3, 0, 0, -1, -1, 0, 0, 0, SageScript_0x185173, EVENT_WISE_TRIO_IN_TIN_TOWER_1F

@@ -94485,3 +94485,5 @@ FaintingCry:
 
 SECTION "Move Relearner", ROMX
 INCLUDE "event/move_relearner.asm"
+
+INCLUDE "menu/minipics.asm"
