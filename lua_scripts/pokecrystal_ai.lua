@@ -72,10 +72,14 @@ function transferStateToAIAndWait(raw_json)
 end
 
 function GetCommandTables()
-	mil_ai_request = AND(memory.readbyte(rLSB), 0x02)
+	LSB = memory.readbyte(rLSB)
+	mil_ai_request = AND(LSB, 0x02)
 	airesponse = "move1"
 	if mil_ai_request ~= 0 then
-		battlestate = readBattlestate(memory.readbyte(rLSB))
+		battlestate = readBattlestate(LSB)
+		if AND(LSB, 0x04) ~= 0 then
+			vba.print("Warning: The last move by the AI was not valid!")
+		end
 		if debug_mode == 1 then
 			vba.print("[DEBUG] STATUS: ", string.format("%02x", memory.readbyte(rLSB)))
 			vba.print("[DEBUG] BATTLESTATE:", battlestate)

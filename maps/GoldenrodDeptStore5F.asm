@@ -31,13 +31,13 @@ ClerkScript_0x5609c: ; 0x5609c
 	end
 	;checkevent EVENT_GOT_TM02_HEADBUTT
 	;iftrue UnknownScript_0x560ad
-	;checkevent EVENT_GOT_TM08_ROCK_SMASH
+	;checkevent EVENT_GOT_TM15_HYPER_BEAM
 	;iftrue UnknownScript_0x560c2
 	;jump UnknownScript_0x560b6
 ; 0x560ad
 
 UnknownScript_0x560ad: ; 0x560ad
-	;checkevent EVENT_GOT_TM08_ROCK_SMASH
+	;checkevent EVENT_GOT_TM15_HYPER_BEAM
 	;iftrue UnknownScript_0x560c8
 	;jump UnknownScript_0x560bc
 ; 0x560b6

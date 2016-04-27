@@ -13,7 +13,7 @@
 
 .metric
 	db   "It naturally spits"
-	next "an 600-degree"
+	next "a 600-degree"
 	next "flame. It is said"
 	page "when many appear,"
 	next "it heralds a"

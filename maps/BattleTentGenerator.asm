@@ -28,12 +28,16 @@ MapBattleTentGeneratorSwitchScript1:
 	yesorno
 	iffalse MapBattleTentGeneratorSwitchScript7
 	playsound SFX_PUSH_BUTTON
-	pause 15
-	playsound SFX_ENTER_DOOR
+	waitsfx
+	closetext
 	changeblock $a, $b, $7
 	changeblock $a, $c, $7
-	setevent EVENT_TURNED_ON_BATTLE_TENT_GENERATOR
+	loadvar TimeOfDayPal, 1
+	special Function1047eb
+	playsound SFX_ENTER_DOOR
+	loadfont
 	writetext MapBattleTentGeneratorSwitchText2
+	setevent EVENT_TURNED_ON_BATTLE_TENT_GENERATOR
 MapBattleTentGeneratorSwitchScript2:
 	waitbutton
 MapBattleTentGeneratorSwitchScript7:

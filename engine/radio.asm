@@ -815,6 +815,20 @@ Functionb8a6c: ; b8a6c (2e:4a6c)
 	inc hl
 	inc hl
 	inc hl
+	call GetFarByte
+	cp $2f
+	jr nz, .load
+	inc hl
+	ld a, [Options2]
+	bit 3, a
+	jr nz, .imperial
+	ld a, d
+	call GetFarHalfword
+	jr .load
+.imperial
+	inc hl
+	inc hl
+.load
 	ld a, l
 	ld [wd26b], a
 	ld a, h
@@ -891,16 +905,16 @@ Functionb8af3: ; b8af3 (2e:4af3)
 
 Functionb8b11: ; b8b11 (2e:4b11)
 	ld d, a
-.asm_b8b12
+.loop
 	ld a, d
 	call GetFarByte2
 	cp $50
-	jr z, .asm_b8b23
+	jr z, .done
 	cp $4e
-	jr z, .asm_b8b23
+	jr z, .done
 	cp $5f
-	jr nz, .asm_b8b12
-.asm_b8b23
+	jr nz, .loop
+.done
 	ld a, l
 	ld [wd26b], a
 	ld a, h
@@ -2195,6 +2209,20 @@ WhosThatPkmn_7:
 	inc hl
 	inc hl
 	inc hl
+	call GetFarByte
+	cp $2f
+	jr nz, .load
+	inc hl
+	ld a, [Options2]
+	bit 3, a
+	jr nz, .imperial
+	ld a, d
+	call GetFarHalfword
+	jr .load
+.imperial
+	inc hl
+	inc hl
+.load
 	ld a, l
 	ld [wd26b], a
 	ld a, h

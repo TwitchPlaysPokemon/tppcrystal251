@@ -170,7 +170,7 @@ PokeCenterNurseScript:
 ;	closetext
 
 ;.pokerus_done
-	checkflag ENGINE_EARLY_GAME_KANTO
+	checkflag ENGINE_PHONE_CARD
 	iffalse .skip
 	setflag ENGINE_POKERUS
 	specialphonecall 1 ; elm calls about pokerus
@@ -933,6 +933,7 @@ InitializeEventsScript: ; 0xbc3db
 	setevent EVENT_OAKS_LAB_OAK
 	setevent EVENT_VIRIDIAN_CITY_RB_OLD_MAN_WALKING_ABOUT
 	setevent EVENT_CERULEAN_CITY_RB_NOT_YET_ROBBERY
+	setevent EVENT_BEAT_RIVAL_IN_EGK_CERULEAN
 	setevent EVENT_CERULEAN_RB_ROCKET_1
 	setevent EVENT_CERULEAN_RB_ROCKET_2
 	setevent EVENT_ROCKETS_NOT_YET_BOARDED_SS_ANNE
