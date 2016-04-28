@@ -6,9 +6,6 @@ GoldenrodBoutique_MapScriptHeader:
 	db 0
 
 SetPlayerPal:
-	ld a, [ScriptVar]
-	or $8
-	ld [wPlayerPalette], a
 	xor a
 	call GetMapObject
 	ld hl, $8
@@ -80,14 +77,9 @@ BoutiqueStylistScript:
 	loadmenudata MenuDataHeaderBoutique
 	interpretmenu2
 	writebackup
-	if_equal $1, BoutiqueStylistScriptMadeSelectionRed
-	if_equal $2, BoutiqueStylistScriptMadeSelectionBlue
-	if_equal $3, BoutiqueStylistScriptMadeSelectionGreen
-	if_equal $4, BoutiqueStylistScriptMadeSelectionBrown
-	if_equal $5, BoutiqueStylistScriptMadeSelectionYellow
-	end
-
-BoutiqueStylistScriptMadeSelectionRed:
+	iffalse BoutiqueStylistScriptNoStyle
+	addvar 7 ; to get a value between $8 and $c, as we want
+	copyvartobyte wPlayerPalette
 	closetext
 	pause 10
 	playsound SFX_FLASH ;change this
@@ -96,49 +88,6 @@ BoutiqueStylistScriptMadeSelectionRed:
 	spriteface $0, RIGHT
 	pause 03
 	writebyte $0
-	jump SetPlayerColor
-BoutiqueStylistScriptMadeSelectionBlue:
-	closetext
-	pause 10
-	playsound SFX_FLASH ;change this
-	spriteface $0, UP
-	pause 03
-	spriteface $0, RIGHT
-	pause 03
-	writebyte $01
-	jump SetPlayerColor
-BoutiqueStylistScriptMadeSelectionGreen:
-	closetext
-	pause 10
-	playsound SFX_FLASH ;change this
-	spriteface $0, UP
-	pause 03
-	spriteface $0, RIGHT
-	pause 03
-	writebyte $02
-	jump SetPlayerColor
-BoutiqueStylistScriptMadeSelectionBrown:
-	closetext
-	pause 10
-	playsound SFX_FLASH ;change this
-	spriteface $0, UP
-	pause 03
-	spriteface $0, RIGHT
-	pause 03
-	writebyte $03
-	jump SetPlayerColor
-BoutiqueStylistScriptMadeSelectionYellow:
-	closetext
-	pause 10
-	playsound SFX_FLASH ;change this
-	spriteface $0, UP
-	pause 03
-	spriteface $0, RIGHT
-	pause 03
-	writebyte $04
-	jump SetPlayerColor
-	
-SetPlayerColor:
 	callasm SetPlayerPal
 	spriteface $0, DOWN
 	pause 03

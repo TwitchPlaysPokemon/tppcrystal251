@@ -3291,6 +3291,7 @@ Function8029: ; 8029
 	and a ; NEW
 	jr z, .use_gender ; NEW
 	swap a ; NEW
+	ld e, a ; NEW
 	jr .asm_8059 ; NEW
 .use_gender ; NEW
 	ld a, [PlayerGender]
