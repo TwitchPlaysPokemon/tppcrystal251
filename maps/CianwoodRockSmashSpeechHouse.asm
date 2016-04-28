@@ -12,8 +12,11 @@ CianwoodRockSmashManiac:
 	iftrue .after_smash
 	writetext RockSmashManiacBeforeText
 	buttonsound
+	checkitem TM_ROCK_SMASH
+	iftrue .GotRockSmash
 	verbosegiveitem TM_ROCK_SMASH, 1
 	iffalse .cancel
+.after_got_smash
 	setevent EVENT_GOT_TM08_ROCK_SMASH
 .after_smash
 	writetext RockSmashManiacAfterText
@@ -21,6 +24,11 @@ CianwoodRockSmashManiac:
 .cancel
 	closetext
 	end
+
+.GotRockSmash
+	writetext GotRockSmashText
+	buttonsound
+	jump .after_got_smash
 
 RockSmashManiacBeforeText:
 	text "Woohoo!"
@@ -48,6 +56,13 @@ RockSmashManiacBeforeText:
 	para "I like that!"
 	line "Here, take this"
 	cont "TM!"
+	done
+
+GotRockSmashText:
+	text "Oh? You already"
+	line "have one?"
+
+	para "AWESOME!"
 	done
 
 RockSmashManiacAfterText:

@@ -173,8 +173,7 @@ Mart8: ; 16134
 ; 1613b
 
 Mart9: ; 1613b
-	db 5 ; # items
-	db TM_ROCK_SMASH
+	db 4 ; # items
 	db TM_SUNNY_DAY
 	db TM_THUNDER_WAVE
 	db TM_STRING_SHOT
