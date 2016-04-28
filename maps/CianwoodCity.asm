@@ -109,22 +109,6 @@ UnknownScript_0x1a00b1: ; 0x1a00b1
 	closetext
 	end
 ; 0x1a00b3
-CianwoodRockSmashManiac:
-	faceplayer
-	loadfont
-	checkevent EVENT_GOT_TM08_ROCK_SMASH
-	iftrue .after_smash
-	writetext RockSmashManiacBeforeText
-	buttonsound
-	verbosegiveitem TM_ROCK_SMASH, 1
-	iffalse .cancel
-	setevent EVENT_GOT_TM08_ROCK_SMASH
-.after_smash
-	writetext RockSmashManiacAfterText
-	waitbutton
-.cancel
-	closetext
-	end
 
 StandingYoungsterScript_0x1a00b3: ; 0x1a00b3
 	jumptextfaceplayer UnknownText_0x1a02df
@@ -216,55 +200,6 @@ MovementData_0x1a00ec: ; 0x1a00ec
 	step_down
 	step_end
 ; 0x1a00f1
-
-RockSmashManiacBeforeText:
-	text "Woohoo!"
-
-	para "I hear people call"
-	line "me the ROCK SMASH"
-
-	para "guy, but I find"
-	line "that sort of de-"
-	cont "grading."
-
-	para "I think I deserve"
-	line "a bit more res-"
-	cont "pect, like maybe"
-
-	para "the ROCK SMASH"
-	line "DUDE."
-
-	para "Woohoo!"
-
-	para "Anyways, your"
-	line "#MON look"
-	cont "pretty strong."
-
-	para "I like that!"
-	line "Here, take this"
-	cont "TM!"
-	done
-
-RockSmashManiacAfterText:
-	text "That TM contains"
-	line "ROCK SMASH."
-
-	para "If you come across"
-	line "large boulders"
-
-	para "that block your"
-	line "path<...>"
-
-	para "Well, use that TM"
-	line "move and smash"
-
-	para "them right out of"
-	line "your way!"
-
-	para "Yes, sir! Smash"
-	line "rocks aside, I"
-	cont "say! Woohoo!"
-	done
 
 UnknownText_0x1a00f1: ; 0x1a00f1
 	text "You crossed the"
@@ -487,7 +422,7 @@ CianwoodCity_MapEventHeader: ; 0x1a0772
 	db 0, 0
 
 	; warps
-	db 7
+	db 8
 	warp_def $29, $11, 1, GROUP_MANIAS_HOUSE, MAP_MANIAS_HOUSE
 	warp_def $2b, $8, 1, GROUP_CIANWOOD_GYM, MAP_CIANWOOD_GYM
 	warp_def $2b, $17, 1, GROUP_CIANWOOD_POKECENTER_1F, MAP_CIANWOOD_POKECENTER_1F
@@ -495,6 +430,7 @@ CianwoodCity_MapEventHeader: ; 0x1a0772
 	warp_def $1f, $9, 1, GROUP_CIANWOOD_CITY_PHOTO_STUDIO, MAP_CIANWOOD_CITY_PHOTO_STUDIO
 	warp_def $25, $f, 1, GROUP_CIANWOOD_LUGIA_SPEECH_HOUSE, MAP_CIANWOOD_LUGIA_SPEECH_HOUSE
 	warp_def $11, $5, 1, GROUP_POKE_SEERS_HOUSE, MAP_POKE_SEERS_HOUSE
+	warp_def $1f, $11, 1, GROUP_CIANWOOD_ROCK_SMASH_SPEECH_HOUSE, MAP_CIANWOOD_ROCK_SMASH_SPEECH_HOUSE
 
 	; xy triggers
 	db 1
@@ -512,7 +448,7 @@ CianwoodCity_MapEventHeader: ; 0x1a0772
 	signpost 29, 5, $7, MapCianwoodCitySignpostItem7
 
 	; people-events
-	db 13
+	db 12
 	person_event SPRITE_STANDING_YOUNGSTER, 41, 25, $3, 0, 0, -1, -1, 8 + PAL_OW_GREEN, 0, 0, StandingYoungsterScript_0x1a00b3, -1
 	person_event SPRITE_POKEFAN_M, 37, 21, $5, 0, 1, -1, -1, 0, 0, 0, PokefanMScript_0x1a00b6, -1
 	person_event SPRITE_LASS, 46, 18, $4, 2, 0, -1, -1, 0, 0, 0, LassScript_0x1a00b9, -1
@@ -525,6 +461,5 @@ CianwoodCity_MapEventHeader: ; 0x1a0772
 	person_event SPRITE_POKEFAN_F, 50, 14, $5, 0, 1, -1, -1, 0, 0, 0, PokefanFScript_0x1a0084, -1
 	person_event SPRITE_AZALEA_ROCKET, 25, 15, $7, 0, 0, -1, -1, 8 + PAL_OW_BLUE, 0, 0, ObjectEvent, EVENT_EUSINE_IN_CIANWOOD_CITY
 	person_event SPRITE_SUICUNE, 18, 14, $1, 0, 0, -1, -1, 8 + PAL_OW_BLUE, 0, 0, ObjectEvent, EVENT_SAW_SUICUNE_AT_CIANWOOD_CITY
-	person_event SPRITE_SCIENTIST, 37, 17, $3, 2, 2, -1, -1, 0, 0, 0, CianwoodRockSmashManiac, -1
 ; 0x1a0867
 

@@ -549,6 +549,7 @@
 	map_header_2 CianwoodPharmacy, CIANWOOD_PHARMACY, $0, NONE ; 0x96458
 	map_header_2 CianwoodCityPhotoStudio, CIANWOOD_CITY_PHOTO_STUDIO, $0, NONE ; 0x96464
 	map_header_2 CianwoodLugiaSpeechHouse, CIANWOOD_LUGIA_SPEECH_HOUSE, $0, NONE ; 0x96470
+	map_header_2 CianwoodRockSmashSpeechHouse, CIANWOOD_LUGIA_SPEECH_HOUSE, $0, NONE ; 0x96470
 	map_header_2 PokeSeersHouse, POKE_SEERS_HOUSE, $0, NONE ; 0x9647c
 	map_header_2 BattleTower1F, BATTLE_TOWER_1F, $0, NONE ; 0x96488
 	map_header_2 BattleTowerBattleRoom, BATTLE_TOWER_BATTLE_ROOM, $0, NONE ; 0x96494

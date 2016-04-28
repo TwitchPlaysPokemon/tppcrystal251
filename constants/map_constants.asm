@@ -380,6 +380,7 @@ MAP_N_A   EQU -1
 	mapgroup BATTLE_TOWER_HALLWAY, 2, 11
 	mapgroup ROUTE_40_BATTLE_TOWER_GATE, 4, 5
 	mapgroup BATTLE_TOWER_OUTSIDE, 14, 10
+	mapgroup CIANWOOD_ROCK_SMASH_SPEECH_HOUSE, 4, 4
 
 	newgroup ; Viridian City
 	mapgroup ROUTE_2_SOUTH, 18, 10
