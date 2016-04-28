@@ -21,6 +21,10 @@ UnknownScript_0x18821b: ; 0x18821b
 ; 0x18821e
 
 GymGuyScript_0x18821e: ; 0x18821e
+	checkunit
+	iftrue .imperial
+	jumptextfaceplayer UnknownText_0x1882ff_Metric
+.imperial
 	jumptextfaceplayer UnknownText_0x1882ff
 ; 0x188221
 
@@ -64,6 +68,20 @@ UnknownText_0x1882ff: ; 0x1882ff
 	line "JOHTO accessible."
 	done
 ; 0x188386
+
+UnknownText_0x1882ff_Metric:
+	text "The MAGNET TRAIN"
+	line "travels at over"
+
+	para "550 kph. It goes"
+	line "between KANTO and"
+
+	para "JOHTO in almost no"
+	line "time at all."
+
+	para "It really makes"
+	line "JOHTO accessible."
+	done
 
 CeruleanPokeCenter1F_MapEventHeader: ; 0x188386
 	; filler

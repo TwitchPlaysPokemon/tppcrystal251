@@ -38,6 +38,10 @@ Existing files that have completed sprout tower and recieved flash can get fly f
 * Geodude's level 6 move became bide, metronome becoming an egg move.
 * Drowsee's level 3 move became safeguard (along with a level 1 move on hypno), metronome becoming an egg move.
 * Grimer got a movelearn reshuffle: level 4 Acid, level 8 Lick, level 12 Mega Drain, level 15 Disable, level 18 Sludge, level 21 Mean Look
+* Fix glitches with the Bug Catching Contest
+* Fix bug where BILL's PC is referenced before helping Bill when sending a caught Pokemon to the PC
+* The game now tells you to which box your newly-caught Pokemon was sent
+
 
 Version 1.1.1
 * Grammar fixes
