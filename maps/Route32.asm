@@ -44,7 +44,7 @@ UnknownScript_0x190470: ; 0x190470
 	iftrue .GotSeed
 	checkflag ENGINE_ZEPHYRBADGE
 	iffalse .GetBadge
-	checkevent EVENT_GOT_HM05_FLASH
+	checkevent EVENT_GOT_HM02_FLY
 	iffalse .GetFlash
 	checkevent EVENT_GOT_TOGEPI_EGG_FROM_ELMS_AIDE
 	iftrue .GotEgg

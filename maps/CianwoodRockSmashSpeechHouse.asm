@@ -13,9 +13,13 @@ CianwoodRockSmashManiac:
 	writetext RockSmashManiacBeforeText
 	buttonsound
 	checkitem TM_ROCK_SMASH
-	iftrue .GotRockSmash
+	iftrue .AlreadyHaveRockSmash
 	verbosegiveitem TM_ROCK_SMASH, 1
-	iffalse .cancel
+	jump .after_got_smash
+
+.AlreadyHaveRockSmash
+	writetext GotRockSmashText
+	buttonsound
 .after_got_smash
 	setevent EVENT_GOT_TM08_ROCK_SMASH
 .after_smash
@@ -24,11 +28,6 @@ CianwoodRockSmashManiac:
 .cancel
 	closetext
 	end
-
-.GotRockSmash
-	writetext GotRockSmashText
-	buttonsound
-	jump .after_got_smash
 
 RockSmashManiacBeforeText:
 	text "Woohoo!"

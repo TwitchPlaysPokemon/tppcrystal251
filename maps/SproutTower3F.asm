@@ -63,7 +63,7 @@ UnknownScript_0x184947: ; 0x184947
 SageLiScript: ; 0x1849a6
 	faceplayer
 	loadfont
-	checkevent EVENT_GOT_HM05_FLASH
+	checkevent EVENT_GOT_HM02_FLY
 	iftrue UnknownScript_0x1849d1
 	writetext SageLiSeenText
 	waitbutton
@@ -76,7 +76,7 @@ SageLiScript: ; 0x1849a6
 	writetext UnknownText_0x184cc2
 	buttonsound
 	verbosegiveitem HM_FLY, 1
-	setevent EVENT_GOT_HM05_FLASH
+	setevent EVENT_GOT_HM02_FLY
 	setevent EVENT_BEAT_SAGE_LI
 	checkevent EVENT_GOT_TOGEPI_EGG_FROM_ELMS_AIDE
 	iffalse .skip_trigger

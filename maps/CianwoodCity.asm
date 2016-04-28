@@ -82,7 +82,7 @@ UnknownScript_0x1a0083: ; 0x1a0083
 PokefanFScript_0x1a0084: ; 0x1a0084
 	faceplayer
 	loadfont
-	checkevent EVENT_GOT_HM02_FLY
+	checkevent EVENT_GOT_HM05_FLASH
 	iftrue UnknownScript_0x1a00ad
 	checkitem HM_FLY
 	iftrue FlashBranch1
@@ -100,7 +100,7 @@ UnknownScript_0x1a009c: ; 0x1a009c
 	buttonsound
 	verbosegiveitem HM_FLY, 1
 	iffalse UnknownScript_0x1a00b1
-	setevent EVENT_GOT_HM02_FLY
+	setevent EVENT_GOT_HM05_FLASH
 	writetext UnknownText_0x1a021d
 	buttonsound
 UnknownScript_0x1a00ad: ; 0x1a00ad
@@ -126,7 +126,7 @@ FlashBranch2: ; 0x1a009c
 	buttonsound
 	verbosegiveitem HM_FLASH, 1
 	iffalse UnknownScript_0x1a00b1
-	setevent EVENT_GOT_HM02_FLY
+	setevent EVENT_GOT_HM05_FLASH
 	writetext FlashText3
 	buttonsound
 	jump UnknownScript_0x1a00ad ; 0x1a00ad
