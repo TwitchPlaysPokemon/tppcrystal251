@@ -82,9 +82,11 @@ UnknownScript_0x1a0083: ; 0x1a0083
 PokefanFScript_0x1a0084: ; 0x1a0084
 	faceplayer
 	loadfont
-	checkevent EVENT_GOT_HM02_FLY
+	checkevent EVENT_GOT_HM05_FLASH
 	iftrue UnknownScript_0x1a00ad
-	writetext UnknownText_0x1a00f1
+	checkitem HM_FLY
+	iftrue FlashBranch1
+	writetext FlashText1
 	buttonsound
 	checkevent EVENT_BEAT_CHUCK
 	iftrue UnknownScript_0x1a009c
@@ -92,14 +94,13 @@ PokefanFScript_0x1a0084: ; 0x1a0084
 	waitbutton
 	closetext
 	end
-; 0x1a009c
 
 UnknownScript_0x1a009c: ; 0x1a009c
 	writetext UnknownText_0x1a01e3
 	buttonsound
 	verbosegiveitem HM_FLY, 1
 	iffalse UnknownScript_0x1a00b1
-	setevent EVENT_GOT_HM02_FLY
+	setevent EVENT_GOT_HM05_FLASH
 	writetext UnknownText_0x1a021d
 	buttonsound
 UnknownScript_0x1a00ad: ; 0x1a00ad
@@ -109,6 +110,27 @@ UnknownScript_0x1a00b1: ; 0x1a00b1
 	closetext
 	end
 ; 0x1a00b3
+
+FlashBranch1:
+	writetext FlashText1
+	buttonsound
+	checkevent EVENT_BEAT_CHUCK
+	iftrue FlashBranch2
+	writetext FlashText2
+	waitbutton
+	closetext
+	end
+
+FlashBranch2: ; 0x1a009c
+	writetext UnknownText_0x1a01e3
+	buttonsound
+	verbosegiveitem HM_FLASH, 1
+	iffalse UnknownScript_0x1a00b1
+	setevent EVENT_GOT_HM05_FLASH
+	writetext FlashText3
+	buttonsound
+	jump UnknownScript_0x1a00ad ; 0x1a00ad
+
 
 StandingYoungsterScript_0x1a00b3: ; 0x1a00b3
 	jumptextfaceplayer UnknownText_0x1a02df
@@ -152,6 +174,7 @@ MapCianwoodCitySignpost2Script: ; 0x1a00ce
 
 RockScript_0x1a00d1: ; 0x1a00d1
 	jumpstd smashrock
+
 ; 0x1a00d4
 
 MapCianwoodCitySignpostItem6: ; 0x1a00d4
@@ -214,11 +237,35 @@ UnknownText_0x1a00f1: ; 0x1a00f1
 	para "#MON knew how"
 	line "to FLY<...>"
 	done
+
+FlashText1: ; 0x1a00f1
+	text "Have you seen"
+	line "DARK CAVE?"
+
+	para "It would be much"
+	line "easier to explore"
+
+	para "if your #MON"
+	line "knew FLASH<...>"
+	done
 ; 0x1a0163
 
 UnknownText_0x1a0163: ; 0x1a0163
 	text "But you can't use"
 	line "FLY without this"
+	cont "city's GYM BADGE."
+
+	para "If you beat the"
+	line "GYM LEADER here,"
+	cont "come see me."
+
+	para "I'll have a nice"
+	line "gift for you."
+	done
+
+FlashText2: ; 0x1a0163
+	text "But you can't use"
+	line "FLASH without this"
 	cont "city's GYM BADGE."
 
 	para "If you beat the"
@@ -248,6 +295,15 @@ UnknownText_0x1a021d: ; 0x1a021d
 
 	para "to anywhere you "
 	line "have visited."
+	done
+
+FlashText3: ; 0x1a021d
+	text "Teach FLASH to"
+	line "your #MON."
+
+	para "You will be able"
+	line "to see in dark"
+	cont "caves."
 	done
 ; 0x1a0277
 
@@ -415,6 +471,7 @@ UnknownText_0x1a0760: ; 0x1a0760
 	text "THE # SEER"
 	line "AHEAD"
 	done
+
 ; 0x1a0772
 
 CianwoodCity_MapEventHeader: ; 0x1a0772

@@ -5009,7 +5009,7 @@ Functionc8ac: ; c8ac
 Functionc8b5: ; c8b5
 ; Flash
 
-	ld de, ENGINE_ZEPHYRBADGE
+	ld de, ENGINE_STORMBADGE
 	callba CheckBadge
 	jr c, .asm_c8dd
 	push hl
@@ -5320,7 +5320,7 @@ Functionca3b: ; ca3b
 Functionca52: ; ca52
 ; Fly
 
-	ld de, ENGINE_STORMBADGE
+	ld de, ENGINE_ZEPHYRBADGE
 	call CheckBadge
 	jr c, .asm_ca85
 	call GetMapPermission

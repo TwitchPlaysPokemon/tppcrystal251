@@ -1,6 +1,5 @@
 	db BELLSPROUT ; 069
 
-
 	db 50, 75, 35, 40, 70, 30
 	;   hp  atk  def  spd  sat  sdf
 

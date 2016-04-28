@@ -173,8 +173,7 @@ Mart8: ; 16134
 ; 1613b
 
 Mart9: ; 1613b
-	db 5 ; # items
-	db TM_ROCK_SMASH
+	db 4 ; # items
 	db TM_SUNNY_DAY
 	db TM_THUNDER_WAVE
 	db TM_STRING_SHOT
@@ -571,15 +570,16 @@ DefaultMart: ; 16214
 ; 16218
 
 ViridianMartRB:
-	db 4
+	db 5
 	db POKE_BALL
 	db ANTIDOTE
 	db PARLYZ_HEAL
 	db BURN_HEAL
+	db REPEL
 	db $ff
 
 PewterMartRB:
-	db 7
+	db 9
 	db POKE_BALL
 	db POTION
 	db ESCAPE_ROPE
@@ -587,6 +587,8 @@ PewterMartRB:
 	db BURN_HEAL
 	db AWAKENING
 	db PARLYZ_HEAL
+	db REPEL
+	db X_SPEED
 	db $ff
 
 CeruleanMartRB: ; 2453 (0:2453)

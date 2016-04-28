@@ -230,7 +230,7 @@ PsyduckEggMoves:
 MankeyEggMoves:
 	db COUNTER
 	db SPITE
-	db ENCORE
+	db METRONOME
 	db IRON_TAIL
 	db DOUBLE_EDGE
 	db MUD_SLAP
@@ -259,7 +259,7 @@ PoliwagEggMoves:
 	db ENDURE
 	db COUNTER
 	db DEFENSE_CURL
-	db MIMIC
+	db METRONOME
 	db MUD_SLAP
 	db $ff
 
@@ -313,7 +313,6 @@ GeodudeEggMoves:
 	db COUNTER
 	db FLAIL
 	db ENDURE
-	db BIDE
 	db FISSURE
 	db MIMIC
 	db RAGE
@@ -321,6 +320,7 @@ GeodudeEggMoves:
 	db HEADBUTT
 	db ANCIENTPOWER
 	db IRON_HEAD
+	db METRONOME
 	db $ff
 
 PonytaEggMoves:
@@ -435,7 +435,7 @@ DrowzeeEggMoves:
 	db COUNTER
 	db REFLECT
 	db AMNESIA
-	db SAFEGUARD
+	db METRONOME
 	db BELLY_DRUM
 	db DOUBLE_EDGE
 	db BIDE
@@ -533,7 +533,7 @@ ChanseyEggMoves:
 	db DREAM_EATER
 	db IRON_TAIL
 	db MUD_SLAP
-	db 
+	db MIMIC
 	db $ff
 
 TangelaEggMoves:
@@ -978,13 +978,10 @@ TyrogueEggMoves:
 	db MUD_SLAP
 	db METRONOME
 	db POISON_JAB
-	db DIZZY_PUNCH
-	db AGILITY
 	db DOUBLE_EDGE
 	db BIDE
 	db MIMIC
 	db RAGE
-	db SUBMISSION
 	db $ff
 
 SmoochumEggMoves:

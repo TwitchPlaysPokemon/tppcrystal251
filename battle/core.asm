@@ -5171,15 +5171,22 @@ PrintPlayerHUD: ; 3dfbf
 	pop hl
 	dec hl
 
+	ld a, [BattleMonSpecies]
+	ld hl, BattleMonNick
+	call CheckNidoranNickname
+	jr c, .nogender
+	
 	ld a, $3
 	ld [MonType], a
 	callab GetGender
-	ld a, " "
-	jr c, .asm_3e013
+	jr c, .nogender
 	ld a, "♂"
 	jr nz, .asm_3e013
 	ld a, "♀"
-
+	jr .asm_3e013
+	
+.nogender
+	ld a, " "
 .asm_3e013
 	hlcoord 17, 8
 	ld [hl], a
@@ -5248,16 +5255,23 @@ DrawEnemyHUD: ; 3e043
 	inc de
 	ld a, [hl]
 	ld [de], a
-
+	
+	ld a, [EnemyMonSpecies]
+	ld hl, EnemyMonNick
+	call CheckNidoranNickname
+	jr c, .nogender
+	
 	ld a, $3
 	ld [MonType], a
 	callab GetGender
-	ld a, " "
-	jr c, .asm_3e09a
+	jr c, .nogender
 	ld a, "♂"
 	jr nz, .asm_3e09a
 	ld a, "♀"
+	jr .asm_3e09a
 
+.nogender
+	ld a, " "
 .asm_3e09a
 	hlcoord 9, 1
 	ld [hl], a
@@ -5345,6 +5359,41 @@ DrawEnemyHUD: ; 3e043
 	call DrawHPBar
 	ret
 ; 3e127
+
+CheckNidoranNickname:
+	ld de, .nidoran
+	cp NIDORAN_M
+	ld c, "♂"
+	jr z, .check
+	cp NIDORAN_F
+	ld c, "♀"
+	jr z, .check
+
+.notnidoran
+	xor a ; clear carry flag
+	ret
+	
+.nidoran
+	db "NIDORAN"
+	
+.check
+	ld b, 7
+.loop
+	ld a, [de]
+	cp [hl]
+	jr nz, .notnidoran
+	inc de
+	inc hl
+	dec b
+	jr nz, .loop
+	ld a, [hli] ; gender icon
+	cp c
+	jr nz, .notnidoran
+	ld a, [hli]
+	cp "@"
+	jr nz, .notnidoran
+	scf
+	ret
 
 UpdateEnemyHPPal: ; 3e127
 	ld hl, EnemyHPPal
