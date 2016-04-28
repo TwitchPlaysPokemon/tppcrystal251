@@ -101,23 +101,23 @@ OfficerScript_0x6a204: ; 0x6a204
 	loadfont
 		;checkflag ENGINE_51
 		;iftrue UnknownScript_0x6a2c1
-	checkevent EVENT_NATIONAL_PARK_ROUTE_36_GATE_314 ;If holding amber, give amber
+	checkevent EVENT_CONTEST_ADMIN_HOLDING_OLD_AMBER ;If holding amber, give amber
 	iffalse SkipAmber35
 	writetext UnknownText_0x6b97f
 	buttonsound
 	verbosegiveitem OLD_AMBER, 1
 	iffalse AmberFailText35
-	clearevent EVENT_NATIONAL_PARK_ROUTE_36_GATE_314
+	clearevent EVENT_CONTEST_ADMIN_HOLDING_OLD_AMBER
 SkipAmber35:
-	checkevent EVENT_NATIONAL_PARK_ROUTE_36_GATE_315
+	checkevent EVENT_CONTEST_ADMIN_HOLDING_SUN_STONE
 	iffalse SkipSun35
 	writetext UnknownText_0x6b97f
 	buttonsound
 	verbosegiveitem SUN_STONE, 1
 	iffalse SunFailText35
-	clearevent EVENT_NATIONAL_PARK_ROUTE_36_GATE_315
+	clearevent EVENT_CONTEST_ADMIN_HOLDING_SUN_STONE
 SkipSun35:
-	checkevent EVENT_NATIONAL_PARK_ROUTE_36_GATE_316
+	checkevent EVENT_CONTEST_ADMIN_HOLDING_APRICORN_BALLS
 	iffalse SkipBalls35
 	writetext UnknownText_0x6b97f
 	buttonsound
@@ -138,7 +138,7 @@ SkipBalls35:
 	if_greater_than $1, UnknownScript_0x6a271
 	special HealParty
 	special Function13a12
-	clearevent EVENT_NATIONAL_PARK_GATE_308
+	clearevent EVENT_CONTEST_ADMIN_HOLDING_YOUR_POKEMON
 UnknownScript_0x6a234: ; 0x6a234
 	setflag ENGINE_BUG_CONTEST_TIMER
 	special PlayMapMusic
@@ -175,43 +175,43 @@ BallsFailText35:
 RegiveFriend35:
 	verbosegiveitem FRIEND_BALL, 8
 	iffalse BallsFailText35
-	clearevent EVENT_NATIONAL_PARK_ROUTE_36_GATE_316
+	clearevent EVENT_CONTEST_ADMIN_HOLDING_APRICORN_BALLS
 	jump SkipBalls
 
 RegiveMoon35:
 	verbosegiveitem MOON_BALL, 8
 	iffalse BallsFailText35
-	clearevent EVENT_NATIONAL_PARK_ROUTE_36_GATE_316
+	clearevent EVENT_CONTEST_ADMIN_HOLDING_APRICORN_BALLS
 	jump SkipBalls
 
 RegiveLevel35:
 	verbosegiveitem LEVEL_BALL, 8
 	iffalse BallsFailText35
-	clearevent EVENT_NATIONAL_PARK_ROUTE_36_GATE_316
+	clearevent EVENT_CONTEST_ADMIN_HOLDING_APRICORN_BALLS
 	jump SkipBalls
 
 RegiveLure35:
 	verbosegiveitem LURE_BALL, 8
 	iffalse BallsFailText35
-	clearevent EVENT_NATIONAL_PARK_ROUTE_36_GATE_316
+	clearevent EVENT_CONTEST_ADMIN_HOLDING_APRICORN_BALLS
 	jump SkipBalls
 
 RegiveFast35:
 	verbosegiveitem FAST_BALL, 8
 	iffalse BallsFailText35
-	clearevent EVENT_NATIONAL_PARK_ROUTE_36_GATE_316
+	clearevent EVENT_CONTEST_ADMIN_HOLDING_APRICORN_BALLS
 	jump SkipBalls
 
 RegiveLove35:
 	verbosegiveitem LOVE_BALL, 8
 	iffalse BallsFailText35
-	clearevent EVENT_NATIONAL_PARK_ROUTE_36_GATE_316
+	clearevent EVENT_CONTEST_ADMIN_HOLDING_APRICORN_BALLS
 	jump SkipBalls
 
 RegiveHeavy35:
 	verbosegiveitem HEAVY_BALL, 8
 	iffalse BallsFailText35
-	clearevent EVENT_NATIONAL_PARK_ROUTE_36_GATE_316
+	clearevent EVENT_CONTEST_ADMIN_HOLDING_APRICORN_BALLS
 	jump SkipBalls
 
 UnknownScript_0x6a261: ; 0x6a261
@@ -241,7 +241,7 @@ UnknownScript_0x6a27d: ; 6a27d
 	special HealParty
 	special Function13a12
 	iftrue UnknownScript_0x6a2af
-	setevent EVENT_NATIONAL_PARK_GATE_308
+	setevent EVENT_CONTEST_ADMIN_HOLDING_YOUR_POKEMON
 	writetext UnknownText_0x6a537
 	buttonsound
 	writetext UnknownText_0x6a56b
