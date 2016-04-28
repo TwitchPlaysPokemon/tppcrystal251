@@ -28,7 +28,7 @@ Version 1.1.2
 * Added repels to Viridian and Pewter marts in Early Game Kanto, also added X-Speed to Pewter mart
 * Pay Day now gives level*5 money per use (up from level*2).
 * Flash and Fly have swapped locations and activation badges, meaning you get Fly and can use it as soon as Violet city. 
-Existing files that have completed Sprout Tower and recieved Flash can get Fly from Cianwood as normal.
+  Existing files that have completed Sprout Tower and recieved Flash can get Fly from Cianwood as normal.
 * A boulder now exists in Dark Cave to stop the player from getting to Route 46 early and fighting higher level trainers then intended.
 * Restructured the hitmon-line's level up movepool.
 * Chansey gets Mimic via egg.
