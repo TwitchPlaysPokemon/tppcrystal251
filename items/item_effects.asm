@@ -698,7 +698,25 @@ PremierBall:
 
 	call CloseSRAM
 
+	ld de, EVENT_HELPED_BILL_RB
+	ld b, CHECK_FLAG
+	call EventFlagAction
+	ld a, c
+	and a
 	ld hl, UnknownText_0xedeb
+	jr nz, .print
+	ld hl, UnknownText_0xedeb_2
+.print
+	call PrintText
+
+	ld a, [wCurBox]
+	ld hl, wBoxNames
+	ld bc, 9
+	call AddNTimes
+	ld de, StringBuffer3
+	ld bc, 9
+	call CopyBytes
+	ld hl, SentToBoxNumberText
 	call PrintText
 
 	call Function4b6
@@ -1166,6 +1184,17 @@ UnknownText_0xedeb: ; 0xedeb
 	text_jump UnknownText_0x1c5b38
 	db "@"
 ; 0xedf0
+
+UnknownText_0xedeb_2: ; 0xedeb
+	; was sent to SOMEONE's PC.
+	text_jump UnknownText_0x1c5b38_2
+	db "@"
+; 0xedf0
+
+SentToBoxNumberText:
+	; It was placed in !
+	text_jump _SentToBoxNumberText
+	db "@"
 
 UnknownText_0xedf0: ; 0xedf0
 	; 's data was newly added to the #DEX.@ @

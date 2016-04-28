@@ -1435,6 +1435,21 @@ UnknownText_0x1c5b38: ; 0x1c5b38
 	prompt
 ; 0x1c5b53
 
+UnknownText_0x1c5b38_2: ; 0x1c5b38
+	text_from_ram wd050
+	text " was"
+	line "sent to SOMEONE's"
+	cont "PC."
+	prompt
+; 0x1c5b53
+
+_SentToBoxNumberText:
+	text "It was placed in"
+	line "@"
+	TX_RAM StringBuffer3
+	text "!"
+	prompt
+
 UnknownText_0x1c5b53: ; 0x1c5b53
 	text_from_ram EnemyMonNick
 	text "'s data"

@@ -380,10 +380,10 @@ BugContestResultsWarpScript: ; 0xbc25c
 BugContestResultsScript: ; bc274
 	clearflag ENGINE_BUG_CONTEST_TIMER ; end the timer
 	clearevent EVENT_JUMPSTD_0016_2D2 ; clear skip NPC check on entry flag
-		;clearevent EVENT_NATIONAL_PARK_ROUTE_36_GATE_313 ;clear "Item is held" flag
-		;clearevent EVENT_NATIONAL_PARK_ROUTE_36_GATE_314
-		;clearevent EVENT_NATIONAL_PARK_ROUTE_36_GATE_315
-		;clearevent EVENT_NATIONAL_PARK_ROUTE_36_GATE_316
+		;clearevent EVENT_CONTEST_ADMIN_HOLDING_PRIZE ;clear "Item is held" flag
+		;clearevent EVENT_CONTEST_ADMIN_HOLDING_OLD_AMBER
+		;clearevent EVENT_CONTEST_ADMIN_HOLDING_SUN_STONE
+		;clearevent EVENT_CONTEST_ADMIN_HOLDING_APRICORN_BALLS
 	loadfont
 	farwritetext UnknownText_0x1b05bf ;announce start of judging
 	waitbutton
@@ -411,13 +411,13 @@ UnknownScript_0xbc2a9:
 ; 0xbc2b1
 
 ClearSunHold:
-	clearevent EVENT_NATIONAL_PARK_ROUTE_36_GATE_315
+	clearevent EVENT_CONTEST_ADMIN_HOLDING_SUN_STONE
 UnknownScript_0xbc2b1: ; 0xbc2b1
 	farwritetext UnknownText_0x1b065b ;please join next contest
 	buttonsound
 
 UnknownScript_0xbc2b6:
-	checkevent EVENT_NATIONAL_PARK_GATE_308 ;if start with more then 1 mon, fall through to put back to normal, else jump
+	checkevent EVENT_CONTEST_ADMIN_HOLDING_YOUR_POKEMON ;if start with more then 1 mon, fall through to put back to normal, else jump
 	iffalse UnknownScript_0xbc2c4
 	farwritetext UnknownText_0x1b06d9 ;say they return kept mon
 	waitbutton
@@ -479,13 +479,13 @@ PCIsFullToo:
 
 ContestResults_FirstPlaceScript: ; 0xbc31e
 	setevent EVENT_000_STD ;set "player won" flag
-	checkevent EVENT_NATIONAL_PARK_ROUTE_36_GATE_313
+	checkevent EVENT_CONTEST_ADMIN_HOLDING_PRIZE
 	iftrue ContestResultsFirstRepeat ;if already won amber, win something else
 	itemtotext OLD_AMBER, $1
 	farwritetext UnknownText_0x1b0621 ; say what the player won
 	waitbutton
 	verbosegiveitem OLD_AMBER, 1
-	setevent EVENT_NATIONAL_PARK_ROUTE_36_GATE_313
+	setevent EVENT_CONTEST_ADMIN_HOLDING_PRIZE
 	iffalse UnknownScript_0xbc35f
 	jump UnknownScript_0xbc2b1
 ; 0xbc332
@@ -494,7 +494,7 @@ ContestResultsFirstRepeat:
 	writetext FirstPlaceQuestion
 	yesorno
 	iffalse ContestFirstChoseBalls
-	checkevent EVENT_NATIONAL_PARK_ROUTE_36_GATE_315
+	checkevent EVENT_CONTEST_ADMIN_HOLDING_SUN_STONE
 	iftrue ContestAlreadyHoldingSun
 	writetext SunStoneChosenText
 	waitbutton
@@ -518,7 +518,7 @@ ContestResults_SecondPlaceScript: ; 0xbc332 prize script for balls
 
 ContestFirstChoseBalls:
 	writetext BallsChosenText
-	scall ContestChooseBall
+	; scall ContestChooseBall
 
 ContestChooseBall: ;choose ball based on day of week
 	checkcode VAR_WEEKDAY
@@ -531,7 +531,7 @@ ContestChooseBall: ;choose ball based on day of week
 	if_equal SATURDAY, ContestHeavy
 
 ContestFriend:
-	checkevent EVENT_NATIONAL_PARK_ROUTE_36_GATE_316
+	checkevent EVENT_CONTEST_ADMIN_HOLDING_APRICORN_BALLS
 	iftrue ContestHoldingFriend
 	verbosegiveitem FRIEND_BALL, 8
 	iffalse UnknownScript_0xbc375
@@ -544,7 +544,7 @@ ContestHoldingFriend:
 	jump ContestBallFlagClear
 
 ContestMoon:
-	checkevent EVENT_NATIONAL_PARK_ROUTE_36_GATE_316
+	checkevent EVENT_CONTEST_ADMIN_HOLDING_APRICORN_BALLS
 	iftrue ContestHoldingMoon
 	verbosegiveitem MOON_BALL, 8
 	iffalse UnknownScript_0xbc375
@@ -557,7 +557,7 @@ ContestHoldingMoon:
 	jump ContestBallFlagClear
 
 ContestLevel:
-	checkevent EVENT_NATIONAL_PARK_ROUTE_36_GATE_316
+	checkevent EVENT_CONTEST_ADMIN_HOLDING_APRICORN_BALLS
 	iftrue ContestHoldingLevel
 	verbosegiveitem LEVEL_BALL, 8
 	iffalse UnknownScript_0xbc375
@@ -570,7 +570,7 @@ ContestHoldingLevel:
 	jump ContestBallFlagClear
 
 ContestLure:
-	checkevent EVENT_NATIONAL_PARK_ROUTE_36_GATE_316
+	checkevent EVENT_CONTEST_ADMIN_HOLDING_APRICORN_BALLS
 	iftrue ContestHoldingLure
 	verbosegiveitem LURE_BALL, 8
 	iffalse UnknownScript_0xbc375
@@ -583,7 +583,7 @@ ContestHoldingLure:
 	jump ContestBallFlagClear
 
 ContestFast:
-	checkevent EVENT_NATIONAL_PARK_ROUTE_36_GATE_316
+	checkevent EVENT_CONTEST_ADMIN_HOLDING_APRICORN_BALLS
 	iftrue ContestHoldingFast
 	verbosegiveitem FAST_BALL, 8
 	iffalse UnknownScript_0xbc375
@@ -596,7 +596,7 @@ ContestHoldingFast:
 	jump ContestBallFlagClear
 
 ContestLove:
-	checkevent EVENT_NATIONAL_PARK_ROUTE_36_GATE_316
+	checkevent EVENT_CONTEST_ADMIN_HOLDING_APRICORN_BALLS
 	iftrue ContestHoldingLove
 	verbosegiveitem LOVE_BALL, 8
 	iffalse UnknownScript_0xbc375
@@ -609,7 +609,7 @@ ContestHoldingLove:
 	jump ContestBallFlagClear
 
 ContestHeavy:
-	checkevent EVENT_NATIONAL_PARK_ROUTE_36_GATE_316
+	checkevent EVENT_CONTEST_ADMIN_HOLDING_APRICORN_BALLS
 	iftrue ContestHoldingHeavy
 	verbosegiveitem HEAVY_BALL, 8
 	iffalse UnknownScript_0xbc375
@@ -630,7 +630,7 @@ ContestFullBag:
 	jump UnknownScript_0xbc2b1
 
 ContestBallFlagClear:
-	clearevent EVENT_NATIONAL_PARK_ROUTE_36_GATE_316
+	clearevent EVENT_CONTEST_ADMIN_HOLDING_APRICORN_BALLS
 	jump UnknownScript_0xbc2b1
 
 ContestResults_ThirdPlaceScript: ; 0xbc343
@@ -655,21 +655,21 @@ BagFullPrizeText:
 UnknownScript_0xbc354: ; 0xbc354
 ;	farwritetext UnknownText_0x1b08cc
 ;	buttonsound
-;	setevent EVENT_NATIONAL_PARK_ROUTE_36_GATE_313
+;	setevent EVENT_CONTEST_ADMIN_HOLDING_PRIZE
 ;	jump UnknownScript_0xbc2b1
 ; 0xbc35f
 
 UnknownScript_0xbc35f: ; 0xbc35f
 	farwritetext UnknownText_0x1b08cc
 	buttonsound
-	setevent EVENT_NATIONAL_PARK_ROUTE_36_GATE_314
+	setevent EVENT_CONTEST_ADMIN_HOLDING_OLD_AMBER
 	jump UnknownScript_0xbc2b1
 ; 0xbc36a
 
 UnknownScript_0xbc36a: ; 0xbc36a
 	farwritetext UnknownText_0x1b08cc ;pack is full text for sun stone
 	buttonsound
-	setevent EVENT_NATIONAL_PARK_ROUTE_36_GATE_315
+	setevent EVENT_CONTEST_ADMIN_HOLDING_SUN_STONE
 	jump UnknownScript_0xbc2b1
 
 
@@ -678,7 +678,7 @@ UnknownScript_0xbc36a: ; 0xbc36a
 UnknownScript_0xbc375: ; 0xbc375
 	farwritetext UnknownText_0x1b08cc
 	buttonsound
-	setevent EVENT_NATIONAL_PARK_ROUTE_36_GATE_316
+	setevent EVENT_CONTEST_ADMIN_HOLDING_APRICORN_BALLS
 	jump UnknownScript_0xbc2a9
 ; 0xbc380
 
