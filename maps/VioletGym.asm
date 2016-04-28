@@ -365,7 +365,7 @@ UnknownText_0x685c8: ; 0x685c8
 	para "It also enables"
 	line "#MON to use"
 
-	para "FLASH, if they"
+	para "FLY, if they"
 	line "have it, anytime."
 
 	para "Here--take this"

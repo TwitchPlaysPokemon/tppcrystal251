@@ -237,7 +237,7 @@ Function97d64: ; 97d64
 	ld e, a
 	push de
 	ld b, $66
-	jr z, .asm_97d70 ;if exactly $14 or $1c then b = %66, otherwise b = %33. b = encounter rate
+	jr z, .asm_97d70 ;if exactly $14 or $1c then b = $66, otherwise b = $33. b = encounter rate out of 255
 	ld b, $33
 
 .asm_97d70
@@ -247,7 +247,7 @@ Function97d64: ; 97d64
 	call Random
 	ld a, [hRandomAdd] ;why add instead of default sub?
 	cp b
-	ret c ;return random if encounter >= random
+	ret c ;return random if encounter > random
 	ld a, 1
 	and a ;otherwise return 1
 	ret

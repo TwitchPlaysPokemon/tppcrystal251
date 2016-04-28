@@ -24,6 +24,9 @@ ItemFragment_0x18c694: ; 0x18c694
 
 RockScript_0x18c696: ; 0x18c696
 	jumpstd smashrock
+
+DarkCaveBoulderScript:
+	jumpstd strengthboulder
 ; 0x18c699
 
 MapDarkCaveVioletEntranceSignpostItem0: ; 0x18c699
@@ -52,7 +55,7 @@ DarkCaveVioletEntrance_MapEventHeader: ; 0x18c69c
 	; people-events
 	db 8
 	person_event SPRITE_POKE_BALL, 12, 10, $1, 0, 0, -1, -1, 0, 1, 0, ItemFragment_0x18c68e, EVENT_ITEM_DARKCAVEVOILETENTRANCE_POTION
-	person_event SPRITE_ROCK, 18, 20, $18, 0, 0, -1, -1, 0, 0, 0, RockScript_0x18c696, -1
+	person_event SPRITE_BOULDER, 18, 20,  $19, 0, 0, -1, -1, 0, 0, 0, DarkCaveBoulderScript, -1
 	person_event SPRITE_ROCK, 10, 31, $18, 0, 0, -1, -1, 0, 0, 0, RockScript_0x18c696, -1
 	person_event SPRITE_ROCK, 18, 11, $18, 0, 0, -1, -1, 0, 0, 0, RockScript_0x18c696, -1
 	person_event SPRITE_ROCK, 35, 40, $18, 0, 0, -1, -1, 0, 0, 0, RockScript_0x18c696, -1

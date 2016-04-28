@@ -27,7 +27,7 @@ UnknownScript_0x694d7: ; 0x694d7
 	setevent EVENT_GOT_TOGEPI_EGG_FROM_ELMS_AIDE
 	clearevent EVENT_ELMS_AIDE_IN_LAB
 	clearevent EVENT_TOGEPI_HATCHED
-	checkevent EVENT_GOT_HM05_FLASH
+	checkevent EVENT_GOT_HM02_FLY
 	iffalse .skip_trigger
 	domaptrigger GROUP_ROUTE_32, MAP_ROUTE_32, $1
 .skip_trigger
