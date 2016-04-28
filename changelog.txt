@@ -24,6 +24,7 @@ Version 1.1.2
 * Fix a bug where wild Moltres, Articuno, Zapdos, Mewtwo, and Mew are not forced to hold their respective items when encountered
 * Wild Meowth now has a 25% chance of holding an Amulet Coin
 * Updated Psywave to deal between (0.5 * level) and (1.5 * level) damage
+* Move Rock Smash to a new house in Cianwood
 
 Version 1.1.1
 * Grammar fixes
