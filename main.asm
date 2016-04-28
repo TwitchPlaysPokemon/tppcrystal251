@@ -3287,6 +3287,12 @@ Function8029: ; 8029
 	ld a, [wd45b]
 	bit 2, a
 	jr nz, .asm_8059
+	ld a, [wPlayerPalette] ; NEW
+	and a ; NEW
+	jr z, .use_gender ; NEW
+	swap a ; NEW
+	jr .asm_8059 ; NEW
+.use_gender ; NEW
 	ld a, [PlayerGender]
 	bit 0, a
 	jr z, .asm_8059

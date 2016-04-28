@@ -7,8 +7,26 @@ GoldenrodBoutique_MapScriptHeader:
 
 SetPlayerPal:
 	ld a, [ScriptVar]
-	ld [wd45b], a
-	
+	or $8
+	ld [wPlayerPalette], a
+	xor a
+	call GetMapObject
+	ld hl, $8
+	add hl, bc
+	ld a, [wPlayerPalette]
+	swap a
+	ld [hl], a
+	ld hl, 0
+	add hl, bc
+	ld a, [hl]
+	call Function1ae5 ; GetObjectStruct
+	ld hl, $6
+	add hl, bc
+	ld a, [wPlayerPalette]
+	and $7
+	ld [hl], a
+	ret
+
 BoutiqueCooltrainerMScript:
 	jumptextfaceplayer BoutiqueCooltrainerMText
 
@@ -45,18 +63,6 @@ BoutiqueStylistScript:
 	;takecoins 500
 	playsound SFX_TRANSACTION
 	waitsfx
-	writetext BoutiqueStylistText3
-	loadmenudata MenuDataHeaderBoutique
-	interpretmenu2
-	writebackup
-	if_equal $1, BoutiqueStylistScriptMadeSelection
-	if_equal $2, BoutiqueStylistScriptMadeSelection
-	if_equal $3, BoutiqueStylistScriptMadeSelection
-	if_equal $4, BoutiqueStylistScriptMadeSelection
-	if_equal $5, BoutiqueStylistScriptMadeSelection
-	end
-
-BoutiqueStylistScriptMadeSelection:
 	closetext
 	spriteface $3, LEFT
 	;move player
@@ -69,7 +75,50 @@ BoutiqueStylistScriptMadeSelection:
 	applymovement $0, Movement_WalkFromFront
 .MoveAroundCounterRight
 	applymovement $0, Movement_WalkFaceLeft
-	;do it here
+	loadfont
+	writetext BoutiqueStylistText3
+	loadmenudata MenuDataHeaderBoutique
+	interpretmenu2
+	writebackup
+	if_equal $1, BoutiqueStylistScriptMadeSelectionRed
+	if_equal $2, BoutiqueStylistScriptMadeSelectionBlue
+	if_equal $3, BoutiqueStylistScriptMadeSelectionGreen
+	if_equal $4, BoutiqueStylistScriptMadeSelectionBrown
+	if_equal $5, BoutiqueStylistScriptMadeSelectionYellow
+	end
+
+BoutiqueStylistScriptMadeSelectionRed:
+	closetext
+	pause 10
+	playsound SFX_FLASH ;change this
+	spriteface $0, UP
+	pause 03
+	spriteface $0, RIGHT
+	pause 03
+	writebyte $0
+	jump SetPlayerColor
+BoutiqueStylistScriptMadeSelectionBlue:
+	closetext
+	pause 10
+	playsound SFX_FLASH ;change this
+	spriteface $0, UP
+	pause 03
+	spriteface $0, RIGHT
+	pause 03
+	writebyte $01
+	jump SetPlayerColor
+BoutiqueStylistScriptMadeSelectionGreen:
+	closetext
+	pause 10
+	playsound SFX_FLASH ;change this
+	spriteface $0, UP
+	pause 03
+	spriteface $0, RIGHT
+	pause 03
+	writebyte $02
+	jump SetPlayerColor
+BoutiqueStylistScriptMadeSelectionBrown:
+	closetext
 	pause 10
 	playsound SFX_FLASH ;change this
 	spriteface $0, UP
@@ -77,6 +126,19 @@ BoutiqueStylistScriptMadeSelection:
 	spriteface $0, RIGHT
 	pause 03
 	writebyte $03
+	jump SetPlayerColor
+BoutiqueStylistScriptMadeSelectionYellow:
+	closetext
+	pause 10
+	playsound SFX_FLASH ;change this
+	spriteface $0, UP
+	pause 03
+	spriteface $0, RIGHT
+	pause 03
+	writebyte $04
+	jump SetPlayerColor
+	
+SetPlayerColor:
 	callasm SetPlayerPal
 	spriteface $0, DOWN
 	pause 03
