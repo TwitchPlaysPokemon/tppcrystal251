@@ -1218,8 +1218,15 @@ wcfd5:: ds 1
 wcfd6:: ds 1
 wcfd7:: ds 1
 
-	ds 40
+SECTION "Survival Mode RAM", WRAM0
 
+wSurvivalModeParty::
+wSurvivalModeSpecies:: ds 13
+wSurvivalModeLevel:: ds 1
+wSurvivalModePartyEnd::
+wSurvivalModeWinStreak:: ds 1
+
+	ds 25
 
 SECTION "WRAM 1", WRAMX, BANK [1]
 

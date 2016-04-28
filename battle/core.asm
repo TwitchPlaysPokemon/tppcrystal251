@@ -8815,7 +8815,7 @@ Function3f594: ; 3f594
 	ld [OTPartyMon1Item], a
 	jr .ok
 .rocket
-	callab Function3991b
+	callab ComputeTrainerReward
 .ok
 
 	ld de, VTiles2

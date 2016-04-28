@@ -36289,6 +36289,10 @@ ReadTrainerParty: ; 39771
 	ld a, [wLinkMode]
 	and a
 	ret nz
+	ld hl, wdff5
+	xor a
+	ld [hli], a
+	ld [hl], a
 	callba ClearOTMons
 	ld a, [OtherTrainerClass]
 	cp CAL
@@ -36303,16 +36307,19 @@ ReadTrainerParty: ; 39771
 	ld de, $ac0a
 	call TrainerType
 	call CloseSRAM
-	jp Function3991b
+	jp ComputeTrainerReward
 
 .not_cal2
 	cp TPPPC
 	jr nz, .not_tppPc
 	ld a, [OtherTrainerID]
+	cp PC_SURVIVAL
+	ld hl, wSurvivalModeParty
+	jp z, .done_name
 	cp MIRROR
 	jr nz, .not_tppPc
 	callba CopyMirrorBattle
-	jp Function3991b
+	jp ComputeTrainerReward
 
 .not_tppPc
 	ld a, [OtherTrainerClass]
@@ -36351,14 +36358,15 @@ ReadTrainerParty: ; 39771
 	ld a, [wdff5]
 	call GetFarByte2
 	ld [wdff5 + 1], a ;load in trainertype
-	ld bc, Function3991b
+.done_name
+	ld bc, ComputeTrainerReward ; Return to the start of this function
 	push bc
 TrainerType:
 ._loop
 	ld a, [wdff5]
 	call GetFarByte2
 	cp $ff
-	ret z ;ret if done
+	ret z
 	cp 101
 	jr c, .level_okay
 	ld a, 100
@@ -36534,7 +36542,7 @@ TrainerType:
 	pop hl
 	jp ._loop
 
-Function3991b: ; 3991b (e:591b)
+ComputeTrainerReward: ; 3991b (e:591b)
 	ld hl, $ffb3
 	xor a
 	ld [hli], a
@@ -36653,6 +36661,13 @@ CopyMirrorBattle:
 	ld de, OTPartyCount
 	ld bc, PARTY_STRUCT_LENGTH
 	call CopyBytes
+	ld a, [PartyCount]
+	dec a
+	ld hl, PartyMon1Level
+	ld bc, $30
+	call AddNTimes
+	ld a, [hl]
+	ld [CurPartyLevel], a
 	ret
 
 ClearOTMons:
@@ -94494,3 +94509,84 @@ SECTION "Move Relearner", ROMX
 INCLUDE "event/move_relearner.asm"
 
 INCLUDE "menu/minipics.asm"
+
+SECTION "Survival Mode ASM", ROMX
+
+SampleRandomSurvival:
+	ld hl, wSurvivalModeParty
+	ld bc, wSurvivalModePartyEnd - wSurvivalModeParty
+	xor a
+	call ByteFill
+	ld hl, wSurvivalModeWinStreak
+	ld a, [hl]
+	cp 200
+	jr nc, .max_streak
+	inc [hl]
+.max_streak
+	cp 16
+	ld c, 0
+	jr c, .got_bracket
+	inc c
+	cp 33
+	jr c, .got_bracket
+	inc c
+.got_bracket
+	add 50
+	cp 101
+	jr c, .max_level
+	ld a, 100
+.max_level
+	ld [wSurvivalModeLevel], a
+	ld b, 0
+	ld hl, .SurvivalCounts
+	add hl, bc
+	add hl, bc
+	add hl, bc
+	ld a, [hli]
+	ld d, [hl]
+	ld e, a
+	inc hl
+	ld b, [hl]
+.SamplePartySize:
+	call Random
+	and %111
+	jr z, .SamplePartySize
+	cp 7
+	jr nc, .SamplePartySize
+	ld c, a
+	ld hl, wSurvivalModeSpecies
+.loop
+	ld a, [wSurvivalModeLevel]
+	ld [hli], a
+.SampleMon
+	call Random
+	cp b
+	jr nc, .SampleMon
+	push hl
+	ld l, a
+	ld h, 0
+	add hl, de
+	ld a, [hl]
+	pop hl
+	ld [hli], a
+	dec c
+	jr nz, .loop
+	ld [hl], -1
+	ret
+
+.SurvivalCounts
+	dwb .Bracket1, .Bracket1End - .Bracket1
+	dwb .Bracket2, .Bracket2End - .Bracket2
+	dwb .Bracket3, .Bracket3End - .Bracket3
+
+.SurvivalMons:
+.Bracket1:
+	db BULBASAUR
+.Bracket1End
+.Bracket2:
+	db IVYSAUR
+.Bracket2End
+.Bracket3:
+	db VENUSAUR
+.Bracket3End
+.SurvivalMonsEnd
