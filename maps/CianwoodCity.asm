@@ -112,7 +112,7 @@ UnknownScript_0x1a00b1: ; 0x1a00b1
 ; 0x1a00b3
 
 FlashBranch1:
-	writetext UnknownText_0x1a00f1
+	writetext FlashText1
 	buttonsound
 	checkevent EVENT_BEAT_CHUCK
 	iftrue FlashBranch2
@@ -174,6 +174,7 @@ MapCianwoodCitySignpost2Script: ; 0x1a00ce
 
 RockScript_0x1a00d1: ; 0x1a00d1
 	jumpstd smashrock
+
 ; 0x1a00d4
 
 MapCianwoodCitySignpostItem6: ; 0x1a00d4
@@ -238,10 +239,7 @@ UnknownText_0x1a00f1: ; 0x1a00f1
 	done
 
 FlashText1: ; 0x1a00f1
-	text "You crossed the"
-	line "sea to get here?"
-
-	para "Have you seen"
+	text "Have you seen"
 	line "DARK CAVE?"
 
 	para "It would be much"
@@ -305,7 +303,7 @@ FlashText3: ; 0x1a021d
 
 	para "You will be able"
 	line "to see in dark"
-	cont "caves"
+	cont "caves."
 	done
 ; 0x1a0277
 
@@ -473,6 +471,7 @@ UnknownText_0x1a0760: ; 0x1a0760
 	text "THE # SEER"
 	line "AHEAD"
 	done
+
 ; 0x1a0772
 
 CianwoodCity_MapEventHeader: ; 0x1a0772

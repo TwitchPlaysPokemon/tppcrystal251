@@ -533,6 +533,7 @@ ChanseyEggMoves:
 	db DREAM_EATER
 	db IRON_TAIL
 	db MUD_SLAP
+	db MIMIC
 	db $ff
 
 TangelaEggMoves:

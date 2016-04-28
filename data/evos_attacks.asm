@@ -4715,6 +4715,8 @@ BlisseyEvosAttacks:
 	db 77, COUNTER
 	db 0 ; no more level-up moves
 
+
+
 RaikouEvosAttacks:
 	db 0 ; no more evolutions
 	db 1, ROAR
