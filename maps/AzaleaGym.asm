@@ -121,7 +121,7 @@ BugsyAfterRematch:
 	end
 
 BugsyRematchScript:
-	checkevent EVENT_NATIONAL_PARK_ROUTE_36_GATE_313
+	checkevent EVENT_CONTEST_ADMIN_HOLDING_PRIZE
 	iffalse BugsyReject
 	writetext BugsyRematchTextBefore
 	waitbutton

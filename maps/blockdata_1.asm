@@ -190,6 +190,7 @@ ManiasHouse_BlockData:
 CianwoodPharmacy_BlockData:
 CianwoodCityPhotoStudio_BlockData:
 CianwoodLugiaSpeechHouse_BlockData:
+CianwoodRockSmashSpeechHouse_BlockData:
 PokeSeersHouse_BlockData:
 ViridianNicknameSpeechHouse_BlockData:
 ViridianNicknameSpeechHouseRB_BlockData:

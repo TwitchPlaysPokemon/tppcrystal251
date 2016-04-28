@@ -154,23 +154,23 @@ OfficerScript_0x6abe0: ; 0x6abe0
 	faceplayer
 	loadfont
 		;checkflag ENGINE_51 ;if event complete
-	checkevent EVENT_NATIONAL_PARK_ROUTE_36_GATE_314 ;If holding amber, give amber
+	checkevent EVENT_CONTEST_ADMIN_HOLDING_OLD_AMBER ;If holding amber, give amber
 	iffalse SkipAmber
 	writetext UnknownText_0x6b97f
 	buttonsound
 	verbosegiveitem OLD_AMBER, 1
 	iffalse AmberFailText
-	clearevent EVENT_NATIONAL_PARK_ROUTE_36_GATE_314
+	clearevent EVENT_CONTEST_ADMIN_HOLDING_OLD_AMBER
 SkipAmber:
-	checkevent EVENT_NATIONAL_PARK_ROUTE_36_GATE_315
+	checkevent EVENT_CONTEST_ADMIN_HOLDING_SUN_STONE
 	iffalse SkipSun
 	writetext UnknownText_0x6b97f
 	buttonsound
 	verbosegiveitem SUN_STONE, 1
 	iffalse SunFailText
-	clearevent EVENT_NATIONAL_PARK_ROUTE_36_GATE_315
+	clearevent EVENT_CONTEST_ADMIN_HOLDING_SUN_STONE
 SkipSun:
-	checkevent EVENT_NATIONAL_PARK_ROUTE_36_GATE_316
+	checkevent EVENT_CONTEST_ADMIN_HOLDING_APRICORN_BALLS
 	iffalse SkipBalls
 	writetext UnknownText_0x6b97f
 	buttonsound
@@ -192,7 +192,7 @@ SkipBalls:
 	if_greater_than $1, UnknownScript_0x6ac41
 	special HealParty
 	special Function13a12
-	clearevent EVENT_NATIONAL_PARK_GATE_308 ;clear "has more then 1 mon in party" flag
+	clearevent EVENT_CONTEST_ADMIN_HOLDING_YOUR_POKEMON ;clear "has more then 1 mon in party" flag
 UnknownScript_0x6ac10: ; 0x6ac10
 	setflag ENGINE_BUG_CONTEST_TIMER ;set the bug catching timer
 	special PlayMapMusic
@@ -230,7 +230,7 @@ UnknownScript_0x6ac4d: ; 0x6ac4d
 	special HealParty
 	special Function13a12 ;if lead is FNT then flag error, else hide party
 	iftrue UnknownScript_0x6ac7f
-	setevent EVENT_NATIONAL_PARK_GATE_308 ;set has more then 1 mon in party flag
+	setevent EVENT_CONTEST_ADMIN_HOLDING_YOUR_POKEMON ;set has more then 1 mon in party flag
 	writetext UnknownText_0x6b021
 	buttonsound
 	writetext UnknownText_0x6b055
@@ -243,43 +243,43 @@ UnknownScript_0x6ac4d: ; 0x6ac4d
 RegiveFriend
 	verbosegiveitem FRIEND_BALL, 8
 	iffalse BallsFailText
-	clearevent EVENT_NATIONAL_PARK_ROUTE_36_GATE_316
+	clearevent EVENT_CONTEST_ADMIN_HOLDING_APRICORN_BALLS
 	jump SkipBalls
 
 RegiveMoon
 	verbosegiveitem MOON_BALL, 8
 	iffalse BallsFailText
-	clearevent EVENT_NATIONAL_PARK_ROUTE_36_GATE_316
+	clearevent EVENT_CONTEST_ADMIN_HOLDING_APRICORN_BALLS
 	jump SkipBalls
 
 RegiveLevel
 	verbosegiveitem LEVEL_BALL, 8
 	iffalse BallsFailText
-	clearevent EVENT_NATIONAL_PARK_ROUTE_36_GATE_316
+	clearevent EVENT_CONTEST_ADMIN_HOLDING_APRICORN_BALLS
 	jump SkipBalls
 
 RegiveLure
 	verbosegiveitem LURE_BALL, 8
 	iffalse BallsFailText
-	clearevent EVENT_NATIONAL_PARK_ROUTE_36_GATE_316
+	clearevent EVENT_CONTEST_ADMIN_HOLDING_APRICORN_BALLS
 	jump SkipBalls
 
 RegiveFast
 	verbosegiveitem FAST_BALL, 8
 	iffalse BallsFailText
-	clearevent EVENT_NATIONAL_PARK_ROUTE_36_GATE_316
+	clearevent EVENT_CONTEST_ADMIN_HOLDING_APRICORN_BALLS
 	jump SkipBalls
 
 RegiveLove
 	verbosegiveitem LOVE_BALL, 8
 	iffalse BallsFailText
-	clearevent EVENT_NATIONAL_PARK_ROUTE_36_GATE_316
+	clearevent EVENT_CONTEST_ADMIN_HOLDING_APRICORN_BALLS
 	jump SkipBalls
 
 RegiveHeavy
 	verbosegiveitem HEAVY_BALL, 8
 	iffalse BallsFailText
-	clearevent EVENT_NATIONAL_PARK_ROUTE_36_GATE_316
+	clearevent EVENT_CONTEST_ADMIN_HOLDING_APRICORN_BALLS
 	jump SkipBalls
 
 AmberFailText:
@@ -963,13 +963,13 @@ Route36NationalParkgate_MapEventHeader: ; 0x6b9ac
 ; 0x6ba67
 
 UnknownScript_0x6ac91: ; 0x6ac91 redundent scripts in case they are needed later
-		;checkevent EVENT_NATIONAL_PARK_ROUTE_36_GATE_313 ;check if prizes are held and give them if so
+		;checkevent EVENT_CONTEST_ADMIN_HOLDING_PRIZE ;check if prizes are held and give them if so
 		;iftrue UnknownScript_0x6acaf
-		;checkevent EVENT_NATIONAL_PARK_ROUTE_36_GATE_314
+		;checkevent EVENT_CONTEST_ADMIN_HOLDING_OLD_AMBER
 		;iftrue UnknownScript_0x6acbe
-		;checkevent EVENT_NATIONAL_PARK_ROUTE_36_GATE_315
+		;checkevent EVENT_CONTEST_ADMIN_HOLDING_SUN_STONE
 		;iftrue UnknownScript_0x6accd
-		;checkevent EVENT_NATIONAL_PARK_ROUTE_36_GATE_316
+		;checkevent EVENT_CONTEST_ADMIN_HOLDING_APRICORN_BALLS
 		;iftrue UnknownScript_0x6acdc
 		;writetext UnknownText_0x6b32b
 		;waitbutton
@@ -983,7 +983,7 @@ UnknownScript_0x6acaf: ; 0x6acaf bug catching contest prizes
 ;	buttonsound
 ;	verbosegiveitem SUN_STONE, 1
 ;	iffalse UnknownScript_0x6aceb
-;	clearevent EVENT_NATIONAL_PARK_ROUTE_36_GATE_313
+;	clearevent EVENT_CONTEST_ADMIN_HOLDING_PRIZE
 ;	closetext
 ;	end
 ; 0x6acbe
@@ -993,7 +993,7 @@ UnknownScript_0x6acbe: ; 0x6acbe
 ;	buttonsound
 ;	verbosegiveitem OLD_AMBER, 1
 ;	iffalse UnknownScript_0x6aceb
-;	clearevent EVENT_NATIONAL_PARK_ROUTE_36_GATE_314
+;	clearevent EVENT_CONTEST_ADMIN_HOLDING_OLD_AMBER
 		;closetext
 		;end
 ;	return
@@ -1004,7 +1004,7 @@ UnknownScript_0x6accd: ; 0x6accd
 ;	buttonsound
 ;	verbosegiveitem GOLD_BERRY, 1
 ;	iffalse UnknownScript_0x6aceb
-;	clearevent EVENT_NATIONAL_PARK_ROUTE_36_GATE_315
+;	clearevent EVENT_CONTEST_ADMIN_HOLDING_SUN_STONE
 ;	closetext
 ;	end
 ; 0x6acdc
@@ -1014,7 +1014,7 @@ UnknownScript_0x6acdc: ; 0x6acdc
 ;	buttonsound
 ;	verbosegiveitem BERRY, 1
 ;	iffalse UnknownScript_0x6aceb
-;	clearevent EVENT_NATIONAL_PARK_ROUTE_36_GATE_316
+;	clearevent EVENT_CONTEST_ADMIN_HOLDING_APRICORN_BALLS
 	closetext
 	end
 ; 0x6aceb

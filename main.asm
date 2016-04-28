@@ -34729,37 +34729,72 @@ AI_Redundant: ; 2c41a
 	jp [hl]
 
 .Moves: ; 2c42c
-	dbw EFFECT_DREAM_EATER,  .DreamEater
-	dbw EFFECT_HEAL,         .Heal
-	dbw EFFECT_LIGHT_SCREEN, .LightScreen
-	dbw EFFECT_MIST,         .Mist
-	dbw EFFECT_FOCUS_ENERGY, .FocusEnergy
-	dbw EFFECT_CONFUSE,      .Confuse
-	dbw EFFECT_TRANSFORM,    .Transform
-	dbw EFFECT_REFLECT,      .Reflect
-	dbw EFFECT_SUBSTITUTE,   .Substitute
-	dbw EFFECT_LEECH_SEED,   .LeechSeed
-	dbw EFFECT_DISABLE,      .Disable
-	dbw EFFECT_ENCORE,       .Encore
-	dbw EFFECT_SNORE,        .Snore
-	dbw EFFECT_SLEEP_TALK,   .SleepTalk
-	dbw EFFECT_MEAN_LOOK,    .MeanLook
-	dbw EFFECT_NIGHTMARE,    .Nightmare
-	dbw EFFECT_SPIKES,       .Spikes
-	dbw EFFECT_FORESIGHT,    .Foresight
-	dbw EFFECT_PERISH_SONG,  .PerishSong
-	dbw EFFECT_SANDSTORM,    .Sandstorm
-	dbw EFFECT_ATTRACT,      .Attract
-	dbw EFFECT_SAFEGUARD,    .Safeguard
-	dbw EFFECT_RAIN_DANCE,   .RainDance
-	dbw EFFECT_SUNNY_DAY,    .SunnyDay
-	dbw EFFECT_TELEPORT,     .Teleport
-	dbw EFFECT_MORNING_SUN,  .MorningSun
-	dbw EFFECT_SYNTHESIS,    .Synthesis
-	dbw EFFECT_MOONLIGHT,    .Moonlight
-	dbw EFFECT_SWAGGER,      .Swagger
-	dbw EFFECT_FUTURE_SIGHT, .FutureSight
+	dbw EFFECT_DREAM_EATER,     .DreamEater
+	dbw EFFECT_HEAL,            .Heal
+	dbw EFFECT_LIGHT_SCREEN,    .LightScreen
+	dbw EFFECT_MIST,            .Mist
+	dbw EFFECT_FOCUS_ENERGY,    .FocusEnergy
+	dbw EFFECT_CONFUSE,         .Confuse
+	dbw EFFECT_TRANSFORM,       .Transform
+	dbw EFFECT_REFLECT,         .Reflect
+	dbw EFFECT_SUBSTITUTE,      .Substitute
+	dbw EFFECT_LEECH_SEED,      .LeechSeed
+	dbw EFFECT_DISABLE,         .Disable
+	dbw EFFECT_ENCORE,          .Encore
+	dbw EFFECT_SNORE,           .Snore
+	dbw EFFECT_SLEEP_TALK,      .SleepTalk
+	dbw EFFECT_MEAN_LOOK,       .MeanLook
+	dbw EFFECT_NIGHTMARE,       .Nightmare
+	dbw EFFECT_SPIKES,          .Spikes
+	dbw EFFECT_FORESIGHT,       .Foresight
+	dbw EFFECT_PERISH_SONG,     .PerishSong
+	dbw EFFECT_SANDSTORM,       .Sandstorm
+	dbw EFFECT_ATTRACT,         .Attract
+	dbw EFFECT_SAFEGUARD,       .Safeguard
+	dbw EFFECT_RAIN_DANCE,      .RainDance
+	dbw EFFECT_SUNNY_DAY,       .SunnyDay
+	dbw EFFECT_TELEPORT,        .Teleport
+	dbw EFFECT_MORNING_SUN,     .MorningSun
+	dbw EFFECT_SYNTHESIS,       .Synthesis
+	dbw EFFECT_MOONLIGHT,       .Moonlight
+	dbw EFFECT_SWAGGER,         .Swagger
+	dbw EFFECT_FUTURE_SIGHT,    .FutureSight
+	dbw EFFECT_ATTACK_DOWN,     .StatDown
+	dbw EFFECT_DEFENSE_DOWN,    .StatDown
+	dbw EFFECT_SPEED_DOWN,      .StatDown
+	dbw EFFECT_SP_ATK_DOWN,     .StatDown
+	dbw EFFECT_SP_DEF_DOWN,     .StatDown
+	dbw EFFECT_ACCURACY_DOWN,   .StatDown
+	dbw EFFECT_EVASION_DOWN,    .StatDown
+	dbw EFFECT_ATTACK_DOWN_2,   .StatDown2
+	dbw EFFECT_DEFENSE_DOWN_2,  .StatDown2
+	dbw EFFECT_SPEED_DOWN_2,    .StatDown2
+	dbw EFFECT_SP_ATK_DOWN_2,   .StatDown2
+	dbw EFFECT_SP_DEF_DOWN_2,   .StatDown2
+	dbw EFFECT_ACCURACY_DOWN_2, .StatDown2
+	dbw EFFECT_EVASION_DOWN_2,  .StatDown2
 	db -1
+
+.StatDown:
+	ld a, c
+	sub EFFECT_ATTACK_DOWN
+	jr .StatDownCommon
+
+.StatDown2:
+	ld a, c
+	sub EFFECT_ATTACK_DOWN_2
+.StatDownCommon:
+	ld c, a
+	ld b, 0
+	ld hl, PlayerStatLevels
+	add hl, bc
+	ld a, [hl]
+	cp 2
+	ret c
+	ld a, [PlayerSubStatus4]
+	bit SUBSTATUS_MIST, a
+	ret
+
 .LightScreen: ; 2c487
 	ld a, [EnemyScreens]
 	bit SCREENS_LIGHT_SCREEN, a
