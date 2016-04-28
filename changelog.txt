@@ -20,28 +20,33 @@ Version 1.1.2
 * Dummied out useless branching TM mart
 * Custom party menu icons
 * Raikou's overworld sprite is yellow now
-* Fix a bug where the stock AI would favor stat-lowering moves while the player has Mist up
+* Fix a bug where the stock AI would favor stat-lowering moves while the player has Mist or Guard Spec. up
 * Fix a bug where wild Moltres, Articuno, Zapdos, Mewtwo, and Mew are not forced to hold their respective items when encountered
 * Wild Meowth now has a 25% chance of holding an Amulet Coin
 * Updated Psywave to deal between (0.5 * level) and (1.5 * level) damage
-* Added Rock Smash to a new house in Cianwood, removed it from Goldenrod mart
-* Added repels to Viridian and Pewter marts in Early Game Kanto, also added X-Speed to Pewter mart
-* Pay Day now gives level*5 money per use (up from level*2).
-* Flash and Fly have swapped locations and activation badges, meaning you get Fly and can use it as soon as Violet city. 
-  Existing files that have completed Sprout Tower and recieved Flash can get Fly from Cianwood as normal.
-* A boulder now exists in Dark Cave to stop the player from getting to Route 46 early and fighting higher level trainers then intended.
-* Restructured the hitmon-line's level up movepool.
-* Chansey gets Mimic via egg.
-* Zubat now gets Leech Life at level 9 and Mega Drain at level 1.
-* Mankey lvl 15 move became Encore, Metronome becoming an egg move.
-* Poliwags lvl 15 move became Mimic (along with a level 1 move on Poliwhirl), Metronome becoming an egg move.
-* Geodude's level 6 move became Bide, Metronome becoming an egg move.
-* Drowsee's level 3 move became Safeguard (along with a level 1 move on hypno), Metronome becoming an egg move.
-* Grimer got a movelearn reshuffle: level 4 Acid, level 8 Lick, level 12 Mega Drain, level 15 Disable, level 18 Sludge, level 21 Mean Look
+* Added Rock Smash to a new house in Cianwood; removed it from Goldenrod Mart
+* Added Repels to Viridian and Pewter Marts in Early Game Kanto; also added X-Speed to Pewter Mart
+* Pay Day now gives (5 * level) money per use (up from (2 * level))
+* Flash and Fly have swapped locations and activation badges, meaning you get Fly and can use it as soon as Violet City
+  - Existing files that have completed Sprout Tower and recieved Flash can get Fly from Cianwood as normal
+* A boulder now exists in Dark Cave to stop the player from getting to Route 46 early and fighting higher-level trainers sooner than intended
+* Restructured the Hitmon-line's level-up movepool
+* Chansey gets Mimic as an Egg move
+* Zubat now gets Leech Life at level 9 and Mega Drain at level 1
+* Mankey now learns Encore at level 15, with Metronome becoming an Egg move
+* Poliwag now learns Mimic at level 15, and Poliwhirl now gets it at level 1, with Metronome becoming an Egg move
+* Geodude now learns Bide at level 6, with Metronome becoming an Egg move
+* Drowzee now learns Safeguard at level 3, and hypno now gets it at level 1, with Metronome becoming an Egg move
+* Grimer got a movelearn reshuffle:
+  - Level  4: Acid
+  - Level  8: Lick
+  - Level 12: Mega Drain
+  - Level 15: Disable
+  - Level 18: Sludge
+  - Level 21: Mean Look
 * Fix glitches with the Bug Catching Contest
 * Fix bug where BILL's PC is referenced before helping Bill when sending a caught Pokemon to the PC
 * The game now tells you to which box your newly-caught Pokemon was sent
-
 
 Version 1.1.1
 * Grammar fixes
@@ -49,7 +54,7 @@ Version 1.1.1
 * Remove faulty callback in the Battle Tent Battle Room
 * Remove product placement from the Pewter Museum of Science
 * Fix Pokegear clock not updating in AI build
-* You can no longer receive phone calls prior to actually getting the phone card.
+* You can no longer receive phone calls prior to actually getting the phone card
 * Updated title from "CRYSTAL ANNIVERSARY" to "ANNIVERSARY CRYSTAL"
 
 Version 1.1.0
