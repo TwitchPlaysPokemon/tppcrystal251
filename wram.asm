@@ -1209,7 +1209,8 @@ Options2:: ; cfd1
 ; bit 2: 24/12-hour clock
 ; bit 3: metric/imperial unit
 	ds 1
-
+wPlayerPalette:: ; Player's selection of sprite color
+wChangedStyle:: ; Player changed color so use wPlayerPalette instead
 	ds 2
 OptionsEnd::
 wcfd4:: ds 1
