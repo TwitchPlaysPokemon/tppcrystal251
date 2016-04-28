@@ -14,7 +14,7 @@ TN_PrintToD
 	jr z, .print
 	rlca
 	rlca
-	cp 1
+	cp 2
 	ld de, .morn
 	jr c, .print
 	ld de, .day
