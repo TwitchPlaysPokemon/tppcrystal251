@@ -272,7 +272,9 @@ wc3bc:: ds 1
 wc3bd:: ds 1
 wc3be:: ds 1
 wc3bf:: ds 1
-wc3c0:: ds 12
+wc3c0:: ds 1
+wSpriteAnimPalOverrides::
+	ds 11
 wc3cc:: ds 1
 wc3cd:: ds 31
 wc3ec:: ds 1

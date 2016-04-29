@@ -65006,7 +65006,7 @@ Function8cf4f: ; 8cf4f
 
 Function8cf53: ; 8cf53
 	ld hl, wc300
-	ld bc, $00c1
+	ld bc, $00c2
 .asm_8cf59
 	ld [hl], $0
 	inc hl
@@ -65049,6 +65049,22 @@ Function8cf7a: ; 8cf7a
 	ld b, h ;put wc314 into bc
 	push hl
 	push de
+	xor a
+	ld [wSpriteAnimPalOverrides], a
+	ld hl, 1
+	add hl, bc
+	ld a, [hl]
+	cp $1b
+	jr z, .playerpal
+	cp $2e
+	jr nz, .not_player
+.playerpal
+	ld a, [wPlayerPalette]
+	and a
+	jr z, .not_player
+	or $20
+	ld [wSpriteAnimPalOverrides], a
+.not_player
 	call Function8d24b
 	call Function8d04c
 	pop de
@@ -65085,6 +65101,22 @@ Function8cfa8: ; 8cfa8 (23:4fa8)
 	ld b, h
 	push hl
 	push de
+	xor a
+	ld [wSpriteAnimPalOverrides], a
+	ld hl, 1
+	add hl, bc
+	ld a, [hl]
+	cp $1b
+	jr z, .playerpal
+	cp $2e
+	jr nz, .not_player
+.playerpal
+	ld a, [wPlayerPalette]
+	and a
+	jr z, .not_player
+	or $20
+	ld [wSpriteAnimPalOverrides], a
+.not_player
 	call Function8d24b
 	call Function8d04c
 	pop de
@@ -65210,7 +65242,7 @@ Function8d04c: ; 8d04c
 	call Function8d0ec
 	call Function8d132
 	cp $fd
-	jr z, .asm_8d0b9
+	jp z, .asm_8d0b9
 	cp $fc
 	jr z, .asm_8d0b6
 	call Function8d1a2
@@ -65319,8 +65351,20 @@ Function8d0de: ; 8d0de
 	xor b
 	and $e0
 	ld b, a
+	ld a, [wSpriteAnimPalOverrides]
+	bit 5, a
+	jr nz, .player
 	ld a, [hl]
 	and $1f
+	or b
+	ret
+
+.player
+	and $7
+	or b
+	ld b, a
+	ld a, [hl]
+	and $18
 	or b
 	ret
 ; 8d0ec
