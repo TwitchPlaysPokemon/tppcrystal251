@@ -25,53 +25,97 @@ UnknownScript_0x18aeb0: ; 0x18aeb0
 	return
 ; 0x18aeb1
 
+SetCopycatToPlayerPals:
+	ld a, [wPlayerPalette]
+	and a
+	ret z
+	push af
+	push af
+	ld a, [PlayerGender]
+	jr _ContinueCopycatPals
+
+ResetCopycatPals:
+	ld a, [wPlayerPalette]
+	and a
+	ret z
+	ld a, [PlayerGender]
+	and $1
+	or $8
+	push af
+	push af
+_ContinueCopycatPals:
+	bit 0, a
+	ld a, $1
+	jr z, .okay
+	ld a, $6
+.okay
+	call GetMapObject
+	ld hl, $8
+	add hl, bc
+	pop af
+	swap a
+	ld [hl], a
+	ld hl, 0
+	add hl, bc
+	ld a, [hl]
+	call Function1ae5 ; GetObjectStruct
+	ld hl, $6
+	add hl, bc
+	pop af
+	and $7
+	ld [hl], a
+	ret
+
 CopycatScript_0x18aeb1: ; 0x18aeb1
 	faceplayer
 	checkevent EVENT_GOT_PASS_FROM_COPYCAT
-	iftrue UnknownScript_0x18af6f
+	iftrue .GotPass
 	checkevent EVENT_RETURNED_LOST_ITEM_TO_COPYCAT
-	iftrue UnknownScript_0x18af5b
+	iftrue .ReturnedLostItem
 	checkitem LOST_ITEM
-	iftrue UnknownScript_0x18af4a
+	iftrue .DeliverLostItem
 	checkflag ENGINE_PLAYER_IS_FEMALE
-	iftrue UnknownScript_0x18aed4
-	applymovement $2, MovementData_0x18afd0
+	iftrue .Phase1a_Female
+	applymovement $2, CopycatSpinMovementData
+	callasm SetCopycatToPlayerPals
 	faceplayer
-	variablesprite $b, $1
-	jump UnknownScript_0x18aedc
+	variablesprite SPRITE_COPYCAT, SPRITE_RUST
+	jump .Phase1a_Merge
 ; 0x18aed4
 
-UnknownScript_0x18aed4: ; 0x18aed4
-	applymovement $7, MovementData_0x18afd0
+.Phase1a_Female: ; 0x18aed4
+	applymovement $7, CopycatSpinMovementData
+	callasm SetCopycatToPlayerPals
 	faceplayer
-	variablesprite $b, $60
-UnknownScript_0x18aedc: ; 0x18aedc
+	variablesprite SPRITE_COPYCAT, SPRITE_AZURE
+.Phase1a_Merge: ; 0x18aedc
 	special Function14209
 	checkevent EVENT_RETURNED_MACHINE_PART
-	iftrue UnknownScript_0x18af16
+	iftrue .ReturnedMachinePart
 	loadfont
 	checkflag ENGINE_PLAYER_IS_FEMALE
-	iftrue UnknownScript_0x18aef2
-	writetext UnknownText_0x18afda
-	jump UnknownScript_0x18aef5
+	iftrue .Phase1b_Female
+	writetext CopycatPhase1MaleText
+	jump .Phase1b_Merge
 ; 0x18aef2
 
-UnknownScript_0x18aef2: ; 0x18aef2
-	writetext UnknownText_0x18b316
-UnknownScript_0x18aef5: ; 0x18aef5
+.Phase1b_Female: ; 0x18aef2
+	writetext CopycatPhase1FemaleText
+.Phase1b_Merge: ; 0x18aef5
 	waitbutton
 	closetext
 	checkflag ENGINE_PLAYER_IS_FEMALE
-	iftrue UnknownScript_0x18af04
-	applymovement $2, MovementData_0x18afd0
-	jump UnknownScript_0x18af08
+	iftrue .Phase1c_Female
+	applymovement $2, CopycatSpinMovementData
+	jump .Phase1c_Merge
 ; 0x18af04
 
-UnknownScript_0x18af04: ; 0x18af04
-	applymovement $7, MovementData_0x18afd0
-UnknownScript_0x18af08: ; 0x18af08
+.Phase1c_Female: ; 0x18af04
+	applymovement $7, CopycatSpinMovementData
+.Phase1c_Merge: ; 0x18af08
+	callasm ResetCopycatPals
 	faceplayer
-	variablesprite $b, $28
+	variablesprite SPRITE_COPYCAT, SPRITE_LASS
 	special Function14209
 	loadfont
 	writetext UnknownText_0x18b028
@@ -80,30 +124,31 @@ UnknownScript_0x18af08: ; 0x18af08
 	end
 ; 0x18af16
 
-UnknownScript_0x18af16: ; 0x18af16
+.ReturnedMachinePart: ; 0x18af16
 	loadfont
 	checkflag ENGINE_PLAYER_IS_FEMALE
-	iftrue UnknownScript_0x18af23
-	writetext UnknownText_0x18b064
-	jump UnknownScript_0x18af26
+	iftrue .Phase2a_Female
+	writetext CopycatPhase2MaleText
+	jump .Phase2a_Merge
 ; 0x18af23
 
-UnknownScript_0x18af23: ; 0x18af23
-	writetext UnknownText_0x18b366
-UnknownScript_0x18af26: ; 0x18af26
+.Phase2a_Female: ; 0x18af23
+	writetext CopycatPhase2FemaleText
+.Phase2a_Merge: ; 0x18af26
 	waitbutton
 	closetext
 	checkflag ENGINE_PLAYER_IS_FEMALE
-	iftrue UnknownScript_0x18af35
-	applymovement $2, MovementData_0x18afd0
-	jump UnknownScript_0x18af39
+	iftrue .Phase2b_Female
+	applymovement $2, CopycatSpinMovementData
+	jump .Phase2b_Merge
 ; 0x18af35
 
-UnknownScript_0x18af35: ; 0x18af35
-	applymovement $7, MovementData_0x18afd0
-UnknownScript_0x18af39: ; 0x18af39
+.Phase2b_Female: ; 0x18af35
+	applymovement $7, CopycatSpinMovementData
+.Phase2b_Merge: ; 0x18af39
+	callasm ResetCopycatPals
 	faceplayer
-	variablesprite $b, $28
+	variablesprite SPRITE_COPYCAT, SPRITE_LASS
 	special Function14209
 	loadfont
 	writetext UnknownText_0x18b116
@@ -113,73 +158,76 @@ UnknownScript_0x18af39: ; 0x18af39
 	end
 ; 0x18af4a
 
-UnknownScript_0x18af4a: ; 0x18af4a
+.DeliverLostItem: ; 0x18af4a
 	loadfont
-	writetext UnknownText_0x18b17f
+	writetext CopycatTakeLostItemText
 	buttonsound
 	takeitem LOST_ITEM, 1
 	setevent EVENT_RETURNED_LOST_ITEM_TO_COPYCAT
 	clearevent EVENT_COPYCATS_DOLL_IN_HER_ROOM
-	jump UnknownScript_0x18af5c
+	jump .GivePass
 ; 0x18af5b
 
-UnknownScript_0x18af5b: ; 0x18af5b
+.ReturnedLostItem: ; 0x18af5b
 	loadfont
-UnknownScript_0x18af5c: ; 0x18af5c
-	writetext UnknownText_0x18b1e2
+.GivePass: ; 0x18af5c
+	writetext CopycatGivePassText
 	buttonsound
 	verbosegiveitem PASS, 1
-	iffalse UnknownScript_0x18afba
+	iffalse .Abort
 	setevent EVENT_GOT_PASS_FROM_COPYCAT
-	writetext UnknownText_0x18b214
+	writetext CopycatExplainPassText
 	waitbutton
 	closetext
 	end
 ; 0x18af6f
 
-UnknownScript_0x18af6f: ; 0x18af6f
+.GotPass: ; 0x18af6f
 	checkflag ENGINE_PLAYER_IS_FEMALE
-	iftrue UnknownScript_0x18af80
-	applymovement $2, MovementData_0x18afd0
+	iftrue .Phase3a_Female
+	applymovement $2, CopycatSpinMovementData
+	callasm SetCopycatToPlayerPals
 	faceplayer
-	variablesprite $b, $1
-	jump UnknownScript_0x18af88
+	variablesprite SPRITE_COPYCAT, SPRITE_RUST
+	jump .Phase3a_Merge
 ; 0x18af80
 
-UnknownScript_0x18af80: ; 0x18af80
-	applymovement $7, MovementData_0x18afd0
+.Phase3a_Female: ; 0x18af80
+	applymovement $7, CopycatSpinMovementData
+	callasm SetCopycatToPlayerPals
 	faceplayer
-	variablesprite $b, $60
-UnknownScript_0x18af88: ; 0x18af88
+	variablesprite SPRITE_COPYCAT, SPRITE_AZURE
+.Phase3a_Merge: ; 0x18af88
 	special Function14209
 	loadfont
 	checkflag ENGINE_PLAYER_IS_FEMALE
-	iftrue UnknownScript_0x18af98
-	writetext UnknownText_0x18b298
-	jump UnknownScript_0x18af9b
+	iftrue .Phase3b_Female
+	writetext CopycatPhase3MaleText
+	jump .Phase3b_Merge
 ; 0x18af98
 
-UnknownScript_0x18af98: ; 0x18af98
-	writetext UnknownText_0x18b415
-UnknownScript_0x18af9b: ; 0x18af9b
+.Phase3b_Female: ; 0x18af98
+	writetext CopycatPhase3FemaleText
+.Phase3b_Merge: ; 0x18af9b
 	waitbutton
 	closetext
 	checkflag ENGINE_PLAYER_IS_FEMALE
-	iftrue UnknownScript_0x18afaa
-	applymovement $2, MovementData_0x18afd0
-	jump UnknownScript_0x18afae
+	iftrue .Phase3c_Female
+	applymovement $2, CopycatSpinMovementData
+	jump .Phase3c_Merge
 ; 0x18afaa
 
-UnknownScript_0x18afaa: ; 0x18afaa
-	applymovement $7, MovementData_0x18afd0
-UnknownScript_0x18afae: ; 0x18afae
+.Phase3c_Female: ; 0x18afaa
+	applymovement $7, CopycatSpinMovementData
+.Phase3c_Merge: ; 0x18afae
+	callasm ResetCopycatPals
 	faceplayer
-	variablesprite $b, $28
+	variablesprite SPRITE_COPYCAT, SPRITE_LASS
 	special Function14209
 	loadfont
 	writetext UnknownText_0x18b2f5
 	waitbutton
-UnknownScript_0x18afba: ; 0x18afba
+.Abort: ; 0x18afba
 	closetext
 	end
 ; 0x18afbc
@@ -205,7 +253,7 @@ MapCopycatsHouse2FSignpost1Script: ; 0x18afcd
 	jumpstd picturebookshelf
 ; 0x18afd0
 
-MovementData_0x18afd0: ; 0x18afd0
+CopycatSpinMovementData: ; 0x18afd0
 	turn_head_down
 	turn_head_left
 	turn_head_up
@@ -218,7 +266,7 @@ MovementData_0x18afd0: ; 0x18afd0
 	step_end
 ; 0x18afda
 
-UnknownText_0x18afda: ; 0x18afda
+CopycatPhase1MaleText: ; 0x18afda
 	text "<PLAYER>: Hi! Do"
 	line "you like #MON?"
 
@@ -239,7 +287,7 @@ UnknownText_0x18b028: ; 0x18b028
 	done
 ; 0x18b064
 
-UnknownText_0x18b064: ; 0x18b064
+CopycatPhase2MaleText: ; 0x18b064
 	text "<PLAYER>: Hi!"
 	line "I heard that you"
 
@@ -272,7 +320,7 @@ UnknownText_0x18b116: ; 0x18b116
 	done
 ; 0x18b17f
 
-UnknownText_0x18b17f: ; 0x18b17f
+CopycatTakeLostItemText: ; 0x18b17f
 	text "COPYCAT: Yay!"
 	line "That's my CLEFAIRY"
 	cont "# DOLL!"
@@ -285,14 +333,14 @@ UnknownText_0x18b17f: ; 0x18b17f
 	done
 ; 0x18b1e2
 
-UnknownText_0x18b1e2: ; 0x18b1e2
+CopycatGivePassText: ; 0x18b1e2
 	text "OK. Here's the"
 	line "MAGNET TRAIN PASS"
 	cont "like I promised!"
 	done
 ; 0x18b214
 
-UnknownText_0x18b214: ; 0x18b214
+CopycatExplainPassText: ; 0x18b214
 	text "COPYCAT: That's"
 	line "the PASS for the"
 	cont "MAGNET TRAIN."
@@ -306,7 +354,7 @@ UnknownText_0x18b214: ; 0x18b214
 	done
 ; 0x18b298
 
-UnknownText_0x18b298: ; 0x18b298
+CopycatPhase3MaleText: ; 0x18b298
 	text "<PLAYER>: Hi!"
 	line "Thanks a lot for"
 	cont "the rail PASS!"
@@ -325,7 +373,7 @@ UnknownText_0x18b2f5: ; 0x18b2f5
 	done
 ; 0x18b316
 
-UnknownText_0x18b316: ; 0x18b316
+CopycatPhase1FemaleText: ; 0x18b316
 	text "<PLAYER>: Hi. You"
 	line "must like #MON."
 
@@ -337,7 +385,7 @@ UnknownText_0x18b316: ; 0x18b316
 	done
 ; 0x18b366
 
-UnknownText_0x18b366: ; 0x18b366
+CopycatPhase2FemaleText: ; 0x18b366
 	text "<PLAYER>: Hi. Did"
 	line "you really lose"
 	cont "your # DOLL?"
@@ -357,7 +405,7 @@ UnknownText_0x18b366: ; 0x18b366
 	done
 ; 0x18b415
 
-UnknownText_0x18b415: ; 0x18b415
+CopycatPhase3FemaleText: ; 0x18b415
 	text "<PLAYER>: Thank you"
 	line "for the rail PASS!"
 
