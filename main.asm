@@ -64876,6 +64876,7 @@ Function8ce19: ; 8ce19
 	ld hl, $0003
 	add hl, bc
 	ld [hl], $0
+	; Set the palette here
 	call Function8ce14
 	ld a, $80
 	ld [wcf66], a
