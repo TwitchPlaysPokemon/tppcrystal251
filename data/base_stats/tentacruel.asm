@@ -1,6 +1,6 @@
 	db TENTACRUEL ; 073
 
-	 db 80,  80,  65, 110, 80,  120
+	db 80,  80,  65, 110, 80,  120
 	;   hp  atk  def  spd  sat  sdf
 
 	db WATER, POISON
