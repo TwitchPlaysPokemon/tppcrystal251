@@ -728,7 +728,7 @@ UnknownScript_0xbc380: ; 0xbc380 ;clear contestent flags that are not active?
 FirstPlaceQuestion:
 	text $52, ", the No.1"
 	line "finisher, has"
-	cont "wins a SUN STONE!"
+	cont "won a SUN STONE!"
 
 	para "However, you may"
 	line "choose to take a"
