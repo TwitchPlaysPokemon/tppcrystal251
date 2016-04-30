@@ -157,9 +157,9 @@ MonMenuIcons: ; 8eac4
 	db ICON_KABUTOPS     ; KABUTOPS
 	db ICON_AERODACTYL   ; AERODACTYL
 	db ICON_SNORLAX      ; SNORLAX
-	db ICON_BIRD         ; ARTICUNO
-	db ICON_BIRD         ; ZAPDOS
-	db ICON_BIRD         ; MOLTRES
+	db ICON_ARTICUNO     ; ARTICUNO
+	db ICON_ZAPDOS       ; ZAPDOS
+	db ICON_MOLTRES      ; MOLTRES
 	db ICON_SERPENT      ; DRATINI
 	db ICON_SERPENT      ; DRAGONAIR
 	db ICON_BIGMON       ; DRAGONITE
@@ -256,15 +256,15 @@ MonMenuIcons: ; 8eac4
 	db ICON_HUMANSHAPE   ; MAGBY
 	db ICON_EQUINE       ; MILTANK
 	db ICON_CLEFAIRY     ; BLISSEY
-	db ICON_FOX          ; RAIKOU
-	db ICON_FOX          ; ENTEI
-	db ICON_FOX          ; SUICUNE
+	db ICON_RAIKOU       ; RAIKOU
+	db ICON_ENTEI        ; ENTEI
+	db ICON_SUICUNE      ; SUICUNE
 	db ICON_MONSTER      ; LARVITAR
 	db ICON_MONSTER      ; PUPITAR
 	db ICON_MONSTER      ; TYRANITAR
 	db ICON_LUGIA        ; LUGIA
 	db ICON_HO_OH        ; HO_OH
-	db ICON_HUMANSHAPE   ; CELEBI
+	db ICON_CELEBI   ; CELEBI
 
 IconPointers:
 	dw NullIcon
@@ -330,3 +330,20 @@ IconPointers:
 	dw KabutoIcon
 	dw KabutopsIcon
 	dw AerodactylIcon
+	dw RaikouIcon
+	dw EnteiIcon
+	dw SuicuneIcon
+	dw CelebiIcon
+	dw ArticunoIcon
+	dw ZapdosIcon
+	dw MoltresIcon
+	dw MagikarpIcon
+	dw ChikoritaIcon
+	dw BayleefIcon
+	dw MeganiumIcon
+	dw CyndaquilIcon
+	dw QuilavaIcon
+	dw TyphlosionIcon
+	dw TotodileIcon
+	dw CroconawIcon
+	dw FeraligatrIcon
