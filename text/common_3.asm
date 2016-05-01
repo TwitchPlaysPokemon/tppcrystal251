@@ -682,7 +682,7 @@ UnknownText_0x1c0aa9: ; 1c0aa9
 UnknownText_0x1c0acc: ; 1c0acc
 	text_from_ram StringBuffer3
 	text ""
-	line "survived the!"
+	line "survived the"
 	cont "poisoning!"
 	prompt
 ; 1c0ada
