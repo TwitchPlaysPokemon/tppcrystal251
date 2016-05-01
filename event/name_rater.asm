@@ -75,8 +75,7 @@ NameRater_CheckTraded: ; fb78a
 	ld a, [CurPartyMon]
 	call AddNTimes ;hl = party trainer name
 	ld de, PlayerName ;de = player name
-	; ld c, NAME_LENGTH
-	ld c, 8 ; number of actual characters in your name
+	ld c, NAME_LENGTH
 	call .StrCmp ;compare c chars, ret c if different
 	ret c
 	ld hl, PartyMon1ID ;do the same as above for ID
@@ -84,28 +83,15 @@ NameRater_CheckTraded: ; fb78a
 	ld a, [CurPartyMon]
 	call AddNTimes
 	ld de, PlayerID
-	ld a, [de]
-	cp [hl]
-	jr nz, .different
-	inc hl
-	inc de
-	ld a, [de]
-	cp [hl]
-	jr nz, .different
-	and a
-	ret
-	
+	ld c, 2
 .StrCmp: ;if any chars are different, ret c, else continue
 	ld a, [de]
 	cp [hl]
 	jr nz, .different
-	cp "@"
-	jr z, .identical
 	inc hl
 	inc de
 	dec c
 	jr nz, .StrCmp
-.identical
 	and a
 	ret
 

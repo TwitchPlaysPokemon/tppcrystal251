@@ -783,6 +783,8 @@ OakSpeech: ; 0x5f99
 	ld hl, OakText6
 	call PrintText
 	call NamePlayer
+	ld a, 1
+	ld [PlayerName + 8], a
 	ld hl, OakText8
 	call PrintText
 	call Function4b6
@@ -33680,6 +33682,7 @@ Function29cfa: ; 29cfa
 ; 29d11
 
 Function29d11: ; 29d11
+	call EnsureTPPBytes
 	ld a, [wcf56]
 	and a
 	jr z, .asm_29d2f
@@ -33748,6 +33751,126 @@ Function29d11: ; 29d11
 	ld [ScriptVar], a
 	ret
 ; 29d92
+
+EnsureTPPBytes:
+	ld a, [PlayerName + 8]
+	and a
+	ret nz
+	inc a
+	ld [PlayerName + 8], a
+	ld a, [PartyCount]
+	ld e, a
+	xor a
+.party_loop
+	ld [CurPartyMon], a
+	push de
+	ld a, PartyMon1ID - PartyMon1
+	call GetPartyParamLocation
+	call .CheckID
+	jr nz, .next
+	ld hl, PartyMonOT
+	ld bc, NAME_LENGTH
+	ld a, [CurPartyMon]
+	call AddNTimes
+	call .CheckOTName
+.next
+	pop de
+	dec e
+	jr z, .done_party
+	ld a, [CurPartyMon]
+	inc a
+	jr .party_loop
+
+.done_party
+	ld hl, .BoxAddrs
+.boxes_loop
+	ld a, [hli]
+	cp -1
+	ret z
+	call GetSRAMBank
+	ld a, [hli]
+	ld b, [hl]
+	ld c, a
+	inc hl
+	push hl
+	ld a, [bc]
+	ld e, a
+	xor a
+.box_loop
+	ld [CurPartyMon], a
+	push de
+	ld hl, sBoxMon1ID - sBox
+	add hl, bc
+	push bc
+	ld bc, sBoxMon2 - sBoxMon1
+	ld a, [CurPartyMon]
+	call AddNTimes
+	call .CheckID
+	pop bc
+	jr nz, .box_next
+	ld hl, sBoxMonOT - sBox
+	add hl, bc
+	push bc
+	ld bc, NAME_LENGTH
+	ld a, [CurPartyMon]
+	call AddNTimes
+	call .CheckOTName
+	pop bc
+.box_next
+	pop de
+	dec e
+	jr z, .done_box
+	ld a, [CurPartyMon]
+	inc a
+	jr .box_loop
+
+.done_box
+	call CloseSRAM
+	pop hl
+	jr .boxes_loop
+
+.CheckID:
+	ld de, PlayerID
+	ld a, [de]
+	cp [hl]
+	ret nz
+	inc de
+	inc hl
+	ld a, [de]
+	cp [hl]
+	ret
+
+.CheckOTName:
+	ld c, 8
+	ld de, PlayerName
+.name_loop
+	ld a, [de]
+	cp [hl]
+	ret nz
+	inc de
+	inc hl
+	dec c
+	jr nz, .name_loop
+	ld [hl], 1
+	ret
+
+.BoxAddrs:
+	dba sBox
+	dba sBox1
+	dba sBox2
+	dba sBox3
+	dba sBox4
+	dba sBox5
+	dba sBox6
+	dba sBox7
+	dba sBox8
+	dba sBox9
+	dba sBox10
+	dba sBox11
+	dba sBox12
+	dba sBox13
+	dba sBox14
+	db -1
 
 Function29d92: ; 29d92 (5D8F)
 	ld a, $1
