@@ -1,5 +1,8 @@
 Version 1.1.3
 * Remove OLDEN from the Pokemon Quiz Show
+* More text fixes
+* More party menu icons
+* Moved an NPC on Route 4 to correct some visual errors
 
 Version 1.1.2
 * Grammar fixes
