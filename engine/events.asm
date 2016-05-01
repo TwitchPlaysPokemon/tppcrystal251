@@ -998,7 +998,7 @@ CountStep: ; 96b79
 	jr c, .asm_96bc3
 	ld [hl], 0
 
-	callba Function505da
+	callba OverworldPoisonDamage
 	jr c, .asm_96bcb
 
 .asm_96bc3

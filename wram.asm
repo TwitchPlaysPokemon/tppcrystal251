@@ -1284,6 +1284,7 @@ CurFruitTree::
 CurInput::
 EngineBuffer1:: ; d03e
 	ds 1
+EngineBuffer2::
 wd03f::
 CurFruit:: ; d03f
 	ds 1

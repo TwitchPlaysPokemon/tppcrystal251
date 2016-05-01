@@ -8,8 +8,9 @@
 #include <string.h>
 #include <stdarg.h>
 
-#define BLOCK_SIZE 4096
+#define BLOCK_SIZE 8192
 #define MINIMUM_RUN 8
+#define MAXIMUM_REDUNDANCY 6
 // you cannot write a patch block with an offset of 4,542,278 (0x454F46) because it is the end of file marker
 #define EOF_MARKER 4542278
 
@@ -30,7 +31,9 @@ void create_patch(const char *, const char *, const char *);
 FILE * open_file_checked(const char *, unsigned *);
 char get_special_value(FILE *, unsigned);
 void create_patch_for_data(const char *, const char *, unsigned, unsigned, FILE *, char);
+unsigned get_segment_length(const char *, const char *, unsigned, int);
 void write_patch_block_for_data(const char *, unsigned, unsigned, FILE *, char);
+int check_runs(const char *, unsigned);
 void write_value(unsigned, unsigned char, FILE *);
 
 int main (int argc, char ** argv) {
@@ -186,16 +189,29 @@ char get_special_value (FILE * fp, unsigned length) {
 
 void create_patch_for_data (const char * first_buffer, const char * second_buffer, unsigned length, unsigned offset, FILE * output, char special) {
   unsigned pos = 0;
-  unsigned block;
+  unsigned block, next;
   while (pos < length) {
     if (first_buffer[pos] == second_buffer[pos]) {
-      for (; (pos < length) && (first_buffer[pos] == second_buffer[pos]); pos ++);
+      pos += get_segment_length(first_buffer + pos, second_buffer + pos, length - pos, 1);
       continue;
     }
-    for (block = 0; ((pos + block) < length) && (first_buffer[pos + block] != second_buffer[pos + block]); block ++);
+    block = 0;
+    next = 0;
+    do {
+      block += next;
+      block += get_segment_length(first_buffer + pos + block, second_buffer + pos + block, length - pos - block, 0);
+      next = get_segment_length(first_buffer + pos + block, second_buffer + pos + block, length - pos - block, 1);
+    } while (((pos + block) < length) && (next < MAXIMUM_REDUNDANCY));
     write_patch_block_for_data(second_buffer + pos, block, offset + pos, output, special);
     pos += block;
   }
+}
+
+unsigned get_segment_length (const char * first_buffer, const char * second_buffer, unsigned length, int kind) {
+  // 0: differing, 1: equal
+  unsigned pos;
+  for (pos = 0; (pos < length) && ((first_buffer[pos] == second_buffer[pos]) == kind); pos ++);
+  return pos;
 }
 
 void write_patch_block_for_data (const char * data, unsigned length, unsigned offset, FILE * output, char special) {
@@ -227,10 +243,29 @@ void write_patch_block_for_data (const char * data, unsigned length, unsigned of
     current = 32767;
     remainder = length - 32767;
   }
+  int run_pos = check_runs(data, current);
+  if (run_pos > 0) {
+    remainder += current - run_pos;
+    current = run_pos;
+    if ((offset + current) == EOF_MARKER) {
+      remainder --;
+      current ++;
+    }
+  }
   write_value(offset, 3, output);
   write_value(current, 2, output);
   fwrite(data, 1, current, output);
   if (remainder) write_patch_block_for_data(data + current, remainder, offset + current, output, special);
+}
+
+int check_runs (const char * data, unsigned length) {
+  unsigned pos, cmp;
+  if (length < MINIMUM_RUN) return -1;
+  for (pos = 0; pos <= (length - MINIMUM_RUN); pos ++) {
+    for (cmp = 0; (cmp < MINIMUM_RUN) && (data[pos] == data[pos + cmp]); cmp ++);
+    if (cmp >= MINIMUM_RUN) return pos;
+  }
+  return -1;
 }
 
 void write_value (unsigned value, unsigned char length, FILE * file) {

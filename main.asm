@@ -2897,7 +2897,7 @@ ChangeHappiness: ; 71c2
 	db  +3,  +2,  +1 ; Battled a Gym Leader
 	db  +1,  +1,  +0 ; Learned a move
 	db  -1,  -1,  -1 ; Lost to an enemy
-	db  -5,  -5, -10
+	db  -5,  -5, -10 ; Survived poisoning
 	db  -5,  -5, -10 ; Lost to a much weaker enemy
 	db  +1,  +1,  +1
 	db  +3,  +3,  +1
@@ -48574,22 +48574,26 @@ Function505c1: ; 505c1
 	ret
 ; 505da
 
-Function505da:: ; 505da
+OverworldPoisonDamage:: ; 505da
+	; Poison flags stored in 7 bytes at d03e (EngineBuffer1)
+	; d03e: cumulative | d03f - d045: each party mon separately
+	; bit 0: took poison damage
+	; bit 1: survived the poisoning
 	ld a, [PartyCount]
 	and a
-	jr z, .asm_5062c
+	jr z, .not_fainted
 	xor a
 	ld c, 7
 	ld hl, EngineBuffer1
-.asm_505e6
+.reset
 	ld [hli], a
 	dec c
-	jr nz, .asm_505e6
+	jr nz, .reset
 	xor a
 	ld [CurPartyMon], a
-.asm_505ee
+.loop
 	call Function5062e
-	jr nc, .asm_50605
+	jr nc, .not_psn
 	ld a, [CurPartyMon]
 	ld e, a
 	ld d, 0
@@ -48599,30 +48603,30 @@ Function505da:: ; 505da
 	ld a, [EngineBuffer1]
 	or c
 	ld [EngineBuffer1], a
-.asm_50605
+.not_psn
 	ld a, [PartyCount]
 	ld hl, CurPartyMon
 	inc [hl]
 	cp [hl]
-	jr nz, .asm_505ee
+	jr nz, .loop
 	ld a, [EngineBuffer1]
 	and $2
-	jr nz, .asm_50622
+	jr nz, .fainted
 	ld a, [EngineBuffer1]
 	and $1
-	jr z, .asm_5062c
+	jr z, .not_fainted
 	call Function50658
 	xor a
 	ret
 
-.asm_50622
+.fainted
 	ld a, BANK(UnknownScript_0x50669)
 	ld hl, UnknownScript_0x50669
 	call CallScript
 	scf
 	ret
 
-.asm_5062c
+.not_fainted
 	xor a
 	ret
 ; 5062e
@@ -48647,6 +48651,9 @@ Function5062e: ; 5062e
 	ld a, b
 	or c
 	jr nz, .not_fainted
+	; Survive with 1 HP
+	inc hl
+	inc [hl]
 	ld a, PartyMon1Status - PartyMon1
 	call GetPartyParamLocation
 	ld [hl], 0
@@ -48673,52 +48680,52 @@ UnknownScript_0x50669: ; 50669
 	callasm Function50658
 	loadfont
 	callasm Function5067b
-	iffalse UnknownScript_0x50677
+	; iffalse UnknownScript_0x50677
 	closetext
 	end
 ; 50677
 
-UnknownScript_0x50677: ; 50677
-	farjump UnknownScript_0x124c8
+; UnknownScript_0x50677: ; 50677
+	; farjump UnknownScript_0x124c8
 ; 5067b
 
 Function5067b: ; 5067b
 	xor a
 	ld [CurPartyMon], a
-	ld de, wd03f
-.asm_50682
+	ld de, EngineBuffer2
+.loop
 	push de
 	ld a, [de]
 	and 2
-	jr z, .asm_5069c
-	ld c, 7
-	callba ChangeHappiness
+	jr z, .dont_inform_survival
+	; ld c, 7
+	; callba ChangeHappiness
 	callba GetPartyNick
-	ld hl, PoisonFaintText
+	ld hl, PoisonSurviveText
 	call PrintText
-.asm_5069c
+.dont_inform_survival
 	pop de
 	inc de
 	ld hl, CurPartyMon
 	inc [hl]
 	ld a, [PartyCount]
 	cp [hl]
-	jr nz, .asm_50682
-	predef CheckAnyPartyMonAlive
-	ld a, d
-	ld [ScriptVar], a
+	jr nz, .loop
+	; predef CheckAnyPartyMonAlive
+	; ld a, d
+	; ld [ScriptVar], a
 	ret
 ; 506b2
 
-PoisonFaintText: ; 506b2
+PoisonSurviveText: ; 506b2
 	text_jump UnknownText_0x1c0acc
 	db "@"
 ; 506b7
 
-PoisonWhiteOutText: ; 506b7
-	text_jump UnknownText_0x1c0ada
-	db "@"
-; 506bc
+; PoisonWhiteOutText: ; 506b7
+	; text_jump UnknownText_0x1c0ada
+	; db "@"
+; ; 506bc
 
 Function506bc: ; 506bc
 	ld hl, UnknownScript_0x506c8
