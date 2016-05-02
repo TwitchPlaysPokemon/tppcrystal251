@@ -1627,6 +1627,9 @@ Script_returnafterbattle: ; 0x97459
 	ld a, [wd0ee]
 	bit 7, a
 	jr z, Script_reloadmap ; 0x97481 $b
+	ld a, [wd957]
+	bit 2, a
+	jr z, Script_reloadmap
 	ld b, BANK(UnknownScript_0x90255)
 	ld de, UnknownScript_0x90255
 	callba Function97c4f

@@ -65840,7 +65840,9 @@ Function90069: ; 90069
 
 CheckPhoneCall:: ; 90074 (24:4074)
 ; Check if the phone is ringing in the overworld.
-
+	ld a, [wd957]
+	bit 2, a
+	jr z, .no_call
 	call CheckStandingOnEntrance
 	jr z, .no_call
 	call Function900a6
@@ -65957,6 +65959,9 @@ Function900de: ; 900de (24:40de)
 	ret
 
 Function90136:: ; 90136 (24:4136)
+	ld a, [wd957]
+	bit 2, a
+	jr z, .asm_90171
 	ld a, [wdc31]
 	and a
 	jr z, .asm_90171
