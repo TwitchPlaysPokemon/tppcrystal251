@@ -41,20 +41,25 @@ GS_Copyright_Intro: ; 39:49a8
 .InitGFX: ; 39:49f3
 	ld de, TppLogo
 	ld hl, $8800
-	lb bc, BANK(TppLogo), $1c
+	lb bc, BANK(TppLogo), $24
 	call Get1bpp
 
 	ld de, GS_Gamefreak_GFX2
-	ld hl, $89c0
+	ld hl, $8a20
 	lb bc, BANK(GS_Gamefreak_GFX2), $5
 	call Get2bpp
+
+	ld de, TppLogo + $118
+	ld hl, $8a70
+	lb bc, BANK(TppLogo), $31
+	call Get1bpp
 
 	callba Function8cf53 ; ClearSpriteAnims
 
 	ld hl, wc300 ; wObjectTileOverrides
 	ld a, $6
 	ld [hli], a
-	ld a, $8d
+	ld a, $a2
 	ld [hl], a
 	xor a
 	ld [wcf63], a
@@ -145,12 +150,53 @@ GS_Copyright_Intro: ; 39:49a8
 	ld a, [wcf64]
 	and a
 	ret z
-	lb de, $54, $58
-	ld a, $2e
-	call Function3b2a ; InitSpriteAnimStruct
+	; lb de, $54, $58
+	; ld a, $2e
+	; call Function3b2a ; InitSpriteAnimStruct
+	hlcoord 7, 4
+	ld a, $a7
+	call .FillBox
+	hlcoord 7, 4, AttrMap
+	ld a, $1
+	call .FillBoxAttr
+	callba Function96b3
+	callba Function96a4
 	call .IncrementJumptableIndex
 	ld a, $80
 	ld [wcf65], a
+	ret
+
+.FillBox:
+	ld b, 7
+	ld de, $14
+.row
+	push hl
+	ld c, 7
+.col
+	ld [hli], a
+	inc a
+	dec c
+	jr nz, .col
+	pop hl
+	add hl, de
+	dec b
+	jr nz, .row
+	ret
+
+.FillBoxAttr:
+	ld b, 7
+	ld de, $14
+.rowattr
+	push hl
+	ld c, 7
+.colattr
+	ld [hli], a
+	dec c
+	jr nz, .colattr
+	pop hl
+	add hl, de
+	dec b
+	jr nz, .rowattr
 	ret
 
 .Scene3: ; 39:4ac8

@@ -1113,10 +1113,13 @@ GSIntroPals:
 	ld a, $4e
 	call Function9625
 	call Function9630
-	ld hl, .Palette
+	ld hl, TPPDevsIntroPal
+	ld de, Unkn1Pals + 8
+	call Function9630
+	ld hl, GSIntroYellowPal
 	ld de, Unkn2Pals
 	call Function9630
-	ld hl, .Palette
+	ld hl, GSIntroYellowPal
 	ld de, Unkn2Pals + 8
 	call Function9630
 	call Function9699
@@ -1125,21 +1128,15 @@ GSIntroPals:
 	ret
 ; 9521
 
-.Palette: ; 9521
-	RGB 31, 31, 31
-	RGB 25, 30, 00
-	RGB 25, 30, 00
-	RGB 25, 30, 00
-
 Function94fa: ; 94fa
 	ld de, Unkn1Pals
 	ld a, $4e
 	call Function9625
 	call Function9630
-	ld hl, .Palette
+	ld hl, CrystalIntroPal
 	ld de, Unkn2Pals
 	call Function9630
-	ld hl, .Palette
+	ld hl, CrystalIntroPal
 	ld de, Unkn2Pals + 8
 	call Function9630
 	call Function9699
@@ -1147,7 +1144,19 @@ Function94fa: ; 94fa
 	call Function96a4
 	ret
 
-.Palette:
+GSIntroYellowPal: ; 9521
+	RGB 31, 31, 31
+	RGB 25, 30, 00
+	RGB 25, 30, 00
+	RGB 25, 30, 00
+
+TPPDevsIntroPal:
+	RGB 00, 00, 00
+	RGB 00, 00, 00
+	RGB 00, 00, 00
+	RGB 23, 12, 28
+
+CrystalIntroPal:
 	RGB 31, 31, 31
 	RGB 13, 11, 00
 	RGB 23, 12, 28

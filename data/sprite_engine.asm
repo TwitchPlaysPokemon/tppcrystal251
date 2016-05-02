@@ -1,72 +1,72 @@
 Unknown_8d6e6: ; 8d6e6
-	dw Unknown_8d76a
-	dw Unknown_8d76d
-	dw Unknown_8d772
-	dw Unknown_8d777
-	dw Unknown_8d77c
-	dw Unknown_8d781
-	dw Unknown_8d786
-	dw Unknown_8d7a6
-	dw Unknown_8d7ab
-	dw Unknown_8d7b0
-	dw Unknown_8d7b5
-	dw Unknown_8d7d4
-	dw Unknown_8d7d9
-	dw Unknown_8d7e2
-	dw Unknown_8d7eb
-	dw Unknown_8d7f4
-	dw Unknown_8d7ff
-	dw Unknown_8d78b
-	dw Unknown_8d802
-	dw Unknown_8d805
-	dw Unknown_8d808
-	dw Unknown_8d811
-	dw Unknown_8d818
-	dw Unknown_8d81d
-	dw Unknown_8d822
-	dw Unknown_8d825
-	dw Unknown_8d82c
-	dw Unknown_8d82f
-	dw Unknown_8d861
-	dw Unknown_8d864
-	dw Unknown_8d867
-	dw Unknown_8d874
-	dw Unknown_8d877
-	dw Unknown_8d87a
-	dw Unknown_8d87d
-	dw Unknown_8d880
-	dw Unknown_8d883
-	dw Unknown_8d890
-	dw Unknown_8d899
-	dw Unknown_8d89c
-	dw Unknown_8d89f
-	dw Unknown_8d8a2
-	dw Unknown_8d8a5
-	dw Unknown_8d8a8
-	dw Unknown_8d8ab
-	dw Unknown_8d794
-	dw Unknown_8d79d
-	dw Unknown_8d8ae
-	dw Unknown_8d8cd
-	dw Unknown_8d8ec
-	dw Unknown_8d8f1
-	dw Unknown_8d8f4
-	dw Unknown_8d8f7
-	dw Unknown_8d8fe
-	dw Unknown_8d907
-	dw Unknown_8d90c
-	dw Unknown_8d913
-	dw Unknown_8d916
-	dw Unknown_8d91d
-	dw Unknown_8d924
-	dw Unknown_8d92b
-	dw Unknown_8d932
-	dw Unknown_8d93d
-	dw Unknown_8d940
-	dw Unknown_8d943
-	dw Unknown_8d948
-	dw VoltorbFlipCursorFrameset
-	dw GSIntroFrameset
+	dw Unknown_8d76a                ; 00
+	dw Unknown_8d76d                ; 01
+	dw Unknown_8d772                ; 02
+	dw Unknown_8d777                ; 03
+	dw Unknown_8d77c                ; 04
+	dw Unknown_8d781                ; 05
+	dw Unknown_8d786                ; 06
+	dw Unknown_8d7a6                ; 07
+	dw Unknown_8d7ab                ; 08
+	dw Unknown_8d7b0                ; 09
+	dw Unknown_8d7b5                ; 0a
+	dw Unknown_8d7d4                ; 0b
+	dw Unknown_8d7d9                ; 0c
+	dw Unknown_8d7e2                ; 0d
+	dw Unknown_8d7eb                ; 0e
+	dw Unknown_8d7f4                ; 0f
+	dw Unknown_8d7ff                ; 10
+	dw Unknown_8d78b                ; 11
+	dw Unknown_8d802                ; 12
+	dw Unknown_8d805                ; 13
+	dw Unknown_8d808                ; 14
+	dw Unknown_8d811                ; 15
+	dw Unknown_8d818                ; 16
+	dw Unknown_8d81d                ; 17
+	dw Unknown_8d822                ; 18
+	dw Unknown_8d825                ; 19
+	dw Unknown_8d82c                ; 1a
+	dw Unknown_8d82f                ; 1b
+	dw Unknown_8d861                ; 1c
+	dw Unknown_8d864                ; 1d
+	dw Unknown_8d867                ; 1e
+	dw Unknown_8d874                ; 1f
+	dw Unknown_8d877                ; 20
+	dw Unknown_8d87a                ; 21
+	dw Unknown_8d87d                ; 22
+	dw Unknown_8d880                ; 23
+	dw Unknown_8d883                ; 24
+	dw Unknown_8d890                ; 25
+	dw Unknown_8d899                ; 26
+	dw Unknown_8d89c                ; 27
+	dw Unknown_8d89f                ; 28
+	dw Unknown_8d8a2                ; 29
+	dw Unknown_8d8a5                ; 2a
+	dw Unknown_8d8a8                ; 2b
+	dw Unknown_8d8ab                ; 2c
+	dw Unknown_8d794                ; 2d
+	dw Unknown_8d79d                ; 2e
+	dw Unknown_8d8ae                ; 2f
+	dw Unknown_8d8cd                ; 30
+	dw Unknown_8d8ec                ; 31
+	dw Unknown_8d8f1                ; 32
+	dw Unknown_8d8f4                ; 33
+	dw Unknown_8d8f7                ; 34
+	dw Unknown_8d8fe                ; 35
+	dw Unknown_8d907                ; 36
+	dw Unknown_8d90c                ; 37
+	dw Unknown_8d913                ; 38
+	dw Unknown_8d916                ; 39
+	dw Unknown_8d91d                ; 3a
+	dw Unknown_8d924                ; 3b
+	dw Unknown_8d92b                ; 3c
+	dw Unknown_8d932                ; 3d
+	dw Unknown_8d93d                ; 3e
+	dw Unknown_8d940                ; 3f
+	dw Unknown_8d943                ; 40
+	dw Unknown_8d948                ; 41
+	dw VoltorbFlipCursorFrameset    ; 42
+	dw GSIntroFrameset              ; 43
 ; 8d76a
 
 Unknown_8d76a: 	db $00,$20, $ff
@@ -149,147 +149,151 @@ GSIntroFrameset: db $22,$08, $ff
 ; 8d94d
 
 Unknown_8d94d: ; 8d94d
-	dbw $00, Unknown_8dd8a ; 00
-	dbw $04, Unknown_8dd8a ; 01
-	dbw $4c, Unknown_8daf1 ; 02
-	dbw $5c, Unknown_8daf1 ; 03
-	dbw $6c, Unknown_8daf6 ; 04
-	dbw $6e, Unknown_8daf6 ; 05
-	dbw $2d, Unknown_8ddf0 ; 06
-	dbw $4d, Unknown_8ddf0 ; 07
-	dbw $60, Unknown_8de09 ; 08
-	dbw $00, Unknown_8de09 ; 09
-	dbw $00, Unknown_8de09 ; 0a
-	dbw $06, Unknown_8de09 ; 0b
-	dbw $0c, Unknown_8de7e ; 0c
-	dbw $0d, Unknown_8daf1 ; 0d
-	dbw $00, Unknown_8dc53 ; 0e
-	dbw $04, Unknown_8dc53 ; 0f
-	dbw $08, Unknown_8dc53 ; 10
-	dbw $40, Unknown_8dc53 ; 11
-	dbw $44, Unknown_8dc53 ; 12
-	dbw $48, Unknown_8dc53 ; 13
-	dbw $4c, Unknown_8dc53 ; 14
-	dbw $80, Unknown_8de87 ; 15
-	dbw $85, Unknown_8de87 ; 16
-	dbw $8a, Unknown_8de87 ; 17
-	dbw $00, Unknown_8db29 ; 18
-	dbw $01, Unknown_8db5c ; 19
-	dbw $09, Unknown_8db9d ; 1a
-	dbw $10, Unknown_8dc94 ; 1b
-	dbw $29, Unknown_8dc94 ; 1c
-	dbw $42, Unknown_8dc94 ; 1d
-	dbw $f8, Unknown_8e17e ; 1e
-	dbw $fa, Unknown_8e17e ; 1f
-	dbw $00, Unknown_8deb2 ; 20
-	dbw $00, Unknown_8dec3 ; 21
-	dbw $00, Unknown_8deec ; 22
-	dbw $0f, Unknown_8db07
-	dbw $11, Unknown_8daf1
-	dbw $12, Unknown_8daf1
-	dbw $13, Unknown_8daf1
-	dbw $00, Unknown_8df29
-	dbw $08, Unknown_8df29
-	dbw $10, Unknown_8df42
-	dbw $10, Unknown_8df5b
-	dbw $10, Unknown_8df74
-	dbw $10, Unknown_8df8d
-	dbw $10, Unknown_8dfa6
-	dbw $3a, Unknown_8daf1
-	dbw $00, Unknown_8dd8a
-	dbw $00, Unknown_8db18
-	dbw $02, Unknown_8dd9b
-	dbw $06, Unknown_8db5c
-	dbw $0a, Unknown_8db5c
-	dbw $0e, Unknown_8db5c
-	dbw $12, Unknown_8db3a
-	dbw $13, Unknown_8db3a
-	dbw $00, Unknown_8dd8a
-	dbw $04, Unknown_8dd8a
-	dbw $10, Unknown_8db5c
-	dbw $00, Unknown_8dd9b
-	dbw $04, Unknown_8daf1
-	dbw $00, Unknown_8dfbf
-	dbw $00, Unknown_8ddac
-	dbw $00, Unknown_8ddbd
-	dbw $00, Unknown_8ddce
-	dbw $00, Unknown_8dddf
-	dbw $00, Unknown_8dd9b
-	dbw $04, Unknown_8dd9b
-	dbw $00, Unknown_8dc2e
-	dbw $30, Unknown_8dc2e
-	dbw $03, Unknown_8dc2e
-	dbw $33, Unknown_8dc2e
-	dbw $06, Unknown_8dc2e
-	dbw $36, Unknown_8dc2e
-	dbw $09, Unknown_8dc2e
-	dbw $39, Unknown_8dc2e
-	dbw $0c, Unknown_8dfcc
-	dbw $0c, Unknown_8dfe5
-	dbw $3c, Unknown_8daf1
-	dbw $3e, Unknown_8daf1
-	dbw $00, Unknown_8de9c
-	dbw $00, Unknown_8dea1
-	dbw $00, Unknown_8dff6
-	dbw $00, Unknown_8e007
-	dbw $00, Unknown_8e018
-	dbw $00, Unknown_8daf1
-	dbw $01, Unknown_8daf1
-	dbw $00, Unknown_8e029
-	dbw $00, Unknown_8e076
-	dbw $00, Unknown_8e0b7
-	dbw $00, Unknown_8e0f4
-	dbw $00, Unknown_8e139
-	dbw $04, Unknown_8dea1
-	dbw $00, Unknown_8e183
-	dbw $00, Unknown_8e1b4
-	dbw $00, Unknown_8e1b9
-	dbw $00, Unknown_8e1ca
-	dbw $00, Unknown_8e1eb
-	dbw $00, Unknown_8e1f0
-	dbw $00, Unknown_8e1f9
-	dbw $00, Unknown_8e202
-	dbw $04, Unknown_8e202
-	dbw $00, Unknown_8e213
-	dbw $04, Unknown_8e213
-	dbw $20, Unknown_8e224
-	dbw $21, Unknown_8e224
-	dbw $22, Unknown_8e24b
-	dbw $23, Unknown_8e25c
-	dbw $27, Unknown_8e27d
-	dbw $2a, Unknown_8e229
-	dbw $2a, Unknown_8e23a
-	dbw $00, Unknown_8e2ae
-	dbw $08, Unknown_8e33f
-	dbw $60, Unknown_8e3b0
-	dbw $68, Unknown_8e429
-	dbw $00, Unknown_8e4a6
-	dbw $05, Unknown_8e4a6
-	dbw $0a, Unknown_8e4a6
-	dbw $50, Unknown_8e50b
-	dbw $00, Unknown_8e54c
-	dbw $01, Unknown_8e551
-	dbw $04, Unknown_8e55e
-	dbw $00, Unknown_8db29
-	dbw $01, Unknown_8e57b
-	dbw $03, Unknown_8e59c
-	dbw $08, Unknown_8e5cd
-	dbw $1c, Unknown_8e5cd
-	dbw $80, Unknown_8e61e
-	dbw $00, Unknown_8e66f
-	dbw $04, Unknown_8e66f
-	dbw $d0, Unknown_8e680
-	dbw $d3, Unknown_8e680
-	dbw $d6, Unknown_8e680
-	dbw $6c, Unknown_8e6a5
-	dbw $68, Unknown_8e6a5
-	dbw $64, Unknown_8e6a5
-	dbw $60, Unknown_8e6a5
-	dbw $0c, Unknown_8e6a5
-	dbw $08, Unknown_8e6a5
-	dbw $04, Unknown_8e6a5
-	dbw $00, Unknown_8e6a5
-	dbw $00, VoltorbFlipCursorOAMData
+	dbw $00, Unknown_8dd8a            ; 00
+	dbw $04, Unknown_8dd8a            ; 01
+	dbw $4c, Unknown_8daf1            ; 02
+	dbw $5c, Unknown_8daf1            ; 03
+	dbw $6c, Unknown_8daf6            ; 04
+	dbw $6e, Unknown_8daf6            ; 05
+	dbw $2d, Unknown_8ddf0            ; 06
+	dbw $4d, Unknown_8ddf0            ; 07
+	dbw $60, Unknown_8de09            ; 08
+	dbw $00, Unknown_8de09            ; 09
+	dbw $00, Unknown_8de09            ; 0a
+	dbw $06, Unknown_8de09            ; 0b
+	dbw $0c, Unknown_8de7e            ; 0c
+	dbw $0d, Unknown_8daf1            ; 0d
+	dbw $00, Unknown_8dc53            ; 0e
+	dbw $04, Unknown_8dc53            ; 0f
+	dbw $08, Unknown_8dc53            ; 10
+	dbw $40, Unknown_8dc53            ; 11
+	dbw $44, Unknown_8dc53            ; 12
+	dbw $48, Unknown_8dc53            ; 13
+	dbw $4c, Unknown_8dc53            ; 14
+	dbw $80, Unknown_8de87            ; 15
+	dbw $85, Unknown_8de87            ; 16
+	dbw $8a, Unknown_8de87            ; 17
+	dbw $00, Unknown_8db29            ; 18
+	dbw $01, Unknown_8db5c            ; 19
+	dbw $09, Unknown_8db9d            ; 1a
+	dbw $10, Unknown_8dc94            ; 1b
+	dbw $29, Unknown_8dc94            ; 1c
+	dbw $42, Unknown_8dc94            ; 1d
+	dbw $f8, Unknown_8e17e            ; 1e
+	dbw $fa, Unknown_8e17e            ; 1f
+	dbw $00, Unknown_8deb2            ; 20
+	dbw $00, Unknown_8dec3            ; 21
+	dbw $00, Unknown_8deec            ; 22
+	; dbw $0f, Unknown_8db07          ; 23 old
+	; dbw $11, Unknown_8daf1          ; 24 old
+	; dbw $12, Unknown_8daf1          ; 25 old
+	; dbw $13, Unknown_8daf1          ; 26 old
+	dbw $00, Unknown_8db07            ; 23
+	dbw $02, Unknown_8daf1            ; 24
+	dbw $03, Unknown_8daf1            ; 25
+	dbw $04, Unknown_8daf1            ; 26
+	dbw $00, Unknown_8df29            ; 27
+	dbw $08, Unknown_8df29            ; 28
+	dbw $10, Unknown_8df42            ; 29
+	dbw $10, Unknown_8df5b            ; 2a
+	dbw $10, Unknown_8df74            ; 2b
+	dbw $10, Unknown_8df8d            ; 2c
+	dbw $10, Unknown_8dfa6            ; 2d
+	dbw $3a, Unknown_8daf1            ; 2e
+	dbw $00, Unknown_8dd8a            ; 2f
+	dbw $00, Unknown_8db18            ; 30
+	dbw $02, Unknown_8dd9b            ; 31
+	dbw $06, Unknown_8db5c            ; 32
+	dbw $0a, Unknown_8db5c            ; 33
+	dbw $0e, Unknown_8db5c            ; 34
+	dbw $12, Unknown_8db3a            ; 35
+	dbw $13, Unknown_8db3a            ; 36
+	dbw $00, Unknown_8dd8a            ; 37
+	dbw $04, Unknown_8dd8a            ; 38
+	dbw $10, Unknown_8db5c            ; 39
+	dbw $00, Unknown_8dd9b            ; 3a
+	dbw $04, Unknown_8daf1            ; 3b
+	dbw $00, Unknown_8dfbf            ; 3c
+	dbw $00, Unknown_8ddac            ; 3d
+	dbw $00, Unknown_8ddbd            ; 3e
+	dbw $00, Unknown_8ddce            ; 3f
+	dbw $00, Unknown_8dddf            ; 40
+	dbw $00, Unknown_8dd9b            ; 41
+	dbw $04, Unknown_8dd9b            ; 42
+	dbw $00, Unknown_8dc2e            ; 43
+	dbw $30, Unknown_8dc2e            ; 44
+	dbw $03, Unknown_8dc2e            ; 45
+	dbw $33, Unknown_8dc2e            ; 46
+	dbw $06, Unknown_8dc2e            ; 47
+	dbw $36, Unknown_8dc2e            ; 48
+	dbw $09, Unknown_8dc2e            ; 49
+	dbw $39, Unknown_8dc2e            ; 4a
+	dbw $0c, Unknown_8dfcc            ; 4b
+	dbw $0c, Unknown_8dfe5            ; 4c
+	dbw $3c, Unknown_8daf1            ; 4d
+	dbw $3e, Unknown_8daf1            ; 4e
+	dbw $00, Unknown_8de9c            ; 4f
+	dbw $00, Unknown_8dea1            ; 50
+	dbw $00, Unknown_8dff6            ; 51
+	dbw $00, Unknown_8e007            ; 52
+	dbw $00, Unknown_8e018            ; 53
+	dbw $00, Unknown_8daf1            ; 54
+	dbw $01, Unknown_8daf1            ; 55
+	dbw $00, Unknown_8e029            ; 56
+	dbw $00, Unknown_8e076            ; 57
+	dbw $00, Unknown_8e0b7            ; 58
+	dbw $00, Unknown_8e0f4            ; 59
+	dbw $00, Unknown_8e139            ; 5a
+	dbw $04, Unknown_8dea1            ; 5b
+	dbw $00, Unknown_8e183            ; 5c
+	dbw $00, Unknown_8e1b4            ; 5d
+	dbw $00, Unknown_8e1b9            ; 5e
+	dbw $00, Unknown_8e1ca            ; 5f
+	dbw $00, Unknown_8e1eb            ; 60
+	dbw $00, Unknown_8e1f0            ; 61
+	dbw $00, Unknown_8e1f9            ; 62
+	dbw $00, Unknown_8e202            ; 63
+	dbw $04, Unknown_8e202            ; 64
+	dbw $00, Unknown_8e213            ; 65
+	dbw $04, Unknown_8e213            ; 66
+	dbw $20, Unknown_8e224            ; 67
+	dbw $21, Unknown_8e224            ; 68
+	dbw $22, Unknown_8e24b            ; 69
+	dbw $23, Unknown_8e25c            ; 6a
+	dbw $27, Unknown_8e27d            ; 6b
+	dbw $2a, Unknown_8e229            ; 6c
+	dbw $2a, Unknown_8e23a            ; 6d
+	dbw $00, Unknown_8e2ae            ; 6e
+	dbw $08, Unknown_8e33f            ; 6f
+	dbw $60, Unknown_8e3b0            ; 70
+	dbw $68, Unknown_8e429            ; 71
+	dbw $00, Unknown_8e4a6            ; 72
+	dbw $05, Unknown_8e4a6            ; 73
+	dbw $0a, Unknown_8e4a6            ; 74
+	dbw $50, Unknown_8e50b            ; 75
+	dbw $00, Unknown_8e54c            ; 76
+	dbw $01, Unknown_8e551            ; 77
+	dbw $04, Unknown_8e55e            ; 78
+	dbw $00, Unknown_8db29            ; 79
+	dbw $01, Unknown_8e57b            ; 7a
+	dbw $03, Unknown_8e59c            ; 7b
+	dbw $08, Unknown_8e5cd            ; 7c
+	dbw $1c, Unknown_8e5cd            ; 7d
+	dbw $80, Unknown_8e61e            ; 7e
+	dbw $00, Unknown_8e66f            ; 7f
+	dbw $04, Unknown_8e66f            ; 80
+	dbw $d0, Unknown_8e680            ; 81
+	dbw $d3, Unknown_8e680            ; 82
+	dbw $d6, Unknown_8e680            ; 83
+	dbw $6c, Unknown_8e6a5            ; 84
+	dbw $68, Unknown_8e6a5            ; 85
+	dbw $64, Unknown_8e6a5            ; 86
+	dbw $60, Unknown_8e6a5            ; 87
+	dbw $0c, Unknown_8e6a5            ; 88
+	dbw $08, Unknown_8e6a5            ; 89
+	dbw $04, Unknown_8e6a5            ; 8a
+	dbw $00, Unknown_8e6a5            ; 8b
+	dbw $00, VoltorbFlipCursorOAMData ; 8c
 ; 8daf1
 
 Unknown_8daf1: ; 8daf1
