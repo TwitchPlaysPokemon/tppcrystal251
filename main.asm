@@ -1170,7 +1170,8 @@ Function61cd: ; 61cd
 ; 620b
 
 Function620b: ; 620b
-	callab Functione4579
+	; callab Functione4579
+	callab GS_Copyright_Intro
 	jr c, Function6219
 	callba Functione48ac
 Function6219: ; 6219
@@ -65607,52 +65608,53 @@ Function8d1ac: ; 8d1ac
 ; 8d1c4
 
 Unknown_8d1c4: ; 8d1c4
-	db $01, $01, $00
-	db $07, $04, $00
-	db $08, $05, $05
-	db $0a, $06, $00
-	db $0b, $07, $06
-	db $0c, $08, $06
-	db $0d, $09, $07
-	db $0e, $0a, $07
-	db $10, $0b, $07
-	db $08, $0c, $05
-	db $11, $00, $00
-	db $12, $0d, $08
-	db $12, $0e, $08
-	db $12, $0f, $08
-	db $13, $10, $00
-	db $15, $00, $00
-	db $16, $11, $00
-	db $17, $12, $00
-	db $18, $12, $00
-	db $19, $13, $00
-	db $1a, $14, $00
-	db $1b, $00, $00
-	db $1d, $15, $00
-	db $1e, $00, $00
-	db $1d, $17, $00
-	db $1f, $00, $00
-	db $24, $19, $00
-	db $25, $00, $00
-	db $20, $13, $00
-	db $26, $1a, $00
-	db $2d, $00, $00
-	db $2e, $00, $00
-	db $2f, $00, $00
-	db $30, $00, $00
-	db $31, $00, $00
-	db $32, $1b, $00
-	db $33, $1c, $00
-	db $34, $00, $00
-	db $35, $1d, $00
-	db $37, $1e, $00
-	db $38, $1e, $00
-	db $39, $20, $00
-	db $3f, $21, $00
-	db $3e, $22, $00
-	db $40, $00, $00
-	db $42, $23, $00
+	db $01, $01, $00 ; 00
+	db $07, $04, $00 ; 01
+	db $08, $05, $05 ; 02
+	db $0a, $06, $00 ; 03
+	db $0b, $07, $06 ; 04
+	db $0c, $08, $06 ; 05
+	db $0d, $09, $07 ; 06
+	db $0e, $0a, $07 ; 07
+	db $10, $0b, $07 ; 08
+	db $08, $0c, $05 ; 09
+	db $11, $00, $00 ; 0a
+	db $12, $0d, $08 ; 0b
+	db $12, $0e, $08 ; 0c
+	db $12, $0f, $08 ; 0d
+	db $13, $10, $00 ; 0e
+	db $15, $00, $00 ; 0f
+	db $16, $11, $00 ; 10
+	db $17, $12, $00 ; 11
+	db $18, $12, $00 ; 12
+	db $19, $13, $00 ; 13
+	db $1a, $14, $00 ; 14
+	db $1b, $00, $00 ; 15
+	db $1d, $15, $00 ; 16
+	db $1e, $00, $00 ; 17
+	db $1d, $17, $00 ; 18
+	db $1f, $00, $00 ; 19
+	db $24, $19, $00 ; 1a
+	db $25, $00, $00 ; 1b
+	db $20, $13, $00 ; 1c
+	db $26, $1a, $00 ; 1d
+	db $2d, $00, $00 ; 1e
+	db $2e, $00, $00 ; 1f
+	db $2f, $00, $00 ; 20
+	db $30, $00, $00 ; 21
+	db $31, $00, $00 ; 22
+	db $32, $1b, $00 ; 23
+	db $33, $1c, $00 ; 24
+	db $34, $00, $00 ; 25
+	db $35, $1d, $00 ; 26
+	db $37, $1e, $00 ; 27
+	db $38, $1e, $00 ; 28
+	db $39, $20, $00 ; 29
+	db $3f, $21, $00 ; 2a
+	db $3e, $22, $00 ; 2b
+	db $40, $00, $00 ; 2c
+	db $42, $23, $00 ; 2d
+	db $43, $24, $06 ; 2e
 ; 8d24b
 
 Function8d24b: ; 8d24b ;jump to program set in wc316
@@ -65706,6 +65708,7 @@ Jumptable_8d25b: ; 8d25b (23:525b)
 	dw Function8d6a2
 	dw Function8d6ae
 	dw SpriteAnimSeq_VoltorbFlip
+	dw SpriteAnimSeq_GSIntro
 
 Function8d2a1: ; 8d2a1 (23:52a1)
 	ret
@@ -66433,6 +66436,10 @@ SpriteAnimSeq_VoltorbFlip:
 	callba UpdateVoltorbFlipCursor
 	ret
 
+SpriteAnimSeq_GSIntro:
+	callab Functione4b20
+	ret
+
 Function8d6b7: ; 8d6b7 (23:56b7)
 	callba Function11d0b6
 	ret
@@ -66543,6 +66550,7 @@ Unknown_8d6e6: ; 8d6e6
 	dw Unknown_8d943
 	dw Unknown_8d948
 	dw VoltorbFlipCursorFrameset
+	dw GSIntroFrameset
 ; 8d76a
 
 Unknown_8d76a: 	db $00,$20, $ff
@@ -66621,44 +66629,45 @@ Unknown_8d940: 	db $fd,$00, $ff
 Unknown_8d943: 	db $7f,$08, $80,$08, $ff
 Unknown_8d948: 	db $7f,$48, $80,$48, $ff
 VoltorbFlipCursorFrameset: db $8c,$08, $ff
+GSIntroFrameset: db $22,$08, $ff
 ; 8d94d
 
 Unknown_8d94d: ; 8d94d
-	dbw $00, Unknown_8dd8a
-	dbw $04, Unknown_8dd8a
-	dbw $4c, Unknown_8daf1
-	dbw $5c, Unknown_8daf1
-	dbw $6c, Unknown_8daf6
-	dbw $6e, Unknown_8daf6
-	dbw $2d, Unknown_8ddf0
-	dbw $4d, Unknown_8ddf0
-	dbw $60, Unknown_8de09
-	dbw $00, Unknown_8de09
-	dbw $00, Unknown_8de09
-	dbw $06, Unknown_8de09
-	dbw $0c, Unknown_8de7e
-	dbw $0d, Unknown_8daf1
-	dbw $00, Unknown_8dc53
-	dbw $04, Unknown_8dc53
-	dbw $08, Unknown_8dc53
-	dbw $40, Unknown_8dc53
-	dbw $44, Unknown_8dc53
-	dbw $48, Unknown_8dc53
-	dbw $4c, Unknown_8dc53
-	dbw $80, Unknown_8de87
-	dbw $85, Unknown_8de87
-	dbw $8a, Unknown_8de87
-	dbw $00, Unknown_8db29
-	dbw $01, Unknown_8db5c
-	dbw $09, Unknown_8db9d
-	dbw $10, Unknown_8dc94
-	dbw $29, Unknown_8dc94
-	dbw $42, Unknown_8dc94
-	dbw $f8, Unknown_8e17e
-	dbw $fa, Unknown_8e17e
-	dbw $00, Unknown_8deb2
-	dbw $00, Unknown_8dec3
-	dbw $00, Unknown_8deec
+	dbw $00, Unknown_8dd8a ; 00
+	dbw $04, Unknown_8dd8a ; 01
+	dbw $4c, Unknown_8daf1 ; 02
+	dbw $5c, Unknown_8daf1 ; 03
+	dbw $6c, Unknown_8daf6 ; 04
+	dbw $6e, Unknown_8daf6 ; 05
+	dbw $2d, Unknown_8ddf0 ; 06
+	dbw $4d, Unknown_8ddf0 ; 07
+	dbw $60, Unknown_8de09 ; 08
+	dbw $00, Unknown_8de09 ; 09
+	dbw $00, Unknown_8de09 ; 0a
+	dbw $06, Unknown_8de09 ; 0b
+	dbw $0c, Unknown_8de7e ; 0c
+	dbw $0d, Unknown_8daf1 ; 0d
+	dbw $00, Unknown_8dc53 ; 0e
+	dbw $04, Unknown_8dc53 ; 0f
+	dbw $08, Unknown_8dc53 ; 10
+	dbw $40, Unknown_8dc53 ; 11
+	dbw $44, Unknown_8dc53 ; 12
+	dbw $48, Unknown_8dc53 ; 13
+	dbw $4c, Unknown_8dc53 ; 14
+	dbw $80, Unknown_8de87 ; 15
+	dbw $85, Unknown_8de87 ; 16
+	dbw $8a, Unknown_8de87 ; 17
+	dbw $00, Unknown_8db29 ; 18
+	dbw $01, Unknown_8db5c ; 19
+	dbw $09, Unknown_8db9d ; 1a
+	dbw $10, Unknown_8dc94 ; 1b
+	dbw $29, Unknown_8dc94 ; 1c
+	dbw $42, Unknown_8dc94 ; 1d
+	dbw $f8, Unknown_8e17e ; 1e
+	dbw $fa, Unknown_8e17e ; 1f
+	dbw $00, Unknown_8deb2 ; 20
+	dbw $00, Unknown_8dec3 ; 21
+	dbw $00, Unknown_8deec ; 22
 	dbw $0f, Unknown_8db07
 	dbw $11, Unknown_8daf1
 	dbw $12, Unknown_8daf1
@@ -94618,3 +94627,6 @@ SECTION "Move Relearner", ROMX
 INCLUDE "event/move_relearner.asm"
 
 INCLUDE "menu/minipics.asm"
+
+SECTION "GS_INTRO", ROMX
+INCLUDE "engine/gs_copyright_intro.asm"

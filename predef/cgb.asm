@@ -1127,6 +1127,12 @@ Function94fa: ; 94fa
 
 Palette_9521: ; 9521
 	RGB 31, 31, 31
+	RGB 25, 30, 00
+	RGB 25, 30, 00
+	RGB 25, 30, 00
+
+Palette_Crystal:
+	RGB 31, 31, 31
 	RGB 13, 11, 00
 	RGB 23, 12, 28
 	RGB 00, 00, 00
