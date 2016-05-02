@@ -39,9 +39,9 @@ GS_Copyright_Intro: ; 39:49a8
 	ret
 
 .InitGFX: ; 39:49f3
-	ld de, GameFreakLogo
+	ld de, TppLogo
 	ld hl, $8800
-	lb bc, BANK(GameFreakLogo), $1c
+	lb bc, BANK(TppLogo), $1c
 	call Get1bpp
 
 	ld de, GS_Gamefreak_GFX2
@@ -170,19 +170,25 @@ GS_Copyright_Intro: ; 39:49a8
 	ret
 
 .PlaceGameFreakString
-	hlcoord 5, 12
-	ld de, .GameFreakString
+	hlcoord 2, 12
+	ld de, .TPPDevsTopRow
+	call PlaceString
+	hlcoord 2, 13
+	ld de, .TPPDevsBottomRow
 	call PlaceString
 	ret
 
-.GameFreakString:
-	;   G    A    M    E    _    F    R    E    A    K
-	db $80, $81, $82, $83, $8d, $84, $85, $83, $81, $86, $50
+.TPPDevsTopRow:
+	db $80, $81, $82, $83, $84, $85, $86, $87, $88, $89, $8a, $8b, $8c, $8d, $8e, $8f, $90, $50
+	
+.TPPDevsBottomRow:
+	db $91, $92, $93, $94, $95, $96, $97, $98, $99, $9a, $9b, $9c, $9d, $9e, $9f, $a0, $a1, $50
 
+;null this out because we don't need it right now
 .Scene4: ; 39:4af4
-	hlcoord 7, 13
-	ld de, .PresentsString
-	call PlaceString
+	;hlcoord 7, 14
+	;ld de, .PresentsString
+	;call PlaceString
 	call .IncrementJumptableIndex
 	ld a, $80
 	ld [wcf65], a
