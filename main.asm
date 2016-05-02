@@ -1171,6 +1171,7 @@ Function61cd: ; 61cd
 
 Function620b: ; 620b
 	callab GS_Copyright_Intro
+	jr c, Function6219
 	callab Functione4579
 	jr c, Function6219
 	callba Functione48ac
