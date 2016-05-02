@@ -3,7 +3,7 @@ MD5 := md5sum -c --quiet
 
 .SUFFIXES:
 .SUFFIXES: .asm .o .gbc .png .2bpp .1bpp .lz .pal .bin .blk .tilemap
-.PHONY: all clean crystal pngs crystal11 both beesafree patches uips
+.PHONY: all clean crystal pngs crystal11 both beesafree patches ipspatch
 .SECONDEXPANSION:
 
 poketools := extras/pokemontools
@@ -58,11 +58,10 @@ all: $(roms)
 crystal: pokecrystal.gbc
 crystal11: pokecrystal11.gbc
 beesafree: pokecrystal_ai.gbc
-patches: uips pokecrystal11.ips pokecrystal_ai.ips
-uips:
-	cd cmdpack/src; \
-	gcc -Wall -o uips uips.c; \
-	mv uips ../..; \
+patches: ipspatch pokecrystal11.ips pokecrystal_ai.ips
+ipspatch:
+	cd ipspatch; \
+	gcc -O3 -Wno-unused-result ipspatch.c -o ipspatch; \
 	cd ../..
 
 clean:
@@ -76,7 +75,7 @@ clean:
 %11.o: %.asm $$(%_dep)
 	rgbasm -D CRYSTAL11 -o $@ $<
 %.ips: %.gbc $$(%_dep)
-	./uips c $@ baserom.gbc $<
+	ipspatch/ipspatch create baserom.gbc $< $@
 
 pokecrystal11.gbc: $(crystal11_obj)
 	rgblink -n $*.sym -m $*.map -o $@ $^

@@ -153,5 +153,5 @@ Route23RB_MapEventHeader:
 	db 0
 
 	db 2
-	person_event SPRITE_OFFICER, 35, 12, $6, 0, 0, -1, -1, 0, 0, 0, Route23RB_ThunderBadgeCheckOfficerScript, -1
-	person_event SPRITE_OFFICER, 19, 12, $6, 0, 0, -1, -1, 0, 0, 0, Route23RB_CascadeBadgeCheckOfficerScript, -1
+	person_event SPRITE_OFFICER, 35, 12, $6, 0, 0, -1, -1, 0, 0, 0, Route23RB_CascadeBadgeCheckOfficerScript, -1
+	person_event SPRITE_OFFICER, 19, 12, $6, 0, 0, -1, -1, 0, 0, 0, Route23RB_ThunderBadgeCheckOfficerScript, -1

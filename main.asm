@@ -783,6 +783,8 @@ OakSpeech: ; 0x5f99
 	ld hl, OakText6
 	call PrintText
 	call NamePlayer
+	ld a, 1
+	ld [PlayerName + 8], a
 	ld hl, OakText8
 	call PrintText
 	call Function4b6
@@ -1168,6 +1170,8 @@ Function61cd: ; 61cd
 ; 620b
 
 Function620b: ; 620b
+	callab GS_Copyright_Intro
+	jr c, Function6219
 	callab Functione4579
 	jr c, Function6219
 	callba Functione48ac
@@ -2897,7 +2901,7 @@ ChangeHappiness: ; 71c2
 	db  +3,  +2,  +1 ; Battled a Gym Leader
 	db  +1,  +1,  +0 ; Learned a move
 	db  -1,  -1,  -1 ; Lost to an enemy
-	db  -5,  -5, -10
+	db  -5,  -5, -10 ; Survived poisoning
 	db  -5,  -5, -10 ; Lost to a much weaker enemy
 	db  +1,  +1,  +1
 	db  +3,  +3,  +1
@@ -33687,6 +33691,7 @@ Function29cfa: ; 29cfa
 ; 29d11
 
 Function29d11: ; 29d11
+	call EnsureTPPBytes
 	ld a, [wcf56]
 	and a
 	jr z, .asm_29d2f
@@ -33755,6 +33760,126 @@ Function29d11: ; 29d11
 	ld [ScriptVar], a
 	ret
 ; 29d92
+
+EnsureTPPBytes:
+	ld a, [PlayerName + 8]
+	and a
+	ret nz
+	inc a
+	ld [PlayerName + 8], a
+	ld a, [PartyCount]
+	ld e, a
+	xor a
+.party_loop
+	ld [CurPartyMon], a
+	push de
+	ld a, PartyMon1ID - PartyMon1
+	call GetPartyParamLocation
+	call .CheckID
+	jr nz, .next
+	ld hl, PartyMonOT
+	ld bc, NAME_LENGTH
+	ld a, [CurPartyMon]
+	call AddNTimes
+	call .CheckOTName
+.next
+	pop de
+	dec e
+	jr z, .done_party
+	ld a, [CurPartyMon]
+	inc a
+	jr .party_loop
+
+.done_party
+	ld hl, .BoxAddrs
+.boxes_loop
+	ld a, [hli]
+	cp -1
+	ret z
+	call GetSRAMBank
+	ld a, [hli]
+	ld b, [hl]
+	ld c, a
+	inc hl
+	push hl
+	ld a, [bc]
+	ld e, a
+	xor a
+.box_loop
+	ld [CurPartyMon], a
+	push de
+	ld hl, sBoxMon1ID - sBox
+	add hl, bc
+	push bc
+	ld bc, sBoxMon2 - sBoxMon1
+	ld a, [CurPartyMon]
+	call AddNTimes
+	call .CheckID
+	pop bc
+	jr nz, .box_next
+	ld hl, sBoxMonOT - sBox
+	add hl, bc
+	push bc
+	ld bc, NAME_LENGTH
+	ld a, [CurPartyMon]
+	call AddNTimes
+	call .CheckOTName
+	pop bc
+.box_next
+	pop de
+	dec e
+	jr z, .done_box
+	ld a, [CurPartyMon]
+	inc a
+	jr .box_loop
+
+.done_box
+	call CloseSRAM
+	pop hl
+	jr .boxes_loop
+
+.CheckID:
+	ld de, PlayerID
+	ld a, [de]
+	cp [hl]
+	ret nz
+	inc de
+	inc hl
+	ld a, [de]
+	cp [hl]
+	ret
+
+.CheckOTName:
+	ld c, 8
+	ld de, PlayerName
+.name_loop
+	ld a, [de]
+	cp [hl]
+	ret nz
+	inc de
+	inc hl
+	dec c
+	jr nz, .name_loop
+	ld [hl], 1
+	ret
+
+.BoxAddrs:
+	dba sBox
+	dba sBox1
+	dba sBox2
+	dba sBox3
+	dba sBox4
+	dba sBox5
+	dba sBox6
+	dba sBox7
+	dba sBox8
+	dba sBox9
+	dba sBox10
+	dba sBox11
+	dba sBox12
+	dba sBox13
+	dba sBox14
+	db -1
 
 Function29d92: ; 29d92 (5D8F)
 	ld a, $1
@@ -48596,22 +48721,26 @@ Function505c1: ; 505c1
 	ret
 ; 505da
 
-Function505da:: ; 505da
+OverworldPoisonDamage:: ; 505da
+	; Poison flags stored in 7 bytes at d03e (EngineBuffer1)
+	; d03e: cumulative | d03f - d045: each party mon separately
+	; bit 0: took poison damage
+	; bit 1: survived the poisoning
 	ld a, [PartyCount]
 	and a
-	jr z, .asm_5062c
+	jr z, .not_fainted
 	xor a
 	ld c, 7
 	ld hl, EngineBuffer1
-.asm_505e6
+.reset
 	ld [hli], a
 	dec c
-	jr nz, .asm_505e6
+	jr nz, .reset
 	xor a
 	ld [CurPartyMon], a
-.asm_505ee
+.loop
 	call Function5062e
-	jr nc, .asm_50605
+	jr nc, .not_psn
 	ld a, [CurPartyMon]
 	ld e, a
 	ld d, 0
@@ -48621,30 +48750,30 @@ Function505da:: ; 505da
 	ld a, [EngineBuffer1]
 	or c
 	ld [EngineBuffer1], a
-.asm_50605
+.not_psn
 	ld a, [PartyCount]
 	ld hl, CurPartyMon
 	inc [hl]
 	cp [hl]
-	jr nz, .asm_505ee
+	jr nz, .loop
 	ld a, [EngineBuffer1]
 	and $2
-	jr nz, .asm_50622
+	jr nz, .fainted
 	ld a, [EngineBuffer1]
 	and $1
-	jr z, .asm_5062c
+	jr z, .not_fainted
 	call Function50658
 	xor a
 	ret
 
-.asm_50622
+.fainted
 	ld a, BANK(UnknownScript_0x50669)
 	ld hl, UnknownScript_0x50669
 	call CallScript
 	scf
 	ret
 
-.asm_5062c
+.not_fainted
 	xor a
 	ret
 ; 5062e
@@ -48669,6 +48798,9 @@ Function5062e: ; 5062e
 	ld a, b
 	or c
 	jr nz, .not_fainted
+	; Survive with 1 HP
+	inc hl
+	inc [hl]
 	ld a, PartyMon1Status - PartyMon1
 	call GetPartyParamLocation
 	ld [hl], 0
@@ -48695,52 +48827,52 @@ UnknownScript_0x50669: ; 50669
 	callasm Function50658
 	loadfont
 	callasm Function5067b
-	iffalse UnknownScript_0x50677
+	; iffalse UnknownScript_0x50677
 	closetext
 	end
 ; 50677
 
-UnknownScript_0x50677: ; 50677
-	farjump UnknownScript_0x124c8
+; UnknownScript_0x50677: ; 50677
+	; farjump UnknownScript_0x124c8
 ; 5067b
 
 Function5067b: ; 5067b
 	xor a
 	ld [CurPartyMon], a
-	ld de, wd03f
-.asm_50682
+	ld de, EngineBuffer2
+.loop
 	push de
 	ld a, [de]
 	and 2
-	jr z, .asm_5069c
-	ld c, 7
-	callba ChangeHappiness
+	jr z, .dont_inform_survival
+	; ld c, 7
+	; callba ChangeHappiness
 	callba GetPartyNick
-	ld hl, PoisonFaintText
+	ld hl, PoisonSurviveText
 	call PrintText
-.asm_5069c
+.dont_inform_survival
 	pop de
 	inc de
 	ld hl, CurPartyMon
 	inc [hl]
 	ld a, [PartyCount]
 	cp [hl]
-	jr nz, .asm_50682
-	predef CheckAnyPartyMonAlive
-	ld a, d
-	ld [ScriptVar], a
+	jr nz, .loop
+	; predef CheckAnyPartyMonAlive
+	; ld a, d
+	; ld [ScriptVar], a
 	ret
 ; 506b2
 
-PoisonFaintText: ; 506b2
+PoisonSurviveText: ; 506b2
 	text_jump UnknownText_0x1c0acc
 	db "@"
 ; 506b7
 
-PoisonWhiteOutText: ; 506b7
-	text_jump UnknownText_0x1c0ada
-	db "@"
-; 506bc
+; PoisonWhiteOutText: ; 506b7
+	; text_jump UnknownText_0x1c0ada
+	; db "@"
+; ; 506bc
 
 Function506bc: ; 506bc
 	ld hl, UnknownScript_0x506c8
@@ -65543,52 +65675,53 @@ Function8d1ac: ; 8d1ac
 ; 8d1c4
 
 Unknown_8d1c4: ; 8d1c4
-	db $01, $01, $00
-	db $07, $04, $00
-	db $08, $05, $05
-	db $0a, $06, $00
-	db $0b, $07, $06
-	db $0c, $08, $06
-	db $0d, $09, $07
-	db $0e, $0a, $07
-	db $10, $0b, $07
-	db $08, $0c, $05
-	db $11, $00, $00
-	db $12, $0d, $08
-	db $12, $0e, $08
-	db $12, $0f, $08
-	db $13, $10, $00
-	db $15, $00, $00
-	db $16, $11, $00
-	db $17, $12, $00
-	db $18, $12, $00
-	db $19, $13, $00
-	db $1a, $14, $00
-	db $1b, $00, $00
-	db $1d, $15, $00
-	db $1e, $00, $00
-	db $1d, $17, $00
-	db $1f, $00, $00
-	db $24, $19, $00
-	db $25, $00, $00
-	db $20, $13, $00
-	db $26, $1a, $00
-	db $2d, $00, $00
-	db $2e, $00, $00
-	db $2f, $00, $00
-	db $30, $00, $00
-	db $31, $00, $00
-	db $32, $1b, $00
-	db $33, $1c, $00
-	db $34, $00, $00
-	db $35, $1d, $00
-	db $37, $1e, $00
-	db $38, $1e, $00
-	db $39, $20, $00
-	db $3f, $21, $00
-	db $3e, $22, $00
-	db $40, $00, $00
-	db $42, $23, $00
+	db $01, $01, $00 ; 00
+	db $07, $04, $00 ; 01
+	db $08, $05, $05 ; 02
+	db $0a, $06, $00 ; 03
+	db $0b, $07, $06 ; 04
+	db $0c, $08, $06 ; 05
+	db $0d, $09, $07 ; 06
+	db $0e, $0a, $07 ; 07
+	db $10, $0b, $07 ; 08
+	db $08, $0c, $05 ; 09
+	db $11, $00, $00 ; 0a
+	db $12, $0d, $08 ; 0b
+	db $12, $0e, $08 ; 0c
+	db $12, $0f, $08 ; 0d
+	db $13, $10, $00 ; 0e
+	db $15, $00, $00 ; 0f
+	db $16, $11, $00 ; 10
+	db $17, $12, $00 ; 11
+	db $18, $12, $00 ; 12
+	db $19, $13, $00 ; 13
+	db $1a, $14, $00 ; 14
+	db $1b, $00, $00 ; 15
+	db $1d, $15, $00 ; 16
+	db $1e, $00, $00 ; 17
+	db $1d, $17, $00 ; 18
+	db $1f, $00, $00 ; 19
+	db $24, $19, $00 ; 1a
+	db $25, $00, $00 ; 1b
+	db $20, $13, $00 ; 1c
+	db $26, $1a, $00 ; 1d
+	db $2d, $00, $00 ; 1e
+	db $2e, $00, $00 ; 1f
+	db $2f, $00, $00 ; 20
+	db $30, $00, $00 ; 21
+	db $31, $00, $00 ; 22
+	db $32, $1b, $00 ; 23
+	db $33, $1c, $00 ; 24
+	db $34, $00, $00 ; 25
+	db $35, $1d, $00 ; 26
+	db $37, $1e, $00 ; 27
+	db $38, $1e, $00 ; 28
+	db $39, $20, $00 ; 29
+	db $3f, $21, $00 ; 2a
+	db $3e, $22, $00 ; 2b
+	db $40, $00, $00 ; 2c
+	db $42, $23, $00 ; 2d
+	db $43, $24, $06 ; 2e
 ; 8d24b
 
 Function8d24b: ; 8d24b ;jump to program set in wc316
@@ -65642,6 +65775,7 @@ Jumptable_8d25b: ; 8d25b (23:525b)
 	dw Function8d6a2
 	dw Function8d6ae
 	dw SpriteAnimSeq_VoltorbFlip
+	dw SpriteAnimSeq_GSIntro
 
 Function8d2a1: ; 8d2a1 (23:52a1)
 	ret
@@ -66369,6 +66503,10 @@ SpriteAnimSeq_VoltorbFlip:
 	callba UpdateVoltorbFlipCursor
 	ret
 
+SpriteAnimSeq_GSIntro:
+	callab Functione4b20
+	ret
+
 Function8d6b7: ; 8d6b7 (23:56b7)
 	callba Function11d0b6
 	ret
@@ -66479,6 +66617,7 @@ Unknown_8d6e6: ; 8d6e6
 	dw Unknown_8d943
 	dw Unknown_8d948
 	dw VoltorbFlipCursorFrameset
+	dw GSIntroFrameset
 ; 8d76a
 
 Unknown_8d76a: 	db $00,$20, $ff
@@ -66557,44 +66696,45 @@ Unknown_8d940: 	db $fd,$00, $ff
 Unknown_8d943: 	db $7f,$08, $80,$08, $ff
 Unknown_8d948: 	db $7f,$48, $80,$48, $ff
 VoltorbFlipCursorFrameset: db $8c,$08, $ff
+GSIntroFrameset: db $22,$08, $ff
 ; 8d94d
 
 Unknown_8d94d: ; 8d94d
-	dbw $00, Unknown_8dd8a
-	dbw $04, Unknown_8dd8a
-	dbw $4c, Unknown_8daf1
-	dbw $5c, Unknown_8daf1
-	dbw $6c, Unknown_8daf6
-	dbw $6e, Unknown_8daf6
-	dbw $2d, Unknown_8ddf0
-	dbw $4d, Unknown_8ddf0
-	dbw $60, Unknown_8de09
-	dbw $00, Unknown_8de09
-	dbw $00, Unknown_8de09
-	dbw $06, Unknown_8de09
-	dbw $0c, Unknown_8de7e
-	dbw $0d, Unknown_8daf1
-	dbw $00, Unknown_8dc53
-	dbw $04, Unknown_8dc53
-	dbw $08, Unknown_8dc53
-	dbw $40, Unknown_8dc53
-	dbw $44, Unknown_8dc53
-	dbw $48, Unknown_8dc53
-	dbw $4c, Unknown_8dc53
-	dbw $80, Unknown_8de87
-	dbw $85, Unknown_8de87
-	dbw $8a, Unknown_8de87
-	dbw $00, Unknown_8db29
-	dbw $01, Unknown_8db5c
-	dbw $09, Unknown_8db9d
-	dbw $10, Unknown_8dc94
-	dbw $29, Unknown_8dc94
-	dbw $42, Unknown_8dc94
-	dbw $f8, Unknown_8e17e
-	dbw $fa, Unknown_8e17e
-	dbw $00, Unknown_8deb2
-	dbw $00, Unknown_8dec3
-	dbw $00, Unknown_8deec
+	dbw $00, Unknown_8dd8a ; 00
+	dbw $04, Unknown_8dd8a ; 01
+	dbw $4c, Unknown_8daf1 ; 02
+	dbw $5c, Unknown_8daf1 ; 03
+	dbw $6c, Unknown_8daf6 ; 04
+	dbw $6e, Unknown_8daf6 ; 05
+	dbw $2d, Unknown_8ddf0 ; 06
+	dbw $4d, Unknown_8ddf0 ; 07
+	dbw $60, Unknown_8de09 ; 08
+	dbw $00, Unknown_8de09 ; 09
+	dbw $00, Unknown_8de09 ; 0a
+	dbw $06, Unknown_8de09 ; 0b
+	dbw $0c, Unknown_8de7e ; 0c
+	dbw $0d, Unknown_8daf1 ; 0d
+	dbw $00, Unknown_8dc53 ; 0e
+	dbw $04, Unknown_8dc53 ; 0f
+	dbw $08, Unknown_8dc53 ; 10
+	dbw $40, Unknown_8dc53 ; 11
+	dbw $44, Unknown_8dc53 ; 12
+	dbw $48, Unknown_8dc53 ; 13
+	dbw $4c, Unknown_8dc53 ; 14
+	dbw $80, Unknown_8de87 ; 15
+	dbw $85, Unknown_8de87 ; 16
+	dbw $8a, Unknown_8de87 ; 17
+	dbw $00, Unknown_8db29 ; 18
+	dbw $01, Unknown_8db5c ; 19
+	dbw $09, Unknown_8db9d ; 1a
+	dbw $10, Unknown_8dc94 ; 1b
+	dbw $29, Unknown_8dc94 ; 1c
+	dbw $42, Unknown_8dc94 ; 1d
+	dbw $f8, Unknown_8e17e ; 1e
+	dbw $fa, Unknown_8e17e ; 1f
+	dbw $00, Unknown_8deb2 ; 20
+	dbw $00, Unknown_8dec3 ; 21
+	dbw $00, Unknown_8deec ; 22
 	dbw $0f, Unknown_8db07
 	dbw $11, Unknown_8daf1
 	dbw $12, Unknown_8daf1
@@ -84409,31 +84549,31 @@ Functione455c: ; e455c
 ; e4579
 
 Functione4579: ; e4579
-	ld de, MUSIC_NONE
-	call PlayMusic
-	call WhiteBGMap
-	call ClearTileMap
-	ld a, $98
-	ld [$ffd7], a
-	xor a
-	ld [hBGMapAddress], a
-	ld [hJoyDown], a
-	ld [hSCX], a
-	ld [hSCY], a
-	ld a, $90
-	ld [hWY], a
-	call WaitBGMap
+	; ld de, MUSIC_NONE
+	; call PlayMusic
+	; call WhiteBGMap
+	; call ClearTileMap
+	; ld a, $98
+	; ld [$ffd7], a
+	; xor a
+	; ld [hBGMapAddress], a
+	; ld [hJoyDown], a
+	; ld [hSCX], a
+	; ld [hSCY], a
+	; ld a, $90
+	; ld [hWY], a
+	; call WaitBGMap
 	ld b, $19
 	call GetSGBLayout
-	call Function32f9
-	ld c, 10
-	call DelayFrames
-	callab Copyright
-	call WaitBGMap
-	ld c, $64
-	call DelayFrames
+	; call Function32f9
+	; ld c, 10
+	; call DelayFrames
+	; callab Copyright
+	; call WaitBGMap
+	; ld c, $64
+	; call DelayFrames
 	call ClearTileMap
-	callba GBCOnlyScreen
+	; callba GBCOnlyScreen
 	call Functione45e8
 .asm_e45c0
 	call Functiona57
@@ -94635,3 +94775,6 @@ SampleRandomSurvival:
 .Bracket3:
 	db ELECTABUZZ, STARMIE, FERALIGATR, GYARADOS, FEAROW, MAGMAR, DODRIO, RHYDON, CLEFABLE, CHARIZARD, ARCANINE, SHUCKLE, HYPNO, DONPHAN, BEEDRILL, ELECTRODE, FLAREON, PIDGEOT, VILEPLUME, POLIWRATH, MUK, KANGASKHAN, RAPIDASH, HOUNDOOM, UNOWN, SUDOWOODO, SLOWKING, NIDOKING, MEGANIUM, VENOMOTH, MACHAMP, TAUROS, TENTACRUEL, VAPOREON, GOLEM, RAICHU, CROBAT, AMPHAROS, VENUSAUR, NIDOQUEEN, FURRET, GOLDUCK, PINSIR, OMASTAR, EXEGGUTOR, POLITOED, BELLOSSOM, URSARING, DRAGONITE, BLASTOISE, KINGLER, AERODACTYL, ARIADOS, CLOYSTER, SLOWBRO, ALAKAZAM, SEAKING, ESPEON, TYPHLOSION, SCIZOR, GLIGAR, SNORLAX, JOLTEON, PARASECT, SCYTHER, UMBREON, LAPRAS, GENGAR, HERACROSS, TYRANITAR, NINETALES, WEEZING, STEELIX, VICTREEBEL, KABUTOPS, PORYGON2, MILTANK, SNEASEL, KINGDRA, BLISSEY
 .SurvivalMonsEnd
+
+SECTION "GS_INTRO", ROMX
+INCLUDE "engine/gs_copyright_intro.asm"
