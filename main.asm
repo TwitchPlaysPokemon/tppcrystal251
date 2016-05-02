@@ -4236,7 +4236,9 @@ PredefPointers:: ; 856b
 	add_predef Functiond008e
 	add_predef Functiond0669 ; $48
 	add_predef Functiond066e
-	dbw $ff, Function2d43 ; ????
+	dwb $43ff, $2d ; ????
+	; $ff432d
+	; dbw $ff, Function2d43 ; ????
 ; 864c
 
 INCLUDE "engine/color.asm"

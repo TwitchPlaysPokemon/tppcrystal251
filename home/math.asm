@@ -1,32 +1,32 @@
-; AddNTimes:: ; 0x30fe
+AddNTimes:: ; 0x30fe
 ; Pigu's version
-; ; Add bc * a to hl.
-	; push bc
-; .loop
-	; and a
-	; jr z, .done
-	; srl a
-	; jr nc, .noadd
-	; add hl, bc
-; .noadd
-	; sla c
-	; rl b
-	; jr .loop
-; .done
-	; pop bc
-	; ret
-; ; 0x3105
-
-AddNTimes::
-; GameFreak's version
 ; Add bc * a to hl.
-	and a
-	ret z
+	push bc
 .loop
+	and a
+	jr z, .done
+	srl a
+	jr nc, .noadd
 	add hl, bc
-	dec a
-	jr nz, .loop
+.noadd
+	sla c
+	rl b
+	jr .loop
+.done
+	pop bc
 	ret
+; 0x3105
+
+; AddNTimes::
+; ; GameFreak's version
+; ; Add bc * a to hl.
+	; and a
+	; ret z
+; .loop
+	; add hl, bc
+	; dec a
+	; jr nz, .loop
+	; ret
 
 SimpleMultiply:: ; 3105
 ; Return a * c.

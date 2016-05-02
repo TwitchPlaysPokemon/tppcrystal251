@@ -255,6 +255,7 @@ GS_Copyright_Intro: ; 39:49a8
 	and a
 	jr z, .finished_scene5
 	dec [hl]
+	call Functione4b20
 	ret
 
 .finished_scene5
