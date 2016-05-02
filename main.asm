@@ -1170,8 +1170,8 @@ Function61cd: ; 61cd
 ; 620b
 
 Function620b: ; 620b
-	; callab Functione4579
 	callab GS_Copyright_Intro
+	callab Functione4579
 	jr c, Function6219
 	callba Functione48ac
 Function6219: ; 6219
@@ -84482,31 +84482,31 @@ Functione455c: ; e455c
 ; e4579
 
 Functione4579: ; e4579
-	ld de, MUSIC_NONE
-	call PlayMusic
-	call WhiteBGMap
-	call ClearTileMap
-	ld a, $98
-	ld [$ffd7], a
-	xor a
-	ld [hBGMapAddress], a
-	ld [hJoyDown], a
-	ld [hSCX], a
-	ld [hSCY], a
-	ld a, $90
-	ld [hWY], a
-	call WaitBGMap
+	; ld de, MUSIC_NONE
+	; call PlayMusic
+	; call WhiteBGMap
+	; call ClearTileMap
+	; ld a, $98
+	; ld [$ffd7], a
+	; xor a
+	; ld [hBGMapAddress], a
+	; ld [hJoyDown], a
+	; ld [hSCX], a
+	; ld [hSCY], a
+	; ld a, $90
+	; ld [hWY], a
+	; call WaitBGMap
 	ld b, $19
 	call GetSGBLayout
-	call Function32f9
-	ld c, 10
-	call DelayFrames
-	callab Copyright
-	call WaitBGMap
-	ld c, $64
-	call DelayFrames
+	; call Function32f9
+	; ld c, 10
+	; call DelayFrames
+	; callab Copyright
+	; call WaitBGMap
+	; ld c, $64
+	; call DelayFrames
 	call ClearTileMap
-	callba GBCOnlyScreen
+	; callba GBCOnlyScreen
 	call Functione45e8
 .asm_e45c0
 	call Functiona57

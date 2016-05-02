@@ -1,4 +1,6 @@
 GS_Copyright_Intro: ; 39:49a8
+	ld de, MUSIC_NONE
+	call PlayMusic
 	call WhiteBGMap
 	call ClearTileMap
 	ld a, VBGMap0 / $100
@@ -11,7 +13,7 @@ GS_Copyright_Intro: ; 39:49a8
 	ld a, $90
 	ld [hWY], a
 	call WaitBGMap
-	ld b, $19
+	ld b, $20
 	call GetSGBLayout
 	call Function32f9
 	ld c, 10
@@ -21,6 +23,7 @@ GS_Copyright_Intro: ; 39:49a8
 	ld c, 100
 	call DelayFrames
 	call ClearTileMap
+	callba GBCOnlyScreen
 	call .InitGFX
 .loop
 	call .GameFreakLogo
