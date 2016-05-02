@@ -84838,11 +84838,13 @@ Unknown_e47ac: ; e47ac
 	RGB 26, 18, 04
 	RGB 26, 19, 02
 	RGB 26, 19, 00
-;' e47cc
+; e47cc
 
 GameFreakLogo: ; e47cc
 INCBIN "gfx/splash/logo.1bpp"
-; e48ac
+
+TppLogo:
+INCBIN "gfx/splash/tpplogo.1bpp"
 
 Functione48ac: ; e48ac
 	ld a, [rSVBK]
