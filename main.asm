@@ -20595,7 +20595,14 @@ GetMaxYouCanBuy:
 	ld [$ffc3], a
 	ld [$ffc4], a
 	ld [$ffc5], a
+	ld a, [EngineBuffer1]
+	cp $4
+	jr z, .discount
 	callba GetItemPrice
+	jr .okay
+.discount
+	call Function15df9
+.okay
 	ld b, -1
 	jr .start
 .loop
@@ -20674,7 +20681,7 @@ Function15da5: ; 15da5
 Function15de2: ; 15de2
 	ld a, $0
 	call Function15c7d
-	call Function15df9
+	; call Function15df9
 	; ld a, 99
 	call GetMaxYouCanBuy
 	and a
