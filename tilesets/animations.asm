@@ -297,7 +297,7 @@ Tileset40Anim:
 	dw $9210, AnimateSpinnerNW_40
 	dw $9200, AnimateSpinnerSW_40
 	dw $9140, AnimateWaterTile
-	dw NULL,  WaitTileAnimation
+	dw NULL,  SafariFountainAnim5
 	dw NULL,  WaitTileAnimation
 	dw NULL,  WaitTileAnimation
 	dw NULL,  TileAnimationPalette
@@ -937,6 +937,15 @@ SafariFountainAnim2: ; fc5eb
 
 SafariFountainAnim3: ; fc5cc
 ; Splash in the bottom-right corner of the fountain.
+	ld a, [rVBK]
+	push af
+	ld a, 1
+	ld [rVBK], a
+	call .AnimateTile
+	pop af
+	ld [rVBK], a
+	ret
+.AnimateTile:
 	ld hl, [sp+0]
 	ld b, h
 	ld c, l
@@ -953,19 +962,21 @@ SafariFountainAnim3: ; fc5cc
 	add hl, de
 	ld sp, hl
 	ld hl, $9370
+	jp WriteTile
+; fc5eb
+
+SafariFountainAnim4: ; fc5eb
+; Splash in the top-left corner of the fountain.
 	ld a, [rVBK]
 	push af
 	ld a, 1
 	ld [rVBK], a
-	call WriteTile
+	call .AnimateTile
 	pop af
 	ld [rVBK], a
 	ret
-; fc5eb
-
-
-SafariFountainAnim4: ; fc5eb
-; Splash in the top-left corner of the fountain.
+	
+.AnimateTile:
 	ld hl, [sp+0]
 	ld b, h
 	ld c, l
@@ -974,22 +985,42 @@ SafariFountainAnim4: ; fc5eb
 	add a
 	add a
 	add a
-	add a, 4
 	ld e, a
 	ld d, 0
 	ld hl, SafariFountainFrames
 	add hl, de
 	ld sp, hl
 	ld hl, $9380
+	jp WriteTile
+; fc605
+
+SafariFountainAnim5: ; fc5eb
+; Splash in the top-left corner of the fountain.
 	ld a, [rVBK]
 	push af
 	ld a, 1
 	ld [rVBK], a
-	call WriteTile
+	call .AnimateTile
 	pop af
 	ld [rVBK], a
 	ret
-; fc605
+	
+.AnimateTile:
+	ld hl, [sp+0]
+	ld b, h
+	ld c, l
+	ld a, [TileAnimationTimer]
+	and 6
+	add a
+	add a
+	add a
+	ld e, a
+	ld d, 0
+	ld hl, SafariFountainFrames
+	add hl, de
+	ld sp, hl
+	ld hl, $9220
+	jp WriteTile	
 
 SafariFountainFrames: ; fc605
 	INCBIN "gfx/tilesets/safari/1.2bpp"
