@@ -2902,6 +2902,7 @@ Function3d1aa: ; 3d1aa
 	ld [hli], a
 	ld [hl], a
 	ld [BattleMonStatus], a
+	ld [BattleMonStatus + 1], a
 	call UpdateBattleMonInParty
 	ld c, $6
 	ld a, [BattleMonLevel]
@@ -3919,9 +3920,19 @@ NewEnemyMonStatus: ; 3d834
 	ld [hli], a
 	ld [hli], a
 	ld [hl], a
+	ld a, [EnemyMonStatus]
+	bit PSN, a
+	jr z, .okay
+	ld a, [EnemyMonStatus + 1]
+	bit 0, a
+	jr z, .okay
+	set SUBSTATUS_TOXIC, [hl]
+.okay
+	xor a
 	ld [EnemyDisableCount], a
 	ld [EnemyFuryCutterCount], a
 	ld [EnemyProtectCount], a
+	ld [EnemyToxicCount], a
 	;ld [wc72c], a
 	ld [EnemyDisabledMove], a
 	ld [wc6fa], a
@@ -4458,6 +4469,15 @@ NewBattleMonStatus: ; 3dbde
 	ld [hli], a
 	ld [hli], a
 	ld [hl], a
+	ld a, [BattleMonStatus]
+	bit PSN, a
+	jr z, .okay
+	ld a, [BattleMonStatus + 1]
+	bit 0, a
+	jr z, .okay
+	set SUBSTATUS_TOXIC, [hl]
+.okay
+	xor a
 	ld hl, PlayerUsedMoves
 	ld [hli], a
 	ld [hli], a
@@ -4466,6 +4486,7 @@ NewBattleMonStatus: ; 3dbde
 	ld [PlayerDisableCount], a
 	ld [PlayerFuryCutterCount], a
 	ld [PlayerProtectCount], a
+	ld [PlayerToxicCount], a
 	;ld [wc72b], a
 	ld [DisabledMove], a
 	ld [wc6fe], a
@@ -4833,13 +4854,13 @@ ItemRecoveryAnim: ; 3ddc8
 Function3dde9: ; 3dde9
 	callab GetOpponentItem
 	ld hl, .Statuses
-.asm_3ddf2
+.loop
 	ld a, [hli]
 	cp $ff
 	ret z
 	inc hl
 	cp b
-	jr nz, .asm_3ddf2
+	jr nz, .loop
 	dec hl
 	ld b, [hl]
 	ld a, BATTLE_VARS_STATUS_OPP
@@ -4847,6 +4868,7 @@ Function3dde9: ; 3dde9
 	and b
 	ret z
 	xor a
+	ld [hli], a
 	ld [hl], a
 	push bc
 	call UpdateOpponentInParty
@@ -4860,13 +4882,13 @@ Function3dde9: ; 3dde9
 	and [hl]
 	res SUBSTATUS_NIGHTMARE, [hl]
 	ld a, b
-	cp $7f
-	jr nz, .asm_3de26
+	cp 1 << PSN | 1 << FRZ | 1 << BRN | SLP | 1 << PAR
+	jr nz, .not_full_restore
 	ld a, BATTLE_VARS_SUBSTATUS3_OPP
 	call GetBattleVarAddr
 	res SUBSTATUS_CONFUSED, [hl]
 
-.asm_3de26
+.not_full_restore
 	ld hl, Function365fd
 	ld a, [hBattleTurn]
 	and a
@@ -6900,7 +6922,8 @@ LoadEnemyMon: ; 3e8eb
 	ld [CurOTMon], a
 
 ; Get status from the party struct
-	dec hl
+	ld a, [hld]
+	ld [EnemyMonStatus + 1], a
 	ld a, [hl] ; OTPartyMonStatus
 	ld [EnemyMonStatus], a
 
@@ -9099,6 +9122,8 @@ Function3f759: ; 3f759
 	ld hl, OTPartyMon1Status
 	call GetPartyLocation
 	ld a, [EnemyMonStatus]
+	ld [hli], a
+	ld a, [EnemyMonStatus + 1]
 	ld [hl], a
 	call ClearTileMap
 	callba Function2c1b2

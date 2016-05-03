@@ -49784,9 +49784,20 @@ Function50d25: ; 50d25
 Function50d2e: ; 50d2e
 	push de
 	ld a, [de]
-	ld de, PsnString
 	bit PSN, a
+	jr z, .check_brn
+	pop de
+	inc de
+	ld a, [de]
+	and a
+	dec de
+	ld a, [de]
+	push de
+	ld de, ToxString
 	jr nz, .asm_50d53
+	ld de, PsnString
+	jr .asm_50d53
+.check_brn
 	ld de, BrnString
 	bit BRN, a
 	jr nz, .asm_50d53
@@ -49810,6 +49821,7 @@ Function50d2e: ; 50d2e
 
 SlpString: db "SLP@"
 PsnString: db "PSN@"
+ToxString: db "TOX@"
 BrnString: db "BRN@"
 FrzString: db "FRZ@"
 ParString: db "PAR@"
