@@ -16,9 +16,14 @@ SaveMusic::
 	ld a, [de]
 	and a
 	jr nz, .skip
+	call DelayFrame
+
+	di
 	ld bc, wMapMusic - MusicPlaying
 	ld hl, MusicPlaying
 	call CopyBytes
+	ei
+
 .skip
 	pop af
 	ld [rSVBK], a
@@ -44,7 +49,7 @@ RestoreMusic::
 	ld a, [hl]
 	and a
 	jr nz, .copy
-	ld a, 1
+	ld a, $1
 	ld [rSVBK], a
 	call PlayMapMusic
 	jr .done
@@ -54,10 +59,13 @@ RestoreMusic::
 	call PlayMusic
 	call DelayFrame
 
+	di
 	ld hl, SoundEngineBackup
 	ld bc, wMapMusic - MusicPlaying
 	ld de, MusicPlaying
 	call CopyBytes
+	ei
+
 	xor a
 	ld [SoundEngineBackup], a
 
