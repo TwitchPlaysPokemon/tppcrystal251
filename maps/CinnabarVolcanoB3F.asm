@@ -230,10 +230,11 @@ CinnabarVolcanoB3F_MapEventHeader:
 	db 0, 0
 
 	; warps
-	db 3
+	db 4
 	warp_def   5, 9,  9, GROUP_CINNABAR_VOLCANO_B2F, MAP_CINNABAR_VOLCANO_B2F ; ladder top
 	warp_def  25, 3, 10, GROUP_CINNABAR_VOLCANO_B2F, MAP_CINNABAR_VOLCANO_B2F ; ladder bottom
 	warp_def  27, 3, 11, GROUP_CINNABAR_VOLCANO_B2F, MAP_CINNABAR_VOLCANO_B2F ; fall spot
+	warp_def   1, 9,  1, GROUP_CINNABAR_VOLCANO_HALLWAY, MAP_CINNABAR_VOLCANO_HALLWAY ; hallway
 	; coord events
 	db 0
 

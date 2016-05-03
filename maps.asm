@@ -721,3 +721,13 @@ SECTION "GoldenrodBoutique", ROMX
 INCLUDE "maps/GoldenrodBoutique.asm"
 SECTION "GoldenrodBoutique Blockdata", ROMX
 GoldenrodBoutique_BlockData: INCBIN "maps/GoldenrodBoutique.blk"
+
+SECTION "CinnabarVolcanoHallway", ROMX
+INCLUDE "maps/CinnabarVolcanoHallway.asm"
+SECTION "CinnabarVolcanoHallway Blockdata", ROMX
+CinnabarVolcanoHallway_BlockData: INCBIN "maps/CinnabarVolcanoHallway.blk"
+
+SECTION "CinnabarVolcanoLab", ROMX
+INCLUDE "maps/CinnabarVolcanoLab.asm"
+SECTION "CinnabarVolcanoLab Blockdata", ROMX
+CinnabarVolcanoLab_BlockData: INCBIN "maps/CinnabarVolcanoLab.blk"
