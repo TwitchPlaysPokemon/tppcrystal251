@@ -1707,7 +1707,7 @@ class AI(object):
             print('checking if i will die')
             print('their damage: '+str(self.Damage[traincurrent][mycurrent][self.enemynumber]['damage'])+' my hp: '+str(self.jsonlist['battleState']['enemypokemon']['hp']))
         x1 = -1
-        if self.theaction < 4:
+        if self.theaction < len(self.MonData[traincurrent]['moves']):
             if self.MonData[traincurrent]['moves'][self.theaction]['effect'] in ('moonlight', 'synthesis', 'morningsun', 'heal'):
                 if self.Damage[mycurrent][traincurrent][self.theaction]['selfdamage'] * -1 > self.Damage[traincurrent][mycurrent][self.enemynumber]['damage']:
                     x1 = 1
