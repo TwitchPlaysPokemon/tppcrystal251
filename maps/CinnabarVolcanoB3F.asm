@@ -104,9 +104,17 @@ SimonScript1_CinnabarVolcanoB3F:
 	checkevent EVENT_GOT_RESEARCH_NOTES
 	iftrue SimonScript2_CinnabarVolcanoB3F
 	writetext SimonText1_CinnabarVolcanoB3F
+	giveitem RESEARCHNOTE, 1
+	iffalse .fail
 	playsound SFX_ITEM
 	waitsfx
 	setevent EVENT_GOT_RESEARCH_NOTES
+	waitbutton
+	closetext
+	end
+.fail
+	buttonsound
+	writetext TooFullForResearchNotes
 	waitbutton
 	closetext
 	end
@@ -217,6 +225,11 @@ SimonText1_CinnabarVolcanoB3F:
 	para "<PLAY_G> was"
 	line "given RESEARCH"
 	cont "NOTES."
+	done
+
+TooFullForResearchNotes:
+	text "But the bag is"
+	line "full<...>"
 	done
 
 SimonText2_CinnabarVolcanoB3F:

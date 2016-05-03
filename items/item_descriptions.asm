@@ -186,7 +186,7 @@ ItemDescriptions:
 	dw DragonFangDesc
 	dw FriendCharmDesc
 	dw LeftoversDesc
-	dw TeruSama15Desc
+	dw ResearchNotesDesc
 	dw TeruSama16Desc
 	dw TeruSama17Desc
 	dw MysteryBerryDesc
@@ -866,8 +866,9 @@ LeftoversDesc:
 	db   "Restores HP during"
 	next "battle. (HOLD)@"
 
-TeruSama15Desc:
-	db   "?@"
+ResearchNotesDesc:
+	db   "Description of a"
+	next "rare #MON.@"
 
 TeruSama16Desc:
 	db   "?@"

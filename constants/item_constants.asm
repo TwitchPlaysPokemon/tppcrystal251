@@ -147,7 +147,7 @@
 	const DRAGON_FANG
 	const FRIEND_CHARM ; NEW
 	const LEFTOVERS
-	const ITEM_93
+	const RESEARCHNOTE
 	const ITEM_94
 	const ITEM_95
 	const MYSTERYBERRY
