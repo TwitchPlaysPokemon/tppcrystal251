@@ -37,9 +37,11 @@ _VermilionPokecenterText1:
 
 _VermilionPokecenterText2:
 	text "My #MON was"
-	line "poisoned! It"
-	cont "fainted while we"
-	cont "were walking!"
+	line "poisoned!"
+
+	para "It eventually wore"
+	line "off, but man was"
+	cont "it scary!"
 	done
 
 _VermilionPokecenterGuyText:

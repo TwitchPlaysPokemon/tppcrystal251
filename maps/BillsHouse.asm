@@ -183,7 +183,7 @@ UnknownScript_0x189697: ; 0x189697
 	writetext UnknownText_0x18982a
 	waitbutton
 	closetext
-	changeblock 3, 0, $33
+	; changeblock 3, 0, $33
 	end
 ; 0x1896a5
 
@@ -311,26 +311,26 @@ UnknownText_0x18982a: ; 0x18982a
 	para "I've lived such a"
 	line "long life."
 
-	para "Feel free to ex-"
-	line "plore out back."
+	; para "Feel free to ex-"
+	; line "plore out back."
 
-	para "The garden's beau-"
-	line "tiful, but it's"
+	; para "The garden's beau-"
+	; line "tiful, but it's"
 
-	para "too big for little"
-	line "old me. Hohohoho!"
+	; para "too big for little"
+	; line "old me. Hohohoho!"
 
-	para "I can barely take"
-	line "care of all of"
-	cont "the flowers!"
+	; para "I can barely take"
+	; line "care of all of"
+	; cont "the flowers!"
 
-	para "Come to think of"
-	line "it<...>"
+	; para "Come to think of"
+	; line "it<...>"
 
-	para "Some new kinds"
-	line "just sprung up!"
+	; para "Some new kinds"
+	; line "just sprung up!"
 
-	para "I wonder why<...>"
+	; para "I wonder why<...>"
 	done
 ; 0x189891
 
