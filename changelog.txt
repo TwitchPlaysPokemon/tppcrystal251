@@ -6,6 +6,10 @@ Version 1.1.3
 * You can no longer white out due to overworld poison damage (Gen 4 style)
 * Fix the Name Rater bug
 * Fix SS Ticket displaying the name of the wrong ship in Early Game Kanto
+* Add a custom logo to the startup sequence
+* Fix a bug where the Rooftop Sale prices were interpreted wrong
+* Actually fix: You can no longer receive phone calls prior to actually getting the phone card
+* Clarify Simon in the volcano
 
 Version 1.1.2
 * Grammar fixes

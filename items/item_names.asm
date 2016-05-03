@@ -144,7 +144,7 @@
 	db "DRAGON FANG@"
 	db "FRIEND CHARM@"
 	db "LEFTOVERS@"
-	db "TERU-SAMA@"
+	db "RESEARCHNOTE@"
 	db "TERU-SAMA@"
 	db "TERU-SAMA@"
 	db "LEPPA BERRY@"

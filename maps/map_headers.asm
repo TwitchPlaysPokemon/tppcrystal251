@@ -528,6 +528,8 @@ MapGroup28:
 	map_header MtSilverRuinsB1, 24, 3, SILVER_CAVE, MUSIC_DRAGONS_DEN, 1, 2, 16
 	map_header BillsGarden, 3, 2, ROUTE_25, MUSIC_ROUTE_2, 0, 0, 14
 	map_header DummyBlankMap, $c, 0, 0, MUSIC_NONE, 1, 4, 1
+	map_header CinnabarVolcanoHallway, 41, 4, CINNABAR_VOLCANO, MUSIC_MT_MOON, 1, 2, 1
+	map_header CinnabarVolcanoLab, 40, 4, CINNABAR_VOLCANO, MUSIC_MT_MOON, 1, 2, 1
 
 MapGroup29:
 	map_header Route1RB, $3, 2, ROUTE_1, MUSIC_ROUTE_1, 0, 0, 1

@@ -39,22 +39,27 @@ GS_Copyright_Intro: ; 39:49a8
 	ret
 
 .InitGFX: ; 39:49f3
-	ld de, GameFreakLogo
+	ld de, TppLogo
 	ld hl, $8800
-	lb bc, BANK(GameFreakLogo), $1c
+	lb bc, BANK(TppLogo), $24
 	call Get1bpp
 
 	ld de, GS_Gamefreak_GFX2
-	ld hl, $89c0
+	ld hl, $8a20
 	lb bc, BANK(GS_Gamefreak_GFX2), $5
 	call Get2bpp
+
+	ld de, TppLogo + $118
+	ld hl, $8a70
+	lb bc, BANK(TppLogo), $31
+	call Get1bpp
 
 	callba Function8cf53 ; ClearSpriteAnims
 
 	ld hl, wc300 ; wObjectTileOverrides
 	ld a, $6
 	ld [hli], a
-	ld a, $8d
+	ld a, $a2
 	ld [hl], a
 	xor a
 	ld [wcf63], a
@@ -145,12 +150,53 @@ GS_Copyright_Intro: ; 39:49a8
 	ld a, [wcf64]
 	and a
 	ret z
-	lb de, $54, $58
-	ld a, $2e
-	call Function3b2a ; InitSpriteAnimStruct
+	; lb de, $54, $58
+	; ld a, $2e
+	; call Function3b2a ; InitSpriteAnimStruct
+	hlcoord 7, 4
+	ld a, $a7
+	call .FillBox
+	hlcoord 7, 4, AttrMap
+	ld a, $1
+	call .FillBoxAttr
+	callba Function96b3
+	callba Function96a4
 	call .IncrementJumptableIndex
 	ld a, $80
 	ld [wcf65], a
+	ret
+
+.FillBox:
+	ld b, 7
+	ld de, $14
+.row
+	push hl
+	ld c, 7
+.col
+	ld [hli], a
+	inc a
+	dec c
+	jr nz, .col
+	pop hl
+	add hl, de
+	dec b
+	jr nz, .row
+	ret
+
+.FillBoxAttr:
+	ld b, 7
+	ld de, $14
+.rowattr
+	push hl
+	ld c, 7
+.colattr
+	ld [hli], a
+	dec c
+	jr nz, .colattr
+	pop hl
+	add hl, de
+	dec b
+	jr nz, .rowattr
 	ret
 
 .Scene3: ; 39:4ac8
@@ -170,19 +216,25 @@ GS_Copyright_Intro: ; 39:49a8
 	ret
 
 .PlaceGameFreakString
-	hlcoord 5, 12
-	ld de, .GameFreakString
+	hlcoord 2, 12
+	ld de, .TPPDevsTopRow
+	call PlaceString
+	hlcoord 2, 13
+	ld de, .TPPDevsBottomRow
 	call PlaceString
 	ret
 
-.GameFreakString:
-	;   G    A    M    E    _    F    R    E    A    K
-	db $80, $81, $82, $83, $8d, $84, $85, $83, $81, $86, $50
+.TPPDevsTopRow:
+	db $80, $81, $82, $83, $84, $85, $86, $87, $88, $89, $8a, $8b, $8c, $8d, $8e, $8f, $90, $50
+	
+.TPPDevsBottomRow:
+	db $91, $92, $93, $94, $95, $96, $97, $98, $99, $9a, $9b, $9c, $9d, $9e, $9f, $a0, $a1, $50
 
+;null this out because we don't need it right now
 .Scene4: ; 39:4af4
-	hlcoord 7, 13
-	ld de, .PresentsString
-	call PlaceString
+	;hlcoord 7, 14
+	;ld de, .PresentsString
+	;call PlaceString
 	call .IncrementJumptableIndex
 	ld a, $80
 	ld [wcf65], a
@@ -203,6 +255,7 @@ GS_Copyright_Intro: ; 39:49a8
 	and a
 	jr z, .finished_scene5
 	dec [hl]
+	call Functione4b20
 	ret
 
 .finished_scene5

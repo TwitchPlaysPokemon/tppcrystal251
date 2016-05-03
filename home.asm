@@ -42,13 +42,13 @@ INCLUDE "home/game_time.asm"
 INCLUDE "home/map.asm"
 
 
-Function2d43:: ; 2d43
+; Function2d43:: ; 2d43
 ; Inexplicably empty.
 ; Seen in PredefPointers.
-	rept 16
-	nop
-	endr
-	ret
+	; rept 16
+	; nop
+	; endr
+	; ret
 ; 2d54
 
 

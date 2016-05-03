@@ -631,6 +631,8 @@
 	map_header_2 CinnabarVolcanoB1F, CINNABAR_VOLCANO_B1F, $9, NONE
 	map_header_2 CinnabarVolcanoB2F, CINNABAR_VOLCANO_B2F, $9, NONE
 	map_header_2 CinnabarVolcanoB3F, CINNABAR_VOLCANO_B3F, $9, NONE
+	map_header_2 CinnabarVolcanoHallway, CINNABAR_VOLCANO_HALLWAY, $9, NONE
+	map_header_2 CinnabarVolcanoLab, CINNABAR_VOLCANO_LAB, $2e, NONE
 	map_header_2 SeafoamIslandsEntrance, SEAFOAM_ISLANDS_ENTRANCE, $9, NONE
 	map_header_2 SeafoamIslandsB1F, SEAFOAM_ISLANDS_B1F, $9, NONE
 	map_header_2 SeafoamIslandsB2F, SEAFOAM_ISLANDS_B2F, $9, NONE
