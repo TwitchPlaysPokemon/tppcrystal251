@@ -12,23 +12,27 @@ SimonScript2_CinnabarVolcanoB3F
 	closetext
 	end
 
-SimonCheck_CinnabarVolcanoB3F1:
-	checkevent EVENT_BEAT_SIMON_1
-	iffalse SimonCheck_CinnabarVolcanoB3FEnd
-	checkevent EVENT_BEAT_SIMON_2
-	iffalse SimonCheck_CinnabarVolcanoB3FEnd
-	checkevent EVENT_BEAT_SIMON_3
-	iffalse SimonCheck_CinnabarVolcanoB3FEnd
-	checkevent EVENT_BEAT_SIMON_4
-	iffalse SimonCheck_CinnabarVolcanoB3FEnd
-	checkevent EVENT_BEAT_SIMON_5
-	iffalse SimonCheck_CinnabarVolcanoB3FEnd
-	checkevent EVENT_BEAT_SIMON_6
-	iffalse SimonCheck_CinnabarVolcanoB3FEnd
-	checkevent EVENT_SAW_MEW_IN_GARDEN
-	iffalse SimonCheck_CinnabarVolcanoB3FEnd
-	appear $7
-	return
+; SimonCheck_CinnabarVolcanoB3F1:
+	; checkevent EVENT_BEAT_SIMON_1
+	; iffalse SimonCheck_CinnabarVolcanoB3FEnd
+	; checkevent EVENT_BEAT_SIMON_2
+	; iffalse SimonCheck_CinnabarVolcanoB3FEnd
+	; checkevent EVENT_BEAT_SIMON_3
+	; iffalse SimonCheck_CinnabarVolcanoB3FEnd
+	; checkevent EVENT_BEAT_SIMON_4
+	; iffalse SimonCheck_CinnabarVolcanoB3FEnd
+	; checkevent EVENT_BEAT_SIMON_5
+	; iffalse SimonCheck_CinnabarVolcanoB3FEnd
+	; checkevent EVENT_BEAT_SIMON_6
+	; iffalse SimonCheck_CinnabarVolcanoB3FEnd
+	; checkevent EVENT_SAW_MEW_IN_GARDEN
+	; iffalse SimonCheck_CinnabarVolcanoB3FEnd
+	; appear $7
+	; return
+
+; SimonCheck_CinnabarVolcanoB3FEnd:
+	; disappear $7
+	; return
 
 AlreadyGotResearchNotesCheck:
 	checkitem RESEARCHNOTE
@@ -37,10 +41,6 @@ AlreadyGotResearchNotesCheck:
 	disappear $3
 	disappear $4
 	changeblock 8, 10, $b2
-	return
-
-SimonCheck_CinnabarVolcanoB3FEnd:
-	disappear $7
 	return
 	
 DontShowNotes:
