@@ -4,13 +4,7 @@ CinnabarVolcanoLab_MapScriptHeader:
 
 	; callbacks
 	db 1
-	dbw 2, AlreadyGotResearchNotesCheck	
-	
-SimonScript2_CinnabarVolcanoB3F
-	writetext SimonText2_CinnabarVolcanoB3F
-	waitbutton
-	closetext
-	end
+	dbw 5, AlreadyGotResearchNotesCheck
 
 ; SimonCheck_CinnabarVolcanoB3F1:
 	; checkevent EVENT_BEAT_SIMON_1
@@ -27,37 +21,43 @@ SimonScript2_CinnabarVolcanoB3F
 	; iffalse SimonCheck_CinnabarVolcanoB3FEnd
 	; checkevent EVENT_SAW_MEW_IN_GARDEN
 	; iffalse SimonCheck_CinnabarVolcanoB3FEnd
-	; appear $7
+	; appear $3
 	; return
 
 ; SimonCheck_CinnabarVolcanoB3FEnd:
-	; disappear $7
+	; disappear $3
 	; return
 
 AlreadyGotResearchNotesCheck:
 	checkitem RESEARCHNOTE
-  	iftrue DontShowNotes
+  	iftrue .dont_show_notes
 	appear $2
 	disappear $3
 	disappear $4
 	changeblock 8, 10, $b2
 	return
-	
-DontShowNotes:
+
+.dont_show_notes
 	disappear $2
 	return
 
-PickUpResearchNotesScript:
-	loadfont
-	writetext PickedUpNotesText
-	giveitem RESEARCHNOTE, 1
-	iffalse .fail
-	playsound SFX_ITEM
-	waitsfx
-	setevent EVENT_GOT_RESEARCH_NOTES
+SimonScript2_CinnabarVolcanoB3F
+	writetext SimonText2_CinnabarVolcanoB3F
 	waitbutton
 	closetext
+	end
+
+PickUpResearchNotesScript:
+	loadfont
+	verbosegiveitem RESEARCHNOTE, 1
+	iffalse .fail
 	disappear $2
+	checkevent EVENT BLUE_REMATCH
+	iffalse .skip
+	setevent EVENT_COOLTRAINER_BLOCKING_CERULEAN_CAVE
+.skip
+	waitbutton
+	closetext
 	;event here
 	appear $3
 	playmusic MUSIC_POKEMANIAC_ENCOUNTER
@@ -99,15 +99,15 @@ PickUpResearchNotesScript:
 	waitsfx
 	;battle and other dialogue
 	special DeleteSavedMusic
-	playmapmusic	
+	playmapmusic
 	end
+	; buttonsound
+	; writetext TooFullForResearchNotes
+	; waitbutton
 .fail
-	buttonsound
-	writetext TooFullForResearchNotes
-	waitbutton
 	closetext
 	end
-	
+
 PickedUpNotesText:
 	text "<PLAY_G> found"
 	line "RESEARCH NOTES!"
@@ -116,11 +116,12 @@ PickedUpNotesText:
 SimonText1_Lab:
 	text "Man, it's hot down"
 	line "here<...>"
-	
+
 	para "I wonder if<...>"
 	done
+
 SimonText2_Lab:
-	text "AAAAAAAAH!"
+	text "AAAAAAAHHH!" ; subtle nod to a magmar we caught in AR
 	done
 
 SimonText3_Lab:
@@ -148,26 +149,29 @@ SimonText3_Lab:
 	para "mansion, and no"
 	line "trace of him."
 
-	para "All I have left"
-	line "are these old"
-	para "RESEARCH NOTES"
-	line "I swiped from this"
-	para "old coot on the"
-	line "way in."
+	;; Simon doesn't give you the notes anymore. Maybe put something else here?
+	; para "All I have left"
+	; line "are these old"
 
-	para "Take them back."
+	; para "RESEARCH NOTES"
+	; line "I swiped from this"
 
-	para "Just take them."
+	; para "old coot on the"
+	; line "way in."
 
-	para "<PLAY_G> was"
-	line "given RESEARCH"
-	cont "NOTES."
+	; para "Take them back."
+
+	; para "Just take them."
+
+	; para "<PLAY_G> was"
+	; line "given RESEARCH"
+	; cont "NOTES."
 	done
 
-TooFullForResearchNotes:
-	text "But the bag is"
-	line "full<...>"
-	done
+; TooFullForResearchNotes:
+	; text "But the bag is"
+	; line "full<...>"
+	; done
 
 SimonText2_CinnabarVolcanoB3F:
 	text "I want to be"
@@ -183,26 +187,26 @@ MoveSimonToPath:
 MoveSimonToCapsule
 	slow_step_right
 	step_end
-	
+
 MoveSimonToLeft
 	big_step_left
 	step_end
-	
+
 MoveMewtwoForward
 	big_step_down
 	step_end
-	
+
 MovePlayerUp
 	step_up
 	step_end
-	
+
 CinnabarVolcanoLab_MapEventHeader:
 	; filler
 	db 0, 0
 
 	; warps
 	db 1
-	warp_def   0, 16,  2, GROUP_CINNABAR_VOLCANO_HALLWAY, MAP_CINNABAR_VOLCANO_HALLWAY ; hallway
+	warp_def  0, 16,  2, GROUP_CINNABAR_VOLCANO_HALLWAY, MAP_CINNABAR_VOLCANO_HALLWAY ; hallway
 
 	; coord events
 	db 0
@@ -212,7 +216,7 @@ CinnabarVolcanoLab_MapEventHeader:
 
 	; object events
 	db 3
-	person_event SPRITE_POKEDEX, 17, 11, $0, 0, 0, -1, -1, 8 + PAL_OW_RED, 0, 0, PickUpResearchNotesScript, -1
-	person_event SPRITE_PHARMACIST, 12, 11, $0, 0, 0, -1, -1, 8 + PAL_OW_GREEN, 0, 0, ObjectEvent, 0
-	person_event SPRITE_MONSTER, 14, 13, $0, 0, 0, -1, -1, 0, 0, 0, ObjectEvent, 0
+	person_event SPRITE_POKEDEX, 17, 11, $0, 0, 0, -1, -1, 8 + PAL_OW_RED, 0, 0, PickUpResearchNotesScript, EVENT_GOT_RESEARCH_NOTES
+	person_event SPRITE_PHARMACIST, 12, 11, $0, 0, 0, -1, -1, 8 + PAL_OW_GREEN, 0, 0, SimonScript2_CinnabarVolcanoB3F, EVENT_SIMON_IN_VOLCANO
+	person_event SPRITE_MONSTER, 14, 13, $0, 0, 0, -1, -1, 0, 0, 0, ObjectEvent, EVENT_MEWTWO_IN_VOLCANO_LAB
 

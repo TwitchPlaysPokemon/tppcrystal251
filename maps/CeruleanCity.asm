@@ -358,6 +358,6 @@ CeruleanCity_MapEventHeader: ; 0x18445d
 	person_event SPRITE_COOLTRAINER_F, 28, 25, $8, 0, 0, -1, -1, 8 + PAL_OW_GREEN, 0, 0, CooltrainerFScript_0x18402a, -1
 	person_event SPRITE_FISHER, 30, 34, $5, 0, 1, -1, -1, 8 + PAL_OW_RED, 0, 0, FisherScript_0x18404a, -1
 	person_event SPRITE_YOUNGSTER, 16, 10, $3, 0, 1, -1, -1, 8 + PAL_OW_RED, 0, 0, YoungsterScript_0x184064, -1
-	person_event SPRITE_COOLTRAINER_M, 18, 6, $6, 0, 0, -1, -1, 8 + PAL_OW_BROWN, 0, 0, CooltrainerMScript_BlocksCeruleanCave, EVENT_BLUE_REMATCH
+	person_event SPRITE_COOLTRAINER_M, 18, 6, $6, 0, 0, -1, -1, 8 + PAL_OW_BROWN, 0, 0, CooltrainerMScript_BlocksCeruleanCave, EVENT_COOLTRAINER_BLOCKING_CERULEAN_CAVE
 ; 0x1844fc
 
