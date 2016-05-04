@@ -10245,7 +10245,7 @@ Function114e7:: ; 114e7
 StartSSAnneTimer:: ; 114fc
 	ld hl, DailyFlags
 	res 1, [hl]
-	ld a, $3
+	ld a, 1
 	ld hl, wSSAnneTimerDaysLeft
 	ld [hl], a
 	call UpdateTime
