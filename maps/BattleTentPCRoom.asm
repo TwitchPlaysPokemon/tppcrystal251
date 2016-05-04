@@ -5,8 +5,17 @@ BattleTentPCRoom_MapScriptHeader:
 
 LeaguePCScript:
 	loadfont
-	playsound SFX_BOOT_PC
 	writetext tppPcIntroText
+	playsound SFX_BOOT_PC
+	waitsfx
+	checkevent EVENT_READ_PC_EXPLANATION
+	iftrue .skip_lengthly_intro
+.intro
+	writetext tppPcIntroText2
+	buttonsound
+	setevent EVENT_READ_PC_EXPLANATION
+.skip_lengthly_intro
+	writetext tppPcIntroText3
 	loadmenudata tppPc_Options_Header
 	interpretmenu2
 	writebackup
@@ -14,6 +23,7 @@ LeaguePCScript:
 	if_equal ULTIMATE, tppPcUltimateTeamBattle
 	if_equal MIRROR, tppPcMirrorBattle
 	if_equal PC_SURVIVAL, TPPPC_SurvivalModeScript
+	if_equal 4, .intro
 tppPcEndBattle:
 	writetext tppPcLogOffText
 	playsound SFX_SHUT_DOWN_PC
@@ -97,23 +107,24 @@ TPPPC_SurvivalModeScript:
 tppPc_Options_Header: ; 0x56478
 	db $40 ; flags
 	db 02, 02 ; start coords
-	db 11, 17 ; end coords
+	db 13, 17 ; end coords
 	dw tppPc_Options
 	db 1 ; default option
 ; 0x56480
 
 tppPc_Options: ; 0x56480
 	db $80 ; flags
-	db 4 ; items
+	db 5 ; items
 	db "ULTIMATE TEAM@"
 	db "YOUR OWN TEAM@"
 	db "SURVIVAL MODE@"
+	db "EXPLANATION@"
 	db "CANCEL@"
 
 SurvivalModeBattleStartText:
 	text "Now loading battle"
 	line "number @"
-	deciram wSurvivalModeWinStreak, $13
+	deciram wSurvivalModeWinStreak, $25
 	text "<...>"
 	done
 
@@ -125,7 +136,7 @@ SurvivalModeBattleStartText_200plus:
 SurvivalModeExitText:
 	text "You have survived"
 	line "@"
-	deciram wSurvivalModeWinStreak, $13
+	deciram wSurvivalModeWinStreak, $25
 	text " battles."
 
 	para "Good job."
@@ -149,7 +160,9 @@ tppPcIntroText:
 
 	para "#MON LEAGUE"
 	line "BATTLE SIMULATOR"
+	done
 
+tppPcIntroText2:
 	para "In this software,"
 	line "you can fight a"
 
@@ -171,8 +184,10 @@ tppPcIntroText:
 
 	para "until you can no"
 	line "longer fight."
+	done
 
-	para "Please make your"
+tppPcIntroText3:
+	text "Please make your"
 	line "selection."
 	done
 

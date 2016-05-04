@@ -91944,25 +91944,38 @@ SampleRandomSurvival:
 	ld bc, wSurvivalModePartyEnd - wSurvivalModeParty
 	xor a
 	call ByteFill
-	ld hl, wSurvivalModeWinStreak
+	ld hl, wSurvivalModeWinStreak + 1
 	ld a, [hl]
-	cp 200
-	jr nc, .max_streak
+	inc a
+	ld [hld], a
+	jr nz, .check_byte
 	inc [hl]
+	jr .max_streak
+
+.check_byte
+	ld a, [hli]
+	and a
+	jr nz, .max_streak
+	ld a, [hl]
+	cp 51
+	jr nc, .max_streak
+	add 50
+	jr .okay
+
 .max_streak
-	cp 16
+	ld a, 100
+	ld c, 2
+	jr .got_bracket
+
+.okay
+	cp 66
 	ld c, 0
 	jr c, .got_bracket
 	inc c
-	cp 33
+	cp 83
 	jr c, .got_bracket
 	inc c
 .got_bracket
-	add 50
-	cp 101
-	jr c, .max_level
-	ld a, 100
-.max_level
 	ld [wSurvivalModeLevel], a
 	ld b, 0
 	ld hl, .SurvivalCounts

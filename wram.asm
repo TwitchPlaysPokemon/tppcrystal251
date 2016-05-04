@@ -1226,9 +1226,9 @@ wSurvivalModeParty::
 wSurvivalModeSpecies:: ds 13
 wSurvivalModeLevel:: ds 1
 wSurvivalModePartyEnd::
-wSurvivalModeWinStreak:: ds 1
+wSurvivalModeWinStreak:: ds 2
 
-	ds 25
+	ds 24
 
 SECTION "WRAM 1", WRAMX, BANK [1]
 
