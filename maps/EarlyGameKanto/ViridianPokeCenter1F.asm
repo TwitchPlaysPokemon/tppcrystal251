@@ -45,15 +45,26 @@ _ViridianCityPokecenterGuyText::
 	cont "#MON!"
 	done
 
+ViridianPokeCenter1FRB_LinkScript:
+	jumptextfaceplayer ViridianRBLinkText
+	
+ViridianRBLinkText:
+	text "Welcome to the"
+	line "Cable Club!"
+	
+	para "I'm sorry--our"
+	line "systems are still"
+	cont "being adjusted."
+	done
+
 ViridianPokeCenter1FRB_MapEventHeader: ; 0x9b7ef
 	; filler
 	db 0, 0
 
 	; warps
-	db 3
-	warp_def $7, $3, 4, GROUP_VIRIDIAN_CITY_RB, MAP_VIRIDIAN_CITY_RB
-	warp_def $7, $4, 4, GROUP_VIRIDIAN_CITY_RB, MAP_VIRIDIAN_CITY_RB
-	warp_def $7, $0, 1, GROUP_POKECENTER_2F, MAP_POKECENTER_2F
+	db 2
+	warp_def $7, $5, 4, GROUP_VIRIDIAN_CITY_RB, MAP_VIRIDIAN_CITY_RB
+	warp_def $7, $6, 4, GROUP_VIRIDIAN_CITY_RB, MAP_VIRIDIAN_CITY_RB
 
 	; xy triggers
 	db 0
@@ -62,10 +73,11 @@ ViridianPokeCenter1FRB_MapEventHeader: ; 0x9b7ef
 	db 0
 
 	; people-events
-	db 4
-	person_event SPRITE_NURSE, 5, 7, $6, 0, 0, -1, -1, 0, 0, 0, ViridianPokeCenterRBNurseScript, -1
-	person_event SPRITE_COOLTRAINER_M, 8, 12, $5, 0, 1, -1, -1, 8 + PAL_OW_RED, 0, 0, ViridianPokeCenter1FCooltrainerMScript, -1
-	person_event SPRITE_GENTLEMAN, 7, 9, $7, 0, 0, -1, -1, 8 + PAL_OW_BLUE, 0, 0, ViridianPokeCenter1FCooltrainerFScript, -1
-	person_event SPRITE_BUG_CATCHER, 10, 5, $9, 0, 0, -1, -1, 8 + PAL_OW_GREEN, 0, 0, ViridianPokeCenter1FBugCatcherScript, -1
+	db 5
+	person_event SPRITE_NURSE, 5, 9, $6, 0, 0, -1, -1, 0, 0, 0, ViridianPokeCenterRBNurseScript, -1
+	person_event SPRITE_GENTLEMAN, 9, 16, $4, 2, 0, -1, -1, 8 + PAL_OW_RED, 0, 0, ViridianPokeCenter1FCooltrainerMScript, -1
+	person_event SPRITE_COOLTRAINER_M, 7, 10, $a, 0, 0, -1, -1, 8 + PAL_OW_BLUE, 0, 0, ViridianPokeCenter1FCooltrainerFScript, -1
+	person_event SPRITE_BUG_CATCHER, 8, 6, $9, 0, 0, -1, -1, 8 + PAL_OW_GREEN, 0, 0, ViridianPokeCenter1FBugCatcherScript, -1
+	person_event SPRITE_LINK_RECEPTIONIST, 6, 17, $6, 0, 0, -1, -1, 8 + PAL_OW_GREEN, 0, 0, ViridianPokeCenter1FRB_LinkScript, -1
 ; 0x9b838
 
