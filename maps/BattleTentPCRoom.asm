@@ -71,6 +71,7 @@ TPPPC_SurvivalModeScript:
 	waitbutton
 	closetext
 	loadtrainer TPPPC, PC_SURVIVAL
+	writecode VAR_BATTLETYPE, BATTLETYPE_CANLOSE
 	winlosstext tppPcWonText, tppPcLostText
 	startbattle
 	reloadmap
@@ -79,6 +80,7 @@ TPPPC_SurvivalModeScript:
 	jump .loop
 
 .finish
+	special HealParty
 	copybytetovar wSurvivalModeWinStreak
 	if_less_than 200, .not_max2
 	writetext SurvivalModeExitText_200plus
@@ -122,7 +124,7 @@ SurvivalModeBattleStartText_200plus:
 
 SurvivalModeExitText:
 	text "You have survived"
-	line ""
+	line "@"
 	deciram wSurvivalModeWinStreak, $13
 	text " battles."
 
