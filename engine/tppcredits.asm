@@ -2931,10 +2931,10 @@ TPPCreditsBG4Pals:
 StripTiles: INCBIN "gfx/credits/strip_map.wle"
 
 ThanksForWatchingAttrs:
-	db $67, $09, $63, $0a, $76, $09
-	db $67, $0b, $63, $0c, $76, $0b
-	db $67, $0d, $63, $0e, $76, $0d
-	db $74, $0f, $ff
+    db $67, $09, $64, $0a, $75, $09
+    db $67, $0b, $64, $0c, $75, $0b
+    db $67, $0d, $64, $0e, $75, $0d
+    db $74, $0f, $ff
 
 ThanksForWatchingPals:
 	HSV 0.0,  0.4, 1.0 ; strip1
