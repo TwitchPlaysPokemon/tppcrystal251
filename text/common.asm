@@ -137,7 +137,7 @@ NoPokemonHealText::
 
 TooManyPokemonHealText::
 	text "I'm sorry. I can't"
-	line "heall that many"
+	line "heal that many"
 	cont "#MON."
 	done
 
