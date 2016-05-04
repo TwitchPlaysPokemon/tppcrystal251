@@ -52,7 +52,7 @@ PickUpResearchNotesScript:
 	verbosegiveitem RESEARCHNOTE, 1
 	iffalse .fail
 	disappear $2
-	checkevent EVENT BLUE_REMATCH
+	checkevent EVENT_BLUE_REMATCH
 	iffalse .skip
 	setevent EVENT_COOLTRAINER_BLOCKING_CERULEAN_CAVE
 .skip
