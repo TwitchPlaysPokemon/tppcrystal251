@@ -308,7 +308,7 @@ UnknownText_0x1b0681: ; 0x1b0681
 NoPrizeForLazyPeople:
 	text "Only those who"
 	line "catch a #MON"
-	cont "recieve prizes."
+	cont "receive prizes."
 	done
 ; 0x1b06b7
 
@@ -331,10 +331,11 @@ DoYouWantToKeepTheBug:
 	done
 
 YouWantTheBugButPCIsFull:
-	text "Both your party"
-	line "and BOX are full,"
-	cont "we can't give you"
-	cont "the #MON."
+	text "You have no room"
+	line "in your party or"
+
+	para "PC box to receive"
+	line "this #MON."
 
 	para "We have to release"
 	line "it back into the"
@@ -448,12 +449,12 @@ UnknownText_0x1b08cc: ; 0x1b08cc
 	line "full."
 
 	para "We'll keep this"
-	line "for you,"
+	line "for you, but"
 
-	para "but can only hold"
+	para "we can only hold"
 	line "one of each prize."
 
-	para "come back when you"
+	para "Come back when you"
 	line "make room for it."
 	done
 ; 0x1b092a
@@ -1149,8 +1150,8 @@ UnknownText_0x1b1cd5: ; 0x1b1cd5
 	line "fish anymore?"
 
 	para "I've seen rare"
-	line "#MON while I've"
-	cont "been fishing<...>"
+	line "#MON while fish-"
+	cont "ing<...>"
 
 	para "You young people"
 	line "like that, right?"
