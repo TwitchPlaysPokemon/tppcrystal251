@@ -116,15 +116,66 @@ FisherText7_MtMoonPokeCenter1FRB:
 	line "enough money!"
 	done
 
+MtMoonPokeCenter1FRB_GentlemanScript:
+	faceplayer
+	loadfont
+	writetext MtMoonRBGentlemanText
+	waitbutton
+	closetext
+	spriteface $5, UP
+	end
+	
+MtMoonRBGentlemanText:
+	text "TEAM ROCKET"
+	line "attacks CERULEAN"
+	cont "citizens<...>"
+	
+	para "TEAM ROCKET is"
+	line "always in the"
+	cont "news!"
+	done
+	
+MtMoonPokeCenter1FRB_Youngster1Script:
+	jumptextfaceplayer MtMoonRBYoungster1Text
+	
+MtMoonRBYoungster1Text:
+	text "I've 6 # BALLs"
+	line "set in my belt."
+	
+	para "At most, you can"
+	line "carry 6 #MON."
+	done
+	
+MtMoonPokeCenter1FRB_Youngster2Script:
+	jumptextfaceplayer MtMoonRBYoungster2Text
+	
+MtMoonRBYoungster2Text:
+	text "If you have too"
+	line "many #MON, you"
+	cont "should store them"
+	cont "via PC!"
+	done
+
+MtMoonPokeCenter1FRB_LinkScript:
+	jumptextfaceplayer MtMoonRBLinkText
+
+MtMoonRBLinkText:
+	text "Welcome to the"
+	line "Cable Club!"
+	
+	para "I'm sorry--our"
+	line "systems are still"
+	cont "being adjusted."
+	done
+
 MtMoonPokeCenter1FRB_MapEventHeader: ; 0x69935
 	; filler
 	db 0, 0
 
 	; warps
-	db 3
-	warp_def $7, $3, 2, GROUP_ROUTE_3_RB, MAP_ROUTE_3_RB
-	warp_def $7, $4, 2, GROUP_ROUTE_3_RB, MAP_ROUTE_3_RB
-	warp_def $7, $0, 1, GROUP_POKECENTER_2F, MAP_POKECENTER_2F
+	db 2
+	warp_def $7, $5, 2, GROUP_ROUTE_3_RB, MAP_ROUTE_3_RB
+	warp_def $7, $6, 2, GROUP_ROUTE_3_RB, MAP_ROUTE_3_RB
 
 	; xy triggers
 	db 0
@@ -133,8 +184,13 @@ MtMoonPokeCenter1FRB_MapEventHeader: ; 0x69935
 	db 0
 
 	; people-events
-	db 2
-	person_event SPRITE_NURSE, 5, 7, $6, 0, 0, -1, -1, 0, 0, 0, NurseScript_MtMoonPokeCenter1FRB, -1
-	person_event SPRITE_FISHER, 8, 6, $a, 0, 0, -1, -1, 8 + PAL_OW_BLUE, 0, 0, FisherScript1_MtMoonPokeCenter1FRB, -1
+	db 7
+	person_event SPRITE_NURSE, 5, 9, $6, 0, 0, -1, -1, 0, 0, 0, NurseScript_MtMoonPokeCenter1FRB, -1
+	person_event SPRITE_FISHER, 10, 16, $2, 0, 2, -1, -1, 8 + PAL_OW_BLUE, 0, 0, FisherScript1_MtMoonPokeCenter1FRB, -1
+	person_event SPRITE_PAPER, 6, 13, $0, 0, 0, -1, -1, 0, 0, 0, ObjectEvent, -1
+	person_event SPRITE_GENTLEMAN, 7, 13, $7, 0, 0, -1, -1, 0, 0, 0, MtMoonPokeCenter1FRB_GentlemanScript, -1
+	person_event SPRITE_YOUNGSTER, 7, 10, $7, 0, 0, -1, -1, 0, 0, 0, MtMoonPokeCenter1FRB_Youngster1Script, -1
+	person_event SPRITE_BUG_CATCHER, 8, 6, $9, 0, 0, -1, -1, 0, 0, 0, MtMoonPokeCenter1FRB_Youngster2Script, -1
+	person_event SPRITE_LINK_RECEPTIONIST, 6, 17, $6, 0, 0, -1, -1, 8 + PAL_OW_GREEN, 0, 0, MtMoonPokeCenter1FRB_LinkScript, -1
 ; 0x6998b
 
