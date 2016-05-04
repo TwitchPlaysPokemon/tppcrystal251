@@ -15,7 +15,7 @@ MapBattleTentBattleRoom_Trigger2:
 	end
 
 MapBattleTentBattleRoomDoorScript:
-	dw EVENT_BEAT_BILL_IN_BATTLE_TENT
+	dw EVENT_OAK_DEFEATED
 	dw .Script
 .Script
 	jumptext MapBattleTentBattleRoomDoorText
@@ -204,16 +204,29 @@ MapBattleTentBattleRoomBillText5:
 	para "repairs in this"
 	line "room."
 
-	para "You should visit"
-	line "sometime, GRAMPS"
-	cont "could use the"
-	cont "company."
+	para "Hey, you remember"
+	line "my old place, up"
 
-	para "I should get mov-"
-	line "ing. See you"
-	cont "around, <PLAY_G>!"
-	done
+	para "by CERULEAN CAPE,"
+	line "right?"
 
+	para "I sold that house"
+	line "to my GRANDFATHER"
+
+	para "when I moved to"
+	line "JOHTO."
+
+	para "He's been taking"
+	line "care of it and the"
+	cont "GARDEN out back."
+
+	para "You should pay him"
+	line "a visit. I'm sure"
+	cont "he gets lonely!"
+
+	para "Whoops! I need to"
+	line "get going! Thanks"
+	cont "again, <PLAY_G>!"
 	done
 
 
@@ -222,7 +235,6 @@ MapBattleTentBattleRoomBillText7:
 
 	para "Here's the thing I"
 	line "found."
-	;cont "from me."
 	done
 
 MapBattleTentBattleRoomDoorText:

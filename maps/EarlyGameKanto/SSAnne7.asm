@@ -50,7 +50,7 @@ SSAnne7CaptainScript:
 	writetext SSAnne7Text_CaptainSetsSail4
 	waitbutton
 	closetext
-	special Function114fc
+	special StartSSAnneTimer
 	disappear $2
 	appear $3
 	domaptrigger GROUP_S_S_ANNE_1, MAP_S_S_ANNE_1, 1
@@ -99,6 +99,8 @@ SSAnne7CaptainScript:
 	pause 60
 	playsound SFX_TACKLE
 	pause 60
+	special HealParty
+	blackoutmod GROUP_S_S_ANNE_7, MAP_S_S_ANNE_7
 	playsound SFX_EXIT_BUILDING
 	waitsfx
 	playsound SFX_EXIT_BUILDING

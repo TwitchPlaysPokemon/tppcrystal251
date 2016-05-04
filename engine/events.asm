@@ -522,9 +522,9 @@ Function9693a: ; 9693a
 	ret
 
 .no_bug_contest
-	callba Function1150c
+	callba CheckSSAnneTimer
 	jr nc, .skip_ssanne
-	callba Function1151c
+	callba ExpireSSAnneTimer
 .skip_ssanne
 	callba Function11452
 	callba Function114e7

@@ -2294,8 +2294,8 @@ wdc2d:: ds 4
 wdc31:: ds 4
 wdc35:: ds 4
 wdc39:: ds 1
-wdc3a:: ds 1
-wdc3b:: ds 5
+wSSAnneTimerDaysLeft:: ds 1
+wSSAnneTimerStartDay:: ds 5
 wdc40:: ds 1
 wdc41:: ds 1
 wdc42:: ds 8
