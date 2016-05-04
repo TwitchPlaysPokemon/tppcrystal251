@@ -10709,6 +10709,7 @@ Jumptable_1172e: ; 1172e (4:572e)
 	dw Function1173e
 	dw Function1173e
 	dw RivalNamingScreenRB
+	dw DistCodeEntry
 
 Function1173e: ; 1173e (4:573e)
 	ld a, [CurPartySpecies]
@@ -10784,6 +10785,15 @@ RivalNamingScreenRB: ; 117ae (4:57ae)
 String_117c3: ; 117c3
 	db "RIVAL'S NAME?@"
 ; 117d1
+
+DistCodeEntry:
+	hlcoord 5, 2
+	ld de, .String
+	call PlaceString
+	call StoreDistCodeEntryParams
+	ret
+.String:
+	db "ENTER CODE@"
 
 Function117d1: ; 117d1 (4:57d1)
 	ld de, MomSpriteGFX
@@ -10875,6 +10885,11 @@ Function1187b: ; 1187b (4:587b)
 	hlcoord 5, 6
 	jr Function11890
 
+StoreDistCodeEntryParams:
+	ld a, $9
+	hlcoord 5, 6
+	jr Function11890
+
 Function11882: ; 11882 (4:5882)
 	ld a, $7
 	hlcoord 5, 6
@@ -10883,8 +10898,6 @@ Function11882: ; 11882 (4:5882)
 Function11889: ; 11889 (4:5889)
 	ld a, $8
 	hlcoord 5, 4
-	jr Function11890
-
 Function11890: ; 11890 (4:5890)
 	ld [wc6d3], a
 	ld a, l
@@ -80753,7 +80766,7 @@ Functione36f9: ; e36f9 (38:76f9)
 	cp $1
 	jr z, .asm_e3734
 	cp $2
-	jr z, .asm_e3745
+	jr z, .rename
 	cp $3
 	jr z, .asm_e3717
 	cp $4
@@ -80790,7 +80803,7 @@ Functione36f9: ; e36f9 (38:76f9)
 	callba Function14a83
 	ret
 
-.asm_e3745
+.rename
 	ld b, $4
 	ld de, DefaultFlypoint
 	callba NamingScreen
