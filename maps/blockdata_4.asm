@@ -98,3 +98,12 @@ VermilionGym2Blue_BlockData:
 	INCBIN "maps/VermilionGym2Blue.blk"
 VermilionGym2Off_BlockData:
 	INCBIN "maps/VermilionGym2Off.blk"
+
+	
+PokecenterRB_BlockData:
+CeruleanPokeCenter1FRB_BlockData:
+VermilionPokeCenter1FRB_BlockData:
+ViridianPokeCenter1FRB_BlockData:
+MtMoonPokeCenter1FRB_BlockData:
+PewterPokeCenter1FRB_BlockData:
+INCBIN "maps/PokecenterRB.blk"

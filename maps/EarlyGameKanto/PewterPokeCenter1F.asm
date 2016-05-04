@@ -120,15 +120,26 @@ _PewterPokeCenterDebugTrueCredits:
     line "credits?"
     done
 
+PewterPokeCenter1FRB_LinkScript:
+	jumptextfaceplayer PewterRBLinkText
+	
+PewterRBLinkText:
+	text "Welcome to the"
+	line "Cable Club!"
+	
+	para "I'm sorry--our"
+	line "systems are still"
+	cont "being adjusted."
+	done
+
 PewterPokeCenter1FRB_MapEventHeader: ; 0x1a2ff4
 	; filler
 	db 0, 0
 
 	; warps
-	db 3
-	warp_def $7, $3, 4, GROUP_PEWTER_CITY_RB, MAP_PEWTER_CITY_RB
-	warp_def $7, $4, 4, GROUP_PEWTER_CITY_RB, MAP_PEWTER_CITY_RB
-	warp_def $7, $0, 1, GROUP_POKECENTER_2F, MAP_POKECENTER_2F
+	db 2
+	warp_def $7, $5, 4, GROUP_PEWTER_CITY_RB, MAP_PEWTER_CITY_RB
+	warp_def $7, $6, 4, GROUP_PEWTER_CITY_RB, MAP_PEWTER_CITY_RB
 
 	; xy triggers
 	db 0
@@ -137,11 +148,12 @@ PewterPokeCenter1FRB_MapEventHeader: ; 0x1a2ff4
 	db 0
 
 	; people-events
-	db 4
-	person_event SPRITE_NURSE, 5, 7, $6, 0, 0, -1, -1, 0, 0, 0, PewterPokecenter1FRBNurseScript, -1
-	person_event SPRITE_GENTLEMAN, 10, 12, $8, 0, 0, -1, -1, 8 + PAL_OW_GREEN, 0, 0, PewterPokecenter1FRBTeacherScript, -1
-	person_event SPRITE_JIGGLYPUFF, 7, 5, $16, 0, 0, -1, -1, 0, 0, 0, PewterPokecenter1FRBJigglypuffScript, -1
-	person_event SPRITE_BUG_CATCHER, 7, 6, $6, 0, 0, -1, -1, 8 + PAL_OW_BLUE, 0, 0, PewterPokecenter1FRBBugCatcherScript, -1
+	db 5
+	person_event SPRITE_NURSE, 5, 9, $6, 0, 0, -1, -1, 0, 0, 0, PewterPokecenter1FRBNurseScript, -1
+	person_event SPRITE_GENTLEMAN, 11, 17, $8, 0, 0, -1, -1, 8 + PAL_OW_GREEN, 0, 0, PewterPokecenter1FRBTeacherScript, -1
+	person_event SPRITE_JIGGLYPUFF, 7, 7, $16, 0, 0, -1, -1, 0, 0, 0, PewterPokecenter1FRBJigglypuffScript, -1
+	person_event SPRITE_BUG_CATCHER, 8, 6, $9, 0, 0, -1, -1, 8 + PAL_OW_BLUE, 0, 0, PewterPokecenter1FRBBugCatcherScript, -1
+	person_event SPRITE_LINK_RECEPTIONIST, 6, 17, $6, 0, 0, -1, -1, 8 + PAL_OW_GREEN, 0, 0, PewterPokeCenter1FRB_LinkScript, -1
     ;person_event SPRITE_GENTLEMAN, 5, 11, $6, 0, 0, -1, -1, 0, 0, 0, PewterPokecenterLUASerialScript, -1 ; DELIST THIS BEFORE TWITCH BUILD!
     ;person_event SPRITE_BUG_CATCHER, 5, 12, $6, 0, 0, -1, -1, 0, 0, 0, PewterPokecenterTrueCreditsScript, -1 ; DELIST THIS BEFORE TWITCH BUILD!
 ; 0x1a304a

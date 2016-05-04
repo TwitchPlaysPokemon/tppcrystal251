@@ -50,7 +50,7 @@ SSAnne7CaptainScript:
 	writetext SSAnne7Text_CaptainSetsSail4
 	waitbutton
 	closetext
-	special Function114fc
+	special StartSSAnneTimer
 	disappear $2
 	appear $3
 	domaptrigger GROUP_S_S_ANNE_1, MAP_S_S_ANNE_1, 1
@@ -77,6 +77,8 @@ SSAnne7CaptainScript:
 	waitsfx
 	spriteface $0, DOWN
 	applymovement $5, SSAnne7_GiovanniRunsUpToCaptain
+	spriteface $0, RIGHT
+	spriteface $3, RIGHT
 	loadfont
 	writetext SSAnne7Text_RocketsText
 	waitbutton
@@ -96,9 +98,13 @@ SSAnne7CaptainScript:
 	domaptrigger GROUP_S_S_ANNE_3, MAP_S_S_ANNE_3, 1
 	playmusic MUSIC_NONE
 	playsound SFX_TACKLE
-	pause 60
+	waitsfx
+	pause 15
 	playsound SFX_TACKLE
+	waitsfx
 	pause 60
+	special HealParty
+	blackoutmod GROUP_S_S_ANNE_7, MAP_S_S_ANNE_7
 	playsound SFX_EXIT_BUILDING
 	waitsfx
 	playsound SFX_EXIT_BUILDING
@@ -136,6 +142,12 @@ SSAnne7_RocketRunsUpToCaptain:
 SSAnne7_GiovanniRunsUpToCaptain:
 	step_up
 	step_up
+	step_sleep 30
+	step_right
+	step_right
+	step_up
+	step_up
+	turn_head_left
 	step_end
 
 _SSAnne7RubText:

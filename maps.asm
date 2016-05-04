@@ -731,3 +731,6 @@ SECTION "CinnabarVolcanoLab", ROMX
 INCLUDE "maps/CinnabarVolcanoLab.asm"
 SECTION "CinnabarVolcanoLab Blockdata", ROMX
 CinnabarVolcanoLab_BlockData: INCBIN "maps/CinnabarVolcanoLab.blk"
+
+SECTION "PokecenterRB", ROMX
+INCLUDE "maps/PokecenterRB.asm"

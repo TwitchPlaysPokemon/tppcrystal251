@@ -50,6 +50,10 @@ BlueRematchScript:
 	startbattle
 	returnafterbattle
 	setevent EVENT_BLUE_REMATCH
+	checkevent EVENT_GOT_RESEARCH_NOTES
+	iffalse .skip
+	setevent EVENT_COOLTRAINER_BLOCKING_CERULEAN_CAVE
+.skip
 	loadfont ;fallthrough
 
 BlueAfterRematch:

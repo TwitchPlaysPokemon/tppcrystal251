@@ -190,7 +190,7 @@ SpecialsPointers:: ; c029
 	add_special RestoreMusic
 	add_special DeleteSavedMusic
 	add_special SampleRandomRocket
-	add_special Function114fc
+	add_special StartSSAnneTimer
 	add_special DecrementSSAnneTimer
 	add_special _CheckAlivePartyMon
 	add_special FossilMenu
@@ -509,8 +509,8 @@ ScriptReturnCarry: ; c3e2
 ; c3ef
 
 Functionc3ef: ; c3ef
-	callba Function1150c
-	ld a, [wdc3a]
+	callba CheckSSAnneTimer
+	ld a, [wSSAnneTimerDaysLeft]
 	ld [ScriptVar], a
 	ret
 ; c3fc

@@ -52,7 +52,7 @@ $(foreach dep, $(deps), \
 )
 
 
-roms := pokecrystal.gbc pokecrystal_ai.gbc
+roms := pokecrystal.gbc
 
 all: $(roms)
 crystal: pokecrystal.gbc

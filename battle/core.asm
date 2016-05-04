@@ -8443,9 +8443,6 @@ Function3f2f4: ; 3f2f4
 UnknownText_0x3f2fa: ; 3f2fa
 	text_jump UnknownText_0x1c031d
 	start_asm
-; 3f2ff
-
-Function3f2ff: ; 3f2ff
 	push de
 	push bc
 	ld hl, EnemyMonHP + 1

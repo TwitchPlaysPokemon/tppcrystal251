@@ -947,6 +947,7 @@ InitializeEventsScript: ; 0xbc3db
 	setevent EVENT_LAVENDER_HAUNTER
 	setevent EVENT_SCARED_LASS
 	setevent EVENT_ELM_IN_SILVER_CAVE_RUINS
+	setevent EVENT_MEWTWO_IN_VOLCANO_LAB
 	return
 ; 0xbc574
 

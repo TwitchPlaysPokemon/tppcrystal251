@@ -10050,10 +10050,10 @@ Function113d6: ; 113d6
 	ret
 ; 113da
 
-Function113da: ; 113da
+ResetDailyTimers: ; 113da
 	xor a
 	ld [wdc2d], a
-	ld [wdc3a], a
+	ld [wSSAnneTimerDaysLeft], a
 	ld [wdc1c], a
 	ret
 ; 113e5
@@ -10249,38 +10249,40 @@ Function114e7:: ; 114e7
 	ret
 ; 114fc
 
-Function114fc:: ; 114fc
-	ld a, $3
-	ld hl, wdc3a
+StartSSAnneTimer:: ; 114fc
+	ld hl, DailyFlags
+	res 1, [hl]
+	ld a, 1
+	ld hl, wSSAnneTimerDaysLeft
 	ld [hl], a
 	call UpdateTime
-	ld hl, wdc3b
+	ld hl, wSSAnneTimerStartDay
 	call Function11621
 	ret
 ; 1150c
 
-Function1150c:: ; 1150c
-	ld hl, wdc3b
+CheckSSAnneTimer:: ; 1150c
+	ld hl, wSSAnneTimerStartDay
 	call Function115cf
 	call Function115c8
-	ld hl, wdc3a
+	ld hl, wSSAnneTimerDaysLeft
 	call Function11586
 	ret
 ; 1151c
 
 DecrementSSAnneTimer::
-	call Function1150c
+	call CheckSSAnneTimer
 	ret c
-	ld hl, wdc3a
+	ld hl, wSSAnneTimerDaysLeft
 	dec [hl]
 	ret nz
-Function1151c:: ; 1151c
+ExpireSSAnneTimer:: ; 1151c
 	ld hl, DailyFlags
 	set 1, [hl]
 	ret
 ; 11522
 
-Function11522: ; 11522
+CheckSSAnneTimerExpired: ; 11522
 	and a
 	ld hl, DailyFlags
 	bit 1, [hl]
@@ -16301,7 +16303,7 @@ Function140ae: ; 140ae
 	cp b
 	jr c, .asm_140eb
 .asm_140c8
-	callba Function113da
+	callba ResetDailyTimers
 	callba Function170923
 	ld a, $5
 	call GetSRAMBank
