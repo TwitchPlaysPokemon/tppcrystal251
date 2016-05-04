@@ -61,6 +61,7 @@ PokeCenterNurseScript:
 	loadfont
 	checkcode VAR_PARTYCOUNT
 	iffalse .no_pokemon
+	if_greater_than 6, .too_many_pokemon
 	checkmorn
 	iftrue .morn
 	checkday
@@ -179,6 +180,11 @@ PokeCenterNurseScript:
 
 .no_pokemon
 	farwritetext NoPokemonHealText
+	pause 20
+	jump .done
+
+.too_many_pokemon
+	farwritetext TooManyPokemonHealText
 	pause 20
 	jump .done
 
