@@ -1,18 +1,18 @@
-UnknownText_0x1b0000: ; 0x1b0000
+UnknownText_0x1b0000:: ; 0x1b0000
 	text "Good morning!"
 	line "Welcome to our"
 	cont "#MON CENTER."
 	done
 ; 0x1b002b
 
-UnknownText_0x1b002b: ; 0x1b002b
+UnknownText_0x1b002b:: ; 0x1b002b
 	text "Hello!"
 	line "Welcome to our"
 	cont "#MON CENTER."
 	done
 ; 0x1b004f
 
-UnknownText_0x1b004f: ; 0x1b004f
+UnknownText_0x1b004f:: ; 0x1b004f
 	text "Good evening!"
 	line "You're out late."
 
@@ -71,7 +71,7 @@ UnknownText_0x1b01bd: ; 0x1b01bd
 	done
 ; 0x1b01d7
 
-UnknownText_0x1b01d7: ; 0x1b01d7
+UnknownText_0x1b01d7:: ; 0x1b01d7
 	text "Thank you for"
 	line "waiting."
 
@@ -80,19 +80,19 @@ UnknownText_0x1b01d7: ; 0x1b01d7
 	done
 ; 0x1b020b
 
-UnknownText_0x1b020b: ; 0x1b020b
+UnknownText_0x1b020b:: ; 0x1b020b
 	text "We hope to see you"
 	line "again."
 	done
 ; 0x1b0226
 
-UnknownText_0x1b0226: ; 0x1b0226
+UnknownText_0x1b0226:: ; 0x1b0226
 	text "We hope to see you"
 	line "again."
 	done
 ; 0x1b0241
 
-UnknownText_0x1b0241: ; 0x1b0241
+UnknownText_0x1b0241:: ; 0x1b0241
 	text "Your #MON"
 	line "appear to be"
 
@@ -111,7 +111,7 @@ UnknownText_0x1b0241: ; 0x1b0241
 	done
 ; 0x1b02d6
 
-UnknownText_0x1b02d6: ; 0x1b02d6
+UnknownText_0x1b02d6:: ; 0x1b02d6
 	text "Your #MON"
 	line "appear to be"
 
@@ -127,12 +127,18 @@ UnknownText_0x1b02d6: ; 0x1b02d6
 	done
 ; 0x1b035a
 
-NoPokemonHealText:
+NoPokemonHealText::
 	text "I'm sorry. You"
 	line "need to have a"
 
 	para "#MON in order to"
 	line "use this service."
+	done
+
+TooManyPokemonHealText::
+	text "I'm sorry. I can't"
+	line "heall that many"
+	cont "#MON."
 	done
 
 UnknownText_0x1b035a: ; 0x1b035a

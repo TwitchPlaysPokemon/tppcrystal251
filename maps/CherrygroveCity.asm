@@ -151,13 +151,14 @@ GrampsScript_0x19c013: ; 0x19c013
 	db "RUNNING SHOES@"
 ; 0x19c0a4
 .first_landed
-	special _CheckAlivePartyMon
+	checkevent EVENT_HEALED_IN_CHERRYGROVE
 	iffalse .healyourpokemon
 	writetext GuideGentDirectsPlayerToNewBark
 	waitbutton
 	closetext
 	dotrigger 0
 	end
+
 .healyourpokemon
 	writetext Text_PleaseHealYourPokemon
 	waitbutton
@@ -330,13 +331,14 @@ Cherrygrove_PleaseHealYourPokemon:
 	spriteface $2, DOWN
 	spriteface $0, UP
 	loadfont
-	special _CheckAlivePartyMon
+	checkevent EVENT_HEALED_IN_CHERRYGROVE
 	iftrue .directtonewbark
 	writetext Text_PleaseHealYourPokemon
 	waitbutton
 	closetext
 	applymovement $0, Movement_PlayerPushedBackIntoCherrygrove
 	end
+
 .directtonewbark
 	writetext GuideGentDirectsPlayerToNewBark
 	waitbutton
