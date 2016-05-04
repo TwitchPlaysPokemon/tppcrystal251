@@ -43,6 +43,7 @@ UnknownScript_0x1a8016: ; 0x1a8016
 	follow $2, $0
 	applymovement $2, MovementData_0x1a80e0
 	stopfollow
+	spriteface $0, UP
 	disappear $2
 	playsound SFX_ENTER_DOOR
 	waitsfx
