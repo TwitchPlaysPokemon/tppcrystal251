@@ -16,6 +16,8 @@ NurseScript_0x19696d: ; 0x19696d
 	checkcode VAR_PARTYCOUNT
 	iffalse .no_pokemon
 	if_greater_than 6, .too_many_pokemon
+	callasm CheckNotAllEggs ; farcall
+	iffalse .no_pokemon
 	checkmorn
 	iftrue .morn
 	checkday
