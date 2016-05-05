@@ -4,7 +4,7 @@ CinnabarVolcanoLab_MapScriptHeader:
 
 	; callbacks
 	db 1
-	dbw 5, AlreadyGotResearchNotesCheck
+	dbw 1, AlreadyGotResearchNotesCheck
 
 ; SimonCheck_CinnabarVolcanoB3F1:
 	; checkevent EVENT_BEAT_SIMON_1
@@ -31,17 +31,19 @@ CinnabarVolcanoLab_MapScriptHeader:
 AlreadyGotResearchNotesCheck:
 	checkitem RESEARCHNOTE
   	iftrue .dont_show_notes
-	appear $2
-	disappear $3
-	disappear $4
+	; appear $2
+	; disappear $3
+	; disappear $4
 	changeblock 8, 10, $b2
-	return
+	; return
 
 .dont_show_notes
-	disappear $2
+	; disappear $2
 	return
 
 SimonScript2_CinnabarVolcanoB3F
+	faceplayer
+	loadfont
 	writetext SimonText2_CinnabarVolcanoB3F
 	waitbutton
 	closetext
@@ -49,14 +51,17 @@ SimonScript2_CinnabarVolcanoB3F
 
 PickUpResearchNotesScript:
 	loadfont
-	verbosegiveitem RESEARCHNOTE, 1
+	giveitem RESEARCHNOTE, 1
 	iffalse .fail
 	disappear $2
 	checkevent EVENT_BLUE_REMATCH
 	iffalse .skip
 	setevent EVENT_COOLTRAINER_BLOCKING_CERULEAN_CAVE
 .skip
-	waitbutton
+	writetext GotResearchNotesText
+	playsound SFX_ITEM
+	waitsfx
+	itemnotify
 	closetext
 	;event here
 	appear $3
@@ -72,13 +77,13 @@ PickUpResearchNotesScript:
 	playmusic MUSIC_NONE
 	playsound SFX_2_BOOPS
 	waitsfx
-	playsound SFX_STRENGTH
 	earthquake 10
+	playsound SFX_STRENGTH
 	refreshscreen 0
 	changeblock 8, 10, $b1
 	reloadmappart
-	appear $4
 	waitsfx
+	appear $4
 	cry MEWTWO
 	waitsfx
 	showemote $0, $3, 15
@@ -86,25 +91,29 @@ PickUpResearchNotesScript:
 	writetext SimonText2_Lab
 	waitbutton
 	closetext
-	applymovement $4, MoveMewtwoForward
-	applymovement $3, MoveSimonToLeft
-	applymovement $0, MovePlayerUp
+	spriteface $3, RIGHT
+	follow $3, $4
+	; applymovement $4, MoveMewtwoForward
 	playsound SFX_TACKLE
+	applymovement $3, MoveSimonToLeft
 	waitsfx
+	applymovement $0, MovePlayerUp
 	pause 20
 	playsound SFX_WARP_FROM
-	special Function8c084
+	special Special_FadeToBlack
+	special Functiond91
 	disappear $4
-	special Function8c079
+	special Function8c0ab
 	waitsfx
 	;battle and other dialogue
 	special DeleteSavedMusic
-	playmapmusic
+	special RestartMapMusic
 	end
-	; buttonsound
-	; writetext TooFullForResearchNotes
-	; waitbutton
+
 .fail
+	buttonsound
+	writetext TooFullForResearchNotes
+	waitbutton
 	closetext
 	end
 
@@ -168,10 +177,18 @@ SimonText3_Lab:
 	; cont "NOTES."
 	done
 
-; TooFullForResearchNotes:
-	; text "But the bag is"
-	; line "full<...>"
-	; done
+GotResearchNotesText:
+	text "<PLAYER> found"
+	line "RESEARCHNOTE!"
+	done
+
+TooFullForResearchNotes:
+	text "<PLAYER> found"
+	line "RESEARCHNOTE!"
+
+	para "But the bag is"
+	line "full<...>"
+	done
 
 SimonText2_CinnabarVolcanoB3F:
 	text "I want to be"
@@ -184,19 +201,22 @@ MoveSimonToPath:
 	slow_step_down
 	slow_step_right
 	step_end
-MoveSimonToCapsule
+
+MoveSimonToCapsule:
 	slow_step_right
 	step_end
 
-MoveSimonToLeft
-	big_step_left
+MoveSimonToLeft:
+	fix_facing
+	step_left
+	remove_fixed_facing
 	step_end
 
-MoveMewtwoForward
-	big_step_down
-	step_end
+; MoveMewtwoForward:
+	; big_step_down
+	; step_end
 
-MovePlayerUp
+MovePlayerUp:
 	step_up
 	step_end
 
@@ -216,7 +236,6 @@ CinnabarVolcanoLab_MapEventHeader:
 
 	; object events
 	db 3
-	person_event SPRITE_POKEDEX, 17, 11, $0, 0, 0, -1, -1, 8 + PAL_OW_RED, 0, 0, PickUpResearchNotesScript, EVENT_GOT_RESEARCH_NOTES
-	person_event SPRITE_PHARMACIST, 12, 11, $0, 0, 0, -1, -1, 8 + PAL_OW_GREEN, 0, 0, SimonScript2_CinnabarVolcanoB3F, EVENT_SIMON_IN_VOLCANO
-	person_event SPRITE_MONSTER, 14, 13, $0, 0, 0, -1, -1, 0, 0, 0, ObjectEvent, EVENT_MEWTWO_IN_VOLCANO_LAB
-
+	person_event SPRITE_POKEDEX, 17, 11, $1, 0, 0, -1, -1, 0, 0, 0, PickUpResearchNotesScript, EVENT_GOT_RESEARCH_NOTES
+	person_event SPRITE_PHARMACIST, 12, 11, $3, 0, 0, -1, -1, 8 + PAL_OW_GREEN, 0, 0, SimonScript2_CinnabarVolcanoB3F, EVENT_SIMON_IN_VOLCANO
+	person_event SPRITE_MONSTER, 14, 13, $1, 0, 0, -1, -1, 0, 0, 0, ObjectEvent, EVENT_MEWTWO_IN_VOLCANO_LAB

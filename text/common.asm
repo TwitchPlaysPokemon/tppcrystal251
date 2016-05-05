@@ -131,8 +131,9 @@ NoPokemonHealText::
 	text "I'm sorry. You"
 	line "need to have a"
 
-	para "#MON in order to"
-	line "use this service."
+	para "#MON in order"
+	line "to use this ser-"
+	cont "vice."
 	done
 
 TooManyPokemonHealText::

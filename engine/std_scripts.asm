@@ -55,6 +55,23 @@ StdScripts:: ; bc000
 	dba IndigoPlateauStatue2Script ; $35
 ; bc09c
 
+CheckNotAllEggs::
+	ld hl, PartySpecies
+.loop
+	ld a, [hli]
+	cp $ff
+	jr z, .nope
+	cp EGG
+	jr z, .loop
+	ld a, 1
+	jr .done
+
+.nope
+	xor a
+.done
+	ld [ScriptVar], a
+	ret
+
 PokeCenterNurseScript:
 ; EVENT_WELCOMED_TO_POKECOM_CENTER is never set
 
@@ -62,6 +79,8 @@ PokeCenterNurseScript:
 	checkcode VAR_PARTYCOUNT
 	iffalse .no_pokemon
 	if_greater_than 6, .too_many_pokemon
+	callasm CheckNotAllEggs
+	iffalse .no_pokemon
 	checkmorn
 	iftrue .morn
 	checkday
