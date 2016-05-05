@@ -724,33 +724,33 @@ Music_ViridianCity_branch_f42e9: ; f42e9
 ; f431d
 
 Music_ViridianCity_branch_f431d: ; f431d
-	note D#, 2
-	note D#, 2
+	note E_, 2
+	note E_, 2
 	note D_, 2
-	note F#, 4
+	note E_, 4
 	note D_, 2
-	note D_, 2
+	note E_, 2
 	note F#, 2
-	note D#, 2
-	note D#, 2
+	note E_, 2
+	note E_, 2
+	note D_, 4
+	note E_, 2
 	note D_, 2
-	note F#, 4
-	note D_, 2
-	note D_, 2
+	note E_, 2
 	note F#, 2
 	endchannel
 ; f432c
 
 Music_ViridianCity_branch_f432c: ; f432c
-	note D#, 2
-	note D#, 2
+	note E_, 2
+	note E_, 2
 	note D_, 2
-	note F#, 4
+	note E_, 4
 	note D_, 2
-	note D_, 2
+	note E_, 2
 	note F#, 2
-	note D#, 2
-	note D#, 2
+	note E_, 2
+	note E_, 2
 	note F#, 4
 	note D_, 2
 	note D_, 2
