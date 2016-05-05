@@ -217,7 +217,7 @@ UnknownScript_0x18d1c5: ; 0x18d1c5
 	writetext UnknownText_0x18d697
 	playsound SFX_CAUGHT_MON
 	waitsfx
-	givepoke DRATINI, 15, 0, 0
+	givepoke DRATINI, 53, 0, 0
 	checkevent EVENT_WRONG_ANSWER_IN_DRAGON_SHRINE_QUIZ
 	special SpecialDratini
 	setevent EVENT_RECEIVED_DRATINI_FROM_DRAGON_SHRINE

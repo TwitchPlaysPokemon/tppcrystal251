@@ -347,6 +347,8 @@ SlowpokeEggMoves:
 	db RAGE
 	db REFLECT
 	db PSYWAVE
+	db COUNTER
+	db DISABLE
 	db $ff
 
 FarfetchDEggMoves:
@@ -534,25 +536,47 @@ ChanseyEggMoves:
 	db IRON_TAIL
 	db MUD_SLAP
 	db MIMIC
+	db RAGE
+	db SUBMISSION
+	db BUBBLEBEAM
 	db $ff
 
 TangelaEggMoves:
 	db REFLECT
 	db RAZOR_LEAF
-	db WRAP
 	db SLAM
+	db BIDE
+	db DOUBLE_EDGE
+	db MIMIC
+	db RAGE
+	db FLAIL
+	db DOUBLE_KICK
+	db HEADBUTT
+	db MORNING_SUN
+	db MUD_SLAP
+	db POISON_JAB
 	db $ff
 
 KangaskhanEggMoves:
-	db FOCUS_ENERGY
 	db SAFEGUARD
 	db DISABLE
+	db MEGA_KICK
+	db MUD_SLAP
+	db ROAR
+	db ENDURE
+	db SING
+	db FISSURE
+	db BUBBLEBEAM
+	db SPITE
 	db $ff
 
 HorseaEggMoves:
 	db FLAIL
 	db ENDURE
 	db SPLASH
+	db DOUBLE_EDGE
+	db MIMIC
+	db BIDE
 	db $ff
 
 GoldeenEggMoves:
@@ -560,13 +584,28 @@ GoldeenEggMoves:
 	db HYDRO_PUMP
 	db FLAIL
 	db ENDURE
+	db BIDE
+	db MIMIC
+	db RAGE
+	db DOUBLE_EDGE
 	db $ff
 
 MrMimeEggMoves:
 	db FUTURE_SIGHT
-	db NASTY_PLOT
 	db MIND_READER
 	db METRONOME
+	db BIDE
+	db COUNTER
+	db MEGA_KICK
+	db HEADBUTT
+	db RAGE
+	db SUBMISSION
+	db DREAM_EATER
+	db NIGHTMARE
+	db METRONOME
+	db MUD_SLAP
+	db CHARM
+	db IRON_DEFENSE
 	db $ff
 
 ScytherEggMoves:
@@ -575,6 +614,12 @@ ScytherEggMoves:
 	db HEADBUTT
 	db DOUBLE_EDGE
 	db IRON_HEAD
+	db HEADBUTT
+	db MIMIC
+	db MORNING_SUN
+	db SAFEGUARD
+	db BIDE
+	db RAGE
 	db $ff
 
 PinsirEggMoves:
@@ -582,6 +627,11 @@ PinsirEggMoves:
 	db QUICK_ATTACK
 	db FLAIL
 	db ENDURE
+	db DOUBLE_EDGE
+	db HEADBUTT
+	db MIMIC
+	db BIDE
+	db RAGE
 	db $ff
 
 LaprasEggMoves:
@@ -589,13 +639,31 @@ LaprasEggMoves:
 	db FORESIGHT
 	db DREAM_EATER
 	db HEAL_BELL
+	db DOUBLE_EDGE
+	db HEADBUTT
+	db IRON_TAIL
+	db MIMIC
+	db MIST
+	db NIGHTMARE
+	db OUTRAGE
+	db ROAR
+	db BIDE
+	db DRAGON_RAGE
+	db PSYWAVE
+	db REFLECT
+	db FISSURE
 	db $ff
 
 EeveeEggMoves:
-	db BODY_SLAM
 	db HEAL_BELL
 	db QUICK_ATTACK
-	db SWIFT
+	db SING
+	db MUD_SLAP
+	db HEADBUTT
+	db BIDE
+	db MIMIC
+	db RAGE
+	db REFLECT
 	db $ff
 
 OmanyteEggMoves:
@@ -603,6 +671,13 @@ OmanyteEggMoves:
 	db SUPERSONIC
 	db HAZE
 	db REFLECT
+	db DOUBLE_EDGE
+	db HEADBUTT
+	db MIMIC
+	db MUD_SLAP
+	db SUBMISSION
+	db RAGE
+	db BIDE
 	db $ff
 
 KabutoEggMoves:
@@ -611,6 +686,14 @@ KabutoEggMoves:
 	db FLAIL
 	db MUD_SLAP
 	db REFLECT
+	db BIDE
+	db MIMIC
+	db SUBMISSION
+	db RAGE
+	db REFLECT
+	db HEADBUTT
+	db CONFUSE_RAY
+	db MUD_SLAP
 	db $ff
 
 AerodactylEggMoves:
@@ -619,6 +702,15 @@ AerodactylEggMoves:
 	db FORESIGHT
 	db ROAR
 	db ROCK_POLISH
+	db DOUBLE_EDGE
+	db DRAGONBREATH
+	db HEADBUTT
+	db IRON_TAIL
+	db MIMIC
+	db BIDE
+	db DRAGON_RAGE
+	db RAGE
+	db REFLECT
 	db $ff
 
 SnorlaxEggMoves:
@@ -626,7 +718,17 @@ SnorlaxEggMoves:
 	db OUTRAGE
 	db DOUBLE_EDGE
 	db HARDEN
+	db BIDE
+	db PAY_DAY
+	db PSYWAVE
+	db REFLECT
+	db SUBMISSION
 	db FISSURE
+	db MUD_SLAP
+	db COUNTER
+	db MEGA_KICK
+	db MIMIC
+	db BUBBLEBEAM
 	db $ff
 
 DratiniEggMoves:
@@ -634,6 +736,19 @@ DratiniEggMoves:
 	db MIST
 	db HAZE
 	db IRON_TAIL
+	db DOUBLE_EDGE
+	db HEADBUTT
+	db HEAL_BELL
+	db EXTREMESPEED
+	db IRON_HEAD
+	db IRON_TAIL
+	db MIMIC
+	db MUD_SLAP
+	db ROAR
+	db BIDE
+	db RAGE
+	db BUBBLEBEAM
+	db BARRIER
 	db $ff
 
 ChikoritaEggMoves:
@@ -641,6 +756,9 @@ ChikoritaEggMoves:
 	db FLAIL
 	db ENDURE
 	db MIMIC
+	db COUNTER
+	db MUD_SLAP
+	db DOUBLE_EDGE
 	db $ff
 
 CyndaquilEggMoves:
@@ -648,12 +766,24 @@ CyndaquilEggMoves:
 	db FORESIGHT
 	db HEADBUTT
 	db MEGA_KICK
+	db COUNTER
+	db HEADBUTT
+	db MIMIC
+	db ROAR
+	db MUD_SLAP
 	db $ff
 
 TotodileEggMoves:
+	db DOUBLE_EDGE
 	db ANCIENTPOWER
-	db BODY_SLAM
 	db MUD_SLAP
+	db COUNTER
+	db ENDURE
+	db FLAIL
+	db MEGA_KICK
+	db MUD_SLAP
+	db ROAR
+	db SPITE
 	db $ff
 
 SentretEggMoves:
@@ -661,6 +791,7 @@ SentretEggMoves:
 	db TAKE_DOWN
 	db CHARM
 	db IRON_TAIL
+	db HEADBUTT
 	db $ff
 
 HoothootEggMoves:
@@ -668,24 +799,35 @@ HoothootEggMoves:
 	db NIGHT_SHADE
 	db NIGHTMARE
 	db AGILITY
+	db FAINT_ATTACK
+	db MUD_SLAP
+	db STEEL_WING
 	db $ff
 
 LedybaEggMoves:
 	db SCREECH
 	db MIMIC
 	db SWIFT
+	db HEADBUTT
+	db ENCORE
+	db MUD_SLAP
 	db $ff
 
 SpinarakEggMoves:
 	db PSYBEAM
 	db SONICBOOM
 	db SCREECH
+	db DOUBLE_EDGE
+	db MIMIC
+	db PIN_MISSILE
 	db $ff
 
 ChinchouEggMoves:
 	db AGILITY
 	db AMNESIA
 	db MIMIC
+	db ENDURE
+	db DOUBLE_EDGE
 	db $ff
 
 PichuEggMoves:
@@ -752,19 +894,43 @@ TogepiEggMoves:
 	db COUNTER
 	db HEAL_BELL
 	db ROLLOUT
+	db BATON_PASS
+	db DREAM_EATER
+	db EXTREMESPEED
+	db HEADBUTT
+	db MEGA_KICK
+	db LIGHT_SCREEN
+	db MIMIC
+	db MUD_SLAP
+	db REFLECT
+	db TRI_ATTACK
+	db DEFENSE_CURL
 	db $ff
 
 NatuEggMoves:
 	db QUICK_ATTACK
 	db LIGHT_SCREEN
 	db FAINT_ATTACK
+	db DREAM_EATER
+	db NIGHTMARE
+	db BATON_PASS
+	db DOUBLE_EDGE
+	db REFLECT
+	db RECOVER
 	db $ff
 
 MareepEggMoves:
-	db BODY_SLAM
 	db SAFEGUARD
 	db REFLECT
 	db OUTRAGE
+	db AGILITY
+	db DEFENSE_CURL
+	db COUNTER
+	db DOUBLE_EDGE
+	db MEGA_KICK
+	db MIMIC
+	db SAND_ATTACK
+	db SWIFT
 	db $ff
 
 MarillEggMoves:
@@ -773,41 +939,66 @@ MarillEggMoves:
 	db AMNESIA
 	db SUPERSONIC
 	db FORESIGHT
+	db ENCORE
+	db HEADBUTT
+	db IRON_TAIL
+	db MEGA_KICK
+	db MIMIC
+	db MUD_SLAP
 	db $ff
 
 SudowoodoEggMoves:
-	db ENDURE
-	db BODY_SLAM
+	db HEADBUTT
+	db DOUBLE_EDGE
 	db MUD_SLAP
 	db $ff
 
 HoppipEggMoves:
 	db CONFUSION
 	db GROWL
+	db DEFENSE_CURL
 	db ENCORE
-	db REFLECT
+	db SPLASH
 	db AMNESIA
+	db MIMIC
 	db $ff
 
 AipomEggMoves:
 	db COUNTER
 	db DEFENSE_CURL
+	db DREAM_EATER
+	db MUD_SLAP
+	db NIGHTMARE
 	db MEGA_KICK
+	db $ff
+
+SunkernEggMoves:
+	db ENCORE
+	db MORNING_SUN
+	db PETAL_DANCE
 	db $ff
 
 YanmaEggMoves:
 	db WHIRLWIND
 	db DOUBLE_EDGE
 	db FAINT_ATTACK
+	db HEADBUTT
+	db DREAM_EATER
+	db MIMIC
+	db MUD_SLAP
 	db $ff
 
 WooperEggMoves:
-	db BODY_SLAM
 	db ANCIENTPOWER
 	db SAFEGUARD
 	db SCARY_FACE
 	db ROLLOUT
+	db COUNTER
+	db DEFENSE_CURL
 	db MIST
+	db DOUBLE_EDGE
+	db HEADBUTT
+	db MIMIC
 	db $ff
 
 MurkrowEggMoves:
@@ -815,12 +1006,22 @@ MurkrowEggMoves:
 	db MIRROR_MOVE
 	db SCREECH
 	db SPITE
+	db DREAM_EATER
+	db NIGHTMARE
+	db SWIFT
+	db DOUBLE_EDGE
 	db $ff
 
 MisdreavusEggMoves:
 	db SCREECH
 	db DESTINY_BOND
 	db DREAM_EATER
+	db DEFENSE_CURL
+	db DREAM_EATER
+	db SWIFT
+	db DOUBLE_EDGE
+	db HEAL_BELL
+	db MIMIC
 	db $ff
 
 GirafarigEggMoves:
@@ -831,6 +1032,13 @@ GirafarigEggMoves:
 	db SWIFT
 	db DOUBLE_EDGE
 	db MUD_SLAP
+	db DREAM_EATER
+	db HEADBUTT
+	db LIGHT_SCREEN
+	db MIMIC
+	db MIRROR_COAT
+	db NIGHTMARE
+	db REFLECT
 	db $ff
 
 PinecoEggMoves:
@@ -838,14 +1046,21 @@ PinecoEggMoves:
 	db FLAIL
 	db SWIFT
 	db ENDURE
+	db DEFENSE_CURL
+	db HEADBUTT
+	db LIGHT_SCREEN
+	db MIMIC
 	db $ff
 
 DunsparceEggMoves:
 	db IRON_TAIL
 	db PURSUIT
-	db RAGE
-	db BODY_SLAM
 	db COUNTER
+	db DREAM_EATER
+	db MIMIC
+	db MUD_SLAP
+	db NIGHTMARE
+	db PAIN_SPLIT
 	db $ff
 
 GligarEggMoves:
@@ -854,6 +1069,10 @@ GligarEggMoves:
 	db AGILITY
 	db IRON_TAIL
 	db DOUBLE_EDGE
+	db QUICK_ATTACK
+	db DREAM_EATER
+	db HEADBUTT
+	db MIMIC
 	db $ff
 
 SnubbullEggMoves:
@@ -861,8 +1080,11 @@ SnubbullEggMoves:
 	db LEER
 	db TAKE_DOWN
 	db COUNTER
-	db PLAY_ROUGH
 	db METRONOME
+	db DEFENSE_CURL
+	db DOUBLE_EDGE
+	db MIMIC
+	db MUD_SLAP
 	db $ff
 
 QwilfishEggMoves:
@@ -870,17 +1092,26 @@ QwilfishEggMoves:
 	db ENDURE
 	db SUPERSONIC
 	db ROLLOUT
+	db DEFENSE_CURL
+	db HEADBUTT
+	db MIMIC
+	db MUD_SLAP
 	db $ff
 
 ShuckleEggMoves:
 	db MUD_SLAP
 	db ACID
 	db ENDURE
+	db HEADBUTT
+	db MIMIC
+	db SAFEGUARD
+	db HEADBUTT
 	db $ff
 
 HeracrossEggMoves:
 	db FLAIL
-	db BODY_SLAM
+	db HEADBUTT
+	db MIMIC
 	db DOUBLE_EDGE
 	db $ff
 
@@ -889,26 +1120,38 @@ SneaselEggMoves:
 	db FORESIGHT
 	db REFLECT
 	db IRON_TAIL
+	db HEADBUTT
+	db MUD_SLAP
+	db SPITE
+	db SWIFT
+	db DEFENSE_CURL
+	db DOUBLE_EDGE
+	db DREAM_EATER
+	db NASTY_PLOT
+	db NIGHTMARE
 	db $ff
 
 TeddiursaEggMoves:
 	db COUNTER
 	db ROLLOUT
+	db DEFENSE_CURL
+	db MIMIC
+	db MUD_SLAP
+	db SWIFT
 	db $ff
 
 SlugmaEggMoves:
 	db REFLECT
-	db MUD_SLAP
 	db DEFENSE_CURL
-	db DOUBLE_EDGE
 	db ROLLOUT
+	db MIMIC
 	db $ff
 
 SwinubEggMoves:
 	db MIMIC
 	db DEFENSE_CURL
-	db FISSURE
 	db ROAR
+	db HEADBUTT
 	db $ff
 
 CorsolaEggMoves:
@@ -916,6 +1159,12 @@ CorsolaEggMoves:
 	db MIST
 	db AMNESIA
 	db IRON_DEFENSE
+	db DOUBLE_EDGE
+	db HEADBUTT
+	db MIMIC
+	db MUD_SLAP
+	db REFLECT
+	db LIGHT_SCREEN
 	db $ff
 
 RemoraidEggMoves:
@@ -924,6 +1173,7 @@ RemoraidEggMoves:
 	db MIND_READER
 	db SWIFT
 	db DOUBLE_EDGE
+	db MIMIC
 	db $ff
 
 DelibirdEggMoves:
@@ -936,17 +1186,28 @@ DelibirdEggMoves:
 	db DOUBLE_EDGE
 	db MEGA_KICK
 	db SPIKES
+	db HEADBUTT
+	db MIMIC
+	db MUD_SLAP
+	db SWIFT
 	db $ff
 
 MantineEggMoves:
 	db SEED_BOMB
 	db HAZE
 	db SLAM
+	db HEADBUTT
+	db MUD_SLAP
+	db SWIFT
+	db MIMIC
 	db $ff
 
 SkarmoryEggMoves:
 	db MIMIC
 	db DOUBLE_EDGE
+	db ROAR
+	db SWIFT
+	db TWISTER
 	db $ff
 
 HoundourEggMoves:
@@ -956,13 +1217,21 @@ HoundourEggMoves:
 	db CHARM
 	db DOUBLE_EDGE
 	db MUD_SLAP
+	db DREAM_EATER
+	db IRON_TAIL
+	db NIGHTMARE
+	db ENDURE
+	db MIMIC
 	db $ff
 
 PhanpyEggMoves:
 	db FOCUS_ENERGY
-	db PLAY_ROUGH
 	db COUNTER
 	db IRON_TAIL
+	db ENDURE
+	db FLAIL
+	db IRON_DEFENSE
+	db MIMIC
 	db $ff
 
 StantlerEggMoves:
@@ -972,6 +1241,10 @@ StantlerEggMoves:
 	db LIGHT_SCREEN
 	db SWIFT
 	db DOUBLE_EDGE
+	db DREAM_EATER
+	db MUD_SLAP
+	db ROAR
+	db MIMIC
 	db $ff
 
 TyrogueEggMoves:
@@ -985,25 +1258,49 @@ TyrogueEggMoves:
 	db $ff
 
 SmoochumEggMoves:
-	db MEDITATE
+	db METRONOME
 	db THRASH
 	db HEAL_BELL
+	db COUNTER
+	db DOUBLE_EDGE
+	db HEADBUTT
+	db MEGA_KICK
+	db MIMIC
+	db MUD_SLAP
+	db BIDE
+	db PSYWAVE
+	db RAGE
+	db SUBMISSION
+	db DOUBLESLAP
+	db DIZZY_PUNCH
 	db $ff
 
 ElekidEggMoves:
-	db IRON_TAIL
-	db BODY_SLAM
+	db MIMIC
+	db BIDE
+	db PSYWAVE
+	db SUBMISSION
+	db DOUBLE_EDGE
 	db MUD_SLAP
 	db SWIFT
+	db COUNTER
+	db HEADBUTT
 	db $ff
 
 MagbyEggMoves:
 	db IRON_TAIL
-	db BODY_SLAM
 	db MUD_SLAP
 	db SWIFT
 	db BELLY_DRUM
 	db THRASH
+	db BIDE
+	db COUNTER
+	db DOUBLE_EDGE
+	db MEGA_KICK
+	db MIMIC
+	db METRONOME
+	db RAGE
+	db SUBMISSION
 	db $ff
 
 MiltankEggMoves:
@@ -1011,6 +1308,8 @@ MiltankEggMoves:
 	db HEADBUTT
 	db MUD_SLAP
 	db DIZZY_PUNCH
+	db METRONOME
+	db PRESENT
 	db $ff
 
 LarvitarEggMoves:
@@ -1019,6 +1318,8 @@ LarvitarEggMoves:
 	db FOCUS_ENERGY
 	db SPITE
 	db SCARY_FACE
+	db DRAGONBREATH
+	db NIGHTMARE
 	db $ff
 
 NoEggMoves:
