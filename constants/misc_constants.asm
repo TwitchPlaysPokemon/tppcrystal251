@@ -102,3 +102,6 @@ SWITCH_OFTEN       EQU 1 << SWITCH_OFTEN_F
 PARTY_STRUCT_LENGTH EQU 432
 
 MAX_COINS EQU 50000
+
+DISTRO_MON_COUNT EQU 11
+DISTRO_MON_LENGTH EQU 34 ; 8-byte repeat hash, species, item, 4 moves, 2-byte OT ID, 2-byte DVs, level, 11-byte OT name, 11-byte nickname, 1 byte pad

@@ -1,21 +1,98 @@
-DISTRO_MON_LENGTH EQU 38 ; 8-byte repeat hash, species, item, 4 moves, 2-byte OT ID, 2-byte DVs, level, 11-byte OT name, 11-byte nickname
-
 Special_EnterDistrCode:
 	ld b, 9 ; code distro
 	ld de, StringBuffer4
 	callba NamingScreen
+	; pack into 7 byte key
 	ld hl, StringBuffer4
-	call .Decrypt ; returns to struct at wPiguHash
-	ld a, [wPiguHash + 8]
+	ld b, 8
+.pack_loop1
+	ld a, [hl]
+	cp "@"
+	jr z, .pack_skip1
+	cp " "
+	jr nz, .pack_notspace
+	ld a, $bf
+.pack_notspace
+	ld [hli], a
+	dec b
+	jr nz, .pack_loop1
+	jr .pack_skip2
+.pack_skip1
+	ld a, $bf
+.pack_loop2
+	ld [hli], a
+	dec b
+	jr nz, .pack_loop2
+.pack_skip2
+	ld hl, StringBuffer4
+	ld b, 7
+	ld c, hProduct % $100
+	ld de, 7
+	ld a, [hli]
+	sla a
+.pack_loop3
+	push bc
+	ld b, 8
+	ld d, 0
+.pack_loop4
+	sla a
+	rl d
+	dec e
+	jr nz, .pack_skip3
+	ld a, [hli]
+	sla a
+	ld e, 7
+.pack_skip3
+	dec b
+	jr nz, .pack_loop4
+	pop bc
+	push af
+	ld a, d
+	ld [$ff00 + c], a
+	pop af
+	inc c
+	dec b
+	jr nz, .pack_loop3
+	ld a, [rSVBK]
+	push af
+	ld a, 4
+	ld [rSVBK], a
+	ld hl, DistributionData
+	ld a, DISTRO_MON_COUNT
+.try_decrypt
+	push af
+	push hl
+	call .Decrypt
+	pop hl
+	jr nc, .got_mon
+	pop af
+	dec a
+	jr z, .invalid_code
+	ld bc, DISTRO_MON_LENGTH
+	add hl, bc
+	jr .try_decrypt
+.got_mon
+	pop af
+	ld hl, DecryptBuffer2 + 8
+	ld de, wSurvivalModeParty
+	ld bc, DISTRO_MON_LENGTH - 8
+	call CopyBytes
+	pop af
+	ld [rSVBK], a
+	ld a, [wSurvivalModeParty + 8]
 	ld [CurPartySpecies], a
 	call .Copy
-	jr nc, .added_mon
+	ld a, 1
+	jr nc, .party_full
 	xor a
+.party_full
 	ld [ScriptVar], a
 	ret
-
-.added_mon
-	ld a, [CurPartySpecies]
+	
+.invalid_code
+	pop af
+	ld [rSVBK], a
+	ld a, 2
 	ld [ScriptVar], a
 	ret
 
@@ -30,7 +107,7 @@ Special_EnterDistrCode:
 	ld c, a
 	ld b, 0
 	add hl, bc
-	ld a, [wDistroMonSpecies]
+	ld a, [wSurvivalModeParty]
 	ld [CurPartySpecies], a
 	ld [CurSpecies], a
 	ld [hli], a
@@ -43,13 +120,13 @@ Special_EnterDistrCode:
 	xor a
 	call ByteFill
 	pop hl
-	ld de, wDistroMonSpecies ; species, item, moves, OT ID, dvs, level
+	ld de, wSurvivalModeParty ; species, item, moves, OT ID, dvs, level
 	call .ConvertHashedMon
 	ld hl, PartyMonOT
-	ld de, wDistroMonOTName
+	ld de, wSurvivalModeParty + 11 ; ot name
 	call .CopyName
 	ld hl, PartyMonNicknames
-	ld de, wDistroMonNickname
+	ld de, wSurvivalModeParty + 22 ; nickname
 .CopyName:
 	push hl
 	ld bc, NAME_LENGTH
@@ -59,7 +136,9 @@ Special_EnterDistrCode:
 	ld e, l
 	pop hl
 	ld bc, NAME_LENGTH
-	jp CopyBytes
+	call CopyBytes
+	scf
+	ret
 
 .ConvertHashedMon:
 	; Copy species, item, moves, and OT ID
