@@ -84,6 +84,7 @@ PewterMuseumOfScience1FUnusedGuyScript:
 	jumptextfaceplayer _Museum1FText_5c251
 
 PewterMuseumOfScience1FScientist2Script:
+	faceplayer
 	loadfont
 	checkevent EVENT_PEWTER_MUSEUM_OLD_AMBER
 	iftrue .got_amber
