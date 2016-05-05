@@ -522,9 +522,9 @@ Function9693a: ; 9693a
 	ret
 
 .no_bug_contest
-	callba Function1150c
+	callba CheckSSAnneTimer
 	jr nc, .skip_ssanne
-	callba Function1151c
+	callba ExpireSSAnneTimer
 .skip_ssanne
 	callba Function11452
 	callba Function114e7
@@ -998,7 +998,7 @@ CountStep: ; 96b79
 	jr c, .asm_96bc3
 	ld [hl], 0
 
-	callba Function505da
+	callba OverworldPoisonDamage
 	jr c, .asm_96bcb
 
 .asm_96bc3

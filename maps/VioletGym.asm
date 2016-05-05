@@ -440,7 +440,7 @@ Bird_keeperAbeSeenText: ; 0x6887f
 
 	para "They're far supe-"
 	line "rior to the local"
-	cont "FLYING types."
+	cont "flying types."
 	done
 ; 0x688b3
 
@@ -462,11 +462,11 @@ UnknownText_0x688c7: ; 0x688c7
 ; 0x688f9
 
 VioletGymGuyText: ; 0x688f9
-	text "Yo, champ in the"
+	text "Yo, CHAMP in the"
 	line "making!"
 
 	para "You're challenging"
-	line "the gyms in JOHTO?"
+	line "the GYMs in JOHTO?"
 
 	para "The #MON here"
 	line "are tougher than"
@@ -474,13 +474,13 @@ VioletGymGuyText: ; 0x688f9
 
 	para "FALKNER, the GYM"
 	line "LEADER, specia-"
-	cont "lizes in flying"
+	cont "lizes in flying-"
 	cont "type #MON."
 
 	para "If you have a team"
-	line "of GRASS-type,"
-	cont "#MON you better"
-	cont "watch out!"
+	line "of grass-type"
+	para "#MON, you better"
+	line "watch out!"
 	done
 ; 0x689c8
 

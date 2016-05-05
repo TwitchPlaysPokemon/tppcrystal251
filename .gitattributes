@@ -3,6 +3,7 @@
 
 *.asm -text
 *.pal -text
+*.bat eol=crlf
 
 # hexdump binary files
 *.png  binary diff=hex

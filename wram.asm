@@ -1284,6 +1284,7 @@ CurFruitTree::
 CurInput::
 EngineBuffer1:: ; d03e
 	ds 1
+EngineBuffer2::
 wd03f::
 CurFruit:: ; d03f
 	ds 1
@@ -2293,8 +2294,8 @@ wdc2d:: ds 4
 wdc31:: ds 4
 wdc35:: ds 4
 wdc39:: ds 1
-wdc3a:: ds 1
-wdc3b:: ds 5
+wSSAnneTimerDaysLeft:: ds 1
+wSSAnneTimerStartDay:: ds 5
 wdc40:: ds 1
 wdc41:: ds 1
 wdc42:: ds 8

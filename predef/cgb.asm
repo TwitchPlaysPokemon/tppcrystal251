@@ -66,6 +66,7 @@ Table8d7a: ; 8d7a
 	dw Function9591
 	dw Function9542
 	dw CGB_FossilPicLayout
+	dw GSIntroPals
 ; 8db8
 
 Function8db8: ; 8db8
@@ -1107,16 +1108,18 @@ Function94d0: ; 94d0
 	ld [hCGBPalUpdate], a
 	ret
 ; 94fa
-
-Function94fa: ; 94fa
+GSIntroPals:
 	ld de, Unkn1Pals
 	ld a, $4e
 	call Function9625
 	call Function9630
-	ld hl, Palette_9521
+	ld hl, TPPDevsIntroPal
+	ld de, Unkn1Pals + 8
+	call Function9630
+	ld hl, GSIntroYellowPal
 	ld de, Unkn2Pals
 	call Function9630
-	ld hl, Palette_9521
+	ld hl, GSIntroYellowPal
 	ld de, Unkn2Pals + 8
 	call Function9630
 	call Function9699
@@ -1125,7 +1128,35 @@ Function94fa: ; 94fa
 	ret
 ; 9521
 
-Palette_9521: ; 9521
+Function94fa: ; 94fa
+	ld de, Unkn1Pals
+	ld a, $4e
+	call Function9625
+	call Function9630
+	ld hl, CrystalIntroPal
+	ld de, Unkn2Pals
+	call Function9630
+	ld hl, CrystalIntroPal
+	ld de, Unkn2Pals + 8
+	call Function9630
+	call Function9699
+	call Function96b3
+	call Function96a4
+	ret
+
+GSIntroYellowPal: ; 9521
+	RGB 31, 31, 31
+	RGB 25, 30, 00
+	RGB 25, 30, 00
+	RGB 25, 30, 00
+
+TPPDevsIntroPal:
+	RGB 00, 00, 00
+	RGB 00, 00, 00
+	RGB 00, 00, 00
+	RGB 23, 12, 28
+
+CrystalIntroPal:
 	RGB 31, 31, 31
 	RGB 13, 11, 00
 	RGB 23, 12, 28

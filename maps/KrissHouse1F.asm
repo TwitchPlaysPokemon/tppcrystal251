@@ -118,11 +118,11 @@ UnknownScript_0x7a5b8: ; 0x7a5b8
 PokefanFScript_0x7a5c1: ; 0x7a5c1
 	faceplayer
 	loadfont
-	checktime $1
+	checkmorn
 	iftrue UnknownScript_0x7a5d2
-	checktime $2
+	checkday
 	iftrue UnknownScript_0x7a5d9
-	checktime $4
+	checknite
 	iftrue UnknownScript_0x7a5e0
 UnknownScript_0x7a5d2: ; 0x7a5d2
 	writetext UnknownText_0x7a97d
@@ -428,6 +428,6 @@ KrissHouse1F_MapEventHeader: ; 0x7ab31
 	person_event SPRITE_MOM, 8, 11, $8, 0, 0, -1, 2, 0, 0, 0, MomScript_0x7a582, EVENT_MOM_POSITION_2
 	person_event SPRITE_MOM, 6, 4, $7, 0, 0, -1, 4, 0, 0, 0, MomScript_0x7a582, EVENT_MOM_POSITION_2
 	person_event SPRITE_POKEFAN_F, 8, 8, $9, 0, 0, -1, -1, 8 + PAL_OW_RED, 0, 0, PokefanFScript_0x7a5c1, EVENT_NEIGHBOR_IN_YOUR_HOUSE_1F
-	person_event SPRITE_TEACHER, 11, 11, $7, 0, 0, -1, -1, 8 + PAL_OW_RED, 0, 0, PokefanFScript_0x7a5c1, EVENT_MOM_POSITION_1
+	person_event SPRITE_TEACHER, 11, 11, $7, 0, 0, -1, -1, 8 + PAL_OW_RED, 0, 0, ObjectEvent, EVENT_MOM_POSITION_1
 ; 0x7abab
 

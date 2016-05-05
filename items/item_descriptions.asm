@@ -16,6 +16,13 @@ PrintItemDescription: ; 0x1c8955
 
 .not_a_tm
 	push de
+	cp S_S_TICKET
+	jr nz, .not_ss_ticket
+	ld a, [StatusFlags]
+	bit 5, a
+	ld de, SSTicketEGKDesc
+	jr z, .okay
+.not_ss_ticket
 	ld hl, ItemDescriptions
 	ld a, [CurSpecies]
 	dec a
@@ -26,6 +33,7 @@ PrintItemDescription: ; 0x1c8955
 	ld e, [hl]
 	inc hl
 	ld d, [hl]
+.okay
 	pop hl
 	jp PlaceString
 ; 0x1c8987
@@ -178,7 +186,7 @@ ItemDescriptions:
 	dw DragonFangDesc
 	dw FriendCharmDesc
 	dw LeftoversDesc
-	dw TeruSama15Desc
+	dw ResearchNotesDesc
 	dw TeruSama16Desc
 	dw TeruSama17Desc
 	dw MysteryBerryDesc
@@ -858,8 +866,9 @@ LeftoversDesc:
 	db   "Restores HP during"
 	next "battle. (HOLD)@"
 
-TeruSama15Desc:
-	db   "?@"
+ResearchNotesDesc:
+	db   "Description of a"
+	next "rare #MON.@"
 
 TeruSama16Desc:
 	db   "?@"
@@ -1084,3 +1093,6 @@ TeruSama32Desc:
 TeruSama33Desc:
 	db   "?@"
 
+SSTicketEGKDesc:
+	db   "A ticket for the"
+	next "S.S.ANNE.@"

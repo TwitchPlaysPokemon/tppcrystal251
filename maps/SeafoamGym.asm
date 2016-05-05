@@ -57,7 +57,7 @@ UnknownScript_0x1ab52b: ; 0x1ab52b
 ; 0x1ab531
 
 BlaineRematchScript:
-	checkevent EVENT_GOT_RESEARCH_NOTES
+	checkitem RESEARCHNOTE
 	iffalse BlaineReject
 	writetext BlaineBeforeRematchText
 	waitbutton
@@ -67,10 +67,16 @@ BlaineRematchScript:
 	startbattle
 	returnafterbattle
 	setevent EVENT_BLAINE_REMATCH
-	loadfont ;fallthrough
+	loadfont
+	writetext BlaineAfterRematchText
+	takeitem RESEARCHNOTE, 1
+	waitbutton
+	closetext
+	end
 
 BlaineAfterRematch:
-	writetext BlaineAfterRematchText
+	loadfont
+	writetext BlaineAfterRematchText2
 	waitbutton
 	closetext
 	end
@@ -172,6 +178,14 @@ BlaineAfterRematchText:
 	
 	para "I've rebuilt the"
 	line "CINNABAR GYM!"
+	done
+
+BlaineAfterRematchText2:
+	text "Gahahaha!!"
+
+	para "Battling with you"
+	line "gets me all fired"
+	cont "up!"
 	done
 
 SeafoamGymGuyScript: ; 0x1ab531

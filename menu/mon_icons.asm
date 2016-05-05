@@ -39,7 +39,7 @@ MonMenuIcons: ; 8eac4
 	db ICON_SERPENT      ; EKANS
 	db ICON_SERPENT      ; ARBOK
 	db ICON_PIKACHU      ; PIKACHU
-	db ICON_PIKACHU      ; RAICHU
+	db ICON_RAICHU       ; RAICHU
 	db ICON_MONSTER      ; SANDSHREW
 	db ICON_MONSTER      ; SANDSLASH
 	db ICON_FOX          ; NIDORAN_F
@@ -93,7 +93,7 @@ MonMenuIcons: ; 8eac4
 	db ICON_EQUINE       ; PONYTA
 	db ICON_EQUINE       ; RAPIDASH
 	db ICON_SLOWPOKE     ; SLOWPOKE
-	db ICON_SLOWPOKE     ; SLOWBRO
+	db ICON_SLOWBRO      ; SLOWBRO
 	db ICON_VOLTORB      ; MAGNEMITE
 	db ICON_VOLTORB      ; MAGNETON
 	db ICON_BIRD         ; FARFETCH_D
@@ -106,7 +106,7 @@ MonMenuIcons: ; 8eac4
 	db ICON_SHELL        ; SHELLDER
 	db ICON_SHELL        ; CLOYSTER
 	db ICON_GASTLY       ; GASTLY
-	db ICON_HAUNTER        ; HAUNTER
+	db ICON_HAUNTER      ; HAUNTER
 	db ICON_GHOST        ; GENGAR
 	db ICON_SERPENT      ; ONIX
 	db ICON_HUMANSHAPE   ; DROWZEE
@@ -151,20 +151,20 @@ MonMenuIcons: ; 8eac4
 	db ICON_JOLTEON      ; JOLTEON
 	db ICON_FLAREON      ; FLAREON
 	db ICON_VOLTORB      ; PORYGON
-	db ICON_SHELL        ; OMANYTE
-	db ICON_SHELL        ; OMASTAR
-	db ICON_SHELL        ; KABUTO
-	db ICON_SHELL        ; KABUTOPS
-	db ICON_BIRD         ; AERODACTYL
+	db ICON_OMANYTE      ; OMANYTE
+	db ICON_OMASTAR      ; OMASTAR
+	db ICON_KABUTO       ; KABUTO
+	db ICON_KABUTOPS     ; KABUTOPS
+	db ICON_AERODACTYL   ; AERODACTYL
 	db ICON_SNORLAX      ; SNORLAX
-	db ICON_BIRD         ; ARTICUNO
-	db ICON_BIRD         ; ZAPDOS
-	db ICON_BIRD         ; MOLTRES
+	db ICON_ARTICUNO     ; ARTICUNO
+	db ICON_ZAPDOS       ; ZAPDOS
+	db ICON_MOLTRES      ; MOLTRES
 	db ICON_SERPENT      ; DRATINI
 	db ICON_SERPENT      ; DRAGONAIR
 	db ICON_BIGMON       ; DRAGONITE
-	db ICON_MONSTER      ; MEWTWO
-	db ICON_MONSTER      ; MEW
+	db ICON_MEWTWO       ; MEWTWO
+	db ICON_MEW          ; MEW
 	db ICON_ODDISH       ; CHIKORITA
 	db ICON_ODDISH       ; BAYLEEF
 	db ICON_ODDISH       ; MEGANIUM
@@ -212,7 +212,7 @@ MonMenuIcons: ; 8eac4
 	db ICON_ESPEON       ; ESPEON
 	db ICON_UMBREON      ; UMBREON
 	db ICON_BIRD         ; MURKROW
-	db ICON_SLOWPOKE     ; SLOWKING
+	db ICON_SLOWKING     ; SLOWKING
 	db ICON_GHOST        ; MISDREAVUS
 	db ICON_UNOWN        ; UNOWN
 	db ICON_GHOST        ; WOBBUFFET
@@ -256,15 +256,15 @@ MonMenuIcons: ; 8eac4
 	db ICON_HUMANSHAPE   ; MAGBY
 	db ICON_EQUINE       ; MILTANK
 	db ICON_CLEFAIRY     ; BLISSEY
-	db ICON_FOX          ; RAIKOU
-	db ICON_FOX          ; ENTEI
-	db ICON_FOX          ; SUICUNE
+	db ICON_RAIKOU       ; RAIKOU
+	db ICON_ENTEI        ; ENTEI
+	db ICON_SUICUNE      ; SUICUNE
 	db ICON_MONSTER      ; LARVITAR
 	db ICON_MONSTER      ; PUPITAR
 	db ICON_MONSTER      ; TYRANITAR
 	db ICON_LUGIA        ; LUGIA
 	db ICON_HO_OH        ; HO_OH
-	db ICON_HUMANSHAPE   ; CELEBI
+	db ICON_CELEBI   ; CELEBI
 
 IconPointers:
 	dw NullIcon
@@ -320,3 +320,30 @@ IconPointers:
 	dw BlastoiseIcon
 	dw GastlyIcon
 	dw HaunterIcon
+	dw MewIcon
+	dw MewtwoIcon
+	dw SlowbroIcon
+	dw SlowkingIcon
+	dw RaichuIcon
+	dw OmanyteIcon
+	dw OmastarIcon
+	dw KabutoIcon
+	dw KabutopsIcon
+	dw AerodactylIcon
+	dw RaikouIcon
+	dw EnteiIcon
+	dw SuicuneIcon
+	dw CelebiIcon
+	dw ArticunoIcon
+	dw ZapdosIcon
+	dw MoltresIcon
+	dw MagikarpIcon
+	dw ChikoritaIcon
+	dw BayleefIcon
+	dw MeganiumIcon
+	dw CyndaquilIcon
+	dw QuilavaIcon
+	dw TyphlosionIcon
+	dw TotodileIcon
+	dw CroconawIcon
+	dw FeraligatrIcon

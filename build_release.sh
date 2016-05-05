@@ -1,4 +1,4 @@
-filesdir=/cygdrive/d/tppcrystal251/files
+filesdir=~/crystal251html/files
 vbasrcdir=/cygdrive/c/Users/Scott/Downloads/vba-rerecording-svn480-win32
 vbasrcname=VBA_VS2015_V72XR
 vbatarget=VBA-RR-243
@@ -43,6 +43,9 @@ cp $vbasrcdir/lua5*1.dll $tmpdir/$vbatarget/
 
 # Copy the lua scripts and dependencies to the temp $vbatarget/lua subdirectory
 cp -r lua_scripts/mime lua_scripts/socket lua_scripts/battle_ram.lua lua_scripts/constants.lua lua_scripts/JSON.lua lua_scripts/ltn12.lua lua_scripts/mime.lua lua_scripts/pokecrystal_ai.lua lua_scripts/readstates.lua lua_scripts/socket.lua $tmpdir/$vbatarget/lua/
+
+# Copy the save file patcher
+cp patch_save.py $tmpdir/
 
 # Build the ZIP file to the webpage files directory (quiet mode, recursive)
 zip -r -q $filesdir/annicrystal_ai.zip $tmpdir/AI $tmpdir/$vbatarget $tmpdir/annicrystal_ai_$version.ips

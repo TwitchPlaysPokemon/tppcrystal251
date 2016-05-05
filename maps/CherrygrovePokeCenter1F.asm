@@ -7,8 +7,91 @@ CherrygrovePokeCenter1F_MapScriptHeader: ; 0x19696b
 ; 0x19696d
 
 NurseScript_0x19696d: ; 0x19696d
+	checkmaptriggers GROUP_CHERRYGROVE_CITY, MAP_CHERRYGROVE_CITY
+	if_equal 3, .special_heal
 	jumpstd pokecenternurse
-; 0x196970
+
+.special_heal
+	loadfont
+	checkcode VAR_PARTYCOUNT
+	iffalse .no_pokemon
+	if_greater_than 6, .too_many_pokemon
+	callasm CheckNotAllEggs ; farcall
+	iffalse .no_pokemon
+	checkmorn
+	iftrue .morn
+	checkday
+	iftrue .day
+	checknite
+	iftrue .nite
+	jump .ok
+
+.morn
+	farwritetext UnknownText_0x1b0000
+	jump .ok
+
+.day
+	farwritetext UnknownText_0x1b002b
+	jump .ok
+
+.nite
+	farwritetext UnknownText_0x1b004f
+.ok
+	buttonsound
+	writetext CherrygrovePokeCenter1F_HealText
+	pause 20
+	special Function1060a2
+	spriteface $fe, LEFT
+	pause 10
+	special HealParty
+	setevent EVENT_HEALED_IN_CHERRYGROVE
+	special SaveMusic
+	playmusic MUSIC_NONE
+	writebyte 0
+	special HealMachineAnim
+	pause 30
+	special RestoreMusic
+	spriteface $fe, DOWN
+	pause 10
+
+	checkphonecall ; elm already called about pokerus
+	iftrue .no
+	checkflag ENGINE_POKERUS ; nurse already talked about pokerus
+	iftrue .no
+	special SpecialCheckPokerus
+	iftrue .pokerus
+.no
+
+	farwritetext UnknownText_0x1b01d7
+	pause 20
+
+.done
+	farwritetext UnknownText_0x1b020b
+
+	spriteface $fe, UP
+	pause 10
+	spriteface $fe, DOWN
+	pause 10
+
+	waitbutton
+	closetext
+	end
+
+.pokerus
+	farwritetext UnknownText_0x1b0241
+	waitbutton
+	closetext
+	end
+
+.no_pokemon
+	farwritetext NoPokemonHealText
+	pause 20
+	jump .done
+
+.too_many_pokemon
+	farwritetext TooManyPokemonHealText
+	pause 20
+	jump .done
 
 FisherScript_0x196970: ; 0x196970
 	jumptextfaceplayer UnknownText_0x19698a
@@ -83,6 +166,19 @@ Text_CherrygrovePC_PleaseHealPkmn:
 	text "BZZT! You don't"
 	line "have a #MON fit"
 	cont "to fight!"
+	done
+
+CherrygrovePokeCenter1F_HealText:
+	text "Oh dear<...> Your"
+	line "#MON are all"
+	cont "fainted!"
+
+	para "Here, allow me to"
+	line "restore them to"
+	cont "perfect health."
+
+	para "May I see your"
+	line "#MON?"
 	done
 
 CherrygrovePokeCenter1F_MapEventHeader: ; 0x196a96

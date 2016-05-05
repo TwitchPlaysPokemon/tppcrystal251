@@ -2176,11 +2176,11 @@ WhosThatPkmn_6:
 	jp NextRadioLine
 
 WhosThatPkmn_7:
-	ld e, MEW + 1
+	ld e, MEW
 	ld a, [StatusFlags]
 	bit 5, a
 	jr z, .loop
-	ld e, CELEBI + 1
+	ld e, CELEBI
 .loop
 	call Random
 	cp e

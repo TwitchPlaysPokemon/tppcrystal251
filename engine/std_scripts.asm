@@ -55,11 +55,31 @@ StdScripts:: ; bc000
 	dba IndigoPlateauStatue2Script ; $35
 ; bc09c
 
+CheckNotAllEggs::
+	ld hl, PartySpecies
+.loop
+	ld a, [hli]
+	cp $ff
+	jr z, .nope
+	cp EGG
+	jr z, .loop
+	ld a, 1
+	jr .done
+
+.nope
+	xor a
+.done
+	ld [ScriptVar], a
+	ret
+
 PokeCenterNurseScript:
 ; EVENT_WELCOMED_TO_POKECOM_CENTER is never set
 
 	loadfont
 	checkcode VAR_PARTYCOUNT
+	iffalse .no_pokemon
+	if_greater_than 6, .too_many_pokemon
+	callasm CheckNotAllEggs
 	iffalse .no_pokemon
 	checkmorn
 	iftrue .morn
@@ -179,6 +199,11 @@ PokeCenterNurseScript:
 
 .no_pokemon
 	farwritetext NoPokemonHealText
+	pause 20
+	jump .done
+
+.too_many_pokemon
+	farwritetext TooManyPokemonHealText
 	pause 20
 	jump .done
 
@@ -728,7 +753,7 @@ UnknownScript_0xbc380: ; 0xbc380 ;clear contestent flags that are not active?
 FirstPlaceQuestion:
 	text $52, ", the No.1"
 	line "finisher, has"
-	cont "wins a SUN STONE!"
+	cont "won a SUN STONE!"
 
 	para "However, you may"
 	line "choose to take a"
@@ -947,6 +972,7 @@ InitializeEventsScript: ; 0xbc3db
 	setevent EVENT_LAVENDER_HAUNTER
 	setevent EVENT_SCARED_LASS
 	setevent EVENT_ELM_IN_SILVER_CAVE_RUINS
+	setevent EVENT_MEWTWO_IN_VOLCANO_LAB
 	return
 ; 0xbc574
 

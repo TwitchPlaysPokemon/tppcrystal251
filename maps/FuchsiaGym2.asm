@@ -255,7 +255,7 @@ JaninePostgameBeatenText:
 	
 JaninePostgameAfterText:
 	text "JANINE: And again,"
-	cont "I lose."
+	line "I lose."
 
 	para "You have truly"
 	line "honed your skills."

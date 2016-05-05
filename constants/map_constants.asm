@@ -490,7 +490,8 @@ MAP_N_A   EQU -1
 	mapgroup MT_SILVER_RUINS_B1, 16, 16
 	mapgroup BILLS_GARDEN, 20, 20
 	mapgroup DUMMY_BLANK_MAP, 1, 1
-
+	mapgroup CINNABAR_VOLCANO_HALLWAY, 4, 10
+	mapgroup CINNABAR_VOLCANO_LAB, 10, 12
 
 	newgroup ; Pallet Town RB
 	mapgroup ROUTE_1_RB, 18, 10
@@ -499,13 +500,14 @@ MAP_N_A   EQU -1
 	mapgroup REDS_HOUSE_2F_RB, 4, 4
 	mapgroup BLUES_HOUSE_RB, 4, 4
 	mapgroup OAKS_LAB_RB, 6, 5
+	mapgroup POKECENTERRB, 4, 8
 
 	newgroup ; Viridian City RB
 	mapgroup ROUTE_2_RB, 36, 10
 	mapgroup ROUTE_22_RB, 9, 20
 	mapgroup VIRIDIAN_CITY_RB, 18, 20
 	mapgroup VIRIDIAN_MART_RB, 4, 6
-	mapgroup VIRIDIAN_POKECENTER_1F_RB, 4, 5
+	mapgroup VIRIDIAN_POKECENTER_1F_RB, 4, 8
 	mapgroup VIRIDIAN_NICKNAME_SPEECH_HOUSE_RB, 4, 4
 	mapgroup VIRIDIAN_TRAINER_SCHOOL_RB, 4, 4
 	mapgroup VICTORY_ROAD_GATE_RB, 4, 5
@@ -517,19 +519,19 @@ MAP_N_A   EQU -1
 	mapgroup PEWTER_CITY_RB, 18, 20
 	mapgroup PEWTER_GYM_RB, 7, 5
 	mapgroup PEWTER_MART_RB, 4, 6
-	mapgroup PEWTER_POKECENTER_1F_RB, 4, 5
+	mapgroup PEWTER_POKECENTER_1F_RB, 4, 8
 	mapgroup PEWTER_SNOOZE_SPEECH_HOUSE_RB, 4, 4
 	mapgroup PEWTER_NIDORAN_SPEECH_HOUSE_RB, 4, 4
 	mapgroup PEWTER_MUSEUM_1F_RB, 4, 10
 	mapgroup PEWTER_MUSEUM_2F_RB, 4, 7
 	mapgroup ROUTE_3_RB, 9, 30
-	mapgroup MOUNT_MOON_POKECENTER_1F_RB, 4, 5
+	mapgroup MOUNT_MOON_POKECENTER_1F_RB, 4, 8
 
 	newgroup ; Cerulean City RB
 	mapgroup CERULEAN_GYM_RB, 8, 5
 	mapgroup ROUTE_4_RB, 9, 20
 	mapgroup CERULEAN_CITY_RB, 18, 20
-	mapgroup CERULEAN_POKECENTER_1F_RB, 4, 5
+	mapgroup CERULEAN_POKECENTER_1F_RB, 4, 8
 	mapgroup CERULEAN_MART_RB, 4, 6
 	mapgroup CERULEAN_GYM_BADGE_SPEECH_HOUSE_RB, 4, 4
 	mapgroup CERULEAN_TRADE_SPEECH_HOUSE_RB, 4, 4
@@ -543,7 +545,7 @@ MAP_N_A   EQU -1
 	mapgroup ROUTE_6_UNDERGROUND_ENTRANCE_RB, 4, 4
 	mapgroup ROUTE_6_RB, 12, 10
 	mapgroup VERMILION_CITY_RB, 18, 20
-	mapgroup VERMILION_POKECENTER_1F_RB, 4, 5
+	mapgroup VERMILION_POKECENTER_1F_RB, 4, 8
 	mapgroup VERMILION_MART_RB, 4, 6
 	mapgroup VERMILION_HOUSE_FISHING_SPEECH_HOUSE_RB, 4, 4
 	mapgroup POKEMON_FAN_CLUB_RB, 4, 5

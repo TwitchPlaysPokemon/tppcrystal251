@@ -508,7 +508,7 @@ MapGroup27:
 	map_header PowerplantB1, 40, 7, POWER_PLANT, MUSIC_SILPH_CO, 1, 1, 1
 	map_header PowerplantB2, 43, 7, POWER_PLANT, MUSIC_SILPH_CO, 1, 2, 1
 	map_header EnteiRoom, 30, 7, CINNABAR_VOLCANO, MUSIC_MT_MOON, 1, 1, 1
-	map_header RaikouRoom, $c, 3, RADIO_TOWER, 1<<7 | MUSIC_GOLDENROD_CITY, 1, 1, 1
+	map_header RaikouRoom, $c, 3, RADIO_TOWER, 1 << 7 | MUSIC_GOLDENROD_CITY, 1, 1, 1
 	map_header SuicuneRoom, 30, 7, TOHJO_FALLS, MUSIC_UNION_CAVE, 1, 2, 1
 
 MapGroup28:
@@ -527,6 +527,8 @@ MapGroup28:
 	map_header MtSilverRuinsB1, 24, 3, SILVER_CAVE, MUSIC_DRAGONS_DEN, 1, 2, 16
 	map_header BillsGarden, 3, 2, ROUTE_25, MUSIC_ROUTE_2, 0, 0, 14
 	map_header DummyBlankMap, $c, 0, 0, MUSIC_NONE, 1, 4, 1
+	map_header CinnabarVolcanoHallway, 41, 4, CINNABAR_VOLCANO, MUSIC_MT_MOON, 1, 2, 1
+	map_header CinnabarVolcanoLab, 40, 4, CINNABAR_VOLCANO, MUSIC_MT_MOON, 1, 2, 1
 
 MapGroup29:
 	map_header Route1RB, $3, 2, ROUTE_1, MUSIC_ROUTE_1, 0, 0, 1
@@ -535,6 +537,7 @@ MapGroup29:
 	map_header RedsHouse2FRB, $6, 3, PALLET_TOWN, MUSIC_PALLET_TOWN, 0, 1, 1
 	map_header BluesHouseRB, $5, 3, PALLET_TOWN, MUSIC_PALLET_TOWN, 0, 1, 1
 	map_header OaksLabRB, $a, 3, PALLET_TOWN, MUSIC_POKEMON_TALK, 0, 1, 1
+	map_header PokecenterRB, $7, 3, ROUTE_3, MUSIC_POKEMON_CENTER, 0, 1, 1
 
 MapGroup30:
 	map_header Route2RB, $3, 2, ROUTE_2, MUSIC_ROUTE_1, 0, 0, 1

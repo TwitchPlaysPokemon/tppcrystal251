@@ -1,23 +1,23 @@
 NameRater: ; fb6ed
-	ld hl, UnknownText_0xfb80f ;would you like me to rate names?
+	ld hl, NameRaterIntroText ;would you like me to rate names?
 	call PrintText
 	call YesNoBox
-	jp c, .asm_fb77e ;if no, exit
-	ld hl, UnknownText_0xfb814 ;which mon should I rate
+	jp c, .quit ;if no, exit
+	ld hl, NameRaterSelectPokemonText ;which mon should I rate
 	call PrintText
 	callba Function50000 ;call party menu
-	jr c, .asm_fb77e
+	jr c, .quit
 	ld a, [CurPartySpecies]
 	cp EGG
-	jr z, .asm_fb783 ;can't name eggs
+	jr z, .egg ;can't name eggs
 	call GetCurNick
-	call Functionfb78a
-	jr c, .asm_fb779 ;what a great name
-	ld hl, UnknownText_0xfb819 ;want a better name
+	call NameRater_CheckTraded
+	jr c, .traded ;what a great name
+	ld hl, NameRaterPromptRenameText ;want a better name
 	call PrintText
 	call YesNoBox
-	jr c, .asm_fb77e
-	ld hl, UnknownText_0xfb81e ;what name?
+	jr c, .quit
+	ld hl, NameRaterWhatNameText ;what name?
 	call PrintText
 	xor a
 	ld [MonType], a
@@ -28,147 +28,147 @@ NameRater: ; fb6ed
 	ld b, 0
 	ld de, StringBuffer2
 	callba Function116b7
-	call Functionfb7be
-	ld hl, UnknownText_0xfb837
-	jr c, .asm_fb76c
-	call Functionfb7d3
-	ld hl, UnknownText_0xfb837
-	jr c, .asm_fb76c
+	call NameRaterCheckNameHasNonSpaceCharacter
+	ld hl, NameRaterSameAsBeforeText
+	jr c, .finish_nickname
+	call NameRaterNicknameCmp
+	ld hl, NameRaterSameAsBeforeText
+	jr c, .finish_nickname
 	ld hl, PartyMonNicknames
-	ld bc, $000b
+	ld bc, PKMN_NAME_LENGTH
 	ld a, [CurPartyMon]
 	call AddNTimes
 	ld e, l
 	ld d, h
 	ld hl, StringBuffer2
-	ld bc, $000b
+	ld bc, PKMN_NAME_LENGTH
 	call CopyBytes
-	ld hl, UnknownText_0xfb823
+	ld hl, NameRaterBetterThanBeforeText
 
-.asm_fb76c
+.finish_nickname
 	push hl
 	call GetCurNick
-	ld hl, UnknownText_0xfb83c
+	ld hl, NameRaterNowNamedText
 	call PrintText
 	pop hl
-	jr .asm_fb786
+	jr .finish
 
-.asm_fb779
-	ld hl, UnknownText_0xfb82d
-	jr .asm_fb786
+.traded
+	ld hl, NameRaterTradedText
+	jr .finish
 
-.asm_fb77e
-	ld hl, UnknownText_0xfb828 ;come back again
-	jr .asm_fb786
+.quit
+	ld hl, NameRaterQuitText ;come back again
+	jr .finish
 
-.asm_fb783
-	ld hl, UnknownText_0xfb832
+.egg
+	ld hl, NameRaterEggText
 
-.asm_fb786
+.finish
 	call PrintText ;exit
 	ret
 ; fb78a
 
-Functionfb78a: ; fb78a
+NameRater_CheckTraded: ; fb78a
 	ld hl, PartyMonOT
 	ld bc, NAME_LENGTH
 	ld a, [CurPartyMon]
 	call AddNTimes ;hl = party trainer name
 	ld de, PlayerName ;de = player name
 	ld c, NAME_LENGTH
-	call .asm_fb7b1 ;compare c chars, ret c if different
-	jr c, .asm_fb7bc
+	call .StrCmp ;compare c chars, ret c if different
+	ret c
 	ld hl, PartyMon1ID ;do the same as above for ID
 	ld bc, PartyMon2 - PartyMon1
 	ld a, [CurPartyMon]
 	call AddNTimes
 	ld de, PlayerID
-	ld c, $2
-.asm_fb7b1 ;if any chars are different, ret c, else continue
+	ld c, 2
+.StrCmp: ;if any chars are different, ret c, else continue
 	ld a, [de]
 	cp [hl]
-	jr nz, .asm_fb7bc
+	jr nz, .different
 	inc hl
 	inc de
 	dec c
-	jr nz, .asm_fb7b1
+	jr nz, .StrCmp
 	and a
 	ret
 
-.asm_fb7bc
+.different
 	scf
 	ret
 ; fb7be
 
-Functionfb7be: ; fb7be
+NameRaterCheckNameHasNonSpaceCharacter: ; fb7be
 	ld hl, StringBuffer2
 	ld c, 10
-.asm_fb7c3
+.loop
 	ld a, [hli]
 	cp "@"
-	jr z, .asm_fb7cf
+	jr z, .terminator
 	cp " "
-	jr nz, .asm_fb7d1
+	jr nz, .not_space
 	dec c
-	jr nz, .asm_fb7c3
+	jr nz, .loop
 
-.asm_fb7cf
+.terminator
 	scf
 	ret
 
-.asm_fb7d1
+.not_space
 	and a
 	ret
 ; fb7d3
 
-Functionfb7d3: ; fb7d3
+NameRaterNicknameCmp: ; fb7d3
 	ld hl, PartyMonNicknames
-	ld bc, $000b
+	ld bc, PKMN_NAME_LENGTH
 	ld a, [CurPartyMon]
 	call AddNTimes
 	push hl
-	call Functionfb802
+	call NameRaterCountChars
 	ld b, c
 	ld hl, StringBuffer2
-	call Functionfb802
+	call NameRaterCountChars
 	pop hl
 	ld a, c
 	cp b
-	jr nz, .asm_fb7fe
+	jr nz, .different
 	ld de, StringBuffer2
-.asm_fb7f2
+.loop
 	ld a, [de]
 	cp "@"
-	jr z, .asm_fb800
+	jr z, .identical
 	cp [hl]
-	jr nz, .asm_fb7fe
+	jr nz, .different
 	inc hl
 	inc de
-	jr .asm_fb7f2
+	jr .loop
 
-.asm_fb7fe
+.different
 	and a
 	ret
 
-.asm_fb800
+.identical
 	scf
 	ret
 ; fb802
 
-Functionfb802: ; fb802
+NameRaterCountChars: ; fb802
 	ld c, 0
-.asm_fb804
+.loop
 	ld a, [hli]
 	cp "@"
 	ret z
 	inc c
 	ld a, c
 	cp 10
-	jr nz, .asm_fb804
+	jr nz, .loop
 	ret
 ; fb80f
 
-UnknownText_0xfb80f: ; 0xfb80f
+NameRaterIntroText: ; 0xfb80f
 	; Hello, hello! I'm the NAME RATER.
 	; I rate the names of #MON.
 	; Would you like me to rate names?
@@ -176,13 +176,13 @@ UnknownText_0xfb80f: ; 0xfb80f
 	db "@"
 ; 0xfb814
 
-UnknownText_0xfb814: ; 0xfb814
+NameRaterSelectPokemonText: ; 0xfb814
 	; Which #MON's nickname should I rate for you?
 	text_jump UnknownText_0x1c00a0
 	db "@"
 ; 0xfb819
 
-UnknownText_0xfb819: ; 0xfb819
+NameRaterPromptRenameText: ; 0xfb819
 	; Hm<...> @ <...> That's a fairly decent name.
 	; But, how about a slightly better nickname?
 	; Want me to give it a better name?
@@ -190,45 +190,45 @@ UnknownText_0xfb819: ; 0xfb819
 	db "@"
 ; 0xfb81e
 
-UnknownText_0xfb81e: ; 0xfb81e
+NameRaterWhatNameText: ; 0xfb81e
 	; All right. What name should we give it, then?
 	text_jump UnknownText_0x1c0142
 	db "@"
 ; 0xfb823
 
-UnknownText_0xfb823: ; 0xfb823
+NameRaterBetterThanBeforeText: ; 0xfb823
 	; That's a better name than before! Well done!
 	text_jump UnknownText_0x1c0171
 	db "@"
 ; 0xfb828
 
-UnknownText_0xfb828: ; 0xfb828
+NameRaterQuitText: ; 0xfb828
 	; OK, then. Come again sometime.
 	text_jump UnknownText_0x1c019e
 	db "@"
 ; 0xfb82d
 
-UnknownText_0xfb82d: ; 0xfb82d
+NameRaterTradedText: ; 0xfb82d
 	; Hm<...> @ ? What a great name! It's perfect.
 	; Treat @ with loving care.
 	text_jump UnknownText_0x1c01be
 	db "@"
 ; 0xfb832
 
-UnknownText_0xfb832: ; 0xfb832
+NameRaterEggText: ; 0xfb832
 	; Whoa<...> That's just an EGG.
 	text_jump UnknownText_0x1c0208
 	db "@"
 ; 0xfb837
 
-UnknownText_0xfb837: ; 0xfb837
+NameRaterSameAsBeforeText: ; 0xfb837
 	; It might look the same as before,
 	; but this new name is much better! Well done!
 	text_jump UnknownText_0x1c0222
 	db "@"
 ; 0xfb83c
 
-UnknownText_0xfb83c: ; 0xfb83c
+NameRaterNowNamedText: ; 0xfb83c
 	; All right. This #MON is now named @ .
 	text_jump UnknownText_0x1c0272
 	db "@"

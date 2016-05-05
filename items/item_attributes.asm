@@ -1170,13 +1170,13 @@ Item2Attributes:
 	db ITEM
 	dn 0, 0 ; can't use
 
-; TERU-SAMA
-	dw $9999 ; price
+; RESEARCH NOTES
+	dw 0 ; price
 	db NONE ; effect
 	db 0 ; param
-	db 0 ; can select + toss
-	db ITEM
-	dn 0, 0 ; can't use
+	db CANT_TOSS
+	db KEY_ITEM
+	dn 0, 0 ; overworld
 
 ; TERU-SAMA
 	dw $9999 ; price

@@ -682,18 +682,19 @@ UnknownText_0x1c0aa9: ; 1c0aa9
 UnknownText_0x1c0acc: ; 1c0acc
 	text_from_ram StringBuffer3
 	text ""
-	line "fainted!"
+	line "survived the"
+	cont "poisoning!"
 	prompt
 ; 1c0ada
 
-UnknownText_0x1c0ada: ; 1c0ada
-	text "<PLAYER> is out of"
-	line "useable #MON!"
+; UnknownText_0x1c0ada: ; 1c0ada
+	; text "<PLAYER> is out of"
+	; line "useable #MON!"
 
-	para "<PLAYER> whited"
-	line "out!"
-	prompt
-; 1c0b03
+	; para "<PLAYER> whited"
+	; line "out!"
+	; prompt
+; ; 1c0b03
 
 UnknownText_0x1c0b03: ; 1c0b03
 	text_from_ram StringBuffer3
