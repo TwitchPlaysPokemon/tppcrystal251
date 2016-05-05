@@ -202,5 +202,6 @@ TrainerClassDVs: ; 270d6
 	db $98, $88 ; brockrb
 	db $78, $88 ; mistyrb
 	db $DD, $DD ; baba
+    db $DD, $DD ; sorcerer
 ; 2715c
 

@@ -128,6 +128,62 @@ UnknownText_0x7ac84: ; 0x7ac84
 	done
 ; 0x7ac99
 
+; BED SCRIPT
+
+MapKrissHouse2FBedScript:
+	loadfont
+	writetext KrissHouse2FComfyBedText
+	waitbutton
+	closetext
+	special Special_FadeToBlack
+	special Functiond91
+	special Function1060a2
+	playmusic MUSIC_HEAL
+	special HealParty
+	; blackoutmod GROUP_PALLET_TOWN, MAP_PALLET_TOWN
+	pause 60
+	checkevent EVENT_FIRST_TIME_SORCERER
+	iftrue .skip
+	checkcode VAR_BADGES
+	if_equal 16, MapKrissHouseBedWarpScript
+.skip
+	special Function8c0ab
+	special RestartMapMusic
+	loadfont
+	copybytetovar PlayerGender
+	iftrue KrissHouse2BedHealedFScript
+	writetext KrissHouse2FBedHealedMText
+	waitbutton
+	closetext
+	end
+    
+KrissHouse2BedHealedFScript:
+	writetext KrissHouse2FBedHealedFText
+	waitbutton
+	closetext
+	end
+
+MapKrissHouseBedWarpScript:
+	warp GROUP_DUMMY_BLANK_MAP_RED, MAP_DUMMY_BLANK_MAP_RED, 0, 0
+	end
+    
+KrissHouse2FComfyBedText:
+	text "It's your bed."
+	line "Let's take a nap<...>"
+	done
+
+KrissHouse2FBedHealedMText:
+	text "<PLAY_G> and his"
+	line "#MON were"
+	cont "fully healed!"
+	done
+
+KrissHouse2FBedHealedFText:
+	text "<PLAY_G> and her"
+	line "#MON were"
+	cont "fully healed!"
+	done
+
 KrissHouse2F_MapEventHeader: ; 0x7ac99
 	; filler
 	db 0, 0
@@ -145,6 +201,8 @@ KrissHouse2F_MapEventHeader: ; 0x7ac99
 	signpost 1, 3, $0, MapKrissHouse2FSignpost2Script
 	signpost 1, 5, $0, MapKrissHouse2FSignpost3Script
 	signpost 0, 6, $5, MapKrissHouse2FSignpost4 ; 6bd4
+    ;signpost 4, 0, $0, MapKrissHouse2FBedScript
+    ;signpost 5, 0, $0, MapKrissHouse2FBedScript
 
 	; people-events
 	db 4

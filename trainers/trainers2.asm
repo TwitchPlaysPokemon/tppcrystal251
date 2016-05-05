@@ -712,7 +712,6 @@ MistyRBGroup:
 		db CONFUSION
 		db SWIFT
 		db HARDEN
-
 	db $ff ; end
 
 BabaGroup:
@@ -754,5 +753,47 @@ BabaGroup:
 		db ATTRACT
 		db DAZZLINGLEAM
 		db METRONOME
+
+	db $ff
+    
+SorcererGroup:
+	db "SORCERER'SSHO@"
+	db (1 << TRAINERTYPE_MOVES) | (1 << TRAINERTYPE_NICKNAME) | (1 << TRAINERTYPE_MAXXP)
+
+	db 100, PIKACHU, "PIKAQ@"
+		db CHARM
+		db QUICK_ATTACK
+		db THUNDERBOLT
+		db THUNDER
+
+	db 100, ESPEON, "KEFE@"
+		db MUD_SLAP
+		db REFLECT
+		db SWIFT
+		db PSYCHIC_M
+
+	db 100, SNORLAX, "TIAO@"
+		db AMNESIA
+		db SLEEP_TALK
+		db REST
+		db BODY_SLAM
+
+	db 100, VENUSAUR, "FLOWE@"
+		db SUNNY_DAY
+		db GIGA_DRAIN
+		db SYNTHESIS
+		db SOLARBEAM
+
+	db 100, CHARIZARD, "SNAKE@"
+		db FLAMETHROWER
+		db WING_ATTACK
+		db SLASH
+		db FIRE_SPIN
+
+	db 100, BLASTOISE, "GUIKI@"
+		db RAIN_DANCE
+		db SURF
+		db BLIZZARD
+		db WHIRLPOOL
 
 	db $ff

@@ -51,6 +51,8 @@ ViridianGym_BlockData: ; 0xb0b1e
 DummyBlankMap_BlockData:
 	INCBIN "maps/DummyBlankMap.blk"
 ; 0xb0b4b
+DummyBlankMapRed_BlockData:
+    INCBIN "maps/DummyBlankMapRed.blk"
 ViridianCityRB_BlockData:
 	INCBIN "maps/ViridianCityRB.blk"
 ViridianTrainerSchoolRB_BlockData:

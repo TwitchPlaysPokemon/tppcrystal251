@@ -430,6 +430,8 @@ SilverCaveRoom3_BlockData: ; 0xaf399
 SilverCaveDreamRoom_BlockData:
 	INCBIN "maps/SilverCaveDreamRoom.blk"
 ; 0xaf44d
+SilverCaveDreamRoomRed_BlockData:
+    INCBIN "maps/SilverCaveDreamRoomRed.blk"
 
 MahoganyMart1F_BlockData: ; 0xaf885
 MountMoonGiftShop_BlockData:

@@ -640,7 +640,9 @@
 	map_header_2 TohjoFallsBackRoom, TOHJO_FALLS_BACK_ROOM, $9, NONE ; 0x95b94
 	map_header_2 CeladonDeptStoreB1F, CELADON_DEPT_STORE_B1F, $0, NONE
 	map_header_2 SilverCaveDreamRoom, SILVER_CAVE_DREAM_ROOM, $9, NONE ; 0x95b40
+    map_header_2 SilverCaveDreamRoomRed, SILVER_CAVE_DREAM_ROOM_RED, $9, NONE 
 	map_header_2 DummyBlankMap, DUMMY_BLANK_MAP, $0, NONE
+    map_header_2 DummyBlankMapRed, DUMMY_BLANK_MAP_RED, $0, NONE
 
 	map_header_2 PalletTownRB, PALLET_TOWN_RB, $f, NORTH | SOUTH ; 0x95330
 	connection north, ROUTE_1_RB, Route1RB, 0, 0, 10, PALLET_TOWN_RB

@@ -501,6 +501,7 @@ INCLUDE "maps/Route23.asm"
 INCLUDE "maps/SilverCavePokeCenter1F.asm"
 INCLUDE "maps/Route28FamousSpeechHouse.asm"
 INCLUDE "maps/DummyBlankMap.asm"
+INCLUDE "maps/DummyBlankMapRed.asm"
 
 
 SECTION "Map Scripts 25", ROMX
@@ -540,6 +541,7 @@ INCLUDE "maps/TohjoFallsBackRoom.asm"
 INCLUDE "maps/BattleTentPCRoom.asm"
 INCLUDE "maps/CeladonDeptStoreB1F.asm"
 INCLUDE "maps/SilverCaveDreamRoom.asm"
+INCLUDE "maps/SilverCaveDreamRoomRed.asm"
 
 SECTION "Map Scripts 27", ROMX
 INCLUDE "maps/CinnabarVolcanoEntrance.asm"

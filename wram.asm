@@ -2172,6 +2172,7 @@ wHallwayOfFameTrigger::						 ds 1
 wLavenderTownTrigger::                       ds 1
 wVermilionGym2Trigger::                      ds 1
 	ds 16
+wDummyBlankMapRedTrigger::                      ds 1
 
 
 SECTION "Events", WRAMX, BANK [1]

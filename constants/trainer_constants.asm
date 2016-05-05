@@ -792,6 +792,7 @@
 	trainerclass BROCK_RB
 	trainerclass MISTY_RB
 	trainerclass BABA
+    trainerclass SORCERER
 
 NUM_TRAINER_CLASSES EQU __enum__
 
