@@ -2585,6 +2585,10 @@ w3_d801::
 SECTION "WRAM 4 RM", WRAMX[$d200], BANK[$4]
 SoundEngineBackup::
 
+SECTION "WRAM 4 DB", WRAMX[$d400], BANK[$4]
+DecryptBuffer1:: ds DISTRO_MON_LENGTH + 17
+DecryptBuffer2:: ds DISTRO_MON_LENGTH + 17
+
 SECTION "WRAM 4 MP", WRAMX[$d800], BANK[$4] ; seems like this bank is unused
 
 wMPTileMapBackup:: ds 20 * 18
