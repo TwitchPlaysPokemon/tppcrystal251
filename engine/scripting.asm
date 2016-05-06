@@ -1598,7 +1598,7 @@ Script_returnafterbattle: ; 0x97459
 	ld hl, wd459
 	ld d, [hl]
 	ld [hl], $0
-	ld hl, $dff8
+	ld hl, wWildBattlePanic
 	ld [hl], d
 	ld a, [wd0ee]
 	and $3f

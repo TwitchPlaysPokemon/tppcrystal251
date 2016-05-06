@@ -640,14 +640,16 @@ UnknownText_0x9ed72: ; 0x9ed72
 	line "the stats of the"
 
 	para "opposing party"
-	line "to the round"
-	cont "number, while"
+	line "according to the"
 
-	para "HARD MODE uses"
-	line "the strongest"
+	para "challenge state."
 
-	para "possible from"
-	line "the start."
+	para "In HARD MODE,"
+	line "your foes are as"
+
+	para "strong as pos-"
+	line "sible from the"
+	cont "start."
 
 	para "The prize goes up"
 	line "if you use more"

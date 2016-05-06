@@ -12648,7 +12648,7 @@ DetermineMoneyLostToBlackout: ; 12513
 	db 120
 
 DetermineWildBattlePanic:
-	ld hl, $dff8
+	ld hl, wWildBattlePanic
 	ld a, [hl]
 	and $1
 	ld [ScriptVar], a

@@ -521,7 +521,7 @@ BeautySamanthaBeatenText: ; 0x545ed
 ; 0x5460b
 
 BeautySamanthaOWText: ; 0x5460b
-	text "Whitney focuses on"
+	text "WHITNEY focuses on"
 	line "normal and fairy"
 	cont "type #MON."
 

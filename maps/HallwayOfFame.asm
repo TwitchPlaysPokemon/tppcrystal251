@@ -313,7 +313,7 @@ AzureBeforeBattleText:
 
 	para "I'm so relieved"
 	line "that you escaped"
-	cont "from the SS ANNE!"
+	cont "from the S.S.ANNE!"
 
 	para "I knew you were"
 	line "strong enough to"
@@ -360,7 +360,7 @@ RustBeforeBattleText:
 
 	para "I always thought"
 	line "you made it off"
-	cont "the SS ANNE!"
+	cont "the S.S.ANNE!"
 
 	para "No rival of mine"
 	line "would be so weak"
@@ -427,7 +427,7 @@ WinVsChampRustText:
 	text "Aw, man<...>"
 	line "this sucks."
 
-	para "Why did I gotta"
+	para "Why did I hafta"
 	line "lose to a chump"
 	cont "like you?"
 	done
