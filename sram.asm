@@ -185,7 +185,7 @@ sMobileEventIndex:: ds 1
 
 sCrystalData::
 	ds wCrystalDataEnd - wCrystalData
-sMobileEventIndexBackup:: ds 1
+sMobileEventIndexBackup:: ds 1 ; be44
 
 SECTION "SRAM Battle Tower", SRAM, BANK [1]
 ; data of the BattleTower must be in SRAM because you can save and leave between battles
@@ -210,7 +210,11 @@ sBTPkmnPrevTrainer3:: ds 1
 ; Pkmn of preprevious trainer
 sBTPkmnPrevPrevTrainer1:: ds 1
 sBTPkmnPrevPrevTrainer2:: ds 1
-sBTPkmnPrevPrevTrainer3:: ds 1
+sBTPkmnPrevPrevTrainer3:: ds 1 ; be56
+
+SECTION "sDistribution", SRAM, BANK[1]
+sNumDistributedMons:: ds 1
+sDistributionIndices:: ds NUM_DISTRO_MONS
 
 
 SECTION "Boxes 1-7",  SRAM, BANK [2]

@@ -1,4 +1,65 @@
 Special_EnterDistrCode:
+	; This function checks your party size 3 times.
+	; Yeah, we're super paranoid.
+	ld hl, .GreetingText
+	call PrintText
+	call YesNoBox
+	jr c, .cancel
+	ld a, [PartyCount]
+	cp PARTY_LENGTH
+	jr nc, .no_room
+	ld hl, .SaveFirst
+	call PrintText
+	call YesNoBox
+	jr c, .cancel
+	ld hl, .Which
+	call PrintText
+	call Functiona36
+	call .EnterDistrCode
+	jr c, .congrats
+	jr z, .no_room
+	dec a
+	jr z, .wrong_code
+	ld hl, .AlreadyGotIt
+	jr .error
+
+.wrong_code
+	ld hl, .WrongCode
+.error
+	call PrintText
+	ld de, SFX_WRONG
+	call PlaySFX
+	call WaitSFX
+	call Functiona36
+	jr .cancel
+
+.no_room
+	ld hl, .NoRoom
+	call PrintText
+	call Functiona36
+	jr .cancel
+
+.congrats
+	callba Save_NoPrompt
+	ld a, [CurPartySpecies]
+	ld [wd265], a
+	call GetPokemonName
+	ld hl, .Congrats
+	call PrintText
+	ld de, SFX_CAUGHT_MON
+	call PlaySFX
+	call WaitSFX
+.cancel
+	ld hl, .Cancel
+	call PrintText
+	ret
+
+.EnterDistrCode:
+	; Return codes
+	; c: Success!!
+	; nc,z: Party full
+	; nc,nz,a=1: Wrong code
+	; nc,nz,a=2: Already got this one
 	ld a, [PartyCount]
 	cp PARTY_LENGTH
 	jr nc, .fail
@@ -6,56 +67,7 @@ Special_EnterDistrCode:
 	ld de, StringBuffer4
 	callba NamingScreen
 	; pack into 7 byte key
-	ld hl, StringBuffer4
-	ld b, 8
-.pack_loop1
-	ld a, [hl]
-	cp "@"
-	jr z, .pack_skip1
-	cp " "
-	jr nz, .pack_notspace
-	ld a, $bf
-.pack_notspace
-	ld [hli], a
-	dec b
-	jr nz, .pack_loop1
-	jr .pack_skip2
-.pack_skip1
-	ld a, $cf
-.pack_loop2
-	ld [hli], a
-	dec b
-	jr nz, .pack_loop2
-.pack_skip2
-	ld hl, StringBuffer4
-	ld b, 7
-	ld c, hProduct % $100
-	ld de, 7
-	ld a, [hli]
-	sla a
-.pack_loop3
-	push bc
-	ld b, 8
-	ld d, 0
-.pack_loop4
-	sla a
-	rl d
-	dec e
-	jr nz, .pack_skip3
-	ld a, [hli]
-	sla a
-	ld e, 7
-.pack_skip3
-	dec b
-	jr nz, .pack_loop4
-	pop bc
-	push af
-	ld a, d
-	ld [$ff00 + c], a
-	pop af
-	inc c
-	dec b
-	jr nz, .pack_loop3
+	call .Pack
 	ld a, [rSVBK]
 	push af
 	ld a, 4
@@ -74,8 +86,31 @@ Special_EnterDistrCode:
 	ld bc, DISTRO_MON_LENGTH
 	add hl, bc
 	jr .try_decrypt
+
 .got_mon
 	pop af
+	ld a, [DecryptBuffer2]
+	ld b, a
+	ld a, BANK(sNumDistributedMons)
+	call GetSRAMBank
+	ld hl, sNumDistributedMons
+	ld a, [hli]
+	and a
+	jr z, .okay
+	ld c, a
+.check_loop
+	ld a, [hli]
+	cp b
+	jr z, .nope
+	dec c
+	jr nz, .check_loop
+.okay
+	ld [hl], b
+	inc hl
+	ld [hl], -1
+	ld hl, sNumDistributedMons
+	inc [hl]
+	call CloseSRAM
 	ld hl, DecryptBuffer2 + 8
 	ld de, wSurvivalModeParty
 	ld bc, DISTRO_MON_LENGTH - 8
@@ -85,18 +120,24 @@ Special_EnterDistrCode:
 	ld a, [wSurvivalModeParty + 8]
 	ld [CurPartySpecies], a
 	call .Copy
-	ld a, 1
-	jr nc, .party_full
+	ret c
 	xor a
-.party_full
-	ld [ScriptVar], a
+	ret
+
+.nope
+	; We already got this Pokemon!
+	call CloseSRAM
+	pop af
+	ld [rSVBK], a
+	ld a, 2
+	and a
 	ret
 	
 .invalid_code
 	pop af
 	ld [rSVBK], a
-	ld a, 2
-	ld [ScriptVar], a
+	ld a, 1
+	and a
 	ret
 
 .Copy:
@@ -455,7 +496,139 @@ Special_EnterDistrCode:
 	xor c
 	ret
 
+.Pack
+	ld hl, StringBuffer4
+	ld b, 8
+.pack_loop1
+	ld a, [hl]
+	cp "@"
+	jr z, .pack_skip1
+	cp " "
+	jr nz, .pack_notspace
+	ld a, $bf
+.pack_notspace
+	ld [hli], a
+	dec b
+	jr nz, .pack_loop1
+	jr .pack_skip2
+.pack_skip1
+	ld a, $cf
+.pack_loop2
+	ld [hli], a
+	dec b
+	jr nz, .pack_loop2
+.pack_skip2
+	ld hl, StringBuffer4
+	ld b, 7
+	ld c, hProduct % $100
+	ld de, 7
+	ld a, [hli]
+	sla a
+.pack_loop3
+	push bc
+	ld b, 8
+	ld d, 0
+.pack_loop4
+	sla a
+	rl d
+	dec e
+	jr nz, .pack_skip3
+	ld a, [hli]
+	sla a
+	ld e, 7
+.pack_skip3
+	dec b
+	jr nz, .pack_loop4
+	pop bc
+	push af
+	ld a, d
+	ld [$ff00 + c], a
+	pop af
+	inc c
+	dec b
+	jr nz, .pack_loop3
+	ret
+
 .decrypt_olden
 	db "OLDEN"
+
+.GreetingText:
+	text "Hello! Welcome to"
+	line "#COM CENTER"
+	cont "TRADE CORNER."
+
+	para "You can receive"
+	line "unique #MON"
+
+	para "if you have a"
+	line "special code."
+
+	para "Would you like to"
+	line "enter a code?"
+	done
+
+.SaveFirst:
+	text "When you receive"
+	line "your #MON,"
+
+	para "your game will be"
+	line "saved. Okay?"
+	done
+
+.Which:
+	text "Please enter the"
+	line "code."
+	done
+
+.NoRoom:
+	text "I'm sorry."
+
+	para "You have no room"
+	line "in your party to"
+	cont "accept this gift."
+
+	para "Please make room"
+	line "and come back."
+	done
+
+.WrongCode:
+	text "I'm sorry."
+
+	para "The code you gave"
+	line "me does not match"
+	cont "our records."
+
+	para "Please double-"
+	line "check your code"
+	cont "and try again."
+	done
+
+.AlreadyGotIt:
+	text "I'm sorry."
+
+	para "You have already"
+	line "received this"
+	cont "gift."
+
+	para "You may not re-"
+	line "ceive another."
+	done
+
+.Congrats:
+	text "Thank you!"
+
+	para "Here is your"
+	line "#MON!"
+
+	para "<PLAYER> received"
+	line "a @"
+	TX_RAM StringBuffer1
+	text "!"
+	done
+
+.Cancel:
+	text "We hope to see you"
+	line "again!"
+	done
 
 DistributionData: INCBIN "data/distribution.bin"

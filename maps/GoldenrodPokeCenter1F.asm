@@ -56,6 +56,15 @@ PCCMachineSignScript:
 	end
 
 LinkStationNurseScript:
+	checkevent EVENT_BEAT_ELM
+	iffalse .skip
+	faceplayer
+	loadfont
+	special Special_EnterDistrCode
+	waitbutton
+	closetext
+	end
+.skip
 	jumptextfaceplayer UnknownText_0x61072
 
 PokefanFScript_PCC:
