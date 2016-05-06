@@ -1,7 +1,7 @@
 SpecialDratini: ; 0x8b170
 ; if ScriptVar is 0 or 1, change the moveset of the last Dratini in the party.
 ;  0: give it a special moveset with Extremespeed.
-;  1: give it the normal moveset of a level 15 Dratini.
+;  1: give it the normal moveset of a level 53 Dratini.
 
 	ld a, [ScriptVar]
 	cp $2
@@ -71,17 +71,17 @@ SpecialDratini: ; 0x8b170
 .Movesets
 .Moveset0
 ; Dratini does not normally learn Extremespeed. This is a special gift.
-	db WRAP
-	db THUNDER_WAVE
-	db TWISTER
+	db HYPER_BEAM
+	db FLAMETHROWER
+	db DRAGON_PULSE
 	db EXTREMESPEED
 	db 0
 .Moveset1
-; This is the normal moveset of a level 15 Dratini
-	db WRAP
-	db LEER
-	db THUNDER_WAVE
-	db TWISTER
+; This is the normal moveset of a level 53 Dratini
+	db HYPER_BEAM
+	db FLAMETHROWER
+	db DRAGON_PULSE
+	db DRAGON_RAGE
 	db 0
 
 GetNthPartyMon: ; 0x8b1ce
