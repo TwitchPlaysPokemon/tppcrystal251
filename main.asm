@@ -7664,7 +7664,7 @@ BadgeStatXpTable:
 
 
 
-Functiond88c: ; d88c if montype is non-zero, load mon into enemy trainer. else laod mon into party if space. ret c if succsessful.
+Functiond88c: ; d88c if montype is non-zero, load mon into enemy trainer. else load mon into party if space. ret c if succsessful.
 ;species = curpartyspecies, $ffae = placed in slot
 	ld de, PartyCount
 	ld a, [MonType]
@@ -7869,7 +7869,7 @@ Functiond906: ; d906
 	ld a, [MonType]
 	cp 1
 	jr z, .MaxHappiness
-	ld b, $46
+	ld b, BASE_HAPPINESS
 .MaxHappiness
 	ld a, b
 	ld [de], a ;load base happiness if not a trainer, else load max happiness
@@ -7911,6 +7911,37 @@ Functiond906: ; d906
 	ld [de], a
 	inc de
 	push hl
+	push de
+	ld hl, -13 ;start of statxp
+	add hl, de
+	push hl
+	ld b, 0
+	ld c, 26
+	add hl, bc ;start of stat clock
+	ld d,h
+	ld e,l
+	pop hl
+	push de ;start of stat block, over second byte of cur HP
+	ld b, 1
+	call Functione167 ;update stats for badge boost stat xp
+
+	pop de
+	inc de ;over low byte of new max hp
+	ld a, [EnemyMonMaxHP]
+	ld h, a
+	ld a, [EnemyMonMaxHP+1] ; hl = old max hp
+	ld l, a
+
+	ld a, [de] ;sub new max hp by old to get differnce, store in bc
+	sub l
+	ld c, a ; store difference in HP
+	dec de
+	ld a, [de]
+	sbc h
+	ld b, a
+
+	pop de
+	push bc ;holds difference between old max and new max HP
 	ld hl, EnemyMonPP ;load pp from enemy mon
 	ld b, NUM_MOVES
 .asm_da03
@@ -7918,15 +7949,16 @@ Functiond906: ; d906
 	ld [de], a
 	inc de
 	dec b
-	jr nz, .asm_da03
+	jr nz, .asm_da03 ;end of pp
+	pop bc ;load in HP diff for later
 	pop hl
 	ld a, BASE_HAPPINESS
 	ld [de], a ;load in happiness
 	inc de
 	xor a
-	ld [de], a
+	ld [de], a ;pokerus
 	inc de
-	ld [de], a
+	ld [de], a ;catching stats
 	inc de
 	ld [de], a;load 0 into mon pokerus and catching stats
 	inc de
@@ -7940,19 +7972,24 @@ Functiond906: ; d906
 	ld a, [hli] ;load ???
 	ld [de], a
 	inc de
-	ld a, [hli] ;load HP
+	inc de ;skip 1 to allow for adc use
+	inc hl
+	ld a, [hld] ;load HP, adding difference between new max and old max HP to current
+	add c
+	ld [de], a
+	ld a, [hl]
+	adc b
+	dec de
 	ld [de], a
 	inc de
-	ld a, [hl]
-	ld [de], a
 	inc de
 .asm_da29 ;
 	ld a, [wBattleMode]
 	dec a
 	jr nz, .asm_da3b ;if trainer battle, get mon stats from battle mon
-	ld hl, EnemyMonMaxHP
-	ld bc, $000c
-	call CopyBytes
+	;ld hl, EnemyMonMaxHP
+	;ld bc, $000c
+	;call CopyBytes
 	pop hl ;start of mon data
 	jr .asm_da45
 
@@ -9019,7 +9056,7 @@ Functione17b: ; e17b return stat c for mon species whose base stats are loaded o
 	ld a, b
 	ld d, a ;load b into d
 	push hl ;start of stat xp
-	ld hl, BaseHP ;start if base stats
+	ld hl, BaseHP ;start of base stats
 	dec hl ;go up 1
 	ld b, $0
 	add hl, bc ;go down to base stat c. 1 = hp, 2 = attack, 3 = defence, 4 = speed, 5 = special attack, 6 = special defence
