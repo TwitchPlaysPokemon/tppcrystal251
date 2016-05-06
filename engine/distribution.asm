@@ -18,7 +18,7 @@ Special_EnterDistrCode:
 	jr nz, .pack_loop1
 	jr .pack_skip2
 .pack_skip1
-	ld a, $bf
+	ld a, $cf
 .pack_loop2
 	ld [hli], a
 	dec b
@@ -245,16 +245,13 @@ Special_EnterDistrCode:
 	ld de, DecryptBuffer1
 .decrypt_loop1
 	push bc
-	ld a, [hTmpe]
-	add [hl]
-	ld b, a
-	inc hl
 	ld a, [hTmpd]
 	ld c, a
 	ld a, [$ff00 + c]
+	ld b, a
+	ld a, [hli]
 	add b
 	ld [de], a
-	ld [hTmpe], a
 	inc de
 	inc c
 	ld a, c
@@ -274,18 +271,13 @@ Special_EnterDistrCode:
 	ld de, DecryptBuffer2
 .decrypt_loop2
 	push bc
-	ld a, [hTmpe]
-	sub [hl]
-	ld b, a
-	inc hl
 	ld a, [hTmpd]
 	ld c, a
 	ld a, [$ff00 + c]
-	cpl
-	add b
-	inc a
+	ld b, a
+	ld a, [hli]
+	sub b
 	ld [de], a
-	ld [hTmpe], a
 	inc de
 	dec c
 	ld a, c
