@@ -214,7 +214,7 @@ sBTPkmnPrevPrevTrainer3:: ds 1 ; be56
 
 SECTION "sDistribution", SRAM, BANK[1]
 sNumDistributedMons:: ds 1
-sDistributionIndices:: ds NUM_DISTRO_MONS
+sDistributionIndices:: ds DISTRO_MON_COUNT
 
 
 SECTION "Boxes 1-7",  SRAM, BANK [2]

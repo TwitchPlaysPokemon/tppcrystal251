@@ -62,7 +62,11 @@ Special_EnterDistrCode:
 	; nc,nz,a=2: Already got this one
 	ld a, [PartyCount]
 	cp PARTY_LENGTH
-	jr nc, .fail
+	jr c, .party_length_okay
+	xor a
+	ret
+	
+.party_length_okay
 	ld b, 9 ; code distro
 	ld de, StringBuffer4
 	callba NamingScreen
@@ -270,7 +274,7 @@ Special_EnterDistrCode:
 	pop bc
 	inc hl
 	dec c
-	jr nz .loop2
+	jr nz, .loop2
 .done2
 	pop hl
 	pop de
@@ -291,7 +295,7 @@ Special_EnterDistrCode:
 	push bc
 	ld a, [hTmpd]
 	ld c, a
-	ld a, [$ff00 + c]
+	ld a, [$ff00+c]
 	ld b, a
 	ld a, [hli]
 	add b
@@ -317,7 +321,7 @@ Special_EnterDistrCode:
 	push bc
 	ld a, [hTmpd]
 	ld c, a
-	ld a, [$ff00 + c]
+	ld a, [$ff00+c]
 	ld b, a
 	ld a, [hli]
 	sub b
@@ -346,7 +350,7 @@ Special_EnterDistrCode:
 	ld de, DecryptBuffer1 + DISTRO_MON_LENGTH
 .decrypt_odd1
 	push bc
-	ld a, [$ff00 + c]
+	ld a, [$ff00+c]
 	swap a
 	and $f
 	add 1 ; 1 - 16
@@ -365,7 +369,7 @@ Special_EnterDistrCode:
 	jr c, .decrypt_odd2
 	ld de, DecryptBuffer2
 .decrypt_odd2
-	ld a, [$ff00 + c]
+	ld a, [$ff00+c]
 	and $f
 	add 2 ; 2 - 17
 	ld b, a
@@ -399,14 +403,14 @@ Special_EnterDistrCode:
 	jr nz, .decrypt_loop3
 	; Phase 3
 	ld hl, .decrypt_olden
-	ld c, hProduct + 7
+	ld c, hProduct + 7 - $ff00
 	ld b, 5
-.decrypt_loop6
+.decrypt_loop7
 	ld a, [hli]
-	ld [$ff00 + c], a
+	ld [$ff00+c], a
 	inc c
 	dec b
-	jr nz, .decrypt_loop6
+	jr nz, .decrypt_loop7
 	ld hl, DecryptBuffer1
 	ld de, DISTRO_MON_LENGTH - 2
 	ld a, hProduct % $100
@@ -414,7 +418,7 @@ Special_EnterDistrCode:
 	ld a, (hProduct + 7) % $100
 	ld [hTmpe], a
 	ld b, DISTRO_MON_LENGTH / 2
-.decrypt_loop7
+.decrypt_loop8
 	ld a, [hli]
 	push hl
 	add hl, de
@@ -430,12 +434,11 @@ Special_EnterDistrCode:
 	ld [hl], a
 	pop de
 	pop hl
-	ld de,
 	dec b
-	jr nz, .decrypt_loop7
+	jr nz, .decrypt_loop8
 	ld de, DecryptBuffer2 + (DISTRO_MON_LENGTH / 2)
 	ld b, DISTRO_MON_LENGTH / 2
-.decrypt_loop8
+.decrypt_loop9
 	ld a, [hl]
 	push de
 	ld de, 0 - (DISTRO_MON_LENGTH / 2)
@@ -448,18 +451,18 @@ Special_EnterDistrCode:
 	ld [de], a
 	inc de
 	dec b
-	jr nz, .decrypt_loop8
+	jr nz, .decrypt_loop9
 	; Identity check
 	ld hl, DecryptBuffer2
 	ld a, [hli]
 	ld c, a
 	ld b, 7
-.decrypt_loop9
+.decrypt_loop10
 	ld a, [hli]
 	cp c
 	jr nz, .decrypt_invalid
 	dec b
-	jr nz, .decrypt_loop9
+	jr nz, .decrypt_loop10
 	xor a ; clear carry flag
 	ret
 
@@ -477,7 +480,7 @@ Special_EnterDistrCode:
 	ld a, hProduct % $100
 .decrypt_skipx1
 	ld [hTmpd], a
-	ld a, [$ff00 + c]
+	ld a, [$ff00+c]
 	ld c, a
 	pop af
 	xor c
@@ -490,7 +493,7 @@ Special_EnterDistrCode:
 	ld a, (hProduct + 7) % $100
 .decrypt_skipx2
 	ld [hTmpe], a
-	ld a, [$ff00 + c]
+	ld a, [$ff00+c]
 	ld c, a
 	pop af
 	xor c
@@ -542,7 +545,7 @@ Special_EnterDistrCode:
 	pop bc
 	push af
 	ld a, d
-	ld [$ff00 + c], a
+	ld [$ff00+c], a
 	pop af
 	inc c
 	dec b
@@ -631,4 +634,8 @@ Special_EnterDistrCode:
 	line "again!"
 	done
 
-DistributionData: INCBIN "data/distribution.bin"
+DistributionData:
+rept DISTRO_MON_COUNT * DISTRO_MON_LENGTH
+	db 0
+endr
+; INCBIN "data/distribution.bin"

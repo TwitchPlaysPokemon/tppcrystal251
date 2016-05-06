@@ -18176,12 +18176,12 @@ DeleteBox: ; 14a83 (5:4a83)
 
 Function14ab2: ; 14ab2  ask if save, if yes save and ret nc
 	call Function14b89 ; ask if save, if yes erase save and ret nc
-	jr c, .asm_14ac1 ;ret c if refused
+	ret c ;ret c if refused
+Save_NoPrompt:
 	call Function14b54
 	call Function14be3
 	call Function14b5a
 	and a
-.asm_14ac1
 	ret
 ; 14ac2
 
@@ -18464,6 +18464,7 @@ Function14cbb: ; 14cbb
 	call Function14cf4
 	call Function14d68
 	call Function14d5c
+	call EraseDistroCodes
 	ld a, $0
 	call GetSRAMBank
 	xor a
@@ -18475,14 +18476,19 @@ Function14cbb: ; 14cbb
 	ret
 ; 14ce2
 
+EraseDistroCodes:
+	ld a, $1
+	call GetSRAMBank
+	ld hl, sDistributionIndices
+	ld bc, DISTRO_MON_COUNT + 1
+	jr FillSRAMWithZeros
+
 Function14ce2: ; 14ce2
 	ld a, $1
 	call GetSRAMBank
 	ld hl, $b260
 	ld bc, $0060
-	xor a
-	call ByteFill
-	jp CloseSRAM
+	jr FillSRAMWithZeros
 ; 14cf4
 
 Function14cf4: ; 14cf4
@@ -18490,9 +18496,7 @@ Function14cf4: ; 14cf4
 	call GetSRAMBank
 	ld hl, $abe4
 	ld bc, $004c
-	xor a
-	call ByteFill
-	jp CloseSRAM
+	jr FillSRAMWithZeros
 ; 14d06
 
 Function14d06: ; 14d06
@@ -18500,20 +18504,11 @@ Function14d06: ; 14d06
 	call GetSRAMBank
 	ld hl, $b2c0
 	ld bc, $0b7c
+FillSRAMWithZeros:
 	xor a
 	call ByteFill
 	jp CloseSRAM
 ; 14d18
-
-Function14d18: ; 14d18
-	ld a, $4
-	call GetSRAMBank
-	ld hl, Unknown_14d2c
-	ld de, $a007
-	ld bc, $0030
-	call CopyBytes
-	jp CloseSRAM
-; 14d2c
 
 Unknown_14d2c: ; 14d2c
 	db $0d, $02, $00, $05, $00, $00
@@ -92048,3 +92043,6 @@ SampleRandomSurvival:
 
 SECTION "GS_INTRO", ROMX
 INCLUDE "engine/gs_copyright_intro.asm"
+
+SECTION "CodeDistrib", ROMX
+INCLUDE "engine/distribution.asm"
