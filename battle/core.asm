@@ -6820,10 +6820,18 @@ LoadEnemyMon: ; 3e8eb
 .Stats
 ; Fill stats
 	ld hl, (OTPartyMon1StatExp - 1)
+	ld a, [wBattleMode]
+	cp WILD_BATTLE
+	jr z, .setForWild
 	ld a, [CurPartyMon]
 	call GetPartyLocation
-	ld de, EnemyMonMaxHP
 	ld b, 1
+	jr .GotCurPartyMon 
+.setForWild
+	ld hl, LinkBattleRNs + 7
+	ld b, 0
+.GotCurPartyMon
+	ld de, EnemyMonMaxHP
 	predef Functione167 ;load in stats, hl is start of stat xp
 
 ; If we're in a trainer battle,

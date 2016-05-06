@@ -58,9 +58,9 @@ UnknownText_0x1968a0: ; 0x1968a0
 	para "bug #MON poi-"
 	line "soned my #MON!"
 
-	para "I just kept going,"
-	line "but then my"
-	cont "#MON fainted."
+	para "It was terrifying<...>"
+	line "My #MON almost"
+	cont "fainted!"
 
 	para "You should keep an"
 	line "ANTIDOTE with you."
