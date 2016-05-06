@@ -1,6 +1,9 @@
 DISTRO_MON_LENGTH EQU 38 ; 8-byte repeat hash, species, item, 4 moves, 2-byte OT ID, 2-byte DVs, level, 11-byte OT name, 11-byte nickname
 
 Special_EnterDistrCode:
+	ld a, [PartyCount]
+	cp PARTY_LENGTH
+	jr nc, .fail
 	ld b, 9 ; code distro
 	ld de, StringBuffer4
 	callba NamingScreen
@@ -10,6 +13,7 @@ Special_EnterDistrCode:
 	ld [CurPartySpecies], a
 	call .Copy
 	jr nc, .added_mon
+.fail
 	xor a
 	ld [ScriptVar], a
 	ret
@@ -22,11 +26,11 @@ Special_EnterDistrCode:
 .Copy:
 	ld hl, PartyCount
 	ld a, [hl]
-	cp PARTY_COUNT
+	cp PARTY_LENGTH
 	ret nc
+	ld [CurPartyMon], a
 	inc a
 	ld [hli], a
-	ld [CurPartyMon], a
 	ld c, a
 	ld b, 0
 	add hl, bc
