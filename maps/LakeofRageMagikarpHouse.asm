@@ -115,7 +115,13 @@ UnknownText_0x19a72e: ; 0x19a72e
 	para "That's the story"
 	line "passed on from my"
 
-	para "Grandpa's great-"
+	para "great-great-great-"
+	line "great-great-great-"
+
+	para "great-great-great-"
+	line "great-great-great-"
+
+	para "great-great-great-"
 	line "great-grandpa."
 
 	para "It used to be that"

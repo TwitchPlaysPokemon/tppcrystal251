@@ -157,6 +157,7 @@ LanceBeforeRematchText:
 
 	para "We will battle to"
 	line "determine who is"
+
 	para "the stronger of"
 	line "the two of us."
 

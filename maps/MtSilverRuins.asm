@@ -365,9 +365,9 @@ ElmText_MtSilverRuinsFinalBattleAfter_Part1:
 	para "When I first met"
 	line "you in NEW BARK,"
 
-	para "I knew you had"
-	line "wanted to become"
-	cont "the best trainer<...>"
+	para "I knew you wanted"
+	line "to become the best"
+	cont "#MON TRAINER<...>"
 
 	para "To catch all"
 	line "species of #MON"

@@ -1228,6 +1228,7 @@ wSurvivalModeLevel:: ds 1
 wSurvivalModePartyEnd::
 wSurvivalModeWinStreak:: ds 2
 
+wWildBattlePanic::
 	ds 24
 
 SECTION "WRAM 1", WRAMX, BANK [1]

@@ -109,10 +109,22 @@ MortyRejectSuicuneInTower:
 	end
 
 MortyRejectSuicuneInTowerText:
-	text "SUICUNE awaits,"
-	line "you shouldn't"
-	cont "waste time here."
+	text "There's a distur-"
+	line "bance at TIN"
+	cont "TOWER."
 
+	para "Oh? That's the"
+	line "CLEAR BELL!"
+
+	para "The sound of that"
+	line "bell can tame even"
+
+	para "the toughest of"
+	line "beasts."
+
+	para "Perhaps it may"
+	line "calm the beast"
+	cont "in TIN TOWER."
 	done
 
 MortyRejectTowerClosed:
@@ -123,24 +135,67 @@ MortyRejectTowerClosed:
 
 
 MortyRejectTowerClosedText:
-	text "The LEGENDARY"
-	line "BEASTS hold"
-	cont "the secret to the"
-	cont "return of the"
-	cont "RAINBOW #MON."
+	text "RAIKOU, ENTEI, and"
+	line "SUICUNE<...>"
 
-	para "Bring all 3"
-	line "together and"
-	cont "something may"
-	cont "happen."
+	para "The day we first"
+	line "met in the BURNT"
+
+	para "TOWER, they fled"
+	line "from your pre-"
+	cont "sence."
+
+	para "Legends tell of"
+	line "three #MON who"
+
+	para "perished in the"
+	line "blaze that claimed"
+	cont "the tower."
+
+	para "Perhaps<...>"
+
+	para "Could the beasts"
+	line "be reincarnations"
+	cont "of those #MON?"
+
+	para "Could the RAINBOW"
+	line "#MON be wai-"
+	cont "ting for their"
+	cont "return?"
 	done
 
 MortyRejectTowerOpen:
-	text "It landed!"
+	text "I<...> I can't"
+	line "believe it!"
 
-	para "You must go meet"
-	line "the LEGANDARY"
-	cont "RAINBOW #MON."
+	para "It landed! The"
+	line "RAINBOW #MON"
+	cont "has returned!"
+
+	para "But<...>"
+
+	para "I admit I am not"
+	line "worthy to meet"
+
+	para "the RAINBOW #-"
+	line "MON myself<...>"
+
+	para "<PLAYER>!"
+
+	para "You caught the 3"
+	line "beasts, did you"
+	cont "not?"
+
+	para "Perhaps the"
+	line "RAINBOW #MON"
+
+	para "will appear before"
+	line "you!"
+
+	para "Go, to TIN TOWER!"
+
+	para "Go and fulfill my"
+	line "lifelong dream!"
 	done
 
 UnknownScript_0x99db7: ; 0x99db7

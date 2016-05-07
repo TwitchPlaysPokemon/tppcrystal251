@@ -132,7 +132,7 @@ UnknownText_0x7e355: ; 0x7e355
 
 MortarGiftPCText
 	text "HITMONTOP was sent"
-	line "to Bill's PC."
+	line "to BILL's PC."
 	done
 
 UnknownText_0x7e36a: ; 0x7e36a
@@ -153,7 +153,7 @@ UnknownText_0x7e36a: ; 0x7e36a
 UnknownText_0x7e3df: ; 0x7e3df
 	text "You have no room"
 	line "in your party"
-	cont "or PC box!"
+	cont "or PC BOX!"
 	done
 ; 0x7e400
 
