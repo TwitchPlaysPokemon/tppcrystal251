@@ -18510,11 +18510,11 @@ Function14cbb: ; 14cbb
 	call Function14d68
 	call Function14d5c
 	call EraseDistroCodes
-	ld a, $0
+	ld a, BANK(sStackTop)
 	call GetSRAMBank
 	xor a
-	ld [$bf10], a
-	ld [$bf11], a
+	ld [sStackTop], a
+	ld [sStackTop + 1], a
 	call CloseSRAM
 	ld a, $1
 	ld [wd4b4], a
@@ -18522,33 +18522,36 @@ Function14cbb: ; 14cbb
 ; 14ce2
 
 EraseDistroCodes:
-	ld a, $1
+	ld a, BANK(sDistroMonFlags)
 	call GetSRAMBank
-	ld hl, sDistributionIndices
-	ld bc, DISTRO_MON_COUNT + 1
-	jr FillSRAMWithZeros
+	ld hl, sDistroMonFlags
+	xor a
+	ld [hli], a
+	ld [hli], a
+	ld [hl], a
+	jp CloseSRAM
 
 Function14ce2: ; 14ce2
-	ld a, $1
+	ld a, BANK(sLinkBattleStats)
 	call GetSRAMBank
-	ld hl, $b260
-	ld bc, $0060
+	ld hl, sLinkBattleStats
+	ld bc, sLinkBattleStatsEnd - sLinkBattleStats
 	jr FillSRAMWithZeros
 ; 14cf4
 
 Function14cf4: ; 14cf4
-	ld a, $0
+	ld a, BANK(sBackupMysteryGiftItem)
 	call GetSRAMBank
-	ld hl, $abe4
-	ld bc, $004c
+	ld hl, sBackupMysteryGiftItem
+	ld bc, sBackupMysteryGiftItemEnd - sBackupMysteryGiftItem
 	jr FillSRAMWithZeros
 ; 14d06
 
 Function14d06: ; 14d06
-	ld a, $1
+	ld a, BANK(sHallOfFame)
 	call GetSRAMBank
-	ld hl, $b2c0
-	ld bc, $0b7c
+	ld hl, sHallOfFame
+	ld bc, sHallOfFameEnd - sHallOfFame ; $0b7c
 FillSRAMWithZeros:
 	xor a
 	call ByteFill
@@ -18567,10 +18570,10 @@ Unknown_14d2c: ; 14d2c
 ; 14d5c
 
 Function14d5c: ; 14d5c
-	ld a, $1
+	ld a, BANK(sBattleTowerChallengeState)
 	call GetSRAMBank
 	xor a
-	ld [$be45], a
+	ld [sBattleTowerChallengeState], a
 	jp CloseSRAM
 ; 14d68
 

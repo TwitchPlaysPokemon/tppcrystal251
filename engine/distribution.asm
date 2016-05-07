@@ -15,7 +15,12 @@ Special_EnterDistrCode:
 	ld hl, .Which
 	call PrintText
 	call Functiona36
+	call Function1d6e
+	call Function2ed3
 	call .EnterDistrCode
+	push af
+	call Function2b4d
+	pop af
 	jr c, .congrats
 	jr z, .no_room
 	dec a
@@ -67,13 +72,10 @@ Special_EnterDistrCode:
 	ret
 	
 .party_length_okay
-	call Function1d6e
-	call Function2ed3
 	ld b, 9 ; code distro
 	ld de, StringBuffer4
 	callba NamingScreen
 	; pack into 7 byte key
-	call Function2b4d
 	call .Pack
 	ld a, [rSVBK]
 	push af
@@ -95,28 +97,24 @@ Special_EnterDistrCode:
 	jr .try_decrypt
 
 .got_mon
-	pop af
-	ld a, [DecryptBuffer2]
-	ld b, a
-	ld a, BANK(sNumDistributedMons)
+	ld a, BANK(sDistroMonFlags)
 	call GetSRAMBank
-	ld hl, sNumDistributedMons
-	ld a, [hli]
-	and a
-	jr z, .okay
-	ld c, a
-.check_loop
-	ld a, [hli]
-	cp b
-	jr z, .nope
-	dec c
-	jr nz, .check_loop
-.okay
-	ld [hl], b
-	inc hl
-	ld [hl], -1
-	ld hl, sNumDistributedMons
-	inc [hl]
+	pop af
+	xor $ff
+	inc a
+	add DISTRO_MON_COUNT
+	ld e, a
+	ld d, 0
+	ld hl, sDistroMonFlags
+	push hl
+	push de
+	ld b, 2
+	call FlagAction
+	pop de
+	pop hl
+	jr nz, .nope
+	ld b, 1
+	call FlagAction
 	call CloseSRAM
 	ld hl, DecryptBuffer2 + 8
 	ld de, wSurvivalModeParty
