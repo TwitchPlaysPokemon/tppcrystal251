@@ -67,10 +67,13 @@ Special_EnterDistrCode:
 	ret
 	
 .party_length_okay
+	call Function1d6e
+	call Function2ed3
 	ld b, 9 ; code distro
 	ld de, StringBuffer4
 	callba NamingScreen
 	; pack into 7 byte key
+	call Function2b4d
 	call .Pack
 	ld a, [rSVBK]
 	push af
