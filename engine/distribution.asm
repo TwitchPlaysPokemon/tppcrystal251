@@ -287,12 +287,23 @@ Special_EnterDistrCode:
 .Decrypt:
 	; Decrypt a distribution data at hl into DecryptBuffer2
 	; with a key stored in hProduct. Return carry if fails.
+	push hl
+	ld hl, .decrypt_olden
+	ld c, (hProduct + 7) % $100
+	ld b, 5
+.decrypt_loop7
+	ld a, [hli]
+	ld [$ff00+c], a
+	inc c
+	dec b
+	jr nz, .decrypt_loop7
+	pop hl
 	; Phase 1
 	xor a
 	ld [hTmpe], a
 	ld a, hProduct % $100
 	ld [hTmpd], a
-	lb bc, DISTRO_MON_LENGTH, 7
+	lb bc, DISTRO_MON_LENGTH, 12
 	ld de, DecryptBuffer1
 .decrypt_loop1
 	push bc
@@ -309,16 +320,14 @@ Special_EnterDistrCode:
 	pop bc
 	dec c
 	jr nz, .decrypt_skip1
-	ld c, 7
+	ld c, 12
 	ld a, hProduct % $100
 .decrypt_skip1
 	ld [hTmpd], a
 	dec b
 	jr nz, .decrypt_loop1
 	ld hl, DecryptBuffer1
-	ld a, (hProduct + 6) % $100
-	ld [hTmpd], a
-	lb bc, DISTRO_MON_LENGTH, 7
+	ld b, DISTRO_MON_LENGTH
 	ld de, DecryptBuffer2
 .decrypt_loop2
 	push bc
@@ -330,13 +339,13 @@ Special_EnterDistrCode:
 	sub b
 	ld [de], a
 	inc de
-	dec c
+	inc c
 	ld a, c
 	pop bc
 	dec c
 	jr nz, .decrypt_skip2
-	ld c, 7
-	ld a, (hProduct + 6) % $100
+	ld c, 12
+	ld a, hProduct % $100
 .decrypt_skip2
 	ld [hTmpd], a
 	dec b
@@ -405,15 +414,6 @@ Special_EnterDistrCode:
 	dec b
 	jr nz, .decrypt_loop3
 	; Phase 3
-	ld hl, .decrypt_olden
-	ld c, hProduct + 7 - $ff00
-	ld b, 5
-.decrypt_loop7
-	ld a, [hli]
-	ld [$ff00+c], a
-	inc c
-	dec b
-	jr nz, .decrypt_loop7
 	ld hl, DecryptBuffer1
 	ld de, DISTRO_MON_LENGTH - 2
 	ld a, hProduct % $100
@@ -444,10 +444,10 @@ Special_EnterDistrCode:
 .decrypt_loop9
 	ld a, [hl]
 	push de
-	ld de, 0 - (DISTRO_MON_LENGTH / 2)
+	ld de, DecryptBuffer2 - DecryptBuffer1 - (DISTRO_MON_LENGTH / 2)
 	add hl, de
 	xor [hl]
-	ld de, (DISTRO_MON_LENGTH / 2) + 1
+	ld de, (DISTRO_MON_LENGTH / 2) + DecryptBuffer1 - DecryptBuffer2 + 1
 	add hl, de
 	call .decrypt_xor
 	pop de
@@ -637,8 +637,7 @@ Special_EnterDistrCode:
 	line "again!"
 	done
 
-DistributionData:
-rept DISTRO_MON_COUNT * DISTRO_MON_LENGTH
+DistributionData: INCBIN "data/distribution.bin"
+rept 798
 	db 0
 endr
-; INCBIN "data/distribution.bin"
