@@ -656,6 +656,3 @@ Special_EnterDistrCode:
 	done
 
 DistributionData: INCBIN "data/distribution.bin"
-rept 798
-	db 0
-endr
