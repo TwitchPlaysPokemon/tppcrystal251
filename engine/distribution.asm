@@ -100,7 +100,7 @@ Special_EnterDistrCode:
 	ld a, BANK(sDistroMonFlags)
 	call GetSRAMBank
 	pop af
-	xor $ff
+	cpl
 	add DISTRO_MON_COUNT + 1
 	ld e, a
 	ld d, 0
