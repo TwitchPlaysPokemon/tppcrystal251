@@ -10721,7 +10721,7 @@ Function116f8: ; 116f8
 Function1171d: ; 1171d
 	ld a, [wc6d4]
 	and 15
-	cp 9
+	cp 10
 	jr c, .ok
 	xor a
 .ok
@@ -10923,8 +10923,8 @@ Function1187b: ; 1187b (4:587b)
 	jr Function11890
 
 StoreDistCodeEntryParams:
-	ld a, $9
-	hlcoord 5, 6
+	ld a, $8
+	hlcoord 5, 4
 	jr Function11890
 
 Function11882: ; 11882 (4:5882)
@@ -10951,6 +10951,14 @@ NamingScreen_IsTargetBox: ; 1189c
 	ld b, a
 	pop af
 	dec b
+	jr z, .boxscreen
+	push af
+	ld a, [wc6d4]
+	sub $8
+	ld b, a
+	pop af
+	dec b
+.boxscreen
 	pop bc
 	ret
 ; 118a8
