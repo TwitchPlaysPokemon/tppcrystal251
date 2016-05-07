@@ -153,9 +153,9 @@ Special_EnterDistrCode:
 	cp PARTY_LENGTH
 	ret nc
 	ld [CurPartyMon], a
+	ld c, a
 	inc a
 	ld [hli], a
-	ld c, a
 	ld b, 0
 	add hl, bc
 	ld a, [wSurvivalModeParty]
@@ -179,7 +179,7 @@ Special_EnterDistrCode:
 	ld hl, PartyMonNicknames
 	ld de, wSurvivalModeParty + 22 ; nickname
 .CopyName:
-	push hl
+	push de
 	ld bc, NAME_LENGTH
 	ld a, [CurPartyMon]
 	call AddNTimes
@@ -225,6 +225,24 @@ Special_EnterDistrCode:
 	ld [hl], a
 	inc de
 	ld [CurPartyLevel], a ; for CalcPkmnStats
+	ld d, a
+	push bc
+	callba Function50e47
+
+	; Calc experience
+	pop bc
+	ld hl, PartyMon1Exp - PartyMon1
+	add hl, bc
+	push bc
+	ld c, hMultiplicand & $ff
+	ld b, 3
+.exp_loop
+	ld a, [$ff00+c]
+	ld [hli], a
+	inc c
+	dec b
+	jr nz, .exp_loop
+	pop bc
 
 	; Calc stats
 	push bc
