@@ -101,8 +101,7 @@ Special_EnterDistrCode:
 	call GetSRAMBank
 	pop af
 	xor $ff
-	inc a
-	add DISTRO_MON_COUNT
+	add DISTRO_MON_COUNT + 1
 	ld e, a
 	ld d, 0
 	ld hl, sDistroMonFlags
