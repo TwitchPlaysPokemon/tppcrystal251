@@ -9450,10 +9450,7 @@ Functione3de: ; e3de InitNickname
 	pop hl
 	ld de, StringBuffer1
 	call InitName
-	ld a, $4 ; XXX could this be in bank 4 in pokered?
-	ld hl, Function2b4d
-	rst FarCall
-	ret
+	jp Function2b4d
 ; e3fd
 
 Functione3fd: ; e3fd bill's pc

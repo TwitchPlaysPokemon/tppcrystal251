@@ -78,6 +78,7 @@ BoutiqueStylistScript:
 	interpretmenu2
 	writebackup
 	iffalse BoutiqueStylistScriptNoStyle
+	takemoney 0, 500
 	addvar 7 ; to get a value between $8 and $c, as we want
 	copyvartobyte wPlayerPalette
 	closetext

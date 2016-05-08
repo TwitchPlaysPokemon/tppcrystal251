@@ -42,7 +42,10 @@ Special_EnterDistrCode:
 	ld hl, .NoRoom
 	call PrintText
 	call Functiona36
-	jr .cancel
+.cancel
+	ld hl, .Cancel
+	call PrintText
+	ret
 
 .congrats
 	callba Save_NoPrompt
@@ -54,10 +57,27 @@ Special_EnterDistrCode:
 	ld de, SFX_CAUGHT_MON
 	call PlaySFX
 	call WaitSFX
-.cancel
-	ld hl, .Cancel
+	ld a, [wSurvivalModeParty + 33]
+	and a
+	jr z, .cancel
+	ld hl, PartyMonNicknames
+	ld bc, NAME_LENGTH
+	ld a, [CurPartyMon]
+	call AddNTimes
+	push hl
+	ld hl, .GiveItANickname
 	call PrintText
-	ret
+	call YesNoBox
+	jr c, .skip_nickname
+	pop de
+	callba Functione3de
+	jr .cancel
+
+.skip_nickname
+	pop hl
+	ld de, StringBuffer1
+	call InitName
+	jr .cancel
 
 .EnterDistrCode:
 	; Return codes
@@ -170,6 +190,9 @@ Special_EnterDistrCode:
 	pop hl
 	ld de, wSurvivalModeParty ; species, item, moves, OT ID, dvs, level
 	call .ConvertHashedMon
+	ld a, [wSurvivalModeParty + 33]
+	and a
+	jr nz, .players_ot
 	ld hl, PartyMonOT
 	ld de, wSurvivalModeParty + 11 ; ot name
 	call .CopyName
@@ -187,6 +210,19 @@ Special_EnterDistrCode:
 	call CopyBytes
 	scf
 	ret
+
+.players_ot
+	ld a, PartyMon1ID - PartyMon1
+	call GetPartyParamLocation
+	ld de, PlayerID
+	ld a, [de]
+	ld [hli], a
+	inc de
+	ld a, [de]
+	ld [hl], a
+	ld hl, PartyMonOT
+	ld de, PlayerName
+	jp .CopyName
 
 .ConvertHashedMon:
 	; Copy species, item, moves, and OT ID
@@ -645,6 +681,13 @@ Special_EnterDistrCode:
 	line "a @"
 	TX_RAM StringBuffer1
 	text "!"
+	done
+
+.GiveItANickname:
+	text "Give a nickname to"
+	line "@"
+	TX_RAM StringBuffer1
+	text "?"
 	done
 
 .Cancel:
