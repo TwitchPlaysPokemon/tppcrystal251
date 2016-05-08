@@ -473,7 +473,7 @@ UnknownText_0x56ebd: ; 0x56ebd
 
 GCSentToPCText:
 	text "We have sent the"
-	line "#MON to Bill's"
+	line "#MON to BILL's"
 	cont "PC for you."
 	done
 

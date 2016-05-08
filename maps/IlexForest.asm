@@ -942,7 +942,7 @@ UnknownText_0x6f21b: ; 0x6f21b
 	text "What am I doing?"
 
 	para "I'm shaking trees"
-	line "using"
+	line "using the move"
 	cont "ZEN HEADBUTT."
 
 	para "It's fun. Here,"
@@ -952,12 +952,14 @@ UnknownText_0x6f21b: ; 0x6f21b
 
 UnknownText_0x6f26d: ; 0x6f26d
 	text "Rattle trees with"
-	line "HEADBUTT. Some-"
-	cont "times, sleeping"
-	cont "#MON fall out."
+	line "ZEN HEADBUTT."
 
-	para "Both kinds of"
-	line "headbutts work."
+	para "Sometimes, sleep-"
+	line "ing #MON fall out."
+
+	para "I've heard normal"
+	line "HEADBUTTs also"
+	cont "work."
 	done
 ; 0x6f2af
 

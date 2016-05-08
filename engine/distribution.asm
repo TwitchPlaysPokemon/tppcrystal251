@@ -15,7 +15,12 @@ Special_EnterDistrCode:
 	ld hl, .Which
 	call PrintText
 	call Functiona36
+	call Function1d6e
+	call Function2ed3
 	call .EnterDistrCode
+	push af
+	call Function2b4d
+	pop af
 	jr c, .congrats
 	jr z, .no_room
 	dec a
@@ -92,28 +97,23 @@ Special_EnterDistrCode:
 	jr .try_decrypt
 
 .got_mon
-	pop af
-	ld a, [DecryptBuffer2]
-	ld b, a
-	ld a, BANK(sNumDistributedMons)
+	ld a, BANK(sDistroMonFlags)
 	call GetSRAMBank
-	ld hl, sNumDistributedMons
-	ld a, [hli]
-	and a
-	jr z, .okay
-	ld c, a
-.check_loop
-	ld a, [hli]
-	cp b
-	jr z, .nope
-	dec c
-	jr nz, .check_loop
-.okay
-	ld [hl], b
-	inc hl
-	ld [hl], -1
-	ld hl, sNumDistributedMons
-	inc [hl]
+	pop af
+	cpl
+	add DISTRO_MON_COUNT + 1
+	ld e, a
+	ld d, 0
+	ld hl, sDistroMonFlags
+	push hl
+	push de
+	ld b, 2
+	call FlagAction
+	pop de
+	pop hl
+	jr nz, .nope
+	ld b, 1
+	call FlagAction
 	call CloseSRAM
 	ld hl, DecryptBuffer2 + 8
 	ld de, wSurvivalModeParty
@@ -150,9 +150,9 @@ Special_EnterDistrCode:
 	cp PARTY_LENGTH
 	ret nc
 	ld [CurPartyMon], a
+	ld c, a
 	inc a
 	ld [hli], a
-	ld c, a
 	ld b, 0
 	add hl, bc
 	ld a, [wSurvivalModeParty]
@@ -176,7 +176,7 @@ Special_EnterDistrCode:
 	ld hl, PartyMonNicknames
 	ld de, wSurvivalModeParty + 22 ; nickname
 .CopyName:
-	push hl
+	push de
 	ld bc, NAME_LENGTH
 	ld a, [CurPartyMon]
 	call AddNTimes
@@ -222,6 +222,24 @@ Special_EnterDistrCode:
 	ld [hl], a
 	inc de
 	ld [CurPartyLevel], a ; for CalcPkmnStats
+	ld d, a
+	push bc
+	callba Function50e47
+
+	; Calc experience
+	pop bc
+	ld hl, PartyMon1Exp - PartyMon1
+	add hl, bc
+	push bc
+	ld c, hMultiplicand & $ff
+	ld b, 3
+.exp_loop
+	ld a, [$ff00+c]
+	ld [hli], a
+	inc c
+	dec b
+	jr nz, .exp_loop
+	pop bc
 
 	; Calc stats
 	push bc
@@ -635,6 +653,3 @@ Special_EnterDistrCode:
 	done
 
 DistributionData: INCBIN "data/distribution.bin"
-rept 798
-	db 0
-endr

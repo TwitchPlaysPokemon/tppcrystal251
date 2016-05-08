@@ -447,12 +447,12 @@ BlackthornGymGuyText: ; 0x195544
 	cont "#MON."
 
 	para "They resist many"
-	line "common types"
+	line "common types,"
 
 	para "but reptiles"
 	line "dislike ice,"
 
-	para "and fairys have"
+	para "and fairies have"
 	line "a huge advantage."
 	done
 ; 0x195632

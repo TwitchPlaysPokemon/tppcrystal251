@@ -26,11 +26,18 @@ UnknownScript_0x9a614: ; 0x9a614
 ; 0x9a61a
 
 UnknownScript_0x9a61a: ; 0x9a61a
+	checkflag ENGINE_PLAYER_IS_FEMALE
+	iftrue .pronoun_game
 	writetext UnknownText_0x9a805
 	waitbutton
 	closetext
 	end
 ; 0x9a620
+.pronoun_game
+	writetext UnknownText_0x9a805_F
+	waitbutton
+	closetext
+	end
 
 PokedexScript_0x9a620: ; 0x9a620
 	loadfont
@@ -118,6 +125,11 @@ UnknownText_0x9a805: ; 0x9a805
 	line "own, I suppose<...>"
 	done
 ; 0x9a826
+
+UnknownText_0x9a805_F:
+	text "Oh<...> To each her"
+	line "own, I suppose<...>"
+	done
 
 UnknownText_0x9a826: ; 0x9a826
 	text "HISTORY OF"

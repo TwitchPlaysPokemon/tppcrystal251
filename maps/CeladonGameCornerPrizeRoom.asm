@@ -312,7 +312,7 @@ UnknownText_0x72991: ; 0x72991
 
 WantBerserkGeneText: ; 0x72991
 	text "OK, so you wanted"
-	line "a Power up?"
+	line "a POWER UP?"
 	done
 ; 0x729ad
 
