@@ -429,6 +429,8 @@ BattleAnim_ThrowPokeBall_branch_c93aa: ; c93aa
 ; c93bc
 
 BattleAnim_ThrowPokeBall_branch_c93bc: ; c93bc
+	; click sound effect, star animation?
+	
 	anim_clearsprites
 	anim_ret
 ; c93be
