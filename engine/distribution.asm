@@ -101,7 +101,7 @@ Special_EnterDistrCode:
 	push af
 	ld a, 4
 	ld [rSVBK], a
-	ld hl, DistributionData
+	ld hl, .DistributionData
 	ld a, DISTRO_MON_COUNT
 .try_decrypt
 	push af
@@ -695,4 +695,4 @@ Special_EnterDistrCode:
 	line "again!"
 	done
 
-DistributionData: INCBIN "data/distribution.bin"
+.DistributionData: INCBIN "data/distribution.bin"
