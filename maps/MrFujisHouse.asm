@@ -107,6 +107,6 @@ MrFujisHouse_MapEventHeader: ; 0x7e9ea
 	person_event SPRITE_LASS, 8, 7, $2, 1, 1, -1, -1, 0, 0, 0, LassScript_0x7e8cd, -1
 	person_event SPRITE_RHYDON, 8, 11, $16, 0, 0, -1, -1, 0, 0, 0, RhydonScript_0x7e8d0, -1
 	person_event SPRITE_GROWLITHE, 9, 9, $16, 0, 0, -1, -1, 8 + PAL_OW_BLUE, 0, 0, GrowlitheScript_0x7e8da, -1
-	person_event SPRITE_MOLTRES, 7, 5, $16, 0, 0, -1, -1, 8 + PAL_OW_BROWN, 0, 0, MoltresScript_0x7e8e4, -1
+	person_event SPRITE_SPEAROW, 7, 5, $16, 0, 0, -1, -1, 8 + PAL_OW_BROWN, 0, 0, MoltresScript_0x7e8e4, -1
 ; 0x7ea45
 

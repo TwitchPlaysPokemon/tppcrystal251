@@ -182,6 +182,6 @@ CharcoalKiln_MapEventHeader: ; 0x18dff8
 	db 3
 	person_event SPRITE_BLACK_BELT, 7, 6, $3, 0, 0, -1, -1, 0, 0, 0, BlackBeltScript_0x18dd1a, EVENT_CHARCOAL_MASTER_IN_CHARCOAL_KILN
 	person_event SPRITE_YOUNGSTER, 7, 9, $2, 1, 1, -1, -1, 0, 0, 0, YoungsterScript_0x18dd3a, EVENT_APPRENTICE_IN_CHARCOAL_KILN
-	person_event SPRITE_MOLTRES, 10, 9, $16, 2, 2, -1, -1, 8 + PAL_OW_BROWN, 0, 0, MoltresScript_0x18dd63, EVENT_FARFETCHD_IN_CHARCOAL_KILN
+	person_event SPRITE_SPEAROW, 10, 9, $16, 2, 2, -1, -1, 8 + PAL_OW_BROWN, 0, 0, MoltresScript_0x18dd63, EVENT_FARFETCHD_IN_CHARCOAL_KILN
 ; 0x18e03e
 

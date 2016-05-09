@@ -61,7 +61,7 @@ UnknownText_0x1a2f75: ; 0x1a2f75
 	para "hear a JIGGLYPUFF"
 	line "singing."
 
-	para "I here there's a"
+	para "I hear there's a"
 	line "move that can be"
 
 	para "used only while a"
