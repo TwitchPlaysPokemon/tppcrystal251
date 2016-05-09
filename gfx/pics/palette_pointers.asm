@@ -512,14 +512,6 @@ CelebiShinyPalette:     INCLUDE "gfx/pics/celebi/shiny.pal"
 PhanceroPalette:        INCLUDE "gfx/pics/phancero/normal.pal"
 PhanceroShinyPalette:   INCLUDE "gfx/pics/phancero/shiny.pal"
 
-; 252
-	RGB 30, 26, 11
-	RGB 23, 16, 00
-; 252 shiny
-	RGB 30, 26, 11
-	RGB 23, 16, 00
-
-
 ; Egg
 	RGB 30, 26, 11
 	RGB 23, 16, 00
