@@ -334,7 +334,7 @@ UnknownText_0x1a5cf8: ; 0x1a5cf8
 
 PokefanfRuthSeenText: ; 0x1a5d5b
 	text "I am a big fan"
-	line "of OLIVINE GYM's"
+	line "of OLIVINE's GYM"
 	cont "LEADER, JASMINE."
 
 	para "I named my #-"
