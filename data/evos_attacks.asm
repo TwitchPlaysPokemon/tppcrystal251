@@ -117,9 +117,9 @@ CharmeleonEvosAttacks:
 
 CharizardEvosAttacks:
 	db 0 ; no more evolutions
-	db 1, FISSURE
-	db 1, SUBMISSION
-	db 1, SWIFT
+	db 1,FISSURE
+	db 1,SUBMISSION
+	db 1,SWIFT
 	db 1,WING_ATTACK ; *
 	db 1,DRAGON_RAGE
 	db 1,FIRE_SPIN
