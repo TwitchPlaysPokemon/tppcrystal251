@@ -155,6 +155,7 @@
 	db PARAS
 	db PARASECT
 	db PERSIAN
+	db PHANCERO
 	db PHANPY
 	db PICHU
 	db PIDGEOT

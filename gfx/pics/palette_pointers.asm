@@ -509,6 +509,8 @@ HoOhPalette:            INCLUDE "gfx/pics/ho_oh/normal.pal"
 HoOhShinyPalette:       INCLUDE "gfx/pics/ho_oh/shiny.pal"
 CelebiPalette:          INCLUDE "gfx/pics/celebi/normal.pal"
 CelebiShinyPalette:     INCLUDE "gfx/pics/celebi/shiny.pal"
+PhanceroPalette:        INCLUDE "gfx/pics/phancero/normal.pal"
+PhanceroShinyPalette:   INCLUDE "gfx/pics/phancero/shiny.pal"
 
 ; 252
 	RGB 30, 26, 11

@@ -5150,3 +5150,15 @@ CelebiEvosAttacks:
 	db 95, SEED_BOMB
 	db 100, PSYCHIC_M
 	db 0 ; no more level-up moves
+
+PhanceroEvosAttacks:		
+	db 0 ; no more evolutions		
+	db 1,GUST		
+	db 1,WATER_GUN		
+	db 13,MIST		
+	db 25,AGILITY		
+	db 37,MIND_READER		
+	db 49,SKY_ATTACK		
+	db 61,REFLECT		
+	db 73,SHADOW_BALL		
+	db 0 ; no more level-up moves	

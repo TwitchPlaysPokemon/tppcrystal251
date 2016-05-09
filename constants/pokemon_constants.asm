@@ -1,4 +1,4 @@
-NUM_POKEMON EQU 251
+NUM_POKEMON EQU 252
 
 	const_def
 	const MISSINGNO_
@@ -253,6 +253,7 @@ NUM_POKEMON EQU 251
 	const LUGIA
 	const HO_OH
 	const CELEBI
+	const PHANCERO
 
 EGG EQU 253
 
