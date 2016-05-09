@@ -46,15 +46,15 @@ UnknownText_0x9b6ad: ; 0x9b6ad
 ; 0x9b6f5
 
 UnknownText_0x9b6f5: ; 0x9b6f5
-	text "There are no GYM"
-	line "TRAINERS at the"
-	cont "VIRIDIAN GYM."
+	text "The VIRIDIAN GYM"
+	line "has gotten a lot"
 
-	para "The LEADER claims"
-	line "his policy is to"
+	para "tougher since its"
+	line "new LEADER took"
+	cont "charge."
 
-	para "win without having"
-	line "any underlings."
+	para "Get ready for a"
+	line "wild ride!"
 	done
 ; 0x9b76b
 

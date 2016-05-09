@@ -491,7 +491,7 @@ UnknownText_0x6a67c: ; 0x6a67c
 	cont "#MON you catch."
 
 	para "We will have to"
-	line "RELEASE whatever"
+	line "release whatever"
 	cont "you catch."
 
 	para "Is that OK?"

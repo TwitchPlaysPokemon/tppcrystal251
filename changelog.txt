@@ -14,6 +14,7 @@ Version 1.1.3
 * Fixed the moveset of the dragon shrine dratini
 * Fixed bug causing stats to not be properly recalculated for caught mons (levelling up or performing the box trick ends this glitch too)
 * Fixed a bug causing wild mons to not benefit from DVs
+* Fixed issue with Moltres replacing many overworld birds
 
 Version 1.1.2
 * Grammar fixes

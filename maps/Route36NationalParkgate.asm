@@ -59,7 +59,7 @@ UnknownScript_0x6ab23: ; 0x6ab23
 ; 0x6ab42
 
 UnknownScript_0x6ab42: ; 0x6ab42 if contest is on, make 2 appear and d disapeear
-		;appear $2 redundent
+		;appear $2 redundant
 		;disappear $d
 UnknownScript_0x6ab46: ; 0x6ab46
 	return
@@ -676,6 +676,10 @@ UnknownText_0x6b166: ; 0x6b166
 	para "You have no room"
 	line "to put the bug"
 	cont "#MON you catch."
+
+	para "We will have to"
+	line "release whatever"
+	cont "you catch."
 
 	para "Is that OK?"
 	done

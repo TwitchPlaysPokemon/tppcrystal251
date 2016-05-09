@@ -277,8 +277,8 @@ UnknownText_0x19ec7e: ; 0x19ec7e
 
 	para "Different types"
 	line "of #MON appear"
-	cont "depending on"
-	cont "where you surf."
+	para "depending on"
+	line "where you SURF."
 	done
 ; 0x19ecaf
 

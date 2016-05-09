@@ -84,7 +84,7 @@ Bird_keeperBorisBeatenText: ; 0x1acf9c
 
 UnknownText_0x1acfa5: ; 0x1acfa5
 	text "We had a zoo in"
-	line "FUSCHIA before."
+	line "FUCHSIA before."
 
 	para "Some of its famous"
 	line "#MON can be"

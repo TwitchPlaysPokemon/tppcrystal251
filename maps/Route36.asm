@@ -724,7 +724,7 @@ ArthurThursdayText:
 	text "ARTHUR: I'm ARTHUR"
 	line "of Thursday. I'm"
 
-	para "the second son out"
+	para "the fourth son out"
 	line "of seven children."
 	done
 

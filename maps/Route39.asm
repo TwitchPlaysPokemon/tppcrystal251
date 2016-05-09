@@ -334,12 +334,12 @@ UnknownText_0x1a5cf8: ; 0x1a5cf8
 
 PokefanfRuthSeenText: ; 0x1a5d5b
 	text "I am a big fan"
-	line "of OLIVINE gym"
-	cont "leader JASMINE."
+	line "of OLIVINE GYM's"
+	cont "LEADER, JASMINE."
 
-	para "I named my"
-	line "#MON, just"
-	cont "like she does!"
+	para "I named my #-"
+	line "MON, just like she"
+	cont "does!"
 	done
 ; 0x1a5d9d
 
@@ -386,12 +386,15 @@ PsychicNormanBeatenText: ; 0x1a5e37
 UnknownText_0x1a5e57: ; 0x1a5e57
 	text "You know how #-"
 	line "MON have different"
-	cont "level of strength?"
+	para "levels of"
+	line "strength?"
 
 	para "People are like"
-	line "that too. Every-"
-	cont "one has different"
-	cont "potential."
+	line "that too."
+
+	para "Everyone has their"
+	line "own unique poten-"
+	cont "tial."
 	done
 ; 0x1a5ec4
 

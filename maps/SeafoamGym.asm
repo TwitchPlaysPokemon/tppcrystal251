@@ -394,8 +394,10 @@ BlainePostgameRematchText:
 	
 	para "I didn't think I'd"
 	line "see you back here"
-	para "in my<...>"
-	line "<...> my GYM."
+	cont "in my<...>"
+
+	para "<...> <...> <...>"
+	line "<...>my <``>GYM<''><...>"
 	
 	para "Oh? You want to"
 	line "battle again?"

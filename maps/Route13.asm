@@ -238,7 +238,7 @@ Bird_keeperPerrySeenText: ; 0x1a2591
 ; 0x1a25bd
 
 Bird_keeperPerryBeatenText: ; 0x1a25bd
-	text "FARFETCH'd isn't"
+	text "FARFETCH'D isn't"
 	line "fast though<...>"
 	done
 ; 0x1a25db
