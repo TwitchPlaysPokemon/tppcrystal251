@@ -39,8 +39,21 @@ RematchCheck:
 	writetext OakBeforeBattle
 	waitbutton
 	closetext
-	winlosstext OakDefeated, $0000
+	checkevent EVENT_GOT_BULBASAUR_FROM_OAK
+	iftrue .OakHasBlastoise
+	checkevent EVENT_GOT_CHARMANDER_FROM_OAK
+	iftrue .OakHasVenusaur
+	loadtrainer POKEMON_PROF, 3
+	jump .got_oaks_team
+
+.OakHasBlastoise:
 	loadtrainer POKEMON_PROF, 1
+	jump .got_oaks_team
+
+.OakHasVenusaur:
+	loadtrainer POKEMON_PROF, 2
+.got_oaks_team
+	winlosstext OakDefeated, $0000
 	startbattle
 	returnafterbattle
 	loadfont
@@ -59,11 +72,13 @@ OakBeforeBattle:
 
 	para "The ELITE FOUR"
 	line "saw your potential"
+
 	para "and asked me to"
 	line "test you."
 
 	para "So far you have"
 	line "passed, but there"
+
 	para "is one more foe"
 	line "you must defeat."
 
@@ -78,6 +93,7 @@ OakAfterBattle:
 
 	para "The ELITE FOUR"
 	line "challenge you,"
+
 	para "this time using"
 	line "their strongest"
 	cont "teams."

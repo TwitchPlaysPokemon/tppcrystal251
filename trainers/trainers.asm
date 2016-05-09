@@ -1064,7 +1064,94 @@ PokemonProfGroup:
 
 	db $ff ; end
 
-;
+
+	; PROFESSOR (2)
+	db "OAK@"
+	db (1 << TRAINERTYPE_MOVES) | ( 1 << TRAINERTYPE_ITEM) | (1 << TRAINERTYPE_MAXXP)
+
+	; party
+	db 100, TAUROS, BURN_GUARD
+		db PURSUIT
+		db EARTHQUAKE
+		db THRASH
+		db SWAGGER
+
+	db 100, EXEGGUTOR, MIRACLE_SEED
+		db EXPLOSION
+		db PSYCHIC_M
+		db HYPNOSIS
+		db GIGA_DRAIN
+
+	db 100, ARCANINE, CHARCOAL
+		db EXTREMESPEED
+		db FLARE_BLITZ
+		db OUTRAGE
+		db WILLOWISP
+
+	db 100, VENUSAUR, LEFTOVERS
+		db SEED_BOMB
+		db GROWTH
+		db SUNNY_DAY
+		db SOLARBEAM
+
+	db 100, GYARADOS, MYSTIC_WATER
+		db ENDURE
+		db OUTRAGE
+		db FLAIL
+		db WATERFALL
+
+	db 100, PIKACHU, LIGHT_BALL
+		db SURF
+		db FLY
+		db THUNDERBOLT
+		db ENCORE
+
+	db $ff ; end
+
+
+	; PROFESSOR (3)
+	db "OAK@"
+	db (1 << TRAINERTYPE_MOVES) | ( 1 << TRAINERTYPE_ITEM) | (1 << TRAINERTYPE_MAXXP)
+
+	; party
+	db 100, TAUROS, BURN_GUARD
+		db PURSUIT
+		db EARTHQUAKE
+		db THRASH
+		db SWAGGER
+
+	db 100, EXEGGUTOR, MIRACLE_SEED
+		db EXPLOSION
+		db PSYCHIC_M
+		db HYPNOSIS
+		db GIGA_DRAIN
+
+	db 100, ARCANINE, CHARCOAL
+		db EXTREMESPEED
+		db FLARE_BLITZ
+		db OUTRAGE
+		db WILLOWISP
+
+	db 100, CHARIZARD, LEFTOVERS
+		db FIRE_BLAST
+		db AIR_SLASH
+		db DRAGON_PULSE
+		db SLASH
+
+	db 100, GYARADOS, MYSTIC_WATER
+		db ENDURE
+		db OUTRAGE
+		db FLAIL
+		db WATERFALL
+
+	db 100, PIKACHU, LIGHT_BALL
+		db SURF
+		db FLY
+		db THUNDERBOLT
+		db ENCORE
+
+	db $ff ; end
+
 
 WillGroup:
 ; ================================
