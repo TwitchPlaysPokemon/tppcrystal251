@@ -151,7 +151,7 @@ CinnabarVolcanoB3F_MapEventHeader:
 
 	; object events
 	db 5
-	person_event SPRITE_BIRD, 7, 23, $0, 0, 0, -1, -1, 0, 0, 0, MoltresScript1, EVENT_FOUGHT_MOLTRES
+	person_event SPRITE_MOLTRES, 7, 23, $16, 0, 0, -1, -1, 0, 0, 0, MoltresScript1, EVENT_FOUGHT_MOLTRES
     person_event SPRITE_BOULDER, 29, 12, $19, 0, 0, -1, -1, 0, 0, 0, BoulderScript_CinnabarVolcanoB3F, EVENT_MOLTRES_BOULDER_1c
     person_event SPRITE_BOULDER, 30, 34, $19, 0, 0, -1, -1, 0, 0, 0, BoulderScript_CinnabarVolcanoB3F, EVENT_MOLTRES_BOULDER_2c
     person_event SPRITE_BOULDER, 18, 18, $19, 0, 0, -1, -1, 0, 0, 0, BoulderScript_CinnabarVolcanoB3F, EVENT_MOLTRES_BOULDER_3c

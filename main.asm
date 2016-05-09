@@ -17117,11 +17117,14 @@ SpriteMons: ; 14495
 	db VOLTORB
 	db LAPRAS
 	db RHYDON
-	db MOLTRES
+	db SPEAROW
 	db SNORLAX
 	db GYARADOS
 	db LUGIA
 	db HO_OH
+	db ARTICUNO
+	db ZAPDOS
+	db MOLTRES
 	db EGG
 ; 144b8
 

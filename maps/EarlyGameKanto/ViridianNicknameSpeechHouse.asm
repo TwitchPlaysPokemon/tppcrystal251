@@ -67,6 +67,6 @@ ViridianNicknameSpeechHouseRB_MapEventHeader: ; 0x9af21
 	db 3
 	person_event SPRITE_POKEFAN_M, 8, 6, $9, 0, 0, -1, -1, 8 + PAL_OW_RED, 0, 0, ViridianNicknameSpeechHouseRBPokefanMScript, -1
 	person_event SPRITE_LASS, 8, 9, $7, 0, 0, -1, -1, 8 + PAL_OW_GREEN, 0, 0, ViridianNicknameSpeechHouseRBLassScript, -1
-	person_event SPRITE_MOLTRES, 6, 9, $16, 0, 2, -1, -1, 8 + PAL_OW_BROWN, 0, 0, ViridianNicknameSpeechHouseRBMoltresScript, -1
+	person_event SPRITE_SPEAROW, 6, 9, $16, 0, 2, -1, -1, 8 + PAL_OW_BROWN, 0, 0, ViridianNicknameSpeechHouseRBMoltresScript, -1
 ; 0x9af65
 

@@ -343,4 +343,4 @@ PowerplantB2_MapEventHeader:
 
 	; object events
 	db 1
-	person_event SPRITE_MOLTRES, 23, 23, $16, 0, 0, -1, -1, 8 + PAL_OW_YELLOW, 0, 0, ZapdosScript1, EVENT_FOUGHT_ZAPDOS
+	person_event SPRITE_ZAPDOS, 23, 23, $16, 0, 0, -1, -1, 8 + PAL_OW_YELLOW, 0, 0, ZapdosScript1, EVENT_FOUGHT_ZAPDOS

@@ -716,7 +716,7 @@ TeamRocketBaseB3F_MapEventHeader: ; 0x6e9e4
 	db 14
 	person_event SPRITE_LANCE, 18, 29, $6, 0, 0, -1, -1, 0, 0, 0, LanceScript_0x6dffc, EVENT_LANCE_IN_ROCKET_BASE_B3F
 	person_event SPRITE_ROCKET, 7, 12, $7, 0, 0, -1, -1, 0, 0, 0, ObjectEvent, EVENT_EXECUTIVEM_IN_ROCKET_BASE_B3F
-	person_event SPRITE_MOLTRES, 6, 11, $16, 0, 0, -1, -1, 8 + PAL_OW_BLUE, 0, 0, MoltresScript_0x6e091, EVENT_ROCKETS_POPULATE_ROCKET_BASE
+	person_event SPRITE_SPEAROW, 6, 11, $16, 0, 0, -1, -1, 8 + PAL_OW_BLUE, 0, 0, MoltresScript_0x6e091, EVENT_ROCKETS_POPULATE_ROCKET_BASE
 	person_event SPRITE_ROCKET_GIRL, 11, 25, $7, 0, 0, -1, -1, 8 + PAL_OW_RED, 2, 0, TrainerGruntF5, EVENT_ROCKETS_POPULATE_ROCKET_BASE
 	person_event SPRITE_ROCKET, 18, 9, $a, 0, 0, -1, -1, 0, 2, 3, TrainerGruntM28, EVENT_ROCKETS_POPULATE_ROCKET_BASE
 	person_event SPRITE_SCIENTIST, 15, 27, $7, 0, 0, -1, -1, 8 + PAL_OW_BLUE, 2, 0, TrainerScientistRoss, EVENT_ROCKETS_POPULATE_ROCKET_BASE
