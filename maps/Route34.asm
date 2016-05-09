@@ -910,7 +910,7 @@ YoungsterIanSeenText: ; 0x78425
 	line "class at #MON."
 
 	para "I make use of"
-	line "STAT-ENHANCING"
+	line "stat-enhancing"
 	cont "items."
 
 	para "They make my"

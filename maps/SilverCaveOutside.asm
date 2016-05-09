@@ -89,7 +89,7 @@ MapSilverCaveOutsideSignpostItem2: ; 0x1b2051
 SilverCaveOutsideCooltrainerMText:
 	text "The #MON in"
 	line "this cave are im-"
-	cont "mensly powerful."
+	cont "mensely powerful."
 
 	para "Only true #MON"
 	line "MASTERs may enter."

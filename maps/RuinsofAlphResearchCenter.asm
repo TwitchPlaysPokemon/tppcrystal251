@@ -588,7 +588,7 @@ Text_ComeBackAgain:
 
 Text_ComeBackWithAFossil:
 	text "If you find a"
-	line "fossil, bring it"
+	line "FOSSIL, bring it"
 
 	para "here, and I'll"
 	line "revive it for you."

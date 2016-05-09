@@ -110,7 +110,7 @@ UnknownText_0x18a4a3: ; 0x18a4a3
 	para "famous trainer"
 	line "and his journey."
 
-	para "Nobody know where"
+	para "Nobody knows where"
 	line "that trainer is"
 	cont "now, though."
 	done

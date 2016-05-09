@@ -385,20 +385,21 @@ UnknownText_0x184ea4: ; 0x184ea4
 
 SageNealSeenText: ; 0x184ec1
 	text "The ELDER's HM"
-	line "lights even pitch-"
-	cont "black darkness."
+	line "allows us to reach"
+	cont "new heights."
 	done
 ; 0x184ef3
 
 SageNealBeatenText: ; 0x184ef3
-	text "It is my head that"
-	line "is bright!"
+	text "Oh! My head was in"
+	line "the clouds!"
 	done
 ; 0x184f12
 
 UnknownText_0x184f12: ; 0x184f12
-	text "Let there be light"
-	line "on your journey."
+	text "May there be no"
+	line "limit to how high"
+	cont "you can soar."
 	done
 ; 0x184f37
 

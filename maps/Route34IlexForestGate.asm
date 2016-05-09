@@ -108,14 +108,19 @@ UnknownText_0x62d9d: ; 0x62d9d
 ; 0x62df6
 
 UnknownText_0x62df6: ; 0x62df6
-	text "It's ATTRACT."
+	text "ATTRACT infatuates"
+	line "foes and makes"
 
-	para "Use it on a"
-	line "mon of the"
-	cont "opposite gender"
+	para "them unwilling to"
+	line "attack you."
 
-	para "and it won't"
-	line "want to attack."
+	para "It won't work if"
+	line "they're the same"
+	cont "gender, though."
+
+	para "#MON should"
+	line "try to be more"
+	cont "open-minded."
 	done
 ; 0x62e41
 

@@ -249,9 +249,19 @@ SwimmermSimonBeatenText: ; 0x1a626e
 ; 0x1a6282
 
 UnknownText_0x1a6282: ; 0x1a6282
-	text "Burglar SIMON is"
-	line "famous in JOHTO"
-	cont "and KANTO."
+	text "A BURGLAR named"
+	line "SIMON has been"
+
+	para "making headlines"
+	line "in JOHTO and"
+	cont "KANTO."
+
+	para "The POLICE think"
+	line "he may have had an"
+	cont "accomplice, too."
+
+	para "I wonder where his"
+	line "partner went."
 	done
 ; 0x1a62b4
 

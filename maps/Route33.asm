@@ -199,9 +199,16 @@ UnknownText_0x1ac180: ; 0x1ac180
 
 	para "In DARK CAVE?"
 
-	para "It is apparently"
-	line "really common"
-	cont "during swarms!"
+	para "They're known to"
+	line "swarm there from"
+	cont "time to time."
+
+	para "When they do, it"
+	line "creates a host of"
+
+	para "problems for near-"
+	line "by BLACKTHORN"
+	cont "CITY<...>"
 	done
 ; 0x1ac1e7
 
