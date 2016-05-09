@@ -460,7 +460,7 @@ CopycatsHouse2F_MapEventHeader: ; 0x18b4f0
 	; people-events
 	db 6
 	person_event SPRITE_COPYCAT, 7, 8, $8, 0, 0, -1, -1, 8 + PAL_OW_RED, 0, 0, CopycatScript_0x18aeb1, EVENT_COPYCAT
-	person_event SPRITE_MOLTRES, 8, 10, $16, 0, 0, -1, -1, 8 + PAL_OW_BROWN, 0, 0, MoltresScript_0x18afbc, -1
+	person_event SPRITE_SPEAROW, 8, 10, $16, 0, 0, -1, -1, 8 + PAL_OW_BROWN, 0, 0, MoltresScript_0x18afbc, -1
 	person_event SPRITE_FAIRY, 5, 10, $6, 0, 0, -1, -1, 8 + PAL_OW_RED, 0, 0, FairyScript_0x18afca, EVENT_COPYCATS_DOLL_IN_HER_ROOM
 	person_event SPRITE_MONSTER, 5, 6, $6, 0, 0, -1, -1, 8 + PAL_OW_GREEN, 0, 0, MonsterScript_0x18afca, -1
 	person_event SPRITE_BIRD, 5, 11, $6, 0, 0, -1, -1, 8 + PAL_OW_BLUE, 0, 0, BirdScript_0x18afca, -1
