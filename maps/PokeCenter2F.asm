@@ -1034,7 +1034,7 @@ UnknownText_0x19307c: ; 0x19307c
 UnknownText_0x19308b: ; 0x19308b
 	text "Sorry--@"
 	text_from_ram StringBuffer1
-	db $0
+	text ""
 	line "can't be taken."
 	prompt
 ; 0x1930a8

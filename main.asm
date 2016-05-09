@@ -33829,11 +33829,11 @@ Function29d11: ; 29d11
 ; 29d92
 
 EnsureTPPBytes:
-	ld a, [PlayerName + 8]
-	and a
-	ret nz
-	inc a
-	ld [PlayerName + 8], a
+	ld hl, PlayerName + 8
+	ld a, 2
+	cp [hl]
+	ret z
+	ld [hl], a
 	ld a, [PartyCount]
 	ld e, a
 	xor a
@@ -34091,7 +34091,7 @@ Function29e66: ; 29e66 ;ask if save, if yes save and ret scriptvar = 1
 	xor a
 .asm_29e75
 	ld [ScriptVar], a
-	ld c, $1e
+	ld c, 30
 	call DelayFrames
 	pop af
 	ld [wd265], a ;load into ??
