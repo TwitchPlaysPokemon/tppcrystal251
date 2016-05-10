@@ -9032,199 +9032,221 @@ Functione134: ; e134
 	ld [hl], a
 	ret
 
-CalcPkmnStats: ; e167 fill stat block de for currently loaded base stats, with statxp hl (or skip with b = 0)
-	ld c, $0
-.asm_e169
+CalcPkmnStats: ; e167
+; Calculates all 6 Stats of a Pkmn
+; b: Take into account stat EXP if TRUE
+; 'c' counts from 1-6 and points with 'BaseStats' to the base value
+; hl is the path to the Stat EXP
+; results in $ffb5 and $ffb6 are saved in [de]
+
+	ld c, 0
+.loop
 	inc c
 	call CalcPkmnStatC
-	ld a, [$ffb5]
+	ld a, [hMultiplicand + 1]
 	ld [de], a
 	inc de
-	ld a, [$ffb6]
+	ld a, [hMultiplicand + 2]
 	ld [de], a
 	inc de
 	ld a, c
-	cp $6
-	jr nz, .asm_e169
+	cp STAT_SDEF
+	jr nz, .loop
 	ret
 ; e17b
 
-CalcPkmnStatC: ; e17b return stat c for mon species whose base stats are loaded of level curpartylevel, whose statxp starts at hl,  in $ffb5 and $ffb6. if b = 0, skip stat xp
+CalcPkmnStatC: ; e17b
+; 'c' is 1-6 and points to the BaseStat
+; 1: HP
+; 2: Attack
+; 3: Defense
+; 4: Speed
+; 5: SpAtk
+; 6: SpDef
 	push hl
 	push de
 	push bc
 	ld a, b
-	ld d, a ;load b into d
-	push hl ;start of stat xp
-	ld hl, BaseHP ;start of base stats
-	dec hl ;go up 1
-	ld b, $0
-	add hl, bc ;go down to base stat c. 1 = hp, 2 = attack, 3 = defence, 4 = speed, 5 = special attack, 6 = special defence
-	ld a, [hl] ;load base stat
-	ld e, a ;put it in e
-	pop hl ;start of stat xp
+	ld d, a
 	push hl
-	ld a, c ;if special defence, go down 2 to line up with special statxp
-	cp $6
-	jr nz, .asm_e193
+	ld hl, BaseStats
+	dec hl ; has to be decreased, because 'c' begins with 1
+	ld b, $0
+	add hl, bc
+	ld a, [hl]
+	ld e, a
+	pop hl
+	push hl
+	ld a, c
+	cp STAT_SDEF
+	jr nz, .not_spdef
 	dec hl
 	dec hl
-.asm_e193
-	sla c ;c*2
+
+.not_spdef
+	sla c
 	ld a, d
 	and a
-	jr z, .asm_e1a5 ;if d = zero, skip and b = 0
-	add hl, bc ;move down to correct stat xp slot
+	jr z, .no_stat_exp
+	add hl, bc
 	push de
-	ld a, [hld] ;load stat xp and root it
+	ld a, [hld]
 	ld e, a
 	ld d, [hl]
-	ld l, c
 	push hl
-	callba GetSquareRoot ;b = result
+	callba GetSquareRoot
 	pop hl
 	pop de
-	ld c, l
-.asm_e1a5
-	srl c ; c is normal again
-	pop hl ;hl = start of stat xp
-	push bc ; c is chosen stat, b is stat xp added
-	ld bc, $000b
-	add hl, bc ;over DVs
+
+.no_stat_exp
+	srl c
+	pop hl
+	push bc
+	ld bc, MON_DVS - MON_HP_EXP + 1
+	add hl, bc
 	pop bc
 	ld a, c
-	cp $2
-	jr z, .asm_e1e3 ;branch code based on stat to get dv, store in a
-	cp $3
-	jr z, .asm_e1ea
-	cp $4
-	jr z, .asm_e1ef
-	cp $5
-	jr z, .asm_e1f7
-	cp $6
-	jr z, .asm_e1f7
-	push bc; c is chosen stat, b = stat xp
-	ld a, [hl] ;load first dv byte to start calcing HP dv
+	cp STAT_ATK
+	jr z, .Attack
+	cp STAT_DEF
+	jr z, .Defense
+	cp STAT_SPD
+	jr z, .Speed
+	cp STAT_SATK
+	jr z, .Special
+	cp STAT_SDEF
+	jr z, .Special
+; DV_HP = (DV_ATK & 1) << 3 + (DV_DEF & 1) << 2 + (DV_SPD & 1) << 1 + (DV_SPC & 1)
+	push bc
+	ld a, [hl]
 	swap a
-	and $1 ;bit 4 only(bit 1 of second dv), if 1, add 8. else add 0
+	and $1
 	add a
 	add a
 	add a
-	ld b, a ;load into b
-	ld a, [hli] ;load in again, move onto other dv byte
-	and $1 ;bit 0, if on add 4 tob
+	ld b, a
+	ld a, [hli]
+	and $1
 	add a
 	add a
 	add b
 	ld b, a
-	ld a, [hl] ;add bit 1
-	swap a ;if on, add 2
+	ld a, [hl]
+	swap a
 	and $1
 	add a
 	add b
 	ld b, a
 	ld a, [hl]
-	and $1 ;if on, add 1, regardless, add b to a
+	and $1
 	add b
-	pop bc ;c = stat, b = stat xp
-	jr .asm_e1fb
+	pop bc
+	jr .GotDV
 
-.asm_e1e3
-	ld a, [hl] ;get attack dv
-	swap a
-	and $f
-	jr .asm_e1fb
-
-.asm_e1ea
-	ld a, [hl] ;get defence dv
-	and $f
-	jr .asm_e1fb
-
-.asm_e1ef
-	inc hl ;get speed dv
+.Attack:
 	ld a, [hl]
 	swap a
 	and $f
-	jr .asm_e1fb
+	jr .GotDV
 
-.asm_e1f7
-	inc hl ;get special dv
+.Defense:
 	ld a, [hl]
 	and $f
-.asm_e1fb ;dv = a,
-	ld d, $0
+	jr .GotDV
+
+.Speed:
+	inc hl
+	ld a, [hl]
+	swap a
+	and $f
+	jr .GotDV
+
+.Special:
+	inc hl
+	ld a, [hl]
+	and $f
+
+.GotDV:
+	ld d, 0
 	add e
-	ld e, a ;add dv to base stat
-	jr nc, .asm_e202 ;carry if needed
+	ld e, a
+	jr nc, .no_overflow_1
 	inc d
-.asm_e202
+
+.no_overflow_1
 	sla e
-	rl d ;dv + base stat * 2
+	rl d
 	srl b
-	srl b ;stat xp / 4
+	srl b
 	ld a, b
-	add e ;add them together, put total in da
-	jr nc, .asm_e20f
+	add e
+	jr nc, .no_overflow_2
 	inc d
-.asm_e20f
-	ld [$ffb6], a ;load stat into ffb5
+
+.no_overflow_2
+	ld [hMultiplicand + 2], a
 	ld a, d
-	ld [$ffb5], a
+	ld [hMultiplicand + 1], a
 	xor a
-	ld [hMultiplicand], a
+	ld [hMultiplicand + 0], a
 	ld a, [CurPartyLevel]
-	ld [hMultiplier], a ;multiply by level
-	call Multiply
-	ld a, [hMultiplicand]
-	ld [hProduct], a
-	ld a, [$ffb5]
-	ld [hMultiplicand], a
-	ld a, [$ffb6]
-	ld [$ffb5], a
-	ld a, $64 ;100
 	ld [hMultiplier], a
-	ld a, $3
+	call Multiply
+	ld a, [hProduct + 1]
+	ld [hDividend + 0], a
+	ld a, [hProduct + 2]
+	ld [hDividend + 1], a
+	ld a, [hProduct + 3]
+	ld [hDividend + 2], a
+	ld a, 100
+	ld [hDivisor], a
+	ld a, 3
 	ld b, a
-	call Divide ;/100
+	call Divide
 	ld a, c
-	cp $1
-	ld a, $5
-	jr nz, .asm_e24e ;jump if not hp?
-	ld a, [CurPartyLevel] ;add level ?
+	cp STAT_HP
+	ld a, 5
+	jr nz, .not_hp
+	ld a, [CurPartyLevel]
 	ld b, a
-	ld a, [$ffb6]
+	ld a, [hQuotient + 2]
 	add b
-	ld [$ffb6], a
-	jr nc, .asm_e24c ;check if carry
-	ld a, [$ffb5]
+	ld [hMultiplicand + 2], a
+	jr nc, .no_overflow_3
+	ld a, [hQuotient + 1]
 	inc a
-	ld [$ffb5], a
-.asm_e24c
-	ld a, $a ;load 10 to add
-.asm_e24e
+	ld [hMultiplicand + 1], a
+
+.no_overflow_3
+	ld a, 10
+
+.not_hp
 	ld b, a
-	ld a, [$ffb6]
-	add b ;add constant
-	ld [$ffb6], a
-	jr nc, .asm_e25b ;check if carry
-	ld a, [$ffb5]
+	ld a, [hQuotient + 2]
+	add b
+	ld [hMultiplicand + 2], a
+	jr nc, .no_overflow_4
+	ld a, [hQuotient + 1]
 	inc a
-	ld [$ffb5], a
-.asm_e25b
-	ld a, [$ffb5] ;if stat is >1004. jump
-	cp $4
-	jr nc, .asm_e26b
-	cp $3
-	jr c, .asm_e273 ;if stat is less then 753, done
-	ld a, [$ffb6]
-	cp $e8
-	jr c, .asm_e273 ;if < 1000, jump
-.asm_e26b
-	ld a, $3 ;cap at 999
-	ld [$ffb5], a
-	ld a, $e7
-	ld [$ffb6], a
-.asm_e273
+	ld [hMultiplicand + 1], a
+
+.no_overflow_4
+	ld a, [hQuotient + 1]
+	cp (1000 / $100) + 1
+	jr nc, .max_stat
+	cp 1000 / $100
+	jr c, .stat_value_okay
+	ld a, [hQuotient + 2]
+	cp 1000 % $100
+	jr c, .stat_value_okay
+
+.max_stat
+	ld a, 999 / $100
+	ld [hMultiplicand + 1], a
+	ld a, 999 % $100
+	ld [hMultiplicand + 2], a
+
+.stat_value_okay
 	pop bc
 	pop de
 	pop hl
