@@ -9093,10 +9093,12 @@ CalcPkmnStatC: ; e17b
 	ld a, [hld]
 	ld e, a
 	ld d, [hl]
+	ld l, c
 	push hl
 	callba GetSquareRoot
 	pop hl
 	pop de
+	ld c, l
 
 .no_stat_exp
 	srl c
