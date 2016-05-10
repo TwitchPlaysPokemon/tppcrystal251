@@ -201,6 +201,8 @@ TrainerClassDVs: ; 270d6
 	db $DD, $DD ; rivalrb
 	db $98, $88 ; brockrb
 	db $78, $88 ; mistyrb
-	db $DD, $DD ; baba
+	db $BA, $BA; baba
+	db $DD, $DD ; executiveegk
+	
 ; 2715c
 

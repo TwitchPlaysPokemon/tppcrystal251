@@ -76,3 +76,4 @@
 	dbw BANK(BrockPic)            - $36, BrockPic
 	dbw BANK(MistyPic)            - $36, MistyPic
 	dbw BANK(BabaPic)             - $36, BabaPic
+	dbw BANK(ExecutivemPic)		- $36, ExecutivemPic
