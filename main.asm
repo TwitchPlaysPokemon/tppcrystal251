@@ -4174,8 +4174,8 @@ PredefPointers:: ; 856b
 	add_predef Functionde6e
 	add_predef GiveEgg
 	add_predef Predef_HPBarAnim
-	add_predef Functione167
-	add_predef Functione17b
+	add_predef CalcPkmnStats
+	add_predef CalcPkmnStatC
 	add_predef CanLearnTMHMMove
 	add_predef GetTMHMMove
 	add_predef Function28eef ; $ 10
@@ -7894,7 +7894,7 @@ Functiond906: ; d906
 	ld a, $1
 	ld c, a ;get hp
 	ld b, 1 ;stat xp on
-	predef Functione17b ; calc hp, put HP into in $ffb5 and $ffb6.
+	predef CalcPkmnStatC ; calc hp, put HP into in $ffb5 and $ffb6.
 	ld a, [$ffb5] ;load hp
 	ld [de], a
 	inc de
@@ -7923,7 +7923,7 @@ Functiond906: ; d906
 	pop hl
 	push de ;start of stat block, over second byte of cur HP
 	ld b, 1
-	call Functione167 ;update stats for badge boost stat xp
+	call CalcPkmnStats ;update stats for badge boost stat xp
 
 	pop de
 	inc de ;over low byte of new max hp
@@ -8003,7 +8003,7 @@ Functiond906: ; d906
 	jr z, .okay2
 	ld b, 1
 .okay2
-	call Functione167 ;fill rest of stats
+	call CalcPkmnStats ;fill rest of stats
 .asm_da45
 	ld a, [MonType]
 	and $f
@@ -8329,7 +8329,7 @@ Functiondb3f: ; db3f
 	add hl, bc
 	push bc
 	ld b, $1
-	call Functione167
+	call CalcPkmnStats
 	pop bc
 	ld a, [wd10b]
 	and a
@@ -8538,7 +8538,7 @@ Functiondd64: ; dd64
 	add hl, bc
 	push bc
 	ld b, $1
-	call Functione167
+	call CalcPkmnStats
 	ld hl, PartyMon1Moves
 	ld a, [PartyCount]
 	dec a
@@ -9021,7 +9021,7 @@ Functione134: ; e134
 	ld a, PartyMon1Exp + 2 - PartyMon1
 	call GetPartyParamLocation
 	ld b, $1
-	call Functione167
+	call CalcPkmnStats
 	pop de
 	ld a, PartyMon1HP - PartyMon1
 	call GetPartyParamLocation
@@ -9032,11 +9032,11 @@ Functione134: ; e134
 	ld [hl], a
 	ret
 
-Functione167: ; e167 fill stat block de for currently loaded base stats, with statxp hl (or skip with b = 0)
+CalcPkmnStats: ; e167 fill stat block de for currently loaded base stats, with statxp hl (or skip with b = 0)
 	ld c, $0
 .asm_e169
 	inc c
-	call Functione17b
+	call CalcPkmnStatC
 	ld a, [$ffb5]
 	ld [de], a
 	inc de
@@ -9049,7 +9049,7 @@ Functione167: ; e167 fill stat block de for currently loaded base stats, with st
 	ret
 ; e17b
 
-Functione17b: ; e17b return stat c for mon species whose base stats are loaded of level curpartylevel, whose statxp starts at hl,  in $ffb5 and $ffb6. if b = 0, skip stat xp
+CalcPkmnStatC: ; e17b return stat c for mon species whose base stats are loaded of level curpartylevel, whose statxp starts at hl,  in $ffb5 and $ffb6. if b = 0, skip stat xp
 	push hl
 	push de
 	push bc
@@ -15985,7 +15985,7 @@ Function13a47: ; 13a47
 	ld hl, PartyMon1Exp + 2 - PartyMon1
 	add hl, bc
 	ld b, $1
-	predef Functione167
+	predef CalcPkmnStats
 	pop hl
 	ld bc, PartyMon2 - PartyMon1
 	add hl, bc
@@ -22606,7 +22606,7 @@ Function169ac: ; 169ac
 	pop hl
 	push bc
 	ld b, $0
-	predef Functione167
+	predef CalcPkmnStats
 	pop bc
 	ld hl, PartyMon1HP - PartyMon1
 	add hl, bc
@@ -23361,7 +23361,7 @@ Function16f7a: ; 16f7a (5:6f7a)
 	ld bc, PartyMon1Exp + 2 - PartyMon1
 	add hl, bc
 	ld b, $0
-	predef Functione167
+	predef CalcPkmnStats
 	pop bc
 	ld hl, PartyMon1MaxHP - PartyMon1
 	add hl, bc
@@ -30702,7 +30702,7 @@ Function284f6: ; 284f6
 	add hl, bc
 	ld c, $5
 	ld b, $1
-	predef Functione17b
+	predef CalcPkmnStatC
 	pop bc
 	pop de
 	ld a, [$ffb5]
@@ -30968,7 +30968,7 @@ Function286ba: ; 286ba
 	add hl, bc
 	ld c, $5
 	ld b, $1
-	predef Functione17b
+	predef CalcPkmnStatC
 	pop bc
 	pop hl
 	ld a, [$ffb5]
@@ -30981,7 +30981,7 @@ Function286ba: ; 286ba
 	add hl, bc
 	ld c, $6
 	ld b, $1
-	predef Functione17b
+	predef CalcPkmnStatC
 	pop bc
 	pop hl
 	ld a, [$ffb5]
@@ -36634,14 +36634,14 @@ TrainerType:
 	dec hl ;makes it not break?
 	ld b, 1
 	ld c, 1
-	predef Functione17b ; calc hp, put into in $ffb5 and $ffb6.
+	predef CalcPkmnStatC ; calc hp, put into in $ffb5 and $ffb6.
 	ld a, [$ffb5] ;load hp
 	ld [de], a
 	inc de
 	ld a, [$ffb6]
 	ld [de], a
 	inc de
-	predef Functione167
+	predef CalcPkmnStats
 	pop hl
 .no_maxxp
 	ld a, [wdff5 + 1]
@@ -37114,7 +37114,7 @@ Function421f5: ; 421f5
 	ld hl, TempMonExp + 2
 	ld de, TempMonMaxHP
 	ld b, $1
-	predef Functione167
+	predef CalcPkmnStats
 	ld a, [CurPartyMon]
 	ld hl, PartyMons
 	ld bc, PartyMon2 - PartyMon1
@@ -49219,7 +49219,7 @@ Function50893: ; 50893
 	add hl, bc
 	push bc
 	ld b, $1
-	predef Functione167
+	predef CalcPkmnStats
 	pop bc
 	ld hl, TempMonHP - TempMon
 	add hl, bc
