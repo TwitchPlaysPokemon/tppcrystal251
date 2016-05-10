@@ -57,7 +57,7 @@ MtMoonB3FRBHelixFossilScript:
 	end
 
 Trainer_MtMoonB3FRBRocket1:
-	trainer EVENT_MT_MOON_B3F_ROCKET_4, EXECUTIVEM, 5, _MtMoon3BattleText2, _MtMoon3EndBattleText2, 0, .Script
+	trainer EVENT_MT_MOON_B3F_ROCKET_4, EXECUTIVE_EGK, 1, _MtMoon3BattleText2, _MtMoon3EndBattleText2, 0, .Script
 .Script
 	loadfont
 	writetext _MtMoon3AfterBattleText2

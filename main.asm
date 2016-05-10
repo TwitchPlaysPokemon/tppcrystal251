@@ -34886,6 +34886,7 @@ TrainerClassNames:: ; 2c1ef
  	db "LEADER@"
  	db "LEADER@"
 	db "ELF COACH'S@"
+	db "ROCKET@"
  	; db $4a, " TRAINER@" ; Uncomment this if the above is rejected
 
 AI_Redundant: ; 2c41a
@@ -36201,6 +36202,8 @@ PlayBattleMusic: ; 2ee6c
 	jr z, .done
 	cp SCIENTIST
 	jr z, .scientist
+	cp EXECUTIVE_EGK
+	jr z, .done
 	ld de, MUSIC_RIVAL_BATTLE_RB
 	cp BLUE_RB
 	jr z, .egk_check
