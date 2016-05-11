@@ -40,7 +40,6 @@ PickUpResearchNotesScript:
 	closetext
 	;event here
 	appear $3
-	special Functionc48f ;fade music
 	;playmusic MUSIC_POKEMANIAC_ENCOUNTER
 	applymovement $3, MoveSimonToPath
 	spriteface $0, UP
@@ -50,9 +49,11 @@ PickUpResearchNotesScript:
 	writetext SimonText1_Lab
 	waitbutton
 	closetext
-	playmusic MUSIC_NONE
+	special Functionc48f ;fade music
+	pause 16
 	playsound SFX_2_BOOPS
 	waitsfx
+	pause 20
 	playsound SFX_STRENGTH
 	earthquake 10
 	refreshscreen 0
@@ -80,24 +81,25 @@ PickUpResearchNotesScript:
 	applymovement $0, MovePlayerUp
 	pause 20
 	spriteface $3, DOWN
-	playmusic MUSIC_POKEMANIAC_ENCOUNTER
 	loadfont
 	writetext SimonText3_Lab
 	waitbutton
 	closetext
 	playsound SFX_WARP_FROM
-	special Special_FadeToBlack
-	special Functiond91
+	applymovement $4, WarpMewtwoOut
 	disappear $4
-	special Function8c0ab
-	waitsfx
 	spriteface $3, RIGHT
 	showemote $0, $3, 15
 	spriteface $3, LEFT
-	showemote $0, $3, 15
-	spriteface $3, DOWN
+	showemote $1, $3, 15
 	loadfont
 	writetext SimonText4_Lab
+	waitbutton
+	closetext
+	playmusic MUSIC_POKEMANIAC_ENCOUNTER
+	spriteface $3, DOWN
+	loadfont
+	writetext SimonText4a_Lab
 	spriteface $3, LEFT
 	buttonsound
 	writetext SimonText5_Lab
@@ -152,8 +154,10 @@ SimonText4_Lab:
 	line "gone?"
 
 	para "What was that?"
-	
-	para "And what are YOU"
+	done
+
+SimonText4a_Lab:
+	text "And what are YOU"
 	line "doing here too?"
 	
 	para "Me? What am I"
@@ -245,6 +249,11 @@ MoveSimonOut:
 	step_up
 	step_up
 	step_end
+
+WarpMewtwoOut:
+	teleport_from
+	step_end
+
 CinnabarVolcanoLab_MapEventHeader:
 	; filler
 	db 0, 0
