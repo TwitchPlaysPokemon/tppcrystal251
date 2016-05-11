@@ -119,6 +119,15 @@ Special_EnterDistrCode:
 .got_mon
 	ld a, BANK(sDistroMonFlags)
 	call GetSRAMBank
+	ld hl, sDistroMonArrayInitialized
+	ld a, [hl]
+	and a
+	jr z, .initialized
+	xor a
+	ld hl, sDistroMonFlags
+	ld bc, sDistroMonEnd - sDistroMonFlags
+	call ByteFill
+.initialized
 	pop af
 	cpl
 	add DISTRO_MON_COUNT + 1
