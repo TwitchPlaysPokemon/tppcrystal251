@@ -611,7 +611,7 @@ Special_EnterDistrCode:
 
 .GreetingText:
 	text "Hello! Welcome to"
-	line "#COM CENTER"
+	line "the #COM CENTER"
 	cont "TRADE CORNER."
 
 	para "You can receive"
@@ -642,7 +642,7 @@ Special_EnterDistrCode:
 
 	para "You have no room"
 	line "in your party to"
-	cont "accept this gift."
+	cont "accept a #MON."
 
 	para "Please make room"
 	line "and come back."
@@ -665,7 +665,7 @@ Special_EnterDistrCode:
 
 	para "You have already"
 	line "received this"
-	cont "gift."
+	cont "#MON."
 
 	para "You may not re-"
 	line "ceive another."

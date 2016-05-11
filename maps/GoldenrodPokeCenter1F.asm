@@ -56,8 +56,8 @@ PCCMachineSignScript:
 	end
 
 LinkStationNurseScript:
-	checkevent EVENT_BEAT_ELM
-	iffalse .skip
+	checkcode VAR_DEXCAUGHT
+	if_less_than 251, .skip
 	faceplayer
 	loadfont
 	special Special_EnterDistrCode
@@ -106,7 +106,7 @@ UnknownScript_0x61051: ; 0x61051
 
 UnknownText_0x61072: ; 0x61072
 	text "Hello! Welcome to"
-	line "#COM CENTER"
+	line "the #COM CENTER"
 	cont "TRADE CORNER."
 
 	para "You can receive"
