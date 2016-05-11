@@ -666,9 +666,6 @@ Special_EnterDistrCode:
 	para "You have already"
 	line "received this"
 	cont "#MON."
-
-	para "You may not re-"
-	line "ceive another."
 	done
 
 .Congrats:
