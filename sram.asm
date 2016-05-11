@@ -215,6 +215,7 @@ sBTPkmnPrevPrevTrainer3:: ds 1 ; be56
 SECTION "sDistribution", SRAM, BANK[1]
 sDistroMonFlags:: flag_array DISTRO_MON_COUNT
 sDistroMonArrayInitialized:: ds 1
+sDistroMonEnd::
 
 SECTION "Boxes 1-7",  SRAM, BANK [2]
 	box sBox1
