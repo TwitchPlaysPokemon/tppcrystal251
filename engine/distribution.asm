@@ -286,7 +286,7 @@ Special_EnterDistrCode:
 	ld hl, PartyMon1StatExp - PartyMon1 - 1
 	add hl, bc
 	ld b, 0
-	predef Functione167 ; CalcPkmnStats
+	predef CalcPkmnStats ; CalcPkmnStats
 	pop bc
 
 	; Copy HP
