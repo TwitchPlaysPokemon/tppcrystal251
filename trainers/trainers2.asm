@@ -763,3 +763,15 @@ BabaGroup:
 		db METRONOME
 
 	db $ff
+
+ExecutiveEgkGroup:
+; ================
+	; EXECUTIVEEGK (1)
+	
+	db "EXECUTIVE@" ; 1
+	db (1 << TRAINERTYPE_NICKNAME) | (1 << TRAINERTYPE_ITEM)
+	db 15, RATICATE, GOLD_BERRY, "GILGAMESH@"
+	
+	db $ff
+	
+; ================================

@@ -736,7 +736,6 @@ BabaPic:             INCBIN "gfx/trainers/kris_orig.7x7.2bpp.lz" ; Uncomment thi
 PhanceroFrontpic:    INCBIN "gfx/pics/phancero/front.7x7.2bpp.lz"
 PhanceroBackpic:     INCBIN "gfx/pics/phancero/back.6x6.2bpp.lz"
 
-
 SECTION "SubstitutePics", ROMX
 SubstituteFrontPic:: INCBIN "gfx/battle/substitute-front.2bpp.lz"
 SubstituteBackPic::  INCBIN "gfx/battle/substitute-back.2bpp.lz"

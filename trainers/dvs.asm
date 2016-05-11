@@ -84,12 +84,12 @@ GetTrainerDVs: ; 270c4
 	ret
 
 .JaredDVs
-	db $78, $9f
-	db $f2, $6e
-	db $ab, $23
-	db $f9, $b2
-	db $1a, $38
-	db $21, $d2
+	db $78, $9f ; T
+	db $f2, $6e ; W
+	db $ab, $23 ; I
+	db $f9, $b2 ; T
+	db $1a, $38 ; C
+	db $21, $d2 ; H
 
 .RedDVs
 	db $0E, $7A ; AA-j
@@ -201,6 +201,8 @@ TrainerClassDVs: ; 270d6
 	db $DD, $DD ; rivalrb
 	db $98, $88 ; brockrb
 	db $78, $88 ; mistyrb
-	db $DD, $DD ; baba
+	db $BA, $BA; baba
+	db $DD, $DD ; executiveegk
+	
 ; 2715c
 
