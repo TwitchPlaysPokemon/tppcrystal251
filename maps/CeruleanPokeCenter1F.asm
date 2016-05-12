@@ -89,9 +89,9 @@ CeruleanPokeCenter1F_MapEventHeader: ; 0x188386
 
 	; warps
 	db 3
-	warp_def $7, $3, 4, GROUP_CERULEAN_CITY, MAP_CERULEAN_CITY
-	warp_def $7, $4, 4, GROUP_CERULEAN_CITY, MAP_CERULEAN_CITY
-	warp_def $7, $0, 1, GROUP_POKECENTER_2F, MAP_POKECENTER_2F
+	warp_def $7, $5, 4, GROUP_CERULEAN_CITY, MAP_CERULEAN_CITY
+	warp_def $7, $6, 4, GROUP_CERULEAN_CITY, MAP_CERULEAN_CITY
+	warp_def $7, $2, 1, GROUP_POKECENTER_2F, MAP_POKECENTER_2F
 
 	; xy triggers
 	db 0
@@ -101,7 +101,7 @@ CeruleanPokeCenter1F_MapEventHeader: ; 0x188386
 
 	; people-events
 	db 3
-	person_event SPRITE_NURSE, 5, 7, $6, 0, 0, -1, -1, 0, 0, 0, NurseScript_0x18820f, -1
+	person_event SPRITE_NURSE, 5, 9, $6, 0, 0, -1, -1, 0, 0, 0, NurseScript_0x18820f, -1
 	person_event SPRITE_SUPER_NERD, 8, 12, $5, 0, 1, -1, -1, 0, 0, 0, SuperNerdScript_0x188212, -1
 	person_event SPRITE_GYM_GUY, 9, 5, $2, 1, 1, -1, -1, 8 + PAL_OW_GREEN, 0, 0, GymGuyScript_0x18821e, -1
 ; 0x1883c2

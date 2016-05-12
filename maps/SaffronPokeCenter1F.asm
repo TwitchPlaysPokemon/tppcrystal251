@@ -175,9 +175,9 @@ SaffronPokeCenter1F_MapEventHeader: ; 0x18a722
 
 	; warps
 	db 3
-	warp_def $7, $3, 4, GROUP_SAFFRON_CITY, MAP_SAFFRON_CITY
-	warp_def $7, $4, 4, GROUP_SAFFRON_CITY, MAP_SAFFRON_CITY
-	warp_def $7, $0, 1, GROUP_POKECENTER_2F, MAP_POKECENTER_2F
+	warp_def $7, $5, 4, GROUP_SAFFRON_CITY, MAP_SAFFRON_CITY
+	warp_def $7, $6, 4, GROUP_SAFFRON_CITY, MAP_SAFFRON_CITY
+	warp_def $7, $2, 1, GROUP_POKECENTER_2F, MAP_POKECENTER_2F
 
 	; xy triggers
 	db 0
@@ -187,7 +187,7 @@ SaffronPokeCenter1F_MapEventHeader: ; 0x18a722
 
 	; people-events
 	db 5
-	person_event SPRITE_NURSE, 5, 7, $6, 0, 0, -1, -1, 0, 0, 0, NurseScript_0x18a47d, -1
+	person_event SPRITE_NURSE, 5, 9, $6, 0, 0, -1, -1, 0, 0, 0, NurseScript_0x18a47d, -1
 	person_event SPRITE_TEACHER, 6, 11, $2, 1, 1, -1, -1, 8 + PAL_OW_GREEN, 0, 0, TeacherScript_0x18a480, -1
 	person_event SPRITE_FISHER, 10, 12, $8, 0, 0, -1, -1, 8 + PAL_OW_RED, 0, 0, FisherScript_0x18a48c, -1
 	person_event SPRITE_YOUNGSTER, 8, 5, $3, 0, 0, -1, -1, 8 + PAL_OW_BLUE, 0, 0, YoungsterScript_0x18a4a0, -1

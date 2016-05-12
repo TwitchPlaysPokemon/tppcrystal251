@@ -539,7 +539,6 @@ MapGroup29:
 	map_header RedsHouse2FRB, $6, 3, PALLET_TOWN, MUSIC_PALLET_TOWN, 0, 1, 1
 	map_header BluesHouseRB, $5, 3, PALLET_TOWN, MUSIC_PALLET_TOWN, 0, 1, 1
 	map_header OaksLabRB, $a, 3, PALLET_TOWN, MUSIC_POKEMON_TALK, 0, 1, 1
-	map_header PokecenterRB, $7, 3, ROUTE_3, MUSIC_POKEMON_CENTER, 0, 1, 1
 
 MapGroup30:
 	map_header Route2RB, $3, 2, ROUTE_2, MUSIC_ROUTE_1, 0, 0, 1

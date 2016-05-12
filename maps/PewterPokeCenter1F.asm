@@ -75,9 +75,9 @@ PewterPokeCenter1F_MapEventHeader: ; 0x1a2ff4
 
 	; warps
 	db 3
-	warp_def $7, $3, 4, GROUP_PEWTER_CITY, MAP_PEWTER_CITY
-	warp_def $7, $4, 4, GROUP_PEWTER_CITY, MAP_PEWTER_CITY
-	warp_def $7, $0, 1, GROUP_POKECENTER_2F_KANTO, MAP_POKECENTER_2F_KANTO
+	warp_def $7, $5, 4, GROUP_PEWTER_CITY, MAP_PEWTER_CITY
+	warp_def $7, $6, 4, GROUP_PEWTER_CITY, MAP_PEWTER_CITY
+	warp_def $7, $2, 1, GROUP_POKECENTER_2F_KANTO, MAP_POKECENTER_2F_KANTO
 
 	; xy triggers
 	db 0
@@ -87,7 +87,7 @@ PewterPokeCenter1F_MapEventHeader: ; 0x1a2ff4
 
 	; people-events
 	db 5
-	person_event SPRITE_NURSE, 5, 7, $6, 0, 0, -1, -1, 0, 0, 0, NurseScript_0x1a2ee7, -1
+	person_event SPRITE_NURSE, 5, 9, $6, 0, 0, -1, -1, 0, 0, 0, NurseScript_0x1a2ee7, -1
 	person_event SPRITE_TEACHER, 10, 12, $6, 0, 0, -1, -1, 8 + PAL_OW_GREEN, 0, 0, TeacherScript_0x1a2eea, -1
 	person_event SPRITE_JIGGLYPUFF, 7, 5, $16, 0, 0, -1, -1, 0, 0, 0, JigglypuffScript_0x1a2eed, -1
 	person_event SPRITE_BUG_CATCHER, 7, 6, $6, 0, 0, -1, -1, 8 + PAL_OW_BLUE, 0, 0, BugCatcherScript_0x1a2ef7, -1

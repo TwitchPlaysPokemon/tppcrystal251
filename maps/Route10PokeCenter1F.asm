@@ -90,9 +90,9 @@ Route10PokeCenter1F_MapEventHeader: ; 0x188d63
 
 	; warps
 	db 3
-	warp_def $7, $3, 1, GROUP_ROUTE_10_NORTH, MAP_ROUTE_10_NORTH
-	warp_def $7, $4, 1, GROUP_ROUTE_10_NORTH, MAP_ROUTE_10_NORTH
-	warp_def $7, $0, 1, GROUP_POKECENTER_2F, MAP_POKECENTER_2F
+	warp_def $7, $5, 1, GROUP_ROUTE_10_NORTH, MAP_ROUTE_10_NORTH
+	warp_def $7, $6, 1, GROUP_ROUTE_10_NORTH, MAP_ROUTE_10_NORTH
+	warp_def $7, $2, 1, GROUP_POKECENTER_2F, MAP_POKECENTER_2F
 
 	; xy triggers
 	db 0
@@ -102,7 +102,7 @@ Route10PokeCenter1F_MapEventHeader: ; 0x188d63
 
 	; people-events
 	db 4
-	person_event SPRITE_NURSE, 5, 7, $6, 0, 0, -1, -1, 0, 0, 0, NurseScript_0x188bd4, -1
+	person_event SPRITE_NURSE, 5, 9, $6, 0, 0, -1, -1, 0, 0, 0, NurseScript_0x188bd4, -1
 	person_event SPRITE_GENTLEMAN, 10, 11, $5, 0, 1, -1, -1, 8 + PAL_OW_RED, 0, 0, GentlemanScript_0x188bd7, -1
 	person_event SPRITE_GYM_GUY, 6, 11, $3, 0, 0, -1, -1, 8 + PAL_OW_GREEN, 0, 0, GymGuyScript_0x188bda, -1
 	person_event SPRITE_COOLTRAINER_F, 7, 5, $6, 0, 0, -1, -1, 0, 0, 0, CooltrainerFScript_0x188bee, -1

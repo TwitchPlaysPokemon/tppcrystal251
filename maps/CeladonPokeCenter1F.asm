@@ -159,9 +159,9 @@ CeladonPokeCenter1F_MapEventHeader: ; 0x720b8
 
 	; warps
 	db 3
-	warp_def $7, $3, 5, GROUP_CELADON_CITY, MAP_CELADON_CITY
-	warp_def $7, $4, 5, GROUP_CELADON_CITY, MAP_CELADON_CITY
-	warp_def $7, $0, 1, GROUP_POKECENTER_2F, MAP_POKECENTER_2F
+	warp_def $7, $5, 5, GROUP_CELADON_CITY, MAP_CELADON_CITY
+	warp_def $7, $6, 5, GROUP_CELADON_CITY, MAP_CELADON_CITY
+	warp_def $7, $2, 1, GROUP_POKECENTER_2F, MAP_POKECENTER_2F
 
 	; xy triggers
 	db 0
@@ -171,7 +171,7 @@ CeladonPokeCenter1F_MapEventHeader: ; 0x720b8
 
 	; people-events
 	db 5
-	person_event SPRITE_NURSE, 5, 7, $6, 0, 0, -1, -1, 0, 0, 0, NurseScript_0x71e22, -1
+	person_event SPRITE_NURSE, 5, 9, $6, 0, 0, -1, -1, 0, 0, 0, NurseScript_0x71e22, -1
 	person_event SPRITE_GENTLEMAN, 9, 5, $5, 0, 1, -1, -1, 0, 0, 0, GentlemanScript_0x71e25, -1
 	person_event SPRITE_PHARMACIST, 7, 4, $6, 0, 0, -1, -1, 8 + PAL_OW_RED, 0, 0, PharmacistScript_0x71e2b, -1
 	person_event SPRITE_COOLTRAINER_F, 10, 12, $5, 0, 1, -1, -1, 8 + PAL_OW_GREEN, 0, 0, CooltrainerFScript_0x71e28, -1

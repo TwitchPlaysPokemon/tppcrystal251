@@ -32,23 +32,12 @@ OlivinePokeCenter1F_BlockData: ; 0xac2e8
 MahoganyPokeCenter1F_BlockData:
 EcruteakPokeCenter1F_BlockData:
 BlackthornPokeCenter1F_BlockData:
-CinnabarPokeCenter1F_BlockData:
-CeruleanPokeCenter1F_BlockData:
-Route10PokeCenter1F_BlockData:
 AzaleaPokeCenter1F_BlockData:
 VioletPokeCenter1F_BlockData:
 Route32PokeCenter1F_BlockData:
-VermilionPokeCenter1F_BlockData:
-PewterPokeCenter1F_BlockData:
-FuchsiaPokeCenter1F_BlockData:
-LavenderPokeCenter1F_BlockData:
 SilverCavePokeCenter1F_BlockData:
-CeladonPokeCenter1F_BlockData:
 CianwoodPokeCenter1F_BlockData:
-ViridianPokeCenter1F_BlockData:
-SaffronPokeCenter1F_BlockData:
 CherrygrovePokeCenter1F_BlockData:
-MtMoonPokeCenter1F_BlockData:
 	INCBIN "maps/OlivinePokeCenter1F.blk"
 ; 0xac2fc
 

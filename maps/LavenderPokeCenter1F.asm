@@ -90,9 +90,9 @@ LavenderPokeCenter1F_MapEventHeader: ; 0x7e872
 
 	; warps
 	db 3
-	warp_def $7, $3, 1, GROUP_LAVENDER_TOWN, MAP_LAVENDER_TOWN
-	warp_def $7, $4, 1, GROUP_LAVENDER_TOWN, MAP_LAVENDER_TOWN
-	warp_def $7, $0, 1, GROUP_POKECENTER_2F, MAP_POKECENTER_2F
+	warp_def $7, $5, 1, GROUP_LAVENDER_TOWN, MAP_LAVENDER_TOWN
+	warp_def $7, $6, 1, GROUP_LAVENDER_TOWN, MAP_LAVENDER_TOWN
+	warp_def $7, $2, 1, GROUP_POKECENTER_2F, MAP_POKECENTER_2F
 
 	; xy triggers
 	db 0
@@ -102,7 +102,7 @@ LavenderPokeCenter1F_MapEventHeader: ; 0x7e872
 
 	; people-events
 	db 4
-	person_event SPRITE_NURSE, 5, 7, $6, 0, 0, -1, -1, 0, 0, 0, NurseScript_0x7e6a0, -1
+	person_event SPRITE_NURSE, 5, 9, $6, 0, 0, -1, -1, 0, 0, 0, NurseScript_0x7e6a0, -1
 	person_event SPRITE_GENTLEMAN, 10, 11, $5, 0, 1, -1, -1, 0, 0, 0, GentlemanScript_0x7e6a3, -1
 	person_event SPRITE_TEACHER, 7, 9, $6, 0, 0, -1, -1, 8 + PAL_OW_GREEN, 0, 0, TeacherScript_0x7e6a6, -1
 	person_event SPRITE_YOUNGSTER, 9, 5, $4, 1, 0, -1, -1, 8 + PAL_OW_RED, 0, 0, YoungsterScript_0x7e6a9, -1

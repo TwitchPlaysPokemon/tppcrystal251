@@ -99,14 +99,26 @@ VermilionGym2Blue_BlockData:
 VermilionGym2Off_BlockData:
 	INCBIN "maps/VermilionGym2Off.blk"
 
-	
-PokecenterRB_BlockData:
+
 CeruleanPokeCenter1FRB_BlockData:
 VermilionPokeCenter1FRB_BlockData:
 ViridianPokeCenter1FRB_BlockData:
 MtMoonPokeCenter1FRB_BlockData:
 PewterPokeCenter1FRB_BlockData:
-INCBIN "maps/PokecenterRB.blk"
+INCBIN "maps/EarlyGameKanto/PokecenterRB.blk"
 
 PokeCenter2FKanto_BlockData:
 INCBIN "maps/PokeCenter2FKanto.blk"
+
+MtMoonPokeCenter1F_BlockData:
+SaffronPokeCenter1F_BlockData:
+ViridianPokeCenter1F_BlockData:
+CeladonPokeCenter1F_BlockData:
+LavenderPokeCenter1F_BlockData:
+FuchsiaPokeCenter1F_BlockData:
+PewterPokeCenter1F_BlockData:
+VermilionPokeCenter1F_BlockData:
+Route10PokeCenter1F_BlockData:
+CinnabarPokeCenter1F_BlockData:
+CeruleanPokeCenter1F_BlockData:
+INCBIN "maps/PokecenterRBPGK.blk"
