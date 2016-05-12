@@ -48,7 +48,6 @@ Special_EnterDistrCode:
 	ret
 
 .congrats
-	callba Save_NoPrompt
 	ld a, [CurPartySpecies]
 	ld [wd265], a
 	call GetPokemonName
@@ -61,9 +60,14 @@ Special_EnterDistrCode:
 	and a
 	jr z, .cancel
 	ld hl, PartyMonNicknames
-	ld bc, NAME_LENGTH
+	ld bc, PKMN_NAME_LENGTH
 	ld a, [CurPartyMon]
 	call AddNTimes
+	push hl
+	ld bc, PKMN_NAME_LENGTH
+	ld a, "@"
+	call ByteFill
+	pop hl
 	push hl
 	ld hl, .GiveItANickname
 	call PrintText
@@ -71,12 +75,15 @@ Special_EnterDistrCode:
 	jr c, .skip_nickname
 	pop de
 	callba Functione3de
-	jr .cancel
+	jr .save_cancel
 
 .skip_nickname
 	pop hl
 	ld de, StringBuffer1
 	call InitName
+	
+.save_cancel
+	callba Save_NoPrompt
 	jr .cancel
 
 .EnterDistrCode:
@@ -193,9 +200,13 @@ Special_EnterDistrCode:
 	xor a ; PartyMon*Species
 	call GetPartyParamLocation
 	push hl
-	ld bc, $30
+	ld bc, PartyMon2 - PartyMon1
 	xor a
 	call ByteFill
+	ld hl, PartyMonOT
+	call .DeleteName
+	ld hl, PartyMonNicknames
+	call .DeleteName
 	pop hl
 	ld de, wSurvivalModeParty ; species, item, moves, OT ID, dvs, level
 	call .ConvertHashedMon
@@ -231,7 +242,15 @@ Special_EnterDistrCode:
 	ld [hl], a
 	ld hl, PartyMonOT
 	ld de, PlayerName
-	jp .CopyName
+	jr .CopyName
+
+.DeleteName
+	ld a, [CurPartyMon]
+	ld bc, NAME_LENGTH
+	call AddNTimes
+	ld bc, NAME_LENGTH
+	xor a
+	jp ByteFill
 
 .ConvertHashedMon:
 	; Copy species, item, moves, and OT ID
