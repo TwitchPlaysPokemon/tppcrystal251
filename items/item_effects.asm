@@ -1586,16 +1586,17 @@ Functionf030: ; f030 (3:7030)
 	ret nc
 	xor a
 	ld [BattleMonStatus], a
+	ld [BattleMonStatus + 1], a
 	ld hl, PlayerSubStatus5
-	res 0, [hl]
+	res SUBSTATUS_TOXIC, [hl]
 	ld hl, PlayerSubStatus1
-	res 0, [hl]
+	res SUBSTATUS_NIGHTMARE, [hl]
 	call Functionf058
 	ld a, c
 	cp $ff
 	jr nz, .asm_f04f
 	ld hl, PlayerSubStatus3
-	res 7, [hl]
+	res SUBSTATUS_CONFUSED, [hl]
 .asm_f04f
 	push bc
 	callba Function365d7

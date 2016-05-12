@@ -241,7 +241,7 @@ MapGroup10:
 
 MapGroup11:
 	map_header Route34, $2, 2, ROUTE_34, MUSIC_ROUTE_36, 0, 0, 2
-	map_header GoldenrodCity, $2, 1, GOLDENROD_CITY, MUSIC_GOLDENROD_CITY, 0, 0, 2
+	map_header GoldenrodCity, 2, 1, GOLDENROD_CITY, MUSIC_GOLDENROD_CITY, 0, 0, 2
 	map_header GoldenrodGym, $f, 3, GOLDENROD_CITY, MUSIC_GYM, 1, 1, 1
 	map_header GoldenrodBikeShop, $12, 3, GOLDENROD_CITY, MUSIC_GOLDENROD_CITY, 0, 1, 1
 	map_header GoldenrodHappinessRater, $5, 3, GOLDENROD_CITY, MUSIC_GOLDENROD_CITY, 0, 1, 1
@@ -261,6 +261,7 @@ MapGroup11:
 	map_header GoldenrodGameCorner, $e, 3, GOLDENROD_CITY, MUSIC_GAME_CORNER, 0, 1, 1
 	map_header GoldenrodPokeCenter1F, $15, 3, GOLDENROD_CITY, MUSIC_MOBILE_CENTER, 0, 1, 1
 	map_header GoldenrodPokeComCenter2FMobile, $15, 3, GOLDENROD_CITY, MUSIC_MOBILE_CENTER, 0, 1, 1
+	map_header GoldenrodBoutique, 12, 3, GOLDENROD_CITY, MUSIC_MOBILE_ADAPTER, 0, 1, 1
 	map_header IlexForestAzaleaGate, $8, 6, ROUTE_34, MUSIC_ROUTE_36, 0, 1, 1
 	map_header Route34IlexForestGate, $8, 6, ROUTE_34, MUSIC_ROUTE_36, 0, 1, 1
 	map_header DayCare, $5, 3, ROUTE_34, MUSIC_AZALEA_TOWN, 0, 1, 1

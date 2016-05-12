@@ -272,7 +272,9 @@ wc3bc:: ds 1
 wc3bd:: ds 1
 wc3be:: ds 1
 wc3bf:: ds 1
-wc3c0:: ds 12
+wc3c0:: ds 1
+wSpriteAnimPalOverrides::
+	ds 11
 wc3cc:: ds 1
 wc3cd:: ds 31
 wc3ec:: ds 1
@@ -1209,7 +1211,8 @@ Options2:: ; cfd1
 ; bit 2: 24/12-hour clock
 ; bit 3: metric/imperial unit
 	ds 1
-
+wPlayerPalette:: ; Player's selection of sprite color
+wChangedStyle:: ; Player changed color so use wPlayerPalette instead
 	ds 2
 OptionsEnd::
 wcfd4:: ds 1
@@ -1227,7 +1230,6 @@ wSurvivalModeWinStreak:: ds 2
 
 wWildBattlePanic::
 	ds 24
-
 
 SECTION "WRAM 1", WRAMX, BANK [1]
 
@@ -2583,6 +2585,10 @@ w3_d801::
 ; since LCD doesn't check for current WRAM bank
 SECTION "WRAM 4 RM", WRAMX[$d200], BANK[$4]
 SoundEngineBackup::
+
+SECTION "WRAM 4 DB", WRAMX[$d400], BANK[$4]
+DecryptBuffer1:: ds DISTRO_MON_LENGTH + 17
+DecryptBuffer2:: ds DISTRO_MON_LENGTH + 17
 
 SECTION "WRAM 4 MP", WRAMX[$d800], BANK[$4] ; seems like this bank is unused
 

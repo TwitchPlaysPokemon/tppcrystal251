@@ -316,6 +316,16 @@ Function8d0de: ; 8d0de
 	ld a, [hl]
 	and $1f
 	or b
+	ld b, a
+	ld a, [wSpriteAnimPalOverrides]
+	bit 7, a
+	ld a, b
+	ret z
+	and $f8
+	ld b, a
+	ld a, [wSpriteAnimPalOverrides]
+	and $7
+	or b
 	ret
 ; 8d0ec
 
@@ -334,6 +344,8 @@ Function8d0ec: ; 8d0ec
 	ld [wc3bd], a
 	ld a, [hli]
 	ld [wc3be], a
+	xor a
+	ld [wSpriteAnimPalOverrides], a
 	ret
 ; 8d109
 
@@ -375,6 +387,24 @@ Function8d120:: ; 8d120
 ; 8d132
 
 Function8d132: ; 8d132
+	ld hl, 1
+	add hl, bc
+	ld a, [hl]
+	cp $11
+	jr z, .is_player
+	cp $1b
+	jr z, .is_player
+	cp $2d
+	jr z, .is_player
+	cp $2e
+	jr nz, .asm_8d132
+.is_player
+	ld a, [wPlayerPalette]
+	and a
+	jr z, .asm_8d132
+	and $7
+	or $80
+	ld [wSpriteAnimPalOverrides], a
 .asm_8d132
 	ld hl, $0008
 	add hl, bc
@@ -502,7 +532,7 @@ Unknown_8d1c4: ; 8d1c4
 	db $0e, $0a, $07 ; 07
 	db $10, $0b, $07 ; 08
 	db $08, $0c, $05 ; 09
-	db $11, $00, $00 ; 0a
+	db $11, $00, $00 ; 0a male on town map
 	db $12, $0d, $08 ; 0b
 	db $12, $0e, $08 ; 0c
 	db $12, $0f, $08 ; 0d
@@ -513,7 +543,7 @@ Unknown_8d1c4: ; 8d1c4
 	db $18, $12, $00 ; 12
 	db $19, $13, $00 ; 13
 	db $1a, $14, $00 ; 14
-	db $1b, $00, $00 ; 15
+	db $1b, $00, $00 ; 15 male on train
 	db $1d, $15, $00 ; 16
 	db $1e, $00, $00 ; 17
 	db $1d, $17, $00 ; 18
@@ -522,8 +552,8 @@ Unknown_8d1c4: ; 8d1c4
 	db $25, $00, $00 ; 1b
 	db $20, $13, $00 ; 1c
 	db $26, $1a, $00 ; 1d
-	db $2d, $00, $00 ; 1e
-	db $2e, $00, $00 ; 1f
+	db $2d, $00, $00 ; 1e female on town map
+	db $2e, $00, $00 ; 1f female on train
 	db $2f, $00, $00 ; 20
 	db $30, $00, $00 ; 21
 	db $31, $00, $00 ; 22

@@ -219,7 +219,14 @@ tppPcGroup:
 	db $ff
 
 	db "PC@"
-	db (1 << TRAINERTYPE_MOVES) | (1 << TRAINERTYPE_ITEM)
+	db 0
+
+	; This party is handled separately.
+
+	db $ff
+
+	db "PC@"
+	db 0
 
 	; This party is handled separately.
 

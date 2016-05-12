@@ -635,7 +635,7 @@ Script_verbosegiveitem2: ; 0x96f8e
 .ok
 	ld [CurItem], a
 	call GetScriptByte
-	call Function9769e ;get variable pointed to by table based on second variable
+	call Script_GetVarAddr ;get variable pointed to by table based on second variable
 	ld a, [de]
 	ld [wd10c], a
 	ld hl, NumItems
@@ -2110,7 +2110,7 @@ Script_checkcode: ; 0x9767d
 ;     variable_id (SingleByteParam)
 
 	call GetScriptByte ;put augment into a
-	call Function9769e
+	call Script_GetVarAddr
 	ld a, [de]
 	ld [ScriptVar], a ;put it in scriptvar
 	ret
@@ -2122,7 +2122,7 @@ Script_writevarcode: ; 0x97688
 ;     variable_id (SingleByteParam)
 
 	call GetScriptByte
-	call Function9769e
+	call Script_GetVarAddr
 	ld a, [ScriptVar]
 	ld [de], a
 	ret
@@ -2135,13 +2135,13 @@ Script_writecode: ; 0x97693
 ;     value (SingleByteParam)
 
 	call GetScriptByte
-	call Function9769e
+	call Script_GetVarAddr
 	call GetScriptByte
 	ld [de], a
 	ret
 ; 0x9769e
 
-Function9769e: ; 0x9769e
+Script_GetVarAddr: ; 0x9769e
 	ld c, a ;put augment into c
 	callba Function80648 ;either call some code, or return the location of a variable
 	ret

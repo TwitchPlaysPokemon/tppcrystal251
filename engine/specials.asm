@@ -202,6 +202,8 @@ SpecialsPointers:: ; c029
 	add_special CalculateTowerWinningsOnQuit
 	add_special CalculateTowerVictory
 	add_special Special_CheckRematches
+	add_special SampleRandomSurvival
+	add_special Special_EnterDistrCode
 	add_special SpecialNone
 ; c224
 

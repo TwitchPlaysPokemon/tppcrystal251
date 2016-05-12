@@ -5,13 +5,25 @@ BattleTentPCRoom_MapScriptHeader:
 
 LeaguePCScript:
 	loadfont
-	playsound SFX_BOOT_PC
 	writetext tppPcIntroText
+	playsound SFX_BOOT_PC
+	waitsfx
+	checkevent EVENT_READ_PC_EXPLANATION
+	iftrue .skip_lengthly_intro
+.intro
+	writetext tppPcIntroText2
+	buttonsound
+	setevent EVENT_READ_PC_EXPLANATION
+.skip_lengthly_intro
+	writetext tppPcIntroText3
 	loadmenudata tppPc_Options_Header
 	interpretmenu2
 	writebackup
-	if_equal $1, tppPcUltimateTeamBattle
-	if_equal $2, tppPcMirrorBattle
+	iffalse tppPcEndBattle
+	if_equal ULTIMATE, tppPcUltimateTeamBattle
+	if_equal MIRROR, tppPcMirrorBattle
+	if_equal PC_SURVIVAL, TPPPC_SurvivalModeScript
+	if_equal 4, .intro
 tppPcEndBattle:
 	writetext tppPcLogOffText
 	playsound SFX_SHUT_DOWN_PC
@@ -48,20 +60,99 @@ tppPcStartBattle:
 	loadfont
 	jump tppPcEndBattle
 
+TPPPC_SurvivalModeScript:
+	writetext tppPcHealText
+	special HealParty
+	playmusic MUSIC_HEAL
+	pause 60
+	special RestartMapMusic
+	writebyte 0
+	copyvartobyte wSurvivalModeWinStreak
+.loop
+	special SampleRandomSurvival
+	copybytetovar wSurvivalModeWinStreak
+	if_less_than 200, .not_max
+	writetext SurvivalModeBattleStartText_200plus
+	jump .okay1
+
+.not_max
+	writetext SurvivalModeBattleStartText
+.okay1
+	waitbutton
+	closetext
+	loadtrainer TPPPC, PC_SURVIVAL
+	writecode VAR_BATTLETYPE, BATTLETYPE_CANLOSE
+	winlosstext tppPcWonText, tppPcLostText
+	startbattle
+	reloadmap
+	loadfont
+	iftrue .finish
+	jump .loop
+
+.finish
+	special HealParty
+	copybytetovar wSurvivalModeWinStreak
+	if_less_than 200, .not_max2
+	writetext SurvivalModeExitText_200plus
+	playsound SFX_DEX_FANFARE_230_PLUS
+	waitsfx
+	jump tppPcEndBattle
+
+.not_max2
+	writetext SurvivalModeExitText
+	playsound SFX_ITEM
+	waitsfx
+	jump tppPcEndBattle
+
 tppPc_Options_Header: ; 0x56478
 	db $40 ; flags
 	db 02, 02 ; start coords
-	db 9, 17 ; end coords
+	db 13, 17 ; end coords
 	dw tppPc_Options
 	db 1 ; default option
 ; 0x56480
 
 tppPc_Options: ; 0x56480
 	db $80 ; flags
-	db 3 ; items
+	db 5 ; items
 	db "ULTIMATE TEAM@"
 	db "YOUR OWN TEAM@"
+	db "SURVIVAL MODE@"
+	db "EXPLANATION@"
 	db "CANCEL@"
+
+SurvivalModeBattleStartText:
+	text "Now loading battle"
+	line "number @"
+	deciram wSurvivalModeWinStreak, $25
+	text "<...>"
+	done
+
+SurvivalModeBattleStartText_200plus:
+	text "Now loading the"
+	line "next battle<...>"
+	done
+
+SurvivalModeExitText:
+	text "You have survived"
+	line "@"
+	deciram wSurvivalModeWinStreak, $25
+	text " battles."
+
+	para "Good job."
+	done
+
+SurvivalModeExitText_200plus:
+	text "You have survived"
+	line "over 200 battles."
+
+	para "Congratulations!"
+	done
+
+SurvivalModeShutdownText:
+	text "Shutting down<...>"
+	done
+
 
 tppPcIntroText:
 	text "<PLAY_G> turned"
@@ -69,7 +160,9 @@ tppPcIntroText:
 
 	para "#MON LEAGUE"
 	line "BATTLE SIMULATOR"
+	done
 
+tppPcIntroText2:
 	para "In this software,"
 	line "you can fight a"
 
@@ -81,7 +174,20 @@ tppPcIntroText:
 	line "a copy of your own"
 	cont "party of #MON."
 
-	para "Please make your"
+	para "For a different"
+	line "challenge, try the"
+	cont "new SURVIVAL MODE,"
+
+	para "where you battle a"
+	line "horde of randomly-"
+	cont "generated teams"
+
+	para "until you can no"
+	line "longer fight."
+	done
+
+tppPcIntroText3:
+	text "Please make your"
 	line "selection."
 	done
 

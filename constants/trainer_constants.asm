@@ -756,6 +756,7 @@
 	trainerclass TPPPC
 	const ULTIMATE
 	const MIRROR
+	const PC_SURVIVAL
 
 	trainerclass ROCKETBOSS
 	const GIOVANNI_RB

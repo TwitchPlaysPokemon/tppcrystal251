@@ -5548,41 +5548,41 @@ BattleCommand2f:
 	ld hl, DoesntAffectText
 	ld a, [TypeModifier]
 	and $7f
-	jp z, .asm_35fb8
+	jp z, .failed
 
 	call Function35fe1
-	jp z, .asm_35fb8
+	jp z, .failed
 
 	ld a, BATTLE_VARS_MOVE
 	call GetBattleVar
 	cp POISONPOWDER
 	call z, CheckForGrassType ;ret z if target is a grass type
 	ld hl, DoesntAffectText
-	jp z, .asm_35fb8
+	jp z, .failed
 
 	ld a, BATTLE_VARS_STATUS_OPP
 	call GetBattleVar
 	ld b, a
 	ld hl, AlreadyPoisonedText
 	and 1 << PSN
-	jp nz, .asm_35fb8
+	jp nz, .failed
 
 	call GetOpponentItem
 	ld a, b
 	cp HELD_PREVENT_POISON
-	jr nz, .asm_35f5f
+	jr nz, .not_poison_guard
 	ld a, [hl]
 	ld [wd265], a
 	call GetItemName
 	ld hl, ProtectedByText
-	jr .asm_35fb8
+	jr .failed
 
-.asm_35f5f
+.not_poison_guard
 	ld hl, DidntAffect1Text
 	ld a, BATTLE_VARS_STATUS_OPP
 	call GetBattleVar
 	and a
-	jr nz, .asm_35fb8
+	jr nz, .failed
 	;ld a, [hBattleTurn]
 	;and a
 	;jr z, .asm_35f89
@@ -5597,47 +5597,47 @@ BattleCommand2f:
 	;jr nz, .asm_35f89
 	;call BattleRandom
 	;cp $40
-	;jr c, .asm_35fb8
+	;jr c, .failed
 
-.asm_35f89
+; .asm_35f89
 	call CheckSubstituteOpp
-	jr nz, .asm_35fb8
+	jr nz, .failed
 	ld a, [AttackMissed]
 	and a
-	jr nz, .asm_35fb8
-	call Function35fc9
-	jr z, .asm_35fa4
+	jr nz, .failed
+	call GetToxicCount
+	jr z, .toxic
 
-	call Function35fc0
+	call .Animate
 	ld hl, WasPoisonedText
 	call StdBattleTextBox
-	jr .asm_35fb1
+	jr .okay
 
-.asm_35fa4
+.toxic
 	set SUBSTATUS_TOXIC, [hl]
 	xor a
 	ld [de], a
-	call Function35fc0
+	call .Animate
 
 	ld hl, BadlyPoisonedText
 	call StdBattleTextBox
 
-.asm_35fb1
-	callba Function3dde9
+.okay
+	callba Function3dde9 ; heal poison
 	ret
 
-.asm_35fb8
+.failed
 	push hl
 	call AnimateFailedMove
 	pop hl
 	jp StdBattleTextBox
 
-Function35fc0:
+.Animate:
 	call AnimateCurrentMove
 	call Function35ff5
 	jp RefreshBattleHuds
 
-Function35fc9:
+GetToxicCount:
 	ld a, BATTLE_VARS_SUBSTATUS5_OPP
 	call GetBattleVarAddr
 	ld a, [hBattleTurn]
@@ -5670,6 +5670,12 @@ Function35ff5:
 	ld a, BATTLE_VARS_STATUS_OPP
 	call GetBattleVarAddr
 	set PSN, [hl]
+	ld a, BATTLE_VARS_MOVE_EFFECT
+	call GetBattleVar
+	cp EFFECT_TOXIC
+	jp nz, UpdateOpponentInParty
+	inc hl
+	set 0, [hl]
 	jp UpdateOpponentInParty
 
 BattleCommand_Burn:

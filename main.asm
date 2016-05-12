@@ -3291,6 +3291,13 @@ Function8029: ; 8029
 	ld a, [wd45b]
 	bit 2, a
 	jr nz, .asm_8059
+	ld a, [wPlayerPalette] ; NEW
+	and a ; NEW
+	jr z, .use_gender ; NEW
+	swap a ; NEW
+	ld e, a ; NEW
+	jr .asm_8059 ; NEW
+.use_gender ; NEW
 	ld a, [PlayerGender]
 	bit 0, a
 	jr z, .asm_8059
@@ -9467,10 +9474,7 @@ Functione3de: ; e3de InitNickname
 	pop hl
 	ld de, StringBuffer1
 	call InitName
-	ld a, $4 ; XXX could this be in bank 4 in pokered?
-	ld hl, Function2b4d
-	rst FarCall
-	ret
+	jp Function2b4d
 ; e3fd
 
 Functione3fd: ; e3fd bill's pc
@@ -10738,7 +10742,7 @@ Function116f8: ; 116f8
 Function1171d: ; 1171d
 	ld a, [wc6d4]
 	and 15
-	cp 9
+	cp 10
 	jr c, .ok
 	xor a
 .ok
@@ -10763,6 +10767,7 @@ Jumptable_1172e: ; 1172e (4:572e)
 	dw Function1173e
 	dw Function1173e
 	dw RivalNamingScreenRB
+	dw DistCodeEntry
 
 Function1173e: ; 1173e (4:573e)
 	ld a, [CurPartySpecies]
@@ -10838,6 +10843,15 @@ RivalNamingScreenRB: ; 117ae (4:57ae)
 String_117c3: ; 117c3
 	db "RIVAL'S NAME?@"
 ; 117d1
+
+DistCodeEntry:
+	hlcoord 5, 2
+	ld de, .String
+	call PlaceString
+	call StoreDistCodeEntryParams
+	ret
+.String:
+	db "ENTER CODE@"
 
 Function117d1: ; 117d1 (4:57d1)
 	ld de, MomSpriteGFX
@@ -10929,6 +10943,11 @@ Function1187b: ; 1187b (4:587b)
 	hlcoord 5, 6
 	jr Function11890
 
+StoreDistCodeEntryParams:
+	ld a, $8
+	hlcoord 5, 4
+	jr Function11890
+
 Function11882: ; 11882 (4:5882)
 	ld a, $7
 	hlcoord 5, 6
@@ -10937,8 +10956,6 @@ Function11882: ; 11882 (4:5882)
 Function11889: ; 11889 (4:5889)
 	ld a, $8
 	hlcoord 5, 4
-	jr Function11890
-
 Function11890: ; 11890 (4:5890)
 	ld [wc6d3], a
 	ld a, l
@@ -10955,6 +10972,14 @@ NamingScreen_IsTargetBox: ; 1189c
 	ld b, a
 	pop af
 	dec b
+	jr z, .boxscreen
+	push af
+	ld a, [wc6d4]
+	sub $8
+	ld b, a
+	pop af
+	dec b
+.boxscreen
 	pop bc
 	ret
 ; 118a8
@@ -18220,12 +18245,12 @@ DeleteBox: ; 14a83 (5:4a83)
 
 Function14ab2: ; 14ab2  ask if save, if yes save and ret nc
 	call Function14b89 ; ask if save, if yes erase save and ret nc
-	jr c, .asm_14ac1 ;ret c if refused
+	ret c ;ret c if refused
+Save_NoPrompt:
 	call Function14b54
 	call Function14be3
 	call Function14b5a
 	and a
-.asm_14ac1
 	ret
 ; 14ac2
 
@@ -18508,56 +18533,54 @@ Function14cbb: ; 14cbb
 	call Function14cf4
 	call Function14d68
 	call Function14d5c
-	ld a, $0
+	call EraseDistroCodes
+	ld a, BANK(sStackTop)
 	call GetSRAMBank
 	xor a
-	ld [$bf10], a
-	ld [$bf11], a
+	ld [sStackTop], a
+	ld [sStackTop + 1], a
 	call CloseSRAM
 	ld a, $1
 	ld [wd4b4], a
 	ret
 ; 14ce2
 
-Function14ce2: ; 14ce2
-	ld a, $1
+EraseDistroCodes:
+	ld a, BANK(sDistroMonFlags)
 	call GetSRAMBank
-	ld hl, $b260
-	ld bc, $0060
+	ld hl, sDistroMonFlags
 	xor a
-	call ByteFill
+	ld [hli], a
+	ld [hli], a
+	ld [hl], a
 	jp CloseSRAM
+
+Function14ce2: ; 14ce2
+	ld a, BANK(sLinkBattleStats)
+	call GetSRAMBank
+	ld hl, sLinkBattleStats
+	ld bc, sLinkBattleStatsEnd - sLinkBattleStats
+	jr FillSRAMWithZeros
 ; 14cf4
 
 Function14cf4: ; 14cf4
-	ld a, $0
+	ld a, BANK(sBackupMysteryGiftItem)
 	call GetSRAMBank
-	ld hl, $abe4
-	ld bc, $004c
-	xor a
-	call ByteFill
-	jp CloseSRAM
+	ld hl, sBackupMysteryGiftItem
+	ld bc, sBackupMysteryGiftItemEnd - sBackupMysteryGiftItem
+	jr FillSRAMWithZeros
 ; 14d06
 
 Function14d06: ; 14d06
-	ld a, $1
+	ld a, BANK(sHallOfFame)
 	call GetSRAMBank
-	ld hl, $b2c0
-	ld bc, $0b7c
+	ld hl, sHallOfFame
+	ld bc, sHallOfFameEnd - sHallOfFame ; $0b7c
+FillSRAMWithZeros:
 	xor a
 	call ByteFill
 	jp CloseSRAM
 ; 14d18
-
-Function14d18: ; 14d18
-	ld a, $4
-	call GetSRAMBank
-	ld hl, Unknown_14d2c
-	ld de, $a007
-	ld bc, $0030
-	call CopyBytes
-	jp CloseSRAM
-; 14d2c
 
 Unknown_14d2c: ; 14d2c
 	db $0d, $02, $00, $05, $00, $00
@@ -18571,10 +18594,10 @@ Unknown_14d2c: ; 14d2c
 ; 14d5c
 
 Function14d5c: ; 14d5c
-	ld a, $1
+	ld a, BANK(sBattleTowerChallengeState)
 	call GetSRAMBank
 	xor a
-	ld [$be45], a
+	ld [sBattleTowerChallengeState], a
 	jp CloseSRAM
 ; 14d68
 
@@ -33830,11 +33853,11 @@ Function29d11: ; 29d11
 ; 29d92
 
 EnsureTPPBytes:
-	ld a, [PlayerName + 8]
-	and a
-	ret nz
-	inc a
-	ld [PlayerName + 8], a
+	ld hl, PlayerName + 8
+	ld a, 2
+	cp [hl]
+	ret z
+	ld [hl], a
 	ld a, [PartyCount]
 	ld e, a
 	xor a
@@ -34092,7 +34115,7 @@ Function29e66: ; 29e66 ;ask if save, if yes save and ret scriptvar = 1
 	xor a
 .asm_29e75
 	ld [ScriptVar], a
-	ld c, $1e
+	ld c, 30
 	call DelayFrames
 	pop af
 	ld [wd265], a ;load into ??
@@ -36485,6 +36508,10 @@ ReadTrainerParty: ; 39771
 	ld a, [wLinkMode]
 	and a
 	ret nz
+	ld hl, wdff5
+	xor a
+	ld [hli], a
+	ld [hl], a
 	callba ClearOTMons
 	ld a, [OtherTrainerClass]
 	cp CAL
@@ -36499,16 +36526,19 @@ ReadTrainerParty: ; 39771
 	ld de, $ac0a
 	call TrainerType
 	call CloseSRAM
-	jp Function3991b
+	jp ComputeTrainerReward
 
 .not_cal2
 	cp TPPPC
 	jr nz, .not_tppPc
 	ld a, [OtherTrainerID]
+	cp PC_SURVIVAL
+	ld hl, wSurvivalModeParty
+	jp z, .done_name
 	cp MIRROR
 	jr nz, .not_tppPc
 	callba CopyMirrorBattle
-	jp Function3991b
+	jp ComputeTrainerReward
 
 .not_tppPc
 	ld a, [OtherTrainerClass]
@@ -36547,14 +36577,15 @@ ReadTrainerParty: ; 39771
 	ld a, [wdff5]
 	call GetFarByte2
 	ld [wdff5 + 1], a ;load in trainertype
-	ld bc, Function3991b
+.done_name
+	ld bc, ComputeTrainerReward ; Return to the start of this function
 	push bc
 TrainerType:
 ._loop
 	ld a, [wdff5]
 	call GetFarByte2
 	cp $ff
-	ret z ;ret if done
+	ret z
 	cp 101
 	jr c, .level_okay
 	ld a, 100
@@ -36730,7 +36761,7 @@ TrainerType:
 	pop hl
 	jp ._loop
 
-Function3991b: ; 3991b (e:591b)
+ComputeTrainerReward: ; 3991b (e:591b)
 	ld hl, $ffb3
 	xor a
 	ld [hli], a
@@ -36849,6 +36880,13 @@ CopyMirrorBattle:
 	ld de, OTPartyCount
 	ld bc, PARTY_STRUCT_LENGTH
 	call CopyBytes
+	ld a, [PartyCount]
+	dec a
+	ld hl, PartyMon1Level
+	ld bc, $30
+	call AddNTimes
+	ld a, [hl]
+	ld [CurPartyLevel], a
 	ret
 
 ClearOTMons:
@@ -49831,9 +49869,20 @@ Function50d25: ; 50d25
 Function50d2e: ; 50d2e
 	push de
 	ld a, [de]
-	ld de, PsnString
 	bit PSN, a
+	jr z, .check_brn
+	pop de
+	inc de
+	ld a, [de]
+	and a
+	dec de
+	ld a, [de]
+	push de
+	ld de, ToxString
 	jr nz, .asm_50d53
+	ld de, PsnString
+	jr .asm_50d53
+.check_brn
 	ld de, BrnString
 	bit BRN, a
 	jr nz, .asm_50d53
@@ -49857,6 +49906,7 @@ Function50d2e: ; 50d2e
 
 SlpString: db "SLP@"
 PsnString: db "PSN@"
+ToxString: db "TOX@"
 BrnString: db "BRN@"
 FrzString: db "FRZ@"
 ParString: db "PAR@"
@@ -80786,7 +80836,7 @@ Functione36f9: ; e36f9 (38:76f9)
 	cp $1
 	jr z, .asm_e3734
 	cp $2
-	jr z, .asm_e3745
+	jr z, .rename
 	cp $3
 	jr z, .asm_e3717
 	cp $4
@@ -80823,7 +80873,7 @@ Functione36f9: ; e36f9 (38:76f9)
 	callba Function14a83
 	ret
 
-.asm_e3745
+.rename
 	ld b, $4
 	ld de, DefaultFlypoint
 	callba NamingScreen
@@ -91972,5 +92022,102 @@ INCLUDE "event/move_relearner.asm"
 
 INCLUDE "menu/minipics.asm"
 
+SECTION "Survival Mode ASM", ROMX
+
+SampleRandomSurvival:
+	ld hl, wSurvivalModeParty
+	ld bc, wSurvivalModePartyEnd - wSurvivalModeParty
+	xor a
+	call ByteFill
+	ld hl, wSurvivalModeWinStreak + 1
+	ld a, [hl]
+	inc a
+	ld [hld], a
+	jr nz, .check_byte
+	inc [hl]
+	jr .max_streak
+
+.check_byte
+	ld a, [hli]
+	and a
+	jr nz, .max_streak
+	ld a, [hl]
+	cp 51
+	jr nc, .max_streak
+	add 50
+	jr .okay
+
+.max_streak
+	ld a, 100
+	ld c, 2
+	jr .got_bracket
+
+.okay
+	cp 66
+	ld c, 0
+	jr c, .got_bracket
+	inc c
+	cp 83
+	jr c, .got_bracket
+	inc c
+.got_bracket
+	ld [wSurvivalModeLevel], a
+	ld b, 0
+	ld hl, .SurvivalCounts
+	add hl, bc
+	add hl, bc
+	ld a, [hli]
+	ld d, [hl]
+	ld e, a
+.SamplePartySize:
+	call Random
+	and %111
+	jr z, .SamplePartySize
+	cp 7
+	jr nc, .SamplePartySize
+	ld c, a
+	ld hl, wSurvivalModeSpecies
+.loop
+	ld a, [wSurvivalModeLevel]
+	ld [hli], a
+	push hl
+.SampleMon
+	call Random
+	and $7f
+	cp 80 ; Assumes there are exactly 80 Pokemon in each bracket.
+	jr nc, .SampleMon
+	ld l, a
+	ld h, 0
+	add hl, de
+	ld a, [hl]
+	; error checking
+	and a
+	jr z, .SampleMon
+	cp 252
+	jr nc, .SampleMon
+	pop hl
+	ld [hli], a
+	dec c
+	jr nz, .loop
+	ld [hl], -1
+	ret
+
+.SurvivalCounts
+	dw .Bracket1
+	dw .Bracket2
+	dw .Bracket3
+
+.SurvivalMons:
+.Bracket1:
+	db SLOWPOKE, BULBASAUR, LEDYBA, DRATINI, POLIWAG, SPEAROW, CHINCHOU, SHELLDER, SQUIRTLE, MAGNEMITE, ZUBAT, ODDISH, PSYDUCK, TOGEPI, IGGLYBUFF, GRIMER, SNUBBULL, TYROGUE, RHYHORN, TENTACOOL, METAPOD, EEVEE, CHARMANDER, DIGLETT, CUBONE, GASTLY, PICHU, HOUNDOUR, DITTO, KOFFING, CATERPIE, WOOPER, VENONAT, PIKACHU, BELLSPROUT, MANKEY, TOTODILE, SUNKERN, PINECO, CYNDAQUIL, PIDGEY, HORSEA, SLUGMA, HOPPIP, MARILL, NATU, PHANPY, NIDORAN_M, MEOWTH, WEEDLE, HOOTHOOT, DODUO, SKIPLOOM, NIDORAN_F, SANDSHREW, RATTATA, DROWZEE, MACHOP, STARYU, EXEGGCUTE, SEEL, LARVITAR, MAREEP, TEDDIURSA, REMORAID, GEODUDE, SENTRET, SWINUB, JIGGLYPUFF, MAGIKARP, SPINARAK, KAKUNA, CHIKORITA, SMOOCHUM, SMEARGLE, EKANS, CLEFFA, VULPIX, ABRA, CLEFAIRY
+.Bracket2:
+	db KRABBY, SANDSLASH, DUNSPARCE, IVYSAUR, AIPOM, TOGETIC, PERSIAN, MR__MIME, CROCONAW, CORSOLA, PRIMEAPE, ARBOK, QWILFISH, MANTINE, GRANBULL, FLAAFFY, GROWLITHE, KADABRA, AZUMARILL, BAYLEEF, HAUNTER, DUGTRIO, NIDORINO, NIDORINA, DRAGONAIR, MACHOKE, HITMONTOP, ONIX, MAGNETON, JYNX, PARAS, SKARMORY, SUNFLORA, WEEPINBELL, QUILAVA, TANGELA, POLIWHIRL, GOLBAT, STANTLER, HITMONCHAN, LEDIAN, GOLDEEN, PUPITAR, MAGCARGO, MISDREAVUS, BUTTERFREE, GRAVELER, OCTILLERY, SEADRA, WARTORTLE, JUMPLUFF, DELIBIRD, MAROWAK, PONYTA, NOCTOWL, DEWGONG, RATICATE, MAGBY, LANTURN, VOLTORB, WIGGLYTUFF, HITMONLEE, LICKITUNG, QUAGSIRE, WOBBUFFET, PIDGEOTTO, FARFETCH_D, GLOOM, CHARMELEON, ELEKID, MURKROW, FORRETRESS, OMANYTE, PORYGON, KABUTO, CHANSEY, PILOSWINE, XATU, YANMA, GIRAFARIG
+.Bracket3:
+	db ELECTABUZZ, STARMIE, FERALIGATR, GYARADOS, FEAROW, MAGMAR, DODRIO, RHYDON, CLEFABLE, CHARIZARD, ARCANINE, SHUCKLE, HYPNO, DONPHAN, BEEDRILL, ELECTRODE, FLAREON, PIDGEOT, VILEPLUME, POLIWRATH, MUK, KANGASKHAN, RAPIDASH, HOUNDOOM, UNOWN, SUDOWOODO, SLOWKING, NIDOKING, MEGANIUM, VENOMOTH, MACHAMP, TAUROS, TENTACRUEL, VAPOREON, GOLEM, RAICHU, CROBAT, AMPHAROS, VENUSAUR, NIDOQUEEN, FURRET, GOLDUCK, PINSIR, OMASTAR, EXEGGUTOR, POLITOED, BELLOSSOM, URSARING, DRAGONITE, BLASTOISE, KINGLER, AERODACTYL, ARIADOS, CLOYSTER, SLOWBRO, ALAKAZAM, SEAKING, ESPEON, TYPHLOSION, SCIZOR, GLIGAR, SNORLAX, JOLTEON, PARASECT, SCYTHER, UMBREON, LAPRAS, GENGAR, HERACROSS, TYRANITAR, NINETALES, WEEZING, STEELIX, VICTREEBEL, KABUTOPS, PORYGON2, MILTANK, SNEASEL, KINGDRA, BLISSEY
+.SurvivalMonsEnd
+
 SECTION "GS_INTRO", ROMX
 INCLUDE "engine/gs_copyright_intro.asm"
+
+SECTION "CodeDistrib", ROMX
+INCLUDE "engine/distribution.asm"

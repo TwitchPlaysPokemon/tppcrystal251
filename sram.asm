@@ -58,7 +58,7 @@ sMailbox10Backup::     mailmsg sMailbox10Backup
 ; abe2
 sMysteryGiftItem:: ds 1
 sMysteryGiftUnlocked:: ds 1
-sBackupMysteryGiftItem:: ds 1
+sBackupMysteryGiftItem:: ds 1 ; abe4
 sNumDailyMysteryGiftPartnerIDs:: ds 1
 sDailyMysteryGiftPartnerIDs:: ds 5 * 2 ; maximum 5 per day, 2 bytes per ID
 sMysteryGiftDecorationsReceived:: flag_array NUM_NON_TROPHY_DECOS
@@ -179,13 +179,13 @@ sHallOfFame:: ; b2c0
 ; endc
 ; x = x + 1
 ; endr
-sHallOfFameEnd::
+sHallOfFameEnd:: ; be3c
 
 sMobileEventIndex:: ds 1
 
-sCrystalData::
+sCrystalData:: ; be3d
 	ds wCrystalDataEnd - wCrystalData
-sMobileEventIndexBackup:: ds 1
+sMobileEventIndexBackup:: ds 1 ; be44
 
 SECTION "SRAM Battle Tower", SRAM, BANK [1]
 ; data of the BattleTower must be in SRAM because you can save and leave between battles
@@ -210,8 +210,12 @@ sBTPkmnPrevTrainer3:: ds 1
 ; Pkmn of preprevious trainer
 sBTPkmnPrevPrevTrainer1:: ds 1
 sBTPkmnPrevPrevTrainer2:: ds 1
-sBTPkmnPrevPrevTrainer3:: ds 1
+sBTPkmnPrevPrevTrainer3:: ds 1 ; be56
 
+SECTION "sDistribution", SRAM, BANK[1]
+sDistroMonFlags:: flag_array DISTRO_MON_COUNT
+sDistroMonArrayInitialized:: ds 1
+sDistroMonEnd::
 
 SECTION "Boxes 1-7",  SRAM, BANK [2]
 	box sBox1

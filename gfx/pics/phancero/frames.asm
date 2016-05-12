@@ -1,15 +1,24 @@
 	dw .frame1
 	dw .frame2
 	dw .frame3
+	dw .frame4
+	dw .frame5
+	dw .frame6
 .frame1
-	db $00 ; bitmask
-	db $30, $31, $32, $33, $34, $35, $36, $37, $38, $39, $3a, $3b
-	db $3c, $30, $30, $3d, $3e, $3f, $30, $30, $20, $40, $41, $30
-	db $30, $30, $30
+	db $00 ; mouth open
+	db $3d, $3b, $3e
 .frame2
-	db $01 ; bitmask
-	db $30, $42, $43, $44, $45, $46, $47
+	db $00 ; mouth open alt eye
+	db $3d, $3c, $3e
 .frame3
-	db $02 ; bitmask
-	db $48
-; 0xd5fa7
+	db $01 ; mouth open normal eye corr1
+	db $31, $36, $3d, $39, $3b, $3e, $3a
+.frame4
+	db $02 ; mouth open alt eye corr2
+	db $31, $34, $36, $3d, $39, $3c, $3e, $33, $37, $3a
+.frame5
+	db $03 ; mouth open normal eye corr3
+	db $31, $34, $36, $38, $35, $3d, $39, $32, $3b, $3e, $33, $37, $3a
+.frame6
+	db $04 ; mouth closed alt eye corr1
+	db $31, $36, $39, $3c, $3a
