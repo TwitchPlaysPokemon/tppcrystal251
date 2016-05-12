@@ -3,7 +3,7 @@ MD5 := md5sum -c --quiet
 
 .SUFFIXES:
 .SUFFIXES: .asm .o .gbc .png .2bpp .1bpp .lz .pal .bin .blk .tilemap
-.PHONY: all clean crystal pngs crystal11 both beesafree patches ipspatch
+.PHONY: all clean crystal pngs crystal11 both beesafree patches ipspatch distribution
 .SECONDEXPANSION:
 
 poketools := extras/pokemontools
@@ -64,6 +64,10 @@ ipspatch:
 	gcc -O3 -Wno-unused-result ipspatch.c -o ipspatch; \
 	cd ../..
 
+distribution:
+	cd distribution; gcc -O3 autogen.c -o autogen
+	distribution/autogen distribution/distdata.txt data/distribution.bin
+
 clean:
 	rm -f $(roms) $(all_obj) $(roms:.gbc=.map) $(roms:.gbc=.sym) $(roms:.gbc=.ips)
 
@@ -77,16 +81,16 @@ clean:
 %.ips: %.gbc $$(%_dep)
 	ipspatch/ipspatch create baserom.gbc $< $@
 
-pokecrystal11.gbc: $(crystal11_obj)
-	rgblink -n $*.sym -m $*.map -o $@ $^
+pokecrystal11.gbc: distribution $(crystal11_obj)
+	rgblink -n $*.sym -m $*.map -o $@ $(wordlist 2, $(words $^), $^)
 	rgbfix -Cjv -i BORT -k 01 -l 0x33 -m 0x10 -n 1 -p 0 -r 3 -t TPPCRYSTAL $@
 
-pokecrystal.gbc: $(crystal_obj)
-	rgblink -n $*.sym -m $*.map -o $@ $^
+pokecrystal.gbc: distribution $(crystal_obj)
+	rgblink -n $*.sym -m $*.map -o $@ $(wordlist 2, $(words $^), $^)
 	rgbfix -Cjv -i BORT -k 01 -l 0x33 -m 0x10 -p 0 -r 3 -t TPPCRYSTAL $@
 
-pokecrystal_ai.gbc: $(beesafree_obj)
-	rgblink -n $*.sym -m $*.map -o $@ $^
+pokecrystal_ai.gbc: distribution $(beesafree_obj)
+	rgblink -n $*.sym -m $*.map -o $@ $(wordlist 2, $(words $^), $^)
 	rgbfix -Cjv -i BORT -k 01 -l 0x33 -m 0x10 -n 1 -p 0 -r 3 -t TPPCRYSTAL $@
 
 
