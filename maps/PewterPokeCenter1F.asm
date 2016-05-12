@@ -77,7 +77,7 @@ PewterPokeCenter1F_MapEventHeader: ; 0x1a2ff4
 	db 3
 	warp_def $7, $3, 4, GROUP_PEWTER_CITY, MAP_PEWTER_CITY
 	warp_def $7, $4, 4, GROUP_PEWTER_CITY, MAP_PEWTER_CITY
-	warp_def $7, $0, 1, GROUP_POKECENTER_2F, MAP_POKECENTER_2F
+	warp_def $7, $0, 1, GROUP_POKECENTER_2F_KANTO, MAP_POKECENTER_2F_KANTO
 
 	; xy triggers
 	db 0

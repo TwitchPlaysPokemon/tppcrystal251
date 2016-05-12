@@ -367,6 +367,7 @@ MapGroup20:
 	map_header TradeCenter, $8, 3, SPECIAL_MAP, MUSIC_CHERRYGROVE_CITY, 1, 1, 1
 	map_header Colosseum, $8, 3, SPECIAL_MAP, MUSIC_CHERRYGROVE_CITY, 1, 1, 1
 	map_header TimeCapsule, $8, 3, SPECIAL_MAP, MUSIC_CHERRYGROVE_CITY, 1, 1, 1
+	map_header PokeCenter2FKanto, $7, 3, SPECIAL_MAP, MUSIC_POKEMON_CENTER, 1, 1, 1
 		;map_header MobileTradeRoomMobile, $d, 3, SPECIAL_MAP, MUSIC_CHERRYGROVE_CITY, 1, 1, 1
 		;map_header MobileBattleRoom, $d, 3, SPECIAL_MAP, MUSIC_CHERRYGROVE_CITY, 1, 1, 1
 

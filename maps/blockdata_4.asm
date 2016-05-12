@@ -107,3 +107,6 @@ ViridianPokeCenter1FRB_BlockData:
 MtMoonPokeCenter1FRB_BlockData:
 PewterPokeCenter1FRB_BlockData:
 INCBIN "maps/PokecenterRB.blk"
+
+PokeCenter2FKanto_BlockData:
+INCBIN "maps/PokeCenter2FKanto.blk"

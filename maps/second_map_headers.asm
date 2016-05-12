@@ -787,3 +787,4 @@
 	map_header_2 MtSilverRuinsB1, MT_SILVER_RUINS_B1, 9, NONE
 
 	map_header_2 PokecenterRB, POKECENTERRB, 0, NONE
+	map_header_2 PokeCenter2FKanto, POKECENTER_2F_KANTO, $0, NONE

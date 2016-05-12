@@ -1,4 +1,5 @@
-PokeCenter2F_MapScriptHeader: ; 0x192845
+PokeCenter2F_MapScriptHeader:
+PokeCenter2FKanto_MapScriptHeader: ; 0x192845
 	; trigger count
 	db 6
 
@@ -1156,7 +1157,8 @@ UnknownText_0x1932bc: ; 0x1932bc
 	done
 ; 0x19337f
 
-PokeCenter2F_MapEventHeader: ; 0x19337f
+PokeCenter2F_MapEventHeader:
+PokeCenter2FKanto_MapEventHeader: ; 0x19337f
 	; filler
 	db 0, 0
 
