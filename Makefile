@@ -69,7 +69,7 @@ distribution:
 	distribution/autogen distribution/distdata.txt data/distribution.bin
 
 clean:
-	rm -f $(roms) $(all_obj) $(roms:.gbc=.map) $(roms:.gbc=.sym) $(roms:.gbc=.ips)
+	rm -f $(roms) $(all_obj) $(roms:.gbc=.map) $(roms:.gbc=.sym) $(roms:.gbc=.ips) data/distribution.bin
 
 %.asm: ;
 %.o: %.asm $$(%_dep)
