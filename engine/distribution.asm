@@ -340,6 +340,7 @@ Special_EnterDistrCode:
 	ld a, [hl]
 	and a
 	jr z, .done2
+	dec a
 	push bc
 	push hl
 	ld bc, MOVE_LENGTH
