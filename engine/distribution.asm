@@ -232,6 +232,7 @@ Special_EnterDistrCode:
 	ret
 
 .players_ot
+	callba Function4db49 ; set caught data
 	ld a, PartyMon1ID - PartyMon1
 	call GetPartyParamLocation
 	ld de, PlayerID
