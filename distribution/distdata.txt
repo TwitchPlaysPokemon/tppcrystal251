@@ -1,0 +1,34 @@
+Notes:
+Everything above the line with the dashes is a comment. Everything below is data -- there are no comments there (other than by writing outside of the columns).
+The dashes themselves determine the column width. The column order is fixed and cannot be changed.
+Numeric values can be anywhere within a column; text values must be left-aligned. For empty cells (for moves or items), use a single dash as the value.
+Numeric values can be entered in decimal (in the usual way), in octal (leading 0) or in hexadecimal (leading $ or 0x).
+The "flags" column currently only supports two values: 0 means that the Pokemon belongs to another trainer, while 1 means that it becomes yours and acquires your ID.
+Special characters (i.e., everything that isn't ASCII) are entered via replacements; all replacements are written within angled brackets.
+Valid replacements are: <A>, <O>, <U>, <a>, <o>, <u>, <'d>, <'l>, <'m>, <'r>, <'s>, <'t>, <'v>, <PK>, <MN>, <e>, <m>, <$>, <x>, <f>.
+Valid ASCII characters are: A-Z, a-z, 0-9, space, ():;[]'-?!.&_/,
+
+                                                                                                                              Stat DVs     Original Trainer
+##   Distribution code       Nickname       Species   Lvl     Item        Move 1       Move 2       Move 3       Move 4    Atk Def Spe Spc  ID#     Name    Flags
+   --------------------- ---------------- ----------- --- ------------ ------------ ------------ ------------ ------------ --- --- --- --- ----- ---------- -----
+ 1 Pra153It              OMASTAR          Omastar      52 -            Hydro Pump   Withdraw     Surf         Horn Attack   13   0   4  14 20152 RED            0
+ 2 L33chKng              -?               Parasect    100 -            Cut          Spore        Slash        Leech Life     7  14   9  11 44184 AIIIAAB        0
+ 3 2930831               Adam             Porygon      50 Scope Lens   Metal Sound  Iron Defense Wild Charge  Tri Attack    10  13  10  14  2016 TPPDevs        0
+ 4 rICKrOLL              GASTLY           Gastly       23 -            Lick         Confuse Ray  Night Shade  -              9  12   7   1 20152 RED            0
+ 5 12022014              JLVWNNOOOO       Rattata      14 -            Tackle       Tail Whip    BubbleBeam   Quick Attack  10  13  11  14 20152 RED            0
+ 6 fir<e>CurS            ABBBBBBK(        Charmeleon   34 -            Cut          Bide         Growl        Leer           2   6   3   1 20152 RED            0
+ 7 KaYTiY                KT               Dragonite    62 Max Revive   Outrage      DragonBreath Twister      Waterfall      2   3   8   0 47901 AJDNNW         0
+ 8 d3v3Lop5              PikalaxALT       Pikachu      50 Light Ball   Iron Tail    Thunderbolt  Fly          Surf          11  10  12  14  2016 TPPDevs        0
+ 9 g0dk1llr              BBAABaaaa        Magikarp     12 -            Splash       -            -            -              6   1   0   6 44184 AIIIAAB        0
+10 Prophet?              FLAREON          Flareon      25 -            Tackle       Sand Attack  -            -              0  10   4   6 20152 RED            0
+11 dedinsky              AAAS  RJ-I       Espeon       54 Rawst Berry  Morning Sun  Flash        Attract      Psychic        8  10  14   4 47901 AJDNNW         0
+12 w4-47802              BEST             Typhlosion   76 Leftovers    Flamethrower ThunderPunch Strength     Earthquake     9   4   1  13 30818 BABA           0
+13 5734<'m>3<'r>         Streamer         Slowpoke     25 SlowpokeTail Psychic      Thunder Wave Rest         Amnesia       15  10  10  10  2014 TPP            0
+14 ululutx!              ul:::ut<x>       Venusaur    100 Leftovers    Growth       Sludge Bomb  Sleep Powder Petal Dance    9  15   2   7 58192 EVAN           0
+15 [FOX!!!]              FOX,/!!!)u       Jolteon     100 Leftovers    Growth       Thunderbolt  Shadow Ball  Thunder       12   2   9   8 58192 EVAN           0
+16 90d5layR              AAAAAtttta       Feraligatr   84 Ice Heal     Surf         Icy Wind     Cut          -             15   7   6  14 47901 AJDNNW         0
+17 OP-DEF<PK><MN>        IIII--??(U       Cloyster    100 -            Surf         Clamp        Aurora Beam  Double Team    8   2  14  14 44184 AIIIAAB        0
+18 rOllOut4              M ---/'/'4       Azumarill   100 BrightPowder Rollout      Surf         Strength     Rock Smash    12   9  12  11 61415 A              0
+19 fu<x>&<'d>u<x>        DUX              Farfetch'd   31 Stick        Cut          Sand Attack  Leer         Fury Attack    1  11   1   1 30334 TRAINER        0
+20 4&<'r>./<MN><f><'d>                    Phancero      5 Rare Candy   Water Gun    Water Gun    Sky Attack   -             15  15  15  15     0                1
+
