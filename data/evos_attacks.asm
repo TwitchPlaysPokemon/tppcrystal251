@@ -5155,7 +5155,7 @@ PhanceroEvosAttacks:
 	db 0 ; no more evolutions		
 	db 1,WATER_GUN	
 	db 1,GUST
-	db 5,LICK
+	db 6,LICK
 	db 10,ACID_ARMOR 
 	db 15,AURORA_BEAM
 	db 20,BUBBLEBEAM
