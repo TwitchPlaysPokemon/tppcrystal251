@@ -5153,12 +5153,24 @@ CelebiEvosAttacks:
 
 PhanceroEvosAttacks:		
 	db 0 ; no more evolutions		
-	db 1,GUST		
-	db 1,WATER_GUN		
-	db 13,MIST		
-	db 25,AGILITY		
-	db 37,MIND_READER		
-	db 49,SKY_ATTACK		
-	db 61,REFLECT		
-	db 73,SHADOW_BALL		
+	db 1,WATER_GUN	
+	db 1,GUST
+	db 6,LICK
+	db 10,ACID_ARMOR 
+	db 15,AURORA_BEAM
+	db 20,BUBBLEBEAM
+	db 25,WING_ATTACK
+	db 30,AGILITY
+	db 35,TRI_ATTACK
+	db 40,SUBMISSION
+	db 50,AIR_SLASH		
+	db 60,SHADOW_BALL		
+	db 70,REFLECT
+	db 80,MEGA_KICK
+	db 85,SKY_ATTACK
+	db 90,SHADOW_CLAW
+	db 95,FISSURE
+	db 100,HI_JUMP_KICK
+
+
 	db 0 ; no more level-up moves	
