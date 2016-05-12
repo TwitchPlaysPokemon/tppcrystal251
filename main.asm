@@ -33854,7 +33854,7 @@ Function29d11: ; 29d11
 
 EnsureTPPBytes:
 	ld hl, PlayerName + 8
-	ld a, 2
+	ld a, 1
 	cp [hl]
 	ret z
 	ld [hl], a
