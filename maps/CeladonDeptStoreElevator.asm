@@ -8,8 +8,8 @@ CeladonDeptStoreElevator_MapScriptHeader: ; 0x713ab
 
 MapCeladonDeptStoreElevatorSignpost0Script: ; 0x713ad
 	loadfont
-	checkcode VAR_BADGES
-	if_equal 16, .OpenDepot
+	checkflag ENGINE_EARTHBADGE
+	iftrue .OpenDepot
 	elevator CeladonDeptStoreElevator_NoDepot
 	jump .okay
 
