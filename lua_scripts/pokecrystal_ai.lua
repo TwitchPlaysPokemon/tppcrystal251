@@ -125,7 +125,7 @@ function tablestobytes(airesponse, playertable)
 end
 
 repeat
-	if (math.random(500)) == 1 then
+	if (math.random(47802)) == 1 then
 		vba.print("Waiting for baba") -- ayy you found teh easter egg
 	end
 	if bit.band(memory.readbyte(rSVBK), 0x07) == 1 then
