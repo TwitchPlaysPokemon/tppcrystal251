@@ -334,8 +334,9 @@ MAP_N_A   EQU -1
 	mapgroup COLOSSEUM, 4, 5
 	mapgroup TIME_CAPSULE, 4, 5
 	mapgroup POKECENTER_2F_KANTO, 4, 8
-		;mapgroup MOBILE_TRADE_ROOM_MOBILE, 4, 5
-		;mapgroup MOBILE_BATTLE_ROOM, 4, 5
+	mapgroup TRADE_CENTER_KANTO, 4, 5
+	mapgroup COLOSSEUM_KANTO, 4, 5
+	mapgroup TIME_CAPSULE_KANTO, 4, 5
 
 	newgroup ; Celadon City
 	mapgroup ROUTE_7, 9, 10

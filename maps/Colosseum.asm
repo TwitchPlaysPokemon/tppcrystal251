@@ -1,4 +1,5 @@
 Colosseum_MapScriptHeader: ; 0x19345d
+ColosseumKanto_MapScriptHeader: ; 0x19345d
 	; trigger count
 	db 3
 
@@ -83,6 +84,29 @@ Colosseum_MapEventHeader: ; 0x1934b7
 	db 2
 	warp_def $7, $4, 3, GROUP_POKECENTER_2F, MAP_POKECENTER_2F
 	warp_def $7, $5, 3, GROUP_POKECENTER_2F, MAP_POKECENTER_2F
+
+	; xy triggers
+	db 0
+
+	; signposts
+	db 2
+	signpost 4, 4, $3, MapColosseumSignpost1Script
+	signpost 4, 5, $4, MapColosseumSignpost1Script
+
+	; people-events
+	db 2
+	person_event SPRITE_RUST, 8, 7, $9, 0, 0, -1, -1, 0, 0, 0, ChrisScript_0x193499, EVENT_000_STD
+	person_event SPRITE_RUST, 8, 10, $8, 0, 0, -1, -1, 0, 0, 0, ChrisScript_0x193499, EVENT_001_STD
+; 0x1934eb
+
+ColosseumKanto_MapEventHeader: ; 0x1934b7
+	; filler
+	db 0, 0
+
+	; warps
+	db 2
+	warp_def $7, $4, 3, GROUP_POKECENTER_2F_KANTO, MAP_POKECENTER_2F_KANTO
+	warp_def $7, $5, 3, GROUP_POKECENTER_2F_KANTO, MAP_POKECENTER_2F_KANTO
 
 	; xy triggers
 	db 0

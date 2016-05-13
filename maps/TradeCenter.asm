@@ -1,4 +1,5 @@
 TradeCenter_MapScriptHeader: ; 0x1933dc
+TradeCenterKanto_MapScriptHeader: ; 0x1933dc
 	; trigger count
 	db 2
 
@@ -86,3 +87,27 @@ TradeCenter_MapEventHeader: ; 0x193429
 	person_event SPRITE_RUST, 8, 10, $8, 0, 0, -1, -1, 0, 0, 0, ChrisScript_0x193499, EVENT_001_STD
 ; 0x19345d
 
+
+
+TradeCenterKanto_MapEventHeader: ; 0x193429
+	; filler
+	db 0, 0
+
+	; warps
+	db 2
+	warp_def $7, $4, 2, GROUP_POKECENTER_2F_KANTO, MAP_POKECENTER_2F_KANTO
+	warp_def $7, $5, 2, GROUP_POKECENTER_2F_KANTO, MAP_POKECENTER_2F_KANTO
+
+	; xy triggers
+	db 0
+
+	; signposts
+	db 2
+	signpost 4, 4, $3, MapTradeCenterSignpost1Script
+	signpost 4, 5, $4, MapTradeCenterSignpost1Script
+
+	; people-events
+	db 2
+	person_event SPRITE_RUST, 8, 7, $9, 0, 0, -1, -1, 0, 0, 0, ChrisScript_0x193499, EVENT_000_STD
+	person_event SPRITE_RUST, 8, 10, $8, 0, 0, -1, -1, 0, 0, 0, ChrisScript_0x193499, EVENT_001_STD
+; 0x19345d

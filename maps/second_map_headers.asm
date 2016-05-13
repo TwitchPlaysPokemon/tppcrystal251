@@ -787,3 +787,6 @@
 	map_header_2 MtSilverRuinsB1, MT_SILVER_RUINS_B1, 9, NONE
 
 	map_header_2 PokeCenter2FKanto, POKECENTER_2F_KANTO, $0, NONE
+	map_header_2 TradeCenterKanto, TRADE_CENTER_KANTO, $0, NONE ; 0x962f0
+	map_header_2 ColosseumKanto, COLOSSEUM_KANTO, $0, NONE ; 0x962fc
+	map_header_2 TimeCapsuleKanto, TIME_CAPSULE_KANTO, $0, NONE ; 0x96308

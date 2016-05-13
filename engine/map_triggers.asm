@@ -7,11 +7,17 @@ trigger_def: MACRO
 	map \1
 	dw \2
 ENDM
-
+	; Johto link center triggers
 	trigger_def POKECENTER_2F,                          wPokecenter2FTrigger
 	trigger_def TRADE_CENTER,                           wTradeCenterTrigger
 	trigger_def COLOSSEUM,                              wColosseumTrigger
 	trigger_def TIME_CAPSULE,                           wTimeCapsuleTrigger
+	; Kanto link center triggers will share addresses with johto's triggers
+	trigger_def POKECENTER_2F_KANTO,                    wPokecenter2FTrigger
+	trigger_def TRADE_CENTER_KANTO,                     wTradeCenterTrigger
+	trigger_def COLOSSEUM_KANTO,                        wColosseumTrigger
+	trigger_def TIME_CAPSULE_KANTO,                     wTimeCapsuleTrigger
+	; these triggers do not share addresses
 	trigger_def POWER_PLANT,                            wPowerPlantTrigger
 	trigger_def CERULEAN_GYM,                           wCeruleanGymTrigger
 	trigger_def ROUTE_25,                               wRoute25Trigger

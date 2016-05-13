@@ -1158,17 +1158,42 @@ UnknownText_0x1932bc: ; 0x1932bc
 ; 0x19337f
 
 PokeCenter2F_MapEventHeader:
+	; filler
+	db 0, 0
+
+	; warps
+	db 4
+	warp_def $7, $0, -1, GROUP_POKECENTER_2F, MAP_POKECENTER_2F
+	warp_def $0, $5,  1, GROUP_TRADE_CENTER, MAP_TRADE_CENTER
+	warp_def $0, $9,  1, GROUP_COLOSSEUM, MAP_COLOSSEUM
+	warp_def $2, $d,  1, GROUP_TIME_CAPSULE, MAP_TIME_CAPSULE
+
+
+	; xy triggers
+	db 0
+
+	; signposts
+	db 1
+	signpost 3, 7, $0, MapPokeCenter2FSignpost0Script
+
+	; people-events
+	db 4
+	person_event SPRITE_LINK_RECEPTIONIST, 6, 9, $6, 0, 0, -1, -1, 8 + PAL_OW_GREEN, 0, 0, LinkReceptionistScript_0x19289d, -1
+	person_event SPRITE_LINK_RECEPTIONIST, 6, 13, $6, 0, 0, -1, -1, 8 + PAL_OW_GREEN, 0, 0, LinkReceptionistScript_0x192952, -1
+	person_event SPRITE_LINK_RECEPTIONIST, 7, 17, $6, 0, 0, -1, -1, 8 + PAL_OW_GREEN, 0, 0, LinkReceptionistScript_0x192a2d, -1
+	person_event SPRITE_OFFICER, 5, 5, $6, 0, 0, -1, -1, 0, 0, 0, OfficerScript_0x192c9a, EVENT_MYSTERY_GIFT_DELIVERY_MAN
+; 0x1933dc
+
 PokeCenter2FKanto_MapEventHeader: ; 0x19337f
 	; filler
 	db 0, 0
 
 	; warps
 	db 4
-	warp_def $7, $0, 255, GROUP_POKECENTER_2F, MAP_POKECENTER_2F
-	warp_def $0, $5, 1, GROUP_TRADE_CENTER, MAP_TRADE_CENTER
-	warp_def $0, $9, 1, GROUP_COLOSSEUM, MAP_COLOSSEUM
-	warp_def $2, $d, 1, GROUP_TIME_CAPSULE, MAP_TIME_CAPSULE
-	;warp_def $0, $6, 1, GROUP_MOBILE_TRADE_ROOM_MOBILE, MAP_MOBILE_TRADE_ROOM_MOBILE
+	warp_def $7, $0, -1, GROUP_POKECENTER_2F_KANTO, MAP_POKECENTER_2F_KANTO
+	warp_def $0, $5,  1, GROUP_TRADE_CENTER_KANTO, MAP_TRADE_CENTER_KANTO
+	warp_def $0, $9,  1, GROUP_COLOSSEUM_KANTO, MAP_COLOSSEUM_KANTO
+	warp_def $2, $d,  1, GROUP_TIME_CAPSULE_KANTO, MAP_TIME_CAPSULE_KANTO
 
 
 	; xy triggers

@@ -45726,7 +45726,10 @@ Function4db53: ; 4db53 store data on caught mon at HL and HL+1
 	ld a, [MapNumber]
 	ld c, a
 	cp MAP_POKECENTER_2F ;If trade area
+	jr z, .check_group
+	cp MAP_POKECENTER_2F_KANTO
 	jr nz, .asm_4db78
+.check_group
 	ld a, b
 	cp GROUP_POKECENTER_2F
 	jr nz, .asm_4db78

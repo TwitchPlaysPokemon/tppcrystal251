@@ -180,7 +180,7 @@ SaffronPokeCenter1F_MapEventHeader: ; 0x18a722
 	db 3
 	warp_def $7, $5, 4, GROUP_SAFFRON_CITY, MAP_SAFFRON_CITY
 	warp_def $7, $6, 4, GROUP_SAFFRON_CITY, MAP_SAFFRON_CITY
-	warp_def $7, $2, 1, GROUP_POKECENTER_2F, MAP_POKECENTER_2F
+	warp_def $7, $2, 1, GROUP_POKECENTER_2F_KANTO, MAP_POKECENTER_2F_KANTO
 
 	; xy triggers
 	db 0

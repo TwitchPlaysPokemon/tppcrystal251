@@ -113,11 +113,14 @@ CeladonGameCornerPrizeRoom_BlockData: ; 0xac51e
 ; 0xac527
 
 Colosseum_BlockData: ; 0xac527
+ColosseumKanto_BlockData: ; 0xac527
 	INCBIN "maps/Colosseum.blk"
 ; 0xac53b
 
 TradeCenter_BlockData: ; 0xac53b
 TimeCapsule_BlockData:
+TradeCenterKanto_BlockData:
+TimeCapsuleKanto_BlockData:
 	INCBIN "maps/TradeCenter.blk"
 ; 0xac54f
 
