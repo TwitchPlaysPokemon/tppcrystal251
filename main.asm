@@ -73394,9 +73394,9 @@ TreeMons6: ; 6 - Lake of Rage
 	db 100, FORRETRESS, 31
 	db -1
 RockMons: ; 7
-	db 80, KRABBY,		15
-	db 10, SHUCKLE,		23
-	db 10, KINGLER,		28
+	db 80, SHUCKLE,		15
+	db 10, DUNSPARCE,	20
+	db 10, SHUCKLE,		20
 	db -1
 TreeMons7: ;8 - Ilex Forest
 	db 60, PINECO,		20
