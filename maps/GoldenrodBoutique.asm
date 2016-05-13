@@ -6,22 +6,11 @@ GoldenrodBoutique_MapScriptHeader:
 	db 0
 
 SetPlayerPal:
-	xor a
-	call GetMapObject
-	ld hl, $8
-	add hl, bc
-	ld a, [wPlayerPalette]
-	swap a
-	ld [hl], a
-	ld hl, 0
-	add hl, bc
-	ld a, [hl]
-	call Function1ae5 ; GetObjectStruct
-	ld hl, $6
-	add hl, bc
-	ld a, [wPlayerPalette]
-	and $7
-	ld [hl], a
+	ld a, [ScriptVar] ; 1 - 8
+	add $7 ; 8 - 15
+	ld [wPlayerPalette], a
+	swap a ; parameter for Functionc225
+	ld [ScriptVar], a
 	ret
 
 BoutiqueCooltrainerMScript:
@@ -56,8 +45,7 @@ BoutiqueStylistScript:
 	if_equal 2, BoutiqueStylistScriptNoMoney
 	yesorno
 	iffalse BoutiqueStylistScriptNoStyle
-	;take money
-	;takecoins 500
+	takemoney 0, 500
 	playsound SFX_TRANSACTION
 	waitsfx
 	closetext
@@ -77,23 +65,12 @@ BoutiqueStylistScript:
 	loadmenudata MenuDataHeaderBoutique
 	interpretmenu2
 	writebackup
-	iffalse BoutiqueStylistScriptNoStyle
-	takemoney 0, 500
-	addvar 7 ; to get a value between $8 and $c, as we want
-	copyvartobyte wPlayerPalette
 	closetext
 	pause 10
-	playsound SFX_FLASH ;change this
-	spriteface $0, UP
-	pause 03
-	spriteface $0, RIGHT
-	pause 03
-	writebyte $0
 	callasm SetPlayerPal
-	spriteface $0, DOWN
-	pause 03
-	spriteface $0, LEFT
-	pause 03
+	special Functionc225
+	playsound SFX_TINGLE
+	applymovement $0, Boutique_PlayerSpin
 	showemote $0, $0, 15
 	spriteface $0, RIGHT
 	loadfont
@@ -118,6 +95,17 @@ Movement_WalkFromFront:
 	
 Movement_WalkFaceLeft:
 	half_step_left
+	step_end
+
+Boutique_PlayerSpin: ; 0x192d1c
+	turn_head_up
+	step_sleep 3
+	turn_head_right
+	step_sleep 3
+	turn_head_down
+	step_sleep 3
+	turn_head_left
+	step_sleep 3
 	step_end
 	
 BoutiqueStylistScriptNoStyle:

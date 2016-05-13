@@ -15,6 +15,15 @@ PokeCenter2FKanto_MapScriptHeader: ; 0x192845
 	db 0
 ; 0x19285f
 
+Pokecenter2F_CheckPalChanged:
+	ld a, [PlayerGender]
+	ld b, a
+	ld a, [wPlayerPalette]
+	and $7
+	or b
+	ld [ScriptVar], a
+	ret
+
 UnknownScript_0x19285f: ; 0x19285f
 	special Functionc2f6
 	if_equal $0, UnknownScript_0x192872
@@ -466,7 +475,7 @@ UnknownScript_0x192af7: ; 0x192af7
 ; 0x192b04
 
 UnknownScript_0x192b04: ; 0x192b04
-	checkflag ENGINE_PLAYER_IS_FEMALE
+	callasm Pokecenter2F_CheckPalChanged
 	iftrue UnknownScript_0x192b12
 	applymovement2 MovementData_0x192cca
 	applymovement $0, MovementData_0x192cde
@@ -488,7 +497,7 @@ UnknownScript_0x192b12: ; 0x192b12
 	closetext
 	playsound SFX_TINGLE
 	applymovement $0, MovementData_0x192d17
-	writebyte $80
+	writebyte 0
 	special Functionc225
 	applymovement $0, MovementData_0x192d1c
 	setflag ENGINE_KRIS_IN_CABLE_CLUB
@@ -504,20 +513,20 @@ UnknownScript_0x192b12: ; 0x192b12
 
 UnknownScript_0x192b50: ; 0x192b50
 	checkflag ENGINE_KRIS_IN_CABLE_CLUB
-	iftrue UnknownScript_0x192b63
+	iftrue .reset_palette_swap
 	applymovement $2, MovementData_0x192d04
 	applymovement $0, MovementData_0x192cf5
 	applymovement $2, MovementData_0x192cfe
 	end
 ; 0x192b63
 
-UnknownScript_0x192b63: ; 0x192b63
+.reset_palette_swap: ; 0x192b63
 	applymovement $2, MovementData_0x192d04
 	applymovement $0, MovementData_0x192d28
 	clearflag ENGINE_KRIS_IN_CABLE_CLUB
 	playsound SFX_TINGLE
 	applymovement $0, MovementData_0x192d17
-	writebyte $90
+	writebyte 1
 	special Functionc225
 	applymovement $0, MovementData_0x192d1c
 	special Functione4a
@@ -528,20 +537,20 @@ UnknownScript_0x192b63: ; 0x192b63
 
 UnknownScript_0x192b8a: ; 0x192b8a
 	checkflag ENGINE_KRIS_IN_CABLE_CLUB
-	iftrue UnknownScript_0x192b9d
+	iftrue .reset_palette_swap
 	applymovement $3, MovementData_0x192d04
 	applymovement $0, MovementData_0x192cf5
 	applymovement $3, MovementData_0x192cfe
 	end
 ; 0x192b9d
 
-UnknownScript_0x192b9d: ; 0x192b9d
+.reset_palette_swap: ; 0x192b9d
 	applymovement $3, MovementData_0x192d04
 	applymovement $0, MovementData_0x192d28
 	clearflag ENGINE_KRIS_IN_CABLE_CLUB
 	playsound SFX_TINGLE
 	applymovement $0, MovementData_0x192d17
-	writebyte $90
+	writebyte 1
 	special Functionc225
 	applymovement $0, MovementData_0x192d1c
 	special Functione4a
@@ -551,7 +560,7 @@ UnknownScript_0x192b9d: ; 0x192b9d
 ; 0x192bc4
 
 UnknownScript_0x192bc4: ; 0x192bc4
-	checkflag ENGINE_PLAYER_IS_FEMALE
+	callasm Pokecenter2F_CheckPalChanged
 	iftrue UnknownScript_0x192bec
 	checkcode VAR_FACING
 	if_equal $2, UnknownScript_0x192bdc
@@ -606,7 +615,7 @@ UnknownScript_0x192c20: ; 0x192c20
 	closetext
 	playsound SFX_TINGLE
 	applymovement $0, MovementData_0x192d17
-	writebyte $80
+	writebyte 0
 	special Functionc225
 	applymovement $0, MovementData_0x192d22
 	faceperson $0, $4
@@ -637,7 +646,7 @@ UnknownScript_0x192c66: ; 0x192c66
 	clearflag ENGINE_KRIS_IN_CABLE_CLUB
 	playsound SFX_TINGLE
 	applymovement $0, MovementData_0x192d17
-	writebyte $90
+	writebyte 1
 	special Functionc225
 	applymovement $0, MovementData_0x192d1c
 	special Functione4a

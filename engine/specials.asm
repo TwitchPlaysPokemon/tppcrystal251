@@ -213,7 +213,15 @@ SpecialNone: ; c224
 
 Functionc225: ; c225
 	ld a, [ScriptVar]
+	and a
+	ld d, $80
+	jr z, .okay
+	ld a, [wPlayerPalette]
+	and a
+	jr z, .okay
+	swap a
 	ld d, a
+.okay
 	callba Function57e2
 	ret
 ; c230
