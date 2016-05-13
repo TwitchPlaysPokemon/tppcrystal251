@@ -426,7 +426,7 @@ VermilionGym2_MapEventHeader:
 
 ; people events
 	db 7
-	person_event SPRITE_SURGE, 5, 17, $6, 0, 0, -1, -1, 0, 0, 0, SurgeRematchScript, -1
+	person_event SPRITE_SURGE, 5, 17, $6, 0, 0, -1, -1, 8 + PAL_OW_BROWN, 0, 0, SurgeRematchScript, -1
 	person_event SPRITE_GENTLEMAN, 8, 8, $6, 0, 0, -1, -1, 0, 2, 2, Trainer_GentlemanGregory2, -1
 	person_event SPRITE_ROCKER, 30, 5, $7, 0, 0, -1, -1, 0, 2, 1, Trainer_GuitaristVincent2, -1
 	person_event SPRITE_YOUNGSTER, 29, 23, $8, 0, 0, -1, -1, 0, 2, 3, Trainer_SchoolboyBrett, -1

@@ -84,6 +84,9 @@ UnknownText_0x7e7ed: ; 0x7e7ed
 	done
 ; 0x7e872
 
+LavenderOldCenter_LinkScript:
+	jumpstd pokecenteroldlink
+
 LavenderPokeCenter1F_MapEventHeader: ; 0x7e872
 	; filler
 	db 0, 0
@@ -101,10 +104,11 @@ LavenderPokeCenter1F_MapEventHeader: ; 0x7e872
 	db 0
 
 	; people-events
-	db 4
+	db 5
 	person_event SPRITE_NURSE, 5, 9, $6, 0, 0, -1, -1, 0, 0, 0, NurseScript_0x7e6a0, -1
-	person_event SPRITE_GENTLEMAN, 10, 11, $5, 0, 1, -1, -1, 0, 0, 0, GentlemanScript_0x7e6a3, -1
-	person_event SPRITE_TEACHER, 7, 9, $6, 0, 0, -1, -1, 8 + PAL_OW_GREEN, 0, 0, TeacherScript_0x7e6a6, -1
-	person_event SPRITE_YOUNGSTER, 9, 5, $4, 1, 0, -1, -1, 8 + PAL_OW_RED, 0, 0, YoungsterScript_0x7e6a9, -1
+	person_event SPRITE_GENTLEMAN, 10, 16, $5, 0, 1, -1, -1, 0, 0, 0, GentlemanScript_0x7e6a3, -1
+	person_event SPRITE_TEACHER, 7, 13, $6, 0, 0, -1, -1, 8 + PAL_OW_GREEN, 0, 0, TeacherScript_0x7e6a6, -1
+	person_event SPRITE_YOUNGSTER, 8, 7, $4, 1, 0, -1, -1, 8 + PAL_OW_RED, 0, 0, YoungsterScript_0x7e6a9, -1
+	person_event SPRITE_LINK_RECEPTIONIST, 6, 17, $6, 0, 0, -1, -1, 8 + PAL_OW_GREEN, 0, 0, LavenderOldCenter_LinkScript, -1
 ; 0x7e8bb
 

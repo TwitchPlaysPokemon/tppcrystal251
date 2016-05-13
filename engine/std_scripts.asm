@@ -53,6 +53,8 @@ StdScripts:: ; bc000
 	dba HappinessCheckScript ; $33
 	dba IndigoPlateauStatue1Script ; $34
 	dba IndigoPlateauStatue2Script ; $35
+	dba PokeCenterOldLinkScript
+	dba PokeCenterLinkEGKScript
 ; bc09c
 
 CheckNotAllEggs::
@@ -206,7 +208,7 @@ PokeCenterNurseScript:
 	farwritetext TooManyPokemonHealText
 	pause 20
 	jump .done
-
+	
 DifficultBookshelfScript: ; 0xbc162
 	farjumptext UnknownText_0x1b035a
 ; 0xbc166
@@ -2682,3 +2684,17 @@ IndigoPlateauStatue2Script:
 	waitbutton
 	closetext
 	end
+
+PokeCenterOldLinkScript:
+	loadfont
+	farwritetext OldLinkCenterReceptionistText
+	waitbutton
+	closetext
+	end	
+	
+PokeCenterLinkEGKScript:
+	loadfont
+	farwritetext LinkCenterReceptionistEGKText
+	waitbutton
+	closetext
+	end	

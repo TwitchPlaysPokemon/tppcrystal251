@@ -75,6 +75,9 @@ UnknownText_0x9b7c8: ; 0x9b7c8
 	done
 ; 0x9b7ef
 
+ViridianOldCenter_LinkScript:
+	jumpstd pokecenteroldlink
+	
 ViridianPokeCenter1F_MapEventHeader: ; 0x9b7ef
 	; filler
 	db 0, 0
@@ -92,10 +95,11 @@ ViridianPokeCenter1F_MapEventHeader: ; 0x9b7ef
 	db 0
 
 	; people-events
-	db 4
+	db 5
 	person_event SPRITE_NURSE, 5, 9, $6, 0, 0, -1, -1, 0, 0, 0, NurseScript_0x9b690, -1
-	person_event SPRITE_COOLTRAINER_M, 8, 12, $5, 0, 1, -1, -1, 8 + PAL_OW_RED, 0, 0, CooltrainerMScript_0x9b693, -1
-	person_event SPRITE_COOLTRAINER_F, 7, 9, $7, 0, 0, -1, -1, 8 + PAL_OW_BLUE, 0, 0, CooltrainerFScript_0x9b6a7, -1
-	person_event SPRITE_BUG_CATCHER, 10, 5, $9, 0, 0, -1, -1, 8 + PAL_OW_GREEN, 0, 0, BugCatcherScript_0x9b6aa, -1
+	person_event SPRITE_COOLTRAINER_M, 8, 14, $5, 0, 1, -1, -1, 8 + PAL_OW_RED, 0, 0, CooltrainerMScript_0x9b693, -1
+	person_event SPRITE_COOLTRAINER_F, 7, 10, $7, 0, 0, -1, -1, 8 + PAL_OW_BLUE, 0, 0, CooltrainerFScript_0x9b6a7, -1
+	person_event SPRITE_BUG_CATCHER, 8, 6, $9, 0, 0, -1, -1, 8 + PAL_OW_GREEN, 0, 0, BugCatcherScript_0x9b6aa, -1
+	person_event SPRITE_LINK_RECEPTIONIST, 6, 17, $6, 0, 0, -1, -1, 8 + PAL_OW_GREEN, 0, 0, ViridianOldCenter_LinkScript, -1
 ; 0x9b838
 

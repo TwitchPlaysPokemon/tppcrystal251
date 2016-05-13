@@ -80,6 +80,9 @@ UnknownText_0x19173b: ; 0x19173b
 	done
 ; 0x191791
 
+VermilionOldCenter_LinkScript:
+	jumpstd pokecenteroldlink
+	
 VermilionPokeCenter1F_MapEventHeader: ; 0x191791
 	; filler
 	db 0, 0
@@ -97,10 +100,11 @@ VermilionPokeCenter1F_MapEventHeader: ; 0x191791
 	db 0
 
 	; people-events
-	db 4
+	db 5
 	person_event SPRITE_NURSE, 5, 9, $6, 0, 0, -1, -1, 0, 0, 0, NurseScript_0x191603, -1
-	person_event SPRITE_FISHING_GURU, 6, 11, $6, 0, 0, -1, -1, 8 + PAL_OW_RED, 0, 0, FishingGuruScript_0x191606, -1
-	person_event SPRITE_SAILOR, 9, 10, $4, 1, 0, -1, -1, 8 + PAL_OW_BLUE, 0, 0, SailorScript_0x19161a, -1
-	person_event SPRITE_BUG_CATCHER, 9, 5, $3, 0, 0, -1, -1, 8 + PAL_OW_GREEN, 0, 0, BugCatcherScript_0x19161d, -1
+	person_event SPRITE_FISHING_GURU, 7, 12, $6, 0, 0, -1, -1, 8 + PAL_OW_RED, 0, 0, FishingGuruScript_0x191606, -1
+	person_event SPRITE_SAILOR, 9, 16, $4, 1, 0, -1, -1, 8 + PAL_OW_BLUE, 0, 0, SailorScript_0x19161a, -1
+	person_event SPRITE_BUG_CATCHER, 8, 6, $9, 0, 0, -1, -1, 8 + PAL_OW_GREEN, 0, 0, BugCatcherScript_0x19161d, -1
+	person_event SPRITE_LINK_RECEPTIONIST, 6, 17, $6, 0, 0, -1, -1, 8 + PAL_OW_GREEN, 0, 0, VermilionOldCenter_LinkScript, -1
 ; 0x1917da
 

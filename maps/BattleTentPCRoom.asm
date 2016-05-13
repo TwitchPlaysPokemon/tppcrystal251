@@ -27,7 +27,7 @@ LeaguePCScript:
 tppPcEndBattle:
 	writetext tppPcLogOffText
 	playsound SFX_SHUT_DOWN_PC
-	pause 15
+	pause 20
 	closetext
 	end
 
@@ -54,9 +54,12 @@ tppPcMirrorBattle:
 	closetext
 	loadtrainer TPPPC, MIRROR
 tppPcStartBattle:
+	writecode VAR_BATTLETYPE, BATTLETYPE_CANLOSE
 	winlosstext tppPcWonText, tppPcLostText
 	startbattle
-	returnafterbattle
+	reloadmap
+	special RestartMapMusic
+	special HealParty
 	loadfont
 	jump tppPcEndBattle
 
@@ -163,7 +166,7 @@ tppPcIntroText:
 	done
 
 tppPcIntroText2:
-	para "In this software,"
+	text "In this software,"
 	line "you can fight a"
 
 	para "team of the most"
