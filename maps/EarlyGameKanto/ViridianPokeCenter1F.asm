@@ -46,16 +46,7 @@ _ViridianCityPokecenterGuyText::
 	done
 
 ViridianPokeCenter1FRB_LinkScript:
-	jumptextfaceplayer ViridianRBLinkText
-	
-ViridianRBLinkText:
-	text "Welcome to the"
-	line "Cable Club!"
-	
-	para "I'm sorry--our"
-	line "systems are still"
-	cont "being adjusted."
-	done
+	jumpstd pokecenterlinkegk
 
 ViridianPokeCenter1FRB_MapEventHeader: ; 0x9b7ef
 	; filler

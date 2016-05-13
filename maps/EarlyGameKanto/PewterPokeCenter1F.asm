@@ -121,16 +121,7 @@ _PewterPokeCenterDebugTrueCredits:
     done
 
 PewterPokeCenter1FRB_LinkScript:
-	jumptextfaceplayer PewterRBLinkText
-	
-PewterRBLinkText:
-	text "Welcome to the"
-	line "Cable Club!"
-	
-	para "I'm sorry--our"
-	line "systems are still"
-	cont "being adjusted."
-	done
+	jumpstd pokecenterlinkegk
 
 PewterPokeCenter1FRB_MapEventHeader: ; 0x1a2ff4
 	; filler

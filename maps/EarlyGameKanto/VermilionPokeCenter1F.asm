@@ -61,16 +61,7 @@ _VermilionPokecenterGuyText:
 	done
 
 VermilionPokeCenter1FRB_LinkScript:
-	jumptextfaceplayer VermilionRBLinkText
-	
-VermilionRBLinkText:
-	text "Welcome to the"
-	line "Cable Club!"
-	
-	para "I'm sorry--our"
-	line "systems are still"
-	cont "being adjusted."
-	done
+	jumpstd pokecenterlinkegk
 
 VermilionPokeCenter1FRB_MapEventHeader: ; 0x191791
 	; filler
@@ -86,7 +77,7 @@ VermilionPokeCenter1FRB_MapEventHeader: ; 0x191791
 
 	; signposts
 	db 0
-
+	
 	; people-events
 	db 5
 	person_event SPRITE_NURSE, 5, 9, $6, 0, 0, -1, -1, 0, 0, 0, VermilionPokeCenter1FRB_NurseScript, -1

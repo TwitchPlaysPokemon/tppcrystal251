@@ -53,16 +53,7 @@ _CeruleanPokecenterText3:
 	done
 	
 CeruleanPokeCenter1FRB_LinkScript:
-	jumptextfaceplayer CeruleanRBLinkText
-	
-CeruleanRBLinkText:
-	text "Welcome to the"
-	line "Cable Club!"
-	
-	para "I'm sorry--our"
-	line "systems are still"
-	cont "being adjusted."
-	done
+	jumpstd pokecenterlinkegk
 
 CeruleanPokeCenter1FRB_MapEventHeader: ; 0x188386
 	; filler

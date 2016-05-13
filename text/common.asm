@@ -1289,3 +1289,12 @@ OldLinkCenterReceptionistText:
 	cont "of your needs!"
 	done
 	
+LinkCenterReceptionistEGKText:
+	text "Welcome to the"
+	line "Cable Club!"
+	
+	para "I'm sorry--our"
+	line "systems are still"
+	cont "being adjusted."
+	done
+	

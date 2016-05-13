@@ -157,16 +157,7 @@ MtMoonRBYoungster2Text:
 	done
 
 MtMoonPokeCenter1FRB_LinkScript:
-	jumptextfaceplayer MtMoonRBLinkText
-
-MtMoonRBLinkText:
-	text "Welcome to the"
-	line "Cable Club!"
-	
-	para "I'm sorry--our"
-	line "systems are still"
-	cont "being adjusted."
-	done
+	jumpstd pokecenterlinkegk
 
 MtMoonPokeCenter1FRB_MapEventHeader: ; 0x69935
 	; filler
