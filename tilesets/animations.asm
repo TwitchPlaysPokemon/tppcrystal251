@@ -397,6 +397,14 @@ INCBIN "gfx/tilesets/spinner/ne.2bpp"
 INCBIN "gfx/tilesets/spinner/se.2bpp"
 INCBIN "gfx/tilesets/spinner/nw.2bpp"
 INCBIN "gfx/tilesets/spinner/sw.2bpp"
+Tileset21Anim: ; 0xfc2e7
+;	   param, function
+	dw NULL,  PokeComCenter_FlickerScreen
+	dw NULL,  WaitTileAnimation
+	dw NULL,  WaitTileAnimation
+	dw NULL,  WaitTileAnimation
+	dw NULL,  WaitTileAnimation
+	dw NULL,  DoneTileAnimation
 
 Tileset04Anim: ; 0xfc2e7
 Tileset05Anim: ; 0xfc2e7
@@ -412,7 +420,6 @@ Tileset16Anim: ; 0xfc2e7
 Tileset18Anim: ; 0xfc2e7
 Tileset19Anim: ; 0xfc2e7
 Tileset20Anim: ; 0xfc2e7
-Tileset21Anim: ; 0xfc2e7
 Tileset22Anim: ; 0xfc2e7
 Tileset26Anim: ; 0xfc2e7
 Tileset27Anim: ; 0xfc2e7
@@ -1335,4 +1342,60 @@ WhirlpoolTiles2: INCBIN "gfx/tilesets/whirlpool/2.2bpp"
 WhirlpoolTiles3: INCBIN "gfx/tilesets/whirlpool/3.2bpp"
 WhirlpoolTiles4: INCBIN "gfx/tilesets/whirlpool/4.2bpp"
 ; fcba8
+
+PokeComCenter_FlickerScreen:
+	ld a, [rVBK]
+	push af
+	ld a, 1
+	ld [rVBK], a
+	ld a, [rSVBK]
+	push af
+	ld a, $6
+	ld [rSVBK], a
+
+	ld a, 0
+	call .Write
+
+	ld hl, $d000
+	ld c, $20
+.loop
+	ld a, [hl]
+	bit 0, c
+	jr z, .left
+	rrca
+	jr .rotated
+
+.left
+	rlca
+.rotated
+	ld [hli], a
+	dec c
+	jr nz, .loop
+
+	ld a, 1
+	call .Write
+
+	pop af
+	ld [rSVBK], a
+	pop af
+	ld [rVBK], a
+	ret
+
+.Write
+	ld hl, [sp+0]
+	ld b, h
+	ld c, l
+
+	and a
+	jr nz, .pop1
+	ld hl, $90e0
+	ld sp, hl
+	ld hl, $d000
+	jp WriteTile
+	
+.pop1
+	ld hl, $d000
+	ld sp, hl
+	ld hl, $90e0
+	jp WriteTile
 
