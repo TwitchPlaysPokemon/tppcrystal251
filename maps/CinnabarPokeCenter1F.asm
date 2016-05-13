@@ -35,6 +35,9 @@ UnknownText_0x1ab37f: ; 0x1ab37f
 	done
 ; 0x1ab3ab
 
+CinnabarOldCenter_LinkScript:
+	jumpstd pokecenteroldlink
+
 CinnabarPokeCenter1F_MapEventHeader: ; 0x1ab3ab
 	; filler
 	db 0, 0
@@ -52,9 +55,10 @@ CinnabarPokeCenter1F_MapEventHeader: ; 0x1ab3ab
 	db 0
 
 	; people-events
-	db 3
+	db 4
 	person_event SPRITE_NURSE, 5, 9, $6, 0, 0, -1, -1, 0, 0, 0, NurseScript_0x1ab32c, -1
-	person_event SPRITE_COOLTRAINER_F, 10, 11, $5, 0, 2, -1, -1, 8 + PAL_OW_RED, 0, 0, CooltrainerFScript_0x1ab32f, -1
-	person_event SPRITE_FISHER, 8, 6, $6, 0, 0, -1, -1, 8 + PAL_OW_GREEN, 0, 0, FisherScript_0x1ab332, -1
+	person_event SPRITE_COOLTRAINER_F, 9, 15, $5, 0, 2, -1, -1, 8 + PAL_OW_RED, 0, 0, CooltrainerFScript_0x1ab32f, -1
+	person_event SPRITE_FISHER, 8, 6, $9, 0, 0, -1, -1, 8 + PAL_OW_GREEN, 0, 0, FisherScript_0x1ab332, -1
+	person_event SPRITE_LINK_RECEPTIONIST, 6, 17, $6, 0, 0, -1, -1, 8 + PAL_OW_GREEN, 0, 0, CinnabarOldCenter_LinkScript, -1
 ; 0x1ab3e7
 

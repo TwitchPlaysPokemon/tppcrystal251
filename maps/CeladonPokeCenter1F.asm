@@ -153,6 +153,9 @@ UnknownText_0x7201a: ; 0x7201a
 	done
 ; 0x720b8
 
+CeladonOldCenter_LinkScript:
+	jumpstd pokecenteroldlink
+	
 CeladonPokeCenter1F_MapEventHeader: ; 0x720b8
 	; filler
 	db 0, 0
@@ -170,11 +173,12 @@ CeladonPokeCenter1F_MapEventHeader: ; 0x720b8
 	db 0
 
 	; people-events
-	db 5
+	db 6
 	person_event SPRITE_NURSE, 5, 9, $6, 0, 0, -1, -1, 0, 0, 0, NurseScript_0x71e22, -1
-	person_event SPRITE_GENTLEMAN, 9, 5, $5, 0, 1, -1, -1, 0, 0, 0, GentlemanScript_0x71e25, -1
-	person_event SPRITE_PHARMACIST, 7, 4, $6, 0, 0, -1, -1, 8 + PAL_OW_RED, 0, 0, PharmacistScript_0x71e2b, -1
-	person_event SPRITE_COOLTRAINER_F, 10, 12, $5, 0, 1, -1, -1, 8 + PAL_OW_GREEN, 0, 0, CooltrainerFScript_0x71e28, -1
-	person_event SPRITE_SUPER_NERD, 7, 8, $6, 0, 0, -1, -1, 8 + PAL_OW_BLUE, 0, 0, SuperNerdScript_0x71e2e, EVENT_SET_WHEN_FOUGHT_HO_OH
+	person_event SPRITE_GENTLEMAN, 7, 13, $5, 0, 1, -1, -1, 0, 0, 0, GentlemanScript_0x71e25, -1
+	person_event SPRITE_PHARMACIST, 8, 6, $9, 0, 0, -1, -1, 8 + PAL_OW_RED, 0, 0, PharmacistScript_0x71e2b, -1
+	person_event SPRITE_COOLTRAINER_F, 10, 16, $5, 0, 1, -1, -1, 8 + PAL_OW_GREEN, 0, 0, CooltrainerFScript_0x71e28, -1
+	person_event SPRITE_SUPER_NERD, 9, 6, $9, 0, 0, -1, -1, 8 + PAL_OW_BLUE, 0, 0, SuperNerdScript_0x71e2e, EVENT_SET_WHEN_FOUGHT_HO_OH
+	person_event SPRITE_LINK_RECEPTIONIST, 6, 17, $6, 0, 0, -1, -1, 8 + PAL_OW_GREEN, 0, 0, CeladonOldCenter_LinkScript, -1
 ; 0x7210e
 

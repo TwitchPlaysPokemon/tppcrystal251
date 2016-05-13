@@ -83,6 +83,9 @@ UnknownText_0x1882ff_Metric:
 	line "JOHTO accessible."
 	done
 
+CeruleanOldCenter_LinkScript:
+	jumpstd pokecenteroldlink
+
 CeruleanPokeCenter1F_MapEventHeader: ; 0x188386
 	; filler
 	db 0, 0
@@ -100,9 +103,10 @@ CeruleanPokeCenter1F_MapEventHeader: ; 0x188386
 	db 0
 
 	; people-events
-	db 3
+	db 4
 	person_event SPRITE_NURSE, 5, 9, $6, 0, 0, -1, -1, 0, 0, 0, NurseScript_0x18820f, -1
-	person_event SPRITE_SUPER_NERD, 8, 12, $5, 0, 1, -1, -1, 0, 0, 0, SuperNerdScript_0x188212, -1
-	person_event SPRITE_GYM_GUY, 9, 5, $2, 1, 1, -1, -1, 8 + PAL_OW_GREEN, 0, 0, GymGuyScript_0x18821e, -1
+	person_event SPRITE_SUPER_NERD, 9, 15, $5, 0, 1, -1, -1, 0, 0, 0, SuperNerdScript_0x188212, -1
+	person_event SPRITE_GYM_GUY, 9, 7, $2, 1, 1, -1, -1, 8 + PAL_OW_GREEN, 0, 0, GymGuyScript_0x18821e, -1
+	person_event SPRITE_LINK_RECEPTIONIST, 6, 17, $6, 0, 0, -1, -1, 8 + PAL_OW_GREEN, 0, 0, CeruleanOldCenter_LinkScript, -1
 ; 0x1883c2
 

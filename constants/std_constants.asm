@@ -53,3 +53,4 @@
 	enum happinesschecknpc
 	enum leaguestatues1
 	enum leaguestatues2
+	enum pokecenteroldlink

@@ -1276,3 +1276,16 @@ _IndigoPlateauStatuesText2: ; 89596 (22:5596)
 	cont "#MON LEAGUE HQ"
 	done
 
+OldLinkCenterReceptionistText:
+	text "Welcome to the"
+	line "Cable Club!"
+	
+	para "We recently moved"
+	line "all of our systems"
+	cont "upstairs."
+	
+	para "Please visit the"
+	line "2nd floor for all"
+	cont "of your needs!"
+	done
+	

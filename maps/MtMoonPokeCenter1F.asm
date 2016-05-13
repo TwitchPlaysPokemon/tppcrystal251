@@ -22,6 +22,9 @@ FisherText1_MtMoon:
 	para "Then shoo!"
 	done
 
+MtMoonOldCenter_LinkScript:
+	jumpstd pokecenteroldlink
+
 MtMoonPokeCenter1F_MapEventHeader: ; 0x69935
 	; filler
 	db 0, 0
@@ -39,8 +42,9 @@ MtMoonPokeCenter1F_MapEventHeader: ; 0x69935
 	db 0
 
 	; people-events
-	db 2
+	db 3
 	person_event SPRITE_NURSE, 5, 9, $6, 0, 0, -1, -1, 0, 0, 0, NurseScript_MtMoon, -1
-	person_event SPRITE_FISHER, 8, 6, $a, 0, 0, -1, -1, 8 + PAL_OW_BLUE, 0, 0, FisherScript1_MtMoon, -1
+	person_event SPRITE_FISHER, 7, 7, $a, 0, 0, -1, -1, 8 + PAL_OW_BLUE, 0, 0, FisherScript1_MtMoon, -1
+	person_event SPRITE_LINK_RECEPTIONIST, 6, 17, $6, 0, 0, -1, -1, 8 + PAL_OW_GREEN, 0, 0, MtMoonOldCenter_LinkScript, -1
 ; 0x6998b
 

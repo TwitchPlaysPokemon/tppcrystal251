@@ -99,6 +99,9 @@ UnknownText_0x19654e: ; 0x19654e
 	done
 ; 0x19656e
 
+FuchsiaOldCenter_LinkScript:
+	jumpstd pokecenteroldlink
+	
 FuchsiaPokeCenter1F_MapEventHeader: ; 0x19656e
 	; filler
 	db 0, 0
@@ -116,10 +119,11 @@ FuchsiaPokeCenter1F_MapEventHeader: ; 0x19656e
 	db 0
 
 	; people-events
-	db 4
+	db 5
 	person_event SPRITE_NURSE, 5, 9, $6, 0, 0, -1, -1, 8 + PAL_OW_GREEN, 0, 0, NurseScript_0x196459, -1
-	person_event SPRITE_COOLTRAINER_M, 8, 12, $5, 0, 1, -1, -1, 0, 0, 0, CooltrainerMScript_0x19645c, -1
-	person_event SPRITE_COOLTRAINER_F, 8, 5, $5, 0, 1, -1, -1, 0, 0, 0, CooltrainerFScript_0x19645f, -1
-	person_event SPRITE_JANINE_IMPERSONATOR, 7, 9, $6, 0, 0, -1, -1, 8 + PAL_OW_BLUE, 0, 0, JanineImpersonatorScript_0x196462, -1
+	person_event SPRITE_COOLTRAINER_M, 8, 14, $5, 0, 1, -1, -1, 0, 0, 0, CooltrainerMScript_0x19645c, -1
+	person_event SPRITE_COOLTRAINER_F, 8, 6, $9, 0, 0, -1, -1, 0, 0, 0, CooltrainerFScript_0x19645f, -1
+	person_event SPRITE_JANINE_IMPERSONATOR, 7, 10, $6, 0, 0, -1, -1, 8 + PAL_OW_BLUE, 0, 0, JanineImpersonatorScript_0x196462, -1
+	person_event SPRITE_LINK_RECEPTIONIST, 6, 17, $6, 0, 0, -1, -1, 8 + PAL_OW_GREEN, 0, 0, FuchsiaOldCenter_LinkScript, -1
 ; 0x1965b7
 
