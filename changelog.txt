@@ -1,4 +1,4 @@
-Version 1.1.3
+Version 1.2
 * Remove OLDEN from the Pokemon Quiz Show
 * More text fixes
 * More party menu icons
@@ -16,6 +16,12 @@ Version 1.1.3
 * Fixed a bug causing wild mons to not benefit from DVs
 * Fixed issue with Moltres replacing many overworld birds
 * Removed kanto mons from rock smash mon tables
+* Apply a different check for the TM Depot elevator
+* Implement Poke Distribution system in the Goldenrod PCC - enabled after catching all 251
+* Remakes of the original Kanto Pokemon Centers now replace all centers in EGK and normal Kanto
+* Opened up a BOUTIQUE in Goldenrod to allow the player to change their player model's colors. Stay fresh!
+* Different checks for overworld music resuming
+* Misc other fixes
 
 Version 1.1.2
 * Grammar fixes
