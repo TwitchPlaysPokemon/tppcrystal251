@@ -58,7 +58,7 @@ Special_EnterDistrCode:
 	call WaitSFX
 	ld a, [wSurvivalModeParty + 33]
 	and a
-	jr z, .cancel
+	jr z, .save_cancel
 	ld hl, PartyMonNicknames
 	ld bc, PKMN_NAME_LENGTH
 	ld a, [CurPartyMon]
