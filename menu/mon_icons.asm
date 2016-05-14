@@ -59,8 +59,8 @@ MonMenuIcons: ; 8eac4
 	db ICON_ODDISH       ; ODDISH
 	db ICON_ODDISH       ; GLOOM
 	db ICON_ODDISH       ; VILEPLUME
-	db ICON_BUG          ; PARAS
-	db ICON_BUG          ; PARASECT
+	db ICON_PARAS        ; PARAS
+	db ICON_PARASECT     ; PARASECT
 	db ICON_CATERPILLAR  ; VENONAT
 	db ICON_MOTH         ; VENOMOTH
 	db ICON_DIGLETT      ; DIGLETT
@@ -142,7 +142,7 @@ MonMenuIcons: ; 8eac4
 	db ICON_HUMANSHAPE   ; MAGMAR
 	db ICON_BUG          ; PINSIR
 	db ICON_EQUINE       ; TAUROS
-	db ICON_FISH         ; MAGIKARP
+	db ICON_MAGIKARP     ; MAGIKARP
 	db ICON_GYARADOS     ; GYARADOS
 	db ICON_LAPRAS       ; LAPRAS
 	db ICON_BLOB         ; DITTO
@@ -150,7 +150,7 @@ MonMenuIcons: ; 8eac4
 	db ICON_VAPOREON     ; VAPOREON
 	db ICON_JOLTEON      ; JOLTEON
 	db ICON_FLAREON      ; FLAREON
-	db ICON_VOLTORB      ; PORYGON
+	db ICON_PORYGON      ; PORYGON
 	db ICON_OMANYTE      ; OMANYTE
 	db ICON_OMASTAR      ; OMASTAR
 	db ICON_KABUTO       ; KABUTO
@@ -162,7 +162,7 @@ MonMenuIcons: ; 8eac4
 	db ICON_MOLTRES      ; MOLTRES
 	db ICON_SERPENT      ; DRATINI
 	db ICON_SERPENT      ; DRAGONAIR
-	db ICON_BIGMON       ; DRAGONITE
+	db ICON_DRAGONITE    ; DRAGONITE
 	db ICON_MEWTWO       ; MEWTWO
 	db ICON_MEW          ; MEW
 	db ICON_ODDISH       ; CHIKORITA
@@ -178,8 +178,8 @@ MonMenuIcons: ; 8eac4
 	db ICON_FOX          ; FURRET
 	db ICON_BIRD         ; HOOTHOOT
 	db ICON_BIRD         ; NOCTOWL
-	db ICON_BUG          ; LEDYBA
-	db ICON_BUG          ; LEDIAN
+	db ICON_LEDIAN       ; LEDYBA
+	db ICON_LEDIAN       ; LEDIAN
 	db ICON_BUG          ; SPINARAK
 	db ICON_BUG          ; ARIADOS
 	db ICON_BAT          ; CROBAT
@@ -196,8 +196,8 @@ MonMenuIcons: ; 8eac4
 	db ICON_MONSTER      ; FLAAFFY
 	db ICON_MONSTER      ; AMPHAROS
 	db ICON_ODDISH       ; BELLOSSOM
-	db ICON_JIGGLYPUFF   ; MARILL
-	db ICON_JIGGLYPUFF   ; AZUMARILL
+	db ICON_MARILL       ; MARILL
+	db ICON_AZUMARILL    ; AZUMARILL
 	db ICON_SUDOWOODO    ; SUDOWOODO
 	db ICON_POLIWAG      ; POLITOED
 	db ICON_ODDISH       ; HOPPIP
@@ -240,13 +240,13 @@ MonMenuIcons: ; 8eac4
 	db ICON_FISH         ; OCTILLERY
 	db ICON_MONSTER      ; DELIBIRD
 	db ICON_FISH         ; MANTINE
-	db ICON_BIRD         ; SKARMORY
+	db ICON_SKARMORY     ; SKARMORY
 	db ICON_FOX          ; HOUNDOUR
 	db ICON_FOX          ; HOUNDOOM
 	db ICON_BIGMON       ; KINGDRA
 	db ICON_EQUINE       ; PHANPY
 	db ICON_EQUINE       ; DONPHAN
-	db ICON_VOLTORB      ; PORYGON2
+	db ICON_PORYGON      ; PORYGON2
 	db ICON_EQUINE       ; STANTLER
 	db ICON_MONSTER      ; SMEARGLE
 	db ICON_FIGHTER      ; TYROGUE
@@ -348,3 +348,11 @@ IconPointers:
 	dw TotodileIcon
 	dw CroconawIcon
 	dw FeraligatrIcon
+	dw ParasIcon
+	dw ParasectIcon
+	dw MarillIcon
+	dw AzumarillIcon
+	dw LedianIcon
+	dw PorygonIcon
+	dw DragoniteIcon
+	dw SkarmoryIcon
