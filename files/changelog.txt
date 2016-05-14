@@ -1,3 +1,28 @@
+Version 1.2
+* Remove OLDEN from the Pokemon Quiz Show
+* More text fixes
+* More party menu icons
+* Moved an NPC on Route 4 to correct some visual errors
+* You can no longer white out due to overworld poison damage (Gen 4 style)
+* Fix the Name Rater bug
+* Fix SS Ticket displaying the name of the wrong ship in Early Game Kanto
+* Add a custom logo to the startup sequence
+* Fix a bug where the Rooftop Sale prices were interpreted wrong
+* Actually fix: You can no longer receive phone calls prior to actually getting the phone card
+* Clarify Simon in the volcano
+* MASSIVE movepool update
+* Fixed the moveset of the dragon shrine dratini
+* Fixed bug causing stats to not be properly recalculated for caught mons (levelling up or performing the box trick ends this glitch too)
+* Fixed a bug causing wild mons to not benefit from DVs
+* Fixed issue with Moltres replacing many overworld birds
+* Removed kanto mons from rock smash mon tables
+* Apply a different check for the TM Depot elevator
+* Implement Poke Distribution system in the Goldenrod PCC - enabled after catching all 251
+* Remakes of the original Kanto Pokemon Centers now replace all centers in EGK and normal Kanto
+* Opened up a BOUTIQUE in Goldenrod to allow the player to change their player model's colors. Stay fresh!
+* Different checks for overworld music resuming
+* Misc other fixes
+
 Version 1.1.2
 * Grammar fixes
 * Nerf the Raticate on the Rocket Executive in Mt Moon
