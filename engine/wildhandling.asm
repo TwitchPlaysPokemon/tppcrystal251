@@ -430,9 +430,9 @@ Function2a138:: ; 2a138
 
 Function2a14f: ; 2a14f choose an encounter
 	call Function2a200 ; put adress of wild mons tables in hl, bc holds skip numbers
-	jp nc, QuitWithA1 ; jump if checking fails
+	jp nc, .no_encounter ; jump if checking fails
 	call Function2a2ce; check if roaming encounter
-	jp c, QuitWithA0; if roamer found(?) jump, otherwise fall through
+	jp c, .encounter; if roamer found(?) jump, otherwise fall through
 	inc hl
 	inc hl
 	inc hl ;place it over tables bit to store the loc (is add 4 faster?)
@@ -455,7 +455,6 @@ Function2a14f: ; 2a14f choose an encounter
 	ld d, h
 	ld e, l;put it in de
 
-.asm_2a174 ;redundent
 .asm_2a175
 	call Random
 	cp 200
@@ -482,7 +481,7 @@ Function2a14f: ; 2a14f choose an encounter
 	ld a, [hl]
 	swap a
 	and $f ; only use second nyble
-	jr z, SkipBonLvl ;skip if "table" 0 and thus no bonus. convienantly a is also 0 so 0 will be added
+	jr z, .SkipLevel ;skip if "table" 0 and thus no bonus. convienantly a is also 0 so 0 will be added
 
 	ld b, 0
 	dec a ;go 1 down as no table 0 exists for lvl pointers
@@ -492,7 +491,7 @@ Function2a14f: ; 2a14f choose an encounter
 	call AddNTimes ;go to correct pointer
 	ld a, [hl] ;load table
 	and a
-	jr z, SkipBonLvl ;skip if 0
+	jr z, .SkipLevel ;skip if 0
 
 	dec a
 	ld hl, LvlTables
@@ -501,7 +500,7 @@ Function2a14f: ; 2a14f choose an encounter
 	add hl, de ; find slot
 	ld a, [hl] ;put the level bonus in a
 
-SkipBonLvl
+.SkipLevel
 	pop hl ;get table byte (cur stack: first mon byte)
 	dec hl ;move onto base level byte
 	add a, [hl] ;add base level onto level bonus
@@ -514,25 +513,22 @@ SkipBonLvl
 	ld b, [hl]
 	ld a, b ; load mon species into a
 	call Function2a4a0 ; check mon is valid, jump if not (RIP missingno)
-	jr c, QuitWithA1
+	jr c, .no_encounter
 	ld a, b
 	cp UNOWN
-	jr nz, .asm_2a1bf ;if unkown do special case for unlocked unowns, otherwise jump down
+	jr nz, .done ;if unkown do special case for unlocked unowns, otherwise jump down
 	ld a, [UnlockedUnowns] ;if no unown unlocked, no encounter
 	and a
-	jr z, QuitWithA1
-.asm_2a1bf
-	jr WildsDone
-
-QuitWithA1
+	jr nz, .done
+.no_encounter
 	ld a, 1
 	and a
 	ret
 
-WildsDone
+.done
 	ld a, b
 	ld [wd22e], a
-QuitWithA0
+.encounter
 	xor a
 	ret
 
