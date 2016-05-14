@@ -34,18 +34,21 @@ all_obj := $(sort $(crystal_obj) $(crystal11_obj) $(beesafree_obj))
 roms := pokecrystal.gbc pokecrystal11.gbc pokecrystal_ai.gbc
 
 
-all: distribution $(roms)
-crystal: distribution pokecrystal.gbc
-crystal11: distribution pokecrystal11.gbc
-beesafree: distribution pokecrystal_ai.gbc
-patches: ipspatch distribution pokecrystal11.ips pokecrystal_ai.ips
+all: $(roms)
+crystal: pokecrystal.gbc
+crystal11: pokecrystal11.gbc
+beesafree: pokecrystal_ai.gbc
+distribution: data/distribution.bin
+patches: ipspatch pokecrystal11.ips pokecrystal_ai.ips
 ipspatch:
 	cd ipspatch; \
 	gcc -O3 -Wno-unused-result ipspatch.c -o ipspatch; \
 	cd ../..
 
-distribution:
+autogen: distribution/autogen.c
 	cd distribution; gcc -O3 autogen.c -o autogen
+
+data/distribution.bin: autogen
 	distribution/autogen distribution/distdata.txt data/distribution.bin
 
 clean:
@@ -54,16 +57,18 @@ clean:
 
 %.asm: ;
 
+%.c: ;
+
 %.o: dep = $(shell $(includes) $(@D)/$*.asm)
-%.o: %.asm $$(%dep)
+%.o: %.asm $$(dep)
 	rgbasm -o $@ $<
 
 %_ai.o: dep = $(shell $(includes) $(@D)/$*.asm)
-%_ai.o: %.asm $$(%dep)
+%_ai.o: %.asm $$(dep)
 	rgbasm -D BEESAFREE -o $@ $<
 
 %11.o: dep = $(shell $(includes) $(@D)/$*.asm)
-%11.o: %.asm $$(%dep)
+%11.o: %.asm $$(dep)
 	rgbasm -D CRYSTAL11 -o $@ $<
 
 %.ips: %.gbc
