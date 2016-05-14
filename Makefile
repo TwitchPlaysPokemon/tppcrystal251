@@ -2,29 +2,13 @@ PYTHON := python2
 MD5 := md5sum -c --quiet
 
 .SUFFIXES:
-.SUFFIXES: .asm .o .gbc .png .2bpp .1bpp .lz .pal .bin .blk .tilemap
-.PHONY: all clean crystal pngs crystal11 both beesafree patches ipspatch distribution
+.PHONY: all clean crystal crystal11 beesafree patches ipspatch distribution
 .SECONDEXPANSION:
+.PRECIOUS: %.2bpp %.1bpp
 
-poketools := extras/pokemontools
 gfx       := $(PYTHON) gfx.py
-includes  := $(PYTHON) $(poketools)/scan_includes.py
+includes  := $(PYTHON) scan_includes.py
 
-
-crystal11_obj := \
-wram11.o \
-main11.o \
-mobile.o \
-home.o \
-audio.o \
-maps.o \
-events.o \
-credits.o \
-egg_moves.o \
-evos_attacks.o \
-pokedex.o \
-crystal_misc.o \
-pics.o
 
 crystal_obj := \
 wram.o \
@@ -41,24 +25,20 @@ pokedex.o \
 crystal_misc.o \
 pics.o
 
+crystal11_obj := $(crystal_obj:.o=11.o)
+
 beesafree_obj := $(crystal_obj:.o=_ai.o)
 
 all_obj := $(sort $(crystal_obj) $(crystal11_obj) $(beesafree_obj))
 
-# object dependencies
-deps := $(crystal_obj:.o=)
-$(foreach dep, $(deps), \
-	$(eval $(dep)_dep := $(shell $(includes) $(dep).asm)) \
-)
+roms := pokecrystal.gbc pokecrystal11.gbc pokecrystal_ai.gbc
 
 
-roms := pokecrystal.gbc
-
-all: $(roms)
-crystal: pokecrystal.gbc
-crystal11: pokecrystal11.gbc
-beesafree: pokecrystal_ai.gbc
-patches: ipspatch pokecrystal11.ips pokecrystal_ai.ips
+all: distribution $(roms)
+crystal: distribution pokecrystal.gbc
+crystal11: distribution pokecrystal11.gbc
+beesafree: distribution pokecrystal_ai.gbc
+patches: ipspatch distribution pokecrystal11.ips pokecrystal_ai.ips
 ipspatch:
 	cd ipspatch; \
 	gcc -O3 -Wno-unused-result ipspatch.c -o ipspatch; \
@@ -71,28 +51,35 @@ distribution:
 clean:
 	rm -f $(roms) $(all_obj) $(roms:.gbc=.map) $(roms:.gbc=.sym) $(roms:.gbc=.ips) data/distribution.bin
 
+
 %.asm: ;
-%.o: %.asm $$(%_dep)
+
+%.o: dep = $(shell $(includes) $(@D)/$*.asm)
+%.o: %.asm $$(%dep)
 	rgbasm -o $@ $<
-%_ai.o: %.asm $$(%_dep)
+
+%_ai.o: dep = $(shell $(includes) $(@D)/$*.asm)
+%_ai.o: %.asm $$(%dep)
 	rgbasm -D BEESAFREE -o $@ $<
-%11.o: %.asm $$(%_dep)
+
+%11.o: dep = $(shell $(includes) $(@D)/$*.asm)
+%11.o: %.asm $$(%dep)
 	rgbasm -D CRYSTAL11 -o $@ $<
-%.ips: %.gbc $$(%_dep)
+
+%.ips: %.gbc
 	ipspatch/ipspatch create baserom.gbc $< $@
 
-pokecrystal11.gbc: distribution $(crystal11_obj)
-	rgblink -n $*.sym -m $*.map -o $@ $(wordlist 2, $(words $^), $^)
+pokecrystal11.gbc: $(crystal11_obj)
+	rgblink -n pokecrystal11.sym -m pokecrystal11.map -o $@ $^
 	rgbfix -Cjv -i BORT -k 01 -l 0x33 -m 0x10 -n 1 -p 0 -r 3 -t TPPCRYSTAL $@
 
-pokecrystal.gbc: distribution $(crystal_obj)
-	rgblink -n $*.sym -m $*.map -o $@ $(wordlist 2, $(words $^), $^)
+pokecrystal.gbc: $(crystal_obj)
+	rgblink -n pokecrystal.sym -m pokecrystal.map -o $@ $^
 	rgbfix -Cjv -i BORT -k 01 -l 0x33 -m 0x10 -p 0 -r 3 -t TPPCRYSTAL $@
 
-pokecrystal_ai.gbc: distribution $(beesafree_obj)
-	rgblink -n $*.sym -m $*.map -o $@ $(wordlist 2, $(words $^), $^)
+pokecrystal_ai.gbc: $(beesafree_obj)
+	rgblink -n pokecrystal_ai.sym -m pokecrystal_ai.map -o $@ $^
 	rgbfix -Cjv -i BORT -k 01 -l 0x33 -m 0x10 -n 1 -p 0 -r 3 -t TPPCRYSTAL $@
-
 
 %.2bpp: %.png ; $(gfx) 2bpp $<
 %.1bpp: %.png ; $(gfx) 1bpp $<

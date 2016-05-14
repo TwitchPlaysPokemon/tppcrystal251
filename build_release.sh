@@ -1,7 +1,7 @@
 filesdir=~/crystal251html/files
-vbasrcdir=/cygdrive/c/Users/Scott/Downloads/vba-rerecording-svn480-win32
-vbasrcname=VBA_VS2015_V72XR
-vbatarget=VBA-RR-243
+vbasrcdir=/cygdrive/c/Users/Scott/Downloads/vba-rerecording-24.4.0-V8
+vbasrcname=VBA-Re-recording
+vbatarget=VBA-RR-244
 version=1.2
 tmpdir=/tmp/crystal251
 
@@ -33,7 +33,7 @@ cp changelog.txt $filesdir/
 cp pokecrystal_ai.ips $tmpdir/annicrystal_ai_$version.ips
 
 # Copy the AI scripts and data to the temp AI subdirectory
-cp ai/AI.py ai/AIServer.py ai/AIServerStandalone.py ai/ai_data.py ai/AiMoves.txt $tmpdir/AI/
+cp ai/AI.py ai/AIServer.py ai/AIServerStandalone.py ai/AiMoves.txt $tmpdir/AI/
 
 # Copy the emulator to the correct filename in the temp $vbatarget subdirectory
 cp $vbasrcdir/$vbasrcname.exe $tmpdir/$vbatarget/$vbatarget.exe
