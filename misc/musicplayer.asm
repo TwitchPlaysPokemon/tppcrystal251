@@ -3417,7 +3417,7 @@ Origin:
 ._13 db "Pokémon Pinball@"
 ._14 db "Tales of TPP Deluxe@"
 ._15 db "Dream Red@"
-._16 db "Pokémon Crystal Anniversary@"
+._16 db "Pokémon Anniversary Crystal@"
 
 Artist:
 	dbw $01, ._00
