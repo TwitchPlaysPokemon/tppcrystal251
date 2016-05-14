@@ -96,7 +96,7 @@ MonMenuIcons: ; 8eac4
 	db ICON_SLOWBRO      ; SLOWBRO
 	db ICON_VOLTORB      ; MAGNEMITE
 	db ICON_VOLTORB      ; MAGNETON
-	db ICON_BIRD         ; FARFETCH_D
+	db ICON_FARFETCHD    ; FARFETCH_D
 	db ICON_BIRD         ; DODUO
 	db ICON_BIRD         ; DODRIO
 	db ICON_LAPRAS       ; SEEL
@@ -356,3 +356,4 @@ IconPointers:
 	dw PorygonIcon
 	dw DragoniteIcon
 	dw SkarmoryIcon
+	dw FarfetchdIcon
