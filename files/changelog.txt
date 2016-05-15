@@ -1,3 +1,8 @@
+Version 1.2.2
+* Fix Paras' menu icon not animating
+* Slight alteration to male player sprite to stop hair from growing when walking
+* Fix PokeDex completion check for Diploma
+
 Version 1.2.1
 * Fix a bug where text in the PCC is glitchy
 * Fix the game not saving after receiving a distributed Pokemon
