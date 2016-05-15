@@ -32,8 +32,8 @@ MonMenuIcons: ; 8eac4
 	db ICON_BIRD         ; PIDGEY
 	db ICON_BIRD         ; PIDGEOTTO
 	db ICON_BIRD         ; PIDGEOT
-	db ICON_FOX          ; RATTATA
-	db ICON_FOX          ; RATICATE
+	db ICON_RATTATA      ; RATTATA
+	db ICON_RATICATE     ; RATICATE
 	db ICON_BIRD         ; SPEAROW
 	db ICON_BIRD         ; FEAROW
 	db ICON_SERPENT      ; EKANS
@@ -357,3 +357,6 @@ IconPointers:
 	dw DragoniteIcon
 	dw SkarmoryIcon
 	dw FarfetchdIcon
+	dw RattataIcon
+	dw RaticateIcon
+	

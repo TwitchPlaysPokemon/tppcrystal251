@@ -324,7 +324,7 @@ int main (int argc, char ** argv) {
     argv ++;
   } else
     file = stdin;
-  srand(time(NULL) ^ clock());
+  srand(1648035271);
   source_data = get_data_from_file(file, &count);
   fclose(file);
   file = fopen(*argv, "wb");
