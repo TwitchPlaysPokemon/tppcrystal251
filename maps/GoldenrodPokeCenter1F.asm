@@ -56,8 +56,8 @@ PCCMachineSignScript:
 	end
 
 LinkStationNurseScript:
-	checkcode VAR_DEXCAUGHT
-	if_less_than 251, .skip
+	checkcode VAR_BADGES
+	if_less_than 16, .skip
 	faceplayer
 	loadfont
 	special Special_EnterDistrCode
