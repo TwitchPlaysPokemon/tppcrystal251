@@ -117,8 +117,8 @@ MonMenuIcons: ; 8eac4
 	db ICON_VOLTORB      ; ELECTRODE
 	db ICON_ODDISH       ; EXEGGCUTE
 	db ICON_ODDISH       ; EXEGGUTOR
-	db ICON_MONSTER      ; CUBONE
-	db ICON_MONSTER      ; MAROWAK
+	db ICON_CUBONE       ; CUBONE
+	db ICON_MAROWAK      ; MAROWAK
 	db ICON_FIGHTER      ; HITMONLEE
 	db ICON_FIGHTER      ; HITMONCHAN
 	db ICON_MONSTER      ; LICKITUNG
@@ -359,4 +359,5 @@ IconPointers:
 	dw FarfetchdIcon
 	dw RattataIcon
 	dw RaticateIcon
-	
+	dw CuboneIcon
+	dw MarowakIcon
