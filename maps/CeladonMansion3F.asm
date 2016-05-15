@@ -11,7 +11,7 @@ CooltrainerMScript_0x71670: ; 0x71670
 	loadfont
 	writetext UnknownText_0x716ce
 	checkcode VAR_DEXCAUGHT
-	if_equal NUM_POKEMON, .GiveDiploma
+	if_greater_than 250, .GiveDiploma
 	waitbutton
 	closetext
 	end

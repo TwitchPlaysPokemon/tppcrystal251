@@ -92096,7 +92096,7 @@ SampleRandomSurvival:
 	; error checking
 	and a
 	jr z, .SampleMon
-	cp 252
+	cp 253
 	jr nc, .SampleMon
 	pop hl
 	ld [hli], a
