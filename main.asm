@@ -81092,6 +81092,7 @@ _OptionsMenu: ; e41d0
 	ld b, $10
 	ld c, $12
 	call TextBox
+	call PlaceVersionString
 	hlcoord 2, 2
 	ld de, StringOptions
 	call PlaceString
@@ -81127,6 +81128,15 @@ _OptionsMenu: ; e41d0
 	ld [$ffaa], a
 	ret
 ; e4241
+
+PlaceVersionString:
+	hlcoord 19 - _VERLEN, 17
+	ld de, .String
+	call PlaceString
+	ret
+
+.String:
+	db _VERSION, "@"
 
 OptionsMenu_LoadOptions:
 	xor a
@@ -81758,6 +81768,7 @@ Options_Next:
 	ld b, $10
 	ld c, $12
 	call TextBox
+	call PlaceVersionString
 	pop de
 	hlcoord 2, 2
 	call PlaceString

@@ -2,7 +2,7 @@ filesdir=~/crystal251html/files
 vbasrcdir=/cygdrive/c/Users/Scott/Downloads/vba-rerecording-24.4.0-V8
 vbasrcname=VBA-Re-recording
 vbatarget=VBA-RR-244
-version=$1
+version=${1} && echo $version
 tmpdir=/tmp/crystal251
 
 # Do not modify anything below this line.
