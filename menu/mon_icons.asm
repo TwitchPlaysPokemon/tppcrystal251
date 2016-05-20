@@ -29,9 +29,9 @@ MonMenuIcons: ; 8eac4
 	db ICON_CATERPILLAR  ; WEEDLE
 	db ICON_CATERPILLAR  ; KAKUNA
 	db ICON_BUG          ; BEEDRILL
-	db ICON_BIRD         ; PIDGEY
-	db ICON_BIRD         ; PIDGEOTTO
-	db ICON_BIRD         ; PIDGEOT
+	db ICON_PIDGEY       ; PIDGEY
+	db ICON_PIDGEOTTO    ; PIDGEOTTO
+	db ICON_PIDGEOT      ; PIDGEOT
 	db ICON_RATTATA      ; RATTATA
 	db ICON_RATICATE     ; RATICATE
 	db ICON_BIRD         ; SPEAROW
@@ -61,8 +61,8 @@ MonMenuIcons: ; 8eac4
 	db ICON_ODDISH       ; VILEPLUME
 	db ICON_PARAS        ; PARAS
 	db ICON_PARASECT     ; PARASECT
-	db ICON_CATERPILLAR  ; VENONAT
-	db ICON_MOTH         ; VENOMOTH
+	db ICON_VENONAT      ; VENONAT
+	db ICON_VENOMOTH     ; VENOMOTH
 	db ICON_DIGLETT      ; DIGLETT
 	db ICON_DIGLETT      ; DUGTRIO
 	db ICON_FOX          ; MEOWTH
@@ -122,8 +122,8 @@ MonMenuIcons: ; 8eac4
 	db ICON_FIGHTER      ; HITMONLEE
 	db ICON_FIGHTER      ; HITMONCHAN
 	db ICON_MONSTER      ; LICKITUNG
-	db ICON_BLOB         ; KOFFING
-	db ICON_BLOB         ; WEEZING
+	db ICON_KOFFING      ; KOFFING
+	db ICON_WEEZING      ; WEEZING
 	db ICON_EQUINE       ; RHYHORN
 	db ICON_MONSTER      ; RHYDON
 	db ICON_CLEFAIRY     ; CHANSEY
@@ -134,9 +134,9 @@ MonMenuIcons: ; 8eac4
 	db ICON_FISH         ; GOLDEEN
 	db ICON_FISH         ; SEAKING
 	db ICON_STARYU       ; STARYU
-	db ICON_STARYU       ; STARMIE
+	db ICON_STARMIE      ; STARMIE
 	db ICON_HUMANSHAPE   ; MR__MIME
-	db ICON_BUG          ; SCYTHER
+	db ICON_SCYTHER      ; SCYTHER
 	db ICON_HUMANSHAPE   ; JYNX
 	db ICON_HUMANSHAPE   ; ELECTABUZZ
 	db ICON_HUMANSHAPE   ; MAGMAR
@@ -225,7 +225,7 @@ MonMenuIcons: ; 8eac4
 	db ICON_MONSTER      ; SNUBBULL
 	db ICON_MONSTER      ; GRANBULL
 	db ICON_FISH         ; QWILFISH
-	db ICON_BUG          ; SCIZOR
+	db ICON_SCIZOR       ; SCIZOR
 	db ICON_BUG          ; SHUCKLE
 	db ICON_BUG          ; HERACROSS
 	db ICON_FOX          ; SNEASEL
@@ -361,3 +361,13 @@ IconPointers:
 	dw RaticateIcon
 	dw CuboneIcon
 	dw MarowakIcon
+	dw KoffingIcon
+	dw WeezingIcon
+	dw VenonatIcon
+	dw VenomothIcon
+	dw StarmieIcon
+	dw ScytherIcon
+	dw ScizorIcon
+	dw PidgeyIcon
+	dw PidgeottoIcon
+	dw PidgeotIcon
