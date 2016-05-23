@@ -1,3 +1,9 @@
+Version 1.2.3
+* Version number now shown on options menu
+* Actually reference new sprites for Johto starters
+* Various sprite fixes
+* Text overflow issues in a few dialogue instances fixed
+
 Version 1.2.2
 * Fix Paras' menu icon not animating
 * Slight alteration to male player sprite to stop hair from growing when walking
