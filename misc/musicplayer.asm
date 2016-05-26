@@ -408,6 +408,7 @@ MusicPlayer::
 	ld a, 1
 	jr .redraw
 .select
+	call .waitinfo
 	xor a
 	call SongSelector
 	jp .loop
@@ -475,8 +476,16 @@ MusicPlayer::
 	ld hl, wMPFlags
 	set 6, [hl]
 	jp .loop
+	
+.waitinfo
+	ld hl, wMPFlags
+	bit 7, [hl]
+	ret z
+	call UpdateDataAndDelayFrame
+	jr .waitinfo
 
 .a
+	call .waitinfo
 	fill 0, wC1Vol, wMPInitClearEnd - wC1Vol
 	ld hl, wMPFlags
 	set 0, [hl]
@@ -1119,6 +1128,8 @@ SongSelector:
 .noclrint
 	ld [rLYC], a
 	ld a, c
+	cp $78
+	jr nc, .nonewline
 	and 7
 	jr nz, .nonewline
 	ld a, c
@@ -1326,6 +1337,7 @@ SongSelector:
 	ld [hSCX], a
 	ld [wInfoDrawState], a
 	ld [wChannelSelector], a
+	copy NoteOAM, wChannelSelectorOAM, 4
 .lastloop
 	call UpdateDataAndDelayFrame3
 	ld a, [wListDrawState]
