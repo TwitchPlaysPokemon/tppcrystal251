@@ -5,7 +5,7 @@
 	db   "A legendary bird,"
 	next "thought lost in"
 	next "time. Previously"
-	page "only seen undeer"
+	page "only seen under"
 	next "specific circum-"
 	next "stances.@"
 ; 0x1d1931
