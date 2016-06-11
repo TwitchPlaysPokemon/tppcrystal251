@@ -6,29 +6,13 @@ CeladonMansion3F_MapScriptHeader: ; 0x7166e
 	db 0
 ; 0x71670
 
-PhanceroCheck:
-	ld de, PHANCERO
-	ld hl, PokedexCaught
-	ld b, 2
-	call FlagAction
-	ld [ScriptVar], a
-	ret
-
 CooltrainerMScript_0x71670: ; 0x71670
 	faceplayer
 	loadfont
 	writetext UnknownText_0x716ce
-	callasm PhanceroCheck
-	iffalse .compare_251
 	checkcode VAR_DEXCAUGHT
-	if_equal 252, .GiveDiploma
-	waitbutton
-	closetext
-	end
-
-.compare_251
-	checkcode VAR_DEXCAUGHT
-	if_equal 251, .GiveDiploma
+	special PhanceroCheck
+	iftrue .GiveDiploma
 	waitbutton
 	closetext
 	end

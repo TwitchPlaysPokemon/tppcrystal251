@@ -167,8 +167,8 @@ CheckDexForMtSilver:
 	buttonsound
 	writetext OakCheckDexAtHoF
 	special ProfOaksPCBoot
-	checkcode VAR_DEXCAUGHT
-	if_less_than 251, DexNotFull
+	special PhanceroCheck
+	iffalse DexNotFull
 	writetext OakFullDex
 	playsound SFX_DEX_FANFARE_230_PLUS
 	waitsfx

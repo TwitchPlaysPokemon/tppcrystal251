@@ -56,6 +56,8 @@ Special_EnterDistrCode:
 	ld de, SFX_CAUGHT_MON
 	call PlaySFX
 	call WaitSFX
+	ld a, [CurPartySpecies]
+	call SetSeenAndCaughtMon
 	ld a, [wSurvivalModeParty + 33]
 	and a
 	jr z, .save_cancel

@@ -204,6 +204,7 @@ SpecialsPointers:: ; c029
 	add_special Special_CheckRematches
 	add_special SampleRandomSurvival
 	add_special Special_EnterDistrCode
+	add_special PhanceroCheck
 	add_special SpecialNone
 ; c224
 
@@ -836,5 +837,26 @@ Special_CheckRematches:
 	ld hl, EventFlags + (EVENT_FALKNER_REMATCH >> 3)
 	ld b, 2
 	call CountSetBits
+	ld [ScriptVar], a
+	ret
+
+PhanceroCheck:
+	ld a, PHANCERO
+	call CheckCaughtMon
+	ld b, 251
+	jr z, .okay
+	inc b
+.okay
+	push bc
+	ld hl, PokedexCaught
+	ld b, EndPokedexCaught - PokedexCaught
+	call CountSetBits
+	pop bc
+	ld a, [wd265]
+	cp b
+	ld a, 0
+	jr c, .okay2
+	inc a
+.okay2
 	ld [ScriptVar], a
 	ret

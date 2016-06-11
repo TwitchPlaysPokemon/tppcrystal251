@@ -126,8 +126,8 @@ OakAfterDefeat: ; 0x19b3ea
 	writetext UnknownText_0x19b4a2
 	waitbutton
 	special ProfOaksPCBoot
-	checkcode VAR_DEXCAUGHT
-	if_equal 251, PGKOak_FullDex
+	special PhanceroCheck
+	iftrue PGKOak_FullDex
 SkipfterDefeatDexCheck:
 	writetext OakAfterDefeatText
 	waitbutton
@@ -138,8 +138,8 @@ OakAfterE4:
 	writetext UnknownText_0x19b4a2
 	waitbutton
 	special ProfOaksPCBoot
-	checkcode VAR_DEXCAUGHT
-	if_equal 251, PGKOak_FullDex
+	special PhanceroCheck
+	iftrue PGKOak_FullDex
 	writetext OakAfterE4Text
 	waitbutton
 	closetext
@@ -169,8 +169,8 @@ UnknownScript_0x19b3ea: ; 0x19b3ea
 	writetext UnknownText_0x19b4a2
 	waitbutton
 	special ProfOaksPCBoot
-	checkcode VAR_DEXCAUGHT
-	if_equal 251, PGKOak_FullDex
+	special PhanceroCheck
+	iftrue PGKOak_FullDex
 .skip_dex_check
 	checkevent EVENT_SET_BY_OAK_AFTER_16_BADGES
 	iffalse .dont_mention_rematches

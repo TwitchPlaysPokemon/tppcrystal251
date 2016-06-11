@@ -19,7 +19,7 @@ MtSilverRuinsElmScript:
 	faceplayer
 	loadfont
 	writetext Text_MtSilverRuinsBird
-	cry 252
+	cry PHANCERO
 	waitbutton
 	closetext
 	playsound SFX_THUNDER
@@ -58,7 +58,7 @@ MtSilverRuinsElmScript:
 	faceplayer
 	loadfont
 	writetext Text_MtSilverRuinsBird
-	cry 252
+	cry PHANCERO
 	waitbutton
 	closetext
 	playsound SFX_FLY
