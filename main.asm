@@ -81163,7 +81163,7 @@ OptionsMenu_LoadOptions:
 StringOptions: ; e4241
 	db "TEXT SPEED", $22
 	db "        :", $22
-	db "BATTLE SCENE", $22
+	db "BATTLE ANIMATION", $22
 	db "        :", $22
 	db "BATTLE STYLE", $22
 	db "        :", $22
