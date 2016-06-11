@@ -57,6 +57,7 @@ Special_EnterDistrCode:
 	call PlaySFX
 	call WaitSFX
 	ld a, [CurPartySpecies]
+	dec a
 	call SetSeenAndCaughtMon
 	ld a, [wSurvivalModeParty + 33]
 	and a
