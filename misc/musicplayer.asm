@@ -187,6 +187,11 @@ MusicPlayer::
 	ld a, [rLCDC]
 	ld [hMPTmp3], a
 	call DisableLCD
+	ld a, [rIE]
+	push af
+	call DoubleSpeed
+	pop af
+	ld [rIE], a
 	ld a, $63
 	ld [rLCDC], a
 	ld d, $80
@@ -552,7 +557,11 @@ MusicPlayer::
 	ld [rVBK], a
 	call Functione5f
 	call ClearSprites
-	;call NormalSpeed
+	ld a, [rIE]
+	push af
+	call NormalSpeed
+	pop af
+	ld [rIE], a
 	call EnableLCD
 	xor a
 	ld [hVBlank], a ; VBlank0

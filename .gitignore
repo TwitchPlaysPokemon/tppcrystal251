@@ -1,6 +1,7 @@
 # generated
 *.tx
 *.o
+data/distribution.bin
 
 # precompiled python
 *.pyc
