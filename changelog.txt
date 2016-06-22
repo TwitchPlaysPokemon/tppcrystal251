@@ -1,3 +1,14 @@
+Version 1.2.3c
+* Cartridge release
+* More text fixes
+* Music player fixes
+* Pokemon obtained from distribution now have their data added to the PokeDex
+
+Version 1.2.3
+* More party menu icons
+* More text fixes
+* Version can be viewed in options screen
+
 Version 1.2.2
 * Fix Paras' menu icon not animating
 * Slight alteration to male player sprite to stop hair from growing when walking
@@ -92,5 +103,5 @@ Version 1.1.1
 * You can no longer receive phone calls prior to actually getting the phone card
 * Updated title from "CRYSTAL ANNIVERSARY" to "ANNIVERSARY CRYSTAL"
 
-Version 1.1.0
+Version 1.1
 * Initial release
