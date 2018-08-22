@@ -66,11 +66,7 @@ InitPokedex: ; 40063
 	call Function414b7
 
 	ld hl, wc6d0
-IF DEF(CRYSTAL11) | DEF(BEESAFREE)
 	ld bc, $0116
-ELSE
-	ld bc, $0115
-ENDC
 	xor a
 	call ByteFill
 
