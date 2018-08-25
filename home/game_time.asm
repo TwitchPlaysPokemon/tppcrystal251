@@ -41,6 +41,53 @@ UpdateGameTimer:: ; 20ad
 	ld hl, GameTimerPause
 	bit 0, [hl]
 	ret z
+	
+IF DEF(NO_RTC)
+	ld a, [hSeconds + 1]
+	inc a
+	cp 5 ; 12x faster = 2 hours/day
+	jr nc, .second2
+	ld [hSeconds + 1], a
+	jr .gametime
+.second2
+	xor a
+	ld [hSeconds + 1], a
+	ld a, [hSeconds]
+	inc a
+	cp 60
+	jr nc, .minute2
+	ld [hSeconds], a
+	jr .gametime
+.minute2
+	xor a
+	ld [hSeconds], a
+	ld a, [hMinutes]
+	inc a
+	cp 60
+	jr nc, .hour2
+	ld [hMinutes], a
+	jr .gametime
+.hour2
+	xor a
+	ld [hMinutes], a
+	ld a, [hHours]
+	inc a
+	cp 24
+	jr nc, .day2
+	ld [hHours], a
+	jr .gametime
+.day2
+	xor a
+	ld [hHours], a
+	ld a, [CurDay]
+	inc a
+	cp 7
+	jr c, .week2
+	xor a
+.week2
+	ld [CurDay], a
+.gametime
+ENDC
 
 ; Is the timer already capped?
 	ld hl, GameTimeCap

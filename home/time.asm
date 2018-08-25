@@ -13,7 +13,7 @@ AskTimer:: ; 591
 	reti
 ; 59c
 
-
+IF !DEF(NO_RTC)
 LatchClock:: ; 59c
 ; latch clock counter data
 	ld a, 0
@@ -22,19 +22,21 @@ LatchClock:: ; 59c
 	ld [MBC3LatchClock], a
 	ret
 ; 5a7
+ENDC
 
 
 UpdateTime:: ; 5a7
-; IF !DEF(BEESAFREE)
+; the time data is already updated in game timer for no rtc build
+IF !DEF(NO_RTC)
 	call GetClock ;set correct time
 	call FixDays
-; ENDC
 	call FixTime
+ENDC
 	callba GetTimeOfDay ;update ToD
 	ret
 ; 5b7
 
-
+IF !DEF(NO_RTC)
 GetClock:: ; 5b7
 ; store clock data in hRTCDayHi-hRTCSeconds
 
@@ -188,6 +190,7 @@ FixTime:: ; 61d
 	ld [CurDay], a
 	ret
 ; 658
+ENDC
 
 Function658:: ; 658
 	xor a
@@ -212,8 +215,15 @@ Function677:: ; 677
 ; 67e
 
 
-
 Function67e:: ; 67e
+IF DEF(NO_RTC)
+	xor a
+	ld [hSeconds], a
+	ld [hMinutes], a
+	ld [hHours], a
+	ld [CurDay], a
+	ret
+ELSE
 	call Function685
 	call SetClock
 	ret
@@ -227,9 +237,11 @@ Function685:: ; 685
 	ld [hRTCDayLo], a
 	ld [hRTCDayHi], a
 	ret
+ENDC
 ; 691
 
 
+IF !DEF(NO_RTC)
 SetClock:: ; 691
 ; set clock data from hram
 
@@ -277,21 +289,26 @@ SetClock:: ; 691
 	call CloseSRAM ; unlatch clock, disable clock r/w
 	ret
 ; 6c4
+ENDC
 
 
 Function6c4:: ; 6c4
+IF DEF(NO_RTC)
+	ld a, $80
+ELSE
 	xor a
+ENDC
 	push af
 	ld a, $0
 	call GetSRAMBank
 	pop af
-	ld [$ac60], a
+	ld [sRTCStatusFlags], a
 	call CloseSRAM
 	ret
 ; 6d3
 
 Function6d3:: ; 6d3
-	ld hl, $ac60
+	ld hl, sRTCStatusFlags
 	push af
 	ld a, $0
 	call GetSRAMBank
@@ -305,7 +322,7 @@ Function6d3:: ; 6d3
 Function6e3:: ; 6e3
 	ld a, $0
 	call GetSRAMBank
-	ld a, [$ac60]
+	ld a, [sRTCStatusFlags]
 	call CloseSRAM
 	ret
 ; 6ef

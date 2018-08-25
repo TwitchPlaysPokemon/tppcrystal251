@@ -499,7 +499,11 @@ Function5e34: ; 5e34
 Function5e48: ; 5e48
 	call Function6e3
 	and $80
+IF DEF(NO_RTC)
+	jr nz, .loadtime
+ELSE
 	jr z, .asm_5e5b
+ENDC
 	callba Function20021
 	ld a, c
 	and a
@@ -507,6 +511,19 @@ Function5e48: ; 5e48
 	scf
 	ret
 
+IF DEF(NO_RTC)
+.loadtime
+; transfer the time from save file to hram
+	ld hl, wRTC
+	ld a, [hli]
+	ld [CurDay], a
+	ld a, [hli]
+	ld [hHours], a
+	ld a, [hli]
+	ld [hMinutes], a
+	ld a, [hl]
+	ld [hSeconds], a
+ENDC
 .asm_5e5b
 	xor a
 	ret
@@ -536,7 +553,11 @@ Function5e5d: ; 5e5d
 Function5e85: ; 5e85
 	call Function6e3
 	and $80
+IF DEF(NO_RTC)
+	jr nz, .asm_5e93
+ELSE
 	jr z, .asm_5e93
+ENDC
 	ld de, $0408
 	call Function5eaf
 	ret
@@ -16238,6 +16259,7 @@ GetSquareRoot: ; 13b87
 
 SECTION "bank5", ROMX, BANK[$5]
 
+IF !DEF(NO_RTC)
 StopRTC: ; 14000
 	ld a, SRAM_ENABLE
 	ld [MBC3SRamEnable], a
@@ -16263,6 +16285,7 @@ StartRTC: ; 14019
 	call CloseSRAM
 	ret
 ; 14032
+ENDC
 
 GetTimeOfDay:: ; 14032
 ; get time of day based on the current hour
@@ -16328,6 +16351,11 @@ Function14056: ; 14056
 Function1406a: ; 1406a
 	ld a, $a
 	ld [MBC3SRamEnable], a
+IF DEF(NO_RTC)
+	xor a
+	ld [MBC3SRamBank], a
+	ld a, $80
+ELSE
 	call LatchClock
 	ld hl, MBC3RTC
 	ld a, $c
@@ -16336,11 +16364,13 @@ Function1406a: ; 1406a
 	ld a, $0
 	ld [MBC3SRamBank], a
 	xor a
-	ld [$ac60], a
+ENDC
+	ld [sRTCStatusFlags], a
 	call CloseSRAM
 	ret
 ; 14089
 
+IF !DEF(NO_RTC)
 StartClock:: ; 14089
 	call GetClock
 	call Function1409b
@@ -16351,6 +16381,7 @@ StartClock:: ; 14089
 	call StartRTC
 	ret
 ; 1409b
+ENDC
 
 Function1409b: ; 1409b
 	ld hl, hRTCDayHi
@@ -16401,6 +16432,19 @@ Function140ae: ; 140ae
 ; 140ed
 
 Function140ed:: ; 140ed
+IF DEF(NO_RTC)
+	xor a
+	ld [hSeconds + 1], a
+	ld a, [StringBuffer2 + 3]
+	ld [hSeconds], a
+	ld a, [StringBuffer2 + 2]
+	ld [hMinutes], a
+	ld a, [StringBuffer2 + 1]
+	ld [hHours], a
+	ld a, [StringBuffer2]
+	ld [CurDay], a
+	ret
+ELSE
 	call GetClock
 	call FixDays
 	ld hl, hRTCSeconds
@@ -16439,6 +16483,7 @@ Function140ed:: ; 140ed
 .asm_14128
 	ld [de], a
 	ret
+ENDC
 ; 1412a
 
 Function1412a: ; 1412a
@@ -41920,6 +41965,13 @@ Function49e09: ; 49e09
 	ld a, [wcfcd]
 	and a
 	ret z
+IF DEF(NO_RTC)
+	call Function6e3
+	and $80
+	ret nz
+	call SpeechTextBox
+	jp Function49e75
+ELSE
 	xor a
 	ld [hBGMapMode], a
 	call Function49e27
@@ -42000,6 +42052,7 @@ Function49e3d: ; 49e3d
 
 	db "min.@"
 ; 49e75
+ENDC
 
 Function49e75: ; 49e75
 	hlcoord 1, 14
@@ -42017,6 +42070,7 @@ UnknownText_0x49e8c: ; 49e8c
 	db "@"
 ; 49e91
 
+IF !DEF(NO_RTC)
 Function49e91: ; 49e91
 	push de
 	ld hl, .Days
@@ -42044,6 +42098,7 @@ Function49e91: ; 49e91
 .Day
 	db "DAY@"
 ; 49ed0
+ENDC
 
 Function49ed0: ; 49ed0
 	xor a
@@ -44875,8 +44930,10 @@ Function4d3b1: ; 4d3b1
 	jr c, .asm_4d3f7
 	ld a, $0
 	call GetSRAMBank
+IF !DEF(NO_RTC)
 	ld a, $80
-	ld [$ac60], a
+ENDC
+	ld [sRTCStatusFlags], a
 	call CloseSRAM
 	ld hl, UnknownText_0x4d3fe
 	call PrintText

@@ -1903,7 +1903,14 @@ DelayFrame_MPPost:
 	ld [wNoteMask], a
 	call Joypad
 	callba _UpdateSound
-	ret
+UpdateGameTimer_MP:
+	di ; don't let LCD accidentally write to wram bank 1
+	ld a, 1
+	ld [rSVBK],a
+	call UpdateGameTimer
+	ld a, 4
+	ld [rSVBK],a
+	reti
 
 DelayFrame_MPCommon:
 ; ch1-2 duty
@@ -2301,7 +2308,7 @@ DelayFrame_MP3:
 	ld a, [hSCY]
 	ld [rSCY], a
 	callba _UpdateSound
-	ret
+	jp UpdateGameTimer_MP
 
 .states
 	dw .init1

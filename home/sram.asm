@@ -9,9 +9,11 @@ GetSRAMBank:: ; 2fcb
 OpenSRAM:: ; 2fd1
 ; switch to sram bank a
 	push af
+IF !DEF(NO_RTC)
 ; latch clock data
 	ld a, 1
 	ld [MBC3LatchClock], a
+ENDC
 ; enable sram/clock write
 	ld a, SRAM_ENABLE
 	ld [MBC3SRamEnable], a
@@ -24,8 +26,10 @@ OpenSRAM:: ; 2fd1
 CloseSRAM:: ; 2fe1
 	push af
 	ld a, SRAM_DISABLE
+IF !DEF(NO_RTC)
 ; reset clock latch for next time
 	ld [MBC3LatchClock], a
+ENDC
 ; disable sram/clock write
 	ld [MBC3SRamEnable], a
 	pop af

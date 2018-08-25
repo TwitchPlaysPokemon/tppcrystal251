@@ -1,3 +1,7 @@
+Version 1.2.3f
+* Add no RTC version for unsupported cartridges. This makes one day last 2 hours of in-game time instead
+* Music player now updates the in-game time.
+
 Version 1.2.3c
 * Cartridge release
 * More text fixes

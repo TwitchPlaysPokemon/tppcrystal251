@@ -26,15 +26,18 @@ pokedex.o \
 crystal_misc.o \
 pics.o
 
+nortc_obj := $(crystal_obj:.o=_nrtc.o)
+
 beesafree_obj := $(crystal_obj:.o=_ai.o)
 
 all_obj := $(sort $(crystal_obj) $(beesafree_obj))
 
-roms := pokecrystal.gbc pokecrystal_ai.gbc
+roms := pokecrystal.gbc pokecrystal_nortc.gbc pokecrystal_ai.gbc
 
 
 all: $(roms)
 crystal: pokecrystal.gbc
+nortc: pokecrystal_nortc.gbc
 beesafree: pokecrystal_ai.gbc
 distribution: data/distribution.bin
 patches: ipspatch pokecrystal.ips pokecrystal_ai.ips
@@ -59,16 +62,24 @@ clean:
 %_ai.o: %.asm $$(dep)
 	rgbasm -D BEESAFREE -o $@ $<
 
+%_nrtc.o: dep = $(shell $(includes) $(@D)/$*.asm)
+%_nrtc.o: %.asm $$(dep)
+	rgbasm -D NO_RTC -o $@ $<
+
 %.ips: %.gbc
 	ipspatch/ipspatch create baserom.gbc $< $@
 
 pokecrystal.gbc: $(crystal_obj)
 	rgblink -n pokecrystal.sym -m pokecrystal.map -o $@ $^
-	rgbfix -Cjv -i BORT -k 01 -l 0x33 -m 0x10 -p 0 -r 3 -t TPPCRYSTAL $@
+	rgbfix -Cjv -i BORT -k 01 -l 0x33 -m 0x10 -n 1 -p 0 -r 3 -t TPPCRYSTAL $@
 
 pokecrystal_ai.gbc: $(beesafree_obj)
 	rgblink -n pokecrystal_ai.sym -m pokecrystal_ai.map -o $@ $^
 	rgbfix -Cjv -i BORT -k 01 -l 0x33 -m 0x10 -n 1 -p 0 -r 3 -t TPPCRYSTAL $@
+
+pokecrystal_nortc.gbc: $(nortc_obj)
+	rgblink -n pokecrystal_nortc.sym -m pokecrystal_nortc.map -o $@ $^
+	rgbfix -Cjv -i BORT -k 01 -l 0x33 -m 0x13 -n 1 -p 0 -r 3 -t TPPCRYSTAL $@
 
 %.exe: %.c
 	gcc -O3 -Wno-unused-result $< -o $@

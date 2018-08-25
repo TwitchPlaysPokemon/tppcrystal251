@@ -147,11 +147,13 @@ Init:: ; 17d
 	xor a
 	ld [hBGMapAddress], a
 
+IF !DEF(NO_RTC)
 	callba StartClock
 
 	xor a
 	ld [MBC3LatchClock], a
 	ld [MBC3SRamEnable], a
+ENDC
 
 	ld a, [hCGB]
 	and a
