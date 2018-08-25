@@ -6,3 +6,6 @@
 	path = crowdmap
 	url = https://github.com/yenatch/crowdmap
 	ignore = dirty
+[submodule "bspbuild"]
+	path = bspbuild
+	url = https://github.com/aaaaaa123456789/bspbuild.git
