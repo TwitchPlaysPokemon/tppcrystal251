@@ -9,3 +9,6 @@
 [submodule "bspbuild"]
 	path = bspbuild
 	url = https://github.com/aaaaaa123456789/bspbuild.git
+[submodule "ipspatch"]
+	path = ipspatch
+	url = https://github.com/aaaaaa123456789/ipspatch.git
