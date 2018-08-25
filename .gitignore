@@ -9,6 +9,8 @@ data/distribution.bin
 
 # no binaries
 *.exe
+ipspatch/ipspatch
+distribution/autogen
 
 # roms
 *.gbc

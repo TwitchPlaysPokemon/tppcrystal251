@@ -3,7 +3,7 @@ CC := gcc
 MD5 := md5sum -c --quiet
 
 .SUFFIXES:
-.PHONY: all clean crystal beesafree patches ipspatch distribution
+.PHONY: all clean crystal beesafree patches ipspatch distribution autogen bspbuild
 .SECONDEXPANSION:
 .PRECIOUS: %.2bpp %.1bpp
 
@@ -11,6 +11,7 @@ gfx       := $(PYTHON) gfx.py
 includes  := $(PYTHON) scan_includes.py
 autogen   := distribution/autogen
 ipspatch  := ipspatch/ipspatch
+bspbuild  := bspbuild/bspbuild
 
 crystal_obj := \
 wram.o \
@@ -48,11 +49,14 @@ ipspatch: $(ipspatch).c
 autogen: $(autogen).c
 	$(CC) -O3 $(autogen).c -o $(autogen)
 
+bspbuild:
+	cd bspbuild && $(MAKE) CC=$(CC)
+
 data/distribution.bin: distribution/distdata.txt autogen
 	$(autogen) $< $@
 
 clean:
-	rm -f $(roms) $(all_obj) $(roms:.gbc=.map) $(roms:.gbc=.sym) $(roms:.gbc=.ips) data/distribution.bin $(ipspatch) $(autogen)
+	rm -f $(roms) $(all_obj) $(roms:.gbc=.map) $(roms:.gbc=.sym) $(roms:.gbc=.ips) data/distribution.bin $(ipspatch) $(autogen) $(bspbuild)
 
 %.asm: ;
 %.txt: ;
