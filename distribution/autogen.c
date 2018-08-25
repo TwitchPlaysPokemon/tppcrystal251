@@ -308,7 +308,7 @@ struct line_data parse_line_into_data (char * line, const unsigned * field_lengt
 
 int main (int argc, char ** argv) {
   if ((argc < 2) || (argc > 3)) {
-    fprintf(stderr, "usage:\n  %s <infile> <outfile>\n  %s <outfile> (takes input from stdin\n", *argv, *argv);
+    fprintf(stderr, "usage:\n  %s <infile> <outfile>\n  %s <outfile> (takes input from stdin)\n", *argv, *argv);
     return 2;
   }
   FILE * file;
