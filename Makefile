@@ -75,6 +75,8 @@ clean:
 	rgbasm -D NO_RTC -o $@ $<
 
 %.ips: %.gbc
+	# we're building IPS patches for Crystal 1.0 for some reason
+	[ $(shell sha1sum -b baserom.gbc | cut -c 1-40) = f4cd194bdee0d04ca4eac29e09b8e4e9d818c133 ]
 	ipspatch/ipspatch create baserom.gbc $< $@
 
 pokecrystal.gbc: $(crystal_obj)
