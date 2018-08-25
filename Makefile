@@ -1,4 +1,5 @@
 PYTHON := python2
+CC := gcc
 MD5 := md5sum -c --quiet
 
 .SUFFIXES:
@@ -8,8 +9,8 @@ MD5 := md5sum -c --quiet
 
 gfx       := $(PYTHON) gfx.py
 includes  := $(PYTHON) scan_includes.py
-autogen := distribution/autogen
-
+autogen   := distribution/autogen
+ipspatch  := ipspatch/ipspatch
 
 crystal_obj := \
 wram.o \
@@ -34,21 +35,24 @@ all_obj := $(sort $(crystal_obj) $(beesafree_obj))
 
 roms := pokecrystal.gbc pokecrystal_nortc.gbc pokecrystal_ai.gbc
 
-
 all: $(roms)
 crystal: pokecrystal.gbc
 nortc: pokecrystal_nortc.gbc
 beesafree: pokecrystal_ai.gbc
 distribution: data/distribution.bin
-patches: ipspatch pokecrystal.ips pokecrystal_ai.ips
-ipspatch: ipspatch/ipspatch.exe
-autogen: distribution/autogen.exe
+patches: ipspatch $(roms:.gbc=.ips)
+
+ipspatch: $(ipspatch).c
+	$(CC) -O3 $(ipspatch).c -o $(ipspatch)
+
+autogen: $(autogen).c
+	$(CC) -O3 $(autogen).c -o $(autogen)
 
 data/distribution.bin: distribution/distdata.txt autogen
 	$(autogen) $< $@
 
 clean:
-	rm -f $(roms) $(all_obj) $(roms:.gbc=.map) $(roms:.gbc=.sym) $(roms:.gbc=.ips) data/distribution.bin
+	rm -f $(roms) $(all_obj) $(roms:.gbc=.map) $(roms:.gbc=.sym) $(roms:.gbc=.ips) data/distribution.bin $(ipspatch) $(autogen)
 
 %.asm: ;
 %.txt: ;
@@ -81,13 +85,8 @@ pokecrystal_nortc.gbc: $(nortc_obj)
 	rgblink -n pokecrystal_nortc.sym -m pokecrystal_nortc.map -o $@ $^
 	rgbfix -Cjv -i BORT -k 01 -l 0x33 -m 0x13 -n 1 -p 0 -r 3 -t TPPCRYSTAL $@
 
-%.exe: %.c
-	gcc -O3 -Wno-unused-result $< -o $@
-
 %.2bpp: %.png ; $(gfx) 2bpp $<
 %.1bpp: %.png ; $(gfx) 1bpp $<
-#%.lz:   %     ; $(gfx) lz $<
-
 
 %.pal: %.2bpp ;
 gfx/pics/%/normal.pal gfx/pics/%/bitmask.asm gfx/pics/%/frames.asm: gfx/pics/%/front.2bpp ;
