@@ -43,8 +43,8 @@ beesafree: pokecrystal_ai.gbc
 distribution: data/distribution.bin
 patches: ipspatch $(roms:.gbc=.ips)
 
-ipspatch: $(ipspatch).c
-	$(CC) -O3 $(ipspatch).c -o $(ipspatch)
+ipspatch:
+	cd ipspatch && $(MAKE) CC=$(CC)
 
 autogen: $(autogen).c
 	$(CC) -O3 $(autogen).c -o $(autogen)
