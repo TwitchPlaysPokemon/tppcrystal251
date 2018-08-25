@@ -1860,7 +1860,9 @@ StartSecond:: ; d4b9
 
 wRTC:: ; d4ba
 	ds 8
+IF !DEF(NO_RTC)
 wDST:: ; d4c2
+ENDC
 	ds 1
 
 GameTimeCap:: ; d4c3

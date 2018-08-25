@@ -21517,7 +21517,9 @@ Function16290: ; 16290
 	jr .asm_162a4
 
 .asm_1629f
+IF !DEF(NO_RTC)
 	call DSTChecks
+ENDC
 	ld a, $7
 .asm_162a4
 	ld [wcf63], a
@@ -21721,6 +21723,7 @@ Function16433: ; 16433
 	ret
 ; 16439
 
+IF !DEF(NO_RTC)
 DSTChecks: ; 16439
 ; check the time; avoid changing DST if doing so would change the current day
 
@@ -21815,6 +21818,7 @@ Function164d1: ; 164d1
 	ld [StartDay], a
 	ret
 ; 164ea
+ENDC
 
 Function164ea: ; 164ea
 	hlcoord 1, 14
@@ -21823,6 +21827,7 @@ Function164ea: ; 164ea
 	ret
 ; 164f4
 
+IF !DEF(NO_RTC)
 UnknownText_0x164f4: ; 0x164f4
 	; Do you want to adjust your clock for Daylight Saving Time?
 	text_jump UnknownText_0x1c6095
@@ -21859,6 +21864,7 @@ UnknownText_0x1650d: ; 0x1650d
 	text_jump UnknownText_0x1c6075
 	db "@"
 ; 0x16512
+ENDC
 
 Function16512: ; 16512
 	ld de, String_1669f
@@ -67322,6 +67328,11 @@ UnknownText_0x90a4f: ; 0x90a4f
 	db "@"
 ; 0x90a54
 
+IF DEF(NO_RTC)
+Function90a54:
+Function90a88:
+	ret
+ELSE
 Function90a54: ; 90a54
 	ld a, [wDST]
 	set 7, a
@@ -67383,6 +67394,7 @@ UnknownText_0x90ab7: ; 0x90ab7
 	text_jump UnknownText_0x1c5ff1
 	db "@"
 ; 0x90abc
+ENDC
 
 Function90abc: ; 90abc
 	hlcoord 1, 14
@@ -67416,6 +67428,7 @@ UnknownText_0x90acc: ; 0x90acc
 	call Function90b23
 	ld [hl], " "
 	inc hl
+IF !DEF(NO_RTC)
 	ld a, [wDST]
 	bit 7, a
 	jr z, .off
@@ -67432,6 +67445,7 @@ UnknownText_0x90acc: ; 0x90acc
 	inc hl
 	ld [hl], "F"
 	inc hl
+ENDC
 .done
 	ld hl, UnknownText_0x90b13
 	ret

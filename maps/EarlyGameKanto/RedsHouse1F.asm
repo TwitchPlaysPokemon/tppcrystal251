@@ -59,6 +59,7 @@ RedsHouse1FRB_SkipMovement: ; 0x7a4f6
 	writetext MomText2
 	buttonsound
 	special Function90913
+IF !DEF(NO_RTC)
 RedsHouse1FRB_DSTLoop: ; 0x7a519
 	writetext MomText3
 	yesorno
@@ -90,6 +91,7 @@ RedsHouse1FRB_TimeIsSet: ; 0x7a531
 ; RedsHouse1FRB_AfterPhoneExplanation: ; 0x7a549
 	; writetext MomText7
 	waitbutton
+ENDC
 	closetext
 	checkevent EVENT_003_STD
 	iftrue RedsHouse1FRB_MoveBack3
@@ -256,6 +258,7 @@ MomText2: ; 0x7a6bd
 	done
 ; 0x7a742
 
+IF !DEF(NO_RTC)
 MomText3: ; 0x7a742
 	text "Is it Daylight"
 	line "Saving Time now?"
@@ -269,6 +272,7 @@ MomText4: ; 0x7a763
 	para "for Daylight"
 	line "Saving Time."
 	done
+ENDC
 
 MomText_AllBoysLeaveHomeSomeday:
 	text "Right. All boys"

@@ -1733,6 +1733,7 @@ UnknownText_0x1c5fd1: ; 0x1c5fd1
 	prompt
 ; 0x1c5fde
 
+IF !DEF(NO_RTC)
 UnknownText_0x1c5fde: ; 0x1c5fde
 	text " DST,"
 	line "is that OK?"
@@ -1789,6 +1790,7 @@ UnknownText_0x1c60d1: ; 0x1c60d1
 	line "a while."
 	prompt
 ; 0x1c611e
+ENDC
 
 _LovelyWaterText:
 	text "Waves are crashing"
