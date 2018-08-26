@@ -12,3 +12,6 @@
 [submodule "ipspatch"]
 	path = ipspatch
 	url = https://github.com/aaaaaa123456789/ipspatch.git
+[submodule "rgbds"]
+	path = rgbds
+	url = https://github.com/rednex/rgbds.git
