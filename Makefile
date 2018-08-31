@@ -71,34 +71,36 @@ clean:
 %.txt: ;
 %.c: ;
 
-%.o: dep = $(shell $(includes) $(@D)/$*.asm)
-%.o: %.asm $$(dep)
-	rgbasm -o $@ $<
-
 %_ai.o: dep = $(shell $(includes) $(@D)/$*.asm)
-%_ai.o: %.asm $$(dep)
-	rgbasm -D BEESAFREE -o $@ $<
+%_ai.o: %.asm $$(dep) rgbds
+	$(rgbasm) -D BEESAFREE -o $@ $<
 
 %_nrtc.o: dep = $(shell $(includes) $(@D)/$*.asm)
-%_nrtc.o: %.asm $$(dep)
-	rgbasm -D NO_RTC -o $@ $<
+%_nrtc.o: %.asm $$(dep) rgbds
+	$(rgbasm) -D NO_RTC -o $@ $<
+
+%.o: dep = $(shell $(includes) $(@D)/$*.asm)
+%.o: %.asm $$(dep) rgbds
+	$(rgbasm) -o $@ $<
 
 %.ips: %.gbc
 	# we're building IPS patches for Crystal 1.0 for some reason
 	[ $(shell sha1sum -b baserom.gbc | cut -c 1-40) = f4cd194bdee0d04ca4eac29e09b8e4e9d818c133 ]
 	ipspatch/ipspatch create baserom.gbc $< $@
 
+%.gbc: rgbds
+
 pokecrystal.gbc: $(crystal_obj)
-	rgblink -n pokecrystal.sym -m pokecrystal.map -o $@ $^
-	rgbfix -Cjv -i BORT -k 01 -l 0x33 -m 0x10 -n 1 -p 0 -r 3 -t TPPCRYSTAL $@
+	$(rgblink) -n pokecrystal.sym -m pokecrystal.map -o $@ $^
+	$(rgbfix) -Cjv -i BORT -k 01 -l 0x33 -m 0x10 -n 1 -p 0 -r 3 -t TPPCRYSTAL $@
 
 pokecrystal_ai.gbc: $(beesafree_obj)
-	rgblink -n pokecrystal_ai.sym -m pokecrystal_ai.map -o $@ $^
-	rgbfix -Cjv -i BORT -k 01 -l 0x33 -m 0x10 -n 1 -p 0 -r 3 -t TPPCRYSTAL $@
+	$(rgblink) -n pokecrystal_ai.sym -m pokecrystal_ai.map -o $@ $^
+	$(rgbfix) -Cjv -i BORT -k 01 -l 0x33 -m 0x10 -n 1 -p 0 -r 3 -t TPPCRYSTAL $@
 
 pokecrystal_nortc.gbc: $(nortc_obj)
-	rgblink -n pokecrystal_nortc.sym -m pokecrystal_nortc.map -o $@ $^
-	rgbfix -Cjv -i BORT -k 01 -l 0x33 -m 0x13 -n 1 -p 0 -r 3 -t TPPCRYSTAL $@
+	$(rgblink) -n pokecrystal_nortc.sym -m pokecrystal_nortc.map -o $@ $^
+	$(rgbfix) -Cjv -i BORT -k 01 -l 0x33 -m 0x13 -n 1 -p 0 -r 3 -t TPPCRYSTAL $@
 
 %.2bpp: %.png ; $(gfx) 2bpp $<
 %.1bpp: %.png ; $(gfx) 1bpp $<
