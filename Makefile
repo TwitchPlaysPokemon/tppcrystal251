@@ -3,7 +3,7 @@ CC := gcc
 MD5 := md5sum -c --quiet
 
 .SUFFIXES:
-.PHONY: all clean crystal beesafree patches ipspatch distribution autogen bspbuild
+.PHONY: all clean crystal beesafree patches ipspatch distribution autogen bspbuild rgbds
 .SECONDEXPANSION:
 .PRECIOUS: %.2bpp %.1bpp
 
@@ -12,6 +12,9 @@ includes  := $(PYTHON) scan_includes.py
 autogen   := distribution/autogen
 ipspatch  := ipspatch/ipspatch
 bspbuild  := bspbuild/bspbuild
+rgbasm    := rgbds/rgbasm
+rgblink   := rgbds/rgblink
+rgbfix    := rgbds/rgbfix
 
 crystal_obj := \
 wram.o \
@@ -52,11 +55,17 @@ autogen: $(autogen).c
 bspbuild:
 	cd bspbuild && $(MAKE) CC=$(CC)
 
+rgbds:
+	# ensure we pass the proper warning cancellation flags because this build of rgbds throws a lot of warnings otherwise
+	cd rgbds && $(MAKE) CC=$(CC) CFLAGS="-O3 -Wno-unused-result -Wno-maybe-uninitialized" YFLAGS="-Wno-conflicts-rr -Wno-conflicts-sr"
+
 data/distribution.bin: distribution/distdata.txt autogen
 	$(autogen) $< $@
 
 clean:
-	rm -f $(roms) $(all_obj) $(roms:.gbc=.map) $(roms:.gbc=.sym) $(roms:.gbc=.ips) data/distribution.bin $(ipspatch) $(autogen) $(bspbuild)
+	rm -f $(roms) $(all_obj) $(roms:.gbc=.map) $(roms:.gbc=.sym) $(roms:.gbc=.ips) data/distribution.bin $(ipspatch) $(autogen)
+	cd rgbds && $(MAKE) clean
+	cd bspbuild && $(MAKE) clean
 
 %.asm: ;
 %.txt: ;
