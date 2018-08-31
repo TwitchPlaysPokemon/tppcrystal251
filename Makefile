@@ -35,7 +35,7 @@ nortc_obj := $(crystal_obj:.o=_nrtc.o)
 
 beesafree_obj := $(crystal_obj:.o=_ai.o)
 
-all_obj := $(sort $(crystal_obj) $(beesafree_obj))
+all_obj := $(sort $(crystal_obj) $(beesafree_obj) $(nortc_obj))
 
 roms := pokecrystal.gbc pokecrystal_nortc.gbc pokecrystal_ai.gbc
 
