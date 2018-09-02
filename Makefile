@@ -55,8 +55,8 @@ autogen: $(autogen).c
 bspbuild:
 	cd bspbuild && $(MAKE) CC=$(CC)
 
+# ensure we pass the proper warning cancellation flags because this build of rgbds throws a lot of warnings otherwise
 rgbds:
-	# ensure we pass the proper warning cancellation flags because this build of rgbds throws a lot of warnings otherwise
 	cd rgbds && $(MAKE) CC=$(CC) CFLAGS="-O3 -Wno-unused-result -Wno-maybe-uninitialized" YFLAGS="-Wno-conflicts-rr -Wno-conflicts-sr"
 
 data/distribution.bin: distribution/distdata.txt autogen
@@ -83,8 +83,8 @@ clean:
 %.o: %.asm $$(dep) rgbds
 	$(rgbasm) -o $@ $<
 
+# we're building IPS patches for Crystal 1.0 for some reason
 %.ips: %.gbc
-	# we're building IPS patches for Crystal 1.0 for some reason
 	[ $(shell sha1sum -b baserom.gbc | cut -c 1-40) = f4cd194bdee0d04ca4eac29e09b8e4e9d818c133 ]
 	ipspatch/ipspatch create baserom.gbc $< $@
 
