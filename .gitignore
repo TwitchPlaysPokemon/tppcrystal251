@@ -16,6 +16,10 @@ distribution/autogen
 *.gbc
 *.gb
 
+# patches
+*.ips
+*.bsp
+
 # for any of the poor souls with save game files in their working directory
 *.sgm
 *.sav
