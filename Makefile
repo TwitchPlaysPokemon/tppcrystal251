@@ -44,7 +44,7 @@ crystal: pokecrystal.gbc
 nortc: pokecrystal_nortc.gbc
 beesafree: pokecrystal_ai.gbc
 distribution: data/distribution.bin
-patches: ipspatch $(roms:.gbc=.ips)
+patches: ipspatch $(roms:.gbc=.ips) annicrystal.bsp
 
 ipspatch:
 	cd ipspatch && $(MAKE) CC=$(CC)
@@ -63,7 +63,7 @@ data/distribution.bin: distribution/distdata.txt autogen
 	$(autogen) $< $@
 
 clean:
-	rm -f $(roms) $(all_obj) $(roms:.gbc=.map) $(roms:.gbc=.sym) $(roms:.gbc=.ips) data/distribution.bin $(ipspatch) $(autogen)
+	rm -f $(roms) $(all_obj) $(roms:.gbc=.map) $(roms:.gbc=.sym) $(roms:.gbc=.ips) data/distribution.bin $(ipspatch) $(autogen) annicrystal.bsp
 	cd rgbds && $(MAKE) clean
 	cd bspbuild && $(MAKE) clean
 
@@ -87,6 +87,10 @@ clean:
 %.ips: %.gbc
 	[ $(shell sha1sum -b baserom.gbc | cut -c 1-40) = f4cd194bdee0d04ca4eac29e09b8e4e9d818c133 ]
 	ipspatch/ipspatch create baserom.gbc $< $@
+
+%.bsp: $(roms) bspbuild
+	chmod +x generate_bsp.sh
+	./generate_bsp.sh $@ $(bspbuild)
 
 %.gbc: rgbds
 
