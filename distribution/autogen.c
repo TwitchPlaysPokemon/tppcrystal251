@@ -5,6 +5,16 @@
 #include <ctype.h>
 #include <time.h>
 
+// use the random implementation in random.c, not the default one
+#define NO_SYSTEM_RANDOM
+
+#ifdef NO_SYSTEM_RANDOM
+	#include "random.c"
+	// hide the standard library functions by defining aliases that point to the random.c ones
+	#define srand initialize_random_state
+	#define rand next_random_number
+#endif
+
 const char * pokemon[256] = {
   "-", "Bulbasaur", "Ivysaur", "Venusaur", "Charmander", "Charmeleon", "Charizard", "Squirtle", "Wartortle", "Blastoise", "Caterpie", "Metapod", "Butterfree",
   "Weedle", "Kakuna", "Beedrill", "Pidgey", "Pidgeotto", "Pidgeot", "Rattata", "Raticate", "Spearow", "Fearow", "Ekans", "Arbok", "Pikachu", "Raichu", "Sandshrew",
