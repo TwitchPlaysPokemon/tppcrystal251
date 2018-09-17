@@ -386,7 +386,7 @@ void encrypt (const unsigned char * data, const unsigned char * key, unsigned ch
   unsigned char i, j, k, tp;
   unsigned char width, shift;
   unsigned char temp_data[42];
-  const unsigned char fixed_string[] = {0x8e, 0x8b, 0x83, 0x84, 0x8d};
+  const unsigned char fixed_string[] = {0x8e, 0x8b, 0x83, 0x84, 0x8d}; // "OLDEN"
   memcpy(encrypted, data, 42);
   for (i = 41; i < 42; i --) encrypted[i] ^= encrypted[(i < 21) ? (41 - i) : (i - 21)] ^ key[i % 7] ^ fixed_string[i % 5];
   for (i = 6; i < 7; i --) {
