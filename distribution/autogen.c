@@ -383,17 +383,12 @@ void generate_data_for_encryption (struct line_data source, char * data, char * 
 // everything below this line is a rewrite in C of pigdevil2010's encryption function
 
 void encrypt (const unsigned char * data, const unsigned char * key, unsigned char * encrypted) {
-  unsigned char fixed_pos = 2, key_pos = 0;
   unsigned char i, j, k, tp;
   unsigned char width, shift;
   unsigned char temp_data[42];
   const unsigned char fixed_string[] = {0x8e, 0x8b, 0x83, 0x84, 0x8d};
   memcpy(encrypted, data, 42);
-  for (i = 41; i < 42; i --) {
-    fixed_pos = (fixed_pos + 4) % 5;
-    key_pos = (key_pos + 6) % 7;
-    encrypted[i] ^= encrypted[(i < 21) ? (41 - i) : (i - 21)] ^ key[key_pos] ^ fixed_string[fixed_pos];
-  }
+  for (i = 41; i < 42; i --) encrypted[i] ^= encrypted[(i < 21) ? (41 - i) : (i - 21)] ^ key[i % 7] ^ fixed_string[i % 5];
   for (i = 6; i < 7; i --) {
     width = (key[i] & 15) + 2;
     shift = (key[i] >> 4) + 1;
@@ -404,13 +399,5 @@ void encrypt (const unsigned char * data, const unsigned char * key, unsigned ch
   }
   memcpy(temp_data, key, 7);
   memcpy(temp_data + 7, fixed_string, 5);
-  key_pos = 0;
-  for (i = 41; i < 42; i --) {
-    key_pos = (key_pos + 11) % 12;
-    encrypted[i] += temp_data[key_pos];
-  }
-  for (i = 41; i < 42; i --) {
-    key_pos = (key_pos + 11) % 12;
-    encrypted[i] -= temp_data[key_pos];
-  }
+  for (i = 0; i < 42; i ++) encrypted[i] += temp_data[(i + 6) % 12] - temp_data[i % 12];
 }
